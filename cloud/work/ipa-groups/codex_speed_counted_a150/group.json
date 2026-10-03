@@ -1,0 +1,24 @@
+{
+  "members": [
+    "func_800D6530"
+  ],
+  "context": [
+    "speed_set",
+    "speed_mode0_wrapper",
+    "speed_mode1_wrapper",
+    "continue_prompt",
+    "vsync_wait"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "speed_mode0_wrapper",
+    "speed_mode1_wrapper",
+    "continue_prompt",
+    "vsync_wait",
+    "func_800D6530"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}

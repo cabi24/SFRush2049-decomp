@@ -1,0 +1,18 @@
+{
+  "members": [
+    "menu_control_settings"
+  ],
+  "context": [
+    "func_8009E820"
+  ],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "keep": [
+    "menu_control_settings",
+    "func_8009E820"
+  ],
+  "provenance": "A140 unchanged complete B107 caller plus genuine complete ordinary three-pointer matrix callee, actual FP clobber contract test"
+}

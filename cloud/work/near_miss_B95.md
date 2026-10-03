@@ -1,0 +1,7 @@
+# B95 — complete native color dispatcher MATCH
+
+Target `dispatch_handler@0x800B74A0`, 1028 bytes / 257 words. Full native one-int interface, original24-byte RA frame. Complete mode22 initialization guard/callback registration and four-channel unsigned-byte interpolation, plus the real8-byte color table fallback. Real Color4/Color8 field types and supported normal helper prototypes. Preserve repeated guard, real callback pointer and original unsigned float conversions; no fake storage, unused formals, volatile, masks, assembly, stand-in groups or source-line sweeps.
+
+Before reconstruction read reservations and audited all archive definitions/reports including pointer-return forms, A111 dispatch packet, and canonical lock intervals; no duplicate body found. First complete native compile passes bare canonical strict MATCH with literal first-line flags `-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul`. Independent fresh compile comparison is0/257 with no unresolved/unverified relocations, errors or extra nonzero words. Separate current pipeline relocation of the private object verifies all1028 body bytes against original game image. Sanitized proof/result/hash manifest frozen; raw objects stay private.
+
+Coordinator independent replay and image/fullROM/pytest/lock gates still required before counting coverage. No shared accepted-source, header, lock, layout, splice or commit mutation by worker.

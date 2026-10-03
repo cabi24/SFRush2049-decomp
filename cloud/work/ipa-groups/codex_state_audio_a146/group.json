@@ -1,0 +1,21 @@
+{
+  "members": [
+    "state_change_preprocess"
+  ],
+  "context": [
+    "resource_slot_clear",
+    "func_80097694",
+    "resource_slots_clear_multiple",
+    "audio_frame_sync"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "state_change_preprocess",
+    "resource_slots_clear_multiple",
+    "audio_frame_sync"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}

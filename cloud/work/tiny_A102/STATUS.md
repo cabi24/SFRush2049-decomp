@@ -1,0 +1,5 @@
+# A102 genuine resource bit-count getter — exact first source
+
+Full func_800B78F0@800B78F0,336 bytes/84 words. Two actual consumed formals are player index and byte-lane selector. Signed current mode0..5 reads the actual96-byte record at data+140+mode*96;14..17 reads the64-byte record at data+396+mode*64. Both lazily initialize missing player handle from the actual selector-indexed Object pointer array. Only first mode branch checks absent resource and returns16, preserving original branch behavior. Other modes use zero bits. Nonzero lane selects the actual upper/lower byte mask; the real func_800B78A4(bits,16) counts bits and result is truncated to unsigned byte. Audited complete original helper establishes two genuine consumed arguments.
+
+First full native O2 source MATCH84 words; fresh independent recompilation and direct unmasked relocation/full-word proof both zero, no unknown/unverified references, errors or nonzero extra words. Scalar mask and branch-local typed records are genuinely consumed; no padding, pressure, forced volatile or fake context. Frozen source/flags/proofs, empty claims pending root independent replay and ROM/image/lock gates.

@@ -1,0 +1,58 @@
+{
+  "source_sha256": "0ec4a21459bf004dcbea60a69cdfe4ba85b718df8d6d4443089f321bcf825610",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "object_sha256": "2789259a2f9ffdd7a29d2ace2e7b2e129de62d256b1c0ad87819e76abfadd084",
+  "canonical": {
+    "func_8008A46C": {
+      "differing": 82,
+      "total": 118,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_8008A148": {
+      "differing": 139,
+      "total": 145,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_8008705C": {
+      "differing": 11,
+      "total": 45,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800878E0": {
+      "differing": 19,
+      "total": 74,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80086A50": {
+      "differing": 0,
+      "total": 387,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xc",
+        ".rodata+0x0 at +0x14"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "sound_init": {
+      "differing": 70,
+      "total": 100,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

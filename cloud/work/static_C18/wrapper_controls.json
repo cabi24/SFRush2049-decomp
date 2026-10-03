@@ -1,0 +1,218 @@
+[
+  {
+    "function": "dma_wait",
+    "variant": "volatile_block",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/dma_wait.volatile_block.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/dma_wait.volatile_block.O1.o",
+    "compile_error": "return 1; }\n ----^\ncfe: Error: /home/cburnes/agents/C/scratch/static-C18/dma_wait.volatile_block.c, line 8: Incompatible type for the function parameter\n s32 dma_wait(volatile s32 block) { OSMesg msg; if (!gDmaInitialized) dma_queue_init(); if(block) { osRecvMesg(&gDmaMessageQueue,&msg,1 ); } else { if(osRecvMesg(&gDmaMessageQueue,&msg,0 )==-1) return 0; } return 1; }\n --------------------------^\n"
+  },
+  {
+    "function": "dma_wait",
+    "variant": "volatile_block",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/dma_wait.volatile_block.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/dma_wait.volatile_block.O0.o",
+    "compile_error": "return 1; }\n ----^\ncfe: Error: /home/cburnes/agents/C/scratch/static-C18/dma_wait.volatile_block.c, line 8: Incompatible type for the function parameter\n s32 dma_wait(volatile s32 block) { OSMesg msg; if (!gDmaInitialized) dma_queue_init(); if(block) { osRecvMesg(&gDmaMessageQueue,&msg,1 ); } else { if(osRecvMesg(&gDmaMessageQueue,&msg,0 )==-1) return 0; } return 1; }\n --------------------------^\n"
+  },
+  {
+    "function": "dma_wait",
+    "variant": "register_block",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/dma_wait.register_block.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/dma_wait.register_block.O1.o",
+    "strict_score": 580,
+    "raw_word_diff": 39,
+    "candidate_words": 36
+  },
+  {
+    "function": "dma_wait",
+    "variant": "register_block",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/dma_wait.register_block.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/dma_wait.register_block.O0.o",
+    "strict_score": 580,
+    "raw_word_diff": 28,
+    "candidate_words": 44
+  },
+  {
+    "function": "dma_wait",
+    "variant": "split_return",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/dma_wait.split_return.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/dma_wait.split_return.O1.o",
+    "strict_score": 840,
+    "raw_word_diff": 39,
+    "candidate_words": 36
+  },
+  {
+    "function": "dma_wait",
+    "variant": "split_return",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/dma_wait.split_return.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/dma_wait.split_return.O0.o",
+    "strict_score": 1220,
+    "raw_word_diff": 31,
+    "candidate_words": 48
+  },
+  {
+    "function": "lzss_decompress",
+    "variant": "volatile_result",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/lzss_decompress.volatile_result.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/lzss_decompress.volatile_result.O1.o",
+    "strict_score": 580,
+    "raw_word_diff": 13,
+    "candidate_words": 20
+  },
+  {
+    "function": "lzss_decompress",
+    "variant": "volatile_result",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/lzss_decompress.volatile_result.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/lzss_decompress.volatile_result.O0.o",
+    "strict_score": 789,
+    "raw_word_diff": 20,
+    "candidate_words": 28
+  },
+  {
+    "function": "lzss_decompress",
+    "variant": "volatile_arguments",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/lzss_decompress.volatile_arguments.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/lzss_decompress.volatile_arguments.O1.o",
+    "strict_score": 580,
+    "raw_word_diff": 13,
+    "candidate_words": 20
+  },
+  {
+    "function": "lzss_decompress",
+    "variant": "volatile_arguments",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/lzss_decompress.volatile_arguments.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/lzss_decompress.volatile_arguments.O0.o",
+    "strict_score": 789,
+    "raw_word_diff": 20,
+    "candidate_words": 28
+  },
+  {
+    "function": "lzss_decompress",
+    "variant": "volatile_arguments_result",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/lzss_decompress.volatile_arguments_result.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/lzss_decompress.volatile_arguments_result.O1.o",
+    "strict_score": 580,
+    "raw_word_diff": 13,
+    "candidate_words": 20
+  },
+  {
+    "function": "lzss_decompress",
+    "variant": "volatile_arguments_result",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/lzss_decompress.volatile_arguments_result.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/lzss_decompress.volatile_arguments_result.O0.o",
+    "strict_score": 789,
+    "raw_word_diff": 20,
+    "candidate_words": 28
+  },
+  {
+    "function": "lzss_decompress",
+    "variant": "failure_else",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/lzss_decompress.failure_else.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/lzss_decompress.failure_else.O1.o",
+    "strict_score": 580,
+    "raw_word_diff": 13,
+    "candidate_words": 20
+  },
+  {
+    "function": "lzss_decompress",
+    "variant": "failure_else",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/lzss_decompress.failure_else.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/lzss_decompress.failure_else.O0.o",
+    "strict_score": 989,
+    "raw_word_diff": 26,
+    "candidate_words": 32
+  },
+  {
+    "function": "inflate_decompress",
+    "variant": "volatile_result",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/inflate_decompress.volatile_result.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/inflate_decompress.volatile_result.O1.o",
+    "strict_score": 729,
+    "raw_word_diff": 16,
+    "candidate_words": 24
+  },
+  {
+    "function": "inflate_decompress",
+    "variant": "volatile_result",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/inflate_decompress.volatile_result.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/inflate_decompress.volatile_result.O0.o",
+    "strict_score": 798,
+    "raw_word_diff": 23,
+    "candidate_words": 32
+  },
+  {
+    "function": "inflate_decompress",
+    "variant": "volatile_arguments",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/inflate_decompress.volatile_arguments.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/inflate_decompress.volatile_arguments.O1.o",
+    "strict_score": 729,
+    "raw_word_diff": 16,
+    "candidate_words": 24
+  },
+  {
+    "function": "inflate_decompress",
+    "variant": "volatile_arguments",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/inflate_decompress.volatile_arguments.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/inflate_decompress.volatile_arguments.O0.o",
+    "strict_score": 798,
+    "raw_word_diff": 23,
+    "candidate_words": 32
+  },
+  {
+    "function": "inflate_decompress",
+    "variant": "volatile_arguments_result",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/inflate_decompress.volatile_arguments_result.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/inflate_decompress.volatile_arguments_result.O1.o",
+    "strict_score": 729,
+    "raw_word_diff": 16,
+    "candidate_words": 24
+  },
+  {
+    "function": "inflate_decompress",
+    "variant": "volatile_arguments_result",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/inflate_decompress.volatile_arguments_result.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/inflate_decompress.volatile_arguments_result.O0.o",
+    "strict_score": 798,
+    "raw_word_diff": 23,
+    "candidate_words": 32
+  },
+  {
+    "function": "inflate_decompress",
+    "variant": "failure_else",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/inflate_decompress.failure_else.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/inflate_decompress.failure_else.O1.o",
+    "strict_score": 729,
+    "raw_word_diff": 16,
+    "candidate_words": 24
+  },
+  {
+    "function": "inflate_decompress",
+    "variant": "failure_else",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/inflate_decompress.failure_else.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/inflate_decompress.failure_else.O0.o",
+    "strict_score": 998,
+    "raw_word_diff": 24,
+    "candidate_words": 32
+  }
+]

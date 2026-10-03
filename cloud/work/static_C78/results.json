@@ -1,0 +1,13 @@
+[
+  {
+    "function": "__write_exponent",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_sha256": "7dd51a3c80e50b0638dea830d2c1f2890d3e9e7b09ad0662ab40c4a6ef6cc184",
+    "variant": "__write_exponent.copy_iteration",
+    "source_sha256": "1882261f262dda77b2664bb28e4884a2c042ae4b872ab333916a9b004410f1d4",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 0,
+    "object_sha256": "dca73cf0403031b27539104f378ade418f1586e686b860a891838ac7838d112e"
+  }
+]

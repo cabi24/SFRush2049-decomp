@@ -1,0 +1,23 @@
+{
+  "members": [
+    "speed_mode0_wrapper",
+    "speed_mode1_wrapper",
+    "continue_prompt"
+  ],
+  "context": [
+    "vsync_wait",
+    "speed_set",
+    "func_80091B00"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "speed_mode0_wrapper",
+    "speed_mode1_wrapper",
+    "continue_prompt",
+    "vsync_wait"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}

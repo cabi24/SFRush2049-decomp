@@ -1,0 +1,26 @@
+{
+  "function": "func_8008C074",
+  "source": "func_8008C074_vectors.c",
+  "source_sha256": "dd3f03126692a044b25dca7420937ed9e94f0fdb1f10a10e69084b23da9c4582",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "canonical_scoring": {
+    "differing": 0,
+    "total": 308,
+    "unverified_relocations": 2,
+    "match_claim": false
+  },
+  "strict_placement": {
+    "relocate": "tools.conveyor.pipeline.blob_group.relocate",
+    "full_native_members": [
+      "func_8008C074"
+    ],
+    "jump_table_original_vaddr": "0x801238A0",
+    "jump_table_bytes": 32,
+    "table_contents": "Verified by full native relocation against original image",
+    "body_bytes": 1232,
+    "raw_word_differences": 0,
+    "raw_byte_equal": true,
+    "body_sha256": "9003c817a0e2a2adc09299790449762d0a8a09020f418c3a5c163d73c8778d1d",
+    "object_sha256": "02c62c48bb8dd7a42f2019428bac935980ef1ff8866fdf72f9f8c1bc783e3e64"
+  }
+}

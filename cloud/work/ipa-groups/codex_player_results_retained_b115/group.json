@@ -1,0 +1,34 @@
+{
+  "members": [
+    "func_800D5E64"
+  ],
+  "context": [
+    "entity_transform_calc",
+    "client_sync",
+    "entity_hierarchy_update",
+    "stat_lap_complete",
+    "game_timer_resume",
+    "func_80091BA8",
+    "func_80091B00",
+    "scheduler_recv",
+    "best_times_display",
+    "player_conditional_call"
+  ],
+  "claims": [],
+  "keep": [
+    "client_sync",
+    "entity_hierarchy_update",
+    "scheduler_recv",
+    "stat_lap_complete",
+    "game_timer_resume",
+    "func_800D5E64",
+    "player_conditional_call",
+    "best_times_display"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "Full real player-results initializer and unchanged real best-times body, syntheticlegacycaller_a/b removed; unchanged B109 real scheduler graph prefix; only newly eligible caller may be claimed; genuine best-times entry retained as original target body",
+  "b109_prefix_sha256": "98c6a7ce0d7d4b5edfe60b51228dc6eb60687aab5af263246f2f1195e03c881a"
+}

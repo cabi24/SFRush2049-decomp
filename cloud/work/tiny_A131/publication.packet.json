@@ -1,0 +1,12 @@
+{
+  "packet": "A131 publication",
+  "source_sha256": "b9ad5566edc2466e905841422a1a618bb02b4de780501019725b43e78a3081ed",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "files": {
+    "tournament_unlock_check.publication.c": "b9ad5566edc2466e905841422a1a618bb02b4de780501019725b43e78a3081ed",
+    "publication.verification.json": "608fd56f02837196218dfdd5797045afecca0ccf5b80a358564c2e3bbbd225b4",
+    "publication.raw_proof.json": "25bb58a566a4abe696afb91c1c6c4d51e05236fc43979d1421b6e8d75aa2a104",
+    "PUBLICATION.md": "f20358c83757f76c2e33c1c875d97e51cbe849ddec30890ef18f700db5e61c4b"
+  }
+}

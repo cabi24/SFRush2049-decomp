@@ -1,0 +1,15 @@
+{
+  "packet": "A138",
+  "function": "camera_auto_follow",
+  "address": "0x800BE078",
+  "bytes": 1084,
+  "words": 271,
+  "claims": [],
+  "files": {
+    "control.byte_distance.c": "027568c87db02d69caa813d32a45b71adce1f78c303cd576f439f6cc55e3f670",
+    "STATUS.md": "fcecceac81014d2874500de5f84cbf5a6c6b94cbc319372a058ea71d2fd97413",
+    "verification.json": "cef7b3d6cfb4b75dd50f27e2c936814691c431e4aff4c9decd53d4747afc3e4a",
+    "camera_auto_follow.c": "b4449726fd665c194f393fdd601ed4a6410775afa5c27a8e9e1ea3fefb9197f7",
+    "control.byte_distance.verification.json": "ebe9d772f84a23ea466e4c7fe567232f4e92ee0ecd289688afc98588b2f649c5"
+  }
+}

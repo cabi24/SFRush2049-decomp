@@ -1,0 +1,17 @@
+{
+  "function": "game_results_input",
+  "address": "0x800FF724",
+  "bytes": 1732,
+  "words": 433,
+  "target_object_sha256": "f6ad792235bfe8960509bafb6f4e5fc1773f1597de0543c59a70eb510ed2d4ff",
+  "target_object_tier": "reloc_aware",
+  "accepted": false,
+  "baseline_game_percent": 13.97,
+  "baseline_static_percent": 46.76,
+  "team": {
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "count": 2
+  },
+  "reason": "Fresh complete ordinary one-pointer HUD callback with all live caller locals spilled across external calls"
+}

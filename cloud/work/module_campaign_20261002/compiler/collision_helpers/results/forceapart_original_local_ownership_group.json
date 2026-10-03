@@ -1,0 +1,24 @@
+{
+  "candidate": "forceapart_original_local_ownership_group",
+  "function": "menu_load_options",
+  "source_sha256": "6548cd1f88c727b944024fd1b7e772576cee8efea8b6f3dbb511bfaf636bdde6",
+  "object_sha256": "367a38af6c20f9904d5df946993965bdc3d000d859b517b08fc9a35f1f37270f",
+  "comparison": {
+    "differing": 17,
+    "total": 91,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "helper_comparisons": {
+    "func_800A61B0": {
+      "differing": 0,
+      "total": 37,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "function": "camera_lerp_position",
+    "variant": "camera_lerp_position.field_order",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 950,
+    "linked": {
+      "differing": 22,
+      "total": 95,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "306e9a1763a16cf726cce039662142ddd281c059bda46d1193b9a788fe891ec1",
+    "target_sha256": "7d33bc26103eb9dd2b3c08b650aa396d0ec9d6268f9b9a68ed278d52db2e4a26"
+  },
+  {
+    "function": "camera_lerp_position",
+    "variant": "camera_lerp_position.head_fields",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 735,
+    "linked": {
+      "differing": 17,
+      "total": 95,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "389044dfbbf882ecdeddeeeda0f9a859d98a1c59453ec23f702ec49c7112cb20",
+    "target_sha256": "7d33bc26103eb9dd2b3c08b650aa396d0ec9d6268f9b9a68ed278d52db2e4a26"
+  },
+  {
+    "function": "camera_lerp_position",
+    "variant": "camera_lerp_position.field_and_heads",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 950,
+    "linked": {
+      "differing": 22,
+      "total": 95,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "487ff281ae59ecba132673849749a37472687c0a6264d28e2b3ecd9b90e1fc37",
+    "target_sha256": "7d33bc26103eb9dd2b3c08b650aa396d0ec9d6268f9b9a68ed278d52db2e4a26"
+  },
+  {
+    "function": "camera_lerp_position",
+    "variant": "camera_lerp_position.consumed_dimensions",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 950,
+    "linked": {
+      "differing": 22,
+      "total": 95,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "a45c64cf9d65f532cbf15fc95d805a14a1355f08914db3640f30aabe20e0eb1a",
+    "target_sha256": "7d33bc26103eb9dd2b3c08b650aa396d0ec9d6268f9b9a68ed278d52db2e4a26"
+  }
+]

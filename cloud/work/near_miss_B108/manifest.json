@@ -1,0 +1,17 @@
+{
+  "packet": "B108",
+  "function": "camera_zoom_fov",
+  "address": "0x800BDEBC",
+  "bytes": 444,
+  "claims": [],
+  "report": "cloud/work/near_miss_B108.md",
+  "report_sha256": "6c883f0085f5e353abbb2b5eb41562897d2f21eabc4f9932ba81991535c057c3",
+  "files": {
+    "camera_zoom_fov_reset_lifetimes.c": "d8086faa78bad75edd349381195690e0abed58f0f5b022c0ba30f16a21d73373",
+    "camera_zoom_fov_native.c": "4eea5f019c6c3def48ef5ea70484cd8e706d5d654997bbe378b69865b95017b1",
+    "camera_zoom_fov_count_carrier.c": "77e83c82ed92b7379aca2f456de863e0b881fd91fd0615e24504b18f01b64921",
+    "results.json": "a6f21377b3a0d28b738b1e3dab73e2eb2fac1477f0f6b4ee936ea1bf8e454da1",
+    "camera_zoom_fov_separator_branches_O2.c": "ee3ec21929275fbdcd7b4b00b774f224d3e43bbc83265cc4876f9f1c2593f860",
+    "camera_zoom_fov_separator_branches.c": "65982610b879c2471e03cc9d7dfde605d284dbb991ab6083e45d3caa5d610e95"
+  }
+}

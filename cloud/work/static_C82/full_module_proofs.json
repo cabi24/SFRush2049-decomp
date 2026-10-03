@@ -1,0 +1,111 @@
+{
+  "module": "lib_34a0",
+  "source_sha256": "70bfb8f6c67d71ce4f18ed398fc29a4c24cf6a67642b26a92d857653f5951a7f",
+  "object_sha256": "934916b1d49d3df4de8ea8e2d1172a64e09738d0ce0feb05e2b81a8db094568e",
+  "original_slot_bytes": 8528,
+  "object_text_bytes": 8528,
+  "full_native": true,
+  "members": [
+    {
+      "function": "modf",
+      "original_slot_words": 113,
+      "actual_vaddr": "0x800028a0",
+      "slot_delta_bytes": 0,
+      "differing_full_words": 0,
+      "exact": true
+    },
+    {
+      "function": "modff",
+      "original_slot_words": 99,
+      "actual_vaddr": "0x80002a64",
+      "slot_delta_bytes": 0,
+      "differing_full_words": 0,
+      "exact": true
+    },
+    {
+      "function": "__isinf",
+      "original_slot_words": 28,
+      "actual_vaddr": "0x80002bf0",
+      "slot_delta_bytes": 0,
+      "differing_full_words": 0,
+      "exact": true
+    },
+    {
+      "function": "__isnan",
+      "original_slot_words": 28,
+      "actual_vaddr": "0x80002c60",
+      "slot_delta_bytes": 0,
+      "differing_full_words": 0,
+      "exact": true
+    },
+    {
+      "function": "fcvt",
+      "original_slot_words": 987,
+      "actual_vaddr": "0x80002cd0",
+      "slot_delta_bytes": 0,
+      "differing_full_words": 0,
+      "exact": true
+    },
+    {
+      "function": "__ecvt_internal",
+      "original_slot_words": 654,
+      "actual_vaddr": "0x80003c3c",
+      "slot_delta_bytes": 0,
+      "differing_full_words": 0,
+      "exact": true
+    },
+    {
+      "function": "__round_helper",
+      "original_slot_words": 129,
+      "actual_vaddr": "0x80004674",
+      "slot_delta_bytes": 0,
+      "differing_full_words": 0,
+      "exact": true
+    },
+    {
+      "function": "__write_exponent",
+      "original_slot_words": 70,
+      "actual_vaddr": "0x80004878",
+      "slot_delta_bytes": 0,
+      "differing_full_words": 0,
+      "exact": true
+    },
+    {
+      "function": "sprintf",
+      "original_slot_words": 24,
+      "actual_vaddr": "0x80004990",
+      "slot_delta_bytes": 0,
+      "differing_full_words": 0,
+      "exact": true
+    }
+  ],
+  "all_members_exact": true,
+  "sections": [
+    {
+      "section": ".data",
+      "original_vaddr": "0x8002d4d0",
+      "original_logical_bytes": 32,
+      "emitted_section_bytes": 32,
+      "differing_logical_bytes": 0,
+      "compiler_alignment_tail_bytes": 0,
+      "compiler_alignment_tail_nonzero": 0,
+      "following_original_interval_nonzero_bytes": 0,
+      "original_sha256": "97fec1b1f0590aae7f183f80616a56a2025d734bf9288dcbfdae512678816fc2",
+      "following_original_interval_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "section": ".rodata",
+      "original_vaddr": "0x8002d558",
+      "original_logical_bytes": 356,
+      "emitted_section_bytes": 368,
+      "differing_logical_bytes": 0,
+      "compiler_alignment_tail_bytes": 12,
+      "compiler_alignment_tail_nonzero": 0,
+      "following_original_interval_nonzero_bytes": 8,
+      "original_sha256": "6c8434640414a8bf729d13362022b6286e0ae23866e77d6e05d39a2b61262370",
+      "following_original_interval_sha256": "08ac1709ae8d3ddf5d57b12b3580abb23bb2d8833b1ae51fc036cc399114fccf"
+    }
+  ],
+  "publication_refusal": "4-byte logical table extent unsupported by current 16-byte owner-slot validator; 12-byte compiler tail must not replace following original nonzero bytes",
+  "claims": []
+}

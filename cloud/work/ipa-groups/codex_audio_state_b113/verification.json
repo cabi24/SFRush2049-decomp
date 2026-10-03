@@ -1,0 +1,39 @@
+{
+  "source_sha256": "61746d9b6b22a0b688ada15e0bb326350a59585367897f2bb07bbbf63fafd982",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "object_sha256": "1ad252ad4692354aee316fbcb8bd4d27f5ea519e92cf610e3122261332bc8ba7",
+  "canonical": {
+    "audio_state_save": {
+      "differing": 105,
+      "total": 109,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "audio_fade_control": {
+      "differing": 44,
+      "total": 53,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "gfx_setup_e700": {
+      "differing": 14,
+      "total": 32,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "audio_timing_sync": {
+      "differing": 8,
+      "total": 46,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

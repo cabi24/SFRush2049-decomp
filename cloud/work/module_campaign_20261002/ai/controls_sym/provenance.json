@@ -1,0 +1,22 @@
+{
+  "accepted": false,
+  "ancestry": "Direct related arcade controls() and sym(); native semantics govern N64 differences.",
+  "donors": [
+    {
+      "path": "reference/repos/rushtherock/game/controls.c",
+      "sha256": "e3e8d19cdc548068350180b6b3d56dc03bc247bb305c016bc06f827c79e82b15"
+    },
+    {
+      "path": "reference/repos/rushtherock/game/drivsym.c",
+      "sha256": "d8480c84fc0759a0dd23605f8bd7712c42acf41756aed5dafc2590382c2ff31c"
+    }
+  ],
+  "previous_complete_packet": "cloud/work/ipa-groups/codex_physics_a85",
+  "new_grounded_controls": [
+    "Actual Tire92 cursor and direct angular velocity field reads",
+    "True BODYFORCE[4][3] and peak[2][3] layouts",
+    "Actual dt/idt and fast input semantic field mapping",
+    "Native literal values and source ordering"
+  ],
+  "license": "Preserved controls donor notice. No new license grant claimed."
+}

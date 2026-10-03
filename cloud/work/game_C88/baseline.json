@@ -1,0 +1,20 @@
+[
+  {
+    "function": "drone_set_catchup",
+    "variant": "drone_set_catchup",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 7322,
+    "linked": {
+      "differing": 210,
+      "total": 213,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "aee3a5339c5500d45d4712baf77e8d37475e64a412459aa0b0d198c9e93c1608",
+    "target_sha256": "1d3e9819db46900ec97d3b19a5b005bb4b0fd9900c07eabd94324c2e53ca74af"
+  }
+]

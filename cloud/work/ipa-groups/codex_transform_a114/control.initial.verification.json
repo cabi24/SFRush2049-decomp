@@ -1,0 +1,48 @@
+{
+  "source_sha256": "2ae7f7f84a632f28430628b3352aa38f494c17a52869082841e242ae36e2a1ce",
+  "manifest_sha256": "d9deba580ab469b7f6fe129dba692746cfb6f8555389e8cb3c65e22be2db76e7",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "comparisons": {
+    "entity_transform_calc": {
+      "differing": 12,
+      "total": 110,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "client_sync": {
+      "differing": 52,
+      "total": 54,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 3
+    },
+    "entity_hierarchy_update": {
+      "differing": 33,
+      "total": 34,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 4
+    },
+    "func_80091BA8": {
+      "differing": 0,
+      "total": 21,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80091B00": {
+      "differing": 18,
+      "total": 42,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

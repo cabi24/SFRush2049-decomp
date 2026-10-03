@@ -1,0 +1,7 @@
+# A131 frozen native five-part color updater
+
+tournament_unlock_check@800DC794,248 bytes/62 words, strict MATCH. Original unheaded source SHA-256 `1557a90a51d175522b950fec54bb12fbd82f3aa4f847c7fb2a9b6bbe6e01522f`; literal flags `-g0 -O3 -mips2 -G 0 -non_shared`. All canonical and direct unmasked original words agree, no unresolved/unverified references, errors or extras. Publication claims remain empty pending coordinator replay/gates. First complete native source compiled exact, no followup control.
+
+Complete three-input actual rectangle color updater. Existing parent32 has border RGBA bytes2..5, interior RGBA6..9 and five original config pointers12..28. Copies eight individual consumed input color bytes, then traverses all five actual pointers with native byte offset0,4,8,12,16 and corresponding4-byte cursor advancement. Middle entry uses border color data and border alpha, all others use interior data/alpha. Calls true one-input Input_ApplyPadConfig after every entry. PadConfig offsets4 and24 are audited against protected callee fields. Cursor cast describes byte traversal of the original pointer region, no fabricated local storage or pressure work.
+
+All cloud/work Markdown name/address screening and canonical locked-interval check found no accepted/prior body. No shared accepted sources, locks, layout, gates or commits altered. A separate publication copy with required literal first flags line will be compiled afresh; original hash/source remains frozen.

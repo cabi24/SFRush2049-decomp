@@ -1,0 +1,18 @@
+{
+  "candidate": "dotireforce_opaque_14.c",
+  "function": "camera_follow_target",
+  "source_sha256": "7b8780c939b73d89059a21736e990f182a98470e534af798e1073f9f31f575ad",
+  "object_sha256": "71a3e9305b2f2bb6b704ceb4aa1eaa8d4ed4bb50a09c727ade4ef9f8f5e5e2e1",
+  "comparison": {
+    "differing": 177,
+    "total": 203,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "recipe": "ordinary IDO cc compile",
+  "claims": [],
+  "protected_target_object_sha256": "e3668bf9c2ed664ef11c71c747c85fe76ac3e7668342fcb3c7496e5f21d12558"
+}

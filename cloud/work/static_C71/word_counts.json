@@ -1,0 +1,92 @@
+[
+  {
+    "variant": "__write_exponent.O2",
+    "strict_score": 805,
+    "target_section_words": 72,
+    "candidate_section_words": 76,
+    "raw_full_section_word_differences": 42,
+    "source_sha256": "b116c045e3b19f451215eb9661df609946dfc3c9cb4c944d7ca0d6e37abeb749",
+    "flags": "-g1 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+  },
+  {
+    "variant": "__write_exponent.O0",
+    "strict_score": 1705,
+    "target_section_words": 72,
+    "candidate_section_words": 76,
+    "raw_full_section_word_differences": 65,
+    "source_sha256": "8c09a4279bd814ef71ba3ef3b33e8219cca775f39a084ed3db7e61b3ac2c70df",
+    "flags": "-g1 -O0 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+  },
+  {
+    "variant": "__write_exponent.copy_for",
+    "strict_score": 375,
+    "target_section_words": 72,
+    "candidate_section_words": 72,
+    "raw_full_section_word_differences": 40,
+    "source_sha256": "6e567fea1ef7a2a564b8497150fab380b15df972d20c066ec05c0fb5d51baa9e",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+  },
+  {
+    "variant": "__write_exponent.copy_separate",
+    "strict_score": 870,
+    "target_section_words": 72,
+    "candidate_section_words": 76,
+    "raw_full_section_word_differences": 42,
+    "source_sha256": "dc41f9349ba46e5451f71dbf1efc6e28b3dabf7cfd948d74345c8ff911dfc4d0",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+  },
+  {
+    "variant": "__write_exponent.copy_do",
+    "strict_score": 805,
+    "target_section_words": 72,
+    "candidate_section_words": 76,
+    "raw_full_section_word_differences": 42,
+    "source_sha256": "ded2f03fd92ba3e4852b543b829fda63e8fad1356b41e0a044eef2696cfa25dc",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+  },
+  {
+    "variant": "__write_exponent.quotient_condition",
+    "strict_score": 275,
+    "target_section_words": 72,
+    "candidate_section_words": 72,
+    "raw_full_section_word_differences": 6,
+    "source_sha256": "bc74f71ebeda32d18d11a25fa3155f3c0501e804599f1e3fe3f95d20f382b0d8",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+  },
+  {
+    "variant": "__write_exponent.copy_step_both",
+    "strict_score": 500,
+    "target_section_words": 72,
+    "candidate_section_words": 72,
+    "raw_full_section_word_differences": 39,
+    "source_sha256": "55b98907a1321bdd4a0d6c680f880731006d1abc47a1d68747be0613a8da96fd",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+  },
+  {
+    "variant": "__write_exponent.copy_condition_step",
+    "strict_score": 375,
+    "target_section_words": 72,
+    "candidate_section_words": 72,
+    "raw_full_section_word_differences": 40,
+    "source_sha256": "ac1b90e98cd3a59c2603e6678665648b760012f27a9006ceab6d862e27640b57",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+  },
+  {
+    "variant": "__write_exponent.copy_byte",
+    "strict_score": 809,
+    "target_section_words": 72,
+    "candidate_section_words": 72,
+    "raw_full_section_word_differences": 24,
+    "source_sha256": "d844842afd70fbdb985fa0ccbacdc58f897c7ff50ce15ac496210c70d0da1a26",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+  },
+  {
+    "variant": "__write_exponent.copy_byte_condition",
+    "strict_score": 809,
+    "target_section_words": 72,
+    "candidate_section_words": 72,
+    "raw_full_section_word_differences": 24,
+    "source_sha256": "0e557ee9e173fba31f2e2d8a0ffacaca513bef83f258007ea149521b29002409",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+  }
+]

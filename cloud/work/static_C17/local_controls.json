@@ -1,0 +1,152 @@
+[
+  {
+    "function": "modf",
+    "source": "/home/cburnes/agents/C/scratch/static-C17/modf.local_argument_copy.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C17/modf.extra0.o",
+    "variant": "local_argument_copy",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 780,
+    "raw_word_diff": 108,
+    "candidate_words": 120
+  },
+  {
+    "function": "modf",
+    "source": "/home/cburnes/agents/C/scratch/static-C17/modf.local_argument_copy.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C17/modf.extra1.o",
+    "variant": "local_argument_copy",
+    "flags": "-g0 -O1 -Olimit 0 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 3132,
+    "raw_word_diff": 91,
+    "candidate_words": 96
+  },
+  {
+    "function": "modf",
+    "source": "/home/cburnes/agents/C/scratch/static-C17/modf.local_argument_copy.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C17/modf.extra2.o",
+    "variant": "local_argument_copy",
+    "flags": "-g0 -O1 -Wc,-Olimit,0 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 3132,
+    "raw_word_diff": 91,
+    "candidate_words": 96
+  },
+  {
+    "function": "modff",
+    "source": "/home/cburnes/agents/C/scratch/static-C17/modff.local_argument_copy.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C17/modff.extra3.o",
+    "variant": "local_argument_copy",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 1180,
+    "raw_word_diff": 96,
+    "candidate_words": 108
+  },
+  {
+    "function": "modff",
+    "source": "/home/cburnes/agents/C/scratch/static-C17/modff.local_argument_copy.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C17/modff.extra4.o",
+    "variant": "local_argument_copy",
+    "flags": "-g0 -O1 -Olimit 0 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 2706,
+    "raw_word_diff": 78,
+    "candidate_words": 84
+  },
+  {
+    "function": "modff",
+    "source": "/home/cburnes/agents/C/scratch/static-C17/modff.local_argument_copy.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C17/modff.extra5.o",
+    "variant": "local_argument_copy",
+    "flags": "-g0 -O1 -Wc,-Olimit,0 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 2706,
+    "raw_word_diff": 78,
+    "candidate_words": 84
+  },
+  {
+    "function": "__isinf",
+    "source": "/home/cburnes/agents/C/scratch/static-C17/__isinf.union_local_noelse.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C17/__isinf.extra6.o",
+    "variant": "union_local_noelse",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 400,
+    "raw_word_diff": 15,
+    "candidate_words": 32
+  },
+  {
+    "function": "__isinf",
+    "source": "/home/cburnes/agents/C/scratch/static-C17/__isinf.union_local_noelse.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C17/__isinf.extra7.o",
+    "variant": "union_local_noelse",
+    "flags": "-g0 -O1 -Olimit 0 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 420,
+    "raw_word_diff": 11,
+    "candidate_words": 28
+  },
+  {
+    "function": "__isinf",
+    "source": "/home/cburnes/agents/C/scratch/static-C17/__isinf.union_local_noelse.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C17/__isinf.extra8.o",
+    "variant": "union_local_noelse",
+    "flags": "-g0 -O1 -Wc,-Olimit,0 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 420,
+    "raw_word_diff": 11,
+    "candidate_words": 28
+  },
+  {
+    "function": "__isnan",
+    "source": "/home/cburnes/agents/C/scratch/static-C17/__isnan.union_local_noelse.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C17/__isnan.extra9.o",
+    "variant": "union_local_noelse",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 400,
+    "raw_word_diff": 15,
+    "candidate_words": 32
+  },
+  {
+    "function": "__isnan",
+    "source": "/home/cburnes/agents/C/scratch/static-C17/__isnan.union_local_noelse.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C17/__isnan.extra10.o",
+    "variant": "union_local_noelse",
+    "flags": "-g0 -O1 -Olimit 0 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 420,
+    "raw_word_diff": 11,
+    "candidate_words": 28
+  },
+  {
+    "function": "__isnan",
+    "source": "/home/cburnes/agents/C/scratch/static-C17/__isnan.union_local_noelse.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C17/__isnan.extra11.o",
+    "variant": "union_local_noelse",
+    "flags": "-g0 -O1 -Wc,-Olimit,0 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 420,
+    "raw_word_diff": 11,
+    "candidate_words": 28
+  },
+  {
+    "function": "memset",
+    "source": "/home/cburnes/agents/C/scratch/static-C17/memset.postdec_positive.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C17/memset.extra12.o",
+    "variant": "postdec_positive",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "strict_score": 540,
+    "raw_word_diff": 21,
+    "candidate_words": 72
+  },
+  {
+    "function": "memset",
+    "source": "/home/cburnes/agents/C/scratch/static-C17/memset.postdec_positive.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C17/memset.extra13.o",
+    "variant": "postdec_positive",
+    "flags": "-g0 -O1 -Olimit 0 -mips2 -G 0 -non_shared",
+    "strict_score": 2805,
+    "raw_word_diff": 65,
+    "candidate_words": 56
+  },
+  {
+    "function": "memset",
+    "source": "/home/cburnes/agents/C/scratch/static-C17/memset.postdec_positive.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C17/memset.extra14.o",
+    "variant": "postdec_positive",
+    "flags": "-g0 -O1 -Wc,-Olimit,0 -mips2 -G 0 -non_shared",
+    "strict_score": 2805,
+    "raw_word_diff": 65,
+    "candidate_words": 56
+  }
+]

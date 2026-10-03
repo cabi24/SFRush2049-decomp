@@ -1,0 +1,42 @@
+[
+  {
+    "function": "__isinf",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 400,
+    "raw_word_diff": 15,
+    "source_sha256": "ba0cfcdf41fdc9b6c8f4db1b4781c05ae6ce0ebe61f72fa2da731c3b6836a95a",
+    "status": "unmatched directed lead; not eligible"
+  },
+  {
+    "function": "__isnan",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 400,
+    "raw_word_diff": 15,
+    "source_sha256": "3d433c90e26306a76bcbab5750c0ba9089847209d33ec99966cca973d61ebbc9",
+    "status": "unmatched directed lead; not eligible"
+  },
+  {
+    "function": "memset",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "strict_score": 540,
+    "raw_word_diff": 21,
+    "source_sha256": "b1e8e128fe7694619185ce23af9baa894f14ca92cb962fe9c7f34b182977a559",
+    "status": "unmatched directed lead; not eligible"
+  },
+  {
+    "function": "modf",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 780,
+    "raw_word_diff": 108,
+    "source_sha256": "ced0881b5b0292a06089517436a80195aca8e75459576cb4fef106c68f316129",
+    "status": "unmatched directed lead; not eligible"
+  },
+  {
+    "function": "modff",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 1180,
+    "raw_word_diff": 96,
+    "source_sha256": "4e528c72290ab7fed9aa192f73d86c23fb2749a7ca51b2436e83009a2882a601",
+    "status": "unmatched directed lead; not eligible"
+  }
+]

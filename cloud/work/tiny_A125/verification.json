@@ -1,0 +1,11 @@
+{
+  "differing": 64,
+  "total": 173,
+  "unresolved": [],
+  "unverified": [],
+  "errors": [],
+  "extra_words": 0,
+  "source_sha256": "92d6121f3cd0bc326d5374143e07726f136825fd82e083407811f85cb12a0361",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}

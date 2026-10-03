@@ -1,0 +1,16 @@
+{
+  "target": "func_800C2004",
+  "canonical_words": 130,
+  "status": "scout ABI refusal, no native singleton attempted",
+  "incoming_shared_registers": [
+    "s1"
+  ],
+  "unsaved_shared_output_registers": [
+    "f20",
+    "f22",
+    "f24"
+  ],
+  "callee": "func_800C1B60",
+  "callee_index_register": "t1",
+  "claims": []
+}

@@ -1,0 +1,28 @@
+{
+  "accepted": false,
+  "target_bytes": 8384,
+  "purpose": "Native model engine, surface and impact effect state handling, plus shared per-player effect initialization/cleanup.",
+  "ancestry": "Related arcade carsnd.c algorithms and state roles; not a verbatim whole-function donor port. N64 native semantics and interfaces govern.",
+  "references": [
+    {
+      "path": "cloud/work/ipa-groups/codex_player_results_retained_b115/group.c",
+      "sha256": "705ff3489d6ddea9adb3325eed2c178e9bbb95b4b08461e31604ec304298d81a"
+    },
+    {
+      "path": "reference/repos/rushtherock/game/carsnd.c",
+      "sha256": "01aefa3d88423685b033f14b574c6a603086a0ff6c821907c60d704e4a3d1710"
+    }
+  ],
+  "previous_archive": "DEF68 previously scout-only due absent table data; B115 initializer/shared cleanup complete frozen nonmatch.",
+  "new_evidence": "Current protected game image provides both switch tables; the complete actual two-outside-entry closure supplies all seven private helper paths without fabricated ABI stand-ins.",
+  "sdk_context": "B109 genuine complete lookup, allocator, scheduler and four-float transform bodies; unclaimed, unchanged operational source. Existing flags/locks not edited.",
+  "semantic_repairs": [
+    "Actual logical register parameters including best-times player in s2 and impact threshold in f18",
+    "True 24/120,20/60/84,32/64 and2056-byte records",
+    "Typed float lookup at D8011F060 instead of m2c byte inference",
+    "True 32-bit wrap in root impact RNG",
+    "Standard IDO sqrtf/fabsf intrinsic pragmas reproduce native instructions",
+    "Removed only unused m2c call-save artifacts; no padding or pressure"
+  ],
+  "no_new_license_grant": true
+}

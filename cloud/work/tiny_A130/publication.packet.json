@@ -1,0 +1,12 @@
+{
+  "packet": "A130 publication",
+  "source_sha256": "4281805fdf0eb1ff4f2571b870e136ad27efbb460f1f3f03f053f9f734988218",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "files": {
+    "listener_position_set.publication.c": "4281805fdf0eb1ff4f2571b870e136ad27efbb460f1f3f03f053f9f734988218",
+    "publication.verification.json": "ead13d20910910131d7f8f65dcd8e0a2fc1975f79780ef4c4cfc8253485fc7e5",
+    "publication.raw_proof.json": "781e374a162e33e763d727d9bd0b855cd055ba308b61ef11d29faad1d567a16e",
+    "PUBLICATION.md": "7aadaeb9306d7ee8a5de7b815632ff8b9f1b9dc8790b6fa5bc10ec0ee4808db7"
+  }
+}

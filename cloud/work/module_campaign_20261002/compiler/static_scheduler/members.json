@@ -1,0 +1,19 @@
+{
+  "files": [
+    "osCreateScheduler.c",
+    "__scHandleRDP.c",
+    "__scHandleRSP.c",
+    "__scSchedule.c",
+    "__scExecTask.c",
+    "__scScheduleCore.c",
+    "__scAppendList.c",
+    "__scTaskReady.c",
+    "__scHandleRetrace.c",
+    "osScAddClient.c",
+    "__scHandlePreNMI.c",
+    "__scMain.c",
+    "__scExec.c"
+  ],
+  "ordinary_flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "claims": []
+}

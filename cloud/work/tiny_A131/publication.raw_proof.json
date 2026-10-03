@@ -1,0 +1,10 @@
+{
+  "function": "tournament_unlock_check",
+  "words": 62,
+  "bytes": 248,
+  "unmasked_exact": true,
+  "source_sha256": "b9ad5566edc2466e905841422a1a618bb02b4de780501019725b43e78a3081ed",
+  "object_sha256": "f1520332e629bfed1a7286864abadc2f24ecf6e0d15a9c164f2f77fbb69a8f8a",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}

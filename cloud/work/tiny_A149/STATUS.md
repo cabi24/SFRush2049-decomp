@@ -1,0 +1,11 @@
+# A149 hud_render: complete native effect updater, NONMATCH
+
+Target hud_render@800CADA4 is605words/2420bytes. Current LOCAL main lock and canonical full interval are unlocked/nonoverlapping (eligibility.json), and archive search found no existing full body. Claims remain empty.
+
+Complete zero-input source follows original linked Effect88 nodes, saves next before disposal, reconstructs all three genuine branches (bit16 tire-skid orientation/texture, kind5 car-attached rising animation, ordinary expiry/drift/frame animation), nine-element matrix scaling and real two-call disposal. Original signed halfword slot/kind/angle/animation, entity word52 and halfword54 distinction,68/952/2056 global views, elapsed time, texture tables and three consumed ANSI-LCG outputs are retained.
+
+The local direction[3] is grounded by func_8008E0B8 reading/writing0/4/8. vector_normalize_length consumes that vector and writes matrix offsets0..32; math_utility consumes/copies the same nine floats. Local position[3] is fully consumed in the real car-attached branch. No guessed capacities or unused runtime locals were added. Unknown56 is global-layout padding, never stack reservation.
+
+Initial fully mutable named-constant source is602/605, no extra/unresolved/unverified/errors. A separately labeled const declaration control produces602/605 unchanged. Native entry captures two repeatedly consumed constants at80123FC0 and80123FC4, so an actual read-once step/drift control is justified; it produces528/605, no extras/exceptions. Full original image confirms the ten constant floats correspond exactly to0.03f,0.15f,0.85f,0.0333333f,0.04f,0.3f,0.075f,0.05f,0.0333333f,0.05f. Separate literal-source control produces527/605 with exactly20 local .rodata relocation references unverified, no extras/errors/unresolved. These are leads only; no relocation exceptions or placement waiver was applied.
+
+Frame200(initial)/224(captured) differs from native320. This is recorded without any attempt to manufacture unused stack space. The original dead load into zero at800CB408 is omitted because no proven consumed operation explains it; it was not reconstructed as dummy volatile work. Arithmetic, loop and FP schedule differences remain. All four sources and proof files are frozen by packet hashes; no shared accepted sources/layout/lock changes and no credit.

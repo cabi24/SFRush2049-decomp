@@ -1,0 +1,18 @@
+{
+  "members": [
+    "track_info_display"
+  ],
+  "context": [
+    "func_800D0A34"
+  ],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "track_info_display",
+    "func_800D0A34"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "provenance": "Complete unchanged B114 caller plus genuine complete retained-entry locked drag leaf; original context bytes unclaimed"
+}

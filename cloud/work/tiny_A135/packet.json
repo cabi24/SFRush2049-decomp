@@ -1,0 +1,14 @@
+{
+  "packet": "A135",
+  "function": "func_800FDF88",
+  "address": "0x800FDF88",
+  "bytes": 248,
+  "words": 62,
+  "claims": [],
+  "files": {
+    "STATUS.md": "34ad54973701bc4d0c223b5e621e6ecfc2da1c30944f243e342e0577e44cd28a",
+    "verification.json": "766c2033528de92056c5c0e82c29e2ebb4ea306e96ce98c3955db461ed9ccee0",
+    "raw_proof.json": "72850e265e4dfd38a2f693186addcc2904dc7bacefa7e7546b2fd216ea1ed0db",
+    "func_800FDF88.c": "235f89ccb8f182c77e05d23d99b7999dcd0e06b1ac0e237ee6db3557574d9542"
+  }
+}

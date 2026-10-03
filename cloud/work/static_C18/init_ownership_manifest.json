@@ -1,0 +1,64 @@
+{
+  "status": "private linked-exact ownership proposal; strict40/raw6 unaccepted metadata residual",
+  "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm",
+  "source_sha256": "7606f20fc4e2459c6de43e5be046a9389030c5c7a93db6548bf9729003e5fe80",
+  "object_sha256": "a73bb742b270f19701a7b8377c3704befe99431c965c3829e98d20bddef07db9",
+  "sdk_source": "reference/repos/ultralib/src/os/initialize.c",
+  "sdk_source_sha256": "deaaa7466badaeecb10c6ec2df965cdb9c718dc84aa69a143353e05dc5ce2907",
+  "sdk_helper_source": "reference/repos/ultralib/src/libc/ll.c",
+  "sdk_helper_source_sha256": "11a550c2b35172242a0479e3328bfee24a4befeb287980e2470f77b6134cfd54",
+  "accepted_neighbor": "__osPiReadDeviceType",
+  "source_neighbor_body_unchanged": true,
+  "text": {
+    "vram": "0x80007e80",
+    "rom": "0x8a80",
+    "size": "0x350",
+    "members": [
+      "__osInitialize_common",
+      "__osPiReadDeviceType"
+    ]
+  },
+  "data": {
+    "vram": "0x8002c360",
+    "rom": "0x2cf60",
+    "asset_offset": "0x1cf60",
+    "size": "0x20",
+    "members": {
+      "gAudioDmaCounter": [
+        0,
+        8
+      ],
+      "gAudioDmaBufferPtr": [
+        8,
+        4
+      ],
+      "__osShutdown": [
+        12,
+        4
+      ],
+      "__osGlobalIntMask": [
+        16,
+        4
+      ]
+    }
+  },
+  "bss": {
+    "vram": "0x800367d0",
+    "size": "0x10",
+    "members": {
+      "gSpTaskState": [
+        0,
+        4
+      ]
+    }
+  },
+  "current_header_sha256": "a7a1d4a1d9220b912b7ad0ec62bcd796e7abce207b9aa7f249339f18064de662",
+  "private_object": "Rocky:~/agents/C/scratch/static-C18/full_module.o",
+  "metadata_hypothesis": {
+    "gAudioDmaState": "gAudioDmaCounter+4; actualSDK OSTime64 definition",
+    "g_tlb_exception_vector": "fixed SDK UT_VEC 0x80000000",
+    "g_tlb_exception_instr1": "fixed SDK UT_VEC+4",
+    "g_tlb_exception_instr2": "fixed SDK UT_VEC+8",
+    "g_tlb_exception_instr3": "fixed SDK UT_VEC+12"
+  }
+}

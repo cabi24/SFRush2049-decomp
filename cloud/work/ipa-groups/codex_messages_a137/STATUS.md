@@ -1,0 +1,5 @@
+# A137 separately frozen minimal message-helper publication
+
+object_type1_create@800C87F4 and object_type7_create@800C878C are complete genuine zero-input constructors, each26 words104bytes, both canonical strict0 and direct unmasked original exact. Source SHA `3140c076597bf061b4157d0453c0d0d340f09984b37810b027bfa3dda592e5d8`; manifest SHA `864e95665a83ea228613faa5f23b83ab99617d4850907622168ba8eca163df17`. Exact first flags line and actual literal flags `-g0 -O3 -mips2 -G 0 -non_shared`. Claims empty pending coordinator independent replay/gates.
+
+Source includes only the two actual complete ordinary helpers with their true external zero-input allocator and original queue operations. Each receives queue token, allocates genuine message, writes actual type1/7 at byte2, releases queue token, posts actual message pointer to original dispatch queue. Message layout24 is endpoint/allocator proven elsewhere; no guessed local arrays or added arguments. No mismatching context is needed for either positive. Fresh helper-only compilation and unmasked proofs are independent of the larger shutdown group's residual. Original shutdown packets remain frozen.

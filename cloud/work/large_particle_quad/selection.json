@@ -1,0 +1,17 @@
+{
+  "function": "entity_update_callback",
+  "address": "0x80090FEC",
+  "bytes": 2184,
+  "words": 546,
+  "target_object_sha256": "e170584e78457822aec246af20b566fc833c536822e3404e5566387044857453",
+  "target_object_tier": "reloc_aware",
+  "accepted": false,
+  "baseline_game_percent": 13.97,
+  "baseline_static_percent": 46.76,
+  "team": {
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "count": 2
+  },
+  "reason": "Fresh complete ordinary two-argument particle update and render routine; four standard-ABI callees"
+}

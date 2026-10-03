@@ -1,0 +1,58 @@
+[
+  {
+    "function": "__fixdfdi",
+    "variant": "__fixdfdi.mips3",
+    "flags": "-g0 -O2 -mips3 -G 0 -non_shared",
+    "source_sha256": "0e736373b4d4767e7e47f0fb05bf4ebd3297180e774094d1cd4c6f0964b81b7a",
+    "target_sha256": "71ffef4035b784ce163cca646ca7058cffa3792a3cd542e44ff9f1a5b99c2db2"
+  },
+  {
+    "function": "__fixdfdi",
+    "variant": "__fixdfdi.mips3_32",
+    "flags": "-g0 -O2 -mips3 -32 -G 0 -non_shared",
+    "source_sha256": "f0db75ec4c016cb94fd2434c61cdabae0a7512a5ffff9ff1b52b8e20f3898ee6",
+    "target_sha256": "71ffef4035b784ce163cca646ca7058cffa3792a3cd542e44ff9f1a5b99c2db2"
+  },
+  {
+    "function": "__fixsfdi",
+    "variant": "__fixsfdi.mips3",
+    "flags": "-g0 -O2 -mips3 -G 0 -non_shared",
+    "source_sha256": "b455e1b05de7a6b867ef18b12799ceabf570f7b09e8842efdbf59bde6e7099a0",
+    "target_sha256": "1c5ec19f5b79acaaa705e9bcaa8a48b10c759b0a5272ab92784041928b8fbe30"
+  },
+  {
+    "function": "__fixsfdi",
+    "variant": "__fixsfdi.mips3_32",
+    "flags": "-g0 -O2 -mips3 -32 -G 0 -non_shared",
+    "source_sha256": "ebd4ed04534ff14d34652c05bf5d5316e8dee872715a2ffe96cb4535a67dd309",
+    "target_sha256": "1c5ec19f5b79acaaa705e9bcaa8a48b10c759b0a5272ab92784041928b8fbe30"
+  },
+  {
+    "function": "__floatdidf",
+    "variant": "__floatdidf.mips3",
+    "flags": "-g0 -O2 -mips3 -G 0 -non_shared",
+    "source_sha256": "d9828622346c9794e456876d392ffd514ff41c737397c71fb7eb13905c362657",
+    "target_sha256": "9eb7f298b93c7bbdca36b2f92a8015ff81c801b25fdbb9d61ce91e4c399400b3"
+  },
+  {
+    "function": "__floatdidf",
+    "variant": "__floatdidf.mips3_32",
+    "flags": "-g0 -O2 -mips3 -32 -G 0 -non_shared",
+    "source_sha256": "ef4809683728225106450cb4d9c0ffc72c6cdefd0dd768c9c3505ac9007baee7",
+    "target_sha256": "9eb7f298b93c7bbdca36b2f92a8015ff81c801b25fdbb9d61ce91e4c399400b3"
+  },
+  {
+    "function": "__floatdisf",
+    "variant": "__floatdisf.mips3",
+    "flags": "-g0 -O2 -mips3 -G 0 -non_shared",
+    "source_sha256": "8ee76d6f6e72ca8fb977e567126a53990e3df89ea72b78879148fa1b8a3b5828",
+    "target_sha256": "d21a027c9cffeac010173f861218cd52e60881bbb5bbe4c507112cd4d50a4e22"
+  },
+  {
+    "function": "__floatdisf",
+    "variant": "__floatdisf.mips3_32",
+    "flags": "-g0 -O2 -mips3 -32 -G 0 -non_shared",
+    "source_sha256": "29237b8c62eada3d2c88d30711841c60aeeb40f5ecafd77cc98043b49a7297d5",
+    "target_sha256": "d21a027c9cffeac010173f861218cd52e60881bbb5bbe4c507112cd4d50a4e22"
+  }
+]

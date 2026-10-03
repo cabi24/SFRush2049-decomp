@@ -1,0 +1,10 @@
+{
+  "function": "particle_velocity_set",
+  "words": 41,
+  "bytes": 164,
+  "unmasked_exact": true,
+  "source_sha256": "38425ed4ba83bccf21076b5c4c6b508cac041c1100ee9fc4d16b396541b4e157",
+  "object_sha256": "ac3e82b3e8b3015a3c148cce78445e2a6842d052a373806b31144e36accedd34",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}

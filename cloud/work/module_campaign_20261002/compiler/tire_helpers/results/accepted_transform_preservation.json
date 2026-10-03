@@ -1,0 +1,15 @@
+{
+  "context_function": "func_800A61B0",
+  "claims": [],
+  "source_sha256": "e122c1cff4175cd570f0e581906e70911bb8b2e6249a07b4b9c8060cd97c92ac",
+  "protected_target_object_sha256": "72009df9f26fac836953063cf9719fc0576aa89ae9b25c51812098ea6c7cfc89",
+  "object_sha256": "27ac6758ae836175233f1ddecef9c6531617c23a26b29c9874addaaad32e439b",
+  "body_sha256": "d4a8abe8e545bf66990622a473a82b4b0af3d35d4a951c60c185a9884093ce4e",
+  "native_body_sha256": "d4a8abe8e545bf66990622a473a82b4b0af3d35d4a951c60c185a9884093ce4e",
+  "full_body_bytes": 148,
+  "full_body_equal": true,
+  "unresolved": [],
+  "unverified": [],
+  "errors": [],
+  "mask_count": 0
+}

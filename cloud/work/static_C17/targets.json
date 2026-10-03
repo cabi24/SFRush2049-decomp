@@ -1,0 +1,107 @@
+[
+  {
+    "target": {
+      "target_id": "memset",
+      "address": 2147493776,
+      "population": "static",
+      "insn_count": 68,
+      "target_asm_sha": "fb7e4550c7b7de60d56fcf4cda813247aabe5dda74ec0a368b96bcc643338257",
+      "target_o_sha": "1178646492f468bd84e8f5b7ae5da0da651632ac7b80b9cbf67ad4476cc9b1e8",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null
+    },
+    "segment": "0x3390",
+    "function": {
+      "name": "memset",
+      "vaddr": "0x80002790",
+      "size": 272,
+      "state": "passthrough"
+    }
+  },
+  {
+    "target": {
+      "target_id": "modf",
+      "address": 2147494048,
+      "population": "static",
+      "insn_count": 113,
+      "target_asm_sha": "7df3ad6197bb2983089a4002a4d3b660d628088a2f1a28aac97c9c83a5fc1c23",
+      "target_o_sha": "5fb70a5344337b1782110e455cd818d1140b4f9baae250e845d493cf871cf84a",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null
+    },
+    "segment": "0x34a0",
+    "function": {
+      "name": "modf",
+      "vaddr": "0x800028a0",
+      "size": 452,
+      "state": "passthrough"
+    }
+  },
+  {
+    "target": {
+      "target_id": "modff",
+      "address": 2147494500,
+      "population": "static",
+      "insn_count": 99,
+      "target_asm_sha": "561b35a93f44dbf0d94ee89557997a8206aa702766d1f210dbd619a1ce07c376",
+      "target_o_sha": "a2b7b9e4ce50d41070e5e88e94a53b19fb9b2746c21cb1c0b8768a4b91a036f4",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null
+    },
+    "segment": "0x34a0",
+    "function": {
+      "name": "modff",
+      "vaddr": "0x80002a64",
+      "size": 396,
+      "state": "passthrough"
+    }
+  },
+  {
+    "target": {
+      "target_id": "__isinf",
+      "address": 2147494896,
+      "population": "static",
+      "insn_count": 28,
+      "target_asm_sha": "dca4a422cce075a88de0bcaf2a50332af798a86c191665c6a330645db653524d",
+      "target_o_sha": "393c4b1916f35d9a04e4ffeeb53ab86f1939117a20adfb35bb5b4cda411c1a95",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null
+    },
+    "segment": "0x34a0",
+    "function": {
+      "name": "__isinf",
+      "vaddr": "0x80002bf0",
+      "size": 112,
+      "state": "passthrough"
+    }
+  },
+  {
+    "target": {
+      "target_id": "__isnan",
+      "address": 2147495008,
+      "population": "static",
+      "insn_count": 28,
+      "target_asm_sha": "eaed64debc9f766b011488ced6110f2e923fd3a8e23e67d9efedb2109d213102",
+      "target_o_sha": "92386af7b8aa742fcde1803dfb55d8315b579f5ea0c979ec9f2773643ba2e7d5",
+      "fingerprint": null,
+      "cluster_id": null,
+      "tier": "reloc_aware",
+      "gate_reason": null
+    },
+    "segment": "0x34a0",
+    "function": {
+      "name": "__isnan",
+      "vaddr": "0x80002c60",
+      "size": 112,
+      "state": "passthrough"
+    }
+  }
+]

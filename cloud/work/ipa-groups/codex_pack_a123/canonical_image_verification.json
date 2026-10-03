@@ -1,0 +1,15 @@
+{
+  "func_800CC50C": 30,
+  "audio_reverb_update": 0,
+  "audio_effect_process": 0,
+  "synced_model_render": 0,
+  "MP_TargetSpeed": 0,
+  "assign_default_paths": 0,
+  "stat_race_end": 0,
+  "func_80095F8C": 0,
+  "func_80095EF4": 0,
+  "audio_buffer_sync": 0,
+  "object_counter_decrement": 0,
+  "object_counter_increment": 0,
+  "format_string_parse": 0
+}

@@ -1,0 +1,16 @@
+{
+  "packet": "B100",
+  "function": "menu_controller_remap",
+  "address": "0x800CF69C",
+  "size_bytes": 1548,
+  "target_words": 387,
+  "claims": [],
+  "files": {
+    "menu_controller_remap_routes_O2.c": "33420c1de560f13742e16dc094ff6437ad90c0a4eaa751cd26b00c82525647b8",
+    "menu_controller_remap_routes.c": "9e386c8c1ee551faf87d0b9bbf5128953d6125efdd1d280e9cfbd5422021679f",
+    "results.json": "1e0a183fa6ba2340d49bc8873d78e82ce0624fa678b5e71418c8f6f55e2060df",
+    "menu_controller_remap_counters.c": "405750b24d436e4cfd962fc9967e9220a01c77c3928c1ab6663f50edd9ed3fcd",
+    "menu_controller_remap_native.c": "f66436fc4cf2036cb24660003552c9c971fe155b687a0bbfe2d9ee7d740397e0"
+  },
+  "report_sha256": "533a1f02623fb709d1c2473bae5be70329954055aa42a09b65e29a951661484c"
+}

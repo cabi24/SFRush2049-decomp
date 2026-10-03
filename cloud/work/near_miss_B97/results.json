@@ -1,0 +1,44 @@
+[
+  {
+    "source": "music_control_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "47ba08827ab2173962a3fe8650c5a6ca9b3a824202c47e0bae52574b403f8a62",
+    "comparison": {
+      "differing": 180,
+      "total": 248,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 240
+  },
+  {
+    "source": "music_control_calls.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "463645da2f12604daefd0d3832addd279614cfbba1d08817518f3d7f4df07e73",
+    "comparison": {
+      "differing": 172,
+      "total": 248,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 248
+  },
+  {
+    "source": "music_control_calls_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "cd9670976dc19950cefce1d56a5d9453705c5709cbb01f13d86b65caefc4ede3",
+    "comparison": {
+      "differing": 172,
+      "total": 248,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 248
+  }
+]

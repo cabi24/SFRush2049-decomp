@@ -1,0 +1,1 @@
+A148 genuine full wrapper-call structure control57/58, no extra words/exceptions. Source1382b9c993a86a80f95c0b9c69ebfb7d412c877abd2146fde61bc607e333670d. All real nonwrapper A25 contexts remain0; actual wrapper23/23unclaimed. Best direct source4/58 in ../codex_cleanup_audio_a148 preserved; no frame padding/pragma/pressure. Claims empty.

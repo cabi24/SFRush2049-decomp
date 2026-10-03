@@ -1,0 +1,38 @@
+[
+  {
+    "variant": "full_sdk_globals",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/__osInitialize_common.full_sdk_globals.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/init_full_sdk_globals.o",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 40,
+    "raw_word_diff": 6,
+    "candidate_words": 172
+  },
+  {
+    "variant": "sdk_data_only",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/__osInitialize_common.sdk_data_only.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/init_sdk_data_only.o",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 40,
+    "raw_word_diff": 6,
+    "candidate_words": 172
+  },
+  {
+    "variant": "sdk_finalrom_only",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/__osInitialize_common.sdk_finalrom_only.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/init_sdk_finalrom_only.o",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 40,
+    "raw_word_diff": 6,
+    "candidate_words": 172
+  },
+  {
+    "variant": "literal_vector_no_change",
+    "source": "/home/cburnes/agents/C/scratch/static-C18/__osInitialize_common.literal_vector_no_change.c",
+    "object": "/home/cburnes/agents/C/scratch/static-C18/init_literal_vector_no_change.o",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 40,
+    "raw_word_diff": 6,
+    "candidate_words": 172
+  }
+]

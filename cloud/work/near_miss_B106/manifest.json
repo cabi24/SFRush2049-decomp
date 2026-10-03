@@ -1,0 +1,18 @@
+{
+  "packet": "B106",
+  "function": "particle_lifetime_set",
+  "address": "0x800B8374",
+  "bytes": 732,
+  "claims": [],
+  "report": "cloud/work/near_miss_B106.md",
+  "report_sha256": "38d937941a1eefc0b4f0272a16597397b3d37b0e7a626a688092dd32a21e2bb0",
+  "files": {
+    "particle_lifetime_set_rgba.c": "00937de9f624e65f6726179c917f5b177d3088ff60ca0ff73d928e90d8b96bf2",
+    "results.json": "53335e8a80d71f6ca6b21d227aada588c012d1ac655161fde715ccc8a008dddc",
+    "particle_lifetime_set_word_handle.c": "72b932a72707f68fecda0fc45e06cc448786e2fa2659bbc4921c0cf0acf106f2",
+    "particle_lifetime_set_word_handle_O2.c": "6b3f0745dbc6ed5ba73ff23b801744809e206ea9ba0daa1292709dba271c43ee",
+    "particle_lifetime_set_scalar_views.c": "b5fe13ff1e80639032d90b16b1d8271f07f07fe665f696734fa2fdc59cb722b7",
+    "particle_lifetime_set_native.c": "41fc611f482dd14fa4207ec2f9fef1ea977e125dba5d18ccbb94fcc604b1c358",
+    "particle_lifetime_set_name_cursor.c": "497bd1bba157644456b759be6ef639b2ee74f55389d6da490f4e420f060d5618"
+  }
+}

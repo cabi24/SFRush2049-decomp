@@ -1,0 +1,34 @@
+{
+  "members": [
+    "wheel_params_set"
+  ],
+  "context": [
+    "audio_reverb_update",
+    "audio_effect_process",
+    "synced_model_render",
+    "MP_TargetSpeed",
+    "assign_default_paths",
+    "stat_race_end",
+    "func_80095F8C",
+    "func_80095EF4",
+    "audio_buffer_sync",
+    "object_counter_decrement",
+    "object_counter_increment"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "synced_model_render",
+    "MP_TargetSpeed",
+    "assign_default_paths",
+    "stat_race_end",
+    "audio_buffer_sync",
+    "object_counter_decrement",
+    "object_counter_increment",
+    "wheel_params_set"
+  ],
+  "claims": [],
+  "provenance": "A25 actual two-input heap release and five genuine direct callers; accepted lookup and counter callers copied unchanged and independently matched in this same group"
+}

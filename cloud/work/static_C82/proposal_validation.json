@@ -1,0 +1,25 @@
+{
+  "method": "private proposed logical-extent validator applied to independent fully linked native module, original data container unchanged",
+  "container_sha256": "c348ea04768321ca2f864195ad6013a8fb15b59f0295ab74b8b16317cfa77154",
+  "composed_sha256": "c348ea04768321ca2f864195ad6013a8fb15b59f0295ab74b8b16317cfa77154",
+  "all_container_bytes_exact": true,
+  "sections": [
+    {
+      "section": ".data",
+      "logical_bytes": 32,
+      "excluded_alignment_tail_bytes": 0,
+      "relocations_within_logical_section": 0
+    },
+    {
+      "section": ".rodata",
+      "logical_bytes": 356,
+      "excluded_alignment_tail_bytes": 12,
+      "relocations_within_logical_section": 89
+    }
+  ],
+  "tests": {
+    "passed": 33,
+    "captured_exit": 0
+  },
+  "shared_mutations": false
+}

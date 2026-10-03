@@ -1,0 +1,19 @@
+/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
+typedef unsigned char u8;
+typedef struct Packet {
+    int word0,word4,type,word12;
+    u8 payload[64]; void *queue; int word84;
+} Packet;
+extern Packet D_80155238;
+extern int D_80152750, D_8002E960, D_8002E928;
+void *memcpy(void *,const void *,unsigned int);
+int osJamMesg(void *,void *,int);
+void func_8010FBE0(const void *source) {
+    D_80155238.word0=0;
+    D_80155238.queue=&D_80152750;
+    D_80155238.word84=0;
+    D_80155238.type=2;
+    memcpy(D_80155238.payload,source,64);
+    osJamMesg(&D_8002E960,&D_80155238,1);
+    osJamMesg(&D_8002E928,(void *)670,1);
+}

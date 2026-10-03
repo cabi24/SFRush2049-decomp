@@ -1,0 +1,14 @@
+{
+  "local_main_lock_sha256": "b6427ddd9186cfb0e9381f16db90008063e0bfde5cf47c62a35903b66df89a0c",
+  "target": "func_800AB18C",
+  "name_locked": false,
+  "accepted_overlaps": [],
+  "canonical_entries": [
+    {
+      "kind": "function",
+      "size": 924,
+      "target_id": "func_800AB18C",
+      "vaddr": 2148184460
+    }
+  ]
+}

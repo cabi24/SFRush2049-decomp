@@ -1,0 +1,72 @@
+[
+  {
+    "source": "world_trigger_activate_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "2b0797c3ede2a4d02649a4d70f6481fdc18a6af9e5b34b82986d21b456561a79",
+    "comparison": {
+      "differing": 98,
+      "total": 116,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 112
+  },
+  {
+    "source": "world_trigger_activate_pointers.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "c9a0e050ff4f789daf10bac5d7ce3d5e8aa35e48c17159afd6b672eb1e12c095",
+    "comparison": {
+      "differing": 97,
+      "total": 116,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 112
+  },
+  {
+    "source": "world_trigger_activate_address_views.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "713bf166a4fc2d2bf42094828f5f39f1101b65460d62d49978bdf9b57536add0",
+    "comparison": {
+      "differing": 39,
+      "total": 116,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 116
+  },
+  {
+    "source": "world_trigger_activate_address_views_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "4e1ee8c0b9cc439412940eeac09e53e4e6a5586aab4f0753b9a5c5ffd4472e4b",
+    "comparison": {
+      "differing": 39,
+      "total": 116,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 116
+  },
+  {
+    "source": "world_trigger_activate_single_use.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "450ad43dda0e426cee53841268b30a9c5be53967b02095c4bdb0120b522c1dd0",
+    "comparison": {
+      "differing": 41,
+      "total": 116,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 116
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "acceptance_placement_verified": false,
+  "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+  "tables": [
+    {
+      "address": "0x80124334",
+      "entries": 7,
+      "sha256": "3c085fe02ad7d97543baa75c6146df31f0509c0aa4b1ac954024f92e5c46a1cc",
+      "targets": [
+        "0x800df600",
+        "0x800df624",
+        "0x800df624",
+        "0x800df624",
+        "0x800df6a4",
+        "0x800df6a4",
+        "0x800df6a4"
+      ],
+      "label": "jtbl_80124334"
+    },
+    {
+      "address": "0x80124354",
+      "entries": 6,
+      "sha256": "c7be0e321d6f4a3f82440c2031a3d90dda58aaefa01ed2d91405f7e861a64e81",
+      "targets": [
+        "0x800df6f8",
+        "0x800df764",
+        "0x800df7d0",
+        "0x800df830",
+        "0x800df86c",
+        "0x800df8a8"
+      ],
+      "label": "jtbl_80124354"
+    }
+  ]
+}

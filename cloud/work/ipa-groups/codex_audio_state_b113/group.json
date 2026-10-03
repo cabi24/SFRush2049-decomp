@@ -1,0 +1,22 @@
+{
+  "members": [
+    "audio_state_save"
+  ],
+  "context": [
+    "audio_fade_control",
+    "gfx_setup_e700",
+    "audio_timing_sync"
+  ],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "gfx_setup_e700",
+    "audio_timing_sync",
+    "audio_state_save"
+  ],
+  "provenance": "Complete native resource allocator/submission appended to unchanged real A31 helper/two-caller graph; original contexts unclaimed",
+  "prefix_sha256": "57fab9ec96960f50cba8283054f6a2fdbcb27ce5b89738191c59656237fe1192"
+}

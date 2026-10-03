@@ -1,0 +1,53 @@
+{
+  "local_main_lock_sha256": "b6427ddd9186cfb0e9381f16db90008063e0bfde5cf47c62a35903b66df89a0c",
+  "targets": {
+    "speed_mode0_wrapper": {
+      "name_locked": false,
+      "accepted_overlaps": [],
+      "canonical_entries": [
+        {
+          "kind": "function",
+          "size": 88,
+          "target_id": "speed_mode0_wrapper",
+          "vaddr": 2148307676
+        }
+      ]
+    },
+    "speed_mode1_wrapper": {
+      "name_locked": false,
+      "accepted_overlaps": [],
+      "canonical_entries": [
+        {
+          "kind": "function",
+          "size": 88,
+          "target_id": "speed_mode1_wrapper",
+          "vaddr": 2148307884
+        }
+      ]
+    },
+    "continue_prompt": {
+      "name_locked": false,
+      "accepted_overlaps": [],
+      "canonical_entries": [
+        {
+          "kind": "function",
+          "size": 92,
+          "target_id": "continue_prompt",
+          "vaddr": 2148382552
+        }
+      ]
+    },
+    "vsync_wait": {
+      "name_locked": false,
+      "accepted_overlaps": [],
+      "canonical_entries": [
+        {
+          "kind": "function",
+          "size": 148,
+          "target_id": "vsync_wait",
+          "vaddr": 2148512308
+        }
+      ]
+    }
+  }
+}

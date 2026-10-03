@@ -1,0 +1,20 @@
+[
+  {
+    "function": "func_800DE860",
+    "variant": "func_800DE860.readonly_coefficients",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 2416,
+    "linked": {
+      "differing": 206,
+      "total": 211,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "9b56cebd97a8da39f767643f494e87fda4862cb6da8949cd999846efe677f597",
+    "target_sha256": "75a54aedf6bb2c21883f1d712e9565440129142d3594b7cdf33401fc6b7a7976"
+  }
+]

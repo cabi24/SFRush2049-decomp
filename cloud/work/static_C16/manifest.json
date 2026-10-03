@@ -1,0 +1,49 @@
+{
+  "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+  "scope": "private complete timer-module storage hypothesis; not accepted or locked",
+  "source_sha256": "8ea97f1232f2b872f37530130da9d8ccca45c26ba87a1ec9f03b317c61a22bd3",
+  "object_sha256": "cf6ef9419de187408830580f00ae1e867fadf42b5830d24a440231443d43cd28",
+  "sdk_source": "reference/repos/ultralib/src/os/timerintr.c",
+  "sdk_source_sha256": "916cc48fad757289146c4f6f004ddd3ddcb66b57c24ecf6ceea7b485483c57d2",
+  "rom_text": {
+    "rom": "0xcc50",
+    "vram": "0x8000c050",
+    "size": "0x460"
+  },
+  "rom_data": {
+    "rom": "0x2cff0",
+    "asset_offset": "0x1cff0",
+    "vram": "0x8002c3f0",
+    "size": "0x10"
+  },
+  "bss": {
+    "vram": "0x80037c30",
+    "size": "0x40",
+    "members": {
+      "__osBaseTimer": {
+        "offset": 0,
+        "size": 32
+      },
+      "gViTimeAccumHi": {
+        "offset": 32,
+        "size": 8
+      },
+      "gViLastCount": {
+        "offset": 40,
+        "size": 4
+      },
+      "gViRetraceCount": {
+        "offset": 44,
+        "size": 4
+      },
+      "__osTimerCounter": {
+        "offset": 48,
+        "size": 4
+      }
+    }
+  },
+  "private_objects": "Rocky:~/agents/C/scratch/static-C16/{candidate,baseline}.o",
+  "root_header_sha256": "a7a1d4a1d9220b912b7ad0ec62bcd796e7abce207b9aa7f249339f18064de662",
+  "m2c_types_sha256": "93ab9028d3acf10515babd91636d6bd1c243110d1b70972d7758c83b65e932d0",
+  "startup_clear_reference": "cloud/work/integration_B18/coordinator_D_startup.json"
+}

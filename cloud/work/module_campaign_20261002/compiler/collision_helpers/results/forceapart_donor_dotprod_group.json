@@ -1,0 +1,24 @@
+{
+  "candidate": "forceapart_donor_dotprod_group",
+  "function": "menu_load_options",
+  "source_sha256": "bc1d2bf6262453e2a8bbe59d44c13dd39dcd16a56ccd7be365f3e280950a6462",
+  "object_sha256": "e3744991f8d531a7f5916a302cbbb8ab67aaff62ed82f354a6df11f8bb416d4f",
+  "comparison": {
+    "differing": 25,
+    "total": 91,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "helper_comparisons": {
+    "func_800A61B0": {
+      "differing": 0,
+      "total": 37,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

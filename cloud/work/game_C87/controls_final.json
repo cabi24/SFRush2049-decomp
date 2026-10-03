@@ -1,0 +1,38 @@
+[
+  {
+    "function": "camera_lerp_position",
+    "variant": "camera_lerp_position.descriptor_pointers",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 735,
+    "linked": {
+      "differing": 17,
+      "total": 95,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "e13fd367172b3074ee4c316e384d4493a559715c8be9cf8608b0f2bc5d6f85a6",
+    "target_sha256": "7d33bc26103eb9dd2b3c08b650aa396d0ec9d6268f9b9a68ed278d52db2e4a26"
+  },
+  {
+    "function": "camera_lerp_position",
+    "variant": "camera_lerp_position.counter_pointers",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 735,
+    "linked": {
+      "differing": 17,
+      "total": 95,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "7589186ac71d852b6ddb8888460635db09d22f642900ce3ef411582190bae943",
+    "target_sha256": "7d33bc26103eb9dd2b3c08b650aa396d0ec9d6268f9b9a68ed278d52db2e4a26"
+  }
+]

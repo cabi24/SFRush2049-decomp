@@ -1,0 +1,70 @@
+{
+  "status": "read_only_semantic_and_abi_audit",
+  "compilation_performed": false,
+  "source_sha256": {
+    "mode_select_handler.c": "0686f34fec3f7ac987f23db7fa18ca1bbb680112961ae0f0040895e5134fd00d",
+    "impact_sound.h": "47ce420f588733cccadd7db07f7e29b29637348d29d7aa4c54a5aa0341042194"
+  },
+  "protected_image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+  "complete_native_body_bytes": 2976,
+  "native_frame_bytes": 40,
+  "model_size": 2056,
+  "model_used_offsets": {
+    "body_force": 196,
+    "center_force": 304,
+    "speed": 1008,
+    "crash": 1600,
+    "collision_kind": 1602,
+    "last_collision_kind": 1603,
+    "collision_direction": 1604,
+    "player": 1990
+  },
+  "impact_point_bytes": 24,
+  "impact_player_bytes": 120,
+  "table_audit": [
+    {
+      "entries": 7,
+      "sha256": "3c085fe02ad7d97543baa75c6146df31f0509c0aa4b1ac954024f92e5c46a1cc",
+      "logical_source_mapping_agrees": true
+    },
+    {
+      "entries": 6,
+      "sha256": "c7be0e321d6f4a3f82440c2031a3d90dda58aaefa01ed2d91405f7e861a64e81",
+      "logical_source_mapping_agrees": true
+    }
+  ],
+  "abi": {
+    "mode_select_handler": {
+      "logical_input_count": 1,
+      "private_native_input_carrier": "s1"
+    },
+    "best_times_display": {
+      "logical_input_count": 1,
+      "input_type": "signed short",
+      "private_native_input_carrier": "s2"
+    },
+    "func_800DED78": {
+      "logical_input_count": 4,
+      "fourth_float_native_input_carrier": "f18"
+    },
+    "high_scores_display": {
+      "logical_input_count": 7,
+      "outgoing_float_stack_offsets": [
+        16,
+        20,
+        24
+      ]
+    }
+  },
+  "finding": {
+    "source_body_semantic_error_found": false,
+    "cross_translation_unit_return_type_inconsistency": {
+      "symbol": "high_scores_display",
+      "impact_sound_h": "s32",
+      "audio_core_c": "u32",
+      "status": "resolved_by_parent_header_edit",
+      "current_impact_sound_h": "u32"
+    }
+  },
+  "previous_header_sha256": "47ce420f588733cccadd7db07f7e29b29637348d29d7aa4c54a5aa0341042194"
+}

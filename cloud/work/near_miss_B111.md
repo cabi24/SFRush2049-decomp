@@ -1,0 +1,7 @@
+# B111: complete resource-bank loader, frozen nonmatch
+
+`sound_bank_load @0x800B0F68`,364B/91 protected words, is reconstructed with four consumed inputs, signed-byte inclusive bank bounds, a real 8-byte pool descriptor and 24-byte resource records, string copy, availability filter, binary search and identifier encoding. Native/O2 differ79/91; actual word-carrier normalization and endpoint-loop controls differ86/91. All strict replays have zero errors, unresolved/unverified references and nonzero excess words. Claims remain empty.
+
+The proposed local name[16] and Resource24 name-field view do not establish the original local buffer capacity. No size sweep, padding or unused record fields are used to force the original frame. Native frame80 differs from original96; native text88 words differs from protected91. Workbench diagnosis was performed after the bounded source controls in this packet, rather than before them; it confirms structural and register differences. Its DB target has92 words including alignment, so canonical protected91-word scoring remains authoritative. This is a documented sequencing limitation, not an acceptance result.
+
+All four complete sources are independently compiled and hashed in results.json, with exact literal flags. Manifest hashes packet files and this report. Raw words, objects and disassembly remain private /tmp or Rocky scratch. No shared accepted source, lock, layout, target or scorer changed. Image/ROM/pytest acceptance does not apply to these nonmatches.

@@ -1,0 +1,26 @@
+{
+  "source_sha256": "466be13d906bdb88a4345d3f05f1e8767014859a68d02a3008548c6f2258eede",
+  "manifest_sha256": "539056e41fd71faf9f6fb2c55818787dbc00d486454652fdf8ddc08dc70fc5dd",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "comparisons": {
+    "main_menu_render": {
+      "differing": 56,
+      "total": 59,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_801141B0 at .text+0xd0"
+      ],
+      "extra_words": 39
+    },
+    "main_menu_input": {
+      "differing": 56,
+      "total": 56,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

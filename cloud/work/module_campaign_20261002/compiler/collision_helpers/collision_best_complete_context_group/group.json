@@ -1,0 +1,18 @@
+{
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "menu_options_screen",
+    "menu_load_options",
+    "func_800A61B0",
+    "func_8008B3C8"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "claims": [],
+  "context": [
+    "menu_load_options",
+    "func_800A61B0",
+    "func_8008B3C8"
+  ]
+}

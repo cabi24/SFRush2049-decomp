@@ -1,0 +1,23 @@
+{
+  "canonical_full_image_word_differences": {
+    "func_800CC8C8": 0,
+    "format_string_parse": 0
+  },
+  "source_sha256": "8d3e32ed24cb938eead1e842e4cd3377ef3d10af770f050a0d6359aaf1942e1c",
+  "tables": {
+    "format_string_parse": {
+      "entries": 6,
+      "used_bytes": 24,
+      "image_address": "0x80123c20",
+      "sha256": "f6bcb0ccbee2571534ca6b32bdc230101a2d54ae46263f7873c8ff08698a567e",
+      "relocated_table_matches_original": true
+    },
+    "func_800CC8C8": {
+      "entries": 7,
+      "used_bytes": 28,
+      "image_address": "0x80123fe8",
+      "sha256": "3cfba0f53493dc4c56f86d240242c9fae7c21289b849b6adfaeaa068498ec271",
+      "relocated_table_matches_original": true
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "ready_for_parent_replay": [
+    "audio_dsp_process"
+  ],
+  "potential_new_bytes": 388,
+  "accepted_coverage_claims": [],
+  "files": {
+    "cloud/work/near_miss_B118/audio_dsp_process_native.c": "da90c16d7db94a42b3b07c71188e30efa5c4c6e362321a25e65fcd15c292893c",
+    "cloud/work/near_miss_B118/verification.json": "c79f781d69667f494fea251627543e8583fe022fe4deaf0c142ebe13fcf44a06",
+    "cloud/work/near_miss_B118/image_verification.json": "345eaafc33825b977eb7b984c7e0a049288e125766d4900816e5e255704f2ccf",
+    "cloud/work/near_miss_B118.md": "7306ba7ffd6a265a9326f1dbf3b494638de1404c69ac676cf9d7f3f56f6fc86b"
+  }
+}

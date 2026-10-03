@@ -1,0 +1,12 @@
+{
+  "claims": [],
+  "function": "camera_shake_start",
+  "address": "0x800BDAA8",
+  "target_bytes": 744,
+  "files": {
+    "camera_shake_start_globals.c": "9dd6aadba62d74a6a7de86de26f04a3e51dedcbc11ff28850c02a0923d48ed22",
+    "camera_shake_start_globals_O2.c": "13db8cd5252bfcf43082b27c423d055c3fc8189ab6dedf3c2dd21493bd2f8269",
+    "camera_shake_start_native.c": "70b1d389a077a72b61178788c3133391b0b3851a14571429cc7c635ea77d708b",
+    "results.json": "bde0d3c94900574e27c9b5c5f153be2623d32ac4a32f067e118ade13c4c856df"
+  }
+}

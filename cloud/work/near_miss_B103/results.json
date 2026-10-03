@@ -1,0 +1,125 @@
+[
+  {
+    "source": "init_state_begin_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "51ea537e39bd1df89e2362345dc8ae0ee1b3c4effd8fdc4171b0d79c614a40f0",
+    "comparison": {
+      "differing": 370,
+      "total": 454,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x1b4",
+        ".rodata+0x0 at +0x1bc"
+      ],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_80150EFC at .text+0x714"
+      ],
+      "extra_words": 37
+    },
+    "text_words": 492
+  },
+  {
+    "source": "init_state_begin_record_views.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "849162e606a98aebeaf07b5a7659f89f7d9369643a556bd0a53693e3a4a9f56b",
+    "comparison": {
+      "differing": 378,
+      "total": 454,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x1b4",
+        ".rodata+0x0 at +0x1bc"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 452
+  },
+  {
+    "source": "init_state_begin_typed_settings.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "6dd678615aaad68e33ec2783027806aaf64e3cb4ce0d797fca662baa331ffca8",
+    "comparison": {
+      "differing": 370,
+      "total": 454,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x1b4",
+        ".rodata+0x0 at +0x1bc"
+      ],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_80150EFC at .text+0x714"
+      ],
+      "extra_words": 37
+    },
+    "text_words": 492
+  },
+  {
+    "source": "init_state_begin_typed_address_views.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "4207783f113a7e0fb9c530394da79e77dba1ec0cfb7bb25d3574876226add1fe",
+    "comparison": {
+      "differing": 384,
+      "total": 454,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x1b8",
+        ".rodata+0x0 at +0x1c0"
+      ],
+      "errors": [],
+      "extra_words": 5
+    },
+    "text_words": 460
+  },
+  {
+    "source": "init_state_begin_control_record.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "4ca0122f6a80cfcdf6a58ac4c98797be658e481c3aad4c379822eaf042845b9f",
+    "comparison": {
+      "differing": 423,
+      "total": 454,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x1bc",
+        ".rodata+0x0 at +0x1c4"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 456
+  },
+  {
+    "source": "init_state_begin_level_capture.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "9d8c4c3b3dfd313a30c7124506582c2f916fbe5e44bf53c902eddc9fdf2e7f2b",
+    "comparison": {
+      "differing": 249,
+      "total": 454,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x1b8",
+        ".rodata+0x0 at +0x1c0"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 456
+  },
+  {
+    "source": "init_state_begin_half_array.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "d68ac93fbcf4674e85b90fb8d67f9f53e4ddb99b777b58dd0020c85e5fb35ae6",
+    "comparison": {
+      "differing": 391,
+      "total": 454,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x1b4",
+        ".rodata+0x0 at +0x1bc"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 448
+  }
+]

@@ -1,0 +1,757 @@
+[
+  {
+    "source_sha256": "ddc6989e71db394bc50b227fc0bc5f90abc2788089181f1af363185b0aec997b",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "baseline.c",
+    "accepted": false,
+    "canonical_verdict": "273/349 words differ",
+    "comparison": {
+      "differing": 273,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "4c6ed6d7a5844956ab5efee74ea30b0403ad66c4c5c670669f79bdd497fc137b",
+    "emitted_words": 352,
+    "aligned": {
+      "aligned_exact": 81,
+      "aligned_opcode": 334,
+      "aligned_opcode_reg": 90
+    },
+    "frame_bytes": 16
+  },
+  {
+    "source_sha256": "ddc6989e71db394bc50b227fc0bc5f90abc2788089181f1af363185b0aec997b",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "baseline.c",
+    "accepted": false,
+    "canonical_verdict": "273/349 words differ",
+    "comparison": {
+      "differing": 273,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "d615aed425b8268adf0b59c1e2f9a51108538b4bfd56fd4b59d3463d0a6fe294",
+    "emitted_words": 352,
+    "aligned": {
+      "aligned_exact": 81,
+      "aligned_opcode": 334,
+      "aligned_opcode_reg": 90
+    },
+    "frame_bytes": 16
+  },
+  {
+    "source_sha256": "73f6bf0ca04b032617ac54b150f0d6f489343e96861f1583b27afa187663e90e",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "native_semantics.c",
+    "accepted": false,
+    "canonical_verdict": "270/349 words differ",
+    "comparison": {
+      "differing": 270,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "83e59f004010fb3cdbfa2a058bfc4f6925717a3ef5ac409f4806ee50676eac9c",
+    "emitted_words": 352,
+    "aligned": {
+      "aligned_exact": 90,
+      "aligned_opcode": 349,
+      "aligned_opcode_reg": 99
+    },
+    "frame_bytes": 16
+  },
+  {
+    "source_sha256": "73f6bf0ca04b032617ac54b150f0d6f489343e96861f1583b27afa187663e90e",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "native_semantics.c",
+    "accepted": false,
+    "canonical_verdict": "348/349 words differ (150 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 348,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 150
+    },
+    "object_sha256": "c99a06f5a3619498ac195f2848959cf10390fce126ede82d92e5e96004d149d1",
+    "emitted_words": 508,
+    "aligned": {
+      "aligned_exact": 23,
+      "aligned_opcode": 198,
+      "aligned_opcode_reg": 34
+    },
+    "frame_bytes": 16
+  },
+  {
+    "source_sha256": "73f6bf0ca04b032617ac54b150f0d6f489343e96861f1583b27afa187663e90e",
+    "flags": "-g2 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "native_semantics.c",
+    "accepted": false,
+    "canonical_verdict": "349/349 words differ (203 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 349,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 203
+    },
+    "object_sha256": "9dde165eca8389c2571c56f58077f61ce765163690277c3e3b17d8134177c589",
+    "emitted_words": 564,
+    "aligned": {
+      "aligned_exact": 21,
+      "aligned_opcode": 196,
+      "aligned_opcode_reg": 33
+    },
+    "frame_bytes": 16
+  },
+  {
+    "source_sha256": "73f6bf0ca04b032617ac54b150f0d6f489343e96861f1583b27afa187663e90e",
+    "flags": "-g3 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "native_semantics.c",
+    "accepted": false,
+    "canonical_verdict": "277/349 words differ",
+    "comparison": {
+      "differing": 277,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "49f0218f86856a4280e6053bc0cc10770a193d289c5473b5bbbf5b7447711fc4",
+    "emitted_words": 352,
+    "aligned": {
+      "aligned_exact": 87,
+      "aligned_opcode": 345,
+      "aligned_opcode_reg": 96
+    },
+    "frame_bytes": 16
+  },
+  {
+    "source_sha256": "176129280a88af5d6b3931394f57388497328902c73d9ba4a71867ee00c1b98b",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "pointer_carrier_index_bound.c",
+    "accepted": false,
+    "canonical_verdict": "337/349 words differ (12 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 337,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 12
+    },
+    "object_sha256": "cfea1dc483fd007b6b032164c477cc345d7529c8259525b7c09a5c8ce5bdcfc5",
+    "emitted_words": 364,
+    "aligned": {
+      "aligned_exact": 43,
+      "aligned_opcode": 323,
+      "aligned_opcode_reg": 64
+    },
+    "frame_bytes": 16
+  },
+  {
+    "source_sha256": "09af195650a68a87e991a3a0cfe90d54c4444c5df63c53355a7fc63be7b5293c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "all_cursor_counted.c",
+    "accepted": false,
+    "canonical_verdict": "347/349 words differ (18 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 347,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 18
+    },
+    "object_sha256": "2b5db417d3a8069622f2038bebd742afab56b449e14ae56887659b340e4b809e",
+    "emitted_words": 368,
+    "aligned": {
+      "aligned_exact": 50,
+      "aligned_opcode": 301,
+      "aligned_opcode_reg": 77
+    },
+    "frame_bytes": 24
+  },
+  {
+    "source_sha256": "97e3e064f55046e334b6204ca9c4901e179b18de0b0a58212a61fa7f3f1404f5",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "indexed_count_s16.c",
+    "accepted": false,
+    "canonical_verdict": "349/349 words differ (785 extra words (nonzero beyond target length); unpaired R_MIPS_HI16 for D_8014A108 at .text+0x55c)",
+    "comparison": {
+      "differing": 349,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_8014A108 at .text+0x55c"
+      ],
+      "extra_words": 785
+    },
+    "object_sha256": "2b967f15b8bde12e35821882b2e330e1c2d72ed740051d5a18bf1621de69b725",
+    "emitted_words": 1148,
+    "aligned": {
+      "aligned_exact": 67,
+      "aligned_opcode": 331,
+      "aligned_opcode_reg": 92
+    },
+    "frame_bytes": 24
+  },
+  {
+    "source_sha256": "15a72e30104447473d5f43911335267e0dfb80dc3297867d5a55ae34ba428d6d",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "indexed_count_s16_leader.c",
+    "accepted": false,
+    "canonical_verdict": "349/349 words differ (745 extra words (nonzero beyond target length); unpaired R_MIPS_HI16 for D_8014A108 at .text+0x514)",
+    "comparison": {
+      "differing": 349,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_8014A108 at .text+0x514"
+      ],
+      "extra_words": 745
+    },
+    "object_sha256": "68cd98f63152807ca58cd2f248cc50f4fadd2588c7106605adead6b4c13f016c",
+    "emitted_words": 1100,
+    "aligned": {
+      "aligned_exact": 64,
+      "aligned_opcode": 325,
+      "aligned_opcode_reg": 87
+    },
+    "frame_bytes": 24
+  },
+  {
+    "source_sha256": "5fdd240626d07d53daeb6a2bc036c2831fa5bc5df2034705f17df2b152525c13",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "indexed_count_s32.c",
+    "accepted": false,
+    "canonical_verdict": "349/349 words differ (785 extra words (nonzero beyond target length); unpaired R_MIPS_HI16 for D_8014A108 at .text+0x55c)",
+    "comparison": {
+      "differing": 349,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_8014A108 at .text+0x55c"
+      ],
+      "extra_words": 785
+    },
+    "object_sha256": "db54f47e19bc3ea6bc8dc932d68b91cf750fad9eae42cfe051f73feed120b4bc",
+    "emitted_words": 1148,
+    "aligned": {
+      "aligned_exact": 67,
+      "aligned_opcode": 331,
+      "aligned_opcode_reg": 92
+    },
+    "frame_bytes": 24
+  },
+  {
+    "source_sha256": "f1a390f67fdc005110dd8e4b92fbc9508bfa2195d1fd0d2929d53cb7de1e2b9f",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "indexed_count_s32_leader.c",
+    "accepted": false,
+    "canonical_verdict": "349/349 words differ (745 extra words (nonzero beyond target length); unpaired R_MIPS_HI16 for D_8014A108 at .text+0x514)",
+    "comparison": {
+      "differing": 349,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_8014A108 at .text+0x514"
+      ],
+      "extra_words": 745
+    },
+    "object_sha256": "30ee3f34fe83e2b9b7b8dbf62a71d614b911aed3113eb727bd628b9fff1ebd90",
+    "emitted_words": 1100,
+    "aligned": {
+      "aligned_exact": 64,
+      "aligned_opcode": 325,
+      "aligned_opcode_reg": 87
+    },
+    "frame_bytes": 24
+  },
+  {
+    "source_sha256": "a38efa3f9aabb8bd7c64a7ed7f127f32933490acb70038fa19c8d540acf81a07",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "indexed_native_order.c",
+    "accepted": false,
+    "canonical_verdict": "273/349 words differ",
+    "comparison": {
+      "differing": 273,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "632be86a6f2e8b3c272f9bf7ff99e99b4a7b021bb1571773d6e17a449cbc4cfa",
+    "emitted_words": 352,
+    "aligned": {
+      "aligned_exact": 81,
+      "aligned_opcode": 334,
+      "aligned_opcode_reg": 90
+    },
+    "frame_bytes": 16
+  },
+  {
+    "source_sha256": "4132f088fad5162275174d861897c3cb39b4e953068abde3581e13b9ffd94a4e",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "native_capture_declarations.c",
+    "accepted": false,
+    "canonical_verdict": "272/349 words differ",
+    "comparison": {
+      "differing": 272,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "27229fa7f36d2be64ef1c1b45158938430789ba7711d0691b3dc4445c49ea731",
+    "emitted_words": 352,
+    "aligned": {
+      "aligned_exact": 82,
+      "aligned_opcode": 334,
+      "aligned_opcode_reg": 90
+    },
+    "frame_bytes": 16
+  },
+  {
+    "source_sha256": "74250219704afcd902c36c1e0f083df787475b165adb70ec8992c05f6d20b7c3",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "native_car_lifetime.c",
+    "accepted": false,
+    "canonical_verdict": "272/349 words differ",
+    "comparison": {
+      "differing": 272,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "ec5d6d43c5be20a1baa68cff6a743b75b439a3dcafa097209762e997f07adaee",
+    "emitted_words": 352,
+    "aligned": {
+      "aligned_exact": 82,
+      "aligned_opcode": 334,
+      "aligned_opcode_reg": 90
+    },
+    "frame_bytes": 16
+  },
+  {
+    "source_sha256": "6c12340ebaf8aadb3336e0472ce5ce05ec6bb8d0ccdbae60f8405d993a9214b3",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "native_leader_lifetime.c",
+    "accepted": false,
+    "canonical_verdict": "310/349 words differ (4 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 310,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 4
+    },
+    "object_sha256": "686703b84a5156305970beb7daf797193bc3e41a5a555354078e3b10094485d8",
+    "emitted_words": 356,
+    "aligned": {
+      "aligned_exact": 69,
+      "aligned_opcode": 310,
+      "aligned_opcode_reg": 82
+    },
+    "frame_bytes": 16
+  },
+  {
+    "source_sha256": "1d6c4fb626f2f7e6de6d6f9177133f08d4eb8c931f9a946373c4f26dd17fa196",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "native_pair_limit.c",
+    "accepted": false,
+    "canonical_verdict": "347/349 words differ (29 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 347,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 29
+    },
+    "object_sha256": "04eb30daca9474da541a89606e9792f2b44621823ce44b86480b19ee8dab5cdf",
+    "emitted_words": 380,
+    "aligned": {
+      "aligned_exact": 58,
+      "aligned_opcode": 321,
+      "aligned_opcode_reg": 79
+    },
+    "frame_bytes": 24
+  },
+  {
+    "source_sha256": "4d87dff1412913b9ae919fe6e80f68f55f1991c818ab30e38b9545d79f2fcdfc",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "native_profile_load_order.c",
+    "accepted": false,
+    "canonical_verdict": "270/349 words differ",
+    "comparison": {
+      "differing": 270,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "ded1764a09b27722e987c5587fc0eaf0dc2fdc864d11ae115118df46010d5081",
+    "emitted_words": 352,
+    "aligned": {
+      "aligned_exact": 90,
+      "aligned_opcode": 349,
+      "aligned_opcode_reg": 99
+    },
+    "frame_bytes": 16
+  },
+  {
+    "source_sha256": "720354ea052308c26db9f87c990a5d70ae917897921a67e4d30e98a657292b9e",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "pair_cursor_counted.c",
+    "accepted": false,
+    "canonical_verdict": "347/349 words differ (18 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 347,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 18
+    },
+    "object_sha256": "f4e965cec242281a3dc20f968fe7707923725474ba1f6c9f44fd179921cef557",
+    "emitted_words": 368,
+    "aligned": {
+      "aligned_exact": 39,
+      "aligned_opcode": 307,
+      "aligned_opcode_reg": 63
+    },
+    "frame_bytes": 24
+  },
+  {
+    "source_sha256": "9e44743e0bbd5303b966d6382604f03bc11300dc6dafb10da2403925d29be461",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "pointer_baseline.c",
+    "accepted": false,
+    "canonical_verdict": "349/349 words differ (313 extra words (nonzero beyond target length); unpaired R_MIPS_HI16 for D_8014A108 at .text+0x368)",
+    "comparison": {
+      "differing": 349,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_8014A108 at .text+0x368"
+      ],
+      "extra_words": 313
+    },
+    "object_sha256": "e5c1f4e86279e371600d1544e1089ad0d8793fea0b0755990dc3da921de06760",
+    "emitted_words": 664,
+    "aligned": {
+      "aligned_exact": 93,
+      "aligned_opcode": 312,
+      "aligned_opcode_reg": 111
+    },
+    "frame_bytes": 24
+  },
+  {
+    "source_sha256": "633d69bce78c6248ed96e03e32a4a46de5f334b48b60dad58f980676721de850",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "pointer_captures.c",
+    "accepted": false,
+    "canonical_verdict": "347/349 words differ (313 extra words (nonzero beyond target length); unpaired R_MIPS_HI16 for D_8014A108 at .text+0x368)",
+    "comparison": {
+      "differing": 347,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_8014A108 at .text+0x368"
+      ],
+      "extra_words": 313
+    },
+    "object_sha256": "c15bfb9cdcbd20e8b471dfb6e4d2545ff6ddd2d474688bc88ed637d576d6e797",
+    "emitted_words": 664,
+    "aligned": {
+      "aligned_exact": 54,
+      "aligned_opcode": 320,
+      "aligned_opcode_reg": 66
+    },
+    "frame_bytes": 24
+  },
+  {
+    "source_sha256": "339c22f8c1953f144561bc7a6b79120a0130e7a217e4e51ecbbb914b27738d7e",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "pointer_near.c",
+    "accepted": false,
+    "canonical_verdict": "347/349 words differ (48 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 347,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 48
+    },
+    "object_sha256": "9b460ce5b9fc8bc1bfa37e9db355c0c0d9b1344cac5e71417df1dc310c7701fd",
+    "emitted_words": 400,
+    "aligned": {
+      "aligned_exact": 46,
+      "aligned_opcode": 316,
+      "aligned_opcode_reg": 74
+    },
+    "frame_bytes": 24
+  },
+  {
+    "source_sha256": "af9aa80bf69ca284e28f19cdd277418c070d1fd187f4bd1112f88eb5addabb02",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "tie_cursor_counted.c",
+    "accepted": false,
+    "canonical_verdict": "284/349 words differ",
+    "comparison": {
+      "differing": 284,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "b7a4fc1fed8ff7c132bb28a51855ad3f0fe30af14042ceb77552668287e55df9",
+    "emitted_words": 352,
+    "aligned": {
+      "aligned_exact": 81,
+      "aligned_opcode": 337,
+      "aligned_opcode_reg": 93
+    },
+    "frame_bytes": 16
+  },
+  {
+    "source_sha256": "9abaa44311bdf2f77a82e5f81326f2d947f53b971a5c154b296bb4ae6fdad826",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "typed_arcade_loop_order.c",
+    "accepted": false,
+    "canonical_verdict": "270/349 words differ",
+    "comparison": {
+      "differing": 270,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "12d3c5dd6c1d9ed0480ad532b4ac99214c77cf7547af640d5183c8e615a0db24",
+    "emitted_words": 352,
+    "aligned": {
+      "aligned_exact": 90,
+      "aligned_opcode": 349,
+      "aligned_opcode_reg": 99
+    },
+    "frame_bytes": 16
+  },
+  {
+    "source_sha256": "89bf0cf90783ca095b8448da4bcdafaab34f6e7b7a7b4fb38ddaa519b663fc1f",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "typed_native_structure.c",
+    "accepted": false,
+    "canonical_verdict": "270/349 words differ",
+    "comparison": {
+      "differing": 270,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "c3581682fb34f73d4d24f34326ec2adf5b5be7232d274169d2519f49f2e2f743",
+    "emitted_words": 352,
+    "aligned": {
+      "aligned_exact": 90,
+      "aligned_opcode": 349,
+      "aligned_opcode_reg": 99
+    },
+    "frame_bytes": 16
+  },
+  {
+    "source_sha256": "d7c91e117f1484d3a26460b35e2c5e81a6938113b2e392795592fa1fc46ddf77",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "typed_register_loops.c",
+    "accepted": false,
+    "canonical_verdict": "270/349 words differ",
+    "comparison": {
+      "differing": 270,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "70e9345c811c3780ef2ea5c867522101daff3439756eb17bbd2fa5bd20a31935",
+    "emitted_words": 352,
+    "aligned": {
+      "aligned_exact": 90,
+      "aligned_opcode": 349,
+      "aligned_opcode_reg": 99
+    },
+    "frame_bytes": 16
+  },
+  {
+    "source_sha256": "adcb76935800fe1ddd6b915c59c42c18cbe06d469c97fd90fef401a30819b853",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "typed_register_pair.c",
+    "accepted": false,
+    "canonical_verdict": "270/349 words differ",
+    "comparison": {
+      "differing": 270,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "f15b1f5e74fd3c060a0b84c73a6052beadb725dad939f698a11b7e3c25946023",
+    "emitted_words": 352,
+    "aligned": {
+      "aligned_exact": 90,
+      "aligned_opcode": 349,
+      "aligned_opcode_reg": 99
+    },
+    "frame_bytes": 16
+  },
+  {
+    "source_sha256": "23b28bf39b62be4a54f7f4a2117d68dc697d8989f5ad59026942959fdf9e3f92",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "root_fresh_complete.c",
+    "accepted": false,
+    "canonical_verdict": "348/349 words differ (109 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 348,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 109
+    },
+    "object_sha256": "9125149bd93a53b327e74a7d257bf50f581e00c9b90a920f6fa5d53a5f3adabf",
+    "emitted_words": 460,
+    "aligned": {
+      "aligned_exact": 43,
+      "aligned_opcode": 304,
+      "aligned_opcode_reg": 74
+    },
+    "frame_bytes": 16
+  },
+  {
+    "source_sha256": "23b28bf39b62be4a54f7f4a2117d68dc697d8989f5ad59026942959fdf9e3f92",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "root_fresh_complete.c",
+    "accepted": false,
+    "canonical_verdict": "348/349 words differ (109 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 348,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 109
+    },
+    "object_sha256": "77aa2a7a0efad3983dd7d506dd888365cdc540acdbb535ba9976aae20698a178",
+    "emitted_words": 460,
+    "aligned": {
+      "aligned_exact": 43,
+      "aligned_opcode": 304,
+      "aligned_opcode_reg": 74
+    },
+    "frame_bytes": 16
+  },
+  {
+    "source_sha256": "ab64f17bea8dada9970cb29aa1910beaa7a4607a9d8fa2ca77b8d9d2402f7f89",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "root_fresh_complete.c",
+    "accepted": false,
+    "error": "IDO compile failed:\ncfe: Error: /home/cburnes/agents/large-rank-compiler/candidates/root_fresh_complete.c, line 74: Syntax Error\n                     } while ((u32) var_v0 < (u32) &D_80143F54[active_player_count].unk-1);\n -----------------------------------^\ncfe: Error: /home/cburnes/agents/large-rank-compiler/candidates/root_fresh_complete.c, line 74: Syntax Error\n                     } while ((u32) var_v0 < (u32) &D_80143F54[active_player_count].unk-1);\n ----------------------------------------------------------------------------------------^\ncfe: Error: /home/cburnes/agents/large-rank-compiler/candidates/root_fresh_complete.c, line 105: Syntax Error\n                     } while ((u32) var_v0_2 < (u32) &D_80143F54[active_player_count].unk-1);\n -----------------------------------^\ncfe: Error: /home/cburnes/agents/large-rank-compiler/candidates/root_fresh_complete.c, line 105: Syntax Error\n                     } while ((u32) var_v0_2 < (u32) &D_80143F54[active_player_count].unk-1);\n ------------------------------------------------------------------------------------------^\ncfe: Error: /home/cburnes/agents/large-rank-compiler/candidates/root_fresh_complete.c, line 123: Syntax Error\n                     } while ((u32) var_v0_3 < (u32) &D_80143F54[active_player_count].unk-1);\n -----------------------------------^\ncfe: Error: /home/cburnes/agents/large-rank-compiler/candidates/root_fresh_complete.c, line 123: Syntax Error\n                     } while ((u32) var_v0_3 < (u32) &D_80143F54[active_player_count].unk-1);\n ------------------------------------------------------------------------------------------^\ncfe: Error: /home/cburnes/agents/large-rank-compiler/candidates/root_fresh_complete.c, line 155: Syntax Error\n                     } while ((u32) var_v0_4 < (u32) &D_80143F54[temp_t3].unk-1);\n -----------------------------------^\ncfe: Error: /home/cburnes/agents/large-rank-compiler/candidates/root_fresh_complete.c, line 155: Syntax Error\n                     } while ((u32) var_v0_4 < (u32) &D_80143F54[temp_t3].unk-1);\n ------------------------------------------------------------------------------^\n"
+  },
+  {
+    "source_sha256": "a38efa3f9aabb8bd7c64a7ed7f127f32933490acb70038fa19c8d540acf81a07",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "semantic_baseline.c",
+    "accepted": false,
+    "canonical_verdict": "273/349 words differ",
+    "comparison": {
+      "differing": 273,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "36f1fbe1eccfb1772e8c461706ba8a26fddbc5fd47478a850bb3c3b8c9bbc7cf",
+    "emitted_words": 352,
+    "aligned": {
+      "aligned_exact": 81,
+      "aligned_opcode": 334,
+      "aligned_opcode_reg": 90
+    },
+    "frame_bytes": 16
+  },
+  {
+    "source_sha256": "4b38f7f635c0335720269e78c94a3c264c2d4b1ce87d5f2076ad312dd2ed763c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "tie_count_first.c",
+    "accepted": false,
+    "canonical_verdict": "271/349 words differ",
+    "comparison": {
+      "differing": 271,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "be2a9620c88301adf2240c2be8b44aa50e1503576229334415e0be60636f784c",
+    "emitted_words": 352,
+    "aligned": {
+      "aligned_exact": 89,
+      "aligned_opcode": 349,
+      "aligned_opcode_reg": 99
+    },
+    "frame_bytes": 16
+  },
+  {
+    "source_sha256": "6641b83fece0300f48bcbb76230f52d1e0205c9630ea4aa6fea08037e353b158",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "tie_profile_capture.c",
+    "accepted": false,
+    "canonical_verdict": "280/349 words differ",
+    "comparison": {
+      "differing": 280,
+      "total": 349,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "1b2c6eba1c1b483c94523513a497ab521e2c74331d0a96aee566f18b12f6afdc",
+    "emitted_words": 352,
+    "aligned": {
+      "aligned_exact": 80,
+      "aligned_opcode": 343,
+      "aligned_opcode_reg": 91
+    },
+    "frame_bytes": 16
+  }
+]

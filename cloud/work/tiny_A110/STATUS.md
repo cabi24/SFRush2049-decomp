@@ -1,0 +1,5 @@
+# A110 actual character-map conversion — frame recovered, bounded nonmatch
+
+Full func_800A150C@800A150C,312 bytes/78 words. Three actual consumed inputs output pointer, encoded byte string, unsigned byte limit. Marker255 selects big-endian two-byte codepoints through original256-entry unsigned-half map; otherwise single bytes use same map. Found indices append unsigned byte/count; unmatched codes skip. Actual count equality stops decoding and remaining requested length is zero-filled. Original limit-zero nonempty-input quirk preserved; no safer replacement bounds inferred.
+
+Initial77/78+5nonzero extras/frame16; actual branch-local code/index typing78+6; consumed map pointer77+6. Separate genuine output cursor observed in original a0→a3 removes one saved register/frame8,77+3. Genuine promoted byte-limit snapshot removes last saved register/frame0, final70/78/noextras. Remaining whole-body temporary coloring and instruction order differ; no pressure padding, unused formal, forced volatile, fake helper, mask or byte search. Fresh final full proof and all bounded source controls frozen, claims empty.

@@ -1,0 +1,12 @@
+{
+  "packet": "A139",
+  "claims": [],
+  "files": {
+    "control.internal_lookup.json": "1f77cc8c56d66fab18586b3abf97297a3577d49e73c6f1f30c2eed0bfc338d03",
+    "control.internal_lookup.verification.json": "1580a1aee47b3e660997005b11889e517bccbc564217aa7180c62cd7462b9852",
+    "group.c": "31e83b37efe3f3c951cd9d4cf8f48720d3aa05ab434d2a1aaf30f47831ae1e85",
+    "STATUS.md": "2a73c4b7cdda4d04a1eec98e5d621064ff39b525d91f29ff1304a49d6517c475",
+    "verification.json": "4f7381803cb4a74145377bbd1dac3de6e54ed733b8c480c20dda3a49f98164db",
+    "group.json": "a088f6773566befed49af2ffe8649ab69107bd69102d03312bae639849ba0920"
+  }
+}

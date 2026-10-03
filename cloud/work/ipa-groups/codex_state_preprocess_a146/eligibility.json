@@ -1,0 +1,17 @@
+{
+  "local_main_lock_sha256": "b6427ddd9186cfb0e9381f16db90008063e0bfde5cf47c62a35903b66df89a0c",
+  "targets": {
+    "state_change_preprocess": {
+      "name_locked": false,
+      "accepted_overlaps": [],
+      "canonical_entries": [
+        {
+          "kind": "function",
+          "size": 180,
+          "target_id": "state_change_preprocess",
+          "vaddr": 2148311808
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,5 @@
+# A93 genuine slot cache initializer — nonmatch
+
+func_800BB02C@800BB02C,276 bytes/69 words. Complete actual24-byte slot reset, optional supplied data pointer, unsigned size-test from real optional-pointer audio_output_setup,8-byte description search, actual matched slot data/payload copy, and allocation fallback audio_dma_sync(0,512). Final pointer callee prototype is audited against its full37-word body. Literal flags `-g0 -O2 -mips2 -G 0 -non_shared`.
+
+Fresh canonical40/69, no extras or exceptions. Native frame40 vs original32 and actual loop/address scheduling remain different. Scoping the consumed loop index preserves40; real description pointer iterator regresses48. Original post-loop branch compares the exhausted/found index despite identical return endpoints; no dummy index predicate was added only to reproduce this compiler quirk. No padding or unused locals. Corrected literal optional-pointer prototype does not alter the40 count. Genuine full O3 two-body module with A94 produces40 again. Sources/proofs/hashes frozen, claims empty.

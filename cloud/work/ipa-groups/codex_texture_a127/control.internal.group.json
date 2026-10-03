@@ -1,0 +1,16 @@
+{
+  "members": [
+    "camera_smooth_follow"
+  ],
+  "context": [
+    "race_setup_1"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "claims": [],
+  "keep": [
+    "race_setup_1"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

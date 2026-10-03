@@ -1,0 +1,37 @@
+{
+  "decision": "no-claim: exact osScAddClient requires a module recipe that changes existing accepted viDeadlinePassed; no per-slot workaround",
+  "current_header_strict_score": 0,
+  "current_header_flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm",
+  "current_header_include_flags": "-Irom -Iinclude -Iinclude/PR -D_LANGUAGE_C",
+  "required_shared_declaration": "extern u32 osSetGlobalIntMask(u32);",
+  "original_target_sha256": "18e2b7521888575ecd5d6adb41422b6ab36c56a43253e9632140f6f1e4af352e",
+  "source_hashes": {
+    "osScAddClient.debug2.c": "0f26a2a62ac0790cbc1d60eff09a007452d2709864d0c023153ad52e1ca87b83",
+    "osScAddClient.debug1.c": "f17c289eba6e36b11a7ff04384a82f4edc5ccd1136595ec53101391950f0db92",
+    "osScAddClient.O1.c": "3898d7cd11727e6f7746646ab52b5710a518eb8f1c923640a2d7d4abc4c3b004",
+    "osScAddClient.O2.c": "2175b22e4d1e63a0c824b8ab588ed912e57c26282a1afc6bf31c00be3a9f2cbd",
+    "deadline_comparison.c": "04865be824044c559be9e6a757bda8fd79fd005b2a87118c57e25ca2a710a733",
+    "osScAddClient.debug0_O0.c": "d589af74b73f8bafc6c9a508993583582aa68bd3eae097b5f26313601a82e19f",
+    "lib_1050.unchanged_snapshot.c": "e9b8722aee7d9fb768b90694a59f326dd5bdcbc4fdc69ddf1f6dd7c2ec5482f0",
+    "osScAddClient.debug3.c": "b159c7cdec26f5a0d9555e33cab02595101b9379ee90751d7c769a5c1e0b2ec1",
+    "osScAddClient.current_header.c": "33fa9542cf388da371e35361bd41971821f82520e0e30ce99c3e81036503c4db",
+    "osScAddClient.signed_mask.c": "83122d1a05e4255506cf11dcee418ce9c7d8ae96958e121781132f6fda3402b7",
+    "osScAddClient.c": "6072c6daad0f372deea7f55f68799e30e570766806d3bf46e3edfcbed3b1fd89",
+    "lib_1050.natural_stub.c": "02c730800f24c0ab72b04450a9b0be1a31a9db9f6f1819475329d3548e95407e",
+    "osScAddClient.assembler_o1.c": "98d06743ffd5687105400e1bbc9785bf2f8b22d7fc919e91d03f894ffacf4be7",
+    "osScAddClient.sdk_oldstyle.c": "c49ab7668c02a5e5289c26d358f1f10dd5abc04fce06793e7b298867a4a0400a",
+    "deadline_difference.c": "047ceaaff78cf6133ab3c321cb233d5eec4491b0b24a2e364632ec5651937686",
+    "deadline_both.c": "e7a3de1d4c77cfceee8b70fa4cc75b676e2fa67f4fa2bd18d883e56192ba229e"
+  },
+  "existing_accepted_functions": [
+    "viDeadlinePassed",
+    "viStub"
+  ],
+  "baseline_all22_exact": true,
+  "debug_recipe_migration_safe": false,
+  "natural_stub_matches_original_four_words": true,
+  "natural_stub_slot_displacement_bytes": 16,
+  "asm_processor_debug_model": "-g (private replay only); ordinary wrapper chooses -O1, leaving real extra placeholder epilogues",
+  "body_and_placement_proofs": "full_word_proofs.json",
+  "bounded_deadline_followup": "all three consumed-local controls refuse; exact 0/8 original words, extra nonzero words 6/5/7"
+}

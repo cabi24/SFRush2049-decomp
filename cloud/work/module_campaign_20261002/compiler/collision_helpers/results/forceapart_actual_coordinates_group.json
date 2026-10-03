@@ -1,0 +1,24 @@
+{
+  "candidate": "forceapart_actual_coordinates_group",
+  "function": "menu_load_options",
+  "source_sha256": "af38402ffd6ee9c6ecbd57b07686775204786702c0585f46de6ee891dae81c96",
+  "object_sha256": "a4652d3e7cbd450a74d84524d576a7f25b763ab40755d7cba15de1e088ce2e42",
+  "comparison": {
+    "differing": 45,
+    "total": 91,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "helper_comparisons": {
+    "func_800A61B0": {
+      "differing": 0,
+      "total": 37,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

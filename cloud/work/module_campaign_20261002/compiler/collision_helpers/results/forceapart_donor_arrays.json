@@ -1,0 +1,14 @@
+{
+  "candidate": "forceapart_donor_arrays.c",
+  "function": "menu_load_options",
+  "source_sha256": "90fb1ea0c57bcbf801cc419d7b87d5f1f22894a79246aca3fda73c99b23d6efd",
+  "object_sha256": "b2bc3b5d15a1bbe82e2423c58ed7377b92e2d434710ff7c02046c95453f5ff1a",
+  "comparison": {
+    "differing": 45,
+    "total": 91,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  }
+}

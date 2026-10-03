@@ -1,0 +1,6 @@
+{
+  "original_path": "cloud/work/ipa-groups/codex_heap_move_a120/group.c",
+  "original_sha256": "67a345f5c02d1a15b20f987a99a03a108ff2582ac0c37034f096c67e7c81fe8e",
+  "context_prefix_sha256": "a4a51f098b26e106a44953db7831be91597afa8d2f7f01f9ecb3d94d5d78f775",
+  "copy_change": "literal flags header added, unchanged genuine context prefix, prior caller removed"
+}

@@ -1,0 +1,9 @@
+# A152 func800AB18C: complete nearest-region interpolation, NONMATCH38/231
+
+New eligible func800AB18C@800AB18C has924bytes/231words. LOCAL current main lock/canonical interval clear. Actual normal leaf consumes exactly signed descriptor index and pointer-backed float3 position. Full sentinel Region12 table search uses true signed16 x/z/radius/clip/base fields, original closest signed16 distance and hardware sqrt, guarded ratio selection, both native unsigned float-to-word casts before16-bit clipping, and both threshold interpolations. All region/base table globals and shared selectors retain original addresses and element stride. No stack locals/capacity or false arguments needed.
+
+Initial typed Descriptor72 source228/231. Separately labeled true opaque72-byte-storage/near-store-order control228; direct FIELD view228; ordinary O2 comparison227. These have no errors/extra/unresolved/unverified. Native count and selector reload after descriptor stores motivate actual integer-addressed opaque storage view (void *)((s32)D_8017A510+index*72), which gives38/231 without exceptions/extras or local data. This represents genuine existing addressing and aliases without volatile dummy work or source padding.
+
+Final source func_800AB18C_address.c SHAca8eba03136b08ee6cbf9ba653ecd6252789024989c1490f8a3ff5544942d850, literalO3 line1. Residual: two swapped consumed nearest/closest updates, and36 FP load/convert/multiply/add register/operand choices in four interpolation operations. All branch offsets, actual integer/FCSR cast operations and source/target length now agree. No source reflow/register-coloring sweeps were attempted. Full original body/function operands remain preserved; opcode streams/objects remain ignored/private only.
+
+All five sources, actual flags, eligibility and complete proof records frozen by packet hashes. Claims empty, no credited bytes, no accepted source/lock/layout edits.

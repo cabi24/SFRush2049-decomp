@@ -1,0 +1,20 @@
+[
+  {
+    "function": "func_800DE860",
+    "variant": "func_800DE860",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 10511,
+    "linked": {
+      "differing": 207,
+      "total": 211,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "source_sha256": "b5dda4745adae2db5173770c7c444b02814ec1d26406692979ece63940fbddc5",
+    "target_sha256": "75a54aedf6bb2c21883f1d712e9565440129142d3594b7cdf33401fc6b7a7976"
+  }
+]

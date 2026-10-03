@@ -1,0 +1,62 @@
+[
+  {
+    "function": "memchr",
+    "variant": "memchr_register_O0",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared"
+  },
+  {
+    "function": "memchr",
+    "variant": "memchr_volatileptr_O0",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared"
+  },
+  {
+    "function": "get_tv_offset",
+    "variant": "get_tv_offset_volatilelocal_O0",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared"
+  },
+  {
+    "function": "get_viewport_pos",
+    "variant": "get_viewport_pos_register_O0",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared"
+  },
+  {
+    "function": "viAddTicks",
+    "variant": "viAddTicks_register_O0",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+  },
+  {
+    "function": "memchr",
+    "variant": "memchr_register_O1",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared"
+  },
+  {
+    "function": "memchr",
+    "variant": "memchr_volatileptr_O1",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared"
+  },
+  {
+    "function": "get_tv_offset",
+    "variant": "get_tv_offset_volatilelocal_O1",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared"
+  },
+  {
+    "function": "get_viewport_pos",
+    "variant": "get_viewport_pos_register_O1",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared"
+  },
+  {
+    "function": "viAddTicks",
+    "variant": "viAddTicks_register_O1",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+  },
+  {
+    "function": "memchr",
+    "variant": "memchr_ptrdeclO0",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared"
+  },
+  {
+    "function": "memchr",
+    "variant": "memchr_explicitreturnO0",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared"
+  }
+]

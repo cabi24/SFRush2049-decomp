@@ -1,0 +1,24 @@
+{
+  "function": "func_80087110",
+  "address": "0x80087110",
+  "bytes": 1780,
+  "words": 445,
+  "accepted": false,
+  "purpose": "Clipped texture rectangle display-list emitter",
+  "reason": "Four-word scheduling residual in a complete six-input native C draft; no callees or IPA",
+  "target_object_sha256": "34c90c28f83d15e9e010e94d3ed3e6509950e98baaea0c2e053ccccd95f525a2",
+  "baseline_game_percent": 13.38,
+  "baseline_static_percent": 46.76,
+  "team": {
+    "reconstruction": {
+      "agent": "large_unlock_reconstruction",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high"
+    },
+    "compiler": {
+      "agent": "large_unlock_compiler",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high"
+    }
+  }
+}

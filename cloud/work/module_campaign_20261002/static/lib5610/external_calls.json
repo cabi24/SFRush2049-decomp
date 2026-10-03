@@ -1,0 +1,22 @@
+[
+  {
+    "source": "asm/us/2CF0.s",
+    "call_address": "80002334",
+    "callee": "inflate_entry"
+  },
+  {
+    "source": "asm/us/3140.s",
+    "call_address": "8000268C",
+    "callee": "lzss_decode"
+  },
+  {
+    "source": "asm/us/3140.s",
+    "call_address": "800026F4",
+    "callee": "inflate_entry"
+  },
+  {
+    "source": "asm/us/blob/blob_800cbe08.s",
+    "call_address": null,
+    "callee": "inflate_entry_alt"
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "source_sha256": "b095e94f08abfa95dd35341e25d0293a2141e6ea159043481cf28069af114bc1",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-hud-compiler/candidates/baseline.c",
+  "accepted": false,
+  "canonical_verdict": "431/433 words differ",
+  "comparison": {
+    "differing": 431,
+    "total": 433,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "8e235441aa050ffa670c4707b3b3c8be7febe9f04d50ddd7addc3e5661ba6590",
+  "emitted_words": 424,
+  "aligned": {
+    "aligned_exact": 98,
+    "aligned_opcode": 375,
+    "aligned_opcode_reg": 119
+  },
+  "frame_bytes": 120
+}

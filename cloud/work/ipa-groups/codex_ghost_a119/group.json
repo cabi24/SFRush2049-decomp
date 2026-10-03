@@ -1,0 +1,36 @@
+{
+  "members": [
+    "ghost_race_setup",
+    "menu_transition"
+  ],
+  "context": [
+    "audio_reverb_update",
+    "audio_effect_process",
+    "synced_model_render",
+    "MP_TargetSpeed",
+    "assign_default_paths",
+    "stat_race_end",
+    "func_80095F8C",
+    "func_80095EF4",
+    "audio_buffer_sync",
+    "object_counter_decrement",
+    "object_counter_increment"
+  ],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "audio_effect_process",
+    "synced_model_render",
+    "MP_TargetSpeed",
+    "assign_default_paths",
+    "stat_race_end",
+    "audio_buffer_sync",
+    "object_counter_decrement",
+    "object_counter_increment",
+    "ghost_race_setup",
+    "menu_transition"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}
