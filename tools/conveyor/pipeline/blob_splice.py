@@ -142,6 +142,8 @@ def compile_on_builder(sources, flagset, builder=BUILDER, toolkit=TOOLKIT,
         if rename.returncode != 0:
             failures.add(target_id)
             continue
+        write_provenance(out, source_sha(Path(sources[target_id]).read_text()),
+                         toolkit)
         objects[target_id] = out
     return objects, {t: "compile failed under IDO" for t in sorted(failures)}
 
@@ -284,40 +286,131 @@ def image_symbols(document=None, symbols=None):
     return provides
 
 
-def spliced_bodies(lock=None, document=None, symbols=None):
-    """{target_id: bytes} for everything in the lock with a built object."""
+class LockedBodyError(RuntimeError):
+    """Locked C that cannot supply its body.
+
+    Never answered with passthrough: the extracted bytes at that address are
+    the original's, so the image gate passes either way and a lost match
+    would go unnoticed. Deliberately not a BuildError, which splice() turns
+    into a per-function refusal."""
+
+    def __init__(self, problems):
+        self.problems = dict(problems)
+        lines = [f"  {t}: {why}" for t, why in sorted(self.problems.items())]
+        if len(lines) > 40:
+            lines = lines[:40] + [f"  ... and {len(lines) - 40} more"]
+        super().__init__(
+            f"{len(self.problems)} locked bodies cannot be built from their "
+            "accepted C; refusing to compose the image with passthrough in "
+            "their place:\n" + "\n".join(lines))
+
+
+def provenance_path(object_path):
+    return Path(str(object_path) + ".provenance.json")
+
+
+def write_provenance(object_path, source_sha256, toolkit_sha):
+    """Bind an object to the source and toolkit that produced it."""
+    provenance_path(object_path).write_text(json.dumps(
+        {"source_sha256": source_sha256, "toolkit_sha": toolkit_sha},
+        indent=2, sort_keys=True) + "\n")
+
+
+def provenance_problem(object_path, entry, required=False):
+    """Why this object may not stand for this lock entry, or None.
+
+    Objects built before provenance was recorded have no record; they are
+    refused only when `required` (after a maintainer rebuild of the set)."""
+    path = provenance_path(object_path)
+    if not path.is_file():
+        return "object has no provenance record" if required else None
+    try:
+        record = json.loads(path.read_text())
+    except ValueError:
+        return "object provenance record is unreadable"
+    for key in ("source_sha256", "toolkit_sha"):
+        if record.get(key) != entry.get(key):
+            return f"object was built from a different {key} than the lock records"
+    return None
+
+
+def unbound_objects(lock=None, obj_dir=None):
+    """Locked targets whose object has no provenance record yet."""
+    from . import blob_group
+    lock = load_lock() if lock is None else lock
+    obj_dir = Path(obj_dir or OBJ_DIR)
+    unbound = set()
+    for target_id, entry in lock.items():
+        obj = (blob_group.object_path(entry["group"], obj_dir / "groups")
+               if entry.get("group") else obj_dir / f"{target_id}.o")
+        if not provenance_path(obj).is_file():
+            unbound.add(target_id)
+    return unbound
+
+
+def spliced_bodies(lock=None, document=None, symbols=None, obj_dir=None,
+                   require_provenance=False):
+    """{target_id: bytes} for EVERY locked target, or LockedBodyError.
+
+    Exact membership: a missing object or extent, a group that does not
+    build or omits a member, a failed link, or an object bound to other
+    source is an error for that target, collected and raised together."""
     lock = load_lock() if lock is None else lock
     if not lock:
         return {}
+    obj_dir = Path(obj_dir or OBJ_DIR)
     document = document or blob_layout.load()
     extents = {e["target_id"]: e for region in document["regions"]
                for e in region["entries"] if e["kind"] == "function"}
     symbols = image_symbols(document, symbols)
-    bodies = {}
+    bodies, problems = {}, {}
     groups = sorted({e["group"] for e in lock.values() if e.get("group")})
     if groups:
         # IPA call groups: members are slices of one whole-program object,
         # each relocated to its own image address (010 Phase 4).
         from . import blob_group
         for group in groups:
-            try:
-                built = blob_group.group_bodies(group, document, symbols)
-            except blob_group.GroupError:
+            members = sorted(t for t, e in lock.items() if e.get("group") == group)
+            obj = blob_group.object_path(group, obj_dir / "groups")
+            stale = obj.is_file() and provenance_problem(
+                obj, lock[members[0]], require_provenance)
+            if stale:
+                problems.update({m: f"group {group}: {stale}" for m in members})
                 continue
-            bodies.update({t: b for t, b in built.items()
-                           if lock.get(t, {}).get("group") == group})
-    for target_id in lock:
-        if lock[target_id].get("group"):
+            try:
+                built = blob_group.group_bodies(group, document, symbols,
+                                                obj_dir=obj_dir / "groups")
+            except (blob_group.GroupError, blob_build.BuildError) as exc:
+                why = " ".join(str(exc).split())[:220]
+                problems.update({m: f"group {group}: {why}" for m in members})
+                continue
+            for member in members:
+                if member in built:
+                    bodies[member] = built[member]
+                else:
+                    problems[member] = f"group {group} built no body for it"
+    for target_id, entry in lock.items():
+        if entry.get("group"):
             continue
-        obj = OBJ_DIR / f"{target_id}.o"
-        entry = extents.get(target_id)
-        if not obj.is_file() or entry is None:
+        obj = obj_dir / f"{target_id}.o"
+        extent = extents.get(target_id)
+        if extent is None:
+            problems[target_id] = "not in the layout map"
+            continue
+        if not obj.is_file():
+            problems[target_id] = f"object missing ({obj})"
+            continue
+        stale = provenance_problem(obj, entry, require_provenance)
+        if stale:
+            problems[target_id] = stale
             continue
         try:
-            bodies[target_id] = link_function(obj, target_id, entry["vaddr"],
-                                              entry["size"], symbols)
-        except blob_build.BuildError:
-            continue
+            bodies[target_id] = link_function(obj, target_id, extent["vaddr"],
+                                              extent["size"], symbols)
+        except blob_build.BuildError as exc:
+            problems[target_id] = " ".join(str(exc).split())[:220]
+    if problems:
+        raise LockedBodyError(problems)
     return bodies
 
 
@@ -376,7 +469,13 @@ def splice(conn, target_ids, source_for, flagset=None, document=None,
     extents = {e["target_id"]: e for region in document["regions"]
                for e in region["entries"] if e["kind"] == "function"}
     symbols = image_symbols(document)
-    accepted = {}
+    # Start from every body already accepted: gating a new splice against
+    # an image where the others silently fell back to passthrough proves
+    # nothing about them, and leaves the generated TUs without them.
+    # A target being re-spliced was just recompiled; its old entry is not
+    # relinked against the new object.
+    accepted = spliced_bodies({t: e for t, e in lock.items() if t not in sources},
+                              document)
     for target_id in sorted(objects):
         entry = extents.get(target_id)
         if entry is None:
@@ -430,11 +529,13 @@ def revert(target_ids, document=None, lockfile=LOCKFILE):
         if lock.pop(target_id, None) is not None:
             (SRC_DIR / f"{target_id}.c").unlink(missing_ok=True)
             (OBJ_DIR / f"{target_id}.o").unlink(missing_ok=True)
+            provenance_path(OBJ_DIR / f"{target_id}.o").unlink(missing_ok=True)
             removed.append(target_id)
     save_lock(lock, lockfile)
     for stale in OBJ_DIR.glob("*.o"):
         if stale.stem not in lock:
             stale.unlink()
+            provenance_path(stale).unlink(missing_ok=True)
     ok, sha, message = build_with(spliced_bodies(lock, document), document)
     return {"reverted": removed, "image_ok": ok, "image_sha": sha,
             "message": message}
