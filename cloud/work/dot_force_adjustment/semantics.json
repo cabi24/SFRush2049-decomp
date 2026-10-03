@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "differential_cases": 22240,
+  "write_counts": [
+    0,
+    1,
+    2
+  ],
+  "sanitizer_cases": 200000,
+  "source_sha256": "08df92e2ffeabe43ec2193f6aaa06788177955bb2253fdcc82f770a59e85ac02",
+  "limits": "Host IEEE single rounding; NaNs compared by class. Not N64 FCSR/exception/subnormal/NaN payload proof."
+}
