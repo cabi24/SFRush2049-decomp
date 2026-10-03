@@ -132,6 +132,14 @@ Owners start **unassigned**. Each helper should hold one active packet and one q
 - **Deliverable:** full source-context packet with exact per-member native geometry and protected relocations. The flag root’s O3 29/74 residual is allocation, not an isolated almost-match. No fabricated keepers, helper stubs or extra formal arguments.
 - **Next:** execute a bounded natural closure experiment only after these prerequisites pass. Otherwise return the concrete missing contract to D02 and preserve the sources without more allocator sweeps.
 
+### D10 — boot-segment tail runtime library (412 functions)
+
+- **Owner:** Astra (repo-only dot worker); unclaimed until recorded here. Spec: [specs/015-boot-tail-runtime/](specs/015-boot-tail-runtime/spec.md), packets in [tasks.md](specs/015-boot-tail-runtime/tasks.md), inventory in `inventory.json`.
+- **Targets:** 412 functions, 95,012 bytes, `0x8000F8D0–0x800268D0`. They are uncounted boot code past ROM `0x10000` and match no ultralib build. The 21 ultralib-identified functions, the 6 sub-16-byte stubs and the already matched `func_80010A00` are excluded. Ordinary single-function `-O1`/`-O2` matching applies; there is no `-O3` IPA.
+- **Prerequisites:** packet 1 (identification and clustering into translation units) can start **now from master**. Scoring packets 2–6 need the owner to merge PR #52 and then PR #54, which add the `asm/us/boot_tail/` targets and CI rescoring of `cloud/matches/boot_tail/*.c`.
+- **Deliverable:** true-zero matches in `cloud/matches/boot_tail/` and research/status in `cloud/work/boot_tail/` (`STATUS.csv`). This is not cartridge coverage. Promotion needs a maintainer static-layout extension to `0x800277D0`.
+- **Do not touch:** the static layout, splat, `symbol_addrs`, locks, the generated targets, ovl_a/ovl_b, the 21 ultralib functions or production gates.
+
 ## Keeping the helpers supplied
 
 For each assignment record:
