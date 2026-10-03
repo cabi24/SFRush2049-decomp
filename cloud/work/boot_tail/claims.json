@@ -459,10 +459,6 @@
         {
           "start": "0x800218CC",
           "end_exclusive": "0x80024BF0"
-        },
-        {
-          "start": "0x80024FB0",
-          "end_exclusive": "0x80026360"
         }
       ],
       "targets": [
@@ -570,12 +566,14 @@
       "reviewer": "BT03-high worker",
       "aggregate_branch": "dot/boot-tail-p3-wave1",
       "aggregate_pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61",
-      "aggregate_source_head": "3574dbec2ecd4a4eee7cf95964cf47329cabbcb2"
+      "aggregate_source_head": "3574dbec2ecd4a4eee7cf95964cf47329cabbcb2",
+      "released_unclaimed_partition": "BT07 released to /root/match_boot_tail_bt07_small; no prior BT07 source edits."
     }
   ],
   "aggregate_base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
   "research_provenance": "PR #59 at 21e104a2, explicitly incorporated without merging after fresh-master refresh",
   "first_wave_pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61",
   "first_wave_ci": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37152316686",
-  "first_wave_source_head": "3574dbec2ecd4a4eee7cf95964cf47329cabbcb2"
+  "first_wave_source_head": "3574dbec2ecd4a4eee7cf95964cf47329cabbcb2",
+  "coordination_scope": "Historical first-wave claim and CI receipt; current/successor claims are in wave2/claims.json and wave2/live_claims."
 }

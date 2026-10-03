@@ -1,0 +1,232 @@
+[
+  {
+    "name": "func_80010DD8",
+    "O2": {
+      "summary": "40/42 words differ",
+      "diff": 40,
+      "total": 42,
+      "extra": 0,
+      "unverified": [],
+      "errors": [],
+      "unresolved": [],
+      "strict_match": false
+    },
+    "O1": {
+      "summary": "40/42 words differ",
+      "diff": 40,
+      "total": 42,
+      "extra": 0,
+      "unverified": [],
+      "errors": [],
+      "unresolved": [],
+      "strict_match": false
+    }
+  },
+  {
+    "name": "func_8001144C",
+    "O2": {
+      "summary": "MATCH",
+      "diff": 0,
+      "total": 29,
+      "extra": 0,
+      "unverified": [],
+      "errors": [],
+      "unresolved": [],
+      "strict_match": true
+    },
+    "O1": {
+      "summary": "MATCH",
+      "diff": 0,
+      "total": 29,
+      "extra": 0,
+      "unverified": [],
+      "errors": [],
+      "unresolved": [],
+      "strict_match": true
+    }
+  },
+  {
+    "name": "func_80011848",
+    "O2": {
+      "summary": "MATCH",
+      "diff": 0,
+      "total": 19,
+      "extra": 0,
+      "unverified": [],
+      "errors": [],
+      "unresolved": [],
+      "strict_match": true
+    },
+    "O1": {
+      "summary": "19/19 words differ",
+      "diff": 19,
+      "total": 19,
+      "extra": 0,
+      "unverified": [],
+      "errors": [],
+      "unresolved": [],
+      "strict_match": false
+    }
+  },
+  {
+    "name": "func_80011C1C",
+    "O2": {
+      "summary": "14/26 words differ",
+      "diff": 14,
+      "total": 26,
+      "extra": 0,
+      "unverified": [],
+      "errors": [],
+      "unresolved": [],
+      "strict_match": false
+    },
+    "O1": {
+      "summary": "26/26 words differ (13 extra words (nonzero beyond target length))",
+      "diff": 26,
+      "total": 26,
+      "extra": 13,
+      "unverified": [],
+      "errors": [],
+      "unresolved": [],
+      "strict_match": false
+    }
+  },
+  {
+    "name": "func_80011D24",
+    "O2": {
+      "summary": "MATCH",
+      "diff": 0,
+      "total": 20,
+      "extra": 0,
+      "unverified": [],
+      "errors": [],
+      "unresolved": [],
+      "strict_match": true
+    },
+    "O1": {
+      "summary": "17/20 words differ",
+      "diff": 17,
+      "total": 20,
+      "extra": 0,
+      "unverified": [],
+      "errors": [],
+      "unresolved": [],
+      "strict_match": false
+    }
+  },
+  {
+    "name": "func_800121BC",
+    "O2": {
+      "summary": "MATCH",
+      "diff": 0,
+      "total": 17,
+      "extra": 0,
+      "unverified": [],
+      "errors": [],
+      "unresolved": [],
+      "strict_match": true
+    },
+    "O1": {
+      "summary": "MATCH",
+      "diff": 0,
+      "total": 17,
+      "extra": 0,
+      "unverified": [],
+      "errors": [],
+      "unresolved": [],
+      "strict_match": true
+    }
+  },
+  {
+    "name": "func_8001261C",
+    "O2": {
+      "summary": "MATCH",
+      "diff": 0,
+      "total": 17,
+      "extra": 0,
+      "unverified": [],
+      "errors": [],
+      "unresolved": [],
+      "strict_match": true
+    },
+    "O1": {
+      "summary": "MATCH",
+      "diff": 0,
+      "total": 17,
+      "extra": 0,
+      "unverified": [],
+      "errors": [],
+      "unresolved": [],
+      "strict_match": true
+    }
+  },
+  {
+    "name": "func_80013964",
+    "O2": {
+      "summary": "MATCH",
+      "diff": 0,
+      "total": 28,
+      "extra": 0,
+      "unverified": [],
+      "errors": [],
+      "unresolved": [],
+      "strict_match": true
+    },
+    "O1": {
+      "summary": "27/28 words differ (1 extra words (nonzero beyond target length))",
+      "diff": 27,
+      "total": 28,
+      "extra": 1,
+      "unverified": [],
+      "errors": [],
+      "unresolved": [],
+      "strict_match": false
+    }
+  },
+  {
+    "name": "func_800140F8",
+    "O2": {
+      "summary": "MATCH",
+      "diff": 0,
+      "total": 18,
+      "extra": 0,
+      "unverified": [],
+      "errors": [],
+      "unresolved": [],
+      "strict_match": true
+    },
+    "O1": {
+      "summary": "MATCH",
+      "diff": 0,
+      "total": 18,
+      "extra": 0,
+      "unverified": [],
+      "errors": [],
+      "unresolved": [],
+      "strict_match": true
+    }
+  },
+  {
+    "name": "func_80014140",
+    "O2": {
+      "summary": "MATCH",
+      "diff": 0,
+      "total": 22,
+      "extra": 0,
+      "unverified": [],
+      "errors": [],
+      "unresolved": [],
+      "strict_match": true
+    },
+    "O1": {
+      "summary": "18/22 words differ (1 extra words (nonzero beyond target length))",
+      "diff": 18,
+      "total": 22,
+      "extra": 1,
+      "unverified": [],
+      "errors": [],
+      "unresolved": [],
+      "strict_match": false
+    }
+  }
+]

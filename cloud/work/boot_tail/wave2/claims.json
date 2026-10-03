@@ -1,0 +1,585 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-03",
+  "authorization": "Latest user requested additional parallel matching; coordinator released prior peer-reviewed frozen packets to integration and authorized new disjoint packet editing before prior aggregate publication.",
+  "active_functions": 32,
+  "active_bytes": 1920,
+  "claims": [
+    {
+      "packet": "BT03-low-B",
+      "owner": "/root/match_boot_tail_bt03_low",
+      "branch": "dot/boot-tail-p3-bt03-low-b",
+      "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+      "readonly_reference_commit": "de8652c39d3bba59a45d3f552666cf5e435a3dc3",
+      "status": "source-frozen; peer PASS; wave2 publication cut",
+      "targets": [
+        {
+          "address": "0x80014E00",
+          "size": 12,
+          "end_exclusive": "0x80014E0C"
+        },
+        {
+          "address": "0x80014E10",
+          "size": 12,
+          "end_exclusive": "0x80014E1C"
+        },
+        {
+          "address": "0x80014E64",
+          "size": 44,
+          "end_exclusive": "0x80014E90"
+        },
+        {
+          "address": "0x80014E90",
+          "size": 44,
+          "end_exclusive": "0x80014EBC"
+        },
+        {
+          "address": "0x80014EBC",
+          "size": 44,
+          "end_exclusive": "0x80014EE8"
+        },
+        {
+          "address": "0x80014EE8",
+          "size": 44,
+          "end_exclusive": "0x80014F14"
+        },
+        {
+          "address": "0x80015318",
+          "size": 48,
+          "end_exclusive": "0x80015348"
+        },
+        {
+          "address": "0x80015348",
+          "size": 36,
+          "end_exclusive": "0x8001536C"
+        }
+      ],
+      "bytes": 284,
+      "edit_scope": [
+        "cloud/work/boot_tail/BT03-low-B/**",
+        "cloud/matches/boot_tail/func_80014E00.c",
+        "cloud/matches/boot_tail/func_80014E10.c",
+        "cloud/matches/boot_tail/func_80014E64.c",
+        "cloud/matches/boot_tail/func_80014E90.c",
+        "cloud/matches/boot_tail/func_80014EBC.c",
+        "cloud/matches/boot_tail/func_80014EE8.c",
+        "cloud/matches/boot_tail/func_80015318.c",
+        "cloud/matches/boot_tail/func_80015348.c"
+      ],
+      "stop": "Same bounded natural C89/O2 then O1, actual ABI and strict-match constraints; no protected edits, overlap, fake formals/padding, or re-opening prior frozen nonmatches.",
+      "reviewed_commit": "a176191d4db38bb6a62fb2d3577667fca73e3ea2",
+      "local_matches": 2,
+      "local_match_bytes": 24,
+      "nonmatches": 6,
+      "nonmatch_bytes": 260
+    },
+    {
+      "packet": "BT03-high-next",
+      "owner": "/root/match_boot_tail_bt03_high",
+      "branch": "dot/boot-tail-bt03-high-next",
+      "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+      "readonly_reference_commit": "de8652c39d3bba59a45d3f552666cf5e435a3dc3",
+      "status": "source-frozen; peer PASS; wave2 publication cut",
+      "targets": [
+        {
+          "address": "0x8001D1C0",
+          "size": 52,
+          "end_exclusive": "0x8001D1F4"
+        },
+        {
+          "address": "0x8001D928",
+          "size": 28,
+          "end_exclusive": "0x8001D944"
+        },
+        {
+          "address": "0x8001E0C0",
+          "size": 20,
+          "end_exclusive": "0x8001E0D4"
+        },
+        {
+          "address": "0x8001EAEC",
+          "size": 36,
+          "end_exclusive": "0x8001EB10"
+        },
+        {
+          "address": "0x8001F864",
+          "size": 52,
+          "end_exclusive": "0x8001F898"
+        },
+        {
+          "address": "0x800201D0",
+          "size": 48,
+          "end_exclusive": "0x80020200"
+        },
+        {
+          "address": "0x80020200",
+          "size": 28,
+          "end_exclusive": "0x8002021C"
+        },
+        {
+          "address": "0x80020518",
+          "size": 16,
+          "end_exclusive": "0x80020528"
+        },
+        {
+          "address": "0x80020528",
+          "size": 48,
+          "end_exclusive": "0x80020558"
+        }
+      ],
+      "bytes": 328,
+      "edit_scope": [
+        "cloud/work/boot_tail/BT03-high-next/**",
+        "cloud/matches/boot_tail/func_8001D1C0.c",
+        "cloud/matches/boot_tail/func_8001D928.c",
+        "cloud/matches/boot_tail/func_8001E0C0.c",
+        "cloud/matches/boot_tail/func_8001EAEC.c",
+        "cloud/matches/boot_tail/func_8001F864.c",
+        "cloud/matches/boot_tail/func_800201D0.c",
+        "cloud/matches/boot_tail/func_80020200.c",
+        "cloud/matches/boot_tail/func_80020518.c",
+        "cloud/matches/boot_tail/func_80020528.c"
+      ],
+      "stop": "Same bounded natural C89/O2 then O1, actual ABI and strict-match constraints; no protected edits, overlap, fake formals/padding, or re-opening prior frozen nonmatches.",
+      "reviewed_commit": "f114f529b0e32f6e7ef0a495a14bad0cd37e0adf",
+      "reviewed_tree": "6c5ac3405713d5c6de52681da0ca11000242651d",
+      "local_matches": 7,
+      "local_match_bytes": 248,
+      "nonmatches": 2,
+      "nonmatch_bytes": 80
+    },
+    {
+      "packet": "C13-medium",
+      "owner": "/root/verify_boot_tail_matches",
+      "branch": "dot/boot-tail-p4-c13-medium",
+      "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+      "readonly_reference_commit": "de8652c39d3bba59a45d3f552666cf5e435a3dc3",
+      "status": "source-frozen; peer PASS; wave2 publication cut",
+      "targets": [
+        {
+          "address": "0x80020610",
+          "size": 156,
+          "end_exclusive": "0x800206AC"
+        },
+        {
+          "address": "0x80020F4C",
+          "size": 76,
+          "end_exclusive": "0x80020F98"
+        },
+        {
+          "address": "0x80020F98",
+          "size": 68,
+          "end_exclusive": "0x80020FDC"
+        },
+        {
+          "address": "0x80020FDC",
+          "size": 76,
+          "end_exclusive": "0x80021028"
+        },
+        {
+          "address": "0x80021028",
+          "size": 68,
+          "end_exclusive": "0x8002106C"
+        },
+        {
+          "address": "0x8002106C",
+          "size": 228,
+          "end_exclusive": "0x80021150"
+        }
+      ],
+      "bytes": 672,
+      "edit_scope": [
+        "cloud/work/boot_tail/C13-medium/**",
+        "cloud/matches/boot_tail/func_80020610.c",
+        "cloud/matches/boot_tail/func_80020F4C.c",
+        "cloud/matches/boot_tail/func_80020F98.c",
+        "cloud/matches/boot_tail/func_80020FDC.c",
+        "cloud/matches/boot_tail/func_80021028.c",
+        "cloud/matches/boot_tail/func_8002106C.c"
+      ],
+      "stop": "Same bounded natural C89/O2 then O1, actual ABI and strict-match constraints; no protected edits, overlap, fake formals/padding, or re-opening prior frozen nonmatches."
+    },
+    {
+      "packet": "BT05-controls",
+      "owner": "/root/match_boot_tail_bt05_bt07",
+      "branch": "dot/boot-tail-bt05-controls",
+      "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+      "readonly_reference_commit": "de8652c39d3bba59a45d3f552666cf5e435a3dc3",
+      "status": "source-frozen; peer PASS; wave2 publication cut",
+      "targets": [
+        {
+          "address": "0x80023818",
+          "size": 44,
+          "end_exclusive": "0x80023844"
+        },
+        {
+          "address": "0x80023844",
+          "size": 44,
+          "end_exclusive": "0x80023870"
+        },
+        {
+          "address": "0x80023870",
+          "size": 44,
+          "end_exclusive": "0x8002389C"
+        },
+        {
+          "address": "0x8002389C",
+          "size": 44,
+          "end_exclusive": "0x800238C8"
+        },
+        {
+          "address": "0x800238C8",
+          "size": 44,
+          "end_exclusive": "0x800238F4"
+        },
+        {
+          "address": "0x800238F4",
+          "size": 44,
+          "end_exclusive": "0x80023920"
+        },
+        {
+          "address": "0x80023920",
+          "size": 44,
+          "end_exclusive": "0x8002394C"
+        },
+        {
+          "address": "0x8002394C",
+          "size": 44,
+          "end_exclusive": "0x80023978"
+        },
+        {
+          "address": "0x80023978",
+          "size": 44,
+          "end_exclusive": "0x800239A4"
+        }
+      ],
+      "bytes": 396,
+      "edit_scope": [
+        "cloud/work/boot_tail/BT05-controls/**",
+        "cloud/matches/boot_tail/func_80023818.c",
+        "cloud/matches/boot_tail/func_80023844.c",
+        "cloud/matches/boot_tail/func_80023870.c",
+        "cloud/matches/boot_tail/func_8002389C.c",
+        "cloud/matches/boot_tail/func_800238C8.c",
+        "cloud/matches/boot_tail/func_800238F4.c",
+        "cloud/matches/boot_tail/func_80023920.c",
+        "cloud/matches/boot_tail/func_8002394C.c",
+        "cloud/matches/boot_tail/func_80023978.c"
+      ],
+      "stop": "Same bounded natural C89/O2 then O1, actual ABI and strict-match constraints; no protected edits, overlap, fake formals/padding, or re-opening prior frozen nonmatches.",
+      "reviewed_commit": "e71c375bfab44e6ec257bdd96c87a495ff488eb2",
+      "reviewed_tree": "eb0de30bfd0245a75e38cd7d2204b0f04a292ea2",
+      "local_matches": 9,
+      "local_match_bytes": 396
+    },
+    {
+      "packet": "BT02-medium",
+      "owner": "/root/match_boot_tail_bt02_next",
+      "branch": "dot/boot-tail-p4-bt02-medium",
+      "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+      "readonly_reference_commit": "de8652c39d3bba59a45d3f552666cf5e435a3dc3",
+      "status": "source-frozen; peer PASS; wave2 publication cut",
+      "targets": [
+        {
+          "address": "0x80010DD8",
+          "size": 168,
+          "end_exclusive": "0x80010E80"
+        },
+        {
+          "address": "0x8001144C",
+          "size": 116,
+          "end_exclusive": "0x800114C0"
+        },
+        {
+          "address": "0x80011848",
+          "size": 76,
+          "end_exclusive": "0x80011894"
+        },
+        {
+          "address": "0x80011C1C",
+          "size": 104,
+          "end_exclusive": "0x80011C84"
+        },
+        {
+          "address": "0x80011D24",
+          "size": 80,
+          "end_exclusive": "0x80011D74"
+        },
+        {
+          "address": "0x800121BC",
+          "size": 68,
+          "end_exclusive": "0x80012200"
+        },
+        {
+          "address": "0x8001261C",
+          "size": 68,
+          "end_exclusive": "0x80012660"
+        },
+        {
+          "address": "0x80013964",
+          "size": 112,
+          "end_exclusive": "0x800139D4"
+        },
+        {
+          "address": "0x800140F8",
+          "size": 72,
+          "end_exclusive": "0x80014140"
+        },
+        {
+          "address": "0x80014140",
+          "size": 88,
+          "end_exclusive": "0x80014198"
+        }
+      ],
+      "bytes": 952,
+      "edit_scope": [
+        "cloud/work/boot_tail/BT02-medium/**",
+        "cloud/matches/boot_tail/func_80010DD8.c",
+        "cloud/matches/boot_tail/func_8001144C.c",
+        "cloud/matches/boot_tail/func_80011848.c",
+        "cloud/matches/boot_tail/func_80011C1C.c",
+        "cloud/matches/boot_tail/func_80011D24.c",
+        "cloud/matches/boot_tail/func_800121BC.c",
+        "cloud/matches/boot_tail/func_8001261C.c",
+        "cloud/matches/boot_tail/func_80013964.c",
+        "cloud/matches/boot_tail/func_800140F8.c",
+        "cloud/matches/boot_tail/func_80014140.c"
+      ],
+      "stop": "Same bounded natural C89, actual callback ABI, O2/O1 and strict-match requirements; no target/scorer/layout/lock/symbol edits, overlap, fake formal or padding.",
+      "reviewed_commit": "696db6aa0fa19ffb4cb6161166f2a937f419e5c3",
+      "local_matches": 8,
+      "local_match_bytes": 680,
+      "nonmatches": 2,
+      "nonmatch_bytes": 272
+    },
+    {
+      "packet": "BT05-wrappers",
+      "owner": "/root/match_boot_tail_bt05_bt07",
+      "branch": "dot/boot-tail-bt05-wrappers",
+      "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+      "readonly_reference_commit": "de8652c39d3bba59a45d3f552666cf5e435a3dc3",
+      "status": "source-frozen; peer PASS; wave2 publication cut",
+      "targets": [
+        {
+          "address": "0x80021B9C",
+          "size": 36,
+          "end_exclusive": "0x80021BC0"
+        },
+        {
+          "address": "0x80021BC0",
+          "size": 48,
+          "end_exclusive": "0x80021BF0"
+        },
+        {
+          "address": "0x80022580",
+          "size": 44,
+          "end_exclusive": "0x800225AC"
+        },
+        {
+          "address": "0x80022A40",
+          "size": 56,
+          "end_exclusive": "0x80022A78"
+        },
+        {
+          "address": "0x80023520",
+          "size": 36,
+          "end_exclusive": "0x80023544"
+        },
+        {
+          "address": "0x80023544",
+          "size": 32,
+          "end_exclusive": "0x80023564"
+        }
+      ],
+      "bytes": 252,
+      "edit_scope": [
+        "cloud/work/boot_tail/BT05-wrappers/**",
+        "cloud/matches/boot_tail/func_80021B9C.c",
+        "cloud/matches/boot_tail/func_80021BC0.c",
+        "cloud/matches/boot_tail/func_80022580.c",
+        "cloud/matches/boot_tail/func_80022A40.c",
+        "cloud/matches/boot_tail/func_80023520.c",
+        "cloud/matches/boot_tail/func_80023544.c"
+      ],
+      "stop": "Same natural C89, O2/O1 actual call ABI and strict-match requirements; twenty directed variants maximum; no protected edits, overlaps or reopening frozen nonmatches."
+    },
+    {
+      "packet": "BT03-high-medium",
+      "owner": "/root/match_boot_tail_bt03_high",
+      "branch": "dot/boot-tail-bt03-high-medium",
+      "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+      "readonly_reference_commit": "de8652c39d3bba59a45d3f552666cf5e435a3dc3",
+      "status": "source-frozen; peer PASS; deferred beyond31-match cut",
+      "targets": [
+        {
+          "address": "0x8001785C",
+          "size": 84,
+          "end_exclusive": "0x800178B0"
+        },
+        {
+          "address": "0x80018AEC",
+          "size": 80,
+          "end_exclusive": "0x80018B3C"
+        },
+        {
+          "address": "0x80019A60",
+          "size": 72,
+          "end_exclusive": "0x80019AA8"
+        },
+        {
+          "address": "0x8001BDB8",
+          "size": 92,
+          "end_exclusive": "0x8001BE14"
+        },
+        {
+          "address": "0x8001EAA0",
+          "size": 76,
+          "end_exclusive": "0x8001EAEC"
+        },
+        {
+          "address": "0x8001EDF4",
+          "size": 64,
+          "end_exclusive": "0x8001EE34"
+        }
+      ],
+      "bytes": 468,
+      "edit_scope": [
+        "cloud/work/boot_tail/BT03-high-medium/**",
+        "cloud/matches/boot_tail/func_8001785C.c",
+        "cloud/matches/boot_tail/func_80018AEC.c",
+        "cloud/matches/boot_tail/func_80019A60.c",
+        "cloud/matches/boot_tail/func_8001BDB8.c",
+        "cloud/matches/boot_tail/func_8001EAA0.c",
+        "cloud/matches/boot_tail/func_8001EDF4.c"
+      ],
+      "stop": "Same natural C89, O2/O1 actual ABI and strict-match requirements; twenty directed variants maximum; no protected edits, overlaps or reopening frozen nonmatches."
+    },
+    {
+      "packet": "BT03-low-C",
+      "owner": "/root/match_boot_tail_bt03_low",
+      "branch": "dot/boot-tail-p3-bt03-low-c",
+      "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+      "readonly_reference_commit": "de8652c39d3bba59a45d3f552666cf5e435a3dc3",
+      "status": "active",
+      "targets": [
+        {
+          "address": "0x80015574",
+          "size": 24,
+          "end_exclusive": "0x8001558C"
+        },
+        {
+          "address": "0x800156E8",
+          "size": 48,
+          "end_exclusive": "0x80015718"
+        },
+        {
+          "address": "0x80016BF8",
+          "size": 40,
+          "end_exclusive": "0x80016C20"
+        },
+        {
+          "address": "0x80016CE0",
+          "size": 16,
+          "end_exclusive": "0x80016CF0"
+        },
+        {
+          "address": "0x80016E40",
+          "size": 40,
+          "end_exclusive": "0x80016E68"
+        },
+        {
+          "address": "0x80016F58",
+          "size": 40,
+          "end_exclusive": "0x80016F80"
+        },
+        {
+          "address": "0x80017018",
+          "size": 40,
+          "end_exclusive": "0x80017040"
+        }
+      ],
+      "bytes": 248,
+      "edit_scope": [
+        "cloud/work/boot_tail/BT03-low-C/**",
+        "cloud/matches/boot_tail/func_80015574.c",
+        "cloud/matches/boot_tail/func_800156E8.c",
+        "cloud/matches/boot_tail/func_80016BF8.c",
+        "cloud/matches/boot_tail/func_80016CE0.c",
+        "cloud/matches/boot_tail/func_80016E40.c",
+        "cloud/matches/boot_tail/func_80016F58.c",
+        "cloud/matches/boot_tail/func_80017018.c"
+      ],
+      "stop": "Same natural C89/O2/O1 actual ABI, extents and strict-match gates; twenty directed variants maximum; no protected edits, overlap, fake formals/padding or reopening frozen nonmatches."
+    },
+    {
+      "packet": "BT07-small",
+      "owner": "/root/match_boot_tail_bt07_small",
+      "branch": "dot/boot-tail-bt07-small",
+      "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+      "readonly_reference_commit": "de8652c39d3bba59a45d3f552666cf5e435a3dc3",
+      "status": "active",
+      "targets": [
+        {
+          "address": "0x80024FB0",
+          "size": 36,
+          "end_exclusive": "0x80024FD4"
+        },
+        {
+          "address": "0x800250F0",
+          "size": 48,
+          "end_exclusive": "0x80025120"
+        },
+        {
+          "address": "0x80025120",
+          "size": 48,
+          "end_exclusive": "0x80025150"
+        },
+        {
+          "address": "0x80025150",
+          "size": 44,
+          "end_exclusive": "0x8002517C"
+        },
+        {
+          "address": "0x80025D84",
+          "size": 60,
+          "end_exclusive": "0x80025DC0"
+        },
+        {
+          "address": "0x80026328",
+          "size": 32,
+          "end_exclusive": "0x80026348"
+        },
+        {
+          "address": "0x80026348",
+          "size": 12,
+          "end_exclusive": "0x80026354"
+        }
+      ],
+      "bytes": 280,
+      "edit_scope": [
+        "cloud/work/boot_tail/BT07-small/**",
+        "cloud/matches/boot_tail/func_80024FB0.c",
+        "cloud/matches/boot_tail/func_800250F0.c",
+        "cloud/matches/boot_tail/func_80025120.c",
+        "cloud/matches/boot_tail/func_80025150.c",
+        "cloud/matches/boot_tail/func_80025D84.c",
+        "cloud/matches/boot_tail/func_80026328.c",
+        "cloud/matches/boot_tail/func_80026348.c"
+      ],
+      "stop": "Same natural C89/O2/O1 actual ABI, extents and strict-match gates; twenty directed variants maximum; no protected edits, overlap, fake formals/padding or reopening frozen nonmatches."
+    }
+  ],
+  "total_functions": 68,
+  "total_bytes": 3880,
+  "publication_cut_packets": [
+    "BT02-medium",
+    "BT03-high-next",
+    "BT03-low-B",
+    "BT05-controls",
+    "BT05-wrappers",
+    "C13-medium"
+  ],
+  "publication_cut_matches": 31,
+  "publication_cut_bytes": 1728,
+  "successor_claim_directory": "wave2/live_claims"
+}
