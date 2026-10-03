@@ -1,0 +1,2697 @@
+{
+  "clusters": [
+    {
+      "boundary_confidence": "provisional dependency partition; original translation units unproved",
+      "bytes": 284,
+      "cohort_ids": [
+        "C01"
+      ],
+      "evidence_level": "HYPOTHESIS",
+      "excluded_interleaved": [
+        {
+          "address": "0x8000F9F0",
+          "scope": "ultralib_identified",
+          "size": 208
+        },
+        {
+          "address": "0x8000FAC0",
+          "scope": "ultralib_identified",
+          "size": 148
+        },
+        {
+          "address": "0x8000FB60",
+          "scope": "ultralib_identified",
+          "size": 36
+        },
+        {
+          "address": "0x8000FB90",
+          "scope": "stub_unclassified",
+          "size": 12
+        },
+        {
+          "address": "0x8000FBA0",
+          "scope": "ultralib_identified",
+          "size": 260
+        },
+        {
+          "address": "0x8000FCB0",
+          "scope": "ultralib_identified",
+          "size": 184
+        },
+        {
+          "address": "0x8000FD70",
+          "scope": "ultralib_identified",
+          "size": 36
+        },
+        {
+          "address": "0x8000FDA0",
+          "scope": "ultralib_identified",
+          "size": 88
+        },
+        {
+          "address": "0x8000FE00",
+          "scope": "ultralib_identified",
+          "size": 344
+        },
+        {
+          "address": "0x8000FF60",
+          "scope": "ultralib_identified",
+          "size": 348
+        },
+        {
+          "address": "0x800100C0",
+          "scope": "ultralib_identified",
+          "size": 76
+        },
+        {
+          "address": "0x80010110",
+          "scope": "ultralib_identified",
+          "size": 76
+        },
+        {
+          "address": "0x80010160",
+          "scope": "ultralib_identified",
+          "size": 396
+        },
+        {
+          "address": "0x800102EC",
+          "scope": "ultralib_identified",
+          "size": 180
+        },
+        {
+          "address": "0x800103A0",
+          "scope": "ultralib_identified",
+          "size": 172
+        }
+      ],
+      "functions": 1,
+      "graph": {
+        "cross_cluster_tail_edges": 0,
+        "excluded_tail_edges": 0,
+        "game_called_functions": 0,
+        "internal_fraction": null,
+        "internal_tail_edges": 0,
+        "static_edges": 0,
+        "total_tail_edges": 0
+      },
+      "hardware_0xa4_reference_leads": [],
+      "id": "BT01",
+      "interval": {
+        "end_exclusive": "0x80010450",
+        "start": "0x8000F8D0"
+      },
+      "matching_order": 7,
+      "members": [
+        "0x8000F8D0"
+      ],
+      "reference_ids": [],
+      "role_hypothesis": "Memory comparison candidate among excluded SDK code",
+      "shared_reference_leads": [],
+      "small_first_candidates": [],
+      "static_call_leads": []
+    },
+    {
+      "boundary_confidence": "provisional dependency partition; original translation units unproved",
+      "bytes": 16624,
+      "cohort_ids": [
+        "C02",
+        "C03",
+        "C04"
+      ],
+      "evidence_level": "HYPOTHESIS",
+      "excluded_interleaved": [],
+      "functions": 59,
+      "graph": {
+        "cross_cluster_tail_edges": 22,
+        "excluded_tail_edges": 6,
+        "game_called_functions": 3,
+        "internal_fraction": 0.662651,
+        "internal_tail_edges": 55,
+        "static_edges": 27,
+        "total_tail_edges": 83
+      },
+      "hardware_0xa4_reference_leads": [],
+      "id": "BT02",
+      "interval": {
+        "end_exclusive": "0x80014550",
+        "start": "0x80010450"
+      },
+      "matching_order": 1,
+      "members": [
+        "0x80010450",
+        "0x800105C4",
+        "0x8001061C",
+        "0x80010628",
+        "0x80010714",
+        "0x800107E0",
+        "0x80010840",
+        "0x800108E0",
+        "0x80010980",
+        "0x800109C0",
+        "0x80010A00",
+        "0x80010A0C",
+        "0x80010A14",
+        "0x80010A40",
+        "0x80010C68",
+        "0x80010D3C",
+        "0x80010D74",
+        "0x80010DD8",
+        "0x80010E80",
+        "0x80011074",
+        "0x800110C4",
+        "0x80011104",
+        "0x8001144C",
+        "0x800114C0",
+        "0x80011848",
+        "0x80011894",
+        "0x800118C0",
+        "0x80011910",
+        "0x800119E0",
+        "0x80011A10",
+        "0x80011A3C",
+        "0x80011A64",
+        "0x80011C1C",
+        "0x80011C84",
+        "0x80011CD8",
+        "0x80011D24",
+        "0x80011D74",
+        "0x80011F60",
+        "0x800121BC",
+        "0x80012200",
+        "0x80012234",
+        "0x800123A8",
+        "0x8001261C",
+        "0x80012660",
+        "0x80012730",
+        "0x80012D18",
+        "0x80013964",
+        "0x800139D4",
+        "0x80013C84",
+        "0x80013D70",
+        "0x80013DEC",
+        "0x800140F8",
+        "0x80014140",
+        "0x80014198",
+        "0x80014374",
+        "0x800143C0",
+        "0x80014434",
+        "0x80014488",
+        "0x800144F0"
+      ],
+      "reference_ids": [
+        "LIBDRAGON_AUDIO",
+        "ULTRA_QUEUE",
+        "ULTRA_TASK"
+      ],
+      "role_hypothesis": "Message-queue-backed resident service; Audio runtime public initialization/state gateway; Audio buffering, mixer task setup and scheduler",
+      "shared_reference_leads": [
+        {
+          "address": "0x80040000",
+          "functions": 27
+        },
+        {
+          "address": "0x8002C630",
+          "functions": 11
+        },
+        {
+          "address": "0x80038018",
+          "functions": 8
+        },
+        {
+          "address": "0x8003801C",
+          "functions": 7
+        },
+        {
+          "address": "0x8003802C",
+          "functions": 7
+        },
+        {
+          "address": "0x80030000",
+          "functions": 5
+        },
+        {
+          "address": "0x80038028",
+          "functions": 5
+        },
+        {
+          "address": "0x8003828C",
+          "functions": 5
+        },
+        {
+          "address": "0x80038294",
+          "functions": 5
+        },
+        {
+          "address": "0x800382D0",
+          "functions": 5
+        },
+        {
+          "address": "0x800382D4",
+          "functions": 5
+        },
+        {
+          "address": "0x80037FA0",
+          "functions": 4
+        },
+        {
+          "address": "0x80038020",
+          "functions": 4
+        },
+        {
+          "address": "0x80038038",
+          "functions": 4
+        },
+        {
+          "address": "0x8003803C",
+          "functions": 4
+        },
+        {
+          "address": "0x80038290",
+          "functions": 4
+        },
+        {
+          "address": "0x800382CC",
+          "functions": 4
+        },
+        {
+          "address": "0x800382D8",
+          "functions": 4
+        },
+        {
+          "address": "0x800382E8",
+          "functions": 4
+        },
+        {
+          "address": "0x80050000",
+          "functions": 4
+        },
+        {
+          "address": "0x80037FA8",
+          "functions": 3
+        },
+        {
+          "address": "0x80037FE0",
+          "functions": 3
+        },
+        {
+          "address": "0x80038030",
+          "functions": 3
+        },
+        {
+          "address": "0x80038034",
+          "functions": 3
+        },
+        {
+          "address": "0x800381F8",
+          "functions": 3
+        },
+        {
+          "address": "0x80038228",
+          "functions": 3
+        },
+        {
+          "address": "0x80038292",
+          "functions": 3
+        },
+        {
+          "address": "0x8003829C",
+          "functions": 3
+        },
+        {
+          "address": "0x8003829E",
+          "functions": 3
+        },
+        {
+          "address": "0x800382B0",
+          "functions": 3
+        },
+        {
+          "address": "0x800382CD",
+          "functions": 3
+        },
+        {
+          "address": "0x800382CE",
+          "functions": 3
+        },
+        {
+          "address": "0x800382E0",
+          "functions": 3
+        },
+        {
+          "address": "0x800382E4",
+          "functions": 3
+        },
+        {
+          "address": "0x800382F0",
+          "functions": 3
+        },
+        {
+          "address": "0x80038344",
+          "functions": 3
+        },
+        {
+          "address": "0x80038354",
+          "functions": 3
+        },
+        {
+          "address": "0x80038358",
+          "functions": 3
+        },
+        {
+          "address": "0x80038024",
+          "functions": 2
+        },
+        {
+          "address": "0x800381F0",
+          "functions": 2
+        },
+        {
+          "address": "0x80038288",
+          "functions": 2
+        },
+        {
+          "address": "0x80038291",
+          "functions": 2
+        },
+        {
+          "address": "0x80038298",
+          "functions": 2
+        },
+        {
+          "address": "0x800382A0",
+          "functions": 2
+        },
+        {
+          "address": "0x800382A4",
+          "functions": 2
+        },
+        {
+          "address": "0x800382DC",
+          "functions": 2
+        },
+        {
+          "address": "0x800382EC",
+          "functions": 2
+        },
+        {
+          "address": "0x80038338",
+          "functions": 2
+        },
+        {
+          "address": "0x8003833C",
+          "functions": 2
+        },
+        {
+          "address": "0x80038348",
+          "functions": 2
+        },
+        {
+          "address": "0x8003834C",
+          "functions": 2
+        },
+        {
+          "address": "0x80038350",
+          "functions": 2
+        },
+        {
+          "address": "0x8003835C",
+          "functions": 2
+        },
+        {
+          "address": "0x80038360",
+          "functions": 2
+        },
+        {
+          "address": "0x80038362",
+          "functions": 2
+        },
+        {
+          "address": "0x80040001",
+          "functions": 2
+        },
+        {
+          "address": "0x80040010",
+          "functions": 2
+        },
+        {
+          "address": "0x80040100",
+          "functions": 2
+        },
+        {
+          "address": "0x8004F810",
+          "functions": 2
+        },
+        {
+          "address": "0x8004FA18",
+          "functions": 2
+        },
+        {
+          "address": "0x8004FA19",
+          "functions": 2
+        },
+        {
+          "address": "0x8004FA1A",
+          "functions": 2
+        }
+      ],
+      "small_first_candidates": [
+        "0x80010A0C",
+        "0x80010A14",
+        "0x8001061C",
+        "0x80011894",
+        "0x80011A10",
+        "0x80012200",
+        "0x80011A3C",
+        "0x800119E0",
+        "0x80010D3C",
+        "0x800140F8"
+      ],
+      "static_call_leads": [
+        {
+          "address": "0x80006A00",
+          "caller_functions": 3,
+          "historical_names": [
+            "osCreateMesgQueue"
+          ]
+        },
+        {
+          "address": "0x80006E10",
+          "caller_functions": 1,
+          "historical_names": [
+            "osSetEventMesgAlt"
+          ]
+        },
+        {
+          "address": "0x80006F30",
+          "caller_functions": 1,
+          "historical_names": [
+            "osCreateThread"
+          ]
+        },
+        {
+          "address": "0x80007080",
+          "caller_functions": 1,
+          "historical_names": [
+            "osStartThread"
+          ]
+        },
+        {
+          "address": "0x80007270",
+          "caller_functions": 3,
+          "historical_names": [
+            "osRecvMesg"
+          ]
+        },
+        {
+          "address": "0x800075E0",
+          "caller_functions": 2,
+          "historical_names": [
+            "osJamMesg"
+          ]
+        },
+        {
+          "address": "0x80007CA0",
+          "caller_functions": 4,
+          "historical_names": [
+            "osWritebackDCache"
+          ]
+        },
+        {
+          "address": "0x800084E0",
+          "caller_functions": 4,
+          "historical_names": [
+            "osInvalDCache"
+          ]
+        },
+        {
+          "address": "0x80008590",
+          "caller_functions": 3,
+          "historical_names": [
+            "bzero"
+          ]
+        },
+        {
+          "address": "0x8000BE70",
+          "caller_functions": 1,
+          "historical_names": [
+            "osAiSetNextBuffer"
+          ]
+        },
+        {
+          "address": "0x8000BF00",
+          "caller_functions": 2,
+          "historical_names": [
+            "osAiSetFrequency"
+          ]
+        },
+        {
+          "address": "0x8000C4B0",
+          "caller_functions": 1,
+          "historical_names": [
+            "__osDisableInt"
+          ]
+        },
+        {
+          "address": "0x8000C520",
+          "caller_functions": 1,
+          "historical_names": [
+            "__osRestoreInt"
+          ]
+        }
+      ]
+    },
+    {
+      "boundary_confidence": "provisional dependency partition; original translation units unproved",
+      "bytes": 49072,
+      "cohort_ids": [
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C10",
+        "C11",
+        "C12"
+      ],
+      "evidence_level": "HYPOTHESIS",
+      "excluded_interleaved": [
+        {
+          "address": "0x80014650",
+          "scope": "ultralib_identified",
+          "size": 44
+        },
+        {
+          "address": "0x80014BD8",
+          "scope": "ultralib_identified",
+          "size": 32
+        },
+        {
+          "address": "0x80014BF8",
+          "scope": "ultralib_identified",
+          "size": 32
+        },
+        {
+          "address": "0x80014CF4",
+          "scope": "stub_unclassified",
+          "size": 8
+        },
+        {
+          "address": "0x80014CFC",
+          "scope": "stub_unclassified",
+          "size": 12
+        },
+        {
+          "address": "0x80014D08",
+          "scope": "stub_unclassified",
+          "size": 12
+        },
+        {
+          "address": "0x80014D14",
+          "scope": "stub_unclassified",
+          "size": 8
+        },
+        {
+          "address": "0x8001E0D4",
+          "scope": "stub_unclassified",
+          "size": 8
+        },
+        {
+          "address": "0x800205E4",
+          "scope": "ultralib_identified",
+          "size": 32
+        }
+      ],
+      "functions": 230,
+      "graph": {
+        "cross_cluster_tail_edges": 43,
+        "excluded_tail_edges": 6,
+        "game_called_functions": 17,
+        "internal_fraction": 0.870712,
+        "internal_tail_edges": 330,
+        "static_edges": 8,
+        "total_tail_edges": 379
+      },
+      "hardware_0xa4_reference_leads": [],
+      "id": "BT03",
+      "interval": {
+        "end_exclusive": "0x80020610",
+        "start": "0x80014550"
+      },
+      "matching_order": 2,
+      "members": [
+        "0x80014550",
+        "0x80014594",
+        "0x800145DC",
+        "0x80014624",
+        "0x8001467C",
+        "0x800146AC",
+        "0x800146B4",
+        "0x8001489C",
+        "0x800148F8",
+        "0x800149BC",
+        "0x800149DC",
+        "0x80014A04",
+        "0x80014A0C",
+        "0x80014A74",
+        "0x80014AF0",
+        "0x80014B3C",
+        "0x80014BB0",
+        "0x80014C18",
+        "0x80014C40",
+        "0x80014C60",
+        "0x80014CAC",
+        "0x80014D1C",
+        "0x80014D30",
+        "0x80014E00",
+        "0x80014E10",
+        "0x80014E1C",
+        "0x80014E64",
+        "0x80014E90",
+        "0x80014EBC",
+        "0x80014EE8",
+        "0x80014F14",
+        "0x80014F80",
+        "0x80014FEC",
+        "0x80015058",
+        "0x800150C8",
+        "0x80015120",
+        "0x80015178",
+        "0x800151D0",
+        "0x80015228",
+        "0x800152A8",
+        "0x80015318",
+        "0x80015348",
+        "0x8001536C",
+        "0x800154A4",
+        "0x80015574",
+        "0x8001558C",
+        "0x800156E8",
+        "0x80015720",
+        "0x800158D8",
+        "0x80015A0C",
+        "0x80015C0C",
+        "0x80015D68",
+        "0x80015F28",
+        "0x8001605C",
+        "0x800161A0",
+        "0x800162AC",
+        "0x800163A8",
+        "0x800164D0",
+        "0x8001661C",
+        "0x8001671C",
+        "0x80016998",
+        "0x80016BF8",
+        "0x80016C20",
+        "0x80016CE0",
+        "0x80016CF0",
+        "0x80016E40",
+        "0x80016E68",
+        "0x80016EE0",
+        "0x80016F58",
+        "0x80016F80",
+        "0x80017018",
+        "0x80017040",
+        "0x80017108",
+        "0x800171C0",
+        "0x8001729C",
+        "0x8001734C",
+        "0x800173B4",
+        "0x80017410",
+        "0x80017470",
+        "0x800174D0",
+        "0x80017540",
+        "0x800175A8",
+        "0x800175B4",
+        "0x80017644",
+        "0x80017720",
+        "0x800177EC",
+        "0x80017824",
+        "0x8001785C",
+        "0x800178B0",
+        "0x80017D38",
+        "0x800180A0",
+        "0x80018184",
+        "0x8001824C",
+        "0x80018448",
+        "0x80018634",
+        "0x8001897C",
+        "0x80018A30",
+        "0x80018AEC",
+        "0x80018B3C",
+        "0x80018B8C",
+        "0x80018BEC",
+        "0x80018C2C",
+        "0x80018D00",
+        "0x80018D40",
+        "0x80018E2C",
+        "0x80018E6C",
+        "0x80018EB4",
+        "0x80018F20",
+        "0x80018FA4",
+        "0x80018FEC",
+        "0x8001906C",
+        "0x800190AC",
+        "0x80019144",
+        "0x80019194",
+        "0x80019370",
+        "0x800193C8",
+        "0x80019420",
+        "0x80019490",
+        "0x80019850",
+        "0x8001989C",
+        "0x800198C8",
+        "0x800199F4",
+        "0x80019A60",
+        "0x80019AA8",
+        "0x80019AD4",
+        "0x80019BE4",
+        "0x80019C8C",
+        "0x80019ED0",
+        "0x80019F48",
+        "0x8001A270",
+        "0x8001A5D8",
+        "0x8001A658",
+        "0x8001B154",
+        "0x8001B1D0",
+        "0x8001B29C",
+        "0x8001B3A0",
+        "0x8001B4A4",
+        "0x8001B5F4",
+        "0x8001B744",
+        "0x8001B7C0",
+        "0x8001B8C4",
+        "0x8001B968",
+        "0x8001B9F8",
+        "0x8001BDB8",
+        "0x8001BE14",
+        "0x8001C19C",
+        "0x8001C1D8",
+        "0x8001C390",
+        "0x8001C3CC",
+        "0x8001C508",
+        "0x8001C580",
+        "0x8001C770",
+        "0x8001C77C",
+        "0x8001C7F4",
+        "0x8001C860",
+        "0x8001CC9C",
+        "0x8001CCC0",
+        "0x8001CCDC",
+        "0x8001D084",
+        "0x8001D0F0",
+        "0x8001D1C0",
+        "0x8001D1F4",
+        "0x8001D3F0",
+        "0x8001D460",
+        "0x8001D4CC",
+        "0x8001D518",
+        "0x8001D578",
+        "0x8001D5C0",
+        "0x8001D660",
+        "0x8001D764",
+        "0x8001D8B0",
+        "0x8001D928",
+        "0x8001D944",
+        "0x8001DA74",
+        "0x8001DC08",
+        "0x8001DDE0",
+        "0x8001E0C0",
+        "0x8001E0E0",
+        "0x8001E440",
+        "0x8001E50C",
+        "0x8001E688",
+        "0x8001E740",
+        "0x8001E768",
+        "0x8001E790",
+        "0x8001E7BC",
+        "0x8001E864",
+        "0x8001E930",
+        "0x8001E940",
+        "0x8001E9A0",
+        "0x8001E9B0",
+        "0x8001EAA0",
+        "0x8001EAEC",
+        "0x8001EB10",
+        "0x8001ECE0",
+        "0x8001EDF4",
+        "0x8001EE34",
+        "0x8001EE9C",
+        "0x8001EF8C",
+        "0x8001F13C",
+        "0x8001F6EC",
+        "0x8001F7EC",
+        "0x8001F864",
+        "0x8001F898",
+        "0x8001F954",
+        "0x8001F9D0",
+        "0x8001FA18",
+        "0x8001FAE4",
+        "0x8001FBB0",
+        "0x8001FD2C",
+        "0x8001FE58",
+        "0x8001FEA4",
+        "0x8001FEF8",
+        "0x8001FF4C",
+        "0x8001FFA0",
+        "0x8001FFF4",
+        "0x80020048",
+        "0x80020174",
+        "0x800201D0",
+        "0x80020200",
+        "0x8002021C",
+        "0x80020274",
+        "0x800202C4",
+        "0x80020370",
+        "0x800203EC",
+        "0x8002043C",
+        "0x80020494",
+        "0x80020518",
+        "0x80020528",
+        "0x80020558",
+        "0x80020598"
+      ],
+      "reference_ids": [
+        "LIBRE_QUEUE",
+        "MUSYX_API",
+        "MUSYX_MACROS",
+        "MUSYX_SERVICE",
+        "ULTRA_QUEUE"
+      ],
+      "role_hypothesis": "Shared message-queue synchronization wrappers; Audio buffer/storage primitives and tiny utility leaves; Audio pooled-storage front ends and paired state operations; Audio channel-state update and control wrappers; Audio command dispatch and mixer parameter preparation; Audio sequencing and callback-state maintenance; Shared numeric, copy and small-state utility candidates; Audio sequence buffers and public state-control API",
+      "shared_reference_leads": [
+        {
+          "address": "0x8002C630",
+          "functions": 48
+        },
+        {
+          "address": "0x80050000",
+          "functions": 36
+        },
+        {
+          "address": "0x80040000",
+          "functions": 31
+        },
+        {
+          "address": "0x8004BEB8",
+          "functions": 20
+        },
+        {
+          "address": "0x8004BE80",
+          "functions": 16
+        },
+        {
+          "address": "0x80043EB8",
+          "functions": 13
+        },
+        {
+          "address": "0x80038294",
+          "functions": 11
+        },
+        {
+          "address": "0x80050008",
+          "functions": 11
+        },
+        {
+          "address": "0x80040004",
+          "functions": 10
+        },
+        {
+          "address": "0x8004FA18",
+          "functions": 10
+        },
+        {
+          "address": "0x8004F800",
+          "functions": 9
+        },
+        {
+          "address": "0x80050004",
+          "functions": 9
+        },
+        {
+          "address": "0x8005000C",
+          "functions": 9
+        },
+        {
+          "address": "0x80040008",
+          "functions": 8
+        },
+        {
+          "address": "0x8004BE78",
+          "functions": 8
+        },
+        {
+          "address": "0x8004000C",
+          "functions": 7
+        },
+        {
+          "address": "0x80050018",
+          "functions": 7
+        },
+        {
+          "address": "0x800385A0",
+          "functions": 6
+        },
+        {
+          "address": "0x8004FFFF",
+          "functions": 6
+        },
+        {
+          "address": "0x80050010",
+          "functions": 6
+        },
+        {
+          "address": "0x80050014",
+          "functions": 6
+        },
+        {
+          "address": "0x800385A8",
+          "functions": 5
+        },
+        {
+          "address": "0x80040FF8",
+          "functions": 5
+        },
+        {
+          "address": "0x80043EB0",
+          "functions": 5
+        },
+        {
+          "address": "0x8004F300",
+          "functions": 5
+        },
+        {
+          "address": "0x8004FA50",
+          "functions": 5
+        },
+        {
+          "address": "0x8004FD50",
+          "functions": 5
+        },
+        {
+          "address": "0x80038368",
+          "functions": 4
+        },
+        {
+          "address": "0x80038390",
+          "functions": 4
+        },
+        {
+          "address": "0x80038608",
+          "functions": 4
+        },
+        {
+          "address": "0x8003C610",
+          "functions": 4
+        },
+        {
+          "address": "0x8003CE18",
+          "functions": 4
+        },
+        {
+          "address": "0x8003DA28",
+          "functions": 4
+        },
+        {
+          "address": "0x8003E228",
+          "functions": 4
+        },
+        {
+          "address": "0x8003FFF8",
+          "functions": 4
+        },
+        {
+          "address": "0x80040010",
+          "functions": 4
+        },
+        {
+          "address": "0x80040FC1",
+          "functions": 4
+        },
+        {
+          "address": "0x80042228",
+          "functions": 4
+        },
+        {
+          "address": "0x8004FD54",
+          "functions": 4
+        },
+        {
+          "address": "0x8004FF20",
+          "functions": 4
+        },
+        {
+          "address": "0x8005001C",
+          "functions": 4
+        },
+        {
+          "address": "0x80050020",
+          "functions": 4
+        },
+        {
+          "address": "0x80050028",
+          "functions": 4
+        },
+        {
+          "address": "0x8005003C",
+          "functions": 4
+        },
+        {
+          "address": "0x80050040",
+          "functions": 4
+        },
+        {
+          "address": "0x8005004C",
+          "functions": 4
+        },
+        {
+          "address": "0x800504C8",
+          "functions": 4
+        },
+        {
+          "address": "0x80050548",
+          "functions": 4
+        },
+        {
+          "address": "0x80050648",
+          "functions": 4
+        },
+        {
+          "address": "0x80050A48",
+          "functions": 4
+        },
+        {
+          "address": "0x80050C50",
+          "functions": 4
+        },
+        {
+          "address": "0x80030000",
+          "functions": 3
+        },
+        {
+          "address": "0x80038398",
+          "functions": 3
+        },
+        {
+          "address": "0x80038610",
+          "functions": 3
+        },
+        {
+          "address": "0x8003C618",
+          "functions": 3
+        },
+        {
+          "address": "0x8003CE20",
+          "functions": 3
+        },
+        {
+          "address": "0x8003DA20",
+          "functions": 3
+        },
+        {
+          "address": "0x8003FFF4",
+          "functions": 3
+        },
+        {
+          "address": "0x8003FFFF",
+          "functions": 3
+        },
+        {
+          "address": "0x80040002",
+          "functions": 3
+        },
+        {
+          "address": "0x80040003",
+          "functions": 3
+        },
+        {
+          "address": "0x80040006",
+          "functions": 3
+        },
+        {
+          "address": "0x80040014",
+          "functions": 3
+        },
+        {
+          "address": "0x80042230",
+          "functions": 3
+        },
+        {
+          "address": "0x8004BE7B",
+          "functions": 3
+        },
+        {
+          "address": "0x8004BE90",
+          "functions": 3
+        },
+        {
+          "address": "0x8004BE98",
+          "functions": 3
+        },
+        {
+          "address": "0x8004F2B8",
+          "functions": 3
+        },
+        {
+          "address": "0x8004F2F8",
+          "functions": 3
+        },
+        {
+          "address": "0x8004F808",
+          "functions": 3
+        },
+        {
+          "address": "0x8004FDA0",
+          "functions": 3
+        },
+        {
+          "address": "0x8004FFFC",
+          "functions": 3
+        },
+        {
+          "address": "0x8004FFFE",
+          "functions": 3
+        },
+        {
+          "address": "0x80050003",
+          "functions": 3
+        },
+        {
+          "address": "0x80050024",
+          "functions": 3
+        },
+        {
+          "address": "0x8005002C",
+          "functions": 3
+        },
+        {
+          "address": "0x80050034",
+          "functions": 3
+        },
+        {
+          "address": "0x80050050",
+          "functions": 3
+        },
+        {
+          "address": "0x800501A0",
+          "functions": 3
+        },
+        {
+          "address": "0x80050440",
+          "functions": 3
+        },
+        {
+          "address": "0x800504C0",
+          "functions": 3
+        },
+        {
+          "address": "0x800504C1",
+          "functions": 3
+        },
+        {
+          "address": "0x800504C2",
+          "functions": 3
+        },
+        {
+          "address": "0x800504C3",
+          "functions": 3
+        },
+        {
+          "address": "0x80050C54",
+          "functions": 3
+        },
+        {
+          "address": "0x8002C5DC",
+          "functions": 2
+        },
+        {
+          "address": "0x80038614",
+          "functions": 2
+        },
+        {
+          "address": "0x8003C61C",
+          "functions": 2
+        },
+        {
+          "address": "0x8003CE24",
+          "functions": 2
+        },
+        {
+          "address": "0x8003FFFC",
+          "functions": 2
+        },
+        {
+          "address": "0x80040001",
+          "functions": 2
+        },
+        {
+          "address": "0x80040007",
+          "functions": 2
+        },
+        {
+          "address": "0x80040018",
+          "functions": 2
+        },
+        {
+          "address": "0x8004001C",
+          "functions": 2
+        },
+        {
+          "address": "0x80040FC0",
+          "functions": 2
+        },
+        {
+          "address": "0x80040FC4",
+          "functions": 2
+        },
+        {
+          "address": "0x80043FE0",
+          "functions": 2
+        },
+        {
+          "address": "0x8004BE7C",
+          "functions": 2
+        },
+        {
+          "address": "0x8004BE84",
+          "functions": 2
+        },
+        {
+          "address": "0x8004BE94",
+          "functions": 2
+        },
+        {
+          "address": "0x8004FA20",
+          "functions": 2
+        },
+        {
+          "address": "0x8004FFFD",
+          "functions": 2
+        },
+        {
+          "address": "0x80050001",
+          "functions": 2
+        },
+        {
+          "address": "0x80050015",
+          "functions": 2
+        },
+        {
+          "address": "0x80050030",
+          "functions": 2
+        },
+        {
+          "address": "0x80050038",
+          "functions": 2
+        },
+        {
+          "address": "0x8005003E",
+          "functions": 2
+        },
+        {
+          "address": "0x80050044",
+          "functions": 2
+        },
+        {
+          "address": "0x80050048",
+          "functions": 2
+        },
+        {
+          "address": "0x80050078",
+          "functions": 2
+        },
+        {
+          "address": "0x800502A8",
+          "functions": 2
+        },
+        {
+          "address": "0x80050430",
+          "functions": 2
+        },
+        {
+          "address": "0x80050A4C",
+          "functions": 2
+        },
+        {
+          "address": "0x80050F7C",
+          "functions": 2
+        }
+      ],
+      "small_first_candidates": [
+        "0x80014A04",
+        "0x80014E00",
+        "0x80016CE0",
+        "0x80020518",
+        "0x80015574",
+        "0x80020200",
+        "0x80014BB0",
+        "0x80016BF8",
+        "0x80016E40",
+        "0x80016F58"
+      ],
+      "static_call_leads": [
+        {
+          "address": "0x80006A00",
+          "caller_functions": 1,
+          "historical_names": [
+            "osCreateMesgQueue"
+          ]
+        },
+        {
+          "address": "0x80007270",
+          "caller_functions": 2,
+          "historical_names": [
+            "osRecvMesg"
+          ]
+        },
+        {
+          "address": "0x800075E0",
+          "caller_functions": 2,
+          "historical_names": [
+            "osJamMesg"
+          ]
+        },
+        {
+          "address": "0x80007CA0",
+          "caller_functions": 2,
+          "historical_names": [
+            "osWritebackDCache"
+          ]
+        },
+        {
+          "address": "0x8000E3C0",
+          "caller_functions": 1,
+          "historical_names": [
+            "sqrtf"
+          ]
+        }
+      ]
+    },
+    {
+      "boundary_confidence": "provisional dependency partition; original translation units unproved",
+      "bytes": 4784,
+      "cohort_ids": [
+        "C13"
+      ],
+      "evidence_level": "HYPOTHESIS",
+      "excluded_interleaved": [],
+      "functions": 27,
+      "graph": {
+        "cross_cluster_tail_edges": 0,
+        "excluded_tail_edges": 0,
+        "game_called_functions": 0,
+        "internal_fraction": 1.0,
+        "internal_tail_edges": 18,
+        "static_edges": 0,
+        "total_tail_edges": 18
+      },
+      "hardware_0xa4_reference_leads": [],
+      "id": "BT04",
+      "interval": {
+        "end_exclusive": "0x800218CC",
+        "start": "0x80020610"
+      },
+      "matching_order": 5,
+      "members": [
+        "0x80020610",
+        "0x800206AC",
+        "0x80020820",
+        "0x80020A04",
+        "0x80020DA8",
+        "0x80020F4C",
+        "0x80020F98",
+        "0x80020FDC",
+        "0x80021028",
+        "0x8002106C",
+        "0x80021150",
+        "0x80021428",
+        "0x80021448",
+        "0x80021468",
+        "0x80021488",
+        "0x800214A8",
+        "0x800214C8",
+        "0x800214E8",
+        "0x80021508",
+        "0x80021528",
+        "0x80021548",
+        "0x800215A8",
+        "0x8002165C",
+        "0x80021700",
+        "0x80021764",
+        "0x800217E4",
+        "0x80021844"
+      ],
+      "reference_ids": [
+        "MUSYX_MIDICTRL"
+      ],
+      "role_hypothesis": "Audio input-controller calculations and paired table access",
+      "shared_reference_leads": [
+        {
+          "address": "0x80055000",
+          "functions": 4
+        },
+        {
+          "address": "0x80050D00",
+          "functions": 3
+        },
+        {
+          "address": "0x80056160",
+          "functions": 3
+        },
+        {
+          "address": "0x800561E0",
+          "functions": 3
+        },
+        {
+          "address": "0x80050C60",
+          "functions": 2
+        },
+        {
+          "address": "0x80050CE0",
+          "functions": 2
+        },
+        {
+          "address": "0x800560C0",
+          "functions": 2
+        },
+        {
+          "address": "0x80056140",
+          "functions": 2
+        }
+      ],
+      "small_first_candidates": [
+        "0x80021428",
+        "0x80021448",
+        "0x80021468",
+        "0x80021488",
+        "0x800214A8",
+        "0x800214E8",
+        "0x80021508",
+        "0x80021528",
+        "0x800214C8",
+        "0x80020F98"
+      ],
+      "static_call_leads": []
+    },
+    {
+      "boundary_confidence": "provisional dependency partition; original translation units unproved",
+      "bytes": 13084,
+      "cohort_ids": [
+        "C14"
+      ],
+      "evidence_level": "HYPOTHESIS",
+      "excluded_interleaved": [],
+      "functions": 62,
+      "graph": {
+        "cross_cluster_tail_edges": 61,
+        "excluded_tail_edges": 0,
+        "game_called_functions": 0,
+        "internal_fraction": 0.567376,
+        "internal_tail_edges": 80,
+        "static_edges": 0,
+        "total_tail_edges": 141
+      },
+      "hardware_0xa4_reference_leads": [],
+      "id": "BT05",
+      "interval": {
+        "end_exclusive": "0x80024BF0",
+        "start": "0x800218CC"
+      },
+      "matching_order": 3,
+      "members": [
+        "0x800218CC",
+        "0x8002193C",
+        "0x80021B9C",
+        "0x80021BC0",
+        "0x80021BF0",
+        "0x80021C58",
+        "0x80021CDC",
+        "0x80021D5C",
+        "0x80021DF8",
+        "0x80021E74",
+        "0x80021F08",
+        "0x80021F68",
+        "0x80021F84",
+        "0x80022160",
+        "0x80022324",
+        "0x800223D0",
+        "0x8002243C",
+        "0x8002245C",
+        "0x800224B0",
+        "0x80022514",
+        "0x80022580",
+        "0x800225AC",
+        "0x800225DC",
+        "0x800225FC",
+        "0x80022678",
+        "0x8002279C",
+        "0x80022874",
+        "0x80022A40",
+        "0x80022A78",
+        "0x80022A98",
+        "0x80022C58",
+        "0x80022CD4",
+        "0x80022F24",
+        "0x8002300C",
+        "0x800230B0",
+        "0x80023190",
+        "0x8002321C",
+        "0x800232A4",
+        "0x800233B0",
+        "0x80023520",
+        "0x80023544",
+        "0x80023564",
+        "0x80023710",
+        "0x80023734",
+        "0x80023754",
+        "0x80023818",
+        "0x80023844",
+        "0x80023870",
+        "0x8002389C",
+        "0x800238C8",
+        "0x800238F4",
+        "0x80023920",
+        "0x8002394C",
+        "0x80023978",
+        "0x800239A4",
+        "0x80023AD4",
+        "0x80023B50",
+        "0x80023BDC",
+        "0x80023D70",
+        "0x80023DB8",
+        "0x80023E9C",
+        "0x80024988"
+      ],
+      "reference_ids": [
+        "MUSYX_MACROS"
+      ],
+      "role_hypothesis": "MusyX sound-macro interpreter and handler family",
+      "shared_reference_leads": [
+        {
+          "address": "0x8004BEB8",
+          "functions": 3
+        },
+        {
+          "address": "0x8004BE78",
+          "functions": 2
+        },
+        {
+          "address": "0x8004FFFF",
+          "functions": 2
+        },
+        {
+          "address": "0x80050004",
+          "functions": 2
+        },
+        {
+          "address": "0x80056200",
+          "functions": 2
+        }
+      ],
+      "small_first_candidates": [
+        "0x80021F68",
+        "0x8002243C",
+        "0x800225DC",
+        "0x80022A78",
+        "0x80023734",
+        "0x80023710",
+        "0x800225AC",
+        "0x80023544",
+        "0x80021B9C",
+        "0x80023520"
+      ],
+      "static_call_leads": []
+    },
+    {
+      "boundary_confidence": "provisional dependency partition; original translation units unproved",
+      "bytes": 952,
+      "cohort_ids": [
+        "C15"
+      ],
+      "evidence_level": "HYPOTHESIS",
+      "excluded_interleaved": [],
+      "functions": 4,
+      "graph": {
+        "cross_cluster_tail_edges": 0,
+        "excluded_tail_edges": 0,
+        "game_called_functions": 0,
+        "internal_fraction": null,
+        "internal_tail_edges": 0,
+        "static_edges": 1,
+        "total_tail_edges": 0
+      },
+      "hardware_0xa4_reference_leads": [],
+      "id": "BT06",
+      "interval": {
+        "end_exclusive": "0x80024FB0",
+        "start": "0x80024BF0"
+      },
+      "matching_order": 6,
+      "members": [
+        "0x80024BF0",
+        "0x80024C9C",
+        "0x80024D04",
+        "0x80024D74"
+      ],
+      "reference_ids": [
+        "MUSYX_MATH"
+      ],
+      "role_hypothesis": "MusyX matrix/vector sound-math helper candidates",
+      "shared_reference_leads": [],
+      "small_first_candidates": [
+        "0x80024D04",
+        "0x80024BF0",
+        "0x80024C9C"
+      ],
+      "static_call_leads": [
+        {
+          "address": "0x8000E3C0",
+          "caller_functions": 1,
+          "historical_names": [
+            "sqrtf"
+          ]
+        }
+      ]
+    },
+    {
+      "boundary_confidence": "provisional dependency partition; original translation units unproved",
+      "bytes": 4980,
+      "cohort_ids": [
+        "C16"
+      ],
+      "evidence_level": "HYPOTHESIS",
+      "excluded_interleaved": [
+        {
+          "address": "0x8002517C",
+          "scope": "ultralib_identified",
+          "size": 44
+        }
+      ],
+      "functions": 25,
+      "graph": {
+        "cross_cluster_tail_edges": 11,
+        "excluded_tail_edges": 1,
+        "game_called_functions": 0,
+        "internal_fraction": 0.692308,
+        "internal_tail_edges": 27,
+        "static_edges": 13,
+        "total_tail_edges": 39
+      },
+      "hardware_0xa4_reference_leads": [],
+      "id": "BT07",
+      "interval": {
+        "end_exclusive": "0x80026360",
+        "start": "0x80024FB0"
+      },
+      "matching_order": 4,
+      "members": [
+        "0x80024FB0",
+        "0x80024FD4",
+        "0x8002506C",
+        "0x800250AC",
+        "0x800250F0",
+        "0x80025120",
+        "0x80025150",
+        "0x800251A8",
+        "0x80025264",
+        "0x800252AC",
+        "0x800254D4",
+        "0x80025594",
+        "0x800255F0",
+        "0x80025670",
+        "0x8002574C",
+        "0x800259A8",
+        "0x80025AB4",
+        "0x80025C68",
+        "0x80025D84",
+        "0x80025DC0",
+        "0x80025EB0",
+        "0x80025F74",
+        "0x800262BC",
+        "0x80026328",
+        "0x80026348"
+      ],
+      "reference_ids": [
+        "ULTRA_QUEUE"
+      ],
+      "role_hypothesis": "Runtime buffered-stream/session management",
+      "shared_reference_leads": [
+        {
+          "address": "0x8002D480",
+          "functions": 10
+        },
+        {
+          "address": "0x80030000",
+          "functions": 10
+        },
+        {
+          "address": "0x80056230",
+          "functions": 10
+        },
+        {
+          "address": "0x80051228",
+          "functions": 6
+        },
+        {
+          "address": "0x80051200",
+          "functions": 5
+        },
+        {
+          "address": "0x800586A0",
+          "functions": 5
+        },
+        {
+          "address": "0x80060000",
+          "functions": 5
+        },
+        {
+          "address": "0x8005868C",
+          "functions": 4
+        },
+        {
+          "address": "0x800586A8",
+          "functions": 4
+        },
+        {
+          "address": "0x80038000",
+          "functions": 3
+        },
+        {
+          "address": "0x80058680",
+          "functions": 3
+        },
+        {
+          "address": "0x80058698",
+          "functions": 3
+        },
+        {
+          "address": "0x80060004",
+          "functions": 3
+        },
+        {
+          "address": "0x8002D484",
+          "functions": 2
+        },
+        {
+          "address": "0x80038018",
+          "functions": 2
+        },
+        {
+          "address": "0x8003801C",
+          "functions": 2
+        },
+        {
+          "address": "0x80038024",
+          "functions": 2
+        },
+        {
+          "address": "0x8004001C",
+          "functions": 2
+        },
+        {
+          "address": "0x80051201",
+          "functions": 2
+        },
+        {
+          "address": "0x80051202",
+          "functions": 2
+        },
+        {
+          "address": "0x80051203",
+          "functions": 2
+        },
+        {
+          "address": "0x80051204",
+          "functions": 2
+        },
+        {
+          "address": "0x80051208",
+          "functions": 2
+        },
+        {
+          "address": "0x8005120C",
+          "functions": 2
+        },
+        {
+          "address": "0x80051210",
+          "functions": 2
+        },
+        {
+          "address": "0x80051214",
+          "functions": 2
+        },
+        {
+          "address": "0x80051219",
+          "functions": 2
+        },
+        {
+          "address": "0x80051224",
+          "functions": 2
+        },
+        {
+          "address": "0x80058688",
+          "functions": 2
+        },
+        {
+          "address": "0x80058690",
+          "functions": 2
+        }
+      ],
+      "small_first_candidates": [
+        "0x80026328",
+        "0x80025D84",
+        "0x80026348",
+        "0x80024FB0",
+        "0x80025150",
+        "0x800250F0",
+        "0x80025120",
+        "0x800262BC",
+        "0x800251A8",
+        "0x80025264"
+      ],
+      "static_call_leads": [
+        {
+          "address": "0x80006A00",
+          "caller_functions": 3,
+          "historical_names": [
+            "osCreateMesgQueue"
+          ]
+        },
+        {
+          "address": "0x80007270",
+          "caller_functions": 3,
+          "historical_names": [
+            "osRecvMesg"
+          ]
+        },
+        {
+          "address": "0x800075E0",
+          "caller_functions": 3,
+          "historical_names": [
+            "osJamMesg"
+          ]
+        },
+        {
+          "address": "0x800084E0",
+          "caller_functions": 2,
+          "historical_names": [
+            "osInvalDCache"
+          ]
+        },
+        {
+          "address": "0x80008590",
+          "caller_functions": 2,
+          "historical_names": [
+            "bzero"
+          ]
+        }
+      ]
+    },
+    {
+      "boundary_confidence": "provisional dependency partition; original translation units unproved",
+      "bytes": 5232,
+      "cohort_ids": [
+        "C17"
+      ],
+      "evidence_level": "HYPOTHESIS",
+      "excluded_interleaved": [],
+      "functions": 4,
+      "graph": {
+        "cross_cluster_tail_edges": 0,
+        "excluded_tail_edges": 0,
+        "game_called_functions": 0,
+        "internal_fraction": 1.0,
+        "internal_tail_edges": 3,
+        "static_edges": 1,
+        "total_tail_edges": 3
+      },
+      "hardware_0xa4_reference_leads": [],
+      "id": "BT08",
+      "interval": {
+        "end_exclusive": "0x800277D0",
+        "start": "0x80026360"
+      },
+      "matching_order": 8,
+      "members": [
+        "0x80026360",
+        "0x80026558",
+        "0x80026640",
+        "0x800268D0"
+      ],
+      "reference_ids": [],
+      "role_hypothesis": "Packed-bitstream/table decoding candidate",
+      "shared_reference_leads": [],
+      "small_first_candidates": [],
+      "static_call_leads": [
+        {
+          "address": "0x80008590",
+          "caller_functions": 1,
+          "historical_names": [
+            "bzero"
+          ]
+        }
+      ]
+    }
+  ],
+  "cohorts": [
+    {
+      "bytes": 284,
+      "end": "0x80010450",
+      "functions": 1,
+      "graph": {
+        "cross_cluster_tail_edges": 0,
+        "excluded_tail_edges": 0,
+        "game_called_functions": 0,
+        "internal_fraction": null,
+        "internal_tail_edges": 0,
+        "static_edges": 0,
+        "total_tail_edges": 0
+      },
+      "id": "C01",
+      "name_prefix": "memory_compare_candidate",
+      "rationale": "The sole in-scope row has no scanned callees or data references. The bcmp historical label and spec identify it only as a comparison/assembly candidate; intervening SDK rows are excluded.",
+      "reference_ids": [],
+      "role": "Memory comparison candidate among excluded SDK code",
+      "start": "0x8000F8D0"
+    },
+    {
+      "bytes": 900,
+      "end": "0x800107E0",
+      "functions": 5,
+      "graph": {
+        "cross_cluster_tail_edges": 4,
+        "excluded_tail_edges": 1,
+        "game_called_functions": 0,
+        "internal_fraction": 0.285714,
+        "internal_tail_edges": 2,
+        "static_edges": 5,
+        "total_tail_edges": 7
+      },
+      "id": "C02",
+      "name_prefix": "resident_queue_service",
+      "rationale": "Shared 0x80037FA0/0x80037FE0/0x80038020 leads, counted-static queue calls, and cross-family critical-section helpers 0x80014594/0x800145DC.",
+      "reference_ids": [
+        "ULTRA_QUEUE"
+      ],
+      "role": "Message-queue-backed resident service",
+      "start": "0x80010450"
+    },
+    {
+      "bytes": 604,
+      "end": "0x80010A40",
+      "functions": 8,
+      "graph": {
+        "cross_cluster_tail_edges": 10,
+        "excluded_tail_edges": 2,
+        "game_called_functions": 3,
+        "internal_fraction": 0.142857,
+        "internal_tail_edges": 2,
+        "static_edges": 0,
+        "total_tail_edges": 14
+      },
+      "id": "C03",
+      "name_prefix": "audio_runtime_gateway",
+      "rationale": "Game callers reach 0x80010840/0x800108E0/0x800109C0; common 0x8002C630 references and calls to audio task setup/initializers support a gateway hypothesis.",
+      "reference_ids": [],
+      "role": "Audio runtime public initialization/state gateway",
+      "start": "0x800107E0"
+    },
+    {
+      "bytes": 15120,
+      "end": "0x80014550",
+      "functions": 46,
+      "graph": {
+        "cross_cluster_tail_edges": 12,
+        "excluded_tail_edges": 3,
+        "game_called_functions": 0,
+        "internal_fraction": 0.758065,
+        "internal_tail_edges": 47,
+        "static_edges": 22,
+        "total_tail_edges": 62
+      },
+      "id": "C04",
+      "name_prefix": "audio_task_scheduler",
+      "rationale": "Counted-static AI frequency/buffer and cache calls; native task construction at 0x80011910 supports audio. Supplied mixer-block leads at 0x80011104/0x800114C0 are floating-point loads and 0x80014198 copies metadata strings, not proved microcode pointers. Shared 0x800382xx/0x800383xx storage and internal calls support scheduler grouping.",
+      "reference_ids": [
+        "ULTRA_TASK",
+        "LIBDRAGON_AUDIO"
+      ],
+      "role": "Audio buffering, mixer task setup and scheduler",
+      "start": "0x80010A40"
+    },
+    {
+      "bytes": 256,
+      "end": "0x8001467C",
+      "functions": 4,
+      "graph": {
+        "cross_cluster_tail_edges": 0,
+        "excluded_tail_edges": 0,
+        "game_called_functions": 0,
+        "internal_fraction": null,
+        "internal_tail_edges": 0,
+        "static_edges": 5,
+        "total_tail_edges": 0
+      },
+      "id": "C05",
+      "name_prefix": "queue_sync_wrapper",
+      "rationale": "Queue creation/receive/send-labelled static entries and shared 0x80038368/0x8002C5DC. High incoming degree means these are dependency helpers, not assumed private members of every caller TU.",
+      "reference_ids": [
+        "ULTRA_QUEUE",
+        "LIBRE_QUEUE"
+      ],
+      "role": "Shared message-queue synchronization wrappers",
+      "start": "0x80014550"
+    },
+    {
+      "bytes": 1608,
+      "end": "0x80014D30",
+      "functions": 18,
+      "graph": {
+        "cross_cluster_tail_edges": 5,
+        "excluded_tail_edges": 0,
+        "game_called_functions": 0,
+        "internal_fraction": 0.0,
+        "internal_tail_edges": 0,
+        "static_edges": 2,
+        "total_tail_edges": 5
+      },
+      "id": "C06",
+      "name_prefix": "audio_buffer_utility",
+      "rationale": "Repeated 0x80038294 reference, calls back to audio-buffer helpers, cache writeback calls, and identified-only tiny rows. Native opcode screen is separate from role inference.",
+      "reference_ids": [],
+      "role": "Audio buffer/storage primitives and tiny utility leaves",
+      "start": "0x8001467C"
+    },
+    {
+      "bytes": 9336,
+      "end": "0x800171C0",
+      "functions": 51,
+      "graph": {
+        "cross_cluster_tail_edges": 34,
+        "excluded_tail_edges": 3,
+        "game_called_functions": 3,
+        "internal_fraction": 0.486111,
+        "internal_tail_edges": 35,
+        "static_edges": 0,
+        "total_tail_edges": 72
+      },
+      "id": "C07",
+      "name_prefix": "audio_pool_state",
+      "rationale": "Repeated create/release-shaped call pairs through shared synchronization helpers; distinct storage groups at 0x800385A0,0x80038608,0x8003C610,0x8003CE18,0x8003DA20 and 0x80042228. Allocation semantics remain unproved.",
+      "reference_ids": [],
+      "role": "Audio pooled-storage front ends and paired state operations",
+      "start": "0x80014D30"
+    },
+    {
+      "bytes": 10392,
+      "end": "0x80019A60",
+      "functions": 49,
+      "graph": {
+        "cross_cluster_tail_edges": 34,
+        "excluded_tail_edges": 0,
+        "game_called_functions": 1,
+        "internal_fraction": 0.634409,
+        "internal_tail_edges": 59,
+        "static_edges": 0,
+        "total_tail_edges": 93
+      },
+      "id": "C08",
+      "name_prefix": "audio_channel_control",
+      "rationale": "Dense internal calls around 0x80017644/0x80019490/0x800198C8, shared 0x80043EB8/0x8004BE80 storage, and calls to volume-curve setup 0x8001B9F8. Exact channel field meanings remain unknown.",
+      "reference_ids": [],
+      "role": "Audio channel-state update and control wrappers",
+      "start": "0x800171C0"
+    },
+    {
+      "bytes": 10536,
+      "end": "0x8001C390",
+      "functions": 25,
+      "graph": {
+        "cross_cluster_tail_edges": 53,
+        "excluded_tail_edges": 1,
+        "game_called_functions": 0,
+        "internal_fraction": 0.15625,
+        "internal_tail_edges": 10,
+        "static_edges": 0,
+        "total_tail_edges": 64
+      },
+      "id": "C09",
+      "name_prefix": "audio_command_prepare",
+      "rationale": "Large dispatcher 0x8001A658 connects command helpers and source-lead MusyX macro interpreter 0x80023E9C. 0x8001B9F8 uses jump-table storage 0x8002D8D0 rather than a proved microcode pointer; common 0x8004BEB8/0x8004F300 storage supports related audio state.",
+      "reference_ids": [
+        "MUSYX_MACROS",
+        "MUSYX_API"
+      ],
+      "role": "Audio command dispatch and mixer parameter preparation",
+      "start": "0x80019A60"
+    },
+    {
+      "bytes": 7492,
+      "end": "0x8001E0E0",
+      "functions": 30,
+      "graph": {
+        "cross_cluster_tail_edges": 44,
+        "excluded_tail_edges": 0,
+        "game_called_functions": 0,
+        "internal_fraction": 0.290323,
+        "internal_tail_edges": 18,
+        "static_edges": 1,
+        "total_tail_edges": 62
+      },
+      "id": "C10",
+      "name_prefix": "audio_sequence_state",
+      "rationale": "Shared 0x8004FA50/0x8004FD50/0x8004FF20 state, repeated queue wrappers, and update call chain through 0x8001DDE0; calls to trailing numeric helpers include sqrtf-labelled static entry.",
+      "reference_ids": [],
+      "role": "Audio sequencing and callback-state maintenance",
+      "start": "0x8001C390"
+    },
+    {
+      "bytes": 2236,
+      "end": "0x8001E9B0",
+      "functions": 12,
+      "graph": {
+        "cross_cluster_tail_edges": 1,
+        "excluded_tail_edges": 0,
+        "game_called_functions": 0,
+        "internal_fraction": 0.0,
+        "internal_tail_edges": 0,
+        "static_edges": 0,
+        "total_tail_edges": 1
+      },
+      "id": "C11",
+      "name_prefix": "numeric_memory_utility",
+      "rationale": "Mostly leaves, references to 0x8002CA40/0x8002CC44/0x8002C640/0x8002C840 and constants; widely reused from audio families. No forced libc or random-generator identity from constants alone. One grounded per-function exception is sndRand source lead 0x8001E790; its multiplier is not hardware.",
+      "reference_ids": [
+        "MUSYX_SERVICE"
+      ],
+      "role": "Shared numeric, copy and small-state utility candidates",
+      "start": "0x8001E0E0"
+    },
+    {
+      "bytes": 7216,
+      "end": "0x80020610",
+      "functions": 41,
+      "graph": {
+        "cross_cluster_tail_edges": 60,
+        "excluded_tail_edges": 2,
+        "game_called_functions": 13,
+        "internal_fraction": 0.243902,
+        "internal_tail_edges": 20,
+        "static_edges": 0,
+        "total_tail_edges": 82
+      },
+      "id": "C12",
+      "name_prefix": "audio_sequence_api",
+      "rationale": "Repeated 0x80050C50/0x800504C8/0x8004BEB8 references, calls across channel helpers and a concentration of game-called wrappers protected by 0x80014594/0x800145DC.",
+      "reference_ids": [
+        "MUSYX_API"
+      ],
+      "role": "Audio sequence buffers and public state-control API",
+      "start": "0x8001E9B0"
+    },
+    {
+      "bytes": 4784,
+      "end": "0x800218CC",
+      "functions": 27,
+      "graph": {
+        "cross_cluster_tail_edges": 0,
+        "excluded_tail_edges": 0,
+        "game_called_functions": 0,
+        "internal_fraction": 1.0,
+        "internal_tail_edges": 18,
+        "static_edges": 0,
+        "total_tail_edges": 18
+      },
+      "id": "C13",
+      "name_prefix": "audio_data_dispatch",
+      "rationale": "Self-contained inventory call graph centered on 0x80020610/0x80020A04/0x80021150; shared 0x80050D00/0x80055000 and paired table accesses. MusyX snd_midictrl.c has analogous input-controller wrappers but an extra dirty-mask argument, so exact per-wrapper names remain unproved.",
+      "reference_ids": [
+        "MUSYX_MIDICTRL"
+      ],
+      "role": "Audio input-controller calculations and paired table access",
+      "start": "0x80020610"
+    },
+    {
+      "bytes": 13084,
+      "end": "0x80024BF0",
+      "functions": 62,
+      "graph": {
+        "cross_cluster_tail_edges": 61,
+        "excluded_tail_edges": 0,
+        "game_called_functions": 0,
+        "internal_fraction": 0.567376,
+        "internal_tail_edges": 80,
+        "static_edges": 0,
+        "total_tail_edges": 141
+      },
+      "id": "C14",
+      "name_prefix": "audio_command_handler",
+      "rationale": "0x80023E9C has a named MusyX macHandleActive source lead with 32-step cap, two-word commands and 7-bit opcode switch. It calls a dense contiguous handler set; exact handler names, N64 layout/version and original TU remain hypotheses.",
+      "reference_ids": [
+        "MUSYX_MACROS"
+      ],
+      "role": "MusyX sound-macro interpreter and handler family",
+      "start": "0x800218CC"
+    },
+    {
+      "bytes": 952,
+      "end": "0x80024FB0",
+      "functions": 4,
+      "graph": {
+        "cross_cluster_tail_edges": 0,
+        "excluded_tail_edges": 0,
+        "game_called_functions": 0,
+        "internal_fraction": null,
+        "internal_tail_edges": 0,
+        "static_edges": 1,
+        "total_tail_edges": 0
+      },
+      "id": "C15",
+      "name_prefix": "numeric_curve_utility",
+      "rationale": "Four adjacent bodies have named salApplyMatrix/salNormalizeVector/salCrossProduct/salInvertMatrix reference definitions and native arithmetic evidence. Inversion operation order is not fully compared. Source-lead annotations are per function; original TU remains unproved.",
+      "reference_ids": [
+        "MUSYX_MATH"
+      ],
+      "role": "MusyX matrix/vector sound-math helper candidates",
+      "start": "0x80024BF0"
+    },
+    {
+      "bytes": 4980,
+      "end": "0x80026360",
+      "functions": 25,
+      "graph": {
+        "cross_cluster_tail_edges": 11,
+        "excluded_tail_edges": 1,
+        "game_called_functions": 0,
+        "internal_fraction": 0.692308,
+        "internal_tail_edges": 27,
+        "static_edges": 13,
+        "total_tail_edges": 39
+      },
+      "id": "C16",
+      "name_prefix": "buffered_stream_service",
+      "rationale": "Ten roots reference 0x8002D480/0x8002D484; shared 0x80051200/0x80056230/0x800586A0, queue/cache calls and local helper chains. 0x80025F74 calls trailing packed decoder 0x800268D0. PI/cartridge identity is not established.",
+      "reference_ids": [
+        "ULTRA_QUEUE"
+      ],
+      "role": "Runtime buffered-stream/session management",
+      "start": "0x80024FB0"
+    },
+    {
+      "bytes": 5232,
+      "end": "0x800277D0",
+      "functions": 4,
+      "graph": {
+        "cross_cluster_tail_edges": 0,
+        "excluded_tail_edges": 0,
+        "game_called_functions": 0,
+        "internal_fraction": 1.0,
+        "internal_tail_edges": 3,
+        "static_edges": 1,
+        "total_tail_edges": 3
+      },
+      "id": "C17",
+      "name_prefix": "packed_stream_decoder",
+      "rationale": "Inventory-internal call chain 26360<-26558<-26640/268D0; independent native review observes bounded bit-field extraction and ring-buffer indexing, not a proved printf loop. Printf/string path is instead located in counted-static code (REFERENCES.md). Direct native calls from 26360/26558 reach at/beyond declared text_end and are missing from supplied call columns; external classification is required before matching.",
+      "reference_ids": [],
+      "role": "Packed-bitstream/table decoding candidate",
+      "start": "0x80026360"
+    }
+  ],
+  "excluded_ultralib": [
+    {
+      "address": "0x8000F3A4",
+      "size": 724
+    },
+    {
+      "address": "0x8000F680",
+      "size": 588
+    },
+    {
+      "address": "0x8000F9F0",
+      "size": 208
+    },
+    {
+      "address": "0x8000FAC0",
+      "size": 148
+    },
+    {
+      "address": "0x8000FB60",
+      "size": 36
+    },
+    {
+      "address": "0x8000FBA0",
+      "size": 260
+    },
+    {
+      "address": "0x8000FCB0",
+      "size": 184
+    },
+    {
+      "address": "0x8000FD70",
+      "size": 36
+    },
+    {
+      "address": "0x8000FDA0",
+      "size": 88
+    },
+    {
+      "address": "0x8000FE00",
+      "size": 344
+    },
+    {
+      "address": "0x8000FF60",
+      "size": 348
+    },
+    {
+      "address": "0x800100C0",
+      "size": 76
+    },
+    {
+      "address": "0x80010110",
+      "size": 76
+    },
+    {
+      "address": "0x80010160",
+      "size": 396
+    },
+    {
+      "address": "0x800102EC",
+      "size": 180
+    },
+    {
+      "address": "0x800103A0",
+      "size": 172
+    },
+    {
+      "address": "0x80014650",
+      "size": 44
+    },
+    {
+      "address": "0x80014BD8",
+      "size": 32
+    },
+    {
+      "address": "0x80014BF8",
+      "size": 32
+    },
+    {
+      "address": "0x800205E4",
+      "size": 32
+    },
+    {
+      "address": "0x8002517C",
+      "size": 44
+    }
+  ],
+  "identify_only_stubs": [
+    {
+      "address": "0x8000FB90",
+      "called_from_game": false,
+      "callees_static": [],
+      "callees_tail": [],
+      "callers_tail": [],
+      "hilo_refs": [],
+      "name": "func_8000FB90",
+      "rom": "0x10790",
+      "scope": "stub_unclassified",
+      "size": 12,
+      "size_band": "<64",
+      "start_evidence": [
+        "jal"
+      ],
+      "status": "excluded",
+      "symbol_addrs_name": "__osSetCompare",
+      "ultralib": []
+    },
+    {
+      "address": "0x80014CF4",
+      "called_from_game": false,
+      "callees_static": [],
+      "callees_tail": [],
+      "callers_tail": [
+        "0x80017108"
+      ],
+      "hilo_refs": [],
+      "name": "func_80014CF4",
+      "rom": "0x158F4",
+      "scope": "stub_unclassified",
+      "size": 8,
+      "size_band": "<64",
+      "start_evidence": [
+        "jal",
+        "empty_function"
+      ],
+      "status": "excluded",
+      "symbol_addrs_name": null,
+      "ultralib": []
+    },
+    {
+      "address": "0x80014CFC",
+      "called_from_game": false,
+      "callees_static": [],
+      "callees_tail": [],
+      "callers_tail": [
+        "0x800162AC"
+      ],
+      "hilo_refs": [],
+      "name": "func_80014CFC",
+      "rom": "0x158FC",
+      "scope": "stub_unclassified",
+      "size": 12,
+      "size_band": "<64",
+      "start_evidence": [
+        "jal"
+      ],
+      "status": "excluded",
+      "symbol_addrs_name": null,
+      "ultralib": []
+    },
+    {
+      "address": "0x80014D08",
+      "called_from_game": false,
+      "callees_static": [],
+      "callees_tail": [],
+      "callers_tail": [
+        "0x800163A8"
+      ],
+      "hilo_refs": [],
+      "name": "func_80014D08",
+      "rom": "0x15908",
+      "scope": "stub_unclassified",
+      "size": 12,
+      "size_band": "<64",
+      "start_evidence": [
+        "jal"
+      ],
+      "status": "excluded",
+      "symbol_addrs_name": null,
+      "ultralib": []
+    },
+    {
+      "address": "0x80014D14",
+      "called_from_game": false,
+      "callees_static": [],
+      "callees_tail": [],
+      "callers_tail": [
+        "0x8001A658"
+      ],
+      "hilo_refs": [],
+      "name": "func_80014D14",
+      "rom": "0x15914",
+      "scope": "stub_unclassified",
+      "size": 8,
+      "size_band": "<64",
+      "start_evidence": [
+        "jal",
+        "empty_function"
+      ],
+      "status": "excluded",
+      "symbol_addrs_name": null,
+      "ultralib": []
+    },
+    {
+      "address": "0x8001E0D4",
+      "called_from_game": false,
+      "callees_static": [],
+      "callees_tail": [],
+      "callers_tail": [
+        "0x80010980",
+        "0x800109C0"
+      ],
+      "hilo_refs": [],
+      "name": "func_8001E0D4",
+      "rom": "0x1ECD4",
+      "scope": "stub_unclassified",
+      "size": 8,
+      "size_band": "<64",
+      "start_evidence": [
+        "jal",
+        "empty_function"
+      ],
+      "status": "excluded",
+      "symbol_addrs_name": null,
+      "ultralib": []
+    }
+  ],
+  "matching_blockers": {
+    "0x80010450": "Direct jal reaches at/beyond declared text_end; maintainer must classify target (opcode_audit.json); no out-of-range bytes inspected.",
+    "0x80012234": "Direct jal reaches at/beyond declared text_end; maintainer must classify target (opcode_audit.json); no out-of-range bytes inspected.",
+    "0x80012730": "Direct jal reaches at/beyond declared text_end; maintainer must classify target (opcode_audit.json); no out-of-range bytes inspected.",
+    "0x80012D18": "Direct jal reaches at/beyond declared text_end; maintainer must classify target (opcode_audit.json); no out-of-range bytes inspected.",
+    "0x80026360": "Direct jal reaches at/beyond declared text_end; maintainer must classify target (opcode_audit.json); no out-of-range bytes inspected.",
+    "0x80026558": "Direct jal reaches at/beyond declared text_end; maintainer must classify target (opcode_audit.json); no out-of-range bytes inspected.",
+    "0x80026640": "Depends on 0x80026558 with unclassified out-of-census callees; resolve boundary/callee classification before decoder matching.",
+    "0x800268D0": "Depends on 0x80026558 with unclassified out-of-census callees; resolve boundary/callee classification before decoder matching."
+  },
+  "method": {
+    "barriers": [
+      "0x8000F8D0",
+      "0x80010450",
+      "0x80024BF0",
+      "0x80024FB0",
+      "0x80026360",
+      "0x800277D0"
+    ],
+    "denominator": "all outgoing distinct tail edges including excluded/stub destinations; static edges reported separately",
+    "input": "inventory jal/hi-lo scan, historical static symbol labels, reviewed cohort rationale",
+    "intervals": "half-open; bytes sum function extents, never interval spans",
+    "limitation": "metadata-only dependency partitions; no source/TU/ABI/native-match proof",
+    "merge_trace": [
+      {
+        "left": [
+          "C02"
+        ],
+        "reason": "leftmost mergeable cohort below 50% internal tail edges",
+        "right": [
+          "C03"
+        ]
+      },
+      {
+        "left": [
+          "C02",
+          "C03"
+        ],
+        "reason": "leftmost mergeable cohort below 50% internal tail edges",
+        "right": [
+          "C04"
+        ]
+      },
+      {
+        "left": [
+          "C06"
+        ],
+        "reason": "leftmost mergeable cohort below 50% internal tail edges",
+        "right": [
+          "C07"
+        ]
+      },
+      {
+        "left": [
+          "C05"
+        ],
+        "reason": "leftmost mergeable cohort below 50% internal tail edges",
+        "right": [
+          "C06",
+          "C07"
+        ]
+      },
+      {
+        "left": [
+          "C08"
+        ],
+        "reason": "leftmost mergeable cohort below 50% internal tail edges",
+        "right": [
+          "C09"
+        ]
+      },
+      {
+        "left": [
+          "C08",
+          "C09"
+        ],
+        "reason": "leftmost mergeable cohort below 50% internal tail edges",
+        "right": [
+          "C10"
+        ]
+      },
+      {
+        "left": [
+          "C05",
+          "C06",
+          "C07"
+        ],
+        "reason": "leftmost mergeable cohort below 50% internal tail edges",
+        "right": [
+          "C08",
+          "C09",
+          "C10"
+        ]
+      },
+      {
+        "left": [
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09",
+          "C10"
+        ],
+        "reason": "leftmost mergeable cohort below 50% internal tail edges",
+        "right": [
+          "C11"
+        ]
+      },
+      {
+        "left": [
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09",
+          "C10",
+          "C11"
+        ],
+        "reason": "leftmost mergeable cohort below 50% internal tail edges",
+        "right": [
+          "C12"
+        ]
+      }
+    ],
+    "merging": "leftmost under-50%-internal run, choose adjacent permitted merge maximizing rounded internal fraction, then fewer in-scope bytes, then lower-address neighbor; repeat"
+  },
+  "provenance": {
+    "base_commit": "b16dd93ba51ac3e04e8332b1f710337b5b2fbd8f",
+    "compiler_used": false,
+    "inputs_sha256": {
+      "cloud/work/boot_tail/research.json": "230075b3802835136c939d0c23951b0f3ccf0dee027027094b2603c5ae3b71f2",
+      "specs/015-boot-tail-runtime/inventory.json": "09dd150e3bdd66123b24e42aa5d152c20559890e7ee15a476396b47a0cf02953",
+      "symbol_addrs.us.txt": "10ab79765c76276b2c4c0a0468ae609ea5f34eae27db0a8e1cfbe6853c0365a4"
+    },
+    "inventory_spec_commit": "92e91f12",
+    "rom_used": false,
+    "scoring_used": false
+  },
+  "schema_version": 1,
+  "summary": {
+    "all_tail_distinct_directed_edges": 671,
+    "cluster_count": 8,
+    "cohort_count": 17,
+    "game_called_all_inventory": 21,
+    "game_called_in_scope": 20,
+    "identify_only_stub_bytes": 60,
+    "identify_only_stubs": 6,
+    "in_scope_bytes": 95012,
+    "in_scope_functions": 412,
+    "inventory_function_bytes": 99120,
+    "inventory_functions": 439,
+    "new_verified_bytes": 0,
+    "new_verified_functions": 0,
+    "non_c_functions": 0,
+    "open_bytes": 95000,
+    "open_functions": 411,
+    "preexisting_verified_bytes": 12,
+    "preexisting_verified_functions": 1,
+    "ultralib_excluded_bytes": 4048,
+    "ultralib_excluded_functions": 21
+  }
+}
