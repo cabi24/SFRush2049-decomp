@@ -13,6 +13,7 @@ import sys
 
 REPO = Path(__file__).resolve().parents[2]
 FLAGS = re.compile(r"/\* flags: (.+?) \*/")
+RUNTIME_IMAGES = ("ovl_a", "ovl_b")
 
 
 def git(repo, *args):
@@ -45,6 +46,10 @@ def commands(repo, paths):
         parts = PurePosixPath(name).parts
         if len(parts) == 3 and parts[:2] == ("cloud", "matches") and name.endswith(".c"):
             singles.add(name)
+        # Runtime images at 0x8038A400: cloud/matches/ovl_a/<fn>.c, cloud/matches/ovl_b/<fn>.c.
+        if (len(parts) == 4 and parts[:2] == ("cloud", "matches")
+                and parts[2] in RUNTIME_IMAGES and name.endswith(".c")):
+            singles.add(name)
         if len(parts) >= 5 and parts[:3] == ("cloud", "work", "ipa-groups"):
             groups.add("/".join(parts[:4]))
     scorer = str(repo / "tools/cloud/score.py")
@@ -58,8 +63,12 @@ def commands(repo, paths):
             header = FLAGS.fullmatch(stream.readline().rstrip("\r\n"))
         if not header or not header[1].strip():
             raise ValueError(f"{name}: line 1 must be /* flags: <IDO flags> */")
-        yield [sys.executable, scorer, "fn", str(source), source.stem,
+        job = [sys.executable, scorer, "fn", str(source), source.stem,
                "--flags=" + header[1]]
+        image = PurePosixPath(name).parts[2] if len(PurePosixPath(name).parts) == 4 else None
+        if image:
+            job.append("--targets=" + str(repo / "asm" / "us" / image))
+        yield job
     for name in sorted(groups):
         directory = repo / name
         if not directory.exists():

@@ -85,11 +85,51 @@ ccccccccccccc.c..cccccccccccccccccccccccccccc..ccccccccccccccccccccccccccccccccc
   only) through the layout tooling, as a reviewed denominator change. The
   numbers above are evidence, not a new metric.
 
+## 4. Scoreable targets (added)
+
+`python3 -m tools.conveyor.pipeline.ovl_targets generate` writes
+`asm/us/ovl_a/` and `asm/us/ovl_b/` (region `.s`, `symbols.json`,
+`extents.json`, `SHA256SUMS`). Output is deterministic: a regenerate is
+byte-identical. Score with `tools/cloud/score.py fn SRC NAME --targets asm/us/ovl_b`.
+CI rescores `cloud/matches/ovl_a/*.c` and `cloud/matches/ovl_b/*.c` against
+their own image.
+
+| | A | B |
+|---|---:|---:|
+| Functions | 192 | 49 |
+| Text bytes | 152,952 | 38,708 |
+| Empty functions (`jr ra; nop`) | 63 | 10 |
+| Switch tables recognised | 25 | 6 |
+| Unproven merges | 1 (`0x8038FF90`; see `extents.json`) | 0 |
+| Call targets landing inside a function | 0 | 0 |
+
+Every function records its start evidence (`jal`, `game_jal`, `prologue`,
+`hilo_ref`, `data_ref`, `empty_function`, `image_base`). No switch destination
+is a function start. `0x8038A400` is a tile start in both images. The game
+calls it from `state_exit_handler` (image A per section 2), so treat B's entry
+in `game_calls_here` as non-evidence.
+
+**First true matches** (strict relocated equality through the scorer, IDO 5.3,
+`-g0 -O2 -mips2 -G 0 -non_shared`; `cloud/matches/ovl_*`):
+
+| Image | Function | Bytes | What it does |
+|---|---|---:|---|
+| B | `func_8038D1A8` | 88 | two `struct_fields_init` pool setups in B's BSS |
+| B | `func_80391490` | 24 | `D_80399AE0++` (s8); R16 service called by `func_8010D3C0` |
+| B | `func_803914A8` | 12 | `D_80399AE0 = 0`; called by `camera_lerp_position` |
+| A | `func_80398BF0` | 68 | linked-list find by byte id in slot `D_80144D68[D_803B9BBA]` |
+| A | `func_8039A24C` | 84 | `func_800A361C(x) || (D_803B46B4 == 2 && func_800A35F8(x))` |
+
+The 73 empty functions also match `void f(void) {}`. They are not submitted
+individually. None of this is cartridge coverage yet: integrating C into the
+runtime images needs an image build plus exact recompression of each ROM
+stream, the analogue of `blob_rom`.
+
 ## Next actions
 
-1. Extract image-qualified targets (`A_8038xxxx`/`B_8038xxxx`) with function
-   boundaries from call targets plus prologue scan. Extend the scorer for a
-   second and third image base.
-2. Census `0x8000F400–~0x80028000` functions against the libultra corpus
-   (expected high yield for library matches).
-3. Write B's contracts for `8038D798`, `8038D3A4` and `8039133C` (R03/R06).
+1. Integration path for the runtime images: link the image from targets and C,
+   recompress to the exact ROM stream (`deflate104`), and compose it into the
+   ROM. This mirrors `blob_rom`. After that, protect `asm/us/ovl_*` in
+   `guard_paths.py` like `asm/us/blob/`.
+2. Census `0x8000F400–~0x80028000` functions against the libultra corpus.
+3. Write B's contracts for `8038D798`, `8038D3A4` and `8039133C` (see #53).
