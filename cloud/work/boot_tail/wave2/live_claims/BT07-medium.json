@@ -1,0 +1,43 @@
+{
+  "state": "active",
+  "owner": "/root/match_boot_tail_bt07_medium",
+  "packet": "BT07-medium",
+  "branch": "dot/boot-tail-bt07-medium",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x800250AC",
+      "size": 68,
+      "end_exclusive": "0x800250F0"
+    },
+    {
+      "address": "0x800251A8",
+      "size": 188,
+      "end_exclusive": "0x80025264"
+    },
+    {
+      "address": "0x80025264",
+      "size": 72,
+      "end_exclusive": "0x800252AC"
+    },
+    {
+      "address": "0x80025EB0",
+      "size": 196,
+      "end_exclusive": "0x80025F74"
+    },
+    {
+      "address": "0x800262BC",
+      "size": 108,
+      "end_exclusive": "0x80026328"
+    },
+    {
+      "address": "0x80024FD4",
+      "size": 152,
+      "end_exclusive": "0x8002506C"
+    }
+  ],
+  "bytes": 784,
+  "prior_packet": "BT07-small is peer-approved and frozen475cc7ec",
+  "edit_scope": "Only listed match sources and cloud/work/boot_tail/BT07-medium/**",
+  "stop": "Natural C89, real call ABI, exact extents and strict O2/O1 scoring;20 directed variants maximum; no protected edits, overlaps or reopening frozen residuals."
+}

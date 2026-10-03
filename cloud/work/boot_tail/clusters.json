@@ -136,7 +136,7 @@
         "end_exclusive": "0x80014550",
         "start": "0x80010450"
       },
-      "matching_order": 4,
+      "matching_order": 3,
       "members": [
         "0x80010450",
         "0x800105C4",
@@ -458,13 +458,13 @@
         "0x80012660",
         "0x80013C84",
         "0x80014374",
-        "0x80010980",
-        "0x800109C0",
         "0x80010840",
         "0x800108E0",
         "0x80011C84",
         "0x80010D74",
-        "0x80011910"
+        "0x80011910",
+        "0x80013D70",
+        "0x80014434"
       ],
       "static_call_leads": [
         {
@@ -1597,16 +1597,16 @@
         }
       ],
       "small_first_candidates": [
-        "0x80023D70",
-        "0x80021F08",
-        "0x80021BF0",
-        "0x80022514",
-        "0x80022C58",
         "0x80021CDC",
         "0x80021C58",
         "0x80022324",
         "0x800230B0",
-        "0x80023DB8"
+        "0x80023DB8",
+        "0x80021DF8",
+        "0x80021E74",
+        "0x80021D5C",
+        "0x8002300C",
+        "0x8002279C"
       ],
       "static_call_leads": []
     },
@@ -1634,7 +1634,7 @@
         "end_exclusive": "0x80024FB0",
         "start": "0x80024BF0"
       },
-      "matching_order": 3,
+      "matching_order": 2,
       "members": [
         "0x80024BF0",
         "0x80024C9C",
@@ -1691,7 +1691,7 @@
         "end_exclusive": "0x80026360",
         "start": "0x80024FB0"
       },
-      "matching_order": 2,
+      "matching_order": 4,
       "members": [
         "0x80024FB0",
         "0x80024FD4",
@@ -1846,16 +1846,12 @@
         }
       ],
       "small_first_candidates": [
-        "0x800262BC",
-        "0x800251A8",
-        "0x80025264",
         "0x800255F0",
-        "0x80024FD4",
         "0x8002506C",
         "0x80025594",
         "0x80025670",
         "0x80025DC0",
-        "0x800250AC"
+        "0x800254D4"
       ],
       "static_call_leads": [
         {
@@ -2652,7 +2648,7 @@
     "base_commit": "b16dd93ba51ac3e04e8332b1f710337b5b2fbd8f",
     "compiler_used": false,
     "inputs_sha256": {
-      "cloud/work/boot_tail/research.json": "182e5ee903adce24888aa00572789b30bc3a46867facc6e2ccddbe1e8416f133",
+      "cloud/work/boot_tail/research.json": "c044f6d03a5895cdac85849c45b6a35611eae98984052cde55166376c05e3ea5",
       "specs/015-boot-tail-runtime/inventory.json": "09dd150e3bdd66123b24e42aa5d152c20559890e7ee15a476396b47a0cf02953",
       "symbol_addrs.us.txt": "10ab79765c76276b2c4c0a0468ae609ea5f34eae27db0a8e1cfbe6853c0365a4"
     },
@@ -2663,8 +2659,8 @@
   "schema_version": 1,
   "summary": {
     "all_tail_distinct_directed_edges": 671,
-    "claimed_bytes": 4652,
-    "claimed_functions": 69,
+    "claimed_bytes": 5212,
+    "claimed_functions": 62,
     "cluster_count": 8,
     "cohort_count": 17,
     "game_called_all_inventory": 21,
@@ -2675,13 +2671,13 @@
     "in_scope_functions": 412,
     "inventory_function_bytes": 99120,
     "inventory_functions": 439,
-    "new_verified_bytes": 1332,
-    "new_verified_functions": 42,
+    "new_verified_bytes": 3060,
+    "new_verified_functions": 73,
     "non_c_functions": 0,
-    "nonmatch_bytes": 1560,
-    "nonmatch_functions": 25,
-    "open_bytes": 87456,
-    "open_functions": 275,
+    "nonmatch_bytes": 2184,
+    "nonmatch_functions": 32,
+    "open_bytes": 84544,
+    "open_functions": 244,
     "preexisting_verified_bytes": 12,
     "preexisting_verified_functions": 1,
     "ultralib_excluded_bytes": 4048,

@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "reviewer": "BT07-small peer reviewer",
+  "reviewed_commit": "5797d6d2f0aa9310d05c663e6ba0a3c518511659",
+  "reviewed_tree": "deb30871a5606ed1b24e8f83d88539f886a74e06",
+  "matching_bodies": 6,
+  "matching_bytes": 200,
+  "nonmatching_bodies": 1,
+  "nonmatching_bytes": 48,
+  "source_hashes": {
+    "cloud/matches/boot_tail/func_80015574.c": "826d3348e2ac92f8069bc6b9e3fc7b2494d151dba20f8b475d332da5b44d0750",
+    "cloud/work/boot_tail/BT03-low-C/func_800156E8.c": "f15300107db9d118c70900d170edf925a11fe7d95dbd7830c09bd475ebb29377",
+    "cloud/matches/boot_tail/func_80016BF8.c": "13021bd7f3369ec8f0e373926f9132e8177635ddbd68e5e89fab134b0026fa71",
+    "cloud/matches/boot_tail/func_80016CE0.c": "d9ae746e6e14cb30655bbb3e146046b29443ecd561ddb99f588476880a6a5946",
+    "cloud/matches/boot_tail/func_80016E40.c": "159ac9f15220c23fcc0ac96a4c4020ed71bb4b94481e71c8eb05d1668fc03203",
+    "cloud/matches/boot_tail/func_80016F58.c": "5d3356cb1c526d86e35d8831e293dd0bf61adcc1ccdcc407bfc28e96b2055748",
+    "cloud/matches/boot_tail/func_80017018.c": "7fe308c93655f7d8fdd9040044825430393f59968cbc89d3a48d44af28d6e2b1"
+  },
+  "target_manifest_sha256": "6bd3e6ef05e6123e4ea4dd0d814c0abb16f202a91d8d0a381eca14322c8a36d5",
+  "scorer_sha256": "9de8385b28938c012ba679ea1f899cd7e5fe351d2c51129c5319442c84b679c4",
+  "compiler_pin_sha256": "8ca550d30c1fef7c14b1470a1ef93cc6d415a507c6e18c04a7bfeaf8016a7b89",
+  "checks": {
+    "all_three_manifest_entries": "PASS",
+    "439_extent_equality_99120_bytes": "PASS",
+    "preexisting_getter": "strict MATCH",
+    "actual_final_source_replay": "exact equality with committed verification.json",
+    "six_submissions": "strict MATCH at O2 and O1 with zero extras/unresolved/unverified/errors",
+    "archived_800156E8": "8/12 words and 1 excess at O2; 8/12 and 3 excess at O1; no credit",
+    "c89_host_semantics": "PASS for all seven actual sources",
+    "check_submissions": "PASS for six changed matches",
+    "whole_body_and_abi_review": "PASS",
+    "protected_path_scope": "PASS",
+    "diff_check": "PASS after metadata-only LF normalization",
+    "clean_worktree": "PASS"
+  },
+  "abi_findings": [
+    "80015574 explicitly homes all four incoming argument words and returns zero; its four unused formals are genuine.",
+    "Four packed comparators reconstruct unsigned big-endian halfword values using byte loads, then return signed subtraction in the safe int range. The three +4 prefixes and leading-key +0 view match native field positions; pragma packing is a natural alignment declaration.",
+    "80016CE0 uses two aligned unsigned halfword loads; no packed type was applied.",
+    "800156E8 forwards the two narrowed IDs, two opaque word arguments and zero fifth flag; complete callee8001558C consumes/forwards the fields and checks the flag. Caller80019490 consumes its integer/-1 result.",
+    "No fake parameters, padding locals, inline assembly, callee implementations or modified scorer/targets were found. The complete nonmatch remains outside matching submissions."
+  ],
+  "limitations": [
+    "Independent review establishes source/native equality and documented ABI evidence only.",
+    "Exact aggregate-head CI remains required; no cartridge or integration claim.",
+    "Opaque word semantics and original comparator type identities remain unresolved."
+  ]
+}

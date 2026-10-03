@@ -1,0 +1,75 @@
+{
+  "result": "PASS",
+  "reviewer": "C13 independent reviewer",
+  "reviewed_commit": "47243f5bcd516d57dbf9254773e6c0cdcdffaf2a",
+  "reviewed_tree": "e5c228f10b11b28d09cb9e9725aaf9af05e46a88",
+  "verified_body_bytes": 140,
+  "matching_functions": 2,
+  "nonmatching_functions": 4,
+  "nonmatching_bytes": 328,
+  "score_receipt_sha256": "f60a43be9440784ef69e22bda55c7405567d3a053adc32e4614ab601a0aac22d",
+  "strict_replay": "All 12 final O2/O1 rows reproduced byte-identically. Both submitted O2 functions separately checked for full relocated word equality with zero masking, unverified/unresolved/errors, and only zero alignment padding. O1 controls are rejected.",
+  "source_abi_review": "Both actual sources reviewed against all native instructions: unsigned sorted-list lookup with packed next+0/key+8 and sentinel/value wrapper using signed value+12. Minimum shared prefix and single key input are natural; no fake locals/formals/callee bodies. All four complete nonmatch reconstructions checked against whole native operations; residuals remain honestly rejected.",
+  "scope": "Only two submitted C files and the owned packet directory differ from 301d9e75. Protected-path guard and base-to-head whitespace pass. No target/tool/lock/layout/shared-ledger changes.",
+  "host_semantics": {
+    "result": "PASS",
+    "queries": 84,
+    "functions_exercised": 2,
+    "host_pointer_bits": 64,
+    "scope": "Host logical list behavior only; native +0/+8/+12 field layout is separately confirmed by whole-body IDO target equality."
+  },
+  "matches": [
+    {
+      "name": "func_8001EAA0",
+      "level": 2,
+      "differing": 0,
+      "total": 19,
+      "extra": 0,
+      "object_bytes": 80,
+      "source_sha256": "bc2a92d1ff4f55b77c1feefe912a70ce25f1f76379f0190859d8b547a03de97c",
+      "full_exact": true,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "name": "func_8001EAA0",
+      "level": 1,
+      "differing": 19,
+      "total": 19,
+      "extra": 8,
+      "object_bytes": 112,
+      "source_sha256": "bc2a92d1ff4f55b77c1feefe912a70ce25f1f76379f0190859d8b547a03de97c",
+      "full_exact": false,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "name": "func_8001EDF4",
+      "level": 2,
+      "differing": 0,
+      "total": 16,
+      "extra": 0,
+      "object_bytes": 64,
+      "source_sha256": "cb8207ea94998409dc92ab9edaf5e25bca6d9b6b136d5c0a1232746f60cd8bf5",
+      "full_exact": true,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "name": "func_8001EDF4",
+      "level": 1,
+      "differing": 16,
+      "total": 16,
+      "extra": 4,
+      "object_bytes": 96,
+      "source_sha256": "cb8207ea94998409dc92ab9edaf5e25bca6d9b6b136d5c0a1232746f60cd8bf5",
+      "full_exact": false,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    }
+  ]
+}
