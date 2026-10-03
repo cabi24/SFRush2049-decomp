@@ -320,3 +320,15 @@ outside match credit. No already-attempted address is counted twice. See
 wave5/README.md and wave5/unique_totals.json. Later sources are excluded from
 this frozen cut; atomic successor claims do not confer matching credit. D10 is
 unchanged and the allowed ledger/receipts remain authoritative.
+
+## Sixth cut: nine additional bodies and bounded research
+
+The first five source cuts now have 148 unique new exact-CI-verified bodies /
+10,484 B. Sixth cut adds nine peer-reviewed strict local bodies / 752 B, pending
+its exact-head CI. It also archives six complete nonmatches / 1,984 B. Across
+208 unique attempted addresses the proposed union is 157 new matching bodies /
+11,236 B, 50 complete nonmatches / 5,744 B, and the earlier 96-byte blocked lead.
+The 12-byte getter is separate. Three qualified source-led rechecks add no unique
+attempts or matches; the improved signed donor probe does not replace the old
+full-width reconstruction. See wave6/README.md and wave6/unique_totals.json.
+Prior source-head proof is carried in wave5/ci.json; D10 remains unchanged.

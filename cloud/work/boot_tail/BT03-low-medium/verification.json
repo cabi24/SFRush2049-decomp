@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "base_commit": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "target_manifest_sha256": "6bd3e6ef05e6123e4ea4dd0d814c0abb16f202a91d8d0a381eca14322c8a36d5",
+  "scorer_sha256": "9de8385b28938c012ba679ea1f899cd7e5fe351d2c51129c5319442c84b679c4",
+  "compiler_pin_sha256": "8ca550d30c1fef7c14b1470a1ef93cc6d415a507c6e18c04a7bfeaf8016a7b89",
+  "census_functions": 439,
+  "census_bytes": 99120,
+  "results": [
+    {
+      "name": "func_80014550",
+      "native_bytes": 68,
+      "target_words_sha256": "65817eea1a57614c01f316eeca8d88fbe747f95d30584927c2f4a16203906bea",
+      "source_path": "cloud/matches/boot_tail/func_80014550.c",
+      "source_sha256": "6f11fc58ffd387940f871f8b35167fe35d4761f5db48f2dc5e07f6ff2b69b8ab",
+      "trials": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "object_sha256": "a2862e7e8eceff3c8fb46b2fac511d375cf2e05f450f340a364564b31de0ba6d",
+          "candidate_text_words": 20,
+          "differing_words": 0,
+          "total_words": 17,
+          "extra_words": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "strict_match": true,
+          "relocation_masks": 0,
+          "sole_body_symbol": true
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "object_sha256": "a2862e7e8eceff3c8fb46b2fac511d375cf2e05f450f340a364564b31de0ba6d",
+          "candidate_text_words": 20,
+          "differing_words": 0,
+          "total_words": 17,
+          "extra_words": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "strict_match": true,
+          "relocation_masks": 0,
+          "sole_body_symbol": true
+        }
+      ],
+      "selected_flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+    },
+    {
+      "name": "func_80014594",
+      "native_bytes": 72,
+      "target_words_sha256": "331cb0510e6460f03030ae187867724956a5bfaa67e57d8b6c4ffa0573514adb",
+      "source_path": "cloud/matches/boot_tail/func_80014594.c",
+      "source_sha256": "a3d3a3f149c25d21e4d981f5295552aa6d248405856a4d63c453792944dc1969",
+      "trials": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "object_sha256": "a9f4da398e4b23ac0e00c3fadd32d33efdb24fa1c96c22a4847b144209c886fe",
+          "candidate_text_words": 20,
+          "differing_words": 0,
+          "total_words": 18,
+          "extra_words": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "strict_match": true,
+          "relocation_masks": 0,
+          "sole_body_symbol": true
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "object_sha256": "93ce532e08d49ffbfb9a234d6ab01ceebf254734d518c212b0022d94de76a3ae",
+          "candidate_text_words": 20,
+          "differing_words": 15,
+          "total_words": 18,
+          "extra_words": 1,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "strict_match": false,
+          "relocation_masks": 0,
+          "sole_body_symbol": true
+        }
+      ],
+      "selected_flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+    },
+    {
+      "name": "func_800145DC",
+      "native_bytes": 72,
+      "target_words_sha256": "5e452cf9053364ace8705b9905d40c6aaea330d12bb2d090cafb76b43fc6d857",
+      "source_path": "cloud/matches/boot_tail/func_800145DC.c",
+      "source_sha256": "650fffe971a30e784395d3fc199b2d5e99b5cda77cc49c5d8522b8b742e1e098",
+      "trials": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "object_sha256": "f87dd3167fb754846e4830b671575b4ea0fbff552c65cbb0147a4b99d7af14d5",
+          "candidate_text_words": 20,
+          "differing_words": 0,
+          "total_words": 18,
+          "extra_words": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "strict_match": true,
+          "relocation_masks": 0,
+          "sole_body_symbol": true
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "object_sha256": "223e2102e95810d389024c3c2881a453bbe76fa1df7b929e91d567f12c1fc881",
+          "candidate_text_words": 20,
+          "differing_words": 18,
+          "total_words": 18,
+          "extra_words": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "strict_match": false,
+          "relocation_masks": 0,
+          "sole_body_symbol": true
+        }
+      ],
+      "selected_flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+    },
+    {
+      "name": "func_8001489C",
+      "native_bytes": 92,
+      "target_words_sha256": "a1d3ccb5aa12d8c0ed1424518e3f6f2997e0acd95ddb859b7f548c15fe136f29",
+      "source_path": "cloud/work/boot_tail/BT03-low-medium/func_8001489C.c",
+      "source_sha256": "83843e00375a6256295c59e6b410207425f0fee7a557fe923c27f2bb6f3487bd",
+      "trials": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "object_sha256": "4830e19b987a8868a24f031f695284d599f4ff7a9288ec345a3daa720fc04494",
+          "candidate_text_words": 24,
+          "differing_words": 11,
+          "total_words": 23,
+          "extra_words": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "strict_match": false,
+          "relocation_masks": 0,
+          "sole_body_symbol": true
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "object_sha256": "5a5d13bbfa7b966fe123d6779ab38d6e3ca60926a79324b9b4c78dbf894eab9b",
+          "candidate_text_words": 32,
+          "differing_words": 22,
+          "total_words": 23,
+          "extra_words": 8,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "strict_match": false,
+          "relocation_masks": 0,
+          "sole_body_symbol": true
+        }
+      ],
+      "selected_flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+    },
+    {
+      "name": "func_80014AF0",
+      "native_bytes": 76,
+      "target_words_sha256": "a73a1150b9ee51ca62257d2c15768acaa3523d9cd73cf21e39c6b05122199a36",
+      "source_path": "cloud/matches/boot_tail/func_80014AF0.c",
+      "source_sha256": "fca8d8f42508216a81a7e666a45dc084977aa795f93dc03ace0a2d8b8c88d9a0",
+      "trials": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "object_sha256": "1191e79a43477d9870026a2eb4c4541734f00dcafcecdc081c114c8773ba03db",
+          "candidate_text_words": 20,
+          "differing_words": 0,
+          "total_words": 19,
+          "extra_words": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "strict_match": true,
+          "relocation_masks": 0,
+          "sole_body_symbol": true
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "object_sha256": "e406d185f94617516436cdcd46670b3efa2fee26375a6cf7d7f46e6d0cc9cedd",
+          "candidate_text_words": 32,
+          "differing_words": 19,
+          "total_words": 19,
+          "extra_words": 10,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "strict_match": false,
+          "relocation_masks": 0,
+          "sole_body_symbol": true
+        }
+      ],
+      "selected_flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+    },
+    {
+      "name": "func_80014CAC",
+      "native_bytes": 72,
+      "target_words_sha256": "a9db250f51a3f7d528eb78825593da54ffc61132c5cb3d21eb6a5c26d6904fa5",
+      "source_path": "cloud/matches/boot_tail/func_80014CAC.c",
+      "source_sha256": "64a28a6a177039b2983146b3dc29130e6919a6aadd816114903a3ce63b8b96c1",
+      "trials": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "object_sha256": "e8bdf3fe4226027683681e9e07c719377a2659f406bab2dc7cefa6956bb40076",
+          "candidate_text_words": 20,
+          "differing_words": 0,
+          "total_words": 18,
+          "extra_words": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "strict_match": true,
+          "relocation_masks": 0,
+          "sole_body_symbol": true
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "object_sha256": "93ad1088be511c30f465aa5715ed047eaeb4ea3f9256f716988f5f44c058eba4",
+          "candidate_text_words": 24,
+          "differing_words": 17,
+          "total_words": 18,
+          "extra_words": 4,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "strict_match": false,
+          "relocation_masks": 0,
+          "sole_body_symbol": true
+        }
+      ],
+      "selected_flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+    }
+  ],
+  "existing_getter_strict_match": true,
+  "strict_match_functions": 5,
+  "strict_match_bytes": 360,
+  "complete_nonmatch_functions": 1,
+  "complete_nonmatch_bytes": 92
+}

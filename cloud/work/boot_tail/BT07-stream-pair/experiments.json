@@ -1,0 +1,654 @@
+[
+  {
+    "address": "80025AB4",
+    "label": "initial",
+    "optimization": 2,
+    "differing": 99,
+    "total": 109,
+    "extra_words": 3,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "initial",
+    "optimization": 1,
+    "differing": 103,
+    "total": 109,
+    "extra_words": 9,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "initial",
+    "optimization": 2,
+    "differing": 126,
+    "total": 138,
+    "extra_words": 7,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "initial",
+    "optimization": 1,
+    "differing": 137,
+    "total": 138,
+    "extra_words": 32,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "positive-gates",
+    "optimization": 2,
+    "differing": 48,
+    "total": 109,
+    "extra_words": 1,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "positive-gates",
+    "optimization": 1,
+    "differing": 95,
+    "total": 109,
+    "extra_words": 9,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_80058690 at .text+0x1b0"
+    ],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "positive-gates",
+    "optimization": 2,
+    "differing": 120,
+    "total": 138,
+    "extra_words": 2,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "positive-gates",
+    "optimization": 1,
+    "differing": 136,
+    "total": 138,
+    "extra_words": 30,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "natural-counts",
+    "optimization": 2,
+    "differing": 48,
+    "total": 109,
+    "extra_words": 1,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "natural-counts",
+    "optimization": 1,
+    "differing": 95,
+    "total": 109,
+    "extra_words": 9,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_80058690 at .text+0x1b0"
+    ],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "natural-counts",
+    "optimization": 2,
+    "differing": 122,
+    "total": 138,
+    "extra_words": 5,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "natural-counts",
+    "optimization": 1,
+    "differing": 137,
+    "total": 138,
+    "extra_words": 30,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "shifted-size-indexed-loop",
+    "optimization": 2,
+    "differing": 48,
+    "total": 109,
+    "extra_words": 1,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "shifted-size-indexed-loop",
+    "optimization": 1,
+    "differing": 95,
+    "total": 109,
+    "extra_words": 9,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_80058690 at .text+0x1b0"
+    ],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "shifted-size-indexed-loop",
+    "optimization": 2,
+    "differing": 122,
+    "total": 138,
+    "extra_words": 3,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "shifted-size-indexed-loop",
+    "optimization": 1,
+    "differing": 137,
+    "total": 138,
+    "extra_words": 37,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "shared-state-byte-inputs",
+    "optimization": 2,
+    "differing": 64,
+    "total": 109,
+    "extra_words": 8,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_8002D484 at .text+0x1b0"
+    ],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "shared-state-byte-inputs",
+    "optimization": 1,
+    "differing": 95,
+    "total": 109,
+    "extra_words": 9,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_80058690 at .text+0x1b0"
+    ],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "shared-state-byte-inputs",
+    "optimization": 2,
+    "differing": 48,
+    "total": 138,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "shared-state-byte-inputs",
+    "optimization": 1,
+    "differing": 136,
+    "total": 138,
+    "extra_words": 28,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_80058688 at .text+0x224"
+    ],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "signed-count-local-order",
+    "optimization": 2,
+    "differing": 48,
+    "total": 109,
+    "extra_words": 1,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "signed-count-local-order",
+    "optimization": 1,
+    "differing": 95,
+    "total": 109,
+    "extra_words": 9,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_80058690 at .text+0x1b0"
+    ],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "signed-count-local-order",
+    "optimization": 2,
+    "differing": 44,
+    "total": 138,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "signed-count-local-order",
+    "optimization": 1,
+    "differing": 136,
+    "total": 138,
+    "extra_words": 28,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_80058688 at .text+0x224"
+    ],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "word-type-direct-count",
+    "optimization": 2,
+    "differing": 48,
+    "total": 109,
+    "extra_words": 1,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "word-type-direct-count",
+    "optimization": 1,
+    "differing": 95,
+    "total": 109,
+    "extra_words": 9,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_80058690 at .text+0x1b0"
+    ],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "word-type-direct-count",
+    "optimization": 2,
+    "differing": 59,
+    "total": 138,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "word-type-direct-count",
+    "optimization": 1,
+    "differing": 136,
+    "total": 138,
+    "extra_words": 26,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "hook-projection-rate-branches",
+    "optimization": 2,
+    "differing": 48,
+    "total": 109,
+    "extra_words": 1,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "hook-projection-rate-branches",
+    "optimization": 1,
+    "differing": 95,
+    "total": 109,
+    "extra_words": 9,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_80058690 at .text+0x1b0"
+    ],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "hook-projection-rate-branches",
+    "optimization": 2,
+    "differing": 95,
+    "total": 138,
+    "extra_words": 2,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "hook-projection-rate-branches",
+    "optimization": 1,
+    "differing": 136,
+    "total": 138,
+    "extra_words": 31,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "factor-first-default-rate",
+    "optimization": 2,
+    "differing": 48,
+    "total": 109,
+    "extra_words": 1,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "factor-first-default-rate",
+    "optimization": 1,
+    "differing": 95,
+    "total": 109,
+    "extra_words": 9,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_80058690 at .text+0x1b0"
+    ],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "factor-first-default-rate",
+    "optimization": 2,
+    "differing": 90,
+    "total": 138,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "factor-first-default-rate",
+    "optimization": 1,
+    "differing": 136,
+    "total": 138,
+    "extra_words": 27,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "signed-size-diagnostic-count-phases",
+    "optimization": 2,
+    "differing": 48,
+    "total": 109,
+    "extra_words": 1,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "signed-size-diagnostic-count-phases",
+    "optimization": 1,
+    "differing": 95,
+    "total": 109,
+    "extra_words": 9,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_80058690 at .text+0x1b0"
+    ],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "signed-size-diagnostic-count-phases",
+    "optimization": 2,
+    "differing": 44,
+    "total": 138,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "signed-size-diagnostic-count-phases",
+    "optimization": 1,
+    "differing": 136,
+    "total": 138,
+    "extra_words": 29,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "sequential-global-assignment-count-store",
+    "optimization": 2,
+    "differing": 48,
+    "total": 109,
+    "extra_words": 1,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "sequential-global-assignment-count-store",
+    "optimization": 1,
+    "differing": 95,
+    "total": 109,
+    "extra_words": 9,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_80058690 at .text+0x1b0"
+    ],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "sequential-global-assignment-count-store",
+    "optimization": 2,
+    "differing": 95,
+    "total": 138,
+    "extra_words": 2,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "sequential-global-assignment-count-store",
+    "optimization": 1,
+    "differing": 136,
+    "total": 138,
+    "extra_words": 27,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "byte-count-lifetimes-option-order",
+    "optimization": 2,
+    "differing": 45,
+    "total": 109,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "byte-count-lifetimes-option-order",
+    "optimization": 1,
+    "differing": 94,
+    "total": 109,
+    "extra_words": 11,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "byte-count-lifetimes-option-order",
+    "optimization": 2,
+    "differing": 44,
+    "total": 138,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "byte-count-lifetimes-option-order",
+    "optimization": 1,
+    "differing": 136,
+    "total": 138,
+    "extra_words": 27,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "distinct-size-local-rate-order",
+    "optimization": 2,
+    "differing": 48,
+    "total": 109,
+    "extra_words": 1,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "80025AB4",
+    "label": "distinct-size-local-rate-order",
+    "optimization": 1,
+    "differing": 96,
+    "total": 109,
+    "extra_words": 11,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "distinct-size-local-rate-order",
+    "optimization": 2,
+    "differing": 44,
+    "total": 138,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "address": "800252AC",
+    "label": "distinct-size-local-rate-order",
+    "optimization": 1,
+    "differing": 136,
+    "total": 138,
+    "extra_words": 28,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_80058688 at .text+0x224"
+    ],
+    "strict_match": false
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "target": "func_80023190",
+  "differing_words": 8,
+  "total_words": 35,
+  "old_best_differing_words": 18,
+  "source_sha256": "25db82273c9bac5a08c391bd2eefe0f15a09ccc233c90af12275db030228f015",
+  "diagnosis": {
+    "aligned_register": 8,
+    "aligned_schedule": 0,
+    "aligned_constant": 0,
+    "aligned_deletions": 0,
+    "aligned_insertions": 0,
+    "frame": null
+  },
+  "limitation": "Temporary target/candidate objects and raw disassembly were not published."
+}

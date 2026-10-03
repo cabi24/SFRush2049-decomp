@@ -1,0 +1,38 @@
+{
+  "state": "active",
+  "owner": "/root/verify_boot_tail_matches",
+  "packet": "BT03-low-followon",
+  "branch": "dot/boot-tail-bt03-low-followon",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x80014A0C",
+      "size": 104,
+      "end_exclusive": "0x80014A74"
+    },
+    {
+      "address": "0x80014A74",
+      "size": 124,
+      "end_exclusive": "0x80014AF0"
+    },
+    {
+      "address": "0x80014B3C",
+      "size": 116,
+      "end_exclusive": "0x80014BB0"
+    },
+    {
+      "address": "0x80014C60",
+      "size": 76,
+      "end_exclusive": "0x80014CAC"
+    },
+    {
+      "address": "0x80014E1C",
+      "size": 72,
+      "end_exclusive": "0x80014E64"
+    }
+  ],
+  "bytes": 492,
+  "prior_packet": "Prior editing packet frozen and peer-approved; central integration owns it.",
+  "edit_scope": "Only listed matching sources and cloud/work/boot_tail/BT03-low-followon/**",
+  "stop": "Natural C89, actual source/caller/callee ABI, O2 then O1 evidence, maximum 20 directed variants per hypothesis with diagnosis. No overlaps, protected edits, prior-target reopening or missing rodata substitutions. Use /tmp isolated worktree."
+}

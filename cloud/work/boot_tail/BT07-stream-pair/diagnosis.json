@@ -1,0 +1,33 @@
+{
+  "tool": "unmodified tools/workbench.py diagnose",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "native_target_object": "Private temporary object assembled from protected target words; no native bytes are published.",
+  "stages": [
+    "initial before refinement",
+    "positive-gates before further variants",
+    "signed-count-local-order before subsequent forms",
+    "final archived sources"
+  ],
+  "results": [
+    {
+      "address": "80025AB4",
+      "diagnostic_summary": [
+        "verdict=structure-mismatch aligned_total=  61 words=  46 raw=  76 opcodes=  38 gaps=   9 reloc_syms=  51 norm=  21 regs=  41 fp=   1 insns= 110 frame=  -32 sha1=bbb21e5f2155 [private candidate object] true_insn_delta=+1 geometry_edit_distance=21 opcode_distance=11",
+        "aligned residual classes: aligned_structural=11, aligned_register=12, aligned_constant=38",
+        "alignment gaps: insertions=5 deletions=4 (opcodes=38, words=46, raw=76)",
+        "raw difference classes: instruction_bits=46, relocation_layout=30"
+      ],
+      "interpretation": "Mixed scheduling/allocation and short structural residual; final strict scorer residual is authoritative. Temporary target object has no original ELF relocations."
+    },
+    {
+      "address": "800252AC",
+      "diagnostic_summary": [
+        "verdict=structure-mismatch aligned_total=  55 words=  44 raw=  68 opcodes=  42 gaps=  26 reloc_syms=  28 norm=  29 regs=  41 fp=   0 insns= 138 frame=  -72 sha1=f68379a65521 [private candidate object] true_insn_delta=+0 geometry_edit_distance=29 opcode_distance=28",
+        "aligned residual classes: aligned_structural=37, aligned_constant=18",
+        "alignment gaps: insertions=13 deletions=13 (opcodes=42, words=44, raw=68)",
+        "raw difference classes: instruction_bits=44, relocation_layout=24"
+      ],
+      "interpretation": "Mixed scheduling/allocation and short structural residual; final strict scorer residual is authoritative. Temporary target object has no original ELF relocations."
+    }
+  ]
+}

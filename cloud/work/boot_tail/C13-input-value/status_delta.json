@@ -1,0 +1,34 @@
+{
+  "packet": "D10-P5-C13-input-value",
+  "branch": "dot/boot-tail-p5-c13-input-value",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "attempted_functions": 1,
+  "attempted_bytes": 728,
+  "local_match_functions": 0,
+  "local_match_bytes": 0,
+  "nonmatch_functions": 1,
+  "nonmatch_bytes": 728,
+  "entries": [
+    {
+      "address": "0x80021150",
+      "name": "func_80021150",
+      "size": 728,
+      "cluster": "BT04",
+      "cohort": "C13",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 24,
+      "extra_words": 0,
+      "source_path": "cloud/work/boot_tail/C13-input-value/func_80021150_NONMATCH.c",
+      "source_sha256": "3708d1b9141834647e82ff757986e27e28be723f4bd1ca9fa3e649ccf3613b9a",
+      "note": "Full two-pointer input-value body; strict 24/182, zero excess/relocation uncertainty, native frame 88. Ten bounded forms; native/model/C semantics agree on 2427 supported-format fixtures. No match/coverage credit; next step authentic conversion/coalescing context."
+    }
+  ],
+  "source_review": {
+    "result": "PASS_FOR_COMPLETE_NONMATCH_RESEARCH",
+    "reviewed_commit": "80a70911dd839502111541b2e2e4973aeb7bc024",
+    "reviewed_tree": "90a241de6bb0cb4765ee3a264a8f105a5960110c",
+    "receipt": "cloud/work/boot_tail/C13-input-value/REVIEW.json"
+  }
+}

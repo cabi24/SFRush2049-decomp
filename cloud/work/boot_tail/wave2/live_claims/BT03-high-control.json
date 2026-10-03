@@ -1,5 +1,5 @@
 {
-  "state": "active",
+  "state": "integrating-source-frozen",
   "owner": "/root/match_boot_tail_bt03_high",
   "packet": "BT03-high-control",
   "branch": "dot/boot-tail-bt03-high-control",
@@ -39,5 +39,6 @@
   "bytes": 568,
   "prior_packet": "BT03-high-state frozen peer PASS14cbea74335afe3cb1c5cb50a2dc438fa6e40a37",
   "edit_scope": "Only listed matching files and cloud/work/boot_tail/BT03-high-control/**",
-  "stop": "Natural C89/O2/O1 real ABI,20 directed variants max; no protected edits, overlap or reopening frozen residuals."
+  "stop": "Natural C89/O2/O1 real ABI,20 directed variants max; no protected edits, overlap or reopening frozen residuals.",
+  "peer_approved_head": "e03e41199e526dbf4fee078fe293ea00e3ef7028"
 }

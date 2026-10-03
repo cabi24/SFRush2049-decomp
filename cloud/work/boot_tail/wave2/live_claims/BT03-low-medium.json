@@ -1,5 +1,5 @@
 {
-  "state": "active",
+  "state": "integrating-source-frozen",
   "owner": "/root/match_boot_tail_low_medium",
   "packet": "BT03-low-medium",
   "branch": "dot/boot-tail-bt03-low-medium",
@@ -38,5 +38,6 @@
   ],
   "bytes": 452,
   "edit_scope": "Only listed matching sources and cloud/work/boot_tail/BT03-low-medium/**",
-  "stop": "Natural C89/O2/O1 true static/callback ABI,20 directed variants maximum; no protected edits, overlaps or reopening frozen residuals. Use /tmp isolated worktree to avoid workspace inode pressure."
+  "stop": "Natural C89/O2/O1 true static/callback ABI,20 directed variants maximum; no protected edits, overlaps or reopening frozen residuals. Use /tmp isolated worktree to avoid workspace inode pressure.",
+  "peer_approved_head": "8c41049c56e1b70ea8830a3891fb767fef9b14cd"
 }
