@@ -1,0 +1,4134 @@
+{
+ "generated": "2026-10-03",
+ "method": "scan_extent tiling from 0x8000F3A4; masked (R_MIPS_26/HI16/LO16) word equality vs ultralib e24c836 compiled with IDO 5.3 (K,L with Makefile flags; I,J,K at uniform -O1/-O2)",
+ "functions": [
+  {
+   "address": "0x8000F3A4",
+   "rom": "0x0FFA4",
+   "size": 724,
+   "symbol_addrs_name": "__osPfsRWInode",
+   "ultralib": [
+    "__osPfsRWInode"
+   ],
+   "ultralib_builds": [
+    "K",
+    "L",
+    "J-O2",
+    "K-O2"
+   ],
+   "note": null
+  },
+  {
+   "address": "0x8000F680",
+   "rom": "0x10280",
+   "size": 588,
+   "symbol_addrs_name": "__osContRamWrite",
+   "ultralib": [
+    "__osContRamWrite"
+   ],
+   "ultralib_builds": [
+    "K",
+    "L",
+    "J-O2",
+    "K-O2"
+   ],
+   "note": null
+  },
+  {
+   "address": "0x8000F8D0",
+   "rom": "0x104D0",
+   "size": 284,
+   "symbol_addrs_name": "bcmp",
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8000F9F0",
+   "rom": "0x105F0",
+   "size": 208,
+   "symbol_addrs_name": "__osContAddressCrc",
+   "ultralib": [
+    "__osContAddressCrc"
+   ],
+   "ultralib_builds": [
+    "K",
+    "L",
+    "J-O2",
+    "K-O2"
+   ],
+   "note": null
+  },
+  {
+   "address": "0x8000FAC0",
+   "rom": "0x106C0",
+   "size": 148,
+   "symbol_addrs_name": "__osPfsDataChecksum",
+   "ultralib": [
+    "__osContDataCrc"
+   ],
+   "ultralib_builds": [
+    "K",
+    "L",
+    "J-O2",
+    "K-O2"
+   ],
+   "note": null
+  },
+  {
+   "address": "0x8000FB60",
+   "rom": "0x10760",
+   "size": 36,
+   "symbol_addrs_name": "__osAiDeviceBusy",
+   "ultralib": [
+    "__osAiDeviceBusy"
+   ],
+   "ultralib_builds": [
+    "K",
+    "L",
+    "I-O2",
+    "J-O2",
+    "K-O2"
+   ],
+   "note": null
+  },
+  {
+   "address": "0x8000FB90",
+   "rom": "0x10790",
+   "size": 12,
+   "symbol_addrs_name": "__osSetCompare",
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": "stub too small to identify"
+  },
+  {
+   "address": "0x8000FBA0",
+   "rom": "0x107A0",
+   "size": 260,
+   "symbol_addrs_name": "__osEnqueueAndYield",
+   "ultralib": [
+    "osDestroyThread"
+   ],
+   "ultralib_builds": [
+    "K",
+    "L",
+    "I-O1",
+    "J-O1",
+    "K-O1"
+   ],
+   "note": null
+  },
+  {
+   "address": "0x8000FCB0",
+   "rom": "0x108B0",
+   "size": 184,
+   "symbol_addrs_name": "__osTLBLookup",
+   "ultralib": [
+    "__osProbeTLB"
+   ],
+   "ultralib_builds": [
+    "K",
+    "L"
+   ],
+   "note": null
+  },
+  {
+   "address": "0x8000FD70",
+   "rom": "0x10970",
+   "size": 36,
+   "symbol_addrs_name": "__osPiDeviceBusy",
+   "ultralib": [
+    "__osSiDeviceBusy"
+   ],
+   "ultralib_builds": [
+    "K",
+    "L",
+    "I-O2",
+    "J-O2",
+    "K-O2"
+   ],
+   "note": null
+  },
+  {
+   "address": "0x8000FDA0",
+   "rom": "0x109A0",
+   "size": 88,
+   "symbol_addrs_name": "osEPiRawWriteIo",
+   "ultralib": [
+    "__osResetGlobalIntMask"
+   ],
+   "ultralib_builds": [
+    "K",
+    "L",
+    "I-O1",
+    "J-O1",
+    "K-O1"
+   ],
+   "note": null
+  },
+  {
+   "address": "0x8000FE00",
+   "rom": "0x10A00",
+   "size": 344,
+   "symbol_addrs_name": "osEPiRawStartDma",
+   "ultralib": [
+    "__osEPiRawWriteIo"
+   ],
+   "ultralib_builds": [
+    "K",
+    "L",
+    "J-O2",
+    "K-O2"
+   ],
+   "note": null
+  },
+  {
+   "address": "0x8000FF60",
+   "rom": "0x10B60",
+   "size": 348,
+   "symbol_addrs_name": "osEPiRawReadIo",
+   "ultralib": [
+    "__osEPiRawReadIo"
+   ],
+   "ultralib_builds": [
+    "K",
+    "L",
+    "J-O2",
+    "K-O2"
+   ],
+   "note": null
+  },
+  {
+   "address": "0x800100C0",
+   "rom": "0x10CC0",
+   "size": 76,
+   "symbol_addrs_name": "__osPiGetCmdQueue",
+   "ultralib": [
+    "__osSetGlobalIntMask"
+   ],
+   "ultralib_builds": [
+    "K",
+    "L",
+    "I-O1",
+    "J-O1",
+    "K-O1"
+   ],
+   "note": null
+  },
+  {
+   "address": "0x80010110",
+   "rom": "0x10D10",
+   "size": 76,
+   "symbol_addrs_name": "osYieldThread",
+   "ultralib": [
+    "osYieldThread"
+   ],
+   "ultralib_builds": [
+    "K",
+    "L",
+    "I-O1",
+    "J-O1",
+    "K-O1"
+   ],
+   "note": null
+  },
+  {
+   "address": "0x80010160",
+   "rom": "0x10D60",
+   "size": 396,
+   "symbol_addrs_name": null,
+   "ultralib": [
+    "osPfsIsPlug"
+   ],
+   "ultralib_builds": [
+    "K",
+    "L",
+    "I-O2",
+    "J-O2",
+    "K-O2"
+   ],
+   "note": null
+  },
+  {
+   "address": "0x800102EC",
+   "rom": "0x10EEC",
+   "size": 180,
+   "symbol_addrs_name": null,
+   "ultralib": [
+    "__osPfsRequestData"
+   ],
+   "ultralib_builds": [
+    "K",
+    "L",
+    "I-O2",
+    "J-O2",
+    "K-O2"
+   ],
+   "note": null
+  },
+  {
+   "address": "0x800103A0",
+   "rom": "0x10FA0",
+   "size": 172,
+   "symbol_addrs_name": null,
+   "ultralib": [
+    "__osContGetInitData",
+    "__osPfsGetInitData"
+   ],
+   "ultralib_builds": [
+    "K",
+    "L",
+    "I-O2",
+    "J-O2",
+    "K-O2"
+   ],
+   "note": null
+  },
+  {
+   "address": "0x80010450",
+   "rom": "0x11050",
+   "size": 372,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800105C4",
+   "rom": "0x111C4",
+   "size": 88,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001061C",
+   "rom": "0x1121C",
+   "size": 12,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80010628",
+   "rom": "0x11228",
+   "size": 236,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80010714",
+   "rom": "0x11314",
+   "size": 192,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800107E0",
+   "rom": "0x113E0",
+   "size": 96,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80010840",
+   "rom": "0x11440",
+   "size": 160,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800108E0",
+   "rom": "0x114E0",
+   "size": 160,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80010980",
+   "rom": "0x11580",
+   "size": 64,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800109C0",
+   "rom": "0x115C0",
+   "size": 64,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80010A00",
+   "rom": "0x11600",
+   "size": 12,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80010A0C",
+   "rom": "0x1160C",
+   "size": 8,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80010A14",
+   "rom": "0x11614",
+   "size": 40,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80010A40",
+   "rom": "0x11640",
+   "size": 552,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80010C68",
+   "rom": "0x11868",
+   "size": 212,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80010D3C",
+   "rom": "0x1193C",
+   "size": 56,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80010D74",
+   "rom": "0x11974",
+   "size": 100,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80010DD8",
+   "rom": "0x119D8",
+   "size": 168,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80010E80",
+   "rom": "0x11A80",
+   "size": 500,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80011074",
+   "rom": "0x11C74",
+   "size": 80,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800110C4",
+   "rom": "0x11CC4",
+   "size": 64,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80011104",
+   "rom": "0x11D04",
+   "size": 840,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001144C",
+   "rom": "0x1204C",
+   "size": 116,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800114C0",
+   "rom": "0x120C0",
+   "size": 904,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80011848",
+   "rom": "0x12448",
+   "size": 76,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80011894",
+   "rom": "0x12494",
+   "size": 44,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800118C0",
+   "rom": "0x124C0",
+   "size": 80,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80011910",
+   "rom": "0x12510",
+   "size": 208,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800119E0",
+   "rom": "0x125E0",
+   "size": 48,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80011A10",
+   "rom": "0x12610",
+   "size": 44,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80011A3C",
+   "rom": "0x1263C",
+   "size": 40,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80011A64",
+   "rom": "0x12664",
+   "size": 440,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80011C1C",
+   "rom": "0x1281C",
+   "size": 104,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80011C84",
+   "rom": "0x12884",
+   "size": 84,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80011CD8",
+   "rom": "0x128D8",
+   "size": 76,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80011D24",
+   "rom": "0x12924",
+   "size": 80,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80011D74",
+   "rom": "0x12974",
+   "size": 492,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80011F60",
+   "rom": "0x12B60",
+   "size": 604,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800121BC",
+   "rom": "0x12DBC",
+   "size": 68,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80012200",
+   "rom": "0x12E00",
+   "size": 52,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80012234",
+   "rom": "0x12E34",
+   "size": 372,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800123A8",
+   "rom": "0x12FA8",
+   "size": 628,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001261C",
+   "rom": "0x1321C",
+   "size": 68,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80012660",
+   "rom": "0x13260",
+   "size": 208,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80012730",
+   "rom": "0x13330",
+   "size": 1512,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80012D18",
+   "rom": "0x13918",
+   "size": 3148,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80013964",
+   "rom": "0x14564",
+   "size": 112,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800139D4",
+   "rom": "0x145D4",
+   "size": 688,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80013C84",
+   "rom": "0x14884",
+   "size": 236,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80013D70",
+   "rom": "0x14970",
+   "size": 124,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80013DEC",
+   "rom": "0x149EC",
+   "size": 780,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800140F8",
+   "rom": "0x14CF8",
+   "size": 72,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014140",
+   "rom": "0x14D40",
+   "size": 88,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014198",
+   "rom": "0x14D98",
+   "size": 476,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014374",
+   "rom": "0x14F74",
+   "size": 76,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800143C0",
+   "rom": "0x14FC0",
+   "size": 116,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014434",
+   "rom": "0x15034",
+   "size": 84,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014488",
+   "rom": "0x15088",
+   "size": 104,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800144F0",
+   "rom": "0x150F0",
+   "size": 96,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014550",
+   "rom": "0x15150",
+   "size": 68,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014594",
+   "rom": "0x15194",
+   "size": 72,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800145DC",
+   "rom": "0x151DC",
+   "size": 72,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014624",
+   "rom": "0x15224",
+   "size": 44,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014650",
+   "rom": "0x15250",
+   "size": 44,
+   "symbol_addrs_name": null,
+   "ultralib": [
+    "__osPiRelAccess",
+    "__osSiRelAccess"
+   ],
+   "ultralib_builds": [
+    "K",
+    "L",
+    "I-O1",
+    "I-O2",
+    "J-O1",
+    "J-O2",
+    "K-O1",
+    "K-O2"
+   ],
+   "note": null
+  },
+  {
+   "address": "0x8001467C",
+   "rom": "0x1527C",
+   "size": 48,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800146AC",
+   "rom": "0x152AC",
+   "size": 8,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800146B4",
+   "rom": "0x152B4",
+   "size": 488,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001489C",
+   "rom": "0x1549C",
+   "size": 92,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800148F8",
+   "rom": "0x154F8",
+   "size": 196,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800149BC",
+   "rom": "0x155BC",
+   "size": 32,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800149DC",
+   "rom": "0x155DC",
+   "size": 40,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014A04",
+   "rom": "0x15604",
+   "size": 8,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014A0C",
+   "rom": "0x1560C",
+   "size": 104,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014A74",
+   "rom": "0x15674",
+   "size": 124,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014AF0",
+   "rom": "0x156F0",
+   "size": 76,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014B3C",
+   "rom": "0x1573C",
+   "size": 116,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014BB0",
+   "rom": "0x157B0",
+   "size": 40,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014BD8",
+   "rom": "0x157D8",
+   "size": 32,
+   "symbol_addrs_name": null,
+   "ultralib": [
+    "__d_to_ll",
+    "__d_to_ull",
+    "__f_to_ll",
+    "__f_to_ull"
+   ],
+   "ultralib_builds": [
+    "K",
+    "L",
+    "I-O2",
+    "J-O2",
+    "K-O2"
+   ],
+   "note": null
+  },
+  {
+   "address": "0x80014BF8",
+   "rom": "0x157F8",
+   "size": 32,
+   "symbol_addrs_name": null,
+   "ultralib": [
+    "__d_to_ll",
+    "__d_to_ull",
+    "__f_to_ll",
+    "__f_to_ull"
+   ],
+   "ultralib_builds": [
+    "K",
+    "L",
+    "I-O2",
+    "J-O2",
+    "K-O2"
+   ],
+   "note": null
+  },
+  {
+   "address": "0x80014C18",
+   "rom": "0x15818",
+   "size": 40,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014C40",
+   "rom": "0x15840",
+   "size": 32,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014C60",
+   "rom": "0x15860",
+   "size": 76,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014CAC",
+   "rom": "0x158AC",
+   "size": 72,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014CF4",
+   "rom": "0x158F4",
+   "size": 8,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": "stub too small to identify"
+  },
+  {
+   "address": "0x80014CFC",
+   "rom": "0x158FC",
+   "size": 12,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": "stub too small to identify"
+  },
+  {
+   "address": "0x80014D08",
+   "rom": "0x15908",
+   "size": 12,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": "stub too small to identify"
+  },
+  {
+   "address": "0x80014D14",
+   "rom": "0x15914",
+   "size": 8,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": "stub too small to identify"
+  },
+  {
+   "address": "0x80014D1C",
+   "rom": "0x1591C",
+   "size": 16,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014D30",
+   "rom": "0x15930",
+   "size": 208,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014E00",
+   "rom": "0x15A00",
+   "size": 12,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014E10",
+   "rom": "0x15A10",
+   "size": 12,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014E1C",
+   "rom": "0x15A1C",
+   "size": 72,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014E64",
+   "rom": "0x15A64",
+   "size": 44,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014E90",
+   "rom": "0x15A90",
+   "size": 44,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014EBC",
+   "rom": "0x15ABC",
+   "size": 44,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014EE8",
+   "rom": "0x15AE8",
+   "size": 44,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014F14",
+   "rom": "0x15B14",
+   "size": 108,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014F80",
+   "rom": "0x15B80",
+   "size": 108,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80014FEC",
+   "rom": "0x15BEC",
+   "size": 108,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80015058",
+   "rom": "0x15C58",
+   "size": 112,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800150C8",
+   "rom": "0x15CC8",
+   "size": 88,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80015120",
+   "rom": "0x15D20",
+   "size": 88,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80015178",
+   "rom": "0x15D78",
+   "size": 88,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800151D0",
+   "rom": "0x15DD0",
+   "size": 88,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80015228",
+   "rom": "0x15E28",
+   "size": 128,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800152A8",
+   "rom": "0x15EA8",
+   "size": 112,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80015318",
+   "rom": "0x15F18",
+   "size": 48,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80015348",
+   "rom": "0x15F48",
+   "size": 36,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001536C",
+   "rom": "0x15F6C",
+   "size": 312,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800154A4",
+   "rom": "0x160A4",
+   "size": 208,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80015574",
+   "rom": "0x16174",
+   "size": 24,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001558C",
+   "rom": "0x1618C",
+   "size": 348,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800156E8",
+   "rom": "0x162E8",
+   "size": 48,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80015720",
+   "rom": "0x16320",
+   "size": 440,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800158D8",
+   "rom": "0x164D8",
+   "size": 308,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80015A0C",
+   "rom": "0x1660C",
+   "size": 512,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80015C0C",
+   "rom": "0x1680C",
+   "size": 348,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80015D68",
+   "rom": "0x16968",
+   "size": 448,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80015F28",
+   "rom": "0x16B28",
+   "size": 308,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001605C",
+   "rom": "0x16C5C",
+   "size": 324,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800161A0",
+   "rom": "0x16DA0",
+   "size": 268,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800162AC",
+   "rom": "0x16EAC",
+   "size": 252,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800163A8",
+   "rom": "0x16FA8",
+   "size": 296,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800164D0",
+   "rom": "0x170D0",
+   "size": 332,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001661C",
+   "rom": "0x1721C",
+   "size": 256,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001671C",
+   "rom": "0x1731C",
+   "size": 636,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80016998",
+   "rom": "0x17598",
+   "size": 608,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80016BF8",
+   "rom": "0x177F8",
+   "size": 40,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80016C20",
+   "rom": "0x17820",
+   "size": 192,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80016CE0",
+   "rom": "0x178E0",
+   "size": 16,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80016CF0",
+   "rom": "0x178F0",
+   "size": 336,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80016E40",
+   "rom": "0x17A40",
+   "size": 40,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80016E68",
+   "rom": "0x17A68",
+   "size": 120,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80016EE0",
+   "rom": "0x17AE0",
+   "size": 120,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80016F58",
+   "rom": "0x17B58",
+   "size": 40,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80016F80",
+   "rom": "0x17B80",
+   "size": 152,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80017018",
+   "rom": "0x17C18",
+   "size": 40,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80017040",
+   "rom": "0x17C40",
+   "size": 200,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80017108",
+   "rom": "0x17D08",
+   "size": 172,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800171C0",
+   "rom": "0x17DC0",
+   "size": 220,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001729C",
+   "rom": "0x17E9C",
+   "size": 176,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001734C",
+   "rom": "0x17F4C",
+   "size": 104,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800173B4",
+   "rom": "0x17FB4",
+   "size": 92,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80017410",
+   "rom": "0x18010",
+   "size": 96,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80017470",
+   "rom": "0x18070",
+   "size": 96,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800174D0",
+   "rom": "0x180D0",
+   "size": 112,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80017540",
+   "rom": "0x18140",
+   "size": 104,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800175A8",
+   "rom": "0x181A8",
+   "size": 12,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800175B4",
+   "rom": "0x181B4",
+   "size": 144,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80017644",
+   "rom": "0x18244",
+   "size": 220,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80017720",
+   "rom": "0x18320",
+   "size": 204,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800177EC",
+   "rom": "0x183EC",
+   "size": 56,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80017824",
+   "rom": "0x18424",
+   "size": 56,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001785C",
+   "rom": "0x1845C",
+   "size": 84,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800178B0",
+   "rom": "0x184B0",
+   "size": 1160,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80017D38",
+   "rom": "0x18938",
+   "size": 872,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800180A0",
+   "rom": "0x18CA0",
+   "size": 228,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80018184",
+   "rom": "0x18D84",
+   "size": 200,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001824C",
+   "rom": "0x18E4C",
+   "size": 508,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80018448",
+   "rom": "0x19048",
+   "size": 492,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80018634",
+   "rom": "0x19234",
+   "size": 840,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001897C",
+   "rom": "0x1957C",
+   "size": 180,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80018A30",
+   "rom": "0x19630",
+   "size": 188,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80018AEC",
+   "rom": "0x196EC",
+   "size": 80,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80018B3C",
+   "rom": "0x1973C",
+   "size": 80,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80018B8C",
+   "rom": "0x1978C",
+   "size": 96,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80018BEC",
+   "rom": "0x197EC",
+   "size": 64,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80018C2C",
+   "rom": "0x1982C",
+   "size": 212,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80018D00",
+   "rom": "0x19900",
+   "size": 64,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80018D40",
+   "rom": "0x19940",
+   "size": 236,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80018E2C",
+   "rom": "0x19A2C",
+   "size": 64,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80018E6C",
+   "rom": "0x19A6C",
+   "size": 72,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80018EB4",
+   "rom": "0x19AB4",
+   "size": 108,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80018F20",
+   "rom": "0x19B20",
+   "size": 132,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80018FA4",
+   "rom": "0x19BA4",
+   "size": 72,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80018FEC",
+   "rom": "0x19BEC",
+   "size": 128,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001906C",
+   "rom": "0x19C6C",
+   "size": 64,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800190AC",
+   "rom": "0x19CAC",
+   "size": 152,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80019144",
+   "rom": "0x19D44",
+   "size": 80,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80019194",
+   "rom": "0x19D94",
+   "size": 476,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80019370",
+   "rom": "0x19F70",
+   "size": 88,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800193C8",
+   "rom": "0x19FC8",
+   "size": 88,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80019420",
+   "rom": "0x1A020",
+   "size": 112,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80019490",
+   "rom": "0x1A090",
+   "size": 960,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80019850",
+   "rom": "0x1A450",
+   "size": 76,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001989C",
+   "rom": "0x1A49C",
+   "size": 44,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800198C8",
+   "rom": "0x1A4C8",
+   "size": 300,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800199F4",
+   "rom": "0x1A5F4",
+   "size": 100,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80019A60",
+   "rom": "0x1A660",
+   "size": 72,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80019AA8",
+   "rom": "0x1A6A8",
+   "size": 44,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80019AD4",
+   "rom": "0x1A6D4",
+   "size": 272,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80019BE4",
+   "rom": "0x1A7E4",
+   "size": 168,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80019C8C",
+   "rom": "0x1A88C",
+   "size": 580,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80019ED0",
+   "rom": "0x1AAD0",
+   "size": 120,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80019F48",
+   "rom": "0x1AB48",
+   "size": 808,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001A270",
+   "rom": "0x1AE70",
+   "size": 872,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001A5D8",
+   "rom": "0x1B1D8",
+   "size": 128,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001A658",
+   "rom": "0x1B258",
+   "size": 2812,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001B154",
+   "rom": "0x1BD54",
+   "size": 124,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001B1D0",
+   "rom": "0x1BDD0",
+   "size": 204,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001B29C",
+   "rom": "0x1BE9C",
+   "size": 260,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001B3A0",
+   "rom": "0x1BFA0",
+   "size": 260,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001B4A4",
+   "rom": "0x1C0A4",
+   "size": 336,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001B5F4",
+   "rom": "0x1C1F4",
+   "size": 336,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001B744",
+   "rom": "0x1C344",
+   "size": 124,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001B7C0",
+   "rom": "0x1C3C0",
+   "size": 260,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001B8C4",
+   "rom": "0x1C4C4",
+   "size": 164,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001B968",
+   "rom": "0x1C568",
+   "size": 144,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001B9F8",
+   "rom": "0x1C5F8",
+   "size": 960,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001BDB8",
+   "rom": "0x1C9B8",
+   "size": 92,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001BE14",
+   "rom": "0x1CA14",
+   "size": 904,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001C19C",
+   "rom": "0x1CD9C",
+   "size": 60,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001C1D8",
+   "rom": "0x1CDD8",
+   "size": 432,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001C390",
+   "rom": "0x1CF90",
+   "size": 60,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001C3CC",
+   "rom": "0x1CFCC",
+   "size": 316,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001C508",
+   "rom": "0x1D108",
+   "size": 120,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001C580",
+   "rom": "0x1D180",
+   "size": 496,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001C770",
+   "rom": "0x1D370",
+   "size": 12,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001C77C",
+   "rom": "0x1D37C",
+   "size": 120,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001C7F4",
+   "rom": "0x1D3F4",
+   "size": 108,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001C860",
+   "rom": "0x1D460",
+   "size": 1084,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001CC9C",
+   "rom": "0x1D89C",
+   "size": 36,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001CCC0",
+   "rom": "0x1D8C0",
+   "size": 28,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001CCDC",
+   "rom": "0x1D8DC",
+   "size": 936,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001D084",
+   "rom": "0x1DC84",
+   "size": 108,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001D0F0",
+   "rom": "0x1DCF0",
+   "size": 208,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001D1C0",
+   "rom": "0x1DDC0",
+   "size": 52,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001D1F4",
+   "rom": "0x1DDF4",
+   "size": 508,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001D3F0",
+   "rom": "0x1DFF0",
+   "size": 112,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001D460",
+   "rom": "0x1E060",
+   "size": 108,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001D4CC",
+   "rom": "0x1E0CC",
+   "size": 76,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001D518",
+   "rom": "0x1E118",
+   "size": 96,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001D578",
+   "rom": "0x1E178",
+   "size": 72,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001D5C0",
+   "rom": "0x1E1C0",
+   "size": 160,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001D660",
+   "rom": "0x1E260",
+   "size": 260,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001D764",
+   "rom": "0x1E364",
+   "size": 332,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001D8B0",
+   "rom": "0x1E4B0",
+   "size": 120,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001D928",
+   "rom": "0x1E528",
+   "size": 28,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001D944",
+   "rom": "0x1E544",
+   "size": 304,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001DA74",
+   "rom": "0x1E674",
+   "size": 404,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001DC08",
+   "rom": "0x1E808",
+   "size": 472,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001DDE0",
+   "rom": "0x1E9E0",
+   "size": 736,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001E0C0",
+   "rom": "0x1ECC0",
+   "size": 20,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001E0D4",
+   "rom": "0x1ECD4",
+   "size": 8,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": "stub too small to identify"
+  },
+  {
+   "address": "0x8001E0E0",
+   "rom": "0x1ECE0",
+   "size": 864,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001E440",
+   "rom": "0x1F040",
+   "size": 204,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001E50C",
+   "rom": "0x1F10C",
+   "size": 380,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001E688",
+   "rom": "0x1F288",
+   "size": 172,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001E740",
+   "rom": "0x1F340",
+   "size": 40,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001E768",
+   "rom": "0x1F368",
+   "size": 40,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001E790",
+   "rom": "0x1F390",
+   "size": 44,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001E7BC",
+   "rom": "0x1F3BC",
+   "size": 168,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001E864",
+   "rom": "0x1F464",
+   "size": 204,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001E930",
+   "rom": "0x1F530",
+   "size": 16,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001E940",
+   "rom": "0x1F540",
+   "size": 96,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001E9A0",
+   "rom": "0x1F5A0",
+   "size": 8,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001E9B0",
+   "rom": "0x1F5B0",
+   "size": 240,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001EAA0",
+   "rom": "0x1F6A0",
+   "size": 76,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001EAEC",
+   "rom": "0x1F6EC",
+   "size": 36,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001EB10",
+   "rom": "0x1F710",
+   "size": 464,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001ECE0",
+   "rom": "0x1F8E0",
+   "size": 276,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001EDF4",
+   "rom": "0x1F9F4",
+   "size": 64,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001EE34",
+   "rom": "0x1FA34",
+   "size": 104,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001EE9C",
+   "rom": "0x1FA9C",
+   "size": 240,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001EF8C",
+   "rom": "0x1FB8C",
+   "size": 432,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001F13C",
+   "rom": "0x1FD3C",
+   "size": 1456,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001F6EC",
+   "rom": "0x202EC",
+   "size": 256,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001F7EC",
+   "rom": "0x203EC",
+   "size": 120,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001F864",
+   "rom": "0x20464",
+   "size": 52,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001F898",
+   "rom": "0x20498",
+   "size": 188,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001F954",
+   "rom": "0x20554",
+   "size": 124,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001F9D0",
+   "rom": "0x205D0",
+   "size": 72,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001FA18",
+   "rom": "0x20618",
+   "size": 204,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001FAE4",
+   "rom": "0x206E4",
+   "size": 200,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001FBB0",
+   "rom": "0x207B0",
+   "size": 380,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001FD2C",
+   "rom": "0x2092C",
+   "size": 300,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001FE58",
+   "rom": "0x20A58",
+   "size": 76,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001FEA4",
+   "rom": "0x20AA4",
+   "size": 84,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001FEF8",
+   "rom": "0x20AF8",
+   "size": 84,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001FF4C",
+   "rom": "0x20B4C",
+   "size": 84,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001FFA0",
+   "rom": "0x20BA0",
+   "size": 84,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8001FFF4",
+   "rom": "0x20BF4",
+   "size": 84,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80020048",
+   "rom": "0x20C48",
+   "size": 300,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80020174",
+   "rom": "0x20D74",
+   "size": 92,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800201D0",
+   "rom": "0x20DD0",
+   "size": 48,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80020200",
+   "rom": "0x20E00",
+   "size": 28,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8002021C",
+   "rom": "0x20E1C",
+   "size": 88,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80020274",
+   "rom": "0x20E74",
+   "size": 80,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800202C4",
+   "rom": "0x20EC4",
+   "size": 172,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80020370",
+   "rom": "0x20F70",
+   "size": 124,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800203EC",
+   "rom": "0x20FEC",
+   "size": 80,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8002043C",
+   "rom": "0x2103C",
+   "size": 88,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80020494",
+   "rom": "0x21094",
+   "size": 132,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80020518",
+   "rom": "0x21118",
+   "size": 16,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80020528",
+   "rom": "0x21128",
+   "size": 48,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80020558",
+   "rom": "0x21158",
+   "size": 64,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80020598",
+   "rom": "0x21198",
+   "size": 76,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800205E4",
+   "rom": "0x211E4",
+   "size": 32,
+   "symbol_addrs_name": null,
+   "ultralib": [
+    "__d_to_ll",
+    "__d_to_ull",
+    "__f_to_ll",
+    "__f_to_ull"
+   ],
+   "ultralib_builds": [
+    "K",
+    "L",
+    "I-O2",
+    "J-O2",
+    "K-O2"
+   ],
+   "note": null
+  },
+  {
+   "address": "0x80020610",
+   "rom": "0x21210",
+   "size": 156,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800206AC",
+   "rom": "0x212AC",
+   "size": 372,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80020820",
+   "rom": "0x21420",
+   "size": 484,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80020A04",
+   "rom": "0x21604",
+   "size": 932,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80020DA8",
+   "rom": "0x219A8",
+   "size": 420,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80020F4C",
+   "rom": "0x21B4C",
+   "size": 76,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80020F98",
+   "rom": "0x21B98",
+   "size": 68,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80020FDC",
+   "rom": "0x21BDC",
+   "size": 76,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80021028",
+   "rom": "0x21C28",
+   "size": 68,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8002106C",
+   "rom": "0x21C6C",
+   "size": 228,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80021150",
+   "rom": "0x21D50",
+   "size": 728,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80021428",
+   "rom": "0x22028",
+   "size": 32,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80021448",
+   "rom": "0x22048",
+   "size": 32,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80021468",
+   "rom": "0x22068",
+   "size": 32,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80021488",
+   "rom": "0x22088",
+   "size": 32,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800214A8",
+   "rom": "0x220A8",
+   "size": 32,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800214C8",
+   "rom": "0x220C8",
+   "size": 32,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800214E8",
+   "rom": "0x220E8",
+   "size": 32,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80021508",
+   "rom": "0x22108",
+   "size": 32,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80021528",
+   "rom": "0x22128",
+   "size": 32,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80021548",
+   "rom": "0x22148",
+   "size": 96,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800215A8",
+   "rom": "0x221A8",
+   "size": 180,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8002165C",
+   "rom": "0x2225C",
+   "size": 152,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80021700",
+   "rom": "0x22300",
+   "size": 100,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80021764",
+   "rom": "0x22364",
+   "size": 128,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800217E4",
+   "rom": "0x223E4",
+   "size": 96,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80021844",
+   "rom": "0x22444",
+   "size": 136,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800218CC",
+   "rom": "0x224CC",
+   "size": 112,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8002193C",
+   "rom": "0x2253C",
+   "size": 608,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80021B9C",
+   "rom": "0x2279C",
+   "size": 36,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80021BC0",
+   "rom": "0x227C0",
+   "size": 48,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80021BF0",
+   "rom": "0x227F0",
+   "size": 104,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80021C58",
+   "rom": "0x22858",
+   "size": 132,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80021CDC",
+   "rom": "0x228DC",
+   "size": 128,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80021D5C",
+   "rom": "0x2295C",
+   "size": 156,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80021DF8",
+   "rom": "0x229F8",
+   "size": 124,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80021E74",
+   "rom": "0x22A74",
+   "size": 148,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80021F08",
+   "rom": "0x22B08",
+   "size": 96,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80021F68",
+   "rom": "0x22B68",
+   "size": 28,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80021F84",
+   "rom": "0x22B84",
+   "size": 476,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80022160",
+   "rom": "0x22D60",
+   "size": 452,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80022324",
+   "rom": "0x22F24",
+   "size": 172,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800223D0",
+   "rom": "0x22FD0",
+   "size": 108,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8002243C",
+   "rom": "0x2303C",
+   "size": 32,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8002245C",
+   "rom": "0x2305C",
+   "size": 84,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800224B0",
+   "rom": "0x230B0",
+   "size": 100,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80022514",
+   "rom": "0x23114",
+   "size": 108,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80022580",
+   "rom": "0x23180",
+   "size": 44,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800225AC",
+   "rom": "0x231AC",
+   "size": 48,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800225DC",
+   "rom": "0x231DC",
+   "size": 32,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800225FC",
+   "rom": "0x231FC",
+   "size": 124,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80022678",
+   "rom": "0x23278",
+   "size": 292,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8002279C",
+   "rom": "0x2339C",
+   "size": 216,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80022874",
+   "rom": "0x23474",
+   "size": 460,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80022A40",
+   "rom": "0x23640",
+   "size": 56,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80022A78",
+   "rom": "0x23678",
+   "size": 32,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80022A98",
+   "rom": "0x23698",
+   "size": 448,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80022C58",
+   "rom": "0x23858",
+   "size": 124,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80022CD4",
+   "rom": "0x238D4",
+   "size": 592,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80022F24",
+   "rom": "0x23B24",
+   "size": 232,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8002300C",
+   "rom": "0x23C0C",
+   "size": 164,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800230B0",
+   "rom": "0x23CB0",
+   "size": 224,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80023190",
+   "rom": "0x23D90",
+   "size": 140,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8002321C",
+   "rom": "0x23E1C",
+   "size": 136,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800232A4",
+   "rom": "0x23EA4",
+   "size": 268,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800233B0",
+   "rom": "0x23FB0",
+   "size": 368,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80023520",
+   "rom": "0x24120",
+   "size": 36,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80023544",
+   "rom": "0x24144",
+   "size": 32,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80023564",
+   "rom": "0x24164",
+   "size": 428,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80023710",
+   "rom": "0x24310",
+   "size": 36,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80023734",
+   "rom": "0x24334",
+   "size": 32,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80023754",
+   "rom": "0x24354",
+   "size": 196,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80023818",
+   "rom": "0x24418",
+   "size": 44,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80023844",
+   "rom": "0x24444",
+   "size": 44,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80023870",
+   "rom": "0x24470",
+   "size": 44,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8002389C",
+   "rom": "0x2449C",
+   "size": 44,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800238C8",
+   "rom": "0x244C8",
+   "size": 44,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800238F4",
+   "rom": "0x244F4",
+   "size": 44,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80023920",
+   "rom": "0x24520",
+   "size": 44,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8002394C",
+   "rom": "0x2454C",
+   "size": 44,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80023978",
+   "rom": "0x24578",
+   "size": 44,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800239A4",
+   "rom": "0x245A4",
+   "size": 304,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80023AD4",
+   "rom": "0x246D4",
+   "size": 124,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80023B50",
+   "rom": "0x24750",
+   "size": 140,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80023BDC",
+   "rom": "0x247DC",
+   "size": 404,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80023D70",
+   "rom": "0x24970",
+   "size": 72,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80023DB8",
+   "rom": "0x249B8",
+   "size": 228,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80023E9C",
+   "rom": "0x24A9C",
+   "size": 2796,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80024988",
+   "rom": "0x25588",
+   "size": 608,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80024BF0",
+   "rom": "0x257F0",
+   "size": 172,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80024C9C",
+   "rom": "0x2589C",
+   "size": 104,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80024D04",
+   "rom": "0x25904",
+   "size": 112,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80024D74",
+   "rom": "0x25974",
+   "size": 564,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80024FB0",
+   "rom": "0x25BB0",
+   "size": 36,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80024FD4",
+   "rom": "0x25BD4",
+   "size": 152,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8002506C",
+   "rom": "0x25C6C",
+   "size": 64,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800250AC",
+   "rom": "0x25CAC",
+   "size": 68,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800250F0",
+   "rom": "0x25CF0",
+   "size": 48,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80025120",
+   "rom": "0x25D20",
+   "size": 48,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80025150",
+   "rom": "0x25D50",
+   "size": 44,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8002517C",
+   "rom": "0x25D7C",
+   "size": 44,
+   "symbol_addrs_name": null,
+   "ultralib": [
+    "__osPiRelAccess",
+    "__osSiRelAccess"
+   ],
+   "ultralib_builds": [
+    "K",
+    "L",
+    "I-O1",
+    "I-O2",
+    "J-O1",
+    "J-O2",
+    "K-O1",
+    "K-O2"
+   ],
+   "note": null
+  },
+  {
+   "address": "0x800251A8",
+   "rom": "0x25DA8",
+   "size": 188,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80025264",
+   "rom": "0x25E64",
+   "size": 72,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800252AC",
+   "rom": "0x25EAC",
+   "size": 552,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800254D4",
+   "rom": "0x260D4",
+   "size": 192,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80025594",
+   "rom": "0x26194",
+   "size": 92,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800255F0",
+   "rom": "0x261F0",
+   "size": 128,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80025670",
+   "rom": "0x26270",
+   "size": 220,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x8002574C",
+   "rom": "0x2634C",
+   "size": 604,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800259A8",
+   "rom": "0x265A8",
+   "size": 268,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80025AB4",
+   "rom": "0x266B4",
+   "size": 436,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80025C68",
+   "rom": "0x26868",
+   "size": 284,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80025D84",
+   "rom": "0x26984",
+   "size": 60,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80025DC0",
+   "rom": "0x269C0",
+   "size": 236,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80025EB0",
+   "rom": "0x26AB0",
+   "size": 196,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80025F74",
+   "rom": "0x26B74",
+   "size": 840,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800262BC",
+   "rom": "0x26EBC",
+   "size": 108,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80026328",
+   "rom": "0x26F28",
+   "size": 32,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80026348",
+   "rom": "0x26F48",
+   "size": 12,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80026360",
+   "rom": "0x26F60",
+   "size": 504,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80026558",
+   "rom": "0x27158",
+   "size": 232,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x80026640",
+   "rom": "0x27240",
+   "size": 656,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  },
+  {
+   "address": "0x800268D0",
+   "rom": "0x274D0",
+   "size": 3840,
+   "symbol_addrs_name": null,
+   "ultralib": [],
+   "ultralib_builds": [],
+   "note": null
+  }
+ ]
+}

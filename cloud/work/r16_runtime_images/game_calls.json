@@ -1,0 +1,219 @@
+[
+ {
+  "target": "0x8038A400",
+  "image": "neither",
+  "callers": [
+   "state_exit_handler"
+  ]
+ },
+ {
+  "target": "0x8038A408",
+  "image": "both?",
+  "callers": [
+   "physics_velocities_L"
+  ]
+ },
+ {
+  "target": "0x8038A8CC",
+  "image": "B",
+  "callers": [
+   "collision_point_in_body"
+  ]
+ },
+ {
+  "target": "0x8038C910",
+  "image": "B",
+  "callers": [
+   "audio_frame_update"
+  ]
+ },
+ {
+  "target": "0x8038CA24",
+  "image": "B",
+  "callers": [
+   "func_800C54F0",
+   "hud_timer_display",
+   "player_join_screen"
+  ]
+ },
+ {
+  "target": "0x8038D3A4",
+  "image": "B",
+  "callers": [
+   "func_8010C7F4",
+   "menu_options_screen"
+  ]
+ },
+ {
+  "target": "0x8038D798",
+  "image": "B",
+  "callers": [
+   "func_8010C974"
+  ]
+ },
+ {
+  "target": "0x8038E5DC",
+  "image": "A",
+  "callers": [
+   "state_exit_handler"
+  ]
+ },
+ {
+  "target": "0x8038F454",
+  "image": "A",
+  "callers": [
+   "func_800D5A04",
+   "state_exit_handler"
+  ]
+ },
+ {
+  "target": "0x8038FCE0",
+  "image": "B",
+  "callers": [
+   "loading_screen_handler"
+  ]
+ },
+ {
+  "target": "0x80390418",
+  "image": "A",
+  "callers": [
+   "state_exit_handler"
+  ]
+ },
+ {
+  "target": "0x803908D0",
+  "image": "B",
+  "callers": [
+   "hiscore_input_analog"
+  ]
+ },
+ {
+  "target": "0x80390F60",
+  "image": "B",
+  "callers": [
+   "loading_screen_handler"
+  ]
+ },
+ {
+  "target": "0x8039133C",
+  "image": "B",
+  "callers": [
+   "engine_sound_stop"
+  ]
+ },
+ {
+  "target": "0x80391470",
+  "image": "A",
+  "callers": [
+   "sfx_position_3d"
+  ]
+ },
+ {
+  "target": "0x80391490",
+  "image": "B",
+  "callers": [
+   "func_8010D3C0"
+  ]
+ },
+ {
+  "target": "0x803914A8",
+  "image": "B",
+  "callers": [
+   "camera_lerp_position"
+  ]
+ },
+ {
+  "target": "0x803914B4",
+  "image": "B",
+  "callers": [
+   "camera_play_script",
+   "effect_cleanup",
+   "entity_update",
+   "menu_render_options"
+  ]
+ },
+ {
+  "target": "0x8039156C",
+  "image": "A",
+  "callers": [
+   "audio_interrupt_handler"
+  ]
+ },
+ {
+  "target": "0x80391B00",
+  "image": "B",
+  "callers": [
+   "particles_spawn"
+  ]
+ },
+ {
+  "target": "0x8039244C",
+  "image": "B",
+  "callers": [
+   "records_screen"
+  ]
+ },
+ {
+  "target": "0x803925D0",
+  "image": "B",
+  "callers": [
+   "skid_mark_render"
+  ]
+ },
+ {
+  "target": "0x80394058",
+  "image": "A",
+  "callers": [
+   "state_exit_handler"
+  ]
+ },
+ {
+  "target": "0x8039842C",
+  "image": "A",
+  "callers": [
+   "state_exit_handler"
+  ]
+ },
+ {
+  "target": "0x803990D0",
+  "image": "A",
+  "callers": [
+   "state_exit_handler"
+  ]
+ },
+ {
+  "target": "0x80399D10",
+  "image": "A",
+  "callers": [
+   "state_exit_handler"
+  ]
+ },
+ {
+  "target": "0x8039A2A0",
+  "image": "A",
+  "callers": [
+   "debug_ai_paths"
+  ]
+ },
+ {
+  "target": "0x8039C140",
+  "image": "A",
+  "callers": [
+   "state_exit_handler"
+  ]
+ },
+ {
+  "target": "0x8039C910",
+  "image": "A",
+  "callers": [
+   "state_exit_handler"
+  ]
+ },
+ {
+  "target": "0x803A1EAC",
+  "image": "A",
+  "callers": [
+   "state_exit_handler"
+  ]
+ }
+]
