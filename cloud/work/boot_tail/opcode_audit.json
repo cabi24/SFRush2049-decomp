@@ -1,0 +1,132 @@
+{
+  "candidates": [
+    {
+      "address": "0x8000F8D0",
+      "classification": "candidate_only",
+      "reason": "bcmp historical label/spec assembly lead; opcode screen does not establish non-C",
+      "scope": "in_scope"
+    },
+    {
+      "address": "0x8000FB90",
+      "classification": "non_c_instruction_evidence",
+      "reason": "mtc0 at entry; no ordinary C89/IDO body",
+      "scope": "identify_only",
+      "size": 12
+    },
+    {
+      "address": "0x80014CF4",
+      "classification": "unknown",
+      "reason": "tiny leaf alone does not establish assembly; delay-slot and ABI assessment still required",
+      "scope": "identify_only",
+      "size": 8
+    },
+    {
+      "address": "0x80014CFC",
+      "classification": "unknown",
+      "reason": "tiny leaf alone does not establish assembly; delay-slot and ABI assessment still required",
+      "scope": "identify_only",
+      "size": 12
+    },
+    {
+      "address": "0x80014D08",
+      "classification": "unknown",
+      "reason": "tiny leaf alone does not establish assembly; delay-slot and ABI assessment still required",
+      "scope": "identify_only",
+      "size": 12
+    },
+    {
+      "address": "0x80014D14",
+      "classification": "unknown",
+      "reason": "tiny leaf alone does not establish assembly; delay-slot and ABI assessment still required",
+      "scope": "identify_only",
+      "size": 8
+    },
+    {
+      "address": "0x8001E0D4",
+      "classification": "unknown",
+      "reason": "tiny leaf alone does not establish assembly; delay-slot and ABI assessment still required",
+      "scope": "identify_only",
+      "size": 8
+    }
+  ],
+  "excluded_ultralib_not_classified": 21,
+  "external_call_limit": "Decoded only instructions within in-scope functions; destination bytes were not read. Inventory call columns omit these edges.",
+  "hits": [
+    {
+      "address": "0x8000FB90",
+      "instruction_class": "mtc0",
+      "offset": "0x0",
+      "scope": "stub_unclassified"
+    }
+  ],
+  "identify_only_stubs_screened": 6,
+  "in_scope_functions_screened": 412,
+  "in_scope_positive_functions": 0,
+  "input_path": "asm/us/boot_tail/boot_tail_8000f3a4.s",
+  "input_sha256": "0dc55ce51ebe828207816f4f0b878b8928da64694f7f247bf8749f68cf91b224",
+  "instruction_classes": [
+    "cache",
+    "mfc0",
+    "mtc0",
+    "eret",
+    "cop0_other",
+    "sync"
+  ],
+  "inventory_sections_seen": 439,
+  "limitations": [
+    "Linear instruction-class screen, not control-flow reachability or source reconstruction.",
+    "No privileged hit does not prove C representability, original compiler or benign delay-slot use.",
+    "No compiler or scorer used; no raw words, disassembly or ROM published.",
+    "Ordinary compiler-generated jr delay slots and small sizes alone do not justify non_c."
+  ],
+  "manifest_path": "asm/us/boot_tail/SHA256SUMS",
+  "manifest_sha256": "6bd3e6ef05e6123e4ea4dd0d814c0abb16f202a91d8d0a381eca14322c8a36d5",
+  "schema_version": 1,
+  "unclassified_calls_at_or_beyond_text_end": [
+    {
+      "caller": "0x80010450",
+      "offset": "0xA0",
+      "target": "0x8002C5E0"
+    },
+    {
+      "caller": "0x80012234",
+      "offset": "0xD8",
+      "target": "0x8002C5E0"
+    },
+    {
+      "caller": "0x80012730",
+      "offset": "0x104",
+      "target": "0x8002C5E0"
+    },
+    {
+      "caller": "0x80012730",
+      "offset": "0x380",
+      "target": "0x8002C5E0"
+    },
+    {
+      "caller": "0x80012730",
+      "offset": "0x460",
+      "target": "0x8002C5E0"
+    },
+    {
+      "caller": "0x80012D18",
+      "offset": "0x78",
+      "target": "0x8002C5E0"
+    },
+    {
+      "caller": "0x80026360",
+      "offset": "0x1CC",
+      "target": "0x80027B44"
+    },
+    {
+      "caller": "0x80026558",
+      "offset": "0x60",
+      "target": "0x800277D0"
+    },
+    {
+      "caller": "0x80026558",
+      "offset": "0x74",
+      "target": "0x800278C4"
+    }
+  ]
+}
