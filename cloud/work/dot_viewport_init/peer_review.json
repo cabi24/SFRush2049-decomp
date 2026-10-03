@@ -1,0 +1,17 @@
+{
+  "verdict": "PASS as NONMATCH research only",
+  "reviewer": "independent lane D",
+  "source_sha256": "a63341ad4be14b4f2714c1a3e0231d5e481b6764dabda294c6081de6c69f8cba",
+  "source_review": "Portable signed-int globals and semantically required unsigned-short truncation after callback. No union/type-erasure/padding/invented arguments. Nine standard o32 callback arguments and postcallback dimension rereads preserved. Viewport pointer binding layout is 32-bit-target-specific; Bounds four halfwords inferred from native accesses.",
+  "tests": [
+    "Fresh independent direct IDO compile and GNU link confirms 15/63 complete words differing",
+    "ELF nm-S func size 248 bytes; linked text 256 bytes with 2 zero padding words; retail 252 bytes",
+    "Fresh 20,722 native/candidate/host differential cases PASS",
+    "Fresh 100,000 ASan/UBSan cases PASS"
+  ],
+  "limitations": [
+    "IEEE round-to-nearest model only; FCSR exceptions/alternate modes not proven",
+    "Callback modeled rather than real game execution",
+    "NONMATCH; no cartridge/image/coverage claim"
+  ]
+}

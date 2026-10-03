@@ -1,0 +1,41 @@
+{
+  "claims": [],
+  "status": "NONMATCH",
+  "cases": 20722,
+  "native_executions": 41444,
+  "source_sha256": "a63341ad4be14b4f2714c1a3e0231d5e481b6764dabda294c6081de6c69f8cba",
+  "target_words": 63,
+  "target_bytes": 252,
+  "candidate_bytes": 248,
+  "differing_word_offsets": [
+    172,
+    176,
+    180,
+    196,
+    200,
+    208,
+    212,
+    216,
+    220,
+    224,
+    228,
+    232,
+    236,
+    240,
+    244
+  ],
+  "zero_alignment_words": 2,
+  "unresolved": [],
+  "unverified": [],
+  "errors": [],
+  "target_sha256": "7fea902f0ea0363b14bbaacf33b8d0481c864c33bdc87e390c89dad4cda4ec30",
+  "object_sha256": "7bf55a876d0c74784df2f6d3225040b32da027bc039f63c79b2551bb819505c5",
+  "comparison": {
+    "differing": 15,
+    "total": 63,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  }
+}
