@@ -1,0 +1,10 @@
+{
+  "base": "53d0fba0c5f44e91fe921f722fee7ff63a2dd0fe",
+  "status": "BLOCKED_INPUTS_NO_COMPILATION",
+  "claims": [],
+  "files": {
+    "README.md": "1879bbd9a80ed6c01a32f43bcdc68d54277d7ac4ce664a5ad776521d984c808e",
+    "caller_definition_inventory.json": "fabb7ce7a424ae4f2d0bb272c44702e66a661a69173c60e8cdc4f8667532e7df",
+    "native_identity.json": "8f9e611bffb76afe8e40fb2b9c576510a745b0b882fa2229e2e902d3d141898e"
+  }
+}

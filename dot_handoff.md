@@ -53,7 +53,8 @@ The research audits supersede the original readiness assumptions:
 - D08's best demonstrated closure is existing rank/distance catch-up code (`render_large_objects`), with a structural frame deficit. None of that shortlist is a fresh ready reconstruction.
 - D06's proposed boolean expansion was tried and rejected by PR #44. Do not repeat it.
 - PR #45 audits the pinned old HUD archive and corrects source/receipt and signedness/return assumptions. The interrupted minimap files and original JSON receipts have now been recovered on master, with incomplete source-to-receipt binding explicitly documented.
-- PRs #48/#49 supply genuine renderer source and a useful closure continuation; see new D09 below.
+- PRs #48/#49 add renderer ABI/behavioral evidence and replay packaging. Their source family already existed in PR #9 B119; see corrected D09 below.
+- [Program queue reconciliation](cloud/work/program_queue_20261003/README.md) records zero justified execution-ready packets from the reviewed lanes, minimal maintainer input requests, and ownership gates. Do not force two ready labels from frozen work.
 
 Historical packet notes preserve their original dates/bases. Research CI and behavioral tests establish only their documented scope. Update the live queue using these findings before assigning more variants.
 
@@ -124,13 +125,15 @@ Owners start **unassigned**. Each helper should hold one active packet and one q
 - **Deliverable:** a go/no-go packet for one function with the lowest unresolved context risk. Assign two helpers only after a credible complete-reconstruction route is identified.
 - **Next:** execute that packet alongside a steady medium lane; keep the medium queue stocked during the longer investigation.
 
-### D09 — genuine renderer closure from the new research
+### D09 — renderer context blocked on new evidence
 
-- **Owner:** source/context helper; reserve the whole edited family together.
-- **Targets:** PR #48’s complete func_8008A46C (472 bytes), PR #49’s sound_init (400) and func_800878E0 (296). The already accepted func_80086A50 is genuine mode context with no repeated credit. Native helpers func_8008A148 and func_8008705C require complete actual-body/ABI audits before the closure is ready.
-- **Task:** use the two new complete caller roots to establish authentic caller visibility and live values across calls. Recover/audit the remaining actual helper source; resolve the mode helper’s two local table references through protected original placement. Keep real mode/flags operations and observed command-buffer reloads.
-- **Deliverable:** full source-context packet with exact per-member native geometry and protected relocations. The flag root’s O3 29/74 residual is allocation, not an isolated almost-match. No fabricated keepers, helper stubs or extra formal arguments.
-- **Next:** execute a bounded natural closure experiment only after these prerequisites pass. Otherwise return the concrete missing contract to D02 and preserve the sources without more allocator sweeps.
+- **Owner:** unassigned source/context helper; maintainer owns private table verification. Reserve the whole edited family only after readiness passes.
+- **Existing source:** PR #9's [B119](cloud/work/near_miss_B119.md) already contains complete rectangle `func_8008A46C` (472 bytes), palette `func_8008A148` (580), disable-mask `func_8008705C` (180), flags `func_800878E0` (296), `sound_init` (400), and mode `func_80086A50` (1,548). Mode is accepted read-only context with no repeated credit. Do not request recovery of these helpers again.
+- **Historical baselines:** B119 records rectangle 71/118, palette 101/145, disable 11/45, flags 19/74 and initializer 70/100 differing words. These are archived NONMATCHs, not fresh replays. PR #48/#49 add semantic tests, ABI analysis and standalone replay packaging; their 109/118, 29/74 and 75/100 results do not supersede the better archived residuals. The prior-session report records a later five-body closure at 75/118 and was correctly not republished.
+- **State:** BLOCKED, not execution-ready. Missing evidence is authentic original translation-unit/export-root visibility and a new native allocation explanation, plus complete audited caller source if that context is justified. Adding existing helpers or previously tried narrow callers is not a new hypothesis.
+- **Separate proof gap:** mode has two local reference sites (`+0xc`, `+0x14`) to one 20-byte, five-case table at `0x80123870`. Obtain a source/object-bound placement/relocation receipt for the exact candidate. Existing mode acceptance does not resolve changed-closure table proof or identify original TU boundaries; table proof alone does not fix allocation.
+- **Minimal handoff:** [renderer checklist](cloud/work/graphics_readiness_20261003/README.md) gives exact caller status, table fields and source/recipe provenance. [Queue reconciliation](cloud/work/program_queue_20261003/README.md) prioritizes the narrow C974 service lookup where metadata exists and keeps this renderer request separate.
+- **Next:** after genuine context, complete source, exact baseline and one evidence-derived causal hypothesis pass preflight, run one bounded natural-context experiment. Otherwise stay blocked. No fabricated keepers, helper stubs, padding, extra parameters or allocator sweeps.
 
 ### D10 — boot-segment tail runtime library (412 functions)
 
