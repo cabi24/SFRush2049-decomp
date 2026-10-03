@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "packet": "BT02-medium",
+  "apply_only_after": [
+    "independent_actual_source_replay",
+    "exact_head_pr_ci_pass"
+  ],
+  "functions": [
+    {
+      "address": "0x80010DD8",
+      "name": "func_80010DD8",
+      "size": 168,
+      "cluster": "BT02",
+      "name_hypothesis": "allocate_duration_buffer",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 40,
+      "source_path": "cloud/work/boot_tail/BT02-medium/nonmatch/func_80010DD8.c",
+      "note": "BT02-medium: Complete source, bounded controls and workbench diagnosis archived. Narrow-formal lowering remains unresolved; see packet README."
+    },
+    {
+      "address": "0x8001144C",
+      "name": "func_8001144C",
+      "size": 116,
+      "cluster": "BT02",
+      "name_hypothesis": "release_audio_buffers",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_8001144C.c",
+      "note": "BT02-medium: strict local match; apply only after independent source replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    {
+      "address": "0x80011848",
+      "name": "func_80011848",
+      "size": 76,
+      "cluster": "BT02",
+      "name_hypothesis": "wait_then_release_audio_buffer",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80011848.c",
+      "note": "BT02-medium: strict local match; apply only after independent source replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    {
+      "address": "0x80011C1C",
+      "name": "func_80011C1C",
+      "size": 104,
+      "cluster": "BT02",
+      "name_hypothesis": "initialize_audio_record",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 14,
+      "source_path": "cloud/work/boot_tail/BT02-medium/nonmatch/func_80011C1C.c",
+      "note": "BT02-medium: Complete source, bounded controls and workbench diagnosis archived. Narrow-formal lowering remains unresolved; see packet README."
+    },
+    {
+      "address": "0x80011D24",
+      "name": "func_80011D24",
+      "size": 80,
+      "cluster": "BT02",
+      "name_hypothesis": "submit_pending_audio_buffer",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80011D24.c",
+      "note": "BT02-medium: strict local match; apply only after independent source replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    {
+      "address": "0x800121BC",
+      "name": "func_800121BC",
+      "size": 68,
+      "cluster": "BT02",
+      "name_hypothesis": "release_audio_pair_a",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_800121BC.c",
+      "note": "BT02-medium: strict local match; apply only after independent source replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    {
+      "address": "0x8001261C",
+      "name": "func_8001261C",
+      "size": 68,
+      "cluster": "BT02",
+      "name_hypothesis": "release_audio_pair_b",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_8001261C.c",
+      "note": "BT02-medium: strict local match; apply only after independent source replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    {
+      "address": "0x80013964",
+      "name": "func_80013964",
+      "size": 112,
+      "cluster": "BT02",
+      "name_hypothesis": "select_audio_buffer",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80013964.c",
+      "note": "BT02-medium: strict local match; apply only after independent source replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    {
+      "address": "0x800140F8",
+      "name": "func_800140F8",
+      "size": 72,
+      "cluster": "BT02",
+      "name_hypothesis": "register_audio_callback",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_800140F8.c",
+      "note": "BT02-medium: strict local match; apply only after independent source replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    {
+      "address": "0x80014140",
+      "name": "func_80014140",
+      "size": 88,
+      "cluster": "BT02",
+      "name_hypothesis": "wait_then_unregister_audio_callback",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80014140.c",
+      "note": "BT02-medium: strict local match; apply only after independent source replay and exact-head CI. Historical role/type names remain hypotheses."
+    }
+  ]
+}

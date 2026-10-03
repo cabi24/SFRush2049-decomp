@@ -275,3 +275,13 @@ A full-file update was blocked because of inherited private metadata outside D10
 so only the independent allowed ledger, README and receipt files are updated.
 The CI result and verified-body totals here and in STATUS.csv are authoritative.
 No inherited handoff sections were removed or republished in this receipt update.
+
+## Second published cut: 31 additional peer-reviewed matches
+
+The second cut contains 31 additional independently reviewed strict matches /
+1,728 B and 17 complete nonmatches / 1,156 B from 48 attempts. Its C source hashes
+exactly preserve six frozen peer-reviewed packets. These new matches remain
+`claimed` pending exact-head CI; the first 42 matches retain their completed
+source-head CI proof. See `wave2/README.md`, `wave2/reviewed_sources.json` and
+`wave2/verification.json`. Later successor claims are metadata only here; their
+candidates are excluded from this frozen cut. D10 is unchanged as documented above.

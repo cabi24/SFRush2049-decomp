@@ -1,0 +1,454 @@
+{
+  "initial_form_results": [
+    {
+      "name": "func_80021B9C",
+      "source_sha256": "ae6aedde8db2f78c85800afa7765c50192258492ec433467b76fbf09dff283f7",
+      "scores": {
+        "O2": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "O1": {
+          "differing": 8,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 4
+        }
+      }
+    },
+    {
+      "name": "func_80021BC0",
+      "source_sha256": "2f2e361aa71a616f51f1526ef05c4c0e339457fe699ffb569d5337330b856b1b",
+      "scores": {
+        "O2": {
+          "differing": 0,
+          "total": 12,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "O1": {
+          "differing": 9,
+          "total": 12,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        }
+      }
+    },
+    {
+      "name": "func_80022580",
+      "source_sha256": "6338f2eb6247ccfb53dc54b9b16601f61d23a37ec3721144c05484506e487dbc",
+      "scores": {
+        "O2": {
+          "differing": 2,
+          "total": 11,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "O1": {
+          "differing": 10,
+          "total": 11,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 3
+        }
+      }
+    },
+    {
+      "name": "func_80022A40",
+      "source_sha256": "3d93e6c1bac0bafdbea68e89304719dd86478c5c11422025075a2349e35e3823",
+      "scores": {
+        "O2": {
+          "differing": 11,
+          "total": 14,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "O1": {
+          "differing": 12,
+          "total": 14,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        }
+      }
+    },
+    {
+      "name": "func_80023520",
+      "source_sha256": "31425e16a3521ed6b12e785619ff81c48480f7049c18d18c054068ad90d10002",
+      "scores": {
+        "O2": {
+          "differing": 0,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "O1": {
+          "differing": 8,
+          "total": 9,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 4
+        }
+      }
+    },
+    {
+      "name": "func_80023544",
+      "source_sha256": "31f00b592e9250b61674a9e5f9bebb94987c67ab42790adf313a80d8e2ce48ad",
+      "scores": {
+        "O2": {
+          "differing": 0,
+          "total": 8,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "O1": {
+          "differing": 6,
+          "total": 8,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 3
+        }
+      }
+    }
+  ],
+  "directed_variants": [
+    {
+      "address": "80022580",
+      "form": "implicit_byte_conversion",
+      "differing": 2,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022580",
+      "form": "byte_local",
+      "differing": 2,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022580",
+      "form": "word_local_mask",
+      "differing": 3,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022580",
+      "form": "register_word_local",
+      "differing": 3,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022580",
+      "form": "register_byte_local",
+      "differing": 2,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022A40",
+      "form": "word_local_mask",
+      "differing": 7,
+      "total": 14,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022A40",
+      "form": "word_local_cast",
+      "differing": 10,
+      "total": 14,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022A40",
+      "form": "register_word_mask",
+      "differing": 10,
+      "total": 14,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022A40",
+      "form": "register_word_cast",
+      "differing": 10,
+      "total": 14,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022A40",
+      "form": "word_local_byte_assign",
+      "differing": 7,
+      "total": 14,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022580",
+      "form": "state_register",
+      "differing": 2,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022580",
+      "form": "command_register",
+      "differing": 2,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022580",
+      "form": "both_register",
+      "differing": 2,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022A40",
+      "form": "state_register",
+      "differing": 7,
+      "total": 14,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022A40",
+      "form": "command_register",
+      "differing": 7,
+      "total": 14,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022A40",
+      "form": "both_register",
+      "differing": 7,
+      "total": 14,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022580",
+      "form": "word_callee_and_mask",
+      "differing": 2,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022A40",
+      "form": "byte_callee",
+      "differing": 11,
+      "total": 14,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022A40",
+      "form": "fullwidth_bitfield_cast",
+      "differing": 11,
+      "total": 14,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022A40",
+      "form": "fullwidth_bitfield_mask",
+      "differing": 7,
+      "total": 14,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022580",
+      "form": "mask_before_shift",
+      "differing": 8,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022580",
+      "form": "modulo_byte",
+      "differing": 2,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022580",
+      "form": "initialized_word_mask",
+      "differing": 3,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022580",
+      "form": "double_shift",
+      "differing": 8,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022A40",
+      "form": "modulo_byte",
+      "differing": 7,
+      "total": 14,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022A40",
+      "form": "initialized_word_mask",
+      "differing": 7,
+      "total": 14,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022A40",
+      "form": "initialized_word_cast",
+      "differing": 11,
+      "total": 14,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022A40",
+      "form": "double_shift",
+      "differing": 7,
+      "total": 14,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  ],
+  "first_refinement_results": [
+    {
+      "address": "80022580",
+      "form": "load word local then shift and byte convert",
+      "differing": 3,
+      "total": 11,
+      "extra_words": 0
+    },
+    {
+      "address": "80022A40",
+      "form": "replace explicit byte cast with word mask to preserve packed load",
+      "differing": 7,
+      "total": 14,
+      "extra_words": 0
+    }
+  ],
+  "diagnoses": {
+    "80022580": {
+      "aligned_register": 2,
+      "aligned_schedule": 0,
+      "aligned_constant": 0,
+      "frame_bytes": 24
+    },
+    "80022A40": {
+      "aligned_deletions": 3,
+      "aligned_register": 0,
+      "aligned_schedule": 0,
+      "frame_bytes": 24,
+      "interpretation": "Initial explicit byte conversion narrowed the packed word read to a byte load. Word mask restores the load but leaves schedule/register residual."
+    }
+  },
+  "attempted_source_forms": {
+    "80022580": 15,
+    "80022A40": 17
+  },
+  "stopping_condition": "No movement after bounded natural expression/type/local controls; do not force register or load shape with padding, volatile, dummy parameters or assembly."
+}
