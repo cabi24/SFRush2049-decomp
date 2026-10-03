@@ -1,0 +1,26 @@
+{
+  "status": "partial_semantic_source_not_matching_context",
+  "base": "53d0fba0c5f44e91fe921f722fee7ff63a2dd0fe",
+  "full_target": {
+    "address": "0x800FB2C8",
+    "size_bytes": 2356,
+    "native_word_stream_sha256": "1d92bbdf5225a65d93ebbcb0f421526cfad83630387c27ecf223ddca197d479a"
+  },
+  "fragment_interval": {
+    "start": "0x800FB378",
+    "end_exclusive": "0x800FB5C0"
+  },
+  "accepted_bytes": 0,
+  "claims": [],
+  "files": {
+    "cloud/work/state_setup_prerequisite/fast_prepare.inc.c": "f43b29f9035cea08ec6ee43f632f5a92de8008282f530ebe0d3a7be5ba7cb257",
+    "cloud/work/state_setup_prerequisite/layout.h": "211d79c8f24f0985285c61b2320211276897fc90fa6fe1a7b18b6d7bfcff30dd",
+    "tests/conveyor/fixtures/state_setup_prerequisite.c": "0bd43dda9b66158fadfb673747c09b7e20f253fc434d83e1284e882bacbfac9a",
+    "tests/conveyor/test_state_setup_prerequisite.py": "a5e7369db026e4db8dc588c4966479438328cc518b8493d9062ae8ba1ae037ce"
+  },
+  "tracked_evidence": {
+    "work/game/race/setup_state_main/target.s": "e394b0bc0dc4ca5fa0bec0883b699498df1941ed5bfc49f2d8b7af203f162d82",
+    "work/game/race/pause_toggle_handler/target.s": "af46d4ea312530ba89dc609fce061107fee57621dd4b67eecb7d30ed0a7b5359",
+    "cloud/work/near_miss_B99/music_tempo_set_native.c": "bd66469606525bed5aae7c8fc1632ca84a904f47428f9e69e07fff808774cd1e"
+  }
+}
