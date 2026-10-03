@@ -1,0 +1,412 @@
+{
+  "schema": 1,
+  "classification": "SCOUT_ONLY_NO_MATCH",
+  "claims": [],
+  "targets": [
+    {
+      "target": "func_800D91A0",
+      "address": "0x800D91A0",
+      "native_bytes": 3860,
+      "native_words": 965,
+      "native_sha256": "4d67576064d8ab6d28f1a1a1b25bcde7ec81dbba063a64654d106ce2c7433d78",
+      "entry_frame_bytes": 240,
+      "accepted_name_lock": false,
+      "accepted_interval_overlaps": [],
+      "direct_call_count": 33,
+      "callees": [
+        {
+          "address": "0x80007C68",
+          "names": [
+            "memcpy"
+          ],
+          "count": 2
+        },
+        {
+          "address": "0x80092360",
+          "names": [
+            "entity_flags_apply",
+            "frame_sync"
+          ],
+          "count": 6
+        },
+        {
+          "address": "0x800A1910",
+          "names": [
+            "func_800A1910"
+          ],
+          "count": 2
+        },
+        {
+          "address": "0x800B37E8",
+          "names": [
+            "sound_control"
+          ],
+          "count": 3
+        },
+        {
+          "address": "0x800B3B4C",
+          "names": [
+            "ambient_sound_set"
+          ],
+          "count": 1
+        },
+        {
+          "address": "0x800B45BC",
+          "names": [
+            "sound_handles_clear"
+          ],
+          "count": 1
+        },
+        {
+          "address": "0x800B4FB0",
+          "names": [
+            "func_800B4FB0"
+          ],
+          "count": 1
+        },
+        {
+          "address": "0x800B5FC4",
+          "names": [
+            "resource_type_select"
+          ],
+          "count": 1
+        },
+        {
+          "address": "0x800C77C4",
+          "names": [
+            "func_800C77C4"
+          ],
+          "count": 1
+        },
+        {
+          "address": "0x800D7D40",
+          "names": [
+            "render_replay_ui"
+          ],
+          "count": 2
+        },
+        {
+          "address": "0x800D7DC4",
+          "names": [
+            "render_results_screen"
+          ],
+          "count": 1
+        },
+        {
+          "address": "0x800D7E88",
+          "names": [
+            "drone_target_update",
+            "pause_resume"
+          ],
+          "count": 1
+        },
+        {
+          "address": "0x800D8078",
+          "names": [
+            "func_800D8078"
+          ],
+          "count": 2
+        },
+        {
+          "address": "0x800D8154",
+          "names": [
+            "func_800D8154"
+          ],
+          "count": 6
+        },
+        {
+          "address": "0x800D816C",
+          "names": [
+            "func_800D816C"
+          ],
+          "count": 1
+        },
+        {
+          "address": "0x800D8C58",
+          "names": [
+            "drone_throttle_calc",
+            "pause_quit"
+          ],
+          "count": 1
+        },
+        {
+          "address": "0x800D9058",
+          "names": [
+            "func_800D9058"
+          ],
+          "count": 1
+        }
+      ],
+      "direct_callers": [
+        "RaceStateMachine_Update",
+        "input_aux_handler"
+      ]
+    },
+    {
+      "target": "func_80102F30",
+      "address": "0x80102F30",
+      "native_bytes": 3560,
+      "native_words": 890,
+      "native_sha256": "3277195138a39afef44bb022e00422269403b1976613b6c165f7fc822c76001d",
+      "entry_frame_bytes": 640,
+      "accepted_name_lock": false,
+      "accepted_interval_overlaps": [],
+      "direct_call_count": 51,
+      "callees": [
+        {
+          "address": "0x80007270",
+          "names": [
+            "osRecvMesg"
+          ],
+          "count": 9
+        },
+        {
+          "address": "0x800075E0",
+          "names": [
+            "osJamMesg"
+          ],
+          "count": 9
+        },
+        {
+          "address": "0x800B4200",
+          "names": [
+            "slot_state_setup"
+          ],
+          "count": 9
+        },
+        {
+          "address": "0x800B4360",
+          "names": [
+            "fcvt_wrapper"
+          ],
+          "count": 4
+        },
+        {
+          "address": "0x800B65B4",
+          "names": [
+            "render_helper"
+          ],
+          "count": 2
+        },
+        {
+          "address": "0x800B71D4",
+          "names": [
+            "state_utility"
+          ],
+          "count": 2
+        },
+        {
+          "address": "0x800B74A0",
+          "names": [
+            "dispatch_handler"
+          ],
+          "count": 10
+        },
+        {
+          "address": "0x800BE7BC",
+          "names": [
+            "race_position_update"
+          ],
+          "count": 1
+        },
+        {
+          "address": "0x80100D5C",
+          "names": [
+            "func_80100D5C"
+          ],
+          "count": 2
+        },
+        {
+          "address": "0x8010221C",
+          "names": [
+            "func_8010221C"
+          ],
+          "count": 1
+        },
+        {
+          "address": "0x80102448",
+          "names": [
+            "func_80102448"
+          ],
+          "count": 1
+        },
+        {
+          "address": "0x80102980",
+          "names": [
+            "func_80102980"
+          ],
+          "count": 1
+        }
+      ],
+      "direct_callers": []
+    },
+    {
+      "target": "func_80100E58",
+      "address": "0x80100E58",
+      "native_bytes": 2732,
+      "native_words": 683,
+      "native_sha256": "1ef074ec1c53efab55d79fa190eb7deefe4aaf359de22c211d5c1580f9e0b5d3",
+      "entry_frame_bytes": 528,
+      "accepted_name_lock": false,
+      "accepted_interval_overlaps": [],
+      "direct_call_count": 40,
+      "callees": [
+        {
+          "address": "0x80007270",
+          "names": [
+            "osRecvMesg"
+          ],
+          "count": 8
+        },
+        {
+          "address": "0x800075E0",
+          "names": [
+            "osJamMesg"
+          ],
+          "count": 8
+        },
+        {
+          "address": "0x800B4200",
+          "names": [
+            "slot_state_setup"
+          ],
+          "count": 8
+        },
+        {
+          "address": "0x800B4360",
+          "names": [
+            "fcvt_wrapper"
+          ],
+          "count": 2
+        },
+        {
+          "address": "0x800B65B4",
+          "names": [
+            "render_helper"
+          ],
+          "count": 2
+        },
+        {
+          "address": "0x800B71D4",
+          "names": [
+            "state_utility"
+          ],
+          "count": 2
+        },
+        {
+          "address": "0x800B74A0",
+          "names": [
+            "dispatch_handler"
+          ],
+          "count": 8
+        },
+        {
+          "address": "0x800BE7BC",
+          "names": [
+            "race_position_update"
+          ],
+          "count": 1
+        },
+        {
+          "address": "0x80100D5C",
+          "names": [
+            "func_80100D5C"
+          ],
+          "count": 1
+        }
+      ],
+      "direct_callers": [
+        "func_8010221C"
+      ]
+    },
+    {
+      "target": "func_8010C974",
+      "address": "0x8010C974",
+      "native_bytes": 2636,
+      "native_words": 659,
+      "native_sha256": "038c6b05ae52d2f07622ac981c8b16d1f9759f447573dd8aca9e7d71b1ef9052",
+      "entry_frame_bytes": 392,
+      "accepted_name_lock": false,
+      "accepted_interval_overlaps": [],
+      "direct_call_count": 24,
+      "callees": [
+        {
+          "address": "0x8008AE8C",
+          "names": [
+            "model_data_load"
+          ],
+          "count": 2
+        },
+        {
+          "address": "0x8008B0D8",
+          "names": [
+            "model_transform_setup"
+          ],
+          "count": 1
+        },
+        {
+          "address": "0x8008D6B0",
+          "names": [
+            "math_utility"
+          ],
+          "count": 4
+        },
+        {
+          "address": "0x8008D870",
+          "names": [
+            "func_8008D870"
+          ],
+          "count": 3
+        },
+        {
+          "address": "0x8008E26C",
+          "names": [
+            "func_8008E26C"
+          ],
+          "count": 3
+        },
+        {
+          "address": "0x80090088",
+          "names": [
+            "entity_spawn_callback"
+          ],
+          "count": 4
+        },
+        {
+          "address": "0x8009079C",
+          "names": [
+            "entity_transform_apply"
+          ],
+          "count": 2
+        },
+        {
+          "address": "0x800AF06C",
+          "names": [
+            "save_write_data"
+          ],
+          "count": 1
+        },
+        {
+          "address": "0x800AFA84",
+          "names": [
+            "func_800AFA84"
+          ],
+          "count": 2
+        },
+        {
+          "address": "0x800C4200",
+          "names": [
+            "camera_trigger_check"
+          ],
+          "count": 1
+        },
+        {
+          "address": "0x8038D798",
+          "names": [],
+          "count": 1
+        }
+      ],
+      "direct_callers": []
+    }
+  ]
+}

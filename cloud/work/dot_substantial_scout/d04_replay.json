@@ -1,0 +1,29 @@
+[
+  {
+    "name": "race_setup_1",
+    "source_sha256": "c66b427ff7476c5537273b6d6c135bde7ca39dc3104d50ed6e1f96a14ee3668f",
+    "result": {
+      "differing": 381,
+      "total": 471,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xc4",
+        ".rodata+0x0 at +0xcc"
+      ],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "name": "assign_drones",
+    "source_sha256": "2f5d4d86c5d0a63b1168af58a2aa6b6cca0b69ce5636b82fb92d10095068ae8d",
+    "result": {
+      "differing": 287,
+      "total": 309,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]
