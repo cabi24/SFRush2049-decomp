@@ -3500,6 +3500,7 @@ viewport_scale:
 .section .text.func_800A7830, "ax", @progbits
 .globl func_800A7830
 func_800A7830:
+    /* compiled from src/blob/func_800A7830.c */
     .word 0x00047400
     .word 0x000E7C03
     .word 0x000FC100
