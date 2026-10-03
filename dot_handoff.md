@@ -140,12 +140,10 @@ Owners start **unassigned**. Each helper should hold one active packet and one q
 - **Deliverable:** true-zero matches in `cloud/matches/boot_tail/` and research/status in `cloud/work/boot_tail/` (`STATUS.csv`). This is not cartridge coverage. Promotion needs a maintainer static-layout extension to `0x800277D0`.
 - **Do not touch:** the static layout, splat, `symbol_addrs`, locks, the generated targets, ovl_a/ovl_b, the 21 ultralib functions or production gates.
 
-### D11 — func_800D1248: natural source for the last 9 words
+### D11 — func_800D1248 (closed: matched by Claude)
 
-- **Owner:** Astra; unclaimed until recorded here. The `dot_response` pause on this function is lifted by the owner as of the merge of this entry (2026-10-03).
-- **Packet:** [cloud/work/near_miss_800D1248_round12/PACKET.md](cloud/work/near_miss_800D1248_round12/PACKET.md), with `STATUS.md`, the 9-word candidate `func_800D1248.c` and the permuter's keeper version (evidence only).
-- **Target:** strict zero for `func_800D1248` (81 words, `asm/us/blob`). The farm permuter reached equality only with an artificial `if ((arg0 && arg0) && arg0) {}`. Find the natural construct (for example a stripped assert/debug macro) that leaves the same empty short-circuit blocks after the early return.
-- **Bound:** about 20 directed variants, then record and stop. Never submit the keeper. Submissions go to `cloud/matches/func_800D1248.c`; locking and splicing stay with the maintainer.
+- **Status:** matched, so nothing to claim. The owner took the function back from Astra on 2026-10-03; Claude identified the source as the N64 port of the arcade `check_if_finished_resurrecting` and reached strict equality. The final 9 words need a three-level empty conditional immediately after the early return, interpreted as a compiled-out debug guard. The owner accepted that as source (`cloud/matches/func_800D1248.c`; evidence in [cloud/work/near_miss_800D1248_round12/STATUS.md](cloud/work/near_miss_800D1248_round12/STATUS.md)).
+- The `dot_response` pause on this function is lifted.
 
 ## Keeping the helpers supplied
 
