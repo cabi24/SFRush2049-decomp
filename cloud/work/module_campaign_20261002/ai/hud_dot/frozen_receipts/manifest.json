@@ -1,0 +1,180 @@
+{
+  "status": "Frozen interrupted NONMATCH research; zero matching credit",
+  "source_receipt_binding": "Historical receipts do not consistently carry source hashes; current source freeze is not a proof that each receipt compiled it. No fresh IDO replay performed.",
+  "files": [
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/abi_audit.json",
+      "original_sha256": "5c73d34c86b7e4054bf48bfd8e3cb616188804f9b1aeeb6e7c1d83151f163829",
+      "bytes": 1488
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/context_sources.json",
+      "original_sha256": "f65e089364cc8b5fb9e471028262736287b978c2dca87774c1addabcec3572e6",
+      "bytes": 669
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/hidden.c",
+      "original_sha256": "0e55910a9198ebf7839a742eeb2f091c5ef65a882eb5df3efa3907b254a5e1e8",
+      "bytes": 350
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/input_apply.c",
+      "original_sha256": "459bb22d6a0df92041f2d77e8f00347336ba988fb4ec36607eafd765b9601d34",
+      "bytes": 1260
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/native_captures.c",
+      "original_sha256": "68543b24a46fe0c82bde055e330f13691e6798fb66e840ca09fcdda3aed814a1",
+      "bytes": 3623
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/select_blit.c",
+      "original_sha256": "71a383df9ce6246244774c42146ff665388706874bb3075e0b588158cf7a84d1",
+      "bytes": 1323
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/minimap_dots/README.md",
+      "original_sha256": "2b980dce1fa4dcc2a9c20404d1f6aa621726a18b41a50355d40652a4d405768f",
+      "bytes": 3219
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/minimap_dots/animate_dot_donor.c",
+      "original_sha256": "27e8d914f228946626e60bffca01ee363dda91a9dc5572fb7ef679587d6b7801",
+      "bytes": 2240
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/minimap_dots/animate_dot_hidden.c",
+      "original_sha256": "c2854b7d6d2a7c2f5a362b9a7597d6d89641b1c4a73c33242b789d09b89feff3",
+      "bytes": 2105
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/minimap_dots/animate_dot_map_offsets.c",
+      "original_sha256": "d42d90f04e79b0990b75398fcc5aeefae879cd1da5cf71ba2e960ae3a1038352",
+      "bytes": 2308
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/minimap_dots/provenance.json",
+      "original_sha256": "452fd6348e0616c57223886b5136c856ddd5a3ff438de83e85ec3f149586a32c",
+      "bytes": 850
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/reconstruction/minimap_dots/types.h",
+      "original_sha256": "eebcc69e6d581c097b2129b6f075aeee3074ad8d997e33410c868e9c149405b4",
+      "bytes": 1572
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/frozen_receipts/actual_hidden_o3.json",
+      "original_sha256": "fa0f922d91e7c6c07c8c1cce45232f975c9d490453b70ffac5cbd70e610f88ec",
+      "published_sha256": "fa0f922d91e7c6c07c8c1cce45232f975c9d490453b70ffac5cbd70e610f88ec",
+      "status": "historical receipt; not freshly replayed; compiler executable path shortened"
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/frozen_receipts/actual_hidden_o3_compile.json",
+      "original_sha256": "06c08561ff0b7007b4d15031ef37226afbe2f2954adb2a2d710b95a3c499ad17",
+      "published_sha256": "94ddc9f0a85b77bf581f9b4b4d8e5fbd9c5eb9185455f293c9493386f1cb24ea",
+      "status": "historical receipt; not freshly replayed; compiler executable path shortened"
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/frozen_receipts/animate_dot_map_offsets_O2.json",
+      "original_sha256": "1931f90fe521e2a722627b333758b6d787f8ecdb9b47d9ff46770d9378e60445",
+      "published_sha256": "1931f90fe521e2a722627b333758b6d787f8ecdb9b47d9ff46770d9378e60445",
+      "status": "historical receipt; not freshly replayed; compiler executable path shortened"
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/frozen_receipts/animate_dot_map_offsets_O2_compile.json",
+      "original_sha256": "e91e4d0480d98838782a5f499d14d09281c980c96a8d871f45a27f7c7cf6b0f3",
+      "published_sha256": "e417e2c27d25828af3cd40f9d7746640fc46c3193768adb2681de47ab7917bf9",
+      "status": "historical receipt; not freshly replayed; compiler executable path shortened"
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/frozen_receipts/animate_dot_map_offsets_O3.json",
+      "original_sha256": "30dded0ef7d1198b3ff10c94b2e3e989630b1bab05247fbbeec8b802a74adadd",
+      "published_sha256": "30dded0ef7d1198b3ff10c94b2e3e989630b1bab05247fbbeec8b802a74adadd",
+      "status": "historical receipt; not freshly replayed; compiler executable path shortened"
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/frozen_receipts/animate_dot_map_offsets_O3_compile.json",
+      "original_sha256": "3e27ea20555c981658383a0e6990abd22ae37d2eb17906b791415a8b9ae0e405",
+      "published_sha256": "794877d9bce7764f2a6bba9c2487c4469159cb36ddf27565c6b81e94ac5c4830",
+      "status": "historical receipt; not freshly replayed; compiler executable path shortened"
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/frozen_receipts/baseline_o2.json",
+      "original_sha256": "f6cf8e173e42908f87031b179ae16e8910c0790bd3c7da2bab23d1a052c9013d",
+      "published_sha256": "f6cf8e173e42908f87031b179ae16e8910c0790bd3c7da2bab23d1a052c9013d",
+      "status": "historical receipt; not freshly replayed; compiler executable path shortened"
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/frozen_receipts/baseline_o2_compile.json",
+      "original_sha256": "e35127a2ee1d5ae0b1a055c591c00d0b206fd3c241fe1adac26c30d2e09fd59e",
+      "published_sha256": "82537ad41ac0014a0be3afd2e8d46bef1667499087e208d2d1324ce6fd78159e",
+      "status": "historical receipt; not freshly replayed; compiler executable path shortened"
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/frozen_receipts/expanded_actual_input.json",
+      "original_sha256": "57f1e993c2bf7f595e9622e46e213198080ff04e85c3a404d46aaf7ea26e1d61",
+      "published_sha256": "57f1e993c2bf7f595e9622e46e213198080ff04e85c3a404d46aaf7ea26e1d61",
+      "status": "historical receipt; not freshly replayed; compiler executable path shortened"
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/frozen_receipts/expanded_actual_input_compile.json",
+      "original_sha256": "ef0628c53bd77eada582002f3e831c601ecacbb9826fc2dad4c71644498fcc27",
+      "published_sha256": "eb81d1b9b4974315113955e88cda639c9f5d71fe3e484ea0e459e6fef10df299",
+      "status": "historical receipt; not freshly replayed; compiler executable path shortened"
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/frozen_receipts/expanded_o2.json",
+      "original_sha256": "195dc88f84a805db01a5c7e23c764d5b70a1bb89a681182fbf62c56ab883743e",
+      "published_sha256": "195dc88f84a805db01a5c7e23c764d5b70a1bb89a681182fbf62c56ab883743e",
+      "status": "historical receipt; not freshly replayed; compiler executable path shortened"
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/frozen_receipts/expanded_o2_compile.json",
+      "original_sha256": "d2419b6445ba2aaf486d61c7dfbbc84951c98dee7e589cd4eddff22db6b6b68d",
+      "published_sha256": "3f539edcb88dab98fdca4f71b9a675991161efa30a2f8f4ef356f74e4fb84c76",
+      "status": "historical receipt; not freshly replayed; compiler executable path shortened"
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/frozen_receipts/expanded_o3.json",
+      "original_sha256": "0cd6adca8ef9a3107275bde1fc1329f549032ce9146e0a774ca2ed6d856a0fb0",
+      "published_sha256": "0cd6adca8ef9a3107275bde1fc1329f549032ce9146e0a774ca2ed6d856a0fb0",
+      "status": "historical receipt; not freshly replayed; compiler executable path shortened"
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/frozen_receipts/expanded_o3_compile.json",
+      "original_sha256": "0adf53217f821d7ee17dd1d9850dad344dbc6ed520d2b809c6bd629ff7818805",
+      "published_sha256": "a097ddbd8397c7021febece06687297610f74feb049475bd50dddbb8b49ea162",
+      "status": "historical receipt; not freshly replayed; compiler executable path shortened"
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/frozen_receipts/native_captures_O2.json",
+      "original_sha256": "9e55b2adbaba67d805958882126056357a148d17fe65c7c37bb24dc98d7aada5",
+      "published_sha256": "9e55b2adbaba67d805958882126056357a148d17fe65c7c37bb24dc98d7aada5",
+      "status": "historical receipt; not freshly replayed; compiler executable path shortened"
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/frozen_receipts/native_captures_O2_compile.json",
+      "original_sha256": "e09181a2c1588335a69fcd6c42ee63a647417f056c0354f29371b755e2864ffe",
+      "published_sha256": "b35c2082e5fe39bf0f602fdb45b347af9cf889e4cc33d5cdb21632137f1cd9be",
+      "status": "historical receipt; not freshly replayed; compiler executable path shortened"
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/frozen_receipts/native_captures_O3.json",
+      "original_sha256": "8015177a12af0dff9fd90b93d1c807d528e9f078b687f5af78aaef45fef0762d",
+      "published_sha256": "8015177a12af0dff9fd90b93d1c807d528e9f078b687f5af78aaef45fef0762d",
+      "status": "historical receipt; not freshly replayed; compiler executable path shortened"
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/frozen_receipts/native_captures_O3_compile.json",
+      "original_sha256": "677004c4cd7e23bedccab63db72a10454586ef63035cdcea8980e7658d663fa9",
+      "published_sha256": "a8d28abe4601aa3b62df3dc61bc56512db4676e6ef2ff57cea9b88a05920c423",
+      "status": "historical receipt; not freshly replayed; compiler executable path shortened"
+    },
+    {
+      "path": "cloud/work/module_campaign_20261002/ai/hud_dot/frozen_receipts/selection.json",
+      "original_sha256": "1dd863646c15f32ecac4b591a181aeb4918e992edabecd4827db85187682136a",
+      "published_sha256": "1dd863646c15f32ecac4b591a181aeb4918e992edabecd4827db85187682136a",
+      "status": "historical receipt; not freshly replayed; compiler executable path shortened"
+    }
+  ]
+}

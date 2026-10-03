@@ -4,15 +4,16 @@ A work-in-progress decompilation of San Francisco Rush 2049 for the Nintendo 64.
 
 ## Status
 
-| Component | Status |
-|-----------|--------|
-| Build System | Matching build achieved |
-| ROM Extraction | Complete (88 code files) |
-| Symbol Identification | 228 functions identified |
-| libultra | ~70 functions decompiled |
-| libm/libc | ~18 functions decompiled |
-| Game Code | ~752 functions extracted |
-| Overall | Early decompilation phase |
+Verified cartridge coverage after integrating PRs #24 and #40:
+
+| Component | Matching functions | Matching native bytes |
+|-----------|-------------------:|----------------------:|
+| Game code | 666 / 1,216 | 100,656 / 647,072 (15.56%) |
+| Static code | 158 / 230 | 44,808 / 61,440 (72.93%) |
+
+Combined byte tracker: **20.53%**. The source-built image, original compressed stream and complete ROM hash pass. Use `make progress` for current derived coverage.
+
+Nonmatching reconstructions, behavioral evidence and compiler/context audits are preserved on master under `cloud/work/`. See the [research progress index](cloud/RESEARCH_INDEX.md) and [helper work queue](dot_handoff.md). Research progress earns matching coverage only after native-code and cartridge integration gates pass.
 
 ## Project Goals
 
