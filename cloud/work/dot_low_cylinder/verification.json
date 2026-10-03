@@ -1,0 +1,237 @@
+{
+  "function": "func_8010C588",
+  "source_sha256": "30cf9502a53f0884fb496acab669ef31dfaa07b68e84af70be66f609d3de18ce",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "target_bytes": 320,
+  "linked_text_bytes": 320,
+  "candidate_function_bytes": 316,
+  "claims": [],
+  "nonzero_extra_words": 0,
+  "target_sha256": "49b3cc10ffce5e5fb42886adb41005154a842c262ffbbb141d03a30f88aae983",
+  "linked_text_sha256": "4c957d2a8be05dd599fa52eae8e96ae231b7ca9665fa63f7fd11bd4614e1c0c9",
+  "differences": [
+    {
+      "offset": "0x8",
+      "target": "0x27bdffe0",
+      "candidate": "0x27bdffe8"
+    },
+    {
+      "offset": "0x30",
+      "target": "0x10000041",
+      "candidate": "0x10000040"
+    },
+    {
+      "offset": "0x8c",
+      "target": "0xe7a80010",
+      "candidate": "0xc7a6000c"
+    },
+    {
+      "offset": "0x90",
+      "target": "0xc46a0010",
+      "candidate": "0x44812000"
+    },
+    {
+      "offset": "0x94",
+      "target": "0xc7a8000c",
+      "candidate": "0x3c01c000"
+    },
+    {
+      "offset": "0x98",
+      "target": "0x46105481",
+      "candidate": "0xe7a80010"
+    },
+    {
+      "offset": "0x9c",
+      "target": "0x44818000",
+      "candidate": "0xc46a0010"
+    },
+    {
+      "offset": "0xa0",
+      "target": "0x3c01c000",
+      "candidate": "0x46063202"
+    },
+    {
+      "offset": "0xa4",
+      "target": "0xe7b20014",
+      "candidate": "0x46040000"
+    },
+    {
+      "offset": "0xa8",
+      "target": "0xc7a40014",
+      "candidate": "0x44803000"
+    },
+    {
+      "offset": "0xac",
+      "target": "0x46100000",
+      "candidate": "0x46105481"
+    },
+    {
+      "offset": "0xb0",
+      "target": "0x46042182",
+      "candidate": "0xe7b20014"
+    },
+    {
+      "offset": "0xb4",
+      "target": "0x0",
+      "candidate": "0xc7aa0014"
+    },
+    {
+      "offset": "0xb8",
+      "target": "0x46084282",
+      "candidate": "0x460a5402"
+    },
+    {
+      "offset": "0xbc",
+      "target": "0x460a3080",
+      "candidate": "0x46104080"
+    },
+    {
+      "offset": "0xc0",
+      "target": "0x46000182",
+      "candidate": "0x46000282"
+    },
+    {
+      "offset": "0xc4",
+      "target": "0x10e00004",
+      "candidate": "0x50e00005"
+    },
+    {
+      "offset": "0xc8",
+      "target": "0x0",
+      "candidate": "0x460a1201"
+    },
+    {
+      "offset": "0xd8",
+      "target": "0x46061281",
+      "candidate": "0x460a1201"
+    },
+    {
+      "offset": "0xdc",
+      "target": "0x44804000",
+      "candidate": "0xc7a00010"
+    },
+    {
+      "offset": "0xe0",
+      "target": "0xc7a00010",
+      "candidate": "0x4608303c"
+    },
+    {
+      "offset": "0xe4",
+      "target": "0x460a403c",
+      "candidate": "0x0"
+    },
+    {
+      "offset": "0xe8",
+      "target": "0x0",
+      "candidate": "0x45020004"
+    },
+    {
+      "offset": "0xec",
+      "target": "0x45020004",
+      "candidate": "0x44818000"
+    },
+    {
+      "offset": "0xf0",
+      "target": "0x44818000",
+      "candidate": "0x10000010"
+    },
+    {
+      "offset": "0xf4",
+      "target": "0x10000010",
+      "candidate": "0x1025"
+    },
+    {
+      "offset": "0xf8",
+      "target": "0x1025",
+      "candidate": "0x44818000"
+    },
+    {
+      "offset": "0xfc",
+      "target": "0x44818000",
+      "candidate": "0x1825"
+    },
+    {
+      "offset": "0x104",
+      "target": "0x1025",
+      "candidate": "0x4600803c"
+    },
+    {
+      "offset": "0x108",
+      "target": "0x4600803c",
+      "candidate": "0x0"
+    },
+    {
+      "offset": "0x10c",
+      "target": "0x0",
+      "candidate": "0x45020009"
+    },
+    {
+      "offset": "0x110",
+      "target": "0x45000009",
+      "candidate": "0x601025"
+    },
+    {
+      "offset": "0x114",
+      "target": "0x0",
+      "candidate": "0x44819000"
+    },
+    {
+      "offset": "0x118",
+      "target": "0x44819000",
+      "candidate": "0x0"
+    },
+    {
+      "offset": "0x11c",
+      "target": "0x0",
+      "candidate": "0x4612003c"
+    },
+    {
+      "offset": "0x120",
+      "target": "0x4612003c",
+      "candidate": "0x0"
+    },
+    {
+      "offset": "0x124",
+      "target": "0x0",
+      "candidate": "0x45020003"
+    },
+    {
+      "offset": "0x128",
+      "target": "0x45000003",
+      "candidate": "0x601025"
+    },
+    {
+      "offset": "0x12c",
+      "target": "0x0",
+      "candidate": "0x24030001"
+    },
+    {
+      "offset": "0x130",
+      "target": "0x10000001",
+      "candidate": "0x601025"
+    },
+    {
+      "offset": "0x134",
+      "target": "0x24020001",
+      "candidate": "0x3e00008"
+    },
+    {
+      "offset": "0x138",
+      "target": "0x3e00008",
+      "candidate": "0x27bd0018"
+    },
+    {
+      "offset": "0x13c",
+      "target": "0x27bd0020",
+      "candidate": "0x0"
+    }
+  ],
+  "relocations": "\nRelocation section '.rel.text' at offset 0x278 contains 4 entries:\n Offset     Info    Type            Sym.Value  Sym. Name\n00000004  00000405 R_MIPS_HI16       00000000   D_8014AA3A\n0000001c  00000406 R_MIPS_LO16       00000000   D_8014AA3A\n0000004c  00000305 R_MIPS_HI16       00000000   D_80152818\n00000050  00000306 R_MIPS_LO16       00000000   D_80152818\n",
+  "symbols": {
+    "D_8014AA3A": "0x8014aa3a",
+    "D_80152818": "0x80152818"
+  },
+  "direct_callers": [],
+  "protected_manifest_entries": 23,
+  "method": "Fresh direct IDO compile; independent target parser and manifest hash; GNU ld/objcopy raw full-word comparison"
+}
