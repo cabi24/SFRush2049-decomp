@@ -1,0 +1,194 @@
+[
+  {
+    "name": "func_80010980",
+    "source_sha256": "c08485a66aab46dcbee7f12595320e9cf924830819e78f52b58cd6ece1d3940e",
+    "scores": {
+      "O2": {
+        "strict_match": true,
+        "differing_words": 0,
+        "total_words": 16,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      "O1": {
+        "strict_match": false,
+        "differing_words": 2,
+        "total_words": 16,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    }
+  },
+  {
+    "name": "func_800109C0",
+    "source_sha256": "0fb265b36bbc33e152d782d11ac25a6227ddd5a3468ade21a1019c17af82eca6",
+    "scores": {
+      "O2": {
+        "strict_match": true,
+        "differing_words": 0,
+        "total_words": 16,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      "O1": {
+        "strict_match": false,
+        "differing_words": 2,
+        "total_words": 16,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    }
+  },
+  {
+    "name": "func_80011074",
+    "source_sha256": "4b454938e71e724554ea31afde7845078d5adffd529071bdb96e2b5aa32f3936",
+    "scores": {
+      "O2": {
+        "strict_match": true,
+        "differing_words": 0,
+        "total_words": 20,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      "O1": {
+        "strict_match": false,
+        "differing_words": 2,
+        "total_words": 20,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    }
+  },
+  {
+    "name": "func_800110C4",
+    "source_sha256": "4623570e5cc544d4c619bb9a7785103822ba6b7639be9b4e4ce2daf916267486",
+    "scores": {
+      "O2": {
+        "strict_match": true,
+        "differing_words": 0,
+        "total_words": 16,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      "O1": {
+        "strict_match": false,
+        "differing_words": 11,
+        "total_words": 16,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    }
+  },
+  {
+    "name": "func_800118C0",
+    "source_sha256": "7e59b64976451761bfdf67a35e3c7c722c4e21f117ed2805e9a9681067bf6320",
+    "scores": {
+      "O2": {
+        "strict_match": true,
+        "differing_words": 0,
+        "total_words": 20,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      "O1": {
+        "strict_match": false,
+        "differing_words": 19,
+        "total_words": 20,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    }
+  },
+  {
+    "name": "func_80011CD8",
+    "source_sha256": "83e37e0eb9b2ae148d34a2f3a1c7276d5efd2489ae6bcc81db545554a80a0049",
+    "scores": {
+      "O2": {
+        "strict_match": true,
+        "differing_words": 0,
+        "total_words": 19,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      "O1": {
+        "strict_match": false,
+        "differing_words": 15,
+        "total_words": 19,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    }
+  },
+  {
+    "name": "func_80014488",
+    "source_sha256": "ce94ba3925248a1eecd1468060774c6159efa5e14c9c3218052b1e4fb804e4d7",
+    "scores": {
+      "O2": {
+        "strict_match": true,
+        "differing_words": 0,
+        "total_words": 26,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      "O1": {
+        "strict_match": false,
+        "differing_words": 2,
+        "total_words": 26,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    }
+  },
+  {
+    "name": "func_800144F0",
+    "source_sha256": "a0783a16dfc02f4b68582f6ae8096f449c4d5abc5e0f50a8c264550779f22cf4",
+    "scores": {
+      "O2": {
+        "strict_match": true,
+        "differing_words": 0,
+        "total_words": 24,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      "O1": {
+        "strict_match": false,
+        "differing_words": 2,
+        "total_words": 24,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    }
+  }
+]

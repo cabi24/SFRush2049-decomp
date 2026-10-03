@@ -1,0 +1,61 @@
+{
+  "construction": "Temporary function objects from unchanged canonical target words and fully relocated compiler output. Raw words, objects and diagnostic listings stay local. Strict score.py remains the sole acceptance check.",
+  "command": "python3 tools/workbench.py diagnose <local-target.o> <local-resolved-candidate.o> --function <name> --objdump <GNU-MIPS-objdump> --json",
+  "results": [
+    {
+      "name": "func_800215A8",
+      "verdict": "structure-mismatch",
+      "instruction_delta": 3,
+      "target_frame": -24,
+      "candidate_frame": -24,
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "none-known",
+      "phase": "before directed refinements"
+    },
+    {
+      "name": "func_8002165C",
+      "verdict": "structure-mismatch",
+      "instruction_delta": 2,
+      "target_frame": -32,
+      "candidate_frame": -32,
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "none-known",
+      "phase": "before directed refinements"
+    },
+    {
+      "name": "func_80021764",
+      "verdict": "structure-mismatch",
+      "instruction_delta": -3,
+      "target_frame": null,
+      "candidate_frame": null,
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "none-known",
+      "phase": "before directed refinements"
+    },
+    {
+      "name": "func_800217E4",
+      "verdict": "structure-mismatch",
+      "instruction_delta": 0,
+      "target_frame": null,
+      "candidate_frame": null,
+      "owning_pass": "cfe-spelling",
+      "ownership_basis": "heuristic",
+      "lever_class": "none-known",
+      "phase": "before directed refinements"
+    },
+    {
+      "name": "func_80021844",
+      "verdict": "structure-mismatch",
+      "instruction_delta": -1,
+      "target_frame": null,
+      "candidate_frame": null,
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "none-known",
+      "phase": "before directed refinements"
+    }
+  ]
+}

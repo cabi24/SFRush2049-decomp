@@ -1,0 +1,7 @@
+address,name,size,cluster,status,flags,diff_words,source_path,note
+0x800250AC,func_800250AC,68,BT07,verified_body,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_800250AC.c,LOCAL-STRICT-MATCH; pending peer and aggregate CI
+0x800251A8,func_800251A8,188,BT07,verified_body,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_800251A8.c,LOCAL-STRICT-MATCH; pending peer and aggregate CI
+0x80025264,func_80025264,72,BT07,verified_body,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80025264.c,LOCAL-STRICT-MATCH; pending peer and aggregate CI
+0x80025EB0,func_80025EB0,196,BT07,verified_body,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80025EB0.c,LOCAL-STRICT-MATCH; pending peer and aggregate CI
+0x800262BC,func_800262BC,108,BT07,verified_body,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_800262BC.c,LOCAL-STRICT-MATCH; pending peer and aggregate CI
+0x80024FD4,func_80024FD4,152,BT07,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,2,cloud/work/boot_tail/BT07-medium/func_80024FD4_NONMATCH.c,COMPLETE-NONMATCH; two stream-pointer stack homes

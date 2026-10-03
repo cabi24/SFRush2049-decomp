@@ -1,0 +1,305 @@
+{
+  "initial_form_results": [
+    {
+      "name": "func_80021BF0",
+      "source_sha256": "1e236c161c48322a8b7add650c05c925b1562de317c712f7c2074011e71513ea",
+      "scores": {
+        "O2": {
+          "differing": 0,
+          "total": 26,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "O1": {
+          "differing": 25,
+          "total": 26,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 8
+        }
+      }
+    },
+    {
+      "name": "func_80021F08",
+      "source_sha256": "ded05dc1d02386bd6ce9c167e9f9673be9b041381669d4ef7bcfd05ece6735b9",
+      "scores": {
+        "O2": {
+          "differing": 14,
+          "total": 24,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "O1": {
+          "differing": 24,
+          "total": 24,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 4
+        }
+      }
+    },
+    {
+      "name": "func_80022514",
+      "source_sha256": "31b94b56b45e825a2f829c9525169957dbfd57f6bcdfd945ae05a3b457f8102e",
+      "scores": {
+        "O2": {
+          "differing": 25,
+          "total": 27,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "O1": {
+          "differing": 27,
+          "total": 27,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 8
+        }
+      }
+    },
+    {
+      "name": "func_80022C58",
+      "source_sha256": "11c958d628a89ae2a60356c35c348bc38e51db1bf721587b54518acb1ddaa359",
+      "scores": {
+        "O2": {
+          "differing": 26,
+          "total": 31,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "O1": {
+          "differing": 30,
+          "total": 31,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 5
+        }
+      }
+    },
+    {
+      "name": "func_80023D70",
+      "source_sha256": "e2fedf7948ad842dc6e7dc749572f3949b81b6af5b8160c3c7a0c543cefe0901",
+      "scores": {
+        "O2": {
+          "differing": 5,
+          "total": 18,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "O1": {
+          "differing": 17,
+          "total": 18,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        }
+      }
+    }
+  ],
+  "first_diagnosed_refinements": [
+    {
+      "address": "80021F08",
+      "form": "word masks replace narrowing casts",
+      "differing": 9,
+      "total": 24,
+      "extra_words": 0
+    },
+    {
+      "address": "80022514",
+      "form": "signed word delta local",
+      "differing": 25,
+      "total": 27,
+      "extra_words": 0
+    },
+    {
+      "address": "80022C58",
+      "form": "explicit common word local",
+      "differing": 29,
+      "total": 31,
+      "extra_words": 0
+    },
+    {
+      "address": "80023D70",
+      "form": "word-mask argument extractions",
+      "differing": 7,
+      "total": 18,
+      "extra_words": 0
+    },
+    {
+      "address": "80022C58",
+      "form": "extract index before address-taken duration without common word local",
+      "differing": 0,
+      "total": 31,
+      "extra_words": 0
+    }
+  ],
+  "bounded_controls": [
+    {
+      "address": "80023D70",
+      "form": "narrow_locals",
+      "differing": 13,
+      "total": 18,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80023D70",
+      "form": "word_locals",
+      "differing": 8,
+      "total": 18,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80023D70",
+      "form": "separate_signed_word",
+      "differing": 15,
+      "total": 18,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    {
+      "address": "80021F08",
+      "form": "word_identifier",
+      "differing": 10,
+      "total": 24,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80021F08",
+      "form": "short_identifier",
+      "differing": 9,
+      "total": 24,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022514",
+      "form": "explicit_word_casts",
+      "differing": 23,
+      "total": 27,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022514",
+      "form": "raw_parameter_local",
+      "differing": 24,
+      "total": 27,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022514",
+      "form": "unsigned_delta_signed_sum",
+      "differing": 25,
+      "total": 27,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80021F08",
+      "form": "word_status_return",
+      "differing": 9,
+      "total": 24,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80022514",
+      "form": "word_status_return",
+      "differing": 25,
+      "total": 27,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    {
+      "address": "80023D70",
+      "form": "word_status_return",
+      "differing": 7,
+      "total": 18,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  ],
+  "attempted_source_forms": {
+    "80021BF0": 1,
+    "80021F08": 5,
+    "80022514": 6,
+    "80022C58": 3,
+    "80023D70": 6
+  },
+  "diagnosis_summaries": {
+    "80021F08": {
+      "aligned_register": 7,
+      "aligned_schedule": 0,
+      "aligned_constant": 0,
+      "aligned_deletions": 1,
+      "aligned_insertions": 0,
+      "frame": -24
+    },
+    "80022514": {
+      "aligned_register": 10,
+      "aligned_schedule": 0,
+      "aligned_constant": 0,
+      "aligned_deletions": 5,
+      "aligned_insertions": 0,
+      "frame": -24
+    },
+    "80022C58": {
+      "aligned_register": 16,
+      "aligned_schedule": 0,
+      "aligned_constant": 0,
+      "aligned_deletions": 1,
+      "aligned_insertions": 2,
+      "frame": -40
+    },
+    "80023D70": {
+      "aligned_register": 1,
+      "aligned_schedule": 0,
+      "aligned_constant": 0,
+      "aligned_deletions": 2,
+      "aligned_insertions": 2,
+      "frame": -24
+    }
+  },
+  "stop": "After directed natural controls no closing evidence remained for three arithmetic/call-lowering residuals. Preserve complete nonmatches rather than force a signature, register or instruction."
+}

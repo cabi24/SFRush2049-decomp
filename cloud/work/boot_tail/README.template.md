@@ -295,3 +295,14 @@ the unique new matching total becomes 103 bodies / 4,924 B. No source is counted
 twice. See wave3/README.md and the exact source manifests; later candidates are
 excluded. The prior #62 CI receipt is now carried in wave2/ci.json. D10 stays
 unchanged; authoritative ledger/receipts remain in the allowed cloud files.
+
+## Fourth cut: 21 more bodies and one table-proof gap
+
+Prior published cuts have 103 new exact-CI-verified bodies / 4,924 B. This cut
+adds 21 peer-reviewed local strict matches / 2,012 B, pending its own CI. The
+union is 124 unique new bodies / 6,936 B plus the historical 12-byte getter.
+New research comprises ten complete nonmatches / 1,240 B and one 96-byte
+SOURCE-LEAD at 80021548, explicitly needs-rodata-proof: its canonical six-entry
+case mapping and local-table relocation are unproved. It is not credited as a
+complete native reconstruction or match. See wave4/unique_totals.json. Later
+work and source-led rechecks are excluded. D10 remains untouched.
