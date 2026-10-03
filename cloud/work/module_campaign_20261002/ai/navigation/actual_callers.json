@@ -1,0 +1,58 @@
+{
+  "world_gravity_apply": [
+    {
+      "caller": "func_800F8EC8",
+      "call_address": "0x800f917c"
+    }
+  ],
+  "audio_channel_alloc": [
+    {
+      "caller": "audio_mixer_main",
+      "call_address": "0x800baa00"
+    },
+    {
+      "caller": "world_gravity_apply",
+      "call_address": "0x800ed5e8"
+    }
+  ],
+  "func_800B9F60": [
+    {
+      "caller": "audio_channel_alloc",
+      "call_address": "0x800ba0dc"
+    },
+    {
+      "caller": "audio_channel_alloc",
+      "call_address": "0x800ba1d0"
+    },
+    {
+      "caller": "menu_controller_remap",
+      "call_address": "0x800cfb20"
+    },
+    {
+      "caller": "world_gravity_apply",
+      "call_address": "0x800ecdf0"
+    },
+    {
+      "caller": "world_gravity_apply",
+      "call_address": "0x800ecfc4"
+    },
+    {
+      "caller": "world_gravity_apply",
+      "call_address": "0x800ed36c"
+    }
+  ],
+  "func_80098A54": [
+    {
+      "caller": "engine_sound_sync",
+      "call_address": "0x80098c28"
+    },
+    {
+      "caller": "camera_follow_path",
+      "call_address": "0x800c4b9c"
+    },
+    {
+      "caller": "world_gravity_apply",
+      "call_address": "0x800ed3f0"
+    }
+  ]
+}

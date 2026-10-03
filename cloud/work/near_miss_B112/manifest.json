@@ -1,0 +1,20 @@
+{
+  "packet": "B112",
+  "function": "func_800CF06C",
+  "address": "0x800CF06C",
+  "bytes": 548,
+  "claims": [],
+  "rejected_semantics": [
+    "func_800CF06C_native.c uses arcade addition; original N64 requires subtraction"
+  ],
+  "report": "cloud/work/near_miss_B112.md",
+  "report_sha256": "2a9dd6600acdd8d515ab031e380121e507d69d09f997a8cb44675fa6d23a0d8b",
+  "files": {
+    "func_800CF06C_arcade_literals.c": "1ff2eb5adddf7365023755febc15b75ce5beffc2afcc9d359b295c78ef936b68",
+    "func_800CF06C_corrected.c": "45cc9518b49bb095bc1d54cec451558516721305ecbdb09aa1f9f8e041e5d8e3",
+    "func_800CF06C_force_order.c": "8297c59145520f24cfffaa126c5cd5f1e97776b37418989d593ee29916ad6423",
+    "func_800CF06C_integer_limits.c": "b9f7f2e90bbb82ee4df45ad7f1b55be4787143742a2bfb334f54ccc0627543eb",
+    "func_800CF06C_native.c": "f8d3d5e9743831a5eb0a73c36bfbfed2dad5b77b4e654758f7851c038b760d96",
+    "results.json": "0c4b427b5f01a87a0bc64f383d0646a7ab13f9ba307f024418d2c5e5cfeecb04"
+  }
+}

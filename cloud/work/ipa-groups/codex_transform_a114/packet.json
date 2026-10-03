@@ -1,0 +1,18 @@
+{
+  "claims": [],
+  "files": {
+    "control.initial.c": "2ae7f7f84a632f28430628b3352aa38f494c17a52869082841e242ae36e2a1ce",
+    "control.internal_allocator.json": "be03cdadc13ee9ea22673bf629b0d508d037a13a7a11fd42f1758a0acc8b7990",
+    "group.c": "dcacf9fa7dd0bdf1b4c64b71f1fb82cab8575962214b8acd975848255e170b4f",
+    "control.two_callers.verification.json": "80089aab6dc3ab5f883e7e49f19ecd422331b999f7df155182327189d8715589",
+    "STATUS.md": "8d43144fc0c117242d725459dd3110c1e583effd27546392efd8fb589513445e",
+    "image_verification.json": "1a151badf61fb20c5d60016b1708628094f5dca2fd63ddea21b8f52e9ea3544d",
+    "control.two_callers.c": "726edadac7372488ccb8ebf8478ebd9b2fffbbcb6d6fda703b111ca4beddf3cf",
+    "canonical_image_verification.json": "4fa9c4bb42ba75fd2354a99b4fc61b79c6bf950c202095832c9218b4d39d701a",
+    "verification.json": "48a90d7072ca6f70e9037d91e01b2947df6565b10f057660d8a432583df30dcf",
+    "control.internal_allocator.verification.json": "6615208598ab138317fe2527c2e34f7d0d02c61ded859de11c6ef27e68af8aaf",
+    "control.initial.json": "d9deba580ab469b7f6fe129dba692746cfb6f8555389e8cb3c65e22be2db76e7",
+    "control.initial.verification.json": "d5c42c5cc17ce975006ccf18b41d67aebc6a8028ac69485b2eea2e26cbfe6e68",
+    "group.json": "4af8e4dd96524eeccbf5bfc2a2049039436cf7753bda863409504324fc401e84"
+  }
+}

@@ -1,0 +1,715 @@
+{
+  "best_times_display": {
+    "native_bytes": 224,
+    "callers": [
+      {
+        "caller": "func_800D5E64",
+        "site": "0x800d603c",
+        "inside": true
+      },
+      {
+        "caller": "mode_select_handler",
+        "site": "0x800def8c",
+        "inside": true
+      }
+    ],
+    "retained": false,
+    "initialized_data_address_references": [],
+    "data_reference_note": "Address evidence only, not an inferred callable type or acceptance placement."
+  },
+  "client_sync": {
+    "native_bytes": 216,
+    "callers": [
+      {
+        "caller": "buffer_swap",
+        "site": "0x800926c8",
+        "inside": false
+      },
+      {
+        "caller": "buffer_swap",
+        "site": "0x800927e0",
+        "inside": false
+      },
+      {
+        "caller": "mode_select_input",
+        "site": "0x800dfb2c",
+        "inside": true
+      },
+      {
+        "caller": "func_800E0050",
+        "site": "0x800e03ec",
+        "inside": true
+      },
+      {
+        "caller": "func_800E05F0",
+        "site": "0x800e08a0",
+        "inside": true
+      }
+    ],
+    "retained": true,
+    "initialized_data_address_references": [],
+    "data_reference_note": "Address evidence only, not an inferred callable type or acceptance placement."
+  },
+  "entity_hierarchy_update": {
+    "native_bytes": 136,
+    "callers": [],
+    "retained": true,
+    "initialized_data_address_references": [],
+    "data_reference_note": "Address evidence only, not an inferred callable type or acceptance placement."
+  },
+  "entity_transform_calc": {
+    "native_bytes": 440,
+    "callers": [
+      {
+        "caller": "client_sync",
+        "site": "0x80091ef8",
+        "inside": true
+      },
+      {
+        "caller": "entity_hierarchy_update",
+        "site": "0x80091f80",
+        "inside": true
+      },
+      {
+        "caller": "buffer_swap",
+        "site": "0x800926a4",
+        "inside": false
+      },
+      {
+        "caller": "buffer_swap",
+        "site": "0x800927bc",
+        "inside": false
+      },
+      {
+        "caller": "engine_sound_sync",
+        "site": "0x80098f3c",
+        "inside": false
+      },
+      {
+        "caller": "mode_select_input",
+        "site": "0x800dfb78",
+        "inside": true
+      },
+      {
+        "caller": "func_800E0050",
+        "site": "0x800e03a8",
+        "inside": true
+      },
+      {
+        "caller": "func_800E05F0",
+        "site": "0x800e08ec",
+        "inside": true
+      },
+      {
+        "caller": "game_timer_resume",
+        "site": "0x800fe8e8",
+        "inside": true
+      },
+      {
+        "caller": "stat_lap_complete",
+        "site": "0x800fe9c4",
+        "inside": true
+      }
+    ],
+    "retained": true,
+    "initialized_data_address_references": [],
+    "data_reference_note": "Address evidence only, not an inferred callable type or acceptance placement."
+  },
+  "func_80091B00": {
+    "native_bytes": 168,
+    "callers": [
+      {
+        "caller": "scheduler_recv",
+        "site": "0x80091c3c",
+        "inside": true
+      },
+      {
+        "caller": "entity_transform_calc",
+        "site": "0x80091d58",
+        "inside": true
+      },
+      {
+        "caller": "entity_flags_apply",
+        "site": "0x80092394",
+        "inside": false
+      },
+      {
+        "caller": "sound_position_update",
+        "site": "0x800952c4",
+        "inside": false
+      },
+      {
+        "caller": "sound_position_update",
+        "site": "0x80095344",
+        "inside": false
+      },
+      {
+        "caller": "camera_target_track",
+        "site": "0x800aee90",
+        "inside": false
+      },
+      {
+        "caller": "object_type7_create",
+        "site": "0x800c87a8",
+        "inside": false
+      },
+      {
+        "caller": "object_type1_create",
+        "site": "0x800c8810",
+        "inside": false
+      },
+      {
+        "caller": "func_800C8918",
+        "site": "0x800c89e0",
+        "inside": false
+      },
+      {
+        "caller": "func_800C8918",
+        "site": "0x800c8a30",
+        "inside": false
+      },
+      {
+        "caller": "sync_entry_register",
+        "site": "0x800c91b8",
+        "inside": false
+      },
+      {
+        "caller": "speed_set",
+        "site": "0x800c9230",
+        "inside": false
+      },
+      {
+        "caller": "func_800D5A04",
+        "site": "0x800d5af4",
+        "inside": false
+      },
+      {
+        "caller": "high_scores_display",
+        "site": "0x800d5cc4",
+        "inside": false
+      },
+      {
+        "caller": "func_800D6348",
+        "site": "0x800d6364",
+        "inside": false
+      },
+      {
+        "caller": "credits_screen",
+        "site": "0x800d66b8",
+        "inside": false
+      },
+      {
+        "caller": "func_800D6E00",
+        "site": "0x800d6e20",
+        "inside": false
+      },
+      {
+        "caller": "drone_pathfind_main",
+        "site": "0x800d755c",
+        "inside": false
+      },
+      {
+        "caller": "func_800D7634",
+        "site": "0x800d776c",
+        "inside": false
+      },
+      {
+        "caller": "func_800D7634",
+        "site": "0x800d7ac0",
+        "inside": false
+      },
+      {
+        "caller": "object_type7_create_alt",
+        "site": "0x800db7d0",
+        "inside": false
+      },
+      {
+        "caller": "RaceStateMachine_Update",
+        "site": "0x800db944",
+        "inside": false
+      },
+      {
+        "caller": "RaceStateMachine_Update",
+        "site": "0x800dbb08",
+        "inside": false
+      },
+      {
+        "caller": "RaceStateMachine_Update",
+        "site": "0x800dbe0c",
+        "inside": false
+      },
+      {
+        "caller": "RaceStateMachine_Update",
+        "site": "0x800dbe8c",
+        "inside": false
+      },
+      {
+        "caller": "RaceStateMachine_Update",
+        "site": "0x800dc010",
+        "inside": false
+      },
+      {
+        "caller": "track_texture_load",
+        "site": "0x800f5fbc",
+        "inside": false
+      },
+      {
+        "caller": "func_800F87A0",
+        "site": "0x800f882c",
+        "inside": false
+      },
+      {
+        "caller": "func_800F87A0",
+        "site": "0x800f8924",
+        "inside": false
+      },
+      {
+        "caller": "func_800F87A0",
+        "site": "0x800f8984",
+        "inside": false
+      },
+      {
+        "caller": "finish_state_alt",
+        "site": "0x800f8c4c",
+        "inside": false
+      },
+      {
+        "caller": "display_list_flush",
+        "site": "0x800fb678",
+        "inside": false
+      },
+      {
+        "caller": "display_list_flush",
+        "site": "0x800fb8e8",
+        "inside": false
+      }
+    ],
+    "retained": true,
+    "initialized_data_address_references": [],
+    "data_reference_note": "Address evidence only, not an inferred callable type or acceptance placement."
+  },
+  "func_80091BA8": {
+    "native_bytes": 84,
+    "callers": [
+      {
+        "caller": "scheduler_recv",
+        "site": "0x80091c2c",
+        "inside": true
+      },
+      {
+        "caller": "entity_transform_calc",
+        "site": "0x80091cac",
+        "inside": true
+      },
+      {
+        "caller": "func_800988D8",
+        "site": "0x80098974",
+        "inside": false
+      },
+      {
+        "caller": "func_800988D8",
+        "site": "0x80098a30",
+        "inside": false
+      },
+      {
+        "caller": "engine_sound_sync",
+        "site": "0x80098b6c",
+        "inside": false
+      },
+      {
+        "caller": "results_screen_update",
+        "site": "0x800bf04c",
+        "inside": false
+      },
+      {
+        "caller": "results_time_display",
+        "site": "0x800bf0c4",
+        "inside": false
+      },
+      {
+        "caller": "leaderboard_update",
+        "site": "0x800bf170",
+        "inside": false
+      },
+      {
+        "caller": "camera_clip_planes",
+        "site": "0x800bf2f0",
+        "inside": false
+      }
+    ],
+    "retained": true,
+    "initialized_data_address_references": [],
+    "data_reference_note": "Address evidence only, not an inferred callable type or acceptance placement."
+  },
+  "func_800D5E64": {
+    "native_bytes": 584,
+    "callers": [
+      {
+        "caller": "func_800D60AC",
+        "site": "0x800d60f8",
+        "inside": false
+      },
+      {
+        "caller": "func_800E543C",
+        "site": "0x800e566c",
+        "inside": false
+      }
+    ],
+    "retained": true,
+    "initialized_data_address_references": [],
+    "data_reference_note": "Address evidence only, not an inferred callable type or acceptance placement."
+  },
+  "func_800DED78": {
+    "native_bytes": 488,
+    "callers": [
+      {
+        "caller": "mode_select_handler",
+        "site": "0x800defc4",
+        "inside": true
+      },
+      {
+        "caller": "mode_select_handler",
+        "site": "0x800deff0",
+        "inside": true
+      }
+    ],
+    "retained": false,
+    "initialized_data_address_references": [],
+    "data_reference_note": "Address evidence only, not an inferred callable type or acceptance placement."
+  },
+  "func_800DFBA0": {
+    "native_bytes": 1192,
+    "callers": [
+      {
+        "caller": "func_800E05F0",
+        "site": "0x800e0964",
+        "inside": true
+      }
+    ],
+    "retained": false,
+    "initialized_data_address_references": [],
+    "data_reference_note": "Address evidence only, not an inferred callable type or acceptance placement."
+  },
+  "func_800E0050": {
+    "native_bytes": 1440,
+    "callers": [
+      {
+        "caller": "func_800E05F0",
+        "site": "0x800e0688",
+        "inside": true
+      }
+    ],
+    "retained": false,
+    "initialized_data_address_references": [],
+    "data_reference_note": "Address evidence only, not an inferred callable type or acceptance placement."
+  },
+  "func_800E05F0": {
+    "native_bytes": 1328,
+    "callers": [
+      {
+        "caller": "func_800E56F8",
+        "site": "0x800e5b74",
+        "inside": false
+      }
+    ],
+    "retained": true,
+    "initialized_data_address_references": [],
+    "data_reference_note": "Address evidence only, not an inferred callable type or acceptance placement."
+  },
+  "game_timer_resume": {
+    "native_bytes": 220,
+    "callers": [],
+    "retained": true,
+    "initialized_data_address_references": [],
+    "data_reference_note": "Address evidence only, not an inferred callable type or acceptance placement."
+  },
+  "mode_select_handler": {
+    "native_bytes": 2976,
+    "callers": [
+      {
+        "caller": "func_800E05F0",
+        "site": "0x800e0970",
+        "inside": true
+      }
+    ],
+    "retained": false,
+    "initialized_data_address_references": [],
+    "data_reference_note": "Address evidence only, not an inferred callable type or acceptance placement."
+  },
+  "mode_select_input": {
+    "native_bytes": 152,
+    "callers": [
+      {
+        "caller": "func_800DFBA0",
+        "site": "0x800dff28",
+        "inside": true
+      },
+      {
+        "caller": "func_800DFBA0",
+        "site": "0x800dfff0",
+        "inside": true
+      }
+    ],
+    "retained": false,
+    "initialized_data_address_references": [],
+    "data_reference_note": "Address evidence only, not an inferred callable type or acceptance placement."
+  },
+  "player_conditional_call": {
+    "native_bytes": 36,
+    "callers": [
+      {
+        "caller": "player_conditional_check",
+        "site": "0x800d550c",
+        "inside": false
+      },
+      {
+        "caller": "func_800D5524",
+        "site": "0x800d55dc",
+        "inside": false
+      },
+      {
+        "caller": "func_800D5524",
+        "site": "0x800d564c",
+        "inside": false
+      },
+      {
+        "caller": "func_800D5524",
+        "site": "0x800d56a4",
+        "inside": false
+      },
+      {
+        "caller": "func_800D5524",
+        "site": "0x800d56d4",
+        "inside": false
+      },
+      {
+        "caller": "func_800D5524",
+        "site": "0x800d56e8",
+        "inside": false
+      },
+      {
+        "caller": "func_800D5524",
+        "site": "0x800d56fc",
+        "inside": false
+      },
+      {
+        "caller": "func_800D5E64",
+        "site": "0x800d5f30",
+        "inside": true
+      },
+      {
+        "caller": "func_800D5E64",
+        "site": "0x800d5fc4",
+        "inside": true
+      },
+      {
+        "caller": "func_800D5E64",
+        "site": "0x800d5fe0",
+        "inside": true
+      },
+      {
+        "caller": "func_800D5E64",
+        "site": "0x800d6008",
+        "inside": true
+      },
+      {
+        "caller": "func_800D5E64",
+        "site": "0x800d6010",
+        "inside": true
+      },
+      {
+        "caller": "func_800D5E64",
+        "site": "0x800d6018",
+        "inside": true
+      },
+      {
+        "caller": "func_800DFBA0",
+        "site": "0x800dfebc",
+        "inside": true
+      },
+      {
+        "caller": "func_800DFBA0",
+        "site": "0x800dfecc",
+        "inside": true
+      },
+      {
+        "caller": "func_800DFBA0",
+        "site": "0x800dff8c",
+        "inside": true
+      },
+      {
+        "caller": "func_800DFBA0",
+        "site": "0x800dff9c",
+        "inside": true
+      },
+      {
+        "caller": "func_800DFBA0",
+        "site": "0x800e0020",
+        "inside": true
+      },
+      {
+        "caller": "func_800DFBA0",
+        "site": "0x800e0030",
+        "inside": true
+      },
+      {
+        "caller": "func_800E0050",
+        "site": "0x800e0430",
+        "inside": true
+      },
+      {
+        "caller": "func_800E05F0",
+        "site": "0x800e086c",
+        "inside": true
+      }
+    ],
+    "retained": true,
+    "initialized_data_address_references": [],
+    "data_reference_note": "Address evidence only, not an inferred callable type or acceptance placement."
+  },
+  "scheduler_recv": {
+    "native_bytes": 160,
+    "callers": [
+      {
+        "caller": "buffer_swap",
+        "site": "0x800928a8",
+        "inside": false
+      },
+      {
+        "caller": "buffer_swap",
+        "site": "0x80092998",
+        "inside": false
+      },
+      {
+        "caller": "func_800988D8",
+        "site": "0x8009895c",
+        "inside": false
+      },
+      {
+        "caller": "results_screen_update",
+        "site": "0x800bf08c",
+        "inside": false
+      },
+      {
+        "caller": "player_conditional_check",
+        "site": "0x800d5504",
+        "inside": false
+      },
+      {
+        "caller": "func_800D5524",
+        "site": "0x800d55d4",
+        "inside": false
+      },
+      {
+        "caller": "func_800D5524",
+        "site": "0x800d5644",
+        "inside": false
+      },
+      {
+        "caller": "func_800D5524",
+        "site": "0x800d569c",
+        "inside": false
+      },
+      {
+        "caller": "func_800D5524",
+        "site": "0x800d56cc",
+        "inside": false
+      },
+      {
+        "caller": "func_800D5524",
+        "site": "0x800d56e0",
+        "inside": false
+      },
+      {
+        "caller": "func_800D5524",
+        "site": "0x800d56f4",
+        "inside": false
+      },
+      {
+        "caller": "func_800D5524",
+        "site": "0x800d5714",
+        "inside": false
+      },
+      {
+        "caller": "func_800D5524",
+        "site": "0x800d574c",
+        "inside": false
+      },
+      {
+        "caller": "func_800D5524",
+        "site": "0x800d5764",
+        "inside": false
+      },
+      {
+        "caller": "best_times_display",
+        "site": "0x800d5c40",
+        "inside": true
+      },
+      {
+        "caller": "mode_select_handler",
+        "site": "0x800df634",
+        "inside": true
+      },
+      {
+        "caller": "mode_select_handler",
+        "site": "0x800df6b4",
+        "inside": true
+      },
+      {
+        "caller": "mode_select_handler",
+        "site": "0x800df8e8",
+        "inside": true
+      },
+      {
+        "caller": "func_800DFBA0",
+        "site": "0x800dfeb4",
+        "inside": true
+      },
+      {
+        "caller": "func_800DFBA0",
+        "site": "0x800dfec4",
+        "inside": true
+      },
+      {
+        "caller": "func_800DFBA0",
+        "site": "0x800dff84",
+        "inside": true
+      },
+      {
+        "caller": "func_800DFBA0",
+        "site": "0x800dff94",
+        "inside": true
+      },
+      {
+        "caller": "func_800DFBA0",
+        "site": "0x800e0018",
+        "inside": true
+      },
+      {
+        "caller": "func_800DFBA0",
+        "site": "0x800e0028",
+        "inside": true
+      },
+      {
+        "caller": "func_800E05F0",
+        "site": "0x800e0850",
+        "inside": true
+      },
+      {
+        "caller": "func_800E05F0",
+        "site": "0x800e0ac0",
+        "inside": true
+      }
+    ],
+    "retained": true,
+    "initialized_data_address_references": [],
+    "data_reference_note": "Address evidence only, not an inferred callable type or acceptance placement."
+  },
+  "stat_lap_complete": {
+    "native_bytes": 220,
+    "callers": [],
+    "retained": true,
+    "initialized_data_address_references": [],
+    "data_reference_note": "Address evidence only, not an inferred callable type or acceptance placement."
+  }
+}

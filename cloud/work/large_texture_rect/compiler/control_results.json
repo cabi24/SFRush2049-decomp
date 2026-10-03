@@ -1,0 +1,761 @@
+[
+  {
+    "source_sha256": "e4b24cd62f550638a0b9ca3ba23776a3d76d6086fc15094967da410a04e0f9a2",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/unsigned_offset.c",
+    "accepted": false,
+    "canonical_verdict": "4/445 words differ",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "6cfedde02af45957a58abea0b05ff21cab8d5f0b438b7c78a6ce000d322d911f",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 444,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "2d49e1399e3929c21fc2856055f5b9f5f300b70c64b4f86a0188e2b958a95ba1",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/unsigned_height.c",
+    "accepted": false,
+    "canonical_verdict": "4/445 words differ",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "b7f2335aa875c1a1ce6a023067d377e8a09982cee54a9ea616e12c50a7e1c875",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 444,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "4f27eddb254811f5834cfa46b76144858251f4ac36537034325ad50137e935c0",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/holder_pointer_0.c",
+    "accepted": false,
+    "canonical_verdict": "6/445 words differ",
+    "comparison": {
+      "differing": 6,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "345205dfba86a186aa085129f4ce7a9b7ef73091e3e3bb38a1b5e200add1d7b2",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 442,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "84e62fa8d3c3be88a0cba07c52c1311e6dc85000a2d9fef798e17018c2a538e4",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/holder_pointer_3.c",
+    "accepted": false,
+    "canonical_verdict": "6/445 words differ",
+    "comparison": {
+      "differing": 6,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "8be33c0b7b968ce49a047aaf98824d5b9ab95e987b826a551045fe3323d64e0f",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 442,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "4f4ad2c5271a830d0637cd3eebdb82f8df1d932f903fe7e60b31e1f061d50e69",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/unsigned_edge.c",
+    "accepted": false,
+    "canonical_verdict": "4/445 words differ",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "4d776e7ed41521653c389a1e29ee8b78555b4e6aece0c8999b16b0993db3b88f",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 444,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "4df5b2f78e7366029e764bed40de4e152edda3ca7c5859007ce795e0edaac8f7",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/baseline.c",
+    "accepted": false,
+    "canonical_verdict": "4/445 words differ",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "daca7b6dd25222c799f605c5f100df837ea4266b9a00852896ddcafefcca5e15",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 444,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "e74978fa57c48f3aa62f2ae89349b8ef90386105f494a24b3f1b6317a93be045",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/macro_edge_expr.c",
+    "accepted": false,
+    "canonical_verdict": "440/445 words differ",
+    "comparison": {
+      "differing": 440,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "895a010c0492cf1e31328ce3b83177e3c6bb2f7c97a124b8ddf5f0bac5d67de4",
+    "emitted_words": 444,
+    "aligned": {
+      "aligned_exact": 331,
+      "aligned_opcode": 440,
+      "aligned_opcode_reg": 333
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "b1f114f03fc0bbfc441593b5abdbfcc6fa3eda0f0be384070cd27157c888f8d4",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/macro_edge_assign.c",
+    "accepted": false,
+    "canonical_verdict": "440/445 words differ",
+    "comparison": {
+      "differing": 440,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "2b0de2f90b92347c0a93194999be434171ad8bf62c82323958e35d2ad802f870",
+    "emitted_words": 444,
+    "aligned": {
+      "aligned_exact": 331,
+      "aligned_opcode": 440,
+      "aligned_opcode_reg": 333
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "5c64e42cbbc55f2255dd04a485d1c6fb87285fadbffebe291dbe81b39e499cda",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/edge_condition_statements.c",
+    "accepted": false,
+    "canonical_verdict": "440/445 words differ",
+    "comparison": {
+      "differing": 440,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "5a2531e08cfb75370a49b567614dadf555ecb3591d1aea5a637f22d4864cb21a",
+    "emitted_words": 444,
+    "aligned": {
+      "aligned_exact": 314,
+      "aligned_opcode": 440,
+      "aligned_opcode_reg": 316
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "4547d7080274cd9dabb25ac6134a553eb0bcd9cb14be3cd46a8ad9bad084c02e",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/unsigned_globals_2.c",
+    "accepted": false,
+    "canonical_verdict": "4/445 words differ",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "6caa9157806b82ee2b1045f277819c6671de9b8f9a81790287d65dc864708b0c",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 444,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "4df5b2f78e7366029e764bed40de4e152edda3ca7c5859007ce795e0edaac8f7",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Olimit 2000",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/baseline.c",
+    "accepted": false,
+    "canonical_verdict": "4/445 words differ",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "daca7b6dd25222c799f605c5f100df837ea4266b9a00852896ddcafefcca5e15",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 444,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "7a982bebd690db67644ec31444571f444176c59ef61c5f68a93c25ded2a7a360",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/edge_condition_cast.c",
+    "accepted": false,
+    "canonical_verdict": "440/445 words differ",
+    "comparison": {
+      "differing": 440,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "f234a61182fafc91b622129376d3913394f7d4291185a3a7303e7f18b30e75db",
+    "emitted_words": 444,
+    "aligned": {
+      "aligned_exact": 314,
+      "aligned_opcode": 440,
+      "aligned_opcode_reg": 316
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "d7103220c16c19c71e7af7f8f0f144086b0a0015c8a3d8d5403c0b087db57e4f",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/commute.c",
+    "accepted": false,
+    "canonical_verdict": "4/445 words differ",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "f4d878072b0cebc9db0f037dc02fb5bc7e6b95275b1a90abde60101c8c0fad73",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 444,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "d66726edaaddb4baadab650c0153c895533056f3fc4190726227112ca0ddcb02",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/holder_pointer_1.c",
+    "accepted": false,
+    "canonical_verdict": "6/445 words differ",
+    "comparison": {
+      "differing": 6,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "13373c75770a3f5bb9264d1062f590f16fa9d8add0a41ca36302cf47f7b3a05f",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 442,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "55a126472258dfa7168f11c1dbc9df11c6a986d88a31f7f7dae7eb7c756e41cc",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/inner_assign.c",
+    "accepted": false,
+    "canonical_verdict": "4/445 words differ",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "6807f5ffce038d36c85493df233dea03fa32862ba8d06abd00e94b0dc6bc3ad6",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 444,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "f053c0d00ce89e2888e33086663735b6c7d59b81245ab0b2a7e200b52bd185b5",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/unsigned_globals_1.c",
+    "accepted": false,
+    "canonical_verdict": "4/445 words differ",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "d01151573b46c61e48893bb21e6221aec8350d21fd93edca5bd2fbc6c85f2089",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 444,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "02a96d95d6f36d027b93b4f3459474b8e28cf3256e11109e61fdc68ed1964ad1",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/subtractcarrier.c",
+    "accepted": false,
+    "canonical_verdict": "4/445 words differ",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "9db4a9560215ebb6bca8733c9882d6f3a4222a1bd67b038181a40df1dea65ca7",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 444,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "8f59c5950efe75dd9c3b23d9c3ee5daa6929dc733af8128e4a8b1e4f64ee751c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/splitcarrier.c",
+    "accepted": false,
+    "canonical_verdict": "4/445 words differ",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "8ffb57933e4f1cd2149d82b02e4d065814cf4a97ebe0ce755a6fbec1d8ad7046",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 444,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "e41167166de627399dca25d685de6d98abf970a55ec85ee4cf3aa14fe643427f",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/holder_pointer_4.c",
+    "accepted": false,
+    "canonical_verdict": "6/445 words differ",
+    "comparison": {
+      "differing": 6,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "5d1c0fbe46f56899f6c958cd808101d23f222041f97dac081c3c78107e550fe1",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 442,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "8199f483befd2d5746b6878e8f56cff8fdb426569b78ee437c3ad433af138749",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/register_edge.c",
+    "accepted": false,
+    "canonical_verdict": "4/445 words differ",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "67a432264ce3674e485cd8253f753c47b2d0ce2410d69ca59fedd5e51f7f8b20",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 444,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "25769d74d67024628976e40d2e26d0ee3af1bfa7e1a72d3753abe219321955d0",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/packet_capture_0.c",
+    "accepted": false,
+    "canonical_verdict": "6/445 words differ",
+    "comparison": {
+      "differing": 6,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "20a758a262b95ca517fe423eecd5b570b34b9bdb6077962bff3768f4180340cb",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 442,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "4df5b2f78e7366029e764bed40de4e152edda3ca7c5859007ce795e0edaac8f7",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/baseline.c",
+    "accepted": false,
+    "canonical_verdict": "433/445 words differ (2 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 433,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 2
+    },
+    "object_sha256": "c42a2ad771b6ae7a21cde3d5bcf68a3afcec035a1d0e40ddd48dfdfed2b4affd",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 131,
+      "aligned_opcode": 378,
+      "aligned_opcode_reg": 155
+    },
+    "frame_bytes": 16
+  },
+  {
+    "source_sha256": "7679d7bec218a357f8c1972af3e8ca1a4819108c9d53138ca165591fe30b8393",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/holder_pointer_2.c",
+    "accepted": false,
+    "canonical_verdict": "6/445 words differ",
+    "comparison": {
+      "differing": 6,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "d8ae106f169f57ab0d5d5d8289313271b92d9b52bf412894420555eb07e344d0",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 442,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "8c24654474d7dcb589f228ba3475ce6e3a92408ab4250df55193766e5e0e18cf",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/edge_condition_comma.c",
+    "accepted": false,
+    "canonical_verdict": "440/445 words differ",
+    "comparison": {
+      "differing": 440,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "02fa4691dad75f9b3c404ae583236ae356828c9f751073235dd757a60ba11f59",
+    "emitted_words": 444,
+    "aligned": {
+      "aligned_exact": 314,
+      "aligned_opcode": 440,
+      "aligned_opcode_reg": 316
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "27ef12b60a32a4a294e630b76d08548b88a5fa1fe0f983029e22522a62bea8f6",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/edge_condition_commute.c",
+    "accepted": false,
+    "canonical_verdict": "440/445 words differ",
+    "comparison": {
+      "differing": 440,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "63e0fe7a30f4f2c3bb79f3af14ede5bef92020114c93ea961f85642bd049dca7",
+    "emitted_words": 444,
+    "aligned": {
+      "aligned_exact": 314,
+      "aligned_opcode": 440,
+      "aligned_opcode_reg": 316
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "e20f33eaf477f19d5619d49c77eab561e903323e500d6313b9f3380baff03262",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/packet_capture_4.c",
+    "accepted": false,
+    "canonical_verdict": "11/445 words differ",
+    "comparison": {
+      "differing": 11,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "67559d9405fc4a8550ceafc7e4243711249afa6c29c27c57d2f2217f8dd5af4a",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 439,
+      "aligned_opcode": 442,
+      "aligned_opcode_reg": 441
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "ae6200d2d29498ba2dfdd5fc5aabedf5786d977bfa1ad0c64050b758c128b557",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/packet_capture_2.c",
+    "accepted": false,
+    "canonical_verdict": "9/445 words differ",
+    "comparison": {
+      "differing": 9,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "d60336027268167d6e4263761b9bd9852c37bf0a49ee7e61e3f0d3fe6569ff0f",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 438,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 440
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "4df5b2f78e7366029e764bed40de4e152edda3ca7c5859007ce795e0edaac8f7",
+    "flags": "-g3 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/baseline.c",
+    "accepted": false,
+    "canonical_verdict": "437/445 words differ (8 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 437,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 8
+    },
+    "object_sha256": "1600e9fe34c05b5a7357b726fb50a8d9d752b2bebe335972c7ba8fba87d8f894",
+    "emitted_words": 456,
+    "aligned": {
+      "aligned_exact": 407,
+      "aligned_opcode": 419,
+      "aligned_opcode_reg": 418
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "4df5b2f78e7366029e764bed40de4e152edda3ca7c5859007ce795e0edaac8f7",
+    "flags": "-g2 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/baseline.c",
+    "accepted": false,
+    "canonical_verdict": "445/445 words differ (216 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 445,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 216
+    },
+    "object_sha256": "0c6bb2f20debb1cbddecc10792196949abebd40668d7eba5e44b6521beb8cbe0",
+    "emitted_words": 668,
+    "aligned": {
+      "aligned_exact": 21,
+      "aligned_opcode": 335,
+      "aligned_opcode_reg": 49
+    },
+    "frame_bytes": 112
+  },
+  {
+    "source_sha256": "b958de6a05cf5e406ef240723b765bb594218e52ef0f67cf1f110cda719fdf64",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/packet_capture_1.c",
+    "accepted": false,
+    "canonical_verdict": "11/445 words differ",
+    "comparison": {
+      "differing": 11,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "30b7b09a29301a95f8d5c9c3a832a55629ef210eb9d8b97fc750d0d9816a4eab",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 439,
+      "aligned_opcode": 442,
+      "aligned_opcode_reg": 441
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "c28c7faae4a35249989bb910a71b265f2c9ecd37afed65efb811ae1c9838d581",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/unsigned_globals_3.c",
+    "accepted": false,
+    "canonical_verdict": "4/445 words differ",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "a93973ed51f1fdbdeeba03680f804f0e6c2b42c5211baff30f619dec00a3324b",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 444,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "5516bac8b0a6abba1a19471d7bf03f1ccab4d7f9584a5745530dbd493267027a",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/packet_capture_3.c",
+    "accepted": false,
+    "canonical_verdict": "9/445 words differ",
+    "comparison": {
+      "differing": 9,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "f48c95811957b1cb290800731b7eb68d6b0c9ac6258e15d16e2459d3edada659",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 438,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 440
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "391ae8e3684ff24b3837d854689f8e6a7ed2e080fa32fbdb7459875e33909e84",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-texture-compiler/candidates/edge_compoundmask.c",
+    "accepted": false,
+    "canonical_verdict": "92/445 words differ",
+    "comparison": {
+      "differing": 92,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "38ef203587e07a72bae99dd6c3ecdbb945bc90fa00e97c80522209a06ecb0e0b",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 360,
+      "aligned_opcode": 441,
+      "aligned_opcode_reg": 364
+    },
+    "frame_bytes": 104
+  }
+]

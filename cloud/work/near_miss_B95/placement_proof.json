@@ -1,0 +1,9 @@
+{
+  "function": "dispatch_handler",
+  "size_bytes": 1028,
+  "target_words": 257,
+  "relocated_raw_byte_equal": true,
+  "body_sha256": "21a02928c539b8245d8f31d68e81a52c43a252f127da03437e864f108309bdd6",
+  "object_sha256": "4b3b5faf43bef99032bc77b2f287a0e7de451c6eea6b453d6d69f875dcb35297",
+  "shared_mutations": false
+}

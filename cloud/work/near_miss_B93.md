@@ -1,0 +1,9 @@
+# B93 — func_800E543C native whole-function audit
+
+Target: `func_800E543C@0x800E543C`, 700 bytes / 175 original words. No claims and no shared source, lock, or layout mutation.
+
+Before reconstruction, reviewed active reservations, all archived native definitions including pointer-return declarations, caller reports, and current canonical locks and extents. Only declaration/caller references found. The historical third unused argument is omitted: the original body consumes two signed-half inputs only. Vehicle2056 and Model952 layouts follow observed native indexed strides, real fields, and callers; padding represents real record offsets, not compiler stack pressure. Helpers use supported word/float or pointer interfaces.
+
+Complete body includes the early model activation, all mode-specific camera branches and helpers, twelve real zeroed vehicle fields, conditional reset, and final mode/drift controls. Initial source mis-scoped the final drift clear for action zero and is explicitly rejected for semantics. Corrected native source, recomputed real vehicle-address control, and O2 control all remain 171/175 differing words; no unresolved relocations, unverified sites, comparison errors, or extra nonzero words. Target frame72 with RA only; native frame56 with additional S0. Workbench diagnose ran before controls and identifies a true structural/code-length and pool-lane gap (private diagnosis, raw objects and assembly remain outside repository).
+
+No unused formals, fake storage, volatile accesses, dead stores, instruction masks, or source-line sweeps. Freeze after bounded genuine controls. Sources carry literal flags as first line; sanitized results and manifest contain hashes. Coordinator acceptance remains required for any future improvement; nothing here increases coverage.

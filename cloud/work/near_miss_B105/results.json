@@ -1,0 +1,100 @@
+[
+  {
+    "source": "func_800A1644_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "a3ed51386e4bc9c7bf2b7bd5340777112cb0ee560dd8e0055ca891f3f4723f51",
+    "comparison": {
+      "differing": 166,
+      "total": 179,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 60
+    },
+    "text_words": 240
+  },
+  {
+    "source": "func_800A1644_reverse_cursor.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "ace58e4996154e12f28f88de9340c5eadb0a9487713fa4d3563e9420d68179dc",
+    "comparison": {
+      "differing": 165,
+      "total": 179,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 180
+  },
+  {
+    "source": "func_800A1644_reverse_pair.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "7a62f5cedc23e127d72b4727c2bbd295f7629f8819a38eb56cb93b52e9e58051",
+    "comparison": {
+      "differing": 167,
+      "total": 179,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 180
+  },
+  {
+    "source": "func_800A1644_byte_carrier.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "2e0189a7fb2d930dcfe6ddef323e4684cda371265244013f2abe1bac8b62ad09",
+    "comparison": {
+      "differing": 174,
+      "total": 179,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 180
+  },
+  {
+    "source": "func_800A1644_indexed_translation.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "c71e2e6336bbc67e6c60941242e5869e97fcefa744c3ee9dfa46b05de5844559",
+    "comparison": {
+      "differing": 175,
+      "total": 179,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "text_words": 180
+  },
+  {
+    "source": "func_800A1644_indexed_translation_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "8df5b97c42d92c39709b05347a3da756a98f9445cda20efc73db6227e1acf770",
+    "comparison": {
+      "differing": 179,
+      "total": 179,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 3
+    },
+    "text_words": 184
+  },
+  {
+    "source": "func_800A1644_readonly_input.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "cbdc2282ba4adbd92d8636ad6b9636d9751e188caab67ca53ccd35b40884f827",
+    "comparison": {
+      "differing": 175,
+      "total": 179,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "text_words": 180
+  }
+]

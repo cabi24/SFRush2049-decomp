@@ -1,0 +1,87 @@
+[
+  {
+    "source": "race_setup_1_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "56815db4703dcab24d5d025ac74e8280e7d101bdbbcd799750263f5fc003aa4c",
+    "comparison": {
+      "differing": 378,
+      "total": 471,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xc4",
+        ".rodata+0x0 at +0xcc"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 472
+  },
+  {
+    "source": "race_setup_1_case_mapping.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "c66b427ff7476c5537273b6d6c135bde7ca39dc3104d50ed6e1f96a14ee3668f",
+    "comparison": {
+      "differing": 381,
+      "total": 471,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xc4",
+        ".rodata+0x0 at +0xcc"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 472
+  },
+  {
+    "source": "race_setup_1_scalar_views.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "38654fa565fa64f713f585fe085acdbbc8560f6857cfd7b1e839aa040d1e9cda",
+    "comparison": {
+      "differing": 381,
+      "total": 471,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xc4",
+        ".rodata+0x0 at +0xcc"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 472
+  },
+  {
+    "source": "race_setup_1_timing_view.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "8504b907d7fa6371b282f092459dab5235f69273ab518c5ff6e2f8910d935960",
+    "comparison": {
+      "differing": 464,
+      "total": 471,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xc8",
+        ".rodata+0x0 at +0xd0"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 472
+  },
+  {
+    "source": "race_setup_1_case_mapping_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "a480fd958e2fe0a70e2cbe03d3e81c31003367c45e41d220f88bd6a8409c290d",
+    "comparison": {
+      "differing": 406,
+      "total": 471,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xc8",
+        ".rodata+0x0 at +0xd0"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 472
+  }
+]

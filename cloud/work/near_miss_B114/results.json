@@ -1,0 +1,198 @@
+[
+  {
+    "source": "track_info_display_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "6d697770d66763b36ac01eae6c31ae364b5a4690923d2326098b8e96d42f8b9f",
+    "comparison": {
+      "differing": 114,
+      "total": 281,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "text_words": 284
+  },
+  {
+    "source": "track_info_display_tire_velocity.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "c552857af05c8f089c0f844b0db86e24109555adbaf9d6250662765e86bc8fb7",
+    "comparison": {
+      "differing": 113,
+      "total": 281,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "text_words": 284
+  },
+  {
+    "source": "track_info_display_type_flow.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "8aa1d93bf298fad5bac7fec60b094b50411d4619a5b49de16a0b3f77ba11d922",
+    "comparison": {
+      "differing": 99,
+      "total": 281,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "text_words": 284
+  },
+  {
+    "source": "track_info_display_arcade_products.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "1e6f1dfd8800edf94db0ff81ecc73adacc0bf58179a1f832c469d8c7255f516d",
+    "comparison": {
+      "differing": 50,
+      "total": 281,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 284
+  },
+  {
+    "source": "track_info_display_chained_velocity.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "a99ccd64b764d76a9d0d4c61b8898ae80ba180239ba4160a2a05ababd9d4e9dd",
+    "comparison": {
+      "differing": 50,
+      "total": 281,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 284
+  },
+  {
+    "source": "track_info_display_resistance_flow.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "8f52e5bb0d46d8aebd1ee1980a0f12727dc2b9cfc01c9c829288186859e0c69b",
+    "comparison": {
+      "differing": 9,
+      "total": 281,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 284
+  },
+  {
+    "source": "track_info_display_velocity_arrays.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "e8cbe173e5a651484174d9526c8a81640e516a5af238a1398ae014348b7cc460",
+    "comparison": {
+      "differing": 9,
+      "total": 281,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 284
+  },
+  {
+    "source": "track_info_display_resistance_local.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "d5fb7bd9e3c3c2f632530942300b69de1f2a8125fe176ab3dee42d1879888289",
+    "comparison": {
+      "differing": 6,
+      "total": 281,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 284
+  },
+  {
+    "source": "track_info_display_arcade_zero_order.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "ac507adffcb66b5ae1a04001fa2a906161ea6941b4412e2cc3972c2f9237290e",
+    "comparison": {
+      "differing": 4,
+      "total": 281,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 284
+  },
+  {
+    "source": "track_info_display_native_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "ff580eef327ede1d5033d386541e200ad756b1193180d00e7be5a68f21567ff9",
+    "comparison": {
+      "differing": 4,
+      "total": 281,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 284
+  },
+  {
+    "source": "track_info_display_parameter_flow.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "13f91c14c3abdc30b29a1b7c99b2dd5c7cfd60c773e0a114721008cb9484fc16",
+    "comparison": {
+      "differing": 4,
+      "total": 281,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 284
+  },
+  {
+    "source": "track_info_display_mass_input.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "5b4d4690739e4b4db75aca4c348685cbda8594c4af40eafe16fb458b4a52f9d7",
+    "comparison": {
+      "differing": 62,
+      "total": 281,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 284
+  },
+  {
+    "source": "track_info_display_type_after_mass.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "74bf9d08b578be7ab472045d5a71b3ee71ba5a49f333aaa5bfcb7ab444f171b4",
+    "comparison": {
+      "differing": 2,
+      "total": 281,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 284
+  },
+  {
+    "source": "track_info_display_resistance_chain.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "745b144b7ef6cb85c8b5a65ba244b78e9df53d4e93cc780ed577a0086d61ce85",
+    "comparison": {
+      "differing": 2,
+      "total": 281,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 284
+  }
+]

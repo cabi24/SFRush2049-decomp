@@ -1,0 +1,11 @@
+{
+  "claims": [],
+  "files": {
+    "control.initial.c": "45f85f3d343d064a737b23448a6be92e96765638be86827235b835be4f269db9",
+    "group.c": "67a345f5c02d1a15b20f987a99a03a108ff2582ac0c37034f096c67e7c81fe8e",
+    "STATUS.md": "3b4bbffe1daccd790b7f905206392d1e122f47127abe6dc8a33af6c3cec17999",
+    "verification.json": "7a85868454c114887f96b46be72809b02e5dd08fa62f0b8d4ebb13557d299a59",
+    "control.initial.verification.json": "14d7a3e5559a4cb8d856558eb8b07412355e5cd86a163f8688c8b3a7c9798919",
+    "group.json": "1ea4fc58ffdc868c63ea8d5cf558cc3cf7cf92f9e4b4c17ff663b642e5dfe090"
+  }
+}

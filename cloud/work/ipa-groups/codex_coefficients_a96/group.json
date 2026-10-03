@@ -1,0 +1,14 @@
+{
+  "members": [
+    "track_preview_handler"
+  ],
+  "context": [],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "track_preview_handler"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

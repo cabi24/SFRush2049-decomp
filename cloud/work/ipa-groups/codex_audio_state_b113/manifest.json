@@ -1,0 +1,12 @@
+{
+  "packet": "B113",
+  "function": "audio_state_save",
+  "claims": [],
+  "report": "cloud/work/near_miss_B113.md",
+  "report_sha256": "584bff86884aa146fe656a5219fdd6c67802104e44899d25e08809c03ec4b1b1",
+  "files": {
+    "group.c": "61746d9b6b22a0b688ada15e0bb326350a59585367897f2bb07bbbf63fafd982",
+    "group.json": "25d47289aa2a5cd6b68d57ab88b416b9dc2bb9491c2eb6957c14e35e1ab7cd86",
+    "verification.json": "19a173ec9edf7101fa85c71fb07f1565816a65f628887b8ce9e2cc1e8bd6c3c8"
+  }
+}

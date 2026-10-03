@@ -1,0 +1,98 @@
+[
+  {
+    "function": "memchr",
+    "variant": "memchr_register_O0",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "strict_score": 700,
+    "raw_word_diff": 24,
+    "candidate_words": 28
+  },
+  {
+    "function": "memchr",
+    "variant": "memchr_volatileptr_O0",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "strict_score": 720,
+    "raw_word_diff": 24,
+    "candidate_words": 28
+  },
+  {
+    "function": "get_tv_offset",
+    "variant": "get_tv_offset_volatilelocal_O0",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "strict_score": 745,
+    "raw_word_diff": 21,
+    "candidate_words": 28
+  },
+  {
+    "function": "get_viewport_pos",
+    "variant": "get_viewport_pos_register_O0",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "strict_score": 695,
+    "raw_word_diff": 15,
+    "candidate_words": 20
+  },
+  {
+    "function": "viAddTicks",
+    "variant": "viAddTicks_register_O0",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 480,
+    "raw_word_diff": 10,
+    "candidate_words": 16
+  },
+  {
+    "function": "memchr",
+    "variant": "memchr_register_O1",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 1110,
+    "raw_word_diff": 16,
+    "candidate_words": 20
+  },
+  {
+    "function": "memchr",
+    "variant": "memchr_volatileptr_O1",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 770,
+    "raw_word_diff": 16,
+    "candidate_words": 20
+  },
+  {
+    "function": "get_tv_offset",
+    "variant": "get_tv_offset_volatilelocal_O1",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 360,
+    "raw_word_diff": 11,
+    "candidate_words": 20
+  },
+  {
+    "function": "get_viewport_pos",
+    "variant": "get_viewport_pos_register_O1",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 1105,
+    "raw_word_diff": 15,
+    "candidate_words": 20
+  },
+  {
+    "function": "viAddTicks",
+    "variant": "viAddTicks_register_O1",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "strict_score": 425,
+    "raw_word_diff": 11,
+    "candidate_words": 12
+  },
+  {
+    "function": "memchr",
+    "variant": "memchr_ptrdeclO0",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "strict_score": 700,
+    "raw_word_diff": 24,
+    "candidate_words": 28
+  },
+  {
+    "function": "memchr",
+    "variant": "memchr_explicitreturnO0",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "strict_score": 700,
+    "raw_word_diff": 24,
+    "candidate_words": 28
+  }
+]

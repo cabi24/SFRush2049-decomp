@@ -1,0 +1,56 @@
+{
+  "source_sha256": "67afff4fcc24db3c020928aa55483cfdddfd03bde9c6dc1f68a07c4e8240971e",
+  "manifest_sha256": "8e52519c343f70cb3a0a10b56bc352438f8cb537e0792ae4878e1c122c636365",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "comparisons": {
+    "func_800D6530": {
+      "differing": 83,
+      "total": 88,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "speed_set": {
+      "differing": 47,
+      "total": 51,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 5
+    },
+    "speed_mode0_wrapper": {
+      "differing": 6,
+      "total": 22,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "speed_mode1_wrapper": {
+      "differing": 6,
+      "total": 22,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "continue_prompt": {
+      "differing": 10,
+      "total": 23,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "vsync_wait": {
+      "differing": 0,
+      "total": 37,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

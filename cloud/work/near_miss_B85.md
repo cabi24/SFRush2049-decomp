@@ -1,0 +1,5 @@
+# B85 — complete resource preparation, no match claim
+
+camera_shake_start@0x800BDAA8,744 bytes/186 words. Active reservation, archived full bodies/filenames/reports and canonical lock intervals clear. No-input complete routine over genuine20-byte named rows,20-byte sequences,12-byte items and real loader resource fields20/24/28. One real unsigned-halfword output id; no buffer capacity inferred. Preserve skip/global conditions, both genuine loader kinds, mode-specific second-phase choices and resource/data updates, count iteration, default-time/current resets.
+
+Three native controls: locally sampled track165/186; source-global short-circuit O3/O2 both162/186. No extras or verification errors. Frame104 vs112, true id82/86 vs94 and branch scheduling differ. No artificial storage, padding, aliases, masks, volatility or line sweep. Empty claims; freeze and move on. All source hashes/literal flags and sanitized strict proofs preserved, raw ROM/object/assembly excluded. No shared accepted source/lock mutations by worker.

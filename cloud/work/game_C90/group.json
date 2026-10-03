@@ -1,0 +1,14 @@
+{
+  "members": [
+    "func_800A1E94"
+  ],
+  "context": [],
+  "files": [
+    "func_800A1E94.o3.c"
+  ],
+  "keep": [
+    "func_800A1E94"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "provenance": "Original complete PFS status conversion; only genuine sole member, no context or stand-in."
+}

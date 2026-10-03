@@ -1,0 +1,40 @@
+{
+  "candidate": "collision_best_complete_context_group",
+  "function": "menu_options_screen",
+  "source_sha256": "1c991da2992d7a8a85da556734b3f4e07081cd8554e013ffe92baf9f991e7dd7",
+  "object_sha256": "0ff3261b49acc04a253d67a9588f00aefcfd300a79c81d263b020b50767405a7",
+  "comparison": {
+    "differing": 448,
+    "total": 589,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "helper_comparisons": {
+    "menu_load_options": {
+      "differing": 11,
+      "total": 91,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800A61B0": {
+      "differing": 0,
+      "total": 37,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_8008B3C8": {
+      "differing": 0,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

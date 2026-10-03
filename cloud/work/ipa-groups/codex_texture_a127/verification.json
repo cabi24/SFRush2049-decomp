@@ -1,0 +1,27 @@
+{
+  "source_sha256": "94b930d1b53e7745622ce5fb52b367bd7e34b039a8c5e0db06b6f066100e0fb0",
+  "manifest_sha256": "72bd08517163e270b899556fc8918a308e8063c9c17ca91de7c0d70987deca77",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "comparisons": {
+    "camera_smooth_follow": {
+      "differing": 4,
+      "total": 113,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "race_setup_1": {
+      "differing": 381,
+      "total": 471,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xc4",
+        ".rodata+0x0 at +0xcc"
+      ],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

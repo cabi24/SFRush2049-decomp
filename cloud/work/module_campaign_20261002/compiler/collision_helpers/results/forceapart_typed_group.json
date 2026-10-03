@@ -1,0 +1,24 @@
+{
+  "candidate": "forceapart_typed_group",
+  "function": "menu_load_options",
+  "source_sha256": "dcb78ba9dd1ab88a1dd2f31ac74d0581e1be3879a67be44652e066159f3f2156",
+  "object_sha256": "22ecb1fc23e7aa50f6837cff10ed29db40f9e68add1023ed790e3df10ef8e069",
+  "comparison": {
+    "differing": 75,
+    "total": 91,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "helper_comparisons": {
+    "func_800A61B0": {
+      "differing": 0,
+      "total": 37,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

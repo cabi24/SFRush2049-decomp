@@ -1,0 +1,16 @@
+{
+  "claims": [],
+  "files": {
+    "control.sentinel_switch.c": "bad9ea968183516a4cd3757b0ad24bcf27277896ffb0f5d6a296dc6dfdee27b9",
+    "control.id_snapshot.verification.json": "167e82453474c59af60061f810fa3bcd5a1c3b7bfe6ea7f709f6f11fda968b9b",
+    "control.id_snapshot.c": "2b3f479301d49eec3f4c18c68ea7e19dfd1a2a4cbda633ec1c0992bdaf463159",
+    "records_screen.c": "cbd686e158868681be96b43cf5edb23f522354caa4e5d5bf9e2bc27a8aaffc87",
+    "STATUS.md": "69f2fabd5e388771f949728ac473ddc3d6be1bc3d8e683f31d9fbf541db12696",
+    "control.direct_halfwords.verification.json": "20b958ace17e0d042da3bfd74d39633954e3741b4855ed23634a58c5b3e2b4ec",
+    "control.sentinel_switch.verification.json": "be71cd2d13174ee4173507e417e8ba0203b5b77a453d01017872bc2ec7a8e522",
+    "verification.json": "93cae3ff70be59c777bd51922e3e44694d45d24ca6f4f48ee47c23637aec97e6",
+    "control.four_word.c": "cbd686e158868681be96b43cf5edb23f522354caa4e5d5bf9e2bc27a8aaffc87",
+    "control.four_word.verification.json": "93cae3ff70be59c777bd51922e3e44694d45d24ca6f4f48ee47c23637aec97e6",
+    "control.direct_halfwords.c": "eacbb2a6bd153cbedeb582972c9b31256153657446086d4f99ecc649b0e71af9"
+  }
+}

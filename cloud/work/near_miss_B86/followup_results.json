@@ -1,0 +1,44 @@
+[
+  {
+    "source": "func_80087110_width_followup.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "dcc2bdc0279aa7e5b9111d23c8c99031011ac4aab80c1c745782d88f92e13492",
+    "comparison": {
+      "differing": 11,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 448
+  },
+  {
+    "source": "func_80087110_texture_edge_followup.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "4df5b2f78e7366029e764bed40de4e152edda3ca7c5859007ce795e0edaac8f7",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 448
+  },
+  {
+    "source": "func_80087110_texture_edge_value_followup.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "e1e04b529a562197d7a48a8e93ffa69672f8fb6c5c5322624d9ec5efa25f63ab",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 448
+  }
+]

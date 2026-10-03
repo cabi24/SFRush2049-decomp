@@ -1,0 +1,3 @@
+# A95 native pending-node cleanup — nonmatch
+
+Full func_800D5374@800D5374,328 bytes/82 words. Actual Player76 pending node at68, signed active_player_count and input_rec0, pointer-minus-one sentinel, queue D_80142728, active/dirty bytes8/9, real empty D52CC call and real list removal/insertion D9211C/D91FBC using D80146188/D80146170. Literal O2 flags in source; fresh82/82 no extras or exceptions. Native frame64 vs original56 and persistent global count address differ. Guarded do-loop and consumed count refresh only after real queue work both remain82; O3 unchanged. Header confirms nonvolatile count, so no forced volatile. No frame padding, extra dummy stores/formals, unused predicates or reflow. Sources/hashes/fresh proof frozen; claims empty.

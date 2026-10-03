@@ -1,0 +1,18 @@
+{
+  "packet": "B101",
+  "function": "world_trigger_activate",
+  "address": "0x800EE5DC",
+  "size_bytes": 464,
+  "target_words": 116,
+  "claims": [],
+  "files": {
+    "world_trigger_activate_address_views.c": "713bf166a4fc2d2bf42094828f5f39f1101b65460d62d49978bdf9b57536add0",
+    "world_trigger_activate_pointers.c": "c9a0e050ff4f789daf10bac5d7ce3d5e8aa35e48c17159afd6b672eb1e12c095",
+    "results.json": "f7909fd371ca2547ff19c57fd86cdb4adc2355c1a0d63c9bbc70ff6eb21a1e90",
+    "world_trigger_activate_address_views_O2.c": "4e1ee8c0b9cc439412940eeac09e53e4e6a5586aab4f0753b9a5c5ffd4472e4b",
+    "helper_provenance.json": "03f226e3c5ffcf912b0b08ad22938000b262deadea5c0269fe98f9c3cf0275fe",
+    "world_trigger_activate_single_use.c": "450ad43dda0e426cee53841268b30a9c5be53967b02095c4bdb0120b522c1dd0",
+    "world_trigger_activate_native.c": "2b0797c3ede2a4d02649a4d70f6481fdc18a6af9e5b34b82986d21b456561a79"
+  },
+  "report_sha256": "a5329728bcc2b3a95ea6eae4114f0f6fd9b971a6150bb95dd15d2d674b441705"
+}

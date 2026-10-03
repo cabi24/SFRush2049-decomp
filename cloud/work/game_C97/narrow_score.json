@@ -1,0 +1,16 @@
+{
+  "source_sha256": "ad87711dfbaa3eefe08fbdcd4848d9bc7654234fdc955a48f47936ba7e7698a7",
+  "object_sha256": "f752896eb638aa260d44a3058d33abf1db4ae102b3eb4bcc807fc6282926d899",
+  "strict": 11707,
+  "linked": {
+    "differing": 476,
+    "total": 500,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0x31c",
+      ".rodata+0x0 at +0x324"
+    ],
+    "errors": [],
+    "extra_words": 0
+  }
+}

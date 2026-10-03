@@ -1,0 +1,9 @@
+{
+  "source_sha256": "da90c16d7db94a42b3b07c71188e30efa5c4c6e362321a25e65fcd15c292893c",
+  "object_sha256": "12fc6806349e253e6dd42c0d0139e76427ec27b411ea7261160c4de20133b758",
+  "target_id": "audio_dsp_process",
+  "vaddr": "0x800BADE0",
+  "bytes": 388,
+  "exact": true,
+  "body_sha256": "457e2208e8aaa12a52448296f6d5594669571a808b7cd79ecb3af15d37d9fa57"
+}

@@ -1,0 +1,5 @@
+# A108 actual player vector traversal — bounded nonmatch
+
+Complete main_menu_render@800DEC8C236 bytes/59 words. Signed current player count, genuine76-byte records and node sentinel-1; selected player's2056-byte history supplies position556 and actual152-byte display record supplies orientation24/position12, plus original global Vec3. All five inputs consumed by audited complete main_menu_input (A74 already archived). No hidden/extra formal, array padding or unused work.
+
+Native51/59. Actual positive-count guard limits player cursor initialization to traversal28/59; grounded guarded do with entry-zero counter37/59; consumed node predicate/argument local28/59 unchanged. Frame64 reproduced, remaining saved-register initialization/scheduling residue. One genuine caller plus complete actual vector-copy callee group, retaining real empty debug callee as external, inlines the body and refuses56/59+39extra/unpaired relocation. No mask or extent/claim allowance applied, no repeated closure sweep. All sources/metadata frozen, claims empty.

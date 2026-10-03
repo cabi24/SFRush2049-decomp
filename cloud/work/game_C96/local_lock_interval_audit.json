@@ -1,0 +1,94 @@
+{
+  "game_lock_sha256": "b6427ddd9186cfb0e9381f16db90008063e0bfde5cf47c62a35903b66df89a0c",
+  "static_lock_sha256": "4fb94c530eb996356b8dd00af8d5223440207d5443d7d333c4818cecb228e825",
+  "targets": {
+    "func_800A1E94": {
+      "local_lock": false,
+      "slot": {
+        "kind": "function",
+        "size": 132,
+        "target_id": "func_800A1E94",
+        "vaddr": 2148146836
+      },
+      "overlaps": [],
+      "static_alias_locks": []
+    },
+    "func_800A1C6C": {
+      "local_lock": false,
+      "slot": {
+        "kind": "function",
+        "size": 360,
+        "target_id": "func_800A1C6C",
+        "vaddr": 2148146284
+      },
+      "overlaps": [],
+      "static_alias_locks": []
+    },
+    "track_data_decompress": {
+      "local_lock": false,
+      "slot": {
+        "kind": "function",
+        "size": 652,
+        "target_id": "track_data_decompress",
+        "vaddr": 2148146968
+      },
+      "overlaps": [],
+      "static_alias_locks": []
+    },
+    "func_800A1DD4": {
+      "local_lock": false,
+      "slot": {
+        "kind": "function",
+        "size": 192,
+        "target_id": "func_800A1DD4",
+        "vaddr": 2148146644
+      },
+      "overlaps": [],
+      "static_alias_locks": []
+    },
+    "func_800A1BB4": {
+      "local_lock": false,
+      "slot": {
+        "kind": "function",
+        "size": 184,
+        "target_id": "func_800A1BB4",
+        "vaddr": 2148146100
+      },
+      "overlaps": [],
+      "static_alias_locks": []
+    },
+    "track_collision_setup": {
+      "local_lock": false,
+      "slot": {
+        "kind": "function",
+        "size": 468,
+        "target_id": "track_collision_setup",
+        "vaddr": 2148147620
+      },
+      "overlaps": [],
+      "static_alias_locks": []
+    },
+    "MaxPathZeroControls": {
+      "local_lock": false,
+      "slot": {
+        "kind": "function",
+        "size": 396,
+        "target_id": "MaxPathZeroControls",
+        "vaddr": 2148148088
+      },
+      "overlaps": [],
+      "static_alias_locks": []
+    },
+    "slot_state_lookup": {
+      "local_lock": false,
+      "slot": {
+        "kind": "function",
+        "size": 188,
+        "target_id": "slot_state_lookup",
+        "vaddr": 2148148484
+      },
+      "overlaps": [],
+      "static_alias_locks": []
+    }
+  }
+}

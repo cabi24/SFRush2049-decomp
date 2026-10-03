@@ -1,0 +1,32 @@
+{
+  "scope": "private generic-data API and genuine BSS model; old C13 source-game baseline; no production lifecycle claim",
+  "regeneration_stable": true,
+  "results": [
+    {
+      "case": "generic data ownership + genuine timer storage",
+      "link_exit": 0,
+      "link_diagnostic": "/usr/bin/mips-linux-gnu-ld.bfd: warning: build/us/rush2049.us.elf has a LOAD segment with RWX permissions",
+      "sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+      "retail_gate": true
+    },
+    {
+      "case": "wrong BSS address refuses",
+      "link_exit": 1,
+      "link_diagnostic": "/usr/bin/mips-linux-gnu-ld.bfd: clock allocation moved\n/usr/bin/mips-linux-gnu-ld.bfd: base counter moved\n/usr/bin/mips-linux-gnu-ld.bfd: VI count moved\n/usr/bin/mips-linux-gnu-ld.bfd: timer counter moved\n/usr/bin/mips-linux-gnu-ld.bfd: warning: build/us/rush2049.us.elf has a LOAD segment with RWX permissions"
+    },
+    {
+      "case": "wrong allocated timer pointer fails ROM gate",
+      "link_exit": 0,
+      "link_diagnostic": "/usr/bin/mips-linux-gnu-ld.bfd: warning: build/us/rush2049.us.elf has a LOAD segment with RWX permissions",
+      "sha1": "05c8d2b6f3ed280d21a5f51c70353e346c6b666e",
+      "retail_gate": false
+    },
+    {
+      "case": "rollback original physical ownership",
+      "link_exit": 0,
+      "link_diagnostic": "/usr/bin/mips-linux-gnu-ld.bfd: warning: build/us/rush2049.us.elf has a LOAD segment with RWX permissions",
+      "sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+      "retail_gate": true
+    }
+  ]
+}

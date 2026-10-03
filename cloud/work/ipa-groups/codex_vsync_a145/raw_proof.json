@@ -1,0 +1,20 @@
+{
+  "source_sha256": "67e4e1edba4cd2f4d750f66c926635c9258c99c61e294d8a3f3ebae24250087f",
+  "manifest_sha256": "a6c138f22e3b5d97beb2e8e29179efab2f93169a798ca7eb8185990570e10356",
+  "object_sha256": "aa692d321a7d01d5f2d0e6ed48f9ae23833580ae30e5a67017fc4cf525c820a3",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "exact_functions": {
+    "vsync_wait": {
+      "words": 37,
+      "bytes": 148,
+      "unmasked_exact": true
+    }
+  },
+  "unclaimed_nonmatches": [
+    "speed_set47/51+5extras",
+    "speed_mode0_wrapper6/22",
+    "speed_mode1_wrapper6/22",
+    "continue_prompt10/23"
+  ]
+}

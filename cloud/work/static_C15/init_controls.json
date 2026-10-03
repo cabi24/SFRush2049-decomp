@@ -1,0 +1,19 @@
+[
+  {
+    "function": "dll_init",
+    "flags": "-g0 -O1 -mips1 -G 0 -non_shared",
+    "strict_score": 1185,
+    "raw_word_diff": 29,
+    "candidate_words": 36,
+    "linked_prefix_word_diff": 28,
+    "masks": {},
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "dll_init",
+    "flags": "-g0 -O1 -mips3 -G 0 -non_shared",
+    "compile_error": "cc: Warning: -mips3 should not be used for ucode 32-bit compiles\ncc: Error: -mips3 implies -64bit, which is not supported.\n"
+  }
+]

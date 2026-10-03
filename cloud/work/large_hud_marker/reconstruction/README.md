@@ -1,0 +1,9 @@
+# Complete HUD marker reconstruction
+
+Not accepted. Canonical head game_results_input at 0x800FF724 is 433 executable instructions (1,732 bytes), with one Sprite pointer argument and a true constant-one return on all paths. Full reconstruction preserves every branch, visibility flag, projection path, asset selection, multiplayer scale adjustment, selector field update, and final sprite refresh.
+
+The historical name is misleading: this updates a player marker sprite. Arcade hud.c AnimateMarker supplies a general ancestry pattern for Hidden and projected markers, but no exact arcade body was found. N64 sprite, input, marker, camera, and asset layouts were derived from the complete native body. True ABI signatures were checked for Input_ApplyPadConfig, func_800EF5B0, brake_light_update, and stat_race_update. Asset table entries are integer texture IDs. The projection optional view pointer is genuinely null; scale is initialized before either projection call.
+
+The natural complete baseline has the native 120-byte frame but saves an additional persistent sprite register, emits 424 executable words, and has 431 differing linked target words. The genuine complete Input_ApplyPadConfig O3 context removes that extra save but produces a 112-byte frame and extra instructions. The genuine accepted input_new_data_wrapper body remains a call under complete O3 compilation instead of the native inline expansion. Complete actual four-callee context does not improve that result. A fresh native value-capture reconstruction also fails to recover the native frame and register assignment. No unconsumed stack arrays or dummy context were introduced.
+
+Sources and frozen context controls are retained for future research. No image gate, ROM gate, lock, or coverage credit was performed for this head. Native objects and disassembly remain under ignored build/large_hud_marker.

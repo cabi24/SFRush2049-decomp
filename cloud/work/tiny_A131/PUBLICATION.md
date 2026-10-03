@@ -1,0 +1,3 @@
+# A131 separately frozen publication copy
+
+`tournament_unlock_check.publication.c` SHA-256 `b9ad5566edc2466e905841422a1a618bb02b4de780501019725b43e78a3081ed` has exactly the required literal flags comment on line1, followed by the previously frozen complete source without edits. This exact copy was freshly compiled on Rocky using `-g0 -O3 -mips2 -G 0 -non_shared`; canonical strict62 words and direct unmasked original comparisons both remain exact, no exceptions/extras/errors. Original packet/source/proof hashes remain unchanged. Publication claims empty pending coordinator independent replay/ROM gates.

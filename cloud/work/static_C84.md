@@ -1,0 +1,7 @@
+# C84 — genuine 64-bit conversion helpers: bounded backend refusal
+
+No coverage claim. Four complete helpers in authoritative lib_a5f0 were reconstructed as ordinary signed long-long casts: __fixdfdi, __fixsfdi, __floatdidf and __floatdisf. Current archive, actual layout and locked-interval audit found no previous promoted bodies in this module; the coordinator was notified before work. Sources and final recipe hashes are frozen in manifest.json.
+
+The literal `-g0 -O2 -mips3 -G 0 -non_shared` recipe fails compilation for every source: IDO reports that MIPS3 implies unsupported -64bit. Adding actual `-32` compiles but warns that MIPS3 should not be used for ucode 32-bit compiles. Strict scores are respectively 300, 300, 100 and 100. The emitted double-to-integer helpers omit actual truncation/FP-to-GPR transfer operations; integer-to-FP helpers omit the required dmtc1 transfer while retaining conversion operations that consume the uninitialized register. The protected targets contain those real R4300 operations.
+
+These are genuine unsupported compiler-backend results, not scheduling residuals that justify artificial operations, intrinsics, assembly injection or source pressure. Inputs/results retain exact source, target and compiler-object hashes and exit codes. Original target/object streams remain private under ignored build/C84 and Rocky C scratch. No live compiler, headers, lock, layout, target, shared source or Git mutations occurred. This packet is frozen as a refusal; continue with ordinary static C.

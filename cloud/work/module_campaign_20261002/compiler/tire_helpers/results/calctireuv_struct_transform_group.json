@@ -1,0 +1,26 @@
+{
+  "candidate": "calctireuv_struct_transform_group",
+  "function": "camera_collision_avoid",
+  "source_sha256": "e122c1cff4175cd570f0e581906e70911bb8b2e6249a07b4b9c8060cd97c92ac",
+  "object_sha256": "27ac6758ae836175233f1ddecef9c6531617c23a26b29c9874addaaad32e439b",
+  "comparison": {
+    "differing": 14,
+    "total": 103,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "helper_comparison": {
+    "differing": 0,
+    "total": 37,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "recipe": "full retained-entry ucode group",
+  "claims": [],
+  "protected_target_object_sha256": "11d66e8d1f73cba38128c53855a21b53016d42e61fb54cd391408bf600db272a"
+}

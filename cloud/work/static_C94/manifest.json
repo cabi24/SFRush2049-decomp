@@ -1,0 +1,29 @@
+{
+  "function": "inflate_free_window",
+  "variant": "inflate_free_window",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "compile_exit": 0,
+  "stderr": "",
+  "strict": 7032,
+  "raw_word_diff": 320,
+  "candidate_words": 308,
+  "source_sha256": "cb17dab28a24cd40af6744a50a06a67d280988a1d3387d6a3d57e0b507dde9b8",
+  "target_sha256": "6c45a872539c49aa51fb7450c069714cfa0ddfecf0f04cb68306ee9ac3480005",
+  "status": "refused_nonmatch",
+  "authoritative_bytes": 1272,
+  "original_true_instructions": 318,
+  "candidate_true_instructions": 305,
+  "original_frame": 96,
+  "candidate_frame": 88,
+  "accepted_credit": 0,
+  "source": "cloud/work/static_C94/inflate_free_window.c",
+  "protected_original_target_gate": [
+    true,
+    null
+  ],
+  "workbench_geometry_edit_distance": 135,
+  "workbench_aligned_differences": 145,
+  "context": "Unchanged private C67 actual-header snapshot, lib_5610 existing O2 compiler pin preserved",
+  "provenance": "Complete source reconstructed against authoritative original decoder body; no copied ancestor formatter or GPL source, canonical inflater caller types/macros reused from C23. No source words/assembly encoded into C.",
+  "no_shared_edits": true
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "function": "osScAddClient.sdk_oldstyle",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 350,
+    "source_sha256": "c49ab7668c02a5e5289c26d358f1f10dd5abc04fce06793e7b298867a4a0400a",
+    "target_sha256": "18e2b7521888575ecd5d6adb41422b6ab36c56a43253e9632140f6f1e4af352e"
+  },
+  {
+    "function": "osScAddClient.signed_mask",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 350,
+    "source_sha256": "83122d1a05e4255506cf11dcee418ce9c7d8ae96958e121781132f6fda3402b7",
+    "target_sha256": "18e2b7521888575ecd5d6adb41422b6ab36c56a43253e9632140f6f1e4af352e"
+  },
+  {
+    "function": "osScAddClient.O1",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 278,
+    "source_sha256": "3898d7cd11727e6f7746646ab52b5710a518eb8f1c923640a2d7d4abc4c3b004",
+    "target_sha256": "18e2b7521888575ecd5d6adb41422b6ab36c56a43253e9632140f6f1e4af352e"
+  },
+  {
+    "function": "osScAddClient.O2",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 1180,
+    "source_sha256": "2175b22e4d1e63a0c824b8ab588ed912e57c26282a1afc6bf31c00be3a9f2cbd",
+    "target_sha256": "18e2b7521888575ecd5d6adb41422b6ab36c56a43253e9632140f6f1e4af352e"
+  },
+  {
+    "function": "osScAddClient.assembler_o1",
+    "flags": "-g0 -O0 -mips2 -G 0 -non_shared -Wab,-O1",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict": 350,
+    "source_sha256": "98d06743ffd5687105400e1bbc9785bf2f8b22d7fc919e91d03f894ffacf4be7",
+    "target_sha256": "18e2b7521888575ecd5d6adb41422b6ab36c56a43253e9632140f6f1e4af352e"
+  }
+]

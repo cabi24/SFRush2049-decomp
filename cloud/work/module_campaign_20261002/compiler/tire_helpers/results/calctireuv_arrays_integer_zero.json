@@ -1,0 +1,18 @@
+{
+  "candidate": "calctireuv_arrays_integer_zero.c",
+  "function": "camera_collision_avoid",
+  "source_sha256": "3ea9e4e66e09f7dd1d8411e6225898ecf4607e4177c3227d57d30539f8006c7f",
+  "object_sha256": "c93fd3cc1f93469af92fb30b4e794105416a92788b4b0c9488384623f66eecfe",
+  "comparison": {
+    "differing": 48,
+    "total": 103,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "recipe": "ordinary IDO cc compile",
+  "claims": [],
+  "protected_target_object_sha256": "11d66e8d1f73cba38128c53855a21b53016d42e61fb54cd391408bf600db272a"
+}

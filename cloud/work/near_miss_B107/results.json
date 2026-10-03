@@ -1,0 +1,216 @@
+[
+  {
+    "source": "menu_control_settings_add_assign.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "e06046b4dd2078ccfeaea73cb3d113d283c186503d7efa6bc7b7af98ae7fe55f",
+    "comparison": {
+      "differing": 16,
+      "total": 164,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 164
+  },
+  {
+    "source": "menu_control_settings_arcade_arrays.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "16b5fb7e0864c0c0e28baa9af4c6e866f2798e78c5befa52ce91ffcaa55bb827",
+    "comparison": {
+      "differing": 19,
+      "total": 164,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 164
+  },
+  {
+    "source": "menu_control_settings_arcade_locals.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "eb04a1aee7e04133be7798da7014b2ad5751f027ee04a184567b7dfca206ea66",
+    "comparison": {
+      "differing": 12,
+      "total": 164,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 164
+  },
+  {
+    "source": "menu_control_settings_arcade_locals_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "24b8733010fd7b5937bde6f041d1a63d331ad9ec9da8198bc3ca6ef30271c5aa",
+    "comparison": {
+      "differing": 12,
+      "total": 164,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 164
+  },
+  {
+    "source": "menu_control_settings_arcade_streams.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "82d070ec9955d7378039d3a9eaf8220486978152dbb7e15d25ab37c210e7f614",
+    "comparison": {
+      "differing": 151,
+      "total": 164,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 160
+  },
+  {
+    "source": "menu_control_settings_arcade_vecadd.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "8e8db50b42655a0e73f98a9748a095cabf30342c61eee6ba6dad73244bbaa279",
+    "comparison": {
+      "differing": 158,
+      "total": 164,
+      "unresolved": [
+        ".text+0x0 at +0xd0",
+        ".text+0x0 at +0x194",
+        ".text+0x0 at +0x1d4"
+      ],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 164
+  },
+  {
+    "source": "menu_control_settings_array_first.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "6438d22db56ec826761dc1822ede1f7c9083d1095cb02ba14d2b02970589f068",
+    "comparison": {
+      "differing": 16,
+      "total": 164,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 164
+  },
+  {
+    "source": "menu_control_settings_array_operand.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "3cb942b1e084d8a2cdf7bab0ef62af95652cfdbe79660bac50d29f6dcc7c4fce",
+    "comparison": {
+      "differing": 16,
+      "total": 164,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 164
+  },
+  {
+    "source": "menu_control_settings_basis_cursor.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "ac0d6b097115b4c992621d7898ef118a93163eac1cc0aa5cb0b1a9a91a5b6b96",
+    "comparison": {
+      "differing": 18,
+      "total": 164,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 164
+  },
+  {
+    "source": "menu_control_settings_flag_dataflow.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "0436ac4a75f90e326e06abcad37705286422ea536a702b8b542f948367e722d0",
+    "comparison": {
+      "differing": 35,
+      "total": 164,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 164
+  },
+  {
+    "source": "menu_control_settings_float_output.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "7969911665d4458a7ff44658bba89ce0e8015923f59cc210beb3e74fe9d6cc7e",
+    "comparison": {
+      "differing": 16,
+      "total": 164,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 164
+  },
+  {
+    "source": "menu_control_settings_matrix_first.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "e78aae9b82321703eb6d1b418927bcc92ce34dd742b2b3f78156c92a93656326",
+    "comparison": {
+      "differing": 34,
+      "total": 164,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 164
+  },
+  {
+    "source": "menu_control_settings_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "fbb05e4c989ece55840edb88800b2d1b16bd425af6bf38e3ff0b969e770bcd4a",
+    "comparison": {
+      "differing": 107,
+      "total": 164,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 164
+  },
+  {
+    "source": "menu_control_settings_operand_order.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "d48efe6b0b1425a8ec1008fa4abbaa722c745870ffc7a513ad984b8f44df1b7b",
+    "comparison": {
+      "differing": 35,
+      "total": 164,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 164
+  },
+  {
+    "source": "menu_control_settings_position_view.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "f7e9d729328e47ba628cfd4111d2ba25802c03d49e49c467bc622f0d0a41346e",
+    "comparison": {
+      "differing": 161,
+      "total": 164,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 8
+    },
+    "text_words": 172
+  }
+]

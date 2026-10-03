@@ -1,0 +1,12 @@
+{
+  "target_id": "drone_set_catchup",
+  "address": 2148149648,
+  "population": "extracted",
+  "insn_count": 213,
+  "target_asm_sha": "1175bf877d754419273a19eaaf64ce9c2ff54774a631fd86b253c172ce879dad",
+  "target_o_sha": "1d3e9819db46900ec97d3b19a5b005bb4b0fd9900c07eabd94324c2e53ca74af",
+  "fingerprint": null,
+  "cluster_id": null,
+  "tier": "reloc_aware",
+  "gate_reason": "extent_repaired"
+}

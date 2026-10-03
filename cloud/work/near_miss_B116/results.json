@@ -1,0 +1,86 @@
+[
+  {
+    "source": "entity_render_setup_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "1db447eafa75f2721a547f5223e7e77ecf0ce42d124456691122412b6ccf675e",
+    "comparison": {
+      "differing": 501,
+      "total": 512,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 25
+    },
+    "text_words": 540
+  },
+  {
+    "source": "entity_render_setup_visibility.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "e1f079c9657fc4dc723f478fea349e9da626dedee0bdf244e0f315d562f677ee",
+    "comparison": {
+      "differing": 481,
+      "total": 512,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 28
+    },
+    "text_words": 540
+  },
+  {
+    "source": "entity_render_setup_shared_projection.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "0549b064dc96b3feff462377dbd1b7496a6fb2d23a7e2c812f5b4b6aee2da0b2",
+    "comparison": {
+      "differing": 493,
+      "total": 512,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 12
+    },
+    "text_words": 524
+  },
+  {
+    "source": "entity_render_setup_mode_flow.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "71d54233207b178a1be29d346ecc232d24e9063ea08995b696f7d3eaf33c4d63",
+    "comparison": {
+      "differing": 497,
+      "total": 512,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 11
+    },
+    "text_words": 524
+  },
+  {
+    "source": "entity_render_setup_mode_flow_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "5225f3b48ac325a1cdbd43443764c2a250c37ead3635175d9e5627eac54f7437",
+    "comparison": {
+      "differing": 486,
+      "total": 512,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 13
+    },
+    "text_words": 528
+  },
+  {
+    "source": "entity_render_setup_callback_abi.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "a10a6c3ea20a45165856661bbd74c71b6bdb1db338e4c9aec08e90ffe5861476",
+    "comparison": {
+      "differing": 480,
+      "total": 512,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 13
+    },
+    "text_words": 528
+  }
+]

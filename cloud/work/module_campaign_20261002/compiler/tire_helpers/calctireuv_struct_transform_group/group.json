@@ -1,0 +1,10 @@
+{
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "camera_collision_avoid",
+    "func_800A61B0"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+}

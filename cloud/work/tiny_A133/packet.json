@@ -1,0 +1,20 @@
+{
+  "packet": "A133",
+  "function": "func_800D60AC",
+  "address": "0x800D60AC",
+  "bytes": 180,
+  "words": 45,
+  "claims": [],
+  "files": {
+    "control.explicit_snapshot.c": "48866c373d9c9742aa2ed8079d1dbb1eee7bc0b579478382f372bd957ed3f058",
+    "control.explicit_snapshot.verification.json": "0d3835a2513c678487aebc077d1aa9663d4bb7d1e9c739d738fa4a5e1d3a90c0",
+    "STATUS.md": "7142480967c581a6576a1b8865af16829646e17c02c50997cc3219113c439150",
+    "control.scalar_flag.verification.json": "8d3dd725eb2bc4c4db8a8147c58695fd80bfae4736a533b2e6032d50f7c60253",
+    "verification.json": "8aeaf1d7377bb9468e1a82fa9c3bb0b29775153aa679f873c1ff0b41bee18743",
+    "control.scalar_flag.c": "3c697849d1506536fd058648f0518effee625496372a2a389f005530d36851cb",
+    "raw_proof.json": "411c4ccc00503fecbf65303a822219672ee1b2a109c61e7f1f8ed48937626ee3",
+    "func_800D60AC.c": "321d799b232985e783b9cf3a5c35bfba35ad786cb68a3c6795ce719d4ba815ef",
+    "control.array_flag.verification.json": "730b9571488a3986d15c3e4271628dcffb2f2bf7b8595816cb50a7555ae7782b",
+    "control.array_flag.c": "376f8618fbba0f1884d7832b59b23335edab507488172f3a3a7221afb1582f86"
+  }
+}

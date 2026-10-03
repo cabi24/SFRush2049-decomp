@@ -1,0 +1,8 @@
+{
+  "source_sha256": "94b930d1b53e7745622ce5fb52b367bd7e34b039a8c5e0db06b6f066100e0fb0",
+  "manifest_sha256": "72bd08517163e270b899556fc8918a308e8063c9c17ca91de7c0d70987deca77",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "status": "frozen genuine closure residual",
+  "original_caller_sha256": "c66b427ff7476c5537273b6d6c135bde7ca39dc3104d50ed6e1f96a14ee3668f"
+}

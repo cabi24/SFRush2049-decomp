@@ -1,0 +1,58 @@
+[
+  {
+    "source": "sfx_volume_set_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "5fa52bced4c427442a46f063cbc7e50df02f387d9b7b1c53886d2ab2ce6da013",
+    "comparison": {
+      "differing": 33,
+      "total": 64,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 64
+  },
+  {
+    "source": "sfx_volume_set_argument_carriers.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "8206a992763f31b818b4a3cf3c35317eaf42c6bc274c8279936abd56d0e200a0",
+    "comparison": {
+      "differing": 58,
+      "total": 64,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 64
+  },
+  {
+    "source": "sfx_volume_set_resource_cursors.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "6b19103206da39e47d82ce9752733752ed4941880fc7cd74a8f92f95170c505c",
+    "comparison": {
+      "differing": 50,
+      "total": 64,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 64
+  },
+  {
+    "source": "sfx_volume_set_native_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "52db9098427bee4df5869f9dbfaed7e2d611a21377b63941d7fd74ee5d5c61e2",
+    "comparison": {
+      "differing": 33,
+      "total": 64,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 64
+  }
+]

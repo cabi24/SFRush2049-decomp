@@ -1,0 +1,64 @@
+{
+  "source_sha256": "31e83b37efe3f3c951cd9d4cf8f48720d3aa05ab434d2a1aaf30f47831ae1e85",
+  "manifest_sha256": "a088f6773566befed49af2ffe8649ab69107bd69102d03312bae639849ba0920",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "comparisons": {
+    "audio_bus_route": {
+      "differing": 39,
+      "total": 59,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "sound_priority_set": {
+      "differing": 39,
+      "total": 59,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "audio_stream_control": {
+      "differing": 39,
+      "total": 59,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "audio_fade_control": {
+      "differing": 44,
+      "total": 53,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "gfx_setup_e700": {
+      "differing": 14,
+      "total": 32,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "audio_timing_sync": {
+      "differing": 8,
+      "total": 46,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800956BC": {
+      "differing": 20,
+      "total": 20,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

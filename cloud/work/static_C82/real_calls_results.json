@@ -1,0 +1,13 @@
+[
+  {
+    "function": "fcvt",
+    "variant": "fcvt.real_calls",
+    "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "7e46d768e3ae975f09e5eb2ec33c360382c72ba5fb87d375131d529397dfe788",
+    "target_sha256": "dee06a70b9fc4d990695ee21e0c88ebb96f96c3557e23a93e849dd6c896fd166",
+    "compile_exit": 0,
+    "stderr": "",
+    "strict_score": 205,
+    "object_sha256": "3c3f782bbf7c60e4ee3aaac481ea4df3bc32dfb683e9bf6d901a33a12c85e9e0"
+  }
+]

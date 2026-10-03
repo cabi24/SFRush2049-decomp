@@ -1,0 +1,12 @@
+{
+  "include/types.h": "0c3169319a4e10b8a2c7d850791df9bafcf923b57411c64bfa6ca83bb639bf57",
+  "include/PR/os_time.h": "a224b0b67e8b01fc2dabcbf391785be35127884645648abfd9ffc29f7d10c8cc",
+  "src/rom/rom_tu.h": "a7a1d4a1d9220b912b7ad0ec62bcd796e7abce207b9aa7f249339f18064de662",
+  "reference/repos/ultralib/include/PR/ultratypes.h": "e25fc6df3953acbab2234ece2218ec74080cdc3e673ce1ec5896d4ce921bb4de",
+  "reference/repos/ultralib/include/PR/os_time.h": "21bd983fa7b11daa6a06c053b5e9cd7c08420dd20657c4fd61be434389af3342",
+  "reference/repos/ultralib/include/PR/R4300.h": "bb8a7702ef8dfe94c389f0c411a4f2346c506ea8766e85c332a44486a97b7b44",
+  "reference/repos/ultralib/src/os/initialize.c": "deaaa7466badaeecb10c6ec2df965cdb9c718dc84aa69a143353e05dc5ce2907",
+  "undefined_syms_auto.us.txt": "a9d08d031088edd952329cae3a4d9cb85ba05dfc4f70defa22d57bb1e43ed39a",
+  "symbol_addrs.us.txt": "10ab79765c76276b2c4c0a0468ae609ea5f34eae27db0a8e1cfbe6853c0365a4",
+  "tools/conveyor/jobs/scoring.py": "107fa8b627acd0b88f10c309973f97c2ee990786387b652f23b3c3175ce525d5"
+}

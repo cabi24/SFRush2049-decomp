@@ -1,0 +1,17 @@
+{
+  "local_main_lock_sha256": "b6427ddd9186cfb0e9381f16db90008063e0bfde5cf47c62a35903b66df89a0c",
+  "targets": {
+    "hud_render": {
+      "name_locked": false,
+      "accepted_overlaps": [],
+      "canonical_entries": [
+        {
+          "kind": "function",
+          "size": 2420,
+          "target_id": "hud_render",
+          "vaddr": 2148314532
+        }
+      ]
+    }
+  }
+}

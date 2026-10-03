@@ -1,0 +1,23 @@
+{
+  "status": "refused_nonmatch",
+  "function": "func_800DE860",
+  "address": "0x800DE860",
+  "authoritative_bytes": 844,
+  "original_words": 211,
+  "flags": "/* flags: -g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul */",
+  "source": "cloud/work/game_C93/func_800DE860.consumed_coefficients.c",
+  "source_sha256": "0772080ac547a5d433d94f47b7628a76ff02cfe04c483bf44f488514f7f1dd35",
+  "target_sha256": "75a54aedf6bb2c21883f1d712e9565440129142d3594b7cdf33401fc6b7a7976",
+  "strict_score_stack_differences": 883,
+  "positional_differing_words": 205,
+  "workbench_aligned_differences": 16,
+  "compile_exit": 0,
+  "errors": [],
+  "unresolved": [],
+  "extra_words": 0,
+  "unverified_rodata_references": 8,
+  "original_frame": 16,
+  "candidate_frame": 8,
+  "accepted_credit": 0,
+  "residual": "Original independently materializes and saves consumed unity in f20; candidate optimizer merges that real constant into f14. Also half-factor branch operand order and linked global alias naming remain. All bodies complete; no artificial storage/pressure or masks."
+}

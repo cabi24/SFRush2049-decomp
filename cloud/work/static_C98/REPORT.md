@@ -1,0 +1,5 @@
+# C98 exact SDK SI-busy reconstruction outside active layout
+
+The existing DB symbol __osPiDeviceBusy at8000FD70 is genuinely SDK SI busy behavior: volatile read from A4800018 followed by mask3 and boolean return. The original object contains36 instruction bytes and12 zero alignment bytes. The natural register-status/if/else body, reconstructed from local ultralib src/io/si.c, compiles with ordinary g0/O2 flags to all48 original ROM bytes exactly, strict0 including stack differences. The supported original target round-trip gate passes. Actual PI hardware uses a different MMIO register; this source truthfully retains the cartridge's existing Pi-labelled symbol without renaming it.
+
+This function has no promotion slot in main build/layout.us.json or the147-function private static lock. Its actual ROM interval10970..109A0 lies inside the current data.bin container after the static code range ends10000. Thus the DB inventory of246 static names is broader than the active230-function layout. No native coverage credit, lock, layout mutation, target refresh or registration is claimed or attempted. Exact source and proof are frozen as out-of-layout evidence only.

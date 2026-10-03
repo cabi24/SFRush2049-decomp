@@ -1,0 +1,42 @@
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul */
+typedef unsigned char u8;
+typedef signed char s8;
+typedef int s32;
+typedef struct Resource { u8 unknown00[16]; u8 channel, file_no; } Resource;
+typedef struct ResourceNode { Resource *resource; } ResourceNode;
+typedef struct FileRecord { s8 active; u8 unknown01[39]; } FileRecord;
+typedef struct ChannelControl {
+    u8 unknown00;
+    s8 active;
+    u8 unknown02[7];
+    s8 retained, files_active;
+    u8 unknown0B[121];
+    FileRecord files[16];
+} ChannelControl;
+extern u8 D_80144030[];
+void func_800A3424(ResourceNode *node, s32 active) {
+    Resource *resource;
+    ChannelControl *control;
+    FileRecord *record;
+    s32 offset;
+    if (node != (void *)0) {
+        resource = node->resource;
+        control = (ChannelControl *)(D_80144030 + resource->channel * 772);
+        record = (FileRecord *)((u8 *)control + resource->file_no * 40 + 132);
+        if (active != record->active) {
+            record->active = active;
+            if (active) {
+                ((ChannelControl *)(D_80144030 + resource->channel * 772))->files_active = 1;
+            } else {
+                for (offset = 0; offset < 640; offset += 40) {
+                    if (((FileRecord *)((u8 *)control->files + offset))->active != offset) break;
+                }
+                if (offset >= 640) {
+                    control = (ChannelControl *)(D_80144030 + resource->channel * 772);
+                    control->files_active = 0;
+                    if (control->retained == 0) control->active = 0;
+                }
+            }
+        }
+    }
+}

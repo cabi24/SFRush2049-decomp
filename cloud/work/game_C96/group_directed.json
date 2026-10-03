@@ -1,0 +1,22 @@
+{
+  "members": [
+    "func_800A1C6C",
+    "track_data_decompress",
+    "func_800A1DD4",
+    "func_800A1BB4",
+    "track_collision_setup",
+    "MaxPathZeroControls",
+    "slot_state_lookup"
+  ],
+  "context": [],
+  "files": [
+    "group_directed.c"
+  ],
+  "keep": [
+    "track_collision_setup",
+    "MaxPathZeroControls",
+    "slot_state_lookup"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Iinclude -I.",
+  "provenance": "Complete actual seven-function PFS dirty-bitmap caller closure; no substitute functions or invented unused formals. All declarations grounded in original calls and shared SDK."
+}

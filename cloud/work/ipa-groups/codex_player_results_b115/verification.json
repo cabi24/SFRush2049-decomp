@@ -1,0 +1,95 @@
+{
+  "source_sha256": "705ff3489d6ddea9adb3325eed2c178e9bbb95b4b08461e31604ec304298d81a",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "object_sha256": "0dc523183a9068aa3f7894051f3117025d7ca7fc2081647bb0ef87d85668336f",
+  "canonical": {
+    "func_800D5E64": {
+      "differing": 129,
+      "total": 146,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 28
+    },
+    "entity_transform_calc": {
+      "differing": 0,
+      "total": 110,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "client_sync": {
+      "differing": 0,
+      "total": 54,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "entity_hierarchy_update": {
+      "differing": 0,
+      "total": 34,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "stat_lap_complete": {
+      "differing": 0,
+      "total": 55,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "game_timer_resume": {
+      "differing": 0,
+      "total": 55,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80091BA8": {
+      "differing": 0,
+      "total": 21,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80091B00": {
+      "differing": 11,
+      "total": 42,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "scheduler_recv": {
+      "differing": 0,
+      "total": 40,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "best_times_display": {
+      "differing": 56,
+      "total": 56,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "player_conditional_call": {
+      "differing": 0,
+      "total": 9,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

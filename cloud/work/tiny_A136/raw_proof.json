@@ -1,0 +1,10 @@
+{
+  "function": "car_mass_set",
+  "words": 69,
+  "bytes": 276,
+  "unmasked_exact": true,
+  "source_sha256": "2756b9563fc7e3ed0c87a3a8ca08544e2922798b310c42b9088a49b07b570486",
+  "object_sha256": "cd3a404768699790e1c1a8f229ff7da9a333a31b7201a155cb5ca83d2fc16532",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "source": "camera_shake_start_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "70b1d389a077a72b61178788c3133391b0b3851a14571429cc7c635ea77d708b",
+    "comparison": {
+      "differing": 165,
+      "total": 186,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 184
+  },
+  {
+    "source": "camera_shake_start_globals.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "9dd6aadba62d74a6a7de86de26f04a3e51dedcbc11ff28850c02a0923d48ed22",
+    "comparison": {
+      "differing": 162,
+      "total": 186,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 184
+  },
+  {
+    "source": "camera_shake_start_globals_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "13db8cd5252bfcf43082b27c423d055c3fc8189ab6dedf3c2dd21493bd2f8269",
+    "comparison": {
+      "differing": 162,
+      "total": 186,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 184
+  }
+]

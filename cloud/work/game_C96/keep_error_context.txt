@@ -1,0 +1,4 @@
+track_collision_setup
+MaxPathZeroControls
+slot_state_lookup
+func_800A1E94

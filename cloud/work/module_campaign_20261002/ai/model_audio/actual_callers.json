@@ -1,0 +1,66 @@
+{
+  "func_800E05F0": [
+    {
+      "caller": "func_800E56F8",
+      "site": "0x800e5b74"
+    }
+  ],
+  "func_800E0050": [
+    {
+      "caller": "func_800E05F0",
+      "site": "0x800e0688"
+    }
+  ],
+  "func_800DFBA0": [
+    {
+      "caller": "func_800E05F0",
+      "site": "0x800e0964"
+    }
+  ],
+  "mode_select_input": [
+    {
+      "caller": "func_800DFBA0",
+      "site": "0x800dff28"
+    },
+    {
+      "caller": "func_800DFBA0",
+      "site": "0x800dfff0"
+    }
+  ],
+  "mode_select_handler": [
+    {
+      "caller": "func_800E05F0",
+      "site": "0x800e0970"
+    }
+  ],
+  "func_800DED78": [
+    {
+      "caller": "mode_select_handler",
+      "site": "0x800defc4"
+    },
+    {
+      "caller": "mode_select_handler",
+      "site": "0x800deff0"
+    }
+  ],
+  "best_times_display": [
+    {
+      "caller": "func_800D5E64",
+      "site": "0x800d603c"
+    },
+    {
+      "caller": "mode_select_handler",
+      "site": "0x800def8c"
+    }
+  ],
+  "func_800D5E64": [
+    {
+      "caller": "func_800D60AC",
+      "site": "0x800d60f8"
+    },
+    {
+      "caller": "func_800E543C",
+      "site": "0x800e566c"
+    }
+  ]
+}

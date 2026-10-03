@@ -1,0 +1,9 @@
+# DEF68 model impact and collision sound source
+
+Complete first reconstruction of mode_select_handler at800DEF68,2,976 bytes/744 words. Its historical menu name is misleading. The genuine E05F0 model-audio caller supplies one model pointer in native s1; this source expresses that real logical input as AudioModel2056*. Matching requires the actual module closure, with real outside entries and true helper contracts. No standalone ABI or match is claimed.
+
+The current protected image supplies both switch tables. This C handles four body-contact force records and one center-contact record, timed impact events, sound masks, continuing/contact transitions, and directional collision changes. Related arcade ancestry is carsnd.c body-sound handling; the full N64 state machines and call behavior govern this native reconstruction.
+
+Private m2c seeds were generated with the existing opt-in IPA map. Native call-site review corrects the shared best_times_display input from s1 to s2. The seed's unset twelve-byte loop stride and incorrectly scaled typed pointers were repaired to the actual force-vector and Impact24 element operations. All six random-state updates use explicit unsigned32 wrapping before the original signed masked extraction. Model gaps represent untouched portions of the real2,056-byte record; no unused function storage, pressure values, invented input or extra operation was added.
+
+The source preserves actual timer, state and coefficient globals as external references. Its two source switches require protected source-built original-table placement before acceptance. The source alone earns no code or table credit. provenance.json records target hashes, complete source hashes, widths and repaired seed assumptions. Raw assembly and seed output remain ignored build artifacts. The full module compiler and independent semantic audit are separate lanes.

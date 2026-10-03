@@ -1,0 +1,10 @@
+{
+  "packet": "A137 real inline annotation control",
+  "claims": [],
+  "files": {
+    "group.c": "26471faaeb355174c24981aae1e38b24593083b573a22521ce563f13cf455ffc",
+    "STATUS.md": "883d36462721cbbc99a144a7294838de1f8411347d1c17a79945fab9471aa70f",
+    "verification.json": "b649503043acae868adec96c3f7801dd0eaefbbee9e0e93401da6238b687f12c",
+    "group.json": "bada603880007f1417821bea60cbc7a2534cb58e77624019187fbf5cfd828448"
+  }
+}

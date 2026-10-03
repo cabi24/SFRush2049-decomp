@@ -1,0 +1,12 @@
+{
+  "source_sha256": "dcacf9fa7dd0bdf1b4c64b71f1fb82cab8575962214b8acd975848255e170b4f",
+  "claims": [],
+  "word_diffs": {
+    "entity_transform_calc": 0,
+    "client_sync": 0,
+    "entity_hierarchy_update": 0,
+    "func_80091BA8": 0,
+    "func_80091B00": 11,
+    "scheduler_recv": 0
+  }
+}

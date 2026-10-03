@@ -1,0 +1,46 @@
+{
+  "track_data_decompress": [
+    {
+      "address": "0x800a22fc",
+      "owners": [
+        "track_collision_setup"
+      ]
+    },
+    {
+      "address": "0x800a244c",
+      "owners": [
+        "MaxPathZeroControls"
+      ]
+    }
+  ],
+  "func_800A1DD4": [
+    {
+      "address": "0x800a2158",
+      "owners": [
+        "track_data_decompress",
+        "physics_contact_test"
+      ]
+    },
+    {
+      "address": "0x800a2550",
+      "owners": [
+        "slot_state_lookup"
+      ]
+    }
+  ],
+  "func_800A1BB4": [
+    {
+      "address": "0x800a213c",
+      "owners": [
+        "track_data_decompress"
+      ]
+    },
+    {
+      "address": "0x800a2188",
+      "owners": [
+        "track_data_decompress",
+        "physics_contact_test"
+      ]
+    }
+  ]
+}

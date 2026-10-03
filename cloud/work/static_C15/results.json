@@ -1,0 +1,52 @@
+[
+  {
+    "function": "dll_init",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 520,
+    "target_words": 36,
+    "candidate_words": 36,
+    "raw_word_diff": 36,
+    "source_sha256": "ed84587ae98c482adccad9764c629f686490af0bb08164ddf176a47441f05731",
+    "target_sha256": "c2ec2a73626c2b391f1e9f60072a44f49e34956b95003c4250e2993a0ec49199"
+  },
+  {
+    "function": "dll_remove",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 16,
+    "candidate_words": 16,
+    "raw_word_diff": 0,
+    "source_sha256": "fe36b02c369f3275cba1bd71708c6f1561637e4578ccbab916a1b3950a26f513",
+    "target_sha256": "a3803e5d4aaf06be6df289dc64c4a470fd86580eeb63e3ba80f0fc4384f235c9"
+  },
+  {
+    "function": "osGetTime",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "strict_score": 10,
+    "target_words": 36,
+    "candidate_words": 36,
+    "raw_word_diff": 1,
+    "source_sha256": "acf650feaac8d82435a0d3f37764cf9f9acda375f1bde04b5cfa374ed865e756",
+    "target_sha256": "b3d85806c4ae4cc46c65738caf5d7fad3921b8c529d5dbdb2d9ad4eb2b5852f9"
+  },
+  {
+    "function": "osViModeNtscLan1",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 0,
+    "target_words": 92,
+    "candidate_words": 92,
+    "raw_word_diff": 0,
+    "source_sha256": "29fda2a87651a53e691d58a8e606ea9164b1ac2d439a51413cfd2f166e176b55",
+    "target_sha256": "a5f9623e7deb5e68e883fd2dfe06ce167a4c148c168102a8f10e2808a26b143a"
+  },
+  {
+    "function": "osViModeTableGet",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "strict_score": 140,
+    "target_words": 68,
+    "candidate_words": 68,
+    "raw_word_diff": 14,
+    "source_sha256": "8065f19e6f1e39bd6829635dfd2306ffd0b076a9a4766cc4f6f255c055b156b2",
+    "target_sha256": "1ef242a87a43cefee8d042766a7ca03a15dc2c5e94598234740146fffeb9c44f"
+  }
+]

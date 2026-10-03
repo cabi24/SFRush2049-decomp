@@ -1,0 +1,1 @@
+Exact82-word O2 source; full native O3 group/table evidence is frozen in ../ipa-groups/codex_cleanup_a101. Initial control retains the eight-word cursor/index allocation residual. No standalone publication claim.

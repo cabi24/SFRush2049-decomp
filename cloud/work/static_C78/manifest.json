@@ -1,0 +1,18 @@
+{
+  "claim": {
+    "function": "__write_exponent",
+    "layout_bytes": 280,
+    "source": "cloud/work/static_C78/__write_exponent.copy_iteration.c",
+    "source_sha256": "1882261f262dda77b2664bb28e4884a2c042ae4b872ab333916a9b004410f1d4"
+  },
+  "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "strict_score": 0,
+  "target_sha256": "7dd51a3c80e50b0638dea830d2c1f2890d3e9e7b09ad0662ab40c4a6ef6cc184",
+  "complete_module_proof": "full_module_proofs.json",
+  "all_original_members_verified": 9,
+  "module_bytes": 8528,
+  "method": "one grounded historical-library for-copy iteration expression follow-up; actual quotient assignment remains in decimal loop predicate",
+  "source_cue_primary_url": "https://cgit-dev.freebsd.org/src-test/diff/contrib/libg%2B%2B/libio/iovfprintf.c?h=vendor%2Fopenpam%2FCINERARIA&id=ced08d6d571739ffba565c4ad2656791f7fc5fd3",
+  "required_shared_context": "only u8/type context; no new custom typedef or globals",
+  "note": "full TU includes separately exact C77 helper whose canonical FP target awaits supported refresh"
+}

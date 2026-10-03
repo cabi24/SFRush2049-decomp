@@ -1,0 +1,7 @@
+# A132 frozen native four-slot dispatch
+
+particle_velocity_set@800B82C8,164 bytes/41 words, strict MATCH. Source SHA-256 `38425ed4ba83bccf21076b5c4c6b508cac041c1100ee9fc4d16b396541b4e157`; exact required flags line1 and actual literal flags `-g0 -O3 -mips2 -G 0 -non_shared`. Canonical and direct unmasked original full-word proofs agree; no unresolved/unverified references, errors or extras. Publication claims empty pending coordinator replay/gates.
+
+Complete no-input native dispatch traverses actual four slots and maps their indices0,1,2,3 to signed-half masks1,2,4,8 consumed by true particle_position_set. Calls true Effects_UpdateEmitters after all four. Original contains a signed-half conversion of the first selected value separately from the nested integer selection of the remaining three. The final source expresses genuine nested if/else selections with separate actual consumed integer results then one signed-half mask conversion; every value feeds the real call, no unused local or extra runtime work. Original bound4 and all mask choices are explicit observed native constants.
+
+Bounded complete-source controls: flat nested conditional expression29/41; actual short mask separated from integer expression11/41; mixed if/conditional22/41; full nested native selections0/41. Controls and their proofs are archived. No register-coloring, pressure, padding, fake context or inlining controls. All cloud/work Markdown name/address screening and canonical locked-interval check clear. No shared production files/gates/commits changed.

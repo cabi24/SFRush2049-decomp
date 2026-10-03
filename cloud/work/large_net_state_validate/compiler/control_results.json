@@ -1,0 +1,1016 @@
+[
+  {
+    "source_sha256": "9f2620d38adf82f2b0a725d3d36633dedde8b72671590c843638a1f314ab9a09",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/split_web_4.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "d4c845cd0f88f9dda26a812fcba7e2fb203ce4ddccad189ae7a0d7a1b7bfdf8b",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 585,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 602
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "f3a7b83d641b6d32c82d6ead958d8cf9858adb93176f60e234b996c343a038db",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/sum_spelling_5.c",
+    "accepted": false,
+    "canonical_verdict": "665/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 665,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "7cb9bc7ab377d76f82b5d6f049520d62d0fd9316cc80e3db2f01281ddb78e6c2",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 328,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 365
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "7eb172394a5ec403be01c467cf12f1dc82ce59a70ac4367f327414f85fb671a6",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-camera-compiler/candidates/local_components.c",
+    "accepted": false,
+    "canonical_verdict": "99/575 words differ",
+    "comparison": {
+      "differing": 99,
+      "total": 575,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "3c741e3c6abf1aa3285a5ffbc1e144e3bf566f28c774f03e86efa1f7848a09ac",
+    "emitted_words": 576,
+    "aligned": {
+      "aligned_exact": 476,
+      "aligned_opcode": 575,
+      "aligned_opcode_reg": 542
+    },
+    "frame_bytes": 128
+  },
+  {
+    "source_sha256": "b16a5f3a2c211b946738d781df776cfcd6d1cb1273a898efdb6f9cf3b160469c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/sum_spelling_7.c",
+    "accepted": false,
+    "canonical_verdict": "665/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 665,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "5cb69a5e7b7447f743ead236bd78856ae88407d585f9501a97fa75cd935eb612",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 324,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 361
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "d28fda9f1a6a8d726666204519c15fa258e2fa01d3e32c8ba54a73a11fecc850",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/native_count_5.c",
+    "accepted": false,
+    "canonical_verdict": "648/682 words differ (8 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 648,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 8
+    },
+    "object_sha256": "bc1ed639969296eacd2edfd57f3b7b1bafaf26316b65430a93869cf1a39c2194",
+    "emitted_words": 692,
+    "aligned": {
+      "aligned_exact": 385,
+      "aligned_opcode": 645,
+      "aligned_opcode_reg": 408
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "b0b6d90e38fc7ec9c9e97b3291b3fb92364a293b5a33c3b0bfffde1a9cca9acc",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/unsigned_one.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "8049172776d2ad51bb1104aecc62502b25150940d80a1e1bef1a32a1063290b4",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 585,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 602
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "fc6f590785e5c3e137c13b9968870f7e9cc31ca1cd33f62c353f33871c209d32",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/pointer_assignment_3.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "49b435bde8c04d1172406c7b06af821cdf75923f414e1df720a2c2da1d92a0f8",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 583,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 600
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "49e88d56ea44051d4ead0b110b9c0cb0b19e8c3856feb73e90b395cb07e37320",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/sum_spelling_2.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "6e6ecf6f1e3dbb1f2634e4a05c0c096147c46c1b5f1fae1fa9ffde0afc687acd",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 581,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 598
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "a5200d35a88854045dd08935e382b1d39eb0c25bf5a572a06e047cfedcee0bd4",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/pointer_assignment_4.c",
+    "accepted": false,
+    "canonical_verdict": "660/682 words differ (11 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 660,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 11
+    },
+    "object_sha256": "00b0de0aab2b6d6b2df407c282e39c1a3e67a4de409aaedeb1abff78f093fac0",
+    "emitted_words": 696,
+    "aligned": {
+      "aligned_exact": 233,
+      "aligned_opcode": 668,
+      "aligned_opcode_reg": 271
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "2bc910da51034d89961b2b288356f7139e0b1312cbb4e5b1f576fa3ac926a353",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/sum_spelling_3.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "9ec1124802701550eff724a736838e3a510f3481f9b88ad83577f457f31c04ad",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 581,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 598
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "8201ede9ad4baedff1b723a3f5938c0d84e2d8fb6e55e97babc3ab7d822c51a3",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/base_proto_plain.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "68e2278382fd9f7225112d6e39ec186e107d5c3aa90a975501b28b8921e4e279",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 585,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 602
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "8201ede9ad4baedff1b723a3f5938c0d84e2d8fb6e55e97babc3ab7d822c51a3",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/sum_spelling_0.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "3e8ac2ac39a491320758447882ebc53dd82011b6c639fe48d96eafee9834461e",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 585,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 602
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "45e4b142b6ec620e76d21e1c880d9b8d0445788d2d0c80b0910653484d6e58b8",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/pointer_assignment_2.c",
+    "accepted": false,
+    "canonical_verdict": "659/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 659,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "6b5be97f07bce140a11d272ab1257e18211f9d1d356c999d75a1dd7675bfa0f2",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 581,
+      "aligned_opcode": 669,
+      "aligned_opcode_reg": 598
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "67b9fd4368613b2196fc0afafccbc398b17b5c603f31bff8a7f7a60fb7898493",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/native_count_4.c",
+    "accepted": false,
+    "canonical_verdict": "596/682 words differ",
+    "comparison": {
+      "differing": 596,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "779a7fce68701160684a7a3b49b2097b1a02e6f0b6245cf66028eed03d1e225a",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 364,
+      "aligned_opcode": 646,
+      "aligned_opcode_reg": 401
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "3fab8d8e877cffe274b420def9d835d27b78641098b14820a550d136f00f1fa8",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/native_count_2.c",
+    "accepted": false,
+    "canonical_verdict": "596/682 words differ",
+    "comparison": {
+      "differing": 596,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "5b828bbbc28d8ad15d6fa7e379245aec80ddea1be26297c1a28c64b10076d339",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 364,
+      "aligned_opcode": 646,
+      "aligned_opcode_reg": 401
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "917715ba3baea683057bbdae7e9e6161b14902f2a6ecf0df2a93076f8cc10dc3",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/base_strict289.c",
+    "accepted": false,
+    "canonical_verdict": "289/682 words differ",
+    "comparison": {
+      "differing": 289,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "cfd1e90845db304342f94093502eb8e755af50bb25f33f9ad87ca2bd2e3cff55",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 498,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 510
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "924b39cc34dd0461607db831558950666daf87598a50dbfb1d2136c1f2a7684b",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/native_count_0.c",
+    "accepted": false,
+    "canonical_verdict": "596/682 words differ",
+    "comparison": {
+      "differing": 596,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "7334378f5be9862772df970dae9e64aa4b5a130fc828603783498172f95ba3b2",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 364,
+      "aligned_opcode": 646,
+      "aligned_opcode_reg": 401
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "1377bdfbfbb75d124e15ae8cb61f3fc24a9bc90c2c651f163a310fabb4f0a9e5",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/base.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "f99928b063e64e5f4ace524db5f51036dc2709c7f7d242d9d837cad3b6956714",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 585,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 602
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "2e22e4089bb7fa8c687936787bd76073eed5c643dc911c959c2a7a5d858a59f4",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/split_web_6.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "9d1ac64cf5d0b9515a6f5bdb08a2ab812425d31e19ab20120acf2846e8f664e3",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 585,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 602
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "c5bd3b4017ef3d829f8092d4fdcbcaa80405c2201d05d765ab18d520da7c09b1",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/native_count_1.c",
+    "accepted": false,
+    "canonical_verdict": "596/682 words differ",
+    "comparison": {
+      "differing": 596,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "9bb83598180d52fa06916143c07c1e0390367e756819b202eae200f7d2762fcb",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 364,
+      "aligned_opcode": 646,
+      "aligned_opcode_reg": 401
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "808b7850b07ba95aeec3d5feafcf030b7b8da512ebb9fd9bd756e3e1d2fd676c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/pointer_assignment_0.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "ff4b3da1587c0bab736965a5aea9c75a2e0f2395e0d84b6dfe2273ceae36da3e",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 585,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 602
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "11e4ba772a4ce0d6d41c263644e5892f4a3063658afc441153dd64637564df04",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/split_web_1.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "10e25ac9827a2e9ee962eca0d80cff56735b734d254fb55fa2900b67717bb261",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 585,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 602
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "f1c35ef9548045e7df0ee70a0bc76884d0c2a7904d5de5b39644e5ef05fa64bc",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/typed_car.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "f89d1309e0e1f22da14feeba26b333c168392fecd93da81b0a47d5d6af7a6ce5",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 585,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 602
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "25bbc6878d7c1475fc4893c1c580da0c1d2eeaa93a04ae05f355d55e32586190",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/sum_spelling_1.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "3d7b68817c7ea6d4892263930e7ada44ad602496f8c411a8bee1b37ea3a54d20",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 585,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 602
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "b249826a2edcdb64f2ed90fbac4989289b6efe485c643f04a101c8a453877b90",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/typed_both.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "4b26c725cc5227b26cbc7afe0df4f0fcea52f3c937ad123f38e2861b9de5dc5c",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 585,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 602
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "38a9654f4053f7cc74af50a6bc8795fb4636832de22c851e3f95a3fef0eefb9b",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/split_web_2.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "bdf045f19268e6a0aaafc84f7bfac3347a5012a1bdbfa1b9301c20fbd486911b",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 585,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 602
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "13e95639f64caa561ea565ae5a49cbacf31d05d082f329574847e31e48d85652",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/base_strict289_proto_plain.c",
+    "accepted": false,
+    "canonical_verdict": "289/682 words differ",
+    "comparison": {
+      "differing": 289,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "d9e5ab498ecab6b0cd069123213c15525d942cafc943dd553915ef336fff8032",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 498,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 510
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "1afadc571e0f98278b6862761594039e7beedcf1f39847a096b58486bccf54b1",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/base_proto.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "8d8ca644173b02464b393e9486faaa23c305db4c169fca272604454c91d74c2b",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 585,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 602
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "b4a0284edcf7a3fea9acb086cf038b135eeaab73b0a764b8ba3b98f2af12dec5",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/typed_course.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "a769ee775720f3d0b17ac6bd1234cebe88cbc00af4cf047bb7d4f045e9192e8f",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 585,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 602
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "84dc3c77ea7fd791ca1f8356057c7ba30aa3b137c7a67c71763cf654791a46ce",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/native_count_3.c",
+    "accepted": false,
+    "canonical_verdict": "539/682 words differ",
+    "comparison": {
+      "differing": 539,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "ca73517b4bb0a342c4ca1d598055289af2899326ea53fbfd4b898f959438aa06",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 362,
+      "aligned_opcode": 645,
+      "aligned_opcode_reg": 401
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "48b70c9701ca73a67d1e4e28de97084f169556b9d92372343c3c2a0d90003ae6",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/split_web_5.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "1b6deb5ab7091efb411e3f1bcddd28fac08035298728387fb96166bac1785e82",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 585,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 602
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "c294fb8043dc27921c45187183a4448598114ede5d19c47e51f2a665059e04f4",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/signed_flags.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "b669c3976350fb4203772f235dc3bd731075f05070c30a0564b04220eb63edda",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 585,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 602
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "56c4da0778fa8c51451302513f7e089f71e0451f71036dbd5500689522b082ab",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/sum_spelling_4.c",
+    "accepted": false,
+    "canonical_verdict": "665/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 665,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "e59dad717f1f6c6f29a6251758476120ff49ff9ffbf21bc89457e338c4c3311e",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 328,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 365
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "81f72652bdd2b2dcdee3deac0ce7868bdedda493deba3189f3573b254fd3a567",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/pointer_assignment_5.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "c9614c965d689f747f31df7755957f3a7e7acd8a5f6adeb69075794fe2664bf2",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 585,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 602
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "1eedd0a106e14b2a81ac9e45d80cbb733180cb8e180f86ec84e7dac98e3f4a31",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-camera-compiler/candidates/arcade_intrinsic.c",
+    "accepted": false,
+    "canonical_verdict": "6/575 words differ",
+    "comparison": {
+      "differing": 6,
+      "total": 575,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "40ecaaaf6ebcfb5d63121e7c4381ac0591e084a33ce0a22568b57fe76cd33d9d",
+    "emitted_words": 576,
+    "aligned": {
+      "aligned_exact": 570,
+      "aligned_opcode": 575,
+      "aligned_opcode_reg": 570
+    },
+    "frame_bytes": 120
+  },
+  {
+    "source_sha256": "2a34fa2cfb41bc5119a8a8d5aa873c265ad4ad509f14717c0f3cc274f6c4ab66",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/sum_spelling_6.c",
+    "accepted": false,
+    "canonical_verdict": "665/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 665,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "153fb74eda3fe607b1d3e18306613c323fa798aa3731014618045fd73a7ffdca",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 324,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 361
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "ba649f01e4213bb45c69c299a64593f049dd1024a9c9d53901d44742c5c9d43f",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/signedshort_one.c",
+    "accepted": false,
+    "canonical_verdict": "671/682 words differ (6 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 671,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 6
+    },
+    "object_sha256": "cd32e620c9120f68ced210008ef170a9cb6973147b5585aa5897a0105142e3c4",
+    "emitted_words": 688,
+    "aligned": {
+      "aligned_exact": 366,
+      "aligned_opcode": 640,
+      "aligned_opcode_reg": 415
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "3d5de4ec835650a0e469f288d02341441bcfcaac8a74e374cf0a4e452df8f5f1",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/pointer_assignment_1.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "a09478fc99dceeacebab0959d1ccc4183e14d2508fd692556bbbe277deed4b37",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 585,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 602
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "c6479da1159097b1d54ba9a995aea748b72329141aaff27132450a782cf58f11",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/split_web_7.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "9735ca9ed60032b1d10608afc95005975576d2e9d9d9118c4b874565ac0edf04",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 585,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 602
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "fe70c8677374aecc6cec0e209a8d0b18f744cc4c8c785af2bd9345184dd73f13",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-camera-compiler/candidates/camera_dolly_final.c",
+    "accepted": true,
+    "canonical_verdict": "MATCH",
+    "comparison": {
+      "differing": 0,
+      "total": 575,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "cb58cd092c0c343313f714191d34e72f3a940767dc146faa1bf26b414a94cd31",
+    "emitted_words": 576,
+    "aligned": {
+      "aligned_exact": 575,
+      "aligned_opcode": 575,
+      "aligned_opcode_reg": 575
+    },
+    "frame_bytes": 120
+  },
+  {
+    "source_sha256": "13e95639f64caa561ea565ae5a49cbacf31d05d082f329574847e31e48d85652",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/base_strict289_proto.c",
+    "accepted": false,
+    "canonical_verdict": "289/682 words differ",
+    "comparison": {
+      "differing": 289,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "0ebdba23de4f4529bee7eeb24f792e7f92355b38afccd5b4e1e50f7d01978f2d",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 498,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 510
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "b92576366f34d8f05c6447e8e79131dfe4f687edc86f13d227105eae732da42a",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "/home/cburnes/agents/large-camera-compiler/candidates/arcade_seed.c",
+    "accepted": false,
+    "canonical_verdict": "569/575 words differ (36 extra words (nonzero beyond target length); unresolved symbols: fabsf+0x0 at +0x274)",
+    "comparison": {
+      "differing": 569,
+      "total": 575,
+      "unresolved": [
+        "fabsf+0x0 at +0x274"
+      ],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 36
+    },
+    "object_sha256": "2e0502958a58591a3fa4707fd8068172f321dbe51c2162a2536d8c911bb3502e",
+    "emitted_words": 616,
+    "aligned": {
+      "aligned_exact": 197,
+      "aligned_opcode": 521,
+      "aligned_opcode_reg": 230
+    },
+    "frame_bytes": 120
+  },
+  {
+    "source_sha256": "7a5de96351d4f6c07757f645bac95ece58a12f5e7f9eded61e35d541ce558ba4",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/plainchar_flags.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "f5122f6693c06a01f5f87411f674872d1b935db971ebc7a117036ee20752375c",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 585,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 602
+    },
+    "frame_bytes": 64
+  },
+  {
+    "source_sha256": "24d8a71d9954fc737f9e2946c710f2fea801caa243ce62e4c886161677763cba",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source": "/home/cburnes/agents/large-unlock-compiler/candidates/split_web_3.c",
+    "accepted": false,
+    "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+    "comparison": {
+      "differing": 661,
+      "total": 682,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "object_sha256": "abdf1af428d1c38ea9a5ecba4ef3f26372b8e4f63915ac33566d2ad06e6da6f4",
+    "emitted_words": 684,
+    "aligned": {
+      "aligned_exact": 585,
+      "aligned_opcode": 673,
+      "aligned_opcode_reg": 602
+    },
+    "frame_bytes": 64
+  }
+]

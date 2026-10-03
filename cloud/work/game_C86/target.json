@@ -1,0 +1,12 @@
+{
+  "target_id": "func_800C2004",
+  "address": 2148278276,
+  "population": "extracted",
+  "insn_count": 130,
+  "target_asm_sha": "2630dc9a2f1ef5f25f65b174c054c33c7bc1ad900b8435d16c7c99186c221693",
+  "target_o_sha": "8f724342c1e6adbc81862ce38780c797ae2ed2857cec8121e53914e95475a9b7",
+  "fingerprint": null,
+  "cluster_id": null,
+  "tier": "reloc_aware",
+  "gate_reason": "discovered"
+}

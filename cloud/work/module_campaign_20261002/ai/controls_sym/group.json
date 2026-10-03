@@ -1,0 +1,15 @@
+{
+  "members": [
+    "func_800E3430",
+    "func_800E3724"
+  ],
+  "files": [
+    "controls.c",
+    "sym.c"
+  ],
+  "keep": [
+    "func_800E3724"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "claims": []
+}

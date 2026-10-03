@@ -1,0 +1,95 @@
+{
+  "accepted": false,
+  "object_sha256": "dd17221edd2d57e21e6e377a2165c3ac2f7561ae61b3fc6a557a91aa93b60202",
+  "members": [
+    {
+      "function": "world_gravity_apply",
+      "verdict": "632/661 words differ",
+      "comparison": {
+        "differing": 632,
+        "total": 661,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "strict_match": false,
+      "emitted_words": 648,
+      "frame_bytes": 248,
+      "aligned": {
+        "aligned_exact": 157,
+        "aligned_opcode": 611,
+        "aligned_opcode_reg": 229
+      }
+    },
+    {
+      "function": "audio_channel_alloc",
+      "verdict": "169/169 words differ",
+      "comparison": {
+        "differing": 169,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "strict_match": false,
+      "emitted_words": 155,
+      "frame_bytes": 128,
+      "aligned": {
+        "aligned_exact": 72,
+        "aligned_opcode": 142,
+        "aligned_opcode_reg": 83
+      }
+    },
+    {
+      "function": "func_800B9F60",
+      "verdict": "MATCH",
+      "comparison": {
+        "differing": 0,
+        "total": 43,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "strict_match": true,
+      "emitted_words": 43,
+      "frame_bytes": 0,
+      "aligned": {
+        "aligned_exact": 43,
+        "aligned_opcode": 43,
+        "aligned_opcode_reg": 43
+      }
+    },
+    {
+      "function": "func_80098A54",
+      "verdict": "MATCH",
+      "comparison": {
+        "differing": 0,
+        "total": 34,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "strict_match": true,
+      "emitted_words": 34,
+      "frame_bytes": 0,
+      "aligned": {
+        "aligned_exact": 34,
+        "aligned_opcode": 34,
+        "aligned_opcode_reg": 34
+      }
+    }
+  ],
+  "file_hashes": {
+    "normalize.c": "7028229a79b1c090aaf6d1869a2d821e67710b332bfce7dd376a9338910e60b4",
+    "main.c": "74187fb86262b7091e1fd94faf0bd80a229abd507ba726590daa589fa44b94ec",
+    "path_step.c": "db2d1acdb805e34e508b324cd88c0a67ec512396d819d174e5f75f8553aacaaf",
+    "road_distance.c": "d79f299dc7cec8b0082997bfcc2949fe376729767635aa75ff60d1c55f323f17"
+  },
+  "owned_section_sizes": {
+    ".text": 3520
+  }
+}

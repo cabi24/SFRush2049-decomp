@@ -1,0 +1,11 @@
+{
+  "packet": "B115",
+  "claims": [],
+  "report": "cloud/work/near_miss_B115.md",
+  "report_sha256": "f40ff9c3ee8ba86247985b4f21f7d13fa58ae3e6514f377e2ef36aa3acf01c33",
+  "files": {
+    "group.c": "705ff3489d6ddea9adb3325eed2c178e9bbb95b4b08461e31604ec304298d81a",
+    "group.json": "6059559490c2e323099f41abebcc80030f00206b13983f697034e67083e371ea",
+    "verification.json": "b828aba985e9a81ff17ea1bdc68e298f83fb01c1e77dca4dbe749d80aaa85e8e"
+  }
+}

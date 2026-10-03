@@ -1,0 +1,14 @@
+[
+  {
+    "target_id": "cosf",
+    "target_o_sha": "30e7fa9be7023c4afa1bc574e08d23afe8f6d2ec3a9dd225c9f8eff680f10921",
+    "tier": "raw_word",
+    "gate_reason": "assemble_error: 6: Error: invalid operands `swc1 $fa0,0x0($sp)'"
+  },
+  {
+    "target_id": "sinf",
+    "target_o_sha": "f513d146ca1f11b17aceb5326dffa03cfbe30d0ca51b1319f3ce6727d14d3c01",
+    "tier": "raw_word",
+    "gate_reason": "assemble_error: 6: Error: invalid operands `swc1 $fa0,0x0($sp)'"
+  }
+]

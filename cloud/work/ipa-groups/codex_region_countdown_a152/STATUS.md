@@ -1,0 +1,7 @@
+# A152 genuine original caller contract follow-up: NONMATCH
+
+Frozen singleton/source packets remain untouched. The only original callers are display_list_flush@800FB2C8 (589words, normal full-save256frame, actualJAL+1496) and countdown@800FBF88 (668words, native unsavedS0..S6/F20/F22 with genuine game_loop root closure, actualJAL+2624). No archived full display_list_flush body exists. The existing full341-line countdown_draft.c uses actual loop index and complete float3-backed player position at the real call, so it supplies one real caller contract.
+
+helper.c is byte-identical frozen ca8eba03136b08ee6cbf9ba653ecd6252789024989c1490f8a3ff5544942d850. countdown.c preserves its complete original body, only historical mixed flags/comment header changed to exact literal flags. context_origin.json records both hashes. No omitted paths, stand-in callers/newhelpers/unusedformals/pressure added. Native finish_state_normal/alt remain actual external symbol references. Genuine countdown entry stays kept ordinary exported. Missing game_loop/other-callee IPA tree remains honest, rather than replaced.
+
+Fresh canonical group gives helper187/231 and caller642/668, both noerrors/excess/unverified/unresolved. Hence this actual native caller does not resolve singleton38-word residual. Claims remain empty; no new credit or shared mutations. Fullsources/manifest/proofs frozen in packet.json. Do not treat generic FP differences as proven IPA: the concrete tested graph did not help.

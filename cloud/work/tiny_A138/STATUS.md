@@ -1,0 +1,9 @@
+# A138 frozen complete encoded text wrapping residual
+
+camera_auto_follow@800BE078,1084 bytes/271 words, final245/271 strict differences plus2 extra words, no unresolved/unverified references or relocation errors. Source SHA-256 `b4449726fd665c194f393fdd601ed4a6410775afa5c27a8e9e1ea3fefb9197f7`; first flags line/actual literal flags `-g0 -O3 -mips2 -G 0 -non_shared`. Claims empty. Complete real seven-input source, no source match claimed.
+
+All actual consumed inputs: six signed-half x/y/width/height/page/skip-lines values and mutable encoded byte string pointer. Source retains native vertical alignment using actual line-count helper, per-glyph measured advances and native signed-byte spacing, UTF16-like marker255 with1/2-byte cursor steps, leading-space skip, last-space wrap, line count clipping, page reservations and negative page handling, native horizontal center/right alignment, existing x/y sentinel-32768 setters and actual text drawing. Exactly one temporary byte preserves the original string's prior byte during wide-marker substitution/restoration; no local string array or guessed buffer capacity.
+
+Initial byte distance divided by2 produced246/271+5. Actual wide cursor and remembered-space cursor always advance in two-byte elements from the same origin, so their consumed glyph-count difference is a halfword-element pointer difference, not a byte count with signed rounding. Restoring this true input-unit distinction gives245/271+2 and removes three extraneous rounding operations. Remaining frame112 agrees, but local homes/global-address retention and register choices remain far from native. No declaration-order, padding, artificial input copies, dummy helpers, pressure expressions or coloring controls applied; source is frozen and lane moves fresh.
+
+All cloud/work Markdown name/address screening and canonical locked-interval check clear. No shared accepted files, locks, layout, gates or commits changed.

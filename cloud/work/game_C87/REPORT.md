@@ -1,0 +1,7 @@
+# C87: complete pool initializer, frozen nonmatch
+
+The actual historical camera_lerp_position label initializes two real linked pools, clears eight bytes and four five-word records, conditionally allocates120 bytes and invokes its original helper, then clears five counters. Its full ordinary body is reconstructed. The real incoming argument has its original ABI home but is unused by this body.
+
+The best source is camera_lerp_position.consumed_data.c (see manifest hash), strict735 with17/95 original words different. Linked validation reports no unresolved/unverified symbols, errors or extra words. All middle loops/branches/calls match. The residual comprises genuine initialization-field scheduling and two counter-address materializations. Bounded field-order/consumed-value/pointer/head-context controls did not improve it; debug/O1 did not preserve this module recipe. Workbench diagnosis was run before controls and again on the best object; the real24-byte frame matches and the remaining discrepancy is structural/scheduling.
+
+The external func_803914a8 has no current canonical singleton target; it is declared as its observed no-loaded-argument original call, not substituted. Counter classification is grounded by original transmission_ratio_get and func_8010E0FC increment instructions. No artificial capacity, unused formal beyond the original existing incoming argument, stack pad, volatility or scorer/target mask was added. No match or ROM coverage is claimed.

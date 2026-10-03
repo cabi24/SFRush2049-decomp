@@ -1,0 +1,29 @@
+{
+  "packet": "B107",
+  "function": "menu_control_settings",
+  "address": "0x800CF374",
+  "bytes": 656,
+  "claims": [],
+  "best": "menu_control_settings_arcade_locals.c",
+  "best_sha256": "eb04a1aee7e04133be7798da7014b2ad5751f027ee04a184567b7dfca206ea66",
+  "report": "cloud/work/near_miss_B107.md",
+  "report_sha256": "600380bb0e091cda900705fbe5ffadacecf4f6f777b9c65982dba58a4eb21bf5",
+  "files": {
+    "menu_control_settings_matrix_first.c": "e78aae9b82321703eb6d1b418927bcc92ce34dd742b2b3f78156c92a93656326",
+    "menu_control_settings_position_view.c": "f7e9d729328e47ba628cfd4111d2ba25802c03d49e49c467bc622f0d0a41346e",
+    "menu_control_settings_arcade_streams.c": "82d070ec9955d7378039d3a9eaf8220486978152dbb7e15d25ab37c210e7f614",
+    "menu_control_settings_arcade_locals.c": "eb04a1aee7e04133be7798da7014b2ad5751f027ee04a184567b7dfca206ea66",
+    "menu_control_settings_native.c": "fbb05e4c989ece55840edb88800b2d1b16bd425af6bf38e3ff0b969e770bcd4a",
+    "menu_control_settings_array_operand.c": "3cb942b1e084d8a2cdf7bab0ef62af95652cfdbe79660bac50d29f6dcc7c4fce",
+    "menu_control_settings_flag_dataflow.c": "0436ac4a75f90e326e06abcad37705286422ea536a702b8b542f948367e722d0",
+    "menu_control_settings_basis_cursor.c": "ac0d6b097115b4c992621d7898ef118a93163eac1cc0aa5cb0b1a9a91a5b6b96",
+    "results.json": "9a150e1bdc8b54a2d0d0540f2074bc4df4c13c99fcf528a64ecdc74850951abb",
+    "menu_control_settings_float_output.c": "7969911665d4458a7ff44658bba89ce0e8015923f59cc210beb3e74fe9d6cc7e",
+    "menu_control_settings_arcade_locals_O2.c": "24b8733010fd7b5937bde6f041d1a63d331ad9ec9da8198bc3ca6ef30271c5aa",
+    "menu_control_settings_arcade_vecadd.c": "8e8db50b42655a0e73f98a9748a095cabf30342c61eee6ba6dad73244bbaa279",
+    "menu_control_settings_array_first.c": "6438d22db56ec826761dc1822ede1f7c9083d1095cb02ba14d2b02970589f068",
+    "menu_control_settings_arcade_arrays.c": "16b5fb7e0864c0c0e28baa9af4c6e866f2798e78c5befa52ce91ffcaa55bb827",
+    "menu_control_settings_add_assign.c": "e06046b4dd2078ccfeaea73cb3d113d283c186503d7efa6bc7b7af98ae7fe55f",
+    "menu_control_settings_operand_order.c": "d48efe6b0b1425a8ec1008fa4abbaa722c745870ffc7a513ad984b8f44df1b7b"
+  }
+}

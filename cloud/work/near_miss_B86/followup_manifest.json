@@ -1,0 +1,13 @@
+{
+  "claims": [],
+  "function": "func_80087110",
+  "address": "0x80087110",
+  "target_bytes": 1780,
+  "final_source": "func_80087110_texture_edge_followup.c",
+  "files": {
+    "func_80087110_width_followup.c": "dcc2bdc0279aa7e5b9111d23c8c99031011ac4aab80c1c745782d88f92e13492",
+    "func_80087110_texture_edge_followup.c": "4df5b2f78e7366029e764bed40de4e152edda3ca7c5859007ce795e0edaac8f7",
+    "func_80087110_texture_edge_value_followup.c": "e1e04b529a562197d7a48a8e93ffa69672f8fb6c5c5322624d9ec5efa25f63ab",
+    "followup_results.json": "fd23471c54a55187cf9cc3ea68f903b3b0fa7f4dd9c3fd8ae25fc2232fe60eb5"
+  }
+}

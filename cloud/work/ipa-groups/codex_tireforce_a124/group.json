@@ -1,0 +1,17 @@
+{
+  "members": [
+    "camera_follow_target"
+  ],
+  "context": [
+    "camera_dolly"
+  ],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "camera_follow_target",
+    "camera_dolly"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

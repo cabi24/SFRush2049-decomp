@@ -1,0 +1,24 @@
+{
+  "packet": "B109",
+  "group": "cloud/work/ipa-groups/codex_transform_b109",
+  "functions": [
+    "stat_lap_complete",
+    "game_timer_resume"
+  ],
+  "claims": [
+    "stat_lap_complete",
+    "game_timer_resume"
+  ],
+  "additional_candidate_bytes": 440,
+  "accepted_coverage_claim": false,
+  "source_sha256": "98c6a7ce0d7d4b5edfe60b51228dc6eb60687aab5af263246f2f1195e03c881a",
+  "preserved_prefix_sha256": "dcacf9fa7dd0bdf1b4c64b71f1fb82cab8575962214b8acd975848255e170b4f",
+  "report": "cloud/work/near_miss_B109.md",
+  "report_sha256": "4cb3adca575c6890b37069d776661df0b9f28f49972a5ded634e8c0226803302",
+  "files": {
+    "group.c": "98c6a7ce0d7d4b5edfe60b51228dc6eb60687aab5af263246f2f1195e03c881a",
+    "image_verification.json": "8c8aa25b0592361c6ca5bac3d09118e8e01501556588c0d78b5227f4dce78487",
+    "verification.json": "a964e61238512dccecdfe216d776e18d4798753a9c9543fb3f5023ffd17e06cc",
+    "group.json": "f3c9ddecd6d6249fd3c15f34f179ef08fdeefc694f91b42fcefa3674507b16bd"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "accepted": false,
+  "members": [
+    {
+      "function": "inflate_io_wait",
+      "source": "cloud/work/static_C21/module.c",
+      "sha256": "ae2c337c099a198946ad21981ec24e9aa43825170fdfc3b32c4232a62d874e99",
+      "original_body_sha256": "3e95a344bca0f3cbf8245334816fc85fefe1336361336c36c95607f88d725850"
+    },
+    {
+      "function": "lzss_decode",
+      "source": "cloud/work/static_C21/module.c",
+      "sha256": "ae2c337c099a198946ad21981ec24e9aa43825170fdfc3b32c4232a62d874e99",
+      "original_body_sha256": "15916f7fa41660787965ddd80f314cd58bc1f744f8bd4ad616e40c656113b7eb"
+    },
+    {
+      "function": "inflate_flush_window",
+      "source": "cloud/work/static_C21/module.c",
+      "sha256": "ae2c337c099a198946ad21981ec24e9aa43825170fdfc3b32c4232a62d874e99",
+      "original_body_sha256": "9c97287abe974ba7fa1bb75703f69bc09cf967fdf30b69b481aaaa3a93f226a7"
+    },
+    {
+      "function": "huft_alloc",
+      "source": "cloud/work/static_C21/module.c",
+      "sha256": "ae2c337c099a198946ad21981ec24e9aa43825170fdfc3b32c4232a62d874e99",
+      "original_body_sha256": "0360892a4ff1a0a5a146ddd2e87c279e6a0bc4c6612e8589f874349d0dcfa767"
+    },
+    {
+      "function": "huft_build",
+      "source": "cloud/work/static_C23/huft_build.c",
+      "sha256": "52ee4ab7f0e057a84c7dd5bc0dfde369839d8ac24321163c83e1981dfa964001",
+      "original_body_sha256": "83784d54c2712d2386154adaa857d4f8d6cb11c149ee22fbbd50fb808e7ec716"
+    },
+    {
+      "function": "inflate_free_window",
+      "source": "cloud/work/static_C94/inflate_free_window.c",
+      "sha256": "cb17dab28a24cd40af6744a50a06a67d280988a1d3387d6a3d57e0b507dde9b8",
+      "original_body_sha256": "d412c206eda9d38e0984cb037a0fe5c484115ed3412a6e648b4e2c9bd082be32"
+    },
+    {
+      "function": "inflate_stored",
+      "source": "cloud/work/static_C20/inflate_stored.c",
+      "sha256": "16b52434cea28a88cf4161ace5ca49bfbe40a6d9cd7e2a2a33d4f43ab5794386",
+      "original_body_sha256": "c0b155d6863b5562fcf5b12e2fbd6a05454cd19a259d1958e2aa19925229ac48"
+    },
+    {
+      "function": "inflate_fixed",
+      "source": "cloud/work/static_C23/inflate_fixed.best.c",
+      "sha256": "aeffd352f1eda0cc1c69a507385c05fd46e5663c81e38c64486dfef3b7d066c5",
+      "original_body_sha256": "4779f787483779b6320ad2e38040742ba0f20b75544c9491866fcb89d42e1c8b"
+    },
+    {
+      "function": "inflate_dynamic",
+      "source": "cloud/work/static_C23/inflate_dynamic.c",
+      "sha256": "4688f7287f4669d8eb204f39fc9bfc9d59843b996a887e4d2f21e60bb545da01",
+      "original_body_sha256": "73bd6488181cdb170ac8c0b6aed1e4a8699c47683e6e2490f35a0e5d19851776"
+    },
+    {
+      "function": "inflate_block",
+      "source": "cloud/work/static_C23/inflate_block.c",
+      "sha256": "230a13393cee29a59961af1368166a87d6970223a912df1b44a3df8f69ae7c88",
+      "original_body_sha256": "c15ef7d0802da63e690349eecbfd8053868fa91958b04f15423e1eb851327acc"
+    },
+    {
+      "function": "inflate_loop",
+      "source": "cloud/work/static_C5/inflate_loop.c",
+      "sha256": "ce21597a7c7b41f4658abc10478fa736d2e49fadce1c80522afb398187127bad",
+      "original_body_sha256": "01f45a36100f4f1d653c411aebca30ed6c1f26ab0c037f45d59eb7a58e88ac18"
+    },
+    {
+      "function": "inflate_read_bits",
+      "source": "cloud/work/static_C20/inflate_read_bits.c",
+      "sha256": "ba2afd62eaa1c7314caf42cd7bb8317ba84c2fa183c4a449ad9e653a888afe03",
+      "original_body_sha256": "81872c6426ba3c8431eb8a57328a97934cb29a6dbe92901f7287bea1d276d3e5"
+    },
+    {
+      "function": "inflate_entry",
+      "source": "cloud/work/static_C99/inflate_entry.c",
+      "sha256": "29ae78dc6b47f4de10a11553788bb11c03c485872e9e4a53cdd1267f23e8c1b3",
+      "original_body_sha256": "be70640586ae5c639a45d69aeba1455ab150a01de61a4abe89085e10073611c5"
+    },
+    {
+      "function": "inflate_entry_alt",
+      "source": "cloud/work/static_C20/inflate_entry_alt.c",
+      "sha256": "c45580084bc9e9c93a0dd9aaa884ec6efb2ccb580f0dca8f421cfc7f6fbc744b",
+      "original_body_sha256": "e7cc76fe0dd39813def359fef92c1353a8b9b8085959ca12763536cf304e149b"
+    }
+  ],
+  "ancestors": [
+    {
+      "path": "reference/repos/banjo-kazooie/src/core1/inflate.c",
+      "sha256": "b36e864a5b9612689dafc42e3e76bc0f059793ed050a9c16e0a2e8673352d04f"
+    },
+    {
+      "path": "reference/repos/perfect_dark/src/inflate/inflate.c",
+      "sha256": "b1a88279e53e1a01c3937fb565d165dabe286a5916b447c64b8130333106b41e"
+    }
+  ],
+  "adaptations": [
+    "Common nonvolatile input/bit-state declarations follow canonical inflater/C23, replacing diagnostic qualifiers in C20/C21. Existing allocator volatile declaration is unchanged.",
+    "Unified Huft struct spelling only; identical eight-byte field layout.",
+    "Accepted allocator/window function bodies retained exactly.",
+    "Entry allocator/free prototypes use genuine pointer-valued source; explicit pointer-to-s32 cast at existing accepted allocator-base interface.",
+    "All source tables remain extern; no initializer, additional data or artificial caller.",
+    "Macro invocations in dynamic body carry their original semicolon at the invocation rather than in the shared definition; no C operation changed."
+  ],
+  "complete_source_sha256": "4758def3001eea839fdd4033b6230bcd4961bb5b96e27d001cb1df5233920396",
+  "license_audit": {
+    "new_license_assertion": null,
+    "ancestry_note": "Existing repository native-reconstructed packets C20/C21/C23/C94/C99/C5 are reused. Banjo-Kazooie and Perfect Dark inflater files document algorithmic ancestry; their file headers have no license notice. This packet does not assert that those ancestors confer a BSD license. No formatter/GNU C79 source is included. No notices have been removed."
+  }
+}

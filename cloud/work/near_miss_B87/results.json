@@ -1,0 +1,44 @@
+[
+  {
+    "source": "render_thread_entry_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "75256fc952861a3effb2746dd890a5ce6e6d6b5a8ac15e6755fb1a9a31bf515e",
+    "comparison": {
+      "differing": 66,
+      "total": 67,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 4
+    },
+    "text_words": 72
+  },
+  {
+    "source": "render_thread_entry_native_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "d0ef736866c80c175a8b8fc83a0290736a1b4bcac2c4fa4d329a02c435b5e631",
+    "comparison": {
+      "differing": 66,
+      "total": 67,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 4
+    },
+    "text_words": 72
+  },
+  {
+    "source": "render_thread_entry_status.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "5d4062882486fcf3fac0a7b14092d90c0f65081f15e95e4fac055303bf6c0969",
+    "comparison": {
+      "differing": 65,
+      "total": 67,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 64
+  }
+]

@@ -1,0 +1,1 @@
+A146 first full true state-change caller + resource/search/multiple group: caller39/45+1extra, wrapper2/18,search29/65,multiple12/12+1. No fake other_user/audio_user. Frozen source/hash/proof. One separately labeled full real audio_frame_sync context followup in ../codex_state_audio_a146 matches new caller45/45; all original accepted helpers stayexact. Claims empty here.
