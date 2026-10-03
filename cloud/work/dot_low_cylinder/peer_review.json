@@ -1,0 +1,18 @@
+{
+  "verdict": "PASS as NONMATCH research only",
+  "reviewer": "independent lane D",
+  "source_sha256": "30cf9502a53f0884fb496acab669ef31dfaa07b68e84af70be66f609d3de18ce",
+  "source_review": "Standard o32 four argument leaf. Signed selector; real2056/952byte strides and+8position observed. Optional output is radial squared-distance error, not distance squared. Strict(-2,4) vertical interval. No fake padding/helper/optimizer casts. Caller access and valid input bounds remain assumptions.",
+  "tests": [
+    "Fresh GNU-link verifier PASS after correcting stale304-byte assertion to320-byte linked extent",
+    "Canonical strict scorer43/80 differences",
+    "100000 independent ASan/UBSan cases PASS",
+    "11430 native/linked-ID0/host differential cases PASS including9 alias modes and IEEE classes"
+  ],
+  "extent": "316-byte candidate function+4byte alignment;320-byte retail function. No exact match claimed.",
+  "limitations": [
+    "NaN payload/FCSR exception behavior not established",
+    "Unknown object layout beyond observed views",
+    "No ROM coverage or identity claim"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "cases": 11430,
+  "comparisons": "native vs linked IDO vs host C",
+  "aliases": 9,
+  "nan_rule": "NaN classes equivalent; payload propagation/FCSR not established",
+  "source": "func_8010C588.c",
+  "status": "PASS"
+}
