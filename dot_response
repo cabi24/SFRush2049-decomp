@@ -1,11 +1,14 @@
-Temporary work restriction — 2026-10-02
+Work restriction lifted — 2026-10-03
 
-func_800D1248 (0x800D1248) is OFF LIMITS for now at the repository owner's explicit request. Do not assign, resume, compile, tune, or reconstruct this target, including its proposed helper-context experiment, until the owner explicitly lifts this restriction.
+func_800D1248 (0x800D1248) is no longer off limits. The repository owner has
+lifted the 2026-10-02 precautionary pause and asked for the function to be
+handed to Astra as packet D11 (see dot_handoff.md and
+cloud/work/near_miss_800D1248_round12/PACKET.md).
 
-Context: at 2026-10-02 23:53:33 UTC, a worker stopped with the generic notification: "This content was flagged for possible cybersecurity risk."
-
-Its last reported investigation concerned func_800D1248 with its actual math_utility and func_800D11BC helper context. The exact operation or content that triggered the flag is unknown. This is a precautionary pause, not evidence that the racing-game function is cybersecurity-related or harmful. No blocked work has been retried.
-
-This note does not independently classify or prohibit func_800D11BC or math_utility outside the paused func_800D1248 investigation. Continue other disjoint authorized game work normally.
-
-The owner requested this note in dot_response and explicitly directed committing it to master.
+History: on 2026-10-02 at 23:53:33 UTC a worker stopped with the generic
+notification "This content was flagged for possible cybersecurity risk"
+while investigating func_800D1248 with its math_utility and func_800D11BC
+helper context. The cause was never identified. It was a precautionary
+pause, not evidence that this racing-game function is harmful. If the same
+notification recurs, stop, record it in dot_handoff.md D11 and wait for the
+owner; do not retry blocked content.
