@@ -46,3 +46,35 @@ chained assignments, `0` against `0.0f`, `u8` against `s8`, `-O3`, and
 `-Wo,-loopunroll,0`. `-O1`, `-mips1` and `-g*` are far worse. Both functions
 are adjacent (same TU). A shared TU-level cause, such as a different as1/ugen
 setting, has not been found.
+
+## Update: farm permuter result (2026-10-03, job `c9bcf398`)
+
+Seeded with `func_800D1248.c` (9 words differ; the shim inlined because
+`cli seed`'s `#include "conveyor_shim.h"` does not preprocess on toolkit
+`d4c39cbc`), the farm permuter reached score 0 in 40 s.
+`tools/cloud/score.py fn` independently confirms a **strict relocated MATCH**
+for `func_800D1248.permuter_best.c`.
+
+**Not acceptable as source.** The only change is an artificial keeper
+inserted after the early return:
+
+```c
+if ((arg0 && arg0) && arg0)
+{
+}
+```
+
+That is a fabricated pressure device, which PROJECT_PLAN and the
+constitution forbid. It does identify the mechanism. The short-circuit
+creates empty basic blocks, and so labels, between the early return and the
+body. ugen stops reusing the still-valid incoming `a0` at a label, so the body
+addresses `arg0` through `a2`, as the retail code does. None of these natural
+constructs reproduce it (all 9 words): a two-term `&&`, `if (arg0) {}`,
+`(void)arg0;`, a bare label, `while (0) {}` and `switch (0) { default: }`.
+Folding a null check into the early return changes the code (28–78 words).
+
+Next lever: find the original construct that leaves a label there, for
+example a stripped debug/assert macro that expands to a short-circuit
+test, or an inlined helper's guard. The arcade source
+(`reference/repos/rushtherock/`) is the place to look for a matching
+idiom. Until then this stays NONMATCH, at strict-equal-with-keeper.
