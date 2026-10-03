@@ -10,6 +10,7 @@ NONMATCH research. Score with `tools/cloud/score.py fn <file> <name> --targets a
 | `func_80393004` | 45/45 | Loop shape wrong (the target unrolls the flag loop ×4 into two arrays); first draft only. | — |
 | `func_8039B120` | 5/61 | ugen temp ring only (`t6`/`t7` in the target, `t1`/`t2` in ours) in the 2nd and 4th `if`. Must use `D_803BAD90->` directly; a local copy swaps `v0`/`v1` (23). | — |
 | `func_8038F648` | 42/59 | The target forms `&D_8002EB90` in a register and loads at offset 0, twice. Array and struct declarations do not reproduce it. Button-combo matcher over the 164-byte records set by `func_8038FF90`. | `f32[]`, struct member |
+| `func_803931C0` | 17/69 | ugen temp ring plus the cursor loop. The target needs `switch (D_803BA804)` (read back after the store); with `switch (mode)` it is 69/69. | slot/row locals (23–40) |
 | `func_8038F744` | 18/22 | Allocation and schedule of the base pointer. Target keeps the base in `t6`, recomputes `&D_803B65E4[6]` and uses `bnez` + `nop`. | first shape only |
 
 Lessons that produced the four matches in this pass (`cloud/matches/ovl_a/`):
