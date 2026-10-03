@@ -1,0 +1,77 @@
+{
+  "status": "REJECTED_HYPOTHESIS_NONMATCH",
+  "claims": [],
+  "archive_commit": "433611408270ede7fe6acdb027f1b82179209511",
+  "source_sha256": "a78bf705049cb5d0db9fc8bcb09efa0ac819ba1e11c4d65c6daf377a3f68e8bb",
+  "predicate_cases": 343,
+  "builds": {
+    "baseline_O2": {
+      "summary": "2/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+      "object_sha256": "966cdabb46fb3df9d8f6fe68c64a0135a021836ad8026df0ceaab0d6c16831c8",
+      "source_sha256": "a78bf705049cb5d0db9fc8bcb09efa0ac819ba1e11c4d65c6daf377a3f68e8bb",
+      "elf_text_bytes": 1696,
+      "frame_bytes": 152,
+      "poortract_spill_and_reload": [
+        [
+          179,
+          120
+        ],
+        [
+          190,
+          120
+        ]
+      ]
+    },
+    "baseline_O3": {
+      "summary": "2/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+      "object_sha256": "d0378d869bfc6c1993113473087cdeaa7a78bb4058988cb3bcb28d781bba8e8c",
+      "source_sha256": "a78bf705049cb5d0db9fc8bcb09efa0ac819ba1e11c4d65c6daf377a3f68e8bb",
+      "elf_text_bytes": 1696,
+      "frame_bytes": 152,
+      "poortract_spill_and_reload": [
+        [
+          179,
+          120
+        ],
+        [
+          190,
+          120
+        ]
+      ]
+    },
+    "expanded_O2": {
+      "summary": "276/422 words differ (1 extra words (nonzero beyond target length); 6 section-relative relocations unverified: .rodata+0x0 at +0x4a0, .rodata+0x0 at +0x4b0, .rodata+0x4 at +0x5b0, .rodata+0x4 at +0x5b8, .rodata+0x8 at +0x614, .rodata+0x8 at +0x61c)",
+      "object_sha256": "52021fe1d3426a6db8f03a5027af3eb10d19030da477eda34633690e7d65a0f3",
+      "source_sha256": "d792b98c87dacc6a5ea56f425a77adbaeec0b540707f357f22ab53f0692d0035",
+      "elf_text_bytes": 1696,
+      "frame_bytes": 152,
+      "poortract_spill_and_reload": [
+        [
+          181,
+          120
+        ],
+        [
+          192,
+          120
+        ]
+      ]
+    },
+    "expanded_O3": {
+      "summary": "276/422 words differ (1 extra words (nonzero beyond target length); 6 section-relative relocations unverified: .rodata+0x0 at +0x4a0, .rodata+0x0 at +0x4b0, .rodata+0x4 at +0x5b0, .rodata+0x4 at +0x5b8, .rodata+0x8 at +0x614, .rodata+0x8 at +0x61c)",
+      "object_sha256": "7b7e72eb9bdf04072da33a16cf5b32120b7ded18757e6a2afaed653aef47ff7b",
+      "source_sha256": "d792b98c87dacc6a5ea56f425a77adbaeec0b540707f357f22ab53f0692d0035",
+      "elf_text_bytes": 1696,
+      "frame_bytes": 152,
+      "poortract_spill_and_reload": [
+        [
+          181,
+          120
+        ],
+        [
+          192,
+          120
+        ]
+      ]
+    }
+  }
+}
