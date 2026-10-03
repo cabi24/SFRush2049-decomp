@@ -254,7 +254,8 @@
       "owner": "Astra / C11-small",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "2",
-      "source_path": "cloud/work/boot_tail/C11-small/func_8001E790_NONMATCH.c"
+      "source_path": "cloud/work/boot_tail/C11-small/func_8001E790_NONMATCH.c",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80024BF0": {
       "name_hypothesis": "MusyX salApplyMatrix source lead",
@@ -277,229 +278,256 @@
       "note": "Pinned AxioDL/musyx snd_math.c named definition and native arithmetic/order evidence; see REFERENCES.md. No match or exact N64 TU claim. Full 564-byte operation order not compared line by line."
     },
     "0x8001E740": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / C11-small",
       "name_hypothesis": "allocation callback with mode zero",
       "source_path": "cloud/matches/boot_tail/func_8001E740.c",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
-      "note": "C11; local strict O2 MATCH; independent review and exact PR-head CI pending, so status stays claimed. See C11-small/README.md and scores.json; no cartridge credit."
+      "note": "C11-small; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61",
+      "evidence_level": "VERIFIED-BODY"
     },
     "0x8001E768": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / C11-small",
       "name_hypothesis": "release callback wrapper",
       "source_path": "cloud/matches/boot_tail/func_8001E768.c",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
-      "note": "C11; local strict O2 MATCH; independent review and exact PR-head CI pending, so status stays claimed. See C11-small/README.md and scores.json; no cartridge credit."
+      "note": "C11-small; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61",
+      "evidence_level": "VERIFIED-BODY"
     },
     "0x8001E930": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / C11-small",
       "name_hypothesis": "MusyX sndConvertMs source-family lead",
       "source_path": "cloud/matches/boot_tail/func_8001E930.c",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
-      "note": "C11; local strict O2 MATCH; independent review and exact PR-head CI pending, so status stays claimed. See C11-small/README.md and scores.json; no cartridge credit."
+      "note": "C11-small; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61",
+      "evidence_level": "VERIFIED-BODY"
     },
     "0x8001E9A0": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / C11-small",
       "name_hypothesis": "MusyX sndConvert2Ms source-family lead",
       "source_path": "cloud/matches/boot_tail/func_8001E9A0.c",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
-      "note": "C11; local strict O2 MATCH; independent review and exact PR-head CI pending, so status stays claimed. See C11-small/README.md and scores.json; no cartridge credit."
+      "note": "C11-small; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61",
+      "evidence_level": "VERIFIED-BODY"
     },
     "0x80021428": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / C13-small",
       "name_hypothesis": "audio_controller_field_196",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80021428.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "C13-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. One natural source; O2 strict MATCH, O1 7/8 differences plus 2 nonzero excess words. Exact field name and original TU unproved."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "C13-small; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80021448": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / C13-small",
       "name_hypothesis": "audio_controller_field_214",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80021448.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "C13-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. One natural source; O2 strict MATCH, O1 7/8 differences plus 2 nonzero excess words. Exact field name and original TU unproved."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "C13-small; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80021468": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / C13-small",
       "name_hypothesis": "audio_controller_field_232",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80021468.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "C13-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. One natural source; O2 strict MATCH, O1 7/8 differences plus 2 nonzero excess words. Exact field name and original TU unproved."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "C13-small; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80021488": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / C13-small",
       "name_hypothesis": "audio_controller_field_250",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80021488.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "C13-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. One natural source; O2 strict MATCH, O1 7/8 differences plus 2 nonzero excess words. Exact field name and original TU unproved."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "C13-small; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x800214A8": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / C13-small",
       "name_hypothesis": "audio_controller_field_268",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_800214A8.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "C13-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. One natural source; O2 strict MATCH, O1 7/8 differences plus 2 nonzero excess words. Exact field name and original TU unproved."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "C13-small; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x800214C8": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / C13-small",
       "name_hypothesis": "audio_controller_field_286",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_800214C8.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "C13-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. One natural source; O2 strict MATCH, O1 7/8 differences plus 2 nonzero excess words. Exact field name and original TU unproved."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "C13-small; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x800214E8": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / C13-small",
       "name_hypothesis": "audio_controller_field_304",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_800214E8.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "C13-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. One natural source; O2 strict MATCH, O1 7/8 differences plus 2 nonzero excess words. Exact field name and original TU unproved."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "C13-small; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80021508": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / C13-small",
       "name_hypothesis": "audio_controller_field_322",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80021508.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "C13-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. One natural source; O2 strict MATCH, O1 7/8 differences plus 2 nonzero excess words. Exact field name and original TU unproved."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "C13-small; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80021528": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / C13-small",
       "name_hypothesis": "audio_controller_field_340",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80021528.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "C13-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. One natural source; O2 strict MATCH, O1 7/8 differences plus 2 nonzero excess words. Exact field name and original TU unproved."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "C13-small; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x8001061C": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT02-small",
       "name_hypothesis": "clear_audio_callback",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_8001061C.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT02-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT02-small; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80010A0C": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT02-small",
       "name_hypothesis": "unused_word_callback",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80010A0C.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT02-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT02-small; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80010A14": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT02-small",
       "name_hypothesis": "get_enabled_audio_buffer",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80010A14.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT02-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT02-small; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80010D3C": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT02-small",
       "name_hypothesis": "set_audio_frequency",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80010D3C.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT02-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT02-small; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80011894": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT02-small",
       "name_hypothesis": "reset_audio_buffer_cursors",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80011894.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT02-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT02-small; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x800119E0": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT02-small",
       "name_hypothesis": "submit_audio_task",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_800119E0.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT02-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT02-small; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80011A10": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT02-small",
       "name_hypothesis": "initialize_audio_state",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80011A10.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT02-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT02-small; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80011A3C": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT02-small",
       "name_hypothesis": "release_audio_state",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80011A3C.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT02-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT02-small; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80012200": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT02-small",
       "name_hypothesis": "tick_audio_countdowns",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80012200.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT02-small; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT02-small; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80014624": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-low",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80014624.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT03-low; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Pending independent replay and exact-head CI."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT03-low; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x8001467C": {
       "status": "nonmatch",
@@ -508,89 +536,99 @@
       "diff_words": "2",
       "source_path": "cloud/work/boot_tail/BT03-low/func_8001467C.c",
       "evidence_level": "COMPLETE-NONMATCH",
-      "note": "BT03-low; COMPLETE-NONMATCH, no credit. Allocation residual after diagnose and 15 natural source forms; no credit."
+      "note": "BT03-low; COMPLETE-NONMATCH, no credit. Allocation residual after diagnose and 15 natural source forms; no credit.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x800146AC": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-low",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_800146AC.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT03-low; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Pending independent replay and exact-head CI."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT03-low; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x800149BC": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-low",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_800149BC.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT03-low; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Pending independent replay and exact-head CI."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT03-low; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x800149DC": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-low",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_800149DC.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT03-low; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Pending independent replay and exact-head CI."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT03-low; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80014A04": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-low",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80014A04.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT03-low; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Pending independent replay and exact-head CI."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT03-low; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80014BB0": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-low",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80014BB0.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT03-low; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Pending independent replay and exact-head CI."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT03-low; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80014C18": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-low",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80014C18.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT03-low; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Pending independent replay and exact-head CI."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT03-low; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80014C40": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-low",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80014C40.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT03-low; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Pending independent replay and exact-head CI."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT03-low; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80014D1C": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-low",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80014D1C.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT03-low; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Pending independent replay and exact-head CI."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT03-low; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x800175A8": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-high",
       "name_hypothesis": "audio_channel_control_800175A8",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_800175A8.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT03-high; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Strict local whole-body MATCH; independent peer review and aggregate exact-head CI required."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT03-high; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x800177EC": {
       "status": "nonmatch",
@@ -600,7 +638,8 @@
       "diff_words": "4",
       "source_path": "cloud/work/boot_tail/BT03-high/nonmatch/func_800177EC.c",
       "evidence_level": "COMPLETE-NONMATCH",
-      "note": "BT03-high; COMPLETE-NONMATCH, no credit. COMPLETE-NONMATCH; bounded source refinements stopped. See BT03-high/README.md and verification.json for controls and next hypothesis."
+      "note": "BT03-high; COMPLETE-NONMATCH, no credit. COMPLETE-NONMATCH; bounded source refinements stopped. See BT03-high/README.md and verification.json for controls and next hypothesis.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80017824": {
       "status": "nonmatch",
@@ -610,7 +649,8 @@
       "diff_words": "4",
       "source_path": "cloud/work/boot_tail/BT03-high/nonmatch/func_80017824.c",
       "evidence_level": "COMPLETE-NONMATCH",
-      "note": "BT03-high; COMPLETE-NONMATCH, no credit. COMPLETE-NONMATCH; bounded source refinements stopped. See BT03-high/README.md and verification.json for controls and next hypothesis."
+      "note": "BT03-high; COMPLETE-NONMATCH, no credit. COMPLETE-NONMATCH; bounded source refinements stopped. See BT03-high/README.md and verification.json for controls and next hypothesis.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x8001989C": {
       "status": "nonmatch",
@@ -620,17 +660,19 @@
       "diff_words": "2",
       "source_path": "cloud/work/boot_tail/BT03-high/nonmatch/func_8001989C.c",
       "evidence_level": "COMPLETE-NONMATCH",
-      "note": "BT03-high; COMPLETE-NONMATCH, no credit. COMPLETE-NONMATCH; bounded source refinements stopped. See BT03-high/README.md and verification.json for controls and next hypothesis."
+      "note": "BT03-high; COMPLETE-NONMATCH, no credit. COMPLETE-NONMATCH; bounded source refinements stopped. See BT03-high/README.md and verification.json for controls and next hypothesis.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80019AA8": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-high",
       "name_hypothesis": "audio_command_prepare_80019AA8",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80019AA8.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT03-high; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Strict local whole-body MATCH; independent peer review and aggregate exact-head CI required."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT03-high; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x8001C19C": {
       "status": "nonmatch",
@@ -640,7 +682,8 @@
       "diff_words": "11",
       "source_path": "cloud/work/boot_tail/BT03-high/nonmatch/func_8001C19C.c",
       "evidence_level": "COMPLETE-NONMATCH",
-      "note": "BT03-high; COMPLETE-NONMATCH, no credit. COMPLETE-NONMATCH; bounded source refinements stopped. See BT03-high/README.md and verification.json for controls and next hypothesis."
+      "note": "BT03-high; COMPLETE-NONMATCH, no credit. COMPLETE-NONMATCH; bounded source refinements stopped. See BT03-high/README.md and verification.json for controls and next hypothesis.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x8001C390": {
       "status": "nonmatch",
@@ -650,17 +693,19 @@
       "diff_words": "12",
       "source_path": "cloud/work/boot_tail/BT03-high/nonmatch/func_8001C390.c",
       "evidence_level": "COMPLETE-NONMATCH",
-      "note": "BT03-high; COMPLETE-NONMATCH, no credit. COMPLETE-NONMATCH; bounded source refinements stopped. See BT03-high/README.md and verification.json for controls and next hypothesis."
+      "note": "BT03-high; COMPLETE-NONMATCH, no credit. COMPLETE-NONMATCH; bounded source refinements stopped. See BT03-high/README.md and verification.json for controls and next hypothesis.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x8001C770": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-high",
       "name_hypothesis": "audio_sequence_state_8001C770",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_8001C770.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT03-high; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Strict local whole-body MATCH; independent peer review and aggregate exact-head CI required."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT03-high; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x8001CC9C": {
       "status": "nonmatch",
@@ -670,80 +715,89 @@
       "diff_words": "6",
       "source_path": "cloud/work/boot_tail/BT03-high/nonmatch/func_8001CC9C.c",
       "evidence_level": "COMPLETE-NONMATCH",
-      "note": "BT03-high; COMPLETE-NONMATCH, no credit. COMPLETE-NONMATCH; bounded source refinements stopped. See BT03-high/README.md and verification.json for controls and next hypothesis."
+      "note": "BT03-high; COMPLETE-NONMATCH, no credit. COMPLETE-NONMATCH; bounded source refinements stopped. See BT03-high/README.md and verification.json for controls and next hypothesis.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x8001CCC0": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-high",
       "name_hypothesis": "audio_sequence_state_8001CCC0",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_8001CCC0.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT03-high; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Strict local whole-body MATCH; independent peer review and aggregate exact-head CI required."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT03-high; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80021F68": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT05-leaves",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80021F68.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT05-leaves; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Native packed-state macro leaf; two-argument ABI validated from func_80023E9C; strict local replay, independent review and exact-head CI required before integration."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT05-leaves; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x8002243C": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT05-leaves",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_8002243C.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT05-leaves; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Native packed-state macro leaf; two-argument ABI validated from func_80023E9C; strict local replay, independent review and exact-head CI required before integration."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT05-leaves; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x800225AC": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT05-leaves",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_800225AC.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT05-leaves; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Native packed-state macro leaf; two-argument ABI validated from func_80023E9C; strict local replay, independent review and exact-head CI required before integration."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT05-leaves; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x800225DC": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT05-leaves",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_800225DC.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT05-leaves; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Native packed-state macro leaf; two-argument ABI validated from func_80023E9C; strict local replay, independent review and exact-head CI required before integration."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT05-leaves; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80022A78": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT05-leaves",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80022A78.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT05-leaves; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Native packed-state macro leaf; two-argument ABI validated from func_80023E9C; strict local replay, independent review and exact-head CI required before integration."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT05-leaves; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80023710": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT05-leaves",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80023710.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT05-leaves; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Native packed-state macro leaf; two-argument ABI validated from func_80023E9C; strict local replay, independent review and exact-head CI required before integration."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT05-leaves; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     },
     "0x80023734": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT05-leaves",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "diff_words": "0",
       "source_path": "cloud/matches/boot_tail/func_80023734.c",
-      "evidence_level": "HYPOTHESIS",
-      "note": "BT05-leaves; independent peer source/ABI review and local strict MATCH passed; aggregate exact-head CI pending, so no verified-body credit yet. Native packed-state macro leaf; two-argument ABI validated from func_80023E9C; strict local replay, independent review and exact-head CI required before integration."
+      "evidence_level": "VERIFIED-BODY",
+      "note": "BT05-leaves; independently reviewed source/ABI, strict full relocated MATCH and exact-source-head CI PASS at 3574dbec (run 37152316686). Source hash and provenance: wave1/reviewed_sources.json; receipt wave1/ci.json. Verified body only, no cartridge or maintainer acceptance.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61"
     }
   }
 }

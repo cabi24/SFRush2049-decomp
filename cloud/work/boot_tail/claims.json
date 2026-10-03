@@ -11,7 +11,7 @@
     {
       "packet": "Packet 3 C11-small",
       "owner": "/root/match_boot_tail_small_batch",
-      "status": "source-frozen; peer PASS; aggregate publication pending",
+      "status": "source-frozen; peer PASS; exact source-head CI PASS; edit claim released",
       "branch": "dot/boot-tail-p3-c11-small",
       "base": "76780b3a1b3e26c54b86e1f153344e92dac15b20",
       "partition_intervals": [
@@ -62,16 +62,18 @@
         "strict_match_bytes": 104,
         "nonmatch_functions": 1,
         "nonmatch_bytes": 44,
-        "ci": "pending aggregate draft"
+        "ci": "PASS at 3574dbec / run 37152316686"
       },
       "reviewed_commit": "aae267e9a59d0f74eb7fb558333e9383974d2c2e",
       "reviewer": "C13 worker",
-      "aggregate_branch": "dot/boot-tail-p3-wave1"
+      "aggregate_branch": "dot/boot-tail-p3-wave1",
+      "aggregate_pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61",
+      "aggregate_source_head": "3574dbec2ecd4a4eee7cf95964cf47329cabbcb2"
     },
     {
       "packet": "Packet 3 C13-small",
       "owner": "/root/verify_boot_tail_matches",
-      "status": "source-frozen; peer PASS; aggregate publication pending",
+      "status": "source-frozen; peer PASS; exact source-head CI PASS; edit claim released",
       "branch": "dot/boot-tail-p3-c13",
       "base": "76780b3a1b3e26c54b86e1f153344e92dac15b20",
       "partition_intervals": [
@@ -143,12 +145,14 @@
       "stop": "Stop on scope, boundary, ABI, non-C, corpus-variant or protected-change requirement; maximum 20 directed variants per evidence-backed hypothesis. No next packet queued.",
       "reviewed_commit": "a50d5fa7b09b75c359dc3330c3d21df3a64c5145",
       "reviewer": "C11 worker",
-      "aggregate_branch": "dot/boot-tail-p3-wave1"
+      "aggregate_branch": "dot/boot-tail-p3-wave1",
+      "aggregate_pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61",
+      "aggregate_source_head": "3574dbec2ecd4a4eee7cf95964cf47329cabbcb2"
     },
     {
       "packet": "Packet 3 BT02-small",
       "owner": "/root/match_boot_tail_bt02",
-      "status": "source-frozen; peer PASS; aggregate publication pending",
+      "status": "source-frozen; peer PASS; exact source-head CI PASS; edit claim released",
       "branch": "dot/boot-tail-p3-bt02-small",
       "base": "76780b3a1b3e26c54b86e1f153344e92dac15b20",
       "partition_intervals": [
@@ -220,12 +224,14 @@
       "stop": "Stop on scope, boundary, ABI, non-C, corpus-variant or protected-change requirement; maximum 20 directed variants per evidence-backed hypothesis. No next packet queued.",
       "reviewed_commit": "3f0057926a1854ac1d03b50d7d46667e0f151770",
       "reviewer": "BT03-low worker",
-      "aggregate_branch": "dot/boot-tail-p3-wave1"
+      "aggregate_branch": "dot/boot-tail-p3-wave1",
+      "aggregate_pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61",
+      "aggregate_source_head": "3574dbec2ecd4a4eee7cf95964cf47329cabbcb2"
     },
     {
       "packet": "Packet 3 BT03-low",
       "owner": "/root/match_boot_tail_bt03_low",
-      "status": "source-frozen; peer PASS; aggregate publication pending",
+      "status": "source-frozen; peer PASS; exact source-head CI PASS; edit claim released",
       "branch": "dot/boot-tail-p3-bt03-low",
       "base": "76780b3a1b3e26c54b86e1f153344e92dac15b20",
       "partition_intervals": [
@@ -304,7 +310,7 @@
       "queued": {
         "packet": "BT03-low batch B",
         "branch": "dot/boot-tail-p3-bt03-low-b",
-        "state": "queued only; no source edits before prior packet peer PASS, aggregate publication and exact remote-tree verification",
+        "state": "Historical next-packet request; released to separate successor coordination by later user direction, outside this frozen first-wave claim.",
         "targets": [
           {
             "address": "0x80014E00",
@@ -350,12 +356,14 @@
       },
       "reviewed_commit": "f2c816f9236034261b83db1d766934605c95a6d9",
       "reviewer": "BT02 worker",
-      "aggregate_branch": "dot/boot-tail-p3-wave1"
+      "aggregate_branch": "dot/boot-tail-p3-wave1",
+      "aggregate_pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61",
+      "aggregate_source_head": "3574dbec2ecd4a4eee7cf95964cf47329cabbcb2"
     },
     {
       "packet": "Packet 3 BT03-high",
       "owner": "/root/match_boot_tail_bt03_high",
-      "status": "source-frozen; peer PASS; aggregate publication pending",
+      "status": "source-frozen; peer PASS; exact source-head CI PASS; edit claim released",
       "branch": "dot/boot-tail-p3-bt03-high",
       "base": "76780b3a1b3e26c54b86e1f153344e92dac15b20",
       "partition_intervals": [
@@ -437,12 +445,14 @@
       "stop": "Stop on scope, boundary, ABI, non-C, corpus-variant or protected-change requirement; maximum 20 directed variants per evidence-backed hypothesis. No next packet queued.",
       "reviewed_commit": "53bff645fcba96ae71f1bf29f18aae72054a3897",
       "reviewer": "BT05 worker",
-      "aggregate_branch": "dot/boot-tail-p3-wave1"
+      "aggregate_branch": "dot/boot-tail-p3-wave1",
+      "aggregate_pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61",
+      "aggregate_source_head": "3574dbec2ecd4a4eee7cf95964cf47329cabbcb2"
     },
     {
       "packet": "Packet 3 BT05-leaves",
       "owner": "/root/match_boot_tail_bt05_bt07",
-      "status": "source-frozen; peer PASS; aggregate publication pending",
+      "status": "source-frozen; peer PASS; exact source-head CI PASS; edit claim released",
       "branch": "dot/boot-tail-bt05-leaves",
       "base": "76780b3a1b3e26c54b86e1f153344e92dac15b20",
       "partition_intervals": [
@@ -507,7 +517,7 @@
       "queued": {
         "packet": "BT05-controls",
         "branch": "dot/boot-tail-bt05-controls",
-        "state": "queued only; no source edits before prior packet peer PASS, aggregate publication and exact remote-tree verification",
+        "state": "Historical next-packet request; released to separate successor coordination by later user direction, outside this frozen first-wave claim.",
         "targets": [
           {
             "address": "0x80023818",
@@ -558,9 +568,14 @@
       },
       "reviewed_commit": "927fb95e45a0d1fb5579e51893a801da7cb18afe",
       "reviewer": "BT03-high worker",
-      "aggregate_branch": "dot/boot-tail-p3-wave1"
+      "aggregate_branch": "dot/boot-tail-p3-wave1",
+      "aggregate_pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61",
+      "aggregate_source_head": "3574dbec2ecd4a4eee7cf95964cf47329cabbcb2"
     }
   ],
   "aggregate_base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
-  "research_provenance": "PR #59 at 21e104a2, explicitly incorporated without merging after fresh-master refresh"
+  "research_provenance": "PR #59 at 21e104a2, explicitly incorporated without merging after fresh-master refresh",
+  "first_wave_pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61",
+  "first_wave_ci": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37152316686",
+  "first_wave_source_head": "3574dbec2ecd4a4eee7cf95964cf47329cabbcb2"
 }

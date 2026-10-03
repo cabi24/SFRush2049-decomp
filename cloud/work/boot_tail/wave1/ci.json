@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/61",
+  "source_head": "3574dbec2ecd4a4eee7cf95964cf47329cabbcb2",
+  "source_tree": "33ccf2785a3eb53f749e4db494dad3fc6450bb67",
+  "workflow_run": 37152316686,
+  "workflow_url": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37152316686",
+  "conclusion": "success",
+  "checked_utc": "2026-10-03T20:44:59Z",
+  "scope": "All 42 unchanged submitted sources, protected paths, scorer sanity, static locks, Conveyor and cloud-tooling tests passed on this exact source-bearing head. This receipt-only update changes no C; its own exact-head CI must also be verified before final completion.",
+  "handoff_update": "D10 preserved at published3574dbec version: final proof update blocked by inherited metadata outside D10; no attempt to republish or remove that data. Independent allowed status/README/receipt update only."
+}
