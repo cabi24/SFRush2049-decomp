@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "packet": "BT02-small",
+  "apply_only_after": [
+    "independent_actual_source_replay",
+    "exact_head_pr_ci_pass"
+  ],
+  "functions": [
+    {
+      "address": "0x8001061C",
+      "name": "func_8001061C",
+      "size": 12,
+      "cluster": "BT02",
+      "name_hypothesis": "clear_audio_callback",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_8001061C.c",
+      "note": "BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    {
+      "address": "0x80010A0C",
+      "name": "func_80010A0C",
+      "size": 8,
+      "cluster": "BT02",
+      "name_hypothesis": "unused_word_callback",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80010A0C.c",
+      "note": "BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    {
+      "address": "0x80010A14",
+      "name": "func_80010A14",
+      "size": 40,
+      "cluster": "BT02",
+      "name_hypothesis": "get_enabled_audio_buffer",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80010A14.c",
+      "note": "BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    {
+      "address": "0x80010D3C",
+      "name": "func_80010D3C",
+      "size": 56,
+      "cluster": "BT02",
+      "name_hypothesis": "set_audio_frequency",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80010D3C.c",
+      "note": "BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    {
+      "address": "0x80011894",
+      "name": "func_80011894",
+      "size": 44,
+      "cluster": "BT02",
+      "name_hypothesis": "reset_audio_buffer_cursors",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80011894.c",
+      "note": "BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    {
+      "address": "0x800119E0",
+      "name": "func_800119E0",
+      "size": 48,
+      "cluster": "BT02",
+      "name_hypothesis": "submit_audio_task",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_800119E0.c",
+      "note": "BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    {
+      "address": "0x80011A10",
+      "name": "func_80011A10",
+      "size": 44,
+      "cluster": "BT02",
+      "name_hypothesis": "initialize_audio_state",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80011A10.c",
+      "note": "BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    {
+      "address": "0x80011A3C",
+      "name": "func_80011A3C",
+      "size": 40,
+      "cluster": "BT02",
+      "name_hypothesis": "release_audio_state",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80011A3C.c",
+      "note": "BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+    },
+    {
+      "address": "0x80012200",
+      "name": "func_80012200",
+      "size": 52,
+      "cluster": "BT02",
+      "name_hypothesis": "tick_audio_countdowns",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80012200.c",
+      "note": "BT02-small: strict local match; apply after independent replay and exact-head CI. Historical role/type names remain hypotheses."
+    }
+  ]
+}

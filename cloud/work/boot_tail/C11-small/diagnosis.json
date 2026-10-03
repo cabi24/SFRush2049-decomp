@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "function": "func_8001E790",
+  "source_variant": "variants/func_8001E790_v1.c",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "command": "python3 tools/workbench.py diagnose <local-target.o> <local-resolved-candidate.o> --function func_8001E790 --objdump <GNU-MIPS-objdump> --json",
+  "materialization": "Read-only target function and fully scorer-relocated candidate were assembled into local temporary object slices. No target files were changed; native/object snapshots and the raw report remain uncommitted. This diagnosis is a classification aid, not the strict match acceptance gate.",
+  "verdict": "allocation-mismatch",
+  "differing_words": 2,
+  "opcode_mismatches": 0,
+  "register_mismatches": 2,
+  "differing_byte_offsets": [
+    "0x1C",
+    "0x28"
+  ],
+  "native_bytes": 44,
+  "candidate_function_bytes": 44,
+  "frame": "frameless on both sides",
+  "owning_pass": "unknown",
+  "ownership_basis": "heuristic",
+  "reachability": "unknown",
+  "lever_class": "none-known",
+  "summary": "Shift result uses temporary t8 instead of return v0; final zero-extension consumes that temporary. The workbench did not prove a source lever. Eleven bounded natural return-width/result-expression controls did not improve the 2/11 baseline."
+}

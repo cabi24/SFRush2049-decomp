@@ -1,0 +1,38 @@
+{
+  "state": "active",
+  "owner": "/root/match_boot_tail_bt05_bt07",
+  "packet": "BT05-medium-next",
+  "branch": "dot/boot-tail-bt05-medium-next",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x80021BF0",
+      "size": 104,
+      "end_exclusive": "0x80021C58"
+    },
+    {
+      "address": "0x80021F08",
+      "size": 96,
+      "end_exclusive": "0x80021F68"
+    },
+    {
+      "address": "0x80022514",
+      "size": 108,
+      "end_exclusive": "0x80022580"
+    },
+    {
+      "address": "0x80022C58",
+      "size": 124,
+      "end_exclusive": "0x80022CD4"
+    },
+    {
+      "address": "0x80023D70",
+      "size": 72,
+      "end_exclusive": "0x80023DB8"
+    }
+  ],
+  "bytes": 504,
+  "prior_packet": "BT05-medium independently approved and frozena3a8ada9564c75d0d092b437f4301a298e55a9c4",
+  "edit_scope": "Only listed match sources and cloud/work/boot_tail/BT05-medium-next/**",
+  "stop": "Natural C89/O2/O1 genuine helper ABI,20 directed variants max; no protected edits, overlapping targets or frozen residual reopening."
+}

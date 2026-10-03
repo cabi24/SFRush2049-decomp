@@ -1,0 +1,62 @@
+{
+  "scope": "80025D84 only; no native words or object files retained",
+  "initial": {
+    "name": "func_80025D84",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 15,
+        "total": 15,
+        "extra": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 15,
+        "total": 15,
+        "extra": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    ]
+  },
+  "diagnosis": {
+    "tool": "tools/workbench.py diagnose",
+    "verdict": "structure-mismatch",
+    "positional_differing_words": 15,
+    "frame": null,
+    "note": "Temporary native object has no symbolic relocations; final strict scorer resolves all symbolic sites."
+  },
+  "directed_variants": [
+    {
+      "variant": "index",
+      "differing": 0,
+      "extra": 0,
+      "total": 15
+    },
+    {
+      "variant": "end_pointer",
+      "differing": 11,
+      "extra": 0,
+      "total": 15
+    },
+    {
+      "variant": "pointer_lt",
+      "differing": 15,
+      "extra": 1,
+      "total": 15
+    },
+    {
+      "variant": "while_loop",
+      "differing": 15,
+      "extra": 2,
+      "total": 15
+    }
+  ],
+  "complete_source_forms": 5,
+  "accepted_form": "index",
+  "next_hypothesis": null
+}
