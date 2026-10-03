@@ -96,11 +96,11 @@ their own image.
 
 | | A | B |
 |---|---:|---:|
-| Functions | 192 | 49 |
+| Functions | 193 | 49 |
 | Text bytes | 152,952 | 38,708 |
 | Empty functions (`jr ra; nop`) | 63 | 10 |
 | Switch tables recognised | 25 | 6 |
-| Unproven merges | 1 (`0x8038FF90`; see `extents.json`) | 0 |
+| Unproven merges | 0 (`0x8038FF90` is a standalone leaf) | 0 |
 | Call targets landing inside a function | 0 | 0 |
 
 Every function records its start evidence (`jal`, `game_jal`, `prologue`,

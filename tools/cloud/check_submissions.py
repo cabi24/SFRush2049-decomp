@@ -13,7 +13,7 @@ import sys
 
 REPO = Path(__file__).resolve().parents[2]
 FLAGS = re.compile(r"/\* flags: (.+?) \*/")
-RUNTIME_IMAGES = ("ovl_a", "ovl_b")
+RUNTIME_IMAGES = ("ovl_a", "ovl_b", "boot_tail")   # extra target sets under asm/us/
 
 
 def git(repo, *args):
@@ -46,7 +46,7 @@ def commands(repo, paths):
         parts = PurePosixPath(name).parts
         if len(parts) == 3 and parts[:2] == ("cloud", "matches") and name.endswith(".c"):
             singles.add(name)
-        # Runtime images at 0x8038A400: cloud/matches/ovl_a/<fn>.c, cloud/matches/ovl_b/<fn>.c.
+        # Extra target sets: cloud/matches/{ovl_a,ovl_b,boot_tail}/<fn>.c score against asm/us/<set>.
         if (len(parts) == 4 and parts[:2] == ("cloud", "matches")
                 and parts[2] in RUNTIME_IMAGES and name.endswith(".c")):
             singles.add(name)

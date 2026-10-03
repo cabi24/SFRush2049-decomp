@@ -5993,6 +5993,10 @@ func_8038F79C:
     .word 0x27BD0060
     .word 0x03E00008
     .word 0x00000000
+
+.section .text.func_8038FF90, "ax", @progbits
+.globl func_8038FF90
+func_8038FF90:
     .word 0x00047080
     .word 0x01C47021
     .word 0x000E70C0
