@@ -1,0 +1,7 @@
+address,name,size,cluster,status,flags,diff_words,source_path,note
+0x80021B9C,func_80021B9C,36,BT05,verified_body,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80021B9C.c,Strict MATCH; paired source/ABI review and replay passed; exact-head CI pending.
+0x80021BC0,func_80021BC0,48,BT05,verified_body,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80021BC0.c,Strict MATCH; paired source/ABI review and replay passed; exact-head CI pending.
+0x80022580,func_80022580,44,BT05,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,2,cloud/work/boot_tail/BT05-wrappers/nonmatch/func_80022580.c,"COMPLETE-NONMATCH; bounded natural source forms, see experiments.json; no match claimed."
+0x80022A40,func_80022A40,56,BT05,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,7,cloud/work/boot_tail/BT05-wrappers/nonmatch/func_80022A40.c,"COMPLETE-NONMATCH; bounded natural source forms, see experiments.json; no match claimed."
+0x80023520,func_80023520,36,BT05,verified_body,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80023520.c,Strict MATCH; paired source/ABI review and replay passed; exact-head CI pending.
+0x80023544,func_80023544,32,BT05,verified_body,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80023544.c,Strict MATCH; paired source/ABI review and replay passed; exact-head CI pending.

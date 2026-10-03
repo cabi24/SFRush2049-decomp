@@ -1,0 +1,13 @@
+/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
+/* Controller-table access; see cloud/work/boot_tail/C13-medium/README.md. */
+extern unsigned char D_80050C60[][16];
+extern unsigned char D_80050CE0[];
+
+unsigned char func_80020F98(unsigned char channel, unsigned char set)
+{
+    if (set != 255) {
+        return D_80050C60[set][channel];
+    } else {
+        return D_80050CE0[channel];
+    }
+}
