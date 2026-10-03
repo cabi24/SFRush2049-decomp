@@ -120,6 +120,17 @@ in `game_calls_here` as non-evidence.
 | A | `func_80398BF0` | 68 | linked-list find by byte id in slot `D_80144D68[D_803B9BBA]` |
 | A | `func_8039A24C` | 84 | `func_800A361C(x) || (D_803B46B4 == 2 && func_800A35F8(x))` |
 
+**Compiler shape:** 76 of 192 functions in A, and 13 of 49 in B, write a
+callee-saved register (`s0`–`s7`) that they never save. Examples are
+`func_8038AE50` and `func_80399394`, which use `s0` with no `sw s0` anywhere.
+Plain `-O2` never does this; it is IDO `-O3` interprocedural register
+allocation within a file. Most of each image is therefore matchable only
+through the call-group route (`cloud/work/ipa-groups/`, `score.py group`) with
+the real callers in the same file. Single-function `-O2` scoring fits only the
+self-contained leaves. A batch of 50 raw m2c seeds (functions of 400 bytes or
+less) scored as expected for unedited seeds: none matched raw, and the five
+matches above were hand-finished.
+
 The 73 empty functions also match `void f(void) {}`. They are not submitted
 individually. None of this is cartridge coverage yet: integrating C into the
 runtime images needs an image build plus exact recompression of each ROM
