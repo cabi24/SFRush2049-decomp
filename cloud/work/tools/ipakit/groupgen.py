@@ -212,8 +212,13 @@ def ensure_m2c():
                 shutil.copy(M2C_SRC / f, M2C_WORK / f)
             subprocess.run(['git', 'init', '-q'], cwd=M2C_WORK, capture_output=True)   # so `git apply` uses this directory as root
             for p in sorted(M2C_PATCHES.glob('*.patch')):
-                r = subprocess.run(['git', 'apply', '--include=m2c/*', '--include=m2c.py', str(p)], cwd=M2C_WORK,
-                                   capture_output=True, text=True)
+                apply = ['git', 'apply', '--include=m2c/*', '--include=m2c.py']
+                # Conveyor patches the submodule in place (autodecomp.ensure_m2c_patched), so the
+                # copied source may already carry a patch; applying it again would fail.
+                if subprocess.run(apply + ['--check', '--reverse', str(p)], cwd=M2C_WORK,
+                                  capture_output=True).returncode == 0:
+                    continue
+                r = subprocess.run(apply + [str(p)], cwd=M2C_WORK, capture_output=True, text=True)
                 if r.returncode != 0:
                     raise RuntimeError('patch %s: %s' % (p.name, r.stderr.strip()[:200]))
             if not (M2C_WORK / 'm2c' / 'rush_ipa.py').exists():
