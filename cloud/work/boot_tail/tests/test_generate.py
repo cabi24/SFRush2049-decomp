@@ -44,9 +44,13 @@ class GeneratorTests(unittest.TestCase):
                             for r in self.rows if r["scope"] == "in_scope")
         self.assertEqual(sum(r["status"] == "open" for r in ledger), expected_open)
         verified = [r for r in ledger if r["status"] == "verified_body"]
-        self.assertEqual([(r["address"], r["size"]) for r in verified], [("0x80010A00", "12")])
-        self.assertIn("Packet2", verified[0]["note"])
-        self.assertEqual(result["summary"]["new_verified_bytes"], 0)
+        expected_verified = [(r["address"], str(r["size"])) for r in self.rows
+                             if self.research["function_annotations"].get(r["address"], {}).get("status") == "verified_body"]
+        self.assertEqual([(r["address"], r["size"]) for r in verified], expected_verified)
+        getter = next(r for r in verified if r["address"] == "0x80010A00")
+        self.assertIn("Packet2", getter["note"])
+        self.assertEqual(result["summary"]["new_verified_bytes"],
+                         sum(int(r["size"]) for r in verified if r["address"] != "0x80010A00"))
         self.assertEqual(result["summary"]["game_called_in_scope"], 20)
 
     def test_clusters_exact_disjoint_and_contiguous(self):
@@ -127,6 +131,9 @@ class GeneratorTests(unittest.TestCase):
         self.assertNotIn("0x80010A00", candidates)
 
     def test_derived_verified_totals(self):
+        for address, annotation in self.research["function_annotations"].items():
+            if address != "0x80010A00":
+                annotation["status"] = "open"
         self.research["function_annotations"]["0x80010A00"]["status"] = "open"
         _, result = self.build()
         self.assertEqual(result["summary"]["preexisting_verified_bytes"], 0)
@@ -140,6 +147,9 @@ class GeneratorTests(unittest.TestCase):
             self.build()
 
     def test_readme_headline_tracks_live_status(self):
+        for address, annotation in self.research["function_annotations"].items():
+            if address != "0x80010A00":
+                annotation["status"] = "open"
         self.research["function_annotations"]["0x80010A0C"] = dict(self.research["function_annotations"]["0x80010A00"], status="verified_body")
         _, result = self.build()
         rendered = generate.readme(result)

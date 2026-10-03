@@ -45,17 +45,21 @@ partitions, exact targets, owners, branches and stops. Initial assignment:
 50 functions / 1,736 B. Each worker holds one active packet; only the C11 lead
 updates this central ledger. Others submit per-packet status deltas.
 
-The integrated first-wave source checkpoint contains **42 locally strict matches /
+The published first-wave source checkpoint has **42 verified matching bodies /
 1,332 B** and **8 complete nonmatches / 404 B**. All six packets passed paired
-independent source/ABI/strict-replay review; all integrated source hashes exactly
-preserve those reviewed commits. Exact aggregate PR-head CI is pending, so matching
-rows remain `claimed` until that evidence closes. See `wave1/README.md`,
-`wave1/reviewed_sources.json` and per-packet receipts. No cartridge credit is claimed.
+independent source/ABI/strict-replay review. Exact-source-head
+[CI passed](https://github.com/cabi24/SFRush2049-decomp/actions/runs/37152316686) at
+`3574dbec2ecd4a4eee7cf95964cf47329cabbcb2` in draft
+[PR #61](https://github.com/cabi24/SFRush2049-decomp/pull/61); its tree exactly matched
+the independently reviewed local tree. Every C file remains unchanged in this
+status/receipt update. See `wave1/ci.json`, `wave1/README.md` and the source-hash
+manifest. This is verified matching source only; merging and cartridge promotion
+remain with the owner's independent checker.
 
-Two workers have one queued batch each in `claims.json`. A queued packet may activate
-only after its preceding sources are frozen, peer-reviewed, published in the aggregate
-draft and exactly verified remotely. The lead retains CI ownership through terminal
-status. New dependent editing pauses if CI fails.
+The first-wave editing claims are released and frozen. Historical queued requests
+in `claims.json` are superseded by separately coordinated successor work under
+later user direction. No subsequent matching source is added to this first-wave
+receipt update. Its exact new-head CI must also be checked before final completion.
 ## Read first
 
 - `STATUS.csv`: exactly one row for each `in_scope` inventory function.
@@ -264,3 +268,10 @@ unchanged; aggregate strict replay and the current-master guard were rerun.
 PR #59 remains unmerged. Its research is incorporated explicitly by source
 provenance from `21e104a2`, rather than merging the PR or claiming current ancestry.
 The historical Packet 2 and per-worker review commit identities remain intact.
+
+The D10 handoff is intentionally unchanged from the published source-bearing
+revision: its local-match and pending-CI wording predates this completed CI proof.
+A full-file update was blocked because of inherited private metadata outside D10,
+so only the independent allowed ledger, README and receipt files are updated.
+The CI result and verified-body totals here and in STATUS.csv are authoritative.
+No inherited handoff sections were removed or republished in this receipt update.

@@ -1,9 +1,9 @@
 # First boot-tail matching wave
 
-**Source-frozen, paired independent review passed.** Local aggregate replay:
-**42 strict matches / 1,332 B**, plus **8 complete nonmatches / 404 B**.
-These 50 attempts total 1,736 B and are disjoint. Exact aggregate PR-head CI is
-pending, so the central ledger keeps matching rows claimed until it passes.
+**Source-frozen, paired independent review passed.** Exact-source-head CI passed; aggregate replay:
+**42 verified strict matches / 1,332 B**, plus **8 complete nonmatches / 404 B**.
+These 50 attempts total 1,736 B and are disjoint. Exact-source-head CI passed at `3574dbec` in draft PR #61, so the central
+ledger now records the 42 submitted bodies as verified.
 This is verified-source work, not cartridge coverage or maintainer acceptance.
 
 | Packet | Attempted | Local strict matches | Nonmatches | Exact reviewed source commit | Independent reviewer |
@@ -100,3 +100,21 @@ unchanged; aggregate strict replay and the current-master guard were rerun.
 PR #59 remains unmerged. Its research is incorporated explicitly by source
 provenance from `21e104a2`, rather than merging the PR or claiming current ancestry.
 The historical Packet 2 and per-worker review commit identities remain intact.
+
+## Published source-head CI receipt
+
+Draft [PR #61](https://github.com/cabi24/SFRush2049-decomp/pull/61), head
+`3574dbec2ecd4a4eee7cf95964cf47329cabbcb2`, exact tree
+`33ccf2785a3eb53f749e4db494dad3fc6450bb67`, passed
+[Verify run 37152316686](https://github.com/cabi24/SFRush2049-decomp/actions/runs/37152316686).
+All 42 matching C files are unchanged in this status-only receipt revision.
+`ci.json` records the closed source-head proof. This new bookkeeping head will
+also receive exact-head CI before final completion; the PR description carries
+that final result so recording it does not create an endless new-commit loop.
+
+The D10 handoff is intentionally unchanged from the published source-bearing
+revision: its local-match and pending-CI wording predates this completed CI proof.
+A full-file update was blocked because of inherited private metadata outside D10,
+so only the independent allowed ledger, README and receipt files are updated.
+The CI result and verified-body totals here and in STATUS.csv are authoritative.
+No inherited handoff sections were removed or republished in this receipt update.
