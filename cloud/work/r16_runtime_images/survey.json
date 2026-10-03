@@ -1,0 +1,55 @@
+{
+  "rom_pointer_table": {
+    "0x8002B020": "0xB5C534 (image A)",
+    "0x8002B024": "0xB6FEC4 (image B)"
+  },
+  "images": {
+    "A": {
+      "rom": "0xB5C534",
+      "compressed": 80272,
+      "size": 194128,
+      "vram": "0x8038A400-0x803B9A50",
+      "internal_call_targets": 96,
+      "targets_at_function_starts": 96,
+      "jr_ra": 195
+    },
+    "B": {
+      "rom": "0xB6FEC4",
+      "compressed": 23639,
+      "size": 43888,
+      "vram": "0x8038A400-0x80394F70",
+      "internal_call_targets": 20,
+      "targets_at_function_starts": 20,
+      "jr_ra": 49
+    }
+  },
+  "services": {
+    "0x8038D798": {
+      "A": "mid-function",
+      "B": "call-target,prologue,after-jr-ra"
+    },
+    "0x8038D3A4": {
+      "A": "mid-function",
+      "B": "call-target,prologue,after-jr-ra"
+    },
+    "0x8038F454": {
+      "A": "after-jr-ra",
+      "B": "mid-function"
+    },
+    "0x80391490": {
+      "A": "mid-function",
+      "B": "after-jr-ra"
+    },
+    "0x8039133C": {
+      "A": "mid-function",
+      "B": "prologue,after-jr-ra"
+    }
+  },
+  "boot_segment": {
+    "rom": "0x1000-0x2F4E0",
+    "bss_start": "0x8002E8E0",
+    "counted_static": "0x1000-0x10000",
+    "bands_from_0x10000_per_1KB": "ccccccccccccc.c..cccccccccccccccccccccccccccc..cccccccccccccccccccccccccccccccccccc..ccccccccc..cccrrrrrrrrrrrr.....c.........",
+    "jr_ra_0x10000_to_end": 541
+  }
+}

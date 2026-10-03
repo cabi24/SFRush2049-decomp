@@ -50,6 +50,21 @@ def test_selects_singles_and_deduplicates_changed_groups(tmp_path):
     assert jobs[1][2:] == ["group", str(tmp_path / group), "--claims"]
 
 
+def test_runtime_image_submissions_score_against_their_own_targets(tmp_path):
+    header = "/* flags: -g0 -O2 -mips2 -G 0 -non_shared */\n"
+    for image in ("ovl_a", "ovl_b", "boot_tail"):
+        _write(tmp_path, f"cloud/matches/{image}/func_8038A400.c", header)
+    _write(tmp_path, "cloud/matches/ovl_c/func_8038A400.c", header)
+    jobs = list(ci.commands(tmp_path, [
+        "cloud/matches/ovl_a/func_8038A400.c", "cloud/matches/ovl_b/func_8038A400.c",
+        "cloud/matches/boot_tail/func_8038A400.c", "cloud/matches/ovl_c/func_8038A400.c"]))
+    assert [job[-1] for job in jobs] == [
+        "--targets=" + str(tmp_path / "asm/us/boot_tail"),
+        "--targets=" + str(tmp_path / "asm/us/ovl_a"),
+        "--targets=" + str(tmp_path / "asm/us/ovl_b")]
+    assert all(job[4] == "func_8038A400" for job in jobs)
+
+
 @pytest.mark.parametrize("header", ["", "/* flags:  */", "int f(void);",
                                     "\n/* flags: -O2 */", "/* flags: -O2 */ trailing"])
 def test_requires_flags_on_first_line(tmp_path, header):
