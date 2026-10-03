@@ -1,5 +1,5 @@
 {
-  "state": "active source-led reopen; old archives immutable",
+  "state": "integrating-source-frozen",
   "owner": "/root/match_boot_tail_bt05_bt07",
   "packet": "BT05-source-led",
   "branch": "dot/boot-tail-bt05-source-led",
@@ -46,5 +46,6 @@
       "One separate product then arithmetic-shift control"
     ],
     "limit": "Exactly these two additional natural controls on23190 only, then freeze; no extension on223D0 or22514. No old source replacements without full strict proof."
-  }
+  },
+  "peer_approved_head": "87fd05d1e4a96450bdc455aba7f5fb10cf57b606"
 }

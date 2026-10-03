@@ -1,0 +1,93 @@
+[
+  {
+    "name": "func_80018B8C",
+    "stage": "explicit_tag_bit_guard",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "879639a45ba10cb25f4102e7c21f704e1d3d67d0c8f144bb0700e32c2d5c72cf",
+    "differing": 0,
+    "total": 24,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "strict_match": true
+  },
+  {
+    "name": "func_80018EB4",
+    "stage": "explicit_tag_bit_guard",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "b6c370025f138b2b08222d197be3491806c53ed1f9e6a30ea7ba9398051c17aa",
+    "differing": 0,
+    "total": 27,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "strict_match": true
+  },
+  {
+    "name": "func_80018BEC",
+    "stage": "meaningful_boolean_result_local",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "a4d0af4f637b4cd91052ebea40c0d418ac3a88b58befbfc779e9772be9393756",
+    "differing": 3,
+    "total": 16,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "strict_match": false
+  },
+  {
+    "name": "func_800193C8",
+    "stage": "peer_review_explicit_high_tag_removal",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "728cfad7836463a174247f4efab3a1abde0b56402beb8817aebccdb3b1896981",
+    "differing": 14,
+    "total": 22,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 2,
+    "strict_match": false
+  },
+  {
+    "name": "func_80019420",
+    "stage": "peer_review_explicit_high_tag_removal",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "0ad2fb22ed2f8d6d4d590d06a942cf71619508fb113a1fb7eac3aeca3a4d3b1f",
+    "differing": 24,
+    "total": 28,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 2,
+    "strict_match": false
+  },
+  {
+    "name": "func_800193C8",
+    "stage": "defined_unsigned_word_address_for_tagged_index",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "07ba773db6b72ad429ebcba9050a6d0cfba74fb5a4b8bde8ddc782bb648da584",
+    "differing": 0,
+    "total": 22,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "strict_match": true
+  },
+  {
+    "name": "func_80019420",
+    "stage": "defined_unsigned_word_address_for_tagged_index",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "2d7e24352cf891924b88737cee709a895e6dbbe9cfe6372eac1cb59f8bcdc24b",
+    "differing": 14,
+    "total": 28,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "strict_match": false
+  }
+]

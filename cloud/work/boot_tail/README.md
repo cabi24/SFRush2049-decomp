@@ -1,12 +1,12 @@
 # D10: boot-tail runtime research and matching
 
 The 412 assigned functions account for **95,012 B**.
-The current ledger records **218 open functions / 80,660 B**,
+The current ledger records **203 open functions / 77,924 B**,
 **0 confirmed non-C rows**, **1
 pre-existing verified bodies / 12 B**, and
-**124 newly verified bodies / 6,936 B**.
-There are **24 claimed functions / 3,548 B** and
-**45 nonmatches / 3,856 B**.
+**148 newly verified bodies / 10,484 B**.
+There are **9 claimed functions / 752 B** and
+**51 nonmatches / 5,840 B**.
 
 Packet 1 itself introduced zero matching bodies or verified bytes. Its initial
 verified entry imports the existing 12-byte `func_80010A00` PR #54 receipt, now
@@ -258,8 +258,8 @@ repository regression, native equality proof, target/toolchain check or ROM test
 ```json
 {
   "all_tail_distinct_directed_edges": 671,
-  "claimed_bytes": 3548,
-  "claimed_functions": 24,
+  "claimed_bytes": 752,
+  "claimed_functions": 9,
   "cluster_count": 8,
   "cohort_count": 17,
   "game_called_all_inventory": 21,
@@ -270,13 +270,13 @@ repository regression, native equality proof, target/toolchain check or ROM test
   "in_scope_functions": 412,
   "inventory_function_bytes": 99120,
   "inventory_functions": 439,
-  "new_verified_bytes": 6936,
-  "new_verified_functions": 124,
+  "new_verified_bytes": 10484,
+  "new_verified_functions": 148,
   "non_c_functions": 0,
-  "nonmatch_bytes": 3856,
-  "nonmatch_functions": 45,
-  "open_bytes": 80660,
-  "open_functions": 218,
+  "nonmatch_bytes": 5840,
+  "nonmatch_functions": 51,
+  "open_bytes": 77924,
+  "open_functions": 203,
   "preexisting_verified_bytes": 12,
   "preexisting_verified_functions": 1,
   "ultralib_excluded_bytes": 4048,
@@ -455,3 +455,15 @@ outside match credit. No already-attempted address is counted twice. See
 wave5/README.md and wave5/unique_totals.json. Later sources are excluded from
 this frozen cut; atomic successor claims do not confer matching credit. D10 is
 unchanged and the allowed ledger/receipts remain authoritative.
+
+## Sixth cut: nine additional bodies and bounded research
+
+The first five source cuts now have 148 unique new exact-CI-verified bodies /
+10,484 B. Sixth cut adds nine peer-reviewed strict local bodies / 752 B, pending
+its exact-head CI. It also archives six complete nonmatches / 1,984 B. Across
+208 unique attempted addresses the proposed union is 157 new matching bodies /
+11,236 B, 50 complete nonmatches / 5,744 B, and the earlier 96-byte blocked lead.
+The 12-byte getter is separate. Three qualified source-led rechecks add no unique
+attempts or matches; the improved signed donor probe does not replace the old
+full-width reconstruction. See wave6/README.md and wave6/unique_totals.json.
+Prior source-head proof is carried in wave5/ci.json; D10 remains unchanged.

@@ -1,0 +1,215 @@
+{
+  "packet": "BT07-stream-pair",
+  "base_commit": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "central_claim_commit": "b5723bfa",
+  "manifest": [
+    "boot_tail_8000f3a4.s: OK",
+    "extents.json: OK",
+    "symbols.json: OK"
+  ],
+  "compiler_files_sha256": {
+    "acpp": "7bfdf2f79010eb95bd47e165036cac04a69e5f1290fde11736e5f6934f3e9189",
+    "as0": "72670d53952459fe5ac463e8844182cf4df9f6ccf469826c82ca858fdd665564",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+    "c++filt": "60791cf1d07ba780a4e8aa25d53c741d4b7d5427f891f7287b1bed0b6ba3e665",
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "copt": "e62a2a7276d2f9fa7f5daac25e01abe92cf4765173391cb0b616434c9c8122b3",
+    "crt1.o": "95bd24880e95e102bbdf2a1cfa2e10d391cb57784a42db19afd609c0904aee28",
+    "crtn.o": "62197e97a5e56e21c6a4e76ffe9f634cf90b47046ebe4841086108101ce496eb",
+    "err.english.cc": "6f2d777730f0a70328bb932c116c1c195da765cb9bbdee8c6d3eaf7d6ad77e78",
+    "ld": "266c5a22192ce532a6dcdb7127c1da72faa37e7e71d44677ab91d723b8ed2113",
+    "libc.so": "803f8b127194a79d92c5caea62fd39097be16d3fcd9870b4470123cebd5d27fe",
+    "libc.so.1": "803f8b127194a79d92c5caea62fd39097be16d3fcd9870b4470123cebd5d27fe",
+    "libexc.so": "b59bf75bcbff1526ad4e3b2b49b313788a6e4c97df5b69b4bc2ddbd6726c5864",
+    "libgen.so": "bb66dea1242000f648e890252cbe47037310559cc0ecda8ed212c0e545bf8063",
+    "libm.so": "8acc66c2d1315b90f38a280fe04a26d0e61b5ca377976ed5d7f88bb064bd2e35",
+    "strip": "bf39eca7d4357b699d59077078c657c5af428b0e57d5dd7835c3d0f915e801bf",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "ujoin": "34a6fff6e693f8c9505777d2860b4795fe97a01e89ce8616f4a5b624b11c451d",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "upas": "7fa9be3c14bfe854bb539312af5f4f40c29b975996bdd6868f489f82fb427d5b",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b"
+  },
+  "inventory_extents": {
+    "count": 439,
+    "bytes": 99120,
+    "equal": true
+  },
+  "results": [
+    {
+      "name": "func_80025AB4",
+      "bytes": 436,
+      "source_path": "cloud/work/boot_tail/BT07-stream-pair/func_80025AB4.c",
+      "source_sha256": "dbfb8588ad9aaec30328d708e70dafa27094b88512e3ceebbb9f0030699bc19b",
+      "target_body_sha256": "553773811c8d3a18a48be84591f0222a88737ff3c98050144d92260fc08f14b3",
+      "trials": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "source_sha256": "dbfb8588ad9aaec30328d708e70dafa27094b88512e3ceebbb9f0030699bc19b",
+          "object_sha256": "e766a25a387b37e873b10ab3a1a0fab37ec31b2b4140a9f6298917c139228c97",
+          "differing_words": 45,
+          "total_words": 109,
+          "extra_words": 0,
+          "strict_match": false,
+          "unresolved": [],
+          "unverified": [],
+          "relocation_errors": [],
+          "relocation_mask_count": 0,
+          "full_body_equal": false,
+          "object_text_bytes": 448
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "source_sha256": "dbfb8588ad9aaec30328d708e70dafa27094b88512e3ceebbb9f0030699bc19b",
+          "object_sha256": "a2e10b4df524b213f4c66299eb41f7a7b1417928cd9adbeb2261bddd7dee05c5",
+          "differing_words": 94,
+          "total_words": 109,
+          "extra_words": 11,
+          "strict_match": false,
+          "unresolved": [],
+          "unverified": [],
+          "relocation_errors": [],
+          "relocation_mask_count": 0,
+          "full_body_equal": false,
+          "object_text_bytes": 496
+        }
+      ],
+      "initial_control": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "source_sha256": "443db6483b97e73cf50b4c196ba7fa9e7cf7d5c84e2f69d6f353d52da1fdb7e1",
+          "object_sha256": "adc050f8ae98efbac32e460bf3dd1346437767ee8434cfc5ce583ee25c7f5f8a",
+          "differing_words": 99,
+          "total_words": 109,
+          "extra_words": 3,
+          "strict_match": false,
+          "unresolved": [],
+          "unverified": [],
+          "relocation_errors": [],
+          "relocation_mask_count": 0,
+          "full_body_equal": false,
+          "object_text_bytes": 464
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "source_sha256": "443db6483b97e73cf50b4c196ba7fa9e7cf7d5c84e2f69d6f353d52da1fdb7e1",
+          "object_sha256": "c3b931a3a675af010ec9ba1b142f08f14aaf35b7e71e57352e46a6badf076257",
+          "differing_words": 103,
+          "total_words": 109,
+          "extra_words": 9,
+          "strict_match": false,
+          "unresolved": [],
+          "unverified": [],
+          "relocation_errors": [],
+          "relocation_mask_count": 0,
+          "full_body_equal": false,
+          "object_text_bytes": 480
+        }
+      ]
+    },
+    {
+      "name": "func_800252AC",
+      "bytes": 552,
+      "source_path": "cloud/work/boot_tail/BT07-stream-pair/func_800252AC.c",
+      "source_sha256": "e0cec37287982ebc0bfc57ee2b60ad7a2aca02306f4a0f3141b6f6eb8db601f1",
+      "target_body_sha256": "f6eec90c2ddd8a5679ecc6b7202c5106f4b005fd09d06353abf17f9d0610d4a8",
+      "trials": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "source_sha256": "e0cec37287982ebc0bfc57ee2b60ad7a2aca02306f4a0f3141b6f6eb8db601f1",
+          "object_sha256": "85f1c7732808e0ca1acb4ec7d3c9214e68c20f6c1c0410fb55a91b6ac1204b2d",
+          "differing_words": 44,
+          "total_words": 138,
+          "extra_words": 0,
+          "strict_match": false,
+          "unresolved": [],
+          "unverified": [],
+          "relocation_errors": [],
+          "relocation_mask_count": 0,
+          "full_body_equal": false,
+          "object_text_bytes": 560
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "source_sha256": "e0cec37287982ebc0bfc57ee2b60ad7a2aca02306f4a0f3141b6f6eb8db601f1",
+          "object_sha256": "b17423011ce2138046f6043f8f7b40994bad99b962e32571d7b62e2b81839fda",
+          "differing_words": 136,
+          "total_words": 138,
+          "extra_words": 28,
+          "strict_match": false,
+          "unresolved": [],
+          "unverified": [],
+          "relocation_errors": [
+            "unpaired R_MIPS_HI16 for D_80058688 at .text+0x224"
+          ],
+          "relocation_mask_count": 0,
+          "full_body_equal": false,
+          "object_text_bytes": 672
+        }
+      ],
+      "initial_control": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "source_sha256": "ef80c2efd8d28f762c68d21623685267a453c427015e3d80dc9da08d6edfc9fb",
+          "object_sha256": "96aa42424e39218811ee3771669c249da38235d435137ffbf6eac383034428fa",
+          "differing_words": 126,
+          "total_words": 138,
+          "extra_words": 7,
+          "strict_match": false,
+          "unresolved": [],
+          "unverified": [],
+          "relocation_errors": [],
+          "relocation_mask_count": 0,
+          "full_body_equal": false,
+          "object_text_bytes": 592
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "source_sha256": "ef80c2efd8d28f762c68d21623685267a453c427015e3d80dc9da08d6edfc9fb",
+          "object_sha256": "e4c2695d3aaac80c2c608534a020a8f4382e473fc7322c1441184965e506a3e6",
+          "differing_words": 137,
+          "total_words": 138,
+          "extra_words": 32,
+          "strict_match": false,
+          "unresolved": [],
+          "unverified": [],
+          "relocation_errors": [],
+          "relocation_mask_count": 0,
+          "full_body_equal": false,
+          "object_text_bytes": 688
+        }
+      ]
+    }
+  ],
+  "packet_hashes": {
+    "cloud/work/boot_tail/BT07-stream-pair/README.md": "0d5215fc9e61b759833f65d99b537de4f7d71a7ddb62ba1e987824faecd05138",
+    "cloud/work/boot_tail/BT07-stream-pair/controls/initial_800252AC.c": "ef80c2efd8d28f762c68d21623685267a453c427015e3d80dc9da08d6edfc9fb",
+    "cloud/work/boot_tail/BT07-stream-pair/controls/initial_80025AB4.c": "443db6483b97e73cf50b4c196ba7fa9e7cf7d5c84e2f69d6f353d52da1fdb7e1",
+    "cloud/work/boot_tail/BT07-stream-pair/diagnosis.json": "5683e14f8949db638095c147c64b21404fc318e00f40852abd3e94d9e9900b70",
+    "cloud/work/boot_tail/BT07-stream-pair/experiments.json": "54f12f11cd82f3f362ade203a23d5c0338c6cd7e3db3ab152d2bb621a5bedce9",
+    "cloud/work/boot_tail/BT07-stream-pair/func_800252AC.c": "e0cec37287982ebc0bfc57ee2b60ad7a2aca02306f4a0f3141b6f6eb8db601f1",
+    "cloud/work/boot_tail/BT07-stream-pair/func_80025AB4.c": "dbfb8588ad9aaec30328d708e70dafa27094b88512e3ceebbb9f0030699bc19b",
+    "cloud/work/boot_tail/BT07-stream-pair/input_pins.json": "7d80b57f2965a2d41da03d237479ae400fd47859f981cc9b7c3da9320874700a",
+    "cloud/work/boot_tail/BT07-stream-pair/reconstruction.md": "b94537c6621b3219ca344f4a4e8a1b5314f141f94672b86ea28809628f54ad31",
+    "cloud/work/boot_tail/BT07-stream-pair/status_delta.csv": "3b6caf65b70a94b694a39bd6052be8947c6b6f41ccb97e8e2224fb54a23f476d",
+    "cloud/work/boot_tail/BT07-stream-pair/test_semantics.py": "4aea3de7be9d8e39a20b74c2b6913aa2a4ecb807b7f940d9ae629971e9ffb335",
+    "cloud/work/boot_tail/BT07-stream-pair/verify.py": "f55d6b501c106f1026e1143d97c2507544cb0ecafc6cdde1a93250c69c4f50ae"
+  },
+  "getter_strict_match": true,
+  "result": "PASS",
+  "new_matching_bodies": 0,
+  "new_matching_bytes": 0,
+  "complete_nonmatch_bodies": 2,
+  "complete_nonmatch_bytes": 988
+}

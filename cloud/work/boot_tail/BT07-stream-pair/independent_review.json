@@ -1,0 +1,114 @@
+{
+  "result": "PASS-RESEARCH-ONLY",
+  "reviewer": "BT03-low-medium independent peer",
+  "reviewed_commit": "5b3c7668aac4a92e8eb18da6fe255e585d86b1ee",
+  "reviewed_tree": "e7837732fe3a04508ab71ddc0c8b6c06fa612e06",
+  "base_commit": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "compiler_pin_sha256": "8ca550d30c1fef7c14b1470a1ef93cc6d415a507c6e18c04a7bfeaf8016a7b89",
+  "full_source_results": [
+    {
+      "name": "func_80025AB4",
+      "native_bytes": 436,
+      "source_sha256": "dbfb8588ad9aaec30328d708e70dafa27094b88512e3ceebbb9f0030699bc19b",
+      "target_sha256": "553773811c8d3a18a48be84591f0222a88737ff3c98050144d92260fc08f14b3",
+      "trials": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "differing_words": 45,
+          "extra_nonzero_words": 0,
+          "strict_match": false,
+          "object_sha256": "e766a25a387b37e873b10ab3a1a0fab37ec31b2b4140a9f6298917c139228c97",
+          "function_symbol_bytes": 440,
+          "candidate_text_bytes": 448,
+          "masks": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": []
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "differing_words": 94,
+          "extra_nonzero_words": 11,
+          "strict_match": false,
+          "object_sha256": "a2e10b4df524b213f4c66299eb41f7a7b1417928cd9adbeb2261bddd7dee05c5",
+          "function_symbol_bytes": 484,
+          "candidate_text_bytes": 496,
+          "masks": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": []
+        }
+      ]
+    },
+    {
+      "name": "func_800252AC",
+      "native_bytes": 552,
+      "source_sha256": "e0cec37287982ebc0bfc57ee2b60ad7a2aca02306f4a0f3141b6f6eb8db601f1",
+      "target_sha256": "f6eec90c2ddd8a5679ecc6b7202c5106f4b005fd09d06353abf17f9d0610d4a8",
+      "trials": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "differing_words": 44,
+          "extra_nonzero_words": 0,
+          "strict_match": false,
+          "object_sha256": "85f1c7732808e0ca1acb4ec7d3c9214e68c20f6c1c0410fb55a91b6ac1204b2d",
+          "function_symbol_bytes": 552,
+          "candidate_text_bytes": 560,
+          "masks": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": []
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "differing_words": 136,
+          "extra_nonzero_words": 28,
+          "strict_match": false,
+          "object_sha256": "b17423011ce2138046f6043f8f7b40994bad99b962e32571d7b62e2b81839fda",
+          "function_symbol_bytes": 672,
+          "candidate_text_bytes": 672,
+          "masks": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [
+            "unpaired R_MIPS_HI16 for D_80058688 at .text+0x224"
+          ]
+        }
+      ]
+    }
+  ],
+  "producer_strict_replay": "PASS; independently regenerated JSON identical to committed receipt",
+  "producer_host_replay": "PASS; 334 scenarios at C89 O2 and ASan/UBSan O1; JSON identical to committed receipt",
+  "independent_32bit_layout": "PASS including additional state/scale/option/request_state/float/translate/release offsets",
+  "changed_submissions": "0; research-only scope verified",
+  "changed_file_count": 14,
+  "artifact_hashes": {
+    "cloud/work/boot_tail/BT07-stream-pair/README.md": "0d5215fc9e61b759833f65d99b537de4f7d71a7ddb62ba1e987824faecd05138",
+    "cloud/work/boot_tail/BT07-stream-pair/controls/initial_800252AC.c": "ef80c2efd8d28f762c68d21623685267a453c427015e3d80dc9da08d6edfc9fb",
+    "cloud/work/boot_tail/BT07-stream-pair/controls/initial_80025AB4.c": "443db6483b97e73cf50b4c196ba7fa9e7cf7d5c84e2f69d6f353d52da1fdb7e1",
+    "cloud/work/boot_tail/BT07-stream-pair/diagnosis.json": "5683e14f8949db638095c147c64b21404fc318e00f40852abd3e94d9e9900b70",
+    "cloud/work/boot_tail/BT07-stream-pair/experiments.json": "54f12f11cd82f3f362ade203a23d5c0338c6cd7e3db3ab152d2bb621a5bedce9",
+    "cloud/work/boot_tail/BT07-stream-pair/func_800252AC.c": "e0cec37287982ebc0bfc57ee2b60ad7a2aca02306f4a0f3141b6f6eb8db601f1",
+    "cloud/work/boot_tail/BT07-stream-pair/func_80025AB4.c": "dbfb8588ad9aaec30328d708e70dafa27094b88512e3ceebbb9f0030699bc19b",
+    "cloud/work/boot_tail/BT07-stream-pair/input_pins.json": "7d80b57f2965a2d41da03d237479ae400fd47859f981cc9b7c3da9320874700a",
+    "cloud/work/boot_tail/BT07-stream-pair/reconstruction.md": "b94537c6621b3219ca344f4a4e8a1b5314f141f94672b86ea28809628f54ad31",
+    "cloud/work/boot_tail/BT07-stream-pair/semantics.json": "90ec675fe9df35b91ca75b4d795ccd79d7e4b2108b1d7890c7d800b93857b42e",
+    "cloud/work/boot_tail/BT07-stream-pair/status_delta.csv": "3b6caf65b70a94b694a39bd6052be8947c6b6f41ccb97e8e2224fb54a23f476d",
+    "cloud/work/boot_tail/BT07-stream-pair/test_semantics.py": "4aea3de7be9d8e39a20b74c2b6913aa2a4ecb807b7f940d9ae629971e9ffb335",
+    "cloud/work/boot_tail/BT07-stream-pair/verification.json": "31ba07dc6125fa50719727cfde40831216950473c9b735cf1f8a468523ef6e71",
+    "cloud/work/boot_tail/BT07-stream-pair/verify.py": "f55d6b501c106f1026e1143d97c2507544cb0ecafc6cdde1a93250c69c4f50ae"
+  },
+  "ABI_audit": [
+    "25AB4 has two real address inputs and boolean result. Native and source both free old owned table before branching; first/second allocation failures preserve the documented awkward global side effects. High-nibble-8 direct path differs intentionally from 14CAC top-byte filtering.",
+    "Shared hook +20 takes one address, +24 takes unsigned size and a zero word, +28 takes one pointer. Transfer matches 10628(destination, source, unsigned size). Retained byte_count is a real call argument and is freshly recomputed after the allocator; no fake padding or keeper.",
+    "252AC has seven real inputs, five byte-valued options, first-free-of-two scan, native 4648-byte stride and second queue/message storage. Unsigned index guard and rate rounding reproduce modulo-32-bit arithmetic.",
+    "252AC preserves cache invalidation on null allocation, real five-argument initializer and four-argument callback, queue-token lock/unlock ordering, busy/handle writes and selected-token return. Earlier StreamState views agree on exposed offsets.",
+    "No inline assembly, synthetic formals, padded stack locals, invented helper body or unresolved O2 rodata. All changes stay in research packet paths."
+  ],
+  "limitations": [
+    "Both bodies are COMPLETE-NONMATCH, 988 B research, zero matching or cartridge credit.",
+    "25AB4 retains 110 true instructions against 109 native although its extra instruction is zero and the scorer reports zero excess nonzero words; boundary equality is not claimed.",
+    "252AC O1 is an overlong rejected control with one comparison-window unpaired HI16; it is explicitly disclosed.",
+    "Host tests do not execute native code; LeakSanitizer is disabled under ptrace. Intermediate controls are historical; only archived initial/final controls are independently replayable."
+  ]
+}

@@ -1,0 +1,3 @@
+address,name,size,cluster,name_hypothesis,evidence_level,status,owner,flags,diff_words,source_path,pr,note
+0x80025AB4,func_80025AB4,436,BT07,bind_or_load_stream_table,COMPLETE-NONMATCH,nonmatch,/root/match_boot_tail_stream_pair,-g0 -O2 -mips2 -G 0 -non_shared,45,cloud/work/boot_tail/BT07-stream-pair/func_80025AB4.c,,13 bounded forms; O2 45/109 no excess; O1 94/109 plus11; source ABI/host checks pass; needs expression allocation evidence.
+0x800252AC,func_800252AC,552,BT07,start_stream_from_table,COMPLETE-NONMATCH,nonmatch,/root/match_boot_tail_stream_pair,-g0 -O2 -mips2 -G 0 -non_shared,44,cloud/work/boot_tail/BT07-stream-pair/func_800252AC.c,,13 bounded forms; O2 44/138 no excess; O1 136/138 plus28; source ABI/layout/host checks pass; needs source scheduling evidence.

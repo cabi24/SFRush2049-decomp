@@ -1,0 +1,25 @@
+{
+  "result": "PASS_FOR_COMPLETE_NONMATCH_RESEARCH",
+  "reviewer": "BT03-high independent reviewer",
+  "reviewed_commit": "80a70911dd839502111541b2e2e4973aeb7bc024",
+  "reviewed_tree": "90a241de6bb0cb4765ee3a264a8f105a5960110c",
+  "matching_functions": 0,
+  "matching_bytes": 0,
+  "complete_nonmatch_functions": 1,
+  "complete_nonmatch_bytes": 728,
+  "strict_replay": "All 22 retained/control compiler comparisons reproduced. Best O2 remains 24/182 words, zero excess or unresolved/unverified/error conditions, exact 88-byte frame. No submitted match.",
+  "source_native_review": "Whole retained C, integer model, bounded native interpreter and fixture harness reviewed. Genuine packed voice/input pointers, signed 16-bit scale read, all seven bipolar selector classes, wrapping low-word products, signed/logical shifts, bounded clamps, live count/field reloads and explicit three-byte/u16 helper contract agree. Unsupported first bipolar modes deliberately have no fabricated scratch initialization. No fake formals, keeper, padding, callee body in candidate, assembly or protected edits.",
+  "native_replay_review": "Audited integer opcode meanings, wrapped 32-bit arithmetic, signed byte loads/arithmetic shift, branch delay slots/likely annulment, call delay argument capture, O32 integer caller-save clobbers, callee-save/stack checks and fail-closed unsupported/unmapped/step paths. Native words are loaded from canonical targets at test time, not archived.",
+  "semantic_checks": {
+    "original_tests_passed": 6,
+    "original_valid_fixtures": 2427,
+    "original_native_comparisons": 4854,
+    "additional_review_cases": "Exhaustive 256-controller classification with zero scale to distinguish biased/unbiased paths; 512 native comparisons plus 256 host/model comparisons passed. These are reported separately, not claimed unique to the original fixture set.",
+    "domain": "Counts 0..4 and modes 0..2, including explicit contract-driven live mutations; two initial stack fills. Unsupported mode and out-of-map cases excluded from host C and rejected/documented."
+  },
+  "source_sha256": "3708d1b9141834647e82ff757986e27e28be723f4bd1ca9fa3e649ccf3613b9a",
+  "semantic_receipt_sha256": "d540e049a06eb5d348eb0d33c7d26cc1805afdf1453125ecf9e727dbdc099ede",
+  "score_receipt_sha256": "d4bf45ef689257e8b20b58b58ad5b5c5148735909d4477d83d2f29c70998ea26",
+  "scope": "Only owned research directory changes; no matching submission, prior source or protected path modified; whitespace passes.",
+  "limitations": "Bounded synthetic-memory semantic agreement is not strict matching, original helper reconstruction, whole-game execution, ROM coverage or proof for unsupported record formats."
+}

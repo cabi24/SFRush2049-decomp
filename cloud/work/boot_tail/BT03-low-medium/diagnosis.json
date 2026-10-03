@@ -1,0 +1,10 @@
+{
+  "name": "func_8001489C",
+  "stage": "initial O2 before refinement",
+  "source_sha256": "83843e00375a6256295c59e6b410207425f0fee7a557fe923c27f2bb6f3487bd",
+  "differing_words": 11,
+  "total_words": 23,
+  "extra_words": 0,
+  "workbench_summary": "verdict=structure-mismatch aligned_total=  15 words=  11 raw=  14 opcodes=   4 gaps=   4 reloc_syms=   3 norm=  12 regs=  11 fp=   0 insns=  23 frame=  -24 sha1=bde7620278be /tmp/bt03lowm_8001489C_O2.o true_insn_delta=+0 geometry_edit_distance=12 opcode_distance=3",
+  "method": "Unchanged workbench on temporary native-word target object. Strict relocated score is authoritative; object/disassembly files remain private."
+}

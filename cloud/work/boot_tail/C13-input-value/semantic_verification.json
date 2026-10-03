@@ -1,0 +1,36 @@
+{
+  "result": "PASS_FOR_BOUNDED_SEMANTICS_ONLY",
+  "matching_credit_bytes": 0,
+  "tests_passed": 6,
+  "valid_fixture_count": 2427,
+  "native_stack_fills": [
+    90,
+    145
+  ],
+  "native_comparisons": 4854,
+  "source_sha256": "3708d1b9141834647e82ff757986e27e28be723f4bd1ca9fa3e649ccf3613b9a",
+  "target_body_sha256": "713b52b5329662b75389eab180da4c8cd8c4772f99ae3af978636a0bb6c27c9f",
+  "native_replay_sha256": "ead92827079cb52649818919e062aa3d71cd37fcc1ab7e7bd29150391ef9d0f0",
+  "test_source_sha256": "ee48d4af49348e98438c8b9b9d82dcfa0a99b712f9dffa6d7231dcdd031f1304",
+  "source_count_domain": "0..4 (including contract-driven changes within the same bound)",
+  "combine_modes": [
+    0,
+    1,
+    2
+  ],
+  "external_helper_contract": "func_80020A04(u8 controller, u8 channel, u8 set) returns u16; synthetic hook outcomes/effects are explicit, not a reconstruction of that helper. Native replay clobbers all ordinary O32 caller-save registers after the call.",
+  "compared": [
+    "return value",
+    "all voice/input bytes after explicit helper mutations",
+    "external call argument sequence",
+    "stack restoration and callee-save registers",
+    "independence from initial scratch stack fill for supported modes"
+  ],
+  "negative_checks": [
+    "first unsupported bipolar combine mode depends on native stack fill; never supplied to host C",
+    "unknown native opcode fails closed",
+    "instruction-step bound enforced",
+    "out-of-map access for count five rejected"
+  ],
+  "limits": "No whole-game/runtime/ROM execution. MIPS replay is bounded to the committed function and synthetic memory. Strict score remains 24/182 with zero extra words; semantic agreement is not matching."
+}

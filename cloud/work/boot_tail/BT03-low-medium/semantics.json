@@ -1,0 +1,74 @@
+{
+  "result": "PASS",
+  "host_compiler": "cc (Debian 14.2.0-19) 14.2.0",
+  "results": [
+    {
+      "name": "func_80014550",
+      "source_path": "cloud/matches/boot_tail/func_80014550.c",
+      "source_sha256": "6f11fc58ffd387940f871f8b35167fe35d4761f5db48f2dc5e07f6ff2b69b8ab",
+      "result": "PASS",
+      "modes": [
+        "c89-O2",
+        "c89-asan-ubsan-O1"
+      ],
+      "asan_options": "detect_leaks=0 (ptrace environment does not support LeakSanitizer)"
+    },
+    {
+      "name": "func_80014594",
+      "source_path": "cloud/matches/boot_tail/func_80014594.c",
+      "source_sha256": "a3d3a3f149c25d21e4d981f5295552aa6d248405856a4d63c453792944dc1969",
+      "result": "PASS",
+      "modes": [
+        "c89-O2",
+        "c89-asan-ubsan-O1"
+      ],
+      "asan_options": "detect_leaks=0 (ptrace environment does not support LeakSanitizer)"
+    },
+    {
+      "name": "func_800145DC",
+      "source_path": "cloud/matches/boot_tail/func_800145DC.c",
+      "source_sha256": "650fffe971a30e784395d3fc199b2d5e99b5cda77cc49c5d8522b8b742e1e098",
+      "result": "PASS",
+      "modes": [
+        "c89-O2",
+        "c89-asan-ubsan-O1"
+      ],
+      "asan_options": "detect_leaks=0 (ptrace environment does not support LeakSanitizer)"
+    },
+    {
+      "name": "func_8001489C",
+      "source_path": "cloud/work/boot_tail/BT03-low-medium/func_8001489C.c",
+      "source_sha256": "83843e00375a6256295c59e6b410207425f0fee7a557fe923c27f2bb6f3487bd",
+      "result": "PASS",
+      "modes": [
+        "c89-O2",
+        "c89-asan-ubsan-O1"
+      ],
+      "asan_options": "detect_leaks=0 (ptrace environment does not support LeakSanitizer)"
+    },
+    {
+      "name": "func_80014AF0",
+      "source_path": "cloud/matches/boot_tail/func_80014AF0.c",
+      "source_sha256": "fca8d8f42508216a81a7e666a45dc084977aa795f93dc03ace0a2d8b8c88d9a0",
+      "result": "PASS",
+      "modes": [
+        "c89-O2",
+        "c89-asan-ubsan-O1"
+      ],
+      "asan_options": "detect_leaks=0 (ptrace environment does not support LeakSanitizer)"
+    },
+    {
+      "name": "func_80014CAC",
+      "source_path": "cloud/matches/boot_tail/func_80014CAC.c",
+      "source_sha256": "64a28a6a177039b2983146b3dc29130e6919a6aadd816114903a3ce63b8b96c1",
+      "result": "PASS",
+      "modes": [
+        "c89-O2",
+        "c89-asan-ubsan-O1"
+      ],
+      "asan_options": "detect_leaks=0 (ptrace environment does not support LeakSanitizer)"
+    }
+  ],
+  "32bit_c89_slot_layout": "PASS",
+  "scope": "Actual standalone sources with test-only mocks. Scalar counters exclude signed-overflow states. Pointer addresses are non-dereferenced 32-bit values represented on the host; this does not prove native execution or cartridge behavior."
+}
