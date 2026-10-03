@@ -1,0 +1,13 @@
+{
+  "cloud_tests": {
+    "command": "python -m pytest tests/cloud -q",
+    "exit_code": 0,
+    "passed": 266,
+    "skipped": 3,
+    "environment": "existing Python test virtual environment"
+  },
+  "harness_python_syntax": "PASS",
+  "git_diff_check": "PASS",
+  "full_repository_tests": "not rerun for this research-only package",
+  "image_and_full_rom": "not run; ROM input unavailable"
+}
