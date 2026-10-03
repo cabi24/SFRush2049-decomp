@@ -52,3 +52,23 @@ def test_committed_targets_cover_their_manifest(image):
     assert not extents["call_targets_inside_functions"]
     for fn in extents["functions"]:
         assert fn["evidence"], fn
+
+
+def test_ovl_rom_compose_splices_bodies_and_keeps_the_data_tail(monkeypatch):
+    from tools.conveyor.pipeline import ovl_rom
+
+    base = ovl.BASE
+    extents = {"base": f"0x{base:08X}", "text_end": f"0x{base + 16:08X}",
+               "functions": [{"name": "f", "address": f"0x{base:08X}", "size": 8},
+                             {"name": "g", "address": f"0x{base + 8:08X}", "size": 8}]}
+    words = {"f": [0x11111111, 0x22222222], "g": [0x33333333, 0x44444444]}
+    monkeypatch.setattr(ovl_rom, "load_targets", lambda image: (extents, {}, words))
+    monkeypatch.setattr(ovl_rom.blob_splice, "link_function",
+                        lambda obj, name, *a, **k: b"\xAA" * 8)
+    original = _image([0x11111111, 0x22222222, 0x33333333, 0x44444444, 0xDA7A0000])
+
+    built, spliced = ovl_rom.compose("b", original, {"g": "g.o"})
+    assert built == original[:8] + b"\xAA" * 8 + original[16:]   # data tail carried through
+    assert set(spliced) == {"g"}
+    with pytest.raises(ovl_rom.OvlRomError, match="not a function"):
+        ovl_rom.compose("b", original, {"h": "h.o"})
