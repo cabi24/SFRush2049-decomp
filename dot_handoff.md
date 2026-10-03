@@ -140,6 +140,11 @@ Owners start **unassigned**. Each helper should hold one active packet and one q
 - **Deliverable:** true-zero matches in `cloud/matches/boot_tail/` and research/status in `cloud/work/boot_tail/` (`STATUS.csv`). This is not cartridge coverage. Promotion needs a maintainer static-layout extension to `0x800277D0`.
 - **Do not touch:** the static layout, splat, `symbol_addrs`, locks, the generated targets, ovl_a/ovl_b, the 21 ultralib functions or production gates.
 
+### D11 — func_800D1248 (closed: matched by Claude)
+
+- **Status:** matched, so nothing to claim. The owner took the function back from Astra on 2026-10-03; Claude identified the source as the N64 port of the arcade `check_if_finished_resurrecting` and reached strict equality. The final 9 words need a three-level empty conditional immediately after the early return, interpreted as a compiled-out debug guard. The owner accepted that as source (`cloud/matches/func_800D1248.c`; evidence in [cloud/work/near_miss_800D1248_round12/STATUS.md](cloud/work/near_miss_800D1248_round12/STATUS.md)).
+- The `dot_response` pause on this function is lifted.
+
 ## Keeping the helpers supplied
 
 For each assignment record:
