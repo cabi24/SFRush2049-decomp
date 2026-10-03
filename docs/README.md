@@ -8,6 +8,7 @@ Paths inside command examples are relative to the repository root.
 
 | Need | Read |
 |---|---|
+| Plan whole-project work and find detailed prerequisite/acceptance packages | [Full project plan](../PROJECT_PLAN.md) |
 | Assign helpers and replenish the current work queue | [dot_handoff](../dot_handoff.md) |
 | Find incorporated nonmatching sources, evidence and current blockers | [Research progress index](../cloud/RESEARCH_INDEX.md) |
 | Analyze and match a function | [Matching skill](../.claude/skills/match-function/SKILL.md) |

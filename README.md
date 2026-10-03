@@ -1,5 +1,7 @@
 # San Francisco Rush 2049 (N64) Decompilation
 
+For the full-project continuation strategy, current readiness corrections and detailed agent work packages, start with [PROJECT_PLAN.md](PROJECT_PLAN.md). Existing packet history remains below; check the plan before dispatch.
+
 A work-in-progress decompilation of San Francisco Rush 2049 for the Nintendo 64.
 
 ## Status
