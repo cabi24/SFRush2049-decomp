@@ -1,0 +1,15 @@
+{
+  "reviewer": "independent lane C",
+  "verdict": "PASS as NONMATCH research only",
+  "source_sha256": "98bd8da50eb8023342b800cf8e13ac893f7ea0c38f23808f4d8cb94e24d2fda1",
+  "checks": [
+    "Direct native assembly/source offset and normal ABI call audit",
+    "Fresh verify.py10,000 native/candidate differential cases PASS",
+    "Fresh canonical strict scorer41/57 NONMATCH",
+    "Fresh cc C89 pedantic warnings and100,000 ASan/UBSan cases PASS"
+  ],
+  "limits": [
+    "Nonnegative count precondition required; native negative count reaches preceding table storage",
+    "No complete cartridge/image gate; no match or coverage claim"
+  ]
+}
