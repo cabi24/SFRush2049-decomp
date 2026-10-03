@@ -4,6 +4,9 @@
     # one function, compiled alone (the -O2 pipeline):
     python3 tools/cloud/score.py fn  path/to/file.c  func_name [--flags "-g0 -O2 -mips2 -G 0 -non_shared"]
 
+    # a function in runtime image B (loaded at 0x8038A400; see asm/us/ovl_b):
+    python3 tools/cloud/score.py fn path/to/file.c func_8038D798 --targets asm/us/ovl_b
+
     # an IDO -O3 interprocedural call group (010), from a group directory
     # holding group.json + its .c files:
     python3 tools/cloud/score.py group path/to/group_dir
@@ -439,7 +442,13 @@ def main():
     for command in (f, g):
         command.add_argument("--allow-unverified", action="store_true",
                              help="permit local data-section relocations; still reject other failures")
+        command.add_argument("--targets", default=None, metavar="DIR",
+                             help="target directory (default asm/us/blob; the runtime images "
+                                  "at 0x8038A400 are asm/us/ovl_a and asm/us/ovl_b)")
     args = parser.parse_args()
+    if args.targets:
+        global ASM_DIR
+        ASM_DIR = Path(args.targets).resolve()
 
     with tempfile.TemporaryDirectory() as tmp:
         obj = Path(tmp) / "out.o"

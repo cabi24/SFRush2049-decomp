@@ -188,25 +188,26 @@ def stranded_head(image_bytes, address, max_words=HEAD_MAX_WORDS):
     return count
 
 
-def scan_extent(image_bytes, address):
+def scan_extent(image_bytes, address, base=GAME_CODE_BASE):
     """Return the instruction count ending at the first eligible ``jr $ra``.
 
     ``image_bytes`` is the complete game-code image mapped at
-    :data:`GAME_CODE_BASE`.  A forward direct branch keeps the scan alive
+    ``base`` (default :data:`GAME_CODE_BASE`; the runtime images at
+    0x8038A400 pass theirs).  A forward direct branch keeps the scan alive
     through its target; jumps and backward branches do not.  The string
     ``"scan_overrun"`` denotes reaching the image boundary or 16 KiB cap
     without a terminating return and its delay slot.
     """
-    offset = address - GAME_CODE_BASE
+    offset = address - base
     if offset < 0 or offset % 4 or offset >= len(image_bytes):
         raise ValueError(f"address {address:#x} outside game-code image")
 
-    image_end = GAME_CODE_BASE + len(image_bytes)
+    image_end = base + len(image_bytes)
     bound = min(address + 16 * 1024, image_end)
     furthest = address - 4
     pc = address
     while pc + 4 <= bound:
-        word = struct.unpack_from(">I", image_bytes, pc - GAME_CODE_BASE)[0]
+        word = struct.unpack_from(">I", image_bytes, pc - base)[0]
         opcode = word >> 26
 
         # Direct PC-relative branch encodings: REGIMM, beq/bne/blez/bgtz,
