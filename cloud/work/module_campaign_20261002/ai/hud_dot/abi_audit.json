@@ -1,0 +1,54 @@
+{
+  "target": "func_80109A60",
+  "native_address": "0x80109A60",
+  "native_words": 317,
+  "native_frame": 40,
+  "formal": "Sprite *",
+  "return": "s32",
+  "incoming_native_args": [
+    "a0"
+  ],
+  "callee_audits": {
+    "Input_ApplyPadConfig": {
+      "native_address": "0x80094EC8",
+      "words": 48,
+      "formal": [
+        "Sprite *"
+      ],
+      "prototype_sources": [
+        "cloud/work/tiny_A42/Input_ApplyPadConfig.c"
+      ],
+      "accepted": false
+    },
+    "input_new_data_wrapper": {
+      "native_address": "0x80094F88",
+      "words": 15,
+      "formal": [
+        "Sprite* compatible actualbytepointer",
+        "s32 hide"
+      ],
+      "return": "s8",
+      "accepted": true,
+      "source": "src/blob/input_new_data_wrapper.c",
+      "expansions_in_main": 2
+    },
+    "stat_race_update": {
+      "native_address": "0x800FE5B0",
+      "words": 99,
+      "formal": [
+        "Sprite *",
+        "s32 index",
+        "s32 width",
+        "s32 height"
+      ],
+      "return": "void",
+      "prototype_source": "cloud/work/tiny_A71/stat_race_update.c",
+      "accepted": false,
+      "prior_frozen_differences": 45
+    }
+  },
+  "archive_audit": "Only registered automatic main seed found; not replayed. Complete A71 callee plateaus will not be repeated except genuine new wholecaller context.",
+  "direct_donor": "reference/repos/rushtherock/game/hud.c AnimateDot lines707-752; map geometry and viewport behavior N64specific.",
+  "accepted": false,
+  "claims": []
+}

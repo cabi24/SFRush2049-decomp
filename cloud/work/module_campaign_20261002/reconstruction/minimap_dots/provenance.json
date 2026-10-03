@@ -1,0 +1,21 @@
+{
+  "target": {
+    "name": "func_80109A60",
+    "address": "0x80109A60",
+    "bytes": 1268,
+    "words": 317,
+    "frame": 40,
+    "abi": "Sprite pointer, integer return; saves ra only"
+  },
+  "ancestor": {
+    "file": "reference/repos/rushtherock/game/hud.c",
+    "function": "AnimateDot",
+    "line": 707,
+    "sha256": "9b4b0507db6d83eb25ec2066bd7fe9eb55ca1b04bf2aa69bcdc7bc79be7bc7a0"
+  },
+  "prior_archive": "registered-heads automatic m2c seed only; no bespoke source controls found for target. Its historical labels session_host/session_join are interior names, not function identities.",
+  "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+  "direct_callers": [],
+  "actual_callbacks": "Initialized native pointer at801157D8; routine is a HUD sprite callback. No artificial keepers.",
+  "accepted": false
+}

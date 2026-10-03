@@ -1,0 +1,139 @@
+[
+  {
+    "command": [
+      "cc",
+      "-j",
+      "-g0",
+      "-O3",
+      "-mips2",
+      "-G",
+      "0",
+      "-non_shared",
+      "-Xcpluscomm",
+      "-Wab,-r4300_mul",
+      "-I.",
+      "native_captures.c"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "uld",
+      "-L/usr/lib/mips2/nonshared",
+      "-_SYSTYPE_SVR4",
+      "-mips2",
+      "-non_shared",
+      "-g0",
+      "-no_AutoGnum",
+      "-kp",
+      "keep.txt",
+      "native_captures.u",
+      "-ko",
+      "linked"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "usplit",
+      "-mips2",
+      "-o",
+      "split",
+      "-t",
+      "st",
+      "linked"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "umerge",
+      "-Olimit",
+      "5000",
+      "-mips2",
+      "-EB",
+      "-g0",
+      "-O3",
+      "split",
+      "-o",
+      "merged",
+      "-t",
+      "st"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "uopt",
+      "-G",
+      "0",
+      "-Olimit",
+      "5000",
+      "-mips2",
+      "-EB",
+      "-g0",
+      "-O3",
+      "merged",
+      "opt",
+      "-t",
+      "st",
+      "optlog"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "ugen",
+      "-G",
+      "0",
+      "-mips2",
+      "-EB",
+      "-g0",
+      "-O3",
+      "opt",
+      "-o",
+      "gen",
+      "-t",
+      "st",
+      "-temp",
+      "ugtmp"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "as1",
+      "-elf",
+      "-G",
+      "0",
+      "-p0",
+      "-mips2",
+      "-EB",
+      "-g0",
+      "-O3",
+      "-r4300_mul",
+      "-Olimit",
+      "5000",
+      "gen",
+      "-o",
+      "module.o",
+      "-t",
+      "st"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

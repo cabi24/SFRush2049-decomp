@@ -1,0 +1,22 @@
+{
+  "object_sha256": "3fd353183ce740c345a0e44ac89426e0d34d65b169b973fbada2277828f0369b",
+  "results": {
+    "func_80109A60": {
+      "comparison": {
+        "differing": 306,
+        "total": 317,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "alignment": {
+        "aligned_exact": 77,
+        "aligned_opcode": 271,
+        "aligned_opcode_reg": 91
+      },
+      "section_words": 312,
+      "frame": 32
+    }
+  }
+}

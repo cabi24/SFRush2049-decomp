@@ -1,0 +1,9 @@
+{
+  "target": "func_80109A60",
+  "vaddr": "0x80109a60",
+  "native_words": 317,
+  "native_bytes": 1268,
+  "target_diagnostic_object_sha256": "e632b768e02b1655397f709f1f1f6644cb24f4fae311700a9a0fc2a6a8d7c28a",
+  "authoritative_target": "Unchanged protected score.targets() / asm/us/blob SHA256 manifest",
+  "diagnostic_target_has_relocations": false
+}

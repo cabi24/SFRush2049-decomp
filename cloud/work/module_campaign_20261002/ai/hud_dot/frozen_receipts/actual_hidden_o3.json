@@ -1,0 +1,19 @@
+{
+  "function": "func_80109A60",
+  "object_sha256": "f4af40ae55fdf043681ff4dd367c04dfd3c299dac80921d4586c43c10d0c2460",
+  "comparison": {
+    "differing": 315,
+    "total": 317,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "alignment": {
+    "aligned_exact": 72,
+    "aligned_opcode": 236,
+    "aligned_opcode_reg": 81
+  },
+  "section_words": 294,
+  "frame": 40
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "command": [
+      "cc",
+      "-c",
+      "-g0",
+      "-O2",
+      "-mips2",
+      "-G",
+      "0",
+      "-non_shared",
+      "-Xcpluscomm",
+      "-Wab,-r4300_mul",
+      "-I.",
+      "animate_dot_hidden.c",
+      "-o",
+      "module.o"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

@@ -1,0 +1,59 @@
+{
+  "research_and_audit_prs": [
+    49,
+    48,
+    47,
+    46,
+    45,
+    44,
+    43,
+    42,
+    41,
+    39,
+    38,
+    37,
+    36,
+    35,
+    34,
+    33,
+    32,
+    31,
+    30,
+    29,
+    28,
+    27,
+    26,
+    25,
+    21,
+    9
+  ],
+  "matching_prs": [
+    24,
+    40
+  ],
+  "merged_research_head": "43a4302a3b9410bf27b32f8c1ebc712ebad93672",
+  "merged_master_ci": {
+    "run": 37084943832,
+    "conclusion": "success"
+  },
+  "accepted_production_inputs_unchanged_since": "d77aabb8",
+  "production_paths_checked": [
+    "src/blob",
+    "src/rom",
+    "asm/us/blob",
+    "matched.lock.json",
+    "blob_matched.lock.json",
+    "rom_owned_data.json",
+    "rom_owned_storage.json",
+    "Makefile",
+    "rush2049.us.ld",
+    "splat.us.yaml"
+  ],
+  "archive_manifest_files_verified": 1549,
+  "archive_extension_files_verified": 177,
+  "cross_pr_different_blob_collisions": 0,
+  "research_matching_credit_bytes": 0,
+  "recovered_hud_source_evidence_files": 12,
+  "recovered_hud_historical_receipts": 19,
+  "research_verification_limit": "Submitted CI and peer receipts reviewed; focused submitted sources/tool operations audited; historical archive hashes verified; maintainer did not locally rerun every research compiler/semantic harness."
+}

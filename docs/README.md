@@ -9,6 +9,7 @@ Paths inside command examples are relative to the repository root.
 | Need | Read |
 |---|---|
 | Assign helpers and replenish the current work queue | [dot_handoff](../dot_handoff.md) |
+| Find incorporated nonmatching sources, evidence and current blockers | [Research progress index](../cloud/RESEARCH_INDEX.md) |
 | Analyze and match a function | [Matching skill](../.claude/skills/match-function/SKILL.md) |
 | Promote static C or splice game C into the ROM | [Promotion skill](../.claude/skills/promote-match/SKILL.md) |
 | Regenerate extracted game context | [Context skill](../.claude/skills/refresh-game-context/SKILL.md) |

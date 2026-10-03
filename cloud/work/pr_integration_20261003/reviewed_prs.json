@@ -1,0 +1,802 @@
+[
+  {
+    "number": 49,
+    "head": "d66f1589eff408d745c092e8e8b669195a2fd735",
+    "title": "Research: reconstruct graphics initializer and genuine flag closure",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-03T00:45:18Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37083291616/job/111088254926",
+        "name": "verify",
+        "startedAt": "2026-10-03T00:44:07Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 9,
+    "files": [
+      "cloud/work/dot_graphics_init_closure/README.md",
+      "cloud/work/dot_graphics_init_closure/flags.c",
+      "cloud/work/dot_graphics_init_closure/group.json",
+      "cloud/work/dot_graphics_init_closure/host_test.c",
+      "cloud/work/dot_graphics_init_closure/init.c",
+      "cloud/work/dot_graphics_init_closure/mode.c",
+      "cloud/work/dot_graphics_init_closure/verification.json",
+      "cloud/work/dot_graphics_init_closure/verify.py",
+      "tests/conveyor/test_graphics_init_closure.py"
+    ]
+  },
+  {
+    "number": 48,
+    "head": "72004c8c3d81228d524ff754708977612a7382d4",
+    "title": "Research: reconstruct clipped solid rectangle with genuine ABI",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-03T00:42:19Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37082966875/job/111087282030",
+        "name": "verify",
+        "startedAt": "2026-10-03T00:39:26Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 7,
+    "files": [
+      "cloud/work/solid_rectangle_8008A46C/README.md",
+      "cloud/work/solid_rectangle_8008A46C/REVIEW.md",
+      "cloud/work/solid_rectangle_8008A46C/candidate.c",
+      "cloud/work/solid_rectangle_8008A46C/host_harness.c",
+      "cloud/work/solid_rectangle_8008A46C/replay.py",
+      "cloud/work/solid_rectangle_8008A46C/verification.json",
+      "tests/conveyor/test_solid_rectangle_reconstruction.py"
+    ]
+  },
+  {
+    "number": 47,
+    "head": "49054ce0a3fa08f703580d1bf4b7d42a72be50eb",
+    "title": "Fix source scouting false negatives with conservative definition index",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-03T00:39:27Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37082888966/job/111087044881",
+        "name": "verify",
+        "startedAt": "2026-10-03T00:38:15Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 5,
+    "files": [
+      "cloud/work/source_inventory/README.md",
+      "cloud/work/source_inventory/REVIEW.md",
+      "cloud/work/source_inventory/evidence.json",
+      "cloud/work/source_inventory/inventory.py",
+      "tests/conveyor/test_source_inventory.py"
+    ]
+  },
+  {
+    "number": 46,
+    "head": "47a37ff0df27c4de3d4ebd0e83741a0cd0c236fb",
+    "title": "Research: prove C974 three-pointer helper contract",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-03T00:35:42Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37082633162/job/111086258705",
+        "name": "verify",
+        "startedAt": "2026-10-03T00:34:27Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 4,
+    "files": [
+      "cloud/work/c974_call_contract/README.md",
+      "cloud/work/c974_call_contract/audit.py",
+      "cloud/work/c974_call_contract/evidence.json",
+      "tests/conveyor/test_c974_call_contract.py"
+    ]
+  },
+  {
+    "number": 45,
+    "head": "62c16773cffc8437b1877d60c2e5f7cdd872351f",
+    "title": "D05 research: audit HUD source receipts and native frame geometry",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-03T00:19:21Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37081464040/job/111082700642",
+        "name": "verify",
+        "startedAt": "2026-10-03T00:17:55Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 4,
+    "files": [
+      "cloud/work/d05_hud_context_audit/README.md",
+      "cloud/work/d05_hud_context_audit/audit.py",
+      "cloud/work/d05_hud_context_audit/evidence.json",
+      "tests/conveyor/test_d05_hud_context_audit.py"
+    ]
+  },
+  {
+    "number": 44,
+    "head": "04c00fa7b2206c5f73eeaf5ad54b70a7bc4b671c",
+    "title": "Research: bound D06 tire-force stack-home hypothesis",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-03T00:17:54Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37081382389/job/111082447593",
+        "name": "verify",
+        "startedAt": "2026-10-03T00:16:47Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 4,
+    "files": [
+      "cloud/work/d06_tire_stack_diagnosis/README.md",
+      "cloud/work/d06_tire_stack_diagnosis/replay.py",
+      "cloud/work/d06_tire_stack_diagnosis/verification.json",
+      "tests/conveyor/test_d06_tire_stack_diagnosis.py"
+    ]
+  },
+  {
+    "number": 43,
+    "head": "85cdfe4dc9e484c92b04de41324f07499845c7f1",
+    "title": "Audit substantial target readiness and correct stale game handoff leads",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-03T00:12:39Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37081001937/job/111081281611",
+        "name": "verify",
+        "startedAt": "2026-10-03T00:11:36Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 8,
+    "files": [
+      "cloud/work/dot_substantial_scout/D04_PREFLIGHT.md",
+      "cloud/work/dot_substantial_scout/REVIEW.md",
+      "cloud/work/dot_substantial_scout/STATUS.md",
+      "cloud/work/dot_substantial_scout/d04_replay.json",
+      "cloud/work/dot_substantial_scout/native_audit.json",
+      "cloud/work/dot_substantial_scout/pr_tree_inventory.json",
+      "cloud/work/dot_substantial_scout/preflight.py",
+      "tests/conveyor/test_dot_substantial_scout.py"
+    ]
+  },
+  {
+    "number": 42,
+    "head": "dbc67b97f1a16c0d807e6e7ab0ad916e871b4b23",
+    "title": "Audit D08 large-function blockers and exact baseline geometry",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-03T00:12:34Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37080957570/job/111081140309",
+        "name": "verify",
+        "startedAt": "2026-10-03T00:10:59Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 5,
+    "files": [
+      "cloud/work/dot_d08_scout/README.md",
+      "cloud/work/dot_d08_scout/REVIEW.md",
+      "cloud/work/dot_d08_scout/audit.py",
+      "cloud/work/dot_d08_scout/verification.json",
+      "tests/conveyor/test_dot_d08_scout.py"
+    ]
+  },
+  {
+    "number": 41,
+    "head": "c7b89f3193316a7abcbf691148e029a29b705cd2",
+    "title": "research: verify range-reduced rational function semantics",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T23:43:15Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37078785124/job/111074514391",
+        "name": "verify",
+        "startedAt": "2026-10-02T23:41:52Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 6,
+    "files": [
+      "cloud/work/dot_rational_reduction/STATUS.md",
+      "cloud/work/dot_rational_reduction/candidate.c",
+      "cloud/work/dot_rational_reduction/independent_review.json",
+      "cloud/work/dot_rational_reduction/verification.json",
+      "cloud/work/dot_rational_reduction/verify.py",
+      "tests/conveyor/test_rational_reduction_research.py"
+    ]
+  },
+  {
+    "number": 40,
+    "head": "c66eba909eddaf91d5b7c314b371da1f75b0a38f",
+    "title": "Match indexed record word setter func_800A7830",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T23:42:42Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37078739304/job/111074375612",
+        "name": "verify",
+        "startedAt": "2026-10-02T23:41:15Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Fresh full native-body, image, compressed-stream and ROM proof",
+    "matching_credit_bytes": 44,
+    "changed_file_count": 6,
+    "files": [
+      "cloud/matches/func_800A7830.c",
+      "cloud/work/dot_record_word_set/STATUS.md",
+      "cloud/work/dot_record_word_set/semantics.json",
+      "cloud/work/dot_record_word_set/verification.json",
+      "cloud/work/dot_record_word_set/verify_semantics.py",
+      "tests/conveyor/test_record_word_set.py"
+    ]
+  },
+  {
+    "number": 39,
+    "head": "810afe9d8201319eb36e6714643b1d4ee09a378c",
+    "title": "Test name-cache allocation and document native edge cases",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T23:41:23Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37078634376/job/111074058058",
+        "name": "verify",
+        "startedAt": "2026-10-02T23:39:55Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 11,
+    "files": [
+      "cloud/work/dot_name_cache/STATUS.md",
+      "cloud/work/dot_name_cache/func_800F1D04.c",
+      "cloud/work/dot_name_cache/host_bridge.c",
+      "cloud/work/dot_name_cache/independent_review.json",
+      "cloud/work/dot_name_cache/native_machine.py",
+      "cloud/work/dot_name_cache/replay.py",
+      "cloud/work/dot_name_cache/sanitizer_test.c",
+      "cloud/work/dot_name_cache/semantics.json",
+      "cloud/work/dot_name_cache/verification.json",
+      "cloud/work/dot_name_cache/verify_semantics.py",
+      "tests/conveyor/test_name_cache_research.py"
+    ]
+  },
+  {
+    "number": 38,
+    "head": "40c56cc90bba75ee573a3f9bf205ecd2071ded2b",
+    "title": "Research resource initializer with callback-safe sequencing and replay tests",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T23:40:07Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37078552438/job/111073799384",
+        "name": "verify",
+        "startedAt": "2026-10-02T23:38:48Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 8,
+    "files": [
+      "cloud/work/dot_resource_init/STATUS.md",
+      "cloud/work/dot_resource_init/candidate.c",
+      "cloud/work/dot_resource_init/controls.json",
+      "cloud/work/dot_resource_init/host.c",
+      "cloud/work/dot_resource_init/peer_review.json",
+      "cloud/work/dot_resource_init/verification.json",
+      "cloud/work/dot_resource_init/verify.py",
+      "tests/conveyor/test_resource_init_research.py"
+    ]
+  },
+  {
+    "number": 37,
+    "head": "6f1a9f0803e35d646b68e5e0b8def575f8e036ef",
+    "title": "Research typed entity motion callback and complete differential tests",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T23:38:09Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37078406860/job/111073338439",
+        "name": "verify",
+        "startedAt": "2026-10-02T23:36:53Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 10,
+    "files": [
+      "cloud/work/dot_entity_motion/README.md",
+      "cloud/work/dot_entity_motion/differential.py",
+      "cloud/work/dot_entity_motion/func_8010E4E4.c",
+      "cloud/work/dot_entity_motion/host_semantics.c",
+      "cloud/work/dot_entity_motion/native_machine.py",
+      "cloud/work/dot_entity_motion/peer_review.json",
+      "cloud/work/dot_entity_motion/semantics.json",
+      "cloud/work/dot_entity_motion/verification.json",
+      "cloud/work/dot_entity_motion/verify.py",
+      "tests/conveyor/test_dot_entity_motion.py"
+    ]
+  },
+  {
+    "number": 36,
+    "head": "859ef5909fa7d62983a405cc7c48ae5acaee72f0",
+    "title": "Research portable filtered vertex bounds with native differential proof",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T23:38:16Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37078407027/job/111073338694",
+        "name": "verify",
+        "startedAt": "2026-10-02T23:36:53Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 7,
+    "files": [
+      "cloud/work/dot_vertex_bounds/README.md",
+      "cloud/work/dot_vertex_bounds/func_800B9740.c",
+      "cloud/work/dot_vertex_bounds/host_test.c",
+      "cloud/work/dot_vertex_bounds/peer_review.json",
+      "cloud/work/dot_vertex_bounds/verification.json",
+      "cloud/work/dot_vertex_bounds/verify.py",
+      "tests/conveyor/test_dot_vertex_bounds.py"
+    ]
+  },
+  {
+    "number": 35,
+    "head": "f5a36eb2dba883b649f6552069a96484a92e5f24",
+    "title": "docs: flag lane F cybersecurity-adjacent automated stop",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T23:12:03Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37076219105/job/111066620639",
+        "name": "verify",
+        "startedAt": "2026-10-02T23:09:44Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 1,
+    "files": [
+      "docs/history/2026-10-02-lane-f-automated-safety-stop.md"
+    ]
+  },
+  {
+    "number": 34,
+    "head": "cdcb48a5767c67baa855a003979fe7a89f85f7a7",
+    "title": "Research typed force adjustment with native differential tests (NONMATCH)",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T23:06:04Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37075808208/job/111065330623",
+        "name": "verify",
+        "startedAt": "2026-10-02T23:04:45Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 8,
+    "files": [
+      "cloud/work/dot_force_adjustment/STATUS.md",
+      "cloud/work/dot_force_adjustment/candidate.c",
+      "cloud/work/dot_force_adjustment/independent_review.json",
+      "cloud/work/dot_force_adjustment/replay.py",
+      "cloud/work/dot_force_adjustment/semantics.json",
+      "cloud/work/dot_force_adjustment/verification.json",
+      "cloud/work/dot_force_adjustment/verify_semantics.py",
+      "tests/conveyor/test_force_adjustment_research.py"
+    ]
+  },
+  {
+    "number": 33,
+    "head": "ace1169cb6024d253d4dc6fa7a219587dc93b185",
+    "title": "research: reconstruct default viewport initialization with differential tests",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T23:06:11Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37075805988/job/111065323824",
+        "name": "verify",
+        "startedAt": "2026-10-02T23:04:44Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 7,
+    "files": [
+      "cloud/work/dot_viewport_init/STATUS.md",
+      "cloud/work/dot_viewport_init/candidate.c",
+      "cloud/work/dot_viewport_init/host.c",
+      "cloud/work/dot_viewport_init/peer_review.json",
+      "cloud/work/dot_viewport_init/verification.json",
+      "cloud/work/dot_viewport_init/verify_semantics.py",
+      "tests/conveyor/test_viewport_init_research.py"
+    ]
+  },
+  {
+    "number": 32,
+    "head": "256b7bde5e5130b26784d20d5599c5492d8fec14",
+    "title": "Research: natural low-cylinder proximity reconstruction and differential tests",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T23:05:17Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37075739344/job/111065120388",
+        "name": "verify",
+        "startedAt": "2026-10-02T23:03:58Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 10,
+    "files": [
+      "cloud/work/dot_low_cylinder/README.md",
+      "cloud/work/dot_low_cylinder/differential.py",
+      "cloud/work/dot_low_cylinder/func_8010C588.c",
+      "cloud/work/dot_low_cylinder/host_semantics.c",
+      "cloud/work/dot_low_cylinder/native_machine.py",
+      "cloud/work/dot_low_cylinder/peer_review.json",
+      "cloud/work/dot_low_cylinder/semantics.json",
+      "cloud/work/dot_low_cylinder/verification.json",
+      "cloud/work/dot_low_cylinder/verify.py",
+      "tests/conveyor/test_dot_low_cylinder.py"
+    ]
+  },
+  {
+    "number": 31,
+    "head": "bf98152f6ed0d2c406c7169269e72e3d29242c65",
+    "title": "Research typed cylinder predicate with native differential tests (NONMATCH)",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T23:02:51Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37075514631/job/111064409260",
+        "name": "verify",
+        "startedAt": "2026-10-02T23:01:18Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 10,
+    "files": [
+      "cloud/work/dot_cylinder_predicate/STATUS.md",
+      "cloud/work/dot_cylinder_predicate/func_8010C448.c",
+      "cloud/work/dot_cylinder_predicate/host_semantics.c",
+      "cloud/work/dot_cylinder_predicate/independent_review.json",
+      "cloud/work/dot_cylinder_predicate/native_machine.py",
+      "cloud/work/dot_cylinder_predicate/replay.py",
+      "cloud/work/dot_cylinder_predicate/semantics.json",
+      "cloud/work/dot_cylinder_predicate/verification.json",
+      "cloud/work/dot_cylinder_predicate/verify_semantics.py",
+      "tests/conveyor/test_dot_cylinder_predicate.py"
+    ]
+  },
+  {
+    "number": 30,
+    "head": "63e9b76508663e05821f15ecd8dbe6d07ae3c35b",
+    "title": "research: verify pooled object constructor semantics (NONMATCH)",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T22:59:57Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37075301390/job/111063739749",
+        "name": "verify",
+        "startedAt": "2026-10-02T22:58:48Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 7,
+    "files": [
+      "cloud/work/dot_pool_object/STATUS.md",
+      "cloud/work/dot_pool_object/func_800B3704.c",
+      "cloud/work/dot_pool_object/host_test.c",
+      "cloud/work/dot_pool_object/peer_review.json",
+      "cloud/work/dot_pool_object/verification.json",
+      "cloud/work/dot_pool_object/verify.py",
+      "tests/conveyor/test_pool_object_research.py"
+    ]
+  },
+  {
+    "number": 29,
+    "head": "b2bfa0431646195bc7d782f47ac7ddf8ca406e47",
+    "title": "Research: verify typed audio_output_setup reconstruction (NONMATCH)",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T22:33:31Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37072987571/job/111056501762",
+        "name": "verify",
+        "startedAt": "2026-10-02T22:31:59Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 10,
+    "files": [
+      "cloud/work/natural_audio_output_setup/STATUS.md",
+      "cloud/work/natural_audio_output_setup/audio_output_setup.c",
+      "cloud/work/natural_audio_output_setup/host_test.c",
+      "cloud/work/natural_audio_output_setup/layout_experiment.c",
+      "cloud/work/natural_audio_output_setup/layout_score.txt",
+      "cloud/work/natural_audio_output_setup/peer_review.json",
+      "cloud/work/natural_audio_output_setup/score.txt",
+      "cloud/work/natural_audio_output_setup/verification.json",
+      "cloud/work/natural_audio_output_setup/verify.py",
+      "tests/conveyor/test_audio_output_setup_reconstruction.py"
+    ]
+  },
+  {
+    "number": 28,
+    "head": "70ccc6e43dc02e66fc61c044e3be685d649fd446",
+    "title": "research: test func_800EC270 state initializer reconstruction",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T22:32:40Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37072935084/job/111056329789",
+        "name": "verify",
+        "startedAt": "2026-10-02T22:31:23Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 5,
+    "files": [
+      "cloud/work/dot_state_initializer/STATUS.md",
+      "cloud/work/dot_state_initializer/candidate.c",
+      "cloud/work/dot_state_initializer/independent_review.json",
+      "cloud/work/dot_state_initializer/verification.json",
+      "cloud/work/dot_state_initializer/verify_semantics.py"
+    ]
+  },
+  {
+    "number": 27,
+    "head": "c637e5e2d9a674cac878390f8912f182b0ee9361",
+    "title": "research: narrow array reset to four scheduling words",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T22:32:43Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37072933292/job/111056324339",
+        "name": "verify",
+        "startedAt": "2026-10-02T22:31:22Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 5,
+    "files": [
+      "cloud/work/dot_array_reset/STATUS.md",
+      "cloud/work/dot_array_reset/func_800F7EB0.c",
+      "cloud/work/dot_array_reset/host_semantics.c",
+      "cloud/work/dot_array_reset/verification.json",
+      "cloud/work/dot_array_reset/verify.py"
+    ]
+  },
+  {
+    "number": 26,
+    "head": "acc5a64dafa1c21f93b22b69c0191346855b1be9",
+    "title": "Research natural matrix rotation without artificial padding (NONMATCH)",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T22:32:13Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37072895719/job/111056204681",
+        "name": "verify",
+        "startedAt": "2026-10-02T22:30:57Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 4,
+    "files": [
+      "cloud/work/dot_matrix_rotation/STATUS.md",
+      "cloud/work/dot_matrix_rotation/func_800B5898.c",
+      "cloud/work/dot_matrix_rotation/host_semantics.c",
+      "cloud/work/dot_matrix_rotation/verification.json"
+    ]
+  },
+  {
+    "number": 25,
+    "head": "198e3fc0eb95c7d308df17a8b2015a5fe41c9629",
+    "title": "Research: test NONMATCH func_80091B00 slot allocator",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T22:30:28Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37072750012/job/111055754767",
+        "name": "verify",
+        "startedAt": "2026-10-02T22:29:24Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 6,
+    "files": [
+      "cloud/work/dot_slot_allocator/STATUS.md",
+      "cloud/work/dot_slot_allocator/func_80091B00.c",
+      "cloud/work/dot_slot_allocator/host_test.c",
+      "cloud/work/dot_slot_allocator/independent_review.json",
+      "cloud/work/dot_slot_allocator/verification.json",
+      "cloud/work/dot_slot_allocator/verify.py"
+    ]
+  },
+  {
+    "number": 24,
+    "head": "b2b41ad324c03fcfea3ba843acd9b79ef7ea5553",
+    "title": "Match complete four-byte cached-state update",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T22:21:01Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37071887536/job/111052998908",
+        "name": "verify",
+        "startedAt": "2026-10-02T22:19:47Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Fresh full native-body, image, compressed-stream and ROM proof",
+    "matching_credit_bytes": 132,
+    "changed_file_count": 3,
+    "files": [
+      "cloud/matches/func_800B7360.c",
+      "cloud/work/dot_cached_bytes/STATUS.md",
+      "cloud/work/dot_cached_bytes/verification.json"
+    ]
+  },
+  {
+    "number": 21,
+    "head": "e1460beb2c183e68a1e701dac499c423af3681c3",
+    "title": "research: preserve nonmatching 179-instruction Controller Pak encoder",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T21:50:39Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37069053207/job/111043877231",
+        "name": "verify",
+        "startedAt": "2026-10-02T21:49:15Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Submitted source, ABI/semantic limits, reproduction tools, added test scope and existing green CI reviewed; no root replay of every research harness",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 11,
+    "files": [
+      "cloud/work/larger_func_800A1644/README.md",
+      "cloud/work/larger_func_800A1644/SHA256SUMS",
+      "cloud/work/larger_func_800A1644/byte_local.c",
+      "cloud/work/larger_func_800A1644/candidate.c",
+      "cloud/work/larger_func_800A1644/checks.json",
+      "cloud/work/larger_func_800A1644/compiler_result.json",
+      "cloud/work/larger_func_800A1644/group.json",
+      "cloud/work/larger_func_800A1644/residual.json",
+      "cloud/work/larger_func_800A1644/review.json",
+      "cloud/work/larger_func_800A1644/semantic_result.json",
+      "cloud/work/larger_func_800A1644/verify_semantics.py"
+    ]
+  },
+  {
+    "number": 9,
+    "head": "433611408270ede7fe6acdb027f1b82179209511",
+    "title": "Preserve unaccepted decompilation candidates and research",
+    "checks": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-02T17:28:31Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37040750095/job/110949968431",
+        "name": "verify",
+        "startedAt": "2026-10-02T17:26:48Z",
+        "status": "COMPLETED",
+        "workflowName": "Verify"
+      }
+    ],
+    "review_scope": "Immutable research archive reviewed for scope and manifest hashes; historical candidates are not reaccepted",
+    "matching_credit_bytes": 0,
+    "changed_file_count": 1729,
+    "archive_manifests": [
+      "cloud/work/research_snapshot_20261002/manifest.json",
+      "cloud/work/research_snapshot_20261002/module_freezes.json"
+    ],
+    "manifest_files_verified": 1726
+  }
+]

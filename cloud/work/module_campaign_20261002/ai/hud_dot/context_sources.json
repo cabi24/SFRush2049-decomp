@@ -1,0 +1,14 @@
+{
+  "files": {
+    "hidden.c": "0e55910a9198ebf7839a742eeb2f091c5ef65a882eb5df3efa3907b254a5e1e8",
+    "input_apply.c": "459bb22d6a0df92041f2d77e8f00347336ba988fb4ec36607eafd765b9601d34",
+    "select_blit.c": "71a383df9ce6246244774c42146ff665388706874bb3075e0b588158cf7a84d1"
+  },
+  "hidden_original_source_sha256": "32b4dff003b9b02eaf45fe345273652fecc0950a49abaf878dfc111259aeddfe",
+  "transformations": [
+    "Accepted Hidden body byte-identical; only unused generated declarations omitted; actual Input prototype retained.",
+    "Input/SelectBlit copied unchanged from complete canonical archived source; both unaccepted."
+  ],
+  "compiled": false,
+  "claims": []
+}

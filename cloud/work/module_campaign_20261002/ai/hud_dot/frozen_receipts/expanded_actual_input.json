@@ -1,0 +1,39 @@
+{
+  "object_sha256": "b0868bf96277d518e488752ac3cdf6c7ebf437c6ba88f4ddb001fd09ef784440",
+  "results": {
+    "func_80109A60": {
+      "comparison": {
+        "differing": 298,
+        "total": 317,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "alignment": {
+        "aligned_exact": 91,
+        "aligned_opcode": 249,
+        "aligned_opcode_reg": 104
+      },
+      "section_words": 307,
+      "frame": 40
+    },
+    "Input_ApplyPadConfig": {
+      "comparison": {
+        "differing": 48,
+        "total": 48,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "alignment": {
+        "aligned_exact": 17,
+        "aligned_opcode": 43,
+        "aligned_opcode_reg": 21
+      },
+      "section_words": 45,
+      "frame": 32
+    }
+  }
+}
