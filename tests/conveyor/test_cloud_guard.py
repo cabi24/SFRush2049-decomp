@@ -39,7 +39,8 @@ def repository(tmp_path):
 
 @pytest.mark.parametrize("path", [
     "asm/us/blob/example.s", "asm/us/blob/symbols.json", "asm/us/blob/SHA256SUMS",
-    "src/blob/blob.ld", "blob_matched.lock.json", "nested/example.lock.json",
+    "asm/us/ovl_a/ovl_a_8038a400.s", "asm/us/ovl_b/extents.json",
+    "asm/us/boot_tail/SHA256SUMS", "src/blob/blob.ld", "blob_matched.lock.json", "nested/example.lock.json",
     "us.sha1", "src/blob/single.c", "src/blob/groups/example/group.json",
     "src/blob/groups/example/member.c", "src/blob/groups/example/context.c",
 ])
