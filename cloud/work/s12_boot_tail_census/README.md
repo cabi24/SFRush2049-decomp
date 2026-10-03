@@ -74,3 +74,19 @@ constants are compared exactly because they are not relocations.
 Reproduce: `scripts/ulbuild.sh K|L`, `scripts/ulbuild2.sh <I|J|K> <-O1|-O2>` and
 `scripts/ulasm.sh` on the builder (IDO 5.3 toolkit `796ae99a…`), then
 `scripts/ulmatch.py` locally with the fetched objects under `$CLAUDE_JOB_DIR/tmp/ul/`.
+
+## Scoring targets (added)
+
+`python3 -m tools.conveyor.pipeline.ovl_targets generate --image boot_tail`
+writes `asm/us/boot_tail/`: 439 functions from `0x8000F3A4` to
+`0x800277D0`, the same partition as this census, with zero unproven merges.
+The boot segment is mapped at `0x80000400`. Symbols are the game symbols,
+then `symbol_addrs.us.txt`, then `func_XXXXXXXX` for each function. A tile
+with no direct start evidence becomes its own function (`standalone`) unless
+it branches or jumps back into the previous function or is a switch
+destination. All 32 such tiles here are self-contained leaves, mostly with a
+global load scheduled before the stack adjustment. Score with
+`tools/cloud/score.py fn SRC func_XXXXXXXX --targets asm/us/boot_tail`.
+CI rescores `cloud/matches/boot_tail/*.c`. Pipeline proof:
+`cloud/matches/boot_tail/func_80010A00.c` (returns `D_8002C630`) is a
+true match.
