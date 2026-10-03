@@ -1,0 +1,28 @@
+{
+  "result": "PASS",
+  "reports": [
+    {
+      "mode": "c89",
+      "result": "PASS",
+      "stdout": "PASS: all eight real sources, zero/nonzero gates, nested call order, callback reload, queue ABI and state timing"
+    },
+    {
+      "mode": "sanitizers",
+      "result": "PASS",
+      "stdout": "PASS: all eight real sources, zero/nonzero gates, nested call order, callback reload, queue ABI and state timing"
+    }
+  ],
+  "source_hashes": {
+    "cloud/matches/boot_tail/func_80010980.c": "c08485a66aab46dcbee7f12595320e9cf924830819e78f52b58cd6ece1d3940e",
+    "cloud/matches/boot_tail/func_800109C0.c": "0fb265b36bbc33e152d782d11ac25a6227ddd5a3468ade21a1019c17af82eca6",
+    "cloud/matches/boot_tail/func_80011074.c": "4b454938e71e724554ea31afde7845078d5adffd529071bdb96e2b5aa32f3936",
+    "cloud/matches/boot_tail/func_800110C4.c": "4623570e5cc544d4c619bb9a7785103822ba6b7639be9b4e4ce2daf916267486",
+    "cloud/matches/boot_tail/func_800118C0.c": "7e59b64976451761bfdf67a35e3c7c722c4e21f117ed2805e9a9681067bf6320",
+    "cloud/matches/boot_tail/func_80011CD8.c": "83e37e0eb9b2ae148d34a2f3a1c7276d5efd2489ae6bcc81db545554a80a0049",
+    "cloud/matches/boot_tail/func_80014488.c": "ce94ba3925248a1eecd1468060774c6159efa5e14c9c3218052b1e4fb804e4d7",
+    "cloud/matches/boot_tail/func_800144F0.c": "a0783a16dfc02f4b68582f6ae8096f449c4d5abc5e0f50a8c264550779f22cf4",
+    "cloud/work/boot_tail/BT02-remaining/host_behavior.c": "419a10ed26c64a62b3b7bafe17c9846f12117cb41f82c0bdbc4f99601637f952"
+  },
+  "leak_detection": "Disabled: LeakSanitizer rejects the execution environment under ptrace; this driver allocates no heap objects.",
+  "limits": "Host callbacks model call contracts; no N64 hardware or concurrent scheduling is emulated."
+}

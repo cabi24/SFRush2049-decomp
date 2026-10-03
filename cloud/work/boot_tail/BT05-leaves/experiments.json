@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "initial_form_results": {
+    "80021F68": {
+      "O2": {
+        "differing": 2,
+        "total": 7,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "O1": {
+        "differing": 2,
+        "total": 7,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "8002243C": {
+      "O2": {
+        "differing": 0,
+        "total": 8,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "O1": {
+        "differing": 0,
+        "total": 8,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "800225AC": {
+      "O2": {
+        "differing": 0,
+        "total": 12,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "O1": {
+        "differing": 11,
+        "total": 12,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 1
+      }
+    },
+    "800225DC": {
+      "O2": {
+        "differing": 0,
+        "total": 8,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "O1": {
+        "differing": 0,
+        "total": 8,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "80022A78": {
+      "O2": {
+        "differing": 0,
+        "total": 8,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "O1": {
+        "differing": 0,
+        "total": 8,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "80023710": {
+      "O2": {
+        "differing": 0,
+        "total": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "O1": {
+        "differing": 0,
+        "total": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "80023734": {
+      "O2": {
+        "differing": 0,
+        "total": 8,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "O1": {
+        "differing": 0,
+        "total": 8,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  },
+  "80021F68_refinement": {
+    "diagnose": "Two aligned scheduling sites; zero register/constant sites. No frame.",
+    "change": "Use natural chained zero assignment to the two adjacent packed state words.",
+    "directed_variants_after_diagnose": 1,
+    "final_differing_words": 0,
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+  }
+}

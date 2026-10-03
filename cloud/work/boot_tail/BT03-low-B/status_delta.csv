@@ -1,0 +1,9 @@
+address,name,size,cluster,status,evidence_level,flags,diff_words,source_path,note
+0x80014E00,func_80014E00,12,BT03,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80014E00.c,Pending independent replay and exact-head CI.
+0x80014E10,func_80014E10,12,BT03,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80014E10.c,Pending independent replay and exact-head CI.
+0x80014E64,func_80014E64,44,BT03,nonmatch,COMPLETE-NONMATCH,-g0 -O2 -mips2 -G 0 -non_shared,8,cloud/work/boot_tail/BT03-low-B/func_80014E64.c,Bounded narrow-identifier argument-lowering residual; no credit.
+0x80014E90,func_80014E90,44,BT03,nonmatch,COMPLETE-NONMATCH,-g0 -O2 -mips2 -G 0 -non_shared,8,cloud/work/boot_tail/BT03-low-B/func_80014E90.c,Bounded narrow-identifier argument-lowering residual; no credit.
+0x80014EBC,func_80014EBC,44,BT03,nonmatch,COMPLETE-NONMATCH,-g0 -O2 -mips2 -G 0 -non_shared,8,cloud/work/boot_tail/BT03-low-B/func_80014EBC.c,Bounded narrow-identifier argument-lowering residual; no credit.
+0x80014EE8,func_80014EE8,44,BT03,nonmatch,COMPLETE-NONMATCH,-g0 -O2 -mips2 -G 0 -non_shared,8,cloud/work/boot_tail/BT03-low-B/func_80014EE8.c,Bounded narrow-identifier argument-lowering residual; no credit.
+0x80015318,func_80015318,48,BT03,nonmatch,COMPLETE-NONMATCH,-g0 -O2 -mips2 -G 0 -non_shared,3,cloud/work/boot_tail/BT03-low-B/func_80015318.c,Bounded narrow-identifier argument-lowering residual; no credit.
+0x80015348,func_80015348,36,BT03,nonmatch,COMPLETE-NONMATCH,-g0 -O1 -mips2 -G 0 -non_shared,1,cloud/work/boot_tail/BT03-low-B/func_80015348.c,Bounded narrow-identifier argument-lowering residual; no credit.

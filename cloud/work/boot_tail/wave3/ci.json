@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/63",
+  "source_head": "aeba70fccebf2631955c82272c43a466a6cade52",
+  "source_tree": "1605a13a44fee1dbd0941471222e448bdd1954b1",
+  "workflow_run": 37155038665,
+  "workflow_url": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37155038665",
+  "conclusion": "success",
+  "checked_utc": "2026-10-03T21:31:41Z",
+  "new_matches": 30,
+  "new_matching_bytes": 1864,
+  "note": "Completed proof carried in this next source cut; prior source PR remains frozen."
+}

@@ -1,0 +1,95 @@
+{
+  "result": "PASS",
+  "reviewer": "BT07-medium worker",
+  "reviewed_commit": "d7d703bedf50e680e66b85608a59cdce1e534d09",
+  "reviewed_tree": "7647067f25c2cfa82134197c7611047e4b7edeeb",
+  "functions": 8,
+  "native_bytes": 628,
+  "source_review": "Natural complete C89; all real direct and indirect ABI paths checked; no fake formals, padding, embedded callees, target edits or publication artifacts.",
+  "abi_checked": [
+    "actual selected target bodies",
+    "14140/11848/121BC/1261C/1144C/10D74 no-input direct callee bodies",
+    "empty 1E0D4 and 10110 actual no-input behavior",
+    "11074/110C4 reload and one-pointer callback contract",
+    "118C0 zero-argument callback and 11910 flag publication",
+    "11CD8 queue pointer/null output/blocking flag and clear-before-helper timing"
+  ],
+  "worker_verification_exactly_replayed": true,
+  "host_c89_and_asan_ubsan": "PASS",
+  "rows": [
+    {
+      "name": "func_80010980",
+      "bytes": 64,
+      "source_sha256": "c08485a66aab46dcbee7f12595320e9cf924830819e78f52b58cd6ece1d3940e",
+      "strict_match": true,
+      "relocated_full_word_equality": true,
+      "zero_trailing_alignment": true,
+      "no_unknown_references": true
+    },
+    {
+      "name": "func_800109C0",
+      "bytes": 64,
+      "source_sha256": "0fb265b36bbc33e152d782d11ac25a6227ddd5a3468ade21a1019c17af82eca6",
+      "strict_match": true,
+      "relocated_full_word_equality": true,
+      "zero_trailing_alignment": true,
+      "no_unknown_references": true
+    },
+    {
+      "name": "func_80011074",
+      "bytes": 80,
+      "source_sha256": "4b454938e71e724554ea31afde7845078d5adffd529071bdb96e2b5aa32f3936",
+      "strict_match": true,
+      "relocated_full_word_equality": true,
+      "zero_trailing_alignment": true,
+      "no_unknown_references": true
+    },
+    {
+      "name": "func_800110C4",
+      "bytes": 64,
+      "source_sha256": "4623570e5cc544d4c619bb9a7785103822ba6b7639be9b4e4ce2daf916267486",
+      "strict_match": true,
+      "relocated_full_word_equality": true,
+      "zero_trailing_alignment": true,
+      "no_unknown_references": true
+    },
+    {
+      "name": "func_800118C0",
+      "bytes": 80,
+      "source_sha256": "7e59b64976451761bfdf67a35e3c7c722c4e21f117ed2805e9a9681067bf6320",
+      "strict_match": true,
+      "relocated_full_word_equality": true,
+      "zero_trailing_alignment": true,
+      "no_unknown_references": true
+    },
+    {
+      "name": "func_80011CD8",
+      "bytes": 76,
+      "source_sha256": "83e37e0eb9b2ae148d34a2f3a1c7276d5efd2489ae6bcc81db545554a80a0049",
+      "strict_match": true,
+      "relocated_full_word_equality": true,
+      "zero_trailing_alignment": true,
+      "no_unknown_references": true
+    },
+    {
+      "name": "func_80014488",
+      "bytes": 104,
+      "source_sha256": "ce94ba3925248a1eecd1468060774c6159efa5e14c9c3218052b1e4fb804e4d7",
+      "strict_match": true,
+      "relocated_full_word_equality": true,
+      "zero_trailing_alignment": true,
+      "no_unknown_references": true
+    },
+    {
+      "name": "func_800144F0",
+      "bytes": 96,
+      "source_sha256": "a0783a16dfc02f4b68582f6ae8096f449c4d5abc5e0f50a8c264550779f22cf4",
+      "strict_match": true,
+      "relocated_full_word_equality": true,
+      "zero_trailing_alignment": true,
+      "no_unknown_references": true
+    }
+  ],
+  "scope": "Only eight match sources and BT02-remaining evidence; no central/protected edits",
+  "limits": "Independent source/object proof; aggregate CI and cartridge integration still separate"
+}

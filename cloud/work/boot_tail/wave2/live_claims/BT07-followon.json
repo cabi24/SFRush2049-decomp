@@ -1,0 +1,43 @@
+{
+  "state": "active",
+  "owner": "/root/match_boot_tail_bt07_followon",
+  "packet": "BT07-followon",
+  "branch": "dot/boot-tail-bt07-followon",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x8002506C",
+      "size": 64,
+      "end_exclusive": "0x800250AC"
+    },
+    {
+      "address": "0x800254D4",
+      "size": 192,
+      "end_exclusive": "0x80025594"
+    },
+    {
+      "address": "0x80025594",
+      "size": 92,
+      "end_exclusive": "0x800255F0"
+    },
+    {
+      "address": "0x800255F0",
+      "size": 128,
+      "end_exclusive": "0x80025670"
+    },
+    {
+      "address": "0x80025670",
+      "size": 220,
+      "end_exclusive": "0x8002574C"
+    },
+    {
+      "address": "0x80025DC0",
+      "size": 236,
+      "end_exclusive": "0x80025EAC"
+    }
+  ],
+  "bytes": 932,
+  "prior_packet": "BT07-medium peer-approved and frozen 54c8db5b6ea827dc4c5ae02e38600cca2fcedd8c; 80024FD4 is exhausted and excluded",
+  "edit_scope": "Only listed match files and cloud/work/boot_tail/BT07-followon/**",
+  "stop": "Natural C89/O2/O1 true helper/callback ABI,20 directed variants max; no protected edits, overlaps, unproved rodata or frozen target reopening."
+}

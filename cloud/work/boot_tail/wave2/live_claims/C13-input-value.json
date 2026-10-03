@@ -1,0 +1,18 @@
+{
+  "state": "active",
+  "owner": "/root/verify_boot_tail_matches",
+  "packet": "C13-input-value",
+  "branch": "dot/boot-tail-p5-c13-input-value",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x80021150",
+      "size": 728,
+      "end_exclusive": "0x80021428"
+    }
+  ],
+  "bytes": 728,
+  "prior_packet": "C13-tail frozen peer PASS e54f11afb0fe43c8280423f7e310985ebd37048c; 80021548 remains blocked",
+  "edit_scope": "Only listed match files and cloud/work/boot_tail/C13-input-value/**",
+  "stop": "Natural C89/O2/O1 genuine ABI,20 directed variants max; diagnose near residuals, no protected edits, overlaps or frozen-target reopening. For 21150 reconstruct whole body and declare real external20A04 only."
+}

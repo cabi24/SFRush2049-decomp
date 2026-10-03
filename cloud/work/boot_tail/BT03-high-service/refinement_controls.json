@@ -1,0 +1,41 @@
+[
+  {
+    "name": "func_8001C77C",
+    "stage": "signed_fixed_values",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "05dc438b52a5cfdc805f28e01d8206d12f4ba85f883d99795c6dfe74cb02e791",
+    "differing": 19,
+    "total": 30,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 2,
+    "strict_match": false
+  },
+  {
+    "name": "func_8001C77C",
+    "stage": "explicit_unsigned_shifts",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "fcfc25b4062f6e5e47811814334684003e55bd1656fe1645ad70e63bf0da9417",
+    "differing": 19,
+    "total": 30,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 2,
+    "strict_match": false
+  },
+  {
+    "name": "func_8001C77C",
+    "stage": "word_formals_narrowed",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "0b200e361570eeeaeb60402d21ec37ca488982078983cf3d3ddf7baea4c79788",
+    "differing": 19,
+    "total": 30,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 2,
+    "strict_match": false
+  }
+]

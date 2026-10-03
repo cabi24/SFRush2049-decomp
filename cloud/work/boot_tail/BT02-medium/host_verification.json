@@ -1,0 +1,11 @@
+{
+  "result": "PASS",
+  "matching_sources_linked_separately": 8,
+  "callbacks_and_forwarding": "PASS",
+  "buffer_selection_and_neighbor_preservation": "PASS",
+  "blocking_control_paths": [
+    "busy8",
+    "busy16"
+  ],
+  "limit": "Host behavior only; no native pointer-layout, concurrency, hardware or ROM proof."
+}

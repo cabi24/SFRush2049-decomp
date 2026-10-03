@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/62",
+  "source_head": "09ac2a2890c669b12c4e37398fa66b44baadef05",
+  "source_tree": "f7d5a6fa6aa4a36e403c94dff46dd8830fbd5daa",
+  "workflow_run": 37154187199,
+  "workflow_url": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37154187199",
+  "conclusion": "success",
+  "checked_utc": "2026-10-03T21:15:59Z",
+  "new_matches": 31,
+  "new_matching_bytes": 1728,
+  "note": "Receipt carried into the next source cut; prior source head is frozen and has no new receipt-only CI loop."
+}

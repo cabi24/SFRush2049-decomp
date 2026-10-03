@@ -1,0 +1,11 @@
+{
+  "name": "func_8001C77C",
+  "stage": "Initial O2 source before three directed controls",
+  "source_sha256": "27c8de955d3ebf3dc29fe4a1b64c581b092ba538f4e09854c58d919518f8166b",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "strict_differing_words": 19,
+  "strict_extra_words": 2,
+  "recorded_utc": "2026-10-03T21:20:42.181019+00:00",
+  "workbench_summary": "verdict=structure-mismatch aligned_total=  15 words=  22 raw=  25 opcodes=  14 gaps=   5 reloc_syms=   8 norm=  10 regs=  19 fp=   3 insns=  33 frame=  -32 sha1=1eb7a1fff03c /tmp/bt03service_8001C77C_O2.o true_insn_delta=+3 geometry_edit_distance=10 opcode_distance=6",
+  "method": "tools/workbench.py diagnose with temporary unchanged canonical-word target object; raw objects and instructions not committed. Full relocated score.py remains the acceptance criterion."
+}

@@ -1,0 +1,43 @@
+{
+  "state": "active",
+  "owner": "/root/match_boot_tail_bt03_high",
+  "packet": "BT03-high-api",
+  "branch": "dot/boot-tail-bt03-high-api",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x8001FE58",
+      "size": 76,
+      "end_exclusive": "0x8001FEA4"
+    },
+    {
+      "address": "0x8001FEA4",
+      "size": 84,
+      "end_exclusive": "0x8001FEF8"
+    },
+    {
+      "address": "0x8001FEF8",
+      "size": 84,
+      "end_exclusive": "0x8001FF4C"
+    },
+    {
+      "address": "0x8001FF4C",
+      "size": 84,
+      "end_exclusive": "0x8001FFA0"
+    },
+    {
+      "address": "0x8001FFA0",
+      "size": 84,
+      "end_exclusive": "0x8001FFF4"
+    },
+    {
+      "address": "0x8001FFF4",
+      "size": 84,
+      "end_exclusive": "0x80020048"
+    }
+  ],
+  "bytes": 496,
+  "releases_prior_packet": "BT03-high-medium frozen peer PASS450b0be78432bd71056bd63646d777abf38e191b; source deferred to next aggregate cut",
+  "edit_scope": "Only listed match files and cloud/work/boot_tail/BT03-high-api/**",
+  "stop": "Natural C89/O2/O1, actual callee ABI,20 directed variants max, no protected edits, overlap or frozen-target reopening."
+}

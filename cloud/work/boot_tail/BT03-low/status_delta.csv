@@ -1,0 +1,11 @@
+address,name,size,cluster,status,evidence_level,flags,diff_words,source_path,note
+0x80014624,func_80014624,44,BT03,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80014624.c,Pending independent replay and exact-head CI.
+0x8001467C,func_8001467C,48,BT03,nonmatch,COMPLETE-NONMATCH,-g0 -O2 -mips2 -G 0 -non_shared,2,cloud/work/boot_tail/BT03-low/func_8001467C.c,Allocation residual after diagnose and 15 natural source forms; no credit.
+0x800146AC,func_800146AC,8,BT03,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_800146AC.c,Pending independent replay and exact-head CI.
+0x800149BC,func_800149BC,32,BT03,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_800149BC.c,Pending independent replay and exact-head CI.
+0x800149DC,func_800149DC,40,BT03,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_800149DC.c,Pending independent replay and exact-head CI.
+0x80014A04,func_80014A04,8,BT03,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80014A04.c,Pending independent replay and exact-head CI.
+0x80014BB0,func_80014BB0,40,BT03,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80014BB0.c,Pending independent replay and exact-head CI.
+0x80014C18,func_80014C18,40,BT03,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80014C18.c,Pending independent replay and exact-head CI.
+0x80014C40,func_80014C40,32,BT03,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80014C40.c,Pending independent replay and exact-head CI.
+0x80014D1C,func_80014D1C,16,BT03,verified_body,LOCAL-STRICT-MATCH,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80014D1C.c,Pending independent replay and exact-head CI.
