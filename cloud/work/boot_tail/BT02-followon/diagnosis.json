@@ -1,0 +1,27 @@
+{
+  "method": "Existing workbench diagnose was run before any near-match variants on scratch-only target and actual candidate objects. Targets have literal address words and no ELF relocation records; workbench relocation-layout cautions are heuristic only, and unchanged strict score.py is the acceptance gate.",
+  "functions": [
+    {
+      "name": "func_80010D74",
+      "initial_strict_differing_words": 3,
+      "target_frame_bytes": 32,
+      "candidate_frame_bytes": 32,
+      "class": "stack-home plus actual API address mismatch",
+      "workbench_class": "operand-mismatch, two nonrelocation differing words; eleven relocation-layout cautions",
+      "cause": "Scalar byte lives at sp+31, native one-byte command buffer at sp+28. The native call is osJamMesg (0x800075E0), not osSendMesg (0x80007440).",
+      "fix": "Use a one-byte command array and the actual osJamMesg declaration. Receiver 80010A40 reads only the command byte at message+0 for stop 255.",
+      "directed_followup_variants": 1,
+      "final_strict_match": true
+    },
+    {
+      "name": "func_80014374",
+      "initial_strict_differing_words": 2,
+      "class": "shared-result versus direct-return pool/control flow",
+      "workbench_class": "structure-mismatch: one structural and one register difference; unchanged 19 instructions and no frame; identical temp lane",
+      "cause": "Direct-return spelling materializes the last default directly in v0; native shared final result uses v1 and final move.",
+      "fix": "Natural full if/else chain assigning a genuine unsigned-char result before one return. No fake formal, keeper or dead read.",
+      "directed_followup_variants": 6,
+      "final_strict_match": true
+    }
+  ]
+}

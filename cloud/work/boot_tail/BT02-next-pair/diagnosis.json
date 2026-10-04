@@ -1,0 +1,31 @@
+{
+  "method": "Unmodified workbench on private target and candidate objects; strict relocated score.py remains authoritative. Raw object diagnostics are not published.",
+  "functions": [
+    {
+      "name": "func_80011A64",
+      "baseline_O2": 107,
+      "baseline_O1": 104,
+      "target_instructions": 110,
+      "candidate_instructions": 112,
+      "followup_variants": 4,
+      "retained": "baseline",
+      "final_O2": 107,
+      "final_O1": 104,
+      "class": "narrow-formal normalization and downstream scheduling/register differences"
+    },
+    {
+      "name": "func_80011D74",
+      "baseline_O2": 97,
+      "baseline_O1": 123,
+      "target_instructions": 123,
+      "candidate_instructions": 123,
+      "followup_variants": 4,
+      "retained": "semantic loop-end local after helper comparison",
+      "final_O2": 24,
+      "final_O1": 122,
+      "aligned_register_differences": 24,
+      "class": "narrow-formal normalization and downstream temporary-register numbering"
+    }
+  ],
+  "next_hypothesis": "Obtain independently demonstrated original narrow-formal front-end convention before reopening; no force-spill or widened-formal workaround."
+}

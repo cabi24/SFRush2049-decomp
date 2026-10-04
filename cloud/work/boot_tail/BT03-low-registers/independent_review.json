@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "reviewer": "/root/match_boot_tail_audio_pair",
+  "reviewed_source_commit": "e75f6a165060648a40062043c9223828bd6b1de5",
+  "reviewed_commit": "acb8d95e471b4312677f973cc2c20366be586399",
+  "reviewed_tree": "24219e851857de49308e0e9200f4be9988eff3e5",
+  "source_sha256": {
+    "cloud/matches/boot_tail/func_800163A8.c": "7d237f0baeb409e9ad3c5fb4828f775957bd4f4f14d2639f3fe558057511174f",
+    "cloud/work/boot_tail/BT03-low-registers/func_8001558C_NONMATCH.c": "c6c2dcaa194b6d119fee7d31689355ac762170cda8823cc3b6f396ac15478d82",
+    "cloud/work/boot_tail/BT03-low-registers/func_80015C0C_NONMATCH.c": "bb2cb7bd36713ed09cf2270e6c12e620db3412efb333e258f1af706fa0b3dfb5"
+  },
+  "scope": "One strict body/296 B plus two complete nonmatches/696 B; central exact-head CI required. No cartridge or integration claim.",
+  "checks": {
+    "frozen_sources_unchanged": true,
+    "scope": "Only named match and owned work packet",
+    "whitespace": "PASS after CSV-only CRLF-to-LF fix; all C bytes unchanged",
+    "native_source_abi": "Whole native bodies inspected independently; five actual1558C arguments from156E8 and19490 with fifth argument forwarded to178B0 sp+168; one halfword argument each15C0C and163A8 confirmed by151D0 and152A8. Ordinary O32 guards14594/145DC, two-argument no-op14D08, pointer/Boolean removal161A0 independently inspected. Correct first-bank/first-descriptor stopping, sentinel scans, reference wrap, post-callback reload and compaction.",
+    "pins_extents_getter": "PASS existing compiler hashes, manifest and439 starts/sizes99120 B plus getter",
+    "native_layout": "PASS independently rerun IDO size/offset assertions",
+    "literal_table_relocations": "No unverified/unresolved/error fields; no local table/literal substitution",
+    "host_c89_cases": 2400,
+    "independent_asan_ubsan_cases": 2400,
+    "sanitizer_leak_detection": "disabled for existing runtime ptrace limitation"
+  },
+  "strict_results": [
+    {
+      "function": "func_8001558C",
+      "source_path": "cloud/work/boot_tail/BT03-low-registers/func_8001558C_NONMATCH.c",
+      "source_sha256": "c6c2dcaa194b6d119fee7d31689355ac762170cda8823cc3b6f396ac15478d82",
+      "target_bytes": 348,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 33,
+      "total_words": 87,
+      "extra_nonzero_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "function": "func_8001558C",
+      "source_path": "cloud/work/boot_tail/BT03-low-registers/func_8001558C_NONMATCH.c",
+      "source_sha256": "c6c2dcaa194b6d119fee7d31689355ac762170cda8823cc3b6f396ac15478d82",
+      "target_bytes": 348,
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 83,
+      "total_words": 87,
+      "extra_nonzero_words": 14,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "function": "func_80015C0C",
+      "source_path": "cloud/work/boot_tail/BT03-low-registers/func_80015C0C_NONMATCH.c",
+      "source_sha256": "bb2cb7bd36713ed09cf2270e6c12e620db3412efb333e258f1af706fa0b3dfb5",
+      "target_bytes": 348,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 23,
+      "total_words": 87,
+      "extra_nonzero_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "function": "func_80015C0C",
+      "source_path": "cloud/work/boot_tail/BT03-low-registers/func_80015C0C_NONMATCH.c",
+      "source_sha256": "bb2cb7bd36713ed09cf2270e6c12e620db3412efb333e258f1af706fa0b3dfb5",
+      "target_bytes": 348,
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 85,
+      "total_words": 87,
+      "extra_nonzero_words": 26,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "function": "func_800163A8",
+      "source_path": "cloud/matches/boot_tail/func_800163A8.c",
+      "source_sha256": "7d237f0baeb409e9ad3c5fb4828f775957bd4f4f14d2639f3fe558057511174f",
+      "target_bytes": 296,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 0,
+      "total_words": 74,
+      "extra_nonzero_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": true
+    },
+    {
+      "function": "func_800163A8",
+      "source_path": "cloud/matches/boot_tail/func_800163A8.c",
+      "source_sha256": "7d237f0baeb409e9ad3c5fb4828f775957bd4f4f14d2639f3fe558057511174f",
+      "target_bytes": 296,
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 73,
+      "total_words": 74,
+      "extra_nonzero_words": 4,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    }
+  ],
+  "host_results": [
+    {
+      "function": "func_8001558C",
+      "cases": 800,
+      "result": "8001558C: 800 branch, sentinel, first-bank, five-argument and guard controls passed",
+      "source_sha256": "c6c2dcaa194b6d119fee7d31689355ac762170cda8823cc3b6f396ac15478d82"
+    },
+    {
+      "function": "func_80015C0C",
+      "cases": 800,
+      "result": "80015C0C: 800 absent, decrement-wrap, compaction and guard controls passed",
+      "source_sha256": "bb2cb7bd36713ed09cf2270e6c12e620db3412efb333e258f1af706fa0b3dfb5"
+    },
+    {
+      "function": "func_800163A8",
+      "cases": 800,
+      "result": "800163A8: 800 duplicate-key, sentinel, wrap, callback and entry-removal controls passed",
+      "source_sha256": "7d237f0baeb409e9ad3c5fb4828f775957bd4f4f14d2639f3fe558057511174f"
+    }
+  ],
+  "independent_sanitizer_results": [
+    {
+      "function": "func_8001558C",
+      "result": "PASS",
+      "output": "8001558C: 800 branch, sentinel, first-bank, five-argument and guard controls passed"
+    },
+    {
+      "function": "func_80015C0C",
+      "result": "PASS",
+      "output": "80015C0C: 800 absent, decrement-wrap, compaction and guard controls passed"
+    },
+    {
+      "function": "func_800163A8",
+      "result": "PASS",
+      "output": "800163A8: 800 duplicate-key, sentinel, wrap, callback and entry-removal controls passed"
+    }
+  ],
+  "limits": [
+    "1558C and15C0C remain complete nonmatches; no matching credit.",
+    "15C0C candidate extends one instruction beyond target with zero final delay slot; disclosed and not accepted.",
+    "Packed table counts and resource pointers require the stated valid backing-storage/sentinel domains.",
+    "Exact aggregate-head CI, promotion and cartridge verification remain outside this review."
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "method": "Unchanged workbench; temporary canonical-word target object and original O2 candidate. Raw objects/words not committed; strict relocated score decides acceptance.",
+  "results": [
+    {
+      "name": "func_8001F6EC",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "80835026e20a988a145268c922e1a8d818f39e2bb0d7264b128a58427932d012",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 58,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  52 words=  59 raw=  60 opcodes=  35 gaps=   9 reloc_syms=  16 norm=  54 regs=  56 fp=   3 insns=  61 frame=  -24 sha1=a45f6c1c6323 /tmp/larger-8001F6EC-O2.o true_insn_delta=-3 geometry_edit_distance=54 opcode_distance=10",
+      "recorded_utc": "2026-10-04T01:07:59.328043+00:00"
+    },
+    {
+      "name": "func_8001B29C",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "0890dc7b7795e687b7e636feb670415f4fcb50a2379c5c083610b4519b88371a",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 24,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  21 words=  24 raw=  29 opcodes=  14 gaps=   9 reloc_syms=   8 norm=  16 regs=  23 fp=   3 insns=  62 frame=  -48 sha1=69ee5c9ea2f4 /tmp/larger-8001B29C-O2.o true_insn_delta=-3 geometry_edit_distance=16 opcode_distance=7",
+      "recorded_utc": "2026-10-04T01:07:59.787950+00:00"
+    },
+    {
+      "name": "func_8001B3A0",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "1bd53321893c283cb8263daecf5a2b3bb92ab0dfbff9846f0bef571d7acaa86a",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 24,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  21 words=  24 raw=  29 opcodes=  14 gaps=   9 reloc_syms=   8 norm=  16 regs=  23 fp=   3 insns=  62 frame=  -48 sha1=05a27e4a9b50 /tmp/larger-8001B3A0-O2.o true_insn_delta=-3 geometry_edit_distance=16 opcode_distance=7",
+      "recorded_utc": "2026-10-04T01:08:00.224609+00:00"
+    },
+    {
+      "name": "func_8001B7C0",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "05b4180891e41ee65676509cdbf5ca1894dc11d1e5f9ddb7d3e818285625a2ab",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 24,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  21 words=  24 raw=  29 opcodes=  14 gaps=   9 reloc_syms=   8 norm=  16 regs=  23 fp=   3 insns=  62 frame=  -48 sha1=b33da84e5596 /tmp/larger-8001B7C0-O2.o true_insn_delta=-3 geometry_edit_distance=16 opcode_distance=7",
+      "recorded_utc": "2026-10-04T01:08:00.677515+00:00"
+    },
+    {
+      "name": "func_8001D660",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "1db540a95f5ce52e38584d475ccb07eeb7b304923d3a03e86eb32daeeb34a9a1",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 23,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=allocation-mismatch aligned_total=  28 words=  23 raw=  28 opcodes=   0 gaps=   0 reloc_syms=   5 norm=  36 regs=  23 fp=   0 insns=  65 frame=  -24 sha1=5b9a0bf188c7 /tmp/larger-8001D660-O2.o",
+      "recorded_utc": "2026-10-04T01:08:01.121661+00:00"
+    },
+    {
+      "name": "func_80019AD4",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "670ca0ce9bdd022ab46dbeb4707f4b457c0b581468dddb666d1a9403c6f986c7",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 67,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  63 words=  67 raw=  67 opcodes=  61 gaps=  16 reloc_syms=   2 norm=  58 regs=  65 fp=   0 insns=  68 frame= None sha1=b9ab0a4939d1 /tmp/larger-80019AD4-O2.o true_insn_delta=+0 geometry_edit_distance=58 opcode_distance=16",
+      "recorded_utc": "2026-10-04T01:08:01.616222+00:00"
+    }
+  ]
+}

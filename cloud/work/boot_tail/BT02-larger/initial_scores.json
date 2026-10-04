@@ -1,0 +1,157 @@
+[
+  {
+    "name": "func_80010628",
+    "runs": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 0,
+        "total": 59,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "strict_match": true
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 57,
+        "total": 59,
+        "extra_words": 7,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "name": "func_80010714",
+    "runs": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 0,
+        "total": 48,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "strict_match": true
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 46,
+        "total": 48,
+        "extra_words": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [
+          "unpaired R_MIPS_HI16 for D_80037FA0 at .text+0xb8"
+        ],
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "name": "func_80010C68",
+    "runs": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 0,
+        "total": 53,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "strict_match": true
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 32,
+        "total": 53,
+        "extra_words": 1,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "name": "func_80011910",
+    "runs": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 47,
+        "total": 52,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 50,
+        "total": 52,
+        "extra_words": 6,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "name": "func_80012660",
+    "runs": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 33,
+        "total": 52,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 52,
+        "total": 52,
+        "extra_words": 19,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [
+          "unpaired R_MIPS_HI16 for D_80038354 at .text+0xc8",
+          "unpaired R_MIPS_HI16 for D_80038358 at .text+0xc4"
+        ],
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "name": "func_80013C84",
+    "runs": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 0,
+        "total": 59,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "strict_match": true
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 58,
+        "total": 59,
+        "extra_words": 13,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "strict_match": false
+      }
+    ]
+  }
+]

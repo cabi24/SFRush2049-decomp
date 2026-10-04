@@ -1,0 +1,43 @@
+{
+  "state": "active",
+  "owner": "/root/match_boot_tail_bt03_high",
+  "packet": "BT03-high-service",
+  "branch": "dot/boot-tail-bt03-high-service",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x80018FA4",
+      "size": 72,
+      "end_exclusive": "0x80018FEC"
+    },
+    {
+      "address": "0x80019144",
+      "size": 80,
+      "end_exclusive": "0x80019194"
+    },
+    {
+      "address": "0x80019370",
+      "size": 88,
+      "end_exclusive": "0x800193C8"
+    },
+    {
+      "address": "0x80019850",
+      "size": 76,
+      "end_exclusive": "0x8001989C"
+    },
+    {
+      "address": "0x8001C77C",
+      "size": 120,
+      "end_exclusive": "0x8001C7F4"
+    },
+    {
+      "address": "0x8001C7F4",
+      "size": 108,
+      "end_exclusive": "0x8001C860"
+    }
+  ],
+  "bytes": 544,
+  "prior_packet": "BT03-high-gates independently approved and frozen15ec560f4d7e5e09244dce487c5bb7e983bb4a37",
+  "edit_scope": "Only listed match sources and cloud/work/boot_tail/BT03-high-service/**",
+  "stop": "Natural C89/O2/O1 genuine ABI,20 directed variants max; no protected edits, overlap or reopening frozen residuals."
+}

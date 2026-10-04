@@ -1,0 +1,102 @@
+[
+  {
+    "name": "func_80013DEC",
+    "routing": "import-fix",
+    "owning_pass": "unknown",
+    "ownership_basis": "none",
+    "lever": {
+      "alternatives": [],
+      "citation": null,
+      "edit": null,
+      "edit_family": null,
+      "evidence": [],
+      "lever_class": "none-known",
+      "measurements": {
+        "displaced_home_rows": 0,
+        "owning_pass": "cfe-spelling",
+        "webs": 31
+      },
+      "needs": [
+        "pops per source line: rebuild with DKWB_UGEN_TRACE=1 on a cc carrying instrument-ugen's free-list hooks and pass the log as --ring-trace",
+        "line-order conflicts: rebuild with DKWB_UGEN_SCHED=1 on a cc carrying instrument-ugen --emit-provenance and pass the log as --emit-trace",
+        "as1 selection keys: rebuild the same compile with cc -Wa,-R and pass the assembler's trace as --as1-trace (no patched compiler; the object is byte-identical with -R on)"
+      ],
+      "reachability": null,
+      "reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+      "see_also": [
+        {
+          "citation": "levelFreeAll, Mickey's Speedway USA, undated triage shard: 114/117 words after the retained rewrite, up from 112/117; 36/36 relocation offsets, types and identities exact; a fidelity-gated ugen source-line trace supplied the order. A resident function, not part of the overlay lever cohort",
+          "precondition": "the residual is the temp order at a pointer add, which needs the expression in front of you -- check it by hand",
+          "proof": "at the mismatching pointer-add expression the shard records typed-pointer commutations, casts and assignment forms as exhausted. Byte-offset arithmetic is the one spelling that did move the temp order, and it is already retained: it takes the baseline's pointer/mask/scale to mask/scale/pointer, where the target wants mask/pointer/scale",
+          "reopens_when": "a source form yields mask, pointer, scale -- the one order no tried spelling produced",
+          "unreachable_class": "cfe-pointer-add-order"
+        }
+      ],
+      "unreachable": null
+    },
+    "comparison": {
+      "verdict": "structure-mismatch",
+      "words": 178,
+      "raw": 178,
+      "target_frame_size": -48,
+      "candidate_frame_size": -48,
+      "target_instructions": 195,
+      "candidate_instructions": 206,
+      "aligned_insertions": 35,
+      "aligned_deletions": 24,
+      "aligned_register": 63,
+      "aligned_constant": 0,
+      "aligned_structural": 71
+    }
+  },
+  {
+    "name": "func_80014198",
+    "routing": "import-fix",
+    "owning_pass": "unknown",
+    "ownership_basis": "none",
+    "lever": {
+      "alternatives": [],
+      "citation": null,
+      "edit": null,
+      "edit_family": null,
+      "evidence": [],
+      "lever_class": "none-known",
+      "measurements": {
+        "displaced_home_rows": 0,
+        "owning_pass": "cfe-spelling",
+        "webs": 4
+      },
+      "needs": [
+        "pops per source line: rebuild with DKWB_UGEN_TRACE=1 on a cc carrying instrument-ugen's free-list hooks and pass the log as --ring-trace",
+        "line-order conflicts: rebuild with DKWB_UGEN_SCHED=1 on a cc carrying instrument-ugen --emit-provenance and pass the log as --emit-trace",
+        "as1 selection keys: rebuild the same compile with cc -Wa,-R and pass the assembler's trace as --as1-trace (no patched compiler; the object is byte-identical with -R on)"
+      ],
+      "reachability": null,
+      "reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+      "see_also": [
+        {
+          "citation": "levelFreeAll, Mickey's Speedway USA, undated triage shard: 114/117 words after the retained rewrite, up from 112/117; 36/36 relocation offsets, types and identities exact; a fidelity-gated ugen source-line trace supplied the order. A resident function, not part of the overlay lever cohort",
+          "precondition": "the residual is the temp order at a pointer add, which needs the expression in front of you -- check it by hand",
+          "proof": "at the mismatching pointer-add expression the shard records typed-pointer commutations, casts and assignment forms as exhausted. Byte-offset arithmetic is the one spelling that did move the temp order, and it is already retained: it takes the baseline's pointer/mask/scale to mask/scale/pointer, where the target wants mask/pointer/scale",
+          "reopens_when": "a source form yields mask, pointer, scale -- the one order no tried spelling produced",
+          "unreachable_class": "cfe-pointer-add-order"
+        }
+      ],
+      "unreachable": null
+    },
+    "comparison": {
+      "verdict": "structure-mismatch",
+      "words": 16,
+      "raw": 16,
+      "target_frame_size": -32,
+      "candidate_frame_size": -32,
+      "target_instructions": 119,
+      "candidate_instructions": 120,
+      "aligned_insertions": 2,
+      "aligned_deletions": 1,
+      "aligned_register": 6,
+      "aligned_constant": 0,
+      "aligned_structural": 3
+    }
+  }
+]

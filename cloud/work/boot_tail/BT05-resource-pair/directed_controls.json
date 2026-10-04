@@ -1,0 +1,76 @@
+{
+  "result": "BOUNDED_STOP",
+  "controls": [
+    {
+      "name": "func_80022160",
+      "control": "single_packed_descriptor_expression",
+      "source_sha256": "afba260aae91d7e2f21954ed172280c0db7a68ab0198ed761306ea50fc4261ce",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 95,
+      "total_words": 113,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80022160",
+      "control": "word_width_existing_child_index",
+      "source_sha256": "cccd8bffb49faaa5dec36136cc8f40d63c925a075004dfd26f81d7e8e6730c86",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 95,
+      "total_words": 113,
+      "extra_words": 1,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80022874",
+      "control": "explicit_conditional_playback_calls",
+      "source_sha256": "ebecd41e7fc402cb6a032454b752c2653ee36afd71ecdca0fc4dfda2189ebbf1",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 112,
+      "total_words": 115,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80022160",
+      "control": "inline_single_use_descriptor",
+      "source_sha256": "bd0f4e47420b888794eb859f67ec8912d0975aa0edffc2ff9596e25e169212fe",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 110,
+      "total_words": 113,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    }
+  ],
+  "diagnosis": {
+    "80022160": {
+      "aligned_constant": 6,
+      "aligned_deletions": 24,
+      "aligned_insertions": 24,
+      "aligned_register": 35,
+      "aligned_schedule": 0,
+      "frame": -64
+    },
+    "80022874": {
+      "aligned_constant": 0,
+      "aligned_deletions": 12,
+      "aligned_insertions": 3,
+      "aligned_register": 53,
+      "aligned_schedule": 0,
+      "frame": -24
+    }
+  },
+  "note": "Combined descriptor improves110 to95 but remains broad; inline descriptor and word child index do not close it. Explicit sample playback branches worsen103 to112. No artificial frame locals, global-storage or declaration changes."
+}

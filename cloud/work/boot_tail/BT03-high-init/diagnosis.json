@@ -1,0 +1,45 @@
+{
+  "method": "Unchanged workbench; temporary canonical-word target object and original O2 candidate. Raw objects/words not committed; strict relocated score decides acceptance.",
+  "results": [
+    {
+      "name": "func_8001EE34",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "7986b5502db425e7f0d28e43adbc78a5c17699f0af8fce611d7a6087285aa87d",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 24,
+      "strict_extra_words": 12,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  34 words=  36 raw=  38 opcodes=  28 gaps=  20 reloc_syms=  20 norm=  26 regs=  35 fp=  12 insns=  38 frame= None sha1=5e3e341a28ef /tmp/init-8001EE34-O2.o true_insn_delta=+12 geometry_edit_distance=26 opcode_distance=20",
+      "recorded_utc": "2026-10-03T23:01:27.348635+00:00"
+    },
+    {
+      "name": "func_8001F7EC",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "afb2063af8f5c1e436e0e421d4ebe744eaeb13054689b45afee6addb0f0f45f1",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 30,
+      "strict_extra_words": 29,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  60 words=  59 raw=  59 opcodes=  53 gaps=  33 reloc_syms=  36 norm=  76 regs=  59 fp=  29 insns=  59 frame= None sha1=bfcc57007371 /tmp/init-8001F7EC-O2.o true_insn_delta=+29 geometry_edit_distance=76 opcode_distance=35",
+      "recorded_utc": "2026-10-03T23:01:27.925520+00:00"
+    },
+    {
+      "name": "func_8001F954",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "f4fb430759800dd2dc4225bd4a480bb9419d372d76eea5d7e845cfe71765cd15",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 2,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=operand-mismatch aligned_total=   7 words=   2 raw=   7 opcodes=   0 gaps=   0 reloc_syms=   5 norm=   0 regs=   0 fp=   0 insns=  31 frame=  -32 sha1=8e5d1f91dc60 /tmp/init-8001F954-O2.o",
+      "recorded_utc": "2026-10-03T23:01:28.396153+00:00"
+    },
+    {
+      "name": "func_80020598",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "c69de1a0578c091b4e1185a47f5884e1d6c57db9811d8491ec699015c7668dd9",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 16,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=allocation-mismatch aligned_total=  18 words=  16 raw=  18 opcodes=   0 gaps=   0 reloc_syms=   2 norm=  16 regs=  16 fp=   0 insns=  19 frame= None sha1=514438efa679 /tmp/init-80020598-O2.o",
+      "recorded_utc": "2026-10-03T23:01:28.907455+00:00"
+    }
+  ]
+}

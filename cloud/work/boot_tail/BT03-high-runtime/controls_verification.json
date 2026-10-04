@@ -1,0 +1,197 @@
+{
+  "purpose": "Rejected compiler controls; zero match credit. All controls are rejected source forms.",
+  "results": [
+    {
+      "name": "func_8001897C",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime/controls/func_8001897C_compound.c",
+      "source_sha256": "3c439b2f4e571ec4e81699f59abbfcd5bb43b16ba42b7a4be3de6f4ddbe5c765",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 14,
+      "total_words": 45,
+      "extra_words": 1,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001897C",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime/controls/func_8001897C_compound.c",
+      "source_sha256": "3c439b2f4e571ec4e81699f59abbfcd5bb43b16ba42b7a4be3de6f4ddbe5c765",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 38,
+      "total_words": 45,
+      "extra_words": 8,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_8004BE80 at .text+0x8c"
+      ],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001897C",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime/controls/func_8001897C_initial.c",
+      "source_sha256": "19c2c4074dfb09df0bf2c45a3072b29ea3612b9c277675dbbdc61543a93e8333",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 27,
+      "total_words": 45,
+      "extra_words": 1,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001897C",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime/controls/func_8001897C_initial.c",
+      "source_sha256": "19c2c4074dfb09df0bf2c45a3072b29ea3612b9c277675dbbdc61543a93e8333",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 38,
+      "total_words": 45,
+      "extra_words": 7,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_8004BE80 at .text+0x8c"
+      ],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001897C",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime/controls/func_8001897C_natural1.c",
+      "source_sha256": "0e1f142ab0d9c83ee314e51ffb427200d4725f7391572ba930895ae4ef50de85",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 14,
+      "total_words": 45,
+      "extra_words": 1,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001897C",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime/controls/func_8001897C_natural1.c",
+      "source_sha256": "0e1f142ab0d9c83ee314e51ffb427200d4725f7391572ba930895ae4ef50de85",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 38,
+      "total_words": 45,
+      "extra_words": 6,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_8004BE80 at .text+0x88"
+      ],
+      "strict_match": false
+    },
+    {
+      "name": "func_80018A30",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime/controls/func_80018A30_initial.c",
+      "source_sha256": "f6803256df1cb0684c78ba6e89e8cd64922cd95c0a769af702e5a9cff6714ad8",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 23,
+      "total_words": 47,
+      "extra_words": 2,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80018A30",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime/controls/func_80018A30_initial.c",
+      "source_sha256": "f6803256df1cb0684c78ba6e89e8cd64922cd95c0a769af702e5a9cff6714ad8",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 47,
+      "total_words": 47,
+      "extra_words": 1,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001B8C4",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime/controls/func_8001B8C4_initial.c",
+      "source_sha256": "1333af7981ed072367b68247eb31c30a8e23ac6b13bb0317d7f8dadc0c6c15fd",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 36,
+      "total_words": 41,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001B8C4",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime/controls/func_8001B8C4_initial.c",
+      "source_sha256": "1333af7981ed072367b68247eb31c30a8e23ac6b13bb0317d7f8dadc0c6c15fd",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 40,
+      "total_words": 41,
+      "extra_words": 14,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_8004BEB8 at .text+0x90"
+      ],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001B8C4",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime/controls/func_8001B8C4_natural1.c",
+      "source_sha256": "358d2fc7f1a414c3708bdcf0132bcd5266196bec58e46158813d8407212da4b9",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 18,
+      "total_words": 41,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001B8C4",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime/controls/func_8001B8C4_natural1.c",
+      "source_sha256": "358d2fc7f1a414c3708bdcf0132bcd5266196bec58e46158813d8407212da4b9",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 41,
+      "total_words": 41,
+      "extra_words": 14,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_8004BEB8 at .text+0x94"
+      ],
+      "strict_match": false
+    },
+    {
+      "name": "func_800202C4",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime/controls/func_800202C4_initial.c",
+      "source_sha256": "45c9a9fa013061287241170ccda37e47a99a8c0c1ed010947534aefa584f0734",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 35,
+      "total_words": 43,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_800202C4",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime/controls/func_800202C4_initial.c",
+      "source_sha256": "45c9a9fa013061287241170ccda37e47a99a8c0c1ed010947534aefa584f0734",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 38,
+      "total_words": 43,
+      "extra_words": 2,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    }
+  ]
+}

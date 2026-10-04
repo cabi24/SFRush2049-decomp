@@ -1,0 +1,64 @@
+[
+  {
+    "name": "func_800146B4",
+    "source_path": "cloud/work/boot_tail/BT03-low-sample-pair/controls/800146B4_initial.c",
+    "source_sha256": "2088ad36f18764dd44d67ae2dad9b323cce2724b6f515a0845be4a037fa908af",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "differing_words": 91,
+    "total_words": 122,
+    "extra_words": 1,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false,
+    "elf_function_size": 496,
+    "label": "initial"
+  },
+  {
+    "name": "func_800146B4",
+    "source_path": "cloud/work/boot_tail/BT03-low-sample-pair/controls/800146B4_initial.c",
+    "source_sha256": "2088ad36f18764dd44d67ae2dad9b323cce2724b6f515a0845be4a037fa908af",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "differing_words": 118,
+    "total_words": 122,
+    "extra_words": 105,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false,
+    "elf_function_size": 924,
+    "label": "initial"
+  },
+  {
+    "name": "func_80016CF0",
+    "source_path": "cloud/work/boot_tail/BT03-low-sample-pair/controls/80016CF0_initial.c",
+    "source_sha256": "7008e84226e3383e8c890771a9ddf41ab5242ceb5eca22623cdd7ae6bf05d59b",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "differing_words": 80,
+    "total_words": 84,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false,
+    "elf_function_size": 332,
+    "label": "initial"
+  },
+  {
+    "name": "func_80016CF0",
+    "source_path": "cloud/work/boot_tail/BT03-low-sample-pair/controls/80016CF0_initial.c",
+    "source_sha256": "7008e84226e3383e8c890771a9ddf41ab5242ceb5eca22623cdd7ae6bf05d59b",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "differing_words": 83,
+    "total_words": 84,
+    "extra_words": 11,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_800385A0 at .text+0x14c"
+    ],
+    "strict_match": false,
+    "elf_function_size": 384,
+    "label": "initial"
+  }
+]

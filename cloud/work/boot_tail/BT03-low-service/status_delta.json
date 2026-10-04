@@ -1,0 +1,86 @@
+{
+  "packet": "BT03-low-service",
+  "activation": "Parent explicitly activated exact five-target set on 2026-10-03 at 23:58 UTC after fresh no-overlap check of central 20621601707048145031c548cfc5b5f0b7859860.",
+  "branch": "dot/boot-tail-bt03-low-service",
+  "base": "15491f806bed915e5d17651ee0fdf952783b76ac",
+  "master_reference": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "attempted_functions": 5,
+  "attempted_bytes": 876,
+  "local_match_functions": 5,
+  "local_match_bytes": 876,
+  "nonmatch_functions": 0,
+  "nonmatch_bytes": 0,
+  "entries": [
+    {
+      "address": "0x80015228",
+      "name": "func_80015228",
+      "size": 128,
+      "cluster": "BT03",
+      "status": "claimed",
+      "evidence_level": "LOCAL-STRICT-MATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80015228.c",
+      "source_sha256": "dd3c243e96144d5f80e2c08d9d284258c88593b5bea94f34e737eed4e7b3ba35",
+      "note": "Strict match after one natural post-increment control; genuine three inputs and preparation gate before live sentinel-list registration."
+    },
+    {
+      "address": "0x800162AC",
+      "name": "func_800162AC",
+      "size": 252,
+      "cluster": "BT03",
+      "status": "claimed",
+      "evidence_level": "LOCAL-STRICT-MATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_800162AC.c",
+      "source_sha256": "073eb444d56865b9042bc52a6abf719acf7c0ae0b082ceb2a6b3ad04abb557f6",
+      "note": "Strict match after one combined-condition registry-search control; real u32 index and descriptor out-parameter, callback-sensitive reference increment."
+    },
+    {
+      "address": "0x80017108",
+      "name": "func_80017108",
+      "size": 172,
+      "cluster": "BT03",
+      "status": "claimed",
+      "evidence_level": "LOCAL-STRICT-MATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80017108.c",
+      "source_sha256": "1730c23ed352066edb34b92f0938187fe8ca5118bbbe1a811aaf32b91535cc95",
+      "note": "First-try strict reset of six counters and 512 packed four-byte resource ranges, then real external reset hook."
+    },
+    {
+      "address": "0x8001734C",
+      "name": "func_8001734C",
+      "size": 104,
+      "cluster": "BT03",
+      "status": "claimed",
+      "evidence_level": "LOCAL-STRICT-MATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_8001734C.c",
+      "source_sha256": "ef10f345d97996db7eb70b045d53886308338216f6d1ec039a57bd0f61e8dfb3",
+      "note": "First-try strict traversal of two live linked heads, reloading each next pointer after callbacks."
+    },
+    {
+      "address": "0x80017644",
+      "name": "func_80017644",
+      "size": 220,
+      "cluster": "BT03",
+      "status": "claimed",
+      "evidence_level": "LOCAL-STRICT-MATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80017644.c",
+      "source_sha256": "dbb105aed2cae867327250ec4eef0768dfe6bdeb67ff84569a9130e83a1caac5",
+      "note": "First-try strict eight-record identifier lookup; preserves input bit31 and skips inactive records."
+    }
+  ],
+  "source_review": {
+    "result": "PASS",
+    "reviewed_commit": "ac88b78f20f150ec27bddb4865029359b6687088",
+    "reviewed_tree": "64b0ee8972fef7a7a9ea9d095d67e4a135870897",
+    "receipt": "cloud/work/boot_tail/BT03-low-service/REVIEW.json"
+  }
+}

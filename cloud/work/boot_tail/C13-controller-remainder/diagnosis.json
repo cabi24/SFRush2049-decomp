@@ -1,0 +1,52 @@
+{
+  "800206AC": {
+    "tool": "tools/workbench.py diagnose",
+    "stage": "retained-source O2",
+    "native_frame_bytes": 48,
+    "aligned_counts": {
+      "aligned_constant": 0,
+      "aligned_deletions": 1,
+      "aligned_insertions": 11,
+      "aligned_register": 15,
+      "aligned_schedule": 0,
+      "frame": -48
+    },
+    "owning_pass": "unknown",
+    "ownership_basis": "none",
+    "lever": {
+      "edit_family": null,
+      "lever_class": "none-known",
+      "measurements": {
+        "displaced_home_rows": 0,
+        "owning_pass": "cfe-spelling",
+        "webs": 12
+      },
+      "reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present"
+    }
+  },
+  "80020A04": {
+    "tool": "tools/workbench.py diagnose",
+    "stage": "retained-source O2",
+    "native_frame_bytes": 0,
+    "aligned_counts": {
+      "aligned_constant": 0,
+      "aligned_deletions": 2,
+      "aligned_insertions": 11,
+      "aligned_register": 142,
+      "aligned_schedule": 0,
+      "frame": null
+    },
+    "owning_pass": "unknown",
+    "ownership_basis": "none",
+    "lever": {
+      "edit_family": null,
+      "lever_class": "none-known",
+      "measurements": {
+        "displaced_home_rows": 0,
+        "owning_pass": "cfe-spelling",
+        "webs": 59
+      },
+      "reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present"
+    }
+  }
+}

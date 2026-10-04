@@ -1,0 +1,26 @@
+{
+  "result": "PASS",
+  "32bit_c89_layout": "PASS",
+  "cases": 334,
+  "results": [
+    {
+      "name": "func_80025AB4",
+      "source_sha256": "dbfb8588ad9aaec30328d708e70dafa27094b88512e3ceebbb9f0030699bc19b",
+      "result": "PASS",
+      "modes": [
+        "c89-O2",
+        "c89-asan-ubsan-O1"
+      ]
+    },
+    {
+      "name": "func_800252AC",
+      "source_sha256": "e0cec37287982ebc0bfc57ee2b60ad7a2aca02306f4a0f3141b6f6eb8db601f1",
+      "result": "PASS",
+      "modes": [
+        "c89-O2",
+        "c89-asan-ubsan-O1"
+      ]
+    }
+  ],
+  "limits": "Source behavior only; no native/ROM execution. ASan/UBSan enabled; LeakSanitizer disabled under ptrace. Native layout is checked separately from wider host pointer layout."
+}

@@ -1,0 +1,13 @@
+{
+  "method": "Read-only canonical whole-helper inspection plus independently reviewed local structure views.",
+  "helper_native_sha256": {
+    "80014CAC": "a9db250f51a3f7d528eb78825593da54ffc61132c5cb3d21eb6a5c26d6904fa5",
+    "8001605C": "a7c97e89b761dd47940fce89c5003a8f337e2c3120141aeec74a24f3891646e9",
+    "80014CFC": "691e766163b1b8288cf1e76b4dc9eb7dde764cde7f749bf5aef916d919300f2b",
+    "80014CF4": "78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378",
+    "8001FA18": "0cb9c4ca1eb107de27ce426a2447f38206c88ff76afb03d67c96c113a6a208da"
+  },
+  "sample_contract": "14CAC maps one address pointer; 1605C receives sample records and mapped base, returns nonzero only for an existing/added registry entry. The sole 162AC caller gates it on this result. 14CFC is a real two-argument stub called with addresses of descriptor/data pointers; no body is inserted or removed.",
+  "state_contract": "1734C walks nodes with native next/previous/identifier at 0/4/8 from heads at F78/F7C. 1FA18 takes one full identifier, returns ignored integer status. 17644 uses the peer-verified 4088-byte record view from routing commit 78469c93, ID+0 and inactive+4033.",
+  "evidence_caveat": "Existing predecessor type/source bytes remain frozen. New native F78 pointer evidence refines a previously opaque field only in this packet. Source names are descriptive hypotheses."
+}

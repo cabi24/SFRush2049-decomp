@@ -1,0 +1,38 @@
+{
+  "state": "active",
+  "owner": "/root/match_boot_tail_bt05_bt07",
+  "packet": "BT05-medium",
+  "branch": "dot/boot-tail-bt05-medium",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x800218CC",
+      "size": 112,
+      "end_exclusive": "0x8002193C"
+    },
+    {
+      "address": "0x800223D0",
+      "size": 108,
+      "end_exclusive": "0x8002243C"
+    },
+    {
+      "address": "0x8002245C",
+      "size": 84,
+      "end_exclusive": "0x800224B0"
+    },
+    {
+      "address": "0x800224B0",
+      "size": 100,
+      "end_exclusive": "0x80022514"
+    },
+    {
+      "address": "0x80023190",
+      "size": 140,
+      "end_exclusive": "0x8002321C"
+    }
+  ],
+  "bytes": 544,
+  "releases_prior_packet": "BT05-wrappers peer-approved and frozen at6315540b19d55d528eff090e8c3f726590203357",
+  "edit_scope": "Only these matching sources and cloud/work/boot_tail/BT05-medium/**; no central files",
+  "stop": "Natural C89, actual ABI, strict O2/O1,20 directed variants maximum; no protected edits, rodata assumptions or overlapping targets."
+}

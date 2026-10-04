@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "scope": "External address and native ABI proof only; original scalar/table contents are unavailable and are neither inferred nor replaced.",
+  "native_abi": {
+    "func_8001E440": "u16 input in a0; u16 result in v0; single-precision external scalar multiply then unsigned-word conversion",
+    "func_8001E688": "double input in f12/f13, double result in f0/f1; unsigned-word truncation followed by double conversion",
+    "func_8001E7BC": "u16 phase input; signed-short result; phase modulo4096 and four reflected/sign quadrants",
+    "func_8001E864": "key pointer, base pointer, int count, int stride, genuine fifth two-pointer comparator returning int; pointer result; native frame56",
+    "func_8001E940": "u32 output pointer plus byte-state pointer; actual helper80019AA8 returns u32 after reading state[75] and tableD8004FA20; output load follows helper call"
+  },
+  "native_external_data": {
+    "D_8002D924": {
+      "address": "0x8002D924",
+      "type": "extern const float",
+      "contents_known": false
+    },
+    "D_8002CC54": {
+      "address": "0x8002CC54",
+      "type": "extern const short[1024]",
+      "contents_known": false,
+      "reflected_last_element_address": "0x8002D452",
+      "last_element_addend": 2046
+    }
+  },
+  "rows": [
+    {
+      "name": "func_8001E440",
+      "source_sha256": "531e1936a63420631f43dd59c9edf06c9bf8a856de2ee6badaa687ec872e5885",
+      "data_section_bytes": {},
+      "text_relocations": [
+        {
+          "text_offset": 36,
+          "type": 5,
+          "symbol": "D_8002D924",
+          "symbol_section": 0,
+          "address": "0x8002D924",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 40,
+          "type": 6,
+          "symbol": "D_8002D924",
+          "symbol_section": 0,
+          "address": "0x8002D924",
+          "address_source": "canonical address-named external"
+        }
+      ]
+    },
+    {
+      "name": "func_8001E688",
+      "source_sha256": "7b66db8673c63755b1bb5df8a2d56160752f9f3420b2a91543c2df0f1a767def",
+      "data_section_bytes": {},
+      "text_relocations": []
+    },
+    {
+      "name": "func_8001E7BC",
+      "source_sha256": "23491d11e23d5d43d9eb2daee5569725682fdd2f06fb9a6e006c81052e3c99eb",
+      "data_section_bytes": {},
+      "text_relocations": [
+        {
+          "text_offset": 24,
+          "type": 5,
+          "symbol": "D_8002CC54",
+          "symbol_section": 0,
+          "address": "0x8002CC54",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 36,
+          "type": 6,
+          "symbol": "D_8002CC54",
+          "symbol_section": 0,
+          "address": "0x8002CC54",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 60,
+          "type": 5,
+          "symbol": "D_8002CC54",
+          "symbol_section": 0,
+          "address": "0x8002CC54",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 72,
+          "type": 6,
+          "symbol": "D_8002CC54",
+          "symbol_section": 0,
+          "address": "0x8002CC54",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 96,
+          "type": 5,
+          "symbol": "D_8002CC54",
+          "symbol_section": 0,
+          "address": "0x8002CC54",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 104,
+          "type": 6,
+          "symbol": "D_8002CC54",
+          "symbol_section": 0,
+          "address": "0x8002CC54",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 132,
+          "type": 5,
+          "symbol": "D_8002CC54",
+          "symbol_section": 0,
+          "address": "0x8002CC54",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 140,
+          "type": 6,
+          "symbol": "D_8002CC54",
+          "symbol_section": 0,
+          "address": "0x8002CC54",
+          "address_source": "canonical address-named external"
+        }
+      ]
+    },
+    {
+      "name": "func_8001E864",
+      "source_sha256": "f460b2d3eec2be3e95e8881e7a1de7ffeb77ab68e6a4699cbb028eff4dfc5bef",
+      "data_section_bytes": {},
+      "text_relocations": []
+    },
+    {
+      "name": "func_8001E940",
+      "source_sha256": "1d7f3398193c7b8d734e5a98bb8145cee5b978b001205b78743e7dafa236ae92",
+      "data_section_bytes": {},
+      "text_relocations": [
+        {
+          "text_offset": 12,
+          "type": 4,
+          "symbol": "func_80019AA8",
+          "symbol_section": 0,
+          "address": "0x80019AA8",
+          "address_source": "canonical symbol map"
+        }
+      ]
+    }
+  ]
+}

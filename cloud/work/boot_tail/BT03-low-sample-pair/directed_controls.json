@@ -1,0 +1,64 @@
+[
+  {
+    "name": "func_800146B4",
+    "label": "shared_position_assignment",
+    "source_path": "cloud/work/boot_tail/BT03-low-sample-pair/controls/800146B4_shared_position_assignment.c",
+    "source_sha256": "6ea4cb53d566e71561e42b4724682fe9f45f52dfbe90611de0f370aeabeb8bc1",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "differing_words": 0,
+    "total_words": 122,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": true,
+    "elf_function_size": 488
+  },
+  {
+    "name": "func_800146B4",
+    "label": "shared_position_assignment",
+    "source_path": "cloud/work/boot_tail/BT03-low-sample-pair/controls/800146B4_shared_position_assignment.c",
+    "source_sha256": "6ea4cb53d566e71561e42b4724682fe9f45f52dfbe90611de0f370aeabeb8bc1",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "differing_words": 120,
+    "total_words": 122,
+    "extra_words": 104,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false,
+    "elf_function_size": 920
+  },
+  {
+    "name": "func_80016CF0",
+    "label": "trailing_payload_extent",
+    "source_path": "cloud/work/boot_tail/BT03-low-sample-pair/controls/80016CF0_trailing_payload_extent.c",
+    "source_sha256": "0368a3e6d726d5100d4f55912c1f9d2f3665b94ab71736e7b96f67d409bd03e3",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "differing_words": 80,
+    "total_words": 84,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false,
+    "elf_function_size": 332
+  },
+  {
+    "name": "func_80016CF0",
+    "label": "trailing_payload_extent",
+    "source_path": "cloud/work/boot_tail/BT03-low-sample-pair/controls/80016CF0_trailing_payload_extent.c",
+    "source_sha256": "0368a3e6d726d5100d4f55912c1f9d2f3665b94ab71736e7b96f67d409bd03e3",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "differing_words": 83,
+    "total_words": 84,
+    "extra_words": 11,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_800385A0 at .text+0x14c"
+    ],
+    "strict_match": false,
+    "elf_function_size": 384
+  }
+]

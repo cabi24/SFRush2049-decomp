@@ -1,0 +1,90 @@
+{
+  "packet": "BT03-low-followon",
+  "central_claim": "07997e6a",
+  "branch": "dot/boot-tail-bt03-low-followon",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "attempted_functions": 5,
+  "attempted_bytes": 492,
+  "local_match_functions": 2,
+  "local_match_bytes": 240,
+  "nonmatch_functions": 3,
+  "nonmatch_bytes": 252,
+  "entries": [
+    {
+      "address": "0x80014A0C",
+      "name": "func_80014A0C",
+      "size": 104,
+      "cluster": "BT03",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 24,
+      "extra_words": 0,
+      "source_path": "cloud/work/boot_tail/BT03-low-followon/func_80014A0C_NONMATCH.c",
+      "source_sha256": "71a5444188118d8a0db769d1cf8fb79d95a6582706e84d1797eda0afb3aa94cb",
+      "note": "Complete u16 cap/store; native homes the formal then masks its original argument register. Current O2 uses a temporary. Known shared plateau: no repeated narrow-formal controls."
+    },
+    {
+      "address": "0x80014A74",
+      "name": "func_80014A74",
+      "size": 124,
+      "cluster": "BT03",
+      "status": "claimed",
+      "evidence_level": "LOCAL-STRICT-MATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "extra_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80014A74.c",
+      "source_sha256": "8b49909eff2b8337b03e83f17a89ac147731bdd20562e73e922da1c48c7531d3",
+      "note": "First-try strict O2 full body; genuine five input arguments forward to the eight-argument external parameter helper. Frame 40; no masked references."
+    },
+    {
+      "address": "0x80014B3C",
+      "name": "func_80014B3C",
+      "size": 116,
+      "cluster": "BT03",
+      "status": "claimed",
+      "evidence_level": "LOCAL-STRICT-MATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "extra_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80014B3C.c",
+      "source_sha256": "01516f4f52055a9784f897aab9466fa7487eb832a3449e7efc52d7f62f01c3df",
+      "note": "First-try strict O2 full body; active/pending dispatch in a 104-byte record, release_count=20, genuine opaque AudioState pointer to external release initializer. Frame 24."
+    },
+    {
+      "address": "0x80014C60",
+      "name": "func_80014C60",
+      "size": 76,
+      "cluster": "BT03",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 12,
+      "extra_words": 0,
+      "source_path": "cloud/work/boot_tail/BT03-low-followon/func_80014C60_NONMATCH.c",
+      "source_sha256": "8c41d5081c7c87e00f2688ba60007b8407b465faafd6f801c3542011456282f6",
+      "note": "Complete four-sample tail copy and writeback; direct destination local improves 17/19 to 12/19. Seven natural forms froze below bound; final call/pointer allocation still differs."
+    },
+    {
+      "address": "0x80014E1C",
+      "name": "func_80014E1C",
+      "size": 72,
+      "cluster": "BT03",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 7,
+      "extra_words": 0,
+      "source_path": "cloud/work/boot_tail/BT03-low-followon/func_80014E1C_NONMATCH.c",
+      "source_sha256": "bb623f33772cc3eabc0ecf84840aa1ae8e990f286c896dfd95a905605d060665",
+      "note": "Complete forward relative-resource search; real offset local and typed pointer improve 17/18+1 excess to 7/18 with no excess. Narrow-formal home/mask allocation remains; three forms then stop."
+    }
+  ],
+  "source_review": {
+    "result": "PASS",
+    "reviewed_commit": "ccca6488dc1b318d704469f33ac16cc12d0ebabf",
+    "reviewed_tree": "d3f7f3c753763a1264b0a1c26df4a4ed4ae5b8e6",
+    "receipt": "cloud/work/boot_tail/BT03-low-followon/REVIEW.json"
+  }
+}

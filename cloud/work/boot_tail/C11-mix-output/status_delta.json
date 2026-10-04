@@ -1,0 +1,35 @@
+{
+  "packet": "C11-mix-output",
+  "central_claim": "3e91ca50",
+  "branch": "dot/boot-tail-c11-mix-output",
+  "base": "42c094cb7fef0a8d08d3ed51f333ddacfbd287d2",
+  "master_reference": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "attempted_functions": 1,
+  "attempted_bytes": 864,
+  "local_match_functions": 0,
+  "local_match_bytes": 0,
+  "nonmatch_functions": 1,
+  "nonmatch_bytes": 864,
+  "entries": [
+    {
+      "address": "0x8001E0E0",
+      "name": "func_8001E0E0",
+      "size": 864,
+      "cluster": "BT03",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 207,
+      "extra_words": 3,
+      "source_path": "cloud/work/boot_tail/C11-mix-output/func_8001E0E0_NONMATCH.c",
+      "source_sha256": "f1f72236998502bbae178e8d437e80e15f9bc5f0ddd56c02f5c2a77f9347d6b2",
+      "note": "Complete eight-input, four-output floating mixer with real external-data addresses and unknown contents. Four natural forms; retained O2 207/216 plus3 excess, clean full relocations, native/candidate16-byte frame. Synthetic native/reference/host and relocated-control semantics pass; zero matching credit."
+    }
+  ],
+  "source_review": {
+    "result": "PASS_FOR_COMPLETE_NONMATCH_RESEARCH",
+    "reviewed_commit": "5040204a3526811f0807de3f5a68bef72c2866d0",
+    "reviewed_tree": "f510dc018faa599fb94c709d3f721774c71a880c",
+    "receipt": "cloud/work/boot_tail/C11-mix-output/REVIEW.json"
+  }
+}

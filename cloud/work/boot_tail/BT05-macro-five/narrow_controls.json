@@ -1,0 +1,54 @@
+[
+  {
+    "name": "func_80023AD4",
+    "variant": "unsigned_result",
+    "source_sha256": "88c8fd5c629a0d7fb8c2367437afb122e8760850ec9fd779a6d5f157d50dbdc1",
+    "score": {
+      "differing": 26,
+      "total": 31,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "name": "func_80023AD4",
+    "variant": "explicit_argument_narrowing",
+    "source_sha256": "b868b9b23f97f66977d3bf0fcfb97fba5d817d804a902fe9dfedffd628e1558a",
+    "score": {
+      "differing": 25,
+      "total": 31,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "name": "func_80023AD4",
+    "variant": "branch_result",
+    "source_sha256": "1d10d00b004b0887091bea9bb1e843449acb0dd56b5ed714d8dfb6b4a92414d8",
+    "score": {
+      "differing": 25,
+      "total": 31,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "name": "func_80022324",
+    "variant": "group_carrier",
+    "source_sha256": "dcbd979d9741accbdd952b1240077dccefbef4e3519cb7ab443dac7befa9509c",
+    "score": {
+      "differing": 4,
+      "total": 43,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]

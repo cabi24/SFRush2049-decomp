@@ -1,0 +1,45 @@
+{
+  "method": "Unchanged workbench; temporary canonical-word target object and original O2 candidate. Raw objects/words not committed; strict relocated score decides acceptance.",
+  "results": [
+    {
+      "name": "func_80018B8C",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "390fb9b1ecb39386ab70c27a70b19717972e9f58b9424a1f38240aff56d45b3d",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 7,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  12 words=   7 raw=  12 opcodes=   2 gaps=   0 reloc_syms=   5 norm=   8 regs=   6 fp=   0 insns=  24 frame=  -24 sha1=b715286b18af /tmp/bt03control_80018B8C_O2.o",
+      "recorded_utc": "2026-10-03T21:55:55.778019+00:00"
+    },
+    {
+      "name": "func_80018BEC",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "1d8011a863c1dbbd6288252777d94d033b8c7e6fe3fbc13a215baf31bc1100cb",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 3,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=allocation-mismatch aligned_total=   6 words=   3 raw=   6 opcodes=   0 gaps=   0 reloc_syms=   3 norm=   3 regs=   3 fp=   0 insns=  16 frame=  -24 sha1=a3796dd50e5c /tmp/bt03control_80018BEC_O2.o",
+      "recorded_utc": "2026-10-03T21:55:56.329743+00:00"
+    },
+    {
+      "name": "func_80018EB4",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "bdf1405c86880f55ee8e2d1f0f5730c455c106cb90403134c7bf4a83e1a8a297",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 10,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  14 words=  10 raw=  14 opcodes=   2 gaps=   0 reloc_syms=   5 norm=  10 regs=   9 fp=   0 insns=  27 frame=  -24 sha1=f700b1fef675 /tmp/bt03control_80018EB4_O2.o",
+      "recorded_utc": "2026-10-03T21:55:56.814164+00:00"
+    },
+    {
+      "name": "func_80019420",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "70c7af5fdb1954595e32a1866a03ed104eaa709f8acfd3ae457bfcd7caeec52e",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 14,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  20 words=  14 raw=  18 opcodes=   2 gaps=   6 reloc_syms=   6 norm=  15 regs=  14 fp=   0 insns=  28 frame=  -24 sha1=09ea9116f2cf /tmp/bt03control_80019420_O2.o true_insn_delta=+0 geometry_edit_distance=15 opcode_distance=2",
+      "recorded_utc": "2026-10-03T21:55:57.265890+00:00"
+    }
+  ]
+}

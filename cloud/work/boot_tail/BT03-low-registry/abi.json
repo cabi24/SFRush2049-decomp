@@ -1,0 +1,17 @@
+{
+  "method": "Read-only actual canonical caller/callee inspection and reuse of already peer-reviewed service/resource types; no external source copied or helper modified.",
+  "helper_native_sha256": {
+    "80014594": "331cb0510e6460f03030ae187867724956a5bfaa67e57d8b6c4ffa0573514adb",
+    "800145DC": "5e452cf9053364ace8705b9905d40c6aaea330d12bb2d090cafb76b43fc6d857",
+    "80014F14": "e0959789cf6c31fc3eeb552778b4dee109fda729d8a6bbadd31ff593937bfd62",
+    "80014F80": "2643b6b91b73d632e4cfb032020d95e6f2b2132b68f85c5f666e5b1df40f706a",
+    "80014FEC": "340f06b5a8e64ca208af1579331ba24911a12273c336e9c51d41c2a131e3668d",
+    "80015058": "674df2b8aed79c3a095fd95b11bf898dc419d3daaded19d56fd32fe2ad021582",
+    "80015228": "3126bff869a94f898092c841a2d5c56f53a98f96ee19d6ffc34cd70fabf452c3",
+    "80015318": "863b03c04873e05a1b2140332da3424203c5cdd3dd6916e731c435d98c63f480"
+  },
+  "resource_push": "Five real arguments: ResourceGroup pointer, u16 identifier, source address pointer, sample-record pointer and ResourceOffsets pointer. Final type-one helper15318 receives the original u16 input and group+sixth relative offset+8.",
+  "registry": "Same genuine SampleRecord28/RegisteredSamples12 native views as peer-approved service162AC. Preparation takes record/base pointers; removal takes one record pointer. Both use real no-input synchronization functions14594/145DC.",
+  "domain": "Resource stack valid counts0..128, registry configured counts0..8, successful callback-time writes remain within capacity. Count/offset fields and terminators do not constitute a bounds-safety proof for malformed data.",
+  "rejected_address_control": "One unsigned-long payload-address expression was tested and rejected at the same6/78. Target and host width probes passed, plus bounded host fixtures; pointer/integer conversion follows the tested N64/LP64 address convention, not portable C89 or original-source proof."
+}

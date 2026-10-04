@@ -1,0 +1,44 @@
+{
+  "state": "frozen-review-pass-integrating",
+  "owner": "/root/match_boot_tail_bt03_high",
+  "packet": "BT03-high-medium-tail",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "master_anchor": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x8001D0F0",
+      "size": 208,
+      "end_exclusive": "0x8001D1C0"
+    },
+    {
+      "address": "0x80018C2C",
+      "size": 212,
+      "end_exclusive": "0x80018D00"
+    },
+    {
+      "address": "0x800180A0",
+      "size": 228,
+      "end_exclusive": "0x80018184"
+    },
+    {
+      "address": "0x80018D40",
+      "size": 236,
+      "end_exclusive": "0x80018E2C"
+    },
+    {
+      "address": "0x8001E9B0",
+      "size": 240,
+      "end_exclusive": "0x8001EAA0"
+    },
+    {
+      "address": "0x8001EE9C",
+      "size": 240,
+      "end_exclusive": "0x8001EF8C"
+    }
+  ],
+  "bytes": 1364,
+  "edit_scope": "Only named matching sources and cloud/work/boot_tail/BT03-high-medium-tail/**",
+  "stop": "Genuine native ABI and domain checks. Natural C89/O2/O1,20 directed variants maximum with diagnosis. No protected changes, overlap, missing-table assumptions, repeated unsupported declarations or exhausted residual reopening. Reuse current safe storage.",
+  "peer_approved_head": "c618e421b0e616db3fe56fba76d268f75e1da2c4",
+  "reviewed_commit": "c618e421b0e616db3fe56fba76d268f75e1da2c4"
+}

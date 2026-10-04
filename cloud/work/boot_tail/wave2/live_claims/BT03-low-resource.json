@@ -1,0 +1,39 @@
+{
+  "state": "integrating-source-frozen",
+  "owner": "/root/verify_boot_tail_matches",
+  "packet": "BT03-low-resource",
+  "branch": "dot/boot-tail-bt03-low-resource",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x80014F14",
+      "size": 108,
+      "end_exclusive": "0x80014F80"
+    },
+    {
+      "address": "0x80014F80",
+      "size": 108,
+      "end_exclusive": "0x80014FEC"
+    },
+    {
+      "address": "0x80014FEC",
+      "size": 108,
+      "end_exclusive": "0x80015058"
+    },
+    {
+      "address": "0x80015058",
+      "size": 112,
+      "end_exclusive": "0x800150C8"
+    },
+    {
+      "address": "0x800154A4",
+      "size": 208,
+      "end_exclusive": "0x80015574"
+    }
+  ],
+  "bytes": 644,
+  "prior_packet": "BT03-low-dispatch frozen peer PASS5ba686b03746141683986e62196f8edbb1fae50d",
+  "edit_scope": "Only named matching sources and cloud/work/boot_tail/BT03-low-resource/**",
+  "stop": "Actual native callee ABI and valid resource domain; callees read-only. Natural C89,O2/O1,20 directed variants maximum with diagnosis; no unsupported narrow-formal declaration sweeps, protected edits, overlaps or old residual reopening.",
+  "peer_approved_head": "15491f806bed915e5d17651ee0fdf952783b76ac"
+}

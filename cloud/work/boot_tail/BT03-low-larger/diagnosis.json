@@ -1,0 +1,21 @@
+{
+  "tool": "tools/workbench.py diagnose",
+  "first_near_match_before_refinement": true,
+  "function": "func_80015720",
+  "initial_diff_words": 7,
+  "final_diff_words": 6,
+  "target_words": 110,
+  "target_frame_bytes": 24,
+  "candidate_frame_bytes": 24,
+  "initial_classification": "structure-mismatch; mixed scheduling/register residual",
+  "residual_offsets": [
+    "0xE0",
+    "0xE8",
+    "0xEC",
+    "0xF0",
+    "0xF4",
+    "0xFC"
+  ],
+  "residual_description": "Aligned eight-byte record copy temporary selection and pointer-update schedule.",
+  "caution": "The temporary word-only native object has no relocation records, so workbench reports missing target relocation symbols. The unchanged strict scorer resolves all real candidate relocations with zero masks or unverified references."
+}

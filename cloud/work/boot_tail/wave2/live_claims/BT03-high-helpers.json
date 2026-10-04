@@ -1,0 +1,44 @@
+{
+  "state": "integrating-source-frozen",
+  "owner": "/root/match_boot_tail_bt03_high",
+  "packet": "BT03-high-helpers",
+  "branch": "dot/boot-tail-bt03-high-helpers",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x80017540",
+      "size": 104,
+      "end_exclusive": "0x800175A8"
+    },
+    {
+      "address": "0x80018B3C",
+      "size": 80,
+      "end_exclusive": "0x80018B8C"
+    },
+    {
+      "address": "0x8001D084",
+      "size": 108,
+      "end_exclusive": "0x8001D0F0"
+    },
+    {
+      "address": "0x8001D3F0",
+      "size": 112,
+      "end_exclusive": "0x8001D460"
+    },
+    {
+      "address": "0x8001D460",
+      "size": 108,
+      "end_exclusive": "0x8001D4CC"
+    },
+    {
+      "address": "0x8001D578",
+      "size": 72,
+      "end_exclusive": "0x8001D5C0"
+    }
+  ],
+  "bytes": 584,
+  "prior_packet": "Prior editing packet frozen and peer-approved; central integration owns it.",
+  "edit_scope": "Only listed matching sources and cloud/work/boot_tail/BT03-high-helpers/**",
+  "stop": "Natural C89, actual source/caller/callee ABI, O2 then O1 evidence, maximum 20 directed variants per hypothesis with diagnosis. No overlaps, protected edits, prior-target reopening or missing rodata substitutions. Use /tmp isolated worktree.",
+  "peer_approved_head": "6d5b195446d55027562e923fce225123ab775ae4"
+}

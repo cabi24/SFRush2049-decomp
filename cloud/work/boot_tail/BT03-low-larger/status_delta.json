@@ -1,0 +1,32 @@
+[
+  {
+    "address": "0x80015720",
+    "name": "func_80015720",
+    "size": 440,
+    "cluster": "BT03",
+    "name_hypothesis": "sorted record insertion or reference increment",
+    "evidence_level": "COMPLETE-NONMATCH",
+    "status": "nonmatch",
+    "owner": "Astra / BT03-low-larger",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "diff_words": 6,
+    "source_path": "cloud/work/boot_tail/BT03-low-larger/func_80015720_NONMATCH.c",
+    "pr": "",
+    "note": "BT03-low-larger; strict local evidence and C89/ASan/UBSan tests passed; peer and exact aggregate-head CI pending. Nonmatch receives zero credit."
+  },
+  {
+    "address": "0x800164D0",
+    "name": "func_800164D0",
+    "size": 332,
+    "cluster": "BT03",
+    "name_hypothesis": "register unique descriptor table and initialize state bytes",
+    "evidence_level": "VERIFIED-BODY",
+    "status": "verified_body",
+    "owner": "Astra / BT03-low-larger",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "diff_words": 0,
+    "source_path": "cloud/matches/boot_tail/func_800164D0.c",
+    "pr": "",
+    "note": "BT03-low-larger; strict local evidence and C89/ASan/UBSan tests passed; peer and exact aggregate-head CI pending. Nonmatch receives zero credit."
+  }
+]

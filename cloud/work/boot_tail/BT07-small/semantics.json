@@ -1,0 +1,34 @@
+{
+  "result": "PASS",
+  "standard": "C89",
+  "host_flags": [
+    "-std=c89",
+    "-pedantic",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-Wno-unused-parameter"
+  ],
+  "source_sha256": {
+    "cloud/matches/boot_tail/func_80024FB0.c": "ad22bb63bfaae9388b0c1f8f16b06a0c02aff28e18b893dd05f6b0275e3b66e9",
+    "cloud/matches/boot_tail/func_800250F0.c": "f7fe321de0a2dc58308dd3f4fb555c52f4b70c85bfe69b1c232402c526fec7fc",
+    "cloud/matches/boot_tail/func_80025120.c": "358082f98e07bbae637faf28aae0a82a4e4a099f7645101f5704a77323fe3f9d",
+    "cloud/matches/boot_tail/func_80025150.c": "693ff31a37c1c16a8959b6986213f97297772408ff5455519fa5c5d478f14cbf",
+    "cloud/matches/boot_tail/func_80025D84.c": "5807aee642122ca600f30e9a576e7c65878cfa75f2d0c12d5a557e43b6507446",
+    "cloud/matches/boot_tail/func_80026328.c": "084ae77be2e07876d166000ad001e65615e9364f3ea13b73f7e71e18322eaa11",
+    "cloud/matches/boot_tail/func_80026348.c": "550d839c4fae4113235d8bc6c600d90222792e4ab2296256077adfecf336eb3f"
+  },
+  "test_script_sha256": "608c2bf03ae1d3172a03f796b889877a8307170c10f134cae2545b2ac05d4249",
+  "cases": {
+    "scale_inputs": 512,
+    "state_inputs": 256,
+    "queue_receive_calls": 6,
+    "queue_jam_calls": 3,
+    "clear_scan_returns": 1,
+    "busy_record_timeout_checks": 2
+  },
+  "limitations": [
+    "Host C behavior only; no native execution or ROM proof.",
+    "Busy timeout checks establish no early return during observation; concurrent clear transitions are not tested."
+  ]
+}

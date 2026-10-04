@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "method": "Read-only canonical whole-callee and caller inspection, not helper matching or source edits.",
+  "callees": [
+    {
+      "function": "func_800150C8",
+      "callee": "func_80016998",
+      "callee_native_bytes": 608,
+      "callee_native_sha256": "e4dd3c2dfa3cea0ead85756141afd0a022093e4036a522ce916690b85309edf2",
+      "arguments": "One u16 identifier in a0; other argument registers are assigned internally, not read as incoming values.",
+      "return": "Native v0 integer status: 16998 exits with zero; other callees have zero/one exits. Caller ignores it, so nominal source signedness/typedef is not claimed.",
+      "candidate_declaration": "extern int func_80016998(unsigned short);"
+    },
+    {
+      "function": "func_80015120",
+      "callee": "func_80015F28",
+      "callee_native_bytes": 308,
+      "callee_native_sha256": "5fbaad34b4d1e2452961de1ffe5d56979fc5a1dae72182d94c6bc9ac7dff5380",
+      "arguments": "One u16 identifier in a0; other argument registers are assigned internally, not read as incoming values.",
+      "return": "Native v0 integer status: 16998 exits with zero; other callees have zero/one exits. Caller ignores it, so nominal source signedness/typedef is not claimed.",
+      "candidate_declaration": "extern int func_80015F28(unsigned short);"
+    },
+    {
+      "function": "func_80015178",
+      "callee": "func_800158D8",
+      "callee_native_bytes": 308,
+      "callee_native_sha256": "968163664260616509957f95a313596d4f9a17848a38b61bbfd69e2f7e6ecb78",
+      "arguments": "One u16 identifier in a0; other argument registers are assigned internally, not read as incoming values.",
+      "return": "Native v0 integer status: 16998 exits with zero; other callees have zero/one exits. Caller ignores it, so nominal source signedness/typedef is not claimed.",
+      "candidate_declaration": "extern int func_800158D8(unsigned short);"
+    },
+    {
+      "function": "func_800151D0",
+      "callee": "func_80015C0C",
+      "callee_native_bytes": 348,
+      "callee_native_sha256": "0baf5f6cd7bc5b54e49fce0e085dfa59c4e804297e7e0b2f7d4134af4423b9d9",
+      "arguments": "One u16 identifier in a0; other argument registers are assigned internally, not read as incoming values.",
+      "return": "Native v0 integer status: 16998 exits with zero; other callees have zero/one exits. Caller ignores it, so nominal source signedness/typedef is not claimed.",
+      "candidate_declaration": "extern int func_80015C0C(unsigned short);"
+    },
+    {
+      "function": "func_800152A8",
+      "callee": "func_800163A8",
+      "callee_native_bytes": 296,
+      "callee_native_sha256": "0da2ca00e355540a4845e897903881a14f687ba29c164d7446318fa1293a9de6",
+      "arguments": "One u16 identifier in a0; other argument registers are assigned internally, not read as incoming values.",
+      "return": "Native v0 integer status: 16998 exits with zero; other callees have zero/one exits. Caller ignores it, so nominal source signedness/typedef is not claimed.",
+      "candidate_declaration": "extern int func_800163A8(unsigned short);"
+    }
+  ],
+  "caller": {
+    "name": "func_800154A4",
+    "native_sha256": "c2b92ea981ccbfb3acbab8cfa8b5a86332b9b4ce9043b273a76d906ec333bc68",
+    "argument_geometry": "Each list pointer is resource base plus its relative offset plus an eight-byte prefix. Header offsets are +8 forward16998, +12 reverse163A8, +16 forward15F28, +20 forward158D8 and +24 forward15C0C.",
+    "reverse_predecessor": "Native forms start-2 after consuming the final entry, and even for an empty list, without dereferencing it. The enclosing resource has the observed eight-byte prefix. Host C tests use interior pointers with four preceding u16 elements, keeping the predecessor and comparisons within the same array."
+  }
+}

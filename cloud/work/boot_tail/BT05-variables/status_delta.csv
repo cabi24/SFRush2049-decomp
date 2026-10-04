@@ -1,0 +1,6 @@
+address,name,size,cluster,status,flags,diff_words,source_path,note
+0x800225FC,func_800225FC,124,BT05,matched,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_800225FC.c,Strict O2 full-body match; genuine byte arguments and mutable command.
+0x8002279C,func_8002279C,216,BT05,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,7,cloud/work/boot_tail/BT05-variables/nonmatch/func_8002279C.c,COMPLETE-NONMATCH; bounded natural source controls; genuine native ABI retained.
+0x80022F24,func_80022F24,232,BT05,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,35,cloud/work/boot_tail/BT05-variables/nonmatch/func_80022F24.c,COMPLETE-NONMATCH; bounded natural source controls; genuine native ABI retained.
+0x8002300C,func_8002300C,164,BT05,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,22,cloud/work/boot_tail/BT05-variables/nonmatch/func_8002300C.c,COMPLETE-NONMATCH; bounded natural source controls; genuine native ABI retained.
+0x8002321C,func_8002321C,136,BT05,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,20,cloud/work/boot_tail/BT05-variables/nonmatch/func_8002321C.c,COMPLETE-NONMATCH; bounded natural source controls; genuine native ABI retained.

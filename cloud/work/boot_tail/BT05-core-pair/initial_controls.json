@@ -1,0 +1,58 @@
+[
+  {
+    "name": "func_8002193C",
+    "source_sha256": "b7f3ae7ed74799abd5dd8bd99ddcb8d1809caf4859f446a7da308a5e13f6f94b",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "differing_words": 146,
+    "total_words": 152,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false,
+    "source_path": "cloud/work/boot_tail/BT05-core-pair/controls/8002193C_initial.c",
+    "label": "initial"
+  },
+  {
+    "name": "func_8002193C",
+    "source_sha256": "b7f3ae7ed74799abd5dd8bd99ddcb8d1809caf4859f446a7da308a5e13f6f94b",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "differing_words": 152,
+    "total_words": 152,
+    "extra_words": 8,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false,
+    "source_path": "cloud/work/boot_tail/BT05-core-pair/controls/8002193C_initial.c",
+    "label": "initial"
+  },
+  {
+    "name": "func_80024988",
+    "source_sha256": "006af35a6e013b29d4b58358d32f9e2162796cfd608b78b8946750324d94739a",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "differing_words": 135,
+    "total_words": 152,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false,
+    "source_path": "cloud/work/boot_tail/BT05-core-pair/controls/80024988_initial.c",
+    "label": "initial"
+  },
+  {
+    "name": "func_80024988",
+    "source_sha256": "006af35a6e013b29d4b58358d32f9e2162796cfd608b78b8946750324d94739a",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "differing_words": 151,
+    "total_words": 152,
+    "extra_words": 28,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false,
+    "source_path": "cloud/work/boot_tail/BT05-core-pair/controls/80024988_initial.c",
+    "label": "initial"
+  }
+]

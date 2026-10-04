@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "result": "COMPLETE_NONMATCH_RESEARCH",
+  "base_commit": "e6b304128ecaee3fb5c200d97fa1132aaad2fd95",
+  "match_functions": 0,
+  "verified_body_bytes": 0,
+  "nonmatch_functions": 2,
+  "nonmatch_bytes": 1216,
+  "target_manifest_sha256": "6bd3e6ef05e6123e4ea4dd0d814c0abb16f202a91d8d0a381eca14322c8a36d5",
+  "results": [
+    {
+      "name": "func_8002193C",
+      "bytes": 608,
+      "source_path": "cloud/work/boot_tail/BT05-core-pair/nonmatch/func_8002193C.c",
+      "source_sha256": "915dcd4393c35e73320c3afd61292d4484eb56747442278b964c04a5e7adf0a1",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 103,
+      "total_words": 152,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_8002193C",
+      "bytes": 608,
+      "source_path": "cloud/work/boot_tail/BT05-core-pair/nonmatch/func_8002193C.c",
+      "source_sha256": "915dcd4393c35e73320c3afd61292d4484eb56747442278b964c04a5e7adf0a1",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 152,
+      "total_words": 152,
+      "extra_words": 5,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80024988",
+      "bytes": 608,
+      "source_path": "cloud/work/boot_tail/BT05-core-pair/nonmatch/func_80024988.c",
+      "source_sha256": "748de22b20d77ff5488dc4fd3ab961ebed4144d73f5c3e82275d33d07ca99cf6",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 93,
+      "total_words": 152,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80024988",
+      "bytes": 608,
+      "source_path": "cloud/work/boot_tail/BT05-core-pair/nonmatch/func_80024988.c",
+      "source_sha256": "748de22b20d77ff5488dc4fd3ab961ebed4144d73f5c3e82275d33d07ca99cf6",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 151,
+      "total_words": 152,
+      "extra_words": 34,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    }
+  ]
+}

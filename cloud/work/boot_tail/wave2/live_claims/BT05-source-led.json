@@ -1,0 +1,51 @@
+{
+  "state": "integrating-source-frozen",
+  "owner": "/root/match_boot_tail_bt05_bt07",
+  "packet": "BT05-source-led",
+  "branch": "dot/boot-tail-bt05-source-led",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x800223D0",
+      "size": 108,
+      "end_exclusive": "0x8002243C"
+    },
+    {
+      "address": "0x80022514",
+      "size": 108,
+      "end_exclusive": "0x80022580"
+    },
+    {
+      "address": "0x80023190",
+      "size": 140,
+      "end_exclusive": "0x8002321C"
+    }
+  ],
+  "bytes": 356,
+  "prior_packet": "BT05-medium-next frozen peer PASS4d9b240358119922b4a78b5794fc1ccea054530e",
+  "new_evidence": {
+    "repository": "AxioDL/musyx",
+    "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+    "path": "src/musyx/runtime/synthmacros.c",
+    "license": "CC0-1.0",
+    "definitions": [
+      "mcmdAddAgeCounter",
+      "mcmdAddPriority",
+      "mcmdSetPianoPanning"
+    ],
+    "distinction": "Exact donor local declarations and unsigned-to-signed assignment direction differ from archived cast/local sequences;22514 native delta and sum sign extensions support the source widths;23190 combines nested byte conversion and clamp without extra word/limited locals."
+  },
+  "bound": "Exactly one donor-derived natural source control per function, O2 then O1 evidence; stop if unchanged. No random extension or other targets. A measured improvement requires fresh diagnosis before any further proposal.",
+  "edit_scope": "Only listed matching files if strictly proved and cloud/work/boot_tail/BT05-source-led/**; never edit old archives or central ledger",
+  "accounting": "These are three already-attempted addresses, not new unique targets. Record prior archive/source provenance; credit only previously unmatched addresses that newly achieve full proof. No double count.",
+  "extension": {
+    "address": "0x80023190",
+    "basis": "Measured donor control improvement18 to8 differing words; fresh diagnosis has eight register sites only and exact35-word structure.",
+    "controls": [
+      "One signed-byte scale local control",
+      "One separate product then arithmetic-shift control"
+    ],
+    "limit": "Exactly these two additional natural controls on23190 only, then freeze; no extension on223D0 or22514. No old source replacements without full strict proof."
+  },
+  "peer_approved_head": "87fd05d1e4a96450bdc455aba7f5fb10cf57b606"
+}

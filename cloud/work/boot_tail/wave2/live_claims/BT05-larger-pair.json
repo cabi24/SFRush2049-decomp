@@ -1,0 +1,24 @@
+{
+  "state": "integrating-source-frozen",
+  "owner": "/root/match_boot_tail_bt05_bt07",
+  "packet": "BT05-larger-pair",
+  "branch": "dot/boot-tail-bt05-larger-pair",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x800232A4",
+      "size": 268,
+      "end_exclusive": "0x800233B0"
+    },
+    {
+      "address": "0x80023564",
+      "size": 428,
+      "end_exclusive": "0x80023710"
+    }
+  ],
+  "bytes": 696,
+  "prior_packet": "BT05-control-dispatch frozen peer PASS c097eb37de140a5bd46cc2d853d490ef4f05e16d",
+  "edit_scope": "Only named matching sources and cloud/work/boot_tail/BT05-larger-pair/**",
+  "stop": "Native low-word arithmetic and signed16 truncation order must be preserved. Real external helper contracts only; no donor type assumptions, zero-divisor fallback invention, missing rodata substitution or protected edits. Natural C89/O2/O1 and20 directed variants maximum with diagnosis.",
+  "peer_approved_head": "f06d238e221eff9cd83f0e9783de0be01277775f"
+}

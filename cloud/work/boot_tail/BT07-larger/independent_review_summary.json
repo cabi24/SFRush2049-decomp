@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "reviewer": "BT02-larger",
+  "reviewed_commit": "7b6f6005d079e73c68caa74317eb1110a98d1c41",
+  "reviewed_tree": "1ed53a4c00f2126101e94de515d87b6e010776f1",
+  "source_bound_results": [
+    {
+      "function": "func_800259A8",
+      "source_sha256": "4a24f968bf90eae92cc710bbc0a42230dd9eeefe59054a20a21106a7f822adf3",
+      "native_bytes": 268,
+      "strict_match": true,
+      "differing_words": 0
+    },
+    {
+      "function": "func_80025C68",
+      "source_sha256": "30314786fb49aa8746ca604c011612ad31a26bc722860221ac194be98bca187f",
+      "native_bytes": 284,
+      "strict_match": true,
+      "differing_words": 0
+    }
+  ],
+  "original_receipt_sha256": "2f5d6dfa342e6a6925fcfce9a5468e6d4afd16a868e6c52f03392816adf09bf1",
+  "checks": [
+    "independent full relocated word equality for all matching bodies",
+    "actual native source and direct/indirect ABI review",
+    "source-bound O2/O1 receipt replay",
+    "C89 host behavior and ASan/UBSan controls",
+    "independent 32-bit native layout assertions",
+    "honest complete nonmatch excluded from credit"
+  ],
+  "note": "Exact aggregate-head CI remains required. No execution-local identifiers or native dumps are included."
+}

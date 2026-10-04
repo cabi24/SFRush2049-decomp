@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "reviewer": "/root/match_boot_tail_macro_five",
+  "reviewed_commit": "5c39d944031ac872f24fe0625f7666b8deddb65d",
+  "reviewed_tree": "115e7094b4b65053e1561c47135c8750edc4b36a",
+  "base_commit": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "matching_functions": 8,
+  "matching_bytes": 1196,
+  "changed_files": 36,
+  "allowlist_pass": true,
+  "clean_after_review": true,
+  "checks": [
+    "Independent 439-target and pinned compiler/getter preflight replay",
+    "Eight fresh strict full-relocation O2 matches; O1 negative controls",
+    "Fresh IDO C89 layout assertions",
+    "Fresh host C89 warning-as-error and UBSan behavior suite",
+    "check_submissions --base 301d9e75 --head 5c39d944",
+    "Byte-identical JSON replay of verification, layout and host receipts",
+    "Native ABI and source review: unaligned unsigned-short parameter loads, synthesized float/double constants, unsigned rate conversion, 256-node list initialization, link ownership and alias-sensitive rereads",
+    "Only 8 allowed match files and BT03-low-eight packet; no protected edits or forbidden raw artifacts"
+  ],
+  "receipt_sha256": {
+    "verification.json": "febac01bb707edb2131e47d42f9f2379ce5fd08518f1e4e6a0bd51ed61190c21",
+    "layout_verification.json": "22d522e1fdfe19de75a7b24360842b798a5990d2907958a64c18ea2b2d2173b4",
+    "host_verification.json": "992156aeddd64327ac6182de1a262a4cf48192429c601125c5935b8e2874fd2f"
+  },
+  "limitations": [
+    "Local verified-body source proof only; aggregate exact-head CI and maintainer production gates remain separate.",
+    "Host pointer width and endianness differ; unaligned N64 access sequences are proved by exact native replay, not host behavior.",
+    "No assertion of behavior for out-of-range float conversion."
+  ]
+}

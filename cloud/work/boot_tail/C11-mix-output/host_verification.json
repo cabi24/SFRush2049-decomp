@@ -1,0 +1,30 @@
+{
+  "result": "PASS_FOR_DOCUMENTED_SYNTHETIC_DATA_DOMAIN_ONLY",
+  "tests_passed": 5,
+  "synthetic_profiles": 3,
+  "cases_per_profile": 11337,
+  "native_reference_comparisons": 34011,
+  "host_c89_candidate_invocations": 34011,
+  "relocated_ido_o2_control_invocations": 19608,
+  "source_forms": 4,
+  "native_and_candidate_decoder": "native_model.py, fail-closed opcode subset; instructions are loaded from existing hash-verified targets or freshly relocated IDO objects, never embedded",
+  "float_semantics": "IEEE binary32 rounding after each native operation; truncation only in finite signed32 representable range. Host compiler disables FMA contraction. Models compare ordered halfword stores including all256 output-alias partitions.",
+  "sanitizers": "AddressSanitizer, UndefinedBehaviorSanitizer and float-cast-overflow; C89 pedantic-errors, Wall/Wextra/Werror",
+  "leak_sanitizer": "Only leak detection disabled for executor ptrace incompatibility; no candidate or harness heap allocation.",
+  "case_counts_per_profile": {
+    "boundary_grid": 9801,
+    "all_alias_partitions_four_inputs_each": 1024,
+    "seeded_random": 512
+  },
+  "source_sha256": {
+    "cloud/work/boot_tail/C11-mix-output/func_8001E0E0_NONMATCH.c": "f1f72236998502bbae178e8d437e80e15f9bc5f0ddd56c02f5c2a77f9347d6b2",
+    "cloud/work/boot_tail/C11-mix-output/controls/func_8001E0E0_cached_scale.c": "6f17ad880c9aeb16d334d68d3fd070ca7c55063526029aaba1419aee00efa032",
+    "cloud/work/boot_tail/C11-mix-output/controls/func_8001E0E0_initial.c": "8d212477ad4494176bcc771a963ded1acd1049d2b935709e2a2b44e66d966328",
+    "cloud/work/boot_tail/C11-mix-output/controls/func_8001E0E0_pointer_entry.c": "adabf24ed76045f3cede4400c7da13818f0385bca9ec939b135c73d5e85353eb"
+  },
+  "harness_sha256": {
+    "native_model.py": "f422fff6fb536130449c002b76e31604433232a1a5814f49ca234b18dbfa2263",
+    "test_semantics.py": "a411e9bb27f0e05f8e460a415c077e8d34fbb8bf840fae649e3b1170267c016b"
+  },
+  "limits": "Valid aligned output pointers may alias one another. They must not alias read-only external data. Full32-bit volume/aux values are clamped; tested pan/span are0..800000 inclusive. External data are finite synthetic fixtures chosen to keep float-to-int conversion representable. Actual external values, nondefault FCSR modes, malformed objects, NaNs/infinities/out-of-range conversion, concurrency, game integration and cartridge behavior are not proved."
+}

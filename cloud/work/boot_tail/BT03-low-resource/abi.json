@@ -1,0 +1,24 @@
+{
+  "method": "Read-only canonical helper/caller inspection; no helper edits or copied implementations.",
+  "native_sha256": {
+    "80014E64": "010520d1e50e73c7fe490f426fb6af76a9246d99ee763f59b8523b0acbeb5f37",
+    "80014E90": "f1cce56337e186ad13ed8f4d939c9495fd21eebc84bbba4861d17adea429d97f",
+    "80014EBC": "400e3401d3b305ed51cfd202d813a81fb3fa800fb1b0dfe5344f2ca093c0dd34",
+    "80014EE8": "37ab47a4a576e3ee43d98eafd1439ef0bb25c7ea953b015419b5e733fdbeafbc",
+    "8001671C": "939c4dc2ffca37a5bbb1825c80a7a96fcc7ff127a4790a6076d84fd379b88839",
+    "80015D68": "6845a4a9cab4ef9c4385b3128cf6c1afe00d549c38a1a05742e78ea7589c1855",
+    "80015720": "6fbf0aa23572e9d82881eec9cc8940d6d97b63149d9653d1abe878c51ab363f8",
+    "80015A0C": "7fb5d210b7702579a3a45b3434c5a83e27cf0f12f7d33c862232f311e714cdfa",
+    "800150C8": "c75aac067f010c2df879e8105cfc3fbced783d21cdb53e026e43fbd20ffbc2ce",
+    "800152A8": "de7636dc7041ed959917a5328bd24d7f58ac1351d2c741d2042d08c064c42580",
+    "80015120": "f3e8895fd0008deb72ac7a72942e7b32e61b1496fc74428d93f5ba63965d914e",
+    "80015178": "9c127c41721b80603d9ebe73db30eded2328fd5017b48722ffe6bf84d7a33d42",
+    "800151D0": "ba4cb222119de3b346455994edd8ba2ed6f35f28dfbd78b3071d5115a3bf846c",
+    "80015348": "0be04ae9331646072520c8cb9976d10b3a37a37b0e0428bf5247e94ca8d07f32",
+    "8001661C": "97e8c800076c1f5911346a02f4574191fa678329707d4b7fd8b4c722d5e730fa"
+  },
+  "lookup_contracts": "14E64/14E90/14EBC/14EE8 take (u16, ResourceOffsets *) and return an entry pointer/null; they select table offsets +0/+4/+8/+12 before real 14E1C search.",
+  "registration_contracts": "1671C/15D68/15720 consume u16 id and one full pointer; 15A0C additionally consumes a u16 from argument-three home low halfword. All return native integer status 0/1, ignored by these wrappers; exact original status typedef/signedness not claimed.",
+  "dispatcher_contracts": "The five already peer-reviewed walkers consume one u16 pointer. 15348 takes one u16 and ignores 1661C status; final declaration retains the prior complete-source void wrapper contract.",
+  "live_effects": "Registration rereads *ids after lookup rather than using the pre-call identifier. Dispatcher retains selected group but reloads each subsequent offset, then type/id, after external calls."
+}

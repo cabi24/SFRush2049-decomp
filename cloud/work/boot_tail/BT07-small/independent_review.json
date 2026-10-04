@@ -1,0 +1,28 @@
+{
+  "result": "PASS",
+  "reviewed_commit": "475cc7ec6d6822c4df249969fc7c82c9702c972a",
+  "reviewed_tree": "d007ee9d3bdc1ab2bec3c2ede21fb6ff1d2dce0e",
+  "source_hashes": {
+    "cloud/matches/boot_tail/func_80024FB0.c": "ad22bb63bfaae9388b0c1f8f16b06a0c02aff28e18b893dd05f6b0275e3b66e9",
+    "cloud/matches/boot_tail/func_800250F0.c": "f7fe321de0a2dc58308dd3f4fb555c52f4b70c85bfe69b1c232402c526fec7fc",
+    "cloud/matches/boot_tail/func_80025120.c": "358082f98e07bbae637faf28aae0a82a4e4a099f7645101f5704a77323fe3f9d",
+    "cloud/matches/boot_tail/func_80025150.c": "693ff31a37c1c16a8959b6986213f97297772408ff5455519fa5c5d478f14cbf",
+    "cloud/matches/boot_tail/func_80025D84.c": "5807aee642122ca600f30e9a576e7c65878cfa75f2d0c12d5a557e43b6507446",
+    "cloud/matches/boot_tail/func_80026328.c": "084ae77be2e07876d166000ad001e65615e9364f3ea13b73f7e71e18322eaa11",
+    "cloud/matches/boot_tail/func_80026348.c": "550d839c4fae4113235d8bc6c600d90222792e4ab2296256077adfecf336eb3f"
+  },
+  "verification_sha256": "a10b69ef4f1708f702d0d107f7c6d0130acc22377bd060bf64a832b0d96cd563",
+  "strict_matches": 7,
+  "native_bytes": 280,
+  "checks": [
+    "byte-identical verifier replay",
+    "seven changed-submission strict matches",
+    "host C89 behavior and bounded busy-loop controls",
+    "complete native body/ABI review",
+    "all four token callers and ignored-v0 caller paths",
+    "metadata-only LF followup; clean base-to-head diff"
+  ],
+  "limitations": [
+    "No native hardware execution, integration or ROM coverage claim."
+  ]
+}

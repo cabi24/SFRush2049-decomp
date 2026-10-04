@@ -1,0 +1,3 @@
+address,name,size,cluster,status,flags,diff_words,source_path,note
+0x800232A4,func_800232A4,268,BT05,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,7,cloud/work/boot_tail/BT05-larger-pair/nonmatch/func_800232A4.c,COMPLETE-NONMATCH; three bounded natural forms; native unsigned low-word/signed16/RNG contracts retained; no matching credit.
+0x80023564,func_80023564,428,BT05,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,66,cloud/work/boot_tail/BT05-larger-pair/nonmatch/func_80023564.c,COMPLETE-NONMATCH; three bounded natural forms; native unsigned low-word/signed16/RNG contracts retained; no matching credit.

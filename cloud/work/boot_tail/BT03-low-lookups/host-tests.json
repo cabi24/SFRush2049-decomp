@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "compiler_flags": "-std=c89 -pedantic -Wall -Wextra -Werror -O2 -fsanitize=undefined -fno-sanitize-recover=undefined",
+  "scope": "Host-width logical behavior with a mock search; does not prove native packing, adjacency of separate address-spelled globals, or the real search implementation.",
+  "cases": 43,
+  "results": [
+    {
+      "function": "func_80016E68",
+      "source_sha256": "4e0c8bb0df3465a6908938fe6bb1da86b8ce2c695223d32f57fcc3183d31c0be",
+      "cases": 8,
+      "result": "PASS"
+    },
+    {
+      "function": "func_80016EE0",
+      "source_sha256": "18374e963fbff66585553a617f656eac2b747d3410dcbf6567d50c288c4ab901",
+      "cases": 8,
+      "result": "PASS"
+    },
+    {
+      "function": "func_80016C20",
+      "source_sha256": "f998ce21b1835d1b354d5cdfdfcf4f63f786355a1e8792fe2a5e77e567fa2339",
+      "cases": 12,
+      "result": "PASS"
+    },
+    {
+      "function": "func_80016F80",
+      "source_sha256": "5b5d3f8308f9bcc97b2540871cc7c785d11e4a5ce905190033698aab107deba4",
+      "cases": 6,
+      "result": "PASS"
+    },
+    {
+      "function": "func_80017040",
+      "source_sha256": "b0a16c83f45b44d82abbff8ae0e55b12717d71eb82a084791fd99c319d82b31e",
+      "cases": 9,
+      "result": "PASS"
+    }
+  ]
+}

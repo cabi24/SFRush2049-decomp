@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "cases": 2400,
+  "scope": "Host semantic controls, not MIPS byte identity or cartridge coverage",
+  "results": [
+    {
+      "function": "func_8001558C",
+      "cases": 800,
+      "result": "8001558C: 800 branch, sentinel, first-bank, five-argument and guard controls passed",
+      "source_sha256": "c6c2dcaa194b6d119fee7d31689355ac762170cda8823cc3b6f396ac15478d82"
+    },
+    {
+      "function": "func_80015C0C",
+      "cases": 800,
+      "result": "80015C0C: 800 absent, decrement-wrap, compaction and guard controls passed",
+      "source_sha256": "bb2cb7bd36713ed09cf2270e6c12e620db3412efb333e258f1af706fa0b3dfb5"
+    },
+    {
+      "function": "func_800163A8",
+      "cases": 800,
+      "result": "800163A8: 800 duplicate-key, sentinel, wrap, callback and entry-removal controls passed",
+      "source_sha256": "7d237f0baeb409e9ad3c5fb4828f775957bd4f4f14d2639f3fe558057511174f"
+    }
+  ]
+}

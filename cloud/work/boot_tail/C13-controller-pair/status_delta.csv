@@ -1,0 +1,3 @@
+address,name,size,cluster,status,flags,diff_words,source_path,note
+0x80020820,func_80020820,484,BT04,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,10,cloud/work/boot_tail/C13-controller-pair/nonmatch/func_80020820.c,COMPLETE-NONMATCH; genuine controller and registered-row contracts; bounded natural forms; exact ELF extent recorded; zero matching credit.
+0x80020DA8,func_80020DA8,420,BT04,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,100,cloud/work/boot_tail/C13-controller-pair/nonmatch/func_80020DA8.c,COMPLETE-NONMATCH; genuine controller and registered-row contracts; bounded natural forms; exact ELF extent recorded; zero matching credit.

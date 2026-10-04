@@ -1,0 +1,6 @@
+{
+  "result": "PASS",
+  "passed": 631,
+  "command": "python -m pytest -q tests/conveyor/test_cloud_{setup,guard,submissions,integrity,score}.py",
+  "initial_attempt": "Sparse checkout omitted tracked src/blob and asm/us/blob fixtures; first run failed for missing inputs. Read-only tracked fixtures materialized, repeat exited0 with631 passes."
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "name": "func_800232A4",
+    "source_sha256": "88707ee58f78d404f1149c56186b27cd1a1b7c23e3550ece16ca76def37bb225",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "differing_words": 7,
+    "total_words": 67,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "name": "func_800232A4",
+    "source_sha256": "88707ee58f78d404f1149c56186b27cd1a1b7c23e3550ece16ca76def37bb225",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "differing_words": 67,
+    "total_words": 67,
+    "extra_words": 9,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "name": "func_80023564",
+    "source_sha256": "e2a976e9599e92c57ad7e8bd6942e72c74bbe900d984fee2c07baaa6d5a1206a",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "differing_words": 73,
+    "total_words": 107,
+    "extra_words": 3,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "name": "func_80023564",
+    "source_sha256": "e2a976e9599e92c57ad7e8bd6942e72c74bbe900d984fee2c07baaa6d5a1206a",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "differing_words": 106,
+    "total_words": 107,
+    "extra_words": 17,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  }
+]

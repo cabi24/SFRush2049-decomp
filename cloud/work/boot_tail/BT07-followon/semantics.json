@@ -1,0 +1,8 @@
+{
+  "result": "PASS",
+  "layout": "32-bit C89 compile-only assertions",
+  "behavior": "native-width actual C sources with ASan/UBSan",
+  "stdout": "2169 behavior cases passed",
+  "rom_or_target_execution": false,
+  "leak_sanitizer": "disabled under ptrace"
+}

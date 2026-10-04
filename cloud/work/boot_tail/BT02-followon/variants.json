@@ -1,0 +1,44 @@
+[
+  {
+    "name": "int-return",
+    "differing": 2,
+    "extra": 0,
+    "accepted": false
+  },
+  {
+    "name": "char-result-top",
+    "differing": 2,
+    "extra": 0,
+    "accepted": false
+  },
+  {
+    "name": "int-result-top",
+    "differing": 2,
+    "extra": 0,
+    "accepted": false
+  },
+  {
+    "name": "char-final-branch",
+    "differing": 4,
+    "extra": 0,
+    "accepted": false
+  },
+  {
+    "name": "char-assigned-tail",
+    "differing": 2,
+    "extra": 0,
+    "accepted": false
+  },
+  {
+    "name": "byte-array",
+    "differing": 0,
+    "extra": 0,
+    "accepted": true
+  },
+  {
+    "name": "unsigned char-chain-unsigned char",
+    "differing": 0,
+    "extra": 0,
+    "accepted": true
+  }
+]

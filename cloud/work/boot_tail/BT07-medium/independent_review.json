@@ -1,0 +1,75 @@
+{
+  "result": "PASS",
+  "reviewer": "BT02-remaining worker",
+  "reviewed_commit": "54c8db5b6ea827dc4c5ae02e38600cca2fcedd8c",
+  "reviewed_tree": "7dfebc08cef5982e8b02a33ed60c47bbc3f5562f",
+  "base_commit": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "new_matching_bodies": 5,
+  "new_matching_bytes": 632,
+  "complete_nonmatch_bodies": 1,
+  "complete_nonmatch_bytes": 152,
+  "replay_matches_committed_verification_byte_for_byte": true,
+  "canonical_check_submissions": "PASS:5 changed sources",
+  "protected_input_and_compiler_hashes_equal_packet2": true,
+  "manifest": "PASS:3 members",
+  "extent_inventory": "PASS:439 starts/99120 bytes exact",
+  "getter": "PASS; no new credit",
+  "accepted_relocated_words": {
+    "all_matches_strict_zero": true,
+    "no_masks": true,
+    "no_unresolved_unverified_errors": true,
+    "trailing_alignment_zero_only": true
+  },
+  "nonmatch": {
+    "function": "func_80024FD4",
+    "differing_words": 2,
+    "total_words": 38,
+    "residual": "stream-pointer spill/reload stack home, +28 native versus +24 candidate",
+    "kept_outside_matches": true
+  },
+  "source_review": {
+    "natural_c89": true,
+    "real_object_unknown_fields_not_stack_padding": true,
+    "no_asm_or_fake_formals_or_stub_callees": true,
+    "no_source_copying_or_raw_native_publication": true,
+    "all_changed_paths_allowed": true
+  },
+  "abi_review": [
+    "250AC actual no-argument caller and three-argument queue APIs",
+    "251A8 selected-index argument and consumed unsigned return at252AC",
+    "25264 token inputs and signed index/error consumers25594/255F0/25670/259A8",
+    "25EB0 five real inputs at252AC/25C68, fifth stack callback and real callback consumer25F74",
+    "262BC record and unsigned sum input from24FD4; native state/countdown/min flow",
+    "24FD4 registration2574C to1C580+4 callback/+20 context, both1C3CC jalr five-real-argument sites and v0 consumption"
+  ],
+  "host_tests": {
+    "committed_harness": "PASS:C89;32-bit compile-only layouts;5 actual source units under ASan/UBSan;7680 cases",
+    "additional_boundary_cases": 360,
+    "additional_second_record_and_max_busy": "PASS",
+    "extra_script_sha256": "121ab55053d30b67b9d3aa2b82a4f693dbd679d254ea07ea3127aa3aa109d7d6",
+    "limits": [
+      "native-width host execution;32-bit layouts compile-only",
+      "LeakSanitizer disabled under ptrace;ASan/UBSan passed",
+      "no hardware or ROM execution"
+    ]
+  },
+  "hashes": {
+    "cloud/work/boot_tail/BT07-medium/verification.json": "0d987cfaa1cc3ad565464c1274de2d55d6a27847f186be22a1a3294ba668ceb0",
+    "cloud/work/boot_tail/BT07-medium/semantics.json": "57fdd32c32d8a2eecd5f955c8aa6be953cb0080cda73d03b7d6eb5cef0739fa4",
+    "cloud/work/boot_tail/BT07-medium/verify.py": "1fc55ccd9186d0303f5c6a2e56cd35ef890962ded62ac6deeb17028a265340b6",
+    "cloud/work/boot_tail/BT07-medium/test_semantics.py": "c76b0f1fa165d6c565453def305dc6fee7cd591329bf5013e9ba73e4b9c3720c"
+  },
+  "source_hashes": {
+    "cloud/matches/boot_tail/func_800250AC.c": "1e2cf6bd0febc945973bbca8941b8ae81c095c10dd8c094e88d2cb6e8d01cf07",
+    "cloud/matches/boot_tail/func_800251A8.c": "7033256736316ff8ccb8a136e353a914a923a4aa76c9ea7d8a83755c215b0dee",
+    "cloud/matches/boot_tail/func_80025264.c": "4ab6f4521ba6774ca49bc8338cefb2a22320f49543a27ef52cb13e4185c764f1",
+    "cloud/matches/boot_tail/func_80025EB0.c": "cabf6345392896f1a444d0c17d48306b9647684d1f7c3562117d08d07a0abcac",
+    "cloud/matches/boot_tail/func_800262BC.c": "85226cd0a4966041743817b4c80038c8d10f44888519243e4666351b420cff8e",
+    "cloud/work/boot_tail/BT07-medium/func_80024FD4_NONMATCH.c": "7094005766d9bf310b8a68aa1575dc31f199b267304aa5c7a16ee8e928337d13"
+  },
+  "limitations": [
+    "independent local review passes; exact aggregate-head CI remains required",
+    "24FD4 remains a complete nonmatch with no credit"
+  ],
+  "tree_clean": true
+}

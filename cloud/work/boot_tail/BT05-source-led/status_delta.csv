@@ -1,0 +1,2 @@
+address,name,size,cluster,status,flags,diff_words,source_path,note
+0x80023190,func_80023190,140,BT05,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,8,cloud/work/boot_tail/BT05-source-led/candidates/func_80023190.c,COMPLETE-NONMATCH; pinned CC0 PianoPanning source-family probe improves18/35 to8/35; no new unique target or match credit. Signed shift/multiply requires an unproved bounded note domain; full-domain semantic proof open; prior unsigned reconstruction retained.

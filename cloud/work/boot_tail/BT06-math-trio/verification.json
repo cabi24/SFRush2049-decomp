@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "manifest": [
+    "boot_tail_8000f3a4.s: OK",
+    "extents.json: OK",
+    "symbols.json: OK"
+  ],
+  "extent_functions": 439,
+  "extent_bytes": 99120,
+  "pinned_compiler_files": 24,
+  "getter_strict_match": true,
+  "local_match_functions": 3,
+  "local_match_bytes": 388,
+  "results": [
+    {
+      "function": "func_80024BF0",
+      "source_path": "cloud/matches/boot_tail/func_80024BF0.c",
+      "source_sha256": "ec2d8b2475a26be6a10597ef0e37dce48398df4ff9fd6f44cb59f647999a23ff",
+      "target_bytes": 172,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 0,
+      "total_words": 43,
+      "extra_nonzero_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "elf_function_bytes": 172,
+      "text_section_bytes": 176,
+      "full_relocated_equal_and_exact_function_size": true,
+      "strict_match": true
+    },
+    {
+      "function": "func_80024BF0",
+      "source_path": "cloud/matches/boot_tail/func_80024BF0.c",
+      "source_sha256": "ec2d8b2475a26be6a10597ef0e37dce48398df4ff9fd6f44cb59f647999a23ff",
+      "target_bytes": 172,
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 0,
+      "total_words": 43,
+      "extra_nonzero_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "elf_function_bytes": 172,
+      "text_section_bytes": 176,
+      "full_relocated_equal_and_exact_function_size": true,
+      "strict_match": true
+    },
+    {
+      "function": "func_80024C9C",
+      "source_path": "cloud/matches/boot_tail/func_80024C9C.c",
+      "source_sha256": "6bae726bc9b7131b0d01709eceda6ac24423296d9ee19a9b82c8f55e9f82f967",
+      "target_bytes": 104,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 0,
+      "total_words": 26,
+      "extra_nonzero_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "elf_function_bytes": 104,
+      "text_section_bytes": 112,
+      "full_relocated_equal_and_exact_function_size": true,
+      "strict_match": true
+    },
+    {
+      "function": "func_80024C9C",
+      "source_path": "cloud/matches/boot_tail/func_80024C9C.c",
+      "source_sha256": "6bae726bc9b7131b0d01709eceda6ac24423296d9ee19a9b82c8f55e9f82f967",
+      "target_bytes": 104,
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 26,
+      "total_words": 26,
+      "extra_nonzero_words": 8,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "elf_function_bytes": 140,
+      "text_section_bytes": 144,
+      "full_relocated_equal_and_exact_function_size": false,
+      "strict_match": false
+    },
+    {
+      "function": "func_80024D04",
+      "source_path": "cloud/matches/boot_tail/func_80024D04.c",
+      "source_sha256": "3bdf2961c8e2dde3b2ddae9e76257f88981ae2dc29c9cac0c0bdfd469331b63c",
+      "target_bytes": 112,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 0,
+      "total_words": 28,
+      "extra_nonzero_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "elf_function_bytes": 112,
+      "text_section_bytes": 112,
+      "full_relocated_equal_and_exact_function_size": true,
+      "strict_match": true
+    },
+    {
+      "function": "func_80024D04",
+      "source_path": "cloud/matches/boot_tail/func_80024D04.c",
+      "source_sha256": "3bdf2961c8e2dde3b2ddae9e76257f88981ae2dc29c9cac0c0bdfd469331b63c",
+      "target_bytes": 112,
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 0,
+      "total_words": 28,
+      "extra_nonzero_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "elf_function_bytes": 112,
+      "text_section_bytes": 112,
+      "full_relocated_equal_and_exact_function_size": true,
+      "strict_match": true
+    }
+  ],
+  "native_layout": [
+    {
+      "function": "func_80024BF0",
+      "result": "PASS",
+      "checks": [
+        {
+          "expression": "sizeof(Vector)",
+          "value": 12
+        },
+        {
+          "expression": "(unsigned int)&((Vector *)0)->x",
+          "value": 0
+        },
+        {
+          "expression": "(unsigned int)&((Vector *)0)->y",
+          "value": 4
+        },
+        {
+          "expression": "(unsigned int)&((Vector *)0)->z",
+          "value": 8
+        },
+        {
+          "expression": "sizeof(Matrix)",
+          "value": 48
+        },
+        {
+          "expression": "(unsigned int)&((Matrix *)0)->m",
+          "value": 0
+        },
+        {
+          "expression": "(unsigned int)&((Matrix *)0)->t",
+          "value": 36
+        }
+      ]
+    },
+    {
+      "function": "func_80024C9C",
+      "result": "PASS",
+      "checks": [
+        {
+          "expression": "sizeof(Vector)",
+          "value": 12
+        },
+        {
+          "expression": "(unsigned int)&((Vector *)0)->x",
+          "value": 0
+        },
+        {
+          "expression": "(unsigned int)&((Vector *)0)->y",
+          "value": 4
+        },
+        {
+          "expression": "(unsigned int)&((Vector *)0)->z",
+          "value": 8
+        }
+      ]
+    },
+    {
+      "function": "func_80024D04",
+      "result": "PASS",
+      "checks": [
+        {
+          "expression": "sizeof(Vector)",
+          "value": 12
+        },
+        {
+          "expression": "(unsigned int)&((Vector *)0)->x",
+          "value": 0
+        },
+        {
+          "expression": "(unsigned int)&((Vector *)0)->y",
+          "value": 4
+        },
+        {
+          "expression": "(unsigned int)&((Vector *)0)->z",
+          "value": 8
+        }
+      ]
+    }
+  ]
+}

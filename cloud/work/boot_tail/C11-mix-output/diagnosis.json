@@ -1,0 +1,39 @@
+{
+  "scope": "Metadata-only diagnosis of fully relocated whole bodies. Initial before controls; retained after three directed refinements. Heuristic lever suggestions are not proof and were not blindly applied.",
+  "checkpoints": [
+    {
+      "checkpoint": "initial",
+      "source_sha256": "8d212477ad4494176bcc771a963ded1acd1049d2b935709e2a2b44e66d966328",
+      "routing": "import-fix",
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "stack-home",
+      "lever_reason": "the pool lane is longer on the candidate, so it colours a web the other side does not; that names the declaration the list is wrong about, and lane evidence is ranked ahead of the frame arithmetic",
+      "target_frame": -16,
+      "candidate_frame": -8,
+      "aligned_insertions": 12,
+      "aligned_deletions": 3,
+      "artifact_built_at": [
+        "2026-10-04T01:45:57Z",
+        "2026-10-04T01:45:57Z"
+      ]
+    },
+    {
+      "checkpoint": "retained",
+      "source_sha256": "f1f72236998502bbae178e8d437e80e15f9bc5f0ddd56c02f5c2a77f9347d6b2",
+      "routing": "import-fix",
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "none-known",
+      "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+      "target_frame": -16,
+      "candidate_frame": -16,
+      "aligned_insertions": 6,
+      "aligned_deletions": 2,
+      "artifact_built_at": [
+        "2026-10-04T01:48:01Z",
+        "2026-10-04T01:48:01Z"
+      ]
+    }
+  ]
+}

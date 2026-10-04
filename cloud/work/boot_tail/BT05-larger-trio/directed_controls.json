@@ -1,0 +1,50 @@
+{
+  "result": "BOUNDED_STOP",
+  "controls": [
+    {
+      "name": "func_800233B0",
+      "control": "separate_fixed_point_shift",
+      "source_sha256": "04ec03aaad1f065d620ca54869d90942a125a2f24c83b35c295305eb1cccd604",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 27,
+      "total_words": 92,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_800239A4",
+      "control": "word_masked_mode_selector",
+      "source_sha256": "309ed472830e43eeb71f6676dd7490bf2fd73c1713e03f516d6a102258e953c9",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 21,
+      "total_words": 76,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    }
+  ],
+  "diagnosis": {
+    "800233B0": {
+      "aligned_constant": 0,
+      "aligned_deletions": 1,
+      "aligned_insertions": 1,
+      "aligned_register": 23,
+      "aligned_schedule": 0,
+      "frame": -40
+    },
+    "800239A4": {
+      "aligned_constant": 0,
+      "aligned_deletions": 0,
+      "aligned_insertions": 0,
+      "aligned_register": 21,
+      "aligned_schedule": 0,
+      "frame": -48
+    }
+  },
+  "note": "22678 matched its first O2 form. One natural expression control per residual after diagnosis; unchanged known allocation/lowering pattern stopped without declaration sweeps."
+}

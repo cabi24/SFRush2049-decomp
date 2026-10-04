@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "claim_commit": "b34484c9",
+  "manifest": [
+    "boot_tail_8000f3a4.s: OK",
+    "extents.json: OK",
+    "symbols.json: OK"
+  ],
+  "compiler_matches_packet2_pin": true,
+  "census": {
+    "functions": 439,
+    "bytes": 99120,
+    "equal": true
+  },
+  "existing_getter_strict_match": true,
+  "strict_match_functions": 5,
+  "strict_match_bytes": 1084,
+  "nonmatch_functions": 1,
+  "nonmatch_bytes": 208,
+  "sources": [
+    {
+      "name": "func_80010628",
+      "native_bytes": 236,
+      "source": "cloud/matches/boot_tail/func_80010628.c",
+      "source_sha256": "d307373ec3aabedcdd5e0f7f920a81e27c02aa0603d4fa16d4226683dfa53222",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "strict_match": true,
+      "differing_words": 0,
+      "total_words": 59,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "o1_control": {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "strict_match": false,
+        "differing_words": 57,
+        "total_words": 59,
+        "extra_words": 7,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    },
+    {
+      "name": "func_80010714",
+      "native_bytes": 192,
+      "source": "cloud/matches/boot_tail/func_80010714.c",
+      "source_sha256": "c3f3be7aaa15dcbde292903a8642e6860e133a5336f0f9ea2c60e51296926b18",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "strict_match": true,
+      "differing_words": 0,
+      "total_words": 48,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "o1_control": {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "strict_match": false,
+        "differing_words": 46,
+        "total_words": 48,
+        "extra_words": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [
+          "unpaired R_MIPS_HI16 for D_80037FA0 at .text+0xb8"
+        ]
+      }
+    },
+    {
+      "name": "func_80010C68",
+      "native_bytes": 212,
+      "source": "cloud/matches/boot_tail/func_80010C68.c",
+      "source_sha256": "b18b613c64de9deeb221db368fa513ca1f69ae62106210699a48257df5186475",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "strict_match": true,
+      "differing_words": 0,
+      "total_words": 53,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "o1_control": {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "strict_match": false,
+        "differing_words": 32,
+        "total_words": 53,
+        "extra_words": 1,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    },
+    {
+      "name": "func_80011910",
+      "native_bytes": 208,
+      "source": "cloud/work/boot_tail/BT02-larger/nonmatch/func_80011910.c",
+      "source_sha256": "9b0776027b9cc979f4db3695a4030504d60810029f3c24b280989f6bd65080a3",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "strict_match": false,
+      "differing_words": 47,
+      "total_words": 52,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "o1_control": {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "strict_match": false,
+        "differing_words": 50,
+        "total_words": 52,
+        "extra_words": 6,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    },
+    {
+      "name": "func_80012660",
+      "native_bytes": 208,
+      "source": "cloud/matches/boot_tail/func_80012660.c",
+      "source_sha256": "f8790fa0dd9f1d035e719e681ba1254ee8403bce318134bd0a7e06184590c164",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "strict_match": true,
+      "differing_words": 0,
+      "total_words": 52,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "o1_control": {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "strict_match": false,
+        "differing_words": 52,
+        "total_words": 52,
+        "extra_words": 20,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [
+          "unpaired R_MIPS_HI16 for D_80038354 at .text+0xcc",
+          "unpaired R_MIPS_HI16 for D_80038358 at .text+0xc8"
+        ]
+      }
+    },
+    {
+      "name": "func_80013C84",
+      "native_bytes": 236,
+      "source": "cloud/matches/boot_tail/func_80013C84.c",
+      "source_sha256": "89c4d7fc2f32f3fb1ff873f1ed3125c2dc9bc6c0d9c8202b5d3ef67af7ff7264",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "strict_match": true,
+      "differing_words": 0,
+      "total_words": 59,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "o1_control": {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "strict_match": false,
+        "differing_words": 58,
+        "total_words": 59,
+        "extra_words": 13,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    }
+  ],
+  "baseline_controls": [
+    {
+      "source": "cloud/work/boot_tail/BT02-larger/controls/func_80012660_baseline.c",
+      "source_sha256": "003e10d98c17f8e9483155fc258e3c5b0b955ab29e087f397653bd7e563c4c7b",
+      "strict_match": false,
+      "differing_words": 33,
+      "total_words": 52,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "source": "cloud/work/boot_tail/BT02-larger/controls/func_80011910_baseline.c",
+      "source_sha256": "9b0776027b9cc979f4db3695a4030504d60810029f3c24b280989f6bd65080a3",
+      "strict_match": false,
+      "differing_words": 47,
+      "total_words": 52,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    }
+  ],
+  "harness_hashes": {
+    "verify.py": "587822e8c372013d764b170e29de9f4caef0faf06ea23b69d6874e1052906eb0",
+    "test_host.py": "262896d4e701fb79c72bb094da02419c34d0c47cd39e4e31276719dce668e072",
+    "host_behavior.c": "73bf5ca6a26d47dc2a30814af2bf3542e22173865be1f56b3be52e3efd0195f0"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "result": "PASS",
+  "runs": [
+    {
+      "configuration": "c89",
+      "flags": [
+        "-std=c89",
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-O2"
+      ],
+      "result": "PASS",
+      "output": "PASS: five actual sources; transfer, startup, list and numeric contracts"
+    },
+    {
+      "configuration": "asan_ubsan",
+      "flags": [
+        "-std=c89",
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer"
+      ],
+      "result": "PASS",
+      "output": "PASS: five actual sources; transfer, startup, list and numeric contracts"
+    }
+  ],
+  "leak_detection": "disabled: runtime ptrace limitation",
+  "source_sha256": {
+    "cloud/matches/boot_tail/func_80010628.c": "d307373ec3aabedcdd5e0f7f920a81e27c02aa0603d4fa16d4226683dfa53222",
+    "cloud/matches/boot_tail/func_80010714.c": "c3f3be7aaa15dcbde292903a8642e6860e133a5336f0f9ea2c60e51296926b18",
+    "cloud/matches/boot_tail/func_80010C68.c": "b18b613c64de9deeb221db368fa513ca1f69ae62106210699a48257df5186475",
+    "cloud/matches/boot_tail/func_80012660.c": "f8790fa0dd9f1d035e719e681ba1254ee8403bce318134bd0a7e06184590c164",
+    "cloud/matches/boot_tail/func_80013C84.c": "89c4d7fc2f32f3fb1ff873f1ed3125c2dc9bc6c0d9c8202b5d3ef67af7ff7264",
+    "cloud/work/boot_tail/BT02-larger/host_behavior.c": "73bf5ca6a26d47dc2a30814af2bf3542e22173865be1f56b3be52e3efd0195f0"
+  }
+}

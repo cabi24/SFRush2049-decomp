@@ -1,0 +1,17 @@
+{
+  "state": "active",
+  "owner": "/root/match_boot_tail_bt05_bt07",
+  "packet": "BT06-matrix-inverse",
+  "branch": "dot/boot-tail-bt06-matrix-inverse",
+  "base": "24ff33d5dd7e27ca2d957cfbd822959ee72a2a43",
+  "targets": [
+    {
+      "address": "0x80024D74",
+      "size": 564,
+      "end_exclusive": "0x80024FA8"
+    }
+  ],
+  "bytes": 564,
+  "edit_scope": "Only named matching source and cloud/work/boot_tail/BT06-matrix-inverse/**",
+  "stop": "Actual two-pointer48-byte matrix ABI, native FP operation order and distinct-object/finite-nonsingular domains; exact ELF function size; natural C89/O2/O1 and bounded diagnosis. Preserve CC0 provenance, no literal/data fabrication, artificial allocation constructs, old residual reopening or protected edits."
+}

@@ -1,0 +1,170 @@
+{
+  "result": "PASS_NONMATCH_RESEARCH_ONLY",
+  "reviewer": "/root/match_boot_tail_bt02_finalsmall",
+  "source_commit": "05b040aeb0f994f3ee57ca3c094101005709ed2c",
+  "source_tree": "a3d8b221ea3d8196146cd12009b294a66485d50e",
+  "strict_matches": 0,
+  "complete_nonmatches": 5,
+  "complete_nonmatch_bytes": 784,
+  "independent_trials": [
+    {
+      "function": "func_80016C20",
+      "source_sha256": "f998ce21b1835d1b354d5cdfdfcf4f63f786355a1e8792fe2a5e77e567fa2339",
+      "trials": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "strict_match": false,
+          "differing": 22,
+          "total": 48,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "strict_match": false,
+          "differing": 48,
+          "total": 48,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 4
+        }
+      ]
+    },
+    {
+      "function": "func_80016E68",
+      "source_sha256": "4e0c8bb0df3465a6908938fe6bb1da86b8ce2c695223d32f57fcc3183d31c0be",
+      "trials": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "strict_match": false,
+          "differing": 7,
+          "total": 30,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "strict_match": false,
+          "differing": 12,
+          "total": 30,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        }
+      ]
+    },
+    {
+      "function": "func_80016EE0",
+      "source_sha256": "18374e963fbff66585553a617f656eac2b747d3410dcbf6567d50c288c4ab901",
+      "trials": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "strict_match": false,
+          "differing": 7,
+          "total": 30,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "strict_match": false,
+          "differing": 12,
+          "total": 30,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        }
+      ]
+    },
+    {
+      "function": "func_80016F80",
+      "source_sha256": "5b5d3f8308f9bcc97b2540871cc7c785d11e4a5ce905190033698aab107deba4",
+      "trials": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "strict_match": false,
+          "differing": 13,
+          "total": 38,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "strict_match": false,
+          "differing": 24,
+          "total": 38,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [
+            "unpaired R_MIPS_HI16 for D_8004269C at .text+0x94"
+          ],
+          "extra_words": 5
+        }
+      ]
+    },
+    {
+      "function": "func_80017040",
+      "source_sha256": "b0a16c83f45b44d82abbff8ae0e55b12717d71eb82a084791fd99c319d82b31e",
+      "trials": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "strict_match": false,
+          "differing": 46,
+          "total": 50,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "strict_match": false,
+          "differing": 50,
+          "total": 50,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        }
+      ]
+    }
+  ],
+  "reproduced_receipts": {
+    "verification": "745e72eb545129e196f24c3023ff7356c8503953125a8ce5da7f20eb10823158",
+    "layout": "f9c99366076f4a3106638c4dd03c59acbfeb35f0f0eafc74f32a8b87602d0366",
+    "host": "14f0c49bb0f2b2e96e99c41e826e34ea1a7765d3c8ee45020427ee2a19bbdc85"
+  },
+  "reviewed_native_contracts": [
+    "All five target bodies and their direct callsites to 8001E864",
+    "Full 8001E864 five-argument o32 search and indirect two-pointer comparator ABI",
+    "Comparators 80016BF8/80016E40/80016F58 consume unsigned packed key+4; 80017018 consumes key+0",
+    "Return callers 80021C58, 80022F24, 8002321C, 8001A270, 80019F48 and 80020370 support pointer returns",
+    "80016F80 writes auxiliary, loads pointer value, then publishes cache; miss preserves auxiliary and clears cache",
+    "80017040 signed bank-count zero/negative bypass, dynamic reread after each miss and immediate return on hit"
+  ],
+  "type_limits": [
+    "IDO layout assertions verify 8-byte packed LookupEntry prefix and LookupBank and all used offsets",
+    "Separate address-spelled prefix/key globals have native adjacency evidence; hosted mock tests do not establish one C object spanning them or callback dereference across that boundary",
+    "LookupEntry is only the accessed 8-byte prefix of the 12-byte F80 record; no full-record-size claim"
+  ],
+  "host_result": "43 cases, strict C89 warnings-as-errors and UBSan PASS",
+  "scope_audit": {
+    "changed_files": 46,
+    "allowed_only": true,
+    "protected_paths_changed": false,
+    "raw_rom_assembly_object_or_private_artifacts": false
+  },
+  "bounded_controls": "Retained source residuals reproduced, including explicit O1 16F80 overrun/unpaired-HI16 error. The 5/38 ordering-reversed F80 experiment is rejected, not credited.",
+  "decision": "Approve publication as five complete nonmatching research bodies only. No strict match, promotion, cartridge coverage, aggregate CI or maintainer acceptance is claimed."
+}

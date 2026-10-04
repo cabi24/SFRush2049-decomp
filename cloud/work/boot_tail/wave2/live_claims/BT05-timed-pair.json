@@ -1,0 +1,24 @@
+{
+  "state": "frozen-review-pass-integrating",
+  "owner": "/root/match_boot_tail_bt05_bt07",
+  "packet": "BT05-timed-pair",
+  "base": "0baed23f011b1b75bcdac34f4d7c7200fa102d76",
+  "master_anchor": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x80021F84",
+      "size": 476,
+      "end_exclusive": "0x80022160"
+    },
+    {
+      "address": "0x80022A98",
+      "size": 448,
+      "end_exclusive": "0x80022C58"
+    }
+  ],
+  "bytes": 924,
+  "edit_scope": "Only named matching sources and cloud/work/boot_tail/BT05-timed-pair/**",
+  "stop": "Genuine native ABI and domain checks. Natural C89/O2/O1,20 directed variants maximum with diagnosis. No protected changes, overlap, missing-table assumptions, repeated unsupported declarations or exhausted residual reopening. Reuse current safe storage.",
+  "peer_approved_head": "6c4b7d31445ea485b913c485d7756463a91f249e",
+  "reviewed_commit": "6c4b7d31445ea485b913c485d7756463a91f249e"
+}

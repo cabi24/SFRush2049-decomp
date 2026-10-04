@@ -1,0 +1,19 @@
+{
+  "method": "Metadata-only diagnosis of canonical target and fully relocated initial O2 candidate; no raw objects or native words archived.",
+  "function": "func_800154A4",
+  "checkpoint": "initial form before refinements",
+  "source_sha256": "23328053631392f06733db3ec7ed82a2e8cb881b31239b5b06e52a2f3c168939",
+  "routing": "evidence-first",
+  "owning_pass": "unknown",
+  "ownership_basis": "heuristic",
+  "lever_class": "none-known",
+  "lever_reason": "possible-color and temporary roles overlap; neither a lane rotation nor a filtered replay proves reservation or demand-order causality",
+  "target_frame": -32,
+  "candidate_frame": -32,
+  "aligned_insertions": 0,
+  "aligned_deletions": 0,
+  "artifact_built_at": [
+    "2026-10-03T23:22:54Z",
+    "2026-10-03T23:22:54Z"
+  ]
+}

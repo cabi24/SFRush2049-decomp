@@ -1,0 +1,53 @@
+{
+  "state": "integrating-source-frozen",
+  "owner": "/root/match_boot_tail_low_eight",
+  "packet": "BT03-low-eight",
+  "branch": "dot/boot-tail-bt03-low-eight",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x800148F8",
+      "size": 196,
+      "end_exclusive": "0x800149BC"
+    },
+    {
+      "address": "0x80014D30",
+      "size": 208,
+      "end_exclusive": "0x80014E00"
+    },
+    {
+      "address": "0x800171C0",
+      "size": 220,
+      "end_exclusive": "0x8001729C"
+    },
+    {
+      "address": "0x8001729C",
+      "size": 176,
+      "end_exclusive": "0x8001734C"
+    },
+    {
+      "address": "0x800173B4",
+      "size": 92,
+      "end_exclusive": "0x80017410"
+    },
+    {
+      "address": "0x80017410",
+      "size": 96,
+      "end_exclusive": "0x80017470"
+    },
+    {
+      "address": "0x80017470",
+      "size": 96,
+      "end_exclusive": "0x800174D0"
+    },
+    {
+      "address": "0x800174D0",
+      "size": 112,
+      "end_exclusive": "0x80017540"
+    }
+  ],
+  "bytes": 1196,
+  "edit_scope": "Only listed matching sources and cloud/work/boot_tail/BT03-low-eight/**",
+  "stop": "Inspect true indirect ABI and local rodata before edits. Natural C89, O2 then O1, 20 directed variants maximum per diagnosis. No protected edits, frozen-target reopens, overlap or missing-proof substitution. Use /tmp isolated worktree.",
+  "peer_approved_head": "d9ff1b708b41f9d5a3082c0f251dd393807e1252"
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/70",
+  "source_head": "b935b5c4f79b92f489636e6cc26c68cc81061c73",
+  "source_tree": "b8c2b544c1ac72177a7405b1f7e009d3866bc9e1",
+  "workflow_run": 37169207523,
+  "workflow_url": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37169207523",
+  "conclusion": "success",
+  "checked_utc": "2026-10-04T01:56:26Z",
+  "new_matches": 9,
+  "new_matching_bytes": 2592,
+  "note": "Exact source proof carried in the next source cut; PR70 source remains frozen. Supplemental ELF extent audit covers all221 source matches through this cut including the historical getter."
+}
