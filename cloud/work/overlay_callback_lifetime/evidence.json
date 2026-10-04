@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "baseline": "f82c5204edc4ead0f9056f323ff71122209ff259",
+  "game_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+  "ranges": [
+    {
+      "start": "0x8009079c",
+      "end_exclusive": "0x800908a0",
+      "sha256": "e80960e46c723272da00f1815ad1fd1a54133649e6ec7513f9e1845daf5a90b2"
+    },
+    {
+      "start": "0x800b0618",
+      "end_exclusive": "0x800b066c",
+      "sha256": "83da9f4b73743c0df39d21030de35b2e54ca1f4e71b8b9e41ea39a06ac044e7a"
+    },
+    {
+      "start": "0x800b0868",
+      "end_exclusive": "0x800b08dc",
+      "sha256": "9a2b0d526dfb757b7517607bdf3d3dc6d6d6c909a79bdd34955e7528d75ca1aa"
+    },
+    {
+      "start": "0x800f733c",
+      "end_exclusive": "0x800f73fc",
+      "sha256": "78cbec305eef657e1e3ba22c53b0206319133fd2a99821b5f4b46b3b90e04691"
+    },
+    {
+      "start": "0x800d5aac",
+      "end_exclusive": "0x800d5b8c",
+      "sha256": "4a836b5995422a6baa90582ec799143dbd730035de4dfd72a2712e084023f918"
+    }
+  ],
+  "record_120": {
+    "address": "0x80118BB0",
+    "flags": "0x022A",
+    "update_callback": "0x8010C974",
+    "table_plus_8": "0x8010C7F4"
+  },
+  "claim": "conditional_callback_retirement_only",
+  "runtime_residency_proven": false
+}
