@@ -467,3 +467,20 @@ ownership change. No added operations, artificial padding, directives or compile
 changes are used. This is not a generic formatting or allocation remedy. See
 wave16/README.md and both independent source/ABI/control receipts. Prior green
 proof is in wave15/ci.json; this cut's own exact-head CI remains pending.
+
+## Seventeenth cut: voice allocation now matches
+
+The first sixteen cuts have 239 unique new exact-CI-verified bodies / 28,096 B.
+One independently reviewed voice allocator closes its previous eight-word
+nonmatch, adding 276 matching bytes and zero new unique attempted addresses.
+The pending union is 240 new bodies / 28,372 B plus the historical getter;
+394 distinct attempts now include 153 complete nonmatches / 44,036 B and the
+unchanged 96-byte blocked lead. All historical sources and manifests are retained.
+
+A pinned source-family free-head assignment and an ordinary for-loop traversal
+close two measured, separate compiler residuals. The actual one-pointer ABI,
+callback/key order, finite valid-list domains and native no-retry counter-wrap
+behavior are unchanged. Newer donor arguments and behavior are not imported.
+See wave17/README.md and the independent source/ABI/control receipt. PR76's green
+exact-head proof and independent aggregate audit are preserved in wave16/;
+this new source cut's own exact-head CI remains pending.

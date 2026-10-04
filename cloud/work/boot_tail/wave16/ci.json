@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/76",
+  "source_head": "14a7a4ef2a244848f9ab9b7363d4246b40a815fc",
+  "source_tree": "97421da014e4e68ae59bc8dad08a328b51c2fbfd",
+  "source_parent": "d3e457b05b9eb7b5a4512e4ae4b1fc32c34e268f",
+  "workflow_run": 37182922708,
+  "workflow_url": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37182922708",
+  "conclusion": "success",
+  "checked_utc": "2026-10-04T06:34:29Z",
+  "reclassified_matches": 2,
+  "added_matching_bytes": 916,
+  "new_unique_attempts": 0,
+  "cumulative_unique_new_matches": 239,
+  "cumulative_unique_new_matching_bytes": 28096,
+  "unique_attempts": 394,
+  "verified_local_equivalent_commit": "b851720ea507d1c4b9ca39a12b429612884da8f5",
+  "remote_readback": "Fresh Git-data confirms exact head/tree/parent; workflow completed success; PR remains draft, open and mergeable.",
+  "note": "Optional PR body green-receipt update was cancelled and not applied, so its pending sentence is stale. This exact-head CI receipt is authoritative. No merge or cartridge acceptance claim."
+}

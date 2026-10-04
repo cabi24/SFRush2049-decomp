@@ -1,0 +1,30 @@
+{
+  "result": "PASS",
+  "tests_run": 4,
+  "failures": 0,
+  "errors": 0,
+  "actual_source_sha256": "00f70ee6c8e555735cc2e2edb348f715e63622f2b92a97bd57536ffe3ef72192",
+  "test_source_sha256": "75edd04da8bc8bbb1f68c08fcc0b131e4a3eaaf2d3b4c1a6a4854cfaa0f32a64",
+  "historical_insertion_cases": 108,
+  "skipped_sentinel_case": true,
+  "native_no_retry_counter_wrap_case": true,
+  "mutation_rejections": [
+    "key_consumed_before_empty_pool",
+    "collision_regeneration",
+    "equal_key_not_order_stop",
+    "remember_predecessor",
+    "advance_free_head",
+    "clear_free_backlink",
+    "install_used_root",
+    "link_predecessor",
+    "new_previous",
+    "new_next",
+    "link_successor",
+    "store_key",
+    "store_voice_identifier",
+    "store_voice_node",
+    "return_generated_key"
+  ],
+  "compiler": "host cc strict C89 with ASan and UBSan",
+  "leak_sanitizer_disabled": true
+}

@@ -3701,12 +3701,12 @@
     "0x8001ECE0": {
       "name_hypothesis": "audio_chains_8001ECE0",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
-      "source_path": "cloud/work/boot_tail/BT03-high-chains/nonmatch/func_8001ECE0.c",
-      "status": "nonmatch",
-      "owner": "Astra / BT03-high-chains",
-      "evidence_level": "COMPLETE-NONMATCH",
-      "diff_words": "8",
-      "note": "BT03-high-chains; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. Three strict O2 matches / 916 B and three complete residuals / 948 B. Native ABI, live callback fields and bounded resource domains explicit; peer review and aggregate CI required."
+      "source_path": "cloud/matches/boot_tail/func_8001ECE0.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-voice-allocation-retry",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "Prior 8-word complete nonmatch reclassified by independent whole-source/ABI review and exact ELF/full relocation proof. One-pointer native ABI, finite valid lists and original no-retry counter-wrap behavior retained. Seventeenth-cut exact-head CI pending; zero new unique attempts."
     },
     "0x8001FD2C": {
       "name_hypothesis": "audio_chains_8001FD2C",
@@ -3859,11 +3859,12 @@
       "name_hypothesis": "audio_runtime_lists_8001C1D8",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "source_path": "cloud/matches/boot_tail/func_8001C1D8.c",
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-store-rotation-retry",
-      "evidence_level": "HYPOTHESIS",
+      "evidence_level": "VERIFIED-BODY",
       "diff_words": "0",
-      "note": "BT03-store-rotation-retry; prior complete nonmatch reclassified by exact peer-reviewed whole body and ELF extent; no new unique attempted target. Ordinary multiline loop ownership, no added operations. Sixteenth-cut exact-head CI pending; original ABI/runtime domains remain."
+      "note": "Exact peer source/ABI, whole relocated body and independent ELF-size proof; PR76 exact-head CI success at14a7a4ef/tree97421da0. Real layout/runtime domains remain explicit; zero new unique attempt for this reclassification.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/76"
     },
     "0x8001D944": {
       "name_hypothesis": "audio_runtime_lists_8001D944",
@@ -3917,11 +3918,12 @@
     "0x80020820": {
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "source_path": "cloud/matches/boot_tail/func_80020820.c",
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / C13-byte-clear-retry",
-      "evidence_level": "HYPOTHESIS",
+      "evidence_level": "VERIFIED-BODY",
       "diff_words": "0",
-      "note": "C13-byte-clear-retry; prior complete nonmatch reclassified by exact peer-reviewed whole body and ELF extent; no new unique attempted target. Ordinary multiline loop ownership, no added operations. Sixteenth-cut exact-head CI pending; original ABI/runtime domains remain."
+      "note": "Exact peer source/ABI, whole relocated body and independent ELF-size proof; PR76 exact-head CI success at14a7a4ef/tree97421da0. Real layout/runtime domains remain explicit; zero new unique attempt for this reclassification.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/76"
     },
     "0x80020DA8": {
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
