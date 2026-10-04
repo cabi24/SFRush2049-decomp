@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "date_utc": "2026-10-04",
+  "stock_ugen_sha256": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+  "original_ugen_sha256": "4d6ae5a5ea8a6ee77bfcc4c95195800823d4b1217e757cc516e219d05bbf5345",
+  "original_ugen_git_blob_sha1": "beb81f4bd5ea81fcf2be6aaa0bcb3f88f4a9f992",
+  "upstream_revision": "9c242adc890beef098020149d9554f48208f699d",
+  "upstream_tag": "v1.2",
+  "original_eval_mov_address": "0x0042a078",
+  "original_eval_mov_end": "0x0042b424",
+  "original_select_branch": "0x0042aad8\u20130x0042abd4",
+  "host_select_branch": "0x0005c64f\u20130x0005c748",
+  "free_reg_is_available_call_count_in_original_eval_mov": 0,
+  "target_sha_manifest_sha256": "6bd3e6ef05e6123e4ea4dd0d814c0abb16f202a91d8d0a381eca14322c8a36d5",
+  "scorer_sha256": "9de8385b28938c012ba679ea1f899cd7e5fe351d2c51129c5319442c84b679c4",
+  "tracing": {
+    "hardware_breakpoint_status": "blocked_before_ugen_execution",
+    "blocker": "PTRACE_TRACEME: EPERM",
+    "retry": false,
+    "live_free_snapshot_available": false
+  },
+  "results": [
+    {
+      "function": "func_80015720",
+      "source_path": "cloud/work/boot_tail/BT03-low-larger/func_80015720_NONMATCH.c",
+      "source_sha256": "12c277008bcd9dd866ed98eb7e5a1b7f97a5ffd6a22699589ab40fc9622b498e",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "diagnostic_extra_ugen_arguments": [
+        "-e TREEFILE",
+        "-l LISTFILE"
+      ],
+      "baseline_object_sha256": "651cbb225e06c872f72f784fde387063b5c4793f7079334dceaa087aa55398c6",
+      "diagnostic_object_sha256": "651cbb225e06c872f72f784fde387063b5c4793f7079334dceaa087aa55398c6",
+      "full_object_byte_identical": true,
+      "stock_driver_and_explicit_stages_byte_identical": true,
+      "diff_words": 6,
+      "target_words": 110,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "sections": {
+        ".text": {
+          "bytes": 448,
+          "sha256": "2f3f93586ddc6bc0f21c666a6118ee122220a7f03732f43f8199f6e92ebda470"
+        },
+        ".rel.text": {
+          "bytes": 152,
+          "sha256": "519dfae5c9bd3a42210e4fcd81374a27e012b9fc2895086d85d9da43a586e265"
+        },
+        ".symtab": {
+          "bytes": 112,
+          "sha256": "648470a0cf8e59109dd3279516f8009da18597e5fe6127c8e2f54de35f107423"
+        },
+        ".strtab": {
+          "bytes": 71,
+          "sha256": "245269912cd762c9dd46335fbf2b6afe54fad5927ef219f0bfa6540f9a5536aa"
+        }
+      },
+      "copy_metadata": {
+        "opcode": "mov",
+        "opcode_number": 88,
+        "record_dtype": 9,
+        "source_alignment_bits": 32,
+        "destination_alignment_bits": 32,
+        "length_bytes": 8,
+        "source_offset": 0,
+        "destination_offset": 0,
+        "offset_provenance": "Both post-optimization operands are Rmt Uload nodes, not Uadd nodes, so eval_mov initializes offsets to zero and does not enter its offset-peeling branch."
+      },
+      "uregs_descriptors": [
+        {
+          "i1": 1,
+          "length": 9,
+          "offset": 2
+        },
+        {
+          "i1": 3,
+          "length": 4,
+          "offset": 44
+        }
+      ]
+    },
+    {
+      "function": "func_800158D8",
+      "source_path": "cloud/work/boot_tail/BT03-low-removal/func_800158D8_NONMATCH.c",
+      "source_sha256": "e6044e6e6fe590c91723d453b9fbfaefd76a10e15bd514bd38def333e70b9882",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "diagnostic_extra_ugen_arguments": [
+        "-e TREEFILE",
+        "-l LISTFILE"
+      ],
+      "baseline_object_sha256": "a7ed727f7cb5cbdf8896da859bed07adadde216e3856d3fcd983a3f0be10eaf5",
+      "diagnostic_object_sha256": "a7ed727f7cb5cbdf8896da859bed07adadde216e3856d3fcd983a3f0be10eaf5",
+      "full_object_byte_identical": true,
+      "stock_driver_and_explicit_stages_byte_identical": true,
+      "diff_words": 8,
+      "target_words": 77,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "sections": {
+        ".text": {
+          "bytes": 320,
+          "sha256": "d5bfc622482aefa0d3376f2c1c468acb29cc144f56b03f5dcfb1bde3613df68e"
+        },
+        ".rel.text": {
+          "bytes": 120,
+          "sha256": "7647c21422823da9a7dc00135a3dcd2e2dc579538149f23489e04a29101e8f21"
+        },
+        ".symtab": {
+          "bytes": 112,
+          "sha256": "19a3028f64499715ee4b66151ba685692dcb9caffd1922ab1198c18933f1fbb7"
+        },
+        ".strtab": {
+          "bytes": 71,
+          "sha256": "2b82d3e8a7d1385080fa726ecc14241271a6915cc7db11033d9c4aaa3c0b2624"
+        }
+      },
+      "copy_metadata": {
+        "opcode": "mov",
+        "opcode_number": 88,
+        "record_dtype": 9,
+        "source_alignment_bits": 32,
+        "destination_alignment_bits": 32,
+        "length_bytes": 8,
+        "source_offset": 0,
+        "destination_offset": 0,
+        "offset_provenance": "Both post-optimization operands are Rmt Uload nodes, not Uadd nodes, so eval_mov initializes offsets to zero and does not enter its offset-peeling branch."
+      },
+      "uregs_descriptors": [
+        {
+          "i1": 1,
+          "length": 6,
+          "offset": 2
+        },
+        {
+          "i1": 3,
+          "length": 4,
+          "offset": 44
+        }
+      ]
+    }
+  ],
+  "compiler_pin_sha256": "8ca550d30c1fef7c14b1470a1ef93cc6d415a507c6e18c04a7bfeaf8016a7b89"
+}

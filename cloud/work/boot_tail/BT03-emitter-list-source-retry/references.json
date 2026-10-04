@@ -1,0 +1,23 @@
+{
+  "repository": "AxioDL/musyx",
+  "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+  "source_path": "src/musyx/runtime/snd3d.c",
+  "source_blob_sha": "7c6e875a043c53b92ca05efdb9b1799e7d496965",
+  "source_url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/src/musyx/runtime/snd3d.c",
+  "license": "CC0-1.0",
+  "license_blob_sha": "0e259d42c996742e9e3cba14c677129b2c1b6311",
+  "license_url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/LICENSE",
+  "retrieved_utc": "2026-10-04T16:44:41Z",
+  "families": [
+    {"native": "func_8001D944", "donor": "AddRunningEmitter", "lines": [1115, 1153]},
+    {"native": "func_8001DA74", "donor": "AddStartingEmitter", "lines": [1155, 1212]}
+  ],
+  "new_forms": "Donor for-loop traversal and pool-count postincrement owned by the final volume store; absent from all prior archived controls.",
+  "version_limits": [
+    "This public PC/Dolphin family is not authenticated original N64 source.",
+    "The donor numRunning field and writes are absent from both native bodies and were not adopted.",
+    "Native group and node capacities are 32. Donor group and starting-node capacities are 64; donor RUN_LIST_SIZE is 64 through version 2.0.0 and 128 from version 2.0.1 onward (snd3d.c lines390-399). All native capacities are preserved.",
+    "The donor >=2.0.1 low-pass-filter float and field are absent from native; the genuine pointer plus five float arguments are preserved.",
+    "Native field geometry remains unchanged: 12-byte groups, 12-byte small nodes, 28-byte large nodes on O32."
+  ]
+}
