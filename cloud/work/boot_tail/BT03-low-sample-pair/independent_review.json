@@ -1,0 +1,117 @@
+{
+  "result": "PASS",
+  "source_commit": "475faac7a10c4477c3ccf832ea1914f448ce0d54",
+  "source_tree": "6d1add1fb9a3e39e1fe4a2dd82245bc67f09cb63",
+  "stack_base": "7d17ea9c94310e70bf393dcde84297b5fe01870c",
+  "reviewer": "BT03-high",
+  "reviewed_utc": "2026-10-04T02:26:33.940620+00:00",
+  "method": "Exact immutable Git-blob snapshot with canonical unchanged scoring: four final rows and eight controls and one explicitly rejected compilation failure reproduced; actual sources and full native146B4/16CF0 inspected, reusing freshly audited genuine direct-helper contracts.",
+  "compiler_results": [
+    {
+      "name": "func_800146B4",
+      "bytes": 488,
+      "source_path": "cloud/matches/boot_tail/func_800146B4.c",
+      "source_sha256": "6ea4cb53d566e71561e42b4724682fe9f45f52dfbe90611de0f370aeabeb8bc1",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 0,
+      "total_words": 122,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": true,
+      "elf_function_size": 488
+    },
+    {
+      "name": "func_800146B4",
+      "bytes": 488,
+      "source_path": "cloud/matches/boot_tail/func_800146B4.c",
+      "source_sha256": "6ea4cb53d566e71561e42b4724682fe9f45f52dfbe90611de0f370aeabeb8bc1",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 120,
+      "total_words": 122,
+      "extra_words": 104,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "elf_function_size": 920
+    },
+    {
+      "name": "func_80016CF0",
+      "bytes": 336,
+      "source_path": "cloud/work/boot_tail/BT03-low-sample-pair/nonmatch/func_80016CF0.c",
+      "source_sha256": "7008e84226e3383e8c890771a9ddf41ab5242ceb5eca22623cdd7ae6bf05d59b",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 80,
+      "total_words": 84,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "elf_function_size": 332
+    },
+    {
+      "name": "func_80016CF0",
+      "bytes": 336,
+      "source_path": "cloud/work/boot_tail/BT03-low-sample-pair/nonmatch/func_80016CF0.c",
+      "source_sha256": "7008e84226e3383e8c890771a9ddf41ab5242ceb5eca22623cdd7ae6bf05d59b",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 83,
+      "total_words": 84,
+      "extra_words": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_800385A0 at .text+0x14c"
+      ],
+      "strict_match": false,
+      "elf_function_size": 384
+    }
+  ],
+  "matching_functions": 1,
+  "matching_bytes": 488,
+  "complete_nonmatches": 1,
+  "nonmatching_bytes": 336,
+  "tests": {
+    "result": "PASS",
+    "groups": 2,
+    "playback_combinations": 17280,
+    "search_combinations": 270,
+    "live_count_cases": 2,
+    "runs": [
+      {
+        "command": "python3 cloud/work/boot_tail/BT03-low-sample-pair/verify.py",
+        "returncode": 0,
+        "output": "{\n  \"schema_version\": 1,\n  \"result\": \"PASS\",\n  \"base_commit\": \"7d17ea9c94310e70bf393dcde84297b5fe01870c\",\n  \"match_functions\": 1,\n  \"verified_body_bytes\": 488,\n  \"nonmatch_functions\": 1,\n  \"nonmatch_bytes\": 336,\n  \"target_manifest_sha256\": \"6bd3e6ef05e6123e4ea4dd0d814c0abb16f202a91d8d0a381eca14322c8a36d5\",\n  \"results\": [\n    {\n      \"name\": \"func_800146B4\",\n      \"bytes\": 488,\n      \"source_path\": \"cloud/matches/boot_tail/func_800146B4.c\",\n      \"source_sha256\": \"6ea4cb53d566e71561e42b4724682fe9f45f52dfbe90611de0f370aeabeb8bc1\",\n      \"flags\": \"-g0 -O2 -mips2 -G 0 -non_shared\",\n      \"effective_flags\": \"-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul\",\n      \"differing_words\": 0,\n      \"total_words\": 122,\n      \"extra_words\": 0,\n      \"unresolved\": [],\n      \"unverified\": [],\n      \"errors\": [],\n      \"strict_match\": true,\n      \"elf_function_size\": 488\n    },\n    {\n      \"name\": \"func_800146B4\",\n      \"bytes\": 488,\n      \"source_path\": \"cloud/matches/boot_tail/func_800146B4.c\",\n      \"source_sha256\": \"6ea4cb53d566e71561e42b4724682fe9f45f52dfbe90611de0f370aeabeb8bc1\",\n      \"flags\": \"-g0 -O1 -mips2 -G 0 -non_shared\",\n      \"effective_flags\": \"-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul\",\n      \"differing_words\": 120,\n      \"total_words\": 122,\n      \"extra_words\": 104,\n      \"unresolved\": [],\n      \"unverified\": [],\n      \"errors\": [],\n      \"strict_match\": false,\n      \"elf_function_size\": 920\n    },\n    {\n      \"name\": \"func_80016CF0\",\n      \"bytes\": 336,\n      \"source_path\": \"cloud/work/boot_tail/BT03-low-sample-pair/nonmatch/func_80016CF0.c\",\n      \"source_sha256\": \"7008e84226e3383e8c890771a9ddf41ab5242ceb5eca22623cdd7ae6bf05d59b\",\n      \"flags\": \"-g0 -O2 -mips2 -G 0 -non_shared\",\n      \"effective_flags\": \"-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul\",\n      \"differing_words\": 80,\n      \"total_words\": 84,\n      \"extra_words\": 0,\n      \"unresolved\": [],\n      \"unverified\": [],\n      \"errors\": [],\n      \"strict_match\": false,\n      \"elf_function_size\": 332\n    },\n    {\n      \"name\": \"func_80016CF0\",\n      \"bytes\": 336,\n      \"source_path\": \"cloud/work/boot_tail/BT03-low-sample-pair/nonmatch/func_80016CF0.c\",\n      \"source_sha256\": \"7008e84226e3383e8c890771a9ddf41ab5242ceb5eca22623cdd7ae6bf05d59b\",\n      \"flags\": \"-g0 -O1 -mips2 -G 0 -non_shared\",\n      \"effective_flags\": \"-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul\",\n      \"differing_words\": 83,\n      \"total_words\": 84,\n      \"extra_words\": 11,\n      \"unresolved\": [],\n      \"unverified\": [],\n      \"errors\": [\n        \"unpaired R_MIPS_HI16 for D_800385A0 at .text+0x14c\"\n      ],\n      \"strict_match\": false,\n      \"elf_function_size\": 384\n    }\n  ]\n}\n"
+      },
+      {
+        "command": "python3 cloud/work/boot_tail/BT03-low-sample-pair/verify_controls.py",
+        "returncode": 0,
+        "output": "{\n  \"result\": \"PASS\",\n  \"control_rows\": 8,\n  \"known_compile_failures\": 1,\n  \"matching_credit\": 0\n}\n"
+      },
+      {
+        "command": "python3 -m unittest discover -s cloud/work/boot_tail/BT03-low-sample-pair -p test_*.py -v",
+        "returncode": 0,
+        "output": "test_playback_fields_pointer_tags_and_unsigned_double (test_semantics.Semantics.test_playback_fields_pointer_tags_and_unsigned_double) ... ok\ntest_search_descriptor_globals_and_live_bank_count (test_semantics.Semantics.test_search_descriptor_globals_and_live_bank_count) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.255s\n\nOK\n"
+      }
+    ]
+  },
+  "source_abi_findings": [
+    "Full146B4/16CF0 native bodies were freshly audited in the preceding resource review and actual complete sources now reviewed.11C1C and16CE0 complete bodies were inspected again; genuine halfword initialization inputs and two-pointer unsigned-halfword comparator difference agree.",
+    "146B4 preserves the original word slot for runtime indexing while narrowing only the initialization helper input. Three real arguments, including packed descriptor pointer and byte reset, are genuine; no fake floating parameter is present.",
+    "Packed SampleInfo is25 native bytes, natural AudioState104, SampleRecord28 and RegisteredSamples12; source pointers are real. These native-only widths are independently asserted with IDO, while LP64 tests check logical behavior. The pointer-to-unsigned-long tag test is explicitly a32-bit O32 representation contract, not arbitrary portable C.",
+    "Offset is unsigned32 converted to double and shared once by the two integer positions via a natural chained assignment, exactly matching the native common load. Global runtime base reloads remain live; reset fields and unsigned tail subtraction/threshold behavior agree.",
+    "Native high-nibble pointer comparison uses maskF0000000 against80000000; data is not dereferenced here. Synthetic pointer-tag and malformed downstream-resource arithmetic cases are not claimed hardware-safe. No original sample data is substituted.",
+    "16CF0 writes its actual key global, passes real key/base/count/28-byte-stride/comparator inputs, checks each visited result and reloads live bank count. Success copies packed payload fields and publishes payload pointer before record pointer; visited failures clear only the found-record pointer, while zero banks and stale payload/output behavior remain exact.",
+    "One exact488-byte relocated match with one named function symbol at zero;16CF0 remains80/84 and332-byte ELF extent against336 native. Final/control ELF sizes, source hashes and rejected O1 HI16/known stddef compile failure reproduce. No match credit is assigned to the lookup.",
+    "Both sanitizer groups independently pass17280 playback cases,270 search patterns and live count growth/shrink. No fake formal, keeper, local padding, asm, reference masking, storage/table substitution or protected edits."
+  ],
+  "scope": "Only the146B4 matching submission and owned low-sample packet differ from frozen controller base; no prior or protected changes.",
+  "whitespace": "PASS"
+}

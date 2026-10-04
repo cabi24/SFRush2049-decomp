@@ -1,0 +1,665 @@
+{
+  "result": "PASS",
+  "reviewer": "BT05/C13 paired reviewer",
+  "matching_functions": 1,
+  "matching_bytes": 300,
+  "nonmatching_functions": 5,
+  "nonmatching_bytes": 1952,
+  "source_review": "All six complete C and native bodies inspected. The scheduler has genuine no-input global-context helpers and live later-row activity, with result-byte narrowing. Small insertion preserves ascending strict-less order; large insertion preserves the head anchor and its different comparison, including group creation before pool exhaustion. Mixed ABI is one object pointer plus five actual floats. Initializer matches precise packed416-byte and aligned40-byte writes, including untouched bytes and native-aligned words40. Group insertion retains the pre-unlink low-byte slot and pointer while reloading live group state; unchanged-channel early exit is preserved. Synchronized controller pair keeps both real components, channel reload and one matching synchronization exit. No artificial source or ABI blocker found.",
+  "qualification": "Final README explicitly retains the valid allocated lists and32-entry unchecked small-pool capacity, N64-only pointer widths, mandatory large-list head anchor and ordinary FP-state/quiet-NaN limitations. These match the inspected native behavior; no semantic blocker.",
+  "tests": "All six strict-C89 ASan/UBSan groups independently rerun successfully.",
+  "source_hashes_and_rows": [
+    {
+      "name": "func_800198C8",
+      "bytes": 300,
+      "source_path": "cloud/matches/boot_tail/func_800198C8.c",
+      "source_sha256": "da227f02710ec02a643e38f9b03c3993fb445f50700d20af7c60311e7a143b3f",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 0,
+      "total_words": 75,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": true,
+      "independent_function_symbols": [
+        {
+          "name": "func_800198C8",
+          "value": 0,
+          "size": 300,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_800198C8",
+      "bytes": 300,
+      "source_path": "cloud/matches/boot_tail/func_800198C8.c",
+      "source_sha256": "da227f02710ec02a643e38f9b03c3993fb445f50700d20af7c60311e7a143b3f",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 72,
+      "total_words": 75,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_800198C8",
+          "value": 0,
+          "size": 304,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001C1D8",
+      "bytes": 432,
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/nonmatch/func_8001C1D8.c",
+      "source_sha256": "e78eaf80607f870959b674da6718e94de3f03d8f67250ed937b2b028092bc9dd",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 4,
+      "total_words": 108,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001C1D8",
+          "value": 0,
+          "size": 432,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001C1D8",
+      "bytes": 432,
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/nonmatch/func_8001C1D8.c",
+      "source_sha256": "e78eaf80607f870959b674da6718e94de3f03d8f67250ed937b2b028092bc9dd",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 107,
+      "total_words": 108,
+      "extra_words": 246,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001C1D8",
+          "value": 0,
+          "size": 1428,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001D944",
+      "bytes": 304,
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/nonmatch/func_8001D944.c",
+      "source_sha256": "b2b9133b06465cd4f33d927ed2429460d0723cebd46810f25753498ee332c584",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 53,
+      "total_words": 76,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001D944",
+          "value": 0,
+          "size": 304,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001D944",
+      "bytes": 304,
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/nonmatch/func_8001D944.c",
+      "source_sha256": "b2b9133b06465cd4f33d927ed2429460d0723cebd46810f25753498ee332c584",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 76,
+      "total_words": 76,
+      "extra_words": 46,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001D944",
+          "value": 0,
+          "size": 488,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001DA74",
+      "bytes": 404,
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/nonmatch/func_8001DA74.c",
+      "source_sha256": "60a3da400e5fb86764367ec87df6b9d750cb5d2c23ee74a77ebcb27c40ba85a1",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 58,
+      "total_words": 101,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001DA74",
+          "value": 0,
+          "size": 400,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001DA74",
+      "bytes": 404,
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/nonmatch/func_8001DA74.c",
+      "source_sha256": "60a3da400e5fb86764367ec87df6b9d750cb5d2c23ee74a77ebcb27c40ba85a1",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 101,
+      "total_words": 101,
+      "extra_words": 51,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001DA74",
+          "value": 0,
+          "size": 608,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001EF8C",
+      "bytes": 432,
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/nonmatch/func_8001EF8C.c",
+      "source_sha256": "612f63a6a0aebad0788d78bef287d830023616d56f71186d007b73e0462b7808",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 88,
+      "total_words": 108,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001EF8C",
+          "value": 0,
+          "size": 432,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001EF8C",
+      "bytes": 432,
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/nonmatch/func_8001EF8C.c",
+      "source_sha256": "612f63a6a0aebad0788d78bef287d830023616d56f71186d007b73e0462b7808",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 108,
+      "total_words": 108,
+      "extra_words": 50,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001EF8C",
+          "value": 0,
+          "size": 636,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001FBB0",
+      "bytes": 380,
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/nonmatch/func_8001FBB0.c",
+      "source_sha256": "1c43ad58e0d37efa0fc4d91ab4c6f4a2130ccfe36b1771cfcd968c433afafe01",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 66,
+      "total_words": 95,
+      "extra_words": 2,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001FBB0",
+          "value": 0,
+          "size": 388,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001FBB0",
+      "bytes": 380,
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/nonmatch/func_8001FBB0.c",
+      "source_sha256": "1c43ad58e0d37efa0fc4d91ab4c6f4a2130ccfe36b1771cfcd968c433afafe01",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 95,
+      "total_words": 95,
+      "extra_words": 21,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_8004BEB8 at .text+0x174"
+      ],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001FBB0",
+          "value": 0,
+          "size": 480,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001C1D8",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/controls/func_8001C1D8_initial.c",
+      "source_sha256": "78b5f602f888bbdf4ae4854d0d8a0a7bb0a14f051ba6ce0cad51094b90755363",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 7,
+      "total_words": 108,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001C1D8",
+          "value": 0,
+          "size": 432,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001C1D8",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/controls/func_8001C1D8_initial.c",
+      "source_sha256": "78b5f602f888bbdf4ae4854d0d8a0a7bb0a14f051ba6ce0cad51094b90755363",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 107,
+      "total_words": 108,
+      "extra_words": 247,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001C1D8",
+          "value": 0,
+          "size": 1432,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001C1D8",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/controls/func_8001C1D8_relative_channel_bank.c",
+      "source_sha256": "92c5b94be108b9420d50c6e98b5a77d7026872847c393a47813dbc13ec64da5b",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 4,
+      "total_words": 108,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001C1D8",
+          "value": 0,
+          "size": 432,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001C1D8",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/controls/func_8001C1D8_relative_channel_bank.c",
+      "source_sha256": "92c5b94be108b9420d50c6e98b5a77d7026872847c393a47813dbc13ec64da5b",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 107,
+      "total_words": 108,
+      "extra_words": 246,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001C1D8",
+          "value": 0,
+          "size": 1428,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001C1D8",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/controls/func_8001C1D8_unsigned_index.c",
+      "source_sha256": "c205b00b34fbb578276338bd8278d022130325f2d615a2e1193c56d20270ae1c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 4,
+      "total_words": 108,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001C1D8",
+          "value": 0,
+          "size": 432,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001C1D8",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/controls/func_8001C1D8_unsigned_index.c",
+      "source_sha256": "c205b00b34fbb578276338bd8278d022130325f2d615a2e1193c56d20270ae1c",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 107,
+      "total_words": 108,
+      "extra_words": 246,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001C1D8",
+          "value": 0,
+          "size": 1428,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001D944",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/controls/func_8001D944_captured_group_count_and_node.c",
+      "source_sha256": "86febee2a212fe19321d49ea616c1fe941e2705086dcf0f91628cb0064f44a11",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 74,
+      "total_words": 76,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001D944",
+          "value": 0,
+          "size": 300,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001D944",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/controls/func_8001D944_captured_group_count_and_node.c",
+      "source_sha256": "86febee2a212fe19321d49ea616c1fe941e2705086dcf0f91628cb0064f44a11",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 76,
+      "total_words": 76,
+      "extra_words": 33,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001D944",
+          "value": 0,
+          "size": 436,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001D944",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/controls/func_8001D944_group_count_snapshot.c",
+      "source_sha256": "a562075a4810fa126281c34678fd16f6519f6436462a1cda39f21312e315bf32",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 74,
+      "total_words": 76,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001D944",
+          "value": 0,
+          "size": 296,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001D944",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/controls/func_8001D944_group_count_snapshot.c",
+      "source_sha256": "a562075a4810fa126281c34678fd16f6519f6436462a1cda39f21312e315bf32",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 76,
+      "total_words": 76,
+      "extra_words": 43,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001D944",
+          "value": 0,
+          "size": 476,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001DA74",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/controls/func_8001DA74_initial.c",
+      "source_sha256": "c71898e66e019e9c7e5d89f6a5dc9919e95f4be194c6ff1901b6b1367b31db78",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 62,
+      "total_words": 101,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001DA74",
+          "value": 0,
+          "size": 400,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001DA74",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/controls/func_8001DA74_initial.c",
+      "source_sha256": "c71898e66e019e9c7e5d89f6a5dc9919e95f4be194c6ff1901b6b1367b31db78",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 101,
+      "total_words": 101,
+      "extra_words": 60,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_8004FF28 at .text+0x188",
+        "unpaired R_MIPS_HI16 for D_8004FF28 at .text+0x18c"
+      ],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001DA74",
+          "value": 0,
+          "size": 644,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001EF8C",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/controls/func_8001EF8C_explicit_group_stop.c",
+      "source_sha256": "6c05be62610b1baa7224d987337e1a04be8dbc85650b0d86a811df8f1fafdea1",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 102,
+      "total_words": 108,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001EF8C",
+          "value": 0,
+          "size": 420,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001EF8C",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/controls/func_8001EF8C_explicit_group_stop.c",
+      "source_sha256": "6c05be62610b1baa7224d987337e1a04be8dbc85650b0d86a811df8f1fafdea1",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 108,
+      "total_words": 108,
+      "extra_words": 48,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_80050A48 at .text+0x1ac"
+      ],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001EF8C",
+          "value": 0,
+          "size": 628,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001EF8C",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/controls/func_8001EF8C_initial.c",
+      "source_sha256": "4797d8a0123495be5e45d94075d082fbfad5ad90b8d5d5fed3a25ba6678ef9ea",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 101,
+      "total_words": 108,
+      "extra_words": 2,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001EF8C",
+          "value": 0,
+          "size": 444,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    },
+    {
+      "name": "func_8001EF8C",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/controls/func_8001EF8C_initial.c",
+      "source_sha256": "4797d8a0123495be5e45d94075d082fbfad5ad90b8d5d5fed3a25ba6678ef9ea",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 108,
+      "total_words": 108,
+      "extra_words": 51,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_80050648 at .text+0x1a4"
+      ],
+      "strict_match": false,
+      "independent_function_symbols": [
+        {
+          "name": "func_8001EF8C",
+          "value": 0,
+          "size": 640,
+          "type": 2,
+          "section": 4
+        }
+      ]
+    }
+  ],
+  "reviewed_commit": "23961be1c7414440658b6334407c326f6c152994",
+  "reviewed_tree": "6e35043b26a4bc70e6674f632f328acf7e6c6dec",
+  "immutable_source_binding": "Every final/control source hash independently compared with its exact Git blob at the final source commit, unchanged from fresh numerical and sanitizer replay."
+}

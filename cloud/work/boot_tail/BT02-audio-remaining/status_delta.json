@@ -1,0 +1,40 @@
+{
+  "packet": "BT02-audio-remaining",
+  "strict_match_functions": 0,
+  "strict_match_bytes": 0,
+  "nonmatch_functions": 2,
+  "nonmatch_bytes": 1256,
+  "rows": [
+    {
+      "address": "0x80013DEC",
+      "name": "func_80013DEC",
+      "size": 780,
+      "end_exclusive": "0x800140F8",
+      "cluster": "BT02",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "owner": "/root/match_boot_tail_audio_remaining",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 164,
+      "source_path": "cloud/work/boot_tail/BT02-audio-remaining/nonmatch/func_80013DEC.c",
+      "note": "Complete bounded natural C89 reconstruction; final O2 relocation-clean but actual ELF extent is oversized. O1 is worse and fails canonical relocation gate. Host C89/ASan/UBSan and pinned native field-layout tests pass. Zero matching credit; see packet README."
+    },
+    {
+      "address": "0x80014198",
+      "name": "func_80014198",
+      "size": 476,
+      "end_exclusive": "0x80014374",
+      "cluster": "BT02",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "owner": "/root/match_boot_tail_audio_remaining",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 13,
+      "source_path": "cloud/work/boot_tail/BT02-audio-remaining/nonmatch/func_80014198.c",
+      "note": "Complete bounded natural C89 reconstruction; final O2 relocation-clean but actual ELF extent is oversized. O1 is worse and fails canonical relocation gate. Host C89/ASan/UBSan and pinned native field-layout tests pass. Zero matching credit; see packet README."
+    }
+  ],
+  "reviewed_commit": "f0a047bb58b25076c90e63364cbcee27367f03e4",
+  "reviewed_tree": "b1408c35667f18e77835e59b82066d4f256c9597",
+  "independent_review": "PASS_COMPLETE_NONMATCH_RESEARCH_ONLY"
+}

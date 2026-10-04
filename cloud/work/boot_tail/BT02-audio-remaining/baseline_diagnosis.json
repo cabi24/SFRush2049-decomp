@@ -1,0 +1,115 @@
+[
+  {
+    "name": "func_80013DEC",
+    "routing": "import-fix",
+    "owning_pass": "unknown",
+    "ownership_basis": "none",
+    "lever": {
+      "alternatives": [
+        {
+          "citation": "overlay34InitStorage, Mickey's Speedway USA, 2026-09-03: 46/50 words to exact; the home moves sp+0x18 to sp+0x1C",
+          "discriminator": "the candidate frame is larger than the target's, or one homed value sits one word from the target's home with the frame equal",
+          "edit": "stop naming the value and repeat its expression at both uses, so it becomes a call-crossing common subexpression and is homed in the compiler-temp region instead of the declared one",
+          "family": "drop-a-declared-local"
+        },
+        {
+          "citation": "func_overlay_026_F0000B18_187AF10, Mickey's Speedway USA, 2026-09-03: 129/131 words to exact, 131 words on both sides; the spill moves sp+0x40 to sp+0x44",
+          "discriminator": "the frames are equal and the displaced home moves by exactly one word while the instruction counts agree",
+          "edit": "carry the value in a local that is already dead at that point instead of declaring a second one; the declared count falls by one and a later spill moves one slot, at an unchanged instruction count",
+          "family": "reuse-an-existing-local-as-carrier"
+        }
+      ],
+      "citation": "overlay84InitializeAndUpdate, Mickey's Speedway USA, 2026-09-03: 172/179 words to exact; the pair moves sp+0x4C/0x48 to sp+0x44/0x40",
+      "edit": "move the displaced declarations below the local whose slots they must follow; homes descend from the frame top in declaration order, so the fix is a position in the list and not a property of the values",
+      "edit_family": "declare-the-pair-later",
+      "evidence": [
+        "frame: target 48 bytes, candidate 56 bytes, delta +8",
+        "pool lane differs in length by -1: the target colours a web the other side does not, which is a declaration-list difference and outranks the frame arithmetic",
+        "every declared local reserves a home whether or not it is register-coloured, and the declared block rounds up to 8 bytes: measured over five builds on func_overlay_022_F0000000, 7 locals -> 0x58, 6 -> 0x58, 5 -> 0x50"
+      ],
+      "lever_class": "stack-home",
+      "measurements": {
+        "candidate_frame_size": -56,
+        "declared_locals": null,
+        "displaced_home_rows": 0,
+        "displaced_homes": 0,
+        "frame_delta": 8,
+        "frame_delta_words": 2,
+        "instruction_counts_agree": false,
+        "pool_lane_length_delta": -1,
+        "target_frame_size": -48
+      },
+      "needs": [
+        "declared-local count: rebuild with CDX_SYMTAB=1 on the instrumented uopt and pass the log as --ladder (decomp-workbench frame-ladder reads the same file)"
+      ],
+      "reachability": null,
+      "reason": "the pool lane is shorter on the candidate, so the target colours a web the other side does not; that names the declaration the list is wrong about, and lane evidence is ranked ahead of the frame arithmetic",
+      "see_also": [],
+      "unreachable": null
+    },
+    "comparison": {
+      "verdict": "structure-mismatch",
+      "words": 184,
+      "raw": 184,
+      "target_frame_size": -48,
+      "candidate_frame_size": -56,
+      "target_instructions": 195,
+      "candidate_instructions": 206,
+      "aligned_insertions": 23,
+      "aligned_deletions": 12,
+      "aligned_register": 84,
+      "aligned_constant": 2,
+      "aligned_structural": 47
+    }
+  },
+  {
+    "name": "func_80014198",
+    "routing": "structural",
+    "owning_pass": "cfe-spelling",
+    "ownership_basis": "heuristic",
+    "lever": {
+      "alternatives": [],
+      "citation": null,
+      "edit": null,
+      "edit_family": null,
+      "evidence": [],
+      "lever_class": "none-known",
+      "measurements": {
+        "displaced_home_rows": 0,
+        "owning_pass": "cfe-spelling",
+        "webs": 16
+      },
+      "needs": [
+        "pops per source line: rebuild with DKWB_UGEN_TRACE=1 on a cc carrying instrument-ugen's free-list hooks and pass the log as --ring-trace",
+        "line-order conflicts: rebuild with DKWB_UGEN_SCHED=1 on a cc carrying instrument-ugen --emit-provenance and pass the log as --emit-trace",
+        "as1 selection keys: rebuild the same compile with cc -Wa,-R and pass the assembler's trace as --as1-trace (no patched compiler; the object is byte-identical with -R on)"
+      ],
+      "reachability": null,
+      "reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+      "see_also": [
+        {
+          "citation": "levelFreeAll, Mickey's Speedway USA, undated triage shard: 114/117 words after the retained rewrite, up from 112/117; 36/36 relocation offsets, types and identities exact; a fidelity-gated ugen source-line trace supplied the order. A resident function, not part of the overlay lever cohort",
+          "precondition": "the residual is the temp order at a pointer add, which needs the expression in front of you -- check it by hand",
+          "proof": "at the mismatching pointer-add expression the shard records typed-pointer commutations, casts and assignment forms as exhausted. Byte-offset arithmetic is the one spelling that did move the temp order, and it is already retained: it takes the baseline's pointer/mask/scale to mask/scale/pointer, where the target wants mask/pointer/scale",
+          "reopens_when": "a source form yields mask, pointer, scale -- the one order no tried spelling produced",
+          "unreachable_class": "cfe-pointer-add-order"
+        }
+      ],
+      "unreachable": null
+    },
+    "comparison": {
+      "verdict": "structure-mismatch",
+      "words": 97,
+      "raw": 97,
+      "target_frame_size": -32,
+      "candidate_frame_size": -32,
+      "target_instructions": 119,
+      "candidate_instructions": 119,
+      "aligned_insertions": 12,
+      "aligned_deletions": 12,
+      "aligned_register": 32,
+      "aligned_constant": 0,
+      "aligned_structural": 33
+    }
+  }
+]

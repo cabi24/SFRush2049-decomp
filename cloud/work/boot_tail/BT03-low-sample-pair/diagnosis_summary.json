@@ -1,0 +1,54 @@
+[
+  {
+    "name": "func_800146B4",
+    "stage": "initial",
+    "source_sha256": "2088ad36f18764dd44d67ae2dad9b323cce2724b6f515a0845be4a037fa908af",
+    "comparison": {
+      "aligned_constant": 0,
+      "aligned_deletions": 16,
+      "aligned_insertions": 18,
+      "aligned_register": 56,
+      "aligned_schedule": 0,
+      "frame": -24
+    }
+  },
+  {
+    "name": "func_80016CF0",
+    "stage": "initial",
+    "source_sha256": "7008e84226e3383e8c890771a9ddf41ab5242ceb5eca22623cdd7ae6bf05d59b",
+    "comparison": {
+      "aligned_constant": 1,
+      "aligned_deletions": 7,
+      "aligned_insertions": 6,
+      "aligned_register": 33,
+      "aligned_schedule": 0,
+      "frame": -56
+    }
+  },
+  {
+    "name": "func_800146B4",
+    "stage": "final",
+    "source_sha256": "6ea4cb53d566e71561e42b4724682fe9f45f52dfbe90611de0f370aeabeb8bc1",
+    "comparison": {
+      "aligned_constant": 0,
+      "aligned_deletions": 0,
+      "aligned_insertions": 0,
+      "aligned_register": 0,
+      "aligned_schedule": 0,
+      "frame": -24
+    }
+  },
+  {
+    "name": "func_80016CF0",
+    "stage": "final",
+    "source_sha256": "7008e84226e3383e8c890771a9ddf41ab5242ceb5eca22623cdd7ae6bf05d59b",
+    "comparison": {
+      "aligned_constant": 1,
+      "aligned_deletions": 7,
+      "aligned_insertions": 6,
+      "aligned_register": 33,
+      "aligned_schedule": 0,
+      "frame": -56
+    }
+  }
+]

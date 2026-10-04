@@ -1,0 +1,62 @@
+[
+  {
+    "name": "func_80020820",
+    "source_path": "cloud/work/boot_tail/C13-controller-pair/controls/80020820_initial.c",
+    "source_sha256": "89123b46d8496a55a0a250a19c9bb23612154011203f141b243a6b3e4a4c6d05",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "differing_words": 10,
+    "total_words": 121,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false,
+    "elf_function_size": 484,
+    "label": "initial"
+  },
+  {
+    "name": "func_80020820",
+    "source_path": "cloud/work/boot_tail/C13-controller-pair/controls/80020820_initial.c",
+    "source_sha256": "89123b46d8496a55a0a250a19c9bb23612154011203f141b243a6b3e4a4c6d05",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "differing_words": 120,
+    "total_words": 121,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false,
+    "elf_function_size": 448,
+    "label": "initial"
+  },
+  {
+    "name": "func_80020DA8",
+    "source_path": "cloud/work/boot_tail/C13-controller-pair/controls/80020DA8_initial.c",
+    "source_sha256": "a40e6c07dd09dde07bcdb55eb8a8bf88c8a8b037c705e1108982527221c14056",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "differing_words": 100,
+    "total_words": 105,
+    "extra_words": 9,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false,
+    "elf_function_size": 460,
+    "label": "initial"
+  },
+  {
+    "name": "func_80020DA8",
+    "source_path": "cloud/work/boot_tail/C13-controller-pair/controls/80020DA8_initial.c",
+    "source_sha256": "a40e6c07dd09dde07bcdb55eb8a8bf88c8a8b037c705e1108982527221c14056",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "differing_words": 105,
+    "total_words": 105,
+    "extra_words": 71,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false,
+    "elf_function_size": 708,
+    "label": "initial"
+  }
+]

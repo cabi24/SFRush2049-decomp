@@ -1,5 +1,5 @@
 {
-  "state": "active",
+  "state": "frozen-review-pass-integrating",
   "owner": "/root/verify_boot_tail_matches",
   "packet": "C11-mix-output",
   "branch": "dot/boot-tail-c11-mix-output",
@@ -14,5 +14,7 @@
   "bytes": 864,
   "edit_scope": "Only named matching sources and cloud/work/boot_tail/C11-mix-output/**",
   "stop": "Actual ABI/domain proof, natural C89/O2/O1 and bounded diagnosis. External data remains genuine declarations with strict relocation proof. No fabricated values, protected edits, table mapping substitution, prior residual reopening or artificial allocation constructs.",
-  "prior_packet": "C11-numeric frozen peer PASS 42c094cb"
+  "prior_packet": "C11-numeric frozen peer PASS 42c094cb",
+  "reviewed_commit": "469eff3b6a6d0ee642fffe011daf8075d3599655",
+  "reviewed_tree": "99073a879bd4d75469e1745a87a7686577d5f7b8"
 }

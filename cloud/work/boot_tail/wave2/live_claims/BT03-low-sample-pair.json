@@ -1,9 +1,9 @@
 {
-  "state": "queued-inactive",
+  "state": "frozen-review-pass",
   "owner": "/root/match_boot_tail_bt05_bt07",
   "packet": "BT03-low-sample-pair",
   "branch": "dot/boot-tail-bt03-low-sample-pair",
-  "base": "pending exact controller-pair receipt commit",
+  "base": "7d17ea9c94310e70bf393dcde84297b5fe01870c",
   "targets": [
     {
       "address": "0x800146B4",
@@ -17,7 +17,9 @@
     }
   ],
   "bytes": 824,
-  "activation_condition": "Only after previous controller-pair immutable peer PASS and explicit activation",
   "edit_scope": "Only named matching sources and cloud/work/boot_tail/BT03-low-sample-pair/**",
-  "stop": "Actual descriptor, record, binary-search/comparator and helper ABI; exact function-symbol size; natural C89/O2/O1 with bounded controls. No guessed layout, values, scope expansion or protected edits."
+  "stop": "Actual descriptor, record, binary-search/comparator and helper ABI; exact function-symbol size; natural C89/O2/O1 with bounded controls. No guessed layout, values, scope expansion or protected edits.",
+  "prior_packet": "C13-controller-pair frozen peer PASS7d17ea9c",
+  "reviewed_commit": "24ff33d5dd7e27ca2d957cfbd822959ee72a2a43",
+  "reviewed_tree": "b964a8837b5f563cc539f6fc5dbb2cf00c781491"
 }

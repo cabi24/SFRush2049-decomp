@@ -1,0 +1,42 @@
+{
+  "state": "active",
+  "owner": "/root/match_boot_tail_bt03_high",
+  "packet": "BT03-high-runtime-followon",
+  "branch": "dot/boot-tail-bt03-high-runtime-followon",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x8001D764",
+      "size": 332,
+      "end_exclusive": "0x8001D8B0"
+    },
+    {
+      "address": "0x8001EB10",
+      "size": 464,
+      "end_exclusive": "0x8001ECE0"
+    },
+    {
+      "address": "0x80019194",
+      "size": 476,
+      "end_exclusive": "0x80019370"
+    },
+    {
+      "address": "0x80018448",
+      "size": 492,
+      "end_exclusive": "0x80018634"
+    },
+    {
+      "address": "0x8001C580",
+      "size": 496,
+      "end_exclusive": "0x8001C770"
+    },
+    {
+      "address": "0x8001824C",
+      "size": 508,
+      "end_exclusive": "0x80018448"
+    }
+  ],
+  "bytes": 2768,
+  "edit_scope": "Only named matching sources and cloud/work/boot_tail/BT03-high-runtime-followon/**",
+  "stop": "Actual caller/callee ABI, real pointer/word/byte domains; exact function-symbol extent; natural C89/O2/O1 and bounded diagnosis. No invented table/literal values, missing data substitution, prior residual reopening or protected edits; C11 and boundary targets excluded."
+}

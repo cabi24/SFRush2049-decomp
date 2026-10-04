@@ -1,0 +1,3 @@
+address,name,size,cluster,status,flags,diff_words,source_path,note
+0x800146B4,func_800146B4,488,BT03,verified_body,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_800146B4.c,Local strict MATCH;122 words and exact488-byte ELF extent; genuine shared offset and playback ABI; pending independent review and aggregate CI.
+0x80016CF0,func_80016CF0,336,BT03,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,80,cloud/work/boot_tail/BT03-low-sample-pair/nonmatch/func_80016CF0.c,COMPLETE-NONMATCH; real five-input search and packed descriptor contract;332-byte ELF versus336 native; zero matching credit.
