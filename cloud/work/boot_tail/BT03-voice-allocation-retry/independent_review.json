@@ -1,0 +1,118 @@
+{
+  "result": "PASS",
+  "scope": "Independent bounded source, native ABI, provenance, exact-object, semantics and packet-scope review. This is local source-matching evidence, not aggregate CI, cartridge integration, ROM coverage or merge approval.",
+  "reviewed_commit": "548a15fb7a835a0e74fc5d65ad799df3242cb38f",
+  "reviewed_tree": "837812c4393d7c22bed074216afec21aa7bfb74c",
+  "reviewed_branch": "dot/boot-tail-bt03-voice-allocation-retry",
+  "reviewer": "review_voice_allocation_match",
+  "source_hashes": {
+    "cloud/matches/boot_tail/func_8001ECE0.c": "00f70ee6c8e555735cc2e2edb348f715e63622f2b92a97bd57536ffe3ef72192",
+    "cloud/work/boot_tail/BT03-voice-allocation-retry/controls/func_8001ECE0_free_head_assignment.c": "2213685e44f31cf0a271730bce425dda1f3fcdb78968f04b587393f7105e6388",
+    "cloud/work/boot_tail/BT03-voice-allocation-retry/controls/func_8001ECE0_for_traversal.c": "00f70ee6c8e555735cc2e2edb348f715e63622f2b92a97bd57536ffe3ef72192",
+    "cloud/work/boot_tail/BT03-voice-allocation-retry/test_semantics.py": "75edd04da8bc8bbb1f68c08fcc0b131e4a3eaaf2d3b4c1a6a4854cfaa0f32a64"
+  },
+  "replay": {
+    "verify_py": "PASS; independent output exactly equals committed verification.json",
+    "unittest_discover": "4 tests PASS, including 15 separately compiled assertion-killed mutations",
+    "o2_difference_progression": [
+      8,
+      3,
+      0
+    ],
+    "o1_difference_words": [
+      69,
+      69,
+      69
+    ],
+    "o1_extra_nonzero_words": [
+      21,
+      22,
+      21
+    ],
+    "o1_function_bytes": [
+      368,
+      372,
+      368
+    ],
+    "input_pins_and_target_manifest": "PASS, all compiler files, historical packet and 439 starts / 99120 bytes",
+    "existing_getter": "strict MATCH",
+    "native_layout_assertions": 9,
+    "stock_trace_object_byte_identity": true,
+    "stock_trace_tie_and_line_ownership_reproduced": true
+  },
+  "independent_immutable_blob_compile": {
+    "canonical_source_taken_from_git_show_at_reviewed_commit": true,
+    "sole_defined_function": "func_8001ECE0",
+    "function_section": ".text",
+    "function_bytes": 276,
+    "text_section_bytes": 288,
+    "relocated_padding_bytes": 12,
+    "relocated_padding_all_zero": true,
+    "full_relocated_target_words_equal": 69,
+    "relocation_count": 8,
+    "all_relocations_inside_function": true,
+    "referenced_symbols": [
+      "D_80050C50",
+      "D_80050C54",
+      "func_8001EAEC"
+    ],
+    "masks": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "nonempty_source_data_sections": []
+  },
+  "native_and_abi_review": {
+    "complete_bodies_inspected": [
+      "func_8001ECE0",
+      "func_8001EAEC",
+      "func_80019C8C",
+      "func_80019F48",
+      "func_80024988"
+    ],
+    "boot_tail_direct_callsite_census": [
+      "80019E10",
+      "8001A1A0",
+      "80024BB4"
+    ],
+    "conclusion": "The callee preserves one incoming voice pointer from a0 and reads no isMaster argument. All three direct callers form allocated 416-byte voice-array pointers. The genuine no-input key generator increments the unsigned counter and skips FFFFFFFF. Packed node offsets 0/4/8/12, voice node +24 and identifier +96 agree with all native accesses. Key consumption, strict order stop, collision generation, exhaustion return, both used-list links, free-head/backlink updates, live identifier load, saved voice node and return are preserved.",
+    "natural_source_deltas": "The sole allocation delta uses the existing global free head in an assignment-valued null test. The sole traversal delta uses a conventional for iteration clause, preserving the explicit break, current/predecessor values, sequence and skipped increment on break. There is no intervening observable operation when predecessor initialization moves. No additional formal, local, call, padding, volatile, cast trick, artificial unroll or compiler/scorer modification.",
+    "bounds": "Valid allocated voice and node objects, well-formed terminating lists and ordinary nonconcurrent execution are required. No malformed/cyclic or overlapping used/free-list domain, global sorted uniqueness after counter wrap, or newer donor retry behavior is promised."
+  },
+  "additional_independent_semantics": {
+    "forms": [
+      "historical baseline",
+      "free-head assignment control",
+      "canonical final"
+    ],
+    "cases_per_form": 810,
+    "additional_null_unused_state_exhaustion_case_per_form": 1,
+    "checks": "Independent expected-state fixture over used lengths 0..5, available counts 0..4, contiguous low keys, contiguous high keys, mixed low/high keys and nine counter starts including wrap/sentinel. Checks repeated collisions, key-generator call count/counter, all used and free records, roots and whole voice bytes; strict C89 ASan/UBSan passes. These are supplementary bounded checks, not an exhaustive proof."
+  },
+  "provenance": {
+    "repository": "AxioDL/musyx",
+    "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+    "path": "src/musyx/runtime/synthvoice.c",
+    "source_blob": "3ad906e217a82e77b649edc8935fd6c139d09415",
+    "source_blob_independently_verified": true,
+    "source_url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/src/musyx/runtime/synthvoice.c#L134",
+    "license": "CC0-1.0",
+    "license_blob": "0e259d42c996742e9e3cba14c677129b2c1b6311",
+    "license_url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/LICENSE",
+    "license_independently_fetched": true,
+    "differences": "Donor second argument, master-list update/conditional return and version-gated wrap restart are absent from native N64 body and correctly excluded. Source is a topology lead, not ABI/compiler proof; no donor file vendored."
+  },
+  "scope_checks": {
+    "git_diff_check": "PASS",
+    "changed_files": 11,
+    "all_changes_are_additions_within_packet_or_canonical_match": true,
+    "protected_inputs_historical_sources_and_shared_ledgers_unchanged": true,
+    "no_rom_native_dumps_objects_credentials_or_unrelated_private_content_in_commit": true,
+    "head_tree_clean_at_review_end": true
+  },
+  "documentation_followup": "The reviewed packet omits the license name/link beside the donor comparison. Add the independently verified pinned CC0-1.0 license citation in a metadata-only receipt/README update before publication. This has no source, ABI, test or matching impact.",
+  "remaining_gates": [
+    "Metadata-only license citation update",
+    "Central aggregate exact-head CI and independent checker merge decision"
+  ]
+}

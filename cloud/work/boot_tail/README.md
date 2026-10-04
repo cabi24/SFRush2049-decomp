@@ -4,9 +4,9 @@ The 412 assigned functions account for **95,012 B**.
 The current ledger records **17 open functions / 22,496 B**,
 **0 confirmed non-C rows**, **1
 pre-existing verified bodies / 12 B**, and
-**237 newly verified bodies / 27,180 B**.
-There are **2 claimed functions / 916 B** and
-**155 nonmatches / 44,408 B**.
+**239 newly verified bodies / 28,096 B**.
+There are **1 claimed functions / 276 B** and
+**154 nonmatches / 44,132 B**.
 
 Packet 1 itself introduced zero matching bodies or verified bytes. Its initial
 verified entry imports the existing 12-byte `func_80010A00` PR #54 receipt, now
@@ -258,8 +258,8 @@ repository regression, native equality proof, target/toolchain check or ROM test
 ```json
 {
   "all_tail_distinct_directed_edges": 671,
-  "claimed_bytes": 916,
-  "claimed_functions": 2,
+  "claimed_bytes": 276,
+  "claimed_functions": 1,
   "cluster_count": 8,
   "cohort_count": 17,
   "game_called_all_inventory": 21,
@@ -270,11 +270,11 @@ repository regression, native equality proof, target/toolchain check or ROM test
   "in_scope_functions": 412,
   "inventory_function_bytes": 99120,
   "inventory_functions": 439,
-  "new_verified_bytes": 27180,
-  "new_verified_functions": 237,
+  "new_verified_bytes": 28096,
+  "new_verified_functions": 239,
   "non_c_functions": 0,
-  "nonmatch_bytes": 44408,
-  "nonmatch_functions": 155,
+  "nonmatch_bytes": 44132,
+  "nonmatch_functions": 154,
   "open_bytes": 22496,
   "open_functions": 17,
   "preexisting_verified_bytes": 12,
@@ -602,3 +602,20 @@ ownership change. No added operations, artificial padding, directives or compile
 changes are used. This is not a generic formatting or allocation remedy. See
 wave16/README.md and both independent source/ABI/control receipts. Prior green
 proof is in wave15/ci.json; this cut's own exact-head CI remains pending.
+
+## Seventeenth cut: voice allocation now matches
+
+The first sixteen cuts have 239 unique new exact-CI-verified bodies / 28,096 B.
+One independently reviewed voice allocator closes its previous eight-word
+nonmatch, adding 276 matching bytes and zero new unique attempted addresses.
+The pending union is 240 new bodies / 28,372 B plus the historical getter;
+394 distinct attempts now include 153 complete nonmatches / 44,036 B and the
+unchanged 96-byte blocked lead. All historical sources and manifests are retained.
+
+A pinned source-family free-head assignment and an ordinary for-loop traversal
+close two measured, separate compiler residuals. The actual one-pointer ABI,
+callback/key order, finite valid-list domains and native no-retry counter-wrap
+behavior are unchanged. Newer donor arguments and behavior are not imported.
+See wave17/README.md and the independent source/ABI/control receipt. PR76's green
+exact-head proof and independent aggregate audit are preserved in wave16/;
+this new source cut's own exact-head CI remains pending.
