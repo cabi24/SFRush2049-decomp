@@ -450,3 +450,20 @@ storage, finite-traversal and nonzero-divisor requirements. Caller-only decoder
 work does not reconstruct gated dependencies. See wave15/README.md, its hash-bound
 manifest and remaining_inputs/. PR74's durable green proof is in wave14/ci.json.
 The separate draft recovery checkpoint adds no matching credit. D10 is unchanged.
+
+## Sixteenth cut: two previous nonmatches now match
+
+The first fifteen source cuts have 237 unique new exact-CI-verified bodies /
+27,180 B. Two reviewed loop-ownership refinements close 1C1D8 (432 B) and 20820
+(484 B), adding 916 matching bytes with no new unique target attempt. The pending
+union is 239 new bodies / 28,096 B plus the historical getter; the distinct
+attempted population stays 394, with 154 current complete nonmatches / 44,312 B
+and one unchanged 96-byte blocked lead. Original nonmatch sources and historical
+manifests remain intact; current totals select the latest classification by
+address rather than counting repeat attempts twice.
+
+Ordinary multiline braced loops provide the demonstrated stock source-line
+ownership change. No added operations, artificial padding, directives or compiler
+changes are used. This is not a generic formatting or allocation remedy. See
+wave16/README.md and both independent source/ABI/control receipts. Prior green
+proof is in wave15/ci.json; this cut's own exact-head CI remains pending.

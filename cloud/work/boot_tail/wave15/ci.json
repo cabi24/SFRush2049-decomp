@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/75",
+  "source_head": "d3e457b05b9eb7b5a4512e4ae4b1fc32c34e268f",
+  "source_tree": "94691b0a0e468657e5adc49e95d7d99f8b297ba2",
+  "source_parent": "496a72b0edd683bd7d46e8c21f8323ab43629494",
+  "workflow_run": 37180407697,
+  "workflow_url": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37180407697",
+  "conclusion": "success",
+  "checked_utc": "2026-10-04T05:42:30Z",
+  "new_matches": 1,
+  "new_matching_bytes": 604,
+  "cumulative_unique_new_matches": 237,
+  "cumulative_unique_new_matching_bytes": 27180,
+  "verified_local_equivalent_commit": "77a963a05c73540439f7d7194b6c49bce32f3bbe",
+  "remote_readback": "Fresh PR/Git-data head, exact tree and parent confirmed; completed exact-head workflow success; draft body CI receipt read back.",
+  "note": "Recovery provenance, conditional pitch storage/termination limits and caller-only decoder scope remain explicit. No merge or cartridge claim."
+}

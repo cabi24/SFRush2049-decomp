@@ -1,0 +1,31 @@
+{
+  "purpose": "Orthogonal post-match controls distinguish physical source-line provenance from braces. Canonical source is unchanged.",
+  "results": [
+    {
+      "label": "one_line_braces",
+      "exact_replacement_loop": "    for (i=0;i<16;i++) { D_8004BE98[i] = 0; }",
+      "source_sha256": "b56c04d53f7fb928be9c733d097092c884606678c43b0d2ee94ba2322954dd57",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 4,
+      "total_words": 108,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "label": "multiline_no_braces",
+      "exact_replacement_loop": "    for (i=0;i<16;i++)\n        D_8004BE98[i] = 0;",
+      "source_sha256": "2dbc05261658889e8d9655186e09cc31b31e317f0730a58b9db3bdd8c4f5f77e",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 0,
+      "total_words": 108,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": true
+    }
+  ]
+}
