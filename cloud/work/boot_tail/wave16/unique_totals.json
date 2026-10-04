@@ -1,0 +1,20 @@
+{
+  "source_cut": 16,
+  "previous_source_functions": 237,
+  "previous_source_bytes": 27180,
+  "this_cut_peer_reviewed_functions": 2,
+  "this_cut_peer_reviewed_bytes": 916,
+  "new_unique_attempts": 0,
+  "reclassified_prior_nonmatches": 2,
+  "combined_unique_new_matching_functions": 239,
+  "combined_unique_new_matching_bytes": 28096,
+  "preexisting_getter_functions": 1,
+  "preexisting_getter_bytes": 12,
+  "all_cut_attempted_functions": 394,
+  "all_cut_complete_nonmatch_functions": 154,
+  "all_cut_complete_nonmatch_bytes": 44312,
+  "all_cut_blocked_source_lead_functions": 1,
+  "all_cut_blocked_source_lead_bytes": 96,
+  "counting_rule": "Apply reviewed classifications by address in source-cut order; a reclassification replaces the current nonmatch state without deleting historical source or adding another attempted target.",
+  "cartridge_or_maintainer_acceptance": "not claimed"
+}

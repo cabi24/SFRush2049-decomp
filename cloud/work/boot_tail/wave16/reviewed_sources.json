@@ -1,0 +1,60 @@
+{
+  "schema_version": 2,
+  "source_parent": "d3e457b05b9eb7b5a4512e4ae4b1fc32c34e268f",
+  "functions": 2,
+  "selected_source_bytes": 916,
+  "new_unique_attempts": 0,
+  "reclassified_prior_nonmatches": 2,
+  "local_match_functions": 2,
+  "local_match_bytes": 916,
+  "complete_nonmatch_functions": 0,
+  "result": "Two previously attempted bodies now match; all prior archives/manifests unchanged",
+  "entries": [
+    {
+      "address": "0x8001C1D8",
+      "name": "func_8001C1D8",
+      "size": 432,
+      "packet": "BT03-store-rotation-retry",
+      "reviewer": "Independent cross-packet source/ABI reviewer",
+      "reviewed_commit": "ef129c7c30c061e38e1675f188cfe6eadb0bd8ae",
+      "source_path": "cloud/matches/boot_tail/func_8001C1D8.c",
+      "source_sha256": "82d2de520663eeaedaec17624b865cc7ea3e2a4da20e7ca3b28220f8016774a5",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "expected_match": true,
+      "expected_differing_words": 0,
+      "proof_state": "local-strict-match",
+      "matching_blocker": null,
+      "attempt_kind": "reclassification of prior complete nonmatch; no new unique attempt",
+      "supersedes": {
+        "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/nonmatch/func_8001C1D8.c",
+        "source_sha256": "e78eaf80607f870959b674da6718e94de3f03d8f67250ed937b2b028092bc9dd",
+        "expected_differing_words": 4,
+        "reviewed_commit": "86b0f12ea3fff0cda7d9f5d62a74dd59036a77da"
+      },
+      "transformation": "Ordinary multiline braced loop body; unchanged real data operations, ABI and domains. Stock line ownership explains scheduled unrolled store order."
+    },
+    {
+      "address": "0x80020820",
+      "name": "func_80020820",
+      "size": 484,
+      "packet": "C13-byte-clear-retry",
+      "reviewer": "Independent cross-packet source/ABI reviewer",
+      "reviewed_commit": "72b0bbd0cf81055e10a3613c7b353ec9dd8d418a",
+      "source_path": "cloud/matches/boot_tail/func_80020820.c",
+      "source_sha256": "93577fdccd962174556eb10f0ac4d70ac85926831c661ebc7ccc234d1b0955ca",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "expected_match": true,
+      "expected_differing_words": 0,
+      "proof_state": "local-strict-match",
+      "matching_blocker": null,
+      "attempt_kind": "reclassification of prior complete nonmatch; no new unique attempt",
+      "supersedes": {
+        "source_path": "cloud/work/boot_tail/C13-controller-pair/nonmatch/func_80020820.c",
+        "source_sha256": "89123b46d8496a55a0a250a19c9bb23612154011203f141b243a6b3e4a4c6d05",
+        "expected_differing_words": 10,
+        "reviewed_commit": "7d17ea9c94310e70bf393dcde84297b5fe01870c"
+      },
+      "transformation": "Ordinary multiline braced loop body; unchanged real data operations, ABI and domains. Stock line ownership explains scheduled unrolled store order."
+    }
+  ]
+}

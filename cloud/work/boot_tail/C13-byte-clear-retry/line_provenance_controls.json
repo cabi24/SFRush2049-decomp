@@ -1,0 +1,32 @@
+{
+  "results": [
+    {
+      "label": "one_line_braces",
+      "source_path": "cloud/work/boot_tail/C13-byte-clear-retry/controls/one_line_braces.c",
+      "source_sha256": "7c4c7707236e9eedc735a399e396fadab38889f9ac323132d170e8e9ac9cdec1",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 10,
+      "total_words": 121,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "elf_function_size": 484
+    },
+    {
+      "label": "multiline_no_braces",
+      "source_path": "cloud/work/boot_tail/C13-byte-clear-retry/controls/multiline_no_braces.c",
+      "source_sha256": "85ec47fef48f265f76942ad2db301cb7dceebd7be01ce617a9f5395b8abbbe1c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 0,
+      "total_words": 121,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": true,
+      "elf_function_size": 484
+    }
+  ]
+}

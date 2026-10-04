@@ -4,9 +4,9 @@ The 412 assigned functions account for **95,012 B**.
 The current ledger records **17 open functions / 22,496 B**,
 **0 confirmed non-C rows**, **1
 pre-existing verified bodies / 12 B**, and
-**236 newly verified bodies / 26,576 B**.
-There are **1 claimed functions / 604 B** and
-**157 nonmatches / 45,324 B**.
+**237 newly verified bodies / 27,180 B**.
+There are **2 claimed functions / 916 B** and
+**155 nonmatches / 44,408 B**.
 
 Packet 1 itself introduced zero matching bodies or verified bytes. Its initial
 verified entry imports the existing 12-byte `func_80010A00` PR #54 receipt, now
@@ -258,8 +258,8 @@ repository regression, native equality proof, target/toolchain check or ROM test
 ```json
 {
   "all_tail_distinct_directed_edges": 671,
-  "claimed_bytes": 604,
-  "claimed_functions": 1,
+  "claimed_bytes": 916,
+  "claimed_functions": 2,
   "cluster_count": 8,
   "cohort_count": 17,
   "game_called_all_inventory": 21,
@@ -270,11 +270,11 @@ repository regression, native equality proof, target/toolchain check or ROM test
   "in_scope_functions": 412,
   "inventory_function_bytes": 99120,
   "inventory_functions": 439,
-  "new_verified_bytes": 26576,
-  "new_verified_functions": 236,
+  "new_verified_bytes": 27180,
+  "new_verified_functions": 237,
   "non_c_functions": 0,
-  "nonmatch_bytes": 45324,
-  "nonmatch_functions": 157,
+  "nonmatch_bytes": 44408,
+  "nonmatch_functions": 155,
   "open_bytes": 22496,
   "open_functions": 17,
   "preexisting_verified_bytes": 12,
@@ -585,3 +585,20 @@ storage, finite-traversal and nonzero-divisor requirements. Caller-only decoder
 work does not reconstruct gated dependencies. See wave15/README.md, its hash-bound
 manifest and remaining_inputs/. PR74's durable green proof is in wave14/ci.json.
 The separate draft recovery checkpoint adds no matching credit. D10 is unchanged.
+
+## Sixteenth cut: two previous nonmatches now match
+
+The first fifteen source cuts have 237 unique new exact-CI-verified bodies /
+27,180 B. Two reviewed loop-ownership refinements close 1C1D8 (432 B) and 20820
+(484 B), adding 916 matching bytes with no new unique target attempt. The pending
+union is 239 new bodies / 28,096 B plus the historical getter; the distinct
+attempted population stays 394, with 154 current complete nonmatches / 44,312 B
+and one unchanged 96-byte blocked lead. Original nonmatch sources and historical
+manifests remain intact; current totals select the latest classification by
+address rather than counting repeat attempts twice.
+
+Ordinary multiline braced loops provide the demonstrated stock source-line
+ownership change. No added operations, artificial padding, directives or compiler
+changes are used. This is not a generic formatting or allocation remedy. See
+wave16/README.md and both independent source/ABI/control receipts. Prior green
+proof is in wave15/ci.json; this cut's own exact-head CI remains pending.

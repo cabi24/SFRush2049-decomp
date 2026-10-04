@@ -1,0 +1,19 @@
+{
+  "state": "frozen-negative-control",
+  "owner": "/root/inspect_identifier_register_match",
+  "packet": "BT05-id-register-retry",
+  "branch": "dot/boot-tail-bt05-id-register-retry",
+  "base": "f02638ed8388bd3e5256e0c31b2ae36b6be9524a",
+  "targets": [
+    {
+      "address": "0x80022324",
+      "size": 172,
+      "end_exclusive": "0x800223d0"
+    }
+  ],
+  "bytes": 172,
+  "claim_kind": "bounded evidence-backed revisit; not a fresh attempt",
+  "local_checkpoint": "02cdacfa34dd468124625d52313bd8cce20d6883",
+  "edit_scope": "Only new owned packet and named canonical matching source on strict success; historical packets and frozen cut15 remain unchanged",
+  "note": "Exactly one new donor-derived u8 extraction control, full native u16 field and safe signed promotion; worsens2 to7, old2-word baseline retained. No further variants/new credit."
+}

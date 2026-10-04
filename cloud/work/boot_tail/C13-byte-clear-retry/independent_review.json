@@ -1,0 +1,287 @@
+{
+  "reviewed_commit": "7ed7c730b8f3faf7bf241744080bdd76745ea913",
+  "reviewed_tree": "e697d64a7086bdaddcb38b92d5dac62b56cd53aa",
+  "source_delta_verified": true,
+  "rows": [
+    {
+      "source_path": "cloud/work/boot_tail/C13-controller-pair/nonmatch/func_80020820.c",
+      "source_sha256": "89123b46d8496a55a0a250a19c9bb23612154011203f141b243a6b3e4a4c6d05",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 10,
+      "total_words": 121,
+      "extra_words": 0,
+      "accepted": false,
+      "elf": {
+        "name": "func_80020820",
+        "start": 0,
+        "size": 484,
+        "section_size": 496
+      },
+      "full_function_relocation_masks": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "zero_padding": true
+    },
+    {
+      "source_path": "cloud/work/boot_tail/C13-controller-pair/nonmatch/func_80020820.c",
+      "source_sha256": "89123b46d8496a55a0a250a19c9bb23612154011203f141b243a6b3e4a4c6d05",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 120,
+      "total_words": 121,
+      "extra_words": 0,
+      "accepted": false,
+      "elf": {
+        "name": "func_80020820",
+        "start": 0,
+        "size": 448,
+        "section_size": 448
+      },
+      "full_function_relocation_masks": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "zero_padding": true
+    },
+    {
+      "source_path": "cloud/matches/boot_tail/func_80020820.c",
+      "source_sha256": "93577fdccd962174556eb10f0ac4d70ac85926831c661ebc7ccc234d1b0955ca",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 0,
+      "total_words": 121,
+      "extra_words": 0,
+      "accepted": true,
+      "elf": {
+        "name": "func_80020820",
+        "start": 0,
+        "size": 484,
+        "section_size": 496
+      },
+      "full_function_relocation_masks": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "zero_padding": true
+    },
+    {
+      "source_path": "cloud/matches/boot_tail/func_80020820.c",
+      "source_sha256": "93577fdccd962174556eb10f0ac4d70ac85926831c661ebc7ccc234d1b0955ca",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 120,
+      "total_words": 121,
+      "extra_words": 0,
+      "accepted": false,
+      "elf": {
+        "name": "func_80020820",
+        "start": 0,
+        "size": 448,
+        "section_size": 448
+      },
+      "full_function_relocation_masks": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "zero_padding": true
+    },
+    {
+      "source_path": "cloud/work/boot_tail/C13-byte-clear-retry/controls/multiline_braces.c",
+      "source_sha256": "93577fdccd962174556eb10f0ac4d70ac85926831c661ebc7ccc234d1b0955ca",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 0,
+      "total_words": 121,
+      "extra_words": 0,
+      "accepted": true,
+      "elf": {
+        "name": "func_80020820",
+        "start": 0,
+        "size": 484,
+        "section_size": 496
+      },
+      "full_function_relocation_masks": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "zero_padding": true
+    },
+    {
+      "source_path": "cloud/work/boot_tail/C13-byte-clear-retry/controls/multiline_braces.c",
+      "source_sha256": "93577fdccd962174556eb10f0ac4d70ac85926831c661ebc7ccc234d1b0955ca",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 120,
+      "total_words": 121,
+      "extra_words": 0,
+      "accepted": false,
+      "elf": {
+        "name": "func_80020820",
+        "start": 0,
+        "size": 448,
+        "section_size": 448
+      },
+      "full_function_relocation_masks": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "zero_padding": true
+    },
+    {
+      "source_path": "cloud/work/boot_tail/C13-byte-clear-retry/controls/multiline_no_braces.c",
+      "source_sha256": "85ec47fef48f265f76942ad2db301cb7dceebd7be01ce617a9f5395b8abbbe1c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 0,
+      "total_words": 121,
+      "extra_words": 0,
+      "accepted": true,
+      "elf": {
+        "name": "func_80020820",
+        "start": 0,
+        "size": 484,
+        "section_size": 496
+      },
+      "full_function_relocation_masks": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "zero_padding": true
+    },
+    {
+      "source_path": "cloud/work/boot_tail/C13-byte-clear-retry/controls/multiline_no_braces.c",
+      "source_sha256": "85ec47fef48f265f76942ad2db301cb7dceebd7be01ce617a9f5395b8abbbe1c",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 120,
+      "total_words": 121,
+      "extra_words": 0,
+      "accepted": false,
+      "elf": {
+        "name": "func_80020820",
+        "start": 0,
+        "size": 448,
+        "section_size": 448
+      },
+      "full_function_relocation_masks": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "zero_padding": true
+    },
+    {
+      "source_path": "cloud/work/boot_tail/C13-byte-clear-retry/controls/one_line_braces.c",
+      "source_sha256": "7c4c7707236e9eedc735a399e396fadab38889f9ac323132d170e8e9ac9cdec1",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 10,
+      "total_words": 121,
+      "extra_words": 0,
+      "accepted": false,
+      "elf": {
+        "name": "func_80020820",
+        "start": 0,
+        "size": 484,
+        "section_size": 496
+      },
+      "full_function_relocation_masks": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "zero_padding": true
+    },
+    {
+      "source_path": "cloud/work/boot_tail/C13-byte-clear-retry/controls/one_line_braces.c",
+      "source_sha256": "7c4c7707236e9eedc735a399e396fadab38889f9ac323132d170e8e9ac9cdec1",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 120,
+      "total_words": 121,
+      "extra_words": 0,
+      "accepted": false,
+      "elf": {
+        "name": "func_80020820",
+        "start": 0,
+        "size": 448,
+        "section_size": 448
+      },
+      "full_function_relocation_masks": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "zero_padding": true
+    }
+  ],
+  "result": "PASS_STRICT_BODY_AND_SOURCE_REVIEW",
+  "reviewer": "Independent source/native reviewer",
+  "source_path": "cloud/matches/boot_tail/func_80020820.c",
+  "source_sha256": "93577fdccd962174556eb10f0ac4d70ac85926831c661ebc7ccc234d1b0955ca",
+  "verified_body_functions": 1,
+  "verified_body_bytes": 484,
+  "source_delta": "Only both existing scalar loops gain ordinary multiline braced bodies; every expression, type, declaration, ABI, bound, access, argument and call order is unchanged.",
+  "stock_preassembler_evidence": {
+    "instruction_sequence_equal": true,
+    "baseline_store_lines": [
+      13,
+      13,
+      13,
+      13,
+      15,
+      15,
+      15,
+      15
+    ],
+    "final_store_lines": [
+      14,
+      13,
+      13,
+      13,
+      18,
+      17,
+      17,
+      17
+    ]
+  },
+  "tests": {
+    "new_test_groups": 3,
+    "actual_source_asan_ubsan_cases": 320,
+    "native_and_fresh_final_relocated_cases": 640,
+    "upper_argument_bits_and_o32_clobbers": true,
+    "unsupported_opcode_negative_test": true,
+    "old_packet_sanitizer_groups": 2,
+    "old_final_rows_exactly_reproduced": 4,
+    "old_control_rows_reproduced": 20,
+    "new_rows_independently_replayed": 10,
+    "leak_sanitizer_disabled_as_recorded": true
+  },
+  "native_review": [
+    "All121 native words inspected. Byte channel and set are homed/masked; regular table strides are134 bytes/channel and2144 bytes/set; set255 chooses the separate external table.",
+    "Both row clear loops write exactly134 selected bytes before the first helper. Their two scalar prologue stores plus33 unrolled iterations agree with source bounds.",
+    "Ten four-byte-input20610 calls and defaults agree in order; trailing20F4C(channel,set,255) and20FDC(channel,set,0) agree. All three actual callee entries mask their real inputs.",
+    "Actual24988 caller passes its registered low-byte slot and set255. No extra formals or changed function boundaries are introduced.",
+    "The domain remains valid registered rows. Host synthetic storage covers8 regular sets\u00d716 channels and32 external channels; this is bounded testing, not a claim that all byte values are valid indices.",
+    "Native replay source inspected: fail-closed opcode/memory/control handling, branch delay slots, initialized-stack reads, O32 callee-save restoration and synthetic volatile-register clobbers are consistent with this body.",
+    "Synthetic helper mutations are visible and preserved; all unselected rows remain unchanged."
+  ],
+  "scope": {
+    "clean_worktree": true,
+    "exact_source_and_packet_git_blob_binding": true,
+    "old_packet_unchanged": true,
+    "protected_path_gate": "PASS",
+    "submission_gate": "one strict MATCH",
+    "static_locks_intact": 161,
+    "no_source_edits_by_reviewer": true,
+    "no_generated_target_compiler_scorer_layout_or_abi_edits": true,
+    "no_cartridge_or_merge_claim": true
+  },
+  "packet_hashes": {
+    "cloud/work/boot_tail/C13-byte-clear-retry/README.md": "ad85542eb5d5e808d5a2d3df7aa9506f119e818972765f73bdc3e112f4de7329",
+    "cloud/work/boot_tail/C13-byte-clear-retry/controls/multiline_braces.c": "93577fdccd962174556eb10f0ac4d70ac85926831c661ebc7ccc234d1b0955ca",
+    "cloud/work/boot_tail/C13-byte-clear-retry/controls/multiline_no_braces.c": "85ec47fef48f265f76942ad2db301cb7dceebd7be01ce617a9f5395b8abbbe1c",
+    "cloud/work/boot_tail/C13-byte-clear-retry/controls/one_line_braces.c": "7c4c7707236e9eedc735a399e396fadab38889f9ac323132d170e8e9ac9cdec1",
+    "cloud/work/boot_tail/C13-byte-clear-retry/input_pins.json": "6200af1c3146a090a205e03e4b2768eb99dc34c258d3cc6fa1e076b74ce6d2ff",
+    "cloud/work/boot_tail/C13-byte-clear-retry/line_provenance_controls.json": "498c545dae349b305d48f0083efe220008af607c2b5f0bdd9b0c72dc19e9b319",
+    "cloud/work/boot_tail/C13-byte-clear-retry/native_replay.py": "a9e4a8dff2e94e52678aab52ef9a2882faecb37a59d6a2a76623cca5099eb105",
+    "cloud/work/boot_tail/C13-byte-clear-retry/status_delta.csv": "7e140da745434e47d9947afb05b48bc58892e5e1ce0b7f06b2f6faa8a1d79198",
+    "cloud/work/boot_tail/C13-byte-clear-retry/test_semantics.py": "2137ffd39b6b33e84915f984ca9658312a6d7ee3087e4197a44df657e6408a25",
+    "cloud/work/boot_tail/C13-byte-clear-retry/verification.json": "16b3ead41e00c7cc3589a81ea8a74e92286572ddf0e6b7d2f43148cdb9f394e9",
+    "cloud/work/boot_tail/C13-byte-clear-retry/verify.py": "889faf52df4f7f1fc0fda5a0cc6ca638c9c14f4d0b5ee67609d61ba0805a783b"
+  },
+  "limitations": [
+    "The12 bytes of zero section alignment beyond the484-byte function are excluded from body credit.",
+    "Native replay uses synthetic external helper contracts and bounded registered rows. It does not reconstruct helpers or prove arbitrary invalid indices safe.",
+    "Exact integration-head hosted CI and independent checker merging remain separate."
+  ]
+}

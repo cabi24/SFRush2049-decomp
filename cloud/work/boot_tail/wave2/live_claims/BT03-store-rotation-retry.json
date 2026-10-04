@@ -1,0 +1,20 @@
+{
+  "state": "frozen-review-pass-integrating",
+  "owner": "/root/close_store_rotation_match",
+  "packet": "BT03-store-rotation-retry",
+  "branch": "dot/boot-tail-bt03-store-rotation-retry",
+  "base": "8cccffb88f99656d3948a71e15517be63fb2405a",
+  "targets": [
+    {
+      "address": "0x8001C1D8",
+      "size": 432,
+      "end_exclusive": "0x8001c388"
+    }
+  ],
+  "bytes": 432,
+  "claim_kind": "bounded evidence-backed revisit; not a fresh attempt",
+  "local_checkpoint": "a87864a4ab2630771d527fb460a010dcd9588d96",
+  "edit_scope": "Only new owned packet and named canonical matching source on strict success; historical packets and frozen cut15 remain unchanged",
+  "note": "Natural multiline braced loop gives local strict match; full source/ABI/extent and independent review required before intake. No new unique attempted target.",
+  "reviewed_commit": "ef129c7c30c061e38e1675f188cfe6eadb0bd8ae"
+}

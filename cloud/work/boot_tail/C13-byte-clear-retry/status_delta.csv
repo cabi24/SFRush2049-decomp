@@ -1,0 +1,2 @@
+address,name,size,cluster,status,flags,diff_words,source_path,note
+0x80020820,func_80020820,484,BT04,verified_body,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80020820.c,Strict relocated 0/121 and exact484-byte function extent; only natural multiline loop bodies; final-source320 host and640 native cases; independent immutable-source review PASS; exact-head integration CI pending.
