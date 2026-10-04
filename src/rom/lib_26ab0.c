@@ -66,5 +66,29 @@ unsigned int func_800262BC(StreamState *stream, unsigned int count)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_26ab0/func_80026328.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_26ab0/func_80026348.s")
+/* PROMOTED 2026-10-04 — func_80026328
+ * Source:   cloud/work/boot_tail_promotion/sources/func_80026328.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/sources/func_80026328.c:func_80026328 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+typedef struct StreamState_80026328 { unsigned char unknown_0000[4573]; signed char state; signed char scale; unsigned char unknown_11DF[33]; volatile unsigned char busy; unsigned char unknown_1201[39]; } StreamState_80026328;
+void func_80026328(StreamState_80026328 *stream)
+{
+    if (stream->state == 2) {
+        stream->state = 3;
+    }
+}
+
+/* PROMOTED 2026-10-04 — func_80026348
+ * Source:   cloud/work/boot_tail_promotion/sources/func_80026348.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/sources/func_80026348.c:func_80026348 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+typedef struct StreamState_80026348 { unsigned char unknown_0000[4573]; signed char state; signed char scale; unsigned char unknown_11DF[33]; volatile unsigned char busy; unsigned char unknown_1201[39]; } StreamState_80026348;
+void func_80026348(StreamState_80026348 *stream)
+{
+    stream->state = 4;
+}
+
