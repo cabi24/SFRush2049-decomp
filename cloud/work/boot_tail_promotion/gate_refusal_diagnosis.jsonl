@@ -1,0 +1,76 @@
+{"function": "func_80010D74", "tu": "src/rom/lib_11640.c", "compile_error": "cfe: Error: src/rom/lib_11640.c, line 59: redeclaration of 'D_800381F0'; previous declaration at line 18 in file 'src/rom/lib_11640.c'"}
+{"function": "func_80011894", "tu": "src/rom/lib_11640.c", "compile_error": "cfe: Error: src/rom/lib_11640.c, line 129: redeclaration of 'D_8003802C'; previous declaration at line 115 in file 'src/rom/lib_11640.c'"}
+{"function": "func_80011C84", "tu": "src/rom/lib_11640.c", "compile_error": "cfe: Error: src/rom/lib_11640.c, line 197: redeclaration of 'AudioState'; previous declaration at line 163 in file 'src/rom/lib_11640.c'"}
+{"function": "func_80013964", "tu": "src/rom/lib_11640.c", "compile_error": "cfe: Error: src/rom/lib_11640.c, line 329: redeclaration of 'D_800382D8'; previous declaration at line 95 in file 'src/rom/lib_11640.c'"}
+{"function": "func_80013C84", "tu": "src/rom/lib_11640.c", "compile_error": "cfe: Error: src/rom/lib_11640.c, line 329: redeclaration of 'AudioState'; previous declaration at line 163 in file 'src/rom/lib_11640.c'"}
+{"function": "func_800146B4", "tu": "src/rom/lib_11640.c", "compile_error": "cfe: Error: src/rom/lib_11640.c, line 572: redeclaration of 'AudioState'; previous declaration at line 163 in file 'src/rom/lib_11640.c'"}
+{"function": "func_800149DC", "tu": "src/rom/lib_11640.c", "compile_error": "cfe: Error: src/rom/lib_11640.c, line 599: redeclaration of 'AudioSlot'; previous declaration at line 571 in file 'src/rom/lib_11640.c'"}
+{"function": "func_80014A74", "tu": "src/rom/lib_11640.c", "compile_error": "cfe: Error: src/rom/lib_11640.c, line 611: redeclaration of 'AudioSlot'; previous declaration at line 571 in file 'src/rom/lib_11640.c'"}
+{"function": "func_80014AF0", "tu": "src/rom/lib_11640.c", "compile_error": "cfe: Error: src/rom/lib_11640.c, line 612: redeclaration of 'AudioSlot'; previous declaration at line 571 in file 'src/rom/lib_11640.c'"}
+{"function": "func_80014B3C", "tu": "src/rom/lib_11640.c", "compile_error": "cfe: Error: src/rom/lib_11640.c, line 613: redeclaration of 'AudioSlot'; previous declaration at line 571 in file 'src/rom/lib_11640.c'"}
+{"function": "func_80014BB0", "tu": "src/rom/lib_11640.c", "compile_error": "cfe: Error: src/rom/lib_11640.c, line 614: redeclaration of 'AudioSlot'; previous declaration at line 571 in file 'src/rom/lib_11640.c'"}
+{"function": "func_80014C18", "tu": "src/rom/lib_11640.c", "compile_error": "cfe: Error: src/rom/lib_11640.c, line 617: redeclaration of 'AudioSlot'; previous declaration at line 571 in file 'src/rom/lib_11640.c'"}
+{"function": "func_800163A8", "tu": "src/rom/lib_16320.c", "compile_error": "cfe: Error: src/rom/lib_16320.c, line 56: redeclaration of 'D_800385A0'; previous declaration at line 23 in file 'src/rom/lib_16320.c'"}
+{"function": "func_80016BF8", "tu": "src/rom/lib_16320.c", "compile_error": null}
+{"function": "func_80016E40", "tu": "src/rom/lib_16320.c", "compile_error": null}
+{"function": "func_80016F58", "tu": "src/rom/lib_16320.c", "compile_error": null}
+{"function": "func_80017018", "tu": "src/rom/lib_16320.c", "compile_error": null}
+{"function": "func_80017540", "tu": "src/rom/lib_17dc0.c", "compile_error": "cfe: Error: src/rom/lib_17dc0.c, line 178: redeclaration of 'ContextPrefix'; previous declaration at line 54 in file 'src/rom/lib_17dc0.c'"}
+{"function": "func_80018A30", "tu": "src/rom/lib_17dc0.c", "compile_error": "cfe: Error: src/rom/lib_17dc0.c, line 226: redeclaration of 'D_8004BE80'; previous declaration at line 17 in file 'src/rom/lib_17dc0.c'"}
+{"function": "func_80018B3C", "tu": "src/rom/lib_17dc0.c", "compile_error": "cfe: Error: src/rom/lib_17dc0.c, line 226: redeclaration of 'ContextPrefix'; previous declaration at line 54 in file 'src/rom/lib_17dc0.c'"}
+{"function": "func_80018C2C", "tu": "src/rom/lib_17dc0.c", "compile_error": "cfe: Error: src/rom/lib_17dc0.c, line 229: redeclaration of 'VoiceRecord'; previous declaration at line 192 in file 'src/rom/lib_17dc0.c'"}
+{"function": "func_80018D40", "tu": "src/rom/lib_17dc0.c", "compile_error": "cfe: Error: src/rom/lib_17dc0.c, line 249: redeclaration of 'VoiceRecord'; previous declaration at line 192 in file 'src/rom/lib_17dc0.c'"}
+{"function": "func_80019194", "tu": "src/rom/lib_17dc0.c", "compile_error": "cfe: Error: src/rom/lib_17dc0.c, line 343: redeclaration of 'D_80043EB8'; previous declaration at line 193 in file 'src/rom/lib_17dc0.c'"}
+{"function": "func_800198C8", "tu": "src/rom/lib_17dc0.c", "compile_error": "cfe: Error: src/rom/lib_17dc0.c, line 380: redeclaration of 'D_80043EB8'; previous declaration at line 193 in file 'src/rom/lib_17dc0.c'"}
+{"function": "func_80019C8C", "tu": "src/rom/lib_1a660.c", "compile_error": "cfe: Error: src/rom/lib_1a660.c, line 51: redeclaration of 'VoiceState'; previous declaration at line 28 in file 'src/rom/lib_1a660.c'"}
+{"function": "func_8001B29C", "tu": "src/rom/lib_1a660.c", "compile_error": "cfe: Error: src/rom/lib_1a660.c, line 76: redeclaration of 'VoiceState'; previous declaration at line 28 in file 'src/rom/lib_1a660.c'"}
+{"function": "func_8001B3A0", "tu": "src/rom/lib_1a660.c", "compile_error": "cfe: Error: src/rom/lib_1a660.c, line 77: redeclaration of 'VoiceState'; previous declaration at line 28 in file 'src/rom/lib_1a660.c'"}
+{"function": "func_8001B7C0", "tu": "src/rom/lib_1a660.c", "compile_error": "cfe: Error: src/rom/lib_1a660.c, line 97: redeclaration of 'VoiceState'; previous declaration at line 28 in file 'src/rom/lib_1a660.c'"}
+{"function": "func_8001B8C4", "tu": "src/rom/lib_1a660.c", "compile_error": "cfe: Error: src/rom/lib_1a660.c, line 98: redeclaration of 'VoiceState'; previous declaration at line 28 in file 'src/rom/lib_1a660.c'"}
+{"function": "func_8001B968", "tu": "src/rom/lib_1a660.c", "compile_error": "cfe: Error: src/rom/lib_1a660.c, line 99: redeclaration of 'VoiceState'; previous declaration at line 28 in file 'src/rom/lib_1a660.c'"}
+{"function": "func_8001C508", "tu": "src/rom/lib_1cf90.c", "compile_error": "cfe: Error: src/rom/lib_1cf90.c, line 55: redeclaration of 'SampleBuffer'; previous declaration at line 15 in file 'src/rom/lib_1cf90.c'"}
+{"function": "func_8001C7F4", "tu": "src/rom/lib_1cf90.c", "compile_error": "cfe: Error: src/rom/lib_1cf90.c, line 69: redeclaration of 'D_8004FA50'; previous declaration at line 17 in file 'src/rom/lib_1cf90.c'"}
+{"function": "func_8001D4CC", "tu": "src/rom/lib_1cf90.c", "compile_error": "cfe: Error: src/rom/lib_1cf90.c, line 142: redeclaration of 'func_8001D084'; previous declaration at line 90 in file 'src/rom/lib_1cf90.c'"}
+{"function": "func_8001DDE0", "tu": "src/rom/lib_1cf90.c", "compile_error": "cfe: Error: src/rom/lib_1cf90.c, line 254: redeclaration of 'D_8004FD50'; previous declaration at line 88 in file 'src/rom/lib_1cf90.c'"}
+{"function": "func_8001E0C0", "tu": "src/rom/lib_1cf90.c", "compile_error": "cfe: Error: src/rom/lib_1cf90.c, line 254: redeclaration of 'D_8004FD50'; previous declaration at line 88 in file 'src/rom/lib_1cf90.c'"}
+{"function": "func_8001EB10", "tu": "src/rom/lib_1f5b0.c", "compile_error": "cfe: Error: src/rom/lib_1f5b0.c, line 50: redeclaration of 'SequenceNode'; previous declaration at line 15 in file 'src/rom/lib_1f5b0.c'"}
+{"function": "func_8001ECE0", "tu": "src/rom/lib_1f5b0.c", "compile_error": "cfe: Error: src/rom/lib_1f5b0.c, line 51: redeclaration of 'SequenceNode'; previous declaration at line 15 in file 'src/rom/lib_1f5b0.c'"}
+{"function": "func_8001EE9C", "tu": "src/rom/lib_1f5b0.c", "compile_error": "cfe: Error: src/rom/lib_1f5b0.c, line 105: redeclaration of 'ChannelLink'; previous declaration at line 71 in file 'src/rom/lib_1f5b0.c'"}
+{"function": "func_8001F898", "tu": "src/rom/lib_1f5b0.c", "compile_error": null}
+{"function": "func_8001F9D0", "tu": "src/rom/lib_1f5b0.c", "compile_error": null}
+{"function": "func_8001FA18", "tu": "src/rom/lib_1f5b0.c", "compile_error": null}
+{"function": "func_8001FAE4", "tu": "src/rom/lib_1f5b0.c", "compile_error": null}
+{"function": "func_800201D0", "tu": "src/rom/lib_207b0.c", "compile_error": "cfe: Error: src/rom/lib_207b0.c, line 225: redeclaration of 'func_8001EDF4'; previous declaration at line 21 in file 'src/rom/lib_207b0.c'"}
+{"function": "func_80021BF0", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 71: redeclaration of 'MacroState'; previous declaration at line 41 in file 'src/rom/lib_22300.c'"}
+{"function": "func_80021F68", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 78: redeclaration of 'MacroState'; previous declaration at line 41 in file 'src/rom/lib_22300.c'"}
+{"function": "func_8002243C", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 83: redeclaration of 'MacroState'; previous declaration at line 41 in file 'src/rom/lib_22300.c'"}
+{"function": "func_8002245C", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 84: redeclaration of 'MacroState'; previous declaration at line 41 in file 'src/rom/lib_22300.c'"}
+{"function": "func_800224B0", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 85: redeclaration of 'MacroState'; previous declaration at line 41 in file 'src/rom/lib_22300.c'"}
+{"function": "func_800225AC", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 88: redeclaration of 'MacroState'; previous declaration at line 41 in file 'src/rom/lib_22300.c'"}
+{"function": "func_800225DC", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 89: redeclaration of 'MacroState'; previous declaration at line 41 in file 'src/rom/lib_22300.c'"}
+{"function": "func_800225FC", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 90: redeclaration of 'MacroState'; previous declaration at line 41 in file 'src/rom/lib_22300.c'"}
+{"function": "func_80022678", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 91: redeclaration of 'MacroState'; previous declaration at line 41 in file 'src/rom/lib_22300.c'"}
+{"function": "func_80022A78", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 95: redeclaration of 'MacroState'; previous declaration at line 41 in file 'src/rom/lib_22300.c'"}
+{"function": "func_80022C58", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 97: redeclaration of 'MacroState'; previous declaration at line 41 in file 'src/rom/lib_22300.c'"}
+{"function": "func_80023520", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 117: redeclaration of 'func_800233B0'; previous declaration at line 108 in file 'src/rom/lib_22300.c'"}
+{"function": "func_80023710", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 120: redeclaration of 'MacroState'; previous declaration at line 41 in file 'src/rom/lib_22300.c'"}
+{"function": "func_80023734", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 121: redeclaration of 'MacroState'; previous declaration at line 41 in file 'src/rom/lib_22300.c'"}
+{"function": "func_80023818", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 123: redeclaration of 'MacroState'; previous declaration at line 41 in file 'src/rom/lib_22300.c'"}
+{"function": "func_80023844", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 124: redeclaration of 'MacroState'; previous declaration at line 41 in file 'src/rom/lib_22300.c'"}
+{"function": "func_80023870", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 125: redeclaration of 'MacroState'; previous declaration at line 41 in file 'src/rom/lib_22300.c'"}
+{"function": "func_8002389C", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 126: redeclaration of 'MacroState'; previous declaration at line 41 in file 'src/rom/lib_22300.c'"}
+{"function": "func_800238C8", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 127: redeclaration of 'MacroState'; previous declaration at line 41 in file 'src/rom/lib_22300.c'"}
+{"function": "func_800238F4", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 128: redeclaration of 'MacroState'; previous declaration at line 41 in file 'src/rom/lib_22300.c'"}
+{"function": "func_80023920", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 129: redeclaration of 'MacroState'; previous declaration at line 41 in file 'src/rom/lib_22300.c'"}
+{"function": "func_8002394C", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 130: redeclaration of 'MacroState'; previous declaration at line 41 in file 'src/rom/lib_22300.c'"}
+{"function": "func_80023978", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 131: redeclaration of 'MacroState'; previous declaration at line 41 in file 'src/rom/lib_22300.c'"}
+{"function": "func_800250F0", "tu": "src/rom/lib_25bb0.c", "compile_error": "cfe: Error: src/rom/lib_25bb0.c, line 61: redeclaration of 'D_800586A8'; previous declaration at line 46 in file 'src/rom/lib_25bb0.c'"}
+{"function": "func_80025120", "tu": "src/rom/lib_25bb0.c", "compile_error": "cfe: Error: src/rom/lib_25bb0.c, line 62: redeclaration of 'D_800586A8'; previous declaration at line 46 in file 'src/rom/lib_25bb0.c'"}
+{"function": "func_80025150", "tu": "src/rom/lib_25bb0.c", "compile_error": "cfe: Error: src/rom/lib_25bb0.c, line 63: redeclaration of 'D_800586A8'; previous declaration at line 46 in file 'src/rom/lib_25bb0.c'"}
+{"function": "func_80025264", "tu": "src/rom/lib_25bb0.c", "compile_error": "cfe: Error: src/rom/lib_25bb0.c, line 65: redeclaration of 'StreamState'; previous declaration at line 13 in file 'src/rom/lib_25bb0.c'"}
+{"function": "func_800254D4", "tu": "src/rom/lib_25bb0.c", "compile_error": "cfe: Error: src/rom/lib_25bb0.c, line 67: redeclaration of 'StreamState'; previous declaration at line 13 in file 'src/rom/lib_25bb0.c'"}
+{"function": "func_80025670", "tu": "src/rom/lib_25bb0.c", "compile_error": "cfe: Error: src/rom/lib_25bb0.c, line 92: redeclaration of 'StreamState'; previous declaration at line 13 in file 'src/rom/lib_25bb0.c'"}
+{"function": "func_8002574C", "tu": "src/rom/lib_25bb0.c", "compile_error": "cfe: Error: src/rom/lib_25bb0.c, line 93: redeclaration of 'StreamState'; previous declaration at line 13 in file 'src/rom/lib_25bb0.c'"}
+{"function": "func_800259A8", "tu": "src/rom/lib_25bb0.c", "compile_error": "cfe: Error: src/rom/lib_25bb0.c, line 94: redeclaration of 'StreamState'; previous declaration at line 13 in file 'src/rom/lib_25bb0.c'"}
+{"function": "func_80026328", "tu": "src/rom/lib_26ab0.c", "compile_error": "cfe: Error: src/rom/lib_26ab0.c, line 75: redeclaration of 'StreamState'; previous declaration at line 14 in file 'src/rom/lib_26ab0.c'"}
+{"function": "func_80026348", "tu": "src/rom/lib_26ab0.c", "compile_error": "cfe: Error: src/rom/lib_26ab0.c, line 76: redeclaration of 'StreamState'; previous declaration at line 14 in file 'src/rom/lib_26ab0.c'"}
