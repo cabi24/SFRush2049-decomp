@@ -1,0 +1,89 @@
+{
+  "aggregate_tests": {
+    "command": "REQUIRE_TOOLCHAIN=1 python3 -m pytest tests/conveyor tests/cloud -o addopts='' -q -rs -m 'not node_required'",
+    "deselected": 9,
+    "errors": 0,
+    "failed": 0,
+    "passed": 1778,
+    "skip_reasons": {
+      "baserom.us.z64 not present": 1,
+      "canonical SDK checkout absent": 28,
+      "derived asm not present": 1,
+      "needs gcc, the ROM and the extracted image": 1,
+      "needs the coordinator's generated blob layout": 1,
+      "needs the mips cross gcc": 9
+    },
+    "skipped": 41,
+    "subtests_passed": 27
+  },
+  "base_commit": "abc0f256e8c6b5e2004662af09aca7c5bf915204",
+  "candidate_body_bytes": 540,
+  "candidate_functions": 12,
+  "existing_locked_c_bodies_in_affected_tus": 37,
+  "explicit_replays": [
+    "python3 cloud/work/boot_tail_promotion/macro_wrapper_contracts/verify.py",
+    "python3 cloud/work/boot_tail_promotion/identifier_contract/verify.py --out <temporary-directory>",
+    "python3 cloud/work/boot_tail_promotion/queue_wrappers/verify.py --output <temporary-file>"
+  ],
+  "full_rom_gate": "NOT RUN; maintainer transaction required",
+  "new_matching_credit": 0,
+  "other_checks": {
+    "adapted_source_coverage": "explicit actual-TU macro and identifier tests in normal tests/cloud CI",
+    "all_published_files": "reviewed UTF-8 source/tests/research/numerical verification only",
+    "git_diff_check": "PASS",
+    "normal_changed_submission_rescore": "3/3 MATCH (queue wrappers)",
+    "protected_path_guard": "PASS",
+    "standard_group_scorer_smoke": "3/3 MATCH",
+    "standard_single_scorer_smoke": "MATCH",
+    "static_body_locks_intact": 383
+  },
+  "packet_evidence": {
+    "identifier": {
+      "fresh_structured_replay_equal": true,
+      "path": "cloud/work/boot_tail_promotion/identifier_contract/verification.json",
+      "sha256": "33646afbaeb2db034b7437e545ca34acef4e5ec34463777944fe5cfb4267f640"
+    },
+    "macro": {
+      "fresh_structured_replay_equal": true,
+      "path": "cloud/work/boot_tail_promotion/macro_wrapper_contracts/verification.json",
+      "sha256": "a7641f634db1d6ca99a98453a4c24c5c13082ab6329245ee672b6b439fe70b07"
+    },
+    "queue": {
+      "fresh_structured_replay_equal": true,
+      "path": "cloud/work/boot_tail_promotion/queue_wrappers/evidence.json",
+      "sha256": "f1b80f6d4ed9295268652c5100fb42eb49def27671bf6dc5c251f28858a8e872"
+    }
+  },
+  "production_promotions": 0,
+  "publication_boundary": "Draft PR only. Independent checker merges. No ROM bytes, raw assembly dumps, object files, credentials, unrelated private data, remote builder work, lock migration, or coverage claim.",
+  "result": "PASS_LOCAL_CONTRACT_REPAIR",
+  "source_and_test_sha256": {
+    "cloud/matches/boot_tail/func_800250F0.c": "017506cf710a0c1bb3d821068976a30ca1f06085c3ce49d25b6363cf5ad99c31",
+    "cloud/matches/boot_tail/func_80025120.c": "c3beda4116b580b6522cf7cb2dcec9b7fb1d726bb51a2210911e4eb4d0fc882c",
+    "cloud/matches/boot_tail/func_80025150.c": "784b0b7125f853ebcd4088b0f599442d14554356a4bf36461d8b03ac87a978ec",
+    "cloud/work/boot_tail_promotion/identifier_contract/README.md": "aeaf6702aa6488fad25f94fcc232cbba5b77ac6c7d248e92bf6e7a805aa0f7d0",
+    "cloud/work/boot_tail_promotion/identifier_contract/verification.json": "33646afbaeb2db034b7437e545ca34acef4e5ec34463777944fe5cfb4267f640",
+    "cloud/work/boot_tail_promotion/identifier_contract/verify.py": "c074473da351184037a8a149baec211368fd4b61df85afcd2ad183f3082c442a",
+    "cloud/work/boot_tail_promotion/macro_wrapper_contracts/README.md": "534158bf50bc9a5cc878150e7cc015ccb1953861a1cc99051a98ba5689bd9334",
+    "cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_80023844.c": "b97a418e6a290f2559980c9448265f1b09808b7668bcdbe9d25214404ef3d389",
+    "cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_80023870.c": "08048b0eb92bd4efdb8491ea34f2c85ac21edf1d6f3d4595e57ed46f25d79112",
+    "cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_8002389C.c": "f68b6f58083c62b33d5005b0c887933a5be469d2a2268abccba299e4e52d856f",
+    "cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_800238C8.c": "b5d1dc064029d53bcbbd6b930edeaf1bca6db8d5f9d6eb69c552f355dcfae2a0",
+    "cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_800238F4.c": "b5932cae9284b26874b1b20b8f001c1c01c2b464627f9e7da34a3ed0a1002d1c",
+    "cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_80023920.c": "cc279a5c12591aabeb18fc71da281e015c082c92d5a1e7725e4596beec6978aa",
+    "cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_8002394C.c": "fd994ad474b8acb6c35adc69154e7d42b78d8575263b78c8a8e0c9a4fe0523bc",
+    "cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_80023978.c": "6b9c147add5b56f585609c33e0a724f8d11cae7630271061702c3a9b5a18668c",
+    "cloud/work/boot_tail_promotion/macro_wrapper_contracts/test_verify.py": "c82b34331e5218eeaa5c4c6f56a968935d98b7f32f1df80a0afbbfee877d966b",
+    "cloud/work/boot_tail_promotion/macro_wrapper_contracts/verification.json": "a7641f634db1d6ca99a98453a4c24c5c13082ab6329245ee672b6b439fe70b07",
+    "cloud/work/boot_tail_promotion/macro_wrapper_contracts/verify.py": "6946c1d2106ec724b47a25ad475def831fc216f43a5a426ed16a329e28b2f5b8",
+    "cloud/work/boot_tail_promotion/queue_wrappers/README.md": "890a90963d0aec2be5c8c2ed8a3539bcdee1d402b2760ec1a346ca880e376386",
+    "cloud/work/boot_tail_promotion/queue_wrappers/evidence.json": "f1b80f6d4ed9295268652c5100fb42eb49def27671bf6dc5c251f28858a8e872",
+    "cloud/work/boot_tail_promotion/queue_wrappers/verify.py": "0ad9004a2bc72c2c3bb12ee6259e35f07219b7619229c10fd6edc9b1c0de45a0",
+    "src/rom/lib_207b0.c": "acbc261c45342c17eb3e5fc5f5690ac8fa87ca9955f6a216a9a708454a259ca7",
+    "tests/cloud/test_identifier_contract.py": "5a99d8ea186d594d0144ab2301af8aaeaee8647cfb727093043f7cd044320343",
+    "tests/cloud/test_macro_wrapper_contracts.py": "5c1bcc9acadd19ff3fa64cf226200f7e59b655c1b36a83cc846a6af2dce0099d",
+    "tests/conveyor/test_queue_wrapper_promotion.py": "e6ccdb2370d1211ce821240c1d71d6e77fda8ed3addca142a9f7585440e540d4"
+  },
+  "verified_candidate_and_existing_c_bodies": 49,
+  "verified_on": "2026-10-04"
+}
