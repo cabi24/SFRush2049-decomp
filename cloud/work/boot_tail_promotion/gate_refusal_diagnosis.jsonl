@@ -30,7 +30,7 @@
 {"function": "func_8001E0C0", "tu": "src/rom/lib_1cf90.c", "compile_error": "cfe: Error: src/rom/lib_1cf90.c, line 254: redeclaration of 'D_8004FD50'; previous declaration at line 88 in file 'src/rom/lib_1cf90.c'"}
 {"function": "func_8001EB10", "tu": "src/rom/lib_1f5b0.c", "compile_error": "cfe: Error: src/rom/lib_1f5b0.c, line 55: redeclaration of 'D_80050C50'; previous declaration at line 17 in file 'src/rom/lib_1f5b0.c'"}
 {"function": "func_8001ECE0", "tu": "src/rom/lib_1f5b0.c", "compile_error": "cfe: Error: src/rom/lib_1f5b0.c, line 55: redeclaration of 'D_80050C50'; previous declaration at line 17 in file 'src/rom/lib_1f5b0.c'"}
-{"function": "func_8001F9D0", "tu": "src/rom/lib_1f5b0.c", "compile_error": "cfe: Error: src/rom/lib_1f5b0.c, line 184: redeclaration of 'VoiceState'; previous declaration at line 150 in file 'src/rom/lib_1f5b0.c'"}
+{"function": "func_8001F9D0", "tu": "src/rom/lib_1f5b0.c", "compile_error": "cfe: Error: src/rom/lib_1f5b0.c, line 186: redeclaration of 'func_8001EB10'; previous declaration at line 154 in file 'src/rom/lib_1f5b0.c'"}
 {"function": "func_800201D0", "tu": "src/rom/lib_207b0.c", "compile_error": "cfe: Error: src/rom/lib_207b0.c, line 225: redeclaration of 'func_8001EDF4'; previous declaration at line 21 in file 'src/rom/lib_207b0.c'"}
 {"function": "func_80021BF0", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 76: redeclaration of 'func_80021BC0'; previous declaration at line 58 in file 'src/rom/lib_22300.c'"}
 {"function": "func_800225FC", "tu": "src/rom/lib_22300.c", "compile_error": "cfe: Error: src/rom/lib_22300.c, line 199: redeclaration of 'func_8002193C'; previous declaration at line 43 in file 'src/rom/lib_22300.c'"}
