@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "result": "PASS_FOR_RESEARCH_ONLY",
+  "reviewer": "/root/match_boot_tail_low_registers",
+  "reviewed_commit": "0506807df02405c9f0090ad3988b381651828cf8",
+  "reviewed_tree": "7b9fefe319f8070ed24bad244d1cd1aa4c6230b7",
+  "source_sha256": {
+    "cloud/work/boot_tail/BT02-audio-pair/nonmatch/func_800123A8.c": "2687fc845a55ad430088b467f75db563303ef9ec321fe59b441af62a63f6ee4b",
+    "cloud/work/boot_tail/BT02-audio-pair/nonmatch/func_80011F60.c": "69f0be26a4ddae6ab534dba43d44b07910a60434c05435c9aabdf8a2da4f2a29"
+  },
+  "checks": {
+    "allowed_paths_only": true,
+    "base_to_head_diff_check": "PASS",
+    "source_native_abi_review": "PASS: complete bodies, direct cache invalidator800084E0, allocator callback argument/result ABI, caller114C0 and release partners121BC/1261C independently inspected. Positive count and successful allocation domains preserved; caller table contents not assumed.",
+    "strict_replay": "PASS: retained O2 residual74/151 and74/157, O1 residual149/151 and155/157; no excess/unresolved/unverified/errors. Zero match credit.",
+    "retained_controls_replayed": 30,
+    "input_verification": "PASS: all24 compiler pins, manifest,439 extents/99120B, getter.",
+    "native_layout": "PASS:20/24-byte nodes, pointer/word widths and used offsets.",
+    "host_behavior": "PASS:522 actual-source calls at strict C89 O2 and522 with ASan/UBSan; sizes, links, call order, opaque fields and canaries.",
+    "diagnosis": "PASS: exact151/157-instruction geometry and48-byte frames;74 aligned register-only residuals each, zero structural/constant/gaps."
+  },
+  "remaining_limits": [
+    "Two complete nonmatches only; no cartridge coverage or promotion.",
+    "Counts zero and allocation failure remain outside proved domain.",
+    "No justified source-level lever currently closes allocation residual."
+  ]
+}

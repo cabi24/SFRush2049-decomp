@@ -1,0 +1,24 @@
+{
+  "result": "PASS_FOR_BOUNDED_HOST_SEMANTICS",
+  "tests_passed": 6,
+  "retained_source_invocations": 532958,
+  "case_counts": {
+    "external_scale": 393216,
+    "double_word_roundtrip": 65545,
+    "quadrants": 65536,
+    "callback_search": 8517,
+    "time_conversion": 144
+  },
+  "host_mode": "C89 pedantic-errors, Wall/Wextra/Werror, AddressSanitizer, UndefinedBehaviorSanitizer and float-cast-overflow",
+  "leak_sanitizer": "Disabled only for executor ptrace incompatibility; no candidate or harness heap allocation. Address/UB checks remain enabled.",
+  "native_width_checks": "Temporary IDO assertions pass for uint4, ushort2, float4 and double8. Host checks IEEE binary32/binary64 widths; E940 reference additionally uses host unsigned-long width at least64.",
+  "source_sha256": {
+    "cloud/work/boot_tail/C11-numeric/func_8001E440_NONMATCH.c": "531e1936a63420631f43dd59c9edf06c9bf8a856de2ee6badaa687ec872e5885",
+    "cloud/matches/boot_tail/func_8001E688.c": "7b66db8673c63755b1bb5df8a2d56160752f9f3420b2a91543c2df0f1a767def",
+    "cloud/work/boot_tail/C11-numeric/func_8001E7BC_NONMATCH.c": "23491d11e23d5d43d9eb2daee5569725682fdd2f06fb9a6e006c81052e3c99eb",
+    "cloud/work/boot_tail/C11-numeric/func_8001E864_NONMATCH.c": "f460b2d3eec2be3e95e8881e7a1de7ffeb77ab68e6a4699cbb028eff4dfc5bef",
+    "cloud/matches/boot_tail/func_8001E940.c": "1d7f3398193c7b8d734e5a98bb8145cee5b978b001205b78743e7dafa236ae92"
+  },
+  "test_source_sha256": "bcab5942a44b69ffb90def5ad2b56bef41431f3f0cfed2412eced0ee880b1271",
+  "limits": "Synthetic scalar/table fixtures do not identify original external values. Float casts use finite representable truncation domains; phase signed-short wrap follows N64 two's complement. Valid sorted bounded objects and nonoverflowing arithmetic are required for search. E940 requires valid objects and a nonzero rate. No malformed-input, concurrency or whole-game claim."
+}

@@ -1,0 +1,110 @@
+{
+  "result": "PASS",
+  "source_commit": "c04473b5cb22805dcf674a434d4fc4e155f2d739",
+  "source_tree": "ccef0eacc854cf1b5cfa831e874a55cf6b6fd185",
+  "stack_base": "e6b304128ecaee3fb5c200d97fa1132aaad2fd95",
+  "reviewer": "BT03-high",
+  "reviewed_utc": "2026-10-04T01:45:18.617981+00:00",
+  "method": "Exact immutable Git-blob snapshot with canonical unchanged scoring: four final rows and eighteen controls reproduced; actual sources and full native2193C/24988 inspected, reusing freshly audited genuine direct-helper contracts.",
+  "compiler_results": [
+    {
+      "name": "func_8002193C",
+      "bytes": 608,
+      "source_path": "cloud/work/boot_tail/BT05-core-pair/nonmatch/func_8002193C.c",
+      "source_sha256": "915dcd4393c35e73320c3afd61292d4484eb56747442278b964c04a5e7adf0a1",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 103,
+      "total_words": 152,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_8002193C",
+      "bytes": 608,
+      "source_path": "cloud/work/boot_tail/BT05-core-pair/nonmatch/func_8002193C.c",
+      "source_sha256": "915dcd4393c35e73320c3afd61292d4484eb56747442278b964c04a5e7adf0a1",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 152,
+      "total_words": 152,
+      "extra_words": 5,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80024988",
+      "bytes": 608,
+      "source_path": "cloud/work/boot_tail/BT05-core-pair/nonmatch/func_80024988.c",
+      "source_sha256": "748de22b20d77ff5488dc4fd3ab961ebed4144d73f5c3e82275d33d07ca99cf6",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 93,
+      "total_words": 152,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80024988",
+      "bytes": 608,
+      "source_path": "cloud/work/boot_tail/BT05-core-pair/nonmatch/func_80024988.c",
+      "source_sha256": "748de22b20d77ff5488dc4fd3ab961ebed4144d73f5c3e82275d33d07ca99cf6",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 151,
+      "total_words": 152,
+      "extra_words": 34,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    }
+  ],
+  "matching_functions": 0,
+  "matching_bytes": 0,
+  "complete_nonmatches": 2,
+  "nonmatching_bytes": 1216,
+  "tests": {
+    "result": "PASS",
+    "groups": 2,
+    "wait_combinations": 27648,
+    "constructor_combinations": 1536,
+    "constructor_failure_exits": 2,
+    "runs": [
+      {
+        "command": "python3 cloud/work/boot_tail/BT05-core-pair/verify.py",
+        "returncode": 0,
+        "output": "{\n  \"schema_version\": 1,\n  \"result\": \"COMPLETE_NONMATCH_RESEARCH\",\n  \"base_commit\": \"e6b304128ecaee3fb5c200d97fa1132aaad2fd95\",\n  \"match_functions\": 0,\n  \"verified_body_bytes\": 0,\n  \"nonmatch_functions\": 2,\n  \"nonmatch_bytes\": 1216,\n  \"target_manifest_sha256\": \"6bd3e6ef05e6123e4ea4dd0d814c0abb16f202a91d8d0a381eca14322c8a36d5\",\n  \"results\": [\n    {\n      \"name\": \"func_8002193C\",\n      \"bytes\": 608,\n      \"source_path\": \"cloud/work/boot_tail/BT05-core-pair/nonmatch/func_8002193C.c\",\n      \"source_sha256\": \"915dcd4393c35e73320c3afd61292d4484eb56747442278b964c04a5e7adf0a1\",\n      \"flags\": \"-g0 -O2 -mips2 -G 0 -non_shared\",\n      \"effective_flags\": \"-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul\",\n      \"differing_words\": 103,\n      \"total_words\": 152,\n      \"extra_words\": 0,\n      \"unresolved\": [],\n      \"unverified\": [],\n      \"errors\": [],\n      \"strict_match\": false\n    },\n    {\n      \"name\": \"func_8002193C\",\n      \"bytes\": 608,\n      \"source_path\": \"cloud/work/boot_tail/BT05-core-pair/nonmatch/func_8002193C.c\",\n      \"source_sha256\": \"915dcd4393c35e73320c3afd61292d4484eb56747442278b964c04a5e7adf0a1\",\n      \"flags\": \"-g0 -O1 -mips2 -G 0 -non_shared\",\n      \"effective_flags\": \"-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul\",\n      \"differing_words\": 152,\n      \"total_words\": 152,\n      \"extra_words\": 5,\n      \"unresolved\": [],\n      \"unverified\": [],\n      \"errors\": [],\n      \"strict_match\": false\n    },\n    {\n      \"name\": \"func_80024988\",\n      \"bytes\": 608,\n      \"source_path\": \"cloud/work/boot_tail/BT05-core-pair/nonmatch/func_80024988.c\",\n      \"source_sha256\": \"748de22b20d77ff5488dc4fd3ab961ebed4144d73f5c3e82275d33d07ca99cf6\",\n      \"flags\": \"-g0 -O2 -mips2 -G 0 -non_shared\",\n      \"effective_flags\": \"-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul\",\n      \"differing_words\": 93,\n      \"total_words\": 152,\n      \"extra_words\": 0,\n      \"unresolved\": [],\n      \"unverified\": [],\n      \"errors\": [],\n      \"strict_match\": false\n    },\n    {\n      \"name\": \"func_80024988\",\n      \"bytes\": 608,\n      \"source_path\": \"cloud/work/boot_tail/BT05-core-pair/nonmatch/func_80024988.c\",\n      \"source_sha256\": \"748de22b20d77ff5488dc4fd3ab961ebed4144d73f5c3e82275d33d07ca99cf6\",\n      \"flags\": \"-g0 -O1 -mips2 -G 0 -non_shared\",\n      \"effective_flags\": \"-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul\",\n      \"differing_words\": 151,\n      \"total_words\": 152,\n      \"extra_words\": 34,\n      \"unresolved\": [],\n      \"unverified\": [],\n      \"errors\": [],\n      \"strict_match\": false\n    }\n  ]\n}\n"
+      },
+      {
+        "command": "python3 cloud/work/boot_tail/BT05-core-pair/verify_controls.py",
+        "returncode": 0,
+        "output": "{\n  \"result\": \"PASS\",\n  \"control_rows\": 18,\n  \"matching_credit\": 0\n}\n"
+      },
+      {
+        "command": "python3 -m unittest discover -s cloud/work/boot_tail/BT05-core-pair -p test_*.py -v",
+        "returncode": 0,
+        "output": "test_eleven_input_constructor_and_two_return_domains (test_semantics.Semantics.test_eleven_input_constructor_and_two_return_domains) ... ok\ntest_wait_guards_sentinel_and_wrapping_clocks (test_semantics.Semantics.test_wait_guards_sentinel_and_wrapping_clocks) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.265s\n\nOK\n"
+      }
+    ]
+  },
+  "source_abi_findings": [
+    "2193C genuine state/command inputs, packed flags36 and timing words156/160/164 agree. Initial nonzero u16 duration guards the later unsigned random remainder; FFFF sentinel bypasses conversion. A random zero remains a valid subsequent conversion input.",
+    "Both early-return command gates preserve the precise partial flag changes; playback query is a real word-index input, RNG really returns u16, and duration conversions consume a real local pointer plus state where applicable. Saved millisecond mode survives helpers while state clocks/bases are read live.",
+    "Deadline/base additions are unsigned low32, comparison is unsigned and pending-wait result is a genuine byte predicate. No artificial zero-duration frame object is used. External nonzero tempo and valid registered state contracts remain explicit.",
+    "24988 eleven native widths/slots agree with the full constructor and already reviewed22160 caller: u32,u16,five u8,two u16,two u8. Program and saved pointers, record416 stride and all named offsets are native32-bit layouts, not LP64 sizeof claims.",
+    "Actual u16 macro lookup, four-input slot allocation, pointer reset, word playback query, two-byte external category call and priority helper all have real source contracts; no extra formal or stub implementation appears.",
+    "Internal identifier is built from macro/key/index and may be mutated by the live priority helper. Start0 returns that live internal ID; start1 returns exactly1ECE0 sequence key or failure, with no invented rollback. This distinct return-domain behavior matches the complete native call branch and recently reviewed node allocator body.",
+    "Valid program offsets and allocated slots/callback effects remain bounded; source-pointer integer widths are not silently generalized to arbitrary malformed resources. Both complete bodies remain honest NONMATCHs despite resolved references and passing semantics."
+  ],
+  "scope": "Only owned core-pair research directory differs from frozen resource base; no submissions or prior/protected changes.",
+  "whitespace": "PASS"
+}

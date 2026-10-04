@@ -1,0 +1,40 @@
+{
+  "result": "PASS",
+  "runs": [
+    {
+      "configuration": "c89",
+      "flags": [
+        "-std=c89",
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-O2"
+      ],
+      "result": "PASS",
+      "output": "PASS: 522 actual-source calls; list links, allocator/cache order, extents and canaries"
+    },
+    {
+      "configuration": "asan_ubsan",
+      "flags": [
+        "-std=c89",
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer"
+      ],
+      "result": "PASS",
+      "output": "PASS: 522 actual-source calls; list links, allocator/cache order, extents and canaries"
+    }
+  ],
+  "leak_detection": "disabled: runtime ptrace limitation",
+  "source_sha256": {
+    "cloud/work/boot_tail/BT02-audio-pair/nonmatch/func_80011F60.c": "69f0be26a4ddae6ab534dba43d44b07910a60434c05435c9aabdf8a2da4f2a29",
+    "cloud/work/boot_tail/BT02-audio-pair/nonmatch/func_800123A8.c": "2687fc845a55ad430088b467f75db563303ef9ec321fe59b441af62a63f6ee4b",
+    "cloud/work/boot_tail/BT02-audio-pair/host_behavior.c": "56d2ddefcd0e66e17b69d6f3c09d6cf92a2d8968db370f9d32ee39adeed21cd9"
+  }
+}

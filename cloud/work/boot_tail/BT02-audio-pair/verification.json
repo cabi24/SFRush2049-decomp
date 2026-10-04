@@ -1,0 +1,416 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "base": "ea50bee96b5d732ba9efcac8f433134090f41950",
+  "central_claim_commit": "1535b793",
+  "manifest": [
+    "boot_tail_8000f3a4.s: OK",
+    "extents.json: OK",
+    "symbols.json: OK"
+  ],
+  "compiler_matches_packet2_pin": true,
+  "census": {
+    "functions": 439,
+    "bytes": 99120,
+    "equal": true
+  },
+  "existing_getter_strict_match": true,
+  "strict_match_functions": 0,
+  "strict_match_bytes": 0,
+  "nonmatch_functions": 2,
+  "nonmatch_bytes": 1232,
+  "sources": [
+    {
+      "name": "func_80011F60",
+      "native_bytes": 604,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/nonmatch/func_80011F60.c",
+      "source_sha256": "69f0be26a4ddae6ab534dba43d44b07910a60434c05435c9aabdf8a2da4f2a29",
+      "flag_results": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "strict_match": false,
+          "differing_words": 74,
+          "total_words": 151,
+          "extra_words": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": []
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "strict_match": false,
+          "differing_words": 149,
+          "total_words": 151,
+          "extra_words": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": []
+        }
+      ]
+    },
+    {
+      "name": "func_800123A8",
+      "native_bytes": 628,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/nonmatch/func_800123A8.c",
+      "source_sha256": "2687fc845a55ad430088b467f75db563303ef9ec321fe59b441af62a63f6ee4b",
+      "flag_results": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "strict_match": false,
+          "differing_words": 74,
+          "total_words": 157,
+          "extra_words": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": []
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "strict_match": false,
+          "differing_words": 155,
+          "total_words": 157,
+          "extra_words": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": []
+        }
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "address": "80011F60",
+      "variant": "baseline",
+      "strict_match": false,
+      "differing_words": 76,
+      "total_words": 151,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "80011F60",
+      "variant": "bytes_first",
+      "strict_match": false,
+      "differing_words": 76,
+      "total_words": 151,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "80011F60",
+      "variant": "inline_bytes",
+      "strict_match": false,
+      "differing_words": 74,
+      "total_words": 151,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "80011F60",
+      "variant": "not_equal",
+      "strict_match": false,
+      "differing_words": 78,
+      "total_words": 151,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "800123A8",
+      "variant": "baseline",
+      "strict_match": false,
+      "differing_words": 79,
+      "total_words": 157,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "800123A8",
+      "variant": "bytes_first",
+      "strict_match": false,
+      "differing_words": 79,
+      "total_words": 157,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "800123A8",
+      "variant": "inline_bytes",
+      "strict_match": false,
+      "differing_words": 74,
+      "total_words": 157,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "800123A8",
+      "variant": "not_equal",
+      "strict_match": false,
+      "differing_words": 81,
+      "total_words": 157,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "80011F60",
+      "variant": "loop_le",
+      "strict_match": false,
+      "differing_words": 140,
+      "total_words": 151,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "80011F60",
+      "variant": "loop_ne_guard",
+      "strict_match": false,
+      "differing_words": 74,
+      "total_words": 151,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "80011F60",
+      "variant": "ptr_sub",
+      "strict_match": false,
+      "differing_words": 74,
+      "total_words": 151,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "80011F60",
+      "variant": "ptr_add",
+      "strict_match": false,
+      "differing_words": 74,
+      "total_words": 151,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "80011F60",
+      "variant": "loop_short_count",
+      "strict_match": false,
+      "differing_words": 147,
+      "total_words": 151,
+      "extra_words": 1,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "80011F60",
+      "variant": "unsigned_i",
+      "strict_match": false,
+      "differing_words": 75,
+      "total_words": 151,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "800123A8",
+      "variant": "loop_le",
+      "strict_match": false,
+      "differing_words": 153,
+      "total_words": 157,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "800123A8",
+      "variant": "loop_ne_guard",
+      "strict_match": false,
+      "differing_words": 74,
+      "total_words": 157,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "800123A8",
+      "variant": "ptr_sub",
+      "strict_match": false,
+      "differing_words": 74,
+      "total_words": 157,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "800123A8",
+      "variant": "ptr_add",
+      "strict_match": false,
+      "differing_words": 74,
+      "total_words": 157,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "800123A8",
+      "variant": "loop_short_count",
+      "strict_match": false,
+      "differing_words": 74,
+      "total_words": 157,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "800123A8",
+      "variant": "unsigned_i",
+      "strict_match": false,
+      "differing_words": 148,
+      "total_words": 157,
+      "extra_words": 1,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "80011F60",
+      "variant": "while",
+      "strict_match": false,
+      "differing_words": 74,
+      "total_words": 151,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "80011F60",
+      "variant": "for_preincrement",
+      "strict_match": false,
+      "differing_words": 74,
+      "total_words": 151,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "80011F60",
+      "variant": "block_array",
+      "strict_match": false,
+      "differing_words": 92,
+      "total_words": 151,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "80011F60",
+      "variant": "loop_reverse_comparison",
+      "strict_match": false,
+      "differing_words": 74,
+      "total_words": 151,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "80011F60",
+      "variant": "register_i",
+      "strict_match": false,
+      "differing_words": 74,
+      "total_words": 151,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "800123A8",
+      "variant": "while",
+      "strict_match": false,
+      "differing_words": 74,
+      "total_words": 157,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "800123A8",
+      "variant": "for_preincrement",
+      "strict_match": false,
+      "differing_words": 74,
+      "total_words": 157,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "800123A8",
+      "variant": "block_array",
+      "strict_match": false,
+      "differing_words": 122,
+      "total_words": 157,
+      "extra_words": 6,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "800123A8",
+      "variant": "loop_reverse_comparison",
+      "strict_match": false,
+      "differing_words": 74,
+      "total_words": 157,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "address": "800123A8",
+      "variant": "register_i",
+      "strict_match": false,
+      "differing_words": 74,
+      "total_words": 157,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+[
+  {
+    "name": "func_8002193C",
+    "stage": "initial",
+    "source_sha256": "b7f3ae7ed74799abd5dd8bd99ddcb8d1809caf4859f446a7da308a5e13f6f94b",
+    "comparison": {
+      "aligned_constant": 0,
+      "aligned_deletions": 9,
+      "aligned_insertions": 6,
+      "aligned_register": 49,
+      "aligned_schedule": 0,
+      "frame": -40
+    }
+  },
+  {
+    "name": "func_80024988",
+    "stage": "initial",
+    "source_sha256": "006af35a6e013b29d4b58358d32f9e2162796cfd608b78b8946750324d94739a",
+    "comparison": {
+      "aligned_constant": 21,
+      "aligned_deletions": 23,
+      "aligned_insertions": 19,
+      "aligned_register": 44,
+      "aligned_schedule": 0,
+      "frame": -80
+    }
+  },
+  {
+    "name": "func_8002193C",
+    "stage": "final",
+    "source_sha256": "915dcd4393c35e73320c3afd61292d4484eb56747442278b964c04a5e7adf0a1",
+    "comparison": {
+      "aligned_constant": 0,
+      "aligned_deletions": 8,
+      "aligned_insertions": 5,
+      "aligned_register": 60,
+      "aligned_schedule": 0,
+      "frame": -40
+    }
+  },
+  {
+    "name": "func_80024988",
+    "stage": "final",
+    "source_sha256": "748de22b20d77ff5488dc4fd3ab961ebed4144d73f5c3e82275d33d07ca99cf6",
+    "comparison": {
+      "aligned_constant": 9,
+      "aligned_deletions": 3,
+      "aligned_insertions": 3,
+      "aligned_register": 72,
+      "aligned_schedule": 0,
+      "frame": -80
+    }
+  }
+]
