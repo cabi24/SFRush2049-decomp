@@ -1,0 +1,45 @@
+{
+  "state": "frozen-review-pass-integrating",
+  "owner": "/root/match_boot_tail_bt03_high",
+  "packet": "BT03-high-larger",
+  "branch": "dot/boot-tail-bt03-high-larger",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x8001F6EC",
+      "size": 256,
+      "end_exclusive": "0x8001F7EC"
+    },
+    {
+      "address": "0x8001B29C",
+      "size": 260,
+      "end_exclusive": "0x8001B3A0"
+    },
+    {
+      "address": "0x8001B3A0",
+      "size": 260,
+      "end_exclusive": "0x8001B4A4"
+    },
+    {
+      "address": "0x8001B7C0",
+      "size": 260,
+      "end_exclusive": "0x8001B8C4"
+    },
+    {
+      "address": "0x8001D660",
+      "size": 260,
+      "end_exclusive": "0x8001D764"
+    },
+    {
+      "address": "0x80019AD4",
+      "size": 272,
+      "end_exclusive": "0x80019BE4"
+    }
+  ],
+  "bytes": 1568,
+  "prior_packet": "BT03-high-medium-tail frozen peer PASS c618e421b0e616db3fe56fba76d268f75e1da2c4",
+  "edit_scope": "Only named matching sources and cloud/work/boot_tail/BT03-high-larger/**",
+  "stop": "Genuine native ABI/domain checks, natural C89/O2/O1 and bounded diagnosis. No protected edits, overlaps, missing data substitution, unsupported declaration sweeps or exhausted residual reopening. Reuse safe storage.",
+  "reviewed_commit": "41085407771e1d55aaeca72f440c52ec33aaacc4",
+  "reviewed_tree": "1f22c65d9d1ee15cd0d03c451362a76257de207f"
+}

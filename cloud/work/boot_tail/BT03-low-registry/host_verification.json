@@ -1,0 +1,23 @@
+{
+  "result": "PASS_FOR_BOUNDED_HOST_SEMANTICS_ONLY",
+  "matching_credit_bytes": 0,
+  "tests_passed": 5,
+  "retained_source_invocations": 875,
+  "rejected_address_word_invocations": 110,
+  "case_counts": {
+    "resource_push_retained": 110,
+    "resource_push_rejected_address_word": 110,
+    "sample_registry_preparation": 675,
+    "sample_registry_removal": 90
+  },
+  "host_mode": "C89 with pedantic-errors, Wall/Wextra/Werror, AddressSanitizer and UndefinedBehaviorSanitizer",
+  "leak_sanitizer": "Disabled only for executor ptrace incompatibility; no candidate or harness heap allocation. Address/UB checks remain enabled.",
+  "native_width_checks": "Temporary IDO C89 compile assertions pass for sizeof(unsigned long)==sizeof(void*)==4, ResourceGroup32, SampleRecord28 and RegisteredSamples12. Host address-control assertion checks unsigned-long and pointer widths equal; valid bounded allocated addresses are used.",
+  "source_sha256": {
+    "cloud/work/boot_tail/BT03-low-registry/func_8001536C_NONMATCH.c": "50eade362d72b1480ab87836ac60a64dd1b0627368824df593b9e1592487ba81",
+    "cloud/work/boot_tail/BT03-low-registry/func_8001605C_NONMATCH.c": "673ce8633b00f74b5b79f31f69a6c2fd8c51bb4080ad16ce6632a25d05bae06f",
+    "cloud/work/boot_tail/BT03-low-registry/func_800161A0_NONMATCH.c": "d4701e8f0d05bd62d3e85d273244c8f846550dc7314a45d1b166e85896bbd2c4"
+  },
+  "test_source_sha256": "9c1b5bad1af48180fd39da6a24a842cc9c98e9b03178c6b4045aba647450cecb",
+  "limits": "Valid aligned allocated resources, bounded offsets, sentinel-terminated sample/group lists, configured nonnegative stack/registry counts and callback effects within capacity are required. Pointer-containing layouts are native-width evidence, not host sizeof. Source semantics and synthetic callbacks do not establish strict matching, concurrency safety, malformed-input safety, original helper algorithms, whole-game or cartridge coverage."
+}

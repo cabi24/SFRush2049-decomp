@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "result": "PASS-COMPLETE-NONMATCH",
+  "reviewer": "BT03 low-larger independent peer",
+  "reviewed_commit": "853db8ea9e3b9836e50708e5cb4604a673cc178c",
+  "reviewed_tree": "c0a8fd48acfa5986502329ced0b5d205b4a3ae75",
+  "source": "cloud/work/boot_tail/BT02-context-pair/nonmatch/func_80010E80.c",
+  "source_sha256": "722a58f924ce93aa4331c8a947adaf91be9a6d1e5123f7d4fbc4ece69d82a276",
+  "native_bytes": 500,
+  "matching_credit_bytes": 0,
+  "strict_comparison": {"differing_words": 53, "total_words": 125, "extra_words": 0, "unresolved": [], "unverified": [], "errors": []},
+  "checks": [
+    "Read the complete 80010E80 native body and pointer-forwarding callers 80014BD8 and 80020528",
+    "Confirmed real pointer forwarding and buffer-null guard before input dereference",
+    "Confirmed all input and state offsets with independent IDO layout assertions",
+    "Confirmed unsigned product wrap, next-192 rounding, and exact 0xFFFC mask",
+    "Confirmed allocator and static-helper arguments",
+    "Confirmed writeback, acquisition, clear, publication, and release order",
+    "Reproduced all 26 verifier controls",
+    "Reran original host suite and additional strict C89/O2 and ASan+UBSan/O1 builds"
+  ],
+  "source_changed": false,
+  "limits": [
+    "The body is COMPLETE-NONMATCH, not a strict match",
+    "Host array cases use the structurally evidenced count range 0 through 8",
+    "No native bounds check is invented",
+    "This approval concerns the reconstruction ABI and semantics only and awards zero matched bytes"
+  ]
+}

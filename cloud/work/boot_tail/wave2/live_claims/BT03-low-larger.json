@@ -1,0 +1,23 @@
+{
+  "state": "frozen-review-pass-integrating",
+  "owner": "/root/match_boot_tail_low_larger",
+  "packet": "BT03-low-larger",
+  "branch": "dot/boot-tail-bt03-low-larger",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x80015720",
+      "size": 440,
+      "end_exclusive": "0x800158D8"
+    },
+    {
+      "address": "0x800164D0",
+      "size": 332,
+      "end_exclusive": "0x8001661C"
+    }
+  ],
+  "bytes": 772,
+  "edit_scope": "Only named matching sources and cloud/work/boot_tail/BT03-low-larger/**",
+  "stop": "Actual native/helper ABI, natural C89/O2/O1 and bounded diagnosis. No protected edits, overlap, missing rodata substitution or old residual reopening; sparse private storage and shared compiler.",
+  "reviewed_commit": "152b24823186de69f81283add66f530a11f0a01c"
+}

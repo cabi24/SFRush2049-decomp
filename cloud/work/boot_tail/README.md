@@ -1,12 +1,12 @@
 # D10: boot-tail runtime research and matching
 
 The 412 assigned functions account for **95,012 B**.
-The current ledger records **104 open functions / 61,900 B**,
+The current ledger records **81 open functions / 54,404 B**,
 **0 confirmed non-C rows**, **1
 pre-existing verified bodies / 12 B**, and
-**183 newly verified bodies / 14,260 B**.
-There are **28 claimed functions / 4,248 B** and
-**96 nonmatches / 14,592 B**.
+**211 newly verified bodies / 18,508 B**.
+There are **9 claimed functions / 2,592 B** and
+**110 nonmatches / 19,496 B**.
 
 Packet 1 itself introduced zero matching bodies or verified bytes. Its initial
 verified entry imports the existing 12-byte `func_80010A00` PR #54 receipt, now
@@ -258,8 +258,8 @@ repository regression, native equality proof, target/toolchain check or ROM test
 ```json
 {
   "all_tail_distinct_directed_edges": 671,
-  "claimed_bytes": 4248,
-  "claimed_functions": 28,
+  "claimed_bytes": 2592,
+  "claimed_functions": 9,
   "cluster_count": 8,
   "cohort_count": 17,
   "game_called_all_inventory": 21,
@@ -270,13 +270,13 @@ repository regression, native equality proof, target/toolchain check or ROM test
   "in_scope_functions": 412,
   "inventory_function_bytes": 99120,
   "inventory_functions": 439,
-  "new_verified_bytes": 14260,
-  "new_verified_functions": 183,
+  "new_verified_bytes": 18508,
+  "new_verified_functions": 211,
   "non_c_functions": 0,
-  "nonmatch_bytes": 14592,
-  "nonmatch_functions": 96,
-  "open_bytes": 61900,
-  "open_functions": 104,
+  "nonmatch_bytes": 19496,
+  "nonmatch_functions": 110,
+  "open_bytes": 54404,
+  "open_functions": 81,
   "preexisting_verified_bytes": 12,
   "preexisting_verified_functions": 1,
   "ultralib_excluded_bytes": 4048,
@@ -500,3 +500,16 @@ distinct attempts, 95 complete nonmatches / 14,496 B and one 96-byte blocked lea
 remain outside matching credit. See wave9/README.md and wave9/unique_totals.json.
 Prior proof is carried in wave8/ci.json; current successor packets are excluded
 from the frozen cut. D10 remains unchanged.
+
+## Tenth cut: nine additional reviewed runtime bodies
+
+The first nine source cuts now have 211 unique new exact-CI-verified bodies /
+18,508 B. Tenth cut adds nine peer-reviewed strict local bodies / 2,592 B and
+fourteen complete nonmatches / 4,904 B. Its own exact-head CI remains pending.
+The unique matching union is 220 new bodies / 21,100 B plus the separate
+12-byte getter; 330 distinct attempts also include 109 complete nonmatches /
+19,400 B and the unchanged 96-byte table-proof lead. The 552-byte audio thread
+received the owner's requested direct parent review, with unchanged-source
+supplemental live-buffer/null-message tests. See wave10/README.md and
+wave10/unique_totals.json. Prior green proof is carried in wave9/ci.json;
+current matching refills are excluded. D10 remains unchanged.

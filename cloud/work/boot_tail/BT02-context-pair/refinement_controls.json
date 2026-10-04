@@ -1,0 +1,224 @@
+[
+  {
+    "variant": "10E80_quantum",
+    "differing_words": 121,
+    "total_words": 125,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "variant": "10E80_reuse_count",
+    "differing_words": 120,
+    "total_words": 125,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "variant": "10A40_signed_index",
+    "differing_words": 17,
+    "total_words": 138,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "variant": "10A40_volatile_index",
+    "differing_words": 4,
+    "total_words": 138,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "variant": "10A40_message_first",
+    "differing_words": 2,
+    "total_words": 138,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "variant": "10A40_unsigned_stop",
+    "differing_words": 2,
+    "total_words": 138,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "variant": "10A40_message_first_unsigned_stop",
+    "differing_words": 0,
+    "total_words": 138,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": true
+  },
+  {
+    "variant": "10E80_left_rounding",
+    "differing_words": 116,
+    "total_words": 125,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "variant": "10E80_unsigned_rounding",
+    "differing_words": 120,
+    "total_words": 125,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "variant": "10E80_signed_count",
+    "differing_words": 120,
+    "total_words": 125,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "variant": "10E80_count_first",
+    "differing_words": 116,
+    "total_words": 125,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "variant": "10E80_index_first",
+    "differing_words": 116,
+    "total_words": 125,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "variant": "10E80_byte_count",
+    "differing_words": 116,
+    "total_words": 125,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "variant": "10E80_index_bytes",
+    "differing_words": 114,
+    "total_words": 125,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "variant": "10E80_long_count",
+    "differing_words": 116,
+    "total_words": 125,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "variant": "10E80_raw_count_carrier",
+    "differing_words": 53,
+    "total_words": 125,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "variant": "10E80_raw_count_local",
+    "differing_words": 112,
+    "total_words": 125,
+    "extra_words": 5,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_800382E8 at .text+0x1ec"
+    ],
+    "strict_match": false
+  },
+  {
+    "variant": "10E80_rounded_expression",
+    "differing_words": 58,
+    "total_words": 125,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "variant": "10E80_rounded_count_first",
+    "differing_words": 58,
+    "total_words": 125,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "variant": "10E80_scoped_count",
+    "differing_words": 114,
+    "total_words": 125,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "variant": "10E80_early_return",
+    "differing_words": 114,
+    "total_words": 125,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "variant": "10A40_sdk_message",
+    "differing_words": 0,
+    "total_words": 138,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": true
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "source_files_unchanged": true,
+  "host_pointer_width_is_not_native_abi_proof": true,
+  "runs": [
+    {
+      "function": "func_80015720",
+      "mode": "c89-O2",
+      "result": "15720: 1007 cases passed"
+    },
+    {
+      "function": "func_80015720",
+      "mode": "asan-ubsan-O1",
+      "result": "15720: 1007 cases passed"
+    },
+    {
+      "function": "func_80015720",
+      "mode": "32-bit-layout",
+      "result": "PASS"
+    },
+    {
+      "function": "func_800164D0",
+      "mode": "c89-O2",
+      "result": "164D0: 405 cases passed"
+    },
+    {
+      "function": "func_800164D0",
+      "mode": "asan-ubsan-O1",
+      "result": "164D0: 405 cases passed"
+    },
+    {
+      "function": "func_800164D0",
+      "mode": "32-bit-layout",
+      "result": "PASS"
+    }
+  ]
+}

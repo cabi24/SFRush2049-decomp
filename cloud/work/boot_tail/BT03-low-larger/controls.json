@@ -1,0 +1,116 @@
+{
+  "variant_bound_per_function": 20,
+  "scope": "Directed source representations only; no flag sweep. Rejected sources remain private.",
+  "functions": {
+    "func_80015720": {
+      "source_forms": 14,
+      "forms": [
+        [
+          "initial aligned union and packed field access",
+          7,
+          0
+        ],
+        [
+          "word-by-word copy and comparison order",
+          94,
+          0
+        ],
+        [
+          "comparison order only",
+          6,
+          0
+        ],
+        [
+          "packed whole-record assignment",
+          58,
+          3
+        ],
+        [
+          "aligned struct whole-record assignment",
+          6,
+          0
+        ],
+        [
+          "aligned struct word-by-word assignment",
+          94,
+          0
+        ],
+        [
+          "64-bit storage probe; rejected non-C89 source",
+          94,
+          0
+        ],
+        [
+          "copy pointer locals",
+          94,
+          0
+        ],
+        [
+          "explicit reverse pointer walking",
+          85,
+          0
+        ],
+        [
+          "aligned typed payload/ID/ref struct",
+          6,
+          0
+        ],
+        [
+          "pointer-typed payload and formal",
+          6,
+          0
+        ],
+        [
+          "standard memcpy call",
+          110,
+          15
+        ],
+        [
+          "aligned member of packed/aligned union",
+          6,
+          0
+        ],
+        [
+          "final pointer-typed packed/aligned union",
+          6,
+          0
+        ]
+      ]
+    },
+    "func_800164D0": {
+      "source_forms": 6,
+      "forms": [
+        [
+          "initial indexed descriptors with separate counter",
+          71,
+          10
+        ],
+        [
+          "counter initialized at declaration and pointer increment in loop clause",
+          74,
+          0
+        ],
+        [
+          "counter initialized before guard and comparison order",
+          58,
+          0
+        ],
+        [
+          "pointer increment in loop body, separate counter",
+          65,
+          0
+        ],
+        [
+          "pointer increment in body and reused search index",
+          0,
+          0
+        ],
+        [
+          "reused index initialized before guard",
+          57,
+          0
+        ]
+      ]
+    }
+  }
+}

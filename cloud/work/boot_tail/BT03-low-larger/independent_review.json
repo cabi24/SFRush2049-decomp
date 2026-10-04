@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "reviewer": "BT02 context-pair independent peer",
+  "reviewed_commit": "152b24823186de69f81283add66f530a11f0a01c",
+  "reviewed_tree": "445e66bd15ee8112100ae2997abf1643cf61e85a",
+  "source_changed": false,
+  "checks": [
+    "Every changed on-disk file equals its immutable Git blob",
+    "Read both complete C bodies and canonical native extents",
+    "Read actual callers 80014FEC and 80015318 and guard bodies 80014594/800145DC",
+    "Independently compiled exact C at O2 and O1 using pinned IDO and strict full relocation",
+    "Reran the packet verifier, compiler/target pins, 439 extents and getter",
+    "Reran 1,412 C89/O2 cases, 1,412 ASan+UBSan/O1 cases, and 32-bit layout assertions",
+    "Confirmed aligned native eight-byte copies with packed indexed field access, narrow ABI, guard ordering and live-count reload"
+  ],
+  "results": [
+    {
+      "name": "func_800164D0",
+      "source_path": "cloud/matches/boot_tail/func_800164D0.c",
+      "source_sha256": "b106b06e51743c92ee4519422f125fc856ba9fef9b0d1c3d3c847fc485190a27",
+      "trials": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "differing_words": 0,
+          "total_words": 83,
+          "extra_words": 0,
+          "strict_match": true,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "only_defined_function": true,
+          "source_bound_to_immutable_commit": true,
+          "object_sha256": "59d97b728f9fb42cc4658a167dffe42bfe5267e4371b5431c5061ee7857bb1df"
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "differing_words": 82,
+          "total_words": 83,
+          "extra_words": 25,
+          "strict_match": false,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "only_defined_function": true,
+          "source_bound_to_immutable_commit": true,
+          "object_sha256": "051f0f951d90adbe1cba0cd929a4e42ef1a092920e60aede738c6d3c80979899"
+        }
+      ]
+    },
+    {
+      "name": "func_80015720",
+      "source_path": "cloud/work/boot_tail/BT03-low-larger/func_80015720_NONMATCH.c",
+      "source_sha256": "12c277008bcd9dd866ed98eb7e5a1b7f97a5ffd6a22699589ab40fc9622b498e",
+      "trials": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "differing_words": 6,
+          "total_words": 110,
+          "extra_words": 0,
+          "strict_match": false,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "only_defined_function": true,
+          "source_bound_to_immutable_commit": true,
+          "object_sha256": "562b3c94daebda3fc60456e91ca3c5c7f5448021faae1aea6b272285e42f3366"
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "differing_words": 108,
+          "total_words": 110,
+          "extra_words": 44,
+          "strict_match": false,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "only_defined_function": true,
+          "source_bound_to_immutable_commit": true,
+          "object_sha256": "c84606ba422e4162e25e7920748114e578e3c998a38ebadc1fde9c7551a137f4"
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Only 800164D0 is strict matching; 80015720 retains six record-copy differences and no match credit",
+    "Host 64-bit pointer layouts are not native ABI proof; separate 32-bit assertions pass",
+    "Table counts and descriptor storage must satisfy original preconditions; no new concurrency guarantee",
+    "Exact aggregate-head CI and maintainer acceptance remain outstanding"
+  ]
+}

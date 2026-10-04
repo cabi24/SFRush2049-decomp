@@ -1,0 +1,193 @@
+{
+  "purpose": "Rejected compiler controls; zero match credit. All controls are rejected source forms.",
+  "results": [
+    {
+      "name": "func_80019AD4",
+      "source_path": "cloud/work/boot_tail/BT03-high-larger/controls/func_80019AD4_initial.c",
+      "source_sha256": "670ca0ce9bdd022ab46dbeb4707f4b457c0b581468dddb666d1a9403c6f986c7",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 67,
+      "total_words": 68,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80019AD4",
+      "source_path": "cloud/work/boot_tail/BT03-high-larger/controls/func_80019AD4_initial.c",
+      "source_sha256": "670ca0ce9bdd022ab46dbeb4707f4b457c0b581468dddb666d1a9403c6f986c7",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 67,
+      "total_words": 68,
+      "extra_words": 10,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80019AD4",
+      "source_path": "cloud/work/boot_tail/BT03-high-larger/controls/func_80019AD4_split_duration.c",
+      "source_sha256": "75348305c7c76b964f729c3cb2b5731a776fcecd8c9ac26566b52edf54b43d93",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 18,
+      "total_words": 68,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80019AD4",
+      "source_path": "cloud/work/boot_tail/BT03-high-larger/controls/func_80019AD4_split_duration.c",
+      "source_sha256": "75348305c7c76b964f729c3cb2b5731a776fcecd8c9ac26566b52edf54b43d93",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 68,
+      "total_words": 68,
+      "extra_words": 13,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001B29C",
+      "source_path": "cloud/work/boot_tail/BT03-high-larger/controls/func_8001B29C_initial.c",
+      "source_sha256": "0890dc7b7795e687b7e636feb670415f4fcb50a2379c5c083610b4519b88371a",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 24,
+      "total_words": 65,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001B29C",
+      "source_path": "cloud/work/boot_tail/BT03-high-larger/controls/func_8001B29C_initial.c",
+      "source_sha256": "0890dc7b7795e687b7e636feb670415f4fcb50a2379c5c083610b4519b88371a",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 64,
+      "total_words": 65,
+      "extra_words": 17,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_8004BEB8 at .text+0x100"
+      ],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001B3A0",
+      "source_path": "cloud/work/boot_tail/BT03-high-larger/controls/func_8001B3A0_initial.c",
+      "source_sha256": "1bd53321893c283cb8263daecf5a2b3bb92ab0dfbff9846f0bef571d7acaa86a",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 24,
+      "total_words": 65,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001B3A0",
+      "source_path": "cloud/work/boot_tail/BT03-high-larger/controls/func_8001B3A0_initial.c",
+      "source_sha256": "1bd53321893c283cb8263daecf5a2b3bb92ab0dfbff9846f0bef571d7acaa86a",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 64,
+      "total_words": 65,
+      "extra_words": 17,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_8004BEB8 at .text+0x100"
+      ],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001B7C0",
+      "source_path": "cloud/work/boot_tail/BT03-high-larger/controls/func_8001B7C0_initial.c",
+      "source_sha256": "05b4180891e41ee65676509cdbf5ca1894dc11d1e5f9ddb7d3e818285625a2ab",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 24,
+      "total_words": 65,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001B7C0",
+      "source_path": "cloud/work/boot_tail/BT03-high-larger/controls/func_8001B7C0_initial.c",
+      "source_sha256": "05b4180891e41ee65676509cdbf5ca1894dc11d1e5f9ddb7d3e818285625a2ab",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 64,
+      "total_words": 65,
+      "extra_words": 17,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_8004BEB8 at .text+0x100"
+      ],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001F6EC",
+      "source_path": "cloud/work/boot_tail/BT03-high-larger/controls/func_8001F6EC_byte_index.c",
+      "source_sha256": "56c443890198ad3d4ba2751b3fd24151419eb5e4fc5420a9518b17143e2964d3",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 52,
+      "total_words": 64,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001F6EC",
+      "source_path": "cloud/work/boot_tail/BT03-high-larger/controls/func_8001F6EC_byte_index.c",
+      "source_sha256": "56c443890198ad3d4ba2751b3fd24151419eb5e4fc5420a9518b17143e2964d3",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 63,
+      "total_words": 64,
+      "extra_words": 16,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001F6EC",
+      "source_path": "cloud/work/boot_tail/BT03-high-larger/controls/func_8001F6EC_initial.c",
+      "source_sha256": "80835026e20a988a145268c922e1a8d818f39e2bb0d7264b128a58427932d012",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 58,
+      "total_words": 64,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001F6EC",
+      "source_path": "cloud/work/boot_tail/BT03-high-larger/controls/func_8001F6EC_initial.c",
+      "source_sha256": "80835026e20a988a145268c922e1a8d818f39e2bb0d7264b128a58427932d012",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 63,
+      "total_words": 64,
+      "extra_words": 24,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+address,name,size,cluster,status,flags,diff_words,source_path,note
+0x80021F84,func_80021F84,476,BT05,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,35,cloud/work/boot_tail/BT05-timed-pair/nonmatch/func_80021F84.c,COMPLETE-NONMATCH; bounded natural control flow; packed sentinel and signed-byte timing domains retained; zero matching credit.
+0x80022A98,func_80022A98,448,BT05,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,57,cloud/work/boot_tail/BT05-timed-pair/nonmatch/func_80022A98.c,COMPLETE-NONMATCH; bounded natural control flow; packed sentinel and signed-byte timing domains retained; zero matching credit.

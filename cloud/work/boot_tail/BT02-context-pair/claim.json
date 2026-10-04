@@ -1,0 +1,27 @@
+{
+  "packet": "BT02-context-pair",
+  "owner": "Astra / match_boot_tail_context_pair",
+  "state": "SOURCE-FROZEN / REVIEW-PASS",
+  "branch": "dot/boot-tail-bt02-context-pair",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "claim_ack_commit": "425bfa4d",
+  "targets": [
+    {
+      "address": "0x80010A40",
+      "bytes": 552,
+      "end_exclusive": "0x80010C68"
+    },
+    {
+      "address": "0x80010E80",
+      "bytes": 500,
+      "end_exclusive": "0x80011074"
+    }
+  ],
+  "edited_context_members": [],
+  "scope": [
+    "cloud/matches/boot_tail/func_80010A40.c",
+    "cloud/work/boot_tail/BT02-context-pair/**"
+  ],
+  "central_status_owner": "match_boot_tail_small_batch",
+  "stop_condition": "Strict match or bounded source-only reconstruction; stop on ABI, extent, protected-input, table/literal, or new authorization gap."
+}
