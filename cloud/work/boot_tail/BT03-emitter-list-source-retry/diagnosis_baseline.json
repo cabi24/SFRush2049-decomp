@@ -1,0 +1,16 @@
+[
+  {
+    "name": "func_8001D944",
+    "source_sha256": "b2b9133b06465cd4f33d927ed2429460d0723cebd46810f25753498ee332c584",
+    "summary": [
+      "verdict=structure-mismatch aligned_total=  65 words=  53 raw=  56 opcodes=  25 gaps=  24 reloc_syms=  14 norm=  59 regs=  52 fp=   2 insns=  76 frame= None sha1=65cce4cd8908 /tmp/tmp2b1gvd4s/func_8001D944.o true_insn_delta=+0 geometry_edit_distance=59 opcode_distance=16"
+    ]
+  },
+  {
+    "name": "func_8001DA74",
+    "source_sha256": "60a3da400e5fb86764367ec87df6b9d750cb5d2c23ee74a77ebcb27c40ba85a1",
+    "summary": [
+      "verdict=structure-mismatch aligned_total=  71 words=  58 raw=  66 opcodes=  46 gaps=  29 reloc_syms=  15 norm=  62 regs=  58 fp=  18 insns= 100 frame= None sha1=76a4bfbaf6e3 /tmp/tmp2b1gvd4s/func_8001DA74.o true_insn_delta=-1 geometry_edit_distance=62 opcode_distance=37"
+    ]
+  }
+]

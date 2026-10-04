@@ -1,0 +1,82 @@
+[
+  {
+    "name": "func_8001D944",
+    "source": "cloud/work/boot_tail/BT03-emitter-list-source-retry/controls/func_8001D944_for_traversal.c",
+    "source_sha256": "91e644c919530d4c3d3efd73f5d02df8527112c78ac3a4f1c07df07caa6557a2",
+    "differing_words": 53,
+    "total_words": 76,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "symbols": [
+      {
+        "name": "func_8001D944",
+        "value": 0,
+        "size": 304,
+        "type": 2,
+        "section": 4
+      }
+    ]
+  },
+  {
+    "name": "func_8001D944",
+    "source": "cloud/work/boot_tail/BT03-emitter-list-source-retry/controls/func_8001D944_postincrement_tail.c",
+    "source_sha256": "c804ffdf4c0dd7fe0bb65aeebcc13e1fd58d933ef0d40efa506af15a9ce4ce36",
+    "differing_words": 53,
+    "total_words": 76,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "symbols": [
+      {
+        "name": "func_8001D944",
+        "value": 0,
+        "size": 304,
+        "type": 2,
+        "section": 4
+      }
+    ]
+  },
+  {
+    "name": "func_8001DA74",
+    "source": "cloud/work/boot_tail/BT03-emitter-list-source-retry/controls/func_8001DA74_for_traversal.c",
+    "source_sha256": "f547eaca04ec87dfbf875f6cda437948f86dc98eaa7bc893d1f089850c69895b",
+    "differing_words": 57,
+    "total_words": 101,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "symbols": [
+      {
+        "name": "func_8001DA74",
+        "value": 0,
+        "size": 404,
+        "type": 2,
+        "section": 4
+      }
+    ]
+  },
+  {
+    "name": "func_8001DA74",
+    "source": "cloud/work/boot_tail/BT03-emitter-list-source-retry/controls/func_8001DA74_postincrement_tail.c",
+    "source_sha256": "8697dcb117d064e3e8c882eec7d4dc2fd23b2c1e33c3fdf61bb2a7fbf1054389",
+    "differing_words": 57,
+    "total_words": 101,
+    "extra_words": 1,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "symbols": [
+      {
+        "name": "func_8001DA74",
+        "value": 0,
+        "size": 412,
+        "type": 2,
+        "section": 4
+      }
+    ]
+  }
+]
