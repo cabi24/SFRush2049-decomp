@@ -1,0 +1,15 @@
+{
+  "family_reference": {
+    "url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/src/musyx/runtime/seq.c",
+    "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+    "blob": "96d05c381cc260c98aa9c21aae2f6b67c8167900",
+    "sha256": "02e065bf8a9317c9fcf245ab49544d79eab02ac1540fdf79ab252af21fa699d4",
+    "license": "CC0-1.0",
+    "use": "HandleEvent is a family semantic lead only. Newer scheduling, high-bit command rejection, extra controllers, section/event objects and expanded constructor arguments differ and are not imported."
+  },
+  "request_interface_checkpoint": "eae0295b40271c4758c7a3ecb890e48192487f8c",
+  "constructor_interface": "Independently closed actual A270 ten-input/return contract; its whole-body nonmatch is not relabeled as exact.",
+  "original_branch_base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "actual_branch_base": "496a72b0edd683bd7d46e8c21f8323ab43629494",
+  "recovery_scope": "Exact retained C recovered from complete reviewer tool output; complete test transcription freshly verified. Missing original controls remain historical evidence only."
+}

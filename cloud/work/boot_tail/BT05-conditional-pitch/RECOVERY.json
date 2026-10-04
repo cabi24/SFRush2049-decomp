@@ -1,0 +1,55 @@
+{
+  "recovery_status": "Retained source exact hash restored; test/verifier/docs reconstructed from visible transcript; fresh authenticated-toolchain verification reproduced the source/extent/test results. Original Git commit/tree not recovered.",
+  "lost_commit": "08c4e98cbb1f5bb58e252434fa340a543b21dd15",
+  "lost_tree": "b25402d1bb71d18b40d4c4e40bdfc77c17ef629b",
+  "old_base": "c00333eb90e02d42bec33796ac8d9d2a62e30449",
+  "source_sha256": "a7204076bf3562cf6c391ed3886cbe544391eba99a2c74940501c61964a2ee29",
+  "source_hash_exactly_recovered": true,
+  "target_body_sha256": "a83e3fb57c63f9553b7f594a3d61cd15604a86b9b150a11d5116f10b4cdee824",
+  "unavailable_original_hashes": [
+    "test_conditional.c",
+    "verify.py",
+    "README.md",
+    "literal_address_baseline.c",
+    "variants.json",
+    "preflight.json"
+  ],
+  "compiler_pin_recovery": "Original per-file compiler hash dictionary was written before reset but not printed in visible results; no reconstruction claim. Restore authenticated pinned compiler independently before replay.",
+  "prior_results": {
+    "O2": {
+      "differing_words": 125,
+      "total_words": 148,
+      "extra_nonzero_words": 0,
+      "elf_function_bytes": 592,
+      "text_section_bytes": 592
+    },
+    "O1": {
+      "differing_words": 148,
+      "total_words": 148,
+      "extra_nonzero_words": 55,
+      "elf_function_bytes": 820,
+      "text_section_bytes": 832
+    },
+    "source_tests": "98816 validated actual-source calls;8 unsafe fixtures rejected before execution;UBSan",
+    "independent_review": "Not completed before reset"
+  },
+  "qualification": "CONDITIONAL-COMPLETE-NONMATCH;native table and producer constraints remain unproved;no cloud/matches submission",
+  "initial_recovered_file_sha256": {
+    "variants.json": "003df2ac147e4da599790d3ba414a12addad1bd2f8f0c4d39c18a44c1b373dd0",
+    "literal_address_baseline.c": "6320f34ad298ca297982cac04c1e46e4fb666206665954e7b50c986d9ec3bca0",
+    "verify.py": "0562611a100e06df3a4c97f23678a463ad13fe7adb2d44d282bdcfd4f85ba6fb",
+    "README.md": "bf085716ab3aa181f1fedc1fb3903a1724afb85f218291ddaaeeafe60897573b",
+    "preflight.json": "4b559cb2a5583da3fa33c21af0760d4192217bc67a1adf8a5d0747f089b9fdb1",
+    "func_80022CD4_CONDITIONAL.c": "a7204076bf3562cf6c391ed3886cbe544391eba99a2c74940501c61964a2ee29",
+    "test_conditional.c": "035ac3041f64e5a617937f0654f01e89c524c5b962b79a3095ebe76b1bf03adf"
+  },
+  "fresh_reverification": {
+    "utc": "2026-10-04T04:43:51Z",
+    "base_sha": "496a72b0edd683bd7d46e8c21f8323ab43629494",
+    "compiler_pin_source": "cloud/work/boot_tail/packet2/preflight.json at496a72b0edd683bd7d46e8c21f8323ab43629494",
+    "compiler_hashes_count": 24,
+    "verification_sha256": "9a7c1a9cf4e50df7846e4957922b231deab2559936c575471ed7b0c7248df85f",
+    "source_hash_unchanged": true,
+    "independent_review": "pending"
+  }
+}

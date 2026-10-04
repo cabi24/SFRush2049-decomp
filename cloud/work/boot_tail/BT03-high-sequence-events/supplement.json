@@ -1,0 +1,10 @@
+{
+  "result": "PASS",
+  "source_sha256": "ad5137579da173b15c903c8aa35c69cd26416d51def3b65267045062543bff65",
+  "test_source_sha256": "52f4f790b12cd27558a6cea5d7d9af6becff7133f9101933a3eb6ea99e77200e",
+  "signed_offset_pairs": 65536,
+  "simultaneous_four_track_cases": 64,
+  "source_calls": 65600,
+  "compiler": "cc -std=c89 -pedantic-errors -Wall -Wextra -Werror -O2 -fsanitize=address,undefined -no-pie",
+  "qualification": "Temporary harness extends the pinned independent C model; full source-native inspection supports correspondence. This is bounded regression agreement, not a universal semantic proof."
+}

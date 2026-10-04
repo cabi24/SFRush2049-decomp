@@ -1,0 +1,54 @@
+{
+  "result": "PASS",
+  "compiler": "cc (Debian 14.2.0-19) 14.2.0",
+  "cases_per_mode": 8964,
+  "results": [
+    {
+      "name": "func_8002574C",
+      "source_sha256": "09afc7ba5732799e15937190a709c72f1b82b1da46a477b4eda8ab4505450a26",
+      "result": "PASS",
+      "32bit_c89_layout": "PASS",
+      "cases_per_mode": 4051,
+      "modes": [
+        "c89-O2",
+        "c89-asan-ubsan-O1"
+      ],
+      "coverage": [
+        "enable/acquire/release ordering, two-record traversal, inactive and unknown-busy no-ops",
+        "busy/state/request-state matrix, exhaustive byte countdown, ownership flag bit masking",
+        "all ten start inputs, typed five-input callback, and actual contexts 0/1",
+        "start success/failure, post-helper fields/buffer reloads, and release ordering",
+        "pump-mutated dispatch, acquire-mutated record, stop-mutated byte narrowing and handle overwrite",
+        "finite positive unsigned rates through UINT_MAX and halfword counts through 65535"
+      ]
+    },
+    {
+      "name": "func_80025F74",
+      "source_sha256": "0f3dde0cda2d618d93193d6e37718a43e1b007156fb36abbd872185e5c78c91d",
+      "result": "PASS",
+      "32bit_c89_layout": "PASS",
+      "cases_per_mode": 4913,
+      "modes": [
+        "c89-O2",
+        "c89-asan-ubsan-O1"
+      ],
+      "coverage": [
+        "signed receive results/pending values, first/later header paths, low-24-bit masks and saturation",
+        "state/pending/3072-byte transfer gates, initial/later sizes, modulo-4096 alignment and queue identity",
+        "signed state/budget, 36/37-byte input bound, capacity-minus-160 bound, halfword decrement",
+        "decoder-mutated counters/capacity/blocks, bit-position rounding, destination and field reloads",
+        "budget capture across receive/transfer/decode, ignored decoder return, shared zero-fill budget",
+        "zero-fill size/content/locations, ring rollover, helper mutation, final capacity-minus-320 threshold",
+        "unsigned counter rollover and alignment arithmetic with real allocated storage"
+      ]
+    }
+  ],
+  "limits": [
+    "Actual-source caller host semantics only; no native/ROM execution or matching claim.",
+    "External helpers, including decoder, are scripted mocks; no decoder algorithm/safety claim.",
+    "32-bit layout compiled separately; execution uses native-width pointers and allocated objects.",
+    "Positive sufficient capacity and valid aligned allocations; arithmetic probes access valid storage.",
+    "No arbitrary malformed-input, zero-capacity, invalid-float, concurrency, or hardware-safety claim.",
+    "ASan/UBSan enabled; LeakSanitizer disabled for the host execution environment."
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "classification": "FRESH_POST_RESET_REPLAY_OF_RECOVERED_RETAINED_SOURCE",
+  "base_commit": "496a72b0edd683bd7d46e8c21f8323ab43629494",
+  "base_tree": "b116b8282af4c082fa699b5186d3505292aa3b82",
+  "historical_reviewed_commit": "ca6a32ca2497c95804adabd7686d73e7e295887b",
+  "historical_reviewed_tree": "ae184b11c16f57fbb165721cd2cf7180867f3567",
+  "source_recovery": "Complete visible reviewer tool output; hash equals the pre-reset retained source.",
+  "source_sha256": "ad5137579da173b15c903c8aa35c69cd26416d51def3b65267045062543bff65",
+  "test_recovery": "Complete visible reviewer tool output; original per-file hash was not printed. This recovered file is freshly tested and bound here.",
+  "test_sha256": "52f4f790b12cd27558a6cea5d7d9af6becff7133f9101933a3eb6ea99e77200e",
+  "old_git_objects_recovered": false,
+  "old_review_json_recovered": false,
+  "fresh_checks": {
+    "preflight": "PASS; JSON equals fully transcribed pre-reset preflight including protected/scorer/compiler hashes.",
+    "retained_flag_rows": 2,
+    "whole_text_relocation": "PASS without masks, unresolved/unverified references or errors.",
+    "elf_function_bytes": {
+      "O2": 880,
+      "O1": 1276
+    },
+    "native_target_bytes": 872,
+    "native_layout_and_ten_input_hashes": "PASS",
+    "stock_actual_source_calls": 68931,
+    "supplemental_actual_source_calls": 65600,
+    "total_actual_source_calls": 134531
+  },
+  "fresh_control_archive_rows": 0,
+  "missing_original_controls": "Eight prior rows remain historical only; no missing source or control receipt was recreated.",
+  "matching_credit": {
+    "functions": 0,
+    "bytes": 0
+  },
+  "host_compiler": "cc (Debian 14.2.0-19) 14.2.0",
+  "toolchain_source": "Restored pinned IDO 5.3 v1.2; all 24 file hashes agree with packet preflight.",
+  "new_independent_review": {
+    "result": "PASS_BOUNDED_COMPLETE_NONMATCH_RESEARCH",
+    "reviewer": "review_recovered_sequence_packet",
+    "source_commit": "a675c9e7e7cf96def91c728b389e60da1fbbbd46",
+    "source_tree": "43653264546a20b78a656e602294bcaa8148171d",
+    "receipt": "cloud/work/boot_tail/BT03-high-sequence-events/REVIEW.json",
+    "receipt_sha256": "8fe6cabdcd9778a0600d2eef01b39852217383857f6d623326b60890684a9e99"
+  },
+  "fresh_receipt_sha256": {
+    "verification.json": "a9eef35d9698a4c0c522c997fb01fd9cb9c4c3696eaef3cf0eefc1f095d7e9ce",
+    "abi_proof.json": "e22f818868528ba121afc127e7d01d85cf092b1d34f2fb5101c8496d95d07cc1",
+    "host_verification.json": "ed8466f31d5dcc1bf2ae1725083957a55048aeb53df7951c5e92a9b9d5897aac",
+    "supplement.json": "4ec6b7d596b4ed2e3180782adbd3031fecfba3ad1fbc9123c6f08b7643ff83bc",
+    "preflight.json": "7af233707742257b7ca9920c7e2aa6b5603b7cf6d80bc08fe7e9d706aa5680a5"
+  }
+}

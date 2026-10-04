@@ -1,0 +1,338 @@
+[
+  {
+    "address": "8002574C",
+    "label": "initial",
+    "optimization": 2,
+    "differing_words": 15,
+    "extra_words": 0,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "8002574C",
+    "label": "initial",
+    "optimization": 1,
+    "differing_words": 148,
+    "extra_words": 9,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "8002574C",
+    "label": "field_and_statement_forms",
+    "optimization": 2,
+    "differing_words": 12,
+    "extra_words": 0,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "8002574C",
+    "label": "field_and_statement_forms",
+    "optimization": 1,
+    "differing_words": 148,
+    "extra_words": 9,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "8002574C",
+    "label": "call_layout_and_explicit_add",
+    "optimization": 2,
+    "differing_words": 12,
+    "extra_words": 0,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "8002574C",
+    "label": "call_layout_and_explicit_add",
+    "optimization": 1,
+    "differing_words": 148,
+    "extra_words": 9,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "8002574C",
+    "label": "parameter_values_and_budget_order",
+    "optimization": 2,
+    "differing_words": 26,
+    "extra_words": 0,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "8002574C",
+    "label": "parameter_values_and_budget_order",
+    "optimization": 1,
+    "differing_words": 150,
+    "extra_words": 13,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "8002574C",
+    "label": "widened_values_and_fill_cursor",
+    "optimization": 2,
+    "differing_words": 26,
+    "extra_words": 0,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "8002574C",
+    "label": "widened_values_and_fill_cursor",
+    "optimization": 1,
+    "differing_words": 150,
+    "extra_words": 13,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "8002574C",
+    "label": "word_abi_diagnostic_and_fill_for",
+    "optimization": 2,
+    "differing_words": 12,
+    "extra_words": 0,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "8002574C",
+    "label": "word_abi_diagnostic_and_fill_for",
+    "optimization": 1,
+    "differing_words": 148,
+    "extra_words": 9,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "8002574C",
+    "label": "line_tie_and_kr_diagnostic",
+    "optimization": 2,
+    "differing_words": 12,
+    "extra_words": 0,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "8002574C",
+    "label": "line_tie_and_kr_diagnostic",
+    "optimization": 1,
+    "differing_words": 148,
+    "extra_words": 9,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "8002574C",
+    "label": "global_index_and_budget_break",
+    "optimization": 2,
+    "differing_words": 129,
+    "extra_words": 9,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "8002574C",
+    "label": "global_index_and_budget_break",
+    "optimization": 1,
+    "differing_words": 150,
+    "extra_words": 19,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "8002574C",
+    "label": "direct_record_index_and_comma_step",
+    "optimization": 2,
+    "differing_words": 0,
+    "extra_words": 0,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "8002574C",
+    "label": "direct_record_index_and_comma_step",
+    "optimization": 1,
+    "differing_words": 150,
+    "extra_words": 166,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "initial",
+    "optimization": 2,
+    "differing_words": 92,
+    "extra_words": 0,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "initial",
+    "optimization": 1,
+    "differing_words": 210,
+    "extra_words": 53,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "field_and_statement_forms",
+    "optimization": 2,
+    "differing_words": 2,
+    "extra_words": 0,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "field_and_statement_forms",
+    "optimization": 1,
+    "differing_words": 209,
+    "extra_words": 54,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "call_layout_and_explicit_add",
+    "optimization": 2,
+    "differing_words": 2,
+    "extra_words": 0,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "call_layout_and_explicit_add",
+    "optimization": 1,
+    "differing_words": 209,
+    "extra_words": 54,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "parameter_values_and_budget_order",
+    "optimization": 2,
+    "differing_words": 2,
+    "extra_words": 0,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "parameter_values_and_budget_order",
+    "optimization": 1,
+    "differing_words": 209,
+    "extra_words": 54,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "widened_values_and_fill_cursor",
+    "optimization": 2,
+    "differing_words": 104,
+    "extra_words": 3,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "widened_values_and_fill_cursor",
+    "optimization": 1,
+    "differing_words": 208,
+    "extra_words": 56,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "word_abi_diagnostic_and_fill_for",
+    "optimization": 2,
+    "differing_words": 2,
+    "extra_words": 0,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "word_abi_diagnostic_and_fill_for",
+    "optimization": 1,
+    "differing_words": 209,
+    "extra_words": 53,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "line_tie_and_kr_diagnostic",
+    "optimization": 2,
+    "differing_words": 2,
+    "extra_words": 0,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "line_tie_and_kr_diagnostic",
+    "optimization": 1,
+    "differing_words": 209,
+    "extra_words": 54,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "explicit_loop_operands",
+    "optimization": 2,
+    "differing_words": 159,
+    "extra_words": 7,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "explicit_loop_operands",
+    "optimization": 1,
+    "differing_words": 207,
+    "extra_words": 63,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "global_index_and_budget_break",
+    "optimization": 2,
+    "differing_words": 38,
+    "extra_words": 0,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "global_index_and_budget_break",
+    "optimization": 1,
+    "differing_words": 209,
+    "extra_words": 52,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "direct_record_index_and_comma_step",
+    "optimization": 2,
+    "differing_words": 2,
+    "extra_words": 0,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "direct_record_index_and_comma_step",
+    "optimization": 1,
+    "differing_words": 209,
+    "extra_words": 54,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "fill_update_value",
+    "optimization": 2,
+    "differing_words": 169,
+    "extra_words": 5,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "fill_update_value",
+    "optimization": 1,
+    "differing_words": 208,
+    "extra_words": 55,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "byte_output_offset",
+    "optimization": 2,
+    "differing_words": 2,
+    "extra_words": 0,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  },
+  {
+    "address": "80025F74",
+    "label": "byte_output_offset",
+    "optimization": 1,
+    "differing_words": 209,
+    "extra_words": 54,
+    "provenance": "Recovered historical tool-result observation; initial and retained final forms freshly replayed separately"
+  }
+]

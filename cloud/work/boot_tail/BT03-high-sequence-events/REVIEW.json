@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "result": "PASS_BOUNDED_COMPLETE_NONMATCH_RESEARCH",
+  "reviewer": "review_recovered_sequence_packet",
+  "reviewed_utc": "2026-10-04T05:12:27.505904+00:00",
+  "source_commit": "a675c9e7e7cf96def91c728b389e60da1fbbbd46",
+  "source_tree": "43653264546a20b78a656e602294bcaa8148171d",
+  "base_commit": "496a72b0edd683bd7d46e8c21f8323ab43629494",
+  "target": "func_80017D38",
+  "native_bytes": 872,
+  "source_sha256": "ad5137579da173b15c903c8aa35c69cd26416d51def3b65267045062543bff65",
+  "test_sha256": "52f4f790b12cd27558a6cea5d7d9af6becff7133f9101933a3eb6ea99e77200e",
+  "matching_credit_functions": 0,
+  "matching_credit_bytes": 0,
+  "checks": {
+    "verify_py_check": "PASS; O2 173/218+2 excess, ELF 880 B; O1 217/218+96 excess, ELF 1276 B; full text relocation clean; both rejected.",
+    "abi_proof_py_check": "PASS; native object sizes and used offsets, all ten canonical native body hashes.",
+    "verify_semantics_py_check": "PASS; 134531 actual-source calls under ASan/UBSan, source and recovered test bound.",
+    "independent_native_audit": "Complete dispatcher, all seven native callee bodies, caller 198C8 and initializer 178B0 read; parameter and return contracts, captures/reloads, wraparound, command classification and whole timestamp copy checked.",
+    "preflight_read_only_replay": "PASS; receipt equals fresh computation including all 24 compiler file hashes, full target manifest, 439 functions/99120 B and strict existing getter. setup.sh was not rerun because it writes git config; existing pinned compiler and .githooks setting separately checked.",
+    "fresh_replay_receipt_hashes": "PASS; all five recorded receipt hashes agree.",
+    "path_scope": "PASS; exactly 20 packet-local changed files, zero changed matching submissions.",
+    "protected_paths": "PASS",
+    "static_body_locks": "PASS; all 161 intact (hash check, not recompilation).",
+    "whitespace": "PASS",
+    "final_tracked_worktree": "UNCHANGED; pre-existing untracked tools/cloud/ido symlink remains.",
+    "public_family_reference": "Pinned source blob fetched through GitHub and SHA256 independently equals 02e065bf8a9317c9fcf245ab49544d79eab02ac1540fdf79ab252af21fa699d4; pinned license blob identifies CC0 1.0 Universal; newer architecture and extra commands remain family leads only.",
+    "recovery_provenance": "Exact retained source hash confirmed. No original per-test hash equality, old Git object recovery, old receipt recovery or replay of unavailable controls is claimed."
+  },
+  "limits": [
+    "Finite aligned sufficiently allocated u16-backed streams with complete reached headers and note durations.",
+    "Valid whole contexts and nodes, channel 0..15 and track number 0..63.",
+    "Live helper mutations must retain pointer validity and eventual bounded traversal; fixtures do not establish complete downstream semantics.",
+    "No malformed/cyclic/concurrent/partial-object-overlap or universal-equivalence claim.",
+    "No matching, cartridge coverage, hosted CI, acceptance or merge claim.",
+    "Original missing rejected-control bodies and receipts remain historical and unavailable."
+  ],
+  "blocking_findings": []
+}
