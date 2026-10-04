@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "result": "PASS_STRICT_BODY_AND_SOURCE_REVIEW",
+  "reviewer": "/root/inspect_identifier_register_match",
+  "reviewed_commit": "a87864a4ab2630771d527fb460a010dcd9588d96",
+  "reviewed_tree": "56ca28d383f7487e16d92e9edc5336f6ac94cbe6",
+  "source_path": "cloud/matches/boot_tail/func_8001C1D8.c",
+  "source_sha256": "82d2de520663eeaedaec17624b865cc7ea3e2a4da20e7ca3b28220f8016774a5",
+  "baseline_sha256": "e78eaf80607f870959b674da6718e94de3f03d8f67250ed937b2b028092bc9dd",
+  "function": "func_8001C1D8",
+  "strict_matching_functions": 1,
+  "verified_body_bytes": 432,
+  "native_words": 108,
+  "elf_function_size": 432,
+  "fully_relocated_words_equal": true,
+  "full_text_relocation_masks": {},
+  "unresolved": [],
+  "unverified": [],
+  "errors": [],
+  "zero_section_padding": true,
+  "independent_ido_layout_assertions": 32,
+  "tests": {
+    "retry_actual_source_and_delta": 2,
+    "original_sanitizer_groups": 6,
+    "new_actual_source_under_asan_ubsan": true,
+    "leak_sanitizer_disabled_as_recorded": true,
+    "four_O2_O1_rows_exactly_reproduced": true,
+    "two_orthogonal_source_line_controls_reproduced": true
+  },
+  "source_delta": "Exact old scalar loop gains only an ordinary braced multiline body; no executable expression, type, local, ABI or access changes.",
+  "stock_preassembler_evidence": {
+    "instruction_sequence_equal": true,
+    "old_clear_store_lines": [
+      92,
+      92,
+      92,
+      92
+    ],
+    "new_clear_store_lines": [
+      93,
+      92,
+      92,
+      92
+    ],
+    "source_line_effect_isolated_by_orthogonal_controls": true,
+    "not_a_modified_compiler_or_manual_directive": true
+  },
+  "native_semantics_review": [
+    "All 108 native words compared to complete C: configuration globals, call order, 32 packed voice rows, 32 aligned channel rows, special channels 21/22/23..31 and 16 signed halfword clears agree.",
+    "Native caller 800107E0+0x2c supplies one word; callee 19A60 consumes actual word120 and byte255; other three real helpers use no input; initializer result is unused.",
+    "Whole actual helper bodies inspected for ABI; no fake declaration or added formal.",
+    "Packed field stores retain native widths; words40 is an aligned slice at offset64, with address/stride alignment supplied by the actual global and416-byte records.",
+    "External calls preserve ordering and live global mutation. Host fixture checks untouched bytes, pre-clear mutation, final callback mutation and exact call order.",
+    "Loops have fixed finite domains and no narrowing, signed overflow, fabricated input bound or padding local."
+  ],
+  "scope": {
+    "changed_paths": [
+      "cloud/matches/boot_tail/func_8001C1D8.c",
+      "cloud/work/boot_tail/BT03-store-rotation-retry/README.md",
+      "cloud/work/boot_tail/BT03-store-rotation-retry/input_pins.json",
+      "cloud/work/boot_tail/BT03-store-rotation-retry/line_provenance_controls.json",
+      "cloud/work/boot_tail/BT03-store-rotation-retry/test_semantics.py",
+      "cloud/work/boot_tail/BT03-store-rotation-retry/verification.json",
+      "cloud/work/boot_tail/BT03-store-rotation-retry/verify.py"
+    ],
+    "old_packet_unchanged": true,
+    "protected_paths_unchanged": true,
+    "clean_worktree_after_review": true,
+    "no_source_edits": true,
+    "no_merge_or_cartridge_coverage_claim": true
+  },
+  "receipt_hashes": {
+    "verification.json": "e56d71ee6612996fa64bc880cbf7286552b3dddbc3328e63e1dc38a40fa8d922",
+    "line_provenance_controls.json": "81b8282ba8de0ddc910e3891653dbadfe9cff80ec3b78285ba27d9317d07d6a3",
+    "input_pins.json": "41657086d675302c1692a84300dfb8966a0189235e9092707e81b0941a44026c",
+    "verify.py": "d581474c8309cd0a4a5794cf735df52b0b1c13f0aa6499c7a9a2463d8841a207",
+    "test_semantics.py": "0aa6a30665ba5b9445d81bf3eb3e7d3947312222807c4d7828a3a54c2930e60b"
+  },
+  "limitations": [
+    "Host sanitizer execution does not establish N64 execution; separate strict relocated equality and native layout checks establish matching evidence.",
+    "Aggregate exact-head CI and checker-owned integration remain separate gates.",
+    "Source-family/compiler notes were leads; stock local controls, not outside claims, establish this result."
+  ]
+}

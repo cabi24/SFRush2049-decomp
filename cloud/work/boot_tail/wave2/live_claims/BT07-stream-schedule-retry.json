@@ -1,0 +1,19 @@
+{
+  "state": "closed-no-new-candidate",
+  "owner": "/root/close_stream_scheduling_match",
+  "packet": "BT07-stream-schedule-retry",
+  "branch": "dot/boot-tail-bt07-stream-schedule-retry",
+  "base": "3683d5b566528989ca288a9182edfe088f3aec91",
+  "targets": [
+    {
+      "address": "0x80025F74",
+      "size": 840,
+      "end_exclusive": "0x800262bc"
+    }
+  ],
+  "bytes": 840,
+  "claim_kind": "bounded evidence-backed revisit; not a fresh attempt",
+  "local_checkpoint": "8cccffb88f99656d3948a71e15517be63fb2405a",
+  "edit_scope": "Only new owned packet and named canonical matching source on strict success; historical packets and frozen cut15 remain unchanged",
+  "note": "No novel supported lever beyond prior twelve forms; fresh baseline/controls and trace reproduced, no source changes or new credit."
+}

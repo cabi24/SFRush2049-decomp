@@ -1,0 +1,20 @@
+{
+  "state": "frozen-review-pass-integrating",
+  "owner": "/root/close_byte_clear_schedules",
+  "packet": "C13-byte-clear-retry",
+  "branch": "dot/boot-tail-c13-byte-clear-retry",
+  "base": "7f751e7523776d8e5f35899bacd9f240ee32bb05",
+  "targets": [
+    {
+      "address": "0x80020820",
+      "size": 484,
+      "end_exclusive": "0x80020a04"
+    }
+  ],
+  "bytes": 484,
+  "claim_kind": "bounded evidence-backed revisit; not a fresh attempt",
+  "local_checkpoint": null,
+  "edit_scope": "Only new owned packet and named canonical matching source on strict success; historical packets and frozen cut15 remain unchanged",
+  "note": "Read-only history first; newly justified ordinary multiline-braces topology, not padding. Preserve external rows/actual byte ABI and live helper contracts; independent review and exact extent proof required. No new unique attempted target.",
+  "reviewed_commit": "72b0bbd0cf81055e10a3613c7b353ec9dd8d418a"
+}
