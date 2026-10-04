@@ -17,8 +17,9 @@ SAME gate for many functions at once:
   * the gate is the full matching ROM build + `make test` on the builder after
     a full repo sync with `rsync -a --delete asm/`, with every touched TU
     touched and its object required to be newer than the source;
-  * on a failed gate the TUs are restored byte-for-byte and the batch is
-    bisected; a single function that fails alone is recorded as refused;
+  * after every gate the TUs are restored byte-for-byte; when the whole
+    batch fails, candidates are accepted one at a time on top of those
+    already accepted, and a candidate whose addition fails is refused;
   * on a passed gate locks migrate to the ROM TU (`verified: rom-sha1`),
     promotion_record rows are written, and the batch is committed.
 
@@ -64,8 +65,10 @@ def norm(stmt):
 
 
 def tu_statements(text):
-    """Collapsed top-level statements already present in a TU (cheap scan)."""
-    return {norm(s) for s in re.split(r"(?<=;)\s*\n", text) if s.strip()}
+    """Collapsed lines already present in a TU. Spliced declarations are
+    single-line statements (context_check collapses them), so a line match
+    is an exact statement match."""
+    return {norm(line) for line in text.splitlines() if line.strip()}
 
 
 def source_for(fn, entries):
@@ -145,7 +148,11 @@ def restore(tus):
 
 
 def attempt(cands):
-    """Which of cands pass the gate; the tree is always restored afterwards."""
+    """Greedy, order-preserving acceptance: each candidate is spliced on top of
+    everything already accepted and the full gate is run; a candidate that
+    fails (alone or through a declaration conflict with an accepted body) is
+    refused. The tree is restored after every gate. A first gate of the whole
+    set short-circuits the common all-pass case."""
     if not cands:
         return []
     tus = splice(cands)
@@ -153,12 +160,17 @@ def attempt(cands):
     restore(tus)
     if ok:
         return cands
-    if len(cands) == 1:
-        refuse(cands[0]["fn"], "full-ROM SHA-1 gate failed in TU context: " + detail[-200:])
-        return []
-    mid = len(cands) // 2
-    print(f"  gate failed for {len(cands)}; bisecting")
-    return attempt(cands[:mid]) + attempt(cands[mid:])
+    print(f"  gate failed for all {len(cands)}; accepting one at a time")
+    accepted = []
+    for c in cands:
+        tus = splice(accepted + [c])
+        ok, detail = gate(tus)
+        restore(tus)
+        if ok:
+            accepted.append(c)
+        else:
+            refuse(c["fn"], "full-ROM SHA-1 gate failed in TU context: " + detail[-200:])
+    return accepted
 
 
 def publish(passed, label):
@@ -193,7 +205,7 @@ def publish(passed, label):
            f"Segments: {', '.join(sorted({c['seg']['yaml_name'] for c in passed}))}; "
            f"{nbytes} slot bytes.\nEach body: score-0 lock against the splat-derived reloc-aware "
            "target, rom_tu.h context check\n(cloud/work/boot_tail_promotion/context.jsonl), then one "
-           "full matching ROM build + make test\non watchman2 for the batch (bisected on failure).\n\n"
+           "full matching ROM build + make test\non watchman2 for the batch (greedy per-function acceptance on failure).\n\n"
            "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>")
     c = run(["git", "commit", "-q", "-m", msg, "--"] + tus + ["matched.lock.json"])
     if c.returncode:
