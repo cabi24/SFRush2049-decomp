@@ -4145,13 +4145,14 @@
       "note": "BT03-chain-dispatch; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. Complete source-led reconstruction; genuine six-input ABI including unused yPan. Exact native936B versus ELF952B; four inserted narrowing moves and phase shift. O1 control and nine bounded variants; host/native semantic tests pass. Zero matched credit; independent review PASS on75df2d98; central integration pending."
     },
     "0x80019C8C": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-high-spatial-control",
-      "evidence_level": "HYPOTHESIS",
+      "evidence_level": "VERIFIED-BODY",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "source_path": "cloud/matches/boot_tail/func_80019C8C.c",
       "diff_words": "0",
-      "note": "BT03-high-spatial-control; exact peer source/ABI PASS. Local strict body and exact ELF extent; fourteenth-cut CI pending."
+      "note": "BT03-high-spatial-control; exact peer source/ABI and full body/ELF proof; PR74 exact-head CI success at496a72b0/treeb116b828. Packet runtime domains remain explicit.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/74"
     },
     "0x8001D1F4": {
       "status": "nonmatch",
@@ -4199,13 +4200,50 @@
       "note": "BT03-constructor-pair; exact peer source/ABI PASS. Complete bounded nonmatch; zero matching credit."
     },
     "0x8001DDE0": {
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-emitter-handle",
-      "evidence_level": "HYPOTHESIS",
+      "evidence_level": "VERIFIED-BODY",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "source_path": "cloud/matches/boot_tail/func_8001DDE0.c",
       "diff_words": "0",
-      "note": "BT03-emitter-handle; exact peer source/ABI PASS. Local strict body and exact ELF extent; fourteenth-cut CI pending. Genuine uninitialized float locals are retained. Defined-path domain requires each consumed output to have been written by the real helper or retained from a prior real iteration. The original producer/listener invariant and external fade value remain unproved; final DC08 is an opaque unit-test boundary. Exact code equality does not establish universal runtime safety."
+      "note": "BT03-emitter-handle; exact peer source/ABI and full body/ELF proof; PR74 exact-head CI success at496a72b0/treeb116b828. Genuine uninitialized float locals are retained. Defined-path domain requires each consumed output to have been written by the real helper or retained from a prior real iteration. The original producer/listener invariant and external fade value remain unproved; final DC08 is an opaque unit-test boundary. Exact code equality does not establish universal runtime safety.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/74"
+    },
+    "0x80017D38": {
+      "status": "nonmatch",
+      "owner": "Astra / BT03-high-sequence-events",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT03-high-sequence-events/nonmatch/func_80017D38.c",
+      "diff_words": "173",
+      "note": "BT03-high-sequence-events; fresh recovered source/ABI peer PASS. Complete bounded nonmatch; zero matching credit."
+    },
+    "0x80022CD4": {
+      "status": "nonmatch",
+      "owner": "Astra / BT05-conditional-pitch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT05-conditional-pitch/func_80022CD4_CONDITIONAL.c",
+      "diff_words": "125",
+      "note": "BT05-conditional-pitch; fresh recovered source/ABI peer PASS. Complete bounded nonmatch; zero matching credit. Conditional native-address reconstruction only. Original table object, extent, values and producer invariant remain unproved. Valid backing storage for each visited/adjacent halfword, a terminating backward walk and nonzero divisors are required; known donor-bound and wrapping-normalization counterexamples are retained. No universal runtime safety or ISO-C portability claim."
+    },
+    "0x8002574C": {
+      "status": "claimed",
+      "owner": "Astra / BT07-decoder-facing-callers",
+      "evidence_level": "HYPOTHESIS",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_8002574C.c",
+      "diff_words": "0",
+      "note": "BT07-decoder-facing-callers; fresh recovered source/ABI peer PASS. Local strict body and exact ELF extent; fifteenth-cut exact-head CI pending.Caller-only reconstruction with genuine external decoder interface; decoder/T050/out-of-census descendants remain excluded. Valid aligned buffers, positive capacity, callback lifetime and stated counter domains required."
+    },
+    "0x80025F74": {
+      "status": "nonmatch",
+      "owner": "Astra / BT07-decoder-facing-callers",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT07-decoder-facing-callers/func_80025F74.c",
+      "diff_words": "2",
+      "note": "BT07-decoder-facing-callers; fresh recovered source/ABI peer PASS. Complete bounded nonmatch; zero matching credit. Caller-only reconstruction with genuine external decoder interface; decoder/T050/out-of-census descendants remain excluded. Valid aligned buffers, positive capacity, callback lifetime and stated counter domains required."
     }
   }
 }

@@ -1,9 +1,9 @@
 {
-  "state": "active",
-  "owner": "/root/match_boot_tail_bt03_high",
+  "state": "frozen-recovered-review-pass-integrating",
+  "owner": "/root/verify_boot_tail_matches",
   "packet": "BT03-high-sequence-events",
-  "branch": "dot/boot-tail-bt03-high-sequence-events",
-  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "branch": "dot/boot-tail-bt03-sequence-events-recovered",
+  "base": "496a72b0edd683bd7d46e8c21f8323ab43629494",
   "base_note": "Worker confirmed preserved source base because master object was not local at activation; all protected native/scorer inputs are identical. Integrator has now fetched verified master.",
   "targets": [
     {
@@ -16,5 +16,7 @@
   "edit_scope": "Only named matching source and cloud/work/boot_tail/BT03-high-sequence-events/**",
   "dependency_proof": "19490 peer-reviewed at eae0295b; constructor owner closed actual ten-slot A270 input/return contract on 2026-10-04 before activation, independent of constructor match outcome.",
   "stop": "Real no-input byte-return ABI, 64 live 40-byte tracks and aligned bounded event streams. Preserve captured due time, live context/cursor reloads, wrapped arithmetic, callback effects and actual constructor ABI. No gated callee reconstruction. Exact ELF size and full relocated proof, bounded natural controls and independent review.",
-  "verified_master": "1018ab003251d41de0671284519a91b6b07c5a95"
+  "verified_master": "1018ab003251d41de0671284519a91b6b07c5a95",
+  "note": "Exact retained C SHA ad513757 recovered; regenerate verification/tests under explicit recovery provenance. No source search or matching credit. Missing rejected controls remain historical evidence only; parent independently reviews new frozen packet.",
+  "reviewed_commit": "f02638ed8388bd3e5256e0c31b2ae36b6be9524a"
 }

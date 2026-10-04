@@ -1,0 +1,56 @@
+{
+  "classification": "CONDITIONAL-COMPLETE-NONMATCH",
+  "target_bytes": 592,
+  "target_body_sha256": "a83e3fb57c63f9553b7f594a3d61cd15604a86b9b150a11d5116f10b4cdee824",
+  "manifest_checks": [
+    "boot_tail_8000f3a4.s: OK",
+    "extents.json: OK",
+    "symbols.json: OK"
+  ],
+  "extent_population": 439,
+  "extent_bytes": 99120,
+  "binary_results": [
+    {
+      "function": "func_80022CD4",
+      "source_sha256": "a7204076bf3562cf6c391ed3886cbe544391eba99a2c74940501c61964a2ee29",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 125,
+      "total_words": 148,
+      "extra_nonzero_words": 0,
+      "elf_function_bytes": 592,
+      "text_section_bytes": 592,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "full_relocated_equal_and_exact_function_size": false,
+      "strict_match": false,
+      "address_token": "0x8002D476",
+      "address_token_locally_defined": false
+    },
+    {
+      "function": "func_80022CD4",
+      "source_sha256": "a7204076bf3562cf6c391ed3886cbe544391eba99a2c74940501c61964a2ee29",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 148,
+      "total_words": 148,
+      "extra_nonzero_words": 55,
+      "elf_function_bytes": 820,
+      "text_section_bytes": 832,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "full_relocated_equal_and_exact_function_size": false,
+      "strict_match": false,
+      "address_token": "0x8002D476",
+      "address_token_locally_defined": false
+    }
+  ],
+  "tests": "PASS: 98816 validated actual-source calls; 8 unsafe fixtures rejected before execution",
+  "sanitizer": "UBSan; no ASan claim (fixed native address conflicts with shadow mapping)",
+  "native_table_object_proven": false,
+  "native_input_domain_proven": false,
+  "iso_c_portable": false,
+  "universal_runtime_safety": false
+}

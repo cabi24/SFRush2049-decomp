@@ -1,0 +1,23 @@
+{
+  "state": "frozen-recovered-review-pass-integrating",
+  "owner": "/root/match_decoder_facing_callers",
+  "packet": "BT07-decoder-facing-callers",
+  "branch": "dot/boot-tail-bt07-decoder-facing-callers-recovered",
+  "base": "496a72b0edd683bd7d46e8c21f8323ab43629494",
+  "targets": [
+    {
+      "address": "0x8002574C",
+      "size": 604,
+      "end_exclusive": "0x800259A8"
+    },
+    {
+      "address": "0x80025F74",
+      "size": 840,
+      "end_exclusive": "0x800262BC"
+    }
+  ],
+  "bytes": 1444,
+  "reviewed_commit": "3683d5b566528989ca288a9182edfe088f3aec91",
+  "edit_scope": "Only named matching source(s) and owned packet directory",
+  "note": "Recovered after local workspace loss; fresh pinned compile, actual source/ABI and semantic review required and completed. Original decoder/T050 and conditional table/domain limits remain."
+}

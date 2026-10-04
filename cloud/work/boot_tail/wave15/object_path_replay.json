@@ -1,0 +1,158 @@
+{
+  "result": "PASS",
+  "scope": "Eight paired builds of unchanged reviewed selected/control sources. Only .mdebug varies by absolute source path; no whole-object portable identity claimed. All strict-score/extent/source/pin fields reproduce exactly. Original peer object hashes remain provenance for its checkout.",
+  "rows": [
+    {
+      "source": "cloud/matches/boot_tail/func_8002574C.c",
+      "flags": "O2",
+      "source_sha256": "09afc7ba5732799e15937190a709c72f1b82b1da46a477b4eda8ab4505450a26",
+      "different_sections": [
+        ".mdebug"
+      ],
+      "both_absolute_source_paths_present": true,
+      "equal_section_sha256": {
+        "": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        ".symtab": "cd6001ff5bca4415958d5e3effd3ca75b967fa678f61f4c7876420539ae9097c",
+        ".shstrtab": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9",
+        ".strtab": "c352d15cf11a7820cd188c7fba67b096b0cbc55244354cc83d78ecae3e07ee87",
+        ".text": "ce167d61b6ee8c06c1b572f3e9ee50f907d7ebe4f4034a0c8e3a38b0b0b0c462",
+        ".options": "c57543bec08580045de0b076306fcaca9fc93c716452e64a6bffa96d8404999c",
+        ".reginfo": "94697097a1d98b372cd8e3ba2ce31451eb565fb67fd113aaceac445650735032",
+        ".rel.text": "94a95a6c05c8f4b9ab33e51b6615090eabec3a95069092797f77129ac9f86e39"
+      }
+    },
+    {
+      "source": "cloud/matches/boot_tail/func_8002574C.c",
+      "flags": "O1",
+      "source_sha256": "09afc7ba5732799e15937190a709c72f1b82b1da46a477b4eda8ab4505450a26",
+      "different_sections": [
+        ".mdebug"
+      ],
+      "both_absolute_source_paths_present": true,
+      "equal_section_sha256": {
+        "": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        ".symtab": "0a9dbe58d784e423bb020e8e78ba921e0ebd8dbaf3d4566c2809868d5a553605",
+        ".shstrtab": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9",
+        ".strtab": "c352d15cf11a7820cd188c7fba67b096b0cbc55244354cc83d78ecae3e07ee87",
+        ".text": "dd9d25157812892e8291db7387750efa2f79c8e05d46772c6f346968404c00b4",
+        ".options": "708692d08cdaeb296c546342787737f01c3f5790badee934fdfe304a22e3727b",
+        ".reginfo": "0870ee7790de8ec4bf7a007d7b8e0e26e8b5f99f7327a68e37650f1984159f57",
+        ".rel.text": "904ce6d595469da7bda763affbac427f1e3afb8b30289fa7f2f48ccb98f03cce"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT07-decoder-facing-callers/func_80025F74.c",
+      "flags": "O2",
+      "source_sha256": "0f3dde0cda2d618d93193d6e37718a43e1b007156fb36abbd872185e5c78c91d",
+      "different_sections": [
+        ".mdebug"
+      ],
+      "both_absolute_source_paths_present": true,
+      "equal_section_sha256": {
+        "": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        ".symtab": "71d8760230fd976f1e57d739677c553802a40ef8cfc23c5967851ca1dbde8011",
+        ".shstrtab": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9",
+        ".strtab": "ada7ce636678be2fb43f594608c0a60185defecdb6a4d445467cfe9426899e13",
+        ".text": "fcf44b1b2e901d28a31ed21c3e52abbc6239c7c34fb7c865f83659a7b7dfc3ec",
+        ".options": "1d37d97e1a4e66b6b9c2b801a83160c44ad5c270a3dfb57daf8e05af8d6e77dd",
+        ".reginfo": "b7fbcc48ed8ab256e719aef61c1d24ff0adeb7da9c8539d2c7ed1d4cc3276ef7",
+        ".rel.text": "46392a477b81728932aa8c763ca7e2210d65b294cf6f4489cc58d6ec83a808de"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT07-decoder-facing-callers/func_80025F74.c",
+      "flags": "O1",
+      "source_sha256": "0f3dde0cda2d618d93193d6e37718a43e1b007156fb36abbd872185e5c78c91d",
+      "different_sections": [
+        ".mdebug"
+      ],
+      "both_absolute_source_paths_present": true,
+      "equal_section_sha256": {
+        "": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        ".symtab": "15fa6c244f4246def2b4070bd9d53f0b6b6cdaa41173528f6df20056bff2c97b",
+        ".shstrtab": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9",
+        ".strtab": "ada7ce636678be2fb43f594608c0a60185defecdb6a4d445467cfe9426899e13",
+        ".text": "5b9615941bd837360721526a4e39a504db4a6b9b2f49f9bfa9c8264911b4ad9d",
+        ".options": "13e4feebcc2d130d6903b726823e86330c015879076c0267fb875db00f8a525c",
+        ".reginfo": "68ea7165db33e63244109bccae924d04627cd0ed30ec878f96f6df7f4ab0bd67",
+        ".rel.text": "417fe81ccdec09e77889dfd7dbf6dd8af74d1248eb98c003eeeae19359f1e375"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT07-decoder-facing-callers/controls/initial_func_8002574C.c",
+      "flags": "O2",
+      "source_sha256": "c44290f1f38e87473bdc0aec9a6b5bab5f02d17fa71c8d25c2f506d9addc0ae6",
+      "different_sections": [
+        ".mdebug"
+      ],
+      "both_absolute_source_paths_present": true,
+      "equal_section_sha256": {
+        "": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        ".symtab": "cd6001ff5bca4415958d5e3effd3ca75b967fa678f61f4c7876420539ae9097c",
+        ".shstrtab": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9",
+        ".strtab": "c352d15cf11a7820cd188c7fba67b096b0cbc55244354cc83d78ecae3e07ee87",
+        ".text": "5616fe5123f758e382b96f5d9155badbbf55db4f49e7a0e412f086409f66172a",
+        ".options": "c57543bec08580045de0b076306fcaca9fc93c716452e64a6bffa96d8404999c",
+        ".reginfo": "94697097a1d98b372cd8e3ba2ce31451eb565fb67fd113aaceac445650735032",
+        ".rel.text": "5a947108b55d773931375c580ba2da6c574b97fd54eea28f05e8d3e71933d8f4"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT07-decoder-facing-callers/controls/initial_func_8002574C.c",
+      "flags": "O1",
+      "source_sha256": "c44290f1f38e87473bdc0aec9a6b5bab5f02d17fa71c8d25c2f506d9addc0ae6",
+      "different_sections": [
+        ".mdebug"
+      ],
+      "both_absolute_source_paths_present": true,
+      "equal_section_sha256": {
+        "": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        ".symtab": "182f4954b22915f1ae5c8f8ae6b749d4f89f881cca2794c8a88438667d3d2976",
+        ".shstrtab": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9",
+        ".strtab": "c352d15cf11a7820cd188c7fba67b096b0cbc55244354cc83d78ecae3e07ee87",
+        ".text": "cbe5c03d0aa7168a733ea5aae0dbb6cf079ee8122f15d68d327e02bd86dbc91a",
+        ".options": "708692d08cdaeb296c546342787737f01c3f5790badee934fdfe304a22e3727b",
+        ".reginfo": "0870ee7790de8ec4bf7a007d7b8e0e26e8b5f99f7327a68e37650f1984159f57",
+        ".rel.text": "17a75552651ba80abbfefdae9e9322c7d9199e31b1db94cf87a12e5c87ce14ec"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT07-decoder-facing-callers/controls/initial_func_80025F74.c",
+      "flags": "O2",
+      "source_sha256": "75952ab147eb10063478274b51b388e85afc9a110147adde121d8682f8125d5e",
+      "different_sections": [
+        ".mdebug"
+      ],
+      "both_absolute_source_paths_present": true,
+      "equal_section_sha256": {
+        "": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        ".symtab": "71d8760230fd976f1e57d739677c553802a40ef8cfc23c5967851ca1dbde8011",
+        ".shstrtab": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9",
+        ".strtab": "ada7ce636678be2fb43f594608c0a60185defecdb6a4d445467cfe9426899e13",
+        ".text": "4de53aa62c312e84739b36a8a5142a7dee49d98defdff2bf6e82a92a3de75020",
+        ".options": "1d37d97e1a4e66b6b9c2b801a83160c44ad5c270a3dfb57daf8e05af8d6e77dd",
+        ".reginfo": "b7fbcc48ed8ab256e719aef61c1d24ff0adeb7da9c8539d2c7ed1d4cc3276ef7",
+        ".rel.text": "46392a477b81728932aa8c763ca7e2210d65b294cf6f4489cc58d6ec83a808de"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT07-decoder-facing-callers/controls/initial_func_80025F74.c",
+      "flags": "O1",
+      "source_sha256": "75952ab147eb10063478274b51b388e85afc9a110147adde121d8682f8125d5e",
+      "different_sections": [
+        ".mdebug"
+      ],
+      "both_absolute_source_paths_present": true,
+      "equal_section_sha256": {
+        "": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        ".symtab": "5ad24036ec9df2b1d605d5d50774179b8528cd97ad51a8320ce0f1fd23ad8ef5",
+        ".shstrtab": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9",
+        ".strtab": "ada7ce636678be2fb43f594608c0a60185defecdb6a4d445467cfe9426899e13",
+        ".text": "41380201821d458eb94d0b5553ee3726ee53ff65b8dea856bf40240f25a3e3e0",
+        ".options": "13e4feebcc2d130d6903b726823e86330c015879076c0267fb875db00f8a525c",
+        ".reginfo": "68ea7165db33e63244109bccae924d04627cd0ed30ec878f96f6df7f4ab0bd67",
+        ".rel.text": "244205cb4a2acb637f91774cd14aca93e69baed8d0113b4949d260c8f568dd26"
+      }
+    }
+  ]
+}

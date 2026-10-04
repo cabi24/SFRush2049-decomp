@@ -1,0 +1,3 @@
+address,name,size,cluster,status,flags,diff_words,source_path,note
+0x8002574C,func_8002574C,604,BT07,verified_body,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_8002574C.c,LOCAL-STRICT-MATCH exact ELF extent; independent review and aggregate-head CI pending
+0x80025F74,func_80025F74,840,BT07,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,2,cloud/work/boot_tail/BT07-decoder-facing-callers/func_80025F74.c,COMPLETE-NONMATCH exact ELF extent; adjacent copy/store scheduling residual; decoder external

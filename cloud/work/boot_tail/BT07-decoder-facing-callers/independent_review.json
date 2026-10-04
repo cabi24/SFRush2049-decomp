@@ -1,0 +1,348 @@
+{
+  "reviewer": "Independent conditional-pitch worker",
+  "result": "PASS-ONE-LOCAL-MATCH-ONE-COMPLETE-NONMATCH",
+  "commit": "85b10245558a211a48071978bb49ca8660232b92",
+  "tree": "dcabfba543bc980c067d4e529e8d1f824209f768",
+  "base": "496a72b0edd683bd7d46e8c21f8323ab43629494",
+  "files_sha256": {
+    "cloud/matches/boot_tail/func_8002574C.c": "09afc7ba5732799e15937190a709c72f1b82b1da46a477b4eda8ab4505450a26",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/README.md": "6475b05e810eda33b12f2f0f09a2086cfb70e73f0824414609f36c2e88671c61",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/controls/initial_func_8002574C.c": "c44290f1f38e87473bdc0aec9a6b5bab5f02d17fa71c8d25c2f506d9addc0ae6",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/controls/initial_func_80025F74.c": "75952ab147eb10063478274b51b388e85afc9a110147adde121d8682f8125d5e",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/experiments.json": "a7fb357134e8175b518a4b85dd63e0200ce457fa3bcbaeffdba228791aaa0729",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/func_80025F74.c": "0f3dde0cda2d618d93193d6e37718a43e1b007156fb36abbd872185e5c78c91d",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/input_pins.json": "7d80b57f2965a2d41da03d237479ae400fd47859f981cc9b7c3da9320874700a",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/reconstruction.md": "e669b383a630b172626b9d508420f6e0c2d8a1cc4d8ca6a69146fe419674bbcb",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/recovery_replay.json": "5b92044402d0c027d24434c317bfa3bc9d383119060930cf7b1ce8d657858dd2",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/recovery_status.md": "8ba8971671f008814a35af5f73ba132a58500a46a9327aa31bbed70a30ae12b6",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/semantics.json": "e41b6976f2a6996c8211dcc2f3acf816ce32c824e46132c511ea2337c33b1a74",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/status_delta.csv": "b155944d26b9a1c0115b8110479014d49a39d41c087b96a802c15fc80f513b79",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/test_semantics.py": "9a8f6ba5f58b0a506b6f066d17572c132dfa60281da6dc6da06b96babee6ec20",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/verification.json": "db7fd167963554e3a8b243d68513b64c149963d5d88794f9e469ce1b3228f50d",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/verify.py": "7d8db0cdd6466ef104d894da8b37f272b10209e199d307a9358b437ce514dec6"
+  },
+  "source_hashes": {
+    "func_8002574C": "09afc7ba5732799e15937190a709c72f1b82b1da46a477b4eda8ab4505450a26",
+    "func_80025F74": "0f3dde0cda2d618d93193d6e37718a43e1b007156fb36abbd872185e5c78c91d"
+  },
+  "review_scope": {
+    "full_native_bodies": [
+      "func_8002574C",
+      "func_80025F74"
+    ],
+    "decoder_interface_only": "Previously authorized bounded 160-byte entry and 64-byte exit; no middle/algorithm reconstruction",
+    "established_registration_source": "cloud/matches/boot_tail/func_80025C68.c",
+    "other_decoder_body_reconstructed": false
+  },
+  "findings": [
+    "Independent full native pair inspection confirms a no-input dispatcher and one-stream-pointer pump. Dispatcher has a 96-byte native frame and true ten-input start call with byte request/settings, short buffer, unsigned count/rate, actual five-input callback and contexts 0/1. Callback registration agrees with established matched source. No hidden formal or ABI trick is introduced.",
+    "The stream layout is explicit: both natural 32-bit caller layouts agree at 4,648 bytes and every accessed field/queue offset is separately asserted. Existing volatile enable/busy field convention is preserved. The first 400 decoder bytes remain opaque; output arithmetic explicitly uses bytes rather than floating-element types.",
+    "Independent native comparison confirms post-pump busy/state reloads, post-prepare start argument reloads, failure-hook buffer/ownership reloads, post-stop byte reload/narrowing, and exact release ordering. Nonzero enable and all inactive/default cases preserve native behavior.",
+    "Stream pump preserves signed pending/state/budget loads, budget snapshot across calls, header halfword/low 24-bit extraction, unsigned input counters/saturation, genuine four-argument transfer callback, pending-before-callback store, ring address arithmetic and helper-induced field mutations.",
+    "Native decoder call uses stream/output pointers and ignores its result. Bounded approved entry/exit corroborate a 248-byte frame, incoming a1 home and internally assigned a2/a3, explicit integer-zero result. The external declaration remains int(StreamState*,void*); decoder middle and algorithm were not inspected or reconstructed.",
+    "Unsigned capacity and occupancy gates, 37-byte input threshold, modulo output addressing, post-decoder bit-position/available/blocks/capacity reloads, halfword decrement truncation, shared signed budget, zero fill and final readiness threshold agree with native semantics. Positive sufficient capacity and valid aligned allocations are correctly required; no malformed-input or decoder-safety claim is made.",
+    "Fresh authenticated 24-file IDO replay independently reproduces 2574C strict 0/151 with no extras and exact 604-byte STT_FUNC; .text 608 bytes has only zero alignment tail. Full-function relocation clean, with no masks/unresolved/unverified symbols. This is a local strict matching body, pending aggregate exact-head CI.",
+    "Fresh 25F74 replay reproduces 2/210 differing and exact 840-byte STT_FUNC, .text 848-byte zero alignment tail. Residual is the disclosed adjacent copy/store scheduling pair at +0x2F4/+0x2F8; source remains COMPLETE-NONMATCH with no matching credit. Negative O1 and initial O2/O1 controls reproduce; full-function relocation is separately clean even where an overlong O1 target window splits HI/LO.",
+    "Actual-source tests independently pass 8,964 cases per mode: 4,051 dispatcher + 4,913 stream, strict C89 O2 and ASan/UBSan O1, plus independent 32-bit layout checks. Mocks exercise genuine external contracts and post-helper mutations without implementing a decoder. Two independent temporary mutants (countdown minus 2 and space threshold 159) fail assertions, confirming relevant tests are sensitive.",
+    "Only matching source 2574C and packet-local research/tests were added. No raw target disassembly, objects, ROM, credentials, scorer/layout/lock/production changes or banned function/helper content is included. Recovery claims distinguish reconstructed source from new verification and do not claim lost Git objects recovered."
+  ],
+  "independent_verification": {
+    "result": "PASS",
+    "getter_strict_match": true,
+    "inventory_extents": {
+      "count": 439,
+      "bytes": 99120,
+      "equal": true
+    },
+    "results": [
+      {
+        "name": "func_8002574C",
+        "native_bytes": 604,
+        "target_sha256": "19d7bc111c647cce08476953e530bcd26f2cb4ce36a54e7bcbc3f420ccc603d4",
+        "source_path": "cloud/matches/boot_tail/func_8002574C.c",
+        "source_sha256": "09afc7ba5732799e15937190a709c72f1b82b1da46a477b4eda8ab4505450a26",
+        "trials": [
+          {
+            "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+            "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+            "source_sha256": "09afc7ba5732799e15937190a709c72f1b82b1da46a477b4eda8ab4505450a26",
+            "object_sha256": "e189e90f9add488801340a2af540a745999f94da99049a4ae54406b39b61db65",
+            "differing_words": 0,
+            "total_words": 151,
+            "extra_words": 0,
+            "strict_match": true,
+            "scorer_window_relocation_errors": [],
+            "full_function_relocation_errors": [],
+            "relocation_mask_count": 0,
+            "unresolved": [],
+            "unverified": [],
+            "full_native_window_equal": true,
+            "elf": {
+              "start": 0,
+              "function_bytes": 604,
+              "section_bytes": 608
+            },
+            "exact_function_extent": true,
+            "section_padding_is_zero": true
+          },
+          {
+            "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+            "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+            "source_sha256": "09afc7ba5732799e15937190a709c72f1b82b1da46a477b4eda8ab4505450a26",
+            "object_sha256": "9d1e6ed45074302e2fa4395dbc6c2b37188fe899db990e32a168970f616e4f94",
+            "differing_words": 150,
+            "total_words": 151,
+            "extra_words": 166,
+            "strict_match": false,
+            "scorer_window_relocation_errors": [
+              "unpaired R_MIPS_HI16 for D_80056230 at .text+0x250"
+            ],
+            "full_function_relocation_errors": [],
+            "relocation_mask_count": 0,
+            "unresolved": [],
+            "unverified": [],
+            "full_native_window_equal": false,
+            "elf": {
+              "start": 0,
+              "function_bytes": 1304,
+              "section_bytes": 1312
+            },
+            "exact_function_extent": false,
+            "section_padding_is_zero": true
+          }
+        ],
+        "initial_control": [
+          {
+            "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+            "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+            "source_sha256": "c44290f1f38e87473bdc0aec9a6b5bab5f02d17fa71c8d25c2f506d9addc0ae6",
+            "object_sha256": "7040963277a348b0dbbe1d64a453239ccb5480e7519b9b8ef796312447c990ff",
+            "differing_words": 15,
+            "total_words": 151,
+            "extra_words": 0,
+            "strict_match": false,
+            "scorer_window_relocation_errors": [],
+            "full_function_relocation_errors": [],
+            "relocation_mask_count": 0,
+            "unresolved": [],
+            "unverified": [],
+            "full_native_window_equal": false,
+            "elf": {
+              "start": 0,
+              "function_bytes": 604,
+              "section_bytes": 608
+            },
+            "exact_function_extent": true,
+            "section_padding_is_zero": true
+          },
+          {
+            "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+            "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+            "source_sha256": "c44290f1f38e87473bdc0aec9a6b5bab5f02d17fa71c8d25c2f506d9addc0ae6",
+            "object_sha256": "f5c899bbe4f2a5044bfbbcb25e44d01a7c68768cf5697cb8d30753372eac8105",
+            "differing_words": 148,
+            "total_words": 151,
+            "extra_words": 9,
+            "strict_match": false,
+            "scorer_window_relocation_errors": [],
+            "full_function_relocation_errors": [],
+            "relocation_mask_count": 0,
+            "unresolved": [],
+            "unverified": [],
+            "full_native_window_equal": false,
+            "elf": {
+              "start": 0,
+              "function_bytes": 648,
+              "section_bytes": 656
+            },
+            "exact_function_extent": false,
+            "section_padding_is_zero": true
+          }
+        ]
+      },
+      {
+        "name": "func_80025F74",
+        "native_bytes": 840,
+        "target_sha256": "7650ca0132961f8bcc14735c6797092a1b4fd0b4c40ff3031b2e512204aa5896",
+        "source_path": "cloud/work/boot_tail/BT07-decoder-facing-callers/func_80025F74.c",
+        "source_sha256": "0f3dde0cda2d618d93193d6e37718a43e1b007156fb36abbd872185e5c78c91d",
+        "trials": [
+          {
+            "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+            "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+            "source_sha256": "0f3dde0cda2d618d93193d6e37718a43e1b007156fb36abbd872185e5c78c91d",
+            "object_sha256": "ca345e6a42132fba64ba4fcdd5c045e0a0f743a40cd9c0b4ec8d7fe20be04412",
+            "differing_words": 2,
+            "total_words": 210,
+            "extra_words": 0,
+            "strict_match": false,
+            "scorer_window_relocation_errors": [],
+            "full_function_relocation_errors": [],
+            "relocation_mask_count": 0,
+            "unresolved": [],
+            "unverified": [],
+            "full_native_window_equal": false,
+            "elf": {
+              "start": 0,
+              "function_bytes": 840,
+              "section_bytes": 848
+            },
+            "exact_function_extent": true,
+            "section_padding_is_zero": true
+          },
+          {
+            "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+            "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+            "source_sha256": "0f3dde0cda2d618d93193d6e37718a43e1b007156fb36abbd872185e5c78c91d",
+            "object_sha256": "e3d619a3d96939344c140dfc5550e5bfe05b70b0ea1c3e3c24854973fafb4936",
+            "differing_words": 209,
+            "total_words": 210,
+            "extra_words": 54,
+            "strict_match": false,
+            "scorer_window_relocation_errors": [],
+            "full_function_relocation_errors": [],
+            "relocation_mask_count": 0,
+            "unresolved": [],
+            "unverified": [],
+            "full_native_window_equal": false,
+            "elf": {
+              "start": 0,
+              "function_bytes": 1092,
+              "section_bytes": 1104
+            },
+            "exact_function_extent": false,
+            "section_padding_is_zero": true
+          }
+        ],
+        "initial_control": [
+          {
+            "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+            "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+            "source_sha256": "75952ab147eb10063478274b51b388e85afc9a110147adde121d8682f8125d5e",
+            "object_sha256": "2355767032d26f87f8c9bbcffa6ba0ad88977de59fef1b81b784b18ed98a6b1b",
+            "differing_words": 92,
+            "total_words": 210,
+            "extra_words": 0,
+            "strict_match": false,
+            "scorer_window_relocation_errors": [],
+            "full_function_relocation_errors": [],
+            "relocation_mask_count": 0,
+            "unresolved": [],
+            "unverified": [],
+            "full_native_window_equal": false,
+            "elf": {
+              "start": 0,
+              "function_bytes": 840,
+              "section_bytes": 848
+            },
+            "exact_function_extent": true,
+            "section_padding_is_zero": true
+          },
+          {
+            "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+            "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+            "source_sha256": "75952ab147eb10063478274b51b388e85afc9a110147adde121d8682f8125d5e",
+            "object_sha256": "526ba7c124f10bdd71be934bbefeb06e7946243a586ba0d9c57cdccf0828f355",
+            "differing_words": 210,
+            "total_words": 210,
+            "extra_words": 53,
+            "strict_match": false,
+            "scorer_window_relocation_errors": [],
+            "full_function_relocation_errors": [],
+            "relocation_mask_count": 0,
+            "unresolved": [],
+            "unverified": [],
+            "full_native_window_equal": false,
+            "elf": {
+              "start": 0,
+              "function_bytes": 1088,
+              "section_bytes": 1088
+            },
+            "exact_function_extent": false,
+            "section_padding_is_zero": true
+          }
+        ]
+      }
+    ]
+  },
+  "independent_semantics": {
+    "result": "PASS",
+    "compiler": "cc (Debian 14.2.0-19) 14.2.0",
+    "cases_per_mode": 8964,
+    "results": [
+      {
+        "name": "func_8002574C",
+        "source_sha256": "09afc7ba5732799e15937190a709c72f1b82b1da46a477b4eda8ab4505450a26",
+        "result": "PASS",
+        "32bit_c89_layout": "PASS",
+        "cases_per_mode": 4051,
+        "modes": [
+          "c89-O2",
+          "c89-asan-ubsan-O1"
+        ],
+        "coverage": [
+          "enable/acquire/release ordering, two-record traversal, inactive and unknown-busy no-ops",
+          "busy/state/request-state matrix, exhaustive byte countdown, ownership flag bit masking",
+          "all ten start inputs, typed five-input callback, and actual contexts 0/1",
+          "start success/failure, post-helper fields/buffer reloads, and release ordering",
+          "pump-mutated dispatch, acquire-mutated record, stop-mutated byte narrowing and handle overwrite",
+          "finite positive unsigned rates through UINT_MAX and halfword counts through 65535"
+        ]
+      },
+      {
+        "name": "func_80025F74",
+        "source_sha256": "0f3dde0cda2d618d93193d6e37718a43e1b007156fb36abbd872185e5c78c91d",
+        "result": "PASS",
+        "32bit_c89_layout": "PASS",
+        "cases_per_mode": 4913,
+        "modes": [
+          "c89-O2",
+          "c89-asan-ubsan-O1"
+        ],
+        "coverage": [
+          "signed receive results/pending values, first/later header paths, low-24-bit masks and saturation",
+          "state/pending/3072-byte transfer gates, initial/later sizes, modulo-4096 alignment and queue identity",
+          "signed state/budget, 36/37-byte input bound, capacity-minus-160 bound, halfword decrement",
+          "decoder-mutated counters/capacity/blocks, bit-position rounding, destination and field reloads",
+          "budget capture across receive/transfer/decode, ignored decoder return, shared zero-fill budget",
+          "zero-fill size/content/locations, ring rollover, helper mutation, final capacity-minus-320 threshold",
+          "unsigned counter rollover and alignment arithmetic with real allocated storage"
+        ]
+      }
+    ],
+    "limits": [
+      "Actual-source caller host semantics only; no native/ROM execution or matching claim.",
+      "External helpers, including decoder, are scripted mocks; no decoder algorithm/safety claim.",
+      "32-bit layout compiled separately; execution uses native-width pointers and allocated objects.",
+      "Positive sufficient capacity and valid aligned allocations; arithmetic probes access valid storage.",
+      "No arbitrary malformed-input, zero-capacity, invalid-float, concurrency, or hardware-safety claim.",
+      "ASan/UBSan enabled; LeakSanitizer disabled for the host execution environment."
+    ]
+  },
+  "mutation_sensitivity": [
+    {
+      "mutation": "request countdown minus2",
+      "target": "func_8002574C",
+      "result": "REJECTED_BY_ASSERTION",
+      "mode": "c89-O2"
+    },
+    {
+      "mutation": "output-space threshold159",
+      "target": "func_80025F74",
+      "result": "REJECTED_BY_ASSERTION",
+      "mode": "c89-O2"
+    }
+  ],
+  "blockers": [],
+  "remaining_gates": [
+    "Exact aggregate-head CI and central publication before integrated credit",
+    "External decoder/storage/runtime contracts are not decoder or hardware safety proofs"
+  ],
+  "local_strict_matching_bodies": 1,
+  "local_strict_matching_bytes": 604,
+  "complete_nonmatch_bodies": 1,
+  "complete_nonmatch_bytes": 840,
+  "cartridge_coverage_claim": false,
+  "source_changed_by_reviewer": false,
+  "repo_clean_after_review": true
+}

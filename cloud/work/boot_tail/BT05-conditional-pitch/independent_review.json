@@ -1,0 +1,103 @@
+{
+  "reviewer": "independent decoder-facing caller worker",
+  "result": "PASS-CONDITIONAL-RESEARCH-ONLY",
+  "commit": "b781d68416c0c4e23ca44c7c160e8f8648b380ca",
+  "tree": "27e08355f0e0cb6fb9506a9766f1ac8c67d090b0",
+  "source_sha256": "a7204076bf3562cf6c391ed3886cbe544391eba99a2c74940501c61964a2ee29",
+  "files_sha256": {
+    "cloud/work/boot_tail/BT05-conditional-pitch/verification.json": "9a7c1a9cf4e50df7846e4957922b231deab2559936c575471ed7b0c7248df85f",
+    "cloud/work/boot_tail/BT05-conditional-pitch/RECOVERY.json": "0d2d3f4f96ead083eafeed28c2e962a8475671424f1063583081b6a99ffafde0",
+    "cloud/work/boot_tail/BT05-conditional-pitch/variants.json": "003df2ac147e4da599790d3ba414a12addad1bd2f8f0c4d39c18a44c1b373dd0",
+    "cloud/work/boot_tail/BT05-conditional-pitch/literal_address_baseline.c": "6320f34ad298ca297982cac04c1e46e4fb666206665954e7b50c986d9ec3bca0",
+    "cloud/work/boot_tail/BT05-conditional-pitch/verify.py": "0562611a100e06df3a4c97f23678a463ad13fe7adb2d44d282bdcfd4f85ba6fb",
+    "cloud/work/boot_tail/BT05-conditional-pitch/README.md": "6b3c11eacf81f09b4d1eea510d8d0aeec9a157138f5be05670688de51f755a8e",
+    "cloud/work/boot_tail/BT05-conditional-pitch/preflight.json": "365fe0c0fcb32f3c4df9058a42dcbfa3812ffb84d29dceccad89d447ed556762",
+    "cloud/work/boot_tail/BT05-conditional-pitch/func_80022CD4_CONDITIONAL.c": "a7204076bf3562cf6c391ed3886cbe544391eba99a2c74940501c61964a2ee29",
+    "cloud/work/boot_tail/BT05-conditional-pitch/test_conditional.c": "035ac3041f64e5a617937f0654f01e89c524c5b962b79a3095ebe76b1bf03adf"
+  },
+  "scope": [
+    "cloud/work/boot_tail/BT05-conditional-pitch/README.md",
+    "cloud/work/boot_tail/BT05-conditional-pitch/RECOVERY.json",
+    "cloud/work/boot_tail/BT05-conditional-pitch/func_80022CD4_CONDITIONAL.c",
+    "cloud/work/boot_tail/BT05-conditional-pitch/literal_address_baseline.c",
+    "cloud/work/boot_tail/BT05-conditional-pitch/preflight.json",
+    "cloud/work/boot_tail/BT05-conditional-pitch/test_conditional.c",
+    "cloud/work/boot_tail/BT05-conditional-pitch/variants.json",
+    "cloud/work/boot_tail/BT05-conditional-pitch/verification.json",
+    "cloud/work/boot_tail/BT05-conditional-pitch/verify.py"
+  ],
+  "independent_replay": {
+    "classification": "CONDITIONAL-COMPLETE-NONMATCH",
+    "target_bytes": 592,
+    "target_body_sha256": "a83e3fb57c63f9553b7f594a3d61cd15604a86b9b150a11d5116f10b4cdee824",
+    "manifest_checks": [
+      "boot_tail_8000f3a4.s: OK",
+      "extents.json: OK",
+      "symbols.json: OK"
+    ],
+    "extent_population": 439,
+    "extent_bytes": 99120,
+    "binary_results": [
+      {
+        "function": "func_80022CD4",
+        "source_sha256": "a7204076bf3562cf6c391ed3886cbe544391eba99a2c74940501c61964a2ee29",
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+        "differing_words": 125,
+        "total_words": 148,
+        "extra_nonzero_words": 0,
+        "elf_function_bytes": 592,
+        "text_section_bytes": 592,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "full_relocated_equal_and_exact_function_size": false,
+        "strict_match": false,
+        "address_token": "0x8002D476",
+        "address_token_locally_defined": false
+      },
+      {
+        "function": "func_80022CD4",
+        "source_sha256": "a7204076bf3562cf6c391ed3886cbe544391eba99a2c74940501c61964a2ee29",
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+        "differing_words": 148,
+        "total_words": 148,
+        "extra_nonzero_words": 55,
+        "elf_function_bytes": 820,
+        "text_section_bytes": 832,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "full_relocated_equal_and_exact_function_size": false,
+        "strict_match": false,
+        "address_token": "0x8002D476",
+        "address_token_locally_defined": false
+      }
+    ],
+    "tests": "PASS: 98816 validated actual-source calls; 8 unsafe fixtures rejected before execution",
+    "sanitizer": "UBSan; no ASan claim (fixed native address conflicts with shadow mapping)",
+    "native_table_object_proven": false,
+    "native_input_domain_proven": false,
+    "iso_c_portable": false,
+    "universal_runtime_safety": false
+  },
+  "review_findings": [
+    "Independently inspected the exact 592-byte protected native body and only the known caller window. a0 is packed state, a1 is aligned command, v0 is explicitly zero and caller masks its low byte. No extra formal, external helper body, or inspected out-of-census destination.",
+    "Native command bits 8..23 and packed-state low 24 bits, equality branch, capped exponent normalization, strict descending halfword walk, unsigned semitone-counter wrap, modulo note truncation, upward byte result, downward signed-byte conversion/negation, and final flag OR agree with complete conditional source.",
+    "Both native address-construction pairs independently form 0x8002D476. Source emits one undefined address-named token with fully resolved relocation; no table contents, containing extent, donor base, local data object, guessed initializer, or matching shortcut is supplied.",
+    "Unsigned rate shifts and interpolation numerator retain modulo-2^32 arithmetic. Halfword subtraction fits int and then converts to the unsigned divisor, preserving decreasing-endpoint cases. Exponent shifts stay within the defined 0..11 bound. Downward negation of promoted signed byte fits int.",
+    "Target-specific integer/pointer mapping is an explicit conditional precondition, not an ISO-C provenance claim. Finite readable traversal, nonzero rate/endpoint divisors and stable backing remain unproved for the game. The packet does not import a donor 13-entry extent or clamp.",
+    "Actual-source harness validates finite readable traversal and nonzero divisors before every call. Synthetic mapping and linker token are test fixtures only. Independent replay passed 98,816 valid calls and rejected eight unsafe fixtures before source execution; UBSan only, no ASan claim.",
+    "Fresh pinned-compiler verifier reproduces O2 125/148 at exact 592 bytes and O1 148/148 plus 55 nonzero extras at 820 bytes. Full-function relocation is clean; neither body is a strict match. Recovered artifacts bind this new immutable commit/tree, not lost Git objects."
+  ],
+  "blockers_to_unconditional_source": [
+    "Native containing-table storage/extent/interior-anchor relationship remains unproved.",
+    "Actual producer/domain invariants excluding zero-divisor and nonterminating strict-walk inputs remain unproved."
+  ],
+  "matching_credit": 0,
+  "native_table_safety_claim": false,
+  "host_native_execution": false,
+  "prohibited_paths_changed": false,
+  "repo_clean_after_review": true
+}
