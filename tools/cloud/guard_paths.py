@@ -40,10 +40,15 @@ def locked_paths(repo, revision):
     return protected
 
 
+# Generated scoring targets: the game image, the two runtime images at
+# 0x8038A400, and the boot-segment tail (tools.conveyor.pipeline.ovl_targets).
+PROTECTED_TARGET_DIRS = ("asm/us/blob/", "asm/us/ovl_a/", "asm/us/ovl_b/", "asm/us/boot_tail/")
+
+
 def violations(repo, paths, lock_revision):
     locked = locked_paths(repo, lock_revision)
     return sorted(path for path in paths if (
-        path.startswith("asm/us/blob/")
+        path.startswith(PROTECTED_TARGET_DIRS)
         or path in ("src/blob/blob.ld", "us.sha1")
         or path.endswith(".lock.json")
         or path in locked))
