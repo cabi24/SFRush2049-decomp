@@ -1,0 +1,33 @@
+{
+  "result": "PASS_FOR_DOCUMENTED_BOUNDED_SEMANTICS",
+  "tests_passed": 4,
+  "canonical_native_reference_comparisons": 528,
+  "retained_host_c89_calls": 528,
+  "fully_relocated_ido_retained_and_union_calls": 1056,
+  "case_counts": {
+    "80015D68": 168,
+    "8001671C": 360
+  },
+  "source_sha256": {
+    "cloud/work/boot_tail/BT03-low-insert-pair/func_80015D68_NONMATCH.c": "760b38d0e8fbd0e5ac23a1fe4847fe8a1e47c279cde4f1401d5ce49b8e58c1ee",
+    "cloud/work/boot_tail/BT03-low-insert-pair/func_8001671C_NONMATCH.c": "5f99615ab10d72d23c9564b04ac7a9277fdb9ba976f7799803f277f621cb3801",
+    "cloud/work/boot_tail/BT03-low-insert-pair/controls/func_80015D68_initial.c": "760b38d0e8fbd0e5ac23a1fe4847fe8a1e47c279cde4f1401d5ce49b8e58c1ee",
+    "cloud/work/boot_tail/BT03-low-insert-pair/controls/func_80015D68_memcpy.c": "68e40b5bf73c6e491d1d434611bb89084ce4aad6ba249e325e4a19d49dd0a39b",
+    "cloud/work/boot_tail/BT03-low-insert-pair/controls/func_80015D68_word_union.c": "dc2b82c7db80b77726cd20319b52125d96954cab175f54eedb680377a970f77c",
+    "cloud/work/boot_tail/BT03-low-insert-pair/controls/func_8001671C_first_value.c": "50c796522025692b86657327c83b3fef915e7ae083340818c98467502a8065bb",
+    "cloud/work/boot_tail/BT03-low-insert-pair/controls/func_8001671C_initial.c": "343739efa67836e259f6ef11ecb0138a8f9e5b87d2f4d19c0cb734fc4e12987b",
+    "cloud/work/boot_tail/BT03-low-insert-pair/controls/func_8001671C_memcpy.c": "d7427da3eb9f08f7fcc95b1d24c690e0c019fd8713a38f848064a44a88072f47",
+    "cloud/work/boot_tail/BT03-low-insert-pair/controls/func_8001671C_range_pointer.c": "5f99615ab10d72d23c9564b04ac7a9277fdb9ba976f7799803f277f621cb3801",
+    "cloud/work/boot_tail/BT03-low-insert-pair/controls/func_8001671C_total_value.c": "3b34c708d81206f22b8f462a60b6c1c788e67c1470e6b80c5449911a6f4cfc49",
+    "cloud/work/boot_tail/BT03-low-insert-pair/controls/func_8001671C_word_union.c": "c9c174df766a315a28a6a937064bd11a5ad2bdd7534661cd666c4c290ffd5b8d"
+  },
+  "harness_sha256": {
+    "native_replay.py": "27770e199abc8a888b937f82bbd51a292e3090befe3778a84613d8fb53fa8cf2",
+    "fixtures.py": "114e7ac4bdf5c2c445c572aba1d474983936af00a7baf929ed3a49afb7861316",
+    "test_semantics.py": "c5cf16075d9f13c5e5d316c446c124279385ad4dfe6d702615fc9b3500d5065c"
+  },
+  "host_mode": "C89, pedantic-errors, Wall/Wextra/Werror, ASan/UBSan; only leak detection disabled for executor ptrace compatibility. No candidate/C-harness heap allocation.",
+  "native_layout": "IDO sizeof(void*)4, packed ResourceEntry8, id+4, refs+6, ResourceRange4 and first+2. Host entry size12 is not claimed native geometry.",
+  "union_control_limit": "Rejected explicit two-word union transfer is N64-width-only. Independently replayed as fully relocated IDO object, never asserted correct under64-bit host pointer width.",
+  "limits": "Configured totals0..2048, sorted valid active records, consistent contiguous bucket slices, bucket keys<32768, valid stored payload pointer representations and bounded synthetic helper mutations. Refcount wraps modulo65536. No malformed-input, concurrency, original-data, game or cartridge claim."
+}

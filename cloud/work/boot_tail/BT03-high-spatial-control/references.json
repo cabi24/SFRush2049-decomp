@@ -1,0 +1,19 @@
+{
+  "license": "CC0-1.0",
+  "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+  "license_blob": "0e259d42c996742e9e3cba14c677129b2c1b6311",
+  "sources": [
+    {
+      "url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/src/musyx/runtime/synth.c",
+      "blob": "0559ed2e7d5d8abd4627440fd71f807581c03aad",
+      "sha256": "b39853d921970c7b255d85d46f2ddd827948660062e335a919ce007d7a47cc48",
+      "use": "do_voice_portamento genuine local sequence and direct field expressions; omit newer five-argument/rejection/extra-allocation semantics absent from the native three-input body"
+    },
+    {
+      "url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/src/musyx/runtime/snd3d.c",
+      "blob": "7c6e875a043c53b92ca05efdb9b1799e7d496965",
+      "sha256": "968d811db0c75ef5d514c57540cdd61f06ed95142434c73def328ae02ecf915c",
+      "use": "AddEmitter genuine output-local organization tested once without improvement; modern additional arguments/fields and literal threshold values not imported"
+    }
+  ]
+}

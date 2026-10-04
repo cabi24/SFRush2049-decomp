@@ -1,0 +1,26 @@
+{
+  "method": "Canonical relocated target/candidate words in temporary objects; unchanged workbench. No raw dump or object committed.",
+  "results": [
+    {
+      "name": "func_8001D1F4",
+      "stage": "improved O2 after source-order/fallback controls",
+      "source_sha256": "8d081b54abfcca2f9a2c3e1075912a083a1e753542fe04ae83169cf585924cae",
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  55 words=  56 raw=  56 opcodes=  30 gaps=   9 reloc_syms=   1 norm=  33 regs=  36 fp=   3 insns= 128 frame=  -64 sha1=280255cb1f59 /tmp/spatial-candidate-8001D1F4.o true_insn_delta=+1 geometry_edit_distance=33 opcode_distance=11",
+      "recorded_utc": "2026-10-04T03:12:00.837440+00:00"
+    },
+    {
+      "name": "func_8001DC08",
+      "stage": "improved O2 after source-order/fallback controls",
+      "source_sha256": "81bd5b45139aa03b32c934c0ce2d2ce2f346540dde73803c56e6b6802cc0f908",
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  57 words= 114 raw= 114 opcodes=  84 gaps=  12 reloc_syms=   2 norm=  41 regs= 110 fp=  27 insns= 120 frame=  -88 sha1=fadc4b58fe97 /tmp/spatial-candidate-8001DC08.o true_insn_delta=+2 geometry_edit_distance=41 opcode_distance=16",
+      "recorded_utc": "2026-10-04T03:12:01.325942+00:00"
+    },
+    {
+      "name": "func_80019C8C",
+      "stage": "improved O2 after source-order/fallback controls",
+      "source_sha256": "559f3ca5c579a17be22488d7f8bc6ad7f4c7b2e54a0bb4fc3a115dc433cb95de",
+      "workbench_summary": "verdict=allocation-mismatch aligned_total=   8 words=   8 raw=   8 opcodes=   0 gaps=   0 reloc_syms=   0 norm=   2 regs=   3 fp=   0 insns= 145 frame=  -88 sha1=cc929b4da0ab /tmp/spatial-candidate-80019C8C.o",
+      "recorded_utc": "2026-10-04T03:12:01.850801+00:00"
+    }
+  ]
+}

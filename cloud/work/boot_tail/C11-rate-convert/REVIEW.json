@@ -1,0 +1,32 @@
+{
+  "result": "PASS_FOR_COMPLETE_BOUNDED_NONMATCH_RESEARCH",
+  "reviewer": "parent independent Astra reviewer",
+  "source_commit": "8f5aa1312092cf767cbeb45fe5f6d9ed08a77ce5",
+  "source_tree": "aacfccf486a927b2fb5f6cb4b83a6db2c367646f",
+  "stack_base": "a356fe876ed3518c338b233634758e123f12dcf0",
+  "review_received_utc": "2026-10-04T03:00:27Z",
+  "source_sha256": "43094186872525778f3a3fa529eeb9d2e146df4dbe2d413b895fff300e9e204a",
+  "matching_credit_bytes": 0,
+  "independent_replays": [
+    {
+      "command": "python3 cloud/work/boot_tail/C11-rate-convert/verify.py --check",
+      "result": "PASS; both score rows"
+    },
+    {
+      "command": "python3 cloud/work/boot_tail/C11-rate-convert/abi_proof.py --check",
+      "result": "PASS"
+    },
+    {
+      "command": "python3 cloud/work/boot_tail/C11-rate-convert/test_semantics.py",
+      "result": "PASS;4 tests in6.282seconds;133433 native/model cases,6591 host and6591 IDO cases,66 high-u32 and383 excluded casts"
+    }
+  ],
+  "findings": [
+    "Read the full95-word native body, retained C, domains and fixtures; source hash verified.",
+    "Sentinel replacement, byte-reference branches, signed denominator and FCSR unsigned conversion preserved.",
+    "Coherent synthetic table views respect the512-byte displacement without asserting original lengths or contents.",
+    "Finite positive-rate/u32 conversion domain and unproved exceptional FP modes are explicit.",
+    "Zero matching credit; both objects400B against380B native target. No further compiler changes requested."
+  ],
+  "communication_provenance": "Parent independent review delivered in this task conversation and authorized binding the receipt for central intake."
+}

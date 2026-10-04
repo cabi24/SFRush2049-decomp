@@ -1,0 +1,19 @@
+{
+  "state": "frozen-review-pass",
+  "owner": "/root/verify_boot_tail_matches",
+  "packet": "C11-rate-convert",
+  "branch": "dot/boot-tail-c11-rate-convert",
+  "base": "a356fe876ed3518c338b233634758e123f12dcf0",
+  "targets": [
+    {
+      "address": "0x8001E50C",
+      "size": 380,
+      "end_exclusive": "0x8001E688"
+    }
+  ],
+  "bytes": 380,
+  "edit_scope": "Only named matching source and cloud/work/boot_tail/C11-rate-convert/**",
+  "stop": "Exactly one natural whole-body source; O2/O1 and diagnosis, no refinements or known narrowing sweeps. Actual u8/u32 ABI, unsized external arrays with no invented lengths/values, valid indices/finite conversion/nonzero rate preconditions; exact ELF size and full relocation proof. No protected edits.",
+  "reviewed_commit": "01eba3fdaf662189ca1fbe4275529c0be491541e",
+  "reviewed_tree": "0e1a8d83ec7fe9e14fce6f12991b09862793ae7d"
+}

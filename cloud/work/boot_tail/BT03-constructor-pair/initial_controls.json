@@ -1,0 +1,50 @@
+[
+  {
+    "name": "func_80019F48",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "f39c2ba6027bdd175fb63f06f1221e9583f4bfbbcca181c2f9d3ed1e75985930",
+    "elf_size": 816,
+    "differing": 170,
+    "total": 202,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 2
+  },
+  {
+    "name": "func_80019F48",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "source_sha256": "f39c2ba6027bdd175fb63f06f1221e9583f4bfbbcca181c2f9d3ed1e75985930",
+    "elf_size": 1028,
+    "differing": 200,
+    "total": 202,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 53
+  },
+  {
+    "name": "func_8001A270",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "a5c3c9d09f70b1a0fd227c9196a39557231bb0c9be131af81a9df6ad5b513641",
+    "elf_size": 900,
+    "differing": 195,
+    "total": 218,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 6
+  },
+  {
+    "name": "func_8001A270",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "source_sha256": "a5c3c9d09f70b1a0fd227c9196a39557231bb0c9be131af81a9df6ad5b513641",
+    "elf_size": 1108,
+    "differing": 214,
+    "total": 218,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 55
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "result": "PASS",
+  "cases": 2218,
+  "executions": 8872,
+  "steps": 1430474,
+  "families": {
+    "dispatch": 1024,
+    "keymap boundaries": 600,
+    "failures": 12,
+    "layer keys": 256,
+    "allocation and root failures": 24,
+    "layer guards": 40,
+    "empty lookup": 2,
+    "count reload after helper": 4,
+    "random layers": 256
+  },
+  "source_sha256": {
+    "func_80019F48": "f39c2ba6027bdd175fb63f06f1221e9583f4bfbbcca181c2f9d3ed1e75985930",
+    "func_8001A270": "20045e3595c894ab3c2af1b28f7ed16756059a4b89befaa609acb9773ee46604"
+  },
+  "speculative_stack_loads": {
+    "80019F48:native:-12:4": 1160,
+    "80019F48:candidate:-16:4": 1160,
+    "80019F48:native:-2:2": 2
+  },
+  "limits": "Valid synthetic resources, exact helper contracts, two stack poison fills. No arbitrary malformed-data safety or real helper/game/ROM integration claim."
+}

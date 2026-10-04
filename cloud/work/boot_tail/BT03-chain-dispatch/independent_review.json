@@ -1,0 +1,455 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "approval_scope": "Independent review for COMPLETE-NONMATCH research only; zero matching functions/bytes and no merge approval.",
+  "reviewer": "/root/match_runtime_singleton",
+  "source_commit": "75df2d9881d9df6b57b571dfe9d0c9b74e9e464e",
+  "source_tree": "76827e8975539129416f58dbb5b189eeccc1be9f",
+  "source_path": "cloud/work/boot_tail/BT03-chain-dispatch/func_8001CCDC_NONMATCH.c",
+  "source_sha256": "caafce04824334ba139e9150310ea6c75f98f7006f0a35e32476f3a419834deb",
+  "base": "0251b8192665a806a99ec47769fa1805d3b27cdc",
+  "reviewed_files": [
+    "cloud/work/boot_tail/BT03-chain-dispatch/README.md",
+    "cloud/work/boot_tail/BT03-chain-dispatch/diagnosis.json",
+    "cloud/work/boot_tail/BT03-chain-dispatch/directed_controls.json",
+    "cloud/work/boot_tail/BT03-chain-dispatch/func_8001CCDC_NONMATCH.c",
+    "cloud/work/boot_tail/BT03-chain-dispatch/host_sanitized.json",
+    "cloud/work/boot_tail/BT03-chain-dispatch/host_tests.json",
+    "cloud/work/boot_tail/BT03-chain-dispatch/native_tests.json",
+    "cloud/work/boot_tail/BT03-chain-dispatch/preflight.json",
+    "cloud/work/boot_tail/BT03-chain-dispatch/status_delta.csv",
+    "cloud/work/boot_tail/BT03-chain-dispatch/test_host.py",
+    "cloud/work/boot_tail/BT03-chain-dispatch/test_native.py",
+    "cloud/work/boot_tail/BT03-chain-dispatch/verification.json",
+    "cloud/work/boot_tail/BT03-chain-dispatch/verify.py",
+    "cloud/work/boot_tail/BT03-chain-dispatch/verify_controls.py"
+  ],
+  "source_reference": {
+    "repository": "AxioDL/musyx",
+    "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+    "path": "src/musyx/runtime/snd3d.c",
+    "definition": "SetFXParameters",
+    "sha256": "968d811db0c75ef5d514c57540cdd61f06ed95142434c73def328ae02ecf915c",
+    "retrieval": "Independently fetched exact revision using GitHub connector; content hash matches preflight.",
+    "license": "Independently fetched LICENSE at same revision; CC0 1.0 Universal.",
+    "assessment": "Source lead corroborates six parameters and quantization/clamping; N64 specialized helpers and absent later-version parameter/filter loops are accurately distinguished."
+  },
+  "native_review": {
+    "full_target_bytes": 936,
+    "callers_read": [
+      "8001D1F4",
+      "8001DC08",
+      "8001DDE0"
+    ],
+    "callees_read": [
+      "8001CC9C",
+      "8001CCC0",
+      "8001B7C0",
+      "8001B29C",
+      "8001B3A0",
+      "8001B4A4"
+    ],
+    "findings": [
+      "All six actual O32 inputs independently corroborated. a0 emitter,a1 volume,a2 xPan,a3 genuine unused yPan,sp+16 zPan,sp+20 doppler. Third caller paths performing other intervening calls bypass the dispatch.",
+      "Identifier is loaded once from emitter+52 into s0 and remains stable across all eight dynamic helper calls. Flags+8 and fade+64 match the source prefix.",
+      "Unsigned conversion lowering and byte mask before clip127 are native facts; genuine byte/halfword callee prototypes are retained.",
+      "All three byte controller senders mask their second input to8bits;14-bit sender accepts a16-bit value and transmits two7-bit components.",
+      "Full native body and helpers show no missing body region. No source padding, extra formal, keeper, assembly, dummy call, altered header/scorer/target or synthetic linker fix is present."
+    ]
+  },
+  "replayed_checks": {
+    "verification": {
+      "schema_version": 1,
+      "result": "PASS",
+      "candidate_status": "COMPLETE-NONMATCH",
+      "match_credit_functions": 0,
+      "match_credit_bytes": 0,
+      "manifest": [
+        "boot_tail_8000f3a4.s: OK",
+        "extents.json: OK",
+        "symbols.json: OK"
+      ],
+      "extent_functions": 439,
+      "extent_bytes": 99120,
+      "pinned_compiler_files": 24,
+      "getter_strict_match": true,
+      "results": [
+        {
+          "function": "func_8001CCDC",
+          "source_sha256": "caafce04824334ba139e9150310ea6c75f98f7006f0a35e32476f3a419834deb",
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "differing_words": 181,
+          "total_words": 234,
+          "extra_nonzero_words": 3,
+          "elf_function_bytes": 952,
+          "text_section_bytes": 960,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "full_relocated_equal_and_exact_function_size": false,
+          "strict_match": false
+        },
+        {
+          "function": "func_8001CCDC",
+          "source_sha256": "caafce04824334ba139e9150310ea6c75f98f7006f0a35e32476f3a419834deb",
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "differing_words": 225,
+          "total_words": 234,
+          "extra_nonzero_words": 14,
+          "elf_function_bytes": 1004,
+          "text_section_bytes": 1008,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "full_relocated_equal_and_exact_function_size": false,
+          "strict_match": false
+        }
+      ],
+      "native_layout": [
+        {
+          "expression": "sizeof(Emitter)",
+          "value": 68
+        },
+        {
+          "expression": "(unsigned int)&((Emitter *)0)->flags08",
+          "value": 8
+        },
+        {
+          "expression": "(unsigned int)&((Emitter *)0)->identifier34",
+          "value": 52
+        },
+        {
+          "expression": "(unsigned int)&((Emitter *)0)->fade40",
+          "value": 64
+        }
+      ],
+      "native_call_sites": [
+        {
+          "offset": "0xc8",
+          "callee": "func_8001CC9C"
+        },
+        {
+          "offset": "0xd4",
+          "callee": "func_8001B7C0"
+        },
+        {
+          "offset": "0x170",
+          "callee": "func_8001CC9C"
+        },
+        {
+          "offset": "0x17c",
+          "callee": "func_8001B7C0"
+        },
+        {
+          "offset": "0x224",
+          "callee": "func_8001CC9C"
+        },
+        {
+          "offset": "0x230",
+          "callee": "func_8001B29C"
+        },
+        {
+          "offset": "0x2d8",
+          "callee": "func_8001CC9C"
+        },
+        {
+          "offset": "0x2e4",
+          "callee": "func_8001B3A0"
+        },
+        {
+          "offset": "0x380",
+          "callee": "func_8001CCC0"
+        },
+        {
+          "offset": "0x38c",
+          "callee": "func_8001B4A4"
+        }
+      ],
+      "callers": [
+        {
+          "function": "func_8001D1F4",
+          "offset": "0x198"
+        },
+        {
+          "function": "func_8001DC08",
+          "offset": "0x154"
+        },
+        {
+          "function": "func_8001DDE0",
+          "offset": "0x224"
+        }
+      ],
+      "indirect_control_flow": "Only the final jr ra; no callbacks or tables.",
+      "abi": "void(Emitter *, float volume, float xPan, float yPan, float zPan, float doppler); yPan is genuine but unused."
+    },
+    "controls": {
+      "result": "PASS",
+      "initial_controls": 2,
+      "directed_variants": 9,
+      "results": [
+        {
+          "label": "initial_O2",
+          "source_sha256": "6b202477c98287a58f27da5c1f8225425a0e62d4d3bd50862eeaa19a4e85f5b0",
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "differing_words": 181,
+          "target_words": 234,
+          "extra_nonzero_words": 3,
+          "elf_function_bytes": 952,
+          "strict_match": false
+        },
+        {
+          "label": "initial_O1",
+          "source_sha256": "6b202477c98287a58f27da5c1f8225425a0e62d4d3bd50862eeaa19a4e85f5b0",
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "differing_words": 225,
+          "target_words": 234,
+          "extra_nonzero_words": 14,
+          "elf_function_bytes": 1004,
+          "strict_match": false
+        },
+        {
+          "label": "explicit_u8",
+          "source_sha256": "435365e43ffc7b7a35fb6383d092925b36916c04c704ae1f8089c068b86587fb",
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "differing_words": 181,
+          "target_words": 234,
+          "extra_nonzero_words": 3,
+          "elf_function_bytes": 952,
+          "strict_match": false
+        },
+        {
+          "label": "word_then_u8",
+          "source_sha256": "0e51647e21d536a292a453099aefbbefe3adcf04cdfea0a9864799715fe4fce6",
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "differing_words": 181,
+          "target_words": 234,
+          "extra_nonzero_words": 3,
+          "elf_function_bytes": 952,
+          "strict_match": false
+        },
+        {
+          "label": "explicit_word",
+          "source_sha256": "caafce04824334ba139e9150310ea6c75f98f7006f0a35e32476f3a419834deb",
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "differing_words": 181,
+          "target_words": 234,
+          "extra_nonzero_words": 3,
+          "elf_function_bytes": 952,
+          "strict_match": false
+        },
+        {
+          "label": "byte_local",
+          "source_sha256": "23fd80c87130943f6e8826763dba6a0b3f1722d2758ed206f0137d6ea2f0c45e",
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "differing_words": 181,
+          "target_words": 234,
+          "extra_nonzero_words": 3,
+          "elf_function_bytes": 952,
+          "strict_match": false
+        },
+        {
+          "label": "word_local",
+          "source_sha256": "86a762658e9910c8e1376544c0526b52931b510e63cecf158e0d1a7498ed99d9",
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "differing_words": 155,
+          "target_words": 234,
+          "extra_nonzero_words": 2,
+          "elf_function_bytes": 948,
+          "strict_match": false
+        },
+        {
+          "label": "clipped_byte",
+          "source_sha256": "be5d389bbe56978cd0f62f9b487fb886b3dc5f7c124228ec72730782f7ec11b4",
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "differing_words": 181,
+          "target_words": 234,
+          "extra_nonzero_words": 3,
+          "elf_function_bytes": 952,
+          "strict_match": false
+        },
+        {
+          "label": "clipped_word",
+          "source_sha256": "445d64cc1537118e8e053090fccf151251a452ffee5d2181dcd80345696ccbeb",
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "differing_words": 181,
+          "target_words": 234,
+          "extra_nonzero_words": 3,
+          "elf_function_bytes": 952,
+          "strict_match": false
+        },
+        {
+          "label": "word_mask",
+          "source_sha256": "5a31f92472a064f72d462b6c2ccff1311f027d944654495794e14613139b3974",
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "differing_words": 181,
+          "target_words": 234,
+          "extra_nonzero_words": 3,
+          "elf_function_bytes": 952,
+          "strict_match": false
+        },
+        {
+          "label": "ulong_cast",
+          "source_sha256": "53df47ca7c68a1528d6a652c924a9189025e4496a1ca6ff908ccd539dcdb0278",
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "differing_words": 181,
+          "target_words": 234,
+          "extra_nonzero_words": 3,
+          "elf_function_bytes": 952,
+          "strict_match": false
+        }
+      ]
+    },
+    "host": {
+      "result": "PASS",
+      "calls": 6040,
+      "callback_events": 48320,
+      "sanitized": false,
+      "source_sha256": "caafce04824334ba139e9150310ea6c75f98f7006f0a35e32476f3a419834deb",
+      "compiler_flags": [
+        "-std=c89",
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-fno-fast-math",
+        "-ffp-contract=off",
+        "-fexcess-precision=standard"
+      ],
+      "domain": "All evaluated float-to-u32 operands finite, nonnegative and below 2^32; unused yPan also NaN.",
+      "coverage": [
+        "fade flag both paths and unrelated bits",
+        "zero/signed zero",
+        "127/255/256 and 16383/16384 boundaries",
+        "large u32 conversion and low-byte wrap",
+        "ordered calls despite callee failure",
+        "captured identifier despite callback mutation",
+        "source read-only except modeled helper mutations",
+        "unused yPan independence"
+      ],
+      "limitation": "No C claim for negative integer-valued, nonfinite or >=2^32 conversion operands; native interpreter separately checks these."
+    },
+    "sanitized": {
+      "result": "PASS",
+      "calls": 6040,
+      "callback_events": 48320,
+      "sanitized": true,
+      "source_sha256": "caafce04824334ba139e9150310ea6c75f98f7006f0a35e32476f3a419834deb",
+      "compiler_flags": [
+        "-std=c89",
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-fno-fast-math",
+        "-ffp-contract=off",
+        "-fexcess-precision=standard",
+        "-fsanitize=address,undefined,float-cast-overflow",
+        "-fno-omit-frame-pointer",
+        "-no-pie"
+      ],
+      "domain": "All evaluated float-to-u32 operands finite, nonnegative and below 2^32; unused yPan also NaN.",
+      "coverage": [
+        "fade flag both paths and unrelated bits",
+        "zero/signed zero",
+        "127/255/256 and 16383/16384 boundaries",
+        "large u32 conversion and low-byte wrap",
+        "ordered calls despite callee failure",
+        "captured identifier despite callback mutation",
+        "source read-only except modeled helper mutations",
+        "unused yPan independence"
+      ],
+      "limitation": "No C claim for negative integer-valued, nonfinite or >=2^32 conversion operands; native interpreter separately checks these."
+    },
+    "native": {
+      "result": "PASS",
+      "native_calls": 3084,
+      "modeled_external_calls": 24672,
+      "target": "func_8001CCDC",
+      "target_bytes": 936,
+      "target_words": 234,
+      "coverage": [
+        "complete native body both fade paths",
+        "all four ordered controller sends",
+        "all genuine O32 input slots including unused a3",
+        "caller-saved clobbers and emitter mutation",
+        "preserved stack/s0/ra/FCSR",
+        "unsigned conversion high-bit fallback",
+        "native invalid conversion saturation before byte truncation"
+      ],
+      "limits": "Purpose-limited software instruction model, no hardware or ROM execution; C tests have a narrower defined conversion domain."
+    },
+    "independent_optimized_host_mutations": {
+      "result": "PASS",
+      "compiler_flags": [
+        "-std=c89",
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-O2",
+        "-fno-fast-math",
+        "-ffp-contract=off",
+        "-fexcess-precision=standard"
+      ],
+      "cases": [
+        {
+          "case": "original",
+          "expected": "PASS",
+          "actual": "PASS",
+          "exit_code": 0,
+          "source_sha256": "caafce04824334ba139e9150310ea6c75f98f7006f0a35e32476f3a419834deb"
+        },
+        {
+          "case": "wrong_volume_scale",
+          "expected": "REJECT",
+          "actual": "REJECT",
+          "exit_code": -6,
+          "source_sha256": "a0ecf1c62424a9b7ff66186c6149cc2556cb8313d6f95fbca7a6b5c766bde81f"
+        },
+        {
+          "case": "lost_identifier_snapshot",
+          "expected": "REJECT",
+          "actual": "REJECT",
+          "exit_code": -6,
+          "source_sha256": "8bce5f6e1b9d41c2c5f13d47e1a0a2684b376bb516fd0374c32fa2c4d3365c8d"
+        },
+        {
+          "case": "wrong_fade_gate",
+          "expected": "REJECT",
+          "actual": "REJECT",
+          "exit_code": -6,
+          "source_sha256": "7a7f86417ca85316404f43ff3e9cfd284f83f24e77ee1dbd5c09075d5b062043"
+        }
+      ]
+    }
+  },
+  "limits": [
+    "Accepted as complete research, not an exact match: O2 ELF952 versus native936,181/234 differing words,3nonzero excess. O1 remains225/234,1004bytes,14nonzero excess.",
+    "Source C behavior is tested only where evaluated float-to-u32 operands are finite,nonnegative and less than2^32. Invalid/out-of-range fallback is evidence from the purpose-limited native instruction model, not a portable C claim.",
+    "The native interpreter is target-only, purpose-limited and not N64 hardware validation; its floating-status model is not a general IEEE/FCSR implementation.",
+    "Original public source is a source lead, not proof of original N64 translation-unit declarations. Shared publication CI and maintainer integration remain separate."
+  ],
+  "negative_controls": "Independent O2 host build passes6040calls; wrong volume scale,lost identifier snapshot,and wrong fade gate are each rejected by the actual-source harness.",
+  "scope_check": "Only14packet research files change; no cloud/matches addition, protected changes, raw native dumps, objects, credentials or unrelated private data.",
+  "artifact_hashes": {
+    "status_delta.csv": "19e9c2265bfa576a4a7cd584198faee3be0f4a7645652622bcc144a2aef4be84",
+    "README.md": "128bb26efa841322fcdea3ebb2ed6b86dbaad3bcfe3cec8e6447ce95d65a8caa",
+    "diagnosis.json": "37d3c6ab4d67ed689c10a5351ee5953e8a332b86d451a53562c9e695b81a2fcb",
+    "verify_controls.py": "6d51ced6b086df38d75cff027d344fbd7de9ad97f952b4da68afefdb6638c79a",
+    "native_tests.json": "8958f1205008b39050df4f85a4b46f63ed64abaf23c37941faf65b7f61628105",
+    "test_native.py": "3ff3969ab72f13ea137c77a0b48b2dfd68706e79321eb9b53ecbb3b516700b0f",
+    "host_sanitized.json": "3fa5573e7bd261d8860c02dac55e27e749ae72e272b755595cc96e5cff7ed095",
+    "host_tests.json": "94278e1563856ce75d96358d0af0ca759d24ee9e6f1822bcf2d766cec81c15e5",
+    "verification.json": "aabba84c2c2b452b27c820e6b12e3e2a72fdaadf4cced696ccb94519f03dc4ec",
+    "test_host.py": "674f1f5f0fb7f2aa1e3550685cf5ec0e5e3e41958413f9ab14a9ec6e95377282",
+    "verify.py": "7b78cea21f8166fe45a43b8e7f2914f0fabbb2e220f28a05e7fb5a20af7da225",
+    "preflight.json": "3e40db3415968d351ce14a50a385937d8ac7e1e702502734ac5b29a0f3b6308e",
+    "directed_controls.json": "382fae8d4b2ccab795eeeb544863e893a56b0cb7d38cd2682705deb4dd33322c",
+    "func_8001CCDC_NONMATCH.c": "caafce04824334ba139e9150310ea6c75f98f7006f0a35e32476f3a419834deb"
+  }
+}

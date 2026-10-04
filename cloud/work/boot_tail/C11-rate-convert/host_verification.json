@@ -1,0 +1,20 @@
+{
+  "result": "PASS_FOR_COHERENT_SYNTHETIC_FINITE_FP_DOMAIN",
+  "tests_passed": 4,
+  "synthetic_profiles": 2,
+  "native_reference_comparisons": 133433,
+  "retained_host_c89_calls": 6591,
+  "fully_relocated_ido_o2_calls": 6591,
+  "valid_high_u32_cases": 66,
+  "excluded_out_of_u32_domain_cases": 383,
+  "all_byte_pairs_per_profile": 65536,
+  "source_sha256": "43094186872525778f3a3fa529eeb9d2e146df4dbe2d413b895fff300e9e204a",
+  "harness_sha256": {
+    "native_replay.py": "91f09598a7883270dfafe84d1d527b69f72f96ca33c8a9e07d6bf4dac1f4e21f",
+    "test_semantics.py": "7e939581c30767a729383e0b5898b76068b42eee9da77e8aba3966829eadd967"
+  },
+  "external_fixture_layout": "A synthetic384-float pool gives coherent overlapping views atoffset0 and128 floats; host arrays reproduce both sets of values. These sizes and values are fixtures, not original-data claims.",
+  "fp_contract": "Round-to-nearest binary32 arithmetic; native uint conversion temporarily uses truncate-toward-zero FCSR mode. Signed-conversion invalid flag is modeled only for the valid unsigned range fallback, and initial FCSR state is restored. Finite positive rates/ratios and final results in[0,2^32) only.",
+  "host_mode": "C89 pedantic-errors, Wall/Wextra/Werror, ffp-contract=off, ASan/UBSan/float-cast-overflow. Only leak detection disabled for executor ptrace compatibility; no candidate/C-harness heap allocation.",
+  "limits": "Valid supplied external indexed objects; original table lengths/values and rate contents unknown. No zero/negative rate, NaN/infinity, out-of-range float cast, nondefault incoming FCSR mode, malformed memory, concurrency, whole-game or cartridge proof."
+}

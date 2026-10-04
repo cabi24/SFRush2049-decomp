@@ -1,0 +1,16 @@
+{
+  "scope": "Metadata-only first O2 whole-object diagnosis; already strictly matching, no source refinements. O1 remains a rejected control.",
+  "source_sha256": "5688f6599d2ae49ee08ba6a0ed1c4b0fc1ef033c3a10054f45c7d613266f0421",
+  "routing": "none",
+  "owning_pass": "none",
+  "ownership_basis": "none",
+  "lever_class": null,
+  "target_frame": -112,
+  "candidate_frame": -112,
+  "aligned_insertions": 0,
+  "aligned_deletions": 0,
+  "artifact_built_at": [
+    "2026-10-04T03:42:54Z",
+    "2026-10-04T03:42:54Z"
+  ]
+}

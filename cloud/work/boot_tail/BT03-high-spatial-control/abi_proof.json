@@ -1,0 +1,113 @@
+{
+  "result": "PASS",
+  "scope": "Native O32 sizes/offsets and exact external load addresses. Host LP64 layouts differ. Threshold values and original data bytes are neither supplied nor inferred.",
+  "results": [
+    {
+      "name": "func_80019C8C",
+      "source_path": "cloud/matches/boot_tail/func_80019C8C.c",
+      "source_sha256": "eb17ab0d49dd592ec0fccd6cae6b572e2cbe41b288ec66ed7214a922aeafc1d2",
+      "native_sizes": {
+        "VoiceState": 416
+      },
+      "native_offsets": {
+        "VoiceState": {
+          "child": 16,
+          "parent": 20,
+          "flags": 36,
+          "channel": 74,
+          "set": 75,
+          "base_key": 78,
+          "key": 80,
+          "identifier": 96,
+          "glide": 140,
+          "pitch": 148,
+          "cents": 192,
+          "original_key": 193
+        }
+      },
+      "result": "PASS"
+    },
+    {
+      "name": "func_8001D1F4",
+      "source_path": "cloud/work/boot_tail/BT03-high-spatial-control/nonmatch/func_8001D1F4.c",
+      "source_sha256": "15ad3dcd103a7b0360688ef6ecf06215351a6960043d9e33f71a3830869dbdd0",
+      "native_sizes": {
+        "Emitter": 68,
+        "Vector": 12
+      },
+      "native_offsets": {
+        "Emitter": {
+          "next": 0,
+          "previous": 4,
+          "flags": 8,
+          "position": 12,
+          "velocity": 24,
+          "range": 36,
+          "gain": 40,
+          "minimum": 44,
+          "curve": 48,
+          "handle": 52,
+          "context": 56,
+          "identifier": 60,
+          "counter": 62,
+          "fade": 64
+        }
+      },
+      "result": "PASS"
+    },
+    {
+      "name": "func_8001DC08",
+      "source_path": "cloud/work/boot_tail/BT03-high-spatial-control/nonmatch/func_8001DC08.c",
+      "source_sha256": "f52284ec18c1da5e8a97029ab34ccb45a009414c7f0092456e91df6640bee097",
+      "native_sizes": {
+        "Emitter": 68,
+        "Vector": 12,
+        "SpatialEntry": 28,
+        "SpatialGroup": 12
+      },
+      "native_offsets": {
+        "SpatialEntry": {
+          "next": 0,
+          "volume": 4,
+          "pan": 8,
+          "span": 12,
+          "send": 16,
+          "pitch": 20,
+          "emitter": 24
+        },
+        "SpatialGroup": {
+          "key": 0,
+          "pending": 4,
+          "active": 8
+        }
+      },
+      "result": "PASS"
+    }
+  ],
+  "external_thresholds": [
+    {
+      "symbol": "D_8002D904",
+      "address": "0x8002d904",
+      "native_lwc1_offsets": [
+        72
+      ],
+      "candidate_lwc1_offsets": [
+        92
+      ],
+      "contents_known": false,
+      "source_contract": "one cached external float value per nonempty invocation"
+    },
+    {
+      "symbol": "D_8002D908",
+      "address": "0x8002d908",
+      "native_lwc1_offsets": [
+        100
+      ],
+      "candidate_lwc1_offsets": [
+        72
+      ],
+      "contents_known": false,
+      "source_contract": "one cached external float value per nonempty invocation"
+    }
+  ]
+}

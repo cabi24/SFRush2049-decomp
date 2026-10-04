@@ -1,0 +1,22 @@
+{
+  "result": "PASS",
+  "source_sha256": "9e892d39290a16a09691aa45b5c881d00f7ff46a808a26b08fdc95c63e10924f",
+  "controls": [
+    {
+      "mutation": "drop_tag_wrap",
+      "test_rejects": true,
+      "returncode": -11
+    },
+    {
+      "mutation": "wrong_guard",
+      "test_rejects": true,
+      "returncode": -6
+    },
+    {
+      "mutation": "wrong_service_mode",
+      "test_rejects": true,
+      "returncode": -6
+    }
+  ],
+  "scope": "Independent-review defect injection only, not additional matching search or promoted source."
+}

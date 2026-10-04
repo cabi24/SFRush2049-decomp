@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/73",
+  "source_head": "f366682bf1a2602b0f6fdbaae85c3707c58b3751",
+  "source_tree": "7aeba9eb7e1cade72657416da828d993937e5418",
+  "source_parent": "1ef54c2e507e6d29cc22d041bf5d99dc2173bfd8",
+  "workflow_run": 37174576777,
+  "workflow_url": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37174576777",
+  "conclusion": "success",
+  "checked_utc": "2026-10-04T03:57:22Z",
+  "new_matches": 3,
+  "new_matching_bytes": 1504,
+  "remote_readback": "Fresh PR/Git-data exact head, tree and parent; exact-head workflow completed success.",
+  "verified_local_equivalent_commit": "3c23096f593d9cf3a58fca465acd9b22b0c08070",
+  "note": "Published source is unchanged. Current master independently merged all prior source cuts through PR72; the next cut preserves the exact PR73 source bytes on that master."
+}

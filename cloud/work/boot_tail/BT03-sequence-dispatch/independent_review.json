@@ -1,0 +1,61 @@
+{
+  "result": "PASS",
+  "reviewer": "BT03-constructor-pair",
+  "source_commit": "d01d9d5ef563f7846870da53faea44d37152458c",
+  "source_tree": "5ab885a4953c00ac0f3f3c0191cc11187daa0e7a",
+  "base_commit": "cc50ad283107ee38e2eb11b6aea4e2e43bb80490",
+  "candidate_status": "COMPLETE-NONMATCH",
+  "matching_credit_bytes": 0,
+  "scope_files": 39,
+  "replays": {
+    "verify": {
+      "result": "PASS",
+      "report_sha256": "e6d9ce12a5f8c11911ae393936ba22ca3f76c1760224920b81b906cfefaafbdc"
+    },
+    "test_layout": {
+      "result": "PASS",
+      "report_sha256": "430c501ff30b90fbdf01c267e0a931bf7d3f6e7c007e0ae73d73ddb72a990a4c"
+    },
+    "replay_variants": {
+      "result": "PASS",
+      "report_sha256": "58ad44a006aa693ad560a9332f904ff2d90227b1f1f948ce3a4d2405b9fba4e9"
+    },
+    "test_native": {
+      "result": "PASS",
+      "report_sha256": "ebec6aeabdc6efc2735b2505421ad928e7d30e1188c98d5451a1cfa5060a6e2c"
+    },
+    "test_host": {
+      "result": "PASS",
+      "report_sha256": "143f2a12abca4efdfb2e873a25379d13a36e027d7fa93d29ece4a841b3e3f640"
+    },
+    "diagnose": {
+      "result": "PASS",
+      "report_sha256": "b82aacdda94e1a7a3ddac7fb035b25cb5e7e69e40a4e7099165236c71392b1b1"
+    }
+  },
+  "independent_mutations": [
+    {
+      "mutation": "drop_tag_wrap",
+      "test_rejects": true,
+      "returncode": -11
+    },
+    {
+      "mutation": "wrong_guard",
+      "test_rejects": true,
+      "returncode": -6
+    },
+    {
+      "mutation": "wrong_service_mode",
+      "test_rejects": true,
+      "returncode": -6
+    }
+  ],
+  "findings": [
+    "Independently inspected the whole target and both native callers. The genuine interface is void(request *, result *, u8), with a 40-byte request, 4088-byte context, pending copy at 0xFC8, and real 32-byte options.",
+    "Independently inspected all eleven direct helper interfaces, including the tagged 0..7 translator result, byte/halfword/word/byte dispatcher arguments, and fifth byte constructor argument. The 178B0 consumer gates map count/pointer at 18/20 with flag 8 and channel pointer 28 with channel count 24. No invented initialization or padding locals.",
+    "Fresh replays reproduce all hashes, 24 compiler pins, 439 extents totaling 99,120 bytes, known getter match, 29 O32 assertions, 21 source forms, 3,142 native/candidate cases, and 3,072 cases per host configuration. The final remains an honest 109/240-word O2 NONMATCH with exact 960-byte ELF extent; O1 rejects at 239/240 and 1156 bytes.",
+    "Source respects helper-mutable state and native reloads. Tagged indices, result aliases, and exact self-copy into an embedded request are tested. Arbitrarily partially overlapping request objects remain outside the C aggregate-assignment domain.",
+    "All six generated test and diagnosis reports exactly reproduce as parsed JSON. The actual-source host suite rejects three independent defects: missing 32-bit tag-wrap cast, nonzero channel count, and wrong mode 3.",
+    "All 39 files stay in the packet. No protected source, scorer, target, layout, header, lock, ledger, raw native dump, object, ROM, credential, or unrelated data is published. Approval covers complete research, with zero matching, integration, or cartridge credit."
+  ]
+}

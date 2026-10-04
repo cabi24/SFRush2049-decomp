@@ -1,0 +1,16 @@
+[
+  {
+    "name": "func_80019C8C",
+    "stage": "five-word checkpoint before final bounded control",
+    "source_sha256": "e759546352944cbf1dbe93f6ec447b48570f3e72462dabb01124c0a149a60383",
+    "workbench_summary": "verdict=operand-mismatch aligned_total=  16 words=   5 raw=  16 opcodes=   0 gaps=   0 reloc_syms=  11 norm=   0 regs=   0 fp=   0 insns= 145 frame=  -88 sha1=94d30c790b63 /tmp/spatial-80019C8C-near.o",
+    "recorded_utc": "2026-10-04T03:14:07.382047+00:00"
+  },
+  {
+    "name": "func_8001DC08",
+    "stage": "five-word checkpoint before final bounded control",
+    "source_sha256": "68da4680cced0b4daa364bd31b6a061163955d360ad4030748336490ad9c4f3a",
+    "workbench_summary": "verdict=structure-mismatch aligned_total=  16 words=   5 raw=  15 opcodes=   2 gaps=   4 reloc_syms=  12 norm=   7 regs=   5 fp=   5 insns= 118 frame=  -88 sha1=62afa40b526a /tmp/spatial-8001DC08-near.o true_insn_delta=+0 geometry_edit_distance=7 opcode_distance=4",
+    "recorded_utc": "2026-10-04T03:14:07.935473+00:00"
+  }
+]

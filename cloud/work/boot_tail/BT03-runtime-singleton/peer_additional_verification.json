@@ -1,0 +1,26 @@
+{
+  "result": "PASS",
+  "additional_cases": 4,
+  "rows": [
+    {
+      "case": "program callback changes live controller byte",
+      "result": "PASS",
+      "native_and_candidate": true
+    },
+    {
+      "case": "controller alone replaces live context and cursor before ticking",
+      "result": "PASS",
+      "native_and_candidate": true
+    },
+    {
+      "case": "big-endian16 jump index256 and postrestart carry",
+      "result": "PASS",
+      "native_and_candidate": true
+    },
+    {
+      "case": "two restarts terminate with no ticks and one callback",
+      "result": "PASS",
+      "native_and_candidate": true
+    }
+  ]
+}

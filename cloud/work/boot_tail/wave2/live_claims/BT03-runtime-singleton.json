@@ -1,0 +1,18 @@
+{
+  "state": "frozen-review-pass-integrating",
+  "owner": "/root/match_runtime_singleton",
+  "packet": "BT03-runtime-singleton",
+  "branch": "dot/boot-tail-bt03-runtime-singleton",
+  "base": "1bf59758914bbe96f1ed363d8b52025c42e9b79f",
+  "targets": [
+    {
+      "address": "0x80018634",
+      "size": 840,
+      "end_exclusive": "0x8001897C"
+    }
+  ],
+  "bytes": 840,
+  "edit_scope": "Only named matching source and cloud/work/boot_tail/BT03-runtime-singleton/**",
+  "stop": "Finish full actual native/caller/callee ABI inspection before source edits; reviewed nonmatching callees supply ABI only. Natural C89/O2/O1, exact ELF extent, bounded diagnosis. No fake parameters, unknown data substitution, blocked callee investigation or protected edits.",
+  "reviewed_commit": "cc50ad283107ee38e2eb11b6aea4e2e43bb80490"
+}

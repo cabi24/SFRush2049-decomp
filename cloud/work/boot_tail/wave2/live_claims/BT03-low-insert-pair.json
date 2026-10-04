@@ -1,5 +1,5 @@
 {
-  "state": "frozen-review-pass",
+  "state": "frozen-review-pass-integrating",
   "owner": "/root/verify_boot_tail_matches",
   "packet": "BT03-low-insert-pair",
   "branch": "dot/boot-tail-bt03-low-insert-pair",

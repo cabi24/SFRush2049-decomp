@@ -1,0 +1,65 @@
+{
+  "method": "Unchanged workbench; temporary canonical-word target object and original O2 candidate. Raw objects/words not committed; strict relocated score decides acceptance.",
+  "results": [
+    {
+      "name": "func_8001D764",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "e9269b128afe759dc7d75bdd27dc221caa956a1a016d985ee79ae3cbfa4cd7d6",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 72,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  40 words=  73 raw=  78 opcodes=  67 gaps=   5 reloc_syms=   8 norm=  33 regs=  71 fp=  27 insns=  84 frame=  -24 sha1=59b23eb78feb /tmp/runtime-followon-8001D764-O2.o true_insn_delta=+1 geometry_edit_distance=33 opcode_distance=3",
+      "recorded_utc": "2026-10-04T02:27:39.445071+00:00"
+    },
+    {
+      "name": "func_8001EB10",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "ed61bd8c1ecdc22c0da87f492560226ee3e64fae3bff2a003e33242ee2ff419e",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 74,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  55 words=  74 raw=  78 opcodes=  54 gaps=   6 reloc_syms=  13 norm=  60 regs=  69 fp=   4 insns= 112 frame=  -24 sha1=41aca2cde741 /tmp/runtime-followon-8001EB10-O2.o true_insn_delta=-4 geometry_edit_distance=60 opcode_distance=7",
+      "recorded_utc": "2026-10-04T02:27:39.880795+00:00"
+    },
+    {
+      "name": "func_80019194",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "7f8a46f14a189df4fa8ad6654b30ec18913b59310926048e43ce3e504bb8052c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 26,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  34 words=  26 raw=  39 opcodes=   3 gaps=   2 reloc_syms=  13 norm=  21 regs=  26 fp=   0 insns= 119 frame=  -64 sha1=2974f9daffcb /tmp/runtime-followon-80019194-O2.o true_insn_delta=+0 geometry_edit_distance=21 opcode_distance=2",
+      "recorded_utc": "2026-10-04T02:27:40.309325+00:00"
+    },
+    {
+      "name": "func_80018448",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "eb6be69c438c137880093b7560f707eb00ec7c41158edd9b1288773d2d58542d",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 87,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  53 words=  87 raw=  91 opcodes=  66 gaps=   8 reloc_syms=   8 norm=  55 regs=  83 fp=   2 insns= 121 frame=  -56 sha1=bfb5bdb5c9ae /tmp/runtime-followon-80018448-O2.o true_insn_delta=-2 geometry_edit_distance=55 opcode_distance=8",
+      "recorded_utc": "2026-10-04T02:27:40.762246+00:00"
+    },
+    {
+      "name": "func_8001C580",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "d09d8db0c9ee17278e78f1244549b2f8c58e744311898c944782f95c1b2805a2",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 37,
+      "strict_extra_words": 3,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  43 words=  40 raw=  50 opcodes=  21 gaps=  18 reloc_syms=  17 norm=  32 regs=  37 fp=   4 insns= 128 frame=  -80 sha1=2ce2b1d97773 /tmp/runtime-followon-8001C580-O2.o true_insn_delta=+4 geometry_edit_distance=32 opcode_distance=8",
+      "recorded_utc": "2026-10-04T02:27:41.229063+00:00"
+    },
+    {
+      "name": "func_8001824C",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "42812092730adf548f878aa51550d9aa03d7e13a202830debaa1661b96823963",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 96,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  58 words=  96 raw= 100 opcodes=  75 gaps=   7 reloc_syms=  11 norm=  52 regs=  94 fp=   5 insns= 122 frame=  -56 sha1=d75f8c7dd365 /tmp/runtime-followon-8001824C-O2.o true_insn_delta=-5 geometry_edit_distance=52 opcode_distance=7",
+      "recorded_utc": "2026-10-04T02:27:41.933327+00:00"
+    }
+  ]
+}

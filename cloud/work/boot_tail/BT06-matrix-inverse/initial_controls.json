@@ -1,0 +1,32 @@
+[
+  {
+    "name": "func_80024D74",
+    "source_path": "cloud/work/boot_tail/BT06-matrix-inverse/controls/80024D74_initial.c",
+    "source_sha256": "2c400a439f81374b3ecf99eeaa86b4c5284310e296af27a43be4640496573901",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "differing_words": 114,
+    "total_words": 141,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false,
+    "elf_function_size": 564,
+    "label": "initial"
+  },
+  {
+    "name": "func_80024D74",
+    "source_path": "cloud/work/boot_tail/BT06-matrix-inverse/controls/80024D74_initial.c",
+    "source_sha256": "2c400a439f81374b3ecf99eeaa86b4c5284310e296af27a43be4640496573901",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "differing_words": 139,
+    "total_words": 141,
+    "extra_words": 13,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false,
+    "elf_function_size": 616,
+    "label": "initial"
+  }
+]

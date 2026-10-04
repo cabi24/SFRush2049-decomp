@@ -1,0 +1,178 @@
+{
+  "result": "PASS",
+  "source_sha256": "874ff77bec17f4f1cc25b6a4ec939497a8180c932541106bb121f742dac5211b",
+  "checks": [
+    {
+      "expression": "sizeof(void*)",
+      "value": 4
+    },
+    {
+      "expression": "sizeof(SequenceEvent)",
+      "value": 12
+    },
+    {
+      "expression": "sizeof(Track)",
+      "value": 16
+    },
+    {
+      "expression": "sizeof(Playback)",
+      "value": 40
+    },
+    {
+      "expression": "sizeof(SequenceHeader)",
+      "value": 24
+    },
+    {
+      "expression": "sizeof(Context)",
+      "value": 4040
+    },
+    {
+      "expression": "(unsigned int)&((SequenceEvent*)0)->time",
+      "value": 0
+    },
+    {
+      "expression": "(unsigned int)&((SequenceEvent*)0)->program",
+      "value": 4
+    },
+    {
+      "expression": "(unsigned int)&((SequenceEvent*)0)->controller",
+      "value": 5
+    },
+    {
+      "expression": "(unsigned int)&((SequenceEvent*)0)->code",
+      "value": 8
+    },
+    {
+      "expression": "(unsigned int)&((SequenceEvent*)0)->value",
+      "value": 10
+    },
+    {
+      "expression": "(unsigned int)&((SequenceHeader*)0)->patterns",
+      "value": 4
+    },
+    {
+      "expression": "(unsigned int)&((SequenceHeader*)0)->channels",
+      "value": 8
+    },
+    {
+      "expression": "(unsigned int)&((SequenceHeader*)0)->loop_time",
+      "value": 20
+    },
+    {
+      "expression": "(unsigned int)&((Pattern*)0)->optional04",
+      "value": 4
+    },
+    {
+      "expression": "(unsigned int)&((Pattern*)0)->optional08",
+      "value": 8
+    },
+    {
+      "expression": "(unsigned int)&((Pattern*)0)->data",
+      "value": 12
+    },
+    {
+      "expression": "(unsigned int)&((Track*)0)->start",
+      "value": 0
+    },
+    {
+      "expression": "(unsigned int)&((Track*)0)->cursor",
+      "value": 4
+    },
+    {
+      "expression": "(unsigned int)&((Track*)0)->fraction",
+      "value": 8
+    },
+    {
+      "expression": "(unsigned int)&((Track*)0)->time",
+      "value": 12
+    },
+    {
+      "expression": "(unsigned int)&((Playback*)0)->counter00",
+      "value": 0
+    },
+    {
+      "expression": "(unsigned int)&((Playback*)0)->counter04",
+      "value": 4
+    },
+    {
+      "expression": "(unsigned int)&((Playback*)0)->counter08",
+      "value": 8
+    },
+    {
+      "expression": "(unsigned int)&((Playback*)0)->cursor",
+      "value": 12
+    },
+    {
+      "expression": "(unsigned int)&((Playback*)0)->optional10",
+      "value": 16
+    },
+    {
+      "expression": "(unsigned int)&((Playback*)0)->optional14",
+      "value": 20
+    },
+    {
+      "expression": "(unsigned int)&((Playback*)0)->value18",
+      "value": 24
+    },
+    {
+      "expression": "(unsigned int)&((Playback*)0)->value1A",
+      "value": 26
+    },
+    {
+      "expression": "(unsigned int)&((Playback*)0)->counter1C",
+      "value": 28
+    },
+    {
+      "expression": "(unsigned int)&((Playback*)0)->counter20",
+      "value": 32
+    },
+    {
+      "expression": "(unsigned int)&((Playback*)0)->channel",
+      "value": 36
+    },
+    {
+      "expression": "(unsigned int)&((Playback*)0)->second",
+      "value": 37
+    },
+    {
+      "expression": "(unsigned int)&((Playback*)0)->first",
+      "value": 38
+    },
+    {
+      "expression": "(unsigned int)&((Playback*)0)->index",
+      "value": 39
+    },
+    {
+      "expression": "(unsigned int)&((Context*)0)->sequence",
+      "value": 268
+    },
+    {
+      "expression": "(unsigned int)&((Context*)0)->step_fraction",
+      "value": 280
+    },
+    {
+      "expression": "(unsigned int)&((Context*)0)->step_time",
+      "value": 284
+    },
+    {
+      "expression": "(unsigned int)&((Context*)0)->lookahead",
+      "value": 288
+    },
+    {
+      "expression": "(unsigned int)&((Context*)0)->tracks",
+      "value": 296
+    },
+    {
+      "expression": "(unsigned int)&((Context*)0)->playback",
+      "value": 1384
+    },
+    {
+      "expression": "(unsigned int)&((Context*)0)->stop_loop",
+      "value": 4037
+    },
+    {
+      "expression": "(unsigned int)&((Context*)0)->loop_count",
+      "value": 4038
+    }
+  ]
+}

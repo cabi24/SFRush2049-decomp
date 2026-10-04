@@ -1,0 +1,302 @@
+{
+  "result": "PASS",
+  "cases": 42,
+  "source_sha256": "874ff77bec17f4f1cc25b6a4ec939497a8180c932541106bb121f742dac5211b",
+  "results": [
+    {
+      "case": "all64 inactive",
+      "result": "PASS",
+      "native_steps": 609,
+      "candidate_steps": 609,
+      "calls": 0
+    },
+    {
+      "case": "pending clocks including wrap 0",
+      "result": "PASS",
+      "native_steps": 1889,
+      "candidate_steps": 1889,
+      "calls": 0
+    },
+    {
+      "case": "pending clocks including wrap 1",
+      "result": "PASS",
+      "native_steps": 1889,
+      "candidate_steps": 1889,
+      "calls": 0
+    },
+    {
+      "case": "pending clocks including wrap 2",
+      "result": "PASS",
+      "native_steps": 1889,
+      "candidate_steps": 1889,
+      "calls": 0
+    },
+    {
+      "case": "pending clocks including wrap 3",
+      "result": "PASS",
+      "native_steps": 1889,
+      "candidate_steps": 1889,
+      "calls": 0
+    },
+    {
+      "case": "pending clocks including wrap 4",
+      "result": "PASS",
+      "native_steps": 1889,
+      "candidate_steps": 1889,
+      "calls": 0
+    },
+    {
+      "case": "pending clocks including wrap 5",
+      "result": "PASS",
+      "native_steps": 1889,
+      "candidate_steps": 1889,
+      "calls": 0
+    },
+    {
+      "case": "pending clocks including wrap 6",
+      "result": "PASS",
+      "native_steps": 1889,
+      "candidate_steps": 1889,
+      "calls": 0
+    },
+    {
+      "case": "pending clocks including wrap 7",
+      "result": "PASS",
+      "native_steps": 1889,
+      "candidate_steps": 1889,
+      "calls": 0
+    },
+    {
+      "case": "pending clocks including wrap 8",
+      "result": "PASS",
+      "native_steps": 1889,
+      "candidate_steps": 1889,
+      "calls": 0
+    },
+    {
+      "case": "pending clocks including wrap 9",
+      "result": "PASS",
+      "native_steps": 1889,
+      "candidate_steps": 1889,
+      "calls": 0
+    },
+    {
+      "case": "pending clocks including wrap 10",
+      "result": "PASS",
+      "native_steps": 1889,
+      "candidate_steps": 1889,
+      "calls": 0
+    },
+    {
+      "case": "pending clocks including wrap 11",
+      "result": "PASS",
+      "native_steps": 1889,
+      "candidate_steps": 1889,
+      "calls": 0
+    },
+    {
+      "case": "pending clocks including wrap 12",
+      "result": "PASS",
+      "native_steps": 1889,
+      "candidate_steps": 1889,
+      "calls": 0
+    },
+    {
+      "case": "pending clocks including wrap 13",
+      "result": "PASS",
+      "native_steps": 1889,
+      "candidate_steps": 1889,
+      "calls": 0
+    },
+    {
+      "case": "pending clocks including wrap 14",
+      "result": "PASS",
+      "native_steps": 1889,
+      "candidate_steps": 1889,
+      "calls": 0
+    },
+    {
+      "case": "pending clocks including wrap 15",
+      "result": "PASS",
+      "native_steps": 1889,
+      "candidate_steps": 1889,
+      "calls": 0
+    },
+    {
+      "case": "termination sentinel",
+      "result": "PASS",
+      "native_steps": 1633,
+      "candidate_steps": 1633,
+      "calls": 0
+    },
+    {
+      "case": "no stale activity after termination",
+      "result": "PASS",
+      "native_steps": 609,
+      "candidate_steps": 609,
+      "calls": 0
+    },
+    {
+      "case": "stop-loop sentinel",
+      "result": "PASS",
+      "native_steps": 1633,
+      "candidate_steps": 1633,
+      "calls": 0
+    },
+    {
+      "case": "no stale activity after termination",
+      "result": "PASS",
+      "native_steps": 609,
+      "candidate_steps": 609,
+      "calls": 0
+    },
+    {
+      "case": "pattern optional/callback matrix 0",
+      "result": "PASS",
+      "native_steps": 717,
+      "candidate_steps": 717,
+      "calls": 0
+    },
+    {
+      "case": "pattern optional/callback matrix 1",
+      "result": "PASS",
+      "native_steps": 720,
+      "candidate_steps": 720,
+      "calls": 0
+    },
+    {
+      "case": "pattern optional/callback matrix 2",
+      "result": "PASS",
+      "native_steps": 720,
+      "candidate_steps": 720,
+      "calls": 0
+    },
+    {
+      "case": "pattern optional/callback matrix 3",
+      "result": "PASS",
+      "native_steps": 723,
+      "candidate_steps": 723,
+      "calls": 0
+    },
+    {
+      "case": "pattern optional/callback matrix 4",
+      "result": "PASS",
+      "native_steps": 721,
+      "candidate_steps": 721,
+      "calls": 1
+    },
+    {
+      "case": "pattern optional/callback matrix 5",
+      "result": "PASS",
+      "native_steps": 724,
+      "candidate_steps": 724,
+      "calls": 1
+    },
+    {
+      "case": "pattern optional/callback matrix 6",
+      "result": "PASS",
+      "native_steps": 724,
+      "candidate_steps": 724,
+      "calls": 1
+    },
+    {
+      "case": "pattern optional/callback matrix 7",
+      "result": "PASS",
+      "native_steps": 727,
+      "candidate_steps": 727,
+      "calls": 1
+    },
+    {
+      "case": "pattern optional/callback matrix 8",
+      "result": "PASS",
+      "native_steps": 721,
+      "candidate_steps": 721,
+      "calls": 1
+    },
+    {
+      "case": "pattern optional/callback matrix 9",
+      "result": "PASS",
+      "native_steps": 724,
+      "candidate_steps": 724,
+      "calls": 1
+    },
+    {
+      "case": "pattern optional/callback matrix 10",
+      "result": "PASS",
+      "native_steps": 724,
+      "candidate_steps": 724,
+      "calls": 1
+    },
+    {
+      "case": "pattern optional/callback matrix 11",
+      "result": "PASS",
+      "native_steps": 727,
+      "candidate_steps": 727,
+      "calls": 1
+    },
+    {
+      "case": "pattern optional/callback matrix 12",
+      "result": "PASS",
+      "native_steps": 725,
+      "candidate_steps": 725,
+      "calls": 2
+    },
+    {
+      "case": "pattern optional/callback matrix 13",
+      "result": "PASS",
+      "native_steps": 728,
+      "candidate_steps": 728,
+      "calls": 2
+    },
+    {
+      "case": "pattern optional/callback matrix 14",
+      "result": "PASS",
+      "native_steps": 728,
+      "candidate_steps": 728,
+      "calls": 2
+    },
+    {
+      "case": "pattern optional/callback matrix 15",
+      "result": "PASS",
+      "native_steps": 731,
+      "candidate_steps": 731,
+      "calls": 2
+    },
+    {
+      "case": "all64 restart only one callback with loop-count wrap",
+      "result": "PASS",
+      "native_steps": 3947,
+      "candidate_steps": 3947,
+      "calls": 1
+    },
+    {
+      "case": "program callback replaces live context",
+      "result": "PASS",
+      "native_steps": 725,
+      "candidate_steps": 725,
+      "calls": 2
+    },
+    {
+      "case": "loop callback count lands in replacement context",
+      "result": "PASS",
+      "native_steps": 671,
+      "candidate_steps": 671,
+      "calls": 1
+    },
+    {
+      "case": "two immediate patterns then termination skips timer",
+      "result": "PASS",
+      "native_steps": 809,
+      "candidate_steps": 809,
+      "calls": 2
+    },
+    {
+      "case": "unsigned horizon wraps before event comparison",
+      "result": "PASS",
+      "native_steps": 629,
+      "candidate_steps": 629,
+      "calls": 0
+    }
+  ],
+  "limits": "Bounded fail-closed MIPS-II integer replay with synthetic mapped resources and explicit helper contracts; not full game/emulator integration. Caller-clobbered registers are poisoned after each stub and callee-saves/stack restoration are checked."
+}
