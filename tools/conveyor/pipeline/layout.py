@@ -145,15 +145,16 @@ def _canonical_name(v, next_v, symbols, census):
     """The function's canonical name at vaddr v, or None (unnamed).
 
     A name must be declared `type:func` in symbol_addrs. An address-spelled
-    name (func_XXXXXXXX) is canonical only when it spells v itself AND a census
-    extent starts at v and ends within the slot; otherwise it is still an
-    undocumented auto-name and the segment refuses."""
+    name is canonical only in its exact splat spelling `func_%08X` of v itself
+    (no case, width or zero-padding variants) AND when a census extent starts
+    at v and ends within the slot; otherwise it is still an undocumented
+    auto-name and the segment refuses."""
     sym = symbols.get(v)
     name = sym[0] if sym and sym[1] == "func" else None
     if name is None or not _FUNC_AUTONAME_RE.match(name):
         return name
     size = census.get(v)
-    if int(name[5:], 16) != v or size is None or v + size > next_v:
+    if name != f"func_{v:08X}" or size is None or v + size > next_v:
         return None
     return name
 

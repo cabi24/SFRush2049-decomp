@@ -41,6 +41,20 @@ proof. It records `.text` and `.data` section hashes instead of the file hash. T
 
 ## Reproduce
 
+Prerequisites. These are not all tracked, and a missing one can change results silently:
+
+- `cloud/work/static_C19/targets.py` (untracked in git). This is the C19 targets module that
+  `targets` loads. Its `targets.patch` sibling records the diff from the production module.
+- `reference/repos/ultralib` (git-ignored) at decompals ultralib `e24c836`. The C19 targets
+  module resolves SDK structure field offsets from its headers. Without it,
+  `__osInitialize_common`'s target silently becomes `52a1df42…` instead of the reviewed
+  `88607c18…`, and the `targets` step's identity assertion then fails.
+- The `tools/decomp-permuter` submodule (`git submodule update --init tools/decomp-permuter`).
+  The canonical scorer (`tools/conveyor/jobs/scoring.py`) imports it, in the repo on the
+  builder and in the toolkit.
+- `mips-linux-gnu` binutils and `baserom.us.z64` on the Pi. On the builder, the pinned toolkit
+  `~/rush2049/cache/toolkits/796ae99a…`.
+
 Run from the repository root. First apply the splat re-split and the
 `symbol_addrs.us.txt` edits from this commit, and sync the builder per
 docs/BUILDING.md, including `rsync -a --delete asm/ watchman2:~/rush2049/repo/asm/`.

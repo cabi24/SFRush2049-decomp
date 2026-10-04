@@ -16,9 +16,12 @@ byte-identical. Steps (run from the repository root):
            proof's target_sha256. Needs mips-linux-gnu binutils and baserom.
   score    Replay cloud/work/static_C19/score_module.py on the builder: compile
            the reviewed source (cloud/work/static_C18/full_module.c) with the
-           pinned toolkit's IDO at the reviewed flags, require the object to equal
-           the reviewed module_sha256, and strict-score every member against the
-           replayed targets with the unchanged canonical scorer settings.
+           pinned toolkit's IDO at the reviewed flags and strict-score every member
+           against the replayed targets with the unchanged canonical scorer
+           settings. Strict/raw scores, object offsets, word counts, flags,
+           protocol and source hash must equal the reviewed proof; the object FILE
+           hash is recorded but not compared (IDO's .mdebug embeds the compiling
+           tree's include paths), its .text/.data section hashes are recorded.
   context  Hash the live files of the original record's key set (the complete
            tracked compiler-header closure, scorer and symbol inputs) into
            sdk_initialize_compiler_context.json and write provenance.json.

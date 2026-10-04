@@ -242,8 +242,8 @@ def load(image, rom, game):
         found = discover(img, game, base=BOOT_BASE, start=BOOT_TAIL[0], stop=BOOT_TAIL[1])
         return img, BOOT_BASE, found, {
             "rom_range": f"0x{BOOT_ROM[0]:X}-0x{BOOT_ROM[1]:X}",
-            "note": "boot segment tail past the counted static code (ROM 0x10000); "
-                    "starts at __osPfsRWInode, whose static target is cut at ROM 0x10000"}
+            "note": "boot segment tail 0x8000F3A4-0x800277D0 from __osPfsRWInode; "
+                    "static code since the boot-tail extension (splat code to ROM 0x283D0)"}
     rom_offset = image_rom_offset(rom, image)
     img = inflate(rom, rom_offset)
     return img, BASE, discover(img, game), {
