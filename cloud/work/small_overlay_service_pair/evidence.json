@@ -1,0 +1,113 @@
+{
+  "classification": "BOUNDED_BEHAVIORAL_SOURCE_NONMATCH",
+  "image_sha256": "b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd",
+  "rom_start": "0x00B6FEC4",
+  "runtime_base": "0x8038A400",
+  "compressed_bytes": 23639,
+  "image_bytes": 43888,
+  "asset_sha256": "c348ea04768321ca2f864195ad6013a8fb15b59f0295ab74b8b16317cfa77154",
+  "bodies": [
+    {
+      "start": "0x8038D3A4",
+      "end_exclusive": "0x8038D498",
+      "bytes": 244,
+      "sha256": "bca5c5c0678b994919e5495be737f3c3bdcc6f00f021f93e3238634d0bda3b3e",
+      "local_branches": 5,
+      "direct_calls": [
+        "0x800C55E4"
+      ],
+      "return_address": "0x8038D490"
+    },
+    {
+      "start": "0x8038D798",
+      "end_exclusive": "0x8038DA78",
+      "bytes": 736,
+      "sha256": "ef153feda709bc9a4a8c200237d0bfdb3faaf8c9240cfb553d6b3caff0781f55",
+      "local_branches": 10,
+      "direct_calls": [
+        "0x800A61B0",
+        "0x8008C768",
+        "0x8038D3A4",
+        "0x8038D3A4",
+        "0x8038D3A4"
+      ],
+      "return_address": "0x8038DA70"
+    }
+  ],
+  "pool_words": {
+    "0x80394DC4": "0x3E4CCCCD",
+    "0x80394DD4": "0x3EB33333",
+    "0x80394DD8": "0x3FACCCCD"
+  },
+  "accepted_bytes": 0,
+  "full_image_function_registry": false,
+  "caller_residency_proved": false,
+  "base_commit": "f82c5204edc4ead0f9056f323ff71122209ff259",
+  "independent_review": "REVIEW.md",
+  "host_tests": {
+    "focused_pytest_passed": 4,
+    "random_d3a4": 30000,
+    "d3a4_edges": 3,
+    "random_d798_sets": 3000,
+    "native_execution": false,
+    "sanitizers": "ASan+UBSan passed; detect_leaks=0"
+  },
+  "compile": {
+    "compiler": "pinned IDO, tools/cloud/ido/cc",
+    "cc_sha256": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "flags": [
+      "-g0",
+      "-O2",
+      "-mips2",
+      "-G",
+      "0",
+      "-non_shared",
+      "-Wab,-r4300_mul"
+    ],
+    "source": "service_pair.c",
+    "object_sha256": "c2e78cf0f21401d7e0c28b6e2a55fd1e83b5d00f783ad42d69a54e438ceeea70",
+    "candidate_bytes": {
+      "small_8038D3A4": 248,
+      "small_8038D798": 604
+    },
+    "strict_differing_words": null,
+    "unverified_relocations": null,
+    "scored": false,
+    "true_match": false
+  },
+  "gates": {
+    "full_overlay_link": false,
+    "image_identity_from_C": false,
+    "compressed_stream_identity_from_C": false,
+    "full_ROM_SHA1": false
+  },
+  "file_sha256": {
+    "cloud/work/small_overlay_service_pair/README.md": "2f936e1a2201024b63a0f22017fb82cc167dfb095d00ce7bfa677ac6363fa078",
+    "cloud/work/small_overlay_service_pair/RESIDENCY.md": "b83ec742874f967e6dc65219ffa81503de00bd726aab3fca641cef169a663c42",
+    "cloud/work/small_overlay_service_pair/REVIEW.md": "a8cbc6180481670c16a1a2907e21ccba94090e9834c7b98a8656745080b9225c",
+    "cloud/work/small_overlay_service_pair/audit.py": "4dac5b726a655b76733abed26f88c7f699a7a3fd6e5230b39e68876bb3afa2f5",
+    "cloud/work/small_overlay_service_pair/residency_model.py": "4af466a00439d815c6170e504ab426c7a2c1f57c30038627b036f741ac605421",
+    "cloud/work/small_overlay_service_pair/service_pair.c": "636e7d23969a75761efa708c270e4ad68da6f657203726012587938849945758",
+    "cloud/work/small_overlay_service_pair/service_pair.h": "2ce2c460a582b0af12b9f52c93350b91635a78ffb90a883f8a18469a9c198861",
+    "tests/conveyor/fixtures/small_overlay_service_pair/host_test.c": "757c428b3280af4fb9b986c1216f482d22f79fba3f3454844b215d0a48d69d9e",
+    "tests/conveyor/fixtures/small_overlay_service_pair/independent_harness.c": "b30d98dceb493215dd54f2a0d0d51f9c5d63f48c32784cb7d288f45d83e08e12",
+    "tests/conveyor/fixtures/small_overlay_service_pair/independent_oracle.py": "f13cc0773f083cdb417f075eef91d2cf6be57e170605c9dc944396c37b2c5b1d",
+    "tests/conveyor/test_small_overlay_service_pair.py": "0aa4128120d3f69fefafffd01e20a341159ecb9fdb7d9c7bf0e08bc36d488d77"
+  },
+  "repository_regression": {
+    "command": "python -m pytest tests/conveyor tests/cloud -m 'not node_required' -o addopts='' -q -ra",
+    "passed": 1650,
+    "skipped": 59,
+    "deselected": 9,
+    "seconds": 257.6,
+    "initial_setup_failures": "Missing local submodule macro file; populated from existing checkout, then clean full rerun passed",
+    "cloud_toolchain_rerun": {
+      "command": "python -m pytest tests/cloud -o addopts='' -q -ra",
+      "passed": 269,
+      "subtests_passed": 27,
+      "skipped": 0,
+      "seconds": 185.63,
+      "toolchain": "same pinned IDO and binutils, tools/cloud/ido local path exposed; no installation or tooling edit"
+    }
+  }
+}
