@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/74",
+  "source_head": "496a72b0edd683bd7d46e8c21f8323ab43629494",
+  "source_tree": "b116b8282af4c082fa699b5186d3505292aa3b82",
+  "source_parent": "1018ab003251d41de0671284519a91b6b07c5a95",
+  "workflow_run": 37176543578,
+  "workflow_url": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37176543578",
+  "conclusion": "success",
+  "checked_utc": "2026-10-04T04:34:56Z",
+  "head_reconfirmed_utc": "2026-10-04T05:00:20Z",
+  "new_matches": 2,
+  "new_matching_bytes": 1316,
+  "cumulative_unique_new_matches": 236,
+  "cumulative_unique_new_matching_bytes": 26576,
+  "remote_readback": "Fresh post-recovery PR/Git-data exact head/tree/parent and completed exact-head CI confirmed; PR74 remains unchanged.",
+  "qualification": "DDE0 defined-path limitation remains explicit; exact body proof is not universal runtime safety."
+}

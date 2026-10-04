@@ -1,0 +1,302 @@
+[
+  {
+    "variant": "cast-rate",
+    "recovery": "Numeric pre-reset tool-output receipt; original variant source hash unavailable",
+    "compiles": [
+      {
+        "opt": "O2",
+        "total_words": 148,
+        "differing_words": 125,
+        "extra_nonzero_words": 0,
+        "elf_function_bytes": 592,
+        "text_section_bytes": 592,
+        "full_relocated_match": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "opt": "O1",
+        "total_words": 148,
+        "differing_words": 148,
+        "extra_nonzero_words": 55,
+        "elf_function_bytes": 820,
+        "text_section_bytes": 832,
+        "full_relocated_match": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "variant": "masked-rate",
+    "recovery": "Numeric pre-reset tool-output receipt; original variant source hash unavailable",
+    "compiles": [
+      {
+        "opt": "O2",
+        "total_words": 148,
+        "differing_words": 125,
+        "extra_nonzero_words": 0,
+        "elf_function_bytes": 592,
+        "text_section_bytes": 592,
+        "full_relocated_match": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "opt": "O1",
+        "total_words": 148,
+        "differing_words": 148,
+        "extra_nonzero_words": 55,
+        "elf_function_bytes": 820,
+        "text_section_bytes": 832,
+        "full_relocated_match": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "variant": "symbol-pointer",
+    "recovery": "Numeric pre-reset tool-output receipt; original variant source hash unavailable",
+    "compiles": [
+      {
+        "opt": "O2",
+        "total_words": 148,
+        "differing_words": 125,
+        "extra_nonzero_words": 0,
+        "elf_function_bytes": 592,
+        "text_section_bytes": 592,
+        "full_relocated_match": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "opt": "O1",
+        "total_words": 148,
+        "differing_words": 148,
+        "extra_nonzero_words": 55,
+        "elf_function_bytes": 820,
+        "text_section_bytes": 832,
+        "full_relocated_match": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "variant": "symbol-index",
+    "recovery": "Numeric pre-reset tool-output receipt; original variant source hash unavailable",
+    "compiles": [
+      {
+        "opt": "O2",
+        "total_words": 148,
+        "differing_words": 140,
+        "extra_nonzero_words": 6,
+        "elf_function_bytes": 616,
+        "text_section_bytes": 624,
+        "full_relocated_match": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "opt": "O1",
+        "total_words": 148,
+        "differing_words": 148,
+        "extra_nonzero_words": 55,
+        "elf_function_bytes": 820,
+        "text_section_bytes": 832,
+        "full_relocated_match": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "variant": "split-rate",
+    "recovery": "Numeric pre-reset tool-output receipt; original variant source hash unavailable",
+    "compiles": [
+      {
+        "opt": "O2",
+        "total_words": 148,
+        "differing_words": 125,
+        "extra_nonzero_words": 0,
+        "elf_function_bytes": 592,
+        "text_section_bytes": 592,
+        "full_relocated_match": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "opt": "O1",
+        "total_words": 148,
+        "differing_words": 147,
+        "extra_nonzero_words": 56,
+        "elf_function_bytes": 828,
+        "text_section_bytes": 832,
+        "full_relocated_match": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "variant": "while-cursor",
+    "recovery": "Numeric pre-reset tool-output receipt; original variant source hash unavailable",
+    "compiles": [
+      {
+        "opt": "O2",
+        "total_words": 148,
+        "differing_words": 140,
+        "extra_nonzero_words": 8,
+        "elf_function_bytes": 628,
+        "text_section_bytes": 640,
+        "full_relocated_match": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "opt": "O1",
+        "total_words": 148,
+        "differing_words": 147,
+        "extra_nonzero_words": 61,
+        "elf_function_bytes": 852,
+        "text_section_bytes": 864,
+        "full_relocated_match": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "variant": "narrow-rate",
+    "recovery": "Numeric pre-reset tool-output receipt; original variant source hash unavailable",
+    "compiles": [
+      {
+        "opt": "O2",
+        "total_words": 148,
+        "differing_words": 145,
+        "extra_nonzero_words": 3,
+        "elf_function_bytes": 604,
+        "text_section_bytes": 608,
+        "full_relocated_match": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "opt": "O1",
+        "total_words": 148,
+        "differing_words": 148,
+        "extra_nonzero_words": 56,
+        "elf_function_bytes": 824,
+        "text_section_bytes": 832,
+        "full_relocated_match": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "variant": "integer-cursor",
+    "recovery": "Numeric pre-reset tool-output receipt; original variant source hash unavailable",
+    "compiles": [
+      {
+        "opt": "O2",
+        "total_words": 148,
+        "differing_words": 125,
+        "extra_nonzero_words": 0,
+        "elf_function_bytes": 592,
+        "text_section_bytes": 592,
+        "full_relocated_match": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "opt": "O1",
+        "total_words": 148,
+        "differing_words": 148,
+        "extra_nonzero_words": 55,
+        "elf_function_bytes": 820,
+        "text_section_bytes": 832,
+        "full_relocated_match": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "variant": "body-cursor",
+    "recovery": "Numeric pre-reset tool-output receipt; original variant source hash unavailable",
+    "compiles": [
+      {
+        "opt": "O2",
+        "total_words": 148,
+        "differing_words": 125,
+        "extra_nonzero_words": 0,
+        "elf_function_bytes": 592,
+        "text_section_bytes": 592,
+        "full_relocated_match": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "opt": "O1",
+        "total_words": 148,
+        "differing_words": 148,
+        "extra_nonzero_words": 55,
+        "elf_function_bytes": 820,
+        "text_section_bytes": 832,
+        "full_relocated_match": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    ]
+  },
+  {
+    "variant": "integer-entry",
+    "recovery": "Numeric pre-reset tool-output receipt; original variant source hash unavailable",
+    "compiles": [
+      {
+        "opt": "O2",
+        "total_words": 148,
+        "differing_words": 141,
+        "extra_nonzero_words": 6,
+        "elf_function_bytes": 616,
+        "text_section_bytes": 624,
+        "full_relocated_match": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "opt": "O1",
+        "total_words": 148,
+        "differing_words": 148,
+        "extra_nonzero_words": 57,
+        "elf_function_bytes": 828,
+        "text_section_bytes": 832,
+        "full_relocated_match": false,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    ]
+  }
+]

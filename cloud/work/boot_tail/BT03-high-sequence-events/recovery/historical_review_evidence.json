@@ -1,0 +1,124 @@
+{
+  "classification": "HISTORICAL_REVIEW_EVIDENCE_RECONSTRUCTED_AFTER_RESET",
+  "original_receipt_bytes_recovered": false,
+  "original_receipt_sha256": "c0035f26cf7bbbd5441808770a7bd2070dca9acb61a91141f69a5a9be5c38ada",
+  "source_commit": "ca6a32ca2497c95804adabd7686d73e7e295887b",
+  "source_tree": "ae184b11c16f57fbb165721cd2cf7180867f3567",
+  "source_sha256": "ad5137579da173b15c903c8aa35c69cd26416d51def3b65267045062543bff65",
+  "target_sha256": "4fbd944f2a61b52f46402c29fbcf4dd910a4619268cb7c7ac2c6b2cebaa86c38",
+  "historical_result": "PASS for bounded COMPLETE-NONMATCH research",
+  "matching_credit": {
+    "functions": 0,
+    "bytes": 0
+  },
+  "historical_compiler_results": {
+    "final_rows": 2,
+    "archived_rows": 8,
+    "O2": {
+      "differing_words": 173,
+      "target_words": 218,
+      "extra_words": 2,
+      "elf_function_bytes": 880
+    },
+    "O1": {
+      "differing_words": 217,
+      "target_words": 218,
+      "extra_words": 96,
+      "elf_function_bytes": 1276
+    },
+    "unresolved_unverified_errors": []
+  },
+  "historical_controls_summary": [
+    {
+      "form": "initial",
+      "O2_differing_words": 203,
+      "O2_extra_words": 8,
+      "O2_elf_bytes": 904,
+      "O1_differing_words": 217,
+      "O1_extra_words": 89,
+      "O1_elf_bytes": 1236,
+      "source_sha256": "2a51cd883b38062c513f34047f8fbbedbe2e1d85152ae8b4efb22c235d74beea"
+    },
+    {
+      "form": "direct_live_track_view",
+      "O2_differing_words": 175,
+      "O2_extra_words": 4,
+      "O2_elf_bytes": 888,
+      "O1_differing_words": 217,
+      "O1_extra_words": 104,
+      "O1_elf_bytes": 1308
+    },
+    {
+      "form": "whole_timestamp_copy",
+      "O2_differing_words": 173,
+      "O2_extra_words": 2,
+      "O2_elf_bytes": 880,
+      "O1_differing_words": 217,
+      "O1_extra_words": 96,
+      "O1_elf_bytes": 1276,
+      "reported_same_source_sha256": "ad5137579da173b15c903c8aa35c69cd26416d51def3b65267045062543bff65"
+    },
+    {
+      "form": "consumed_command_byte",
+      "O2_differing_words": 179,
+      "O2_extra_words": 0,
+      "O2_elf_bytes": 860,
+      "O1_differing_words": 217,
+      "O1_extra_words": 101,
+      "O1_elf_bytes": 1300,
+      "qualification": "Undersized O2 rejected; no acceptance."
+    }
+  ],
+  "historical_tests": {
+    "stock_calls": 68931,
+    "supplement_calls": 65600,
+    "combined_calls": 134531,
+    "stock_optimization": "O1",
+    "supplement_optimization": "O2",
+    "sanitizers": "address,undefined",
+    "only_leak_sanitizer_disabled": true
+  },
+  "historical_audit": {
+    "whole_source_and_native_review": true,
+    "native_callees_read": [
+      "800173B4",
+      "80017410",
+      "80017720",
+      "800177EC",
+      "80019490",
+      "80020610",
+      "8001A270"
+    ],
+    "caller": "800198C8",
+    "layout_reference": "800178B0",
+    "request_reference_commit": "eae0295b40271c4758c7a3ecb890e48192487f8c",
+    "constructor_signature": "u32(u32,u8,u8,u8,u8,u8,u16,u16,u8,s16)",
+    "zero_identifier_success": true,
+    "only_constructor_failure": "0xFFFFFFFF",
+    "scope_only_own_packet": true,
+    "native_layout_assertions": "PASS",
+    "protected_hashes_and_manifest": "PASS",
+    "census_functions": 439,
+    "census_bytes": 99120,
+    "existing_getter_match": "PASS",
+    "static_locks": 161,
+    "whitespace": "PASS",
+    "changed_matching_submissions": 0
+  },
+  "historical_source_reference": {
+    "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+    "source_blob": "96d05c381cc260c98aa9c21aae2f6b67c8167900",
+    "source_sha256": "02e065bf8a9317c9fcf245ab49544d79eab02ac1540fdf79ab252af21fa699d4",
+    "license_blob": "0e259d42c996742e9e3cba14c677129b2c1b6311",
+    "license": "CC0-1.0",
+    "fetched_and_source_hash_verified_before_reset": true
+  },
+  "post_reset_compilation_or_semantic_tests_run_by_recoverer": false,
+  "limitations": [
+    "Finite aligned sufficiently allocated u16-backed streams; complete reached headers and note durations.",
+    "Channels 0..15, track identifiers 0..63; valid whole contexts and nodes.",
+    "Helpers are interface/effect fixtures and must preserve eventual bounded traversal.",
+    "No malformed/cyclic stream, arbitrary partial-object overlap, concurrent mutation or complete downstream safety claim.",
+    "Historical supplemental tests compare against the pinned C model with additional direct clamp assertions; no native execution oracle or universal proof."
+  ]
+}

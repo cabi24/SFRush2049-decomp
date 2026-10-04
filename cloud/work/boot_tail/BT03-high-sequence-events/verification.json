@@ -1,0 +1,53 @@
+{
+  "schema_version": 2,
+  "result": "PASS",
+  "classification": "COMPLETE-NONMATCH",
+  "base_commit": "496a72b0edd683bd7d46e8c21f8323ab43629494",
+  "recovered_source_sha256": "ad5137579da173b15c903c8aa35c69cd26416d51def3b65267045062543bff65",
+  "target_sha256": "4fbd944f2a61b52f46402c29fbcf4dd910a4619268cb7c7ac2c6b2cebaa86c38",
+  "target_bytes": 872,
+  "match_functions": 0,
+  "verified_body_bytes": 0,
+  "fresh_retained_flag_rows": 2,
+  "fresh_archived_control_rows": 0,
+  "historical_controls": "Eight pre-reset rows are historical evidence only; missing sources and receipts are not recreated or checked here.",
+  "target_manifest_sha256": "6bd3e6ef05e6123e4ea4dd0d814c0abb16f202a91d8d0a381eca14322c8a36d5",
+  "results": [
+    {
+      "name": "func_80017D38",
+      "source_path": "cloud/work/boot_tail/BT03-high-sequence-events/nonmatch/func_80017D38.c",
+      "source_sha256": "ad5137579da173b15c903c8aa35c69cd26416d51def3b65267045062543bff65",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 173,
+      "total_words": 218,
+      "extra_words": 2,
+      "elf_function_size": 880,
+      "text_section_bytes": 880,
+      "fully_relocated_text_sha256": "d8855849b72be521be09a3b1c34430e07c3b1f5a3f3fc19aa4a63aa5af75b42e",
+      "masked_relocations": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80017D38",
+      "source_path": "cloud/work/boot_tail/BT03-high-sequence-events/nonmatch/func_80017D38.c",
+      "source_sha256": "ad5137579da173b15c903c8aa35c69cd26416d51def3b65267045062543bff65",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 217,
+      "total_words": 218,
+      "extra_words": 96,
+      "elf_function_size": 1276,
+      "text_section_bytes": 1280,
+      "fully_relocated_text_sha256": "b6bfafcac7821a2c112772f17ddef61f4f5638007927a525471bc056ef4b438a",
+      "masked_relocations": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    }
+  ]
+}

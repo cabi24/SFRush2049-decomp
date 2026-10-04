@@ -1,0 +1,2 @@
+name,status,bytes,source,notes
+func_80017D38,COMPLETE-NONMATCH,872,cloud/work/boot_tail/BT03-high-sequence-events/nonmatch/func_80017D38.c,173 of 218 O2 words differ plus 2 excess; ELF extent 880 versus 872; no match credit

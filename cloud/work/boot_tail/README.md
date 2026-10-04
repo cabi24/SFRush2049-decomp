@@ -1,12 +1,12 @@
 # D10: boot-tail runtime research and matching
 
 The 412 assigned functions account for **95,012 B**.
-The current ledger records **21 open functions / 25,404 B**,
+The current ledger records **17 open functions / 22,496 B**,
 **0 confirmed non-C rows**, **1
 pre-existing verified bodies / 12 B**, and
-**234 newly verified bodies / 25,260 B**.
-There are **2 claimed functions / 1,316 B** and
-**154 nonmatches / 43,020 B**.
+**236 newly verified bodies / 26,576 B**.
+There are **1 claimed functions / 604 B** and
+**157 nonmatches / 45,324 B**.
 
 Packet 1 itself introduced zero matching bodies or verified bytes. Its initial
 verified entry imports the existing 12-byte `func_80010A00` PR #54 receipt, now
@@ -258,8 +258,8 @@ repository regression, native equality proof, target/toolchain check or ROM test
 ```json
 {
   "all_tail_distinct_directed_edges": 671,
-  "claimed_bytes": 1316,
-  "claimed_functions": 2,
+  "claimed_bytes": 604,
+  "claimed_functions": 1,
   "cluster_count": 8,
   "cohort_count": 17,
   "game_called_all_inventory": 21,
@@ -270,13 +270,13 @@ repository regression, native equality proof, target/toolchain check or ROM test
   "in_scope_functions": 412,
   "inventory_function_bytes": 99120,
   "inventory_functions": 439,
-  "new_verified_bytes": 25260,
-  "new_verified_functions": 234,
+  "new_verified_bytes": 26576,
+  "new_verified_functions": 236,
   "non_c_functions": 0,
-  "nonmatch_bytes": 43020,
-  "nonmatch_functions": 154,
-  "open_bytes": 25404,
-  "open_functions": 21,
+  "nonmatch_bytes": 45324,
+  "nonmatch_functions": 157,
+  "open_bytes": 22496,
+  "open_functions": 17,
   "preexisting_verified_bytes": 12,
   "preexisting_verified_functions": 1,
   "ultralib_excluded_bytes": 4048,
@@ -567,3 +567,21 @@ Its original producer/listener invariant remains unproved, and byte equality is
 not a universal runtime-safety claim. See wave14/README.md and the independently
 reviewed definedness tests. Prior green proof is in wave13/ci.json; D10 and later
 sequence-event candidates remain unchanged/excluded.
+
+## Fifteenth cut: one freshly reviewed recovered caller
+
+The first fourteen cuts have 236 unique new exact-CI-verified bodies / 26,576 B.
+This cut adds one independently reviewed strict caller / 604 B and three complete
+nonmatches / 2,304 B, pending its own exact-head CI. The union is 237 new bodies /
+27,180 B plus the separate getter. Across 394 unique attempts, 156 complete
+nonmatches / 45,228 B and the unchanged 96-byte source lead receive no match
+credit. Seventeen unclaimed functions / 22,496 B retain explicit boundary,
+table-mapping, corpus or spec-T050 gates.
+
+Recovered C is bound to new immutable source/ABI reviews and fresh tests; missing
+original controls or receipts remain historical-only evidence. The conditional
+pitch handler retains unproved original table/producer bounds and strict valid-
+storage, finite-traversal and nonzero-divisor requirements. Caller-only decoder
+work does not reconstruct gated dependencies. See wave15/README.md, its hash-bound
+manifest and remaining_inputs/. PR74's durable green proof is in wave14/ci.json.
+The separate draft recovery checkpoint adds no matching credit. D10 is unchanged.
