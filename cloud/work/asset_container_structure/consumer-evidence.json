@@ -1,0 +1,36 @@
+{
+  "game_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+  "note": "Independently reviewed native regions. End exclusive; region extent is not an original-TU or matching claim.",
+  "regions": [
+    {
+      "start": "0x80096B00",
+      "end": "0x80096B5C",
+      "sha256": "67ae66bb6ea6c48ea606628122de742fbd62cd7a800c51d9d74c915088697d8f"
+    },
+    {
+      "start": "0x80096B5C",
+      "end": "0x80096BBC",
+      "sha256": "10cbc9a67c84bd337f4a11034d00e4268008475fb925a71a7bcb42ad884eb1a0"
+    },
+    {
+      "start": "0x80096BBC",
+      "end": "0x80096C28",
+      "sha256": "b1f38b8ec4c0cf9f579a099ece870f4f6ab51321881ce00bcfdd56fff35e1b37"
+    },
+    {
+      "start": "0x80096C28",
+      "end": "0x80096CA8",
+      "sha256": "e9f76172b1ac56f5bbbb7704d114fd65c1729ec5fd133933f586a446fa81bc8f"
+    },
+    {
+      "start": "0x80096CA8",
+      "end": "0x8009715C",
+      "sha256": "f199fd949d94c4da6951d32b8644ca9c9fd1ed1939dc7c66dbf39b913c1c6c8b"
+    },
+    {
+      "start": "0x80097164",
+      "end": "0x800972BC",
+      "sha256": "076890514088bd565c56d74545e3ce92cb89111c79a4eabbaafcc9189580d3a4"
+    }
+  ]
+}
