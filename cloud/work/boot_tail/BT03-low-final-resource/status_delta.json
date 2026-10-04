@@ -1,0 +1,49 @@
+{
+  "packet": "BT03-low-final-resource",
+  "central_claim": "c37a1d35",
+  "branch": "dot/boot-tail-bt03-low-final-resource",
+  "base": "9a69f9fdc69b28e93ee2ed051ea9c075574349ad",
+  "master_reference": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "attempted_functions": 2,
+  "attempted_bytes": 1120,
+  "local_match_functions": 0,
+  "local_match_bytes": 0,
+  "nonmatch_functions": 2,
+  "nonmatch_bytes": 1120,
+  "entries": [
+    {
+      "address": "0x80015A0C",
+      "name": "func_80015A0C",
+      "size": 512,
+      "cluster": "BT03",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 66,
+      "extra_words": 6,
+      "source_path": "cloud/work/boot_tail/BT03-low-final-resource/func_80015A0C_NONMATCH.c",
+      "source_sha256": "0694255ac41d6f47e18bb5bde52e90f9d166d7f058f97ee00c941e24d2d8ca79",
+      "note": "Complete actual-ABI resource body; same packed-copy allocation/expansion gap. One or two natural forms, no prior union/memcpy repeats. Native/list-model/host and relocated object semantics pass under documented bounds; zero matching credit."
+    },
+    {
+      "address": "0x80016998",
+      "name": "func_80016998",
+      "size": 608,
+      "cluster": "BT03",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 106,
+      "extra_words": 4,
+      "source_path": "cloud/work/boot_tail/BT03-low-final-resource/func_80016998_NONMATCH.c",
+      "source_sha256": "671a2aa10a63c931339834b9dcf428cb375cf1902d6932b08b9e1d49d34c0a33",
+      "note": "Complete actual-ABI resource body; same packed-copy allocation/expansion gap. One or two natural forms, no prior union/memcpy repeats. Native/list-model/host and relocated object semantics pass under documented bounds; zero matching credit."
+    }
+  ],
+  "source_review": {
+    "result": "PASS_FOR_COMPLETE_NONMATCH_RESEARCH",
+    "reviewed_commit": "07182553efde7004abae48a4ab8c44d424dce999",
+    "reviewed_tree": "6d06412a9c38b6b8084321b7907bc6f25d4ede44",
+    "receipt": "cloud/work/boot_tail/BT03-low-final-resource/REVIEW.json"
+  }
+}

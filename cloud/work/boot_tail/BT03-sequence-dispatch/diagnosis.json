@@ -1,0 +1,50 @@
+{
+  "result": "PASS",
+  "scope": "Exact ELF symbol extent after strict relocation. Only verified zero alignment padding is omitted from workbench diagnostics; unchanged score.py remains the acceptance gate.",
+  "checkpoints": [
+    {
+      "name": "func_80019490",
+      "checkpoint": "baseline",
+      "source_sha256": "422354368919cf0226cc61a423bbcf6a1c15492411005bdd63d53b2262acfad9",
+      "routing": "structural",
+      "owning_pass": "cfe-spelling",
+      "ownership_basis": "heuristic",
+      "lever_class": "none-known",
+      "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+      "verdict": "structure-mismatch",
+      "words": 137,
+      "raw": 137,
+      "target_frame_size": -88,
+      "candidate_frame_size": -88,
+      "target_instructions": 240,
+      "candidate_instructions": 240,
+      "aligned_insertions": 8,
+      "aligned_deletions": 8,
+      "aligned_register": 97,
+      "aligned_constant": 0,
+      "aligned_structural": 21
+    },
+    {
+      "name": "func_80019490",
+      "checkpoint": "final",
+      "source_sha256": "9e892d39290a16a09691aa45b5c881d00f7ff46a808a26b08fdc95c63e10924f",
+      "routing": "structural",
+      "owning_pass": "cfe-spelling",
+      "ownership_basis": "heuristic",
+      "lever_class": "none-known",
+      "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+      "verdict": "structure-mismatch",
+      "words": 109,
+      "raw": 109,
+      "target_frame_size": -88,
+      "candidate_frame_size": -88,
+      "target_instructions": 240,
+      "candidate_instructions": 240,
+      "aligned_insertions": 5,
+      "aligned_deletions": 5,
+      "aligned_register": 99,
+      "aligned_constant": 0,
+      "aligned_structural": 14
+    }
+  ]
+}

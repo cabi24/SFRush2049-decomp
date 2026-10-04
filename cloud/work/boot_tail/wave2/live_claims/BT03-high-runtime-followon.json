@@ -1,5 +1,5 @@
 {
-  "state": "active",
+  "state": "frozen-review-pass-integrating",
   "owner": "/root/match_boot_tail_bt03_high",
   "packet": "BT03-high-runtime-followon",
   "branch": "dot/boot-tail-bt03-high-runtime-followon",
@@ -38,5 +38,7 @@
   ],
   "bytes": 2768,
   "edit_scope": "Only named matching sources and cloud/work/boot_tail/BT03-high-runtime-followon/**",
-  "stop": "Actual caller/callee ABI, real pointer/word/byte domains; exact function-symbol extent; natural C89/O2/O1 and bounded diagnosis. No invented table/literal values, missing data substitution, prior residual reopening or protected edits; C11 and boundary targets excluded."
+  "stop": "Actual caller/callee ABI, real pointer/word/byte domains; exact function-symbol extent; natural C89/O2/O1 and bounded diagnosis. No invented table/literal values, missing data substitution, prior residual reopening or protected edits; C11 and boundary targets excluded.",
+  "reviewed_commit": "9543ec48f08da3577f72fb77496a83d33f0a4607",
+  "reviewed_tree": "77e6460744c0ec08aec4f73f83d34a50d0867c51"
 }

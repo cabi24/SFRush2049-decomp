@@ -1,0 +1,32 @@
+[
+  {
+    "name": "func_80024D74",
+    "label": "pinned_family_expression",
+    "source_path": "cloud/work/boot_tail/BT06-matrix-inverse/controls/80024D74_pinned_family_expression.c",
+    "source_sha256": "b18dd3584f37663f3d1bec09d721885c2aabbfd165f0d28f7c7f9a2a792eca6f",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "differing_words": 0,
+    "total_words": 141,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": true,
+    "elf_function_size": 564
+  },
+  {
+    "name": "func_80024D74",
+    "label": "pinned_family_expression",
+    "source_path": "cloud/work/boot_tail/BT06-matrix-inverse/controls/80024D74_pinned_family_expression.c",
+    "source_sha256": "b18dd3584f37663f3d1bec09d721885c2aabbfd165f0d28f7c7f9a2a792eca6f",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "differing_words": 140,
+    "total_words": 141,
+    "extra_words": 13,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false,
+    "elf_function_size": 616
+  }
+]

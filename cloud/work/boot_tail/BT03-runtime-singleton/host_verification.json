@@ -1,0 +1,21 @@
+{
+  "result": "PASS",
+  "configurations": [
+    {
+      "configuration": "c89",
+      "result": "PASS",
+      "stdout": "PASS: 26 synthetic scenarios plus two inactive follow-through checks, full-context preservation and callback replacement"
+    },
+    {
+      "configuration": "asan_ubsan",
+      "result": "PASS",
+      "stdout": "PASS: 26 synthetic scenarios plus two inactive follow-through checks, full-context preservation and callback replacement"
+    }
+  ],
+  "source_hashes": {
+    "nonmatch/func_80018634.c": "874ff77bec17f4f1cc25b6a4ec939497a8180c932541106bb121f742dac5211b",
+    "host_behavior.c": "caf09ebea8024bcf41512d4bb084ba5bb5f8f5469800a0a3c3b3e54a8c9b7c1b",
+    "test_host.py": "3be9ddfe526b5de534b2c04e26cbec2934fa617c119683efc633a08f539c4e6b"
+  },
+  "limits": "Synthetic aligned valid resources. Host pointers are64-bit; the separate IDO layout assertions and native replay establish32-bit layouts. Helper bodies are contract stubs."
+}

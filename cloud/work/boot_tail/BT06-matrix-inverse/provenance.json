@@ -1,0 +1,11 @@
+{
+  "repository": "AxioDL/musyx",
+  "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+  "path": "src/musyx/runtime/snd_math.c",
+  "blob_sha": "fe8a671021560d3ca9b59efb0d312d77b1d1154f",
+  "function": "salInvertMatrix",
+  "license": "CC0-1.0",
+  "license_blob_sha": "0e259d42c996742e9e3cba14c677129b2c1b6311",
+  "adaptation": "Actual native Matrix layout and function name; line comments removed for strict C89. Native instructions and callers independently audited.",
+  "source_sha256": "b18dd3584f37663f3d1bec09d721885c2aabbfd165f0d28f7c7f9a2a792eca6f"
+}

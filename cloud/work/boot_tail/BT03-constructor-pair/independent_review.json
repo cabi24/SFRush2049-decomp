@@ -1,0 +1,68 @@
+{
+  "result": "PASS",
+  "reviewer": "BT03-sequence-dispatch",
+  "source_commit": "d21bb30439a7fa4c2b4c826ead17657c5bb85c43",
+  "source_tree": "75884fd429e79881039c6dabcfff5974df4e2972",
+  "base_commit": "1ba71e6c8cca24dcaffd0b831ace067b3046fe19",
+  "candidate_status": "COMPLETE-NONMATCH",
+  "matching_credit_bytes": 0,
+  "scope_files": 32,
+  "replays": {
+    "verify": {
+      "result": "PASS",
+      "report_sha256": "412d34ff3d80c5f04c2834b78d7e8a11541f76d7e6aacf61a171ada7c0e86f11"
+    },
+    "replay_controls": {
+      "result": "PASS",
+      "report_sha256": "fb9449019407c97e2fc1bbbb13297e9f3a3dd8bab4fd1451a3e8bd0f673fe6f4"
+    },
+    "test_native": {
+      "result": "PASS",
+      "report_sha256": "27e5b986e593a64195195a76d4374294248008b3f38ae72bc7ac041856c62d39"
+    },
+    "test_host": {
+      "result": "PASS",
+      "report_sha256": "bc7cdb38731afad72e22adacf86dd3dcfc664bd5c9d8f6ea0466a78bf30fa249"
+    },
+    "diagnose": {
+      "result": "PASS",
+      "report_sha256": "9f110356c06319a4304fe075ac4645689aaf9f3e68c479268cced8932b2c109e"
+    }
+  },
+  "independent_mutations": [
+    {
+      "mutation": "masked_raw_pan",
+      "test_rejects": true,
+      "returncode": 1,
+      "failure": "independent expected return/call/memory assertion"
+    },
+    {
+      "mutation": "reject_category_before_portamento",
+      "test_rejects": true,
+      "returncode": 1,
+      "failure": "independent expected return/call/memory assertion"
+    },
+    {
+      "mutation": "root_failure_stops_retry",
+      "test_rejects": true,
+      "returncode": 1,
+      "failure": "independent expected return/call/memory assertion"
+    },
+    {
+      "mutation": "swap_start_and_group",
+      "test_rejects": true,
+      "returncode": 1,
+      "failure": "independent expected return/call/memory assertion"
+    }
+  ],
+  "findings": [
+    "Both complete native targets, actual caller slots in 17D38 and 1B1D0, native lookup/portamento/root helpers, and the eleven-slot 24988 constructor were independently inspected. Ten genuine input slots and all unsigned byte/halfword and signed priority widths agree with retained C.",
+    "Packed 12-byte layers, 8-byte keymaps, 416-byte voices, packed unaligned accesses, and the signed 16-bit layer/keymap priority fields agree with native code and IDO layout assertions. No synthetic padding locals, extra arguments, or invented initial values.",
+    "The top-level raw-key pan access is faithfully retained and requires backing through raw index 255 when that path is taken. Layer portamento precedes category rejection. Root failure correctly permits later retry without rollback; zero is successful. The previous-ID local is assigned before each semantically live use.",
+    "All five reports exactly reproduced as parsed JSON: compiler pins, manifests, 439 extents / 99,120 bytes, strict getter, 13 source forms / 26 compile rows, full relocated bodies and actual ELF extents. Both remain honest NONMATCH: 170/202 with 816-byte ELF versus 808; 195/218 with 900-byte ELF versus 872.",
+    "Native and full compiled candidate tests reproduced 2,218 cases with two stack fills (8,872 executions); actual C89 and ASan/UBSan suites reproduced 4,436 host calls. The only allowed speculative uninitialized loads are exact documented previous-ID/null-count homes, with poison-independent observable behavior.",
+    "Four independent actual-source defect controls are rejected: masking the raw-key pan access, moving category rejection before portamento, stopping after root registration failure, and swapping constructor start/group arguments.",
+    "Cached synth.c independently hashes to pinned Git blob 0559ed2e7d5d8abd4627440fd71f807581c03aad; referenced family/source differences were inspected. No donor source is vendored. The fetched CC0-1.0 LICENSE independently hashes to pinned Git blob 0e259d42c996742e9e3cba14c677129b2c1b6311.",
+    "All 32 files stay in the packet; no protected source, scorer, target, layout, header, lock, ledger, raw native dump, object, ROM, credential or unrelated data changes. Approval covers complete research only, not matching, integration or cartridge credit."
+  ]
+}

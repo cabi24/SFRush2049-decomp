@@ -1,0 +1,65 @@
+{
+  "result": "PASS",
+  "scope": "Native O32 type widths only. Host pointer/function-pointer widths differ; partial Context extent does not claim full runtime object size. No raw object or data bytes exported.",
+  "results": [
+    {
+      "name": "func_8001EB10",
+      "source_path": "cloud/matches/boot_tail/func_8001EB10.c",
+      "source_sha256": "22b806295b3df663c25287c4c63245797403e508cf8df95a7804a43e86a74d9f",
+      "native_type_sizes": {
+        "SequenceNode": 16,
+        "VoiceState": 416
+      },
+      "result": "PASS"
+    },
+    {
+      "name": "func_80019194",
+      "source_path": "cloud/matches/boot_tail/func_80019194.c",
+      "source_sha256": "1703326f25284b76796d33c344bf85e595b52e853341760c5ede29d32084ce91",
+      "native_type_sizes": {
+        "SequenceContext": 4088
+      },
+      "result": "PASS"
+    },
+    {
+      "name": "func_8001D764",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-followon/nonmatch/func_8001D764.c",
+      "source_sha256": "4ea8dcf4bba6a4212048b8f4affc24ba05854f07445a6f500e079044fae25831",
+      "native_type_sizes": {
+        "SpatialState": 136,
+        "Vector": 12
+      },
+      "result": "PASS"
+    },
+    {
+      "name": "func_8001C580",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-followon/nonmatch/func_8001C580.c",
+      "source_sha256": "e898ca2cea968dfef7ddd846207fc1389b3c7cabb61afa52bca4cfbacb53ad86",
+      "native_type_sizes": {
+        "SampleBuffer": 24,
+        "SampleInfo": 25
+      },
+      "result": "PASS"
+    },
+    {
+      "name": "func_8001824C",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-followon/nonmatch/func_8001824C.c",
+      "source_sha256": "a7f6857dfcc4dfa0722e41f91ecb87e03a6ed0c8a1faffaf65a822321dc0b9e4",
+      "native_type_sizes": {
+        "Track": 40,
+        "Context": 3944
+      },
+      "result": "PASS"
+    },
+    {
+      "name": "func_80018448",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-followon/nonmatch/func_80018448.c",
+      "source_sha256": "eb6be69c438c137880093b7560f707eb00ec7c41158edd9b1288773d2d58542d",
+      "native_type_sizes": {
+        "Track": 40,
+        "Context": 3944
+      },
+      "result": "PASS"
+    }
+  ]
+}

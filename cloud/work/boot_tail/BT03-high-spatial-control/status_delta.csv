@@ -1,0 +1,4 @@
+name,status,bytes,source,notes
+func_80019C8C,MATCH,580,cloud/matches/boot_tail/func_80019C8C.c,Strict O2 full relocated equality and exact ELF extent; independent source and ABI review PASS
+func_8001D1F4,COMPLETE-NONMATCH,508,cloud/work/boot_tail/BT03-high-spatial-control/nonmatch/func_8001D1F4.c,46 of 127 O2 words differ; real ten-input emitter setup; bounded stop
+func_8001DC08,COMPLETE-NONMATCH,472,cloud/work/boot_tail/BT03-high-spatial-control/nonmatch/func_8001DC08.c,3 of 118 O2 words differ; cached unknown external thresholds; bounded stop

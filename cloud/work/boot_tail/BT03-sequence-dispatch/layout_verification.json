@@ -1,0 +1,122 @@
+{
+  "result": "PASS",
+  "source_sha256": "9e892d39290a16a09691aa45b5c881d00f7ff46a808a26b08fdc95c63e10924f",
+  "checks": [
+    {
+      "expression": "sizeof(void*)",
+      "value": 4
+    },
+    {
+      "expression": "sizeof(SequenceRequest)",
+      "value": 40
+    },
+    {
+      "expression": "sizeof(SequenceOptions)",
+      "value": 32
+    },
+    {
+      "expression": "sizeof(SequenceContext)",
+      "value": 4088
+    },
+    {
+      "expression": "(unsigned int)&((SequenceRequest*)0)->identifier",
+      "value": 0
+    },
+    {
+      "expression": "(unsigned int)&((SequenceRequest*)0)->duration",
+      "value": 4
+    },
+    {
+      "expression": "(unsigned int)&((SequenceRequest*)0)->nextIdentifier",
+      "value": 8
+    },
+    {
+      "expression": "(unsigned int)&((SequenceRequest*)0)->nextDuration",
+      "value": 12
+    },
+    {
+      "expression": "(unsigned int)&((SequenceRequest*)0)->stream",
+      "value": 16
+    },
+    {
+      "expression": "(unsigned int)&((SequenceRequest*)0)->group",
+      "value": 20
+    },
+    {
+      "expression": "(unsigned int)&((SequenceRequest*)0)->program",
+      "value": 22
+    },
+    {
+      "expression": "(unsigned int)&((SequenceRequest*)0)->channel",
+      "value": 24
+    },
+    {
+      "expression": "(unsigned int)&((SequenceRequest*)0)->first",
+      "value": 28
+    },
+    {
+      "expression": "(unsigned int)&((SequenceRequest*)0)->second",
+      "value": 32
+    },
+    {
+      "expression": "(unsigned int)&((SequenceRequest*)0)->value",
+      "value": 36
+    },
+    {
+      "expression": "(unsigned int)&((SequenceRequest*)0)->flags",
+      "value": 38
+    },
+    {
+      "expression": "(unsigned int)&((SequenceOptions*)0)->flags",
+      "value": 0
+    },
+    {
+      "expression": "(unsigned int)&((SequenceOptions*)0)->first",
+      "value": 4
+    },
+    {
+      "expression": "(unsigned int)&((SequenceOptions*)0)->second",
+      "value": 8
+    },
+    {
+      "expression": "(unsigned int)&((SequenceOptions*)0)->value",
+      "value": 12
+    },
+    {
+      "expression": "(unsigned int)&((SequenceOptions*)0)->duration",
+      "value": 14
+    },
+    {
+      "expression": "(unsigned int)&((SequenceOptions*)0)->channel",
+      "value": 16
+    },
+    {
+      "expression": "(unsigned int)&((SequenceOptions*)0)->mapCount",
+      "value": 18
+    },
+    {
+      "expression": "(unsigned int)&((SequenceOptions*)0)->map",
+      "value": 20
+    },
+    {
+      "expression": "(unsigned int)&((SequenceOptions*)0)->channelCount",
+      "value": 24
+    },
+    {
+      "expression": "(unsigned int)&((SequenceOptions*)0)->channels",
+      "value": 28
+    },
+    {
+      "expression": "(unsigned int)&((SequenceContext*)0)->request",
+      "value": 4040
+    },
+    {
+      "expression": "(unsigned int)&((SequenceContext*)0)->pendingResult",
+      "value": 4080
+    },
+    {
+      "expression": "(unsigned int)&((SequenceContext*)0)->pending",
+      "value": 4084
+    }
+  ]
+}

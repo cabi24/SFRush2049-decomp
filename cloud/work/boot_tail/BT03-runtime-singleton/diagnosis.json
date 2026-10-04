@@ -1,0 +1,50 @@
+{
+  "result": "PASS",
+  "scope": "Exact ELF symbol extent after strict relocation. Only verified zero alignment padding is omitted from workbench diagnostics; unchanged score.py remains the acceptance gate.",
+  "checkpoints": [
+    {
+      "name": "func_80018634",
+      "checkpoint": "baseline",
+      "source_sha256": "9526ecbc288a177c13571d6dfad9bed81826baa32c158cd4ca98b036ff095619",
+      "routing": "structural",
+      "owning_pass": "cfe-spelling",
+      "ownership_basis": "heuristic",
+      "lever_class": "stack-home",
+      "lever_reason": "the pool lane is shorter on the candidate, so the target colours a web the other side does not; that names the declaration the list is wrong about, and lane evidence is ranked ahead of the frame arithmetic",
+      "verdict": "structure-mismatch",
+      "words": 121,
+      "raw": 121,
+      "target_frame_size": -88,
+      "candidate_frame_size": -72,
+      "target_instructions": 210,
+      "candidate_instructions": 210,
+      "aligned_insertions": 1,
+      "aligned_deletions": 1,
+      "aligned_register": 115,
+      "aligned_constant": 4,
+      "aligned_structural": 2
+    },
+    {
+      "name": "func_80018634",
+      "checkpoint": "final",
+      "source_sha256": "874ff77bec17f4f1cc25b6a4ec939497a8180c932541106bb121f742dac5211b",
+      "routing": "structural",
+      "owning_pass": "cfe-spelling",
+      "ownership_basis": "heuristic",
+      "lever_class": "stack-home",
+      "lever_reason": "the pool lane is shorter on the candidate, so the target colours a web the other side does not; that names the declaration the list is wrong about, and lane evidence is ranked ahead of the frame arithmetic",
+      "verdict": "allocation-mismatch",
+      "words": 117,
+      "raw": 117,
+      "target_frame_size": -88,
+      "candidate_frame_size": -72,
+      "target_instructions": 210,
+      "candidate_instructions": 210,
+      "aligned_insertions": 0,
+      "aligned_deletions": 0,
+      "aligned_register": 115,
+      "aligned_constant": 2,
+      "aligned_structural": 0
+    }
+  ]
+}

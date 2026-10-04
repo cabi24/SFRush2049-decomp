@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "master_commit": "1018ab003251d41de0671284519a91b6b07c5a95",
+  "master_tree": "4f9f218ecb692569969e7b19e047c1e07e7ebda7",
+  "previous_source_base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "previous_merged_source_head": "1ef54c2e507e6d29cc22d041bf5d99dc2173bfd8",
+  "inherited_pr73_head": "f366682bf1a2602b0f6fdbaae85c3707c58b3751",
+  "inherited_pr73_tree": "7aeba9eb7e1cade72657416da828d993937e5418",
+  "prior_to_master_changed_paths": [
+    "cloud/RESEARCH_INDEX.md",
+    "cloud/matches/ovl_a/func_80391470.c",
+    "cloud/matches/ovl_a/func_803AE51C.c",
+    "cloud/work/asset_container_structure/README.md",
+    "cloud/work/asset_container_structure/REVIEW.md",
+    "cloud/work/asset_container_structure/consumer-evidence.json",
+    "cloud/work/asset_container_structure/manifest.json",
+    "cloud/work/asset_container_structure/probe.py",
+    "cloud/work/asset_container_structure/streams.json",
+    "cloud/work/dot_graphics_init_closure/README.md",
+    "cloud/work/graphics_readiness_20261003/README.md",
+    "cloud/work/graphics_readiness_20261003/caller_definition_inventory.json",
+    "cloud/work/graphics_readiness_20261003/manifest.json",
+    "cloud/work/graphics_readiness_20261003/native_identity.json",
+    "cloud/work/missing_input_contracts/README.md",
+    "cloud/work/overlay_callback_lifetime/README.md",
+    "cloud/work/overlay_callback_lifetime/evidence.json",
+    "cloud/work/overlay_callback_lifetime/replay.py",
+    "cloud/work/program_queue_20261003/README.md",
+    "cloud/work/program_queue_20261003/REVIEW.md",
+    "cloud/work/program_queue_20261003/evidence.json",
+    "cloud/work/r16_runtime_images/near_miss/README.md",
+    "cloud/work/r16_runtime_images/near_miss/func_8038F648.c",
+    "cloud/work/r16_runtime_images/near_miss/func_803931C0.c",
+    "cloud/work/r16_runtime_images/near_miss/func_8039B120.c",
+    "cloud/work/small_overlay_service_pair/README.md",
+    "cloud/work/small_overlay_service_pair/RESIDENCY.md",
+    "cloud/work/small_overlay_service_pair/REVIEW.md",
+    "cloud/work/small_overlay_service_pair/audit.py",
+    "cloud/work/small_overlay_service_pair/evidence.json",
+    "cloud/work/small_overlay_service_pair/residency_model.py",
+    "cloud/work/small_overlay_service_pair/service_pair.c",
+    "cloud/work/small_overlay_service_pair/service_pair.h",
+    "cloud/work/solid_rectangle_8008A46C/README.md",
+    "cloud/work/state_setup_prerequisite/README.md",
+    "cloud/work/state_setup_prerequisite/REVIEW.md",
+    "cloud/work/state_setup_prerequisite/evidence.json",
+    "cloud/work/state_setup_prerequisite/fast_prepare.inc.c",
+    "cloud/work/state_setup_prerequisite/layout.h",
+    "dot_handoff.md",
+    "tests/conveyor/fixtures/small_overlay_service_pair/host_test.c",
+    "tests/conveyor/fixtures/small_overlay_service_pair/independent_harness.c",
+    "tests/conveyor/fixtures/small_overlay_service_pair/independent_oracle.py",
+    "tests/conveyor/fixtures/state_setup_prerequisite.c",
+    "tests/conveyor/test_asset_container_structure.py",
+    "tests/conveyor/test_cloud_guard.py",
+    "tests/conveyor/test_overlay_callback_lifetime.py",
+    "tests/conveyor/test_small_overlay_service_pair.py",
+    "tests/conveyor/test_state_setup_prerequisite.py",
+    "tools/cloud/guard_paths.py"
+  ],
+  "protected_identity_checks": {
+    "asm": {
+      "old_git_object": "fe8d38f5d6ea3fc58e660776aa176af5f11acf64",
+      "master_git_object": "fe8d38f5d6ea3fc58e660776aa176af5f11acf64",
+      "unchanged": true
+    },
+    "specs": {
+      "old_git_object": "44305057977fc3aa49160b6c0736e4135905fe65",
+      "master_git_object": "44305057977fc3aa49160b6c0736e4135905fe65",
+      "unchanged": true
+    },
+    "include": {
+      "old_git_object": "45b5a930bc210aaf2fd43aec252f3e0a2bc0e924",
+      "master_git_object": "45b5a930bc210aaf2fd43aec252f3e0a2bc0e924",
+      "unchanged": true
+    },
+    "src": {
+      "old_git_object": "7983bb4b5158a18e338883d983c804b3f09ec32b",
+      "master_git_object": "7983bb4b5158a18e338883d983c804b3f09ec32b",
+      "unchanged": true
+    },
+    ".github": {
+      "old_git_object": "4a1804512d6dc12759051d37e361c771cf647678",
+      "master_git_object": "4a1804512d6dc12759051d37e361c771cf647678",
+      "unchanged": true
+    },
+    "tools/cloud/score.py": {
+      "old_git_object": "ba3efe47df2fca64e526b7e2831c8c8f22d95cb5",
+      "master_git_object": "ba3efe47df2fca64e526b7e2831c8c8f22d95cb5",
+      "unchanged": true
+    },
+    "tools/cloud/setup.sh": {
+      "old_git_object": "89d5e49a4521bedcfd2ad4bad0c8464c4363f398",
+      "master_git_object": "89d5e49a4521bedcfd2ad4bad0c8464c4363f398",
+      "unchanged": true
+    },
+    "blob_matched.lock.json": {
+      "old_git_object": "2434a8b77f2d620f6ca6d57714248c118327208f",
+      "master_git_object": "2434a8b77f2d620f6ca6d57714248c118327208f",
+      "unchanged": true
+    },
+    "matched.lock.json": {
+      "old_git_object": "fbe9ec2fa5324d059f61d5787ee225a551cd488d",
+      "master_git_object": "fbe9ec2fa5324d059f61d5787ee225a551cd488d",
+      "unchanged": true
+    }
+  },
+  "only_tool_change": "tools/cloud/guard_paths.py strengthens generated-target protections; copied unchanged from current master with its tests.",
+  "integration": "New branch starts on verified master and imports only allowed cloud source/evidence; no merge or rewrite of PR73. Three inherited PR73 bodies carry zero new cut14 credit.",
+  "guard_tests": "Fresh current-master cloud guard/submission/scorer/integrity/setup tests passed with the preserved pinned toolchain.",
+  "D10": "Unchanged from master; no handoff file edits."
+}

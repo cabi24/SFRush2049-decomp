@@ -1,0 +1,629 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "reviewer": "BT06 math trio independent peer / root match_boot_tail_low_final",
+  "source_commit": "9a31055d9b4de39357c162ab0106da580a822081",
+  "source_tree": "5eb2c5d2486acd44642d157976523006102299b4",
+  "changed_paths": [
+    "cloud/work/boot_tail/BT02-audio-final/README.md",
+    "cloud/work/boot_tail/BT02-audio-final/claim_scan.json",
+    "cloud/work/boot_tail/BT02-audio-final/controls/func_80011104.c",
+    "cloud/work/boot_tail/BT02-audio-final/controls/func_800114C0.c",
+    "cloud/work/boot_tail/BT02-audio-final/controls/func_800139D4.c",
+    "cloud/work/boot_tail/BT02-audio-final/diagnose.py",
+    "cloud/work/boot_tail/BT02-audio-final/diagnosis.json",
+    "cloud/work/boot_tail/BT02-audio-final/host_behavior.c",
+    "cloud/work/boot_tail/BT02-audio-final/host_verification.json",
+    "cloud/work/boot_tail/BT02-audio-final/input_pins.json",
+    "cloud/work/boot_tail/BT02-audio-final/layout_verification.json",
+    "cloud/work/boot_tail/BT02-audio-final/nonmatch/func_80011104.c",
+    "cloud/work/boot_tail/BT02-audio-final/nonmatch/func_800114C0.c",
+    "cloud/work/boot_tail/BT02-audio-final/nonmatch/func_800139D4.c",
+    "cloud/work/boot_tail/BT02-audio-final/status_delta.json",
+    "cloud/work/boot_tail/BT02-audio-final/test_host.py",
+    "cloud/work/boot_tail/BT02-audio-final/test_layout.py",
+    "cloud/work/boot_tail/BT02-audio-final/variants.json",
+    "cloud/work/boot_tail/BT02-audio-final/verification.json",
+    "cloud/work/boot_tail/BT02-audio-final/verify.py"
+  ],
+  "file_hashes": {
+    "cloud/work/boot_tail/BT02-audio-final/README.md": "acbc2fe0bf8c663d30c37e422f8e544e4689dc5bae26e8fc307aa7d1fa906203",
+    "cloud/work/boot_tail/BT02-audio-final/claim_scan.json": "224b2251a573f6f5ab343e4cb3292118f0e75e01ab985d92371742e85521201b",
+    "cloud/work/boot_tail/BT02-audio-final/controls/func_80011104.c": "3e7195ba8d539e890c2eeceab7df72b381541fdb9573010489fa0a8835e7848b",
+    "cloud/work/boot_tail/BT02-audio-final/controls/func_800114C0.c": "b12da6641cd4d570eff772e716ba1ddb6bb8f3f7ec4e8a93e79ba154f26d623e",
+    "cloud/work/boot_tail/BT02-audio-final/controls/func_800139D4.c": "e39dfb9ff2f892df21bc2f1442c3e9a3144c5905d6c2ee6482bec2c64655a7a6",
+    "cloud/work/boot_tail/BT02-audio-final/diagnose.py": "1f3be4bf2a929d8324201892cf1760a62cd6156643bce406032439de166ea763",
+    "cloud/work/boot_tail/BT02-audio-final/diagnosis.json": "8ec23eafc33ae630a17aa7ee4731155e1427d2c629b736aa492223e7c194d06c",
+    "cloud/work/boot_tail/BT02-audio-final/host_behavior.c": "3bdbc6c888a77a46cbb0b2c2b850074e1b05749847466bea7f8931fafe7a01b6",
+    "cloud/work/boot_tail/BT02-audio-final/host_verification.json": "8380198588017c7d47730d26ee694e3ce7e6605eda7618019b8611930d8677d8",
+    "cloud/work/boot_tail/BT02-audio-final/input_pins.json": "3641ca81ba313a42c6b87e4b69f93c31e374a8c542ac37fd172cfe39a318484b",
+    "cloud/work/boot_tail/BT02-audio-final/layout_verification.json": "9af78f2fa44f7ef7428d753fc7ece3a9ab5162c8f036fc0160b42ccc666670b5",
+    "cloud/work/boot_tail/BT02-audio-final/nonmatch/func_80011104.c": "1cb96ae671c35a54e93d792b3921dfed462114790586bea4bf1da7d7e9491940",
+    "cloud/work/boot_tail/BT02-audio-final/nonmatch/func_800114C0.c": "45ea1edd066c029c26d9f89f82296282205f3c191dbe5b72c5bc79365a03b6d1",
+    "cloud/work/boot_tail/BT02-audio-final/nonmatch/func_800139D4.c": "e39dfb9ff2f892df21bc2f1442c3e9a3144c5905d6c2ee6482bec2c64655a7a6",
+    "cloud/work/boot_tail/BT02-audio-final/status_delta.json": "d8d5da739f59bdf34e856ecc2a3d3b4be79f8926e58512c72bf0104f148f97de",
+    "cloud/work/boot_tail/BT02-audio-final/test_host.py": "28ea9a30be5ee112419b1f79dc35d84de2d342ad24ceeba2676dce653abae95a",
+    "cloud/work/boot_tail/BT02-audio-final/test_layout.py": "b63266aed033430a3ce5e263cdeba9b0ee3cb45aa6f1d5fe1e258af0edc4ecce",
+    "cloud/work/boot_tail/BT02-audio-final/variants.json": "2783cc4b1373aabf774b096c6ac6079dcee53471afc15d9a757542137dec8625",
+    "cloud/work/boot_tail/BT02-audio-final/verification.json": "df6391f1b08abebf1f509445b54b69661dbfa02cc416812ac8e082939959da0a",
+    "cloud/work/boot_tail/BT02-audio-final/verify.py": "51308ada5aea0b2201973f5f142421e7dcf8d41a5053f53be5901a4f5f5acd0b"
+  },
+  "native_replay": {
+    "schema_version": 1,
+    "result": "PASS",
+    "base": "b5daa44a",
+    "claim_commit": "b33647f8",
+    "pinned_compiler_files": 24,
+    "manifest": [
+      "boot_tail_8000f3a4.s: OK",
+      "extents.json: OK",
+      "symbols.json: OK"
+    ],
+    "extent_functions": 439,
+    "extent_bytes": 99120,
+    "existing_getter_strict_exact_match": true,
+    "strict_match_functions": 0,
+    "strict_match_bytes": 0,
+    "complete_nonmatch_functions": 3,
+    "complete_nonmatch_bytes": 2432,
+    "results": [
+      {
+        "strict_match": false,
+        "differing_words": 66,
+        "total_words": 210,
+        "extra_nonzero_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "elf_function_bytes": 840,
+        "full_function_relocations_resolved": true,
+        "full_relocated_equal_and_exact_extent": false,
+        "function": "func_80011104",
+        "checkpoint": "controls",
+        "target_bytes": 840,
+        "source": "cloud/work/boot_tail/BT02-audio-final/controls/func_80011104.c",
+        "source_sha256": "3e7195ba8d539e890c2eeceab7df72b381541fdb9573010489fa0a8835e7848b",
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+      },
+      {
+        "strict_match": false,
+        "differing_words": 206,
+        "total_words": 210,
+        "extra_nonzero_words": 22,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "elf_function_bytes": 936,
+        "function": "func_80011104",
+        "checkpoint": "controls",
+        "target_bytes": 840,
+        "source": "cloud/work/boot_tail/BT02-audio-final/controls/func_80011104.c",
+        "source_sha256": "3e7195ba8d539e890c2eeceab7df72b381541fdb9573010489fa0a8835e7848b",
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+      },
+      {
+        "strict_match": false,
+        "differing_words": 62,
+        "total_words": 210,
+        "extra_nonzero_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "elf_function_bytes": 840,
+        "full_function_relocations_resolved": true,
+        "full_relocated_equal_and_exact_extent": false,
+        "function": "func_80011104",
+        "checkpoint": "nonmatch",
+        "target_bytes": 840,
+        "source": "cloud/work/boot_tail/BT02-audio-final/nonmatch/func_80011104.c",
+        "source_sha256": "1cb96ae671c35a54e93d792b3921dfed462114790586bea4bf1da7d7e9491940",
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+      },
+      {
+        "strict_match": false,
+        "differing_words": 206,
+        "total_words": 210,
+        "extra_nonzero_words": 22,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "elf_function_bytes": 936,
+        "function": "func_80011104",
+        "checkpoint": "nonmatch",
+        "target_bytes": 840,
+        "source": "cloud/work/boot_tail/BT02-audio-final/nonmatch/func_80011104.c",
+        "source_sha256": "1cb96ae671c35a54e93d792b3921dfed462114790586bea4bf1da7d7e9491940",
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+      },
+      {
+        "strict_match": false,
+        "differing_words": 222,
+        "total_words": 226,
+        "extra_nonzero_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "elf_function_bytes": 900,
+        "full_function_relocations_resolved": true,
+        "full_relocated_equal_and_exact_extent": false,
+        "function": "func_800114C0",
+        "checkpoint": "controls",
+        "target_bytes": 904,
+        "source": "cloud/work/boot_tail/BT02-audio-final/controls/func_800114C0.c",
+        "source_sha256": "b12da6641cd4d570eff772e716ba1ddb6bb8f3f7ec4e8a93e79ba154f26d623e",
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+      },
+      {
+        "strict_match": false,
+        "differing_words": 197,
+        "total_words": 226,
+        "extra_nonzero_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "elf_function_bytes": 896,
+        "function": "func_800114C0",
+        "checkpoint": "controls",
+        "target_bytes": 904,
+        "source": "cloud/work/boot_tail/BT02-audio-final/controls/func_800114C0.c",
+        "source_sha256": "b12da6641cd4d570eff772e716ba1ddb6bb8f3f7ec4e8a93e79ba154f26d623e",
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+      },
+      {
+        "strict_match": false,
+        "differing_words": 199,
+        "total_words": 226,
+        "extra_nonzero_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "elf_function_bytes": 904,
+        "full_function_relocations_resolved": true,
+        "full_relocated_equal_and_exact_extent": false,
+        "function": "func_800114C0",
+        "checkpoint": "nonmatch",
+        "target_bytes": 904,
+        "source": "cloud/work/boot_tail/BT02-audio-final/nonmatch/func_800114C0.c",
+        "source_sha256": "45ea1edd066c029c26d9f89f82296282205f3c191dbe5b72c5bc79365a03b6d1",
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+      },
+      {
+        "strict_match": false,
+        "differing_words": 200,
+        "total_words": 226,
+        "extra_nonzero_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "elf_function_bytes": 904,
+        "function": "func_800114C0",
+        "checkpoint": "nonmatch",
+        "target_bytes": 904,
+        "source": "cloud/work/boot_tail/BT02-audio-final/nonmatch/func_800114C0.c",
+        "source_sha256": "45ea1edd066c029c26d9f89f82296282205f3c191dbe5b72c5bc79365a03b6d1",
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+      },
+      {
+        "strict_match": false,
+        "differing_words": 131,
+        "total_words": 172,
+        "extra_nonzero_words": 1,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "elf_function_bytes": 692,
+        "full_function_relocations_resolved": true,
+        "full_relocated_equal_and_exact_extent": false,
+        "function": "func_800139D4",
+        "checkpoint": "controls",
+        "target_bytes": 688,
+        "source": "cloud/work/boot_tail/BT02-audio-final/controls/func_800139D4.c",
+        "source_sha256": "e39dfb9ff2f892df21bc2f1442c3e9a3144c5905d6c2ee6482bec2c64655a7a6",
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+      },
+      {
+        "strict_match": false,
+        "differing_words": 172,
+        "total_words": 172,
+        "extra_nonzero_words": 58,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [
+          "unpaired R_MIPS_HI16 for D_800382EC at .text+0x2a8"
+        ],
+        "elf_function_bytes": 928,
+        "function": "func_800139D4",
+        "checkpoint": "controls",
+        "target_bytes": 688,
+        "source": "cloud/work/boot_tail/BT02-audio-final/controls/func_800139D4.c",
+        "source_sha256": "e39dfb9ff2f892df21bc2f1442c3e9a3144c5905d6c2ee6482bec2c64655a7a6",
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+      },
+      {
+        "strict_match": false,
+        "differing_words": 131,
+        "total_words": 172,
+        "extra_nonzero_words": 1,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "elf_function_bytes": 692,
+        "full_function_relocations_resolved": true,
+        "full_relocated_equal_and_exact_extent": false,
+        "function": "func_800139D4",
+        "checkpoint": "nonmatch",
+        "target_bytes": 688,
+        "source": "cloud/work/boot_tail/BT02-audio-final/nonmatch/func_800139D4.c",
+        "source_sha256": "e39dfb9ff2f892df21bc2f1442c3e9a3144c5905d6c2ee6482bec2c64655a7a6",
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+      },
+      {
+        "strict_match": false,
+        "differing_words": 172,
+        "total_words": 172,
+        "extra_nonzero_words": 58,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [
+          "unpaired R_MIPS_HI16 for D_800382EC at .text+0x2a8"
+        ],
+        "elf_function_bytes": 928,
+        "function": "func_800139D4",
+        "checkpoint": "nonmatch",
+        "target_bytes": 688,
+        "source": "cloud/work/boot_tail/BT02-audio-final/nonmatch/func_800139D4.c",
+        "source_sha256": "e39dfb9ff2f892df21bc2f1442c3e9a3144c5905d6c2ee6482bec2c64655a7a6",
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+      }
+    ],
+    "harness_hashes": {
+      "verify.py": "51308ada5aea0b2201973f5f142421e7dcf8d41a5053f53be5901a4f5f5acd0b",
+      "test_host.py": "28ea9a30be5ee112419b1f79dc35d84de2d342ad24ceeba2676dce653abae95a",
+      "host_behavior.c": "3bdbc6c888a77a46cbb0b2c2b850074e1b05749847466bea7f8931fafe7a01b6",
+      "test_layout.py": "b63266aed033430a3ce5e263cdeba9b0ee3cb45aa6f1d5fe1e258af0edc4ecce",
+      "diagnose.py": "1f3be4bf2a929d8324201892cf1760a62cd6156643bce406032439de166ea763"
+    }
+  },
+  "layout_replay": {
+    "result": "PASS",
+    "compiler": "pinned IDO5.3",
+    "results": [
+      {
+        "function": "func_80011104",
+        "source_sha256": "1cb96ae671c35a54e93d792b3921dfed462114790586bea4bf1da7d7e9491940",
+        "checks": [
+          {
+            "expression": "sizeof(AudioState)",
+            "value": 104
+          },
+          {
+            "expression": "(unsigned int)&((AudioState*)0)->active",
+            "value": 0
+          },
+          {
+            "expression": "(unsigned int)&((AudioState*)0)->bit_index",
+            "value": 96
+          },
+          {
+            "expression": "(unsigned int)&((AudioState*)0)->changed",
+            "value": 97
+          }
+        ],
+        "result": "PASS"
+      },
+      {
+        "function": "func_800114C0",
+        "source_sha256": "45ea1edd066c029c26d9f89f82296282205f3c191dbe5b72c5bc79365a03b6d1",
+        "checks": [
+          {
+            "expression": "sizeof(void*)",
+            "value": 4
+          },
+          {
+            "expression": "sizeof(unsigned int)",
+            "value": 4
+          },
+          {
+            "expression": "sizeof(unsigned short)",
+            "value": 2
+          }
+        ],
+        "result": "PASS"
+      },
+      {
+        "function": "func_800139D4",
+        "source_sha256": "e39dfb9ff2f892df21bc2f1442c3e9a3144c5905d6c2ee6482bec2c64655a7a6",
+        "checks": [
+          {
+            "expression": "sizeof(AudioState)",
+            "value": 104
+          },
+          {
+            "expression": "sizeof(AudioCommand)",
+            "value": 80
+          },
+          {
+            "expression": "sizeof(AudioBlock)",
+            "value": 2576
+          },
+          {
+            "expression": "sizeof(AudioLoop)",
+            "value": 8
+          },
+          {
+            "expression": "(unsigned int)&((AudioCommand*)0)->status",
+            "value": 44
+          },
+          {
+            "expression": "(unsigned int)&((AudioCommand*)0)->output",
+            "value": 68
+          },
+          {
+            "expression": "(unsigned int)&((AudioBlock*)0)->sample",
+            "value": 2
+          },
+          {
+            "expression": "(unsigned int)&((AudioBlock*)0)->changed",
+            "value": 4
+          },
+          {
+            "expression": "(unsigned int)&((AudioBlock*)0)->work",
+            "value": 8
+          },
+          {
+            "expression": "(unsigned int)&((AudioBlock*)0)->loop",
+            "value": 12
+          },
+          {
+            "expression": "(unsigned int)&((AudioBlock*)0)->commands",
+            "value": 16
+          },
+          {
+            "expression": "(unsigned int)&((AudioLoop*)0)->length",
+            "value": 4
+          }
+        ],
+        "result": "PASS"
+      }
+    ]
+  },
+  "host_replay": {
+    "result": "PASS",
+    "source_hashes": {
+      "nonmatch/func_80011104.c": "1cb96ae671c35a54e93d792b3921dfed462114790586bea4bf1da7d7e9491940",
+      "nonmatch/func_800114C0.c": "45ea1edd066c029c26d9f89f82296282205f3c191dbe5b72c5bc79365a03b6d1",
+      "nonmatch/func_800139D4.c": "e39dfb9ff2f892df21bc2f1442c3e9a3144c5905d6c2ee6482bec2c64655a7a6",
+      "host_behavior.c": "3bdbc6c888a77a46cbb0b2c2b850074e1b05749847466bea7f8931fafe7a01b6",
+      "test_host.py": "28ea9a30be5ee112419b1f79dc35d84de2d342ad24ceeba2676dce653abae95a"
+    },
+    "configurations": [
+      {
+        "configuration": "c89",
+        "result": "PASS",
+        "stdout": "PASS 120 initializer, 6144 setup, 144 submit cases; 6408 total",
+        "flags": [
+          "-std=c89",
+          "-pedantic-errors",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-Wno-pointer-to-int-cast",
+          "-Wno-int-to-pointer-cast",
+          "-O2"
+        ]
+      },
+      {
+        "configuration": "asan_ubsan",
+        "result": "PASS",
+        "stdout": "PASS 120 initializer, 6144 setup, 144 submit cases; 6408 total",
+        "flags": [
+          "-std=c89",
+          "-pedantic-errors",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-Wno-pointer-to-int-cast",
+          "-Wno-int-to-pointer-cast",
+          "-O1",
+          "-g",
+          "-fsanitize=address,undefined",
+          "-fno-omit-frame-pointer",
+          "-fno-pie",
+          "-no-pie"
+        ]
+      }
+    ],
+    "limits": "Synthetic external data values only; does not prove retail float/table values or callee behavior. Native pointer sizes/layouts are separately checked by IDO. Aligned cursor is observed as an integer, never dereferenced by the host."
+  },
+  "diagnosis_replay": {
+    "result": "PASS",
+    "scope": "Exact ELF symbol extent after strict relocation. Only verified zero alignment padding is omitted from workbench diagnostics; unchanged score.py remains the acceptance gate.",
+    "checkpoints": [
+      {
+        "name": "func_80011104",
+        "checkpoint": "baseline",
+        "source_sha256": "3e7195ba8d539e890c2eeceab7df72b381541fdb9573010489fa0a8835e7848b",
+        "routing": "structural",
+        "owning_pass": "cfe-spelling",
+        "ownership_basis": "heuristic",
+        "lever_class": "none-known",
+        "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+        "verdict": "structure-mismatch",
+        "words": 66,
+        "raw": 66,
+        "target_frame_size": -24,
+        "candidate_frame_size": -24,
+        "target_instructions": 210,
+        "candidate_instructions": 210,
+        "aligned_insertions": 16,
+        "aligned_deletions": 16,
+        "aligned_register": 31,
+        "aligned_constant": 0,
+        "aligned_structural": 34
+      },
+      {
+        "name": "func_80011104",
+        "checkpoint": "final",
+        "source_sha256": "1cb96ae671c35a54e93d792b3921dfed462114790586bea4bf1da7d7e9491940",
+        "routing": "structural",
+        "owning_pass": "cfe-spelling",
+        "ownership_basis": "heuristic",
+        "lever_class": "none-known",
+        "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+        "verdict": "structure-mismatch",
+        "words": 62,
+        "raw": 62,
+        "target_frame_size": -24,
+        "candidate_frame_size": -24,
+        "target_instructions": 210,
+        "candidate_instructions": 210,
+        "aligned_insertions": 14,
+        "aligned_deletions": 14,
+        "aligned_register": 31,
+        "aligned_constant": 0,
+        "aligned_structural": 29
+      },
+      {
+        "name": "func_800114C0",
+        "checkpoint": "baseline",
+        "source_sha256": "b12da6641cd4d570eff772e716ba1ddb6bb8f3f7ec4e8a93e79ba154f26d623e",
+        "routing": "import-fix",
+        "owning_pass": "unknown",
+        "ownership_basis": "none",
+        "lever_class": "none-known",
+        "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+        "verdict": "structure-mismatch",
+        "words": 223,
+        "raw": 223,
+        "target_frame_size": -32,
+        "candidate_frame_size": -32,
+        "target_instructions": 226,
+        "candidate_instructions": 225,
+        "aligned_insertions": 4,
+        "aligned_deletions": 5,
+        "aligned_register": 92,
+        "aligned_constant": 0,
+        "aligned_structural": 11
+      },
+      {
+        "name": "func_800114C0",
+        "checkpoint": "final",
+        "source_sha256": "45ea1edd066c029c26d9f89f82296282205f3c191dbe5b72c5bc79365a03b6d1",
+        "routing": "structural",
+        "owning_pass": "cfe-spelling",
+        "ownership_basis": "heuristic",
+        "lever_class": "none-known",
+        "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+        "verdict": "structure-mismatch",
+        "words": 199,
+        "raw": 199,
+        "target_frame_size": -32,
+        "candidate_frame_size": -32,
+        "target_instructions": 226,
+        "candidate_instructions": 226,
+        "aligned_insertions": 6,
+        "aligned_deletions": 6,
+        "aligned_register": 91,
+        "aligned_constant": 0,
+        "aligned_structural": 13
+      },
+      {
+        "name": "func_800139D4",
+        "checkpoint": "baseline",
+        "source_sha256": "e39dfb9ff2f892df21bc2f1442c3e9a3144c5905d6c2ee6482bec2c64655a7a6",
+        "routing": "import-fix",
+        "owning_pass": "unknown",
+        "ownership_basis": "none",
+        "lever_class": "none-known",
+        "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+        "verdict": "structure-mismatch",
+        "words": 132,
+        "raw": 132,
+        "target_frame_size": -56,
+        "candidate_frame_size": -56,
+        "target_instructions": 172,
+        "candidate_instructions": 173,
+        "aligned_insertions": 1,
+        "aligned_deletions": 0,
+        "aligned_register": 89,
+        "aligned_constant": 0,
+        "aligned_structural": 2
+      },
+      {
+        "name": "func_800139D4",
+        "checkpoint": "final",
+        "source_sha256": "e39dfb9ff2f892df21bc2f1442c3e9a3144c5905d6c2ee6482bec2c64655a7a6",
+        "routing": "import-fix",
+        "owning_pass": "unknown",
+        "ownership_basis": "none",
+        "lever_class": "none-known",
+        "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+        "verdict": "structure-mismatch",
+        "words": 132,
+        "raw": 132,
+        "target_frame_size": -56,
+        "candidate_frame_size": -56,
+        "target_instructions": 172,
+        "candidate_instructions": 173,
+        "aligned_insertions": 1,
+        "aligned_deletions": 0,
+        "aligned_register": 89,
+        "aligned_constant": 0,
+        "aligned_structural": 2
+      }
+    ]
+  },
+  "additional_callback_mutation": {
+    "result": "PASS",
+    "harness_sha256": "0e94a40032e1f4b4a6c19a2ba8dc91cc3f0446f954c806fd07e0fc4c8bcc7b9d",
+    "cases_per_mode": 6409,
+    "results": [
+      {
+        "mode": "c89",
+        "result": "PASS",
+        "original_cases": 6408,
+        "additional_mutation_cases": 1,
+        "stdout": "PASS 120 initializer, 6144 setup, 144 submit cases; 6408 total"
+      },
+      {
+        "mode": "asan_ubsan",
+        "result": "PASS",
+        "original_cases": 6408,
+        "additional_mutation_cases": 1,
+        "stdout": "PASS 120 initializer, 6144 setup, 144 submit cases; 6408 total"
+      }
+    ],
+    "scope": "Independent synthetic callback mutation of current voice pointer/count, block pointer/index-pointer, work pointer, loop pointer/position and block-count boundary; original sources unchanged. Tests caller reload semantics only, not actual80012D18 implementation."
+  },
+  "manual_checks": [
+    "Complete protected native bodies80011104/800114C0/800139D4 read against final source; no reconstructed portion omitted.",
+    "Actual80014198 caller caps count32 and passes u16 count/full frequency/u8 mode;80013D70 supplies output pointer and low-halfword samples.",
+    "Actual80012D18 entry preserves pointera0, homes unused genuinea1, reads low byte of genuinea2 at131(sp);incominga3 overwritten before consumption. Only dependency ABI inspected; no boundary-blocked implementation work.",
+    "Static bzero80008590,writeback80007CA0,queue80006A00 and tail buffer initializer11F60/123A8 native interfaces independently inspected.",
+    "104-byte voice,80-byte command,2576-byte block and all used native offsets independently replayed with pinned IDO.",
+    "External five float values and u16 table remain symbolic declarations; immediate scalar constants are native-evidenced; no missing value invented.",
+    "Float conversion,in-range arithmetic,valid shifts,bounded command records and callback assumptions are explicitly bounded. Larger synthetic inputs do not establish API extension.",
+    "Bounded variants11/8/8 and all six unchanged-workbench checkpoint outputs replayed exactly; no reopening recommended without new native source evidence.",
+    "All20 paths are research-only textual packet files;no matches/protected paths/raw target dumps/objects/private payloads.",
+    "Independent callback mutation fixture verifies live global reloads in actual final139D4 source under both C89 and ASan/UBSan,without reconstructing its callee."
+  ],
+  "limits": [
+    "Three complete NONMATCHs2432 native bytes; zero match credit. Source sizes840/904/692 independently distinguished from native840/904/688.",
+    "O1 139D4 retains canonical unpaired HI16 comparison error; not hidden or suppressed.",
+    "Host tests use arbitrary external fixtures; no retail constant/table values, actual callbacks, N64 FCSR exception modes or hardware behavior proven.",
+    "Leak detection unavailable under sandbox ptrace; address/undefined sanitizers remain enabled.",
+    "Aggregate publication and exact-head CI remain central lead responsibilities."
+  ]
+}

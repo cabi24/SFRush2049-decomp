@@ -1,0 +1,20 @@
+{
+  "result": "PASS",
+  "cases": 3142,
+  "native_and_candidate_executions": 6284,
+  "steps": 324502,
+  "families": {
+    "all flags and modes": 1536,
+    "null result": 384,
+    "first translation invalid": 768,
+    "creation failure": 192,
+    "second translation invalid": 192,
+    "result aliases state": 48,
+    "service changes later flags and identifier": 2,
+    "pair helper changes later guarded value": 2,
+    "creation helper enables final pair": 2,
+    "embedded deferred-state caller": 16
+  },
+  "source_sha256": "9e892d39290a16a09691aa45b5c881d00f7ff46a808a26b08fdc95c63e10924f",
+  "limits": "Synthetic aligned valid requests; deferred result must be non-null. External bodies are reviewed contract stubs, caller-saved registers poisoned. Option fields are read only under actual callee guards. No ROM/gameplay test."
+}

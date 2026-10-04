@@ -1,0 +1,56 @@
+[
+  {
+    "name": "initial",
+    "reason": "Whole-body initial reconstruction",
+    "differing": 121,
+    "extra": 0,
+    "bytes": 840,
+    "frame": 72,
+    "sha256": "9526ecbc288a177c13571d6dfad9bed81826baa32c158cd4ca98b036ff095619"
+  },
+  {
+    "name": "decode_order",
+    "reason": "Native initialization is first-loop flag before active byte, with active at stack+66",
+    "differing": 117,
+    "extra": 0,
+    "bytes": 840,
+    "frame": 72,
+    "sha256": "874ff77bec17f4f1cc25b6a4ec939497a8180c932541106bb121f742dac5211b"
+  },
+  {
+    "name": "decoded_jump",
+    "reason": "Native jump index and fixed-point carry share v1, so reuse the real scalar temporary",
+    "differing": 120,
+    "extra": 0,
+    "bytes": 840,
+    "frame": 72,
+    "sha256": "d9ac9c37de2563b9f30c8afe49693ba98377a65976935456837e572cc544fc3f"
+  },
+  {
+    "name": "offset_first",
+    "reason": "Native addu operand order spells relative offset before byte base",
+    "differing": 120,
+    "extra": 0,
+    "bytes": 840,
+    "frame": 72,
+    "sha256": "7c5b70414bffa4a52b6fdd2dfd80a895fe4f9308b6bac55a2fab6435f5f9ba6d"
+  },
+  {
+    "name": "decoded_code",
+    "reason": "Decode and reuse the genuine u16 opcode in dispatch and pattern table lookup",
+    "differing": 120,
+    "extra": 0,
+    "bytes": 840,
+    "frame": 72,
+    "sha256": "bcb9f70b0662e34dc6a890b8b30a5d1483604fb24e6f13286149468e9f334a2b"
+  },
+  {
+    "name": "decoded_offsets",
+    "reason": "Explicitly decode optional resource offsets before zero testing and address conversion",
+    "differing": 118,
+    "extra": 0,
+    "bytes": 840,
+    "frame": 72,
+    "sha256": "59013783d68c03e9e56b8c1d0871481db4bc4807e5d3d37ce14b9cd3416aca31"
+  }
+]

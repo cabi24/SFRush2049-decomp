@@ -1,0 +1,48 @@
+{
+  "result": "PASS",
+  "source_hashes": {
+    "nonmatch/func_80011104.c": "1cb96ae671c35a54e93d792b3921dfed462114790586bea4bf1da7d7e9491940",
+    "nonmatch/func_800114C0.c": "45ea1edd066c029c26d9f89f82296282205f3c191dbe5b72c5bc79365a03b6d1",
+    "nonmatch/func_800139D4.c": "e39dfb9ff2f892df21bc2f1442c3e9a3144c5905d6c2ee6482bec2c64655a7a6",
+    "host_behavior.c": "3bdbc6c888a77a46cbb0b2c2b850074e1b05749847466bea7f8931fafe7a01b6",
+    "test_host.py": "28ea9a30be5ee112419b1f79dc35d84de2d342ad24ceeba2676dce653abae95a"
+  },
+  "configurations": [
+    {
+      "configuration": "c89",
+      "result": "PASS",
+      "stdout": "PASS 120 initializer, 6144 setup, 144 submit cases; 6408 total",
+      "flags": [
+        "-std=c89",
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-pointer-to-int-cast",
+        "-Wno-int-to-pointer-cast",
+        "-O2"
+      ]
+    },
+    {
+      "configuration": "asan_ubsan",
+      "result": "PASS",
+      "stdout": "PASS 120 initializer, 6144 setup, 144 submit cases; 6408 total",
+      "flags": [
+        "-std=c89",
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-pointer-to-int-cast",
+        "-Wno-int-to-pointer-cast",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-fno-pie",
+        "-no-pie"
+      ]
+    }
+  ],
+  "limits": "Synthetic external data values only; does not prove retail float/table values or callee behavior. Native pointer sizes/layouts are separately checked by IDO. Aligned cursor is observed as an integer, never dereferenced by the host."
+}

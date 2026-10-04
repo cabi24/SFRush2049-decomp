@@ -1,0 +1,17 @@
+{
+  "scope": "Metadata-only initial diagnosis of the sole authorized source. No refinements after O2/O1 and diagnosis.",
+  "source_sha256": "43094186872525778f3a3fa529eeb9d2e146df4dbe2d413b895fff300e9e204a",
+  "routing": "import-fix",
+  "owning_pass": "unknown",
+  "ownership_basis": "none",
+  "lever_class": "none-known",
+  "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+  "target_frame": null,
+  "candidate_frame": null,
+  "aligned_insertions": 2,
+  "aligned_deletions": 0,
+  "artifact_built_at": [
+    "2026-10-04T02:48:44Z",
+    "2026-10-04T02:48:44Z"
+  ]
+}
