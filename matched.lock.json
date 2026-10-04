@@ -135,74 +135,10 @@
     "verified": "score0",
     "verified_at": "2026-10-04"
   },
-  "cloud/matches/boot_tail/func_8001729C.c:func_8001729C": {
-    "body_sha256": "ef8588f6ddbad94ace4dd1099af6117425d96a7ac31c889ef8a098a6dc1c85b3",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_8001729C",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_8001734C.c:func_8001734C": {
-    "body_sha256": "c50876ec0a4600b70c5a57e67d9e4537672ee1490a2afe38b6b53724855ce60b",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_8001734C",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_800173B4.c:func_800173B4": {
-    "body_sha256": "63eab036887f26d842309e6df97d6bb66ac233e3ea5e9f375327d5bb6e7dde69",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_800173B4",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80017410.c:func_80017410": {
-    "body_sha256": "9d01364daa7dd909f42ea484c354682d5b54ded27bf9d6b01eced3d20f0d4677",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80017410",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80017470.c:func_80017470": {
-    "body_sha256": "76aad226956c6adc5588494a673e12526c9ce70fe6ae68b86926c028def62648",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80017470",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_800174D0.c:func_800174D0": {
-    "body_sha256": "73ba6fdbc1f2a0ac50f28dc13701715219529cb0f1783568c65296cae2b28f72",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_800174D0",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
   "cloud/matches/boot_tail/func_80017540.c:func_80017540": {
     "body_sha256": "22e716db2a1b46989e28405b441cd6024e76495553b9ad0abb266477ac9a8aa6",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "func_80017540",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_800175A8.c:func_800175A8": {
-    "body_sha256": "7c3d780eeb4a6f89cd598d1eea6daa45e89a3376f238e3f0610da98a96081928",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_800175A8",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80017644.c:func_80017644": {
-    "body_sha256": "463103573d29e1244ca44ee1e55141258c56f91fe208819f457e16513eb5ae2c",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80017644",
     "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
     "verified": "score0",
     "verified_at": "2026-10-04"
@@ -231,14 +167,6 @@
     "verified": "score0",
     "verified_at": "2026-10-04"
   },
-  "cloud/matches/boot_tail/func_80018D00.c:func_80018D00": {
-    "body_sha256": "c08ae7628314f05bb2e308b86cd64c1fa6e784356d42e27b1826ba2c142e191b",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80018D00",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
   "cloud/matches/boot_tail/func_80018D40.c:func_80018D40": {
     "body_sha256": "300faf22e1ddb6e0ba401dc1822a09e04eb537ce4cc3fcd4d850f9977c6301f1",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -247,66 +175,10 @@
     "verified": "score0",
     "verified_at": "2026-10-04"
   },
-  "cloud/matches/boot_tail/func_80018E2C.c:func_80018E2C": {
-    "body_sha256": "d67812d1afee60db4756234bee3af48c9cd5234f782b7722492e9d300e319081",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80018E2C",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80018FA4.c:func_80018FA4": {
-    "body_sha256": "1664e24334c476ddc2a6bbcfd755ee0dc8a1e4f3c100d0a94c332d069b0bc605",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80018FA4",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_8001906C.c:func_8001906C": {
-    "body_sha256": "8eaf915f53a51bde40db4522be4dfa99d7b26d1c7d340d091f469c724a71e6c1",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_8001906C",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_800190AC.c:func_800190AC": {
-    "body_sha256": "a00b2df52edd98e6f5f15fd7f9c31f6778b08f37379c684c7e4dcb30480003e8",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_800190AC",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80019144.c:func_80019144": {
-    "body_sha256": "d56a4f4e8c07bfd2bec80fb0461f2b2eca1417f7eb99500e54e346621a8c767d",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80019144",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
   "cloud/matches/boot_tail/func_80019194.c:func_80019194": {
     "body_sha256": "c977f7e512432758e0a2ad2c44dafd64ff9db672900610fe5a865802a0449ebd",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "func_80019194",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80019370.c:func_80019370": {
-    "body_sha256": "f57fe97363bbce10283947436c507b494eeef73fb37f53f919ce042d07d549ff",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80019370",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80019850.c:func_80019850": {
-    "body_sha256": "cc10d9489274675a9f5cdb3fa3d182ed0c20ea8f344dff4e6644464067546f2f",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80019850",
     "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
     "verified": "score0",
     "verified_at": "2026-10-04"
@@ -1867,6 +1739,134 @@
     "body_sha256": "df9c3de1fc50c20eb4db3702d2ff4ba2c89f1acc127d46b8761fb2ab62f04462",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "func_80016CE0",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_17dc0.c:func_8001729C": {
+    "body_sha256": "ef8588f6ddbad94ace4dd1099af6117425d96a7ac31c889ef8a098a6dc1c85b3",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001729C",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_17dc0.c:func_8001734C": {
+    "body_sha256": "c50876ec0a4600b70c5a57e67d9e4537672ee1490a2afe38b6b53724855ce60b",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001734C",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_17dc0.c:func_800173B4": {
+    "body_sha256": "63eab036887f26d842309e6df97d6bb66ac233e3ea5e9f375327d5bb6e7dde69",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_800173B4",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_17dc0.c:func_80017410": {
+    "body_sha256": "9d01364daa7dd909f42ea484c354682d5b54ded27bf9d6b01eced3d20f0d4677",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80017410",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_17dc0.c:func_80017470": {
+    "body_sha256": "76aad226956c6adc5588494a673e12526c9ce70fe6ae68b86926c028def62648",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80017470",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_17dc0.c:func_800174D0": {
+    "body_sha256": "73ba6fdbc1f2a0ac50f28dc13701715219529cb0f1783568c65296cae2b28f72",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_800174D0",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_17dc0.c:func_800175A8": {
+    "body_sha256": "7c3d780eeb4a6f89cd598d1eea6daa45e89a3376f238e3f0610da98a96081928",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_800175A8",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_17dc0.c:func_80017644": {
+    "body_sha256": "463103573d29e1244ca44ee1e55141258c56f91fe208819f457e16513eb5ae2c",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80017644",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_17dc0.c:func_80018D00": {
+    "body_sha256": "c08ae7628314f05bb2e308b86cd64c1fa6e784356d42e27b1826ba2c142e191b",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80018D00",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_17dc0.c:func_80018E2C": {
+    "body_sha256": "d67812d1afee60db4756234bee3af48c9cd5234f782b7722492e9d300e319081",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80018E2C",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_17dc0.c:func_80018FA4": {
+    "body_sha256": "1664e24334c476ddc2a6bbcfd755ee0dc8a1e4f3c100d0a94c332d069b0bc605",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80018FA4",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_17dc0.c:func_8001906C": {
+    "body_sha256": "8eaf915f53a51bde40db4522be4dfa99d7b26d1c7d340d091f469c724a71e6c1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001906C",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_17dc0.c:func_800190AC": {
+    "body_sha256": "a00b2df52edd98e6f5f15fd7f9c31f6778b08f37379c684c7e4dcb30480003e8",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_800190AC",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_17dc0.c:func_80019144": {
+    "body_sha256": "d56a4f4e8c07bfd2bec80fb0461f2b2eca1417f7eb99500e54e346621a8c767d",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80019144",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_17dc0.c:func_80019370": {
+    "body_sha256": "f57fe97363bbce10283947436c507b494eeef73fb37f53f919ce042d07d549ff",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80019370",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_17dc0.c:func_80019850": {
+    "body_sha256": "cc10d9489274675a9f5cdb3fa3d182ed0c20ea8f344dff4e6644464067546f2f",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80019850",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
