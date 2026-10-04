@@ -1,0 +1,23 @@
+{
+  "state": "queued-inactive",
+  "owner": "/root/match_boot_tail_bt05_bt07",
+  "packet": "BT03-low-sample-pair",
+  "branch": "dot/boot-tail-bt03-low-sample-pair",
+  "base": "pending exact controller-pair receipt commit",
+  "targets": [
+    {
+      "address": "0x800146B4",
+      "size": 488,
+      "end_exclusive": "0x8001489C"
+    },
+    {
+      "address": "0x80016CF0",
+      "size": 336,
+      "end_exclusive": "0x80016E40"
+    }
+  ],
+  "bytes": 824,
+  "activation_condition": "Only after previous controller-pair immutable peer PASS and explicit activation",
+  "edit_scope": "Only named matching sources and cloud/work/boot_tail/BT03-low-sample-pair/**",
+  "stop": "Actual descriptor, record, binary-search/comparator and helper ABI; exact function-symbol size; natural C89/O2/O1 with bounded controls. No guessed layout, values, scope expansion or protected edits."
+}

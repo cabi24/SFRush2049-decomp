@@ -1,0 +1,43 @@
+{
+  "state": "active",
+  "owner": "/root/match_boot_tail_bt03_high",
+  "packet": "BT03-high-runtime-lists",
+  "branch": "dot/boot-tail-bt03-high-runtime-lists",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x800198C8",
+      "size": 300,
+      "end_exclusive": "0x800199F4"
+    },
+    {
+      "address": "0x8001D944",
+      "size": 304,
+      "end_exclusive": "0x8001DA74"
+    },
+    {
+      "address": "0x8001FBB0",
+      "size": 380,
+      "end_exclusive": "0x8001FD2C"
+    },
+    {
+      "address": "0x8001DA74",
+      "size": 404,
+      "end_exclusive": "0x8001DC08"
+    },
+    {
+      "address": "0x8001C1D8",
+      "size": 432,
+      "end_exclusive": "0x8001C388"
+    },
+    {
+      "address": "0x8001EF8C",
+      "size": 432,
+      "end_exclusive": "0x8001F13C"
+    }
+  ],
+  "bytes": 2252,
+  "edit_scope": "Only named matching sources and cloud/work/boot_tail/BT03-high-runtime-lists/**",
+  "stop": "Actual ABI/domain proof, natural C89/O2/O1 and bounded diagnosis. External data remains genuine declarations with strict relocation proof. No fabricated values, protected edits, table mapping substitution, prior residual reopening or artificial allocation constructs.",
+  "prior_packet": "BT03-high-chains frozen peer PASS d3dc7037ce311174a2d2121c26b355a7aed03168"
+}

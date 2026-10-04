@@ -1,0 +1,29 @@
+{
+  "method": "Workbench diagnose on temporary canonical target and fully relocated candidate objects before further variants. Raw disassembly and objects not retained. Strict numerical scores come from verification.json; geometry and relocation-symbol heuristics are advisory.",
+  "results": [
+    {
+      "function": "func_8001558C",
+      "source_sha256": "c6c2dcaa194b6d119fee7d31689355ac762170cda8823cc3b6f396ac15478d82",
+      "strict_differing_words": 33,
+      "workbench_routing": "structural",
+      "owning_pass": "cfe-spelling",
+      "ownership_basis": "heuristic",
+      "native_frame_bytes": 56,
+      "candidate_frame_bytes": 56,
+      "lever_class": "none-known",
+      "finding": "Narrow-formal normalization/allocation changes the first temporary and cascades; shared-return movement fixes body length."
+    },
+    {
+      "function": "func_80015C0C",
+      "source_sha256": "bb2cb7bd36713ed09cf2270e6c12e620db3412efb333e258f1af706fa0b3dfb5",
+      "strict_differing_words": 23,
+      "workbench_routing": "structural",
+      "owning_pass": "cfe-spelling",
+      "ownership_basis": "heuristic",
+      "native_frame_bytes": 24,
+      "candidate_frame_bytes": 24,
+      "lever_class": "none-known",
+      "finding": "Aligned packed-record copy lowers differently and ends with one extra zero-valued delay slot; scalar and packed-copy controls do not close it."
+    }
+  ]
+}

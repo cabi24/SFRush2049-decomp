@@ -1,0 +1,247 @@
+{
+  "directed_variants_after_initial": 14,
+  "bound": 20,
+  "note": "Final choice is inline_bytes; all other controls rejected. The first function narrow-formal control lacks independent ABI evidence and is not a recommended source. No additional flag sweep.",
+  "results": [
+    {
+      "address": "80011F60",
+      "variant": "baseline",
+      "diff": 76,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_80011F60-baseline.c",
+      "source_sha256": "eb9a71a418fcaf9c26820bfc8fe6cef46788d6ef9f3ac697da853998ef1d6390"
+    },
+    {
+      "address": "80011F60",
+      "variant": "bytes_first",
+      "diff": 76,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_80011F60-bytes_first.c",
+      "source_sha256": "58070d7406e8a45e69ad3454b403bc0923104270393844400517bd9c90f074ef"
+    },
+    {
+      "address": "80011F60",
+      "variant": "inline_bytes",
+      "diff": 74,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_80011F60-inline_bytes.c",
+      "source_sha256": "69f0be26a4ddae6ab534dba43d44b07910a60434c05435c9aabdf8a2da4f2a29"
+    },
+    {
+      "address": "80011F60",
+      "variant": "not_equal",
+      "diff": 78,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_80011F60-not_equal.c",
+      "source_sha256": "b8dcd87477a283940b61b62294ff09609261120a0a356f4b89fc09208a5cfb1d"
+    },
+    {
+      "address": "800123A8",
+      "variant": "baseline",
+      "diff": 79,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_800123A8-baseline.c",
+      "source_sha256": "1b0bc596cf2eb332e40fda4ccc36a907cd0b8d7a4e9a6129271169dfb9e9725d"
+    },
+    {
+      "address": "800123A8",
+      "variant": "bytes_first",
+      "diff": 79,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_800123A8-bytes_first.c",
+      "source_sha256": "353f04ea2df9e29e31998a7c4210d6f77e593112ff460b6390dbfe681a3fd1a7"
+    },
+    {
+      "address": "800123A8",
+      "variant": "inline_bytes",
+      "diff": 74,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_800123A8-inline_bytes.c",
+      "source_sha256": "2687fc845a55ad430088b467f75db563303ef9ec321fe59b441af62a63f6ee4b"
+    },
+    {
+      "address": "800123A8",
+      "variant": "not_equal",
+      "diff": 81,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_800123A8-not_equal.c",
+      "source_sha256": "33a3365245bedd8959496074c1c611c834a00333e401d5c9a74a7e23f2a9c7c3"
+    },
+    {
+      "address": "80011F60",
+      "variant": "loop_le",
+      "diff": 140,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_80011F60-loop_le.c",
+      "source_sha256": "f2aaf53a743ca8d0a6428adfbd28bc069fb1306882b59cd8a364f135148b0771"
+    },
+    {
+      "address": "80011F60",
+      "variant": "loop_ne_guard",
+      "diff": 74,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_80011F60-loop_ne_guard.c",
+      "source_sha256": "c4963046472db91b292a93cb2c94edce29ae891b7345222b94adc37ae80680f3"
+    },
+    {
+      "address": "80011F60",
+      "variant": "ptr_sub",
+      "diff": 74,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_80011F60-ptr_sub.c",
+      "source_sha256": "5c81fe0e360c226a8fc4a456f06ed4671bedd6df88f015fa325491b9484dda44"
+    },
+    {
+      "address": "80011F60",
+      "variant": "ptr_add",
+      "diff": 74,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_80011F60-ptr_add.c",
+      "source_sha256": "b443445701eb8abff6dc4d2816876bd4231be870cc09f6ab5dab821ae734cdb4"
+    },
+    {
+      "address": "80011F60",
+      "variant": "loop_short_count",
+      "diff": 147,
+      "extra": 1,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_80011F60-loop_short_count.c",
+      "source_sha256": "215bcd89a26cfbd5e35abf43fa85b94cd1ad08e11e94717f5fae0f2c7f3bc600"
+    },
+    {
+      "address": "80011F60",
+      "variant": "unsigned_i",
+      "diff": 75,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_80011F60-unsigned_i.c",
+      "source_sha256": "9494598904e6d36c7f167660756fde16574353b7d3d08baa34753c384b028e97"
+    },
+    {
+      "address": "800123A8",
+      "variant": "loop_le",
+      "diff": 153,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_800123A8-loop_le.c",
+      "source_sha256": "a44d4f513da08ca5b1c6a7247e85f180de1ea0948a84135380746623b14968e8"
+    },
+    {
+      "address": "800123A8",
+      "variant": "loop_ne_guard",
+      "diff": 74,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_800123A8-loop_ne_guard.c",
+      "source_sha256": "f012183bd69b3547a8762cbb75c9fa28c8b2a4c67f2b4dc7a9e8a48fb270a701"
+    },
+    {
+      "address": "800123A8",
+      "variant": "ptr_sub",
+      "diff": 74,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_800123A8-ptr_sub.c",
+      "source_sha256": "98c979e50f78d9b3ddf9c70567f44d171fe6646badca0a5a95b55592c6967f6e"
+    },
+    {
+      "address": "800123A8",
+      "variant": "ptr_add",
+      "diff": 74,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_800123A8-ptr_add.c",
+      "source_sha256": "3b43386b39ba5a733b416e065341f031cecfa3e51a17097b61c776971023f690"
+    },
+    {
+      "address": "800123A8",
+      "variant": "loop_short_count",
+      "diff": 74,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_800123A8-loop_short_count.c",
+      "source_sha256": "2687fc845a55ad430088b467f75db563303ef9ec321fe59b441af62a63f6ee4b"
+    },
+    {
+      "address": "800123A8",
+      "variant": "unsigned_i",
+      "diff": 148,
+      "extra": 1,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_800123A8-unsigned_i.c",
+      "source_sha256": "e59c124f0b3c8cee4d6442cc355851cab9d3f8ad66bbc2200865e8ff40999ce5"
+    },
+    {
+      "address": "80011F60",
+      "variant": "while",
+      "diff": 74,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_80011F60-while.c",
+      "source_sha256": "f04d73f1e8424dd5afd164c03560b642856f35a2ce992cfc9658db3e5b7eedfe"
+    },
+    {
+      "address": "80011F60",
+      "variant": "for_preincrement",
+      "diff": 74,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_80011F60-for_preincrement.c",
+      "source_sha256": "90a0e5cb04cde32a3f70453a15f492176cd0438f4e79b968db0241652b4d0fe2"
+    },
+    {
+      "address": "80011F60",
+      "variant": "block_array",
+      "diff": 92,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_80011F60-block_array.c",
+      "source_sha256": "fe0526b3e612e57c84f3b12a82132826a834bcb0fe1aa15efe716393e18d9d61"
+    },
+    {
+      "address": "80011F60",
+      "variant": "loop_reverse_comparison",
+      "diff": 74,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_80011F60-loop_reverse_comparison.c",
+      "source_sha256": "b5217fd642fb5468f05e33574e537776d4e45c031d728faabb2bc3915cd93557"
+    },
+    {
+      "address": "80011F60",
+      "variant": "register_i",
+      "diff": 74,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_80011F60-register_i.c",
+      "source_sha256": "ce3a4b7605d1f0e06149a32e5762b51c16e3dd2eb9feb87d7f95bb6fefe382a2"
+    },
+    {
+      "address": "800123A8",
+      "variant": "while",
+      "diff": 74,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_800123A8-while.c",
+      "source_sha256": "7d66f3b5a211faf5a256060e17b1d178ab1ae78386eb5eb44656be25a4286ed9"
+    },
+    {
+      "address": "800123A8",
+      "variant": "for_preincrement",
+      "diff": 74,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_800123A8-for_preincrement.c",
+      "source_sha256": "9144b89e74ae904d460017ad3a7f0a8b6f20315c3806e651e228285d7fdbcc8d"
+    },
+    {
+      "address": "800123A8",
+      "variant": "block_array",
+      "diff": 122,
+      "extra": 6,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_800123A8-block_array.c",
+      "source_sha256": "bbd23192b85540d41df2e300bea9c72832e99a0d33aa987303ae6090c130aee0"
+    },
+    {
+      "address": "800123A8",
+      "variant": "loop_reverse_comparison",
+      "diff": 74,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_800123A8-loop_reverse_comparison.c",
+      "source_sha256": "1d43d53d2c48b3c1bb512bb8dcddb21defbe3f85146ec956ddf64070ae4489ca"
+    },
+    {
+      "address": "800123A8",
+      "variant": "register_i",
+      "diff": 74,
+      "extra": 0,
+      "source": "cloud/work/boot_tail/BT02-audio-pair/controls/func_800123A8-register_i.c",
+      "source_sha256": "8ce10144be34997c257571faf129c77b1712a8178f7a9f3519ac5827645d3a6a"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "result": "PASS",
+  "scope": "Metadata-only supplemental review after source checkpoint53adec19a3a734a7abdf9acc22aff3a34392c18d",
+  "reviewer": "BT03-high",
+  "reviewed_utc": "2026-10-04T01:42:17.173238+00:00",
+  "changed_file_sha256": {
+    "cloud/work/boot_tail/C11-numeric/abi_proof.py": "45d117c7e13395c53f13645b8dfd0a78e51db6fa1f63bf9a64500175fc57ed4e",
+    "cloud/work/boot_tail/C11-numeric/abi_proof.json": "4d0d0cf71beb880d1a530cad0ac60c425ef251e50f388659bfbb7da898a6f3bc"
+  },
+  "findings": [
+    "abi_proof.run now explicitly selects boot_tail, eliminating its incidental dependency on default blob manifest inputs.",
+    "Fresh independent snapshot replay passes using the reviewer sparse canonical tool tree without default blob inputs.",
+    "The only proof JSON change is func_80019AA8 address_source from address-named external to canonical symbol map; resolved address remains80019AA8 and every other proof field is unchanged.",
+    "All retained/control C source hashes still match the independently approved16-row receipt; source semantics and268 matching bytes are unchanged."
+  ],
+  "replay": "C11 numeric external-address metadata reproduced"
+}

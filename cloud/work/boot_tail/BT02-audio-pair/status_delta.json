@@ -1,0 +1,37 @@
+{
+  "packet": "BT02-audio-pair",
+  "base": "ea50bee96b5d732ba9efcac8f433134090f41950",
+  "claim_commit": "1535b793",
+  "strict_match_functions": 0,
+  "strict_match_bytes": 0,
+  "complete_nonmatch_functions": 2,
+  "complete_nonmatch_bytes": 1232,
+  "rows": [
+    {
+      "address": "0x80011F60",
+      "name": "func_80011F60",
+      "size": 604,
+      "cluster": "BT02",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 74,
+      "source_path": "cloud/work/boot_tail/BT02-audio-pair/nonmatch/func_80011F60.c",
+      "owner": "/root/match_boot_tail_audio_pair",
+      "note": "Whole natural C89 body; clean relocated O2 residual 74 words, bounded 14 directed controls after workbench diagnosis. Actual-source C89/ASan/UBSan and native-layout checks pass on valid positive count/successful-allocation domain. No match credit."
+    },
+    {
+      "address": "0x800123A8",
+      "name": "func_800123A8",
+      "size": 628,
+      "cluster": "BT02",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 74,
+      "source_path": "cloud/work/boot_tail/BT02-audio-pair/nonmatch/func_800123A8.c",
+      "owner": "/root/match_boot_tail_audio_pair",
+      "note": "Whole natural C89 body; clean relocated O2 residual 74 words, bounded 14 directed controls after workbench diagnosis. Actual-source C89/ASan/UBSan and native-layout checks pass on valid positive count/successful-allocation domain. No match credit."
+    }
+  ]
+}

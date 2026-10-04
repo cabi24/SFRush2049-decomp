@@ -1,0 +1,59 @@
+{
+  "scope": "Metadata-only diagnosis on canonical target and fully relocated initial O2 object words; temporary objects and native listings are not archived.",
+  "checkpoints": [
+    {
+      "function": "func_8001E440",
+      "checkpoint": "initial O2 before bounded controls or plateau stop",
+      "source_sha256": "531e1936a63420631f43dd59c9edf06c9bf8a856de2ee6badaa687ec872e5885",
+      "routing": "import-fix",
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "none-known",
+      "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+      "target_frame": null,
+      "candidate_frame": null,
+      "aligned_insertions": 4,
+      "aligned_deletions": 2,
+      "artifact_built_at": [
+        "2026-10-04T01:14:16Z",
+        "2026-10-04T01:14:16Z"
+      ]
+    },
+    {
+      "function": "func_8001E7BC",
+      "checkpoint": "initial O2 before bounded controls or plateau stop",
+      "source_sha256": "23491d11e23d5d43d9eb2daee5569725682fdd2f06fb9a6e006c81052e3c99eb",
+      "routing": "import-fix",
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "none-known",
+      "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+      "target_frame": null,
+      "candidate_frame": null,
+      "aligned_insertions": 1,
+      "aligned_deletions": 2,
+      "artifact_built_at": [
+        "2026-10-04T01:14:17Z",
+        "2026-10-04T01:14:17Z"
+      ]
+    },
+    {
+      "function": "func_8001E864",
+      "checkpoint": "initial O2 before bounded controls or plateau stop",
+      "source_sha256": "f460b2d3eec2be3e95e8881e7a1de7ffeb77ab68e6a4699cbb028eff4dfc5bef",
+      "routing": "import-fix",
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "none-known",
+      "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+      "target_frame": -56,
+      "candidate_frame": -56,
+      "aligned_insertions": 0,
+      "aligned_deletions": 1,
+      "artifact_built_at": [
+        "2026-10-04T01:14:17Z",
+        "2026-10-04T01:14:17Z"
+      ]
+    }
+  ]
+}

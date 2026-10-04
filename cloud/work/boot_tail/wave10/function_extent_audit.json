@@ -1,0 +1,3990 @@
+{
+  "schema_version": 1,
+  "audited_source_head": "b935b5c4f79b92f489636e6cc26c68cc81061c73",
+  "audited_source_tree": "b8c2b544c1ac72177a7405b1f7e009d3866bc9e1",
+  "through_wave": 10,
+  "result": "PASS",
+  "functions": 221,
+  "matching_native_bytes": 21112,
+  "failures": [],
+  "rows": [
+    {
+      "name": "func_8001061C",
+      "source_sha256": "211b672439412b710e40f3a8e932f31f9e060a36af8d71f38e7774fdb55c34d2",
+      "native_bytes": 12,
+      "function_symbols": [
+        {
+          "name": "func_8001061C",
+          "value": 0,
+          "size": 12,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 16,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80010A0C",
+      "source_sha256": "48a6341f49ebfee5bf09e330d12f170df9ec65c24fa694f72c372b4f38a8258c",
+      "native_bytes": 8,
+      "function_symbols": [
+        {
+          "name": "func_80010A0C",
+          "value": 0,
+          "size": 8,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 16,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80010A14",
+      "source_sha256": "0aa3e681a8977098b47223033ec0079d945ff6d3d53607a3ad9908a96b4e8ca9",
+      "native_bytes": 40,
+      "function_symbols": [
+        {
+          "name": "func_80010A14",
+          "value": 0,
+          "size": 40,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80010D3C",
+      "source_sha256": "c9023cf11503a9e5a1e6e681556db7cb40d44779a489b3299afc01270fef5aea",
+      "native_bytes": 56,
+      "function_symbols": [
+        {
+          "name": "func_80010D3C",
+          "value": 0,
+          "size": 56,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 64,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80011894",
+      "source_sha256": "edb7ae94e3c98d8a28d9634afa57f8cf5531ebb5e7ceebeb736d63f502f8f2d9",
+      "native_bytes": 44,
+      "function_symbols": [
+        {
+          "name": "func_80011894",
+          "value": 0,
+          "size": 44,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800119E0",
+      "source_sha256": "b63faddbde43c633fd005676163bd2128f8939f9629cc1c2b228f1d5b7fda733",
+      "native_bytes": 48,
+      "function_symbols": [
+        {
+          "name": "func_800119E0",
+          "value": 0,
+          "size": 48,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80011A10",
+      "source_sha256": "77bcfb10d32bc2b6eae530218f108abed97b062e3ccd05c0f7e4283e17734898",
+      "native_bytes": 44,
+      "function_symbols": [
+        {
+          "name": "func_80011A10",
+          "value": 0,
+          "size": 44,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80011A3C",
+      "source_sha256": "bfa4ea37a854583565b8bfdb7140729da456bb485e9f23c6359f6e6e31be6fba",
+      "native_bytes": 40,
+      "function_symbols": [
+        {
+          "name": "func_80011A3C",
+          "value": 0,
+          "size": 40,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80012200",
+      "source_sha256": "fe3074328065426cc90f4fb7ee8cb290e2a2d844701e897b72995bafaa4268ff",
+      "native_bytes": 52,
+      "function_symbols": [
+        {
+          "name": "func_80012200",
+          "value": 0,
+          "size": 52,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 64,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80014624",
+      "source_sha256": "0dfcc0630e3fa2b4227e0009234864b6b718d2d974a34b0755dd98bf3ac1374c",
+      "native_bytes": 44,
+      "function_symbols": [
+        {
+          "name": "func_80014624",
+          "value": 0,
+          "size": 44,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800146AC",
+      "source_sha256": "5cf54ae2339c58a09cba987035858fcdc7cff180530f56defe409fa877d6d628",
+      "native_bytes": 8,
+      "function_symbols": [
+        {
+          "name": "func_800146AC",
+          "value": 0,
+          "size": 8,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 16,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800149BC",
+      "source_sha256": "4866011383b1d16846476ab283313c9a18bb530550170f04408aa3665bc550b3",
+      "native_bytes": 32,
+      "function_symbols": [
+        {
+          "name": "func_800149BC",
+          "value": 0,
+          "size": 32,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 32,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800149DC",
+      "source_sha256": "1507128234a3b793acf5163b0e4752aef3043497c0c8fff706a98f847029fc77",
+      "native_bytes": 40,
+      "function_symbols": [
+        {
+          "name": "func_800149DC",
+          "value": 0,
+          "size": 40,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80014A04",
+      "source_sha256": "878a7e0301e6f2eb6be31de749139c1dd94078b0a0a8ebe79181580093cb30f9",
+      "native_bytes": 8,
+      "function_symbols": [
+        {
+          "name": "func_80014A04",
+          "value": 0,
+          "size": 8,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 16,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80014BB0",
+      "source_sha256": "ed8ea5d34f1a644dd6944044ae7225224ba18c6eb211228d9e5f3f6a45651c2f",
+      "native_bytes": 40,
+      "function_symbols": [
+        {
+          "name": "func_80014BB0",
+          "value": 0,
+          "size": 40,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80014C18",
+      "source_sha256": "e29b0217b80582ff1a59f181690953f7336f35921201fe059594ac0c4fff5511",
+      "native_bytes": 40,
+      "function_symbols": [
+        {
+          "name": "func_80014C18",
+          "value": 0,
+          "size": 40,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80014C40",
+      "source_sha256": "02e5f76f6455c22ad64293e2b8bb3824afc36d044fbed15609f52e69c294db7c",
+      "native_bytes": 32,
+      "function_symbols": [
+        {
+          "name": "func_80014C40",
+          "value": 0,
+          "size": 32,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 32,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80014D1C",
+      "source_sha256": "d7ed6fc28004572e51060b9261cfddaafbd0f34e506bd1113b5f1f9e1fadfd7d",
+      "native_bytes": 16,
+      "function_symbols": [
+        {
+          "name": "func_80014D1C",
+          "value": 0,
+          "size": 16,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 16,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800175A8",
+      "source_sha256": "0a534a52adb3d2d0792b7f390c5a77c63c2070f3c8a320abdc0322198dc59592",
+      "native_bytes": 12,
+      "function_symbols": [
+        {
+          "name": "func_800175A8",
+          "value": 0,
+          "size": 12,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 16,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80019AA8",
+      "source_sha256": "9242652e35d986381ba6ef973afa6c730614be526cf7f8e9169df4dbbfb369a3",
+      "native_bytes": 44,
+      "function_symbols": [
+        {
+          "name": "func_80019AA8",
+          "value": 0,
+          "size": 44,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001C770",
+      "source_sha256": "9cc6a218d116ea5305bd0d7622801d5f08d4b3afa8f450ca9a0baff8001ed533",
+      "native_bytes": 12,
+      "function_symbols": [
+        {
+          "name": "func_8001C770",
+          "value": 0,
+          "size": 12,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 16,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001CCC0",
+      "source_sha256": "de30db23e20721cf18d552514bb068d1bceb2ac7ddadc90ea97cb6e83f65a467",
+      "native_bytes": 28,
+      "function_symbols": [
+        {
+          "name": "func_8001CCC0",
+          "value": 0,
+          "size": 28,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 32,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001E740",
+      "source_sha256": "a8059d5dac43daa162c8031f67b97dcef757b082e8ff4b006bc38693e6f529b5",
+      "native_bytes": 40,
+      "function_symbols": [
+        {
+          "name": "func_8001E740",
+          "value": 0,
+          "size": 40,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001E768",
+      "source_sha256": "cf33738b8a2b868edc776741cd55d38e51feb561f0e9cbae918ff02408d55c1f",
+      "native_bytes": 40,
+      "function_symbols": [
+        {
+          "name": "func_8001E768",
+          "value": 0,
+          "size": 40,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001E930",
+      "source_sha256": "35c1d38ca4eaab34310524afa58fb4e71503cb2784300ee958fd5a376bd95279",
+      "native_bytes": 16,
+      "function_symbols": [
+        {
+          "name": "func_8001E930",
+          "value": 0,
+          "size": 16,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 16,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001E9A0",
+      "source_sha256": "36984f884d43b8cfadec1617788c9ca79deda1619a05e555b61b22623ca08b67",
+      "native_bytes": 8,
+      "function_symbols": [
+        {
+          "name": "func_8001E9A0",
+          "value": 0,
+          "size": 8,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 16,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80021428",
+      "source_sha256": "c06377d9457c404b5c3438796874c9f0e37874d6101e11538368c87819114ce6",
+      "native_bytes": 32,
+      "function_symbols": [
+        {
+          "name": "func_80021428",
+          "value": 0,
+          "size": 32,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 32,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80021448",
+      "source_sha256": "80f6e7ebb8e1a60f428ced24adf8c464f2fda3fa643c7a5fddb5814aec2e1bbe",
+      "native_bytes": 32,
+      "function_symbols": [
+        {
+          "name": "func_80021448",
+          "value": 0,
+          "size": 32,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 32,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80021468",
+      "source_sha256": "d14731b816a3e97ebed06965d13505d8e40c0f77fff51361b87aa0e07ac3abac",
+      "native_bytes": 32,
+      "function_symbols": [
+        {
+          "name": "func_80021468",
+          "value": 0,
+          "size": 32,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 32,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80021488",
+      "source_sha256": "72564b58626cf0724ac1f359d6c2dc8400d2050bce1f6b2c32a7cac0c2757cc6",
+      "native_bytes": 32,
+      "function_symbols": [
+        {
+          "name": "func_80021488",
+          "value": 0,
+          "size": 32,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 32,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800214A8",
+      "source_sha256": "055d0c64f69ce264a3b7d0a2dc7cb4906d843d6ea4bee4b9a4bfbbd01f746648",
+      "native_bytes": 32,
+      "function_symbols": [
+        {
+          "name": "func_800214A8",
+          "value": 0,
+          "size": 32,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 32,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800214C8",
+      "source_sha256": "9642cab76b9ba8fc8f43f92706af0bf83cb486a1755d0b9c7bcea7ec8c5480e5",
+      "native_bytes": 32,
+      "function_symbols": [
+        {
+          "name": "func_800214C8",
+          "value": 0,
+          "size": 32,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 32,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800214E8",
+      "source_sha256": "91049812b7affc1b0d6ee5f3245a83d31c1afe3797f5b555408e25ffbcb340d0",
+      "native_bytes": 32,
+      "function_symbols": [
+        {
+          "name": "func_800214E8",
+          "value": 0,
+          "size": 32,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 32,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80021508",
+      "source_sha256": "13d5430845739ffb524008a7f95a092df1c0210e26bb261958eb7de8b5fca99b",
+      "native_bytes": 32,
+      "function_symbols": [
+        {
+          "name": "func_80021508",
+          "value": 0,
+          "size": 32,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 32,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80021528",
+      "source_sha256": "09bae1f559025b840426ad7d35ccac15374a481b6ee90ef1e53306206c74b327",
+      "native_bytes": 32,
+      "function_symbols": [
+        {
+          "name": "func_80021528",
+          "value": 0,
+          "size": 32,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 32,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80021F68",
+      "source_sha256": "c32c066f9addcc5fffbcbefbdaccb963b35d831a7e4baa917c075f7790f70765",
+      "native_bytes": 28,
+      "function_symbols": [
+        {
+          "name": "func_80021F68",
+          "value": 0,
+          "size": 28,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 32,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8002243C",
+      "source_sha256": "91dc4bf393f6a1bc697111305cb3823c4a2e5264decd5c7491d992291b431eab",
+      "native_bytes": 32,
+      "function_symbols": [
+        {
+          "name": "func_8002243C",
+          "value": 0,
+          "size": 32,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 32,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800225AC",
+      "source_sha256": "3e894e7196e7271d6613bf21f4b52dc49fe5fecee7b62b7681f00ab60072f44d",
+      "native_bytes": 48,
+      "function_symbols": [
+        {
+          "name": "func_800225AC",
+          "value": 0,
+          "size": 48,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800225DC",
+      "source_sha256": "2772c7cc2d5d652d8d47ca32eba571981d0b5e25ea791d09b100be2ac9cc724d",
+      "native_bytes": 32,
+      "function_symbols": [
+        {
+          "name": "func_800225DC",
+          "value": 0,
+          "size": 32,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 32,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80022A78",
+      "source_sha256": "8e6be8f2e14680a635d2a79772ae1f98eab8216de321a3edd73e05f04c7b536d",
+      "native_bytes": 32,
+      "function_symbols": [
+        {
+          "name": "func_80022A78",
+          "value": 0,
+          "size": 32,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 32,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80023710",
+      "source_sha256": "f0e86502f061f58b8849f859dbe7e3a476549c54770baf42b6d9d21f6fd00d65",
+      "native_bytes": 36,
+      "function_symbols": [
+        {
+          "name": "func_80023710",
+          "value": 0,
+          "size": 36,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80023734",
+      "source_sha256": "84af1ed7a3856814af12a64693777533df130e4ca820f2310caf4b21d5615745",
+      "native_bytes": 32,
+      "function_symbols": [
+        {
+          "name": "func_80023734",
+          "value": 0,
+          "size": 32,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 32,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001144C",
+      "source_sha256": "a68a961e05e9194ef26a736fdc1477344e897009d3a8ba660fd1fb7d6f27c891",
+      "native_bytes": 116,
+      "function_symbols": [
+        {
+          "name": "func_8001144C",
+          "value": 0,
+          "size": 116,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 128,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80011848",
+      "source_sha256": "1285e1c629c7068bf64ba24cbcc148a003c4bd786abc31ad3951d28883d833ff",
+      "native_bytes": 76,
+      "function_symbols": [
+        {
+          "name": "func_80011848",
+          "value": 0,
+          "size": 76,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80011D24",
+      "source_sha256": "b054ae3fcffbc81c91975c0649b5c31fbbfae2348352debd426f08e450306e6f",
+      "native_bytes": 80,
+      "function_symbols": [
+        {
+          "name": "func_80011D24",
+          "value": 0,
+          "size": 80,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800121BC",
+      "source_sha256": "99f4a4c57a31d6a2ce6af7bbafcda90b2cfb60d0bb68fdf9cc0edec83bae3c29",
+      "native_bytes": 68,
+      "function_symbols": [
+        {
+          "name": "func_800121BC",
+          "value": 0,
+          "size": 68,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001261C",
+      "source_sha256": "04c4e2f71a04cb83435033b47cabb0a07309eb1804edaeb3446e4f9140498d92",
+      "native_bytes": 68,
+      "function_symbols": [
+        {
+          "name": "func_8001261C",
+          "value": 0,
+          "size": 68,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80013964",
+      "source_sha256": "8dd8eef7502b8d22d22521985e10ea43e340f0fdae1ee1195508c772d52d46f1",
+      "native_bytes": 112,
+      "function_symbols": [
+        {
+          "name": "func_80013964",
+          "value": 0,
+          "size": 112,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 112,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800140F8",
+      "source_sha256": "5eb9d6ad07e60795ea7c3ec15bc5d65be910aabad89277b85a3816d9925ed98a",
+      "native_bytes": 72,
+      "function_symbols": [
+        {
+          "name": "func_800140F8",
+          "value": 0,
+          "size": 72,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80014140",
+      "source_sha256": "699f8f68f632e9877b5e09f2b83147a9ac1df840aeab0220174257c254158211",
+      "native_bytes": 88,
+      "function_symbols": [
+        {
+          "name": "func_80014140",
+          "value": 0,
+          "size": 88,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80014E00",
+      "source_sha256": "21d648ef4745d1cc4b8da81da8fa7f0f3815bd0a06a06e2291ef465ca4a6f374",
+      "native_bytes": 12,
+      "function_symbols": [
+        {
+          "name": "func_80014E00",
+          "value": 0,
+          "size": 12,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 16,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80014E10",
+      "source_sha256": "bbc746561c349044aaf06aa6614e688076253b268d46e24f88ef2a47309637ef",
+      "native_bytes": 12,
+      "function_symbols": [
+        {
+          "name": "func_80014E10",
+          "value": 0,
+          "size": 12,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 16,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001D928",
+      "source_sha256": "f6ac8d42ba01c1bc1d3257f53da7cb02747b18288886649597b5959723b58450",
+      "native_bytes": 28,
+      "function_symbols": [
+        {
+          "name": "func_8001D928",
+          "value": 0,
+          "size": 28,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 32,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001E0C0",
+      "source_sha256": "b91cb3b998cf7c829cf69773be3dae8c4eed4ab986378ce475de41555ef025a3",
+      "native_bytes": 20,
+      "function_symbols": [
+        {
+          "name": "func_8001E0C0",
+          "value": 0,
+          "size": 20,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 32,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001EAEC",
+      "source_sha256": "6f0ac7edf47400bdad0c5bf4036d99735fd36038648fd705b67c4e2d250fed13",
+      "native_bytes": 36,
+      "function_symbols": [
+        {
+          "name": "func_8001EAEC",
+          "value": 0,
+          "size": 36,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001F864",
+      "source_sha256": "b5ac27b8efb8c49aeda55d3dad24593ac931489788326dda30dad37dcb346660",
+      "native_bytes": 52,
+      "function_symbols": [
+        {
+          "name": "func_8001F864",
+          "value": 0,
+          "size": 52,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 64,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800201D0",
+      "source_sha256": "512d63616f36b4a6013b8393dd1a525439cb33dc5de249b144b191f7f859f0e9",
+      "native_bytes": 48,
+      "function_symbols": [
+        {
+          "name": "func_800201D0",
+          "value": 0,
+          "size": 48,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80020518",
+      "source_sha256": "a153be713e0078268b7316433df2455f0aeb07fbe578ecfd0dc5c7c281dc249f",
+      "native_bytes": 16,
+      "function_symbols": [
+        {
+          "name": "func_80020518",
+          "value": 0,
+          "size": 16,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 16,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80020528",
+      "source_sha256": "2f6954da37461a519f501ce1b01621d8b511b82a4a8891cb997d4b37fd6c39a4",
+      "native_bytes": 48,
+      "function_symbols": [
+        {
+          "name": "func_80020528",
+          "value": 0,
+          "size": 48,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8002106C",
+      "source_sha256": "d75a3125d1e0e616d524b60f045329bad433b08e8ee8a4060aa4992fc14d9801",
+      "native_bytes": 228,
+      "function_symbols": [
+        {
+          "name": "func_8002106C",
+          "value": 0,
+          "size": 228,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 240,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80021B9C",
+      "source_sha256": "ae6aedde8db2f78c85800afa7765c50192258492ec433467b76fbf09dff283f7",
+      "native_bytes": 36,
+      "function_symbols": [
+        {
+          "name": "func_80021B9C",
+          "value": 0,
+          "size": 36,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80021BC0",
+      "source_sha256": "2f2e361aa71a616f51f1526ef05c4c0e339457fe699ffb569d5337330b856b1b",
+      "native_bytes": 48,
+      "function_symbols": [
+        {
+          "name": "func_80021BC0",
+          "value": 0,
+          "size": 48,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80023520",
+      "source_sha256": "31425e16a3521ed6b12e785619ff81c48480f7049c18d18c054068ad90d10002",
+      "native_bytes": 36,
+      "function_symbols": [
+        {
+          "name": "func_80023520",
+          "value": 0,
+          "size": 36,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80023544",
+      "source_sha256": "31f00b592e9250b61674a9e5f9bebb94987c67ab42790adf313a80d8e2ce48ad",
+      "native_bytes": 32,
+      "function_symbols": [
+        {
+          "name": "func_80023544",
+          "value": 0,
+          "size": 32,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 32,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80023818",
+      "source_sha256": "14742360861b9a1f0ca4c310fd7d227db0657f02cc90cbde885b08f7df924b6e",
+      "native_bytes": 44,
+      "function_symbols": [
+        {
+          "name": "func_80023818",
+          "value": 0,
+          "size": 44,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80023844",
+      "source_sha256": "5b49e51124b889b5b00aceed986d62814403e8fb95cfb387e1a12415c10520ed",
+      "native_bytes": 44,
+      "function_symbols": [
+        {
+          "name": "func_80023844",
+          "value": 0,
+          "size": 44,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80023870",
+      "source_sha256": "e2af49d301e322d1e73e21c87b5033519a71f28ecdc7ece288540f9a1d6c2553",
+      "native_bytes": 44,
+      "function_symbols": [
+        {
+          "name": "func_80023870",
+          "value": 0,
+          "size": 44,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8002389C",
+      "source_sha256": "e9b7ebba5ec6d429337b1693723ca327ed1dfb078a385d9a15295d8b83d89da4",
+      "native_bytes": 44,
+      "function_symbols": [
+        {
+          "name": "func_8002389C",
+          "value": 0,
+          "size": 44,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800238C8",
+      "source_sha256": "423665b0a82977b469f695a22ff4683e501ef339acd2aaeccd48c4e5a268479e",
+      "native_bytes": 44,
+      "function_symbols": [
+        {
+          "name": "func_800238C8",
+          "value": 0,
+          "size": 44,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800238F4",
+      "source_sha256": "4195708582c3aa216f3d8ac0b2c458fb98923cccb824fcdaac3255a4c91e9f51",
+      "native_bytes": 44,
+      "function_symbols": [
+        {
+          "name": "func_800238F4",
+          "value": 0,
+          "size": 44,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80023920",
+      "source_sha256": "77ded7c0a3a585f1e62c3b5200df9fac17747e727d1914c151cfda89260bd05b",
+      "native_bytes": 44,
+      "function_symbols": [
+        {
+          "name": "func_80023920",
+          "value": 0,
+          "size": 44,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8002394C",
+      "source_sha256": "f19ee61dc8f27b3204503c3c35ae0adb4ddd777f7a622a67503bcd4faf7ff903",
+      "native_bytes": 44,
+      "function_symbols": [
+        {
+          "name": "func_8002394C",
+          "value": 0,
+          "size": 44,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80023978",
+      "source_sha256": "1f27a41dcc05cf3b7d748835a48dd74c5676ab0324930e580a8b15efb6db9b55",
+      "native_bytes": 44,
+      "function_symbols": [
+        {
+          "name": "func_80023978",
+          "value": 0,
+          "size": 44,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80015574",
+      "source_sha256": "826d3348e2ac92f8069bc6b9e3fc7b2494d151dba20f8b475d332da5b44d0750",
+      "native_bytes": 24,
+      "function_symbols": [
+        {
+          "name": "func_80015574",
+          "value": 0,
+          "size": 24,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 32,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80016BF8",
+      "source_sha256": "13021bd7f3369ec8f0e373926f9132e8177635ddbd68e5e89fab134b0026fa71",
+      "native_bytes": 40,
+      "function_symbols": [
+        {
+          "name": "func_80016BF8",
+          "value": 0,
+          "size": 40,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80016CE0",
+      "source_sha256": "d9ae746e6e14cb30655bbb3e146046b29443ecd561ddb99f588476880a6a5946",
+      "native_bytes": 16,
+      "function_symbols": [
+        {
+          "name": "func_80016CE0",
+          "value": 0,
+          "size": 16,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 16,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80016E40",
+      "source_sha256": "159ac9f15220c23fcc0ac96a4c4020ed71bb4b94481e71c8eb05d1668fc03203",
+      "native_bytes": 40,
+      "function_symbols": [
+        {
+          "name": "func_80016E40",
+          "value": 0,
+          "size": 40,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80016F58",
+      "source_sha256": "5d3356cb1c526d86e35d8831e293dd0bf61adcc1ccdcc407bfc28e96b2055748",
+      "native_bytes": 40,
+      "function_symbols": [
+        {
+          "name": "func_80016F58",
+          "value": 0,
+          "size": 40,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80017018",
+      "source_sha256": "7fe308c93655f7d8fdd9040044825430393f59968cbc89d3a48d44af28d6e2b1",
+      "native_bytes": 40,
+      "function_symbols": [
+        {
+          "name": "func_80017018",
+          "value": 0,
+          "size": 40,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80018D00",
+      "source_sha256": "06621144fdf96893f7bf45278a45547dc614fd62883c6421b57d9a986f265dce",
+      "native_bytes": 64,
+      "function_symbols": [
+        {
+          "name": "func_80018D00",
+          "value": 0,
+          "size": 64,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 64,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80018E2C",
+      "source_sha256": "bb417b403662f03edd127ceac60a98443a991e3220088995813ec6d54729ff93",
+      "native_bytes": 64,
+      "function_symbols": [
+        {
+          "name": "func_80018E2C",
+          "value": 0,
+          "size": 64,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 64,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001906C",
+      "source_sha256": "ab739c14c3a89cfd4614f1fad981a80c70627b05d7cf90874de8806ddeda9f16",
+      "native_bytes": 64,
+      "function_symbols": [
+        {
+          "name": "func_8001906C",
+          "value": 0,
+          "size": 64,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 64,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001EAA0",
+      "source_sha256": "bc2a92d1ff4f55b77c1feefe912a70ce25f1f76379f0190859d8b547a03de97c",
+      "native_bytes": 76,
+      "function_symbols": [
+        {
+          "name": "func_8001EAA0",
+          "value": 0,
+          "size": 76,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001EDF4",
+      "source_sha256": "cb8207ea94998409dc92ab9edaf5e25bca6d9b6b136d5c0a1232746f60cd8bf5",
+      "native_bytes": 64,
+      "function_symbols": [
+        {
+          "name": "func_8001EDF4",
+          "value": 0,
+          "size": 64,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 64,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001FE58",
+      "source_sha256": "446a5372b2ac265b54216f54cfe6aa5fa7041f5ce9062ebf4d1084cdce793f1d",
+      "native_bytes": 76,
+      "function_symbols": [
+        {
+          "name": "func_8001FE58",
+          "value": 0,
+          "size": 76,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001FEA4",
+      "source_sha256": "ba30ff79d6ac1b133559fa3108b7a978d4aa23b93f17bc1a31b461a09baa4c2e",
+      "native_bytes": 84,
+      "function_symbols": [
+        {
+          "name": "func_8001FEA4",
+          "value": 0,
+          "size": 84,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001FEF8",
+      "source_sha256": "7940105afee719129773b30761fb83071f9593d83d960de262b645d227f0c224",
+      "native_bytes": 84,
+      "function_symbols": [
+        {
+          "name": "func_8001FEF8",
+          "value": 0,
+          "size": 84,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001FF4C",
+      "source_sha256": "b2b42f44714586f6b97c0aeb88303ff8504afc03db83e0c7f86198f44876eea9",
+      "native_bytes": 84,
+      "function_symbols": [
+        {
+          "name": "func_8001FF4C",
+          "value": 0,
+          "size": 84,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001FFA0",
+      "source_sha256": "7a87110e115c02504dc55401df44598610da506b8e27b71793811b930218cf56",
+      "native_bytes": 84,
+      "function_symbols": [
+        {
+          "name": "func_8001FFA0",
+          "value": 0,
+          "size": 84,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001FFF4",
+      "source_sha256": "5ad221cf0ce67e6ca14dbf078aaa05563da679b9fe83b5fdb137767229213063",
+      "native_bytes": 84,
+      "function_symbols": [
+        {
+          "name": "func_8001FFF4",
+          "value": 0,
+          "size": 84,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80020174",
+      "source_sha256": "4ba2bd08dd1b9c48b73f0a7703ab63c38f41163510951f673f108c6d10fc7a40",
+      "native_bytes": 92,
+      "function_symbols": [
+        {
+          "name": "func_80020174",
+          "value": 0,
+          "size": 92,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800203EC",
+      "source_sha256": "52e99b4bfed6e66188ffa39befac4fca6c192714560a4fbccc5bcb4e2c16c9cc",
+      "native_bytes": 80,
+      "function_symbols": [
+        {
+          "name": "func_800203EC",
+          "value": 0,
+          "size": 80,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8002043C",
+      "source_sha256": "0ea2e870b6b8d37aeac5432f4b6b0d694a1647c9778086701bba4ea3b68298c6",
+      "native_bytes": 88,
+      "function_symbols": [
+        {
+          "name": "func_8002043C",
+          "value": 0,
+          "size": 88,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800218CC",
+      "source_sha256": "12f30605127e2e47b1c98dcd718cd78c1ab02402aa006f52d3bb5891c322f371",
+      "native_bytes": 112,
+      "function_symbols": [
+        {
+          "name": "func_800218CC",
+          "value": 0,
+          "size": 112,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 112,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8002245C",
+      "source_sha256": "a14618e15002bef9670a11340b00ce1cd4c25303be87f882111686bdef54bdbd",
+      "native_bytes": 84,
+      "function_symbols": [
+        {
+          "name": "func_8002245C",
+          "value": 0,
+          "size": 84,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800224B0",
+      "source_sha256": "be6af8e101d315281031233e3e22c82f17ce2ffc51bbc60fe9387996f8bdf737",
+      "native_bytes": 100,
+      "function_symbols": [
+        {
+          "name": "func_800224B0",
+          "value": 0,
+          "size": 100,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 112,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80024FB0",
+      "source_sha256": "ad22bb63bfaae9388b0c1f8f16b06a0c02aff28e18b893dd05f6b0275e3b66e9",
+      "native_bytes": 36,
+      "function_symbols": [
+        {
+          "name": "func_80024FB0",
+          "value": 0,
+          "size": 36,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800250F0",
+      "source_sha256": "f7fe321de0a2dc58308dd3f4fb555c52f4b70c85bfe69b1c232402c526fec7fc",
+      "native_bytes": 48,
+      "function_symbols": [
+        {
+          "name": "func_800250F0",
+          "value": 0,
+          "size": 48,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80025120",
+      "source_sha256": "358082f98e07bbae637faf28aae0a82a4e4a099f7645101f5704a77323fe3f9d",
+      "native_bytes": 48,
+      "function_symbols": [
+        {
+          "name": "func_80025120",
+          "value": 0,
+          "size": 48,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80025150",
+      "source_sha256": "693ff31a37c1c16a8959b6986213f97297772408ff5455519fa5c5d478f14cbf",
+      "native_bytes": 44,
+      "function_symbols": [
+        {
+          "name": "func_80025150",
+          "value": 0,
+          "size": 44,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 48,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80025D84",
+      "source_sha256": "5807aee642122ca600f30e9a576e7c65878cfa75f2d0c12d5a557e43b6507446",
+      "native_bytes": 60,
+      "function_symbols": [
+        {
+          "name": "func_80025D84",
+          "value": 0,
+          "size": 60,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 64,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80026328",
+      "source_sha256": "084ae77be2e07876d166000ad001e65615e9364f3ea13b73f7e71e18322eaa11",
+      "native_bytes": 32,
+      "function_symbols": [
+        {
+          "name": "func_80026328",
+          "value": 0,
+          "size": 32,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 32,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80026348",
+      "source_sha256": "550d839c4fae4113235d8bc6c600d90222792e4ab2296256077adfecf336eb3f",
+      "native_bytes": 12,
+      "function_symbols": [
+        {
+          "name": "func_80026348",
+          "value": 0,
+          "size": 12,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 16,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80010980",
+      "source_sha256": "c08485a66aab46dcbee7f12595320e9cf924830819e78f52b58cd6ece1d3940e",
+      "native_bytes": 64,
+      "function_symbols": [
+        {
+          "name": "func_80010980",
+          "value": 0,
+          "size": 64,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 64,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800109C0",
+      "source_sha256": "0fb265b36bbc33e152d782d11ac25a6227ddd5a3468ade21a1019c17af82eca6",
+      "native_bytes": 64,
+      "function_symbols": [
+        {
+          "name": "func_800109C0",
+          "value": 0,
+          "size": 64,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 64,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80011074",
+      "source_sha256": "4b454938e71e724554ea31afde7845078d5adffd529071bdb96e2b5aa32f3936",
+      "native_bytes": 80,
+      "function_symbols": [
+        {
+          "name": "func_80011074",
+          "value": 0,
+          "size": 80,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800110C4",
+      "source_sha256": "4623570e5cc544d4c619bb9a7785103822ba6b7639be9b4e4ce2daf916267486",
+      "native_bytes": 64,
+      "function_symbols": [
+        {
+          "name": "func_800110C4",
+          "value": 0,
+          "size": 64,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 64,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800118C0",
+      "source_sha256": "7e59b64976451761bfdf67a35e3c7c722c4e21f117ed2805e9a9681067bf6320",
+      "native_bytes": 80,
+      "function_symbols": [
+        {
+          "name": "func_800118C0",
+          "value": 0,
+          "size": 80,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80011CD8",
+      "source_sha256": "83e37e0eb9b2ae148d34a2f3a1c7276d5efd2489ae6bcc81db545554a80a0049",
+      "native_bytes": 76,
+      "function_symbols": [
+        {
+          "name": "func_80011CD8",
+          "value": 0,
+          "size": 76,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80014488",
+      "source_sha256": "ce94ba3925248a1eecd1468060774c6159efa5e14c9c3218052b1e4fb804e4d7",
+      "native_bytes": 104,
+      "function_symbols": [
+        {
+          "name": "func_80014488",
+          "value": 0,
+          "size": 104,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 112,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800144F0",
+      "source_sha256": "a0783a16dfc02f4b68582f6ae8096f449c4d5abc5e0f50a8c264550779f22cf4",
+      "native_bytes": 96,
+      "function_symbols": [
+        {
+          "name": "func_800144F0",
+          "value": 0,
+          "size": 96,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80018FA4",
+      "source_sha256": "d1642f0560a942f98603f214c749de21c32d52731d6b7a1f5b019f85b43c1123",
+      "native_bytes": 72,
+      "function_symbols": [
+        {
+          "name": "func_80018FA4",
+          "value": 0,
+          "size": 72,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80019144",
+      "source_sha256": "847538939bb35bb8c8b0d9d838b84a2baa4fd969e86905b4692b3c04f7e72baf",
+      "native_bytes": 80,
+      "function_symbols": [
+        {
+          "name": "func_80019144",
+          "value": 0,
+          "size": 80,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80019370",
+      "source_sha256": "f8c86f0dd4b8fc0b41b3f894c39093a9eb10adc04c048c280b0866e1bc9dfaf8",
+      "native_bytes": 88,
+      "function_symbols": [
+        {
+          "name": "func_80019370",
+          "value": 0,
+          "size": 88,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80019850",
+      "source_sha256": "5b26231bc304f352f95744c5317e5f1203dac57c04111f854d6740e411e91f52",
+      "native_bytes": 76,
+      "function_symbols": [
+        {
+          "name": "func_80019850",
+          "value": 0,
+          "size": 76,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001C7F4",
+      "source_sha256": "1531f99934ba9ccb34286c560dc43bf7dc725e5ae95f81339dd583c0e5569484",
+      "native_bytes": 108,
+      "function_symbols": [
+        {
+          "name": "func_8001C7F4",
+          "value": 0,
+          "size": 108,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 112,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80021700",
+      "source_sha256": "768c35907d8cfcb3bf5cd1f33d157e7ba18d4d7ae4f83fab47f201d27928b58f",
+      "native_bytes": 100,
+      "function_symbols": [
+        {
+          "name": "func_80021700",
+          "value": 0,
+          "size": 100,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 112,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80021BF0",
+      "source_sha256": "1e236c161c48322a8b7add650c05c925b1562de317c712f7c2074011e71513ea",
+      "native_bytes": 104,
+      "function_symbols": [
+        {
+          "name": "func_80021BF0",
+          "value": 0,
+          "size": 104,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 112,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80022C58",
+      "source_sha256": "2562776c4d897761fed110ed3fe029b9ad89a4438524bf03ffb9f8e813b76497",
+      "native_bytes": 124,
+      "function_symbols": [
+        {
+          "name": "func_80022C58",
+          "value": 0,
+          "size": 124,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 128,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800250AC",
+      "source_sha256": "1e2cf6bd0febc945973bbca8941b8ae81c095c10dd8c094e88d2cb6e8d01cf07",
+      "native_bytes": 68,
+      "function_symbols": [
+        {
+          "name": "func_800250AC",
+          "value": 0,
+          "size": 68,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800251A8",
+      "source_sha256": "7033256736316ff8ccb8a136e353a914a923a4aa76c9ea7d8a83755c215b0dee",
+      "native_bytes": 188,
+      "function_symbols": [
+        {
+          "name": "func_800251A8",
+          "value": 0,
+          "size": 188,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 192,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80025264",
+      "source_sha256": "4ab6f4521ba6774ca49bc8338cefb2a22320f49543a27ef52cb13e4185c764f1",
+      "native_bytes": 72,
+      "function_symbols": [
+        {
+          "name": "func_80025264",
+          "value": 0,
+          "size": 72,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80025EB0",
+      "source_sha256": "cabf6345392896f1a444d0c17d48306b9647684d1f7c3562117d08d07a0abcac",
+      "native_bytes": 196,
+      "function_symbols": [
+        {
+          "name": "func_80025EB0",
+          "value": 0,
+          "size": 196,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 208,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800262BC",
+      "source_sha256": "85226cd0a4966041743817b4c80038c8d10f44888519243e4666351b420cff8e",
+      "native_bytes": 108,
+      "function_symbols": [
+        {
+          "name": "func_800262BC",
+          "value": 0,
+          "size": 108,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 112,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800105C4",
+      "source_sha256": "396ca270d9f7c106ac279047dd279e56a4b2a8d1dc5e57cdcb48be8af0ec3f17",
+      "native_bytes": 88,
+      "function_symbols": [
+        {
+          "name": "func_800105C4",
+          "value": 0,
+          "size": 88,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80010628",
+      "source_sha256": "d307373ec3aabedcdd5e0f7f920a81e27c02aa0603d4fa16d4226683dfa53222",
+      "native_bytes": 236,
+      "function_symbols": [
+        {
+          "name": "func_80010628",
+          "value": 0,
+          "size": 236,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 240,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80010714",
+      "source_sha256": "c3f3be7aaa15dcbde292903a8642e6860e133a5336f0f9ea2c60e51296926b18",
+      "native_bytes": 192,
+      "function_symbols": [
+        {
+          "name": "func_80010714",
+          "value": 0,
+          "size": 192,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 192,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80010C68",
+      "source_sha256": "b18b613c64de9deeb221db368fa513ca1f69ae62106210699a48257df5186475",
+      "native_bytes": 212,
+      "function_symbols": [
+        {
+          "name": "func_80010C68",
+          "value": 0,
+          "size": 212,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 224,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80010D74",
+      "source_sha256": "d4e044c6be801b723be89297354a5adb5f3726ff0557c68b2f20365d5345a2dc",
+      "native_bytes": 100,
+      "function_symbols": [
+        {
+          "name": "func_80010D74",
+          "value": 0,
+          "size": 100,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 112,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80011C84",
+      "source_sha256": "de8237c3ae519acc6b8d487f08a90fe6a5584393a25b1fb8f0bc0592a5d228b8",
+      "native_bytes": 84,
+      "function_symbols": [
+        {
+          "name": "func_80011C84",
+          "value": 0,
+          "size": 84,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80012660",
+      "source_sha256": "f8790fa0dd9f1d035e719e681ba1254ee8403bce318134bd0a7e06184590c164",
+      "native_bytes": 208,
+      "function_symbols": [
+        {
+          "name": "func_80012660",
+          "value": 0,
+          "size": 208,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 208,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80013C84",
+      "source_sha256": "89c4d7fc2f32f3fb1ff873f1ed3125c2dc9bc6c0d9c8202b5d3ef67af7ff7264",
+      "native_bytes": 236,
+      "function_symbols": [
+        {
+          "name": "func_80013C84",
+          "value": 0,
+          "size": 236,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 240,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80014374",
+      "source_sha256": "2b52a1025a81899bb697da7fc3692b6b6095ff4d42cdffcce17a584f0fe570d7",
+      "native_bytes": 76,
+      "function_symbols": [
+        {
+          "name": "func_80014374",
+          "value": 0,
+          "size": 76,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800143C0",
+      "source_sha256": "234df42069bed1b971bcacb5646116b7554525113cddc54e083fc16d53d6e722",
+      "native_bytes": 116,
+      "function_symbols": [
+        {
+          "name": "func_800143C0",
+          "value": 0,
+          "size": 116,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 128,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80014434",
+      "source_sha256": "8a4cf4652d4460f27eeea1bb2992af5b5e2966f9c855be1e0c5a47e6007ce962",
+      "native_bytes": 84,
+      "function_symbols": [
+        {
+          "name": "func_80014434",
+          "value": 0,
+          "size": 84,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001D4CC",
+      "source_sha256": "c8dc7e0e6961f8653608f343877577880823bce206ecac5d73683b12381316f1",
+      "native_bytes": 76,
+      "function_symbols": [
+        {
+          "name": "func_8001D4CC",
+          "value": 0,
+          "size": 76,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001D518",
+      "source_sha256": "cea6964bee4d7ea9ead30a55d7f2c56ab1cb13e305980e3c8cb2e228af94e725",
+      "native_bytes": 96,
+      "function_symbols": [
+        {
+          "name": "func_8001D518",
+          "value": 0,
+          "size": 96,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001D8B0",
+      "source_sha256": "4117c0909a98cbc92d2701508842373ab118a36152bb298cae71e1a2afdceae9",
+      "native_bytes": 120,
+      "function_symbols": [
+        {
+          "name": "func_8001D8B0",
+          "value": 0,
+          "size": 120,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 128,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80020274",
+      "source_sha256": "dbdfe0ec15d156a7222e90acff4cc65c4927895df82f15955094549dcdb52890",
+      "native_bytes": 80,
+      "function_symbols": [
+        {
+          "name": "func_80020274",
+          "value": 0,
+          "size": 80,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80020370",
+      "source_sha256": "2df974e85bff1a148c8e4fc692c27cc629bfe288b2eb00913c596e9e11a1c797",
+      "native_bytes": 124,
+      "function_symbols": [
+        {
+          "name": "func_80020370",
+          "value": 0,
+          "size": 124,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 128,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80020558",
+      "source_sha256": "a86176fc1e63da1893a5998588ccc980a7a0f33c4ca31d55c173b227d1675ff9",
+      "native_bytes": 64,
+      "function_symbols": [
+        {
+          "name": "func_80020558",
+          "value": 0,
+          "size": 64,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 64,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8002506C",
+      "source_sha256": "5d54fd0595de4bf1cf76591418589ce09738e919b532c055ddcad5b1f04b310c",
+      "native_bytes": 64,
+      "function_symbols": [
+        {
+          "name": "func_8002506C",
+          "value": 0,
+          "size": 64,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 64,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800254D4",
+      "source_sha256": "2604d7bac8ca19d575eed3d66eaa93c0174e3543062a7397f9ceb110ed907079",
+      "native_bytes": 192,
+      "function_symbols": [
+        {
+          "name": "func_800254D4",
+          "value": 0,
+          "size": 192,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 192,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80025594",
+      "source_sha256": "cf1689069065cdef872d88ca4f0b8455a77358125a315b2e7d507b76ebcd5b9c",
+      "native_bytes": 92,
+      "function_symbols": [
+        {
+          "name": "func_80025594",
+          "value": 0,
+          "size": 92,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80025670",
+      "source_sha256": "7eb75236df77a2105831804d9b450f1e780787a3fcf469d58b205d0a7b839987",
+      "native_bytes": 220,
+      "function_symbols": [
+        {
+          "name": "func_80025670",
+          "value": 0,
+          "size": 220,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 224,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800259A8",
+      "source_sha256": "4a24f968bf90eae92cc710bbc0a42230dd9eeefe59054a20a21106a7f822adf3",
+      "native_bytes": 268,
+      "function_symbols": [
+        {
+          "name": "func_800259A8",
+          "value": 0,
+          "size": 268,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 272,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80025C68",
+      "source_sha256": "30314786fb49aa8746ca604c011612ad31a26bc722860221ac194be98bca187f",
+      "native_bytes": 284,
+      "function_symbols": [
+        {
+          "name": "func_80025C68",
+          "value": 0,
+          "size": 284,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 288,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80025DC0",
+      "source_sha256": "f592dbf80f982270239cb28f87b48bcec39aef7b1795d4c2b0e1d8f465b8627f",
+      "native_bytes": 236,
+      "function_symbols": [
+        {
+          "name": "func_80025DC0",
+          "value": 0,
+          "size": 236,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 240,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80014550",
+      "source_sha256": "6f11fc58ffd387940f871f8b35167fe35d4761f5db48f2dc5e07f6ff2b69b8ab",
+      "native_bytes": 68,
+      "function_symbols": [
+        {
+          "name": "func_80014550",
+          "value": 0,
+          "size": 68,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80014594",
+      "source_sha256": "a3d3a3f149c25d21e4d981f5295552aa6d248405856a4d63c453792944dc1969",
+      "native_bytes": 72,
+      "function_symbols": [
+        {
+          "name": "func_80014594",
+          "value": 0,
+          "size": 72,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800145DC",
+      "source_sha256": "650fffe971a30e784395d3fc199b2d5e99b5cda77cc49c5d8522b8b742e1e098",
+      "native_bytes": 72,
+      "function_symbols": [
+        {
+          "name": "func_800145DC",
+          "value": 0,
+          "size": 72,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80014AF0",
+      "source_sha256": "fca8d8f42508216a81a7e666a45dc084977aa795f93dc03ace0a2d8b8c88d9a0",
+      "native_bytes": 76,
+      "function_symbols": [
+        {
+          "name": "func_80014AF0",
+          "value": 0,
+          "size": 76,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80014CAC",
+      "source_sha256": "64a28a6a177039b2983146b3dc29130e6919a6aadd816114903a3ce63b8b96c1",
+      "native_bytes": 72,
+      "function_symbols": [
+        {
+          "name": "func_80014CAC",
+          "value": 0,
+          "size": 72,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80018B8C",
+      "source_sha256": "2fda35f72c40efddde8e0d3493cbf4f9c825834afd7ff977fbf7d5ec76e25094",
+      "native_bytes": 96,
+      "function_symbols": [
+        {
+          "name": "func_80018B8C",
+          "value": 0,
+          "size": 96,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80018EB4",
+      "source_sha256": "c367de218e3e80475d1e7527cff26d7f64849178dead89b526befa10bbfe78d8",
+      "native_bytes": 108,
+      "function_symbols": [
+        {
+          "name": "func_80018EB4",
+          "value": 0,
+          "size": 108,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 112,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800193C8",
+      "source_sha256": "cc4b92b978793c6346bb15d37d7776feef05f83890cc7c68356155be150d4132",
+      "native_bytes": 88,
+      "function_symbols": [
+        {
+          "name": "func_800193C8",
+          "value": 0,
+          "size": 88,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800199F4",
+      "source_sha256": "7d37722237b5b74471bca3042ec06ec11e9f59b5a47a091b3250dd31f58314d2",
+      "native_bytes": 100,
+      "function_symbols": [
+        {
+          "name": "func_800199F4",
+          "value": 0,
+          "size": 100,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 112,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80014A74",
+      "source_sha256": "8b49909eff2b8337b03e83f17a89ac147731bdd20562e73e922da1c48c7531d3",
+      "native_bytes": 124,
+      "function_symbols": [
+        {
+          "name": "func_80014A74",
+          "value": 0,
+          "size": 124,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 128,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80014B3C",
+      "source_sha256": "01516f4f52055a9784f897aab9466fa7487eb832a3449e7efc52d7f62f01c3df",
+      "native_bytes": 116,
+      "function_symbols": [
+        {
+          "name": "func_80014B3C",
+          "value": 0,
+          "size": 116,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 128,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80017540",
+      "source_sha256": "530625e374a46af6bb81e9dee65d55a474b0684dd1ce6380b316405860f69fa2",
+      "native_bytes": 104,
+      "function_symbols": [
+        {
+          "name": "func_80017540",
+          "value": 0,
+          "size": 104,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 112,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80018B3C",
+      "source_sha256": "74587b48791ec6ec70b6d454553011491a80e645bebc88dad4f326deb363ca65",
+      "native_bytes": 80,
+      "function_symbols": [
+        {
+          "name": "func_80018B3C",
+          "value": 0,
+          "size": 80,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001D084",
+      "source_sha256": "9f96559648af7e59f31179a3aa53d7e8dcfe26b9c0e061be09f16351435008f2",
+      "native_bytes": 108,
+      "function_symbols": [
+        {
+          "name": "func_8001D084",
+          "value": 0,
+          "size": 108,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 112,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001D3F0",
+      "source_sha256": "783ca0864ebf364c2980619cc32247ca21b71e46ed2087e37eac2a3e2f50f94c",
+      "native_bytes": 112,
+      "function_symbols": [
+        {
+          "name": "func_8001D3F0",
+          "value": 0,
+          "size": 112,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 112,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001D460",
+      "source_sha256": "518f21c76c1c2d7f90cb686e1f1310b283fd6d7f41cbf9e82c15a571c709fa98",
+      "native_bytes": 108,
+      "function_symbols": [
+        {
+          "name": "func_8001D460",
+          "value": 0,
+          "size": 108,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 112,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001D578",
+      "source_sha256": "d265e9608f6826087ab40baef53611ff6e4d1972362af86c1a02e5ec1ac462f7",
+      "native_bytes": 72,
+      "function_symbols": [
+        {
+          "name": "func_8001D578",
+          "value": 0,
+          "size": 72,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800148F8",
+      "source_sha256": "9623012106a365b565f366c3b95c3d94e8448d6ddba51cffcebf69507d1ec72e",
+      "native_bytes": 196,
+      "function_symbols": [
+        {
+          "name": "func_800148F8",
+          "value": 0,
+          "size": 196,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 208,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80014D30",
+      "source_sha256": "b8da85d3c513e09cb361c47baa868ccd075443080cd2b31399230cdf83a3982e",
+      "native_bytes": 208,
+      "function_symbols": [
+        {
+          "name": "func_80014D30",
+          "value": 0,
+          "size": 208,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 208,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800150C8",
+      "source_sha256": "544119c4d405856c1d7eb2cd119373955fa0b174e845a3f8d58c9325a6d61cd0",
+      "native_bytes": 88,
+      "function_symbols": [
+        {
+          "name": "func_800150C8",
+          "value": 0,
+          "size": 88,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80015120",
+      "source_sha256": "cdb10ee35ce84a0e0d17130d26f0860d2a04a5cc211a9ac9c7f5f1434dabb4bf",
+      "native_bytes": 88,
+      "function_symbols": [
+        {
+          "name": "func_80015120",
+          "value": 0,
+          "size": 88,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80015178",
+      "source_sha256": "c4bcf69b7ca5d33aff7d8b5b3ff521fa165741f5c0f474598f5054cbef5096ee",
+      "native_bytes": 88,
+      "function_symbols": [
+        {
+          "name": "func_80015178",
+          "value": 0,
+          "size": 88,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800151D0",
+      "source_sha256": "5649cb3617691813eb843cc80fd997c0c617a301e94a1b2078db6bfee3814b83",
+      "native_bytes": 88,
+      "function_symbols": [
+        {
+          "name": "func_800151D0",
+          "value": 0,
+          "size": 88,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800152A8",
+      "source_sha256": "a76e40cb608b9e1abef3ad4d43ada0e73f7139ae98d662614e42836478773095",
+      "native_bytes": 112,
+      "function_symbols": [
+        {
+          "name": "func_800152A8",
+          "value": 0,
+          "size": 112,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 112,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800171C0",
+      "source_sha256": "26f596c6c04fddf5e960efe361fe46f8bd363387fe883c2d4f2dd5238d54da86",
+      "native_bytes": 220,
+      "function_symbols": [
+        {
+          "name": "func_800171C0",
+          "value": 0,
+          "size": 220,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 224,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001729C",
+      "source_sha256": "ab2c96f0384fab2b92e2cc5e6de009adddf1eea898900ba08fc1839d6a188213",
+      "native_bytes": 176,
+      "function_symbols": [
+        {
+          "name": "func_8001729C",
+          "value": 0,
+          "size": 176,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 176,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800173B4",
+      "source_sha256": "3d282f9bb1702673208404cd44737918c4cacd0da94dd6be5fb292a273623395",
+      "native_bytes": 92,
+      "function_symbols": [
+        {
+          "name": "func_800173B4",
+          "value": 0,
+          "size": 92,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80017410",
+      "source_sha256": "7cc056e7e6fdaba5a5c7bb5041ddd19d12494ae06fdc02a058a662afb7902c4e",
+      "native_bytes": 96,
+      "function_symbols": [
+        {
+          "name": "func_80017410",
+          "value": 0,
+          "size": 96,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80017470",
+      "source_sha256": "3eeb6cf169f0e9ce767a190ee5820d4a7cb467453fee7466776b7af808c8b8ff",
+      "native_bytes": 96,
+      "function_symbols": [
+        {
+          "name": "func_80017470",
+          "value": 0,
+          "size": 96,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800174D0",
+      "source_sha256": "3b6195963afabaee8bd938fff8904f2a953a6264bd15e03184b3d23738882653",
+      "native_bytes": 112,
+      "function_symbols": [
+        {
+          "name": "func_800174D0",
+          "value": 0,
+          "size": 112,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 112,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001C508",
+      "source_sha256": "563d03ddb36b0c90a2c3eb8a621b1e2c3d46966b9dad0a2f6b7dd244fb87869e",
+      "native_bytes": 120,
+      "function_symbols": [
+        {
+          "name": "func_8001C508",
+          "value": 0,
+          "size": 120,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 128,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001EE34",
+      "source_sha256": "45ce02eb1f776afb1e778dad1fb6f8000dae502f0120017b1154c2138d9bce54",
+      "native_bytes": 104,
+      "function_symbols": [
+        {
+          "name": "func_8001EE34",
+          "value": 0,
+          "size": 104,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 112,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001F7EC",
+      "source_sha256": "bdacdf5bc26b63ad13daf81e801404a8216dad62d9cebac5c64eaf6164464ba0",
+      "native_bytes": 120,
+      "function_symbols": [
+        {
+          "name": "func_8001F7EC",
+          "value": 0,
+          "size": 120,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 128,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001F9D0",
+      "source_sha256": "4a82714334a72558ba22b288de4d037934c00544877ef2098936b5969d5b524b",
+      "native_bytes": 72,
+      "function_symbols": [
+        {
+          "name": "func_8001F9D0",
+          "value": 0,
+          "size": 72,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800225FC",
+      "source_sha256": "5c332eeb8db11dfacc9593c3cc2f63f9c5899e902922f7acd7d3763d002e70ef",
+      "native_bytes": 124,
+      "function_symbols": [
+        {
+          "name": "func_800225FC",
+          "value": 0,
+          "size": 124,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 128,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800107E0",
+      "source_sha256": "0790375bda181a3b72a7ec5d8e59fbf565df5cf3bb5dabeb97a52baa83ed532b",
+      "native_bytes": 96,
+      "function_symbols": [
+        {
+          "name": "func_800107E0",
+          "value": 0,
+          "size": 96,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 96,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80013D70",
+      "source_sha256": "f21843a9094e57822aed7d47be2a730cefe2a9bf632931756207c630e8166bc5",
+      "native_bytes": 124,
+      "function_symbols": [
+        {
+          "name": "func_80013D70",
+          "value": 0,
+          "size": 124,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 128,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80014F14",
+      "source_sha256": "cca1a01c186560ed70c5624628e7ed153b93e044505a2b947044d0ec2a7ded17",
+      "native_bytes": 108,
+      "function_symbols": [
+        {
+          "name": "func_80014F14",
+          "value": 0,
+          "size": 108,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 112,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80014F80",
+      "source_sha256": "277f080b50ee725a98b9e3bcb7727a96e8ac5b2a4c2ba6b56ae06324f35729e4",
+      "native_bytes": 108,
+      "function_symbols": [
+        {
+          "name": "func_80014F80",
+          "value": 0,
+          "size": 108,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 112,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80014FEC",
+      "source_sha256": "539977204891663b794dd95bb0602459caeb677e70b32f5d301e4e097f69f4cc",
+      "native_bytes": 108,
+      "function_symbols": [
+        {
+          "name": "func_80014FEC",
+          "value": 0,
+          "size": 108,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 112,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80015058",
+      "source_sha256": "4004bedf19617e8c19913fac9ecb96ba20c8c49194089f802e650430e6c5181b",
+      "native_bytes": 112,
+      "function_symbols": [
+        {
+          "name": "func_80015058",
+          "value": 0,
+          "size": 112,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 112,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80015228",
+      "source_sha256": "dd3c243e96144d5f80e2c08d9d284258c88593b5bea94f34e737eed4e7b3ba35",
+      "native_bytes": 128,
+      "function_symbols": [
+        {
+          "name": "func_80015228",
+          "value": 0,
+          "size": 128,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 128,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800162AC",
+      "source_sha256": "073eb444d56865b9042bc52a6abf719acf7c0ae0b082ceb2a6b3ad04abb557f6",
+      "native_bytes": 252,
+      "function_symbols": [
+        {
+          "name": "func_800162AC",
+          "value": 0,
+          "size": 252,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 256,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80017108",
+      "source_sha256": "1730c23ed352066edb34b92f0938187fe8ca5118bbbe1a811aaf32b91535cc95",
+      "native_bytes": 172,
+      "function_symbols": [
+        {
+          "name": "func_80017108",
+          "value": 0,
+          "size": 172,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 176,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001734C",
+      "source_sha256": "ef10f345d97996db7eb70b045d53886308338216f6d1ec039a57bd0f61e8dfb3",
+      "native_bytes": 104,
+      "function_symbols": [
+        {
+          "name": "func_8001734C",
+          "value": 0,
+          "size": 104,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 112,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800175B4",
+      "source_sha256": "2d5f0e017494eecd13569289da54d53c5f32d44f97888ae59c618fda4bd65fc4",
+      "native_bytes": 144,
+      "function_symbols": [
+        {
+          "name": "func_800175B4",
+          "value": 0,
+          "size": 144,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 144,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80017644",
+      "source_sha256": "dbb105aed2cae867327250ec4eef0768dfe6bdeb67ff84569a9130e83a1caac5",
+      "native_bytes": 220,
+      "function_symbols": [
+        {
+          "name": "func_80017644",
+          "value": 0,
+          "size": 220,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 224,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80018A30",
+      "source_sha256": "3495e60c2d813fca7f5ef44a3208f1879100b7793a24bfdc53bebde7d63d5e28",
+      "native_bytes": 188,
+      "function_symbols": [
+        {
+          "name": "func_80018A30",
+          "value": 0,
+          "size": 188,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 192,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80018E6C",
+      "source_sha256": "9a112b8f5c7f194d5585d22ab3af94a9f8b051a51bff4f64f4908a8b2a78343a",
+      "native_bytes": 72,
+      "function_symbols": [
+        {
+          "name": "func_80018E6C",
+          "value": 0,
+          "size": 72,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 80,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80018F20",
+      "source_sha256": "a1bbcdefc3886a83356bfaabd85ffb65d986c4ce51589bff3fb7df4d138f2664",
+      "native_bytes": 132,
+      "function_symbols": [
+        {
+          "name": "func_80018F20",
+          "value": 0,
+          "size": 132,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 144,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80018FEC",
+      "source_sha256": "05019d2569a25f0164d7e3439327c52bf1644ad4d0b0ae98f744c1f768cfb484",
+      "native_bytes": 128,
+      "function_symbols": [
+        {
+          "name": "func_80018FEC",
+          "value": 0,
+          "size": 128,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 128,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800190AC",
+      "source_sha256": "b3e4388e505700549e07a1506c3a19db624401a5ff537a5fd70a63fb2be45bf5",
+      "native_bytes": 152,
+      "function_symbols": [
+        {
+          "name": "func_800190AC",
+          "value": 0,
+          "size": 152,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 160,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80019BE4",
+      "source_sha256": "7c9ad3caa2e4a9bb8617e49d98792e5069500f26d10a766744cceeb833e389b8",
+      "native_bytes": 168,
+      "function_symbols": [
+        {
+          "name": "func_80019BE4",
+          "value": 0,
+          "size": 168,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 176,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001B154",
+      "source_sha256": "a52cc1f23c6ce98c45273c114ebc3d48614bc81fc03d86d18c521a1fa3a00c0a",
+      "native_bytes": 124,
+      "function_symbols": [
+        {
+          "name": "func_8001B154",
+          "value": 0,
+          "size": 124,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 128,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001B744",
+      "source_sha256": "697a3fbf020467fa664fc01da78fdb5158fe9ca06ec2c5dfba14d017d826eaac",
+      "native_bytes": 124,
+      "function_symbols": [
+        {
+          "name": "func_8001B744",
+          "value": 0,
+          "size": 124,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 128,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001B8C4",
+      "source_sha256": "639cb921613509e7f2d3b6e75ca1fa9e317802b3005f6b1547df17105cb4335a",
+      "native_bytes": 164,
+      "function_symbols": [
+        {
+          "name": "func_8001B8C4",
+          "value": 0,
+          "size": 164,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 176,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001B968",
+      "source_sha256": "a57f7c1c8f9dc7e3cda134685b5b83945f2d54c6f876cd7c3f662b07d71acde4",
+      "native_bytes": 144,
+      "function_symbols": [
+        {
+          "name": "func_8001B968",
+          "value": 0,
+          "size": 144,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 144,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001D5C0",
+      "source_sha256": "de07d6b3e2aa6d92663a4c2bc227703a928b9df1ecae9d9be5d61cbd4511e999",
+      "native_bytes": 160,
+      "function_symbols": [
+        {
+          "name": "func_8001D5C0",
+          "value": 0,
+          "size": 160,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 160,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001F898",
+      "source_sha256": "49d252a0a05db018178dc78151d72c6c52c0197c9605187dfa17727b212f009b",
+      "native_bytes": 188,
+      "function_symbols": [
+        {
+          "name": "func_8001F898",
+          "value": 0,
+          "size": 188,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 192,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001FA18",
+      "source_sha256": "4e5876bd0ad69151f7777c0784f339c16c7ac7474596d62a9bdb0a8a71506720",
+      "native_bytes": 204,
+      "function_symbols": [
+        {
+          "name": "func_8001FA18",
+          "value": 0,
+          "size": 204,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 208,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001FAE4",
+      "source_sha256": "67f4cf44f5320789f0f58bea898466195998508e12e3abbfc7a91f1f9d8008da",
+      "native_bytes": 200,
+      "function_symbols": [
+        {
+          "name": "func_8001FAE4",
+          "value": 0,
+          "size": 200,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 208,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80020494",
+      "source_sha256": "36581161517f9b7b0f44d4ce06a696ce8db240bba7a79665c3b393455ce91ae2",
+      "native_bytes": 132,
+      "function_symbols": [
+        {
+          "name": "func_80020494",
+          "value": 0,
+          "size": 132,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 144,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80022678",
+      "source_sha256": "fdd686a226e32a97ac511967a621d5f9cbfdd79b62451ed7c27808081ea5da97",
+      "native_bytes": 292,
+      "function_symbols": [
+        {
+          "name": "func_80022678",
+          "value": 0,
+          "size": 292,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 304,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80010A40",
+      "source_sha256": "46ca729c4d5bf131c4fc1b86f088ef2bbc09317362fded53eb0056ca4d7416b6",
+      "native_bytes": 552,
+      "function_symbols": [
+        {
+          "name": "func_80010A40",
+          "value": 0,
+          "size": 552,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 560,
+      "zero_text_alignment_bytes": 8,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_800164D0",
+      "source_sha256": "b106b06e51743c92ee4519422f125fc856ba9fef9b0d1c3d3c847fc485190a27",
+      "native_bytes": 332,
+      "function_symbols": [
+        {
+          "name": "func_800164D0",
+          "value": 0,
+          "size": 332,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 336,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80018C2C",
+      "source_sha256": "253b5bb4ce12d87a958c74487bef293dce428164502d91c508d02cb939015230",
+      "native_bytes": 212,
+      "function_symbols": [
+        {
+          "name": "func_80018C2C",
+          "value": 0,
+          "size": 212,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 224,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80018D40",
+      "source_sha256": "39f7f11ce4f570ab7c458feb4f3df3cbca0e37428c831fb81fc640a35be37b55",
+      "native_bytes": 236,
+      "function_symbols": [
+        {
+          "name": "func_80018D40",
+          "value": 0,
+          "size": 236,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 240,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001B29C",
+      "source_sha256": "7d2498718726ce0cd79340a3f9fe5db368aee9bd0dd61d59bdb93fbbd9e53d99",
+      "native_bytes": 260,
+      "function_symbols": [
+        {
+          "name": "func_8001B29C",
+          "value": 0,
+          "size": 260,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 272,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001B3A0",
+      "source_sha256": "59d637b849114ad3eda170813db76cca780a089fc3d85331ad38093cace3e023",
+      "native_bytes": 260,
+      "function_symbols": [
+        {
+          "name": "func_8001B3A0",
+          "value": 0,
+          "size": 260,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 272,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001B7C0",
+      "source_sha256": "5c85de768e9be832bd5744d5f7dd5a92fbc46e6bcffffdb18a287884acf7c577",
+      "native_bytes": 260,
+      "function_symbols": [
+        {
+          "name": "func_8001B7C0",
+          "value": 0,
+          "size": 260,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 272,
+      "zero_text_alignment_bytes": 12,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001E9B0",
+      "source_sha256": "4047294f53c2ec8f2c08ef92e7e4235537743b246cfe690565d5fc836278590e",
+      "native_bytes": 240,
+      "function_symbols": [
+        {
+          "name": "func_8001E9B0",
+          "value": 0,
+          "size": 240,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 240,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_8001EE9C",
+      "source_sha256": "8fdb75b04381de5f572d3f2b72b1d099fc0cb96a9175e5da0381ccc7cced3d0e",
+      "native_bytes": 240,
+      "function_symbols": [
+        {
+          "name": "func_8001EE9C",
+          "value": 0,
+          "size": 240,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 240,
+      "zero_text_alignment_bytes": 0,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    },
+    {
+      "name": "func_80010A00",
+      "source_sha256": "8af4ef045ef30f3525fcc5131d49abdef837b9c3775575a91ca7a51bc1a49640",
+      "native_bytes": 12,
+      "function_symbols": [
+        {
+          "name": "func_80010A00",
+          "value": 0,
+          "size": 12,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 16,
+      "zero_text_alignment_bytes": 4,
+      "all_trailing_section_words_zero": true,
+      "exact_function_extent": true
+    }
+  ]
+}

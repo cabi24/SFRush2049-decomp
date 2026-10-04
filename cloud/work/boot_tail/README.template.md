@@ -378,3 +378,15 @@ received the owner's requested direct parent review, with unchanged-source
 supplemental live-buffer/null-message tests. See wave10/README.md and
 wave10/unique_totals.json. Prior green proof is carried in wave9/ci.json;
 current matching refills are excluded. D10 remains unchanged.
+
+## Eleventh cut: six additional reviewed bodies
+
+The first ten source cuts now have 220 unique new exact-CI-verified bodies /
+21,100 B. Eleventh cut adds six peer-reviewed strict local bodies / 1,480 B and
+twelve complete nonmatches / 4,668 B, pending its own exact-head CI. The union
+is 226 new bodies / 22,580 B plus the separate 12-byte getter. Across 348 unique
+attempts, 121 complete nonmatches / 24,068 B and one 96-byte table-proof lead
+receive no match credit. Explicit ELF function-symbol extent checks distinguish
+full bodies from zero section alignment; the prior221-source audit is retained
+in wave10/function_extent_audit.json. See wave11/README.md and unique_totals.json.
+Prior green proof is in wave10/ci.json; current refills remain excluded.
