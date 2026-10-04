@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "state": "DRAFT-RECOVERY-CHECKPOINT; zero accepted matching credit",
+  "base": "496a72b0edd683bd7d46e8c21f8323ab43629494",
+  "files": [
+    {
+      "path": "cloud/work/boot_tail/recovery_checkpoint_20261004/BT03-high-sequence-events/func_80017D38.c",
+      "sha256": "ad5137579da173b15c903c8aa35c69cd26416d51def3b65267045062543bff65",
+      "bytes": 4618
+    },
+    {
+      "path": "cloud/work/boot_tail/recovery_checkpoint_20261004/BT07-decoder-facing-callers/func_8002574C.c",
+      "sha256": "09afc7ba5732799e15937190a709c72f1b82b1da46a477b4eda8ab4505450a26",
+      "bytes": 4615
+    },
+    {
+      "path": "cloud/work/boot_tail/recovery_checkpoint_20261004/BT07-decoder-facing-callers/func_80025F74.c",
+      "sha256": "0f3dde0cda2d618d93193d6e37718a43e1b007156fb36abbd872185e5c78c91d",
+      "bytes": 3779
+    },
+    {
+      "path": "cloud/work/boot_tail/recovery_checkpoint_20261004/BT07-decoder-facing-callers/test_semantics.py",
+      "sha256": "9a8f6ba5f58b0a506b6f066d17572c132dfa60281da6dc6da06b96babee6ec20",
+      "bytes": 41776
+    },
+    {
+      "path": "cloud/work/boot_tail/recovery_checkpoint_20261004/README.md",
+      "sha256": "44cfac64a8226d52ab6aba7f54dec981b30e2b671b06cf1c218c7995634949db",
+      "bytes": 3004
+    },
+    {
+      "path": "cloud/work/boot_tail/recovery_checkpoint_20261004/fresh_compile_receipt.json",
+      "sha256": "6b5fa38a93666c564ddce536c84d7ef8f2bc33729d656b4b02e5fb2a0f707ec1",
+      "bytes": 7419
+    },
+    {
+      "path": "cloud/work/boot_tail/recovery_checkpoint_20261004/verify_recovered.py",
+      "sha256": "e1dc29f83e461c3397e139c80430598fa132c692bb8d9b6da5a573ec576bd5d7",
+      "bytes": 2712
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-conditional-pitch/README.md",
+      "sha256": "6b3c11eacf81f09b4d1eea510d8d0aeec9a157138f5be05670688de51f755a8e",
+      "bytes": 11785
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-conditional-pitch/RECOVERY.json",
+      "sha256": "0d2d3f4f96ead083eafeed28c2e962a8475671424f1063583081b6a99ffafde0",
+      "bytes": 2850
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-conditional-pitch/REVIEW.md",
+      "sha256": "3606bde6a6d4305220f2966ffb52482bdad9c683996dd22fb1587e8e33bbc4e5",
+      "bytes": 1145
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-conditional-pitch/func_80022CD4_CONDITIONAL.c",
+      "sha256": "a7204076bf3562cf6c391ed3886cbe544391eba99a2c74940501c61964a2ee29",
+      "bytes": 2665
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-conditional-pitch/independent_review.json",
+      "sha256": "e44bc6c9b734b6e6892cbeece86139545e3de0f7818727e5dd9293d291428388",
+      "bytes": 6826
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-conditional-pitch/literal_address_baseline.c",
+      "sha256": "6320f34ad298ca297982cac04c1e46e4fb666206665954e7b50c986d9ec3bca0",
+      "bytes": 2343
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-conditional-pitch/preflight.json",
+      "sha256": "365fe0c0fcb32f3c4df9058a42dcbfa3812ffb84d29dceccad89d447ed556762",
+      "bytes": 3278
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-conditional-pitch/test_conditional.c",
+      "sha256": "035ac3041f64e5a617937f0654f01e89c524c5b962b79a3095ebe76b1bf03adf",
+      "bytes": 6811
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-conditional-pitch/variants.json",
+      "sha256": "003df2ac147e4da599790d3ba414a12addad1bd2f8f0c4d39c18a44c1b373dd0",
+      "bytes": 7910
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-conditional-pitch/verification.json",
+      "sha256": "9a7c1a9cf4e50df7846e4957922b231deab2559936c575471ed7b0c7248df85f",
+      "bytes": 2011
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-conditional-pitch/verify.py",
+      "sha256": "0562611a100e06df3a4c97f23678a463ad13fe7adb2d44d282bdcfd4f85ba6fb",
+      "bytes": 6774
+    }
+  ],
+  "source_notes": {
+    "80017D38": "Exact historical C SHA recovered; complete old packet not claimed recovered.",
+    "80022CD4": "Exact historical C SHA recovered; regenerated conditional packet independently reviewed as research only.",
+    "8002574C": "New recovered hash; fresh local exact body only, final independent acceptance pending.",
+    "80025F74": "New recovered hash; fresh complete nonmatch, independent acceptance pending."
+  }
+}
