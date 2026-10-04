@@ -1,0 +1,42 @@
+{
+  "result": "PASS",
+  "runs": [
+    {
+      "configuration": "c89",
+      "flags": [
+        "-std=c89",
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-O2"
+      ],
+      "result": "PASS",
+      "output": "PASS: 2168 actual-source ABI, boundary and call-order cases"
+    },
+    {
+      "configuration": "asan_ubsan",
+      "flags": [
+        "-std=c89",
+        "-pedantic-errors",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer"
+      ],
+      "result": "PASS",
+      "output": "PASS: 2168 actual-source ABI, boundary and call-order cases"
+    }
+  ],
+  "leak_detection": "disabled: runtime ptrace limitation",
+  "source_sha256": {
+    "cloud/matches/boot_tail/func_800107E0.c": "0790375bda181a3b72a7ec5d8e59fbf565df5cf3bb5dabeb97a52baa83ed532b",
+    "cloud/matches/boot_tail/func_80013D70.c": "f21843a9094e57822aed7d47be2a730cefe2a9bf632931756207c630e8166bc5",
+    "cloud/work/boot_tail/BT02-final-small/nonmatch/func_80010840.c": "3184a8c7a2aa3cfa67a24b31e3025e132328b2bb7ce03699efc33191d89e230e",
+    "cloud/work/boot_tail/BT02-final-small/nonmatch/func_800108E0.c": "6784f16aedcef559f16895b76d6bc510a0eb3b9e2efd1e3ea0d7b6c4dd86d201",
+    "cloud/work/boot_tail/BT02-final-small/host_behavior.c": "15de5a650446364046ffd59d2b7935f0da445afad566ddc3f5413a69882f63b6"
+  }
+}

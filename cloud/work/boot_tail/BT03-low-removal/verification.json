@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "packet": "BT03-low-removal",
+  "manifest": [
+    "boot_tail_8000f3a4.s: OK",
+    "extents.json: OK",
+    "symbols.json: OK"
+  ],
+  "extents": {
+    "functions": 439,
+    "bytes": 99120,
+    "equal": true
+  },
+  "pinned_compiler_files": 24,
+  "getter_strict_match": true,
+  "native_layout": "PASS: RecordFields and RecordStorage are eight bytes; id offsets 4/4/0",
+  "results": [
+    {
+      "function": "func_800158D8",
+      "source_sha256": "e6044e6e6fe590c91723d453b9fbfaefd76a10e15bd514bd38def333e70b9882",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 8,
+      "total_words": 77,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "function": "func_800158D8",
+      "source_sha256": "e6044e6e6fe590c91723d453b9fbfaefd76a10e15bd514bd38def333e70b9882",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 74,
+      "total_words": 77,
+      "extra_words": 26,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "function": "func_80015F28",
+      "source_sha256": "3706258cb69e89503491f56bfde4c7975972959be23461d4a963976d313fe2e7",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 8,
+      "total_words": 77,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "function": "func_80015F28",
+      "source_sha256": "3706258cb69e89503491f56bfde4c7975972959be23461d4a963976d313fe2e7",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 74,
+      "total_words": 77,
+      "extra_words": 26,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "function": "func_8001661C",
+      "source_sha256": "5736a708bbdadea81b42019aa7f5cde75d6d0e9b23f5e47a162b5914a0d08aee",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 31,
+      "total_words": 64,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "function": "func_8001661C",
+      "source_sha256": "5736a708bbdadea81b42019aa7f5cde75d6d0e9b23f5e47a162b5914a0d08aee",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 63,
+      "total_words": 64,
+      "extra_words": 16,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    }
+  ],
+  "verified_match_functions": 0
+}

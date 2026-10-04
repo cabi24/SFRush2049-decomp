@@ -1,0 +1,46 @@
+[
+  {
+    "function": "80011A64",
+    "opt": "O2",
+    "strict_match": false,
+    "diff": 107,
+    "total": 110,
+    "extra_words": 1,
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "80011A64",
+    "opt": "O1",
+    "strict_match": false,
+    "diff": 104,
+    "total": 110,
+    "extra_words": 5,
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "80011D74",
+    "opt": "O2",
+    "strict_match": false,
+    "diff": 24,
+    "total": 123,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  },
+  {
+    "function": "80011D74",
+    "opt": "O1",
+    "strict_match": false,
+    "diff": 122,
+    "total": 123,
+    "extra_words": 14,
+    "unresolved": [],
+    "unverified": [],
+    "errors": []
+  }
+]

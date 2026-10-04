@@ -1,0 +1,83 @@
+{
+  "purpose": "Rejected compiler controls; zero match credit. All controls are rejected source forms.",
+  "results": [
+    {
+      "name": "func_8001A5D8",
+      "source_path": "cloud/work/boot_tail/BT03-high-routing/controls/func_8001A5D8_implicit_byte.c",
+      "source_sha256": "eaa49cea09b4696368b8b95ff577b8e3d0a8b20fa303add0cb060fd0625ffacf",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 19,
+      "total_words": 32,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001A5D8",
+      "source_path": "cloud/work/boot_tail/BT03-high-routing/controls/func_8001A5D8_implicit_byte.c",
+      "source_sha256": "eaa49cea09b4696368b8b95ff577b8e3d0a8b20fa303add0cb060fd0625ffacf",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 32,
+      "total_words": 32,
+      "extra_words": 5,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001A5D8",
+      "source_path": "cloud/work/boot_tail/BT03-high-routing/controls/func_8001A5D8_initial.c",
+      "source_sha256": "7f242542caeff13275c9a624a3752153a64bfcade49516855fe1d023ad2e82c7",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 19,
+      "total_words": 32,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001A5D8",
+      "source_path": "cloud/work/boot_tail/BT03-high-routing/controls/func_8001A5D8_initial.c",
+      "source_sha256": "7f242542caeff13275c9a624a3752153a64bfcade49516855fe1d023ad2e82c7",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 32,
+      "total_words": 32,
+      "extra_words": 7,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001A5D8",
+      "source_path": "cloud/work/boot_tail/BT03-high-routing/controls/func_8001A5D8_outer_whole.c",
+      "source_sha256": "cfe5aad03644b90cc9fae49e30efcfd17eae2976ecd3052c85e25f5c488cad87",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 27,
+      "total_words": 32,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001A5D8",
+      "source_path": "cloud/work/boot_tail/BT03-high-routing/controls/func_8001A5D8_outer_whole.c",
+      "source_sha256": "cfe5aad03644b90cc9fae49e30efcfd17eae2976ecd3052c85e25f5c488cad87",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 32,
+      "total_words": 32,
+      "extra_words": 5,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    }
+  ]
+}

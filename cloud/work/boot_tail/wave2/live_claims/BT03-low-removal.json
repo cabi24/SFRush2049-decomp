@@ -1,0 +1,28 @@
+{
+  "state": "integrating-source-frozen",
+  "owner": "/root/match_boot_tail_low_fresh",
+  "packet": "BT03-low-removal",
+  "branch": "dot/boot-tail-bt03-low-removal",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x800158D8",
+      "size": 308,
+      "end_exclusive": "0x80015A0C"
+    },
+    {
+      "address": "0x80015F28",
+      "size": 308,
+      "end_exclusive": "0x8001605C"
+    },
+    {
+      "address": "0x8001661C",
+      "size": 256,
+      "end_exclusive": "0x8001671C"
+    }
+  ],
+  "bytes": 872,
+  "edit_scope": "Only named matching sources and cloud/work/boot_tail/BT03-low-removal/**",
+  "stop": "Real int(u16) ABI and packed record domains. Natural C89/O2/O1,20 directed variants maximum after diagnosis. No protected changes, missing rodata substitution, overlaps or exhausted residual reopening; no unsupported narrow-formal declaration sweep. Reuse safe private storage and sole pinned compiler.",
+  "peer_approved_head": "633310e46b8240c6c77bb5681ff37fc9454db8e8"
+}

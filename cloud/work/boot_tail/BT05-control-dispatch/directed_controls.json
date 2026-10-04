@@ -1,0 +1,38 @@
+{
+  "result": "BOUNDED_STOP",
+  "diagnosis_counts": {
+    "aligned_constant": 3,
+    "aligned_deletions": 2,
+    "aligned_insertions": 2,
+    "aligned_register": 14,
+    "aligned_schedule": 0,
+    "frame": -32
+  },
+  "controls": [
+    {
+      "control": "word_width_combination_extract",
+      "source_sha256": "3e9ebda815d66f2965320dc0639367da997338dfaed2ea1ec8fcf1401f2cdeef",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 46,
+      "total_words": 49,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "control": "named_bounded_scale",
+      "source_sha256": "23656f70b2eaeb5ccf5d3c2edbb42271d0e30099e5a20a393bf4aa4fb2f9ef93",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 46,
+      "total_words": 49,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    }
+  ],
+  "stop_reason": "Known narrow-argument allocation pattern remains. Two source-led extraction/scale controls do not improve the result; no unsupported declaration or fake-local sweeps."
+}

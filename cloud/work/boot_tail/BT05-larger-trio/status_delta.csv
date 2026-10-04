@@ -1,0 +1,4 @@
+address,name,size,cluster,status,flags,diff_words,source_path,note
+0x80022678,func_80022678,292,BT05,matched,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80022678.c,First-form strict whole-body O2 match; genuine note/state/command ABI.
+0x800233B0,func_800233B0,368,BT05,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,27,cloud/work/boot_tail/BT05-larger-trio/nonmatch/func_800233B0.c,COMPLETE-NONMATCH; initial complete source preserved after one unchanged natural expression control.
+0x800239A4,func_800239A4,304,BT05,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,21,cloud/work/boot_tail/BT05-larger-trio/nonmatch/func_800239A4.c,COMPLETE-NONMATCH; initial complete source preserved after one unchanged natural expression control.

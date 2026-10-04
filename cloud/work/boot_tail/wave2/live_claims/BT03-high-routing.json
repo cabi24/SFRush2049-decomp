@@ -1,0 +1,44 @@
+{
+  "state": "integrating-source-frozen",
+  "owner": "/root/match_boot_tail_bt03_high",
+  "packet": "BT03-high-routing",
+  "branch": "dot/boot-tail-bt03-high-routing",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x8001A5D8",
+      "size": 128,
+      "end_exclusive": "0x8001A658"
+    },
+    {
+      "address": "0x80018F20",
+      "size": 132,
+      "end_exclusive": "0x80018FA4"
+    },
+    {
+      "address": "0x80020494",
+      "size": 132,
+      "end_exclusive": "0x80020518"
+    },
+    {
+      "address": "0x800175B4",
+      "size": 144,
+      "end_exclusive": "0x80017644"
+    },
+    {
+      "address": "0x8001B968",
+      "size": 144,
+      "end_exclusive": "0x8001B9F8"
+    },
+    {
+      "address": "0x800190AC",
+      "size": 152,
+      "end_exclusive": "0x80019144"
+    }
+  ],
+  "bytes": 832,
+  "prior_packet": "BT03-high-params frozen peer PASS c54f6fca536e5b8a8af4d0466f425a4ca9a69928",
+  "edit_scope": "Only listed matching sources and cloud/work/boot_tail/BT03-high-routing/**",
+  "stop": "Actual native ABI and storage-domain proof. Natural C89,O2/O1,20 directed variants maximum after diagnosis. No protected edits, proof-gap substitution, repeated unsupported narrow-formal declarations or old residual reopening.",
+  "peer_approved_head": "78469c930c88c8b5bb1d90d60439665f729f8768"
+}

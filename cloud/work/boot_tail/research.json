@@ -237,9 +237,14 @@
       "note": "AxioDL/musyx@78d2e16e4905fc675952162d331c24d5198b2687 src/musyx/runtime/synthmacros.c: 32-step cap, two-word MSTEP, opcode&0x7f through0x71; no compilation or match. See REFERENCES.md."
     },
     "0x80020494": {
-      "name_hypothesis": "MusyX sndMasterVolume source lead",
-      "evidence_level": "SOURCE-LEAD",
-      "note": "Pinned AxioDL/musyx snd_synthapi.c: music/fx groups0x15/0x16; native fifth argument0 versus public-1 is a version difference. See REFERENCES.md; no match."
+      "name_hypothesis": "audio_routing_80020494",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_80020494.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-high-routing",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-high-routing; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
     },
     "0x8002043C": {
       "name_hypothesis": "MusyX sndVolume source lead",
@@ -2581,81 +2586,89 @@
       "name_hypothesis": "copy four unaligned halfwords into audio slot parameters; scale third by 1/4096",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "source_path": "cloud/matches/boot_tail/func_800148F8.c",
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-low-eight",
-      "evidence_level": "HYPOTHESIS",
+      "evidence_level": "VERIFIED-BODY",
       "diff_words": "0",
-      "note": "BT03-low-eight; exact peer source/ABI PASS. Local strict match; eighth-cut exact-head CI pending."
+      "note": "Exact peer source/ABI PASS and source-head Verify 37164693092 success on c196e2126217abb91380b240c68e7ea9c52fd941. Source unchanged; proof in wave8/ci.json.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/68"
     },
     "0x80014D30": {
       "name_hypothesis": "scale unsigned input rate by 4096 and divide by global signed rate",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "source_path": "cloud/matches/boot_tail/func_80014D30.c",
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-low-eight",
-      "evidence_level": "HYPOTHESIS",
+      "evidence_level": "VERIFIED-BODY",
       "diff_words": "0",
-      "note": "BT03-low-eight; exact peer source/ABI PASS. Local strict match; eighth-cut exact-head CI pending."
+      "note": "Exact peer source/ABI PASS and source-head Verify 37164693092 success on c196e2126217abb91380b240c68e7ea9c52fd941. Source unchanged; proof in wave8/ci.json.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/68"
     },
     "0x800171C0": {
       "name_hypothesis": "initialize 256-entry doubly-linked free list",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "source_path": "cloud/matches/boot_tail/func_800171C0.c",
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-low-eight",
-      "evidence_level": "HYPOTHESIS",
+      "evidence_level": "VERIFIED-BODY",
       "diff_words": "0",
-      "note": "BT03-low-eight; exact peer source/ABI PASS. Local strict match; eighth-cut exact-head CI pending."
+      "note": "Exact peer source/ABI PASS and source-head Verify 37164693092 success on c196e2126217abb91380b240c68e7ea9c52fd941. Source unchanged; proof in wave8/ci.json.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/68"
     },
     "0x8001729C": {
       "name_hypothesis": "return active and pending lists to free list",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "source_path": "cloud/matches/boot_tail/func_8001729C.c",
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-low-eight",
-      "evidence_level": "HYPOTHESIS",
+      "evidence_level": "VERIFIED-BODY",
       "diff_words": "0",
-      "note": "BT03-low-eight; exact peer source/ABI PASS. Local strict match; eighth-cut exact-head CI pending."
+      "note": "Exact peer source/ABI PASS and source-head Verify 37164693092 success on c196e2126217abb91380b240c68e7ea9c52fd941. Source unchanged; proof in wave8/ci.json.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/68"
     },
     "0x800173B4": {
       "name_hypothesis": "move free-list head to current active list",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "source_path": "cloud/matches/boot_tail/func_800173B4.c",
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-low-eight",
-      "evidence_level": "HYPOTHESIS",
+      "evidence_level": "VERIFIED-BODY",
       "diff_words": "0",
-      "note": "BT03-low-eight; exact peer source/ABI PASS. Local strict match; eighth-cut exact-head CI pending."
+      "note": "Exact peer source/ABI PASS and source-head Verify 37164693092 success on c196e2126217abb91380b240c68e7ea9c52fd941. Source unchanged; proof in wave8/ci.json.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/68"
     },
     "0x80017410": {
       "name_hypothesis": "return active node to free list",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "source_path": "cloud/matches/boot_tail/func_80017410.c",
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-low-eight",
-      "evidence_level": "HYPOTHESIS",
+      "evidence_level": "VERIFIED-BODY",
       "diff_words": "0",
-      "note": "BT03-low-eight; exact peer source/ABI PASS. Local strict match; eighth-cut exact-head CI pending."
+      "note": "Exact peer source/ABI PASS and source-head Verify 37164693092 success on c196e2126217abb91380b240c68e7ea9c52fd941. Source unchanged; proof in wave8/ci.json.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/68"
     },
     "0x80017470": {
       "name_hypothesis": "return pending node to free list",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "source_path": "cloud/matches/boot_tail/func_80017470.c",
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-low-eight",
-      "evidence_level": "HYPOTHESIS",
+      "evidence_level": "VERIFIED-BODY",
       "diff_words": "0",
-      "note": "BT03-low-eight; exact peer source/ABI PASS. Local strict match; eighth-cut exact-head CI pending."
+      "note": "Exact peer source/ABI PASS and source-head Verify 37164693092 success on c196e2126217abb91380b240c68e7ea9c52fd941. Source unchanged; proof in wave8/ci.json.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/68"
     },
     "0x800174D0": {
       "name_hypothesis": "move active node to current pending list",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "source_path": "cloud/matches/boot_tail/func_800174D0.c",
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-low-eight",
-      "evidence_level": "HYPOTHESIS",
+      "evidence_level": "VERIFIED-BODY",
       "diff_words": "0",
-      "note": "BT03-low-eight; exact peer source/ABI PASS. Local strict match; eighth-cut exact-head CI pending."
+      "note": "Exact peer source/ABI PASS and source-head Verify 37164693092 success on c196e2126217abb91380b240c68e7ea9c52fd941. Source unchanged; proof in wave8/ci.json.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/68"
     },
     "0x80022324": {
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -2706,31 +2719,34 @@
       "name_hypothesis": "audio_initialization_8001C508",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "source_path": "cloud/matches/boot_tail/func_8001C508.c",
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-high-init",
-      "evidence_level": "HYPOTHESIS",
+      "evidence_level": "VERIFIED-BODY",
       "diff_words": "0",
-      "note": "BT03-high-init; exact peer source/ABI PASS. Local strict match; eighth-cut exact-head CI pending."
+      "note": "Exact peer source/ABI PASS and source-head Verify 37164693092 success on c196e2126217abb91380b240c68e7ea9c52fd941. Source unchanged; proof in wave8/ci.json.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/68"
     },
     "0x8001EE34": {
       "name_hypothesis": "audio_initialization_8001EE34",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "source_path": "cloud/matches/boot_tail/func_8001EE34.c",
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-high-init",
-      "evidence_level": "HYPOTHESIS",
+      "evidence_level": "VERIFIED-BODY",
       "diff_words": "0",
-      "note": "BT03-high-init; exact peer source/ABI PASS. Local strict match; eighth-cut exact-head CI pending."
+      "note": "Exact peer source/ABI PASS and source-head Verify 37164693092 success on c196e2126217abb91380b240c68e7ea9c52fd941. Source unchanged; proof in wave8/ci.json.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/68"
     },
     "0x8001F7EC": {
       "name_hypothesis": "audio_initialization_8001F7EC",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "source_path": "cloud/matches/boot_tail/func_8001F7EC.c",
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-high-init",
-      "evidence_level": "HYPOTHESIS",
+      "evidence_level": "VERIFIED-BODY",
       "diff_words": "0",
-      "note": "BT03-high-init; exact peer source/ABI PASS. Local strict match; eighth-cut exact-head CI pending."
+      "note": "Exact peer source/ABI PASS and source-head Verify 37164693092 success on c196e2126217abb91380b240c68e7ea9c52fd941. Source unchanged; proof in wave8/ci.json.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/68"
     },
     "0x8001F954": {
       "name_hypothesis": "audio_initialization_8001F954",
@@ -2746,11 +2762,12 @@
       "name_hypothesis": "audio_initialization_8001F9D0",
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "source_path": "cloud/matches/boot_tail/func_8001F9D0.c",
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-high-init",
-      "evidence_level": "HYPOTHESIS",
+      "evidence_level": "VERIFIED-BODY",
       "diff_words": "0",
-      "note": "BT03-high-init; exact peer source/ABI PASS. Local strict match; eighth-cut exact-head CI pending."
+      "note": "Exact peer source/ABI PASS and source-head Verify 37164693092 success on c196e2126217abb91380b240c68e7ea9c52fd941. Source unchanged; proof in wave8/ci.json.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/68"
     },
     "0x80020598": {
       "name_hypothesis": "audio_initialization_80020598",
@@ -2765,11 +2782,12 @@
     "0x800225FC": {
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "source_path": "cloud/matches/boot_tail/func_800225FC.c",
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT05-variables",
-      "evidence_level": "HYPOTHESIS",
+      "evidence_level": "VERIFIED-BODY",
       "diff_words": "0",
-      "note": "BT05-variables; exact peer source/ABI PASS. Local strict match; eighth-cut exact-head CI pending."
+      "note": "Exact peer source/ABI PASS and source-head Verify 37164693092 success on c196e2126217abb91380b240c68e7ea9c52fd941. Source unchanged; proof in wave8/ci.json.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/68"
     },
     "0x8002279C": {
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -2810,47 +2828,560 @@
     "0x800150C8": {
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "source_path": "cloud/matches/boot_tail/func_800150C8.c",
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-low-dispatch",
-      "evidence_level": "HYPOTHESIS",
+      "evidence_level": "VERIFIED-BODY",
       "diff_words": "0",
-      "note": "BT03-low-dispatch; exact peer source/ABI PASS. Local strict match; eighth-cut exact-head CI pending."
+      "note": "Exact peer source/ABI PASS and source-head Verify 37164693092 success on c196e2126217abb91380b240c68e7ea9c52fd941. Source unchanged; proof in wave8/ci.json.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/68"
     },
     "0x80015120": {
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "source_path": "cloud/matches/boot_tail/func_80015120.c",
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-low-dispatch",
-      "evidence_level": "HYPOTHESIS",
+      "evidence_level": "VERIFIED-BODY",
       "diff_words": "0",
-      "note": "BT03-low-dispatch; exact peer source/ABI PASS. Local strict match; eighth-cut exact-head CI pending."
+      "note": "Exact peer source/ABI PASS and source-head Verify 37164693092 success on c196e2126217abb91380b240c68e7ea9c52fd941. Source unchanged; proof in wave8/ci.json.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/68"
     },
     "0x80015178": {
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "source_path": "cloud/matches/boot_tail/func_80015178.c",
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-low-dispatch",
-      "evidence_level": "HYPOTHESIS",
+      "evidence_level": "VERIFIED-BODY",
       "diff_words": "0",
-      "note": "BT03-low-dispatch; exact peer source/ABI PASS. Local strict match; eighth-cut exact-head CI pending."
+      "note": "Exact peer source/ABI PASS and source-head Verify 37164693092 success on c196e2126217abb91380b240c68e7ea9c52fd941. Source unchanged; proof in wave8/ci.json.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/68"
     },
     "0x800151D0": {
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "source_path": "cloud/matches/boot_tail/func_800151D0.c",
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-low-dispatch",
-      "evidence_level": "HYPOTHESIS",
+      "evidence_level": "VERIFIED-BODY",
       "diff_words": "0",
-      "note": "BT03-low-dispatch; exact peer source/ABI PASS. Local strict match; eighth-cut exact-head CI pending."
+      "note": "Exact peer source/ABI PASS and source-head Verify 37164693092 success on c196e2126217abb91380b240c68e7ea9c52fd941. Source unchanged; proof in wave8/ci.json.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/68"
     },
     "0x800152A8": {
       "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
       "source_path": "cloud/matches/boot_tail/func_800152A8.c",
-      "status": "claimed",
+      "status": "verified_body",
       "owner": "Astra / BT03-low-dispatch",
+      "evidence_level": "VERIFIED-BODY",
+      "diff_words": "0",
+      "note": "Exact peer source/ABI PASS and source-head Verify 37164693092 success on c196e2126217abb91380b240c68e7ea9c52fd941. Source unchanged; proof in wave8/ci.json.",
+      "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/68"
+    },
+    "0x80018E6C": {
+      "name_hypothesis": "audio_parameter_80018E6C",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_80018E6C.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-high-params",
       "evidence_level": "HYPOTHESIS",
       "diff_words": "0",
-      "note": "BT03-low-dispatch; exact peer source/ABI PASS. Local strict match; eighth-cut exact-head CI pending."
+      "note": "BT03-high-params; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x80018FEC": {
+      "name_hypothesis": "audio_parameter_80018FEC",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_80018FEC.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-high-params",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-high-params; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x80019ED0": {
+      "name_hypothesis": "audio_parameter_80019ED0",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT03-high-params/nonmatch/func_80019ED0.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT03-high-params",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "7",
+      "note": "BT03-high-params; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. Four strict local matches, two complete bounded residuals. Native ABI/domain audited; peer review and exact aggregate-head CI required."
+    },
+    "0x8001B154": {
+      "name_hypothesis": "audio_parameter_8001B154",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_8001B154.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-high-params",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-high-params; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x8001B744": {
+      "name_hypothesis": "audio_parameter_8001B744",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_8001B744.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-high-params",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-high-params; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x8002021C": {
+      "name_hypothesis": "audio_parameter_8002021C",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT03-high-params/nonmatch/func_8002021C.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT03-high-params",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "12",
+      "note": "BT03-high-params; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. Four strict local matches, two complete bounded residuals. Native ABI/domain audited; peer review and exact aggregate-head CI required."
+    },
+    "0x80023754": {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT05-control-dispatch/nonmatch/func_80023754.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT05-control-dispatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "22",
+      "note": "BT05-control-dispatch; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. COMPLETE-NONMATCH; three bounded natural forms; genuine four-input ABI;21548 external declaration only and its source/table blocker unchanged."
+    },
+    "0x800175B4": {
+      "name_hypothesis": "audio_routing_800175B4",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_800175B4.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-high-routing",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-high-routing; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x80018F20": {
+      "name_hypothesis": "audio_routing_80018F20",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_80018F20.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-high-routing",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-high-routing; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x800190AC": {
+      "name_hypothesis": "audio_routing_800190AC",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_800190AC.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-high-routing",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-high-routing; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x8001A5D8": {
+      "name_hypothesis": "audio_routing_8001A5D8",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT03-high-routing/nonmatch/func_8001A5D8.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT03-high-routing",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "19",
+      "note": "BT03-high-routing; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. Five strict local matches and one complete bounded interpolation residual; actual native ABI/domain audited. Peer review and exact aggregate-head CI required."
+    },
+    "0x8001B968": {
+      "name_hypothesis": "audio_routing_8001B968",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_8001B968.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-high-routing",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-high-routing; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x80014F14": {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_80014F14.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-low-resource",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-low-resource; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x80014F80": {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_80014F80.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-low-resource",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-low-resource; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x80014FEC": {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_80014FEC.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-low-resource",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-low-resource; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x80015058": {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_80015058.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-low-resource",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-low-resource; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x800154A4": {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT03-low-resource/func_800154A4_NONMATCH.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT03-low-resource",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "17",
+      "note": "BT03-low-resource; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. Whole signed-count pop/dispatch body; O2 17/52, no excess or relocation uncertainty. Three natural body forms stop at count normalization and pointer operand allocation/order. No narrow-value sweeps; valid enabled count/table/resource geometry assumed."
+    },
+    "0x800107E0": {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_800107E0.c",
+      "status": "claimed",
+      "owner": "Astra / BT02-final-small",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT02-final-small; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x80010840": {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT02-final-small/nonmatch/func_80010840.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT02-final-small",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "14",
+      "note": "BT02-final-small; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. Complete six-argument audio initializer. O2 14/40, O1 37/40. Ten directed variants did not improve the baseline; argument home/narrowed carrier and consequent temp-ring residual."
+    },
+    "0x800108E0": {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT02-final-small/nonmatch/func_800108E0.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT02-final-small",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "14",
+      "note": "BT02-final-small; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. Complete six-argument audio initializer. O2 14/40, O1 37/40. Ten directed variants did not improve the baseline; argument home/narrowed carrier and consequent temp-ring residual."
+    },
+    "0x80013D70": {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_80013D70.c",
+      "status": "claimed",
+      "owner": "Astra / BT02-final-small",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT02-final-small; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x80016C20": {
+      "name_hypothesis": "audio_pool_state_80016C20",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT03-low-lookups/nonmatch/func_80016C20.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT03-low-lookups",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "22",
+      "note": "BT03-low-lookups; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. Complete source and bounded O2/O1 controls; see BT03-low-lookups/README.md. No strict match or cartridge coverage."
+    },
+    "0x80016E68": {
+      "name_hypothesis": "audio_pool_state_80016E68",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT03-low-lookups/nonmatch/func_80016E68.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT03-low-lookups",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "7",
+      "note": "BT03-low-lookups; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. Complete source and bounded O2/O1 controls; see BT03-low-lookups/README.md. No strict match or cartridge coverage."
+    },
+    "0x80016EE0": {
+      "name_hypothesis": "audio_pool_state_80016EE0",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT03-low-lookups/nonmatch/func_80016EE0.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT03-low-lookups",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "7",
+      "note": "BT03-low-lookups; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. Complete source and bounded O2/O1 controls; see BT03-low-lookups/README.md. No strict match or cartridge coverage."
+    },
+    "0x80016F80": {
+      "name_hypothesis": "audio_pool_state_80016F80",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT03-low-lookups/nonmatch/func_80016F80.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT03-low-lookups",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "13",
+      "note": "BT03-low-lookups; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. Complete source and bounded O2/O1 controls; see BT03-low-lookups/README.md. No strict match or cartridge coverage."
+    },
+    "0x80017040": {
+      "name_hypothesis": "audio_pool_state_80017040",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT03-low-lookups/nonmatch/func_80017040.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT03-low-lookups",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "46",
+      "note": "BT03-low-lookups; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. Complete source and bounded O2/O1 controls; see BT03-low-lookups/README.md. No strict match or cartridge coverage."
+    },
+    "0x800232A4": {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT05-larger-pair/nonmatch/func_800232A4.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT05-larger-pair",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "7",
+      "note": "BT05-larger-pair; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. COMPLETE-NONMATCH; three bounded natural forms; native unsigned low-word/signed16/RNG contracts retained; no matching credit."
+    },
+    "0x80023564": {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT05-larger-pair/nonmatch/func_80023564.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT05-larger-pair",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "66",
+      "note": "BT05-larger-pair; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. COMPLETE-NONMATCH; three bounded natural forms; native unsigned low-word/signed16/RNG contracts retained; no matching credit."
+    },
+    "0x8001897C": {
+      "name_hypothesis": "audio_runtime_8001897C",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime/nonmatch/func_8001897C.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT03-high-runtime",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "14",
+      "note": "BT03-high-runtime; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. Four strict O2 bodies and two complete residuals; failed O1 relocation controls remain explicit. Actual native ABI/domain audited; peer review and exact aggregate-head CI required."
+    },
+    "0x80018A30": {
+      "name_hypothesis": "audio_runtime_80018A30",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_80018A30.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-high-runtime",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-high-runtime; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x80019BE4": {
+      "name_hypothesis": "audio_runtime_80019BE4",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_80019BE4.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-high-runtime",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-high-runtime; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x8001B8C4": {
+      "name_hypothesis": "audio_runtime_8001B8C4",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_8001B8C4.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-high-runtime",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-high-runtime; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x8001D5C0": {
+      "name_hypothesis": "audio_runtime_8001D5C0",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_8001D5C0.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-high-runtime",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-high-runtime; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x800202C4": {
+      "name_hypothesis": "audio_runtime_800202C4",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime/nonmatch/func_800202C4.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT03-high-runtime",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "26",
+      "note": "BT03-high-runtime; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. Four strict O2 bodies and two complete residuals; failed O1 relocation controls remain explicit. Actual native ABI/domain audited; peer review and exact aggregate-head CI required."
+    },
+    "0x80015228": {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_80015228.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-low-service",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-low-service; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x800162AC": {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_800162AC.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-low-service",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-low-service; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x80017108": {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_80017108.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-low-service",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-low-service; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x8001734C": {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_8001734C.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-low-service",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-low-service; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x80017644": {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_80017644.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-low-service",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-low-service; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x80022678": {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_80022678.c",
+      "status": "claimed",
+      "owner": "Astra / BT05-larger-trio",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT05-larger-trio; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x800233B0": {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT05-larger-trio/nonmatch/func_800233B0.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT05-larger-trio",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "27",
+      "note": "BT05-larger-trio; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. COMPLETE-NONMATCH; initial complete source preserved after one unchanged natural expression control."
+    },
+    "0x800239A4": {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT05-larger-trio/nonmatch/func_800239A4.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT05-larger-trio",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "21",
+      "note": "BT05-larger-trio; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. COMPLETE-NONMATCH; initial complete source preserved after one unchanged natural expression control."
+    },
+    "0x80017720": {
+      "name_hypothesis": "audio_transition_80017720",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT03-high-transitions/nonmatch/func_80017720.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT03-high-transitions",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "51",
+      "note": "BT03-high-transitions; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. Three strict O2 matches and three complete bounded residuals; real native ABI and valid-resource domains explicit. Peer review and exact aggregate-head CI required."
+    },
+    "0x80018184": {
+      "name_hypothesis": "audio_transition_80018184",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT03-high-transitions/nonmatch/func_80018184.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT03-high-transitions",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "6",
+      "note": "BT03-high-transitions; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. Three strict O2 matches and three complete bounded residuals; real native ABI and valid-resource domains explicit. Peer review and exact aggregate-head CI required."
+    },
+    "0x8001B1D0": {
+      "name_hypothesis": "audio_transition_8001B1D0",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT03-high-transitions/nonmatch/func_8001B1D0.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT03-high-transitions",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "48",
+      "note": "BT03-high-transitions; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. Three strict O2 matches and three complete bounded residuals; real native ABI and valid-resource domains explicit. Peer review and exact aggregate-head CI required."
+    },
+    "0x8001F898": {
+      "name_hypothesis": "audio_transition_8001F898",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_8001F898.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-high-transitions",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-high-transitions; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x8001FA18": {
+      "name_hypothesis": "audio_transition_8001FA18",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_8001FA18.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-high-transitions",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-high-transitions; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x8001FAE4": {
+      "name_hypothesis": "audio_transition_8001FAE4",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_8001FAE4.c",
+      "status": "claimed",
+      "owner": "Astra / BT03-high-transitions",
+      "evidence_level": "HYPOTHESIS",
+      "diff_words": "0",
+      "note": "BT03-high-transitions; exact peer source/ABI PASS. Local strict match; ninth-cut exact-head CI pending."
+    },
+    "0x80011A64": {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT02-next-pair/nonmatch/func_80011A64.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT02-next-pair",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "107",
+      "note": "BT02-next-pair; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. Full natural C89; O2/O1 residuals and host tests reproduced. Native narrow-formal normalization remains; no claimed match or cartridge coverage."
+    },
+    "0x80011D74": {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT02-next-pair/nonmatch/func_80011D74.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT02-next-pair",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "24",
+      "note": "BT02-next-pair; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. Full natural C89; O2/O1 residuals and host tests reproduced. Native narrow-formal normalization remains; no claimed match or cartridge coverage."
+    },
+    "0x800158D8": {
+      "name_hypothesis": "release referenced record and compact table on zero",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT03-low-removal/func_800158D8_NONMATCH.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT03-low-removal",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "8",
+      "note": "BT03-low-removal; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. Complete bounded16-form nonmatch. Native frames and O2 lengths exact; no unresolved or unverified relocations. Host1500 cases pass. Packed field/aligned record copy residual;1661C also narrow-formal home/mask. Zero match credit."
+    },
+    "0x80015F28": {
+      "name_hypothesis": "release referenced record in second table and compact on zero",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT03-low-removal/func_80015F28_NONMATCH.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT03-low-removal",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "8",
+      "note": "BT03-low-removal; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. Complete bounded16-form nonmatch. Native frames and O2 lengths exact; no unresolved or unverified relocations. Host1500 cases pass. Packed field/aligned record copy residual;1661C also narrow-formal home/mask. Zero match credit."
+    },
+    "0x8001661C": {
+      "name_hypothesis": "remove matching record after guarded live-count reload",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT03-low-removal/func_8001661C_NONMATCH.c",
+      "status": "nonmatch",
+      "owner": "Astra / BT03-low-removal",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "diff_words": "31",
+      "note": "BT03-low-removal; exact peer source/ABI PASS. Complete bounded nonmatch; zero match credit. Complete bounded16-form nonmatch. Native frames and O2 lengths exact; no unresolved or unverified relocations. Host1500 cases pass. Packed field/aligned record copy residual;1661C also narrow-formal home/mask. Zero match credit."
     }
   }
 }

@@ -1,0 +1,852 @@
+[
+  {
+    "function": "func_80016C20",
+    "variant": "initial",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016C20-initial.c",
+    "source_sha256": "37ab4c41be7a46a305a9faf146ff294c6f419106307d70511e2f1b79d81c0aa7",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 33,
+        "total": 48,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 48,
+        "total": 48,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 4,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016E68",
+    "variant": "initial",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016E68-initial.c",
+    "source_sha256": "70a0efb7a2aafd91689435665772259de98241d62dfad0f1f0bae46d4025ec7c",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 23,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 12,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016EE0",
+    "variant": "initial",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016EE0-initial.c",
+    "source_sha256": "23568daf587a469554176194c8a8448ba31962f6fac9532baf694eb4f3faef38",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 23,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 12,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016F80",
+    "variant": "initial",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016F80-initial.c",
+    "source_sha256": "df3853706ee42b0f0afe8f29c5d9ec301e92a81478fda375832a71dfe1ea95b3",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 32,
+        "total": 38,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 20,
+        "total": 38,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80017040",
+    "variant": "initial",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80017040-initial.c",
+    "source_sha256": "68c164ba793722afe2e53e25141a0548fc5a23d96cea7383aef3746eeb6a2d97",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 46,
+        "total": 50,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 50,
+        "total": 50,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016C20",
+    "variant": "direct-key-symbol",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016C20-direct-key-symbol.c",
+    "source_sha256": "3b00c66ee42bf510870a29ac409ac57a96296a166f4c9dc3023e32cf2e7dffc3",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 22,
+        "total": 48,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 48,
+        "total": 48,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 4,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016C20",
+    "variant": "assignment-gate",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016C20-assignment-gate.c",
+    "source_sha256": "84dfecc37759234edb8b1fbe049a16ff5efa8dabb8ec04f2afa4b653ee658de2",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 22,
+        "total": 48,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 48,
+        "total": 48,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 4,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016E68",
+    "variant": "direct-key-symbol",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016E68-direct-key-symbol.c",
+    "source_sha256": "0633dfde9fc6a64424ab28b2ca608be2da1d903d5f59239169291cb9741a5c49",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 7,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 12,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016E68",
+    "variant": "assignment-gate",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016E68-assignment-gate.c",
+    "source_sha256": "8636ddc0d548a444f9682a5410d55a3091947593c884056a97b92a543a423de7",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 7,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 12,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016EE0",
+    "variant": "direct-key-symbol",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016EE0-direct-key-symbol.c",
+    "source_sha256": "c0863fd334397e1b8002a48b5e4901697ba4e14e97e13988e8903f45b1031d5a",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 7,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 12,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016EE0",
+    "variant": "assignment-gate",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016EE0-assignment-gate.c",
+    "source_sha256": "a7411a1041a6a973fcebb7b297e075760e8f0d34e339f8ec1b2302c4446b853b",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 7,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 12,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016F80",
+    "variant": "direct-key-symbol",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016F80-direct-key-symbol.c",
+    "source_sha256": "9481e25f0b963ba559cbc6c43269fc716811133ee1e1dc413b3af4c166c3dae2",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 19,
+        "total": 38,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 20,
+        "total": 38,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016F80",
+    "variant": "branch-publication",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016F80-branch-publication.c",
+    "source_sha256": "f7151005e17d5d8dbc461a832d41bcf221e3f36519903c4cb32f1ac1fcd38396",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 5,
+        "total": 38,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 24,
+        "total": 38,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 3,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80017040",
+    "variant": "array-key",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80017040-array-key.c",
+    "source_sha256": "6a0d3667b3675fa3d9aa1e7b944cd134faf0d940faaa0bed3626b012d33870d8",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 46,
+        "total": 50,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 50,
+        "total": 50,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016C20",
+    "variant": "pointer-value",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016C20-pointer-value.c",
+    "source_sha256": "60114164a839a61e8ef835c25f47eafdeda5027614dff08809ed67a1031d0941",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 22,
+        "total": 48,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 48,
+        "total": 48,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 4,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016E68",
+    "variant": "pointer-value",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016E68-pointer-value.c",
+    "source_sha256": "145dcdcd425a81fe91aacba59a1111176adf55d8713f9ea4d1af6f05f83260bc",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 7,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 12,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016EE0",
+    "variant": "pointer-value",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016EE0-pointer-value.c",
+    "source_sha256": "030aeaecc3bba89f68bbc083ccf862fcfd70ca63b7ea9cff05bcc273b410d768",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 7,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 12,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016F80",
+    "variant": "pointer-value",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016F80-pointer-value.c",
+    "source_sha256": "e778d1f10e5965463c4ace199680915e716ec21f1036611ef7c60b3209febe4c",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 5,
+        "total": 38,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 24,
+        "total": 38,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 3,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016F80",
+    "variant": "read-before-publish",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016F80-read-before-publish.c",
+    "source_sha256": "5f2290a6a74461d719e2d97d20ea14363a405dba059485211f6a327d12b3daa4",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 13,
+        "total": 38,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 24,
+        "total": 38,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [
+          "unpaired R_MIPS_HI16 for D_8004269C at .text+0x94"
+        ],
+        "extra_words": 5,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016C20",
+    "variant": "opaque-result-global",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016C20-opaque-result-global.c",
+    "source_sha256": "84b21441c214e9afcd0f6246257a49503d858d8637f076533e66019d39ceef46",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 22,
+        "total": 48,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 48,
+        "total": 48,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 4,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016E68",
+    "variant": "opaque-result-global",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016E68-opaque-result-global.c",
+    "source_sha256": "2715bdce73d65e73e98691486bb0a469b0e82c357e2e3d1d5ecf3a6d9ef2d7e6",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 7,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 12,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016EE0",
+    "variant": "opaque-result-global",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016EE0-opaque-result-global.c",
+    "source_sha256": "251909780916fc0e533ce11ec051eb0d8f8b33fd2fa539b4276f3bdaf8284cf8",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 7,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 12,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016F80",
+    "variant": "single-publication",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016F80-single-publication.c",
+    "source_sha256": "e6362968edb69ad6e11573d2b24b45f00e6ac6264704ca1eb86acd8183df0e22",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 26,
+        "total": 38,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 31,
+        "total": 38,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [
+          "unpaired R_MIPS_HI16 for D_8004269C at .text+0x8c"
+        ],
+        "extra_words": 2,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016C20",
+    "variant": "direct-packed-value",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016C20-direct-packed-value.c",
+    "source_sha256": "590efcb20a408eaf2dd7848fd11bb89be27a1cec58a86968d4755472d8b947b0",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 22,
+        "total": 48,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 48,
+        "total": 48,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 4,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016E68",
+    "variant": "direct-packed-value",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016E68-direct-packed-value.c",
+    "source_sha256": "59c1f1e03785dcf7da89d24e454b37e02927ff1e926b9b426cd31624b07c8935",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 7,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 12,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016EE0",
+    "variant": "direct-packed-value",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016EE0-direct-packed-value.c",
+    "source_sha256": "b81989a4eb1df8e69009fc77a12ba414e7db7f748857b428e8ef61920530f636",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 7,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 12,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016F80",
+    "variant": "ordered-return",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016F80-ordered-return.c",
+    "source_sha256": "ffcd5289e6c1941a74522dadd8a608cb1a1327ad3ad036b6c5d0a4387fc7eb9a",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 13,
+        "total": 38,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 24,
+        "total": 38,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [
+          "unpaired R_MIPS_HI16 for D_8004269C at .text+0x94"
+        ],
+        "extra_words": 5,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016F80",
+    "variant": "conditional-value",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016F80-conditional-value.c",
+    "source_sha256": "fa86d228ac634f7b2a79c8a05f7459ae264a6d8d17e5295648bf964a61259425",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 13,
+        "total": 38,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 23,
+        "total": 38,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [
+          "unpaired R_MIPS_HI16 for D_8004269C at .text+0x90"
+        ],
+        "extra_words": 3,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016F80",
+    "variant": "result-first-local",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016F80-result-first-local.c",
+    "source_sha256": "6c7858beef0ce26e1204fe9a120fba086836ede20d7e7e95e6981ce98350ed46",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 13,
+        "total": 38,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 23,
+        "total": 38,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [
+          "unpaired R_MIPS_HI16 for D_8004269C at .text+0x90"
+        ],
+        "extra_words": 3,
+        "strict_match": false
+      }
+    ]
+  },
+  {
+    "function": "func_80016C20",
+    "variant": "reuse-index",
+    "source_path": "cloud/work/boot_tail/BT03-low-lookups/controls/80016C20-reuse-index.c",
+    "source_sha256": "786cc55a1cb20335b79af5cfb31aaa0dad45587dcb859474062df24f981be681",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "differing": 24,
+        "total": 48,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "strict_match": false
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "differing": 48,
+        "total": 48,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 4,
+        "strict_match": false
+      }
+    ]
+  }
+]

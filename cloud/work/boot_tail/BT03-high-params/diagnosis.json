@@ -1,0 +1,43 @@
+{
+  "method": "Unchanged workbench; temporary canonical-word target object and original O2 candidate. Raw objects/words not committed; strict relocated score decides acceptance.",
+  "results": [
+    {
+      "name": "func_8002021C",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "19a0e1d7e5e0614f9d3a4f332e3764d02a7003cae4198154309f2ad66b9bbf74",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 12,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=allocation-mismatch aligned_total=  14 words=  12 raw=  14 opcodes=   0 gaps=   0 reloc_syms=   4 norm=  12 regs=  12 fp=   0 insns=  22 frame=  -32 sha1=9363ffc71a03 /tmp/params-8002021C-O2.o",
+      "recorded_utc": "2026-10-03T23:18:23.496491+00:00"
+    },
+    {
+      "name": "func_80019ED0",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "82b3ecfc97b16527754b0d3dde5524686d81d3db3912cd0089952ac5c39d59e9",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 15,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=   5 words=  16 raw=  17 opcodes=  13 gaps=   1 reloc_syms=   3 norm=   3 regs=  14 fp=   1 insns=  29 frame=  -24 sha1=47e173bc3db9 /tmp/params-80019ED0-O2.o true_insn_delta=-1 geometry_edit_distance=3 opcode_distance=1",
+      "recorded_utc": "2026-10-03T23:18:23.932263+00:00"
+    },
+    {
+      "name": "func_80018FEC",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "b287153e75eb76eb982730811b5a45dd2466c137932cc2b0a6aa4934ef0a4733",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 10,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=allocation-mismatch aligned_total=  13 words=  10 raw=  13 opcodes=   0 gaps=   0 reloc_syms=   5 norm=  10 regs=  10 fp=   0 insns=  32 frame=  -24 sha1=91c0e5434b1b /tmp/params-80018FEC-O2.o",
+      "recorded_utc": "2026-10-03T23:18:24.368947+00:00"
+    },
+    {
+      "name": "func_80019ED0",
+      "stage": "Improved ordinary parameter-normalization checkpoint before final inline control",
+      "source_sha256": "dda2e92a8bdecc230c7ccd36fbfcdd0abd3145ce0ef2ebd974b4f3e3d0dfe402",
+      "strict_differing_words": 7,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=   8 words=   7 raw=   9 opcodes=   5 gaps=   6 reloc_syms=   2 norm=   7 regs=   7 fp=   0 insns=  30 frame=  -24 sha1=45cd9240efc5 /tmp/params-80019ED0-O2.o true_insn_delta=+0 geometry_edit_distance=7 opcode_distance=4"
+    }
+  ]
+}

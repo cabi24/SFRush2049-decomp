@@ -1,0 +1,43 @@
+{
+  "state": "integrating-source-frozen",
+  "owner": "/root/match_boot_tail_bt03_high",
+  "packet": "BT03-high-runtime",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "master_anchor": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x8001D5C0",
+      "size": 160,
+      "end_exclusive": "0x8001D660"
+    },
+    {
+      "address": "0x8001B8C4",
+      "size": 164,
+      "end_exclusive": "0x8001B968"
+    },
+    {
+      "address": "0x80019BE4",
+      "size": 168,
+      "end_exclusive": "0x80019C8C"
+    },
+    {
+      "address": "0x800202C4",
+      "size": 172,
+      "end_exclusive": "0x80020370"
+    },
+    {
+      "address": "0x8001897C",
+      "size": 180,
+      "end_exclusive": "0x80018A30"
+    },
+    {
+      "address": "0x80018A30",
+      "size": 188,
+      "end_exclusive": "0x80018AEC"
+    }
+  ],
+  "bytes": 1032,
+  "edit_scope": "Only named matching sources and cloud/work/boot_tail/BT03-high-runtime/**",
+  "stop": "Real native ABI and domains; natural C89/O2/O1, bounded directed variants after diagnosis. No protected edits, overlap, unsupported declaration sweeps or prior residual reopening. No full clones or duplicate compiler copies; preserve all authored data.",
+  "peer_approved_head": "a937e56928ebf8088309f7eb55ebdeb1a3e54b79"
+}

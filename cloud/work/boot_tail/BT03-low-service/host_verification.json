@@ -1,0 +1,23 @@
+{
+  "result": "PASS_FOR_BOUNDED_HOST_SEMANTICS",
+  "tests_passed": 6,
+  "candidate_invocations": 911,
+  "case_counts": {
+    "prepare_gate_and_live_list": 36,
+    "sample_membership_and_reference_callback": 300,
+    "packed_resource_reset": 3,
+    "two_live_linked_heads": 32,
+    "eight_record_masked_lookup": 540
+  },
+  "host_mode": "C89 pedantic-errors, Wall, Wextra, Werror, AddressSanitizer and UndefinedBehaviorSanitizer",
+  "leak_sanitizer": "Disabled only because ptrace is incompatible; candidates and harnesses do not allocate heap memory. Address/UB checks remain active.",
+  "source_sha256": {
+    "cloud/matches/boot_tail/func_80015228.c": "dd3c243e96144d5f80e2c08d9d284258c88593b5bea94f34e737eed4e7b3ba35",
+    "cloud/matches/boot_tail/func_800162AC.c": "073eb444d56865b9042bc52a6abf719acf7c0ae0b082ceb2a6b3ad04abb557f6",
+    "cloud/matches/boot_tail/func_80017108.c": "1730c23ed352066edb34b92f0938187fe8ca5118bbbe1a811aaf32b91535cc95",
+    "cloud/matches/boot_tail/func_8001734C.c": "ef10f345d97996db7eb70b045d53886308338216f6d1ec039a57bd0f61e8dfb3",
+    "cloud/matches/boot_tail/func_80017644.c": "dbb105aed2cae867327250ec4eef0768dfe6bdeb67ff84569a9130e83a1caac5"
+  },
+  "test_source_sha256": "5792cd4096640eb06d30f72881cf6501acc9e5f397e51e3078e1fa1c24c2c1c0",
+  "limits": "Pointer-containing 28-byte sample/12-byte registry and F78/F7C context layouts are native 32-bit IDO evidence, not host sizeof. Pointer-free range and 4088-byte record layouts are also host checked. Valid registered record membership, allocated payload offsets and finite live linked/sentinel lists are required. Helpers are explicit synthetic contracts, not reconstructed native implementations. No malformed-data, runtime-game or cartridge claim."
+}

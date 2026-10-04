@@ -1,0 +1,53 @@
+{
+  "method": "Unchanged workbench; temporary canonical-word target object and original O2 candidate. Raw objects/words not committed; strict relocated score decides acceptance.",
+  "results": [
+    {
+      "name": "func_80018184",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "78354bb16692d261ca4b5efd5b18599e90dd4d1cf659ae49a189e1fa55b88748",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 19,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  23 words=  19 raw=  23 opcodes=   2 gaps=   0 reloc_syms=   4 norm=  19 regs=  19 fp=   0 insns=  50 frame=  -40 sha1=3798e651b4fe /tmp/transitions-80018184-O2.o",
+      "recorded_utc": "2026-10-04T00:18:09.753492+00:00"
+    },
+    {
+      "name": "func_8001FAE4",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "c689cbfd2139fe4fb363adc489f6ed5a60d0d9e1076694afb553035c22912c0c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 8,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  12 words=   8 raw=  12 opcodes=   1 gaps=   0 reloc_syms=   8 norm=   8 regs=   8 fp=   0 insns=  50 frame=  -40 sha1=9b26391f1526 /tmp/transitions-8001FAE4-O2.o",
+      "recorded_utc": "2026-10-04T00:18:10.211019+00:00"
+    },
+    {
+      "name": "func_80017720",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "4594254dd7dca818cae20de28b8066c98997ce021181bd0a6698208c676058b6",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 51,
+      "strict_extra_words": 1,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  48 words=  53 raw=  53 opcodes=  46 gaps=  24 reloc_syms=   2 norm=  65 regs=  52 fp=   2 insns=  53 frame= None sha1=19c704a13d81 /tmp/transitions-80017720-O2.o true_insn_delta=+2 geometry_edit_distance=65 opcode_distance=15",
+      "recorded_utc": "2026-10-04T00:18:10.673513+00:00"
+    },
+    {
+      "name": "func_8001B1D0",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "c6c32d2723ad2308f4217aa6649b711244e5fddbd7b3e53ec895ffacc7cc2190",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 48,
+      "strict_extra_words": 1,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  35 words=  50 raw=  50 opcodes=  43 gaps=  18 reloc_syms=   4 norm=  33 regs=  50 fp=   2 insns=  53 frame=  -56 sha1=482d5bdb8b2a /tmp/transitions-8001B1D0-O2.o true_insn_delta=+2 geometry_edit_distance=33 opcode_distance=11",
+      "recorded_utc": "2026-10-04T00:18:11.116619+00:00"
+    },
+    {
+      "name": "func_80018184",
+      "stage": "Improved final checkpoint; bounded stop",
+      "source_sha256": "867ce3f615aaa9ecea307be7fe14b8e2fcc91f318b380c4a88e174fbb43832f7",
+      "strict_differing_words": 6,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=allocation-mismatch aligned_total=  10 words=   6 raw=  10 opcodes=   0 gaps=   0 reloc_syms=   4 norm=   6 regs=   6 fp=   0 insns=  50 frame=  -40 sha1=7803a0794c59 /tmp/transitions-80018184-O2.o"
+    }
+  ]
+}
