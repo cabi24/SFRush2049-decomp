@@ -1,0 +1,21 @@
+{
+  "record": "cloud/work/boot_tail_extension/sdk_initialize_compiler_context.json",
+  "record_sha256": "45d1a18391a3c6875ef7727ab7faac7869b05a35c0ece6204cae3ee72776bc7c",
+  "supersedes": "cloud/work/integration_B26/root_compiler_context.json",
+  "supersedes_sha256": "8198dd79e5e86da0569b1a42df84bdcceaa051131c3af3564eb410f0fce3ccef",
+  "key_set": "identical to the superseded record (complete tracked compiler-header closure, scorer, and symbol inputs)",
+  "changed_files": [
+    "symbol_addrs.us.txt",
+    "undefined_syms_auto.us.txt"
+  ],
+  "reason": "boot-tail static extension: splat code range to ROM 0x283D0 regenerates undefined_syms_auto.us.txt and adds census symbols to symbol_addrs.us.txt",
+  "targets_replay": "linked_targets.json (C19 verify_targets protocol; targets identical to the reviewed strict proof)",
+  "strict_rescore": "strict_rescore.json (C19 score_module protocol on the builder)",
+  "strict_scores": {
+    "__osInitialize_common": 0,
+    "__osPiReadDeviceType": 0
+  },
+  "targets_identical": true,
+  "strict_proof": "cloud/work/static_C19/strict_verification.json",
+  "strict_proof_sha256_unchanged": "7a75c581e841a05d788319153bb5acf9ab88959700bf19e889927005b9b6f608"
+}

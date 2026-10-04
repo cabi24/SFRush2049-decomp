@@ -58,6 +58,7 @@ def fixture_repo(tmp_path, monkeypatch):
     monkeypatch.setattr(L, "SYMBOL_ADDRS", syms)
     monkeypatch.setattr(L, "LOCKFILE", lock)
     monkeypatch.setattr(L, "NONMATCHINGS", tmp_path / "nonmatchings")  # absent
+    monkeypatch.setattr(L, "CENSUS_EXTENTS", (tmp_path / "extents.json",))  # absent
 
     # Regions: f_a=8 instrs, f_b=10, func@c68=... (segment 0x8868 -> 0x8900 =
     # 0x98 bytes = 38 words; give it 38 so it tiles exactly).
@@ -93,11 +94,44 @@ def test_dynamic_population_entry_refuses(fixture_repo):
 
 
 def test_unnamed_function_refuses(fixture_repo):
-    # segment 0x8868's function has an auto-name (func_80007C68) -> refusal.
+    # segment 0x8868's function is declared only by an address-spelled name
+    # (func_80007C68) with no census extent backing it -> still unnamed.
     m = L.derive()
     seg = L._segment_by_name(m, "0x8868")
     assert seg["refusal"] == "unnamed@0x80007c68"
     assert seg["functions"] == []
+
+
+def test_census_backed_address_name_is_canonical(fixture_repo):
+    (fixture_repo / "extents.json").write_text(json.dumps(
+        {"functions": [{"name": "func_80007C68", "address": "0x80007C68",
+                        "size": 152}]}))
+    seg = L._segment_by_name(L.derive(), "0x8868")
+    assert seg["refusal"] is None
+    assert seg["functions"] == [{"name": "func_80007C68", "vaddr": "0x80007c68",
+                                 "size": 152, "state": "passthrough"}]
+
+
+def test_census_extent_must_fit_its_slot(fixture_repo):
+    (fixture_repo / "extents.json").write_text(json.dumps(
+        {"functions": [{"name": "func_80007C68", "address": "0x80007C68",
+                        "size": 156}]}))
+    assert L._segment_by_name(L.derive(), "0x8868")["refusal"] == "unnamed@0x80007c68"
+
+
+def test_undeclared_or_misspelled_address_names_refuse(fixture_repo):
+    (fixture_repo / "extents.json").write_text(json.dumps(
+        {"functions": [{"name": "func_80007C68", "address": "0x80007C68",
+                        "size": 152}]}))
+    syms = fixture_repo / "symbol_addrs.txt"
+    # Declared at the right address but spelling a different one.
+    syms.write_text(syms.read_text().replace(
+        "func_80007C68 = 0x80007C68", "func_80007C6C = 0x80007C68"))
+    assert L._segment_by_name(L.derive(), "0x8868")["refusal"] == "unnamed@0x80007c68"
+    # Not declared at all (splat would still auto-name it).
+    syms.write_text("\n".join(l for l in syms.read_text().splitlines()
+                              if "0x80007C68" not in l) + "\n")
+    assert L._segment_by_name(L.derive(), "0x8868")["refusal"] == "unnamed@0x80007c68"
 
 
 def test_nonzero_data_gap_refuses(fixture_repo, monkeypatch):

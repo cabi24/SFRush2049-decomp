@@ -31,6 +31,10 @@ LOCKFILE = REPO / "matched.lock.json"
 ROM_SRC_DIR = REPO / "src" / "rom"
 NONMATCHINGS = REPO / "asm" / "us" / "nonmatchings"
 OPT_OVERRIDES_MK = ROM_SRC_DIR / "opt_overrides.mk"
+# Census function extents (scan_extent tiling, S12) for the boot-segment tail.
+# They are the documented evidence that lets a declared address-spelled name
+# (func_XXXXXXXX) stand as a canonical name; see _canonical_name.
+CENSUS_EXTENTS = (REPO / "asm" / "us" / "boot_tail" / "extents.json",)
 
 # vram = rom_offset + DELTA (code segment start 0x1050 -> vram 0x80000450).
 VRAM_DELTA = 0x7FFFF400
@@ -125,6 +129,35 @@ def collect_regions():
     return regions
 
 
+def load_census_extents(paths=None):
+    """{vaddr: size} from the census extent files (missing files add nothing)."""
+    out = {}
+    for path in (CENSUS_EXTENTS if paths is None else paths):
+        path = Path(path)
+        if not path.is_file():
+            continue
+        for f in json.loads(path.read_text()).get("functions", []):
+            out[int(f["address"], 16)] = int(f["size"])
+    return out
+
+
+def _canonical_name(v, next_v, symbols, census):
+    """The function's canonical name at vaddr v, or None (unnamed).
+
+    A name must be declared `type:func` in symbol_addrs. An address-spelled
+    name (func_XXXXXXXX) is canonical only when it spells v itself AND a census
+    extent starts at v and ends within the slot; otherwise it is still an
+    undocumented auto-name and the segment refuses."""
+    sym = symbols.get(v)
+    name = sym[0] if sym and sym[1] == "func" else None
+    if name is None or not _FUNC_AUTONAME_RE.match(name):
+        return name
+    size = census.get(v)
+    if int(name[5:], 16) != v or size is None or v + size > next_v:
+        return None
+    return name
+
+
 def load_flagsets():
     """{function_name: flagset} evidence, from matched.lock.json (per-function
     verified flags — the concrete authority for the acceptance batch)."""
@@ -176,6 +209,7 @@ def derive(splat_path=None):
     symbols = parse_symbol_addrs()
     regions = collect_regions()
     flag_by_fn = load_flagsets()
+    census = load_census_extents()
 
     segments = []
     for idx, sub in enumerate(subsegs):
@@ -188,7 +222,7 @@ def derive(splat_path=None):
         converted = sub["type"] == "c"
 
         seg = _derive_segment(sub, rom_start, vram_start, vram_end,
-                              converted, symbols, regions, flag_by_fn)
+                              converted, symbols, regions, flag_by_fn, census)
         segments.append(seg)
 
     # Synthetic dynamic-population entry (FR-011): unpromotable in V1.
@@ -202,7 +236,7 @@ def derive(splat_path=None):
 
 
 def _derive_segment(sub, rom_start, vram_start, vram_end, converted,
-                    symbols, regions, flag_by_fn):
+                    symbols, regions, flag_by_fn, census=None):
     yaml_name = hex(rom_start)
     rom_tu = sub["name"] if converted and sub["name"] else _rom_tu_name(rom_start)
     seg = {
@@ -239,9 +273,8 @@ def _derive_segment(sub, rom_start, vram_start, vram_end, converted,
         if pad is not None:
             refusal = f"data@{hex(pad)}: non-zero bytes not in any region"
             break
-        sym = symbols.get(v)
-        name = sym[0] if sym and sym[1] == "func" else None
-        if name is None or _FUNC_AUTONAME_RE.match(name or ""):
+        name = _canonical_name(v, next_v, symbols, census or {})
+        if name is None:
             refusal = f"unnamed@{hex(v)}"
             break
         funcs.append({"name": name, "vaddr": hex(v), "size": tiled,

@@ -78,7 +78,7 @@ def _game_image():
     global _image
     if _image is None:
         data = (ROOT / "assets/us/data.bin").read_bytes()
-        _image = zlib.decompressobj(-15).decompress(data[0xB0CB10 - 0x10000:0xB0CB10 - 0x10000 + 326180])
+        _image = zlib.decompressobj(-15).decompress(data[0xB0CB10 - 0x283D0:0xB0CB10 - 0x283D0 + 326180])
     return _image
 
 

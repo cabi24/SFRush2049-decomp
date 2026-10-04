@@ -9,7 +9,8 @@ import zlib
 ROOT = Path(__file__).resolve().parents[3]
 BASE = 0x8038A400
 IMAGE_SHA256 = 'b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd'
-ASSET_SHA256 = 'c348ea04768321ca2f864195ad6013a8fb15b59f0295ab74b8b16317cfa77154'
+# assets/us/data.bin = ROM 0x283D0-0xC00000 (boot-tail static extension; was ROM 0x10000-, c348ea04...)
+ASSET_SHA256 = 'f06d4ad0bb7dc7aff494acddc736f1b56bc271a2292c0286879cc9189bec31c8'
 BODIES = [(0x8038D3A4, 0x8038D498, {0x800C55E4}),
           (0x8038D798, 0x8038DA78, {0x800A61B0, 0x8008C768, 0x8038D3A4})]
 
@@ -20,8 +21,8 @@ def sha(data):
 
 def audit(path):
     asset = path.read_bytes()
-    assert len(asset) == 12517376 and sha(asset) == ASSET_SHA256
-    compressed = asset[0xB6FEC4 - 0x10000:]
+    assert len(asset) == 12418096 and sha(asset) == ASSET_SHA256
+    compressed = asset[0xB6FEC4 - 0x283D0:]
     inflater = zlib.decompressobj(-15)
     image = inflater.decompress(compressed)
     assert inflater.eof

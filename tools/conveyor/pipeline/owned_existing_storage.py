@@ -16,14 +16,14 @@ PROFILES={
     'timer_services':dict(tu='src/rom/lib_cc50.c',flags=FLAGS,
         source_sha256='8ea97f1232f2b872f37530130da9d8ccca45c26ba87a1ec9f03b317c61a22bd3',
         text_bytes=1120,data_bytes=16,bss_start=0x80037c30,bss_bytes=64,
-        data_offset=0x1cff0,
+        data_offset=0x4c20,
         members=('dll_remove','dll_init','dll_update','dll_reschedule','dll_insert','dll_get_priority'),
         new_members=('dll_init',)),
     'sdk_initialize':dict(tu='src/rom/lib_8a80.c',
         flags='-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm',
         source_sha256='7606f20fc4e2459c6de43e5be046a9389030c5c7a93db6548bf9729003e5fe80',
         text_bytes=848,data_bytes=32,bss_start=0x800367d0,bss_bytes=16,
-        data_offset=0x1cf60,members=('__osInitialize_common','__osPiReadDeviceType'),
+        data_offset=0x4b90,members=('__osInitialize_common','__osPiReadDeviceType'),
         new_members=('__osInitialize_common',)),
 }
 

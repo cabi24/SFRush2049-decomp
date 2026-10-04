@@ -19,7 +19,7 @@ STOP = 0x1000
 def load_game(root):
     data = (Path(root) / 'assets/us/data.bin').read_bytes()
     stream = zlib.decompressobj(-15)
-    game = stream.decompress(data[0xB0CB10 - 0x10000:])
+    game = stream.decompress(data[0xB0CB10 - 0x283D0:])
     if not stream.eof or hashlib.sha256(game).hexdigest() != GAME_SHA256:
         raise ValueError('game image authentication failed')
     return game

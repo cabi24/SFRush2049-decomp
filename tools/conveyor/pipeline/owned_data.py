@@ -15,9 +15,13 @@ import tempfile
 from pathlib import Path
 
 REGISTRY = 'rom_owned_data.json'
-# Reserved source-built compressed game slot within assets/us/data.bin.
-# Checked against blob_rom/Makefile by tests; this build helper stays standalone.
-SOURCE_BUILT_GAME_SLOT = 0xAFCB10
+# assets/us/data.bin is splat's `data` bin: ROM 0x283D0 (end of boot-segment
+# CPU code, vram 0x800277D0) to 0xC00000.
+DATA_ROM_START = 0x283D0
+# Reserved source-built compressed game slot within assets/us/data.bin
+# (ROM 0xB0CB10 - DATA_ROM_START). Checked against blob_rom/Makefile by tests;
+# this build helper stays standalone.
+SOURCE_BUILT_GAME_SLOT = 0xAE4740
 SOURCE_BUILT_GAME_LENGTH = 326180
 REPO = Path(__file__).resolve().parents[3]
 IDENT = re.compile(r'[A-Za-z_]\w*\Z')

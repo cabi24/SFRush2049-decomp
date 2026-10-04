@@ -91,6 +91,8 @@ endif
 UNDEFINED_SYMS := undefined_syms_auto.$(VERSION).txt
 UNDEFINED_FUNCS := undefined_funcs_auto.$(VERSION).txt
 HARDWARE_REGS := hardware_regs.ld
+# Historical names of census-renamed boot functions still used by locked C.
+SYMBOL_ALIASES := rom_symbol_aliases.ld
 SYMS_LD := $(BUILD_DIR)/syms.ld
 
 # Ownership dependencies ensure a registry/companion edit cannot reuse stale inputs.
@@ -98,7 +100,7 @@ OWNED_ROM_COMPANIONS := $(shell $(PYTHON) -m tools.conveyor.pipeline.owned_data 
 
 # Linker flags
 # --accept-unknown-input-arch allows linking binary blobs with different apparent arch
-LDFLAGS      := -T $(LD_SCRIPT) -T $(SYMS_LD) -T $(HARDWARE_REGS) -Map $(BUILD_DIR)/rush2049.$(VERSION).map --no-check-sections --accept-unknown-input-arch
+LDFLAGS      := -T $(LD_SCRIPT) -T $(SYMS_LD) -T $(HARDWARE_REGS) -T $(SYMBOL_ALIASES) -Map $(BUILD_DIR)/rush2049.$(VERSION).map --no-check-sections --accept-unknown-input-arch
 
 # Verbose output
 ifeq ($(VERBOSE),0)
@@ -256,7 +258,7 @@ $(SRC_DIR)/rom/storage_overrides.mk rom_owned_storage.ld: rom_owned_data.json to
 # fallback to the extracted bytes, or the gate would pass without proving
 # anything.
 GAME_BLOB      := build/blob/game_code.deflate
-GAME_BLOB_SLOT := 0xAFCB10
+GAME_BLOB_SLOT := 0xAE4740
 GAME_BLOB_LEN  := 326180
 
 $(BUILD_DIR)/$(ASSETS_DIR)/data.o: $(ASSETS_DIR)/data.bin $(GAME_BLOB) tools/compose_data.py rom_owned_data.json tools/conveyor/pipeline/owned_data.py $(OWNED_ROM_COMPANIONS) | $(BUILD_DIR)/$(ASSETS_DIR)
@@ -281,7 +283,7 @@ $(LD_SCRIPT): rom_owned_data.json tools/conveyor/pipeline/owned_data.py tools/co
 $(SRC_ROM_O): rom_owned_data.json tools/conveyor/pipeline/owned_data.py $(OWNED_ROM_COMPANIONS)
 
 # Link ELF
-$(ELF): $(O_FILES) $(LD_SCRIPT) $(SYMS_LD)
+$(ELF): $(O_FILES) $(LD_SCRIPT) $(SYMS_LD) $(SYMBOL_ALIASES)
 	@echo "LD $@"
 	$(V)$(LD) $(LDFLAGS) -o $@ $(O_FILES)
 

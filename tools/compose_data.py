@@ -3,7 +3,7 @@
 
     compose_data.py <data.bin> <game_code.deflate> <out> --slot OFF --length N
 
-`data.bin` is the extracted data segment (ROM 0x10000-0xC00000). The game-code
+`data.bin` is the extracted data segment (ROM 0x283D0-0xC00000). The game-code
 blob occupies [slot, slot+length) inside it. The output is data.bin's bytes
 before the slot, the blob built by `pipeline.blob_rom`, then data.bin's bytes
 after it — the original compressed bytes in the slot are never read.

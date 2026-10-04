@@ -5,7 +5,7 @@ from tools.conveyor.pipeline import owned_existing_storage as E,owned_storage as
 ROOT=Path(__file__).resolve().parents[2]
 @pytest.fixture
 def repo(tmp_path):
- row=json.loads((ROOT/'cloud/work/integration_B25/storage_record.json').read_text())
+ row=json.loads((ROOT/'cloud/work/boot_tail_extension/timer_services_storage_record.json').read_text())
  paths={row['source'],row['tu_before_source'],row['strict_proof'],row['context_proof'],row['linked_proof'],row['startup_proof'],'asm/us/1000.s','splat.us.yaml','Makefile','rush2049.us.ld'}|set(json.loads((ROOT/row['context_proof']).read_text()))
  for rel in paths:
   dst=tmp_path/rel;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copy(ROOT/rel,dst)
@@ -87,7 +87,7 @@ def test_publication_failure_restores_locks_and_regates(repo):
 
 
 def test_baseline_pointer_payload_corruption_refused(repo):
- root,row,targets=repo;data=root/'assets/us/data.bin';value=bytearray(data.read_bytes());value[0x1cff0]^=1;data.write_bytes(value)
+ root,row,targets=repo;data=root/'assets/us/data.bin';value=bytearray(data.read_bytes());value[int(row['data_slot']['offset'],0)]^=1;data.write_bytes(value)
  with pytest.raises(ValueError,match='pointer slot changed'):E.register(root,row,row['strict_proof_sha256'],targets)
 
 

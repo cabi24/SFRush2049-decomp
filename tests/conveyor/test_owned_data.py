@@ -138,7 +138,7 @@ def test_duplicate_owner_refuses(owner):
 
 def test_source_built_game_blob_cannot_be_owned(owner):
     from tools.conveyor.pipeline.blob_rom import ROM_OFFSET
-    repo,row,reg=owner;row['offset']=ROM_OFFSET-0x10000;save(repo,reg)
+    repo,row,reg=owner;row['offset']=ROM_OFFSET-O.DATA_ROM_START;save(repo,reg)
     with pytest.raises(O.OwnershipError,match='source-built'):O.rom_slots(repo)
 
 
@@ -191,12 +191,19 @@ def test_owned_gate_failure_restores_companion_and_function(tmp_path, monkeypatc
 
 def test_reserved_game_slot_matches_build_authority():
     from tools.conveyor.pipeline import blob_rom
-    assert O.SOURCE_BUILT_GAME_SLOT == blob_rom.ROM_OFFSET - 0x10000
+    assert O.SOURCE_BUILT_GAME_SLOT == blob_rom.ROM_OFFSET - O.DATA_ROM_START
     assert O.SOURCE_BUILT_GAME_LENGTH == blob_rom.LENGTH
     makefile = (Path(__file__).resolve().parents[2] / 'Makefile').read_text()
     import re
     assert int(re.search(r'^GAME_BLOB_SLOT\s*:=\s*(\S+)', makefile, re.M).group(1), 0) == O.SOURCE_BUILT_GAME_SLOT
     assert int(re.search(r'^GAME_BLOB_LEN\s*:=\s*(\S+)', makefile, re.M).group(1), 0) == O.SOURCE_BUILT_GAME_LENGTH
+
+
+def test_data_container_base_matches_splat_data_segment():
+    import re
+    splat = (Path(__file__).resolve().parents[2] / 'splat.us.yaml').read_text()
+    start = re.search(r'-\s*type:\s*bin\s*\n\s*start:\s*(0x[0-9A-Fa-f]+)\s*\n\s*name:\s*data\b', splat)
+    assert start and int(start.group(1), 16) == O.DATA_ROM_START
 
 
 def test_dependency_listing_works_without_ignored_assets(owner, capsys):

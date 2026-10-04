@@ -17,7 +17,7 @@ IMAGE_BASE = 0x80086A50
 IMAGE_BYTES = 647072
 DATA_BIN = ROOT / 'assets' / 'us' / 'data.bin'
 SYMBOLS_JSON = ROOT / 'asm' / 'us' / 'blob' / 'symbols.json'
-_DEFLATE_OFF, _DEFLATE_LEN, _ROM_OFF = 0xB0CB10 - 0x10000, 326180, 0xB0CB10
+_DEFLATE_OFF, _DEFLATE_LEN, _ROM_OFF = 0xB0CB10 - 0x283D0, 326180, 0xB0CB10
 
 
 def image_words():

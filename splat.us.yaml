@@ -176,10 +176,47 @@ segments:
       - [0xF450, c, rom/lib_f450]
       - [0xF4D0, c, rom/lib_f4d0]
       - [0xF700, c, rom/lib_f700]
+      # Boot-segment tail CPU code (vram 0x8000F680-0x800277D0). Subsegment starts are
+      # the S12 census function starts that follow inter-function alignment padding
+      # (IDO TU ends); see asm/us/boot_tail/extents.json.
+      - [0x10280, asm]
+      - [0x104D0, asm]
+      - [0x105F0, asm]
+      - [0x10760, asm]
+      - [0x10790, asm]
+      - [0x107A0, asm]
+      - [0x108B0, asm]
+      - [0x10970, asm]
+      - [0x109A0, asm]
+      - [0x10A00, asm]
+      - [0x10B60, asm]
+      - [0x10CC0, asm]
+      - [0x10D10, asm]
+      - [0x10D60, asm]
+      - [0x11050, asm]
+      - [0x113E0, asm]
+      - [0x11640, asm]
+      - [0x15930, asm]
+      - [0x15A10, asm]
+      - [0x16320, asm]
+      - [0x17DC0, asm]
+      - [0x1A660, asm]
+      - [0x1CF90, asm]
+      - [0x1ECE0, asm]
+      - [0x1F340, asm]
+      - [0x1F5B0, asm]
+      - [0x207B0, asm]
+      - [0x21210, asm]
+      - [0x22300, asm]
+      - [0x257F0, asm]
+      - [0x25BB0, asm]
+      - [0x26AB0, asm]
+      - [0x26F60, asm]
 
-  # Remaining ROM data (to be further segmented)
+  # Remaining ROM data: RSP microcode, boot data, then cartridge assets
+  # (to be further segmented)
   - type: bin
-    start: 0x10000
+    start: 0x283D0
     name: data
 
   # End of ROM

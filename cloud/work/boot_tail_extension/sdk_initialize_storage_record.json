@@ -1,0 +1,63 @@
+{
+  "owner": "sdk_initialize",
+  "kind": "bss",
+  "activation_mode": "existing_tu",
+  "active": false,
+  "tu": "src/rom/lib_8a80.c",
+  "source": "cloud/work/static_C18/full_module.c",
+  "source_sha256": "7606f20fc4e2459c6de43e5be046a9389030c5c7a93db6548bf9729003e5fe80",
+  "tu_before_source": "cloud/work/integration_B26/lib_8a80_before.c",
+  "tu_before_sha256": "9464866c77f194f86aa65deddf7e168be516700b5d41274faef95935adb820e1",
+  "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm",
+  "members": [
+    "__osInitialize_common",
+    "__osPiReadDeviceType"
+  ],
+  "new_members": [
+    "__osInitialize_common"
+  ],
+  "prior_locks": {
+    "__osPiReadDeviceType": {
+      "body_sha256": "745263f8efd78f723d93c4d0712733a42a0a665d8c20a5e41ab4c58208e24f25",
+      "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "target_id": "__osPiReadDeviceType",
+      "toolkit_sha": null,
+      "verified": "rom-sha1",
+      "verified_at": "2026-10-01"
+    }
+  },
+  "source_section": ".bss",
+  "input_section": ".bss.sdk_initialize",
+  "output_section": ".sdk_initialize_bss",
+  "vram_start": "0x800367d0",
+  "size": "0x10",
+  "aliases": [
+    {
+      "symbol": "gSpTaskState",
+      "offset": 0,
+      "size": 4
+    }
+  ],
+  "context_files": [],
+  "strict_proof": "cloud/work/static_C19/strict_verification.json",
+  "context_proof": "cloud/work/boot_tail_extension/sdk_initialize_compiler_context.json",
+  "linked_proof": "cloud/work/integration_B26/linked_sections.json",
+  "strict_proof_sha256": "7a75c581e841a05d788319153bb5acf9ab88959700bf19e889927005b9b6f608",
+  "context_proof_sha256": "45d1a18391a3c6875ef7727ab7faac7869b05a35c0ece6204cae3ee72776bc7c",
+  "linked_proof_sha256": "33c33415645bbd09061bcca8f07e435548c6ba04b42d5ad9d880beef5148e3ae",
+  "data_slot": {
+    "owner": "sdk_initialize_data",
+    "storage_owner": "sdk_initialize",
+    "tu": "src/rom/lib_8a80.c",
+    "source": "assets/us/data.bin",
+    "offset": "0x4b90",
+    "size": "0x20",
+    "container_vram": "0x800277d0",
+    "container_section": ".data",
+    "owner_section": ".data",
+    "sha256": "00eff670001b7953977665e4e87a8f811e3928fc8cce0f7ff5e8bf01d41559c6",
+    "composed_source": "build/us/assets/us/data.composed.bin"
+  },
+  "startup_proof": "cloud/work/integration_B26/startup_proof.json",
+  "startup_proof_sha256": "22a9062b752910d632ac06d79c29c9f9bd672be7688d4e20614f857dc441b894"
+}
