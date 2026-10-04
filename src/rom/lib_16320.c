@@ -85,7 +85,20 @@ int func_800164D0(u16 id, Descriptor *descriptors, u16 count)
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_8001661C.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_8001671C.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016998.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016BF8.s")
+/* PROMOTED 2026-10-04 — func_80016BF8
+ * Source:   cloud/matches/boot_tail/func_80016BF8.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/matches/boot_tail/func_80016BF8.c:func_80016BF8 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct PackedKey { unsigned char unknown00[4]; unsigned short key; } PackedKey;
+#pragma pack()
+int func_80016BF8(const PackedKey *left, const PackedKey *right)
+{
+    return left->key - right->key;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016C20.s")
 /* PROMOTED 2026-10-04 — func_80016CE0
  * Source:   cloud/matches/boot_tail/func_80016CE0.c (in-repo, locked)
@@ -99,11 +112,48 @@ int func_80016CE0(const unsigned short *left, const unsigned short *right)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016CF0.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016E40.s")
+/* PROMOTED 2026-10-04 — func_80016E40
+ * Source:   cloud/matches/boot_tail/func_80016E40.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/matches/boot_tail/func_80016E40.c:func_80016E40 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack()
+int func_80016E40(const PackedKey *left, const PackedKey *right)
+{
+    return left->key - right->key;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016E68.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016EE0.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016F58.s")
+/* PROMOTED 2026-10-04 — func_80016F58
+ * Source:   cloud/matches/boot_tail/func_80016F58.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/matches/boot_tail/func_80016F58.c:func_80016F58 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack()
+int func_80016F58(const PackedKey *left, const PackedKey *right)
+{
+    return left->key - right->key;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016F80.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80017018.s")
+/* PROMOTED 2026-10-04 — func_80017018
+ * Source:   cloud/matches/boot_tail/func_80017018.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/matches/boot_tail/func_80017018.c:func_80017018 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct PackedLeadingKey { unsigned short key; } PackedLeadingKey;
+#pragma pack()
+int func_80017018(const PackedLeadingKey *left, const PackedLeadingKey *right)
+{
+    return left->key - right->key;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80017040.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80017108.s")
