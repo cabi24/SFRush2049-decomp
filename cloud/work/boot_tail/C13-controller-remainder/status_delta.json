@@ -1,0 +1,47 @@
+{
+  "packet": "C13-controller-remainder",
+  "branch": "dot/boot-tail-c13-controller-remainder",
+  "base": "96b9dd1979f7c797f97a1dd2317fc0852092c0dc",
+  "attempted_functions": 2,
+  "attempted_bytes": 1304,
+  "local_match_functions": 0,
+  "local_match_bytes": 0,
+  "complete_nonmatch_functions": 2,
+  "complete_nonmatch_bytes": 1304,
+  "entries": [
+    {
+      "address": "0x800206AC",
+      "name": "func_800206AC",
+      "size": 372,
+      "cluster": "BT04",
+      "cohort": "C13",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 91,
+      "extra_words": 10,
+      "elf_function_bytes": 412,
+      "source_path": "cloud/work/boot_tail/C13-controller-remainder/nonmatch/func_800206AC.c",
+      "source_sha256": "df0064d44f0b68853d6c131d9ea3f018b29df04f8199f804a0a0d94d2bd8aea8",
+      "matching_blocker": "Native narrow-argument/result coalescing and allocation differ; exact ELF body length does not match at O2.",
+      "note": "Complete native reconstruction and bounded controls; C13-controller-remainder/README.md and scores.json. Zero matching credit; independent peer review PASS at d25da8a1; aggregate publication pending."
+    },
+    {
+      "address": "0x80020A04",
+      "name": "func_80020A04",
+      "size": 932,
+      "cluster": "BT04",
+      "cohort": "C13",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 233,
+      "extra_words": 8,
+      "elf_function_bytes": 968,
+      "source_path": "cloud/work/boot_tail/C13-controller-remainder/nonmatch/func_80020A04.c",
+      "source_sha256": "f26e5c3d585967bb03d7b5c488f593d365d82a6fb337ba9bf29fe1919874b303",
+      "matching_blocker": "Native narrow-argument/result coalescing and allocation differ; exact ELF body length does not match at O2.",
+      "note": "Complete native reconstruction and bounded controls; C13-controller-remainder/README.md and scores.json. Zero matching credit; independent peer review PASS at d25da8a1; aggregate publication pending."
+    }
+  ]
+}

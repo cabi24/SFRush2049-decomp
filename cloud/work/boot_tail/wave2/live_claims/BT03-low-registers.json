@@ -1,0 +1,28 @@
+{
+  "state": "frozen-review-pass-integrating",
+  "owner": "/root/match_boot_tail_low_registers",
+  "packet": "BT03-low-registers",
+  "branch": "dot/boot-tail-bt03-low-registers",
+  "base": "16763d4b4dd2f6d131f5ba31246094054121fb62",
+  "targets": [
+    {
+      "address": "0x8001558C",
+      "size": 348,
+      "end_exclusive": "0x800156E8"
+    },
+    {
+      "address": "0x80015C0C",
+      "size": 348,
+      "end_exclusive": "0x80015D68"
+    },
+    {
+      "address": "0x800163A8",
+      "size": 296,
+      "end_exclusive": "0x800164D0"
+    }
+  ],
+  "bytes": 992,
+  "edit_scope": "Only named matching sources and cloud/work/boot_tail/BT03-low-registers/**",
+  "stop": "Actual whole native/caller/callee ABI and domain proof; natural C89, O2/O1, bounded directed diagnosis. No protected edits, literals/table fabrication, prior exhausted-source reopening or hidden overlap. Reuse safe sparse storage.",
+  "reviewed_commit": "226698a74316b82c2bec29a78754774ec76d03eb"
+}

@@ -1,0 +1,25 @@
+{
+  "method": "Unchanged workbench; temporary canonical-word target object and original O2 candidate. Raw objects/words not committed; strict relocated score decides acceptance.",
+  "results": [
+    {
+      "name": "func_8001F6EC",
+      "stage": "Improved O2 before next bounded refinement",
+      "source_sha256": "2653bd4f4f3a95bd9265525b3670648045dc3546ca9c19a17fd1fbe9fbce60db",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 30,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  43 words=  30 raw=  41 opcodes=   5 gaps=   8 reloc_syms=  13 norm=  40 regs=  30 fp=   0 insns=  64 frame=  -24 sha1=8b486384aac0 /tmp/larger-8001F6EC-O2.o true_insn_delta=+0 geometry_edit_distance=40 opcode_distance=6",
+      "recorded_utc": "2026-10-04T01:08:49.565914+00:00"
+    },
+    {
+      "name": "func_80019AD4",
+      "stage": "Improved O2 before next bounded refinement",
+      "source_sha256": "9f9346302708e70060418a88e3a508c5b0c215efc5f73d21fd22976dd537cc58",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 18,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  20 words=  18 raw=  20 opcodes=   1 gaps=   0 reloc_syms=   2 norm=  18 regs=  18 fp=   0 insns=  68 frame=   -8 sha1=182144807887 /tmp/larger-80019AD4-O2.o",
+      "recorded_utc": "2026-10-04T01:08:50.023164+00:00"
+    }
+  ]
+}

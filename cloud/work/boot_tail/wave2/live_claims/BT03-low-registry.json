@@ -1,0 +1,30 @@
+{
+  "state": "frozen-review-pass-integrating",
+  "owner": "/root/verify_boot_tail_matches",
+  "packet": "BT03-low-registry",
+  "branch": "dot/boot-tail-bt03-low-registry",
+  "base": "b51423528a2971b16f2dcf111b7c96375cabd188",
+  "master_anchor": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x8001536C",
+      "size": 312,
+      "end_exclusive": "0x800154A4"
+    },
+    {
+      "address": "0x8001605C",
+      "size": 324,
+      "end_exclusive": "0x800161A0"
+    },
+    {
+      "address": "0x800161A0",
+      "size": 268,
+      "end_exclusive": "0x800162AC"
+    }
+  ],
+  "bytes": 904,
+  "edit_scope": "Only named matching sources and cloud/work/boot_tail/BT03-low-registry/**",
+  "stop": "Actual helper ABI and resource/registry domains; no prior source edits. Natural C89/O2/O1,20 directed variants maximum after diagnosis. No protected changes, overlaps, missing data substitution or unsupported narrow-formal declaration sweeps. Reuse current private storage.",
+  "peer_approved_head": "f05f9eeb7028a96cf76f9d85d7c06508d3be1d61",
+  "reviewed_commit": "f05f9eeb7028a96cf76f9d85d7c06508d3be1d61"
+}

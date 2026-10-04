@@ -1,0 +1,32 @@
+{
+  "reviewer": "BT07-stream-pair worker",
+  "reviewed_commit": "8c41049c56e1b70ea8830a3891fb767fef9b14cd",
+  "reviewed_tree": "56bc1d15056d17c2de9e3d0a57ca89e5f884c588",
+  "result": "PASS",
+  "strict_matches": 5,
+  "matching_bytes": 360,
+  "complete_nonmatch_functions": 1,
+  "complete_nonmatch_bytes": 92,
+  "checks": [
+    "Protected target manifest/inventory/compiler/getter strict replay",
+    "All five actual-source strict O2 matches and all O1 controls replayed",
+    "Actual-source host C89 O2 and ASan/UBSan O1 test replay",
+    "32-bit AudioSlot offsets/stride replay",
+    "Changed-submission checker 5/5",
+    "15 allowed changed files, clean immutable tree",
+    "Native source/ABI inspection for all six bodies and 80011A3C"
+  ],
+  "findings": [
+    "800075E0 is protected-symbol osJamMesg; osSendMesg is separately 80007440.",
+    "Signed nesting test and post-osRecvMesg counter reload are correct; signed-overflow states are explicitly excluded.",
+    "AudioSlot stride 104 and observed offsets 0/40/97 are correct; untouched bytes remain actual storage.",
+    "80014CAC compares top byte 0x80/0xB0 and one-address callback contract agrees with independent 80025AB4 native inspection.",
+    "8001489C is honestly preserved outside matches with O2 residual 11/23 and no excess; its one-argument 80011A3C call agrees with actual callee."
+  ],
+  "artifact_hashes": {
+    "bt03-low-medium-stream-review-replay.json": "50c7fcc53d2ea60748ecc81c888bf379810a33958eafc8ade27b27c6c4936897",
+    "bt03-low-medium-stream-review-host.json": "981dd442f3e1b4832d43a11fe995c5647fcd29f0d5df37ff62ccd5c025644040",
+    "bt03-low-medium-stream-review-submissions.txt": "4f97fa083f14709b41ce0e407d6d27a500643ea0d46dcc6d1a9b22e30f11f14e"
+  },
+  "notes": "Independent peer pass does not claim aggregate CI, maintainer acceptance, promotion, or cartridge coverage."
+}

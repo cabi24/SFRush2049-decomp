@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "calls": 6007,
+  "flags": [
+    "-std=c89",
+    "-pedantic-errors",
+    "-O2",
+    "-fno-fast-math",
+    "-ffp-contract=off",
+    "-fno-builtin"
+  ],
+  "leak_detection": "not requested",
+  "source_hashes": {
+    "cloud/matches/boot_tail/func_80024BF0.c": "ec2d8b2475a26be6a10597ef0e37dce48398df4ff9fd6f44cb59f647999a23ff",
+    "cloud/matches/boot_tail/func_80024C9C.c": "6bae726bc9b7131b0d01709eceda6ac24423296d9ee19a9b82c8f55e9f82f967",
+    "cloud/matches/boot_tail/func_80024D04.c": "3bdf2961c8e2dde3b2ddae9e76257f88981ae2dc29c9cac0c0bdfd469331b63c"
+  },
+  "controls": [
+    "1000 disjoint matrix transforms",
+    "1000 in-place sequential matrix transforms",
+    "1000 disjoint cross products",
+    "1000 cross outputs alias first input",
+    "1000 cross outputs alias second input",
+    "1000 finite vector normalizations",
+    "identity plus translation",
+    "oriented unit cross product",
+    "zero, negative zero, 3-4-0, infinity and NaN normalization"
+  ],
+  "limitation": "Host semantics only; MIPS layout and exact native floating operation order are verified separately. NaN payload equality is not asserted."
+}

@@ -1,0 +1,93 @@
+[
+  {
+    "name": "func_80022324",
+    "variant": "sdk_word_types",
+    "source_sha256": "89ac9f29a9343271c7697c35400d7a94176781425335b3362fd7e46e408f5bc3",
+    "score": {
+      "differing": 2,
+      "total": 43,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "name": "func_800230B0",
+    "variant": "sdk_word_types",
+    "source_sha256": "b8c5ba133d266949b626d235629be4888e310cd3a2b39e64b8571406093dff6e",
+    "score": {
+      "differing": 44,
+      "total": 56,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "name": "func_80023AD4",
+    "variant": "sdk_word_types",
+    "source_sha256": "7066bc97b9961bf3d9dd667da645dda11862b635ed0c79f52b25f4e42549cf95",
+    "score": {
+      "differing": 25,
+      "total": 31,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "name": "func_80023AD4",
+    "variant": "old_style_definition",
+    "source_sha256": "9afd668966697e463d651f33e9e145324d6e3d5b9836b790a25a0bf180bacacc",
+    "score": {
+      "differing": 25,
+      "total": 31,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "name": "func_80023B50",
+    "variant": "sdk_word_types",
+    "source_sha256": "ef2b0b5169ffd70e480456b94b62f8bcee8f3abdc96b65c1ad7343f13ad6f119",
+    "score": {
+      "differing": 33,
+      "total": 35,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "name": "func_80023B50",
+    "variant": "old_style_definition",
+    "source_sha256": "fd5004dff19d5286341b18ec5eb29af2943f323dabc1f03ae8a20e1831ec10f6",
+    "score": {
+      "differing": 33,
+      "total": 35,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "name": "func_80023DB8",
+    "variant": "sdk_word_types",
+    "source_sha256": "12cbd9182ba6d855639ea5d72d11ea34500f9bc274c61123fc64fd18fb708bbc",
+    "score": {
+      "differing": 49,
+      "total": 57,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 2
+    }
+  }
+]

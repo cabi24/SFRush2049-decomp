@@ -1,0 +1,25 @@
+{
+  "method": "Unchanged workbench; temporary canonical-word target object and original O2 candidate. Raw objects/words not committed; strict relocated score decides acceptance.",
+  "results": [
+    {
+      "name": "func_8001C1D8",
+      "stage": "Improved O2 before final bounded control",
+      "source_sha256": "92c5b94be108b9420d50c6e98b5a77d7026872847c393a47813dbc13ec64da5b",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 4,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=operand-mismatch aligned_total=  32 words=   4 raw=  32 opcodes=   0 gaps=   0 reloc_syms=  28 norm=   0 regs=   0 fp=   0 insns= 108 frame=  -24 sha1=70602631cc75 /tmp/runtime-lists-8001C1D8-O2.o",
+      "recorded_utc": "2026-10-04T01:57:38.545585+00:00"
+    },
+    {
+      "name": "func_8001EF8C",
+      "stage": "Improved O2 before final bounded control",
+      "source_sha256": "612f63a6a0aebad0788d78bef287d830023616d56f71186d007b73e0462b7808",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 88,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  76 words=  88 raw=  93 opcodes=  67 gaps=  16 reloc_syms=  17 norm=  53 regs=  86 fp=   0 insns= 108 frame=  -48 sha1=33918263b3db /tmp/runtime-lists-8001EF8C-O2.o true_insn_delta=+0 geometry_edit_distance=53 opcode_distance=22",
+      "recorded_utc": "2026-10-04T01:57:38.984474+00:00"
+    }
+  ]
+}

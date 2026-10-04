@@ -1,0 +1,35 @@
+{
+  "method": "Unchanged workbench; temporary canonical-word target object and original O2 candidate. Raw objects/words not committed; strict relocated score decides acceptance.",
+  "results": [
+    {
+      "name": "func_8001ECE0",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "f12328fb9769a45d1fa9d378e4432225f16f052531ef98fd2eb0f5212e7727e0",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 52,
+      "strict_extra_words": 4,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  40 words=  57 raw=  61 opcodes=  43 gaps=   7 reloc_syms=  13 norm=  31 regs=  54 fp=   5 insns=  74 frame=  -32 sha1=54b849a1682a /tmp/chains-8001ECE0-O2.o true_insn_delta=+5 geometry_edit_distance=31 opcode_distance=8",
+      "recorded_utc": "2026-10-04T01:30:03.969848+00:00"
+    },
+    {
+      "name": "func_8001B4A4",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "737cf661e2fd9e0b1b859cd26d9e03438e829525274265efed8e54a205ef126e",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 61,
+      "strict_extra_words": 2,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  23 words=  63 raw=  66 opcodes=  52 gaps=   8 reloc_syms=   9 norm=  16 regs=  60 fp=   2 insns=  86 frame=  -64 sha1=b3b6f22477b5 /tmp/chains-8001B4A4-O2.o true_insn_delta=+2 geometry_edit_distance=16 opcode_distance=5",
+      "recorded_utc": "2026-10-04T01:30:04.483319+00:00"
+    },
+    {
+      "name": "func_8001B5F4",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "db5b968e662d8cfe248427b1e4b3f7baea980f2ef20d9a042c2b56d697d10deb",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 61,
+      "strict_extra_words": 2,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  23 words=  63 raw=  66 opcodes=  52 gaps=   8 reloc_syms=   9 norm=  16 regs=  60 fp=   2 insns=  86 frame=  -64 sha1=58ff8c073a82 /tmp/chains-8001B5F4-O2.o true_insn_delta=+2 geometry_edit_distance=16 opcode_distance=5",
+      "recorded_utc": "2026-10-04T01:30:04.958136+00:00"
+    }
+  ]
+}

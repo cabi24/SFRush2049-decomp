@@ -1,0 +1,85 @@
+{
+  "packet": "BT03-low-resource",
+  "central_claim": "7d98cace",
+  "branch": "dot/boot-tail-bt03-low-resource",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "attempted_functions": 5,
+  "attempted_bytes": 644,
+  "local_match_functions": 4,
+  "local_match_bytes": 436,
+  "nonmatch_functions": 1,
+  "nonmatch_bytes": 208,
+  "entries": [
+    {
+      "address": "0x80014F14",
+      "name": "func_80014F14",
+      "size": 108,
+      "cluster": "BT03",
+      "status": "claimed",
+      "evidence_level": "LOCAL-STRICT-MATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80014F14.c",
+      "source_sha256": "cca1a01c186560ed70c5624628e7ed153b93e044505a2b947044d0ec2a7ded17",
+      "note": "First-try strict relocated O2 MATCH; actual two-pointer lookup/registration loop, live identifier reread and correct payload offset/helper ABI."
+    },
+    {
+      "address": "0x80014F80",
+      "name": "func_80014F80",
+      "size": 108,
+      "cluster": "BT03",
+      "status": "claimed",
+      "evidence_level": "LOCAL-STRICT-MATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80014F80.c",
+      "source_sha256": "277f080b50ee725a98b9e3bcb7727a96e8ac5b2a4c2ba6b56ae06324f35729e4",
+      "note": "First-try strict relocated O2 MATCH; actual two-pointer lookup/registration loop, live identifier reread and correct payload offset/helper ABI."
+    },
+    {
+      "address": "0x80014FEC",
+      "name": "func_80014FEC",
+      "size": 108,
+      "cluster": "BT03",
+      "status": "claimed",
+      "evidence_level": "LOCAL-STRICT-MATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80014FEC.c",
+      "source_sha256": "539977204891663b794dd95bb0602459caeb677e70b32f5d301e4e097f69f4cc",
+      "note": "First-try strict relocated O2 MATCH; actual two-pointer lookup/registration loop, live identifier reread and correct payload offset/helper ABI."
+    },
+    {
+      "address": "0x80015058",
+      "name": "func_80015058",
+      "size": 112,
+      "cluster": "BT03",
+      "status": "claimed",
+      "evidence_level": "LOCAL-STRICT-MATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80015058.c",
+      "source_sha256": "4004bedf19617e8c19913fac9ecb96ba20c8c49194089f802e650430e6c5181b",
+      "note": "First-try strict relocated O2 MATCH; actual two-pointer lookup/registration loop, live identifier reread and correct payload offset/helper ABI."
+    },
+    {
+      "address": "0x800154A4",
+      "name": "func_800154A4",
+      "size": 208,
+      "cluster": "BT03",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 17,
+      "source_path": "cloud/work/boot_tail/BT03-low-resource/func_800154A4_NONMATCH.c",
+      "source_sha256": "0a14155e3e925f37e591d1298eba3c2dc89799ea9a65225b6a01832724ba51c9",
+      "note": "Whole signed-count pop/dispatch body; O2 17/52, no excess or relocation uncertainty. Three natural body forms stop at count normalization and pointer operand allocation/order. No narrow-value sweeps; valid enabled count/table/resource geometry assumed."
+    }
+  ],
+  "source_review": {
+    "result": "PASS",
+    "reviewed_commit": "521cf064bb6370755486a54b973edecb6aaec3b2",
+    "reviewed_tree": "5a74cae75191c2872a2c64deaa50e38516c31eeb",
+    "receipt": "cloud/work/boot_tail/BT03-low-resource/REVIEW.json"
+  }
+}

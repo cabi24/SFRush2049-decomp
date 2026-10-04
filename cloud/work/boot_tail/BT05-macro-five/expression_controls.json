@@ -1,0 +1,54 @@
+[
+  {
+    "name": "func_80022324",
+    "variant": "single_id_expression",
+    "source_sha256": "c0e4d8bf1aa2f96403abc597747d769d8d641c091fda46f5c8cd1a0496d9c784",
+    "score": {
+      "differing": 8,
+      "total": 43,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "name": "func_800230B0",
+    "variant": "explicit_word_carriers",
+    "source_sha256": "8de3fa2b247f95bc502f4475abd339c38b37add969a72547e08a5cc999baa1ac",
+    "score": {
+      "differing": 46,
+      "total": 56,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "name": "func_80023AD4",
+    "variant": "index_assignment",
+    "source_sha256": "7eaf449fda2f8af154491ea04b6265430ca71104ae334aecbe5a1533f9f0511b",
+    "score": {
+      "differing": 25,
+      "total": 31,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "name": "func_80023B50",
+    "variant": "index_assignment",
+    "source_sha256": "fa2d2110eb6a3903b85df8148fce2b2cb75c716627255a398388e33e2a07fff1",
+    "score": {
+      "differing": 33,
+      "total": 35,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]

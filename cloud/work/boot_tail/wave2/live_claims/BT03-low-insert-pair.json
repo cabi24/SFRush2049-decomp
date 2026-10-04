@@ -1,0 +1,24 @@
+{
+  "state": "frozen-review-pass",
+  "owner": "/root/verify_boot_tail_matches",
+  "packet": "BT03-low-insert-pair",
+  "branch": "dot/boot-tail-bt03-low-insert-pair",
+  "base": "469eff3b6a6d0ee642fffe011daf8075d3599655",
+  "targets": [
+    {
+      "address": "0x80015D68",
+      "size": 448,
+      "end_exclusive": "0x80015F28"
+    },
+    {
+      "address": "0x8001671C",
+      "size": 636,
+      "end_exclusive": "0x80016998"
+    }
+  ],
+  "bytes": 1084,
+  "edit_scope": "Only named matching sources and cloud/work/boot_tail/BT03-low-insert-pair/**",
+  "stop": "Actual key/payload pointer ABI and native packed record/bucket contracts; lock-order and live mutation semantics; exact ELF function size; natural C89/O2/O1 and bounded diagnosis. No fabricated layout, prior residual reopening or protected edits.",
+  "reviewed_commit": "9a69f9fdc69b28e93ee2ed051ea9c075574349ad",
+  "reviewed_tree": "033f6f23304f7fdd031f86d6fc07cc54406d2d87"
+}

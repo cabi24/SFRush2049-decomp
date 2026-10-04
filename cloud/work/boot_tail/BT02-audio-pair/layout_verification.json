@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "compiler": "pinned IDO 5.3",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "results": [
+    {
+      "function": "func_80011F60",
+      "source_sha256": "69f0be26a4ddae6ab534dba43d44b07910a60434c05435c9aabdf8a2da4f2a29",
+      "checks": [
+        "sizeof(void *) == 4",
+        "sizeof(unsigned int) == 4",
+        "sizeof(AudioBufferNode) == 20",
+        "(unsigned int)&((AudioBufferNode *)0)->next == 0",
+        "(unsigned int)&((AudioBufferNode *)0)->previous == 4",
+        "(unsigned int)&((AudioBufferNode *)0)->buffer == 8"
+      ],
+      "result": "PASS"
+    },
+    {
+      "function": "func_800123A8",
+      "source_sha256": "2687fc845a55ad430088b467f75db563303ef9ec321fe59b441af62a63f6ee4b",
+      "checks": [
+        "sizeof(void *) == 4",
+        "sizeof(unsigned int) == 4",
+        "sizeof(unsigned short) == 2",
+        "sizeof(AudioCacheNode) == 24",
+        "(unsigned int)&((AudioCacheNode *)0)->next == 0",
+        "(unsigned int)&((AudioCacheNode *)0)->previous == 4",
+        "(unsigned int)&((AudioCacheNode *)0)->buffer == 20"
+      ],
+      "result": "PASS"
+    }
+  ]
+}

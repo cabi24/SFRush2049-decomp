@@ -1,0 +1,76 @@
+{
+  "result": "BOUNDED_STOP",
+  "controls": [
+    {
+      "name": "func_80021F84",
+      "control": "explicit_high_bit_guard",
+      "source_sha256": "4cabcae753beb07383f16677737b42f3602d15d63afa0b607263226cae88eae3",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 45,
+      "total_words": 119,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80021F84",
+      "control": "guarded_common_zero_return",
+      "source_sha256": "ac12a86b4a80a9a3bc2778ce6a50c9a8b953a002f641faef8401b4d5f7bd5738",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 35,
+      "total_words": 119,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80021F84",
+      "control": "word_offset_extract",
+      "source_sha256": "8bee6569793c61a2c36e0eb7fcf017186197d6c3a60080359c9ca067f2b575d3",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 36,
+      "total_words": 119,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80022A98",
+      "control": "explicit_signed_byte_extracts",
+      "source_sha256": "b7d48f577bddd926e38db7a8836a676beb9e939d01cb393b5de8e978ed2b4f85",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 57,
+      "total_words": 112,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    }
+  ],
+  "diagnosis": {
+    "80021F84": {
+      "aligned_constant": 0,
+      "aligned_deletions": 4,
+      "aligned_insertions": 5,
+      "aligned_register": 2,
+      "aligned_schedule": 0,
+      "frame": -24
+    },
+    "80022A98": {
+      "aligned_constant": 0,
+      "aligned_deletions": 0,
+      "aligned_insertions": 1,
+      "aligned_register": 30,
+      "aligned_schedule": 0,
+      "frame": -32
+    }
+  },
+  "note": "Loop guard/common-result control improves54 to35; word offset extract is36. Signed-byte extraction control remains57. No declaration or register sweep."
+}

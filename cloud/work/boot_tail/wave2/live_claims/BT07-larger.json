@@ -1,0 +1,22 @@
+{
+  "state": "active",
+  "owner": "/root/match_boot_tail_bt07_larger",
+  "packet": "BT07-larger",
+  "branch": "dot/boot-tail-bt07-larger",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x800259A8",
+      "size": 268,
+      "end_exclusive": "0x80025AB4"
+    },
+    {
+      "address": "0x80025C68",
+      "size": 284,
+      "end_exclusive": "0x80025D84"
+    }
+  ],
+  "bytes": 552,
+  "edit_scope": "Only listed matching files and cloud/work/boot_tail/BT07-larger/**",
+  "stop": "Natural C89/O2/O1 real ABI,20 directed variants max; no protected edits, overlap, unproved rodata, out-of-scope data inspection or frozen residual reopening. Audit references without reading microcode/data bytes."
+}

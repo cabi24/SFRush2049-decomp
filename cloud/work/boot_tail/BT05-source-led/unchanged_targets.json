@@ -1,0 +1,12 @@
+{
+  "func_800223D0": {
+    "preserve_source": "cloud/work/boot_tail/BT05-medium/nonmatch/func_800223D0.c",
+    "preserve_diff_words": 11,
+    "reason": "New donor control is14/27; do not replace the prior better reconstruction."
+  },
+  "func_80022514": {
+    "preserve_source": "cloud/work/boot_tail/BT05-medium-next/nonmatch/func_80022514.c",
+    "preserve_diff_words": 23,
+    "reason": "New donor control is23/27; preserve frozen prior source and record source-family lead only."
+  }
+}

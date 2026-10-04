@@ -1,0 +1,190 @@
+{
+  "BSD_PRINTF": {
+    "kind": "Modern format parser contrast; digit tables/null handling do not establish source ancestry",
+    "license": "BSD-3-Clause in file header",
+    "links": [
+      "https://github.com/FreeBSD/freebsd-src/blob/262fa4695d90207b9080f2cc5cb01eccf07fe243/lib/libc/stdio/vfprintf.c"
+    ],
+    "paths": [
+      "lib/libc/stdio/vfprintf.c"
+    ],
+    "project": "FreeBSD/freebsd-src",
+    "revision": "262fa4695d90207b9080f2cc5cb01eccf07fe243"
+  },
+  "LIBDRAGON_AUDIO": {
+    "kind": "Modern audio-buffer/AI hardware design contrast, not historical donor",
+    "license": "Unlicense/public-domain dedication per LICENSE.md",
+    "links": [
+      "https://github.com/DragonMinded/libdragon/blob/e356bf3f56f7afbf7e5246329562f145965cfdfc/src/audio.c",
+      "https://github.com/DragonMinded/libdragon/blob/e356bf3f56f7afbf7e5246329562f145965cfdfc/LICENSE.md"
+    ],
+    "paths": [
+      "src/audio.c",
+      "LICENSE.md"
+    ],
+    "project": "DragonMinded/libdragon",
+    "revision": "e356bf3f56f7afbf7e5246329562f145965cfdfc"
+  },
+  "LIBRE_PRINTF": {
+    "kind": "structure comparisons, not matches",
+    "license": "No license/copying file in pinned recursive tree; these source files have no permissive grant. Structure-only; do not vendor.",
+    "links": [
+      "https://github.com/n64decomp/libreultra/blob/1aca5c13ca041cef86f8dc194b727361dad9c09b/src/libc/xprintf.c"
+    ],
+    "paths": [
+      "src/libc/xprintf.c"
+    ],
+    "project": "n64decomp/libreultra",
+    "revision": "1aca5c13ca041cef86f8dc194b727361dad9c09b"
+  },
+  "LIBRE_QUEUE": {
+    "kind": "structure comparisons, not matches",
+    "license": "No license/copying file in pinned recursive tree; these source files have no permissive grant. Structure-only; do not vendor.",
+    "links": [
+      "https://github.com/n64decomp/libreultra/blob/1aca5c13ca041cef86f8dc194b727361dad9c09b/src/io/piacs.c"
+    ],
+    "paths": [
+      "src/io/piacs.c"
+    ],
+    "project": "n64decomp/libreultra",
+    "revision": "1aca5c13ca041cef86f8dc194b727361dad9c09b"
+  },
+  "MUSYX_API": {
+    "kind": "Named SOURCE-LEAD definitions for specific targets; PC/Dolphin sources with version2.x defaults, not a proven N64 source drop",
+    "license": "CC0-1.0 in pinned LICENSE (not cached default-branch web MIT rendering)",
+    "license_url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/LICENSE",
+    "links": [
+      "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/src/musyx/runtime/snd_synthapi.c"
+    ],
+    "paths": [
+      "src/musyx/runtime/snd_synthapi.c"
+    ],
+    "project": "AxioDL/musyx",
+    "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+    "version_context": "include/musyx/version.h: PC/Dolphin 2.x context; N64 version/layout unproved"
+  },
+  "MUSYX_INIT": {
+    "kind": "Named SOURCE-LEAD definitions for specific targets; PC/Dolphin sources with version2.x defaults, not a proven N64 source drop",
+    "license": "CC0-1.0 in pinned LICENSE (not cached default-branch web MIT rendering)",
+    "license_url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/LICENSE",
+    "links": [
+      "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/src/musyx/runtime/snd_init.c"
+    ],
+    "paths": [
+      "src/musyx/runtime/snd_init.c"
+    ],
+    "project": "AxioDL/musyx",
+    "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+    "version_context": "include/musyx/version.h: PC/Dolphin 2.x context; N64 version/layout unproved"
+  },
+  "MUSYX_MACROS": {
+    "kind": "Named SOURCE-LEAD definitions for specific targets; PC/Dolphin sources with version2.x defaults, not a proven N64 source drop",
+    "license": "CC0-1.0 in pinned LICENSE (not cached default-branch web MIT rendering)",
+    "license_url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/LICENSE",
+    "links": [
+      "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/src/musyx/runtime/synthmacros.c"
+    ],
+    "paths": [
+      "src/musyx/runtime/synthmacros.c"
+    ],
+    "project": "AxioDL/musyx",
+    "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+    "version_context": "include/musyx/version.h: PC/Dolphin 2.x context; N64 version/layout unproved"
+  },
+  "MUSYX_MATH": {
+    "kind": "Named SOURCE-LEAD definitions for specific targets; PC/Dolphin sources with version2.x defaults, not a proven N64 source drop",
+    "license": "CC0-1.0 in pinned LICENSE (not cached default-branch web MIT rendering)",
+    "license_url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/LICENSE",
+    "links": [
+      "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/src/musyx/runtime/snd_math.c"
+    ],
+    "paths": [
+      "src/musyx/runtime/snd_math.c"
+    ],
+    "project": "AxioDL/musyx",
+    "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+    "version_context": "include/musyx/version.h: PC/Dolphin 2.x context; N64 version/layout unproved"
+  },
+  "MUSYX_MIDICTRL": {
+    "kind": "Named SOURCE-LEAD definitions for specific targets; PC/Dolphin sources with version2.x defaults, not a proven N64 source drop",
+    "license": "CC0-1.0 in pinned LICENSE (not cached default-branch web MIT rendering)",
+    "license_url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/LICENSE",
+    "links": [
+      "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/src/musyx/runtime/snd_midictrl.c"
+    ],
+    "paths": [
+      "src/musyx/runtime/snd_midictrl.c"
+    ],
+    "project": "AxioDL/musyx",
+    "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+    "version_context": "include/musyx/version.h: PC/Dolphin 2.x context; N64 version/layout unproved"
+  },
+  "MUSYX_SERVICE": {
+    "kind": "Named SOURCE-LEAD definitions for specific targets; PC/Dolphin sources with version2.x defaults, not a proven N64 source drop",
+    "license": "CC0-1.0 in pinned LICENSE (not cached default-branch web MIT rendering)",
+    "license_url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/LICENSE",
+    "links": [
+      "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/src/musyx/runtime/snd_service.c"
+    ],
+    "paths": [
+      "src/musyx/runtime/snd_service.c"
+    ],
+    "project": "AxioDL/musyx",
+    "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+    "version_context": "include/musyx/version.h: PC/Dolphin 2.x context; N64 version/layout unproved"
+  },
+  "MUSYX_STREAM": {
+    "kind": "Named SOURCE-LEAD definitions for specific targets; PC/Dolphin sources with version2.x defaults, not a proven N64 source drop",
+    "license": "CC0-1.0 in pinned LICENSE (not cached default-branch web MIT rendering)",
+    "license_url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/LICENSE",
+    "links": [
+      "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/src/musyx/runtime/stream.c"
+    ],
+    "paths": [
+      "src/musyx/runtime/stream.c"
+    ],
+    "project": "AxioDL/musyx",
+    "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+    "version_context": "include/musyx/version.h: PC/Dolphin 2.x context; N64 version/layout unproved"
+  },
+  "ULTRA_PRINTF": {
+    "kind": "structure comparisons, not matches",
+    "license": "No project-wide license found in pinned recursive tree. sptask.h/mbi.h carry SGI proprietary notices. Structure-only; do not vendor.",
+    "links": [
+      "https://github.com/decompals/ultralib/blob/e24c836796df4bf520ff8b11a5c9d2cea3a66cbd/src/libc/xprintf.c"
+    ],
+    "paths": [
+      "src/libc/xprintf.c"
+    ],
+    "project": "decompals/ultralib",
+    "revision": "e24c836796df4bf520ff8b11a5c9d2cea3a66cbd"
+  },
+  "ULTRA_QUEUE": {
+    "kind": "structure comparisons, not matches",
+    "license": "No project-wide license found in pinned recursive tree. sptask.h/mbi.h carry SGI proprietary notices. Structure-only; do not vendor.",
+    "links": [
+      "https://github.com/decompals/ultralib/blob/e24c836796df4bf520ff8b11a5c9d2cea3a66cbd/src/io/piacs.c"
+    ],
+    "paths": [
+      "src/io/piacs.c"
+    ],
+    "project": "decompals/ultralib",
+    "revision": "e24c836796df4bf520ff8b11a5c9d2cea3a66cbd"
+  },
+  "ULTRA_TASK": {
+    "kind": "structure comparisons, not matches",
+    "license": "No project-wide license found in pinned recursive tree. sptask.h/mbi.h carry SGI proprietary notices. Structure-only; do not vendor.",
+    "links": [
+      "https://github.com/decompals/ultralib/blob/e24c836796df4bf520ff8b11a5c9d2cea3a66cbd/src/io/sptask.c",
+      "https://github.com/decompals/ultralib/blob/e24c836796df4bf520ff8b11a5c9d2cea3a66cbd/include/PR/sptask.h",
+      "https://github.com/decompals/ultralib/blob/e24c836796df4bf520ff8b11a5c9d2cea3a66cbd/include/PR/mbi.h"
+    ],
+    "paths": [
+      "src/io/sptask.c",
+      "include/PR/sptask.h",
+      "include/PR/mbi.h"
+    ],
+    "project": "decompals/ultralib",
+    "revision": "e24c836796df4bf520ff8b11a5c9d2cea3a66cbd"
+  }
+}

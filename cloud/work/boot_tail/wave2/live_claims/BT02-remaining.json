@@ -1,0 +1,53 @@
+{
+  "state": "active",
+  "owner": "/root/match_boot_tail_bt02_remaining",
+  "packet": "BT02-remaining",
+  "branch": "dot/boot-tail-p4-bt02-remaining",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x80010980",
+      "size": 64,
+      "end_exclusive": "0x800109C0"
+    },
+    {
+      "address": "0x800109C0",
+      "size": 64,
+      "end_exclusive": "0x80010A00"
+    },
+    {
+      "address": "0x80011074",
+      "size": 80,
+      "end_exclusive": "0x800110C4"
+    },
+    {
+      "address": "0x800110C4",
+      "size": 64,
+      "end_exclusive": "0x80011104"
+    },
+    {
+      "address": "0x800118C0",
+      "size": 80,
+      "end_exclusive": "0x80011910"
+    },
+    {
+      "address": "0x80011CD8",
+      "size": 76,
+      "end_exclusive": "0x80011D24"
+    },
+    {
+      "address": "0x80014488",
+      "size": 104,
+      "end_exclusive": "0x800144F0"
+    },
+    {
+      "address": "0x800144F0",
+      "size": 96,
+      "end_exclusive": "0x80014550"
+    }
+  ],
+  "bytes": 628,
+  "prior_packet": "BT02-medium independently approved and frozen696db6aa",
+  "edit_scope": "Only listed match sources and cloud/work/boot_tail/BT02-remaining/**",
+  "stop": "Natural C89/O2/O1 real helper/callback ABI,20 directed variants max; no protected edits, overlapping targets or frozen residual reopening."
+}

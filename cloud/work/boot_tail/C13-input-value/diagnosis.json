@@ -1,0 +1,28 @@
+{
+  "command": "python3 tools/workbench.py diagnose <canonical-function.o> <fully-relocated-candidate.o> --function func_80021150 --objdump <GNU-MIPS-objdump> --json",
+  "scope": "Temporary objects only; no words, raw listings or objects committed. Strict score.py, not alignment heuristics, decides matching.",
+  "results": [
+    {
+      "stage": "initial: before source refinements",
+      "verdict": "structure-mismatch",
+      "instruction_delta": 2,
+      "target_frame_bytes": 88,
+      "candidate_frame_bytes": 88,
+      "aligned_total": 29,
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "none-known"
+    },
+    {
+      "stage": "improved: before any subsequent refinements",
+      "verdict": "structure-mismatch",
+      "instruction_delta": 0,
+      "target_frame_bytes": 88,
+      "candidate_frame_bytes": 88,
+      "aligned_total": 24,
+      "owning_pass": "cfe-spelling",
+      "ownership_basis": "heuristic",
+      "lever_class": "none-known"
+    }
+  ]
+}

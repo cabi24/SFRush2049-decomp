@@ -1,0 +1,18 @@
+{
+  "result": "PASS",
+  "source_units": 5,
+  "abi": "i386 32-bit layout compile; native-width execution",
+  "language": "C89",
+  "tested": [
+    "layout and preserved object bytes",
+    "queue arguments",
+    "initializer fields and null guards",
+    "7680 state/countdown/consume cases",
+    "token search, selected-record exclusion, conflict avoidance and sentinel wrap"
+  ],
+  "limitations": [
+    "source semantics only; native targets not executed",
+    "kernel cannot execute i386; host uses native pointer width",
+    "LeakSanitizer disabled under ptrace; ASan and UBSan enabled"
+  ]
+}

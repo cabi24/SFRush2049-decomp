@@ -1,0 +1,108 @@
+[
+  {
+    "name": "func_8001489C",
+    "variant": "local_condition",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "8e966de815c0f0ed0bacfc85b24fc16f80914983bc4a46d6edc5d96ca18106c3",
+    "differing": 11,
+    "total": 23,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "strict_match": false
+  },
+  {
+    "name": "func_8001489C",
+    "variant": "register_parameter",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "c353980d8f37f47f88f776195fab7d955f14aa4081c24805271a927bcbb24bce",
+    "differing": 11,
+    "total": 23,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "strict_match": false
+  },
+  {
+    "name": "func_8001489C",
+    "variant": "early_return",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "37122aabce6d4b41760d9a50cd7f556a5d3d752875aa20a2e5c1d4d1f2d2f794",
+    "differing": 11,
+    "total": 23,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "strict_match": false
+  },
+  {
+    "name": "func_8001489C",
+    "variant": "old_style_decl",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "9cc8a3a6de02c9709aaa3079d5abe5dd587e1085513e0aee93c0a7ace3daa427",
+    "differing": 11,
+    "total": 23,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "strict_match": false
+  },
+  {
+    "name": "func_8001489C",
+    "variant": "unsigned_index",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "1fb0a9087d0253cd799b1ae58a504bd6aaacaa5ba961fc084241d885d03eba69",
+    "differing": 11,
+    "total": 23,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "strict_match": false
+  },
+  {
+    "name": "func_8001489C",
+    "variant": "conditional_store",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "ee57bcc60258617988ed7e263bcf2aeb30d100f98fb89a31da5f8b6600014b08",
+    "differing": 23,
+    "total": 23,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_80038294 at .text+0x58"
+    ],
+    "extra_words": 13,
+    "strict_match": false
+  },
+  {
+    "name": "func_8001489C",
+    "variant": "slot_local",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "3a7cc023fd6e7d209998f9f0d1f8fc2209522de33f3b94f1225dec3e769e9180",
+    "differing": 22,
+    "total": 23,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "strict_match": false
+  },
+  {
+    "name": "func_8001489C",
+    "variant": "byte_pointer",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "cb797796946acf1e9bbcc166a260e53c9d89a7dd8777d723ac000a167864481a",
+    "differing": 11,
+    "total": 23,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "strict_match": false
+  }
+]

@@ -1,0 +1,58 @@
+{
+  "tool": "tools/workbench.py diagnose",
+  "result": "Complete before refinement",
+  "results": [
+    {
+      "name": "func_8001785C",
+      "stage": "Initial O2 diagnosis before any source refinement",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_sha256": "22bcd87a619f1461ee182ccc24ed6a2f1d373cd0c5123371a131a79de3868646",
+      "strict_differing_words": 17,
+      "strict_extra_words": 1,
+      "workbench_verdict": "structure-mismatch",
+      "workbench_summary": "verdict=structure-mismatch aligned_total=   7 words=  19 raw=  19 opcodes=  17 gaps=   2 reloc_syms=   2 norm=   7 regs=  18 fp=   2 insns=  23 frame= None sha1=86d85ce37c17 /tmp/bt03med_8001785C_O2.o true_insn_delta=+2 geometry_edit_distance=7 opcode_distance=2",
+      "recorded_utc": "2026-10-03T20:47:07.994478+00:00",
+      "target_construction": "Temporary .text function object from unchanged, manifest-verified canonical target words; raw words and objects not committed.",
+      "caution": "Canonical object has fixed instruction words but no relocation records. Workbench relocation-label cautions are not strict scorer failures; relocated score.py decides acceptance."
+    },
+    {
+      "name": "func_80018AEC",
+      "stage": "Initial O2 diagnosis before any source refinement",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_sha256": "e4a716e22c7dc68be2fb7bcc324aca0ab88f1ee8ea28b1781b4500804f6b4930",
+      "strict_differing_words": 7,
+      "strict_extra_words": 0,
+      "workbench_verdict": "allocation-mismatch",
+      "workbench_summary": "verdict=allocation-mismatch aligned_total=   9 words=   7 raw=   9 opcodes=   0 gaps=   0 reloc_syms=   2 norm=   5 regs=   5 fp=   0 insns=  20 frame= None sha1=ea58ce333b48 /tmp/bt03med_80018AEC_O2.o",
+      "recorded_utc": "2026-10-03T20:47:08.513020+00:00",
+      "target_construction": "Temporary .text function object from unchanged, manifest-verified canonical target words; raw words and objects not committed.",
+      "caution": "Canonical object has fixed instruction words but no relocation records. Workbench relocation-label cautions are not strict scorer failures; relocated score.py decides acceptance."
+    },
+    {
+      "name": "func_80019A60",
+      "stage": "Initial O2 diagnosis before any source refinement",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_sha256": "ddeb3d33964a58cc3bdb7d7380d65244bdcb1bac41b8ad5fc75d04ed1be4ffcf",
+      "strict_differing_words": 6,
+      "strict_extra_words": 0,
+      "workbench_verdict": "structure-mismatch",
+      "workbench_summary": "verdict=structure-mismatch aligned_total=   8 words=   6 raw=   8 opcodes=   1 gaps=   0 reloc_syms=   2 norm=   5 regs=   5 fp=   0 insns=  18 frame= None sha1=8c3c738e1942 /tmp/bt03med_80019A60_O2.o",
+      "recorded_utc": "2026-10-03T20:47:08.998791+00:00",
+      "target_construction": "Temporary .text function object from unchanged, manifest-verified canonical target words; raw words and objects not committed.",
+      "caution": "Canonical object has fixed instruction words but no relocation records. Workbench relocation-label cautions are not strict scorer failures; relocated score.py decides acceptance."
+    },
+    {
+      "name": "func_8001BDB8",
+      "stage": "Initial O2 diagnosis before any source refinement",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_sha256": "c59e6e771e8d1276cd0404dfb7c5cef6c885700513b1c6bea67d587565bade4d",
+      "strict_differing_words": 15,
+      "strict_extra_words": 0,
+      "workbench_verdict": "structure-mismatch",
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  15 words=  15 raw=  15 opcodes=  10 gaps=   2 reloc_syms=   2 norm=  26 regs=  14 fp=   0 insns=  23 frame= None sha1=ac7d22f3cc64 /tmp/bt03med_8001BDB8_O2.o true_insn_delta=+0 geometry_edit_distance=26 opcode_distance=2",
+      "recorded_utc": "2026-10-03T20:47:09.482419+00:00",
+      "target_construction": "Temporary .text function object from unchanged, manifest-verified canonical target words; raw words and objects not committed.",
+      "caution": "Canonical object has fixed instruction words but no relocation records. Workbench relocation-label cautions are not strict scorer failures; relocated score.py decides acceptance."
+    }
+  ]
+}

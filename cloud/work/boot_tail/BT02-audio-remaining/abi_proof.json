@@ -1,0 +1,69 @@
+{
+  "scope": "Metadata hashes for actually inspected native targets and cross-checked source contracts; no target bytes are included.",
+  "native_targets": {
+    "func_80013DEC": {
+      "native_bytes": 780,
+      "target_sha256": "f7250628f208b1052962cfca9f4af3d4e0a2ee762b11b7c72340db1ebf56f6ee"
+    },
+    "func_80014198": {
+      "native_bytes": 476,
+      "target_sha256": "9db71912dbd113986ea152205c39655a82509692dd07a224adc72659caca93cc"
+    },
+    "func_80011104": {
+      "native_bytes": 840,
+      "target_sha256": "f63a000ef027704cb99cfe8d1ec500b445c1445028f46ca350ce9bbe0a3e3c97"
+    },
+    "func_800114C0": {
+      "native_bytes": 904,
+      "target_sha256": "343c229bfb0a23a5cd5e1b459d3629d1e370328a0d9ec9b0d96938e6127483b8"
+    },
+    "func_80010DD8": {
+      "native_bytes": 168,
+      "target_sha256": "a7d787d7661d3097f2bd4c5e08cf0efbd2ffb5085350471da4b3decdac191fcf"
+    },
+    "func_800140F8": {
+      "native_bytes": 72,
+      "target_sha256": "9f20a3baf8af53f82dfe0f82056cdba41034e4fbf60e6dfb207ab6bb680e932e"
+    },
+    "func_800143C0": {
+      "native_bytes": 116,
+      "target_sha256": "2b2a955275b8aa5fa40c202321689cb3b0290f94e26bc186bd20a0e7c670e112"
+    },
+    "func_80014434": {
+      "native_bytes": 84,
+      "target_sha256": "1014f20041b4c3c843881aeaf690ee9d7320ff9edd8ff412b1b75cfad3253e5a"
+    },
+    "func_80014624": {
+      "native_bytes": 44,
+      "target_sha256": "6c8a20646e2de9572b154c12db08f11923a424bc0d6c0402e7c94f3669778e38"
+    },
+    "func_80014650": {
+      "native_bytes": 44,
+      "target_sha256": "13fa9c57428367d9f4c5c2982d0cf5f88d4c7f0b421d49bcf0f5d7dab5697d1f"
+    },
+    "func_8001C3CC": {
+      "native_bytes": 316,
+      "target_sha256": "d0d257914dc5116a0af3624ebe3761cb359275cd996e4b5b455b71be26e6bccf"
+    },
+    "func_8001C508": {
+      "native_bytes": 120,
+      "target_sha256": "60a0d1e9ec709d4fad2bde87b35208d7ce2e4eefbf59f34464410b6a884f1955"
+    },
+    "func_8001DDE0": {
+      "native_bytes": 736,
+      "target_sha256": "b25c9dad57529084d74f5e19b3d427594cd62deabc62f16c5a6ef7741abd8320"
+    },
+    "func_8001D928": {
+      "native_bytes": 28,
+      "target_sha256": "de11151a80e6e53eba2f62b66e8ff2e8499c2fe923bf6ac8596c3d9a22d6bc0f"
+    }
+  },
+  "source_contracts": {
+    "asm/us/D0B0.s": "2129648db553566b5b22c62730146b3d6492a763501f7b5c07dc6bbf3f2e991a",
+    "cloud/matches/boot_tail/func_80010A40.c": "46ca729c4d5bf131c4fc1b86f088ef2bbc09317362fded53eb0056ca4d7416b6",
+    "cloud/matches/boot_tail/func_80013D70.c": "f21843a9094e57822aed7d47be2a730cefe2a9bf632931756207c630e8166bc5",
+    "cloud/matches/boot_tail/func_800140F8.c": "5eb9d6ad07e60795ea7c3ec15bc5d65be910aabad89277b85a3816d9925ed98a",
+    "cloud/matches/boot_tail/func_800143C0.c": "234df42069bed1b971bcacb5646116b7554525113cddc54e083fc16d53d6e722",
+    "cloud/matches/boot_tail/func_80014434.c": "8a4cf4652d4460f27eeea1bb2992af5b5e2966f9c855be1e0c5a47e6007ce962"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "state": "frozen-review-pass-integrating",
+  "owner": "/root/match_boot_tail_bt05_bt07",
+  "packet": "C13-controller-pair",
+  "branch": "dot/boot-tail-c13-controller-pair",
+  "base": "9af97ad3c5e1968ccf5d3b7b7ec060fbb9d2f3c6",
+  "targets": [
+    {
+      "address": "0x80020820",
+      "size": 484,
+      "end_exclusive": "0x80020A04"
+    },
+    {
+      "address": "0x80020DA8",
+      "size": 420,
+      "end_exclusive": "0x80020F4C"
+    }
+  ],
+  "bytes": 904,
+  "prior_packet": "BT05-core-pair frozen peer PASS 9af97ad3; parent authorizes C13 reallocation",
+  "edit_scope": "Only named matching sources and cloud/work/boot_tail/C13-controller-pair/**",
+  "stop": "Actual native ABI, external array stride/domain and caller evidence. Natural C89/O2/O1 and bounded controls. No table-value fabrication, protected edits, prior residual reopening or false object-extent claims.",
+  "reviewed_commit": "7d17ea9c94310e70bf393dcde84297b5fe01870c",
+  "reviewed_tree": "705010d7c7527c14cbe08ebdc05691ef2d5c1e72"
+}

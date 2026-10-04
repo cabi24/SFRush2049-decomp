@@ -1,0 +1,14 @@
+{
+  "result": "PASS",
+  "mode": "Git-free staging during shared-object maintenance; no Git writes",
+  "base_commit": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "manifest": [
+    "boot_tail_8000f3a4.s: OK",
+    "extents.json: OK",
+    "symbols.json: OK"
+  ],
+  "extents": 439,
+  "bytes": 99120,
+  "getter": "MATCH",
+  "manifest_sha256": "6bd3e6ef05e6123e4ea4dd0d814c0abb16f202a91d8d0a381eca14322c8a36d5"
+}

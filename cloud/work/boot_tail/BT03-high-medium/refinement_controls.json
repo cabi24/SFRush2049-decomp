@@ -1,0 +1,41 @@
+[
+  {
+    "name": "func_8001785C",
+    "stage": "explicit_byte_update",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "52f7b61d4db05dc9eab7832246a150b4ff8568b324bed1a7c4b2d0ae05ef58f7",
+    "differing": 17,
+    "total": 21,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 1,
+    "strict_match": false
+  },
+  {
+    "name": "func_80018AEC",
+    "stage": "carry_reuse",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "7769032e0b7e8e80685e2b927fdca8303e2da6641268f3554cf9f9c08d01426e",
+    "differing": 6,
+    "total": 20,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "strict_match": false
+  },
+  {
+    "name": "func_80019A60",
+    "stage": "scale_local",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "cdda7ebf653a6333ee91b113c93a9be9e7ec36d080d241270fcb5c38f03c49aa",
+    "differing": 15,
+    "total": 18,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "strict_match": false
+  }
+]

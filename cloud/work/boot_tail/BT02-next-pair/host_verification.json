@@ -1,0 +1,13 @@
+{
+  "result": "PASS",
+  "tests": [
+    {
+      "mode": "C89 O2",
+      "output": "PASS: 1600 envelope cases, 48 position cases, field layout and untouched bytes"
+    },
+    {
+      "mode": "ASan UBSan O1",
+      "output": "PASS: 1600 envelope cases, 48 position cases, field layout and untouched bytes"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "result": "BOUNDED_STOP",
+  "initial_diagnosis_counts": {
+    "800232A4": {
+      "aligned_constant": 0,
+      "aligned_deletions": 1,
+      "aligned_insertions": 1,
+      "aligned_register": 4,
+      "aligned_schedule": 0,
+      "frame": -24
+    },
+    "80023564": {
+      "aligned_constant": 0,
+      "aligned_deletions": 1,
+      "aligned_insertions": 4,
+      "aligned_register": 34,
+      "aligned_schedule": 0,
+      "frame": -64
+    }
+  },
+  "controls": [
+    {
+      "name": "func_800232A4",
+      "control": "word_low_byte_extract",
+      "source_sha256": "9cbb7e53c63811db5f80f63002d85cd3b4eb8cdd2514da156bc772c413d4ee36",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 16,
+      "total_words": 67,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_800232A4",
+      "control": "split_curve_assembly",
+      "source_sha256": "d4411b306b4452d0bde344f4c3803c93c01ff2152c1da03dbf4af77cd3156452",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 15,
+      "total_words": 67,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80023564",
+      "control": "ordered_disjoint_bitfields",
+      "source_sha256": "c7a87ca0c8d380ed095c89139f3d7e9ca13903c68c10494551cb52615b2bf368",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 73,
+      "total_words": 107,
+      "extra_words": 3,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80023564",
+      "control": "early_real_randomization_flag",
+      "source_sha256": "9e03cc209927320c76a43db19332e3ead79515d08df38353a390eca26bcf65f9",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 66,
+      "total_words": 107,
+      "extra_words": 2,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    }
+  ],
+  "stop_reason": "Three natural source forms per member, no declaration/type sweeps; remaining native narrow-value assignment/allocation pattern is frozen."
+}

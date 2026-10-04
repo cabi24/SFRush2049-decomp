@@ -1,0 +1,85 @@
+{
+  "purpose": "Rejected compiler controls; zero match credit. All controls are rejected source forms.",
+  "results": [
+    {
+      "name": "func_80017720",
+      "source_path": "cloud/work/boot_tail/BT03-high-transitions/controls/func_80017720_initial.c",
+      "source_sha256": "4594254dd7dca818cae20de28b8066c98997ce021181bd0a6698208c676058b6",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 51,
+      "total_words": 51,
+      "extra_words": 1,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80017720",
+      "source_path": "cloud/work/boot_tail/BT03-high-transitions/controls/func_80017720_initial.c",
+      "source_sha256": "4594254dd7dca818cae20de28b8066c98997ce021181bd0a6698208c676058b6",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 50,
+      "total_words": 51,
+      "extra_words": 3,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80018184",
+      "source_path": "cloud/work/boot_tail/BT03-high-transitions/controls/func_80018184_initial.c",
+      "source_sha256": "78354bb16692d261ca4b5efd5b18599e90dd4d1cf659ae49a189e1fa55b88748",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 19,
+      "total_words": 50,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80018184",
+      "source_path": "cloud/work/boot_tail/BT03-high-transitions/controls/func_80018184_initial.c",
+      "source_sha256": "78354bb16692d261ca4b5efd5b18599e90dd4d1cf659ae49a189e1fa55b88748",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 47,
+      "total_words": 50,
+      "extra_words": 7,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001FAE4",
+      "source_path": "cloud/work/boot_tail/BT03-high-transitions/controls/func_8001FAE4_initial.c",
+      "source_sha256": "c689cbfd2139fe4fb363adc489f6ed5a60d0d9e1076694afb553035c22912c0c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 8,
+      "total_words": 50,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_8001FAE4",
+      "source_path": "cloud/work/boot_tail/BT03-high-transitions/controls/func_8001FAE4_initial.c",
+      "source_sha256": "c689cbfd2139fe4fb363adc489f6ed5a60d0d9e1076694afb553035c22912c0c",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 50,
+      "total_words": 50,
+      "extra_words": 26,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_8004BEB8 at .text+0xa0"
+      ],
+      "strict_match": false
+    }
+  ]
+}

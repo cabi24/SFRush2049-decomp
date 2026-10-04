@@ -1,0 +1,38 @@
+{
+  "result": "PASS_FOR_COMPLETE_BOUNDED_NONMATCH_RESEARCH",
+  "reviewer": "parent independent Astra reviewer",
+  "source_commit": "5040204a3526811f0807de3f5a68bef72c2866d0",
+  "source_tree": "f510dc018faa599fb94c709d3f721774c71a880c",
+  "stack_base": "42c094cb7fef0a8d08d3ed51f333ddacfbd287d2",
+  "review_received_utc": "2026-10-04T02:01:11Z",
+  "source_sha256": {
+    "cloud/work/boot_tail/C11-mix-output/func_8001E0E0_NONMATCH.c": "f1f72236998502bbae178e8d437e80e15f9bc5f0ddd56c02f5c2a77f9347d6b2",
+    "cloud/work/boot_tail/C11-mix-output/controls/func_8001E0E0_cached_scale.c": "6f17ad880c9aeb16d334d68d3fd070ca7c55063526029aaba1419aee00efa032",
+    "cloud/work/boot_tail/C11-mix-output/controls/func_8001E0E0_initial.c": "8d212477ad4494176bcc771a963ded1acd1049d2b935709e2a2b44e66d966328",
+    "cloud/work/boot_tail/C11-mix-output/controls/func_8001E0E0_pointer_entry.c": "adabf24ed76045f3cede4400c7da13818f0385bca9ec939b135c73d5e85353eb"
+  },
+  "matching_credit_bytes": 0,
+  "independent_replays": [
+    {
+      "command": "python3 cloud/work/boot_tail/C11-mix-output/verify.py --check",
+      "result": "PASS; all eight rows reproduced"
+    },
+    {
+      "command": "python3 cloud/work/boot_tail/C11-mix-output/abi_proof.py --check",
+      "result": "PASS"
+    },
+    {
+      "command": "python3 cloud/work/boot_tail/C11-mix-output/test_semantics.py",
+      "result": "PASS; five tests in19.666seconds"
+    }
+  ],
+  "findings": [
+    "Personally inspected all216 native words, actual caller14A74 eight slots/output offsets, whole retained C and native interpreter/reference models.",
+    "Actual ABI, unsigned clamps/reflections, binary32 operation sequence, signed32 truncation followed by halfword storage and alias-safe output order agree within the stated finite/range/read-only external-data domain.",
+    "Retained source hash f1f72236998502bbae178e8d437e80e15f9bc5f0ddd56c02f5c2a77f9347d6b2 is unchanged. No source changes required.",
+    "The207/216 differences plus3 nonzero excess remain explicit. Native and candidate frame sizes are both16; object text880B still differs from the864B target extent. No match or excess-word suppression is claimed.",
+    "Tested pan/span0..800000 is appropriately documented as a bounded test domain, not a proved caller invariant. Original external float contents remain unknown.",
+    "No raw native bytes are published; complete nonmatch research receives zero matching credit."
+  ],
+  "communication_provenance": "Independent parent review delivered in this task conversation and explicitly authorized recording the review and handing the packet to central."
+}

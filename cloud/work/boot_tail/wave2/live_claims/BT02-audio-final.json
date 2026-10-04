@@ -1,0 +1,27 @@
+{
+  "state": "active",
+  "owner": "/root/match_boot_tail_audio_final",
+  "packet": "BT02-audio-final",
+  "branch": "dot/boot-tail-bt02-audio-final",
+  "base": "b5daa44a5a7bf4a22d806a67f6b179be9c126b1f",
+  "targets": [
+    {
+      "address": "0x80011104",
+      "size": 840,
+      "end_exclusive": "0x8001144C"
+    },
+    {
+      "address": "0x800114C0",
+      "size": 904,
+      "end_exclusive": "0x80011848"
+    },
+    {
+      "address": "0x800139D4",
+      "size": 688,
+      "end_exclusive": "0x80013C84"
+    }
+  ],
+  "bytes": 2432,
+  "edit_scope": "Only named matching sources and cloud/work/boot_tail/BT02-audio-final/**",
+  "stop": "Before candidate work verify actual native/caller/callee ABI, pinned preflight and all literal/table/relocation proof. Natural C89/O2/O1, exact ELF function size, bounded diagnosis. No guessed data/extent, fake consumed parameters, prior residual reopening, out-of-range callee inspection or protected edits."
+}

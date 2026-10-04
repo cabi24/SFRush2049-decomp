@@ -1,0 +1,22 @@
+{
+  "state": "active",
+  "owner": "/root/verify_boot_tail_matches",
+  "packet": "BT03-low-final-resource",
+  "branch": "dot/boot-tail-bt03-low-final-resource",
+  "base": "9a69f9fdc69b28e93ee2ed051ea9c075574349ad",
+  "targets": [
+    {
+      "address": "0x80015A0C",
+      "size": 512,
+      "end_exclusive": "0x80015C0C"
+    },
+    {
+      "address": "0x80016998",
+      "size": 608,
+      "end_exclusive": "0x80016BF8"
+    }
+  ],
+  "bytes": 1120,
+  "edit_scope": "Only named matching sources and cloud/work/boot_tail/BT03-low-final-resource/**",
+  "stop": "Genuine packed12-byte record/bucket/refcount and three-argument or one-key ABI; preserve native live reload and unlock order. Natural C89/O2/O1, exact ELF function extent and bounded diagnosis. No repeated rejected union/memcpy or declaration sweeps, invented storage, protected edits or missing-data substitution."
+}

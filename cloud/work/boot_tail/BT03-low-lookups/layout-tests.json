@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "compiler": "pinned IDO 5.3",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "results": [
+    {
+      "function": "func_80016C20",
+      "source_sha256": "f998ce21b1835d1b354d5cdfdfcf4f63f786355a1e8792fe2a5e77e567fa2339",
+      "checks": [
+        "sizeof(LookupEntry) == 8",
+        "(unsigned int)&((LookupEntry *)0)->value == 0",
+        "(unsigned int)&((LookupEntry *)0)->key == 4",
+        "sizeof(LookupGroup) == 4",
+        "(unsigned int)&((LookupGroup *)0)->first == 2"
+      ],
+      "result": "PASS"
+    },
+    {
+      "function": "func_80016F80",
+      "source_sha256": "5b5d3f8308f9bcc97b2540871cc7c785d11e4a5ce905190033698aab107deba4",
+      "checks": [
+        "sizeof(LookupEntry) == 8",
+        "(unsigned int)&((LookupEntry *)0)->auxiliary == 6"
+      ],
+      "result": "PASS"
+    },
+    {
+      "function": "func_80017040",
+      "source_sha256": "b0a16c83f45b44d82abbff8ae0e55b12717d71eb82a084791fd99c319d82b31e",
+      "checks": [
+        "sizeof(LookupBank) == 8",
+        "(unsigned int)&((LookupBank *)0)->count == 2",
+        "(unsigned int)&((LookupBank *)0)->entries == 4"
+      ],
+      "result": "PASS"
+    }
+  ]
+}

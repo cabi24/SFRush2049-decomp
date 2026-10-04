@@ -1,0 +1,66 @@
+{
+  "result": "PASS",
+  "review_kind": "Independent complete-nonmatch source and verification review",
+  "reviewer": "/root/match_boot_tail_next_pair",
+  "reviewed_commit": "61d566034cb4d76b6d12b17f4005126e9594d55e",
+  "reviewed_tree": "860f00b5274bfd7c122fa953aadd890cca78b2cc",
+  "packet": "BT03-low-removal",
+  "files": {
+    "cloud/work/boot_tail/BT03-low-removal/README.md": "bacac05548302f0293b6e4b252c9b00f7a62479d0a59403283f4a36c30d6f228",
+    "cloud/work/boot_tail/BT03-low-removal/controls.json": "8843a4459b63a9de531f23e47f2b68dd5ab372f785207286e972eab83b4a8b04",
+    "cloud/work/boot_tail/BT03-low-removal/diagnosis.json": "5c36aa7a68024709d2e39ab64281318926d6cfe4b524306f63f4b4cd37ae80be",
+    "cloud/work/boot_tail/BT03-low-removal/func_800158D8_NONMATCH.c": "e6044e6e6fe590c91723d453b9fbfaefd76a10e15bd514bd38def333e70b9882",
+    "cloud/work/boot_tail/BT03-low-removal/func_80015F28_NONMATCH.c": "3706258cb69e89503491f56bfde4c7975972959be23461d4a963976d313fe2e7",
+    "cloud/work/boot_tail/BT03-low-removal/func_8001661C_NONMATCH.c": "5736a708bbdadea81b42019aa7f5cde75d6d0e9b23f5e47a162b5914a0d08aee",
+    "cloud/work/boot_tail/BT03-low-removal/host_verification.json": "4ef7c33cab38cc9dfa4ae8255eb84b57785878f954842520e69e64d4efb37cce",
+    "cloud/work/boot_tail/BT03-low-removal/preflight.json": "1898aed8c8b950e410a9be34c2665c8ece75c58220394be9c8f18852c572202a",
+    "cloud/work/boot_tail/BT03-low-removal/status_delta.json": "8832d766f60861dd289bb271340b967b26d783ffaeb868d42f23b8a654ef0df9",
+    "cloud/work/boot_tail/BT03-low-removal/test_semantics.py": "186d60ad29457d272694a1dc855b68bcc59d9152ef7caf1a33cf6539e7640dc2",
+    "cloud/work/boot_tail/BT03-low-removal/verification.json": "e8b9a5442d6f9295199778a3850c7c79e4fd4e85a7f30272753e6c719ea77aca",
+    "cloud/work/boot_tail/BT03-low-removal/verify.py": "9baa74e97645c7ec6a9704b5e06663211007f77ac9b962322b3cf54a0437288f"
+  },
+  "native_checks": [
+    "Inspected complete canonical bodies 800158D8, 80015F28, 8001661C, actual callers 80015178, 80015120, 80015348 and guard callees 80014594/800145DC.",
+    "Real single unsigned-halfword argument confirmed by callers and callee homing/masking; integer 0/1 result explicit in native bodies.",
+    "Guard-before-search for reference release; search-before-guard and live-count reread for unconditional removal; modulo-16 decrement, first-ID lookup, ordered whole-8-byte compaction and unchanged stale tail preserved.",
+    "Actual packed union member is reached by permitted union-pointer conversion, retaining word-aligned record copies and native bytewise variable-offset fields. No fake formals, padding or force-spill constructs."
+  ],
+  "replay": {
+    "strict_O2_differences": [
+      "8/77",
+      "8/77",
+      "31/64"
+    ],
+    "O2_excess": [
+      0,
+      0,
+      0
+    ],
+    "strict_O1_differences": [
+      "74/77",
+      "74/77",
+      "63/64"
+    ],
+    "O1_excess": [
+      26,
+      26,
+      16
+    ],
+    "unresolved_symbols": 0,
+    "unverified_relocations": 0,
+    "scorer_errors": 0,
+    "pinned_compiler_files": 24,
+    "manifest": "PASS",
+    "extents": "439 rows / 99120 bytes equal",
+    "existing_getter": "strict MATCH",
+    "native_layout": "8-byte fields/storage, ID offsets 4/4/0 PASS",
+    "host": "4500 deterministic optimized C89 whole-storage cases PASS",
+    "verification_hardening": "Explicit expected-residual and protected-input assertions rerun at final head."
+  },
+  "limitations": [
+    "All three remain complete nonmatches, total 872 native bytes; zero verified match bytes.",
+    "Host checks do not prove native byte equality, hardware guard concurrency, invalid storage domains or cartridge coverage.",
+    "16-form bounded control log reviewed; control source hashes are historical evidence, while final source and native-layout replay were independently rerun."
+  ],
+  "scope": "Only 12 allowed packet files. No central state, matches, scorer, targets, locks/layout/shared types or raw native/object artifacts."
+}

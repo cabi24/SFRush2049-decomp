@@ -1,0 +1,2 @@
+address,name,size,cluster,status,flags,diff_words,source_path,note
+0x80023754,func_80023754,196,BT05,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,22,cloud/work/boot_tail/BT05-control-dispatch/nonmatch/func_80023754.c,COMPLETE-NONMATCH; three bounded natural forms; genuine four-input ABI;21548 external declaration only and its source/table blocker unchanged.

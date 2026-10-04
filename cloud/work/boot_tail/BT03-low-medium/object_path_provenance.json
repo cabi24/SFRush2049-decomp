@@ -1,0 +1,1279 @@
+{
+  "result": "PASS",
+  "source_commit": "8c41049c56e1b70ea8830a3891fb767fef9b14cd",
+  "rows": [
+    {
+      "name": "func_80014550",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_80014550.c",
+      "source_sha256": "6f11fc58ffd387940f871f8b35167fe35d4761f5db48f2dc5e07f6ff2b69b8ab",
+      "differing_sections": [
+        ".mdebug"
+      ],
+      "score_equal": true,
+      "builds": [
+        {
+          "label": "source_checkout",
+          "object_sha256": "a2862e7e8eceff3c8fb46b2fac511d375cf2e05f450f340a364564b31de0ba6d",
+          "sections": {
+            ".symtab": {
+              "bytes": 112,
+              "sha256": "2d41a970c410ad755c71de80a65d0a65bf10f94dfbdd34da9611aec3d95b0caa"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 71,
+              "sha256": "b5fc8bd2f426024ccbdc5552d9410d6c981c5b55101c30d415f8c7dea2b2a429"
+            },
+            ".text": {
+              "bytes": 80,
+              "sha256": "df5c742c24deea78bfe91ba6fd157d949fb6beac4b771406e85cd45ed4d36c91"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "22aecd9b5e38d458c0f91c3b349f043b5dc6391a0fc7c3b81c915074ff3bc290"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "92831e40a7f36f8d87452ebac8883d0fdcb296857d72ac7551e3f60eea5f0fb5"
+            },
+            ".rel.text": {
+              "bytes": 64,
+              "sha256": "2e37c3255a186738e42ee40b92d5aa9f52c0e67b77862f9a093e452feb58832a"
+            },
+            ".mdebug": {
+              "bytes": 656,
+              "sha256": "20be510e441b5606d09d74d21a2f702a2513b394267c553c56442d521231fdbf"
+            }
+          },
+          "score": {
+            "differing": 0,
+            "total": 17,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "source_path_found_in_mdebug": true
+        },
+        {
+          "label": "aggregate_checkout",
+          "object_sha256": "b6aa6ad07857ceb4b25720a765e08091f70b723986555f2b90e22b161c8b4473",
+          "sections": {
+            ".symtab": {
+              "bytes": 112,
+              "sha256": "2d41a970c410ad755c71de80a65d0a65bf10f94dfbdd34da9611aec3d95b0caa"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 71,
+              "sha256": "b5fc8bd2f426024ccbdc5552d9410d6c981c5b55101c30d415f8c7dea2b2a429"
+            },
+            ".text": {
+              "bytes": 80,
+              "sha256": "df5c742c24deea78bfe91ba6fd157d949fb6beac4b771406e85cd45ed4d36c91"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "22aecd9b5e38d458c0f91c3b349f043b5dc6391a0fc7c3b81c915074ff3bc290"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "92831e40a7f36f8d87452ebac8883d0fdcb296857d72ac7551e3f60eea5f0fb5"
+            },
+            ".rel.text": {
+              "bytes": 64,
+              "sha256": "2e37c3255a186738e42ee40b92d5aa9f52c0e67b77862f9a093e452feb58832a"
+            },
+            ".mdebug": {
+              "bytes": 672,
+              "sha256": "bc77210507c6eee91812a465195653a533631ae91acddf034d7073416efec0e5"
+            }
+          },
+          "score": {
+            "differing": 0,
+            "total": 17,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "source_path_found_in_mdebug": true
+        }
+      ]
+    },
+    {
+      "name": "func_80014550",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_80014550.c",
+      "source_sha256": "6f11fc58ffd387940f871f8b35167fe35d4761f5db48f2dc5e07f6ff2b69b8ab",
+      "differing_sections": [
+        ".mdebug"
+      ],
+      "score_equal": true,
+      "builds": [
+        {
+          "label": "source_checkout",
+          "object_sha256": "a2862e7e8eceff3c8fb46b2fac511d375cf2e05f450f340a364564b31de0ba6d",
+          "sections": {
+            ".symtab": {
+              "bytes": 112,
+              "sha256": "2d41a970c410ad755c71de80a65d0a65bf10f94dfbdd34da9611aec3d95b0caa"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 71,
+              "sha256": "b5fc8bd2f426024ccbdc5552d9410d6c981c5b55101c30d415f8c7dea2b2a429"
+            },
+            ".text": {
+              "bytes": 80,
+              "sha256": "df5c742c24deea78bfe91ba6fd157d949fb6beac4b771406e85cd45ed4d36c91"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "22aecd9b5e38d458c0f91c3b349f043b5dc6391a0fc7c3b81c915074ff3bc290"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "92831e40a7f36f8d87452ebac8883d0fdcb296857d72ac7551e3f60eea5f0fb5"
+            },
+            ".rel.text": {
+              "bytes": 64,
+              "sha256": "2e37c3255a186738e42ee40b92d5aa9f52c0e67b77862f9a093e452feb58832a"
+            },
+            ".mdebug": {
+              "bytes": 656,
+              "sha256": "20be510e441b5606d09d74d21a2f702a2513b394267c553c56442d521231fdbf"
+            }
+          },
+          "score": {
+            "differing": 0,
+            "total": 17,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "source_path_found_in_mdebug": true
+        },
+        {
+          "label": "aggregate_checkout",
+          "object_sha256": "b6aa6ad07857ceb4b25720a765e08091f70b723986555f2b90e22b161c8b4473",
+          "sections": {
+            ".symtab": {
+              "bytes": 112,
+              "sha256": "2d41a970c410ad755c71de80a65d0a65bf10f94dfbdd34da9611aec3d95b0caa"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 71,
+              "sha256": "b5fc8bd2f426024ccbdc5552d9410d6c981c5b55101c30d415f8c7dea2b2a429"
+            },
+            ".text": {
+              "bytes": 80,
+              "sha256": "df5c742c24deea78bfe91ba6fd157d949fb6beac4b771406e85cd45ed4d36c91"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "22aecd9b5e38d458c0f91c3b349f043b5dc6391a0fc7c3b81c915074ff3bc290"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "92831e40a7f36f8d87452ebac8883d0fdcb296857d72ac7551e3f60eea5f0fb5"
+            },
+            ".rel.text": {
+              "bytes": 64,
+              "sha256": "2e37c3255a186738e42ee40b92d5aa9f52c0e67b77862f9a093e452feb58832a"
+            },
+            ".mdebug": {
+              "bytes": 672,
+              "sha256": "bc77210507c6eee91812a465195653a533631ae91acddf034d7073416efec0e5"
+            }
+          },
+          "score": {
+            "differing": 0,
+            "total": 17,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "source_path_found_in_mdebug": true
+        }
+      ]
+    },
+    {
+      "name": "func_80014594",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_80014594.c",
+      "source_sha256": "a3d3a3f149c25d21e4d981f5295552aa6d248405856a4d63c453792944dc1969",
+      "differing_sections": [
+        ".mdebug"
+      ],
+      "score_equal": true,
+      "builds": [
+        {
+          "label": "source_checkout",
+          "object_sha256": "a9f4da398e4b23ac0e00c3fadd32d33efdb24fa1c96c22a4847b144209c886fe",
+          "sections": {
+            ".symtab": {
+              "bytes": 96,
+              "sha256": "dab7da93ae6d29467a1809687f668eb327e9402b12f4a4d726572502f1b4009e"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 54,
+              "sha256": "3bb3546b0f8356139e243670f2db3d313a0d9c69150ff13537a560d7f64d036c"
+            },
+            ".text": {
+              "bytes": 80,
+              "sha256": "b1fb04232db335f8d36b3dd25bd337936a909a9f5352235b62bb714b94170987"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "d0814ccf79f1dcc6ed3f5950a509e8fbe1e08008c9c86271cdf1d5b485195142"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "6946be7d040b3080163e1268e38eb12de81f5f54831f51186fbf5d7a2fbd121a"
+            },
+            ".rel.text": {
+              "bytes": 72,
+              "sha256": "99f220840cb6f54ab696118e65bc43b165d104196011e5c2a9e4cb2f82d1eb5a"
+            },
+            ".mdebug": {
+              "bytes": 620,
+              "sha256": "ba09e26d821a692eb81ae4c34c437d74bc7d2134b01da007846b9990fd356d4d"
+            }
+          },
+          "score": {
+            "differing": 0,
+            "total": 18,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "source_path_found_in_mdebug": true
+        },
+        {
+          "label": "aggregate_checkout",
+          "object_sha256": "5db23b39870aeb040a511fc1bb22ad95826a7db71d13e6b2fb43354c1ab7dff9",
+          "sections": {
+            ".symtab": {
+              "bytes": 96,
+              "sha256": "dab7da93ae6d29467a1809687f668eb327e9402b12f4a4d726572502f1b4009e"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 54,
+              "sha256": "3bb3546b0f8356139e243670f2db3d313a0d9c69150ff13537a560d7f64d036c"
+            },
+            ".text": {
+              "bytes": 80,
+              "sha256": "b1fb04232db335f8d36b3dd25bd337936a909a9f5352235b62bb714b94170987"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "d0814ccf79f1dcc6ed3f5950a509e8fbe1e08008c9c86271cdf1d5b485195142"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "6946be7d040b3080163e1268e38eb12de81f5f54831f51186fbf5d7a2fbd121a"
+            },
+            ".rel.text": {
+              "bytes": 72,
+              "sha256": "99f220840cb6f54ab696118e65bc43b165d104196011e5c2a9e4cb2f82d1eb5a"
+            },
+            ".mdebug": {
+              "bytes": 636,
+              "sha256": "548ad8232a4bb03166a7790efee62046b6a85f2972fd58fc14246a5b61fc6154"
+            }
+          },
+          "score": {
+            "differing": 0,
+            "total": 18,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "source_path_found_in_mdebug": true
+        }
+      ]
+    },
+    {
+      "name": "func_80014594",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_80014594.c",
+      "source_sha256": "a3d3a3f149c25d21e4d981f5295552aa6d248405856a4d63c453792944dc1969",
+      "differing_sections": [
+        ".mdebug"
+      ],
+      "score_equal": true,
+      "builds": [
+        {
+          "label": "source_checkout",
+          "object_sha256": "93ce532e08d49ffbfb9a234d6ab01ceebf254734d518c212b0022d94de76a3ae",
+          "sections": {
+            ".symtab": {
+              "bytes": 96,
+              "sha256": "9b89b0de3c15b52836c3cb46fd12997aebf023183fecf8d579c22b87ac836039"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 54,
+              "sha256": "3bb3546b0f8356139e243670f2db3d313a0d9c69150ff13537a560d7f64d036c"
+            },
+            ".text": {
+              "bytes": 80,
+              "sha256": "51f3113a60ac4ceddd131abd7ce14e24cc71f89298c409b3211f456f90a885da"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "eae7e9244a4a816d02e35380981f85d7356abb8ab56d7d1f018e0e89a553b6cd"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "b780791a5a2eb35e553db277cef3a1762f6e6b2d7179b4be97f4793fd046f15b"
+            },
+            ".rel.text": {
+              "bytes": 72,
+              "sha256": "8906aa9b283a3c8e9673c39684e59b6e0c90f87cd68c9641fd96a9da25408898"
+            },
+            ".mdebug": {
+              "bytes": 620,
+              "sha256": "b837770af94361550520e3aa746dbb41acb557110a9710cff6ae9592ab6b49e5"
+            }
+          },
+          "score": {
+            "differing": 15,
+            "total": 18,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 1
+          },
+          "source_path_found_in_mdebug": true
+        },
+        {
+          "label": "aggregate_checkout",
+          "object_sha256": "9297b7ad308e650cadecaf9acc7808b05e29155a9a38e8bd2b426f99921d618b",
+          "sections": {
+            ".symtab": {
+              "bytes": 96,
+              "sha256": "9b89b0de3c15b52836c3cb46fd12997aebf023183fecf8d579c22b87ac836039"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 54,
+              "sha256": "3bb3546b0f8356139e243670f2db3d313a0d9c69150ff13537a560d7f64d036c"
+            },
+            ".text": {
+              "bytes": 80,
+              "sha256": "51f3113a60ac4ceddd131abd7ce14e24cc71f89298c409b3211f456f90a885da"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "eae7e9244a4a816d02e35380981f85d7356abb8ab56d7d1f018e0e89a553b6cd"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "b780791a5a2eb35e553db277cef3a1762f6e6b2d7179b4be97f4793fd046f15b"
+            },
+            ".rel.text": {
+              "bytes": 72,
+              "sha256": "8906aa9b283a3c8e9673c39684e59b6e0c90f87cd68c9641fd96a9da25408898"
+            },
+            ".mdebug": {
+              "bytes": 636,
+              "sha256": "167fc986e05cec6a9c30f689c0f3736d71a5bb9c5ef4a320ab47b1d41e4eeee6"
+            }
+          },
+          "score": {
+            "differing": 15,
+            "total": 18,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 1
+          },
+          "source_path_found_in_mdebug": true
+        }
+      ]
+    },
+    {
+      "name": "func_800145DC",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_800145DC.c",
+      "source_sha256": "650fffe971a30e784395d3fc199b2d5e99b5cda77cc49c5d8522b8b742e1e098",
+      "differing_sections": [
+        ".mdebug"
+      ],
+      "score_equal": true,
+      "builds": [
+        {
+          "label": "source_checkout",
+          "object_sha256": "f87dd3167fb754846e4830b671575b4ea0fbff552c65cbb0147a4b99d7af14d5",
+          "sections": {
+            ".symtab": {
+              "bytes": 96,
+              "sha256": "4c56068d91f168e92e5cff227d4264019695c8ef1ccd795661eaa158ca4418eb"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 53,
+              "sha256": "0fc77f6238d8c210787bac02a2d5578d763958f62a8fa12336a027ac9aa735a9"
+            },
+            ".text": {
+              "bytes": 80,
+              "sha256": "6fa42a3d32577bf3704e4b4a22768937865a60ee1607b48f741caf455797dfd5"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "a150a632a0ee69d73630b37ed992546b9740ede77d2dc2f77c2a8fdbbaea1f92"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "a0600b19221d272a3a2588356354aadf7e357b848a14ec63182dac440dbc548d"
+            },
+            ".rel.text": {
+              "bytes": 40,
+              "sha256": "1066dcb0c522580969425532ec757811554e8e5b156933aac1ef64561586420d"
+            },
+            ".mdebug": {
+              "bytes": 620,
+              "sha256": "fc7dfc09fa98273e9254ddeb8b333c763afa14e123dfce74db0e42c1239392bb"
+            }
+          },
+          "score": {
+            "differing": 0,
+            "total": 18,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "source_path_found_in_mdebug": true
+        },
+        {
+          "label": "aggregate_checkout",
+          "object_sha256": "915d0ace31c4bee901759f2fec8e22f134c5942a9a195b8eb50f2f923976470f",
+          "sections": {
+            ".symtab": {
+              "bytes": 96,
+              "sha256": "4c56068d91f168e92e5cff227d4264019695c8ef1ccd795661eaa158ca4418eb"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 53,
+              "sha256": "0fc77f6238d8c210787bac02a2d5578d763958f62a8fa12336a027ac9aa735a9"
+            },
+            ".text": {
+              "bytes": 80,
+              "sha256": "6fa42a3d32577bf3704e4b4a22768937865a60ee1607b48f741caf455797dfd5"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "a150a632a0ee69d73630b37ed992546b9740ede77d2dc2f77c2a8fdbbaea1f92"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "a0600b19221d272a3a2588356354aadf7e357b848a14ec63182dac440dbc548d"
+            },
+            ".rel.text": {
+              "bytes": 40,
+              "sha256": "1066dcb0c522580969425532ec757811554e8e5b156933aac1ef64561586420d"
+            },
+            ".mdebug": {
+              "bytes": 636,
+              "sha256": "7d867ccd075794ec905507140c9a133391d057478007fc26a89de61c18a6233f"
+            }
+          },
+          "score": {
+            "differing": 0,
+            "total": 18,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "source_path_found_in_mdebug": true
+        }
+      ]
+    },
+    {
+      "name": "func_800145DC",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_800145DC.c",
+      "source_sha256": "650fffe971a30e784395d3fc199b2d5e99b5cda77cc49c5d8522b8b742e1e098",
+      "differing_sections": [
+        ".mdebug"
+      ],
+      "score_equal": true,
+      "builds": [
+        {
+          "label": "source_checkout",
+          "object_sha256": "223e2102e95810d389024c3c2881a453bbe76fa1df7b929e91d567f12c1fc881",
+          "sections": {
+            ".symtab": {
+              "bytes": 96,
+              "sha256": "23881f01a9b1fd4ec67e506552ff540712762a5eed0fb9bf4a264523150ec7aa"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 53,
+              "sha256": "0fc77f6238d8c210787bac02a2d5578d763958f62a8fa12336a027ac9aa735a9"
+            },
+            ".text": {
+              "bytes": 80,
+              "sha256": "2b9e006953ca32743ac13b77c9b2c25af0703bbcfd9cb5155b08aecb3cf24888"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "0454ae651c0ede084c653c9e29cfb89b61d713d0c006f8fccd0cc644dbca75fe"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "753e16322ddd1c2699bd861c900a3ff10f0a28e95aef0b6c3509c1cee80a6b18"
+            },
+            ".rel.text": {
+              "bytes": 56,
+              "sha256": "5d4d39926132a8a787d3947af56cf3255c5eb3c1a601e651b7f4aab02d851015"
+            },
+            ".mdebug": {
+              "bytes": 620,
+              "sha256": "ee6989331c0c3bc96d002f82dd42199719f454797cfccefad2b4a6b704eddac9"
+            }
+          },
+          "score": {
+            "differing": 18,
+            "total": 18,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "source_path_found_in_mdebug": true
+        },
+        {
+          "label": "aggregate_checkout",
+          "object_sha256": "190bc1dabcee9ad4ea22af5faa0f5bf966a868c164276df97df2125b36f2608f",
+          "sections": {
+            ".symtab": {
+              "bytes": 96,
+              "sha256": "23881f01a9b1fd4ec67e506552ff540712762a5eed0fb9bf4a264523150ec7aa"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 53,
+              "sha256": "0fc77f6238d8c210787bac02a2d5578d763958f62a8fa12336a027ac9aa735a9"
+            },
+            ".text": {
+              "bytes": 80,
+              "sha256": "2b9e006953ca32743ac13b77c9b2c25af0703bbcfd9cb5155b08aecb3cf24888"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "0454ae651c0ede084c653c9e29cfb89b61d713d0c006f8fccd0cc644dbca75fe"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "753e16322ddd1c2699bd861c900a3ff10f0a28e95aef0b6c3509c1cee80a6b18"
+            },
+            ".rel.text": {
+              "bytes": 56,
+              "sha256": "5d4d39926132a8a787d3947af56cf3255c5eb3c1a601e651b7f4aab02d851015"
+            },
+            ".mdebug": {
+              "bytes": 636,
+              "sha256": "29fe76427d95c8acf7f7ec51fa725dafb64fe29f486dcee6610f6d3b93322237"
+            }
+          },
+          "score": {
+            "differing": 18,
+            "total": 18,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "source_path_found_in_mdebug": true
+        }
+      ]
+    },
+    {
+      "name": "func_8001489C",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT03-low-medium/func_8001489C.c",
+      "source_sha256": "83843e00375a6256295c59e6b410207425f0fee7a557fe923c27f2bb6f3487bd",
+      "differing_sections": [
+        ".mdebug"
+      ],
+      "score_equal": true,
+      "builds": [
+        {
+          "label": "source_checkout",
+          "object_sha256": "4830e19b987a8868a24f031f695284d599f4ff7a9288ec345a3daa720fc04494",
+          "sections": {
+            ".symtab": {
+              "bytes": 80,
+              "sha256": "b126a8ed91df702adf8162b58e2c53e10ae81e57ef89f2f07903aa62e385a589"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 46,
+              "sha256": "c087ad3d1482a6fb20acebbe0912c3c18c6b281052e1ab5f571b466070f9582d"
+            },
+            ".text": {
+              "bytes": 96,
+              "sha256": "83e702dc2ef7f0090a0dfeeef5a12ca2dba9d578301f176b4e179009b160a5f2"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "518754d2fb5a618fc6eb1e2b88741b886d58c2ccb303576e72cb9fad7a57f2b0"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "b82ec5ef157c0960dc081d9b982d997b16cca93201d0040fb8a5b674d009bbe5"
+            },
+            ".rel.text": {
+              "bytes": 24,
+              "sha256": "9049cdc1a24152a044e6d5686f2f1c434ac605bd402e292a60ab607c8a396b1e"
+            },
+            ".mdebug": {
+              "bytes": 596,
+              "sha256": "1f4d1ae9213470f7b8745524313b669d803fb3938d1eb7d4b780d0960e1a6b42"
+            }
+          },
+          "score": {
+            "differing": 11,
+            "total": 23,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "source_path_found_in_mdebug": true
+        },
+        {
+          "label": "aggregate_checkout",
+          "object_sha256": "a9dfde17a960ec404b89ebd932c3d414598bdd277c2348e4b5ccddf5af022a05",
+          "sections": {
+            ".symtab": {
+              "bytes": 80,
+              "sha256": "b126a8ed91df702adf8162b58e2c53e10ae81e57ef89f2f07903aa62e385a589"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 46,
+              "sha256": "c087ad3d1482a6fb20acebbe0912c3c18c6b281052e1ab5f571b466070f9582d"
+            },
+            ".text": {
+              "bytes": 96,
+              "sha256": "83e702dc2ef7f0090a0dfeeef5a12ca2dba9d578301f176b4e179009b160a5f2"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "518754d2fb5a618fc6eb1e2b88741b886d58c2ccb303576e72cb9fad7a57f2b0"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "b82ec5ef157c0960dc081d9b982d997b16cca93201d0040fb8a5b674d009bbe5"
+            },
+            ".rel.text": {
+              "bytes": 24,
+              "sha256": "9049cdc1a24152a044e6d5686f2f1c434ac605bd402e292a60ab607c8a396b1e"
+            },
+            ".mdebug": {
+              "bytes": 616,
+              "sha256": "0d9963957ada4c2bc62e1d9d0f20fb7610d221fe0a4f2ee30a1997878c4c8a01"
+            }
+          },
+          "score": {
+            "differing": 11,
+            "total": 23,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "source_path_found_in_mdebug": true
+        }
+      ]
+    },
+    {
+      "name": "func_8001489C",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/work/boot_tail/BT03-low-medium/func_8001489C.c",
+      "source_sha256": "83843e00375a6256295c59e6b410207425f0fee7a557fe923c27f2bb6f3487bd",
+      "differing_sections": [
+        ".mdebug"
+      ],
+      "score_equal": true,
+      "builds": [
+        {
+          "label": "source_checkout",
+          "object_sha256": "5a5d13bbfa7b966fe123d6779ab38d6e3ca60926a79324b9b4c78dbf894eab9b",
+          "sections": {
+            ".symtab": {
+              "bytes": 80,
+              "sha256": "d60c3df166d60d1090af3a8443fe84d7ea2c31ac12b6c8834079b3f6a99bb4ce"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 46,
+              "sha256": "c087ad3d1482a6fb20acebbe0912c3c18c6b281052e1ab5f571b466070f9582d"
+            },
+            ".text": {
+              "bytes": 128,
+              "sha256": "af06654b47763b1fcd19254e04540707f9d400dc41fd959ebcfcc6e27e47046a"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "cb1bc1c82e1e3a07ddd491c72d55a90bd8343a4d871ff6929e023ffa470eb76b"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "54537e497113bf0e8795cc93802c9baad1151ab828798d26a6f38ba33fca014c"
+            },
+            ".rel.text": {
+              "bytes": 40,
+              "sha256": "f02afc4c543ce196ab91107b5909f76f092d45457277d93a21258cc5fd4f2195"
+            },
+            ".mdebug": {
+              "bytes": 592,
+              "sha256": "e28f1020db9d45f828d4c2445546a06c220082b76f784f414a8cc6f6bba2dc82"
+            }
+          },
+          "score": {
+            "differing": 22,
+            "total": 23,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 8
+          },
+          "source_path_found_in_mdebug": true
+        },
+        {
+          "label": "aggregate_checkout",
+          "object_sha256": "d3b6a528fb65d695f820b74e51f33b1d277787cf6d92907bedef19103b521722",
+          "sections": {
+            ".symtab": {
+              "bytes": 80,
+              "sha256": "d60c3df166d60d1090af3a8443fe84d7ea2c31ac12b6c8834079b3f6a99bb4ce"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 46,
+              "sha256": "c087ad3d1482a6fb20acebbe0912c3c18c6b281052e1ab5f571b466070f9582d"
+            },
+            ".text": {
+              "bytes": 128,
+              "sha256": "af06654b47763b1fcd19254e04540707f9d400dc41fd959ebcfcc6e27e47046a"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "cb1bc1c82e1e3a07ddd491c72d55a90bd8343a4d871ff6929e023ffa470eb76b"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "54537e497113bf0e8795cc93802c9baad1151ab828798d26a6f38ba33fca014c"
+            },
+            ".rel.text": {
+              "bytes": 40,
+              "sha256": "f02afc4c543ce196ab91107b5909f76f092d45457277d93a21258cc5fd4f2195"
+            },
+            ".mdebug": {
+              "bytes": 612,
+              "sha256": "8075aa346ae64a7f858149d07452586f310aaefcbf4ed3067da3314e20d41cb4"
+            }
+          },
+          "score": {
+            "differing": 22,
+            "total": 23,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 8
+          },
+          "source_path_found_in_mdebug": true
+        }
+      ]
+    },
+    {
+      "name": "func_80014AF0",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_80014AF0.c",
+      "source_sha256": "fca8d8f42508216a81a7e666a45dc084977aa795f93dc03ace0a2d8b8c88d9a0",
+      "differing_sections": [
+        ".mdebug"
+      ],
+      "score_equal": true,
+      "builds": [
+        {
+          "label": "source_checkout",
+          "object_sha256": "1191e79a43477d9870026a2eb4c4541734f00dcafcecdc081c114c8773ba03db",
+          "sections": {
+            ".symtab": {
+              "bytes": 64,
+              "sha256": "78a404d8554f5e3566f4f4d9aeeafe2b9b2130e1b8b8f4b0e260b2d1f1441c62"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 32,
+              "sha256": "05df9d67f8334d2c4f2878582c09079ae750c1642e3c4c371fa9dc7229219950"
+            },
+            ".text": {
+              "bytes": 80,
+              "sha256": "1e418418c2b7c151eb6cf68f5dac88e851f072a02c73d7cbdd821a974ae3fb81"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "22175ba8488a090779b0c4e806e28946999116632cbd38a7403b40f4e66a2b08"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "6317034bb3788c043ea263beb291b6e7b25ed2766ced795e165ef3848b4d2862"
+            },
+            ".rel.text": {
+              "bytes": 16,
+              "sha256": "d9ce13868a8ad007a7f675d7a9f77421260369c28796e519383d0a3de079112f"
+            },
+            ".mdebug": {
+              "bytes": 544,
+              "sha256": "b460add6fed14c1974c4c869a80c320d76adccf71e827a222d5d080bd429b8a8"
+            }
+          },
+          "score": {
+            "differing": 0,
+            "total": 19,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "source_path_found_in_mdebug": true
+        },
+        {
+          "label": "aggregate_checkout",
+          "object_sha256": "bd29efb0ced4032047f68a7d774879740d95fe77c8dfbc47f92d3c22ee156a7a",
+          "sections": {
+            ".symtab": {
+              "bytes": 64,
+              "sha256": "78a404d8554f5e3566f4f4d9aeeafe2b9b2130e1b8b8f4b0e260b2d1f1441c62"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 32,
+              "sha256": "05df9d67f8334d2c4f2878582c09079ae750c1642e3c4c371fa9dc7229219950"
+            },
+            ".text": {
+              "bytes": 80,
+              "sha256": "1e418418c2b7c151eb6cf68f5dac88e851f072a02c73d7cbdd821a974ae3fb81"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "22175ba8488a090779b0c4e806e28946999116632cbd38a7403b40f4e66a2b08"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "6317034bb3788c043ea263beb291b6e7b25ed2766ced795e165ef3848b4d2862"
+            },
+            ".rel.text": {
+              "bytes": 16,
+              "sha256": "d9ce13868a8ad007a7f675d7a9f77421260369c28796e519383d0a3de079112f"
+            },
+            ".mdebug": {
+              "bytes": 560,
+              "sha256": "91f1d9585d7a698504a1d3dc1279138658d80a56436443ccd127a908ad3ed3b3"
+            }
+          },
+          "score": {
+            "differing": 0,
+            "total": 19,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "source_path_found_in_mdebug": true
+        }
+      ]
+    },
+    {
+      "name": "func_80014AF0",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_80014AF0.c",
+      "source_sha256": "fca8d8f42508216a81a7e666a45dc084977aa795f93dc03ace0a2d8b8c88d9a0",
+      "differing_sections": [
+        ".mdebug"
+      ],
+      "score_equal": true,
+      "builds": [
+        {
+          "label": "source_checkout",
+          "object_sha256": "e406d185f94617516436cdcd46670b3efa2fee26375a6cf7d7f46e6d0cc9cedd",
+          "sections": {
+            ".symtab": {
+              "bytes": 64,
+              "sha256": "f36555219af756865ae21c56e59de12d2c2a5fbb658e327a2c05dbd1ef5527cc"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 32,
+              "sha256": "05df9d67f8334d2c4f2878582c09079ae750c1642e3c4c371fa9dc7229219950"
+            },
+            ".text": {
+              "bytes": 128,
+              "sha256": "f521b243562b8dad71cb9ca60f0e02ed4ca6e819d0d11b861d2ab6636517c1b0"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "3c4f46c567853b49c3f2445b012b302d0df1ffe36d4676c8c5d49b57f8eda3a0"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "ae81d6cdd535ea23d1e604adc33892067690a8ed5ba70c942441ad835be0fdb0"
+            },
+            ".rel.text": {
+              "bytes": 32,
+              "sha256": "37bcfb86f64e18fd01f96fa625589985bde13ce0e7f1207be1709aa95bcb434d"
+            },
+            ".mdebug": {
+              "bytes": 544,
+              "sha256": "c12adde66ec79ba2a5d7b1c373db5c61c10f2af87132e5589ecd9fd9b2fe94ca"
+            }
+          },
+          "score": {
+            "differing": 19,
+            "total": 19,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 10
+          },
+          "source_path_found_in_mdebug": true
+        },
+        {
+          "label": "aggregate_checkout",
+          "object_sha256": "1e8236f3ecb4828284e56c48f3eb0598a023ba99337a5760f4910bd9081c13ca",
+          "sections": {
+            ".symtab": {
+              "bytes": 64,
+              "sha256": "f36555219af756865ae21c56e59de12d2c2a5fbb658e327a2c05dbd1ef5527cc"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 32,
+              "sha256": "05df9d67f8334d2c4f2878582c09079ae750c1642e3c4c371fa9dc7229219950"
+            },
+            ".text": {
+              "bytes": 128,
+              "sha256": "f521b243562b8dad71cb9ca60f0e02ed4ca6e819d0d11b861d2ab6636517c1b0"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "3c4f46c567853b49c3f2445b012b302d0df1ffe36d4676c8c5d49b57f8eda3a0"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "ae81d6cdd535ea23d1e604adc33892067690a8ed5ba70c942441ad835be0fdb0"
+            },
+            ".rel.text": {
+              "bytes": 32,
+              "sha256": "37bcfb86f64e18fd01f96fa625589985bde13ce0e7f1207be1709aa95bcb434d"
+            },
+            ".mdebug": {
+              "bytes": 560,
+              "sha256": "88578ca2b6a5aaacd48b9b9f9d3859e0b34901cee86ee2a00d1b71f6dfb18707"
+            }
+          },
+          "score": {
+            "differing": 19,
+            "total": 19,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 10
+          },
+          "source_path_found_in_mdebug": true
+        }
+      ]
+    },
+    {
+      "name": "func_80014CAC",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_80014CAC.c",
+      "source_sha256": "64a28a6a177039b2983146b3dc29130e6919a6aadd816114903a3ce63b8b96c1",
+      "differing_sections": [
+        ".mdebug"
+      ],
+      "score_equal": true,
+      "builds": [
+        {
+          "label": "source_checkout",
+          "object_sha256": "e8bdf3fe4226027683681e9e07c719377a2659f406bab2dc7cefa6956bb40076",
+          "sections": {
+            ".symtab": {
+              "bytes": 64,
+              "sha256": "d86f63e63f81e0ec7abf889903760e6939615a475fc7dbb8ac33f5bedf57ca59"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 32,
+              "sha256": "013c9c82c7826e8940b50dcf6a9d2834c73b1333f93f614e0c89e5d1f00cc8b4"
+            },
+            ".text": {
+              "bytes": 80,
+              "sha256": "813fad79b23218c5316e6a6a525a57893a1b6a6013a8d2b6c72a0150992df5b3"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "dbc8da9daa977fae261fe74c00f31c244ea0bddc838358de6f5014616c341de8"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "7ea36dc397aeb51137903626b006bb49f193cbc7d7cd035c3e64398f5978e817"
+            },
+            ".rel.text": {
+              "bytes": 16,
+              "sha256": "0724ec6820456245770c6facdfaf4530a6815482c36268260f0937a2ea9140b0"
+            },
+            ".mdebug": {
+              "bytes": 544,
+              "sha256": "66a49a591935166d2ec964d4773c675704dcab1d95aac8d9fe364b68c0eae516"
+            }
+          },
+          "score": {
+            "differing": 0,
+            "total": 18,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "source_path_found_in_mdebug": true
+        },
+        {
+          "label": "aggregate_checkout",
+          "object_sha256": "4ab0a67742794c7ba851dbd7a127eed64ed3e1cab83faf9db86fa0719f9f5197",
+          "sections": {
+            ".symtab": {
+              "bytes": 64,
+              "sha256": "d86f63e63f81e0ec7abf889903760e6939615a475fc7dbb8ac33f5bedf57ca59"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 32,
+              "sha256": "013c9c82c7826e8940b50dcf6a9d2834c73b1333f93f614e0c89e5d1f00cc8b4"
+            },
+            ".text": {
+              "bytes": 80,
+              "sha256": "813fad79b23218c5316e6a6a525a57893a1b6a6013a8d2b6c72a0150992df5b3"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "dbc8da9daa977fae261fe74c00f31c244ea0bddc838358de6f5014616c341de8"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "7ea36dc397aeb51137903626b006bb49f193cbc7d7cd035c3e64398f5978e817"
+            },
+            ".rel.text": {
+              "bytes": 16,
+              "sha256": "0724ec6820456245770c6facdfaf4530a6815482c36268260f0937a2ea9140b0"
+            },
+            ".mdebug": {
+              "bytes": 560,
+              "sha256": "4bb770c0cad213ddc241151a00369bf8193b05824febbe9e72fd97fdb962a415"
+            }
+          },
+          "score": {
+            "differing": 0,
+            "total": 18,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "source_path_found_in_mdebug": true
+        }
+      ]
+    },
+    {
+      "name": "func_80014CAC",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "source_path": "cloud/matches/boot_tail/func_80014CAC.c",
+      "source_sha256": "64a28a6a177039b2983146b3dc29130e6919a6aadd816114903a3ce63b8b96c1",
+      "differing_sections": [
+        ".mdebug"
+      ],
+      "score_equal": true,
+      "builds": [
+        {
+          "label": "source_checkout",
+          "object_sha256": "93ad1088be511c30f465aa5715ed047eaeb4ea3f9256f716988f5f44c058eba4",
+          "sections": {
+            ".symtab": {
+              "bytes": 64,
+              "sha256": "45a7e2f23f8dfc6a0b702cf6e6540fe341d31efe5cf5594f08df8ea3e9353b11"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 32,
+              "sha256": "013c9c82c7826e8940b50dcf6a9d2834c73b1333f93f614e0c89e5d1f00cc8b4"
+            },
+            ".text": {
+              "bytes": 96,
+              "sha256": "5d1e63dbcd71efbf0859c58282ca7bb0d5b3cb484b19a48e5c9402c3cde28d17"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "3ca939e68e29f20ee082f525e803e2c744b144224d5ee283526d51529cb4600a"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "a2d0c4214e9b385fc49251dcdd75c2bbd3114b56248aa580047ae8f2f97a6c8c"
+            },
+            ".rel.text": {
+              "bytes": 16,
+              "sha256": "3d9bd25a2e1a39ab3900691cfe281a3b97a701657a42d26dbc7b38acfd47f784"
+            },
+            ".mdebug": {
+              "bytes": 548,
+              "sha256": "055fda78b654b995efff47ece3ff1d610f46c2d302f9b86957ba83dff186b7ca"
+            }
+          },
+          "score": {
+            "differing": 17,
+            "total": 18,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 4
+          },
+          "source_path_found_in_mdebug": true
+        },
+        {
+          "label": "aggregate_checkout",
+          "object_sha256": "2c32131a7f043b8c881d704b2d521f5fba71bcd1375f21107974fded804d9aae",
+          "sections": {
+            ".symtab": {
+              "bytes": 64,
+              "sha256": "45a7e2f23f8dfc6a0b702cf6e6540fe341d31efe5cf5594f08df8ea3e9353b11"
+            },
+            ".shstrtab": {
+              "bytes": 69,
+              "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+            },
+            ".strtab": {
+              "bytes": 32,
+              "sha256": "013c9c82c7826e8940b50dcf6a9d2834c73b1333f93f614e0c89e5d1f00cc8b4"
+            },
+            ".text": {
+              "bytes": 96,
+              "sha256": "5d1e63dbcd71efbf0859c58282ca7bb0d5b3cb484b19a48e5c9402c3cde28d17"
+            },
+            ".options": {
+              "bytes": 32,
+              "sha256": "3ca939e68e29f20ee082f525e803e2c744b144224d5ee283526d51529cb4600a"
+            },
+            ".reginfo": {
+              "bytes": 24,
+              "sha256": "a2d0c4214e9b385fc49251dcdd75c2bbd3114b56248aa580047ae8f2f97a6c8c"
+            },
+            ".rel.text": {
+              "bytes": 16,
+              "sha256": "3d9bd25a2e1a39ab3900691cfe281a3b97a701657a42d26dbc7b38acfd47f784"
+            },
+            ".mdebug": {
+              "bytes": 564,
+              "sha256": "26ef1afaa81c0e60463f70544f659738aaa07f283b0fdc9c6a95ef2b83e94e0b"
+            }
+          },
+          "score": {
+            "differing": 17,
+            "total": 18,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 4
+          },
+          "source_path_found_in_mdebug": true
+        }
+      ]
+    }
+  ],
+  "finding": "For all six exact sources at O2 and O1, identical C compiled from different absolute checkout paths has identical .text, relocation, symbol, string, options and reginfo sections and identical strict score fields. IDO emits the absolute source filename in .mdebug despite -g0, changing that section and ELF container metadata. Object SHA-256 fields bind the local compile but are not portable across checkout paths; source hashes, section hashes and relocated equality remain portable. No frozen source or scorer changes."
+}

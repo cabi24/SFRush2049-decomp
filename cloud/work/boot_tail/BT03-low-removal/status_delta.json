@@ -1,0 +1,55 @@
+{
+  "packet": "BT03-low-removal",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "central_claim": "ce487f1e",
+  "attempted_functions": 3,
+  "attempted_bytes": 872,
+  "local_match_functions": 0,
+  "local_match_bytes": 0,
+  "nonmatch_functions": 3,
+  "nonmatch_bytes": 872,
+  "entries": [
+    {
+      "address": "0x800158D8",
+      "name": "func_800158D8",
+      "size": 308,
+      "cluster": "BT03",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 8,
+      "source_path": "cloud/work/boot_tail/BT03-low-removal/func_800158D8_NONMATCH.c",
+      "source_sha256": "e6044e6e6fe590c91723d453b9fbfaefd76a10e15bd514bd38def333e70b9882",
+      "name_hypothesis": "release referenced record and compact table on zero",
+      "note": "Complete bounded16-form nonmatch. Native frames and O2 lengths exact; no unresolved or unverified relocations. Host1500 cases pass. Packed field/aligned record copy residual;1661C also narrow-formal home/mask. Zero match credit."
+    },
+    {
+      "address": "0x80015F28",
+      "name": "func_80015F28",
+      "size": 308,
+      "cluster": "BT03",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 8,
+      "source_path": "cloud/work/boot_tail/BT03-low-removal/func_80015F28_NONMATCH.c",
+      "source_sha256": "3706258cb69e89503491f56bfde4c7975972959be23461d4a963976d313fe2e7",
+      "name_hypothesis": "release referenced record in second table and compact on zero",
+      "note": "Complete bounded16-form nonmatch. Native frames and O2 lengths exact; no unresolved or unverified relocations. Host1500 cases pass. Packed field/aligned record copy residual;1661C also narrow-formal home/mask. Zero match credit."
+    },
+    {
+      "address": "0x8001661C",
+      "name": "func_8001661C",
+      "size": 256,
+      "cluster": "BT03",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 31,
+      "source_path": "cloud/work/boot_tail/BT03-low-removal/func_8001661C_NONMATCH.c",
+      "source_sha256": "5736a708bbdadea81b42019aa7f5cde75d6d0e9b23f5e47a162b5914a0d08aee",
+      "name_hypothesis": "remove matching record after guarded live-count reload",
+      "note": "Complete bounded16-form nonmatch. Native frames and O2 lengths exact; no unresolved or unverified relocations. Host1500 cases pass. Packed field/aligned record copy residual;1661C also narrow-formal home/mask. Zero match credit."
+    }
+  ]
+}

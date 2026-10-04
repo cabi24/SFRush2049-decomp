@@ -1,0 +1,50 @@
+[
+  {
+    "name": "func_80010E80",
+    "variant": "baseline",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "differing_words": 120,
+    "total_words": 125,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "name": "func_80010E80",
+    "variant": "baseline",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "differing_words": 120,
+    "total_words": 125,
+    "extra_words": 18,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "name": "func_80010A40",
+    "variant": "baseline",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "differing_words": 95,
+    "total_words": 138,
+    "extra_words": 1,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "name": "func_80010A40",
+    "variant": "baseline",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "differing_words": 138,
+    "total_words": 138,
+    "extra_words": 3,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  }
+]

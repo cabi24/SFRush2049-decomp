@@ -1,0 +1,92 @@
+{
+  "packet": "C11-numeric",
+  "central_claim": "ea50bee9",
+  "branch": "dot/boot-tail-c11-numeric",
+  "base": "f05f9eeb7028a96cf76f9d85d7c06508d3be1d61",
+  "master_reference": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "attempted_functions": 5,
+  "attempted_bytes": 844,
+  "local_match_functions": 2,
+  "local_match_bytes": 268,
+  "nonmatch_functions": 3,
+  "nonmatch_bytes": 576,
+  "entries": [
+    {
+      "address": "0x8001E440",
+      "name": "func_8001E440",
+      "size": 204,
+      "cluster": "BT03",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 23,
+      "extra_words": 2,
+      "source_path": "cloud/work/boot_tail/C11-numeric/func_8001E440_NONMATCH.c",
+      "source_sha256": "531e1936a63420631f43dd59c9edf06c9bf8a856de2ee6badaa687ec872e5885",
+      "note": "Complete scalar multiply/conversion using real external address; scalar contents unknown. Known narrow-formal home/allocation plateau; one form then stop."
+    },
+    {
+      "address": "0x8001E688",
+      "name": "func_8001E688",
+      "size": 172,
+      "cluster": "BT03",
+      "status": "matched",
+      "evidence_level": "MATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "extra_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_8001E688.c",
+      "source_sha256": "7b66db8673c63755b1bb5df8a2d56160752f9f3420b2a91543c2df0f1a767def",
+      "note": "First-try strict whole-body unsigned-word truncation followed by double return."
+    },
+    {
+      "address": "0x8001E7BC",
+      "name": "func_8001E7BC",
+      "size": 168,
+      "cluster": "BT03",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 41,
+      "extra_words": 0,
+      "source_path": "cloud/work/boot_tail/C11-numeric/func_8001E7BC_NONMATCH.c",
+      "source_sha256": "23491d11e23d5d43d9eb2daee5569725682fdd2f06fb9a6e006c81052e3c99eb",
+      "note": "Complete phase/quadrant lookup using real external table address and reflected addend; contents unknown. One natural form; no narrow-formal sweep."
+    },
+    {
+      "address": "0x8001E864",
+      "name": "func_8001E864",
+      "size": 204,
+      "cluster": "BT03",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 34,
+      "extra_words": 0,
+      "source_path": "cloud/work/boot_tail/C11-numeric/func_8001E864_NONMATCH.c",
+      "source_sha256": "f460b2d3eec2be3e95e8881e7a1de7ffeb77ab68e6a4699cbb028eff4dfc5bef",
+      "note": "Complete genuine five-input callback search. Three directed natural forms, midpoint allocation plateau; retained original is best."
+    },
+    {
+      "address": "0x8001E940",
+      "name": "func_8001E940",
+      "size": 96,
+      "cluster": "BT03",
+      "status": "matched",
+      "evidence_level": "MATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "extra_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_8001E940.c",
+      "source_sha256": "1d7f3398193c7b8d734e5a98bb8145cee5b978b001205b78743e7dafa236ae92",
+      "note": "First-try strict two-pointer conversion with actual 19AA8 state-pointer ABI and post-call output read."
+    }
+  ],
+  "source_review": {
+    "result": "PASS",
+    "reviewed_commit": "53adec19a3a734a7abdf9acc22aff3a34392c18d",
+    "reviewed_tree": "fa209b5e85d469d90e60a5b8c826898a2b7bdf5f",
+    "receipt": "cloud/work/boot_tail/C11-numeric/REVIEW.json",
+    "metadata_supplement": "cloud/work/boot_tail/C11-numeric/REVIEW_SUPPLEMENT.json"
+  }
+}

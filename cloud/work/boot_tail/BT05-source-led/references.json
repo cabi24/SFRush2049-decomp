@@ -1,0 +1,50 @@
+{
+  "repository": "AxioDL/musyx",
+  "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+  "path": "src/musyx/runtime/synthmacros.c",
+  "file_blob_sha": "a3203f9e0032fa5e9d08fa5e51da80acf4cab0c0",
+  "url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/src/musyx/runtime/synthmacros.c",
+  "license": "CC0-1.0",
+  "license_blob_sha": "0e259d42c996742e9e3cba14c677129b2c1b6311",
+  "license_url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/LICENSE",
+  "retrieval": "Read-only connected GitHub fetch_file at pinned revision; license header verified.",
+  "native_release_identity": "Unproved; public code supports PC/Dolphin and version-dependent layouts.",
+  "functions": [
+    {
+      "target": "func_800223D0",
+      "definition": "mcmdAddAgeCounter",
+      "lines": [
+        365,
+        381
+      ],
+      "new_control_distinction": "Reference s16 local assigned explicitly u16-extracted high word; prior unsigned_short_then_signed used an unsigned local assigned signed conversion then signed conversion again at use.",
+      "native_adaptation": "Keep N64 packed state+0x28, omit donor hardware priority call absent from native target, preserve zero byte result."
+    },
+    {
+      "target": "func_80022514",
+      "definition": "mcmdAddPriority",
+      "lines": [
+        404,
+        412
+      ],
+      "new_control_distinction": "Both s16 locals already existed in initial control; actual distinction is explicit u16 extraction followed by signed assignment and one complete nested conditional expression.",
+      "native_adaptation": "Keep native byte+0x2E, actual state/u8 callee ABI and zero byte result."
+    },
+    {
+      "target": "func_80023190",
+      "definition": "mcmdSetPianoPanning",
+      "lines": [
+        911,
+        921
+      ],
+      "new_control_distinction": "One nested s8(u8(extraction)) expression and whole nested clamp expression without raw-word or separate limited locals; old controls split bit-mask/extraction and introduced an explicit clamp-result local.",
+      "native_adaptation": "Keep native packed note halfword+0x50 and only native store+0x38; omit the extra donor panning store, preserve zero byte result."
+    }
+  ],
+  "open_semantic_qualification": {
+    "target": "func_80023190",
+    "issue": "Donor signed shift/multiply is not proven defined over every u16 field50 value; native bounded input range is unproved.",
+    "preserved_full_width_reference": "cloud/work/boot_tail/BT05-medium/nonmatch/func_80023190.c",
+    "claim_limit": "8/35 is compiler closeness only; no strict match or full-domain source-equivalence claim."
+  }
+}

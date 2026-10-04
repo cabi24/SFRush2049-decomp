@@ -1,0 +1,63 @@
+{
+  "packet": "BT02-final-small",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "claim_commit": "9448eb24",
+  "strict_match_functions": 2,
+  "strict_match_bytes": 220,
+  "complete_nonmatch_functions": 2,
+  "complete_nonmatch_bytes": 320,
+  "rows": [
+    {
+      "address": "0x800107E0",
+      "name": "func_800107E0",
+      "size": 96,
+      "cluster": "BT02",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_800107E0.c",
+      "owner": "/root/match_boot_tail_bt02_finalsmall",
+      "note": "Local pinned strict replay and 2,168-case actual-source C89/ASan/UBSan host checks pass; peer review and exact aggregate-head CI still required."
+    },
+    {
+      "address": "0x80010840",
+      "name": "func_80010840",
+      "size": 160,
+      "cluster": "BT02",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 14,
+      "source_path": "cloud/work/boot_tail/BT02-final-small/nonmatch/func_80010840.c",
+      "owner": "/root/match_boot_tail_bt02_finalsmall",
+      "note": "Complete six-argument audio initializer. O2 14/40, O1 37/40. Ten directed variants did not improve the baseline; argument home/narrowed carrier and consequent temp-ring residual."
+    },
+    {
+      "address": "0x800108E0",
+      "name": "func_800108E0",
+      "size": 160,
+      "cluster": "BT02",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 14,
+      "source_path": "cloud/work/boot_tail/BT02-final-small/nonmatch/func_800108E0.c",
+      "owner": "/root/match_boot_tail_bt02_finalsmall",
+      "note": "Complete six-argument audio initializer. O2 14/40, O1 37/40. Ten directed variants did not improve the baseline; argument home/narrowed carrier and consequent temp-ring residual."
+    },
+    {
+      "address": "0x80013D70",
+      "name": "func_80013D70",
+      "size": 124,
+      "cluster": "BT02",
+      "status": "verified_body",
+      "evidence_level": "VERIFIED-BODY",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_80013D70.c",
+      "owner": "/root/match_boot_tail_bt02_finalsmall",
+      "note": "Local pinned strict replay and 2,168-case actual-source C89/ASan/UBSan host checks pass; peer review and exact aggregate-head CI still required."
+    }
+  ]
+}

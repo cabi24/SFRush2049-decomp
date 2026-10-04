@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "reviewer": "BT07-followon",
+  "reviewed_commit": "6b50c52bf61f29c58e6220f175c5b3cb389a2715",
+  "reviewed_tree": "abd968b018904d88d8c952e28c0a29cd1f76db2d",
+  "matching_functions": 6,
+  "matching_bytes": 548,
+  "source_bound_results": [
+    {
+      "function": "func_800105C4",
+      "native_bytes": 88,
+      "source_sha256": "396ca270d9f7c106ac279047dd279e56a4b2a8d1dc5e57cdcb48be8af0ec3f17",
+      "relocated_full_word_equality": true,
+      "zero_trailing_alignment": true,
+      "zero_diff_extra_masks_unresolved_unverified_errors": true
+    },
+    {
+      "function": "func_80010D74",
+      "native_bytes": 100,
+      "source_sha256": "d4e044c6be801b723be89297354a5adb5f3726ff0557c68b2f20365d5345a2dc",
+      "relocated_full_word_equality": true,
+      "zero_trailing_alignment": true,
+      "zero_diff_extra_masks_unresolved_unverified_errors": true
+    },
+    {
+      "function": "func_80011C84",
+      "native_bytes": 84,
+      "source_sha256": "de8237c3ae519acc6b8d487f08a90fe6a5584393a25b1fb8f0bc0592a5d228b8",
+      "relocated_full_word_equality": true,
+      "zero_trailing_alignment": true,
+      "zero_diff_extra_masks_unresolved_unverified_errors": true
+    },
+    {
+      "function": "func_80014374",
+      "native_bytes": 76,
+      "source_sha256": "2b52a1025a81899bb697da7fc3692b6b6095ff4d42cdffcce17a584f0fe570d7",
+      "relocated_full_word_equality": true,
+      "zero_trailing_alignment": true,
+      "zero_diff_extra_masks_unresolved_unverified_errors": true
+    },
+    {
+      "function": "func_800143C0",
+      "native_bytes": 116,
+      "source_sha256": "234df42069bed1b971bcacb5646116b7554525113cddc54e083fc16d53d6e722",
+      "relocated_full_word_equality": true,
+      "zero_trailing_alignment": true,
+      "zero_diff_extra_masks_unresolved_unverified_errors": true
+    },
+    {
+      "function": "func_80014434",
+      "native_bytes": 84,
+      "source_sha256": "8a4cf4652d4460f27eeea1bb2992af5b5e2966f9c855be1e0c5a47e6007ce962",
+      "relocated_full_word_equality": true,
+      "zero_trailing_alignment": true,
+      "zero_diff_extra_masks_unresolved_unverified_errors": true
+    }
+  ],
+  "original_receipt_sha256": "dfbedfb211d3565d1eaea00d424eecdceeffb8bb7df599d05fcca69d2ebeba0b",
+  "note": "Summary preserves exact source-bound checks; execution-local identifiers and command traces are omitted."
+}

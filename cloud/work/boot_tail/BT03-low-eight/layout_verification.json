@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "compiler": "pinned IDO 5.3",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "results": [
+    {
+      "function": "func_800148F8",
+      "source_sha256": "9623012106a365b565f366c3b95c3d94e8448d6ddba51cffcebf69507d1ec72e",
+      "checks": [
+        "sizeof(AudioSlot) == 104",
+        "(unsigned int)&((AudioSlot *)0)->value20 == 32",
+        "(unsigned int)&((AudioSlot *)0)->value22 == 34",
+        "(unsigned int)&((AudioSlot *)0)->value24 == 36",
+        "(unsigned int)&((AudioSlot *)0)->release_count == 40"
+      ],
+      "result": "PASS"
+    },
+    {
+      "function": "func_800171C0",
+      "source_sha256": "26f596c6c04fddf5e960efe361fe46f8bd363387fe883c2d4f2dd5238d54da86",
+      "checks": [
+        "sizeof(AudioNode) == 24",
+        "(unsigned int)&((AudioNode *)0)->next == 0",
+        "(unsigned int)&((AudioNode *)0)->previous == 4"
+      ],
+      "result": "PASS"
+    },
+    {
+      "function": "func_8001729C",
+      "source_sha256": "ab2c96f0384fab2b92e2cc5e6de009adddf1eea898900ba08fc1839d6a188213",
+      "checks": [
+        "(unsigned int)&((AudioState *)0)->active == 3960",
+        "(unsigned int)&((AudioState *)0)->pending == 3964"
+      ],
+      "result": "PASS"
+    }
+  ]
+}

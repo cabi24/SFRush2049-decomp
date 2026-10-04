@@ -1,0 +1,6 @@
+address,name,size,status,flags,diff_words,source_path,note
+0x80022324,func_80022324,172,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,2,cloud/work/boot_tail/BT05-macro-five/nonmatch/func_80022324.c,COMPLETE-NONMATCH; BT05-macro-five; native ABI and compiler residual documented; zero verified bytes
+0x800230B0,func_800230B0,224,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,43,cloud/work/boot_tail/BT05-macro-five/nonmatch/func_800230B0.c,COMPLETE-NONMATCH; BT05-macro-five; native ABI and compiler residual documented; zero verified bytes
+0x80023AD4,func_80023AD4,124,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,25,cloud/work/boot_tail/BT05-macro-five/nonmatch/func_80023AD4.c,COMPLETE-NONMATCH; BT05-macro-five; native ABI and compiler residual documented; zero verified bytes
+0x80023B50,func_80023B50,140,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,33,cloud/work/boot_tail/BT05-macro-five/nonmatch/func_80023B50.c,COMPLETE-NONMATCH; BT05-macro-five; native ABI and compiler residual documented; zero verified bytes
+0x80023DB8,func_80023DB8,228,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,49,cloud/work/boot_tail/BT05-macro-five/nonmatch/func_80023DB8.c,COMPLETE-NONMATCH; BT05-macro-five; native ABI and compiler residual documented; zero verified bytes

@@ -1,0 +1,4 @@
+note: no mips-linux-gnu-objdump; diffs will show hex only
+      (Debian/Ubuntu: sudo apt-get install -y binutils-mips-linux-gnu)
+ido.tgz: OK
+IDO 5.3 ready: /tmp/rush-boot-tail-bt03-high-init/tools/cloud/ido/cc

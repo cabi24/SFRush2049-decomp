@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "reviewer": "central integrator (independent of source author)",
+  "reviewed_commit": "03a5435bdf631477b6a64071d02efe56b57dad0b",
+  "reviewed_tree": "944c58b8c47ae1ba520b0ed8040354ebdc478c08",
+  "matching_functions": 5,
+  "matching_bytes": 464,
+  "source_bound_results": [
+    {
+      "name": "func_800150C8",
+      "source_sha256": "544119c4d405856c1d7eb2cd119373955fa0b174e845a3f8d58c9325a6d61cd0",
+      "native_bytes": 88,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 0,
+      "extra_words": 0,
+      "masked_relocations": 0,
+      "relocated_full_word_equality": true,
+      "strict_match": true
+    },
+    {
+      "name": "func_80015120",
+      "source_sha256": "cdb10ee35ce84a0e0d17130d26f0860d2a04a5cc211a9ac9c7f5f1434dabb4bf",
+      "native_bytes": 88,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 0,
+      "extra_words": 0,
+      "masked_relocations": 0,
+      "relocated_full_word_equality": true,
+      "strict_match": true
+    },
+    {
+      "name": "func_80015178",
+      "source_sha256": "c4bcf69b7ca5d33aff7d8b5b3ff521fa165741f5c0f474598f5054cbef5096ee",
+      "native_bytes": 88,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 0,
+      "extra_words": 0,
+      "masked_relocations": 0,
+      "relocated_full_word_equality": true,
+      "strict_match": true
+    },
+    {
+      "name": "func_800151D0",
+      "source_sha256": "5649cb3617691813eb843cc80fd997c0c617a301e94a1b2078db6bfee3814b83",
+      "native_bytes": 88,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 0,
+      "extra_words": 0,
+      "masked_relocations": 0,
+      "relocated_full_word_equality": true,
+      "strict_match": true
+    },
+    {
+      "name": "func_800152A8",
+      "source_sha256": "a76e40cb608b9e1abef3ad4d43ada0e73f7139ae98d662614e42836478773095",
+      "native_bytes": 112,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 0,
+      "extra_words": 0,
+      "masked_relocations": 0,
+      "relocated_full_word_equality": true,
+      "strict_match": true
+    }
+  ],
+  "checks": [
+    "Independently reran the exact ten-row compiler/input/target-bound receipt, byte-identical",
+    "Canonical changed-submissions independently scored all five bodies MATCH",
+    "Read every matching C source and all five canonical whole native bodies",
+    "Read all five complete canonical callee extents: one u16 input, observed integer status ignored",
+    "Read caller154A4: native resource base plus relative offset plus eight-byte prefix",
+    "Six actual-source C89 ASan/UBSan tests passed, covering336775 calls and live list mutations",
+    "Allowed15-path diff and base-to-head whitespace pass; frozen C unchanged"
+  ],
+  "domain_notes": [
+    "Reverse pre-decrement and relational comparison require a valid interior list pointer within the same resource allocation; canonical caller geometry supplies the observed eight-byte prefix for valid offsets. No claim for arbitrary standalone arrays, invalid offsets or missing terminators.",
+    "No extra formal, artificial local, padding, stub body or assembler source. Normal trailing zero text alignment is excluded from native byte credit."
+  ],
+  "artifact_sha256": {
+    "verification.json": "3057c74fdfaceada13b7f80137da6115e6ac17f4742a6c076e51f62b466fb613",
+    "host_verification.json": "62a34b2add9295b368429de49e8fc45e1ffea31ca808b4034b533ae0bb5814ea",
+    "abi.json": "76e4cee978609fa4c44ff3bd591b596a7a890461248a2d3d159628b855736641"
+  },
+  "limitations": "Exact aggregate-head CI is still required. No cartridge or maintainer acceptance claim. Local compiler cache is outside the committed source diff."
+}

@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "manifest": [
+    "boot_tail_8000f3a4.s: OK",
+    "extents.json: OK",
+    "symbols.json: OK"
+  ],
+  "extent_functions": 439,
+  "extent_bytes": 99120,
+  "pinned_compiler_files": 24,
+  "getter_strict_match": true,
+  "verified_match_functions": 1,
+  "verified_match_bytes": 296,
+  "research_nonmatch_functions": 2,
+  "research_nonmatch_bytes": 696,
+  "results": [
+    {
+      "function": "func_8001558C",
+      "source_path": "cloud/work/boot_tail/BT03-low-registers/func_8001558C_NONMATCH.c",
+      "source_sha256": "c6c2dcaa194b6d119fee7d31689355ac762170cda8823cc3b6f396ac15478d82",
+      "target_bytes": 348,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 33,
+      "total_words": 87,
+      "extra_nonzero_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "function": "func_8001558C",
+      "source_path": "cloud/work/boot_tail/BT03-low-registers/func_8001558C_NONMATCH.c",
+      "source_sha256": "c6c2dcaa194b6d119fee7d31689355ac762170cda8823cc3b6f396ac15478d82",
+      "target_bytes": 348,
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 83,
+      "total_words": 87,
+      "extra_nonzero_words": 14,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "function": "func_80015C0C",
+      "source_path": "cloud/work/boot_tail/BT03-low-registers/func_80015C0C_NONMATCH.c",
+      "source_sha256": "bb2cb7bd36713ed09cf2270e6c12e620db3412efb333e258f1af706fa0b3dfb5",
+      "target_bytes": 348,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 23,
+      "total_words": 87,
+      "extra_nonzero_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "function": "func_80015C0C",
+      "source_path": "cloud/work/boot_tail/BT03-low-registers/func_80015C0C_NONMATCH.c",
+      "source_sha256": "bb2cb7bd36713ed09cf2270e6c12e620db3412efb333e258f1af706fa0b3dfb5",
+      "target_bytes": 348,
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 85,
+      "total_words": 87,
+      "extra_nonzero_words": 26,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "function": "func_800163A8",
+      "source_path": "cloud/matches/boot_tail/func_800163A8.c",
+      "source_sha256": "7d237f0baeb409e9ad3c5fb4828f775957bd4f4f14d2639f3fe558057511174f",
+      "target_bytes": 296,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 0,
+      "total_words": 74,
+      "extra_nonzero_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": true
+    },
+    {
+      "function": "func_800163A8",
+      "source_path": "cloud/matches/boot_tail/func_800163A8.c",
+      "source_sha256": "7d237f0baeb409e9ad3c5fb4828f775957bd4f4f14d2639f3fe558057511174f",
+      "target_bytes": 296,
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 73,
+      "total_words": 74,
+      "extra_nonzero_words": 4,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    }
+  ],
+  "native_layout": [
+    {
+      "function": "func_8001558C",
+      "result": "PASS",
+      "checks": [
+        {
+          "expression": "sizeof(ResourceHeader)",
+          "value": 40
+        },
+        {
+          "expression": "sizeof(Program)",
+          "value": 132
+        },
+        {
+          "expression": "(u32)&((ResourceHeader *)0)->bank_a",
+          "value": 28
+        },
+        {
+          "expression": "(u32)&((ResourceHeader *)0)->bank_b",
+          "value": 32
+        },
+        {
+          "expression": "(u32)&((ResourceHeader *)0)->programs",
+          "value": 36
+        }
+      ]
+    },
+    {
+      "function": "func_80015C0C",
+      "result": "PASS",
+      "checks": [
+        {
+          "expression": "sizeof(RecordFields)",
+          "value": 12
+        },
+        {
+          "expression": "sizeof(RecordStorage)",
+          "value": 12
+        },
+        {
+          "expression": "(unsigned int)&((RecordFields *)0)->id",
+          "value": 4
+        },
+        {
+          "expression": "(unsigned int)&((RecordFields *)0)->references",
+          "value": 8
+        }
+      ]
+    },
+    {
+      "function": "func_800163A8",
+      "result": "PASS",
+      "checks": [
+        {
+          "expression": "sizeof(Resource)",
+          "value": 28
+        },
+        {
+          "expression": "sizeof(RegistryEntry)",
+          "value": 12
+        },
+        {
+          "expression": "(u32)&((Resource *)0)->data",
+          "value": 12
+        },
+        {
+          "expression": "(u32)&((Resource *)0)->size",
+          "value": 4
+        }
+      ]
+    }
+  ]
+}

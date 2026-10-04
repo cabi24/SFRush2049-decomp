@@ -1,0 +1,95 @@
+{
+  "result": "PASS",
+  "source_commit": "975139409292bf8fa18355d26eb02ceb46c6356b",
+  "source_tree": "14b54bd281f3074009b953257c06f0ffb7151526",
+  "stack_base": "6c4b7d31445ea485b913c485d7756463a91f249e",
+  "reviewer": "BT03-high",
+  "reviewed_utc": "2026-10-04T01:28:49.953585+00:00",
+  "method": "Fresh immutable Git blob copies, independently compiled using canonical unchanged scorer and pinned IDO; actual full source and complete native bodies plus four direct callees inspected.",
+  "strict_results": [
+    {
+      "name": "func_80022160",
+      "bytes": 452,
+      "source_path": "cloud/work/boot_tail/BT05-resource-pair/nonmatch/func_80022160.c",
+      "source_sha256": "afba260aae91d7e2f21954ed172280c0db7a68ab0198ed761306ea50fc4261ce",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 95,
+      "total_words": 113,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80022160",
+      "bytes": 452,
+      "source_path": "cloud/work/boot_tail/BT05-resource-pair/nonmatch/func_80022160.c",
+      "source_sha256": "afba260aae91d7e2f21954ed172280c0db7a68ab0198ed761306ea50fc4261ce",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 113,
+      "total_words": 113,
+      "extra_words": 39,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_8004BEB8 at .text+0x1a8"
+      ],
+      "strict_match": false
+    },
+    {
+      "name": "func_80022874",
+      "bytes": 460,
+      "source_path": "cloud/work/boot_tail/BT05-resource-pair/nonmatch/func_80022874.c",
+      "source_sha256": "ad4b84ed886916544cc1a12f1b5d4e1e093ad9d44454f86fdd7d35ce5c7b4946",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 103,
+      "total_words": 115,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80022874",
+      "bytes": 460,
+      "source_path": "cloud/work/boot_tail/BT05-resource-pair/nonmatch/func_80022874.c",
+      "source_sha256": "ad4b84ed886916544cc1a12f1b5d4e1e093ad9d44454f86fdd7d35ce5c7b4946",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 109,
+      "total_words": 115,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    }
+  ],
+  "match_functions": 0,
+  "verified_body_bytes": 0,
+  "nonmatch_functions": 2,
+  "nonmatch_bytes": 912,
+  "semantic_tests": {
+    "result": "PASS",
+    "groups": 2,
+    "child_cases": 240,
+    "sample_cases": 1280
+  },
+  "source_abi_findings": [
+    "Full retained/native22160 and22874 bodies plus complete24988,146B4 and16CF0 were independently inspected. Previously matched1B744 two-state-pointer ABI remains unchanged.",
+    "24988 has exactly11 genuine arguments: u32,u16,five u8,two u16,two u8. Its72-byte frame reads incoming stack slots+16/+20/+24 lowbytes,+28/+32 lowhalfwords,+36/+40 lowbytes; register homes confirm leading widths. The zero tenth input is actually consumed by the key-registration gate.",
+    "22160 packs all32 command bits by actual word/byte layout, adds signed-byte interval to unsigned original halfword within signed32 range, clamps0..127 and applies the external high bit. Active is set before construction and cleared even on failure; identifier, child link and external flag are reread live after the constructor.",
+    "Successful child and existing child IDs use allocated416-byte records. Parent/child linking order and optional two-pointer controller copy agree. Malformed indices and arbitrary alias/cycle safety are outside the documented valid-resource domain.",
+    "16CF0 writes six observed descriptor words and byte+24, including the24-bit length.146B4 consumes only word slot, descriptor pointer and reset byte; internal floating conversion does not imply a caller float argument. No fake fourth input is present.",
+    "22874 preserves full high-word volume extraction, unsigned low32 multiplication/subtraction and division by127; zero length deliberately wraps length-1 as native. Real playback still requires valid nonempty resource descriptors; synthetic zero-length arithmetic tests do not prove playback safety.",
+    "Post-playback info/address and flags are read live. Host tests independently pass240 child protocol cases and1280 descriptor/mode/volume/reset cases, including constructor/playback mutations.",
+    "No fake formal, keeper, padding, volatile trick, assembly or callee body; constructor O1 unpaired-HI16 error remains rejected. Both sources are complete NONMATCHs with zero match credit."
+  ],
+  "scope": "Only BT05-resource-pair research paths differ from frozen stack base; no submissions or protected changes.",
+  "whitespace": "PASS"
+}

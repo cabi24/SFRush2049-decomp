@@ -1,0 +1,71 @@
+{
+  "one_donor_control_per_function": true,
+  "results": [
+    {
+      "name": "func_800223D0",
+      "source_sha256": "06087ae374846f7a46ea6fe029144d4a95db42ba14807852ffac6dba91508233",
+      "scores": {
+        "O2": {
+          "differing": 14,
+          "total": 27,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "O1": {
+          "differing": 27,
+          "total": 27,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 6
+        }
+      }
+    },
+    {
+      "name": "func_80022514",
+      "source_sha256": "37786c04a8b91e1f9d8bde33a837c5c269acb7623f6321564202ed5f65004f33",
+      "scores": {
+        "O2": {
+          "differing": 23,
+          "total": 27,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "O1": {
+          "differing": 27,
+          "total": 27,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 10
+        }
+      }
+    },
+    {
+      "name": "func_80023190",
+      "source_sha256": "8e71056942fab6966c92f8f4d7567554ec29858e631a0bc032c0cb2ef017a980",
+      "scores": {
+        "O2": {
+          "differing": 8,
+          "total": 35,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "O1": {
+          "differing": 34,
+          "total": 35,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 10
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "scope": "Metadata-only workbench diagnosis on canonical target and fully relocated initial candidate words; temporary objects/listings are not archived.",
+  "checkpoints": [
+    {
+      "function": "func_80015228",
+      "checkpoint": "initial O2 before the one directed refinement",
+      "source_sha256": "3fc6bad2ba8e25080b07e9de1467d05ed999434de60e746472fc043a64c96827",
+      "routing": "structural",
+      "owning_pass": "cfe-spelling",
+      "ownership_basis": "heuristic",
+      "lever_class": "none-known",
+      "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+      "target_frame": -40,
+      "candidate_frame": -40,
+      "aligned_insertions": 1,
+      "aligned_deletions": 1,
+      "artifact_built_at": [
+        "2026-10-04T00:04:20Z",
+        "2026-10-04T00:04:20Z"
+      ]
+    },
+    {
+      "function": "func_800162AC",
+      "checkpoint": "initial O2 before the one directed refinement",
+      "source_sha256": "0a2c9fa57c945195ee23819312a0e8614152ea74424a281fa3aeba654464e44b",
+      "routing": "import-fix",
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "none-known",
+      "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+      "target_frame": -40,
+      "candidate_frame": -40,
+      "aligned_insertions": 9,
+      "aligned_deletions": 16,
+      "artifact_built_at": [
+        "2026-10-04T00:04:20Z",
+        "2026-10-04T00:04:21Z"
+      ]
+    }
+  ]
+}

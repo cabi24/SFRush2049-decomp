@@ -1,0 +1,39 @@
+{
+  "state": "integrating-source-frozen",
+  "owner": "/root/match_boot_tail_bt05_bt07",
+  "packet": "BT05-variables",
+  "branch": "dot/boot-tail-bt05-variables",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x800225FC",
+      "size": 124,
+      "end_exclusive": "0x80022678"
+    },
+    {
+      "address": "0x8002279C",
+      "size": 216,
+      "end_exclusive": "0x80022874"
+    },
+    {
+      "address": "0x80022F24",
+      "size": 232,
+      "end_exclusive": "0x8002300C"
+    },
+    {
+      "address": "0x8002300C",
+      "size": 164,
+      "end_exclusive": "0x800230B0"
+    },
+    {
+      "address": "0x8002321C",
+      "size": 136,
+      "end_exclusive": "0x800232A4"
+    }
+  ],
+  "bytes": 872,
+  "prior_packet": "BT05-conditions frozen peer PASS6acbc06132e0c767783948a0804d66d2ae20ac80",
+  "edit_scope": "Only listed matching sources and cloud/work/boot_tail/BT05-variables/**",
+  "stop": "Actual narrow-input and dispatcher-index ABI. Native source C89,O2/O1,20 directed variants maximum per hypothesis; no protected edits, table proof substitution or repeats of known plateaus without new evidence. Do not edit148F8 or other owned helpers.",
+  "peer_approved_head": "3d1c4fde5492e9513d0fc38df8435e7105067e13"
+}

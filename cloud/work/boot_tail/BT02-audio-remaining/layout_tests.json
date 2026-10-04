@@ -1,0 +1,16 @@
+{
+  "result": "PASS",
+  "source_sha256": "558684af38cff762bb2629d6013933ecdd19558c0382195bb90de80d7f786c38",
+  "native_widths": {
+    "word": 4,
+    "short": 2,
+    "pointer": 4
+  },
+  "field_offsets": {
+    "frequency": 0,
+    "mode": 4,
+    "sample_bits": 5,
+    "unknown06": 6,
+    "text": 262
+  }
+}

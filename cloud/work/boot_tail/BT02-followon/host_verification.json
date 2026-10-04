@@ -1,0 +1,26 @@
+{
+  "result": "PASS",
+  "reports": [
+    {
+      "mode": "c89",
+      "result": "PASS",
+      "stdout": "PASS: one-time queue setup, jam/reload order, 104-byte record bounds, 64 flag combinations and 128 setup calls"
+    },
+    {
+      "mode": "sanitizers",
+      "result": "PASS",
+      "stdout": "PASS: one-time queue setup, jam/reload order, 104-byte record bounds, 64 flag combinations and 128 setup calls"
+    }
+  ],
+  "source_hashes": {
+    "cloud/matches/boot_tail/func_800105C4.c": "396ca270d9f7c106ac279047dd279e56a4b2a8d1dc5e57cdcb48be8af0ec3f17",
+    "cloud/matches/boot_tail/func_80010D74.c": "d4e044c6be801b723be89297354a5adb5f3726ff0557c68b2f20365d5345a2dc",
+    "cloud/matches/boot_tail/func_80011C84.c": "de8237c3ae519acc6b8d487f08a90fe6a5584393a25b1fb8f0bc0592a5d228b8",
+    "cloud/matches/boot_tail/func_80014374.c": "2b52a1025a81899bb697da7fc3692b6b6095ff4d42cdffcce17a584f0fe570d7",
+    "cloud/matches/boot_tail/func_800143C0.c": "234df42069bed1b971bcacb5646116b7554525113cddc54e083fc16d53d6e722",
+    "cloud/matches/boot_tail/func_80014434.c": "8a4cf4652d4460f27eeea1bb2992af5b5e2966f9c855be1e0c5a47e6007ce962",
+    "cloud/work/boot_tail/BT02-followon/host_behavior.c": "528f3ad55236e541712bcb9c4cc8930ba9ea2c290dec3456ffccb4e0e725752e"
+  },
+  "leak_detection": "Disabled: LeakSanitizer rejects the execution environment under ptrace; this driver allocates no heap objects.",
+  "limits": "Host callbacks model call contracts; no N64 hardware or concurrent scheduling is emulated."
+}

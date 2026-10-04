@@ -1,0 +1,30 @@
+{
+  "result": "PASS_FOR_BOUNDED_HOST_SEMANTICS",
+  "tests_passed": 6,
+  "candidate_invocations": 1386,
+  "per_resource_wrapper_invocations": 324,
+  "dispatcher_invocations": 90,
+  "host_compilation": "C89, pedantic-errors, Wall, Wextra, Werror, AddressSanitizer, UndefinedBehaviorSanitizer",
+  "leak_sanitizer": "Disabled because the executor ptrace prevents it; no candidate or harness allocates heap memory. Address/UB checks remain enabled and halt on errors.",
+  "checks": [
+    "empty through eight-entry lists",
+    "all/missing/alternating resource lookup results",
+    "live current identifier mutation after lookup",
+    "live next sentinel after registration",
+    "payload +8 or +12 and live unsigned parameter at +10",
+    "disabled/empty stack",
+    "live signed count decrement before calls",
+    "five-call ordering and selected-group preservation",
+    "live subsequent offset/type/id changes across callbacks",
+    "optional final id callback and return status"
+  ],
+  "source_sha256": {
+    "cloud/matches/boot_tail/func_80014F14.c": "cca1a01c186560ed70c5624628e7ed153b93e044505a2b947044d0ec2a7ded17",
+    "cloud/matches/boot_tail/func_80014F80.c": "277f080b50ee725a98b9e3bcb7727a96e8ac5b2a4c2ba6b56ae06324f35729e4",
+    "cloud/matches/boot_tail/func_80014FEC.c": "539977204891663b794dd95bb0602459caeb677e70b32f5d301e4e097f69f4cc",
+    "cloud/matches/boot_tail/func_80015058.c": "4004bedf19617e8c19913fac9ecb96ba20c8c49194089f802e650430e6c5181b",
+    "cloud/work/boot_tail/BT03-low-resource/func_800154A4_NONMATCH.c": "0a14155e3e925f37e591d1298eba3c2dc89799ea9a65225b6a01832724ba51c9"
+  },
+  "test_source_sha256": "1c396eff5ed071c20c02b9172e224290a07c211626003544e2e1a3c96c50b8a4",
+  "bounds": "Allocated aligned resource/list buffers, terminators, valid enabled positive stack counts and in-range offsets are required. Host group-header offsets are pointer-free and checked; pointer-table stride is native 32-bit evidence, not host layout. Synthetic external contracts do not reconstruct the helper algorithms. No malformed resource/game/ROM proof."
+}

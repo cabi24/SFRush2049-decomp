@@ -1,0 +1,66 @@
+{
+  "command": "python3 tools/workbench.py diagnose <local-target.o> <local-resolved-candidate.o> --function <name> --objdump <GNU-MIPS-objdump> --json",
+  "materialization": "Read-only native target and fully relocated candidate words were assembled as local temporary comparison objects. Raw objects, words and diagnostic listings are not published. This is residual classification, never acceptance.",
+  "results": [
+    {
+      "name": "func_80020610",
+      "phase": "before any directed variants",
+      "source_path": "nonmatch/func_80020610.c",
+      "verdict": "structure-mismatch",
+      "instruction_delta": 3,
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "reachability": "unknown",
+      "lever_class": "none-known",
+      "observed_residual": "Narrow-argument entry normalization uses temporary masks and register copies at O2; O1 omits native argument homes. Frames are absent in both. No source lever proved."
+    },
+    {
+      "name": "func_80020F4C",
+      "phase": "before any directed variants",
+      "source_path": "nonmatch/func_80020F4C.c",
+      "verdict": "structure-mismatch",
+      "instruction_delta": 2,
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "reachability": "unknown",
+      "lever_class": "none-known",
+      "observed_residual": "Narrow-argument entry normalization uses temporary masks and register copies at O2; O1 omits native argument homes. Frames are absent in both. No source lever proved."
+    },
+    {
+      "name": "func_80020F98",
+      "phase": "before any directed variants",
+      "source_path": "nonmatch/func_80020F98.c",
+      "verdict": "structure-mismatch",
+      "instruction_delta": 1,
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "reachability": "unknown",
+      "lever_class": "none-known",
+      "observed_residual": "Narrow-argument entry normalization uses temporary masks and register copies at O2; O1 omits native argument homes. Frames are absent in both. No source lever proved."
+    },
+    {
+      "name": "func_80020FDC",
+      "phase": "before any directed variants",
+      "source_path": "nonmatch/func_80020FDC.c",
+      "verdict": "structure-mismatch",
+      "instruction_delta": 2,
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "reachability": "unknown",
+      "lever_class": "none-known",
+      "observed_residual": "Narrow-argument entry normalization uses temporary masks and register copies at O2; O1 omits native argument homes. Frames are absent in both. No source lever proved."
+    },
+    {
+      "name": "func_80021028",
+      "phase": "before any directed variants",
+      "source_path": "nonmatch/func_80021028.c",
+      "verdict": "structure-mismatch",
+      "instruction_delta": 1,
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "reachability": "unknown",
+      "lever_class": "none-known",
+      "observed_residual": "Narrow-argument entry normalization uses temporary masks and register copies at O2; O1 omits native argument homes. Frames are absent in both. No source lever proved."
+    }
+  ]
+}

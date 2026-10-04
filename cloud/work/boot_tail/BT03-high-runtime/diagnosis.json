@@ -1,0 +1,57 @@
+{
+  "method": "Unchanged workbench; temporary canonical-word target object and original O2 candidate. Raw objects/words not committed; strict relocated score decides acceptance.",
+  "results": [
+    {
+      "name": "func_8001B8C4",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "1333af7981ed072367b68247eb31c30a8e23ac6b13bb0317d7f8dadc0c6c15fd",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 36,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  34 words=  36 raw=  39 opcodes=  14 gaps=   3 reloc_syms=   8 norm=  31 regs=  35 fp=   3 insns=  38 frame=  -32 sha1=391bf9f7dc7e /tmp/runtime-8001B8C4-O2.o true_insn_delta=-3 geometry_edit_distance=31 opcode_distance=5",
+      "recorded_utc": "2026-10-03T23:59:58.098319+00:00"
+    },
+    {
+      "name": "func_800202C4",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "45c9a9fa013061287241170ccda37e47a99a8c0c1ed010947534aefa584f0734",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 35,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  25 words=  35 raw=  37 opcodes=  32 gaps=  11 reloc_syms=  11 norm=  19 regs=  33 fp=   1 insns=  42 frame=  -40 sha1=756d719b3921 /tmp/runtime-800202C4-O2.o true_insn_delta=-1 geometry_edit_distance=19 opcode_distance=14",
+      "recorded_utc": "2026-10-03T23:59:58.533922+00:00"
+    },
+    {
+      "name": "func_8001897C",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "19c2c4074dfb09df0bf2c45a3072b29ea3612b9c277675dbbdc61543a93e8333",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 27,
+      "strict_extra_words": 1,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  31 words=  28 raw=  32 opcodes=   6 gaps=   1 reloc_syms=   7 norm=  27 regs=  28 fp=   1 insns=  46 frame= None sha1=adbf0014cd34 /tmp/runtime-8001897C-O2.o true_insn_delta=+1 geometry_edit_distance=27 opcode_distance=1",
+      "recorded_utc": "2026-10-03T23:59:58.994854+00:00"
+    },
+    {
+      "name": "func_80018A30",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "f6803256df1cb0684c78ba6e89e8cd64922cd95c0a769af702e5a9cff6714ad8",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 23,
+      "strict_extra_words": 2,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  13 words=  25 raw=  29 opcodes=  12 gaps=   2 reloc_syms=   7 norm=   8 regs=  22 fp=   2 insns=  49 frame=  -48 sha1=377cb73b2598 /tmp/runtime-80018A30-O2.o true_insn_delta=+2 geometry_edit_distance=8 opcode_distance=3",
+      "recorded_utc": "2026-10-03T23:59:59.497376+00:00"
+    },
+    {
+      "name": "func_8001B8C4",
+      "stage": "Improved first natural control before final refinement",
+      "source_sha256": "358d2fc7f1a414c3708bdcf0132bcd5266196bec58e46158813d8407212da4b9",
+      "workbench_summary": "verdict=allocation-mismatch aligned_total=  23 words=  18 raw=  23 opcodes=   0 gaps=   0 reloc_syms=   5 norm=  14 regs=  14 fp=   0 insns=  41 frame=  -40 sha1=ce4009ea9793 /tmp/runtime-8001B8C4-O2.o"
+    },
+    {
+      "name": "func_8001897C",
+      "stage": "Improved first natural control before final refinement",
+      "source_sha256": "0e1f142ab0d9c83ee314e51ffb427200d4725f7391572ba930895ae4ef50de85",
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  19 words=  15 raw=  21 opcodes=   6 gaps=   1 reloc_syms=   7 norm=  16 regs=  15 fp=   1 insns=  46 frame= None sha1=c6c766e466eb /tmp/runtime-8001897C-O2.o true_insn_delta=+1 geometry_edit_distance=16 opcode_distance=1"
+    }
+  ]
+}
