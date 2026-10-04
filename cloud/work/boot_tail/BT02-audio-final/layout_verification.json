@@ -1,0 +1,103 @@
+{
+  "result": "PASS",
+  "compiler": "pinned IDO5.3",
+  "results": [
+    {
+      "function": "func_80011104",
+      "source_sha256": "1cb96ae671c35a54e93d792b3921dfed462114790586bea4bf1da7d7e9491940",
+      "checks": [
+        {
+          "expression": "sizeof(AudioState)",
+          "value": 104
+        },
+        {
+          "expression": "(unsigned int)&((AudioState*)0)->active",
+          "value": 0
+        },
+        {
+          "expression": "(unsigned int)&((AudioState*)0)->bit_index",
+          "value": 96
+        },
+        {
+          "expression": "(unsigned int)&((AudioState*)0)->changed",
+          "value": 97
+        }
+      ],
+      "result": "PASS"
+    },
+    {
+      "function": "func_800114C0",
+      "source_sha256": "45ea1edd066c029c26d9f89f82296282205f3c191dbe5b72c5bc79365a03b6d1",
+      "checks": [
+        {
+          "expression": "sizeof(void*)",
+          "value": 4
+        },
+        {
+          "expression": "sizeof(unsigned int)",
+          "value": 4
+        },
+        {
+          "expression": "sizeof(unsigned short)",
+          "value": 2
+        }
+      ],
+      "result": "PASS"
+    },
+    {
+      "function": "func_800139D4",
+      "source_sha256": "e39dfb9ff2f892df21bc2f1442c3e9a3144c5905d6c2ee6482bec2c64655a7a6",
+      "checks": [
+        {
+          "expression": "sizeof(AudioState)",
+          "value": 104
+        },
+        {
+          "expression": "sizeof(AudioCommand)",
+          "value": 80
+        },
+        {
+          "expression": "sizeof(AudioBlock)",
+          "value": 2576
+        },
+        {
+          "expression": "sizeof(AudioLoop)",
+          "value": 8
+        },
+        {
+          "expression": "(unsigned int)&((AudioCommand*)0)->status",
+          "value": 44
+        },
+        {
+          "expression": "(unsigned int)&((AudioCommand*)0)->output",
+          "value": 68
+        },
+        {
+          "expression": "(unsigned int)&((AudioBlock*)0)->sample",
+          "value": 2
+        },
+        {
+          "expression": "(unsigned int)&((AudioBlock*)0)->changed",
+          "value": 4
+        },
+        {
+          "expression": "(unsigned int)&((AudioBlock*)0)->work",
+          "value": 8
+        },
+        {
+          "expression": "(unsigned int)&((AudioBlock*)0)->loop",
+          "value": 12
+        },
+        {
+          "expression": "(unsigned int)&((AudioBlock*)0)->commands",
+          "value": 16
+        },
+        {
+          "expression": "(unsigned int)&((AudioLoop*)0)->length",
+          "value": 4
+        }
+      ],
+      "result": "PASS"
+    }
+  ]
+}

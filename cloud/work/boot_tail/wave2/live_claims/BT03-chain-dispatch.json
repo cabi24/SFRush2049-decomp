@@ -1,0 +1,18 @@
+{
+  "state": "frozen-review-pass-integrating",
+  "owner": "/root/match_chain_dispatch",
+  "packet": "BT03-chain-dispatch",
+  "branch": "dot/boot-tail-bt03-chain-dispatch",
+  "base": "0251b8192665a806a99ec47769fa1805d3b27cdc",
+  "targets": [
+    {
+      "address": "0x8001CCDC",
+      "size": 936,
+      "end_exclusive": "0x8001D084"
+    }
+  ],
+  "bytes": 936,
+  "edit_scope": "Only named matching source and cloud/work/boot_tail/BT03-chain-dispatch/**",
+  "stop": "Before candidate work finish whole native/caller and six callee ABI audit. Natural C89/O2/O1 and bounded diagnosis, exact ELF size, no fabricated arguments or data, no protected edits. Stop/escalate genuine scope/ABI/relocation gap.",
+  "reviewed_commit": "c00333eb90e02d42bec33796ac8d9d2a62e30449"
+}

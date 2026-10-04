@@ -403,3 +403,16 @@ semantics and independently checked CC0 provenance. All accepted functions pass
 exact ELF symbol-size and full relocated equality checks. See wave12/README.md
 and unique_totals.json; prior green proof is in wave11/ci.json. Later work is
 excluded and D10 remains unchanged.
+
+## Thirteenth cut: three additional reviewed bodies
+
+The first twelve source cuts now have 231 unique new exact-CI-verified bodies /
+23,756 B. Thirteenth cut adds three peer-reviewed strict local bodies / 1,504 B
+and fourteen complete nonmatches / 8,620 B, pending its own exact-head CI. The
+union is 234 new bodies / 25,260 B plus the separate 12-byte getter. Across 383
+distinct attempts, 148 complete nonmatches / 39,304 B and the earlier 96-byte
+table-proof lead receive no matching credit. The matrix inverse and two runtime
+callers have exact whole-body and ELF-size proof; floating domains and real
+alias/operation-order behavior remain explicit. See wave13/README.md and
+unique_totals.json. Prior green proof is in wave12/ci.json; later claims and
+candidates are excluded from this frozen source cut. D10 remains unchanged.

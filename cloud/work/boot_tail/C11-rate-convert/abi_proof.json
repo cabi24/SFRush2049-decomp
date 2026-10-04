@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "scope": "Native reference addresses and actual ABI only; original external float-array lengths/values and rate contents remain unknown.",
+  "native_abi": "u32(u8 note,u32 encoded_value); sole canonical caller1A5D8 supplies a masked byte from its second word and the packed voice word at+92. Call-free body returns the full unsigned conversion word.",
+  "external_views": {
+    "D_8002C640": "extern const float[] at8002C640; positive note-reference difference indexes this view",
+    "D_8002C840": "extern const float[] at8002C840; positive reference-note difference indexes this view; base is128 float slots afterC640",
+    "D_8004F800": "extern signed int rate at8004F800; native signed-word-to-float conversion, not unsigned"
+  },
+  "original_lengths_and_values_known": false,
+  "rows": [
+    {
+      "name": "func_8001E50C",
+      "source_sha256": "43094186872525778f3a3fa529eeb9d2e146df4dbe2d413b895fff300e9e204a",
+      "data_section_bytes": {},
+      "text_relocations": [
+        {
+          "text_offset": 76,
+          "type": 5,
+          "symbol": "D_8002C640",
+          "symbol_section": 0,
+          "address": "0x8002C640",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 88,
+          "type": 6,
+          "symbol": "D_8002C640",
+          "symbol_section": 0,
+          "address": "0x8002C640",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 104,
+          "type": 5,
+          "symbol": "D_8002C840",
+          "symbol_section": 0,
+          "address": "0x8002C840",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 112,
+          "type": 6,
+          "symbol": "D_8002C840",
+          "symbol_section": 0,
+          "address": "0x8002C840",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 208,
+          "type": 5,
+          "symbol": "D_8004F800",
+          "symbol_section": 0,
+          "address": "0x8004F800",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 212,
+          "type": 6,
+          "symbol": "D_8004F800",
+          "symbol_section": 0,
+          "address": "0x8004F800",
+          "address_source": "canonical address-named external"
+        }
+      ]
+    }
+  ]
+}

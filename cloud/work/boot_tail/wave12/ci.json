@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/72",
+  "source_head": "1ef54c2e507e6d29cc22d041bf5d99dc2173bfd8",
+  "source_tree": "f26b129a53d5ae7299da71ac3a1b584b15f56cb1",
+  "source_parent": "9f08a8c4658289f7433e6b2b4dd92e28a602ac64",
+  "workflow_run": 37172540204,
+  "workflow_url": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37172540204",
+  "conclusion": "success",
+  "checked_utc": "2026-10-04T03:03:38Z",
+  "new_matches": 5,
+  "new_matching_bytes": 1176,
+  "remote_readback": "Fresh PR metadata and GET /git/commits confirmed exact head, tree and parent through the read-only GitHub connector.",
+  "verified_local_equivalent_commit": "ad26279fe31cae86374b357d41ffcce23afe112f",
+  "note": "The local source checkpoint has the exact same tree as the published parent. It is a valid direct-tree comparison base without requiring an imported remote commit object; no history rewrite or graft is used."
+}

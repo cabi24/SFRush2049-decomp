@@ -1,0 +1,26 @@
+{
+  "result": "PASS",
+  "fixture_cases": 623,
+  "families": {
+    "identity": 1,
+    "diagonal": 42,
+    "integer": 512,
+    "near_singular": 24,
+    "zero_matrix": 2,
+    "singular_diagonal": 6,
+    "ieee_special": 36
+  },
+  "exact_alias_modes_per_case": 2,
+  "host_optimizations": [
+    "O0",
+    "O2"
+  ],
+  "executions": 2492,
+  "computed_zero_determinants": 21,
+  "near_singular_computed_zero": 13,
+  "comparison": "Exact binary32 bits, including signed zero and infinity sign; any NaN classification accepted without payload/signaling claims.",
+  "floating_environment": "Host FE_DFL_ENV then FE_TONEAREST, no fast math or FP contraction; ordinary nontrapping IEEE model only.",
+  "alias_contract": "Disjoint matrices preserve input; exact same-object alias follows live native overwrite/read order, without claiming a mathematical inverse. Partial overlap is not established.",
+  "mathematical_smoke_checks": 555,
+  "source_path": "cloud/matches/boot_tail/func_80024D74.c"
+}

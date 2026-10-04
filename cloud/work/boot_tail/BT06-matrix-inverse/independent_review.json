@@ -1,0 +1,77 @@
+{
+  "result": "PASS",
+  "reviewer": "BT03-high",
+  "source_commit": "fd1d7b439dfc70e14c0f3e90d4a18e95c267936c",
+  "source_tree": "0b17eea2def85a29b20b8e247fa060f35c85241e",
+  "stack_base": "24ff33d5dd7e27ca2d957cfbd822959ee72a2a43",
+  "reviewed_utc": "2026-10-04T03:00:53.154046+00:00",
+  "compiler_results": [
+    {
+      "name": "func_80024D74",
+      "bytes": 564,
+      "source_path": "cloud/matches/boot_tail/func_80024D74.c",
+      "source_sha256": "b18dd3584f37663f3d1bec09d721885c2aabbfd165f0d28f7c7f9a2a792eca6f",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 0,
+      "total_words": 141,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": true,
+      "elf_function_size": 564
+    },
+    {
+      "name": "func_80024D74",
+      "bytes": 564,
+      "source_path": "cloud/matches/boot_tail/func_80024D74.c",
+      "source_sha256": "b18dd3584f37663f3d1bec09d721885c2aabbfd165f0d28f7c7f9a2a792eca6f",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 140,
+      "total_words": 141,
+      "extra_words": 13,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "elf_function_size": 616
+    }
+  ],
+  "matching_functions": 1,
+  "matching_bytes": 564,
+  "final_rows": 2,
+  "archived_control_rows": 4,
+  "host_executions": 2492,
+  "additional_native_instruction_model_cases": 1246,
+  "tests": [
+    {
+      "command": "python3 cloud/work/boot_tail/BT06-matrix-inverse/verify.py",
+      "returncode": 0,
+      "output": "{\n  \"schema_version\": 1,\n  \"result\": \"PASS\",\n  \"base_commit\": \"24ff33d5dd7e27ca2d957cfbd822959ee72a2a43\",\n  \"match_functions\": 1,\n  \"verified_body_bytes\": 564,\n  \"nonmatch_functions\": 0,\n  \"nonmatch_bytes\": 0,\n  \"target_manifest_sha256\": \"6bd3e6ef05e6123e4ea4dd0d814c0abb16f202a91d8d0a381eca14322c8a36d5\",\n  \"results\": [\n    {\n      \"name\": \"func_80024D74\",\n      \"bytes\": 564,\n      \"source_path\": \"cloud/matches/boot_tail/func_80024D74.c\",\n      \"source_sha256\": \"b18dd3584f37663f3d1bec09d721885c2aabbfd165f0d28f7c7f9a2a792eca6f\",\n      \"flags\": \"-g0 -O2 -mips2 -G 0 -non_shared\",\n      \"effective_flags\": \"-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul\",\n      \"differing_words\": 0,\n      \"total_words\": 141,\n      \"extra_words\": 0,\n      \"unresolved\": [],\n      \"unverified\": [],\n      \"errors\": [],\n      \"strict_match\": true,\n      \"elf_function_size\": 564\n    },\n    {\n      \"name\": \"func_80024D74\",\n      \"bytes\": 564,\n      \"source_path\": \"cloud/matches/boot_tail/func_80024D74.c\",\n      \"source_sha256\": \"b18dd3584f37663f3d1bec09d721885c2aabbfd165f0d28f7c7f9a2a792eca6f\",\n      \"flags\": \"-g0 -O1 -mips2 -G 0 -non_shared\",\n      \"effective_flags\": \"-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul\",\n      \"differing_words\": 140,\n      \"total_words\": 141,\n      \"extra_words\": 13,\n      \"unresolved\": [],\n      \"unverified\": [],\n      \"errors\": [],\n      \"strict_match\": false,\n      \"elf_function_size\": 616\n    }\n  ]\n}\n"
+    },
+    {
+      "command": "python3 cloud/work/boot_tail/BT06-matrix-inverse/verify_controls.py",
+      "returncode": 0,
+      "output": "{\n  \"result\": \"PASS\",\n  \"control_rows\": 4,\n  \"matching_credit\": 0\n}\n"
+    },
+    {
+      "command": "python3 -m unittest discover -s cloud/work/boot_tail/BT06-matrix-inverse -p test_*.py -v",
+      "returncode": 0,
+      "output": "test_binary32_order_alias_and_special_values (test_semantics.Semantics.test_binary32_order_alias_and_special_values) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.561s\n\nOK\n"
+    }
+  ],
+  "source_abi_findings": [
+    "Freshly inspected all141 native instructions and complete1D5C0 caller. Two genuine matrix pointers, output first; native Matrix48 with twelve float32 entries and translation at36, independently checked by IDO width assertions. Actual caller uses a fully initialized local matrix atsp+24 and separate state+72 output.",
+    "First three cofactors are evaluated before all output writes; determinant is rounded m02*c plus rounded(m00*a+m01*b), followed by unconditional1.0f/determinant. No singularity predicate, fallback, clamp, status return or external data exists.",
+    "Output columns are stored at offsets0/12/24,4/16/28,8/20/32. Every subsequent input expression reloads after preceding stores. Exact aliasing therefore sees overwritten matrix values. Translation writes at36 and40 are visible to later translation input reads; no hidden snapshot or restrict assumption is introduced.",
+    "Independently decoded the canonical target words with a private register/memory binary32 operation interpreter. All623 fixtures in distinct/exact-alias modes agree with the separately authored expected model,1246 additional native-access-order cases. NaNs compared by classification; signed zeros and infinities compared by bits. No raw words or dumps are included in this receipt.",
+    "Actual source independently passes2492 strict C89 ASan/UBSan host runs atO0/O2 with no fast math/contraction and nearest nontrapping FP environment. The documented21 computed-zero determinant fixtures, including13 near-singular cancellations, preserve division and nonfinite outcomes. Mathematical nonsingularity is correctly distinguished from computed determinant nonzero.",
+    "Useful inverse guarantee is bounded to distinct valid aligned whole objects, suitable finite inputs and representable intermediates. Exact same-object operational semantics are verified but are not claimed to be a general in-place inverse. Partial overlap, arbitrary targetFCSR, signalingNaNs/payload propagation, and portableC89 exceptional arithmetic are explicitly unproved.",
+    "One full relocated exact564-byte function atoffset0,141/141 equal words, zero masks/unresolved/unverified/errors/nonzero excess. O1 remains rejected140/141 with13 excess and616-byte function size. Initial/directed controls are source-hash bound and accurately replayed.",
+    "Natural four-real-local cofactor source, no fake formal, artificial keeper or padding, assembly, table substitution or protected edits. Pinned family provenance supplements rather than replaces native source/ABI proof."
+  ],
+  "scope": "Only matching24D74 and ownedBT06-matrix-inverse packet differ from frozen sample base.",
+  "whitespace": "PASS"
+}
