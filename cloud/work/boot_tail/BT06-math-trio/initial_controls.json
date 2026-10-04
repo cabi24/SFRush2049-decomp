@@ -1,0 +1,122 @@
+[
+  {
+    "function": "func_80024BF0",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "differing": 0,
+    "total": 43,
+    "extra": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": true,
+    "elf_function": [
+      {
+        "name": "func_80024BF0",
+        "value": 0,
+        "size": 172,
+        "type": 2,
+        "section": 4
+      }
+    ]
+  },
+  {
+    "function": "func_80024BF0",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "differing": 0,
+    "total": 43,
+    "extra": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": true,
+    "elf_function": [
+      {
+        "name": "func_80024BF0",
+        "value": 0,
+        "size": 172,
+        "type": 2,
+        "section": 4
+      }
+    ]
+  },
+  {
+    "function": "func_80024C9C",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "differing": 0,
+    "total": 26,
+    "extra": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": true,
+    "elf_function": [
+      {
+        "name": "func_80024C9C",
+        "value": 0,
+        "size": 104,
+        "type": 2,
+        "section": 4
+      }
+    ]
+  },
+  {
+    "function": "func_80024C9C",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "differing": 26,
+    "total": 26,
+    "extra": 8,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false,
+    "elf_function": [
+      {
+        "name": "func_80024C9C",
+        "value": 0,
+        "size": 140,
+        "type": 2,
+        "section": 4
+      }
+    ]
+  },
+  {
+    "function": "func_80024D04",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "differing": 0,
+    "total": 28,
+    "extra": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": true,
+    "elf_function": [
+      {
+        "name": "func_80024D04",
+        "value": 0,
+        "size": 112,
+        "type": 2,
+        "section": 4
+      }
+    ]
+  },
+  {
+    "function": "func_80024D04",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "differing": 0,
+    "total": 28,
+    "extra": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": true,
+    "elf_function": [
+      {
+        "name": "func_80024D04",
+        "value": 0,
+        "size": 112,
+        "type": 2,
+        "section": 4
+      }
+    ]
+  }
+]

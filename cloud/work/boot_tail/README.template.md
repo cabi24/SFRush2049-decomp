@@ -390,3 +390,16 @@ receive no match credit. Explicit ELF function-symbol extent checks distinguish
 full bodies from zero section alignment; the prior221-source audit is retained
 in wave10/function_extent_audit.json. See wave11/README.md and unique_totals.json.
 Prior green proof is in wave10/ci.json; current refills remain excluded.
+
+## Twelfth cut: five additional reviewed bodies
+
+The first eleven source cuts now have 226 unique new exact-CI-verified bodies /
+22,580 B. Twelfth cut adds five peer-reviewed strict local bodies / 1,176 B and
+thirteen complete nonmatches / 6,616 B, pending its own exact-head CI. The union
+is 231 new bodies / 23,756 B plus the separate 12-byte getter. Across 366 distinct
+attempts, 134 complete nonmatches / 30,684 B and the earlier 96-byte table-proof
+lead receive no matching credit. The new math trio preserves actual alias/FP
+semantics and independently checked CC0 provenance. All accepted functions pass
+exact ELF symbol-size and full relocated equality checks. See wave12/README.md
+and unique_totals.json; prior green proof is in wave11/ci.json. Later work is
+excluded and D10 remains unchanged.

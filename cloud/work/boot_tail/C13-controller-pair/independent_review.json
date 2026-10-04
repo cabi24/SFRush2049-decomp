@@ -1,0 +1,114 @@
+{
+  "result": "PASS",
+  "source_commit": "8321aac9987bb298bcec3acfd65886b149cd3001",
+  "source_tree": "2528ce516fd311202013e58c451a5adf30a8c226",
+  "stack_base": "9af97ad3c5e1968ccf5d3b7b7ec060fbb9d2f3c6",
+  "reviewer": "BT03-high",
+  "reviewed_utc": "2026-10-04T02:07:50.640115+00:00",
+  "method": "Exact immutable Git-blob snapshot with canonical unchanged scoring: four final rows and twenty controls reproduced; actual sources and full native20820/20DA8 inspected, reusing freshly audited genuine direct-helper contracts.",
+  "compiler_results": [
+    {
+      "name": "func_80020820",
+      "bytes": 484,
+      "source_path": "cloud/work/boot_tail/C13-controller-pair/nonmatch/func_80020820.c",
+      "source_sha256": "89123b46d8496a55a0a250a19c9bb23612154011203f141b243a6b3e4a4c6d05",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 10,
+      "total_words": 121,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "elf_function_size": 484
+    },
+    {
+      "name": "func_80020820",
+      "bytes": 484,
+      "source_path": "cloud/work/boot_tail/C13-controller-pair/nonmatch/func_80020820.c",
+      "source_sha256": "89123b46d8496a55a0a250a19c9bb23612154011203f141b243a6b3e4a4c6d05",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 120,
+      "total_words": 121,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "elf_function_size": 448
+    },
+    {
+      "name": "func_80020DA8",
+      "bytes": 420,
+      "source_path": "cloud/work/boot_tail/C13-controller-pair/nonmatch/func_80020DA8.c",
+      "source_sha256": "cdfe902662798e17324741d35b6f5b3239eee8fe1451b18629d37de530fe3115",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 100,
+      "total_words": 105,
+      "extra_words": 2,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "elf_function_size": 432
+    },
+    {
+      "name": "func_80020DA8",
+      "bytes": 420,
+      "source_path": "cloud/work/boot_tail/C13-controller-pair/nonmatch/func_80020DA8.c",
+      "source_sha256": "cdfe902662798e17324741d35b6f5b3239eee8fe1451b18629d37de530fe3115",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 104,
+      "total_words": 105,
+      "extra_words": 27,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "elf_function_size": 528
+    }
+  ],
+  "matching_functions": 0,
+  "matching_bytes": 0,
+  "complete_nonmatches": 2,
+  "nonmatching_bytes": 904,
+  "tests": {
+    "result": "PASS",
+    "groups": 2,
+    "reset_combinations": 320,
+    "copy_combinations": 274432,
+    "same_state_pointer_case": 1,
+    "runs": [
+      {
+        "command": "python3 cloud/work/boot_tail/C13-controller-pair/verify.py",
+        "returncode": 0,
+        "output": "{\n  \"schema_version\": 1,\n  \"result\": \"COMPLETE_NONMATCH_RESEARCH\",\n  \"base_commit\": \"9af97ad3c5e1968ccf5d3b7b7ec060fbb9d2f3c6\",\n  \"match_functions\": 0,\n  \"verified_body_bytes\": 0,\n  \"nonmatch_functions\": 2,\n  \"nonmatch_bytes\": 904,\n  \"target_manifest_sha256\": \"6bd3e6ef05e6123e4ea4dd0d814c0abb16f202a91d8d0a381eca14322c8a36d5\",\n  \"results\": [\n    {\n      \"name\": \"func_80020820\",\n      \"bytes\": 484,\n      \"source_path\": \"cloud/work/boot_tail/C13-controller-pair/nonmatch/func_80020820.c\",\n      \"source_sha256\": \"89123b46d8496a55a0a250a19c9bb23612154011203f141b243a6b3e4a4c6d05\",\n      \"flags\": \"-g0 -O2 -mips2 -G 0 -non_shared\",\n      \"effective_flags\": \"-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul\",\n      \"differing_words\": 10,\n      \"total_words\": 121,\n      \"extra_words\": 0,\n      \"unresolved\": [],\n      \"unverified\": [],\n      \"errors\": [],\n      \"strict_match\": false,\n      \"elf_function_size\": 484\n    },\n    {\n      \"name\": \"func_80020820\",\n      \"bytes\": 484,\n      \"source_path\": \"cloud/work/boot_tail/C13-controller-pair/nonmatch/func_80020820.c\",\n      \"source_sha256\": \"89123b46d8496a55a0a250a19c9bb23612154011203f141b243a6b3e4a4c6d05\",\n      \"flags\": \"-g0 -O1 -mips2 -G 0 -non_shared\",\n      \"effective_flags\": \"-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul\",\n      \"differing_words\": 120,\n      \"total_words\": 121,\n      \"extra_words\": 0,\n      \"unresolved\": [],\n      \"unverified\": [],\n      \"errors\": [],\n      \"strict_match\": false,\n      \"elf_function_size\": 448\n    },\n    {\n      \"name\": \"func_80020DA8\",\n      \"bytes\": 420,\n      \"source_path\": \"cloud/work/boot_tail/C13-controller-pair/nonmatch/func_80020DA8.c\",\n      \"source_sha256\": \"cdfe902662798e17324741d35b6f5b3239eee8fe1451b18629d37de530fe3115\",\n      \"flags\": \"-g0 -O2 -mips2 -G 0 -non_shared\",\n      \"effective_flags\": \"-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul\",\n      \"differing_words\": 100,\n      \"total_words\": 105,\n      \"extra_words\": 2,\n      \"unresolved\": [],\n      \"unverified\": [],\n      \"errors\": [],\n      \"strict_match\": false,\n      \"elf_function_size\": 432\n    },\n    {\n      \"name\": \"func_80020DA8\",\n      \"bytes\": 420,\n      \"source_path\": \"cloud/work/boot_tail/C13-controller-pair/nonmatch/func_80020DA8.c\",\n      \"source_sha256\": \"cdfe902662798e17324741d35b6f5b3239eee8fe1451b18629d37de530fe3115\",\n      \"flags\": \"-g0 -O1 -mips2 -G 0 -non_shared\",\n      \"effective_flags\": \"-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul\",\n      \"differing_words\": 104,\n      \"total_words\": 105,\n      \"extra_words\": 27,\n      \"unresolved\": [],\n      \"unverified\": [],\n      \"errors\": [],\n      \"strict_match\": false,\n      \"elf_function_size\": 528\n    }\n  ]\n}\n"
+      },
+      {
+        "command": "python3 cloud/work/boot_tail/C13-controller-pair/verify_controls.py",
+        "returncode": 0,
+        "output": "{\n  \"result\": \"PASS\",\n  \"control_rows\": 20,\n  \"matching_credit\": 0\n}\n"
+      },
+      {
+        "command": "python3 -m unittest discover -s cloud/work/boot_tail/C13-controller-pair -p test_*.py -v",
+        "returncode": 0,
+        "output": "test_clear_whole_row_then_ordered_controller_defaults (test_semantics.Semantics.test_clear_whole_row_then_ordered_controller_defaults) ... ok\ntest_controller_copy_widths_all_valid_commands_and_self_alias (test_semantics.Semantics.test_controller_copy_widths_all_valid_commands_and_self_alias) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 6.785s\n\nOK\n"
+      }
+    ]
+  },
+  "source_abi_findings": [
+    "Complete20820 and20DA8 native/source bodies and complete20610,20F4C,20FDC callees independently inspected. Two real reset byte inputs and controller plus two packed state-pointer copy inputs agree with native masks and actual24988/1B744 callers.",
+    "Native reset arithmetic independently gives134 bytes per channel and2144 per regular set. The whole selected row is cleared before any helper. All ten four-byte controller calls and final two three-byte calls preserve exact native argument order and defaults.",
+    "20DA8 loads both actual packed identifier words at+96, masks lowbyte row indices, selects controller&31 plus32 for controllers below64, paired even bytes128/129 and132/133, and otherwise one valid controller byte. Both byte copies retain native read/store ordering, including same-row and same-state use.",
+    "Registered regular rows require channel0..15 in an allocated set; external rows must be allocated and controller entries are0..133. Byte formals do not prove arbitrary malformed indices safe; no hidden bounds fallback or fabricated storage/table definition is used.",
+    "All four final rows and twenty archived controls reproduce scores, source hashes and separately recorded ELF symbol sizes.20820 remains10/121 with484-byte function extent;20DA8 remains100/105 plus2 excess and432-byte function extent versus420 native. Neither has strict matching credit.",
+    "Two source sanitizer groups pass320 reset cases and274432 copy cases plus same-state alias. Complete row clearing, helper ordering/mutation, untouched rows and immutable state words are checked.",
+    "No fake formal, keeper, padding, assembly, volatile trick or source/target boundary change. Byte-clear delay-slot rotation remains an honestly stopped code-generation residual."
+  ],
+  "scope": "Only owned core-pair research directory differs from frozen resource base; no submissions or prior/protected changes.",
+  "whitespace": "PASS"
+}

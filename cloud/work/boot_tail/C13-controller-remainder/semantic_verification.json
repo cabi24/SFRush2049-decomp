@@ -1,0 +1,16 @@
+{
+  "result": "PASS",
+  "tests": 3,
+  "setter_cases": 11264,
+  "getter_cases": 13668,
+  "domain": "All byte selectors for setter call contract; allocated outer rows, regular channels0..15 and selectors0..133 for getter.",
+  "comparison": "Host C89 retained/control, independent integer model, and canonical MIPS-II interpreter",
+  "external_helper_contract": "20610 receives four normalized byte arguments, stores value&127; replay records call arguments and clobbers O32 volatile integer registers.",
+  "fixture_bounds": "Synthetic eight regular sets and64 effects channels; not native allocation proof.",
+  "artifact_sha256": {
+    "nonmatch/func_800206AC.c": "df0064d44f0b68853d6c131d9ea3f018b29df04f8199f804a0a0d94d2bd8aea8",
+    "nonmatch/func_80020A04.c": "f26e5c3d585967bb03d7b5c488f593d365d82a6fb337ba9bf29fe1919874b303",
+    "test_semantics.py": "b781b527d3a7c954c917473c0ee6b1c7d796225aaaa112aebd5474700d332ff7",
+    "native_replay.py": "172d3d0e0dd69462810a16d24ca1d2604d948442c5f31088ae741c40101b3410"
+  }
+}

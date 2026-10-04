@@ -1,0 +1,27 @@
+{
+  "result": "PASS",
+  "classification": "Two COMPLETE-NONMATCH reconstructions; no matching credit",
+  "reviewer": "/root/match_boot_tail_controller_pair",
+  "reviewed_commit": "f0a047bb58b25076c90e63364cbcee27367f03e4",
+  "reviewed_tree": "b1408c35667f18e77835e59b82066d4f256c9597",
+  "checks": {
+    "scope": "49 text files exclusively in BT02-audio-remaining; clean worktree; no protected, raw native, ROM, object or unrelated-data edits",
+    "preflight_and_controls": "Independent verify.py replay identical to verification.json, including all pins, 439 extents, getter and directed controls",
+    "layout": "Independent pinned IDO layout replay identical to layout_tests.json",
+    "host": "Independent C89 and ASan/UBSan runs identical to host_tests.json:36931 ring and18433 setup cases per mode",
+    "native_semantics": "Independently disassembled canonical13DEC/14198, checked ring snapshot/sentinel/wrap/budget/call ordering/store behavior, unsigned float conversion and rounding, distinct signed-byte test/source arrays, byte-cursor wrap and output offsets",
+    "callers": "Independently checked143C0/14434 exact callsite argument setup for14198",
+    "naturalness": "Real locals, observed object ranges and genuine formals; no dummy calls, fake formals, padding locals, forced registers or assembly",
+    "extent_honesty": "13DEC828/780 and14198480/476 ELF function bytes;14198 zero nonzero-excess correctly receives no match credit",
+    "o1_honesty": "Both O1 canonical unpaired-HI16 errors retained and rejected; no scorer accommodation"
+  },
+  "source_sha256": {
+    "func_80013DEC.c": "5f8027d5850c6f3edd42372f30c27299d8da64b9e2abef62570bdebcb42f177a",
+    "func_80014198.c": "558684af38cff762bb2629d6013933ecdd19558c0382195bb90de80d7f786c38"
+  },
+  "limitations": [
+    "Host tests are source/model tests with synthetic services, not native or hardware execution.",
+    "Original global allocation bounds and volatile publication behavior remain qualified as documented.",
+    "Exact published-head CI and maintainer integration are separate."
+  ]
+}

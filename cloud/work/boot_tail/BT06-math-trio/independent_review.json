@@ -1,0 +1,328 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "reviewer": "BT02-audio-final independent review",
+  "source_commit": "bedc216cc9157395c533ba8a16b7fc5a1b3ad360",
+  "source_tree": "7d4fd9399a11e57ac02f6084607d525af478283e",
+  "changed_paths": [
+    "cloud/matches/boot_tail/func_80024BF0.c",
+    "cloud/matches/boot_tail/func_80024C9C.c",
+    "cloud/matches/boot_tail/func_80024D04.c",
+    "cloud/work/boot_tail/BT06-math-trio/README.md",
+    "cloud/work/boot_tail/BT06-math-trio/claim_scan.json",
+    "cloud/work/boot_tail/BT06-math-trio/host_sanitized.json",
+    "cloud/work/boot_tail/BT06-math-trio/host_tests.json",
+    "cloud/work/boot_tail/BT06-math-trio/initial_controls.json",
+    "cloud/work/boot_tail/BT06-math-trio/preflight.json",
+    "cloud/work/boot_tail/BT06-math-trio/status_delta.csv",
+    "cloud/work/boot_tail/BT06-math-trio/test_host.py",
+    "cloud/work/boot_tail/BT06-math-trio/verification.json",
+    "cloud/work/boot_tail/BT06-math-trio/verify.py"
+  ],
+  "file_hashes": {
+    "cloud/matches/boot_tail/func_80024BF0.c": "ec2d8b2475a26be6a10597ef0e37dce48398df4ff9fd6f44cb59f647999a23ff",
+    "cloud/matches/boot_tail/func_80024C9C.c": "6bae726bc9b7131b0d01709eceda6ac24423296d9ee19a9b82c8f55e9f82f967",
+    "cloud/matches/boot_tail/func_80024D04.c": "3bdf2961c8e2dde3b2ddae9e76257f88981ae2dc29c9cac0c0bdfd469331b63c",
+    "cloud/work/boot_tail/BT06-math-trio/README.md": "a782926963c584198b95b49c582cbd3e2120152706f6b3c12b7167e5bd272639",
+    "cloud/work/boot_tail/BT06-math-trio/claim_scan.json": "1bca5b7956fa508894d0b87bc593fa1a522e90bb5661aac031c32c3deee0dc1c",
+    "cloud/work/boot_tail/BT06-math-trio/host_sanitized.json": "0b6f630d99a41367ce1113dc0571d792dea5890cc89c3debbf90f82995eae67d",
+    "cloud/work/boot_tail/BT06-math-trio/host_tests.json": "d969ac619993b150dac1d80059e58a8457edc8f05a0f306a62898827b83ef3af",
+    "cloud/work/boot_tail/BT06-math-trio/initial_controls.json": "c5a42ec74f5d33533be5911060d537c135567b0a2c67fef88639b7c8e9fe7159",
+    "cloud/work/boot_tail/BT06-math-trio/preflight.json": "15c24d5bf6d7242096d80028bbb31c9f0f6aa5467f8785258c9198f55e2af9df",
+    "cloud/work/boot_tail/BT06-math-trio/status_delta.csv": "b7a87bf8a9b3990af3cc71f08a27896ac85b3a79856a6fc54fbb43d16570ba67",
+    "cloud/work/boot_tail/BT06-math-trio/test_host.py": "1213e914f6d6674c0355bdc2bb638acd8f28d3c25e298aa6ea938331cd00c603",
+    "cloud/work/boot_tail/BT06-math-trio/verification.json": "e6221d6a1ba8f881a552968357686d4c5c1ba1c590e61b4197877372b0e48f21",
+    "cloud/work/boot_tail/BT06-math-trio/verify.py": "d16a4fd1192324e25e7e29ebe7adc2ee35d074f1f91b99494ebfc0239199eb14"
+  },
+  "native_replay": {
+    "schema_version": 1,
+    "result": "PASS",
+    "manifest": [
+      "boot_tail_8000f3a4.s: OK",
+      "extents.json: OK",
+      "symbols.json: OK"
+    ],
+    "extent_functions": 439,
+    "extent_bytes": 99120,
+    "pinned_compiler_files": 24,
+    "getter_strict_match": true,
+    "local_match_functions": 3,
+    "local_match_bytes": 388,
+    "results": [
+      {
+        "function": "func_80024BF0",
+        "source_path": "cloud/matches/boot_tail/func_80024BF0.c",
+        "source_sha256": "ec2d8b2475a26be6a10597ef0e37dce48398df4ff9fd6f44cb59f647999a23ff",
+        "target_bytes": 172,
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+        "differing_words": 0,
+        "total_words": 43,
+        "extra_nonzero_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "elf_function_bytes": 172,
+        "text_section_bytes": 176,
+        "full_relocated_equal_and_exact_function_size": true,
+        "strict_match": true
+      },
+      {
+        "function": "func_80024BF0",
+        "source_path": "cloud/matches/boot_tail/func_80024BF0.c",
+        "source_sha256": "ec2d8b2475a26be6a10597ef0e37dce48398df4ff9fd6f44cb59f647999a23ff",
+        "target_bytes": 172,
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+        "differing_words": 0,
+        "total_words": 43,
+        "extra_nonzero_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "elf_function_bytes": 172,
+        "text_section_bytes": 176,
+        "full_relocated_equal_and_exact_function_size": true,
+        "strict_match": true
+      },
+      {
+        "function": "func_80024C9C",
+        "source_path": "cloud/matches/boot_tail/func_80024C9C.c",
+        "source_sha256": "6bae726bc9b7131b0d01709eceda6ac24423296d9ee19a9b82c8f55e9f82f967",
+        "target_bytes": 104,
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+        "differing_words": 0,
+        "total_words": 26,
+        "extra_nonzero_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "elf_function_bytes": 104,
+        "text_section_bytes": 112,
+        "full_relocated_equal_and_exact_function_size": true,
+        "strict_match": true
+      },
+      {
+        "function": "func_80024C9C",
+        "source_path": "cloud/matches/boot_tail/func_80024C9C.c",
+        "source_sha256": "6bae726bc9b7131b0d01709eceda6ac24423296d9ee19a9b82c8f55e9f82f967",
+        "target_bytes": 104,
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+        "differing_words": 26,
+        "total_words": 26,
+        "extra_nonzero_words": 8,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "elf_function_bytes": 140,
+        "text_section_bytes": 144,
+        "full_relocated_equal_and_exact_function_size": false,
+        "strict_match": false
+      },
+      {
+        "function": "func_80024D04",
+        "source_path": "cloud/matches/boot_tail/func_80024D04.c",
+        "source_sha256": "3bdf2961c8e2dde3b2ddae9e76257f88981ae2dc29c9cac0c0bdfd469331b63c",
+        "target_bytes": 112,
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+        "differing_words": 0,
+        "total_words": 28,
+        "extra_nonzero_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "elf_function_bytes": 112,
+        "text_section_bytes": 112,
+        "full_relocated_equal_and_exact_function_size": true,
+        "strict_match": true
+      },
+      {
+        "function": "func_80024D04",
+        "source_path": "cloud/matches/boot_tail/func_80024D04.c",
+        "source_sha256": "3bdf2961c8e2dde3b2ddae9e76257f88981ae2dc29c9cac0c0bdfd469331b63c",
+        "target_bytes": 112,
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+        "differing_words": 0,
+        "total_words": 28,
+        "extra_nonzero_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "elf_function_bytes": 112,
+        "text_section_bytes": 112,
+        "full_relocated_equal_and_exact_function_size": true,
+        "strict_match": true
+      }
+    ],
+    "native_layout": [
+      {
+        "function": "func_80024BF0",
+        "result": "PASS",
+        "checks": [
+          {
+            "expression": "sizeof(Vector)",
+            "value": 12
+          },
+          {
+            "expression": "(unsigned int)&((Vector *)0)->x",
+            "value": 0
+          },
+          {
+            "expression": "(unsigned int)&((Vector *)0)->y",
+            "value": 4
+          },
+          {
+            "expression": "(unsigned int)&((Vector *)0)->z",
+            "value": 8
+          },
+          {
+            "expression": "sizeof(Matrix)",
+            "value": 48
+          },
+          {
+            "expression": "(unsigned int)&((Matrix *)0)->m",
+            "value": 0
+          },
+          {
+            "expression": "(unsigned int)&((Matrix *)0)->t",
+            "value": 36
+          }
+        ]
+      },
+      {
+        "function": "func_80024C9C",
+        "result": "PASS",
+        "checks": [
+          {
+            "expression": "sizeof(Vector)",
+            "value": 12
+          },
+          {
+            "expression": "(unsigned int)&((Vector *)0)->x",
+            "value": 0
+          },
+          {
+            "expression": "(unsigned int)&((Vector *)0)->y",
+            "value": 4
+          },
+          {
+            "expression": "(unsigned int)&((Vector *)0)->z",
+            "value": 8
+          }
+        ]
+      },
+      {
+        "function": "func_80024D04",
+        "result": "PASS",
+        "checks": [
+          {
+            "expression": "sizeof(Vector)",
+            "value": 12
+          },
+          {
+            "expression": "(unsigned int)&((Vector *)0)->x",
+            "value": 0
+          },
+          {
+            "expression": "(unsigned int)&((Vector *)0)->y",
+            "value": 4
+          },
+          {
+            "expression": "(unsigned int)&((Vector *)0)->z",
+            "value": 8
+          }
+        ]
+      }
+    ]
+  },
+  "host_replay": {
+    "schema_version": 1,
+    "result": "PASS",
+    "calls": 6007,
+    "flags": [
+      "-std=c89",
+      "-pedantic-errors",
+      "-O2",
+      "-fno-fast-math",
+      "-ffp-contract=off",
+      "-fno-builtin"
+    ],
+    "leak_detection": "not requested",
+    "source_hashes": {
+      "cloud/matches/boot_tail/func_80024BF0.c": "ec2d8b2475a26be6a10597ef0e37dce48398df4ff9fd6f44cb59f647999a23ff",
+      "cloud/matches/boot_tail/func_80024C9C.c": "6bae726bc9b7131b0d01709eceda6ac24423296d9ee19a9b82c8f55e9f82f967",
+      "cloud/matches/boot_tail/func_80024D04.c": "3bdf2961c8e2dde3b2ddae9e76257f88981ae2dc29c9cac0c0bdfd469331b63c"
+    },
+    "controls": [
+      "1000 disjoint matrix transforms",
+      "1000 in-place sequential matrix transforms",
+      "1000 disjoint cross products",
+      "1000 cross outputs alias first input",
+      "1000 cross outputs alias second input",
+      "1000 finite vector normalizations",
+      "identity plus translation",
+      "oriented unit cross product",
+      "zero, negative zero, 3-4-0, infinity and NaN normalization"
+    ],
+    "limitation": "Host semantics only; MIPS layout and exact native floating operation order are verified separately. NaN payload equality is not asserted."
+  },
+  "sanitized_replay": {
+    "schema_version": 1,
+    "result": "PASS",
+    "calls": 6007,
+    "flags": [
+      "-std=c89",
+      "-pedantic-errors",
+      "-O2",
+      "-fno-fast-math",
+      "-ffp-contract=off",
+      "-fno-builtin",
+      "-fsanitize=address,undefined",
+      "-fno-omit-frame-pointer"
+    ],
+    "leak_detection": "not run: sandbox ptrace limitation",
+    "source_hashes": {
+      "cloud/matches/boot_tail/func_80024BF0.c": "ec2d8b2475a26be6a10597ef0e37dce48398df4ff9fd6f44cb59f647999a23ff",
+      "cloud/matches/boot_tail/func_80024C9C.c": "6bae726bc9b7131b0d01709eceda6ac24423296d9ee19a9b82c8f55e9f82f967",
+      "cloud/matches/boot_tail/func_80024D04.c": "3bdf2961c8e2dde3b2ddae9e76257f88981ae2dc29c9cac0c0bdfd469331b63c"
+    },
+    "controls": [
+      "1000 disjoint matrix transforms",
+      "1000 in-place sequential matrix transforms",
+      "1000 disjoint cross products",
+      "1000 cross outputs alias first input",
+      "1000 cross outputs alias second input",
+      "1000 finite vector normalizations",
+      "identity plus translation",
+      "oriented unit cross product",
+      "zero, negative zero, 3-4-0, infinity and NaN normalization"
+    ],
+    "limitation": "Host semantics only; MIPS layout and exact native floating operation order are verified separately. NaN payload equality is not asserted."
+  },
+  "manual_checks": [
+    "Reviewed three source bodies against original native targets and native exact ELF extents172/104/112",
+    "Reviewed real caller sites8001CAE4,8001CBD8,8001D5D8 and tracked sqrtf at8000E3C0",
+    "Confirmed sequential stores and repeated input loads make documented alias semantics faithful",
+    "Confirmed no artificial zero-length/NaN guards and no local-data relocations",
+    "Reviewed strict C89 source harness, independent indexed scalar oracles, FP contraction controls, and host limits",
+    "All13 changed paths scoped to three matches and BT06-math-trio; no raw target/object/assembly/private payloads",
+    "Read immutable upstream source and LICENSE via GitHub connector"
+  ],
+  "source_provenance": {
+    "repository": "AxioDL/musyx",
+    "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+    "source": "src/musyx/runtime/snd_math.c",
+    "source_blob": "fe8a671021560d3ca9b59efb0d312d77b1d1154f",
+    "license": "CC0-1.0",
+    "license_blob": "0e259d42c996742e9e3cba14c677129b2c1b6311"
+  },
+  "limits": [
+    "Exact aggregate-head CI remains pending; no cartridge coverage/promotion/acceptance",
+    "O1 matches arithmetic leaves too; O2 evidence comes from contiguous normalizer",
+    "Host tests do not prove native exception modes or NaN payloads; LeakSanitizer is disabled under documented sandbox ptrace limitation"
+  ]
+}

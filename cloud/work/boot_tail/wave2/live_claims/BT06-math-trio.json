@@ -1,0 +1,28 @@
+{
+  "state": "frozen-review-pass-integrating",
+  "owner": "/root/match_boot_tail_low_final",
+  "packet": "BT06-math-trio",
+  "branch": "dot/boot-tail-bt06-math-trio",
+  "base": "b5daa44a5a7bf4a22d806a67f6b179be9c126b1f",
+  "targets": [
+    {
+      "address": "0x80024BF0",
+      "size": 172,
+      "end_exclusive": "0x80024C9C"
+    },
+    {
+      "address": "0x80024C9C",
+      "size": 104,
+      "end_exclusive": "0x80024D04"
+    },
+    {
+      "address": "0x80024D04",
+      "size": 112,
+      "end_exclusive": "0x80024D74"
+    }
+  ],
+  "bytes": 388,
+  "edit_scope": "Only named matching sources and cloud/work/boot_tail/BT06-math-trio/**",
+  "stop": "Before candidate work verify actual native/caller/callee ABI, pinned preflight and all literal/table/relocation proof. Natural C89/O2/O1, exact ELF function size, bounded diagnosis. No guessed data/extent, fake consumed parameters, prior residual reopening, out-of-range callee inspection or protected edits.",
+  "reviewed_commit": "0251b8192665a806a99ec47769fa1805d3b27cdc"
+}

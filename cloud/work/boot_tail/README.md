@@ -1,12 +1,12 @@
 # D10: boot-tail runtime research and matching
 
 The 412 assigned functions account for **95,012 B**.
-The current ledger records **63 open functions / 48,256 B**,
+The current ledger records **45 open functions / 40,464 B**,
 **0 confirmed non-C rows**, **1
 pre-existing verified bodies / 12 B**, and
-**220 newly verified bodies / 21,100 B**.
-There are **6 claimed functions / 1,480 B** and
-**122 nonmatches / 24,164 B**.
+**226 newly verified bodies / 22,580 B**.
+There are **5 claimed functions / 1,176 B** and
+**135 nonmatches / 30,780 B**.
 
 Packet 1 itself introduced zero matching bodies or verified bytes. Its initial
 verified entry imports the existing 12-byte `func_80010A00` PR #54 receipt, now
@@ -155,12 +155,12 @@ existing getter is excluded from the queue. Packet 2 must pass first.
 
 | Order | Cluster | Half-open interval | Functions / bytes | Internal / all tail edges | Candidate roles |
 |---:|---|---|---:|---:|---|
-| 1 | BT06 | `0x80024BF0–0x80024FB0` | 4 / 952 | 0 / 0 | C15 (HYPOTHESIS) |
-| 2 | BT01 | `0x8000F8D0–0x80010450` | 1 / 284 | 0 / 0 | C01 (HYPOTHESIS) |
-| 3 | BT02 | `0x80010450–0x80014550` | 59 / 16,624 | 55 / 83 | C02, C03, C04 (HYPOTHESIS) |
-| 4 | BT03 | `0x80014550–0x80020610` | 230 / 49,072 | 330 / 379 | C05, C06, C07, C08, C09, C10, C11, C12 (HYPOTHESIS) |
-| 5 | BT04 | `0x80020610–0x800218CC` | 27 / 4,784 | 18 / 18 | C13 (HYPOTHESIS) |
-| 6 | BT05 | `0x800218CC–0x80024BF0` | 62 / 13,084 | 80 / 141 | C14 (HYPOTHESIS) |
+| 1 | BT01 | `0x8000F8D0–0x80010450` | 1 / 284 | 0 / 0 | C01 (HYPOTHESIS) |
+| 2 | BT02 | `0x80010450–0x80014550` | 59 / 16,624 | 55 / 83 | C02, C03, C04 (HYPOTHESIS) |
+| 3 | BT03 | `0x80014550–0x80020610` | 230 / 49,072 | 330 / 379 | C05, C06, C07, C08, C09, C10, C11, C12 (HYPOTHESIS) |
+| 4 | BT04 | `0x80020610–0x800218CC` | 27 / 4,784 | 18 / 18 | C13 (HYPOTHESIS) |
+| 5 | BT05 | `0x800218CC–0x80024BF0` | 62 / 13,084 | 80 / 141 | C14 (HYPOTHESIS) |
+| 6 | BT06 | `0x80024BF0–0x80024FB0` | 4 / 952 | 0 / 0 | C15 (HYPOTHESIS) |
 | 7 | BT07 | `0x80024FB0–0x80026360` | 25 / 4,980 | 27 / 39 | C16 (HYPOTHESIS) |
 | 8 | BT08 | `0x80026360–0x800277D0` | 4 / 5,232 | 3 / 3 | C17 (HYPOTHESIS) |
 
@@ -258,8 +258,8 @@ repository regression, native equality proof, target/toolchain check or ROM test
 ```json
 {
   "all_tail_distinct_directed_edges": 671,
-  "claimed_bytes": 1480,
-  "claimed_functions": 6,
+  "claimed_bytes": 1176,
+  "claimed_functions": 5,
   "cluster_count": 8,
   "cohort_count": 17,
   "game_called_all_inventory": 21,
@@ -270,13 +270,13 @@ repository regression, native equality proof, target/toolchain check or ROM test
   "in_scope_functions": 412,
   "inventory_function_bytes": 99120,
   "inventory_functions": 439,
-  "new_verified_bytes": 21100,
-  "new_verified_functions": 220,
+  "new_verified_bytes": 22580,
+  "new_verified_functions": 226,
   "non_c_functions": 0,
-  "nonmatch_bytes": 24164,
-  "nonmatch_functions": 122,
-  "open_bytes": 48256,
-  "open_functions": 63,
+  "nonmatch_bytes": 30780,
+  "nonmatch_functions": 135,
+  "open_bytes": 40464,
+  "open_functions": 45,
   "preexisting_verified_bytes": 12,
   "preexisting_verified_functions": 1,
   "ultralib_excluded_bytes": 4048,
@@ -525,3 +525,16 @@ receive no match credit. Explicit ELF function-symbol extent checks distinguish
 full bodies from zero section alignment; the prior221-source audit is retained
 in wave10/function_extent_audit.json. See wave11/README.md and unique_totals.json.
 Prior green proof is in wave10/ci.json; current refills remain excluded.
+
+## Twelfth cut: five additional reviewed bodies
+
+The first eleven source cuts now have 226 unique new exact-CI-verified bodies /
+22,580 B. Twelfth cut adds five peer-reviewed strict local bodies / 1,176 B and
+thirteen complete nonmatches / 6,616 B, pending its own exact-head CI. The union
+is 231 new bodies / 23,756 B plus the separate 12-byte getter. Across 366 distinct
+attempts, 134 complete nonmatches / 30,684 B and the earlier 96-byte table-proof
+lead receive no matching credit. The new math trio preserves actual alias/FP
+semantics and independently checked CC0 provenance. All accepted functions pass
+exact ELF symbol-size and full relocated equality checks. See wave12/README.md
+and unique_totals.json; prior green proof is in wave11/ci.json. Later work is
+excluded and D10 remains unchanged.

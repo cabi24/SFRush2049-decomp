@@ -1,0 +1,26 @@
+{
+  "result": "PASS",
+  "actual_sources": {
+    "test_host.c": "13a59cd0fcd4239b35a97ef9a695d1d321c3f3a657dbc602bc5e78e2dd2d88f7",
+    "func_80013DEC.c": "5f8027d5850c6f3edd42372f30c27299d8da64b9e2abef62570bdebcb42f177a",
+    "func_80014198.c": "558684af38cff762bb2629d6013933ecdd19558c0382195bb90de80d7f786c38"
+  },
+  "runs": [
+    {
+      "mode": "c89",
+      "result": "PASS",
+      "output": [
+        "ring cases: 36931",
+        "setup cases: 18433"
+      ]
+    },
+    {
+      "mode": "asan_ubsan",
+      "result": "PASS",
+      "output": [
+        "ring cases: 36931",
+        "setup cases: 18433"
+      ]
+    }
+  ]
+}
