@@ -1,5 +1,5 @@
 {
-  "state": "active",
+  "state": "integrating-source-frozen",
   "owner": "/root/match_boot_tail_macro_five",
   "packet": "BT05-macro-five",
   "branch": "dot/boot-tail-bt05-macro-five",
@@ -34,5 +34,6 @@
   "bytes": 888,
   "dependency_order": "22324 and230B0 use matched helpers;23AD4 and23B50 use fully reconstructed native contracts;23DB8 after23AD4 inspection.",
   "edit_scope": "Only listed match sources and cloud/work/boot_tail/BT05-macro-five/**",
-  "stop": "Audit actual native callee ABI and missing data before edits. Natural C89,O2 thenO1,20 directed variants maximum per diagnosis. No protected changes, overlap, frozen-target reopens or table-proof substitution. Use /tmp isolated worktree."
+  "stop": "Audit actual native callee ABI and missing data before edits. Natural C89,O2 thenO1,20 directed variants maximum per diagnosis. No protected changes, overlap, frozen-target reopens or table-proof substitution. Use /tmp isolated worktree.",
+  "peer_approved_head": "3e7bc0c9413bf70d269be26830a5298fdbf35e5a"
 }

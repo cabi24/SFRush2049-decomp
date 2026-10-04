@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "source_language": "C89",
+  "compiler": "host cc -std=c89 -pedantic -O2 -Wall -Wextra -Werror -fsanitize=undefined -fno-sanitize-recover=all",
+  "limits": "Host pointer width/endian differ from MIPS. __unaligned is erased only for aligned host input arrays; these tests do not establish odd-address/big-endian loads, native struct layout, or invalid/out-of-range float conversion behavior. Strict target replay and independent IDO layout assertions cover native ABI/layout.",
+  "results": [
+    {
+      "function": "func_800148F8",
+      "source_sha256": "9623012106a365b565f366c3b95c3d94e8448d6ddba51cffcebf69507d1ec72e",
+      "result": "PASS",
+      "coverage": "256 input vectors including zero/full-range values; only selected slot fields change"
+    },
+    {
+      "function": "func_80014D30",
+      "source_sha256": "b8da85d3c513e09cb361c47baa868ccd075443080cd2b31399230cdf83a3982e",
+      "result": "PASS",
+      "coverage": "24 in-range float-to-unsigned vectors including high-bit/full-width unsigned inputs"
+    },
+    {
+      "function": "func_800171C0",
+      "source_sha256": "26f596c6c04fddf5e960efe361fe46f8bd363387fe883c2d4f2dd5238d54da86",
+      "result": "PASS",
+      "coverage": "all 256 forward/back links, sentinel ends, payload preservation and repeated initialization"
+    },
+    {
+      "function": "func_8001729C",
+      "source_sha256": "ab2c96f0384fab2b92e2cc5e6de009adddf1eea898900ba08fc1839d6a188213",
+      "result": "PASS",
+      "coverage": "eight empty/nonempty active/pending/free combinations; order/backlinks and idempotent second release"
+    },
+    {
+      "function": "func_800173B4",
+      "source_sha256": "3d282f9bb1702673208404cd44737918c4cacd0da94dd6be5fb292a273623395",
+      "result": "PASS",
+      "coverage": "six free-list exhaustion/single/multiple and active-empty/nonempty combinations"
+    },
+    {
+      "function": "func_80017410",
+      "source_sha256": "7cc056e7e6fdaba5a5c7bb5041ddd19d12494ae06fdc02a058a662afb7902c4e",
+      "result": "PASS",
+      "coverage": "eight head/middle/tail/only-node and free-list empty/nonempty combinations"
+    },
+    {
+      "function": "func_80017470",
+      "source_sha256": "3eeb6cf169f0e9ce767a190ee5820d4a7cb467453fee7466776b7af808c8b8ff",
+      "result": "PASS",
+      "coverage": "eight head/middle/tail/only-node and free-list empty/nonempty combinations"
+    },
+    {
+      "function": "func_800174D0",
+      "source_sha256": "3b6195963afabaee8bd938fff8904f2a953a6264bd15e03184b3d23738882653",
+      "result": "PASS",
+      "coverage": "eight active head/middle/tail/only-node and pending-empty/nonempty combinations"
+    }
+  ]
+}

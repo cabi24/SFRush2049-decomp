@@ -1,5 +1,5 @@
 {
-  "state": "active",
+  "state": "integrating-source-frozen",
   "owner": "/root/match_boot_tail_low_eight",
   "packet": "BT03-low-eight",
   "branch": "dot/boot-tail-bt03-low-eight",
@@ -48,5 +48,6 @@
   ],
   "bytes": 1196,
   "edit_scope": "Only listed matching sources and cloud/work/boot_tail/BT03-low-eight/**",
-  "stop": "Inspect true indirect ABI and local rodata before edits. Natural C89, O2 then O1, 20 directed variants maximum per diagnosis. No protected edits, frozen-target reopens, overlap or missing-proof substitution. Use /tmp isolated worktree."
+  "stop": "Inspect true indirect ABI and local rodata before edits. Natural C89, O2 then O1, 20 directed variants maximum per diagnosis. No protected edits, frozen-target reopens, overlap or missing-proof substitution. Use /tmp isolated worktree.",
+  "peer_approved_head": "d9ff1b708b41f9d5a3082c0f251dd393807e1252"
 }

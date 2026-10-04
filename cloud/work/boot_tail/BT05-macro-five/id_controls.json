@@ -1,0 +1,54 @@
+[
+  {
+    "name": "func_80022324",
+    "variant": "shift_and_or",
+    "source_sha256": "3f2ce178c204d76a762aef76a29641feb00c4faff9fea7058cbdf78d0c7af5bc",
+    "score": {
+      "differing": 3,
+      "total": 43,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "name": "func_80022324",
+    "variant": "multiply_id",
+    "source_sha256": "282b14915d0bc781c67bd6f3646c8dbb4a20e74409993436e411d454bac64fcf",
+    "score": {
+      "differing": 2,
+      "total": 43,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "name": "func_80022324",
+    "variant": "mask_command",
+    "source_sha256": "fcc32653347f80a7803a4482edd8475619ec6afac8dddcc8aaaf437c63724561",
+    "score": {
+      "differing": 15,
+      "total": 43,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  {
+    "name": "func_80022324",
+    "variant": "combined_cast_id",
+    "source_sha256": "39f5df81c940dfa4dfed0ac1de02bb62d8b416bdee525150381be30055aa3790",
+    "score": {
+      "differing": 2,
+      "total": 43,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+]

@@ -1,5 +1,5 @@
 {
-  "state": "active",
+  "state": "integrating-source-frozen",
   "owner": "/root/match_boot_tail_bt03_high",
   "packet": "BT03-high-init",
   "branch": "dot/boot-tail-bt03-high-init",
@@ -39,5 +39,6 @@
   "bytes": 616,
   "prior_packet": "BT03-high-helpers frozen peer PASS6d5b195446d55027562e923fce225123ab775ae4",
   "edit_scope": "Only listed matching sources and cloud/work/boot_tail/BT03-high-init/**",
-  "stop": "Genuine native ABI and storage domain, natural C89/O2/O1;20 directed variants maximum with diagnosis. No protected edits, overlaps, proof substitutions or repeated frozen residuals. Use /tmp isolated worktree."
+  "stop": "Genuine native ABI and storage domain, natural C89/O2/O1;20 directed variants maximum with diagnosis. No protected edits, overlaps, proof substitutions or repeated frozen residuals. Use /tmp isolated worktree.",
+  "peer_approved_head": "5e487eb4b1bde5e8f465cc5c329f060089883a0a"
 }

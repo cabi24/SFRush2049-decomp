@@ -1,0 +1,36 @@
+{
+  "result": "PASS_FOR_BOUNDED_HOST_SEMANTICS",
+  "tests_passed": 6,
+  "candidate_invocations": 336775,
+  "per_function_invocations": 67355,
+  "case_counts_per_function": {
+    "length_seed_mutation_matrix": 1820,
+    "all_non_sentinel_u16_single_entries": 65535
+  },
+  "standard": "C89, pedantic-errors, Wall, Wextra, Werror",
+  "sanitizers": [
+    "AddressSanitizer",
+    "UndefinedBehaviorSanitizer"
+  ],
+  "leak_sanitizer": "Disabled only because the executor ptrace is incompatible; no heap allocation in candidates or harnesses. Address and UB checks remain active and halt on errors.",
+  "tested": [
+    "empty through 64-element sentinel lists",
+    "all 65535 non-sentinel identifiers",
+    "forward and reverse callback order",
+    "ignored helper status",
+    "future identifier replacement",
+    "future sentinel replacement",
+    "forward sentinel extension and reverse scan boundary preservation",
+    "all buffer and prefix bytes after explicit helper mutations"
+  ],
+  "source_sha256": {
+    "cloud/matches/boot_tail/func_800150C8.c": "544119c4d405856c1d7eb2cd119373955fa0b174e845a3f8d58c9325a6d61cd0",
+    "cloud/matches/boot_tail/func_80015120.c": "cdb10ee35ce84a0e0d17130d26f0860d2a04a5cc211a9ac9c7f5f1434dabb4bf",
+    "cloud/matches/boot_tail/func_80015178.c": "c4bcf69b7ca5d33aff7d8b5b3ff521fa165741f5c0f474598f5054cbef5096ee",
+    "cloud/matches/boot_tail/func_800151D0.c": "5649cb3617691813eb843cc80fd997c0c617a301e94a1b2078db6bfee3814b83",
+    "cloud/matches/boot_tail/func_800152A8.c": "a76e40cb608b9e1abef3ad4d43ada0e73f7139ae98d662614e42836478773095"
+  },
+  "test_source_sha256": "340f3fb9c63c91a06cbb7847adc144a06a266dd802d19db172ffcebaba4cd6c1",
+  "bounds": "Lists are aligned, terminated, and within one allocated u16 array, with four preceding u16 prefix elements. Native caller provides resource-relative pointers plus eight bytes; the predecessor is formed but never read. Missing terminators, unrelated-object comparisons, invalid resource offsets and original helper algorithms are not claimed.",
+  "matching_proof": "Separate strict IDO relocated equality; host fixtures add behavior support, not cartridge or whole-game evidence."
+}
