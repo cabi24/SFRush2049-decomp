@@ -1,0 +1,18 @@
+{
+  "source_cut": 14,
+  "previous_source_functions": 234,
+  "previous_source_bytes": 25260,
+  "this_cut_peer_reviewed_functions": 2,
+  "this_cut_peer_reviewed_bytes": 1316,
+  "combined_unique_new_matching_functions": 236,
+  "combined_unique_new_matching_bytes": 26576,
+  "preexisting_getter_functions": 1,
+  "preexisting_getter_bytes": 12,
+  "all_cut_attempted_functions": 390,
+  "all_cut_complete_nonmatch_functions": 153,
+  "all_cut_complete_nonmatch_bytes": 42924,
+  "all_cut_blocked_source_lead_functions": 1,
+  "all_cut_blocked_source_lead_bytes": 96,
+  "later_work": "excluded; inherited PR73 bodies are not counted twice",
+  "cartridge_or_maintainer_acceptance": "not claimed"
+}

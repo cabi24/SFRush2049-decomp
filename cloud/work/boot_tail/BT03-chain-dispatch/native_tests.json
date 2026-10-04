@@ -1,0 +1,18 @@
+{
+  "result": "PASS",
+  "native_calls": 3084,
+  "modeled_external_calls": 24672,
+  "target": "func_8001CCDC",
+  "target_bytes": 936,
+  "target_words": 234,
+  "coverage": [
+    "complete native body both fade paths",
+    "all four ordered controller sends",
+    "all genuine O32 input slots including unused a3",
+    "caller-saved clobbers and emitter mutation",
+    "preserved stack/s0/ra/FCSR",
+    "unsigned conversion high-bit fallback",
+    "native invalid conversion saturation before byte truncation"
+  ],
+  "limits": "Purpose-limited software instruction model, no hardware or ROM execution; C tests have a narrower defined conversion domain."
+}

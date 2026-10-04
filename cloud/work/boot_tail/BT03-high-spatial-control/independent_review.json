@@ -1,0 +1,88 @@
+{
+  "result": "PASS",
+  "scope": "Independent bounded local C/native/ABI/provenance review. No cartridge integration, full-ROM identity, exact-head hosted CI, publication, or merge claim.",
+  "commit": "86d3898a912884f32c71e6ed9a95e3cc65fe114b",
+  "tree": "2862c2bb6bad0805c454638501756028eb288672",
+  "packet": "cloud/work/boot_tail/BT03-high-spatial-control",
+  "blocking_findings": [],
+  "verified_body": {
+    "name": "func_80019C8C",
+    "words": 145,
+    "bytes": 580,
+    "elf_function_size": 580,
+    "full_relocated_equality": true,
+    "masks": 0,
+    "unresolved": 0,
+    "unverified": 0,
+    "relocation_errors": 0,
+    "nonzero_excess": 0
+  },
+  "complete_nonmatches": [
+    {
+      "name": "func_8001D1F4",
+      "bytes": 508,
+      "differing_words": 46,
+      "total_words": 127,
+      "elf_function_size": 508
+    },
+    {
+      "name": "func_8001DC08",
+      "bytes": 472,
+      "differing_words": 3,
+      "total_words": 118,
+      "elf_function_size": 472
+    }
+  ],
+  "replays": {
+    "verification_json": "exact byte-for-byte reproduction of all six final rows",
+    "abi_proof_json": "exact byte-for-byte reproduction",
+    "control_rows": 30,
+    "sanitizer_groups": 3,
+    "actual_source_invocations": 134124,
+    "canonical_changed_submission_gate": "PASS, one source",
+    "target_manifest": "PASS",
+    "census_extents": "PASS, 439 functions and 99120 bytes",
+    "source_and_compiler_preflight_hashes": "PASS",
+    "protected_paths": "PASS",
+    "git_diff_check": "PASS",
+    "worktree_clean": true
+  },
+  "complete_native_bodies_reviewed": [
+    "80019C8C",
+    "80019ED0",
+    "8001EB10",
+    "8001ECE0",
+    "8001467C",
+    "800217E4",
+    "80020F4C",
+    "8001D1F4",
+    "8001D3F0",
+    "8001D460",
+    "8001C860",
+    "8001CCDC",
+    "80014594",
+    "800145DC",
+    "80020174",
+    "8001DC08",
+    "8001B1D0",
+    "8001DDE0"
+  ],
+  "review_notes": [
+    "19C8C preserves the three real byte inputs, live count and post-helper reloads, chain sentinel retry, identifier sequencing, and final publication. Unsigned pitch shifting and bounded signed detune multiplication avoid signed overflow and negative-shift undefined behavior.",
+    "D1F4 has ten independently evidenced arguments and a 68-byte O32 emitter. Five calculator output pointers are distinct; a zero first output exits before reading conditionally unwritten pan/span/send values. Both wrappers corroborate the ten slots. Allocation failures and live final handle are retained.",
+    "DC08 has no input arguments; its only direct boot-tail caller is 8001DDE0. The 12-byte groups and 28-byte entries, cached external D_8002D904/D_8002D908 values, counter wrapping, callback reloads and failure/success flag logic agree with the complete native body.",
+    "Source forms remain natural C89; no fake formals, padding locals, assembly, extra helper bodies, masked equality or source-size inflation were found.",
+    "All claims remain within valid registered storage, bounded lists, genuine helper contracts and ordinary floating-point domains. Host tests are logical callback-double tests, not target execution or whole playback validation."
+  ],
+  "provenance": {
+    "repository": "AxioDL/musyx",
+    "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+    "license": "CC0-1.0",
+    "license_blob": "0e259d42c996742e9e3cba14c677129b2c1b6311",
+    "source_blobs": [
+      "0559ed2e7d5d8abd4627440fd71f807581c03aad",
+      "7c6e875a043c53b92ca05efdb9b1799e7d496965"
+    ],
+    "independent_checks": "Fetched LICENSE and source locations at the pinned revision through GitHub; verified local complete source SHA-256 and Git blob identities against references.json."
+  }
+}

@@ -1,0 +1,28 @@
+[
+  {
+    "name": "func_80024D74",
+    "stage": "initial",
+    "source_sha256": "2c400a439f81374b3ecf99eeaa86b4c5284310e296af27a43be4640496573901",
+    "comparison": {
+      "aligned_constant": 1,
+      "aligned_deletions": 85,
+      "aligned_insertions": 85,
+      "aligned_register": 16,
+      "aligned_schedule": 0,
+      "frame": -56
+    }
+  },
+  {
+    "name": "func_80024D74",
+    "stage": "final",
+    "source_sha256": "b18dd3584f37663f3d1bec09d721885c2aabbfd165f0d28f7c7f9a2a792eca6f",
+    "comparison": {
+      "aligned_constant": 0,
+      "aligned_deletions": 0,
+      "aligned_insertions": 0,
+      "aligned_register": 0,
+      "aligned_schedule": 0,
+      "frame": -56
+    }
+  }
+]

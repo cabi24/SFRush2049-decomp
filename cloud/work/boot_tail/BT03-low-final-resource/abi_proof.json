@@ -1,0 +1,329 @@
+{
+  "schema_version": 1,
+  "scope": "Native field/stride/call ABI and address proof; external contents are not published.",
+  "native_abi": {
+    "func_80015A0C": "int(u16 key, void *payload, u16 parameter); actual15058 wrapper supplies key, payload+12 and halfword at+10",
+    "func_80016998": "int(u16 key), explicitly always returns0; reviewed150C8 wrapper supplies the single u16"
+  },
+  "actual_calls": "Only no-input synchronization wrappers14594 and145DC in retained bodies; complete canonical helpers were inspected and are unchanged.",
+  "native_layouts": {
+    "insertion_record": "12 bytes: payload pointer0, id4, parameter6, references8, two unmodified tail bytes10..11",
+    "insertion_globals": "signed count8003CE18;256 records at8003CE20",
+    "removal_record": "8 bytes: payload pointer0, id4, references6",
+    "range": "4 bytes: unsigned-short count0, first2;512 ranges at8003DA28",
+    "removal_globals": "signed count8003DA20;2048 entries at8003E228"
+  },
+  "host_layout_limit": "Host packed pointer-containing records are16 and12 bytes, respectively. Host field-model checks are separate from native IDO width assertions and whole-object instruction replay.",
+  "rows": [
+    {
+      "name": "func_80015A0C",
+      "source_sha256": "0694255ac41d6f47e18bb5bde52e90f9d166d7f058f97ee00c941e24d2d8ca79",
+      "data_section_bytes": {},
+      "text_relocations": [
+        {
+          "text_offset": 16,
+          "type": 4,
+          "symbol": "func_80014594",
+          "symbol_section": 0,
+          "address": "0x80014594",
+          "address_source": "canonical symbol map"
+        },
+        {
+          "text_offset": 24,
+          "type": 5,
+          "symbol": "D_8003CE18",
+          "symbol_section": 0,
+          "address": "0x8003CE18",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 28,
+          "type": 6,
+          "symbol": "D_8003CE18",
+          "symbol_section": 0,
+          "address": "0x8003CE18",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 48,
+          "type": 5,
+          "symbol": "D_8003CE20",
+          "symbol_section": 0,
+          "address": "0x8003CE20",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 52,
+          "type": 6,
+          "symbol": "D_8003CE20",
+          "symbol_section": 0,
+          "address": "0x8003CE20",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 72,
+          "type": 5,
+          "symbol": "D_8003CE20",
+          "symbol_section": 0,
+          "address": "0x8003CE20",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 76,
+          "type": 6,
+          "symbol": "D_8003CE20",
+          "symbol_section": 0,
+          "address": "0x8003CE20",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 136,
+          "type": 5,
+          "symbol": "D_8003CE20",
+          "symbol_section": 0,
+          "address": "0x8003CE20",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 144,
+          "type": 6,
+          "symbol": "D_8003CE20",
+          "symbol_section": 0,
+          "address": "0x8003CE20",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 220,
+          "type": 5,
+          "symbol": "D_8003CE20",
+          "symbol_section": 0,
+          "address": "0x8003CE20",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 232,
+          "type": 6,
+          "symbol": "D_8003CE20",
+          "symbol_section": 0,
+          "address": "0x8003CE20",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 240,
+          "type": 5,
+          "symbol": "D_8003CE20",
+          "symbol_section": 0,
+          "address": "0x8003CE20",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 244,
+          "type": 6,
+          "symbol": "D_8003CE20",
+          "symbol_section": 0,
+          "address": "0x8003CE20",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 340,
+          "type": 4,
+          "symbol": "func_800145DC",
+          "symbol_section": 0,
+          "address": "0x800145DC",
+          "address_source": "canonical symbol map"
+        },
+        {
+          "text_offset": 384,
+          "type": 4,
+          "symbol": "func_800145DC",
+          "symbol_section": 0,
+          "address": "0x800145DC",
+          "address_source": "canonical symbol map"
+        },
+        {
+          "text_offset": 420,
+          "type": 5,
+          "symbol": "D_8003CE20",
+          "symbol_section": 0,
+          "address": "0x8003CE20",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 424,
+          "type": 6,
+          "symbol": "D_8003CE20",
+          "symbol_section": 0,
+          "address": "0x8003CE20",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 444,
+          "type": 4,
+          "symbol": "func_800145DC",
+          "symbol_section": 0,
+          "address": "0x800145DC",
+          "address_source": "canonical symbol map"
+        },
+        {
+          "text_offset": 512,
+          "type": 4,
+          "symbol": "func_800145DC",
+          "symbol_section": 0,
+          "address": "0x800145DC",
+          "address_source": "canonical symbol map"
+        }
+      ]
+    },
+    {
+      "name": "func_80016998",
+      "source_sha256": "671a2aa10a63c931339834b9dcf428cb375cf1902d6932b08b9e1d49d34c0a33",
+      "data_section_bytes": {},
+      "text_relocations": [
+        {
+          "text_offset": 8,
+          "type": 4,
+          "symbol": "func_80014594",
+          "symbol_section": 0,
+          "address": "0x80014594",
+          "address_source": "canonical symbol map"
+        },
+        {
+          "text_offset": 20,
+          "type": 5,
+          "symbol": "D_8003DA28",
+          "symbol_section": 0,
+          "address": "0x8003DA28",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 24,
+          "type": 6,
+          "symbol": "D_8003DA28",
+          "symbol_section": 0,
+          "address": "0x8003DA28",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 88,
+          "type": 5,
+          "symbol": "D_8003E228",
+          "symbol_section": 0,
+          "address": "0x8003E228",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 92,
+          "type": 6,
+          "symbol": "D_8003E228",
+          "symbol_section": 0,
+          "address": "0x8003E228",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 188,
+          "type": 5,
+          "symbol": "D_8003E228",
+          "symbol_section": 0,
+          "address": "0x8003E228",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 192,
+          "type": 6,
+          "symbol": "D_8003E228",
+          "symbol_section": 0,
+          "address": "0x8003E228",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 212,
+          "type": 5,
+          "symbol": "D_8003DA20",
+          "symbol_section": 0,
+          "address": "0x8003DA20",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 260,
+          "type": 6,
+          "symbol": "D_8003DA20",
+          "symbol_section": 0,
+          "address": "0x8003DA20",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 288,
+          "type": 5,
+          "symbol": "D_8003E228",
+          "symbol_section": 0,
+          "address": "0x8003E228",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 292,
+          "type": 6,
+          "symbol": "D_8003E228",
+          "symbol_section": 0,
+          "address": "0x8003E228",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 296,
+          "type": 5,
+          "symbol": "D_8003E228",
+          "symbol_section": 0,
+          "address": "0x8003E228",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 300,
+          "type": 6,
+          "symbol": "D_8003E228",
+          "symbol_section": 0,
+          "address": "0x8003E228",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 368,
+          "type": 5,
+          "symbol": "D_8003DA28",
+          "symbol_section": 0,
+          "address": "0x8003DA28",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 380,
+          "type": 6,
+          "symbol": "D_8003DA28",
+          "symbol_section": 0,
+          "address": "0x8003DA28",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 372,
+          "type": 5,
+          "symbol": "D_8003DA28",
+          "symbol_section": 0,
+          "address": "0x8003DA28",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 376,
+          "type": 6,
+          "symbol": "D_8003DA28",
+          "symbol_section": 0,
+          "address": "0x8003DA28",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 600,
+          "type": 4,
+          "symbol": "func_800145DC",
+          "symbol_section": 0,
+          "address": "0x800145DC",
+          "address_source": "canonical symbol map"
+        }
+      ]
+    }
+  ]
+}

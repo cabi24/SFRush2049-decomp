@@ -1,0 +1,3 @@
+address,status,evidence_level,flags,diff_words,source_path,note
+0x80019F48,nonmatch,COMPLETE-NONMATCH,-g0 -O2 -mips2 -G 0 -non_shared,170,cloud/work/boot_tail/BT03-constructor-pair/nonmatch/func_80019F48.c,808 native bytes;816 ELF bytes;2 nonzero excess words;ten-input ABI and full behavior tested
+0x8001A270,nonmatch,COMPLETE-NONMATCH,-g0 -O2 -mips2 -G 0 -non_shared,195,cloud/work/boot_tail/BT03-constructor-pair/nonmatch/func_8001A270.c,872 native bytes;900 ELF bytes;6 nonzero excess words;ten-input ABI and raw-key pan domain retained

@@ -1,0 +1,25 @@
+{
+  "result": "PASS_FOR_BOUNDED_RESOURCE_SEMANTICS",
+  "tests_passed": 4,
+  "native_reference_comparisons": 1032,
+  "retained_host_c89_calls": 1032,
+  "fully_relocated_ido_calls": 1392,
+  "cases": {
+    "80015A0C": 672,
+    "80016998": 360
+  },
+  "source_sha256": {
+    "cloud/work/boot_tail/BT03-low-final-resource/func_80015A0C_NONMATCH.c": "0694255ac41d6f47e18bb5bde52e90f9d166d7f058f97ee00c941e24d2d8ca79",
+    "cloud/work/boot_tail/BT03-low-final-resource/func_80016998_NONMATCH.c": "671a2aa10a63c931339834b9dcf428cb375cf1902d6932b08b9e1d49d34c0a33",
+    "cloud/work/boot_tail/BT03-low-final-resource/controls/func_80016998_cached_count.c": "e6b511b52e473daade9a3a8d7f5ce707859cc85cafcf965b7dca4f3ab123b804",
+    "cloud/work/boot_tail/BT03-low-final-resource/controls/func_80016998_initial.c": "671a2aa10a63c931339834b9dcf428cb375cf1902d6932b08b9e1d49d34c0a33"
+  },
+  "harness_sha256": {
+    "native_replay.py": "657ea10cda7f76808737d56a280f3c36625e4cc898c84c795795918e4b8efb1f",
+    "fixtures.py": "89e5f1a748ea187d78ede4b77203b999d2abd7d99e792a27d85e0fbdaeeef098",
+    "test_semantics.py": "235c75a424e06f16a44b97260ef3b4f625da2e46b2b28447b44594c46d443af1"
+  },
+  "native_layout": "IDO assertions prove uint/pointer4,12-byte insertion record with id4/parameter6/references8/tail10,8-byte removal record with id4/references6, and4-byte ranges with first2.",
+  "host_mode": "C89 pedantic-errors, Wall/Wextra/Werror, ASan and UBSan. Leak detection alone disabled for executor ptrace compatibility; no candidate/C-harness heap allocation. Real host pointers map to synthetic native pointer identities for full field fingerprints.",
+  "limits": "Insertion: configured count0..256 and sorted records, all u16 keys/parameters. Removal: count0..2048, valid contiguous bucket slices, key<32768; references wrap modulo65536. Payload pointers are stored, never dereferenced. Helpers may make the stated bounded synthetic mutations. Native sizes are not host sizes. No malformed-input, concurrency, original-resource, whole-game or cartridge claim."
+}

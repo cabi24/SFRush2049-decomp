@@ -1,0 +1,49 @@
+{
+  "packet": "BT03-low-insert-pair",
+  "central_claim": "ca010641157fc3e230de206d7707245a240bf805",
+  "branch": "dot/boot-tail-bt03-low-insert-pair",
+  "base": "469eff3b6a6d0ee642fffe011daf8075d3599655",
+  "master_reference": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "attempted_functions": 2,
+  "attempted_bytes": 1084,
+  "local_match_functions": 0,
+  "local_match_bytes": 0,
+  "nonmatch_functions": 2,
+  "nonmatch_bytes": 1084,
+  "entries": [
+    {
+      "address": "0x80015D68",
+      "name": "func_80015D68",
+      "size": 448,
+      "cluster": "BT03",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 62,
+      "extra_words": 3,
+      "source_path": "cloud/work/boot_tail/BT03-low-insert-pair/func_80015D68_NONMATCH.c",
+      "source_sha256": "760b38d0e8fbd0e5ac23a1fe4847fe8a1e47c279cde4f1401d5ce49b8e58c1ee",
+      "note": "Complete sorted insertion with actual key/payload ABI and packed record geometry. Bounded forms stopped; exact native/list-model/host and relocated-object semantics pass within documented capacity/helper domains. Zero matching credit."
+    },
+    {
+      "address": "0x8001671C",
+      "name": "func_8001671C",
+      "size": 636,
+      "cluster": "BT03",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 133,
+      "extra_words": 1,
+      "source_path": "cloud/work/boot_tail/BT03-low-insert-pair/func_8001671C_NONMATCH.c",
+      "source_sha256": "5f99615ab10d72d23c9564b04ac7a9277fdb9ba976f7799803f277f621cb3801",
+      "note": "Complete sorted insertion with actual key/payload ABI and packed record geometry. Bounded forms stopped; exact native/list-model/host and relocated-object semantics pass within documented capacity/helper domains. Zero matching credit."
+    }
+  ],
+  "source_review": {
+    "result": "PASS_FOR_COMPLETE_NONMATCH_RESEARCH",
+    "reviewed_commit": "d0e06dce3d3029b54083552badb37b6034f4fea6",
+    "reviewed_tree": "11bdff51cfb550a4821d54dfa2aaf8cb38992e24",
+    "receipt": "cloud/work/boot_tail/BT03-low-insert-pair/REVIEW.json"
+  }
+}

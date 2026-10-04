@@ -1,0 +1,87 @@
+{
+  "result": "PASS_FOR_EXACT_BODY_AND_EXPLICIT_DEFINED_PATH_CALLER_DOMAIN",
+  "commit": "754e6d0cfc35799e3cdc895c4834c37dd03a88d3",
+  "tree": "8833df679e972e9c1e986bc5286871ccb954c550",
+  "base": "01eba3fdaf662189ca1fbe4275529c0be491541e",
+  "source": "cloud/matches/boot_tail/func_8001DDE0.c",
+  "source_sha256": "5688f6599d2ae49ee08ba6a0ed1c4b0fc1ef033c3a10054f45c7d613266f0421",
+  "independent_replay": {
+    "verify_check": "PASS",
+    "abi_proof_check": "PASS",
+    "semantic_tests": 4,
+    "regressions": {
+      "selection": "tests/conveyor/test_cloud_{setup,guard,submissions,integrity,score}.py",
+      "passed": 631,
+      "elapsed_seconds": 14.65
+    },
+    "additional_cloud_tests": {
+      "selection": "tests/cloud -m 'not node_required'",
+      "exit_code": 0,
+      "collected": 269,
+      "passed": 266,
+      "skipped": 3,
+      "skip_reason": "Three ipakit_groupgen tests require optional objdump/mips_to_c tools in their configured locations."
+    }
+  },
+  "strict_body": {
+    "native_bytes": 736,
+    "elf_function_bytes": 736,
+    "text_bytes": 736,
+    "relocated_words": 184,
+    "differing_words": 0,
+    "extra_words": 0,
+    "masked_relocations": 0,
+    "unresolved": 0,
+    "unverified": 0,
+    "relocation_errors": 0,
+    "o1_control": "rejected;183/184 differing words and40 nonzero excess words"
+  },
+  "native_review": [
+    "Complete native handler/control flow and complete source inspected",
+    "Native ten-callee set and float-pointer/input ABI slots checked against actual bodies",
+    "Direct native caller func_80013DEC inspected at call site80013E7C; void(void) contract corroborated",
+    "Emitter pointer/field geometry agrees with native accesses and IDO layout assertions",
+    "C860 writes volume/pitch before listener traversal; x/y/z final writes are conditional on nonzero listener count",
+    "DA74 creates a new group before checking large-pool capacity; D944 capacity is unchecked and constrained by test domain",
+    "CCDC unused yPan is retained in its genuine argument slot; final DC08 remains opaque",
+    "No invented local initializers, keeper variables, extra formals, frame tricks or altered protected paths"
+  ],
+  "instrumentation_review": {
+    "float_value_initialization": "None invented. Only initializedness/writer metadata is initialized. Real helper writes set float values and corresponding metadata.",
+    "unsafe_plain_c_execution": "None. The tracked run must accept and agree with the preclassified safe model before the untouched source executes.",
+    "stock_safe_fixtures": 612,
+    "stock_undefined_output_rejections": 172,
+    "stock_capacity_rejections": 2,
+    "stock_safe_consumptions": 1362,
+    "stock_carry_cases": 12,
+    "stock_carried_consumptions": 57,
+    "observation_comparison": "Call trace and all normalized caller fields are folded into a32-bit FNV-1a digest; test agreement is bounded regression evidence, not an exhaustive semantic proof."
+  },
+  "additional_optimized_probe": {
+    "random_seed": 754,
+    "added_cases": 4096,
+    "total_cases_with_stock": 4882,
+    "safe": 3090,
+    "undefined_output_rejections": 1790,
+    "capacity_rejections": 2,
+    "consumptions": 22109,
+    "carry_cases": 986,
+    "carried_consumptions": 3363,
+    "mode": "Existing temporary host harness with GCC -O2, C89 pedantic, ASan/UBSan; only maybe-uninitialized/uninitialized warnings downgraded from errors. Matching source unchanged.",
+    "generator": "Random0..12 allocated acyclic nodes; low8 flag bits plus selected native high-bit combinations; valid/sentinel/stale identifiers; groups0..7; finite dyadic fade and volume; global helper empty/fail booleans. Same declared synthetic helper contracts as stock harness.",
+    "replay_script_sha256": "9c5cb2d0a199a397e4ad1bf459d3390f5ad33a1c2116a5d651b47c7020122506",
+    "replay_command": "From frozen packet repository root: python3 review-emitter-optimized-replay.py"
+  },
+  "provenance": {
+    "upstream": "AxioDL/musyx",
+    "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+    "source_blob": "7c6e875a043c53b92ca05efdb9b1799e7d496965",
+    "license_blob": "0e259d42c996742e9e3cba14c677129b2c1b6311",
+    "license": "CC0-1.0",
+    "verification": "Source s3dHandle and full LICENSE independently retrieved at pinned revision; both Git blob identities agree. Homologous lead, not original N64 TU proof."
+  },
+  "qualification": "Every consumed local float must have been written during this invocation, possibly in an earlier emitter iteration. The original producer/listener invariant is unproved. Entry to final DC08 is the opaque observation boundary. Tests cover declared synthetic caller/helper contracts with valid bounded structures and ordinary finite FP, not all spatial/audio-engine behavior. Unknown original D_8002D90C value, exceptional FP, arbitrary concurrency, malformed state, full-runtime/ROM behavior and universal safety remain unproved. The gated C860 callee is unchanged.",
+  "blockers": [],
+  "working_tree": "No tracked source, test, ledger, target, tool or header edits. Only the pre-existing untracked IDO symlink remains. No ROM, raw native listing, object or credential is in this receipt.",
+  "remaining_central_gates": "Aggregate-head CI, central integration/ledger updates and independent-maintainer merging are separate."
+}

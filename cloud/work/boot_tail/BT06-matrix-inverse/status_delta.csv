@@ -1,0 +1,2 @@
+address,name,size,cluster,status,flags,diff_words,source_path,note
+0x80024D74,func_80024D74,564,BT06,verified_body,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_80024D74.c,Local strict MATCH;141 words and exact564-byte ELF extent; actual two-pointer matrix ABI and FP/alias domains; pending peer review and aggregate CI.

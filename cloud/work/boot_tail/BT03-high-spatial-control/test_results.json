@@ -1,0 +1,24 @@
+{
+  "result": "PASS",
+  "groups": 3,
+  "source_invocations": 134124,
+  "portamento": {
+    "full_byte_key_by_signed_byte_detune": 65536,
+    "filter_chain_and_live_callback_scenarios": 640
+  },
+  "emitter": {
+    "full_byte_gain_by_minimum": 65536,
+    "null_scratch_path_and_live_helpers": 9,
+    "whole_vector_self_or_cross_alias": 3
+  },
+  "threshold_dispatch": {
+    "synthetic_threshold_counter_failure_and_live_list_scenarios": 2400
+  },
+  "compiler": "cc -std=c89 -pedantic-errors -Wall -Wextra -Werror -O1 -fno-fast-math -ffp-contract=off -fsanitize=address,undefined,float-cast-overflow -no-pie",
+  "qualifications": [
+    "Actual C sources included in each test; helper doubles test declared external contracts and live reloads, not complete helper implementations.",
+    "Synthetic thresholds are not original constants. Byte-domain arithmetic fixtures do not establish malformed audio-state or downstream playback safety.",
+    "Host pointer widths differ; abi_proof.py establishes native32-bit record layouts.",
+    "Test harness expected-value low-byte parentheses and formatting warning were corrected before final passing run; retained production sources unchanged."
+  ]
+}

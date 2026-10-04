@@ -1,0 +1,26 @@
+{
+  "method": "Canonical relocated target/candidate words in temporary objects; unchanged workbench. No raw dump or object committed.",
+  "results": [
+    {
+      "name": "func_8001D1F4",
+      "stage": "initial O2 before refinement",
+      "source_sha256": "62a4898777c05a29a8822c351f669e2ffe2498209bbad70154e389b6a15ca50c",
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  66 words= 121 raw= 121 opcodes=  99 gaps=  41 reloc_syms=   1 norm=  30 regs= 102 fp=  40 insns= 126 frame=  -64 sha1=eeeaaa8a9606 /tmp/spatial-candidate-8001D1F4.o true_insn_delta=-1 geometry_edit_distance=30 opcode_distance=5",
+      "recorded_utc": "2026-10-04T03:09:49.877901+00:00"
+    },
+    {
+      "name": "func_8001DC08",
+      "stage": "initial O2 before refinement",
+      "source_sha256": "81bd5b45139aa03b32c934c0ce2d2ce2f346540dde73803c56e6b6802cc0f908",
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  57 words= 114 raw= 114 opcodes=  84 gaps=  12 reloc_syms=   2 norm=  41 regs= 110 fp=  27 insns= 120 frame=  -88 sha1=fadc4b58fe97 /tmp/spatial-candidate-8001DC08.o true_insn_delta=+2 geometry_edit_distance=41 opcode_distance=16",
+      "recorded_utc": "2026-10-04T03:09:50.354446+00:00"
+    },
+    {
+      "name": "func_80019C8C",
+      "stage": "initial O2 before refinement",
+      "source_sha256": "ed7d56a9c2605f1f0797b81031db8d39bd5ff1db80bc13c5a8b9a84cb8c4216c",
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  48 words=  43 raw=  43 opcodes=  20 gaps=  20 reloc_syms=   0 norm=  40 regs=  35 fp=   0 insns= 145 frame=  -88 sha1=fa978248bd26 /tmp/spatial-candidate-80019C8C.o true_insn_delta=+0 geometry_edit_distance=40 opcode_distance=24",
+      "recorded_utc": "2026-10-04T03:09:50.827002+00:00"
+    }
+  ]
+}

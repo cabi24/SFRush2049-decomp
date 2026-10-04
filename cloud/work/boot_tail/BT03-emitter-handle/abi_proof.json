@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "scope": "Exact caller and ten real external interfaces; gated CalcEmitter and all other callees remain unchanged.",
+  "native_abi": "void(void); saved-next traversal; five genuine float output locals with no invented initialization",
+  "native_layout": "Emitter68: next0,previous4,flags8,untouched40-byte range12..51,identifier52,group56,sound_id60,counter62,fade64. Pointer-containing host layout is not claimed native geometry.",
+  "external_state": {
+    "D_8004FD50": "actual emitter-list root pointer",
+    "D_8002D90C": "extern const float fade increment at8002D90C; original value unknown, not inferred from public0.3f lead"
+  },
+  "callees": {
+    "func_8001D928": "void(void): reset three actual byte counters",
+    "func_8001D084": "void(Emitter*): unlink next/previous and mask flags; actual helper unchanged",
+    "func_8001C860": "void(Emitter*,float* volume,float* pitch,float* x,float* y,float* z); always writes volume/pitch, last three can remain untouched when listener count is zero",
+    "func_8001DA74": "int(Emitter*,float volume,float x,float y,float z,float pitch); real checked group/large-pool capacity result",
+    "func_8001B1D0": "u32(u16 sound_id,u8 volume,u8 pan)",
+    "func_800201D0": "u32(u32 identifier): preserve valid input or return all-ones",
+    "func_8001D944": "void(Emitter*,float volume); unchecked small-pool/group insertion requires valid capacities",
+    "func_8001B8C4": "int(u32 identifier), result ignored; verified existing source returns status",
+    "func_8001CCDC": "void(Emitter*,float volume,float x,float y,float z,float pitch); y is genuinely unused by the callee but occupies its real caller slot",
+    "func_8001DC08": "void(void): final opaque caller-observation boundary"
+  },
+  "definedness_limit": "A consumed output must have been written in this invocation, possibly in an earlier loop iteration. Native source/runtime does not prove this for all paths. Empty-list CalcEmitter may leave x/y/z unwritten; no defaults or producer invariant are invented.",
+  "rows": [
+    {
+      "name": "func_8001DDE0",
+      "source_sha256": "5688f6599d2ae49ee08ba6a0ed1c4b0fc1ef033c3a10054f45c7d613266f0421",
+      "data_section_bytes": {},
+      "text_relocations": [
+        {
+          "text_offset": 36,
+          "type": 4,
+          "symbol": "func_8001D928",
+          "symbol_section": 0,
+          "address": "0x8001D928",
+          "address_source": "canonical symbol map"
+        },
+        {
+          "text_offset": 44,
+          "type": 5,
+          "symbol": "D_8004FD50",
+          "symbol_section": 0,
+          "address": "0x8004FD50",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 48,
+          "type": 6,
+          "symbol": "D_8004FD50",
+          "symbol_section": 0,
+          "address": "0x8004FD50",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 108,
+          "type": 4,
+          "symbol": "func_8001D084",
+          "symbol_section": 0,
+          "address": "0x8001D084",
+          "address_source": "canonical symbol map"
+        },
+        {
+          "text_offset": 160,
+          "type": 4,
+          "symbol": "func_8001C860",
+          "symbol_section": 0,
+          "address": "0x8001C860",
+          "address_source": "canonical symbol map"
+        },
+        {
+          "text_offset": 276,
+          "type": 4,
+          "symbol": "func_8001DA74",
+          "symbol_section": 0,
+          "address": "0x8001DA74",
+          "address_source": "canonical symbol map"
+        },
+        {
+          "text_offset": 304,
+          "type": 4,
+          "symbol": "func_8001B1D0",
+          "symbol_section": 0,
+          "address": "0x8001B1D0",
+          "address_source": "canonical symbol map"
+        },
+        {
+          "text_offset": 352,
+          "type": 4,
+          "symbol": "func_800201D0",
+          "symbol_section": 0,
+          "address": "0x800201D0",
+          "address_source": "canonical symbol map"
+        },
+        {
+          "text_offset": 432,
+          "type": 4,
+          "symbol": "func_8001D944",
+          "symbol_section": 0,
+          "address": "0x8001D944",
+          "address_source": "canonical symbol map"
+        },
+        {
+          "text_offset": 488,
+          "type": 4,
+          "symbol": "func_8001B8C4",
+          "symbol_section": 0,
+          "address": "0x8001B8C4",
+          "address_source": "canonical symbol map"
+        },
+        {
+          "text_offset": 548,
+          "type": 4,
+          "symbol": "func_8001CCDC",
+          "symbol_section": 0,
+          "address": "0x8001CCDC",
+          "address_source": "canonical symbol map"
+        },
+        {
+          "text_offset": 560,
+          "type": 5,
+          "symbol": "D_8002D90C",
+          "symbol_section": 0,
+          "address": "0x8002D90C",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 580,
+          "type": 6,
+          "symbol": "D_8002D90C",
+          "symbol_section": 0,
+          "address": "0x8002D90C",
+          "address_source": "canonical address-named external"
+        },
+        {
+          "text_offset": 684,
+          "type": 4,
+          "symbol": "func_8001DC08",
+          "symbol_section": 0,
+          "address": "0x8001DC08",
+          "address_source": "canonical symbol map"
+        }
+      ]
+    }
+  ]
+}

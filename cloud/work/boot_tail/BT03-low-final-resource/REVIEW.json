@@ -1,0 +1,38 @@
+{
+  "result": "PASS_FOR_COMPLETE_BOUNDED_NONMATCH_RESEARCH",
+  "reviewer": "parent independent Astra reviewer",
+  "source_commit": "07182553efde7004abae48a4ab8c44d424dce999",
+  "source_tree": "6d06412a9c38b6b8084321b7907bc6f25d4ede44",
+  "stack_base": "9a69f9fdc69b28e93ee2ed051ea9c075574349ad",
+  "review_received_utc": "2026-10-04T02:43:30Z",
+  "source_sha256": {
+    "cloud/work/boot_tail/BT03-low-final-resource/func_80015A0C_NONMATCH.c": "0694255ac41d6f47e18bb5bde52e90f9d166d7f058f97ee00c941e24d2d8ca79",
+    "cloud/work/boot_tail/BT03-low-final-resource/func_80016998_NONMATCH.c": "671a2aa10a63c931339834b9dcf428cb375cf1902d6932b08b9e1d49d34c0a33",
+    "cloud/work/boot_tail/BT03-low-final-resource/controls/func_80016998_cached_count.c": "e6b511b52e473daade9a3a8d7f5ce707859cc85cafcf965b7dca4f3ab123b804",
+    "cloud/work/boot_tail/BT03-low-final-resource/controls/func_80016998_initial.c": "671a2aa10a63c931339834b9dcf428cb375cf1902d6932b08b9e1d49d34c0a33"
+  },
+  "matching_credit_bytes": 0,
+  "independent_replays": [
+    {
+      "command": "python3 cloud/work/boot_tail/BT03-low-final-resource/verify.py --check",
+      "result": "PASS; all8 compiler rows"
+    },
+    {
+      "command": "python3 cloud/work/boot_tail/BT03-low-final-resource/abi_proof.py --check",
+      "result": "PASS"
+    },
+    {
+      "command": "python3 cloud/work/boot_tail/BT03-low-final-resource/test_semantics.py",
+      "result": "PASS;4 tests in7.836seconds"
+    }
+  ],
+  "findings": [
+    "Read both complete C bodies and all128/152 native instructions, fixtures/model and documented domains.",
+    "Insertion has three real arguments, preserves the two tail bytes and increments duplicate references before the exit helper.",
+    "Removal wraps initial zero references, compacts whole records, adjusts ranges using original bucket start, leaves inactive tail storage untouched and always returns0.",
+    "Retained O1 unpaired HI16 is correctly disclosed. O2 object sizes544/640 versus native512/608 and nonzero differing/excess words prevent matching.",
+    "Host-pointer/native-width distinction and valid-list/concurrency limits are explicit.",
+    "Retained source hashes match the supplied checkpoint; no source changes requested."
+  ],
+  "communication_provenance": "Parent independent review delivered in this task conversation and explicitly authorized recording the receipt and central delivery."
+}

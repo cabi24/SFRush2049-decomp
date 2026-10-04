@@ -1,0 +1,14 @@
+{
+  "address": "0x80018634",
+  "name": "func_80018634",
+  "size": 840,
+  "cluster": "BT03",
+  "name_hypothesis": "sequence_track_event_dispatch",
+  "evidence_level": "COMPLETE-NONMATCH",
+  "status": "nonmatch",
+  "owner": "runtime-singleton",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "diff_words": 117,
+  "source_path": "cloud/work/boot_tail/BT03-runtime-singleton/nonmatch/func_80018634.c",
+  "note": "Exact840-byte ELF function,117/210 relocated word residual; native88-byte versus candidate72-byte frame. Complete native/host behavior with42 synthetic differential native replay cases; no match credit."
+}

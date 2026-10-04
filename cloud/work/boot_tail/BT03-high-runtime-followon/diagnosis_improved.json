@@ -1,0 +1,15 @@
+{
+  "method": "Unchanged workbench; temporary canonical-word target object and original O2 candidate. Raw objects/words not committed; strict relocated score decides acceptance.",
+  "results": [
+    {
+      "name": "func_8001C580",
+      "stage": "Improved O2 before final interface-conversion control",
+      "source_sha256": "e898ca2cea968dfef7ddd846207fc1389b3c7cabb61afa52bca4cfbacb53ad86",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 33,
+      "strict_extra_words": 3,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  38 words=  36 raw=  46 opcodes=  21 gaps=  14 reloc_syms=  17 norm=  28 regs=  33 fp=   4 insns= 128 frame=  -80 sha1=1ebce62424a9 /tmp/runtime-followon-8001C580-O2.o true_insn_delta=+4 geometry_edit_distance=28 opcode_distance=8",
+      "recorded_utc": "2026-10-04T02:32:32.512983+00:00"
+    }
+  ]
+}

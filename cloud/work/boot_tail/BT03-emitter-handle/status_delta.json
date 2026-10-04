@@ -1,0 +1,36 @@
+{
+  "packet": "BT03-emitter-handle",
+  "central_claim": "42d94b52",
+  "branch": "dot/boot-tail-bt03-emitter-handle",
+  "base": "01eba3fdaf662189ca1fbe4275529c0be491541e",
+  "master_reference": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "attempted_functions": 1,
+  "attempted_bytes": 736,
+  "local_match_functions": 1,
+  "local_match_bytes": 736,
+  "nonmatch_functions": 0,
+  "nonmatch_bytes": 0,
+  "entries": [
+    {
+      "address": "0x8001DDE0",
+      "name": "func_8001DDE0",
+      "size": 736,
+      "cluster": "BT03",
+      "status": "matched",
+      "evidence_level": "MATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 0,
+      "extra_words": 0,
+      "source_path": "cloud/matches/boot_tail/func_8001DDE0.c",
+      "source_sha256": "5688f6599d2ae49ee08ba6a0ed1c4b0fc1ef033c3a10054f45c7d613266f0421",
+      "note": "First natural source: exact736-byte ELF function/text, all184 relocated words equal, zero masks/excess/uncertainty. Binary match is separate from runtime safety: genuine uninitialized output locals remain, and the original global producer invariant is unresolved. Tests reject unwritten-output consumers and preserve defined prior-iteration values."
+    }
+  ],
+  "semantic_qualification": "Defined-path caller contracts only; no universal original-runtime or concurrency safety claim. See host_verification.json and README.",
+  "source_review": {
+    "result": "PASS_FOR_EXACT_BODY_AND_EXPLICIT_DEFINED_PATH_CALLER_DOMAIN",
+    "reviewed_commit": "754e6d0cfc35799e3cdc895c4834c37dd03a88d3",
+    "reviewed_tree": "8833df679e972e9c1e986bc5286871ccb954c550",
+    "receipt": "cloud/work/boot_tail/BT03-emitter-handle/REVIEW.json"
+  }
+}

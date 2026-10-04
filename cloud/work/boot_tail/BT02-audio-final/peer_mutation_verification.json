@@ -1,0 +1,22 @@
+{
+  "result": "PASS",
+  "harness_sha256": "0e94a40032e1f4b4a6c19a2ba8dc91cc3f0446f954c806fd07e0fc4c8bcc7b9d",
+  "cases_per_mode": 6409,
+  "results": [
+    {
+      "mode": "c89",
+      "result": "PASS",
+      "original_cases": 6408,
+      "additional_mutation_cases": 1,
+      "stdout": "PASS 120 initializer, 6144 setup, 144 submit cases; 6408 total"
+    },
+    {
+      "mode": "asan_ubsan",
+      "result": "PASS",
+      "original_cases": 6408,
+      "additional_mutation_cases": 1,
+      "stdout": "PASS 120 initializer, 6144 setup, 144 submit cases; 6408 total"
+    }
+  ],
+  "scope": "Independent synthetic callback mutation of current voice pointer/count, block pointer/index-pointer, work pointer, loop pointer/position and block-count boundary; original sources unchanged. Tests caller reload semantics only, not actual80012D18 implementation."
+}

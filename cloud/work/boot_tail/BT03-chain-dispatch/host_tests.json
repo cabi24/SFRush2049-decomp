@@ -1,0 +1,30 @@
+{
+  "result": "PASS",
+  "calls": 6040,
+  "callback_events": 48320,
+  "sanitized": false,
+  "source_sha256": "caafce04824334ba139e9150310ea6c75f98f7006f0a35e32476f3a419834deb",
+  "compiler_flags": [
+    "-std=c89",
+    "-pedantic-errors",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-Wno-unused-parameter",
+    "-fno-fast-math",
+    "-ffp-contract=off",
+    "-fexcess-precision=standard"
+  ],
+  "domain": "All evaluated float-to-u32 operands finite, nonnegative and below 2^32; unused yPan also NaN.",
+  "coverage": [
+    "fade flag both paths and unrelated bits",
+    "zero/signed zero",
+    "127/255/256 and 16383/16384 boundaries",
+    "large u32 conversion and low-byte wrap",
+    "ordered calls despite callee failure",
+    "captured identifier despite callback mutation",
+    "source read-only except modeled helper mutations",
+    "unused yPan independence"
+  ],
+  "limitation": "No C claim for negative integer-valued, nonfinite or >=2^32 conversion operands; native interpreter separately checks these."
+}

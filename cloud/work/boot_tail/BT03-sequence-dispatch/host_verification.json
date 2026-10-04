@@ -1,0 +1,21 @@
+{
+  "result": "PASS",
+  "configurations": [
+    {
+      "configuration": "c89",
+      "result": "PASS",
+      "stdout": "PASS: 3072 host semantic cases"
+    },
+    {
+      "configuration": "asan_ubsan",
+      "result": "PASS",
+      "stdout": "PASS: 3072 host semantic cases"
+    }
+  ],
+  "source_hashes": {
+    "nonmatch/func_80019490.c": "9e892d39290a16a09691aa45b5c881d00f7ff46a808a26b08fdc95c63e10924f",
+    "host_behavior.c": "9ab9d234510e99ee529efb526b56f7537e15e431af928bf50aa3eebc6918e8b5",
+    "test_host.py": "4688a3c2097fd3c4b014388c3ed8bc66afbf31bf6ba846154293fc41356c5085"
+  },
+  "limits": "Synthetic aligned valid requests. Host pointers are 64-bit; the separate IDO layout assertions and native replay establish 32-bit layouts. Helper bodies are contract stubs."
+}

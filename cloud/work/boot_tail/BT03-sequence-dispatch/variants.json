@@ -1,0 +1,125 @@
+[
+  {
+    "variant": "nested_success",
+    "differing": 137,
+    "size": 960,
+    "extra": 0
+  },
+  {
+    "variant": "assign_condition",
+    "differing": 137,
+    "size": 960,
+    "extra": 0
+  },
+  {
+    "variant": "masked_index",
+    "differing": 226,
+    "size": 972,
+    "extra": 2
+  },
+  {
+    "variant": "pending_first",
+    "differing": 137,
+    "size": 960,
+    "extra": 0
+  },
+  {
+    "variant": "flag_scoped",
+    "differing": 225,
+    "size": 964,
+    "extra": 0
+  },
+  {
+    "variant": "byte_offset",
+    "differing": 109,
+    "size": 960,
+    "extra": 0
+  },
+  {
+    "variant": "signed_results",
+    "differing": 137,
+    "size": 960,
+    "extra": 0
+  },
+  {
+    "variant": "deferred_return",
+    "differing": 137,
+    "size": 960,
+    "extra": 0
+  },
+  {
+    "variant": "initial_return",
+    "differing": 137,
+    "size": 960,
+    "extra": 0
+  },
+  {
+    "variant": "identifier_local",
+    "differing": 137,
+    "size": 960,
+    "extra": 0
+  },
+  {
+    "variant": "unsigned_mask",
+    "differing": 137,
+    "size": 960,
+    "extra": 0
+  },
+  {
+    "variant": "context_inner",
+    "differing": 109,
+    "size": 960,
+    "extra": 0
+  },
+  {
+    "variant": "options_inner",
+    "differing": 112,
+    "size": 960,
+    "extra": 0
+  },
+  {
+    "variant": "stream_word",
+    "differing": 109,
+    "size": 960,
+    "extra": 0
+  },
+  {
+    "variant": "index_int",
+    "differing": 109,
+    "size": 960,
+    "extra": 0
+  },
+  {
+    "variant": "masked_byte_offset",
+    "differing": 226,
+    "size": 972,
+    "extra": 2
+  },
+  {
+    "variant": "library_memcpy",
+    "differing": 222,
+    "size": 928,
+    "extra": 0,
+    "unresolved": []
+  },
+  {
+    "variant": "copy_through_request_pointer",
+    "differing": 109,
+    "size": 960,
+    "extra": 0,
+    "unresolved": []
+  },
+  {
+    "variant": "result_local",
+    "differing": 109,
+    "size": 960,
+    "extra": 0,
+    "unresolved": []
+  },
+  {
+    "variant": "expanded",
+    "differing": 137,
+    "size": 960,
+    "extra": 0
+  }
+]

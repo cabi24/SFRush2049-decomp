@@ -1,0 +1,234 @@
+{
+  "result": "PASS",
+  "base_commit": "1ba71e6c8cca24dcaffd0b831ace067b3046fe19",
+  "claim_commit": "35f9b0cf",
+  "pinned_compiler_files": 24,
+  "manifest": [
+    "boot_tail_8000f3a4.s: OK",
+    "extents.json: OK",
+    "symbols.json: OK"
+  ],
+  "extent_functions": 439,
+  "extent_bytes": 99120,
+  "getter_exact_match": true,
+  "complete_nonmatch_functions": 2,
+  "complete_nonmatch_bytes": 1680,
+  "strict_match_functions": 0,
+  "strict_match_bytes": 0,
+  "results": [
+    {
+      "differing_words": 170,
+      "total_words": 202,
+      "extra_nonzero_words": 2,
+      "elf_function_bytes": 816,
+      "text_bytes": 816,
+      "full_function_relocations_resolved": true,
+      "strict_match": false,
+      "full_relocated_equal_and_exact_extent": false,
+      "function": "func_80019F48",
+      "target_bytes": 808,
+      "source_sha256": "f39c2ba6027bdd175fb63f06f1221e9583f4bfbbcca181c2f9d3ed1e75985930",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+    },
+    {
+      "differing_words": 200,
+      "total_words": 202,
+      "extra_nonzero_words": 53,
+      "elf_function_bytes": 1028,
+      "text_bytes": 1040,
+      "full_function_relocations_resolved": true,
+      "strict_match": false,
+      "full_relocated_equal_and_exact_extent": false,
+      "function": "func_80019F48",
+      "target_bytes": 808,
+      "source_sha256": "f39c2ba6027bdd175fb63f06f1221e9583f4bfbbcca181c2f9d3ed1e75985930",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+    },
+    {
+      "differing_words": 195,
+      "total_words": 218,
+      "extra_nonzero_words": 6,
+      "elf_function_bytes": 900,
+      "text_bytes": 912,
+      "full_function_relocations_resolved": true,
+      "strict_match": false,
+      "full_relocated_equal_and_exact_extent": false,
+      "function": "func_8001A270",
+      "target_bytes": 872,
+      "source_sha256": "20045e3595c894ab3c2af1b28f7ed16756059a4b89befaa609acb9773ee46604",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+    },
+    {
+      "differing_words": 214,
+      "total_words": 218,
+      "extra_nonzero_words": 55,
+      "elf_function_bytes": 1108,
+      "text_bytes": 1120,
+      "full_function_relocations_resolved": true,
+      "strict_match": false,
+      "full_relocated_equal_and_exact_extent": false,
+      "function": "func_8001A270",
+      "target_bytes": 872,
+      "source_sha256": "20045e3595c894ab3c2af1b28f7ed16756059a4b89befaa609acb9773ee46604",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+    }
+  ],
+  "layout_assertions": {
+    "func_80019F48": [
+      [
+        "sizeof(void*)",
+        4
+      ],
+      [
+        "sizeof(u32)",
+        4
+      ],
+      [
+        "sizeof(u16)",
+        2
+      ],
+      [
+        "sizeof(u8)",
+        1
+      ],
+      [
+        "sizeof(Layer)",
+        12
+      ],
+      [
+        "sizeof(Voice)",
+        416
+      ],
+      [
+        "(unsigned int)&((Layer*)0)->priority",
+        6
+      ],
+      [
+        "(unsigned int)&((Layer*)0)->panning",
+        8
+      ],
+      [
+        "(unsigned int)&((Voice*)0)->child",
+        16
+      ],
+      [
+        "(unsigned int)&((Voice*)0)->parent",
+        20
+      ]
+    ],
+    "func_8001A270": [
+      [
+        "sizeof(void*)",
+        4
+      ],
+      [
+        "sizeof(u32)",
+        4
+      ],
+      [
+        "sizeof(u16)",
+        2
+      ],
+      [
+        "sizeof(u8)",
+        1
+      ],
+      [
+        "sizeof(Keymap)",
+        8
+      ],
+      [
+        "(unsigned int)&((Keymap*)0)->transpose",
+        2
+      ],
+      [
+        "(unsigned int)&((Keymap*)0)->panning",
+        3
+      ],
+      [
+        "(unsigned int)&((Keymap*)0)->priority",
+        4
+      ]
+    ]
+  },
+  "native_calls": {
+    "func_80019F48": [
+      [
+        76,
+        "func_80016F80"
+      ],
+      [
+        260,
+        "func_80019ED0"
+      ],
+      [
+        568,
+        "func_80024988"
+      ],
+      [
+        600,
+        "func_8001ECE0"
+      ],
+      [
+        664,
+        "func_80024988"
+      ]
+    ],
+    "func_8001A270": [
+      [
+        160,
+        "func_80019ED0"
+      ],
+      [
+        256,
+        "func_80024988"
+      ],
+      [
+        272,
+        "func_80016EE0"
+      ],
+      [
+        584,
+        "func_80019ED0"
+      ],
+      [
+        692,
+        "func_80024988"
+      ],
+      [
+        756,
+        "func_80019F48"
+      ],
+      [
+        832,
+        "func_80019F48"
+      ]
+    ]
+  },
+  "native_incoming": {
+    "func_80019F48": [
+      [
+        "func_8001A270",
+        756
+      ],
+      [
+        "func_8001A270",
+        832
+      ]
+    ],
+    "func_8001A270": [
+      [
+        "func_80017D38",
+        672
+      ],
+      [
+        "func_8001B1D0",
+        172
+      ]
+    ]
+  }
+}

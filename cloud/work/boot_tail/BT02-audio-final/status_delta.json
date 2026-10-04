@@ -1,0 +1,47 @@
+[
+  {
+    "address": "0x80011104",
+    "name": "func_80011104",
+    "size": 840,
+    "cluster": "BT02",
+    "name_hypothesis": "audio initialization or command submission (native structural hypothesis)",
+    "evidence_level": "COMPLETE-NONMATCH",
+    "status": "nonmatch",
+    "owner": "Astra / BT02-audio-final",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "diff_words": 62,
+    "source_path": "cloud/work/boot_tail/BT02-audio-final/nonmatch/func_80011104.c",
+    "pr": "",
+    "note": "Complete symbolic-data reconstruction; all O2 relocations resolve. Bounded narrow-carrier/compiler structural residual; exact ELF size 840 B. See BT02-audio-final/README.md. Independent peer review PASS at source9a31055d; aggregate replay pending; no match credit."
+  },
+  {
+    "address": "0x800114C0",
+    "name": "func_800114C0",
+    "size": 904,
+    "cluster": "BT02",
+    "name_hypothesis": "audio initialization or command submission (native structural hypothesis)",
+    "evidence_level": "COMPLETE-NONMATCH",
+    "status": "nonmatch",
+    "owner": "Astra / BT02-audio-final",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "diff_words": 199,
+    "source_path": "cloud/work/boot_tail/BT02-audio-final/nonmatch/func_800114C0.c",
+    "pr": "",
+    "note": "Complete symbolic-data reconstruction; all O2 relocations resolve. Bounded narrow-carrier/compiler structural residual; exact ELF size 904 B. See BT02-audio-final/README.md. Independent peer review PASS at source9a31055d; aggregate replay pending; no match credit."
+  },
+  {
+    "address": "0x800139D4",
+    "name": "func_800139D4",
+    "size": 688,
+    "cluster": "BT02",
+    "name_hypothesis": "audio initialization or command submission (native structural hypothesis)",
+    "evidence_level": "COMPLETE-NONMATCH",
+    "status": "nonmatch",
+    "owner": "Astra / BT02-audio-final",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "diff_words": 131,
+    "source_path": "cloud/work/boot_tail/BT02-audio-final/nonmatch/func_800139D4.c",
+    "pr": "",
+    "note": "Complete symbolic-data reconstruction; all O2 relocations resolve. Bounded narrow-carrier/compiler structural residual; exact ELF size 692 B. See BT02-audio-final/README.md. Independent peer review PASS at source9a31055d; aggregate replay pending; no match credit."
+  }
+]

@@ -1,0 +1,77 @@
+{
+  "scope": "Metadata-only diagnoses of initial and retained fully relocated objects. Heuristic suggestions do not establish ownership; no trace, register forcing or unrelated declaration sweep was used.",
+  "checkpoints": [
+    {
+      "function": "func_80015D68",
+      "checkpoint": "initial",
+      "source_sha256": "760b38d0e8fbd0e5ac23a1fe4847fe8a1e47c279cde4f1401d5ce49b8e58c1ee",
+      "routing": "import-fix",
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "stack-home",
+      "lever_reason": "the candidate's frame is larger than the target's by at least one 8-byte quantum, so the candidate homes something the target does not -- how many declarations that is depends on where the block already sat, and the frame is the measurement, not the declaration count",
+      "target_frame": -40,
+      "candidate_frame": -48,
+      "aligned_insertions": 7,
+      "aligned_deletions": 3,
+      "artifact_built_at": [
+        "2026-10-04T02:05:08Z",
+        "2026-10-04T02:05:08Z"
+      ]
+    },
+    {
+      "function": "func_80015D68",
+      "checkpoint": "retained",
+      "source_sha256": "760b38d0e8fbd0e5ac23a1fe4847fe8a1e47c279cde4f1401d5ce49b8e58c1ee",
+      "routing": "import-fix",
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "stack-home",
+      "lever_reason": "the candidate's frame is larger than the target's by at least one 8-byte quantum, so the candidate homes something the target does not -- how many declarations that is depends on where the block already sat, and the frame is the measurement, not the declaration count",
+      "target_frame": -40,
+      "candidate_frame": -48,
+      "aligned_insertions": 7,
+      "aligned_deletions": 3,
+      "artifact_built_at": [
+        "2026-10-04T02:19:05Z",
+        "2026-10-04T02:19:05Z"
+      ]
+    },
+    {
+      "function": "func_8001671C",
+      "checkpoint": "initial",
+      "source_sha256": "343739efa67836e259f6ef11ecb0138a8f9e5b87d2f4d19c0cb734fc4e12987b",
+      "routing": "import-fix",
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "none-known",
+      "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+      "target_frame": -24,
+      "candidate_frame": -24,
+      "aligned_insertions": 54,
+      "aligned_deletions": 19,
+      "artifact_built_at": [
+        "2026-10-04T02:05:08Z",
+        "2026-10-04T02:05:08Z"
+      ]
+    },
+    {
+      "function": "func_8001671C",
+      "checkpoint": "retained",
+      "source_sha256": "5f99615ab10d72d23c9564b04ac7a9277fdb9ba976f7799803f277f621cb3801",
+      "routing": "import-fix",
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "none-known",
+      "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+      "target_frame": -24,
+      "candidate_frame": -24,
+      "aligned_insertions": 18,
+      "aligned_deletions": 16,
+      "artifact_built_at": [
+        "2026-10-04T02:19:06Z",
+        "2026-10-04T02:19:06Z"
+      ]
+    }
+  ]
+}

@@ -1,12 +1,12 @@
 # D10: boot-tail runtime research and matching
 
 The 412 assigned functions account for **95,012 B**.
-The current ledger records **45 open functions / 40,464 B**,
+The current ledger records **21 open functions / 25,404 B**,
 **0 confirmed non-C rows**, **1
 pre-existing verified bodies / 12 B**, and
-**226 newly verified bodies / 22,580 B**.
-There are **5 claimed functions / 1,176 B** and
-**135 nonmatches / 30,780 B**.
+**234 newly verified bodies / 25,260 B**.
+There are **2 claimed functions / 1,316 B** and
+**154 nonmatches / 43,020 B**.
 
 Packet 1 itself introduced zero matching bodies or verified bytes. Its initial
 verified entry imports the existing 12-byte `func_80010A00` PR #54 receipt, now
@@ -258,8 +258,8 @@ repository regression, native equality proof, target/toolchain check or ROM test
 ```json
 {
   "all_tail_distinct_directed_edges": 671,
-  "claimed_bytes": 1176,
-  "claimed_functions": 5,
+  "claimed_bytes": 1316,
+  "claimed_functions": 2,
   "cluster_count": 8,
   "cohort_count": 17,
   "game_called_all_inventory": 21,
@@ -270,13 +270,13 @@ repository regression, native equality proof, target/toolchain check or ROM test
   "in_scope_functions": 412,
   "inventory_function_bytes": 99120,
   "inventory_functions": 439,
-  "new_verified_bytes": 22580,
-  "new_verified_functions": 226,
+  "new_verified_bytes": 25260,
+  "new_verified_functions": 234,
   "non_c_functions": 0,
-  "nonmatch_bytes": 30780,
-  "nonmatch_functions": 135,
-  "open_bytes": 40464,
-  "open_functions": 45,
+  "nonmatch_bytes": 43020,
+  "nonmatch_functions": 154,
+  "open_bytes": 25404,
+  "open_functions": 21,
   "preexisting_verified_bytes": 12,
   "preexisting_verified_functions": 1,
   "ultralib_excluded_bytes": 4048,
@@ -538,3 +538,32 @@ semantics and independently checked CC0 provenance. All accepted functions pass
 exact ELF symbol-size and full relocated equality checks. See wave12/README.md
 and unique_totals.json; prior green proof is in wave11/ci.json. Later work is
 excluded and D10 remains unchanged.
+
+## Thirteenth cut: three additional reviewed bodies
+
+The first twelve source cuts now have 231 unique new exact-CI-verified bodies /
+23,756 B. Thirteenth cut adds three peer-reviewed strict local bodies / 1,504 B
+and fourteen complete nonmatches / 8,620 B, pending its own exact-head CI. The
+union is 234 new bodies / 25,260 B plus the separate 12-byte getter. Across 383
+distinct attempts, 148 complete nonmatches / 39,304 B and the earlier 96-byte
+table-proof lead receive no matching credit. The matrix inverse and two runtime
+callers have exact whole-body and ELF-size proof; floating domains and real
+alias/operation-order behavior remain explicit. See wave13/README.md and
+unique_totals.json. Prior green proof is in wave12/ci.json; later claims and
+candidates are excluded from this frozen source cut. D10 remains unchanged.
+
+## Fourteenth cut: two additional reviewed bodies
+
+The first thirteen cuts now have 234 unique new exact-CI-verified bodies /
+25,260 B. The fourteenth cut adds two peer-reviewed strict local bodies /
+1,316 B and five complete nonmatches / 3,620 B, pending its own exact-head CI.
+The unique union is 236 new matching bodies / 26,576 B plus the separate getter;
+390 unique attempts include 153 complete nonmatches / 42,924 B and the unchanged
+96-byte source lead. This branch preserves current master1018ab's strengthened
+guards and all checker changes; three inherited PR73 bodies add zero new credit.
+The exact emitter handler retains genuine uninitialized float locals: each
+consumed output must be defined by a real helper write or prior iteration.
+Its original producer/listener invariant remains unproved, and byte equality is
+not a universal runtime-safety claim. See wave14/README.md and the independently
+reviewed definedness tests. Prior green proof is in wave13/ci.json; D10 and later
+sequence-event candidates remain unchanged/excluded.

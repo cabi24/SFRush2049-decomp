@@ -1,0 +1,29 @@
+{
+  "result": "PASS",
+  "independent_mutations": [
+    {
+      "mutation": "masked_raw_pan",
+      "test_rejects": true,
+      "returncode": 1,
+      "failure": "independent expected return/call/memory assertion"
+    },
+    {
+      "mutation": "reject_category_before_portamento",
+      "test_rejects": true,
+      "returncode": 1,
+      "failure": "independent expected return/call/memory assertion"
+    },
+    {
+      "mutation": "root_failure_stops_retry",
+      "test_rejects": true,
+      "returncode": 1,
+      "failure": "independent expected return/call/memory assertion"
+    },
+    {
+      "mutation": "swap_start_and_group",
+      "test_rejects": true,
+      "returncode": 1,
+      "failure": "independent expected return/call/memory assertion"
+    }
+  ]
+}
