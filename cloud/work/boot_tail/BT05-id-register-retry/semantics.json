@@ -1,0 +1,15 @@
+{
+  "result": "PASS",
+  "low_pairs": 16777216,
+  "high_boundary_cases": 131072,
+  "actual_candidate_executed": true,
+  "c89_ubsan": true,
+  "ido_layout": true,
+  "zero_and_max_count": true,
+  "live_count_growth_and_shrink": true,
+  "mismatch_skipped": true,
+  "limitations": [
+    "Host pointers/endianness differ; not N64 execution or a match proof.",
+    "The count-changing helper is test-only, never scored."
+  ]
+}

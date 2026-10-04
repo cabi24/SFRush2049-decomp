@@ -1,0 +1,246 @@
+{
+  "packet": "BT07-stream-schedule-retry",
+  "date_utc": "2026-10-04",
+  "base_commit": "3683d5b566528989ca288a9182edfe088f3aec91",
+  "selected_function": "func_80025F74",
+  "status": "STOPPED_NO_NEW_SOURCE_HYPOTHESIS",
+  "source_candidate_edits": 0,
+  "source_variant_trials": 0,
+  "strict_matching_bodies_added": 0,
+  "strict_matching_bytes_added": 0,
+  "compiler_files_sha256": {
+    "acpp": "7bfdf2f79010eb95bd47e165036cac04a69e5f1290fde11736e5f6934f3e9189",
+    "as0": "72670d53952459fe5ac463e8844182cf4df9f6ccf469826c82ca858fdd665564",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+    "c++filt": "60791cf1d07ba780a4e8aa25d53c741d4b7d5427f891f7287b1bed0b6ba3e665",
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "copt": "e62a2a7276d2f9fa7f5daac25e01abe92cf4765173391cb0b616434c9c8122b3",
+    "crt1.o": "95bd24880e95e102bbdf2a1cfa2e10d391cb57784a42db19afd609c0904aee28",
+    "crtn.o": "62197e97a5e56e21c6a4e76ffe9f634cf90b47046ebe4841086108101ce496eb",
+    "err.english.cc": "6f2d777730f0a70328bb932c116c1c195da765cb9bbdee8c6d3eaf7d6ad77e78",
+    "ld": "266c5a22192ce532a6dcdb7127c1da72faa37e7e71d44677ab91d723b8ed2113",
+    "libc.so": "803f8b127194a79d92c5caea62fd39097be16d3fcd9870b4470123cebd5d27fe",
+    "libc.so.1": "803f8b127194a79d92c5caea62fd39097be16d3fcd9870b4470123cebd5d27fe",
+    "libexc.so": "b59bf75bcbff1526ad4e3b2b49b313788a6e4c97df5b69b4bc2ddbd6726c5864",
+    "libgen.so": "bb66dea1242000f648e890252cbe47037310559cc0ecda8ed212c0e545bf8063",
+    "libm.so": "8acc66c2d1315b90f38a280fe04a26d0e61b5ca377976ed5d7f88bb064bd2e35",
+    "strip": "bf39eca7d4357b699d59077078c657c5af428b0e57d5dd7835c3d0f915e801bf",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "ujoin": "34a6fff6e693f8c9505777d2860b4795fe97a01e89ce8616f4a5b624b11c451d",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "upas": "7fa9be3c14bfe854bb539312af5f4f40c29b975996bdd6868f489f82fb427d5b",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b"
+  },
+  "input_manifest": [
+    "boot_tail_8000f3a4.s: OK",
+    "extents.json: OK",
+    "symbols.json: OK"
+  ],
+  "inventory_extents": {
+    "count": 439,
+    "bytes": 99120,
+    "equal": true
+  },
+  "getter_strict_match": true,
+  "frozen_source_replay": {
+    "name": "func_80025F74",
+    "native_bytes": 840,
+    "target_sha256": "7650ca0132961f8bcc14735c6797092a1b4fd0b4c40ff3031b2e512204aa5896",
+    "source_path": "cloud/work/boot_tail/BT07-decoder-facing-callers/func_80025F74.c",
+    "source_sha256": "0f3dde0cda2d618d93193d6e37718a43e1b007156fb36abbd872185e5c78c91d",
+    "trials": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+        "source_sha256": "0f3dde0cda2d618d93193d6e37718a43e1b007156fb36abbd872185e5c78c91d",
+        "object_sha256": "ca345e6a42132fba64ba4fcdd5c045e0a0f743a40cd9c0b4ec8d7fe20be04412",
+        "differing_words": 2,
+        "total_words": 210,
+        "extra_words": 0,
+        "strict_match": false,
+        "scorer_window_relocation_errors": [],
+        "full_function_relocation_errors": [],
+        "relocation_mask_count": 0,
+        "unresolved": [],
+        "unverified": [],
+        "full_native_window_equal": false,
+        "elf": {
+          "start": 0,
+          "function_bytes": 840,
+          "section_bytes": 848
+        },
+        "exact_function_extent": true,
+        "section_padding_is_zero": true
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+        "source_sha256": "0f3dde0cda2d618d93193d6e37718a43e1b007156fb36abbd872185e5c78c91d",
+        "object_sha256": "e3d619a3d96939344c140dfc5550e5bfe05b70b0ea1c3e3c24854973fafb4936",
+        "differing_words": 209,
+        "total_words": 210,
+        "extra_words": 54,
+        "strict_match": false,
+        "scorer_window_relocation_errors": [],
+        "full_function_relocation_errors": [],
+        "relocation_mask_count": 0,
+        "unresolved": [],
+        "unverified": [],
+        "full_native_window_equal": false,
+        "elf": {
+          "start": 0,
+          "function_bytes": 1092,
+          "section_bytes": 1104
+        },
+        "exact_function_extent": false,
+        "section_padding_is_zero": true
+      }
+    ],
+    "initial_control": [
+      {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+        "source_sha256": "75952ab147eb10063478274b51b388e85afc9a110147adde121d8682f8125d5e",
+        "object_sha256": "2355767032d26f87f8c9bbcffa6ba0ad88977de59fef1b81b784b18ed98a6b1b",
+        "differing_words": 92,
+        "total_words": 210,
+        "extra_words": 0,
+        "strict_match": false,
+        "scorer_window_relocation_errors": [],
+        "full_function_relocation_errors": [],
+        "relocation_mask_count": 0,
+        "unresolved": [],
+        "unverified": [],
+        "full_native_window_equal": false,
+        "elf": {
+          "start": 0,
+          "function_bytes": 840,
+          "section_bytes": 848
+        },
+        "exact_function_extent": true,
+        "section_padding_is_zero": true
+      },
+      {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+        "source_sha256": "75952ab147eb10063478274b51b388e85afc9a110147adde121d8682f8125d5e",
+        "object_sha256": "526ba7c124f10bdd71be934bbefeb06e7946243a586ba0d9c57cdccf0828f355",
+        "differing_words": 210,
+        "total_words": 210,
+        "extra_words": 53,
+        "strict_match": false,
+        "scorer_window_relocation_errors": [],
+        "full_function_relocation_errors": [],
+        "relocation_mask_count": 0,
+        "unresolved": [],
+        "unverified": [],
+        "full_native_window_equal": false,
+        "elf": {
+          "start": 0,
+          "function_bytes": 1088,
+          "section_bytes": 1088
+        },
+        "exact_function_extent": false,
+        "section_padding_is_zero": true
+      }
+    ]
+  },
+  "stock_assembler_trace": {
+    "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Wa,-R",
+    "whole_object_equal_with_trace_disabled": true,
+    "object_sha256": "13af6c58d1d2039972c9d3fefad4d00cfa8b5fba94505d0419aa0c15131bfacd",
+    "residual_offsets": [
+      "0x2F4",
+      "0x2F8"
+    ],
+    "store_source_line": 97,
+    "loop_carrier_copy_source_line": 98,
+    "native_order": [
+      "loop-carrier copy",
+      "available store"
+    ],
+    "compiled_order": [
+      "available store",
+      "loop-carrier copy"
+    ],
+    "data_dependencies": "Both consume the real post-bzero available + 160 value; neither depends on the other.",
+    "scope": "The trace reproduces the previously recorded scheduling mechanism; it does not establish an untried authentic source form."
+  },
+  "workbench": {
+    "revision": "3f58a68db5d4cf343c76b8361dfc1786c501e521",
+    "repository": "https://github.com/akratch/n64-decomp-workbench",
+    "relevant_compiler_laws": [
+      "L59",
+      "L79",
+      "L80"
+    ],
+    "fresh_positional_differing_words": 2,
+    "fresh_target_and_candidate_instructions": 210,
+    "exact_pool_lane_equal": true,
+    "exact_temporary_lane_equal": true,
+    "limitations": "Temporary target object has no native ELF relocations; strict scorer and complete-function relocation replay remain authoritative. Heuristic alignment inserts gaps for the adjacent swap."
+  },
+  "frozen_host_semantics_replay": {
+    "result": "PASS",
+    "compiler": "cc (Debian 14.2.0-19) 14.2.0",
+    "cases_per_mode": 8964,
+    "results": [
+      {
+        "name": "func_8002574C",
+        "source_sha256": "09afc7ba5732799e15937190a709c72f1b82b1da46a477b4eda8ab4505450a26",
+        "result": "PASS",
+        "32bit_c89_layout": "PASS",
+        "cases_per_mode": 4051,
+        "modes": [
+          "c89-O2",
+          "c89-asan-ubsan-O1"
+        ],
+        "coverage": [
+          "enable/acquire/release ordering, two-record traversal, inactive and unknown-busy no-ops",
+          "busy/state/request-state matrix, exhaustive byte countdown, ownership flag bit masking",
+          "all ten start inputs, typed five-input callback, and actual contexts 0/1",
+          "start success/failure, post-helper fields/buffer reloads, and release ordering",
+          "pump-mutated dispatch, acquire-mutated record, stop-mutated byte narrowing and handle overwrite",
+          "finite positive unsigned rates through UINT_MAX and halfword counts through 65535"
+        ]
+      },
+      {
+        "name": "func_80025F74",
+        "source_sha256": "0f3dde0cda2d618d93193d6e37718a43e1b007156fb36abbd872185e5c78c91d",
+        "result": "PASS",
+        "32bit_c89_layout": "PASS",
+        "cases_per_mode": 4913,
+        "modes": [
+          "c89-O2",
+          "c89-asan-ubsan-O1"
+        ],
+        "coverage": [
+          "signed receive results/pending values, first/later header paths, low-24-bit masks and saturation",
+          "state/pending/3072-byte transfer gates, initial/later sizes, modulo-4096 alignment and queue identity",
+          "signed state/budget, 36/37-byte input bound, capacity-minus-160 bound, halfword decrement",
+          "decoder-mutated counters/capacity/blocks, bit-position rounding, destination and field reloads",
+          "budget capture across receive/transfer/decode, ignored decoder return, shared zero-fill budget",
+          "zero-fill size/content/locations, ring rollover, helper mutation, final capacity-minus-320 threshold",
+          "unsigned counter rollover and alignment arithmetic with real allocated storage"
+        ]
+      }
+    ],
+    "limits": [
+      "Actual-source caller host semantics only; no native/ROM execution or matching claim.",
+      "External helpers, including decoder, are scripted mocks; no decoder algorithm/safety claim.",
+      "32-bit layout compiled separately; execution uses native-width pointers and allocated objects.",
+      "Positive sufficient capacity and valid aligned allocations; arithmetic probes access valid storage.",
+      "No arbitrary malformed-input, zero-capacity, invalid-float, concurrency, or hardware-safety claim.",
+      "ASan/UBSan enabled; LeakSanitizer disabled for the host execution environment."
+    ]
+  },
+  "scope_limits": [
+    "Frozen caller sources, controls and receipts unchanged.",
+    "No decoder body or descendant, excluded helper, target, scorer, shared layout, production header, lock or denominator was changed.",
+    "No original-source, new independent-review, hosted-CI, cartridge, promotion or merge claim.",
+    "Private temporary compiler traces and objects are not included in this packet."
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "repository": "AxioDL/musyx",
+  "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+  "license": "CC0-1.0",
+  "license_url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/LICENSE",
+  "license_blob": "0e259d42c996742e9e3cba14c677129b2c1b6311",
+  "license_sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+  "source_url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/src/musyx/runtime/snd3d.c",
+  "source_blob": "7c6e875a043c53b92ca05efdb9b1799e7d496965",
+  "source_sha256": "968d811db0c75ef5d514c57540cdd61f06ed95142434c73def328ae02ecf915c",
+  "function": "StartContinousEmitters",
+  "fresh_fetch_verified": true,
+  "use": "One bounded control of real else-if, prefix counter and assignment-in-condition forms; no family literals, newer fields, arguments or behavior imported.",
+  "compiler_references": [
+    "third_party/n64-decomp-workbench/docs/compiler-laws/ido-5.3.md#L59",
+    "third_party/n64-decomp-workbench/docs/compiler-laws/ido-5.3.md#L79",
+    "third_party/n64-decomp-workbench/docs/compiler-laws/ido-5.3.md#L80"
+  ]
+}

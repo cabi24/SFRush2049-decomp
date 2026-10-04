@@ -1,0 +1,204 @@
+{
+  "result": "PASS",
+  "rows": [
+    {
+      "source_path": "cloud/work/boot_tail/BT03-high-spatial-control/nonmatch/func_8001DC08.c",
+      "source_sha256": "f52284ec18c1da5e8a97029ab34ccb45a009414c7f0092456e91df6640bee097",
+      "stock_trace_whole_object_identical": true,
+      "canonical_relocated_workbench_verdict": "schedule-mismatch",
+      "exact_instruction_multiset": true,
+      "differing_offsets": [
+        72,
+        92,
+        100
+      ],
+      "trace_selection_count": 193,
+      "parser_deciding_keys": {
+        "aftercycles": 5,
+        "aftercycles-disagrees": 14,
+        "besttime": 35,
+        "besttime-disagrees": 33,
+        "latency": 1,
+        "lineno": 3,
+        "lineno-disagrees": 2,
+        "list-order": 19,
+        "sole-candidate": 72,
+        "start-time": 9
+      },
+      "preheader_decisions": [
+        {
+          "ordinal": 0,
+          "block_offset": 0,
+          "source_line": 35,
+          "parser_key": "besttime"
+        },
+        {
+          "ordinal": 1,
+          "block_offset": 4,
+          "source_line": 35,
+          "parser_key": "lineno-disagrees"
+        },
+        {
+          "ordinal": 2,
+          "block_offset": 8,
+          "source_line": 36,
+          "parser_key": "lineno-disagrees"
+        },
+        {
+          "ordinal": 3,
+          "block_offset": 12,
+          "source_line": 37,
+          "parser_key": "lineno"
+        },
+        {
+          "ordinal": 4,
+          "block_offset": 16,
+          "source_line": 38,
+          "parser_key": "latency"
+        },
+        {
+          "ordinal": 5,
+          "block_offset": 20,
+          "source_line": 38,
+          "parser_key": "aftercycles"
+        },
+        {
+          "ordinal": 6,
+          "block_offset": 24,
+          "source_line": 36,
+          "parser_key": "lineno"
+        },
+        {
+          "ordinal": 7,
+          "block_offset": 28,
+          "source_line": 37,
+          "parser_key": "lineno"
+        },
+        {
+          "ordinal": 8,
+          "block_offset": 32,
+          "source_line": 38,
+          "parser_key": "list-order"
+        },
+        {
+          "ordinal": 9,
+          "block_offset": 36,
+          "source_line": 38,
+          "parser_key": "list-order"
+        },
+        {
+          "ordinal": 10,
+          "block_offset": 40,
+          "source_line": 38,
+          "parser_key": "besttime-disagrees"
+        },
+        {
+          "ordinal": 11,
+          "block_offset": 44,
+          "source_line": 38,
+          "parser_key": "sole-candidate"
+        }
+      ]
+    },
+    {
+      "source_path": "cloud/work/boot_tail/BT03-spatial-threshold-retry/nonmatch/func_8001DC08.c",
+      "source_sha256": "4736860c5b71b1de3b5449bcb24f65d655c477c234b5c21ffcf9e14593991432",
+      "stock_trace_whole_object_identical": true,
+      "canonical_relocated_workbench_verdict": "schedule-mismatch",
+      "exact_instruction_multiset": true,
+      "differing_offsets": [
+        72,
+        100
+      ],
+      "trace_selection_count": 193,
+      "parser_deciding_keys": {
+        "aftercycles": 5,
+        "aftercycles-disagrees": 14,
+        "besttime": 35,
+        "besttime-disagrees": 33,
+        "latency": 1,
+        "list-order": 24,
+        "sole-candidate": 72,
+        "start-time": 9
+      },
+      "preheader_decisions": [
+        {
+          "ordinal": 0,
+          "block_offset": 0,
+          "source_line": 35,
+          "parser_key": "besttime"
+        },
+        {
+          "ordinal": 1,
+          "block_offset": 4,
+          "source_line": 35,
+          "parser_key": "list-order"
+        },
+        {
+          "ordinal": 2,
+          "block_offset": 8,
+          "source_line": 35,
+          "parser_key": "list-order"
+        },
+        {
+          "ordinal": 3,
+          "block_offset": 12,
+          "source_line": 35,
+          "parser_key": "list-order"
+        },
+        {
+          "ordinal": 4,
+          "block_offset": 16,
+          "source_line": 35,
+          "parser_key": "latency"
+        },
+        {
+          "ordinal": 5,
+          "block_offset": 20,
+          "source_line": 35,
+          "parser_key": "aftercycles"
+        },
+        {
+          "ordinal": 6,
+          "block_offset": 24,
+          "source_line": 35,
+          "parser_key": "list-order"
+        },
+        {
+          "ordinal": 7,
+          "block_offset": 28,
+          "source_line": 35,
+          "parser_key": "list-order"
+        },
+        {
+          "ordinal": 8,
+          "block_offset": 32,
+          "source_line": 35,
+          "parser_key": "list-order"
+        },
+        {
+          "ordinal": 9,
+          "block_offset": 36,
+          "source_line": 35,
+          "parser_key": "list-order"
+        },
+        {
+          "ordinal": 10,
+          "block_offset": 40,
+          "source_line": 35,
+          "parser_key": "besttime-disagrees"
+        },
+        {
+          "ordinal": 11,
+          "block_offset": 44,
+          "source_line": 35,
+          "parser_key": "sole-candidate"
+        }
+      ]
+    }
+  ],
+  "direct_boot_tail_callers": [
+    "func_8001DDE0"
+  ],
+  "note": "Parser keys are heuristic: disagreement labels are retained, not hidden. The whole-object trace gate and token-identical measured 3-to-2 change are direct evidence. No native words, disassembly, traces or objects are included in this receipt."
+}

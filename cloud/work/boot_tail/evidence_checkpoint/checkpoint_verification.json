@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "result": "PASS_REPRODUCIBILITY_AND_SCOPE_ONLY",
+  "checkpoint_kind": "No source acceptance; author-only packets remain unreviewed",
+  "baseline_local_equivalent": "2db0f44b5d63d8324c1812fbb6e78bf5034a8fd4",
+  "baseline_remote": "12ae34a64dd3a9004e1b949c9acf4557542df2f2",
+  "baseline_exact_head_ci": 37184548717,
+  "packet_verifier_replays": [
+    {
+      "packet": "BT03-spatial-threshold-retry",
+      "result": "PASS",
+      "fresh_replay_sha256": "6c870f61d6713b38829c1692b177be55281fc6a16852a55ba4ebeff0f0c2f5cb",
+      "fresh_parsed_receipt_equals_author_receipt": true,
+      "semantic_runner": "PASS",
+      "independent_review": "existing peer PASS"
+    },
+    {
+      "packet": "BT05-id-register-retry",
+      "result": "PASS_BOUNDED_NEGATIVE_RESEARCH",
+      "fresh_replay_sha256": "9ed8847e39731eb80fe0acbb68cab0b42f804d97e67396183080347b9d492132",
+      "fresh_parsed_receipt_equals_author_receipt": true,
+      "semantic_runner": "PASS",
+      "independent_review": "not claimed; unreviewed checkpoint"
+    },
+    {
+      "packet": "BT03-voice-priority-retry",
+      "result": "PASS",
+      "fresh_replay_sha256": "1494af6209d7d0665b46408f035a0b2cd788ba63974da7abfa08e9b7857484ab",
+      "fresh_parsed_receipt_equals_author_receipt": true,
+      "semantic_runner": "PASS",
+      "independent_review": "not claimed; unreviewed checkpoint"
+    }
+  ],
+  "identifier_semantics": {
+    "result": "PASS",
+    "low_pairs": 16777216,
+    "high_boundary_cases": 131072,
+    "actual_candidate_executed": true,
+    "c89_ubsan": true,
+    "ido_layout": true,
+    "zero_and_max_count": true,
+    "live_count_growth_and_shrink": true,
+    "mismatch_skipped": true,
+    "limitations": [
+      "Host pointers/endianness differ; not N64 execution or a match proof.",
+      "The count-changing helper is test-only, never scored."
+    ]
+  },
+  "spatial_semantic_test_groups": 1,
+  "priority_semantic_test_groups": 3,
+  "frozen_BT07_callers_verifier": "PASS",
+  "wave17_aggregate": "PASS",
+  "central_unittests": 28,
+  "generator": "PASS",
+  "imported_packet_file_identity": "34 files exactly match their recorded immutable heads",
+  "canonical_matching_files_unchanged": true,
+  "current_research_status_clusters_unchanged": true,
+  "wave1_through_wave17_manifests_unchanged": true,
+  "current_matching_functions": 240,
+  "current_matching_bytes": 28372,
+  "unique_attempts": 394,
+  "new_matches": 0,
+  "new_matching_bytes": 0,
+  "new_unique_attempts": 0,
+  "safety_review": "Only permitted UTF-8 source/research files; no NUL/binary payloads, fixed raw target word streams or secret markers. Temporary assembly-generating test code reads unchanged authorized canonical inputs and does not embed raw target arrays.",
+  "limits": [
+    "This checkpoint has no independent aggregate/source acceptance review or new hosted-CI claim.",
+    "The initial generic unittest discovery found no tests in the identifier script; its documented direct runner was then executed and passed. No test failure was suppressed.",
+    "Existing authored/reviewed packet receipts remain unchanged; fresh central replay does not replace independent review."
+  ]
+}

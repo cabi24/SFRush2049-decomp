@@ -1,0 +1,117 @@
+{
+  "result": "PASS",
+  "status": "COMPLETE-NONMATCH",
+  "matching_credit": 0,
+  "base_commit": "68a48a5e2bb3f88625d3af20cfd5a8e899a43944",
+  "target_words": 118,
+  "native_bytes": 472,
+  "control_rows_replayed": 6,
+  "frozen_source_and_compiler_hashes": "PASS",
+  "target_manifest": "PASS",
+  "census_functions": 439,
+  "census_bytes": 99120,
+  "token_identical_to_published_source": true,
+  "baseline": {
+    "name": "func_8001DC08",
+    "source_path": "cloud/work/boot_tail/BT03-high-spatial-control/nonmatch/func_8001DC08.c",
+    "source_sha256": "f52284ec18c1da5e8a97029ab34ccb45a009414c7f0092456e91df6640bee097",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "differing_words": 3,
+    "total_words": 118,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false,
+    "elf_function_size": 472
+  },
+  "results": [
+    {
+      "name": "func_8001DC08",
+      "source_path": "cloud/work/boot_tail/BT03-spatial-threshold-retry/nonmatch/func_8001DC08.c",
+      "source_sha256": "4736860c5b71b1de3b5449bcb24f65d655c477c234b5c21ffcf9e14593991432",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "differing_words": 2,
+      "total_words": 118,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "elf_function_size": 472
+    },
+    {
+      "name": "func_8001DC08",
+      "source_path": "cloud/work/boot_tail/BT03-spatial-threshold-retry/nonmatch/func_8001DC08.c",
+      "source_sha256": "4736860c5b71b1de3b5449bcb24f65d655c477c234b5c21ffcf9e14593991432",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "differing_words": 118,
+      "total_words": 118,
+      "extra_words": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "elf_function_size": 520
+    }
+  ],
+  "differing_byte_offsets": [
+    72,
+    100
+  ],
+  "masks": 0,
+  "unresolved": 0,
+  "unverified": 0,
+  "relocation_errors": 0,
+  "nonzero_excess": 0,
+  "abi_layout": "PASS",
+  "native_offsets": {
+    "Emitter": {
+      "flags": 8,
+      "handle": 52,
+      "identifier": 60,
+      "counter": 62,
+      "fade": 64
+    },
+    "SpatialGroup": {
+      "key": 0,
+      "pending": 4,
+      "active": 8
+    },
+    "SpatialEntry": {
+      "next": 0,
+      "volume": 4,
+      "pan": 8,
+      "span": 12,
+      "send": 16,
+      "pitch": 20,
+      "emitter": 24
+    }
+  },
+  "external_thresholds": [
+    {
+      "symbol": "D_8002D904",
+      "address": "0x8002d904",
+      "native_load_offsets": [
+        72
+      ],
+      "candidate_load_offsets": [
+        100
+      ],
+      "contents_known": false,
+      "loads_per_nonempty_invocation": 1
+    },
+    {
+      "symbol": "D_8002D908",
+      "address": "0x8002d908",
+      "native_load_offsets": [
+        100
+      ],
+      "candidate_load_offsets": [
+        72
+      ],
+      "contents_known": false,
+      "loads_per_nonempty_invocation": 1
+    }
+  ]
+}

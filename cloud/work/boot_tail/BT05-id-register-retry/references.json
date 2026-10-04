@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "repository": "AxioDL/musyx",
+  "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+  "license": "CC0-1.0",
+  "license_path": "LICENSE",
+  "license_blob": "0e259d42c996742e9e3cba14c677129b2c1b6311",
+  "source_path": "src/musyx/runtime/synthmacros.c",
+  "source_blob": "a3203f9e0032fa5e9d08fa5e51da80acf4cab0c0",
+  "definition": "mcmdSendKeyOff",
+  "lines": [
+    352,
+    363
+  ],
+  "url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/src/musyx/runtime/synthmacros.c#L352-L363",
+  "adaptation": "Use genuine byte extraction and native unsigned-halfword state field in signed-promoted addition. Preserve existing unsigned high-halfword shift, N64 packed layout, byte return and native ABI.",
+  "limitation": "PC/Dolphin source-family lead, not recovered N64 source or whole translation-unit identity.",
+  "header_path": "include/musyx/synth.h",
+  "header_blob": "a885f4f9a4f21c0dfdf8aa82a1e6615944063e56",
+  "header_note": "Pinned donor orgNote is u8 (line185); native N64 field remains the proven u16. Both yield signed int promotions with u8 extraction, but no donor input bound is imported."
+}

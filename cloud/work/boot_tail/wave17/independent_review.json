@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "audit_completed_utc": "2026-10-04T07:00:02Z",
+  "receipt_written_utc": "2026-10-04T07:06:24Z",
+  "scope": "Independent immutable source-cut integration and local verification audit; no source or ledger edits and no publication.",
+  "audited_commit": "2db0f44b5d63d8324c1812fbb6e78bf5034a8fd4",
+  "audited_tree": "7c37dbb0cfebf4a9152c2be7f66cd85d9b1be747",
+  "comparison_base": {
+    "local_commit": "b851720ea507d1c4b9ca39a12b429612884da8f5",
+    "tree": "97421da014e4e68ae59bc8dad08a328b51c2fbfd",
+    "published_equivalent_reported_by_integrator": "14a7a4ef2a244848f9ab9b7363d4246b40a815fc",
+    "note": "Audit independently confirmed the local base tree; published equivalent and prior hosted CI are separate recorded evidence."
+  },
+  "peer_binding": {
+    "function": "func_8001ECE0",
+    "native_bytes": 276,
+    "final_peer_commit": "46e85da31134966ac521115b9543a7bdd8ffaa7b",
+    "source_sha256": "00f70ee6c8e555735cc2e2edb348f715e63622f2b92a97bd57536ffe3ef72192",
+    "packet_and_canonical_files_compared": 12,
+    "all_byte_identical": true,
+    "license_citations_and_review_receipt_included": true
+  },
+  "independently_recomputed_totals": {
+    "historical_selected_source_records": 397,
+    "distinct_attempted_addresses": 394,
+    "new_unique_attempts_this_cut": 0,
+    "reclassified_prior_nonmatches": 1,
+    "current_new_matching_functions": 240,
+    "current_new_matching_bytes": 28372,
+    "current_complete_nonmatch_functions": 153,
+    "current_complete_nonmatch_bytes": 44036,
+    "current_blocked_lead_functions": 1,
+    "current_blocked_lead_bytes": 96,
+    "historical_getter_counted_separately": true,
+    "rule": "Latest reviewed classification by address; preserve all historical records."
+  },
+  "verification": {
+    "wave17_strict_aggregate_check": "PASS",
+    "wave16_strict_aggregate_check": "PASS",
+    "packet_verifier": "PASS; fresh six-row JSON exactly equals committed verification.json",
+    "packet_O2_differing_words": [
+      8,
+      3,
+      0
+    ],
+    "packet_O1_differing_words": [
+      69,
+      69,
+      69
+    ],
+    "packet_O1_extra_nonzero_words": [
+      21,
+      22,
+      21
+    ],
+    "packet_O1_function_bytes": [
+      368,
+      372,
+      368
+    ],
+    "packet_native_layout_assertions": 9,
+    "stock_trace_object_identity_and_source_line_ownership": "PASS",
+    "packet_semantic_test_groups": 4,
+    "assertion_killed_semantic_mutants": 15,
+    "central_unittests": 28,
+    "generator_check": "PASS; reproducible 412-function / 95012-byte metadata",
+    "opcode_screen_check": "PASS",
+    "changed_canonical_submission_gate": "PASS; one MATCH",
+    "protected_path_gate": "PASS",
+    "protected_path_lock_revision": "1018ab003251d41de0671284519a91b6b07c5a95",
+    "locked_functions_intact": 161,
+    "git_diff_check": "PASS"
+  },
+  "independent_immutable_blob_elf": {
+    "source_from_audited_git_blob": true,
+    "parser": "Independent struct-based ELF32 big-endian header, section, symbol and relocation parsing",
+    "defined_text_function_count": 1,
+    "function_name": "func_8001ECE0",
+    "function_offset": 0,
+    "function_bytes": 276,
+    "text_section_bytes": 288,
+    "full_relocated_equal_words": 69,
+    "full_text_relocation_count": 8,
+    "all_relocations_inside_function": true,
+    "referenced_symbols": [
+      "D_80050C50",
+      "D_80050C54",
+      "func_8001EAEC"
+    ],
+    "zero_alignment_bytes": 12,
+    "relocated_alignment_all_zero": true,
+    "masks": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "nonempty_source_data_sections": []
+  },
+  "preservation_and_scope": {
+    "all_397_historical_source_hashes_verified": true,
+    "wave1_through_wave16_manifests_unchanged": true,
+    "entire_original_eight_word_nonmatch_archive_unchanged": true,
+    "supersedes_bindings_match_original_records": true,
+    "d10_and_protected_inputs_unchanged": true,
+    "changed_paths": 25,
+    "all_changed_paths_within_boot_tail_source_or_work_scope": true,
+    "no_rom_raw_assembly_objects_credentials_or_unrelated_private_content_found": true,
+    "worktree_clean_at_audit_completion": true,
+    "head_and_tree_unchanged_at_audit_completion": true,
+    "auditor_source_or_ledger_changes": false,
+    "auditor_publication": false
+  },
+  "limitations": [
+    "Local source-matching and aggregate integration evidence only; this audit does not certify later remote commits or hosted workflow results.",
+    "No cartridge coverage, promotion, production ROM identity or merge authorization is claimed.",
+    "Semantic tests cover bounded valid-list and native-wrap domains; malformed or concurrent domains are not proved.",
+    "No further tests were run while preserving this receipt."
+  ]
+}

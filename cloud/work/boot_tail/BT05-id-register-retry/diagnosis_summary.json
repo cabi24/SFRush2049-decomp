@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "source_path": "cloud/work/boot_tail/BT05-macro-five/nonmatch/func_80022324.c",
+  "source_sha256": "49fbe784f384d7273c953911401a99b281f39d2d9e6a134ad882ece76bc287b7",
+  "source_unchanged": true,
+  "construction": "Local temporary ELF text views of unchanged target words and fully relocated candidate words; no raw words or objects published.",
+  "tool": "unchanged tools/workbench.py diagnose",
+  "fresh_before_candidate_edit": true,
+  "input_staleness": "fresh",
+  "frame_bytes": 40,
+  "target_instructions": 43,
+  "candidate_instructions": 43,
+  "instruction_delta": 0,
+  "opcode_distance": 0,
+  "register_sites": [
+    {
+      "offset": "0x40",
+      "difference": "shift destination: native s2, candidate t9"
+    },
+    {
+      "offset": "0x48",
+      "difference": "OR left operand: native s2, candidate t9"
+    }
+  ],
+  "verdict": "allocation-mismatch",
+  "owning_pass": "unknown",
+  "ownership_basis": "heuristic",
+  "lever_class": "none-known",
+  "limitation": "Register sites alone do not authenticate UOPT/UGEN ownership or demand-order causality. The one control was justified independently by genuine source-family integer promotions."
+}

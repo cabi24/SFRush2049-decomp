@@ -1,0 +1,13 @@
+{
+  "result": "PASS",
+  "command": "python3 -m unittest discover -s cloud/work/boot_tail/BT03-spatial-threshold-retry -p 'test_*.py' -v",
+  "source_paths_tested": 4,
+  "distinct_source_forms": 3,
+  "actual_source_invocations_per_path": 2400,
+  "actual_source_invocations": 9600,
+  "strict_c89": true,
+  "sanitizers": ["address", "undefined", "float-cast-overflow"],
+  "leak_sanitizer_disabled": true,
+  "fixture_source": "cloud/work/boot_tail/BT03-high-spatial-control/test_semantics.py",
+  "limits": "Synthetic thresholds and bounded valid objects; callback doubles test reload/order contracts. Native layout is established separately by IDO assertions. No native-data or playback validation claim."
+}

@@ -1,5 +1,5 @@
 {
-  "state": "frozen-review-pass-integrating",
+  "state": "published-exact-head-CI-success; edit claim released",
   "owner": "/root/match_voice_allocation_branch",
   "packet": "BT03-voice-allocation-retry",
   "branch": "dot/boot-tail-bt03-voice-allocation-retry",
@@ -20,5 +20,7 @@
   "activation_utc": "2026-10-04T06:33:17Z",
   "followup_authorized_utc": "2026-10-04T06:37:29Z",
   "followup_bound": "Exactly one conventional for-loop traversal control after stock scheduler trace ties the two real pointer copies except their source-line ownership. No extra operations, locals or ABI changes; preserve callbacks and semantic domains. Stop after this form.",
-  "reviewed_commit": "46e85da31134966ac521115b9543a7bdd8ffaa7b"
+  "reviewed_commit": "46e85da31134966ac521115b9543a7bdd8ffaa7b",
+  "publication": "https://github.com/cabi24/SFRush2049-decomp/pull/77",
+  "published_source_head": "12ae34a64dd3a9004e1b949c9acf4557542df2f2"
 }

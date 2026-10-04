@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "purpose": "Evidence preservation only; no acceptance credit",
+  "baseline_source_head": "12ae34a64dd3a9004e1b949c9acf4557542df2f2",
+  "baseline_tree": "7c37dbb0cfebf4a9152c2be7f66cd85d9b1be747",
+  "new_matches": 0,
+  "new_matching_bytes": 0,
+  "new_unique_attempts": 0,
+  "canonical_matching_sources_unchanged": true,
+  "current_classification_unchanged": true,
+  "packets": [
+    {
+      "packet": "BT07-stream-schedule-retry",
+      "immutable_head": "8cccffb88f99656d3948a71e15517be63fb2405a",
+      "review_state": "source-free author audit; no independent retry review",
+      "files": [
+        {
+          "path": "cloud/work/boot_tail/BT07-stream-schedule-retry/README.md",
+          "sha256": "71c20b752b814174bf3e8122b78c9d0611ad29730328641d04474837d05b16b4",
+          "bytes": 4423
+        },
+        {
+          "path": "cloud/work/boot_tail/BT07-stream-schedule-retry/verification.json",
+          "sha256": "41a47d6d55020c85091689513ac517cd3445f1e5fb92a589d93651a62f3e2c99",
+          "bytes": 11083
+        }
+      ]
+    },
+    {
+      "packet": "BT03-spatial-threshold-retry",
+      "immutable_head": "4755e61ea8e9fcca58de6d2e2620a0156cad37ba",
+      "review_state": "peer PASS for bounded complete nonmatch; no matching credit",
+      "files": [
+        {
+          "path": "cloud/work/boot_tail/BT03-spatial-threshold-retry/README.md",
+          "sha256": "c2501366a68a4e50f5619459a6a392a17ea17d0bc6ff32e503e041cd220dc549",
+          "bytes": 8131
+        },
+        {
+          "path": "cloud/work/boot_tail/BT03-spatial-threshold-retry/controls/func_8001DC08_family_conditions.c",
+          "sha256": "0e292b81edd76988312c7baa091ee8c75aea2098d02b62df26b93b3a72c30eaf",
+          "bytes": 2120
+        },
+        {
+          "path": "cloud/work/boot_tail/BT03-spatial-threshold-retry/controls/func_8001DC08_preheader_line_join.c",
+          "sha256": "4736860c5b71b1de3b5449bcb24f65d655c477c234b5c21ffcf9e14593991432",
+          "bytes": 2161
+        },
+        {
+          "path": "cloud/work/boot_tail/BT03-spatial-threshold-retry/controls/func_8001DC08_scoped_const_initializers.c",
+          "sha256": "108baca5eee253c3a53c84d94f428e36cef5ada5f51846042b0fcaee7d961397",
+          "bytes": 2160
+        },
+        {
+          "path": "cloud/work/boot_tail/BT03-spatial-threshold-retry/controls.json",
+          "sha256": "b4b4e102bea33a7abc7b18c0619e3736badc78ad42d1331d759c7058f3c888e6",
+          "bytes": 2912
+        },
+        {
+          "path": "cloud/work/boot_tail/BT03-spatial-threshold-retry/independent_review.json",
+          "sha256": "02cc388d5195c78d4d8aa0ade1f836c2828fc14a9a47094f0d8d15f3c930997b",
+          "bytes": 10477
+        },
+        {
+          "path": "cloud/work/boot_tail/BT03-spatial-threshold-retry/nonmatch/func_8001DC08.c",
+          "sha256": "4736860c5b71b1de3b5449bcb24f65d655c477c234b5c21ffcf9e14593991432",
+          "bytes": 2161
+        },
+        {
+          "path": "cloud/work/boot_tail/BT03-spatial-threshold-retry/references.json",
+          "sha256": "52fb264531d0495f18be453342b8cc8d3b15005be5bd578301520f3ea91c7a36",
+          "bytes": 1134
+        },
+        {
+          "path": "cloud/work/boot_tail/BT03-spatial-threshold-retry/scheduling.json",
+          "sha256": "29622ed12b94ba89f0a1dd311f03f441f066a01ad33014856e1fe6e428df6ab3",
+          "bytes": 5337
+        },
+        {
+          "path": "cloud/work/boot_tail/BT03-spatial-threshold-retry/scheduling.py",
+          "sha256": "c99eb7519bd107b436f4fc353fa307367c92050bb756b66acc217cef7f8227c5",
+          "bytes": 4704
+        },
+        {
+          "path": "cloud/work/boot_tail/BT03-spatial-threshold-retry/status_delta.csv",
+          "sha256": "48b8fee21e09b9c6bb76f4d0a72838df6e1fdb2d0a53db9c679a4e1e8bc19445",
+          "bytes": 301
+        },
+        {
+          "path": "cloud/work/boot_tail/BT03-spatial-threshold-retry/test_results.json",
+          "sha256": "7c7602649b4796f14526407c782ae4c45f9ca7e5bf215468faa516c2aaf656a1",
+          "bytes": 703
+        },
+        {
+          "path": "cloud/work/boot_tail/BT03-spatial-threshold-retry/test_semantics.py",
+          "sha256": "6ca666a1970bcadeae80a66509bace4c97990b8f9074002a2e7ca905e147a699",
+          "bytes": 2167
+        },
+        {
+          "path": "cloud/work/boot_tail/BT03-spatial-threshold-retry/verification.json",
+          "sha256": "6c870f61d6713b38829c1692b177be55281fc6a16852a55ba4ebeff0f0c2f5cb",
+          "bytes": 2965
+        },
+        {
+          "path": "cloud/work/boot_tail/BT03-spatial-threshold-retry/verify.py",
+          "sha256": "8e822c9be1eab6120089a67672954f19c13e7f0c8059451b88bc12f229a9c0b8",
+          "bytes": 6508
+        }
+      ]
+    },
+    {
+      "packet": "BT05-id-register-retry",
+      "immutable_head": "02cdacfa34dd468124625d52313bd8cce20d6883",
+      "review_state": "unreviewed research checkpoint",
+      "files": [
+        {
+          "path": "cloud/work/boot_tail/BT05-id-register-retry/README.md",
+          "sha256": "f6036aae56f0a0fcb0552cfe745e0a2f893a3f305f42b4eafbc6dea87e61533a",
+          "bytes": 7439
+        },
+        {
+          "path": "cloud/work/boot_tail/BT05-id-register-retry/candidates/func_80022324.c",
+          "sha256": "32f7106af1a7c1d7547b5a7203aa44e02073f3d1da511fa1400f3b6c2cf45485",
+          "bytes": 1176
+        },
+        {
+          "path": "cloud/work/boot_tail/BT05-id-register-retry/diagnosis_summary.json",
+          "sha256": "031a3cd21f281e82fe7e8653e3e80a48f561239116e5dfa633f664352ab76756",
+          "bytes": 1178
+        },
+        {
+          "path": "cloud/work/boot_tail/BT05-id-register-retry/references.json",
+          "sha256": "38abeff35cc116e41486f75a796eda14ff5d5f2b10f06757e0c9c63b770b29ec",
+          "bytes": 1161
+        },
+        {
+          "path": "cloud/work/boot_tail/BT05-id-register-retry/semantics.json",
+          "sha256": "872638c97b7c029ab60f4bd05aa64ff8c5161841901de21d1be9245548174643",
+          "bytes": 419
+        },
+        {
+          "path": "cloud/work/boot_tail/BT05-id-register-retry/test_semantics.py",
+          "sha256": "e1768033f24f88b4df39d6bc2602808c7f5cfb76ca76b6f309bfdfac4205c8ae",
+          "bytes": 4498
+        },
+        {
+          "path": "cloud/work/boot_tail/BT05-id-register-retry/unchanged_targets.json",
+          "sha256": "0e6e0225f7fb237e117ffca5bc3a559c91f4fe4f0343489f07795c91bc8f3faf",
+          "bytes": 457
+        },
+        {
+          "path": "cloud/work/boot_tail/BT05-id-register-retry/verification.json",
+          "sha256": "9ed8847e39731eb80fe0acbb68cab0b42f804d97e67396183080347b9d492132",
+          "bytes": 3681
+        },
+        {
+          "path": "cloud/work/boot_tail/BT05-id-register-retry/verify.py",
+          "sha256": "9de5c59b71543fe65d8f3472ec550acb4efdbd0a1f997015d90593eed1a21ae4",
+          "bytes": 4334
+        }
+      ]
+    },
+    {
+      "packet": "BT03-voice-priority-retry",
+      "immutable_head": "8675b2255afca7bba09e1a1a05ba2fe6042950a5",
+      "review_state": "unreviewed research checkpoint",
+      "files": [
+        {
+          "path": "cloud/work/boot_tail/BT03-voice-priority-retry/README.md",
+          "sha256": "135e813fb25dbe3579da68b3733ae1e6dc1cdb76f781d225f362f9808a49e6e2",
+          "bytes": 8550
+        },
+        {
+          "path": "cloud/work/boot_tail/BT03-voice-priority-retry/controls/func_8001EF8C_head_assignment.c",
+          "sha256": "3d2a8f03eebf68631d116ecc7aebdca1ad4548c82b47d1da304c1bd7b7034608",
+          "bytes": 2032
+        },
+        {
+          "path": "cloud/work/boot_tail/BT03-voice-priority-retry/diagnosis.json",
+          "sha256": "51e6e3c555dd916f38a0c58cfb16de6cdada3d8f496e1014593413e7b03b9612",
+          "bytes": 1168
+        },
+        {
+          "path": "cloud/work/boot_tail/BT03-voice-priority-retry/input_pins.json",
+          "sha256": "6924dc6b6555fc966f93bdab1a0f6ffdf73df0c243beaa8f616b7971aeee15be",
+          "bytes": 6994
+        },
+        {
+          "path": "cloud/work/boot_tail/BT03-voice-priority-retry/semantics.inc.c",
+          "sha256": "2271549a7f250965efa75a5c3e5875efa863789ca730c92e1fd9449e7e103e0b",
+          "bytes": 5716
+        },
+        {
+          "path": "cloud/work/boot_tail/BT03-voice-priority-retry/test_semantics.py",
+          "sha256": "71067869f7624632414685319916723bbcd234ecb0685b818ae824d9f6979c1a",
+          "bytes": 5127
+        },
+        {
+          "path": "cloud/work/boot_tail/BT03-voice-priority-retry/verification.json",
+          "sha256": "1494af6209d7d0665b46408f035a0b2cd788ba63974da7abfa08e9b7857484ab",
+          "bytes": 9435
+        },
+        {
+          "path": "cloud/work/boot_tail/BT03-voice-priority-retry/verify.py",
+          "sha256": "bcd0eebc6a0d5600d9f448d0f9b87609060284837fa7c3d0d9d9637b347a35dc",
+          "bytes": 8432
+        }
+      ]
+    }
+  ],
+  "source_free_artifacts": [
+    {
+      "path": "cloud/work/boot_tail/evidence_checkpoint/record_copy_causal_audit.md",
+      "sha256": "eb5459c1dcd5c93cabe369c1eb5953a57a606997a577ce1731b561028ee19e1d",
+      "bytes": 6374,
+      "kind": "source-free read-only project evidence"
+    },
+    {
+      "path": "cloud/work/boot_tail/evidence_checkpoint/loop_scheduling_scout.json",
+      "sha256": "5671abc59b51f8ce09ce3548c1c4ef6cd8ce059ab6482e335c372c1be195020d",
+      "bytes": 5326,
+      "kind": "source-free read-only project evidence"
+    }
+  ]
+}

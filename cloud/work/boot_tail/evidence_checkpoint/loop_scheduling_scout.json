@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "scope": "Read-only candidate scout; four unchanged baseline compiles and stock preassembler captures; no source variants, claims, publication or new match credit.",
+  "repository": "/workspace/scratch/e1dc04a487a3/rush-integration-recovered",
+  "pinned_head": "b851720ea507d1c4b9ca39a12b429612884da8f5",
+  "selection": "Latest wave1..wave16 address classifications cross-checked against STATUS.csv; only1785C and1C390 remain actual same-line scalar clear loops.",
+  "eligible_immediate_line_ownership_retries": [],
+  "result": "No evidence-backed new line-ownership retry found. Strongest-looking loops already have native scalar scheduling and fail allocation/instruction count. Low record-copy near-misses already multiline and exhausted known natural representations.",
+  "reviewed_cases": [
+    {
+      "address": "0x8001C390",
+      "native_bytes": 60,
+      "source_path": "cloud/work/boot_tail/BT03-high/nonmatch/func_8001C390.c",
+      "source_sha256": "8fb0ae79e752faaebba02371b7bdaf94fb068e510bbf74adceb2fa1b33271325",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "fresh_differing_words": 12,
+      "total_words": 15,
+      "elf_function_bytes": 64,
+      "extra_nonzero_words": 0,
+      "source_native_compiler_evidence": "Only physical source line 3 owns the entire body. The compiled scalar clear loop already has native pointer advance, backedge and compensated -24 delay-slot store. Residual begins before the loop: separate retained global base and moving cursor add one copy instruction.",
+      "prior_controls": "Counted, countdown, guarded pointer loops and indexed unroll reported in BT03-high/README.md; initial indexed O2 15/15 plus 2 nonzero excess words; retained pointer O2 12/15, O1 14/15 plus10. No concrete new line-ownership hypothesis survives direct comparison.",
+      "next_step": "Do not claim a formatting retry. Need new coalescing/induction representation evidence first."
+    },
+    {
+      "address": "0x8001785C",
+      "native_bytes": 84,
+      "source_path": "cloud/work/boot_tail/BT03-high-medium/nonmatch/func_8001785C.c",
+      "source_sha256": "790601b0290c7275486fe2523ed1202294256d899a770e08ff1db4df073e9c6d",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "fresh_differing_words": 17,
+      "total_words": 21,
+      "elf_function_bytes": 92,
+      "extra_nonzero_words": 1,
+      "source_native_compiler_evidence": "Clear header and store share line8, but stock code is not unrolled. The store already occupies the native loop delay slot. Both loops introduce a separate byte-narrowing temporary and copy; native narrows the index in place. This is an instruction-count/allocation residual rather than the closed unroll-rotation mechanism.",
+      "prior_controls": "BT03-high-medium/initial_controls.json and refinement_controls.json: initial O2 17/21 plus1 nonzero excess, O1 21/21 plus9; explicit byte-truncated word update remains17/21 plus1.",
+      "next_step": "Do not claim a formatting retry. Need fresh narrow-update lowering evidence first."
+    },
+    {
+      "address": "0x80015720",
+      "native_bytes": 440,
+      "source_path": "cloud/work/boot_tail/BT03-low-larger/func_80015720_NONMATCH.c",
+      "source_sha256": "12c277008bcd9dd866ed98eb7e5a1b7f97a5ffd6a22699589ab40fc9622b498e",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "fresh_differing_words": 6,
+      "total_words": 110,
+      "elf_function_bytes": 440,
+      "extra_nonzero_words": 0,
+      "source_native_compiler_evidence": "Record-copy body is already multiline: header line32, aggregate assignment line33. Stock preassembler fixes first copied word to assembler temporary before scheduling; native uses two other temporaries. Line separation cannot by itself change that register choice.",
+      "prior_controls": "BT03-low-larger/controls.json:14 natural forms including union/aligned/packed copies, word copies, copy pointer locals, reverse walking, memcpy and rejected64-bit probe. Six-word plateau already documented.",
+      "next_step": "No new supported natural form found; do not repeat prior copy-representation sweep."
+    },
+    {
+      "address": "0x800158D8",
+      "native_bytes": 308,
+      "source_path": "cloud/work/boot_tail/BT03-low-removal/func_800158D8_NONMATCH.c",
+      "source_sha256": "e6044e6e6fe590c91723d453b9fbfaefd76a10e15bd514bd38def333e70b9882",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "fresh_differing_words": 8,
+      "total_words": 77,
+      "elf_function_bytes": 308,
+      "extra_nonzero_words": 0,
+      "source_native_compiler_evidence": "Record-copy header line32 and aggregate assignment line33 already differ. Stock preassembler has same fixed assembler-temporary first copy as15720. Retained residual also contains branch operand orientation.",
+      "prior_controls": "BT03-low-removal/controls.json:16 forms. Rejected separate-struct alias view6/77 must not replace retained union view8/77.",
+      "next_step": "No new supported natural form found. Same conclusion applies to308-byte twin80015F28 (archived8/77; source/history checked, no fresh compiler run)."
+    }
+  ],
+  "privacy": "Source-free report only; native target words, raw listings, compiler output and objects remain temporary/unpublished."
+}

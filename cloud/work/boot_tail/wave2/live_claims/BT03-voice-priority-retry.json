@@ -1,0 +1,27 @@
+{
+  "state": "frozen-negative-control; edit claim released; independent archive review pending",
+  "owner": "/root/match_voice_priority_topology",
+  "packet": "BT03-voice-priority-retry",
+  "branch": "dot/boot-tail-bt03-voice-priority-retry",
+  "base": "46e85da31134966ac521115b9543a7bdd8ffaa7b",
+  "targets": [
+    {
+      "address": "0x8001EF8C",
+      "size": 432,
+      "end_exclusive": "0x8001F13C"
+    }
+  ],
+  "bytes": 432,
+  "claim_kind": "bounded source-family revisit; no new unique attempt",
+  "edit_scope": "Only new packet and canonical named source on reviewed strict success. Prior packets, published source and all protected inputs unchanged.",
+  "evidence": "Pinned synthvoice.c voiceSetPriority uses an assignment-valued bucket-head test absent from the three prior retained forms. Native and unchanged compiler lowering must first isolate an actual difference attributable to that topology. No repeated loop-stop or byte-width/declaration sweeps.",
+  "donor_commit": "78d2e16e4905fc675952162d331c24d5198b2687",
+  "donor_blob": "3ad906e217a82e77b649edc8935fd6c139d09415",
+  "activation_utc": "2026-10-04T07:09:00Z",
+  "local_checkpoint": "8675b2255afca7bba09e1a1a05ba2fe6042950a5",
+  "retained_differing_words": 88,
+  "rejected_control_differing_words": 92,
+  "new_matches": 0,
+  "new_unique_attempts": 0,
+  "note": "Exactly one source-family assignment-valued test reproduced the local native load/test/store/reread topology but worsened whole-body matching and frame size. Preserve original source; no further variants authorized. Author tests passed; no independent packet acceptance claimed."
+}

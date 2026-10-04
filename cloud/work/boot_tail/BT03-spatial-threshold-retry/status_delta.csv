@@ -1,0 +1,2 @@
+name,status,bytes,source,notes
+func_8001DC08,COMPLETE-NONMATCH,472,cloud/work/boot_tail/BT03-spatial-threshold-retry/nonmatch/func_8001DC08.c,2 of 118 O2 words differ after token-identical scheduling improvement from 3; unknown cached external thresholds preserved; bounded stop and zero match credit

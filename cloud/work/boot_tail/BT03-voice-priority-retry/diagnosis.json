@@ -1,0 +1,17 @@
+{
+  "method": "Unchanged pinned workbench on temporary literal-word target ELF and stock candidate objects. Missing target relocation names are diagnostic only; strict scorer remains authoritative.",
+  "results": [
+    {
+      "source_path": "cloud/work/boot_tail/BT03-high-runtime-lists/nonmatch/func_8001EF8C.c",
+      "source_sha256": "612f63a6a0aebad0788d78bef287d830023616d56f71186d007b73e0462b7808",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "summary": "verdict=structure-mismatch aligned_total=76 words=88 raw=93 opcodes=67 gaps=16 reloc_syms=17 norm=53 regs=86 fp=0 insns=108 frame=-48 true_insn_delta=+0 geometry_edit_distance=53 opcode_distance=22"
+    },
+    {
+      "source_path": "cloud/work/boot_tail/BT03-voice-priority-retry/controls/func_8001EF8C_head_assignment.c",
+      "source_sha256": "3d2a8f03eebf68631d116ecc7aebdca1ad4548c82b47d1da304c1bd7b7034608",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "summary": "verdict=structure-mismatch aligned_total=67 words=92 raw=97 opcodes=68 gaps=12 reloc_syms=17 norm=41 regs=86 fp=0 insns=108 frame=-56 true_insn_delta=+0 geometry_edit_distance=41 opcode_distance=18"
+    }
+  ]
+}

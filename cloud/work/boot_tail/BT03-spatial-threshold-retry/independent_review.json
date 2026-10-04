@@ -1,0 +1,184 @@
+{
+  "result": "PASS",
+  "scope": "Independent bounded local review of the exact 14-file DC08 retry. Complete nonmatch research only; no matching credit, cartridge integration, full-ROM identity, hosted CI, publication or merge claim. The recommended documentation correction and any later receipt commit require their own final diff/head check; the code/scripts/results reviewed here are bound by the listed hashes.",
+  "commit": "a31493f7abac7077d09855d7fd457b93f334189d",
+  "tree": "9acd8c26e45af98ff6923fcb8091e3c132efa4fb",
+  "base_commit": "68a48a5e2bb3f88625d3af20cfd5a8e899a43944",
+  "packet": "cloud/work/boot_tail/BT03-spatial-threshold-retry",
+  "blocking_findings": [],
+  "complete_nonmatch": {
+    "name": "func_8001DC08",
+    "status": "COMPLETE-NONMATCH",
+    "matching_credit": 0,
+    "differing_words": 2,
+    "total_words": 118,
+    "native_bytes": 472,
+    "elf_function_size": 472,
+    "sole_named_function_at_zero": true,
+    "differing_byte_offsets": [
+      72,
+      100
+    ],
+    "masks": 0,
+    "unresolved": 0,
+    "unverified": 0,
+    "relocation_errors": 0,
+    "nonzero_excess": 0,
+    "baseline_differing_words": 3,
+    "retained_source_token_identical_to_baseline": true
+  },
+  "replays": {
+    "verification_json": "Exact byte-for-byte reproduction",
+    "scheduling_json": "Exact byte-for-byte reproduction",
+    "new_source_forms": 3,
+    "new_compiler_control_rows": 6,
+    "prior_packet_control_rows": 30,
+    "strict_c89_sanitizer_test_groups": 1,
+    "actual_source_paths_tested": 4,
+    "actual_source_invocations": 9600,
+    "sanitizers": [
+      "address",
+      "undefined",
+      "float-cast-overflow"
+    ],
+    "only_leak_sanitizer_disabled": true,
+    "native_layout_assertions": "PASS",
+    "target_manifest": "PASS: independent sha256sum -c SHA256SUMS",
+    "census": "PASS: 439 functions / 99120 bytes",
+    "frozen_source_and_compiler_hashes": "PASS",
+    "existing_getter_strict_replay": "PASS",
+    "protected_path_gate": "PASS",
+    "lock_integrity": "PASS: 161 locked functions",
+    "git_diff_check": "PASS",
+    "worktree_clean": true
+  },
+  "native_bodies_reviewed": [
+    {
+      "name": "func_8001DC08",
+      "bytes": 472
+    },
+    {
+      "name": "func_8001DDE0",
+      "bytes": 736
+    },
+    {
+      "name": "func_8001B1D0",
+      "bytes": 204
+    },
+    {
+      "name": "func_8001CCDC",
+      "bytes": 936
+    }
+  ],
+  "abi_and_semantics": [
+    "DC08 has no incoming arguments; DDE0 is its sole direct boot-tail caller and does not supply a new input contract.",
+    "B1D0 consumes the real halfword identifier and two byte values; CCDC receives the emitter and five float slots. The third float slot is forwarded and spilled by the native callee, although otherwise unused by that body.",
+    "IDO separately proves the 68-byte emitter, 12-byte group and 28-byte pending-entry layout and every directly used field offset. Host LP64 tests are logical behavior checks only.",
+    "Both external thresholds remain unknown, are read once for a nonempty invocation and survive callbacks. The retained residual swaps their load order while preserving destination registers and all remaining relocated words.",
+    "Lower/upper comparisons, unsigned-halfword counter wrap, failure sentinel and flags, success fade and flag updates, and all five float arguments agree with the complete native body.",
+    "Live post-callback state flags, group active head, pending next pointer and byte group count are preserved; tests exercise bounded valid callback mutations.",
+    "Natural C89 only: no fake formals, keeper or padding locals, forced registers, inline assembly, helper implementations, artificial extent inflation, masked equality or invented threshold values."
+  ],
+  "scheduling_evidence": {
+    "stock_trace_whole_objects_identical": true,
+    "canonical_relocated_workbench_verdict": "schedule-mismatch",
+    "exact_instruction_multiset": true,
+    "preheader_shared_address_register_dependency_observed": true,
+    "parser_warning": "Parser labels are heuristic, not a complete compiler decision proof. In addition to explicit disagreement labels, its filtering can discard the actual chosen node before returning list-order; those labels must not be used to prove exact tie causes. This does not weaken the direct compiled-body measurements.",
+    "parser_audit": [
+      {
+        "source": "baseline",
+        "selection_count": 193,
+        "explicit_disagreement_labels": 49,
+        "list_order_labels_with_actual_winner_excluded_earlier": 17
+      },
+      {
+        "source": "retry",
+        "selection_count": 193,
+        "explicit_disagreement_labels": 47,
+        "list_order_labels_with_actual_winner_excluded_earlier": 21
+      }
+    ],
+    "raw_preheader_descriptor_comparison": {
+      "result": "PASS",
+      "preheader_raw_descriptors_equal_after_removing_only_lineno": true,
+      "initial_ready_list_also_identical": true,
+      "normalization": "Replace each literal lineno decimal value only; preserve instruction/relocation descriptors, DAG successor/latency descriptors, ordering and ready-list record. No scheduler selection-key parser used.",
+      "rows": [
+        {
+          "source": "baseline",
+          "node_count": 12,
+          "node_source_lines": {
+            "11": 35,
+            "10": 35,
+            "9": 36,
+            "8": 36,
+            "7": 37,
+            "6": 37,
+            "5": 38,
+            "4": 38,
+            "3": 38,
+            "2": 38,
+            "1": 38,
+            "0": 38
+          },
+          "descriptor_bytes_except_lineno_sha256": "5af2cc0e3f244a262069e565a4185283f75f0344512d056a6805e37a008e803e"
+        },
+        {
+          "source": "retry",
+          "node_count": 12,
+          "node_source_lines": {
+            "11": 35,
+            "10": 35,
+            "9": 35,
+            "8": 35,
+            "7": 35,
+            "6": 35,
+            "5": 35,
+            "4": 35,
+            "3": 35,
+            "2": 35,
+            "1": 35,
+            "0": 35
+          },
+          "descriptor_bytes_except_lineno_sha256": "5af2cc0e3f244a262069e565a4185283f75f0344512d056a6805e37a008e803e"
+        }
+      ],
+      "limits": "Direct metadata and DAG equality support the bounded physical-line experiment. They do not establish the exact scheduler tie-key chain or prove source-line ownership across arbitrary variants."
+    }
+  },
+  "provenance": {
+    "repository": "AxioDL/musyx",
+    "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+    "license": "CC0-1.0",
+    "license_url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/LICENSE",
+    "license_blob": "0e259d42c996742e9e3cba14c677129b2c1b6311",
+    "source_url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/src/musyx/runtime/snd3d.c",
+    "source_blob": "7c6e875a043c53b92ca05efdb9b1799e7d496965",
+    "fresh_independent_full_file_fetch": true,
+    "sha256_and_git_blob_identity_checks": "PASS",
+    "family_forms_reviewed": "StartContinousEmitters else-if chain, prefix increment and assignment-in-condition; native ABI/layout and behavior constrain the adaptation, with newer fields, values and helpers excluded."
+  },
+  "changed_files_sha256": {
+    "cloud/work/boot_tail/BT03-spatial-threshold-retry/README.md": "90f240471984350809b5066b1ef4f38e406d5f6757517dab63dc9e4e0683b1a5",
+    "cloud/work/boot_tail/BT03-spatial-threshold-retry/controls.json": "b4b4e102bea33a7abc7b18c0619e3736badc78ad42d1331d759c7058f3c888e6",
+    "cloud/work/boot_tail/BT03-spatial-threshold-retry/controls/func_8001DC08_family_conditions.c": "0e292b81edd76988312c7baa091ee8c75aea2098d02b62df26b93b3a72c30eaf",
+    "cloud/work/boot_tail/BT03-spatial-threshold-retry/controls/func_8001DC08_preheader_line_join.c": "4736860c5b71b1de3b5449bcb24f65d655c477c234b5c21ffcf9e14593991432",
+    "cloud/work/boot_tail/BT03-spatial-threshold-retry/controls/func_8001DC08_scoped_const_initializers.c": "108baca5eee253c3a53c84d94f428e36cef5ada5f51846042b0fcaee7d961397",
+    "cloud/work/boot_tail/BT03-spatial-threshold-retry/nonmatch/func_8001DC08.c": "4736860c5b71b1de3b5449bcb24f65d655c477c234b5c21ffcf9e14593991432",
+    "cloud/work/boot_tail/BT03-spatial-threshold-retry/references.json": "52fb264531d0495f18be453342b8cc8d3b15005be5bd578301520f3ea91c7a36",
+    "cloud/work/boot_tail/BT03-spatial-threshold-retry/scheduling.json": "29622ed12b94ba89f0a1dd311f03f441f066a01ad33014856e1fe6e428df6ab3",
+    "cloud/work/boot_tail/BT03-spatial-threshold-retry/scheduling.py": "c99eb7519bd107b436f4fc353fa307367c92050bb756b66acc217cef7f8227c5",
+    "cloud/work/boot_tail/BT03-spatial-threshold-retry/status_delta.csv": "48b8fee21e09b9c6bb76f4d0a72838df6e1fdb2d0a53db9c679a4e1e8bc19445",
+    "cloud/work/boot_tail/BT03-spatial-threshold-retry/test_results.json": "7c7602649b4796f14526407c782ae4c45f9ca7e5bf215468faa516c2aaf656a1",
+    "cloud/work/boot_tail/BT03-spatial-threshold-retry/test_semantics.py": "6ca666a1970bcadeae80a66509bace4c97990b8f9074002a2e7ca905e147a699",
+    "cloud/work/boot_tail/BT03-spatial-threshold-retry/verification.json": "6c870f61d6713b38829c1692b177be55281fc6a16852a55ba4ebeff0f0c2f5cb",
+    "cloud/work/boot_tail/BT03-spatial-threshold-retry/verify.py": "8e822c9be1eab6120089a67672954f19c13e7f0c8059451b88bc12f229a9c0b8"
+  },
+  "limits": [
+    "Bounded valid storage and lists, genuine helper contracts and ordinary floating-point comparison semantics are assumed. No malformed-list, asynchronous mutation or downstream playback-safety claim.",
+    "The two missing words remain a complete nonmatch. The bounded candidate stop is appropriate; it is not an impossibility proof.",
+    "No checkout or shared ledger edits. No prohibited helper work or T050 implementation. Temporary objects, traces, reference source and native dumps remain outside the checkout; this receipt contains none of them."
+  ],
+  "recommended_documentation_correction": "Replace the initial claim that the trace confirms relevant preheader line-key decisions with: the trace exposes different source-line tags among preheader nodes, justifying one bounded grouping control without assuming decoder accuracy. Document both explicit disagreement counts (49 baseline / 47 retry) and additional list-order labels after the chosen node was excluded by earlier filtering (17 / 21). The raw initial-node comparison independently proves that all other preheader descriptors are unchanged, without asserting a precise scheduler tie cause."
+}
