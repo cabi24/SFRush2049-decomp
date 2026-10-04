@@ -1,0 +1,32 @@
+/* GENERATED ROM-aligned TU — segment 0x16320 (rom/lib_16320)
+ * layout map 231669c219ff8d17283ad97903995c8f4ca7b9a1708f46d32621282f1fe514f5; regenerate via `pipeline.layout convert`.
+ * Slots are GLOBAL_ASM passthroughs until promoted; do not hand-edit
+ * passthrough lines. */
+#include "rom_tu.h"
+
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80015720.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_800158D8.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80015A0C.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80015C0C.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80015D68.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80015F28.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_8001605C.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_800161A0.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_800162AC.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_800163A8.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_800164D0.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_8001661C.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_8001671C.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016998.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016BF8.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016C20.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016CE0.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016CF0.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016E40.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016E68.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016EE0.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016F58.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016F80.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80017018.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80017040.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80017108.s")
