@@ -56,7 +56,26 @@ void func_800250AC(void)
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_25bb0/func_80025150.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_25bb0/func_8002517C.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_25bb0/func_800251A8.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_25bb0/func_80025264.s")
+/* PROMOTED 2026-10-04 — func_80025264
+ * Source:   cloud/work/boot_tail_promotion/sources/func_80025264.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/sources/func_80025264.c:func_80025264 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+typedef struct StreamState_80025264 { unsigned char unknown_0000[358]; unsigned short block_count; unsigned char unknown_0168[40]; void (*callback)(void *, void *, unsigned int, OSMesgQueue *); void *data; void *argument2; unsigned int argument3; unsigned char unknown_01A0[4096]; unsigned short read_count; unsigned short write_count; unsigned int buffered; int remaining; OSMesgQueue queue; OSMesg message; unsigned int field_11C8; unsigned int field_11CC; unsigned int field_11D0; unsigned int consumed; unsigned int available; signed char field_11DC; signed char state; signed char scale; unsigned char unknown_11DF[33]; volatile unsigned char busy; unsigned char unknown_1201[27]; unsigned int processed; float field_1220; unsigned int token; } StreamState_80025264;
+extern StreamState_80025264 D_80056230[2];
+int func_80025264(unsigned int token)
+{
+    int i;
+
+    for (i = 0; i < 2; i++) {
+        if (D_80056230[i].busy && D_80056230[i].token == token) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_25bb0/func_800252AC.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_25bb0/func_800254D4.s")
 /* PROMOTED 2026-10-04 — func_80025594
