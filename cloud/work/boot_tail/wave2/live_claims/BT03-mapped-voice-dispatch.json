@@ -1,0 +1,34 @@
+{
+  "state": "frozen-review-pass-integrating",
+  "packet": "BT03-mapped-voice-dispatch",
+  "owner": "/root/match_mapped_voice_dispatch",
+  "branch": "dot/boot-tail-mapped-voice-dispatch",
+  "base": "cf4b9c619c72e83aa5da2e8b5c110765f9b03693",
+  "verified_master": "53210aa1f374c65ec66ed6c1e9692d8e45453c10",
+  "master_reconciliation": "Only docs/BUILDING.md changed from worker base; matching inputs, specs and claims are identical.",
+  "activation_date_utc": "2026-10-04",
+  "activation_authority": "Parent assigned the exact three separate bodies after the user approved only the specified 68-byte table inspection.",
+  "targets": [
+    {
+      "address": "0x8001B9F8",
+      "end_exclusive": "0x8001BDB8",
+      "size": 960
+    }
+  ],
+  "bytes": 960,
+  "edit_scope": [
+    "cloud/work/boot_tail/BT03-mapped-voice-dispatch/**",
+    "cloud/matches/boot_tail/func_8001B9F8.c only on reviewed strict success"
+  ],
+  "table_mapping_proof": "cloud/work/boot_tail/dispatch-table-proof/dispatch-table-proof-2026-10-04.json",
+  "table_mapping_proof_sha256": "5ce55846a4f15b1ccb0509eead322cb1ac19d9c03168b9a5308e65648be93214",
+  "stop": "Preserve actual ABI and bounded source forms. Require full function and jump-table relocation proof without changing canonical targets, scorer, symbols, layouts, locks or accepted toolchain. If the unchanged scorer cannot validate local table references, preserve complete research and the exact blocker with zero match credit. Production table ownership remains unassigned. No other boot data, D1248/helper or T050 scope is opened.",
+  "new_attempt_or_match_credit_at_activation": 0,
+  "reviewed_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95",
+  "local_result": {
+    "complete_nonmatch_functions": 1,
+    "complete_nonmatch_bytes": 960,
+    "strict_match_functions": 0,
+    "strict_match_bytes": 0
+  }
+}

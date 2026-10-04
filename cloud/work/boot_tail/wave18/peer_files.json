@@ -1,0 +1,455 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/README.md",
+      "sha256": "f9291af0c7237026ed3ac3a396c3f83182df7526b4a642a6a2ab4b127f72086c",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/abi_proof.json",
+      "sha256": "0551da7510c182b842ae0be110fa5a54c2335f0dfab90dd5fd52af88dbcb8f90",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/controls/func_8001B9F8_all_direct.c",
+      "sha256": "8850232e3f7f782af6e8fd72f0a2eed7527a267e9d29158f64218b312874b03c",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/controls/func_8001B9F8_default_index.c",
+      "sha256": "2773ebc5bf11aeb73496baa18f6ee39660c37e9d10651702eedeefdb59f6b7cd",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/controls/func_8001B9F8_direct_loop.c",
+      "sha256": "82ed40ed605ac698288b36a7a09dcf3dd3dd1cd35b937a2406334b19a24ffba5",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/controls/func_8001B9F8_early_default_index.c",
+      "sha256": "4c0f668669c0ab00ce8384db4798d0489e4c8ccbae392ab554067b76c013dffe",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/controls/func_8001B9F8_full_layout.c",
+      "sha256": "0a4a7eabbae416f029f6447784cf1be302877956202beb21324c598fd8ad9ca2",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/controls/func_8001B9F8_indexed.c",
+      "sha256": "1143c8edfbcc827beb049eff58a2b7995260e0b3d7885c51fce61406e6b003ec",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/controls/func_8001B9F8_initial.c",
+      "sha256": "7976a7e71331fda12d02cc929d51eaf73893acb8b03f65a2fe033bdc880d3d42",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/controls/func_8001B9F8_mask_time.c",
+      "sha256": "7dfc33b7e591714f0733401b2e4843d530d579b2696f2248c885fae236eb6853",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/controls/func_8001B9F8_pointer_bound.c",
+      "sha256": "802965a3ea82de6615340268a753922f52b6f53e6f3b198bed0c8a3da905e849",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/controls/func_8001B9F8_signed_count.c",
+      "sha256": "2630f528139ee763780e1e0678678fa6dee9463fbe731bb2cae70635b2cc5f90",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/controls/func_8001B9F8_signed_direct_count.c",
+      "sha256": "20c6992f4d82630e8ac65ec748c570f722a9a26db74183b56b837a622e8c961f",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/controls/func_8001B9F8_time_before_delta.c",
+      "sha256": "6f49bfdd2ba83408db3894f0cf8db33d9c4c47f1192b51e074a58ce1d9f04a84",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/controls/func_8001B9F8_unsigned_default_index.c",
+      "sha256": "a66761950871ebfdf5f6c22005ab471f7c1b1b43fbfebcaf10de3592cf148818",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/controls/func_8001B9F8_unsigned_direct.c",
+      "sha256": "13397433194944ab0d14f7cf7892b974d73564d44f23675e6bb9071affa826c9",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/controls/func_8001B9F8_unsigned_fixed.c",
+      "sha256": "d2815f14d265025c7856d7913bcebfe77fd1bc556e7f263b40270ea4acfb550c",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/controls/func_8001B9F8_word_type.c",
+      "sha256": "919902219b958d182fa2f12d99835bc1624f96993a83251fdf7875576620b123",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/diagnose.py",
+      "sha256": "fb1d628fd9e720d281d6eecbf30162958a980df8efad3d783d61b43656dd6c9b",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/diagnosis.json",
+      "sha256": "de54f321c7d441bccc8dfb37da8a82cc69898ae4efdeba18b842cd1428215b31",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/independent_review.json",
+      "sha256": "5fabee60010fc2dbacf2805bbb1888d4a07d26722678aa710bb8f87fae290975",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/native_replay.py",
+      "sha256": "912b5b3f65f2e88ab40c542fd005850ea9fad9d26e860d413c480681e9358edb",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/nonmatch/func_8001B9F8.c",
+      "sha256": "4db951c8530624f4e789ac4d873562485ff1b6c1d4223a661f78825e4248f40f",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/references.json",
+      "sha256": "91344a58f99ba76d4b754b3f36de948aa585c2a5244aad7e55a4e95384434e8a",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/semantics.json",
+      "sha256": "136fc7ef472034874757eda161632f69abd56bad534d3fe6b0e99c962f5abced",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/status_delta.csv",
+      "sha256": "9f894642531cf0e891e4f810deda0bb4f9e2523b293a0c915cd8132b4958074d",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/table_receipt.json",
+      "sha256": "6156d836a6676921e2da58b9eb8f85dd3f2c518663fe98defeb483c6f05cbcad",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/test_semantics.py",
+      "sha256": "a87d3c21933035c56cbfa5cda3782df8d3cd6e38b631a75c7a0d2d61d8fe85db",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/verification.json",
+      "sha256": "3dee083b3101fb59423d3b71c14eaf89776eed142dfa0e5863f4183a0920cd36",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/verify.py",
+      "sha256": "c485afa50aeb8fa67bd22533cfac2a858ed490c50de1c4a89fefff9ba10ac2d6",
+      "peer_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/README.md",
+      "sha256": "9eab1f7a8afde8bf4b794ee8b15174ffe0409bdb632ecf5f1265895a9d5a9c44",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/controls/count_long.c",
+      "sha256": "d4c622b93d6ebc4dc4062f6bece12ef60048465641526f117b4a1083d4689e7a",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/controls/count_signed.c",
+      "sha256": "d1327b8ee0d64df37a039baa6291d3a70ba8616d58ea6a1e269c93b746ff9393",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/controls/count_unsigned.c",
+      "sha256": "91b129dabd12cfe8a65f09100067a5199cdfc17f0d6e1ef174de5640068cb61f",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/controls/direct_index.c",
+      "sha256": "f89c96f3e9b57fdfdf5fcace62d209cd6b8e8e7f439e83a616da3aa4c0772dc0",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/controls/direct_index_default_group.c",
+      "sha256": "a3f18923c2e59bca436b350ce435a00fd8ce5b3245d08022100f5678496fc12c",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/controls/direct_index_default_pointer.c",
+      "sha256": "12c1bd37a3d5b834724e9318fa819832633622f71ec360c9b5b03409c5c82704",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/controls/direct_index_mask.c",
+      "sha256": "4a91d23f8d6d36d5af8d5a07e619a6405c87a6ebef39cb1dec0c6fbd8b83b771",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/controls/direct_index_signed_fields.c",
+      "sha256": "e6f95016554da81937edc4557d9798288fabba7c82823cd988fec0b7550c0797",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/controls/direct_index_time_before_delta.c",
+      "sha256": "7f434d1084b7951c472335917e2b562ce74889c876d2af85b0fe50cebdcbb296",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/controls/direct_index_unsigned_count.c",
+      "sha256": "ef97231b6bdf94a232a4e6782decdd382d5dcf7510ff0602b2d0e5a496becb6f",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/controls/direct_index_word_type.c",
+      "sha256": "422c9b1ce368698c9687403b583567516db92dd2265bff2e6a6f664b9fce7eff",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/controls/initial_array_type.c",
+      "sha256": "873c6a6298a54e1836dea2619f696362bd12612acc6ca56a72ec486e3a3462fb",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/controls/pointer_end.c",
+      "sha256": "8f8192bad42edf536648c1d635a86e8da3ec12a2faf4d3912b06f2ab5d2f2138",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/controls/pointer_end_unsigned.c",
+      "sha256": "9075657976fb4f19c4b255ecb0054ced3a33d0129b57cee187458e6179a5de75",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/controls/pointer_type.c",
+      "sha256": "a082742150d84a94af793379775607cd7ab45eefb72c2c57e26724049697c962",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/diagnosis.json",
+      "sha256": "4da99bb7379bea1740f90b3cd095980d19a8e26ea09da5c7641106f6e07f8df6",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/dispatch_proof.json",
+      "sha256": "f4ab1ec60182dfddb92421bec8bd0c1a82e3001f837b942324fee6d5c9a634ed",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/func_8001BE14_NONMATCH.c",
+      "sha256": "62c2e4af4057da50de7a4184c55300d9f0da3af9976bcc862ad2f03a3bfa444a",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/host_sanitized.c",
+      "sha256": "03968cacd1d2c7519e6a38e3ecbaf3b0b2d18b23eadf12ce9bd109cff645d706",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/host_verification.json",
+      "sha256": "f76e3bc1c0661eb11c78b33e1e608a2f993dc55820d9f8ef9c675e7e80c306b4",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/independent_review.json",
+      "sha256": "2680fb6e3cb04813f76b1677762cb0b15de2b53ab937a3b8a938f31f2af0562f",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/input_pins.json",
+      "sha256": "5a6d13d6832f85b332ae026f87a73881db4a54617bfdc8deff97cf5006dc1d3e",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/negative_controls.json",
+      "sha256": "3aa4354f2bd8dba0d5afc4e4d521abbc6ab8a8cccae01cf6fdf31dff3daae452",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/semantics.json",
+      "sha256": "055b2b6b84a662729a221b1b54725f38b05773a9d1a213f593e09269aef916bf",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/status_delta.json",
+      "sha256": "dd256da41372c95095881a751b996c06726ddc656947191d5a6cf8053c0d6212",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/test_host.py",
+      "sha256": "ceed71f5c2385269dd868df77cc23615ca8165cb99db7716593f4d4496b209a4",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/test_mutations.py",
+      "sha256": "01728f5fa56f96d52d7a8b087da0434415485735b13fec2cea2bca086f0aac8d",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/test_semantics.py",
+      "sha256": "8abaa533a8ab40cfe78237533ae9cca0a58a4ea023c359265757e43b3d63e368",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/verification.json",
+      "sha256": "23110282f6ba871bcf2e3a464001a1576fbf29febf7a721c60621ad37fdde2b8",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/verify.py",
+      "sha256": "a31a6f3786a3cbbbeec1b432bbb0f997fb2ad2bce29a020023d0a83db5203015",
+      "peer_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/README.md",
+      "sha256": "3384d5ee75de901e40e94afdf0bf2785bdb591e1ffa8af62de156512cddc7dde",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_explicit_arguments.c",
+      "sha256": "c1df675b0227a07c34e97a1aeaba07f7e041eb58de96585c117b76fc11668b48",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_explicit_masks.c",
+      "sha256": "e635c7921b648f422b3fa5811b11994b1d3eece0883f11c2cbf0f0bc79562cad",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_explicit_narrow_results.c",
+      "sha256": "2e27a9fabf428b26c40a940d11d236bfdcf9d30ade55a1691ecf3b15faf77b5f",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_explicit_word_promotions.c",
+      "sha256": "1300569dac534d2312992a1f73f3f7a79f9db3a6a12a95474c19576cc60ea958",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_initial.c",
+      "sha256": "586fd4c09d96943198bb91c2d7a4f4c5732cf10640d07b0cbcc4a28cfab006b8",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_masked_immediate.c",
+      "sha256": "6363604bb8105ebfa40c3149d70717e3d6302dc65ef8c3111136095b0e55deea",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_old_style_declarations.c",
+      "sha256": "e14b081742d925d77d683a68bbfcbf3a89ef5c51cfd981d5c309affdb317347a",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_register_values.c",
+      "sha256": "4b9ee9e1107f8ebf8918bffc9cc1788d708c96a9a06cf3fe45e6cc758162e7a8",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_sdk_word_types.c",
+      "sha256": "0829a80765bd435ff63cc20f3ce21d4487960ab0eac4265df610932bddea0bcb",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_word_call_contract.c",
+      "sha256": "152a613dd48d16bc350d08f73f899c339866d0b4aa5f0587455fbe0a2e2eec45",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_word_command.c",
+      "sha256": "5bdd566d46981f6fbea6d8832af292bd35e248143f6029e8a2c194b865518ceb",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_word_left.c",
+      "sha256": "1dfe2602efa604169d7adf94202378678edd93cac813104be6bf16ae9cac7d41",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_word_operands.c",
+      "sha256": "d0065dfc1d6574935fab467a9cae0c04e1b07ab39a68ad0cf65b5bdf34ba6ea5",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_word_right.c",
+      "sha256": "6a1e9eee60fac48a7b474fa01a4de6a5d7d8cb22849bb3a4d7534a3a6dca2d50",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/diagnosis.json",
+      "sha256": "110e2839944cc14f1621869e7128ec5775ba352cffc09a8b7fe2d8100ab5f969",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/host_fixture.c",
+      "sha256": "63dab68fef4578929455d8b3f1118ce509798dd025c4fedcac5759e66e00f296",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/independent_review.json",
+      "sha256": "529233fa7c32a8502a063ac91adf2b4f4054422c633b0a8a6ab58dea8be1a9b0",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/layout_verification.json",
+      "sha256": "d5ebba346a196f301552fd5558e1b71cc6bd979e851cf452a80f289c30890310",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/mapping_proof.json",
+      "sha256": "8349581feba6931e811a9cc1ef6d16db29be0c11e6eb13203c9d84ac7999b00f",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/native_replay.py",
+      "sha256": "41513c6737d50cb0f1f41dbe8f8544d3482c1fccbab9b9e74e8b7ad151837593",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/nonmatch/func_80023BDC.c",
+      "sha256": "d0065dfc1d6574935fab467a9cae0c04e1b07ab39a68ad0cf65b5bdf34ba6ea5",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/references.json",
+      "sha256": "f4615e9d8ec96728c0520152cffbbd3cb0873c274ede2240ab878dfcfbe0dd6d",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/semantic_verification.json",
+      "sha256": "1fc68e0b536d6a90210b2be8c28f1b5d485681767e4a64b0fea0483e21e817c4",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/status_delta.csv",
+      "sha256": "1ab6f0188ce62097db7c49f84d9d67b86a4a8e2808860ab2d9724d6f68e5503b",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/test_layout.py",
+      "sha256": "5e16da06773b6872cee1d02b46f6b70076f1d1caab5065c6b1702a8c65c195bd",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/test_semantics.py",
+      "sha256": "d14eaea0316f0f5d6a9917436e402c7c3e570e11faa01797e88c308da363d48c",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/verification.json",
+      "sha256": "20f910db80ea707189c88bcbcd0c5806bbdf5cbe0d9465a73ca3c547844b4814",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    },
+    {
+      "path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/verify.py",
+      "sha256": "36e561ee88382692bd141ddeab040575e83f86e957e34fc9358e001dc418021d",
+      "peer_commit": "46765f5fafac81da31069e77d6d906eae3f60765"
+    }
+  ]
+}

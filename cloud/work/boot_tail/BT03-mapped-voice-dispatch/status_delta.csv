@@ -1,0 +1,2 @@
+address,name,size,cluster,name_hypothesis,evidence_level,status,owner,flags,diff_words,source_path,pr,note
+0x8001B9F8,func_8001B9F8,960,BT03,synthVolume_fixed_point,COMPLETE-NONMATCH,nonmatch,BT03-mapped-voice-dispatch,-g0 -O2 -mips2 -G 0 -non_shared,83,cloud/work/boot_tail/BT03-mapped-voice-dispatch/nonmatch/func_8001B9F8.c,,Full relocated research body83/240; all six generated table entries equal approved receipt; unchanged scorer keeps two non-text-relocation gates; production storage ownership unassigned.

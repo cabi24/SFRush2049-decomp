@@ -1,0 +1,32 @@
+{
+  "result": "PASS",
+  "source_sha256": "d0065dfc1d6574935fab467a9cae0c04e1b07ab39a68ad0cf65b5bdf34ba6ea5",
+  "test_sha256": "d14eaea0316f0f5d6a9917436e402c7c3e570e11faa01797e88c308da363d48c",
+  "native_replay_sha256": "41513c6737d50cb0f1f41dbe8f8544d3482c1fccbab9b9e74e8b7ad151837593",
+  "host_fixture_sha256": "63dab68fef4578929455d8b3f1118ce509798dd025c4fedcac5759e66e00f296",
+  "host_actual_source_calls": 72144,
+  "canonical_native_valid_calls": 72144,
+  "compiled_candidate_valid_calls": 72144,
+  "native_undefined_default_cases": 1004,
+  "immediate_encodings": 65536,
+  "all_controller_and_index_bytes": true,
+  "live_helper_command_mutations": true,
+  "caller_saved_clobbers": true,
+  "native_valid_or_default_instruction_pcs_covered": 97,
+  "native_unvisited_pcs": [
+    "0x80023cd4",
+    "0x80023cec",
+    "0x80023cf8",
+    "0x80023d1c"
+  ],
+  "sanitizers": [
+    "address",
+    "undefined"
+  ],
+  "limitations": [
+    "Synthetic two-helper contracts; no transitive helper implementation claim.",
+    "Defined C and behavioral equality require operation 0..4, aligned live command storage, and valid helper contracts.",
+    "Native defaults depend on uninitialized stack storage; host C is not executed for those selectors.",
+    "No malformed-stream, hardware, full engine, production link or ROM coverage claim."
+  ]
+}

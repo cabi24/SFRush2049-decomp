@@ -1,0 +1,23 @@
+{
+  "source_sha256": "4db951c8530624f4e789ac4d873562485ff1b6c1d4223a661f78825e4248f40f",
+  "routing": "structural",
+  "owning_pass": "cfe-spelling",
+  "ownership_basis": "heuristic",
+  "lever_class": "none-known",
+  "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+  "comparison": {
+    "verdict": "structure-mismatch",
+    "words": 83,
+    "raw": 83,
+    "target_frame_size": -56,
+    "candidate_frame_size": -56,
+    "target_instructions": 240,
+    "candidate_instructions": 240,
+    "aligned_insertions": 3,
+    "aligned_deletions": 3,
+    "aligned_register": 76,
+    "aligned_constant": 0,
+    "aligned_structural": 6
+  },
+  "scope": "Whole linked function words; temporary literal target/candidate objects are diagnostic only. No relocation masks or source edits. Independent table proof is recorded separately; canonical score.py remains unmodified."
+}

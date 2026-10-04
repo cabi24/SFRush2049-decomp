@@ -1,0 +1,38 @@
+{
+  "function": "func_8001BE14",
+  "address": "0x8001BE14",
+  "end_exclusive": "0x8001C19C",
+  "size": 904,
+  "evidence_level": "COMPLETE-NONMATCH",
+  "status": "nonmatch",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "diff_words": 76,
+  "source_path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/func_8001BE14_NONMATCH.c",
+  "compiler_table_matches_authorized_mapping": true,
+  "strict_score_match": false,
+  "production_table_ownership": "unassigned",
+  "matching_functions_added": 0,
+  "verified_body_bytes_added": 0,
+  "next_hypothesis": "Authentic N64 source/compiler context or separately evidenced entry-narrowing and allocation mechanism; do not repeat archived shapes.",
+  "source_sha256": "62c2e4af4057da50de7a4184c55300d9f0da3af9976bcc862ad2f03a3bfa444a",
+  "stock_scorer": {
+    "differing_words": 76,
+    "total_words": 226,
+    "extra_nonzero_words": 0,
+    "unverified": [
+      ".rodata+0x0 at +0x64",
+      ".rodata+0x0 at +0x6c"
+    ],
+    "errors": [],
+    "strict_match": false
+  },
+  "independent_full_relocation": {
+    "differing_words_without_masks": 76,
+    "function_symbol_bytes": 904,
+    "all_relocations_resolved": true,
+    "agrees_with_gnu_ld": true,
+    "compiler_table_exact": true,
+    "compiler_table_sha256": "a1b9a25984b45dee83746aee148a632d9c8dcd9a86d20dc74e131e760839356f",
+    "production_table_ownership": "unassigned"
+  }
+}

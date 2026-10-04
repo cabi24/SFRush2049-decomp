@@ -4247,6 +4247,36 @@
       "source_path": "cloud/work/boot_tail/BT07-decoder-facing-callers/func_80025F74.c",
       "diff_words": "2",
       "note": "BT07-decoder-facing-callers; fresh recovered source/ABI peer PASS. Complete bounded nonmatch; zero matching credit. Caller-only reconstruction with genuine external decoder interface; decoder/T050/out-of-census descendants remain excluded. Valid aligned buffers, positive capacity, callback lifetime and stated counter domains required."
+    },
+    "0x8001B9F8": {
+      "name_hypothesis": "synthVolume_fixed_point",
+      "status": "nonmatch",
+      "owner": "Astra / BT03-mapped-voice-dispatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "83",
+      "source_path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/nonmatch/func_8001B9F8.c",
+      "note": "Complete independently reviewed nonmatch. Stock score retains two unverified local-rodata references; separate full relocation proof resolves all 23 records with 83 unmasked body differences. Compiler table equals all approved entries. Exact 960-byte function extent. Production table ownership remains unassigned; zero matching credit."
+    },
+    "0x8001BE14": {
+      "name_hypothesis": "synthPauseVolume_fixed_point",
+      "status": "nonmatch",
+      "owner": "Astra / BT03-mapped-parameter-dispatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "76",
+      "source_path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/func_8001BE14_NONMATCH.c",
+      "note": "Complete independently reviewed nonmatch. Stock score retains two unverified local-rodata references; separate full relocation proof resolves all 23 records with 76 unmasked body differences. Compiler table equals all approved entries. Exact 904-byte function extent. Production table ownership remains unassigned; zero matching credit."
+    },
+    "0x80023BDC": {
+      "name_hypothesis": "macro_variable_calculation",
+      "status": "nonmatch",
+      "owner": "Astra / BT05-mapped-macro-dispatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": "82",
+      "source_path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/nonmatch/func_80023BDC.c",
+      "note": "Complete independently reviewed nonmatch. Stock score retains two unverified local-rodata references; separate full relocation proof resolves all 10 records with 82 unmasked body differences. Compiler table does not match: every case destination is four bytes early. Exact 404-byte function extent. Production table ownership remains unassigned; zero matching credit."
     }
   }
 }

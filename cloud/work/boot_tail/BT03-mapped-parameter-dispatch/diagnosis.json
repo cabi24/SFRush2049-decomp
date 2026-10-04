@@ -1,0 +1,23 @@
+{
+  "purpose": "Source-free summary of unchanged workbench diagnosis on fully relocated equal-address ELF bodies. Complete reports and temporary native objects remain private.",
+  "source_sha256": "62c2e4af4057da50de7a4184c55300d9f0da3af9976bcc862ad2f03a3bfa444a",
+  "comparison": {
+    "accepted": false,
+    "raw_word_mismatches": 76,
+    "relocation_symbol_mismatches": 0,
+    "candidate_instructions": 226,
+    "target_instructions": 226,
+    "candidate_frame_size": -48,
+    "target_frame_size": -48,
+    "aligned_register": 72,
+    "aligned_structural": 4,
+    "aligned_schedule": 1,
+    "aligned_gaps": 4,
+    "verdict": "structure-mismatch"
+  },
+  "owning_pass": "cfe-spelling",
+  "ownership_basis": "heuristic",
+  "routing": "structural",
+  "reachability": "source-reachable",
+  "interpretation": "Entry narrowing and input register allocation differ, shifting the temporary register ring across otherwise identical loop/case extents. Workbench ownership is heuristic, not original-source proof."
+}

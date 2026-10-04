@@ -1,0 +1,22 @@
+{
+  "stage": "final complete NONMATCH",
+  "source_sha256": "d0065dfc1d6574935fab467a9cae0c04e1b07ab39a68ad0cf65b5bdf34ba6ea5",
+  "method": "Unchanged workbench on temporary canonical and independently fully linked candidate ELF at the same address. Heuristic diagnosis only.",
+  "metrics": {
+    "verdict": "structure-mismatch",
+    "accepted": false,
+    "raw_word_mismatches": 82,
+    "target_instructions": 101,
+    "candidate_instructions": 101,
+    "target_frame_size": -48,
+    "candidate_frame_size": -48,
+    "aligned_structural": 11,
+    "aligned_register": 25,
+    "aligned_constant": 9,
+    "first_divergent_row": 6,
+    "relocation_symbol_mismatches": 0
+  },
+  "owning_pass": "cfe-spelling",
+  "ownership_basis": "heuristic",
+  "conclusion": "Narrowing/storage lowering and register schedule residual. No equality or impossibility claim; no compiler/scorer/source trick was used."
+}

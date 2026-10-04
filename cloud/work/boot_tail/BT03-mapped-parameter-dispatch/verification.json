@@ -1,0 +1,540 @@
+{
+  "result": "PASS: complete NONMATCH research; no strict match claim",
+  "source_sha256": "62c2e4af4057da50de7a4184c55300d9f0da3af9976bcc862ad2f03a3bfa444a",
+  "target_bytes": 904,
+  "incoming_calls": [
+    [
+      "func_800203EC",
+      48
+    ]
+  ],
+  "target_sha256": "0e590f39a0d6dc184e6b5c96286b0147c98362d56872f5dc584d054e9a9cfa66",
+  "native_layout_assertions_leave_candidate_unchanged": [
+    "sizeof(void *) == 4",
+    "sizeof(u32) == 4",
+    "sizeof(s32) == 4",
+    "sizeof(u16) == 2",
+    "sizeof(u8) == 1",
+    "sizeof(MasterFader) == 40",
+    "(unsigned int)&((MasterFader *)0)->type == 20",
+    "(unsigned int)&((MasterFader *)0)->pauseVolume == 24",
+    "(unsigned int)&((MasterFader *)0)->pauseTarget == 28",
+    "(unsigned int)&((MasterFader *)0)->pauseDelta == 32",
+    "(unsigned int)&((MasterFader *)0)->pauseTime == 36"
+  ],
+  "rows": [
+    {
+      "optimization": "O2",
+      "source_sha256": "62c2e4af4057da50de7a4184c55300d9f0da3af9976bcc862ad2f03a3bfa444a",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "object_sha256": "184cb2394e6beb09d7f2cac01fba67daed560baa3c812b8671ee7a72be2438a7",
+      "elf_function_bytes": 904,
+      "text_section_bytes": 912,
+      "stock_differing_words": 76,
+      "stock_extra_nonzero_words": 0,
+      "stock_unverified": [
+        ".rodata+0x0 at +0x64",
+        ".rodata+0x0 at +0x6c"
+      ],
+      "stock_errors": [],
+      "full_word_differences_without_masks": 76,
+      "compiler_table_exact": true,
+      "compiler_table_sha256": "a1b9a25984b45dee83746aee148a632d9c8dcd9a86d20dc74e131e760839356f",
+      "relocated_body_sha256": "6169bde043f546f5d0e64e6966aaaad8cdf55313fee7c987db19075a4e54e812",
+      "independent_relocation_equals_gnu_ld": true,
+      "relocation_counts": {
+        ".text": 17,
+        ".rodata": 6
+      },
+      "strict_match": false
+    },
+    {
+      "optimization": "O1",
+      "source_sha256": "62c2e4af4057da50de7a4184c55300d9f0da3af9976bcc862ad2f03a3bfa444a",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "object_sha256": "7f0cfff232bd079f78fb242194c03f73abfd70936f969a1ddc5283067c662375",
+      "elf_function_bytes": 1004,
+      "text_section_bytes": 1008,
+      "stock_differing_words": 220,
+      "stock_extra_nonzero_words": 22,
+      "stock_unverified": [
+        ".rodata+0x0 at +0x4c",
+        ".rodata+0x0 at +0x54"
+      ],
+      "stock_errors": [
+        "unpaired R_MIPS_HI16 for D_8004F300 at .text+0x37c",
+        "unpaired R_MIPS_HI16 for D_8004F300 at .text+0x380"
+      ],
+      "full_word_differences_without_masks": 220,
+      "compiler_table_exact": false,
+      "compiler_table_sha256": "5f130076e1beea2805623ae8d38826cbb66bff3be5f3759237180046c292519b",
+      "relocated_body_sha256": "fc22b4d2e9c0520c2110988c0d09fd3b212762b709ac4dc61f0aaf1927c4f388",
+      "independent_relocation_equals_gnu_ld": true,
+      "relocation_counts": {
+        ".text": 31,
+        ".rodata": 6
+      },
+      "strict_match": false
+    }
+  ],
+  "controls": [
+    {
+      "source": "count_long.c",
+      "source_sha256": "d4c622b93d6ebc4dc4062f6bece12ef60048465641526f117b4a1083d4689e7a",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 1500,
+      "stock_differing_words": 222,
+      "stock_extra_nonzero_words": 135,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x70",
+        ".rodata+0x0 at +0x78"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "count_long.c",
+      "source_sha256": "d4c622b93d6ebc4dc4062f6bece12ef60048465641526f117b4a1083d4689e7a",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 800,
+      "stock_differing_words": 219,
+      "stock_extra_nonzero_words": 0,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x4c",
+        ".rodata+0x0 at +0x54"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "count_signed.c",
+      "source_sha256": "d1327b8ee0d64df37a039baa6291d3a70ba8616d58ea6a1e269c93b746ff9393",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 1500,
+      "stock_differing_words": 222,
+      "stock_extra_nonzero_words": 135,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x70",
+        ".rodata+0x0 at +0x78"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "count_signed.c",
+      "source_sha256": "d1327b8ee0d64df37a039baa6291d3a70ba8616d58ea6a1e269c93b746ff9393",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 800,
+      "stock_differing_words": 219,
+      "stock_extra_nonzero_words": 0,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x4c",
+        ".rodata+0x0 at +0x54"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "count_unsigned.c",
+      "source_sha256": "91b129dabd12cfe8a65f09100067a5199cdfc17f0d6e1ef174de5640068cb61f",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 1500,
+      "stock_differing_words": 222,
+      "stock_extra_nonzero_words": 135,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x70",
+        ".rodata+0x0 at +0x78"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "count_unsigned.c",
+      "source_sha256": "91b129dabd12cfe8a65f09100067a5199cdfc17f0d6e1ef174de5640068cb61f",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 800,
+      "stock_differing_words": 219,
+      "stock_extra_nonzero_words": 0,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x4c",
+        ".rodata+0x0 at +0x54"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "direct_index.c",
+      "source_sha256": "f89c96f3e9b57fdfdf5fcace62d209cd6b8e8e7f439e83a616da3aa4c0772dc0",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 904,
+      "stock_differing_words": 97,
+      "stock_extra_nonzero_words": 0,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x64",
+        ".rodata+0x0 at +0x6c"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "direct_index.c",
+      "source_sha256": "f89c96f3e9b57fdfdf5fcace62d209cd6b8e8e7f439e83a616da3aa4c0772dc0",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 1004,
+      "stock_differing_words": 226,
+      "stock_extra_nonzero_words": 22,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x4c",
+        ".rodata+0x0 at +0x54"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "direct_index_default_group.c",
+      "source_sha256": "a3f18923c2e59bca436b350ce435a00fd8ce5b3245d08022100f5678496fc12c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 916,
+      "stock_differing_words": 224,
+      "stock_extra_nonzero_words": 2,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x70",
+        ".rodata+0x0 at +0x78"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "direct_index_default_group.c",
+      "source_sha256": "a3f18923c2e59bca436b350ce435a00fd8ce5b3245d08022100f5678496fc12c",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 1000,
+      "stock_differing_words": 226,
+      "stock_extra_nonzero_words": 21,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x4c",
+        ".rodata+0x0 at +0x54"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "direct_index_default_pointer.c",
+      "source_sha256": "12c1bd37a3d5b834724e9318fa819832633622f71ec360c9b5b03409c5c82704",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 916,
+      "stock_differing_words": 224,
+      "stock_extra_nonzero_words": 2,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x70",
+        ".rodata+0x0 at +0x78"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "direct_index_default_pointer.c",
+      "source_sha256": "12c1bd37a3d5b834724e9318fa819832633622f71ec360c9b5b03409c5c82704",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 964,
+      "stock_differing_words": 226,
+      "stock_extra_nonzero_words": 12,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x4c",
+        ".rodata+0x0 at +0x54"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "direct_index_mask.c",
+      "source_sha256": "4a91d23f8d6d36d5af8d5a07e619a6405c87a6ebef39cb1dec0c6fbd8b83b771",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 904,
+      "stock_differing_words": 132,
+      "stock_extra_nonzero_words": 0,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x64",
+        ".rodata+0x0 at +0x6c"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "direct_index_mask.c",
+      "source_sha256": "4a91d23f8d6d36d5af8d5a07e619a6405c87a6ebef39cb1dec0c6fbd8b83b771",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 1008,
+      "stock_differing_words": 225,
+      "stock_extra_nonzero_words": 23,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x50",
+        ".rodata+0x0 at +0x58"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "direct_index_signed_fields.c",
+      "source_sha256": "e6f95016554da81937edc4557d9798288fabba7c82823cd988fec0b7550c0797",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 916,
+      "stock_differing_words": 224,
+      "stock_extra_nonzero_words": 2,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x70",
+        ".rodata+0x0 at +0x78"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "direct_index_signed_fields.c",
+      "source_sha256": "e6f95016554da81937edc4557d9798288fabba7c82823cd988fec0b7550c0797",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 1000,
+      "stock_differing_words": 226,
+      "stock_extra_nonzero_words": 21,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x4c",
+        ".rodata+0x0 at +0x54"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "direct_index_time_before_delta.c",
+      "source_sha256": "7f434d1084b7951c472335917e2b562ce74889c876d2af85b0fe50cebdcbb296",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 916,
+      "stock_differing_words": 224,
+      "stock_extra_nonzero_words": 2,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x70",
+        ".rodata+0x0 at +0x78"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "direct_index_time_before_delta.c",
+      "source_sha256": "7f434d1084b7951c472335917e2b562ce74889c876d2af85b0fe50cebdcbb296",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 1000,
+      "stock_differing_words": 220,
+      "stock_extra_nonzero_words": 21,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x4c",
+        ".rodata+0x0 at +0x54"
+      ],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_8004F300 at .text+0x378",
+        "unpaired R_MIPS_HI16 for D_8004F300 at .text+0x37c"
+      ],
+      "strict_match": false
+    },
+    {
+      "source": "direct_index_unsigned_count.c",
+      "source_sha256": "ef97231b6bdf94a232a4e6782decdd382d5dcf7510ff0602b2d0e5a496becb6f",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 916,
+      "stock_differing_words": 224,
+      "stock_extra_nonzero_words": 2,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x70",
+        ".rodata+0x0 at +0x78"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "direct_index_unsigned_count.c",
+      "source_sha256": "ef97231b6bdf94a232a4e6782decdd382d5dcf7510ff0602b2d0e5a496becb6f",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 1004,
+      "stock_differing_words": 226,
+      "stock_extra_nonzero_words": 22,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x4c",
+        ".rodata+0x0 at +0x54"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "direct_index_word_type.c",
+      "source_sha256": "422c9b1ce368698c9687403b583567516db92dd2265bff2e6a6f664b9fce7eff",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 900,
+      "stock_differing_words": 146,
+      "stock_extra_nonzero_words": 0,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x64",
+        ".rodata+0x0 at +0x6c"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "direct_index_word_type.c",
+      "source_sha256": "422c9b1ce368698c9687403b583567516db92dd2265bff2e6a6f664b9fce7eff",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 1004,
+      "stock_differing_words": 226,
+      "stock_extra_nonzero_words": 22,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x4c",
+        ".rodata+0x0 at +0x54"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "initial_array_type.c",
+      "source_sha256": "873c6a6298a54e1836dea2619f696362bd12612acc6ca56a72ec486e3a3462fb",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 1528,
+      "stock_differing_words": 218,
+      "stock_extra_nonzero_words": 142,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x70",
+        ".rodata+0x0 at +0x78"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "initial_array_type.c",
+      "source_sha256": "873c6a6298a54e1836dea2619f696362bd12612acc6ca56a72ec486e3a3462fb",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 868,
+      "stock_differing_words": 218,
+      "stock_extra_nonzero_words": 0,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x50",
+        ".rodata+0x0 at +0x58"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "pointer_end.c",
+      "source_sha256": "8f8192bad42edf536648c1d635a86e8da3ec12a2faf4d3912b06f2ab5d2f2138",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 656,
+      "stock_differing_words": 225,
+      "stock_extra_nonzero_words": 0,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x6c",
+        ".rodata+0x0 at +0x74"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "pointer_end.c",
+      "source_sha256": "8f8192bad42edf536648c1d635a86e8da3ec12a2faf4d3912b06f2ab5d2f2138",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 800,
+      "stock_differing_words": 226,
+      "stock_extra_nonzero_words": 0,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x4c",
+        ".rodata+0x0 at +0x54"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "pointer_end_unsigned.c",
+      "source_sha256": "9075657976fb4f19c4b255ecb0054ced3a33d0129b57cee187458e6179a5de75",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 656,
+      "stock_differing_words": 225,
+      "stock_extra_nonzero_words": 0,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x6c",
+        ".rodata+0x0 at +0x74"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "pointer_end_unsigned.c",
+      "source_sha256": "9075657976fb4f19c4b255ecb0054ced3a33d0129b57cee187458e6179a5de75",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 800,
+      "stock_differing_words": 226,
+      "stock_extra_nonzero_words": 0,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x4c",
+        ".rodata+0x0 at +0x54"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "pointer_type.c",
+      "source_sha256": "a082742150d84a94af793379775607cd7ab45eefb72c2c57e26724049697c962",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 1500,
+      "stock_differing_words": 225,
+      "stock_extra_nonzero_words": 135,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x6c",
+        ".rodata+0x0 at +0x74"
+      ],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "source": "pointer_type.c",
+      "source_sha256": "a082742150d84a94af793379775607cd7ab45eefb72c2c57e26724049697c962",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 804,
+      "stock_differing_words": 226,
+      "stock_extra_nonzero_words": 0,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x50",
+        ".rodata+0x0 at +0x58"
+      ],
+      "errors": [],
+      "strict_match": false
+    }
+  ],
+  "linker_sha256": "4c398a15e38dbb71a8420628aa1da5c80a089818440666f4ca7eb40d2fc37878",
+  "source_free_table_receipt_sha256": "5ce55846a4f15b1ccb0509eead322cb1ac19d9c03168b9a5308e65648be93214",
+  "production_data_ownership": "unassigned"
+}

@@ -1,0 +1,106 @@
+{
+  "schema_version": 2,
+  "source_parent": "53210aa1f374c65ec66ed6c1e9692d8e45453c10",
+  "functions": 3,
+  "selected_source_bytes": 2268,
+  "new_unique_attempts": 3,
+  "reclassified_prior_nonmatches": 0,
+  "local_match_functions": 0,
+  "local_match_bytes": 0,
+  "complete_nonmatch_functions": 3,
+  "result": "Three newly mapped complete nonmatches; stock admission and production ownership remain separate gates",
+  "table_proof": "cloud/work/boot_tail/dispatch-table-proof/dispatch-table-proof-2026-10-04.json",
+  "table_proof_sha256": "5ce55846a4f15b1ccb0509eead322cb1ac19d9c03168b9a5308e65648be93214",
+  "entries": [
+    {
+      "address": "0x8001B9F8",
+      "name": "func_8001B9F8",
+      "size": 960,
+      "packet": "BT03-mapped-voice-dispatch",
+      "reviewer": "Independent paired dispatch reviewer",
+      "reviewed_commit": "94c2940759a3dc425c7fca8bb39d78b41ba77c95",
+      "source_path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/nonmatch/func_8001B9F8.c",
+      "source_sha256": "4db951c8530624f4e789ac4d873562485ff1b6c1d4223a661f78825e4248f40f",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "expected_match": false,
+      "expected_differing_words": 83,
+      "expected_stock_unverified": [
+        ".rodata+0x0 at +0x68",
+        ".rodata+0x0 at +0x70"
+      ],
+      "proof_state": "complete-nonmatch; independent local-table research proof; stock admission rejected",
+      "matching_blocker": "Complete independently reviewed nonmatch. Stock score retains two unverified local-rodata references; separate full relocation proof resolves all 23 records with 83 unmasked body differences. Compiler table equals all approved entries. Exact 960-byte function extent. Production table ownership remains unassigned; zero matching credit.",
+      "independent_relocation": {
+        "resolved_records": 23,
+        "unmasked_differing_words": 83,
+        "table_entries": 6,
+        "table_exact": true,
+        "production_storage_owner": "unassigned",
+        "receipt_path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/verification.json",
+        "receipt_sha256": "3dee083b3101fb59423d3b71c14eaf89776eed142dfa0e5863f4183a0920cd36"
+      },
+      "independent_review_path": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/independent_review.json",
+      "independent_review_sha256": "5fabee60010fc2dbacf2805bbb1888d4a07d26722678aa710bb8f87fae290975"
+    },
+    {
+      "address": "0x8001BE14",
+      "name": "func_8001BE14",
+      "size": 904,
+      "packet": "BT03-mapped-parameter-dispatch",
+      "reviewer": "Independent paired dispatch reviewer",
+      "reviewed_commit": "623c2d0fc5b0f011f5b42522ee5e4f486630acab",
+      "source_path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/func_8001BE14_NONMATCH.c",
+      "source_sha256": "62c2e4af4057da50de7a4184c55300d9f0da3af9976bcc862ad2f03a3bfa444a",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "expected_match": false,
+      "expected_differing_words": 76,
+      "expected_stock_unverified": [
+        ".rodata+0x0 at +0x64",
+        ".rodata+0x0 at +0x6c"
+      ],
+      "proof_state": "complete-nonmatch; independent local-table research proof; stock admission rejected",
+      "matching_blocker": "Complete independently reviewed nonmatch. Stock score retains two unverified local-rodata references; separate full relocation proof resolves all 23 records with 76 unmasked body differences. Compiler table equals all approved entries. Exact 904-byte function extent. Production table ownership remains unassigned; zero matching credit.",
+      "independent_relocation": {
+        "resolved_records": 23,
+        "unmasked_differing_words": 76,
+        "table_entries": 6,
+        "table_exact": true,
+        "production_storage_owner": "unassigned",
+        "receipt_path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/verification.json",
+        "receipt_sha256": "23110282f6ba871bcf2e3a464001a1576fbf29febf7a721c60621ad37fdde2b8"
+      },
+      "independent_review_path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/independent_review.json",
+      "independent_review_sha256": "2680fb6e3cb04813f76b1677762cb0b15de2b53ab937a3b8a938f31f2af0562f"
+    },
+    {
+      "address": "0x80023BDC",
+      "name": "func_80023BDC",
+      "size": 404,
+      "packet": "BT05-mapped-macro-dispatch",
+      "reviewer": "Independent paired dispatch reviewer",
+      "reviewed_commit": "46765f5fafac81da31069e77d6d906eae3f60765",
+      "source_path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/nonmatch/func_80023BDC.c",
+      "source_sha256": "d0065dfc1d6574935fab467a9cae0c04e1b07ab39a68ad0cf65b5bdf34ba6ea5",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "expected_match": false,
+      "expected_differing_words": 82,
+      "expected_stock_unverified": [
+        ".rodata+0x0 at +0x9c",
+        ".rodata+0x0 at +0xa4"
+      ],
+      "proof_state": "complete-nonmatch; independent local-table research proof; stock admission rejected",
+      "matching_blocker": "Complete independently reviewed nonmatch. Stock score retains two unverified local-rodata references; separate full relocation proof resolves all 10 records with 82 unmasked body differences. Compiler table does not match: every case destination is four bytes early. Exact 404-byte function extent. Production table ownership remains unassigned; zero matching credit.",
+      "independent_relocation": {
+        "resolved_records": 10,
+        "unmasked_differing_words": 82,
+        "table_entries": 5,
+        "table_exact": false,
+        "production_storage_owner": "unassigned",
+        "receipt_path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/verification.json",
+        "receipt_sha256": "20f910db80ea707189c88bcbcd0c5806bbdf5cbe0d9465a73ca3c547844b4814"
+      },
+      "independent_review_path": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/independent_review.json",
+      "independent_review_sha256": "529233fa7c32a8502a063ac91adf2b4f4054422c633b0a8a6ab58dea8be1a9b0"
+    }
+  ]
+}

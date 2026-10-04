@@ -1,0 +1,72 @@
+{
+  "function": "func_80023BDC",
+  "function_start": "0x80023BDC",
+  "function_end_exclusive": "0x80023D70",
+  "function_size_bytes": 404,
+  "canonical_function_sha256": "d57def138f89aebb12de8b36f68ea4f8a49d5cac344ec8ac4ce01572dafd8f2a",
+  "dispatch_pc": "0x80023C88",
+  "guard_failure_target": "0x80023D00",
+  "table_ram_start": "0x8002D950",
+  "table_ram_end_exclusive": "0x8002D964",
+  "table_rom_start": "0x0002E550",
+  "table_rom_end_exclusive": "0x0002E564",
+  "asset_start_offset": "0x0001E550",
+  "asset_end_offset_exclusive": "0x0001E564",
+  "table_size_bytes": 20,
+  "table_sha256": "60d6380ebbc6fb7dd406b1d06ec8377611531c68045232315776de5aeb2e3e90",
+  "entry_width_bytes": 4,
+  "encoding": "big-endian absolute MIPS virtual address",
+  "index_rule": "unsigned(selector - 0) < 5; address = table + 4 * index",
+  "selector_to_target": [
+    {
+      "selector": 0,
+      "target": "0x80023C90",
+      "target_function_offset": "0x000000B4"
+    },
+    {
+      "selector": 1,
+      "target": "0x80023C9C",
+      "target_function_offset": "0x000000C0"
+    },
+    {
+      "selector": 2,
+      "target": "0x80023CA8",
+      "target_function_offset": "0x000000CC"
+    },
+    {
+      "selector": 3,
+      "target": "0x80023CBC",
+      "target_function_offset": "0x000000E0"
+    },
+    {
+      "selector": 4,
+      "target": "0x80023C90",
+      "target_function_offset": "0x000000B4"
+    }
+  ],
+  "checks": {
+    "direct_unpack_equals_independent_big_endian_decode": true,
+    "canonical_guard_index_stride_base_load_and_jump_chain_validated": true,
+    "guard_failure_skips_table_load": true,
+    "all_targets_aligned_and_inside_function_extent": true
+  },
+  "readiness": "Mapping gap resolved; available for a separate matching claim. Compilation, relocation resolution, strict scoring and semantic validation remain required.",
+  "proof_base": "cf4b9c619c72e83aa5da2e8b5c110765f9b03693",
+  "provenance": {
+    "rom_start": "0x00001000",
+    "rom_end_exclusive": "0x0002F4E0",
+    "ram_start": "0x80000400",
+    "ram_end_exclusive": "0x8002E8E0",
+    "asset_rom_start": "0x00010000",
+    "canonical_boot_image_sha256": "fdccac846e1c2bbc431860f4d76d69f2820fccee4f809a98cb495d8dd0499482",
+    "sources": [
+      "tools/conveyor/pipeline/ovl_targets.py:223-245",
+      "asm/us/boot_tail/extents.json:3-8",
+      "splat.us.yaml:180-186"
+    ],
+    "canonical_target_checksums": "PASS",
+    "relevant_metadata_unchanged_at_base": true,
+    "scope": "Only the three specifically authorized data slices were opened in assets/us/data.bin. No asset-wide hash or whole-boot-image identity check was performed."
+  },
+  "storage_ownership": "No rom_owned_data.json ROM-slot owner is declared for these ranges. The mappings establish function dispatch use, not a source translation-unit or production linker ownership assignment."
+}

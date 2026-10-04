@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "pr": "https://github.com/cabi24/SFRush2049-decomp/pull/77",
+  "source_head": "12ae34a64dd3a9004e1b949c9acf4557542df2f2",
+  "source_tree": "7c37dbb0cfebf4a9152c2be7f66cd85d9b1be747",
+  "source_parent": "14a7a4ef2a244848f9ab9b7363d4246b40a815fc",
+  "workflow_run": 37184548717,
+  "workflow_url": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37184548717",
+  "conclusion": "success",
+  "completed_utc": "2026-10-04T07:06:24Z",
+  "checked_utc": "2026-10-04T07:08:17Z",
+  "reclassified_matches": 1,
+  "added_matching_bytes": 276,
+  "new_unique_attempts": 0,
+  "cumulative_unique_new_matches": 240,
+  "cumulative_unique_new_matching_bytes": 28372,
+  "unique_attempts": 394,
+  "verified_local_equivalent_commit": "2db0f44b5d63d8324c1812fbb6e78bf5034a8fd4",
+  "remote_readback": "Exact source head/tree/parent confirmed by Git-data; workflow run independently confirms exact head and completed success; draft open and mergeable. Body updated with green receipt.",
+  "note": "Original one-pointer ABI, valid finite lists and native no-retry counter-wrap behavior remain explicit. No merge or cartridge claim."
+}
