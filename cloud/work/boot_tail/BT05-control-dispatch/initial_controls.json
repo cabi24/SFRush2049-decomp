@@ -1,0 +1,26 @@
+[
+  {
+    "name": "func_80023754",
+    "source_sha256": "584723e46d33dc2b8705b7308eeaf6a187b0e4e1545d67ac3e325b135d42a117",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "differing_words": 22,
+    "total_words": 49,
+    "extra_words": 0,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  },
+  {
+    "name": "func_80023754",
+    "source_sha256": "584723e46d33dc2b8705b7308eeaf6a187b0e4e1545d67ac3e325b135d42a117",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "differing_words": 48,
+    "total_words": 49,
+    "extra_words": 23,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "strict_match": false
+  }
+]

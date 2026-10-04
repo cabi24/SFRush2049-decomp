@@ -1,0 +1,15 @@
+{
+  "method": "Unchanged workbench; temporary canonical-word target object and original O2 candidate. Raw objects/words not committed; strict relocated score decides acceptance.",
+  "results": [
+    {
+      "name": "func_8001A5D8",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "7f242542caeff13275c9a624a3752153a64bfcade49516855fe1d023ad2e82c7",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 19,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  21 words=  19 raw=  21 opcodes=   5 gaps=   4 reloc_syms=   2 norm=  15 regs=  16 fp=   0 insns=  32 frame=  -40 sha1=3502893cec33 /tmp/routing-8001A5D8-O2.o true_insn_delta=+0 geometry_edit_distance=15 opcode_distance=4",
+      "recorded_utc": "2026-10-03T23:41:40.042959+00:00"
+    }
+  ]
+}

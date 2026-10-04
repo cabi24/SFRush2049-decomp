@@ -1,0 +1,28 @@
+{
+  "state": "integrating-source-frozen",
+  "owner": "/root/match_boot_tail_bt05_bt07",
+  "packet": "BT05-larger-trio",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "master_anchor": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x80022678",
+      "size": 292,
+      "end_exclusive": "0x8002279C"
+    },
+    {
+      "address": "0x800233B0",
+      "size": 368,
+      "end_exclusive": "0x80023520"
+    },
+    {
+      "address": "0x800239A4",
+      "size": 304,
+      "end_exclusive": "0x80023AD4"
+    }
+  ],
+  "bytes": 964,
+  "edit_scope": "Only named matching sources and cloud/work/boot_tail/BT05-larger-trio/**",
+  "stop": "Real native ABI and domains; natural C89/O2/O1, bounded directed variants after diagnosis. No protected edits, overlap, unsupported declaration sweeps or prior residual reopening. No full clones or duplicate compiler copies; preserve all authored data.",
+  "peer_approved_head": "0baed23f011b1b75bcdac34f4d7c7200fa102d76"
+}

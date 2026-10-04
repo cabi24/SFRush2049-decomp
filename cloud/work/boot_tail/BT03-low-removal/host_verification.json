@@ -1,0 +1,32 @@
+{
+  "result": "PASS",
+  "cases": 4500,
+  "method": "Final C compiled as C89 on host; deterministic whole-storage comparison against logical model.",
+  "limitations": "Valid bounded storage only; packed fields tested by logical value, not host byte order as a target substitute. No ROM or cartridge claim.",
+  "results": [
+    {
+      "function": "func_800158D8",
+      "cases": 1500,
+      "result": "PASS",
+      "record_bytes": 8,
+      "id_offset": 4,
+      "source": "func_800158D8_NONMATCH.c"
+    },
+    {
+      "function": "func_80015F28",
+      "cases": 1500,
+      "result": "PASS",
+      "record_bytes": 8,
+      "id_offset": 4,
+      "source": "func_80015F28_NONMATCH.c"
+    },
+    {
+      "function": "func_8001661C",
+      "cases": 1500,
+      "result": "PASS",
+      "record_bytes": 8,
+      "id_offset": 0,
+      "source": "func_8001661C_NONMATCH.c"
+    }
+  ]
+}

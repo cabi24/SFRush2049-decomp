@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "claim_commit": "9448eb24",
+  "manifest": [
+    "boot_tail_8000f3a4.s: OK",
+    "extents.json: OK",
+    "symbols.json: OK"
+  ],
+  "compiler_matches_packet2_pin": true,
+  "census": {
+    "functions": 439,
+    "bytes": 99120,
+    "equal": true
+  },
+  "existing_getter_strict_match": true,
+  "strict_match_functions": 2,
+  "strict_match_bytes": 220,
+  "nonmatch_functions": 2,
+  "nonmatch_bytes": 320,
+  "sources": [
+    {
+      "name": "func_800107E0",
+      "native_bytes": 96,
+      "source": "cloud/matches/boot_tail/func_800107E0.c",
+      "source_sha256": "0790375bda181a3b72a7ec5d8e59fbf565df5cf3bb5dabeb97a52baa83ed532b",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "strict_match": true,
+      "differing_words": 0,
+      "total_words": 24,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "o1_control": {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "strict_match": false,
+        "differing_words": 16,
+        "total_words": 24,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    },
+    {
+      "name": "func_80010840",
+      "native_bytes": 160,
+      "source": "cloud/work/boot_tail/BT02-final-small/nonmatch/func_80010840.c",
+      "source_sha256": "3184a8c7a2aa3cfa67a24b31e3025e132328b2bb7ce03699efc33191d89e230e",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "strict_match": false,
+      "differing_words": 14,
+      "total_words": 40,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "o1_control": {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "strict_match": false,
+        "differing_words": 37,
+        "total_words": 40,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    },
+    {
+      "name": "func_800108E0",
+      "native_bytes": 160,
+      "source": "cloud/work/boot_tail/BT02-final-small/nonmatch/func_800108E0.c",
+      "source_sha256": "6784f16aedcef559f16895b76d6bc510a0eb3b9e2efd1e3ea0d7b6c4dd86d201",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "strict_match": false,
+      "differing_words": 14,
+      "total_words": 40,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "o1_control": {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "strict_match": false,
+        "differing_words": 37,
+        "total_words": 40,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    },
+    {
+      "name": "func_80013D70",
+      "native_bytes": 124,
+      "source": "cloud/matches/boot_tail/func_80013D70.c",
+      "source_sha256": "f21843a9094e57822aed7d47be2a730cefe2a9bf632931756207c630e8166bc5",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "strict_match": true,
+      "differing_words": 0,
+      "total_words": 31,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "o1_control": {
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "strict_match": false,
+        "differing_words": 25,
+        "total_words": 31,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    }
+  ],
+  "baseline_controls": [
+    {
+      "source": "cloud/work/boot_tail/BT02-final-small/controls/func_800107E0_baseline.c",
+      "source_sha256": "74c071754c3b1e7ffdd9b9244c48e44445908f1b560f7b7ee2902a3555117186",
+      "strict_match": false,
+      "differing_words": 16,
+      "total_words": 24,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "source": "cloud/work/boot_tail/BT02-final-small/controls/func_80010840_baseline.c",
+      "source_sha256": "3184a8c7a2aa3cfa67a24b31e3025e132328b2bb7ce03699efc33191d89e230e",
+      "strict_match": false,
+      "differing_words": 14,
+      "total_words": 40,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "source": "cloud/work/boot_tail/BT02-final-small/controls/func_800108E0_baseline.c",
+      "source_sha256": "6784f16aedcef559f16895b76d6bc510a0eb3b9e2efd1e3ea0d7b6c4dd86d201",
+      "strict_match": false,
+      "differing_words": 14,
+      "total_words": 40,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    }
+  ],
+  "harness_hashes": {
+    "verify.py": "07ef990ed916f2e7d9015555831e0372150ff5303591afd8b21ff71875058159",
+    "test_host.py": "933a8718831d554c36d3770b08f76f31e3fdbec0c5687530bbee5137f4f56f7a",
+    "host_behavior.c": "15de5a650446364046ffd59d2b7935f0da445afad566ddc3f5413a69882f63b6"
+  }
+}

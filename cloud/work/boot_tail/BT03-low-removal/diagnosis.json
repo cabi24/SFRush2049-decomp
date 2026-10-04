@@ -1,0 +1,50 @@
+{
+  "method": "Workbench diagnose on local canonical target and fully relocated final O2 candidate objects; native words and objects remain private. Final source comment/type labels do not alter compared objects.",
+  "results": [
+    {
+      "function": "func_800158D8",
+      "source_sha256": "e6044e6e6fe590c91723d453b9fbfaefd76a10e15bd514bd38def333e70b9882",
+      "routing": "structural",
+      "owning_pass": "cfe-spelling",
+      "ownership_basis": "heuristic",
+      "lever_class": "none-known",
+      "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+      "target_frame": -24,
+      "candidate_frame": -24,
+      "positional_word_mismatches": 8,
+      "aligned_insertions": 3,
+      "aligned_deletions": 3,
+      "alignment_caution": "caution: alignment inserted 6 gaps (2 opcode mismatches) -- compare candidates on positional words (words=), not aligned rows"
+    },
+    {
+      "function": "func_80015F28",
+      "source_sha256": "3706258cb69e89503491f56bfde4c7975972959be23461d4a963976d313fe2e7",
+      "routing": "structural",
+      "owning_pass": "cfe-spelling",
+      "ownership_basis": "heuristic",
+      "lever_class": "none-known",
+      "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+      "target_frame": -24,
+      "candidate_frame": -24,
+      "positional_word_mismatches": 8,
+      "aligned_insertions": 3,
+      "aligned_deletions": 3,
+      "alignment_caution": "caution: alignment inserted 6 gaps (2 opcode mismatches) -- compare candidates on positional words (words=), not aligned rows"
+    },
+    {
+      "function": "func_8001661C",
+      "source_sha256": "5736a708bbdadea81b42019aa7f5cde75d6d0e9b23f5e47a162b5914a0d08aee",
+      "routing": "structural",
+      "owning_pass": "cfe-spelling",
+      "ownership_basis": "heuristic",
+      "lever_class": "none-known",
+      "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+      "target_frame": -32,
+      "candidate_frame": -32,
+      "positional_word_mismatches": 31,
+      "aligned_insertions": 6,
+      "aligned_deletions": 6,
+      "alignment_caution": "caution: alignment inserted 12 gaps (8 opcode mismatches) -- compare candidates on positional words (words=), not aligned rows"
+    }
+  ]
+}

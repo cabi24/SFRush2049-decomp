@@ -1,5 +1,5 @@
 {
-  "state": "active",
+  "state": "integrating-source-frozen",
   "owner": "/root/match_boot_tail_bt02_finalsmall",
   "packet": "BT02-final-small",
   "branch": "dot/boot-tail-bt02-final-small",
@@ -29,5 +29,6 @@
   "bytes": 540,
   "dependency_order": "Audit and attempt 107E0 before its10840/108E0 callers, then13D70.",
   "edit_scope": "Only listed matching sources and cloud/work/boot_tail/BT02-final-small/**",
-  "stop": "Real canonical callee ABI and bounded natural C89/O2/O1;20 directed variants maximum per hypothesis, diagnosis first. No old-target reopening, overlap, protected edits or rodata-proof substitutions. Use /tmp isolated worktree."
+  "stop": "Real canonical callee ABI and bounded natural C89/O2/O1;20 directed variants maximum per hypothesis, diagnosis first. No old-target reopening, overlap, protected edits or rodata-proof substitutions. Use /tmp isolated worktree.",
+  "peer_approved_head": "525b6e4ec707e616c0c08e1dde2cf8c1838ce87b"
 }

@@ -1,0 +1,188 @@
+{
+  "result": "PASS",
+  "meaning": "Expected complete-nonmatch residuals and pinned-input preflight reproduced.",
+  "strict_match_functions": 0,
+  "strict_match_bytes": 0,
+  "complete_nonmatch_functions": 2,
+  "complete_nonmatch_bytes": 932,
+  "manifest": [
+    "boot_tail_8000f3a4.s: OK",
+    "extents.json: OK",
+    "symbols.json: OK"
+  ],
+  "census_functions": 439,
+  "census_bytes": 99120,
+  "existing_getter_strict_match": true,
+  "sources": [
+    {
+      "name": "func_80011A64",
+      "source": "nonmatch/func_80011A64.c",
+      "source_sha256": "39bae3bcb3dcf8edd0f0a52874536737b26f14bac295d1e20fe98e41d922e5b3",
+      "scores": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "strict_match": false,
+          "differing_words": 107,
+          "total_words": 110,
+          "extra_words": 1,
+          "unresolved": [],
+          "unverified": [],
+          "errors": []
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "strict_match": false,
+          "differing_words": 104,
+          "total_words": 110,
+          "extra_words": 5,
+          "unresolved": [],
+          "unverified": [],
+          "errors": []
+        }
+      ]
+    },
+    {
+      "name": "func_80011D74",
+      "source": "nonmatch/func_80011D74.c",
+      "source_sha256": "3ddda0b35e67d02a70b2ce4482b9113bc9b4cc8639e30d5f3c8c6875ddf0b82b",
+      "scores": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "strict_match": false,
+          "differing_words": 24,
+          "total_words": 123,
+          "extra_words": 0,
+          "unresolved": [],
+          "unverified": [],
+          "errors": []
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "strict_match": false,
+          "differing_words": 122,
+          "total_words": 123,
+          "extra_words": 14,
+          "unresolved": [],
+          "unverified": [],
+          "errors": []
+        }
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "name": "func_80011A64",
+      "variant": "baseline",
+      "source_sha256": "39bae3bcb3dcf8edd0f0a52874536737b26f14bac295d1e20fe98e41d922e5b3",
+      "strict_match": false,
+      "differing_words": 107,
+      "total_words": 110,
+      "extra_words": 1,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "name": "func_80011A64",
+      "variant": "register_parameter",
+      "source_sha256": "25a29d295751f0750d3a95843269d9b21386a58f4e5a2cf057fa79b9c1618633",
+      "strict_match": false,
+      "differing_words": 107,
+      "total_words": 110,
+      "extra_words": 1,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "name": "func_80011A64",
+      "variant": "K_and_R_definition",
+      "source_sha256": "e6551dc2c02bf76605e9b1582a3d88ec52b4e574215610d3edf77779d723c3f3",
+      "strict_match": false,
+      "differing_words": 107,
+      "total_words": 110,
+      "extra_words": 1,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "name": "func_80011A64",
+      "variant": "split_increment",
+      "source_sha256": "9fdb1960bac673338a6268715a0f42c39cca2cb328d711e16520b35ac7682631",
+      "strict_match": false,
+      "differing_words": 107,
+      "total_words": 110,
+      "extra_words": 1,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "name": "func_80011A64",
+      "variant": "signed_multiplier",
+      "source_sha256": "dbcbbd8246472abfed38348edc3d66f7987c52ac6d8975b4c06fa9af2ba94589",
+      "strict_match": false,
+      "differing_words": 107,
+      "total_words": 110,
+      "extra_words": 1,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "name": "func_80011D74",
+      "variant": "baseline",
+      "source_sha256": "0ccbb81f2be6324f45b70496c5fc8c5703c17a705020e6ec813e3ee52e31bea8",
+      "strict_match": false,
+      "differing_words": 97,
+      "total_words": 123,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "name": "func_80011D74",
+      "variant": "register_parameter",
+      "source_sha256": "1dc38068d5e4270c985b85c5fbf11cc5882ca684dbbb0342d014a43561c03ae2",
+      "strict_match": false,
+      "differing_words": 97,
+      "total_words": 123,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "name": "func_80011D74",
+      "variant": "K_and_R_definition",
+      "source_sha256": "d76a60091c5d9fff9189210eb854bdf996e1c9468cd7498f27153d72782bd5bb",
+      "strict_match": false,
+      "differing_words": 97,
+      "total_words": 123,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    },
+    {
+      "name": "func_80011D74",
+      "variant": "multiply_divide",
+      "source_sha256": "a731196b8b56da34bd5ea92496f5d3c9bb2356236a708c791e7aa1be8570b20d",
+      "strict_match": false,
+      "differing_words": 97,
+      "total_words": 123,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": []
+    }
+  ],
+  "harness_hashes": {
+    "verify.py": "2933d07b0a061661a6839480fe24fb71f697432601c967f380b1203a8cb95eb0",
+    "test_host.py": "9f0d4c0a78f61fbfddfa8176850a053c09d657f6b6abe32e173692301572a101",
+    "host_behavior.c": "3fb34d723fb44d3c47f95be290dcab122ca384362ad32329ccecc21b59478724",
+    "host_types.h": "4ae85fd9b7d3399f45a0399d06f08992ecaa10e375855295968b565c534501da"
+  }
+}

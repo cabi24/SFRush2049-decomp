@@ -1,0 +1,47 @@
+{
+  "result": "PASS_FOR_COMPLETE_NONMATCH_RESEARCH",
+  "reviewer": "BT03-high independent reviewer",
+  "reviewed_commit": "85b8aa283f50c044eff68c5d31b07f61756e9f23",
+  "reviewed_tree": "068129f9c7528a6a3597c91f55dde964cddb660d",
+  "matching_functions": 0,
+  "matching_bytes": 0,
+  "complete_nonmatching_functions": 1,
+  "complete_nonmatching_bytes": 196,
+  "strict_replay": "Both final O2/O1 rows and exact retained source hash independently reproduced from a separate checkout:22/49 O2,48/49+23 O1; no relocation uncertainty.",
+  "source_abi": "Reviewed complete source and all49 native words. Four real inputs, saved combination/index bytes, state flag+36, four4-byte entries and count+16 agree. Native count guard bounds every written index0..3; byte controller result and signed-halfword scale fields match. External21548 remains a genuine byte-input declaration only; its separately blocked switch mappings are not asserted.",
+  "semantics": "Bounded signed16*256 cannot overflow signed32; division-by100 and final halfword conversion follow documented target conventions. Independently compiled the actual source as strictC89 with ASan/UBSan:65536 signed-halfword scale cases plus1024 count/combination/flag combinations passed. The translator used a synthetic byte-result contract, not fabricated native table semantics.",
+  "scope": "Only owned research files changed; zero new submissions/verified bytes; whitespace clean and protected files unchanged.",
+  "verification_sha256": "5c71b21c134ffcdcec5887bb9de8dc425d9aba765ed63afaa1d1afa10a89fb37",
+  "results": [
+    {
+      "name": "func_80023754",
+      "bytes": 196,
+      "source_path": "cloud/work/boot_tail/BT05-control-dispatch/nonmatch/func_80023754.c",
+      "source_sha256": "584723e46d33dc2b8705b7308eeaf6a187b0e4e1545d67ac3e325b135d42a117",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 22,
+      "total_words": 49,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80023754",
+      "bytes": 196,
+      "source_path": "cloud/work/boot_tail/BT05-control-dispatch/nonmatch/func_80023754.c",
+      "source_sha256": "584723e46d33dc2b8705b7308eeaf6a187b0e4e1545d67ac3e325b135d42a117",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 48,
+      "total_words": 49,
+      "extra_words": 23,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/match_boot_tail_lookup_five",
+  "reviewed_commit": "d8627b6357b52cbb3ce9b0995cede8361812f7f5",
+  "reviewed_tree": "53e5f9fe00aecfd19a9629d9f92b5c7b2241bedf",
+  "result": "PASS",
+  "strict_match_functions": 2,
+  "strict_match_bytes": 220,
+  "complete_nonmatch_functions": 2,
+  "complete_nonmatch_bytes": 320,
+  "receipts_reproduced": {
+    "verification.json": "75d7f9ba77aa42f5a2fa9e17eb1357a82defe267e1bcbf00e5f434c46155ef32",
+    "host_verification.json": "2952ec6d2fda6494e4f5acaa98cab634c7baf0c6c0d427747c18c7eb61c26898"
+  },
+  "receipt_json_equality": true,
+  "independent_cli_matches": [
+    "func_800107E0",
+    "func_80013D70"
+  ],
+  "native_bodies_audited": [
+    "800107E0",
+    "80010840",
+    "800108E0",
+    "80013D70"
+  ],
+  "actual_callees_audited": [
+    "80014E10",
+    "80017108",
+    "800199F4",
+    "8001C1D8",
+    "8001C390",
+    "8001E0C0",
+    "800143C0",
+    "80014434",
+    "800198C8",
+    "8001B154",
+    "800139D4"
+  ],
+  "supporting_callers_or_accesses": [
+    "80013DEC",
+    "8001F13C",
+    "800202C4"
+  ],
+  "abi_findings": [
+    "107E0 has one real 32-bit frequency input; only its 1C1D8 callee reads an incoming argument.",
+    "10840 and 108E0 have six real o32 inputs: word, three bytes, halfword, word; setup takes the frequency address and can mutate it before initialization.",
+    "13D70 has two genuine unsigned halfwords, indexes a four-byte pointer table, performs a wrapping word decrement, reloads before two no-argument callbacks, and always forwards buffer/count and returns one.",
+    "The volatile flag is a supported source-level access hypothesis: native 202C4 explicitly sets and clears the same gate, and 1F13C reads it before continuing. It does not establish thread synchronization or prove the original declaration."
+  ],
+  "host_cases_per_configuration": 2168,
+  "host_configurations": [
+    "strict C89",
+    "ASan/UBSan with leak detection disabled"
+  ],
+  "protected_path_changes": false,
+  "whitespace_check": "PASS",
+  "limitations": [
+    "Exact aggregate-head CI remains pending.",
+    "The two initializer wrappers remain nonmatches at 14/40 O2 despite complete behavior tests.",
+    "No hardware, asynchronous timing, external audio effects, native buffer bound, or cartridge integration proof is claimed."
+  ]
+}

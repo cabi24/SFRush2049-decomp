@@ -1,12 +1,12 @@
 # D10: boot-tail runtime research and matching
 
 The 412 assigned functions account for **95,012 B**.
-The current ledger records **158 open functions / 72,124 B**,
+The current ledger records **104 open functions / 61,900 B**,
 **0 confirmed non-C rows**, **1
 pre-existing verified bodies / 12 B**, and
-**165 newly verified bodies / 12,060 B**.
-There are **18 claimed functions / 2,200 B** and
-**70 nonmatches / 8,616 B**.
+**183 newly verified bodies / 14,260 B**.
+There are **28 claimed functions / 4,248 B** and
+**96 nonmatches / 14,592 B**.
 
 Packet 1 itself introduced zero matching bodies or verified bytes. Its initial
 verified entry imports the existing 12-byte `func_80010A00` PR #54 receipt, now
@@ -157,10 +157,10 @@ existing getter is excluded from the queue. Packet 2 must pass first.
 |---:|---|---|---:|---:|---|
 | 1 | BT06 | `0x80024BF0–0x80024FB0` | 4 / 952 | 0 / 0 | C15 (HYPOTHESIS) |
 | 2 | BT03 | `0x80014550–0x80020610` | 230 / 49,072 | 330 / 379 | C05, C06, C07, C08, C09, C10, C11, C12 (HYPOTHESIS) |
-| 3 | BT02 | `0x80010450–0x80014550` | 59 / 16,624 | 55 / 83 | C02, C03, C04 (HYPOTHESIS) |
-| 4 | BT05 | `0x800218CC–0x80024BF0` | 62 / 13,084 | 80 / 141 | C14 (HYPOTHESIS) |
-| 5 | BT01 | `0x8000F8D0–0x80010450` | 1 / 284 | 0 / 0 | C01 (HYPOTHESIS) |
-| 6 | BT04 | `0x80020610–0x800218CC` | 27 / 4,784 | 18 / 18 | C13 (HYPOTHESIS) |
+| 3 | BT01 | `0x8000F8D0–0x80010450` | 1 / 284 | 0 / 0 | C01 (HYPOTHESIS) |
+| 4 | BT02 | `0x80010450–0x80014550` | 59 / 16,624 | 55 / 83 | C02, C03, C04 (HYPOTHESIS) |
+| 5 | BT04 | `0x80020610–0x800218CC` | 27 / 4,784 | 18 / 18 | C13 (HYPOTHESIS) |
+| 6 | BT05 | `0x800218CC–0x80024BF0` | 62 / 13,084 | 80 / 141 | C14 (HYPOTHESIS) |
 | 7 | BT07 | `0x80024FB0–0x80026360` | 25 / 4,980 | 27 / 39 | C16 (HYPOTHESIS) |
 | 8 | BT08 | `0x80026360–0x800277D0` | 4 / 5,232 | 3 / 3 | C17 (HYPOTHESIS) |
 
@@ -258,8 +258,8 @@ repository regression, native equality proof, target/toolchain check or ROM test
 ```json
 {
   "all_tail_distinct_directed_edges": 671,
-  "claimed_bytes": 2200,
-  "claimed_functions": 18,
+  "claimed_bytes": 4248,
+  "claimed_functions": 28,
   "cluster_count": 8,
   "cohort_count": 17,
   "game_called_all_inventory": 21,
@@ -270,13 +270,13 @@ repository regression, native equality proof, target/toolchain check or ROM test
   "in_scope_functions": 412,
   "inventory_function_bytes": 99120,
   "inventory_functions": 439,
-  "new_verified_bytes": 12060,
-  "new_verified_functions": 165,
+  "new_verified_bytes": 14260,
+  "new_verified_functions": 183,
   "non_c_functions": 0,
-  "nonmatch_bytes": 8616,
-  "nonmatch_functions": 70,
-  "open_bytes": 72124,
-  "open_functions": 158,
+  "nonmatch_bytes": 14592,
+  "nonmatch_functions": 96,
+  "open_bytes": 61900,
+  "open_functions": 104,
   "preexisting_verified_bytes": 12,
   "preexisting_verified_functions": 1,
   "ultralib_excluded_bytes": 4048,
@@ -489,3 +489,14 @@ Across 253 distinct attempts, 69 complete nonmatches / 8,520 B and one 96-byte
 blocked source lead remain outside matching credit. See wave8/README.md and
 wave8/unique_totals.json. Prior proof is in wave7/ci.json. Current successor
 packets are excluded from this frozen cut; D10 remains unchanged.
+
+## Ninth cut: twenty-eight additional peer-reviewed bodies
+
+The first eight source cuts now have 183 unique new exact-CI-verified bodies /
+14,260 B. Ninth cut adds 28 peer-reviewed strict local bodies / 4,248 B and 26
+complete nonmatches / 5,976 B. If its exact-head CI passes, the unique new matching
+union becomes 211 bodies / 18,508 B, plus the separate 12-byte getter. Across 307
+distinct attempts, 95 complete nonmatches / 14,496 B and one 96-byte blocked lead
+remain outside matching credit. See wave9/README.md and wave9/unique_totals.json.
+Prior proof is carried in wave8/ci.json; current successor packets are excluded
+from the frozen cut. D10 remains unchanged.

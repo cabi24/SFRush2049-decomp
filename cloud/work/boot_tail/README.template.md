@@ -354,3 +354,14 @@ Across 253 distinct attempts, 69 complete nonmatches / 8,520 B and one 96-byte
 blocked source lead remain outside matching credit. See wave8/README.md and
 wave8/unique_totals.json. Prior proof is in wave7/ci.json. Current successor
 packets are excluded from this frozen cut; D10 remains unchanged.
+
+## Ninth cut: twenty-eight additional peer-reviewed bodies
+
+The first eight source cuts now have 183 unique new exact-CI-verified bodies /
+14,260 B. Ninth cut adds 28 peer-reviewed strict local bodies / 4,248 B and 26
+complete nonmatches / 5,976 B. If its exact-head CI passes, the unique new matching
+union becomes 211 bodies / 18,508 B, plus the separate 12-byte getter. Across 307
+distinct attempts, 95 complete nonmatches / 14,496 B and one 96-byte blocked lead
+remain outside matching credit. See wave9/README.md and wave9/unique_totals.json.
+Prior proof is carried in wave8/ci.json; current successor packets are excluded
+from the frozen cut. D10 remains unchanged.
