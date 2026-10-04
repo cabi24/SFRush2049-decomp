@@ -114,7 +114,9 @@ def splice(cands):
         pragma = f'#pragma GLOBAL_ASM("asm/us/nonmatchings/{c["seg"]["rom_tu"]}/{c["fn"]}.s")'
         assert text.count(pragma) == 1, c["fn"]
         have = tu_statements(text)
-        decls = [s for s in c["row"]["preamble"] if norm(s) not in have]
+        # Preprocessor lines (#pragma pack(1) ... #pragma pack()) are positional
+        # and always kept; only declaration statements are deduplicated.
+        decls = [s for s in c["row"]["preamble"] if s.startswith("#") or norm(s) not in have]
         body = extract_named_function(REPO / c["src"], c["fn"])
         header = promotemod._provenance_header(
             c["fn"], f"{c['src']} (in-repo, locked)", c["seg"]["flagset"],

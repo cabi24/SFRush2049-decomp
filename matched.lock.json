@@ -15,82 +15,10 @@
     "verified": "score0",
     "verified_at": "2026-10-04"
   },
-  "cloud/matches/boot_tail/func_80011C84.c:func_80011C84": {
-    "body_sha256": "cbb7a9c3abd2cc4a665b63cac25341c3a535e6031023dc4a8eee0b834d34b6d7",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80011C84",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
   "cloud/matches/boot_tail/func_80013964.c:func_80013964": {
     "body_sha256": "659eecf8a8f73f8eb287f48f999eb4153552f277c23f60c5d641f3a51ded116a",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "func_80013964",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80013C84.c:func_80013C84": {
-    "body_sha256": "fb5e1bbccf498208dacf5ef7cb3abe64797c2e5c2a946b7b421a85ccd3b75f37",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80013C84",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_800146B4.c:func_800146B4": {
-    "body_sha256": "6e761980cc2ce54a944805c2b1e534d8b120c014152917f7f04f60dbb9487e6b",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_800146B4",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_800149DC.c:func_800149DC": {
-    "body_sha256": "371d957aa60a584c8893cceee269d3eafcbdd0bba7bd128bf44c2da3783ba59b",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_800149DC",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80014A74.c:func_80014A74": {
-    "body_sha256": "d1312460e40be5a5cf276d648326c4109cbe5da4329f2fb2fc8d94d7925fa51c",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80014A74",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80014AF0.c:func_80014AF0": {
-    "body_sha256": "03a56d1ceeaaf4f3406e1164805598a30f64dcddf2fa7b881b368c23347909d6",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80014AF0",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80014B3C.c:func_80014B3C": {
-    "body_sha256": "2882be4a0edc838bf43ccf6f43a27a14035307337ed34a4098408428eebe56e4",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80014B3C",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80014BB0.c:func_80014BB0": {
-    "body_sha256": "be4d9f9fde8feb33191aa214132dfb907eaeaced3f004a9eee00a77401eab8fd",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80014BB0",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80014C18.c:func_80014C18": {
-    "body_sha256": "bbd212ea5e11fb99cc472fa23eb209eb4bd3dd72dce7fd8839dc0879fbf842bf",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80014C18",
     "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
     "verified": "score0",
     "verified_at": "2026-10-04"
@@ -135,42 +63,10 @@
     "verified": "score0",
     "verified_at": "2026-10-04"
   },
-  "cloud/matches/boot_tail/func_80017540.c:func_80017540": {
-    "body_sha256": "22e716db2a1b46989e28405b441cd6024e76495553b9ad0abb266477ac9a8aa6",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80017540",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
   "cloud/matches/boot_tail/func_80018A30.c:func_80018A30": {
     "body_sha256": "0abdef06986c8b952e54793bcf5babd560358069d82bc00f15fb425ee7c6529d",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "func_80018A30",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80018B3C.c:func_80018B3C": {
-    "body_sha256": "1a0f67f6ddf05e41f7d0565041405002523ee59ac418efe912e4bfc2e9f04356",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80018B3C",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80018C2C.c:func_80018C2C": {
-    "body_sha256": "1820ed9b5858b4bf528a67c2c1d5f173a66fc27a5125e4045a9baefefc6578e3",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80018C2C",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80018D40.c:func_80018D40": {
-    "body_sha256": "300faf22e1ddb6e0ba401dc1822a09e04eb537ce4cc3fcd4d850f9977c6301f1",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80018D40",
     "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
     "verified": "score0",
     "verified_at": "2026-10-04"
@@ -187,62 +83,6 @@
     "body_sha256": "f284ea202c15c7b9369fbb05e04bcb8affd05705d3a5c26576a1790f798e92da",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "func_800198C8",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80019C8C.c:func_80019C8C": {
-    "body_sha256": "98e91817b361908881c255b91089903dbed02d72683837072708084d0abca275",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80019C8C",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_8001B29C.c:func_8001B29C": {
-    "body_sha256": "03bf3c37a00ad798dfda9f76225594707f2b277b8fdb9cbb27197538c5fdfd37",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_8001B29C",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_8001B3A0.c:func_8001B3A0": {
-    "body_sha256": "2436914cb09d26df0573d7bf5d87f9e812e4161b12a991ee007e5d2393b50654",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_8001B3A0",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_8001B7C0.c:func_8001B7C0": {
-    "body_sha256": "abed015c450e9b9eeba4713419b08f62af5e0ecaa2d255d49de00d073a791a79",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_8001B7C0",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_8001B8C4.c:func_8001B8C4": {
-    "body_sha256": "943a85b316d8c13c82a007b73f8a58fadb9efa6282e128e8a07fc2e75a77a796",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_8001B8C4",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_8001B968.c:func_8001B968": {
-    "body_sha256": "bda5dca9c28c3cc8ae4a0c94daae2b28195de195aad0f87625d815339bbd91f7",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_8001B968",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_8001C508.c:func_8001C508": {
-    "body_sha256": "205719bdc5fc1dcc658d538d10c1f80adc59d42ee2968eeaa989a3e1b04c7c61",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_8001C508",
     "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
     "verified": "score0",
     "verified_at": "2026-10-04"
@@ -275,30 +115,6 @@
     "body_sha256": "021e6b975f400e3e8bb9d1c6c2ac43bdb0027fd2c497306b71a536d0785720ca",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "func_8001E0C0",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_8001EB10.c:func_8001EB10": {
-    "body_sha256": "7e4bcd5ed5a0414eb072c04f5f1556341de5638f2232e8f0a03bb2459ac10d35",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_8001EB10",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_8001ECE0.c:func_8001ECE0": {
-    "body_sha256": "f512002355b8db180d57862eb590e9e274b489a9b4edaa7ac70f6a6f7d1a4c33",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_8001ECE0",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_8001EE9C.c:func_8001EE9C": {
-    "body_sha256": "fa81d9c5fbae3eae26f0066293368044f57b60f2110148b694c2d8a273302a10",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_8001EE9C",
     "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
     "verified": "score0",
     "verified_at": "2026-10-04"
@@ -343,186 +159,10 @@
     "verified": "score0",
     "verified_at": "2026-10-04"
   },
-  "cloud/matches/boot_tail/func_80021BF0.c:func_80021BF0": {
-    "body_sha256": "60cecc9cb358a2943e54c137f18274864271f3cebe67404ccf0b6a4f11a107ea",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80021BF0",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80021F68.c:func_80021F68": {
-    "body_sha256": "4cf5579edeb77bde692d7a823e8c85c911577de98c0943dda6f1c84c969df21c",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80021F68",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_8002243C.c:func_8002243C": {
-    "body_sha256": "32fd60f9127fab39ac7a384bfc5286073ddde159043142c9cc530fc26b889043",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_8002243C",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_8002245C.c:func_8002245C": {
-    "body_sha256": "984a09d46192332b94ee7cbacdf6ca958012c4fa10a06f2de07863d3ed134f7d",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_8002245C",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_800224B0.c:func_800224B0": {
-    "body_sha256": "80e6be5a3b22da55d4da08c38102635972da3cd7fafe72d700c3c1baabe5850b",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_800224B0",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_800225AC.c:func_800225AC": {
-    "body_sha256": "1e9d2051e08ef92ab80c5539922dfa7993e5009f3f2ec2afa81e11a36eeb4f27",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_800225AC",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_800225DC.c:func_800225DC": {
-    "body_sha256": "23282c1c6286d7c50f015697bf523731979c207cf3a3daf43a570264e2c860d1",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_800225DC",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_800225FC.c:func_800225FC": {
-    "body_sha256": "b816f7f16742d90a28d14feafe6276cd04c649c21bd35bd278bfda00dacca519",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_800225FC",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80022678.c:func_80022678": {
-    "body_sha256": "e35f2ea64ee26c60e84e1dab5526b44c12bc853e00bab91e0895d62a3350299f",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80022678",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80022A78.c:func_80022A78": {
-    "body_sha256": "7699972a295bbfbc2a335b763111cbf372fa6635ec86b78dac680b699b11e85d",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80022A78",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80022C58.c:func_80022C58": {
-    "body_sha256": "e18a9eb2cfd7912036859b7890738f7c6157f206c1f8f4665c0c4ee10fff7ba9",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80022C58",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
   "cloud/matches/boot_tail/func_80023520.c:func_80023520": {
     "body_sha256": "a8ce0d6a97fe0af4b64a6875db26ac4bf87b8d9715016fcc9f492e8bd7eec5de",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "func_80023520",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80023710.c:func_80023710": {
-    "body_sha256": "55dc6037e304a58481209ef7c97e7b30b67585ddf7f546bc1f207e270fee65aa",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80023710",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80023734.c:func_80023734": {
-    "body_sha256": "99ae7d667f2f14c969a01f8eb23609862e178240db17e3c31c95583294ce391b",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80023734",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80023818.c:func_80023818": {
-    "body_sha256": "ef324f2b51c2fe36c94e8042e5ae73e9de5b57fce1f26efe2ffb624367625647",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80023818",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80023844.c:func_80023844": {
-    "body_sha256": "20a1b9974479c18b4b1b92598597d7df5f21c5f10ee6373f99d23ea85c61e23f",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80023844",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80023870.c:func_80023870": {
-    "body_sha256": "ba7df317e10380e45c422729323c3633e25385e13be3f878564ec4942172fa98",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80023870",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_8002389C.c:func_8002389C": {
-    "body_sha256": "717ccc187180a4a75ccf7d02ad90853693b6c53dd96337b1a4ac64a278dad973",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_8002389C",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_800238C8.c:func_800238C8": {
-    "body_sha256": "435813f3af54a11c0457ae2ec7a304ce426e7ad64d9ea4c9765ea844bf77af51",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_800238C8",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_800238F4.c:func_800238F4": {
-    "body_sha256": "794040c542a21dc4d1a24201033034d262790e73458ede1487a04106a2f3cd86",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_800238F4",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80023920.c:func_80023920": {
-    "body_sha256": "e19e590f4cd3be354863d53e90a89e237740987458d5bba230cb179ce04e6663",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80023920",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_8002394C.c:func_8002394C": {
-    "body_sha256": "d7707281be49fc7d0246a867760c3e6921475cf9fc2ee1658269954243b30068",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_8002394C",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-04"
-  },
-  "cloud/matches/boot_tail/func_80023978.c:func_80023978": {
-    "body_sha256": "b1841a1a7a2de6a3a1ba998c9cfb6dfd1955770bbe4e7471f9163d7fdcad973c",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80023978",
     "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
     "verified": "score0",
     "verified_at": "2026-10-04"
@@ -551,7 +191,367 @@
     "verified": "score0",
     "verified_at": "2026-10-04"
   },
-  "cloud/matches/boot_tail/func_80025264.c:func_80025264": {
+  "cloud/work/boot_tail_promotion/sources/func_80011C84.c:func_80011C84": {
+    "body_sha256": "b96ae6d9d081deb61e0bbd72bbe32ad4f044fa260ed780f4a5bbe8e1ac2cb7ad",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80011C84",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80013C84.c:func_80013C84": {
+    "body_sha256": "fb5e1bbccf498208dacf5ef7cb3abe64797c2e5c2a946b7b421a85ccd3b75f37",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80013C84",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_800146B4.c:func_800146B4": {
+    "body_sha256": "9ef8eff83ca75c11e63a370770246990df443340de7f0aa66c57e9169adecdc9",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_800146B4",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_800149DC.c:func_800149DC": {
+    "body_sha256": "371d957aa60a584c8893cceee269d3eafcbdd0bba7bd128bf44c2da3783ba59b",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_800149DC",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80014A74.c:func_80014A74": {
+    "body_sha256": "ce9c9749ffb5861587f62219ec9281edc835c6794360a5d7d63798b32ea63866",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80014A74",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80014AF0.c:func_80014AF0": {
+    "body_sha256": "03a56d1ceeaaf4f3406e1164805598a30f64dcddf2fa7b881b368c23347909d6",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80014AF0",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80014B3C.c:func_80014B3C": {
+    "body_sha256": "2882be4a0edc838bf43ccf6f43a27a14035307337ed34a4098408428eebe56e4",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80014B3C",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80014BB0.c:func_80014BB0": {
+    "body_sha256": "be4d9f9fde8feb33191aa214132dfb907eaeaced3f004a9eee00a77401eab8fd",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80014BB0",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80014C18.c:func_80014C18": {
+    "body_sha256": "bbd212ea5e11fb99cc472fa23eb209eb4bd3dd72dce7fd8839dc0879fbf842bf",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80014C18",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80017540.c:func_80017540": {
+    "body_sha256": "7f630b843906567ddf24bcf9f656136c13ea6cab8c2d3593b67577d52cf64c9f",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80017540",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80018B3C.c:func_80018B3C": {
+    "body_sha256": "1a0f67f6ddf05e41f7d0565041405002523ee59ac418efe912e4bfc2e9f04356",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80018B3C",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80018C2C.c:func_80018C2C": {
+    "body_sha256": "1820ed9b5858b4bf528a67c2c1d5f173a66fc27a5125e4045a9baefefc6578e3",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80018C2C",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80018D40.c:func_80018D40": {
+    "body_sha256": "300faf22e1ddb6e0ba401dc1822a09e04eb537ce4cc3fcd4d850f9977c6301f1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80018D40",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80019C8C.c:func_80019C8C": {
+    "body_sha256": "e43521f8826c10a020d31b1db5939aa32964ee6868a2f1ceb45e9c682eaeba72",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80019C8C",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_8001B29C.c:func_8001B29C": {
+    "body_sha256": "03bf3c37a00ad798dfda9f76225594707f2b277b8fdb9cbb27197538c5fdfd37",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001B29C",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_8001B3A0.c:func_8001B3A0": {
+    "body_sha256": "2436914cb09d26df0573d7bf5d87f9e812e4161b12a991ee007e5d2393b50654",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001B3A0",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_8001B7C0.c:func_8001B7C0": {
+    "body_sha256": "abed015c450e9b9eeba4713419b08f62af5e0ecaa2d255d49de00d073a791a79",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001B7C0",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_8001B8C4.c:func_8001B8C4": {
+    "body_sha256": "943a85b316d8c13c82a007b73f8a58fadb9efa6282e128e8a07fc2e75a77a796",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001B8C4",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_8001B968.c:func_8001B968": {
+    "body_sha256": "bda5dca9c28c3cc8ae4a0c94daae2b28195de195aad0f87625d815339bbd91f7",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001B968",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_8001C508.c:func_8001C508": {
+    "body_sha256": "205719bdc5fc1dcc658d538d10c1f80adc59d42ee2968eeaa989a3e1b04c7c61",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001C508",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_8001EB10.c:func_8001EB10": {
+    "body_sha256": "c5d5a7b3fdbc7e82364ac391e8622ef8b6da60d901450f1d0ec01918f107d666",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001EB10",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_8001ECE0.c:func_8001ECE0": {
+    "body_sha256": "f251d2a144d497193bd6f270ffc85a57fcd4ecb915825b7f9448d734997d95eb",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001ECE0",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_8001EE9C.c:func_8001EE9C": {
+    "body_sha256": "3f4fe36e730725eb7919f5260f1bbd77ee294df261f421caed46a949d7e7cc92",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001EE9C",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80021BF0.c:func_80021BF0": {
+    "body_sha256": "ba82462ed83784b31c3bdc8eb8b7c215aaa44cc9ec59a9dac25ee7c997766ed9",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80021BF0",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80021F68.c:func_80021F68": {
+    "body_sha256": "bbb843f4b7a9b3e32e3a1973c5bcb1310917eaf764d5350b4b054b1c9e5be4c1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80021F68",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_8002243C.c:func_8002243C": {
+    "body_sha256": "48abb86424aa352efce15ddc05775d1ca066a307cbdd5bd037653fe197a8e9d0",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8002243C",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_8002245C.c:func_8002245C": {
+    "body_sha256": "fa9d5509cf3b2a98fe4e17c9f841051fd735bb17982f5e9248854ad5e818b22a",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8002245C",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_800224B0.c:func_800224B0": {
+    "body_sha256": "6918358c5644910f2b9a02b52d8022c35df22200a1f9298cc1d45bda19c7b8d8",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_800224B0",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_800225AC.c:func_800225AC": {
+    "body_sha256": "0584c97305677be1d4ddb59224fd6b84329ba786bed22930b1a8813fb6599f75",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_800225AC",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_800225DC.c:func_800225DC": {
+    "body_sha256": "82cecf7e79a84394e3e86850f548562a07d413a63642e3a200466119c9c263cd",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_800225DC",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_800225FC.c:func_800225FC": {
+    "body_sha256": "84ebad990e18213b84b3646da2dd849b2a5fd6a38949b88cc5bb52c0d6c74241",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_800225FC",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80022678.c:func_80022678": {
+    "body_sha256": "deef51430842871b8b0848f000c70fb6cef63530ed00d3fe88d3bfa35a305e57",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80022678",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80022A78.c:func_80022A78": {
+    "body_sha256": "5e6e8241bf4c1472020969f23a6874f3e321e75baab43e2d31667f9381106dfc",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80022A78",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80022C58.c:func_80022C58": {
+    "body_sha256": "474ef81b9e39e0b50ac1f4f876da0d422303435e7de9bcbc77c8a546b72f5093",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80022C58",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80023710.c:func_80023710": {
+    "body_sha256": "f69daeb169017cacdd84bcdb52d81c4c71363764cab07200552fbf2fafa3987b",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80023710",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80023734.c:func_80023734": {
+    "body_sha256": "c943fd5dd0a305cdc3551906a3d5a7731cc37d3f8187b766681e07cc35205be8",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80023734",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80023818.c:func_80023818": {
+    "body_sha256": "f1837294236e0cf54b8a869ff3c7c0230f6106cac6338b9733f479d31244eab7",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80023818",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80023844.c:func_80023844": {
+    "body_sha256": "0378948560b391b23630563dd9dc7de57a234ba9fa05b8f13dcd2b1062ee4054",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80023844",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80023870.c:func_80023870": {
+    "body_sha256": "4d135bf8e65afebb85190204d9798fef7bb2ec0ad6458029c58c73c23e8dec5f",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80023870",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_8002389C.c:func_8002389C": {
+    "body_sha256": "b1897f6dbffca05affcdc44abf4ac3deb801495bd7910e35dff84b11dee630b9",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8002389C",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_800238C8.c:func_800238C8": {
+    "body_sha256": "d899ce2644d799edc3171db7796176d4d4d45418a05c48e395d68d0d0a0b26bf",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_800238C8",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_800238F4.c:func_800238F4": {
+    "body_sha256": "d5bab886970d89f08a405a9932856af0ed8fc025eb0615f29d9686a1008c4329",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_800238F4",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80023920.c:func_80023920": {
+    "body_sha256": "780789374dbd2cc0b5becf578fb389c4c8a069cb1c5b1a255ad9b6b8e4897957",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80023920",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_8002394C.c:func_8002394C": {
+    "body_sha256": "ea4eef56c3decd903acc489a32c74ba557493dc6dc7d2c62b64a69349739a313",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8002394C",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80023978.c:func_80023978": {
+    "body_sha256": "3fdcf56615f7b422c8526175d6fe26bf6ab06967fa5892741cd6ad395faa0866",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80023978",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-04"
+  },
+  "cloud/work/boot_tail_promotion/sources/func_80025264.c:func_80025264": {
     "body_sha256": "4d612fa143c56cbce3034d36e9c50d1d7fa298935798907a15c4f4c378522cba",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "func_80025264",
@@ -559,7 +559,7 @@
     "verified": "score0",
     "verified_at": "2026-10-04"
   },
-  "cloud/matches/boot_tail/func_800254D4.c:func_800254D4": {
+  "cloud/work/boot_tail_promotion/sources/func_800254D4.c:func_800254D4": {
     "body_sha256": "3c99c448e6028342f16817f06630c806872ab1c3a2b18c5e0b0e00a05962ac4f",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "func_800254D4",
@@ -567,7 +567,7 @@
     "verified": "score0",
     "verified_at": "2026-10-04"
   },
-  "cloud/matches/boot_tail/func_80025670.c:func_80025670": {
+  "cloud/work/boot_tail_promotion/sources/func_80025670.c:func_80025670": {
     "body_sha256": "c0eeb150d7ac41573c1f52fe4dd7a5367b28a69a5ad2f555e1f60a6e8720d6f8",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "func_80025670",
@@ -575,7 +575,7 @@
     "verified": "score0",
     "verified_at": "2026-10-04"
   },
-  "cloud/matches/boot_tail/func_8002574C.c:func_8002574C": {
+  "cloud/work/boot_tail_promotion/sources/func_8002574C.c:func_8002574C": {
     "body_sha256": "be055ce9bc8c87219132b3ac0f330e7f52adaede4fd3d2e46b3ef1dd621a500e",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "func_8002574C",
@@ -583,7 +583,7 @@
     "verified": "score0",
     "verified_at": "2026-10-04"
   },
-  "cloud/matches/boot_tail/func_800259A8.c:func_800259A8": {
+  "cloud/work/boot_tail_promotion/sources/func_800259A8.c:func_800259A8": {
     "body_sha256": "c48ee19a330f0c7ac7ed1d7a6e3fc05f1822339e08151a8e0e03d40c391ece9d",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "func_800259A8",
@@ -591,16 +591,16 @@
     "verified": "score0",
     "verified_at": "2026-10-04"
   },
-  "cloud/matches/boot_tail/func_80026328.c:func_80026328": {
-    "body_sha256": "f43958dbc83f0ff060d2af237ebc9dacbdff5c87f505d457ac4d55a36767f3d1",
+  "cloud/work/boot_tail_promotion/sources/func_80026328.c:func_80026328": {
+    "body_sha256": "a98a3e5bc9c84a8d34f4ccdcf0b2427115ca50afae7dbb3150ed871cc1ea4ec6",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "func_80026328",
     "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
     "verified": "score0",
     "verified_at": "2026-10-04"
   },
-  "cloud/matches/boot_tail/func_80026348.c:func_80026348": {
-    "body_sha256": "e1e0c25ebc41c479308ad3712358fc7f15e13834a37f3134728c42fe9a5a3297",
+  "cloud/work/boot_tail_promotion/sources/func_80026348.c:func_80026348": {
+    "body_sha256": "b12f5a2efd8ba0df960701105d8006df1aeaacacc0100452153de96af93ca74f",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "func_80026348",
     "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
