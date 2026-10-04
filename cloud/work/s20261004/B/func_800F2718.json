@@ -1,0 +1,33 @@
+{
+  "function": "func_800F2718",
+  "population": "extracted (game code image)",
+  "target": {
+    "address": "0x800F2718",
+    "extent_words": 92,
+    "extent_bytes": 368,
+    "extent_source": "build/m2c_asm/func_800F2718.json derivation_version 3 scanner/closure extent; equals .text.func_800F2718 word count in asm/us/blob/blob_800ef5b0.s"
+  },
+  "flagset": "-g0 -O3 -mips2 -G 0 -non_shared (as1 -r4300_mul added by scorer), whole-program IPA group build: cc -j, uld -kp keep-list, usplit/umerge/uopt/ugen/as1",
+  "build_model": "IPA call group (specs/010-ipa-call-groups); func_800F2718 is a static (non-kept) callee that uses callee-saved registers without saving them",
+  "group_dir": "cloud/work/s20261004/B/g2718",
+  "group_keep": [
+    "__standin_a",
+    "__standin_b",
+    "__standin_c",
+    "__standin_d"
+  ],
+  "group_context_non_claimed": [
+    "func_800F1210"
+  ],
+  "source": "cloud/work/s20261004/B/func_800F2718.c",
+  "source_sha256": "168a4a09bc4dd10f89a09c1518ed86393a12326f1161baf48aeb4b8c343e77be",
+  "proof": {
+    "command": "IDO_DIR=<pinned toolkit 796ae99a.../ido> python3 tools/cloud/score.py group cloud/work/s20261004/B/g2718",
+    "run_on": "watchman2 private scratch ~/rush2049/scratch/s20261004_B (copy of tools/cloud/score.py + asm/us/blob, SHA256SUMS integrity-checked by the scorer)",
+    "toolkit": "~/rush2049/cache/toolkits/796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5/ido",
+    "result": "Members: func_800F2718: MATCH (exit 0)",
+    "meaning": "strict: every word equal after resolving relocations against asm/us/blob/symbols.json; no masks, no unresolved/unverified relocations, no nonzero extra words; --allow-unverified NOT used"
+  },
+  "notes": "func_800F1210 is a NON-matching stand-in (context only) that takes its argument in $s2 via IPA and is large enough not to be inlined; real caller of func_800F2718 is billboard_render.",
+  "not_done": "no splice/lock/blob_rom; image and ROM SHA-1 gates not run"
+}

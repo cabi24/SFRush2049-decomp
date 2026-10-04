@@ -1,0 +1,7 @@
+{
+  "members": ["func_800979A0"],
+  "context": ["slot_value_get", "display_list_alloc", "func_80096288"],
+  "files": ["group.c"],
+  "keep": ["func_800979A0", "slot_value_get", "display_list_alloc"],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

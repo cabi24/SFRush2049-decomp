@@ -1,0 +1,15 @@
+object_byte9_set
+object_bytes23_sum
+object_bytes_sum_global
+func_800F68A4
+camera_shake_update
+slot_value_get
+mode_byte2_set
+mode_byte_set
+object_type_byte2_get
+object_type_byte3_get
+game_timer_display
+func_80100B8C
+func_800B669C
+func_800D7634
+time_result_display

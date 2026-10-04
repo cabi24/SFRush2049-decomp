@@ -1,0 +1,34 @@
+{
+  "function": "credits_scroll",
+  "population": "extracted (game image)",
+  "target": {"vaddr": "0x800D67C0", "extent_bytes": 332, "extent_source": "blob_layout slot (scanner/closure), = build/m2c_asm/credits_scroll.json extent [0x800D67C0, 83 words]"},
+  "status": "TRUE-ZERO (relocated bytes identical to build/game_code.bin)",
+  "flagset": "-g0 -O3 -mips2 -G 0 -non_shared (IPA whole-program group: cc -j per TU -> uld -kp keep -> usplit -> umerge -> uopt -> ugen -> as1, all -O3, toolkit 796ae99a...)",
+  "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+  "member_source": "cloud/work/s20261004/E/credits_scroll.c (== credits_scroll_group/gr3_c.c)",
+  "group": {
+    "dir": "cloud/work/s20261004/E/credits_scroll_group",
+    "files": {
+      "gr3.c": "context: verbatim src/blob/groups/codex_sound_channel_extra/group.c (accepted)",
+      "gr3_b.c": "context: slot_state_setup (C104-derived body, $s2 selection; NOT byte-matching retail), object_create (byte-identical in this build), func_800B669C (locked Pair setter source)",
+      "gr3_c.c": "MEMBER credits_scroll + sibling time_result_display (kept, unclaimed) + static font_set/gfx_lock/gfx_unlock helpers",
+      "gr3_d.c": "context: game_timer_display (real caller) + func_80100B8C (unclaimed near-misses)",
+      "gr3_e.c": "context: real second caller func_800D7634 = IPA m2c seed (autodecomp.m2c_seed ipa=True) with two corrections: speed_set prototype (s32,s32,f32,f32) and credits_scroll() called with no argument (m2c misread stale $a0)"
+    },
+    "keep": "credits_scroll_group/keep.txt",
+    "build": "sh credits_scroll_group/build.sh gr3 keep.txt (run on watchman2 in ~/rush2049/scratch/s20261004_E with gr3*.c)"
+  },
+  "proof": {
+    "command": "python3 cloud/work/s20261004/E/verify.py cloud/work/s20261004/E/obj/gr3.o credits_scroll,slot_state_setup,object_bytes_sum_global",
+    "method": "blob_group.member_slices + blob_group.relocate (members=[credits_scroll], image addresses from blob_splice.image_symbols) then byte compare with build/game_code.bin[0x800D67C0..+332]; independently cmp of the dumped body vs image slice",
+    "result": "credits_scroll: symbol_bytes 332 / slot 332, word_differences 0, identical true; cmp: identical",
+    "object_sha256": "43cc842a6dace56c6d506aa9b650832351dd7ec876b1e53cda0b22e0334589f2"
+  },
+  "notes": [
+    "IPA-shaped: clobbers $s0/$s1/$s2/$s4 unsaved; passes font 13 to slot_state_setup in $s2. Requires >=2 real call sites or umerge inlines it (game_timer_display + func_800D7634).",
+    "The osRecvMesg/slot_state_setup/osJamMesg idiom is a static helper inlined by umerge (font_set with nested gfx_lock/gfx_unlock); reproduces the dead 'move s0,v0' / dead 'sw v0,N(sp)' with 24-byte per-instance slots seen across all callers.",
+    "Match was sensitive to the TU also containing time_result_display (second font_set site); with credits_scroll alone in its TU the dead move scheduled one slot later (4 words).",
+    "buf[76] size inferred from frame (sp+68..143). countdown_object treated as char** string table (indices 52, 233).",
+    "Not spliced/locked; group context is research-grade (slot_state_setup context not retail-identical)."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "func_800F2888_grp",
+  "members": [
+    "func_800F2888"
+  ],
+  "files": [
+    "func_800F2888.c"
+  ],
+  "keep": [
+    "__standin_a",
+    "__standin_b"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+}
