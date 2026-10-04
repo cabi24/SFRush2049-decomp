@@ -1,0 +1,20 @@
+{
+  "source_cut": 17,
+  "previous_source_functions": 239,
+  "previous_source_bytes": 28096,
+  "this_cut_peer_reviewed_functions": 1,
+  "this_cut_peer_reviewed_bytes": 276,
+  "new_unique_attempts": 0,
+  "reclassified_prior_nonmatches": 1,
+  "combined_unique_new_matching_functions": 240,
+  "combined_unique_new_matching_bytes": 28372,
+  "preexisting_getter_functions": 1,
+  "preexisting_getter_bytes": 12,
+  "all_cut_attempted_functions": 394,
+  "all_cut_complete_nonmatch_functions": 153,
+  "all_cut_complete_nonmatch_bytes": 44036,
+  "all_cut_blocked_source_lead_functions": 1,
+  "all_cut_blocked_source_lead_bytes": 96,
+  "counting_rule": "Latest reviewed classification by address; keep all historical source records without counting repeated attempts twice.",
+  "cartridge_or_maintainer_acceptance": "not claimed"
+}

@@ -1,0 +1,2 @@
+address,name,size,cluster,name_hypothesis,evidence_level,status,owner,flags,diff_words,source_path,pr,note
+0x8001ECE0,func_8001ECE0,276,BT03,vidMakeNew_N64,VERIFIED-BODY,verified_body,BT03-voice-allocation-retry,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_8001ECE0.c,,"Local exact 276-byte ELF/full-relocation match; 8->3->0 across two justified controls. One-pointer ABI and native no-retry wrap behavior preserved. Reclassification adds zero unique attempts. Independent source review PASS; aggregate exact-head CI pending."
