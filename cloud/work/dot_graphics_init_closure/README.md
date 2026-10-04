@@ -1,16 +1,22 @@
-# Fresh graphics-initialization closure: NONMATCH
+# Graphics-initialization closure validation: NONMATCH
 
 Base `0bfebc7367ebc1ddb4d6105b2012ed07fb080faf`. No source/ROM coverage
 claim, no accepted input edits, no private image or cartridge verification.
 The historical `sound_init` name is misleading: its entire 400-byte body
 initializes a double-buffered graphics command stream and graphics state.
 The complete second root `func_800878E0` is 296 bytes and conditionally emits
-state commands. Neither root had complete curated C in the inspected master
-and PR1–45 source inventory; legacy work directories contain TODO stubs.
+state commands. **Provenance correction:** the earlier inventory missed complete versions of
+both roots already preserved in PR #9 B119/A151. Legacy work-directory stubs did
+not imply absent source. [B119 source](../ipa-groups/codex_gfx_rectangle_b119/group.c)
+and its [frozen receipt](../ipa-groups/codex_gfx_rectangle_b119/verification.json)
+record initializer 70/100 and flags 19/74 differing words, versus this packet's
+75/100 and 29/74. These are different recorded source/context recipes, not fresh
+replays or matching claims. This packet adds ABI/behavioral evidence and replay
+packaging, not two previously unreconstructed functions or new best scores.
 
 ## New value and bounded result
 
-Natural full C for both roots now exists, including 64-bit cached state,
+This packet validates natural full C for both roots, including 64-bit cached state,
 19,200-byte command-buffer stride, the exact >=221 height threshold,
 all state-command words, flag gating and call order. An authentic three-body
 O3 experiment uses the accepted `func_80086A50` source byte-for-byte, without
@@ -69,7 +75,11 @@ fully resolved 29/74 count. The initializer also has a scheduled 64-bit zero
 store difference plus changed address-register allocation. The real closure
 removes the flags root's frame/excess/structure defects but does not recover
 the original allocator pool. Stop here; a future experiment needs actual
-additional caller/context evidence, not fake register pressure.
+additional caller/context evidence, not fake register pressure. A prior-session report records that bounded
+addition of genuine narrow callers left the 29/74 flag residual unchanged;
+do not repeat it. See [renderer readiness](../graphics_readiness_20261003/README.md)
+for exact original-TU/export-root and one-table proof requirements. The existing
+B119 helper bodies are not a remaining source-recovery prerequisite.
 
 ## Reproduce
 

@@ -1,11 +1,11 @@
-# Clipped solid-color rectangle: complete fresh reconstruction
+# Clipped solid-color rectangle: source validation and replay
 
 **NONMATCH research, zero accepted source/data coverage.** Target
 `func_8008A46C` at `0x8008A46C`, 472 bytes / 118 words. Base
 `0bfebc7367ebc1ddb4d6105b2012ed07fb080faf`. This packet changes no production
 source, locks, targets, scorer, data ownership, or build settings.
 
-## New result
+## Packet result
 
 `candidate.c` reconstructs the entire function, not a prefix, and compiles as
 natural C89. It clips four signed inclusive pixel bounds, rejects inverted or
@@ -26,10 +26,13 @@ frames are both 24 bytes, but allocation and scheduling differ broadly.
 ## Provenance and genuine ABI
 
 The authoritative inputs are the repository's manifest-verified target section
-and symbol map. Prior PR1–45 source-filename and definition inventories were
-checked: no implementation of this target was found. Older `func_8008705C`
-research mentions this target as a real caller but substitutes synthetic callers;
-this packet supplies the previously missing actual caller body.
+and symbol map. **Provenance correction:** the earlier source inventory missed
+PR #9's complete [B119 caller/helper source](../ipa-groups/codex_gfx_rectangle_b119/group.c)
+and [71/118 rectangle receipt](../ipa-groups/codex_gfx_rectangle_b119/verification.json).
+This packet is not the first reconstruction and did not supply a previously
+missing actual caller. Its additional value is seven CI-discovered semantic
+tests and standalone replay packaging. The [corrected PR description](https://github.com/cabi24/SFRush2049-decomp/pull/48)
+records the same correction; existing source and frozen receipts are unchanged.
 
 The target takes left, top, right, bottom in a0–a3 and a color pointer from
 incoming sp+16. Its native frame is 24 bytes, saves ra at +20, and obtains that
@@ -57,11 +60,14 @@ and allocation differences, not a tiny scheduling residual. Its relocation
 symbol warnings reflect native objects containing already resolved words;
 `score.py` resolves all candidate relocations and is the authoritative receipt.
 
-Next justified experiment: compile this actual caller alongside the complete,
-natural 8008A148 / 80086A50 / 800878E0 / 8008705C bodies with authentic callers
-and inspect every claimed body's full resolved extent. A partial helper or the
-old stub/synthetic-caller groups is not an acceptable shortcut. No broad flag
-sweep or repeated source permutation was run. This packet freezes the baseline.
+The complete natural helper closure already exists in B119. A prior-session report records a genuine
+five-body follow-up at 75/118 differing rectangle words, worse than the
+archived 71/118, and was not republished. Do not repeat that closure as a new
+experiment. The next prerequisite is authentic TU/export-root or native caller
+allocation evidence that justifies one genuinely new context hypothesis; see
+[renderer readiness](../graphics_readiness_20261003/README.md). The mode context
+also needs exact-candidate proof for its two references to one local table.
+This packet's standalone baseline and test scope remain frozen.
 
 ## Behavioral validation and limits
 
