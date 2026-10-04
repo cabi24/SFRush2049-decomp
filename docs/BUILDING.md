@@ -79,7 +79,13 @@ rsync -a --exclude='venv/' --exclude='build/' --exclude='reference/repos/' \
   --exclude='tools/ido-static-recomp/' --exclude='__pycache__/' --exclude='*.pyc' \
   --exclude='.pytest_cache/' --exclude='backup/' \
   /home/cburnes/projects/rush2049-decomp/ watchman2:~/rush2049/repo/
+rsync -a --delete /home/cburnes/projects/rush2049-decomp/asm/ watchman2:~/rush2049/repo/asm/
 ```
+
+The second command mirrors `asm/` exactly. The first never deletes, so when a
+segment is converted to a C TU its old `asm/us/<SEG>.s` survives on the builder.
+The Makefile links `asm/us/*.s` by wildcard, so that leftover fails the link
+with `multiple definition` errors (seen 2026-10-04 for 21F0/2CF0/3140/3330/3390/34A0).
 
 `tools/ido-static-recomp/` is excluded deliberately: the Pi's copy is an
 **aarch64** build that cannot run. The builder's x86-64 IDO was installed from
