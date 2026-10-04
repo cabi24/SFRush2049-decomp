@@ -119,6 +119,18 @@ def test_census_extent_must_fit_its_slot(fixture_repo):
     assert L._segment_by_name(L.derive(), "0x8868")["refusal"] == "unnamed@0x80007c68"
 
 
+@pytest.mark.parametrize("spelling", ["func_80007c68", "func_080007C68",
+                                      "func_0080007C68", "func_80007C68A"])
+def test_only_canonical_address_spelling_is_accepted(fixture_repo, spelling):
+    (fixture_repo / "extents.json").write_text(json.dumps(
+        {"functions": [{"name": "func_80007C68", "address": "0x80007C68",
+                        "size": 152}]}))
+    syms = fixture_repo / "symbol_addrs.txt"
+    syms.write_text(syms.read_text().replace(
+        "func_80007C68 = 0x80007C68", spelling + " = 0x80007C68"))
+    assert L._segment_by_name(L.derive(), "0x8868")["refusal"] == "unnamed@0x80007c68"
+
+
 def test_undeclared_or_misspelled_address_names_refuse(fixture_repo):
     (fixture_repo / "extents.json").write_text(json.dumps(
         {"functions": [{"name": "func_80007C68", "address": "0x80007C68",
