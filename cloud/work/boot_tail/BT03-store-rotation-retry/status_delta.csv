@@ -1,0 +1,2 @@
+address,name,size,cluster,name_hypothesis,evidence_level,status,owner,flags,diff_words,source_path,pr,note
+0x8001C1D8,func_8001C1D8,432,BT03,audio_runtime_lists_8001C1D8,VERIFIED-BODY,verified_body,BT03-store-rotation-retry,-g0 -O2 -mips2 -G 0 -non_shared,0,cloud/matches/boot_tail/func_8001C1D8.c,,"Independent source/ABI/432-byte ELF/full-relocation PASS. One natural multiline scalar-loop body closes prior4/108. All tests pass; aggregate exact-head hosted CI remains separate."

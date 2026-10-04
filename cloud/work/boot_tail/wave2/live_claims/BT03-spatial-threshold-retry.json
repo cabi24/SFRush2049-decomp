@@ -1,0 +1,19 @@
+{
+  "state": "frozen-pending-review",
+  "owner": "/root/close_spatial_threshold_match",
+  "packet": "BT03-spatial-threshold-retry",
+  "branch": "dot/boot-tail-bt03-spatial-threshold-retry",
+  "base": "68a48a5e2bb3f88625d3af20cfd5a8e899a43944",
+  "targets": [
+    {
+      "address": "0x8001DC08",
+      "size": 472,
+      "end_exclusive": "0x8001dde0"
+    }
+  ],
+  "bytes": 472,
+  "claim_kind": "bounded evidence-backed revisit; not a fresh attempt",
+  "local_checkpoint": "a31493f7abac7077d09855d7fd457b93f334189d",
+  "edit_scope": "Only new owned packet and named canonical matching source on strict success; historical packets and frozen cut15 remain unchanged",
+  "note": "Bounded stock-scheduler/source-family retry improves3 to2 differing words, still complete nonmatch; original snapshots/domain/source archive preserved."
+}

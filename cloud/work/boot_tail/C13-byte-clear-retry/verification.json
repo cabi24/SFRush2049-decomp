@@ -1,0 +1,191 @@
+{
+  "result": "PASS",
+  "base_commit": "7f751e7523776d8e5f35899bacd9f240ee32bb05",
+  "base_tree": "b4f4af3fc313eb05f89dfc0c92263eff9d0d7707",
+  "target_manifest_sha256": "6bd3e6ef05e6123e4ea4dd0d814c0abb16f202a91d8d0a381eca14322c8a36d5",
+  "new_verified_functions": 1,
+  "new_verified_bytes": 484,
+  "natural_delta": "Only both existing scalar for-loops gain ordinary braced multiline bodies.",
+  "protected_and_prior_packet_pins_verified": true,
+  "compiler_pins_verified": true,
+  "stock_preassembler_line_ownership": {
+    "baseline": [
+      {
+        "unrolled_store_ordinal": 0,
+        "source_line": 13
+      },
+      {
+        "unrolled_store_ordinal": 1,
+        "source_line": 13
+      },
+      {
+        "unrolled_store_ordinal": 2,
+        "source_line": 13
+      },
+      {
+        "unrolled_store_ordinal": 3,
+        "source_line": 13
+      },
+      {
+        "unrolled_store_ordinal": 0,
+        "source_line": 15
+      },
+      {
+        "unrolled_store_ordinal": 1,
+        "source_line": 15
+      },
+      {
+        "unrolled_store_ordinal": 2,
+        "source_line": 15
+      },
+      {
+        "unrolled_store_ordinal": 3,
+        "source_line": 15
+      }
+    ],
+    "final": [
+      {
+        "unrolled_store_ordinal": 0,
+        "source_line": 14
+      },
+      {
+        "unrolled_store_ordinal": 1,
+        "source_line": 13
+      },
+      {
+        "unrolled_store_ordinal": 2,
+        "source_line": 13
+      },
+      {
+        "unrolled_store_ordinal": 3,
+        "source_line": 13
+      },
+      {
+        "unrolled_store_ordinal": 0,
+        "source_line": 18
+      },
+      {
+        "unrolled_store_ordinal": 1,
+        "source_line": 17
+      },
+      {
+        "unrolled_store_ordinal": 2,
+        "source_line": 17
+      },
+      {
+        "unrolled_store_ordinal": 3,
+        "source_line": 17
+      }
+    ]
+  },
+  "results": [
+    {
+      "source_path": "cloud/work/boot_tail/C13-controller-pair/nonmatch/func_80020820.c",
+      "source_sha256": "89123b46d8496a55a0a250a19c9bb23612154011203f141b243a6b3e4a4c6d05",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 10,
+      "total_words": 121,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "elf_function_size": 484,
+      "full_function_relocation_errors": [],
+      "relocation_mask_count": 0,
+      "section_padding_is_zero": true,
+      "full_native_window_equal": false
+    },
+    {
+      "source_path": "cloud/work/boot_tail/C13-controller-pair/nonmatch/func_80020820.c",
+      "source_sha256": "89123b46d8496a55a0a250a19c9bb23612154011203f141b243a6b3e4a4c6d05",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 120,
+      "total_words": 121,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "elf_function_size": 448,
+      "full_function_relocation_errors": [],
+      "relocation_mask_count": 0,
+      "section_padding_is_zero": true,
+      "full_native_window_equal": false
+    },
+    {
+      "source_path": "cloud/matches/boot_tail/func_80020820.c",
+      "source_sha256": "93577fdccd962174556eb10f0ac4d70ac85926831c661ebc7ccc234d1b0955ca",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 0,
+      "total_words": 121,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": true,
+      "elf_function_size": 484,
+      "full_function_relocation_errors": [],
+      "relocation_mask_count": 0,
+      "section_padding_is_zero": true,
+      "full_native_window_equal": true
+    },
+    {
+      "source_path": "cloud/matches/boot_tail/func_80020820.c",
+      "source_sha256": "93577fdccd962174556eb10f0ac4d70ac85926831c661ebc7ccc234d1b0955ca",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 120,
+      "total_words": 121,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "elf_function_size": 448,
+      "full_function_relocation_errors": [],
+      "relocation_mask_count": 0,
+      "section_padding_is_zero": true,
+      "full_native_window_equal": false
+    },
+    {
+      "source_path": "cloud/work/boot_tail/C13-byte-clear-retry/controls/one_line_braces.c",
+      "source_sha256": "7c4c7707236e9eedc735a399e396fadab38889f9ac323132d170e8e9ac9cdec1",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 10,
+      "total_words": 121,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "elf_function_size": 484,
+      "full_function_relocation_errors": [],
+      "relocation_mask_count": 0,
+      "section_padding_is_zero": true,
+      "full_native_window_equal": false
+    },
+    {
+      "source_path": "cloud/work/boot_tail/C13-byte-clear-retry/controls/multiline_no_braces.c",
+      "source_sha256": "85ec47fef48f265f76942ad2db301cb7dceebd7be01ce617a9f5395b8abbbe1c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 0,
+      "total_words": 121,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": true,
+      "elf_function_size": 484,
+      "full_function_relocation_errors": [],
+      "relocation_mask_count": 0,
+      "section_padding_is_zero": true,
+      "full_native_window_equal": true
+    }
+  ]
+}
