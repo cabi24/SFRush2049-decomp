@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "result": "PASS_COMPLETE_NONMATCH_RESEARCH",
+  "reviewer": "/root/match_boot_tail_low_eight",
+  "reviewed_commit": "a9fc62a7f56d034f8e7ca149413b302448cd314b",
+  "reviewed_tree": "a6343a3f7b077c463afd8de10ca81134ac8042d6",
+  "base_commit": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "complete_nonmatch_functions": 5,
+  "complete_nonmatch_bytes": 888,
+  "matching_functions": 0,
+  "verified_body_bytes": 0,
+  "source_count": 34,
+  "fresh_optimization_trials": 68,
+  "controls_per_function": {
+    "func_80023DB8": 4,
+    "func_80023B50": 6,
+    "func_80023AD4": 9,
+    "func_800230B0": 5,
+    "func_80022324": 10
+  },
+  "changed_files": 49,
+  "clean_after_review": true,
+  "checks": [
+    "Independent full 68-row O2/O1 replay exactly equals committed verification.json, including negative-control errors",
+    "All five final sources remain strict NONMATCH with zero unresolved/unverified/error state at O2",
+    "Independent IDO layout replay exactly equals committed layout_verification.json",
+    "All five host C89 behavior and source-binding test groups pass",
+    "Fresh compiler-file pins, protected target manifest, and strict getter replay pass",
+    "Full native body audit: packed ID construction and live-count reread; signed offset with unsigned delta division; byte formal/signed16 variable-bank ABI; two-value conditional branch behavior",
+    "Dispatcher 23E9C explicitly passes only comparison modes zero and one at both direct sites",
+    "Only allowed packet research files changed; no matching-source/protected-path/raw-binary changes; D10 unchanged and whitespace check passes"
+  ],
+  "native_abi_notes": [
+    "The local/global variable-bank addresses resolve correctly, including D_8004BE98[index-16] for native 0x8004BE78+2*index.",
+    "Scalar voice-field unaligned operations and indexed array halfword alignment are source/native consistent; IDO layout checks establish the 416-byte model.",
+    "The 23DB8 uninitialized condition outside modes 0/1 mirrors an undefined native path; no wider-domain behavior is claimed.",
+    "The 230B0 time domain is 0..65535, so multiplying by 256 preserves zero/nonzero classification and division uses a nonzero original time when reached."
+  ],
+  "receipt_sha256": {
+    "verification.json": "306b95c01a3c1ef5fd9a576b9dab1981175feec4da2ff18a57a56d3d9e08cff7",
+    "layout_verification.json": "58b5bb7b6de48c875511c4ded97cd628c6ade1f2184ec879847848ee08b0bb88"
+  },
+  "limitations": [
+    "Host tests use host pointers/endianness and audited test-only callee implementations; they are not N64 body equality.",
+    "23DB8 requires valid comparison modes and in-object command pointers; arbitrary malformed bytecode and out-of-domain calls are not covered.",
+    "No source promotion, verified bytes, cartridge coverage or transitive table equality is granted."
+  ]
+}

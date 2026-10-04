@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "scope": "Metadata-only workbench diagnosis on canonical targets and fully relocated candidate words before directed refinement. Trailing ELF zero padding is visible to workbench but does not count as strict scorer excess. All temporary word listings and objects remain uncommitted.",
+  "checkpoints": [
+    {
+      "function": "func_800148F8",
+      "checkpoint": "Initial O2 before refinements",
+      "source_sha256": "cd846373098352fdf5b327e7832e532817dc7ae08da7fb3a873f2a880a78d990",
+      "routing": "evidence-first",
+      "owning_pass": "unknown",
+      "ownership_basis": "heuristic",
+      "lever_class": "none-known",
+      "lever_reason": "possible-color and temporary roles overlap; neither a lane rotation nor a filtered replay proves reservation or demand-order causality",
+      "target_frame": null,
+      "candidate_frame": null,
+      "target_instructions": 49,
+      "candidate_instructions": 49,
+      "aligned_insertions": 0,
+      "aligned_deletions": 0,
+      "artifact_built_at": [
+        "2026-10-03T22:47:18Z",
+        "2026-10-03T22:47:18Z"
+      ]
+    },
+    {
+      "function": "func_800171C0",
+      "checkpoint": "Initial O2 before refinements",
+      "source_sha256": "66bf2370841083ff82b14f394c657d1f0cd71167948634a6ff683a798fa4c9a9",
+      "routing": "import-fix",
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "none-known",
+      "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+      "target_frame": null,
+      "candidate_frame": null,
+      "target_instructions": 55,
+      "candidate_instructions": 56,
+      "aligned_insertions": 2,
+      "aligned_deletions": 1,
+      "artifact_built_at": [
+        "2026-10-03T22:47:19Z",
+        "2026-10-03T22:47:19Z"
+      ]
+    },
+    {
+      "function": "func_8001729C",
+      "checkpoint": "Initial O2 before refinements",
+      "source_sha256": "ffe49fdf56d8ef7abb8027531618dac12ded4153e515636a67dceb722ed11c68",
+      "routing": "import-fix",
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "none-known",
+      "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+      "target_frame": null,
+      "candidate_frame": null,
+      "target_instructions": 44,
+      "candidate_instructions": 46,
+      "aligned_insertions": 4,
+      "aligned_deletions": 2,
+      "artifact_built_at": [
+        "2026-10-03T22:47:20Z",
+        "2026-10-03T22:47:20Z"
+      ]
+    },
+    {
+      "function": "func_800173B4",
+      "checkpoint": "Initial O2 before refinements",
+      "source_sha256": "2aaf9652dee891073570c2e5396e86e169d2ae0f84b6087303c6bcf8c4fdb002",
+      "routing": "import-fix",
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "none-known",
+      "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+      "target_frame": null,
+      "candidate_frame": null,
+      "target_instructions": 23,
+      "candidate_instructions": 25,
+      "aligned_insertions": 8,
+      "aligned_deletions": 6,
+      "artifact_built_at": [
+        "2026-10-03T22:47:20Z",
+        "2026-10-03T22:47:20Z"
+      ]
+    },
+    {
+      "function": "func_80017410",
+      "checkpoint": "Initial O2 before refinements",
+      "source_sha256": "ee7b3fc7333d2e6ccde3b633dc4394eadc7e8f8095205a5f0cf4f7e2f0d1b916",
+      "routing": "import-fix",
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "none-known",
+      "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+      "target_frame": null,
+      "candidate_frame": null,
+      "target_instructions": 24,
+      "candidate_instructions": 25,
+      "aligned_insertions": 2,
+      "aligned_deletions": 1,
+      "artifact_built_at": [
+        "2026-10-03T22:47:21Z",
+        "2026-10-03T22:47:21Z"
+      ]
+    },
+    {
+      "function": "func_80017470",
+      "checkpoint": "Initial O2 before refinements",
+      "source_sha256": "bf776764f6b82f06739038770cd88c124188b37c2cd816fb18e9f29240c972d6",
+      "routing": "import-fix",
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "none-known",
+      "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+      "target_frame": null,
+      "candidate_frame": null,
+      "target_instructions": 24,
+      "candidate_instructions": 25,
+      "aligned_insertions": 2,
+      "aligned_deletions": 1,
+      "artifact_built_at": [
+        "2026-10-03T22:47:21Z",
+        "2026-10-03T22:47:21Z"
+      ]
+    },
+    {
+      "function": "func_800174D0",
+      "checkpoint": "Initial O2 before refinements",
+      "source_sha256": "bce0081781276617bf1acdaa85b1c35f6950badb6f4ef7cd7815e5aa8808525a",
+      "routing": "import-fix",
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "none-known",
+      "lever_reason": "no lever class is supported by this evidence: the owning pass reads cfe-spelling, the frames agree, and no home, ring or line-order measurement is present",
+      "target_frame": null,
+      "candidate_frame": null,
+      "target_instructions": 28,
+      "candidate_instructions": 29,
+      "aligned_insertions": 2,
+      "aligned_deletions": 1,
+      "artifact_built_at": [
+        "2026-10-03T22:47:21Z",
+        "2026-10-03T22:47:21Z"
+      ]
+    }
+  ]
+}

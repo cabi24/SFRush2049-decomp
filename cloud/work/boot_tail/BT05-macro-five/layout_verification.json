@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "compiler": "pinned IDO 5.3",
+  "results": [
+    {
+      "name": "func_80022324",
+      "source_sha256": "49fbe784f384d7273c953911401a99b281f39d2d9e6a134ad882ece76bc287b7",
+      "checks": [
+        "sizeof(void *) == 4",
+        "sizeof(MacroCommand) == 8",
+        "sizeof(VoiceState) == 416",
+        "(unsigned int)&((VoiceState *)0)->program == 0",
+        "(unsigned int)&((VoiceState *)0)->current == 4",
+        "(unsigned int)&((VoiceState *)0)->flags24 == 36",
+        "(unsigned int)&((VoiceState *)0)->pan38 == 56",
+        "(unsigned int)&((VoiceState *)0)->panDelta3C == 60",
+        "(unsigned int)&((VoiceState *)0)->keyGroup4E == 78",
+        "(unsigned int)&((VoiceState *)0)->id60 == 96",
+        "(unsigned int)&((VoiceState *)0)->panTimeA8 == 168",
+        "(unsigned int)&((VoiceState *)0)->panTargetAC == 172",
+        "(unsigned int)&((VoiceState *)0)->variables180 == 384"
+      ],
+      "result": "PASS"
+    },
+    {
+      "name": "func_800230B0",
+      "source_sha256": "d8eb10e5c069ae255d687d3ecc8b1c2af9d0d5d4baa1866968afeb71d4978392",
+      "checks": [
+        "sizeof(void *) == 4",
+        "sizeof(MacroCommand) == 8",
+        "sizeof(VoiceState) == 416",
+        "(unsigned int)&((VoiceState *)0)->program == 0",
+        "(unsigned int)&((VoiceState *)0)->current == 4",
+        "(unsigned int)&((VoiceState *)0)->flags24 == 36",
+        "(unsigned int)&((VoiceState *)0)->pan38 == 56",
+        "(unsigned int)&((VoiceState *)0)->panDelta3C == 60",
+        "(unsigned int)&((VoiceState *)0)->keyGroup4E == 78",
+        "(unsigned int)&((VoiceState *)0)->id60 == 96",
+        "(unsigned int)&((VoiceState *)0)->panTimeA8 == 168",
+        "(unsigned int)&((VoiceState *)0)->panTargetAC == 172",
+        "(unsigned int)&((VoiceState *)0)->variables180 == 384"
+      ],
+      "result": "PASS"
+    },
+    {
+      "name": "func_80023AD4",
+      "source_sha256": "9584644ff5737721692f4914fb2a59f011f880e7583e95e1584266461aafb804",
+      "checks": [
+        "sizeof(void *) == 4",
+        "sizeof(MacroCommand) == 8",
+        "sizeof(VoiceState) == 416",
+        "(unsigned int)&((VoiceState *)0)->program == 0",
+        "(unsigned int)&((VoiceState *)0)->current == 4",
+        "(unsigned int)&((VoiceState *)0)->flags24 == 36",
+        "(unsigned int)&((VoiceState *)0)->pan38 == 56",
+        "(unsigned int)&((VoiceState *)0)->panDelta3C == 60",
+        "(unsigned int)&((VoiceState *)0)->keyGroup4E == 78",
+        "(unsigned int)&((VoiceState *)0)->id60 == 96",
+        "(unsigned int)&((VoiceState *)0)->panTimeA8 == 168",
+        "(unsigned int)&((VoiceState *)0)->panTargetAC == 172",
+        "(unsigned int)&((VoiceState *)0)->variables180 == 384"
+      ],
+      "result": "PASS"
+    },
+    {
+      "name": "func_80023B50",
+      "source_sha256": "2f5b19c4e7a316627dcd1c7fbfde436afa05b42dc9d289e1794483ad2b597539",
+      "checks": [
+        "sizeof(void *) == 4",
+        "sizeof(MacroCommand) == 8",
+        "sizeof(VoiceState) == 416",
+        "(unsigned int)&((VoiceState *)0)->program == 0",
+        "(unsigned int)&((VoiceState *)0)->current == 4",
+        "(unsigned int)&((VoiceState *)0)->flags24 == 36",
+        "(unsigned int)&((VoiceState *)0)->pan38 == 56",
+        "(unsigned int)&((VoiceState *)0)->panDelta3C == 60",
+        "(unsigned int)&((VoiceState *)0)->keyGroup4E == 78",
+        "(unsigned int)&((VoiceState *)0)->id60 == 96",
+        "(unsigned int)&((VoiceState *)0)->panTimeA8 == 168",
+        "(unsigned int)&((VoiceState *)0)->panTargetAC == 172",
+        "(unsigned int)&((VoiceState *)0)->variables180 == 384"
+      ],
+      "result": "PASS"
+    },
+    {
+      "name": "func_80023DB8",
+      "source_sha256": "26a372b19037f52a399e33479e2f95681cf8e58fda49863f78b06ca97ebebe71",
+      "checks": [
+        "sizeof(void *) == 4",
+        "sizeof(MacroCommand) == 8",
+        "sizeof(VoiceState) == 416",
+        "(unsigned int)&((VoiceState *)0)->program == 0",
+        "(unsigned int)&((VoiceState *)0)->current == 4",
+        "(unsigned int)&((VoiceState *)0)->flags24 == 36",
+        "(unsigned int)&((VoiceState *)0)->pan38 == 56",
+        "(unsigned int)&((VoiceState *)0)->panDelta3C == 60",
+        "(unsigned int)&((VoiceState *)0)->keyGroup4E == 78",
+        "(unsigned int)&((VoiceState *)0)->id60 == 96",
+        "(unsigned int)&((VoiceState *)0)->panTimeA8 == 168",
+        "(unsigned int)&((VoiceState *)0)->panTargetAC == 172",
+        "(unsigned int)&((VoiceState *)0)->variables180 == 384"
+      ],
+      "result": "PASS"
+    }
+  ]
+}

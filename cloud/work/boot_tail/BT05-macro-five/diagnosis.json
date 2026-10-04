@@ -1,0 +1,57 @@
+{
+  "phase": "Initial O2 candidates before directed source controls",
+  "construction": "Temporary objects from unchanged canonical target words and fully relocated compiler output; raw words and objects remain local.",
+  "command": "python3 tools/workbench.py diagnose <temporary-target.o> <temporary-relocated-candidate.o> --function <name> --objdump <GNU-MIPS-objdump> --json",
+  "results": [
+    {
+      "name": "func_80022324",
+      "verdict": "structure-mismatch",
+      "instruction_delta": 1,
+      "target_frame": -40,
+      "candidate_frame": -40,
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "none-known"
+    },
+    {
+      "name": "func_800230B0",
+      "verdict": "structure-mismatch",
+      "instruction_delta": -2,
+      "target_frame": -40,
+      "candidate_frame": -32,
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "stack-home"
+    },
+    {
+      "name": "func_80023AD4",
+      "verdict": "structure-mismatch",
+      "instruction_delta": 1,
+      "target_frame": -24,
+      "candidate_frame": -24,
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "none-known"
+    },
+    {
+      "name": "func_80023B50",
+      "verdict": "structure-mismatch",
+      "instruction_delta": 2,
+      "target_frame": -32,
+      "candidate_frame": -32,
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "none-known"
+    },
+    {
+      "name": "func_80023DB8",
+      "verdict": "structure-mismatch",
+      "instruction_delta": 3,
+      "target_frame": -32,
+      "candidate_frame": -32,
+      "owning_pass": "unknown",
+      "ownership_basis": "none",
+      "lever_class": "none-known"
+    }
+  ]
+}

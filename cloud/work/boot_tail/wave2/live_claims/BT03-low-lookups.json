@@ -1,0 +1,37 @@
+{
+  "state": "active",
+  "owner": "/root/match_boot_tail_lookup_five",
+  "packet": "BT03-low-lookups",
+  "branch": "dot/boot-tail-bt03-low-lookups",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x80016C20",
+      "size": 192,
+      "end_exclusive": "0x80016CE0"
+    },
+    {
+      "address": "0x80016E68",
+      "size": 120,
+      "end_exclusive": "0x80016EE0"
+    },
+    {
+      "address": "0x80016EE0",
+      "size": 120,
+      "end_exclusive": "0x80016F58"
+    },
+    {
+      "address": "0x80016F80",
+      "size": 152,
+      "end_exclusive": "0x80017018"
+    },
+    {
+      "address": "0x80017040",
+      "size": 200,
+      "end_exclusive": "0x80017108"
+    }
+  ],
+  "bytes": 784,
+  "edit_scope": "Only listed matching sources and cloud/work/boot_tail/BT03-low-lookups/**",
+  "stop": "Inspect the real external1E864 ABI before candidate edits; helper read-only. Natural C89/O2/O1;20 directed variants maximum, diagnose first and avoid unsupported repetitions of known narrow-formal plateaus. No protected edits, overlaps, old residual reopening or missing rodata substitution."
+}

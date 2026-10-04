@@ -1,0 +1,43 @@
+{
+  "state": "active",
+  "owner": "/root/match_boot_tail_bt03_high",
+  "packet": "BT03-high-params",
+  "branch": "dot/boot-tail-bt03-high-params",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x80018E6C",
+      "size": 72,
+      "end_exclusive": "0x80018EB4"
+    },
+    {
+      "address": "0x8002021C",
+      "size": 88,
+      "end_exclusive": "0x80020274"
+    },
+    {
+      "address": "0x80019ED0",
+      "size": 120,
+      "end_exclusive": "0x80019F48"
+    },
+    {
+      "address": "0x8001B154",
+      "size": 124,
+      "end_exclusive": "0x8001B1D0"
+    },
+    {
+      "address": "0x8001B744",
+      "size": 124,
+      "end_exclusive": "0x8001B7C0"
+    },
+    {
+      "address": "0x80018FEC",
+      "size": 128,
+      "end_exclusive": "0x8001906C"
+    }
+  ],
+  "bytes": 656,
+  "prior_packet": "BT03-high-init frozen peer PASS5e487eb4b1bde5e8f465cc5c329f060089883a0a",
+  "edit_scope": "Only listed matching sources and cloud/work/boot_tail/BT03-high-params/**",
+  "stop": "Audit actual native ABI and domains. Natural C89/O2/O1,20 directed variants maximum, diagnose first. No protected edits, overlaps, unresolved literal/table substitution or old residual reopening. Do not repeat unsupported narrow-formal declaration sweeps."
+}

@@ -1,0 +1,19 @@
+{
+  "repository": "AxioDL/musyx",
+  "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+  "license": "CC0-1.0",
+  "license_blob_sha": "0e259d42c996742e9e3cba14c677129b2c1b6311",
+  "source_path": "src/musyx/runtime/synthmacros.c",
+  "source_blob_sha": "a3203f9e0032fa5e9d08fa5e51da80acf4cab0c0",
+  "definitions": [
+    "mcmdSetKey",
+    "mcmdLastKey",
+    "mcmdSetADSR",
+    "mcmdPitchSweep",
+    "TranslateVolume"
+  ],
+  "use": "Public source-family context only, not an authentic N64 release. Native differences retained: byte sweep counters, zero curve sentinel, no DLS envelope branch or third148F8 argument,0x200 flag. Source structures are adapted only where the native operations agree; no callee implementation is imported.",
+  "header_path": "include/musyx/synthdata.h",
+  "header_blob_sha": "3170e8ffabc2bd1e8c4212a0d32000d0657cee73",
+  "native_authority": "Immutable canonical boot-tail targets and actual caller/callee ABI."
+}

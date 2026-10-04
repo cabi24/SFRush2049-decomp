@@ -1,5 +1,5 @@
 {
-  "state": "active",
+  "state": "integrating-source-frozen",
   "owner": "/root/match_boot_tail_bt05_bt07",
   "packet": "BT05-variables",
   "branch": "dot/boot-tail-bt05-variables",
@@ -34,5 +34,6 @@
   "bytes": 872,
   "prior_packet": "BT05-conditions frozen peer PASS6acbc06132e0c767783948a0804d66d2ae20ac80",
   "edit_scope": "Only listed matching sources and cloud/work/boot_tail/BT05-variables/**",
-  "stop": "Actual narrow-input and dispatcher-index ABI. Native source C89,O2/O1,20 directed variants maximum per hypothesis; no protected edits, table proof substitution or repeats of known plateaus without new evidence. Do not edit148F8 or other owned helpers."
+  "stop": "Actual narrow-input and dispatcher-index ABI. Native source C89,O2/O1,20 directed variants maximum per hypothesis; no protected edits, table proof substitution or repeats of known plateaus without new evidence. Do not edit148F8 or other owned helpers.",
+  "peer_approved_head": "3d1c4fde5492e9513d0fc38df8435e7105067e13"
 }
