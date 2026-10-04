@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "audit_completed_utc": "2026-10-04T06:13:56Z",
+  "receipt_written_utc": "2026-10-04T06:36:23Z",
+  "scope": "Independent immutable source-cut integration and local verification audit; no source edits or publication.",
+  "audited_commit": "b851720ea507d1c4b9ca39a12b429612884da8f5",
+  "audited_tree": "97421da014e4e68ae59bc8dad08a328b51c2fbfd",
+  "comparison_base": {
+    "local_commit": "77a963a05c73540439f7d7194b6c49bce32f3bbe",
+    "tree": "94691b0a0e468657e5adc49e95d7d99f8b297ba2",
+    "published_equivalent_reported_by_integrator": "d3e457b05b9eb7b5a4512e4ae4b1fc32c34e268f",
+    "note": "Published hash was absent locally; audit used the confirmed exact-tree local equivalent."
+  },
+  "peer_binding": [
+    {
+      "function": "func_8001C1D8",
+      "native_bytes": 432,
+      "final_peer_commit": "ef129c7c30c061e38e1675f188cfe6eadb0bd8ae",
+      "source_sha256": "82d2de520663eeaedaec17624b865cc7ea3e2a4da20e7ca3b28220f8016774a5",
+      "packet_files_compared": 9,
+      "original_review_commit": "a87864a4ab2630771d527fb460a010dcd9588d96",
+      "original_review_tree": "56ca28d383f7487e16d92e9edc5336f6ac94cbe6",
+      "final_packet_and_source_byte_identical": true
+    },
+    {
+      "function": "func_80020820",
+      "native_bytes": 484,
+      "final_peer_commit": "72b0bbd0cf81055e10a3613c7b353ec9dd8d418a",
+      "source_sha256": "93577fdccd962174556eb10f0ac4d70ac85926831c661ebc7ccc234d1b0955ca",
+      "packet_files_compared": 13,
+      "original_review_commit": "7ed7c730b8f3faf7bf241744080bdd76745ea913",
+      "original_review_tree": "e697d64a7086bdaddcb38b92d5dac62b56cd53aa",
+      "final_packet_and_source_byte_identical": true
+    }
+  ],
+  "independently_recomputed_totals": {
+    "historical_selected_source_records": 396,
+    "distinct_attempted_addresses": 394,
+    "new_unique_attempts_this_cut": 0,
+    "reclassified_prior_nonmatches": 2,
+    "current_new_matching_functions": 239,
+    "current_new_matching_bytes": 28096,
+    "current_complete_nonmatch_functions": 154,
+    "current_complete_nonmatch_bytes": 44312,
+    "current_blocked_lead_functions": 1,
+    "current_blocked_lead_bytes": 96,
+    "historical_getter_counted_separately": true,
+    "rule": "Latest reviewed classification by address supersedes current nonmatch state without deleting historical evidence or adding an attempted address."
+  },
+  "verification": {
+    "wave16_strict_aggregate_check": "PASS: both full relocated matches, no masks/unresolved/unverified/errors or extra nonzero words",
+    "wave15_strict_aggregate_check": "PASS: one match and three complete nonmatches reproduced",
+    "changed_canonical_submission_gate": "PASS: two MATCH results",
+    "generator_check": "PASS: reproducible 412-function / 95012-byte metadata",
+    "opcode_screen_check": "PASS",
+    "central_unittest_groups": 28,
+    "new_packet_semantic_native_test_groups": 5,
+    "prior_packet_sanitizer_test_groups": 8,
+    "both_packet_verifiers": "PASS; fresh JSON outputs exactly equal retained verification receipts",
+    "retained_c13_controls": "PASS",
+    "canonical_20820_native_replay": "PASS: 640 cases and fail-closed unsupported-opcode test",
+    "independent_elf_parser": [
+      {
+        "function": "func_8001C1D8",
+        "format": "ELF32 big-endian",
+        "text_function_symbol_count": 1,
+        "function_offset": 0,
+        "function_size": 432,
+        "zero_section_alignment_bytes_excluded": 0
+      },
+      {
+        "function": "func_80020820",
+        "format": "ELF32 big-endian",
+        "text_function_symbol_count": 1,
+        "function_offset": 0,
+        "function_size": 484,
+        "zero_section_alignment_bytes_excluded": 12
+      }
+    ],
+    "protected_path_gate": "PASS",
+    "protected_path_lock_revision": "1018ab003251d41de0671284519a91b6b07c5a95",
+    "locked_functions_intact": 161
+  },
+  "preservation_and_scope": {
+    "all_396_historical_selected_source_hashes_verified": true,
+    "wave1_through_wave15_manifests_unchanged": true,
+    "both_original_nonmatch_archives_unchanged": true,
+    "supersedes_bindings_match_original_records": true,
+    "d10_and_protected_inputs_unchanged": true,
+    "changed_paths": 38,
+    "all_changed_paths_within_boot_tail_source_or_work_scope": true,
+    "no_rom_raw_assembly_objects_credentials_or_unrelated_private_data_added": true,
+    "worktree_clean_at_audit_completion": true,
+    "auditor_source_or_ledger_changes": false
+  },
+  "source_line_finding": {
+    "mechanically_verified_delta": "Only genuine existing scalar loops acquire ordinary multiline braced bodies; expressions, declarations, ABI, access operations and bounds unchanged.",
+    "fresh_stock_preassembler_executable_sequences_equal": true,
+    "fresh_stock_store_line_ownership_differs": true,
+    "orthogonal_same_line_braces_and_multiline_no_braces_controls_reproduced": true,
+    "conclusion": "Evidence supports the specific measured loop/source-line ownership scheduling effect under the pinned stock compiler and flags. It does not support arbitrary padding, generic formatting sweeps, compiler changes or resolution of unrelated allocation residuals."
+  },
+  "limitations": [
+    "Hosted CI was a separate pending gate when this audit completed; this receipt does not independently certify later remote commits or workflow results.",
+    "The audit establishes source matching and preserved evidence, not cartridge coverage, promotion, production ROM identity or merge authorization.",
+    "Native replay uses bounded registered-row domains and synthetic external helper contracts; arbitrary malformed inputs and helper internals are not proved."
+  ]
+}

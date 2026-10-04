@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "source_parent": "14a7a4ef2a244848f9ab9b7363d4246b40a815fc",
+  "functions": 1,
+  "selected_source_bytes": 276,
+  "new_unique_attempts": 0,
+  "reclassified_prior_nonmatches": 1,
+  "local_match_functions": 1,
+  "local_match_bytes": 276,
+  "complete_nonmatch_functions": 0,
+  "result": "One previous complete nonmatch now matches; historical source and manifests unchanged",
+  "entries": [
+    {
+      "address": "0x8001ECE0",
+      "name": "func_8001ECE0",
+      "size": 276,
+      "packet": "BT03-voice-allocation-retry",
+      "reviewer": "Independent voice-allocation source/ABI reviewer",
+      "reviewed_commit": "46e85da31134966ac521115b9543a7bdd8ffaa7b",
+      "source_path": "cloud/matches/boot_tail/func_8001ECE0.c",
+      "source_sha256": "00f70ee6c8e555735cc2e2edb348f715e63622f2b92a97bd57536ffe3ef72192",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "expected_match": true,
+      "expected_differing_words": 0,
+      "proof_state": "local-strict-match",
+      "matching_blocker": null,
+      "attempt_kind": "reclassification of prior complete nonmatch; no new unique attempt",
+      "supersedes": {
+        "source_path": "cloud/work/boot_tail/BT03-high-chains/nonmatch/func_8001ECE0.c",
+        "source_sha256": "5b4fc9a766c0518d026e1c4c76b20e2164cae2daa015647852db0c79ff575df8",
+        "expected_differing_words": 8,
+        "reviewed_commit": "d3dc7037ce311174a2d2121c26b355a7aed03168"
+      },
+      "transformation": "Pinned source-family assignment-valued free-head advance and ordinary for-loop traversal. Two measured controls preserve native one-pointer ABI, operations, callback order and domains."
+    }
+  ]
+}

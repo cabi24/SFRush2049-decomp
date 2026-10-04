@@ -1,0 +1,45 @@
+{
+  "method": "Unchanged workbench with a temporary canonical-word ELF target; strict fully relocated scorer is authoritative. Raw objects, native words, listings and traces remain temporary.",
+  "stages": [
+    {
+      "source": "retained historical baseline",
+      "sha256": "5b4fc9a766c0518d026e1c4c76b20e2164cae2daa015647852db0c79ff575df8",
+      "differing_words": 8,
+      "extra_words": 0,
+      "residual": "Three traversal-copy scheduling words and five allocation-load/branch operands"
+    },
+    {
+      "source": "free-head assignment control",
+      "sha256": "2213685e44f31cf0a271730bce425dda1f3fcdb78968f04b587393f7105e6388",
+      "differing_words": 3,
+      "extra_words": 0,
+      "workbench_verdict": "allocation-mismatch",
+      "residual_offsets": [
+        "0x44",
+        "0x54",
+        "0x58"
+      ],
+      "owning_pass_evidence": "Stock byte-inert assembler trace proves source-line ordering of equal-ready traversal copies; workbench classification is heuristic"
+    },
+    {
+      "source": "conventional for traversal",
+      "sha256": "00f70ee6c8e555735cc2e2edb348f715e63622f2b92a97bd57536ffe3ef72192",
+      "differing_words": 0,
+      "extra_words": 0,
+      "elf_function_bytes": 276,
+      "full_relocated_native_window_equal": true
+    }
+  ],
+  "reference": {
+    "repository": "AxioDL/musyx",
+    "commit": "78d2e16e4905fc675952162d331c24d5198b2687",
+    "path": "src/musyx/runtime/synthvoice.c",
+    "git_blob": "3ad906e217a82e77b649edc8935fd6c139d09415",
+    "blob_hash_verified": true,
+    "source_not_vendored": true,
+    "license": "CC0-1.0",
+    "license_blob": "0e259d42c996742e9e3cba14c677129b2c1b6311",
+    "license_url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/LICENSE",
+    "license_independently_verified_by_review": true
+  }
+}

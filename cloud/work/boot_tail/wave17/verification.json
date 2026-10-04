@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "functions": 1,
+  "matching_functions": 1,
+  "matching_bytes": 276,
+  "nonmatching_functions": 0,
+  "results": [
+    {
+      "name": "func_8001ECE0",
+      "source_sha256": "00f70ee6c8e555735cc2e2edb348f715e63622f2b92a97bd57536ffe3ef72192",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "native_bytes": 276,
+      "differing_words": 0,
+      "total_words": 69,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "masked_relocations": 0,
+      "proof_state": "local-strict-match",
+      "strict_match": true,
+      "relocated_full_word_equality": true,
+      "function_symbols": [
+        {
+          "name": "func_8001ECE0",
+          "value": 0,
+          "size": 276,
+          "type": 2,
+          "section": 4
+        }
+      ],
+      "text_section_bytes": 288,
+      "function_extent_exact": true
+    }
+  ]
+}

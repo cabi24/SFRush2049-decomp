@@ -1,0 +1,24 @@
+{
+  "state": "frozen-review-pass-integrating",
+  "owner": "/root/match_voice_allocation_branch",
+  "packet": "BT03-voice-allocation-retry",
+  "branch": "dot/boot-tail-bt03-voice-allocation-retry",
+  "base": "ef129c7c30c061e38e1675f188cfe6eadb0bd8ae",
+  "targets": [
+    {
+      "address": "0x8001ECE0",
+      "size": 276,
+      "end_exclusive": "0x8001EDF4"
+    }
+  ],
+  "bytes": 276,
+  "claim_kind": "bounded evidence-backed revisit; not a fresh attempt",
+  "edit_scope": "Only new owned packet; canonical func_8001ECE0.c on fully reviewed strict success. Prior sources and frozen cut16 preserved.",
+  "evidence": "Pinned synthvoice.c vidMakeNew assignment-valued free-head advancement is absent from five archived forms. Fresh stock lowering/native comparison isolates five allocation-load/branch differences; exactly one donor-derived control is authorized after read-only proof. Preserve actual one-pointer ABI, no isMaster/newer retry additions.",
+  "donor_commit": "78d2e16e4905fc675952162d331c24d5198b2687",
+  "donor_blob": "3ad906e217a82e77b649edc8935fd6c139d09415",
+  "activation_utc": "2026-10-04T06:33:17Z",
+  "followup_authorized_utc": "2026-10-04T06:37:29Z",
+  "followup_bound": "Exactly one conventional for-loop traversal control after stock scheduler trace ties the two real pointer copies except their source-line ownership. No extra operations, locals or ABI changes; preserve callbacks and semantic domains. Stop after this form.",
+  "reviewed_commit": "46e85da31134966ac521115b9543a7bdd8ffaa7b"
+}
