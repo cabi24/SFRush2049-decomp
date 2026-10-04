@@ -1,0 +1,28 @@
+{
+  "result": "PASS",
+  "scope": "Fresh post-reset retained-source tests only",
+  "source_sha256": "ad5137579da173b15c903c8aa35c69cd26416d51def3b65267045062543bff65",
+  "test_source_sha256": "52f4f790b12cd27558a6cea5d7d9af6becff7133f9101933a3eb6ea99e77200e",
+  "supplemental_script_sha256": "2d87bb43a561545c070d502599355c272130d8fca88855245ccb6348dcab2c76",
+  "stock_test_groups": 1,
+  "stock_actual_source_calls": 68931,
+  "exhaustive_key_velocity_cases": 65536,
+  "live_context_failure_and_timing_cases": 3200,
+  "multiple_event_cases": 192,
+  "active_and_future_checks": 3,
+  "supplemental_actual_source_calls": 65600,
+  "supplemental_signed_offset_pairs": 65536,
+  "supplemental_four_track_cases": 64,
+  "combined_actual_source_calls": 134531,
+  "stock_optimization": "O1",
+  "supplemental_optimization": "O2",
+  "host_flags": "-std=c89 -pedantic-errors -Wall -Wextra -Werror -fsanitize=address,undefined -no-pie",
+  "only_leak_sanitizer_disabled": true,
+  "limitations": [
+    "Synthetic valid aligned streams, channel 0..15 and track ID 0..63.",
+    "External helpers are interface/effect fixtures, not complete engine implementations.",
+    "Native layouts are separately checked with pinned O32 IDO.",
+    "No malformed/cyclic-stream, partial-overlap, concurrency or universal downstream safety claim.",
+    "The original test file hash was not separately retained before reset; its complete recovered text is freshly tested and bound above."
+  ]
+}

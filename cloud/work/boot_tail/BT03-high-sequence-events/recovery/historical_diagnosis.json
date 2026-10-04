@@ -1,0 +1,12 @@
+{
+  "method": "Canonical relocated target/candidate words in temporary objects; unchanged workbench. No raw dump or object committed.",
+  "results": [
+    {
+      "name": "func_80017D38",
+      "stage": "initial O2 before refinement",
+      "source_sha256": "2a51cd883b38062c513f34047f8fbbedbe2e1d85152ae8b4efb22c235d74beea",
+      "workbench_summary": "verdict=structure-mismatch aligned_total= 121 words= 211 raw= 211 opcodes= 186 gaps=  22 reloc_syms=   8 norm= 112 regs= 206 fp=   8 insns= 226 frame= -112 sha1=80f0464bd1c7 /tmp/sequence-events-candidate-80017D38.o true_insn_delta=+8 geometry_edit_distance=112 opcode_distance=20",
+      "recorded_utc": "2026-10-04T03:56:14.094341+00:00"
+    }
+  ]
+}

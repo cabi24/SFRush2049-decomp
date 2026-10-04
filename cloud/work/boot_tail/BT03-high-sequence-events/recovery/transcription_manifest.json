@@ -1,0 +1,152 @@
+{
+  "schema": "reviewer-recovery-v1",
+  "created_utc": "2026-10-04T04:56:00Z",
+  "method": "Accessible conversation/tool content only; no denied session-log access.",
+  "original_reviewed_commit": "ca6a32ca2497c95804adabd7686d73e7e295887b",
+  "original_reviewed_tree": "ae184b11c16f57fbb165721cd2cf7180867f3567",
+  "source_complete": true,
+  "source_exact_original_sha256_verified": true,
+  "test_text_complete": true,
+  "test_original_hash_unavailable": true,
+  "original_packet_files_transcribed": 12,
+  "original_git_objects_recovered": false,
+  "old_review_json_bytes_recovered": false,
+  "fresh_compilation_or_semantic_tests_run": false,
+  "checks_performed": [
+    "Original C SHA256 equality",
+    "Python AST parse for restored scripts",
+    "JSON parse for restored metadata"
+  ],
+  "unrecovered_original_paths": [
+    "abi_proof.json",
+    "verification.json",
+    "setup.log",
+    "initial_controls.json",
+    "directed_controls.json",
+    "controls/func_80017D38_initial.c",
+    "controls/func_80017D38_direct_live_track_view.c",
+    "controls/func_80017D38_whole_timestamp_copy.c",
+    "controls/func_80017D38_consumed_command_byte.c"
+  ],
+  "files": {
+    "RECOVERY_PROVENANCE.md": {
+      "sha256": "b46a44dc328e200513f653615e2e3c3d82e4d766ba190ea125bb895c973f35fa",
+      "bytes": 3551,
+      "lines": 61,
+      "recovery_kind": "new_recovery_evidence_document",
+      "original_independent_hash_available": false
+    },
+    "cloud/work/boot_tail/BT03-high-sequence-events/README.md": {
+      "sha256": "8a9313eb2d71b0a12427c8a87da6dd1a4529fae4aa8f625025e66688ea54c372",
+      "bytes": 7873,
+      "lines": 125,
+      "recovery_kind": "complete_tool_output_transcription",
+      "original_independent_hash_available": false
+    },
+    "cloud/work/boot_tail/BT03-high-sequence-events/abi_proof.py": {
+      "sha256": "2857cf57e0abfd42a063e27606120a19558b6bd33e29cb64d18244ca6c8313d7",
+      "bytes": 2102,
+      "lines": 15,
+      "recovery_kind": "complete_tool_output_transcription",
+      "original_independent_hash_available": false
+    },
+    "cloud/work/boot_tail/BT03-high-sequence-events/diagnosis.json": {
+      "sha256": "c31c75833e35b79aca18d0a3530406aec72bff9f9a0ea2647ed182a0c606e4a8",
+      "bytes": 706,
+      "lines": 12,
+      "recovery_kind": "complete_tool_output_transcription",
+      "original_independent_hash_available": false
+    },
+    "cloud/work/boot_tail/BT03-high-sequence-events/nonmatch/func_80017D38.c": {
+      "sha256": "ad5137579da173b15c903c8aa35c69cd26416d51def3b65267045062543bff65",
+      "bytes": 4618,
+      "lines": 102,
+      "recovery_kind": "exact_original_sha256_verified",
+      "original_independent_hash_available": true
+    },
+    "cloud/work/boot_tail/BT03-high-sequence-events/preflight.json": {
+      "sha256": "7af233707742257b7ca9920c7e2aa6b5603b7cf6d80bc08fe7e9d706aa5680a5",
+      "bytes": 3217,
+      "lines": 61,
+      "recovery_kind": "complete_tool_output_transcription",
+      "original_independent_hash_available": false
+    },
+    "cloud/work/boot_tail/BT03-high-sequence-events/preflight.py": {
+      "sha256": "5402da01b4925a6f8b24d3a3dd30eb0905c3cbf830d6ec222234e067df5d707c",
+      "bytes": 3163,
+      "lines": 73,
+      "recovery_kind": "complete_tool_output_transcription",
+      "original_independent_hash_available": false
+    },
+    "cloud/work/boot_tail/BT03-high-sequence-events/references.json": {
+      "sha256": "00b6064b144dda1e682a4357f49013c141bb32f074616ac7fb3d76de63e5d3a7",
+      "bytes": 949,
+      "lines": 14,
+      "recovery_kind": "complete_tool_output_transcription",
+      "original_independent_hash_available": false
+    },
+    "cloud/work/boot_tail/BT03-high-sequence-events/status_delta.csv": {
+      "sha256": "df285cd7e9cadc599ef6a0fa69705f11b564b16171caddb8668424fe5b209ad7",
+      "bytes": 224,
+      "lines": 2,
+      "recovery_kind": "complete_tool_output_transcription",
+      "original_independent_hash_available": false
+    },
+    "cloud/work/boot_tail/BT03-high-sequence-events/test_results.json": {
+      "sha256": "fd520054799b9b694cd12f85b9a43e418d6f0d819216edc59c28cd30409a2435",
+      "bytes": 867,
+      "lines": 16,
+      "recovery_kind": "complete_tool_output_transcription",
+      "original_independent_hash_available": false
+    },
+    "cloud/work/boot_tail/BT03-high-sequence-events/test_semantics.py": {
+      "sha256": "52f4f790b12cd27558a6cea5d7d9af6becff7133f9101933a3eb6ea99e77200e",
+      "bytes": 8944,
+      "lines": 90,
+      "recovery_kind": "complete_tool_output_transcription",
+      "original_independent_hash_available": false
+    },
+    "cloud/work/boot_tail/BT03-high-sequence-events/verify.py": {
+      "sha256": "9807e95f91701b5737774d35231cbd9feb30fb4eb69b4d2bc3481c1b95da8d9b",
+      "bytes": 4185,
+      "lines": 70,
+      "recovery_kind": "complete_tool_output_transcription",
+      "original_independent_hash_available": false
+    },
+    "cloud/work/boot_tail/BT03-high-sequence-events/verify_controls.py": {
+      "sha256": "c691459dbe4cb1a77e742eafccb656c0c0812dc9d6d1c5b36973dc6d52cc00a9",
+      "bytes": 1500,
+      "lines": 23,
+      "recovery_kind": "complete_tool_output_transcription",
+      "original_independent_hash_available": false
+    },
+    "historical_review/review-17d38-supplement.json": {
+      "sha256": "c613a87bc79083e9ae6b9ada7e1b28367b3aea7ecfb0ce70b12eb20a6ec385e1",
+      "bytes": 520,
+      "lines": 9,
+      "recovery_kind": "complete_tool_output_transcription",
+      "original_independent_hash_available": false
+    },
+    "historical_review/review-17d38-supplement.py": {
+      "sha256": "c36907732cf7eb0aacfa35039bc1fddd08664287878e9c144d72810a57c73185",
+      "bytes": 2611,
+      "lines": 34,
+      "recovery_kind": "complete_original_tool_call_script_transcription",
+      "original_independent_hash_available": false
+    },
+    "historical_review/review_evidence.json": {
+      "sha256": "5fba93675682cf2602c9485171491850057ed4e0249a010577a33fe874d5329c",
+      "bytes": 4391,
+      "lines": 124,
+      "recovery_kind": "new_recovery_evidence_document",
+      "original_independent_hash_available": false
+    },
+    "historical_review/write-17d38-review-receipt.py": {
+      "sha256": "70b7b5f967e3fa5d94b1c9275f77fb71d9de6010d7bf44dc03cd268ff5a9442b",
+      "bytes": 5492,
+      "lines": 9,
+      "recovery_kind": "complete_original_tool_call_script_transcription",
+      "original_independent_hash_available": false
+    }
+  }
+}

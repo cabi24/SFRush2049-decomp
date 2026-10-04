@@ -1,0 +1,272 @@
+{
+  "packet": "BT07-decoder-facing-callers",
+  "base_commit": "496a72b0edd683bd7d46e8c21f8323ab43629494",
+  "original_pre_reset_base": "eae0295b40271c4758c7a3ecb890e48192487f8c",
+  "central_claim_commit": "bd452b11",
+  "manifest": [
+    "boot_tail_8000f3a4.s: OK",
+    "extents.json: OK",
+    "symbols.json: OK"
+  ],
+  "compiler_files_sha256": {
+    "acpp": "7bfdf2f79010eb95bd47e165036cac04a69e5f1290fde11736e5f6934f3e9189",
+    "as0": "72670d53952459fe5ac463e8844182cf4df9f6ccf469826c82ca858fdd665564",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+    "c++filt": "60791cf1d07ba780a4e8aa25d53c741d4b7d5427f891f7287b1bed0b6ba3e665",
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "copt": "e62a2a7276d2f9fa7f5daac25e01abe92cf4765173391cb0b616434c9c8122b3",
+    "crt1.o": "95bd24880e95e102bbdf2a1cfa2e10d391cb57784a42db19afd609c0904aee28",
+    "crtn.o": "62197e97a5e56e21c6a4e76ffe9f634cf90b47046ebe4841086108101ce496eb",
+    "err.english.cc": "6f2d777730f0a70328bb932c116c1c195da765cb9bbdee8c6d3eaf7d6ad77e78",
+    "ld": "266c5a22192ce532a6dcdb7127c1da72faa37e7e71d44677ab91d723b8ed2113",
+    "libc.so": "803f8b127194a79d92c5caea62fd39097be16d3fcd9870b4470123cebd5d27fe",
+    "libc.so.1": "803f8b127194a79d92c5caea62fd39097be16d3fcd9870b4470123cebd5d27fe",
+    "libexc.so": "b59bf75bcbff1526ad4e3b2b49b313788a6e4c97df5b69b4bc2ddbd6726c5864",
+    "libgen.so": "bb66dea1242000f648e890252cbe47037310559cc0ecda8ed212c0e545bf8063",
+    "libm.so": "8acc66c2d1315b90f38a280fe04a26d0e61b5ca377976ed5d7f88bb064bd2e35",
+    "strip": "bf39eca7d4357b699d59077078c657c5af428b0e57d5dd7835c3d0f915e801bf",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "ujoin": "34a6fff6e693f8c9505777d2860b4795fe97a01e89ce8616f4a5b624b11c451d",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "upas": "7fa9be3c14bfe854bb539312af5f4f40c29b975996bdd6868f489f82fb427d5b",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b"
+  },
+  "inventory_extents": {
+    "count": 439,
+    "bytes": 99120,
+    "equal": true
+  },
+  "results": [
+    {
+      "name": "func_8002574C",
+      "native_bytes": 604,
+      "target_sha256": "19d7bc111c647cce08476953e530bcd26f2cb4ce36a54e7bcbc3f420ccc603d4",
+      "source_path": "cloud/matches/boot_tail/func_8002574C.c",
+      "source_sha256": "09afc7ba5732799e15937190a709c72f1b82b1da46a477b4eda8ab4505450a26",
+      "trials": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "source_sha256": "09afc7ba5732799e15937190a709c72f1b82b1da46a477b4eda8ab4505450a26",
+          "object_sha256": "e189e90f9add488801340a2af540a745999f94da99049a4ae54406b39b61db65",
+          "differing_words": 0,
+          "total_words": 151,
+          "extra_words": 0,
+          "strict_match": true,
+          "scorer_window_relocation_errors": [],
+          "full_function_relocation_errors": [],
+          "relocation_mask_count": 0,
+          "unresolved": [],
+          "unverified": [],
+          "full_native_window_equal": true,
+          "elf": {
+            "start": 0,
+            "function_bytes": 604,
+            "section_bytes": 608
+          },
+          "exact_function_extent": true,
+          "section_padding_is_zero": true
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "source_sha256": "09afc7ba5732799e15937190a709c72f1b82b1da46a477b4eda8ab4505450a26",
+          "object_sha256": "9d1e6ed45074302e2fa4395dbc6c2b37188fe899db990e32a168970f616e4f94",
+          "differing_words": 150,
+          "total_words": 151,
+          "extra_words": 166,
+          "strict_match": false,
+          "scorer_window_relocation_errors": [
+            "unpaired R_MIPS_HI16 for D_80056230 at .text+0x250"
+          ],
+          "full_function_relocation_errors": [],
+          "relocation_mask_count": 0,
+          "unresolved": [],
+          "unverified": [],
+          "full_native_window_equal": false,
+          "elf": {
+            "start": 0,
+            "function_bytes": 1304,
+            "section_bytes": 1312
+          },
+          "exact_function_extent": false,
+          "section_padding_is_zero": true
+        }
+      ],
+      "initial_control": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "source_sha256": "c44290f1f38e87473bdc0aec9a6b5bab5f02d17fa71c8d25c2f506d9addc0ae6",
+          "object_sha256": "7040963277a348b0dbbe1d64a453239ccb5480e7519b9b8ef796312447c990ff",
+          "differing_words": 15,
+          "total_words": 151,
+          "extra_words": 0,
+          "strict_match": false,
+          "scorer_window_relocation_errors": [],
+          "full_function_relocation_errors": [],
+          "relocation_mask_count": 0,
+          "unresolved": [],
+          "unverified": [],
+          "full_native_window_equal": false,
+          "elf": {
+            "start": 0,
+            "function_bytes": 604,
+            "section_bytes": 608
+          },
+          "exact_function_extent": true,
+          "section_padding_is_zero": true
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "source_sha256": "c44290f1f38e87473bdc0aec9a6b5bab5f02d17fa71c8d25c2f506d9addc0ae6",
+          "object_sha256": "f5c899bbe4f2a5044bfbbcb25e44d01a7c68768cf5697cb8d30753372eac8105",
+          "differing_words": 148,
+          "total_words": 151,
+          "extra_words": 9,
+          "strict_match": false,
+          "scorer_window_relocation_errors": [],
+          "full_function_relocation_errors": [],
+          "relocation_mask_count": 0,
+          "unresolved": [],
+          "unverified": [],
+          "full_native_window_equal": false,
+          "elf": {
+            "start": 0,
+            "function_bytes": 648,
+            "section_bytes": 656
+          },
+          "exact_function_extent": false,
+          "section_padding_is_zero": true
+        }
+      ]
+    },
+    {
+      "name": "func_80025F74",
+      "native_bytes": 840,
+      "target_sha256": "7650ca0132961f8bcc14735c6797092a1b4fd0b4c40ff3031b2e512204aa5896",
+      "source_path": "cloud/work/boot_tail/BT07-decoder-facing-callers/func_80025F74.c",
+      "source_sha256": "0f3dde0cda2d618d93193d6e37718a43e1b007156fb36abbd872185e5c78c91d",
+      "trials": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "source_sha256": "0f3dde0cda2d618d93193d6e37718a43e1b007156fb36abbd872185e5c78c91d",
+          "object_sha256": "ca345e6a42132fba64ba4fcdd5c045e0a0f743a40cd9c0b4ec8d7fe20be04412",
+          "differing_words": 2,
+          "total_words": 210,
+          "extra_words": 0,
+          "strict_match": false,
+          "scorer_window_relocation_errors": [],
+          "full_function_relocation_errors": [],
+          "relocation_mask_count": 0,
+          "unresolved": [],
+          "unverified": [],
+          "full_native_window_equal": false,
+          "elf": {
+            "start": 0,
+            "function_bytes": 840,
+            "section_bytes": 848
+          },
+          "exact_function_extent": true,
+          "section_padding_is_zero": true
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "source_sha256": "0f3dde0cda2d618d93193d6e37718a43e1b007156fb36abbd872185e5c78c91d",
+          "object_sha256": "e3d619a3d96939344c140dfc5550e5bfe05b70b0ea1c3e3c24854973fafb4936",
+          "differing_words": 209,
+          "total_words": 210,
+          "extra_words": 54,
+          "strict_match": false,
+          "scorer_window_relocation_errors": [],
+          "full_function_relocation_errors": [],
+          "relocation_mask_count": 0,
+          "unresolved": [],
+          "unverified": [],
+          "full_native_window_equal": false,
+          "elf": {
+            "start": 0,
+            "function_bytes": 1092,
+            "section_bytes": 1104
+          },
+          "exact_function_extent": false,
+          "section_padding_is_zero": true
+        }
+      ],
+      "initial_control": [
+        {
+          "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "source_sha256": "75952ab147eb10063478274b51b388e85afc9a110147adde121d8682f8125d5e",
+          "object_sha256": "2355767032d26f87f8c9bbcffa6ba0ad88977de59fef1b81b784b18ed98a6b1b",
+          "differing_words": 92,
+          "total_words": 210,
+          "extra_words": 0,
+          "strict_match": false,
+          "scorer_window_relocation_errors": [],
+          "full_function_relocation_errors": [],
+          "relocation_mask_count": 0,
+          "unresolved": [],
+          "unverified": [],
+          "full_native_window_equal": false,
+          "elf": {
+            "start": 0,
+            "function_bytes": 840,
+            "section_bytes": 848
+          },
+          "exact_function_extent": true,
+          "section_padding_is_zero": true
+        },
+        {
+          "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+          "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+          "source_sha256": "75952ab147eb10063478274b51b388e85afc9a110147adde121d8682f8125d5e",
+          "object_sha256": "526ba7c124f10bdd71be934bbefeb06e7946243a586ba0d9c57cdccf0828f355",
+          "differing_words": 210,
+          "total_words": 210,
+          "extra_words": 53,
+          "strict_match": false,
+          "scorer_window_relocation_errors": [],
+          "full_function_relocation_errors": [],
+          "relocation_mask_count": 0,
+          "unresolved": [],
+          "unverified": [],
+          "full_native_window_equal": false,
+          "elf": {
+            "start": 0,
+            "function_bytes": 1088,
+            "section_bytes": 1088
+          },
+          "exact_function_extent": false,
+          "section_padding_is_zero": true
+        }
+      ]
+    }
+  ],
+  "packet_hashes": {
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/README.md": "6475b05e810eda33b12f2f0f09a2086cfb70e73f0824414609f36c2e88671c61",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/controls/initial_func_8002574C.c": "c44290f1f38e87473bdc0aec9a6b5bab5f02d17fa71c8d25c2f506d9addc0ae6",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/controls/initial_func_80025F74.c": "75952ab147eb10063478274b51b388e85afc9a110147adde121d8682f8125d5e",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/experiments.json": "a7fb357134e8175b518a4b85dd63e0200ce457fa3bcbaeffdba228791aaa0729",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/func_80025F74.c": "0f3dde0cda2d618d93193d6e37718a43e1b007156fb36abbd872185e5c78c91d",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/input_pins.json": "7d80b57f2965a2d41da03d237479ae400fd47859f981cc9b7c3da9320874700a",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/reconstruction.md": "e669b383a630b172626b9d508420f6e0c2d8a1cc4d8ca6a69146fe419674bbcb",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/recovery_replay.json": "5b92044402d0c027d24434c317bfa3bc9d383119060930cf7b1ce8d657858dd2",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/recovery_status.md": "8ba8971671f008814a35af5f73ba132a58500a46a9327aa31bbed70a30ae12b6",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/status_delta.csv": "b155944d26b9a1c0115b8110479014d49a39d41c087b96a802c15fc80f513b79",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/test_semantics.py": "9a8f6ba5f58b0a506b6f066d17572c132dfa60281da6dc6da06b96babee6ec20",
+    "cloud/work/boot_tail/BT07-decoder-facing-callers/verify.py": "7d8db0cdd6466ef104d894da8b37f272b10209e199d307a9358b437ce514dec6"
+  },
+  "getter_strict_match": true,
+  "result": "PASS",
+  "new_local_strict_matching_bodies": 1,
+  "new_local_strict_matching_bytes": 604,
+  "complete_nonmatch_bodies": 1,
+  "complete_nonmatch_bytes": 840
+}

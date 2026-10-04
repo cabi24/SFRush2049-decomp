@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "observed_utc": "2026-10-04T04:27Z",
+  "published_head": "496a72b0edd683bd7d46e8c21f8323ab43629494",
+  "published_tree": "b116b8282af4c082fa699b5186d3505292aa3b82",
+  "published_unique_attempts": 390,
+  "published_attempt_bytes": 69596,
+  "historical_getter_functions": 1,
+  "historical_getter_bytes": 12,
+  "later_owned_functions": 4,
+  "later_owned_bytes": 2908,
+  "unclaimed_functions": 17,
+  "unclaimed_bytes": 22496,
+  "total_in_scope_functions": 412,
+  "total_in_scope_bytes": 95012,
+  "entries": [
+    {
+      "address": "0x8000F8D0",
+      "name": "func_8000F8D0",
+      "size": 284,
+      "cluster": "BT01",
+      "state": "unclaimed; no new C experiment",
+      "limits": [
+        "handwritten-assembly-family-lead; maintainer-corpus-identification"
+      ]
+    },
+    {
+      "address": "0x80010450",
+      "name": "func_80010450",
+      "size": 372,
+      "cluster": "BT02",
+      "state": "unclaimed; no new C experiment",
+      "limits": [
+        "recorded-boundary-or-decoder-dependency-stop"
+      ]
+    },
+    {
+      "address": "0x80012234",
+      "name": "func_80012234",
+      "size": 372,
+      "cluster": "BT02",
+      "state": "unclaimed; no new C experiment",
+      "limits": [
+        "recorded-boundary-or-decoder-dependency-stop"
+      ]
+    },
+    {
+      "address": "0x80012730",
+      "name": "func_80012730",
+      "size": 1512,
+      "cluster": "BT02",
+      "state": "unclaimed; no new C experiment",
+      "limits": [
+        "recorded-boundary-or-decoder-dependency-stop",
+        "spec-T050-prerequisites-not-satisfied"
+      ]
+    },
+    {
+      "address": "0x80012D18",
+      "name": "func_80012D18",
+      "size": 3148,
+      "cluster": "BT02",
+      "state": "unclaimed; no new C experiment",
+      "limits": [
+        "recorded-boundary-or-decoder-dependency-stop",
+        "spec-T050-prerequisites-not-satisfied"
+      ]
+    },
+    {
+      "address": "0x800178B0",
+      "name": "func_800178B0",
+      "size": 1160,
+      "cluster": "BT03",
+      "state": "unclaimed; no new C experiment",
+      "limits": [
+        "spec-T050-prerequisites-not-satisfied"
+      ]
+    },
+    {
+      "address": "0x8001A658",
+      "name": "func_8001A658",
+      "size": 2812,
+      "cluster": "BT03",
+      "state": "unclaimed; no new C experiment",
+      "limits": [
+        "spec-T050-prerequisites-not-satisfied"
+      ]
+    },
+    {
+      "address": "0x8001B9F8",
+      "name": "func_8001B9F8",
+      "size": 960,
+      "cluster": "BT03",
+      "state": "unclaimed; no new C experiment",
+      "limits": [
+        "unproved-selector-to-case-mapping"
+      ]
+    },
+    {
+      "address": "0x8001BE14",
+      "name": "func_8001BE14",
+      "size": 904,
+      "cluster": "BT03",
+      "state": "unclaimed; no new C experiment",
+      "limits": [
+        "unproved-selector-to-case-mapping"
+      ]
+    },
+    {
+      "address": "0x8001C860",
+      "name": "func_8001C860",
+      "size": 1084,
+      "cluster": "BT03",
+      "state": "unclaimed; no new C experiment",
+      "limits": [
+        "spec-T050-prerequisites-not-satisfied"
+      ]
+    },
+    {
+      "address": "0x8001F13C",
+      "name": "func_8001F13C",
+      "size": 1456,
+      "cluster": "BT03",
+      "state": "unclaimed; no new C experiment",
+      "limits": [
+        "spec-T050-prerequisites-not-satisfied"
+      ]
+    },
+    {
+      "address": "0x80023BDC",
+      "name": "func_80023BDC",
+      "size": 404,
+      "cluster": "BT05",
+      "state": "unclaimed; no new C experiment",
+      "limits": [
+        "unproved-selector-to-case-mapping"
+      ]
+    },
+    {
+      "address": "0x80023E9C",
+      "name": "func_80023E9C",
+      "size": 2796,
+      "cluster": "BT05",
+      "state": "unclaimed; no new C experiment",
+      "limits": [
+        "spec-T050-prerequisites-not-satisfied",
+        "unproved-selector-to-case-mapping"
+      ]
+    },
+    {
+      "address": "0x80026360",
+      "name": "func_80026360",
+      "size": 504,
+      "cluster": "BT08",
+      "state": "unclaimed; no new C experiment",
+      "limits": [
+        "recorded-boundary-or-decoder-dependency-stop"
+      ]
+    },
+    {
+      "address": "0x80026558",
+      "name": "func_80026558",
+      "size": 232,
+      "cluster": "BT08",
+      "state": "unclaimed; no new C experiment",
+      "limits": [
+        "recorded-boundary-or-decoder-dependency-stop"
+      ]
+    },
+    {
+      "address": "0x80026640",
+      "name": "func_80026640",
+      "size": 656,
+      "cluster": "BT08",
+      "state": "unclaimed; no new C experiment",
+      "limits": [
+        "recorded-boundary-or-decoder-dependency-stop"
+      ]
+    },
+    {
+      "address": "0x800268D0",
+      "name": "func_800268D0",
+      "size": 3840,
+      "cluster": "BT08",
+      "state": "unclaimed; no new C experiment",
+      "limits": [
+        "recorded-boundary-or-decoder-dependency-stop",
+        "spec-T050-prerequisites-not-satisfied"
+      ]
+    }
+  ],
+  "later_owned": [
+    {
+      "address": "0x80017D38",
+      "size": 872,
+      "state": "peer-reviewed complete nonmatch; awaiting next source cut"
+    },
+    {
+      "address": "0x8002574C",
+      "size": 604,
+      "state": "caller-only implementation active after bounded ABI closure"
+    },
+    {
+      "address": "0x80025F74",
+      "size": 840,
+      "state": "caller-only implementation active after bounded ABI closure"
+    },
+    {
+      "address": "0x80022CD4",
+      "size": 592,
+      "state": "narrow conditional implementation active; original table/object/producer bounds unproved"
+    }
+  ],
+  "note": "Source closure scouts do not add attempted or matching counts. These classifications do not change authoritative native inputs or relax the spec gates."
+}
