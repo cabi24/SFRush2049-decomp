@@ -1,0 +1,19 @@
+{
+  "function": "func_800E7DD0",
+  "population": "extracted",
+  "address": "0x800E7DD0",
+  "extent_bytes": 464,
+  "extent_words": 116,
+  "extent_source": "build/m2c_asm/func_800E7DD0.json (closure/scanner extent [0x800E7DD0, 116 insns]) == asm/us/blob/blob_800e7030.s section .text.func_800E7DD0",
+  "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "flagset_note": "tools/cloud/score.py appends -Wab,-r4300_mul to every compile (no adjacent multiplies here, so it is inert)",
+  "toolkit_ido": "~/rush2049/cache/toolkits/796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5/ido (IDO 5.3) on watchman2",
+  "source": "cloud/work/s20261004/D/func_800E7DD0.c",
+  "source_sha256": "511418e332b1eb7a7fe9cfa942d37b3903515f11dc54d129a0ff0e30fbaa731e",
+  "proof": {
+    "command": "IDO_DIR=<toolkit>/ido python3 tools/cloud/score.py fn cloud/work/s20261004/D/func_800E7DD0.c func_800E7DD0",
+    "host": "watchman2, private copy of tools/cloud + asm/us/blob (SHA256SUMS integrity check passed) under ~/rush2049/scratch/s20261004_D",
+    "result": "func_800E7DD0: MATCH (exit 0)",
+    "meaning": "all 116 words equal the retail image after resolving every R_MIPS_26/HI16/LO16 relocation against asm/us/blob/symbols.json; no unresolved or unverified relocations, no extra words (true score 0)"
+  }
+}

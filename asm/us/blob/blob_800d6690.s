@@ -90,6 +90,7 @@ credits_screen:
 .section .text.credits_scroll, "ax", @progbits
 .globl credits_scroll
 credits_scroll:
+    /* compiled from src/blob/credits_scroll.c */
     .word 0x27BDFF70
     .word 0x3C148014
     .word 0x269461D0

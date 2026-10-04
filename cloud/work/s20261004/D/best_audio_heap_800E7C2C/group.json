@@ -1,0 +1,25 @@
+{
+  "members": [
+    "audio_helper",
+    "func_800E7B44"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "audio_dma_sync",
+    "audio_task_complete",
+    "func_800E7C2C",
+    "func_800E7D0C"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "generated": "hand-written from the assembly (round 5, r5_i); see STATUS.md",
+  "unprototyped": [],
+  "context": [
+    "audio_dma_sync",
+    "audio_task_complete",
+    "func_800E7C2C",
+    "func_800E7D0C"
+  ],
+  "provenance": "cloud rounds 4-5 (PR #6), cloud/work/ipa-groups/audio_heap"
+}

@@ -1,0 +1,30 @@
+{
+ "function": "func_800CCEFC",
+ "address": "0x800CCEFC",
+ "extent_bytes": 348,
+ "extent_words": 87,
+ "extent_source": "asm/us/blob/blob_800cbe08.s .text.func_800CCEFC section (scanner/closure extent)",
+ "flagset": "-g0 -O3 -mips2 -G 0 -non_shared (IPA whole-group build: cc -j, uld -kp keep, umerge/uopt/ugen -O3, as1 -r4300_mul) via tools/cloud/score.py compile_group",
+ "group_dir": "cloud/work/s20261004/A/menu_cc (group.c + group.json); <func>.c is a byte-identical copy of group.c",
+ "group_members_matched": [
+  "func_800CD058",
+  "func_800CCEFC"
+ ],
+ "group_context": {
+  "func_800CCCCC": "MATCH (real source, IPA callee: param in s5)",
+  "draw_number": "MATCH (copied unchanged from src/blob/groups/draw_number/dn.c; no synthetic callers needed here)",
+  "func_800CD104": "real-logic reconstruction, 253/272 (not claimed)",
+  "draw_speedometer": "real-logic reconstruction of the save-block checker, 417/426 (not claimed); IPA callee taking h in s8 and repair flag via the caller's outgoing arg slot 4(sp)"
+ },
+ "keep": [
+  "func_800CD104",
+  "func_800CD058",
+  "func_800CCEFC"
+ ],
+ "source_sha256": "59b9431a3715292485d3922d285ca9012f4686b642fbfa854a54729dc3781de8",
+ "proof": {
+  "command": "IDO_DIR=~/rush2049/repo/tools/ido-static-recomp/build/out python3 tools/cloud/score.py group cloud/work/s20261004/A/menu_cc  (run on watchman2 in private copy ~/rush2049/scratch/s20261004_A/repo with tracked tools/cloud/score.py + asm/us/blob)",
+  "result": "Members: func_800CD058 MATCH, func_800CCEFC MATCH; exit status 0 (score.compare: 0 differing words, 0 extra words, no unresolved/unverified relocations -> true score 0, relocation-resolved via asm/us/blob/symbols.json)"
+ },
+ "notes": "Not spliced/locked. Synthetic code: none. No padding/asm. Byte globals D_801164A1/D_801148E4 must be s8 (signed) for IDO to reuse the constant-1 register across the empty 1..20 loop and the s16 stores."
+}

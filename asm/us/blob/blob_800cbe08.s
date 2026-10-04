@@ -668,6 +668,7 @@ func_800CC50C:
 .section .text.menu_item_value_get, "ax", @progbits
 .globl menu_item_value_get
 menu_item_value_get:
+    /* compiled from src/blob/menu_item_value_get.c */
     .word 0x27BDFFD8
     .word 0xAFBF0024
     .word 0xAFB30020
@@ -997,6 +998,7 @@ func_800CCB40:
 .section .text.func_800CCCCC, "ax", @progbits
 .globl func_800CCCCC
 func_800CCCCC:
+    /* compiled from src/blob/func_800CCCCC.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x8EA40000
@@ -1145,6 +1147,7 @@ func_800CCE5C:
 .section .text.func_800CCEFC, "ax", @progbits
 .globl func_800CCEFC
 func_800CCEFC:
+    /* compiled from src/blob/func_800CCEFC.c */
     .word 0x27BDFFA8
     .word 0xAFBF004C
     .word 0xAFBE0048
@@ -1236,6 +1239,7 @@ func_800CCEFC:
 .section .text.func_800CD058, "ax", @progbits
 .globl func_800CD058
 func_800CD058:
+    /* compiled from src/blob/func_800CD058.c */
     .word 0x27BDFFB8
     .word 0xAFBF0044
     .word 0xAFB60040
