@@ -1,0 +1,30 @@
+/* GENERATED ROM-aligned TU — segment 0x207b0 (rom/lib_207b0)
+ * layout map a4f8c8e3046756fa727553750689364dc71ce2d0413805cd6440e6752a219abe; regenerate via `pipeline.layout convert`.
+ * Slots are GLOBAL_ASM passthroughs until promoted; do not hand-edit
+ * passthrough lines. */
+#include "rom_tu.h"
+
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_8001FBB0.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_8001FD2C.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_8001FE58.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_8001FEA4.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_8001FEF8.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_8001FF4C.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_8001FFA0.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_8001FFF4.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_80020048.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_80020174.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_800201D0.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_80020200.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_8002021C.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_80020274.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_800202C4.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_80020370.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_800203EC.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_8002043C.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_80020494.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_80020518.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_80020528.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_80020558.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_80020598.s")
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_800205E4.s")
