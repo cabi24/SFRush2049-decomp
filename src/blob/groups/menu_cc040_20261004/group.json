@@ -1,0 +1,24 @@
+{
+  "name": "menu_cc040_20261004",
+  "members": [
+    "menu_item_value_get"
+  ],
+  "context": [
+    "menu_transition",
+    "func_800CC040",
+    "func_800CBF2C",
+    "menu_back",
+    "audio_reverb_update",
+    "audio_buffer_sync"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800CC040",
+    "menu_item_value_get",
+    "menu_transition",
+    "audio_buffer_sync"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+}

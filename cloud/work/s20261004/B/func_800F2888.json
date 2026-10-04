@@ -1,0 +1,29 @@
+{
+  "function": "func_800F2888",
+  "population": "extracted (game code image)",
+  "target": {
+    "address": "0x800F2888",
+    "extent_words": 104,
+    "extent_bytes": 416,
+    "extent_source": "build/m2c_asm/func_800F2888.json derivation_version 3 scanner/closure extent; equals .text.func_800F2888 word count in asm/us/blob/blob_800ef5b0.s"
+  },
+  "flagset": "-g0 -O3 -mips2 -G 0 -non_shared (as1 -r4300_mul added by scorer), whole-program IPA group build: cc -j, uld -kp keep-list, usplit/umerge/uopt/ugen/as1",
+  "build_model": "IPA call group (specs/010-ipa-call-groups); func_800F2888 is a static (non-kept) callee that uses callee-saved registers without saving them",
+  "group_dir": "cloud/work/s20261004/B/g2888",
+  "group_keep": [
+    "__standin_a",
+    "__standin_b"
+  ],
+  "group_context_non_claimed": [],
+  "source": "cloud/work/s20261004/B/func_800F2888.c",
+  "source_sha256": "c2cb91a5af454a0185fb424ac63b9e114976dce1d98d3280d11f0123a3af96e0",
+  "proof": {
+    "command": "IDO_DIR=<pinned toolkit 796ae99a.../ido> python3 tools/cloud/score.py group cloud/work/s20261004/B/g2888",
+    "run_on": "watchman2 private scratch ~/rush2049/scratch/s20261004_B (copy of tools/cloud/score.py + asm/us/blob, SHA256SUMS integrity-checked by the scorer)",
+    "toolkit": "~/rush2049/cache/toolkits/796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5/ido",
+    "result": "Members: func_800F2888: MATCH (exit 0)",
+    "meaning": "strict: every word equal after resolving relocations against asm/us/blob/symbols.json; no masks, no unresolved/unverified relocations, no nonzero extra words; --allow-unverified NOT used"
+  },
+  "notes": "Real caller: track_texture_load. The `continue` on D_80143F18[i]==0 and the unsigned 0xFFFFFFFF compare are what fix the register allocation and the separate -1 materialization.",
+  "not_done": "no splice/lock/blob_rom; image and ROM SHA-1 gates not run"
+}

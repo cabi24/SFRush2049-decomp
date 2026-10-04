@@ -1,0 +1,52 @@
+{
+  "name": "credits_scroll_grp",
+  "members": [
+    "credits_scroll"
+  ],
+  "context": [
+    "object_create",
+    "object_byte9_set",
+    "object_bytes23_sum",
+    "object_bytes_sum_global",
+    "func_800F68A4",
+    "camera_shake_update",
+    "slot_value_get",
+    "mode_byte2_set",
+    "mode_byte_set",
+    "object_type_byte2_get",
+    "object_type_byte3_get",
+    "game_timer_display",
+    "func_80100B8C",
+    "func_800B669C",
+    "func_800D7634",
+    "time_result_display",
+    "slot_state_setup",
+    "sound_update_channel",
+    "func_80096288"
+  ],
+  "files": [
+    "gr3.c",
+    "gr3_b.c",
+    "gr3_c.c",
+    "gr3_d.c",
+    "gr3_e.c"
+  ],
+  "keep": [
+    "object_byte9_set",
+    "object_bytes23_sum",
+    "object_bytes_sum_global",
+    "func_800F68A4",
+    "camera_shake_update",
+    "slot_value_get",
+    "mode_byte2_set",
+    "mode_byte_set",
+    "object_type_byte2_get",
+    "object_type_byte3_get",
+    "game_timer_display",
+    "func_80100B8C",
+    "func_800B669C",
+    "func_800D7634",
+    "time_result_display"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+}
