@@ -4,7 +4,7 @@ from pathlib import Path
 from tools.conveyor.pipeline import disasm, autodecomp as ad
 S=Path(sys.argv[1]); 
 data=Path('assets/us/data.bin').read_bytes()
-img=zlib.decompressobj(-15).decompress(data[0xB0CB10-0x10000:0xB0CB10-0x10000+326180])
+img=zlib.decompressobj(-15).decompress(data[0xB0CB10 - 0x283D0:0xB0CB10 - 0x283D0+326180])
 pass
 syms={k:int(v,16) for k,v in json.load(open('asm/us/blob/symbols.json'))['symbols'].items()}
 targets={v:k for k,v in syms.items() if 0x80086A50<=v<0x80086A50+len(img)}

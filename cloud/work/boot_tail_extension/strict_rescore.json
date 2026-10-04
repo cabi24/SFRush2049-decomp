@@ -1,0 +1,38 @@
+[
+  {
+    "function": "__osInitialize_common",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "object_start": 0,
+    "words": 170,
+    "target_sha256": "88607c187a346cf36ccc27d240c61b838414400ba567adb23d91f1558369ccfd",
+    "module_sha256": "c9cb9d3c5358891b971914c507171889992735f9f91d0527ce3885ca6dfc383d",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm",
+    "protocol": "unchanged canonical scorer settings, function-scoped objdump; raw unlinked object slices, no masks or linked substitutions",
+    "source_sha256": "7606f20fc4e2459c6de43e5be046a9389030c5c7a93db6548bf9729003e5fe80",
+    "toolkit": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "reviewed_module_sha256": "a73bb742b270f19701a7b8377c3704befe99431c965c3829e98d20bddef07db9",
+    "module_section_sha256": {
+      ".text": "b222f6ed305485d4feac5dffa8e3a06802c0dda8bcf638e7f63611314fb2c0da",
+      ".data": "00eff670001b7953977665e4e87a8f811e3928fc8cce0f7ff5e8bf01d41559c6"
+    }
+  },
+  {
+    "function": "__osPiReadDeviceType",
+    "strict_score": 0,
+    "raw_word_diff": 0,
+    "object_start": 680,
+    "words": 39,
+    "target_sha256": "6b2a0194aedb28f81292fca5f2bb6e7e1a1a5c4d5f2f31e9fff3f813ad598b53",
+    "module_sha256": "c9cb9d3c5358891b971914c507171889992735f9f91d0527ce3885ca6dfc383d",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm",
+    "protocol": "unchanged canonical scorer settings, function-scoped objdump; raw unlinked object slices, no masks or linked substitutions",
+    "source_sha256": "7606f20fc4e2459c6de43e5be046a9389030c5c7a93db6548bf9729003e5fe80",
+    "toolkit": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "reviewed_module_sha256": "a73bb742b270f19701a7b8377c3704befe99431c965c3829e98d20bddef07db9",
+    "module_section_sha256": {
+      ".text": "b222f6ed305485d4feac5dffa8e3a06802c0dda8bcf638e7f63611314fb2c0da",
+      ".data": "00eff670001b7953977665e4e87a8f811e3928fc8cce0f7ff5e8bf01d41559c6"
+    }
+  }
+]

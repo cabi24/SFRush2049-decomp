@@ -1,0 +1,28 @@
+[
+  {
+    "function": "__osInitialize_common",
+    "words": 170,
+    "asm_sha256": "4da7a11d308153cf0a5affacc2521b51ba610d9840ec03903915e837c2178a6e",
+    "target_sha256": "88607c187a346cf36ccc27d240c61b838414400ba567adb23d91f1558369ccfd",
+    "linked_body_sha256": "a7df462d64f8f2e1fc583d054e7f60aeb2b62241f3546640b013a1f35881757d",
+    "linked_body_differences": 0,
+    "tail_alignment_bytes": 8,
+    "target_gate": true,
+    "reviewed_target_sha256": "88607c187a346cf36ccc27d240c61b838414400ba567adb23d91f1558369ccfd",
+    "target_identical_to_reviewed": true,
+    "words_identical_to_reviewed": true
+  },
+  {
+    "function": "__osPiReadDeviceType",
+    "words": 39,
+    "asm_sha256": "c2bf70552609726e139c448ff2320f85de540172e1e7994792554ba026fdd914",
+    "target_sha256": "6b2a0194aedb28f81292fca5f2bb6e7e1a1a5c4d5f2f31e9fff3f813ad598b53",
+    "linked_body_sha256": "74edef584cc7385b4842d36b701670bfe8487bdf680492756c153fe3d8d7b6de",
+    "linked_body_differences": 0,
+    "tail_alignment_bytes": 4,
+    "target_gate": true,
+    "reviewed_target_sha256": "6b2a0194aedb28f81292fca5f2bb6e7e1a1a5c4d5f2f31e9fff3f813ad598b53",
+    "target_identical_to_reviewed": true,
+    "words_identical_to_reviewed": true
+  }
+]

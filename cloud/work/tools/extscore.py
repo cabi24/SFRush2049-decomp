@@ -17,7 +17,7 @@ ap = argparse.ArgumentParser(); ap.add_argument('g'); ap.add_argument('--as1', d
 ap.add_argument('--flags', default=''); ap.add_argument('--dis', default=''); ap.add_argument('--norm', action='store_true'); ap.add_argument('--umerge', default=''); ap.add_argument('--uopt', default=''); ap.add_argument('--ugen', default=''); ap.add_argument('--show', type=int, default=12)
 a = ap.parse_args(); g = Path(a.g); spec = json.loads((g/'group.json').read_text())
 data = (ROOT/'assets/us/data.bin').read_bytes()
-img = zlib.decompressobj(-15).decompress(data[0xB0CB10-0x10000:0xB0CB10-0x10000+326180])
+img = zlib.decompressobj(-15).decompress(data[0xB0CB10 - 0x283D0:0xB0CB10 - 0x283D0+326180])
 assert len(img) == 647072
 import struct
 orig_targets = score.targets

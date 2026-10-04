@@ -60,7 +60,8 @@ def test_the_makefile_has_no_fallback_to_the_extracted_blob():
     assert "GAME_BLOB      := build/blob/game_code.deflate" in makefile
     assert "\n$(GAME_BLOB):" not in makefile        # no rule silently makes it
     slot = int(makefile.split("GAME_BLOB_SLOT :=")[1].split()[0], 16)
-    assert slot == blob_rom.ROM_OFFSET - 0x10000   # data segment starts at 0x10000
+    from tools.conveyor.pipeline.owned_data import DATA_ROM_START
+    assert slot == blob_rom.ROM_OFFSET - DATA_ROM_START   # slot is data.bin-relative
 
 
 # --- the vendored compressor ---------------------------------------------------

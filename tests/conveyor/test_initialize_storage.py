@@ -5,7 +5,7 @@ from tools.conveyor.pipeline import owned_existing_storage as E,owned_storage as
 ROOT=Path(__file__).resolve().parents[2]
 @pytest.fixture
 def repo(tmp_path):
- row=json.loads((ROOT/'cloud/work/integration_B26/root_storage_record.json').read_text())
+ row=json.loads((ROOT/'cloud/work/boot_tail_extension/sdk_initialize_storage_record.json').read_text())
  paths={row['source'],row['tu_before_source'],row['strict_proof'],row['context_proof'],row['linked_proof'],row['startup_proof'],'asm/us/1000.s','splat.us.yaml','Makefile','rush2049.us.ld'}|set(json.loads((ROOT/row['context_proof']).read_text()))
  for rel in paths:
   dst=tmp_path/rel;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copy(ROOT/rel,dst)
@@ -128,7 +128,7 @@ def test_reviewed_initializer_profile_refuses_drift(repo,field,value):
  root,row,targets=repo;row[field]=value
  with pytest.raises(ValueError,match='reviewed existing-TU profile'):E.profile(row)
 
-@pytest.mark.parametrize('field,value',[('offset','0x1cff0'),('size','0x10')])
+@pytest.mark.parametrize('field,value',[('offset','0x4c20'),('size','0x10')])
 def test_reviewed_initializer_data_extent_refuses_drift(repo,field,value):
  root,row,targets=repo;row['data_slot'][field]=value
  with pytest.raises(ValueError,match='reviewed existing-TU profile'):E.profile(row)
