@@ -50,3 +50,4 @@ func_8002574C	-g0 -O2 -mips2 -G 0 -non_shared	locked cloud/work/boot_tail_promot
 func_800259A8	-g0 -O2 -mips2 -G 0 -non_shared	locked cloud/work/boot_tail_promotion/sources/func_800259A8.c:func_800259A8 (score0)
 func_80026328	-g0 -O2 -mips2 -G 0 -non_shared	locked cloud/work/boot_tail_promotion/sources/func_80026328.c:func_80026328 (score0)
 func_80026348	-g0 -O2 -mips2 -G 0 -non_shared	locked cloud/work/boot_tail_promotion/sources/func_80026348.c:func_80026348 (score0)
+func_8001F9D0	-g0 -O2 -mips2 -G 0 -non_shared	locked cloud/work/boot_tail_promotion/sources/func_8001F9D0.c:func_8001F9D0 (score0)

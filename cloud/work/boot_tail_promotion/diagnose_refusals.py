@@ -10,8 +10,9 @@ from tools.conveyor.pipeline import layout as L, lock as K
 
 ctx = {json.loads(l)["function"]: json.loads(l) for l in open(pb.HERE / "context.jsonl")}
 refused = [json.loads(l) for l in open(pb.REFUSALS)]
-gate_refused = [r["function"] for r in refused if "gate failed" in r["reason"]]
 mapping = L.derive(); entries = K.load_lock(); out = []
+passthrough = {f["name"] for s in mapping["segments"] for f in s["functions"] if f.get("state") == "passthrough"}
+gate_refused = sorted({r["function"] for r in refused if "gate failed" in r["reason"]} & passthrough)
 for fn in gate_refused:
     seg = next(s for s in mapping["segments"] if any(f["name"] == fn for f in s["functions"]))
     c = dict(fn=fn, seg=seg, src=pb.source_for(fn, entries), row=ctx[fn])
