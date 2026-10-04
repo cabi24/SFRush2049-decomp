@@ -1,0 +1,25 @@
+{
+  "result": "PASS",
+  "rows": [
+    {
+      "function": "func_80019F48",
+      "source_sha256": "f39c2ba6027bdd175fb63f06f1221e9583f4bfbbcca181c2f9d3ed1e75985930",
+      "summary": [
+        "verdict=structure-mismatch aligned_total= 121 words= 172 raw= 174 opcodes= 113 gaps=  14 reloc_syms=   9 norm= 126 regs= 154 fp=   2 insns= 204 frame= -168 sha1=6a74afb5fa80 <candidate-object> true_insn_delta=+2 geometry_edit_distance=126 opcode_distance=17",
+        "frame mismatch: target=-176 candidate=-168 (8-byte difference)",
+        "aligned residual classes: aligned_structural=24, aligned_register=81, aligned_constant=16",
+        "ownership: owning_pass=cfe-spelling reachability=source-reachable ownership_basis=heuristic"
+      ]
+    },
+    {
+      "function": "func_8001A270",
+      "source_sha256": "20045e3595c894ab3c2af1b28f7ed16756059a4b89befaa609acb9773ee46604",
+      "summary": [
+        "verdict=structure-mismatch aligned_total= 163 words= 202 raw= 202 opcodes= 175 gaps=  67 reloc_syms=  14 norm= 160 regs= 191 fp=   7 insns= 225 frame=  -96 sha1=6ee445f8c996 <candidate-object> true_insn_delta=+7 geometry_edit_distance=160 opcode_distance=54",
+        "aligned residual classes: aligned_structural=93, aligned_register=56, aligned_constant=14",
+        "ownership: owning_pass=cfe-spelling reachability=source-reachable ownership_basis=heuristic"
+      ]
+    }
+  ],
+  "limits": "Workbench ownership and register alignment are heuristics. Raw canonical targets have no ELF relocations, so its relocation-symbol warnings are expected; strict score.py relocation evidence is authoritative."
+}

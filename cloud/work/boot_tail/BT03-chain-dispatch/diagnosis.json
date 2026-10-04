@@ -1,0 +1,22 @@
+{
+  "tool": "tools/workbench.py diagnose",
+  "performed_before_directed_refinement": true,
+  "function": "func_8001CCDC",
+  "initial_O2_differing_words": 181,
+  "target_words": 234,
+  "target_function_bytes": 936,
+  "candidate_function_bytes": 952,
+  "frame_bytes_both": 32,
+  "classification": "structure-mismatch; cfe-spelling, four inserted narrowing operations plus temp-ring/phase shift",
+  "target_instructions": 234,
+  "candidate_instructions": 238,
+  "first_divergence_offset": "0xC8",
+  "native_operation": "The conversion value is byte-masked in a0 in the clip127 call delay slot.",
+  "candidate_operation": "Byte mask to a new temporary, followed by move to a0 in the call delay slot.",
+  "all_four_sites": "Both volume branches, xPan, and zPan.",
+  "workbench_caution": "Temporary word-only target object has no relocation symbols. Workbench symbol warnings are not unresolved native calls; unchanged scorer resolves every candidate call with no masks/errors.",
+  "bound": "Initial O2/O1 plus nine directed controls; no ABI widening, inline assembly, fabricated locals, flag sweep, or declaration shuffling.",
+  "selected": "Explicit u32 quantization then genuine u8 helper narrowing keeps native modulo semantics for the documented finite unsigned domain; identical O2 code and residual to initial source.",
+  "not_selected": "word_local reduces positional score to155/234 but changes initial conversion register to v0 and still has three inserted operations. It is not an instruction match or evidence for changing the signature.",
+  "next_hypothesis": "Obtain original N64 helper declaration/definition style or audited compiler front-end evidence for direct unsigned-float narrowing to an outgoing byte argument, preserving the native byte ABI. Do not widen prototypes just to eliminate moves."
+}

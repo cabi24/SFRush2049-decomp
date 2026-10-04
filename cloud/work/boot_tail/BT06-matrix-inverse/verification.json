@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "base_commit": "24ff33d5dd7e27ca2d957cfbd822959ee72a2a43",
+  "match_functions": 1,
+  "verified_body_bytes": 564,
+  "nonmatch_functions": 0,
+  "nonmatch_bytes": 0,
+  "target_manifest_sha256": "6bd3e6ef05e6123e4ea4dd0d814c0abb16f202a91d8d0a381eca14322c8a36d5",
+  "results": [
+    {
+      "name": "func_80024D74",
+      "bytes": 564,
+      "source_path": "cloud/matches/boot_tail/func_80024D74.c",
+      "source_sha256": "b18dd3584f37663f3d1bec09d721885c2aabbfd165f0d28f7c7f9a2a792eca6f",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 0,
+      "total_words": 141,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": true,
+      "elf_function_size": 564
+    },
+    {
+      "name": "func_80024D74",
+      "bytes": 564,
+      "source_path": "cloud/matches/boot_tail/func_80024D74.c",
+      "source_sha256": "b18dd3584f37663f3d1bec09d721885c2aabbfd165f0d28f7c7f9a2a792eca6f",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 140,
+      "total_words": 141,
+      "extra_words": 13,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "elf_function_size": 616
+    }
+  ]
+}

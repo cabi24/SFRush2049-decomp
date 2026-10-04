@@ -1,0 +1,28 @@
+{
+  "state": "frozen-review-pass-integrating",
+  "owner": "/root/match_boot_tail_bt03_high",
+  "packet": "BT03-high-spatial-control",
+  "branch": "dot/boot-tail-bt03-high-spatial-control",
+  "base": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "targets": [
+    {
+      "address": "0x8001DC08",
+      "size": 472,
+      "end_exclusive": "0x8001DDE0"
+    },
+    {
+      "address": "0x8001D1F4",
+      "size": 508,
+      "end_exclusive": "0x8001D3F0"
+    },
+    {
+      "address": "0x80019C8C",
+      "size": 580,
+      "end_exclusive": "0x80019ED0"
+    }
+  ],
+  "bytes": 1560,
+  "edit_scope": "Only named matching sources and cloud/work/boot_tail/BT03-high-spatial-control/**",
+  "stop": "Close actual whole caller/callee ABI before candidates. Packet5 caller work only; no T050-gated callee source reconstruction. Natural C89/O2/O1, exact ELF sizes, bounded diagnosis and no fabricated data/layout, prior residual reopening or protected edits.",
+  "reviewed_commit": "00f767de5a897d932046bd6e43cf8c4f50538f2c"
+}

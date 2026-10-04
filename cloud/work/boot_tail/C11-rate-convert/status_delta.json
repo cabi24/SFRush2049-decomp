@@ -1,0 +1,35 @@
+{
+  "packet": "C11-rate-convert",
+  "central_claim": "48ce763d",
+  "branch": "dot/boot-tail-c11-rate-convert",
+  "base": "a356fe876ed3518c338b233634758e123f12dcf0",
+  "master_reference": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "attempted_functions": 1,
+  "attempted_bytes": 380,
+  "local_match_functions": 0,
+  "local_match_bytes": 0,
+  "nonmatch_functions": 1,
+  "nonmatch_bytes": 380,
+  "entries": [
+    {
+      "address": "0x8001E50C",
+      "name": "func_8001E50C",
+      "size": 380,
+      "cluster": "BT03",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 94,
+      "extra_words": 1,
+      "source_path": "cloud/work/boot_tail/C11-rate-convert/func_8001E50C_NONMATCH.c",
+      "source_sha256": "43094186872525778f3a3fa529eeb9d2e146df4dbe2d413b895fff300e9e204a",
+      "note": "Sole authorized whole natural byte/word rate converter. O2 94/95+1 and O1 88/95+2; full external-address proof, no unknown contents or array extents inferred. Expected narrow home/allocation plateau, no refinements. Bounded finite FP/native/host checks pass; zero matching credit."
+    }
+  ],
+  "source_review": {
+    "result": "PASS_FOR_COMPLETE_NONMATCH_RESEARCH",
+    "reviewed_commit": "8f5aa1312092cf767cbeb45fe5f6d9ed08a77ce5",
+    "reviewed_tree": "aacfccf486a927b2fb5f6cb4b83a6db2c367646f",
+    "receipt": "cloud/work/boot_tail/C11-rate-convert/REVIEW.json"
+  }
+}

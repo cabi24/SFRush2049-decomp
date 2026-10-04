@@ -1,0 +1,215 @@
+{
+  "result": "PASS",
+  "source_forms": 13,
+  "compile_rows": 26,
+  "rows": [
+    {
+      "source": "80019F48_early_null.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_sha256": "4ca2109ae3c08b5f6bd632d55cc1d446f78846ddbf017c22106bb7b788810e3d",
+      "differing_words": 191,
+      "elf_function_bytes": 824,
+      "extra_nonzero_words": 4
+    },
+    {
+      "source": "80019F48_early_null.c",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "source_sha256": "4ca2109ae3c08b5f6bd632d55cc1d446f78846ddbf017c22106bb7b788810e3d",
+      "differing_words": 202,
+      "elf_function_bytes": 1036,
+      "extra_nonzero_words": 55
+    },
+    {
+      "source": "80019F48_initial.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_sha256": "f39c2ba6027bdd175fb63f06f1221e9583f4bfbbcca181c2f9d3ed1e75985930",
+      "differing_words": 170,
+      "elf_function_bytes": 816,
+      "extra_nonzero_words": 2
+    },
+    {
+      "source": "80019F48_initial.c",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "source_sha256": "f39c2ba6027bdd175fb63f06f1221e9583f4bfbbcca181c2f9d3ed1e75985930",
+      "differing_words": 200,
+      "elf_function_bytes": 1028,
+      "extra_nonzero_words": 53
+    },
+    {
+      "source": "80019F48_lookup_guard.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_sha256": "87c1789b4eda62ca7d464b25e435159da0546336666d75e877119857c4b236f2",
+      "differing_words": 170,
+      "elf_function_bytes": 816,
+      "extra_nonzero_words": 2
+    },
+    {
+      "source": "80019F48_lookup_guard.c",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "source_sha256": "87c1789b4eda62ca7d464b25e435159da0546336666d75e877119857c4b236f2",
+      "differing_words": 201,
+      "elf_function_bytes": 1032,
+      "extra_nonzero_words": 54
+    },
+    {
+      "source": "80019F48_masked_note.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_sha256": "9104dfaae0b1ccd58560fd1fffc3b8749f00bc03972450a8b4e400d3db48fdbc",
+      "differing_words": 171,
+      "elf_function_bytes": 816,
+      "extra_nonzero_words": 2
+    },
+    {
+      "source": "80019F48_masked_note.c",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "source_sha256": "9104dfaae0b1ccd58560fd1fffc3b8749f00bc03972450a8b4e400d3db48fdbc",
+      "differing_words": 202,
+      "elf_function_bytes": 1036,
+      "extra_nonzero_words": 55
+    },
+    {
+      "source": "80019F48_named_fields.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_sha256": "13c3b8d912c600bd106252fbabca92685e111f0935e01c3db01f4ffa744092f5",
+      "differing_words": 170,
+      "elf_function_bytes": 816,
+      "extra_nonzero_words": 2
+    },
+    {
+      "source": "80019F48_named_fields.c",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "source_sha256": "13c3b8d912c600bd106252fbabca92685e111f0935e01c3db01f4ffa744092f5",
+      "differing_words": 201,
+      "elf_function_bytes": 1032,
+      "extra_nonzero_words": 54
+    },
+    {
+      "source": "80019F48_named_id.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_sha256": "ea1ac293c3f606fe2b2c70013756ca9d0c7ff6bdeec9cc13e0515c7a06606bca",
+      "differing_words": 170,
+      "elf_function_bytes": 816,
+      "extra_nonzero_words": 2
+    },
+    {
+      "source": "80019F48_named_id.c",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "source_sha256": "ea1ac293c3f606fe2b2c70013756ca9d0c7ff6bdeec9cc13e0515c7a06606bca",
+      "differing_words": 201,
+      "elf_function_bytes": 1032,
+      "extra_nonzero_words": 54
+    },
+    {
+      "source": "8001A270_cached_identifier.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_sha256": "27ffc4365fa063e002fb08cf55e9bd59c55701eafc1efa00f6f2bf3ea82385fd",
+      "differing_words": 188,
+      "elf_function_bytes": 896,
+      "extra_nonzero_words": 5
+    },
+    {
+      "source": "8001A270_cached_identifier.c",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "source_sha256": "27ffc4365fa063e002fb08cf55e9bd59c55701eafc1efa00f6f2bf3ea82385fd",
+      "differing_words": 214,
+      "elf_function_bytes": 1068,
+      "extra_nonzero_words": 45
+    },
+    {
+      "source": "8001A270_initial.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_sha256": "a5c3c9d09f70b1a0fd227c9196a39557231bb0c9be131af81a9df6ad5b513641",
+      "differing_words": 195,
+      "elf_function_bytes": 900,
+      "extra_nonzero_words": 6
+    },
+    {
+      "source": "8001A270_initial.c",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "source_sha256": "a5c3c9d09f70b1a0fd227c9196a39557231bb0c9be131af81a9df6ad5b513641",
+      "differing_words": 214,
+      "elf_function_bytes": 1108,
+      "extra_nonzero_words": 55
+    },
+    {
+      "source": "8001A270_local_packed.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_sha256": "24b2346e79b9a90edb35799f11c6c88dce130c60bf9721a142742bafc6d2c79a",
+      "differing_words": 216,
+      "elf_function_bytes": 908,
+      "extra_nonzero_words": 8
+    },
+    {
+      "source": "8001A270_local_packed.c",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "source_sha256": "24b2346e79b9a90edb35799f11c6c88dce130c60bf9721a142742bafc6d2c79a",
+      "differing_words": 218,
+      "elf_function_bytes": 1160,
+      "extra_nonzero_words": 68
+    },
+    {
+      "source": "8001A270_named_macro.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_sha256": "37268448ec6f5e7b20d157de44e502cbd5d758ca85b57c7e8923a103aa61c869",
+      "differing_words": 216,
+      "elf_function_bytes": 920,
+      "extra_nonzero_words": 11
+    },
+    {
+      "source": "8001A270_named_macro.c",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "source_sha256": "37268448ec6f5e7b20d157de44e502cbd5d758ca85b57c7e8923a103aa61c869",
+      "differing_words": 217,
+      "elf_function_bytes": 1112,
+      "extra_nonzero_words": 56
+    },
+    {
+      "source": "8001A270_signed_priority.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_sha256": "20045e3595c894ab3c2af1b28f7ed16756059a4b89befaa609acb9773ee46604",
+      "differing_words": 195,
+      "elf_function_bytes": 900,
+      "extra_nonzero_words": 6
+    },
+    {
+      "source": "8001A270_signed_priority.c",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "source_sha256": "20045e3595c894ab3c2af1b28f7ed16756059a4b89befaa609acb9773ee46604",
+      "differing_words": 214,
+      "elf_function_bytes": 1108,
+      "extra_nonzero_words": 55
+    },
+    {
+      "source": "8001A270_split_identifier.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_sha256": "da56c1f50102723833340d824af5a3c693c013152d957417267ddaeae47e8d1a",
+      "differing_words": 192,
+      "elf_function_bytes": 892,
+      "extra_nonzero_words": 4
+    },
+    {
+      "source": "8001A270_split_identifier.c",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "source_sha256": "da56c1f50102723833340d824af5a3c693c013152d957417267ddaeae47e8d1a",
+      "differing_words": 214,
+      "elf_function_bytes": 1116,
+      "extra_nonzero_words": 57
+    },
+    {
+      "source": "8001A270_staged_low.c",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source_sha256": "5e5d2237321c7c5b4b04479b2cf980acd9c78ef34b032fe61b68f151072fa1d5",
+      "differing_words": 216,
+      "elf_function_bytes": 920,
+      "extra_nonzero_words": 11
+    },
+    {
+      "source": "8001A270_staged_low.c",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "source_sha256": "5e5d2237321c7c5b4b04479b2cf980acd9c78ef34b032fe61b68f151072fa1d5",
+      "differing_words": 216,
+      "elf_function_bytes": 1168,
+      "extra_nonzero_words": 70
+    }
+  ]
+}

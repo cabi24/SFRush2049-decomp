@@ -1,0 +1,25 @@
+{
+  "result": "PASS_FOR_EXPLICIT_DEFINED_PATH_CALLER_DOMAIN",
+  "tests_passed": 4,
+  "fixture_count": 786,
+  "safe_fixtures": 612,
+  "plain_unchanged_c_calls": 612,
+  "consumption_tracked_c_attempts": 786,
+  "rejected_unwritten_output_fixtures": 172,
+  "rejected_unchecked_helper_capacity_fixtures": 2,
+  "safe_float_consumptions": 1362,
+  "prior_iteration_carry_cases": 12,
+  "prior_iteration_float_consumptions": 57,
+  "extra_unsafe_model_probes": 2,
+  "source_sha256": "5688f6599d2ae49ee08ba6a0ed1c4b0fc1ef033c3a10054f45c7d613266f0421",
+  "harness_sha256": {
+    "model.py": "fb47d391ea1cf848fd2f554ccad3e9b8f8952b7f31eab416066a6893fb660c85",
+    "test_semantics.py": "4a5e1fce94ba569a4943c1547d63486fa52d7a348a021524935d96928e9e0029"
+  },
+  "tracking_method": "A temporary host-only copy transforms value reads into checked getters and tracks real helper output writes. Only initializedness/writer metadata is initialized, never float values. Unsafe inputs stop before an unwritten read and are never executed through the untouched C body. The tracked copy is not compiled by IDO, scored, submitted or substituted for the matching source.",
+  "oracles": "Independent caller state/call-trace model, host consumption-tracked copy and untouched C agree for all612 safe fixtures. Exact IDO whole-body equality is separately established by verification.json; these are not claimed native-emulator fixture counts.",
+  "observation_boundary": "Snapshot immediately on entry to final external1DC08. Its internal effects and full spatial/audio-engine helper algorithms are outside this caller unit proof; test helpers implement explicit modular contracts.",
+  "host_mode": "C89 pedantic-errors, Wall/Wextra/Werror, ffp-contract=off, ASan/UBSan. Only leak detection disabled for executor ptrace compatibility; no candidate/C-harness heap allocation.",
+  "limits": "Every actually consumed float must have been written in this invocation, possibly by a prior iteration. Empty-list CalcEmitter may write only volume/pitch. Valid allocated acyclic emitters, bounded helper pools/groups, coherent callback contracts and ordinary finite FP are required. Original fade value, global producer/listener invariant, actual spatial/audio-engine execution, arbitrary concurrency and malformed-input safety remain unproved.",
+  "comparison_precision": "The entire normalized caller state and external call trace are folded into a32-bit FNV-1a digest. Agreement is bounded regression evidence, not exhaustive semantic equivalence or a collision-free comparison."
+}

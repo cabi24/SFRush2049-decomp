@@ -1,0 +1,813 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "reviewer": "BT03-chain-dispatch independent review",
+  "source_commit": "6a2d716b33a8361269404fb956b18d3d44bf8317",
+  "source_tree": "f436515c6608217733a9e604ba33fb20974547b5",
+  "candidate_status": "COMPLETE-NONMATCH",
+  "matched_functions": 0,
+  "matched_bytes": 0,
+  "changed_paths": [
+    "cloud/work/boot_tail/BT03-runtime-singleton/README.md",
+    "cloud/work/boot_tail/BT03-runtime-singleton/controls/func_80018634_initial.c",
+    "cloud/work/boot_tail/BT03-runtime-singleton/diagnose.py",
+    "cloud/work/boot_tail/BT03-runtime-singleton/diagnosis.json",
+    "cloud/work/boot_tail/BT03-runtime-singleton/host_behavior.c",
+    "cloud/work/boot_tail/BT03-runtime-singleton/host_verification.json",
+    "cloud/work/boot_tail/BT03-runtime-singleton/input_pins.json",
+    "cloud/work/boot_tail/BT03-runtime-singleton/layout_verification.json",
+    "cloud/work/boot_tail/BT03-runtime-singleton/native_replay.py",
+    "cloud/work/boot_tail/BT03-runtime-singleton/native_verification.json",
+    "cloud/work/boot_tail/BT03-runtime-singleton/nonmatch/func_80018634.c",
+    "cloud/work/boot_tail/BT03-runtime-singleton/replay_variants.py",
+    "cloud/work/boot_tail/BT03-runtime-singleton/status_delta.json",
+    "cloud/work/boot_tail/BT03-runtime-singleton/test_host.py",
+    "cloud/work/boot_tail/BT03-runtime-singleton/test_layout.py",
+    "cloud/work/boot_tail/BT03-runtime-singleton/test_native.py",
+    "cloud/work/boot_tail/BT03-runtime-singleton/variants.json",
+    "cloud/work/boot_tail/BT03-runtime-singleton/verification.json",
+    "cloud/work/boot_tail/BT03-runtime-singleton/verify.py"
+  ],
+  "file_hashes": {
+    "cloud/work/boot_tail/BT03-runtime-singleton/README.md": "a358871da4b625eb218d9879d2b7fcaa313590a2e07f0cc416f0239fb3f6ed8c",
+    "cloud/work/boot_tail/BT03-runtime-singleton/controls/func_80018634_initial.c": "9526ecbc288a177c13571d6dfad9bed81826baa32c158cd4ca98b036ff095619",
+    "cloud/work/boot_tail/BT03-runtime-singleton/diagnose.py": "4597e0cd7df674e0b66f5f6525df58ecdc7f4db4d61a3c4cc24c6a02503a3feb",
+    "cloud/work/boot_tail/BT03-runtime-singleton/diagnosis.json": "8bb242848f4fdbe473907d2c42909af4d224db8ed79c433ba75a522f9c01ef28",
+    "cloud/work/boot_tail/BT03-runtime-singleton/host_behavior.c": "caf09ebea8024bcf41512d4bb084ba5bb5f8f5469800a0a3c3b3e54a8c9b7c1b",
+    "cloud/work/boot_tail/BT03-runtime-singleton/host_verification.json": "0382f26301e9c8ea8a1ff4177ec3e8121de12eca0d59fc194b26d1cd51453ba6",
+    "cloud/work/boot_tail/BT03-runtime-singleton/input_pins.json": "817f2c76a88bb9882f2b11342a56f669690fcc6904adff74028922db51d5ba4d",
+    "cloud/work/boot_tail/BT03-runtime-singleton/layout_verification.json": "65fde87827b18a958b30ce97a337b6944aae70e7f0223c8c37e4a3301b4df2a1",
+    "cloud/work/boot_tail/BT03-runtime-singleton/native_replay.py": "77e928d5d34cb1788081ddd29e211cb11e0d07d9ed69fd1a79b0f6866ff23eeb",
+    "cloud/work/boot_tail/BT03-runtime-singleton/native_verification.json": "7ace24a7cc19d11ec187c705947a5dc638da29d5c8fe352f7b6e68ac3d60ecba",
+    "cloud/work/boot_tail/BT03-runtime-singleton/nonmatch/func_80018634.c": "874ff77bec17f4f1cc25b6a4ec939497a8180c932541106bb121f742dac5211b",
+    "cloud/work/boot_tail/BT03-runtime-singleton/replay_variants.py": "099d1e9af4958a067950168c9f535fe4533dfd31dd45d85d3efdeea0ce919a24",
+    "cloud/work/boot_tail/BT03-runtime-singleton/status_delta.json": "01183cc5093a30c94c9c4c7529a4214e5f686e94a42f7517c66350dfaaabf043",
+    "cloud/work/boot_tail/BT03-runtime-singleton/test_host.py": "3be9ddfe526b5de534b2c04e26cbec2934fa617c119683efc633a08f539c4e6b",
+    "cloud/work/boot_tail/BT03-runtime-singleton/test_layout.py": "f3e2f1a0b42a3ea67b32d123e30da66a0d4e31f7b19ee9588c9d24a426a78543",
+    "cloud/work/boot_tail/BT03-runtime-singleton/test_native.py": "a3ac00491a56317e7fad52592cc8045802d23d289bd145b5a70ed769481d79ee",
+    "cloud/work/boot_tail/BT03-runtime-singleton/variants.json": "1329fe50c1af824c7ece2283a1d9bf94790588a63ae0ddbff7b7360a5af45e0e",
+    "cloud/work/boot_tail/BT03-runtime-singleton/verification.json": "a87de4a9c5273a6943e0704a4a268d4578d0db7ad85cd0e6855a1d4272289498",
+    "cloud/work/boot_tail/BT03-runtime-singleton/verify.py": "3162b34409e83fbc7ef83d9691961f037cdda0fe69d59002393f16761c1af2ed"
+  },
+  "review_scope": [
+    "Entire840-byte protected native body and all three direct helper ABIs",
+    "Actual no-input caller198C8+0x94 and masked byte return",
+    "C89 source with genuine fields, loop/termination semantics and resource bounds",
+    "Strict relocated O2/O1 scores, exact ELF symbols, compiler/target pins and getter",
+    "Full native/candidate and host behavior including callback reloads",
+    "Six bounded source controls and untouched protected/publication paths"
+  ],
+  "native_replay": {
+    "schema_version": 1,
+    "result": "PASS",
+    "base": "1bf59758",
+    "claim_commit": "f9bd8dc1",
+    "pinned_compiler_files": 24,
+    "manifest": [
+      "boot_tail_8000f3a4.s: OK",
+      "extents.json: OK",
+      "symbols.json: OK"
+    ],
+    "extent_functions": 439,
+    "extent_bytes": 99120,
+    "existing_getter_strict_exact_match": true,
+    "strict_match_functions": 0,
+    "strict_match_bytes": 0,
+    "complete_nonmatch_functions": 1,
+    "complete_nonmatch_bytes": 840,
+    "results": [
+      {
+        "strict_match": false,
+        "differing_words": 121,
+        "total_words": 210,
+        "extra_nonzero_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "elf_function_bytes": 840,
+        "full_function_relocations_resolved": true,
+        "full_relocated_equal_and_exact_extent": false,
+        "function": "func_80018634",
+        "checkpoint": "controls",
+        "target_bytes": 840,
+        "source": "cloud/work/boot_tail/BT03-runtime-singleton/controls/func_80018634_initial.c",
+        "source_sha256": "9526ecbc288a177c13571d6dfad9bed81826baa32c158cd4ca98b036ff095619",
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+      },
+      {
+        "strict_match": false,
+        "differing_words": 210,
+        "total_words": 210,
+        "extra_nonzero_words": 136,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "elf_function_bytes": 1396,
+        "function": "func_80018634",
+        "checkpoint": "controls",
+        "target_bytes": 840,
+        "source": "cloud/work/boot_tail/BT03-runtime-singleton/controls/func_80018634_initial.c",
+        "source_sha256": "9526ecbc288a177c13571d6dfad9bed81826baa32c158cd4ca98b036ff095619",
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+      },
+      {
+        "strict_match": false,
+        "differing_words": 117,
+        "total_words": 210,
+        "extra_nonzero_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "elf_function_bytes": 840,
+        "full_function_relocations_resolved": true,
+        "full_relocated_equal_and_exact_extent": false,
+        "function": "func_80018634",
+        "checkpoint": "nonmatch",
+        "target_bytes": 840,
+        "source": "cloud/work/boot_tail/BT03-runtime-singleton/nonmatch/func_80018634.c",
+        "source_sha256": "874ff77bec17f4f1cc25b6a4ec939497a8180c932541106bb121f742dac5211b",
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+      },
+      {
+        "strict_match": false,
+        "differing_words": 210,
+        "total_words": 210,
+        "extra_nonzero_words": 136,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "elf_function_bytes": 1396,
+        "function": "func_80018634",
+        "checkpoint": "nonmatch",
+        "target_bytes": 840,
+        "source": "cloud/work/boot_tail/BT03-runtime-singleton/nonmatch/func_80018634.c",
+        "source_sha256": "874ff77bec17f4f1cc25b6a4ec939497a8180c932541106bb121f742dac5211b",
+        "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+        "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+      }
+    ],
+    "harness_hashes": {
+      "verify.py": "3162b34409e83fbc7ef83d9691961f037cdda0fe69d59002393f16761c1af2ed",
+      "test_host.py": "3be9ddfe526b5de534b2c04e26cbec2934fa617c119683efc633a08f539c4e6b",
+      "host_behavior.c": "caf09ebea8024bcf41512d4bb084ba5bb5f8f5469800a0a3c3b3e54a8c9b7c1b",
+      "test_layout.py": "f3e2f1a0b42a3ea67b32d123e30da66a0d4e31f7b19ee9588c9d24a426a78543",
+      "diagnose.py": "4597e0cd7df674e0b66f5f6525df58ecdc7f4db4d61a3c4cc24c6a02503a3feb",
+      "test_native.py": "a3ac00491a56317e7fad52592cc8045802d23d289bd145b5a70ed769481d79ee",
+      "native_replay.py": "77e928d5d34cb1788081ddd29e211cb11e0d07d9ed69fd1a79b0f6866ff23eeb",
+      "replay_variants.py": "099d1e9af4958a067950168c9f535fe4533dfd31dd45d85d3efdeea0ce919a24"
+    }
+  },
+  "layout_replay": {
+    "result": "PASS",
+    "source_sha256": "874ff77bec17f4f1cc25b6a4ec939497a8180c932541106bb121f742dac5211b",
+    "checks": [
+      {
+        "expression": "sizeof(void*)",
+        "value": 4
+      },
+      {
+        "expression": "sizeof(SequenceEvent)",
+        "value": 12
+      },
+      {
+        "expression": "sizeof(Track)",
+        "value": 16
+      },
+      {
+        "expression": "sizeof(Playback)",
+        "value": 40
+      },
+      {
+        "expression": "sizeof(SequenceHeader)",
+        "value": 24
+      },
+      {
+        "expression": "sizeof(Context)",
+        "value": 4040
+      },
+      {
+        "expression": "(unsigned int)&((SequenceEvent*)0)->time",
+        "value": 0
+      },
+      {
+        "expression": "(unsigned int)&((SequenceEvent*)0)->program",
+        "value": 4
+      },
+      {
+        "expression": "(unsigned int)&((SequenceEvent*)0)->controller",
+        "value": 5
+      },
+      {
+        "expression": "(unsigned int)&((SequenceEvent*)0)->code",
+        "value": 8
+      },
+      {
+        "expression": "(unsigned int)&((SequenceEvent*)0)->value",
+        "value": 10
+      },
+      {
+        "expression": "(unsigned int)&((SequenceHeader*)0)->patterns",
+        "value": 4
+      },
+      {
+        "expression": "(unsigned int)&((SequenceHeader*)0)->channels",
+        "value": 8
+      },
+      {
+        "expression": "(unsigned int)&((SequenceHeader*)0)->loop_time",
+        "value": 20
+      },
+      {
+        "expression": "(unsigned int)&((Pattern*)0)->optional04",
+        "value": 4
+      },
+      {
+        "expression": "(unsigned int)&((Pattern*)0)->optional08",
+        "value": 8
+      },
+      {
+        "expression": "(unsigned int)&((Pattern*)0)->data",
+        "value": 12
+      },
+      {
+        "expression": "(unsigned int)&((Track*)0)->start",
+        "value": 0
+      },
+      {
+        "expression": "(unsigned int)&((Track*)0)->cursor",
+        "value": 4
+      },
+      {
+        "expression": "(unsigned int)&((Track*)0)->fraction",
+        "value": 8
+      },
+      {
+        "expression": "(unsigned int)&((Track*)0)->time",
+        "value": 12
+      },
+      {
+        "expression": "(unsigned int)&((Playback*)0)->counter00",
+        "value": 0
+      },
+      {
+        "expression": "(unsigned int)&((Playback*)0)->counter04",
+        "value": 4
+      },
+      {
+        "expression": "(unsigned int)&((Playback*)0)->counter08",
+        "value": 8
+      },
+      {
+        "expression": "(unsigned int)&((Playback*)0)->cursor",
+        "value": 12
+      },
+      {
+        "expression": "(unsigned int)&((Playback*)0)->optional10",
+        "value": 16
+      },
+      {
+        "expression": "(unsigned int)&((Playback*)0)->optional14",
+        "value": 20
+      },
+      {
+        "expression": "(unsigned int)&((Playback*)0)->value18",
+        "value": 24
+      },
+      {
+        "expression": "(unsigned int)&((Playback*)0)->value1A",
+        "value": 26
+      },
+      {
+        "expression": "(unsigned int)&((Playback*)0)->counter1C",
+        "value": 28
+      },
+      {
+        "expression": "(unsigned int)&((Playback*)0)->counter20",
+        "value": 32
+      },
+      {
+        "expression": "(unsigned int)&((Playback*)0)->channel",
+        "value": 36
+      },
+      {
+        "expression": "(unsigned int)&((Playback*)0)->second",
+        "value": 37
+      },
+      {
+        "expression": "(unsigned int)&((Playback*)0)->first",
+        "value": 38
+      },
+      {
+        "expression": "(unsigned int)&((Playback*)0)->index",
+        "value": 39
+      },
+      {
+        "expression": "(unsigned int)&((Context*)0)->sequence",
+        "value": 268
+      },
+      {
+        "expression": "(unsigned int)&((Context*)0)->step_fraction",
+        "value": 280
+      },
+      {
+        "expression": "(unsigned int)&((Context*)0)->step_time",
+        "value": 284
+      },
+      {
+        "expression": "(unsigned int)&((Context*)0)->lookahead",
+        "value": 288
+      },
+      {
+        "expression": "(unsigned int)&((Context*)0)->tracks",
+        "value": 296
+      },
+      {
+        "expression": "(unsigned int)&((Context*)0)->playback",
+        "value": 1384
+      },
+      {
+        "expression": "(unsigned int)&((Context*)0)->stop_loop",
+        "value": 4037
+      },
+      {
+        "expression": "(unsigned int)&((Context*)0)->loop_count",
+        "value": 4038
+      }
+    ]
+  },
+  "variants_replay": {
+    "result": "PASS",
+    "variants": [
+      {
+        "name": "initial",
+        "reason": "Whole-body initial reconstruction",
+        "differing": 121,
+        "extra": 0,
+        "bytes": 840,
+        "frame": 72,
+        "sha256": "9526ecbc288a177c13571d6dfad9bed81826baa32c158cd4ca98b036ff095619"
+      },
+      {
+        "name": "decode_order",
+        "reason": "Native initialization is first-loop flag before active byte, with active at stack+66",
+        "differing": 117,
+        "extra": 0,
+        "bytes": 840,
+        "frame": 72,
+        "sha256": "874ff77bec17f4f1cc25b6a4ec939497a8180c932541106bb121f742dac5211b"
+      },
+      {
+        "name": "decoded_jump",
+        "reason": "Native jump index and fixed-point carry share v1, so reuse the real scalar temporary",
+        "differing": 120,
+        "extra": 0,
+        "bytes": 840,
+        "frame": 72,
+        "sha256": "d9ac9c37de2563b9f30c8afe49693ba98377a65976935456837e572cc544fc3f"
+      },
+      {
+        "name": "offset_first",
+        "reason": "Native addu operand order spells relative offset before byte base",
+        "differing": 120,
+        "extra": 0,
+        "bytes": 840,
+        "frame": 72,
+        "sha256": "7c5b70414bffa4a52b6fdd2dfd80a895fe4f9308b6bac55a2fab6435f5f9ba6d"
+      },
+      {
+        "name": "decoded_code",
+        "reason": "Decode and reuse the genuine u16 opcode in dispatch and pattern table lookup",
+        "differing": 120,
+        "extra": 0,
+        "bytes": 840,
+        "frame": 72,
+        "sha256": "bcb9f70b0662e34dc6a890b8b30a5d1483604fb24e6f13286149468e9f334a2b"
+      },
+      {
+        "name": "decoded_offsets",
+        "reason": "Explicitly decode optional resource offsets before zero testing and address conversion",
+        "differing": 118,
+        "extra": 0,
+        "bytes": 840,
+        "frame": 72,
+        "sha256": "59013783d68c03e9e56b8c1d0871481db4bc4807e5d3d37ce14b9cd3416aca31"
+      }
+    ]
+  },
+  "diagnosis_replay": {
+    "result": "PASS",
+    "scope": "Exact ELF symbol extent after strict relocation. Only verified zero alignment padding is omitted from workbench diagnostics; unchanged score.py remains the acceptance gate.",
+    "checkpoints": [
+      {
+        "name": "func_80018634",
+        "checkpoint": "baseline",
+        "source_sha256": "9526ecbc288a177c13571d6dfad9bed81826baa32c158cd4ca98b036ff095619",
+        "routing": "structural",
+        "owning_pass": "cfe-spelling",
+        "ownership_basis": "heuristic",
+        "lever_class": "stack-home",
+        "lever_reason": "the pool lane is shorter on the candidate, so the target colours a web the other side does not; that names the declaration the list is wrong about, and lane evidence is ranked ahead of the frame arithmetic",
+        "verdict": "structure-mismatch",
+        "words": 121,
+        "raw": 121,
+        "target_frame_size": -88,
+        "candidate_frame_size": -72,
+        "target_instructions": 210,
+        "candidate_instructions": 210,
+        "aligned_insertions": 1,
+        "aligned_deletions": 1,
+        "aligned_register": 115,
+        "aligned_constant": 4,
+        "aligned_structural": 2
+      },
+      {
+        "name": "func_80018634",
+        "checkpoint": "final",
+        "source_sha256": "874ff77bec17f4f1cc25b6a4ec939497a8180c932541106bb121f742dac5211b",
+        "routing": "structural",
+        "owning_pass": "cfe-spelling",
+        "ownership_basis": "heuristic",
+        "lever_class": "stack-home",
+        "lever_reason": "the pool lane is shorter on the candidate, so the target colours a web the other side does not; that names the declaration the list is wrong about, and lane evidence is ranked ahead of the frame arithmetic",
+        "verdict": "allocation-mismatch",
+        "words": 117,
+        "raw": 117,
+        "target_frame_size": -88,
+        "candidate_frame_size": -72,
+        "target_instructions": 210,
+        "candidate_instructions": 210,
+        "aligned_insertions": 0,
+        "aligned_deletions": 0,
+        "aligned_register": 115,
+        "aligned_constant": 2,
+        "aligned_structural": 0
+      }
+    ]
+  },
+  "host_replay": {
+    "result": "PASS",
+    "configurations": [
+      {
+        "configuration": "c89",
+        "result": "PASS",
+        "stdout": "PASS: 26 synthetic scenarios plus two inactive follow-through checks, full-context preservation and callback replacement"
+      },
+      {
+        "configuration": "asan_ubsan",
+        "result": "PASS",
+        "stdout": "PASS: 26 synthetic scenarios plus two inactive follow-through checks, full-context preservation and callback replacement"
+      }
+    ],
+    "source_hashes": {
+      "nonmatch/func_80018634.c": "874ff77bec17f4f1cc25b6a4ec939497a8180c932541106bb121f742dac5211b",
+      "host_behavior.c": "caf09ebea8024bcf41512d4bb084ba5bb5f8f5469800a0a3c3b3e54a8c9b7c1b",
+      "test_host.py": "3be9ddfe526b5de534b2c04e26cbec2934fa617c119683efc633a08f539c4e6b"
+    },
+    "limits": "Synthetic aligned valid resources. Host pointers are64-bit; the separate IDO layout assertions and native replay establish32-bit layouts. Helper bodies are contract stubs."
+  },
+  "native_semantic_replay": {
+    "result": "PASS",
+    "cases": 42,
+    "source_sha256": "874ff77bec17f4f1cc25b6a4ec939497a8180c932541106bb121f742dac5211b",
+    "results": [
+      {
+        "case": "all64 inactive",
+        "result": "PASS",
+        "native_steps": 609,
+        "candidate_steps": 609,
+        "calls": 0
+      },
+      {
+        "case": "pending clocks including wrap 0",
+        "result": "PASS",
+        "native_steps": 1889,
+        "candidate_steps": 1889,
+        "calls": 0
+      },
+      {
+        "case": "pending clocks including wrap 1",
+        "result": "PASS",
+        "native_steps": 1889,
+        "candidate_steps": 1889,
+        "calls": 0
+      },
+      {
+        "case": "pending clocks including wrap 2",
+        "result": "PASS",
+        "native_steps": 1889,
+        "candidate_steps": 1889,
+        "calls": 0
+      },
+      {
+        "case": "pending clocks including wrap 3",
+        "result": "PASS",
+        "native_steps": 1889,
+        "candidate_steps": 1889,
+        "calls": 0
+      },
+      {
+        "case": "pending clocks including wrap 4",
+        "result": "PASS",
+        "native_steps": 1889,
+        "candidate_steps": 1889,
+        "calls": 0
+      },
+      {
+        "case": "pending clocks including wrap 5",
+        "result": "PASS",
+        "native_steps": 1889,
+        "candidate_steps": 1889,
+        "calls": 0
+      },
+      {
+        "case": "pending clocks including wrap 6",
+        "result": "PASS",
+        "native_steps": 1889,
+        "candidate_steps": 1889,
+        "calls": 0
+      },
+      {
+        "case": "pending clocks including wrap 7",
+        "result": "PASS",
+        "native_steps": 1889,
+        "candidate_steps": 1889,
+        "calls": 0
+      },
+      {
+        "case": "pending clocks including wrap 8",
+        "result": "PASS",
+        "native_steps": 1889,
+        "candidate_steps": 1889,
+        "calls": 0
+      },
+      {
+        "case": "pending clocks including wrap 9",
+        "result": "PASS",
+        "native_steps": 1889,
+        "candidate_steps": 1889,
+        "calls": 0
+      },
+      {
+        "case": "pending clocks including wrap 10",
+        "result": "PASS",
+        "native_steps": 1889,
+        "candidate_steps": 1889,
+        "calls": 0
+      },
+      {
+        "case": "pending clocks including wrap 11",
+        "result": "PASS",
+        "native_steps": 1889,
+        "candidate_steps": 1889,
+        "calls": 0
+      },
+      {
+        "case": "pending clocks including wrap 12",
+        "result": "PASS",
+        "native_steps": 1889,
+        "candidate_steps": 1889,
+        "calls": 0
+      },
+      {
+        "case": "pending clocks including wrap 13",
+        "result": "PASS",
+        "native_steps": 1889,
+        "candidate_steps": 1889,
+        "calls": 0
+      },
+      {
+        "case": "pending clocks including wrap 14",
+        "result": "PASS",
+        "native_steps": 1889,
+        "candidate_steps": 1889,
+        "calls": 0
+      },
+      {
+        "case": "pending clocks including wrap 15",
+        "result": "PASS",
+        "native_steps": 1889,
+        "candidate_steps": 1889,
+        "calls": 0
+      },
+      {
+        "case": "termination sentinel",
+        "result": "PASS",
+        "native_steps": 1633,
+        "candidate_steps": 1633,
+        "calls": 0
+      },
+      {
+        "case": "no stale activity after termination",
+        "result": "PASS",
+        "native_steps": 609,
+        "candidate_steps": 609,
+        "calls": 0
+      },
+      {
+        "case": "stop-loop sentinel",
+        "result": "PASS",
+        "native_steps": 1633,
+        "candidate_steps": 1633,
+        "calls": 0
+      },
+      {
+        "case": "no stale activity after termination",
+        "result": "PASS",
+        "native_steps": 609,
+        "candidate_steps": 609,
+        "calls": 0
+      },
+      {
+        "case": "pattern optional/callback matrix 0",
+        "result": "PASS",
+        "native_steps": 717,
+        "candidate_steps": 717,
+        "calls": 0
+      },
+      {
+        "case": "pattern optional/callback matrix 1",
+        "result": "PASS",
+        "native_steps": 720,
+        "candidate_steps": 720,
+        "calls": 0
+      },
+      {
+        "case": "pattern optional/callback matrix 2",
+        "result": "PASS",
+        "native_steps": 720,
+        "candidate_steps": 720,
+        "calls": 0
+      },
+      {
+        "case": "pattern optional/callback matrix 3",
+        "result": "PASS",
+        "native_steps": 723,
+        "candidate_steps": 723,
+        "calls": 0
+      },
+      {
+        "case": "pattern optional/callback matrix 4",
+        "result": "PASS",
+        "native_steps": 721,
+        "candidate_steps": 721,
+        "calls": 1
+      },
+      {
+        "case": "pattern optional/callback matrix 5",
+        "result": "PASS",
+        "native_steps": 724,
+        "candidate_steps": 724,
+        "calls": 1
+      },
+      {
+        "case": "pattern optional/callback matrix 6",
+        "result": "PASS",
+        "native_steps": 724,
+        "candidate_steps": 724,
+        "calls": 1
+      },
+      {
+        "case": "pattern optional/callback matrix 7",
+        "result": "PASS",
+        "native_steps": 727,
+        "candidate_steps": 727,
+        "calls": 1
+      },
+      {
+        "case": "pattern optional/callback matrix 8",
+        "result": "PASS",
+        "native_steps": 721,
+        "candidate_steps": 721,
+        "calls": 1
+      },
+      {
+        "case": "pattern optional/callback matrix 9",
+        "result": "PASS",
+        "native_steps": 724,
+        "candidate_steps": 724,
+        "calls": 1
+      },
+      {
+        "case": "pattern optional/callback matrix 10",
+        "result": "PASS",
+        "native_steps": 724,
+        "candidate_steps": 724,
+        "calls": 1
+      },
+      {
+        "case": "pattern optional/callback matrix 11",
+        "result": "PASS",
+        "native_steps": 727,
+        "candidate_steps": 727,
+        "calls": 1
+      },
+      {
+        "case": "pattern optional/callback matrix 12",
+        "result": "PASS",
+        "native_steps": 725,
+        "candidate_steps": 725,
+        "calls": 2
+      },
+      {
+        "case": "pattern optional/callback matrix 13",
+        "result": "PASS",
+        "native_steps": 728,
+        "candidate_steps": 728,
+        "calls": 2
+      },
+      {
+        "case": "pattern optional/callback matrix 14",
+        "result": "PASS",
+        "native_steps": 728,
+        "candidate_steps": 728,
+        "calls": 2
+      },
+      {
+        "case": "pattern optional/callback matrix 15",
+        "result": "PASS",
+        "native_steps": 731,
+        "candidate_steps": 731,
+        "calls": 2
+      },
+      {
+        "case": "all64 restart only one callback with loop-count wrap",
+        "result": "PASS",
+        "native_steps": 3947,
+        "candidate_steps": 3947,
+        "calls": 1
+      },
+      {
+        "case": "program callback replaces live context",
+        "result": "PASS",
+        "native_steps": 725,
+        "candidate_steps": 725,
+        "calls": 2
+      },
+      {
+        "case": "loop callback count lands in replacement context",
+        "result": "PASS",
+        "native_steps": 671,
+        "candidate_steps": 671,
+        "calls": 1
+      },
+      {
+        "case": "two immediate patterns then termination skips timer",
+        "result": "PASS",
+        "native_steps": 809,
+        "candidate_steps": 809,
+        "calls": 2
+      },
+      {
+        "case": "unsigned horizon wraps before event comparison",
+        "result": "PASS",
+        "native_steps": 629,
+        "candidate_steps": 629,
+        "calls": 0
+      }
+    ],
+    "limits": "Bounded fail-closed MIPS-II integer replay with synthetic mapped resources and explicit helper contracts; not full game/emulator integration. Caller-clobbered registers are poisoned after each stub and callee-saves/stack restoration are checked."
+  },
+  "reviewer_added_cases": {
+    "result": "PASS",
+    "additional_cases": 4,
+    "rows": [
+      {
+        "case": "program callback changes live controller byte",
+        "result": "PASS",
+        "native_and_candidate": true
+      },
+      {
+        "case": "controller alone replaces live context and cursor before ticking",
+        "result": "PASS",
+        "native_and_candidate": true
+      },
+      {
+        "case": "big-endian16 jump index256 and postrestart carry",
+        "result": "PASS",
+        "native_and_candidate": true
+      },
+      {
+        "case": "two restarts terminate with no ticks and one callback",
+        "result": "PASS",
+        "native_and_candidate": true
+      }
+    ]
+  },
+  "reviewer_added_script_sha256": "69a7dee328ebb6fe0af2b93bb8d0942c4dc02027b2b4eed22af62badf89f7c74",
+  "reviewer_added_script_replay": "IDO_DIR=<pinned IDO> python3 additional.py <repository root>",
+  "findings": [
+    "No correctness or scope blocker found for research-only integration.",
+    "Native and candidate exact840-byte lengths do not imply equality:117/210 differing words and88-byte versus72-byte frame remain explicit.",
+    "All helper prototypes follow actual input consumption; no fake padding, hidden body partition, extra formal or register forcing found.",
+    "Live event/controller and global context reloads remain correct when helpers mutate or replace their inputs.",
+    "Four additional independently specified full-memory native/candidate cases passed: callback controller-byte mutation, controller-only context/cursor replacement, big-endian16 jump index256, and two terminating restarts with exactly one callback."
+  ],
+  "limitations": [
+    "Purpose-limited integer instruction model and synthetic helper contracts, not N64 hardware/emulator integration.",
+    "Source requires valid aligned mapped resources and event chains that terminate or reach a future event; malformed/cyclic resources are outside the tested domain.",
+    "Independent review approves complete honest NONMATCH research only; aggregate exact-head CI and publication remain central responsibilities."
+  ]
+}

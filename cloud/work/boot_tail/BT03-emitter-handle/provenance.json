@@ -1,0 +1,19 @@
+{
+  "upstream": "AxioDL/musyx",
+  "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+  "source_path": "src/musyx/runtime/snd3d.c",
+  "source_git_blob": "7c6e875a043c53b92ca05efdb9b1799e7d496965",
+  "source_url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/src/musyx/runtime/snd3d.c",
+  "license": "CC0-1.0",
+  "license_git_blob": "0e259d42c996742e9e3cba14c677129b2c1b6311",
+  "license_url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/LICENSE",
+  "retrieval": "Both source and license were read through GitHub fetch_file at the pinned revision; browser fetch attempts had cache misses.",
+  "role": "s3dHandle is a strong homologous source lead, not original N64 translation-unit proof. Each retained branch and actual interface was checked against the full native body.",
+  "native_differences": [
+    "No public call-count throttle in this target.",
+    "No room/studio, extra parameter/filter or room/door update paths; no0x40 zero-volume shutdown branch.",
+    "Actual native FX-start interface has three real arguments and all helper declarations follow native callers/callees.",
+    "Fade increment remains extern const float D_8002D90C. Its contents are unknown; public0.3f is not imported."
+  ],
+  "runtime_invariant": "Both public lead and native control structure have conditional writes to genuine uninitialized locals. Neither establishes a global original-runtime producer invariant; this remains explicitly unresolved."
+}

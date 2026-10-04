@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "base_commit": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "match_functions": 1,
+  "verified_body_bytes": 580,
+  "nonmatch_functions": 2,
+  "nonmatch_bytes": 980,
+  "target_manifest_sha256": "6bd3e6ef05e6123e4ea4dd0d814c0abb16f202a91d8d0a381eca14322c8a36d5",
+  "results": [
+    {
+      "name": "func_80019C8C",
+      "bytes": 580,
+      "source_path": "cloud/matches/boot_tail/func_80019C8C.c",
+      "source_sha256": "eb17ab0d49dd592ec0fccd6cae6b572e2cbe41b288ec66ed7214a922aeafc1d2",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 0,
+      "total_words": 145,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": true,
+      "elf_function_size": 580
+    },
+    {
+      "name": "func_80019C8C",
+      "bytes": 580,
+      "source_path": "cloud/matches/boot_tail/func_80019C8C.c",
+      "source_sha256": "eb17ab0d49dd592ec0fccd6cae6b572e2cbe41b288ec66ed7214a922aeafc1d2",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 145,
+      "total_words": 145,
+      "extra_words": 38,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_8004BEB8 at .text+0x21c"
+      ],
+      "strict_match": false,
+      "elf_function_size": 740
+    },
+    {
+      "name": "func_8001D1F4",
+      "bytes": 508,
+      "source_path": "cloud/work/boot_tail/BT03-high-spatial-control/nonmatch/func_8001D1F4.c",
+      "source_sha256": "15ad3dcd103a7b0360688ef6ecf06215351a6960043d9e33f71a3830869dbdd0",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 46,
+      "total_words": 127,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "elf_function_size": 508
+    },
+    {
+      "name": "func_8001D1F4",
+      "bytes": 508,
+      "source_path": "cloud/work/boot_tail/BT03-high-spatial-control/nonmatch/func_8001D1F4.c",
+      "source_sha256": "15ad3dcd103a7b0360688ef6ecf06215351a6960043d9e33f71a3830869dbdd0",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 126,
+      "total_words": 127,
+      "extra_words": 28,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_8004FD50 at .text+0x1f8"
+      ],
+      "strict_match": false,
+      "elf_function_size": 628
+    },
+    {
+      "name": "func_8001DC08",
+      "bytes": 472,
+      "source_path": "cloud/work/boot_tail/BT03-high-spatial-control/nonmatch/func_8001DC08.c",
+      "source_sha256": "f52284ec18c1da5e8a97029ab34ccb45a009414c7f0092456e91df6640bee097",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 3,
+      "total_words": 118,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "elf_function_size": 472
+    },
+    {
+      "name": "func_8001DC08",
+      "bytes": 472,
+      "source_path": "cloud/work/boot_tail/BT03-high-spatial-control/nonmatch/func_8001DC08.c",
+      "source_sha256": "f52284ec18c1da5e8a97029ab34ccb45a009414c7f0092456e91df6640bee097",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 118,
+      "total_words": 118,
+      "extra_words": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false,
+      "elf_function_size": 520
+    }
+  ]
+}

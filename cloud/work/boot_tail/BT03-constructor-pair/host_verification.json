@@ -1,0 +1,35 @@
+{
+  "result": "PASS",
+  "rows": [
+    {
+      "function": "func_80019F48",
+      "configuration": "c89_O2",
+      "cases": 582,
+      "result": "PASS"
+    },
+    {
+      "function": "func_80019F48",
+      "configuration": "asan_ubsan",
+      "cases": 582,
+      "result": "PASS"
+    },
+    {
+      "function": "func_8001A270",
+      "configuration": "c89_O2",
+      "cases": 1636,
+      "result": "PASS"
+    },
+    {
+      "function": "func_8001A270",
+      "configuration": "asan_ubsan",
+      "cases": 1636,
+      "result": "PASS"
+    }
+  ],
+  "source_hashes": {
+    "host_behavior.c": "94d3735dae9fbbe1cd97654b1e85aab31e7acdba0b808f7391592cbaa5b8a0d0",
+    "func_80019F48.c": "f39c2ba6027bdd175fb63f06f1221e9583f4bfbbcca181c2f9d3ed1e75985930",
+    "func_8001A270.c": "20045e3595c894ab3c2af1b28f7ed16756059a4b89befaa609acb9773ee46604"
+  },
+  "limits": "Synthetic initialized resource records and valid voice indices; O32 layout established separately. Real helpers are audited contract stubs, not integration tests."
+}
