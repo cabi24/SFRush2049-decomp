@@ -1,0 +1,45 @@
+{
+  "method": "Unchanged workbench; temporary canonical-word target object and original O2 candidate. Raw objects/words not committed; strict relocated score decides acceptance.",
+  "results": [
+    {
+      "name": "func_8001D0F0",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "5906e648dc7a06c77817119f82930a61921e4ae3dcef876d92adb61d9d92d187",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 17,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  34 words=  17 raw=  21 opcodes=  14 gaps=  28 reloc_syms=   4 norm=  30 regs=  17 fp=   0 insns=  52 frame=  -24 sha1=632fa48e4ec6 /tmp/medium-tail-8001D0F0-O2.o true_insn_delta=+0 geometry_edit_distance=30 opcode_distance=2",
+      "recorded_utc": "2026-10-04T00:48:26.501937+00:00"
+    },
+    {
+      "name": "func_80018C2C",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "d34232339e382c083496c4caf0a7314fb598ecf3320a5846d453c0eaf3ba91a5",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 2,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=operand-mismatch aligned_total=   9 words=   2 raw=   9 opcodes=   0 gaps=   0 reloc_syms=   7 norm=   0 regs=   0 fp=   0 insns=  53 frame=  -32 sha1=f4ca915683ad /tmp/medium-tail-80018C2C-O2.o",
+      "recorded_utc": "2026-10-04T00:48:26.941843+00:00"
+    },
+    {
+      "name": "func_800180A0",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "9f6310db3aeac95dfcea4845733b600164d6624cb824729a88031217a1895ec3",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 26,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=allocation-mismatch aligned_total=  28 words=  26 raw=  28 opcodes=   0 gaps=   0 reloc_syms=   2 norm=  27 regs=  26 fp=   0 insns=  57 frame= None sha1=9706bed9082b /tmp/medium-tail-800180A0-O2.o",
+      "recorded_utc": "2026-10-04T00:48:27.380713+00:00"
+    },
+    {
+      "name": "func_80018D40",
+      "stage": "Initial O2 before refinement",
+      "source_sha256": "2d6791063ea10a01146613e4df6f22bedd17e19f73e443f3cb51c66db179f5f8",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "strict_differing_words": 49,
+      "strict_extra_words": 0,
+      "workbench_summary": "verdict=structure-mismatch aligned_total=  34 words=  50 raw=  53 opcodes=  37 gaps=   3 reloc_syms=  10 norm=  13 regs=  43 fp=   1 insns=  60 frame=  -32 sha1=25b52123070b /tmp/medium-tail-80018D40-O2.o true_insn_delta=+1 geometry_edit_distance=13 opcode_distance=4",
+      "recorded_utc": "2026-10-04T00:48:27.858501+00:00"
+    }
+  ]
+}

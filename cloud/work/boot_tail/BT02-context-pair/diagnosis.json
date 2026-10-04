@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "notes": "Canonical targets and freshly compiled, fully relocated private candidate objects were diagnosed. Full disassembly remains private; only summary measurements are archived.",
+  "diagnoses": [
+    {
+      "stage": "initial thread",
+      "diagnose_completed": true,
+      "owning_pass": "unknown",
+      "lever_class": "stack-home",
+      "edit_family": "drop-a-declared-local",
+      "measurements": {
+        "candidate_frame_size": -96,
+        "declared_locals": null,
+        "displaced_home_rows": 1,
+        "displaced_homes": 1,
+        "frame_delta": -8,
+        "frame_delta_words": -2,
+        "instruction_counts_agree": false,
+        "pool_lane_length_delta": 3,
+        "target_frame_size": -104
+      },
+      "alignment_counts": {
+        "aligned_commutative": 0,
+        "aligned_constant": 5,
+        "aligned_deletions": 3,
+        "aligned_gaps": 8,
+        "aligned_insertions": 5,
+        "aligned_register": 23,
+        "aligned_schedule": 0,
+        "aligned_structural": 17,
+        "aligned_total": 45
+      }
+    },
+    {
+      "stage": "four-word thread",
+      "diagnose_completed": true,
+      "owning_pass": "cfe-spelling",
+      "lever_class": "stack-home",
+      "edit_family": "reuse-an-existing-local-as-carrier",
+      "measurements": {
+        "candidate_frame_size": -104,
+        "declared_locals": null,
+        "displaced_home_rows": 1,
+        "displaced_homes": 1,
+        "frame_delta": 0,
+        "frame_delta_words": 0,
+        "instruction_counts_agree": true,
+        "pool_lane_length_delta": 0,
+        "target_frame_size": -104
+      },
+      "alignment_counts": {
+        "aligned_commutative": 0,
+        "aligned_constant": 2,
+        "aligned_deletions": 0,
+        "aligned_gaps": 0,
+        "aligned_insertions": 0,
+        "aligned_register": 0,
+        "aligned_schedule": 0,
+        "aligned_structural": 2,
+        "aligned_total": 4
+      }
+    },
+    {
+      "stage": "initial configuration",
+      "diagnose_completed": true,
+      "owning_pass": "unknown",
+      "lever_class": "stack-home",
+      "edit_family": "declare-the-pair-later",
+      "measurements": {
+        "candidate_frame_size": -48,
+        "declared_locals": null,
+        "displaced_home_rows": 1,
+        "displaced_homes": 1,
+        "frame_delta": 0,
+        "frame_delta_words": 0,
+        "instruction_counts_agree": false,
+        "pool_lane_length_delta": -2,
+        "target_frame_size": -48
+      },
+      "alignment_counts": {
+        "aligned_commutative": 0,
+        "aligned_constant": 1,
+        "aligned_deletions": 13,
+        "aligned_gaps": 21,
+        "aligned_insertions": 8,
+        "aligned_register": 34,
+        "aligned_schedule": 0,
+        "aligned_structural": 24,
+        "aligned_total": 59
+      }
+    },
+    {
+      "stage": "frozen configuration",
+      "diagnose_completed": true,
+      "owning_pass": "cfe-spelling",
+      "lever_class": "none-known",
+      "edit_family": null,
+      "measurements": {
+        "displaced_home_rows": 0,
+        "owning_pass": "cfe-spelling",
+        "webs": 15
+      },
+      "alignment_counts": {
+        "aligned_commutative": 0,
+        "aligned_constant": 0,
+        "aligned_deletions": 3,
+        "aligned_gaps": 6,
+        "aligned_insertions": 3,
+        "aligned_register": 45,
+        "aligned_schedule": 0,
+        "aligned_structural": 8,
+        "aligned_total": 53
+      }
+    }
+  ]
+}

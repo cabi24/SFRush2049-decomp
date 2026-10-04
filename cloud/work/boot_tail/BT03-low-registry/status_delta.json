@@ -1,0 +1,63 @@
+{
+  "packet": "BT03-low-registry",
+  "central_claim": "edb8cc44",
+  "branch": "dot/boot-tail-bt03-low-registry",
+  "base": "b51423528a2971b16f2dcf111b7c96375cabd188",
+  "master_reference": "301d9e7552ad4fd7f54a38796db84671e1000d35",
+  "attempted_functions": 3,
+  "attempted_bytes": 904,
+  "local_match_functions": 0,
+  "local_match_bytes": 0,
+  "nonmatch_functions": 3,
+  "nonmatch_bytes": 904,
+  "entries": [
+    {
+      "address": "0x8001536C",
+      "name": "func_8001536C",
+      "size": 312,
+      "cluster": "BT03",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 6,
+      "extra_words": 0,
+      "source_path": "cloud/work/boot_tail/BT03-low-registry/func_8001536C_NONMATCH.c",
+      "source_sha256": "50eade362d72b1480ab87836ac60a64dd1b0627368824df593b9e1592487ba81",
+      "note": "Complete five-input resource push. 6/78 strict O2 differences are commuted payload-address add operands; zero nonzero excess or relocation uncertainty. Five bounded forms; address-word/index controls do not improve it."
+    },
+    {
+      "address": "0x8001605C",
+      "name": "func_8001605C",
+      "size": 324,
+      "cluster": "BT03",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 48,
+      "extra_words": 1,
+      "source_path": "cloud/work/boot_tail/BT03-low-registry/func_8001605C_NONMATCH.c",
+      "source_sha256": "673ce8633b00f74b5b79f31f69a6c2fd8c51bb4080ad16ce6632a25d05bae06f",
+      "note": "Complete existing/new/full sample-registry preparation. Strict O2 48/81 plus one nonzero excess word, native/candidate frames48; u16 counter normalization and real pointer/count stack-home ordering remain. Three natural forms, then stop."
+    },
+    {
+      "address": "0x800161A0",
+      "name": "func_800161A0",
+      "size": 268,
+      "cluster": "BT03",
+      "status": "nonmatch",
+      "evidence_level": "COMPLETE-NONMATCH",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "diff_words": 20,
+      "extra_words": 0,
+      "source_path": "cloud/work/boot_tail/BT03-low-registry/func_800161A0_NONMATCH.c",
+      "source_sha256": "d4701e8f0d05bd62d3e85d273244c8f846550dc7314a45d1b166e85896bbd2c4",
+      "note": "Complete registry removal with live lock-bound count and whole-record shifts. Separate real copy index improves31/67 to20/67; early-return and memcpy controls fail to improve. Four forms then stop; zero matching credit."
+    }
+  ],
+  "source_review": {
+    "result": "PASS_FOR_COMPLETE_NONMATCH_RESEARCH",
+    "reviewed_commit": "ee8dfe299a8e33a92bd6635aa51dfaebdafb426b",
+    "reviewed_tree": "8bdcc252d5019da13f6a5e704cbe8b81ac4e4be3",
+    "receipt": "cloud/work/boot_tail/BT03-low-registry/REVIEW.json"
+  }
+}

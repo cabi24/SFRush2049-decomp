@@ -365,3 +365,16 @@ distinct attempts, 95 complete nonmatches / 14,496 B and one 96-byte blocked lea
 remain outside matching credit. See wave9/README.md and wave9/unique_totals.json.
 Prior proof is carried in wave8/ci.json; current successor packets are excluded
 from the frozen cut. D10 remains unchanged.
+
+## Tenth cut: nine additional reviewed runtime bodies
+
+The first nine source cuts now have 211 unique new exact-CI-verified bodies /
+18,508 B. Tenth cut adds nine peer-reviewed strict local bodies / 2,592 B and
+fourteen complete nonmatches / 4,904 B. Its own exact-head CI remains pending.
+The unique matching union is 220 new bodies / 21,100 B plus the separate
+12-byte getter; 330 distinct attempts also include 109 complete nonmatches /
+19,400 B and the unchanged 96-byte table-proof lead. The 552-byte audio thread
+received the owner's requested direct parent review, with unchanged-source
+supplemental live-buffer/null-message tests. See wave10/README.md and
+wave10/unique_totals.json. Prior green proof is carried in wave9/ci.json;
+current matching refills are excluded. D10 remains unchanged.

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "reviewer": "Parent independent direct review",
+  "reviewed_commit": "a5a4017dabedd53c4cb7c35eed6bbea329228101",
+  "reviewed_tree": "759fa5f522a44a994f5cff8fb185e0c4d39daaa4",
+  "source": "cloud/matches/boot_tail/func_80010A40.c",
+  "source_sha256": "46ca729c4d5bf131c4fc1b86f088ef2bbc09317362fded53eb0056ca4d7416b6",
+  "native_bytes": 552,
+  "strict_comparison": {"differing_words": 0, "total_words": 138, "extra_words": 0, "unresolved": [], "unverified": [], "errors": []},
+  "o1_control": {"differing_words": 138, "total_words": 138, "extra_words": 4},
+  "independent_checks": [
+    "Read the entire matching C source and all 138 native words",
+    "Read 80010C68 osCreateThread caller and confirmed the real unused pointer argument",
+    "Read 80013DEC shared ring consumer and 80010D74 byte stop sender",
+    "Independently ran verify.py and test_host.py",
+    "Confirmed compiler/target pins, 439 extents, existing getter, native layout, and eight original thread scenarios",
+    "Found no fake padding, helper stubs, invented formals, or substantive body issue"
+  ],
+  "limits": [
+    "Host tests are not full concurrency or hardware execution",
+    "Valid allocation, messages, and count are assumed as in the native function",
+    "Ignored AI errors and disabled stop are intentionally preserved",
+    "Strict body proof is not cartridge coverage, promotion, or maintainer acceptance",
+    "Exact aggregate-head CI is still required"
+  ],
+  "optional_test_suggestions": [
+    "Mutate the live buffer count during receive within the valid allocated range",
+    "Pass a null message while disabled to exercise guard-before-dereference"
+  ],
+  "supplement": "Both optional cases were subsequently added only to the host harness. The reviewed matching source is unchanged. Fresh local tests and strict replay pass; see verification.json."
+}

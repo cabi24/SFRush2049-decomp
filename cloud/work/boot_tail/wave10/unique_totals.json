@@ -1,0 +1,18 @@
+{
+  "source_cut": 10,
+  "this_cut_peer_reviewed_functions": 9,
+  "this_cut_peer_reviewed_bytes": 2592,
+  "combined_unique_new_matching_functions": 220,
+  "combined_unique_new_matching_bytes": 21100,
+  "preexisting_getter_functions": 1,
+  "preexisting_getter_bytes": 12,
+  "all_cut_attempted_functions": 330,
+  "all_cut_complete_nonmatch_functions": 109,
+  "all_cut_complete_nonmatch_bytes": 19400,
+  "all_cut_blocked_source_lead_functions": 1,
+  "all_cut_blocked_source_lead_bytes": 96,
+  "later_work": "excluded; no duplicate attempts or source-led probes added",
+  "cartridge_or_maintainer_acceptance": "not claimed",
+  "previous_published_ci_verified_functions": 211,
+  "previous_published_ci_verified_bytes": 18508
+}

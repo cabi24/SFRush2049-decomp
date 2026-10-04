@@ -1,0 +1,92 @@
+{
+  "result": "PASS",
+  "source_commit": "56c231fd4d21ffb2774342899d4dee5b599836a9",
+  "source_tree": "f0760bdd154216d6ad069ca7d0ad156b0c783fdc",
+  "stack_base": "0baed23f011b1b75bcdac34f4d7c7200fa102d76",
+  "reviewer": "BT03-high",
+  "reviewed_utc": "2026-10-04T00:53:33.061984+00:00",
+  "method": "Fresh immutable Git blob copies, independently compiled using canonical unchanged scorer and pinned IDO; actual full source and complete native bodies plus four direct callees inspected.",
+  "strict_results": [
+    {
+      "name": "func_80021F84",
+      "bytes": 476,
+      "source_path": "cloud/work/boot_tail/BT05-timed-pair/nonmatch/func_80021F84.c",
+      "source_sha256": "94f23456ba1f6edf5b51a583e73dfcd5bd0bf4a152a56718ff97dbb67e5a5244",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 35,
+      "total_words": 119,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80021F84",
+      "bytes": 476,
+      "source_path": "cloud/work/boot_tail/BT05-timed-pair/nonmatch/func_80021F84.c",
+      "source_sha256": "94f23456ba1f6edf5b51a583e73dfcd5bd0bf4a152a56718ff97dbb67e5a5244",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 118,
+      "total_words": 119,
+      "extra_words": 29,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80022A98",
+      "bytes": 448,
+      "source_path": "cloud/work/boot_tail/BT05-timed-pair/nonmatch/func_80022A98.c",
+      "source_sha256": "ad9f4949e44ef7bda2653b275e37fc64e71b85331663daa6d0c4fa09d581c16a",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 57,
+      "total_words": 112,
+      "extra_words": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    },
+    {
+      "name": "func_80022A98",
+      "bytes": 448,
+      "source_path": "cloud/work/boot_tail/BT05-timed-pair/nonmatch/func_80022A98.c",
+      "source_sha256": "ad9f4949e44ef7bda2653b275e37fc64e71b85331663daa6d0c4fa09d581c16a",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "differing_words": 111,
+      "total_words": 112,
+      "extra_words": 28,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "strict_match": false
+    }
+  ],
+  "match_functions": 0,
+  "verified_body_bytes": 0,
+  "nonmatch_functions": 2,
+  "nonmatch_bytes": 924,
+  "semantic_tests": {
+    "result": "PASS",
+    "groups": 2,
+    "loop_cases": 8736,
+    "timing_calls": 393216
+  },
+  "source_abi_findings": [
+    "21F84 genuine two-input packed handler, native halfword+104, word flags+36, word identifier+96, pointers+0/+4; pointer field offsets are N64-only layout evidence on LP64.",
+    "FFFF initial/existing sentinel bypasses decrement; all finite paths reproduce first/subsequent loop behavior and zero exit. Real RNG returns u16, which promotes to signed int for native remainder; nonzero divisor domain retained.",
+    "Command low-halfword steps genuine 8-byte MacroCommand objects within a valid allocated program; live command and start pointer reloads after the real activity call are preserved. Slot activity input is actual identifier low byte for a registered state.",
+    "22A98 two real signed-byte locals produce native sign extension, bounded abs including128, positive-only decrement and 100-negative-cent up to228; no signed overflow. Real address-taken duration local and two-argument helper contract preserved.",
+    "Full native1E930,1E940,1E790,1467C inspected: input pointers, word index, return width and external duration conversions agree. Nonzero tempo remains an external1E940 contract rather than a fabricated helper body.",
+    "All modulo arithmetic, flag mutation after helper calls and unsigned half-period values agree. Tests cover both helpers, all signed byte pairs, duration0/1/FFFFFFFF and mutated flags.",
+    "No fake formal, keeper, padding, volatile trick or assembly; both residuals accurately remain complete NONMATCHs. Native/source-family provenance is qualified, not claimed authenticated N64 original."
+  ],
+  "scope": "Only BT05-timed-pair research paths differ from frozen stack base; no submissions or protected changes.",
+  "whitespace": "PASS"
+}

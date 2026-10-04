@@ -1,0 +1,140 @@
+[
+  {
+    "name": "func_8001F6EC",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "80835026e20a988a145268c922e1a8d818f39e2bb0d7264b128a58427932d012",
+    "differing": 58,
+    "total": 64,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  {
+    "name": "func_8001F6EC",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "source_sha256": "80835026e20a988a145268c922e1a8d818f39e2bb0d7264b128a58427932d012",
+    "differing": 63,
+    "total": 64,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 24
+  },
+  {
+    "name": "func_8001B29C",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "0890dc7b7795e687b7e636feb670415f4fcb50a2379c5c083610b4519b88371a",
+    "differing": 24,
+    "total": 65,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  {
+    "name": "func_8001B29C",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "source_sha256": "0890dc7b7795e687b7e636feb670415f4fcb50a2379c5c083610b4519b88371a",
+    "differing": 64,
+    "total": 65,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_8004BEB8 at .text+0x100"
+    ],
+    "extra_words": 17
+  },
+  {
+    "name": "func_8001B3A0",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "1bd53321893c283cb8263daecf5a2b3bb92ab0dfbff9846f0bef571d7acaa86a",
+    "differing": 24,
+    "total": 65,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  {
+    "name": "func_8001B3A0",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "source_sha256": "1bd53321893c283cb8263daecf5a2b3bb92ab0dfbff9846f0bef571d7acaa86a",
+    "differing": 64,
+    "total": 65,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_8004BEB8 at .text+0x100"
+    ],
+    "extra_words": 17
+  },
+  {
+    "name": "func_8001B7C0",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "05b4180891e41ee65676509cdbf5ca1894dc11d1e5f9ddb7d3e818285625a2ab",
+    "differing": 24,
+    "total": 65,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  {
+    "name": "func_8001B7C0",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "source_sha256": "05b4180891e41ee65676509cdbf5ca1894dc11d1e5f9ddb7d3e818285625a2ab",
+    "differing": 64,
+    "total": 65,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_8004BEB8 at .text+0x100"
+    ],
+    "extra_words": 17
+  },
+  {
+    "name": "func_8001D660",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "1db540a95f5ce52e38584d475ccb07eeb7b304923d3a03e86eb32daeeb34a9a1",
+    "differing": 23,
+    "total": 65,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  {
+    "name": "func_8001D660",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "source_sha256": "1db540a95f5ce52e38584d475ccb07eeb7b304923d3a03e86eb32daeeb34a9a1",
+    "differing": 64,
+    "total": 65,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 7
+  },
+  {
+    "name": "func_80019AD4",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "source_sha256": "670ca0ce9bdd022ab46dbeb4707f4b457c0b581468dddb666d1a9403c6f986c7",
+    "differing": 67,
+    "total": 68,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  {
+    "name": "func_80019AD4",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+    "source_sha256": "670ca0ce9bdd022ab46dbeb4707f4b457c0b581468dddb666d1a9403c6f986c7",
+    "differing": 67,
+    "total": 68,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 10
+  }
+]

@@ -1,0 +1,3 @@
+address,name,size,cluster,status,flags,diff_words,source_path,note
+0x80022160,func_80022160,452,BT05,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,95,cloud/work/boot_tail/BT05-resource-pair/nonmatch/func_80022160.c,COMPLETE-NONMATCH; real constructor/sample contracts and valid resource domains; bounded natural source controls; zero matching credit.
+0x80022874,func_80022874,460,BT05,nonmatch,-g0 -O2 -mips2 -G 0 -non_shared,103,cloud/work/boot_tail/BT05-resource-pair/nonmatch/func_80022874.c,COMPLETE-NONMATCH; real constructor/sample contracts and valid resource domains; bounded natural source controls; zero matching credit.
