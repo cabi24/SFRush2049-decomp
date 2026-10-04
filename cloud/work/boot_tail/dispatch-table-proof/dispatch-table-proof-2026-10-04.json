@@ -1,0 +1,206 @@
+{
+  "schema": 1,
+  "date_utc": "2026-10-04",
+  "base_commit": "cf4b9c619c72e83aa5da2e8b5c110765f9b03693",
+  "purpose": "Source-free verification receipt for three approved boot-tail dispatch tables",
+  "asset_path": "assets/us/data.bin",
+  "recorded_asset_git_blob_at_base": "96b7625ef223d89bf9e9eacf53bc1fbe7548fef5",
+  "total_asset_bytes_read": 68,
+  "mapping_provenance": {
+    "rom_start": "0x00001000",
+    "rom_end_exclusive": "0x0002F4E0",
+    "ram_start": "0x80000400",
+    "ram_end_exclusive": "0x8002E8E0",
+    "asset_rom_start": "0x00010000",
+    "canonical_boot_image_sha256": "fdccac846e1c2bbc431860f4d76d69f2820fccee4f809a98cb495d8dd0499482",
+    "sources": [
+      "tools/conveyor/pipeline/ovl_targets.py:223-245",
+      "asm/us/boot_tail/extents.json:3-8",
+      "splat.us.yaml:180-186"
+    ],
+    "canonical_target_checksums": "PASS",
+    "relevant_metadata_unchanged_at_base": true,
+    "scope": "Only the three specifically authorized data slices were opened in assets/us/data.bin. No asset-wide hash or whole-boot-image identity check was performed."
+  },
+  "storage_ownership": "No rom_owned_data.json ROM-slot owner is declared for these ranges. The mappings establish function dispatch use, not a source translation-unit or production linker ownership assignment.",
+  "records": [
+    {
+      "function": "func_8001B9F8",
+      "function_start": "0x8001B9F8",
+      "function_end_exclusive": "0x8001BDB8",
+      "function_size_bytes": 960,
+      "canonical_function_sha256": "fba782a757db40de237ff3d5ccfcb1434fa3ca697a1d3850d0d48a01d747ba11",
+      "dispatch_pc": "0x8001BA6C",
+      "guard_failure_target": "0x8001BD3C",
+      "table_ram_start": "0x8002D8D0",
+      "table_ram_end_exclusive": "0x8002D8E8",
+      "table_rom_start": "0x0002E4D0",
+      "table_rom_end_exclusive": "0x0002E4E8",
+      "asset_start_offset": "0x0001E4D0",
+      "asset_end_offset_exclusive": "0x0001E4E8",
+      "table_size_bytes": 24,
+      "table_sha256": "5802bcf542a95119599664217aa458924827df31404496eb0d9eaf483e162047",
+      "entry_width_bytes": 4,
+      "encoding": "big-endian absolute MIPS virtual address",
+      "index_rule": "unsigned(selector - 250) < 6; address = table + 4 * index",
+      "selector_to_target": [
+        {
+          "selector": 250,
+          "target": "0x8001BC48",
+          "target_function_offset": "0x00000250"
+        },
+        {
+          "selector": 251,
+          "target": "0x8001BC50",
+          "target_function_offset": "0x00000258"
+        },
+        {
+          "selector": 252,
+          "target": "0x8001BB5C",
+          "target_function_offset": "0x00000164"
+        },
+        {
+          "selector": 253,
+          "target": "0x8001BC58",
+          "target_function_offset": "0x00000260"
+        },
+        {
+          "selector": 254,
+          "target": "0x8001BC60",
+          "target_function_offset": "0x00000268"
+        },
+        {
+          "selector": 255,
+          "target": "0x8001BA74",
+          "target_function_offset": "0x0000007C"
+        }
+      ],
+      "checks": {
+        "direct_unpack_equals_independent_big_endian_decode": true,
+        "canonical_guard_index_stride_base_load_and_jump_chain_validated": true,
+        "guard_failure_skips_table_load": true,
+        "all_targets_aligned_and_inside_function_extent": true
+      },
+      "readiness": "Mapping gap resolved; available for a separate matching claim. Compilation, relocation resolution, strict scoring and semantic validation remain required."
+    },
+    {
+      "function": "func_8001BE14",
+      "function_start": "0x8001BE14",
+      "function_end_exclusive": "0x8001C19C",
+      "function_size_bytes": 904,
+      "canonical_function_sha256": "0e590f39a0d6dc184e6b5c96286b0147c98362d56872f5dc584d054e9a9cfa66",
+      "dispatch_pc": "0x8001BE84",
+      "guard_failure_target": "0x8001C130",
+      "table_ram_start": "0x8002D8E8",
+      "table_ram_end_exclusive": "0x8002D900",
+      "table_rom_start": "0x0002E4E8",
+      "table_rom_end_exclusive": "0x0002E500",
+      "asset_start_offset": "0x0001E4E8",
+      "asset_end_offset_exclusive": "0x0001E500",
+      "table_size_bytes": 24,
+      "table_sha256": "a1b9a25984b45dee83746aee148a632d9c8dcd9a86d20dc74e131e760839356f",
+      "entry_width_bytes": 4,
+      "encoding": "big-endian absolute MIPS virtual address",
+      "index_rule": "unsigned(selector - 250) < 6; address = table + 4 * index",
+      "selector_to_target": [
+        {
+          "selector": 250,
+          "target": "0x8001C048",
+          "target_function_offset": "0x00000234"
+        },
+        {
+          "selector": 251,
+          "target": "0x8001C050",
+          "target_function_offset": "0x0000023C"
+        },
+        {
+          "selector": 252,
+          "target": "0x8001BF68",
+          "target_function_offset": "0x00000154"
+        },
+        {
+          "selector": 253,
+          "target": "0x8001C058",
+          "target_function_offset": "0x00000244"
+        },
+        {
+          "selector": 254,
+          "target": "0x8001C060",
+          "target_function_offset": "0x0000024C"
+        },
+        {
+          "selector": 255,
+          "target": "0x8001BE8C",
+          "target_function_offset": "0x00000078"
+        }
+      ],
+      "checks": {
+        "direct_unpack_equals_independent_big_endian_decode": true,
+        "canonical_guard_index_stride_base_load_and_jump_chain_validated": true,
+        "guard_failure_skips_table_load": true,
+        "all_targets_aligned_and_inside_function_extent": true
+      },
+      "readiness": "Mapping gap resolved; available for a separate matching claim. Compilation, relocation resolution, strict scoring and semantic validation remain required."
+    },
+    {
+      "function": "func_80023BDC",
+      "function_start": "0x80023BDC",
+      "function_end_exclusive": "0x80023D70",
+      "function_size_bytes": 404,
+      "canonical_function_sha256": "d57def138f89aebb12de8b36f68ea4f8a49d5cac344ec8ac4ce01572dafd8f2a",
+      "dispatch_pc": "0x80023C88",
+      "guard_failure_target": "0x80023D00",
+      "table_ram_start": "0x8002D950",
+      "table_ram_end_exclusive": "0x8002D964",
+      "table_rom_start": "0x0002E550",
+      "table_rom_end_exclusive": "0x0002E564",
+      "asset_start_offset": "0x0001E550",
+      "asset_end_offset_exclusive": "0x0001E564",
+      "table_size_bytes": 20,
+      "table_sha256": "60d6380ebbc6fb7dd406b1d06ec8377611531c68045232315776de5aeb2e3e90",
+      "entry_width_bytes": 4,
+      "encoding": "big-endian absolute MIPS virtual address",
+      "index_rule": "unsigned(selector - 0) < 5; address = table + 4 * index",
+      "selector_to_target": [
+        {
+          "selector": 0,
+          "target": "0x80023C90",
+          "target_function_offset": "0x000000B4"
+        },
+        {
+          "selector": 1,
+          "target": "0x80023C9C",
+          "target_function_offset": "0x000000C0"
+        },
+        {
+          "selector": 2,
+          "target": "0x80023CA8",
+          "target_function_offset": "0x000000CC"
+        },
+        {
+          "selector": 3,
+          "target": "0x80023CBC",
+          "target_function_offset": "0x000000E0"
+        },
+        {
+          "selector": 4,
+          "target": "0x80023C90",
+          "target_function_offset": "0x000000B4"
+        }
+      ],
+      "checks": {
+        "direct_unpack_equals_independent_big_endian_decode": true,
+        "canonical_guard_index_stride_base_load_and_jump_chain_validated": true,
+        "guard_failure_skips_table_load": true,
+        "all_targets_aligned_and_inside_function_extent": true
+      },
+      "readiness": "Mapping gap resolved; available for a separate matching claim. Compilation, relocation resolution, strict scoring and semantic validation remain required."
+    }
+  ],
+  "restrictions_preserved": [
+    "No ROM bytes or raw disassembly/table dump in this receipt.",
+    "No canonical target, scorer, symbol, layout, source-candidate or match-file edits.",
+    "No candidate compilation or matching claim started.",
+    "D1248/helper prohibition and T050 gates unchanged."
+  ]
+}

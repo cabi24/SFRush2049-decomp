@@ -1,12 +1,12 @@
 # D10: boot-tail runtime research and matching
 
 The 412 assigned functions account for **95,012 B**.
-The current ledger records **17 open functions / 22,496 B**,
+The current ledger records **14 open functions / 20,228 B**,
 **0 confirmed non-C rows**, **1
 pre-existing verified bodies / 12 B**, and
 **239 newly verified bodies / 28,096 B**.
 There are **1 claimed functions / 276 B** and
-**154 nonmatches / 44,132 B**.
+**157 nonmatches / 46,400 B**.
 
 Packet 1 itself introduced zero matching bodies or verified bytes. Its initial
 verified entry imports the existing 12-byte `func_80010A00` PR #54 receipt, now
@@ -273,10 +273,10 @@ repository regression, native equality proof, target/toolchain check or ROM test
   "new_verified_bytes": 28096,
   "new_verified_functions": 239,
   "non_c_functions": 0,
-  "nonmatch_bytes": 44132,
-  "nonmatch_functions": 154,
-  "open_bytes": 22496,
-  "open_functions": 17,
+  "nonmatch_bytes": 46400,
+  "nonmatch_functions": 157,
+  "open_bytes": 20228,
+  "open_functions": 14,
   "preexisting_verified_bytes": 12,
   "preexisting_verified_functions": 1,
   "ultralib_excluded_bytes": 4048,
@@ -619,3 +619,23 @@ behavior are unchanged. Newer donor arguments and behavior are not imported.
 See wave17/README.md and the independent source/ABI/control receipt. PR76's green
 exact-head proof and independent aggregate audit are preserved in wave16/;
 this new source cut's own exact-head CI remains pending.
+
+
+## Eighteenth cut: three mapped dispatch reconstructions
+
+The authorized 68-byte inspection resolves three selector-to-target mapping gaps.
+Three independently reviewed full bodies / 2,268 B remain COMPLETE-NONMATCH:
+1B9F8 is 83/240 words, 1BE14 is 76/226, and 23BDC is 82/101. The first two
+compiler tables equal the approved six-entry mappings; the macro's five targets
+are each four bytes early. Independent full relocation resolves every record,
+but the unchanged stock scorer still rejects two local-rodata references per
+body. This is research evidence, not strict scorer admission or production
+table ownership.
+
+Matching totals stay 240 new bodies / 28,372 B plus the separate 12-byte getter.
+The 397 distinct attempted targets include 156 current complete nonmatches /
+46,304 B and the unchanged 96-byte source lead. Fourteen unclaimed functions /
+20,228 B retain their existing gates. Native unchecked selector domains and
+uninitialized macro defaults remain explicit. See wave18/README.md, the exact
+source-free mapping receipt and all three independent source reviews. PR77's
+green exact-head receipt is preserved in wave17; this cut awaits its own CI.

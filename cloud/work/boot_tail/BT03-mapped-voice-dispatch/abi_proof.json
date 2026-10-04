@@ -1,0 +1,82 @@
+{
+  "input_signature": "void func_8001B9F8(u8 volume,u16 time,u8 vGroup,u8 seqMode,u32 seqId)",
+  "native_frame_bytes": 56,
+  "proof": "Entry masks a0 to byte into s0 and a1 to unsigned halfword. Native groups use a2 byte. Default path reads a3 byte from current sp+71 and actual fifth word from sp+72, equal to incoming sp+16. Return has no semantic v0 value. Callee-saved s0/ra restore.",
+  "callers": [
+    {
+      "name": "func_8001B9F8",
+      "native_bytes": 960,
+      "native_sha256": "fba782a757db40de237ff3d5ccfcb1434fa3ca697a1d3850d0d48a01d747ba11",
+      "reviewed_full_native_body": true,
+      "calls_to_target": []
+    },
+    {
+      "name": "func_800178B0",
+      "native_bytes": 1160,
+      "native_sha256": "e2d3b7c8631d3ff01d9ec07b44abeab7d197f2eb0e93c9a68d6a9d1abcaf4b3a",
+      "reviewed_full_native_body": true,
+      "calls_to_target": [
+        "0x80017a74",
+        "0x80017aa0"
+      ]
+    },
+    {
+      "name": "func_80019194",
+      "native_bytes": 476,
+      "native_sha256": "7ecae59ed1ea740916a9d801735d887852d45759db125593096ffe351eb53dc3",
+      "reviewed_full_native_body": true,
+      "calls_to_target": [
+        "0x80019220",
+        "0x80019264"
+      ]
+    },
+    {
+      "name": "func_8002043C",
+      "native_bytes": 88,
+      "native_sha256": "c3f989e3cb73e697cf1c848748012256ad946b69651f4a04d5f1edbef1b93d20",
+      "reviewed_full_native_body": true,
+      "calls_to_target": [
+        "0x80020474"
+      ]
+    },
+    {
+      "name": "func_80020494",
+      "native_bytes": 132,
+      "native_sha256": "20a959067a055ec2d234130cb1ad581f1a7abc64ae87b9d53987751acc419b17",
+      "reviewed_full_native_body": true,
+      "calls_to_target": [
+        "0x800204d8",
+        "0x800204f8"
+      ]
+    },
+    {
+      "name": "func_8001E930",
+      "native_bytes": 16,
+      "native_sha256": "ce1d255c8d9607addebadf669595224a940f8f90ceb9515a6d105c6fe4a9fd1c",
+      "reviewed_full_native_body": true,
+      "calls_to_target": []
+    }
+  ],
+  "fader_layout": {
+    "size": 40,
+    "volume": 0,
+    "target": 4,
+    "delta_signed": 8,
+    "converted_time": 12,
+    "seqId": 16,
+    "type": 20,
+    "seqMode": 21,
+    "pauseVol": 24,
+    "pauseTarget": 28,
+    "pauseDelta": 32,
+    "pauseTime": 36
+  },
+  "table_proof": "table_receipt.json",
+  "notes": [
+    "800178B0 has two call sites, volume byte/time halfword and channel byte plus zero fourth/fifth; context only, no T050 implementation.",
+    "80019194 has two call sites: original identifier is fifth argument for primary channel, zero for additional channels.",
+    "8002043C forwards byte/halfword/byte and zero fourth/fifth.",
+    "80020494 selects21/22 and zero fourth/fifth.",
+    "8001E930 takes pointer to u32, multiplies in place by256, no meaningful return."
+  ]
+}

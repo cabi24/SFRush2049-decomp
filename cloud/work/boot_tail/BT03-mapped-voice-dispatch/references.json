@@ -1,0 +1,12 @@
+{
+  "revision": "78d2e16e4905fc675952162d331c24d5198b2687",
+  "repository": "AxioDL/musyx",
+  "license": "CC0-1.0",
+  "license_blob": "0e259d42c996742e9e3cba14c677129b2c1b6311",
+  "license_url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/LICENSE",
+  "source_url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/src/musyx/runtime/synth.c",
+  "source_blob": "0559ed2e7d5d8abd4627440fd71f807581c03aad",
+  "definition": "synthVolume",
+  "fetched_in_session": true,
+  "scope": "Family switch selectors, iteration by type and genuine five-input ABI. N64 differs: fixed-point fields, time0 becomes1, unconditional time conversion, no SetupFader call or active flag globals, and group updates preserve mode."
+}

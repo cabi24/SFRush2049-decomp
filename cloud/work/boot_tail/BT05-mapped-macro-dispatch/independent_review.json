@@ -1,0 +1,28 @@
+{
+  "reviewer": "independent parameter-dispatch worker",
+  "reviewed_head": "b305e9908376b4f0d4bcf3f94d4068323953b814",
+  "reviewed_tree": "75fae15fb8046212e514d1febd7cc230d2b56e77",
+  "verdict": "APPROVE_COMPLETE_NONMATCH_RESEARCH",
+  "blocking_findings": [],
+  "source_sha256": "d0065dfc1d6574935fab467a9cae0c04e1b07ab39a68ad0cf65b5bdf34ba6ea5",
+  "replayed": [
+    "verify.py --check: PASS for 30 source-bound O2/O1 builds with independent relocation/GNU ld equality",
+    "test_layout.py: PASS; seven IDO assertions preserve candidate text",
+    "test_semantics.py --check: PASS; 72144 cases each host ASan/UBSan, native, linked candidate; 1004 native-only default cases"
+  ],
+  "independent_inspection": [
+    "Whole canonical func_80023BDC, func_80023AD4, and func_80023B50 inspected from protected tracked targets",
+    "All five native call windows independently checked; operations 0..4 and low-byte result consumption confirmed",
+    "All five authorized table mappings checked against parent source-free receipt; no assets opened",
+    "Actual source, host harness, bounded MIPS interpreter, and all ten full relocation records inspected",
+    "Exact O2 symbol404 bytes, 82/101 full-word differences, no nonzero excess; each candidate case is four bytes early, preserving NONMATCH status",
+    "Pinned synthmacros.c fetched independently through GitHub: blob a3203f9e0032fa5e9d08fa5e51da80acf4cab0c0; CC0 LICENSE independently read at same revision",
+    "Only packet files changed, no protected scorer/symbol/layout/target/shared ledgers or binary artifacts"
+  ],
+  "limitations": [
+    "Undefined native operations5..255 retain uninitialized result semantics; no defined host-C equivalence is claimed there",
+    "Semantic helpers are documented synthetic contracts; no transitive helper, audio, production-link or ROM proof",
+    "Unchanged stock scorer remains unverified for its two local-rodata relocation sites",
+    "Production table ownership remains unassigned; zero verified-body/matching credit"
+  ]
+}
