@@ -1,0 +1,67 @@
+{
+  "function": "func_8010C02C",
+  "source_sha256": "cf5ace6577bd5511cf4274cd4eac5dae315419c4fcf60c3cea1c9a8d93900d82",
+  "base_commit": "cf10b3392d7f00ae42d75c008b79fdc2541aab6b",
+  "target_manifest_sha256": "c889f453d7e6a306d0f7d0f66831877b9ce69b2a6ed63c2fa190a815bd7713fe",
+  "target_words_sha256": "c280d4c006443830896a4b845316a8ce28ceea5a43baf365533033a3df3cdd51",
+  "accepted_lock_present": false,
+  "builds": {
+    "O2": {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "strict_match": true,
+      "actual_elf_function_bytes": 696,
+      "compared_full_words": 174,
+      "different_words": 0,
+      "unresolved_relocations": 0,
+      "unverified_relocations": 0,
+      "relocation_masks": 0,
+      "nonzero_extra_words": 0,
+      "zero_alignment_words_after_symbol": 2
+    },
+    "O3": {
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "strict_match": true,
+      "actual_elf_function_bytes": 696,
+      "compared_full_words": 174,
+      "different_words": 0,
+      "unresolved_relocations": 0,
+      "unverified_relocations": 0,
+      "relocation_masks": 0,
+      "nonzero_extra_words": 0,
+      "zero_alignment_words_after_symbol": 2
+    },
+    "O3_direct_callee_group": {
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "strict_match": true,
+      "actual_elf_function_bytes": 696,
+      "compared_full_words": 174,
+      "different_words": 0,
+      "unresolved_relocations": 0,
+      "unverified_relocations": 0,
+      "relocation_masks": 0,
+      "nonzero_extra_words": 0,
+      "zero_alignment_words_after_symbol": 0
+    }
+  },
+  "direct_callees": {
+    "func_8009E820": {
+      "source": "src/blob/func_8009E820.c",
+      "source_sha256": "6abf996dc4360977cad3bc4893a14b07088ae757690df1ff5e79105c86286ed7"
+    },
+    "func_800A61B0": {
+      "source": "src/blob/func_800A61B0.c",
+      "source_sha256": "0d8334e0223e4b3f9498c2ed324e5a35847593c90e4b107a80306d4149e824af"
+    },
+    "random_float": {
+      "source": "src/blob/random_float.c",
+      "source_sha256": "e5595ac0567d9aa34f120192c8826df3afa6b6f004248dfb5ff757674f786c4d"
+    }
+  },
+  "native_layout_compile_assertions": "passed",
+  "promotion": {
+    "spliced": false,
+    "full_blob_unit_checked": false,
+    "image_gate_run": false,
+    "rom_hash_gate_run": false
+  }
+}
