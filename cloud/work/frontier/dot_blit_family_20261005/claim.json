@@ -1,0 +1,34 @@
+{
+  "base": "cc4d5fdd0bbc42dbf6be49f00d9454af8cb9c4f5",
+  "owner": "dot/blit-family-neighbors-20261005",
+  "checked_at": "2026-10-05T20:10:00Z",
+  "scope": [
+    {
+      "function": "func_800EF62C",
+      "start": "0x800EF62C",
+      "end": "0x800EF8F4",
+      "bytes": 712
+    }
+  ],
+  "checks": [
+    "fresh origin/master",
+    "current blob lock",
+    "wave-5 results",
+    "dot_handoff.md",
+    "archived A70 and heads_B13",
+    "open pull requests"
+  ],
+  "visible_open_prs": [
+    98
+  ],
+  "excluded": [
+    "stat_race_update",
+    "func_80087110"
+  ],
+  "limit": "No claim about unpublished work. Accepted context is read-only.",
+  "handoff": {
+    "function": "func_80108DA8",
+    "owner": "match_108da8_blit_helper",
+    "time": "2026-10-05T20:13:00Z"
+  }
+}
