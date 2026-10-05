@@ -1,0 +1,9 @@
+{
+  "base": "cc4d5fdd0bbc42dbf6be49f00d9454af8cb9c4f5",
+  "owner": "dot/arcade-hud-additional-20261005",
+  "checked_at": "2026-10-05T20:19:39Z",
+  "scope": [{"function":"func_80108F40","start":"0x80108F40","end":"0x80109468","bytes":1320}],
+  "checks": ["origin/master", "blob locks", "wave-5 results", "registered-head seed", "parent active claims"],
+  "excluded": ["func_800EF62C","func_80108DA8","stat_race_update","func_80087110"],
+  "limit": "No claim about unpublished work. Accepted context is read-only."
+}
