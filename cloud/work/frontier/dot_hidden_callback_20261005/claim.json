@@ -1,0 +1,51 @@
+{
+  "worker": "dot/sixth-source-worker-20261005",
+  "base": "cc4d5fdd0bbc42dbf6be49f00d9454af8cb9c4f5",
+  "target": "state_update_global",
+  "start": "0x8010B560",
+  "end_exclusive": "0x8010B5D0",
+  "bytes": 112,
+  "status": "strict matching candidate, independent review pending",
+  "editable_paths": [
+    "cloud/matches/state_update_global.c",
+    "cloud/work/frontier/dot_hidden_callback_20261005",
+    "tests/cloud/test_dot_hidden_callback.py"
+  ],
+  "accepted_context_read_only": [
+    "src/blob/groups/frontier_pad_config/group.c"
+  ],
+  "selection_checks": {
+    "master_fresh_fetch": "2026-10-05T20:44:53Z",
+    "claude_branch_head": "c8517507",
+    "open_pull_requests": [
+      98,
+      99,
+      100,
+      101,
+      102
+    ],
+    "current_w5_results_read": true,
+    "target_in_current_lock": false,
+    "prior_direct_source": "cloud/work/near_miss_B/state_update_global_best.c",
+    "prior_context_packet": "cloud/work/dot_state_update_context_20261005/RESULTS.md",
+    "prior_hidden_based_body_found": false,
+    "unpublished_activity_limit": true
+  },
+  "arcade_donor": {
+    "repository": "https://github.com/historicalsource/rushtherock",
+    "revision": "845329d7b36f5a384c5625ed9a0aef584ab46139",
+    "source": "game/hud.c",
+    "function": "Hidden",
+    "lines": [
+      1270,
+      1279
+    ],
+    "source_sha256": "9b4b0507db6d83eb25ec2066bd7fe9eb55ca1b04bf2aa69bcdc7bc79be7bc7a0",
+    "layout_source": "LIB/blit.h",
+    "layout_sha256": "91516a3935024254702dbb1b66d3f87258cfbe3ca878f22ddc5e9cd10e4a1c6a"
+  },
+  "claims": [
+    "state_update_global"
+  ],
+  "accepted_byte_gain": 0
+}

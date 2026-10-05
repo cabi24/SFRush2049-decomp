@@ -1,0 +1,61 @@
+{
+  "checked_source_commit": "a6ab47f635cd8fd11fac9c9ef374c44b7c1c549f",
+  "focused_pytest": {
+    "passed": 8,
+    "failed": 0,
+    "skipped": 0
+  },
+  "full_pytest": {
+    "command": "python3 -m pytest tests/conveyor tests/cloud -q -o addopts=",
+    "environment": "Pinned IDO/binutils with existing recovery decomp-permuter added to PYTHONPATH for import availability. No tracked setup changes.",
+    "passed": 2229,
+    "skipped": 64,
+    "failed": 5,
+    "failures": [
+      {
+        "test": "tests/conveyor/integration/test_agent_loop.py::test_agent_executes_job_end_to_end",
+        "reason": "The dummy job bundle lacks the decomp-permuter submodule and errors earlier than the expected missing IDO failure."
+      },
+      {
+        "test": "tests/conveyor/integration/test_smoke_strlen.py::test_strlen_smoke_end_to_end",
+        "reason": "Private Conveyor token unavailable."
+      },
+      {
+        "test": "tests/conveyor/test_autodecomp_population.py::test_game_types_keeps_known_good_static_function_body_byte_identical",
+        "reason": "The uninitialized local m2c submodule cannot emit the known static seed."
+      },
+      {
+        "test": "tests/conveyor/test_autodecomp_population.py::test_seed_uses_valid_syntax_mode_and_carries_its_macro_definitions",
+        "reason": "The local m2c macro header is unavailable."
+      },
+      {
+        "test": "tests/conveyor/test_autodecomp_population.py::test_macro_definitions_follow_the_context_that_defines_their_types",
+        "reason": "The local m2c macro header is unavailable."
+      }
+    ]
+  },
+  "baseline": {
+    "revision": "cc4d5fdd0bbc42dbf6be49f00d9454af8cb9c4f5",
+    "fresh_isolated_worktree": true,
+    "reran_all_five_failures": true,
+    "same_five_failures_reproduced": true,
+    "unrelated_repairs": false
+  },
+  "guards": {
+    "protected_paths": "pass",
+    "changed_submissions": {
+      "checked": 1,
+      "function": "state_update_global",
+      "verdict": "MATCH"
+    },
+    "existing_static_locks": {
+      "checked": 402,
+      "intact": 402
+    },
+    "git_diff_check": "pass"
+  },
+  "limits": [
+    "Full suite is not a clean pass; 64 skips retain their existing environment/input constraints.",
+    "No exact-head remote CI, complete shadow unit, image, compression or ROM gates were run."
+  ]
+}
