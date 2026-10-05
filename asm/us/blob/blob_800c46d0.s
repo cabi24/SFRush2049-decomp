@@ -4092,6 +4092,7 @@ player_mode_set:
 .section .text.hud_speed_display, "ax", @progbits
 .globl hud_speed_display
 hud_speed_display:
+    /* compiled from src/blob/hud_speed_display.c */
     .word 0x27BDFFC8
     .word 0xAFB5002C
     .word 0xAFB30024

@@ -68,6 +68,11 @@
    "name": "func_800AFB30",
    "file": "src/blob/groups/frontier_skid_marks/group.c",
    "reason": "locked as an empty stub, but it is the retail remains of the inlined GetSkid: the real definition in the skid-mark group is what gives func_800AF8C0/save_validate their second call sites, so they stay out of line (plan decision D3)"
+  },
+  {
+   "name": "func_800A51D8",
+   "file": "src/blob/groups/codex_heap_release_a25/car_damage_visual.c",
+   "reason": "locked as an empty stub, but it is the retail remains of the inlined heap getter (if (h) return h; return D_801527C8;) at the top of car_damage_visual; the real definition lives in the heap group and must stay internal (plan decision D3)"
   }
  ],
  "align": [

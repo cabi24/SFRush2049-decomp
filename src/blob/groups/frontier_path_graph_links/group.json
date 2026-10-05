@@ -1,0 +1,22 @@
+{
+ "members": [
+  "func_800B98D8",
+  "func_800B9B64",
+  "minimap_render",
+  "physics_friction_apply",
+  "physics_velocity_clamp"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "minimap_render",
+  "physics_friction_apply",
+  "func_800B98D8"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "note": "Supersedes src/blob/groups/func_800B9B64 (same four locked bodies, unchanged text) with physics_friction_apply as a real member and both stand-in callers removed: physics_friction_apply is the only caller of func_800B9B64 (two sites) and of physics_velocity_clamp. Only physics_friction_apply is a new claim; the other four are already locked and still MATCH here.",
+ "provenance": "frontier wave 2 (w2f), 2026-10-05; cloud/work/frontier/w2f/RESULTS.md"
+}

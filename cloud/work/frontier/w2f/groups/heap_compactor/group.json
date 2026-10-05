@@ -1,0 +1,45 @@
+{
+ "members": [
+  "audio_reverb_update",
+  "audio_effect_process",
+  "synced_model_render",
+  "MP_TargetSpeed",
+  "assign_default_paths",
+  "stat_race_end",
+  "NextMaxPath",
+  "menu_item_select",
+  "car_damage_visual"
+ ],
+ "context": [
+  "func_80095F8C",
+  "func_80095EF4",
+  "audio_buffer_sync",
+  "object_counter_decrement",
+  "object_counter_increment",
+  "func_800A51D8"
+ ],
+ "files": [
+  "group.c",
+  "alloc_at.c",
+  "car_damage_visual.c"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "keep": [
+  "audio_effect_process",
+  "synced_model_render",
+  "MP_TargetSpeed",
+  "assign_default_paths",
+  "stat_race_end",
+  "audio_buffer_sync",
+  "object_counter_decrement",
+  "object_counter_increment",
+  "NextMaxPath",
+  "menu_item_select",
+  "car_damage_visual"
+ ],
+ "provenance": "frontier wave 2 (w2g NextMaxPath, w2b menu_item_select), 2026-10-04; frontier wave 2 (w2f), 2026-10-05, cloud/work/frontier/w2f/RESULTS.md",
+ "note": "Extends the locked group src/blob/groups/codex_heap_release_a25 (group.c and alloc_at.c are unchanged copies of the locked files as of lock 751) with car_damage_visual.c. No stand-ins. car_damage_visual.c defines func_800A51D8 for real (the retail stub in front of car_damage_visual is this deleted static, the heap getter inlined at the top) and car_damage_visual. func_800A51D8 is deliberately not in keep. Only car_damage_visual is a new claim. When this lands, src/blob/unit_overrides.json needs a prefer_definition entry for func_800A51D8 pointing at car_damage_visual.c (its locked definition is the empty `(void) {}`).",
+ "claims": [
+  "car_damage_visual"
+ ]
+}

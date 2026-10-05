@@ -681,6 +681,7 @@ func_800A4E50:
 .section .text.func_800A4E58, "ax", @progbits
 .globl func_800A4E58
 func_800A4E58:
+    /* compiled from src/blob/func_800A4E58.c */
     .word 0x3C078014
     .word 0x8CE70AF0
     .word 0x27BDFFE8
@@ -935,6 +936,7 @@ func_800A51D8:
 .section .text.car_damage_visual, "ax", @progbits
 .globl car_damage_visual
 car_damage_visual:
+    /* compiled from src/blob/car_damage_visual.c */
     .word 0x27BDFFC8
     .word 0xAFB00014
     .word 0x00808025
@@ -1314,6 +1316,7 @@ func_800A557C:
 .section .text.exhaust_smoke_effect, "ax", @progbits
 .globl exhaust_smoke_effect
 exhaust_smoke_effect:
+    /* compiled from src/blob/exhaust_smoke_effect.c */
     .word 0x27BDFFD0
     .word 0x3C028003
     .word 0x000470C0

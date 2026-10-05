@@ -2551,6 +2551,7 @@ menu_load_options:
 .section .text.menu_options_screen, "ax", @progbits
 .globl menu_options_screen
 menu_options_screen:
+    /* compiled from src/blob/menu_options_screen.c */
     .word 0x27BDFF68
     .word 0xAFBF0014
     .word 0xAFA40098

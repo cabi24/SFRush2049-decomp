@@ -1,6 +1,8 @@
 /*
  * Track path graph: nodes (16 bytes each) linking runs of points, and the
  * searches that connect them. Hand-written from the assembly (cloud Lane A).
+ * Frontier wave 2 (w2f): physics_friction_apply is now a member and the two stand-in
+ * callers are gone (it is the real caller of func_800B9B64 and physics_velocity_clamp).
  * The same module contains func_800D2FA8 / split_time_display /
  * time_of_day_select (group func_800D2FA8).
  */
@@ -139,7 +141,15 @@ s32 minimap_render(s32 node, s32 pos, s32 *outNode, s32 *outPos, s32 *dist, s32 
                           outNode, outPos, dist, stopAtTyped, depth + 1);
 }
 
-/* link every node to its nearest neighbours, then assign sections */
+/*
+ * physics_friction_apply (historical label) @ 0x800B9D68, 504 bytes: link every node to its
+ * nearest neighbours (func_800B9B64 from its first and from its last point), then assign each
+ * node its section (physics_velocity_clamp). Type-2 nodes stay unlinked.
+ * Shaping fact: the last-point argument is written index first,
+ * `numPoints - 1 + points` (with `&points[numPoints - 1]` three temps rotate, 21 words).
+ * Internal callees: func_800B9B64 takes skip/atStart/outIdx in t1/t2/t0, so this body only
+ * reproduces with the real module in the unit.
+ */
 void physics_friction_apply(void)
 {
     s32 i;
@@ -157,8 +167,7 @@ void physics_friction_apply(void)
             func_800B9B64(i, 1, &node, D_801407F0.nodes[i].points, &idx);
             D_801407F0.nodes[i].next = node;
             D_801407F0.nodes[i].nextPos = idx;
-            func_800B9B64(i, 0, &node, &D_801407F0.nodes[i].points[D_801407F0.nodes[i].numPoints - 1],
-                      &idx);
+            func_800B9B64(i, 0, &node, D_801407F0.nodes[i].numPoints - 1 + D_801407F0.nodes[i].points, &idx);
             D_801407F0.nodes[i].prev = node;
             D_801407F0.nodes[i].prevPos = idx;
         }
@@ -206,16 +215,4 @@ s32 physics_velocity_clamp(s32 node, s32 pos, s32 *out, s32 depth)
     }
     return physics_velocity_clamp(D_801407F0.nodes[node].next, D_801407F0.nodes[node].nextPos,
                                   out, depth + 1);
-}
-
-/* stand-in caller: keeps func_800B9B64 out of line under -O3 */
-void __standin_func_800B9B64(void)
-{
-    func_800B9B64(0, 0, 0, 0, 0);
-}
-
-/* stand-in caller: keeps physics_velocity_clamp out of line under -O3 */
-void __standin_physics_velocity_clamp(void)
-{
-    physics_velocity_clamp(0, 0, 0, 0);
 }
