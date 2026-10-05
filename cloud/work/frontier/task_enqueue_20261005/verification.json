@@ -1,0 +1,108 @@
+{
+  "candidate": {
+    "all_function_relocations_verified": true,
+    "comparison": {
+      "differing": 30,
+      "errors": [],
+      "extra_words": 0,
+      "total": 32,
+      "unresolved": [],
+      "unverified": []
+    },
+    "elf_function_bytes": 124,
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "relocated_function_sha256": "c3cbde91e45c96a1f321d50dce02961f6c35acb1b6271871d5f643b6cb3b506e",
+    "source_sha256": "8a45698d9d78bf50633c2b49e53b3e6c8986d593545c708932a52104aa95f822",
+    "strict_match_with_extent": false,
+    "text_section_bytes": 128,
+    "trailing_section_padding_bytes": 4,
+    "verdict": "30/32 words differ"
+  },
+  "claims": [],
+  "compiler_cc_sha256": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+  "coverage_delta_bytes": 0,
+  "end_exclusive": "0x8010FC60",
+  "expected_bytes": 128,
+  "function": "func_8010FBE0",
+  "ido_abi_assertions_passed": true,
+  "prior_extent_corrections": {
+    "cloud/work/tiny_A116/control.packet_view.c": {
+      "all_function_relocations_verified": true,
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "relocated_function_sha256": "c3cbde91e45c96a1f321d50dce02961f6c35acb1b6271871d5f643b6cb3b506e",
+      "source_sha256": "33e086a51d2b14d7d05406cdbbf419bed7cfc37578019ffa3418c7a876f0c646",
+      "strict_match_with_extent": false,
+      "text_section_bytes": 128,
+      "trailing_section_padding_bytes": 4,
+      "verdict": "30/32 words differ"
+    },
+    "cloud/work/tiny_A116/control.scalar_globals.c": {
+      "all_function_relocations_verified": true,
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 132,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "relocated_function_sha256": "2bc0fe28711db154561aaf228b192868280b2072698118bdb75b0d4f48d2afec",
+      "source_sha256": "0a4b0e7b0919611634785eb6f499dd8920e1d3f67cd1884361fc59b202decbb6",
+      "strict_match_with_extent": false,
+      "text_section_bytes": 144,
+      "trailing_section_padding_bytes": 12,
+      "verdict": "30/32 words differ"
+    },
+    "cloud/work/tiny_A116/func_8010FBE0.c": {
+      "all_function_relocations_verified": true,
+      "comparison": {
+        "differing": 29,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 132,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "relocated_function_sha256": "0cabaf412a75907240e0edf829be9da80053f32aa3b84240eb9c3803ea2b7690",
+      "source_sha256": "36a690b4714083b2b0b26ceed79a7a95ef1b96e08415901c16bd0936fda351ba",
+      "strict_match_with_extent": false,
+      "text_section_bytes": 144,
+      "trailing_section_padding_bytes": 12,
+      "verdict": "29/32 words differ"
+    },
+    "cloud/work/tiny_A50/func_8010FBE0.c": {
+      "all_function_relocations_verified": true,
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "relocated_function_sha256": "85ed0c09a88e22915037a6586fb074195b1ba4c3b33910a190f04761ffff6daf",
+      "source_sha256": "0b14ba199b69a5ba80ad8874e2aea0ebf0e676c17c3947c24c00939b3aeb799e",
+      "strict_match_with_extent": false,
+      "text_section_bytes": 128,
+      "trailing_section_padding_bytes": 4,
+      "verdict": "30/32 words differ"
+    }
+  },
+  "start": "0x8010FBE0",
+  "target_manifest_sha256": "c889f453d7e6a306d0f7d0f66831877b9ce69b2a6ed63c2fa190a815bd7713fe"
+}
