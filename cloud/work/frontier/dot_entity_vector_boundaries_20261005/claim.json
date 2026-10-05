@@ -1,0 +1,15 @@
+{
+  "base": "e24b47d89a0c8ffade1e4c75ad76b9d390a1c232",
+  "function": "entity_iterate",
+  "start": "0x800C69C0",
+  "end_exclusive": "0x800C6AA0",
+  "bytes": 224,
+  "status": "NONMATCH",
+  "claims": [],
+  "accepted_byte_gain": 0,
+  "hypothesis": "Authentic vector-operation boundaries or newly accepted normalization context recover native frame and float scheduling.",
+  "read_only_context": [
+    "src/blob/groups/frontier_vector_normalize/group.c",
+    "src/blob/groups/frontier_vector_normalize/group.json"
+  ]
+}
