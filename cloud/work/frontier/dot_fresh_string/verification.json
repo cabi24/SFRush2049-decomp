@@ -1,0 +1,89 @@
+{
+  "baseline": "cf10b3392d7f00ae42d75c008b79fdc2541aab6b",
+  "builds": {
+    "O2": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 30,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 120,
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "full_unmasked_words_equal": true,
+      "object_sha256": "2fa63e74b6056315f3da716d32fdd245c175019e31736a83be429415af61f381"
+    },
+    "O3": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 30,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 120,
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "full_unmasked_words_equal": true,
+      "object_sha256": "a699db28e7d89374ad6d4c5a7dc7bcac7f0c7d1b3f14363069787b91000b0540"
+    },
+    "O3_kept_single_source_group": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 30,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 120,
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "full_unmasked_words_equal": true,
+      "object_sha256": "7caf94126d0b9f318ade39ec8adb06c02956cf773ee4df2a489790547b9d416c"
+    }
+  },
+  "cartridge_coverage_claim": false,
+  "end_exclusive": "0x800BE7BC",
+  "function": "func_800BE744",
+  "gates": {
+    "compressed_stream": "not run",
+    "full_rom": "not run",
+    "image": "not run",
+    "whole_program_shadow": "not run: extracted image/layout unavailable"
+  },
+  "manifest_sha256": "c889f453d7e6a306d0f7d0f66831877b9ce69b2a6ed63c2fa190a815bd7713fe",
+  "negative_return_control": {
+    "differing": 2,
+    "errors": [],
+    "extra_words": 0,
+    "total": 30,
+    "unresolved": [],
+    "unverified": []
+  },
+  "semantic_tests": {
+    "compiler": "cc -std=c89 -Wall -Wextra -Werror -shared -fPIC -O2",
+    "exhaustive_nonzero_two_byte_characters": 65535,
+    "ordinary_lengths": [
+      0,
+      64
+    ],
+    "passed_cases": 66311,
+    "wide_lengths": [
+      0,
+      64
+    ]
+  },
+  "source": "cloud/matches/func_800BE744.c",
+  "source_sha256": "d7074d624a4b1d617eb5ed75ac11a3784fdd4ab9e0ac24f84412f3af44dff24b",
+  "start": "0x800BE744",
+  "target_bytes": 120,
+  "target_sha256": "3722ada058d327cf635f3903c1c67e921f723a4ff0ca750c2e32e90802650535",
+  "toolchain": {
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5"
+  }
+}
