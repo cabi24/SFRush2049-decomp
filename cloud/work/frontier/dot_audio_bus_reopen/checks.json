@@ -1,0 +1,63 @@
+{
+  "focused_tests": {
+    "status": "PASS",
+    "passed": 6,
+    "command": "python3 -m pytest -q tests/conveyor/test_dot_audio_bus_reopen.py"
+  },
+  "native_vs_host": {
+    "status": "PASS",
+    "cases": 204562
+  },
+  "relocation_and_negative_controls": {
+    "status": "PASS",
+    "command": "python3 cloud/work/frontier/dot_audio_bus_reopen/verify.py"
+  },
+  "aggregate": {
+    "status": "FAILED",
+    "exit_code": 1,
+    "base_commit": "55ddfc6b53d96d4c5dcaaa8891dedafb037b3994",
+    "command": "python3 -m pytest -q tests/conveyor tests/cloud",
+    "environment": "Pinned recovery IDO/Python/binutils environment; CONVEYOR_TOOLKIT points to the existing toolkit whose decomp-permuter commit is ec2efeebb33e2b1de81e39fbf7cbe3cd97350472. Some subprocess tests remove that variable and lack their checkout-local submodule.",
+    "progress_counts": {
+      ".": 1902,
+      "F": 27,
+      "s": 63
+    },
+    "failure_test_ids": [
+      "tests/conveyor/integration/test_agent_loop.py::test_agent_executes_job_end_to_end",
+      "tests/conveyor/integration/test_smoke_strlen.py::test_strlen_smoke_end_to_end",
+      "tests/conveyor/test_autodecomp_population.py::test_game_types_keeps_known_good_static_function_body_byte_identical",
+      "tests/conveyor/test_autodecomp_population.py::test_seed_uses_valid_syntax_mode_and_carries_its_macro_definitions",
+      "tests/conveyor/test_autodecomp_population.py::test_macro_definitions_follow_the_context_that_defines_their_types",
+      "tests/conveyor/test_cloud_score.py::test_locked_single_function_is_strict_match[camera_blend_between]",
+      "tests/conveyor/test_cloud_score.py::test_locked_single_function_is_strict_match[camera_update_d]",
+      "tests/conveyor/test_cloud_score.py::test_locked_single_function_is_strict_match[display_settings]",
+      "tests/conveyor/test_cloud_score.py::test_locked_single_function_is_strict_match[exhaust_smoke_effect]",
+      "tests/conveyor/test_cloud_score.py::test_locked_single_function_is_strict_match[func_8008B3F4]",
+      "tests/conveyor/test_cloud_score.py::test_locked_single_function_is_strict_match[func_800BA61C]",
+      "tests/conveyor/test_cloud_score.py::test_locked_single_function_is_strict_match[func_800DE860]",
+      "tests/conveyor/test_cloud_score.py::test_locked_single_function_is_strict_match[func_800E114C]",
+      "tests/conveyor/test_cloud_score.py::test_locked_single_function_is_strict_match[func_800E23A4]",
+      "tests/conveyor/test_cloud_score.py::test_locked_single_function_is_strict_match[func_800E5D64]",
+      "tests/conveyor/test_cloud_score.py::test_locked_single_function_is_strict_match[func_800EC270]",
+      "tests/conveyor/test_cloud_score.py::test_locked_single_function_is_strict_match[func_80106D94]",
+      "tests/conveyor/test_cloud_score.py::test_locked_single_function_is_strict_match[hud_speed_display]",
+      "tests/conveyor/test_cloud_score.py::test_locked_single_function_is_strict_match[menu_options_screen]",
+      "tests/conveyor/test_cloud_score.py::test_locked_single_function_is_strict_match[race_setup_1]",
+      "tests/conveyor/test_cloud_score.py::test_locked_single_function_is_strict_match[race_setup_2]",
+      "tests/conveyor/test_cloud_score.py::test_locked_single_function_is_strict_match[random_float]",
+      "tests/conveyor/test_cloud_score.py::test_locked_single_function_is_strict_match[track_select_handler]",
+      "tests/conveyor/test_cloud_score.py::test_locked_single_function_is_strict_match[vector_normalize_length]",
+      "tests/conveyor/test_cloud_score.py::test_locked_single_function_is_strict_match[world_gravity_apply]",
+      "tests/conveyor/test_search_cleanup.py::test_no_worker_survives_the_job[sigterm]",
+      "tests/conveyor/test_search_cleanup.py::test_no_worker_survives_the_job[wall_budget]"
+    ],
+    "attribution": "Fresh current-base run, not a historical failure-count assumption. New focused tests passed. No unchanged test/tool/accepted-source failure was repaired or reclassified."
+  },
+  "gates_not_run": [
+    "whole_program_shadow",
+    "image",
+    "compressed_stream",
+    "cartridge_sha1"
+  ]
+}

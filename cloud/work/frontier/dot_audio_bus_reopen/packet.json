@@ -1,0 +1,8 @@
+{
+  "status": "NONMATCH_ABI_UNPROVED",
+  "claims": [],
+  "frozen": true,
+  "next_evidence_required": "Original setter declaration provenance or a real native consumer/source explanation for the outgoing page stores, without an invented unused formal.",
+  "new_match_functions": 0,
+  "new_match_bytes": 0
+}

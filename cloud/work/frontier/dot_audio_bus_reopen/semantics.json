@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "native_vs_host_cases": 204562,
+  "change_then_same_value_sequences": 6524,
+  "persisted_record_shapes": [
+    [
+      0,
+      -1,
+      0
+    ],
+    [
+      1,
+      28,
+      25
+    ],
+    [
+      1,
+      72,
+      20
+    ],
+    [
+      1,
+      92,
+      16
+    ],
+    [
+      1,
+      108,
+      20
+    ],
+    [
+      1,
+      128,
+      12
+    ]
+  ],
+  "source_sha256": "b2cb59164614713407adb7d25ae8ddcbb19bc422b85c1c08a66cfb3d2093ebfd",
+  "limits": "Synthetic 160-byte profiles; native MIPS caller and internal helper executed, authenticated native jump tables read. The accepted checksum and external persistence routine use explicit functional contracts. Host layout populated through fields; host checksum endianness normalized. This is semantic evidence, not a match or ROM claim."
+}

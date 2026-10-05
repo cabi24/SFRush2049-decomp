@@ -1,0 +1,244 @@
+{
+  "accepted_caller_match": false,
+  "assembler_erratum_flag_added_by_scorer": "-Wab,-r4300_mul",
+  "base_revision": "55ddfc6b53d96d4c5dcaaa8891dedafb037b3994",
+  "claims": [],
+  "compiler_sha256": {
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5"
+  },
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "native": {
+    "canonical_formal_count": 4,
+    "direct_call_count": 32,
+    "direct_callers": {
+      "audio_doppler_full": [
+        380,
+        560
+      ],
+      "camera_shake_start": [
+        200,
+        460,
+        564
+      ],
+      "collision_sound_play": [
+        128
+      ],
+      "drone_pathfind_main": [
+        340,
+        408,
+        628
+      ],
+      "drone_throttle_calc": [
+        376,
+        620,
+        688
+      ],
+      "func_800B59F0": [
+        612,
+        648
+      ],
+      "func_800D6914": [
+        592,
+        628
+      ],
+      "func_800D816C": [
+        1748,
+        1784
+      ],
+      "func_800DA2C0": [
+        1484,
+        1520
+      ],
+      "func_800EF5B0": [
+        64
+      ],
+      "particle_collision": [
+        352,
+        428,
+        656
+      ],
+      "particle_lifetime_set": [
+        160
+      ],
+      "physics_collision_test": [
+        192
+      ],
+      "replay_save_prompt": [
+        800,
+        876,
+        1104
+      ],
+      "sfx_position_3d": [
+        428,
+        632
+      ],
+      "sfx_stop": [
+        284
+      ]
+    },
+    "targets": {
+      "collision_sound_play": {
+        "address": "0x800B362C",
+        "callee_calls": [
+          {
+            "call_offset": 128,
+            "fifth_slot": {
+              "local_constant": 1,
+              "source_register_number": 10,
+              "stack_offset": 16,
+              "store_offset": 104
+            }
+          }
+        ],
+        "extent_bytes": 216,
+        "target_sha256": "875df7bdff24807d88481bb5710c15f4930577e264cdd98fa267bd041bcba5fa"
+      },
+      "func_800B24EC": {
+        "address": "0x800B24EC",
+        "callee_calls": [],
+        "direct_stack_loads_at_or_above_fifth_input": [],
+        "entry_frame_bytes": 104,
+        "extent_bytes": 364,
+        "target_sha256": "22ccee42826816c61c8ad198ddb3767a6b5523f51d1c3b676284968d0661a517"
+      },
+      "physics_collision_test": {
+        "address": "0x800B9194",
+        "callee_calls": [
+          {
+            "call_offset": 192,
+            "fifth_slot": {
+              "local_constant": 1,
+              "source_register_number": 11,
+              "stack_offset": 16,
+              "store_offset": 168
+            }
+          }
+        ],
+        "extent_bytes": 240,
+        "target_sha256": "564a15110e888006ba80412f17417fbdac361ad7e21ec8638e70279328ccc1e1"
+      }
+    },
+    "zero_fifth_controls": [
+      {
+        "local_constant": 0,
+        "source_register_number": 0,
+        "stack_offset": 16,
+        "store_offset": 432
+      },
+      {
+        "local_constant": 0,
+        "source_register_number": 0,
+        "stack_offset": 16,
+        "store_offset": 636
+      }
+    ]
+  },
+  "replay": {
+    "collision_sound_play": {
+      "differing_words": 0,
+      "elf_extent_bytes": 216,
+      "errors": [],
+      "extent_equal": true,
+      "extra_nonzero_words": 0,
+      "full_relocated_words_equal": true,
+      "owned_sections": {},
+      "relocation_masks": 0,
+      "scorer_summary": "MATCH",
+      "strict_object_equal": true,
+      "target_extent_bytes": 216,
+      "unresolved": [],
+      "unverified": []
+    },
+    "func_800B24EC": {
+      "differing_words": 0,
+      "elf_extent_bytes": 364,
+      "errors": [],
+      "extent_equal": true,
+      "extra_nonzero_words": 0,
+      "full_relocated_words_equal": true,
+      "owned_sections": {},
+      "relocation_masks": 0,
+      "scorer_summary": "MATCH",
+      "strict_object_equal": true,
+      "target_extent_bytes": 364,
+      "unresolved": [],
+      "unverified": []
+    },
+    "physics_collision_test": {
+      "differing_words": 5,
+      "elf_extent_bytes": 240,
+      "errors": [],
+      "extent_equal": true,
+      "extra_nonzero_words": 0,
+      "full_relocated_words_equal": false,
+      "owned_sections": {},
+      "relocation_masks": 0,
+      "scorer_summary": "5/60 words differ",
+      "strict_object_equal": false,
+      "target_extent_bytes": 240,
+      "unresolved": [],
+      "unverified": []
+    },
+    "pool_linked_list_init": {
+      "differing_words": 0,
+      "elf_extent_bytes": 128,
+      "errors": [],
+      "extent_equal": true,
+      "extra_nonzero_words": 0,
+      "full_relocated_words_equal": true,
+      "owned_sections": {},
+      "relocation_masks": 0,
+      "scorer_summary": "MATCH",
+      "strict_object_equal": true,
+      "target_extent_bytes": 128,
+      "unresolved": [],
+      "unverified": []
+    },
+    "real_context": {
+      "collision_sound_play": {
+        "differing_words": 0,
+        "elf_extent_bytes": 216,
+        "errors": [],
+        "extent_equal": true,
+        "extra_nonzero_words": 0,
+        "full_relocated_words_equal": true,
+        "owned_sections": {},
+        "relocation_masks": 0,
+        "scorer_summary": "MATCH",
+        "strict_object_equal": true,
+        "target_extent_bytes": 216,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_800B24EC": {
+        "differing_words": 0,
+        "elf_extent_bytes": 364,
+        "errors": [],
+        "extent_equal": true,
+        "extra_nonzero_words": 0,
+        "full_relocated_words_equal": true,
+        "owned_sections": {},
+        "relocation_masks": 0,
+        "scorer_summary": "MATCH",
+        "strict_object_equal": true,
+        "target_extent_bytes": 364,
+        "unresolved": [],
+        "unverified": []
+      }
+    }
+  },
+  "rom_coverage_claimed": false,
+  "source_contract_status": "unresolved_five_actuals_four_formals",
+  "source_sha256": {
+    "cloud/work/frontier/name_lookup_callers_20261005/collision_sound_play.c": "e0088e57a0e02f0d1c188115278d4654df676cdd0d10610135997a084f1a6e2f",
+    "cloud/work/near_miss_B4/physics_collision_test_best.c": "81058d376b3c82003597d73d5dcc36c690ac8d1bbc2c6165106cba0d4d6c007b",
+    "src/blob/func_800B24EC.c": "217da64a911d34f6d4e483fecfa0fea3406cdf57b50a093fd198b8ac5ae60448",
+    "src/blob/pool_linked_list_init.c": "381ea8fccdd114ee943d33f1ed180785cec9c9a816612a02d4b384457f79b8aa"
+  },
+  "typed_four_formal_control_rejects_five_actuals": true
+}
