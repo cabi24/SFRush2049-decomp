@@ -195,7 +195,10 @@ gated by the full ROM:
   the integrator's uncommitted game-code files at the time. Every gate still
   ended in `ROM matches!`. No game-code paths were staged in any wave-4 commit.
 - `pytest tests/conveyor tests/cloud -q -m "not node_required"` on a clean
-  worktree of the final commit: see the final report. In the shared Pi tree,
+  worktree of the report commit: 2,201 tests, 715 skipped, 1 failure. The
+  failure is `test_layout::test_generated_tu_is_passthrough_and_deterministic`,
+  and it occurs only because that worktree links `build/` from outside itself
+  (the owned-data path guard). The test passes in the real tree. In the shared Pi tree,
   `test_frontier::test_real_detectors_flag_no_standalone_lock` and
   `test_name_lookup_caller_contract::test_native_callers_keep_the_real_fifth_word`
   fail only because of other agents' uncommitted game-code work
