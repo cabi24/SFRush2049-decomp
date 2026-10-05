@@ -1,0 +1,25 @@
+{
+  "target": "func_800E4300",
+  "address": "0x800E4300",
+  "end_exclusive": "0x800E451C",
+  "bytes": 540,
+  "population": "game_blob",
+  "base_commit": "e24b47d89a0c8ffade1e4c75ad76b9d390a1c232",
+  "locked_at_base": false,
+  "open_prs_checked_through": 122,
+  "status": "matching source-admission/context proof; archive already had a zero-scoring helper",
+  "accepted_byte_gain": 0,
+  "donor": {
+    "repository": "historicalsource/rushtherock",
+    "revision": "845329d7b36f5a384c5625ed9a0aef584ab46139",
+    "path": "game/maxpath.c",
+    "sha256": "3e69bfe5017f12b8628f450029aadd4136792b4d91eab304b14a0be9c58164df",
+    "scope": "caller algorithm/interface ancestry; not a whole-function E4300 donor"
+  },
+  "archived_source_sha256": {
+    "cloud/work/frontier/w1g/groups/func_800E4300/group.c": "084930fe22f16f11d820c312bc35591312175ee76ed5f5f6f95b6014e4580437",
+    "cloud/work/frontier/w1g/groups/func_800E4300/group.json": "31969dc19af3fc0542504b9a918ab6bd2c50a1383d9f4bd28db287e477319382",
+    "cloud/work/ipa-groups/func_800E56F8/group.c": "149f1405cf0e6c306bc81ab6cc0e4b71520c72b94e9e66cff82e2b873c3c8d09",
+    "cloud/work/ipa-groups/func_800E56F8/group.json": "fb33b1f5557ef2c40e62fb939a7ea2c37c883087bd84f7043f711e36577e98b3"
+  }
+}

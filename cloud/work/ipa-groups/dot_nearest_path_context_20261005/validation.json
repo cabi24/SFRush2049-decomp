@@ -1,0 +1,29 @@
+{
+  "packet_tests": {
+    "count": 11,
+    "failures": 0,
+    "skipped": 0
+  },
+  "scoped_regressions": {
+    "count": 786,
+    "failures": 0,
+    "skipped": 0,
+    "files": [
+      "tests/conveyor/test_cloud_score.py",
+      "tests/conveyor/test_cloud_integrity.py",
+      "tests/conveyor/test_cloud_guard.py",
+      "tests/conveyor/test_cloud_submissions.py",
+      "tests/conveyor/test_blob_lengths.py",
+      "tests/conveyor/test_blob_group_own_data.py",
+      "tests/conveyor/test_blob_group_table_windows.py"
+    ]
+  },
+  "static_locks": {
+    "verified": 402,
+    "failures": 0
+  },
+  "full_suite": "not run",
+  "hosted_ci": "not run or monitored",
+  "ROM_image_and_shadow_gates": "not available; independent checker responsibility",
+  "setup_note": "Initial lock checks correctly reported missing sparse-checkout inputs. The exact tracked src and static_C16 inputs were materialized, then all 402 locks passed. No tracked input was modified."
+}
