@@ -1,0 +1,107 @@
+{
+  "result": "PASS",
+  "compiler": "gcc (Debian 14.2.0-19) 14.2.0",
+  "runs": [
+    {
+      "configuration": "gcc_c89_o2",
+      "flags": [
+        "-std=c89",
+        "-pedantic-errors",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-but-set-variable",
+        "-ffp-contract=off"
+      ],
+      "result": "PASS",
+      "output": "PASS: 395264 mixer cases; 23094 priority cases; 812-byte state, two totals, external call order/arguments, read-only routes\nLAYOUT: tracker=80 set=812 idx=34 idx_count=20 length=76; host pointers=8 bytes\nBOUNDARIES: tracker9/index19 byte804 and all first/last 0-or-9 pairs witnessed\nLIMITS: host C versus oracle, not native execution or compiler proof; only three external callees mocked; finite inputs; no invalid negative route/who/count/mode or overflowing point counter",
+      "test_only_negative_controls": [
+        {
+          "control": "--negative-index19",
+          "result": "REJECTED_AS_EXPECTED",
+          "exit_code": 1,
+          "diagnostic": "state mismatch: count=10 first=9 last=9 routes=15 mode=-1 profile=0 byte=804"
+        },
+        {
+          "control": "--negative-total",
+          "result": "REJECTED_AS_EXPECTED",
+          "exit_code": 1,
+          "diagnostic": "totals mismatch"
+        }
+      ]
+    },
+    {
+      "configuration": "gcc_c89_o2_asan_ubsan",
+      "flags": [
+        "-std=c89",
+        "-pedantic-errors",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-but-set-variable",
+        "-ffp-contract=off",
+        "-g",
+        "-fsanitize=address,undefined,float-cast-overflow",
+        "-fno-sanitize-recover=all",
+        "-fno-omit-frame-pointer",
+        "-no-pie"
+      ],
+      "result": "PASS",
+      "output": "PASS: 395264 mixer cases; 23094 priority cases; 812-byte state, two totals, external call order/arguments, read-only routes\nLAYOUT: tracker=80 set=812 idx=34 idx_count=20 length=76; host pointers=8 bytes\nBOUNDARIES: tracker9/index19 byte804 and all first/last 0-or-9 pairs witnessed\nLIMITS: host C versus oracle, not native execution or compiler proof; only three external callees mocked; finite inputs; no invalid negative route/who/count/mode or overflowing point counter",
+      "test_only_negative_controls": [
+        {
+          "control": "--negative-index19",
+          "result": "REJECTED_AS_EXPECTED",
+          "exit_code": 1,
+          "diagnostic": "state mismatch: count=10 first=9 last=9 routes=15 mode=-1 profile=0 byte=804"
+        },
+        {
+          "control": "--negative-total",
+          "result": "REJECTED_AS_EXPECTED",
+          "exit_code": 1,
+          "diagnostic": "totals mismatch"
+        }
+      ]
+    }
+  ],
+  "cases_per_run": {
+    "mixer": 395264,
+    "priority": 23094,
+    "total": 418358
+  },
+  "matrix": {
+    "tracker_count": "every integer 0..10",
+    "route_count": "every integer 0..15",
+    "first_last": "every pair 0..count-1; (0,0) for empty count",
+    "modes": [
+      -32768,
+      -7,
+      -1,
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "geometry_profiles": 8,
+    "priority_queries": "each who 0..9, route 0..16 and 32767, all route counts and profiles",
+    "known_priority_cases": "18 hand-expected fixtures, each with two out-of-range checks"
+  },
+  "limits": [
+    "Host C/oracle comparison, not execution against native target instructions.",
+    "Only func_800BA61C, func_800BA2B8, and audio_channel_alloc are deterministic host doubles.",
+    "The real audio_priority_find and audio_mixer_main bodies are included unchanged from group.c.",
+    "Compiler proof must use accepted real callees, never this test translation unit.",
+    "Exact 812-byte tracker layout; 64-bit route pointer layout does not prove the N64 pointer ABI.",
+    "Finite floats and valid native input bounds; invalid negative route/who, invalid counts, modes above 4, and point-counter overflow are excluded.",
+    "Route point counts cover 0..8 and 16, not all possible u16 values; no NaN/Inf behavior or exhaustive floating-point proof.",
+    "Leak detection disabled; no heap allocation occurs in the C harness."
+  ],
+  "source_sha256": {
+    "group.c": "504a5f313424bc580024990bde7d0ef15c024fe85fe8b0f40dfa97da8361b1b8",
+    "host_test.c": "89fe3d875156f38b7bca3e9dc38da39fb7f14f793b7b6eb73d4c1b6c44a50b33",
+    "host_tests.py": "c1288513a55dcdc1fe0246e2e8e4c084d48d155fde116e5900ff8a2215468f07"
+  }
+}

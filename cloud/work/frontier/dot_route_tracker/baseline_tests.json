@@ -1,0 +1,24 @@
+{
+  "base": "52904b374dc5eb8e88d5e003d6ea4666cdde71d2",
+  "command": "python3 -m pytest -q tests/conveyor/test_cloud_score.py tests/conveyor/test_owndata.py",
+  "historical_receipt": "baseline_tests_historical.json",
+  "note": "Upstream own-data scoring resolves the former 21 strict-single failures. All 669 selected tests pass on both trees. No scorer, CI, or accepted-source repair performed in this packet.",
+  "results": {
+    "base": {
+      "failed": 0,
+      "failures": [],
+      "passed": 669,
+      "skipped": 0,
+      "tests": 669
+    },
+    "current": {
+      "failed": 0,
+      "failures": [],
+      "passed": 669,
+      "skipped": 0,
+      "tests": 669
+    }
+  },
+  "results_identical": true,
+  "scope": "Selected existing scorer and own-data suites, not full CI. Fresh isolated base and candidate replays."
+}

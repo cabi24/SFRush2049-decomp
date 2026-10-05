@@ -1,0 +1,194 @@
+{
+  "base": "b34deebfe502ae6553e1b78f4d749aa0920d80a7",
+  "command": "python3 -m pytest -q tests/conveyor/test_cloud_score.py tests/conveyor/test_owndata.py",
+  "note": "All 21 failures are existing strict single-function own-data verification gaps. No CI, scorer, or accepted-source repair performed.",
+  "results": {
+    "base": {
+      "failed": 21,
+      "failures": [
+        {
+          "message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x154, .rodata+0x0 at +0x158)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[camera_blend_between]"
+        },
+        {
+          "message": "AssertionError: MATCH (8 section-relative relocations unverified: .rodata+0x4 at +0x44, .rodata+0x4 at +0x54, .rodata+0x8 at +0x58, .rodata+0x8 at +0x70, .rodata+0xc at +0x88, .rodata+0xc at +0xf8, .rodata+0x10 at +0x100, .rodata+0x10 at +0x118)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[camera_update_d]"
+        },
+        {
+          "message": "AssertionError: MATCH (4 section-relative relocations unverified: .data+0x0 at +0x40, .data+0x0 at +0x44, .data+0x0 at +0x94, .data+0x0 at +0x98)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[display_settings]"
+        },
+        {
+          "message": "AssertionError: MATCH (6 section-relative relocations unverified: .rodata+0x0 at +0x9c, .rodata+0x0 at +0xa0, .rodata+0x4 at +0xa8, .rodata+0x4 at +0xc0, .rodata+0x8 at +0x88, .rodata+0x8 at +0x144)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[exhaust_smoke_effect]"
+        },
+        {
+          "message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x0, .rodata+0x0 at +0x4)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_8008B3F4]"
+        },
+        {
+          "message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x48, .rodata+0x0 at +0x58)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800BA2B8]"
+        },
+        {
+          "message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x34, .rodata+0x0 at +0x40)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800BA61C]"
+        },
+        {
+          "message": "AssertionError: MATCH (8 section-relative relocations unverified: .rodata+0x0 at +0x230, .rodata+0x0 at +0x238, .rodata+0x4 at +0x240, .rodata+0x4 at +0x248, .rodata+0x8 at +0x2fc, .rodata+0x8 at +0x300, .rodata+0xc at +0x308, .rodata+0xc at +0x30c)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800DE860]"
+        },
+        {
+          "message": "AssertionError: MATCH (6 section-relative relocations unverified: .rodata+0x0 at +0x10, .rodata+0x0 at +0x74, .rodata+0x4 at +0x8c, .rodata+0x4 at +0x90, .rodata+0x8 at +0x170, .rodata+0x8 at +0x1b0)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E114C]"
+        },
+        {
+          "message": "AssertionError: MATCH (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E23A4]"
+        },
+        {
+          "message": "AssertionError: MATCH (4 section-relative relocations unverified: .rodata+0x0 at +0x74, .rodata+0x0 at +0x94, .rodata+0x4 at +0x244, .rodata+0x4 at +0x258)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E5D64]"
+        },
+        {
+          "message": "AssertionError: MATCH (6 section-relative relocations unverified: .data+0x0 at +0x2c, .data+0x0 at +0x38, .data+0x0 at +0x3c, .data+0x0 at +0x4c, .data+0x0 at +0x58, .data+0x0 at +0x60)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800EC270]"
+        },
+        {
+          "message": "AssertionError: MATCH (8 section-relative relocations unverified: .rodata+0x0 at +0x3c, .rodata+0x0 at +0x54, .rodata+0x4 at +0x238, .rodata+0x4 at +0x254, .rodata+0x8 at +0x298, .rodata+0x8 at +0x2a4, .rodata+0xc at +0x3b4, .rodata+0xc at +0x3d0)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_80106D94]"
+        },
+        {
+          "message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x1e4, .rodata+0x0 at +0x1e8)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[hud_speed_display]"
+        },
+        {
+          "message": "AssertionError: MATCH (8 section-relative relocations unverified: .rodata+0x0 at +0x2ec, .rodata+0x0 at +0x2f0, .rodata+0x4 at +0x3b4, .rodata+0x4 at +0x3cc, .rodata+0x8 at +0x5ec, .rodata+0x8 at +0x5f0, .rodata+0xc at +0x660, .rodata+0xc at +0x664)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[menu_options_screen]"
+        },
+        {
+          "message": "AssertionError: MATCH (4 section-relative relocations unverified: .rodata+0x0 at +0x94, .rodata+0x0 at +0x98, .rodata+0x4 at +0xc4, .rodata+0x4 at +0xcc)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[race_setup_1]"
+        },
+        {
+          "message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x2c4, .rodata+0x0 at +0x2cc)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[race_setup_2]"
+        },
+        {
+          "message": "AssertionError: MATCH (14 section-relative relocations unverified: .rodata+0x0 at +0x1ac, .rodata+0x0 at +0x1b0, .rodata+0x4 at +0x20c, .rodata+0x4 at +0x214, .rodata+0x8 at +0x290, .rodata+0x8 at +0x298, .rodata+0xc at +0x2fc, .rodata+0xc at +0x300, .rodata+0x10 at +0x344, .rodata+0x10 at +0x34c, .rodata+0x14 at +0x3bc, .rodata+0x14 at +0x3c4, .rodata+0x18 at +0x50c, .rodata+0x18 at +0x510)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[random_float]"
+        },
+        {
+          "message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x2bc, .rodata+0x0 at +0x2c0)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[track_select_handler]"
+        },
+        {
+          "message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x6c, .rodata+0x0 at +0x70)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[vector_normalize_length]"
+        },
+        {
+          "message": "AssertionError: MATCH (10 section-relative relocations unverified: .rodata+0x0 at +0x48, .rodata+0x0 at +0x4c, .rodata+0x4 at +0x50, .rodata+0x4 at +0x68, .rodata+0x8 at +0xf4, .rodata+0x8 at +0xfc, .rodata+0xc at +0x3c4, .rodata+0xc at +0x3c8, .rodata+0x10 at +0x694, .rodata+0x10 at +0x6a4)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[world_gravity_apply]"
+        }
+      ],
+      "passed": 643,
+      "skipped": 0,
+      "tests": 664
+    },
+    "current": {
+      "failed": 21,
+      "failures": [
+        {
+          "message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x154, .rodata+0x0 at +0x158)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[camera_blend_between]"
+        },
+        {
+          "message": "AssertionError: MATCH (8 section-relative relocations unverified: .rodata+0x4 at +0x44, .rodata+0x4 at +0x54, .rodata+0x8 at +0x58, .rodata+0x8 at +0x70, .rodata+0xc at +0x88, .rodata+0xc at +0xf8, .rodata+0x10 at +0x100, .rodata+0x10 at +0x118)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[camera_update_d]"
+        },
+        {
+          "message": "AssertionError: MATCH (4 section-relative relocations unverified: .data+0x0 at +0x40, .data+0x0 at +0x44, .data+0x0 at +0x94, .data+0x0 at +0x98)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[display_settings]"
+        },
+        {
+          "message": "AssertionError: MATCH (6 section-relative relocations unverified: .rodata+0x0 at +0x9c, .rodata+0x0 at +0xa0, .rodata+0x4 at +0xa8, .rodata+0x4 at +0xc0, .rodata+0x8 at +0x88, .rodata+0x8 at +0x144)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[exhaust_smoke_effect]"
+        },
+        {
+          "message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x0, .rodata+0x0 at +0x4)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_8008B3F4]"
+        },
+        {
+          "message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x48, .rodata+0x0 at +0x58)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800BA2B8]"
+        },
+        {
+          "message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x34, .rodata+0x0 at +0x40)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800BA61C]"
+        },
+        {
+          "message": "AssertionError: MATCH (8 section-relative relocations unverified: .rodata+0x0 at +0x230, .rodata+0x0 at +0x238, .rodata+0x4 at +0x240, .rodata+0x4 at +0x248, .rodata+0x8 at +0x2fc, .rodata+0x8 at +0x300, .rodata+0xc at +0x308, .rodata+0xc at +0x30c)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800DE860]"
+        },
+        {
+          "message": "AssertionError: MATCH (6 section-relative relocations unverified: .rodata+0x0 at +0x10, .rodata+0x0 at +0x74, .rodata+0x4 at +0x8c, .rodata+0x4 at +0x90, .rodata+0x8 at +0x170, .rodata+0x8 at +0x1b0)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E114C]"
+        },
+        {
+          "message": "AssertionError: MATCH (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E23A4]"
+        },
+        {
+          "message": "AssertionError: MATCH (4 section-relative relocations unverified: .rodata+0x0 at +0x74, .rodata+0x0 at +0x94, .rodata+0x4 at +0x244, .rodata+0x4 at +0x258)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E5D64]"
+        },
+        {
+          "message": "AssertionError: MATCH (6 section-relative relocations unverified: .data+0x0 at +0x2c, .data+0x0 at +0x38, .data+0x0 at +0x3c, .data+0x0 at +0x4c, .data+0x0 at +0x58, .data+0x0 at +0x60)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800EC270]"
+        },
+        {
+          "message": "AssertionError: MATCH (8 section-relative relocations unverified: .rodata+0x0 at +0x3c, .rodata+0x0 at +0x54, .rodata+0x4 at +0x238, .rodata+0x4 at +0x254, .rodata+0x8 at +0x298, .rodata+0x8 at +0x2a4, .rodata+0xc at +0x3b4, .rodata+0xc at +0x3d0)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_80106D94]"
+        },
+        {
+          "message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x1e4, .rodata+0x0 at +0x1e8)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[hud_speed_display]"
+        },
+        {
+          "message": "AssertionError: MATCH (8 section-relative relocations unverified: .rodata+0x0 at +0x2ec, .rodata+0x0 at +0x2f0, .rodata+0x4 at +0x3b4, .rodata+0x4 at +0x3cc, .rodata+0x8 at +0x5ec, .rodata+0x8 at +0x5f0, .rodata+0xc at +0x660, .rodata+0xc at +0x664)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[menu_options_screen]"
+        },
+        {
+          "message": "AssertionError: MATCH (4 section-relative relocations unverified: .rodata+0x0 at +0x94, .rodata+0x0 at +0x98, .rodata+0x4 at +0xc4, .rodata+0x4 at +0xcc)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[race_setup_1]"
+        },
+        {
+          "message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x2c4, .rodata+0x0 at +0x2cc)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[race_setup_2]"
+        },
+        {
+          "message": "AssertionError: MATCH (14 section-relative relocations unverified: .rodata+0x0 at +0x1ac, .rodata+0x0 at +0x1b0, .rodata+0x4 at +0x20c, .rodata+0x4 at +0x214, .rodata+0x8 at +0x290, .rodata+0x8 at +0x298, .rodata+0xc at +0x2fc, .rodata+0xc at +0x300, .rodata+0x10 at +0x344, .rodata+0x10 at +0x34c, .rodata+0x14 at +0x3bc, .rodata+0x14 at +0x3c4, .rodata+0x18 at +0x50c, .rodata+0x18 at +0x510)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[random_float]"
+        },
+        {
+          "message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x2bc, .rodata+0x0 at +0x2c0)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[track_select_handler]"
+        },
+        {
+          "message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x6c, .rodata+0x0 at +0x70)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[vector_normalize_length]"
+        },
+        {
+          "message": "AssertionError: MATCH (10 section-relative relocations unverified: .rodata+0x0 at +0x48, .rodata+0x0 at +0x4c, .rodata+0x4 at +0x50, .rodata+0x4 at +0x68, .rodata+0x8 at +0xf4, .rodata+0x8 at +0xfc, .rodata+0xc at +0x3c4, .rodata+0xc at +0x3c8, .rodata+0x10 at +0x694, .rodata+0x10 at +0x6a4)",
+          "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[world_gravity_apply]"
+        }
+      ],
+      "passed": 643,
+      "skipped": 0,
+      "tests": 664
+    }
+  },
+  "results_identical": true,
+  "scope": "Selected existing scorer and own-data suites, not full CI. Fresh isolated base and candidate replays.",
+  "status": "historical superseded baseline"
+}

@@ -1,0 +1,15 @@
+{
+  "owner": "dot route-tracker research",
+  "state": "complete-research-awaiting-independent-review",
+  "base": "52904b374dc5eb8e88d5e003d6ea4666cdde71d2",
+  "branch": "dot/route-tracker-layout-20261005",
+  "targets": [
+    {"name": "audio_mixer_main", "start": "0x800BA7C4", "end": "0x800BAAA0"},
+    {"name": "audio_priority_find", "start": "0x800BA46C", "end": "0x800BA61C"}
+  ],
+  "edit_scope": ["cloud/work/frontier/dot_route_tracker/", "tests/conveyor/test_dot_route_tracker.py"],
+  "accepted_context_read_only": ["src/blob/func_800BA2B8.c", "src/blob/func_800BA61C.c", "src/blob/audio_channel_alloc.c"],
+  "claims": [],
+  "question": "Recover truthful tracker storage and diagnose a clean genuine caller/helper reconstruction without artificial frame padding or invalid array accesses.",
+  "stop": "Do not repeat B134 or w2b spelling controls. No variant search without new causal diagnosis. No source match claim without complete strict proof."
+}

@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "base": "52904b374dc5eb8e88d5e003d6ea4666cdde71d2",
+  "global": "D_80151CE8",
+  "address": "0x80151CE8",
+  "serialized_size": 812,
+  "header_size": 12,
+  "record_address": "0x80151CF4",
+  "record_size": 80,
+  "record_capacity": 10,
+  "end_address": "0x80152014",
+  "capacity_proof": [
+    {"function": "audio_dsp_process", "address": "0x800BADE0", "fact": "Copies exactly 812 bytes from D_80153F20.", "source": "src/blob/audio_dsp_process.c:12-27", "native_reference": "asm/us/blob/blob_800b7360.s:3943-3948"},
+    {"function": "audio_effect_apply", "address": "0x800BAAA0", "fact": "Advances the same input pointer by 812 before copying the following 16-byte route header.", "native_reference": "asm/us/blob/blob_800b7360.s:3750-3758"},
+    {"function": "func_800F8EC8", "fact": "Uses global+12 as record base and 80-byte stride.", "native_reference": "asm/us/blob/blob_800f8d9c.s:110-113,172-203"}
+  ],
+  "header": {"limit": 0, "first": 2, "last": 4, "selected_c": 6, "count": 8, "copied_unknown": 10},
+  "record": {"position": 0, "direction": 12, "range_s32": 24, "flags_s16": 28, "timer_a_s16": 30, "timer_b_s16": 32, "crossing_indices_s16_20": 34, "copied_unknown": 74, "segment_length_f32": 76},
+  "field_evidence": [
+    {"fact": "Initializer clears twenty halfword indices and initializes both timers to 45.", "source": "src/blob/audio_dsp_process.c:4-10,41-43", "native_reference": "asm/us/blob/blob_800b7360.s:4000-4016"},
+    {"fact": "Initializer selects first/last/third records from flag bits 4/1/2, with zero defaults.", "source": "src/blob/audio_dsp_process.c:28-47"},
+    {"fact": "Consumer uses all three direction components and converts the integer range to float for squared XZ distance comparison.", "native_reference": "asm/us/blob/blob_800f8d9c.s:172-232"},
+    {"fact": "Mixer accesses indices at prefix-base+46 and length at prefix-base+88, equivalent to record+34 and record+76.", "native_reference": "asm/us/blob/blob_800b7360.s:3558-3563,3585-3606,3650-3654,3675-3703"}
+  ],
+  "limits": ["Capacity is proven by the serialized payload boundary. No runtime clamp for count <= 10 was found.", "The meanings of the two copied bytes at header+10 and record+74 are unestablished.", "Range is an integer threshold compared against squared XZ distance; an unsquared geometric radius interpretation is not proven."]
+}
