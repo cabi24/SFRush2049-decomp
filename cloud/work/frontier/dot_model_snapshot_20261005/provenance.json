@@ -1,0 +1,26 @@
+{
+  "repository": "https://github.com/historicalsource/rushtherock",
+  "revision": "845329d7b36f5a384c5625ed9a0aef584ab46139",
+  "files": {
+    "game/vecmath.h": {
+      "git_blob": "58c9d80ddb08ac7e2a7f54817adaacc20b953420",
+      "sha256": "76526aaa1894d9cef992ea07fa524cf7348e02cbede5a646a66f04d6e317cf3f",
+      "url": "https://github.com/historicalsource/rushtherock/blob/845329d7b36f5a384c5625ed9a0aef584ab46139/game/vecmath.h"
+    },
+    "game/communic.c": {
+      "git_blob": "3019708e106f1fa7d637af4b37776a67a24c533a",
+      "sha256": "148b3181440232c5941ea81d97d1e65350b34c3476402d8bdc2f8b0cd1455526",
+      "url": "https://github.com/historicalsource/rushtherock/blob/845329d7b36f5a384c5625ed9a0aef584ab46139/game/communic.c"
+    },
+    "game/reckon.c": {
+      "git_blob": "40076e48276e1ad739f43326ab7a0c72862b1e23",
+      "sha256": "426667ce49c0afff569d8733ec7b9c10ea68a4a73a14f5142f5212e825bd16f4",
+      "url": "https://github.com/historicalsource/rushtherock/blob/845329d7b36f5a384c5625ed9a0aef584ab46139/game/reckon.c"
+    },
+    "game/modeldat.h": {
+      "git_blob": "3097b51485c8c0ac2208c04dca8286a7ce2d5910",
+      "sha256": "f83352f57044d7fe48aecb1dfce5fd3db14cd8deab142319f7d1067a4ab62a93",
+      "url": "https://github.com/historicalsource/rushtherock/blob/845329d7b36f5a384c5625ed9a0aef584ab46139/game/modeldat.h"
+    }
+  }
+}

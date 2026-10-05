@@ -1,0 +1,39 @@
+{
+  "base": "cc4d5fdd",
+  "claimed_function": "func_800D4DFC",
+  "range": [
+    "0x800D4DFC",
+    "0x800D4EF4"
+  ],
+  "bytes": 248,
+  "new_match_candidate": true,
+  "accepted_byte_gain": 0,
+  "open_prs_checked": [
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104
+  ],
+  "excluded_active_functions": [
+    "func_800B3704",
+    "func_800B37E8",
+    "func_800DED78",
+    "func_800E762C",
+    "stat_lap_split",
+    "state_update_global",
+    "func_80087110",
+    "stat_race_update",
+    "func_800EF62C",
+    "func_80108DA8",
+    "func_80108F40"
+  ],
+  "prior_attempts": [
+    "cloud/work/tiny_A98",
+    "cloud/work/frontier/dot_fresh_small_20261005"
+  ],
+  "new_lead": "Pinned authentic vecmath.h mveccopy macro and source-grounded three-vector snapshot interpretation.",
+  "limit": "No visibility into unpublished work on other machines."
+}
