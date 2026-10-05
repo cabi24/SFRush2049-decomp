@@ -1,0 +1,100 @@
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/*
+ * func_8010E72C: N64 StartKnockdown (arcade game/targets.c StartKnockdown), reached through
+ * the target type table (no direct callers). Same family as func_8010DBB8.
+ *   v = GrabEnvEntry() (func_80090284) or return; v->index = 0;
+ *   v->func = gTargInfo[t->type].VisFunc; v->data = t; v->timeStamp = 0.0333333f;
+ *   t->state = 4; t->flags &= ~6 (t->active = false);
+ *   point the target along the hitting car's velocity: PointInDir(car->RWV, &tmat) then copy
+ *   tmat.uvs into t->uv (math_utility); AddToEnvList(v) inlined; target_sound inlined as
+ *   stat_lap_split(info[t->type].sound, t->slot, t->soundPos, 2).
+ *   (The arcade vcopy120 into lv[] and ZOID_UpdateObject are gone on N64.)
+ * Shaping quirks: PointInDir is a static wrapper around vector_normalize_length that is
+ *   inlined; its two parameters take the 8 bytes of frame below tmat (96-byte frame, v home
+ *   sp+92, tmat sp+44). An equivalent spelling with the wrapper taking the GameCar * and no
+ *   car local also matches. Literal 0.0333333f (0x3D088880) own .rodata, verified.
+ *   -O2 does not match. Whole-program unit: EQUAL.
+ */
+typedef signed char s8; typedef unsigned char u8; typedef short s16; typedef unsigned short u16;
+typedef int s32; typedef unsigned int u32; typedef float f32;
+
+typedef struct Visual {
+    struct Visual *next;    /* 0x00 */
+    s16 index;              /* 0x04 */
+    s16 objnum;             /* 0x06 */
+    s16 slot;               /* 0x08 */
+    u8 padA[2];
+    void *data;             /* 0x0C */
+    f32 timeStamp;          /* 0x10 */
+    void *func;             /* 0x14 */
+} Visual;
+
+typedef struct TargInfo {
+    u8 pad0[12];
+    void *visFunc;          /* 0x0C */
+    u8 pad10[12];
+    s32 sound;              /* 0x1C */
+    u8 pad20[16];
+} TargInfo;                 /* 0x30 */
+
+typedef struct Target {
+    u8 pad0[4];
+    u8 flags;               /* 0x04 */
+    u8 pad5[11];
+    s16 type;               /* 0x10 */
+    u8 pad12[2];
+    f32 uv[3][3];           /* 0x14 */
+
+    f32 soundPos[3];        /* 0x38 */
+    u8 pad44[22];
+    s16 state;              /* 0x5A */
+    s8 slot;                /* 0x5C */
+} Target;
+
+typedef struct GameCar {
+    u8 pad0[20];
+    f32 RWV[3];             /* 0x14 */
+    u8 pad20[920];
+} GameCar;                  /* 0x3B8 */
+
+typedef struct MATRIX {
+    f32 uvs[3][3];
+    f32 pos[3];
+} MATRIX;
+
+extern TargInfo D_80117530[];
+extern GameCar player_array[];
+extern Visual *D_801391F0;
+
+Visual *func_80090284(void);
+void vector_normalize_length(f32 *v, f32 m[3][3]);
+void math_utility(f32 src[3][3], f32 dst[3][3]);
+s32 stat_lap_split(s32 sound, s32 slot, f32 *position, u8 mode);
+
+static void PointInDir(f32 *dir, MATRIX *m)
+{
+    vector_normalize_length(dir, m->uvs);
+}
+
+void func_8010E72C(Target *t)
+{
+    Visual *v;
+    MATRIX tmat;
+    GameCar *car;
+
+    if (!(v = func_80090284())) {
+        return;
+    }
+    v->index = 0;
+    v->func = D_80117530[t->type].visFunc;
+    v->data = t;
+    v->timeStamp = 0.0333333f;
+    t->state = 4;
+    t->flags &= ~6;
+    car = &player_array[t->slot];
+    PointInDir(car->RWV, &tmat);
+    math_utility(tmat.uvs, t->uv);
+    v->next = D_801391F0;
+    D_801391F0 = v;
+    stat_lap_split(D_80117530[t->type].sound, t->slot, t->soundPos, 2);
+}

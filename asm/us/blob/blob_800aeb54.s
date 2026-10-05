@@ -3568,6 +3568,7 @@ func_800B1F30:
 .section .text.music_tempo_set, "ax", @progbits
 .globl music_tempo_set
 music_tempo_set:
+    /* compiled from src/blob/music_tempo_set.c */
     .word 0x27BDFFA8
     .word 0xAFBF0024
     .word 0xAFB20020
@@ -3984,6 +3985,7 @@ func_800B24EC:
 .section .text.sfx_stop, "ax", @progbits
 .globl sfx_stop
 sfx_stop:
+    /* compiled from src/blob/sfx_stop.c */
     .word 0x27BDFFC8
     .word 0x00064C00
     .word 0x0009C403

@@ -1,0 +1,34 @@
+Members:
+render_display_list:
+  MATCH
+func_80099B30:
+  MATCH
+func_8009C3F8:
+  MATCH
+    own .rodata verified at 0x80123ABC..0x80123AEC
+camera_update_c:
+  MATCH
+select_screen_update:
+  MATCH
+particle_system:
+  MATCH
+    own .rodata verified at 0x80123AFC..0x80123B00
+track_collision_wall:
+  MATCH
+func_8009F058:
+    +0x52c  want afa80048 sw t0,72(sp)                  got afa80044 sw t0,68(sp)                
+    +0x54c  want 8fa80048 lw t0,72(sp)                  got 8fa80044 lw t0,68(sp)                
+    +0x5c0  want afa80048 sw t0,72(sp)                  got afa80044 sw t0,68(sp)                
+    +0x5d4  want 8fa80048 lw t0,72(sp)                  got 8fa80044 lw t0,68(sp)                
+    +0x664  want afa80048 sw t0,72(sp)                  got afa80044 sw t0,68(sp)                
+    +0x678  want 8fa80048 lw t0,72(sp)                  got 8fa80044 lw t0,68(sp)                
+    +0x6e0  want afa80048 sw t0,72(sp)                  got afa80044 sw t0,68(sp)                
+    +0x6f0  want 8fa80048 lw t0,72(sp)                  got 8fa80044 lw t0,68(sp)                
+    +0x724  want afa80048 sw t0,72(sp)                  got afa80044 sw t0,68(sp)                
+    +0x754  want 8fa80048 lw t0,72(sp)                  got 8fa80044 lw t0,68(sp)                
+    +0x7bc  want afa80048 sw t0,72(sp)                  got afa80044 sw t0,68(sp)                
+    +0x7c8  want 8fa80048 lw t0,72(sp)                  got 8fa80044 lw t0,68(sp)                
+  22/1307 words differ
+    own .rodata verified at 0x80123B60..0x80123B68
+Input_ProcessGameplayPad:
+  MATCH

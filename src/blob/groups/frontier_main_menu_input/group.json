@@ -1,20 +1,21 @@
 {
  "members": [
   "main_menu_input",
-  "func_800D52CC"
+  "func_800D52CC",
+  "object_activate",
+  "func_800D5374"
  ],
- "context": [
-  "object_activate"
- ],
+ "context": [],
  "files": [
   "main_menu_input.c",
   "object_activate.c"
  ],
  "keep": [
   "main_menu_input",
-  "object_activate"
+  "object_activate",
+  "func_800D5374"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
  "unprototyped": [],
- "provenance": "frontier wave 2 (w2h), 2026-10-05; cloud/work/frontier/w2h/RESULTS.md"
+ "provenance": "frontier waves 2 and 7 (w2h, w7b), 2026-10-05; cloud/work/frontier/w7b/RESULTS.md"
 }

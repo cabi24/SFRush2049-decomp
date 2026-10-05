@@ -36,6 +36,10 @@
   {
    "name": "object_byte9_set",
    "reason": "16-word body retail calls by jal; found by the wholeprog autoblock pass"
+  },
+  {
+   "name": "func_80092B80",
+   "reason": "retail calls it from music_tempo_set with jal; our small body is otherwise inlined by umerge in the shadow unit (wave 7, w7d)"
   }
  ],
  "force_keep": [

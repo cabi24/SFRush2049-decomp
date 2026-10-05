@@ -4046,6 +4046,7 @@ func_800A1A3C:
 .section .text.func_800A1A60, "ax", @progbits
 .globl func_800A1A60
 func_800A1A60:
+    /* compiled from src/blob/func_800A1A60.c */
     .word 0x27BDFF90
     .word 0xAFBF0014
     .word 0x8C830000
@@ -4811,6 +4812,7 @@ slot_state_lookup:
 .section .text.AdjustSteer, "ax", @progbits
 .globl AdjustSteer
 AdjustSteer:
+    /* compiled from src/blob/AdjustSteer.c */
     .word 0x27BDFFD8
     .word 0xAFBF001C
     .word 0xAFB10018

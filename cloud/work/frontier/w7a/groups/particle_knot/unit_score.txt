@@ -1,0 +1,12 @@
+  EQUAL render_display_list: 2559 words (internal, c_group.c)
+  EQUAL func_80099B30: 51 words (internal, c_group.c)
+  EQUAL particle_system: 725 words (internal, c_group.c)
+  EQUAL track_collision_wall: 678 words (internal, c_group.c)
+  FAIL func_8009F058: 22 of 1307 words differ
+       defined by c_group.c (internal)
+  EQUAL func_8009C3F8: 113 words (internal, c_group.c)
+  EQUAL camera_update_c: 9 words (kept, c_group.c)
+  EQUAL select_screen_update: 9 words (kept, c_group.c)
+  EQUAL Input_ProcessGameplayPad: 680 words (kept, c_group.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 8/9 equal; object build/blob_unit/w7a/unit.o (4.5s)

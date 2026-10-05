@@ -4503,6 +4503,7 @@ func_800D536C:
 .section .text.func_800D5374, "ax", @progbits
 .globl func_800D5374
 func_800D5374:
+    /* compiled from src/blob/func_800D5374.c */
     .word 0x27BDFFC8
     .word 0x3C038015
     .word 0x8463A108

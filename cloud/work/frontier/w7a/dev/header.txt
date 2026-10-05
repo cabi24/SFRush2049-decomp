@@ -1,0 +1,47 @@
+/*
+ * Particle-system knot (frontier component 13), w6a + w7a 2026-10-05. Names are historical labels.
+ *
+ * The whole-program -O3 unit decides parameter registers and unsaved callee registers for this chain
+ * over all of its callers, so the bodies only reproduce together:
+ *
+ *   Input_ProcessGameplayPad (kept; per-frame pass: lights, views, 2D sprite list; also calls the
+ *    |                        external func_80087110, which stays an ABI call)
+ *    `-> func_8009F058(view, eye) (per-view scene setup + polygon list; eye arrives in a3 by IPA)
+ *     |-> track_collision_wall (scene-graph walk, recursive)
+ *     |     `-> particle_system (draw one node: LOD, billboard, texture, colours, display list)
+ *     |           |-> render_display_list (texture load: TLUT, tile/block loads)   IPA params s4,s1,s0,s3,s5
+ *     |           |     `-> func_80099B30 (TLUT load)
+ *     |           `-> func_8009C3F8 (asin/acos kernel, x in $f16)   <- camera_update_c = asinf,
+ *     `-> render_display_list                                          select_screen_update = acosf
+ *
+ * No stand-ins. Status (score.py group, this directory): every member MATCH except func_8009F058
+ * (22/1307: the slot of the &D_80150B70[view] spill home, 68 vs 72). See cloud/work/frontier/w7a/RESULTS.md
+ * and w6a/STRUCTURE.md.
+ *
+ * Shaping facts, each one tested (a different spelling changes code):
+ *  render_display_list: params (gp, tex, rect, clip, pals) -- callers set gp first; the clip/rect
+ *    SetTileSize rewrite in the tail is int-typed (G_SETTILESIZE << 24), not the SDK _SHIFTL form, so
+ *    the 0xF2000000 constant does not share a register web with the tile sections.
+ *  func_8009C3F8(f32 x, s32 flag): `/ 2.0f` (folded to *0.5 after CSE, so it is a separate constant),
+ *    one return of `r`, `(a[i] + r) + a[i]` operand order. x arrives in $f16 (IPA).
+ *  particle_system: LodSet is 88 bytes and is indexed as set->lv[lod].field (no level pointer);
+ *    `parent + node` operand order; distance through x/y/z locals; texture address written
+ *    `(id & 0x3FF) + D_80151AE8[id >> 10].tex`; named yaw/pitch locals.
+ *  track_collision_wall: explicit `goto next` continues; the scale loop's inner counter is reused by
+ *    the following loop (otherwise uopt unrolls it); two separate filter ifs at the loop bottom;
+ *    `pushed = 0, total = 0, saved = 0` initialised on one line; 16 bytes of unexplained frame filler.
+ *  func_8009F058: `Camera *cam` initialised at its declaration (otherwise ugen marks $16 noalias $sp
+ *    and as1 reorders the ortho arm); FillRectangle takes (s16) coordinates and ORs the y term first;
+ *    the view count goes through `i` and `(i < 2) != 0`; the texture address is recomputed as the
+ *    render_display_list argument; SDK gSPFogPosition (128000); fov factor 57.295776f. Two parameters
+ *    (view, eye): with (view, a1, a2, eye) the caller has to store the dead a1/a2 to their stack homes.
+ *  Input_ProcessGameplayPad: `if (D_80140618 >= 0) switch (...)` (retail's bltz before the case chain);
+ *    volatile D_8015F72D (lui/addiu/lb 0); only `i` at function level, the sprite loop body declares its
+ *    14 locals itself (e first, x 8th, tile 10th: frame offsets 180/152/144), three of them unused;
+ *    `lines` also carries the doubled height and the fill-rect y1, `flip` the texture width and the
+ *    fill-rect x1 (the shared variables cross calls, hence s3/s0); callback test re-reads e->tex;
+ *    `flip = 1;` before func_800878E0(8); t0 clamp as if/else; strip loops without a `next` variable
+ *    (`t + lines` is one CSE temp), flipped strip's ult written `height - (t + lines)` (no shared
+ *    height - t temp, which freed v0); y advanced as `if (hi-res) y += lines; t += lines; y += lines;`;
+ *    the palette pointer `pal` set inside each branch (`pal = e->pal` after the test).
+ */

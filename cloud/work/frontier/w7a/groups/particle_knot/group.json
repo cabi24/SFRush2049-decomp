@@ -1,0 +1,36 @@
+{
+ "members": [
+  "render_display_list",
+  "func_80099B30",
+  "func_8009C3F8",
+  "camera_update_c",
+  "select_screen_update",
+  "particle_system",
+  "track_collision_wall",
+  "func_8009F058",
+  "Input_ProcessGameplayPad"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "camera_update_c",
+  "select_screen_update",
+  "Input_ProcessGameplayPad"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "claims": [],
+ "claimable_if_unmatched_context_member_accepted": [
+  "render_display_list",
+  "func_80099B30",
+  "func_8009C3F8",
+  "camera_update_c",
+  "select_screen_update",
+  "particle_system",
+  "track_collision_wall",
+  "Input_ProcessGameplayPad"
+ ],
+ "note": "w7a particle-system knot, no stand-ins: Input_ProcessGameplayPad (the chain's only external caller) is a real member and strict MATCH; func_80087110 stays an external ABI call. score.py group: every member MATCH except func_8009F058 (22/1307, only the stack slot of the &D_80150B70[view] spill home: 68 vs 72). blob_unit --tag w7a with --internal for the six internal members and --neighbours: 8/9 EQUAL, 0 locked bodies broken. func_8009C3F8's other retail callers (camera_follow_path, func_800BFD8C) are absent and not needed for its code. Nothing claimed: func_8009F058 is a real but unmatched partner; the eight other members are byte-identical in the unit and would be claimable if the owner accepts an unclaimed context member whose only residual is a spill-slot offset (see RESULTS.md)."
+}

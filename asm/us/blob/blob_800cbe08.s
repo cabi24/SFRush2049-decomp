@@ -42,6 +42,7 @@ menu_back:
 .section .text.menu_transition, "ax", @progbits
 .globl menu_transition
 menu_transition:
+    /* compiled from src/blob/menu_transition.c */
     .word 0x27BDFFD8
     .word 0xAFBF001C
     .word 0xAFB10018

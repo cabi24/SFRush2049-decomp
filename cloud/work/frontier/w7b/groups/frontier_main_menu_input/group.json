@@ -1,0 +1,25 @@
+{
+ "members": [
+  "main_menu_input",
+  "func_800D52CC",
+  "object_activate",
+  "func_800D5374"
+ ],
+ "context": [],
+ "files": [
+  "main_menu_input.c",
+  "object_activate.c"
+ ],
+ "keep": [
+  "main_menu_input",
+  "object_activate",
+  "func_800D5374"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "provenance": "frontier wave 7 (w7b), 2026-10-05; supersedes frontier_main_menu_input (w2h): object_activate re-sourced as kept __inline (early-return form) so func_800D5374 inlines it; cloud/work/frontier/w7b/RESULTS.md",
+ "claims": [
+  "func_800D5374",
+  "object_activate"
+ ]
+}
