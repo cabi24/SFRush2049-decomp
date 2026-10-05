@@ -1,0 +1,539 @@
+{
+  "accepted_byte_gain": 0,
+  "base_revision": "31b2799ebb821a7ec0983a34d2611bba2cedaab9",
+  "behavior": {
+    "all_native_GNU_reads_writes_calls_memory_equal": true,
+    "binary32_oracle_equal": true,
+    "cases": 4424,
+    "executed_instruction_offsets": {
+      "func_80090284": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36,
+        40,
+        44,
+        48,
+        52,
+        56,
+        60,
+        64,
+        68,
+        72,
+        76,
+        80,
+        84,
+        88,
+        92,
+        96,
+        100,
+        104,
+        108,
+        112,
+        116,
+        120,
+        124,
+        128
+      ],
+      "func_80090E9C": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36,
+        40,
+        44,
+        48,
+        56,
+        60,
+        64,
+        68,
+        72,
+        76,
+        80,
+        84,
+        88,
+        92,
+        96,
+        100,
+        104,
+        108,
+        112,
+        116,
+        120,
+        124,
+        128,
+        132,
+        136,
+        140,
+        144,
+        148,
+        152,
+        156,
+        160,
+        164
+      ],
+      "func_8010DBB8": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36,
+        40,
+        44,
+        48,
+        52,
+        56,
+        60,
+        64,
+        68,
+        72,
+        76,
+        80,
+        84,
+        88,
+        92,
+        96,
+        100,
+        104,
+        108,
+        112,
+        116,
+        120,
+        124,
+        128,
+        132,
+        136,
+        140,
+        144,
+        148,
+        152,
+        156,
+        160,
+        164,
+        168,
+        172,
+        176,
+        180,
+        184,
+        188,
+        192,
+        196,
+        200,
+        204,
+        208,
+        212,
+        216,
+        220,
+        224,
+        228,
+        232,
+        236,
+        240,
+        244,
+        248,
+        252,
+        256,
+        260,
+        264,
+        268,
+        272,
+        276,
+        280,
+        284,
+        288,
+        292,
+        296,
+        300,
+        304,
+        308,
+        312,
+        316,
+        320
+      ]
+    },
+    "host_ubsan": true,
+    "limits": [
+      "Finite binary32 input domain and valid eight-player/sixteen-definition fixtures.",
+      "Real allocator and yaw instructions execute; sinf/cosf and final sound API are explicit call contracts.",
+      "No FCSR flags, signaling NaN payloads, arbitrary aliases or gameplay claims."
+    ],
+    "rejected_source_mutants": {
+      "inclusive_direction": 142,
+      "wrong_dot_axis": 140,
+      "wrong_flags": 154,
+      "wrong_literal": 140,
+      "wrong_sound_mode": 140,
+      "wrong_state": 0
+    },
+    "rotation_cases": 1816,
+    "unchanged_host_candidate_and_two_native_callees": true
+  },
+  "candidate_bytes": 324,
+  "compiler_sha256": {
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b"
+  },
+  "context_sources": {
+    "src/blob/func_80090284.c": "fd914a7ab60a0bfd4bde8b3cc8765482cc01529a454437f6406ce428aeb76e91",
+    "src/blob/func_80090E9C.c": "48a0e9b157c6e2607c22fa279a6e3b008b692fe15c1262f2c21b443d75893905",
+    "src/blob/func_800A61B0.c": "0d8334e0223e4b3f9498c2ed324e5a35847593c90e4b107a80306d4149e824af",
+    "src/blob/groups/frontier_list_alloc_sound/group.c": "10e56edc406cf5f81991f7271d7dc2f6721dd6dc1425d7209c76e468bc8ddc46",
+    "src/blob/stat_lap_split.c": "f9563673b971d17d830a9897e9aabf42f223188e3c16679663e9e65b4f5f19fc"
+  },
+  "erratum_flag": "-Wab,-r4300_mul",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "function": "func_8010DBB8",
+  "genuine_context": {
+    "entity_flags_apply": {
+      "differing": 0,
+      "elf_bytes": 292,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 292,
+      "notes": [],
+      "total": 73,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "MATCH"
+    },
+    "func_80090284": {
+      "differing": 0,
+      "elf_bytes": 132,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 132,
+      "notes": [],
+      "total": 33,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "MATCH"
+    },
+    "func_80090E9C": {
+      "differing": 0,
+      "elf_bytes": 168,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 168,
+      "notes": [
+        "own .rodata verified at 0x801239D0..0x801239D8"
+      ],
+      "total": 42,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "MATCH"
+    },
+    "func_80091FBC": {
+      "differing": 0,
+      "elf_bytes": 352,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 352,
+      "notes": [],
+      "total": 88,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "MATCH"
+    },
+    "func_8009211C": {
+      "differing": 0,
+      "elf_bytes": 348,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 348,
+      "notes": [],
+      "total": 87,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "MATCH"
+    },
+    "func_80092278": {
+      "differing": 0,
+      "elf_bytes": 232,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 232,
+      "notes": [],
+      "total": 58,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "MATCH"
+    },
+    "func_800A61B0": {
+      "differing": 0,
+      "elf_bytes": 148,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 148,
+      "notes": [],
+      "total": 37,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "MATCH"
+    },
+    "func_8010DBB8": {
+      "differing": 0,
+      "elf_bytes": 324,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 324,
+      "notes": [
+        "own .rodata verified at 0x801249C4..0x801249CC"
+      ],
+      "total": 81,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "MATCH"
+    },
+    "high_scores_display": {
+      "differing": 0,
+      "elf_bytes": 468,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 468,
+      "notes": [],
+      "total": 117,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "MATCH"
+    },
+    "stat_lap_split": {
+      "differing": 0,
+      "elf_bytes": 608,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 608,
+      "notes": [
+        "own .rodata verified at 0x80124824..0x80124828"
+      ],
+      "total": 152,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "MATCH"
+    }
+  },
+  "gnu_link": {
+    "claimed_body_sha256": "d5cc0cd4149f9f704aefbe30c9dd392f7d3aa4ec2383faf40b77a309801dc8dd",
+    "complete_81_words_equal": true,
+    "elf_symbol_bytes": 324,
+    "owned_literal_bytes_equal": true
+  },
+  "limitations": [
+    "No complete shadow unit, splice, image, compression or ROM gate.",
+    "Dot helper ancestry is authentic; a whole-function arcade donor and original N64 helper name are not established.",
+    "Allocator-result and working-node carriers preserve archived source roles; native code cannot prove original local names.",
+    "This context regression does not establish a unified shared-type model or complete game caller closure."
+  ],
+  "o32_layout_assertions": 16,
+  "object": {
+    "differing": 0,
+    "elf_bytes": 324,
+    "errors": [],
+    "extra_words": 0,
+    "native_bytes": 324,
+    "notes": [
+      "own .rodata verified at 0x801249C4..0x801249CC"
+    ],
+    "total": 81,
+    "unresolved": [],
+    "unverified": [],
+    "verdict": "MATCH"
+  },
+  "owned_data": {
+    "address": "0x801249C4",
+    "values": [
+      0.03333330154418945,
+      3.1415927410125732
+    ],
+    "verified_bytes": 8,
+    "zero_alignment_bytes": 8
+  },
+  "packet_sha256": {
+    "candidate.c": "5e3ded4a98a165b77abedb928c92f7294dd332b5e966ccae5527e8706c0ca72b",
+    "group.json": "d2de7d8dd6ea00e7e963245f07bb82bd2921423b5f8d3e53b71f966cf537fe73",
+    "host.c": "df6c6466e6ff6bbc8373de9ee93126f250be4ed36d88b5bac7fb70c8293525b4",
+    "native.py": "28ace1f811575a4863c1210dc709c4e2602aaf264b8b364a2d898d93f27bacfc",
+    "semantics.py": "57fac9b77f99a924d5b14473719161a47d5ca48640a9c79173841a230a78caa1",
+    "verify.py": "1b592edd7a5e69025894c1ff75af739f29ac3bc78636065e63dbe70aa5108795"
+  },
+  "range": [
+    "0x8010DBB8",
+    "0x8010DCFC"
+  ],
+  "recipe_sha256": "d2de7d8dd6ea00e7e963245f07bb82bd2921423b5f8d3e53b71f966cf537fe73",
+  "relocations": [
+    {
+      "offset": 12,
+      "symbol": "D_80117530",
+      "type": 5
+    },
+    {
+      "offset": 16,
+      "symbol": "D_80117530",
+      "type": 6
+    },
+    {
+      "offset": 48,
+      "symbol": "func_80090284",
+      "type": 4
+    },
+    {
+      "offset": 76,
+      "symbol": ".rodata",
+      "type": 5
+    },
+    {
+      "offset": 100,
+      "symbol": ".rodata",
+      "type": 6
+    },
+    {
+      "offset": 80,
+      "symbol": "player_array",
+      "type": 5
+    },
+    {
+      "offset": 92,
+      "symbol": "player_array",
+      "type": 6
+    },
+    {
+      "offset": 104,
+      "symbol": ".rodata",
+      "type": 5
+    },
+    {
+      "offset": 208,
+      "symbol": ".rodata",
+      "type": 6
+    },
+    {
+      "offset": 216,
+      "symbol": "func_80090E9C",
+      "type": 4
+    },
+    {
+      "offset": 236,
+      "symbol": "D_801391F0",
+      "type": 5
+    },
+    {
+      "offset": 240,
+      "symbol": "D_801391F0",
+      "type": 6
+    },
+    {
+      "offset": 256,
+      "symbol": "D_80117530",
+      "type": 5
+    },
+    {
+      "offset": 304,
+      "symbol": "D_80117530",
+      "type": 6
+    },
+    {
+      "offset": 300,
+      "symbol": "stat_lap_split",
+      "type": 4
+    }
+  ],
+  "source_controls": {
+    "archived_b10": {
+      "differing": 14,
+      "elf_bytes": 324,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 324,
+      "notes": [],
+      "total": 81,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "14/81 words differ"
+    },
+    "collapsed_node_carriers": {
+      "differing": 10,
+      "elf_bytes": 324,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 324,
+      "notes": [
+        "own .rodata verified at 0x801249C4..0x801249CC"
+      ],
+      "total": 81,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "10/81 words differ"
+    },
+    "expanded_dot_expression": {
+      "differing": 48,
+      "elf_bytes": 328,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 324,
+      "notes": [
+        "own .rodata verified at 0x801249C4..0x801249C8",
+        "not verified: .rodata+0x4 at +0xd4: retail bytes at 0x00140028 are not available"
+      ],
+      "total": 81,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x4c",
+        ".rodata+0x0 at +0x64",
+        ".rodata+0x4 at +0x6c",
+        ".rodata+0x4 at +0xd4"
+      ],
+      "verdict": "48/81 words differ (4 section-relative relocations unverified: .rodata+0x0 at +0x4c, .rodata+0x0 at +0x64, .rodata+0x4 at +0x6c, .rodata+0x4 at +0xd4)"
+    },
+    "wrong_literal": {
+      "differing": 0,
+      "elf_bytes": 324,
+      "errors": [
+        "own .rodata+0x0 referenced at +0x64 differs from retail 0x801249C4 (+0x0: retail and candidate byte values omitted; 4 bytes compared)"
+      ],
+      "extra_words": 0,
+      "native_bytes": 324,
+      "notes": [
+        "own .rodata verified at 0x801249C8..0x801249CC"
+      ],
+      "total": 81,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x4c",
+        ".rodata+0x0 at +0x64",
+        ".rodata+0x4 at +0x68",
+        ".rodata+0x4 at +0xd0"
+      ],
+      "verdict": "NOT VERIFIED (4 section-relative relocations unverified: .rodata+0x0 at +0x4c, .rodata+0x0 at +0x64, .rodata+0x4 at +0x68, .rodata+0x4 at +0xd0; own .rodata+0x0 referenced at +0x64 differs from retail 0x801249C4 (+0x0: retail and candidate byte values omitted; 4 bytes compared))"
+    }
+  },
+  "source_sha256": "5e3ded4a98a165b77abedb928c92f7294dd332b5e966ccae5527e8706c0ca72b",
+  "target_manifest_sha256": "7e71e911b80a278b1bd5b0328e33435aa8d3e6e6069c52c898ff363a46a38d33",
+  "unclaimed_object_text": {
+    "deleted_donor_helper_bytes_before_candidate": 8,
+    "donor_stub_is_not_a_native_name_or_coverage_claim": true,
+    "zero_alignment_bytes_after_candidate": 4
+  }
+}
