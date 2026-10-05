@@ -1,0 +1,23 @@
+{
+  "members": [
+    "steering_sensitivity"
+  ],
+  "context": [
+    "vector_diff_process",
+    "traction_control",
+    "func_800A61B0",
+    "math_utility"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "steering_sensitivity",
+    "traction_control",
+    "func_800A61B0",
+    "math_utility"
+  ],
+  "provenance": "Bounded new native steering caller reconstruction; accepted context unchanged",
+  "claims": []
+}
