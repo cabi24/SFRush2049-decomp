@@ -8459,6 +8459,7 @@ func_800E627C:
 .section .text.func_800E6460, "ax", @progbits
 .globl func_800E6460
 func_800E6460:
+    /* compiled from src/blob/func_800E6460.c */
     .word 0x3C0E8014
     .word 0x81CEFECB
     .word 0x51C00007
@@ -8702,6 +8703,7 @@ func_800E6460:
 .section .text.func_800E681C, "ax", @progbits
 .globl func_800E681C
 func_800E681C:
+    /* compiled from src/blob/func_800E681C.c */
     .word 0x3C028015
     .word 0x8442A108
     .word 0x27BDFFE0

@@ -736,6 +736,7 @@ car_stats_display:
 .section .text.func_800D1AB0, "ax", @progbits
 .globl func_800D1AB0
 func_800D1AB0:
+    /* compiled from src/blob/func_800D1AB0.c */
     .word 0x3C088015
     .word 0x81082744
     .word 0x27BDFFB8

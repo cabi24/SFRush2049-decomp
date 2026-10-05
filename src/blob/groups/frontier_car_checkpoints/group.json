@@ -1,0 +1,25 @@
+{
+ "members": [
+  "car_setup_confirm",
+  "func_800D1AB0",
+  "func_800F8EC8"
+ ],
+ "files": [
+  "func_800F8EC8.c",
+  "car_setup_confirm.c",
+  "func_800D1AB0.c",
+  "func_800B61A8.c"
+ ],
+ "keep": [
+  "car_setup_confirm",
+  "func_800F8EC8",
+  "func_800B61A8"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [
+  "func_800B61A8"
+ ],
+ "note": "frontier wave 3 (w3b). Real group, no stand-ins: both real callers of the internal func_800D1AB0 (car_setup_confirm, already locked, file unchanged from src/blob/groups/frontier_car_setup_confirm; and func_800F8EC8, new) plus the locked sound wrapper func_800B61A8 (unchanged copy of src/blob/func_800B61A8.c), which func_800F8EC8 inlines and which stays kept. Supersedes src/blob/groups/frontier_car_setup_confirm (revert it first). func_800D1AB0.c is unchanged from that group.",
+ "provenance": "frontier wave 3 (w3b), 2026-10-05; cloud/work/frontier/w3b/RESULTS.md"
+}

@@ -78,6 +78,11 @@
    "name": "func_800BAF90",
    "file": "src/blob/groups/frontier_heap_free_total/group.c",
    "reason": "locked as an empty stub until wave 2; it is the retail remains of a deleted static inlined into audio_output_setup and must stay internal (plan decision D3)"
+  },
+  {
+   "name": "func_800E6AE8",
+   "file": "src/blob/groups/func_800E681C/group.c",
+   "reason": "locked as an empty stub, but it is the retail remains of the gear-selection helper inlined into func_800E681C; defined for real in that group and must stay internal (plan decision D3)"
   }
  ],
  "align": [

@@ -1,31 +1,34 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared  (whole-program group; keep = func_800E681C) */
 /*
  * Per-player control input into each car's model record (0x808 bytes at 0x8014A250):
- *   func_800E627C  steering (+0x720)                     -- already locked, source unchanged
- *                  except that InputRecord has `u32 map[13]` (in->steerSrc -> in->map[2])
- *   func_800E6460  throttle (+0x72C) / brake (+0x728), quantised to 1/15 (internal)
- *   func_800E681C  the per-player loop and the two button bytes (+0x731/+0x732) (kept)
- *   func_800E6AE8  manual gear selection (+0x730); a deleted static: inlined at its single call
- *                  site in func_800E681C, its retail remains are the caller-less `jr ra; nop`
- *                  stub at 0x800E6AE8 that this definition reproduces.
- * No arcade ancestor (arcade reads pots/shifter in mdrive.c / pots.c).  Supersedes the
- * stand-in group src/blob/groups/func_800E681C: with the real caller kept, neither callee
- * needs a stand-in caller to stay out of line.
+ *   func_800E627C  steering (+0x720)                      -- already locked, source unchanged
+ *                  except that InputRecord now has `u32 map[13]` (in->steerSrc -> in->map[2])
+ *   func_800E6460  throttle (+0x72C) / brake (+0x728), quantised to 1/15
+ *   func_800E681C  the per-player loop, gear (+0x730) and two button bytes (+0x731/+0x732)
+ * No arcade ancestor (arcade reads pots in mdrive.c).  Replaces the stand-in group
+ * src/blob/groups/func_800E681C: with the real caller kept, neither callee needs a stand-in
+ * caller to stay out of line.
  *
- * What closed func_800E681C (w3b; was 16/179 words, three loop invariants rematerialised after
- * the first call coloured &D_8013FED0 / 2 / &D_8014A110 instead of retail's 2 / &D_8014A110 /
- * &D_8013FED0): the gear code is its own function func_800E6AE8(st, in), written with early
- * `return`s (the autoGear test included), defined AFTER func_800E681C so that its stub lands at
- * 0x800E6AE8.  The early returns replace w1d's `goto pick` join; the inlined copy changes the
- * web creation order and the colouring falls out right.  The next stub, func_800E6AF0, is not
- * the button code (writing the buttons as func_800E6AF0 gives 18 words).
+ * State (tools/cloud/score.py group): func_800E627C MATCH, func_800E6460 MATCH,
+ * func_800E681C 16/179 words (three rematerialised invariants after the first call are
+ * coloured a2/a3/t0 = &D_8013FED0 / 2 / &D_8014A110; retail has 2 / &D_8014A110 / &D_8013FED0).
+ * func_800E6460 is internal (four-wide t6-t9 ring; 94 of 239 words differ compiled alone), and its only
+ * caller is not strict yet, so its MATCH is recorded as provisional by the wave rules.
  *
- * Earlier shaping that still matters (w1d):
- *  - every button test is `D_8013FED0[in->pad] & in->map[k]` (two subscripted operands keep the
- *    retail order: map load first);
- *  - throttle/brake are `volatile F32`, `gear` is `volatile s8`; `st->gear += 1;` for the
- *    up-shift, `--st->gear <= 0` for the down-shift; no `car` local;
- *  - the last test is `if (...) { st->button30 = 1; continue; } else { st->button30 = 0; }`.
+ * What made func_800E6460 match (was 32 words):
+ *  - the input record holds an action->source array `u32 map[13]` at +0x18, and every button
+ *    test is written `D_8013FED0[in->pad] & in->map[k]`.  With a scalar field on either side cfe
+ *    puts the array load first whatever the source order; two subscripted operands keep the
+ *    retail order (map load first, `and tX,map,mask`).
+ *  - throttle/brake are `volatile F32` (three reloads per rounding, no CSE): unchanged from the
+ *    earlier attempt.
+ * What moved func_800E681C from 173 to 16 words:
+ *  - same `mask & in->map[k]` spelling; no `car` local (player_array[st->car] is written at both
+ *    uses and uopt's partial redundancy gives the retail recompute on the gear==0 path);
+ *  - `gear` is `volatile s8` like the other mainin bytes (retail never reuses a gear read);
+ *    `st->gear += 1;` for the up-shift, `--st->gear <= 0` for the down-shift;
+ *  - the last test is `if (...) { st->button30 = 1; continue; } else { st->button30 = 0; }`
+ *    (retail reloads active_player_count separately on the two arms).
  */
 typedef signed char s8;
 typedef unsigned char u8;
@@ -193,12 +196,12 @@ void func_800E6460(CarState *st, InputRecord *in)
     st->brake = (f32) (s32) q / 15;
 }
 
-void func_800E6AE8(CarState *st, InputRecord *in);
 void func_800E681C(void)
 {
     InputRecord *in;
     CarState *st;
     s32 i;
+    s32 speed;
 
     in = input_rec0;
     for (i = 0; i < active_player_count; i++, in++) {
@@ -208,7 +211,37 @@ void func_800E681C(void)
         }
         func_800E6460(st, in);
         func_800E627C(st, in);
-        func_800E6AE8(st, in);
+        if (st->autoGear == 0) {
+            if (player_array[st->car].f359 <= 0 && D_8013FECB == 0) {
+                if (D_8013FED0[in->pad] & in->map[5]) {
+                    st->gear = -1;
+                } else if (D_801403C0[in->pad] & in->map[4]) {
+                    if (--st->gear <= 0) {
+                        st->gear = 1;
+                    }
+                } else if (D_801403C0[in->pad] & in->map[3]) {
+                    st->gear += 1;
+                    if (st->gear >= 5) {
+                        st->gear = 4;
+                    }
+                    if (st->gear == 0) {
+                        goto pick;
+                    }
+                } else if (st->gear < 0) {
+                pick:
+                    speed = player_array[st->car].speed >> 2;
+                    if (speed >= 111) {
+                        st->gear = 4;
+                    } else if (speed >= 81) {
+                        st->gear = 3;
+                    } else if (speed >= 51) {
+                        st->gear = 2;
+                    } else {
+                        st->gear = 1;
+                    }
+                }
+            }
+        }
         if (D_8014A110 != 2 && D_8013FECB == 0 && (D_8013FED0[in->pad] & in->map[9])) {
             st->button3C = 1;
         } else {
@@ -220,48 +253,5 @@ void func_800E681C(void)
         } else {
             st->button30 = 0;
         }
-    }
-}
-
-void func_800E6AE8(CarState *st, InputRecord *in)
-{
-    s32 speed;
-
-    if (st->autoGear != 0) {
-        return;
-    }
-    if (player_array[st->car].f359 > 0 || D_8013FECB != 0) {
-        return;
-    }
-    if (D_8013FED0[in->pad] & in->map[5]) {
-        st->gear = -1;
-        return;
-    }
-    if (D_801403C0[in->pad] & in->map[4]) {
-        if (--st->gear <= 0) {
-            st->gear = 1;
-        }
-        return;
-    }
-    if (D_801403C0[in->pad] & in->map[3]) {
-        st->gear += 1;
-        if (st->gear >= 5) {
-            st->gear = 4;
-        }
-        if (st->gear != 0) {
-            return;
-        }
-    } else if (st->gear >= 0) {
-        return;
-    }
-    speed = player_array[st->car].speed >> 2;
-    if (speed >= 111) {
-        st->gear = 4;
-    } else if (speed >= 81) {
-        st->gear = 3;
-    } else if (speed >= 51) {
-        st->gear = 2;
-    } else {
-        st->gear = 1;
     }
 }

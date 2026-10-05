@@ -15,6 +15,10 @@
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
  "unprototyped": [],
+ "claims": [
+  "func_800E681C",
+  "func_800E6460"
+ ],
  "note": "frontier wave 3 (w3b). Real three-body group, no stand-ins: func_800E681C (kept) with its internal callees func_800E6460 (previously provisional) and func_800E627C (already locked, source unchanged). func_800E6AE8 is the retail stub of the inlined gear-selection static, defined here for real (context; its locked 2-word body is reproduced). Supersedes src/blob/groups/func_800E681C (stand-in group): revert that group first. If blob_unit check resolves func_800E6AE8 to the locked empty single, add a prefer_definition entry pointing at this group file.",
- "provenance": "frontier wave 3 (w3b), 2026-10-05; cloud/work/frontier/w3b/RESULTS.md"
+ "provenance": "frontier wave 3 (w3b), cloud/work/frontier/w3b/RESULTS.md; starts from w1d groups/control_input_E681C"
 }
