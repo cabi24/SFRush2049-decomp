@@ -1,0 +1,275 @@
+{
+  "status": "NONMATCH",
+  "claims": [],
+  "new_matching_bytes": 0,
+  "accepted_byte_gain": 0,
+  "base_revision": "31b2799ebb821a7ec0983a34d2611bba2cedaab9",
+  "function": "func_8010E72C",
+  "range": [
+    "0x8010E72C",
+    "0x8010E828"
+  ],
+  "source_sha256": "58b79930766fb74929aaaf4e5a9163b8bc14b7ff6206125de590f03fe207ff5d",
+  "compiler_sha256": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "assembler_erratum_flag": "-Wab,-r4300_mul",
+  "target_sha256": "d1937e0ab26a8b6bda733330fc1e5757971353210da0e5e8a3a1d89489b26c7d",
+  "linked_candidate_sha256": "ac733da6b52935acee10670b3203377f54b92d0112ab135284ef2c8c7e551250",
+  "object": {
+    "differing": 6,
+    "total": 63,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "verdict": "6/63 words differ",
+    "symbol_bytes": 252,
+    "native_bytes": 252,
+    "own_data_notes": []
+  },
+  "object_o2": {
+    "differing": 6,
+    "total": 63,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "verdict": "6/63 words differ",
+    "symbol_bytes": 252,
+    "native_bytes": 252,
+    "own_data_notes": []
+  },
+  "complete_gnu_link_agrees_with_project_relocation": true,
+  "text_relocation_count": 14,
+  "own_data_bytes": 0,
+  "text_alignment_bytes_outside_symbol": 4,
+  "differing_byte_offsets": [
+    0,
+    140,
+    148,
+    152,
+    172,
+    240
+  ],
+  "native_frame_bytes": 96,
+  "candidate_frame_bytes": 88,
+  "all_differences_are_eight_byte_stack_displacements": true,
+  "native_abi_compile_checks": 18,
+  "context": {
+    "func_8010E72C": {
+      "differing": 6,
+      "total": 63,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "6/63 words differ",
+      "symbol_bytes": 252,
+      "native_bytes": 252,
+      "own_data_notes": []
+    },
+    "func_80090284": {
+      "differing": 0,
+      "total": 33,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "MATCH",
+      "symbol_bytes": 132,
+      "native_bytes": 132,
+      "own_data_notes": []
+    },
+    "vector_normalize_length": {
+      "differing": 0,
+      "total": 95,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "MATCH",
+      "symbol_bytes": 380,
+      "native_bytes": 380,
+      "own_data_notes": [
+        "own .rodata verified at 0x8012388C..0x80123890"
+      ]
+    },
+    "math_utility": {
+      "differing": 0,
+      "total": 19,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "MATCH",
+      "symbol_bytes": 76,
+      "native_bytes": 76,
+      "own_data_notes": []
+    },
+    "stat_lap_split": {
+      "differing": 0,
+      "total": 152,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "MATCH",
+      "symbol_bytes": 608,
+      "native_bytes": 608,
+      "own_data_notes": [
+        "own .rodata verified at 0x80124824..0x80124828"
+      ]
+    }
+  },
+  "context_candidate_body_unchanged": true,
+  "registration": {
+    "protected_data_pointer_addresses": [
+      "0x80117778",
+      "0x80117838",
+      "0x80117988",
+      "0x80117cb8",
+      "0x80117d48",
+      "0x80117d78",
+      "0x80117da8",
+      "0x80118108",
+      "0x801181f8",
+      "0x80118618"
+    ],
+    "direct_jal_callers": [],
+    "limit": "Pointer presence supports callback use; dispatcher execution and original ownership are not established."
+  },
+  "external_time_scalar": {
+    "address": "0x801249d0",
+    "value": 0.03333330154418945,
+    "sha256": "1b619ec4a88df899813fda33093f9ae266ae894c2533af227c8fb35bd6bda279",
+    "candidate_owns_literal": false
+  },
+  "context_source_sha256": {
+    "func_80090284": "fd914a7ab60a0bfd4bde8b3cc8765482cc01529a454437f6406ce428aeb76e91",
+    "vector_normalize_length": "deb2f02cbc046c7f9be0b30a058cec7af8109c4d73d579902455b9b372dca264",
+    "math_utility": "ae72a0b474c5cadfdd021f84e2298e42650d093fe915164a06dba350a5a7732a",
+    "stat_lap_split": "f9563673b971d17d830a9897e9aabf42f223188e3c16679663e9e65b4f5f19fc"
+  },
+  "controls": {
+    "basis36_direct_array": {
+      "differing": 37,
+      "total": 63,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "37/63 words differ",
+      "symbol_bytes": 248,
+      "native_bytes": 252,
+      "own_data_notes": [],
+      "source_sha256": "23b06ea910b771afc6f7946a5d2b9129fd84eec036910dc6344f00ba1d752c24",
+      "frame_bytes": 72
+    },
+    "basis36_car_local": {
+      "differing": 6,
+      "total": 63,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "6/63 words differ",
+      "symbol_bytes": 252,
+      "native_bytes": 252,
+      "own_data_notes": [],
+      "source_sha256": "37c21f2cce8e6aba4f81a828e099260918784bddfb79c883b10ae5789c1fdb74",
+      "frame_bytes": 80
+    },
+    "matrix48_direct_array": {
+      "differing": 37,
+      "total": 63,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "37/63 words differ",
+      "symbol_bytes": 248,
+      "native_bytes": 252,
+      "own_data_notes": [],
+      "source_sha256": "7554d4330d2bea60075270e88ebc9bfc86ec6152f0f31bd3c38a0e62f73aa13b",
+      "frame_bytes": 88
+    },
+    "matrix48_car_local": {
+      "differing": 6,
+      "total": 63,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "6/63 words differ",
+      "symbol_bytes": 252,
+      "native_bytes": 252,
+      "own_data_notes": [],
+      "source_sha256": "58b79930766fb74929aaaf4e5a9163b8bc14b7ff6206125de590f03fe207ff5d",
+      "frame_bytes": 88
+    },
+    "archived_B77_resource": {
+      "differing": 24,
+      "total": 63,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "24/63 words differ",
+      "symbol_bytes": 252,
+      "native_bytes": 252,
+      "own_data_notes": [],
+      "source_sha256": "314a2ecedfde71ec5835394659d96063524acb4ca6c446fc2c8c0c4edd9b5eb3",
+      "frame_bytes": 80
+    },
+    "archived_B77_native": {
+      "differing": 38,
+      "total": 63,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "38/63 words differ",
+      "symbol_bytes": 248,
+      "native_bytes": 252,
+      "own_data_notes": [],
+      "source_sha256": "c4a2d1b812097b89f87b3a012811c9c7e451ab61a003ccb50b7069922ddf844c",
+      "frame_bytes": 72
+    }
+  },
+  "input_sha256": {
+    "asm/us/blob/SHA256SUMS": "7e71e911b80a278b1bd5b0328e33435aa8d3e6e6069c52c898ff363a46a38d33",
+    "asm/us/blob/symbols.json": "ea80bea2d751ca4f4e8ac636d2a9a5278e10267dd1f0a138a9fea5118a1b7c7d",
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
+  },
+  "behavior": {
+    "cases": 3584,
+    "native_executions": 10752,
+    "instruction_offsets_covered": [
+      63,
+      63,
+      63
+    ],
+    "unchanged_host_c89": "passed",
+    "ubsan_same_corpus": "passed",
+    "whole_external_memory_and_stack_canaries": "passed",
+    "saved_registers_and_stack_restore": "passed",
+    "wrong_contract_controls": {
+      "wrong_state": 1808,
+      "wrong_flag_mask": 904,
+      "wrong_resource_row": 1357,
+      "stale_sound_player": 968,
+      "stale_list_head": 1262,
+      "unknown_instruction": "rejected",
+      "missing_restore": "rejected"
+    },
+    "output_sha256": "0777c68a191419a4272e406586b599bd11242cdaf0dde744f501e25e453dd791",
+    "limits": "Mapped records with indices 0..3. Four dependencies are explicit O32 hooks; their internals and gameplay are not executed."
+  },
+  "packet_sha256": {
+    "candidate.c": "58b79930766fb74929aaaf4e5a9163b8bc14b7ff6206125de590f03fe207ff5d",
+    "host.c": "7ed19168a4f8ffc217a217552ffcba2387083e2ad84ab17e217360b9b09dc22f",
+    "native.py": "32938727fbc2f3b16fe0cc1d8f04e9b77e33c83cab71740b7217baba8f7040d0",
+    "verify.py": "a524e5b8f1faeaeca832121808ad51c9ba7cafac0544d480e956dc81c03897bd",
+    "claim.json": "3ca4612b9984239c999fe8d822fd76649e4e8e7521de32024603ba82754bf620"
+  }
+}

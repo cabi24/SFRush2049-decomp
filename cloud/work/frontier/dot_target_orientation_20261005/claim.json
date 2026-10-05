@@ -1,0 +1,84 @@
+{
+  "date_utc": "2026-10-05",
+  "base_revision": "31b2799ebb821a7ec0983a34d2611bba2cedaab9",
+  "target": "func_8010E72C",
+  "range": [
+    "0x8010E72C",
+    "0x8010E828"
+  ],
+  "claims": [],
+  "accepted_byte_gain": 0,
+  "freshness": {
+    "origin_master_fetched": true,
+    "open_pull_requests_checked": [
+      109,
+      110,
+      111,
+      112,
+      113
+    ],
+    "excluded_active_targets": [
+      "func_8010DBB8",
+      "func_800E95DC",
+      "func_800A79F4",
+      "func_800E79F8",
+      "func_800E7A98",
+      "func_8010C448",
+      "func_8010C588"
+    ],
+    "target_locked": false,
+    "prior_sources": [
+      "cloud/work/near_miss_B77/func_8010E72C_native.c",
+      "cloud/work/near_miss_B77/func_8010E72C_resource.c",
+      "cloud/work/heads_B5/func_8010E72C_best.c"
+    ],
+    "limit": "Fresh repository and known task claims; unpublished external work is not globally observable."
+  },
+  "donor": {
+    "repository": "https://github.com/historicalsource/rushtherock",
+    "revision": "845329d7b36f5a384c5625ed9a0aef584ab46139",
+    "files": {
+      "game/targets.c": "9e169133299450b46fbdd96b9c26e786c192c189618bcd5ebdffba0c8fb4bd31",
+      "game/visuals.c": "143fb78b0317cfca6e068a2992ffa52b51996184d53c1109769cd969c58ca331",
+      "LIB/fmath.h": "cf14fd9628e3ad952a39d13ff569e9482ebe00ecf1d94b972cf079099c2d32d1"
+    },
+    "evidence": [
+      {
+        "file": "game/targets.c",
+        "function": "StartKnockdown",
+        "lines": [
+          723,
+          757
+        ],
+        "used": "Visual node, full MATRIX, consumed car pointer, orient/copy/list/sound sequence"
+      },
+      {
+        "file": "game/targets.c",
+        "function": "StartCone",
+        "lines": [
+          1496,
+          1532
+        ],
+        "used": "Corroborates the full MATRIX declaration and consumed car pointer; not the exact native algorithm"
+      },
+      {
+        "file": "LIB/fmath.h",
+        "lines": [
+          34,
+          73
+        ],
+        "used": "Authentic 48-byte MATRIX aggregate and union views"
+      },
+      {
+        "file": "game/visuals.c",
+        "function": "PointInDir",
+        "lines": [
+          2442,
+          2466
+        ],
+        "used": "Algorithmic ancestor of the accepted vector_normalize_length body; threshold/control differs"
+      }
+    ],
+    "limit": "Authentic algorithm/type ancestry, not proof of an original N64 file or its remaining eight bytes of frame storage."
+  }
+}
