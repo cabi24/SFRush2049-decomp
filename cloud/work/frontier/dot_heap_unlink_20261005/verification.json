@@ -1,0 +1,539 @@
+{
+  "accepted_byte_gain": 0,
+  "accepted_context": {
+    "InitMaxPath": {
+      "canonical": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 34,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 136,
+      "native_bytes": 136
+    },
+    "MP_TargetSpeed": {
+      "canonical": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 28,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 112,
+      "native_bytes": 112
+    },
+    "NextMaxPath": {
+      "canonical": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 130,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 520,
+      "native_bytes": 520
+    },
+    "PrevMaxPath": {
+      "canonical": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 24,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 96,
+      "native_bytes": 96
+    },
+    "assign_default_paths": {
+      "canonical": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 28,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 112,
+      "native_bytes": 112
+    },
+    "audio_buffer_sync": {
+      "canonical": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 26,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 104,
+      "native_bytes": 104
+    },
+    "audio_effect_process": {
+      "canonical": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 23,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 92,
+      "native_bytes": 92
+    },
+    "audio_reverb_update": {
+      "canonical": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 61,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 244,
+      "native_bytes": 244
+    },
+    "car_angular_velocity_clamp": {
+      "canonical": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 201,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 804,
+      "native_bytes": 804
+    },
+    "car_damage_visual": {
+      "canonical": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 170,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 680,
+      "native_bytes": 680
+    },
+    "func_80095EF4": {
+      "canonical": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 38,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 152,
+      "native_bytes": 152
+    },
+    "func_80095F8C": {
+      "canonical": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 19,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 76,
+      "native_bytes": 76
+    },
+    "func_800A51D8": {
+      "canonical": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 2,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 8,
+      "native_bytes": 8
+    },
+    "func_800CB9D0": {
+      "canonical": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 129,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 516,
+      "native_bytes": 516
+    },
+    "menu_item_select": {
+      "canonical": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 141,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 564,
+      "native_bytes": 564
+    },
+    "object_counter_decrement": {
+      "canonical": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 27,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 108,
+      "native_bytes": 108
+    },
+    "object_counter_increment": {
+      "canonical": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 28,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 112,
+      "native_bytes": 112
+    },
+    "stat_race_end": {
+      "canonical": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 29,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 116,
+      "native_bytes": 116
+    },
+    "sync_maxpath_to_checkpoint": {
+      "canonical": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 34,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 136,
+      "native_bytes": 136
+    },
+    "synced_model_render": {
+      "canonical": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 23,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 92,
+      "native_bytes": 92
+    }
+  },
+  "archive_a29": {
+    "canonical": {
+      "differing": 31,
+      "errors": [],
+      "extra_words": 0,
+      "total": 43,
+      "unresolved": [],
+      "unverified": []
+    },
+    "elf_bytes": 164,
+    "full_extent_differing_offsets": [
+      48,
+      52,
+      56,
+      60,
+      64,
+      68,
+      72,
+      76,
+      80,
+      84,
+      88,
+      92,
+      96,
+      100,
+      104,
+      108,
+      112,
+      116,
+      120,
+      124,
+      128,
+      132,
+      136,
+      140,
+      144,
+      148,
+      152,
+      156,
+      160,
+      164,
+      168
+    ],
+    "native_bytes": 172,
+    "native_sha256": "0caa8a6e625b92aa5fa1a54954d660db11e65c472f880937d1525152743c3c8e",
+    "relocated_sha256": "e1536e5b15a3a400d803ad34b4d032febe2d088c96fdab1bc67ffc5e5d1d3739"
+  },
+  "archive_source_sha256": "558a276476c72678cdec46d5d3d90ba882cda8d29c7e0177cd678ebe4be079ba",
+  "base": "e0e734babdac3c6a79d2f87f7f895e34aa170148",
+  "behavior": {
+    "cases": 1153,
+    "covered_words_each": [
+      43,
+      43,
+      43
+    ],
+    "delay_slots_stack_canaries_and_saved_registers": true,
+    "external_callees": "contract hooks; actual release body is code-checked but not executed",
+    "native_candidate_gnu_executions": 3459,
+    "oracle_sha256": "4b97f2ff93b56185ac1cf6d4ef116fe7e1b81b73051597cf77afa659313191aa",
+    "total_words": 43
+  },
+  "candidate": {
+    "canonical": {
+      "differing": 4,
+      "errors": [],
+      "extra_words": 0,
+      "total": 43,
+      "unresolved": [],
+      "unverified": []
+    },
+    "elf_bytes": 172,
+    "full_extent_differing_offsets": [
+      92,
+      96,
+      116,
+      120
+    ],
+    "native_bytes": 172,
+    "native_sha256": "0caa8a6e625b92aa5fa1a54954d660db11e65c472f880937d1525152743c3c8e",
+    "relocated_sha256": "43483b326881be74539dd864b189b2a2ed1b8e116fcc069e7575d2cbf9e64bff"
+  },
+  "claims": [],
+  "compiler_sha256": {
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b"
+  },
+  "context_source_sha256": {
+    "src/blob/groups/codex_heap_release_a25/alloc_at.c": "5e0c8c02067df2c7343185639853dbb44dd54aa449aa7ec7333e4e934380c1b2",
+    "src/blob/groups/codex_heap_release_a25/car_damage_visual.c": "a3a12e0b658a02692b8f1033aa303b6e4b74ceddf7a82e550819f2a0001b0de4",
+    "src/blob/groups/codex_heap_release_a25/deflate_mem.c": "6b45c16d1943f1e36632223f8092128596e1f10ba5c6012ac64161938fc2dd82",
+    "src/blob/groups/codex_heap_release_a25/func_800CB9D0.c": "9fbbfa1f5e895a2daceb6fdbf052e76c4d7c6a9eb9c1b746726fadf54bee6f4f",
+    "src/blob/groups/codex_heap_release_a25/group.c": "b6ba31e402778bf4b80d4e596476f72f4e8937e6308afd9351351721e44acecf",
+    "src/blob/groups/codex_heap_release_a25/group.json": "7c136279b65234349cb97abe7880dd9fef66770d8fdf156fa77aab0fb3a45385",
+    "src/blob/groups/codex_heap_release_a25/overlay_loader.c": "5b1b5fc7fdc6b1119d84f1f9b65afc9478367118db830c5a282f2c1a6d6903ae"
+  },
+  "controls": {
+    "direct_default_selection": {
+      "canonical": {
+        "differing": 32,
+        "errors": [],
+        "extra_words": 0,
+        "total": 43,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 160,
+      "full_extent_differing_offsets": [
+        44,
+        48,
+        52,
+        56,
+        60,
+        64,
+        68,
+        72,
+        76,
+        80,
+        84,
+        88,
+        92,
+        96,
+        100,
+        104,
+        108,
+        112,
+        116,
+        120,
+        124,
+        128,
+        132,
+        136,
+        140,
+        144,
+        148,
+        152,
+        156,
+        160,
+        164,
+        168
+      ],
+      "native_bytes": 172,
+      "native_sha256": "0caa8a6e625b92aa5fa1a54954d660db11e65c472f880937d1525152743c3c8e",
+      "relocated_sha256": "a7ce043abfc6530f8de90568735917ccb69bf9de4c1444a66cd36ad340924397"
+    },
+    "separate_successor_local": {
+      "canonical": {
+        "differing": 37,
+        "errors": [],
+        "extra_words": 0,
+        "total": 43,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 168,
+      "full_extent_differing_offsets": [
+        4,
+        28,
+        32,
+        36,
+        40,
+        44,
+        48,
+        52,
+        56,
+        60,
+        64,
+        68,
+        72,
+        76,
+        80,
+        84,
+        88,
+        92,
+        96,
+        100,
+        104,
+        108,
+        112,
+        116,
+        120,
+        124,
+        128,
+        132,
+        136,
+        140,
+        144,
+        148,
+        152,
+        156,
+        160,
+        164,
+        168
+      ],
+      "native_bytes": 172,
+      "native_sha256": "0caa8a6e625b92aa5fa1a54954d660db11e65c472f880937d1525152743c3c8e",
+      "relocated_sha256": "de5c24b9597f59b1720adedc4e896079e01cdfb7a1ad903000f21b861bfa8ab9"
+    }
+  },
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "gnu_link": {
+    "body_sha256": "43483b326881be74539dd864b189b2a2ed1b8e116fcc069e7575d2cbf9e64bff",
+    "bytes": 172,
+    "compiler_slice_not_native_fixture": true,
+    "excluded_zero_alignment_bytes": 4,
+    "relocations": [
+      {
+        "kind": 5,
+        "offset": 12,
+        "symbol": "D_80152770"
+      },
+      {
+        "kind": 6,
+        "offset": 24,
+        "symbol": "D_80152770"
+      },
+      {
+        "kind": 4,
+        "offset": 36,
+        "symbol": "osRecvMesg"
+      },
+      {
+        "kind": 5,
+        "offset": 48,
+        "symbol": "D_801527C8"
+      },
+      {
+        "kind": 5,
+        "offset": 60,
+        "symbol": "D_801527C8"
+      },
+      {
+        "kind": 6,
+        "offset": 68,
+        "symbol": "D_801527C8"
+      },
+      {
+        "kind": 6,
+        "offset": 72,
+        "symbol": "D_801527C8"
+      },
+      {
+        "kind": 4,
+        "offset": 124,
+        "symbol": "audio_reverb_update"
+      },
+      {
+        "kind": 5,
+        "offset": 132,
+        "symbol": "D_80152770"
+      },
+      {
+        "kind": 6,
+        "offset": 136,
+        "symbol": "D_80152770"
+      },
+      {
+        "kind": 4,
+        "offset": 144,
+        "symbol": "osJamMesg"
+      }
+    ]
+  },
+  "host": {
+    "c89_ubsan_cases": 1153,
+    "host_only_pointer_transport": "u32 typedef is unsigned long; no native ABI claim",
+    "mutants": {
+      "missing_unlink": "rejected by contract assertion",
+      "select_before_receive": "rejected by contract assertion",
+      "wrong_successor": "rejected by contract assertion",
+      "wrong_tag": "rejected by contract assertion"
+    },
+    "source_body_unchanged": true
+  },
+  "native": {
+    "address": "0x800e7a98",
+    "bytes": 172,
+    "direct_callers": [],
+    "end_exclusive": "0x800e7b44",
+    "sha256": "0caa8a6e625b92aa5fa1a54954d660db11e65c472f880937d1525152743c3c8e"
+  },
+  "source_sha256": {
+    "behavior.py": "c61098514454989f408652cd28d89916614bb56942964e33415f26effcfc15fb",
+    "candidate.c": "38e45f2c6c57eb1f44ea9f7ec5d6149b7c1353a58419673c3e640a5052249597",
+    "host.c": "4ffc56628954f0b86c4a66683a290496728762216b0e97086d0130151f4ff7d5",
+    "verify.py": "811cb51d9c4162cc69efda5800e6f4b19f93e8d858b3f4cace39189de0e2b63f"
+  },
+  "status": "NONMATCH"
+}
