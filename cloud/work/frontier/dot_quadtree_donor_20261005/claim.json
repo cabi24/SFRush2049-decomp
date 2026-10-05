@@ -1,0 +1,70 @@
+{
+  "target": "func_800AC9BC",
+  "interval": [
+    "0x800AC9BC",
+    "0x800ACA9C"
+  ],
+  "native_bytes": 224,
+  "owner": "replenished scene-source worker",
+  "branch": "work/replenished-scene-source",
+  "base": "e24b47d89a0c8ffade1e4c75ad76b9d390a1c232",
+  "status": "research review",
+  "claims": [],
+  "open_pr_preflight": [
+    {
+      "number": 110,
+      "excluded": true
+    },
+    {
+      "number": 111,
+      "excluded": true
+    },
+    {
+      "number": 112,
+      "excluded": true
+    },
+    {
+      "number": 113,
+      "excluded": true
+    },
+    {
+      "number": 114,
+      "excluded": true
+    },
+    {
+      "number": 115,
+      "excluded": true
+    },
+    {
+      "number": 116,
+      "excluded": true
+    },
+    {
+      "number": 117,
+      "excluded": true
+    },
+    {
+      "number": 118,
+      "excluded": true
+    }
+  ],
+  "context": {
+    "handbrake_apply": "Exact existing body extracted from the accepted group, compiled read-only; not edited or claimed."
+  },
+  "prior_attempt": "cloud/work/ipa-groups/func_800AD4C8/STATUS.md Round 5, ~60 shape controls and 52/56-word residual; baseline replayed here.",
+  "new_evidence": "Pinned arcade stree.c downleaf midpoint locals and recursive boundary. Test native finite backward descent and direct child consumption; no broad allocator/reflow search.",
+  "donor": {
+    "repository": "https://github.com/historicalsource/rushtherock",
+    "commit": "845329d7b36f5a384c5625ed9a0aef584ab46139",
+    "file": "game/stree.c",
+    "file_sha256": "11f2efa58e7e97e9e60ef6e944a982208e70ae653af36a1b7e310dc7f0aaf970",
+    "lines": [
+      1211,
+      1240
+    ]
+  },
+  "limitations": [
+    "No merge, publication, image, compression or ROM gate in this worker.",
+    "No original N64 declarations or full source boundary recovered."
+  ]
+}
