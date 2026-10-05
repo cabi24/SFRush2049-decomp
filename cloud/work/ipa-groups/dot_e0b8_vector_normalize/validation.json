@@ -1,0 +1,77 @@
+{
+  "base_commit": "75df8b73e43c398a9971291b4334c51167ac6eab",
+  "scope": "Source submission and independent verification only; no image splice, promotion, ROM build or cartridge coverage claim",
+  "final_source_sha256": "dae0d6c43b1d3cf25e41f0d7d625214aff3c8a3bd7303513b515441d30f7d43f",
+  "final_group_spec_sha256": "138e49b581ef400b5601d240e8346a131b5a44671df7ef4d0f1b3e53618095a5",
+  "strict_group": {
+    "full_group": "PASS: E098 and E0B8 MATCH",
+    "claims": "PASS: new E0B8 claim; existing E098 context MATCH"
+  },
+  "independent_replay": {
+    "result": "PASS",
+    "semantic_cases": 7487,
+    "elf_bytes": {
+      "func_8008E098": 32,
+      "func_8008E0B8": 140
+    },
+    "gnu_linker_equals_project_relocator": true,
+    "fresh_receipt_matches_published_receipt": true
+  },
+  "tests": {
+    "focused_and_scorer": {
+      "command": "python3 -m pytest tests/cloud/test_e0b8_verification.py tests/conveyor/test_cloud_score.py -q -o addopts=''",
+      "passed": 662,
+      "failed": 0,
+      "exit_code": 0
+    },
+    "conveyor": {
+      "command": "python3 -m pytest tests/conveyor -q -o addopts='' -m 'not node_required'",
+      "passed": 1779,
+      "skipped": 41,
+      "deselected": 9,
+      "failed": 0,
+      "exit_code": 0,
+      "dependency_setup": "Reused exact repository-pinned decomp-permuter and mips_to_c local clones; initial empty-worktree dependency failures resolved without tracked edits."
+    },
+    "broad_cloud_and_scorer": {
+      "command": "python3 -m pytest tests/cloud tests/conveyor/test_cloud_score.py -q -o addopts=''",
+      "passed": 997,
+      "skipped": 18,
+      "failed": 2,
+      "exit_code": 1,
+      "note": "Collected before the 18 new tests were added; those tests passed separately in the final 662-test focused/scorer run. Both broad-suite failures independently reproduced on unchanged clean base commit."
+    },
+    "preexisting_broad_suite_failures": {
+      "tests/cloud/test_dot_fresh_masked_rng.py::test_compiled_source_replays": "Saved manifest hash differs from current protected manifest; eight other items identical.",
+      "tests/cloud/test_task_enqueue_research.py::test_ido_replay_and_native_abi_when_compiler_is_available": "Saved manifest hash differs from current protected manifest; ten other items identical.",
+      "fresh_manifest_sha256": "bc7e08ed0f4abdbbdacd24bf8ea493c416b83c52089e1a980f71512349ac1f8d",
+      "saved_manifest_sha256": "6f55bbc7f9eaecf7f3cc35b27285714adefebc169429450cbeeabe98c105bbe8",
+      "clean_base_replay": "2 failed, same differences; clean git status at75df8b73. No repair performed."
+    },
+    "static_locks": {
+      "command": "make check-matched",
+      "intact": 383,
+      "exit_code": 0
+    },
+    "c89_syntax": {
+      "command": "cc -std=c89 -pedantic -Wall -Wextra -Wno-unknown-pragmas -fsyntax-only cloud/work/ipa-groups/dot_e0b8_vector_normalize/group.c",
+      "exit_code": 0
+    },
+    "python_byte_compile": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "unchanged_scope": [
+    "protected native targets and manifests",
+    "accepted source and groups",
+    "static and blob locks",
+    "compiler binaries",
+    "scorer",
+    "recorded build recipe"
+  ],
+  "not_run": [
+    "image splice",
+    "full ROM build",
+    "ROM compression identity",
+    "make test"
+  ]
+}
