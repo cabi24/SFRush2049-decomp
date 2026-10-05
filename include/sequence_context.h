@@ -1,7 +1,9 @@
 /* Native N64 sequence-context layout, reconciled from lib_17dc0 consumers and
  * constructors. Unknown ranges are real record storage, not stack/code padding.
  * Production copy of cloud/work/boot_tail_promotion/sequence_context_contract/
- * sequence_context.h (identical declarations; adopted by boot-tail wave 3). */
+ * sequence_context.h (identical declarations; adopted by boot-tail wave 3).
+ * Wave 4 names 0xFC5 (byte) and 0xFC6 (halfword) from the unknown range,
+ * per func_80018EB4/func_80018B8C; the layout is unchanged. */
 #ifndef BOOT_TAIL_SEQUENCE_CONTEXT_H
 #define BOOT_TAIL_SEQUENCE_CONTEXT_H
 
@@ -39,7 +41,9 @@ typedef struct SequenceContext {
     unsigned char inactiveFC1;
     unsigned short valueFC2;
     unsigned char channelFC4;
-    unsigned char unknownFC5[0x1B];
+    unsigned char disabledFC5;
+    unsigned short valueFC6;
+    unsigned char unknownFC8[0x18];
     unsigned char valueFE0;
     unsigned char unknownFE1[3];
     unsigned int firstFE4;

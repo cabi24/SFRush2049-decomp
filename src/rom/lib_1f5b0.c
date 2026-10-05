@@ -4,6 +4,13 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
+/* Shared list/channel records, hoisted before the first slot that uses them
+ * (boot-tail wave 4: func_8001E9B0, func_8001EE34). Text unchanged. */
+#pragma pack(1)
+typedef struct SequenceNode { struct SequenceNode *next; struct SequenceNode *previous; u32 key; int value; } SequenceNode;
+#pragma pack(0)
+typedef struct ChannelLink_8001EE9C { u8 previous, next; u16 active; } ChannelLink_8001EE9C;
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1f5b0/func_8001E9B0.s")
 /* PROMOTED 2026-10-04 — func_8001EAA0
  * Source:   cloud/matches/boot_tail/func_8001EAA0.c (in-repo, locked)
@@ -16,7 +23,6 @@
  * previously opaque fields at +0x14, +0x18 and +0x28 respectively.
  * Keep these declarations before any future early list-helper promotion. */
 #pragma pack(1)
-typedef struct SequenceNode { struct SequenceNode *next; struct SequenceNode *previous; u32 key; int value; } SequenceNode;
 typedef struct VoiceState { u32 command00; u8 unknown04[12]; u32 next_identifier; u32 parent_identifier; SequenceNode *entry18; u8 unknown1C[8]; u32 flags24; u32 value28; u8 unknown2C[32]; u8 external4C; u8 unknown4D[19]; u32 identifier60; u8 unknown64[89]; u8 activeBD; u8 unknownBE[226]; } VoiceState;
 #pragma pack(0)
 extern SequenceNode *D_80050C50;
@@ -151,7 +157,6 @@ int func_8001EDF4(u32 key)
 #pragma pack(1)
 typedef struct VoicePrefix_8001EE9C { u8 unknown00[46]; u8 channel2E; u8 unknown2F[49]; u32 identifier60; } VoicePrefix_8001EE9C;
 #pragma pack(0)
-typedef struct ChannelLink_8001EE9C { u8 previous, next; u16 active; } ChannelLink_8001EE9C;
 typedef struct GroupLink_8001EE9C { u16 next, previous; } GroupLink_8001EE9C;
 extern ChannelLink_8001EE9C D_800504C8[32];
 extern u8 D_80050548[256];

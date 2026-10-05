@@ -4,6 +4,12 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
+/* Shared 0x1228 stream record. Named members replace only observed ranges;
+ * signed state/scale, volatile busy, SDK queues and callback ABI are retained.
+ * Hoisted before the first slot that uses it (boot-tail wave 4:
+ * func_800251A8); text unchanged. */
+typedef struct StreamState_80025264 { unsigned char unknown_0000[358]; unsigned short block_count; unsigned char unknown_0168[40]; void (*callback)(void *, void *, unsigned int, OSMesgQueue *); void *data; void *argument2; unsigned int argument3; unsigned char unknown_01A0[4096]; unsigned short read_count; unsigned short write_count; unsigned int buffered; int remaining; OSMesgQueue queue; OSMesg message; unsigned int field_11C8; unsigned int field_11CC; unsigned int field_11D0; unsigned int consumed; unsigned int available; signed char field_11DC; signed char state; signed char scale; unsigned char unknown_11DF; OSMesgQueue request_queue; OSMesg request_messages[2]; volatile unsigned char busy; unsigned char value1; unsigned char value2; unsigned char value3; unsigned char option; unsigned char unknown_1205[3]; unsigned int rate; int handle; short *buffer; unsigned int buffer_count; unsigned char request_state; unsigned char mode; unsigned char unknown_121A[2]; unsigned int processed; float field_1220; unsigned int token; } StreamState_80025264;
+
 /* PROMOTED 2026-10-04 — func_80024FB0
  * Source:   cloud/matches/boot_tail/func_80024FB0.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -94,9 +100,6 @@ void func_80025150(void)
  * Evidence: lock:cloud/work/boot_tail_promotion/sources/func_80025264.c:func_80025264 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-/* Shared 0x1228 stream record. Named members replace only observed ranges;
- * signed state/scale, volatile busy, SDK queues and callback ABI are retained. */
-typedef struct StreamState_80025264 { unsigned char unknown_0000[358]; unsigned short block_count; unsigned char unknown_0168[40]; void (*callback)(void *, void *, unsigned int, OSMesgQueue *); void *data; void *argument2; unsigned int argument3; unsigned char unknown_01A0[4096]; unsigned short read_count; unsigned short write_count; unsigned int buffered; int remaining; OSMesgQueue queue; OSMesg message; unsigned int field_11C8; unsigned int field_11CC; unsigned int field_11D0; unsigned int consumed; unsigned int available; signed char field_11DC; signed char state; signed char scale; unsigned char unknown_11DF; OSMesgQueue request_queue; OSMesg request_messages[2]; volatile unsigned char busy; unsigned char value1; unsigned char value2; unsigned char value3; unsigned char option; unsigned char unknown_1205[3]; unsigned int rate; int handle; short *buffer; unsigned int buffer_count; unsigned char request_state; unsigned char mode; unsigned char unknown_121A[2]; unsigned int processed; float field_1220; unsigned int token; } StreamState_80025264;
 extern StreamState_80025264 D_80056230[2];
 int func_80025264(unsigned int token)
 {
@@ -204,7 +207,7 @@ int func_80025670(unsigned int token, unsigned char value1,
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
 typedef int (*SampleCallback_8002574C)(short *, unsigned int, short *, unsigned int, unsigned int);
-typedef struct ServiceHooks_8002574C { unsigned char unknown_00[28]; void (*release)(void *); } ServiceHooks_8002574C;
+typedef struct ServiceHooks_8002574C { unsigned char unknown_00[24]; void *(*allocate)(unsigned int, int); void (*release)(void *); } ServiceHooks_8002574C;
 extern ServiceHooks_8002574C D_80038000;
 extern void func_80025150(void);
 extern void func_8002517C(void);
