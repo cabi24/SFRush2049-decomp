@@ -1,0 +1,55 @@
+{
+  "function": "func_800A150C",
+  "verdict": "PASS as bounded NONMATCH research only",
+  "status": "NONMATCH",
+  "claims": [],
+  "source": "cloud/work/encoded_string_mapping/func_800A150C.c",
+  "source_sha256": "75a8e6a5686f2974604301c2703977408be59b249322facb556013a98e920824",
+  "verifier_sha256": "b3668d47200dd4a5cbe97d220eb94edea4319aa5c4065b8f6d8ec62149e0b482",
+  "test_sha256": "571f6808dfb14a39ca2c2f6081fbc1cdd8075bd8dac5ec28eba83ee34c5750b4",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "independent_native_replay": {
+    "saved_receipt_equals_fresh": true,
+    "target_bytes": 312,
+    "candidate_symbol_bytes": 312,
+    "candidate_text_section_bytes": 320,
+    "zero_alignment_bytes": 8,
+    "comparison": {
+      "differing": 1,
+      "total": 78,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_accepted": false,
+    "residual": "One symmetric byte-mode comparison has reversed operand order; branch destination and behavior are unchanged, but byte identity is not established.",
+    "relocation_review": "All four references resolve to the original character-map symbol. No unresolved or unverified relocation sites remain."
+  },
+  "source_and_abi_review": {
+    "inputs": "Ordinary three-input leaf: output pointer, input pointer, and unsigned-byte limit. Higher limit bits are discarded.",
+    "dataflow": "Real input and output cursors, unsigned-byte input reads, unsigned-halfword map entries, first matching table index, and post-lookup equality stop.",
+    "zero_limit": "Preserves native behavior: zero is not a no-write guarantee if the first input code maps. An unmapped first code with zero limit stops without writing.",
+    "source_integrity": "No fabricated parameters, artificial work, inline assembly, forced registers, or owned target data. Tracked target, scorer, context, locks, and coverage are unchanged."
+  },
+  "independent_test_replay": {
+    "command": "python3 -m pytest -q tests/conveyor/test_encoded_string_mapping_reconstruction.py",
+    "tests_passed": 4,
+    "tests_skipped": 0,
+    "directed_host_cases": 15,
+    "deterministic_generated_host_cases": 1000,
+    "host_model": "Host-compiled C compared with an independent first-index dictionary model using synthetic maps, bounded output buffers, and well-terminated byte or two-byte input.",
+    "coverage": "Both encodings; duplicate first-match selection; unknown codes; padding; maximum byte limit; zero-limit behavior; byte conversion of a 256 argument; frozen receipt integrity; fresh native strict replay.",
+    "receipt_comparison_scope": "Only the dated whole-catalog target_manifest_sha256 is excluded from historical receipt equality. Current protected-catalog integrity checks still run, and function source/body hashes, extent, relocations, controls, and complete comparison remain pinned."
+  },
+  "limits": [
+    "This is a reproducible nonmatch, not an accepted match or an impossibility proof for remaining source-level levers.",
+    "Host model tests do not constitute MIPS execution, hardware validation, or exhaustive coverage. Aliased buffers and malformed or unterminated input are not covered.",
+    "No arcade ancestor or specific encoding identity is established.",
+    "No image gate, full-ROM gate, blob splice, lock promotion, or cartridge validation was run."
+  ],
+  "image_gate_run": false,
+  "full_rom_gate_run": false,
+  "new_coverage_bytes": 0,
+  "cartridge_credit_bytes": 0
+}

@@ -1,0 +1,154 @@
+{
+  "review_result": "PASS as a strict sound_init source match; no image or ROM claim",
+  "reviewed_commit": "3e4173a668498aff349417a296303c5f5fca70d7",
+  "reviewed_tree": "603abb529562694b928d16d5a36652a2a82ba3bd",
+  "base_commit": "cf10b3392d7f00ae42d75c008b79fdc2541aab6b",
+  "reviewed_author": "OpenAI <noreply@openai.com>",
+  "reviewed_committer": "OpenAI <noreply@openai.com>",
+  "author_identity_mutated_by_reviewer": false,
+  "working_tree_clean": true,
+  "reviewed_file_sha256": {
+    "cloud/work/dot_graphics_init_match/README.md": "94ea52b662ce9b10288b88b3d779084ce28f79273b226035262c795e45eb7e80",
+    "cloud/work/dot_graphics_init_match/host_test.c": "b9bec1d5d9e908d9bccf15dba4d0a36e009613c56e3d730d9365c864dfa5131b",
+    "cloud/work/dot_graphics_init_match/init.c": "6f49bbe093b77eab9fbfde6211d031f83e3c5eaf5215f968356bbed574d7745d",
+    "cloud/work/dot_graphics_init_match/recipe.json": "862f92142c28b1c4b94e8c285a34c2016be61aa58ceeb32cbbbfc2cf69dada1a",
+    "cloud/work/dot_graphics_init_match/verification.json": "04061a20d188774f740365b5d70e04c69e84a417840ee91c4cd2f23cd8fe72f6",
+    "cloud/work/dot_graphics_init_match/verify.py": "867470d2a4b11c8a4e851601e006e948336c4c224ad480fa858f04fc24eb4612",
+    "tests/cloud/test_graphics_init_match.py": "9ede89fd4461aa63572fe3036c9961b74fbfd0e1c6a24b919712127c267b0130"
+  },
+  "source_input_sha256": {
+    "src/blob/groups/gfx_modes/func_80086A50.c": "6550ec6da46a6b474c088ae89d03f4e62593758d4aa11c842f51e63437d4b3e1",
+    "src/blob/groups/gfx_modes/modes.c": "bb685680603f1ed4f2433f359747715ffaa2085c402b66d1109fb6bb17e40df4",
+    "src/blob/groups/gfx_modes/func_8008A148.c": "7de40c951eb651b658bc6f1de412cc9fbc70851edc7e8c13047d1ef31a9d551f",
+    "src/blob/groups/gfx_modes/rect.c": "a1feb67072ebbdc68d6e578a9dac22d89675f6ad8ee5f11ec2b87183b803d929",
+    "cloud/work/dot_graphics_init_match/init.c": "6f49bbe093b77eab9fbfde6211d031f83e3c5eaf5215f968356bbed574d7745d",
+    "src/blob/object_render.c": "82a359f4bc20de2bc0111250e90488d4646f697711ca4c124eccb053082a5339"
+  },
+  "protected_inputs_sha256": {
+    "blob_matched.lock.json": "1181773d7952a40c4c1a29871d63a41aa6afbb91dd042abfc33582ba9c68fbe4",
+    "matched.lock.json": "2b4bbe97c3637845e088aa86741051731e923bd758465a45b663fb7c07ce413b",
+    "symbol_addrs.us.txt": "3db8a69ed8b00120f0926fb610bd0aa8905d936a4cb2eb2238eb62883e7a92a1",
+    "include/game_types.h": "71b1399b216c194771954e94a6e0ad0e9d471d4f4498291370a3edaa5baa5cb2",
+    "tools/conveyor/pipeline/disasm.py": "2cb338cd089f234252b79374f2ab5062d39ed6c42b1ab5aa50b408dbf92a82af",
+    "tools/cloud/score.py": "9de8385b28938c012ba679ea1f899cd7e5fe351d2c51129c5319442c84b679c4",
+    "asm/us/blob/SHA256SUMS": "c889f453d7e6a306d0f7d0f66831877b9ce69b2a6ed63c2fa190a815bd7713fe",
+    "asm/us/blob/symbols.json": "f329a63d8a791564f666696d7d4513b666c17a5caaa3e85539b17de99a05f6cd"
+  },
+  "unchanged_from_baseline": [
+    "blob_matched.lock.json",
+    "matched.lock.json",
+    "symbol_addrs.us.txt",
+    "include/game_types.h",
+    "tools/conveyor/pipeline/disasm.py",
+    "tools/cloud/score.py",
+    "asm/us/blob/SHA256SUMS",
+    "asm/us/blob/symbols.json",
+    "src/blob/groups/gfx_modes/func_80086A50.c",
+    "src/blob/groups/gfx_modes/modes.c",
+    "src/blob/groups/gfx_modes/func_8008A148.c",
+    "src/blob/groups/gfx_modes/rect.c",
+    "src/blob/object_render.c"
+  ],
+  "replayed_receipt_sha256": "04061a20d188774f740365b5d70e04c69e84a417840ee91c4cd2f23cd8fe72f6",
+  "verification": {
+    "byte_for_byte_receipt_replay": true,
+    "sound_init": {
+      "native_bytes": 400,
+      "elf_st_size": 400,
+      "following_symbol_distance": 400,
+      "full_relocated_word_differences": 0,
+      "words": 100,
+      "resolved_relocation_count": 37,
+      "masked_offsets": [],
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "accepted_strict_regressions": {
+      "func_8008705C": {
+        "native_bytes": 180,
+        "elf_st_size": 180,
+        "full_word_equal": true
+      },
+      "func_800878E0": {
+        "native_bytes": 296,
+        "elf_st_size": 296,
+        "full_word_equal": true
+      },
+      "func_8008A148": {
+        "native_bytes": 580,
+        "elf_st_size": 580,
+        "full_word_equal": true
+      },
+      "func_8008A46C": {
+        "native_bytes": 472,
+        "elf_st_size": 472,
+        "full_word_equal": true
+      },
+      "object_render": {
+        "native_bytes": 10048,
+        "elf_st_size": 10048,
+        "full_word_equal": true
+      }
+    },
+    "mode_helper": {
+      "native_bytes": 1548,
+      "elf_st_size": 1548,
+      "masked_word_differences": 0,
+      "unverified": [
+        ".rodata+0x0 at +0xc",
+        ".rodata+0x0 at +0x14"
+      ],
+      "baseline_body_and_table_sections_unchanged": true,
+      "strict_match_claimed": false
+    },
+    "causal_controls": {
+      "legacy_in_accepted_gfx": {
+        "elf_st_size": 404,
+        "differing_words": 75
+      },
+      "legacy_with_real_owner": {
+        "elf_st_size": 400,
+        "differing_words": 27
+      }
+    },
+    "negative_gate_controls": [
+      "extent",
+      "mask",
+      "words",
+      "unresolved",
+      "extra"
+    ],
+    "focused_pytest": {
+      "passed": 8,
+      "failed": 0
+    },
+    "sanitizers": {
+      "address": true,
+      "undefined": true,
+      "initialization_cases": 5142,
+      "full_state_nonnull_noop": true,
+      "leak_detection": false,
+      "leak_detection_reason": "LeakSanitizer is unavailable under executor ptrace; initial detect_leaks=1 run failed solely with that limitation."
+    },
+    "strict_root_cli_exit": 0,
+    "wider_scorer": {
+      "result": "15 failures, all existing locked-single local-section relocations remain unverified; all failures have zero instruction differences and no excess words. Relevant baseline files are byte-identical. No CI repair attempted."
+    }
+  },
+  "manual_audit": [
+    "No-argument sound_init entry; 24-byte native frame; mode call argument 1; optional flag call argument 0x8000.",
+    "Native height address is held across the genuine mode helper and loaded after it; C retains that call order and post-call condition.",
+    "SDK-style block-local Gfx pointers have real command-producing lifetimes; no fake parameters, padding, keepers, assembly, or volatile steering.",
+    "Unchanged accepted object_render owns the single eight-byte s64 D_8012E688 object. Initializer only declares it extern.",
+    "Unchanged gfx_modes roots and real helper are reused. Exact accepted member bytes are compared in both old and new recipes.",
+    "All seven changed files are text source, tests, hashes, or bounded verification documentation; no ROM bytes, raw assembly dumps, credentials, or unrelated data."
+  ],
+  "limits": [
+    "No splice performed.",
+    "No linked image byte-identity or cartridge hash verification.",
+    "Existing mode-helper local-table placement uncertainties remain.",
+    "No merge or publication performed by reviewer."
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "members": [
+    "audio_channel_reset"
+  ],
+  "context": [
+    "Input_ApplyPadConfig",
+    "Input_InitPadHandlers"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "Input_ApplyPadConfig",
+    "Input_InitPadHandlers",
+    "audio_channel_reset"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "note": "Complete nonmatch only. Real accepted pad configuration definitions are unchanged context; all three bodies are independently checked by verify.py."
+}

@@ -1,0 +1,233 @@
+{
+  "reviewed_commits": [
+    "b4806a3aac0a1ff0f7a45f7c35e98afcb8426a23",
+    "5392163d43469348a5705223747dafc4d424ff1b"
+  ],
+  "review_date": "2026-10-05",
+  "verdict": "PASS as bounded NONMATCH research only",
+  "claims": [],
+  "new_coverage_bytes": 0,
+  "source_and_recipe_hashes": {
+    "cloud/work/dot_pad_channel_reset_20261005/group.c": "995f9ee88a216b1d830d75c3785e5de12878bc373323fefdec3503e7d228c7e8",
+    "cloud/work/dot_pad_channel_reset_20261005/group.json": "c60734a26f2fac283a37dc246d46ece81c4b1a8c43d79a073b148c57649fbb71",
+    "cloud/work/dot_pad_channel_reset_20261005/verify.py": "2155bc15f8b35069c80c075f5e5513f8c5c772ef0535f105ccade2e7e1e0a82d",
+    "cloud/work/dot_pad_channel_reset_20261005/verification.json": "02025594f3741c5e4f56ced321c5349791990bf34e455dd3224076adece834a4",
+    "cloud/work/dot_state_update_context_20261005/group.c": "beeed7b225a88ee42b7c67ea1e0c56cfa144b73d91020475c285a3b0efb33fe2",
+    "cloud/work/dot_state_update_context_20261005/group.json": "93152643f02e2c469cda624843cc8bf378346bad61b71d21076871cb003a912b",
+    "cloud/work/dot_state_update_context_20261005/verify.py": "9b4dea870da9a9b8ecbcb28053b3ec58f2dcf02f1c91b8c9e209cd3331cfc642",
+    "cloud/work/dot_state_update_context_20261005/verification.json": "29f2afcfa3deed5deadd694ab431b6a22668d7beb44ddd87a9cb235e4ce8f469",
+    "src/blob/groups/frontier_pad_config/group.c": "851ffac18d1fa64431c2961d9d2683f279982ae3e329bff67710abe893f94a1d",
+    "tests/cloud/test_dot_pad_channel_reset.py": "26babcbb05ed56175f07975a8cd0dba3214f07d900b623938f9100b25615fb86"
+  },
+  "results": {
+    "dot_pad_channel_reset_20261005": {
+      "audio_channel_reset": {
+        "address": "0x80094fe8",
+        "elf_symbol_bytes": 164,
+        "target_bytes": 164,
+        "exact_extent": true,
+        "full_relocated_differing_words": 15,
+        "canonical_differing_words": 15,
+        "canonical_extra_nonzero_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "relocation_errors": [],
+        "masked_sites": 0,
+        "relocated_body_sha256": "01c96995dc33cd4da5968b4f1ad5709d5f19ad11e20653187fa5a26826728821",
+        "target_body_sha256": "9f964443c6d3388837978c8058bdaba9b0596c8a84814b0732c8cc805d877f81",
+        "strict_match": false
+      },
+      "Input_ApplyPadConfig": {
+        "address": "0x80094ec8",
+        "elf_symbol_bytes": 192,
+        "target_bytes": 192,
+        "exact_extent": true,
+        "full_relocated_differing_words": 0,
+        "canonical_differing_words": 0,
+        "canonical_extra_nonzero_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "relocation_errors": [],
+        "masked_sites": 0,
+        "relocated_body_sha256": "3282399bd7919e39047f452faa4070df2ef7b4b91d82318591c2592e7bfda590",
+        "target_body_sha256": "3282399bd7919e39047f452faa4070df2ef7b4b91d82318591c2592e7bfda590",
+        "strict_match": true
+      },
+      "Input_InitPadHandlers": {
+        "address": "0x80094e88",
+        "elf_symbol_bytes": 64,
+        "target_bytes": 64,
+        "exact_extent": true,
+        "full_relocated_differing_words": 0,
+        "canonical_differing_words": 0,
+        "canonical_extra_nonzero_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "relocation_errors": [],
+        "masked_sites": 0,
+        "relocated_body_sha256": "c2136bc827a030570977d8e04f6df6ac07ee50285b6d41a1e756f94fb0697304",
+        "target_body_sha256": "c2136bc827a030570977d8e04f6df6ac07ee50285b6d41a1e756f94fb0697304",
+        "strict_match": true
+      }
+    },
+    "dot_state_update_context_20261005": {
+      "state_update_global": {
+        "address": "0x8010b560",
+        "elf_symbol_bytes": 112,
+        "target_bytes": 112,
+        "exact_extent": true,
+        "full_relocated_differing_words": 3,
+        "canonical_differing_words": 3,
+        "canonical_extra_nonzero_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "relocation_errors": [],
+        "masked_sites": 0,
+        "relocated_body_sha256": "88621fc3731521a7bedf7db844ddcb0342d7da6d696c81638f7cc9fde921d868",
+        "target_body_sha256": "f6c6d560d9fec4655cd774bd5da62442f4893bbb0cfc07505a37372d6fd7c689",
+        "strict_match": false
+      },
+      "Input_ApplyPadConfig": {
+        "address": "0x80094ec8",
+        "elf_symbol_bytes": 192,
+        "target_bytes": 192,
+        "exact_extent": true,
+        "full_relocated_differing_words": 0,
+        "canonical_differing_words": 0,
+        "canonical_extra_nonzero_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "relocation_errors": [],
+        "masked_sites": 0,
+        "relocated_body_sha256": "3282399bd7919e39047f452faa4070df2ef7b4b91d82318591c2592e7bfda590",
+        "target_body_sha256": "3282399bd7919e39047f452faa4070df2ef7b4b91d82318591c2592e7bfda590",
+        "strict_match": true
+      },
+      "Input_InitPadHandlers": {
+        "address": "0x80094e88",
+        "elf_symbol_bytes": 64,
+        "target_bytes": 64,
+        "exact_extent": true,
+        "full_relocated_differing_words": 0,
+        "canonical_differing_words": 0,
+        "canonical_extra_nonzero_words": 0,
+        "unresolved": [],
+        "unverified": [],
+        "relocation_errors": [],
+        "masked_sites": 0,
+        "relocated_body_sha256": "c2136bc827a030570977d8e04f6df6ac07ee50285b6d41a1e756f94fb0697304",
+        "target_body_sha256": "c2136bc827a030570977d8e04f6df6ac07ee50285b6d41a1e756f94fb0697304",
+        "strict_match": true
+      }
+    }
+  },
+  "baseline_controls": [
+    {
+      "function": "audio_channel_reset",
+      "control": "cloud/work/tiny_A48/audio_channel_reset.c",
+      "optimization": "O2",
+      "differing_words": 39,
+      "elf_symbol_bytes": 168,
+      "extra_nonzero_words": 0
+    },
+    {
+      "function": "audio_channel_reset",
+      "control": "cloud/work/tiny_A48/audio_channel_reset.c",
+      "optimization": "O3",
+      "differing_words": 39,
+      "elf_symbol_bytes": 168,
+      "extra_nonzero_words": 0
+    },
+    {
+      "function": "state_update_global",
+      "control": "cloud/work/near_miss_B/state_update_global_best.c",
+      "optimization": "O2",
+      "differing_words": 3,
+      "elf_symbol_bytes": 112,
+      "extra_nonzero_words": 0
+    },
+    {
+      "function": "state_update_global",
+      "control": "cloud/work/near_miss_B/state_update_global_best.c",
+      "optimization": "O3",
+      "differing_words": 3,
+      "elf_symbol_bytes": 112,
+      "extra_nonzero_words": 0
+    }
+  ],
+  "fault_refusal_controls": [
+    {
+      "packet": "dot_pad_channel_reset_20261005",
+      "fault": "accepted_context_prefix",
+      "rejected": true
+    },
+    {
+      "packet": "dot_pad_channel_reset_20261005",
+      "fault": "target_return_value",
+      "rejected": true
+    },
+    {
+      "packet": "dot_state_update_context_20261005",
+      "fault": "accepted_context_prefix",
+      "rejected": true
+    },
+    {
+      "packet": "dot_state_update_context_20261005",
+      "fault": "target_return_value",
+      "rejected": true
+    }
+  ],
+  "targeted_tests": {
+    "command": "python3 -m pytest -q tests/cloud/test_dot_pad_channel_reset.py",
+    "passed": 4,
+    "skipped": 0,
+    "pad_directed_cases": 192,
+    "pad_generated_cases": 1000,
+    "pad_repeat_calls": 1192,
+    "state_callback_cases": 64
+  },
+  "review_findings": [
+    "Both packets include the exact accepted real context as a byte-identical prefix; all context extents and relocated bytes remain strict.",
+    "The pad callback reads the signed-half count, each unsigned-byte car index, and signed-byte car flag. It preserves full scanning, changes the signed configuration byte only on aggregate mismatch, calls the real configuration function, and returns one.",
+    "The state callback preserves global boolean normalization, changed-byte publication, actual pointer recovery and byte reload after its first callback, optional real address store and second callback, and the final word-zero store after the callback.",
+    "Native object extents are checked separately from section padding and scorer extra-nonzero counting. The historical pad baseline is 168 bytes, so its old exact-extent description was correctly rejected.",
+    "All claimed remaining pad differences affect allocation with native opcode/control-flow geometry preserved; the state residual is the global-value carrier. Neither is a match.",
+    "No accepted source, symbols, protected target, locks, flags, compiler, or scorer mutation is present in the reviewed commits."
+  ],
+  "limitations": [
+    "Host semantic tests use synthetic fixtures and do not constitute MIPS execution or exhaustive alias/malformed-input validation.",
+    "The state host test intentionally checks the low 32-bit address carrier, consistent with the native ABI, rather than claiming host pointer portability.",
+    "No image or full-ROM gate was run; no cartridge credit or impossibility claim is warranted.",
+    "Only the four historical baseline compiles and four refusal probes were independently repeated. Other archived exploratory controls were reviewed as the author's bounded experiment record."
+  ],
+  "independent_residual_classification": {
+    "audio_channel_reset": {
+      "differing_offsets": [
+        0,
+        4,
+        20,
+        28,
+        32,
+        40,
+        48,
+        64,
+        72,
+        76,
+        80,
+        84,
+        96,
+        100,
+        116
+      ],
+      "opcode_and_nonregister_fields_equal": true
+    },
+    "state_update_global": {
+      "differing_offsets": [
+        4,
+        8,
+        20
+      ],
+      "opcode_and_nonregister_fields_equal": true
+    }
+  }
+}
