@@ -25,6 +25,10 @@ SAME gate for many functions at once:
 
 Usage (repo root, Pi):
     python3 cloud/work/boot_tail_promotion/promote_batch.py CONTEXT.jsonl SEG [SEG...]
+        [--only fn,fn,...]
+
+`--only` (wave 3) restricts the plan to the named slots; every other slot in
+the segments is skipped without a refusal row. All gates are unchanged.
 """
 import hashlib
 import json
@@ -76,6 +80,10 @@ def source_for(fn, entries):
     return specs[0].rpartition(":")[0] if len(specs) == 1 else None
 
 
+ONLY = None
+CONTEXT_PATH = HERE / "context.jsonl"
+
+
 def plan(segments, context):
     mapping = layoutmod.derive()
     entries = lockmod.load_lock()
@@ -86,6 +94,8 @@ def plan(segments, context):
             sys.exit(f"segment {name} is missing or not converted")
         for f in seg["functions"]:
             fn = f["name"]
+            if ONLY is not None and fn not in ONLY:
+                continue
             src = source_for(fn, entries)
             if src is None:
                 continue  # no verified body for this slot
@@ -121,7 +131,7 @@ def splice(cands):
         header = promotemod._provenance_header(
             c["fn"], f"{c['src']} (in-repo, locked)", c["seg"]["flagset"],
             f"lock:{c['src']}:{c['fn']} (score0); rom_tu.h context: "
-            f"{HERE}/context.jsonl")
+            f"{CONTEXT_PATH}")
         block = header + "\n" + "".join(d + "\n" for d in decls) + body.rstrip() + "\n"
         texts[tu] = text.replace(pragma, block, 1)
     for tu, text in texts.items():
@@ -206,7 +216,7 @@ def publish(passed, label):
     msg = (f"Promote {len(passed)} boot-tail functions ({label}, ROM SHA-1 exact)\n\n"
            f"Segments: {', '.join(sorted({c['seg']['yaml_name'] for c in passed}))}; "
            f"{nbytes} slot bytes.\nEach body: score-0 lock against the splat-derived reloc-aware "
-           "target, rom_tu.h context check\n(cloud/work/boot_tail_promotion/context.jsonl), then one "
+           f"target, rom_tu.h context check\n({CONTEXT_PATH}), then one "
            "full matching ROM build + make test\non watchman2 for the batch (greedy per-function acceptance on failure).\n\n"
            "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>")
     c = run(["git", "commit", "-q", "-m", msg, "--"] + tus + ["matched.lock.json"])
@@ -216,8 +226,15 @@ def publish(passed, label):
 
 
 def main():
-    context = {json.loads(l)["function"]: json.loads(l) for l in Path(sys.argv[1]).read_text().splitlines()}
-    segments = sys.argv[2:]
+    global ONLY, CONTEXT_PATH
+    argv = sys.argv[1:]
+    if "--only" in argv:
+        i = argv.index("--only")
+        ONLY = set(argv[i + 1].split(","))
+        del argv[i:i + 2]
+    CONTEXT_PATH = Path(argv[0])
+    context = {json.loads(l)["function"]: json.loads(l) for l in CONTEXT_PATH.read_text().splitlines()}
+    segments = argv[1:]
     dirty = run(["git", "status", "--porcelain", "--", "src/rom", "matched.lock.json"]).stdout.strip()
     if dirty:
         sys.exit("refusing: dirty src/rom or lockfile\n" + dirty)
