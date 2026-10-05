@@ -130,6 +130,7 @@ func_800B3D0C:
 .section .text.sound_update_channel, "ax", @progbits
 .globl sound_update_channel
 sound_update_channel:
+    /* compiled from src/blob/sound_update_channel.c */
     .word 0x3C078015
     .word 0x8CE79780
     .word 0x27BDFFE8

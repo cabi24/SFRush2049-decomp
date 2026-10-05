@@ -1,0 +1,21 @@
+Members:
+func_80096288:
+  MATCH
+slot_value_get:
+  MATCH
+display_list_alloc:
+  MATCH
+player_state_get:
+  MATCH
+slot_deactivate:
+  MATCH
+sound_update_channel:
+  MATCH
+mode_byte2_set:
+  MATCH
+object_type_byte2_get:
+  MATCH
+object_type_byte3_get:
+  MATCH
+mode_byte_set:
+  MATCH

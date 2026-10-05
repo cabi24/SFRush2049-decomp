@@ -1,0 +1,47 @@
+{
+ "members": [
+  "cpak_init",
+  "func_800AF8C0",
+  "save_validate"
+ ],
+ "context": [
+  "func_800AF844",
+  "vector_copy_scale",
+  "func_8008B424",
+  "func_800A78BC",
+  "func_8008D0C0",
+  "func_800AFA84",
+  "func_8008E3C0",
+  "func_8008C074",
+  "func_800AFB30",
+  "func_800AFD54"
+ ],
+ "files": [
+  "group.c",
+  "func_800AF844.c",
+  "vector_copy_scale.c",
+  "func_8008B424.c",
+  "func_800A78BC.c",
+  "func_8008D0C0.c",
+  "func_800AFA84.c",
+  "func_8008E3C0.c",
+  "func_8008C074.c"
+ ],
+ "keep": [
+  "cpak_init",
+  "vector_copy_scale",
+  "func_8008B424",
+  "func_800A78BC",
+  "func_8008D0C0",
+  "func_800AFA84",
+  "func_8008E3C0",
+  "func_8008C074"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "claims": [
+  "func_800AF8C0",
+  "save_validate"
+ ],
+ "note": "Closed real unit, no stand-ins. func_800AF8C0 and save_validate are strict. cpak_init is code-identical with 2 relocations into its own .rodata (the 0.1f literal at 0x80123C0C) unverified, so it is not a claim yet. Context files are unchanged copies of src/blob/<name>.c (func_8008C074.c is src/blob/groups/codex_vertices_b88/group.c). func_800AF844 is deliberately not in keep. func_800AFB30/func_800AFD54 are the retail stubs of the inlined GetSkid/ContinueSkid."
+}

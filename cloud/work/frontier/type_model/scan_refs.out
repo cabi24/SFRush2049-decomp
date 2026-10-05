@@ -1,0 +1,4 @@
+pointer-global field refs 1367
+refs 18304 {'load': 9304, 'form': 4295, 'store': 4705}
+Counter({'after image (bss)': 13523, 'game data': 4047, 'static(<80086A50)': 489, 'low': 202, 'game code': 43})
+distinct addrs 3917

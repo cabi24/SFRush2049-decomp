@@ -1,0 +1,122 @@
+| base | where | kind | stride | N | funcs | unmatched | unmatched bytes | offsets | max off | current name |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 80152818 | bss | array | 0x3b8 | 6 | 135 | 101 | 139288 | 142 | 0x3b4 | gPlayerCarState1, game_car, gPlayerEntityState, player_array[GAME_SYMBOLS] |
+| 8014A250 | bss | array | 0x808 | 6 | 100 | 76 | 104608 | 161 | 0x804 | gTrackDataB, track_data |
+| 8012E700 | bss | array | 0x44 | 64 | 69 | 44 | 64848 | 23 | 0x40 |  |
+| 8014A114 | bss | array | 0x4c | 2 | 68 | 52 | 69428 | 16 | 0x48 |  |
+| 8017A4E0 | bss | struct | - | ? | 47 | 46 | 57628 | 12 | 0x24 | countdown_state[GAME_SYMBOLS] |
+| 801526A8 | bss | array | 0xc | 12 | 40 | 30 | 47744 | 3 | 0x8 |  |
+| 80144030 | bss | array | 0x304 | 4 | 39 | 29 | 24320 | 28 | 0x104 | player_slots |
+| 80151FC8 | bss | array | 0x78 | 5 | 39 | 29 | 43236 | 43 | 0x74 |  |
+| 80150B70 | bss | struct | - | ? | 29 | 23 | 37532 | 1 | 0x0 | gEffectEmittersArray, gSoundHandleArray |
+| 801407F0 | bss | struct | - | ? | 28 | 17 | 21004 | 4 | 0xc |  |
+| 80151CE8 | bss | struct | - | ? | 26 | 18 | 21984 | 5 | 0x8 |  |
+| 80151CF4 | bss | array | 0x50 | 9 | 25 | 16 | 20188 | 15 | 0x4c |  |
+| 80146108 | bss | struct | - | ? | 24 | 20 | 26432 | 41 | 0x29 | (in game_types.h) |
+| 80153E88 | bss | struct | - | ? | 24 | 24 | 32780 | 8 | 0x7 |  |
+| 80150B7C | bss | array | 0x98 | 3 | 22 | 17 | 29520 | 22 | 0x88 | gSoundIndexCurrent |
+| 80156D38 | bss | array | 0x14 | 64 | 20 | 17 | 7816 | 8 | 0xc |  |
+| 8011753C | data | array | 0x30 | 64 | 18 | 12 | 12672 | 12 | 0x20 |  |
+| 80139320 | bss | array | 0x40 | 64 | 16 | 12 | 17952 | 24 | 0x3c |  |
+| 80156CF0 | bss | array | 0x10 | 4 | 15 | 15 | 17048 | 8 | 0xd | gPlayerStatusArray |
+| 8017A510 | bss | array | 0x48 | 4 | 15 | 11 | 14172 | 22 | 0x47 |  |
+| 80117530 | data | struct | - | ? | 14 | 10 | 10052 | 3 | 0x8 |  |
+| 80149B68 | bss | struct | - | ? | 13 | 11 | 10452 | 5 | 0x8 |  |
+| 80140BF0 | bss | array | 0x20 | 64 | 12 | 5 | 4580 | 15 | 0x1e | input_buffer, sound_state_array, pad_config[GAME_SYMBOLS] |
+| 80118E28 | data | struct | - | ? | 11 | 9 | 12356 | 9 | 0x8 |  |
+| 80144D64 | bss | array | 0x10 | 3 | 11 | 10 | 8808 | 3 | 0x8 |  |
+| 80143FC8 | bss | struct | - | ? | 10 | 9 | 13400 | 5 | 0x10 |  |
+| 80146138 | bss | struct | - | ? | 10 | 10 | 4540 | 5 | 0xc |  |
+| 80149B58 | bss | struct | - | ? | 10 | 8 | 7992 | 5 | 0x8 |  |
+| 801569B8 | bss | array | 0x7c | 4 | 10 | 6 | 7192 | 22 | 0x54 | gObjectSlotTable |
+| 80149B78 | bss | struct | - | ? | 9 | 6 | 8156 | 5 | 0x8 |  |
+| 80144D60 | bss | struct | - | ? | 8 | 7 | 7492 | 2 | 0x1 | gObjectArrayStart |
+| 80149870 | bss | struct | - | ? | 7 | 6 | 6484 | 5 | 0x8 |  |
+| 80149B40 | bss | struct | - | ? | 7 | 6 | 7420 | 8 | 0xb |  |
+| 80150E28 | bss | struct | - | ? | 7 | 6 | 10208 | 6 | 0x8 |  |
+| 80150F88 | bss | struct | - | ? | 7 | 5 | 4172 | 13 | 0x48 |  |
+| 8012E6D8 | bss | struct | - | ? | 6 | 4 | 5028 | 5 | 0xc |  |
+| 80150F7C | bss | struct | - | ? | 6 | 5 | 6104 | 5 | 0x4 |  |
+| 80154450 | bss | struct | - | ? | 6 | 5 | 11408 | 11 | 0x4e | gShadowTextureId |
+| 8015B268 | bss | struct | - | ? | 6 | 4 | 9692 | 13 | 0x20 |  |
+| 80111998 | data | array | 0x440 | 4 | 5 | 5 | 7600 | 29 | 0x438 |  |
+| 8011650C | data | struct | - | ? | 5 | 5 | 5840 | 38 | 0x7f8 |  |
+| 8011A994 | data | struct | - | ? | 5 | 5 | 5140 | 37 | 0x2f8 |  |
+| 8011F844 | data | array | 0x10 | 64 | 5 | 4 | 4288 | 4 | 0xc |  |
+| 8013FEE0 | bss | array | 0x18 | 12 | 5 | 3 | 2124 | 5 | 0x14 |  |
+| 80144C50 | bss | struct | - | ? | 5 | 4 | 4216 | 5 | 0xc |  |
+
+loose scalar addresses: 2365  entities: 118
+top loose scalars:
+  801174B4 funcs= 86 unmatched= 77 gstate, gstate, state_word_a[GAME_SYMBOLS]
+  8014A108 funcs= 80 unmatched= 63 active_player_count[GAME_SYMBOLS]
+  8014A110 funcs= 79 unmatched= 65 gTrackDataA, gameplay_mode[GAME_SYMBOLS]
+  801461D0 funcs= 68 unmatched= 66 gMainGameStruct
+  80151AD0 funcs= 56 unmatched= 51 (in game_types.h)
+  8014978C funcs= 52 unmatched= 40 
+  80142728 funcs= 43 unmatched= 27 gRaceControlData
+  80152770 funcs= 38 unmatched= 29 gPlayerCarState2
+  80118E20 funcs= 33 unmatched= 32 
+  80118E24 funcs= 33 unmatched= 32 
+  80140BDC funcs= 31 unmatched= 28 
+  801543CC funcs= 28 unmatched= 25 (in game_types.h)
+  8002EB94 funcs= 27 unmatched= 24 __osScDeltaTime
+  801170FC funcs= 26 unmatched= 22 race_active
+  80156994 funcs= 25 unmatched= 25 (in game_types.h)
+  8011418C funcs= 24 unmatched= 21 
+  801427A8 funcs= 24 unmatched= 16 gRenderSync
+  80152744 funcs= 21 unmatched= 16 (in game_types.h)
+  8011735C funcs= 20 unmatched= 19 gRandomSeed
+  801391F0 funcs= 18 unmatched= 12 
+  8010FFC0 funcs= 18 unmatched= 13 
+  8012E5E8 funcs= 18 unmatched= 14 
+  80152570 funcs= 16 unmatched= 13 
+  801497D0 funcs= 14 unmatched= 13 
+  8002E8E8 funcs= 14 unmatched= 14 gScheduler
+  80140A04 funcs= 14 unmatched=  9 
+  801497F0 funcs= 14 unmatched=  7 
+  8015698C funcs= 14 unmatched= 13 (in game_types.h)
+  8012E5EC funcs= 14 unmatched= 13 
+  80149438 funcs= 13 unmatched= 10 gDisplayListPtr
+  8002AFC4 funcs= 13 unmatched= 12 (in game_types.h)
+  8011194C funcs= 13 unmatched= 13 gSyncInitFlag
+  801527E4 funcs= 13 unmatched= 13 
+  8013FECB funcs= 13 unmatched= 12 (in game_types.h)
+  801174B8 funcs= 13 unmatched= 10 gstate_requested, gstate_prev, state_word_b[GAME_SYMBOLS]
+  80146150 funcs= 13 unmatched=  7 
+  80142760 funcs= 13 unmatched=  7 (in game_types.h)
+  801543CA funcs= 13 unmatched= 13 
+  801427C0 funcs= 12 unmatched=  9 
+  80144C48 funcs= 12 unmatched= 11 
+
+dense loose-scalar blocks (gap<=0x10), top 30: | start | end | span | addrs | funcs | unmatched | unmatched bytes | names |
+| 8014A0F8 | 8014A110 | 0x1c | 6 | 140 | 112 | 161816 | 8014A108=active_player_count[GAME_SYMBOLS]; 8014A110=gTrackDataA, gameplay_mode[GAME_SYMBOLS] |
+| 80117498 | 801174E4 | 0x50 | 17 | 99 | 86 | 120336 | 801174B4=gstate, gstate, state_word_a[GAME_SYMBOLS]; 801174B8=gstate_requested, gstate_prev, state_word_b[GAME |
+| 80151ABC | 80151AEC | 0x34 | 23 | 78 | 68 | 95796 | 80151AD0=(in game_types.h); 80151AD8=(in game_types.h) |
+| 801461C0 | 801461D0 | 0x14 | 2 | 70 | 68 | 77972 | 801461D0=gMainGameStruct |
+| 80149770 | 801497A8 | 0x3c | 12 | 68 | 53 | 65884 | 80149774=(in game_types.h); 80149794=(in game_types.h) |
+| 80156940 | 801569B0 | 0x74 | 28 | 61 | 54 | 70236 | 80156958=(in game_types.h); 80156978=(in game_types.h); 8015698C=(in game_types.h); 80156994=(in game_types.h) |
+| 80154390 | 801543D4 | 0x48 | 16 | 61 | 54 | 76500 | 801543CC=(in game_types.h) |
+| 80142724 | 80142728 | 0x8 | 3 | 47 | 30 | 27840 | 80142728=gRaceControlData |
+| 80152768 | 80152770 | 0xc | 3 | 42 | 33 | 18792 | 80152770=gPlayerCarState2 |
+| 80152738 | 80152750 | 0x1c | 8 | 39 | 27 | 37888 | 80152744=(in game_types.h) |
+| 8011414C | 801141B8 | 0x70 | 21 | 39 | 33 | 40016 |  |
+| 8002EB90 | 8002EB98 | 0xc | 3 | 39 | 34 | 43892 | 8002EB90=__osScElapsedTime; 8002EB94=__osScDeltaTime; 8002EB98=gViFrameDelta |
+| 80140BD8 | 80140BE0 | 0xc | 3 | 36 | 32 | 35288 | 80140BD8=(in game_types.h) |
+| 80118E08 | 80118E37 | 0x33 | 10 | 36 | 34 | 44976 |  |
+| 8012436C | 8012451C | 0x1b4 | 106 | 34 | 26 | 33372 |  |
+| 801497E8 | 80149800 | 0x1c | 7 | 33 | 23 | 21900 | 801497F4=(in game_types.h) |
+| 801170E8 | 801170FC | 0x18 | 6 | 32 | 25 | 24652 | 801170FC=race_active |
+| 801427A0 | 801427A8 | 0xc | 3 | 29 | 20 | 19748 | 801427A8=gRenderSync |
+| 801240FC | 80124248 | 0x150 | 83 | 29 | 22 | 31296 |  |
+| 80117338 | 80117360 | 0x2c | 11 | 28 | 26 | 41156 | 80117350=(in game_types.h); 80117354=(in game_types.h); 8011735C=gRandomSeed |
+| 80152568 | 80152578 | 0x14 | 5 | 27 | 18 | 33416 | 8015256C=(in game_types.h) |
+| 801497C0 | 801497D0 | 0x14 | 4 | 27 | 26 | 30420 | 801497C4=(in game_types.h); 801497C8=msgq_ptr[GAME_SYMBOLS] |
+| 801527C8 | 801527E8 | 0x24 | 5 | 26 | 25 | 17960 |  |
+| 8013FEC4 | 8013FED0 | 0x10 | 7 | 26 | 23 | 35492 | 8013FECB=(in game_types.h) |
+| 80149410 | 80149438 | 0x2c | 7 | 25 | 18 | 30408 | 80149414=(in game_types.h); 80149438=gDisplayListPtr |
+| 8002AFB4 | 8002AFC6 | 0x16 | 6 | 25 | 24 | 24940 | 8002AFB4=gScaleTicksPerSecond; 8002AFB8=gScaleSecondsPerTick; 8002AFC0=(in game_types.h); 8002AFC4=(in game_ty |
+| 80161394 | 801613D0 | 0x40 | 18 | 24 | 17 | 25020 | 80161398=(in game_types.h); 801613A4=(in game_types.h); 801613AC=(in game_types.h); 801613B0=(in game_types.h) |
+| 80142740 | 80142780 | 0x44 | 13 | 24 | 14 | 24572 | 80142760=(in game_types.h) |
+| 801409E8 | 80140A18 | 0x34 | 10 | 23 | 16 | 23424 | 80140A00=(in game_types.h) |
+| 80157238 | 80157244 | 0x10 | 4 | 22 | 18 | 22532 | 80157244=gRaceResetFlag |

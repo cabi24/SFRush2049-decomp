@@ -1,0 +1,10 @@
+{
+ "members": ["func_80099B30"],
+ "files": ["group.c"],
+ "keep": ["zz_a", "zz_b"],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "claims": [],
+ "note": "zz_a/zz_b are stand-in callers (two call sites keep the callee from being inlined); not spliceable as-is. Real callers: render_display_list, particle_system."
+}

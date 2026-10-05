@@ -1,0 +1,15 @@
+rodata 4480 bytes: {'jtbl': 1896, 'float': 2520, 'unreferenced': 56, 'zero-pad': 8}
+ref-other detail: Counter()
+owned words 1104 order violations (owner addr decreases): 1
+   801243CC anim_state_update after func_800E1F80
+rodata words referenced by >1 function: 1 [('0x801243cc', ['anim_state_update', 'func_800E23A4'])]
+unreferenced nonzero words: 14 ['801238E8=401A827A', '801239E0=3D4CCCCD', '80123A4C=3E4CCCCD', '80123BD0=3FC90FDB', '80123EF0=4020D97C', '80123F08=4020D97C', '80123F24=4020D97C', '80123F4C=3E19999A', '801241A8=3D4CCCCD', '80124324=459C4000', '801243AC=BDCCCCCD', '801243E8=4118C9F4', '80124420=3F666666', '8012464C=3C23D70A']
+functions owning rodata: 214 (matched 53, unmatched 161)
+  matched: {'jtbl': 372, 'float': 416}  with jtbl: 12  with float/double: 41
+  unmatched: {'float': 2104, 'jtbl': 1524}  with jtbl: 29  with float/double: 139
+  unmatched code bytes in rodata-owning functions: 208328 of 457224
+matched rodata-owning functions by build path / spelling:
+  single/extern-D_               22  e.g. ['func_8008B3F4', 'func_8008B424', 'func_8008C5E0']
+  group/extern-D_                18  e.g. ['physics_velocity_integrate_c', 'physics_velocity_integrate_d', 'physics_velocity_integrate_e']
+  group+jtbl/native-literal      12  e.g. ['func_80086A50', 'func_8008C074', 'func_800A1E94']
+  group/native-literal            1  e.g. ['func_800E2AC4']

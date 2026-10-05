@@ -1,0 +1,21 @@
+{
+ "members": [
+  "func_8008A704",
+  "audio_queue_process"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "sync_release_video",
+  "func_8008A704",
+  "audio_queue_process"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [
+  "sync_release_video"
+ ],
+ "note": "Real group, no stand-ins. func_8008A704 (lock) is inlined into audio_queue_process; func_8008A6FC and func_8008A774 are deleted statics (retail stubs). func_8008A774's body (direct osJamMesg unlock) is inferred from the frame size. sync_release_video (already matched) is defined last only so the object offset of audio_queue_process is 0xAC mod 32, which fixes the .align 5 nop count before its epilogue; in this object it is followed by the stubs, so it scores '2 extra words' here and is context only.",
+ "provenance": "frontier wave 1 (w1h), 2026-10-04; cloud/work/frontier/w1h/RESULTS.md"
+}

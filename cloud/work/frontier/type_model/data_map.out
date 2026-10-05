@@ -1,0 +1,137 @@
+.data bytes 80628
+  zero       24156  30.0%
+  str        15540  19.3%
+  smallint   15068  18.7%
+  other      10116  12.5%
+  fltlike     6620   8.2%
+  dptr        6312   7.8%
+  fnptr       2040   2.5%
+  flt          764   0.9%
+  bptr          12   0.0%
+objects (ref- or pointer-delimited): 2353  directly code-referenced: 1007
+size quantiles: [4, 12, 14, 36, 512] max 4324
+bytes in objects >=256: 41422  count 39
+objects by #referencing functions: {0: 1346, 1: 710, 2: 169, 3: 62, 4: 31, 5: 11} >5: 24
+bytes in objects never referenced by code (pointer-only): 22888
+code-referenced objects whose referrers are all matched: 102 of 1007
+single-owner objects: 710  |delta func index| between address-adjacent owners: median 0 p75 38  share<=15: 0.725  monotonic(nondecreasing) share: 0.777
+TU-like clusters (>=3 adjacent single-owner objects from functions within 40 indices): 67 covering 569 of 710 objects
+
+### address-ordered data clusters (code range of owners)
+| data range | bytes | objs | owner functions (text range) |
+| 80110264..80110274 |    16 |   4 | hud_speed_display .. hud_setup (800C84FC..800C8B8C) |
+| 80110278..80110280 |     8 |   3 | func_80098FB8 .. func_80098FB8 (80098FB8..80098FB8) |
+| 80110290..80110660 |   976 |  37 | func_800D6914 .. func_800D7634 (800D6914..800D7634) |
+| 80110688..801108C8 |   576 |  11 | func_800E8CB8 .. func_800EB90C (800E8CB8..800EB90C) |
+| 80110DA4..80110E44 |   160 |   4 | func_800D0B14 .. track_info_display (800D0B14..800D0BA0) |
+| 80111794..801117A6 |    18 |   4 | net_session_update .. net_session_update (800F34D8..800F34D8) |
+| 8011196C..80113E80 |  9492 |  29 | func_800D816C .. func_800D91A0 (800D816C..800D91A0) |
+| 801140F4..80114100 |    12 |   3 | audio_doppler_full .. audio_doppler_full (800B61FC..800B61FC) |
+| 80114128..8011415C |    52 |   4 | debug_stats .. debug_collision (800FCDF8..800FD024) |
+| 80114160..80114178 |    24 |   5 | func_800E1C30 .. func_800E23A4 (800E1C30..800E23A4) |
+| 801141BC..801141C4 |     8 |   3 | func_800EA3F4 .. func_800EA3F4 (800EA3F4..800EA3F4) |
+| 80114691..80114693 |     2 |   3 | playgame_state_change .. playgame_state_change (800CA3B4..800CA3B4) |
+| 801146C4..801146F8 |    52 |   5 | display_list_flush .. game_loop (800FB2C8..800FD464) |
+| 80114750..801148BE |   366 |   8 | func_800F0914 .. func_800F6928 (800F0914..800F6928) |
+| 801149B4..801149C0 |    12 |   4 | func_800F084C .. func_800F084C (800F084C..800F084C) |
+| 801158DC..80115A44 |   360 |   4 | skid_mark_render .. skid_mark_render (800F0100..800F0100) |
+| 80115AC8..80115AE8 |    32 |   3 | func_80106D94 .. func_80106D94 (80106D94..80106D94) |
+| 80115B48..80115C68 |   288 |   9 | emitter_update .. func_800EF62C (800EEDB0..800EF62C) |
+| 80115C8C..80115DA8 |   284 |   5 | race_finish .. func_80107EDC (80107AF4..80107EDC) |
+| 80115E08..80115E28 |    32 |   3 | particles_update .. particles_update (800B7A40..800B7A40) |
+| 801160C8..80116198 |   208 |   8 | func_80105DA8 .. func_80108154 (80105DA8..80108154) |
+| 801164BE..80116DBC |  2302 |  41 | func_800DA2C0 .. func_800DE45C (800DA2C0..800DE45C) |
+| 80116E06..801170B0 |   682 |  14 | ambient_sound_set .. func_800B4FB0 (800B3B4C..800B4FB0) |
+| 80117284..80117314 |   144 |   5 | func_800B4FB0 .. func_800B4FB0 (800B4FB0..800B4FB0) |
+| 8011742C..80117434 |     8 |   3 | func_800C813C .. func_800C813C (800C813C..800C813C) |
+| 80117498..801174B0 |    24 |   7 | func_8008E408 .. entity_spawn_init (8008E408..8008EA10) |
+| 801174C0..80117518 |    88 |   8 | race_setup_2 .. display_enable (800BEAA0..800C8FA4) |
+| 80118C10..80118E04 |   500 |   5 | engine_torque_calc .. engine_torque_calc (800AB7D8..800AB7D8) |
+| 80118E08..80118E18 |    16 |   3 | func_8010D85C .. func_8010E0FC (8010D85C..8010E0FC) |
+| 80118E1C..80118E2F |    19 |   7 | dispatch_handler .. dispatch_handler (800B74A0..800B74A0) |
+| 80118E34..80118E37 |     3 |   4 | dispatch_handler .. dispatch_handler (800B74A0..800B74A0) |
+| 8011A924..8011AC60 |   828 |  32 | func_800B59F0 .. func_800BB9B0 (800B59F0..800BB9B0) |
+| 8011AC88..8011AD48 |   192 |   6 | func_800B59F0 .. physics_sym (800B59F0..800B8C14) |
+| 8011AD60..8011AD84 |    36 |   4 | func_8010EA08 .. func_8010EA08 (8010EA08..8010EA08) |
+| 8011AD94..8011ADB8 |    36 |   7 | entity_render_setup .. entity_render_setup (8008C884..8008C884) |
+| 8011AE58..8011B42C |  1492 |  12 | music_seq_load .. tire_sound_update (800B15B4..800B338C) |
+| 8011B464..8011B550 |   236 |   4 | func_80090308 .. drone_ai_update (80090308..80093B20) |
+| 8011B568..8011B56C |     4 |   4 | entity_render_setup .. entity_render_setup (8008C884..8008C884) |
+| 8011B578..8011B5AA |    50 |  17 | func_8008BEA4 .. entity_render_setup (8008BEA4..8008C884) |
+| 8011B5AC..8011B5BA |    14 |   8 | audio_frame_update .. audio_frame_update (800B0C48..800B0C48) |
+| 8011B898..8011E75C | 11972 |  21 | physics_float_calc .. physics_float_calc (8009EBC0..8009EBC0) |
+| 8011E76C..8011EA10 |   676 |  20 | car_crash_response .. func_800AB18C (800A99C8..800AB18C) |
+| 8011EA32..8011EAAC |   122 |   5 | arb_rate_set .. car_shadow_render (800A5908..800A5D34) |
+| 8011ED08..8011F018 |   784 |   7 | func_8009C3F8 .. Input_ProcessGameplayPad (8009C3F8..800A04C4) |
+| 8011F020..8011F060 |    64 |   3 | mode_select_handler .. func_800E05F0 (800DEF68..800E05F0) |
+| 8011F0A0..8011F0B0 |    16 |   3 | car_shadow_render .. car_shadow_render (800A5D34..800A5D34) |
+| 8011F6C4..8011F6E4 |    32 |   5 | game_results_update .. game_results_render (800FEE04..800FF298) |
+| 8011F6E8..8011F71C |    52 |   7 | func_800D6914 .. drone_pathfind_main (800D6914..800D71D0) |
+| 8011F914..8011F920 |    12 |   4 | entity_process_main .. entity_process_main (8008D120..8008D120) |
+| 80120254..80120280 |    44 |   5 | func_800D816C .. drone_throttle_calc (800D816C..800D8C58) |
+| 801202F8..8012030C |    20 |   3 | display_list_flush .. countdown_handler (800FB2C8..800FBC30) |
+| 8012031C..801203A0 |   132 |  16 | func_80100E58 .. func_80102F30 (80100E58..80102F30) |
+| 80120600..8012061C |    28 |   3 | func_800F0914 .. func_800F1210 (800F0914..800F1210) |
+| 8012062C..80120674 |    72 |   8 | func_80103D28 .. func_80105480 (80103D28..80105480) |
+| 80120DBC..80120E00 |    68 |   6 | func_80105EA8 .. func_80105EA8 (80105EA8..80105EA8) |
+| 80120E34..80120E4C |    24 |   4 | func_80108DA8 .. func_80109F54 (80108DA8..80109F54) |
+| 80120E68..80120E72 |    10 |   7 | string_copy_format .. string_copy_format (80092E2C..80092E2C) |
+| 80120E74..80120F04 |   144 |  14 | func_800E6AF8 .. func_800E7FA0 (800E6AF8..800E7FA0) |
+| 8012102C..80121088 |    92 |  12 | func_800DA2C0 .. control_settings (800DA2C0..800DD4AC) |
+| 801210E8..80121138 |    80 |   6 | stunt_combo_display .. stunt_combo_display (800D3B28..800D3B28) |
+| 801211CC..80121204 |    56 |  13 | func_800CC040 .. func_800CD104 (800CC040..800CD104) |
+| 80121D40..80121D48 |     8 |   3 | transmission_ratio_get .. transmission_ratio_get (800ABCC8..800ABCC8) |
+| 80121D54..80121DDC |   136 |  18 | func_8010C974 .. func_8010E4E4 (8010C974..8010E4E4) |
+| 80122628..80122674 |    76 |  11 | func_8010EA08 .. func_8010F218 (8010EA08..8010F218) |
+| 8012267C..801226B8 |    60 |   7 | func_800B59F0 .. particle_collision (800B59F0..800B8820) |
+| 801226C0..8012325C |  2972 |   5 | sfx_position_3d .. tire_sound_update (800B2928..800B338C) |
+| 801233B8..80123498 |   224 |   3 | sound_bank_unload .. sfx_volume_set (800B10D4..800B2828) |
+
+### objects >= 512 bytes
+| addr | size | dominant classes | #funcs (unmatched) | access | first referrers |
+| 8010FD80 | 576 | other:204 fltlike:176 smallint:144 | 1 (1) | addiu | func_800D5E64 |
+| 80110030 | 524 | dptr:524 | 3 (3) | addiu,lw idx | drone_collision_avoid, game_results_update, game_results_render |
+| 801119D4 | 712 | zero:656 smallint:56 | 2 (2) | lbu,sb idx | func_800D816C, game_results_exit |
+| 80111DD0 | 3272 | zero:2980 smallint:288 flt:4 | 1 (1) | swc1 idx | drone_throttle_calc |
+| 80112AB8 | 2916 | smallint:1612 zero:660 fnptr:324 | 1 (1) | addiu | func_800D91A0 |
+| 8011361C | 2148 | smallint:1184 zero:492 dptr:236 | 1 (1) | addiu | func_800D91A0 |
+| 80114264 | 880 | zero:544 fltlike:336 | 2 (2) | addiu | particle_lifetime_set, func_800FC9F8 |
+| 80114A0C | 572 | zero:392 dptr:180 | 2 (2) | addiu,lw idx | skid_mark_render, func_8010A53C |
+| 80114D08 | 3028 | smallint:1592 zero:792 fnptr:336 | 1 (0) | lb | func_8008BEA4 |
+| 80116550 | 832 | zero:776 smallint:56 | 2 (2) | lw | func_800DA0BC, replay_save_prompt |
+| 801168C8 | 842 | zero:732 smallint:112 | 1 (1) | sb | func_800DA2C0 |
+| 8011755C | 1488 | smallint:508 dptr:240 fnptr:228 | 3 (1) | lwc1 idx | camera_fov_control, camera_aspect_ratio, camera_look_at_point |
+| 80117B2C | 4324 | smallint:1440 fltlike:716 dptr:712 | 1 (1) | lh | entity_tick_main |
+| 80119390 | 540 | zero:204 other:128 fltlike:104 | 0 (0) |  |  |
+| 80119AFC | 540 | zero:200 other:132 fltlike:104 | 0 (0) |  |  |
+| 8011B898 | 1872 | other:896 smallint:468 zero:436 | 1 (1) | addiu | physics_float_calc |
+| 8011BFE8 | 1872 | zero:952 other:588 smallint:304 | 1 (1) | addiu | physics_float_calc |
+| 8011C738 | 1872 | other:748 zero:628 smallint:456 | 1 (1) | addiu | physics_float_calc |
+| 8011CE88 | 1936 | zero:820 other:788 smallint:296 | 1 (1) | addiu | physics_float_calc |
+| 8011D618 | 1648 | zero:652 other:484 smallint:416 | 1 (1) | addiu | physics_float_calc |
+| 8011DC88 | 1952 | zero:884 other:664 smallint:352 | 1 (1) | addiu | physics_float_calc |
+| 8011EAEC | 512 | other:268 zero:240 smallint:4 | 2 (2) | addiu,lhu idx | func_800A150C, func_800A1644 |
+| 8011ED0C | 516 | zero:320 other:156 smallint:40 | 1 (1) | lhu idx | Input_ProcessGameplayPad |
+| 80123564 | 732 | smallint:728 zero:4 | 1 (1) | lw idx | func_80097164 |
+
+### 0x1000-byte windows
+| 8010FD7C | fltlike:1420 zero:1004 dptr:796 smallint:356 | 63 funcs (51 unmatched) |
+| 80110D7C | zero:2088 fltlike:1128 smallint:496 other:152 | 50 funcs (38 unmatched) |
+| 80111D7C | zero:3196 smallint:688 dptr:80 fnptr:76 | 5 funcs (5 unmatched) |
+| 80112D7C | smallint:2260 zero:932 fnptr:456 dptr:448 | 1 funcs (1 unmatched) |
+| 80113D7C | zero:1520 smallint:1040 dptr:568 fltlike:516 | 117 funcs (96 unmatched) |
+| 80114D7C | smallint:2232 zero:1176 fnptr:360 dptr:300 | 10 funcs (10 unmatched) |
+| 80115D7C | zero:2744 smallint:1016 other:136 flt:96 | 44 funcs (40 unmatched) |
+| 80116D7C | zero:1384 smallint:1196 dptr:428 fltlike:384 | 165 funcs (132 unmatched) |
+| 80117D7C | smallint:1240 fltlike:940 dptr:612 fnptr:600 | 1 funcs (1 unmatched) |
+| 80118D7C | zero:1660 other:964 dptr:856 fltlike:544 | 46 funcs (42 unmatched) |
+| 80119D7C | zero:1944 dptr:844 other:624 smallint:292 | 14 funcs (14 unmatched) |
+| 8011AD7C | other:1724 dptr:1188 zero:432 smallint:428 | 24 funcs (22 unmatched) |
+| 8011BD7C | zero:1636 other:1528 smallint:872 fltlike:52 | 1 funcs (1 unmatched) |
+| 8011CD7C | zero:1664 other:1424 smallint:856 fltlike:152 | 1 funcs (1 unmatched) |
+| 8011DD7C | zero:1720 other:1352 smallint:836 fltlike:108 | 47 funcs (31 unmatched) |
+| 8011ED7C | str:2320 other:520 fltlike:480 zero:468 | 20 funcs (18 unmatched) |
+| 8011FD7C | str:4004 other:44 fltlike:40 flt:4 | 20 funcs (20 unmatched) |
+| 80120D7C | str:3576 smallint:176 other:144 fltlike:100 | 27 funcs (25 unmatched) |
+| 80121D7C | str:3824 other:128 fltlike:108 zero:24 | 12 funcs (12 unmatched) |
+| 80122D7C | str:1720 smallint:744 other:180 zero:112 | 11 funcs (10 unmatched) |

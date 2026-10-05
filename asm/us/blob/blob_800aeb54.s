@@ -915,6 +915,7 @@ func_800AF844:
 .section .text.func_800AF8C0, "ax", @progbits
 .globl func_800AF8C0
 func_800AF8C0:
+    /* compiled from src/blob/func_800AF8C0.c */
     .word 0x240A000C
     .word 0x36870001
     .word 0x00EA0019
@@ -1092,6 +1093,7 @@ func_800AFB30:
 .section .text.save_validate, "ax", @progbits
 .globl save_validate
 save_validate:
+    /* compiled from src/blob/save_validate.c */
     .word 0x27BDFFD8
     .word 0x3C128015
     .word 0x26525220
@@ -1238,6 +1240,7 @@ func_800AFD54:
 .section .text.cpak_init, "ax", @progbits
 .globl cpak_init
 cpak_init:
+    /* compiled from src/blob/cpak_init.c */
     .word 0x27BDFF28
     .word 0x3C0E8015
     .word 0x85CEA108

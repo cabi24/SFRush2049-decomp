@@ -1,0 +1,7034 @@
+{
+ "files": {
+  "src/blob/Effects_UpdateEmitters.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80151AD0",
+     "class": "signedness",
+     "decl": "u16 D_80151AD0",
+     "header": "s16 D_80151AD0"
+    },
+    {
+     "addr": "80150B70",
+     "class": "struct_todo",
+     "decl": "s32 D_80150B70",
+     "header": null
+    },
+    {
+     "addr": "80150BA0",
+     "class": "struct_todo",
+     "decl": "s32 D_80150BA0",
+     "header": null
+    },
+    {
+     "addr": "80152032",
+     "class": "struct_todo",
+     "decl": "s16 D_80152032",
+     "header": null
+    }
+   ],
+   "used": 5,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/Input_InitPadHandlers.c": {
+   "declarations": 1,
+   "not_identical_used": [
+    {
+     "addr": "80140BF0",
+     "class": "struct_todo",
+     "decl": "Record D_80140BF0[]",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/Input_SetAnalogBounds.c": {
+   "declarations": 128,
+   "not_identical_used": [
+    {
+     "addr": "80140BF0",
+     "class": "struct_todo",
+     "decl": "PadConfig pad_config",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/Input_SetPadEnabledFlag.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80140BF0",
+     "class": "struct_todo",
+     "decl": "PadConfig pad_config",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/Input_SetPadSecondaryFlag.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80140BF0",
+     "class": "struct_todo",
+     "decl": "PadConfig pad_config",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/PhysicsObjectList_Update.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "801391F0",
+     "class": "struct_todo",
+     "decl": "s32 D_801391F0",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/UpdateActiveObjects.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80149450",
+     "class": "shape",
+     "decl": "s32 D_80149450",
+     "header": "s32 D_80149450[]"
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/ambient_sound_set.c": {
+   "declarations": 1,
+   "not_identical_used": [
+    {
+     "addr": "80116DE4",
+     "class": "struct_todo",
+     "decl": "FiveParts D_80116DE4[]",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/ambient_sounds_clear.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80114638",
+     "class": "shape",
+     "decl": "s32 D_80114638",
+     "header": "s32 D_80114638[]"
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/audio_channel_alloc.c": {
+   "declarations": 2,
+   "not_identical_used": [
+    {
+     "addr": "801407F0",
+     "class": "struct_todo",
+     "decl": "PathGraph D_801407F0",
+     "header": null
+    },
+    {
+     "addr": "80151CE8",
+     "class": "struct_todo",
+     "decl": "Track D_80151CE8[]",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/audio_distance_atten.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/audio_doppler.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/audio_dsp_process.c": {
+   "declarations": 2,
+   "not_identical_used": [
+    {
+     "addr": "80151CE8",
+     "class": "struct_todo",
+     "decl": "Track812 D_80151CE8",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/audio_effect_remove.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80153F28",
+     "class": "shape",
+     "decl": "f32 D_80153F28",
+     "header": "f32 D_80153F28[]"
+    },
+    {
+     "addr": "80153F48",
+     "class": "shape",
+     "decl": "s32 D_80153F48",
+     "header": "f32 D_80153F48[]"
+    },
+    {
+     "addr": "80153F68",
+     "class": "shape",
+     "decl": "s32 D_80153F68",
+     "header": "f32 D_80153F68[]"
+    }
+   ],
+   "used": 6,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/audio_start.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80149438",
+     "class": "struct_todo",
+     "decl": "s32 D_80149438",
+     "header": null
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/audio_update_a.c": {
+   "declarations": 7,
+   "not_identical_used": [
+    {
+     "addr": "8014A118",
+     "class": "struct_todo",
+     "decl": "Player76 input_rec0[]",
+     "header": null
+    },
+    {
+     "addr": "80146150",
+     "class": "struct_todo",
+     "decl": "Object *D_80146150[]",
+     "header": null
+    },
+    {
+     "addr": "80151410",
+     "class": "struct_todo",
+     "decl": "Stats64 D_80151410[]",
+     "header": null
+    },
+    {
+     "addr": "80152038",
+     "class": "struct_todo",
+     "decl": "Live120 D_80152038[]",
+     "header": null
+    }
+   ],
+   "used": 7,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/audio_update_b.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/audio_update_c.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8015256C",
+     "class": "shape",
+     "decl": "u8 D_8015256C",
+     "header": "s8 D_8015256C[]"
+    },
+    {
+     "addr": "80149428",
+     "class": "shape",
+     "decl": "s32 D_80149428",
+     "header": "s8 D_80149428[][4]"
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/audio_voice_set.c": {
+   "declarations": 2,
+   "not_identical_used": [
+    {
+     "addr": "80155220",
+     "class": "struct_todo",
+     "decl": "VoiceLists D_80155220",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/audio_volume_pan.c": {
+   "declarations": 4,
+   "not_identical_used": [
+    {
+     "addr": "8012E6D8",
+     "class": "struct_todo",
+     "decl": "List16 D_8012E6D8",
+     "header": null
+    },
+    {
+     "addr": "80152020",
+     "class": "struct_todo",
+     "decl": "List16 D_80152020",
+     "header": null
+    },
+    {
+     "addr": "8014A118",
+     "class": "struct_todo",
+     "decl": "Player76 input_rec0[]",
+     "header": null
+    }
+   ],
+   "used": 4,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/callback_init.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/camera_blend_between.c": {
+   "declarations": 2,
+   "not_identical_used": [
+    {
+     "addr": "80150F80",
+     "class": "shape",
+     "decl": "s32 D_80150F80",
+     "header": "s32 D_80150F80[]"
+    },
+    {
+     "addr": "80150F38",
+     "class": "struct_todo",
+     "decl": "Obj *D_80150F38",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/camera_cinematic_mode.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/camera_collision_check.c": {
+   "declarations": 1,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/camera_dolly.c": {
+   "declarations": 1,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/camera_race_setup.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80152744",
+     "class": "signedness",
+     "decl": "u8 D_80152744",
+     "header": "s8 D_80152744"
+    },
+    {
+     "addr": "8014A250",
+     "class": "struct_todo",
+     "decl": "D_8014A250_Record D_8014A250",
+     "header": null
+    },
+    {
+     "addr": "801439F8",
+     "class": "shape",
+     "decl": "s32 D_801439F8",
+     "header": "s8 D_801439F8[]"
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/camera_reset.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80151AD0",
+     "class": "signedness",
+     "decl": "u16 D_80151AD0",
+     "header": "s16 D_80151AD0"
+    },
+    {
+     "addr": "80140BDC",
+     "class": "shape",
+     "decl": "volatile char D_80140BDC",
+     "header": "u8 D_80140BDC[]"
+    }
+   ],
+   "used": 6,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/camera_smooth_follow.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/camera_smooth_lerp.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8013C238",
+     "class": "shape",
+     "decl": "s32 D_8013C238",
+     "header": "s32 D_8013C238[]"
+    },
+    {
+     "addr": "80154660",
+     "class": "struct_todo",
+     "decl": "s32 D_80154660",
+     "header": null
+    },
+    {
+     "addr": "80154FD8",
+     "class": "shape",
+     "decl": "s32 D_80154FD8",
+     "header": "s32 D_80154FD8[]"
+    }
+   ],
+   "used": 4,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/camera_update_b.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/car_gear_shift.c": {
+   "declarations": 3,
+   "not_identical_used": [
+    {
+     "addr": "8012E700",
+     "class": "struct_todo",
+     "decl": "Ent D_8012E700[]",
+     "header": null
+    },
+    {
+     "addr": "801161F4",
+     "class": "struct_todo",
+     "decl": "Tab D_801161F4[]",
+     "header": null
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/car_mass_set.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8012E700",
+     "class": "struct_todo",
+     "decl": "s32 D_8012E700",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/car_select_handler.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "GameCar player_array[8]",
+     "header": null
+    },
+    {
+     "addr": "8014A250",
+     "class": "struct_todo",
+     "decl": "D_8014A250_Record D_8014A250",
+     "header": null
+    },
+    {
+     "addr": "8014A964",
+     "class": "struct_todo",
+     "decl": "f32 D_8014A964",
+     "header": null
+    }
+   ],
+   "used": 4,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/collision_check_thunk.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/controller_rumble_thunk.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/crowd_cheer_play.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/dispatch_handler.c": {
+   "declarations": 5,
+   "not_identical_used": [
+    {
+     "addr": "80118E2C",
+     "class": "struct_todo",
+     "decl": "Color4 D_80118E2C",
+     "header": null
+    },
+    {
+     "addr": "80118E28",
+     "class": "struct_todo",
+     "decl": "Color4 D_80118E28",
+     "header": null
+    },
+    {
+     "addr": "80118E34",
+     "class": "struct_todo",
+     "decl": "Color8 D_80118E34[]",
+     "header": null
+    }
+   ],
+   "used": 5,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/display_list_traverse.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/draw_minimap.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80150F88",
+     "class": "struct_todo",
+     "decl": "s32 D_80150F88",
+     "header": null
+    },
+    {
+     "addr": "80151410",
+     "class": "struct_todo",
+     "decl": "s32 D_80151410",
+     "header": null
+    },
+    {
+     "addr": "801515F8",
+     "class": "struct_todo",
+     "decl": "s32 D_801515F8",
+     "header": null
+    }
+   ],
+   "used": 5,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/draw_sprites.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/effect_cleanup.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/effect_spawn.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8013C068",
+     "class": "struct_todo",
+     "decl": "s8 D_8013C068",
+     "header": null
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/effect_system_init.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80152038",
+     "class": "struct_todo",
+     "decl": "s32 D_80152038",
+     "header": null
+    },
+    {
+     "addr": "801569B8",
+     "class": "struct_todo",
+     "decl": "s32 D_801569B8",
+     "header": null
+    }
+   ],
+   "used": 5,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/engine_rpm_calc.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/entity_audio_update.c": {
+   "declarations": 128,
+   "not_identical_used": [
+    {
+     "addr": "8014A118",
+     "class": "struct_todo",
+     "decl": "InputRecord input_rec0",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/entity_cull_check.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/entity_name_copy.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/entity_transform_apply.c": {
+   "declarations": 4,
+   "not_identical_used": [
+    {
+     "addr": "801391F0",
+     "class": "struct_todo",
+     "decl": "Node *D_801391F0",
+     "header": null
+    },
+    {
+     "addr": "801392C8",
+     "class": "struct_todo",
+     "decl": "Node *D_801392C8",
+     "header": null
+    }
+   ],
+   "used": 4,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/euler_to_matrix.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/fcvt_wrapper.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80087804.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8008A148.c": {
+   "declarations": 2,
+   "not_identical_used": [
+    {
+     "addr": "80149438",
+     "class": "struct_todo",
+     "decl": "Gfx *D_80149438",
+     "header": null
+    },
+    {
+     "addr": "8012E6D0",
+     "class": "shape",
+     "decl": "u8 *D_8012E6D0",
+     "header": "s32 D_8012E6D0[]"
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_8008A38C.c": {
+   "declarations": 2,
+   "not_identical_used": [
+    {
+     "addr": "8011EACC",
+     "class": "struct_todo",
+     "decl": "S D_8011EACC",
+     "header": null
+    },
+    {
+     "addr": "8012E6D0",
+     "class": "shape",
+     "decl": "s32 D_8012E6D0",
+     "header": "s32 D_8012E6D0[]"
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_8008A3E4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 6,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8008A644.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80149438",
+     "class": "struct_todo",
+     "decl": "s32 D_80149438",
+     "header": null
+    },
+    {
+     "addr": "8012E67A",
+     "class": "signedness",
+     "decl": "s16 D_8012E67A",
+     "header": "u16 D_8012E67A"
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_8008A6A4.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80144031",
+     "class": "struct_todo",
+     "decl": "s8 D_80144031",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_8008A6FC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8008A774.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8008AD04.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8008AE10.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8012E718",
+     "class": "struct_todo",
+     "decl": "s16 D_8012E718",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_8008AE2C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8008AE48.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8012E700",
+     "class": "struct_todo",
+     "decl": "s32 D_8012E700",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_8008AE64.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8012E700",
+     "class": "struct_todo",
+     "decl": "s32 D_8012E700",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_8008B2B4.c": {
+   "declarations": 1,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8008B32C.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8008B3A0.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8012E708",
+     "class": "struct_todo",
+     "decl": "s32 D_8012E708",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_8008B3C8.c": {
+   "declarations": 27,
+   "not_identical_used": [
+    {
+     "addr": "80150B70",
+     "class": "struct_todo",
+     "decl": "u8 D_80150B70[][152]",
+     "header": null
+    },
+    {
+     "addr": "8002EB94",
+     "class": "qualifier",
+     "decl": "volatile f32 D_8002EB94",
+     "header": "f32 D_8002EB94"
+    }
+   ],
+   "used": 27,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_8008B3F4.c": {
+   "declarations": 1,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8008B424.c": {
+   "declarations": 1,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8008BEA4.c": {
+   "declarations": 6,
+   "not_identical_used": [
+    {
+     "addr": "80152900",
+     "class": "struct_todo",
+     "decl": "PF D_80152900[]",
+     "header": null
+    },
+    {
+     "addr": "8013FEF4",
+     "class": "struct_todo",
+     "decl": "PO D_8013FEF4[]",
+     "header": null
+    }
+   ],
+   "used": 6,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_8008C544.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8008C5E0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 9,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8008C720.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8008C768.c": {
+   "declarations": 4,
+   "not_identical_used": [
+    {
+     "addr": "801238F4",
+     "class": "qualifier",
+     "decl": "const f32 D_801238F4",
+     "header": "f32 D_801238F4"
+    },
+    {
+     "addr": "801238F8",
+     "class": "qualifier",
+     "decl": "const f32 D_801238F8",
+     "header": "f32 D_801238F8"
+    },
+    {
+     "addr": "801238FC",
+     "class": "qualifier",
+     "decl": "const f32 D_801238FC",
+     "header": "f32 D_801238FC"
+    },
+    {
+     "addr": "80123900",
+     "class": "qualifier",
+     "decl": "const f32 D_80123900",
+     "header": "f32 D_80123900"
+    }
+   ],
+   "used": 4,
+   "worst_all": "qualifier",
+   "worst_used": "qualifier"
+  },
+  "src/blob/func_8008C874.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8008D084.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8008D098.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8008D0B0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8008D0C0.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8015B268",
+     "class": "struct_todo",
+     "decl": "s32 D_8015B268",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_8008D6FC.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8012E708",
+     "class": "struct_todo",
+     "decl": "s32 D_8012E708",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_8008D870.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8012E700",
+     "class": "struct_todo",
+     "decl": "s32 D_8012E700",
+     "header": null
+    },
+    {
+     "addr": "8012E720",
+     "class": "struct_todo",
+     "decl": "s32 D_8012E720",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_8008E06C.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8012E73C",
+     "class": "struct_todo",
+     "decl": "s32 D_8012E73C",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_8008E144.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8012E700",
+     "class": "struct_todo",
+     "decl": "volatile u8 D_8012E700",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_8008E3C0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8008FFB8.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "801391F0",
+     "class": "struct_todo",
+     "decl": "s32 D_801391F0",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_8008FFD0.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8012E700",
+     "class": "struct_todo",
+     "decl": "s32 D_8012E700",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_8009002C.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8012E700",
+     "class": "struct_todo",
+     "decl": "s32 D_8012E700",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_80090284.c": {
+   "declarations": 3,
+   "not_identical_used": [
+    {
+     "addr": "801392C8",
+     "class": "struct_todo",
+     "decl": "Node *D_801392C8",
+     "header": null
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_80090770.c": {
+   "declarations": 1,
+   "not_identical_used": [
+    {
+     "addr": "8012E700",
+     "class": "struct_todo",
+     "decl": "IndexedRecord44 D_8012E700[]",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_80091AF0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80091AF8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80091BFC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80091FBC.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8009211C.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80092484.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "801392D8",
+     "class": "shape",
+     "decl": "s32 D_801392D8",
+     "header": "s32 D_801392D8[]"
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/func_80092B80.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "801427C0",
+     "class": "shape",
+     "decl": "u16 D_801427C0",
+     "header": "u16 D_801427C0[]"
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/func_80092BC8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80092D80.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80156D38",
+     "class": "struct_todo",
+     "decl": "volatile u8 D_80156D38",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_80092DCC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80092FE0.c": {
+   "declarations": 2,
+   "not_identical_used": [
+    {
+     "addr": "8012E700",
+     "class": "struct_todo",
+     "decl": "ModelSlot D_8012E700[]",
+     "header": null
+    },
+    {
+     "addr": "80139320",
+     "class": "struct_todo",
+     "decl": "PlayerRec D_80139320[]",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_8009309C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800947F0.c": {
+   "declarations": 3,
+   "not_identical_used": [
+    {
+     "addr": "80118E30",
+     "class": "qualifier",
+     "decl": "volatile f32 D_80118E30",
+     "header": "f32 D_80118E30"
+    },
+    {
+     "addr": "8017A630",
+     "class": "qualifier",
+     "decl": "volatile f32 D_8017A630",
+     "header": "f32 D_8017A630"
+    }
+   ],
+   "used": 3,
+   "worst_all": "qualifier",
+   "worst_used": "qualifier"
+  },
+  "src/blob/func_800949D4.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8012E6E0",
+     "class": "struct_todo",
+     "decl": "D_8012E6E0_Node *D_8012E6E0",
+     "header": null
+    },
+    {
+     "addr": "80152028",
+     "class": "struct_todo",
+     "decl": "s32 D_80152028",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_80094A44.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80094A4C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80094FC4.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80144036",
+     "class": "struct_todo",
+     "decl": "s8 D_80144036",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800950AC.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80095198.c": {
+   "declarations": 1,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800953B4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800953BC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800953C4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800954A0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800957F8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8009591C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80095CE8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80095CF4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80095CFC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80095EB8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80095EC0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80095EF4.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80095F8C.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "801527C8",
+     "class": "struct_todo",
+     "decl": "s32 D_801527C8",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800960CC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80096238.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800966D8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80096B00.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80096BBC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80096C28.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8009715C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800972BC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80097468.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8009768C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80097AC4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80097ACC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80097AD4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80097ADC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80097AE4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80097AEC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80097AF4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80097C98.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800986D4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800986DC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80098860.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8009886C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80098A54.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80098ADC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8009D444.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8009D45C.c": {
+   "declarations": 1,
+   "not_identical_used": [
+    {
+     "addr": "80150B70",
+     "class": "struct_todo",
+     "decl": "Ent D_80150B70[]",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_8009E820.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8009E8B4.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8009E9D8.c": {
+   "declarations": 2,
+   "not_identical_used": [],
+   "used": 2,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8009EBB8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A0F64.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A13C4.c": {
+   "declarations": 1,
+   "not_identical_used": [
+    {
+     "addr": "801440AD",
+     "class": "struct_todo",
+     "decl": "u8 D_801440AD[]",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800A14FC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A1910.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A1A3C.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80144031",
+     "class": "struct_todo",
+     "decl": "s8 D_80144031",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800A2670.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A2678.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A2D44.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A3508.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A3518.c": {
+   "declarations": 1,
+   "not_identical_used": [
+    {
+     "addr": "80144030",
+     "class": "struct_todo",
+     "decl": "CarSlot D_80144030[]",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800A3598.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A35BC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A35EC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A35F8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A361C.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80144030",
+     "class": "struct_todo",
+     "decl": "s8 D_80144030",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800A370C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A371C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A44D0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A44DC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A44E8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A464C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A46CC.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A473C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A4770.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A47C0.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A48BC.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8012E6D0",
+     "class": "shape",
+     "decl": "s32 D_8012E6D0",
+     "header": "s32 D_8012E6D0[]"
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/func_800A4B40.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A4CA8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A4E50.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A5014.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A510C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A5158.c": {
+   "declarations": 5,
+   "not_identical_used": [],
+   "used": 5,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A51D8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A5488.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80149450",
+     "class": "shape",
+     "decl": "s32 D_80149450",
+     "header": "s32 D_80149450[]"
+    }
+   ],
+   "used": 4,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/func_800A54FC.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80140618",
+     "class": "signedness",
+     "decl": "u16 D_80140618",
+     "header": "s16 D_80140618"
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "signedness"
+  },
+  "src/blob/func_800A5518.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8017A510",
+     "class": "struct_todo",
+     "decl": "s32 D_8017A510",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800A553C.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A5560.c": {
+   "declarations": 1,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A5B3C.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80140618",
+     "class": "signedness",
+     "decl": "u16 D_80140618",
+     "header": "s16 D_80140618"
+    }
+   ],
+   "used": 10,
+   "worst_all": "struct_todo",
+   "worst_used": "signedness"
+  },
+  "src/blob/func_800A5BB0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A5D2C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A6078.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8017A510",
+     "class": "struct_todo",
+     "decl": "s32 D_8017A510",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800A61B0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A73FC.c": {
+   "declarations": 2,
+   "not_identical_used": [
+    {
+     "addr": "8017A63C",
+     "class": "signedness",
+     "decl": "u8 D_8017A63C",
+     "header": "s8 D_8017A63C"
+    }
+   ],
+   "used": 2,
+   "worst_all": "signedness",
+   "worst_used": "signedness"
+  },
+  "src/blob/func_800A7428.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8017A510",
+     "class": "struct_todo",
+     "decl": "volatile char D_8017A510",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800A7830.c": {
+   "declarations": 1,
+   "not_identical_used": [
+    {
+     "addr": "8012E700",
+     "class": "struct_todo",
+     "decl": "RecordSlot D_8012E700[]",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800A785C.c": {
+   "declarations": 1,
+   "not_identical_used": [
+    {
+     "addr": "8012E738",
+     "class": "struct_todo",
+     "decl": "Slot D_8012E738[]",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800A7884.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8012E700",
+     "class": "struct_todo",
+     "decl": "s32 D_8012E700",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800A78B0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A78BC.c": {
+   "declarations": 3,
+   "not_identical_used": [
+    {
+     "addr": "8015B268",
+     "class": "struct_todo",
+     "decl": "Record88 D_8015B268[]",
+     "header": null
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800A79B8.c": {
+   "declarations": 1,
+   "not_identical_used": [
+    {
+     "addr": "8012E700",
+     "class": "struct_todo",
+     "decl": "Record D_8012E700[]",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800A79DC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A7D6C.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8011418C",
+     "class": "struct_todo",
+     "decl": "s32 D_8011418C",
+     "header": null
+    }
+   ],
+   "used": 4,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800A8D8C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A8D94.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800A99C0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800AA44C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800AAB34.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800AB528.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80149B80",
+     "class": "struct_todo",
+     "decl": "s32 D_80149B80",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800AB53C.c": {
+   "declarations": 1,
+   "not_identical_used": [
+    {
+     "addr": "80149B80",
+     "class": "struct_todo",
+     "decl": "Box104 *D_80149B80",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800AB638.c": {
+   "declarations": 10,
+   "not_identical_used": [
+    {
+     "addr": "801526DC",
+     "class": "struct_todo",
+     "decl": "Header *D_801526DC",
+     "header": null
+    },
+    {
+     "addr": "801526F0",
+     "class": "struct_todo",
+     "decl": "Header *D_801526F0",
+     "header": null
+    },
+    {
+     "addr": "80152034",
+     "class": "struct_todo",
+     "decl": "u8 *D_80152034",
+     "header": null
+    },
+    {
+     "addr": "80124EEC",
+     "class": "struct_todo",
+     "decl": "u8 *D_80124EEC",
+     "header": null
+    },
+    {
+     "addr": "801497F8",
+     "class": "struct_todo",
+     "decl": "u8 *D_801497F8",
+     "header": null
+    },
+    {
+     "addr": "8015201C",
+     "class": "struct_todo",
+     "decl": "u8 *D_8015201C",
+     "header": null
+    },
+    {
+     "addr": "801525EC",
+     "class": "struct_todo",
+     "decl": "u8 *D_801525EC",
+     "header": null
+    }
+   ],
+   "used": 10,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800AB750.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80150F38",
+     "class": "struct_todo",
+     "decl": "s32 D_80150F38",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800AB7D0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800ABB58.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "801161F4",
+     "class": "struct_todo",
+     "decl": "s32 D_801161F4",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800AC660.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800ACBC4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800AD5D0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800AED18.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800AED20.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "801461B0",
+     "class": "shape",
+     "decl": "s32 D_801461B0",
+     "header": "s8 D_801461B0"
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/func_800AF064.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800AF844.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800AFA84.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800AFB28.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800AFB30.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800AFD54.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B0618.c": {
+   "declarations": 1,
+   "not_identical_used": [
+    {
+     "addr": "801391F0",
+     "class": "struct_todo",
+     "decl": "void *D_801391F0",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800B08DC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B08E4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B08EC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B08F4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B0F60.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B1F28.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B1F30.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "GameCar player_array[8]",
+     "header": null
+    },
+    {
+     "addr": "80139320",
+     "class": "struct_todo",
+     "decl": "s32 D_80139320",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800B27E4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B2818.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B2820.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B2CB4.c": {
+   "declarations": 3,
+   "not_identical_used": [
+    {
+     "addr": "801525EC",
+     "class": "struct_todo",
+     "decl": "Record *D_801525EC",
+     "header": null
+    },
+    {
+     "addr": "801497F8",
+     "class": "struct_todo",
+     "decl": "Dest *D_801497F8",
+     "header": null
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800B3584.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B3D0C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B41B8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B42E8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B45B4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B4720.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B4728.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B4730.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B4AE8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B4AF0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B4AF8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B4DA4.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80146108",
+     "class": "struct_todo",
+     "decl": "s8 D_80146108[21]",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800B5570.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B55F4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B59E8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B6014.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B601C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B61A8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B669C.c": {
+   "declarations": 1,
+   "not_identical_used": [
+    {
+     "addr": "80118E20",
+     "class": "struct_todo",
+     "decl": "Pair D_80118E20",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800B70EC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B7360.c": {
+   "declarations": 2,
+   "not_identical_used": [
+    {
+     "addr": "8012E6D0",
+     "class": "shape",
+     "decl": "s32 D_8012E6D0",
+     "header": "s32 D_8012E6D0[]"
+    }
+   ],
+   "used": 2,
+   "worst_all": "shape",
+   "worst_used": "shape"
+  },
+  "src/blob/func_800B7498.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B78A4.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B78F0.c": {
+   "declarations": 3,
+   "not_identical_used": [
+    {
+     "addr": "8014A118",
+     "class": "struct_todo",
+     "decl": "Player input_rec0[]",
+     "header": null
+    },
+    {
+     "addr": "80146150",
+     "class": "struct_todo",
+     "decl": "Object *D_80146150[]",
+     "header": null
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800B836C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B8810.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B90F8.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80151AD0",
+     "class": "signedness",
+     "decl": "u16 D_80151AD0",
+     "header": "s16 D_80151AD0"
+    },
+    {
+     "addr": "80124FD0",
+     "class": "shape",
+     "decl": "volatile long D_80124FD0",
+     "header": "s32 D_80124FD0[]"
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/func_800B912C.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80149B80",
+     "class": "struct_todo",
+     "decl": "s32 D_80149B80",
+     "header": null
+    }
+   ],
+   "used": 6,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800B9284.c": {
+   "declarations": 6,
+   "not_identical_used": [],
+   "used": 6,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800B930C.c": {
+   "declarations": 1,
+   "not_identical_used": [
+    {
+     "addr": "80151CE8",
+     "class": "struct_todo",
+     "decl": "Path D_80151CE8",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800B9338.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8012E5E8",
+     "class": "struct_todo",
+     "decl": "u16 D_8012E5E8",
+     "header": null
+    },
+    {
+     "addr": "80151CE8",
+     "class": "struct_todo",
+     "decl": "s32 D_80151CE8",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800B9F60.c": {
+   "declarations": 2213,
+   "not_identical_used": [
+    {
+     "addr": "801407F0",
+     "class": "struct_todo",
+     "decl": "volatile PGraph D_801407F0",
+     "header": null
+    },
+    {
+     "addr": "80151CE8",
+     "class": "struct_todo",
+     "decl": "s32 D_80151CE8",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800BA2B0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800BAF90.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800BB7F4.c": {
+   "declarations": 2213,
+   "not_identical_used": [
+    {
+     "addr": "8013C300",
+     "class": "struct_todo",
+     "decl": "s32 D_8013C300[30]",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800BC21C.c": {
+   "declarations": 2,
+   "not_identical_used": [],
+   "used": 2,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800BD080.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800BDA24.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800BDD90.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800BDEB0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800BE6A4.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800BEA30.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800BEA3C.c": {
+   "declarations": 2,
+   "not_identical_used": [
+    {
+     "addr": "80118E28",
+     "class": "struct_todo",
+     "decl": "Color4 D_80118E28",
+     "header": null
+    },
+    {
+     "addr": "80118E2C",
+     "class": "struct_todo",
+     "decl": "Color4 D_80118E2C",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800BEA58.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800BEA6C.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80143FD8",
+     "class": "struct_todo",
+     "decl": "D_80143FD8_Record *D_80143FD8",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800BF01C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800BF778.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800C0828.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800C15FC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800C2418.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800C2420.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800C2428.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800C360C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800C4078.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "GameCar player_array[8]",
+     "header": null
+    },
+    {
+     "addr": "8014AA32",
+     "class": "struct_todo",
+     "decl": "s16 D_8014AA32",
+     "header": null
+    },
+    {
+     "addr": "80151D18",
+     "class": "struct_todo",
+     "decl": "s16 D_80151D18",
+     "header": null
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800C4180.c": {
+   "declarations": 1,
+   "not_identical_used": [
+    {
+     "addr": "80123F80",
+     "class": "qualifier",
+     "decl": "const f32 D_80123F80",
+     "header": "f32 D_80123F80"
+    }
+   ],
+   "used": 1,
+   "worst_all": "qualifier",
+   "worst_used": "qualifier"
+  },
+  "src/blob/func_800C4C9C.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "GameCar player_array[8]",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800C4CF8.c": {
+   "declarations": 7,
+   "not_identical_used": [
+    {
+     "addr": "801407FC",
+     "class": "struct_todo",
+     "decl": "PositionEntry *D_801407FC",
+     "header": null
+    },
+    {
+     "addr": "801407F4",
+     "class": "struct_todo",
+     "decl": "Position *D_801407F4",
+     "header": null
+    },
+    {
+     "addr": "8012E5E8",
+     "class": "struct_todo",
+     "decl": "CountEntry D_8012E5E8[]",
+     "header": null
+    },
+    {
+     "addr": "8012E5EC",
+     "class": "struct_todo",
+     "decl": "PointEntry D_8012E5EC[]",
+     "header": null
+    },
+    {
+     "addr": "80151D18",
+     "class": "struct_todo",
+     "decl": "Waypoint D_80151D18[]",
+     "header": null
+    },
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "Player player_array[]",
+     "header": null
+    }
+   ],
+   "used": 7,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800C54F0.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "GameCar player_array[8]",
+     "header": null
+    },
+    {
+     "addr": "80142760",
+     "class": "signedness",
+     "decl": "u8 D_80142760",
+     "header": "s8 D_80142760"
+    },
+    {
+     "addr": "8014A250",
+     "class": "struct_todo",
+     "decl": "D_8014A250_Record D_8014A250",
+     "header": null
+    }
+   ],
+   "used": 5,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800C7300.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800C77C4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800C7EC0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800C8738.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800C8774.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800C8784.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800C9150.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800C9480.c": {
+   "declarations": 3,
+   "not_identical_used": [
+    {
+     "addr": "80151690",
+     "class": "struct_todo",
+     "decl": "Table D_80151690[12]",
+     "header": null
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800CA2F8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800CB718.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "801392D8",
+     "class": "shape",
+     "decl": "s32 D_801392D8",
+     "header": "s32 D_801392D8[]"
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/func_800CC848.c": {
+   "declarations": 1,
+   "not_identical_used": [
+    {
+     "addr": "80144030",
+     "class": "struct_todo",
+     "decl": "Car D_80144030[]",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800CD0F4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800CD0FC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800CDA60.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800CDC3C.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800CDDE8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800CDE38.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800CDE88.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800CDED8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800CEC8C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800CF604.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8014A250",
+     "class": "struct_todo",
+     "decl": "D_8014A250_Record D_8014A250",
+     "header": null
+    },
+    {
+     "addr": "80152B70",
+     "class": "struct_todo",
+     "decl": "s8 D_80152B70",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800CFCA8.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "GameCar player_array[8]",
+     "header": null
+    },
+    {
+     "addr": "8014A250",
+     "class": "struct_todo",
+     "decl": "D_8014A250_Record D_8014A250",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800D0380.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8014A96C",
+     "class": "struct_todo",
+     "decl": "s16 D_8014A96C",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800D03AC.c": {
+   "declarations": 2,
+   "not_identical_used": [],
+   "used": 2,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800D0808.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800D0810.c": {
+   "declarations": 1,
+   "not_identical_used": [
+    {
+     "addr": "80124EEC",
+     "class": "struct_todo",
+     "decl": "s32 D_80124EEC",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800D0894.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800D09E8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800D0A1C.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8011121C",
+     "class": "shape",
+     "decl": "f32 D_8011121C",
+     "header": "f32 D_8011121C[]"
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/func_800D0A34.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "801111E0",
+     "class": "shape",
+     "decl": "f32 D_801111E0",
+     "header": "f32 D_801111E0[]"
+    },
+    {
+     "addr": "8011156C",
+     "class": "shape",
+     "decl": "s8 D_8011156C",
+     "header": "s8 D_8011156C[]"
+    }
+   ],
+   "used": 4,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/func_800D0AA0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800D0B14.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80110DD8",
+     "class": "shape",
+     "decl": "f32 D_80110DD8",
+     "header": "f32 D_80110DD8[]"
+    },
+    {
+     "addr": "80111274",
+     "class": "shape",
+     "decl": "f32 D_80111274",
+     "header": "f32 D_80111274[]"
+    },
+    {
+     "addr": "801116D4",
+     "class": "struct_todo",
+     "decl": "f32 D_801116D4",
+     "header": null
+    }
+   ],
+   "used": 6,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800D1004.c": {
+   "declarations": 6,
+   "not_identical_used": [
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "Player952 player_array[]",
+     "header": null
+    },
+    {
+     "addr": "8011418C",
+     "class": "struct_todo",
+     "decl": "f32 D_8011418C[9]",
+     "header": null
+    }
+   ],
+   "used": 6,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800D1248.c": {
+   "declarations": 1,
+   "not_identical_used": [
+    {
+     "addr": "8014A96C",
+     "class": "struct_todo",
+     "decl": "s16 D_8014A96C",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800D14F4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800D18C8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800D18D0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800D18D8.c": {
+   "declarations": 4,
+   "not_identical_used": [
+    {
+     "addr": "80149808",
+     "class": "struct_todo",
+     "decl": "List16 D_80149808",
+     "header": null
+    },
+    {
+     "addr": "80146104",
+     "class": "signedness",
+     "decl": "u32 D_80146104",
+     "header": "s32 D_80146104"
+    }
+   ],
+   "used": 4,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800D2128.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800D2458.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80142740",
+     "class": "shape",
+     "decl": "f32 D_80142740",
+     "header": "f32 D_80142740[]"
+    },
+    {
+     "addr": "80142770",
+     "class": "shape",
+     "decl": "f32 D_80142770",
+     "header": "f32 D_80142770[]"
+    },
+    {
+     "addr": "80142AC8",
+     "class": "shape",
+     "decl": "f32 D_80142AC8",
+     "header": "f32 D_80142AC8[]"
+    }
+   ],
+   "used": 4,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/func_800D2CD4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800D3B20.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800D4D84.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8014A250",
+     "class": "struct_todo",
+     "decl": "D_8014A250_Record D_8014A250",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800D50E4.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800D52C4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800D52CC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800D536C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800D5828.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8014A250",
+     "class": "struct_todo",
+     "decl": "D_8014A250_Record D_8014A250",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800D58C4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800D60AC.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80152744",
+     "class": "signedness",
+     "decl": "u8 D_80152744",
+     "header": "s8 D_80152744"
+    },
+    {
+     "addr": "8014A250",
+     "class": "struct_todo",
+     "decl": "D_8014A250_Record D_8014A250",
+     "header": null
+    },
+    {
+     "addr": "801525F0",
+     "class": "signedness",
+     "decl": "volatile s16 D_801525F0",
+     "header": "u16 D_801525F0"
+    }
+   ],
+   "used": 5,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800D6348.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800D63B0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800D6690.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800D690C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800D6E00.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800D6E74.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800D8154.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800DA0B4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800DABCC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800DABD4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800DC080.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8012E5E8",
+     "class": "struct_todo",
+     "decl": "u16 D_8012E5E8",
+     "header": null
+    },
+    {
+     "addr": "80151CE8",
+     "class": "struct_todo",
+     "decl": "s32 D_80151CE8",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800DC1AC.c": {
+   "declarations": 7,
+   "not_identical_used": [],
+   "used": 3,
+   "worst_all": "shape",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800DC57C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800DC994.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800DCCD0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800DCCD8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800DCD50.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800DD0A8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800DD0B0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800DD0B8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800DD44C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800DD454.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800DD45C.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80153FD8",
+     "class": "shape",
+     "decl": "s32 D_80153FD8",
+     "header": "u8 D_80153FD8[]"
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/func_800DDEA4.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80149B74",
+     "class": "shape",
+     "decl": "s8 D_80149B74",
+     "header": "s8 D_80149B74[4]"
+    }
+   ],
+   "used": 4,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/func_800DDF28.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80149B64",
+     "class": "shape",
+     "decl": "s8 D_80149B64",
+     "header": "s8 D_80149B64[4]"
+    }
+   ],
+   "used": 4,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/func_800DE454.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800DE858.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800DE860.c": {
+   "declarations": 6,
+   "not_identical_used": [
+    {
+     "addr": "8014A250",
+     "class": "struct_todo",
+     "decl": "Car D_8014A250[]",
+     "header": null
+    },
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "Rec player_array[]",
+     "header": null
+    },
+    {
+     "addr": "80152030",
+     "class": "struct_todo",
+     "decl": "s8 D_80152030",
+     "header": null
+    },
+    {
+     "addr": "80153E88",
+     "class": "struct_todo",
+     "decl": "Slot D_80153E88[]",
+     "header": null
+    }
+   ],
+   "used": 6,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800DEF60.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E0048.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E1500.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E1540.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E15A0.c": {
+   "declarations": 3,
+   "not_identical_used": [
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "Player player_array[]",
+     "header": null
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800E1C30.c": {
+   "declarations": 3,
+   "not_identical_used": [
+    {
+     "addr": "8011128C",
+     "class": "shape",
+     "decl": "s8 D_8011128C[][13]",
+     "header": "s8 D_8011128C[13]"
+    }
+   ],
+   "used": 3,
+   "worst_all": "shape",
+   "worst_used": "shape"
+  },
+  "src/blob/func_800E2C70.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80110EC0",
+     "class": "shape",
+     "decl": "f32 D_80110EC0",
+     "header": "f32 D_80110EC0[]"
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/func_800E2CC0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E2F00.c": {
+   "declarations": 2215,
+   "not_identical_used": [],
+   "used": 4,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E30AC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E30F4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E313C.c": {
+   "declarations": 1,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E31D4.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E32CC.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E397C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E3984.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E42E8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E42F0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E42F8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E4B50.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E5434.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E5C94.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E5C9C.c": {
+   "declarations": 3,
+   "not_identical_used": [],
+   "used": 3,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E6274.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E6AE8.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E6AF0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E7030.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E79F0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E7D04.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E7DD0.c": {
+   "declarations": 10,
+   "not_identical_used": [
+    {
+     "addr": "8014A250",
+     "class": "struct_todo",
+     "decl": "Car D_8014A250[]",
+     "header": null
+    }
+   ],
+   "used": 10,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800E8CB0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800E9234.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80152574",
+     "class": "shape",
+     "decl": "s8 D_80152574",
+     "header": "s8 D_80152574[]"
+    },
+    {
+     "addr": "801526E0",
+     "class": "shape",
+     "decl": "f32 D_801526E0",
+     "header": "f32 D_801526E0[]"
+    },
+    {
+     "addr": "801526F8",
+     "class": "shape",
+     "decl": "f32 D_801526F8",
+     "header": "f32 D_801526F8[]"
+    }
+   ],
+   "used": 4,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/func_800EAFDC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800EC270.c": {
+   "declarations": 2,
+   "not_identical_used": [],
+   "used": 2,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800ED66C.c": {
+   "declarations": 2,
+   "not_identical_used": [
+    {
+     "addr": "80114748",
+     "class": "struct_todo",
+     "decl": "f32 D_80114748",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800EE7AC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800EE7B4.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800EE8AC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800F084C.c": {
+   "declarations": 1,
+   "not_identical_used": [
+    {
+     "addr": "801149B4",
+     "class": "struct_todo",
+     "decl": "List D_801149B4",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800F1928.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800F2710.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800F34D0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800F42C8.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8014A160",
+     "class": "struct_todo",
+     "decl": "D_8014A160_Target **D_8014A160",
+     "header": null
+    },
+    {
+     "addr": "80154450",
+     "class": "struct_todo",
+     "decl": "s32 D_80154450",
+     "header": null
+    },
+    {
+     "addr": "80154618",
+     "class": "shape",
+     "decl": "s32 D_80154618",
+     "header": "s32 D_80154618[]"
+    }
+   ],
+   "used": 5,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800F56E0.c": {
+   "declarations": 14,
+   "not_identical_used": [
+    {
+     "addr": "8014A118",
+     "class": "struct_todo",
+     "decl": "PlayerRecord input_rec0[]",
+     "header": null
+    },
+    {
+     "addr": "80146150",
+     "class": "struct_todo",
+     "decl": "ResourceRoot *D_80146150[]",
+     "header": null
+    },
+    {
+     "addr": "80149A78",
+     "class": "struct_todo",
+     "decl": "f32 D_80149A78[][8]",
+     "header": null
+    },
+    {
+     "addr": "80150F88",
+     "class": "struct_todo",
+     "decl": "RaceStats D_80150F88[]",
+     "header": null
+    },
+    {
+     "addr": "80151690",
+     "class": "struct_todo",
+     "decl": "ResourceHandle D_80151690[][15]",
+     "header": null
+    },
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "CarRecord D_80152818[]",
+     "header": null
+    }
+   ],
+   "used": 14,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800F7564.c": {
+   "declarations": 2,
+   "not_identical_used": [],
+   "used": 2,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800F75B0.c": {
+   "declarations": 1,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800F75D0.c": {
+   "declarations": 1,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800F75EC.c": {
+   "declarations": 1,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800F7604.c": {
+   "declarations": 1,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800F7620.c": {
+   "declarations": 1,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800F7644.c": {
+   "declarations": 2,
+   "not_identical_used": [
+    {
+     "addr": "80150DD8",
+     "class": "struct_todo",
+     "decl": "Ent19 D_80150DD8[]",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800F7A98.c": {
+   "declarations": 4,
+   "not_identical_used": [
+    {
+     "addr": "801174B4",
+     "class": "signedness",
+     "decl": "u32 D_801174B4",
+     "header": "s32 state_word_a"
+    },
+    {
+     "addr": "8014A118",
+     "class": "struct_todo",
+     "decl": "Player76 D_8014A118[]",
+     "header": null
+    },
+    {
+     "addr": "80146150",
+     "class": "struct_todo",
+     "decl": "Car *D_80146150[]",
+     "header": null
+    }
+   ],
+   "used": 4,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800F7E30.c": {
+   "declarations": 1,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800F84B0.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80152907",
+     "class": "struct_todo",
+     "decl": "s8 D_80152907",
+     "header": null
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800F874C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800F8B68.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800F8E90.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "801526A8",
+     "class": "struct_todo",
+     "decl": "s32 D_801526A8",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800F9398.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800FAD50.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800FAEE4.c": {
+   "declarations": 2,
+   "not_identical_used": [],
+   "used": 2,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800FAF50.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80152734",
+     "class": "signedness",
+     "decl": "u16 D_80152734",
+     "header": "s16 D_80152734"
+    },
+    {
+     "addr": "80152014",
+     "class": "struct_todo",
+     "decl": "s8 D_80152014",
+     "header": null
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800FBE20.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800FBE28.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800FBE30.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800FBE60.c": {
+   "declarations": 2215,
+   "not_identical_used": [
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "GameCar player_array[8]",
+     "header": null
+    },
+    {
+     "addr": "80152744",
+     "class": "signedness",
+     "decl": "u8 D_80152744",
+     "header": "s8 D_80152744"
+    },
+    {
+     "addr": "80152018",
+     "class": "struct_todo",
+     "decl": "f32 D_80152018",
+     "header": null
+    },
+    {
+     "addr": "80152031",
+     "class": "struct_todo",
+     "decl": "s8 D_80152031",
+     "header": null
+    },
+    {
+     "addr": "80152218",
+     "class": "struct_todo",
+     "decl": "s32 D_80152218",
+     "header": null
+    },
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "u8 D_80152818[]",
+     "header": null
+    }
+   ],
+   "used": 6,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800FBED8.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80111754",
+     "class": "shape",
+     "decl": "f32 D_80111754",
+     "header": "f32 D_80111754[]"
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/func_800FBF2C.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80152032",
+     "class": "struct_todo",
+     "decl": "s16 D_80152032",
+     "header": null
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800FCDF0.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800FD00C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800FD014.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800FD01C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800FD724.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800FD754.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800FDF88.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8014A160",
+     "class": "struct_todo",
+     "decl": "D_8014A160_Target **D_8014A160",
+     "header": null
+    },
+    {
+     "addr": "8002EB90",
+     "class": "shape",
+     "decl": "s32 D_8002EB90",
+     "header": "f32 D_8002EB90"
+    },
+    {
+     "addr": "801117B4",
+     "class": "shape",
+     "decl": "s32 D_801117B4",
+     "header": "s32 D_801117B4[]"
+    }
+   ],
+   "used": 5,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800FE73C.c": {
+   "declarations": 2,
+   "not_identical_used": [
+    {
+     "addr": "80144C48",
+     "class": "struct_todo",
+     "decl": "Record *D_80144C48",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_800FE788.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800FE790.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800FE79C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_800FEC9C.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80100D24.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_80105DA8.c": {
+   "declarations": 131,
+   "not_identical_used": [
+    {
+     "addr": "80142760",
+     "class": "signedness",
+     "decl": "u8 D_80142760",
+     "header": "s8 D_80142760"
+    },
+    {
+     "addr": "80151AD0",
+     "class": "signedness",
+     "decl": "u16 D_80151AD0",
+     "header": "s16 D_80151AD0"
+    },
+    {
+     "addr": "8014AA16",
+     "class": "struct_todo",
+     "decl": "s32 D_8014AA16",
+     "header": null
+    },
+    {
+     "addr": "80152907",
+     "class": "struct_todo",
+     "decl": "s32 D_80152907",
+     "header": null
+    }
+   ],
+   "used": 5,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_80107AEC.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8010B520.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8010C7CC.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8010C7F4.c": {
+   "declarations": 130,
+   "not_identical_used": [
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "GameCar player_array[8]",
+     "header": null
+    },
+    {
+     "addr": "8011754C",
+     "class": "struct_todo",
+     "decl": "s32 D_8011754C",
+     "header": null
+    },
+    {
+     "addr": "8014A890",
+     "class": "struct_todo",
+     "decl": "s32 D_8014A890",
+     "header": null
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_8010D9CC.c": {
+   "declarations": 132,
+   "not_identical_used": [
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "GameCar player_array[8]",
+     "header": null
+    },
+    {
+     "addr": "80117530",
+     "class": "struct_todo",
+     "decl": "s32 D_80117530",
+     "header": null
+    },
+    {
+     "addr": "8011754C",
+     "class": "struct_todo",
+     "decl": "s32 D_8011754C",
+     "header": null
+    },
+    {
+     "addr": "801391F0",
+     "class": "struct_todo",
+     "decl": "BNode *D_801391F0",
+     "header": null
+    }
+   ],
+   "used": 5,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_8010DAF8.c": {
+   "declarations": 132,
+   "not_identical_used": [
+    {
+     "addr": "80117530",
+     "class": "struct_todo",
+     "decl": "s32 D_80117530",
+     "header": null
+    },
+    {
+     "addr": "8011754C",
+     "class": "struct_todo",
+     "decl": "s32 D_8011754C",
+     "header": null
+    },
+    {
+     "addr": "801391F0",
+     "class": "struct_todo",
+     "decl": "void *D_801391F0",
+     "header": null
+    }
+   ],
+   "used": 4,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_8010DF90.c": {
+   "declarations": 130,
+   "not_identical_used": [
+    {
+     "addr": "8011754C",
+     "class": "struct_todo",
+     "decl": "s32 D_8011754C",
+     "header": null
+    },
+    {
+     "addr": "80152B74",
+     "class": "struct_todo",
+     "decl": "s32 D_80152B74",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/func_8010E694.c": {
+   "declarations": 129,
+   "not_identical_used": [
+    {
+     "addr": "8002EB94",
+     "class": "qualifier",
+     "decl": "volatile f32 D_8002EB94",
+     "header": "f32 D_8002EB94"
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "qualifier"
+  },
+  "src/blob/func_8010E828.c": {
+   "declarations": 2313,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8010FC60.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8010FC70.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/func_8010FD60.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/game_state_check_handler.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/game_timer_reset.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/graphics_chunk_b.c": {
+   "declarations": 8,
+   "not_identical_used": [
+    {
+     "addr": "8014A118",
+     "class": "struct_todo",
+     "decl": "Player input_rec0[]",
+     "header": null
+    },
+    {
+     "addr": "80146150",
+     "class": "struct_todo",
+     "decl": "Object *D_80146150[]",
+     "header": null
+    },
+    {
+     "addr": "801515F8",
+     "class": "struct_todo",
+     "decl": "Stats24 D_801515F8[]",
+     "header": null
+    },
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "Model952 player_array[]",
+     "header": null
+    }
+   ],
+   "used": 8,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/MP_TargetSteerPos/group.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/audio_frame_sync/group.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80140BDC",
+     "class": "shape",
+     "decl": "u8 D_80140BDC",
+     "header": "u8 D_80140BDC[]"
+    },
+    {
+     "addr": "80156D38",
+     "class": "struct_todo",
+     "decl": "ResSlot D_80156D38[]",
+     "header": null
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/audio_frame_update/group.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "GameCar player_array[8]",
+     "header": null
+    },
+    {
+     "addr": "8014A250",
+     "class": "struct_todo",
+     "decl": "D_8014A250_Record D_8014A250",
+     "header": null
+    },
+    {
+     "addr": "8011B4B8",
+     "class": "struct_todo",
+     "decl": "f32 D_8011B4B8",
+     "header": null
+    },
+    {
+     "addr": "80139320",
+     "class": "struct_todo",
+     "decl": "s32 D_80139320",
+     "header": null
+    }
+   ],
+   "used": 7,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/audio_heap/group.c": {
+   "declarations": 7,
+   "not_identical_used": [
+    {
+     "addr": "801527C8",
+     "class": "struct_todo",
+     "decl": "Heap *D_801527C8",
+     "header": null
+    },
+    {
+     "addr": "80152770",
+     "class": "struct_todo",
+     "decl": "s32 D_80152770[]",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/audio_pitch_adjust/ap.c": {
+   "declarations": 2,
+   "not_identical_used": [
+    {
+     "addr": "80144C50",
+     "class": "struct_todo",
+     "decl": "Node D_80144C50",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/camera_aspect_ratio/group.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80117530",
+     "class": "struct_todo",
+     "decl": "CamTbl D_80117530[]",
+     "header": null
+    },
+    {
+     "addr": "801141B0",
+     "class": "shape",
+     "decl": "s32 D_801141B0",
+     "header": "f32 D_801141B0"
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/camera_scene_manager/group.c": {
+   "declarations": 2217,
+   "not_identical_used": [
+    {
+     "addr": "801569B8",
+     "class": "struct_todo",
+     "decl": "Ply D_801569B8[]",
+     "header": null
+    },
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "PCar player_array[]",
+     "header": null
+    }
+   ],
+   "used": 27,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/championship_standings/group.c": {
+   "declarations": 7,
+   "not_identical_used": [],
+   "used": 3,
+   "worst_all": "shape",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_audio_frame_a5/group.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "GameCar player_array[8]",
+     "header": null
+    },
+    {
+     "addr": "8014A250",
+     "class": "struct_todo",
+     "decl": "D_8014A250_Record D_8014A250",
+     "header": null
+    }
+   ],
+   "used": 6,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/codex_car_resistance_b114/group.c": {
+   "declarations": 15,
+   "not_identical_used": [
+    {
+     "addr": "80110D08",
+     "class": "struct_todo",
+     "decl": "Car *D_80110D08[]",
+     "header": null
+    },
+    {
+     "addr": "801116D0",
+     "class": "struct_todo",
+     "decl": "Tune44 D_801116D0[]",
+     "header": null
+    },
+    {
+     "addr": "8011F844",
+     "class": "struct_todo",
+     "decl": "Collision16 D_8011F844[]",
+     "header": null
+    }
+   ],
+   "used": 14,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/codex_cleanup_a101/group.c": {
+   "declarations": 9,
+   "not_identical_used": [
+    {
+     "addr": "801170FC",
+     "class": "signedness",
+     "decl": "u32 D_801170FC",
+     "header": "s32 D_801170FC"
+    },
+    {
+     "addr": "8014A118",
+     "class": "struct_todo",
+     "decl": "Player input_rec0[]",
+     "header": null
+    }
+   ],
+   "used": 9,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/codex_control_settings_a4/group.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_counter_guard_a30/group.c": {
+   "declarations": 6,
+   "not_identical_used": [
+    {
+     "addr": "80152770",
+     "class": "struct_todo",
+     "decl": "s32 D_80152770",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/codex_defaults_a16/group.c": {
+   "declarations": 2313,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_dispatch_a111/group.c": {
+   "declarations": 1,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_entity_helpers_a10/group.c": {
+   "declarations": 5,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_func_800B7438/group.c": {
+   "declarations": 3,
+   "not_identical_used": [
+    {
+     "addr": "80155210",
+     "class": "shape",
+     "decl": "s32 D_80155210",
+     "header": "f32 D_80155210[]"
+    }
+   ],
+   "used": 3,
+   "worst_all": "shape",
+   "worst_used": "shape"
+  },
+  "src/blob/groups/codex_func_800C7200_2/group.c": {
+   "declarations": 147,
+   "not_identical_used": [],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_hash_a80/group.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_heap_release_a25/group.c": {
+   "declarations": 6,
+   "not_identical_used": [
+    {
+     "addr": "80152770",
+     "class": "struct_todo",
+     "decl": "s32 D_80152770",
+     "header": null
+    },
+    {
+     "addr": "8013FEF4",
+     "class": "struct_todo",
+     "decl": "RaceEntry D_8013FEF4[]",
+     "header": null
+    }
+   ],
+   "used": 5,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/codex_input_aux/group.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_large_crash_state/group.c": {
+   "declarations": 11,
+   "not_identical_used": [
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "CarView player_array[]",
+     "header": null
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/codex_large_init_state/group.c": {
+   "declarations": 41,
+   "not_identical_used": [
+    {
+     "addr": "8014A118",
+     "class": "struct_todo",
+     "decl": "InputRecord input_rec0[]",
+     "header": null
+    },
+    {
+     "addr": "801174B4",
+     "class": "signedness",
+     "decl": "u32 state_word_a",
+     "header": "s32 state_word_a"
+    },
+    {
+     "addr": "80146108",
+     "class": "struct_todo",
+     "decl": "s8 D_80146108[]",
+     "header": null
+    },
+    {
+     "addr": "80152030",
+     "class": "struct_todo",
+     "decl": "s8 D_80152030",
+     "header": null
+    }
+   ],
+   "used": 41,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/codex_menu_a104/group.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_menu_a105/group.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_menu_a86/group.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_menu_a87/group.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_menu_records_a88/group.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_mode_init_a18/group.c": {
+   "declarations": 2302,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_motion_norm_c24/group.c": {
+   "declarations": 4,
+   "not_identical_used": [],
+   "used": 4,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_pfs_status_c90/func_800A1E94.o3.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_physics_clutch/group.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_pointer_counters_a19/group.c": {
+   "declarations": 2301,
+   "not_identical_used": [
+    {
+     "addr": "80152770",
+     "class": "struct_todo",
+     "decl": "s32 D_80152770",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/codex_sound_channel_extra/group.c": {
+   "declarations": 12,
+   "not_identical_used": [
+    {
+     "addr": "801497F0",
+     "class": "struct_todo",
+     "decl": "Bank *D_801497F0",
+     "header": null
+    },
+    {
+     "addr": "80149800",
+     "class": "struct_todo",
+     "decl": "Entry *D_80149800",
+     "header": null
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/codex_state_audio_a146/group.c": {
+   "declarations": 6,
+   "not_identical_used": [
+    {
+     "addr": "801174B4",
+     "class": "signedness",
+     "decl": "u32 D_801174B4",
+     "header": "s32 state_word_a"
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "signedness"
+  },
+  "src/blob/groups/codex_steering_a12/group.c": {
+   "declarations": 2313,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_switch_a26/group.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_task_complete_signal/group.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80153F10",
+     "class": "struct_todo",
+     "decl": "s32 D_80153F10",
+     "header": null
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/codex_transform_b109/group.c": {
+   "declarations": 5,
+   "not_identical_used": [],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_vertices_b88/group.c": {
+   "declarations": 2,
+   "not_identical_used": [
+    {
+     "addr": "80151AE8",
+     "class": "struct_todo",
+     "decl": "TextureList8 D_80151AE8[]",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/codex_visual_tire_module_20261002/anim_tire_donor.c": {
+   "declarations": 17,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_visual_tire_module_20261002/entity_anim_texture.c": {
+   "declarations": 4,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_visual_tire_module_20261002/rand.c": {
+   "declarations": 1,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_visual_tire_module_20261002/visibility_wrappers.c": {
+   "declarations": 17,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/codex_vsync_a145/group.c": {
+   "declarations": 6,
+   "not_identical_used": [],
+   "used": 3,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/controller_poll/group.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80156958",
+     "class": "struct_todo",
+     "decl": "D_80156958_Entry D_80156958[4]",
+     "header": null
+    },
+    {
+     "addr": "8011195C",
+     "class": "shape",
+     "decl": "s32 D_8011195C",
+     "header": "s8 D_8011195C"
+    },
+    {
+     "addr": "80111960",
+     "class": "shape",
+     "decl": "s32 D_80111960",
+     "header": "u8 D_80111960"
+    },
+    {
+     "addr": "80149B50",
+     "class": "shape",
+     "decl": "s32 D_80149B50",
+     "header": "s8 D_80149B50"
+    },
+    {
+     "addr": "80149B90",
+     "class": "shape",
+     "decl": "s32 D_80149B90",
+     "header": "s32 D_80149B90[]"
+    }
+   ],
+   "used": 10,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/credits_scroll_grp/gr3.c": {
+   "declarations": 12,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/credits_scroll_grp/gr3_b.c": {
+   "declarations": 6,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/credits_scroll_grp/gr3_c.c": {
+   "declarations": 16,
+   "not_identical_used": [
+    {
+     "addr": "801461D0",
+     "class": "struct_todo",
+     "decl": "OSMesgQueue D_801461D0",
+     "header": null
+    },
+    {
+     "addr": "8017A4E4",
+     "class": "struct_todo",
+     "decl": "char **countdown_object",
+     "header": null
+    }
+   ],
+   "used": 6,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/credits_scroll_grp/gr3_d.c": {
+   "declarations": 16,
+   "not_identical_used": [
+    {
+     "addr": "801461D0",
+     "class": "struct_todo",
+     "decl": "OSMesgQueue D_801461D0",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/credits_scroll_grp/gr3_e.c": {
+   "declarations": 2313,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/dot_entry_dispatch/group.c": {
+   "declarations": 1,
+   "not_identical_used": [
+    {
+     "addr": "801407FC",
+     "class": "struct_todo",
+     "decl": "Entry *D_801407FC",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/dot_record_score/group.c": {
+   "declarations": 1,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/dot_run_decode/group.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/dot_sign_extend/group.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/dot_vector_length/group.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/draw_number/dn.c": {
+   "declarations": 12,
+   "not_identical_used": [
+    {
+     "addr": "8011128C",
+     "class": "bound",
+     "decl": "s8 D_8011128C[]",
+     "header": "s8 D_8011128C[13]"
+    }
+   ],
+   "used": 12,
+   "worst_all": "bound",
+   "worst_used": "bound"
+  },
+  "src/blob/groups/entity_flag_check/group.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80149808",
+     "class": "struct_todo",
+     "decl": "s32 D_80149808",
+     "header": null
+    },
+    {
+     "addr": "80149860",
+     "class": "shape",
+     "decl": "s32 D_80149860",
+     "header": "s8 D_80149860"
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/entity_lookup/group.c": {
+   "declarations": 5,
+   "not_identical_used": [
+    {
+     "addr": "80110244",
+     "class": "struct_todo",
+     "decl": "Entity *D_80110244",
+     "header": null
+    }
+   ],
+   "used": 4,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/frontier_pad_config/group.c": {
+   "declarations": 1,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/func_8008B640/group.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "GameCar player_array[8]",
+     "header": null
+    },
+    {
+     "addr": "8014A250",
+     "class": "struct_todo",
+     "decl": "D_8014A250_Record D_8014A250",
+     "header": null
+    }
+   ],
+   "used": 6,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/func_800AD4C8/group.c": {
+   "declarations": 2213,
+   "not_identical_used": [
+    {
+     "addr": "80124EEC",
+     "class": "struct_todo",
+     "decl": "QNode *D_80124EEC",
+     "header": null
+    }
+   ],
+   "used": 9,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/func_800B9B64/group.c": {
+   "declarations": 4,
+   "not_identical_used": [
+    {
+     "addr": "801407F0",
+     "class": "struct_todo",
+     "decl": "PathGraph D_801407F0",
+     "header": null
+    },
+    {
+     "addr": "80151CE8",
+     "class": "struct_todo",
+     "decl": "Section D_80151CE8[]",
+     "header": null
+    }
+   ],
+   "used": 4,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/func_800D2FA8/group.c": {
+   "declarations": 5,
+   "not_identical_used": [
+    {
+     "addr": "801407F0",
+     "class": "struct_todo",
+     "decl": "PathGraph D_801407F0",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/func_800E681C/group.c": {
+   "declarations": 22,
+   "not_identical_used": [],
+   "used": 10,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/func_800E92C8/group.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/func_800EA3F4/group.c": {
+   "declarations": 27,
+   "not_identical_used": [
+    {
+     "addr": "80150B70",
+     "class": "struct_todo",
+     "decl": "u8 D_80150B70[][152]",
+     "header": null
+    },
+    {
+     "addr": "8002EB94",
+     "class": "qualifier",
+     "decl": "volatile f32 D_8002EB94",
+     "header": "f32 D_8002EB94"
+    }
+   ],
+   "used": 27,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/func_800F1114_grp/func_800F1114.c": {
+   "declarations": 7,
+   "not_identical_used": [
+    {
+     "addr": "801148A4",
+     "class": "signedness",
+     "decl": "u8 D_801148A4",
+     "header": "s8 D_801148A4"
+    }
+   ],
+   "used": 7,
+   "worst_all": "signedness",
+   "worst_used": "signedness"
+  },
+  "src/blob/groups/func_800F2718_grp/func_800F2718.c": {
+   "declarations": 10,
+   "not_identical_used": [
+    {
+     "addr": "8014A118",
+     "class": "struct_todo",
+     "decl": "InputRecord input_rec0[]",
+     "header": null
+    }
+   ],
+   "used": 6,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/func_800F2888_grp/func_800F2888.c": {
+   "declarations": 10,
+   "not_identical_used": [
+    {
+     "addr": "8014A118",
+     "class": "struct_todo",
+     "decl": "InputRecord input_rec0[]",
+     "header": null
+    },
+    {
+     "addr": "80151AC0",
+     "class": "shape",
+     "decl": "s8 D_80151AC0[3][5]",
+     "header": "s8 D_80151AC0[]"
+    },
+    {
+     "addr": "80151968",
+     "class": "shape",
+     "decl": "char D_80151968[][13]",
+     "header": "u8 D_80151968[260]"
+    }
+   ],
+   "used": 10,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/gfx_modes/func_80086A50.c": {
+   "declarations": 3,
+   "not_identical_used": [
+    {
+     "addr": "80149438",
+     "class": "struct_todo",
+     "decl": "Gfx *D_80149438",
+     "header": null
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/gfx_modes/modes.c": {
+   "declarations": 3,
+   "not_identical_used": [
+    {
+     "addr": "80149438",
+     "class": "struct_todo",
+     "decl": "Gfx *D_80149438",
+     "header": null
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/menu_cc040_20261004/group.c": {
+   "declarations": 8,
+   "not_identical_used": [
+    {
+     "addr": "801527C8",
+     "class": "struct_todo",
+     "decl": "s32 D_801527C8",
+     "header": null
+    },
+    {
+     "addr": "80152770",
+     "class": "struct_todo",
+     "decl": "OSMesgQueue D_80152770",
+     "header": null
+    },
+    {
+     "addr": "80152698",
+     "class": "struct_todo",
+     "decl": "Handle D_80152698[4]",
+     "header": null
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/menu_cc_20261004/group.c": {
+   "declarations": 27,
+   "not_identical_used": [],
+   "used": 5,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/render_large_objects/group.c": {
+   "declarations": 128,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/resource_slot_clear/audio.c": {
+   "declarations": 1,
+   "not_identical_used": [
+    {
+     "addr": "80156D38",
+     "class": "struct_todo",
+     "decl": "Voice D_80156D38[64]",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/resource_slot_clear/slots.c": {
+   "declarations": 1,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/slot_sound/group.c": {
+   "declarations": 12,
+   "not_identical_used": [
+    {
+     "addr": "80156D38",
+     "class": "struct_todo",
+     "decl": "ResSlot D_80156D38[]",
+     "header": null
+    },
+    {
+     "addr": "801497F0",
+     "class": "struct_todo",
+     "decl": "Bank *D_801497F0",
+     "header": null
+    },
+    {
+     "addr": "80149800",
+     "class": "struct_todo",
+     "decl": "Entry *D_80149800",
+     "header": null
+    },
+    {
+     "addr": "80151AE8",
+     "class": "struct_todo",
+     "decl": "Pair D_80151AE8[]",
+     "header": null
+    },
+    {
+     "addr": "80149B60",
+     "class": "signedness",
+     "decl": "u8 D_80149B60",
+     "header": "s8 D_80149B60"
+    },
+    {
+     "addr": "80149B70",
+     "class": "signedness",
+     "decl": "u8 D_80149B70",
+     "header": "s8 D_80149B70"
+    }
+   ],
+   "used": 12,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/groups/sol_high_c680/group.c": {
+   "declarations": 13,
+   "not_identical_used": [],
+   "used": 4,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/groups/zlib_deflate/group.c": {
+   "declarations": 1,
+   "not_identical_used": [
+    {
+     "addr": "80152770",
+     "class": "struct_todo",
+     "decl": "char D_80152770[]",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/init_wait_completion.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/input_init_flag_get.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "801551E8",
+     "class": "shape",
+     "decl": "s32 D_801551E8",
+     "header": "s32 D_801551E8[10]"
+    },
+    {
+     "addr": "80155210",
+     "class": "shape",
+     "decl": "s32 D_80155210",
+     "header": "f32 D_80155210[]"
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/input_new_data_wrapper.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/input_status_update.c": {
+   "declarations": 128,
+   "not_identical_used": [
+    {
+     "addr": "80140BF0",
+     "class": "struct_todo",
+     "decl": "PadConfig pad_config",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/lap_count_select.c": {
+   "declarations": 3,
+   "not_identical_used": [
+    {
+     "addr": "80151CE8",
+     "class": "struct_todo",
+     "decl": "TrackRecord D_80151CE8[]",
+     "header": null
+    },
+    {
+     "addr": "801407F0",
+     "class": "struct_todo",
+     "decl": "Header D_801407F0",
+     "header": null
+    },
+    {
+     "addr": "8012E5E8",
+     "class": "struct_todo",
+     "decl": "Count D_8012E5E8[]",
+     "header": null
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/linear_interp.c": {
+   "declarations": 4,
+   "not_identical_used": [
+    {
+     "addr": "801174B4",
+     "class": "signedness",
+     "decl": "u32 state_word_a",
+     "header": "s32 state_word_a"
+    },
+    {
+     "addr": "8014A118",
+     "class": "struct_todo",
+     "decl": "Player input_rec0[]",
+     "header": null
+    },
+    {
+     "addr": "80146150",
+     "class": "struct_todo",
+     "decl": "Object *D_80146150[]",
+     "header": null
+    }
+   ],
+   "used": 4,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/listener_position_set.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "801497F8",
+     "class": "struct_todo",
+     "decl": "s32 D_801497F8",
+     "header": null
+    },
+    {
+     "addr": "8015201C",
+     "class": "struct_todo",
+     "decl": "s32 D_8015201C",
+     "header": null
+    },
+    {
+     "addr": "801525EC",
+     "class": "struct_todo",
+     "decl": "s32 D_801525EC",
+     "header": null
+    }
+   ],
+   "used": 4,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/lookup_with_output.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/math_utility.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/menu_audio_settings.c": {
+   "declarations": 3,
+   "not_identical_used": [
+    {
+     "addr": "8014D280",
+     "class": "struct_todo",
+     "decl": "Vehicle2056 D_8014D280[]",
+     "header": null
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/menu_confirm_dialog.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/menu_load_options.c": {
+   "declarations": 3,
+   "not_identical_used": [],
+   "used": 3,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/menu_render_list.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/menu_video_settings.c": {
+   "declarations": 3,
+   "not_identical_used": [],
+   "used": 3,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/mode_flags_clear.c": {
+   "declarations": 1,
+   "not_identical_used": [
+    {
+     "addr": "80110680",
+     "class": "struct_todo",
+     "decl": "Flags D_80110680",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/music_fade.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/music_tempo_adjust.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/music_track_control.c": {
+   "declarations": 1,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/no_catchup.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80144D60",
+     "class": "shape",
+     "decl": "s32 D_80144D60",
+     "header": "u8 D_80144D60[][16]"
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/object_action_clear.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80146170",
+     "class": "shape",
+     "decl": "s32 D_80146170",
+     "header": "s8 D_80146170"
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/object_activate.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80146170",
+     "class": "shape",
+     "decl": "s32 D_80146170",
+     "header": "s8 D_80146170"
+    },
+    {
+     "addr": "80146188",
+     "class": "shape",
+     "decl": "s32 D_80146188",
+     "header": "s8 D_80146188"
+    }
+   ],
+   "used": 3,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/object_byte71_set_sync.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/object_process_thunk.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/object_render_cleanup.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/object_type1_create.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/object_type7_create.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/object_type7_create_alt.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/object_update_full.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/param_reshuffle_wrapper.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/particle_position_set.c": {
+   "declarations": 2,
+   "not_identical_used": [
+    {
+     "addr": "8011418C",
+     "class": "struct_todo",
+     "decl": "s32 D_8011418C",
+     "header": null
+    },
+    {
+     "addr": "80150B70",
+     "class": "struct_todo",
+     "decl": "PartSlot D_80150B70[]",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/particle_velocity_set.c": {
+   "declarations": 128,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/particles_spawn_emitter.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80124FD0",
+     "class": "shape",
+     "decl": "s32 D_80124FD0",
+     "header": "s32 D_80124FD0[]"
+    },
+    {
+     "addr": "80150B70",
+     "class": "struct_todo",
+     "decl": "u8 D_80150B70",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/player_cleanup_slots.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/player_conditional_call.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/player_conditional_check.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/player_flag_clear_process.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/player_state_clear.c": {
+   "declarations": 129,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/players_frame_update.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80152744",
+     "class": "signedness",
+     "decl": "u8 D_80152744",
+     "header": "s8 D_80152744"
+    },
+    {
+     "addr": "8014A250",
+     "class": "struct_todo",
+     "decl": "D_8014A250_Record D_8014A250",
+     "header": null
+    },
+    {
+     "addr": "801525F0",
+     "class": "signedness",
+     "decl": "volatile s16 D_801525F0",
+     "header": "u16 D_801525F0"
+    }
+   ],
+   "used": 4,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/players_race_update.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "GameCar player_array[8]",
+     "header": null
+    },
+    {
+     "addr": "8014A250",
+     "class": "struct_todo",
+     "decl": "D_8014A250_Record D_8014A250",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/pointer_compare_thunk.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/pointer_offset8_call.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/pointer_offset_wrapper.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/pool_linked_list_init.c": {
+   "declarations": 0,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/process_inputs.c": {
+   "declarations": 6,
+   "not_identical_used": [
+    {
+     "addr": "8014A118",
+     "class": "struct_todo",
+     "decl": "Player76 input_rec0[]",
+     "header": null
+    },
+    {
+     "addr": "80156958",
+     "class": "struct_todo",
+     "decl": "Axes8 D_80156958[]",
+     "header": null
+    }
+   ],
+   "used": 6,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/race_init_helper.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80152BD8",
+     "class": "shape",
+     "decl": "s32 D_80152BD8",
+     "header": "f32 D_80152BD8"
+    }
+   ],
+   "used": 5,
+   "worst_all": "struct_todo",
+   "worst_used": "shape"
+  },
+  "src/blob/random_int.c": {
+   "declarations": 3,
+   "not_identical_used": [],
+   "used": 3,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/random_seed_init.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8014A118",
+     "class": "struct_todo",
+     "decl": "InputRecord input_rec0",
+     "header": null
+    },
+    {
+     "addr": "80156978",
+     "class": "signedness",
+     "decl": "s32 D_80156978[4]",
+     "header": "u32 D_80156978[]"
+    },
+    {
+     "addr": "80156998",
+     "class": "signedness",
+     "decl": "s32 D_80156998[4]",
+     "header": "u32 D_80156998[]"
+    },
+    {
+     "addr": "80143A00",
+     "class": "signedness",
+     "decl": "s32 D_80143A00[4]",
+     "header": "u32 D_80143A00[]"
+    },
+    {
+     "addr": "80156958",
+     "class": "struct_todo",
+     "decl": "D_80156958_Entry D_80156958[4]",
+     "header": null
+    }
+   ],
+   "used": 5,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/render_helper.c": {
+   "declarations": 2,
+   "not_identical_used": [],
+   "used": 2,
+   "worst_all": "identical",
+   "worst_used": "identical"
+  },
+  "src/blob/render_mode_select.c": {
+   "declarations": 2,
+   "not_identical_used": [
+    {
+     "addr": "8012E700",
+     "class": "struct_todo",
+     "decl": "Ent D_8012E700[]",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/render_post_process.c": {
+   "declarations": 5,
+   "not_identical_used": [
+    {
+     "addr": "80150B70",
+     "class": "struct_todo",
+     "decl": "A152 D_80150B70[]",
+     "header": null
+    },
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "B952 D_80152818[]",
+     "header": null
+    },
+    {
+     "addr": "80110680",
+     "class": "struct_todo",
+     "decl": "u8 D_80110680[6]",
+     "header": null
+    }
+   ],
+   "used": 5,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/replay_update_dual.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/resource_alloc_init.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/resource_process_thunk.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/resource_slot_get.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/resource_type_select.c": {
+   "declarations": 128,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/resource_type_select_simple.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/resource_update_global.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/results_time_display.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/save_load_data.c": {
+   "declarations": 2313,
+   "not_identical_used": [
+    {
+     "addr": "80152818",
+     "class": "struct_todo",
+     "decl": "GameCar player_array[8]",
+     "header": null
+    },
+    {
+     "addr": "80139320",
+     "class": "struct_todo",
+     "decl": "s32 D_80139320",
+     "header": null
+    },
+    {
+     "addr": "8014A258",
+     "class": "struct_todo",
+     "decl": "u8 D_8014A258",
+     "header": null
+    }
+   ],
+   "used": 8,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/scene_cleanup_slots.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/set_catchup.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/sound_call_minimal.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/sound_call_simple.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/sound_handles_array_clear.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/sound_handles_clear.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80116DE4",
+     "class": "struct_todo",
+     "decl": "s32 D_80116DE4",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/sound_pitch_diff_calc.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/sound_pitch_diff_halved.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/sound_position_set.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/sound_volume_helper.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/split_time_display.c": {
+   "declarations": 3,
+   "not_identical_used": [
+    {
+     "addr": "80151CE8",
+     "class": "struct_todo",
+     "decl": "TrackRecord D_80151CE8[]",
+     "header": null
+    },
+    {
+     "addr": "801407F0",
+     "class": "struct_todo",
+     "decl": "Header D_801407F0",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/struct_callback_init.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/struct_fields_init.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/struct_init_and_call.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "80153F10",
+     "class": "struct_todo",
+     "decl": "CallSlot D_80153F10",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/sync_acquire_menu.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/sync_entry_register.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/sync_init_conditional.c": {
+   "declarations": 4,
+   "not_identical_used": [
+    {
+     "addr": "801461D0",
+     "class": "struct_todo",
+     "decl": "OSMesgQueue D_801461D0",
+     "header": null
+    },
+    {
+     "addr": "801461FC",
+     "class": "struct_todo",
+     "decl": "OSMesg D_801461FC",
+     "header": null
+    }
+   ],
+   "used": 4,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/sync_release_video.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/tournament_unlock_check.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/track_collision.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8012E700",
+     "class": "struct_todo",
+     "decl": "TrackNode D_8012E700[]",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/track_collision_edge.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8012E700",
+     "class": "struct_todo",
+     "decl": "s32 D_8012E700",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/transmission_shift.c": {
+   "declarations": 2214,
+   "not_identical_used": [
+    {
+     "addr": "8012E700",
+     "class": "struct_todo",
+     "decl": "s32 D_8012E700",
+     "header": null
+    }
+   ],
+   "used": 1,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/validate_and_call.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/vector_copy_scale.c": {
+   "declarations": 2214,
+   "not_identical_used": [],
+   "used": 0,
+   "worst_all": "struct_todo",
+   "worst_used": "identical"
+  },
+  "src/blob/viewport_scale.c": {
+   "declarations": 2,
+   "not_identical_used": [
+    {
+     "addr": "8017A510",
+     "class": "struct_todo",
+     "decl": "Record D_8017A510[]",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  },
+  "src/blob/world_bounds_check.c": {
+   "declarations": 2,
+   "not_identical_used": [
+    {
+     "addr": "801407F0",
+     "class": "struct_todo",
+     "decl": "Graph D_801407F0",
+     "header": null
+    }
+   ],
+   "used": 2,
+   "worst_all": "struct_todo",
+   "worst_used": "struct_todo"
+  }
+ },
+ "header": "/home/cburnes/projects/rush2049-decomp/include/game_globals.h",
+ "sources": 635,
+ "totals": {
+  "declarations_all": {
+   "bound": 2,
+   "identical": 651379,
+   "qualifier": 12,
+   "shape": 177352,
+   "signedness": 17618,
+   "struct_todo": 86721
+  },
+  "declarations_used": {
+   "bound": 1,
+   "identical": 565,
+   "qualifier": 10,
+   "shape": 60,
+   "signedness": 29,
+   "struct_todo": 288
+  },
+  "files_all": {
+   "bound": 1,
+   "identical": 91,
+   "qualifier": 3,
+   "shape": 5,
+   "signedness": 2,
+   "struct_todo": 533
+  },
+  "files_used": {
+   "bound": 1,
+   "identical": 414,
+   "qualifier": 4,
+   "shape": 29,
+   "signedness": 5,
+   "struct_todo": 182
+  }
+ }
+}

@@ -1,0 +1,9 @@
+audio_distance_atten
+audio_doppler
+func_80096288
+func_800A510C
+func_800BF01C
+func_800D52CC
+mode_byte2_set
+mode_byte_set
+object_byte9_set

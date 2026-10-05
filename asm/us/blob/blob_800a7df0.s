@@ -18,6 +18,7 @@ object_process_thunk:
 .section .text.func_800A7E10, "ax", @progbits
 .globl func_800A7E10
 func_800A7E10:
+    /* compiled from src/blob/func_800A7E10.c */
     .word 0x3C088015
     .word 0x25086CE0
     .word 0x00067400
@@ -3436,6 +3437,7 @@ car_angular_velocity_clamp:
 .section .text.func_800AB18C, "ax", @progbits
 .globl func_800AB18C
 func_800AB18C:
+    /* compiled from src/blob/func_800AB18C.c */
     .word 0x3C078014
     .word 0x24E7F1D8
     .word 0x80E60000
@@ -4967,6 +4969,7 @@ resource_slot_get:
 .section .text.slot_deactivate, "ax", @progbits
 .globl slot_deactivate
 slot_deactivate:
+    /* compiled from src/blob/slot_deactivate.c */
     .word 0x27BDFFE0
     .word 0xAFBF0014
     .word 0x00803825
@@ -4993,6 +4996,7 @@ slot_deactivate:
 .section .text.player_state_get, "ax", @progbits
 .globl player_state_get
 player_state_get:
+    /* compiled from src/blob/player_state_get.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x00803825
@@ -5012,6 +5016,7 @@ player_state_get:
 .section .text.func_800AC8D4, "ax", @progbits
 .globl func_800AC8D4
 func_800AC8D4:
+    /* compiled from src/blob/func_800AC8D4.c */
     .word 0x3C188011
     .word 0x8F1874B4
     .word 0x00047400

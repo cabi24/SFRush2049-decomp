@@ -1,0 +1,17 @@
+unmatched functions 540, bytes 457224; touching >=1 listed entity: 463 funcs, 435768 bytes
+| pick | entity | unmatched funcs | unmatched bytes | new bytes | cumulative bytes | cum % of unmatched |
+| 1 | scalar-block 8014A0F8..8014A110 | 112 | 161816 | 161816 | 161816 | 35.4 |
+| 2 | scalar-block 80117498..801174E4 | 86 | 120336 | 49220 | 211036 | 46.2 |
+| 3 | array 80152818 stride 0x3b8 [gPlayerCarState1, game_car, gPlayerEntityState, player_array[GAME_SYMBOLS]] | 101 | 139288 | 35440 | 246476 | 53.9 |
+| 4 | scalar-block 8017A630..8017A640 | 14 | 33380 | 20544 | 267020 | 58.4 |
+| 5 | scalar-block 8012E668..8012E698 | 16 | 30376 | 16092 | 283112 | 61.9 |
+| 6 | struct 8017A4E0 [countdown_state[GAME_SYMBOLS]] | 46 | 57628 | 14956 | 298068 | 65.2 |
+| 7 | scalar-block 801497C0..801497D0 | 26 | 30420 | 14784 | 312852 | 68.4 |
+| 8 | array 8012E700 stride 0x44 | 44 | 64848 | 11728 | 324580 | 71.0 |
+| 9 | scalar-block 80154390..801543D4 | 54 | 76500 | 11188 | 335768 | 73.4 |
+| 10 | scalar-block 801497E8..80149800 | 23 | 21900 | 10580 | 346348 | 75.8 |
+| 11 | scalar-block 8011023C..80110290 | 18 | 12520 | 10004 | 356352 | 77.9 |
+| 12 | array 80151FC8 stride 0x78 | 29 | 43236 | 8100 | 364452 | 79.7 |
+| 13 | scalar-block 80149770..801497A8 | 53 | 65884 | 7644 | 372096 | 81.4 |
+| 14 | struct 801407F0 | 17 | 21004 | 7312 | 379408 | 83.0 |
+| 15 | scalar-block 8011414C..801141B8 | 33 | 40016 | 5536 | 384944 | 84.2 |

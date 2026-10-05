@@ -5,6 +5,7 @@
 .section .text.func_800947F0, "ax", @progbits
 .globl func_800947F0
 func_800947F0:
+    /* compiled from src/blob/func_800947F0.c */
     .word 0x3C028012
     .word 0x3C0E8003
     .word 0x24428E30
@@ -500,6 +501,7 @@ Input_InitPadHandlers:
 .section .text.Input_ApplyPadConfig, "ax", @progbits
 .globl Input_ApplyPadConfig
 Input_ApplyPadConfig:
+    /* compiled from src/blob/Input_ApplyPadConfig.c */
     .word 0x27BDFFD8
     .word 0xAFBF0024
     .word 0xAFB00020
@@ -1968,6 +1970,7 @@ func_80096288:
 .section .text.slot_value_get, "ax", @progbits
 .globl slot_value_get
 slot_value_get:
+    /* compiled from src/blob/slot_value_get.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x00803825
@@ -2038,6 +2041,7 @@ audio_loop_control:
 .section .text.display_list_alloc, "ax", @progbits
 .globl display_list_alloc
 display_list_alloc:
+    /* compiled from src/blob/display_list_alloc.c */
     .word 0x27BDFFE0
     .word 0xAFBF0014
     .word 0x00803825
@@ -2065,6 +2069,7 @@ display_list_alloc:
 .section .text.display_list_traverse, "ax", @progbits
 .globl display_list_traverse
 display_list_traverse:
+    /* compiled from src/blob/display_list_traverse.c */
     .word 0x27BDFFB8
     .word 0xAFBF0044
     .word 0xAFBE0040

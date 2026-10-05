@@ -1,0 +1,17 @@
+unmatched functions 540, bytes 457224; touching >=1 listed entity: 376 funcs, 372224 bytes
+| pick | entity | unmatched funcs | unmatched bytes | new bytes | cumulative bytes | cum % of unmatched |
+| 1 | array 80152818 stride 0x3b8 [gPlayerCarState1, game_car, gPlayerEntityState, player_array[GAME_SYMBOLS]] | 101 | 139288 | 139288 | 139288 | 30.5 |
+| 2 | struct 8017A4E0 [countdown_state[GAME_SYMBOLS]] | 46 | 57628 | 42560 | 181848 | 39.8 |
+| 3 | array 8012E700 stride 0x44 | 44 | 64848 | 32664 | 214512 | 46.9 |
+| 4 | array 8014A114 stride 0x4c | 52 | 69428 | 26976 | 241488 | 52.8 |
+| 5 | array 80151FC8 stride 0x78 | 29 | 43236 | 14128 | 255616 | 55.9 |
+| 6 | array 80144030 stride 0x304 [player_slots] | 29 | 24320 | 11764 | 267380 | 58.5 |
+| 7 | array 8014A250 stride 0x808 [gTrackDataB, track_data] | 76 | 104608 | 10940 | 278320 | 60.9 |
+| 8 | struct 80149B68 | 11 | 10452 | 10452 | 288772 | 63.2 |
+| 9 | struct 801407F0 | 17 | 21004 | 8044 | 296816 | 64.9 |
+| 10 | array 801526A8 stride 0xc | 30 | 47744 | 7960 | 304776 | 66.7 |
+| 11 | array 80156CF0 stride 0x10 [gPlayerStatusArray] | 15 | 17048 | 7624 | 312400 | 68.3 |
+| 12 | ptr-struct: MODELDAT-like via pointer (lh 0x7C6 hallmark) | 27 | 41192 | 6264 | 318664 | 69.7 |
+| 13 | array 80150B7C stride 0x98 [gSoundIndexCurrent] | 17 | 29520 | 4792 | 323456 | 70.7 |
+| 14 | struct 80146138 | 10 | 4540 | 4328 | 327784 | 71.7 |
+| 15 | struct 80144C50 | 4 | 4216 | 4216 | 332000 | 72.6 |

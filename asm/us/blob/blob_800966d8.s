@@ -216,6 +216,7 @@ entity_lod_select:
 .section .text.entity_cull_check, "ax", @progbits
 .globl entity_cull_check
 entity_cull_check:
+    /* compiled from src/blob/entity_cull_check.c */
     .word 0x27BDFFF0
     .word 0x0085082B
     .word 0xAFB2000C
@@ -373,6 +374,7 @@ func_80096BBC:
 .section .text.func_80096C28, "ax", @progbits
 .globl func_80096C28
 func_80096C28:
+    /* compiled from src/blob/func_80096C28.c */
     .word 0x1080001D
     .word 0x00000000
     .word 0xAC850000
@@ -945,6 +947,7 @@ func_80097468:
 .section .text.audio_dma_sync, "ax", @progbits
 .globl audio_dma_sync
 audio_dma_sync:
+    /* compiled from src/blob/audio_dma_sync.c */
     .word 0x27BDFFE0
     .word 0xAFA40020
     .word 0xAFBF0014
@@ -980,6 +983,7 @@ audio_dma_sync:
 .section .text.audio_task_complete, "ax", @progbits
 .globl audio_task_complete
 audio_task_complete:
+    /* compiled from src/blob/audio_task_complete.c */
     .word 0x27BDFFD0
     .word 0xAFB00018
     .word 0x00808025
@@ -6332,6 +6336,7 @@ camera_update_c:
 .section .text.camera_update_d, "ax", @progbits
 .globl camera_update_d
 camera_update_d:
+    /* compiled from src/blob/camera_update_d.c */
     .word 0x27BDFFA8
     .word 0x44859000
     .word 0xC7A40068
@@ -7448,6 +7453,7 @@ func_8009D45C:
 .section .text.func_8009D708, "ax", @progbits
 .globl func_8009D708
 func_8009D708:
+    /* compiled from src/blob/func_8009D708.c */
     .word 0x8FAE0010
     .word 0x44879000
     .word 0x00047880
@@ -7617,6 +7623,7 @@ func_8009D708:
 .section .text.func_8009D99C, "ax", @progbits
 .globl func_8009D99C
 func_8009D99C:
+    /* compiled from src/blob/func_8009D99C.c */
     .word 0x8FAE0014
     .word 0x3C01C500
     .word 0x44817000

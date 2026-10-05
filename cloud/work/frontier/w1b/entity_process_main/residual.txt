@@ -1,0 +1,40 @@
+23
+   +1ec  mtc1 at,$f18                     mtc1 at,$f18
+|  +1f0  lui at,0x8012                    lui at,0x0
+|  +1f4  lwc1 $f16,14648(at)              lwc1 $f16,0(at)
+   +1f8  lui at,0x4000                    lui at,0x4000
+   +4d4  sb t9,3(t0)                      sb t9,3(t0)
+|  +4d8  lb a0,860(t3)                    lb v1,860(t3)
+|  +4dc  bltzl a0,0x52c                   bltzl v1,0x52c
+|  +4e0  lh t9,6(t4)                      lh t6,6(t4)
+   +4e4  lb v0,861(t3)                    lb v0,861(t3)
+   +4f4  bnel v0,at,0x52c                 bnel v0,at,0x52c
+|  +4f8  lh t9,6(t4)                      
+   +4fc  lh t6,6(t4)                      lh t6,6(t4)
+|  +500  li t8,1                          lh t6,6(t4)
+|                                         li t9,1
+   +504  multu t6,t5                      multu t6,t5
+   +50c  addu v0,t2,t7                    addu v0,t2,t7
+|  +510  lhu t6,2(v0)                     lhu t8,2(v0)
+|  +514  sllv t9,t8,a0                    sllv t6,t9,v1
+|  +518  nor t7,t9,zero                   nor t7,t6,zero
+|  +51c  and t8,t6,t7                     and t9,t8,t7
+   +520  b 0x544                          b 0x544
+|  +524  sh t8,2(v0)                      sh t9,2(v0)
+|  +528  lh t9,6(t4)                      lh t6,6(t4)
+|  +52c  multu t9,t5                      multu t6,t5
+|  +530  mflo t6                          mflo t8
+|  +534  addu v0,t2,t6                    addu v0,t2,t8
+   +538  lhu t7,2(v0)                     lhu t7,2(v0)
+|  +53c  ori t8,t7,0xf                    ori t9,t7,0xf
+|  +540  sh t8,2(v0)                      sh t9,2(v0)
+|  +544  lh t9,6(t4)                      lh t6,6(t4)
+   +548  sw zero,24(sp)                   sw zero,24(sp)
+   +54c  sw zero,20(sp)                   sw zero,20(sp)
+|  +550  multu t9,t5                      multu t6,t5
+   +554  sw t0,16(sp)                     sw t0,16(sp)
+   +560  move a3,zero                     move a3,zero
+|  +564  mflo t6                          mflo t8
+|  +568  addu a0,t2,t6                    addu a0,t2,t8
+   +56c  jal 0x8c074                      jal 0x8c074
+want 356 words, got 356; differing rows 23; unverified 2 unresolved 0

@@ -397,6 +397,7 @@ func_80086A50:
 .section .text.func_8008705C, "ax", @progbits
 .globl func_8008705C
 func_8008705C:
+    /* compiled from src/blob/func_8008705C.c */
     .word 0x3C038013
     .word 0x2463E608
     .word 0x8C620000
@@ -955,6 +956,7 @@ func_80087804:
 .section .text.func_800878E0, "ax", @progbits
 .globl func_800878E0
 func_800878E0:
+    /* compiled from src/blob/func_800878E0.c */
     .word 0x3C038013
     .word 0x2463E608
     .word 0x8C620000
@@ -3549,6 +3551,7 @@ object_render:
 .section .text.func_8008A148, "ax", @progbits
 .globl func_8008A148
 func_8008A148:
+    /* compiled from src/blob/func_8008A148.c */
     .word 0x3C088013
     .word 0x2508E6D0
     .word 0x8D0E0000
@@ -3954,6 +3957,7 @@ func_8008A6FC:
 .section .text.func_8008A704, "ax", @progbits
 .globl func_8008A704
 func_8008A704:
+    /* compiled from src/blob/func_8008A704.c */
     .word 0x3C028011
     .word 0x2442194C
     .word 0x804E0000
@@ -3993,6 +3997,7 @@ func_8008A774:
 .section .text.audio_queue_process, "ax", @progbits
 .globl audio_queue_process
 audio_queue_process:
+    /* compiled from src/blob/audio_queue_process.c */
     .word 0x27BDFF80
     .word 0xAFA40080
     .word 0xAFBF003C
@@ -6215,6 +6220,7 @@ func_8008C720:
 .section .text.func_8008C768, "ax", @progbits
 .globl func_8008C768
 func_8008C768:
+    /* compiled from src/blob/func_8008C768.c */
     .word 0x460E6100
     .word 0x27BDFFE8
     .word 0xAFBF0014

@@ -63,13 +63,20 @@ def test_two_native_tables_get_their_exact_distinct_original_windows(tmp_path):
     assert bodies['g'] == bytes(case[3][0x20:0x30])
 
 
-def test_context_table_is_verified_even_when_only_caller_is_output(tmp_path):
+def test_context_table_is_not_verified_when_only_caller_is_output(tmp_path):
+    # Until per-reference placement (test_blob_group_own_data.py) a wrong
+    # context table refused the member. Context is unmatched code: only the
+    # tables of functions that are output are evidence, and those still are.
     case = _case(tmp_path)
     bodies = _relocate(case,members=['g'])
     assert bodies['g'] == bytes(case[3][0x20:0x30])
     case[3][0x100] ^= 1
+    bodies = _relocate(case,members=['g'])
+    assert bodies['g'] == bytes(case[3][0x20:0x30])
     with pytest.raises(blob_group.GroupError,match='differs from image'):
-        _relocate(case,members=['g'])
+        _relocate(case)
+    with pytest.raises(blob_group.GroupError,match='^f: own .rodata.*jump table entry 0'):
+        _relocate(case,members=['f'])
 
 
 def test_original_table_entry_mismatch_is_refused(tmp_path):

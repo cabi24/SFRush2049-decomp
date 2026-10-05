@@ -1,0 +1,23 @@
+{
+ "members": [
+  "func_800E627C",
+  "func_800E6460",
+  "func_800E681C"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "func_800E681C"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [
+  "func_800E627C"
+ ],
+ "claims": [],
+ "provisional": [
+  "func_800E6460"
+ ],
+ "note": "Real three-body group, no stand-ins. func_800E627C (already locked) and func_800E6460 score strict MATCH; func_800E681C is 16/179 words off (register colouring only). func_800E6460 is internal and its real caller is not strict, so it is listed as provisional, not claimed."
+}

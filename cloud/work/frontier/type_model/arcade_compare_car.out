@@ -1,0 +1,145 @@
+80152818 vs CAR_DATA (arcade size 0x40c): 141 typed offsets (+1 address-only), classes {'f4': 62, 's2': 13, 'x2': 26, 'w4': 20, 's1': 16, 'x1': 3, 'u1': 1}
+  chance baseline (mean over shifts): 0.18
+  best single shift +0x18: 73/141 = 0.52;  shift 0: 63/141
+  best two-piece: n64 off < 0x38c shift +0x18, >= 0x38c shift -0x30: 76/141 = 0.54
+    n64 +0x000 f4  | arcade +0x018 f4  .dr_uvs[0][0]                ok
+    n64 +0x004 f4  | arcade +0x01c f4  .dr_uvs[0][1]                ok
+    n64 +0x006 s2  | arcade +0x01e -   (no field start)             MISMATCH
+    n64 +0x008 f4  | arcade +0x020 f4  .dr_uvs[0][2]                ok
+    n64 +0x00c f4  | arcade +0x024 f4  .dr_uvs[1][0]                ok
+    n64 +0x010 f4  | arcade +0x028 f4  .dr_uvs[1][1]                ok
+    n64 +0x014 f4  | arcade +0x02c f4  .dr_uvs[1][2]                ok
+    n64 +0x018 f4  | arcade +0x030 f4  .dr_uvs[2][0]                ok
+    n64 +0x01c f4  | arcade +0x034 f4  .dr_uvs[2][1]                ok
+    n64 +0x020 f4  | arcade +0x038 f4  .dr_uvs[2][2]                ok
+    n64 +0x024 f4  | arcade +0x03c f4  .dr_tirepos[0][0]            ok
+    n64 +0x026 x2  | arcade +0x03e -   (no field start)             MISMATCH
+    n64 +0x028 f4  | arcade +0x040 f4  .dr_tirepos[0][1]            ok
+    n64 +0x02c f4  | arcade +0x044 f4  .dr_tirepos[0][2]            ok
+    n64 +0x030 f4  | arcade +0x048 f4  .dr_tirepos[1][0]            ok
+    n64 +0x034 f4  | arcade +0x04c f4  .dr_tirepos[1][1]            ok
+    n64 +0x038 f4  | arcade +0x050 f4  .dr_tirepos[1][2]            ok
+    n64 +0x03c f4  | arcade +0x054 f4  .dr_tirepos[2][0]            ok
+    n64 +0x040 f4  | arcade +0x058 f4  .dr_tirepos[2][1]            ok
+    n64 +0x044 f4  | arcade +0x05c f4  .dr_tirepos[2][2]            ok
+    n64 +0x048 f4  | arcade +0x060 f4  .dr_tirepos[3][0]            ok
+    n64 +0x04c f4  | arcade +0x064 f4  .dr_tirepos[3][1]            ok
+    n64 +0x074 f4  | arcade +0x08c f4  .RWR[2]                      ok
+    n64 +0x078 f4  | arcade +0x090 f4  .V[0]                        ok
+    n64 +0x07c f4  | arcade +0x094 f4  .V[1]                        ok
+    n64 +0x0a4 f4  | arcade +0x0bc f4  .TIRERWR[2][2]               ok
+    n64 +0x0a8 f4  | arcade +0x0c0 f4  .TIRERWR[3][0]               ok
+    n64 +0x0ac f4  | arcade +0x0c4 f4  .TIRERWR[3][1]               ok
+    n64 +0x0b0 f4  | arcade +0x0c8 f4  .TIRERWR[3][2]               ok
+    n64 +0x0b4 f4  | arcade +0x0cc f4  .TIRER[0][0]                 ok
+    n64 +0x0b8 f4  | arcade +0x0d0 f4  .TIRER[0][1]                 ok
+    n64 +0x0bc f4  | arcade +0x0d4 f4  .TIRER[0][2]                 ok
+    n64 +0x0c0 f4  | arcade +0x0d8 f4  .TIRER[1][0]                 ok
+    n64 +0x0c4 f4  | arcade +0x0dc f4  .TIRER[1][1]                 ok
+    n64 +0x0c8 f4  | arcade +0x0e0 f4  .TIRER[1][2]                 ok
+    n64 +0x0cc f4  | arcade +0x0e4 f4  .TIRER[2][0]                 ok
+    n64 +0x0d0 f4  | arcade +0x0e8 f4  .TIRER[2][1]                 ok
+    n64 +0x0d4 f4  | arcade +0x0ec f4  .TIRER[2][2]                 ok
+    n64 +0x0d8 f4  | arcade +0x0f0 f4  .TIRER[3][0]                 ok
+    n64 +0x0dc f4  | arcade +0x0f4 f4  .TIRER[3][1]                 ok
+    n64 +0x0e0 f4  | arcade +0x0f8 f4  .TIRER[3][2]                 ok
+    n64 +0x0e4 f4  | arcade +0x0fc f4  .tireW[0]                    ok
+    n64 +0x0e8 w4  | arcade +0x100 f4  .tireW[1]                    MISMATCH
+    n64 +0x0ec s1  | arcade +0x104 f4  .tireW[2]                    MISMATCH
+    n64 +0x0ed s1  | arcade +0x105 -   (no field start)             MISMATCH
+    n64 +0x0ee s1  | arcade +0x106 -   (no field start)             MISMATCH
+    n64 +0x0ef s1  | arcade +0x107 -   (no field start)             MISMATCH
+    n64 +0x0f0 f4  | arcade +0x108 f4  .tireW[3]                    ok
+    n64 +0x0f4 w4  | arcade +0x10c f4  .mph                         MISMATCH
+    n64 +0x0f6 s2  | arcade +0x10e -   (no field start)             MISMATCH
+    n64 +0x0f8 s2  | arcade +0x110 s2  .crashflag                   ok
+    n64 +0x0fa s2  | arcade +0x112 s2  .rpm                         ok
+    n64 +0x0fc s2  | arcade +0x114 s2  .engine_type                 ok
+    n64 +0x0fe s2  | arcade +0x116 s2  .body_type                   ok
+    n64 +0x100 f4  | arcade +0x118 u4  .appearance                  MISMATCH
+    n64 +0x104 f4  | arcade +0x11c u1  .data_valid                  MISMATCH
+    n64 +0x108 f4  | arcade +0x120 u4  .gameover_time               MISMATCH
+    n64 +0x116 s2  | arcade +0x12e -   (no field start)             MISMATCH
+    n64 +0x118 x2  | arcade +0x130 s1  .we_died                     MISMATCH
+    n64 +0x124 w4  | arcade +0x13c s4  .visuals[0].index            ok
+    n64 +0x12c x2  | arcade +0x144 u4  .visuals[0].slot             MISMATCH
+    n64 +0x12e x2  | arcade +0x146 -   (no field start)             MISMATCH
+    n64 +0x130 x2  | arcade +0x148 u4  .visuals[0].data             MISMATCH
+    n64 +0x13c w4  | arcade +0x154 p4  .visuals[1].next             ok
+    n64 +0x144 x2  | arcade +0x15c s4  .visuals[1].objnum           MISMATCH
+    n64 +0x146 x2  | arcade +0x15e -   (no field start)             MISMATCH
+    n64 +0x148 x2  | arcade +0x160 u4  .visuals[1].slot             MISMATCH
+    n64 +0x154 w4  | arcade +0x16c p4  .visuals[1].func             ok
+    n64 +0x15c x2  | arcade +0x174 s4  .visuals[2].index            MISMATCH
+    n64 +0x15e x2  | arcade +0x176 -   (no field start)             MISMATCH
+    n64 +0x160 x2  | arcade +0x178 s4  .visuals[2].objnum           MISMATCH
+    n64 +0x16c w4  | arcade +0x184 u4  .visuals[2].timeStamp        ok
+    n64 +0x174 x2  | arcade +0x18c p4  .visuals[3].next             MISMATCH
+    n64 +0x176 x2  | arcade +0x18e -   (no field start)             MISMATCH
+    n64 +0x178 x2  | arcade +0x190 s4  .visuals[3].index            MISMATCH
+    n64 +0x184 w4  | arcade +0x19c u4  .visuals[3].data             ok
+    n64 +0x18c x2  | arcade +0x1a4 p4  .visuals[3].func             MISMATCH
+    n64 +0x18e x2  | arcade +0x1a6 -   (no field start)             MISMATCH
+    n64 +0x190 x2  | arcade +0x1a8 p4  .visuals[4].next             MISMATCH
+    n64 +0x19c w4  | arcade +0x1b4 u4  .visuals[4].slot             ok
+    n64 +0x1a4 x2  | arcade +0x1bc u4  .visuals[4].timeStamp        MISMATCH
+    n64 +0x1a6 x2  | arcade +0x1be -   (no field start)             MISMATCH
+    n64 +0x1a8 x2  | arcade +0x1c0 p4  .visuals[4].func             MISMATCH
+    n64 +0x1ac w4  | arcade +0x1c4 p4  .visuals[5].next             ok
+    n64 +0x1b0 f4  | arcade +0x1c8 s4  .visuals[5].index            MISMATCH
+    n64 +0x1b4 w4  | arcade +0x1cc s4  .visuals[5].objnum           ok
+    n64 +0x208 x2  | arcade +0x220 s4  .visuals[8].objnum           MISMATCH
+    n64 +0x210 f4  | arcade +0x228 u4  .visuals[8].data             MISMATCH
+    n64 +0x214 w4  | arcade +0x22c u4  .visuals[8].timeStamp        ok
+    n64 +0x260 s2  | arcade +0x278 u4  .visuals[11].slot            MISMATCH
+    n64 +0x266 s2  | arcade +0x27e -   (no field start)             MISMATCH
+    n64 +0x268 x2  | arcade +0x280 u4  .visuals[11].timeStamp       MISMATCH
+    n64 +0x274 w4  | arcade +0x28c s4  .visuals[12].index           ok
+    n64 +0x29c w4  | arcade +0x2b4 u4  .visuals[13].data            ok
+    n64 +0x2a4 w4  | arcade +0x2bc p4  .visuals[13].func            ok
+    n64 +0x2d4 w4  | arcade +0x2ec u4  .visuals[15].data            ok
+    n64 +0x308 x1  | arcade +0x320 u4  .visuals[17].slot            MISMATCH
+    n64 +0x309 s1  | arcade +0x321 -   (no field start)             MISMATCH
+    n64 +0x30c f4  | arcade +0x324 u4  .visuals[17].data            MISMATCH
+    n64 +0x310 s2  | arcade +0x328 u4  .visuals[17].timeStamp       MISMATCH
+    n64 +0x311 s1  | arcade +0x329 -   (no field start)             MISMATCH
+    n64 +0x324 f4  | arcade +0x33c u4  .visuals[18].slot            MISMATCH
+    n64 +0x328 f4  | arcade +0x340 u4  .visuals[18].data            MISMATCH
+    n64 +0x32c f4  | arcade +0x344 u4  .visuals[18].timeStamp       MISMATCH
+    n64 +0x330 f4  | arcade +0x348 p4  .visuals[18].func            MISMATCH
+    n64 +0x338 s2  | arcade +0x350 s4  .visuals[19].index           MISMATCH
+    n64 +0x33a x2  | arcade +0x352 -   (no field start)             MISMATCH
+    n64 +0x33c s2  | arcade +0x354 s4  .visuals[19].objnum          MISMATCH
+    n64 +0x340 f4  | arcade +0x358 u4  .visuals[19].slot            MISMATCH
+    n64 +0x344 x2  | arcade +0x35c u4  .visuals[19].data            MISMATCH
+    n64 +0x34c w4  | arcade +0x364 p4  .visuals[19].func            ok
+    n64 +0x350 w4  | arcade +0x368 s2  .collidable                  MISMATCH
+    n64 +0x356 x2  | arcade +0x36e -   (no field start)             MISMATCH
+    n64 +0x358 s1  | arcade +0x370 s1  .collide_count               ok
+    n64 +0x359 s1  | arcade +0x371 s1  .collide_state               ok
+    n64 +0x35a s1  | arcade +0x372 -   (no field start)             MISMATCH
+    n64 +0x35b s1  | arcade +0x373 -   (no field start)             MISMATCH
+    n64 +0x35c s1  | arcade +0x374 s4  .mpath.mpi                   MISMATCH
+    n64 +0x35d s1  | arcade +0x375 -   (no field start)             MISMATCH
+    n64 +0x35e s1  | arcade +0x376 -   (no field start)             MISMATCH
+    n64 +0x35f s1  | arcade +0x377 -   (no field start)             MISMATCH
+    n64 +0x360 w4  | arcade +0x378 f4  .mpath.xrel                  MISMATCH
+    n64 +0x364 f4  | arcade +0x37c f4  .mpath.yrel                  ok
+    n64 +0x368 f4  | arcade +0x380 f4  .mpath.cyrel                 ok
+    n64 +0x36c f4  | arcade +0x384 f4  .mpath.len                   ok
+    n64 +0x370 f4  | arcade +0x388 f4  .mpath.tgtspd                ok
+    n64 +0x374 f4  | arcade +0x38c f4  .mpath.tgtpos[0]             ok
+    n64 +0x378 f4  | arcade +0x390 f4  .mpath.tgtpos[1]             ok
+    n64 +0x37c f4  | arcade +0x394 f4  .mpath.tgtpos[2]             ok
+    n64 +0x380 w4  | arcade +0x398 s4  .mpath.interval_time         ok
+    n64 +0x384 s1  | arcade +0x39c s2  .mpath.new_mpi               MISMATCH
+    n64 +0x386 x2  | arcade +0x39e s2  .mpath.mpath_index           ok
+    n64 +0x388 s2  | arcade +0x3a0 s2  .mpath.default_path          ok
+    n64 +0x38c w4  | arcade +0x35c u4  .visuals[19].data            ok
+    n64 +0x3a0 x1  | arcade +0x370 s1  .collide_count               ok
+    n64 +0x3a1 u1  | arcade +0x371 s1  .collide_state               MISMATCH
+    n64 +0x3a2 x1  | arcade +0x372 -   (no field start)             MISMATCH
+    n64 +0x3a3 s1  | arcade +0x373 -   (no field start)             MISMATCH
+    n64 +0x3ac f4  | arcade +0x37c f4  .mpath.yrel                  ok
+    n64 +0x3b0 f4  | arcade +0x380 f4  .mpath.cyrel                 ok
+    n64 +0x3b4 f4  | arcade +0x384 f4  .mpath.len                   ok

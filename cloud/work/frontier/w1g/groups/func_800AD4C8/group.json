@@ -1,0 +1,31 @@
+{
+ "members": [
+  "func_800AD4C8",
+  "func_800C3AD0",
+  "input_process_controller"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "__standin_func_800C3AD0_a",
+  "__standin_func_800C3AD0_b",
+  "__standin_input_process_controller_a",
+  "__standin_input_process_controller_b",
+  "func_800AD5D0"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [
+  "func_800AD650",
+  "func_800AD5D0"
+ ],
+ "claims": [
+  "func_800AD4C8"
+ ],
+ "provisional": [
+  "func_800C3AD0",
+  "input_process_controller"
+ ],
+ "note": "func_800AD4C8 is strict with its two real callers in the unit. func_800C3AD0 and input_process_controller are byte-identical too, but their own callers (camera_trigger_check, camera_victory, entity_update; input_deadzone_apply) are stand-ins, so they are provisional, not claims. func_800AD650 source differs from the locked copy only in parameter order (see group.c)."
+}

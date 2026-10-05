@@ -1,0 +1,19 @@
+{
+ "members": [
+  "func_800E3430",
+  "func_800E3724"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "func_800E3724"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "claims": [
+  "func_800E3724"
+ ],
+ "note": "func_800E3724 is strict MATCH here; func_800E3430 (its internal callee) is code-identical with 8 own-rodata relocations unverified and is NOT claimed. Splice only if the maintainer accepts a claimed caller whose internal callee is code-identical-unverified; otherwise wait for workstream B and use ../sym_controls."
+}

@@ -6108,6 +6108,7 @@ func_80092BF4:
 .section .text.entity_name_copy, "ax", @progbits
 .globl entity_name_copy
 entity_name_copy:
+    /* compiled from src/blob/entity_name_copy.c */
     .word 0x27BDFFB8
     .word 0xAFB70030
     .word 0xAFB50028

@@ -3976,6 +3976,7 @@ countdown:
 .section .text.func_800FC9F8, "ax", @progbits
 .globl func_800FC9F8
 func_800FC9F8:
+    /* compiled from src/blob/func_800FC9F8.c */
     .word 0x3C014080
     .word 0x44817000
     .word 0x27BDFFD8
@@ -4662,6 +4663,7 @@ input_aux_handler:
 .section .text.func_800FD41C, "ax", @progbits
 .globl func_800FD41C
 func_800FD41C:
+    /* compiled from src/blob/func_800FD41C.c */
     .word 0x3C0E8003
     .word 0x25CEE8E8
     .word 0x3C188011
@@ -4989,6 +4991,7 @@ random_seed_init:
 .section .text.random_int, "ax", @progbits
 .globl random_int
 random_int:
+    /* compiled from src/blob/random_int.c */
     .word 0x27BDFFB8
     .word 0xAFBF0014
     .word 0x808E0640

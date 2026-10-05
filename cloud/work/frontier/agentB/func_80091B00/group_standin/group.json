@@ -1,0 +1,10 @@
+{
+ "members": ["func_80091B00"],
+ "files": ["group.c"],
+ "keep": ["zz_a", "zz_b"],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "claims": [],
+ "note": "zz_a/zz_b are stand-in callers; not spliceable as-is"
+}

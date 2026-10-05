@@ -1,0 +1,10 @@
+{
+ "members": ["Input_ApplyPadConfig"],
+ "context": ["Input_InitPadHandlers"],
+ "files": ["group.c"],
+ "keep": ["Input_InitPadHandlers", "Input_ApplyPadConfig"],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "Real two-body unit, no stand-ins: Input_InitPadHandlers (locked separately from src/blob/Input_InitPadHandlers.c, no jal callers in the image) is inlined into Input_ApplyPadConfig at -O3, so its definition has to be visible. Only Input_ApplyPadConfig is claimed here.",
+ "provenance": "frontier wave 0, 2026-10-04; cloud/work/frontier/agentB/RESULTS.md"
+}

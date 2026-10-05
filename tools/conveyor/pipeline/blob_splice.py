@@ -30,6 +30,7 @@ import sys
 import time
 from pathlib import Path
 
+from ...cloud import owndata
 from ..client import DEFAULT_DATA
 from . import blob_build, blob_layout, blob_tu
 from . import targets as targetsmod
@@ -148,7 +149,61 @@ def compile_on_builder(sources, flagset, builder=BUILDER, toolkit=TOOLKIT,
     return objects, {t: "compile failed under IDO" for t in sorted(failures)}
 
 
-def link_function(object_path, target_id, vaddr, size, provides=None, work=None):
+def _retail_image():
+    """(bytes, base address) of the linked retail image named by the layout."""
+    image = blob_layout.load()["image"]
+    path = Path(image["path"])
+    path = REPO / path if not path.is_absolute() else path
+    return path.read_bytes(), int(image["base"], 16)
+
+
+def own_data_placements(object_path, target_id, vaddr, size, provides, image=None):
+    """Linker-script lines placing the object's own data sections, or "".
+
+    A float literal, a jump table or a function-local static is referenced
+    through a section symbol of the object, so nothing names its image
+    address. The retail words at each reference do (tools/cloud/owndata.py):
+    the retail bytes at that address must equal the object's, and the section
+    is then placed there so the linked HI16/LO16 words come out as retail's.
+    The data itself is not emitted: it already lives in the image's data run.
+
+    Objects without such references return "" before the image is read, so
+    their link is exactly what it always was. A reference that cannot be
+    checked (e.g. .bss) also places nothing; the image gate then refuses the
+    body as before. A reference that is checked and differs is a BuildError
+    naming the site, the retail address and both values."""
+    try:
+        if not owndata.own_references(object_path, target_id, limit=size):
+            return ""
+    except (ValueError, IndexError) as exc:
+        raise blob_build.BuildError(f"{target_id}: {exc}") from exc
+    data, base = image if image is not None else _retail_image()
+    if not base <= vaddr or vaddr + size > base + len(data):
+        raise blob_build.BuildError(f"{target_id}: extent is outside the retail image")
+    body = data[vaddr - base:vaddr - base + size]
+    want = [int.from_bytes(body[i:i + 4], "big") for i in range(0, size, 4)]
+
+    def named(name):
+        return provides[name] if name in provides else address_named(name)
+
+    result = owndata.verify(object_path, target_id, want, address=vaddr,
+                            image=owndata.ImageData.from_image(data, base),
+                            addresses=named)
+    if result.failures:
+        raise blob_build.BuildError(f"{target_id}: " + "; ".join(result.failures))
+    try:
+        bases = result.bases()
+    except ValueError as exc:
+        raise blob_build.BuildError(
+            f"{target_id}: {exc}; the single-function link cannot place them") from exc
+    # SUBALIGN(1): IDO aligns its data sections to 16, retail's literals sit at
+    # any word; without it ld would round the section up past the address.
+    return "".join(f"    .own{index} 0x{address:08X} : SUBALIGN(1) {{ *({name}) }}\n"
+                   for index, (name, address) in enumerate(sorted(bases.items())))
+
+
+def link_function(object_path, target_id, vaddr, size, provides=None, work=None,
+                  image=None):
     """Bytes a compiled function contributes at its image address.
 
     Linked alone so its relocations resolve against the image symbol table (data
@@ -157,7 +212,10 @@ def link_function(object_path, target_id, vaddr, size, provides=None, work=None)
     IDO pads .text to 16 bytes; a following function bounds that padding.
     `provides` is {name: address}: several names may
     share an address (a data-symbol label and the function's own target_id),
-    and every one of them must resolve."""
+    and every one of them must resolve. The object's own data sections
+    (literals, jump tables, local statics) are verified against `image`
+    (bytes, base address; default: the layout's retail image) and placed at
+    the addresses retail uses; see `own_data_placements`."""
     if provides is None:
         provides = {name: addr for addr, name in blob_tu.data_symbols().items()}
     provides = dict(provides)
@@ -178,15 +236,28 @@ def link_function(object_path, target_id, vaddr, size, provides=None, work=None)
     # an absolute assignment GNU ld places these globals after the function.
     # Only externally visible data objects are rebound; function definitions
     # and local statics retain their normal link semantics.
+    own_data = own_data_placements(object_path, target_id, vaddr, size, provides, image)
     provides = "\n".join((f"    {name} = 0x{addr:08X};" if name in defined_data
                            else f"    PROVIDE({name} = 0x{addr:08X});")
                           for name, addr in sorted(provides.items())
                           if name != target_id)
+    # A file may define helpers ahead of the target (IDO -O3 emits an inlined
+    # callee first). The section is placed so the TARGET lands on vaddr; the
+    # helpers' bytes are linked below it and discarded.
+    functions = blob_build.function_symbols(object_path)
+    if target_id not in functions:
+        raise blob_build.BuildError(f"{target_id}: no defined function symbol")
+    start, section = functions[target_id]
+    if start % 4:
+        raise blob_build.BuildError(f"{target_id}: function is not word aligned in its section")
     script.write_text(
         "SECTIONS\n{\n"
-        f"    . = 0x{vaddr:08X};\n"
-        f"    .out : {{ *(.text.{target_id}) }}\n"
+        f"    . = 0x{vaddr - start:08X};\n"
+        # Explicit address + SUBALIGN: an input section aligned to 16 would move .out above
+        # vaddr, and a self-call (recursion) would then resolve 4-12 bytes late.
+        f"    .out 0x{vaddr - start:08X} : SUBALIGN(4) {{ *(.text.{target_id}) }}\n"
         f"{provides}\n"
+        f"{own_data}"
         "    /DISCARD/ : { *(.pdr) *(.mdebug*) *(.comment) *(.note*)"
         " *(.reginfo) *(.options) *(.MIPS.abiflags) }\n}\n")
     elf = work / f"{target_id}.elf"
@@ -205,12 +276,7 @@ def link_function(object_path, target_id, vaddr, size, provides=None, work=None)
     data = binary.read_bytes()
     # Use input-section offsets: the linker can align .out above vaddr, while
     # objcopy emits only its contents (without that leading address gap).
-    functions = blob_build.function_symbols(object_path)
-    if target_id not in functions:
-        raise blob_build.BuildError(f"{target_id}: no defined function symbol")
-    start, section = functions[target_id]
-    if start != 0:
-        raise blob_build.BuildError(f"{target_id}: function does not start its input section")
+    data = data[start:]
     end = min((value - start for value, ndx in functions.values()
                if ndx == section and value > start), default=len(data))
     end = min(end, len(data))

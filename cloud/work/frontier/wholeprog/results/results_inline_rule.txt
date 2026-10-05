@@ -1,0 +1,40 @@
+callee kept: rows = statements in callee, cols = call sites 1,2,3,5,9 (one caller each)
+     0 stmts:  1  2  3  5  9
+     1 stmts:  1  2  3  5  9
+     2 stmts:  1  2  3  5  9
+     3 stmts:  0  0  0  0  0
+     4 stmts:  0  0  0  0  0
+     6 stmts:  0  0  0  0  0
+     8 stmts:  0  0  0  0  0
+    12 stmts:  0  0  0  0  0
+    16 stmts:  0  0  0  0  0
+    24 stmts:  0  0  0  0  0
+    40 stmts:  0  0  0  0  0
+    80 stmts:  0  0  0  0  0
+callee internal: rows = statements in callee, cols = call sites 1,2,3,5,9 (one caller each)
+     0 stmts:  1  2  3  5  9
+     1 stmts:  1  2  3  5  9
+     2 stmts:  1  2  3  5  9
+     3 stmts:  1  0  0  0  0
+     4 stmts:  1  0  0  0  0
+     6 stmts:  1  0  0  0  0
+     8 stmts:  1  0  0  0  0
+    12 stmts:  1  0  0  0  0
+    16 stmts:  1  0  0  0  0
+    24 stmts:  1  0  0  0  0
+    40 stmts:  1  0  0  0  0
+    80 stmts:  1  0  0  0  0
+empty callee + dead `if (0)` block of N statements, 1 call site / 3 call sites (kept):
+   dead   0: 1 3
+   dead   1: 1 3
+   dead   2: 1 3
+   dead   4: 0 0
+   dead   8: 0 0
+   dead  16: 0 0
+   dead  32: 0 0
+   dead  64: 0 0
+callee that itself calls N externals (1 stmt), 1 / 3 call sites (kept):
+   calls 0: 1 3
+   calls 1: 1 3
+   calls 2: 1 3
+   calls 3: 0 0

@@ -1,0 +1,16 @@
+{
+ "members": [
+  "race_setup_1"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "race_setup_1"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "claims": [],
+ "note": "code identical, own .rodata (float + jump table) unverified by the scorer; not a strict claim"
+}

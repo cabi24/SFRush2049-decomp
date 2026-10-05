@@ -1,0 +1,75 @@
+80152818: 141 typed offsets, span 0x0..0x3b4, classes {'f4': 62, 's2': 13, 'x2': 26, 'w4': 20, 's1': 16, 'x1': 3, 'u1': 1}
+    CAR_DATA       size  0x40c best shift +0x018 agree 0.52 (shift0 0.45, chance 0.18)
+    MODELDAT       size  0xa6c best shift +0x084 agree 0.51 (shift0 0.46, chance 0.30)
+    Car            size  0x278 best shift +0x004 agree 0.33 (shift0 0.31, chance 0.21)
+    RECKON         size  0x11c best shift +0x004 agree 0.30 (shift0 0.29, chance 0.09)
+8014A250: 161 typed offsets, span 0x0..0x804, classes {'w4': 7, 'u1': 4, 's1': 16, 'x1': 5, 'f4': 105, 's2': 14, 'u2': 9, 'x2': 1}
+    MODELDAT       size  0xa6c best shift +0x1e8 agree 0.60 (shift0 0.54, chance 0.48)
+    Car            size  0x278 best shift -0x004 agree 0.29 (shift0 0.28, chance 0.17)
+    CAR_DATA       size  0x40c best shift -0x010 agree 0.25 (shift0 0.22, chance 0.10)
+    RECKON         size  0x11c best shift -0x008 agree 0.23 (shift0 0.22, chance 0.07)
+80144030: 28 typed offsets, span 0x0..0x104, classes {'s1': 17, 'u2': 3, 'w4': 7, 's2': 1}
+    CAR_DATA       size  0x40c best shift +0x0ac agree 0.32 (shift0 0.00, chance 0.10)
+    MPHEADER       size   0x18 best shift -0x074 agree 0.18 (shift0 0.04, chance 0.01)
+    STHEADERTYP    size   0x40 best shift -0x06c agree 0.14 (shift0 0.00, chance 0.01)
+    STREETYP       size   0x24 best shift -0x070 agree 0.14 (shift0 0.00, chance 0.01)
+8012E700: 23 typed offsets, span 0x0..0x40, classes {'s2': 3, 'x1': 4, 'w4': 11, 'f4': 2, 'u2': 1, 'x2': 1, 'u1': 1}
+    CAR_DATA       size  0x40c best shift +0x11c agree 0.52 (shift0 0.09, chance 0.15)
+    STHEADERTYP    size   0x40 best shift -0x01c agree 0.39 (shift0 0.22, chance 0.02)
+    STREETYP       size   0x24 best shift -0x018 agree 0.35 (shift0 0.17, chance 0.02)
+    Visual         size   0x1c best shift -0x01c agree 0.30 (shift0 0.09, chance 0.01)
+8014A114: 16 typed offsets, span 0x0..0x48, classes {'w4': 10, 'u1': 2, 'f4': 2, 'u2': 1, 'x1': 1}
+    CAR_DATA       size  0x40c best shift +0x118 agree 0.75 (shift0 0.12, chance 0.19)
+    STHEADERTYP    size   0x40 best shift +0x000 agree 0.38 (shift0 0.38, chance 0.02)
+    STREETYP       size   0x24 best shift +0x000 agree 0.38 (shift0 0.38, chance 0.02)
+    Visual         size   0x1c best shift -0x008 agree 0.31 (shift0 0.25, chance 0.02)
+80151FC8: 43 typed offsets, span 0x0..0x74, classes {'w4': 10, 's2': 14, 'x2': 6, 's1': 6, 'f4': 4, 'x1': 3}
+    STHEADERTYP    size   0x40 best shift +0x008 agree 0.35 (shift0 0.33, chance 0.02)
+    MODELDAT       size  0xa6c best shift +0x160 agree 0.26 (shift0 0.09, chance 0.07)
+    CAR_DATA       size  0x40c best shift +0x0e4 agree 0.23 (shift0 0.09, chance 0.09)
+    PATHTYP        size   0xa4 best shift +0x078 agree 0.23 (shift0 0.09, chance 0.02)
+80150B7C: 21 typed offsets, span 0x0..0x88, classes {'f4': 20, 'u1': 1}
+    Car            size  0x278 best shift +0x014 agree 0.95 (shift0 0.90, chance 0.50)
+    MODELDAT       size  0xa6c best shift +0x000 agree 0.95 (shift0 0.95, chance 0.46)
+    CAR_DATA       size  0x40c best shift +0x000 agree 0.95 (shift0 0.95, chance 0.26)
+    RECKON         size  0x11c best shift +0x004 agree 0.95 (shift0 0.90, chance 0.24)
+80151CF4: 14 typed offsets, span 0x0..0x4c, classes {'f4': 7, 'w4': 1, 's2': 6}
+    MODELDAT       size  0xa6c best shift +0x170 agree 0.93 (shift0 0.50, chance 0.26)
+    PATHTYP        size   0xa4 best shift +0x074 agree 0.79 (shift0 0.50, chance 0.07)
+    Car            size  0x278 best shift +0x034 agree 0.71 (shift0 0.43, chance 0.25)
+    CAR_DATA       size  0x40c best shift +0x0f4 agree 0.71 (shift0 0.50, chance 0.15)
+80139320: 24 typed offsets, span 0x0..0x3c, classes {'u1': 1, 's2': 9, 'w4': 14}
+    CAR_DATA       size  0x40c best shift +0x130 agree 0.58 (shift0 0.00, chance 0.15)
+    STHEADERTYP    size   0x40 best shift +0x000 agree 0.38 (shift0 0.38, chance 0.03)
+    STREETYP       size   0x24 best shift -0x01c agree 0.38 (shift0 0.29, chance 0.02)
+    Visual         size   0x1c best shift -0x01c agree 0.29 (shift0 0.21, chance 0.02)
+8017A510: 22 typed offsets, span 0x0..0x47, classes {'w4': 3, 'f4': 13, 'u2': 2, 'u1': 4}
+    RECKON         size  0x11c best shift +0x0d4 agree 0.68 (shift0 0.64, chance 0.15)
+    Car            size  0x278 best shift +0x000 agree 0.64 (shift0 0.64, chance 0.30)
+    NewSkid        size   0x5c best shift +0x000 agree 0.64 (shift0 0.64, chance 0.05)
+    MODELDAT       size  0xa6c best shift +0x000 agree 0.59 (shift0 0.59, chance 0.28)
+801569B8: 22 typed offsets, span 0x0..0x54, classes {'w4': 1, 'f4': 21}
+    RECKON         size  0x11c best shift +0x000 agree 1.00 (shift0 1.00, chance 0.25)
+    NewSkid        size   0x5c best shift +0x000 agree 1.00 (shift0 1.00, chance 0.08)
+    Car            size  0x278 best shift +0x000 agree 0.95 (shift0 0.95, chance 0.49)
+    MODELDAT       size  0xa6c best shift +0x000 agree 0.95 (shift0 0.95, chance 0.45)
+80156D38: 8 typed offsets, span 0x0..0xc, classes {'x1': 1, 's1': 4, 'u1': 2, 'w4': 1}
+    CAR_DATA       size  0x40c best shift +0x11c agree 0.50 (shift0 0.00, chance 0.03)
+    MPHEADER       size   0x18 best shift +0x008 agree 0.38 (shift0 0.00, chance 0.00)
+    STHEADERTYP    size   0x40 best shift +0x000 agree 0.12 (shift0 0.12, chance 0.00)
+    STREETYP       size   0x24 best shift +0x000 agree 0.12 (shift0 0.12, chance 0.00)
+ptr:8017A4E4: 87 typed offsets, span 0x0..0x3b0, classes {'w4': 87}
+    CAR_DATA       size  0x40c best shift -0x044 agree 0.66 (shift0 0.60, chance 0.49)
+    STHEADERTYP    size   0x40 best shift -0x030 agree 0.11 (shift0 0.01, chance 0.02)
+    STREETYP       size   0x24 best shift -0x030 agree 0.10 (shift0 0.01, chance 0.02)
+    MODELDAT       size  0xa6c best shift +0x130 agree 0.09 (shift0 0.00, chance 0.02)
+ptr:8017A4EC: 25 typed offsets, span 0x0..0x46c0, classes {'u2': 24, 'w4': 1}
+    SURFTYP        size   0x1c best shift -0x00c agree 0.12 (shift0 0.08, chance 0.01)
+    RECKON         size  0x11c best shift +0x030 agree 0.04 (shift0 0.00, chance 0.00)
+    uvect          size   0x3c best shift +0x000 agree 0.00 (shift0 0.00, chance 0.00)
+    tiredes        size   0x64 best shift +0x000 agree 0.00 (shift0 0.00, chance 0.00)
+ptr:801749C4: 18 typed offsets, span 0x34..0xd4, classes {'w4': 18}
+    CAR_DATA       size  0x40c best shift +0x100 agree 1.00 (shift0 0.00, chance 0.32)
+    STHEADERTYP    size   0x40 best shift -0x034 agree 0.56 (shift0 0.00, chance 0.04)
+    STREETYP       size   0x24 best shift -0x034 agree 0.50 (shift0 0.00, chance 0.04)
+    Visual         size   0x1c best shift -0x034 agree 0.39 (shift0 0.00, chance 0.03)

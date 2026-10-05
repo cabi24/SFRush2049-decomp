@@ -1,0 +1,9358 @@
+[
+{
+"base": 2148870168,
+"kind": "array",
+"stride": 952,
+"count": 6,
+"end": 2148875880,
+"nfuncs": 135,
+"nunmatched": 101,
+"unmatched_bytes": 139288,
+"noffs": 142,
+"maxoff": 948,
+"name": "gPlayerCarState1, game_car, gPlayerEntityState, player_array[GAME_SYMBOLS]",
+"offs": [
+0,
+4,
+6,
+8,
+12,
+16,
+20,
+24,
+28,
+32,
+36,
+38,
+40,
+44,
+48,
+52,
+56,
+60,
+64,
+68,
+72,
+76,
+80,
+116,
+120,
+124,
+164,
+168,
+172,
+176,
+180,
+184,
+188,
+192,
+196,
+200,
+204,
+208,
+212,
+216,
+220,
+224,
+228,
+232,
+236,
+237,
+238,
+239,
+240,
+244,
+246,
+248,
+250,
+252,
+254,
+256,
+260,
+264,
+278,
+280,
+292,
+300,
+302,
+304,
+316,
+324,
+326,
+328,
+340,
+348,
+350,
+352,
+364,
+372,
+374,
+376,
+388,
+396,
+398,
+400,
+412,
+420,
+422,
+424,
+428,
+432,
+436,
+520,
+528,
+532,
+608,
+614,
+616,
+628,
+668,
+676,
+724,
+776,
+777,
+780,
+784,
+785,
+804,
+808,
+812,
+816,
+824,
+826,
+828,
+832,
+836,
+844,
+848,
+854,
+856,
+857,
+858,
+859,
+860,
+861,
+862,
+863,
+864,
+868,
+872,
+876,
+880,
+884,
+888,
+892,
+896,
+900,
+902,
+904,
+908,
+928,
+929,
+930,
+931,
+940,
+944,
+948
+],
+"types": {
+"0x0": [
+"addiu",
+"sw",
+"swc1"
+],
+"0x4": [
+"lw",
+"lwc1",
+"swc1"
+],
+"0x6": [
+"lh",
+"sh"
+],
+"0x8": [
+"addiu",
+"lwc1",
+"sh",
+"swc1"
+],
+"0xc": [
+"lwc1",
+"sw",
+"swc1"
+],
+"0x10": [
+"lwc1",
+"swc1"
+],
+"0x14": [
+"lwc1",
+"sw",
+"swc1"
+],
+"0x18": [
+"lwc1",
+"swc1"
+],
+"0x1c": [
+"lwc1",
+"swc1"
+],
+"0x20": [
+"swc1"
+],
+"0x24": [
+"sh",
+"swc1"
+],
+"0x26": [
+"sh"
+],
+"0x28": [
+"lh",
+"swc1"
+],
+"0x2c": [
+"lwc1"
+],
+"0x30": [
+"lwc1"
+],
+"0x34": [
+"lwc1"
+],
+"0x38": [
+"lwc1"
+],
+"0x3c": [
+"lwc1"
+],
+"0x40": [
+"lwc1"
+],
+"0x44": [
+"lwc1"
+],
+"0x48": [
+"lwc1"
+],
+"0x4c": [
+"lwc1"
+],
+"0x50": [
+"addiu"
+],
+"0x74": [
+"lwc1",
+"swc1"
+],
+"0x78": [
+"lwc1",
+"swc1"
+],
+"0x7c": [
+"lwc1",
+"swc1"
+],
+"0xa4": [
+"lwc1",
+"swc1"
+],
+"0xa8": [
+"lwc1",
+"swc1"
+],
+"0xac": [
+"lwc1",
+"swc1"
+],
+"0xb0": [
+"lwc1",
+"swc1"
+],
+"0xb4": [
+"lwc1",
+"swc1"
+],
+"0xb8": [
+"lwc1",
+"swc1"
+],
+"0xbc": [
+"lwc1"
+],
+"0xc0": [
+"lwc1"
+],
+"0xc4": [
+"lwc1"
+],
+"0xc8": [
+"lwc1"
+],
+"0xcc": [
+"lwc1"
+],
+"0xd0": [
+"lwc1"
+],
+"0xd4": [
+"lwc1"
+],
+"0xd8": [
+"lwc1"
+],
+"0xdc": [
+"lwc1"
+],
+"0xe0": [
+"lwc1",
+"swc1"
+],
+"0xe4": [
+"lwc1",
+"swc1"
+],
+"0xe8": [
+"lw",
+"sw"
+],
+"0xec": [
+"lb",
+"sb"
+],
+"0xed": [
+"lb",
+"sb"
+],
+"0xee": [
+"lb",
+"sb"
+],
+"0xef": [
+"lb",
+"sb"
+],
+"0xf0": [
+"lw",
+"lwc1",
+"swc1"
+],
+"0xf4": [
+"lw"
+],
+"0xf6": [
+"lh"
+],
+"0xf8": [
+"lh",
+"sh"
+],
+"0xfa": [
+"lh",
+"sh"
+],
+"0xfc": [
+"lh",
+"sh"
+],
+"0xfe": [
+"lh",
+"sh"
+],
+"0x100": [
+"lwc1",
+"swc1"
+],
+"0x104": [
+"lwc1",
+"swc1"
+],
+"0x108": [
+"lwc1",
+"swc1"
+],
+"0x116": [
+"lh",
+"sh"
+],
+"0x118": [
+"sh"
+],
+"0x124": [
+"lw",
+"sw"
+],
+"0x12c": [
+"sh"
+],
+"0x12e": [
+"sh"
+],
+"0x130": [
+"sh"
+],
+"0x13c": [
+"sw"
+],
+"0x144": [
+"sh"
+],
+"0x146": [
+"sh"
+],
+"0x148": [
+"sh"
+],
+"0x154": [
+"sw"
+],
+"0x15c": [
+"sh"
+],
+"0x15e": [
+"sh"
+],
+"0x160": [
+"sh"
+],
+"0x16c": [
+"sw"
+],
+"0x174": [
+"sh"
+],
+"0x176": [
+"sh"
+],
+"0x178": [
+"sh"
+],
+"0x184": [
+"sw"
+],
+"0x18c": [
+"sh"
+],
+"0x18e": [
+"sh"
+],
+"0x190": [
+"sh"
+],
+"0x19c": [
+"sw"
+],
+"0x1a4": [
+"sh"
+],
+"0x1a6": [
+"sh"
+],
+"0x1a8": [
+"sh"
+],
+"0x1ac": [
+"sw"
+],
+"0x1b0": [
+"swc1"
+],
+"0x1b4": [
+"sw"
+],
+"0x208": [
+"sh"
+],
+"0x210": [
+"swc1"
+],
+"0x214": [
+"sw"
+],
+"0x260": [
+"lh"
+],
+"0x266": [
+"lh",
+"sh"
+],
+"0x268": [
+"sh"
+],
+"0x274": [
+"sw"
+],
+"0x29c": [
+"lw"
+],
+"0x2a4": [
+"sw"
+],
+"0x2d4": [
+"sw"
+],
+"0x308": [
+"sb"
+],
+"0x309": [
+"lb",
+"sb"
+],
+"0x30c": [
+"lwc1",
+"swc1"
+],
+"0x310": [
+"lb",
+"lh",
+"sb"
+],
+"0x311": [
+"lb",
+"sb"
+],
+"0x324": [
+"lwc1",
+"swc1"
+],
+"0x328": [
+"lwc1",
+"swc1"
+],
+"0x32c": [
+"lwc1",
+"swc1"
+],
+"0x330": [
+"lwc1",
+"swc1"
+],
+"0x338": [
+"lh"
+],
+"0x33a": [
+"sh"
+],
+"0x33c": [
+"lh"
+],
+"0x340": [
+"lwc1",
+"swc1"
+],
+"0x344": [
+"sh"
+],
+"0x34c": [
+"sw"
+],
+"0x350": [
+"sw"
+],
+"0x356": [
+"sh"
+],
+"0x358": [
+"lb",
+"sb"
+],
+"0x359": [
+"lb",
+"sb"
+],
+"0x35a": [
+"lb",
+"sb"
+],
+"0x35b": [
+"lb",
+"sb"
+],
+"0x35c": [
+"lb",
+"sb"
+],
+"0x35d": [
+"lb",
+"sb"
+],
+"0x35e": [
+"lb",
+"sb"
+],
+"0x35f": [
+"lb",
+"sb"
+],
+"0x360": [
+"sw"
+],
+"0x364": [
+"lwc1",
+"swc1"
+],
+"0x368": [
+"lwc1",
+"swc1"
+],
+"0x36c": [
+"lwc1",
+"swc1"
+],
+"0x370": [
+"lwc1",
+"swc1"
+],
+"0x374": [
+"lwc1",
+"swc1"
+],
+"0x378": [
+"lwc1",
+"swc1"
+],
+"0x37c": [
+"lw",
+"lwc1",
+"swc1"
+],
+"0x380": [
+"lw",
+"sw"
+],
+"0x384": [
+"lb"
+],
+"0x386": [
+"sh"
+],
+"0x388": [
+"lh",
+"sh"
+],
+"0x38c": [
+"lw",
+"sw"
+],
+"0x3a0": [
+"sb"
+],
+"0x3a1": [
+"lbu"
+],
+"0x3a2": [
+"sb"
+],
+"0x3a3": [
+"lb",
+"sb"
+],
+"0x3ac": [
+"swc1"
+],
+"0x3b0": [
+"swc1"
+],
+"0x3b4": [
+"swc1"
+]
+},
+"funcs": [
+"anim_state_update",
+"assign_drones",
+"audio_frame_update",
+"battle_mode_setup",
+"buffer_swap",
+"camera_free_look",
+"camera_play_script",
+"camera_position_update",
+"camera_scene_manager",
+"camera_track_spline",
+"car_select_handler",
+"car_setup_confirm",
+"countdown",
+"cpak_init",
+"cpak_read",
+"difficulty_select",
+"display_list_flush",
+"drone_ai_update",
+"dust_cloud_effect",
+"entity_anim_texture",
+"entity_collision_detect",
+"entity_physics_update",
+"entity_process_main",
+"entity_render_setup",
+"entity_spawn_init",
+"entity_tick_main",
+"entity_update",
+"entity_update_callback",
+"explosion_effect",
+"func_8008BEA4",
+"func_8008E408",
+"func_80090308",
+"func_800AC8D4",
+"func_800AF8C0",
+"func_800B08FC",
+"func_800B0A88",
+"func_800B1F30",
+"func_800C2430",
+"func_800C26C4",
+"func_800C2944",
+"func_800C4078",
+"func_800C4C9C",
+"func_800C4CF8",
+"func_800C4F68",
+"func_800C54F0",
+"func_800CF604",
+"func_800CFCA8",
+"func_800D1004",
+"func_800D169C",
+"func_800D1AB0",
+"func_800D91A0",
+"func_800DE860",
+"func_800E0B20",
+"func_800E114C",
+"func_800E15A0",
+"func_800E23A4",
+"func_800E3430",
+"func_800E3724",
+"func_800E398C",
+"func_800E4B58",
+"func_800E543C",
+"func_800E56F8",
+"func_800E5D64",
+"func_800E681C",
+"func_800E6AF8",
+"func_800E847C",
+"func_800EB90C",
+"func_800EC914",
+"func_800EF288",
+"func_800EF62C",
+"func_800F56E0",
+"func_800F7F3C",
+"func_800F84B0",
+"func_800F8EC8",
+"func_800FBE60",
+"func_80100E58",
+"func_80101904",
+"func_80102980",
+"func_80102F30",
+"func_80105B74",
+"func_80105DA8",
+"func_80105EA8",
+"func_80106D94",
+"func_80107EDC",
+"func_80108154",
+"func_801084D4",
+"func_80108AB0",
+"func_80108DA8",
+"func_80108F40",
+"func_80109A60",
+"func_8010C448",
+"func_8010C588",
+"func_8010C7F4",
+"func_8010D3C0",
+"func_8010D680",
+"func_8010D9CC",
+"func_8010DBB8",
+"func_8010DCFC",
+"func_8010DF90",
+"func_8010E0FC",
+"func_8010E72C",
+"ghost_race_setup",
+"graphics_chunk_b",
+"hud_render",
+"menu_control_settings",
+"menu_controller_remap",
+"menu_options_screen",
+"music_control",
+"music_seq_load",
+"music_tempo_set",
+"particles_update",
+"physics_velocity_integrate_a",
+"physics_velocity_integrate_b",
+"physics_velocity_integrate_c",
+"physics_velocity_integrate_d",
+"physics_velocity_integrate_e",
+"physics_velocity_integrate_f",
+"place_cars_in_order",
+"players_race_update",
+"race_countdown_display",
+"race_finish",
+"race_init_helper",
+"race_setup_2",
+"random_float",
+"render_large_objects",
+"render_post_process",
+"render_viewport_init",
+"save_load_data",
+"save_write_data",
+"stat_lap_split",
+"steering_apply",
+"stunt_combo_display",
+"track_texture_load",
+"world_gravity_apply",
+"world_physics_tick"
+],
+"where": "bss"
+},
+{
+"base": 2148835920,
+"kind": "array",
+"stride": 2056,
+"count": 6,
+"end": 2148848256,
+"nfuncs": 100,
+"nunmatched": 76,
+"unmatched_bytes": 104608,
+"noffs": 161,
+"maxoff": 2052,
+"name": "gTrackDataB, track_data",
+"offs": [
+0,
+4,
+8,
+9,
+10,
+11,
+12,
+13,
+14,
+15,
+16,
+20,
+24,
+64,
+68,
+72,
+76,
+80,
+84,
+88,
+100,
+104,
+108,
+112,
+116,
+120,
+124,
+128,
+132,
+136,
+140,
+144,
+196,
+208,
+220,
+232,
+244,
+248,
+252,
+256,
+260,
+264,
+268,
+272,
+276,
+280,
+284,
+288,
+532,
+536,
+540,
+544,
+548,
+552,
+556,
+560,
+564,
+736,
+740,
+744,
+976,
+980,
+1008,
+1016,
+1020,
+1024,
+1072,
+1152,
+1156,
+1164,
+1172,
+1244,
+1248,
+1256,
+1336,
+1340,
+1348,
+1428,
+1432,
+1440,
+1442,
+1444,
+1446,
+1484,
+1516,
+1520,
+1524,
+1528,
+1564,
+1566,
+1568,
+1570,
+1572,
+1580,
+1600,
+1601,
+1602,
+1620,
+1632,
+1640,
+1732,
+1740,
+1744,
+1808,
+1812,
+1816,
+1820,
+1824,
+1832,
+1836,
+1840,
+1841,
+1842,
+1844,
+1848,
+1852,
+1856,
+1860,
+1864,
+1868,
+1872,
+1876,
+1880,
+1884,
+1916,
+1920,
+1924,
+1928,
+1932,
+1936,
+1940,
+1944,
+1948,
+1988,
+1990,
+1992,
+1994,
+1996,
+1997,
+1998,
+1999,
+2000,
+2004,
+2008,
+2013,
+2015,
+2016,
+2018,
+2020,
+2022,
+2024,
+2025,
+2026,
+2027,
+2028,
+2032,
+2036,
+2040,
+2044,
+2048,
+2052
+],
+"types": {
+"0x0": [
+"addiu",
+"lw",
+"sw"
+],
+"0x4": [
+"lw"
+],
+"0x8": [
+"lbu",
+"sb"
+],
+"0x9": [
+"lb",
+"sb"
+],
+"0xa": [
+"lb",
+"sb"
+],
+"0xb": [
+"sb"
+],
+"0xc": [
+"sb"
+],
+"0xd": [
+"sb"
+],
+"0xe": [
+"sb"
+],
+"0xf": [
+"lb",
+"sb"
+],
+"0x10": [
+"lwc1"
+],
+"0x14": [
+"lwc1"
+],
+"0x18": [
+"lwc1"
+],
+"0x40": [
+"lwc1"
+],
+"0x44": [
+"lwc1"
+],
+"0x48": [
+"lwc1"
+],
+"0x4c": [
+"lwc1"
+],
+"0x50": [
+"lwc1"
+],
+"0x54": [
+"lwc1"
+],
+"0x58": [
+"lw"
+],
+"0x64": [
+"lwc1"
+],
+"0x68": [
+"lwc1"
+],
+"0x6c": [
+"lwc1"
+],
+"0x70": [
+"lwc1"
+],
+"0x74": [
+"lwc1"
+],
+"0x78": [
+"lwc1"
+],
+"0x7c": [
+"lwc1"
+],
+"0x80": [
+"lwc1"
+],
+"0x84": [
+"lwc1"
+],
+"0x88": [
+"lwc1"
+],
+"0x8c": [
+"lwc1"
+],
+"0x90": [
+"lwc1"
+],
+"0xc4": [
+"lwc1"
+],
+"0xd0": [
+"lwc1"
+],
+"0xdc": [
+"lwc1"
+],
+"0xe8": [
+"lwc1"
+],
+"0xf4": [
+"swc1"
+],
+"0xf8": [
+"swc1"
+],
+"0xfc": [
+"swc1"
+],
+"0x100": [
+"swc1"
+],
+"0x104": [
+"swc1"
+],
+"0x108": [
+"swc1"
+],
+"0x10c": [
+"swc1"
+],
+"0x110": [
+"swc1"
+],
+"0x114": [
+"swc1"
+],
+"0x118": [
+"swc1"
+],
+"0x11c": [
+"swc1"
+],
+"0x120": [
+"swc1"
+],
+"0x214": [
+"lwc1"
+],
+"0x218": [
+"lwc1"
+],
+"0x21c": [
+"lwc1"
+],
+"0x220": [
+"lwc1"
+],
+"0x224": [
+"lwc1"
+],
+"0x228": [
+"lwc1"
+],
+"0x22c": [
+"lwc1"
+],
+"0x230": [
+"lwc1"
+],
+"0x234": [
+"lwc1"
+],
+"0x2e0": [
+"lwc1",
+"swc1"
+],
+"0x2e4": [
+"lwc1",
+"swc1"
+],
+"0x2e8": [
+"lwc1",
+"swc1"
+],
+"0x3d0": [
+"lwc1"
+],
+"0x3d4": [
+"lwc1"
+],
+"0x3f0": [
+"lwc1",
+"swc1"
+],
+"0x3f8": [
+"lh"
+],
+"0x3fc": [
+"sw"
+],
+"0x400": [
+"lwc1",
+"swc1"
+],
+"0x430": [
+"lwc1"
+],
+"0x480": [
+"lwc1"
+],
+"0x484": [
+"lwc1"
+],
+"0x48c": [
+"lwc1"
+],
+"0x494": [
+"lw"
+],
+"0x4dc": [
+"lwc1"
+],
+"0x4e0": [
+"lwc1"
+],
+"0x4e8": [
+"lwc1"
+],
+"0x538": [
+"lwc1"
+],
+"0x53c": [
+"lwc1"
+],
+"0x544": [
+"lwc1"
+],
+"0x594": [
+"lwc1"
+],
+"0x598": [
+"lwc1"
+],
+"0x5a0": [
+"lhu"
+],
+"0x5a2": [
+"lhu"
+],
+"0x5a4": [
+"lhu"
+],
+"0x5a6": [
+"lhu"
+],
+"0x5cc": [
+"lwc1"
+],
+"0x5ec": [
+"lwc1"
+],
+"0x5f0": [
+"lwc1"
+],
+"0x5f4": [
+"lwc1"
+],
+"0x5f8": [
+"lwc1"
+],
+"0x61c": [
+"lhu"
+],
+"0x61e": [
+"lhu"
+],
+"0x620": [
+"lhu"
+],
+"0x622": [
+"lhu"
+],
+"0x624": [
+"lh"
+],
+"0x62c": [
+"lhu"
+],
+"0x640": [
+"lb",
+"sb"
+],
+"0x641": [
+"lb"
+],
+"0x642": [
+"lb"
+],
+"0x654": [
+"lwc1",
+"swc1"
+],
+"0x660": [
+"lwc1"
+],
+"0x668": [
+"lwc1"
+],
+"0x6c4": [
+"lh",
+"sh"
+],
+"0x6cc": [
+"sb"
+],
+"0x6d0": [
+"sh"
+],
+"0x710": [
+"lw",
+"sw"
+],
+"0x714": [
+"lw",
+"lwc1",
+"swc1"
+],
+"0x718": [
+"lwc1",
+"swc1"
+],
+"0x71c": [
+"lh",
+"sh"
+],
+"0x720": [
+"lwc1",
+"swc1"
+],
+"0x728": [
+"lwc1",
+"swc1"
+],
+"0x72c": [
+"lwc1",
+"swc1"
+],
+"0x730": [
+"lb",
+"sb"
+],
+"0x731": [
+"lb",
+"sb"
+],
+"0x732": [
+"lb",
+"sb"
+],
+"0x734": [
+"swc1"
+],
+"0x738": [
+"swc1"
+],
+"0x73c": [
+"swc1"
+],
+"0x740": [
+"swc1"
+],
+"0x744": [
+"swc1"
+],
+"0x748": [
+"swc1"
+],
+"0x74c": [
+"swc1"
+],
+"0x750": [
+"swc1"
+],
+"0x754": [
+"swc1"
+],
+"0x758": [
+"lh"
+],
+"0x75c": [
+"lwc1"
+],
+"0x77c": [
+"lwc1"
+],
+"0x780": [
+"lwc1"
+],
+"0x784": [
+"lwc1"
+],
+"0x788": [
+"lwc1"
+],
+"0x78c": [
+"lwc1"
+],
+"0x790": [
+"lwc1"
+],
+"0x794": [
+"lwc1",
+"swc1"
+],
+"0x798": [
+"lwc1",
+"swc1"
+],
+"0x79c": [
+"lwc1",
+"swc1"
+],
+"0x7c4": [
+"lh",
+"sh"
+],
+"0x7c6": [
+"lh",
+"sh"
+],
+"0x7c8": [
+"lh",
+"sh"
+],
+"0x7ca": [
+"lh",
+"sh"
+],
+"0x7cc": [
+"lb",
+"sb"
+],
+"0x7cd": [
+"lbu",
+"sb"
+],
+"0x7ce": [
+"lbu",
+"sb"
+],
+"0x7cf": [
+"lbu",
+"sb"
+],
+"0x7d0": [
+"lh"
+],
+"0x7d4": [
+"lw",
+"sw"
+],
+"0x7d8": [
+"lwc1",
+"swc1"
+],
+"0x7dd": [
+"lb",
+"sb"
+],
+"0x7df": [
+"lb"
+],
+"0x7e0": [
+"lh"
+],
+"0x7e2": [
+"lh",
+"sh"
+],
+"0x7e4": [
+"lh",
+"sh"
+],
+"0x7e6": [
+"lh",
+"sh"
+],
+"0x7e8": [
+"lb"
+],
+"0x7e9": [
+"lb",
+"sb"
+],
+"0x7ea": [
+"lb",
+"sb"
+],
+"0x7eb": [
+"lb",
+"sb"
+],
+"0x7ec": [
+"lwc1",
+"swc1"
+],
+"0x7f0": [
+"lwc1",
+"swc1"
+],
+"0x7f4": [
+"lwc1",
+"swc1"
+],
+"0x7f8": [
+"swc1"
+],
+"0x7fc": [
+"swc1"
+],
+"0x800": [
+"swc1"
+],
+"0x804": [
+"swc1"
+]
+},
+"funcs": [
+"anim_state_update",
+"audio_fade_control",
+"audio_interrupt_handler",
+"battle_mode_setup",
+"buffer_swap",
+"camera_race_setup",
+"camera_scene_manager",
+"car_select_handler",
+"car_setup_confirm",
+"countdown",
+"cpak_init",
+"cpak_read",
+"debug_stats",
+"display_list_flush",
+"drone_ai_update",
+"dust_cloud_effect",
+"entity_collision_detect",
+"entity_physics_update",
+"entity_process_main",
+"entity_render_setup",
+"entity_spawn_init",
+"entity_tick_main",
+"entity_update_callback",
+"explosion_effect",
+"func_800AF8C0",
+"func_800B08FC",
+"func_800B0A88",
+"func_800C2004",
+"func_800C220C",
+"func_800C4078",
+"func_800C54F0",
+"func_800CF604",
+"func_800CFCA8",
+"func_800D0380",
+"func_800D1248",
+"func_800D169C",
+"func_800D1AB0",
+"func_800D348C",
+"func_800D4D84",
+"func_800D5828",
+"func_800D5A04",
+"func_800D60AC",
+"func_800DE860",
+"func_800E398C",
+"func_800E451C",
+"func_800E543C",
+"func_800E56F8",
+"func_800E5D64",
+"func_800E681C",
+"func_800E6AF8",
+"func_800E762C",
+"func_800E7DD0",
+"func_800E7FA0",
+"func_800E847C",
+"func_800E8D50",
+"func_800EB028",
+"func_800EB90C",
+"func_800EC914",
+"func_800EF288",
+"func_800EF62C",
+"func_800F7F3C",
+"func_800F8EC8",
+"func_80100E58",
+"func_80105B74",
+"func_80105DA8",
+"func_80105EA8",
+"func_80106D94",
+"func_80107EDC",
+"func_80108F40",
+"func_80109A60",
+"func_8010C02C",
+"func_8010C2E4",
+"func_8010C448",
+"func_8010C588",
+"func_8010C7F4",
+"func_8010D3C0",
+"func_8010DCFC",
+"ghost_race_setup",
+"hud_render",
+"main_menu_render",
+"menu_controller_remap",
+"music_control",
+"music_seq_load",
+"music_tempo_set",
+"physics_velocity_integrate_a",
+"physics_velocity_integrate_b",
+"physics_velocity_integrate_c",
+"physics_velocity_integrate_d",
+"physics_velocity_integrate_e",
+"physics_velocity_integrate_f",
+"players_frame_update",
+"players_race_update",
+"props_render",
+"render_large_objects",
+"render_viewport_init",
+"save_load_data",
+"steering_apply",
+"stunt_combo_display",
+"world_gravity_apply",
+"world_physics_tick"
+],
+"where": "bss"
+},
+{
+"base": 2148722432,
+"kind": "array",
+"stride": 68,
+"count": 64,
+"end": 2148726784,
+"nfuncs": 69,
+"nunmatched": 44,
+"unmatched_bytes": 64848,
+"noffs": 23,
+"maxoff": 64,
+"name": "",
+"offs": [
+0,
+3,
+4,
+8,
+12,
+16,
+20,
+22,
+24,
+26,
+28,
+32,
+36,
+40,
+44,
+48,
+52,
+56,
+60,
+61,
+62,
+63,
+64
+],
+"types": {
+"0x0": [
+"addiu",
+"lh",
+"lw",
+"sw"
+],
+"0x3": [
+"sb"
+],
+"0x4": [
+"lw",
+"sw"
+],
+"0x8": [
+"lw",
+"sw"
+],
+"0xc": [
+"lwc1",
+"swc1"
+],
+"0x10": [
+"swc1"
+],
+"0x14": [
+"lhu",
+"sh"
+],
+"0x16": [
+"lh",
+"sh"
+],
+"0x18": [
+"lh",
+"sh"
+],
+"0x1a": [
+"sh"
+],
+"0x1c": [
+"sw"
+],
+"0x20": [
+"sw"
+],
+"0x24": [
+"sw"
+],
+"0x28": [
+"sw"
+],
+"0x2c": [
+"sw"
+],
+"0x30": [
+"sw"
+],
+"0x34": [
+"sw"
+],
+"0x38": [
+"sw"
+],
+"0x3c": [
+"sb",
+"sw"
+],
+"0x3d": [
+"sb"
+],
+"0x3e": [
+"sb"
+],
+"0x3f": [
+"lbu",
+"sb"
+],
+"0x40": [
+"sw"
+]
+},
+"funcs": [
+"anim_state_update",
+"audio_channel_setup",
+"buffer_swap",
+"camera_process_input",
+"camera_update",
+"car_gear_shift",
+"car_mass_set",
+"drone_ai_update",
+"drone_pathfind_main",
+"drone_throttle_calc",
+"engine_torque_calc",
+"entity_anim_texture",
+"entity_collision_detect",
+"entity_physics_update",
+"entity_spawn_callback",
+"entity_spawn_init",
+"entity_tick_main",
+"entity_update_callback",
+"func_8008AE10",
+"func_8008AE2C",
+"func_8008AE48",
+"func_8008AE64",
+"func_8008B3A0",
+"func_8008B640",
+"func_8008D6FC",
+"func_8008D870",
+"func_8008E06C",
+"func_8008E144",
+"func_8008E26C",
+"func_8008FFD0",
+"func_8009002C",
+"func_80090308",
+"func_80090770",
+"func_80092BC8",
+"func_80092BF4",
+"func_80092FE0",
+"func_8009F058",
+"func_800A7830",
+"func_800A785C",
+"func_800A7884",
+"func_800A79B8",
+"func_800A7BF8",
+"func_800A7E10",
+"func_800B08FC",
+"func_800D816C",
+"func_800DA2C0",
+"func_800EB90C",
+"func_8010C974",
+"func_8010D680",
+"func_8010D85C",
+"func_8010E0FC",
+"hud_render",
+"model_data_load",
+"model_transform_setup",
+"music_seq_load",
+"music_tempo_set",
+"particle_collision",
+"particles_update",
+"physics_float_calc",
+"physics_velocity_integrate_a",
+"render_mode_select",
+"replay_save_prompt",
+"save_write_data",
+"sound_bank_unload",
+"track_collision",
+"track_collision_edge",
+"track_collision_wall",
+"transmission_ratio_get",
+"transmission_shift"
+],
+"where": "bss"
+},
+{
+"base": 2148835604,
+"kind": "array",
+"stride": 76,
+"count": 2,
+"end": 2148835756,
+"nfuncs": 68,
+"nunmatched": 52,
+"unmatched_bytes": 69428,
+"noffs": 16,
+"maxoff": 72,
+"name": "",
+"offs": [
+0,
+4,
+5,
+8,
+12,
+16,
+20,
+24,
+28,
+32,
+48,
+56,
+60,
+68,
+70,
+72
+],
+"types": {
+"0x0": [
+"lw",
+"sw"
+],
+"0x4": [
+"addiu",
+"lbu",
+"lw",
+"sb",
+"sw"
+],
+"0x5": [
+"lbu",
+"sb"
+],
+"0x8": [
+"lw",
+"sw"
+],
+"0xc": [
+"lw",
+"sw"
+],
+"0x10": [
+"lw",
+"sw"
+],
+"0x14": [
+"swc1"
+],
+"0x18": [
+"swc1"
+],
+"0x1c": [
+"sw"
+],
+"0x20": [
+"sw"
+],
+"0x30": [
+"lw"
+],
+"0x38": [
+"lw"
+],
+"0x3c": [
+"lw"
+],
+"0x44": [
+"lhu",
+"sh"
+],
+"0x46": [
+"sb"
+],
+"0x48": [
+"lw",
+"sw"
+]
+},
+"funcs": [
+"RaceStateMachine_Update",
+"assign_drones",
+"audio_channel_reset",
+"audio_update_a",
+"audio_volume_pan",
+"billboard_render",
+"countdown",
+"debug_stats",
+"display_list_flush",
+"drone_target_update",
+"entity_audio_update",
+"func_800B4E68",
+"func_800B78F0",
+"func_800D5374",
+"func_800D6530",
+"func_800D8078",
+"func_800D91A0",
+"func_800DE45C",
+"func_800E05F0",
+"func_800E681C",
+"func_800E6AF8",
+"func_800EB90C",
+"func_800EC190",
+"func_800F0F44",
+"func_800F1930",
+"func_800F207C",
+"func_800F2718",
+"func_800F2888",
+"func_800F42C8",
+"func_800F43B8",
+"func_800F45F8",
+"func_800F56E0",
+"func_800F7A98",
+"func_800F8EC8",
+"func_800FDF88",
+"func_80100564",
+"func_80100E58",
+"func_80101904",
+"func_80101D84",
+"func_80102448",
+"func_80102980",
+"func_80102F30",
+"func_80105B74",
+"func_80105EA8",
+"func_80106874",
+"func_80106B3C",
+"func_8010B5D0",
+"func_8010BC84",
+"game_results_exit",
+"game_results_input",
+"graphics_chunk",
+"graphics_chunk_b",
+"init_state_begin",
+"linear_interp",
+"main_menu_render",
+"menu_controller_remap",
+"net_session_update",
+"net_state_validate",
+"place_cars_in_order",
+"playgame_state_change",
+"process_inputs",
+"props_render",
+"random_seed_init",
+"render_viewport_init",
+"stat_race_start",
+"track_texture_load",
+"voice_stop",
+"world_physics_tick"
+],
+"where": "bss"
+},
+{
+"base": 2149033184,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2149033224,
+"nfuncs": 47,
+"nunmatched": 46,
+"unmatched_bytes": 57628,
+"noffs": 12,
+"maxoff": 36,
+"name": "countdown_state[GAME_SYMBOLS]",
+"offs": [
+0,
+4,
+8,
+10,
+12,
+16,
+20,
+22,
+24,
+28,
+32,
+36
+],
+"types": {
+"0x0": [
+"addiu",
+"lhu",
+"sh"
+],
+"0x4": [
+"lw",
+"sw"
+],
+"0x8": [
+"sh"
+],
+"0xa": [
+"lhu",
+"sh"
+],
+"0xc": [
+"lw",
+"sw"
+],
+"0x10": [
+"lw",
+"sw"
+],
+"0x14": [
+"sh"
+],
+"0x16": [
+"sh"
+],
+"0x18": [
+"lhu",
+"sh"
+],
+"0x1c": [
+"sw"
+],
+"0x20": [
+"sw"
+],
+"0x24": [
+"lw",
+"sw"
+]
+},
+"funcs": [
+"attract_video_handler",
+"control_settings",
+"countdown_handler",
+"credits_scroll",
+"drone_collision_avoid",
+"explosion_effect",
+"func_800A4E58",
+"func_800B4FB0",
+"func_800DD0C0",
+"func_800EF288",
+"func_800F0914",
+"func_800F1210",
+"func_800F857C",
+"func_80100564",
+"func_80100B8C",
+"func_80100E58",
+"func_80101904",
+"func_80101D84",
+"func_8010221C",
+"func_80102448",
+"func_80102980",
+"func_80102F30",
+"func_80103D28",
+"func_80104B14",
+"func_80105480",
+"func_80105EA8",
+"func_80106874",
+"func_80106B3C",
+"func_80107EDC",
+"func_80108AB0",
+"func_8010A53C",
+"func_8010A8D0",
+"func_8010AEAC",
+"func_8010B5D0",
+"func_8010B7FC",
+"func_8010B9C8",
+"func_8010BC84",
+"func_8010EA08",
+"func_8010F218",
+"game_results_exit",
+"game_results_render",
+"game_results_update",
+"particle_render",
+"skid_mark_render",
+"sound_loop_set",
+"time_result_display",
+"voice_stop"
+],
+"where": "bss"
+},
+{
+"base": 2148869800,
+"kind": "array",
+"stride": 12,
+"count": 12,
+"end": 2148869944,
+"nfuncs": 40,
+"nunmatched": 30,
+"unmatched_bytes": 47744,
+"noffs": 3,
+"maxoff": 8,
+"name": "",
+"offs": [
+0,
+4,
+8
+],
+"types": {
+"0x0": [
+"addiu",
+"lw",
+"lwc1",
+"sw",
+"swc1"
+],
+"0x4": [
+"addiu",
+"lb",
+"lw",
+"lwc1",
+"sb",
+"sw",
+"swc1"
+],
+"0x8": [
+"addiu",
+"lh",
+"lwc1",
+"sh",
+"swc1"
+]
+},
+"funcs": [
+"car_setup_confirm",
+"car_shadow_render",
+"countdown",
+"display_list_flush",
+"func_800979A0",
+"func_800AB638",
+"func_800BB9B0",
+"func_800CC040",
+"func_800D1AB0",
+"func_800DE45C",
+"func_800E3430",
+"func_800E7038",
+"func_800E7DD0",
+"func_800E8D50",
+"func_800E8F10",
+"func_800E9234",
+"func_800E92C8",
+"func_800E95DC",
+"func_800E9C70",
+"func_800E9E2C",
+"func_800EA108",
+"func_800EA2DC",
+"func_800EA3F4",
+"func_800EB028",
+"func_800EB90C",
+"func_800F56E0",
+"func_800F8E90",
+"func_800FAF50",
+"func_80100E58",
+"func_80102F30",
+"func_80105EA8",
+"func_80107EDC",
+"init_state_begin",
+"menu_controller_remap",
+"props_render",
+"race_countdown_display",
+"render_large_objects",
+"steering_sensitivity",
+"stunt_combo_display",
+"traction_control"
+],
+"where": "bss"
+},
+{
+"base": 2148810800,
+"kind": "array",
+"stride": 772,
+"count": 4,
+"end": 2148813888,
+"nfuncs": 39,
+"nunmatched": 29,
+"unmatched_bytes": 24320,
+"noffs": 28,
+"maxoff": 260,
+"name": "player_slots",
+"offs": [
+0,
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+116,
+120,
+124,
+125,
+126,
+128,
+132,
+133,
+134,
+136,
+140,
+144,
+148,
+180,
+220,
+260
+],
+"types": {
+"0x0": [
+"addiu",
+"lb",
+"sb",
+"sw"
+],
+"0x1": [
+"lb",
+"sb"
+],
+"0x2": [
+"lb",
+"sb"
+],
+"0x3": [
+"lb",
+"sb"
+],
+"0x4": [
+"lb",
+"lw",
+"sb"
+],
+"0x5": [
+"lb",
+"sb"
+],
+"0x6": [
+"lb",
+"sb"
+],
+"0x7": [
+"lb",
+"sb"
+],
+"0x8": [
+"lb",
+"lhu",
+"sb"
+],
+"0x9": [
+"lb",
+"sb"
+],
+"0xa": [
+"lb",
+"sb"
+],
+"0xb": [
+"lb",
+"sb"
+],
+"0x74": [
+"lw",
+"sw"
+],
+"0x78": [
+"lw"
+],
+"0x7c": [
+"lb",
+"sb"
+],
+"0x7d": [
+"lb",
+"sb"
+],
+"0x7e": [
+"lb",
+"sb"
+],
+"0x80": [
+"lh",
+"sh"
+],
+"0x84": [
+"lb",
+"sb"
+],
+"0x85": [
+"lb",
+"sb"
+],
+"0x86": [
+"lb",
+"sb"
+],
+"0x88": [
+"lhu",
+"sh"
+],
+"0x8c": [
+"lw",
+"sw"
+],
+"0x90": [
+"lw"
+],
+"0x94": [
+"lhu"
+],
+"0xb4": [
+"lw"
+],
+"0xdc": [
+"lw"
+],
+"0x104": [
+"lw"
+]
+},
+"funcs": [
+"AdjustSpeed",
+"AdjustSteer",
+"MaxPathZeroControls",
+"audio_channel_reset",
+"audio_queue_process",
+"car_lod_select",
+"check_mpath_save",
+"display_settings",
+"drone_set_catchup",
+"func_8008A6A4",
+"func_80094FC4",
+"func_800A13C4",
+"func_800A1A3C",
+"func_800A1A60",
+"func_800A1BB4",
+"func_800A1C6C",
+"func_800A3424",
+"func_800A3518",
+"func_800A3598",
+"func_800A35BC",
+"func_800A35F8",
+"func_800A361C",
+"func_800A3724",
+"func_800A43FC",
+"func_800C813C",
+"func_800CC848",
+"func_800D91A0",
+"func_800E56F8",
+"func_800F0F44",
+"func_80100564",
+"func_80106874",
+"func_80106B3C",
+"func_8010BC84",
+"game_results_exit",
+"slot_state_lookup",
+"track_collision_setup",
+"track_data_decompress",
+"track_process_main",
+"track_render_process"
+],
+"where": "bss"
+},
+{
+"base": 2148868040,
+"kind": "array",
+"stride": 120,
+"count": 5,
+"end": 2148868640,
+"nfuncs": 39,
+"nunmatched": 29,
+"unmatched_bytes": 43236,
+"noffs": 43,
+"maxoff": 116,
+"name": "",
+"offs": [
+0,
+4,
+8,
+12,
+16,
+20,
+24,
+26,
+28,
+30,
+32,
+34,
+42,
+44,
+46,
+48,
+50,
+52,
+54,
+58,
+68,
+70,
+72,
+74,
+76,
+77,
+80,
+84,
+88,
+89,
+92,
+93,
+94,
+95,
+96,
+100,
+104,
+105,
+106,
+108,
+112,
+114,
+116
+],
+"types": {
+"0x0": [
+"lw",
+"sw"
+],
+"0x4": [
+"lw",
+"sw"
+],
+"0x8": [
+"sw"
+],
+"0xc": [
+"lw",
+"sw"
+],
+"0x10": [
+"lw",
+"sw"
+],
+"0x14": [
+"lw",
+"sw"
+],
+"0x18": [
+"lh",
+"sh"
+],
+"0x1a": [
+"lh",
+"sh"
+],
+"0x1c": [
+"lh",
+"sh"
+],
+"0x1e": [
+"lh",
+"sh"
+],
+"0x20": [
+"lh",
+"sh"
+],
+"0x22": [
+"lh",
+"sh"
+],
+"0x2a": [
+"lh"
+],
+"0x2c": [
+"sh"
+],
+"0x2e": [
+"sh"
+],
+"0x30": [
+"sh"
+],
+"0x32": [
+"sh"
+],
+"0x34": [
+"sh"
+],
+"0x36": [
+"sh"
+],
+"0x3a": [
+"lh"
+],
+"0x44": [
+"lh"
+],
+"0x46": [
+"lh"
+],
+"0x48": [
+"lh"
+],
+"0x4a": [
+"lh"
+],
+"0x4c": [
+"addiu",
+"lb",
+"sb"
+],
+"0x4d": [
+"lb",
+"sb"
+],
+"0x50": [
+"addiu",
+"lwc1",
+"swc1"
+],
+"0x54": [
+"addiu",
+"lw",
+"sw"
+],
+"0x58": [
+"addiu",
+"lwc1",
+"sb",
+"swc1"
+],
+"0x59": [
+"sb"
+],
+"0x5c": [
+"lb",
+"sb",
+"sw"
+],
+"0x5d": [
+"sb"
+],
+"0x5e": [
+"lb",
+"sb"
+],
+"0x5f": [
+"sb"
+],
+"0x60": [
+"lw",
+"sw"
+],
+"0x64": [
+"sw"
+],
+"0x68": [
+"addiu",
+"lb",
+"lw",
+"sb",
+"sw"
+],
+"0x69": [
+"addiu",
+"lb",
+"sb"
+],
+"0x6a": [
+"addiu",
+"lh",
+"sh"
+],
+"0x6c": [
+"addiu",
+"lw",
+"sw"
+],
+"0x70": [
+"addiu",
+"lwc1",
+"sh",
+"swc1"
+],
+"0x72": [
+"lh",
+"sh"
+],
+"0x74": [
+"lwc1",
+"swc1"
+]
+},
+"funcs": [
+"Effects_UpdateEmitters",
+"audio_doppler_full",
+"audio_update_a",
+"camera_first_person",
+"camera_play_script",
+"camera_scene_manager",
+"countdown",
+"display_list_flush",
+"effect_system_init",
+"func_800949D4",
+"func_800AB638",
+"func_800C0294",
+"func_800C1B60",
+"func_800C3578",
+"func_800C3AD0",
+"func_800C813C",
+"func_800CC040",
+"func_800DE45C",
+"func_800DE860",
+"func_800E0050",
+"func_800F0F44",
+"func_800F7F3C",
+"func_800F8EC8",
+"func_800FAF50",
+"func_800FBE60",
+"func_800FBF2C",
+"func_80101D84",
+"func_80102448",
+"func_80105EA8",
+"func_80109F54",
+"init_state_begin",
+"input_process_controller",
+"listener_position_set",
+"menu_save_options",
+"race_countdown_display",
+"render_large_objects",
+"steering_sensitivity",
+"traction_control",
+"world_physics_tick"
+],
+"where": "bss"
+},
+{
+"base": 2148862832,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148862984,
+"nfuncs": 29,
+"nunmatched": 23,
+"unmatched_bytes": 37532,
+"noffs": 1,
+"maxoff": 0,
+"name": "gEffectEmittersArray, gSoundHandleArray",
+"offs": [
+0
+],
+"types": {
+"0x0": [
+"addiu"
+]
+},
+"funcs": [
+"Effects_UpdateEmitters",
+"Input_ProcessGameplayPad",
+"anim_state_update",
+"audio_doppler_full",
+"entity_render_setup",
+"func_8009D45C",
+"func_8009D708",
+"func_8009D99C",
+"func_8009F058",
+"func_800E8D50",
+"func_800E95DC",
+"func_800EA108",
+"func_800EA3F4",
+"func_800EB028",
+"func_800EB90C",
+"func_8010A8D0",
+"func_8010EA08",
+"game_results_exit",
+"game_results_input",
+"game_results_update",
+"main_menu_render",
+"particle_position_set",
+"particle_system",
+"particles_spawn_emitter",
+"particles_update",
+"render_post_process",
+"render_viewport_init",
+"save_validate",
+"track_collision_wall"
+],
+"where": "bss"
+},
+{
+"base": 2148796400,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148796416,
+"nfuncs": 28,
+"nunmatched": 17,
+"unmatched_bytes": 21004,
+"noffs": 4,
+"maxoff": 12,
+"name": "",
+"offs": [
+0,
+4,
+8,
+12
+],
+"types": {
+"0x0": [
+"addiu",
+"lh",
+"lhu"
+],
+"0x4": [
+"lw",
+"sw"
+],
+"0x8": [
+"lbu"
+],
+"0xc": [
+"lw",
+"sw"
+]
+},
+"funcs": [
+"audio_channel_alloc",
+"audio_effect_apply",
+"audio_mixer_main",
+"audio_priority_find",
+"camera_follow_path",
+"difficulty_select",
+"func_800B9740",
+"func_800B98D8",
+"func_800B9B64",
+"func_800B9F60",
+"func_800BA61C",
+"func_800C4CF8",
+"func_800C4F68",
+"func_800D169C",
+"func_800D2FA8",
+"func_800D3430",
+"func_800D348C",
+"func_80109468",
+"lap_count_select",
+"menu_controller_remap",
+"minimap_render",
+"physics_friction_apply",
+"physics_velocity_clamp",
+"split_time_display",
+"stunt_combo_display",
+"time_of_day_select",
+"world_bounds_check",
+"world_gravity_apply"
+],
+"where": "bss"
+},
+{
+"base": 2148867304,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148867396,
+"nfuncs": 26,
+"nunmatched": 18,
+"unmatched_bytes": 21984,
+"noffs": 5,
+"maxoff": 8,
+"name": "",
+"offs": [
+0,
+2,
+4,
+6,
+8
+],
+"types": {
+"0x0": [
+"addiu",
+"lh",
+"sh"
+],
+"0x2": [
+"lh",
+"sh"
+],
+"0x4": [
+"lh",
+"sh"
+],
+"0x6": [
+"lh",
+"sh"
+],
+"0x8": [
+"lh"
+]
+},
+"funcs": [
+"audio_channel_alloc",
+"audio_dsp_process",
+"audio_mixer_main",
+"audio_priority_find",
+"camera_follow_path",
+"difficulty_select",
+"func_800B930C",
+"func_800B9338",
+"func_800B9F60",
+"func_800BA2B8",
+"func_800BA61C",
+"func_800C4F68",
+"func_800D2FA8",
+"func_800D348C",
+"func_800DC080",
+"func_800E4300",
+"func_800EC270",
+"func_80109F54",
+"lap_count_select",
+"physics_response",
+"physics_velocity_clamp",
+"race_countdown_display",
+"split_time_display",
+"stunt_combo_display",
+"world_gravity_apply",
+"world_physics_tick"
+],
+"where": "bss"
+},
+{
+"base": 2148867316,
+"kind": "array",
+"stride": 80,
+"count": 9,
+"end": 2148868036,
+"nfuncs": 25,
+"nunmatched": 16,
+"unmatched_bytes": 20188,
+"noffs": 15,
+"maxoff": 76,
+"name": "",
+"offs": [
+0,
+4,
+8,
+12,
+16,
+20,
+24,
+28,
+30,
+32,
+34,
+36,
+44,
+68,
+76
+],
+"types": {
+"0x0": [
+"addiu",
+"lwc1"
+],
+"0x4": [
+"lwc1"
+],
+"0x8": [
+"lwc1"
+],
+"0xc": [
+"lwc1"
+],
+"0x10": [
+"lwc1"
+],
+"0x14": [
+"lwc1"
+],
+"0x18": [
+"lw"
+],
+"0x1c": [
+"lh"
+],
+"0x1e": [
+"lh",
+"sh"
+],
+"0x20": [
+"lh",
+"sh"
+],
+"0x22": [
+"lh",
+"sh"
+],
+"0x24": [
+"lh"
+],
+"0x2c": [
+"lh"
+],
+"0x44": [
+"addiu"
+],
+"0x4c": [
+"lwc1",
+"swc1"
+]
+},
+"funcs": [
+"audio_channel_alloc",
+"audio_dsp_process",
+"audio_mixer_main",
+"audio_priority_find",
+"camera_follow_path",
+"difficulty_select",
+"func_800B9338",
+"func_800B9F60",
+"func_800BA2B8",
+"func_800BA61C",
+"func_800C4078",
+"func_800C4CF8",
+"func_800C4F68",
+"func_800D2FA8",
+"func_800D348C",
+"func_800DC080",
+"func_800E4300",
+"func_800F8EC8",
+"func_80109F54",
+"lap_count_select",
+"physics_response",
+"physics_velocity_clamp",
+"split_time_display",
+"stunt_combo_display",
+"world_gravity_apply"
+],
+"where": "bss"
+},
+{
+"base": 2148819208,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148819251,
+"nfuncs": 24,
+"nunmatched": 20,
+"unmatched_bytes": 26432,
+"noffs": 41,
+"maxoff": 41,
+"name": "(in game_types.h)",
+"offs": [
+0,
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12,
+13,
+14,
+15,
+16,
+17,
+18,
+19,
+20,
+21,
+22,
+23,
+24,
+25,
+26,
+27,
+28,
+29,
+30,
+31,
+32,
+33,
+34,
+35,
+36,
+37,
+38,
+39,
+41
+],
+"types": {
+"0x0": [
+"addiu",
+"lb",
+"sb"
+],
+"0x1": [
+"lb",
+"sb"
+],
+"0x2": [
+"lb",
+"sb"
+],
+"0x3": [
+"lb",
+"sb"
+],
+"0x4": [
+"lb",
+"sb"
+],
+"0x5": [
+"lb",
+"sb"
+],
+"0x6": [
+"lb",
+"sb"
+],
+"0x7": [
+"lb",
+"sb"
+],
+"0x8": [
+"lb",
+"sb"
+],
+"0x9": [
+"lb",
+"sb"
+],
+"0xa": [
+"lb",
+"sb"
+],
+"0xb": [
+"lb",
+"sb"
+],
+"0xc": [
+"lb"
+],
+"0xd": [
+"lb"
+],
+"0xe": [
+"lb",
+"sb"
+],
+"0xf": [
+"lb"
+],
+"0x10": [
+"lb",
+"sb"
+],
+"0x11": [
+"sb"
+],
+"0x12": [
+"lb",
+"sb"
+],
+"0x13": [
+"lb",
+"sb"
+],
+"0x14": [
+"lb",
+"sb"
+],
+"0x15": [
+"addiu",
+"lb"
+],
+"0x16": [
+"lb"
+],
+"0x17": [
+"lb"
+],
+"0x18": [
+"lb"
+],
+"0x19": [
+"lb"
+],
+"0x1a": [
+"lb"
+],
+"0x1b": [
+"lb"
+],
+"0x1c": [
+"lb"
+],
+"0x1d": [
+"lb"
+],
+"0x1e": [
+"lb"
+],
+"0x1f": [
+"lb"
+],
+"0x20": [
+"lb"
+],
+"0x21": [
+"lb"
+],
+"0x22": [
+"lb"
+],
+"0x23": [
+"lb"
+],
+"0x24": [
+"lb"
+],
+"0x25": [
+"lb"
+],
+"0x26": [
+"lb"
+],
+"0x27": [
+"lb"
+],
+"0x29": [
+"addiu",
+"lb",
+"sb",
+"sw"
+]
+},
+"funcs": [
+"draw_speedometer",
+"drone_pathfind_main",
+"func_800B4DA4",
+"func_800C7EC8",
+"func_800D6160",
+"func_800D6530",
+"func_800D7634",
+"func_800DB1E0",
+"func_800DE45C",
+"func_800F1930",
+"func_800FDF88",
+"func_80104B14",
+"func_80106D94",
+"func_8010A8D0",
+"func_8010AEAC",
+"game_results_render",
+"game_results_update",
+"init_state_begin",
+"particle_collision",
+"particles_update",
+"physics_sym",
+"playgame_state_change",
+"track_texture_load",
+"vsync_wait"
+],
+"where": "bss"
+},
+{
+"base": 2148875912,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148875923,
+"nfuncs": 24,
+"nunmatched": 24,
+"unmatched_bytes": 32780,
+"noffs": 8,
+"maxoff": 7,
+"name": "",
+"offs": [
+0,
+1,
+2,
+3,
+4,
+5,
+6,
+7
+],
+"types": {
+"0x0": [
+"addiu",
+"sb"
+],
+"0x1": [
+"lbu",
+"sb"
+],
+"0x2": [
+"lbu",
+"sb"
+],
+"0x3": [
+"lbu",
+"sb"
+],
+"0x4": [
+"lbu",
+"sb"
+],
+"0x5": [
+"lbu",
+"sb"
+],
+"0x6": [
+"lbu",
+"sb"
+],
+"0x7": [
+"lbu",
+"sb"
+]
+},
+"funcs": [
+"audio_interrupt_handler",
+"camera_play_script",
+"display_list_flush",
+"func_800BB02C",
+"func_800DE860",
+"func_800E543C",
+"func_800E56F8",
+"func_800E847C",
+"func_800EC190",
+"func_800EC914",
+"func_800F8EC8",
+"init_state_continue",
+"menu_controller_remap",
+"music_control",
+"music_seq_load",
+"music_tempo_set",
+"props_render",
+"race_countdown_display",
+"render_viewport_init",
+"sfx_position_3d",
+"stat_lap_split",
+"stunt_combo_display",
+"track_select_handler",
+"world_physics_tick"
+],
+"where": "bss"
+},
+{
+"base": 2148862844,
+"kind": "array",
+"stride": 152,
+"count": 3,
+"end": 2148863300,
+"nfuncs": 22,
+"nunmatched": 17,
+"unmatched_bytes": 29520,
+"noffs": 22,
+"maxoff": 136,
+"name": "gSoundIndexCurrent",
+"offs": [
+0,
+4,
+8,
+12,
+16,
+20,
+24,
+28,
+32,
+36,
+40,
+44,
+48,
+60,
+72,
+76,
+80,
+120,
+124,
+128,
+132,
+136
+],
+"types": {
+"0x0": [
+"addiu",
+"lwc1"
+],
+"0x4": [
+"lwc1"
+],
+"0x8": [
+"lwc1"
+],
+"0xc": [
+"lwc1"
+],
+"0x10": [
+"lwc1"
+],
+"0x14": [
+"lwc1"
+],
+"0x18": [
+"addiu",
+"lwc1",
+"swc1"
+],
+"0x1c": [
+"lw",
+"lwc1",
+"swc1"
+],
+"0x20": [
+"lw",
+"lwc1",
+"swc1"
+],
+"0x24": [
+"addiu"
+],
+"0x28": [
+"lwc1",
+"swc1"
+],
+"0x2c": [
+"lwc1",
+"swc1"
+],
+"0x30": [
+"lwc1",
+"swc1"
+],
+"0x3c": [
+"lwc1",
+"swc1"
+],
+"0x48": [
+"swc1"
+],
+"0x4c": [
+"swc1"
+],
+"0x50": [
+"swc1"
+],
+"0x78": [
+"lwc1",
+"swc1"
+],
+"0x7c": [
+"lwc1",
+"swc1"
+],
+"0x80": [
+"lwc1",
+"swc1"
+],
+"0x84": [
+"lwc1",
+"swc1"
+],
+"0x88": [
+"lbu",
+"sb"
+]
+},
+"funcs": [
+"Effects_UpdateEmitters",
+"anim_state_update",
+"audio_doppler_full",
+"countdown",
+"display_list_flush",
+"entity_render_setup",
+"func_8009D45C",
+"func_8009D708",
+"func_8009D99C",
+"func_8009F058",
+"func_800E8D50",
+"func_800E95DC",
+"func_800EB028",
+"func_800EB90C",
+"func_800EC190",
+"particle_position_set",
+"particle_system",
+"particles_spawn_emitter",
+"render_post_process",
+"render_viewport_init",
+"save_validate",
+"track_collision_wall"
+],
+"where": "bss"
+},
+{
+"base": 2148887864,
+"kind": "array",
+"stride": 20,
+"count": 64,
+"end": 2148889144,
+"nfuncs": 20,
+"nunmatched": 17,
+"unmatched_bytes": 7816,
+"noffs": 8,
+"maxoff": 12,
+"name": "",
+"offs": [
+0,
+1,
+2,
+3,
+4,
+5,
+6,
+12
+],
+"types": {
+"0x0": [
+"addiu",
+"sb"
+],
+"0x1": [
+"lb",
+"sb"
+],
+"0x2": [
+"lb",
+"sb"
+],
+"0x3": [
+"lb",
+"sb"
+],
+"0x4": [
+"lbu",
+"sb"
+],
+"0x5": [
+"lb",
+"sb"
+],
+"0x6": [
+"lbu",
+"sb"
+],
+"0xc": [
+"lw"
+]
+},
+"funcs": [
+"audio_frame_sync",
+"car_shadow_render",
+"display_list_alloc",
+"entity_render_mode",
+"func_80092D80",
+"func_80096130",
+"func_80096CA8",
+"func_80097164",
+"func_800972C4",
+"func_80097694",
+"func_800979A0",
+"func_800A4E58",
+"func_800BB9B0",
+"player_state_get",
+"slot_deactivate",
+"slot_value_get",
+"sound_update_channel",
+"suspension_setup",
+"tire_compound_set",
+"wheel_setup_initial"
+],
+"where": "bss"
+},
+{
+"base": 2148627772,
+"kind": "array",
+"stride": 48,
+"count": 64,
+"end": 2148630844,
+"nfuncs": 18,
+"nunmatched": 12,
+"unmatched_bytes": 12672,
+"noffs": 12,
+"maxoff": 32,
+"name": "",
+"offs": [
+0,
+4,
+6,
+8,
+10,
+11,
+12,
+16,
+20,
+24,
+28,
+32
+],
+"types": {
+"0x0": [
+"lw"
+],
+"0x4": [
+"lh"
+],
+"0x6": [
+"lhu"
+],
+"0x8": [
+"lh"
+],
+"0xa": [
+"lb"
+],
+"0xb": [
+"lb"
+],
+"0xc": [
+"lwc1"
+],
+"0x10": [
+"lw"
+],
+"0x14": [
+"lw"
+],
+"0x18": [
+"lw"
+],
+"0x1c": [
+"lw"
+],
+"0x20": [
+"lh",
+"lwc1"
+]
+},
+"funcs": [
+"audio_channel_setup",
+"camera_aspect_ratio",
+"camera_fov_control",
+"camera_look_at_point",
+"camera_update",
+"engine_torque_calc",
+"entity_tick_main",
+"func_8010C7F4",
+"func_8010D3C0",
+"func_8010D9CC",
+"func_8010DAF8",
+"func_8010DBB8",
+"func_8010DCFC",
+"func_8010DF90",
+"func_8010E4E4",
+"func_8010E72C",
+"race_setup_2",
+"transmission_ratio_get"
+],
+"where": "data"
+},
+{
+"base": 2148766496,
+"kind": "array",
+"stride": 64,
+"count": 64,
+"end": 2148770592,
+"nfuncs": 16,
+"nunmatched": 12,
+"unmatched_bytes": 17952,
+"noffs": 24,
+"maxoff": 60,
+"name": "",
+"offs": [
+0,
+2,
+4,
+8,
+10,
+12,
+14,
+16,
+18,
+20,
+22,
+28,
+30,
+32,
+34,
+36,
+38,
+40,
+42,
+44,
+48,
+52,
+56,
+60
+],
+"types": {
+"0x0": [
+"addiu",
+"lbu",
+"lw",
+"sb",
+"sw"
+],
+"0x2": [
+"lh"
+],
+"0x4": [
+"lw",
+"sw"
+],
+"0x8": [
+"addiu",
+"lw",
+"sw"
+],
+"0xa": [
+"lh"
+],
+"0xc": [
+"lw",
+"sw"
+],
+"0xe": [
+"lh"
+],
+"0x10": [
+"lw",
+"sw"
+],
+"0x12": [
+"lh"
+],
+"0x14": [
+"lw",
+"sw"
+],
+"0x16": [
+"lh"
+],
+"0x1c": [
+"lw",
+"sw"
+],
+"0x1e": [
+"lh"
+],
+"0x20": [
+"sw"
+],
+"0x22": [
+"lh"
+],
+"0x24": [
+"sw"
+],
+"0x26": [
+"lh"
+],
+"0x28": [
+"sw"
+],
+"0x2a": [
+"lh"
+],
+"0x2c": [
+"lw",
+"sw"
+],
+"0x30": [
+"lw",
+"sw"
+],
+"0x34": [
+"lw",
+"sw"
+],
+"0x38": [
+"lw",
+"sw"
+],
+"0x3c": [
+"lw",
+"sw"
+]
+},
+"funcs": [
+"audio_frame_update",
+"drone_ai_update",
+"entity_spawn_init",
+"entity_tick_main",
+"func_80092BF4",
+"func_80092FE0",
+"func_800AC8D4",
+"func_800B0A88",
+"func_800B1F30",
+"menu_save_options",
+"music_seq_load",
+"music_tempo_set",
+"save_load_data",
+"sfx_position_3d",
+"sfx_stop",
+"sound_bank_unload"
+],
+"where": "bss"
+},
+{
+"base": 2148887792,
+"kind": "array",
+"stride": 16,
+"count": 4,
+"end": 2148887856,
+"nfuncs": 15,
+"nunmatched": 15,
+"unmatched_bytes": 17048,
+"noffs": 8,
+"maxoff": 13,
+"name": "gPlayerStatusArray",
+"offs": [
+0,
+4,
+8,
+9,
+10,
+11,
+12,
+13
+],
+"types": {
+"0x0": [
+"addiu",
+"lb",
+"sb"
+],
+"0x4": [
+"lw",
+"sw"
+],
+"0x8": [
+"lb",
+"sb"
+],
+"0x9": [
+"lb",
+"sb"
+],
+"0xa": [
+"sb"
+],
+"0xb": [
+"sb"
+],
+"0xc": [
+"lbu",
+"sb"
+],
+"0xd": [
+"lbu",
+"sb"
+]
+},
+"funcs": [
+"RaceStateMachine_Update",
+"countdown_handler",
+"func_800D7634",
+"func_800DB1E0",
+"func_800E6460",
+"func_800E7134",
+"func_800E73D8",
+"func_800E7710",
+"func_800F0F44",
+"func_80100564",
+"func_8010E8B4",
+"game_timer_display",
+"physics_sym",
+"replay_save_prompt",
+"track_render_process"
+],
+"where": "bss"
+},
+{
+"base": 2149033232,
+"kind": "array",
+"stride": 72,
+"count": 4,
+"end": 2149033520,
+"nfuncs": 15,
+"nunmatched": 11,
+"unmatched_bytes": 14172,
+"noffs": 22,
+"maxoff": 71,
+"name": "",
+"offs": [
+0,
+4,
+8,
+12,
+16,
+20,
+24,
+28,
+32,
+36,
+40,
+44,
+48,
+52,
+56,
+60,
+64,
+66,
+68,
+69,
+70,
+71
+],
+"types": {
+"0x0": [
+"addiu",
+"lw",
+"sw"
+],
+"0x4": [
+"lw",
+"sw"
+],
+"0x8": [
+"lw",
+"sw"
+],
+"0xc": [
+"lwc1",
+"swc1"
+],
+"0x10": [
+"lwc1",
+"swc1"
+],
+"0x14": [
+"lwc1",
+"swc1"
+],
+"0x18": [
+"swc1"
+],
+"0x1c": [
+"lwc1",
+"swc1"
+],
+"0x20": [
+"lwc1",
+"swc1"
+],
+"0x24": [
+"lwc1",
+"swc1"
+],
+"0x28": [
+"lwc1",
+"swc1"
+],
+"0x2c": [
+"lwc1",
+"swc1"
+],
+"0x30": [
+"lwc1",
+"swc1"
+],
+"0x34": [
+"lw",
+"swc1"
+],
+"0x38": [
+"lwc1",
+"swc1"
+],
+"0x3c": [
+"lwc1",
+"swc1"
+],
+"0x40": [
+"lhu",
+"sh"
+],
+"0x42": [
+"lhu",
+"sh"
+],
+"0x44": [
+"lbu",
+"sb"
+],
+"0x45": [
+"lbu",
+"sb"
+],
+"0x46": [
+"lbu",
+"sb"
+],
+"0x47": [
+"lbu",
+"sb"
+]
+},
+"funcs": [
+"arb_rate_set",
+"brake_light_update",
+"car_lights_render",
+"car_render_full",
+"entity_render_setup",
+"exhaust_smoke_effect",
+"func_8009F058",
+"func_800A5518",
+"func_800A5A40",
+"func_800A6078",
+"func_800A7428",
+"func_800A7480",
+"func_800AB18C",
+"viewport_scale",
+"wheel_render_full"
+],
+"where": "bss"
+},
+{
+"base": 2148627760,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148627788,
+"nfuncs": 14,
+"nunmatched": 10,
+"unmatched_bytes": 10052,
+"noffs": 3,
+"maxoff": 8,
+"name": "",
+"offs": [
+0,
+4,
+8
+],
+"types": {
+"0x0": [
+"addiu",
+"lw"
+],
+"0x4": [
+"lw"
+],
+"0x8": [
+"lw"
+]
+},
+"funcs": [
+"audio_channel_setup",
+"camera_aspect_ratio",
+"camera_fov_control",
+"camera_look_at_point",
+"camera_process_input",
+"camera_update",
+"engine_torque_calc",
+"func_8010D9CC",
+"func_8010DAF8",
+"func_8010DBB8",
+"func_8010DCFC",
+"func_8010E4E4",
+"race_setup_2",
+"transmission_ratio_get"
+],
+"where": "data"
+},
+{
+"base": 2148834152,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148834162,
+"nfuncs": 13,
+"nunmatched": 11,
+"unmatched_bytes": 10452,
+"noffs": 5,
+"maxoff": 8,
+"name": "",
+"offs": [
+0,
+2,
+4,
+6,
+8
+],
+"types": {
+"0x0": [
+"addiu",
+"sh"
+],
+"0x2": [
+"sh"
+],
+"0x4": [
+"sh"
+],
+"0x6": [
+"sh"
+],
+"0x8": [
+"addiu",
+"lb",
+"sb"
+]
+},
+"funcs": [
+"audio_doppler_calc",
+"camera_auto_follow",
+"camera_zoom_fov",
+"car_render_full",
+"func_800BDEB0",
+"menu_input_process",
+"mode_byte_set",
+"object_manager_update",
+"race_position_update",
+"sound_update_channel",
+"wheel_render_full",
+"world_trigger_check",
+"world_velocity_integrate"
+],
+"where": "bss"
+},
+{
+"base": 2148797424,
+"kind": "array",
+"stride": 32,
+"count": 64,
+"end": 2148799472,
+"nfuncs": 12,
+"nunmatched": 5,
+"unmatched_bytes": 4580,
+"noffs": 15,
+"maxoff": 30,
+"name": "input_buffer, sound_state_array, pad_config[GAME_SYMBOLS]",
+"offs": [
+0,
+4,
+8,
+10,
+12,
+14,
+16,
+18,
+20,
+21,
+22,
+24,
+26,
+28,
+30
+],
+"types": {
+"0x0": [
+"addiu",
+"lw",
+"sw"
+],
+"0x4": [
+"lw",
+"sw"
+],
+"0x8": [
+"lhu",
+"sh"
+],
+"0xa": [
+"lh",
+"sh"
+],
+"0xc": [
+"lh",
+"sh"
+],
+"0xe": [
+"lhu",
+"sh"
+],
+"0x10": [
+"lh",
+"lhu",
+"sh"
+],
+"0x12": [
+"lh",
+"sh"
+],
+"0x14": [
+"lbu",
+"sb"
+],
+"0x15": [
+"lbu",
+"sb"
+],
+"0x16": [
+"lb",
+"sb"
+],
+"0x18": [
+"lh",
+"sh"
+],
+"0x1a": [
+"lh",
+"sh"
+],
+"0x1c": [
+"lh",
+"sh"
+],
+"0x1e": [
+"lh",
+"sh"
+]
+},
+"funcs": [
+"Input_ApplyPadConfig",
+"Input_InitPadHandlers",
+"Input_ProcessGameplayPad",
+"Input_SetAnalogBounds",
+"Input_SetPadEnabledFlag",
+"Input_SetPadSecondaryFlag",
+"func_800A79DC",
+"func_800A79F4",
+"func_800B9F60",
+"func_80109A60",
+"input_status_update",
+"sound_stop"
+],
+"where": "bss"
+},
+{
+"base": 2148634152,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148634163,
+"nfuncs": 11,
+"nunmatched": 9,
+"unmatched_bytes": 12356,
+"noffs": 9,
+"maxoff": 8,
+"name": "",
+"offs": [
+0,
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8
+],
+"types": {
+"0x0": [
+"addiu",
+"lbu",
+"sw"
+],
+"0x1": [
+"lbu"
+],
+"0x2": [
+"lbu"
+],
+"0x3": [
+"lbu"
+],
+"0x4": [
+"addiu",
+"lbu",
+"sw"
+],
+"0x5": [
+"lbu"
+],
+"0x6": [
+"lbu"
+],
+"0x7": [
+"lbu"
+],
+"0x8": [
+"addiu",
+"lwc1",
+"swc1"
+]
+},
+"funcs": [
+"dispatch_handler",
+"func_800947F0",
+"func_800BEA3C",
+"func_8010A7A4",
+"func_8010A8D0",
+"func_8010AEAC",
+"func_8010EA08",
+"func_8010F218",
+"game_results_exit",
+"game_results_render",
+"game_results_update"
+],
+"where": "data"
+},
+{
+"base": 2148814180,
+"kind": "array",
+"stride": 16,
+"count": 3,
+"end": 2148814228,
+"nfuncs": 11,
+"nunmatched": 10,
+"unmatched_bytes": 8808,
+"noffs": 3,
+"maxoff": 8,
+"name": "",
+"offs": [
+0,
+4,
+8
+],
+"types": {
+"0x0": [
+"sw"
+],
+"0x4": [
+"lw",
+"sw"
+],
+"0x8": [
+"sw"
+]
+},
+"funcs": [
+"AdjustSpeed",
+"car_lod_select",
+"drone_set_catchup",
+"func_800A1BB4",
+"func_800A3640",
+"func_800C813C",
+"no_catchup",
+"track_collision_setup",
+"track_process_main",
+"track_render_process",
+"visual_objects_update"
+],
+"where": "bss"
+},
+{
+"base": 2148810696,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148810716,
+"nfuncs": 10,
+"nunmatched": 9,
+"unmatched_bytes": 13400,
+"noffs": 5,
+"maxoff": 16,
+"name": "",
+"offs": [
+0,
+4,
+8,
+12,
+16
+],
+"types": {
+"0x0": [
+"addiu",
+"sb"
+],
+"0x4": [
+"sw"
+],
+"0x8": [
+"sw"
+],
+"0xc": [
+"sw"
+],
+"0x10": [
+"lw"
+]
+},
+"funcs": [
+"RaceStateMachine_Update",
+"camera_lerp_position",
+"camera_update",
+"engine_sound_update",
+"func_800BEA6C",
+"func_8010C974",
+"func_8010E0FC",
+"func_8010E4E4",
+"sfx_position_3d",
+"transmission_ratio_get"
+],
+"where": "bss"
+},
+{
+"base": 2148819256,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148819272,
+"nfuncs": 10,
+"nunmatched": 10,
+"unmatched_bytes": 4540,
+"noffs": 5,
+"maxoff": 12,
+"name": "",
+"offs": [
+0,
+1,
+4,
+8,
+12
+],
+"types": {
+"0x0": [
+"addiu",
+"sb"
+],
+"0x1": [
+"sb"
+],
+"0x4": [
+"sw"
+],
+"0x8": [
+"lw",
+"sw"
+],
+"0xc": [
+"lw",
+"sw"
+]
+},
+"funcs": [
+"audio_buffer_manage",
+"audio_bus_route",
+"audio_fade_control",
+"audio_state_save",
+"audio_stream_control",
+"audio_timing_sync",
+"camera_transform",
+"func_800A4CB8",
+"gfx_setup_e700",
+"sound_priority_set"
+],
+"where": "bss"
+},
+{
+"base": 2148834136,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148834146,
+"nfuncs": 10,
+"nunmatched": 8,
+"unmatched_bytes": 7992,
+"noffs": 5,
+"maxoff": 8,
+"name": "",
+"offs": [
+0,
+2,
+4,
+6,
+8
+],
+"types": {
+"0x0": [
+"addiu",
+"sh"
+],
+"0x2": [
+"sh"
+],
+"0x4": [
+"sh"
+],
+"0x6": [
+"sh"
+],
+"0x8": [
+"addiu",
+"lb",
+"sb"
+]
+},
+"funcs": [
+"audio_doppler_calc",
+"car_render_full",
+"func_800B3D0C",
+"menu_input_process",
+"mode_byte2_set",
+"object_bytes_sum_global",
+"sound_update_channel",
+"wheel_render_full",
+"world_trigger_check",
+"world_velocity_integrate"
+],
+"where": "bss"
+},
+{
+"base": 2148886968,
+"kind": "array",
+"stride": 124,
+"count": 4,
+"end": 2148887464,
+"nfuncs": 10,
+"nunmatched": 6,
+"unmatched_bytes": 7192,
+"noffs": 22,
+"maxoff": 84,
+"name": "gObjectSlotTable",
+"offs": [
+0,
+4,
+8,
+12,
+16,
+20,
+24,
+28,
+32,
+36,
+40,
+44,
+48,
+52,
+56,
+60,
+64,
+68,
+72,
+76,
+80,
+84
+],
+"types": {
+"0x0": [
+"addiu",
+"lw",
+"sw"
+],
+"0x4": [
+"lwc1",
+"swc1"
+],
+"0x8": [
+"lwc1",
+"swc1"
+],
+"0xc": [
+"lwc1",
+"swc1"
+],
+"0x10": [
+"lwc1",
+"swc1"
+],
+"0x14": [
+"lwc1",
+"swc1"
+],
+"0x18": [
+"lwc1",
+"swc1"
+],
+"0x1c": [
+"lwc1",
+"swc1"
+],
+"0x20": [
+"lwc1",
+"swc1"
+],
+"0x24": [
+"lwc1",
+"swc1"
+],
+"0x28": [
+"lwc1",
+"swc1"
+],
+"0x2c": [
+"lwc1",
+"swc1"
+],
+"0x30": [
+"lwc1",
+"swc1"
+],
+"0x34": [
+"lwc1",
+"swc1"
+],
+"0x38": [
+"lwc1",
+"swc1"
+],
+"0x3c": [
+"lwc1",
+"swc1"
+],
+"0x40": [
+"lwc1",
+"swc1"
+],
+"0x44": [
+"lwc1"
+],
+"0x48": [
+"lwc1",
+"swc1"
+],
+"0x4c": [
+"lwc1"
+],
+"0x50": [
+"lwc1",
+"swc1"
+],
+"0x54": [
+"lwc1",
+"swc1"
+]
+},
+"funcs": [
+"camera_scene_manager",
+"display_list_flush",
+"effect_system_init",
+"func_800C1B60",
+"func_800C2004",
+"func_800C220C",
+"func_800C2430",
+"func_800C26C4",
+"func_800C2944",
+"func_800C3578"
+],
+"where": "bss"
+},
+{
+"base": 2148834168,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148834178,
+"nfuncs": 9,
+"nunmatched": 6,
+"unmatched_bytes": 8156,
+"noffs": 5,
+"maxoff": 8,
+"name": "",
+"offs": [
+0,
+2,
+4,
+6,
+8
+],
+"types": {
+"0x0": [
+"addiu",
+"sh"
+],
+"0x2": [
+"sh"
+],
+"0x4": [
+"sh"
+],
+"0x6": [
+"sh"
+],
+"0x8": [
+"addiu",
+"lw",
+"sw"
+]
+},
+"funcs": [
+"car_render_full",
+"differential_output",
+"func_800AB528",
+"func_800AB53C",
+"func_800B912C",
+"func_800BB9B0",
+"physics_float_calc",
+"wheel_render_full",
+"wheel_torque_apply"
+],
+"where": "bss"
+},
+{
+"base": 2148814176,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148814192,
+"nfuncs": 8,
+"nunmatched": 7,
+"unmatched_bytes": 7492,
+"noffs": 2,
+"maxoff": 1,
+"name": "gObjectArrayStart",
+"offs": [
+0,
+1
+],
+"types": {
+"0x0": [
+"addiu",
+"sb"
+],
+"0x1": [
+"sb"
+]
+},
+"funcs": [
+"AdjustSpeed",
+"car_lod_select",
+"func_800A3640",
+"func_800CD104",
+"no_catchup",
+"track_process_main",
+"track_render_process",
+"visual_objects_update"
+],
+"where": "bss"
+},
+{
+"base": 2148833392,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148833402,
+"nfuncs": 7,
+"nunmatched": 6,
+"unmatched_bytes": 6484,
+"noffs": 5,
+"maxoff": 8,
+"name": "",
+"offs": [
+0,
+2,
+4,
+6,
+8
+],
+"types": {
+"0x0": [
+"addiu",
+"sh"
+],
+"0x2": [
+"sh"
+],
+"0x4": [
+"sh"
+],
+"0x6": [
+"sh"
+],
+"0x8": [
+"addiu",
+"lh",
+"sh"
+]
+},
+"funcs": [
+"audio_doppler_calc",
+"camera_shake_update",
+"car_render_full",
+"func_800A5A40",
+"object_manager_update",
+"sound_update_channel",
+"wheel_render_full"
+],
+"where": "bss"
+},
+{
+"base": 2148834112,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148834127,
+"nfuncs": 7,
+"nunmatched": 6,
+"unmatched_bytes": 7420,
+"noffs": 8,
+"maxoff": 11,
+"name": "",
+"offs": [
+0,
+2,
+4,
+6,
+8,
+9,
+10,
+11
+],
+"types": {
+"0x0": [
+"addiu",
+"sh"
+],
+"0x2": [
+"sh"
+],
+"0x4": [
+"sh"
+],
+"0x6": [
+"sh"
+],
+"0x8": [
+"addiu",
+"lbu",
+"lw",
+"sb"
+],
+"0x9": [
+"lbu",
+"sb"
+],
+"0xa": [
+"lbu",
+"sb"
+],
+"0xb": [
+"lbu",
+"sb"
+]
+},
+"funcs": [
+"audio_doppler_calc",
+"car_render_full",
+"func_800B7360",
+"menu_input_process",
+"wheel_render_full",
+"world_trigger_check",
+"world_velocity_integrate"
+],
+"where": "bss"
+},
+{
+"base": 2148863528,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148863537,
+"nfuncs": 7,
+"nunmatched": 6,
+"unmatched_bytes": 10208,
+"noffs": 6,
+"maxoff": 8,
+"name": "",
+"offs": [
+0,
+1,
+2,
+3,
+5,
+8
+],
+"types": {
+"0x0": [
+"addiu",
+"lb",
+"sb"
+],
+"0x1": [
+"lb"
+],
+"0x2": [
+"lb"
+],
+"0x3": [
+"lb"
+],
+"0x5": [
+"sb"
+],
+"0x8": [
+"addiu",
+"lb",
+"sb"
+]
+},
+"funcs": [
+"camera_lerp_position",
+"engine_sound_update",
+"func_800F7620",
+"func_80103D28",
+"net_state_validate",
+"track_texture_load",
+"transmission_ratio_get"
+],
+"where": "bss"
+},
+{
+"base": 2148863880,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148863954,
+"nfuncs": 7,
+"nunmatched": 5,
+"unmatched_bytes": 4172,
+"noffs": 13,
+"maxoff": 72,
+"name": "",
+"offs": [
+0,
+4,
+8,
+12,
+16,
+20,
+24,
+28,
+32,
+64,
+68,
+70,
+72
+],
+"types": {
+"0x0": [
+"addiu",
+"lwc1",
+"swc1"
+],
+"0x4": [
+"lwc1",
+"swc1"
+],
+"0x8": [
+"lwc1",
+"swc1"
+],
+"0xc": [
+"lwc1",
+"swc1"
+],
+"0x10": [
+"lwc1",
+"swc1"
+],
+"0x14": [
+"lwc1",
+"swc1"
+],
+"0x18": [
+"lwc1",
+"swc1"
+],
+"0x1c": [
+"lwc1",
+"swc1"
+],
+"0x20": [
+"lwc1"
+],
+"0x40": [
+"lwc1",
+"swc1"
+],
+"0x44": [
+"lhu",
+"sh"
+],
+"0x46": [
+"lhu",
+"sh"
+],
+"0x48": [
+"lhu",
+"sh"
+]
+},
+"funcs": [
+"audio_channel_priority",
+"draw_minimap",
+"draw_text",
+"func_800F0914",
+"func_800F56E0",
+"func_800F769C",
+"place_cars_in_order"
+],
+"where": "bss"
+},
+{
+"base": 2148722392,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148722408,
+"nfuncs": 6,
+"nunmatched": 4,
+"unmatched_bytes": 5028,
+"noffs": 5,
+"maxoff": 12,
+"name": "",
+"offs": [
+0,
+1,
+4,
+8,
+12
+],
+"types": {
+"0x0": [
+"addiu",
+"sb"
+],
+"0x1": [
+"sb"
+],
+"0x4": [
+"sw"
+],
+"0x8": [
+"lw",
+"sw"
+],
+"0xc": [
+"sw"
+]
+},
+"funcs": [
+"audio_volume_pan",
+"func_800949D4",
+"func_800C7EC8",
+"func_800CD104",
+"menu_save_options",
+"playgame_state_change"
+],
+"where": "bss"
+},
+{
+"base": 2148863868,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148863875,
+"nfuncs": 6,
+"nunmatched": 5,
+"unmatched_bytes": 6104,
+"noffs": 5,
+"maxoff": 4,
+"name": "",
+"offs": [
+0,
+1,
+2,
+3,
+4
+],
+"types": {
+"0x0": [
+"addiu",
+"lwc1",
+"swc1"
+],
+"0x1": [
+"lb"
+],
+"0x2": [
+"lb"
+],
+"0x3": [
+"lb"
+],
+"0x4": [
+"addiu",
+"lw",
+"lwc1",
+"sw",
+"swc1"
+]
+},
+"funcs": [
+"camera_blend_between",
+"draw_text",
+"engine_sound_update",
+"engine_torque_calc",
+"func_800F56E0",
+"net_state_validate"
+],
+"where": "bss"
+},
+{
+"base": 2148877392,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148877473,
+"nfuncs": 6,
+"nunmatched": 5,
+"unmatched_bytes": 11408,
+"noffs": 11,
+"maxoff": 78,
+"name": "gShadowTextureId",
+"offs": [
+0,
+1,
+2,
+4,
+28,
+52,
+54,
+56,
+58,
+77,
+78
+],
+"types": {
+"0x0": [
+"addiu",
+"lbu",
+"sb"
+],
+"0x1": [
+"lbu",
+"sb"
+],
+"0x2": [
+"lhu",
+"sh"
+],
+"0x4": [
+"lbu",
+"sb"
+],
+"0x1c": [
+"sb"
+],
+"0x34": [
+"lh",
+"sh"
+],
+"0x36": [
+"sh"
+],
+"0x38": [
+"sh"
+],
+"0x3a": [
+"sh"
+],
+"0x4d": [
+"lbu"
+],
+"0x4e": [
+"lhu"
+]
+},
+"funcs": [
+"func_800F42C8",
+"func_800F43B8",
+"func_800F45F8",
+"init_state_continue",
+"net_session_update",
+"render_large_objects"
+],
+"where": "bss"
+},
+{
+"base": 2148905576,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148905612,
+"nfuncs": 6,
+"nunmatched": 4,
+"unmatched_bytes": 9692,
+"noffs": 13,
+"maxoff": 32,
+"name": "",
+"offs": [
+0,
+2,
+4,
+6,
+8,
+12,
+16,
+24,
+25,
+26,
+27,
+28,
+32
+],
+"types": {
+"0x0": [
+"addiu",
+"lh"
+],
+"0x2": [
+"lhu",
+"sh"
+],
+"0x4": [
+"lhu",
+"sh"
+],
+"0x6": [
+"lh"
+],
+"0x8": [
+"lbu",
+"lwc1"
+],
+"0xc": [
+"lwc1"
+],
+"0x10": [
+"lwc1"
+],
+"0x18": [
+"lbu"
+],
+"0x19": [
+"lbu"
+],
+"0x1a": [
+"lbu"
+],
+"0x1b": [
+"lbu"
+],
+"0x1c": [
+"lwc1"
+],
+"0x20": [
+"lwc1"
+]
+},
+"funcs": [
+"entity_process_main",
+"entity_render_setup",
+"func_8008D0C0",
+"func_8009F058",
+"func_800A78BC",
+"music_control"
+],
+"where": "bss"
+},
+{
+"base": 2148604312,
+"kind": "array",
+"stride": 1088,
+"count": 4,
+"end": 2148608664,
+"nfuncs": 5,
+"nunmatched": 5,
+"unmatched_bytes": 7600,
+"noffs": 29,
+"maxoff": 1080,
+"name": "",
+"offs": [
+0,
+4,
+6,
+8,
+48,
+52,
+56,
+60,
+772,
+774,
+816,
+820,
+824,
+838,
+880,
+884,
+888,
+902,
+904,
+944,
+948,
+952,
+966,
+1008,
+1012,
+1016,
+1072,
+1076,
+1080
+],
+"types": {
+"0x0": [
+"addiu",
+"lw"
+],
+"0x4": [
+"lw",
+"sw"
+],
+"0x6": [
+"lh"
+],
+"0x8": [
+"lwc1",
+"swc1"
+],
+"0x30": [
+"lwc1",
+"swc1"
+],
+"0x34": [
+"lwc1",
+"swc1"
+],
+"0x38": [
+"lwc1",
+"swc1"
+],
+"0x3c": [
+"lbu",
+"sb"
+],
+"0x304": [
+"lw"
+],
+"0x306": [
+"lh"
+],
+"0x330": [
+"lwc1",
+"swc1"
+],
+"0x334": [
+"swc1"
+],
+"0x338": [
+"swc1"
+],
+"0x346": [
+"lh"
+],
+"0x370": [
+"lwc1",
+"swc1"
+],
+"0x374": [
+"lwc1",
+"swc1"
+],
+"0x378": [
+"swc1"
+],
+"0x386": [
+"lh"
+],
+"0x388": [
+"lwc1",
+"swc1"
+],
+"0x3b0": [
+"swc1"
+],
+"0x3b4": [
+"lwc1",
+"swc1"
+],
+"0x3b8": [
+"swc1"
+],
+"0x3c6": [
+"lh"
+],
+"0x3f0": [
+"lwc1",
+"swc1"
+],
+"0x3f4": [
+"lwc1",
+"swc1"
+],
+"0x3f8": [
+"swc1"
+],
+"0x430": [
+"lwc1",
+"swc1"
+],
+"0x434": [
+"lwc1",
+"swc1"
+],
+"0x438": [
+"swc1"
+]
+},
+"funcs": [
+"drone_throttle_calc",
+"func_800D816C",
+"game_results_exit",
+"game_results_input",
+"render_replay_ui"
+],
+"where": "data"
+},
+{
+"base": 2148623628,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148625672,
+"nfuncs": 5,
+"nunmatched": 5,
+"unmatched_bytes": 5840,
+"noffs": 38,
+"maxoff": 2040,
+"name": "",
+"offs": [
+0,
+4,
+6,
+8,
+12,
+48,
+52,
+56,
+60,
+68,
+900,
+902,
+904,
+908,
+944,
+948,
+952,
+956,
+1798,
+1800,
+1804,
+1840,
+1844,
+1848,
+1862,
+1868,
+1904,
+1908,
+1912,
+1932,
+1968,
+1972,
+1976,
+1990,
+1996,
+2032,
+2036,
+2040
+],
+"types": {
+"0x0": [
+"addiu",
+"lw"
+],
+"0x4": [
+"lw",
+"sw"
+],
+"0x6": [
+"lh"
+],
+"0x8": [
+"lwc1",
+"swc1"
+],
+"0xc": [
+"addiu"
+],
+"0x30": [
+"addiu",
+"swc1"
+],
+"0x34": [
+"lwc1",
+"swc1"
+],
+"0x38": [
+"swc1"
+],
+"0x3c": [
+"lbu",
+"sb"
+],
+"0x44": [
+"lw"
+],
+"0x384": [
+"lw"
+],
+"0x386": [
+"lh"
+],
+"0x388": [
+"lwc1",
+"swc1"
+],
+"0x38c": [
+"addiu"
+],
+"0x3b0": [
+"swc1"
+],
+"0x3b4": [
+"swc1"
+],
+"0x3b8": [
+"swc1"
+],
+"0x3bc": [
+"sb"
+],
+"0x706": [
+"lh"
+],
+"0x708": [
+"lwc1",
+"swc1"
+],
+"0x70c": [
+"addiu"
+],
+"0x730": [
+"addiu",
+"swc1"
+],
+"0x734": [
+"lwc1",
+"swc1"
+],
+"0x738": [
+"swc1"
+],
+"0x746": [
+"lh"
+],
+"0x74c": [
+"addiu"
+],
+"0x770": [
+"swc1"
+],
+"0x774": [
+"swc1"
+],
+"0x778": [
+"swc1"
+],
+"0x78c": [
+"addiu"
+],
+"0x7b0": [
+"swc1"
+],
+"0x7b4": [
+"swc1"
+],
+"0x7b8": [
+"swc1"
+],
+"0x7c6": [
+"lh"
+],
+"0x7cc": [
+"addiu"
+],
+"0x7f0": [
+"addiu",
+"swc1"
+],
+"0x7f4": [
+"swc1"
+],
+"0x7f8": [
+"swc1"
+]
+},
+"funcs": [
+"func_800DA0BC",
+"func_800DA2C0",
+"func_8010A7A4",
+"func_8010A8D0",
+"replay_save_prompt"
+],
+"where": "data"
+},
+{
+"base": 2148641172,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148641936,
+"nfuncs": 5,
+"nunmatched": 5,
+"unmatched_bytes": 5140,
+"noffs": 37,
+"maxoff": 760,
+"name": "",
+"offs": [
+0,
+4,
+6,
+8,
+12,
+48,
+52,
+56,
+68,
+260,
+262,
+264,
+268,
+304,
+308,
+312,
+518,
+520,
+524,
+560,
+564,
+568,
+582,
+588,
+624,
+628,
+632,
+652,
+688,
+692,
+696,
+710,
+716,
+744,
+752,
+756,
+760
+],
+"types": {
+"0x0": [
+"addiu",
+"lw"
+],
+"0x4": [
+"lw",
+"sw"
+],
+"0x6": [
+"lh"
+],
+"0x8": [
+"lwc1",
+"swc1"
+],
+"0xc": [
+"addiu"
+],
+"0x30": [
+"addiu",
+"swc1"
+],
+"0x34": [
+"lwc1",
+"swc1"
+],
+"0x38": [
+"lwc1",
+"swc1"
+],
+"0x44": [
+"lw"
+],
+"0x104": [
+"lw"
+],
+"0x106": [
+"lh"
+],
+"0x108": [
+"swc1"
+],
+"0x10c": [
+"addiu"
+],
+"0x130": [
+"swc1"
+],
+"0x134": [
+"swc1"
+],
+"0x138": [
+"swc1"
+],
+"0x206": [
+"lh"
+],
+"0x208": [
+"lwc1",
+"swc1"
+],
+"0x20c": [
+"addiu"
+],
+"0x230": [
+"addiu",
+"swc1"
+],
+"0x234": [
+"lwc1",
+"swc1"
+],
+"0x238": [
+"swc1"
+],
+"0x246": [
+"lh"
+],
+"0x24c": [
+"addiu"
+],
+"0x270": [
+"swc1"
+],
+"0x274": [
+"swc1"
+],
+"0x278": [
+"swc1"
+],
+"0x28c": [
+"addiu"
+],
+"0x2b0": [
+"swc1"
+],
+"0x2b4": [
+"swc1"
+],
+"0x2b8": [
+"swc1"
+],
+"0x2c6": [
+"lh"
+],
+"0x2cc": [
+"addiu"
+],
+"0x2e8": [
+"lw"
+],
+"0x2f0": [
+"addiu",
+"swc1"
+],
+"0x2f4": [
+"swc1"
+],
+"0x2f8": [
+"swc1"
+]
+},
+"funcs": [
+"func_800B5688",
+"func_800B59F0",
+"func_8010EA08",
+"particle_collision",
+"tire_sound_update"
+],
+"where": "data"
+},
+{
+"base": 2148661316,
+"kind": "array",
+"stride": 16,
+"count": 64,
+"end": 2148662340,
+"nfuncs": 5,
+"nunmatched": 4,
+"unmatched_bytes": 4288,
+"noffs": 4,
+"maxoff": 12,
+"name": "",
+"offs": [
+0,
+4,
+8,
+12
+],
+"types": {
+"0x0": [
+"addiu",
+"lw",
+"lwc1"
+],
+"0x4": [
+"lwc1"
+],
+"0x8": [
+"lwc1"
+],
+"0xc": [
+"lwc1"
+]
+},
+"funcs": [
+"entity_process_main",
+"func_800E73D8",
+"func_8010D3C0",
+"track_info_display",
+"world_physics_tick"
+],
+"where": "data"
+},
+{
+"base": 2148794080,
+"kind": "array",
+"stride": 24,
+"count": 12,
+"end": 2148794368,
+"nfuncs": 5,
+"nunmatched": 3,
+"unmatched_bytes": 2124,
+"noffs": 5,
+"maxoff": 20,
+"name": "",
+"offs": [
+0,
+16,
+17,
+18,
+20
+],
+"types": {
+"0x0": [
+"addiu",
+"sb"
+],
+"0x10": [
+"sb"
+],
+"0x11": [
+"sb"
+],
+"0x12": [
+"sh"
+],
+"0x14": [
+"lw",
+"sw"
+]
+},
+"funcs": [
+"audio_frame_update",
+"func_8008BEA4",
+"func_800BB02C",
+"sound_bank_unload",
+"stat_race_end"
+],
+"where": "bss"
+},
+{
+"base": 2148813904,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148813920,
+"nfuncs": 5,
+"nunmatched": 4,
+"unmatched_bytes": 4216,
+"noffs": 5,
+"maxoff": 12,
+"name": "",
+"offs": [
+0,
+1,
+4,
+8,
+12
+],
+"types": {
+"0x0": [
+"addiu",
+"sb"
+],
+"0x1": [
+"sb"
+],
+"0x4": [
+"sw"
+],
+"0x8": [
+"lw",
+"sw"
+],
+"0xc": [
+"sw"
+]
+},
+"funcs": [
+"audio_pitch_adjust",
+"entity_ai_pathfind",
+"func_80092278",
+"func_80098FB8",
+"hud_setup"
+],
+"where": "bss"
+},
+{
+"base": 2148819168,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148819184,
+"nfuncs": 5,
+"nunmatched": 5,
+"unmatched_bytes": 6264,
+"noffs": 5,
+"maxoff": 12,
+"name": "",
+"offs": [
+0,
+1,
+4,
+8,
+12
+],
+"types": {
+"0x0": [
+"addiu",
+"sb"
+],
+"0x1": [
+"sb"
+],
+"0x4": [
+"sw"
+],
+"0x8": [
+"lw",
+"sw"
+],
+"0xc": [
+"sw"
+]
+},
+"funcs": [
+"AdjustSpeed",
+"car_lod_select",
+"func_800A3640",
+"track_process_main",
+"track_render_process"
+],
+"where": "bss"
+},
+{
+"base": 2148819296,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148819312,
+"nfuncs": 5,
+"nunmatched": 5,
+"unmatched_bytes": 3160,
+"noffs": 5,
+"maxoff": 12,
+"name": "",
+"offs": [
+0,
+1,
+4,
+8,
+12
+],
+"types": {
+"0x0": [
+"addiu",
+"sb"
+],
+"0x1": [
+"sb"
+],
+"0x4": [
+"sw"
+],
+"0x8": [
+"lw",
+"sw"
+],
+"0xc": [
+"lw",
+"sw"
+]
+},
+"funcs": [
+"audio_fade_control",
+"camera_transform",
+"func_800956BC",
+"func_800A4CB8",
+"wheel_params_set"
+],
+"where": "bss"
+},
+{
+"base": 2148819312,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148819328,
+"nfuncs": 5,
+"nunmatched": 3,
+"unmatched_bytes": 1224,
+"noffs": 5,
+"maxoff": 12,
+"name": "",
+"offs": [
+0,
+1,
+4,
+8,
+12
+],
+"types": {
+"0x0": [
+"addiu",
+"sb"
+],
+"0x1": [
+"sb"
+],
+"0x4": [
+"sw"
+],
+"0x8": [
+"lw",
+"sw"
+],
+"0xc": [
+"sw"
+]
+},
+"funcs": [
+"func_800D5374",
+"func_800D63EC",
+"hud_speed_display",
+"object_action_clear",
+"object_activate"
+],
+"where": "bss"
+},
+{
+"base": 2148819336,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148819352,
+"nfuncs": 5,
+"nunmatched": 4,
+"unmatched_bytes": 2460,
+"noffs": 5,
+"maxoff": 12,
+"name": "",
+"offs": [
+0,
+1,
+4,
+8,
+12
+],
+"types": {
+"0x0": [
+"addiu",
+"sb"
+],
+"0x1": [
+"sb"
+],
+"0x4": [
+"lw",
+"sw"
+],
+"0x8": [
+"lw",
+"sw"
+],
+"0xc": [
+"sw"
+]
+},
+"funcs": [
+"engine_sound_sync",
+"func_800D5374",
+"func_800D63EC",
+"hud_speed_display",
+"object_activate"
+],
+"where": "bss"
+},
+{
+"base": 2148833376,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148833392,
+"nfuncs": 5,
+"nunmatched": 4,
+"unmatched_bytes": 3916,
+"noffs": 5,
+"maxoff": 12,
+"name": "",
+"offs": [
+0,
+1,
+4,
+8,
+12
+],
+"types": {
+"0x0": [
+"addiu",
+"sb"
+],
+"0x1": [
+"sb"
+],
+"0x4": [
+"sw"
+],
+"0x8": [
+"lw",
+"sw"
+],
+"0xc": [
+"sw"
+]
+},
+"funcs": [
+"car_stats_display",
+"entity_ai_pathfind",
+"entity_flag_check",
+"func_800988D8",
+"hud_setup"
+],
+"where": "bss"
+},
+{
+"base": 2148887520,
+"kind": "array",
+"stride": 128,
+"count": 1,
+"end": 2148887648,
+"nfuncs": 5,
+"nunmatched": 5,
+"unmatched_bytes": 4176,
+"noffs": 23,
+"maxoff": 124,
+"name": "(in game_types.h)",
+"offs": [
+0,
+8,
+12,
+16,
+20,
+24,
+28,
+32,
+40,
+44,
+48,
+52,
+56,
+60,
+64,
+68,
+72,
+76,
+80,
+84,
+88,
+92,
+124
+],
+"types": {
+"0x0": [
+"addiu",
+"sw"
+],
+"0x8": [
+"sw"
+],
+"0xc": [
+"sw"
+],
+"0x10": [
+"sw"
+],
+"0x14": [
+"sw"
+],
+"0x18": [
+"sw"
+],
+"0x1c": [
+"sw"
+],
+"0x20": [
+"sw"
+],
+"0x28": [
+"sw"
+],
+"0x2c": [
+"sw"
+],
+"0x30": [
+"sw"
+],
+"0x34": [
+"sw"
+],
+"0x38": [
+"sw"
+],
+"0x3c": [
+"sw"
+],
+"0x40": [
+"sw"
+],
+"0x44": [
+"sw"
+],
+"0x48": [
+"sw"
+],
+"0x4c": [
+"sw"
+],
+"0x50": [
+"sw"
+],
+"0x54": [
+"sw"
+],
+"0x58": [
+"lw",
+"sw"
+],
+"0x5c": [
+"sh"
+],
+"0x7c": [
+"lw",
+"sw"
+]
+},
+"funcs": [
+"attract_or_transition",
+"func_800F7448",
+"game_late_init",
+"world_collision_response",
+"world_effect_update"
+],
+"where": "bss"
+},
+{
+"base": 2148598452,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148599216,
+"nfuncs": 4,
+"nunmatched": 4,
+"unmatched_bytes": 3852,
+"noffs": 36,
+"maxoff": 760,
+"name": "",
+"offs": [
+0,
+4,
+6,
+8,
+12,
+48,
+52,
+56,
+68,
+260,
+262,
+264,
+268,
+304,
+308,
+312,
+518,
+520,
+524,
+560,
+564,
+568,
+582,
+588,
+624,
+628,
+632,
+652,
+688,
+692,
+696,
+710,
+716,
+752,
+756,
+760
+],
+"types": {
+"0x0": [
+"addiu",
+"lw"
+],
+"0x4": [
+"lw",
+"sw"
+],
+"0x6": [
+"lh"
+],
+"0x8": [
+"lwc1",
+"swc1"
+],
+"0xc": [
+"addiu"
+],
+"0x30": [
+"addiu",
+"swc1"
+],
+"0x34": [
+"lwc1",
+"swc1"
+],
+"0x38": [
+"lwc1",
+"swc1"
+],
+"0x44": [
+"lw"
+],
+"0x104": [
+"lw"
+],
+"0x106": [
+"lh"
+],
+"0x108": [
+"swc1"
+],
+"0x10c": [
+"addiu"
+],
+"0x130": [
+"swc1"
+],
+"0x134": [
+"swc1"
+],
+"0x138": [
+"swc1"
+],
+"0x206": [
+"lh"
+],
+"0x208": [
+"lwc1",
+"swc1"
+],
+"0x20c": [
+"addiu"
+],
+"0x230": [
+"addiu",
+"swc1"
+],
+"0x234": [
+"lwc1",
+"swc1"
+],
+"0x238": [
+"swc1"
+],
+"0x246": [
+"lh"
+],
+"0x24c": [
+"addiu"
+],
+"0x270": [
+"swc1"
+],
+"0x274": [
+"swc1"
+],
+"0x278": [
+"swc1"
+],
+"0x28c": [
+"addiu"
+],
+"0x2b0": [
+"swc1"
+],
+"0x2b4": [
+"swc1"
+],
+"0x2b8": [
+"swc1"
+],
+"0x2c6": [
+"lh"
+],
+"0x2cc": [
+"addiu"
+],
+"0x2f0": [
+"addiu",
+"swc1"
+],
+"0x2f4": [
+"swc1"
+],
+"0x2f8": [
+"swc1"
+]
+},
+"funcs": [
+"credits_screen",
+"drone_pathfind_main",
+"func_800D6914",
+"game_results_update"
+],
+"where": "data"
+},
+{
+"base": 2148623524,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148623560,
+"nfuncs": 4,
+"nunmatched": 3,
+"unmatched_bytes": 6104,
+"noffs": 6,
+"maxoff": 32,
+"name": "",
+"offs": [
+0,
+6,
+26,
+28,
+30,
+32
+],
+"types": {
+"0x0": [
+"addiu"
+],
+"0x6": [
+"lh",
+"sh"
+],
+"0x1a": [
+"sh"
+],
+"0x1c": [
+"lh",
+"sh"
+],
+"0x1e": [
+"lh",
+"sh"
+],
+"0x20": [
+"lh",
+"sh"
+]
+},
+"funcs": [
+"display_list_flush",
+"func_800CCEFC",
+"func_800DE45C",
+"net_state_validate"
+],
+"where": "data"
+},
+{
+"base": 2148657712,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148657726,
+"nfuncs": 4,
+"nunmatched": 4,
+"unmatched_bytes": 4652,
+"noffs": 4,
+"maxoff": 10,
+"name": "",
+"offs": [
+0,
+2,
+8,
+10
+],
+"types": {
+"0x0": [
+"addiu",
+"sh"
+],
+"0x2": [
+"sh"
+],
+"0x8": [
+"sh"
+],
+"0xa": [
+"sh"
+]
+},
+"funcs": [
+"arb_rate_set",
+"car_render_full",
+"func_800A5A40",
+"wheel_render_full"
+],
+"where": "data"
+},
+{
+"base": 2148790752,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148790768,
+"nfuncs": 4,
+"nunmatched": 4,
+"unmatched_bytes": 9748,
+"noffs": 4,
+"maxoff": 12,
+"name": "",
+"offs": [
+0,
+4,
+8,
+12
+],
+"types": {
+"0x0": [
+"addiu",
+"sb"
+],
+"0x4": [
+"sw"
+],
+"0x8": [
+"sw"
+],
+"0xc": [
+"sw"
+]
+},
+"funcs": [
+"entity_spawn_init",
+"func_8008E408",
+"hud_render",
+"physics_collision_test"
+],
+"where": "bss"
+},
+{
+"base": 2148796372,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148796380,
+"nfuncs": 4,
+"nunmatched": 4,
+"unmatched_bytes": 4708,
+"noffs": 3,
+"maxoff": 4,
+"name": "",
+"offs": [
+0,
+2,
+4
+],
+"types": {
+"0x0": [
+"addiu",
+"lh",
+"sh"
+],
+"0x2": [
+"sh"
+],
+"0x4": [
+"lh",
+"sh"
+]
+},
+"funcs": [
+"func_800B9740",
+"func_80109468",
+"func_80109A60",
+"func_80109F54"
+],
+"where": "bss"
+},
+{
+"base": 2148809232,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148809275,
+"nfuncs": 4,
+"nunmatched": 2,
+"unmatched_bytes": 4460,
+"noffs": 14,
+"maxoff": 39,
+"name": "",
+"offs": [
+0,
+4,
+8,
+12,
+14,
+15,
+16,
+20,
+24,
+28,
+32,
+37,
+38,
+39
+],
+"types": {
+"0x0": [
+"addiu",
+"lb",
+"sb"
+],
+"0x4": [
+"lb",
+"sb"
+],
+"0x8": [
+"lw",
+"sw"
+],
+"0xc": [
+"sb"
+],
+"0xe": [
+"lb",
+"sb"
+],
+"0xf": [
+"sb"
+],
+"0x10": [
+"lw",
+"sw"
+],
+"0x14": [
+"lb",
+"sb"
+],
+"0x18": [
+"lw",
+"sw"
+],
+"0x1c": [
+"sb"
+],
+"0x20": [
+"lw",
+"sw"
+],
+"0x25": [
+"sb"
+],
+"0x26": [
+"sb"
+],
+"0x27": [
+"sb"
+]
+},
+"funcs": [
+"display_list_flush",
+"func_800B912C",
+"func_800BB9B0",
+"player_flag_clear_process"
+],
+"where": "bss"
+},
+{
+"base": 2148819432,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148819448,
+"nfuncs": 4,
+"nunmatched": 4,
+"unmatched_bytes": 2628,
+"noffs": 5,
+"maxoff": 12,
+"name": "",
+"offs": [
+0,
+1,
+4,
+8,
+12
+],
+"types": {
+"0x0": [
+"addiu",
+"sb"
+],
+"0x1": [
+"sb"
+],
+"0x4": [
+"sw"
+],
+"0x8": [
+"lw",
+"sw"
+],
+"0xc": [
+"sw"
+]
+},
+"funcs": [
+"audio_effect_setup",
+"camera_target_track",
+"engine_sound_sync",
+"hud_speed_display"
+],
+"where": "bss"
+},
+{
+"base": 2148832336,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148832352,
+"nfuncs": 4,
+"nunmatched": 2,
+"unmatched_bytes": 388,
+"noffs": 4,
+"maxoff": 12,
+"name": "",
+"offs": [
+0,
+4,
+8,
+12
+],
+"types": {
+"0x0": [
+"addiu",
+"lw",
+"sw"
+],
+"0x4": [
+"sw"
+],
+"0x8": [
+"sw"
+],
+"0xc": [
+"sw"
+]
+},
+"funcs": [
+"UpdateActiveObjects",
+"func_800A5488",
+"func_800B3704",
+"sound_stop"
+],
+"where": "bss"
+},
+{
+"base": 2148833912,
+"kind": "array",
+"stride": 32,
+"count": 4,
+"end": 2148834040,
+"nfuncs": 4,
+"nunmatched": 3,
+"unmatched_bytes": 1936,
+"noffs": 1,
+"maxoff": 0,
+"name": "",
+"offs": [
+0
+],
+"types": {
+"0x0": [
+"addiu",
+"lwc1",
+"swc1"
+]
+},
+"funcs": [
+"assign_drones",
+"func_800D2054",
+"func_800F56E0",
+"sound_update_channel"
+],
+"where": "bss"
+},
+{
+"base": 2148834048,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148834058,
+"nfuncs": 4,
+"nunmatched": 4,
+"unmatched_bytes": 5700,
+"noffs": 5,
+"maxoff": 8,
+"name": "",
+"offs": [
+0,
+2,
+4,
+6,
+8
+],
+"types": {
+"0x0": [
+"addiu",
+"sh"
+],
+"0x2": [
+"sh"
+],
+"0x4": [
+"sh"
+],
+"0x6": [
+"sh"
+],
+"0x8": [
+"lw",
+"sw"
+]
+},
+"funcs": [
+"audio_doppler_calc",
+"car_render_full",
+"sound_update_channel",
+"wheel_render_full"
+],
+"where": "bss"
+},
+{
+"base": 2148834080,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148834090,
+"nfuncs": 4,
+"nunmatched": 4,
+"unmatched_bytes": 5700,
+"noffs": 5,
+"maxoff": 8,
+"name": "",
+"offs": [
+0,
+2,
+4,
+6,
+8
+],
+"types": {
+"0x0": [
+"addiu",
+"sh"
+],
+"0x2": [
+"sh"
+],
+"0x4": [
+"sh"
+],
+"0x6": [
+"sh"
+],
+"0x8": [
+"lw",
+"sw"
+]
+},
+"funcs": [
+"audio_doppler_calc",
+"car_render_full",
+"sound_update_channel",
+"wheel_render_full"
+],
+"where": "bss"
+},
+{
+"base": 2148866728,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148866748,
+"nfuncs": 4,
+"nunmatched": 4,
+"unmatched_bytes": 5732,
+"noffs": 5,
+"maxoff": 16,
+"name": "",
+"offs": [
+0,
+4,
+8,
+12,
+16
+],
+"types": {
+"0x0": [
+"addiu",
+"sb"
+],
+"0x4": [
+"sw"
+],
+"0x8": [
+"sw"
+],
+"0xc": [
+"sw"
+],
+"0x10": [
+"lw"
+]
+},
+"funcs": [
+"camera_lerp_position",
+"func_8010C974",
+"race_setup_2",
+"transmission_ratio_get"
+],
+"where": "bss"
+},
+{
+"base": 2148930440,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148930452,
+"nfuncs": 4,
+"nunmatched": 1,
+"unmatched_bytes": 2456,
+"noffs": 3,
+"maxoff": 8,
+"name": "",
+"offs": [
+0,
+4,
+8
+],
+"types": {
+"0x0": [
+"addiu",
+"lwc1",
+"swc1"
+],
+"0x4": [
+"lwc1",
+"swc1"
+],
+"0x8": [
+"lwc1",
+"swc1"
+]
+},
+"funcs": [
+"camera_scene_manager",
+"func_800C2430",
+"func_800C26C4",
+"func_800C2944"
+],
+"where": "bss"
+},
+{
+"base": 2148599376,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148599392,
+"nfuncs": 3,
+"nunmatched": 3,
+"unmatched_bytes": 2368,
+"noffs": 4,
+"maxoff": 12,
+"name": "",
+"offs": [
+0,
+4,
+8,
+12
+],
+"types": {
+"0x0": [
+"addiu",
+"lw",
+"sw"
+],
+"0x4": [
+"lw",
+"sw"
+],
+"0x8": [
+"lw",
+"sw"
+],
+"0xc": [
+"lw",
+"sw"
+]
+},
+"funcs": [
+"drone_collision_avoid",
+"game_results_render",
+"game_timer_display"
+],
+"where": "data"
+},
+{
+"base": 2148642160,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148642176,
+"nfuncs": 3,
+"nunmatched": 3,
+"unmatched_bytes": 3232,
+"noffs": 4,
+"maxoff": 12,
+"name": "",
+"offs": [
+0,
+4,
+8,
+12
+],
+"types": {
+"0x0": [
+"addiu",
+"lw",
+"sw"
+],
+"0x4": [
+"lw",
+"sw"
+],
+"0x8": [
+"lw",
+"sw"
+],
+"0xc": [
+"lw",
+"sw"
+]
+},
+"funcs": [
+"func_8010E8B4",
+"func_8010F218",
+"particle_render"
+],
+"where": "data"
+},
+{
+"base": 2148644220,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148644286,
+"nfuncs": 3,
+"nunmatched": 2,
+"unmatched_bytes": 944,
+"noffs": 33,
+"maxoff": 64,
+"name": "",
+"offs": [
+0,
+2,
+4,
+6,
+8,
+10,
+12,
+14,
+16,
+18,
+20,
+22,
+24,
+26,
+28,
+30,
+32,
+34,
+36,
+38,
+40,
+42,
+44,
+46,
+48,
+50,
+52,
+54,
+56,
+58,
+60,
+62,
+64
+],
+"types": {
+"0x0": [
+"addiu",
+"lhu"
+],
+"0x2": [
+"lhu"
+],
+"0x4": [
+"lhu"
+],
+"0x6": [
+"lhu"
+],
+"0x8": [
+"lhu"
+],
+"0xa": [
+"lhu"
+],
+"0xc": [
+"lhu"
+],
+"0xe": [
+"lhu"
+],
+"0x10": [
+"addiu",
+"lhu"
+],
+"0x12": [
+"lhu"
+],
+"0x14": [
+"lhu"
+],
+"0x16": [
+"lhu"
+],
+"0x18": [
+"lhu"
+],
+"0x1a": [
+"lhu"
+],
+"0x1c": [
+"lhu"
+],
+"0x1e": [
+"lhu"
+],
+"0x20": [
+"addiu",
+"lhu"
+],
+"0x22": [
+"lhu"
+],
+"0x24": [
+"lhu"
+],
+"0x26": [
+"lhu"
+],
+"0x28": [
+"lhu"
+],
+"0x2a": [
+"lhu"
+],
+"0x2c": [
+"lhu"
+],
+"0x2e": [
+"lhu"
+],
+"0x30": [
+"addiu",
+"lhu"
+],
+"0x32": [
+"lhu"
+],
+"0x34": [
+"lhu"
+],
+"0x36": [
+"lhu"
+],
+"0x38": [
+"lhu"
+],
+"0x3a": [
+"lhu"
+],
+"0x3c": [
+"lhu"
+],
+"0x3e": [
+"lhu"
+],
+"0x40": [
+"lw"
+]
+},
+"funcs": [
+"audio_frame_update",
+"func_8008BEA4",
+"func_80097164"
+],
+"where": "data"
+},
+{
+"base": 2148795424,
+"kind": "array",
+"stride": 84,
+"count": 6,
+"end": 2148795928,
+"nfuncs": 3,
+"nunmatched": 3,
+"unmatched_bytes": 2652,
+"noffs": 3,
+"maxoff": 64,
+"name": "",
+"offs": [
+0,
+4,
+64
+],
+"types": {
+"0x0": [
+"addiu",
+"lw",
+"sw"
+],
+"0x4": [
+"lw"
+],
+"0x40": [
+"lw",
+"sw"
+]
+},
+"funcs": [
+"func_800D5524",
+"func_800D5E64",
+"func_800E0050"
+],
+"where": "bss"
+},
+{
+"base": 2148795968,
+"kind": "array",
+"stride": 20,
+"count": 6,
+"end": 2148796088,
+"nfuncs": 3,
+"nunmatched": 3,
+"unmatched_bytes": 2540,
+"noffs": 1,
+"maxoff": 0,
+"name": "",
+"offs": [
+0
+],
+"types": {
+"0x0": [
+"addiu",
+"lw"
+]
+},
+"funcs": [
+"func_800D5524",
+"func_800D5E64",
+"func_800E05F0"
+],
+"where": "bss"
+},
+{
+"base": 2148796096,
+"kind": "array",
+"stride": 60,
+"count": 4,
+"end": 2148796336,
+"nfuncs": 3,
+"nunmatched": 3,
+"unmatched_bytes": 2404,
+"noffs": 3,
+"maxoff": 40,
+"name": "",
+"offs": [
+0,
+20,
+40
+],
+"types": {
+"0x0": [
+"addiu",
+"lw",
+"sw"
+],
+"0x14": [
+"lw",
+"sw"
+],
+"0x28": [
+"lw"
+]
+},
+"funcs": [
+"func_800D5524",
+"func_800D5E64",
+"func_800DFBA0"
+],
+"where": "bss"
+},
+{
+"base": 2148796424,
+"kind": "array",
+"stride": 120,
+"count": 4,
+"end": 2148796904,
+"nfuncs": 3,
+"nunmatched": 3,
+"unmatched_bytes": 3688,
+"noffs": 20,
+"maxoff": 116,
+"name": "",
+"offs": [
+0,
+4,
+8,
+12,
+16,
+20,
+24,
+40,
+44,
+48,
+64,
+68,
+72,
+88,
+92,
+96,
+100,
+104,
+108,
+116
+],
+"types": {
+"0x0": [
+"addiu",
+"lwc1",
+"swc1"
+],
+"0x4": [
+"swc1"
+],
+"0x8": [
+"swc1"
+],
+"0xc": [
+"swc1"
+],
+"0x10": [
+"lwc1",
+"swc1"
+],
+"0x14": [
+"lw",
+"sw"
+],
+"0x18": [
+"swc1"
+],
+"0x28": [
+"swc1"
+],
+"0x2c": [
+"sw"
+],
+"0x30": [
+"swc1"
+],
+"0x40": [
+"swc1"
+],
+"0x44": [
+"sw"
+],
+"0x48": [
+"swc1"
+],
+"0x58": [
+"swc1"
+],
+"0x5c": [
+"sw"
+],
+"0x60": [
+"swc1"
+],
+"0x64": [
+"lwc1"
+],
+"0x68": [
+"lwc1"
+],
+"0x6c": [
+"lwc1"
+],
+"0x74": [
+"lw",
+"sw"
+]
+},
+"funcs": [
+"best_times_display",
+"func_800DED78",
+"mode_select_handler"
+],
+"where": "bss"
+},
+{
+"base": 2148806104,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148806183,
+"nfuncs": 3,
+"nunmatched": 3,
+"unmatched_bytes": 1844,
+"noffs": 8,
+"maxoff": 75,
+"name": "",
+"offs": [
+0,
+3,
+24,
+27,
+48,
+51,
+72,
+75
+],
+"types": {
+"0x0": [
+"addiu",
+"sh"
+],
+"0x3": [
+"lb",
+"sb"
+],
+"0x18": [
+"sh"
+],
+"0x1b": [
+"lb",
+"sb"
+],
+"0x30": [
+"sh"
+],
+"0x33": [
+"lb",
+"sb"
+],
+"0x48": [
+"sh"
+],
+"0x4b": [
+"lb",
+"sb"
+]
+},
+"funcs": [
+"func_80091B00",
+"func_800C8918",
+"hud_setup"
+],
+"where": "bss"
+},
+{
+"base": 2148810744,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148810760,
+"nfuncs": 3,
+"nunmatched": 3,
+"unmatched_bytes": 1464,
+"noffs": 5,
+"maxoff": 12,
+"name": "",
+"offs": [
+0,
+1,
+4,
+8,
+12
+],
+"types": {
+"0x0": [
+"addiu",
+"sb"
+],
+"0x1": [
+"sb"
+],
+"0x4": [
+"sw"
+],
+"0x8": [
+"lw",
+"sw"
+],
+"0xc": [
+"sw"
+]
+},
+"funcs": [
+"audio_effect_setup",
+"func_80092278",
+"hud_setup"
+],
+"where": "bss"
+},
+{
+"base": 2148810784,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148810800,
+"nfuncs": 3,
+"nunmatched": 3,
+"unmatched_bytes": 3984,
+"noffs": 5,
+"maxoff": 12,
+"name": "",
+"offs": [
+0,
+1,
+4,
+8,
+12
+],
+"types": {
+"0x0": [
+"addiu",
+"sb"
+],
+"0x1": [
+"sb"
+],
+"0x4": [
+"lw",
+"sw"
+],
+"0x8": [
+"lw",
+"sw"
+],
+"0xc": [
+"sw"
+]
+},
+"funcs": [
+"entity_ai_pathfind",
+"func_80098FB8",
+"hud_setup"
+],
+"where": "bss"
+},
+{
+"base": 2148819376,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148819392,
+"nfuncs": 3,
+"nunmatched": 2,
+"unmatched_bytes": 756,
+"noffs": 5,
+"maxoff": 12,
+"name": "",
+"offs": [
+0,
+1,
+4,
+8,
+12
+],
+"types": {
+"0x0": [
+"addiu",
+"sb"
+],
+"0x1": [
+"sb"
+],
+"0x4": [
+"sw"
+],
+"0x8": [
+"lw",
+"sw"
+],
+"0xc": [
+"sw"
+]
+},
+"funcs": [
+"audio_effect_setup",
+"func_800AED20",
+"hud_speed_display"
+],
+"where": "bss"
+},
+{
+"base": 2148832320,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148832330,
+"nfuncs": 3,
+"nunmatched": 3,
+"unmatched_bytes": 1056,
+"noffs": 4,
+"maxoff": 6,
+"name": "",
+"offs": [
+0,
+2,
+3,
+6
+],
+"types": {
+"0x0": [
+"addiu"
+],
+"0x2": [
+"lbu"
+],
+"0x3": [
+"lbu"
+],
+"0x6": [
+"lbu"
+]
+},
+"funcs": [
+"func_800A43FC",
+"func_800E73D8",
+"func_800E7710"
+],
+"where": "bss"
+},
+{
+"base": 2148833288,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148833304,
+"nfuncs": 3,
+"nunmatched": 1,
+"unmatched_bytes": 1048,
+"noffs": 5,
+"maxoff": 12,
+"name": "",
+"offs": [
+0,
+1,
+4,
+8,
+12
+],
+"types": {
+"0x0": [
+"addiu",
+"sb"
+],
+"0x1": [
+"sb"
+],
+"0x4": [
+"sw"
+],
+"0x8": [
+"lw",
+"sw"
+],
+"0xc": [
+"sw"
+]
+},
+"funcs": [
+"entity_flag_check",
+"func_800D18D8",
+"hud_setup"
+],
+"where": "bss"
+},
+{
+"base": 2148865528,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148865546,
+"nfuncs": 3,
+"nunmatched": 1,
+"unmatched_bytes": 1020,
+"noffs": 6,
+"maxoff": 16,
+"name": "",
+"offs": [
+0,
+4,
+8,
+12,
+14,
+16
+],
+"types": {
+"0x0": [
+"addiu"
+],
+"0x4": [
+"lwc1",
+"swc1"
+],
+"0x8": [
+"lwc1",
+"swc1"
+],
+"0xc": [
+"lhu",
+"sh"
+],
+"0xe": [
+"lhu",
+"sh"
+],
+"0x10": [
+"lhu",
+"sh"
+]
+},
+"funcs": [
+"draw_minimap",
+"func_800F769C",
+"graphics_chunk_b"
+],
+"where": "bss"
+},
+{
+"base": 2148865552,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148865556,
+"nfuncs": 3,
+"nunmatched": 3,
+"unmatched_bytes": 2400,
+"noffs": 1,
+"maxoff": 0,
+"name": "",
+"offs": [
+0
+],
+"types": {
+"0x0": [
+"addiu",
+"lw",
+"sw"
+]
+},
+"funcs": [
+"camera_lerp_position",
+"func_800F769C",
+"func_8010E0FC"
+],
+"where": "bss"
+},
+{
+"base": 2148865560,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148865588,
+"nfuncs": 3,
+"nunmatched": 2,
+"unmatched_bytes": 1596,
+"noffs": 9,
+"maxoff": 24,
+"name": "",
+"offs": [
+0,
+4,
+6,
+8,
+10,
+12,
+14,
+16,
+24
+],
+"types": {
+"0x0": [
+"addiu"
+],
+"0x4": [
+"lhu",
+"sh"
+],
+"0x6": [
+"lhu",
+"sh"
+],
+"0x8": [
+"lhu",
+"sh"
+],
+"0xa": [
+"lhu",
+"sh"
+],
+"0xc": [
+"lhu",
+"sh"
+],
+"0xe": [
+"lhu",
+"sh"
+],
+"0x10": [
+"lhu",
+"sh"
+],
+"0x18": [
+"lw",
+"sw"
+]
+},
+"funcs": [
+"draw_minimap",
+"func_800F43B8",
+"func_800F769C"
+],
+"where": "bss"
+},
+{
+"base": 2148876048,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148876064,
+"nfuncs": 3,
+"nunmatched": 1,
+"unmatched_bytes": 144,
+"noffs": 5,
+"maxoff": 12,
+"name": "",
+"offs": [
+0,
+2,
+4,
+8,
+12
+],
+"types": {
+"0x0": [
+"addiu",
+"sb"
+],
+"0x2": [
+"lhu",
+"sh"
+],
+"0x4": [
+"lhu",
+"sh"
+],
+"0x8": [
+"lw",
+"sw"
+],
+"0xc": [
+"lw",
+"sw"
+]
+},
+"funcs": [
+"func_8008ABE4",
+"struct_init_and_call",
+"task_complete_signal"
+],
+"where": "bss"
+},
+{
+"base": 2148877920,
+"kind": "array",
+"stride": 400,
+"count": 6,
+"end": 2148880320,
+"nfuncs": 3,
+"nunmatched": 2,
+"unmatched_bytes": 3312,
+"noffs": 35,
+"maxoff": 396,
+"name": "",
+"offs": [
+0,
+2,
+4,
+8,
+12,
+16,
+20,
+24,
+28,
+32,
+36,
+40,
+44,
+48,
+52,
+56,
+60,
+64,
+68,
+72,
+76,
+77,
+80,
+84,
+168,
+252,
+336,
+338,
+376,
+380,
+384,
+388,
+389,
+392,
+396
+],
+"types": {
+"0x0": [
+"addiu",
+"lw",
+"sw"
+],
+"0x2": [
+"lh"
+],
+"0x4": [
+"swc1"
+],
+"0x8": [
+"swc1"
+],
+"0xc": [
+"swc1"
+],
+"0x10": [
+"swc1"
+],
+"0x14": [
+"swc1"
+],
+"0x18": [
+"swc1"
+],
+"0x1c": [
+"swc1"
+],
+"0x20": [
+"swc1"
+],
+"0x24": [
+"swc1"
+],
+"0x28": [
+"swc1"
+],
+"0x2c": [
+"swc1"
+],
+"0x30": [
+"swc1"
+],
+"0x34": [
+"lwc1",
+"swc1"
+],
+"0x38": [
+"lwc1",
+"swc1"
+],
+"0x3c": [
+"lwc1",
+"swc1"
+],
+"0x40": [
+"lwc1",
+"swc1"
+],
+"0x44": [
+"lwc1",
+"swc1"
+],
+"0x48": [
+"lwc1",
+"swc1"
+],
+"0x4c": [
+"lbu",
+"sb"
+],
+"0x4d": [
+"lbu"
+],
+"0x50": [
+"lwc1",
+"swc1"
+],
+"0x54": [
+"sw"
+],
+"0xa8": [
+"sw"
+],
+"0xfc": [
+"sw"
+],
+"0x150": [
+"lw",
+"sw"
+],
+"0x152": [
+"lh"
+],
+"0x178": [
+"swc1"
+],
+"0x17c": [
+"swc1"
+],
+"0x180": [
+"swc1"
+],
+"0x184": [
+"lbu",
+"sb"
+],
+"0x185": [
+"lbu",
+"sb"
+],
+"0x188": [
+"lwc1",
+"swc1"
+],
+"0x18c": [
+"lwc1",
+"swc1"
+]
+},
+"funcs": [
+"camera_smooth_lerp",
+"entity_update_callback",
+"func_80090308"
+],
+"where": "bss"
+},
+{
+"base": 2148880928,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148880952,
+"nfuncs": 3,
+"nunmatched": 2,
+"unmatched_bytes": 692,
+"noffs": 6,
+"maxoff": 20,
+"name": "",
+"offs": [
+0,
+4,
+8,
+12,
+16,
+20
+],
+"types": {
+"0x0": [
+"addiu",
+"sb"
+],
+"0x4": [
+"sw"
+],
+"0x8": [
+"sw"
+],
+"0xc": [
+"sw"
+],
+"0x10": [
+"lw"
+],
+"0x14": [
+"lw"
+]
+},
+"funcs": [
+"audio_voice_set",
+"func_800B0580",
+"save_validate"
+],
+"where": "bss"
+},
+{
+"base": 2149009856,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2149009876,
+"nfuncs": 3,
+"nunmatched": 3,
+"unmatched_bytes": 5260,
+"noffs": 3,
+"maxoff": 16,
+"name": "",
+"offs": [
+4,
+12,
+16
+],
+"types": {
+"0x4": [
+"lw"
+],
+"0xc": [
+"lw"
+],
+"0x10": [
+"lw"
+]
+},
+"funcs": [
+"func_8010AEAC",
+"func_8010F218",
+"game_results_render"
+],
+"where": "bss"
+},
+{
+"base": 2148614600,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148614612,
+"nfuncs": 2,
+"nunmatched": 1,
+"unmatched_bytes": 380,
+"noffs": 3,
+"maxoff": 8,
+"name": "",
+"offs": [
+0,
+4,
+8
+],
+"types": {
+"0x0": [
+"addiu",
+"lwc1"
+],
+"0x4": [
+"lwc1"
+],
+"0x8": [
+"lwc1"
+]
+},
+"funcs": [
+"func_800EA3F4",
+"vector_normalize_length"
+],
+"where": "data"
+},
+{
+"base": 2148615768,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148615831,
+"nfuncs": 2,
+"nunmatched": 2,
+"unmatched_bytes": 4900,
+"noffs": 6,
+"maxoff": 59,
+"name": "playgame_settings[GAME_SYMBOLS]",
+"offs": [
+0,
+1,
+2,
+57,
+58,
+59
+],
+"types": {
+"0x0": [
+"addiu",
+"lbu"
+],
+"0x1": [
+"lbu"
+],
+"0x2": [
+"lbu"
+],
+"0x39": [
+"lbu"
+],
+"0x3a": [
+"lbu"
+],
+"0x3b": [
+"lbu"
+]
+},
+"funcs": [
+"display_list_flush",
+"playgame_state_change"
+],
+"where": "data"
+},
+{
+"base": 2148625924,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148625956,
+"nfuncs": 2,
+"nunmatched": 0,
+"unmatched_bytes": 0,
+"noffs": 14,
+"maxoff": 28,
+"name": "",
+"offs": [
+0,
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+12,
+16,
+24,
+28
+],
+"types": {
+"0x0": [
+"sb"
+],
+"0x1": [
+"lb",
+"sb"
+],
+"0x2": [
+"sb"
+],
+"0x3": [
+"sb"
+],
+"0x4": [
+"sb"
+],
+"0x5": [
+"sb"
+],
+"0x6": [
+"sb"
+],
+"0x7": [
+"sb"
+],
+"0x8": [
+"sb"
+],
+"0x9": [
+"sb"
+],
+"0xc": [
+"lw"
+],
+"0x10": [
+"lw"
+],
+"0x18": [
+"lw"
+],
+"0x1c": [
+"lw"
+]
+},
+"funcs": [
+"ambient_sound_set",
+"sound_handles_clear"
+],
+"where": "data"
+},
+{
+"base": 2148626688,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148626736,
+"nfuncs": 2,
+"nunmatched": 2,
+"unmatched_bytes": 2400,
+"noffs": 4,
+"maxoff": 44,
+"name": "",
+"offs": [
+0,
+40,
+42,
+44
+],
+"types": {
+"0x0": [
+"addiu"
+],
+"0x28": [
+"lw"
+],
+"0x2a": [
+"lh"
+],
+"0x2c": [
+"lw"
+]
+},
+"funcs": [
+"func_800B4FB0",
+"func_8010BC84"
+],
+"where": "data"
+},
+{
+"base": 2148644184,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148644206,
+"nfuncs": 2,
+"nunmatched": 2,
+"unmatched_bytes": 3040,
+"noffs": 8,
+"maxoff": 20,
+"name": "",
+"offs": [
+0,
+1,
+2,
+3,
+16,
+17,
+18,
+20
+],
+"types": {
+"0x0": [
+"addiu",
+"lbu"
+],
+"0x1": [
+"lbu"
+],
+"0x2": [
+"lbu"
+],
+"0x3": [
+"lbu"
+],
+"0x10": [
+"lbu"
+],
+"0x11": [
+"lbu"
+],
+"0x12": [
+"lbu"
+],
+"0x14": [
+"lbu"
+]
+},
+"funcs": [
+"entity_render_setup",
+"music_control"
+],
+"where": "data"
+},
+{
+"base": 2148666984,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148666998,
+"nfuncs": 2,
+"nunmatched": 2,
+"unmatched_bytes": 1772,
+"noffs": 8,
+"maxoff": 12,
+"name": "",
+"offs": [
+0,
+3,
+4,
+7,
+8,
+9,
+10,
+12
+],
+"types": {
+"0x0": [
+"addiu",
+"lwl"
+],
+"0x3": [
+"lwr"
+],
+"0x4": [
+"lwl"
+],
+"0x7": [
+"lwr"
+],
+"0x8": [
+"lbu"
+],
+"0x9": [
+"lbu"
+],
+"0xa": [
+"lbu"
+],
+"0xc": [
+"addiu",
+"lh"
+]
+},
+"funcs": [
+"func_800E6AF8",
+"string_copy_format"
+],
+"where": "data"
+},
+{
+"base": 2148683504,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148683548,
+"nfuncs": 2,
+"nunmatched": 2,
+"unmatched_bytes": 7940,
+"noffs": 5,
+"maxoff": 40,
+"name": "",
+"offs": [
+0,
+8,
+12,
+24,
+40
+],
+"types": {
+"0x0": [
+"addiu"
+],
+"0x8": [
+"lwc1"
+],
+"0xc": [
+"lwc1"
+],
+"0x18": [
+"lwc1"
+],
+"0x28": [
+"lwc1"
+]
+},
+"funcs": [
+"func_8009F058",
+"track_collision_wall"
+],
+"where": "bss"
+},
+{
+"base": 2148683640,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148683652,
+"nfuncs": 2,
+"nunmatched": 2,
+"unmatched_bytes": 5612,
+"noffs": 3,
+"maxoff": 8,
+"name": "",
+"offs": [
+0,
+4,
+8
+],
+"types": {
+"0x0": [
+"addiu",
+"lwc1",
+"swc1"
+],
+"0x4": [
+"lwc1",
+"swc1"
+],
+"0x8": [
+"lwc1",
+"swc1"
+]
+},
+"funcs": [
+"particle_system",
+"track_collision_wall"
+],
+"where": "bss"
+},
+{
+"base": 2148763236,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148763243,
+"nfuncs": 2,
+"nunmatched": 2,
+"unmatched_bytes": 1496,
+"noffs": 5,
+"maxoff": 4,
+"name": "",
+"offs": [
+0,
+1,
+2,
+3,
+4
+],
+"types": {
+"0x0": [
+"addiu",
+"sb"
+],
+"0x1": [
+"sb"
+],
+"0x2": [
+"sb"
+],
+"0x3": [
+"sb"
+],
+"0x4": [
+"sh"
+]
+},
+"funcs": [
+"func_800E8F10",
+"sfx_position_3d"
+],
+"where": "bss"
+},
+{
+"base": 2148796340,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148796348,
+"nfuncs": 2,
+"nunmatched": 2,
+"unmatched_bytes": 1936,
+"noffs": 4,
+"maxoff": 6,
+"name": "",
+"offs": [
+0,
+2,
+4,
+6
+],
+"types": {
+"0x0": [
+"addiu",
+"lh",
+"sh"
+],
+"0x2": [
+"sh"
+],
+"0x4": [
+"lh",
+"sh"
+],
+"0x6": [
+"addiu"
+]
+},
+"funcs": [
+"func_800B9740",
+"func_80109468"
+],
+"where": "bss"
+},
+{
+"base": 2148810584,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148810596,
+"nfuncs": 2,
+"nunmatched": 2,
+"unmatched_bytes": 1804,
+"noffs": 3,
+"maxoff": 8,
+"name": "",
+"offs": [
+0,
+4,
+8
+],
+"types": {
+"0x0": [
+"addiu",
+"sw"
+],
+"0x4": [
+"lw",
+"sw"
+],
+"0x8": [
+"addiu",
+"lw",
+"sw"
+]
+},
+"funcs": [
+"func_80098FB8",
+"hud_setup"
+],
+"where": "bss"
+},
+{
+"base": 2148833176,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148833188,
+"nfuncs": 2,
+"nunmatched": 1,
+"unmatched_bytes": 1816,
+"noffs": 3,
+"maxoff": 8,
+"name": "",
+"offs": [
+0,
+4,
+8
+],
+"types": {
+"0x0": [
+"addiu",
+"lw",
+"sw"
+],
+"0x4": [
+"lw",
+"sw"
+],
+"0x8": [
+"lw",
+"sw"
+]
+},
+"funcs": [
+"func_800F1114",
+"func_800F1210"
+],
+"where": "bss"
+},
+{
+"base": 2148877272,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148877279,
+"nfuncs": 2,
+"nunmatched": 1,
+"unmatched_bytes": 3568,
+"noffs": 5,
+"maxoff": 4,
+"name": "",
+"offs": [
+0,
+1,
+2,
+3,
+4
+],
+"types": {
+"0x0": [
+"addiu",
+"lbu",
+"sb"
+],
+"0x1": [
+"lbu",
+"sb"
+],
+"0x2": [
+"lbu",
+"sb"
+],
+"0x3": [
+"lbu",
+"sb"
+],
+"0x4": [
+"lbu",
+"sb"
+]
+},
+"funcs": [
+"init_state_begin",
+"net_session_update"
+],
+"where": "bss"
+},
+{
+"base": 2148889160,
+"kind": "array",
+"stride": 16,
+"count": 7,
+"end": 2148889272,
+"nfuncs": 2,
+"nunmatched": 2,
+"unmatched_bytes": 3416,
+"noffs": 3,
+"maxoff": 4,
+"name": "",
+"offs": [
+0,
+2,
+4
+],
+"types": {
+"0x0": [
+"addiu",
+"lh",
+"sh"
+],
+"0x2": [
+"sh"
+],
+"0x4": [
+"lh",
+"sh"
+]
+},
+"funcs": [
+"func_800A7E10",
+"track_collision_wall"
+],
+"where": "bss"
+},
+{
+"base": 2148889272,
+"kind": "array",
+"stride": 16,
+"count": 64,
+"end": 2148890296,
+"nfuncs": 2,
+"nunmatched": 2,
+"unmatched_bytes": 3416,
+"noffs": 3,
+"maxoff": 4,
+"name": "",
+"offs": [
+0,
+2,
+4
+],
+"types": {
+"0x0": [
+"lh",
+"sh"
+],
+"0x2": [
+"sh"
+],
+"0x4": [
+"lh",
+"sh"
+]
+},
+"funcs": [
+"func_800A7E10",
+"track_collision_wall"
+],
+"where": "bss"
+},
+{
+"base": 2148614588,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148614600,
+"nfuncs": 1,
+"nunmatched": 0,
+"unmatched_bytes": 0,
+"noffs": 3,
+"maxoff": 8,
+"name": "",
+"offs": [
+0,
+4,
+8
+],
+"types": {
+"0x0": [
+"addiu",
+"lwc1"
+],
+"0x4": [
+"lwc1"
+],
+"0x8": [
+"lwc1"
+]
+},
+"funcs": [
+"func_800EA3F4"
+],
+"where": "data"
+},
+{
+"base": 2148616640,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148616644,
+"nfuncs": 1,
+"nunmatched": 0,
+"unmatched_bytes": 0,
+"noffs": 1,
+"maxoff": 0,
+"name": "",
+"offs": [
+0
+],
+"types": {
+"0x0": [
+"lw"
+]
+},
+"funcs": [
+"func_800F084C"
+],
+"where": "data"
+},
+{
+"base": 2148634108,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148634120,
+"nfuncs": 1,
+"nunmatched": 1,
+"unmatched_bytes": 896,
+"noffs": 3,
+"maxoff": 8,
+"name": "",
+"offs": [
+0,
+4,
+8
+],
+"types": {
+"0x0": [
+"addiu",
+"lw"
+],
+"0x4": [
+"lw"
+],
+"0x8": [
+"lw"
+]
+},
+"funcs": [
+"engine_torque_calc"
+],
+"where": "data"
+},
+{
+"base": 2148657412,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148657424,
+"nfuncs": 1,
+"nunmatched": 0,
+"unmatched_bytes": 0,
+"noffs": 3,
+"maxoff": 8,
+"name": "",
+"offs": [
+0,
+4,
+8
+],
+"types": {
+"0x0": [
+"addiu",
+"lw"
+],
+"0x4": [
+"lw"
+],
+"0x8": [
+"lw"
+]
+},
+"funcs": [
+"func_800AA028"
+],
+"where": "data"
+},
+{
+"base": 2148667116,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148667144,
+"nfuncs": 1,
+"nunmatched": 1,
+"unmatched_bytes": 1244,
+"noffs": 4,
+"maxoff": 24,
+"name": "",
+"offs": [
+0,
+16,
+20,
+24
+],
+"types": {
+"0x0": [
+"addiu",
+"lw"
+],
+"0x10": [
+"lw"
+],
+"0x14": [
+"lwc1"
+],
+"0x18": [
+"lwc1"
+]
+},
+"funcs": [
+"func_800E7FA0"
+],
+"where": "data"
+},
+{
+"base": 2148667624,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148667708,
+"nfuncs": 1,
+"nunmatched": 1,
+"unmatched_bytes": 4700,
+"noffs": 6,
+"maxoff": 80,
+"name": "",
+"offs": [
+0,
+4,
+8,
+72,
+76,
+80
+],
+"types": {
+"0x0": [
+"addiu",
+"lwc1"
+],
+"0x4": [
+"lwc1"
+],
+"0x8": [
+"lwc1"
+],
+"0x48": [
+"lwc1"
+],
+"0x4c": [
+"lwc1"
+],
+"0x50": [
+"lwc1"
+]
+},
+"funcs": [
+"stunt_combo_display"
+],
+"where": "data"
+},
+{
+"base": 2148667896,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148667908,
+"nfuncs": 1,
+"nunmatched": 1,
+"unmatched_bytes": 1088,
+"noffs": 5,
+"maxoff": 8,
+"name": "",
+"offs": [
+0,
+3,
+4,
+7,
+8
+],
+"types": {
+"0x0": [
+"addiu",
+"lwl"
+],
+"0x3": [
+"lwr"
+],
+"0x4": [
+"lwl"
+],
+"0x7": [
+"lwr"
+],
+"0x8": [
+"lbu"
+]
+},
+"funcs": [
+"func_800CD104"
+],
+"where": "data"
+},
+{
+"base": 2148673216,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148673222,
+"nfuncs": 1,
+"nunmatched": 1,
+"unmatched_bytes": 692,
+"noffs": 3,
+"maxoff": 2,
+"name": "",
+"offs": [
+0,
+1,
+2
+],
+"types": {
+"0x0": [
+"addiu",
+"lbu"
+],
+"0x1": [
+"lbu"
+],
+"0x2": [
+"lbu"
+]
+},
+"funcs": [
+"sfx_position_3d"
+],
+"where": "data"
+},
+{
+"base": 2148763848,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148763930,
+"nfuncs": 1,
+"nunmatched": 1,
+"unmatched_bytes": 216,
+"noffs": 8,
+"maxoff": 78,
+"name": "",
+"offs": [
+0,
+6,
+24,
+30,
+48,
+54,
+72,
+78
+],
+"types": {
+"0x0": [
+"addiu",
+"sw"
+],
+"0x6": [
+"sh"
+],
+"0x18": [
+"addiu",
+"sw"
+],
+"0x1e": [
+"sh"
+],
+"0x30": [
+"addiu",
+"sw"
+],
+"0x36": [
+"sh"
+],
+"0x48": [
+"addiu",
+"sw"
+],
+"0x4e": [
+"sh"
+]
+},
+"funcs": [
+"func_800B2BDC"
+],
+"where": "bss"
+},
+{
+"base": 2148763944,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148763954,
+"nfuncs": 1,
+"nunmatched": 1,
+"unmatched_bytes": 216,
+"noffs": 2,
+"maxoff": 6,
+"name": "",
+"offs": [
+0,
+6
+],
+"types": {
+"0x0": [
+"addiu",
+"sw"
+],
+"0x6": [
+"sh"
+]
+},
+"funcs": [
+"func_800B2BDC"
+],
+"where": "bss"
+},
+{
+"base": 2148790776,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148790792,
+"nfuncs": 1,
+"nunmatched": 0,
+"unmatched_bytes": 0,
+"noffs": 4,
+"maxoff": 12,
+"name": "",
+"offs": [
+0,
+4,
+8,
+12
+],
+"types": {
+"0x0": [
+"addiu",
+"lw",
+"sw"
+],
+"0x4": [
+"lw",
+"sw"
+],
+"0x8": [
+"lw",
+"sw"
+],
+"0xc": [
+"lw",
+"sw"
+]
+},
+"funcs": [
+"func_800C7200"
+],
+"where": "bss"
+},
+{
+"base": 2148804552,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148804554,
+"nfuncs": 1,
+"nunmatched": 1,
+"unmatched_bytes": 1128,
+"noffs": 1,
+"maxoff": 0,
+"name": "",
+"offs": [
+0
+],
+"types": {
+"0x0": [
+"addiu"
+]
+},
+"funcs": [
+"func_80090308"
+],
+"where": "bss"
+},
+{
+"base": 2148682240,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148682242,
+"nfuncs": 0,
+"nunmatched": 0,
+"unmatched_bytes": 0,
+"noffs": 0,
+"maxoff": 0,
+"name": "",
+"offs": [],
+"types": {},
+"funcs": [],
+"where": "bss"
+},
+{
+"base": 2148778776,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148778776,
+"nfuncs": 0,
+"nunmatched": 0,
+"unmatched_bytes": 0,
+"noffs": 0,
+"maxoff": 0,
+"name": "",
+"offs": [],
+"types": {},
+"funcs": [],
+"where": "bss"
+},
+{
+"base": 2148863976,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148863976,
+"nfuncs": 0,
+"nunmatched": 0,
+"unmatched_bytes": 0,
+"noffs": 0,
+"maxoff": 0,
+"name": "",
+"offs": [],
+"types": {},
+"funcs": [],
+"where": "bss"
+},
+{
+"base": 2148865412,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148865414,
+"nfuncs": 0,
+"nunmatched": 0,
+"unmatched_bytes": 0,
+"noffs": 0,
+"maxoff": 0,
+"name": "",
+"offs": [],
+"types": {},
+"funcs": [],
+"where": "bss"
+},
+{
+"base": 2148868644,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148868644,
+"nfuncs": 0,
+"nunmatched": 0,
+"unmatched_bytes": 0,
+"noffs": 0,
+"maxoff": 0,
+"name": "",
+"offs": [],
+"types": {},
+"funcs": [],
+"where": "bss"
+},
+{
+"base": 2148880896,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148880896,
+"nfuncs": 0,
+"nunmatched": 0,
+"unmatched_bytes": 0,
+"noffs": 0,
+"maxoff": 0,
+"name": "",
+"offs": [],
+"types": {},
+"funcs": [],
+"where": "bss"
+},
+{
+"base": 2148930500,
+"kind": "struct",
+"stride": null,
+"count": null,
+"end": 2148930503,
+"nfuncs": 0,
+"nunmatched": 0,
+"unmatched_bytes": 0,
+"noffs": 0,
+"maxoff": 0,
+"name": "",
+"offs": [],
+"types": {},
+"funcs": [],
+"where": "bss"
+}
+]

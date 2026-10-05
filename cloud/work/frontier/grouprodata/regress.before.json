@@ -1,0 +1,297 @@
+{
+ "MP_TargetSteerPos": {
+  "MP_TargetSteerPos": "8e13e080acf03d033c0420887ac29772b1c20ec4fd797bf78561a42bb621bbd8"
+ },
+ "audio_frame_sync": {
+  "func_800972C4": "a48e4d07fb4f44127634e70d20aea5c49aef51ca51367b29de4d315f6ed66de6"
+ },
+ "audio_frame_update": {
+  "func_800B0A88": "fe62dbbd73e161b5f4492c1c1a1fab10e8d252e292dc18945b0f5674b78eff4d"
+ },
+ "audio_heap": {
+  "audio_dma_sync": "267cb05a6bf960cf87fffc078567499d5dd6d8b01cbd135292a8aeb821f690e3",
+  "audio_helper": "8b0d351898546b49782f9dbc0fb1759124b5e4d85244811ccea6bf73c4434150",
+  "audio_task_complete": "738d46fd2bf71934db9e5730b4014af3bd49dcc4b3b7514b772ce1ff85948725",
+  "func_800E7B44": "8fb05ac3785059b7dd8662b2fe2c19a2883edd8b89ee364acec81620621b37a5",
+  "func_800E7C2C": "c334ab8e82d2ca9e374fa7b3a33d051e8f91386ec2c6d8414049a6ee3df2e7de"
+ },
+ "audio_pitch_adjust": {
+  "audio_pitch_adjust": "9460f577622f3f6c94832b99dbc7723ea5cfb9abe0b38203abd867a469aad504"
+ },
+ "camera_aspect_ratio": {
+  "camera_aspect_ratio": "186ecd9114b12d1f3caa59921d74194562831cadb4ed4681a2fe0c1678dd6693",
+  "camera_build_view_matrix": "95658a2bca0ef5924b115e85ba6ab7b93aa4363f4a4fa9a093d93bb478df9686",
+  "camera_fov_control": "f00ec71cdca1fb1fa26fb7d3d26759e594c3d12e0143a7ff3e1ab9c077d9b679"
+ },
+ "camera_scene_manager": {
+  "func_800C2430": "8014ace5172008551a66d684b47deff61bd6d6f1ef24421d39a9382e1953d723",
+  "func_800C26C4": "988309460e94bf86e91b54f0fe999c2eb0b45af62269f2307f7d4597798d125b",
+  "func_800C2944": "c52139e76f4b0841c44117a9c6e5e8c4c016e073ca999e8bfa939009db2a7f06"
+ },
+ "championship_standings": {
+  "func_800DC120": "185a01f7bdd30bd527efc522a3b61626fc27bbec5939b1944ee6bd84e72b70fc"
+ },
+ "codex_audio_frame_a5": {
+  "func_800B08FC": "850251d57a4e6e8644d5bd8ac25e3bfe62d6f521a91e4e2bfa036381510caf09"
+ },
+ "codex_car_resistance_b114": {
+  "track_info_display": "c87f771d2c91cb2940f7b975e2c9bc6dbb6099d560c4f9428bad5da2accefde4"
+ },
+ "codex_cleanup_a101": {
+  "func_800B4E68": "22dc7d435300832ba8bc522cbddf08a1e439ac14ee7763f02c6c11ff49c48a44"
+ },
+ "codex_control_settings_a4": {
+  "func_800DCCE0": "d153bc44a893a0537edc1d256eb497954acfe2f654e8992523dd079c225b2dca",
+  "func_800DCD58": "e3bd44c877c170f7522707f64fd4219680098455904e91871361265aff5eb0ac"
+ },
+ "codex_counter_guard_a30": {
+  "audio_loop_control": "17edba2e6e9663a4f8ea5b2a4d60d508b3949cdc513b422ea095ac6ef06cb729"
+ },
+ "codex_defaults_a16": {
+  "func_800B6748": "ccda3cf148e9bca7e4e9d64ba964b01c1091b5c792b49691d401bdce0014df2b"
+ },
+ "codex_dispatch_a111": {
+  "track_lighting_setup": "c7a5ed85dc106b5baf9d35d58ed662d2f3dbcbe7f27d2351b1d9c44d50b7bbbf"
+ },
+ "codex_entity_helpers_a10": {
+  "camera_clip_planes": "75dc97d603c2b1e6e05930d2a3257ef386ef9ffb02a3411a0d97ce3cb17f9893",
+  "leaderboard_update": "e2a0df598fcadbc8061e58ef4fa9742b43ac51390890555a76ab7525514f926a",
+  "results_screen_update": "a1d03fdf0fe0575f5c4fe6e4168bfc28bc2dfd0126c3bd879c3ace3940fcd8d3"
+ },
+ "codex_func_800B7438": {
+  "func_800B73E4": "1ee0d210c9a3cd9c15154448f730cf8c03e80c18ae3061b70d52d2de8d8eb8f5",
+  "func_800B7438": "4436fc366b413ec51ad9ca9a070867f19a4d620e02f7ec6329d53e9f42f448d2"
+ },
+ "codex_func_800C7200_2": {
+  "func_800C7200": "3ecc9760eaa03e72303baf5efcc64647552451ba7aad1727b56fe58acbbdbfdc"
+ },
+ "codex_hash_a80": {
+  "format_string_parse": "f8537dbeb5e899bf215a2380e1f44dc25689bb46dca8be6deb664bc5bfbd4c0d"
+ },
+ "codex_heap_release_a25": {
+  "MP_TargetSpeed": "47a8f5e2c8914ba8acf0c9799e26c6fc8bba7e72d193b15af80957be8b844d2a",
+  "assign_default_paths": "3e383650123e78a599ea855a7dba20b33a54e84b8d60d4da4f187790c1b8bd62",
+  "audio_effect_process": "30976cacc290f1de1c4d391c982fa629b8adc622e157e09e8063aaf6fc00aa86",
+  "audio_reverb_update": "9819b47716bced504227b5117fa1e0bf3144db7f0ffab1b198909a1c9421e221",
+  "stat_race_end": "e1991d40a7b5ede9d2e0e73a1981b6d01462281fc028e61731d67f31ebd505ba",
+  "synced_model_render": "30976cacc290f1de1c4d391c982fa629b8adc622e157e09e8063aaf6fc00aa86"
+ },
+ "codex_input_aux": {
+  "input_aux_handler": "6fac5a7667ab779a19591144b5a5edcfae3e3333d4db66e50490415988c86c54"
+ },
+ "codex_large_crash_state": {
+  "func_800E0B20": "5fafb10c241319b5872959ecd1c6bfecf2b4deabd555b58cb84fbed647687fc2"
+ },
+ "codex_large_init_state": {
+  "init_state_begin": "5def13c61ea05b7b9a95722f0512631be9d5174d8e8d815a94777f2bf480b2a5"
+ },
+ "codex_menu_a104": {
+  "func_800CC8C8": "01c6e90fa384acda2d8cc2e784f634244cd323bc9aa67cb0fdaec2c0d378bda5"
+ },
+ "codex_menu_a105": {
+  "func_800CCA04": "c5cef5add23610dbba39520befc6785a8b3f719d6fa4ff9b0eb6351b6858cf70"
+ },
+ "codex_menu_a86": {
+  "menu_option_toggle": "7a3f606dbc810ec7ce5b53833f429abe1ee70f2d42b778c6c1dea6cc5c181dfc"
+ },
+ "codex_menu_a87": {
+  "menu_text_input": "7c2f2451f5f0dbdc3489c36901844621b6fd695bb6a63ac8b3f0a0c3d3979062"
+ },
+ "codex_menu_records_a88": {
+  "menu_dialog_close": "8b057b4b08214018cfeba9fe2f78735cf18119b2f0ba73f3887e3e388d733a8c",
+  "object_data_allocate": "a2e5e0af3646c257a74a6a5a8e671b99587e7b10f229dc75878812203ab46fd2"
+ },
+ "codex_mode_init_a18": {
+  "physics_init_mode0": "cd8e7930e1ba1ea7aa5ffb637e2031899c16bcfe9a2a9a93663254574e53ed7e",
+  "physics_init_mode1": "600b654e4a5970dadc07faec10233b9a9975b48feeeec3a3974381b306980f5f"
+ },
+ "codex_motion_norm_c24": {
+  "func_800E9C70": "19fc05d36187fd4fc90dcc8c62fec24cf8355bdc8a809865eb3b47a4cc24fe0e"
+ },
+ "codex_pfs_status_c90": {
+  "func_800A1E94": "62b190e1ab82d2d78f8a607b2cb53206bc85e657155def153f1e61c06409b7be"
+ },
+ "codex_physics_clutch": {
+  "func_800E2AC4": "c46dded791e9eaf39ce536db6ce22316d2f5152cc712049a44080cb597e6e9cd"
+ },
+ "codex_pointer_counters_a19": {
+  "audio_buffer_sync": "4168a3f1be6c135cf761a9699932fdc70d407a235be6cce157f57b7c848b3a1a",
+  "object_counter_decrement": "b59acb62e6e0ac61439a3b06a6fda04b8a104691f13da546f899b005b2318026",
+  "object_counter_increment": "2bc396b63aa74c6c1a7c81154569efdb6c1c13b9b38e2e1f2fda342113a7adad"
+ },
+ "codex_sound_channel_extra": {
+  "camera_shake_update": "1879d0d67a8b443453a229392970374c91cd0d3eba15b4202072e2b983520a82",
+  "func_800F68A4": "febbc91d69ee2eef018a81c4ac51d3ad99b99e717d761cbc5e81633a18026253",
+  "object_byte9_set": "cd19e3089685917a05f400f998bf57a4bd6e370863561775900968e6879f93f6"
+ },
+ "codex_state_audio_a146": {
+  "state_change_preprocess": "a561cb0cca4143ff4ffae0ec964bf85f74874734ee3e84997aa6c7913a367ac9"
+ },
+ "codex_steering_a12": {
+  "vector_diff_process": "613caffec06da75b0b6a2575a94bc83159edae0f9e90590bbae9ef4b0198a329"
+ },
+ "codex_switch_a26": {
+  "func_800B4B00": "9282fe8901f95240b9e5e461c99b0a07f0e3a1aca0209e7b6e102d2fd4f80684"
+ },
+ "codex_task_complete_signal": {
+  "task_complete_signal": "0955e8c7f7ed8780c2b0715481ebf4849c6a72cbd6dea3ab4b6b6c3b9fd1694c"
+ },
+ "codex_transform_b109": {
+  "client_sync": "e00bd77c09dae04d25cb1de2a0b41bc572c7c250e42507ee9078efbc0ba245b5",
+  "entity_hierarchy_update": "91ae6e572e43923d6b37dcd487074200c38ec930e0485b6a003a5b4ffa0896bf",
+  "entity_transform_calc": "12cf24b1371782655ff6ccaac6c0e47a73c2eafc31a058ec251f5a701f99c995",
+  "game_timer_resume": "5297500d8e20b977e756d1cc73ccca7ed36e3fef45c5b73eb4cc1126ad899767",
+  "stat_lap_complete": "101dc3bbf6663579ad460d602c4e688e14ec410e4aae11b236de1cef9a38920a"
+ },
+ "codex_vertices_b88": {
+  "func_8008C074": "9003c817a0e2a2adc09299790449762d0a8a09020f418c3a5c163d73c8778d1d"
+ },
+ "codex_visual_tire_module_20261002": {
+  "matrix_scale_apply": "efe889bbb0a83bf978452a98f490ac73399fb85c5261dd26ce926a1baa25f7af"
+ },
+ "codex_vsync_a145": {
+  "vsync_wait": "ed831597353b680cf13cda7e40b5a9a6211d1ba954087a004591af13dafca7c9"
+ },
+ "controller_poll": {
+  "func_800C9590": "84468b8c64513cbaf99476cb96ce7a1eab18340cfc28b93a467bcd3e72240eac",
+  "player_mode_set": "afe934210ca29ae9d33a6c23152089b37e8b469ddfd075f417d3a2ce936c3c76",
+  "player_state_set": "666e073e6efe5bb36e53d12745e8741b6d55c071467496e96b3a74e99117a660"
+ },
+ "credits_scroll_grp": {
+  "credits_scroll": "b1970bd6437f85ef54876885ad6c57902f113eaf1a3f9d9f17eef0692eb6dfc7"
+ },
+ "dot_entry_dispatch": {
+  "func_800D3430": "20b8e1edb018ef61df5648369280b6b69d00aec85b51ae3ce5cadd02cc786b80"
+ },
+ "dot_record_score": {
+  "func_80098710": "0e90ba900caa01772b36d2cc268bb997e850cbc828ba85feacd073c23c012a58"
+ },
+ "dot_run_decode": {
+  "func_800ADCE0": "7f4e356afd5b999a9ac0786684a4d3fdb55ef2a7245db618dd6c3848010934c7"
+ },
+ "dot_sign_extend": {
+  "sign_extend_call": "7fd128bef40a72ad661e6bd2ac8b83a32a5921f63ff3a11b6fae562a62182f51"
+ },
+ "dot_vector_length": {
+  "func_8008E098": "a07bdbf82d3fb5ba370ef74a9c0d2d01930a0febbb974bf397e5f03c9d709bbe"
+ },
+ "draw_number": {
+  "draw_number": "f03cc2f8e35de15ad4981dbbb2f0c60976576496174afc51b937563ac03b7408"
+ },
+ "entity_flag_check": {
+  "entity_flag_check": "c016e44e3b3f52bfcbc3d883e3f416236e8ab4c8b474d8940ef20ac0e60f178c"
+ },
+ "entity_lookup": {
+  "func_80091BA8": "d5dc025c1f81860dabb7d7dbd3e69ba459a34f8343918c63767b506f42aa9655",
+  "scheduler_recv": "790caccf464952f67072f0db5e5659b07a46b5a348c561ff73bc3ecc826fc8d9"
+ },
+ "frontier_pad_config": {
+  "Input_ApplyPadConfig": "3282399bd7919e39047f452faa4070df2ef7b4b91d82318591c2592e7bfda590"
+ },
+ "frontier_rumble_thread": {
+  "audio_queue_process": "00ef32aa1f31158bfb4294cb67ccb295db0e34e7643dab86fdab89381636f2a7",
+  "func_8008A704": "6d0148edf4f5c0c09246f4d5229de1e0478b505f0a1cb07a0bc0f7517563d0a3"
+ },
+ "frontier_sym_controls": {
+  "func_800E3430": "8c34cc280a40e62ebfedcfb7d3cd329b76f87ec52d31e86ba48d94facaaf613e",
+  "func_800E3724": "36392505d5dfc8127e46ae5af5b789fd5ba4ffbb405c0044a1404d36f84b579c"
+ },
+ "func_8008B640": {
+  "model_bounds_calc": "dbf60aeb7bef4b769e4db4c3823754621bbc79e9c54bb6803b7af2e44d5e2a2c",
+  "physics_velocity_integrate_b": "326c9faeaa16b0d4a7aa601f7afaca24134638ddd1e6c27a110a2e6a8d136135",
+  "physics_velocity_integrate_c": "ee64e680cfcef4dc931e8c0f5ce34c1f327e1769c31d3a0371c81d1091365a3f",
+  "physics_velocity_integrate_d": "bbb5ab88848091c91c2b326fac8951bc300ff377522f1fe79c497e3040ec3b9a",
+  "physics_velocity_integrate_e": "b451f25e8eaa80fc661755222b388ae5593e80fd38aa59fd2b678bd61b8b7742",
+  "physics_velocity_integrate_f": "30392ee89e8fdfa3d55f8056f90b5c9424c4cd6f8e90628f24ba9788e8a57c11"
+ },
+ "func_800AD4C8": {
+  "func_800AD650": "d966e16313dab71eec359def7a0de59bd3c99d4183382e3b26dfb1fb52070f24",
+  "func_800C36A0": "38eec6328066ead5a5d437df4024781fa729444eea86399988e1cd06c078ab10",
+  "handbrake_apply": "efe656c91d0725e15dc51b6018a6daa6dd59b7f0b553191109824c92ea50678c"
+ },
+ "func_800B9B64": {
+  "func_800B98D8": "f8d0fbfc348f32ddf7021129547f264c7067b69d3406cce9cf82612e522bef04",
+  "func_800B9B64": "a3095f14a0c15e41d0f4db1ce31a3e5b66ed9ae6079cf641e153b9bc49db95ca",
+  "minimap_render": "102413427cd1284a77b4137fb71053d27ffcbddf17c09b8c5cd8602b66242d57",
+  "physics_velocity_clamp": "94e42bf5f27e27766efbb980a16f90a07e683612d4e84ba63b781e6a8718d532"
+ },
+ "func_800D2FA8": {
+  "time_of_day_select": "3f2474e1843610815f14e03865dd9707665f34609459e2c73a1df027a5aab3b5"
+ },
+ "func_800E681C": {
+  "func_800E627C": "6fdd059d6c472c703a48a296e62beea19c637fcb399939d2dca2a369e4d8e977"
+ },
+ "func_800E92C8": {
+  "func_800EA2DC": "cc9b085827dd4c56086c4e22585cbfe5c79e5101b9d9093e9ee1282fa5dce8f0"
+ },
+ "func_800EA3F4": {
+  "func_800CFDEC": "40f1ced66ec8eccc2c8a291247248d652f9fdbb976e94994192a2d7cf8004aec",
+  "func_800E8CB8": "b3eb8747e95bca6e18bf1ef3ba1fee70294cc37385574685654f2c48a2580020",
+  "func_800EA3F4": "77380f4e8ef21781a9b420a922741769f4a4440d818291ff735c0131712a2d9d"
+ },
+ "func_800F1114_grp": {
+  "func_800F1114": "28aa2b57e446830622a410e42fae87fe78002eee4bc3aa3eb0dacad19906d032"
+ },
+ "func_800F2718_grp": {
+  "func_800F2718": "a04cb1f45b6b5269ca31a449f0c27a1d5b94fbb27dd77f0a19e6ed950f96b017"
+ },
+ "func_800F2888_grp": {
+  "func_800F2888": "f0dd508dedbda0f3438785551d147f296ba70df6442c3a1f1264db9a52248cec"
+ },
+ "gfx_modes": {
+  "func_80086A50": "945eedfdd9b852633b98c2b855a03f76b7b611382e2f36076d3aa35a771fd60f",
+  "func_8008705C": "6b717318f61515e078e75bdd4bb570c50e9fe676ff2847d0f7c43d7e01eb9ac1",
+  "func_800878E0": "f8a00435e231f977bc38197993238f02132a0e43c0163442382397e294ffb85f"
+ },
+ "menu_cc040_20261004": {
+  "menu_item_value_get": "511e7cf6983fa9907fa431d878cfc325aac65a72d27d13c304b946485005780f"
+ },
+ "menu_cc_20261004": {
+  "func_800CCCCC": "63a0a6cc0a7985ecb15e7cb6da69b1f51158b7a59cef54ecf987c7d9cd567248",
+  "func_800CCEFC": "dea8f487a631dba34d0ba87d8c6343298b69cc6924d840e3d96e661f3402c060",
+  "func_800CD058": "ff394b2d826655a18dbc063659f2cc0d85ed671211135d1795920d21525a4a76"
+ },
+ "render_large_objects": {
+  "func_800F92C8": "4cd90843ae24719886d832abb5d5af0c3de30c3d4611a2a16a9237c56436d7f6"
+ },
+ "resource_slot_clear": {
+  "func_80097694": "812f59a4358d1a55a10e7896d02fcda6d207b0d3429364f8d1b8221392014d77",
+  "resource_slot_clear": "24a20ad46d189f9b1fd8c2fc8d606d10fec32e9b0b8f1361ab4fd304a240b99a",
+  "resource_slots_clear_multiple": "7e9dbd34e226489097e33a0d66c9201c8c4c908994c027a3cf26ac8ee3ab16da"
+ },
+ "slot_sound": {
+  "display_list_alloc": "925d61111a6284ee7c38677c1e9de4e9353a03010f23aa5136831c0f2bcbe107",
+  "func_80096288": "64e6fe82a9a8105fd73c45eff39203a632b71731116ae93b43be76782c6c8422",
+  "mode_byte2_set": "33691475c095be5342c2896d3a3bf45f6a35831db7f17bf47e4e35af3e0817bf",
+  "mode_byte_set": "5d64830391538398b2e3fb785f86495d1625c4d101a78b4b6fde3fef6213bd8f",
+  "object_type_byte2_get": "56e4cac9497d637b614f3b196446b8531beb6757076b4bd78513529b04a5983c",
+  "object_type_byte3_get": "64dbd6e150c4bc2f983d312cca237d496a1732af6e193d7f6af8b77e83633074",
+  "player_state_get": "8c712aaafe3da947e08b74482a1dfe64a64bd5e522437303b50169c531b52da6",
+  "slot_deactivate": "2e0dee14905b533c7c61fb9872672d6254588924486a76e3d944330966e65504",
+  "slot_value_get": "a2b66ce0b15f868f70b64d0c115582c5f2268bbeb4d10780c310abe8f2c77107",
+  "sound_update_channel": "843f08a4e541babf1af03e56b8e6b066d220408edf658e142f404844369e515c"
+ },
+ "sol_high_c680": {
+  "func_8008C680": "6e8be2174a62b5df66cc6002209b51b9d910d02dafa3984bb83965868299679d"
+ },
+ "zlib_deflate": {
+  "car_cg_height_set": "c61e24b0e668289994a29be67ed0012b8a461487c8ac000f209cb97f29c25813",
+  "car_collision_init": "df728ae481a0d5811c0ad97eeb682dcf1e4ec01a75504ae7a83568a876b88155",
+  "car_collision_update": "03062b9c60cd415d1b2ce66315722e5d46627ac13f87e614c97ba044ffeafb20",
+  "car_crash_detect": "43b636e0eb19dd25565071a73fca65569f4443914dabcdf6d6370d26e100650b",
+  "car_crash_response": "1b6789c3d429329ee01491c66510eb184391ff33458deacde8651a698db3d675",
+  "car_reset_position": "65e98dc4b5b9c5b342596c37c5f0a0fa7e532510de136a0f139b4de0aad00130",
+  "car_spawn_at_checkpoint": "4aa9831273a5ce4a945776e46457d956448c6f281bb01062e63e8140f5f68b5c",
+  "func_800A8174": "c5548322adf77ebc58e9f81ec3755227f297e009505ccacabe204467a4b68fba",
+  "func_800A81FC": "6c96b7705cbbad68f6776f53001b92953f9bfd466d07e19e7dfb65c4a55f09fb",
+  "func_800A8284": "74a6689b4b89dc3b16cb4e50202fd523b027b70da59c2d55fb216ad12f8cb087",
+  "func_800A8778": "331fe2494aed7f7f852e82ed0d34f7fdecd4ba9890f67e79288c12330a88c596",
+  "func_800A8F38": "1114a4e07bb730cfe524ac22c804d5b04159777eaffa738d4c260b45a4f63ac3",
+  "func_800A9054": "a0dcab016ca49e5ea56db2d72b80c24f48a8f4bd9d58f8c242dd123b1a0c64f6",
+  "func_800A928C": "d0d0112d5accea378b77122038b04e1ec370613b118c19a49fba6797408c614b",
+  "func_800A9710": "63e69b484945658c1bb0f6c44c2a359d28c186dd46361e3e1494e2a9f4f9596d",
+  "func_800AA028": "ef1806b1b514d6ac201d13ed3b5a190805071e51510cc17713a9eda3586eb094",
+  "func_800AA224": "b8b2affe6dfa404b16c87992ed37884d6fb326e62979246481b531d3a085205c",
+  "func_800AAB3C": "232f123ac4d4d353787951ab540f839f7eea1fe6c632f4bea4dd2dfa7963a3a6"
+ }
+}

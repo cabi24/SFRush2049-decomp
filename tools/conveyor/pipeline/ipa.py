@@ -22,6 +22,14 @@ Two signatures, both read from a function's own derived assembly:
 A function that calls a detected callee is a member too, because its call
 sites set the callee's registers. Members are excluded from -O2 permuter
 searches (farm flywheel); the cheap compile-only sweep still covers them.
+
+`scan` also records two image-word signatures of *internal* functions from
+pipeline/frontier.py (calibration there): `unsaved` (callee-saved registers
+written without a save) and `ring` (the four-wide t6-t9 temp ring), plus
+`internal` = `members` and both classes. `members` itself keeps its meaning
+(register-parameter callees, preservers, setters) because diagnose's ABI
+selection and `groups` read it; consumers that only want "do not search this
+alone at -O2" should call `load_internal()`.
 """
 import argparse
 import json
@@ -253,9 +261,11 @@ def _written_regs(asm_text):
     return out
 
 
-def scan(conn, asm_for):
+def scan(conn, asm_for, words_for=None):
     """Classify every gate-passed extracted target. `asm_for(target_id)` returns
-    the derived asm text or None."""
+    the derived asm text or None. `words_for(row)` returns the function's
+    image words (or None); when given, the document gains the `unsaved`,
+    `ring` and `internal` keys and nothing else changes."""
     rows = conn.execute(
         "SELECT target_id,address,insn_count,gate_reason FROM n64_target"
         " WHERE population='extracted' AND address IS NOT NULL"
@@ -285,8 +295,26 @@ def scan(conn, asm_for):
         if hits:
             callers[t] = hits
     members = sorted(set(callees) | set(preservers) | set(callers))
-    return {"callees": callees, "preservers": preservers, "callers": callers,
-            "members": members, "scanned": len(rows)}
+    doc = {"callees": callees, "preservers": preservers, "callers": callers,
+           "members": members, "scanned": len(rows)}
+    if words_for is not None:
+        from . import frontier
+        unsaved, ring = {}, {}
+        for row in rows:
+            words = words_for(row)
+            if not words:
+                continue
+            regs = frontier.unsaved_callee_writes(words)
+            if regs:
+                unsaved[row["target_id"]] = regs
+            info = frontier.temp_ring(words)
+            arms = frontier.ring_arms(info)
+            if arms:
+                ring[row["target_id"]] = dict(info, arms=arms)
+        doc["unsaved"] = unsaved
+        doc["ring"] = ring
+        doc["internal"] = sorted(set(members) | set(unsaved) | set(ring))
+    return doc
 
 
 def call_graph(conn, image_bytes, base=0x80086A50):
@@ -387,6 +415,17 @@ def load_members(path=MEMBERS_JSON):
         return set()
 
 
+def load_internal(path=MEMBERS_JSON):
+    """Members plus the image-word classes (`unsaved`, `ring`): everything
+    that cannot match compiled alone. Falls back to `members` for a document
+    written before those classes existed."""
+    try:
+        doc = json.loads(Path(path).read_text())
+        return set(doc.get("internal", doc["members"]))
+    except (OSError, ValueError, KeyError):
+        return set()
+
+
 def main():
     from ..client import DEFAULT_DATA
     from ..coordinator import db as dbmod
@@ -431,13 +470,27 @@ def main():
         except Exception:
             return None
 
-    doc = scan(conn, asm_for)
+    def words_for(row, base=0x80086A50):
+        import struct
+        from . import blob_layout
+        try:
+            image = words_for.image
+        except AttributeError:
+            image = words_for.image = Path(blob_layout.IMAGE).read_bytes()
+        off = row["address"] - base
+        return struct.unpack(f">{row['insn_count']}I",
+                             image[off:off + 4 * row["insn_count"]])
+
+    doc = scan(conn, asm_for, words_for)
     MEMBERS_JSON.parent.mkdir(parents=True, exist_ok=True)
     MEMBERS_JSON.write_text(json.dumps(doc, indent=1, sort_keys=True) + "\n")
     M2C_MAP_JSON.write_text(json.dumps(m2c_register_map(doc), indent=1, sort_keys=True) + "\n")
     print(f"scanned {doc['scanned']}: {len(doc['members'])} IPA members "
           f"({len(doc['callees'])} callees, {len(doc['preservers'])} preservers, "
           f"{len(doc['callers'])} callers of callees) -> {MEMBERS_JSON}")
+    print(f"image-word classes: {len(doc['unsaved'])} unsaved callee-saved, "
+          f"{len(doc['ring'])} temp ring; {len(doc['internal'])} internal in all "
+          f"(`members` unchanged)")
     return 0
 
 

@@ -1,0 +1,7 @@
+{
+  "members": ["func_800D1AB0"],
+  "files": ["group.c"],
+  "keep": ["__standin_a", "__standin_b"],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}

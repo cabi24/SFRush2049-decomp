@@ -1,0 +1,61 @@
+=== base
+void *audio_dma_sync(Heap *heap, u32 size)
+{
+    void *p;
+
+    osRecvMesg(D_80152770, 0, 1);
+    p = audio_helper(size, heap != 0 ? heap : D_801527C8, 0, 0);
+    osJamMesg(D_80152770, 0, 0);
+    return p;
+}
+=== dbg_h
+void *audio_dma_sync(Heap *heap, u32 size)
+{
+    void *p;
+    Heap *h;
+
+    osRecvMesg(D_80152770, 0, 1);
+    h = heap != 0 ? heap : D_801527C8;
+    dbg(h);
+    p = audio_helper(size, h, 0, 0);
+    osJamMesg(D_80152770, 0, 0);
+    return p;
+}
+@@pre
+static void dbg(Heap *h) {}
+=== inl_alloc
+void *audio_dma_sync(Heap *heap, u32 size)
+{
+    void *p;
+
+    osRecvMesg(D_80152770, 0, 1);
+    p = alloc(size, heap, 0, 0);
+    osJamMesg(D_80152770, 0, 0);
+    return p;
+}
+@@pre
+static void *alloc(u32 size, Heap *heap, void *owner, s32 tag) { return audio_helper(size, heap != 0 ? heap : D_801527C8, owner, tag); }
+=== inl_alloc2
+void *audio_dma_sync(Heap *heap, u32 size)
+{
+    void *p;
+
+    osRecvMesg(D_80152770, 0, 1);
+    p = alloc(size, heap, 0, 0);
+    osJamMesg(D_80152770, 0, 0);
+    return p;
+}
+@@pre
+static void *alloc(u32 size, Heap *heap, void *owner, s32 tag) { if (heap == 0) heap = D_801527C8; return audio_helper(size, heap, owner, tag); }
+=== inl_alloc3
+void *audio_dma_sync(Heap *heap, u32 size)
+{
+    void *p;
+
+    osRecvMesg(D_80152770, 0, 1);
+    p = alloc(size, heap, 0, 0);
+    osJamMesg(D_80152770, 0, 0);
+    return p;
+}
+@@pre
+static void *alloc(u32 size, Heap *heap, void *owner, s32 tag) { Heap *h; if (heap != 0) h = heap; else h = D_801527C8; return audio_helper(size, h, owner, tag); }

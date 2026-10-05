@@ -1,0 +1,116 @@
+/* flags: -g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul */
+/*
+ * NOT a strict match: score.py prints "MATCH (8 section-relative relocations
+ * unverified: .rodata+0x0 ... .rodata+0xc ...)". Text words are identical;
+ * the unverified references are the four float literals, emitted in the order
+ * 0.1f, 1500.0f, 0.97f, 0.03f = retail words at 0x80124310/14/18/1C.
+ *
+ * N64 descendant of arcade set_catchup/no_catchup
+ * (reference/repos/rushtherock/game/model.c): rubber-band catch-up scale at
+ * car +0x400. k1/k2 are arcade max_catchup / cuzone as locals.
+ *
+ * What closed the old float-allocation residual (see
+ * cloud/work/ipa-groups/render_large_objects/STATUS.md, ~500 variants):
+ * - literals instead of `extern f32 D_8012431x` (externs are loop-hoisted);
+ * - arcade literal types: `k1 + 1.0f` but `... / k2 + 1` and `(1 - s) ... + 1`
+ *   with int 1, which gives the two separate 1.0 webs (f14 and f20).
+ * `(1 - s) / 2.0f + 1` matches as well as `* 0.5f`.
+ */
+typedef signed char s8;
+typedef unsigned char u8;
+typedef signed short s16;
+typedef unsigned short u16;
+typedef signed int s32;
+typedef float f32;
+
+typedef struct {
+    u8 pad0[7];
+    u8 flag;
+} Slot;
+
+typedef struct {
+    /* 0x000 */ u8 pad0[0x400];
+    /* 0x400 */ f32 scale;
+    /* 0x404 */ u8 pad404[0x7C6 - 0x404];
+    /* 0x7C6 */ s16 order;
+    /* 0x7C8 */ s16 active;
+    /* 0x7CA */ s16 pad7CA;
+    /* 0x7CC */ s8 kind;
+    /* 0x7CD */ u8 pad7CD[0x7E6 - 0x7CD];
+    /* 0x7E6 */ s16 rank;
+    /* 0x7E8 */ u8 pad7E8[4];
+    /* 0x7EC */ f32 outA;
+    /* 0x7F0 */ f32 outB;
+    /* 0x7F4 */ u8 pad7F4[0x808 - 0x7F4];
+} Car;
+
+typedef struct {
+    /* 0x000 */ u8 pad0[8];
+    /* 0x008 */ f32 pos[3];
+    /* 0x014 */ u8 pad14[0xEE - 0x14];
+    /* 0x0EE */ s8 place;
+    /* 0x0EF */ u8 pad0EF[0x100 - 0xEF];
+    /* 0x100 */ f32 dist;
+    /* 0x104 */ u8 pad104[0x356 - 0x104];
+    /* 0x356 */ s16 slot;
+    /* 0x358 */ u8 pad358;
+    /* 0x359 */ s8 state;
+    /* 0x35A */ u8 pad35A[0x3B8 - 0x35A];
+} Rec;
+
+extern Car D_8014A250[];
+extern Rec player_array[];
+extern s16 active_player_count;
+extern s8 D_80152030;
+extern s8 D_80150F14;
+extern Slot D_80153E88[];
+
+void func_800DE860(void)
+{
+    s16 i;
+    s16 best;
+    s32 j;
+    f32 s;
+    f32 d;
+    f32 bd;
+    f32 k1;
+    f32 k2;
+
+    if ((active_player_count == 1 && D_80152030 < 5) || D_80150F14 == 0) {
+        for (j = 0; j < 6; j++) {
+            if (D_80153E88[j].flag == 0 || D_80153E88[j].flag == 6) {
+                D_8014A250[j].scale = 1.0f;
+            }
+        }
+    } else {
+        best = -1;
+        for (i = 0; i < 6; i++) {
+            if (D_8014A250[i].active != 0 && player_array[i].state < 2 &&
+                (D_8014A250[i].kind == 2 || D_80152030 == 5)) {
+                if (best == -1) {
+                    best = i;
+                } else if (player_array[best].dist < player_array[i].dist) {
+                    best = i;
+                }
+            }
+        }
+        k1 = 0.1f;
+        k2 = 1500.0f;
+        bd = player_array[best].dist;
+        for (i = 0; i < 6; i++) {
+            if (D_8014A250[i].active != 0 && player_array[i].state < 2 &&
+                (D_8014A250[i].kind == 2 || D_80152030 == 5)) {
+                d = bd - player_array[i].dist;
+                if (d > k2) {
+                    s = k1 + 1.0f;
+                } else {
+                    s = d * k1 / k2 + 1;
+                }
+                if (D_80150F14 == 1) {
+                    s = (1 - s) * 0.5f + 1;
+                }
+                D_8014A250[i].scale = D_8014A250[i].scale * 0.97f + 0.03f * s;
+            }
+        }
+    }
+}

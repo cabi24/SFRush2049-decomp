@@ -1,0 +1,54 @@
+=== locked_form
+void func_80096288(s32 arg0, s32 arg1, s32 arg2)
+{
+  s32 t;
+  if (arg0) {}
+  if (arg1) {}
+  t = !arg2;
+  if (arg2 != 0)
+  {
+    if (t) {}
+    if (t) {}
+  }
+  if (t) {}
+}
+=== if0_in_ifc
+extern s32 D_80149B08;
+void func_80096288(s32 a, s32 b, s32 c)
+{
+    if (c) {
+        if (0) { switch (a + b) { case 1: D_80149B08 = 1; break; case 2: D_80149B08 = 2; break; case 3: D_80149B08 = 3; break; } }
+    }
+}
+=== if0_then_locked
+extern s32 D_80149B08;
+void func_80096288(s32 arg0, s32 arg1, s32 arg2)
+{
+  s32 t;
+  if (0) { switch (arg0 + arg1) { case 1: D_80149B08 = 1; break; case 2: D_80149B08 = 2; break; case 3: D_80149B08 = 3; break; } }
+  if (arg0) {}
+  if (arg1) {}
+  t = !arg2;
+  if (arg2 != 0)
+  {
+    if (t) {}
+    if (t) {}
+  }
+  if (t) {}
+}
+=== locked_then_if0
+extern s32 D_80149B08;
+void func_80096288(s32 arg0, s32 arg1, s32 arg2)
+{
+  s32 t;
+  if (arg0) {}
+  if (arg1) {}
+  t = !arg2;
+  if (arg2 != 0)
+  {
+    if (t) {}
+    if (t) {}
+  }
+  if (t) {}
+  if (0) { switch (arg0 + arg1) { case 1: D_80149B08 = 1; break; case 2: D_80149B08 = 2; break; case 3: D_80149B08 = 3; break; } }
+}

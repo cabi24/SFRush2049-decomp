@@ -1,0 +1,34 @@
+14
+   +674  subu t7,t7,s8                    subu t7,t7,s8
+|  +678  addu a1,t7,t8                    addu v1,t7,t8
+   +67c  move v0,zero                     move v0,zero
+|  +680  addu t9,a1,v0                    addu t9,v1,v0
+   +684  addiu v0,v0,1                    addiu v0,v0,1
+   +700  move a0,zero                     move a0,zero
+|  +704  addu a1,ra,t6                    addu v1,ra,t6
+   +708  move v0,zero                     move v0,zero
+|  +70c  addu t7,a1,v0                    addu t7,v1,v0
+   +710  addiu v0,v0,1                    addiu v0,v0,1
+   +8e0  blez s1,0xa78                    blez s1,0xa78
+|                                         lui a3,0x8015
+   +8e4  lui t0,0x8015                    lui t0,0x8015
+   +8f0  addiu t0,t0,3720                 addiu t0,t0,3720
+|                                         lb a3,27028(a3)
+   +8f4  sll t9,s8,0x2                    sll t9,s8,0x2
+   +920  move v0,zero                     move v0,zero
+|  +924  lui a1,0x8015                    
+|  +928  lw a3,44(t7)                     
+   +92c  sll t8,s8,0x2                    sll t8,s8,0x2
+|  +930  beqzl a3,0xa64                   lw a1,44(t7)
+|                                         beqzl a1,0xa64
+   +934  addiu s8,s8,1                    addiu s8,s8,1
+|  +938  lw a0,0(a3)                      lw a0,0(a1)
+|  +93c  lb a1,27028(a1)                  
+   +940  addu t9,v1,v0                    addu t9,v1,v0
+   +9a4  sb s3,4(t6)                      sb s3,4(t6)
+|  +9a8  bnezl a1,0x9ec                   bnezl a3,0x9ec
+   +9ac  lhu t7,1702(a0)                  lhu t7,1702(a0)
+   +a6c  slt at,s8,s1                     slt at,s8,s1
+|  +a70  bnezl at,0x8f8                   bnezl at,0x900
+   +a74  sll t9,s8,0x2                    sll t9,s8,0x2
+want 682 words, got 682; differing rows 14; unverified 0 unresolved 0

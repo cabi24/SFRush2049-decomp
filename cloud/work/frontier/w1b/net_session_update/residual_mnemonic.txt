@@ -1,0 +1,263 @@
+   +074  lui s1,0x8015                    lui t7,0x8015
+|                                         lui s1,0x8015
+|                                         lw s7,0(t8)
+|                                         li s0,3
+   +078  addiu a0,a0,17984                addiu ra,ra,-24312
+   +07c  lw v0,0(t8)                      lw t9,1792(s7)
+|  +080  lui t8,0x8015                    
+|  +084  lui s8,0x8015                    
+   +088  addiu ra,v0,1780                 addiu s1,s1,17488
+|  +08c  sw ra,248(sp)                    li t4,76
+|  +090  lw t9,1792(v0)                   
+|  +094  addiu s1,s1,17488                
+   +098  sw t9,0(s2)                      sw t9,0(s2)
+   +0a0  lb t8,27028(t8)                  lb t7,27028(t7)
+|                                         addiu s7,s7,1780
+   +0a4  sll t7,t6,0x2                    sll t6,v0,0x2
+   +0b4  slti at,s7,5                     slti at,s8,5
+|  +0b8  bnezl at,0xc8                    bnez at,0xc4
+|  +0bc  lb t9,8(ra)                      nop
+   +0c0  li s7,5                          li s8,5
+|  +0c4  lb t9,8(ra)                      
+|  +0c8  li s0,3                          
+|  +0cc  sll t6,s7,0x2                    
+   +0d0  bne s0,t9,0xe8                   bne s0,v0,0xdc
+|  +0d4  sll t7,s7,0x1                    
+   +0d8  lui a0,0x8015                    lui a0,0x8015
+   +0dc  addiu a0,a0,17984                addiu a0,a0,17984
+|                                         sll t8,s8,0x2
+   +0e0  b 0xec                           b 0xec
+   +0e4  sb t6,0(a0)                      sb t8,0(a0)
+|                                         lui a0,0x8015
+|                                         addiu a0,a0,17984
+|                                         sll t9,s8,0x1
+   +0e8  sb t7,0(a0)                      sb t9,0(a0)
+   +0fc  beqz at,0x110                    beqz at,0x10c
+|  +100  sw t8,84(sp)                     
+   +104  lui at,0x8015                    lui at,0x8015
+   +184  li t7,6                          li t8,6
+|  +188  li s3,1                          
+   +18c  subu s6,t7,s8                    subu s6,t8,t0
+   +190  blez s6,0x250                    blez s6,0x24c
+|  +194  lui s5,0x41c6                    
+   +198  sll v1,s8,0x2                    sll t9,t0,0x2
+   +1b4  addu a0,v1,t8                    addu v1,t9,t6
+|                                         lui s5,0x41c6
+|                                         ori s5,s5,0x4e6d
+|                                         move a0,v1
+|                                         li s3,1
+   +1b8  lw t5,0(s2)                      lw a1,0(s2)
+|  +1bc  ori s5,s5,0x4e6d                 
+   +1c0  li a3,55                         li t1,55
+   +208  andi v0,t8,0xff                  andi v0,t6,0xff
+|  +20c  blez t0,0x23c                    blezl t2,0x23c
+|  +210  lui t9,0x8015                    move t2,s3
+|  +214  addiu t9,t9,17488                move a3,v1
+|  +218  addu a1,v1,t9                    
+   +21c  lbu t6,0(a1)                     lbu t7,0(a3)
+   +250  lui s5,0x41c6                    lui s5,0x41c6
+|                                         blez s6,0x2cc
+   +254  ori s5,s5,0x4e6d                 ori s5,s5,0x4e6d
+|  +258  blez s6,0x2d0                    
+|  +25c  lw t5,0(s2)                      
+   +260  andi v1,s6,0x3                   andi a0,s6,0x3
+   +28c  addiu s3,s3,1                    addiu s3,s3,1
+|  +290  beq t0,s6,0x2cc                  beql t2,s6,0x2cc
+|                                         move t2,zero
+   +294  sll t9,t0,0x2                    sll t6,t2,0x2
+   +2e0  addiu v1,t9,1                    addiu a0,t6,1
+|  +2e4  addiu t1,sp,264                  lw a1,0(s2)
+   +2e8  addiu a1,sp,264                  addiu v1,sp,288
+   +334  sll t6,a0,0x2                    sll t7,a3,0x2
+|                                         addiu t8,sp,288
+   +338  addu v0,a1,t6                    addu v0,t7,t8
+   +37c  blez s6,0x424                    blez s6,0x420
+|  +380  addiu a1,sp,264                  li s3,1
+   +384  lui v1,0x8011                    lui a1,0x8011
+   +388  addiu v1,v1,6084                 addiu a1,a1,6084
+|  +38c  li s3,1                          
+   +390  addiu t1,sp,264                  addiu v1,sp,288
+   +42c  li s3,12                         li s3,12
+|                                         lw a1,0(s2)
+|                                         move t5,zero
+   +430  multu t5,s5                      multu a1,s5
+   +48c  lw t9,264(sp)                    lw t7,288(sp)
+|                                         lh t0,0(ra)
+|                                         li t5,1
+|                                         multu t7,t4
+   +490  sll t8,s8,0x2                    sll t7,a3,0x1
+|                                         mflo t8
+   +494  addu t8,t8,s8                    addu t9,s1,t8
+|  +498  sll t6,t9,0x2                    nop
+|                                         multu t0,t4
+|                                         mflo t6
+   +49c  addu t6,t6,t9                    addu a1,t9,t6
+|  +4a0  sll t6,t6,0x2                    
+|  +4a4  sll t8,t8,0x2                    
+|  +4a8  subu t6,t6,t9                    
+|  +4ac  sll t6,t6,0x2                    
+|  +4b0  subu t8,t8,s8                    
+|  +4b4  sll t8,t8,0x2                    
+|  +4b8  addu t7,s1,t6                    
+|  +4bc  addu a1,t7,t8                    
+|  +4c0  sll t9,a0,0x1                    
+   +4c4  addu v0,a1,t9                    addu v0,a1,t1
+   +4d0  lh t7,52(v0)                     lh t8,52(v0)
+|  +4d4  li t0,1                          
+   +4d8  xor t8,t6,t7                     xor t6,t8,t9
+   +51c  lw t6,0(t1)                      lw t8,0(a2)
+|  +520  sll t8,s8,0x2                    lh t6,0(ra)
+|                                         addiu a2,a2,8
+|                                         multu t8,t4
+|                                         mflo t9
+   +524  addu t8,t8,s8                    addu t7,s1,t9
+|  +528  sll t7,t6,0x2                    nop
+|  +52c  addu t7,t7,t6                    multu t6,t4
+|  +530  sll t7,t7,0x2                    mflo t8
+|  +534  sll t8,t8,0x2                    
+|  +538  subu t7,t7,t6                    
+|  +53c  sll t7,t7,0x2                    
+|  +540  subu t8,t8,s8                    
+|  +544  sll t8,t8,0x2                    
+|  +548  addu t9,s1,t7                    
+   +54c  addu a3,t9,t8                    addu a1,t7,t8
+   +55c  lh t6,52(v0)                     lh t9,52(v0)
+|  +560  addiu t1,t1,8                    
+   +564  xor t9,t6,t7                     xor t7,t9,t6
+   +580  lh t8,52(a0)                     lh t8,52(v1)
+|  +584  lw t7,-4(t1)                     
+   +588  xor t6,t9,t8                     xor t9,t7,t8
+   +58c  sh t6,52(v0)                     sh t9,52(v0)
+|  +590  sll t9,t7,0x2                    lw t6,-4(a2)
+|  +594  sll t6,s8,0x2                    lh t9,0(ra)
+|                                         multu t6,t4
+|                                         mflo t7
+   +598  addu t9,t9,t7                    addu t8,s1,t7
+|  +59c  sll t9,t9,0x2                    nop
+|  +5a0  addu t6,t6,s8                    multu t9,t4
+|  +5a4  sll t6,t6,0x2                    mflo t6
+|  +5a8  subu t9,t9,t7                    
+|  +5ac  sll t9,t9,0x2                    
+|  +5b0  subu t6,t6,s8                    
+|  +5b4  sll t6,t6,0x2                    
+|  +5b8  addu t8,s1,t9                    
+   +5bc  addu t0,t8,t6                    addu a1,t8,t6
+   +5f8  sh t7,52(v1)                     sh t7,52(v0)
+|  +5fc  move t0,zero                     
+   +600  addiu a2,a2,1                    addiu a0,a0,1
+|  +604  bne a2,s4,0x430                  bnel a0,s4,0x430
+|  +608  nop                              lw a1,0(s2)
+   +60c  lui t3,0x8015                    lui v1,0x8015
+   +638  addiu s4,s4,6052                 addiu t5,t5,6052
+|                                         lw a1,0(s2)
+   +63c  li t2,4                          li t1,4
+   +6a4  sw t7,0(s2)                      sw t7,0(s2)
+|                                         move a1,t7
+   +6a8  andi t6,t9,0x1                   andi t6,t9,0x1
+   +6c0  andi t6,t8,0x1                   andi t7,t6,0x1
+|                                         sw t9,0(s2)
+   +6c4  andi t7,t6,0xffff                andi t9,t7,0xffff
+   +6c8  move v0,t7                       move v0,t9
+|                                         beqz t2,0x7b4
+   +6cc  sb t7,2(a3)                      sb t9,2(a3)
+|  +6d0  sw t9,0(s2)                      
+|  +6d4  beqz t0,0x7e8                    
+|  +6d8  move t5,t9                       
+   +6dc  lbu v0,0(a3)                     lbu v0,0(a3)
+   +754  addiu t7,v0,1                    addiu t9,v0,1
+|                                         blez t2,0x7ac
+   +758  move a2,zero                     move a2,zero
+|  +75c  blez t0,0x7d8                    
+   +760  lui v0,0x8015                    lui v0,0x8015
+|                                         addiu v0,v0,17368
+   +764  lbu a1,0(a3)                     lbu a1,0(a3)
+|  +768  addiu v0,v0,17368                
+   +76c  lbu t7,0(v0)                     lbu t9,0(v0)
+   +7d4  addiu v0,v0,5                    addiu v0,v0,5
+|  +7d8  beql a2,t0,0x7ec                 bne a2,t2,0x72c
+|                                         nop
+   +7dc  lbu t7,0(a3)                     lbu t9,0(a3)
+|  +7e0  b 0x75c                          lui v1,0x8015
+|  +7e4  move a2,zero                     
+|  +7e8  lbu t7,0(a3)                     
+   +7ec  addu v0,t1,t7                    addu v0,t0,t9
+   +7f4  addiu t8,t9,1                    addiu t6,t8,1
+|                                         sb t6,0(v0)
+|                                         lb v1,17960(v1)
+   +7f8  b 0x83c                          b 0x814
+|  +7fc  sb t8,0(v0)                      lw a1,0(s2)
+   +800  div zero,t0,s7                   div zero,t2,s8
+   +870  andi t7,v0,0xffff                andi t9,v0,0xffff
+|                                         move v0,t9
+   +874  slti at,t7,4                     slti at,t9,4
+|  +878  move v0,t7                       
+   +87c  sw t9,0(s2)                      sw t8,0(s2)
+   +88c  break 0x7                        break 0x7
+|  +890  move a0,t7                       andi a0,v0,0xffff
+   +894  beqzl at,0x8a8                   beqzl at,0x880
+   +940  move t0,zero                     move t2,zero
+|                                         lh t8,0(ra)
+|                                         li s6,1
+   +944  li s4,1                          li t6,6
+   +954  move v1,zero                     move v0,zero
+|  +958  li v1,2                          
+   +95c  subu t5,t9,v1                    subu s4,t6,v0
+   +960  blez t5,0xb14                    blez s4,0xae4
+|                                         lui t3,0x8015
+   +964  lui t1,0x8015                    lui t0,0x8015
+   +980  addiu t1,t1,17488                addiu t0,t0,17488
+|                                         lb t3,17984(t3)
+   +984  li s3,1                          li s3,1
+   +988  li t2,6                          li t1,6
+|  +98c  lw v1,92(sp)                     
+   +990  lw v0,84(sp)                     lw v0,236(sp)
+   +9d0  lb t9,9(ra)                      lb t6,9(s7)
+|  +9d4  blez t9,0xac4                    
+   +9d8  sll t8,t0,0x2                    sll t7,t2,0x2
+   +9dc  addu t8,t8,t0                    addu t7,t7,t2
+|                                         blez t6,0xa94
+   +9e0  sll t8,t8,0x2                    sll t7,t7,0x2
+   +9f0  lbu t6,6(ra)                     lbu t9,6(s7)
+|  +9f4  beqz t6,0xa20                    move a0,zero
+|  +9f8  nop                              addu a3,t0,a2
+|                                         beqzl t9,0xa0c
+|                                         sll t9,t2,0x3
+   +9fc  lbu t7,1(v1)                     lbu t8,1(v0)
+   +a08  slt at,a2,t8                     slt at,a2,t7
+|  +a0c  beqz at,0xa20                    beqzl at,0xa0c
+|  +a10  nop                              sll t9,t2,0x3
+   +a14  sb t2,4(a0)                      sb t1,4(v1)
+   +a1c  sb zero,28(a0)                   sb zero,28(v1)
+|  +a20  multu a2,s0                      
+   +a24  sll t6,t0,0x3                    sll t9,t2,0x3
+   +a28  addu t6,t6,t0                    addu t9,t9,t2
+|                                         sll v0,a2,0x2
+   +a2c  sb zero,4(a0)                    sb zero,4(v1)
+|                                         subu v0,v0,a2
+   +a30  addu a1,ra,t6                    addu a1,s7,t9
+|  +a34  move v0,zero                     
+|  +a38  addu a3,t1,a2                    
+|  +a3c  mflo v1                          
+|  +a40  nop                              
+|  +a44  nop                              
+   +a48  sra t7,v1,0x3                    sra t8,v0,0x3
+   +a80  lw v1,92(sp)                     lw v0,236(sp)
+|  +a84  lw v0,84(sp)                     
+   +a88  sll t6,t9,0x2                    sll t9,t6,0x2
+   +aa4  sh t8,2(t1)                      sh t7,2(t0)
+|  +aa8  lw t7,248(sp)                    lb t8,9(s7)
+   +aac  addiu a2,a2,1                    addiu a2,a2,1
+   +ab0  addiu a0,a0,1                    addiu v1,v1,1
+|  +ab4  lb t9,9(t7)                      
+   +ab8  slt at,a2,t9                     slt at,a2,t8
+   +b14  slti at,t0,6                     slti at,t2,6
+|  +b18  lw v0,84(sp)                     
+   +b1c  beqz at,0xb90                    beqz at,0xb64
+   +b34  sll t7,t7,0x2                    sll t7,t7,0x2
+|                                         lui t3,0x8015
+|                                         lb t3,17984(t3)
+   +b38  addu t1,s1,t7                    addu t0,s1,t7
+   +bc0  addiu t2,sp,288                  addiu a3,sp,312
+|  +bc4  li a3,76                         
+   +bc8  slti at,s3,6                     slti at,s3,6
+want 892 words, got 880; differing rows 140; unverified 0 unresolved 0

@@ -1,0 +1,37 @@
+$ staged.py --no-compile frontier_skid_marks camera_scene_manager
+frontier_skid_marks: build/grouprodata/obj/frontier_skid_marks.o
+  member cpak_init @0x800AFD5C 265 words: equal to the image; own data: 1 references, 2 sites verified (own .rodata verified at 0x80123C0C..0x80123C10)
+  member func_800AF8C0 @0x800AF8C0 113 words: equal to the image
+  member save_validate @0x800AFB38 135 words: equal to the image
+camera_scene_manager: build/grouprodata/obj/camera_scene_manager.o
+  member func_800C2944 @0x800C2944 167 words: equal to the image
+  member func_800C26C4 @0x800C26C4 160 words: equal to the image
+  member func_800C2430 @0x800C2430 165 words: equal to the image
+  member func_800C1B60 @0x800C1B60 297 words: equal to the image; own data: 2 references, 4 sites verified (own .rodata verified at 0x80123E94..0x80123EE4)
+  member func_800C2004 @0x800C2004 130 words: equal to the image; own data: 1 references, 2 sites verified (own .rodata verified at 0x80123EE4..0x80123EE8)
+  member func_800C220C @0x800C220C 131 words: equal to the image; own data: 1 references, 2 sites verified (own .rodata verified at 0x80123EE8..0x80123EEC)
+  member func_800C3578 @0x800C3578 37 words: equal to the image
+
+$ staged.py --mutate frontier_skid_marks group.c "lensq > 0.1f" "lensq > 0.2f"
+mutant: group.c: 'lensq > 0.1f' -> 'lensq > 0.2f'
+frontier_skid_marks: build/grouprodata/mutant-obj/frontier_skid_marks.o
+  REFUSED: cpak_init: own .rodata+0x20 referenced at +0x98 differs from retail 0x80123C0C (+0x0: retail 3dcccccd, got 3e4ccccd; 4 bytes compared) [per-reference placement tried because the whole-section placement was refused: .rodata: nonzero unmapped data after jump tables]
+mutant REFUSED as required
+
+$ staged.py --mutate camera_scene_manager group.c "func_800C1B60(idx, 7); r -= 0.15f;" -> 0.16f
+mutant: group.c: 'func_800C1B60(idx, 7);\n                    r -= 0.15f;' -> 'func_800C1B60(idx, 7);\n                    r -= 0.16f;'
+camera_scene_manager: build/grouprodata/mutant-obj/camera_scene_manager.o
+  REFUSED: func_800C2004: own .rodata+0x50 referenced at +0x120 differs from retail 0x80123EE4 (+0x0: retail 3e19999a, got 3e23d70a; 4 bytes compared) [per-reference placement tried because the whole-section placement was refused: .rodata: nonzero unmapped data after jump tables]
+mutant REFUSED as required
+
+$ table_mutant.py
+REFUSED as required: func_800C1B60: own .rodata+0x0 referenced at +0xb8 differs from retail 0x80123E94 (jump table entry 0: retail 800c1c24, got 800c1c28; 48 bytes compared) [per-reference placement tried because the whole-section placement was refused: .rodata: nonzero unmapped data after jump tables]
+
+$ regress.py
+groups 73, members 149, groups with problems 0, bodies sha256 ed1cc4f576651e006f16bbeb2873645c88607978bf198b8e9ab3c4c74d13ea5b
+
+$ blob_group check
+group lock: 0 problems
+
+$ blob_unit check
+blob_unit: 730 locked bodies, 730 equal to the image in one 665-file unit, 0 differ [726 plain; stub tail 4, own bss 0; 56 own .rodata/.data references in 28 bodies checked against image bytes] (767 kept, 101 internal; IDO 1.5s, total 3.0s)
