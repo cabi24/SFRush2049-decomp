@@ -1,0 +1,20 @@
+{
+ "members": [
+  "main_menu_input",
+  "func_800D52CC"
+ ],
+ "context": [
+  "object_activate"
+ ],
+ "files": [
+  "main_menu_input.c",
+  "object_activate.c"
+ ],
+ "keep": [
+  "main_menu_input",
+  "object_activate"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "provenance": "frontier wave 2 (w2h), 2026-10-05; cloud/work/frontier/w2h/RESULTS.md"
+}

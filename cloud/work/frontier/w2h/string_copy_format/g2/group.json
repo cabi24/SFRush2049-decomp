@@ -1,0 +1,1 @@
+{"members": ["string_copy_format"], "files": ["group.c"], "keep": ["standin_a", "standin_b"], "flags": "-g0 -O3 -mips2 -G 0 -non_shared", "unprototyped": [], "context": [], "claims": []}

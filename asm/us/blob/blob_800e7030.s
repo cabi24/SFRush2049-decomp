@@ -6069,6 +6069,7 @@ world_bounds_check:
 .section .text.world_gravity_apply, "ax", @progbits
 .globl world_gravity_apply
 world_gravity_apply:
+    /* compiled from src/blob/world_gravity_apply.c */
     .word 0x27BDFF10
     .word 0x3C0E8015
     .word 0x81CE2744

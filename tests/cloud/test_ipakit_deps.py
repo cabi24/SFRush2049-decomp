@@ -79,7 +79,7 @@ class DepsTests(unittest.TestCase):
 
     def test_validation_locked_groups(self):
         rows = {(r['group'], r['kind']): r for r in deps.validate(self.m, 'chain') if 'skipped' not in r}
-        for g in ('MP_TargetSteerPos', 'func_800B9B64', 'audio_frame_update', 'camera_scene_manager'):
+        for g in ('MP_TargetSteerPos', 'frontier_path_graph_links', 'audio_frame_update', 'camera_scene_manager'):
             r = rows[(g, 'locked')]
             self.assertEqual(r['precision'], 1.0, g)
             self.assertGreaterEqual(r['recall'], 0.85, g)

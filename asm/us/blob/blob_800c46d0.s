@@ -7631,6 +7631,7 @@ menu_render_list:
 .section .text.func_800CB9D0, "ax", @progbits
 .globl func_800CB9D0
 func_800CB9D0:
+    /* compiled from src/blob/func_800CB9D0.c */
     .word 0x27BDFF98
     .word 0xAFA40068
     .word 0xAFBF001C
