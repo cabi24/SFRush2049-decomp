@@ -28,7 +28,7 @@ Sections 1–5 are the plan as first written; this section says what has since b
 
 ### Wave 3 (2026-10-05) — read before the next wave
 
-- **Coverage after wave 3:** game 796/1,216 functions, 188,316 bytes (29.10%); static 379/668, 69,680 bytes (43.35%, after promoting 52 boot-tail functions from PRs #82/#83). Combined 31.79%.
+- **Coverage after wave 3:** game 796/1,216 functions, 188,316 bytes (29.10%); static 379/668, 69,680 bytes (43.35%, after promoting 52 boot-tail functions from PRs #82/#83). Combined 31.94%.
 - **Traced register allocator.** The hub lane built an instrumented IDO `uopt` (byte-identical output with tracing off) that prints why each variable got or lost a register: `cloud/work/frontier/w3a/tools/` (`build_uopt.sh`, `ctrace.sh`, `pdiff.sh`, `force.sh`). It closed all three hubs from natural source after earlier agents had stopped on blind variants. **Use it on every allocation residual before trying variants.** Priority = savings / live blocks: shortening a live range (moving an initialisation past an `if/else`) is the natural form of most "dead read" fixes.
 - **Compiled-out debug code is source structure.** `if (cond) DEBUG_PRINT(...)` with an empty macro keeps `cond`'s variables alive and emits nothing. Signs: a parameter never read, a stack store never reloaded, a register barred for no visible reason.
 - **Paste the arcade function first** (it matched `func_800BFBE8` on the first compile); **caller-less stubs are deleted helpers** (closed `func_800E681C`, `func_800F8EC8`, `sound_bank_unload` progress) — pass `--internal STUB` to `blob_unit score` and add a `prefer_definition` override when landing.
