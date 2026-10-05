@@ -1,0 +1,11 @@
+{
+ "members": ["func_800BAF90", "audio_output_setup"],
+ "files": ["group.c"],
+ "keep": ["audio_output_setup"],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "claims": ["func_800BAF90", "audio_output_setup"],
+ "note": "Real group, no stand-ins. func_800BAF90 (locked today as an empty function) is the deleted one-call-site worker inlined into audio_output_setup; it must be defined after its caller. heap_or_default is a local static copy of the deleted static in src/blob/groups/audio_heap (stub func_80097468).",
+ "provenance": "frontier wave 2 (w2e), 2026-10-04; cloud/work/frontier/w2e/RESULTS.md"
+}

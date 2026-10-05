@@ -1847,6 +1847,7 @@ func_800BF780:
 .section .text.camera_first_person, "ax", @progbits
 .globl camera_first_person
 camera_first_person:
+    /* compiled from src/blob/camera_first_person.c */
     .word 0x27BDFF10
     .word 0x3C038015
     .word 0x9463267C

@@ -73,6 +73,11 @@
    "name": "func_800A51D8",
    "file": "src/blob/groups/codex_heap_release_a25/car_damage_visual.c",
    "reason": "locked as an empty stub, but it is the retail remains of the inlined heap getter (if (h) return h; return D_801527C8;) at the top of car_damage_visual; the real definition lives in the heap group and must stay internal (plan decision D3)"
+  },
+  {
+   "name": "func_800BAF90",
+   "file": "src/blob/groups/frontier_heap_free_total/group.c",
+   "reason": "locked as an empty stub until wave 2; it is the retail remains of a deleted static inlined into audio_output_setup and must stay internal (plan decision D3)"
   }
  ],
  "align": [

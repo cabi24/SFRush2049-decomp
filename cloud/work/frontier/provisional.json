@@ -38,5 +38,9 @@
  "audio_priority_find": {
   "evidence": "cloud/work/frontier/w2b/groups/frontier_route_cross",
   "note": "wave 2: strict MATCH as an internal member with its real caller audio_mixer_main, which is 31/183 words off (cloud/work/frontier/w2b/audio_mixer_main/best.c); also identical with a stand-in caller. Closes when audio_mixer_main matches"
+ },
+ "func_800E7FA0": {
+  "evidence": "cloud/work/frontier/w2e/func_800E7FA0/grp",
+  "note": "wave 2: 40/311 words with a stand-in caller; only caller func_800E847C (2,100 bytes) is unmatched. NOT a match - recorded so the next agent starts here"
  }
 }

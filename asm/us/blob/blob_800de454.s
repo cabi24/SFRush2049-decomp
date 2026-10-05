@@ -494,6 +494,7 @@ func_800DE860:
 .section .text.main_menu_input, "ax", @progbits
 .globl main_menu_input
 main_menu_input:
+    /* compiled from src/blob/main_menu_input.c */
     .word 0x27BDFFE8
     .word 0x2401FFFF
     .word 0xAFBF0014
@@ -4791,6 +4792,7 @@ func_800E2CC0:
 .section .text.func_800E2D18, "ax", @progbits
 .globl func_800E2D18
 func_800E2D18:
+    /* compiled from src/blob/func_800E2D18.c */
     .word 0x00057400
     .word 0x000E7C03
     .word 0x2409047E

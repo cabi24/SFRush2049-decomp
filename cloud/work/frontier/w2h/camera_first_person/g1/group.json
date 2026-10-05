@@ -1,0 +1,20 @@
+{
+ "members": [
+  "camera_first_person"
+ ],
+ "files": [
+  "camera_first_person.c"
+ ],
+ "keep": [
+  "__standin_func_800AD650_a",
+  "camera_first_person"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [
+  "func_800AD650"
+ ],
+ "claims": [
+  "camera_first_person"
+ ]
+}

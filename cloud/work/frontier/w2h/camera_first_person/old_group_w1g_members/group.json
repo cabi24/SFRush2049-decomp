@@ -1,0 +1,34 @@
+{
+ "members": [
+  "camera_first_person",
+  "func_800AD4C8",
+  "func_800C3AD0",
+  "input_process_controller"
+ ],
+ "files": [
+  "camera_first_person.c",
+  "group.c"
+ ],
+ "keep": [
+  "__standin_func_800C3AD0_a",
+  "__standin_func_800C3AD0_b",
+  "__standin_input_process_controller_a",
+  "__standin_input_process_controller_b",
+  "func_800AD5D0",
+  "camera_first_person"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [
+  "func_800AD650",
+  "func_800AD5D0"
+ ],
+ "claims": [
+  "camera_first_person"
+ ],
+ "provisional": [
+  "func_800C3AD0",
+  "input_process_controller"
+ ],
+ "note": "camera_first_person (kept) with its real internal callee func_800AD650 (source parameter order (in, out), as in w1g's func_800AD4C8 group, whose files are reused unchanged). The stand-ins only keep w1g's provisional roots func_800C3AD0 / input_process_controller out of line; camera_first_person does not depend on them."
+}

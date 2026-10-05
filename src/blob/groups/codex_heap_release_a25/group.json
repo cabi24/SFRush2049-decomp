@@ -8,7 +8,8 @@
   "stat_race_end",
   "NextMaxPath",
   "menu_item_select",
-  "car_damage_visual"
+  "car_damage_visual",
+  "func_800CB9D0"
  ],
  "context": [
   "func_80095F8C",
@@ -21,7 +22,8 @@
  "files": [
   "group.c",
   "alloc_at.c",
-  "car_damage_visual.c"
+  "car_damage_visual.c",
+  "func_800CB9D0.c"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
  "keep": [
@@ -35,8 +37,9 @@
   "object_counter_increment",
   "NextMaxPath",
   "menu_item_select",
-  "car_damage_visual"
+  "car_damage_visual",
+  "func_800CB9D0"
  ],
- "provenance": "frontier wave 2 (w2g, w2b, w2f), 2026-10-05",
- "note": "Extends the locked group src/blob/groups/codex_heap_release_a25 (group.c and alloc_at.c are unchanged copies of the locked files as of lock 751) with car_damage_visual.c. No stand-ins. car_damage_visual.c defines func_800A51D8 for real (the retail stub in front of car_damage_visual is this deleted static, the heap getter inlined at the top) and car_damage_visual. func_800A51D8 is deliberately not in keep. Only car_damage_visual is a new claim. When this lands, src/blob/unit_overrides.json needs a prefer_definition entry for func_800A51D8 pointing at car_damage_visual.c (its locked definition is the empty `(void) {}`)."
+ "provenance": "frontier wave 2 (w2g, w2b, w2f, w2e), 2026-10-05",
+ "note": "Extends the locked group src/blob/groups/codex_heap_release_a25 (group.c, alloc_at.c, car_damage_visual.c are unchanged copies of the locked files) with func_800CB9D0.c, which calls the internal audio_reverb_update (address in a1, tag in a2). Only func_800CB9D0 is a new claim. It is also EQUAL in the whole-program unit (blob_unit score --with func_800CB9D0.c)."
 }
