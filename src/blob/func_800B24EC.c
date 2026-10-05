@@ -1,11 +1,14 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
 /*
- * func_800B24EC: look a 36-byte name record up by name across a range of sorted tables.
- * Copies the name (func_800A473C is strcpy) into a local key, clamps [lo, hi] to the table
- * count, and for every table that func_80092D80 reports as usable runs a bsearch
- * (entity_name_copy is libc bsearch; pointer_compare_thunk is its comparator) over
- * D_80151AE8[i] = { base, count } with 36-byte elements.  Writes (index | table << 10) to
- * *out (0 when not found) and returns the record.  No arcade ancestor identified.
+ * func_800B24EC: MBOX_FindTexture_Sub (arcade MB/zmb.a mb_model.o, 5 formals: name, &index,
+ * lo, hi, err).  Looks a 36-byte texture record (TEXDEF) up by name across the texture tables
+ * lo..hi.  Copies the name (func_800A473C is strcpy; the arcade upper-cased it here) into a
+ * local key, clamps [lo, hi] to the table count, and for every table that func_80092D80 reports
+ * as usable runs a bsearch (entity_name_copy is libc bsearch; pointer_compare_thunk is its
+ * comparator) over D_80151AE8[i] = { base, count }.  Writes (index | table << 10) to *out
+ * (0 when not found) and returns the record.  `err` (MBOX_NOERR/WARN/FATAL) only selects the
+ * not-found message, compiled out on N64, so it is never read; callers still pass it
+ * (MBOX_FindTexture_Err passes its err, 1 = MBOX_WARN; MBOX_FindTexture passes 0).
  * Quirks the match depends on: D_80140BDC (table count) is read address-form twice, which
  * needs `volatile`; `i` is declared before the key buffer so the buffer sits at sp+64; the
  * skip is a `continue`, not a nested if.  Also matches at -O2.
@@ -25,6 +28,11 @@ typedef struct NameTable {
     u32 count;
 } NameTable;
 
+#define MBOX_NOERR 0
+#define MBOX_WARN 1
+#define MBOX_FATAL 2
+#define WARN_MSG(s)
+
 extern volatile u8 D_80140BDC;
 extern NameTable D_80151AE8[];
 extern char *func_800A473C(char *dst, char *src);
@@ -32,7 +40,7 @@ extern s8 func_80092D80(s32 arg0);
 extern void *entity_name_copy(void *key, void *base, u32 n, u32 size, s32 (*compar)(void *, void *));
 extern s32 pointer_compare_thunk(void *, void *);
 
-NameEntry *func_800B24EC(char *name, s16 *out, s8 lo, s8 hi) {
+NameEntry *func_800B24EC(char *name, s16 *out, s8 lo, s8 hi, s32 err) {
     s32 i;
     char buf[36];
     NameEntry *found;
@@ -55,6 +63,11 @@ NameEntry *func_800B24EC(char *name, s16 *out, s8 lo, s8 hi) {
         }
     }
     if (found == 0) {
+        if (err == MBOX_WARN) {
+            WARN_MSG(buf);
+        } else if (err == MBOX_FATAL) {
+            WARN_MSG(buf);
+        }
         *out = 0;
         return 0;
     }

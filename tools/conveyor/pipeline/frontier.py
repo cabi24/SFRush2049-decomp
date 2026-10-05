@@ -288,12 +288,19 @@ def signature_maps(funcs, image, base):
         words = _words(image, base, vaddr, size)
         info = temp_ring(words)
         arms = ring_arms(info)
-        if arms:
+        # Only the strict arm changes the recipe. The t5 arm stopped being
+        # clean on 2026-10-05 (func_8010C2E4, a standalone match, has 4 wraps
+        # with t5 unwritten), so it is reported as a hint.
+        if "strict" in arms:
             rings[name] = dict(info, arms=arms)
+        elif arms:
+            hints.setdefault(name, []).append(
+                f"temp_ring_t5@{info['wraps']}wraps")
         runs = inlined_callee_runs(words)
         if runs:
-            hints[name] = [f"inlined_callee@0x{vaddr + 4 * i:08X}:{','.join(regs)}"
-                           for i, regs in runs]
+            hints.setdefault(name, []).extend(
+                f"inlined_callee@0x{vaddr + 4 * i:08X}:{','.join(regs)}"
+                for i, regs in runs)
     return rings, hints
 
 
@@ -667,8 +674,8 @@ def calibrate(words_of, lock):
         ("unsaved callee-saved write", True,
          lambda n: bool(unsaved_callee_writes(words_of[n]))),
         ("temp ring, strict", True, lambda n: "strict" in ring_arms(info[n])),
-        ("temp ring, t5 arm", True, lambda n: "t5" in ring_arms(info[n])),
-        ("temp ring (either arm)", True, lambda n: bool(ring_arms(info[n]))),
+        ("temp ring, t5 arm", False, lambda n: "t5" in ring_arms(info[n])),
+        ("temp ring (either arm)", False, lambda n: bool(ring_arms(info[n]))),
         ("inlined-callee loads", False,
          lambda n: bool(inlined_callee_runs(words_of[n]))),
     )

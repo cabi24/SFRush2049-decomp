@@ -1,0 +1,21 @@
+{
+ "members": [
+  "physics_response"
+ ],
+ "files": [
+  "ctx.c",
+  "physics_response.c"
+ ],
+ "keep": [
+  "audio_effect_apply",
+  "func_800B9338"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [
+  "audio_effect_apply",
+  "func_800B9338"
+ ],
+ "claims": [],
+ "note": "Real group, no stand-ins; nothing claimed. physics_response is 13/230 words (5 instruction rows) off; audio_effect_apply (its only caller) and func_800B9338 are context copied from cloud/work/ipa-groups/codex_physics_a13."
+}

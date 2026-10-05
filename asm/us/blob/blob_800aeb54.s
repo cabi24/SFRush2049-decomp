@@ -4119,6 +4119,7 @@ func_800B2820:
 .section .text.sfx_volume_set, "ax", @progbits
 .globl sfx_volume_set
 sfx_volume_set:
+    /* compiled from src/blob/sfx_volume_set.c */
     .word 0x27BDFF98
     .word 0x00047400
     .word 0x000E7C03
@@ -5055,6 +5056,7 @@ sound_stop:
 .section .text.collision_sound_play, "ax", @progbits
 .globl collision_sound_play
 collision_sound_play:
+    /* compiled from src/blob/collision_sound_play.c */
     .word 0x27BDFFE0
     .word 0xAFBF001C
     .word 0x8C890000

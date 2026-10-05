@@ -1,7 +1,8 @@
 {
  "members": [
   "func_800DC120",
-  "championship_standings"
+  "championship_standings",
+  "tournament_trophy_award"
  ],
  "files": [
   "group.c"
@@ -9,14 +10,13 @@
  "keep": [
   "championship_standings",
   "tournament_trophy_award",
-  "func_800DC1AC",
-  "__standin_func_800DC120"
+  "func_800DC1AC"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
  "unprototyped": [],
  "context": [
-  "func_800DC1AC",
-  "tournament_trophy_award"
+  "func_800DC1AC"
  ],
- "provenance": "frontier wave 2 (w2c), 2026-10-05; cloud/work/frontier/w2c/RESULTS.md"
+ "provenance": "frontier waves 2-4 (w2c, w4d), 2026-10-05; cloud/work/frontier/w4d/RESULTS.md",
+ "note": "Supersedes src/blob/groups/championship_standings: adds tournament_trophy_award (the second real caller of func_800DC120), which makes the old __standin_func_800DC120 unnecessary (removed; func_800DC120 stays internal with its two real callers)."
 }

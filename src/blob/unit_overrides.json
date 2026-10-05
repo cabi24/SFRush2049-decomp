@@ -83,6 +83,11 @@
    "name": "func_800E6AE8",
    "file": "src/blob/groups/func_800E681C/group.c",
    "reason": "locked as an empty stub, but it is the retail remains of the gear-selection helper inlined into func_800E681C; defined for real in that group and must stay internal (plan decision D3)"
+  },
+  {
+   "name": "func_80091B00",
+   "file": "src/blob/groups/frontier_slot18_alloc/func_80091B00.c",
+   "reason": "matched in wave 4 with its 24-byte slot table volatile; codex_entity_helpers_a10, codex_transform_b109 and entity_lookup carry older non-volatile context copies that must not supply the one definition"
   }
  ],
  "align": [

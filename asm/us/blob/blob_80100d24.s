@@ -11617,6 +11617,7 @@ func_8010C02C:
 .section .text.func_8010C2E4, "ax", @progbits
 .globl func_8010C2E4
 func_8010C2E4:
+    /* compiled from src/blob/func_8010C2E4.c */
     .word 0xAFA60008
     .word 0xAFA7000C
     .word 0x84A20000
@@ -13028,6 +13029,7 @@ func_8010D680:
 .section .text.func_8010D85C, "ax", @progbits
 .globl func_8010D85C
 func_8010D85C:
+    /* compiled from src/blob/func_8010D85C.c */
     .word 0x27BDFFA8
     .word 0x00057400
     .word 0x000E7C03

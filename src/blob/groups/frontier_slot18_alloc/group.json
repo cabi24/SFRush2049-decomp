@@ -1,0 +1,27 @@
+{
+ "members": [
+  "func_80091B00"
+ ],
+ "context": [
+  "object_type7_create",
+  "object_type1_create",
+  "func_800D6348",
+  "sync_entry_register"
+ ],
+ "files": [
+  "func_80091B00.c",
+  "object_type7_create.c",
+  "object_type1_create.c",
+  "func_800D6348.c",
+  "sync_entry_register.c"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "keep": [
+  "object_type7_create",
+  "object_type1_create",
+  "func_800D6348",
+  "sync_entry_register"
+ ],
+ "provenance": "frontier wave 4 (w4a), 2026-10-05; cloud/work/frontier/w4a/RESULTS.md",
+ "note": "func_80091B00 is internal (not kept); the four context functions are locked real callers copied unchanged from src/blob. Only func_80091B00 is claimed."
+}

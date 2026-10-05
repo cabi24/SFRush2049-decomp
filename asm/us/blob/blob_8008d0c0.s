@@ -3163,6 +3163,7 @@ func_8009002C:
 .section .text.entity_spawn_callback, "ax", @progbits
 .globl entity_spawn_callback
 entity_spawn_callback:
+    /* compiled from src/blob/entity_spawn_callback.c */
     .word 0x27BDFFE0
     .word 0xAFBF0014
     .word 0xAFA40020
@@ -4924,6 +4925,7 @@ func_80091AF8:
 .section .text.func_80091B00, "ax", @progbits
 .globl func_80091B00
 func_80091B00:
+    /* compiled from src/blob/func_80091B00.c */
     .word 0x3C038014
     .word 0x3C028014
     .word 0x244239D8

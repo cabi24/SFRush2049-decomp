@@ -4509,6 +4509,7 @@ func_8008AE64:
 .section .text.model_data_load, "ax", @progbits
 .globl model_data_load
 model_data_load:
+    /* compiled from src/blob/model_data_load.c */
     .word 0x27BDFFD0
     .word 0xAFB10018
     .word 0x3C118013
@@ -4664,6 +4665,7 @@ func_8008B000:
 .section .text.model_transform_setup, "ax", @progbits
 .globl model_transform_setup
 model_transform_setup:
+    /* compiled from src/blob/model_transform_setup.c */
     .word 0x27BDFFD0
     .word 0xAFB30020
     .word 0xAFB10018

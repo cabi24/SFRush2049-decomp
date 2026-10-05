@@ -36,7 +36,9 @@ def test_native_callers_keep_the_real_fifth_word():
         assert site['fifth_slot']['store_offset'] == store
         assert site['fifth_slot']['stack_offset'] == 16
         assert site['fifth_slot']['local_constant'] == 1
-    assert native['canonical_formal_count'] == 4
+    # The accepted callee gained its genuine fifth formal (`err`) on 2026-10-05,
+    # proven from the arcade MathBox library (cloud/work/frontier/w4d/RESULTS.md).
+    assert native['canonical_formal_count'] == 5
     assert native['targets']['func_800B24EC']['entry_frame_bytes'] == 104
     assert native['targets']['func_800B24EC']['direct_stack_loads_at_or_above_fifth_input'] == []
     assert len(native['direct_callers']) == 16

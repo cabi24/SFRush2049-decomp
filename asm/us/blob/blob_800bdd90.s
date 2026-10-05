@@ -4064,6 +4064,7 @@ camera_process_input:
 .section .text.func_800C1A00, "ax", @progbits
 .globl func_800C1A00
 func_800C1A00:
+    /* compiled from src/blob/func_800C1A00.c */
     .word 0x44800000
     .word 0x3C038014
     .word 0x3C068014

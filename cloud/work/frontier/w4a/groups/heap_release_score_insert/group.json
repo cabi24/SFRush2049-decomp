@@ -1,0 +1,60 @@
+{
+ "members": [
+  "audio_reverb_update",
+  "audio_effect_process",
+  "synced_model_render",
+  "MP_TargetSpeed",
+  "assign_default_paths",
+  "stat_race_end",
+  "NextMaxPath",
+  "menu_item_select",
+  "car_damage_visual",
+  "func_800CB9D0",
+  "car_angular_velocity_clamp",
+  "PrevMaxPath",
+  "InitMaxPath",
+  "sync_maxpath_to_checkpoint",
+  "func_800CB748"
+ ],
+ "context": [
+  "func_80095F8C",
+  "func_80095EF4",
+  "audio_buffer_sync",
+  "object_counter_decrement",
+  "object_counter_increment",
+  "func_800A51D8"
+ ],
+ "files": [
+  "func_800CB748.c",
+  "group.c",
+  "alloc_at.c",
+  "car_damage_visual.c",
+  "func_800CB9D0.c",
+  "deflate_mem.c",
+  "overlay_loader.c"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "keep": [
+  "audio_effect_process",
+  "synced_model_render",
+  "MP_TargetSpeed",
+  "assign_default_paths",
+  "stat_race_end",
+  "audio_buffer_sync",
+  "object_counter_decrement",
+  "object_counter_increment",
+  "NextMaxPath",
+  "menu_item_select",
+  "car_damage_visual",
+  "func_800CB9D0",
+  "car_angular_velocity_clamp",
+  "InitMaxPath",
+  "sync_maxpath_to_checkpoint",
+  "func_800CB748"
+ ],
+ "provenance": "frontier wave 4 (w4a), 2026-10-05; cloud/work/frontier/w4a/RESULTS.md",
+ "note": "The locked src/blob/groups/codex_heap_release_a25 (all files unchanged copies) plus func_800CB748.c, which calls the internal audio_reverb_update. Only func_800CB748 is a new claim.",
+ "claims": [
+  "func_800CB748"
+ ]
+}

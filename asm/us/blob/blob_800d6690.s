@@ -6133,6 +6133,7 @@ championship_standings:
 .section .text.tournament_trophy_award, "ax", @progbits
 .globl tournament_trophy_award
 tournament_trophy_award:
+    /* compiled from src/blob/tournament_trophy_award.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x0C037048

@@ -4175,6 +4175,7 @@ func_800D4DFC:
 .section .text.battle_mode_setup, "ax", @progbits
 .globl battle_mode_setup
 battle_mode_setup:
+    /* compiled from src/blob/battle_mode_setup.c */
     .word 0x27BDFF98
     .word 0xAFB30034
     .word 0xAFB00028

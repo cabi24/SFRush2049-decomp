@@ -93,3 +93,21 @@ tools/cloud/ido/
 docs/external/files/
 # Generated variant sweeps from matching agents (recreated by the gen/batch scripts)
 cloud/work/frontier/w*/*/[be][0-9]*/
+cloud/work/frontier/w4a/f87110/asl/
+cloud/work/frontier/w4a/f87110/asp/
+cloud/work/frontier/w4a/func_800E8D50/v/
+cloud/work/frontier/w4a/func_800E8D50/v4/
+cloud/work/frontier/w4a/func_800E8D50/v5/
+cloud/work/frontier/w4a/func_800EC914/as/
+cloud/work/frontier/w4a/func_800EC914/c/
+cloud/work/frontier/w4a/model/cond/
+cloud/work/frontier/w4a/model/sw/
+cloud/work/frontier/w4b/camera_collision_avoid/g1/
+cloud/work/frontier/w4b/entity_process_main/g1/
+cloud/work/frontier/w4b/entity_process_main/g2/
+cloud/work/frontier/w4c/battle_mode_setup/v1/
+cloud/work/frontier/w4c/func_8008E0B8/v1/
+cloud/work/frontier/w4c/func_8008E0B8/v2/
+cloud/work/frontier/w4c/func_8008E0B8/v4/
+cloud/work/frontier/w4c/func_8008E0B8/v5/
+cloud/work/frontier/w4c/func_8010D85C/v2/

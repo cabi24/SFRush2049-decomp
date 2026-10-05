@@ -312,6 +312,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-02"
   },
+  "battle_mode_setup": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/battle_mode_setup.c",
+    "source_sha256": "be2b46aaf95577e73f2324074c8eedc31cf99db79648ecbe01bac737a7e89da1",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
+  },
   "callback_init": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/callback_init.c",
@@ -404,6 +412,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "camera_lerp_position": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/camera_lerp_position.c",
+    "source_sha256": "c68359843553dce48c1c7c8cd3c3884f5c7a3c1c69b5c6f2e21493dc3346ae76",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
   },
   "camera_race_setup": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -596,7 +612,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "championship_standings",
     "source": "src/blob/groups/championship_standings/group.json",
-    "source_sha256": "8f9d722ac609fbebc851ed2c03ac7ee23f1deb7f972c0c861b5c73e354a4946c",
+    "source_sha256": "a4e7ebcacc774650f9dd1d2e44b131478f9d47f9b932a741ee9ae64e346d3109",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-05"
@@ -617,6 +633,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-23"
+  },
+  "collision_sound_play": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/collision_sound_play.c",
+    "source_sha256": "63b62b4b9ede11a3b384c71211ea5e0f92346b8aafa123318a7bdbbf655da3ee",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
   },
   "controller_rumble_thunk": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -799,6 +823,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-04"
+  },
+  "entity_spawn_callback": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/entity_spawn_callback.c",
+    "source_sha256": "105e5ff96910b0f5cfa2ff246ca5eb77e608899b39a8e88a6db98189e9849c47",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
   },
   "entity_transform_apply": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
@@ -1258,6 +1290,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "func_80091B00": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_slot18_alloc",
+    "source": "src/blob/groups/frontier_slot18_alloc/group.json",
+    "source_sha256": "31c7f9e0f31b5728884ed65fa7c6f47d06d6796adc8b9c64cd087e5c555ee2bb",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
   },
   "func_80091BA8": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -2687,7 +2728,7 @@
   "func_800B24EC": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800B24EC.c",
-    "source_sha256": "217da64a911d34f6d4e483fecfa0fea3406cdf57b50a093fd198b8ac5ae60448",
+    "source_sha256": "405f7b1f5c31e4e4c19b82d745a778e85c2046903cea6d439d5d0564e925712b",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-05"
@@ -3239,6 +3280,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_800C1A00": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_800C1A00.c",
+    "source_sha256": "66acb345213c11b3737d56f01355264dc50c69e42c0c54ffac885643a72c7bd9",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
+  },
   "func_800C1B60": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "camera_scene_manager",
@@ -3488,6 +3537,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "func_800CB748": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_score_insert",
+    "source": "src/blob/groups/frontier_score_insert/group.json",
+    "source_sha256": "4b04d9b07d6ebc1bab27b466f1cc6f7cd5dcda03d11170130dea64647b7b4ab3",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
   },
   "func_800CB9D0": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -4017,7 +4075,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "championship_standings",
     "source": "src/blob/groups/championship_standings/group.json",
-    "source_sha256": "8f9d722ac609fbebc851ed2c03ac7ee23f1deb7f972c0c861b5c73e354a4946c",
+    "source_sha256": "a4e7ebcacc774650f9dd1d2e44b131478f9d47f9b932a741ee9ae64e346d3109",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-05"
@@ -4554,6 +4612,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-30"
   },
+  "func_800E8D50": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_800E8D50.c",
+    "source_sha256": "58ad8601fa1f05e5c79e476c39119b63e2fef818cdbfb77bbaaea8ca283a4ca0",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
+  },
   "func_800E9234": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800E9234.c",
@@ -4604,6 +4670,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-04"
+  },
+  "func_800EC914": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_800EC914.c",
+    "source_sha256": "65b68d97388fd50b72410d280c83b41f3e6b196711147105280bff4aace153f7",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
   },
   "func_800ED66C": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -5131,6 +5205,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-05"
   },
+  "func_8010C2E4": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_8010C2E4.c",
+    "source_sha256": "f2405d0aa93f6fd07a1330944b2b3b043562a74646d2834c33bd4bcb80bf5eec",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
+  },
   "func_8010C7CC": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_8010C7CC.c",
@@ -5146,6 +5228,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-01"
+  },
+  "func_8010D85C": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_8010D85C.c",
+    "source_sha256": "8715be8766354e18913d03bd59327e816429bd020540eb2ccaddd710179ac137",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
   },
   "func_8010D9CC": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -5539,6 +5629,22 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "model_data_load": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/model_data_load.c",
+    "source_sha256": "090e12e465e9f32bd7031ef29fa7a79165602414fe0ee8178b8369b2195fd309",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
+  },
+  "model_transform_setup": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/model_transform_setup.c",
+    "source_sha256": "9ccd510fa410aad7f247da42a794fbbf2d76fd64ddeef0e6b4183cc5809e7637",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
   },
   "music_fade": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -6174,6 +6280,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-23"
   },
+  "sfx_volume_set": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/sfx_volume_set.c",
+    "source_sha256": "de71f60817c9ae6019e34116b09feffd7c42d381751b687206edec13a7557bb0",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
+  },
   "sign_extend_call": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "dot_sign_extend",
@@ -6425,6 +6539,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "tournament_trophy_award": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "championship_standings",
+    "source": "src/blob/groups/championship_standings/group.json",
+    "source_sha256": "a4e7ebcacc774650f9dd1d2e44b131478f9d47f9b932a741ee9ae64e346d3109",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
   },
   "tournament_unlock_check": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

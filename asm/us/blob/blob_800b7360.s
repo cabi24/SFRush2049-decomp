@@ -4636,6 +4636,7 @@ func_800BB7F4:
 .section .text.camera_lerp_position, "ax", @progbits
 .globl camera_lerp_position
 camera_lerp_position:
+    /* compiled from src/blob/camera_lerp_position.c */
     .word 0x27BDFFE8
     .word 0xAFA40018
     .word 0x3C048014
