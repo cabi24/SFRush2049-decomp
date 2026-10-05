@@ -1,0 +1,17 @@
+{
+  "owner": "dot additional matching worker",
+  "branch": "dot/unclaimed-frontier-20261005",
+  "base_revision": "cc4d5fdd0bbc42dbf6be49f00d9454af8cb9c4f5",
+  "status": "review",
+  "target": "stat_race_update",
+  "address": "0x800FE5B0",
+  "end_exclusive": "0x800FE73C",
+  "bytes": 396,
+  "edited_context": [],
+  "context_policy": "Five accepted functions copied read-only for regression; no production changes.",
+  "ownership_checked_at": "2026-10-05T19:50:00Z",
+  "ownership_evidence": ["current master lock", "latest wave-5 results", "visible remote branches and handoff", "open PR search: only #98 on 87110"],
+  "ownership_confidence": "No visible overlap; unpublished work cannot be ruled out.",
+  "candidate_source": "cloud/matches/stat_race_update.c",
+  "accepted_byte_gain": 0
+}
