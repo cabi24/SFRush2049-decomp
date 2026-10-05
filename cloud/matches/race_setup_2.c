@@ -1,4 +1,5 @@
-/* flags: -g0 -O3 -mips2 -G 0 -non_shared  (identical words at -O2) */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* identical words at -O2 */
 /*
  * NOT STRICT: code identical, own jump table unverified by the scorer.
  * Checked by hand: the object's .rodata is six R_MIPS_32 .text entries

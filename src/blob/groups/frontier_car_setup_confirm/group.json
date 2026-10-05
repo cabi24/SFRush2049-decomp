@@ -1,0 +1,22 @@
+{
+ "members": [
+  "car_setup_confirm"
+ ],
+ "files": [
+  "func_800F8EC8.c",
+  "car_setup_confirm.c",
+  "func_800D1AB0.c"
+ ],
+ "keep": [
+  "car_setup_confirm",
+  "func_800F8EC8"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [
+  "func_800F8EC8",
+  "func_800D1AB0"
+ ],
+ "note": "Real group, no stand-ins. car_setup_confirm is claimed (its compare uses D_8014A250_alias, disasm.SYMBOL_ALIASES). Its internal callee func_800D1AB0 also matches here but stays provisional context: its other real caller func_800F8EC8 (unmatched, from cloud/work/near_miss_B125) is not matched yet.",
+ "provenance": "frontier wave 2 (w2a), 2026-10-05; cloud/work/frontier/w2a/RESULTS.md"
+}

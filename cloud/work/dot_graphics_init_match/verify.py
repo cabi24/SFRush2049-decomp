@@ -126,7 +126,10 @@ def main():
     mode = records[MODE]
     assert mode["elf_st_size"] == mode["native_bytes"] == 1548
     assert mode["comparison"]["differing"] == 0
-    assert mode["comparison"]["unverified"] == EXPECTED_MODE_REFS
+    # Since 2026-10-05 the scorer proves own .rodata against retail bytes, so the
+    # mode helper's jump-table references are verified (empty list) rather than
+    # reported; either form is the same evidence.
+    assert mode["comparison"]["unverified"] in (EXPECTED_MODE_REFS, [])
     assert mode["comparison"]["unresolved"] == []
     assert mode["comparison"]["errors"] == []
     assert mode["comparison"]["extra_words"] == 0

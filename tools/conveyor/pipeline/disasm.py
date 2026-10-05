@@ -152,6 +152,25 @@ def generated_symbols(path=None):
     return table
 
 
+# Second names for addresses that already have one. `symbol_table` maps an
+# address to ONE name, so aliases live here and are merged by name into the
+# splice/score resolver (blob_splice.image_symbols -> asm/us/blob/symbols.json).
+# Every entry needs its evidence; a wrong address fails the image gate.
+SYMBOL_ALIASES = {
+    # IDO 5.3 compiles a 64-bit `<<` to a call to its runtime helper
+    # __ll_lshift; symbol_addrs.us.txt labels that routine with the libgcc
+    # name __ashldi3. object_render (PR wave 2, cloud/work/frontier/w2i)
+    # calls it from natural `(s64)x << 48` source.
+    "__ll_lshift": 0x8000D994,
+    # car_setup_confirm compares &model[index] against 0x8014A250 through a
+    # constant materialised separately from the register holding the same
+    # array base; only a distinct symbol name reproduces that (any spelling
+    # on D_8014A250 itself is commoned). What the second object is remains
+    # unidentified. Evidence: cloud/work/frontier/w2a/RESULTS.md.
+    "D_8014A250_alias": 0x8014A250,
+}
+
+
 def symbol_table(include_generated=True):
     """The merged lookup: generated entries first, hand entries overwrite."""
     if not include_generated:

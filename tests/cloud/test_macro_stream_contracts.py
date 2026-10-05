@@ -18,7 +18,7 @@ SPEC.loader.exec_module(v)
 
 
 def require_toolchain():
-    if not Path(v.score.ido('cc')).is_file():
+    if not (v.score.IDO / 'cc').is_file():
         pytest.skip('IDO unavailable')
     for tool in ('mips-linux-gnu-as','mips-linux-gnu-objdump','cc'):
         if not shutil.which(tool):

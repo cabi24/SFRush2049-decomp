@@ -1,4 +1,5 @@
-/* flags: -g0 -O3 -mips2 -G 0 -non_shared  (also MATCH at -O2) */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* also MATCH at -O2 */
 /*
  * Elapsed time in seconds since the mark D_80111958: (scheduler frame count
  * at D_8002E8E8+0x27C minus the mark), as unsigned, times the seconds-per-

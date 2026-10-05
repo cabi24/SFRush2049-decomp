@@ -10,8 +10,8 @@
     "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
     "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
   },
-  "target_manifest_sha256": "c889f453d7e6a306d0f7d0f66831877b9ce69b2a6ed63c2fa190a815bd7713fe",
-  "scorer_sha256": "9de8385b28938c012ba679ea1f899cd7e5fe351d2c51129c5319442c84b679c4",
+  "target_manifest_sha256": "6f55bbc7f9eaecf7f3cc35b27285714adefebc169429450cbeeabe98c105bbe8",
+  "scorer_sha256": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
   "status": "nonmatch",
   "verification": {
     "target_address": "0x800b23e0",

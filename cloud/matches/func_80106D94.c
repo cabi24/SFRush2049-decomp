@@ -1,4 +1,5 @@
-/* flags: -g0 -O3 -mips2 -G 0 -non_shared  (also code-identical at -O2) */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* also code-identical at -O2 */
 /*
  * func_80106D94: Blit AnimFunc of the HUD odometer digits (N64-only; no arcade
  * ancestor found, the arcade Blit layout is shifted: X 0x0E, Y 0x10, Width

@@ -1,4 +1,5 @@
-/* flags: -g0 -O3 -mips2 -G 0 -non_shared  (-O2: 170 words differ, saves s0 in an 8-byte frame) */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* -O2: 170 words differ, saves s0 in an 8-byte frame */
 /*
  * Sibling of func_8009D45C (same body, already matched): build an N64
  * fixed-point Mtx from a float orientation given as three rows of four

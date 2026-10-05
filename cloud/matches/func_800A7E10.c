@@ -1,4 +1,5 @@
-/* flags: -g0 -O3 -mips2 -G 0 -non_shared  (also MATCH at -O2) */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* also MATCH at -O2 */
 /*
  * Append the eight corner vertices of an axis-aligned box (min, max; fixed
  * point x16) to the Vtx pool D_80157248 at the running index D_80156CE0, tag

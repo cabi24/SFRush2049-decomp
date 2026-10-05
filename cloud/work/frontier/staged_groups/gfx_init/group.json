@@ -1,0 +1,33 @@
+{
+ "members": [
+  "func_80086A50",
+  "func_8008705C",
+  "func_800878E0",
+  "func_8008A148",
+  "func_8008A46C",
+  "sound_init"
+ ],
+ "files": [
+  "func_80086A50.c",
+  "modes.c",
+  "func_8008A148.c",
+  "rect.c",
+  "init.c",
+  "object_render.c"
+ ],
+ "keep": [
+  "func_8008705C",
+  "func_800878E0",
+  "func_8008A148",
+  "func_8008A46C",
+  "sound_init",
+  "object_render"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [
+  "object_render"
+ ],
+ "note": "Real group, no stand-ins: gfx_modes (func_80086A50.c, modes.c) and src/blob/func_8008A148.c copied unchanged, plus rect.c. func_80086A50's own jump table scores as 2 unverified section-relative relocations here exactly as in gfx_modes; it is not claimed. sound_init (PR #86) stores the s64 cache D_8012E688 with one lui, so object_render.c (which defines it) is compiled in as unchanged context; object_render stays locked as its single.",
+ "provenance": "frontier wave 2 (w2g), 2026-10-04; cloud/work/frontier/w2g/RESULTS.md"
+}

@@ -440,16 +440,13 @@
       "differing": 0,
       "total": 56,
       "unresolved": [],
-      "unverified": [
-        ".rodata+0x18 at +0x3c",
-        ".rodata+0x18 at +0x44"
-      ],
+      "unverified": [],
       "errors": [],
       "extra_words": 0,
       "elf_symbol_bytes": 224,
       "target_bytes": 224,
       "exact_extent": true,
-      "canonical_summary": "MATCH (2 section-relative relocations unverified: .rodata+0x18 at +0x3c, .rodata+0x18 at +0x44)",
+      "canonical_summary": "MATCH",
       "own_data": {
         "verified_reference_sites": 2,
         "placements": {
@@ -473,16 +470,13 @@
       "differing": 0,
       "total": 45,
       "unresolved": [],
-      "unverified": [
-        ".rodata+0x0 at +0x20",
-        ".rodata+0x0 at +0x28"
-      ],
+      "unverified": [],
       "errors": [],
       "extra_words": 0,
       "elf_symbol_bytes": 180,
       "target_bytes": 180,
       "exact_extent": true,
-      "canonical_summary": "MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x20, .rodata+0x0 at +0x28)",
+      "canonical_summary": "MATCH",
       "own_data": {
         "verified_reference_sites": 2,
         "placements": {

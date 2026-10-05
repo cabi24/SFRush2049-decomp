@@ -142,8 +142,18 @@ def test_image_symbols_keeps_every_name_that_shares_an_address():
     provides = blob_splice.image_symbols(
         document, symbols={0x80092360: "frame_sync", 0x80152000: "pad_config"})
 
+    aliases = __import__("tools.conveyor.pipeline.disasm", fromlist=["x"]).SYMBOL_ALIASES
     assert provides == {"entity_flags_apply": 0x80092360,
-                        "frame_sync": 0x80092360, "pad_config": 0x80152000}
+                        "frame_sync": 0x80092360, "pad_config": 0x80152000, **aliases}
+
+
+def test_image_symbols_adds_second_names_without_shadowing(monkeypatch):
+    from tools.conveyor.pipeline import disasm
+    monkeypatch.setattr(disasm, "SYMBOL_ALIASES", {"alias_of_f": 0x80092360, "f": 0x1})
+    document = {"regions": [{"entries": [
+        {"kind": "function", "target_id": "f", "vaddr": 0x80092360}]}]}
+    provides = blob_splice.image_symbols(document, symbols={})
+    assert provides == {"f": 0x80092360, "alias_of_f": 0x80092360}
 
 
 def test_an_address_name_resolves_to_the_address_it_spells():

@@ -1,4 +1,5 @@
-/* flags: -g0 -O3 -mips2 -G 0 -non_shared  (single file; -O2 leaves 22 words: y in $f20 instead of $f16) */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* single file; -O2 leaves 22 words: y in $f20 instead of $f16 */
 typedef float f32;
 
 extern f32 func_8008C680(f32);

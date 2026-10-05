@@ -103,8 +103,11 @@ def test_real_submission_match_passes_and_wrong_global_fails(tmp_path, monkeypat
     # from the repository. No private layout, game image, or ROM is involved.
     (tmp_path / "tools/cloud").mkdir(parents=True)
     shutil.copy(ci.REPO / "tools/cloud/score.py", tmp_path / "tools/cloud/score.py")
+    shutil.copy(ci.REPO / "tools/cloud/owndata.py", tmp_path / "tools/cloud/owndata.py")
     (tmp_path / "asm/us").mkdir(parents=True)
     (tmp_path / "asm/us/blob").symlink_to(ci.REPO / "asm/us/blob", target_is_directory=True)
+    (tmp_path / "asm/us/blob_data").symlink_to(ci.REPO / "asm/us/blob_data",
+                                               target_is_directory=True)
     monkeypatch.setenv("IDO_DIR", str(score.IDO))
     source = (ci.REPO / "src/blob/sound_handles_clear.c").read_text()
     name = "cloud/matches/sound_handles_clear.c"

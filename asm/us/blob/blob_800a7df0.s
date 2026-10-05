@@ -5503,6 +5503,7 @@ traction_control:
 .section .text.func_800ACFF8, "ax", @progbits
 .globl func_800ACFF8
 func_800ACFF8:
+    /* compiled from src/blob/func_800ACFF8.c */
     .word 0xC4C2000C
     .word 0xC4D00018
     .word 0xC4D20010
@@ -5545,6 +5546,7 @@ func_800ACFF8:
 .section .text.func_800AD090, "ax", @progbits
 .globl func_800AD090
 func_800AD090:
+    /* compiled from src/blob/func_800AD090.c */
     .word 0xC4C20000
     .word 0xC4D0000C
     .word 0xC4D20004

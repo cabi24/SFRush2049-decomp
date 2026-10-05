@@ -1,4 +1,5 @@
-/* flags: -g0 -O3 -mips2 -G 0 -non_shared  (one file: func_8008A704, its deleted static func_8008A6FC, the deleted static func_8008A774 and sync_release_video must be defined here; see below) */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* one file: func_8008A704, its deleted static func_8008A6FC, the deleted static func_8008A774 and sync_release_video must be defined here; see below */
 /*
  * Historical label audio_queue_process is misleading: this is the Rumble Pak
  * thread entry (N64-only, no arcade ancestor).  It registers a scheduler

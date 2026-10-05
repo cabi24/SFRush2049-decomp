@@ -57,7 +57,9 @@
      unverified: list
      errors: list
      extra_words: int = 0
-+    notes: tuple = ()
++    # Own-data notes are deliberately not a dataclass field: asdict() output
++    # (recorded in many research receipts) keeps its historical keys.
++    notes = ()
  
      def accepted(self, allow_unverified=False):
          return (self.differing == 0 and self.extra_words == 0
@@ -88,8 +90,9 @@
          g = got[i] if i < len(got) else None
          print(f"    +0x{4*i:03x}  want {w_(want[i])}  got {w_(g) if g is not None else '(missing)'}")
 -    return Comparison(len(bad), len(want), unresolved, unverified, errors, extra_words)
-+    return Comparison(len(bad), len(want), unresolved, unverified, errors, extra_words,
-+                      notes)
++    result = Comparison(len(bad), len(want), unresolved, unverified, errors, extra_words)
++    result.notes = notes
++    return result
  
  
  def w_(word):

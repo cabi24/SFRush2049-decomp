@@ -14,10 +14,15 @@
 Targets come from asm/us/blob/*.s: every game-code function is a section
 `.text.<name>` of `.word`s, i.e. the exact bytes of the retail image. The
 compiled function is compared word by word after resolving relocations with
-asm/us/blob/symbols.json. Local data-section references remain unverified,
-not matches. --allow-unverified permits those references but never unresolved
-symbols or differing words. The maintainers still run the image and ROM hash
-gates when a match is spliced (see CloudHandoff.md).
+asm/us/blob/symbols.json. A reference to the object's own data (a float
+literal or jump table in .rodata, a function-local static in .data) is checked
+by content: the retail words at that site encode an address, and the retail
+bytes there (asm/us/blob_data, see tools/cloud/owndata.py) must equal the
+object's. Verified references count as matched, differing ones fail, and
+anything that cannot be checked remains unverified, not a match.
+--allow-unverified permits unverified references but never unresolved symbols,
+differing words or differing own data. The maintainers still run the image and
+ROM hash gates when a match is spliced (see CloudHandoff.md).
 
 Region files and symbol addresses must match asm/us/blob/SHA256SUMS; integrity
 failures are fatal, including when --allow-unverified is used.
@@ -37,6 +42,11 @@ import subprocess
 import sys
 import tempfile
 from pathlib import Path
+
+try:
+    from . import owndata
+except ImportError:                 # run as a script: tools/cloud is sys.path[0]
+    import owndata
 
 REPO = Path(__file__).resolve().parents[2]
 ASM_DIR = REPO / "asm" / "us" / "blob"
@@ -118,6 +128,20 @@ def targets():
         _targets = parsed
         _target_fingerprint = fingerprint
     return _targets
+
+
+_own_data = {}
+
+
+def own_data():
+    """Retail bytes of the image's non-function runs (None if not tracked).
+
+    Lives beside the target directory as <targets>_data; its own SHA256SUMS
+    is enforced by owndata.ImageData.from_artifact."""
+    directory = owndata.artifact_dir(ASM_DIR)
+    if directory not in _own_data:
+        _own_data[directory] = owndata.ImageData.from_artifact(directory)
+    return _own_data[directory]
 
 
 # --- object helpers (a minimal ELF32 big-endian reader: no binutils needed) ---
@@ -297,6 +321,9 @@ class Comparison:
     unverified: list
     errors: list
     extra_words: int = 0
+    # Own-data notes are deliberately not a dataclass field: asdict() output
+    # (recorded in many research receipts) keeps its historical keys.
+    notes = ()
 
     def accepted(self, allow_unverified=False):
         return (self.differing == 0 and self.extra_words == 0
@@ -359,6 +386,21 @@ def compare(obj, name, start=None, show=12):
     extra_words = sum(word != 0 for word in words[target_end // 4:end // 4])
     resolved, masks, unresolved, unverified, errors = relocate(
         obj, words, start, min(target_end, end), image_symbols())
+    notes = ()
+    if unverified:
+        # Own-section references: prove each by content against retail bytes.
+        # They stay unverified unless EVERY masked relocation word is proven.
+        table = image_symbols()
+
+        def named(symbol):
+            return table[symbol] if symbol in table else address_named(symbol)
+
+        own = owndata.verify(obj, name, want, address=named(name), image=own_data(),
+                             start=start, addresses=named)
+        errors.extend(own.failures)
+        notes = tuple(own.notes) + tuple("not verified: " + why for why in own.unverified)
+        if own.ok and set(masks) <= own.sites:
+            unverified = []
     got = resolved[start // 4:min(target_end, end) // 4]
     bad = []
     for i, w in enumerate(want):
@@ -369,7 +411,9 @@ def compare(obj, name, start=None, show=12):
     for i in bad[:show]:
         g = got[i] if i < len(got) else None
         print(f"    +0x{4*i:03x}  want {w_(want[i])}  got {w_(g) if g is not None else '(missing)'}")
-    return Comparison(len(bad), len(want), unresolved, unverified, errors, extra_words)
+    result = Comparison(len(bad), len(want), unresolved, unverified, errors, extra_words)
+    result.notes = notes
+    return result
 
 
 def w_(word):
@@ -487,6 +531,8 @@ def main():
             print(f"{name}:")
             result = compare(obj, name)
             print(f"  {result.summary()}")
+            for note in result.notes:
+                print(f"    {note}")
             all_match &= result.accepted(args.allow_unverified)
         if context:
             print("\nContext (informational; excluded from exit status):")

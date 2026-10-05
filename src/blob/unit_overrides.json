@@ -93,5 +93,12 @@
    "name": "dma_wait_complete",
    "reason": "position dependent, same mechanism as task_complete_signal and audio_queue_process: the scheduler-client thread ends in an endless loop and as1 pads its unreachable epilogue to a 32-byte boundary of .text (105 words only at its image offset modulo 32; 103 in the shadow unit otherwise)"
   }
+ ],
+ "extern_data": [
+  {
+   "name": "D_8012E688",
+   "file": "src/blob/groups/gfx_modes/object_render.c",
+   "reason": "gfx_modes compiles the locked single object_render.c as context because sound_init stores this s64 cache with one shared lui, which needs a definition in the group's program; in the shadow unit the locked src/blob/object_render.c is the one definition"
+  }
  ]
 }

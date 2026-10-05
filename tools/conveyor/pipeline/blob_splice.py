@@ -349,6 +349,9 @@ def image_symbols(document=None, symbols=None):
         for entry in region["entries"]:
             if entry["kind"] == "function":
                 provides[entry["target_id"]] = entry["vaddr"]
+    from . import disasm
+    for name, address in disasm.SYMBOL_ALIASES.items():
+        provides.setdefault(name, address)
     return provides
 
 

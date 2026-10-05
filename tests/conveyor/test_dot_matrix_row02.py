@@ -34,8 +34,14 @@ def test_receipt_is_bound_to_final_source():
     assert receipt["negative_control"]["strict_verifier_rejects"]
 
 
+def _require_ido(module):
+    if not (module.score.IDO / "cc").is_file():
+        pytest.skip("IDO compiler unavailable")
+
+
 def test_fresh_complete_replay_and_negative_control(tmp_path):
     module = verifier()
+    _require_ido(module)
     receipt = module.replay(tmp_path)
     assert all(row["comparison"]["differing"] == 0 for row in receipt["results"])
     assert receipt["negative_control"]["comparison"]["differing"] > 0
@@ -43,6 +49,7 @@ def test_fresh_complete_replay_and_negative_control(tmp_path):
 
 def test_extent_gate_is_independent_of_padded_text(tmp_path, monkeypatch):
     module = verifier()
+    _require_ido(module)
     obj = tmp_path / "candidate.o"
     module.score.compile_single(SOURCE, module.FLAGS, obj)
     start, size = module.function_extent(obj, "func_800C40E8")

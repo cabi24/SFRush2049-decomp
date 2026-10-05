@@ -1,4 +1,5 @@
-/* flags: -g0 -O3 -mips2 -G 0 -non_shared  (also MATCH at -O2) */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* also MATCH at -O2 */
 /*
  * Historical label sound_bank_load is misleading: this is a name lookup over
  * the per-bank sorted directories (N64-only, no arcade ancestor).

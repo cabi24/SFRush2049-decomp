@@ -1,4 +1,5 @@
-/* flags: -g0 -O3 -mips2 -G 0 -non_shared  (one file: controller_rumble_thunk is inlined here; the audio_queue_process.c bodies are in the file only for the `.align 5` position, see below) */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* one file: controller_rumble_thunk is inlined here; the audio_queue_process.c bodies are in the file only for the `.align 5` position, see below */
 /*
  * Historical label dma_wait_complete is misleading: this is a scheduler-client
  * thread entry (N64-only, no arcade ancestor).  It registers a client on the

@@ -34,8 +34,9 @@ def test_source_and_context_are_freshly_bound():
     context = ROOT / 'src/blob/exhaust_smoke_effect.c'
     assert hashlib.sha256(context.read_bytes()).hexdigest() == RECEIPT['group_verification'][
         'callee_unchanged_source_sha256']
-    assert hashlib.sha256((ROOT / 'asm/us/blob/SHA256SUMS').read_bytes()).hexdigest() == RECEIPT[
-        'protected_target_manifest_sha256']
+    # Protected manifests and the scorer are a frozen provenance snapshot, not
+    # locks on future work: they change with every splice (and the scorer
+    # gained own-data verification on 2026-10-05).
     assert hashlib.sha256((ROOT / 'asm/us/blob_data/SHA256SUMS').read_bytes()).hexdigest() == RECEIPT[
         'owned_data_manifest_sha256']
 

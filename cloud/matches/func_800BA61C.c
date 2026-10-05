@@ -1,4 +1,5 @@
-/* flags: -g0 -O3 -mips2 -G 0 -non_shared  (same words at -O2) */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* same words at -O2 */
 /*
  * func_800BA61C @ 0x800BA61C, 424 bytes: path point for a checkpoint-like record.
  * Walks the track path points (PathPt D_801407F4[], count u16 D_801407F0, wrapping) and returns

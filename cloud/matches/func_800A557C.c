@@ -1,4 +1,5 @@
-/* flags: -g0 -O3 -mips2 -G 0 -non_shared  (also MATCH at -O2) */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* also MATCH at -O2 */
 /*
  * Single-precision tangent (Cody & Waite style, as in SGI libm): rejects
  * |x| > 6.7465e9 (returns 0), reduces by pi/2 with two modff calls and a

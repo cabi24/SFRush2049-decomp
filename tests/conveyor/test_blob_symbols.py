@@ -63,6 +63,8 @@ def test_generate_refreshes_symbols_in_the_selected_asm_directory(tmp_path, monk
     image.write_bytes(bytes(8))
     asm_dir = tmp_path / "asm"
     monkeypatch.setattr(blob_tu, "data_symbols", lambda: {})
+    from tools.conveyor.pipeline import disasm
+    monkeypatch.setattr(disasm, "SYMBOL_ALIASES", {})
     blob_tu.generate(document, image, asm_dir, tmp_path / "blob", spliced={})
     path = asm_dir / "symbols.json"
     assert json.loads(path.read_text())["symbols"] == {"member": f"0x{blob_layout.BASE:08X}"}

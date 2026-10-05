@@ -73,7 +73,7 @@ DEAD = ("\n  if (0) {\n"
 
 
 OVERRIDE_KEYS = ("inline_blockers", "force_keep", "force_internal", "prefer_definition",
-                 "align")
+                 "align", "extern_data")
 ALIGN = 32          # as1 pads some code to 32 bytes, counted from the start of .text
 
 
@@ -178,6 +178,17 @@ def transform(text, keep_names, block=(), renames=None, defs=None):
 
 # --- manifest (pure) ----------------------------------------------------------
 
+def extern_data(text, name):
+    """Turn a file-scope, uninitialised definition of data `name` into an
+    extern declaration (a group compiles a locked file as context; in the one
+    whole-program unit only the locked file may define its data)."""
+    out, n = re.subn(r"^(?!\s*extern\b)([ \t]*)([^;=\n(){}]*\b%s\b[^;=\n(){}]*;)" % re.escape(name),
+                     r"\1extern \2", text, count=1, flags=re.M)
+    if not n:
+        raise UnitError(f"extern_data {name}: no uninitialised file-scope definition found")
+    return out
+
+
 def load_overrides(path=OVERRIDES):
     """The tracked hand decisions. Every entry must carry a reason."""
     try:
@@ -197,8 +208,8 @@ def validate_overrides(doc, where="overrides"):
                 raise UnitError(f"{where}: {key} entries need a name")
             if not str(entry.get("reason", "")).strip():
                 raise UnitError(f"{where}: {key} {entry['name']} has no reason")
-            if key == "prefer_definition" and not entry.get("file"):
-                raise UnitError(f"{where}: prefer_definition {entry['name']} needs a file")
+            if key in ("prefer_definition", "extern_data") and not entry.get("file"):
+                raise UnitError(f"{where}: {key} {entry['name']} needs a file")
             if entry["name"] in seen:
                 raise UnitError(f"{where}: {key} lists {entry['name']} twice")
             seen.add(entry["name"])
@@ -403,6 +414,7 @@ def derive(lock, group_specs, files, defs, addresses, overrides=None,
         keep=sorted(keep_set), internal=sorted(defined - keep_set),
         blockers=sorted(blockers),
         align=sorted(e["name"] for e in overrides["align"] if e["name"] in canon),
+        extern_data=[dict(name=e["name"], file=e["file"]) for e in overrides["extern_data"]],
         forced_keep=sorted(forced_keep & defined),
         forced_internal=sorted(forced_internal & defined),
         functions={n: canon[n] for n in sorted(canon)},
@@ -431,6 +443,9 @@ def stage(manifest, texts, out_dir, defs=None):
             continue
         text, kept = transform(texts[rec["id"]], set(rec["defines"]), blockers,
                                rec["renames"], (defs or {}).get(rec["id"]))
+        for entry in manifest.get("extern_data", ()):
+            if entry["file"] == rec["source"]:
+                text = extern_data(text, entry["name"])
         wanted[rec["id"]] = text
     wanted["keep.txt"] = "".join(f"{k}\n" for k in manifest["keep"])
     wanted["files.txt"] = "".join(

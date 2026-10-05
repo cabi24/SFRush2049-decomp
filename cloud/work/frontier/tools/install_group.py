@@ -48,6 +48,9 @@ def restore(why):
             shutil.copytree(backup / "groups" / g, root / g)
     for f in (backup / "singles").glob("*.c") if (backup / "singles").exists() else ():
         shutil.copy(f, blob_splice.SRC_DIR / f.name)
+    for g in touched:                         # a failed splice left a fresh object behind
+        if (root / g / "group.json").exists():
+            blob_group.compile_group(blob_group.load(g))
     doc = blob_layout.load()
     ok, _, msg = blob_splice.build_with(blob_splice.spliced_bodies(document=doc), doc)
     print("image after restore:", "OK" if ok else msg, file=sys.stderr)

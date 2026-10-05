@@ -1,4 +1,5 @@
-/* flags: -g0 -O3 -mips2 -G 0 -non_shared  (also identical at -O2) */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* also identical at -O2 */
 /*
  * NOT a strict match: every text word equals retail, but the scorer cannot
  * verify the four references to this function's own .data object

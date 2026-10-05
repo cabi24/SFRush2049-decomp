@@ -1,4 +1,5 @@
-/* flags: -g0 -O3 -mips2 -G 0 -non_shared  (also MATCH at -O2) */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* also MATCH at -O2 */
 /*
  * Encode a fixed-width code string (callers pass lengths 16 and 4; called
  * from track_process_main and track_render_process) through the u16 table

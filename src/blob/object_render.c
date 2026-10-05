@@ -1,43 +1,9 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
 /*
- * object_render (0x80087A08, 2,512 words) -- the name is a historical label. Real semantics:
- * "select texture image": make `img` the current RDP texture, emitting the load into the global
- * display list D_80149438, unless it is already the cached texture.
- *
- *   void object_render(void *img, u16 type, u16 siz, u16 width, u16 height,
- *                      u16 uls, u16 ult, u16 lrs, u16 lrt, u16 pal, s32 tile)
- *
- *   type  0 RGBA (siz 2 = 16b, else 32b) | 2 CI | 5 CI + second 4b tile | 4 I | 3 IA
- *   siz   G_IM_SIZ_* of the texels (0 = 4b, 1 = 8b, 2 = 16b, 3 = 32b)
- *   tile  0: load rows ult..lrt of the image as one block (gDPLoadTextureBlock, with the render
- *            tile's size starting at (uls, ult)); non-zero: gDPLoadTextureTile of the sub-rectangle.
- *
- * Steps: advance img / recompute height (block) or build the rectangle key (tile); choose the
- * render mode from `type` and the render-state word D_8012E608 and apply it through func_800878E0 /
- * func_80086A50; return if (img, key) equals the cache D_8012E684 / D_8012E688; compute the wrap
- * masks with func_80087804 (log2 ceiling); set the TLUT mode (cached in D_8012E680); emit the SDK
- * load macro for (format, size, tile-or-block); store the cache.
- * No arcade ancestor (N64 RDP state cache, same family as func_80086A50 / func_8008705C /
- * func_800878E0 / func_80087110). The 632-byte frame is the one stack slot per macro `Gfx *_g`.
- *
- * Shaping notes (all verified against the scorer):
- *  - SDK GBI macros on `D_80149438++`, exactly as in <PR/gbi.h>; only the block loads differ from
- *    the SDK (gDPLoadTextureBlockAt: tile size starts at (uls, ult), ends at uls+width-1, ult+height-1).
- *  - `s64 D_8012E688;` must be a DEFINITION, not an extern: as1 shares one `lui at` between the
- *    two halves of the 64-bit store only when it knows the symbol's alignment (retail is one unit
- *    in which the variable is defined). With `extern` the tail is one word longer (14 words off).
- *    blob_splice rebinds defined D_ symbols to their image address, so this splices as is.
- *  - The rectangle key is a 64-bit expression truncated into the 32-bit `tile` parameter. Its
- *    natural spelling is
- *        tile = ((s64)uls << 48) + ((s64)ult << 32) + ((s64)lrs << 16) + lrt;
- *    which compiles to the same 2,512 words but calls the IDO runtime helper by its compiler name
- *    `__ll_lshift`; this repository labels that routine (0x8000D994) `__ashldi3`, so the scorer and
- *    the splice link cannot resolve the three `jal`s. The explicit calls below are that expression
- *    with the helper spelled by the repository's label; replace them with the shift form once
- *    `__ll_lshift = 0x8000D994` is known to the symbol table (cloud/work/frontier/w2i/object_render/best.c).
- *  - `uls - lrs` / `ult - lrt` in the tile-mode mask computation are as retail has them (the
- *    differences are <= 0, so both masks are 0 in tile mode).
- *  - `mode` is left unset for a type outside 0,2,3,4,5, as in retail.
+ * object_render, natural form. Code identical to retail (2,512 words); the only scorer difference is
+ * the three unresolved `jal __ll_lshift` (IDO's 64-bit shift helper, retail 0x8000D994, labelled
+ * `__ashldi3` in this repository). See cloud/matches/object_render.c for the full header and for the
+ * strict-MATCH spelling with explicit helper calls.
  */
 typedef signed char s8;
 typedef unsigned char u8;
@@ -219,7 +185,6 @@ extern s32 D_8014A248;
 extern void func_80086A50();
 extern void func_800878E0();
 extern s32 func_80087804();
-extern s64 __ashldi3(s64, s64);
 
 #define TILE(fmt, sz) gDPLoadTextureTile(D_80149438++, img, fmt, G_IM_SIZ_##sz, width, height, uls, ult, lrs, lrt, pal, G_TX_CLAMP, G_TX_CLAMP, masks, maskt, G_TX_NOLOD, G_TX_NOLOD)
 #define TILE4(fmt) gDPLoadTextureTile_4b(D_80149438++, img, fmt, width, height, uls, ult, lrs, lrt, pal, G_TX_CLAMP, G_TX_CLAMP, masks, maskt, G_TX_NOLOD, G_TX_NOLOD)
@@ -249,7 +214,7 @@ void object_render(void *img, u16 type, u16 siz, u16 width, u16 height, u16 uls,
         height = lrt - ult + 1;
     }
     else {
-        tile = __ashldi3(uls, 48) + __ashldi3(ult, 32) + __ashldi3(lrs, 16) + lrt;
+        tile = ((s64)uls << 48) + ((s64)ult << 32) + ((s64)lrs << 16) + lrt;
     }
     if (type == 0 || type == 2) {
         if ((D_8012E608 & 0x20) || (D_8012E608 & 0x10) || (D_8012E608 & 0x8000)) {

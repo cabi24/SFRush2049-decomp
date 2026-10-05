@@ -50,10 +50,7 @@
         "extra_words": 18,
         "total": 75,
         "unresolved": [],
-        "unverified": [
-          ".rodata+0x0 at +0x28",
-          ".rodata+0x0 at +0x2c"
-        ]
+        "unverified": []
       },
       "name": "aggregate_byte_copy",
       "source_sha256": "fbb0c377272270ace3f81d3fe0ff16de957d47bd611f65aa915c8e1c000204c5"
@@ -73,10 +70,7 @@
         "extra_words": 14,
         "total": 75,
         "unresolved": [],
-        "unverified": [
-          ".rodata+0x0 at +0x28",
-          ".rodata+0x0 at +0x2c"
-        ]
+        "unverified": []
       },
       "name": "aggregate_word_copy",
       "source_sha256": "e4c4debc727c75709fa2f7f9d625c127c84d2ab1941756791821dce0a11e06a1"
@@ -96,10 +90,7 @@
         "extra_words": 0,
         "total": 75,
         "unresolved": [],
-        "unverified": [
-          ".rodata+0x0 at +0x28",
-          ".rodata+0x0 at +0x2c"
-        ]
+        "unverified": []
       },
       "name": "separate_dispatch_calls",
       "source_sha256": "8d1aaeca103848ce8f607a71482f5fce3e97b01a17a54f0ef3ddc523e9426063"
@@ -113,10 +104,7 @@
         "extra_words": 0,
         "total": 75,
         "unresolved": [],
-        "unverified": [
-          ".rodata+0x0 at +0x28",
-          ".rodata+0x0 at +0x2c"
-        ]
+        "unverified": []
       },
       "claimed": true,
       "elf_st_size": 300,

@@ -1,4 +1,5 @@
-/* flags: -g0 -O3 -mips2 -G 0 -non_shared  (-O3 required: at -O2 `scale` is spilled to its home slot) */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* -O3 required: at -O2 `scale` is spilled to its home slot */
 /*
  * Builds an N64 fixed-point Mtx (16 words: integer halves 0..7, fraction
  * halves 8..15) from a 3x3 rotation and a position.  Unless `absolute` is set

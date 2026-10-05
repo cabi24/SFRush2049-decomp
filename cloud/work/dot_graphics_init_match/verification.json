@@ -11,17 +11,17 @@
     "src/blob/groups/gfx_modes/func_8008A148.c": "7de40c951eb651b658bc6f1de412cc9fbc70851edc7e8c13047d1ef31a9d551f",
     "src/blob/groups/gfx_modes/rect.c": "a1feb67072ebbdc68d6e578a9dac22d89675f6ad8ee5f11ec2b87183b803d929",
     "cloud/work/dot_graphics_init_match/init.c": "6f49bbe093b77eab9fbfde6211d031f83e3c5eaf5215f968356bbed574d7745d",
-    "src/blob/object_render.c": "82a359f4bc20de2bc0111250e90488d4646f697711ca4c124eccb053082a5339"
+    "src/blob/object_render.c": "df3cecd38a2dbb04656a8f51a8fbd0cc1bbfc500b1db7654194a2bab91d3f762"
   },
   "protected_sha256": {
-    "blob_matched.lock.json": "1181773d7952a40c4c1a29871d63a41aa6afbb91dd042abfc33582ba9c68fbe4",
+    "blob_matched.lock.json": "1efdb96a12e6cf90d37e58c775a6da53c4a092c6e1f5b6ab4902778e0180e8a3",
     "matched.lock.json": "2b4bbe97c3637845e088aa86741051731e923bd758465a45b663fb7c07ce413b",
     "symbol_addrs.us.txt": "3db8a69ed8b00120f0926fb610bd0aa8905d936a4cb2eb2238eb62883e7a92a1",
     "include/game_types.h": "71b1399b216c194771954e94a6e0ad0e9d471d4f4498291370a3edaa5baa5cb2",
-    "tools/conveyor/pipeline/disasm.py": "2cb338cd089f234252b79374f2ab5062d39ed6c42b1ab5aa50b408dbf92a82af",
-    "tools/cloud/score.py": "9de8385b28938c012ba679ea1f899cd7e5fe351d2c51129c5319442c84b679c4",
-    "asm/us/blob/SHA256SUMS": "c889f453d7e6a306d0f7d0f66831877b9ce69b2a6ed63c2fa190a815bd7713fe",
-    "asm/us/blob/symbols.json": "f329a63d8a791564f666696d7d4513b666c17a5caaa3e85539b17de99a05f6cd"
+    "tools/conveyor/pipeline/disasm.py": "14f6ae74d8323ca0c04c27e55d04dcc8b573e93cd330f9413ef883366cec9154",
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+    "asm/us/blob/SHA256SUMS": "6f55bbc7f9eaecf7f3cc35b27285714adefebc169429450cbeeabe98c105bbe8",
+    "asm/us/blob/symbols.json": "ea80bea2d751ca4f4e8ac636d2a9a5278e10267dd1f0a138a9fea5118a1b7c7d"
   },
   "compiler_sha256": {
     "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
@@ -587,17 +587,17 @@
         {
           "offset": 252,
           "type": 4,
-          "symbol": "__ashldi3"
+          "symbol": "__ll_lshift"
         },
         {
           "offset": 280,
           "type": 4,
-          "symbol": "__ashldi3"
+          "symbol": "__ll_lshift"
         },
         {
           "offset": 308,
           "type": 4,
-          "symbol": "__ashldi3"
+          "symbol": "__ll_lshift"
         },
         {
           "offset": 352,
@@ -1064,10 +1064,7 @@
         "differing": 0,
         "total": 387,
         "unresolved": [],
-        "unverified": [
-          ".rodata+0x0 at +0xc",
-          ".rodata+0x0 at +0x14"
-        ],
+        "unverified": [],
         "errors": [],
         "extra_words": 0
       }
@@ -1293,10 +1290,7 @@
         "differing": 0,
         "total": 387,
         "unresolved": [],
-        "unverified": [
-          ".rodata+0x0 at +0xc",
-          ".rodata+0x0 at +0x14"
-        ],
+        "unverified": [],
         "errors": [],
         "extra_words": 0
       }
@@ -1648,17 +1642,17 @@
         {
           "offset": 252,
           "type": 4,
-          "symbol": "__ashldi3"
+          "symbol": "__ll_lshift"
         },
         {
           "offset": 280,
           "type": 4,
-          "symbol": "__ashldi3"
+          "symbol": "__ll_lshift"
         },
         {
           "offset": 308,
           "type": 4,
-          "symbol": "__ashldi3"
+          "symbol": "__ll_lshift"
         },
         {
           "offset": 352,

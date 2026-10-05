@@ -1,4 +1,5 @@
-/* flags: -g0 -O3 -mips2 -G 0 -non_shared  (needs -O3: the static below must be inlined) */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* needs -O3: the static below must be inlined */
 /*
  * SI/controller-pak lock acquire with lazy initialisation (N64-only): on the
  * first call it creates the one-slot queue D_801497D0 and primes it with one

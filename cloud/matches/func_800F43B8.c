@@ -1,4 +1,5 @@
-/* flags: -g0 -O3 -mips2 -G 0 -non_shared  (-O3 required: at -O2 the slot-pointer web takes s0 and the frame grows, 136/144) */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* -O3 required: at -O2 the slot-pointer web takes s0 and the frame grows, 136/144 */
 /*
  * End-of-race statistics update for the current player (D_801543D4), N64-only.
  * Two 28-byte records are updated with the same code: first the one inside

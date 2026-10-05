@@ -880,6 +880,7 @@ func_800D1AB0:
 .section .text.car_setup_confirm, "ax", @progbits
 .globl car_setup_confirm
 car_setup_confirm:
+    /* compiled from src/blob/car_setup_confirm.c */
     .word 0x27BDFF78
     .word 0xAFB50028
     .word 0x241503B8

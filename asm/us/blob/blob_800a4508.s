@@ -311,6 +311,7 @@ audio_start:
 .section .text.sound_init, "ax", @progbits
 .globl sound_init
 sound_init:
+    /* compiled from src/blob/sound_init.c */
     .word 0x3C038015
     .word 0x24639438
     .word 0x8C6E0000

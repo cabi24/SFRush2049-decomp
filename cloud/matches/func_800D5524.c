@@ -1,4 +1,5 @@
-/* flags: -g0 -O3 -mips2 -G 0 -non_shared  (the file must also define player_conditional_check: -O3 inlines it at all six call sites) */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* the file must also define player_conditional_check: -O3 inlines it at all six call sites */
 /*
  * Stops and clears every looping sound handle owned by one car (N64 sound
  * bookkeeping; no arcade ancestor identified -- the arcade keeps these in

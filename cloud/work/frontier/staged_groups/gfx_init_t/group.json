@@ -1,0 +1,29 @@
+{
+ "members": [
+  "func_80086A50",
+  "func_8008705C",
+  "func_800878E0",
+  "func_8008A148",
+  "func_8008A46C",
+  "sound_init"
+ ],
+ "files": [
+  "func_80086A50.c",
+  "modes.c",
+  "func_8008A148.c",
+  "rect.c",
+  "init.c"
+ ],
+ "keep": [
+  "func_8008705C",
+  "func_800878E0",
+  "func_8008A148",
+  "func_8008A46C",
+  "sound_init"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "note": "Real group, no stand-ins: gfx_modes (func_80086A50.c, modes.c) and src/blob/func_8008A148.c copied unchanged, plus rect.c. func_80086A50's own jump table scores as 2 unverified section-relative relocations here exactly as in gfx_modes; it is not claimed.",
+ "provenance": "frontier wave 2 (w2g), 2026-10-04; cloud/work/frontier/w2g/RESULTS.md"
+}

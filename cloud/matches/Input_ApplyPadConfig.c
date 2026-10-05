@@ -1,4 +1,5 @@
-/* flags: -g0 -O3 -mips2 -G 0 -non_shared  (the file must also define Input_InitPadHandlers: -O3 inlines it here; both bodies score MATCH from this one file, and as a real two-member group) */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* the file must also define Input_InitPadHandlers: -O3 inlines it here; both bodies score MATCH from this one file, and as a real two-member group */
 typedef signed char s8;
 typedef unsigned char u8;
 typedef signed short s16;

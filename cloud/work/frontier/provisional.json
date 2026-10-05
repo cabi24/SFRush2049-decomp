@@ -46,5 +46,13 @@
  "camera_track_spline": {
   "evidence": "cloud/work/frontier/w2c/camera_track_spline",
   "note": "wave 2: strict MATCH with a stand-in caller; only caller camera_update is unmatched"
+ },
+ "func_800B0EA0": {
+  "evidence": "cloud/work/ipa-groups/dot_palette_generation_20261005",
+  "note": "PR #87: strict MATCH as an internal callee with its real caller sound_bank_unload, which is 262/312 words off; closes when the caller matches"
+ },
+ "func_8010A7A4": {
+  "evidence": "cloud/work/ipa-groups/dot_menu_row_caller_20261005",
+  "note": "PR #88: strict MATCH (own literal verified) as a register-parameter callee with its real caller func_8010A8D0, which is 367/375 words off"
  }
 }
