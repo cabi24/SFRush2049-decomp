@@ -166,7 +166,24 @@ void func_800174D0(SequenceNode *node)
     D_8004BE80->pending = node;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80017540.s")
+/* PROMOTED 2026-10-05 — func_80017540
+ * Source:   cloud/work/boot_tail_promotion/wave3_sequence_sources/func_80017540.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/wave3_sequence_sources/func_80017540.c:func_80017540 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3_seq.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_80017540(void)
+{
+    SequenceNode *entry;
+    SequenceNode *next;
+    entry = D_8004BE80->pending;
+    while (entry != 0) {
+        next = entry->next;
+        if (func_800201D0(entry->identifier) == 0xFFFFFFFFU) func_80017470(entry);
+        entry = next;
+    }
+}
+
 /* PROMOTED 2026-10-04 — func_800175A8
  * Source:   cloud/matches/boot_tail/func_800175A8.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -211,12 +228,70 @@ u32 func_80017644(u32 identifier)
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80018448.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80018634.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_8001897C.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80018A30.s")
+/* PROMOTED 2026-10-05 — func_80018A30
+ * Source:   cloud/work/boot_tail_promotion/wave3_sequence_sources/func_80018A30.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/wave3_sequence_sources/func_80018A30.c:func_80018A30 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3_seq.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_80018A30(void)
+{
+    if (D_8004BE80->timingStartF68) {
+        while (D_8004BE80->currentF6C->time != 0xFFFFFFFFU) {
+            if (D_8004BE80->highF74 + D_8004BE80->half120 <
+                D_8004BE80->currentF6C->time) break;
+            func_80019A60(D_8004BE80->rate124 =
+                D_8004BE80->currentF6C->value, D_8004BE78);
+            D_8004BE80->currentF6C++;
+        }
+    }
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80018AEC.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80018B3C.s")
+/* PROMOTED 2026-10-05 — func_80018B3C
+ * Source:   cloud/work/boot_tail_promotion/wave3_sequence_sources/func_80018B3C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/wave3_sequence_sources/func_80018B3C.c:func_80018B3C (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3_seq.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_80018B3C(unsigned int value)
+{
+    if (D_8004BE80->timingStartF68) {
+        D_8004BE80->currentF6C = D_8004BE80->timingStartF68;
+        D_8004BE80->highF74 = value;
+        D_8004BE80->lowF70 = 0;
+        func_80018A30();
+        func_8001897C();
+    }
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80018B8C.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80018BEC.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80018C2C.s")
+/* PROMOTED 2026-10-05 — func_80018C2C
+ * Source:   cloud/work/boot_tail_promotion/wave3_sequence_sources/func_80018C2C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/wave3_sequence_sources/func_80018C2C.c:func_80018C2C (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3_seq.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_80018C2C(unsigned int identifier)
+{
+    identifier = func_80017644(identifier);
+    if (identifier != 0xFFFFFFFFU) {
+        if ((identifier & 0x80000000U) == 0) {
+            if (D_80043EB8[identifier].activeFC0 && !D_80043EB8[identifier].inactiveFC1) {
+                D_80043EB8[identifier].activeFC0 = 0;
+                func_8001734C(&D_80043EB8[identifier]);
+                func_8001729C(&D_80043EB8[identifier]);
+            }
+        } else {
+            identifier &= 0x7FFFFFFFU;
+            if (D_80043EB8[identifier].activeFC0 && !D_80043EB8[identifier].inactiveFC1) {
+                D_80043EB8[identifier].flagsFEE |= 8;
+            }
+        }
+    }
+}
+
 /* PROMOTED 2026-10-04 — func_80018D00
  * Source:   cloud/matches/boot_tail/func_80018D00.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -236,7 +311,32 @@ void func_80018D00(unsigned int identifier)
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80018D40.s")
+/* PROMOTED 2026-10-05 — func_80018D40
+ * Source:   cloud/work/boot_tail_promotion/wave3_sequence_sources/func_80018D40.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/wave3_sequence_sources/func_80018D40.c:func_80018D40 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3_seq.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_80018D40(unsigned int identifier)
+{
+    identifier = func_80017644(identifier);
+    if (identifier != 0xFFFFFFFFU) {
+        if ((identifier & 0x80000000U) == 0) {
+            if (D_80043EB8[identifier].activeFC0 && !D_80043EB8[identifier].inactiveFC1) {
+                D_80043EB8[identifier].activeFC0 = 0;
+                func_8001734C(&D_80043EB8[identifier]);
+                func_8001729C(&D_80043EB8[identifier]);
+            }
+            D_80043EB8[identifier].inactiveFC1 = 1;
+        } else {
+            identifier &= 0x7FFFFFFFU;
+            if (D_80043EB8[identifier].activeFC0 && !D_80043EB8[identifier].inactiveFC1) {
+                D_80043EB8[identifier].pendingFF0 = 0;
+            }
+        }
+    }
+}
+
 /* PROMOTED 2026-10-04 — func_80018E2C
  * Source:   cloud/matches/boot_tail/func_80018E2C.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -329,7 +429,44 @@ void func_80019144(unsigned int identifier, unsigned int first, unsigned int sec
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80019194.s")
+/* PROMOTED 2026-10-05 — func_80019194
+ * Source:   cloud/work/boot_tail_promotion/wave3_sequence_sources/func_80019194.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/wave3_sequence_sources/func_80019194.c:func_80019194 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3_seq.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_80019194(unsigned char channel,unsigned short duration,unsigned int identifier,unsigned char flags)
+{
+    unsigned int original;
+    int i;
+    original=identifier;
+    identifier=func_80017644(identifier);
+    if (identifier != 0xFFFFFFFFU) {
+        if (!(identifier & 0x80000000U)) {
+            func_8001B9F8(channel,duration,D_80043EB8[identifier].channelFC4,flags,original);
+            for (i=0;i<64;i++) {
+                if (D_80043EB8[identifier].channels528[i] != D_80043EB8[identifier].channelFC4) {
+                    func_8001B9F8(channel,duration,D_80043EB8[identifier].channels528[i],0,0);
+                }
+            }
+        } else {
+            identifier &= 0x7FFFFFFFU;
+            switch (flags & 15) {
+            case 0: D_80043EB8[identifier].valueFE0=channel; break;
+            case 1: D_80043EB8[identifier].pendingFF0=0; break;
+            case 2:
+                D_80043EB8[identifier].valueFE0=channel;
+                D_80043EB8[identifier].flagsFEE |= 8;
+                break;
+            case 3:
+                D_80043EB8[identifier].valueFE0=channel;
+                D_80043EB8[identifier].flagsFEE |= 128;
+                break;
+            }
+        }
+    }
+}
+
 /* PROMOTED 2026-10-04 — func_80019370
  * Source:   cloud/matches/boot_tail/func_80019370.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -366,5 +503,39 @@ void func_80019850(void *state, unsigned int *result)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_8001989C.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_800198C8.s")
+/* PROMOTED 2026-10-05 — func_800198C8
+ * Source:   cloud/work/boot_tail_promotion/wave3_sequence_sources/func_800198C8.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/wave3_sequence_sources/func_800198C8.c:func_800198C8 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3_seq.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_800198C8(void)
+{
+    int i;
+    unsigned char first, second, third;
+    if (D_8004F808) {
+        for (i = 0; i < 8; i++) {
+            if (D_80043EB8[i].activeFC0) {
+                D_8004BE80 = &D_80043EB8[i];
+                D_8004BE78 = i;
+                D_8004BE7C = func_8001BDB8(D_80043EB8[i].channelFC4);
+                func_80018A30();
+                func_8001897C();
+                func_80018AEC();
+                first = func_80018634();
+                second = func_80017D38();
+                func_8001824C();
+                func_80018448();
+                func_800180A0();
+                third = func_80018184();
+                func_80017540();
+                if (!first && !second && !third) {
+                    D_80043EB8[i].activeFC0 = 0;
+                    D_80043EB8[i].inactiveFC1 = 1;
+                }
+            }
+        }
+    }
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_800199F4.s")
