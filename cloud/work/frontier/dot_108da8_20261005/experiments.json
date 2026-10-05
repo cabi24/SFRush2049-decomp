@@ -1,0 +1,23 @@
+{
+  "archived_directbool": {
+    "differing": 88,
+    "total": 102,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "source": "cloud/work/heads_B13/func_80108DA8_directbool.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+  },
+  "hidden_ordinary_count": {
+    "differing": 88,
+    "total": 102,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "derived_from": "candidate.c with D_801543CA declared ordinary s16",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "elf_function_bytes": 404
+  }
+}

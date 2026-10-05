@@ -1,0 +1,22 @@
+{
+  "base": "cc4d5fdd0bbc42dbf6be49f00d9454af8cb9c4f5",
+  "owner": "dot/match-108da8-20261005",
+  "checked_at": "2026-10-05T20:14:00Z",
+  "function": "func_80108DA8",
+  "start": "0x80108DA8",
+  "end": "0x80108F40",
+  "bytes": 408,
+  "transferred_from": "dot/blit-family-neighbors-20261005",
+  "checks": [
+    "fresh origin/master",
+    "current blob lock",
+    "heads_B13 source and report",
+    "live previous owner confirmed transfer"
+  ],
+  "new_evidence": "Authentic arcade hud.c Hidden helper with real signed-byte Hide, reused inline at both call sites.",
+  "excluded": [
+    "func_800EF62C",
+    "stat_race_update",
+    "func_80087110"
+  ]
+}
