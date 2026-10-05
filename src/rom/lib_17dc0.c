@@ -311,7 +311,23 @@ void func_80018B3C(unsigned int value)
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80018B8C.s")
+/* PROMOTED 2026-10-05 — func_80018B8C
+ * Source:   cloud/work/boot_tail_promotion/wave4_sources/func_80018B8C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/wave4_sources/func_80018B8C.c:func_80018B8C (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave4_hoisted.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern unsigned char D_8002C630;
+unsigned short func_80018B8C(unsigned int identifier)
+{
+    unsigned int index;
+    if (D_8002C630) {
+        index = func_80017644(identifier);
+        if (index != 0xFFFFFFFF && (index & 0x80000000) == 0) return D_80043EB8[index].valueFC6;
+    }
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80018BEC.s")
 /* PROMOTED 2026-10-05 — func_80018C2C
  * Source:   cloud/work/boot_tail_promotion/wave3_sequence_sources/func_80018C2C.c (in-repo, locked)
@@ -413,7 +429,25 @@ void func_80018E6C(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80018EB4.s")
+/* PROMOTED 2026-10-05 — func_80018EB4
+ * Source:   cloud/work/boot_tail_promotion/wave4_sources/func_80018EB4.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/wave4_sources/func_80018EB4.c:func_80018EB4 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave4_hoisted.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+int func_80018EB4(unsigned int identifier, unsigned char enabled)
+{
+    unsigned int index;
+    if (D_8002C630) {
+        index = func_80017644(identifier);
+        if (index != 0xFFFFFFFF && (index & 0x80000000) == 0) {
+            D_80043EB8[index].disabledFC5 = !enabled;
+            return 1;
+        }
+    }
+    return 0;
+}
+
 /* PROMOTED 2026-10-05 — func_80018F20
  * Source:   cloud/work/boot_tail_promotion/wave4_sources/func_80018F20.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

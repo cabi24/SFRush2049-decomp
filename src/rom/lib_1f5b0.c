@@ -11,7 +11,34 @@ typedef struct SequenceNode { struct SequenceNode *next; struct SequenceNode *pr
 #pragma pack(0)
 typedef struct ChannelLink_8001EE9C { u8 previous, next; u16 active; } ChannelLink_8001EE9C;
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1f5b0/func_8001E9B0.s")
+/* PROMOTED 2026-10-05 — func_8001E9B0
+ * Source:   cloud/work/boot_tail_promotion/wave4_sources/func_8001E9B0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/wave4_sources/func_8001E9B0.c:func_8001E9B0 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave4_hoisted.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+extern unsigned int D_80050A4C;
+extern SequenceNode D_80050A50[32];
+extern SequenceNode *D_80050C50;
+extern SequenceNode *D_80050C54;
+void func_8001E9B0(void)
+{
+    SequenceNode *previous;
+    int i;
+    D_80050A4C = 0;
+    D_80050C50 = 0;
+    D_80050C54 = D_80050A50;
+    previous = 0;
+    for (i = 0; i < 32; i++) {
+        D_80050A50[i].previous = previous;
+        if (previous != 0) previous->next = &D_80050A50[i];
+        previous = &D_80050A50[i];
+    }
+    previous->next = 0;
+}
+
 /* PROMOTED 2026-10-04 — func_8001EAA0
  * Source:   cloud/matches/boot_tail/func_8001EAA0.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -147,7 +174,28 @@ int func_8001EDF4(u32 key)
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1f5b0/func_8001EE34.s")
+/* PROMOTED 2026-10-05 — func_8001EE34
+ * Source:   cloud/work/boot_tail_promotion/wave4_sources/func_8001EE34.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/wave4_sources/func_8001EE34.c:func_8001EE34 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave4_hoisted.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern u8 D_8004FA18;
+extern ChannelLink_8001EE9C D_800504C8[32];
+extern u8 D_80050548[256];
+extern u16 D_80050A48;
+void func_8001EE34(void)
+{
+    u32 i;
+    for (i = 0; i < D_8004FA18; i++) {
+        D_800504C8[i].active = 0;
+    }
+    for (i = 0; i < 256; i++) {
+        D_80050548[i] = 255;
+    }
+    D_80050A48 = 65535;
+}
+
 /* PROMOTED 2026-10-04 — func_8001EE9C
  * Source:   cloud/work/boot_tail_promotion/sources/func_8001EE9C.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

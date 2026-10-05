@@ -93,7 +93,43 @@ void func_80025150(void)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_25bb0/func_8002517C.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_25bb0/func_800251A8.s")
+/* PROMOTED 2026-10-05 — func_800251A8
+ * Source:   cloud/work/boot_tail_promotion/wave4_sources/func_800251A8.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/wave4_sources/func_800251A8.c:func_800251A8 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave4_hoisted.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern StreamState_80025264 D_80056230[2];
+extern unsigned int D_80058680;
+unsigned int func_800251A8(int selected)
+{
+    StreamState_80025264 *stream;
+    int i;
+
+    for (;;) {
+        for (i = 0; i < 2; i++) {
+            stream = &D_80056230[i];
+            if (stream->busy && i != selected && stream->token == D_80058680) {
+                break;
+            }
+        }
+        if (i == 2) {
+            break;
+        }
+        D_80058680++;
+        if (D_80058680 == (unsigned int)-1) {
+            D_80058680 = 0;
+        }
+    }
+    stream = &D_80056230[selected];
+    stream->token = D_80058680;
+    D_80058680++;
+    if (D_80058680 == (unsigned int)-1) {
+        D_80058680 = 0;
+    }
+    return stream->token;
+}
+
 /* PROMOTED 2026-10-04 — func_80025264
  * Source:   cloud/work/boot_tail_promotion/sources/func_80025264.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -294,7 +330,46 @@ float func_800259A8(unsigned int token, float *value)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_25bb0/func_80025AB4.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_25bb0/func_80025C68.s")
+/* PROMOTED 2026-10-05 — func_80025C68
+ * Source:   cloud/work/boot_tail_promotion/wave4_sources/func_80025C68.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/wave4_sources/func_80025C68.c:func_80025C68 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave4_hoisted.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern void *D_8005868C;
+extern void *D_80058698[2];
+extern void (*D_80038024)(void);
+extern void func_80025EB0(StreamState_80025264 *, void *, void *, unsigned int, void (*)(void *, void *, unsigned int, OSMesgQueue *));
+extern void func_80024FB0(StreamState *);
+extern void func_800250AC(void);
+extern unsigned int func_8001C770(unsigned int);
+extern void osInvalDCache(void *, int);
+extern void func_8002574C(void);
+void func_80025C68(unsigned int flags)
+{
+    int i;
+    unsigned int size;
+
+    D_800586A0 = flags;
+    D_8005868C = 0;
+    for (i = 0; i < 2; i++) {
+        func_80025EB0(&D_80056230[i], 0, 0, 0, 0);
+        func_80024FB0((StreamState *)&D_80056230[i]);
+        D_80056230[i].busy = 0;
+    }
+    func_800250AC();
+    if (D_800586A0 & 1) {
+        size = func_8001C770(4320);
+        for (i = 0; i < 2; i++) {
+            D_80058698[i] = D_80038000.allocate(size, 0);
+            osInvalDCache(D_80058698[i], size);
+        }
+    }
+    D_80038024 = func_8002574C;
+    D_8002D480[0] = 1;
+    D_80058680 = 0;
+}
+
 /* PROMOTED 2026-10-05 — func_80025D84
  * Source:   cloud/work/boot_tail_promotion/wave4_sources/func_80025D84.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
