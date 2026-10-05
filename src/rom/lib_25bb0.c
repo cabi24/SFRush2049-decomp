@@ -292,5 +292,59 @@ float func_800259A8(unsigned int token, float *value)
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_25bb0/func_80025AB4.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_25bb0/func_80025C68.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_25bb0/func_80025D84.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_25bb0/func_80025DC0.s")
+/* PROMOTED 2026-10-05 — func_80025D84
+ * Source:   cloud/work/boot_tail_promotion/wave4_sources/func_80025D84.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/wave4_sources/func_80025D84.c:func_80025D84 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave4_adapted.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_80025D84(void)
+{
+    int i;
+
+    do {
+        for (i = 0; i < 2; i++) {
+            if (D_80056230[i].busy != 0) {
+                break;
+            }
+        }
+    } while (i != 2);
+}
+
+/* PROMOTED 2026-10-05 — func_80025DC0
+ * Source:   cloud/work/boot_tail_promotion/wave4_sources/func_80025DC0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/wave4_sources/func_80025DC0.c:func_80025DC0 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave4_adapted.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern unsigned char D_8002D484;
+extern void (*D_80038024)(void);
+extern void *D_8005868C;
+extern void *D_80058698[2];
+extern void func_80025D84(void);
+extern void func_80014594(void);
+extern void func_8001061C(void);
+extern void func_800145DC(void);
+void func_80025DC0(void)
+{
+    int i;
+
+    for (i = 0; i < 2; i++) {
+        func_800254D4(i);
+    }
+    func_80025D84();
+    D_8002D480[0] = 0;
+    func_80014594();
+    D_80038024 = 0;
+    func_8001061C();
+    func_800145DC();
+    if (D_8005868C && D_8002D484) {
+        D_80038000.release(D_8005868C);
+    }
+    if (D_800586A0 & 1) {
+        for (i = 0; i < 2; i++) {
+            D_80038000.release(D_80058698[i]);
+        }
+    }
+}
+
