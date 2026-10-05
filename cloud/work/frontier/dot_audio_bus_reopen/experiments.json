@@ -1,0 +1,37 @@
+{
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "variants": [
+    {
+      "variant": "A91 baseline",
+      "differing": 167,
+      "total": 180
+    },
+    {
+      "variant": "three setter bodies",
+      "differing": 170,
+      "total": 180
+    },
+    {
+      "variant": "data_last",
+      "differing": 167,
+      "total": 180
+    },
+    {
+      "variant": "data_second",
+      "differing": 167,
+      "total": 180
+    },
+    {
+      "variant": "data_first",
+      "differing": 167,
+      "total": 180
+    },
+    {
+      "variant": "no_resource_alias",
+      "differing": 141,
+      "total": 180
+    }
+  ],
+  "limit": "Six source-derived forms; no unused fourth formal variant. Original baseline and current best sources are retained; intermediate build outputs are local only."
+}
