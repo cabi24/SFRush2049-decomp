@@ -1,0 +1,346 @@
+{
+  "aggregate_tests": {
+    "all_failure_identities_and_messages_equal_untouched_base_replays": true,
+    "command": "REQUIRE_TOOLCHAIN=1 python3 -m pytest -o addopts='' tests/conveyor tests/cloud -q -rs -m 'not node_required'",
+    "deselected": 9,
+    "duration_seconds": 323.04,
+    "failures": 17,
+    "failures_include_subtest_failures": 2,
+    "passed": 1984,
+    "skip_breakdown": {
+      "missing_MIPS_cross_GCC": 9,
+      "missing_SDK_ROM_or_generated_inputs": 32
+    },
+    "skipped": 41,
+    "status": "FAILED on reproduced baseline cases; no repair-related failure",
+    "subtests_passed": 25,
+    "summary": "17 failed, 1984 passed, 41 skipped, 9 deselected, 25 subtests passed"
+  },
+  "base_commit": "cf10b3392d7f00ae42d75c008b79fdc2541aab6b",
+  "baseline_failure_control": {
+    "additional_builder_subtest_control": {
+      "failed_subtests": [
+        "Input_ApplyPadConfig.c",
+        "audio_queue_process.c"
+      ],
+      "reason": "Unchanged inline prose in source flag comments is passed to IDO as options, causing compile failure.",
+      "revision": "cf10b3392d7f00ae42d75c008b79fdc2541aab6b",
+      "source_or_tool_fix_applied": false,
+      "summary": "2 failed, 1 passed, 22 subtests passed",
+      "test": "tests/cloud/test_builder.py::Validate::test_matches_agree_with_score_py"
+    },
+    "failed": 15,
+    "names": [
+      "camera_blend_between",
+      "camera_update_d",
+      "display_settings",
+      "func_8008B3F4",
+      "func_800DE860",
+      "func_800E114C",
+      "func_800E23A4",
+      "func_800E5D64",
+      "func_800EC270",
+      "func_80106D94",
+      "race_setup_1",
+      "race_setup_2",
+      "random_float",
+      "track_select_handler",
+      "vector_normalize_length"
+    ],
+    "passed": 0,
+    "result": "Same fifteen tests fail on an untouched base worktree with unverified section-relative non-text relocations. Their source and scorer inputs are unchanged. No fixes applied.",
+    "revision": "cf10b3392d7f00ae42d75c008b79fdc2541aab6b",
+    "selected_test": "tests/conveyor/test_cloud_score.py::test_locked_single_function_is_strict_match",
+    "total_reproduced_failure_results": 17
+  },
+  "candidate_scope_control": {
+    "auxiliary_audio_cleanup_excluded_from_candidate_count": true,
+    "original_type_conflict_refusals": 53,
+    "remaining_unique_candidates": 41,
+    "result": "Independent integration review confirmed exact candidate-set equality.",
+    "separate_PR82_candidates": 12,
+    "target_bytes": 8192
+  },
+  "coexistence_with_PR82": {
+    "C_bodies": 39,
+    "PR82_required_by_standard_tests": false,
+    "PR82_source_files_copied": false,
+    "candidate_handlers_from_this_packet": 8,
+    "command": "python3 cloud/work/boot_tail_promotion/macro_stream_contracts/verify_pr82.py /path/to/verified-pr82-checkout",
+    "fresh_receipt_equals_recorded": true,
+    "macro_wrappers_from_PR82": 8,
+    "previously_accepted_C_bodies": 20,
+    "published_head": "93e3bfa045d3be597b7c27ccced3981a78c6858f",
+    "published_tree": "13eb95cbe593611c823dfa3e05a9226cc9c0d1bd",
+    "queue_wrappers_from_PR82": 3,
+    "receipt": "cloud/work/boot_tail_promotion/macro_stream_contracts/pr82_coexistence.json",
+    "remote_tree_verified": true,
+    "url": "https://github.com/cabi24/SFRush2049-decomp/pull/82"
+  },
+  "focused_tests": {
+    "command": "REQUIRE_TOOLCHAIN=1 python3 -m pytest -o addopts='' -q tests/cloud/test_audio_record_contracts.py tests/cloud/test_sequence_context_contract.py tests/cloud/test_sample_buffer_contract.py tests/conveyor/test_voice_list_promotion.py tests/cloud/test_macro_stream_contracts.py",
+    "duration_seconds": 31.28,
+    "failed": 0,
+    "passed": 64,
+    "skipped": 0
+  },
+  "independent_packet_reviews": {
+    "audio": {
+      "anonymous_union_boundary": {
+        "compiler_boundary": "Pinned IDO anonymous-union extension with expected warning",
+        "field_aliases": [
+          "initial_count",
+          "value20"
+        ],
+        "independent_integration_review": "PASS; fresh native layout probe, 11 tests, identical receipt and 75-slot scorer-independent comparison",
+        "native_evidence": "func_80011A10 reads and func_800148F8 writes the same unsigned halfword; no added field storage",
+        "record_size": "0x68",
+        "same_native_u16_offset": "0x20"
+      },
+      "evidence_sha256": "79d5554ed66fb475982a28bdb6583ca0dfdf877d9e540b84a4df1579005b89ec",
+      "final_focused_tests": 11,
+      "result": "PASS; anonymous-union extension boundary is separately addressed by final integration review",
+      "source_commit": "800021f1cf43d11f78987f735e101db407936102"
+    },
+    "macro_stream": {
+      "proof_commit": "86a7880fc54f5952592efbfd06bc70a6b2243553",
+      "result": "PASS; final change corrects only documented offset count",
+      "source_commit": "54e808ef023bc2cc1201f11f66bc406f7385e764"
+    },
+    "sample": {
+      "result": "PASS",
+      "source_commit": "42ede2697ce8d2bb9eee3ac5b86889f183c3e78f"
+    },
+    "sequence": {
+      "result": "PASS",
+      "source_commit": "8745a41abb69ec8a25134d950b75e51994f1f4aa"
+    },
+    "voice": {
+      "result": "PASS",
+      "source_commit": "3e547e9a937fed8c8378b7fbb917d79dfabfdbbb"
+    }
+  },
+  "invariants": {
+    "changed_cloud_submissions_selected": 0,
+    "git_diff_check": "PASS",
+    "protected_path_guard": "PASS",
+    "protected_targets_symbols_context_locks_flags_scorer_unchanged": true,
+    "published_content": "UTF-8 source, tests, research and numerical/hash verification notes only",
+    "selector_note": "Adapted promotion paths are not selected; explicit tests above supply the regression coverage. Zero selected submissions is not a match result.",
+    "static_body_locks_intact": 383
+  },
+  "limitations": [
+    "The two voice/list assembly bodies 8001B9F8 and 8001BE14 preserve baseline bytes and symbolic relocations but reference aliases absent from protected scorer symbols; no new fully relocated proof for those untouched bodies is claimed.",
+    "Macro/stream passthrough and padding preservation is a raw-byte baseline comparison, not new relocated-target proof for unrelated assembly jump-table bodies.",
+    "The stream overlay reports a changed .reginfo register-mask hash, retaining metadata size, GP value, full raw text and empty allocated C data payload.",
+    "Six voice proof whole-object hashes vary because .mdebug records absolute temporary source filenames. Stable source, extents, relocated-body and target evidence matches exactly.",
+    "Emitter 8001DDE0 retains genuinely uninitialized outputs and the established qualified domain. Producer/listener invariants excluding unsafe paths remain unproved.",
+    "The full-ROM gate was not run; source preparation and TU proof are not production promotion or cartridge coverage."
+  ],
+  "maintainer_gates": {
+    "accepted_audio_cleanup_relock_for_80013964": [
+      "func_8001144C"
+    ],
+    "accepted_sequence_body_relocks": [
+      "func_8001729C",
+      "func_8001734C",
+      "func_800173B4",
+      "func_80017410",
+      "func_80017470",
+      "func_800174D0"
+    ],
+    "fresh_objects_and_complete_ROM_SHA1_required": true,
+    "merge_owner": "independent checker",
+    "migrate_candidate_locks_through_approved_process": true,
+    "refresh_adapted_source_and_context_evidence": true
+  },
+  "packet_receipt_replays": [
+    {
+      "candidate_count": 12,
+      "candidate_target_bytes": 1500,
+      "exact_receipt_equality": true,
+      "fresh_receipt_sha256": "79d5554ed66fb475982a28bdb6583ca0dfdf877d9e540b84a4df1579005b89ec",
+      "packet": "audio_record_contracts",
+      "previously_accepted_C_bodies": 35,
+      "receipt": "cloud/work/boot_tail_promotion/audio_record_contracts/verification.json",
+      "recorded_receipt_sha256": "79d5554ed66fb475982a28bdb6583ca0dfdf877d9e540b84a4df1579005b89ec",
+      "run_specific_object_hashes": [],
+      "stable_verification_evidence_equal": true
+    },
+    {
+      "candidate_count": 7,
+      "candidate_target_bytes": 1596,
+      "exact_receipt_equality": true,
+      "fresh_receipt_sha256": "9b7069a141f3a7cc6226fe9a6d20c808237cfcd8ecd097f6e3ff99de3205c4bf",
+      "packet": "sequence_context_contract",
+      "previously_accepted_C_bodies": 16,
+      "receipt": "cloud/work/boot_tail_promotion/sequence_context_contract/verification.json",
+      "recorded_receipt_sha256": "9b7069a141f3a7cc6226fe9a6d20c808237cfcd8ecd097f6e3ff99de3205c4bf",
+      "run_specific_object_hashes": [],
+      "stable_verification_evidence_equal": true
+    },
+    {
+      "candidate_count": 8,
+      "candidate_target_bytes": 1900,
+      "exact_receipt_equality": false,
+      "fresh_receipt_sha256": "35835269d5d452c743597c0e499daaaf758c9ed655834a89e63224397c04e7cb",
+      "packet": "voice_lists",
+      "previously_accepted_C_bodies": 14,
+      "receipt": "cloud/work/boot_tail_promotion/voice_lists/verification.json",
+      "recorded_receipt_sha256": "abdc993ab92683e6e0f8fc942aec650db3cefbbe42a3c0cdc78795a882dceb51",
+      "run_specific_object_hashes": [
+        {
+          "field": "translation_units/lib_1a660/object_sha256/baseline",
+          "fresh": "d5ef25ebe8431f10161c8d54e078b73b2970d7f8f82840046d39553ef59b6b20",
+          "recorded": "ce54b1063440294cb43cdd90ab173494a3b1e0a22d1e61040a35847fc4de33bb"
+        },
+        {
+          "field": "translation_units/lib_1a660/object_sha256/combined",
+          "fresh": "29715eda3e6690d00d0ee0ed205a64aadaa8c40b3b5b0e87969af24242d7fbf0",
+          "recorded": "e4a5c02b51382e730f7834827c52b54bd684993b80f3034da880928bfb4006f6"
+        },
+        {
+          "field": "translation_units/lib_1a660/object_sha256/current",
+          "fresh": "16f88e8d6bf986bb3d0c395a1edad23c53e7609422b9ca35720cdcfda46959fd",
+          "recorded": "b20b0f590a178ab778bb75612bb41e74ac97972ff59361c784dfaf91aeb3ac59"
+        },
+        {
+          "field": "translation_units/lib_1f5b0/object_sha256/baseline",
+          "fresh": "0776f829eaad8ada7f6d7e0ae43e235e69d70cd6f5cb0e15a5da3934798092cf",
+          "recorded": "dd3672794076d73f37177d759a0750f273a4dc598dde233de9ef4afae67bc059"
+        },
+        {
+          "field": "translation_units/lib_1f5b0/object_sha256/combined",
+          "fresh": "93a7a7daf290cb5c0b7ef79757b77740b18ae07daed8a2beca3ff14876faf506",
+          "recorded": "df2ee89fb6ff182d54dda7da4f217dd9c3bc084da48b2f1540d27293b0b1b94c"
+        },
+        {
+          "field": "translation_units/lib_1f5b0/object_sha256/current",
+          "fresh": "c987da8dac94a8a7df48d1a92cb6b5be3d9dbb08df26044e5c0a1ed5ee5d2fe7",
+          "recorded": "96a1350c4f86a2ce791345f573d0bc164e27b908c2c435ff5d3770c894758107"
+        }
+      ],
+      "stable_verification_evidence_equal": true
+    },
+    {
+      "candidate_count": 6,
+      "candidate_target_bytes": 1356,
+      "exact_receipt_equality": true,
+      "fresh_receipt_sha256": "50c6f7a75cdce7900a90587734427fc28071b42d02c1e838e78f13c31b5631c3",
+      "packet": "sample_buffer_contract",
+      "previously_accepted_C_bodies": 18,
+      "receipt": "cloud/work/boot_tail_promotion/sample_buffer_contract/verification.json",
+      "recorded_receipt_sha256": "50c6f7a75cdce7900a90587734427fc28071b42d02c1e838e78f13c31b5631c3",
+      "run_specific_object_hashes": [],
+      "stable_verification_evidence_equal": true
+    },
+    {
+      "candidate_count": 8,
+      "candidate_target_bytes": 1840,
+      "exact_receipt_equality": true,
+      "fresh_receipt_sha256": "e6ce6acd513f002c73af6380c38dcfddbd1a2072dbda460aef3558dd684061a8",
+      "packet": "macro_stream_contracts",
+      "previously_accepted_C_bodies": 20,
+      "receipt": "cloud/work/boot_tail_promotion/macro_stream_contracts/verification.json",
+      "recorded_receipt_sha256": "e6ce6acd513f002c73af6380c38dcfddbd1a2072dbda460aef3558dd684061a8",
+      "run_specific_object_hashes": [],
+      "stable_verification_evidence_equal": true
+    }
+  ],
+  "schema_version": 1,
+  "scope": {
+    "C_bodies_in_final_overlays": 144,
+    "actual_translation_units": 8,
+    "candidate_target_bytes": 8192,
+    "full_ROM_SHA1_gate": "NOT RUN; maintainer controlled",
+    "matching_credit_added": 0,
+    "previously_accepted_C_bodies": 103,
+    "production_promotions": 0,
+    "remote_builder_used": false,
+    "source_contract_repairs": 41
+  },
+  "source_packet_file_sha256": {
+    "cloud/work/boot_tail_promotion/audio_record_contracts/README.md": "2ad9e5c04ae4992c33dc4052b900f6a6e9479385249725fbf20f91229c6bfdaa",
+    "cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80010D74.c": "2ad5feba00fa56798e8c8f17a58d6065703e9f2b314852d55c1179e50bb9167d",
+    "cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_8001144C.c": "efa57c23220363ebd97850f578f06ef6f069e55905ed3fc553d69ecd67ea7991",
+    "cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80011894.c": "da016cd1876e761680bbaec95aafd16202eafdbc59a20d2e20c9e147771e7b76",
+    "cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80011C84.c": "0c730829242cc1f3fe19cea8cbe8a642eda04a64a472df8a7a1ce9742c924b6b",
+    "cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80013964.c": "5ba4db213625d0015cc2690d96d0180e58ce41ddb7f25b645cf0027380545056",
+    "cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80013C84.c": "6706f0fca1503100d88c0537656306058ee8c9133b401c20ceb401f27e890156",
+    "cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_800146B4.c": "604a7e863b6eab752341ac9bb801a3b6f65f26c74e7982c92b65facd2feb4897",
+    "cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_800149DC.c": "f4c5e8a5e5ee521d3b12c5a60decc25bff8bace0da8871ece28be9fd4c850a35",
+    "cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014A74.c": "48602bcc164d7f59750d8e384c60dfbff6328f347da91fdf16fb737dafa49ecc",
+    "cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014AF0.c": "5302fb6b574c5412814c5dd97da8fcc437b1f87e62977d48569ca7737e725afb",
+    "cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014B3C.c": "7ce4c9ef4c1bd28b7a63d60445d975f409dcfba274360d15e6d51ff604989f48",
+    "cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014BB0.c": "9ded6b9ac4ef46685c89688c17695bb8cf2e7e2e836d99aaeb3603e1455ef882",
+    "cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014C18.c": "0b2bceecd1606aedda74bd878060032e6f515ebd12ab1261676edfd3a32389f4",
+    "cloud/work/boot_tail_promotion/audio_record_contracts/verification.json": "79d5554ed66fb475982a28bdb6583ca0dfdf877d9e540b84a4df1579005b89ec",
+    "cloud/work/boot_tail_promotion/audio_record_contracts/verify.py": "cca9e5761742127716473913c13a8750d7e4ff9d5e9368e52cf17746e052c678",
+    "cloud/work/boot_tail_promotion/macro_stream_contracts/README.md": "093c14ea56fe0082093678c656783d4b744bd9c9a79050e6ba8b3e35683db217",
+    "cloud/work/boot_tail_promotion/macro_stream_contracts/host_macro.c": "7bd355d7553fb0ac15399364ff30d919af5c9d5b560cdf99d3b580af6163e072",
+    "cloud/work/boot_tail_promotion/macro_stream_contracts/host_stream.c": "e1e1c58145a0debef35fc855d74351124c86f79e470791018b309321fdb73f51",
+    "cloud/work/boot_tail_promotion/macro_stream_contracts/pr82_coexistence.json": "ccf8ef147324f4e24aaa9e06397443a95c8e8fdb51882ffcbe061a1d9f3ea9df",
+    "cloud/work/boot_tail_promotion/macro_stream_contracts/sources/func_80021BF0.c": "f3a09660b9e18f3d860780ef435561ad1d4c4f0be5dbd8e37610f6edf308bc70",
+    "cloud/work/boot_tail_promotion/macro_stream_contracts/sources/func_800225FC.c": "ee2ce15b65e94313529ac4f6baabc5045dfccb8b25d125bfa5fc5b9654b1c5f8",
+    "cloud/work/boot_tail_promotion/macro_stream_contracts/sources/func_80022678.c": "3b23c4e357bd670a225e08ea9545f1352b06c1a2f9c20506e801e3ac578af549",
+    "cloud/work/boot_tail_promotion/macro_stream_contracts/sources/func_80023520.c": "1601484603e7cccc4583173d3811069b838704c70f17eab03dc208bef7193faa",
+    "cloud/work/boot_tail_promotion/macro_stream_contracts/sources/func_800254D4.c": "7c8a3c6cb35ba7722383faf22d2bca56ed5a4de233d59a760d329e4d7b4210d0",
+    "cloud/work/boot_tail_promotion/macro_stream_contracts/sources/func_80025670.c": "c78a0a82c3436de452c12d046ba0913d588d58259817eac7c20c0fce81ef64b6",
+    "cloud/work/boot_tail_promotion/macro_stream_contracts/sources/func_8002574C.c": "e54d0adf5f764f7c15658ed306e11c7dc4e5e79913699c3bec3ba2240fc5b952",
+    "cloud/work/boot_tail_promotion/macro_stream_contracts/sources/func_800259A8.c": "6d55c2e6b03c123c1a43142d149c33b4107e4e126de99de43a4780877a3608dd",
+    "cloud/work/boot_tail_promotion/macro_stream_contracts/verification.json": "e6ce6acd513f002c73af6380c38dcfddbd1a2072dbda460aef3558dd684061a8",
+    "cloud/work/boot_tail_promotion/macro_stream_contracts/verify.py": "b1ffc9406fc0c396a41df258b7bc9fd4dcda195a0d90189ac4a42de9113f5c9a",
+    "cloud/work/boot_tail_promotion/macro_stream_contracts/verify_pr82.py": "01f020468f827d1e70b765c9c080d301ef6fcccf22b2c8fedf939c895ae232b1",
+    "cloud/work/boot_tail_promotion/sample_buffer_contract/README.md": "b4e8ffc9bd323b4b2ced6c2cff84947043ab1ed0f293ec009e2acab5e1d8479a",
+    "cloud/work/boot_tail_promotion/sample_buffer_contract/replay_emitter.py": "523dafce54ebf72f171c585388661dc3318cebb58c22e81eceda4aec36aca8b3",
+    "cloud/work/boot_tail_promotion/sample_buffer_contract/verification.json": "50c6f7a75cdce7900a90587734427fc28071b42d02c1e838e78f13c31b5631c3",
+    "cloud/work/boot_tail_promotion/sample_buffer_contract/verify.py": "35e4c78bbb5d48de646c6808096cb7ae6d2b812fc288d490531435d8f8dc6d33",
+    "cloud/work/boot_tail_promotion/sequence_context_contract/README.md": "970994f9391d118c687b26589758b609bd2aea3396f85c9128ee396e92cd267f",
+    "cloud/work/boot_tail_promotion/sequence_context_contract/host_test.c": "d4cc913ccde1a2b840d1cbfe9cb67cff5d3050fc936a2b514b6eec9c1f0e958e",
+    "cloud/work/boot_tail_promotion/sequence_context_contract/layout_checks.c": "1e04e2513d0ae2f9b073c08ecb8403d406ab0d89dbccb6921b89d90fd8c4891f",
+    "cloud/work/boot_tail_promotion/sequence_context_contract/sequence_context.h": "839aa3970efaef05377b4c3e9260e584ca0faece8e89a6e7ba22ea51a098837a",
+    "cloud/work/boot_tail_promotion/sequence_context_contract/sources/func_80017540.c": "7766272964c864a92a6704e5d34ac1d12d6ff2b702bb27f0ac277b7015abf7b8",
+    "cloud/work/boot_tail_promotion/sequence_context_contract/sources/func_80018A30.c": "0be780acbba7263af7a6206d7f4ca76edaa63fadb55d257daeae87c2e0459b61",
+    "cloud/work/boot_tail_promotion/sequence_context_contract/sources/func_80018B3C.c": "79c8ec82cd0aca6291940f7676327d05751a076599143031326d5921ed50a743",
+    "cloud/work/boot_tail_promotion/sequence_context_contract/sources/func_80018C2C.c": "e4e2021aad115537b0f577ec3ae4cd0a2580678ab2312500a93d7462622683ba",
+    "cloud/work/boot_tail_promotion/sequence_context_contract/sources/func_80018D40.c": "27de12059ede832e3db84dbc62bc50f3c5d030568a94c42fde362c350838a601",
+    "cloud/work/boot_tail_promotion/sequence_context_contract/sources/func_80019194.c": "e2b1b26218d7e10476f896221e817cbcaa315cb852b7142f390de886beee9957",
+    "cloud/work/boot_tail_promotion/sequence_context_contract/sources/func_800198C8.c": "11032ff82d88d8d51a9957eeb21b7c9ab4da5ef6a9afb51ae45b119b7ba1fcd0",
+    "cloud/work/boot_tail_promotion/sequence_context_contract/verification.json": "9b7069a141f3a7cc6226fe9a6d20c808237cfcd8ecd097f6e3ff99de3205c4bf",
+    "cloud/work/boot_tail_promotion/sequence_context_contract/verify.py": "b1a12590d7101d189f17927f3d2c7ed10e56bef37a5c57c8b9079bb5b285d27b",
+    "cloud/work/boot_tail_promotion/sources/func_800163A8.c": "6eb40ea7d4a4debebeb3b23d010e93bfc31bedcfbf204668b3dd2440cc1fc973",
+    "cloud/work/boot_tail_promotion/sources/func_8001C508.c": "c34dc35ccd267398eb93274abb2b2f47275e403b00650e07d89466417a753e10",
+    "cloud/work/boot_tail_promotion/sources/func_8001C7F4.c": "163159a629228d42d34e0ee8e21471743ea952c3e627b92b6b254ee97ccf474b",
+    "cloud/work/boot_tail_promotion/sources/func_8001D4CC.c": "00d3c1f068a61e509d544a5b30b498123e7aa2f2d423d87c268bc2c9aded2c58",
+    "cloud/work/boot_tail_promotion/sources/func_8001DDE0.c": "784ac40a0fc05fe8801904495880f55d7cf1fef379502a2c9e5db956d5616af3",
+    "cloud/work/boot_tail_promotion/sources/func_8001E0C0.c": "b4021efb848895bec6fc0bbf8c0fcec3cc4668ea1ae2110226b95328b4cfcb70",
+    "cloud/work/boot_tail_promotion/voice_lists/README.md": "cb76a80978063be2f5e8fc8a17df8677020081b9fdb4c35b7f5523bf0314f4d2",
+    "cloud/work/boot_tail_promotion/voice_lists/semantics.json": "1ad05a04f84bd6e4bd763fc4185ef3ceac4c6e00d6ffc1822b88b3b57421b2bf",
+    "cloud/work/boot_tail_promotion/voice_lists/semantics.py": "b3efd10adaaaf8b0d88129cca63f973df6881d35d3cf0e3052999b969422e297",
+    "cloud/work/boot_tail_promotion/voice_lists/sources/func_8001B29C.c": "4943e21184974ff114bc306762087ca2c3468bfeb703644f600eaeb880b0c81c",
+    "cloud/work/boot_tail_promotion/voice_lists/sources/func_8001B3A0.c": "453d54ca00c4e9e7075e6810732a81eb883ff8d972d324915a1874d34d0b13f8",
+    "cloud/work/boot_tail_promotion/voice_lists/sources/func_8001B7C0.c": "8d8facffa00951637614b73a8d0672b627be8700293f7dbad4d1c4a762b44e4a",
+    "cloud/work/boot_tail_promotion/voice_lists/sources/func_8001B8C4.c": "cdd7f71816a6713f79cfc5c532a5e0f034d3ebf50ee6aa36353dc1595cac6c5b",
+    "cloud/work/boot_tail_promotion/voice_lists/sources/func_8001B968.c": "ab1fd32fdb2197eb6850c960b2c9e888b94995a010754e92b2b0a7790726a92a",
+    "cloud/work/boot_tail_promotion/voice_lists/sources/func_8001EB10.c": "ddb652ae9319cd1cf55375b219905f72f6da6db40546692fe6d45abdca992094",
+    "cloud/work/boot_tail_promotion/voice_lists/sources/func_8001ECE0.c": "27e6dfa21f9c53b6affeaa16536364249b256a4e4be57c8c1a6b65df51c1200e",
+    "cloud/work/boot_tail_promotion/voice_lists/sources/func_8001F9D0.c": "c81a2cd7ea21e77b4fcaa4901c6b5f94ca94170490251926fd17144750231daa",
+    "cloud/work/boot_tail_promotion/voice_lists/verification.json": "abdc993ab92683e6e0f8fc942aec650db3cefbbe42a3c0cdc78795a882dceb51",
+    "cloud/work/boot_tail_promotion/voice_lists/verify.py": "ea612610ba0264c57335dedb7bd8257ba3acf55a502ca03ed2326f115fc81f33",
+    "include/boot_tail_audio_record.h": "128e9566a872e604ccfbf8352120a40cfc546c4d49b32321dd440cbf088348a7",
+    "include/boot_tail_sample_contract.h": "47f15953b674de3262411e79f4fd46873b8ca79c067790a087876c16da965f77",
+    "src/rom/lib_11640.c": "304590105e66bd3fe2ce9beed1a6df6d7582af408aaef337966f176e8d2ccb0c",
+    "src/rom/lib_16320.c": "4abfd59f86e8351b264cc77386c21c9a4fe46cecd12d96a507221881d80a27e9",
+    "src/rom/lib_1a660.c": "849f18023435c77a141bad6e83fa98f27f16e15c6c24658c7443c0775dc515e2",
+    "src/rom/lib_1cf90.c": "ea62852f2ce4804dc5a77e708b3f30bf0b2e522bce4ac7ab9aebf1a002ddc443",
+    "src/rom/lib_1f5b0.c": "41ab0020f0766bc51fc60a5c2be82f109562955c45a75f611bd99f10c299ee70",
+    "src/rom/lib_22300.c": "b5fb4e5585fb3fc514615ad6e298c54c6d283cf0cd1b1c0d82f564d529d3d236",
+    "src/rom/lib_25bb0.c": "f1e2e1859694f46f3582fabdd75c98c89250c87d08c68dccc5c61d1415480130",
+    "tests/cloud/test_audio_record_contracts.py": "94890221619b9c778c2bbbcf88a7c02d0b2825d0b24f3ef859402664b786f8ff",
+    "tests/cloud/test_macro_stream_contracts.py": "7e97f13dd89005c7ee218099b101610c7e1f37195cca8248339a2aa0c7b7f2d7",
+    "tests/cloud/test_sample_buffer_contract.py": "6fcae891eb1be8c4f8b83251114ec4af474366dc2560922471d7145c0a867378",
+    "tests/cloud/test_sequence_context_contract.py": "29f171842742659cf7e94899ec2d645b51b57401ee558415fb327347006fa16f",
+    "tests/conveyor/test_voice_list_promotion.py": "a873e58727ac2ffcfb51aa108ad8f4e03d0fed43b332ffcb8a26b81a4032b0f6"
+  },
+  "verified_on_utc": "2026-10-05"
+}
