@@ -124,6 +124,12 @@ def exact_bytes(obj, fn, standalone=False):
     require(end - start >= len(target) * 4, 'short function extent: ' + fn)
     if standalone:
         require(all(v == 0 for v in words[(start + len(target)*4)//4:end//4]), 'nonzero overflow: ' + fn)
+    elif (end == len(words) * 4 and end % 16 == 0 and end - start - len(target)*4 < 16
+          and all(v == 0 for v in words[(start + len(target)*4)//4:end//4])):
+        # The TU's final function (func_80025DC0, promoted after BASE) is
+        # followed only by the .text section's 16-byte alignment padding. The
+        # ELF size check below still requires the exact function extent.
+        pass
     else:
         require(end - start == len(target)*4, 'full-TU extent mismatch: ' + fn)
     data, sections = score._elf(obj)
@@ -280,8 +286,16 @@ def _run(fixtures=None):
             combined = build(combined_text,tmp,group+'-combined',context)
             checks = []
             for fn in sorted(set(locked)|set(names)):
-                checks.append({'function':fn, 'role':'candidate' if fn in names else 'existing_lock',
-                               'baseline':exact_bytes(baseline,fn), 'current':exact_bytes(current,fn),
+                # Bodies promoted by later boot-tail waves were assembly
+                # passthroughs at BASE; their asm-processor label spans the TU's
+                # alignment padding. They are not this packet's claims: their
+                # accepted C is verified in the current/combined objects, and
+                # untouched() still compares every other baseline word.
+                later = fn not in names and fn not in EXISTING[group]
+                checks.append({'function':fn, 'role':'candidate' if fn in names else
+                               'promoted_after_base' if later else 'existing_lock',
+                               'baseline':None if later else exact_bytes(baseline,fn),
+                               'current':exact_bytes(current,fn),
                                'combined':exact_bytes(combined,fn)})
             same_current = untouched(baseline,current,set(locked)|set(names))
             same_combined = untouched(baseline,combined,set(locked)|set(names))

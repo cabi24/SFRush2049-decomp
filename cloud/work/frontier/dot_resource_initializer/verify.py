@@ -183,7 +183,9 @@ def verify(outdir):
                     str(HERE / 'host.c'), '-o', str(host)], check=True)
     subprocess.run([str(host)], env=dict(os.environ, ASAN_OPTIONS='detect_leaks=0'), check=True)
     locks = json.loads((ROOT / 'blob_matched.lock.json').read_text())
-    assert NAME not in locks
+    # The target was unlocked at the packet's base commit; it was later accepted
+    # independently (3eb2e97f, src/blob/func_8010D85C.c). This NONMATCH replay
+    # stays historical research evidence and never consults that lock entry.
     callee_path = ROOT / locks['sound_bank_load']['source']
     assert sha(callee_path.read_bytes()) == locks['sound_bank_load']['source_sha256']
     result = {
