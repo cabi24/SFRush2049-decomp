@@ -1,0 +1,578 @@
+{
+  "claims": [],
+  "compiler": {
+    "color_archived": {
+      "claims": [],
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "functions": {
+        "func_800A7480": {
+          "canonical": {
+            "differing": 34,
+            "errors": [
+              "unpaired R_MIPS_HI16 for D_80124FC8 at .text+0x74"
+            ],
+            "extra_words": 2,
+            "total": 34,
+            "unresolved": [],
+            "unverified": []
+          },
+          "complete_gnu_relocation_equality": true,
+          "differing_offsets": [
+            0,
+            4,
+            8,
+            12,
+            16,
+            20,
+            24,
+            28,
+            32,
+            36,
+            40,
+            44,
+            48,
+            52,
+            56,
+            60,
+            64,
+            68,
+            72,
+            76,
+            80,
+            84,
+            88,
+            92,
+            96,
+            100,
+            104,
+            108,
+            112,
+            116,
+            120,
+            124,
+            128,
+            132,
+            136,
+            140
+          ],
+          "elf_bytes": 144,
+          "gnu_linked_body_sha256": "566e07022350ed13745d601d8e21b420bc8136278c86b4b54e4735a8516824a1",
+          "native_bytes": 136,
+          "own_data_bytes": 0,
+          "relocations": 4,
+          "strict_match": false,
+          "whole_elf_differing_words": 36
+        }
+      },
+      "source_sha256": "f8e2eb485f899021e2e5238a13b0f3442084527ed11b1f6dabcf2fe2f1aa7672"
+    },
+    "color_unsigned": {
+      "claims": [],
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "functions": {
+        "func_800A7480": {
+          "canonical": {
+            "differing": 33,
+            "errors": [],
+            "extra_words": 0,
+            "total": 34,
+            "unresolved": [],
+            "unverified": []
+          },
+          "complete_gnu_relocation_equality": true,
+          "differing_offsets": [
+            0,
+            4,
+            8,
+            12,
+            16,
+            20,
+            24,
+            28,
+            32,
+            36,
+            40,
+            44,
+            48,
+            52,
+            56,
+            60,
+            64,
+            68,
+            72,
+            76,
+            80,
+            84,
+            88,
+            92,
+            96,
+            100,
+            104,
+            108,
+            112,
+            116,
+            120,
+            124,
+            132
+          ],
+          "elf_bytes": 136,
+          "gnu_linked_body_sha256": "bc127f3c32b2be49a16075c0c4d22ac5fd1640cccd77fc0b5f9d96ce3e3bf1d3",
+          "native_bytes": 136,
+          "own_data_bytes": 0,
+          "relocations": 4,
+          "strict_match": false,
+          "whole_elf_differing_words": 33
+        }
+      },
+      "source_sha256": "4483bd30926738d3a24a36690e5ddbb177330310b9b00cacdb90990591e49a4a"
+    },
+    "remove_archived": {
+      "claims": [],
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "functions": {
+        "sound_stop": {
+          "canonical": {
+            "differing": 12,
+            "errors": [],
+            "extra_words": 0,
+            "total": 40,
+            "unresolved": [],
+            "unverified": []
+          },
+          "complete_gnu_relocation_equality": true,
+          "differing_offsets": [
+            64,
+            84,
+            88,
+            92,
+            96,
+            100,
+            104,
+            112,
+            116,
+            120,
+            128,
+            132
+          ],
+          "elf_bytes": 160,
+          "gnu_linked_body_sha256": "e30a0d1abc99747537b15b404af1454f3581762adabfdbf2be770f94c8fdc9e6",
+          "native_bytes": 160,
+          "own_data_bytes": 0,
+          "relocations": 10,
+          "strict_match": false,
+          "whole_elf_differing_words": 12
+        }
+      },
+      "source_sha256": "db407325f9feef77454c141086a956efdda5365e3b2cd39aace9de76518aee2c"
+    },
+    "remove_loop_helper": {
+      "claims": [],
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "functions": {
+        "func_800A79DC": {
+          "canonical": {
+            "differing": 0,
+            "errors": [],
+            "extra_words": 0,
+            "total": 6,
+            "unresolved": [],
+            "unverified": []
+          },
+          "complete_gnu_relocation_equality": true,
+          "differing_offsets": [],
+          "elf_bytes": 24,
+          "gnu_linked_body_sha256": "afef5a552d6718216cde43ae531b03b32595b8b4858e4160da31335705425a73",
+          "native_bytes": 24,
+          "own_data_bytes": 0,
+          "relocations": 2,
+          "strict_match": true,
+          "whole_elf_differing_words": 0
+        },
+        "sound_stop": {
+          "canonical": {
+            "differing": 14,
+            "errors": [],
+            "extra_words": 0,
+            "total": 40,
+            "unresolved": [],
+            "unverified": []
+          },
+          "complete_gnu_relocation_equality": true,
+          "differing_offsets": [
+            64,
+            84,
+            88,
+            92,
+            96,
+            100,
+            104,
+            108,
+            112,
+            116,
+            120,
+            124,
+            128,
+            140
+          ],
+          "elf_bytes": 160,
+          "gnu_linked_body_sha256": "a534c46d6186cdba675ab7d009d07033d526805c021e299e55db3500e82ce1a9",
+          "native_bytes": 160,
+          "own_data_bytes": 0,
+          "relocations": 10,
+          "strict_match": false,
+          "whole_elf_differing_words": 14
+        }
+      },
+      "source_sha256": "132dc428a849a09e60e34099a00326a3c2a24c0f0e083d72965fef0d917cbd63"
+    },
+    "remove_recursive": {
+      "claims": [],
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "functions": {
+        "sound_stop": {
+          "canonical": {
+            "differing": 32,
+            "errors": [],
+            "extra_words": 0,
+            "total": 40,
+            "unresolved": [],
+            "unverified": []
+          },
+          "complete_gnu_relocation_equality": true,
+          "differing_offsets": [
+            0,
+            4,
+            8,
+            12,
+            16,
+            20,
+            24,
+            28,
+            32,
+            36,
+            40,
+            44,
+            48,
+            52,
+            64,
+            84,
+            88,
+            92,
+            96,
+            100,
+            104,
+            108,
+            112,
+            116,
+            120,
+            124,
+            128,
+            132,
+            136,
+            140,
+            144,
+            148
+          ],
+          "elf_bytes": 160,
+          "gnu_linked_body_sha256": "8586c9737cc0fad790d1b072a491a9745a12b212e939ce7bf1b055e6bde3d10a",
+          "native_bytes": 160,
+          "own_data_bytes": 0,
+          "relocations": 8,
+          "strict_match": false,
+          "whole_elf_differing_words": 32
+        }
+      },
+      "source_sha256": "d6484b05a1f037bf80063b07d4d29ee947fc5eb9e87e88a1743de640a38fdb7d"
+    },
+    "remove_recursive_helper": {
+      "claims": [],
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "functions": {
+        "func_800A79DC": {
+          "canonical": {
+            "differing": 0,
+            "errors": [],
+            "extra_words": 0,
+            "total": 6,
+            "unresolved": [],
+            "unverified": []
+          },
+          "complete_gnu_relocation_equality": true,
+          "differing_offsets": [],
+          "elf_bytes": 24,
+          "gnu_linked_body_sha256": "afef5a552d6718216cde43ae531b03b32595b8b4858e4160da31335705425a73",
+          "native_bytes": 24,
+          "own_data_bytes": 0,
+          "relocations": 2,
+          "strict_match": true,
+          "whole_elf_differing_words": 0
+        },
+        "sound_stop": {
+          "canonical": {
+            "differing": 32,
+            "errors": [],
+            "extra_words": 0,
+            "total": 40,
+            "unresolved": [],
+            "unverified": []
+          },
+          "complete_gnu_relocation_equality": true,
+          "differing_offsets": [
+            0,
+            4,
+            8,
+            12,
+            16,
+            20,
+            24,
+            28,
+            32,
+            36,
+            40,
+            44,
+            48,
+            52,
+            64,
+            84,
+            88,
+            92,
+            96,
+            100,
+            104,
+            108,
+            112,
+            116,
+            120,
+            124,
+            128,
+            132,
+            136,
+            140,
+            144,
+            148
+          ],
+          "elf_bytes": 160,
+          "gnu_linked_body_sha256": "5c7be7db5ba672796f17ef9955ce08ecd98fbeeea779a164c83e4fd066ac28c7",
+          "native_bytes": 160,
+          "own_data_bytes": 0,
+          "relocations": 8,
+          "strict_match": false,
+          "whole_elf_differing_words": 32
+        }
+      },
+      "source_sha256": "e83271995461502d6d1a75724f13be8fed870ff87a5fa94d074f9938e64465ac"
+    },
+    "scan_archived": {
+      "claims": [],
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "functions": {
+        "Input_ApplyPadConfig": {
+          "canonical": {
+            "differing": 0,
+            "errors": [],
+            "extra_words": 0,
+            "total": 48,
+            "unresolved": [],
+            "unverified": []
+          },
+          "complete_gnu_relocation_equality": true,
+          "differing_offsets": [],
+          "elf_bytes": 192,
+          "gnu_linked_body_sha256": "3282399bd7919e39047f452faa4070df2ef7b4b91d82318591c2592e7bfda590",
+          "native_bytes": 192,
+          "own_data_bytes": 0,
+          "relocations": 6,
+          "strict_match": true,
+          "whole_elf_differing_words": 0
+        },
+        "Input_InitPadHandlers": {
+          "canonical": {
+            "differing": 0,
+            "errors": [],
+            "extra_words": 0,
+            "total": 16,
+            "unresolved": [],
+            "unverified": []
+          },
+          "complete_gnu_relocation_equality": true,
+          "differing_offsets": [],
+          "elf_bytes": 64,
+          "gnu_linked_body_sha256": "c2136bc827a030570977d8e04f6df6ac07ee50285b6d41a1e756f94fb0697304",
+          "native_bytes": 64,
+          "own_data_bytes": 0,
+          "relocations": 2,
+          "strict_match": true,
+          "whole_elf_differing_words": 0
+        },
+        "audio_channel_reset": {
+          "canonical": {
+            "differing": 15,
+            "errors": [],
+            "extra_words": 0,
+            "total": 41,
+            "unresolved": [],
+            "unverified": []
+          },
+          "complete_gnu_relocation_equality": true,
+          "differing_offsets": [
+            0,
+            4,
+            20,
+            28,
+            32,
+            40,
+            48,
+            64,
+            72,
+            76,
+            80,
+            84,
+            96,
+            100,
+            116
+          ],
+          "elf_bytes": 164,
+          "gnu_linked_body_sha256": "01c96995dc33cd4da5968b4f1ad5709d5f19ad11e20653187fa5a26826728821",
+          "native_bytes": 164,
+          "own_data_bytes": 0,
+          "relocations": 7,
+          "strict_match": false,
+          "whole_elf_differing_words": 15
+        }
+      },
+      "source_sha256": "995f9ee88a216b1d830d75c3785e5de12878bc373323fefdec3503e7d228c7e8"
+    },
+    "scan_hidden": {
+      "claims": [],
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "functions": {
+        "Input_ApplyPadConfig": {
+          "canonical": {
+            "differing": 0,
+            "errors": [],
+            "extra_words": 0,
+            "total": 48,
+            "unresolved": [],
+            "unverified": []
+          },
+          "complete_gnu_relocation_equality": true,
+          "differing_offsets": [],
+          "elf_bytes": 192,
+          "gnu_linked_body_sha256": "3282399bd7919e39047f452faa4070df2ef7b4b91d82318591c2592e7bfda590",
+          "native_bytes": 192,
+          "own_data_bytes": 0,
+          "relocations": 6,
+          "strict_match": true,
+          "whole_elf_differing_words": 0
+        },
+        "Input_InitPadHandlers": {
+          "canonical": {
+            "differing": 0,
+            "errors": [],
+            "extra_words": 0,
+            "total": 16,
+            "unresolved": [],
+            "unverified": []
+          },
+          "complete_gnu_relocation_equality": true,
+          "differing_offsets": [],
+          "elf_bytes": 64,
+          "gnu_linked_body_sha256": "c2136bc827a030570977d8e04f6df6ac07ee50285b6d41a1e756f94fb0697304",
+          "native_bytes": 64,
+          "own_data_bytes": 0,
+          "relocations": 2,
+          "strict_match": true,
+          "whole_elf_differing_words": 0
+        },
+        "audio_channel_reset": {
+          "canonical": {
+            "differing": 15,
+            "errors": [],
+            "extra_words": 0,
+            "total": 41,
+            "unresolved": [],
+            "unverified": []
+          },
+          "complete_gnu_relocation_equality": true,
+          "differing_offsets": [
+            0,
+            4,
+            20,
+            28,
+            32,
+            40,
+            48,
+            64,
+            72,
+            76,
+            80,
+            84,
+            96,
+            100,
+            116
+          ],
+          "elf_bytes": 164,
+          "gnu_linked_body_sha256": "01c96995dc33cd4da5968b4f1ad5709d5f19ad11e20653187fa5a26826728821",
+          "native_bytes": 164,
+          "own_data_bytes": 0,
+          "relocations": 7,
+          "strict_match": false,
+          "whole_elf_differing_words": 15
+        }
+      },
+      "source_sha256": "5e3e159e0c6d35e7827301fb045edb934d33d8ddd60203d31174245f96a2786e"
+    }
+  },
+  "native": {
+    "Input_ApplyPadConfig": {
+      "address": "0x80094ec8",
+      "native_bytes": 192,
+      "sha256": "3282399bd7919e39047f452faa4070df2ef7b4b91d82318591c2592e7bfda590"
+    },
+    "Input_InitPadHandlers": {
+      "address": "0x80094e88",
+      "native_bytes": 64,
+      "sha256": "c2136bc827a030570977d8e04f6df6ac07ee50285b6d41a1e756f94fb0697304"
+    },
+    "audio_channel_reset": {
+      "address": "0x80094fe8",
+      "native_bytes": 164,
+      "sha256": "9f964443c6d3388837978c8058bdaba9b0596c8a84814b0732c8cc805d877f81"
+    },
+    "display_list_flush": {
+      "address": "0x800fb2c8",
+      "native_bytes": 2356,
+      "sha256": "1d92bbdf5225a65d93ebbcb0f421526cfad83630387c27ecf223ddca197d479a"
+    },
+    "func_800A7480": {
+      "address": "0x800a7480",
+      "native_bytes": 136,
+      "sha256": "8cc32c413970ff5ac27818b4883ae0cf517bdec2f5a6058cb7b974d4ef97a093"
+    },
+    "func_800A79DC": {
+      "address": "0x800a79dc",
+      "native_bytes": 24,
+      "sha256": "afef5a552d6718216cde43ae531b03b32595b8b4858e4160da31335705425a73"
+    },
+    "sound_stop": {
+      "address": "0x800b358c",
+      "native_bytes": 160,
+      "sha256": "d4b514a4dae3fb8aa44239664a58729b7c3ef45e08e3553f1fc4759f32863993"
+    }
+  },
+  "source_inputs": {
+    "cloud/matches/sfx_position_3d.c": "56f65a3c77e18911f9e7ee170ae6d45a8d6e537bd5072d9580b1a69747f9c0e1",
+    "cloud/matches/sound_control.c": "09eeaf0b142943d75b5d535a0e9b2eb50227c5a940e802a3eb125fafb69488ed",
+    "cloud/work/dot_pad_channel_reset_20261005/group.c": "995f9ee88a216b1d830d75c3785e5de12878bc373323fefdec3503e7d228c7e8",
+    "cloud/work/frontier/w5a/sound_stop/best.c": "db407325f9feef77454c141086a956efdda5365e3b2cd39aace9de76518aee2c",
+    "cloud/work/near_miss_B52/func_800A7480_native.c": "f8e2eb485f899021e2e5238a13b0f3442084527ed11b1f6dabcf2fe2f1aa7672"
+  },
+  "toolchain": {
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5"
+  },
+  "verifier_sha256": "74ea67a9782e48e9651614b89caf1978751fdcd0fb1d143671b3a38ffc59f7c0"
+}
