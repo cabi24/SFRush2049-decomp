@@ -1,0 +1,308 @@
+{
+  "accepted_byte_gain": 0,
+  "claims": [
+    "func_8010C448",
+    "func_8010C588"
+  ],
+  "compiler_sha256": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+  "donor": {
+    "ancestor": "game/targets.c:673-693 OverlapTarget; N64 cylinder specialization",
+    "files": {
+      "LIB/stdtypes.h": "62f04af756d7151ec4d06841da2678384f883082debd1060e92ffc21bc1d3188",
+      "game/targets.c": "9e169133299450b46fbdd96b9c26e786c192c189618bcd5ebdffba0c8fb4bd31",
+      "game/vecmath.c": "7909033d4e95a86d94dc14b96539b272dbd9e8fd7f7b7e67f6b8cbbc0ca2ee31",
+      "game/vecmath.h": "76526aaa1894d9cef992ea07fa524cf7348e02cbede5a646a66f04d6e317cf3f"
+    },
+    "revision": "845329d7b36f5a384c5625ed9a0aef584ab46139",
+    "vector_macros": "game/vecmath.h:20-21"
+  },
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "genuine_context": {
+    "comparisons": {
+      "func_8010C02C": {
+        "differing": 0,
+        "elf_function_bytes": 696,
+        "errors": [],
+        "extra_words": 0,
+        "total": 174,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_8010C2E4": {
+        "differing": 0,
+        "elf_function_bytes": 356,
+        "errors": [],
+        "extra_words": 0,
+        "total": 89,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_8010C448": {
+        "differing": 0,
+        "elf_function_bytes": 320,
+        "errors": [],
+        "extra_words": 0,
+        "total": 80,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_8010C588": {
+        "differing": 0,
+        "elf_function_bytes": 320,
+        "errors": [],
+        "extra_words": 0,
+        "total": 80,
+        "unresolved": [],
+        "unverified": []
+      },
+      "func_8010C7CC": {
+        "differing": 0,
+        "elf_function_bytes": 24,
+        "errors": [],
+        "extra_words": 0,
+        "total": 6,
+        "unresolved": [],
+        "unverified": []
+      }
+    },
+    "scope": "genuine adjacent callback bodies, unchanged separate type views; not full shadow unit",
+    "sources": {
+      "func_8010C02C": "cf5ace6577bd5511cf4274cd4eac5dae315419c4fcf60c3cea1c9a8d93900d82",
+      "func_8010C2E4": "f2405d0aa93f6fd07a1330944b2b3b043562a74646d2834c33bd4bcb80bf5eec",
+      "func_8010C448": "a05b8dd0bc69b06e4499b629c03456a27cf28cc516867bb444ca4d1e57a558d3",
+      "func_8010C588": "a204971357669fe942ecd0dc1b8d109c6d1eef13299ed6a814b832a2bf32e144",
+      "func_8010C7CC": "e8ca4a734d87a7f6d67a44975e70704e86ad7e141301c56b63a92dea8245c89f"
+    }
+  },
+  "proof_sources": {
+    "host.c": "a52b97856232cc485895aa322f0ef334f8b4685c9c6b712ed79f1634ff5bf739",
+    "native.py": "68a1eb4af6d41b4962c9fb6d4ec811425122b6f1c7e10c2548c0f841e0a61319",
+    "verify.py": "fcc90dd4d485ffac8b4f8efe953fd44900367730a823032562d1f6fbb87790bd"
+  },
+  "protected_manifest_sha256": "4edb1ea79f7e73439fbde631dc869d00f4d3166232f0a271783970852e313f7d",
+  "schema": 1,
+  "scorer_sha256": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+  "status": "strict_matches_unspliced",
+  "targets": {
+    "func_8010C448": {
+      "GNU_linked_equal": true,
+      "O2_comparison": {
+        "differing": 0,
+        "elf_function_bytes": 320,
+        "errors": [],
+        "extra_words": 0,
+        "total": 80,
+        "unresolved": [],
+        "unverified": []
+      },
+      "O32_layout_assertions": "passed",
+      "alignment_bytes": 0,
+      "behavior": {
+        "cases": 16092,
+        "executed_instruction_offsets": 79,
+        "host_C89_UBSan": "passed",
+        "memory_canaries_access_order_O32_preservation": "passed",
+        "mutants": {
+          "lower_boundary_included": {
+            "differing_cases": 81,
+            "rejected": true
+          },
+          "radial_boundary_excluded": {
+            "differing_cases": 117,
+            "rejected": true
+          },
+          "upper_boundary_included": {
+            "differing_cases": 81,
+            "rejected": true
+          },
+          "wrong_plane": {
+            "differing_cases": 7633,
+            "rejected": true
+          },
+          "wrong_radius": {
+            "differing_cases": 6431,
+            "rejected": true
+          }
+        },
+        "native_and_GNU_runs": 32184,
+        "oracle": "binary32_round_after_each_operation",
+        "output_alias_modes": 9,
+        "unreachable_offsets": [
+          252
+        ]
+      },
+      "body_sha256": "24eeff04bedb00e173b55621b2fc2a7832a90cc4dcbdc254a6d4a9b63fc4120e",
+      "comparison": {
+        "differing": 0,
+        "elf_function_bytes": 320,
+        "errors": [],
+        "extra_words": 0,
+        "total": 80,
+        "unresolved": [],
+        "unverified": []
+      },
+      "end_exclusive": "0x8010c588",
+      "function_bytes": 320,
+      "historical_source_sha256": "8fc1a58103ac20bb5cb58d9995ca07f39aa068689d65169e81161a5295d7d339",
+      "object_sha256": "feb7759596eb13fbcf2eaa151828f440fbef38e2ec6940cf85c00b93bf8f5228",
+      "owned_data_bytes": 0,
+      "relocations": [
+        "00000004  00000405 R_MIPS_HI16       00000000   D_8014AA3A",
+        "0000001c  00000406 R_MIPS_LO16       00000000   D_8014AA3A",
+        "0000004c  00000305 R_MIPS_HI16       00000000   player_array",
+        "00000050  00000306 R_MIPS_LO16       00000000   player_array"
+      ],
+      "source_controls": {
+        "historical": {
+          "differing": 45,
+          "elf_function_bytes": 304,
+          "errors": [],
+          "extra_words": 0,
+          "total": 80,
+          "unresolved": [],
+          "unverified": []
+        },
+        "radius_before_distance": {
+          "differing": 16,
+          "elf_function_bytes": 320,
+          "errors": [],
+          "extra_words": 0,
+          "total": 80,
+          "unresolved": [],
+          "unverified": []
+        },
+        "reverse_source_sum": {
+          "differing": 46,
+          "elf_function_bytes": 316,
+          "errors": [],
+          "extra_words": 0,
+          "total": 80,
+          "unresolved": [],
+          "unverified": []
+        },
+        "vectors_before_scalars": {
+          "differing": 2,
+          "elf_function_bytes": 320,
+          "errors": [],
+          "extra_words": 0,
+          "total": 80,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "source_sha256": "a05b8dd0bc69b06e4499b629c03456a27cf28cc516867bb444ca4d1e57a558d3",
+      "start": "0x8010c448",
+      "text_bytes": 320
+    },
+    "func_8010C588": {
+      "GNU_linked_equal": true,
+      "O2_comparison": {
+        "differing": 0,
+        "elf_function_bytes": 320,
+        "errors": [],
+        "extra_words": 0,
+        "total": 80,
+        "unresolved": [],
+        "unverified": []
+      },
+      "O32_layout_assertions": "passed",
+      "alignment_bytes": 0,
+      "behavior": {
+        "cases": 16092,
+        "executed_instruction_offsets": 79,
+        "host_C89_UBSan": "passed",
+        "memory_canaries_access_order_O32_preservation": "passed",
+        "mutants": {
+          "lower_boundary_included": {
+            "differing_cases": 81,
+            "rejected": true
+          },
+          "radial_boundary_excluded": {
+            "differing_cases": 117,
+            "rejected": true
+          },
+          "upper_boundary_included": {
+            "differing_cases": 81,
+            "rejected": true
+          },
+          "wrong_plane": {
+            "differing_cases": 7680,
+            "rejected": true
+          },
+          "wrong_radius": {
+            "differing_cases": 6447,
+            "rejected": true
+          }
+        },
+        "native_and_GNU_runs": 32184,
+        "oracle": "binary32_round_after_each_operation",
+        "output_alias_modes": 9,
+        "unreachable_offsets": [
+          252
+        ]
+      },
+      "body_sha256": "49b3cc10ffce5e5fb42886adb41005154a842c262ffbbb141d03a30f88aae983",
+      "comparison": {
+        "differing": 0,
+        "elf_function_bytes": 320,
+        "errors": [],
+        "extra_words": 0,
+        "total": 80,
+        "unresolved": [],
+        "unverified": []
+      },
+      "end_exclusive": "0x8010c6c8",
+      "function_bytes": 320,
+      "historical_source_sha256": "30cf9502a53f0884fb496acab669ef31dfaa07b68e84af70be66f609d3de18ce",
+      "object_sha256": "a2a268d290ae4b5e4461c59b016a9557f7b91a8b11e6dc7163cd1bb0abca8cc1",
+      "owned_data_bytes": 0,
+      "relocations": [
+        "00000004  00000405 R_MIPS_HI16       00000000   D_8014AA3A",
+        "0000001c  00000406 R_MIPS_LO16       00000000   D_8014AA3A",
+        "0000004c  00000305 R_MIPS_HI16       00000000   player_array",
+        "00000050  00000306 R_MIPS_LO16       00000000   player_array"
+      ],
+      "source_controls": {
+        "historical": {
+          "differing": 43,
+          "elf_function_bytes": 316,
+          "errors": [],
+          "extra_words": 0,
+          "total": 80,
+          "unresolved": [],
+          "unverified": []
+        },
+        "radius_before_distance": {
+          "differing": 16,
+          "elf_function_bytes": 320,
+          "errors": [],
+          "extra_words": 0,
+          "total": 80,
+          "unresolved": [],
+          "unverified": []
+        },
+        "reverse_source_sum": {
+          "differing": 46,
+          "elf_function_bytes": 316,
+          "errors": [],
+          "extra_words": 0,
+          "total": 80,
+          "unresolved": [],
+          "unverified": []
+        },
+        "vectors_before_scalars": {
+          "differing": 2,
+          "elf_function_bytes": 320,
+          "errors": [],
+          "extra_words": 0,
+          "total": 80,
+          "unresolved": [],
+          "unverified": []
+        }
+      },
+      "source_sha256": "a204971357669fe942ecd0dc1b8d109c6d1eef13299ed6a814b832a2bf32e144",
+      "start": "0x8010c588",
+      "text_bytes": 320
+    }
+  }
+}
