@@ -3,6 +3,7 @@
  * Slots are GLOBAL_ASM passthroughs until promoted; do not hand-edit
  * passthrough lines. */
 #include "rom_tu.h"
+#include "boot_tail_audio_record.h"
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80010A40.s")
 /* PROMOTED 2026-10-04 — func_80010C68
@@ -146,7 +147,7 @@ void func_800118C0(void)
  * Evidence: lock:cloud/matches/boot_tail/func_800119E0.c:func_800119E0 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-extern void *D_800382D0;
+extern unsigned short *D_800382D0;
 extern unsigned short *D_800382D4;
 extern void func_80011910(void *, unsigned short);
 void func_800119E0(void)
@@ -160,7 +161,6 @@ void func_800119E0(void)
  * Evidence: lock:cloud/matches/boot_tail/func_80011A10.c:func_80011A10 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-typedef struct AudioState { unsigned char unknown00[0x20]; unsigned short initial_count; unsigned char unknown22[6]; unsigned short release_count; unsigned char unknown2A[0x1E]; unsigned short count; unsigned short unknown4A; float value; unsigned int step; float scale; float saved_value; unsigned char state; } AudioState;
 void func_80011A10(AudioState *audio)
 {
     audio->state = 0;
@@ -568,8 +568,6 @@ int func_800146AC(void)
  * Evidence: lock:cloud/matches/boot_tail/func_800148F8.c:func_800148F8 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-typedef struct AudioSlot { unsigned char active; unsigned char pending; unsigned char unknown02[2]; unsigned short rate; unsigned char unknown06[14]; unsigned int position; unsigned char unknown18[8]; unsigned short value20; unsigned short value22; float value24; unsigned short release_count; unsigned char unknown2A[62]; } AudioSlot;
-extern AudioSlot *D_80038294;
 void func_800148F8(int index, __unaligned unsigned short *data)
 {
     D_80038294[index].value20 = data[0];

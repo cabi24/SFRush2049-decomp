@@ -18,8 +18,7 @@
  * Evidence: lock:cloud/matches/boot_tail/func_800162AC.c:func_800162AC (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-typedef struct SampleRecord { u16 identifier; u16 references; u32 offset; void *data; u8 descriptor[16]; } SampleRecord;
-typedef struct RegisteredSamples { SampleRecord *records; unsigned char *base; u16 count; u16 unknown0A; } RegisteredSamples;
+#include "boot_tail_sample_contract.h"
 extern int D_800385A0;
 extern RegisteredSamples D_800385A8[];
 extern void func_80014CFC(void **, void **);
