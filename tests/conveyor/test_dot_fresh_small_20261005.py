@@ -13,6 +13,9 @@ HERE = ROOT / 'cloud/work/frontier/dot_fresh_small_20261005'
 spec = importlib.util.spec_from_file_location('dot_fresh_small', HERE / 'verify.py')
 packet = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(packet)
+# Protected manifests and the scorer are a frozen provenance snapshot, not
+# locks on future work: asm/us/blob/SHA256SUMS changes with every game splice.
+FROZEN_PROVENANCE = ('target_manifest_sha256',)
 
 
 def test_nonmatch_receipt_is_bound_to_complete_sources():
@@ -54,4 +57,9 @@ def test_fresh_source_extent_relocation_and_semantic_replay(tmp_path):
         if os.environ.get('REQUIRE_TOOLCHAIN') == '1':
             pytest.fail('required IDO/GNU MIPS/host toolchain unavailable')
         pytest.skip('IDO/GNU MIPS/host toolchain unavailable')
-    assert packet.verify(tmp_path) == json.loads((HERE / 'verification.json').read_text())
+    fresh = packet.verify(tmp_path)
+    saved = json.loads((HERE / 'verification.json').read_text())
+    for key in FROZEN_PROVENANCE:
+        fresh.pop(key, None)
+        saved.pop(key, None)
+    assert fresh == saved

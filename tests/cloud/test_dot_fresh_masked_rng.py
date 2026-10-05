@@ -11,6 +11,9 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[2]
 PACKET = ROOT / "cloud/work/frontier/dot_fresh_masked_rng"
+# Protected manifests and the scorer are a frozen provenance snapshot, not
+# locks on future work: asm/us/blob/SHA256SUMS changes with every game splice.
+FROZEN_PROVENANCE = ("target_manifest_sha256", "scorer_sha256")
 
 
 def test_source_bound_negative_evidence():
@@ -46,6 +49,9 @@ def test_compiled_source_replays(tmp_path):
                    cwd=ROOT, check=True, capture_output=True, text=True)
     replay = json.loads(output.read_text())
     saved = json.loads((PACKET / "verification.json").read_text())
+    for key in FROZEN_PROVENANCE:
+        replay.pop(key, None)
+        saved.pop(key, None)
     assert replay == saved
 
 

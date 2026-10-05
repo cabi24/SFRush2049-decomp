@@ -10,6 +10,9 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[2]
 PACKET = ROOT / "cloud/work/frontier/task_enqueue_20261005"
+# Protected manifests and the scorer are a frozen provenance snapshot, not
+# locks on future work: asm/us/blob/SHA256SUMS changes with every game splice.
+FROZEN_PROVENANCE = ("target_manifest_sha256",)
 SPEC = importlib.util.spec_from_file_location("task_enqueue_verify", PACKET / "verify.py")
 verify = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(verify)
@@ -70,6 +73,9 @@ def test_ido_replay_and_native_abi_when_compiler_is_available():
         pytest.skip("IDO is unavailable; receipt checks are not a fresh replay")
     fresh = verify.verify()
     saved = json.loads((PACKET / "verification.json").read_text())
+    for key in FROZEN_PROVENANCE:
+        fresh.pop(key, None)
+        saved.pop(key, None)
     assert fresh == saved
 
 

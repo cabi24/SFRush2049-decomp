@@ -259,7 +259,12 @@ def _verify(out):
                             "relocated_sha256": sha(got), "target_sha256": sha(want)}
     # A plausible field-layout error must fail the actual-TU byte comparison,
     # not merely a textual source assertion or the standalone-source checker.
-    header = HEADER.read_text()
+    # Mutate the header the actual TU compiles against. Since ddf9ec6b the
+    # production copy include/sequence_context.h is canonical, and 62d984bb
+    # named 0xFC5/0xFC6 there, so inlining this research copy no longer
+    # compiles the promoted bodies; the stride mutation itself is unchanged.
+    production_header = REPO / "include/sequence_context.h"
+    header = (production_header if production_header.is_file() else HEADER).read_text()
     bad_header = header.replace("unknownFF4[4]", "unknownFF4[8]")
     require(bad_header != header, "stride negative control did not mutate source")
     wrong_stride = combined.replace('#include "sequence_context.h"', bad_header, 1)

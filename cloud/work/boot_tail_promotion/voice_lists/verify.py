@@ -290,7 +290,9 @@ def verify(work, source_overrides=None, entries=None):
                                 tu + '.old_conflicts', error)
             if tu == 'lib_1a660':
                 mutations = {
-                    'wrong_stride': ('unknownC4[220]', 'unknownC4[224]', 'func_8001B29C'),
+                    # 9b7d51a0 named the shared VoiceState_80019C8C tail; the
+                    # stride control now pads its final field (416 -> 420 bytes).
+                    'wrong_stride': ('unknown17E[34]', 'unknown17E[38]', 'func_8001B29C'),
                     'wrong_relocation': ('D_8004BEB8', 'D_8004FA50', 'func_8001B29C')}
             else:
                 mutations = {'wrong_previous_offset': (
