@@ -1,0 +1,69 @@
+{
+  "base": "e24b47d89a0c8ffade1e4c75ad76b9d390a1c232",
+  "target": {
+    "name": "func_8010DCFC",
+    "start": "0x8010DCFC",
+    "end": "0x8010DF90",
+    "bytes": 660
+  },
+  "claims": [],
+  "accepted_byte_gain": 0,
+  "donor": {
+    "repository": "https://github.com/historicalsource/rushtherock",
+    "commit": "845329d7b36f5a384c5625ed9a0aef584ab46139",
+    "files": {
+      "game/targets.c": "9e169133299450b46fbdd96b9c26e786c192c189618bcd5ebdffba0c8fb4bd31",
+      "game/visuals.c": "143fb78b0317cfca6e068a2992ffa52b51996184d53c1109769cd969c58ca331",
+      "LIB/fmath.h": "cf14fd9628e3ad952a39d13ff569e9482ebe00ecf1d94b972cf079099c2d32d1"
+    },
+    "ranges": {
+      "game/targets.c": "1496-1533, StartCone",
+      "game/visuals.c": "2442-2463, PointInDir",
+      "LIB/fmath.h": "41-73, actual 48-byte MATRIX"
+    }
+  },
+  "prior_source": "cloud/work/heads_B14/func_8010DCFC_singleformal.c",
+  "new_evidence": "Accepted helper contracts and authentic MATRIX expose the archived three-float output buffer as undersized. The 48-byte ancestor layout remains a hypothesis for the N64 local, not recovered original declarations.",
+  "ownership": {
+    "target_unlocked_on_base": true,
+    "open_prs_checked": [
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125
+    ],
+    "edited_context": [],
+    "read_only_context": [
+      "func_80090284",
+      "vector_normalize_length",
+      "math_utility"
+    ],
+    "target_unlocked_on_refreshed_base": true
+  },
+  "discarded_preflight": "A557C was found already locked and retired without a source or matching claim.",
+  "refreshed_base": "cd22879d40b3de443cfde047b86e75e159b6cec6"
+}
