@@ -117,11 +117,24 @@ removed by ordinary function-section linker garbage collection, while IDO's
 proof object contains all four genuine bodies. Host-width pointers are not used
 as an O32 layout proof; the separate IDO assertions establish those layouts.
 
-The final local packet suite passes **11 tests** and the selected scorer, integrity,
+The final local packet suite passes **21 tests** and the selected scorer, integrity,
 submission, guard and own-data regression suite passes **786 tests**, with no
 failures or skips. All **402 static locks** pass. Initial sparse-checkout
 missing-input lock errors were resolved by materializing the exact tracked
 inputs; no locked source was edited. See `validation.json`.
+
+### Receipt portability
+
+The saved whole target-manifest, data-manifest and symbol-file hashes remain
+historical provenance. The portable comparison excludes only those three global
+file hashes after freshly validating the current target and data manifests. It
+strictly retains every source/toolchain/scorer/object/relocation/behavior result,
+plus explicit hashes of all four selected native bodies and the actual E56F8
+caller, both consumed data windows, and all relocation-referenced symbol addresses.
+An unrelated authenticated manifest annotation may change without invalidating
+the selected proof. Unauthenticated target/data edits and authenticated changes
+to selected native bodies, symbols or data are covered by rejection controls.
+No whole-object, context, source, behavioral or compiler hashes are masked.
 
 ### Bounded domain
 

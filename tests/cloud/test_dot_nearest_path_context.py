@@ -15,7 +15,7 @@ def checked(tmp_path_factory):
     return proof.verification(tmp_path_factory.mktemp('nearest-path-test'))
 
 def test_complete_replay(checked):
-    assert checked==json.loads((PACKET/'verification.json').read_text())
+    assert proof.portable_receipt(checked)==proof.portable_receipt(json.loads((PACKET/'verification.json').read_text()))
 
 def test_full_symbol_and_literals(checked):
     row=checked['objects']['func_800E4300']
@@ -92,3 +92,93 @@ def test_protected_native_call_interface(checked):
     assert contract['verified_native_call_setup']
     assert not contract['caller_end_to_end_runtime_tested']
     assert contract['native_direct_call_graph'][proof.NAME]=={'func_800E451C':['0x800e4748']}
+
+
+def test_historical_manifest_drift_is_portable(checked):
+    import copy
+    current=copy.deepcopy(checked)
+    for key in ('asm/us/blob/SHA256SUMS','asm/us/blob/symbols.json','asm/us/blob_data/SHA256SUMS'):
+        current['protected_inputs_sha256'][key]='0'*64
+    assert proof.portable_receipt(current)==proof.portable_receipt(checked)
+
+@pytest.mark.parametrize('field', ['native_bodies','data_windows','symbol_addresses_sha256'])
+def test_selected_input_drift_is_not_portable(checked,field):
+    import copy
+    current=copy.deepcopy(checked)
+    if field=='symbol_addresses_sha256':current['selected_inputs_sha256'][field]='0'*64
+    else:
+        key=next(iter(current['selected_inputs_sha256'][field]))
+        current['selected_inputs_sha256'][field][key]='0'*64
+    assert proof.portable_receipt(current)!=proof.portable_receipt(checked)
+
+@pytest.fixture
+def copied_artifacts(tmp_path,monkeypatch):
+    import shutil
+    target=tmp_path/'blob'
+    shutil.copytree(proof.score.ASM_DIR,target)
+    shutil.copytree(proof.owndata.artifact_dir(proof.score.ASM_DIR),tmp_path/'blob_data')
+    monkeypatch.setattr(proof.score,'ASM_DIR',target)
+    monkeypatch.setattr(proof.score,'_targets',None)
+    monkeypatch.setattr(proof.score,'_target_fingerprint',None)
+    return target
+
+def test_actual_unrelated_manifest_refresh_is_portable(copied_artifacts,checked):
+    import hashlib
+    target=copied_artifacts
+    file=target/'blob_800947f0.s'
+    file.write_bytes(file.read_bytes()+b'\n# Unrelated authenticated source annotation.\n')
+    manifest=target/'SHA256SUMS'
+    lines=manifest.read_text().splitlines()
+    manifest.write_text('\n'.join(hashlib.sha256(file.read_bytes()).hexdigest()+'  '+file.name
+                                  if line.split()[-1]==file.name else line for line in lines)+'\n')
+    names=checked['object_metadata']['referenced_symbols']
+    actual=proof.selected_inputs(set(names)|{'func_800E56F8'})
+    assert actual==checked['selected_inputs_sha256']
+    assert proof.protected_provenance()['asm/us/blob/SHA256SUMS']!=checked['protected_inputs_sha256']['asm/us/blob/SHA256SUMS']
+
+def test_current_target_manifest_still_validated(copied_artifacts,checked):
+    file=copied_artifacts/'blob_800de454.s'
+    file.write_bytes(file.read_bytes()+b'\n# Unauthenticated mutation.\n')
+    with pytest.raises(SystemExit,match='SHA-256 mismatch'):
+        proof.selected_inputs(checked['object_metadata']['referenced_symbols'])
+
+def test_current_data_manifest_still_validated(copied_artifacts,checked):
+    file=copied_artifacts.parent/'blob_data'/'opaque.hex'
+    file.write_bytes(file.read_bytes()+b'\n')
+    with pytest.raises(SystemExit,match='SHA-256 mismatch'):
+        proof.selected_inputs(checked['object_metadata']['referenced_symbols'])
+
+def authenticate_fixture(file):
+    import hashlib
+    manifest=file.parent/'SHA256SUMS'
+    lines=manifest.read_text().splitlines()
+    manifest.write_text('\n'.join(hashlib.sha256(file.read_bytes()).hexdigest()+'  '+file.name
+                                  if line.split()[-1]==file.name else line for line in lines)+'\n')
+
+def selected_names(checked):
+    return set(checked['object_metadata']['referenced_symbols'])|{'func_800E56F8'}
+
+def test_authenticated_selected_body_change_rejected(copied_artifacts,checked):
+    import re
+    file=copied_artifacts/'blob_800de454.s';source=file.read_text()
+    start=source.index('.section .text.func_800E398C,')
+    match=re.search(r'\.word\s+(0x[0-9a-fA-F]+)',source[start:])
+    begin,end=start+match.start(1),start+match.end(1)
+    file.write_text(source[:begin]+hex(int(match[1],16)^1)+source[end:]);authenticate_fixture(file)
+    assert proof.selected_inputs(selected_names(checked))!=checked['selected_inputs_sha256']
+
+def test_authenticated_selected_symbol_change_rejected(copied_artifacts,checked):
+    file=copied_artifacts/'symbols.json';data=json.loads(file.read_text())
+    data['symbols']['D_80151CE8']=hex(int(data['symbols']['D_80151CE8'],16)+4)
+    file.write_text(json.dumps(data));authenticate_fixture(file)
+    assert proof.selected_inputs(selected_names(checked))!=checked['selected_inputs_sha256']
+
+def test_authenticated_selected_data_change_rejected(copied_artifacts,checked):
+    file=copied_artifacts.parent/'blob_data'/'opaque.hex';lines=file.read_text().splitlines();count=0
+    for i,line in enumerate(lines):
+        if not line or line.startswith('#'):continue
+        address,payload=line.split();base=int(address,16);data=bytearray.fromhex(payload)
+        if base<=0x8012443c<base+len(data):
+            data[0x8012443c-base]^=1;lines[i]=address+' '+data.hex();count+=1
+    assert count==1;file.write_text('\n'.join(lines)+'\n');authenticate_fixture(file)
+    assert proof.selected_inputs(selected_names(checked))!=checked['selected_inputs_sha256']

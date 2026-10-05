@@ -1,6 +1,6 @@
 {
   "packet_tests": {
-    "count": 11,
+    "count": 21,
     "failures": 0,
     "skipped": 0
   },
@@ -25,5 +25,16 @@
   "full_suite": "not run",
   "hosted_ci": "not run or monitored",
   "ROM_image_and_shadow_gates": "not available; independent checker responsibility",
-  "setup_note": "Initial lock checks correctly reported missing sparse-checkout inputs. The exact tracked src and static_C16 inputs were materialized, then all 402 locks passed. No tracked input was modified."
+  "setup_note": "Initial lock checks correctly reported missing sparse-checkout inputs. The exact tracked src and static_C16 inputs were materialized, then all 402 locks passed. No tracked input was modified.",
+  "receipt_portability": {
+    "fresh_master": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+    "full_proof_replay": "portable-equal, all behavioral cases repeated against current-master authenticated native/data inputs",
+    "historical_global_manifest_provenance_retained": true,
+    "matching_source_and_group_recipe_unchanged": true,
+    "only_omitted_comparison_fields": [
+      "protected_inputs_sha256.asm/us/blob/SHA256SUMS",
+      "protected_inputs_sha256.asm/us/blob/symbols.json",
+      "protected_inputs_sha256.asm/us/blob_data/SHA256SUMS"
+    ]
+  }
 }

@@ -113,7 +113,7 @@ def object_proof(obj,work):
                       'body_sha256':sha(body),'relocations':[r for r in all_relocs if first<=r['offset']<first+size]}
     assert len(result[NAME]['relocations'])==8
     return result,list(struct.unpack('>135I',blob[functions[NAME]['value']:functions[NAME]['value']+540])),{
-        'internal_calls':internal_calls,'verified_context_literal_bytes':20,'excluded_rodata_zero_alignment':12,
+        'internal_calls':internal_calls,'referenced_symbols':{n:hex(addresses[n]) for n in sorted(referenced)},'verified_context_literal_bytes':20,'excluded_rodata_zero_alignment':12,
         'context_literal_sha256':sha(literals[:20]),'text_bytes':tsec['size'],'object_sha256':sha(raw),
         'own_data_bytes_for_claimed_helper':0,'external_threshold_sha256':sha(score.own_data().read(0x8012443c,4))}
 
@@ -245,6 +245,53 @@ typedef char car_nav[(OFFSETOF(GameCar,nav)==0x314)?1:-1];
     assert score.compare(obj,NAME,show=0).accepted()
     return 16
 
+
+def selected_inputs(symbol_names):
+    """Reauthenticate current artefacts, then bind only the consumed inputs.
+
+    Whole-manifest hashes are historical receipt provenance. Selected native
+    bodies, literal windows and symbol addresses remain strict portable inputs.
+    """
+    targets=score.targets()  # Revalidates every current target manifest entry.
+    addresses=score.image_symbols()  # Revalidates the current symbol file.
+    data=owndata.ImageData.from_artifact(owndata.artifact_dir(score.ASM_DIR))
+    assert data is not None
+    functions=[NAME]+CONTEXT+['func_800E56F8']
+    resolved={}
+    for name in sorted(symbol_names):
+        address=addresses.get(name,score.address_named(name))
+        assert address is not None,name
+        resolved[name]=hex(address)
+    windows={}
+    for address,size in [(0x8012443c,4),(0x80124440,20)]:
+        raw=data.read(address,size);assert raw is not None and len(raw)==size
+        windows['0x%x+%d'%(address,size)]=sha(raw)
+    return {'native_bodies':{n:sha(pack(targets[n])) for n in functions},
+            'data_windows':windows,'symbol_addresses_sha256':sha(json.dumps(resolved,sort_keys=True).encode())}
+
+
+def protected_provenance():
+    """Retain full current manifest hashes without treating unrelated churn as drift."""
+    files={'asm/us/blob/SHA256SUMS':score.ASM_DIR/'SHA256SUMS',
+           'asm/us/blob/symbols.json':score.ASM_DIR/'symbols.json',
+           'asm/us/blob_data/SHA256SUMS':owndata.artifact_dir(score.ASM_DIR)/'SHA256SUMS',
+           'tools/cloud/score.py':ROOT/'tools/cloud/score.py',
+           'tools/cloud/owndata.py':ROOT/'tools/cloud/owndata.py'}
+    return {label:sha(path.read_bytes()) for label,path in files.items()}
+
+
+def portable_receipt(result):
+    """Compare all proof evidence except historical whole-artefact provenance."""
+    portable=json.loads(json.dumps(result))
+    selected=portable['selected_inputs_sha256']
+    assert set(selected)=={'native_bodies','data_windows','symbol_addresses_sha256'}
+    assert set(selected['native_bodies'])==set([NAME]+CONTEXT+['func_800E56F8'])
+    assert set(selected['data_windows'])=={'0x8012443c+4','0x80124440+20'}
+    historical=portable['protected_inputs_sha256']
+    for key in ('asm/us/blob/SHA256SUMS','asm/us/blob/symbols.json','asm/us/blob_data/SHA256SUMS'):
+        assert len(historical.pop(key))==64
+    return portable
+
 def verification(work):
     obj=work/'candidate.o';score.compile_group(HERE,obj)
     proof,linked,metadata=object_proof(obj,work)
@@ -287,7 +334,8 @@ def verification(work):
       'instruction_coverage':len(coverage),'total_instructions':135,'unexecuted_offsets':missing,
       'branches':{str(k):sorted(v) for k,v in sorted(branches.items())},'case_result_sha256':sha(json.dumps(records).encode()),
       'wrong_contracts_rejected':mutation_tests,'unknown_opcode_rejected':unknown},
-      'protected_inputs_sha256':{str(p.relative_to(ROOT)):sha(p.read_bytes()) for p in [ROOT/'asm/us/blob/SHA256SUMS',ROOT/'asm/us/blob/symbols.json',ROOT/'asm/us/blob_data/SHA256SUMS',ROOT/'tools/cloud/score.py',ROOT/'tools/cloud/owndata.py']},
+      'protected_inputs_sha256':protected_provenance(),
+      'selected_inputs_sha256':selected_inputs(set(metadata['referenced_symbols'])|set([NAME]+CONTEXT+['func_800E56F8'])),
       'source_sha256':{p.name:sha(p.read_bytes()) for p in [HERE/'group.c',HERE/'group.json',HERE/'native.py',HERE/'host.c',HERE/'verify.py']},
       'toolchain_sha256':{n:sha(Path(score.ido(n)).read_bytes()) for n in ['cc','cfe','uopt','ugen','uld','as1']}}
 
