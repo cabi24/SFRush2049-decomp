@@ -20,7 +20,7 @@
   "tests": {
     "focused_and_scorer": {
       "command": "python3 -m pytest tests/cloud/test_e0b8_verification.py tests/conveyor/test_cloud_score.py -q -o addopts=''",
-      "passed": 662,
+      "passed": 666,
       "failed": 0,
       "exit_code": 0
     },
@@ -39,7 +39,7 @@
       "skipped": 18,
       "failed": 2,
       "exit_code": 1,
-      "note": "Collected before the 18 new tests were added; those tests passed separately in the final 662-test focused/scorer run. Both broad-suite failures independently reproduced on unchanged clean base commit."
+      "note": "Collected before the dedicated E0B8 tests were added; all 22 final dedicated tests passed separately in the final 666-test focused/scorer run. Both listed broad-suite failures independently reproduced on unchanged clean base commit."
     },
     "preexisting_broad_suite_failures": {
       "tests/cloud/test_dot_fresh_masked_rng.py::test_compiled_source_replays": "Saved manifest hash differs from current protected manifest; eight other items identical.",
@@ -73,5 +73,19 @@
     "full ROM build",
     "ROM compression identity",
     "make test"
-  ]
+  ],
+  "verifier_portability": {
+    "first_ci_run": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37350261687",
+    "first_ci_failures": "Two preexisting saved-manifest failures plus two new E0B8 replay subprocess failures; source rescore, guards, static locks and Conveyor passed.",
+    "reproduced_cause": "Ubuntu binutils2.42 rounded implicitly located .text to16-byte alignment, shifting both functions+8; exact linked-address assertions rejected it. Debian2.44 preserved intended placement.",
+    "exact_ci_package": "binutils-mips-linux-gnu_2.42-2ubuntu1cross5_amd64.deb",
+    "package_url": "https://archive.ubuntu.com/ubuntu/pool/universe/b/binutils-mipsen/binutils-mips-linux-gnu_2.42-2ubuntu1cross5_amd64.deb",
+    "package_sha256": "9a5b99defc57b465b4a3b76e7b35a2ddd2d931dcc349a6c92f76fe8b026c10c7",
+    "fix": "Explicit output .text base address; preserve strict address, extent, whole-byte, relocation and semantic checks; expose subprocess diagnostics.",
+    "ubuntu242_focused_tests": 22,
+    "debian244_focused_and_scorer_tests": 666,
+    "both_fresh_receipts_equal_published_receipt": true,
+    "matching_source_recipe_and_proof_unchanged": true,
+    "independent_updated_diff_review": "PASS"
+  }
 }

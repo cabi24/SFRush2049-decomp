@@ -69,7 +69,7 @@ binding. This permits legitimate overlap with an element of a host vector
 without forming an out-of-bounds array from a scalar global. No expression or
 operation in the candidate function body changes.
 
-Eighteen pytest checks include independently detectable negative controls:
+Twenty-two pytest checks include independently detectable negative controls:
 strict `<` in place of `<=`, reciprocal instead of magnitude return, clearing
 early-exit input, sum reassociation, direct division instead of reciprocal
 multiplication, wrong/truncated/padded ELF extent, unsupported instructions,
@@ -84,3 +84,19 @@ exceptions/traps, and alternate rounding modes are not modeled. Signed zeros
 and non-NaN finite/infinite results are compared bitwise. Arbitrary threshold
 and edge tests do not imply every input occurs in gameplay. Exact native byte
 identity is separately proven over both complete compiled bodies.
+
+## GNU linker portability
+
+The verifier explicitly addresses its output `.text` section at the verified
+native base. Ubuntu GNU binutils 2.42 rounded the former implicit location-counter
+form up by eight bytes to the input section's 16-byte alignment, despite the
+input `SUBALIGN(4)`. The unchanged address checks correctly rejected that layout;
+Debian 2.44 happened to preserve the intended placement. This was reproduced
+using Ubuntu's exact `2.42-2ubuntu1cross5` package before the fix.
+
+The explicit output-section address works on both versions. All 22 focused tests
+pass on 2.42, and all 666 focused/scorer tests pass on 2.44. Both freshly linked
+complete-body/7,487-case receipts remain byte-identical to the published receipt.
+Subprocess failures now include command, exit status, stdout and stderr; linked
+placement failures report expected and actual addresses and sizes. No byte,
+extent, symbol, or semantic acceptance check was weakened.

@@ -95,7 +95,7 @@ ROM bytes and credentials are not part of the submission.
 
 ### Local test results
 
-- Final focused E0B8 and scorer tests: **662 passed**, including 18 dedicated
+- Final focused E0B8 and scorer tests: **666 passed**, including 22 dedicated
   checks and the complete four-way behavioral replay.
 - Non-node Conveyor suite with exact pinned local dependencies: **1,779 passed,
   41 skipped, 9 deselected**.
@@ -105,8 +105,14 @@ ROM bytes and credentials are not part of the submission.
   failures are stale manifest receipts in `test_dot_fresh_masked_rng.py` and
   `test_task_enqueue_research.py`; an independent clean-base replay reproduced
   precisely those failures. They are disclosed, not repaired in this task. The
-  18 new E0B8 tests were collected and passed separately afterward.
+  new E0B8 tests were collected and passed separately afterward.
 
 See `validation.json` for exact commands, counts and the clean-base comparison,
 `native_contract.json` for original-image-backed threshold/caller evidence, and
 `SOURCE_REVIEW.md` for the independent source-provenance review.
+
+The first PR CI run also exposed a verifier-only GNU linker version difference.
+Its exact Ubuntu 2.42 toolchain shifted an implicitly addressed output section
+by eight bytes; the verifier rejected that placement. Explicit output-section
+addressing corrects this on both Ubuntu 2.42 and Debian 2.44. Matching C, the
+stock IDO recipe, exact-body receipt and all acceptance checks are unchanged.

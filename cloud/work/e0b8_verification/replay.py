@@ -20,6 +20,7 @@ import json
 import math
 import random
 import re
+import shlex
 import struct
 import subprocess
 import sys
@@ -43,7 +44,11 @@ def sha(data):
 
 
 def run(args):
-    result = subprocess.run(list(map(str, args)), check=True, capture_output=True, text=True)
+    result = subprocess.run(list(map(str, args)), check=False, capture_output=True, text=True)
+    if result.returncode:
+        raise RuntimeError('command failed (exit ' + str(result.returncode) + '): ' +
+                           shlex.join(result.args) + '\nstdout:\n' + result.stdout +
+                           '\nstderr:\n' + result.stderr)
     return result.stdout
 
 
@@ -54,6 +59,12 @@ def elf_extent(obj, name=NAME):
     assert len(entries) == 1, 'missing or duplicate ELF function'
     assert entries[0][2].lower() == 't', 'function is not text'
     return int(entries[0][0], 16), int(entries[0][1], 16)
+
+
+def check_linked_extent(name, expected_address, expected_size, address, size):
+    assert (address, size) == (expected_address, expected_size), (
+        f'{name}: linked placement/extent differs: expected address=0x{expected_address:08x}, '
+        f'size={expected_size}; got address=0x{address:08x}, size={size}')
 
 
 def exact_match(size, linked, target):
@@ -101,15 +112,19 @@ def inspect_object(obj, build):
     undefined = [line.split()[-1] for line in run(['mips-linux-gnu-nm', '-u', obj]).splitlines()]
     assert all(name in table for name in undefined), 'unresolved external symbol'
     base = table[NAME] - start
-    script = 'OUTPUT_ARCH(mips)\nENTRY(' + NAME + ')\nSECTIONS { . = ' + hex(base)
-    script += '; .text : SUBALIGN(4) { *(.text) } }\n'
+    # GNU ld 2.42 otherwise rounds a location-counter assignment up to the
+    # input section's 16-byte alignment, despite SUBALIGN(4). An explicit
+    # output-section address preserves the verified native placement on both
+    # 2.42 and 2.44. Keep the address/extent and full-word checks below.
+    script = 'OUTPUT_ARCH(mips)\nENTRY(' + NAME + ')\nSECTIONS { .text ' + hex(base)
+    script += ' : SUBALIGN(4) { *(.text) } }\n'
     script += '\n'.join(name + ' = ' + hex(table[name]) + ';' for name in undefined)
     (build / 'link.ld').write_text(script)
     linked_object = build / 'linked.elf'
     run(['mips-linux-gnu-ld', '-T', build / 'link.ld', '-o', linked_object, obj])
     run(['mips-linux-gnu-objcopy', '-O', 'binary', '-j', '.text', linked_object, build / 'linked.bin'])
     linked_address, linked_size = elf_extent(linked_object)
-    assert linked_address == table[NAME] and linked_size == size, 'link changed function extent'
+    check_linked_extent(NAME, table[NAME], size, linked_address, linked_size)
     raw = (build / 'linked.bin').read_bytes()
     body = raw[start:start + size]
     assert len(body) == size, 'truncated linked function'
@@ -152,7 +167,7 @@ def inspect_context(obj, build, names, table):
         target, _ = independent_target(name, len(score.targets()[name]) * 4)
         start, size = elf_extent(obj, name)
         linked_address, linked_size = elf_extent(build / 'linked.elf', name)
-        assert linked_address == table[name] and linked_size == size, 'context linked address/extent changed'
+        check_linked_extent(name, table[name], size, linked_address, linked_size)
         offset = linked_address - linked_base
         body = raw[offset:offset + size]
         assert len(body) == size, 'context linked body truncated'

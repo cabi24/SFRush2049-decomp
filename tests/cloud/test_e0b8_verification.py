@@ -6,7 +6,6 @@ import os
 from pathlib import Path
 import random
 import shutil
-import subprocess
 import sys
 
 import pytest
@@ -136,9 +135,9 @@ def test_full_four_way_replay(tmp_path):
     if not (ido / 'cc').is_file() or not all(shutil.which(tool) for tool in
             ['cc', 'mips-linux-gnu-ld', 'mips-linux-gnu-objcopy', 'mips-linux-gnu-nm']):
         pytest.skip('pinned IDO and GNU MIPS tools required')
-    result = subprocess.run([sys.executable, str(PACKET / 'replay.py'), '--source', str(replay.SOURCE), '--build', str(tmp_path)],
-                            check=True, capture_output=True, text=True)
-    proof = json.loads(result.stdout)
+    output = replay.run([sys.executable, str(PACKET / 'replay.py'), '--source', str(replay.SOURCE), '--build', str(tmp_path)])
+    proof = json.loads(output)
+    assert '.text 0x8008e0b8 : SUBALIGN(4)' in (tmp_path / 'link.ld').read_text()
     assert proof['semantics']['result'] == 'PASS'
     assert proof['semantics']['cases'] == 7487
     assert proof['semantics']['categories']['threshold_alias'] == 12
@@ -155,9 +154,9 @@ def test_final_matching_group_four_way_replay(tmp_path):
     if not (ido / 'cc').is_file() or not all(shutil.which(tool) for tool in
             ['cc', 'mips-linux-gnu-ld', 'mips-linux-gnu-objcopy', 'mips-linux-gnu-nm']):
         pytest.skip('pinned IDO and GNU MIPS tools required')
-    result = subprocess.run([sys.executable, str(PACKET / 'replay.py'), '--build', str(tmp_path)],
-                            check=True, capture_output=True, text=True)
-    proof = json.loads(result.stdout)
+    output = replay.run([sys.executable, str(PACKET / 'replay.py'), '--build', str(tmp_path)])
+    proof = json.loads(output)
+    assert '.text 0x8008e098 : SUBALIGN(4)' in (tmp_path / 'link.ld').read_text()
     assert proof['semantics']['result'] == 'PASS'
     assert proof['semantics']['cases'] == 7487
     assert proof['elf_function_bytes'] == proof['target_bytes'] == 140
@@ -215,3 +214,27 @@ def test_receipt_is_bound_to_frozen_final_source_and_group():
     assert proof['context']['func_8008E098']['elf_function_bytes'] == 32
     assert proof['semantics']['cases'] == 7487
     assert proof['semantics']['result'] == 'PASS'
+
+
+def test_subprocess_failure_exposes_command_and_both_output_streams():
+    command = [sys.executable, '-c',
+               "import sys; print('stdout detail'); print('stderr detail', file=sys.stderr); sys.exit(7)"]
+    with pytest.raises(RuntimeError) as error:
+        replay.run(command)
+    message = str(error.value)
+    assert 'exit 7' in message
+    assert sys.executable in message
+    assert 'stdout detail' in message and 'stderr detail' in message
+
+
+def test_subprocess_success_returns_stdout():
+    assert replay.run([sys.executable, '-c', "print('complete')"]) == 'complete\n'
+
+
+@pytest.mark.parametrize('address,size', [(0x8008e0c0, 140), (0x8008e0b8, 144)])
+def test_linked_extent_failure_reports_expected_and_actual_values(address, size):
+    with pytest.raises(AssertionError) as error:
+        replay.check_linked_extent(replay.NAME, 0x8008e0b8, 140, address, size)
+    message = str(error.value)
+    assert 'expected address=0x8008e0b8, size=140' in message
+    assert f'got address=0x{address:08x}, size={size}' in message
