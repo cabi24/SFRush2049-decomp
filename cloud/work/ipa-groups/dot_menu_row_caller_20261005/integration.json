@@ -1,0 +1,96 @@
+{
+  "base_commit": "cf10b3392d7f00ae42d75c008b79fdc2541aab6b",
+  "reviewed_intake_commit": "7487788a0ed4aae747aeb9bb0309e45fa78e1d9b",
+  "reviewed_intake_tree": "a5da3d8c0d9393fea22f1615b825c5ad54090cd4",
+  "sole_match_claim": "func_8010A7A4",
+  "new_strict_complete_function_bytes": 300,
+  "new_image_or_rom_coverage_bytes": 0,
+  "caller_nonmatch": {
+    "function": "func_8010A8D0",
+    "target_bytes": 1500,
+    "elf_st_size": 1480,
+    "differing_words": 367,
+    "total_words": 375,
+    "claimed": false
+  },
+  "accepted_context": {
+    "function": "func_800BEA3C",
+    "bytes": 28,
+    "production_source_unchanged": true,
+    "research_packed_word_refinement_only": true,
+    "new_match_credit": 0
+  },
+  "proof_boundary": "Ordinary scorer retains two section-relative literal fixups; own-data verification, production relocation and independent GNU linking resolve the full 300-byte helper. Parent is unclaimed NONMATCH. No ROM-ready unit claim.",
+  "focused": {
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "toolchain_replay_in_normal_ci": true,
+    "fresh_full_verifier_matches_saved_report": true
+  },
+  "aggregate": {
+    "command": "REQUIRE_TOOLCHAIN=1 python3 -m pytest tests/conveyor tests/cloud -q -rs -m 'not node_required'",
+    "passed": 1924,
+    "failed": 17,
+    "skipped": 41,
+    "deselected": 9,
+    "subtests_passed": 25,
+    "seconds": 298.93,
+    "baseline_commit": "cf10b3392d7f00ae42d75c008b79fdc2541aab6b",
+    "baseline_scope": "Fresh unchanged-base replay of tests/conveyor/test_cloud_score.py and tests/cloud/test_builder.py",
+    "baseline_failure_multiset_equal": true,
+    "baseline_passed": 621,
+    "baseline_failed": 17,
+    "baseline_subtests_passed": 25,
+    "failure_ids_with_multiplicity": [
+      "tests.cloud.test_builder.Validate::test_matches_agree_with_score_py",
+      "tests.cloud.test_builder.Validate::test_matches_agree_with_score_py",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[camera_blend_between]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[camera_update_d]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[display_settings]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_8008B3F4]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800DE860]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E114C]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E23A4]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E5D64]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800EC270]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_80106D94]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[race_setup_1]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[race_setup_2]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[random_float]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[track_select_handler]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[vector_normalize_length]"
+    ],
+    "failure_limits": "15 pre-existing Conveyor local-section relocation failures and two pre-existing Cloud descriptive-flag-header subtest failures. No unrelated repairs or waivers.",
+    "skip_limits": "Existing private-input and environment skips remain; no full-suite pass."
+  },
+  "gates": {
+    "protected_path_guard": "PASS",
+    "changed_submission_checker": "PASS: one group, sole helper claim; parent informational NONMATCH",
+    "static_locks_intact": 383,
+    "diff_check": "PASS",
+    "image_or_rom_gate_run": false,
+    "remote_builder_used": false
+  },
+  "toolchain_setup": {
+    "ido": "Pinned v1.2 IDO 5.3 binaries, byte-identical to proof compiler hashes, copied into ignored tools/cloud/ido before aggregate",
+    "mips_to_c_commit": "7fda1c6821148c65cb6aa52d3a356048554ca1cf",
+    "decomp_permuter_commit": "ec2efeebb33e2b1de81e39fbf7cbe3cd97350472",
+    "submodule_files_checked": 1366,
+    "submodule_content_mismatches": 0
+  },
+  "integration_changes": "Add normal-CI fresh full-proof replay test, sanitized author review, and integration verification notes. Helper, parent, group manifest, verifier and production files unchanged from reviewed intake.",
+  "promotion_limit": "Canonical setter source/type reconciliation and whole-unit/image verification are required before eventual promotion. Standalone setter equality does not establish the inlined contract.",
+  "source_artifact_sha256": {
+    "cloud/work/ipa-groups/dot_menu_row_caller_20261005/REPORT.md": "1998ee1371b5c3d625dd125335fbe9eb932be75043aba8de2c997c529e12d917",
+    "cloud/work/ipa-groups/dot_menu_row_caller_20261005/group.c": "79a38a70a0b436a117d5622376fbf018b920216e73304b89145c7ceb755a09fe",
+    "cloud/work/ipa-groups/dot_menu_row_caller_20261005/group.json": "29597162ae65df2172ca51781f385fac535e5c30e3596d769518f6c2327bea19",
+    "cloud/work/ipa-groups/dot_menu_row_caller_20261005/host_test.c": "29355e1cc07e254fd51da225dfe548ecb5c2270f37ded23d1fa7990587293e7a",
+    "cloud/work/ipa-groups/dot_menu_row_caller_20261005/layout_probe.c": "83adf5458fecb805b96caa8719a402bdabd53ca8344e45438a9edce0a23a8df0",
+    "cloud/work/ipa-groups/dot_menu_row_caller_20261005/verification.json": "16d36d58cbe481efbca345f5bbb26516cf03702a2cdcaad21bb641fdfe07d058",
+    "cloud/work/ipa-groups/dot_menu_row_caller_20261005/verify.py": "cbff2a66cfd0e9fbd55ba3123f08b7ca36d0d5c861063327bd4da883ce19036c",
+    "cloud/work/ipa-groups/dot_menu_row_caller_20261005/peer_review.json": "0973a35f60eefbb268894ae090dc81efbbad04f1b72b28162bec8f9eb12a9301",
+    "tests/conveyor/test_dot_menu_row_caller.py": "0a18d8a5f3ee56e24238498af1c006e5c9ef99c473cbe178d84fad61866b79e1"
+  },
+  "publication_scope": "Source, tests, hashes, counts and sanitized research/verification only. No ROM bytes, raw assembly dumps, generated binaries, credentials, or unrelated private data."
+}
