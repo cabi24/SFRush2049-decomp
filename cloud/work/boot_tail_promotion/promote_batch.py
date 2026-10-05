@@ -25,7 +25,7 @@ SAME gate for many functions at once:
 
 Usage (repo root, Pi):
     python3 cloud/work/boot_tail_promotion/promote_batch.py CONTEXT.jsonl SEG [SEG...]
-        [--only fn,fn,...]
+        [--only fn,fn,...] [--prefix-dedup rom/lib_X,...]
 
 `--only` (wave 3) restricts the plan to the named slots; every other slot in
 the segments is skipped without a refusal row. All gates are unchanged.
@@ -81,6 +81,7 @@ def source_for(fn, entries):
 
 
 ONLY = None
+PREFIX_DEDUP = set()
 CONTEXT_PATH = HERE / "context.jsonl"
 
 
@@ -123,7 +124,14 @@ def splice(cands):
         text = texts.get(tu) or tu.read_text()
         pragma = f'#pragma GLOBAL_ASM("asm/us/nonmatchings/{c["seg"]["rom_tu"]}/{c["fn"]}.s")'
         assert text.count(pragma) == 1, c["fn"]
-        have = tu_statements(text)
+        # Declarations already present are skipped. In a --prefix-dedup TU only
+        # text BEFORE the slot counts (a later declaration is not yet visible
+        # at the insertion point); this mirrors the audio_record_contracts
+        # actual-TU proof. Other TUs keep the whole-file rule their packets proved.
+        if c["seg"]["rom_tu"] in PREFIX_DEDUP:
+            have = tu_statements(text[:text.index(pragma)])
+        else:
+            have = tu_statements(text)
         # Preprocessor lines (#pragma pack(1) ... #pragma pack()) are positional
         # and always kept; only declaration statements are deduplicated.
         decls = [s for s in c["row"]["preamble"] if s.startswith("#") or norm(s) not in have]
@@ -226,8 +234,12 @@ def publish(passed, label):
 
 
 def main():
-    global ONLY, CONTEXT_PATH
+    global ONLY, CONTEXT_PATH, PREFIX_DEDUP
     argv = sys.argv[1:]
+    if "--prefix-dedup" in argv:
+        i = argv.index("--prefix-dedup")
+        PREFIX_DEDUP = set(argv[i + 1].split(","))
+        del argv[i:i + 2]
     if "--only" in argv:
         i = argv.index("--only")
         ONLY = set(argv[i + 1].split(","))
