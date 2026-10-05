@@ -1,0 +1,157 @@
+   +000  lui a2,0x8014                    lui a2,0x8014
+   +004  addiu a2,a2,2032                 addiu a2,a2,2032
+   +008  lhu v1,0(a2)                     lhu v1,0(a2)
+   +00c  lui a0,0x8015                    lui a0,0x8015
+   +010  addiu a0,a0,10264                addiu a0,a0,10264
+   +014  addiu sp,sp,-104                 addiu sp,sp,-104
+|  +018  lui at,0x8012                    lui at,0x0
+   +01c  sdc1 $f22,16(sp)                 sdc1 $f22,16(sp)
+   +020  sdc1 $f20,8(sp)                  sdc1 $f20,8(sp)
+   +024  lwc1 $f0,8(a0)                   lwc1 $f0,8(a0)
+   +028  lwc1 $f2,12(a0)                  lwc1 $f2,12(a0)
+   +02c  lwc1 $f12,16(a0)                 lwc1 $f12,16(a0)
+|  +030  lwc1 $f14,16756(at)              lwc1 $f14,0(at)
+   +034  blez v1,0xb4                     blez v1,0xb4
+   +038  move v0,zero                     move v0,zero
+   +03c  lw a0,4(a2)                      lw a0,4(a2)
+   +040  lw a1,96(sp)                     lw a1,96(sp)
+   +044  lh t3,0(a0)                      lh t3,0(a0)
+   +048  lh t4,2(a0)                      lh t4,2(a0)
+   +04c  lh t5,4(a0)                      lh t5,4(a0)
+|  +050  mtc1 t3,$f4                      mtc1 t3,$f6
+   +054  mtc1 t4,$f8                      mtc1 t4,$f8
+|  +058  cvt.s.w $f10,$f4                 cvt.s.w $f10,$f6
+|  +05c  mtc1 t5,$f4                      mtc1 t5,$f6
+|  +060  cvt.s.w $f6,$f8                  cvt.s.w $f4,$f8
+   +064  sub.s $f16,$f10,$f0              sub.s $f16,$f10,$f0
+|  +068  cvt.s.w $f10,$f4                 cvt.s.w $f10,$f6
+   +06c  mul.s $f8,$f16,$f16              mul.s $f8,$f16,$f16
+|  +070  sub.s $f18,$f6,$f2               sub.s $f18,$f4,$f2
+   +074  sub.s $f20,$f10,$f12             sub.s $f20,$f10,$f12
+|  +078  mul.s $f6,$f18,$f18              mul.s $f4,$f18,$f18
+|  +07c  add.s $f4,$f8,$f6                add.s $f6,$f8,$f4
+   +080  mul.s $f10,$f20,$f20             mul.s $f10,$f20,$f20
+|  +084  add.s $f22,$f4,$f10              add.s $f22,$f6,$f10
+   +088  c.lt.s $f22,$f14                 c.lt.s $f22,$f14
+   +08c  nop                              nop
+   +090  bc1fl 0xa4                       bc1fl 0xa4
+   +094  addiu v0,v0,1                    addiu v0,v0,1
+   +098  mov.s $f14,$f22                  mov.s $f14,$f22
+   +09c  move a1,v0                       move a1,v0
+   +0a0  addiu v0,v0,1                    addiu v0,v0,1
+   +0a4  slt at,v0,v1                     slt at,v0,v1
+   +0a8  bnez at,0x44                     bnez at,0x44
+   +0ac  addiu a0,a0,6                    addiu a0,a0,6
+   +0b0  sw a1,96(sp)                     sw a1,96(sp)
+   +0b4  lw a1,96(sp)                     lw a1,96(sp)
+|  +0b8  lui t7,0x8015                    lui v0,0x8015
+|                                         addiu v0,v0,-21996
+   +0bc  andi t6,a1,0x1                   andi t6,a1,0x1
+   +0c0  beqz t6,0xe4                     beqz t6,0xe8
+|  +0c4  sll t9,a1,0x2                    sll t8,a1,0x2
+|  +0c8  lh t7,-21996(t7)                 lh t7,0(v0)
+   +0cc  addiu a1,a1,-1                   addiu a1,a1,-1
+   +0d0  slt at,t7,a1                     slt at,t7,a1
+|  +0d4  beqz at,0x21c                    beqzl at,0x228
+|  +0d8  lui at,0x8015                    ldc1 $f20,8(sp)
+|  +0dc  b 0x21c                          b 0x224
+|  +0e0  sh a1,-21996(at)                 sh a1,0(v0)
+|  +0e4  lw t8,4(a2)                      lw t9,4(a2)
+|  +0e8  subu t9,t9,a1                    subu t8,t8,a1
+|  +0ec  sll t9,t9,0x1                    sll t8,t8,0x1
+   +0f0  addu v0,t8,t9                    addu v0,t8,t9
+   +0f4  lh t0,6(v0)                      lh t0,6(v0)
+   +0f8  lh t1,0(v0)                      lh t1,0(v0)
+   +0fc  lui at,0x8015                    lui at,0x8015
+   +100  mtc1 t0,$f8                      mtc1 t0,$f8
+|  +104  mtc1 t1,$f4                      mtc1 t1,$f6
+|  +108  lui t9,0x8015                    cvt.s.w $f4,$f8
+|  +10c  cvt.s.w $f6,$f8                  cvt.s.w $f10,$f6
+|  +110  cvt.s.w $f10,$f4                 sub.s $f8,$f4,$f10
+|  +114  sub.s $f8,$f6,$f10               
+   +118  swc1 $f8,52(sp)                  swc1 $f8,52(sp)
+   +11c  lh t2,8(v0)                      lh t2,8(v0)
+   +120  lh t3,2(v0)                      lh t3,2(v0)
+|  +124  mtc1 t2,$f4                      mtc1 t2,$f6
+   +128  mtc1 t3,$f10                     mtc1 t3,$f10
+|  +12c  cvt.s.w $f6,$f4                  cvt.s.w $f4,$f6
+|  +130  cvt.s.w $f4,$f10                 cvt.s.w $f6,$f10
+|  +134  sub.s $f10,$f6,$f4               sub.s $f10,$f4,$f6
+   +138  swc1 $f10,56(sp)                 swc1 $f10,56(sp)
+   +13c  lh t4,10(v0)                     lh t4,10(v0)
+   +140  lh t5,4(v0)                      lh t5,4(v0)
+|  +144  mtc1 t4,$f6                      mtc1 t4,$f4
+   +148  nop                              nop
+|  +14c  cvt.s.w $f4,$f6                  cvt.s.w $f6,$f4
+|  +150  mtc1 t5,$f6                      mtc1 t5,$f4
+   +154  nop                              nop
+|  +158  cvt.s.w $f6,$f6                  cvt.s.w $f4,$f4
+|  +15c  sub.s $f4,$f4,$f6                sub.s $f6,$f6,$f4
+|  +160  lwc1 $f6,10272(at)               lwc1 $f4,10272(at)
+|  +164  swc1 $f4,60(sp)                  lui at,0x8015
+|                                         swc1 $f6,60(sp)
+   +168  lh t6,0(v0)                      lh t6,0(v0)
+   +16c  swc1 $f8,24(sp)                  swc1 $f8,24(sp)
+   +170  mtc1 t6,$f8                      mtc1 t6,$f8
+   +174  nop                              nop
+   +178  cvt.s.w $f8,$f8                  cvt.s.w $f8,$f8
+|  +17c  sub.s $f6,$f6,$f8                sub.s $f4,$f4,$f8
+   +180  lwc1 $f8,10276(at)               lwc1 $f8,10276(at)
+   +184  lui at,0x8015                    lui at,0x8015
+|  +188  swc1 $f6,40(sp)                  swc1 $f4,40(sp)
+   +18c  lh t7,2(v0)                      lh t7,2(v0)
+   +190  swc1 $f10,28(sp)                 swc1 $f10,28(sp)
+   +194  mtc1 t7,$f10                     mtc1 t7,$f10
+   +198  nop                              nop
+   +19c  cvt.s.w $f10,$f10                cvt.s.w $f10,$f10
+   +1a0  sub.s $f8,$f8,$f10               sub.s $f8,$f8,$f10
+   +1a4  lwc1 $f10,10280(at)              lwc1 $f10,10280(at)
+   +1a8  swc1 $f8,44(sp)                  swc1 $f8,44(sp)
+   +1ac  lh t8,4(v0)                      lh t8,4(v0)
+|  +1b0  swc1 $f4,32(sp)                  swc1 $f6,32(sp)
+|  +1b4  mtc1 t8,$f4                      lui v0,0x8015
+|                                         mtc1 t8,$f6
+|                                         addiu v0,v0,-21996
+|                                         cvt.s.w $f6,$f6
+|                                         sub.s $f10,$f10,$f6
+|                                         lwc1 $f6,24(sp)
+|                                         mul.s $f6,$f6,$f4
+|                                         lwc1 $f4,28(sp)
+|                                         swc1 $f10,48(sp)
+|                                         mul.s $f4,$f4,$f8
+|                                         add.s $f8,$f6,$f4
+|                                         lwc1 $f6,32(sp)
+|                                         mul.s $f4,$f6,$f10
+|                                         mtc1 zero,$f6
+|                                         add.s $f16,$f4,$f8
+|                                         c.lt.s $f16,$f6
+   +1b8  nop                              nop
+|  +1bc  cvt.s.w $f4,$f4                  bc1fl 0x214
+|  +1c0  sub.s $f10,$f10,$f4              lh t9,0(v0)
+|  +1c4  lwc1 $f4,24(sp)                  blezl a1,0x214
+|  +1c8  mul.s $f4,$f4,$f6                lh t9,0(v0)
+|  +1cc  lwc1 $f6,28(sp)                  
+|  +1d0  swc1 $f10,48(sp)                 
+|  +1d4  mul.s $f6,$f6,$f8                
+|  +1d8  add.s $f8,$f4,$f6                
+|  +1dc  lwc1 $f4,32(sp)                  
+|  +1e0  mul.s $f6,$f10,$f4               
+|  +1e4  mtc1 zero,$f10                   
+|  +1e8  add.s $f16,$f6,$f8               
+|  +1ec  c.lt.s $f16,$f10                 
+|  +1f0  nop                              
+|  +1f4  bc1f 0x208                       
+|  +1f8  nop                              
+|  +1fc  blez a1,0x208                    
+|  +200  nop                              
+   +204  addiu a1,a1,-2                   addiu a1,a1,-2
+|  +208  lh t9,-21996(t9)                 lh t9,0(v0)
+   +20c  slt at,t9,a1                     slt at,t9,a1
+|  +210  beqz at,0x21c                    beqzl at,0x228
+|  +214  lui at,0x8015                    ldc1 $f20,8(sp)
+|  +218  sh a1,-21996(at)                 sh a1,0(v0)
+   +21c  ldc1 $f20,8(sp)                  ldc1 $f20,8(sp)
+   +220  ldc1 $f22,16(sp)                 ldc1 $f22,16(sp)
+   +224  jr ra                            jr ra
+   +228  addiu sp,sp,104                  addiu sp,sp,104
+want 139 words, got 141; differing rows 80; unverified 2 unresolved 0

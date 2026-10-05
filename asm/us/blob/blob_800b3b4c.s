@@ -1170,6 +1170,7 @@ func_800B4B00:
 .section .text.reverb_setup, "ax", @progbits
 .globl reverb_setup
 reverb_setup:
+    /* compiled from src/blob/reverb_setup.c */
     .word 0x27BDFFE8
     .word 0x30AE00FF
     .word 0xAFA5001C
