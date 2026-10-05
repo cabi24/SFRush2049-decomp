@@ -1,0 +1,323 @@
+{
+  "acceptance_checks": {
+    "changed_submissions": "1/1 strict MATCH",
+    "collision_complete_extent_replay": "3/3 exact cases",
+    "collision_host_cases": 1033,
+    "collision_scoped_tests_including_submission_equality": 5,
+    "protected_path_guard": "pass",
+    "resource_host_sanitizer_cases": 100000,
+    "resource_native_candidate_host_differential_cases": 13840,
+    "resource_scoped_tests_including_previous_packet": 8,
+    "scorer_sanity_group": "pass",
+    "scorer_sanity_single": "pass",
+    "static_locks": "383 intact",
+    "submission_bytes_identical_to_reviewed_candidate": true,
+    "submission_full_extent_replay": {
+      "actual_elf_function_bytes": 696,
+      "compared_full_words": 174,
+      "different_words": 0,
+      "nonzero_extra_words": 0,
+      "relocation_masks": 0,
+      "strict_match": true,
+      "unresolved_relocations": 0,
+      "unverified_relocations": 0,
+      "zero_alignment_words_after_symbol": 2
+    },
+    "vector_scoped_tests_including_owndata": 39
+  },
+  "aggregate": {
+    "all_failure_messages_identical_to_fresh_baseline": true,
+    "baseline_command": "REQUIRE_TOOLCHAIN=1 python3 -m pytest -o addopts='' tests/conveyor/test_cloud_score.py::test_locked_single_function_is_strict_match tests/cloud/test_builder.py::Validate::test_matches_agree_with_score_py -q",
+    "baseline_commit": "cf10b3392d7f00ae42d75c008b79fdc2541aab6b",
+    "baseline_junit_summary": {
+      "errors": "0",
+      "failures": "17",
+      "skipped": "0",
+      "tests": "614",
+      "time": "43.238"
+    },
+    "baseline_log_sha256": "78d37fa55e5d0f66a583e5aa278f3962efcc34c3adcb516accd4d52e8f767a9b",
+    "baseline_summary": "17 failed, 575 passed, 22 subtests passed in 43.25s",
+    "baseline_xml_sha256": "aaebbbbf68df23c660fa1a984471011d675aba08255697c2731ad022999cbe88",
+    "command": "REQUIRE_TOOLCHAIN=1 python3 -m pytest -o addopts='' tests/conveyor tests/cloud -q -rs -m 'not node_required'",
+    "exit_code": 1,
+    "failures": [
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "e5ecfc5625f218953f33d5b42393e23d4e56fa399fe677d9561a01d6be27ee4c",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[camera_blend_between]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "114266d16a765ada1a11155112d7e5f670b40eea1a7817a9a4430e9f26dd6215",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[camera_update_d]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "95a61967b8ec23702dadc97b7c706ae5b266dcd551e053c7cf1c648be5448f7b",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[display_settings]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "9d2425d3da2ec30387a80891866895ee0a36e38266d0188012e506cac8e8efff",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_8008B3F4]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "c38f8958e5a342901de172aee59305139527ce3725ba95dfef179816edbd8d0c",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800DE860]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "370c03d3c5334133f520a5ee4297c9995bc780f7f7d4be14fc90d32da0cdac7c",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E114C]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "947dfa61060bd73983fe122fa129b815177ee53b71ac1f03f192482e2427c005",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E23A4]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "04a6d3b761bdfdf0b9295666771dd7455535bee1e5a33010ee57887cf553ddf2",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E5D64]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "46a694528fe10f25e2787a7a24e05918bf749ad5e2780b3f0ec3b925ce69a5c0",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800EC270]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "75401c9b903cb0177c8a3a4e59e361e71eebf74b9cc83ab22112e4aa6ab0df63",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_80106D94]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "a11b8fede06b82f8d2e0e4b51ecef3e14c228529ba850f5b75e25abbf30096e8",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[race_setup_1]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "bb459c6adb3aaaf35ccbee5efa7f82dd2fecef6d0b52000774711dd6a7e33d4a",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[race_setup_2]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "d8016b3d29c48825588c8e2ab26a718f6ebab2ec8021eea54f5eed10cb81655d",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[random_float]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "ee2461ff4ca3340547833b423834cb37d3aad69623846890a249af6569d24187",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[track_select_handler]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "488dced5e954f43cbdd9f13be8ec10e4f30628aac66b3419ca17096e8392a43d",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[vector_normalize_length]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "72a33e2ba9f9eb1d5af5180bda2f9f2e0362ced1857a5b8dd7f150dbc9c8a6d1",
+        "subtest_failure_index": 0,
+        "test": "tests.cloud.test_builder.Validate::test_matches_agree_with_score_py"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "2e2692edb19a620ec9375c2e7be6c4eccfcdd43d1dee49903609066baee273ca",
+        "subtest_failure_index": 1,
+        "test": "tests.cloud.test_builder.Validate::test_matches_agree_with_score_py"
+      }
+    ],
+    "initial_collection_only_run": {
+      "cause": "Pinned submodule files absent from new worktree; exact submodule commits materialized before complete rerun",
+      "errors": 2,
+      "log_sha256": "0429e98fe00095ad46042cac04877ce7359ede4833ccf18cd05cbf5045091dc6",
+      "tests_executed": 0
+    },
+    "junit_summary": {
+      "errors": "0",
+      "failures": "17",
+      "skipped": "41",
+      "tests": "2018",
+      "time": "289.883"
+    },
+    "log_sha256": "d0e81229d19090d7b75cc96fff52e8c658863fda42c306b68945a67abb51cd1d",
+    "skip_categories": [
+      "9 tests lack MIPS cross-GCC",
+      "32 tests require unavailable SDK/ROM/generated/private inputs"
+    ],
+    "summary": "17 failed, 1935 passed, 41 skipped, 9 deselected, 25 subtests passed in 289.99s (0:04:49)",
+    "xml_sha256": "148a910f7ef1736e45adf3708bcc3a80a79fc3138b720e678d0b669653b83e7c"
+  },
+  "base_commit": "cf10b3392d7f00ae42d75c008b79fdc2541aab6b",
+  "cartridge_coverage_delta_claimed": false,
+  "focused_tests": {
+    "failed": 0,
+    "passed": 52,
+    "skipped": 0
+  },
+  "independent_peer_reviews": {
+    "collision": {
+      "author_commit": "b11f23d833d8ac590970ae91c22e3d1695db3a50",
+      "independent_GNU_link_exact": true,
+      "native_caller": {
+        "arguments": [
+          "object pointer from s0",
+          "pointer to signed halfword model index from s4",
+          "zero in a2",
+          "zero in a3"
+        ],
+        "callback_table": "D_80117518",
+        "case_table_address": "0x80123E5C",
+        "case_target": "0x800BED88",
+        "data_manifest_sha256": "a11be55c29c9aedd10e2ff0439c48c1171a14d2dc0d975e66f29e3667c738594",
+        "direct_JAL_callers_found": 0,
+        "dispatch_function": "race_setup_2",
+        "indirect_call_address": "0x800BEDB0",
+        "integer_return_test": "0x800BEDB8",
+        "pointer_address": "0x80117528",
+        "scope_note": "The normal object dispatch case is verified. The separate mode-6 generic dispatch uses another argument preparation; dynamic reachability of slot 4 on that branch is not established.",
+        "slot": 4
+      },
+      "negative_controls_rejected": 8,
+      "receipt_sha256": "49c4b8d8e47080faa2b805e38857d39ca1f65ca7ccef80987a7901bc76ba9ba3",
+      "sanitized_host_cases": 1033,
+      "verdict": "PASS for strict complete object match"
+    },
+    "resource": {
+      "author_commit": "9f6d8bd96a552963e6561198e3b75a1982b23daa",
+      "receipt_sha256": "a11e2b5d432f399adf948c4a0c3e9e93dcb21364866f0094df42cb54ce38fb8e",
+      "verdict": "PASS for bounded NONMATCH research only"
+    },
+    "vector": {
+      "author_commit": "cef08cd1207e84d3a7d6749abc112f3640444105",
+      "receipt_sha256": "1215791a6f0a536322539d80624fac535aec9c41abeb97db75901ee82110135d",
+      "verdict": "PASS for bounded NONMATCH research only"
+    }
+  },
+  "new_complete_object_matches": {
+    "func_8010C02C": 696
+  },
+  "new_object_evidence_bytes": 696,
+  "nonmatch_research": {
+    "func_800E8D50": {
+      "differing_words": 1,
+      "elf_bytes": 448,
+      "own_data_sites_independently_proven": 2,
+      "target_bytes": 448,
+      "target_words": 112
+    },
+    "func_8010D85C": {
+      "candidate_frame_bytes": 64,
+      "differing_words": 12,
+      "elf_bytes": 368,
+      "fifth_argument_contract_unresolved": true,
+      "native_frame_bytes": 88,
+      "target_bytes": 368,
+      "target_words": 92
+    }
+  },
+  "object_hash_metadata_note": "Resource-initializer full-object hashes vary with source paths only in .mdebug in an identical-source path control; all executable/relocation sections and semantic receipts agree. Whole-object hash equality across worktrees is not claimed.",
+  "production_promotions": 0,
+  "replay_receipt_comparison": {
+    "collision": {
+      "fresh_receipt_sha256": "fded9b39f1f7de7c305e1ce9d364d5b7045e3ad0e5908af5de9be18966d3e4ed",
+      "object_hash_only_differences": [],
+      "semantic_receipt_identical": true,
+      "whole_receipt_identical": true
+    },
+    "resource": {
+      "fresh_receipt_sha256": "d8b810b2969752b94e4df81008cf36d77e11fcfe43a38d6a4a3d3244dbb99777",
+      "object_hash_only_differences": [
+        "/comparison/object_sha256",
+        "/controls/baseline/object_sha256",
+        "/controls/count_volatile/object_sha256",
+        "/controls/final_O2/object_sha256",
+        "/controls/kind_and_variant/object_sha256",
+        "/controls/output_and_text_last/object_sha256",
+        "/controls/output_before_text/object_sha256",
+        "/controls/output_first/object_sha256",
+        "/controls/pointer_contract/object_sha256",
+        "/controls/pointer_four_args/object_sha256",
+        "/controls/reuse_index/object_sha256",
+        "/controls/reuse_pointer/object_sha256",
+        "/controls/slot_local/object_sha256",
+        "/controls/text_last/object_sha256"
+      ],
+      "semantic_receipt_identical": true,
+      "whole_receipt_identical": false
+    },
+    "vector": {
+      "fresh_receipt_sha256": "f339369e3a5b0a9eb94c7b75d0eaf226361dfbfcb80da731b2eaec1715619f8c",
+      "object_hash_only_differences": [],
+      "semantic_receipt_identical": true,
+      "whole_receipt_identical": true
+    }
+  },
+  "resource_path_hash_control": {
+    "all_other_sections_identical": true,
+    "differing_elf_sections": [
+      ".mdebug"
+    ],
+    "object_sha256": [
+      "e14239bba9c00fed5d5390f1898f41b32c8acb684091f7948a97168b94bce1bf",
+      "ddf86f1e6e768064495c8ba1ff6c404aac307a4dee2b348277563642c895485e"
+    ],
+    "same_source_sha256": "ffc39ca1ace653b3b8abdc26753398db4a5acddcbfe5ace23ceb34ce534831de",
+    "source_bytes_equal": true
+  },
+  "schema": 1,
+  "source_bound_sha256": {
+    "cloud/matches/func_8010C02C.c": "cf5ace6577bd5511cf4274cd4eac5dae315419c4fcf60c3cea1c9a8d93900d82",
+    "cloud/work/frontier/dot_resource_initializer/README.md": "d3bf0ab88a522ec9bbc4f2494a3e3339f36b8674162f5583c3f3414253b0c126",
+    "cloud/work/frontier/dot_resource_initializer/candidate.c": "ffc39ca1ace653b3b8abdc26753398db4a5acddcbfe5ace23ceb34ce534831de",
+    "cloud/work/frontier/dot_resource_initializer/host.c": "103168f54c583042179e6e4aee7d96555e637cb314901aa959f7a7c9065cc8bd",
+    "cloud/work/frontier/dot_resource_initializer/verification.json": "30698d50cdcad0d9ba974779b01525b19448c4d4632f17c60857eb65867f2db6",
+    "cloud/work/frontier/dot_resource_initializer/verify.py": "b8c3bf7a371ee64dd55f6846e7bd59ee93ff3cd929cba99f43443597e87d78da",
+    "cloud/work/frontier/dot_seed_vector/README.md": "e9c879d68b51e00204875f6766b33d75610708777d0ce767f143c1810af06f9b",
+    "cloud/work/frontier/dot_seed_vector/func_8010C02C.c": "cf5ace6577bd5511cf4274cd4eac5dae315419c4fcf60c3cea1c9a8d93900d82",
+    "cloud/work/frontier/dot_seed_vector/semantics.c": "4597a8d2f908b9f649cdf67a0b2f1128c05ae4ab94103896175affeb79bdfbc1",
+    "cloud/work/frontier/dot_seed_vector/verification.json": "fded9b39f1f7de7c305e1ce9d364d5b7045e3ad0e5908af5de9be18966d3e4ed",
+    "cloud/work/frontier/dot_seed_vector/verify.py": "9150ff83339bd417c3affd2ac99c03c6ea4fef522f582b19898acaa2fed7ac1f",
+    "cloud/work/frontier/dot_vector_blend/RESULTS.md": "141c6ef3524f4c283b313b50132096c06f0180659e8bf3be2e333bd847952f30",
+    "cloud/work/frontier/dot_vector_blend/best.c": "c12b6bc162e6ee208968984bf0c964cb9f4ff95db5e513ad71130d626f1d1ae5",
+    "cloud/work/frontier/dot_vector_blend/controls.json": "b4f9531018d2bc8f459bd04311e93cccb03197863771b153ab00b4a33ba532ea",
+    "cloud/work/frontier/dot_vector_blend/replay.py": "dba5d9aae00d7e58b517f3b8a7af2ac696140a976009efb9063622281216fccb",
+    "cloud/work/frontier/dot_vector_blend/verification.json": "f339369e3a5b0a9eb94c7b75d0eaf226361dfbfcb80da731b2eaec1715619f8c",
+    "tests/cloud/test_dot_vector_blend_packet.py": "1de8d6ba7cd16caa3061fef972757d8e15554a1ab396d7419abbb767a49af0cd",
+    "tests/conveyor/test_frontier_resource_initializer.py": "d1400b4638fa96fbd8e5907f66313a67b6eb9edb13ed4a315fd2ebca2a929b3a",
+    "tests/conveyor/test_seed_vector_match.py": "4942a75f8a5477711653cadc8b48a79545511d26af45d490d802d10b186034c7"
+  },
+  "source_intake_commit": "913eff6cb1b0d530c00f0afbd290457066d2c081",
+  "unchanged_boundaries": [
+    "production sources and native callers",
+    "static and blob locks",
+    "protected target bytes/manifests/symbols",
+    "shared context and headers",
+    "scorer and build gates",
+    "compiler flags/toolchain"
+  ],
+  "unrun_required_integration_gates": [
+    "whole-program shadow",
+    "source-built image",
+    "exact compressed stream",
+    "full-ROM SHA-1"
+  ]
+}
