@@ -1,0 +1,418 @@
+{
+  "accepted_context": {
+    "entity_flags_apply": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 73,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 292,
+      "object_offset": 1400
+    },
+    "func_80091FBC": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 88,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 352,
+      "object_offset": 0
+    },
+    "func_8009211C": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 87,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 348,
+      "object_offset": 352
+    },
+    "func_80092278": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 58,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 232,
+      "object_offset": 700
+    },
+    "high_scores_display": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 117,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 468,
+      "object_offset": 932
+    }
+  },
+  "archive_baseline": {
+    "comparison": {
+      "differing": 35,
+      "errors": [],
+      "extra_words": 0,
+      "total": 122,
+      "unresolved": [],
+      "unverified": []
+    },
+    "elf_bytes": 488
+  },
+  "base": "cc4d5fdd",
+  "behavior": {
+    "dynamic_clock_cases": 4,
+    "executed_instruction_offsets": [
+      0,
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      28,
+      32,
+      36,
+      40,
+      44,
+      48,
+      52,
+      56,
+      60,
+      64,
+      68,
+      72,
+      76,
+      80,
+      84,
+      88,
+      92,
+      96,
+      100,
+      104,
+      108,
+      112,
+      116,
+      120,
+      124,
+      128,
+      132,
+      136,
+      140,
+      144,
+      148,
+      152,
+      156,
+      160,
+      164,
+      168,
+      172,
+      176,
+      180,
+      184,
+      188,
+      192,
+      196,
+      200,
+      204,
+      208,
+      212,
+      216,
+      220,
+      228,
+      232,
+      240,
+      244,
+      248,
+      252,
+      256,
+      260,
+      264,
+      268,
+      272,
+      276,
+      280,
+      284,
+      288,
+      292,
+      296,
+      300,
+      304,
+      308,
+      312,
+      316,
+      320,
+      324,
+      328,
+      332,
+      336,
+      340,
+      344,
+      348,
+      352,
+      356,
+      360,
+      364,
+      368,
+      372,
+      376,
+      380,
+      384,
+      388,
+      392,
+      396,
+      400,
+      404,
+      408,
+      412,
+      416,
+      420,
+      424,
+      428,
+      432,
+      436,
+      440,
+      444,
+      448,
+      452,
+      456,
+      460,
+      464,
+      468,
+      472,
+      476,
+      480,
+      484
+    ],
+    "host_ubsan_cases": 18737,
+    "native_runs": 37482,
+    "stable_clock_cases": 18737,
+    "unexecuted_instruction_offsets": [
+      224,
+      236
+    ]
+  },
+  "clock_observation": {
+    "address": "0x8002EB90",
+    "no_intervening_stores": true,
+    "static_alias": "__osScElapsedTime",
+    "two_load_offsets": [
+      432,
+      464
+    ],
+    "writers": [
+      "viTickStart",
+      "viUpdateTime"
+    ]
+  },
+  "controls": {
+    "ordinary_clock": {
+      "comparison": {
+        "differing": 94,
+        "errors": [],
+        "extra_words": 0,
+        "total": 122,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x1a4",
+          ".rodata+0x0 at +0x1a8"
+        ]
+      },
+      "elf_bytes": 468
+    },
+    "player_first": {
+      "comparison": {
+        "differing": 1,
+        "errors": [],
+        "extra_words": 0,
+        "total": 122,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 488
+    },
+    "wrong_literal": {
+      "comparison": {
+        "differing": 0,
+        "errors": [
+          "owned literal differs from protected target"
+        ],
+        "extra_words": 0,
+        "total": 122,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x1b4",
+          ".rodata+0x0 at +0x1b8"
+        ]
+      },
+      "elf_bytes": 488
+    }
+  },
+  "coverage_credit": 0,
+  "end_exclusive": "0x800DEF60",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "full_genuine_closure": {
+    "comparison": {
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "total": 122,
+      "unresolved": [],
+      "unverified": []
+    },
+    "elf_bytes": 488,
+    "object_offset": 408
+  },
+  "function": "func_800DED78",
+  "gnu_link": {
+    "body_sha256": "f1c77fe0ca87d833978e1b897d18f227d9063371a694f27dc666ffa4c8b1eec8",
+    "elf_bytes": 488,
+    "full_body_equal": true,
+    "literal_address": "0x80124320",
+    "literal_bytes": 4,
+    "literal_value": 0.1
+  },
+  "proof": {
+    "comparison": {
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "total": 122,
+      "unresolved": [],
+      "unverified": []
+    },
+    "elf_bytes": 488,
+    "object_offset": 0,
+    "relocations": [
+      {
+        "offset": 32,
+        "symbol": "D_80140808",
+        "type": 5
+      },
+      {
+        "offset": 36,
+        "symbol": "D_80140808",
+        "type": 6
+      },
+      {
+        "offset": 176,
+        "symbol": "D_8002EB90",
+        "type": 5
+      },
+      {
+        "offset": 180,
+        "symbol": "D_8002EB90",
+        "type": 6
+      },
+      {
+        "offset": 112,
+        "symbol": "D_8002EB90",
+        "type": 5
+      },
+      {
+        "offset": 116,
+        "symbol": "D_8002EB90",
+        "type": 6
+      },
+      {
+        "offset": 372,
+        "symbol": "D_8002EB90",
+        "type": 5
+      },
+      {
+        "offset": 376,
+        "symbol": "D_8002EB90",
+        "type": 6
+      },
+      {
+        "offset": 416,
+        "symbol": "D_8002EB90",
+        "type": 5
+      },
+      {
+        "offset": 420,
+        "symbol": "D_8002EB90",
+        "type": 6
+      },
+      {
+        "offset": 436,
+        "symbol": ".rodata",
+        "type": 5
+      },
+      {
+        "offset": 440,
+        "symbol": ".rodata",
+        "type": 6
+      }
+    ]
+  },
+  "semantic_mutants": {
+    "wrong_bump_guard": {
+      "case_index": 30,
+      "rejected": true
+    },
+    "wrong_peak_comparison": {
+      "case_index": 16200,
+      "rejected": true
+    },
+    "wrong_threshold_comparison": {
+      "case_index": 6,
+      "rejected": true
+    },
+    "wrong_timeout_boundary": {
+      "case_index": 16201,
+      "rejected": true
+    }
+  },
+  "source_bindings": {
+    "cloud/work/frontier/dot_audio_force_20261005/candidate.c": "89b0540301b9f334e9f4e0586740fde899c3af801b65eb0a41a7e2874c81eb25",
+    "cloud/work/frontier/dot_audio_force_20261005/native_machine.py": "4e3f440ca6ae035af8af99c3803acfea29bf4a18ec62f14fdf75c4fb25b8063c",
+    "cloud/work/frontier/dot_audio_force_20261005/verify.py": "8a236e7feeba5235e064aa226bb4d387b94650fbe1b5686d8cbf249519d8b3eb",
+    "cloud/work/module_campaign_20261002/ai/model_audio/ROOT_DEF68/impact_sound.h": "47ce420f588733cccadd7db07f7e29b29637348d29d7aa4c54a5aa0341042194",
+    "cloud/work/module_campaign_20261002/ai/model_audio/ROOT_DEF68/mode_select_handler.c": "0686f34fec3f7ac987f23db7fa18ca1bbb680112961ae0f0040895e5134fd00d",
+    "cloud/work/module_campaign_20261002/ai/model_audio/audio_core.c": "0011b8a296d554ee9e2074428a1278571d0cdc07ad0e5bcd3901343a69ac4cee",
+    "src/blob/groups/frontier_list_alloc_sound/group.c": "10e56edc406cf5f81991f7271d7dc2f6721dd6dc1425d7209c76e468bc8ddc46",
+    "src/blob/groups/frontier_list_alloc_sound/group.json": "ff830e40ce03e9e3a26089b00b080ed224c5b6ddcf721d9f4e627db2266fe693"
+  },
+  "start": "0x800DED78",
+  "status": "MATCHING_RESEARCH",
+  "toolchain_sha256": {
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b"
+  },
+  "unclaimed_caller": {
+    "differing": 742,
+    "elf_bytes": 3524,
+    "errors": [
+      "own switch-table bytes differ from the protected target"
+    ],
+    "extra_words": 131,
+    "total": 744,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x4 at +0x70c",
+      ".rodata+0x4 at +0x714",
+      ".rodata+0x20 at +0x870",
+      ".rodata+0x20 at +0x878"
+    ]
+  }
+}
