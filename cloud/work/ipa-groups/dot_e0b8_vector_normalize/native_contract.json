@@ -1,0 +1,239 @@
+{
+  "task": "Independent native ABI, data, extent, caller and callee audit of func_8008E0B8",
+  "date_utc": "2026-10-05",
+  "base_commit": "75df8b73e43c398a9971291b4334c51167ac6eab",
+  "authority_files_sha256": {
+    "asm/us/blob/SHA256SUMS": "bc7e08ed0f4abdbbdacd24bf8ea493c416b83c52089e1a980f71512349ac1f8d",
+    "asm/us/blob/symbols.json": "ea80bea2d751ca4f4e8ac636d2a9a5278e10267dd1f0a138a9fea5118a1b7c7d",
+    "asm/us/blob/blob_8008d0c0.s": "bcf2b8943b9aa7f0c384d7e54f0fc3e75750812e00666bcec13d649fa7881320",
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+    "include/game/math.h": "25682e1bc09af28b45b46ab7b94000b5a27784efdf9807376d41ea903d33602a"
+  },
+  "target": {
+    "name": "func_8008E0B8",
+    "start": "0x8008E0B8",
+    "end_exclusive": "0x8008E144",
+    "native_bytes": 140,
+    "native_words": 35,
+    "body_sha256": "4d445e7a9fc4533507d1d2dde198802c7658ae2e2e20e180677a3daea4f85fb5",
+    "predecessor": "func_8008E098 at 0x8008E098, 32 bytes",
+    "successor": "func_8008E144 at 0x8008E144",
+    "misleading_legacy_symbol": "render_flag_check = 0x8008E0C8 lies inside canonical body, with no observed direct calls or address references"
+  },
+  "abi": {
+    "input": "one ordinary 32-bit O32 pointer in a0 to three readable/writable binary32 elements at offsets 0,4,8",
+    "return": "binary32 original length in f0, or positive zero on the early threshold branch",
+    "private_entry_registers": [],
+    "native_callees": [],
+    "stack_frame_bytes": 40,
+    "observed_stack_slots": [
+      {
+        "offset": 4,
+        "size": 4,
+        "meaning": "third input component, written once then reloaded for square and normalized z"
+      }
+    ],
+    "callee_saved_register_saves": [],
+    "all_input_components_snapshotted_before_any_output_store": true,
+    "no_fourth_component": true,
+    "no_input_integer_or_double_conversion": true
+  },
+  "behavior": {
+    "expression": "sqrtf((x*x + y*y) + z*z), evaluated through single-precision native operations",
+    "small_case": "length <= D_8012394C returns positive zero and leaves vector untouched",
+    "normal_case": "one binary32 reciprocal 1.0f/length, then each original component multiplied by it and written to offsets0,4,8; original length returned",
+    "unordered_case": "unordered comparison does not take early return; normalization path executes",
+    "writes_fallback_axis": false,
+    "aliasing": "threshold read before any output stores; native source has no restrict/noalias guarantee",
+    "no_proven_finite_only_precondition": true
+  },
+  "threshold": {
+    "address": "0x8012394C",
+    "size_bytes": 4,
+    "type": "binary32",
+    "value_decimal": "9.999999747378752e-06",
+    "c_literal": "1e-5f",
+    "reference_offsets": [
+      "0x20 address upper half",
+      "0x2c scalar threshold read"
+    ],
+    "protected_function_reference_scan": "sole observed matching HI/LO reference is target load; no direct target-address pointer words or observed stores",
+    "literal_data_provenance": {
+      "asset": "assets/us/data.bin",
+      "asset_sha256": "c348ea04768321ca2f864195ad6013a8fb15b59f0295ab74b8b16317cfa77154",
+      "asset_size": 12517376,
+      "source_mapping": "splat.us.yaml identifies data.bin origin ROM0x10000; ovl_targets.GAME_ROM and blob_rom.ROM_OFFSET identify raw-deflate game stream ROM0xB0CB10",
+      "inflate": "raw deflate, in memory only, end-of-stream verified",
+      "game_image_size": 647072,
+      "game_image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+      "protected_function_slices_checked": 1216,
+      "protected_function_slice_mismatches": 0,
+      "raw_image_saved_or_published": false
+    }
+  },
+  "callers": [
+    {
+      "name": "func_8008E408",
+      "address": "0x8008e408",
+      "extent_bytes": 1544,
+      "native_body_sha256": "4fb25f428d7226b78a7d09d378196679577898b9d82b525fda5bb24a4320c7c0",
+      "call_offsets": [
+        "0x1a4"
+      ],
+      "argument": "sp+0xE4 local 12-byte copy of car fields +0x14/+0x18/+0x1C",
+      "return_use": "discarded; normalized vector feeds vector_normalize_length and math_utility"
+    },
+    {
+      "name": "entity_spawn_init",
+      "address": "0x8008ea10",
+      "extent_bytes": 5544,
+      "native_body_sha256": "21476242fe1fd3da148631a748f35db1ee8b898c49a031b674b4f719b0e91f8a",
+      "call_offsets": [
+        "0x1294"
+      ],
+      "argument": "sp+0x2B8 local 12-byte endpoint difference",
+      "return_use": "tested equal to zero; nonzero original length is used for interpolation division and scaling"
+    },
+    {
+      "name": "particle_system",
+      "address": "0x8009c8f0",
+      "extent_bytes": 2900,
+      "native_body_sha256": "5c00e677b48693d029dbe2f3adc501f14c13e29d25c76e5e48587f4033e1c760",
+      "call_offsets": [
+        "0x4e4"
+      ],
+      "argument": "sp+0xB0 local 12-byte difference between position vectors",
+      "return_use": "discarded; normalized x/z feed func_8008C768"
+    },
+    {
+      "name": "input_deadzone_apply",
+      "address": "0x800add58",
+      "extent_bytes": 3580,
+      "native_body_sha256": "b758d5b5b7440827aed3f338fc70068543d0b1a9d98c6b2326bde65443db1403",
+      "call_offsets": [
+        "0x520",
+        "0x52c",
+        "0x538"
+      ],
+      "argument": "third argument matrix pointer, each 12-byte row at +0/+12/+24",
+      "return_use": "discarded for each row"
+    },
+    {
+      "name": "camera_trigger_check",
+      "address": "0x800c4200",
+      "extent_bytes": 1232,
+      "native_body_sha256": "cdc5f8d1125fdc7fade873776b2e63fb7ed7f95defe78d30de353ec37372bf74",
+      "call_offsets": [
+        "0x364",
+        "0x370",
+        "0x37c"
+      ],
+      "argument": "third argument matrix pointer, each 12-byte row at +0/+12/+24",
+      "return_use": "discarded for each row"
+    },
+    {
+      "name": "func_800C4F68",
+      "address": "0x800c4f68",
+      "extent_bytes": 1416,
+      "native_body_sha256": "c93afe430e8e16ad491026338e7ff7367e111738e8ce6c1474b9db219877dd03",
+      "call_offsets": [
+        "0x40c",
+        "0x464"
+      ],
+      "argument": "second-argument structure +0x690 vector then +0x678 vector, each three floats",
+      "return_use": "discarded; first output participates in cross product that forms second input"
+    },
+    {
+      "name": "entity_iterate",
+      "address": "0x800c69c0",
+      "extent_bytes": 224,
+      "native_body_sha256": "b735da48328dc2262791e6c434d70110cf8f2269e0ec447cc0b74240e8795f97",
+      "call_offsets": [
+        "0x7c"
+      ],
+      "argument": "sp+0x24 local 12-byte second-minus-first difference",
+      "return_use": "discarded; normalized vector multiplied by 0.25f and added to first vector"
+    },
+    {
+      "name": "hud_render",
+      "address": "0x800cada4",
+      "extent_bytes": 2420,
+      "native_body_sha256": "fa9a2dac5b163a1d500d44081cdc4f32c67147641485c7ade7c475f6bc683f84",
+      "call_offsets": [
+        "0x244"
+      ],
+      "argument": "sp+0x10C local 12-byte copy of car fields +0x14/+0x18/+0x1C",
+      "return_use": "discarded; normalized vector feeds vector_normalize_length and math_utility"
+    },
+    {
+      "name": "func_800E1F80",
+      "address": "0x800e1f80",
+      "extent_bytes": 1060,
+      "native_body_sha256": "e211317f62c3d4afdf58164d32de977f8258f603e13fec39c98ccad6f4e5a4dd",
+      "call_offsets": [
+        "0x304"
+      ],
+      "argument": "sp+0x74 local 12-byte vector written by func_800C1A00",
+      "return_use": "discarded; normalized xyz later scaled then passed to func_800A61B0"
+    }
+  ],
+  "direct_call_site_count": 14,
+  "direct_callers_count": 9,
+  "call_scan_scope": {
+    "blob_functions": 1216,
+    "overlay_a_functions": 193,
+    "overlay_b_functions": 49,
+    "boot_tail_functions": 439,
+    "non_blob_direct_call_sites": 0,
+    "indirect_reference_check": "No aligned absolute address word references to target or predecessor in complete inflated game image. No protected-blob HI/LO materializations found by bounded local base-register tracking. This does not prove absence of opaque or computed indirect calls."
+  },
+  "inlining": {
+    "native_fact": "sqrt.s is inline and no call instruction exists in target",
+    "sqrtf_prototype_authority": "include/game/math.h declares f32 sqrtf(f32)",
+    "actual_adjacent_helper": "func_8008E098 is a complete three-binary32 norm with same sum order and square root; strict O3 source exists under cloud/work/ipa-groups/dot_vector_length",
+    "scope_limit": "Neither adjacency nor shared arithmetic proves E0B8 originally called E098. No justification for invented helpers, arbitrary argument additions, or production-boundary changes.",
+    "final_candidate_finding": "The actual final candidate calls the real public E098 with in-place vector expressions. Ordinary O3 inlines it and freshly scores both complete bodies MATCH, including the target frame/spill. This supports the implementation and compiler mechanism without establishing original source spelling."
+  },
+  "prior_assumption_corrections": [
+    "The historical r5_b 13-word residual uses six unused integer locals and an artificial address-taken z; neither follows from native ABI or memory behavior.",
+    "B28 common_return fallback-unit-axis wording does not apply to E0B8.",
+    "Void or integer return alternatives are contradicted by entity_spawn_init actual caller.",
+    "Generated symbol names and legacy prototypes cannot redefine the scanner/closure-proven full body."
+  ],
+  "limits": [
+    "This native-contract review and fresh canonical scoring are function-body evidence, not cartridge integration or coverage acceptance.",
+    "The native auditor did not modify production files, protected inputs, source code, locks, layouts, or scorer. Only this standalone evidence report was written.",
+    "Full ROM build/compression equality were not run.",
+    "Exact donor-source identity and historical translation-unit boundaries remain unproven."
+  ],
+  "reviewed_at_utc": "2026-10-05T17:36:00Z",
+  "final_candidate_review": {
+    "status": "PASS",
+    "source": "cloud/work/ipa-groups/dot_e0b8_vector_normalize/group.c",
+    "source_sha256": "dae0d6c43b1d3cf25e41f0d7d625214aff3c8a3bd7303513b515441d30f7d43f",
+    "group_spec": "cloud/work/ipa-groups/dot_e0b8_vector_normalize/group.json",
+    "group_spec_sha256": "138e49b581ef400b5601d240e8346a131b5a44671df7ef4d0f1b3e53618095a5",
+    "review_findings": [
+      "The source retains the complete public func_8008E098 three-float norm and invokes it using exactly v[0], v[1], v[2]. These are real consumed scalar inputs, not extra formals or fabricated context.",
+      "The helper source contains only the existing single-precision norm computation. Its intrinsic square root agrees with the native hardware instruction, without a surrogate function implementation.",
+      "The target preserves the early length <= threshold return, positive zero result, untouched small vector, original float length result, and exactly three reciprocal multiplications.",
+      "The external threshold declaration is binary32 and remains externally named; this audit independently establishes its loaded original-image numeric value, rather than inferring it solely from relocation resolution.",
+      "The source has no volatile access, restrict assertion, dummy locals, fake arrays, function padding, extra arguments, or undefined type-punning.",
+      "In-place component reads are safe: each float element occupies a distinct four-byte location. The real scalar helper has no intervening memory mutation, and threshold is read before component updates. Aliasing threshold with any vector element does not change the branch or later operation sequence.",
+      "Both real public roots are retained and listed as members, while only E0B8 is newly claimed. Existing E098 earns no duplicate matching credit.",
+      "No exact donor spelling or historical call relationship is claimed. This candidate demonstrates that normal O3 inlining of the real neighboring helper naturally reproduces the native frame and spill."
+    ],
+    "fresh_independent_replay": {
+      "command": "python tools/cloud/score.py group cloud/work/ipa-groups/dot_e0b8_vector_normalize --claims",
+      "exit_code": 0,
+      "E0B8": "MATCH",
+      "E098_context": "MATCH",
+      "scorer_sha256": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
+    },
+    "additional_independent_peer_evidence": {
+      "artifact": "cloud/work/e0b8_verification/verification.json",
+      "sha256": "6f764d02e62fc32f5b0b7a0c94ea95c7a69b2b410c16e37a92443857c7f57247",
+      "scope": "Peer reports full 140-byte target and retained 32-byte helper equality plus 7487 semantic cases; this native auditor independently reviewed source and reran canonical claims scoring, but did not rerun the peer semantic suite."
+    }
+  }
+}

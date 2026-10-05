@@ -1,0 +1,91 @@
+{
+  "base_commit": "75df8b73e43c398a9971291b4334c51167ac6eab",
+  "scope": "Source submission and independent verification only; no image splice, promotion, ROM build or cartridge coverage claim",
+  "final_source_sha256": "dae0d6c43b1d3cf25e41f0d7d625214aff3c8a3bd7303513b515441d30f7d43f",
+  "final_group_spec_sha256": "138e49b581ef400b5601d240e8346a131b5a44671df7ef4d0f1b3e53618095a5",
+  "strict_group": {
+    "full_group": "PASS: E098 and E0B8 MATCH",
+    "claims": "PASS: new E0B8 claim; existing E098 context MATCH"
+  },
+  "independent_replay": {
+    "result": "PASS",
+    "semantic_cases": 7487,
+    "elf_bytes": {
+      "func_8008E098": 32,
+      "func_8008E0B8": 140
+    },
+    "gnu_linker_equals_project_relocator": true,
+    "fresh_receipt_matches_published_receipt": true
+  },
+  "tests": {
+    "focused_and_scorer": {
+      "command": "python3 -m pytest tests/cloud/test_e0b8_verification.py tests/conveyor/test_cloud_score.py -q -o addopts=''",
+      "passed": 666,
+      "failed": 0,
+      "exit_code": 0
+    },
+    "conveyor": {
+      "command": "python3 -m pytest tests/conveyor -q -o addopts='' -m 'not node_required'",
+      "passed": 1779,
+      "skipped": 41,
+      "deselected": 9,
+      "failed": 0,
+      "exit_code": 0,
+      "dependency_setup": "Reused exact repository-pinned decomp-permuter and mips_to_c local clones; initial empty-worktree dependency failures resolved without tracked edits."
+    },
+    "broad_cloud_and_scorer": {
+      "command": "python3 -m pytest tests/cloud tests/conveyor/test_cloud_score.py -q -o addopts=''",
+      "passed": 997,
+      "skipped": 18,
+      "failed": 2,
+      "exit_code": 1,
+      "note": "Collected before the dedicated E0B8 tests were added; all 22 final dedicated tests passed separately in the final 666-test focused/scorer run. Both listed broad-suite failures independently reproduced on unchanged clean base commit."
+    },
+    "preexisting_broad_suite_failures": {
+      "tests/cloud/test_dot_fresh_masked_rng.py::test_compiled_source_replays": "Saved manifest hash differs from current protected manifest; eight other items identical.",
+      "tests/cloud/test_task_enqueue_research.py::test_ido_replay_and_native_abi_when_compiler_is_available": "Saved manifest hash differs from current protected manifest; ten other items identical.",
+      "fresh_manifest_sha256": "bc7e08ed0f4abdbbdacd24bf8ea493c416b83c52089e1a980f71512349ac1f8d",
+      "saved_manifest_sha256": "6f55bbc7f9eaecf7f3cc35b27285714adefebc169429450cbeeabe98c105bbe8",
+      "clean_base_replay": "2 failed, same differences; clean git status at75df8b73. No repair performed."
+    },
+    "static_locks": {
+      "command": "make check-matched",
+      "intact": 383,
+      "exit_code": 0
+    },
+    "c89_syntax": {
+      "command": "cc -std=c89 -pedantic -Wall -Wextra -Wno-unknown-pragmas -fsyntax-only cloud/work/ipa-groups/dot_e0b8_vector_normalize/group.c",
+      "exit_code": 0
+    },
+    "python_byte_compile": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "unchanged_scope": [
+    "protected native targets and manifests",
+    "accepted source and groups",
+    "static and blob locks",
+    "compiler binaries",
+    "scorer",
+    "recorded build recipe"
+  ],
+  "not_run": [
+    "image splice",
+    "full ROM build",
+    "ROM compression identity",
+    "make test"
+  ],
+  "verifier_portability": {
+    "first_ci_run": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37350261687",
+    "first_ci_failures": "Two preexisting saved-manifest failures plus two new E0B8 replay subprocess failures; source rescore, guards, static locks and Conveyor passed.",
+    "reproduced_cause": "Ubuntu binutils2.42 rounded implicitly located .text to16-byte alignment, shifting both functions+8; exact linked-address assertions rejected it. Debian2.44 preserved intended placement.",
+    "exact_ci_package": "binutils-mips-linux-gnu_2.42-2ubuntu1cross5_amd64.deb",
+    "package_url": "https://archive.ubuntu.com/ubuntu/pool/universe/b/binutils-mipsen/binutils-mips-linux-gnu_2.42-2ubuntu1cross5_amd64.deb",
+    "package_sha256": "9a5b99defc57b465b4a3b76e7b35a2ddd2d931dcc349a6c92f76fe8b026c10c7",
+    "fix": "Explicit output .text base address; preserve strict address, extent, whole-byte, relocation and semantic checks; expose subprocess diagnostics.",
+    "ubuntu242_focused_tests": 22,
+    "debian244_focused_and_scorer_tests": 666,
+    "both_fresh_receipts_equal_published_receipt": true,
+    "matching_source_recipe_and_proof_unchanged": true,
+    "independent_updated_diff_review": "PASS"
+  }
+}
