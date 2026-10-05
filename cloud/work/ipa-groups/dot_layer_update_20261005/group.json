@@ -1,0 +1,30 @@
+{
+  "members": [
+    "mode_select_input"
+  ],
+  "context": [
+    "entity_transform_calc",
+    "client_sync",
+    "entity_hierarchy_update",
+    "func_80091BA8",
+    "func_80091B00",
+    "scheduler_recv",
+    "func_800E05F0",
+    "func_800DFBA0"
+  ],
+  "claims": [
+    "mode_select_input"
+  ],
+  "files": [
+    "candidate.c",
+    "allocator.c"
+  ],
+  "keep": [
+    "client_sync",
+    "entity_hierarchy_update",
+    "scheduler_recv",
+    "func_800E05F0"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "note": "The archived A169 helper and genuine callers are retained. The allocator is copied byte-for-byte from its accepted group. Only mode_select_input is newly claimed; both callers remain nonmatching."
+}

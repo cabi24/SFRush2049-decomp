@@ -1,0 +1,865 @@
+{
+  "accepted_byte_gain": 0,
+  "base_revision": "e24b47d89a0c8ffade1e4c75ad76b9d390a1c232",
+  "behavior": {
+    "cases": 3116,
+    "complete_native_link_read_write_traces_equal": true,
+    "executed_bodies": [
+      "mode_select_input",
+      "client_sync",
+      "entity_transform_calc",
+      "func_80091BA8",
+      "func_80091B00"
+    ],
+    "host_c89_ubsan_cases": 3116,
+    "instruction_coverage": {
+      "client_sync": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36,
+        40,
+        44,
+        48,
+        52,
+        56,
+        60,
+        64,
+        68,
+        72,
+        76,
+        80,
+        84,
+        88,
+        92,
+        100,
+        104,
+        108,
+        112,
+        116,
+        120,
+        124,
+        132,
+        136,
+        140,
+        144,
+        148,
+        152,
+        156,
+        160,
+        164,
+        168,
+        172,
+        176,
+        180,
+        184,
+        188,
+        192,
+        196,
+        200,
+        204,
+        208,
+        212
+      ],
+      "entity_transform_calc": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36,
+        40,
+        44,
+        48,
+        52,
+        56,
+        60,
+        64,
+        68,
+        72,
+        76,
+        80,
+        84,
+        112,
+        116,
+        120,
+        148,
+        152,
+        156,
+        160,
+        164,
+        168,
+        172,
+        176,
+        180,
+        184,
+        188,
+        192,
+        196,
+        200,
+        204,
+        208,
+        212,
+        216,
+        220,
+        224,
+        228,
+        232,
+        236,
+        244,
+        248,
+        252,
+        256,
+        260,
+        264,
+        268,
+        304,
+        308,
+        312,
+        316,
+        352,
+        356,
+        360,
+        364,
+        368,
+        372,
+        376,
+        380,
+        388,
+        392,
+        400,
+        404,
+        408,
+        412,
+        416,
+        420,
+        424,
+        428,
+        432,
+        436
+      ],
+      "func_80091B00": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36,
+        40,
+        44,
+        48,
+        52,
+        56,
+        60,
+        64,
+        68,
+        72,
+        76,
+        80,
+        84,
+        88,
+        92,
+        96,
+        100,
+        104,
+        108,
+        112,
+        116,
+        120,
+        124,
+        128,
+        132,
+        136,
+        140,
+        144,
+        148,
+        152
+      ],
+      "func_80091BA8": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36,
+        40,
+        44,
+        48,
+        52,
+        56,
+        60,
+        64,
+        68,
+        72,
+        76,
+        80
+      ],
+      "mode_select_input": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36,
+        40,
+        44,
+        48,
+        52,
+        56,
+        60,
+        64,
+        68,
+        72,
+        76,
+        80,
+        84,
+        88,
+        92,
+        96,
+        100,
+        104,
+        108,
+        112,
+        116,
+        120,
+        124,
+        128,
+        132,
+        136,
+        140,
+        144,
+        148
+      ]
+    },
+    "native_executions": 6232,
+    "queue_callback_mutations": true,
+    "stack_canaries_and_private_abi_checked": true,
+    "target_branch_outcomes": {
+      "0x14": [
+        false,
+        true
+      ],
+      "0x40": [
+        false,
+        true
+      ]
+    }
+  },
+  "bytes": 152,
+  "compiler_sha256": {
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b"
+  },
+  "controls": {
+    "archived_A169": {
+      "allocator": {
+        "comparison": {
+          "differing": 11,
+          "errors": [],
+          "extra_words": 0,
+          "total": 42,
+          "unresolved": [],
+          "unverified": []
+        },
+        "elf_bytes": 168
+      },
+      "target": {
+        "comparison": {
+          "differing": 0,
+          "errors": [],
+          "extra_words": 0,
+          "total": 38,
+          "unresolved": [],
+          "unverified": []
+        },
+        "elf_bytes": 152
+      }
+    },
+    "ordinary_wrapper": {
+      "comparison": {
+        "differing": 28,
+        "errors": [],
+        "extra_words": 0,
+        "total": 38,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 96
+    }
+  },
+  "data_sections_owned": 0,
+  "erratum_flag": "-r4300_mul",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "function": "mode_select_input",
+  "gnu_bodies": {
+    "client_sync": {
+      "body_sha256": "e00bd77c09dae04d25cb1de2a0b41bc572c7c250e42507ee9078efbc0ba245b5",
+      "bytes": 216,
+      "complete_gnu_equal": true,
+      "owned_data_references": 0,
+      "relocations": [
+        {
+          "object_section_addend": 0,
+          "offset": 16,
+          "symbol": "D_80142728",
+          "type": 5
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 40,
+          "symbol": "D_80142728",
+          "type": 6
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 52,
+          "symbol": "osRecvMesg",
+          "type": 4
+        },
+        {
+          "object_section_addend": 412,
+          "offset": 156,
+          "symbol": "entity_transform_calc",
+          "type": 4
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 164,
+          "symbol": "D_80142728",
+          "type": 5
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 168,
+          "symbol": "D_80142728",
+          "type": 6
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 176,
+          "symbol": "osJamMesg",
+          "type": 4
+        }
+      ],
+      "words": 54
+    },
+    "entity_hierarchy_update": {
+      "body_sha256": "91ae6e572e43923d6b37dcd487074200c38ec930e0485b6a003a5b4ffa0896bf",
+      "bytes": 136,
+      "complete_gnu_equal": true,
+      "owned_data_references": 0,
+      "relocations": [
+        {
+          "object_section_addend": 0,
+          "offset": 16,
+          "symbol": "D_80142728",
+          "type": 5
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 40,
+          "symbol": "D_80142728",
+          "type": 6
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 48,
+          "symbol": "osRecvMesg",
+          "type": 4
+        },
+        {
+          "object_section_addend": 412,
+          "offset": 76,
+          "symbol": "entity_transform_calc",
+          "type": 4
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 84,
+          "symbol": "D_80142728",
+          "type": 5
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 88,
+          "symbol": "D_80142728",
+          "type": 6
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 96,
+          "symbol": "osJamMesg",
+          "type": 4
+        }
+      ],
+      "words": 34
+    },
+    "entity_transform_calc": {
+      "body_sha256": "12cf24b1371782655ff6ccaac6c0e47a73c2eafc31a058ec251f5a701f99c995",
+      "bytes": 440,
+      "complete_gnu_equal": true,
+      "owned_data_references": 0,
+      "relocations": [
+        {
+          "object_section_addend": 168,
+          "offset": 8,
+          "symbol": "func_80091BA8",
+          "type": 4
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 180,
+          "symbol": "func_80091B00",
+          "type": 4
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 404,
+          "symbol": "D_801427A8",
+          "type": 5
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 408,
+          "symbol": "D_801427A8",
+          "type": 6
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 416,
+          "symbol": "osJamMesg",
+          "type": 4
+        }
+      ],
+      "words": 110
+    },
+    "func_80091B00": {
+      "body_sha256": "c466f1dbe7e0596f1266860f7e6612ab26338fcab2d5f1e664723d1527f722e9",
+      "bytes": 168,
+      "complete_gnu_equal": true,
+      "owned_data_references": 0,
+      "relocations": [
+        {
+          "object_section_addend": 0,
+          "offset": 0,
+          "symbol": "D_80142DD8",
+          "type": 5
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 12,
+          "symbol": "D_80142DD8",
+          "type": 6
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 4,
+          "symbol": "D_80142DD8",
+          "type": 5
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 8,
+          "symbol": "D_80142DD8",
+          "type": 6
+        }
+      ],
+      "words": 42
+    },
+    "func_80091BA8": {
+      "body_sha256": "d5dc025c1f81860dabb7d7dbd3e69ba459a34f8343918c63767b506f42aa9655",
+      "bytes": 84,
+      "complete_gnu_equal": true,
+      "owned_data_references": 0,
+      "relocations": [
+        {
+          "object_section_addend": 0,
+          "offset": 24,
+          "symbol": "D_80110244",
+          "type": 5
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 28,
+          "symbol": "D_80110244",
+          "type": 6
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 8,
+          "symbol": "D_80146104",
+          "type": 5
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 20,
+          "symbol": "D_80146104",
+          "type": 6
+        }
+      ],
+      "words": 21
+    },
+    "mode_select_input": {
+      "body_sha256": "b22e61e551fe0e314511768b1457e8f106db033b03f10b0343b79cc4a26d46dc",
+      "bytes": 152,
+      "complete_gnu_equal": true,
+      "owned_data_references": 0,
+      "relocations": [
+        {
+          "object_section_addend": 0,
+          "offset": 36,
+          "symbol": "client_sync",
+          "type": 4
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 72,
+          "symbol": "D_80142728",
+          "type": 5
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 76,
+          "symbol": "D_80142728",
+          "type": 6
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 88,
+          "symbol": "osRecvMesg",
+          "type": 4
+        },
+        {
+          "object_section_addend": 412,
+          "offset": 112,
+          "symbol": "entity_transform_calc",
+          "type": 4
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 128,
+          "symbol": "osJamMesg",
+          "type": 4
+        }
+      ],
+      "words": 38
+    },
+    "scheduler_recv": {
+      "body_sha256": "790caccf464952f67072f0db5e5659b07a46b5a348c561ff73bc3ecc826fc8d9",
+      "bytes": 160,
+      "complete_gnu_equal": true,
+      "owned_data_references": 0,
+      "relocations": [
+        {
+          "object_section_addend": 0,
+          "offset": 12,
+          "symbol": "D_80142728",
+          "type": 5
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 16,
+          "symbol": "D_80142728",
+          "type": 6
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 28,
+          "symbol": "osRecvMesg",
+          "type": 4
+        },
+        {
+          "object_section_addend": 168,
+          "offset": 40,
+          "symbol": "func_80091BA8",
+          "type": 4
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 56,
+          "symbol": "func_80091B00",
+          "type": 4
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 92,
+          "symbol": "D_80142728",
+          "type": 5
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 96,
+          "symbol": "D_80142728",
+          "type": 6
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 108,
+          "symbol": "osJamMesg",
+          "type": 4
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 120,
+          "symbol": "D_801427A8",
+          "type": 5
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 124,
+          "symbol": "D_801427A8",
+          "type": 6
+        },
+        {
+          "object_section_addend": 0,
+          "offset": 136,
+          "symbol": "osJamMesg",
+          "type": 4
+        }
+      ],
+      "words": 40
+    }
+  },
+  "inherited_context_shaping": "Accepted allocator uses its existing volatile table declaration; no new volatile introduced.",
+  "limitations": [
+    "No accepted-byte, full shadow-unit, splice, source-image, compression, ROM or gameplay claim.",
+    "The helper and six runtime context bodies match; the two complete actual caller reconstructions remain nonmatching and unclaimed.",
+    "Inline syntax is a supported expansion hypothesis, not recovery of original source spelling; no whole-function arcade donor is established.",
+    "Only OS queue boundaries are modeled in native replay. Host allocator uses the same scan contract with native pointer layout.",
+    "Fixtures have valid accessible records, at least two free messages, single-threaded callbacks and binary32 comparison semantics. FCSR flags, signaling NaNs, exhausted allocation, invalid pointers and arbitrary concurrent writes are excluded."
+  ],
+  "native_call_witnesses": {
+    "DFBA0_calls_helper": [
+      904,
+      1104
+    ],
+    "E05F0_calls_DFBA0": [
+      884
+    ],
+    "helper_calls_client": [
+      36
+    ],
+    "helper_calls_transform": [
+      112
+    ],
+    "helper_has_no_hierarchy_call": true
+  },
+  "o32_layout_assertions": 16,
+  "range": [
+    "0x800DFB08",
+    "0x800DFBA0"
+  ],
+  "semantic_mutants": {
+    "handle_read_after_lock": {
+      "compiler": {
+        "comparison": {
+          "differing": 20,
+          "errors": [],
+          "extra_words": 0,
+          "total": 38,
+          "unresolved": [],
+          "unverified": []
+        },
+        "elf_bytes": 148
+      },
+      "first_counterexample": 1662,
+      "rejected_cases": 26
+    },
+    "missing_level_store": {
+      "compiler": {
+        "comparison": {
+          "differing": 6,
+          "errors": [],
+          "extra_words": 0,
+          "total": 38,
+          "unresolved": [],
+          "unverified": []
+        },
+        "elf_bytes": 152
+      },
+      "first_counterexample": 3,
+      "rejected_cases": 2648
+    },
+    "style_sent_to_wrong_channel": {
+      "compiler": {
+        "comparison": {
+          "differing": 28,
+          "errors": [],
+          "extra_words": 0,
+          "total": 38,
+          "unresolved": [],
+          "unverified": []
+        },
+        "elf_bytes": 96
+      },
+      "first_counterexample": 385,
+      "rejected_cases": 952
+    },
+    "wrong_style_predicate": {
+      "compiler": {
+        "comparison": {
+          "differing": 1,
+          "errors": [],
+          "extra_words": 0,
+          "total": 38,
+          "unresolved": [],
+          "unverified": []
+        },
+        "elf_bytes": 152
+      },
+      "first_counterexample": 0,
+      "rejected_cases": 3116
+    }
+  },
+  "source_bindings": {
+    "cloud/work/ipa-groups/codex_mode_outer_a169/group.c": "1c452fa15a2b7a08d1bb18c98bfdfef53486ae1011018a53eab09aed4acfc8d9",
+    "cloud/work/ipa-groups/codex_mode_outer_a169/group.json": "d8f7a4eb7298c91bbaf8b1e8c013ca9f86a1660fb196b1a3e934aa3608d67728",
+    "cloud/work/ipa-groups/dot_layer_update_20261005/allocator.c": "8a8d5f4fd590ef4146995662170609ce7f0a6e959bf8879fd65bc53435ce766e",
+    "cloud/work/ipa-groups/dot_layer_update_20261005/candidate.c": "58191cc224dd29f108a1650472e297c2705e06df3e7ffb625de4c3d874152752",
+    "cloud/work/ipa-groups/dot_layer_update_20261005/group.json": "f81b552c416d59a8ec2d459baa931905c18726ffccb63beecf4797d05c1a6939",
+    "cloud/work/ipa-groups/dot_layer_update_20261005/host.c": "df0efb7bdb90391d6d6f8af1f386add8ac93002ee1defabc07377e6ddf9d9074",
+    "cloud/work/ipa-groups/dot_layer_update_20261005/native.py": "3157ae29583d81d7064b7ae8b5a1a90a6942cb9ef3232de2e5349d7d5f25a2d8",
+    "cloud/work/ipa-groups/dot_layer_update_20261005/proof.py": "dd432b686c42b022a9aa9a664f4c289a8d36234beaab4be602cedb5d7e9de3e9",
+    "cloud/work/ipa-groups/dot_layer_update_20261005/semantics.py": "5da69aea01b31ee699a4f0fa926dad5f6bb737edc7166d0adebb54707988f2fc",
+    "cloud/work/ipa-groups/dot_layer_update_20261005/verify.py": "9e7da91fa0126992128ab9acf3975cd60cadd10f7025f528e5fccd754bc4fbda",
+    "src/blob/groups/codex_transform_b109/group.c": "98c6a7ce0d7d4b5edfe60b51228dc6eb60687aab5af263246f2f1195e03c881a",
+    "src/blob/groups/codex_transform_b109/group.json": "f3c9ddecd6d6249fd3c15f34f179ef08fdeefc694f91b42fcefa3674507b16bd",
+    "src/blob/groups/frontier_slot18_alloc/func_80091B00.c": "8a8d5f4fd590ef4146995662170609ce7f0a6e959bf8879fd65bc53435ce766e",
+    "tests/cloud/test_layer_update_packet.py": "aae81db06650b3b47eef8ac4d1e9f25aa60e012404484ba0c78d14f61d32600a"
+  },
+  "source_origin": "Exact archived A169 helper and genuine callers; old allocator replaced with unchanged accepted source.",
+  "status": "MATCHING_CANDIDATE",
+  "strict_bodies": {
+    "client_sync": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 54,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 216
+    },
+    "entity_hierarchy_update": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 34,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 136
+    },
+    "entity_transform_calc": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 110,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 440
+    },
+    "func_80091B00": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 42,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 168
+    },
+    "func_80091BA8": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 21,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 84
+    },
+    "mode_select_input": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 38,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 152
+    },
+    "scheduler_recv": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 40,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 160
+    }
+  },
+  "target_following_alignment_bytes": 0,
+  "target_manifest_sha256": "0bfdfdfc5e03c1f3261c7455f3922082d99673defacd5dbb692629624e757652",
+  "unclaimed_callers": {
+    "func_800DFBA0": {
+      "comparison": {
+        "differing": 183,
+        "errors": [],
+        "extra_words": 0,
+        "total": 298,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 1184
+    },
+    "func_800E05F0": {
+      "comparison": {
+        "differing": 315,
+        "errors": [],
+        "extra_words": 0,
+        "total": 332,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 1312
+    }
+  }
+}
