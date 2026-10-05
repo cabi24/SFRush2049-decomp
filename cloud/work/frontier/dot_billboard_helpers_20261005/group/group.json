@@ -1,0 +1,20 @@
+{
+  "members": [
+    "func_800F207C"
+  ],
+  "files": [
+    "func_800F207C.c",
+    "billboard_render.c"
+  ],
+  "keep": [
+    "billboard_render"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [
+    "func_800F207C"
+  ],
+  "name": "dot_billboard_name_entry",
+  "context": [
+    "billboard_render"
+  ]
+}
