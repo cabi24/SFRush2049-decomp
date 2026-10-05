@@ -1,0 +1,20 @@
+{
+  "members": [
+    "state_update_global"
+  ],
+  "context": [
+    "Input_ApplyPadConfig",
+    "Input_InitPadHandlers"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "state_update_global",
+    "Input_ApplyPadConfig",
+    "Input_InitPadHandlers"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "note": "Complete nonmatch: new real-context probe of the archived 3-word residual, without repeated syntax searches."
+}

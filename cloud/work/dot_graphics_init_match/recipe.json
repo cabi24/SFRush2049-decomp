@@ -1,0 +1,54 @@
+{
+  "members": [
+    "func_8008705C",
+    "func_800878E0",
+    "func_8008A148",
+    "func_8008A46C",
+    "sound_init",
+    "object_render"
+  ],
+  "files": [
+    {
+      "name": "func_80086A50.c",
+      "source": "src/blob/groups/gfx_modes/func_80086A50.c"
+    },
+    {
+      "name": "modes.c",
+      "source": "src/blob/groups/gfx_modes/modes.c"
+    },
+    {
+      "name": "func_8008A148.c",
+      "source": "src/blob/groups/gfx_modes/func_8008A148.c"
+    },
+    {
+      "name": "rect.c",
+      "source": "src/blob/groups/gfx_modes/rect.c"
+    },
+    {
+      "name": "init.c",
+      "source": "cloud/work/dot_graphics_init_match/init.c"
+    },
+    {
+      "name": "object_render.c",
+      "source": "src/blob/object_render.c"
+    }
+  ],
+  "keep": [
+    "func_8008705C",
+    "func_800878E0",
+    "func_8008A148",
+    "func_8008A46C",
+    "sound_init",
+    "object_render"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "unprototyped": [],
+  "context": [
+    "func_80086A50"
+  ],
+  "claims": [
+    "sound_init"
+  ],
+  "base": "cf10b339",
+  "provenance": "gfx_modes and object_render accepted source preserved unchanged; initializer from graphics-init closure rewritten using the same SDK macro model."
+}

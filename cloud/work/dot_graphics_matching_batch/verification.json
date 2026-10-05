@@ -1,0 +1,128 @@
+{
+  "base_commit": "cf10b3392d7f00ae42d75c008b79fdc2541aab6b",
+  "verified_source_commit": "34030d729a62a82b69f7023f0f85d018d4b686f9",
+  "verified_source_tree": "1fed4a9835f58c1bbce10f40f2f1ef90dd349e59",
+  "scope": "Two strict complete-function source/object matches; three bounded NONMATCH research targets; no image or cartridge claim.",
+  "new_strict_object_bytes": 552,
+  "new_image_or_cartridge_coverage_bytes": 0,
+  "focused_tests": {
+    "passed": 21,
+    "failed": 0,
+    "skipped": 0
+  },
+  "aggregate": {
+    "command": "REQUIRE_TOOLCHAIN=1 python3 -m pytest tests/conveyor tests/cloud -q -rs -o addopts='' -m 'not node_required'",
+    "passed": 1940,
+    "failed": 17,
+    "skipped": 41,
+    "deselected": 9,
+    "subtests_passed": 25,
+    "elapsed_seconds": 298.04,
+    "matches_existing_baseline_failure_multiset": true,
+    "baseline_commit": "cf10b3392d7f00ae42d75c008b79fdc2541aab6b",
+    "baseline_scope": "tests/conveyor/test_cloud_score.py and tests/cloud/test_builder.py, independently replayed on unchanged master",
+    "failure_ids_with_multiplicity": [
+      "tests.cloud.test_builder.Validate::test_matches_agree_with_score_py",
+      "tests.cloud.test_builder.Validate::test_matches_agree_with_score_py",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[camera_blend_between]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[camera_update_d]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[display_settings]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_8008B3F4]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800DE860]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E114C]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E23A4]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E5D64]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800EC270]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_80106D94]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[race_setup_1]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[race_setup_2]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[random_float]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[track_select_handler]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[vector_normalize_length]"
+    ],
+    "baseline_test_and_all_accepted_source_files_unchanged": true,
+    "known_failures": "15 existing Conveyor local-section relocation uncertainties; two existing Cloud descriptive-flag-header subtests. No repair or waiver.",
+    "skip_limits": "41 existing environment/private-input skips include absent cross-GCC, coordinator layout, ROM/extracted image, derived assembly, and SDK checkout. No full-suite pass is claimed."
+  },
+  "receipts": {
+    "graphics": {
+      "receipt": "cloud/work/dot_graphics_init_match/verification.json",
+      "sha256": "04061a20d188774f740365b5d70e04c69e84a417840ee91c4cd2f23cd8fe72f6",
+      "fresh_replay_byte_identical": true
+    },
+    "matrix": {
+      "receipt": "cloud/work/frontier/dot_matrix_row02/verification.json",
+      "sha256": "2da5d6b30c950c8a179a8e22fadcf32c93f48454a466d583afe2ea7287bce96f",
+      "fresh_replay_byte_identical": true
+    },
+    "encoded_string": {
+      "receipt": "cloud/work/encoded_string_mapping/verification.json",
+      "sha256": "d533533d1ca898908c4a356d8d6d429b650ee029476e9aa9de9e74952d9baa52",
+      "fresh_replay_byte_identical": true
+    },
+    "pad": {
+      "receipt": "cloud/work/dot_pad_channel_reset_20261005/verification.json",
+      "sha256": "02025594f3741c5e4f56ced321c5349791990bf34e455dd3224076adece834a4",
+      "fresh_replay_byte_identical": true
+    },
+    "state_callback": {
+      "receipt": "cloud/work/dot_state_update_context_20261005/verification.json",
+      "sha256": "29f2afcfa3deed5deadd694ab431b6a22668d7beb44ddd87a9cb235e4ce8f469",
+      "fresh_replay_byte_identical": true
+    }
+  },
+  "gates": {
+    "protected_path_guard": "PASS",
+    "changed_submission_checker": "PASS: C40E8 strict match",
+    "graphics_root_only_group_claims": "PASS",
+    "static_locks_intact": 383,
+    "diff_check": "PASS",
+    "linked_image_gate_run": false,
+    "compressed_stream_gate_run": false,
+    "full_rom_gate_run": false,
+    "remote_builder_used": false
+  },
+  "graphics_sanitizers": {
+    "asan": "PASS",
+    "ubsan": "PASS",
+    "initialization_cases": 5142,
+    "full_state_noop": "PASS",
+    "leak_detection": false,
+    "leak_detection_limit": "Unavailable in ptrace executor"
+  },
+  "unchanged_mode_helper_limit": "Two pre-existing unverified local-table placements remain explicitly excluded; masked body and table sections unchanged.",
+  "source_artifact_sha256": {
+    "cloud/matches/func_800C40E8.c": "eada8486e973797c7db2abde554af72f9be3f69a32444eaef125e7ad59f5c57f",
+    "cloud/work/dot_graphics_init_match/README.md": "85c3464f976ab75a7ffe7b769ce6b6aa995d5d5d3343abfd4ab4fd644529f2ac",
+    "cloud/work/dot_graphics_init_match/host_test.c": "b9bec1d5d9e908d9bccf15dba4d0a36e009613c56e3d730d9365c864dfa5131b",
+    "cloud/work/dot_graphics_init_match/init.c": "6f49bbe093b77eab9fbfde6211d031f83e3c5eaf5215f968356bbed574d7745d",
+    "cloud/work/dot_graphics_init_match/peer_review.json": "67ee4e3b85b489b415875643978c387d64c825693b9e13f013d64d258afac117",
+    "cloud/work/dot_graphics_init_match/recipe.json": "862f92142c28b1c4b94e8c285a34c2016be61aa58ceeb32cbbbfc2cf69dada1a",
+    "cloud/work/dot_graphics_init_match/verification.json": "04061a20d188774f740365b5d70e04c69e84a417840ee91c4cd2f23cd8fe72f6",
+    "cloud/work/dot_graphics_init_match/verify.py": "867470d2a4b11c8a4e851601e006e948336c4c224ad480fa858f04fc24eb4612",
+    "cloud/work/dot_pad_channel_reset_20261005/RESULTS.md": "6b6df74d722b91711062e0569e1352156a1e8a90b4a6d9de48c241dbcbce94aa",
+    "cloud/work/dot_pad_channel_reset_20261005/controls.json": "aaa59f5777e4a954479c5f2a0fecd16e5e426699c9c1e6703590a1c97e459bd8",
+    "cloud/work/dot_pad_channel_reset_20261005/group.c": "995f9ee88a216b1d830d75c3785e5de12878bc373323fefdec3503e7d228c7e8",
+    "cloud/work/dot_pad_channel_reset_20261005/group.json": "c60734a26f2fac283a37dc246d46ece81c4b1a8c43d79a073b148c57649fbb71",
+    "cloud/work/dot_pad_channel_reset_20261005/verification.json": "02025594f3741c5e4f56ced321c5349791990bf34e455dd3224076adece834a4",
+    "cloud/work/dot_pad_channel_reset_20261005/verify.py": "2155bc15f8b35069c80c075f5e5513f8c5c772ef0535f105ccade2e7e1e0a82d",
+    "cloud/work/dot_state_update_context_20261005/RESULTS.md": "8473c21dabfedd6d11e57782066b325980a5e8395fc8dc52079d5b9833217944",
+    "cloud/work/dot_state_update_context_20261005/group.c": "beeed7b225a88ee42b7c67ea1e0c56cfa144b73d91020475c285a3b0efb33fe2",
+    "cloud/work/dot_state_update_context_20261005/group.json": "93152643f02e2c469cda624843cc8bf378346bad61b71d21076871cb003a912b",
+    "cloud/work/dot_state_update_context_20261005/verification.json": "29f2afcfa3deed5deadd694ab431b6a22668d7beb44ddd87a9cb235e4ce8f469",
+    "cloud/work/dot_state_update_context_20261005/verify.py": "9b4dea870da9a9b8ecbcb28053b3ec58f2dcf02f1c91b8c9e209cd3331cfc642",
+    "cloud/work/encoded_string_mapping/STATUS.md": "7a241f4a71c12594844015635fe118f61a1580064d0046f4ec4578bce12934bf",
+    "cloud/work/encoded_string_mapping/func_800A150C.c": "75a8e6a5686f2974604301c2703977408be59b249322facb556013a98e920824",
+    "cloud/work/encoded_string_mapping/peer_review.json": "9c38d19bd0b1930654c6234066795f69cbb875af6c001f10aab48e292c3b47ba",
+    "cloud/work/encoded_string_mapping/verification.json": "d533533d1ca898908c4a356d8d6d429b650ee029476e9aa9de9e74952d9baa52",
+    "cloud/work/encoded_string_mapping/verify.py": "b3668d47200dd4a5cbe97d220eb94edea4319aa5c4065b8f6d8ec62149e0b482",
+    "cloud/work/frontier/dot_matrix_row02/README.md": "065297f0809d70accbbd9120600fda88088270a78f04b2ecce2f08f52ce4c916",
+    "cloud/work/frontier/dot_matrix_row02/verification.json": "2da5d6b30c950c8a179a8e22fadcf32c93f48454a466d583afe2ea7287bce96f",
+    "cloud/work/frontier/dot_matrix_row02/verify.py": "f7800920d212dcf2e643fc0dbe2b328dd2fcb2eba0c2803f7b35679213f10173",
+    "tests/cloud/test_dot_pad_channel_reset.py": "26babcbb05ed56175f07975a8cd0dba3214f07d900b623938f9100b25615fb86",
+    "tests/cloud/test_graphics_init_match.py": "e4d14ebb538490da9b46c953e36eb15443e8dd990d768399658506495559f2b1",
+    "tests/conveyor/test_dot_matrix_row02.py": "b921946c5d9cb9b533a591e3ec6ef5efd29daf6e0c745c89889b94ac2cb183d5",
+    "tests/conveyor/test_encoded_string_mapping_reconstruction.py": "571f6808dfb14a39ca2c2f6081fbc1cdd8075bd8dac5ec28eba83ee34c5750b4"
+  },
+  "published_data_limit": "Source, tests, hashes, and sanitized counts only; no ROM bytes, raw assembly, generated binaries, credentials, or unrelated data."
+}

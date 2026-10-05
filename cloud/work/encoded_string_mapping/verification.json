@@ -1,0 +1,108 @@
+{
+  "function": "func_800A150C",
+  "status": "NONMATCH",
+  "claims": [],
+  "source": "cloud/work/encoded_string_mapping/func_800A150C.c",
+  "source_sha256": "75a8e6a5686f2974604301c2703977408be59b249322facb556013a98e920824",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "target_address": "0x800A150C",
+  "end_exclusive": "0x800A1644",
+  "target_bytes": 312,
+  "candidate_elf_size_bytes": 312,
+  "candidate_text_section_bytes": 320,
+  "zero_alignment_bytes": 8,
+  "target_manifest_sha256": "c889f453d7e6a306d0f7d0f66831877b9ce69b2a6ed63c2fa190a815bd7713fe",
+  "target_body_sha256": "7e60a9417cc8f0a6d4fc233a785a006047e9f93f70cbfc107a44c714b9c51eaf",
+  "candidate_relocated_body_sha256": "5d9d72beee8d7973a63cf1d933039e9db7abcc063a4d16ac1676f5d5be43e98f",
+  "comparison": {
+    "differing": 1,
+    "total": 78,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "differing_offsets": [
+    212
+  ],
+  "residual": "One symmetric bnel equality operand swap; byte identity is not established.",
+  "relocations": [
+    {
+      "offset": 68,
+      "type": 5,
+      "symbol": "D_8011EAEC"
+    },
+    {
+      "offset": 80,
+      "type": 6,
+      "symbol": "D_8011EAEC"
+    },
+    {
+      "offset": 192,
+      "type": 5,
+      "symbol": "D_8011EAEC"
+    },
+    {
+      "offset": 196,
+      "type": 6,
+      "symbol": "D_8011EAEC"
+    }
+  ],
+  "direct_callers": [
+    {
+      "function": "track_process_main",
+      "offset": 164
+    },
+    {
+      "function": "track_process_main",
+      "offset": 184
+    }
+  ],
+  "controls": [
+    {
+      "label": "historical_final_o2",
+      "source": "cloud/work/tiny_A110/func_800A150C.c",
+      "source_sha256": "761dd572874de2bbf821c1d1b7ffce5468ddb0f34a31749fc96cda09b0e15260",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "comparison": {
+        "differing": 70,
+        "total": 78,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    {
+      "label": "genuine_output_cursor_o2",
+      "source": "cloud/work/tiny_A110/control.output_cursor.c",
+      "source_sha256": "f573c46936aaaf4ddc5e485c307eb3a259343c879c58c1e1585c2baadae20f17",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "comparison": {
+        "differing": 77,
+        "total": 78,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 3
+      }
+    },
+    {
+      "label": "genuine_output_cursor_o3",
+      "source": "cloud/work/tiny_A110/control.output_cursor.c",
+      "source_sha256": "f573c46936aaaf4ddc5e485c307eb3a259343c879c58c1e1585c2baadae20f17",
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "comparison": {
+        "differing": 4,
+        "total": 78,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  ],
+  "image_gate_run": false,
+  "full_rom_gate_run": false,
+  "new_coverage_bytes": 0
+}
