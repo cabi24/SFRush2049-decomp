@@ -1,0 +1,37 @@
+{
+  "owner": "wave7-render-donor",
+  "base": "e0e734babdac3c6a79d2f87f7f895e34aa170148",
+  "branch": "research/wave7-render-donor",
+  "target": "func_800A79F4",
+  "range": [
+    "0x800A79F4",
+    "0x800A7AE4"
+  ],
+  "native_bytes": 240,
+  "status": "frozen_nonmatch",
+  "claim_matching_bytes": 0,
+  "accepted_byte_gain": 0,
+  "eligibility": "Fresh origin/master, current blob locks and open PRs #107-#109 checked on 2026-10-05; exact range coordinated before source edits. No overlap was visible; unpublished outside work cannot be excluded.",
+  "context": [
+    {
+      "target": "Input_InitPadHandlers",
+      "status": "accepted body reused in two fixed generated compiler controls; no production edit"
+    },
+    {
+      "target": "func_800B3704",
+      "status": "unchanged full existing NONMATCH body in one generated caller context; prototype-only bit-carrier normalization recorded; no new claim"
+    }
+  ],
+  "excluded": [
+    "func_8010C448",
+    "func_8010C588",
+    "func_800E79F8",
+    "func_800DED78",
+    "func_800D4DFC",
+    "visual_objects_update",
+    "func_80087110",
+    "func_8010DBB8"
+  ],
+  "reopen_condition": "A concrete original interface, native caller convention, or independently supported source boundary predicting the remaining payload allocation; no blind shaping sweep.",
+  "refreshed_onto": "31b2799ebb821a7ec0983a34d2611bba2cedaab9"
+}
