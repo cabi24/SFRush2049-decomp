@@ -1,0 +1,31 @@
+{
+  "base": "e24b47d89a0c8ffade1e4c75ad76b9d390a1c232",
+  "donor_commit": "845329d7b36f5a384c5625ed9a0aef584ab46139",
+  "donor_files": {
+    "game/targets.c": {
+      "git_blob": "54bb56793a3a5fbfbcc2e3e60a61a30153a9943d",
+      "sha256": "9e169133299450b46fbdd96b9c26e786c192c189618bcd5ebdffba0c8fb4bd31",
+      "url": "https://github.com/historicalsource/rushtherock/blob/845329d7b36f5a384c5625ed9a0aef584ab46139/game/targets.c"
+    },
+    "game/targets.h": {
+      "git_blob": "c4852d77c5a90bbb6fa49b1a0fd49053666a9c36",
+      "sha256": "3de5b783162ae1e101e3dc6744fb1adaad655c94191a17cea7464a035b14e2f2",
+      "url": "https://github.com/historicalsource/rushtherock/blob/845329d7b36f5a384c5625ed9a0aef584ab46139/game/targets.h"
+    }
+  },
+  "source_relationship": "AnimateCone is an algorithmic ancestor; this is an adapted N64 source, not recovered original declarations.",
+  "target_interval": [
+    "0x8010E4E4",
+    "0x8010E694"
+  ],
+  "arcade_evidence": [
+    "targets.c lines 1540\u20131571: signed-short index, target pointer, real 0.15 acceleration local, position scratch and two-stage gravity integration.",
+    "targets.h lines 126\u2013145: target position, basis, linear and angular-velocity fields."
+  ],
+  "native_adaptations": [
+    "Separate angular/linear motion allocation at object offset 108.",
+    "Object basis at 20, position at 56; descriptor stride 48 and unsigned flags at 18.",
+    "N64 frame time scalar and timer-driven release instead of arcade object-definition reset.",
+    "The descriptor pointer is substantively dereferenced; its original declaration is not established."
+  ]
+}

@@ -1,0 +1,442 @@
+{
+  "archive_sha256": "668e976dcdb4568aa571a861f7b06ccd1e5e34b9fef3e6c0245646841c740369",
+  "claims": [],
+  "compiler_sha256": {
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5"
+  },
+  "context": {
+    "bodies": {
+      "entity_spawn_callback": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "native_bytes": 416,
+        "symbol_bytes": 416,
+        "total": 104,
+        "unresolved": [],
+        "unverified": [],
+        "verdict": "MATCH"
+      },
+      "entity_transform_apply": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "native_bytes": 260,
+        "symbol_bytes": 260,
+        "total": 65,
+        "unresolved": [],
+        "unverified": [],
+        "verdict": "MATCH"
+      },
+      "func_800AFA84": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "native_bytes": 164,
+        "symbol_bytes": 164,
+        "total": 41,
+        "unresolved": [],
+        "unverified": [],
+        "verdict": "MATCH"
+      },
+      "func_8010E4E4": {
+        "differing": 17,
+        "errors": [],
+        "extra_words": 0,
+        "native_bytes": 432,
+        "symbol_bytes": 432,
+        "total": 108,
+        "unresolved": [],
+        "unverified": [],
+        "verdict": "17/108 words differ"
+      },
+      "func_8010E694": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "native_bytes": 152,
+        "symbol_bytes": 152,
+        "total": 38,
+        "unresolved": [],
+        "unverified": [],
+        "verdict": "MATCH"
+      },
+      "sound_position_set": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "native_bytes": 72,
+        "symbol_bytes": 72,
+        "total": 18,
+        "unresolved": [],
+        "unverified": [],
+        "verdict": "MATCH"
+      }
+    },
+    "candidate_full_body_equals_standalone": true,
+    "existing_exported_roots_preserved": true,
+    "full_relocated_body_sha256": {
+      "entity_spawn_callback": "0a341263df072121b6344998cef815065803fdd5ba4974c9520a3ecb60c8cdbe",
+      "entity_transform_apply": "e80960e46c723272da00f1815ad1fd1a54133649e6ec7513f9e1845daf5a90b2",
+      "func_800AFA84": "a13608b9facff7589546bb30169c38e016632bf868fe16b338e68c67ee257b17",
+      "func_8010E4E4": "7d4195d3dc2b8e713e2e9c49406bfb9fb10d3cb1d3748e275d71a9a6c05f1257",
+      "func_8010E694": "9ff59400a36f059e02bb821b703362b03556882a6289cb7ad433b12dd36bda2f",
+      "sound_position_set": "44636acfe521c7d4515452003e529b9ccfee0d11fcd60e2bb78431736253cdb8"
+    },
+    "limit": "Six real bodies with separate accepted type views; not unified full-game shadow or dependency runtime execution.",
+    "source_sha256": {
+      "src/blob/entity_spawn_callback.c": "105e5ff96910b0f5cfa2ff246ca5eb77e608899b39a8e88a6db98189e9849c47",
+      "src/blob/entity_transform_apply.c": "3f31c8c3af09044047ca8194152f9d4df90cf1744362615837a2bac6c7cde8cf",
+      "src/blob/func_800AFA84.c": "12084280853d5a002f9cca45c09fc97c88941184968a1d74eb1bfa08c02626b9",
+      "src/blob/func_8010E694.c": "325eb06acb0286c1ec9428e83747849b54b54963c26b290dba6f3fae2ae7bdb7",
+      "src/blob/sound_position_set.c": "f1cda46c63220151e380dd56b195fe0d8acdd0cc7f3cec4fb327c6d176325884"
+    }
+  },
+  "controls": {
+    "archive": {
+      "differing": 72,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 432,
+      "symbol_bytes": 412,
+      "total": 108,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "72/108 words differ"
+    },
+    "cached_clock": {
+      "differing": 68,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 432,
+      "symbol_bytes": 416,
+      "total": 108,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "68/108 words differ"
+    },
+    "o2": {
+      "differing": 105,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 432,
+      "symbol_bytes": 408,
+      "total": 108,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x4c",
+        ".rodata+0x0 at +0x5c"
+      ],
+      "verdict": "105/108 words differ (2 section-relative relocations unverified: .rodata+0x0 at +0x4c, .rodata+0x0 at +0x5c)"
+    },
+    "owned_literal_only": {
+      "differing": 68,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 432,
+      "symbol_bytes": 412,
+      "total": 108,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "68/108 words differ"
+    },
+    "repeated_clock_only": {
+      "differing": 42,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 432,
+      "symbol_bytes": 428,
+      "total": 108,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "42/108 words differ"
+    },
+    "without_descriptor_pointer": {
+      "differing": 38,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 432,
+      "symbol_bytes": 428,
+      "total": 108,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "38/108 words differ"
+    }
+  },
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "function": "func_8010E4E4",
+  "native_interval": [
+    "0x8010E4E4",
+    "0x8010E694"
+  ],
+  "runtime": {
+    "cases": 5978,
+    "conditional_branch_outcomes": [
+      [
+        [
+          20,
+          false
+        ],
+        [
+          20,
+          true
+        ],
+        [
+          36,
+          true
+        ],
+        [
+          56,
+          false
+        ],
+        [
+          56,
+          true
+        ],
+        [
+          168,
+          false
+        ],
+        [
+          168,
+          true
+        ],
+        [
+          300,
+          false
+        ],
+        [
+          300,
+          true
+        ],
+        [
+          352,
+          false
+        ],
+        [
+          352,
+          true
+        ]
+      ],
+      [
+        [
+          20,
+          false
+        ],
+        [
+          20,
+          true
+        ],
+        [
+          36,
+          true
+        ],
+        [
+          56,
+          false
+        ],
+        [
+          56,
+          true
+        ],
+        [
+          168,
+          false
+        ],
+        [
+          168,
+          true
+        ],
+        [
+          300,
+          false
+        ],
+        [
+          300,
+          true
+        ],
+        [
+          352,
+          false
+        ],
+        [
+          352,
+          true
+        ]
+      ]
+    ],
+    "decoder_unknown_and_stack_write_controls_rejected": true,
+    "instruction_coverage": [
+      108,
+      108
+    ],
+    "limitations": [
+      "Explicit O32 dependency hooks, not runtime execution of real helpers.",
+      "Fixed 0.15f owned coefficient; gravity/clock modelled as scalar fixtures with selected callback mutations.",
+      "Accessible nonoverlapping typed records and valid descriptor indices 2 and 3 only.",
+      "NaNs compared by class; signaling payloads, FCSR flags, clock concurrency and gameplay unverified."
+    ],
+    "mips_executions": 11956,
+    "models": [
+      "protected native",
+      "independently GNU-linked candidate",
+      "independent binary32 oracle",
+      "unchanged host C89 with UBSan"
+    ],
+    "source_mutants_rejected": {
+      "missing_second_gravity": 2177,
+      "skip_cleanup_call": 1837,
+      "strict_expiry": 21,
+      "wrong_descriptor_flag": 1540,
+      "wrong_position_accumulation": 2222
+    },
+    "stack_canaries_saved_registers_return_address_and_complete_nonstack_memory_checked": true
+  },
+  "source_sha256": "eb2d7ee01b809f30c00439423d9d6dface8bd741e02191d306f3858655fabb88",
+  "standalone": {
+    "all_differences_stack_immediates": true,
+    "all_gnu_differing_offsets": [
+      8,
+      16,
+      196,
+      212,
+      224,
+      232,
+      236,
+      248,
+      252,
+      272,
+      364,
+      372,
+      376,
+      380,
+      400,
+      404,
+      420
+    ],
+    "body_sha256": "7d4195d3dc2b8e713e2e9c49406bfb9fb10d3cb1d3748e275d71a9a6c05f1257",
+    "candidate_frame": 80,
+    "differing": 17,
+    "errors": [],
+    "excluded_text_alignment_bytes": 0,
+    "excluded_zero_rodata_alignment_bytes": 12,
+    "extra_words": 0,
+    "native_bytes": 432,
+    "native_frame": 104,
+    "native_sha256": "de1f36df460facf901e061b060ce243d1fc761740f2a8b5e5453ed417ccf9920",
+    "own_literal_address": "0x801249cc",
+    "own_literal_bytes": 4,
+    "relocations": [
+      {
+        "offset": 28,
+        "symbol": "entity_transform_apply",
+        "type": 4
+      },
+      {
+        "offset": 44,
+        "symbol": "D_801170FC",
+        "type": 5
+      },
+      {
+        "offset": 48,
+        "symbol": "D_801170FC",
+        "type": 6
+      },
+      {
+        "offset": 68,
+        "symbol": ".rodata",
+        "type": 5
+      },
+      {
+        "offset": 84,
+        "symbol": ".rodata",
+        "type": 6
+      },
+      {
+        "offset": 72,
+        "symbol": "D_80121DDC",
+        "type": 5
+      },
+      {
+        "offset": 80,
+        "symbol": "D_80121DDC",
+        "type": 6
+      },
+      {
+        "offset": 176,
+        "symbol": "D_8002EB94",
+        "type": 5
+      },
+      {
+        "offset": 180,
+        "symbol": "D_8002EB94",
+        "type": 6
+      },
+      {
+        "offset": 244,
+        "symbol": "sound_position_set",
+        "type": 4
+      },
+      {
+        "offset": 256,
+        "symbol": "D_8002EB94",
+        "type": 5
+      },
+      {
+        "offset": 260,
+        "symbol": "D_8002EB94",
+        "type": 6
+      },
+      {
+        "offset": 312,
+        "symbol": "D_80117530",
+        "type": 5
+      },
+      {
+        "offset": 316,
+        "symbol": "D_80117530",
+        "type": 6
+      },
+      {
+        "offset": 368,
+        "symbol": "entity_spawn_callback",
+        "type": 4
+      },
+      {
+        "offset": 384,
+        "symbol": "D_80143FC8",
+        "type": 5
+      },
+      {
+        "offset": 388,
+        "symbol": "D_80143FC8",
+        "type": 6
+      },
+      {
+        "offset": 396,
+        "symbol": "func_800AFA84",
+        "type": 4
+      },
+      {
+        "offset": 408,
+        "symbol": "entity_transform_apply",
+        "type": 4
+      }
+    ],
+    "symbol_bytes": 432,
+    "total": 108,
+    "unresolved": [],
+    "unverified": [],
+    "verdict": "17/108 words differ"
+  },
+  "support_source_sha256": {
+    "host.c": "129851ed7df756b352361136db33bfa9866f3550e9d522247a2969fb21117831",
+    "native.py": "654016ba52e17148074d6dfaf0fea431549fce9be2b9393492d2eed585e0f35d",
+    "provenance.json": "a0e6cacac6121f734eb20755ae26fef976563580c7e85d6c96c040c7457563fd",
+    "verify.py": "f3135201e5232bd9f5b279f9428430ffad09086a76ff195a37e4809f7876fbf3"
+  }
+}
