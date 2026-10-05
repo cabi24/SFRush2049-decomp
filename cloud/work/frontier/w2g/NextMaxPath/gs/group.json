@@ -1,0 +1,1 @@
+{"members": ["NextMaxPath", "func_80095F8C"], "files": ["func_80095F8C.c", "alloc_at.c"], "keep": ["standin_caller", "func_80095F8C"], "flags": "-g0 -O3 -mips2 -G 0 -non_shared", "unprototyped": [], "context": [], "claims": []}

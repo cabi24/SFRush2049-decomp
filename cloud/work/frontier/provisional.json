@@ -34,5 +34,9 @@
  "func_800E6460": {
   "evidence": "cloud/work/frontier/w1d/groups/control_input_E681C",
   "note": "wave 1: strict MATCH as an internal member with its real caller func_800E681C kept and no stand-ins; closes when func_800E681C (16/179 words) matches"
+ },
+ "audio_priority_find": {
+  "evidence": "cloud/work/frontier/w2b/groups/frontier_route_cross",
+  "note": "wave 2: strict MATCH as an internal member with its real caller audio_mixer_main, which is 31/183 words off (cloud/work/frontier/w2b/audio_mixer_main/best.c); also identical with a stand-in caller. Closes when audio_mixer_main matches"
  }
 }

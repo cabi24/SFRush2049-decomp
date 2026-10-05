@@ -2476,6 +2476,7 @@ func_800B0F60:
 .section .text.sound_bank_load, "ax", @progbits
 .globl sound_bank_load
 sound_bank_load:
+    /* compiled from src/blob/sound_bank_load.c */
     .word 0x27BDFFA0
     .word 0xAFB20024
     .word 0xAFB10020

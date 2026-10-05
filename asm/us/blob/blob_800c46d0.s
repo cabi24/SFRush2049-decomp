@@ -7763,6 +7763,7 @@ func_800CB9D0:
 .section .text.menu_item_select, "ax", @progbits
 .globl menu_item_select
 menu_item_select:
+    /* compiled from src/blob/menu_item_select.c */
     .word 0x27BDFFE8
     .word 0xAFA40018
     .word 0xAFBF0014

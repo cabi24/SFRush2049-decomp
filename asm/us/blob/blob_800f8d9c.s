@@ -5068,6 +5068,7 @@ random_int:
 .section .text.random_float, "ax", @progbits
 .globl random_float
 random_float:
+    /* compiled from src/blob/random_float.c */
     .word 0x27BDFF88
     .word 0xAFBF0014
     .word 0xAFA40078
