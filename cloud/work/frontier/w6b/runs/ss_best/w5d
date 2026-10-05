@@ -1,0 +1,102 @@
+[W5D] bit at=cm proc=sound_stop bit=0 kind=3 dtype=A ref=187|0 text=varP(592+0)r
+[W5D] bit at=cm proc=sound_stop bit=1 kind=3 dtype=A ref=187|0 text=varP(592+0)r
+[W5D] bit at=cm proc=sound_stop bit=2 kind=4 dtype=A ref=1164|0 text=neq.A(varP(592+0)r,0)
+[W5D] bit at=cm proc=sound_stop bit=3 kind=4 dtype=A ref=454|0 text=cg1.A(varP(592+0)r)
+[W5D] bit at=cm proc=sound_stop bit=4 kind=3 dtype=J ref=718|0 text=varM(592-4)r
+[W5D] bit at=cm proc=sound_stop bit=5 kind=3 dtype=J ref=718|0 text=varM(592-4)r
+[W5D] bit at=cm proc=sound_stop bit=6 kind=4 dtype=J ref=166|0 text=str.J(varM(592-4)r,0)
+[W5D] bit at=cm proc=sound_stop bit=7 kind=4 dtype=J ref=827|0 text=ilod.J@0(ldaS(920+0))
+[W5D] bit at=cm proc=sound_stop bit=8 kind=4 dtype=J ref=177|0 text=geq.J(ilod.J@0(ldaS(920+0)),1)
+[W5D] bit at=cm proc=sound_stop bit=9 kind=4 dtype=J ref=119|0 text=cg1.J(ilod.J@0(ldaS(920+0)))
+[W5D] bit at=cm proc=sound_stop bit=10 kind=4 dtype=J ref=422|0 text=mpy.J(varM(592-4)r,4)
+[W5D] bit at=cm proc=sound_stop bit=11 kind=4 dtype=J ref=1189|0 text=ixa.J(ldaS(921+0),mpy.J(varM(592-4)r,4))
+[W5D] bit at=cm proc=sound_stop bit=12 kind=4 dtype=A ref=1191|0 text=ilod.A@0(ixa.J(ldaS(921+0),mpy.J(varM(592-4)r,4)))
+[W5D] bit at=cm proc=sound_stop bit=13 kind=4 dtype=A ref=647|0 text=equ.A(varP(592+0)r,ilod.A@0(ixa.J(ldaS(921+0),mpy.J(varM(592-4)r,4))))
+[W5D] bit at=cm proc=sound_stop bit=14 kind=4 dtype=A ref=462|0 text=cg1.A(varP(592+0)r)
+[W5D] bit at=cm proc=sound_stop bit=15 kind=4 dtype=A ref=851|0 text=cg1.A(ilod.A@0(ixa.J(ldaS(921+0),mpy.J(varM(592-4)r,4))))
+[W5D] bit at=cm proc=sound_stop bit=16 kind=4 dtype=J ref=824|0 text=add.J(varM(592-4)r,1)
+[W5D] bit at=cm proc=sound_stop bit=17 kind=4 dtype=J ref=660|0 text=str.J(varM(592-4)r,add.J(varM(592-4)r,1))
+[W5D] bit at=cm proc=sound_stop bit=18 kind=4 dtype=J ref=791|0 text=les.J(varM(592-4)r,ilod.J@0(ldaS(920+0)))
+[W5D] bit at=cm proc=sound_stop bit=19 kind=4 dtype=J ref=1528|0 text=cg1.J(varM(592-4)r)
+[W5D] bit at=cm proc=sound_stop bit=20 kind=4 dtype=J ref=127|0 text=cg1.J(ilod.J@0(ldaS(920+0)))
+[W5D] bit at=cm proc=sound_stop bit=21 kind=4 dtype=L ref=806|0 text=ilod.L@52(varP(592+0)r)
+[W5D] bit at=cm proc=sound_stop bit=22 kind=4 dtype=L ref=1343|0 text=mpy.L(ilod.L@52(varP(592+0)r),32)
+[W5D] bit at=cm proc=sound_stop bit=23 kind=4 dtype=L ref=587|0 text=ixa.L(ldaS(3916+0),mpy.L(ilod.L@52(varP(592+0)r),32))
+[W5D] bit at=cm proc=sound_stop bit=24 kind=4 dtype=L ref=630|0 text=istr.L@22(ixa.L(ldaS(3916+0),mpy.L(ilod.L@52(varP(592+0)r),32)),2)
+[W5D] bit at=cm proc=sound_stop bit=25 kind=4 dtype=J ref=1564|0 text=add.J(ilod.J@0(ldaS(920+0)),-1)
+[W5D] bit at=cm proc=sound_stop bit=26 kind=4 dtype=J ref=71|0 text=istr.J@0(ldaS(920+0),add.J(ilod.J@0(ldaS(920+0)),-1))
+[W5D] bit at=cm proc=sound_stop bit=27 kind=3 dtype=J ref=654|0 text=varM(592-8)r
+[W5D] bit at=cm proc=sound_stop bit=28 kind=3 dtype=J ref=654|0 text=varM(592-8)r
+[W5D] bit at=cm proc=sound_stop bit=29 kind=4 dtype=J ref=1286|0 text=str.J(varM(592-8)r,ilod.J@0(ldaS(920+0)))
+[W5D] bit at=cm proc=sound_stop bit=30 kind=4 dtype=A ref=590|0 text=neq.A(varP(592+0)r,ilod.A@0(ixa.J(ldaS(921+0),mpy.J(varM(592-4)r,4))))
+[W5D] bit at=cm proc=sound_stop bit=31 kind=4 dtype=A ref=470|0 text=cg1.A(varP(592+0)r)
+[W5D] bit at=cm proc=sound_stop bit=32 kind=4 dtype=A ref=859|0 text=cg1.A(ilod.A@0(ixa.J(ldaS(921+0),mpy.J(varM(592-4)r,4))))
+[W5D] bit at=cm proc=sound_stop bit=33 kind=4 dtype=J ref=1100|0 text=mpy.J(varM(592-8)r,4)
+[W5D] bit at=cm proc=sound_stop bit=34 kind=4 dtype=J ref=1333|0 text=ixa.J(ldaS(921+0),mpy.J(varM(592-8)r,4))
+[W5D] bit at=cm proc=sound_stop bit=35 kind=4 dtype=A ref=1479|0 text=ilod.A@0(ixa.J(ldaS(921+0),mpy.J(varM(592-8)r,4)))
+[W5D] bit at=cm proc=sound_stop bit=36 kind=4 dtype=A ref=1574|0 text=istr.A@0(ixa.J(ldaS(921+0),mpy.J(varM(592-4)r,4)),ilod.A@0(ixa.J(ldaS(921+0),mpy.J(varM(592-8)r,4))))
+[W5D] bit at=cm proc=sound_stop bit=37 kind=4 dtype=A ref=1292|0 text=istr.A@0(ixa.J(ldaS(921+0),mpy.J(varM(592-8)r,4)),varP(592+0)r)
+[W5D] bit at=cm proc=sound_stop bit=38 kind=4 dtype=A ref=806|1 text=ilod.A@60(varP(592+0)r)
+[W5D] bit at=cm proc=sound_stop bit=39 kind=4 dtype=A ref=117|0 text=str.A(varP(592+0)r,ilod.A@60(varP(592+0)r))
+[W5D] bit at=cm proc=sound_stop bit=40 kind=4 dtype=A ref=474|0 text=cg1.A(varP(592+0)r)
+[W5D] regcand proc=sound_stop what=const bb=0 ctx=3 decision=0 text=0
+[W5D] regcand proc=sound_stop what=const bb=2 ctx=0 decision=0 text=0
+[W5D] regcand proc=sound_stop what=const bb=2 ctx=1 decision=0 text=1
+[W5D] regcand proc=sound_stop what=lda bb=8 ctx=0 decision=1 text=ldaS(3916+0)
+[W5D] regcand proc=sound_stop what=const bb=8 ctx=5 decision=0 text=32
+[W5D] regcand proc=sound_stop what=const bb=8 ctx=3 decision=1 text=2
+[W5D] regcand proc=sound_stop what=lda bb=8 ctx=1 decision=1 text=ldaS(920+0)
+[W5D] regcand proc=sound_stop what=const bb=8 ctx=1 decision=0 text=-1
+[W5D] regcand proc=sound_stop what=lda bb=8 ctx=3 decision=1 text=ldaS(920+0)
+[W5D] regcand proc=sound_stop what=lda bb=8 ctx=0 decision=1 text=ldaS(921+0)
+[W5D] regcand proc=sound_stop what=const bb=8 ctx=5 decision=0 text=4
+[W5D] regcand proc=sound_stop what=lda bb=10 ctx=0 decision=1 text=ldaS(921+0)
+[W5D] regcand proc=sound_stop what=const bb=10 ctx=5 decision=0 text=4
+[W5D] regcand proc=sound_stop what=const bb=10 ctx=3 decision=0 text=0
+[W5D] regcand proc=sound_stop what=const bb=6 ctx=1 decision=0 text=1
+[W5D] ordinal proc=sound_stop cdx_proc=424
+[W5D] bit at=gc proc=sound_stop bit=0 kind=3 dtype=A ref=187|0 text=varP(592+0)r
+[W5D] bit at=gc proc=sound_stop bit=1 kind=3 dtype=A ref=187|0 text=varP(592+0)r
+[W5D] bit at=gc proc=sound_stop bit=2 kind=4 dtype=A ref=1164|0 text=neq.A(varP(592+0)r,0)
+[W5D] bit at=gc proc=sound_stop bit=3 kind=4 dtype=A ref=454|0 text=cg1.A(varP(592+0)r)
+[W5D] bit at=gc proc=sound_stop bit=4 kind=3 dtype=J ref=718|0 text=varM(592-4)r
+[W5D] bit at=gc proc=sound_stop bit=5 kind=3 dtype=J ref=718|0 text=varM(592-4)r
+[W5D] bit at=gc proc=sound_stop bit=6 kind=4 dtype=J ref=166|0 text=str.J(varM(592-4)r,0)
+[W5D] bit at=gc proc=sound_stop bit=7 kind=4 dtype=J ref=827|0 text=ilod.J@0(ldaS(920+0))
+[W5D] bit at=gc proc=sound_stop bit=8 kind=4 dtype=J ref=177|0 text=geq.J(ilod.J@0(ldaS(920+0)),1)
+[W5D] bit at=gc proc=sound_stop bit=9 kind=4 dtype=J ref=119|0 text=cg1.J(ilod.J@0(ldaS(920+0)))
+[W5D] bit at=gc proc=sound_stop bit=10 kind=4 dtype=J ref=422|0 text=mpy.J(varM(592-4)r,4)
+[W5D] bit at=gc proc=sound_stop bit=11 kind=4 dtype=J ref=1189|0 text=ixa.J(ldaS(921+0),mpy.J(varM(592-4)r,4))
+[W5D] bit at=gc proc=sound_stop bit=12 kind=4 dtype=A ref=1191|0 text=ilod.A@0(ixa.J(ldaS(921+0),mpy.J(varM(592-4)r,4)))
+[W5D] bit at=gc proc=sound_stop bit=13 kind=4 dtype=A ref=647|0 text=equ.A(varP(592+0)r,ilod.A@0(ixa.J(ldaS(921+0),mpy.J(varM(592-4)r,4))))
+[W5D] bit at=gc proc=sound_stop bit=14 kind=4 dtype=A ref=462|0 text=cg1.A(varP(592+0)r)
+[W5D] bit at=gc proc=sound_stop bit=15 kind=4 dtype=A ref=851|0 text=cg1.A(ilod.A@0(ixa.J(ldaS(921+0),mpy.J(varM(592-4)r,4))))
+[W5D] bit at=gc proc=sound_stop bit=16 kind=4 dtype=J ref=824|0 text=add.J(varM(592-4)r,1)
+[W5D] bit at=gc proc=sound_stop bit=17 kind=4 dtype=J ref=660|0 text=str.J(varM(592-4)r,add.J(varM(592-4)r,1))
+[W5D] bit at=gc proc=sound_stop bit=18 kind=4 dtype=J ref=791|0 text=les.J(varM(592-4)r,ilod.J@0(ldaS(920+0)))
+[W5D] bit at=gc proc=sound_stop bit=19 kind=4 dtype=J ref=1528|0 text=cg1.J(varM(592-4)r)
+[W5D] bit at=gc proc=sound_stop bit=20 kind=4 dtype=J ref=127|0 text=cg1.J(ilod.J@0(ldaS(920+0)))
+[W5D] bit at=gc proc=sound_stop bit=21 kind=4 dtype=L ref=806|0 text=ilod.L@52(varP(592+0)r)
+[W5D] bit at=gc proc=sound_stop bit=22 kind=4 dtype=L ref=1343|0 text=mpy.L(ilod.L@52(varP(592+0)r),32)
+[W5D] bit at=gc proc=sound_stop bit=23 kind=4 dtype=L ref=587|0 text=ixa.L(ldaS(3916+0),mpy.L(ilod.L@52(varP(592+0)r),32))
+[W5D] bit at=gc proc=sound_stop bit=24 kind=4 dtype=L ref=630|0 text=istr.L@22(ixa.L(ldaS(3916+0),mpy.L(ilod.L@52(varP(592+0)r),32)),2)
+[W5D] bit at=gc proc=sound_stop bit=25 kind=4 dtype=J ref=1564|0 text=add.J(ilod.J@0(ldaS(920+0)),-1)
+[W5D] bit at=gc proc=sound_stop bit=26 kind=4 dtype=J ref=71|0 text=istr.J@0(ldaS(920+0),add.J(ilod.J@0(ldaS(920+0)),-1))
+[W5D] bit at=gc proc=sound_stop bit=27 kind=3 dtype=J ref=654|0 text=varM(592-8)r
+[W5D] bit at=gc proc=sound_stop bit=28 kind=3 dtype=J ref=654|0 text=varM(592-8)r
+[W5D] bit at=gc proc=sound_stop bit=29 kind=4 dtype=J ref=1286|0 text=str.J(varM(592-8)r,ilod.J@0(ldaS(920+0)))
+[W5D] bit at=gc proc=sound_stop bit=30 kind=4 dtype=A ref=590|0 text=neq.A(varP(592+0)r,ilod.A@0(ixa.J(ldaS(921+0),mpy.J(varM(592-4)r,4))))
+[W5D] bit at=gc proc=sound_stop bit=31 kind=4 dtype=A ref=470|0 text=cg1.A(varP(592+0)r)
+[W5D] bit at=gc proc=sound_stop bit=32 kind=4 dtype=A ref=859|0 text=cg1.A(ilod.A@0(ixa.J(ldaS(921+0),mpy.J(varM(592-4)r,4))))
+[W5D] bit at=gc proc=sound_stop bit=33 kind=4 dtype=J ref=1100|0 text=mpy.J(varM(592-8)r,4)
+[W5D] bit at=gc proc=sound_stop bit=34 kind=4 dtype=J ref=1333|0 text=ixa.J(ldaS(921+0),mpy.J(varM(592-8)r,4))
+[W5D] bit at=gc proc=sound_stop bit=35 kind=4 dtype=A ref=1479|0 text=ilod.A@0(ixa.J(ldaS(921+0),mpy.J(varM(592-8)r,4)))
+[W5D] bit at=gc proc=sound_stop bit=36 kind=4 dtype=A ref=1574|0 text=istr.A@0(ixa.J(ldaS(921+0),mpy.J(varM(592-4)r,4)),ilod.A@0(ixa.J(ldaS(921+0),mpy.J(varM(592-8)r,4))))
+[W5D] bit at=gc proc=sound_stop bit=37 kind=4 dtype=A ref=1292|0 text=istr.A@0(ixa.J(ldaS(921+0),mpy.J(varM(592-8)r,4)),varP(592+0)r)
+[W5D] bit at=gc proc=sound_stop bit=38 kind=4 dtype=A ref=806|1 text=ilod.A@60(varP(592+0)r)
+[W5D] bit at=gc proc=sound_stop bit=39 kind=4 dtype=A ref=117|0 text=str.A(varP(592+0)r,ilod.A@60(varP(592+0)r))
+[W5D] bit at=gc proc=sound_stop bit=40 kind=4 dtype=A ref=474|0 text=cg1.A(varP(592+0)r)
+[W5D] bit at=gc proc=sound_stop bit=41 kind=1 dtype=A ref=373|0 text=ldaS(3916+0)
+[W5D] bit at=gc proc=sound_stop bit=42 kind=2 dtype=L ref=2|0 text=2
+[W5D] bit at=gc proc=sound_stop bit=43 kind=1 dtype=A ref=1007|0 text=ldaS(920+0)
+[W5D] bit at=gc proc=sound_stop bit=44 kind=1 dtype=A ref=1023|0 text=ldaS(921+0)

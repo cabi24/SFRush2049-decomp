@@ -1,0 +1,9 @@
+{
+ "members": ["func_800EF62C"],
+ "context": [],
+ "files": ["group.c"],
+ "keep": ["func_800EF62C"],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "Split-screen HUD tachometer (wave 6, w6c). A one-function group only so its own .rodata is placed per reference: retail keeps its two strings at 0x80120D9C/0x80120DAC and its two float literals at 0x801245A4/0x801245A8, which the single-function link (one base per section) cannot express."
+}

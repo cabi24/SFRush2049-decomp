@@ -5386,6 +5386,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-01"
   },
+  "func_8010E0FC": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_8010E0FC.c",
+    "source_sha256": "e67fa19fd03d74829d2f03d765a4b3c03a7dfb89a9e18c7edf5d0565a58163b3",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
+  },
   "func_8010E694": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_8010E694.c",
@@ -6571,6 +6579,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-02"
+  },
+  "stat_lap_split": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/stat_lap_split.c",
+    "source_sha256": "13a8568df10d1f2b40ed81210995eeab0930968b03e174b45a776f9e66f0918a",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
   },
   "stat_race_end": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",

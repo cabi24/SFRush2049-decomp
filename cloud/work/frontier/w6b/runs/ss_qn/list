@@ -1,0 +1,266 @@
+ * *    0. 21 SECONDS IN LOCAL OPTIMIZATION OF sound_stop
+   flow graph for sound_stop:
+           0           0
+suc::::           1           0
+suc::::          10        3530
+           1           0
+pre::::           0           0
+suc::::           2        3531
+           2        3531
+pre::::           8        3532
+pre::::           1           0
+suc::::           3           0
+suc::::           8        3532
+           3           0
+pre::::           2        3531
+suc::::           4        3533
+           4        3533
+pre::::           6        3534
+pre::::           3           0
+suc::::           5           0
+suc::::           6        3534
+           5           0
+pre::::           4        3533
+suc::::           8        3532
+           8        3532
+pre::::           7           0
+pre::::           5           0
+pre::::           2        3531
+suc::::           9           0
+suc::::           2        3531
+           9           0
+pre::::           8        3532
+suc::::          10        3530
+          10        3530
+pre::::           9           0
+pre::::           0           0
+           6        3534
+pre::::           4        3533
+suc::::           7           0
+suc::::           4        3533
+           7           0
+pre::::           6        3534
+suc::::           8        3532
+ * *    0. 13 SECONDS IN Patchvectors OF sound_stop
+ * *    0.  6 SECONDS IN COPY PROPAGATION OF sound_stop
+ * *    0.  4 SECONDS IN REMOVAL OF REDUNDANT STORES OF sound_stop
+ index      bit kind    op      l      r  
+{ 187|0}      0 isvar   P  592     0vreg
+"""           1
+{1164|0}      2 isop    uneq{ 187|0} {   0|0}
+{ 454|0}      3 isop    ucg1{ 187|0} 
+{ 718|0}      4 isvar   M  592    -4vreg
+"""           5
+{ 166|0}      6 isop    ustr{ 718|0} {   0|0}
+{ 827|0}      7 isop    uilod{1007|0} 
+{ 177|0}      8 isop    ugeq{ 827|0} {   1|0}
+{ 119|0}      9 isop    ucg1{ 827|0} 
+{ 422|0}     10 isop    umpy{ 718|0} {   4|0}
+{1189|0}     11 isop    uixa{1023|0} { 422|0}
+{1191|0}     12 isop    uilod{1189|0} 
+{ 647|0}     13 isop    uequ{ 187|0} {1191|0}
+{ 462|0}     14 isop    ucg1{ 187|0} 
+{ 851|0}     15 isop    ucg1{1191|0} 
+{ 824|0}     16 isop    uadd{ 718|0} {   1|0}
+{ 660|0}     17 isop    ustr{ 718|0} { 824|0}
+{ 791|0}     18 isop    ules{ 718|0} { 827|0}
+{1528|0}     19 isop    ucg1{ 718|0} 
+{ 127|0}     20 isop    ucg1{ 827|0} 
+{ 806|0}     21 isop    uilod{ 187|0} 
+{1343|0}     22 isop    umpy{ 806|0} {  32|0}
+{ 587|0}     23 isop    uixa{ 373|0} {1343|0}
+{ 630|0}     24 isop    uistr{ 587|0} {   2|0}
+{1564|0}     25 isop    uadd{ 827|0} {1618|0}
+{  71|0}     26 isop    uistr{1007|0} {1564|0}
+{ 654|0}     27 isvar   M  592    -8vreg
+"""          28
+{1286|0}     29 isop    ustr{ 654|0} { 827|0}
+{1100|0}     30 isop    umpy{ 654|0} {   4|0}
+{1333|0}     31 isop    uixa{1023|0} {1100|0}
+{1479|0}     32 isop    uilod{1333|0} 
+{1574|0}     33 isop    uistr{1189|0} {1479|0}
+{1292|0}     34 isop    uistr{1333|0} { 187|0}
+{ 806|1}     35 isop    uilod{ 187|0} 
+{ 117|0}     36 isop    ustr{ 187|0} { 806|1}
+{ 470|0}     37 isop    ucg1{ 187|0} 
+! ! ! ! ! node           0 ! ! ! ! !
+antlocs --(  2) [   0,   2..   3]
+avlocs --(  2) [   0,   2..   3]
+alters --(  2) [   1,  36]
+absalters --(  2) [   1]
+antin --(  2) [   0,   2..   3]
+antout --(  2) []
+iv --(  2) []
+cand --(  2) []
+ppin --(  2) []
+ppout --(  2) [   0,   2..   3]
+insert --(  2) []
+delete --(  2) []
+subdelete --(  2) []
+subinsert --(  2) []
+! ! ! ! ! node           1 ! ! ! ! !
+antlocs --(  2) []
+avlocs --(  2) []
+alters --(  2) []
+absalters --(  2) []
+antin --(  2) [   6..   9,  21..  23,  25]
+antout --(  2) [   6..   9,  21..  23,  25]
+iv --(  2) []
+cand --(  2) []
+ppin --(  2) [   2..   3]
+ppout --(  2) [   2..   3,   7]
+insert --(  2) [   7]
+delete --(  2) []
+subdelete --(  2) []
+subinsert --(  2) []
+! ! ! ! ! node           2 ! ! ! ! !
+antlocs --(  2) [   5..   9]
+avlocs --(  2) [   7..   9]
+alters --(  2) [   4,  10..  13,  15..  19,  26,  33]
+absalters --(  2) [   4,  10..  13,  15..  19,  33]
+antin --(  2) [   5..   9,  21..  23,  25]
+antout --(  2) [   7,  10..  11,  21..  23,  25]
+iv --(  2) []
+cand --(  2) []
+ppin --(  2) [   2,   7]
+ppout --(  2) [   2,   6..   9]
+insert --(  2) []
+delete --(  2) [   7]
+subdelete --(  2) []
+subinsert --(  2) []
+! ! ! ! ! node           3 ! ! ! ! !
+antlocs --(  2) []
+avlocs --(  2) []
+alters --(  2) []
+absalters --(  2) []
+antin --(  2) [   7,  10..  15,  21..  23,  25]
+antout --(  2) [   7,  10..  15,  21..  23,  25]
+iv --(  2) []
+cand --(  2) []
+ppin --(  2) [   2,   6..   9]
+ppout --(  2) [   2,   6..  11,  14]
+insert --(  2) [  10..  11,  14]
+delete --(  2) []
+subdelete --(  2) []
+subinsert --(  2) []
+! ! ! ! ! node           4 ! ! ! ! !
+antlocs --(  2) [   0,   4,  10..  15]
+avlocs --(  2) [   0,   4,  10..  15]
+alters --(  2) [   1,   5..   6,  17,  33..  34,  36]
+absalters --(  2) [   1,   5]
+antin --(  2) [   0,   4,   7,  10..  15,  21..  23,  25]
+antout --(  2) [   7,  10..  11,  21..  23,  25]
+iv --(  2) []
+cand --(  2) []
+ppin --(  2) [   2,   7..  11,  14]
+ppout --(  2) [   0,   2,   4,   7..  15]
+insert --(  2) []
+delete --(  2) [  10..  11,  14]
+subdelete --(  2) [  10,  14]
+subinsert --(  2) []
+! ! ! ! ! node           5 ! ! ! ! !
+antlocs --(  2) []
+avlocs --(  2) []
+alters --(  2) []
+absalters --(  2) []
+antin --(  2) [   7,  10..  11,  21..  23,  25]
+antout --(  2) [   7,  10..  11,  21..  23,  25]
+iv --(  2) []
+cand --(  2) []
+ppin --(  2) [   2,   7..  15]
+ppout --(  2) [   2,   7..  15]
+insert --(  2) []
+delete --(  2) []
+subdelete --(  2) []
+subinsert --(  2) []
+! ! ! ! ! node           8 ! ! ! ! !
+antlocs --(  2) [   0,   4,   7,  10..  11,  21..  23,  25,  28]
+avlocs --(  2) [   0,   2,   4,   7,  10..  11,  27,  30..  31,  37]
+alters --(  2) [   0..   3,   5..   9,  12..  15,  17..  18,  20..  37]
+absalters --(  2) [   0..   3,   5,   7..   9,  12..  15,  18,  20..  37]
+antin --(  2) [   0,   4,   7,  10..  11,  21..  23,  25,  28]
+antout --(  2) []
+iv --(  2) []
+cand --(  2) []
+ppin --(  2) [   2,   7..   9]
+ppout --(  2) [   0,   2,   4,   7,  10..  11,  27,  29..  31,  37]
+insert --(  2) []
+delete --(  2) [   7]
+subdelete --(  2) []
+subinsert --(  2) []
+! ! ! ! ! node           9 ! ! ! ! !
+antlocs --(  2) []
+avlocs --(  2) []
+alters --(  2) []
+absalters --(  2) []
+antin --(  2) []
+antout --(  2) []
+iv --(  2) []
+cand --(  2) []
+ppin --(  2) [   2,   7,  10..  11,  29..  31,  37]
+ppout --(  2) [   2,   7,  10..  11,  29..  31,  37]
+insert --(  2) []
+delete --(  2) []
+subdelete --(  2) []
+subinsert --(  2) []
+! ! ! ! ! node          10 ! ! ! ! !
+antlocs --(  2) []
+avlocs --(  2) []
+alters --(  2) []
+absalters --(  2) []
+antin --(  2) []
+antout --(  2) []
+iv --(  2) []
+cand --(  2) []
+ppin --(  2) [   2]
+ppout --(  2) [   2]
+insert --(  2) []
+delete --(  2) []
+subdelete --(  2) []
+subinsert --(  2) []
+! ! ! ! ! node           6 ! ! ! ! !
+antlocs --(  2) [   4,   7,  16,  20]
+avlocs --(  2) [   4,   7,  18..  20]
+alters --(  2) [   4..   6,  12..  13,  15..  19,  26,  33]
+absalters --(  2) [   4..   6,  12..  13,  15..  19,  33]
+antin --(  2) [   4,   7,  10..  11,  16,  20..  23,  25]
+antout --(  2) [   7,  10..  11,  21..  23,  25]
+iv --(  2) [   4]
+cand --(  2) [  10..  11]
+ppin --(  2) [   2,   4,   7..  15]
+ppout --(  2) [   2,   4,   7..  11,  14,  18..  20]
+insert --(  2) []
+delete --(  2) [   4,   7]
+subdelete --(  2) [   4]
+subinsert --(  2) []
+! ! ! ! ! node           7 ! ! ! ! !
+antlocs --(  2) []
+avlocs --(  2) []
+alters --(  2) []
+absalters --(  2) []
+antin --(  2) [   7,  10..  11,  21..  23,  25]
+antout --(  2) [   7,  10..  11,  21..  23,  25]
+iv --(  2) []
+cand --(  2) []
+ppin --(  2) [   2,   7..  11,  14,  18..  20]
+ppout --(  2) [   2,   7..  11,  14,  18..  20]
+insert --(  2) []
+delete --(  2) []
+subdelete --(  2) []
+subinsert --(  2) []
+indmults ****(  2) [   7,  10..  12,  16,  21..  23,  25,  30..  32,  35]
+mvarbits ****(  2) [   0..   1,   4..   5,  27..  28]
+outmodebits ****(  2) []
+notinmodebits ****(  2) []
+ * *    0.123 SECONDS IN CODE MOTION OF sound_stop
+ * *    0. 11 SECONDS IN INDUCTION VARIABLE ELIM. OF sound_stop
+ * *    0. 24 SECONDS IN reg alloc preparation of sound_stop
+@ iscolored 1(  2) [   0,   4,   7,  11,  27,  31,  38..  41]
+@ iscolored 2(  2) []
+@ colorcand(  2) []
+@ unconstrain (  2) [   0,   4,   7,  11,  27,  31,  38..  41]
+@ vareqv (  2) []
+@ asgneqv (  2) []
+@ coloredparms (  2) [   0]
+ * *    0.150 SECONDS IN global coloring of sound_stop
+ * *    0. 38 SECONDS IN REEMISSION OF sound_stop

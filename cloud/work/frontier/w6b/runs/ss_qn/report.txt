@@ -1,0 +1,74 @@
+procedure sound_stop  (colouring ordinal 424)
+
+== expression bits (variables omitted unless --all) ==
+   0  varP(592+0)r
+        antloc 0,4,8 | coloredparms iscolored1 unconstrain mvarbits | p2:w0 save=50.33 nocs=3 color->a0
+   2  neq.A(varP(592+0)r,0)
+        antloc 0
+   3  cg1.A(varP(592+0)r)
+        antloc 0
+   4  varM(592-4)r
+        antloc 4,6,8 | DELETE 6 | iscolored1 unconstrain mvarbits | p2:w4 save=106.67 nocs=3 color->v0
+   6  str.J(varM(592-4)r,0)
+        antloc 2
+   7  ilod.J@0(ldaS(920+0))
+        antloc 2,6,8 | DELETE 2,6,8 | INSERT 1 | iscolored1 unconstrain indmults | p2:w7 save=47.00 nocs=3 color->v1
+   8  geq.J(ilod.J@0(ldaS(920+0)),1)
+        antloc 2
+   9  cg1.J(ilod.J@0(ldaS(920+0)))
+        antloc 2
+  10  mpy.J(varM(592-4)r,4)
+        antloc 4,8 | DELETE 4 | INSERT 3 | indmults
+  11  ixa.J(ldaS(921+0),mpy.J(varM(592-4)r,4))
+        antloc 4,8 | DELETE 4 | INSERT 3 | iscolored1 unconstrain indmults | p2:w11 save=155.00 nocs=2 color->a1
+  12  ilod.A@0(ixa.J(ldaS(921+0),mpy.J(varM(592-4)r,4)))
+        antloc 4 | indmults
+  13  equ.A(varP(592+0)r,ilod.A@0(ixa.J(ldaS(921+0),mpy.J(varM(592-4)r,4))))
+        antloc 4
+  14  cg1.A(varP(592+0)r)
+        antloc 4 | DELETE 4 | INSERT 3
+  15  cg1.A(ilod.A@0(ixa.J(ldaS(921+0),mpy.J(varM(592-4)r,4))))
+        antloc 4
+  16  add.J(varM(592-4)r,1)
+        antloc 6 | indmults
+  20  cg1.J(ilod.J@0(ldaS(920+0)))
+        antloc 6
+  21  ilod.L@52(varP(592+0)r)
+        antloc 8 | indmults
+  22  mpy.L(ilod.L@52(varP(592+0)r),32)
+        antloc 8 | indmults
+  23  ixa.L(ldaS(3916+0),mpy.L(ilod.L@52(varP(592+0)r),32))
+        antloc 8 | indmults
+  25  add.J(ilod.J@0(ldaS(920+0)),-1)
+        antloc 8 | indmults
+  27  varM(592-8)r
+        iscolored1 unconstrain mvarbits | p2:w27 save=20.00 nocs=1 color->a1
+  30  mpy.J(varM(592-8)r,4)
+        indmults
+  31  ixa.J(ldaS(921+0),mpy.J(varM(592-8)r,4))
+        iscolored1 unconstrain indmults | p2:w31 save=30.00 nocs=1 color->a2
+  32  ilod.A@0(ixa.J(ldaS(921+0),mpy.J(varM(592-8)r,4)))
+        indmults
+  35  ilod.A@60(varP(592+0)r)
+        indmults
+  38  ldaS(3916+0)
+        iscolored1 unconstrain | p2:w38 save=3.33 nocs=3 color->a3
+  39  2
+        iscolored1 unconstrain | p2:w39 save=3.33 nocs=3 color->t0
+  40  ldaS(920+0)
+        iscolored1 unconstrain | p2:w40 save=6.67 nocs=3 color->t1
+  41  ldaS(921+0)
+        iscolored1 unconstrain | p2:w41 save=6.67 nocs=3 color->t2
+
+== register candidates for constants / addresses (makelivranges) ==
+  const    -1                     ctx=1 remat          blocks 8
+  const    0                      ctx=0 remat          blocks 2
+  const    0                      ctx=3 remat          blocks 0,8
+  const    1                      ctx=1 remat          blocks 2,6
+  const    2                      ctx=3 LIVE-RANGE     blocks 8
+  const    32                     ctx=5 remat          blocks 8
+  const    4                      ctx=5 remat          blocks 8,8
+  lda      ldaS(3916+0)           ctx=0 LIVE-RANGE     blocks 8
+  lda      ldaS(920+0)            ctx=1 LIVE-RANGE     blocks 8
+  lda      ldaS(920+0)            ctx=3 LIVE-RANGE     blocks 8
+  lda      ldaS(921+0)            ctx=0 LIVE-RANGE     blocks 8,8

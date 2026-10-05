@@ -6157,6 +6157,7 @@ stat_lap_complete:
 .section .text.stat_lap_split, "ax", @progbits
 .globl stat_lap_split
 stat_lap_split:
+    /* compiled from src/blob/stat_lap_split.c */
     .word 0x3C0F8011
     .word 0x81EFFFC0
     .word 0x27BDFFA0

@@ -1,0 +1,25 @@
+{
+ "members": [
+  "func_80092278",
+  "entity_flags_apply",
+  "high_scores_display",
+  "camera_target_track"
+ ],
+ "context": [
+  "func_8009211C",
+  "func_80091FBC"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "entity_flags_apply",
+  "high_scores_display",
+  "func_8009211C",
+  "func_80091FBC",
+  "camera_target_track"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "provenance": "frontier wave 6 (w6d) candidate extension of src/blob/groups/frontier_list_alloc_sound with camera_target_track (NOT a match: 12 rows, one constant-web colour)",
+ "claims": []
+}

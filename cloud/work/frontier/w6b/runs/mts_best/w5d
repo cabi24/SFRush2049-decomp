@@ -1,0 +1,374 @@
+[W5D] bit at=cm proc=music_tempo_set bit=0 kind=3 dtype=J ref=245|0 text=varP(790+8)r
+[W5D] bit at=cm proc=music_tempo_set bit=1 kind=3 dtype=J ref=245|0 text=varP(790+8)r
+[W5D] bit at=cm proc=music_tempo_set bit=2 kind=4 dtype=J ref=1164|0 text=neq.J(varP(790+8)r,0)
+[W5D] bit at=cm proc=music_tempo_set bit=3 kind=4 dtype=J ref=570|0 text=cg1.J(varP(790+8)r)
+[W5D] bit at=cm proc=music_tempo_set bit=4 kind=3 dtype=L ref=229|0 text=varP(790+7)r
+[W5D] bit at=cm proc=music_tempo_set bit=5 kind=3 dtype=L ref=229|0 text=varP(790+7)r
+[W5D] bit at=cm proc=music_tempo_set bit=6 kind=4 dtype=J ref=24|0 text=cvt.J(varP(790+7)r)
+[W5D] bit at=cm proc=music_tempo_set bit=7 kind=4 dtype=J ref=1046|0 text=neq.J(13,cvt.J(varP(790+7)r))
+[W5D] bit at=cm proc=music_tempo_set bit=8 kind=4 dtype=J ref=130|0 text=cg1.J(cvt.J(varP(790+7)r))
+[W5D] bit at=cm proc=music_tempo_set bit=9 kind=3 dtype=A ref=648|0 text=varM(790-4)r
+[W5D] bit at=cm proc=music_tempo_set bit=10 kind=3 dtype=A ref=648|0 text=varM(790-4)r
+[W5D] bit at=cm proc=music_tempo_set bit=11 kind=3 dtype=J ref=149|0 text=varP(790+2)r
+[W5D] bit at=cm proc=music_tempo_set bit=12 kind=3 dtype=J ref=149|0 text=varP(790+2)r
+[W5D] bit at=cm proc=music_tempo_set bit=13 kind=4 dtype=J ref=1080|0 text=mpy.J(varP(790+2)r,952)
+[W5D] bit at=cm proc=music_tempo_set bit=14 kind=4 dtype=J ref=1453|0 text=ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952))
+[W5D] bit at=cm proc=music_tempo_set bit=15 kind=4 dtype=A ref=1121|0 text=str.A(varM(790-4)r,ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952)))
+[W5D] bit at=cm proc=music_tempo_set bit=16 kind=4 dtype=L ref=100|0 text=ilod.L@232(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952)))
+[W5D] bit at=cm proc=music_tempo_set bit=17 kind=4 dtype=L ref=170|0 text=and.L(ilod.L@232(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952))),16)
+[W5D] bit at=cm proc=music_tempo_set bit=18 kind=4 dtype=J ref=1431|0 text=mpy.J(varP(790+2)r,8)
+[W5D] bit at=cm proc=music_tempo_set bit=19 kind=4 dtype=J ref=1557|0 text=ixa.J(ldaS(768+0),mpy.J(varP(790+2)r,8))
+[W5D] bit at=cm proc=music_tempo_set bit=20 kind=4 dtype=L ref=308|0 text=ilod.L@7(ixa.J(ldaS(768+0),mpy.J(varP(790+2)r,8)))
+[W5D] bit at=cm proc=music_tempo_set bit=21 kind=4 dtype=J ref=1604|0 text=cvt.J(ilod.L@7(ixa.J(ldaS(768+0),mpy.J(varP(790+2)r,8))))
+[W5D] bit at=cm proc=music_tempo_set bit=22 kind=4 dtype=J ref=264|0 text=neq.J(6,cvt.J(ilod.L@7(ixa.J(ldaS(768+0),mpy.J(varP(790+2)r,8)))))
+[W5D] bit at=cm proc=music_tempo_set bit=23 kind=4 dtype=J ref=58|0 text=cg1.J(cvt.J(ilod.L@7(ixa.J(ldaS(768+0),mpy.J(varP(790+2)r,8)))))
+[W5D] bit at=cm proc=music_tempo_set bit=24 kind=4 dtype=J ref=163|0 text=ixa.J(ldaS(3983+0),varP(790+2)r)
+[W5D] bit at=cm proc=music_tempo_set bit=25 kind=4 dtype=J ref=758|0 text=ilod.J@0(ixa.J(ldaS(3983+0),varP(790+2)r))
+[W5D] bit at=cm proc=music_tempo_set bit=26 kind=4 dtype=J ref=1221|0 text=equ.J(0,ilod.J@0(ixa.J(ldaS(3983+0),varP(790+2)r)))
+[W5D] bit at=cm proc=music_tempo_set bit=27 kind=4 dtype=J ref=1606|0 text=cg1.J(ilod.J@0(ixa.J(ldaS(3983+0),varP(790+2)r)))
+[W5D] bit at=cm proc=music_tempo_set bit=28 kind=3 dtype=J ref=392|0 text=varM(790-20)r
+[W5D] bit at=cm proc=music_tempo_set bit=29 kind=3 dtype=J ref=392|0 text=varM(790-20)r
+[W5D] bit at=cm proc=music_tempo_set bit=30 kind=4 dtype=J ref=1524|0 text=str.J(varM(790-20)r,-17)
+[W5D] bit at=cm proc=music_tempo_set bit=31 kind=4 dtype=J ref=191|0 text=equ.J(2,ilod.J@0(ixa.J(ldaS(3983+0),varP(790+2)r)))
+[W5D] bit at=cm proc=music_tempo_set bit=32 kind=4 dtype=J ref=1612|0 text=cg1.J(ilod.J@0(ixa.J(ldaS(3983+0),varP(790+2)r)))
+[W5D] bit at=cm proc=music_tempo_set bit=33 kind=4 dtype=J ref=391|0 text=str.J(varM(790-20)r,-97)
+[W5D] bit at=cm proc=music_tempo_set bit=34 kind=4 dtype=J ref=1103|0 text=str.J(varM(790-20)r,-1)
+[W5D] bit at=cm proc=music_tempo_set bit=35 kind=3 dtype=A ref=584|0 text=varM(790-8)r
+[W5D] bit at=cm proc=music_tempo_set bit=36 kind=3 dtype=A ref=584|0 text=varM(790-8)r
+[W5D] bit at=cm proc=music_tempo_set bit=37 kind=4 dtype=J ref=1136|0 text=mpy.J(varP(790+2)r,2056)
+[W5D] bit at=cm proc=music_tempo_set bit=38 kind=4 dtype=J ref=237|0 text=ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056))
+[W5D] bit at=cm proc=music_tempo_set bit=39 kind=4 dtype=A ref=1|0 text=str.A(varM(790-8)r,ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056)))
+[W5D] bit at=cm proc=music_tempo_set bit=40 kind=4 dtype=L ref=906|0 text=ilod.L@2004(ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056)))
+[W5D] bit at=cm proc=music_tempo_set bit=41 kind=4 dtype=L ref=1413|0 text=and.L(ilod.L@2004(ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056))),varM(790-20)r)
+[W5D] bit at=cm proc=music_tempo_set bit=42 kind=4 dtype=L ref=941|0 text=istr.L@2004(ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056)),and.L(ilod.L@2004(ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056))),varM(790-20)r))
+[W5D] bit at=cm proc=music_tempo_set bit=43 kind=4 dtype=L ref=109|0 text=ilod.L@232(varM(790-4)r)
+[W5D] bit at=cm proc=music_tempo_set bit=44 kind=4 dtype=L ref=224|0 text=and.L(ilod.L@232(varM(790-4)r),varM(790-20)r)
+[W5D] bit at=cm proc=music_tempo_set bit=45 kind=4 dtype=L ref=1119|0 text=istr.L@232(varM(790-4)r,and.L(ilod.L@232(varM(790-4)r),varM(790-20)r))
+[W5D] bit at=cm proc=music_tempo_set bit=46 kind=3 dtype=L ref=360|0 text=varM(790-22)r
+[W5D] bit at=cm proc=music_tempo_set bit=47 kind=3 dtype=L ref=360|0 text=varM(790-22)r
+[W5D] bit at=cm proc=music_tempo_set bit=48 kind=3 dtype=L ref=1485|0 text=varR(0+2)r
+[W5D] bit at=cm proc=music_tempo_set bit=49 kind=3 dtype=L ref=1485|0 text=varR(0+2)r
+[W5D] bit at=cm proc=music_tempo_set bit=50 kind=4 dtype=L ref=228|0 text=str.L(varM(790-22)r,varR(0+2)r)
+[W5D] bit at=cm proc=music_tempo_set bit=51 kind=3 dtype=A ref=520|0 text=varM(790-12)r
+[W5D] bit at=cm proc=music_tempo_set bit=52 kind=3 dtype=A ref=520|0 text=varM(790-12)r
+[W5D] bit at=cm proc=music_tempo_set bit=53 kind=4 dtype=J ref=683|0 text=mpy.J(varP(790+2)r,64)
+[W5D] bit at=cm proc=music_tempo_set bit=54 kind=4 dtype=J ref=1251|0 text=ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64))
+[W5D] bit at=cm proc=music_tempo_set bit=55 kind=4 dtype=A ref=224|1 text=str.A(varM(790-12)r,ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))
+[W5D] bit at=cm proc=music_tempo_set bit=56 kind=4 dtype=J ref=1315|0 text=ilod.J@0(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))
+[W5D] bit at=cm proc=music_tempo_set bit=57 kind=4 dtype=J ref=1243|0 text=cvtl.J(ilod.J@0(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64))))
+[W5D] bit at=cm proc=music_tempo_set bit=58 kind=4 dtype=J ref=966|0 text=mpy.J(cvtl.J(ilod.J@0(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))),68)
+[W5D] bit at=cm proc=music_tempo_set bit=59 kind=4 dtype=J ref=231|0 text=ixa.J(ldaS(29+0),mpy.J(cvtl.J(ilod.J@0(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))),68))
+[W5D] bit at=cm proc=music_tempo_set bit=60 kind=4 dtype=L ref=1531|0 text=istr.L@20(ixa.J(ldaS(29+0),mpy.J(cvtl.J(ilod.J@0(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))),68)),varR(0+2)r)
+[W5D] bit at=cm proc=music_tempo_set bit=61 kind=4 dtype=J ref=626|0 text=istr.J@244(varM(790-4)r,ilod.J@0(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64))))
+[W5D] bit at=cm proc=music_tempo_set bit=62 kind=4 dtype=J ref=1315|1 text=ilod.J@16(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))
+[W5D] bit at=cm proc=music_tempo_set bit=63 kind=4 dtype=J ref=955|0 text=cvtl.J(ilod.J@16(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64))))
+[W5D] bit at=cm proc=music_tempo_set bit=64 kind=4 dtype=J ref=1025|0 text=mpy.J(cvtl.J(ilod.J@16(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))),68)
+[W5D] bit at=cm proc=music_tempo_set bit=65 kind=4 dtype=J ref=1472|0 text=ixa.J(ldaS(29+0),mpy.J(cvtl.J(ilod.J@16(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))),68))
+[W5D] bit at=cm proc=music_tempo_set bit=66 kind=4 dtype=J ref=457|0 text=mpy.J(varP(790+2)r,3)
+[W5D] bit at=cm proc=music_tempo_set bit=67 kind=4 dtype=J ref=1146|0 text=cvtl.J(mpy.J(varP(790+2)r,3))
+[W5D] bit at=cm proc=music_tempo_set bit=68 kind=4 dtype=J ref=1098|0 text=mpy.J(cvtl.J(mpy.J(varP(790+2)r,3)),2)
+[W5D] bit at=cm proc=music_tempo_set bit=69 kind=4 dtype=J ref=1148|0 text=ixa.J(ldaS(3986+0),mpy.J(cvtl.J(mpy.J(varP(790+2)r,3)),2))
+[W5D] bit at=cm proc=music_tempo_set bit=70 kind=4 dtype=L ref=1109|0 text=ilod.L@0(ixa.J(ldaS(3986+0),mpy.J(cvtl.J(mpy.J(varP(790+2)r,3)),2)))
+[W5D] bit at=cm proc=music_tempo_set bit=71 kind=4 dtype=L ref=326|0 text=istr.L@20(ixa.J(ldaS(29+0),mpy.J(cvtl.J(ilod.J@16(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))),68)),ilod.L@0(ixa.J(ldaS(3986+0),mpy.J(cvtl.J(mpy.J(varP(790+2)r,3)),2))))
+[W5D] bit at=cm proc=music_tempo_set bit=72 kind=3 dtype=J ref=488|0 text=varM(790-14)r
+[W5D] bit at=cm proc=music_tempo_set bit=73 kind=3 dtype=J ref=488|0 text=varM(790-14)r
+[W5D] bit at=cm proc=music_tempo_set bit=74 kind=4 dtype=J ref=166|0 text=str.J(varM(790-14)r,0)
+[W5D] bit at=cm proc=music_tempo_set bit=75 kind=4 dtype=J ref=1082|0 text=ixa.J(ldaS(3930+0),varP(790+2)r)
+[W5D] bit at=cm proc=music_tempo_set bit=76 kind=4 dtype=J ref=936|0 text=mpy.J(varM(790-14)r,4)
+[W5D] bit at=cm proc=music_tempo_set bit=77 kind=4 dtype=J ref=1058|0 text=ixa.J(ixa.J(ldaS(3930+0),varP(790+2)r),mpy.J(varM(790-14)r,4))
+[W5D] bit at=cm proc=music_tempo_set bit=78 kind=4 dtype=J ref=929|0 text=ilod.J@28(ixa.J(ixa.J(ldaS(3930+0),varP(790+2)r),mpy.J(varM(790-14)r,4)))
+[W5D] bit at=cm proc=music_tempo_set bit=79 kind=4 dtype=J ref=471|0 text=cvtl.J(ilod.J@28(ixa.J(ixa.J(ldaS(3930+0),varP(790+2)r),mpy.J(varM(790-14)r,4))))
+[W5D] bit at=cm proc=music_tempo_set bit=80 kind=4 dtype=J ref=562|0 text=mpy.J(cvtl.J(ilod.J@28(ixa.J(ixa.J(ldaS(3930+0),varP(790+2)r),mpy.J(varM(790-14)r,4)))),68)
+[W5D] bit at=cm proc=music_tempo_set bit=81 kind=4 dtype=J ref=432|0 text=ixa.J(ldaS(29+0),mpy.J(cvtl.J(ilod.J@28(ixa.J(ixa.J(ldaS(3930+0),varP(790+2)r),mpy.J(varM(790-14)r,4)))),68))
+[W5D] bit at=cm proc=music_tempo_set bit=82 kind=4 dtype=L ref=212|0 text=ilod.L@0(ldaS(3987+0))
+[W5D] bit at=cm proc=music_tempo_set bit=83 kind=4 dtype=L ref=1328|0 text=istr.L@20(ixa.J(ldaS(29+0),mpy.J(cvtl.J(ilod.J@28(ixa.J(ixa.J(ldaS(3930+0),varP(790+2)r),mpy.J(varM(790-14)r,4)))),68)),ilod.L@0(ldaS(3987+0)))
+[W5D] bit at=cm proc=music_tempo_set bit=84 kind=4 dtype=J ref=163|1 text=add.J(varM(790-14)r,1)
+[W5D] bit at=cm proc=music_tempo_set bit=85 kind=4 dtype=J ref=697|0 text=str.J(varM(790-14)r,add.J(varM(790-14)r,1))
+[W5D] bit at=cm proc=music_tempo_set bit=86 kind=4 dtype=J ref=1515|0 text=les.J(varM(790-14)r,4)
+[W5D] bit at=cm proc=music_tempo_set bit=87 kind=4 dtype=J ref=1084|0 text=cg1.J(varM(790-14)r)
+[W5D] bit at=cm proc=music_tempo_set bit=88 kind=4 dtype=J ref=1137|0 text=ilod.J@0(ldaS(19+0))
+[W5D] bit at=cm proc=music_tempo_set bit=89 kind=4 dtype=J ref=186|0 text=ilod.J@0(ldaS(647+0))
+[W5D] bit at=cm proc=music_tempo_set bit=90 kind=4 dtype=J ref=1448|0 text=geq.J(ilod.J@0(ldaS(647+0)),6)
+[W5D] bit at=cm proc=music_tempo_set bit=91 kind=4 dtype=J ref=486|0 text=cg1.J(ilod.J@0(ldaS(647+0)))
+[W5D] bit at=cm proc=music_tempo_set bit=92 kind=4 dtype=J ref=1472|1 text=ilod.J@28(varM(790-12)r)
+[W5D] bit at=cm proc=music_tempo_set bit=93 kind=4 dtype=J ref=1426|0 text=cvtl.J(ilod.J@28(varM(790-12)r))
+[W5D] bit at=cm proc=music_tempo_set bit=94 kind=4 dtype=J ref=906|1 text=ilod.J@15(ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056)))
+[W5D] bit at=cm proc=music_tempo_set bit=95 kind=4 dtype=J ref=1486|0 text=mpy.J(ilod.J@15(ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056))),4)
+[W5D] bit at=cm proc=music_tempo_set bit=96 kind=4 dtype=J ref=740|0 text=ixa.J(ldaS(3988+0),mpy.J(ilod.J@15(ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056))),4))
+[W5D] bit at=cm proc=music_tempo_set bit=97 kind=4 dtype=A ref=293|0 text=ilod.A@0(ixa.J(ldaS(3988+0),mpy.J(ilod.J@15(ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056))),4)))
+[W5D] bit at=cm proc=music_tempo_set bit=98 kind=4 dtype=A ref=244|0 text=ilod.A@52(ldaS(3988+0))
+[W5D] bit at=cm proc=music_tempo_set bit=99 kind=4 dtype=J ref=1472|2 text=ilod.J@0(varM(790-12)r)
+[W5D] bit at=cm proc=music_tempo_set bit=100 kind=4 dtype=J ref=109|1 text=ilod.J@861(varM(790-4)r)
+[W5D] bit at=cm proc=music_tempo_set bit=101 kind=4 dtype=J ref=685|0 text=neq.J(1,ilod.J@861(varM(790-4)r))
+[W5D] bit at=cm proc=music_tempo_set bit=102 kind=4 dtype=J ref=476|0 text=cg1.J(ilod.J@861(varM(790-4)r))
+[W5D] bit at=cm proc=music_tempo_set bit=103 kind=4 dtype=J ref=1472|3 text=ilod.J@16(varM(790-12)r)
+[W5D] bit at=cm proc=music_tempo_set bit=104 kind=4 dtype=J ref=620|0 text=cg1.J(varP(790+8)r)
+[W5D] bit at=cm proc=music_tempo_set bit=105 kind=4 dtype=J ref=1472|4 text=ilod.J@44(varM(790-12)r)
+[W5D] bit at=cm proc=music_tempo_set bit=106 kind=4 dtype=J ref=1472|5 text=ilod.J@48(varM(790-12)r)
+[W5D] bit at=cm proc=music_tempo_set bit=107 kind=4 dtype=J ref=1472|6 text=ilod.J@52(varM(790-12)r)
+[W5D] bit at=cm proc=music_tempo_set bit=108 kind=4 dtype=J ref=1472|7 text=ilod.J@56(varM(790-12)r)
+[W5D] bit at=cm proc=music_tempo_set bit=109 kind=4 dtype=J ref=1472|8 text=ilod.J@60(varM(790-12)r)
+[W5D] bit at=cm proc=music_tempo_set bit=110 kind=4 dtype=J ref=1103|1 text=equ.J(13,cvt.J(varP(790+7)r))
+[W5D] bit at=cm proc=music_tempo_set bit=111 kind=4 dtype=J ref=190|0 text=cg1.J(cvt.J(varP(790+7)r))
+[W5D] bit at=cm proc=music_tempo_set bit=112 kind=4 dtype=J ref=385|0 text=les.J(ilod.J@861(varM(790-4)r),2)
+[W5D] bit at=cm proc=music_tempo_set bit=113 kind=4 dtype=J ref=503|0 text=cg1.J(ilod.J@861(varM(790-4)r))
+[W5D] bit at=cm proc=music_tempo_set bit=114 kind=4 dtype=J ref=1128|0 text=cg1.J(varM(790-14)r)
+[W5D] bit at=cm proc=music_tempo_set bit=115 kind=4 dtype=J ref=204|0 text=cg1.J(cvt.J(varP(790+7)r))
+[W5D] bit at=cm proc=music_tempo_set bit=116 kind=4 dtype=L ref=1600|0 text=ilod.L@2004(varM(790-8)r)
+[W5D] bit at=cm proc=music_tempo_set bit=117 kind=4 dtype=L ref=181|0 text=ior.L(ilod.L@2004(varM(790-8)r),16)
+[W5D] bit at=cm proc=music_tempo_set bit=118 kind=4 dtype=L ref=56|0 text=istr.L@2004(varM(790-8)r,ior.L(ilod.L@2004(varM(790-8)r),16))
+[W5D] bit at=cm proc=music_tempo_set bit=119 kind=4 dtype=L ref=1233|0 text=ior.L(ilod.L@232(varM(790-4)r),16)
+[W5D] bit at=cm proc=music_tempo_set bit=120 kind=4 dtype=L ref=298|0 text=istr.L@232(varM(790-4)r,ior.L(ilod.L@232(varM(790-4)r),16))
+[W5D] bit at=cm proc=music_tempo_set bit=121 kind=4 dtype=J ref=1315|2 text=ilod.J@28(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))
+[W5D] bit at=cm proc=music_tempo_set bit=122 kind=4 dtype=J ref=667|0 text=cvtl.J(ilod.J@28(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64))))
+[W5D] bit at=cm proc=music_tempo_set bit=123 kind=4 dtype=L ref=852|0 text=ior.L(ilod.L@2004(ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056))),16)
+[W5D] bit at=cm proc=music_tempo_set bit=124 kind=4 dtype=L ref=570|1 text=istr.L@2004(ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056)),ior.L(ilod.L@2004(ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056))),16))
+[W5D] bit at=cm proc=music_tempo_set bit=125 kind=4 dtype=L ref=1412|0 text=ior.L(ilod.L@232(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952))),16)
+[W5D] bit at=cm proc=music_tempo_set bit=126 kind=4 dtype=L ref=615|0 text=istr.L@232(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952)),ior.L(ilod.L@232(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952))),16))
+[W5D] bit at=cm proc=music_tempo_set bit=127 kind=4 dtype=J ref=100|1 text=ilod.J@861(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952)))
+[W5D] bit at=cm proc=music_tempo_set bit=128 kind=4 dtype=J ref=205|0 text=les.J(ilod.J@861(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952))),2)
+[W5D] bit at=cm proc=music_tempo_set bit=129 kind=4 dtype=J ref=476|1 text=cg1.J(ilod.J@861(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952))))
+[W5D] bit at=cm proc=music_tempo_set bit=130 kind=4 dtype=J ref=1315|3 text=ilod.J@60(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))
+[W5D] bit at=cm proc=music_tempo_set bit=131 kind=4 dtype=J ref=1315|4 text=ilod.J@56(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))
+[W5D] bit at=cm proc=music_tempo_set bit=132 kind=4 dtype=J ref=1315|5 text=ilod.J@52(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))
+[W5D] bit at=cm proc=music_tempo_set bit=133 kind=4 dtype=J ref=1315|6 text=ilod.J@48(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))
+[W5D] bit at=cm proc=music_tempo_set bit=134 kind=4 dtype=J ref=1315|7 text=ilod.J@44(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))
+[W5D] bit at=cm proc=music_tempo_set bit=135 kind=4 dtype=J ref=595|0 text=neq.J(1,ilod.J@861(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952))))
+[W5D] bit at=cm proc=music_tempo_set bit=136 kind=4 dtype=J ref=449|0 text=cg1.J(ilod.J@861(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952))))
+[W5D] bit at=cm proc=music_tempo_set bit=137 kind=4 dtype=J ref=1354|0 text=istr.J@244(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952)),ilod.J@0(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64))))
+[W5D] bit at=cm proc=music_tempo_set bit=138 kind=4 dtype=L ref=562|1 text=and.L(ilod.L@232(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952))),varM(790-20)r)
+[W5D] bit at=cm proc=music_tempo_set bit=139 kind=4 dtype=L ref=1486|1 text=istr.L@232(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952)),and.L(ilod.L@232(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952))),varM(790-20)r))
+[W5D] regcand proc=music_tempo_set what=const bb=0 ctx=3 decision=0 text=0
+[W5D] regcand proc=music_tempo_set what=const bb=1 ctx=3 decision=1 text=13
+[W5D] regcand proc=music_tempo_set what=lda bb=2 ctx=0 decision=1 text=ldaS(7+0)
+[W5D] regcand proc=music_tempo_set what=const bb=2 ctx=5 decision=1 text=952
+[W5D] regcand proc=music_tempo_set what=const bb=2 ctx=2 decision=0 text=16
+[W5D] regcand proc=music_tempo_set what=lda bb=3 ctx=0 decision=1 text=ldaS(3982+0)
+[W5D] regcand proc=music_tempo_set what=const bb=4 ctx=3 decision=1 text=6
+[W5D] regcand proc=music_tempo_set what=lda bb=4 ctx=0 decision=1 text=ldaS(768+0)
+[W5D] regcand proc=music_tempo_set what=const bb=4 ctx=5 decision=0 text=8
+[W5D] regcand proc=music_tempo_set what=const bb=5 ctx=3 decision=0 text=0
+[W5D] regcand proc=music_tempo_set what=lda bb=5 ctx=0 decision=1 text=ldaS(3983+0)
+[W5D] regcand proc=music_tempo_set what=const bb=7 ctx=0 decision=0 text=-17
+[W5D] regcand proc=music_tempo_set what=lda bb=11 ctx=0 decision=1 text=ldaS(6+0)
+[W5D] regcand proc=music_tempo_set what=const bb=11 ctx=5 decision=1 text=2056
+[W5D] regcand proc=music_tempo_set what=lda bb=11 ctx=0 decision=1 text=ldaS(3982+0)
+[W5D] regcand proc=music_tempo_set what=lda bb=13 ctx=0 decision=1 text=ldaS(29+0)
+[W5D] regcand proc=music_tempo_set what=lda bb=13 ctx=0 decision=1 text=ldaS(3930+0)
+[W5D] regcand proc=music_tempo_set what=const bb=13 ctx=5 decision=0 text=64
+[W5D] regcand proc=music_tempo_set what=const bb=13 ctx=5 decision=1 text=68
+[W5D] regcand proc=music_tempo_set what=lda bb=13 ctx=0 decision=1 text=ldaS(29+0)
+[W5D] regcand proc=music_tempo_set what=const bb=13 ctx=5 decision=1 text=68
+[W5D] regcand proc=music_tempo_set what=lda bb=13 ctx=0 decision=1 text=ldaS(3986+0)
+[W5D] regcand proc=music_tempo_set what=const bb=13 ctx=5 decision=1 text=3
+[W5D] regcand proc=music_tempo_set what=const bb=13 ctx=5 decision=0 text=2
+[W5D] regcand proc=music_tempo_set what=const bb=13 ctx=0 decision=0 text=0
+[W5D] regcand proc=music_tempo_set what=lda bb=14 ctx=0 decision=1 text=ldaS(29+0)
+[W5D] regcand proc=music_tempo_set what=const bb=14 ctx=5 decision=0 text=4
+[W5D] regcand proc=music_tempo_set what=const bb=14 ctx=5 decision=1 text=68
+[W5D] regcand proc=music_tempo_set what=const bb=14 ctx=1 decision=0 text=1
+[W5D] regcand proc=music_tempo_set what=const bb=14 ctx=1 decision=0 text=4
+[W5D] regcand proc=music_tempo_set what=lda bb=16 ctx=3 decision=1 text=ldaS(19+0)
+[W5D] regcand proc=music_tempo_set what=lda bb=17 ctx=3 decision=1 text=ldaS(647+0)
+[W5D] regcand proc=music_tempo_set what=const bb=17 ctx=1 decision=0 text=6
+[W5D] regcand proc=music_tempo_set what=lda bb=19 ctx=0 decision=1 text=ldaS(3988+0)
+[W5D] regcand proc=music_tempo_set what=lda bb=19 ctx=0 decision=1 text=ldaS(6+0)
+[W5D] regcand proc=music_tempo_set what=const bb=19 ctx=5 decision=1 text=2056
+[W5D] regcand proc=music_tempo_set what=const bb=19 ctx=5 decision=0 text=4
+[W5D] regcand proc=music_tempo_set what=const bb=19 ctx=0 decision=0 text=-1
+[W5D] regcand proc=music_tempo_set what=const bb=22 ctx=0 decision=0 text=1
+[W5D] regcand proc=music_tempo_set what=const bb=22 ctx=0 decision=0 text=15
+[W5D] regcand proc=music_tempo_set what=const bb=23 ctx=3 decision=1 text=1
+[W5D] regcand proc=music_tempo_set what=const bb=24 ctx=0 decision=0 text=1
+[W5D] regcand proc=music_tempo_set what=const bb=24 ctx=0 decision=0 text=15
+[W5D] regcand proc=music_tempo_set what=const bb=25 ctx=3 decision=0 text=0
+[W5D] regcand proc=music_tempo_set what=const bb=26 ctx=0 decision=0 text=1
+[W5D] regcand proc=music_tempo_set what=const bb=26 ctx=0 decision=0 text=15
+[W5D] regcand proc=music_tempo_set what=const bb=27 ctx=0 decision=0 text=1
+[W5D] regcand proc=music_tempo_set what=const bb=27 ctx=0 decision=0 text=15
+[W5D] regcand proc=music_tempo_set what=const bb=28 ctx=0 decision=0 text=1
+[W5D] regcand proc=music_tempo_set what=const bb=28 ctx=0 decision=0 text=15
+[W5D] regcand proc=music_tempo_set what=const bb=29 ctx=0 decision=0 text=1
+[W5D] regcand proc=music_tempo_set what=const bb=29 ctx=0 decision=0 text=15
+[W5D] regcand proc=music_tempo_set what=const bb=30 ctx=0 decision=0 text=1
+[W5D] regcand proc=music_tempo_set what=const bb=30 ctx=0 decision=0 text=15
+[W5D] regcand proc=music_tempo_set what=const bb=31 ctx=3 decision=1 text=13
+[W5D] regcand proc=music_tempo_set what=const bb=32 ctx=1 decision=0 text=2
+[W5D] regcand proc=music_tempo_set what=const bb=34 ctx=0 decision=0 text=0
+[W5D] regcand proc=music_tempo_set what=const bb=35 ctx=5 decision=0 text=4
+[W5D] regcand proc=music_tempo_set what=const bb=35 ctx=0 decision=0 text=1
+[W5D] regcand proc=music_tempo_set what=const bb=35 ctx=0 decision=0 text=15
+[W5D] regcand proc=music_tempo_set what=const bb=36 ctx=1 decision=0 text=1
+[W5D] regcand proc=music_tempo_set what=const bb=36 ctx=1 decision=0 text=4
+[W5D] regcand proc=music_tempo_set what=const bb=38 ctx=3 decision=1 text=13
+[W5D] regcand proc=music_tempo_set what=const bb=39 ctx=0 decision=0 text=1
+[W5D] regcand proc=music_tempo_set what=const bb=39 ctx=0 decision=0 text=15
+[W5D] regcand proc=music_tempo_set what=lda bb=40 ctx=0 decision=1 text=ldaS(3982+0)
+[W5D] regcand proc=music_tempo_set what=const bb=41 ctx=2 decision=0 text=16
+[W5D] regcand proc=music_tempo_set what=const bb=41 ctx=2 decision=0 text=16
+[W5D] regcand proc=music_tempo_set what=lda bb=41 ctx=0 decision=1 text=ldaS(3982+0)
+[W5D] regcand proc=music_tempo_set what=lda bb=21 ctx=3 decision=1 text=ldaS(3988+0)
+[W5D] regcand proc=music_tempo_set what=const bb=21 ctx=0 decision=0 text=-1
+[W5D] regcand proc=music_tempo_set what=const bb=8 ctx=3 decision=1 text=2
+[W5D] regcand proc=music_tempo_set what=const bb=9 ctx=0 decision=0 text=-97
+[W5D] regcand proc=music_tempo_set what=const bb=10 ctx=0 decision=0 text=-1
+[W5D] ordinal proc=music_tempo_set cdx_proc=415
+[W5D] bit at=gc proc=music_tempo_set bit=0 kind=3 dtype=J ref=245|0 text=varP(790+8)r
+[W5D] bit at=gc proc=music_tempo_set bit=1 kind=3 dtype=J ref=245|0 text=varP(790+8)r
+[W5D] bit at=gc proc=music_tempo_set bit=2 kind=4 dtype=J ref=1164|0 text=neq.J(varP(790+8)r,0)
+[W5D] bit at=gc proc=music_tempo_set bit=3 kind=4 dtype=J ref=570|0 text=cg1.J(varP(790+8)r)
+[W5D] bit at=gc proc=music_tempo_set bit=4 kind=3 dtype=L ref=229|0 text=varP(790+7)r
+[W5D] bit at=gc proc=music_tempo_set bit=5 kind=3 dtype=L ref=229|0 text=varP(790+7)r
+[W5D] bit at=gc proc=music_tempo_set bit=6 kind=4 dtype=J ref=24|0 text=cvt.J(varP(790+7)r)
+[W5D] bit at=gc proc=music_tempo_set bit=7 kind=4 dtype=J ref=1046|0 text=neq.J(13,cvt.J(varP(790+7)r))
+[W5D] bit at=gc proc=music_tempo_set bit=8 kind=4 dtype=J ref=130|0 text=cg1.J(cvt.J(varP(790+7)r))
+[W5D] bit at=gc proc=music_tempo_set bit=9 kind=3 dtype=A ref=648|0 text=varM(790-4)r
+[W5D] bit at=gc proc=music_tempo_set bit=10 kind=3 dtype=A ref=648|0 text=varM(790-4)r
+[W5D] bit at=gc proc=music_tempo_set bit=11 kind=3 dtype=J ref=149|0 text=varP(790+2)r
+[W5D] bit at=gc proc=music_tempo_set bit=12 kind=3 dtype=J ref=149|0 text=varP(790+2)r
+[W5D] bit at=gc proc=music_tempo_set bit=13 kind=4 dtype=J ref=1080|0 text=mpy.J(varP(790+2)r,952)
+[W5D] bit at=gc proc=music_tempo_set bit=14 kind=4 dtype=J ref=1453|0 text=ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952))
+[W5D] bit at=gc proc=music_tempo_set bit=15 kind=4 dtype=A ref=1121|0 text=str.A(varM(790-4)r,ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952)))
+[W5D] bit at=gc proc=music_tempo_set bit=16 kind=4 dtype=L ref=100|0 text=ilod.L@232(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952)))
+[W5D] bit at=gc proc=music_tempo_set bit=17 kind=4 dtype=L ref=170|0 text=and.L(ilod.L@232(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952))),16)
+[W5D] bit at=gc proc=music_tempo_set bit=18 kind=4 dtype=J ref=1431|0 text=mpy.J(varP(790+2)r,8)
+[W5D] bit at=gc proc=music_tempo_set bit=19 kind=4 dtype=J ref=1557|0 text=ixa.J(ldaS(768+0),mpy.J(varP(790+2)r,8))
+[W5D] bit at=gc proc=music_tempo_set bit=20 kind=4 dtype=L ref=308|0 text=ilod.L@7(ixa.J(ldaS(768+0),mpy.J(varP(790+2)r,8)))
+[W5D] bit at=gc proc=music_tempo_set bit=21 kind=4 dtype=J ref=1604|0 text=cvt.J(ilod.L@7(ixa.J(ldaS(768+0),mpy.J(varP(790+2)r,8))))
+[W5D] bit at=gc proc=music_tempo_set bit=22 kind=4 dtype=J ref=264|0 text=neq.J(6,cvt.J(ilod.L@7(ixa.J(ldaS(768+0),mpy.J(varP(790+2)r,8)))))
+[W5D] bit at=gc proc=music_tempo_set bit=23 kind=4 dtype=J ref=58|0 text=cg1.J(cvt.J(ilod.L@7(ixa.J(ldaS(768+0),mpy.J(varP(790+2)r,8)))))
+[W5D] bit at=gc proc=music_tempo_set bit=24 kind=4 dtype=J ref=163|0 text=ixa.J(ldaS(3983+0),varP(790+2)r)
+[W5D] bit at=gc proc=music_tempo_set bit=25 kind=4 dtype=J ref=758|0 text=ilod.J@0(ixa.J(ldaS(3983+0),varP(790+2)r))
+[W5D] bit at=gc proc=music_tempo_set bit=26 kind=4 dtype=J ref=1221|0 text=equ.J(0,ilod.J@0(ixa.J(ldaS(3983+0),varP(790+2)r)))
+[W5D] bit at=gc proc=music_tempo_set bit=27 kind=4 dtype=J ref=1606|0 text=cg1.J(ilod.J@0(ixa.J(ldaS(3983+0),varP(790+2)r)))
+[W5D] bit at=gc proc=music_tempo_set bit=28 kind=3 dtype=J ref=392|0 text=varM(790-20)r
+[W5D] bit at=gc proc=music_tempo_set bit=29 kind=3 dtype=J ref=392|0 text=varM(790-20)r
+[W5D] bit at=gc proc=music_tempo_set bit=30 kind=4 dtype=J ref=1524|0 text=str.J(varM(790-20)r,-17)
+[W5D] bit at=gc proc=music_tempo_set bit=31 kind=4 dtype=J ref=191|0 text=equ.J(2,ilod.J@0(ixa.J(ldaS(3983+0),varP(790+2)r)))
+[W5D] bit at=gc proc=music_tempo_set bit=32 kind=4 dtype=J ref=1612|0 text=cg1.J(ilod.J@0(ixa.J(ldaS(3983+0),varP(790+2)r)))
+[W5D] bit at=gc proc=music_tempo_set bit=33 kind=4 dtype=J ref=391|0 text=str.J(varM(790-20)r,-97)
+[W5D] bit at=gc proc=music_tempo_set bit=34 kind=4 dtype=J ref=1103|0 text=str.J(varM(790-20)r,-1)
+[W5D] bit at=gc proc=music_tempo_set bit=35 kind=3 dtype=A ref=584|0 text=varM(790-8)r
+[W5D] bit at=gc proc=music_tempo_set bit=36 kind=3 dtype=A ref=584|0 text=varM(790-8)r
+[W5D] bit at=gc proc=music_tempo_set bit=37 kind=4 dtype=J ref=1136|0 text=mpy.J(varP(790+2)r,2056)
+[W5D] bit at=gc proc=music_tempo_set bit=38 kind=4 dtype=J ref=237|0 text=ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056))
+[W5D] bit at=gc proc=music_tempo_set bit=39 kind=4 dtype=A ref=1|0 text=str.A(varM(790-8)r,ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056)))
+[W5D] bit at=gc proc=music_tempo_set bit=40 kind=4 dtype=L ref=906|0 text=ilod.L@2004(ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056)))
+[W5D] bit at=gc proc=music_tempo_set bit=41 kind=4 dtype=L ref=1413|0 text=and.L(ilod.L@2004(ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056))),varM(790-20)r)
+[W5D] bit at=gc proc=music_tempo_set bit=42 kind=4 dtype=L ref=941|0 text=istr.L@2004(ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056)),and.L(ilod.L@2004(ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056))),varM(790-20)r))
+[W5D] bit at=gc proc=music_tempo_set bit=43 kind=4 dtype=L ref=109|0 text=ilod.L@232(varM(790-4)r)
+[W5D] bit at=gc proc=music_tempo_set bit=44 kind=4 dtype=L ref=224|0 text=and.L(ilod.L@232(varM(790-4)r),varM(790-20)r)
+[W5D] bit at=gc proc=music_tempo_set bit=45 kind=4 dtype=L ref=1119|0 text=istr.L@232(varM(790-4)r,and.L(ilod.L@232(varM(790-4)r),varM(790-20)r))
+[W5D] bit at=gc proc=music_tempo_set bit=46 kind=3 dtype=L ref=360|0 text=varM(790-22)r
+[W5D] bit at=gc proc=music_tempo_set bit=47 kind=3 dtype=L ref=360|0 text=varM(790-22)r
+[W5D] bit at=gc proc=music_tempo_set bit=48 kind=3 dtype=L ref=1485|0 text=varR(0+2)r
+[W5D] bit at=gc proc=music_tempo_set bit=49 kind=3 dtype=L ref=1485|0 text=varR(0+2)r
+[W5D] bit at=gc proc=music_tempo_set bit=50 kind=4 dtype=L ref=228|0 text=str.L(varM(790-22)r,varR(0+2)r)
+[W5D] bit at=gc proc=music_tempo_set bit=51 kind=3 dtype=A ref=520|0 text=varM(790-12)r
+[W5D] bit at=gc proc=music_tempo_set bit=52 kind=3 dtype=A ref=520|0 text=varM(790-12)r
+[W5D] bit at=gc proc=music_tempo_set bit=53 kind=4 dtype=J ref=683|0 text=mpy.J(varP(790+2)r,64)
+[W5D] bit at=gc proc=music_tempo_set bit=54 kind=4 dtype=J ref=1251|0 text=ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64))
+[W5D] bit at=gc proc=music_tempo_set bit=55 kind=4 dtype=A ref=224|1 text=str.A(varM(790-12)r,ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))
+[W5D] bit at=gc proc=music_tempo_set bit=56 kind=4 dtype=J ref=1315|0 text=ilod.J@0(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))
+[W5D] bit at=gc proc=music_tempo_set bit=57 kind=4 dtype=J ref=1243|0 text=cvtl.J(ilod.J@0(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64))))
+[W5D] bit at=gc proc=music_tempo_set bit=58 kind=4 dtype=J ref=966|0 text=mpy.J(cvtl.J(ilod.J@0(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))),68)
+[W5D] bit at=gc proc=music_tempo_set bit=59 kind=4 dtype=J ref=231|0 text=ixa.J(ldaS(29+0),mpy.J(cvtl.J(ilod.J@0(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))),68))
+[W5D] bit at=gc proc=music_tempo_set bit=60 kind=4 dtype=L ref=1531|0 text=istr.L@20(ixa.J(ldaS(29+0),mpy.J(cvtl.J(ilod.J@0(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))),68)),varR(0+2)r)
+[W5D] bit at=gc proc=music_tempo_set bit=61 kind=4 dtype=J ref=626|0 text=istr.J@244(varM(790-4)r,ilod.J@0(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64))))
+[W5D] bit at=gc proc=music_tempo_set bit=62 kind=4 dtype=J ref=1315|1 text=ilod.J@16(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))
+[W5D] bit at=gc proc=music_tempo_set bit=63 kind=4 dtype=J ref=955|0 text=cvtl.J(ilod.J@16(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64))))
+[W5D] bit at=gc proc=music_tempo_set bit=64 kind=4 dtype=J ref=1025|0 text=mpy.J(cvtl.J(ilod.J@16(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))),68)
+[W5D] bit at=gc proc=music_tempo_set bit=65 kind=4 dtype=J ref=1472|0 text=ixa.J(ldaS(29+0),mpy.J(cvtl.J(ilod.J@16(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))),68))
+[W5D] bit at=gc proc=music_tempo_set bit=66 kind=4 dtype=J ref=457|0 text=mpy.J(varP(790+2)r,3)
+[W5D] bit at=gc proc=music_tempo_set bit=67 kind=4 dtype=J ref=1146|0 text=cvtl.J(mpy.J(varP(790+2)r,3))
+[W5D] bit at=gc proc=music_tempo_set bit=68 kind=4 dtype=J ref=1098|0 text=mpy.J(cvtl.J(mpy.J(varP(790+2)r,3)),2)
+[W5D] bit at=gc proc=music_tempo_set bit=69 kind=4 dtype=J ref=1148|0 text=ixa.J(ldaS(3986+0),mpy.J(cvtl.J(mpy.J(varP(790+2)r,3)),2))
+[W5D] bit at=gc proc=music_tempo_set bit=70 kind=4 dtype=L ref=1109|0 text=ilod.L@0(ixa.J(ldaS(3986+0),mpy.J(cvtl.J(mpy.J(varP(790+2)r,3)),2)))
+[W5D] bit at=gc proc=music_tempo_set bit=71 kind=4 dtype=L ref=326|0 text=istr.L@20(ixa.J(ldaS(29+0),mpy.J(cvtl.J(ilod.J@16(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))),68)),ilod.L@0(ixa.J(ldaS(3986+0),mpy.J(cvtl.J(mpy.J(varP(790+2)r,3)),2))))
+[W5D] bit at=gc proc=music_tempo_set bit=72 kind=3 dtype=J ref=488|0 text=varM(790-14)r
+[W5D] bit at=gc proc=music_tempo_set bit=73 kind=3 dtype=J ref=488|0 text=varM(790-14)r
+[W5D] bit at=gc proc=music_tempo_set bit=74 kind=4 dtype=J ref=166|0 text=str.J(varM(790-14)r,0)
+[W5D] bit at=gc proc=music_tempo_set bit=75 kind=4 dtype=J ref=1082|0 text=ixa.J(ldaS(3930+0),varP(790+2)r)
+[W5D] bit at=gc proc=music_tempo_set bit=76 kind=4 dtype=J ref=936|0 text=mpy.J(varM(790-14)r,4)
+[W5D] bit at=gc proc=music_tempo_set bit=77 kind=4 dtype=J ref=1058|0 text=ixa.J(ixa.J(ldaS(3930+0),varP(790+2)r),mpy.J(varM(790-14)r,4))
+[W5D] bit at=gc proc=music_tempo_set bit=78 kind=4 dtype=J ref=929|0 text=ilod.J@28(ixa.J(ixa.J(ldaS(3930+0),varP(790+2)r),mpy.J(varM(790-14)r,4)))
+[W5D] bit at=gc proc=music_tempo_set bit=79 kind=4 dtype=J ref=471|0 text=cvtl.J(ilod.J@28(ixa.J(ixa.J(ldaS(3930+0),varP(790+2)r),mpy.J(varM(790-14)r,4))))
+[W5D] bit at=gc proc=music_tempo_set bit=80 kind=4 dtype=J ref=562|0 text=mpy.J(cvtl.J(ilod.J@28(ixa.J(ixa.J(ldaS(3930+0),varP(790+2)r),mpy.J(varM(790-14)r,4)))),68)
+[W5D] bit at=gc proc=music_tempo_set bit=81 kind=4 dtype=J ref=432|0 text=ixa.J(ldaS(29+0),mpy.J(cvtl.J(ilod.J@28(ixa.J(ixa.J(ldaS(3930+0),varP(790+2)r),mpy.J(varM(790-14)r,4)))),68))
+[W5D] bit at=gc proc=music_tempo_set bit=82 kind=4 dtype=L ref=212|0 text=ilod.L@0(ldaS(3987+0))
+[W5D] bit at=gc proc=music_tempo_set bit=83 kind=4 dtype=L ref=1328|0 text=istr.L@20(ixa.J(ldaS(29+0),mpy.J(cvtl.J(ilod.J@28(ixa.J(ixa.J(ldaS(3930+0),varP(790+2)r),mpy.J(varM(790-14)r,4)))),68)),ilod.L@0(ldaS(3987+0)))
+[W5D] bit at=gc proc=music_tempo_set bit=84 kind=4 dtype=J ref=163|1 text=add.J(varM(790-14)r,1)
+[W5D] bit at=gc proc=music_tempo_set bit=85 kind=4 dtype=J ref=697|0 text=str.J(varM(790-14)r,add.J(varM(790-14)r,1))
+[W5D] bit at=gc proc=music_tempo_set bit=86 kind=4 dtype=J ref=1515|0 text=les.J(varM(790-14)r,4)
+[W5D] bit at=gc proc=music_tempo_set bit=87 kind=4 dtype=J ref=1084|0 text=cg1.J(varM(790-14)r)
+[W5D] bit at=gc proc=music_tempo_set bit=88 kind=4 dtype=J ref=1137|0 text=ilod.J@0(ldaS(19+0))
+[W5D] bit at=gc proc=music_tempo_set bit=89 kind=4 dtype=J ref=186|0 text=ilod.J@0(ldaS(647+0))
+[W5D] bit at=gc proc=music_tempo_set bit=90 kind=4 dtype=J ref=1448|0 text=geq.J(ilod.J@0(ldaS(647+0)),6)
+[W5D] bit at=gc proc=music_tempo_set bit=91 kind=4 dtype=J ref=486|0 text=cg1.J(ilod.J@0(ldaS(647+0)))
+[W5D] bit at=gc proc=music_tempo_set bit=92 kind=4 dtype=J ref=1472|1 text=ilod.J@28(varM(790-12)r)
+[W5D] bit at=gc proc=music_tempo_set bit=93 kind=4 dtype=J ref=1426|0 text=cvtl.J(ilod.J@28(varM(790-12)r))
+[W5D] bit at=gc proc=music_tempo_set bit=94 kind=4 dtype=J ref=906|1 text=ilod.J@15(ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056)))
+[W5D] bit at=gc proc=music_tempo_set bit=95 kind=4 dtype=J ref=1486|0 text=mpy.J(ilod.J@15(ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056))),4)
+[W5D] bit at=gc proc=music_tempo_set bit=96 kind=4 dtype=J ref=740|0 text=ixa.J(ldaS(3988+0),mpy.J(ilod.J@15(ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056))),4))
+[W5D] bit at=gc proc=music_tempo_set bit=97 kind=4 dtype=A ref=293|0 text=ilod.A@0(ixa.J(ldaS(3988+0),mpy.J(ilod.J@15(ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056))),4)))
+[W5D] bit at=gc proc=music_tempo_set bit=98 kind=4 dtype=A ref=244|0 text=ilod.A@52(ldaS(3988+0))
+[W5D] bit at=gc proc=music_tempo_set bit=99 kind=4 dtype=J ref=1472|2 text=ilod.J@0(varM(790-12)r)
+[W5D] bit at=gc proc=music_tempo_set bit=100 kind=4 dtype=J ref=109|1 text=ilod.J@861(varM(790-4)r)
+[W5D] bit at=gc proc=music_tempo_set bit=101 kind=4 dtype=J ref=685|0 text=neq.J(1,ilod.J@861(varM(790-4)r))
+[W5D] bit at=gc proc=music_tempo_set bit=102 kind=4 dtype=J ref=476|0 text=cg1.J(ilod.J@861(varM(790-4)r))
+[W5D] bit at=gc proc=music_tempo_set bit=103 kind=4 dtype=J ref=1472|3 text=ilod.J@16(varM(790-12)r)
+[W5D] bit at=gc proc=music_tempo_set bit=104 kind=4 dtype=J ref=620|0 text=cg1.J(varP(790+8)r)
+[W5D] bit at=gc proc=music_tempo_set bit=105 kind=4 dtype=J ref=1472|4 text=ilod.J@44(varM(790-12)r)
+[W5D] bit at=gc proc=music_tempo_set bit=106 kind=4 dtype=J ref=1472|5 text=ilod.J@48(varM(790-12)r)
+[W5D] bit at=gc proc=music_tempo_set bit=107 kind=4 dtype=J ref=1472|6 text=ilod.J@52(varM(790-12)r)
+[W5D] bit at=gc proc=music_tempo_set bit=108 kind=4 dtype=J ref=1472|7 text=ilod.J@56(varM(790-12)r)
+[W5D] bit at=gc proc=music_tempo_set bit=109 kind=4 dtype=J ref=1472|8 text=ilod.J@60(varM(790-12)r)
+[W5D] bit at=gc proc=music_tempo_set bit=110 kind=4 dtype=J ref=1103|1 text=equ.J(13,cvt.J(varP(790+7)r))
+[W5D] bit at=gc proc=music_tempo_set bit=111 kind=4 dtype=J ref=190|0 text=cg1.J(cvt.J(varP(790+7)r))
+[W5D] bit at=gc proc=music_tempo_set bit=112 kind=4 dtype=J ref=385|0 text=les.J(ilod.J@861(varM(790-4)r),2)
+[W5D] bit at=gc proc=music_tempo_set bit=113 kind=4 dtype=J ref=503|0 text=cg1.J(ilod.J@861(varM(790-4)r))
+[W5D] bit at=gc proc=music_tempo_set bit=114 kind=4 dtype=J ref=1128|0 text=cg1.J(varM(790-14)r)
+[W5D] bit at=gc proc=music_tempo_set bit=115 kind=4 dtype=J ref=204|0 text=cg1.J(cvt.J(varP(790+7)r))
+[W5D] bit at=gc proc=music_tempo_set bit=116 kind=4 dtype=L ref=1600|0 text=ilod.L@2004(varM(790-8)r)
+[W5D] bit at=gc proc=music_tempo_set bit=117 kind=4 dtype=L ref=181|0 text=ior.L(ilod.L@2004(varM(790-8)r),16)
+[W5D] bit at=gc proc=music_tempo_set bit=118 kind=4 dtype=L ref=56|0 text=istr.L@2004(varM(790-8)r,ior.L(ilod.L@2004(varM(790-8)r),16))
+[W5D] bit at=gc proc=music_tempo_set bit=119 kind=4 dtype=L ref=1233|0 text=ior.L(ilod.L@232(varM(790-4)r),16)
+[W5D] bit at=gc proc=music_tempo_set bit=120 kind=4 dtype=L ref=298|0 text=istr.L@232(varM(790-4)r,ior.L(ilod.L@232(varM(790-4)r),16))
+[W5D] bit at=gc proc=music_tempo_set bit=121 kind=4 dtype=J ref=1315|2 text=ilod.J@28(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))
+[W5D] bit at=gc proc=music_tempo_set bit=122 kind=4 dtype=J ref=667|0 text=cvtl.J(ilod.J@28(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64))))
+[W5D] bit at=gc proc=music_tempo_set bit=123 kind=4 dtype=L ref=852|0 text=ior.L(ilod.L@2004(ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056))),16)
+[W5D] bit at=gc proc=music_tempo_set bit=124 kind=4 dtype=L ref=570|1 text=istr.L@2004(ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056)),ior.L(ilod.L@2004(ixa.J(ldaS(6+0),mpy.J(varP(790+2)r,2056))),16))
+[W5D] bit at=gc proc=music_tempo_set bit=125 kind=4 dtype=L ref=1412|0 text=ior.L(ilod.L@232(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952))),16)
+[W5D] bit at=gc proc=music_tempo_set bit=126 kind=4 dtype=L ref=615|0 text=istr.L@232(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952)),ior.L(ilod.L@232(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952))),16))
+[W5D] bit at=gc proc=music_tempo_set bit=127 kind=4 dtype=J ref=100|1 text=ilod.J@861(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952)))
+[W5D] bit at=gc proc=music_tempo_set bit=128 kind=4 dtype=J ref=205|0 text=les.J(ilod.J@861(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952))),2)
+[W5D] bit at=gc proc=music_tempo_set bit=129 kind=4 dtype=J ref=476|1 text=cg1.J(ilod.J@861(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952))))
+[W5D] bit at=gc proc=music_tempo_set bit=130 kind=4 dtype=J ref=1315|3 text=ilod.J@60(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))
+[W5D] bit at=gc proc=music_tempo_set bit=131 kind=4 dtype=J ref=1315|4 text=ilod.J@56(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))
+[W5D] bit at=gc proc=music_tempo_set bit=132 kind=4 dtype=J ref=1315|5 text=ilod.J@52(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))
+[W5D] bit at=gc proc=music_tempo_set bit=133 kind=4 dtype=J ref=1315|6 text=ilod.J@48(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))
+[W5D] bit at=gc proc=music_tempo_set bit=134 kind=4 dtype=J ref=1315|7 text=ilod.J@44(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64)))
+[W5D] bit at=gc proc=music_tempo_set bit=135 kind=4 dtype=J ref=595|0 text=neq.J(1,ilod.J@861(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952))))
+[W5D] bit at=gc proc=music_tempo_set bit=136 kind=4 dtype=J ref=449|0 text=cg1.J(ilod.J@861(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952))))
+[W5D] bit at=gc proc=music_tempo_set bit=137 kind=4 dtype=J ref=1354|0 text=istr.J@244(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952)),ilod.J@0(ixa.J(ldaS(3930+0),mpy.J(varP(790+2)r,64))))
+[W5D] bit at=gc proc=music_tempo_set bit=138 kind=4 dtype=L ref=562|1 text=and.L(ilod.L@232(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952))),varM(790-20)r)
+[W5D] bit at=gc proc=music_tempo_set bit=139 kind=4 dtype=L ref=1486|1 text=istr.L@232(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952)),and.L(ilod.L@232(ixa.J(ldaS(7+0),mpy.J(varP(790+2)r,952))),varM(790-20)r))
+[W5D] bit at=gc proc=music_tempo_set bit=140 kind=2 dtype=J ref=13|0 text=13
+[W5D] bit at=gc proc=music_tempo_set bit=141 kind=1 dtype=A ref=970|0 text=ldaS(7+0)
+[W5D] bit at=gc proc=music_tempo_set bit=142 kind=2 dtype=J ref=952|0 text=952
+[W5D] bit at=gc proc=music_tempo_set bit=143 kind=1 dtype=A ref=1429|0 text=ldaS(3982+0)
+[W5D] bit at=gc proc=music_tempo_set bit=144 kind=2 dtype=J ref=6|0 text=6
+[W5D] bit at=gc proc=music_tempo_set bit=145 kind=1 dtype=A ref=194|0 text=ldaS(768+0)
+[W5D] bit at=gc proc=music_tempo_set bit=146 kind=1 dtype=A ref=1445|0 text=ldaS(3983+0)
+[W5D] bit at=gc proc=music_tempo_set bit=147 kind=1 dtype=A ref=954|0 text=ldaS(6+0)
+[W5D] bit at=gc proc=music_tempo_set bit=148 kind=2 dtype=J ref=437|0 text=2056
+[W5D] bit at=gc proc=music_tempo_set bit=149 kind=1 dtype=A ref=1322|0 text=ldaS(29+0)
+[W5D] bit at=gc proc=music_tempo_set bit=150 kind=1 dtype=A ref=597|0 text=ldaS(3930+0)
+[W5D] bit at=gc proc=music_tempo_set bit=151 kind=2 dtype=J ref=68|0 text=68
+[W5D] bit at=gc proc=music_tempo_set bit=152 kind=1 dtype=A ref=1493|0 text=ldaS(3986+0)
+[W5D] bit at=gc proc=music_tempo_set bit=153 kind=2 dtype=J ref=3|0 text=3
+[W5D] bit at=gc proc=music_tempo_set bit=154 kind=1 dtype=A ref=1162|0 text=ldaS(19+0)
+[W5D] bit at=gc proc=music_tempo_set bit=155 kind=1 dtype=A ref=1496|0 text=ldaS(647+0)
+[W5D] bit at=gc proc=music_tempo_set bit=156 kind=1 dtype=A ref=1525|0 text=ldaS(3988+0)
+[W5D] bit at=gc proc=music_tempo_set bit=157 kind=2 dtype=J ref=1|1 text=1
+[W5D] bit at=gc proc=music_tempo_set bit=158 kind=2 dtype=J ref=2|0 text=2

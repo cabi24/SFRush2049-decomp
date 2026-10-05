@@ -5,6 +5,7 @@
 .section .text.func_8010E0FC, "ax", @progbits
 .globl func_8010E0FC
 func_8010E0FC:
+    /* compiled from src/blob/func_8010E0FC.c */
     .word 0x27BDFF08
     .word 0x00057400
     .word 0x000E7C03

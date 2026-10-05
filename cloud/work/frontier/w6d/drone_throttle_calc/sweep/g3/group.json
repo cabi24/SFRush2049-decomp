@@ -1,0 +1,1 @@
+{"members": ["drone_throttle_calc"], "files": ["group.c"], "keep": ["zz_caller", "zz_caller2"], "flags": "-g0 -O3 -mips2 -G 0 -non_shared", "context": [], "unprototyped": []}

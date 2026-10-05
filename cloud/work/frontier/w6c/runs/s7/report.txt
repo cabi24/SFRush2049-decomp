@@ -1,0 +1,116 @@
+procedure func_800C8918  (colouring ordinal 169)
+
+== expression bits (variables omitted unless --all) ==
+   0  ilod.J@0(ldaS(5495+0))
+        antloc 0 | indmults
+   1  ilod.L@0(ldaS(2775+0))
+        antloc 1,2 | DELETE 2 | iscolored1 indmults | p1:w1 save=1.50 nocs=2 color->v0
+   2  varM(5493-8)r
+        antloc 3 | iscolored1 mvarbits | p1:w2 save=1.00 nocs=2 split->-
+   4  str.L(varM(5493-8)r,ilod.L@0(ldaS(2775+0)))
+        antloc 2
+   5  istr.L@0(ldaS(2775+0),0)
+        antloc 5
+   6  ilod.L@0(ldaS(2777+0))
+        antloc 6,7 | DELETE 7 | iscolored1 indmults | p1:w6 save=1.50 nocs=2 color->v0
+   7  varM(5493-32)r
+        antloc 8 | iscolored1 mvarbits | p1:w7 save=1.00 nocs=2 split->-
+   9  str.L(varM(5493-32)r,ilod.L@0(ldaS(2777+0)))
+        antloc 7
+  10  istr.L@0(ldaS(2777+0),0)
+        antloc 10
+  15  str.A(varM(5493-64)r,varR(0+2)r)
+        antloc 13
+  16  varM(5493-60)r
+        antloc 14 | iscolored1 mvarbits | p1:w16 save=1.00 nocs=2 split->-
+  18  str.A(varM(5493-60)r,varR(0+2)r)
+        antloc 13
+  19  istr.J@2(varR(0+2)r,1)
+        antloc 13
+  22  str.A(varM(5493-96)r,varR(0+2)r)
+        antloc 17
+  23  varM(5493-92)r
+        antloc 18 | iscolored1 mvarbits | p1:w23 save=1.00 nocs=2 split->-
+  25  str.A(varM(5493-92)r,varR(0+2)r)
+        antloc 17
+  26  istr.J@2(varR(0+2)r,7)
+        antloc 17
+  27  varM(5493-4)r
+        antloc 21,23,25 | DELETE 23 | iscolored1 mvarbits | p1:w27 save=140.00 nocs=3 color->v0
+  29  str.A(varM(5493-4)r,ldaS(5496+0))
+        antloc 20
+  31  add.A(varM(5493-4)r,24)
+        antloc 23 | indmults
+  35  les.A(varM(5493-4)r,ldaS(414+0))
+        antloc 25
+  36  cg1.A(varM(5493-4)r)
+        antloc 25
+  37  istr.J@0(ldaS(5495+0),0)
+        antloc 26
+  38  varM(5493-120)r
+        antloc 28 | iscolored1 mvarbits | p1:w38 save=1.00 nocs=2 split->-
+  40  ilod.L@0(ldaS(5497+0))
+        antloc 27 | indmults
+  41  str.L(varM(5493-120)r,ilod.L@0(ldaS(5497+0)))
+        antloc 27
+  42  varM(5493-144)r
+        antloc 31 | iscolored1 mvarbits | p1:w42 save=1.00 nocs=2 split->-
+  44  ilod.L@0(ldaS(5498+0))
+        antloc 30 | indmults
+  45  str.L(varM(5493-144)r,ilod.L@0(ldaS(5498+0)))
+        antloc 30
+  46  varM(5493-168)r
+        antloc 34 | iscolored1 mvarbits | p1:w46 save=1.00 nocs=2 split->-
+  48  ilod.L@0(ldaS(5499+0))
+        antloc 33 | indmults
+  49  str.L(varM(5493-168)r,ilod.L@0(ldaS(5499+0)))
+        antloc 33
+  50  ldaS(5495+0)
+        iscolored1 | p1:w50 save=0.12 nocs=8 split->-
+  51  ldaS(2775+0)
+        iscolored1 | p1:w51 save=0.50 nocs=2 split->-
+  52  ldaS(155+0)
+        iscolored1 | p1:w52 save=0.80 nocs=10 split->- | p1:w71 save=0.78 nocs=9 split->- | p1:w72 save=0.56 nocs=9 split->- | p1:w74 save=0.33 nocs=9 split->- | p1:w78 save=0.11 nocs=9 split->-
+  53  ldaS(2777+0)
+        iscolored1 | p1:w53 save=0.50 nocs=2 split->-
+  54  ldaS(114+0)
+        iscolored1 | p1:w54 save=1.00 nocs=3 split->- | p1:w70 save=0.67 nocs=3 split->-
+  55  1
+        iscolored1
+  56  ldaS(116+0)
+        iscolored1 | p1:w56 save=0.50 nocs=2 split->-
+  57  7
+        iscolored1
+  58  ldaS(5496+0)
+        iscolored1 | p1:w58 save=3.33 nocs=3 color->a0
+  59  ldaS(414+0)
+        iscolored1 | p1:w59 save=36.67 nocs=3 color->v1
+  60  ldaS(5497+0)
+        iscolored1
+  61  ldaS(5498+0)
+        iscolored1
+  62  ldaS(5499+0)
+        iscolored1
+
+== register candidates for constants / addresses (makelivranges) ==
+  const    0                      ctx=0 remat          blocks 2,3,4,4,7,8,9,9,11,13,13,14,15,17,17,18,27,28,29,29,30,31,32,32,33,34,35,35
+  const    0                      ctx=3 remat          blocks 5,10,26
+  const    1                      ctx=0 remat          blocks 2,7,11,15,27,30,33
+  const    1                      ctx=3 LIVE-RANGE     blocks 13
+  const    24                     ctx=1 remat          blocks 23
+  const    7                      ctx=3 LIVE-RANGE     blocks 17
+  lda      ldaS(114+0)            ctx=0 LIVE-RANGE     blocks 11,13,15,17
+  lda      ldaS(116+0)            ctx=0 LIVE-RANGE     blocks 14,18
+  lda      ldaS(155+0)            ctx=0 LIVE-RANGE     blocks 2,4,7,9,27,29,30,32,33,35
+  lda      ldaS(2775+0)           ctx=1 LIVE-RANGE     blocks 5
+  lda      ldaS(2775+0)           ctx=3 LIVE-RANGE     blocks 1
+  lda      ldaS(2777+0)           ctx=1 LIVE-RANGE     blocks 10
+  lda      ldaS(2777+0)           ctx=3 LIVE-RANGE     blocks 6
+  lda      ldaS(414+0)            ctx=1 LIVE-RANGE     blocks 25
+  lda      ldaS(414+0)            ctx=3 LIVE-RANGE     blocks 23
+  lda      ldaS(5495+0)           ctx=1 LIVE-RANGE     blocks 26
+  lda      ldaS(5495+0)           ctx=3 LIVE-RANGE     blocks 0
+  lda      ldaS(5496+0)           ctx=0 LIVE-RANGE     blocks 20
+  lda      ldaS(5497+0)           ctx=3 LIVE-RANGE     blocks 27
+  lda      ldaS(5498+0)           ctx=3 LIVE-RANGE     blocks 30
+  lda      ldaS(5499+0)           ctx=3 LIVE-RANGE     blocks 33
