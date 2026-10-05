@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "claimed_utc": "2026-10-04T16:45:40Z",
+  "base_commit": "cf4b9c619c72e83aa5da2e8b5c110765f9b03693",
+  "owner": "source-family retry worker",
+  "targets": {"func_8001D944": 304, "func_8001DA74": 404},
+  "maximum_forms_per_target": 3,
+  "forms": ["donor for traversal", "donor store tail with count postincrement", "combined only if justified"],
+  "constraints": "Actual 32-entry capacity and five-float ABI. No extra donor fields. Prior sources and central ledgers frozen. No merge or integration."
+}
