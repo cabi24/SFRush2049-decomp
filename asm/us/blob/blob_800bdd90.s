@@ -506,6 +506,7 @@ camera_cinematic_mode:
 .section .text.func_800BE4F0, "ax", @progbits
 .globl func_800BE4F0
 func_800BE4F0:
+    /* compiled from src/blob/func_800BE4F0.c */
     .word 0x90870000
     .word 0x240B00FF
     .word 0x27BDFED8

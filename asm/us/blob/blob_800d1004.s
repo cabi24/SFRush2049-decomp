@@ -451,6 +451,7 @@ func_800D14F4:
 .section .text.func_800D169C, "ax", @progbits
 .globl func_800D169C
 func_800D169C:
+    /* compiled from src/blob/func_800D169C.c */
     .word 0x3C068014
     .word 0x24C607F0
     .word 0x94C30000

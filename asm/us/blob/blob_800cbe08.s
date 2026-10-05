@@ -2259,6 +2259,7 @@ func_800CDED8:
 .section .text.menu_save_options, "ax", @progbits
 .globl menu_save_options
 menu_save_options:
+    /* compiled from src/blob/menu_save_options.c */
     .word 0x27BDFF60
     .word 0xAFBE0048
     .word 0xAFB70044

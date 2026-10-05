@@ -1,0 +1,25 @@
+{
+ "name": "frontier_reverb_setup",
+ "members": [
+  "func_800B4AE8",
+  "func_800B4AF0",
+  "func_800B4AF8",
+  "func_800B4B00",
+  "reverb_setup"
+ ],
+ "context": [],
+ "files": [
+  "reverb.c"
+ ],
+ "keep": [
+  "reverb_setup"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "claims": [
+  "func_800B4AE8",
+  "func_800B4AF0",
+  "func_800B4AF8"
+ ],
+ "note": "Real group, no stand-ins. Supersedes src/blob/groups/codex_switch_a26 (func_800B4B00, now internal with its real three-argument signature) and the empty single locks of the three stubs. reverb_setup and func_800B4B00 are code-identical; the scorer cannot verify their own jump tables (4 + 2 section-relative references), so only the stubs are listed in claims. blob_unit score reports all five EQUAL.",
+ "provenance": "frontier wave 2 (w2d), 2026-10-04; cloud/work/frontier/w2d/RESULTS.md"
+}

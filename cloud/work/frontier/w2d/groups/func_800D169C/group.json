@@ -1,0 +1,20 @@
+{
+ "name": "frontier_func_800D169C",
+ "members": [
+  "func_800D169C",
+  "func_800D18C8"
+ ],
+ "context": [],
+ "files": [
+  "path.c"
+ ],
+ "keep": [
+  "func_800D169C"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "claims": [
+  "func_800D18C8"
+ ],
+ "note": "Real group, no stand-ins. func_800D18C8 is the deleted static after func_800D169C (supersedes its empty single lock). func_800D169C is code-identical; the scorer cannot verify its own float literal 1e20 (2 section-relative references), so only the stub is listed in claims. The file defines D_80152818 (car array) for the as1 shared-lui quirk.",
+ "provenance": "frontier wave 2 (w2d), 2026-10-04; cloud/work/frontier/w2d/RESULTS.md"
+}
