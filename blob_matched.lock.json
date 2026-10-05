@@ -1211,6 +1211,15 @@
     "verified": "image_gate",
     "verified_at": "2026-10-02"
   },
+  "func_8008E0B8": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "group": "frontier_vector_normalize",
+    "source": "src/blob/groups/frontier_vector_normalize/group.json",
+    "source_sha256": "4c0c37d1d81dcb06f8ee5c0eaba2eddc6c323034ac31ab5db02142f0c77bf42b",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
+  },
   "func_8008E144": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_8008E144.c",

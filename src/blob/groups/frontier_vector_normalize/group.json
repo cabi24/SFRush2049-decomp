@@ -1,0 +1,18 @@
+{
+ "files": [
+  "group.c"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+ "keep": [
+  "func_8008E098",
+  "func_8008E0B8"
+ ],
+ "members": [
+  "func_8008E0B8"
+ ],
+ "context": [
+  "func_8008E098"
+ ],
+ "note": "PR #97: func_8008E0B8 matched through O3 inlining of its real adjacent length helper func_8008E098 (locked separately in dot_vector_length, carried here as unchanged context). See cloud/work/ipa-groups/dot_e0b8_vector_normalize/.",
+ "provenance": "PR #97, 2026-10-05"
+}
