@@ -61,6 +61,12 @@
    "slot_bytes": 56
   },
   {
+   "function": "func_80010D74",
+   "segment": "0x11640",
+   "slot_bytes": 100,
+   "wave": 3
+  },
+  {
    "function": "func_80011074",
    "segment": "0x11640",
    "slot_bytes": 80
@@ -81,6 +87,12 @@
    "slot_bytes": 76
   },
   {
+   "function": "func_80011894",
+   "segment": "0x11640",
+   "slot_bytes": 44,
+   "wave": 3
+  },
+  {
    "function": "func_800118C0",
    "segment": "0x11640",
    "slot_bytes": 80
@@ -99,6 +111,12 @@
    "function": "func_80011A3C",
    "segment": "0x11640",
    "slot_bytes": 40
+  },
+  {
+   "function": "func_80011C84",
+   "segment": "0x11640",
+   "slot_bytes": 84,
+   "wave": 3
   },
   {
    "function": "func_80011CD8",
@@ -129,6 +147,12 @@
    "function": "func_80012660",
    "segment": "0x11640",
    "slot_bytes": 208
+  },
+  {
+   "function": "func_80013C84",
+   "segment": "0x11640",
+   "slot_bytes": 236,
+   "wave": 3
   },
   {
    "function": "func_80013D70",
@@ -196,6 +220,12 @@
    "slot_bytes": 8
   },
   {
+   "function": "func_800146B4",
+   "segment": "0x11640",
+   "slot_bytes": 488,
+   "wave": 3
+  },
+  {
    "function": "func_800148F8",
    "segment": "0x11640",
    "slot_bytes": 196
@@ -206,9 +236,45 @@
    "slot_bytes": 32
   },
   {
+   "function": "func_800149DC",
+   "segment": "0x11640",
+   "slot_bytes": 40,
+   "wave": 3
+  },
+  {
    "function": "func_80014A04",
    "segment": "0x11640",
    "slot_bytes": 8
+  },
+  {
+   "function": "func_80014A74",
+   "segment": "0x11640",
+   "slot_bytes": 124,
+   "wave": 3
+  },
+  {
+   "function": "func_80014AF0",
+   "segment": "0x11640",
+   "slot_bytes": 76,
+   "wave": 3
+  },
+  {
+   "function": "func_80014B3C",
+   "segment": "0x11640",
+   "slot_bytes": 116,
+   "wave": 3
+  },
+  {
+   "function": "func_80014BB0",
+   "segment": "0x11640",
+   "slot_bytes": 40,
+   "wave": 3
+  },
+  {
+   "function": "func_80014C18",
+   "segment": "0x11640",
+   "slot_bytes": 40,
+   "wave": 3
   },
   {
    "function": "func_80014C40",
@@ -301,6 +367,12 @@
    "slot_bytes": 252
   },
   {
+   "function": "func_800163A8",
+   "segment": "0x16320",
+   "slot_bytes": 296,
+   "wave": 3
+  },
+  {
    "function": "func_800164D0",
    "segment": "0x16320",
    "slot_bytes": 332
@@ -361,6 +433,12 @@
    "slot_bytes": 112
   },
   {
+   "function": "func_80017540",
+   "segment": "0x17dc0",
+   "slot_bytes": 104,
+   "wave": 3
+  },
+  {
    "function": "func_800175A8",
    "segment": "0x17dc0",
    "slot_bytes": 12
@@ -371,9 +449,33 @@
    "slot_bytes": 220
   },
   {
+   "function": "func_80018A30",
+   "segment": "0x17dc0",
+   "slot_bytes": 188,
+   "wave": 3
+  },
+  {
+   "function": "func_80018B3C",
+   "segment": "0x17dc0",
+   "slot_bytes": 80,
+   "wave": 3
+  },
+  {
+   "function": "func_80018C2C",
+   "segment": "0x17dc0",
+   "slot_bytes": 212,
+   "wave": 3
+  },
+  {
    "function": "func_80018D00",
    "segment": "0x17dc0",
    "slot_bytes": 64
+  },
+  {
+   "function": "func_80018D40",
+   "segment": "0x17dc0",
+   "slot_bytes": 236,
+   "wave": 3
   },
   {
    "function": "func_80018E2C",
@@ -401,6 +503,12 @@
    "slot_bytes": 80
   },
   {
+   "function": "func_80019194",
+   "segment": "0x17dc0",
+   "slot_bytes": 476,
+   "wave": 3
+  },
+  {
    "function": "func_80019370",
    "segment": "0x17dc0",
    "slot_bytes": 88
@@ -409,6 +517,12 @@
    "function": "func_80019850",
    "segment": "0x17dc0",
    "slot_bytes": 76
+  },
+  {
+   "function": "func_800198C8",
+   "segment": "0x17dc0",
+   "slot_bytes": 300,
+   "wave": 3
   },
   {
    "function": "func_80019AA8",
@@ -431,9 +545,39 @@
    "slot_bytes": 124
   },
   {
+   "function": "func_8001B29C",
+   "segment": "0x1a660",
+   "slot_bytes": 260,
+   "wave": 3
+  },
+  {
+   "function": "func_8001B3A0",
+   "segment": "0x1a660",
+   "slot_bytes": 260,
+   "wave": 3
+  },
+  {
    "function": "func_8001B744",
    "segment": "0x1a660",
    "slot_bytes": 124
+  },
+  {
+   "function": "func_8001B7C0",
+   "segment": "0x1a660",
+   "slot_bytes": 260,
+   "wave": 3
+  },
+  {
+   "function": "func_8001B8C4",
+   "segment": "0x1a660",
+   "slot_bytes": 164,
+   "wave": 3
+  },
+  {
+   "function": "func_8001B968",
+   "segment": "0x1a660",
+   "slot_bytes": 144,
+   "wave": 3
   },
   {
    "function": "func_8001C3CC",
@@ -441,9 +585,21 @@
    "slot_bytes": 316
   },
   {
+   "function": "func_8001C508",
+   "segment": "0x1cf90",
+   "slot_bytes": 120,
+   "wave": 3
+  },
+  {
    "function": "func_8001C770",
    "segment": "0x1cf90",
    "slot_bytes": 12
+  },
+  {
+   "function": "func_8001C7F4",
+   "segment": "0x1cf90",
+   "slot_bytes": 108,
+   "wave": 3
   },
   {
    "function": "func_8001CCC0",
@@ -464,6 +620,12 @@
    "function": "func_8001D460",
    "segment": "0x1cf90",
    "slot_bytes": 108
+  },
+  {
+   "function": "func_8001D4CC",
+   "segment": "0x1cf90",
+   "slot_bytes": 76,
+   "wave": 3
   },
   {
    "function": "func_8001D518",
@@ -489,6 +651,18 @@
    "function": "func_8001D928",
    "segment": "0x1cf90",
    "slot_bytes": 28
+  },
+  {
+   "function": "func_8001DDE0",
+   "segment": "0x1cf90",
+   "slot_bytes": 736,
+   "wave": 3
+  },
+  {
+   "function": "func_8001E0C0",
+   "segment": "0x1cf90",
+   "slot_bytes": 20,
+   "wave": 3
   },
   {
    "function": "func_8001E688",
@@ -531,6 +705,18 @@
    "slot_bytes": 36
   },
   {
+   "function": "func_8001EB10",
+   "segment": "0x1f5b0",
+   "slot_bytes": 464,
+   "wave": 3
+  },
+  {
+   "function": "func_8001ECE0",
+   "segment": "0x1f5b0",
+   "slot_bytes": 276,
+   "wave": 3
+  },
+  {
    "function": "func_8001EDF4",
    "segment": "0x1f5b0",
    "slot_bytes": 64
@@ -554,6 +740,12 @@
    "function": "func_8001F898",
    "segment": "0x1f5b0",
    "slot_bytes": 188
+  },
+  {
+   "function": "func_8001F9D0",
+   "segment": "0x1f5b0",
+   "slot_bytes": 72,
+   "wave": 3
   },
   {
    "function": "func_8001FA18",
@@ -609,6 +801,12 @@
    "function": "func_80020174",
    "segment": "0x207b0",
    "slot_bytes": 92
+  },
+  {
+   "function": "func_800201D0",
+   "segment": "0x207b0",
+   "slot_bytes": 48,
+   "wave": 3
   },
   {
    "function": "func_80020274",
@@ -721,6 +919,12 @@
    "slot_bytes": 48
   },
   {
+   "function": "func_80021BF0",
+   "segment": "0x22300",
+   "slot_bytes": 104,
+   "wave": 3
+  },
+  {
    "function": "func_80021F68",
    "segment": "0x22300",
    "slot_bytes": 28
@@ -751,6 +955,18 @@
    "slot_bytes": 32
   },
   {
+   "function": "func_800225FC",
+   "segment": "0x22300",
+   "slot_bytes": 124,
+   "wave": 3
+  },
+  {
+   "function": "func_80022678",
+   "segment": "0x22300",
+   "slot_bytes": 292,
+   "wave": 3
+  },
+  {
    "function": "func_80022A78",
    "segment": "0x22300",
    "slot_bytes": 32
@@ -759,6 +975,12 @@
    "function": "func_80022C58",
    "segment": "0x22300",
    "slot_bytes": 124
+  },
+  {
+   "function": "func_80023520",
+   "segment": "0x22300",
+   "slot_bytes": 36,
+   "wave": 3
   },
   {
    "function": "func_80023544",
@@ -779,6 +1001,54 @@
    "function": "func_80023818",
    "segment": "0x22300",
    "slot_bytes": 44
+  },
+  {
+   "function": "func_80023844",
+   "segment": "0x22300",
+   "slot_bytes": 44,
+   "wave": 3
+  },
+  {
+   "function": "func_80023870",
+   "segment": "0x22300",
+   "slot_bytes": 44,
+   "wave": 3
+  },
+  {
+   "function": "func_8002389C",
+   "segment": "0x22300",
+   "slot_bytes": 44,
+   "wave": 3
+  },
+  {
+   "function": "func_800238C8",
+   "segment": "0x22300",
+   "slot_bytes": 44,
+   "wave": 3
+  },
+  {
+   "function": "func_800238F4",
+   "segment": "0x22300",
+   "slot_bytes": 44,
+   "wave": 3
+  },
+  {
+   "function": "func_80023920",
+   "segment": "0x22300",
+   "slot_bytes": 44,
+   "wave": 3
+  },
+  {
+   "function": "func_8002394C",
+   "segment": "0x22300",
+   "slot_bytes": 44,
+   "wave": 3
+  },
+  {
+   "function": "func_80023978",
+   "segment": "0x22300",
+   "slot_bytes": 44,
+   "wave": 3
   },
   {
    "function": "func_80024BF0",
@@ -816,14 +1086,56 @@
    "slot_bytes": 68
   },
   {
+   "function": "func_800250F0",
+   "segment": "0x25bb0",
+   "slot_bytes": 48,
+   "wave": 3
+  },
+  {
+   "function": "func_80025120",
+   "segment": "0x25bb0",
+   "slot_bytes": 48,
+   "wave": 3
+  },
+  {
+   "function": "func_80025150",
+   "segment": "0x25bb0",
+   "slot_bytes": 44,
+   "wave": 3
+  },
+  {
    "function": "func_80025264",
    "segment": "0x25bb0",
    "slot_bytes": 72
   },
   {
+   "function": "func_800254D4",
+   "segment": "0x25bb0",
+   "slot_bytes": 192,
+   "wave": 3
+  },
+  {
    "function": "func_80025594",
    "segment": "0x25bb0",
    "slot_bytes": 92
+  },
+  {
+   "function": "func_80025670",
+   "segment": "0x25bb0",
+   "slot_bytes": 220,
+   "wave": 3
+  },
+  {
+   "function": "func_8002574C",
+   "segment": "0x25bb0",
+   "slot_bytes": 604,
+   "wave": 3
+  },
+  {
+   "function": "func_800259A8",
+   "segment": "0x25bb0",
+   "slot_bytes": 268,
+   "wave": 3
   },
   {
    "function": "func_80025EB0",
@@ -852,70 +1164,10 @@
    "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
    "slot_bytes": 552
   },
-  "func_80010D74": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_11640.c, line 59: redeclaration of 'D_800381F0'; previous declaration at line 18 in file 'src/rom/lib_11640.c'",
-   "slot_bytes": 100
-  },
-  "func_80011894": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_11640.c, line 129: redeclaration of 'D_8003802C'; previous declaration at line 115 in file 'src/rom/lib_11640.c'",
-   "slot_bytes": 44
-  },
-  "func_80011C84": {
-   "group": "conflicting extern declaration of a shared function within the TU",
-   "detail": "cfe: Error: src/rom/lib_11640.c, line 199: redeclaration of 'func_80011A10'; previous declaration at line 164 in file 'src/rom/lib_11640.c'",
-   "slot_bytes": 84
-  },
   "func_80013964": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_11640.c, line 329: redeclaration of 'D_800382D8'; previous declaration at line 95 in file 'src/rom/lib_11640.c'",
+   "group": "dependent accepted-body relock has no true-0 proof: relocation symbol split",
+   "detail": "Requires the audio_record_contracts two-cell table declaration (unsigned short *D_800382D8[2]), which changes accepted func_8001144C to free D_800382D8[1]. That adapted body scores true 10 through the pool: the target relocates against D_800382DC as its own symbol while the body reaches it as D_800382D8+4 (same class as the 19 relocation-split refusals). Relocated bytes are identical per the packet, but no true score 0 exists, so neither relock nor promotion was performed. Fix needs target symbol naming, not source.",
    "slot_bytes": 112
-  },
-  "func_80013C84": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_11640.c, line 591: redeclaration of 'D_80038294'; previous declaration at line 330 in file 'src/rom/lib_11640.c'",
-   "slot_bytes": 236
-  },
-  "func_800146B4": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_11640.c, line 611: redeclaration of 'D_80038294'; previous declaration at line 573 in file 'src/rom/lib_11640.c'",
-   "slot_bytes": 488
-  },
-  "func_800149DC": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_11640.c, line 600: redeclaration of 'D_80038294'; previous declaration at line 572 in file 'src/rom/lib_11640.c'",
-   "slot_bytes": 40
-  },
-  "func_80014A74": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_11640.c, line 612: redeclaration of 'D_80038294'; previous declaration at line 572 in file 'src/rom/lib_11640.c'",
-   "slot_bytes": 124
-  },
-  "func_80014AF0": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_11640.c, line 613: redeclaration of 'D_80038294'; previous declaration at line 572 in file 'src/rom/lib_11640.c'",
-   "slot_bytes": 76
-  },
-  "func_80014B3C": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_11640.c, line 614: redeclaration of 'D_80038294'; previous declaration at line 572 in file 'src/rom/lib_11640.c'",
-   "slot_bytes": 116
-  },
-  "func_80014BB0": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_11640.c, line 615: redeclaration of 'D_80038294'; previous declaration at line 572 in file 'src/rom/lib_11640.c'",
-   "slot_bytes": 40
-  },
-  "func_80014C18": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_11640.c, line 618: redeclaration of 'D_80038294'; previous declaration at line 572 in file 'src/rom/lib_11640.c'",
-   "slot_bytes": 40
-  },
-  "func_800163A8": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_16320.c, line 56: redeclaration of 'D_800385A0'; previous declaration at line 23 in file 'src/rom/lib_16320.c'",
-   "slot_bytes": 296
   },
   "func_80017108": {
    "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
@@ -927,40 +1179,15 @@
    "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
    "slot_bytes": 220
   },
-  "func_80017540": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_17dc0.c, line 180: redeclaration of 'D_8004BE80'; previous declaration at line 17 in file 'src/rom/lib_17dc0.c'",
-   "slot_bytes": 104
-  },
   "func_800175B4": {
    "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
    "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
    "slot_bytes": 144
   },
-  "func_80018A30": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_17dc0.c, line 226: redeclaration of 'D_8004BE80'; previous declaration at line 17 in file 'src/rom/lib_17dc0.c'",
-   "slot_bytes": 188
-  },
-  "func_80018B3C": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_17dc0.c, line 228: redeclaration of 'D_8004BE80'; previous declaration at line 17 in file 'src/rom/lib_17dc0.c'",
-   "slot_bytes": 80
-  },
   "func_80018B8C": {
    "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
    "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
    "slot_bytes": 96
-  },
-  "func_80018C2C": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_17dc0.c, line 230: redeclaration of 'D_80043EB8'; previous declaration at line 193 in file 'src/rom/lib_17dc0.c'",
-   "slot_bytes": 212
-  },
-  "func_80018D40": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_17dc0.c, line 250: redeclaration of 'D_80043EB8'; previous declaration at line 193 in file 'src/rom/lib_17dc0.c'",
-   "slot_bytes": 236
   },
   "func_80018E6C": {
    "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
@@ -982,215 +1209,40 @@
    "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
    "slot_bytes": 128
   },
-  "func_80019194": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_17dc0.c, line 343: redeclaration of 'D_80043EB8'; previous declaration at line 193 in file 'src/rom/lib_17dc0.c'",
-   "slot_bytes": 476
-  },
   "func_800193C8": {
    "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
    "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
    "slot_bytes": 88
-  },
-  "func_800198C8": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_17dc0.c, line 380: redeclaration of 'D_80043EB8'; previous declaration at line 193 in file 'src/rom/lib_17dc0.c'",
-   "slot_bytes": 300
   },
   "func_800199F4": {
    "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
    "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
    "slot_bytes": 108
   },
-  "func_8001B29C": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_1a660.c, line 131: redeclaration of 'D_8004BEB8'; previous declaration at line 54 in file 'src/rom/lib_1a660.c'",
-   "slot_bytes": 260
-  },
-  "func_8001B3A0": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_1a660.c, line 132: redeclaration of 'D_8004BEB8'; previous declaration at line 54 in file 'src/rom/lib_1a660.c'",
-   "slot_bytes": 260
-  },
-  "func_8001B7C0": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_1a660.c, line 152: redeclaration of 'D_8004BEB8'; previous declaration at line 54 in file 'src/rom/lib_1a660.c'",
-   "slot_bytes": 260
-  },
-  "func_8001B8C4": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_1a660.c, line 153: redeclaration of 'D_8004BEB8'; previous declaration at line 54 in file 'src/rom/lib_1a660.c'",
-   "slot_bytes": 164
-  },
-  "func_8001B968": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_1a660.c, line 154: redeclaration of 'D_8004BEB8'; previous declaration at line 54 in file 'src/rom/lib_1a660.c'",
-   "slot_bytes": 144
-  },
   "func_8001C1D8": {
    "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
    "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
    "slot_bytes": 440
-  },
-  "func_8001C508": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_1cf90.c, line 56: redeclaration of 'D_8004FA50'; previous declaration at line 17 in file 'src/rom/lib_1cf90.c'",
-   "slot_bytes": 120
-  },
-  "func_8001C7F4": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_1cf90.c, line 69: redeclaration of 'D_8004FA50'; previous declaration at line 17 in file 'src/rom/lib_1cf90.c'",
-   "slot_bytes": 108
-  },
-  "func_8001D4CC": {
-   "group": "conflicting extern declaration of a shared function within the TU",
-   "detail": "cfe: Error: src/rom/lib_1cf90.c, line 142: redeclaration of 'func_8001D084'; previous declaration at line 90 in file 'src/rom/lib_1cf90.c'",
-   "slot_bytes": 76
-  },
-  "func_8001DDE0": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_1cf90.c, line 254: redeclaration of 'D_8004FD50'; previous declaration at line 88 in file 'src/rom/lib_1cf90.c'",
-   "slot_bytes": 736
-  },
-  "func_8001E0C0": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_1cf90.c, line 254: redeclaration of 'D_8004FD50'; previous declaration at line 88 in file 'src/rom/lib_1cf90.c'",
-   "slot_bytes": 20
   },
   "func_8001E9B0": {
    "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
    "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
    "slot_bytes": 240
   },
-  "func_8001EB10": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_1f5b0.c, line 55: redeclaration of 'D_80050C50'; previous declaration at line 17 in file 'src/rom/lib_1f5b0.c'",
-   "slot_bytes": 464
-  },
-  "func_8001ECE0": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_1f5b0.c, line 55: redeclaration of 'D_80050C50'; previous declaration at line 17 in file 'src/rom/lib_1f5b0.c'",
-   "slot_bytes": 276
-  },
   "func_8001EE34": {
    "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
    "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
    "slot_bytes": 104
-  },
-  "func_8001F9D0": {
-   "group": "conflicting extern declaration of a shared function within the TU",
-   "detail": "cfe: Error: src/rom/lib_1f5b0.c, line 186: redeclaration of 'func_8001EB10'; previous declaration at line 154 in file 'src/rom/lib_1f5b0.c'",
-   "slot_bytes": 72
-  },
-  "func_800201D0": {
-   "group": "conflicting extern declaration of a shared function within the TU",
-   "detail": "cfe: Error: src/rom/lib_207b0.c, line 225: redeclaration of 'func_8001EDF4'; previous declaration at line 21 in file 'src/rom/lib_207b0.c'",
-   "slot_bytes": 48
   },
   "func_800218CC": {
    "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
    "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
    "slot_bytes": 112
   },
-  "func_80021BF0": {
-   "group": "conflicting extern declaration of a shared function within the TU",
-   "detail": "cfe: Error: src/rom/lib_22300.c, line 76: redeclaration of 'func_80021BC0'; previous declaration at line 58 in file 'src/rom/lib_22300.c'",
-   "slot_bytes": 104
-  },
-  "func_800225FC": {
-   "group": "conflicting extern declaration of a shared function within the TU",
-   "detail": "cfe: Error: src/rom/lib_22300.c, line 199: redeclaration of 'func_8002193C'; previous declaration at line 43 in file 'src/rom/lib_22300.c'",
-   "slot_bytes": 124
-  },
-  "func_80022678": {
-   "group": "conflicting extern declaration of a shared function within the TU",
-   "detail": "cfe: Error: src/rom/lib_22300.c, line 202: redeclaration of 'func_8002193C'; previous declaration at line 43 in file 'src/rom/lib_22300.c'",
-   "slot_bytes": 292
-  },
-  "func_80023520": {
-   "group": "conflicting extern declaration of a shared function within the TU",
-   "detail": "cfe: Error: src/rom/lib_22300.c, line 266: redeclaration of 'func_800233B0'; previous declaration at line 257 in file 'src/rom/lib_22300.c'",
-   "slot_bytes": 36
-  },
-  "func_80023844": {
-   "group": "conflicting extern declaration of a shared function within the TU",
-   "detail": "cfe: Error: src/rom/lib_22300.c, line 321: redeclaration of 'func_80023754'; previous declaration at line 304 in file 'src/rom/lib_22300.c'",
-   "slot_bytes": 44
-  },
-  "func_80023870": {
-   "group": "conflicting extern declaration of a shared function within the TU",
-   "detail": "cfe: Error: src/rom/lib_22300.c, line 322: redeclaration of 'func_80023754'; previous declaration at line 304 in file 'src/rom/lib_22300.c'",
-   "slot_bytes": 44
-  },
-  "func_8002389C": {
-   "group": "conflicting extern declaration of a shared function within the TU",
-   "detail": "cfe: Error: src/rom/lib_22300.c, line 323: redeclaration of 'func_80023754'; previous declaration at line 304 in file 'src/rom/lib_22300.c'",
-   "slot_bytes": 44
-  },
-  "func_800238C8": {
-   "group": "conflicting extern declaration of a shared function within the TU",
-   "detail": "cfe: Error: src/rom/lib_22300.c, line 324: redeclaration of 'func_80023754'; previous declaration at line 304 in file 'src/rom/lib_22300.c'",
-   "slot_bytes": 44
-  },
-  "func_800238F4": {
-   "group": "conflicting extern declaration of a shared function within the TU",
-   "detail": "cfe: Error: src/rom/lib_22300.c, line 325: redeclaration of 'func_80023754'; previous declaration at line 304 in file 'src/rom/lib_22300.c'",
-   "slot_bytes": 44
-  },
-  "func_80023920": {
-   "group": "conflicting extern declaration of a shared function within the TU",
-   "detail": "cfe: Error: src/rom/lib_22300.c, line 326: redeclaration of 'func_80023754'; previous declaration at line 304 in file 'src/rom/lib_22300.c'",
-   "slot_bytes": 44
-  },
-  "func_8002394C": {
-   "group": "conflicting extern declaration of a shared function within the TU",
-   "detail": "cfe: Error: src/rom/lib_22300.c, line 327: redeclaration of 'func_80023754'; previous declaration at line 304 in file 'src/rom/lib_22300.c'",
-   "slot_bytes": 44
-  },
-  "func_80023978": {
-   "group": "conflicting extern declaration of a shared function within the TU",
-   "detail": "cfe: Error: src/rom/lib_22300.c, line 328: redeclaration of 'func_80023754'; previous declaration at line 304 in file 'src/rom/lib_22300.c'",
-   "slot_bytes": 44
-  },
-  "func_800250F0": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_25bb0.c, line 61: redeclaration of 'D_800586A8'; previous declaration at line 46 in file 'src/rom/lib_25bb0.c'",
-   "slot_bytes": 48
-  },
-  "func_80025120": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_25bb0.c, line 62: redeclaration of 'D_800586A8'; previous declaration at line 46 in file 'src/rom/lib_25bb0.c'",
-   "slot_bytes": 48
-  },
-  "func_80025150": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_25bb0.c, line 63: redeclaration of 'D_800586A8'; previous declaration at line 46 in file 'src/rom/lib_25bb0.c'",
-   "slot_bytes": 44
-  },
   "func_800251A8": {
    "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
    "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
    "slot_bytes": 188
-  },
-  "func_800254D4": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_25bb0.c, line 87: redeclaration of 'D_80056230'; previous declaration at line 66 in file 'src/rom/lib_25bb0.c'",
-   "slot_bytes": 192
-  },
-  "func_80025670": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_25bb0.c, line 112: redeclaration of 'D_80056230'; previous declaration at line 66 in file 'src/rom/lib_25bb0.c'",
-   "slot_bytes": 220
-  },
-  "func_8002574C": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_25bb0.c, line 116: redeclaration of 'D_80056230'; previous declaration at line 66 in file 'src/rom/lib_25bb0.c'",
-   "slot_bytes": 604
-  },
-  "func_800259A8": {
-   "group": "conflicting extern declaration of a shared global within the TU",
-   "detail": "cfe: Error: src/rom/lib_25bb0.c, line 114: redeclaration of 'D_80056230'; previous declaration at line 66 in file 'src/rom/lib_25bb0.c'",
-   "slot_bytes": 268
   },
   "func_80025C68": {
    "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
@@ -1210,20 +1262,26 @@
  },
  "summary": {
   "bodies": 241,
-  "promoted": 169,
+  "promoted": 221,
   "refused_by_group": {
    "no true-0 proof: target splits an interior data address into its own D_ symbol": {
     "functions": 19,
     "slot_bytes": 3500
    },
-   "conflicting extern declaration of a shared global within the TU": {
-    "functions": 37,
-    "slot_bytes": 7544
-   },
-   "conflicting extern declaration of a shared function within the TU": {
-    "functions": 16,
-    "slot_bytes": 1188
+   "dependent accepted-body relock has no true-0 proof: relocation symbol split": {
+    "functions": 1,
+    "slot_bytes": 112
    }
+  },
+  "wave3": {
+   "promoted": 52,
+   "slot_bytes": 8620,
+   "commits": [
+    "55e38d89",
+    "ddf9ec6b",
+    "f695fae7"
+   ],
+   "see": "cloud/work/boot_tail_promotion/WAVE3.md"
   }
  }
 }
