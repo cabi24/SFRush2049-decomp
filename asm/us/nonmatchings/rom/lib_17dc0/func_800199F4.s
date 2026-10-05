@@ -3,9 +3,9 @@ nonmatching func_800199F4, 0x64
 glabel func_800199F4
     /* 1A5F4 800199F4 27BDFFE8 */  addiu      $sp, $sp, -0x18
     /* 1A5F8 800199F8 3C028004 */  lui        $v0, %hi(D_80043EB8)
-    /* 1A5FC 800199FC 3C048005 */  lui        $a0, %hi(D_8004BE78)
+    /* 1A5FC 800199FC 3C048005 */  lui        $a0, %hi(D_80043EB8 + 0x7FC0)
     /* 1A600 80019A00 AFBF0014 */  sw         $ra, 0x14($sp)
-    /* 1A604 80019A04 2484BE78 */  addiu      $a0, $a0, %lo(D_8004BE78)
+    /* 1A604 80019A04 2484BE78 */  addiu      $a0, $a0, %lo(D_80043EB8 + 0x7FC0)
     /* 1A608 80019A08 24423EB8 */  addiu      $v0, $v0, %lo(D_80043EB8)
     /* 1A60C 80019A0C 24030001 */  addiu      $v1, $zero, 0x1
   .L80019A10:

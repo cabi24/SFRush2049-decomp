@@ -184,8 +184,14 @@ def verify_entry(spec, flagset, target_id, args):
     target_o = BlobStore(data / "blobs").get(target_o_sha).read_bytes()
 
     files = {"candidate.c": reduced_tu(text, name).encode()}
+    include_dirs = list(INCLUDE_DIRS)
     for hdr_rel, hdr_text in resolve_headers(tu_path).items():
         files[hdr_rel] = hdr_text.encode()
+        # A header found beside the TU (src/rom/rom_tu.h) is searched the way
+        # the build searches it: the TU's directory is an include directory
+        # (the Makefile passes -I src/rom for ROM TUs).
+        if str(Path(hdr_rel).parent) == str(Path(rel).parent) and str(Path(rel).parent) not in include_dirs:
+            include_dirs.append(str(Path(rel).parent))
     files["target.o"] = target_o
 
     http = Http(args.coordinator, load_token(args.token, args.data))
@@ -193,7 +199,7 @@ def verify_entry(spec, flagset, target_id, args):
     manifest = {
         "job_type": "compile_score",
         "toolkit_sha": toolkit_sha,
-        "include_dirs": list(INCLUDE_DIRS),
+        "include_dirs": include_dirs,
         "cells": [{
             "candidate_id": spec, "source": "candidate.c", "flagset": flagset,
             "targets": [{"target_id": target_id, "file": "target.o",

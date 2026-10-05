@@ -109,15 +109,17 @@ void func_800110C4(void)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/matches/boot_tail/func_8001144C.c:func_8001144C (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
+ * Relocked: 2026-10-05 (wave 4) as the two-cell D_800382D8 table:
+ *           cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_8001144C.c
+ *           (score0 after reloc_addrs.us.txt names D_800382DC as D_800382D8+4)
  */
-extern void *D_800382D8;
-extern void *D_800382DC;
+extern unsigned short *D_800382D8[2];
 extern void *D_80038298;
 extern void *D_800382E4;
 void func_8001144C(void)
 {
-    D_8003801C(D_800382D8);
-    D_8003801C(D_800382DC);
+    D_8003801C(D_800382D8[0]);
+    D_8003801C(D_800382D8[1]);
     D_8003801C(D_80038298);
     D_8003801C(D_800382E4);
 }

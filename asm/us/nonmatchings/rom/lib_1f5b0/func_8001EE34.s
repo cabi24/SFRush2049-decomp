@@ -16,8 +16,8 @@ glabel func_8001EE34
     /* 1FA60 8001EE60 A480FFFE */   sh        $zero, -0x2($a0)
   .L8001EE64:
     /* 1FA64 8001EE64 3C028005 */  lui        $v0, %hi(D_80050548)
-    /* 1FA68 8001EE68 3C048005 */  lui        $a0, %hi(D_80050648)
-    /* 1FA6C 8001EE6C 24840648 */  addiu      $a0, $a0, %lo(D_80050648)
+    /* 1FA68 8001EE68 3C048005 */  lui        $a0, %hi(D_80050548 + 0x100)
+    /* 1FA6C 8001EE6C 24840648 */  addiu      $a0, $a0, %lo(D_80050548 + 0x100)
     /* 1FA70 8001EE70 24420548 */  addiu      $v0, $v0, %lo(D_80050548)
     /* 1FA74 8001EE74 240300FF */  addiu      $v1, $zero, 0xFF
   .L8001EE78:

@@ -5,9 +5,9 @@ glabel func_80018E6C
     /* 19A70 80018E70 AFB10018 */  sw         $s1, 0x18($sp)
     /* 19A74 80018E74 AFB00014 */  sw         $s0, 0x14($sp)
     /* 19A78 80018E78 3C108004 */  lui        $s0, %hi(D_80043EB8)
-    /* 19A7C 80018E7C 3C118005 */  lui        $s1, %hi(D_8004BE78)
+    /* 19A7C 80018E7C 3C118005 */  lui        $s1, %hi(D_80043EB8 + 0x7FC0)
     /* 19A80 80018E80 AFBF001C */  sw         $ra, 0x1C($sp)
-    /* 19A84 80018E84 2631BE78 */  addiu      $s1, $s1, %lo(D_8004BE78)
+    /* 19A84 80018E84 2631BE78 */  addiu      $s1, $s1, %lo(D_80043EB8 + 0x7FC0)
     /* 19A88 80018E88 26103EB8 */  addiu      $s0, $s0, %lo(D_80043EB8)
   .L80018E8C:
     /* 19A8C 80018E8C 0C006350 */  jal        func_80018D40

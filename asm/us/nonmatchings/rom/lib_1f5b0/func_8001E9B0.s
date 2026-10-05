@@ -9,14 +9,14 @@ glabel func_8001E9B0
     /* 1F5C4 8001E9C4 25080A50 */  addiu      $t0, $t0, %lo(D_80050A50)
     /* 1F5C8 8001E9C8 3C018005 */  lui        $at, %hi(D_80050C54)
     /* 1F5CC 8001E9CC 3C048005 */  lui        $a0, %hi(D_80050A50)
-    /* 1F5D0 8001E9D0 3C058005 */  lui        $a1, %hi(D_80050A60)
-    /* 1F5D4 8001E9D4 3C068005 */  lui        $a2, %hi(D_80050A70)
-    /* 1F5D8 8001E9D8 3C078005 */  lui        $a3, %hi(D_80050A80)
+    /* 1F5D0 8001E9D0 3C058005 */  lui        $a1, %hi(D_80050A50 + 0x10)
+    /* 1F5D4 8001E9D4 3C068005 */  lui        $a2, %hi(D_80050A50 + 0x20)
+    /* 1F5D8 8001E9D8 3C078005 */  lui        $a3, %hi(D_80050A50 + 0x30)
     /* 1F5DC 8001E9DC AC280C54 */  sw         $t0, %lo(D_80050C54)($at)
     /* 1F5E0 8001E9E0 00001025 */  or         $v0, $zero, $zero
-    /* 1F5E4 8001E9E4 24E70A80 */  addiu      $a3, $a3, %lo(D_80050A80)
-    /* 1F5E8 8001E9E8 24C60A70 */  addiu      $a2, $a2, %lo(D_80050A70)
-    /* 1F5EC 8001E9EC 24A50A60 */  addiu      $a1, $a1, %lo(D_80050A60)
+    /* 1F5E4 8001E9E4 24E70A80 */  addiu      $a3, $a3, %lo(D_80050A50 + 0x30)
+    /* 1F5E8 8001E9E8 24C60A70 */  addiu      $a2, $a2, %lo(D_80050A50 + 0x20)
+    /* 1F5EC 8001E9EC 24A50A60 */  addiu      $a1, $a1, %lo(D_80050A50 + 0x10)
     /* 1F5F0 8001E9F0 24840A50 */  addiu      $a0, $a0, %lo(D_80050A50)
     /* 1F5F4 8001E9F4 00001825 */  or         $v1, $zero, $zero
     /* 1F5F8 8001E9F8 24090020 */  addiu      $t1, $zero, 0x20

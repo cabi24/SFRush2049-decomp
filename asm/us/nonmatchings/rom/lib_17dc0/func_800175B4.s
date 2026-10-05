@@ -1,13 +1,13 @@
 nonmatching func_800175B4, 0x90
 
 glabel func_800175B4
-    /* 181B4 800175B4 3C0A8005 */  lui        $t2, %hi(D_8004BE78)
+    /* 181B4 800175B4 3C0A8005 */  lui        $t2, %hi(D_80043EB8 + 0x7FC0)
     /* 181B8 800175B8 3C087FFF */  lui        $t0, (0x7FFFFFFF >> 16)
     /* 181BC 800175BC 3C078005 */  lui        $a3, %hi(D_8004BE84)
     /* 181C0 800175C0 00803025 */  or         $a2, $a0, $zero
     /* 181C4 800175C4 24E7BE84 */  addiu      $a3, $a3, %lo(D_8004BE84)
     /* 181C8 800175C8 3508FFFF */  ori        $t0, $t0, (0x7FFFFFFF & 0xFFFF)
-    /* 181CC 800175CC 254ABE78 */  addiu      $t2, $t2, %lo(D_8004BE78)
+    /* 181CC 800175CC 254ABE78 */  addiu      $t2, $t2, %lo(D_80043EB8 + 0x7FC0)
     /* 181D0 800175D0 2409FFFF */  addiu      $t1, $zero, -0x1
     /* 181D4 800175D4 8CE30000 */  lw         $v1, 0x0($a3)
   .L800175D8:

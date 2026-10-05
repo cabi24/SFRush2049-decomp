@@ -1,0 +1,111 @@
+// splat relocation naming overrides (rom:<ROM offset> reloc:<type> symbol:<base> addend:<offset>).
+//
+// splat names every address a %hi/%lo pair reaches as its own D_ symbol. Where the
+// original code reached that address as base+offset (array element, field, end
+// pointer), the listed instruction is named base+addend instead, matching the
+// relocation IDO emits for the byte-identical C. Only these instructions change;
+// the split symbols remain, as do their other references. Linked bytes are identical.
+//
+// Each entry is proposed by `python3 -m tools.conveyor.pipeline.reloc_split derive
+// <fn> --candidate <IDO .o>`, which refuses a wrong global or a wrong addend.
+// `reloc_split check` verifies every entry against the ROM word it names.
+// Regenerate: make extract (GLOBAL_ASM slots). Promoted slots keep their asm.
+// See cloud/work/boot_tail_promotion/WAVE4.md.
+
+// func_80010A40
+rom:0x116FC reloc:MIPS_HI16 symbol:D_80038228 addend:0x4 // was D_8003822C
+rom:0x11708 reloc:MIPS_LO16 symbol:D_80038228 addend:0x4 // was D_8003822C
+
+// func_80017108
+rom:0x17D3C reloc:MIPS_HI16 symbol:D_8003DA28 addend:0x800 // was D_8003E228
+rom:0x17D48 reloc:MIPS_LO16 symbol:D_8003DA28 addend:0x800 // was D_8003E228
+
+// func_800171C0
+rom:0x17DD0 reloc:MIPS_HI16 symbol:D_800426B0 addend:0x18 // was D_800426C8
+rom:0x17DD4 reloc:MIPS_HI16 symbol:D_800426B0 addend:0x30 // was D_800426E0
+rom:0x17DD8 reloc:MIPS_HI16 symbol:D_800426B0 addend:0x48 // was D_800426F8
+rom:0x17DE4 reloc:MIPS_LO16 symbol:D_800426B0 addend:0x48 // was D_800426F8
+rom:0x17DE8 reloc:MIPS_LO16 symbol:D_800426B0 addend:0x30 // was D_800426E0
+rom:0x17DEC reloc:MIPS_LO16 symbol:D_800426B0 addend:0x18 // was D_800426C8
+
+// func_800175B4
+rom:0x181B4 reloc:MIPS_HI16 symbol:D_80043EB8 addend:0x7FC0 // was D_8004BE78
+rom:0x181CC reloc:MIPS_LO16 symbol:D_80043EB8 addend:0x7FC0 // was D_8004BE78
+
+// func_80018B8C
+rom:0x197C8 reloc:MIPS_HI16 symbol:D_80043EB8 addend:0xFC6 // was D_80044E7E
+rom:0x197D4 reloc:MIPS_LO16 symbol:D_80043EB8 addend:0xFC6 // was D_80044E7E
+
+// func_80018E6C
+rom:0x19A7C reloc:MIPS_HI16 symbol:D_80043EB8 addend:0x7FC0 // was D_8004BE78
+rom:0x19A84 reloc:MIPS_LO16 symbol:D_80043EB8 addend:0x7FC0 // was D_8004BE78
+
+// func_80018EB4
+rom:0x19AF4 reloc:MIPS_HI16 symbol:D_80043EB8 addend:0xFC5 // was D_80044E7D
+rom:0x19B00 reloc:MIPS_LO16 symbol:D_80043EB8 addend:0xFC5 // was D_80044E7D
+
+// func_80018F20
+rom:0x19B54 reloc:MIPS_HI16 symbol:D_80043EB8 addend:0xFC2 // was D_80044E7A
+rom:0x19B60 reloc:MIPS_LO16 symbol:D_80043EB8 addend:0xFC2 // was D_80044E7A
+
+// func_80018FEC
+rom:0x19C1C reloc:MIPS_HI16 symbol:D_80043EB8 addend:0xFC0 // was D_80044E78
+rom:0x19C2C reloc:MIPS_LO16 symbol:D_80043EB8 addend:0xFC0 // was D_80044E78
+
+// func_800193C8
+rom:0x19FFC reloc:MIPS_HI16 symbol:D_80043EB8 addend:0xFC4 // was D_80044E7C
+rom:0x1A008 reloc:MIPS_LO16 symbol:D_80043EB8 addend:0xFC4 // was D_80044E7C
+
+// func_800199F4
+rom:0x1A5FC reloc:MIPS_HI16 symbol:D_80043EB8 addend:0x7FC0 // was D_8004BE78
+rom:0x1A604 reloc:MIPS_LO16 symbol:D_80043EB8 addend:0x7FC0 // was D_8004BE78
+
+// func_8001C1D8
+rom:0x1CE08 reloc:MIPS_HI16 symbol:D_8004BEB8 addend:0x3400 // was D_8004F2B8
+rom:0x1CE10 reloc:MIPS_LO16 symbol:D_8004BEB8 addend:0x3400 // was D_8004F2B8
+rom:0x1CED0 reloc:MIPS_HI16 symbol:D_8004F300 addend:0x500 // was D_8004F800
+rom:0x1CED4 reloc:MIPS_LO16 symbol:D_8004F300 addend:0x500 // was D_8004F800
+rom:0x1CF14 reloc:MIPS_HI16 symbol:D_8004F300 addend:0x140 // was D_8004F440
+rom:0x1CF1C reloc:MIPS_LO16 symbol:D_8004F300 addend:0x140 // was D_8004F440
+rom:0x1CF4C reloc:MIPS_HI16 symbol:D_8004BE98 addend:0x20 // was D_8004BEB8
+rom:0x1CF50 reloc:MIPS_LO16 symbol:D_8004BE98 addend:0x20 // was D_8004BEB8
+
+// func_8001E9B0
+rom:0x1F5D0 reloc:MIPS_HI16 symbol:D_80050A50 addend:0x10 // was D_80050A60
+rom:0x1F5D4 reloc:MIPS_HI16 symbol:D_80050A50 addend:0x20 // was D_80050A70
+rom:0x1F5D8 reloc:MIPS_HI16 symbol:D_80050A50 addend:0x30 // was D_80050A80
+rom:0x1F5E4 reloc:MIPS_LO16 symbol:D_80050A50 addend:0x30 // was D_80050A80
+rom:0x1F5E8 reloc:MIPS_LO16 symbol:D_80050A50 addend:0x20 // was D_80050A70
+rom:0x1F5EC reloc:MIPS_LO16 symbol:D_80050A50 addend:0x10 // was D_80050A60
+
+// func_8001EE34
+rom:0x1FA68 reloc:MIPS_HI16 symbol:D_80050548 addend:0x100 // was D_80050648
+rom:0x1FA6C reloc:MIPS_LO16 symbol:D_80050548 addend:0x100 // was D_80050648
+
+// func_800218CC
+rom:0x224D0 reloc:MIPS_HI16 symbol:D_80056160 addend:0x80 // was D_800561E0
+rom:0x224D4 reloc:MIPS_LO16 symbol:D_80056160 addend:0x80 // was D_800561E0
+rom:0x22510 reloc:MIPS_HI16 symbol:D_800561E0 addend:0x20 // was D_80056200
+rom:0x22514 reloc:MIPS_LO16 symbol:D_800561E0 addend:0x20 // was D_80056200
+
+// func_800251A8
+rom:0x25DB0 reloc:MIPS_HI16 symbol:D_80056230 addend:0x2450 // was D_80058680
+rom:0x25DB4 reloc:MIPS_LO16 symbol:D_80056230 addend:0x2450 // was D_80058680
+
+// func_80025C68
+rom:0x2688C reloc:MIPS_HI16 symbol:D_80056230 addend:0x2450 // was D_80058680
+rom:0x2689C reloc:MIPS_LO16 symbol:D_80056230 addend:0x2450 // was D_80058680
+rom:0x268F8 reloc:MIPS_HI16 symbol:D_80058698 addend:0x8 // was D_800586A0
+rom:0x26908 reloc:MIPS_LO16 symbol:D_80058698 addend:0x8 // was D_800586A0
+
+// func_80025D84
+rom:0x26984 reloc:MIPS_HI16 symbol:D_80056230 addend:0x2450 // was D_80058680
+rom:0x26988 reloc:MIPS_LO16 symbol:D_80056230 addend:0x2450 // was D_80058680
+
+// func_80025DC0
+rom:0x26A6C reloc:MIPS_HI16 symbol:D_80058698 addend:0x8 // was D_800586A0
+rom:0x26A70 reloc:MIPS_LO16 symbol:D_80058698 addend:0x8 // was D_800586A0
+
+// func_8001144C
+rom:0x12070 reloc:MIPS_HI16 symbol:D_800382D8 addend:0x4 // was D_800382DC
+rom:0x12074 reloc:MIPS_LO16 symbol:D_800382D8 addend:0x4 // was D_800382DC
