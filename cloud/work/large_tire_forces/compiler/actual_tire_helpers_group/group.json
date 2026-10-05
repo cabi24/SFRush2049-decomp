@@ -1,0 +1,11 @@
+{
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800E23A4",
+    "camera_collision_avoid",
+    "camera_follow_target"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+}

@@ -1,0 +1,74 @@
+{
+  "source_sha256": "b70aa0cc7d4df5814feaa75c743fe2fb6ea57a4ce54a8eed32c91221212f4640",
+  "manifest_sha256": "3d57df4f99444cd87fda13f917e39629d5a0def4f3500dcbd2b339545b28cf4f",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "comparisons": {
+    "mode_select_input": {
+      "differing": 20,
+      "total": 38,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "entity_transform_calc": {
+      "differing": 0,
+      "total": 110,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "client_sync": {
+      "differing": 0,
+      "total": 54,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "entity_hierarchy_update": {
+      "differing": 0,
+      "total": 34,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80091BA8": {
+      "differing": 0,
+      "total": 21,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80091B00": {
+      "differing": 11,
+      "total": 42,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "scheduler_recv": {
+      "differing": 0,
+      "total": 40,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800DFBA0": {
+      "differing": 294,
+      "total": 298,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_801406C0 at .text+0x8c8"
+      ],
+      "extra_words": 42
+    }
+  }
+}

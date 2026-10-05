@@ -1,0 +1,16 @@
+{
+  "target_id": "camera_target_track",
+  "slot": {
+    "kind": "function",
+    "size": 636,
+    "target_id": "camera_target_track",
+    "vaddr": 2148199780
+  },
+  "main_lock_sha256": "b6427ddd9186cfb0e9381f16db90008063e0bfde5cf47c62a35903b66df89a0c",
+  "private_lock_sha256": "213d8da140b5663952b60245effbc75c90cd0a1b5d35841bb6da1d8e0d73194b",
+  "main_locked": false,
+  "private_locked": false,
+  "locked_overlaps": [],
+  "archive_full_definition_paths_before_packet": [],
+  "raw_alias_archive_paths_before_packet": []
+}

@@ -1,0 +1,13 @@
+ASMPROC src/rom/lib_e9a0.c
+cfe: Warning 581: src/rom/lib_e9a0.c:63: Macro OS_MESG_TYPE_LOOPBACK redefined.
+cfe: Warning 581: src/rom/lib_e9a0.c:64: Macro OS_MESG_TYPE_DMAREAD redefined.
+cfe: Warning 581: src/rom/lib_e9a0.c:65: Macro OS_MESG_TYPE_DMAWRITE redefined.
+cfe: Warning 581: src/rom/lib_e9a0.c:70: Macro IO_WRITE redefined.
+cfe: Warning 581: src/rom/lib_e9a0.c:85: Macro K1_TO_PHYS redefined.
+LD build/us/rush2049.us.elf
+/usr/bin/mips-linux-gnu-ld.bfd: warning: build/us/rush2049.us.elf has a LOAD segment with RWX permissions
+OBJCOPY build/us/rush2049.us.z64
+Build complete: build/us/rush2049.us.z64
+Verifying built ROM hash...
+build/us/rush2049.us.z64: OK
+ROM matches!

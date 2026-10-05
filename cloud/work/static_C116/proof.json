@@ -1,0 +1,28 @@
+{
+  "target_id": "__scHandlePreNMI",
+  "original_target_roundtrip": [
+    true,
+    null
+  ],
+  "accepted_credit": 0,
+  "results": [
+    {
+      "source": "cloud/work/static_C116/__scHandlePreNMI.c",
+      "source_sha256": "818610cf01e275a45241de72ed9a9f325777a41c194271c2aa51dda9c896bcaf",
+      "flags": "/* flags: -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm */",
+      "object_sha256": "aaeff22e3c129ac6018987a81f71c63dd42797b09a9d60cd0016aaf0fbe3b59a",
+      "canonical_strict_including_stack": 0,
+      "original_bytes": 96,
+      "true_symbol_bytes": 96,
+      "emitted_text_bytes": 96,
+      "frame_bytes": 24,
+      "full_word_differences": 0,
+      "extra_nonzero_words": 0,
+      "masks": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "full_native_match": true
+    }
+  ]
+}

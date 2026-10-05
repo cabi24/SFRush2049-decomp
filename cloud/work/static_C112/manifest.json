@@ -1,0 +1,25 @@
+{
+  "status": "frozen exact full native research, pending prefix recipe/gates",
+  "source": "cloud/work/static_C112/__scExecTask.c",
+  "source_sha256": "8ab5410be4de524ca1217b59afbe75db9c52ec4a6d9588e4fadad504b8010df9",
+  "flags": "/* flags: -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm */",
+  "target_id": "__scExecTask",
+  "original_address": "0x80000C54",
+  "original_bytes": 280,
+  "true_symbol_bytes": 280,
+  "original_words_exact": 70,
+  "strict_including_stack": 0,
+  "frame_bytes": 32,
+  "section_bytes": 288,
+  "trailing_zero_section_padding_bytes": 8,
+  "masks": 0,
+  "unknown_unverified_relocations": 0,
+  "accepted_credit": 0,
+  "required_declarations": [
+    "extern s16 __osScTaskCount;",
+    "extern s32 __osScPendingSwap;",
+    "extern u32 __osScSwapCount;"
+  ],
+  "required_context": "Existing OSSched/OSScTask message helper/framebuffer helper definitions unchanged. Stored actual rv comes directly from actual osJamMesg and remains unread, matching SDK donor.",
+  "provenance": "Independent full native scheduler task completion/notification, signed-half graphics-task decrement and swap timing. Original SDK __scTaskComplete supplies real int rv local/assignment; native actual osJamMesg store atsp1C is preserved and dependence on genuinely unread donor rv disclosed. No fabricated pressure/storage/inputs/runtime work/qualifiers/source shaping."
+}

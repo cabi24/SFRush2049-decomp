@@ -1,0 +1,15 @@
+{
+  "reviewed_draft_sha256": "dff042090648401770e4a833c658d59d57061d3df61339095b7d7ce6cdfb2295",
+  "pytest_exit": 0,
+  "collected_and_passed": 121,
+  "test_sets": [
+    "tests/conveyor/test_owned_data.py",
+    "tests/conveyor/test_existing_storage.py",
+    "tests/conveyor/test_initialize_storage.py",
+    "cloud/work/static_C85/proposal/test_owned_table_extent.py"
+  ],
+  "test_method": "Private module injected at the production package name and production __file__; live helper unchanged.",
+  "log_sha256": "9f987b2f573532331f033712a27a7be4d492a4b8a13083c20e6f76e9846f40b3",
+  "coverage_added": 0,
+  "integration_status": "Frozen proposal; accepted-source, locks, registry and Makefile not changed."
+}

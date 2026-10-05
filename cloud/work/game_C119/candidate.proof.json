@@ -1,0 +1,12 @@
+{
+  "object": "build/C119/candidate.o",
+  "object_sha256": "aec8af0dbe5baa2fc52546f385ec261dd5579c69825bbe0e46a3a796879ae8b5",
+  "results": [
+    {
+      "name": "cpak_read",
+      "slot_bytes": 848,
+      "true_symbol_bytes": 852,
+      "refusal": "cpak_read: 1 extra words (nonzero beyond target length)"
+    }
+  ]
+}

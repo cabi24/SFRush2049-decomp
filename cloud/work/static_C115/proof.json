@@ -1,0 +1,52 @@
+{
+  "target_id": "__scMain",
+  "original_target_roundtrip": [
+    true,
+    null
+  ],
+  "accepted_credit": 0,
+  "results": [
+    {
+      "source": "cloud/work/static_C115/__scMain.c",
+      "source_sha256": "603663d0d1be36dbe61b51a03cb58de0c5fa4795d62960386e0d0ac3466e2700",
+      "flags": "/* flags: -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm */",
+      "object_sha256": "67829cba5bce30332bbc98a8f31c79c4a169888b3e1299feb015e88f8b9518e6",
+      "canonical_strict_including_stack": 235,
+      "original_bytes": 324,
+      "true_symbol_bytes": 328,
+      "emitted_text_bytes": 336,
+      "frame_bytes": 40,
+      "full_word_differences": 56,
+      "extra_nonzero_words": 0,
+      "masks": 2,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x40",
+        ".rodata+0x0 at +0x48"
+      ],
+      "errors": [],
+      "full_native_match": false
+    },
+    {
+      "source": "cloud/work/static_C115/__scMain.native_time_words.c",
+      "source_sha256": "b64bd54b81b23c1516e7f3347741f5021170dca28c15c787811a56d84a3a0b86",
+      "flags": "/* flags: -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm */",
+      "object_sha256": "55bea2846c7e472617c9d9f19658dd3dc0b53a9b351d1660e8ccca8362294009",
+      "canonical_strict_including_stack": 1213,
+      "original_bytes": 324,
+      "true_symbol_bytes": 344,
+      "emitted_text_bytes": 352,
+      "frame_bytes": 48,
+      "full_word_differences": 68,
+      "extra_nonzero_words": 3,
+      "masks": 2,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x40",
+        ".rodata+0x0 at +0x48"
+      ],
+      "errors": [],
+      "full_native_match": false
+    }
+  ]
+}

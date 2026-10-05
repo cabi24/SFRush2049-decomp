@@ -1,0 +1,19 @@
+{
+  "accepted": false,
+  "source_sha256": "c0e8089cd65e7002b9bff5885cbc7fbb4a20cb3e7d23332308d02211d7a81bbf",
+  "object_sha256": "e48e9a4507b71ff9a8731244a1d3d6081c1272fa38fdc5c11360cde5a6af3f57",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "relocation": "protected blob_group.relocate, full literal section bytes and every HI/LO site checked against image",
+  "extent_bytes": 1688,
+  "word_diffs": 8,
+  "difference_word_indices": [
+    179,
+    190,
+    329,
+    332,
+    334,
+    335,
+    337,
+    339
+  ]
+}

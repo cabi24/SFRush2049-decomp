@@ -1,0 +1,31 @@
+{
+  "source_sha256": "ac2e0e0d7dd780b1f647fcdbc179f4da2b5a8229d307bce141ff995433b3876c",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "object_sha256": "e850edf5fe14b778ff37e99da3c0843a7317fdf6510e87bf8863e536dfc1afa3",
+  "canonical": {
+    "func_800A3724": {
+      "differing": 22,
+      "total": 22,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "car_lod_select": {
+      "differing": 72,
+      "total": 81,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 15
+    },
+    "func_80091FBC": {
+      "differing": 0,
+      "total": 88,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

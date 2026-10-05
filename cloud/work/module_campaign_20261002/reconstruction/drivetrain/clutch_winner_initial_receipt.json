@@ -1,0 +1,19 @@
+{
+  "source_sha256": "3984d787b9648243b82aa428e52c358dd528c80c6c72e29e2e4a6568ebdeac5b",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "comparison": {
+    "differing": 0,
+    "total": 107,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0x0",
+      ".rodata+0x0 at +0x4",
+      ".rodata+0x4 at +0x10",
+      ".rodata+0x4 at +0x2c"
+    ],
+    "errors": [],
+    "extra_words": 0
+  },
+  "accepted": false,
+  "object_sha256": "6ee0e13c07cc89ba9940bde73a25f8128df50bc91507c3706bafc8c7c6b2cd3d"
+}

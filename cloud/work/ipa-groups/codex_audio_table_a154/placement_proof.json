@@ -1,0 +1,6 @@
+{
+  "claims": [],
+  "source_sha256": "40072afd28d510be6cd4eaac6b278880034767a9a225fe2289f42f66ee7c587a",
+  "manifest_sha256": "82e397ba7f925ac176f985450c12b6f1f16e94efa33c0ab38f165efb30233a1c",
+  "refusal": ".rodata: unaligned jump table reference"
+}

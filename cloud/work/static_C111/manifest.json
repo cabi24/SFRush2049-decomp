@@ -1,0 +1,23 @@
+{
+  "status": "frozen exact full native research, pending prefix recipe/gates",
+  "source": "cloud/work/static_C111/__scSchedule.c",
+  "source_sha256": "9d34f29334ee06ceb5161d2eea8adf862168ce74fedbc14bb0467d9df8ec22ab",
+  "flags": "/* flags: -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm */",
+  "target_id": "__scSchedule",
+  "original_address": "0x80000780",
+  "original_bytes": 256,
+  "true_symbol_bytes": 256,
+  "original_words_exact": 64,
+  "strict_including_stack": 0,
+  "frame_bytes": 40,
+  "section_bytes": 256,
+  "masks": 0,
+  "unknown_unverified_relocations": 0,
+  "accepted_credit": 0,
+  "required_declarations": [
+    "extern void __scHandlePreNMI(OSSched *);",
+    "extern s32 __scScheduleCore(OSSched *, OSScTask **, OSScTask **, s32);"
+  ],
+  "required_context": "Existing OSSched/OSScTask/OSMesg and normal SDK message helpers unchanged. All msg/state/sp/dp locals consumed.",
+  "provenance": "Independent native scheduler return-queue draining and audio preemption/scheduling, informed by original SDK task-drain portion of __scHandleRetrace and older unaccepted scheduler source. Physical misleading helper names retained with native contracts; no fake pressure/inputs/work/source shaping."
+}

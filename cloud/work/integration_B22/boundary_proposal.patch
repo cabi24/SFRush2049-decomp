@@ -1,0 +1,366 @@
+--- /dev/null
++++ b/tools/conveyor/pipeline/owned_text.py
+@@ -0,0 +1,191 @@
++"""Explicit original TU text boundaries and proven non-code zero fill.
++
++A boundary belongs to a real SPLAT segment, survives C/asm conversion, and
++never manufactures a C function or credits linker fill as C body bytes.
++"""
++import hashlib,re
++from pathlib import Path
++
++class TextBoundaryError(ValueError):
++    pass
++
++def _sha(path):
++    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
++
++def _path(value):
++    if not isinstance(value,str) or not re.fullmatch(r'[A-Za-z0-9_./-]+',value):
++        raise TextBoundaryError('invalid boundary path')
++    p=Path(value)
++    if p.is_absolute() or '..' in p.parts:
++        raise TextBoundaryError('boundary path must be repository-relative')
++    return p.as_posix()
++
++def _int(value):
++    return int(value,0) if isinstance(value,str) else int(value)
++
++def _symbols(repo):
++    result={}
++    for line in (Path(repo)/'symbol_addrs.us.txt').read_text().splitlines():
++        m=re.match(r'\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*0x([0-9a-fA-F]+)\s*;',line)
++        if m:result[m[1]]=int(m[2],16)
++    return result
++
++def _checked(repo,row,check_rom=True):
++    from . import layout,lock
++    repo=Path(repo);r=dict(row)
++    for key in ('owner','function'):
++        if not re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*',r[key]):
++            raise TextBoundaryError('invalid boundary identifier')
++    for key in ('tu','source','asm_authority'):
++        r[key]=_path(r[key])
++    for key in ('rom_start','vram_start','extent_bytes','function_offset','logical_body_bytes','padding_bytes','next_rom_start'):
++        r[key]=_int(r[key])
++    start=r['rom_start'];size=r['extent_bytes'];body_end=r['function_offset']+r['logical_body_bytes']
++    if (min(start,r['function_offset'])<0 or r['logical_body_bytes']<=0 or r['padding_bytes']<=0 or
++        any(r[k]%4 for k in ('extent_bytes','function_offset','logical_body_bytes','padding_bytes')) or
++        body_end+r['padding_bytes']!=size or r['next_rom_start']!=start+size or
++        r['vram_start']!=start+layout.VRAM_DELTA):
++        raise TextBoundaryError('invalid logical body / zero-fill / original extent')
++    subsegments,_=layout.parse_subsegments(repo/'splat.us.yaml')
++    indices=[i for i,s in enumerate(subsegments) if s['off']==start]
++    if len(indices)!=1 or indices[0]+1>=len(subsegments):
++        raise TextBoundaryError('original boundary has no unique following SPLAT segment')
++    i=indices[0];sub=subsegments[i]
++    if subsegments[i+1]['off']!=r['next_rom_start']:
++        raise TextBoundaryError('following SPLAT boundary changed')
++    if sub['type']=='c':
++        if 'src/'+sub['name']+'.c'!=r['tu']:
++            raise TextBoundaryError('converted boundary belongs to another TU')
++        object_rel='build/us/'+str(Path(r['tu']).with_suffix('.o'))
++        r['converted']=True
++    elif sub['type']=='asm':
++        if sub['name']:
++            raise TextBoundaryError('named assembly boundary requires separate proof')
++        object_rel='build/us/asm/us/'+format(start,'X')+'.o'
++        r['converted']=False
++    else:
++        raise TextBoundaryError('boundary is not a real code segment')
++    r['input']=object_rel+'(.text)'
++    symbols=_symbols(repo)
++    aliases=r['aliases']
++    if not aliases or len({a['symbol'] for a in aliases})!=len(aliases):
++        raise TextBoundaryError('missing or duplicate authoritative boundary aliases')
++    for a in aliases:
++        if not re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*',a['symbol']) or not 0<=_int(a['offset'])<=size:
++            raise TextBoundaryError('invalid boundary alias')
++        if symbols.get(a['symbol'])!=r['vram_start']+_int(a['offset']):
++            raise TextBoundaryError('authoritative boundary address changed: '+a['symbol'])
++    if not any(a['symbol']==r['function'] and _int(a['offset'])==r['function_offset'] for a in aliases):
++        raise TextBoundaryError('logical function lacks its authoritative entry alias')
++    if not any(_int(a['offset'])==0 for a in aliases) or not any(_int(a['offset'])==size for a in aliases):
++        raise TextBoundaryError('both original TU endpoints need authoritative aliases')
++    if check_rom:
++        rom=(repo/'baserom.us.z64').read_bytes();original=rom[start:start+size];padding=original[body_end:]
++        if len(original)!=size or hashlib.sha256(original).hexdigest()!=r['retail_extent_sha256']:
++            raise TextBoundaryError('original full text extent changed')
++        if len(padding)!=r['padding_bytes'] or any(padding) or hashlib.sha256(padding).hexdigest()!=r['padding_sha256']:
++            raise TextBoundaryError('original trailing bytes are not the proven zero fill')
++    asm=repo/r['asm_authority']
++    if _sha(asm)!=r['asm_authority_sha256']:
++        raise TextBoundaryError('original endlabel authority changed')
++    text=asm.read_text();marker='endlabel '+r['function']
++    if text.count(marker)!=1:
++        raise TextBoundaryError('logical endpoint is not unique')
++    body,tail=text.split(marker)
++    body_words=re.findall(r'/\*\s*[0-9a-fA-F]+\s+([0-9a-fA-F]{8})\s+([0-9a-fA-F]{8})\s*\*/',body)
++    tail_words=re.findall(r'/\*\s*[0-9a-fA-F]+\s+([0-9a-fA-F]{8})\s+([0-9a-fA-F]{8})\s*\*/',tail)
++    address=r['vram_start']+r['function_offset']
++    expected_addresses=list(range(address,address+r['logical_body_bytes'],4))
++    if [int(v,16) for v,w in body_words]!=expected_addresses or len(body_words)*4!=r['logical_body_bytes']:
++        raise TextBoundaryError('original logical body endpoint/extent changed')
++    if [int(v,16) for v,w in tail_words]!=list(range(address+r['logical_body_bytes'],r['vram_start']+size,4)) or any(int(w,16) for v,w in tail_words):
++        raise TextBoundaryError('original assembly tail is not exactly the proven fill')
++    if check_rom and b''.join(int(w,16).to_bytes(4,'big') for v,w in body_words)!=original[r['function_offset']:body_end]:
++        raise TextBoundaryError('original logical body differs from retail')
++    source=repo/r['source']
++    if _sha(source)!=r['source_sha256'] or lock.body_sha(source,r['function'])!=r['body_sha256']:
++        raise TextBoundaryError('proven canonical body/source changed')
++    if source.read_text().splitlines()[0]!='/* flags: '+r['flags']+' */':
++        raise TextBoundaryError('literal canonical flags changed')
++    if r['converted']:
++        from ..seeds.extract_candidates import extract_functions
++        allowed = {a['symbol'] for a in aliases if _int(a['offset']) < size}
++        live_text = (repo/r['tu']).read_text()
++        if re.search(r'\b(?:asm|__asm__)\s*\(', live_text):
++            raise TextBoundaryError('inline assembly cannot replace proven linker fill')
++        if any(name not in allowed for name, _, _ in extract_functions((repo/r['tu']).read_text())):
++            raise TextBoundaryError('live TU contains an unproven additional function')
++        actual=lock.body_sha(repo/r['tu'],r['function'])
++        if actual is not None and actual!=r['body_sha256']:
++            raise TextBoundaryError('live boundary function differs from proven canonical body')
++    return r
++
++def boundaries(repo,check_rom=True):
++    from .owned_data import load_registry
++    registry=load_registry(repo);rows=registry.get('text_boundaries',[])
++    if not isinstance(rows,list):raise TextBoundaryError('text_boundaries must be a list')
++    result=[];owners=set();ranges=[];tus=set()
++    for row in rows:
++        r=_checked(repo,row,check_rom=check_rom)
++        if r['owner'] in owners or r['tu'] in tus or any(r['rom_start']<end and start<r['next_rom_start'] for start,end in ranges):
++            raise TextBoundaryError('duplicate/overlapping real text boundaries')
++        owners.add(r['owner']);tus.add(r['tu']);ranges.append((r['rom_start'],r['next_rom_start']));result.append(r)
++    return result
++
++def rewrite_linker(text,repo):
++    # Removing metadata restores the genuine original input, never stale fill.
++    pattern=r'/\* ROM_TEXT_BOUNDARY_BEGIN ([A-Za-z0-9_./-]+\(\.text\)) \*/.*?/\* ROM_TEXT_BOUNDARY_END \1 \*/'
++    text=re.sub(pattern,lambda m:m.group(1)+';',text,flags=re.S)
++    for r in boundaries(repo):
++        original=r['input']+';'
++        if text.count(original)!=1:raise TextBoundaryError('boundary input missing or ambiguous')
++        indent=re.search(r'(?m)^([ \t]*)'+re.escape(original),text).group(1)
++        prefix='rom_text_'+r['owner'];logical=r['function_offset']+r['logical_body_bytes']
++        lines=['/* ROM_TEXT_BOUNDARY_BEGIN '+r['input']+' */',prefix+'_START = .;',original,prefix+'_INPUT_END = .;',
++               'ASSERT(ABSOLUTE('+prefix+'_START) == '+hex(r['vram_start'])+', "original text owner moved");',
++               'ASSERT('+prefix+'_INPUT_END == '+prefix+'_START + '+hex(logical)+' || '+prefix+'_INPUT_END == '+prefix+'_START + '+hex(r['extent_bytes'])+', "unproven text owner extent");',
++               *['ASSERT(ABSOLUTE('+a['symbol']+') == '+hex(r['vram_start']+_int(a['offset']))+', "original text alias moved");' for a in r['aliases']],
++               'FILL(0x00000000);','. = '+prefix+'_START + '+hex(r['extent_bytes'])+';',prefix+'_END = .;',
++               '/* ROM_TEXT_BOUNDARY_END '+r['input']+' */']
++        text=text.replace(original,('\n'+indent).join(lines),1)
++    return text
++
++def package_paths(repo,tu):
++    repo=Path(repo);rel=str(Path(tu).relative_to(repo)) if Path(tu).is_absolute() else str(tu)
++    rows=[r for r in boundaries(repo) if r['tu']==rel]
++    if not rows:return []
++    paths={'rom_owned_data.json','splat.us.yaml','symbol_addrs.us.txt','Makefile','rush2049.us.ld','tools/conveyor/pipeline/owned_text.py','tools/conveyor/pipeline/owned_data.py','tools/conveyor/pipeline/layout.py'}
++    for r in rows:paths.update((r['source'],r['asm_authority']))
++    return [repo/p for p in sorted(paths)]
++
++def accounting(repo):
++    # Reporting needs the committed ASM/source/alias proofs, not a ROM upload.
++    # Linker generation and promotion packaging always retain full ROM checks.
++    return {(r['tu'],r['function']):r for r in boundaries(repo,check_rom=False)}
++
++
++def dependency_paths(repo):
++    """List inputs before validation, so changed invalid bodies force a refusal.
++
++    Validation belongs to linker generation. Running it in make's shell path
++    expansion would turn an invalid body into an empty dependency list.
++    """
++    from .owned_data import load_registry
++    repo=Path(repo);rows=load_registry(repo).get('text_boundaries',[])
++    if not isinstance(rows,list):raise TextBoundaryError('text_boundaries must be a list')
++    paths=set()
++    if rows:paths.update(('splat.us.yaml','symbol_addrs.us.txt','baserom.us.z64'))
++    for r in rows:
++        paths.update(_path(r[key]) for key in ('source','asm_authority'))
++        tu=_path(r['tu']);whole='asm/us/'+format(_int(r['rom_start']),'X')+'.s'
++        paths.update(p for p in (tu,whole) if (repo/p).is_file())
++    return sorted(paths)
++
++
++if __name__=='__main__':
++    import argparse
++    from ..seeds.extract_candidates import REPO
++    parser=argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('command',choices=('inputs',))
++    args=parser.parse_args()
++    print(' '.join(dependency_paths(REPO)))
+--- /dev/null
++++ b/tests/conveyor/unit/test_owned_text.py
+@@ -0,0 +1,86 @@
++import copy,json,shutil,hashlib
++from pathlib import Path
++import pytest
++from tools.conveyor.pipeline import owned_text,owned_data,layout
++ROOT=Path(__file__).resolve().parents[3]
++@pytest.fixture
++def repo(tmp_path):
++ row=json.loads((ROOT/'cloud/work/integration_B22/text_boundary_record.json').read_text())
++ paths=['splat.us.yaml','symbol_addrs.us.txt',row['source'],row['asm_authority'],row['tu']]
++ for rel in paths:
++  dest=tmp_path/rel;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy(ROOT/rel,dest)
++ # Synthetic sparse ROM fixture; real original-ROM gates are separate evidence.
++ data=bytearray(0x8800)
++ words=(0x27bdffe8,0xafbf0014,0x0c003590,0x24040400,0x8fbf0014,0x27bd0018,0x03e00008,0)
++ data[0x8780:0x87a0]=b''.join(word.to_bytes(4,'big') for word in words)
++ row['retail_extent_sha256']=hashlib.sha256(data[0x8700:0x8800]).hexdigest()
++ (tmp_path/'baserom.us.z64').write_bytes(data)
++ registry={'schema':1,'rom_slots':[],'storage_blocks':[],'text_boundaries':[row]};(tmp_path/'rom_owned_data.json').write_text(json.dumps(registry))
++ return tmp_path,row
++
++def test_zero_boundary_round_trip_and_absent_metadata_restore(repo):
++ root,row=repo;text='SECTIONS { .main : {\n        build/us/src/rom/lib_8700.o(.text);\n    }\n}\n'
++ rewritten=owned_data.rewrite_linker(text,root);assert rewritten==owned_data.rewrite_linker(rewritten,root)
++ assert 'FILL(0x00000000);' in rewritten and ' + 0x100;' in rewritten
++ reg=json.loads((root/'rom_owned_data.json').read_text());reg['text_boundaries']=[];(root/'rom_owned_data.json').write_text(json.dumps(reg))
++ assert owned_data.rewrite_linker(rewritten,root)==text
++
++def test_c_and_assembly_regeneration_use_real_owner(repo):
++ root,row=repo;yaml=root/'splat.us.yaml';yaml.write_text(yaml.read_text().replace('[0x8700, c, rom/lib_8700]','[0x8700, asm]'))
++ # Whole-segment revert deletes old nonmatching files; immutable authority survives.
++ (root/row['tu']).unlink()
++ rewritten=owned_text.rewrite_linker('        build/us/asm/us/8700.o(.text);\n',root)
++ assert 'ROM_TEXT_BOUNDARY_BEGIN build/us/asm/us/8700.o(.text)' in rewritten
++ assert 'build/us/src/rom/lib_8700.o' not in rewritten
++
++def test_body_coverage_excludes_fill_and_keeps_static_denominator(repo,monkeypatch):
++ root,row=repo;monkeypatch.setattr(layout,'REPO',root)
++ mapping={'segments':[dict(yaml_name='0x8700',rom_tu='rom/lib_8700',converted=True,refusal=None,functions=[dict(name='osDpSetNextBuffer',size=128,state='promoted'),dict(name='osDpWait',size=128,state='passthrough')])]}
++ before=layout.coverage(mapping);assert before['promoted_bytes']==128 and before['preserved_padding_bytes']==0
++ shutil.copy(ROOT/'cloud/work/integration_B21/lib_8700.candidate.c',root/row['tu']);mapping['segments'][0]['functions'][1]['state']='promoted'
++ after=layout.coverage(mapping);assert after['promoted_functions']-before['promoted_functions']==1
++ assert after['promoted_bytes']-before['promoted_bytes']==32
++ assert after['preserved_padding_bytes']==96 and after['promoted_slot_bytes']==256 and after['static_bytes']==before['static_bytes']==256
++
++def test_alias_or_following_boundary_drift_refused(repo):
++ root,row=repo;symbols=root/'symbol_addrs.us.txt';symbols.write_text(symbols.read_text().replace('osDpWait = 0x80007B80','osDpWait = 0x80007B84'))
++ with pytest.raises(owned_text.TextBoundaryError):owned_text.boundaries(root)
++ shutil.copy(ROOT/'symbol_addrs.us.txt',symbols);yaml=root/'splat.us.yaml';yaml.write_text(yaml.read_text().replace('[0x8800, c, rom/lib_8800]','[0x8810, c, rom/lib_8800]'))
++ with pytest.raises(owned_text.TextBoundaryError):owned_text.boundaries(root)
++
++def test_nonzero_padding_and_changed_canonical_body_refused(repo):
++ root,row=repo;rom=root/'baserom.us.z64';data=bytearray(rom.read_bytes());data[0x87fc]=1;rom.write_bytes(data)
++ with pytest.raises(owned_text.TextBoundaryError):owned_text.boundaries(root)
++ data[0x87fc]=0;rom.write_bytes(data);source=root/row['source'];source.write_text(source.read_text().replace('0x400','0x401'))
++ with pytest.raises(owned_text.TextBoundaryError):owned_text.boundaries(root)
++
++def test_lifecycle_package_preserves_unrelated_storage_and_rom_rows(repo):
++ root,row=repo;original=json.loads((root/'rom_owned_data.json').read_text());paths=owned_data.promotion_paths(root,row['tu'])
++ assert root/'rom_owned_data.json' in paths and root/row['asm_authority'] in paths and root/row['source'] in paths
++ assert root/'tools/conveyor/pipeline/owned_text.py' in paths
++ assert json.loads((root/'rom_owned_data.json').read_text())==original
++
++def test_duplicate_boundaries_and_ambiguous_linker_input_refused(repo):
++ root,row=repo;reg=json.loads((root/'rom_owned_data.json').read_text());reg['text_boundaries'].append(copy.deepcopy(row));(root/'rom_owned_data.json').write_text(json.dumps(reg))
++ with pytest.raises(owned_text.TextBoundaryError):owned_text.boundaries(root)
++ reg['text_boundaries'].pop();(root/'rom_owned_data.json').write_text(json.dumps(reg))
++ with pytest.raises(owned_text.TextBoundaryError):owned_text.rewrite_linker('build/us/src/rom/lib_8700.o(.text);\nbuild/us/src/rom/lib_8700.o(.text);\n',root)
++
++def test_live_c_body_and_invented_padding_function_refused(repo):
++ root,row=repo;tu=root/row['tu'];candidate=(ROOT/'cloud/work/integration_B21/lib_8700.candidate.c').read_text()
++ tu.write_text(candidate.replace('0x400','0x401'))
++ with pytest.raises(owned_text.TextBoundaryError):owned_text.boundaries(root)
++ tu.write_text(candidate+'\nvoid invented_padding(void) {}\n')
++ with pytest.raises(owned_text.TextBoundaryError):owned_text.boundaries(root)
++
++def test_invalid_body_stays_a_linker_dependency_and_inline_fill_is_refused(repo):
++ root,row=repo;tu=root/row['tu'];tu.write_text((ROOT/'cloud/work/integration_B21/lib_8700.candidate.c').read_text()+'\n__asm__(".space 96");\n')
++ assert row['tu'] in owned_text.dependency_paths(root)
++ assert row['asm_authority'] in owned_text.dependency_paths(root)
++ with pytest.raises(owned_text.TextBoundaryError):owned_text.boundaries(root)
++
++
++def test_reporting_without_rom_does_not_relax_linker_validation(repo,monkeypatch):
++ root,row=repo;shutil.copy(ROOT/'cloud/work/integration_B21/lib_8700.candidate.c',root/row['tu']);(root/'baserom.us.z64').unlink()
++ accounting=owned_text.accounting(root);assert accounting[(row['tu'],'osDpWait')]['logical_body_bytes']==32
++ with pytest.raises(FileNotFoundError):owned_text.rewrite_linker('build/us/src/rom/lib_8700.o(.text);\n',root)
+--- a/tools/conveyor/pipeline/owned_data.py
++++ b/tools/conveyor/pipeline/owned_data.py
+@@ -210,7 +210,8 @@
+             lines += ['_binary_' + name + '_end = ABSOLUTE(.);', '_binary_' + name + '_size = ABSOLUTE(_binary_' + name + '_end - _binary_' + name + '_start);']
+         lines += ['/* ROM_OWNED_DATA_END ' + marker + ' */']
+         text = text.replace(original, ('\n' + indent).join(lines))
+-    return text
++    from . import owned_text
++    return owned_text.rewrite_linker(text, repo)
+ 
+ 
+ def companion_block(row):
+@@ -248,6 +249,8 @@
+         from . import owned_storage
+         paths.update(str(Path(p).relative_to(repo)) if Path(p).is_absolute() else _relative(p)
+                      for p in owned_storage.package_paths(repo, tu))
++    from . import owned_text
++    paths.update(str(p.relative_to(repo)) for p in owned_text.package_paths(repo, tu))
+     return [Path(repo) / p for p in sorted(paths)]
+ 
+ 
+--- a/tools/conveyor/pipeline/layout.py
++++ b/tools/conveyor/pipeline/layout.py
+@@ -348,28 +348,43 @@
+     """Linked-C coverage: promoted functions/bytes over the static code range,
+     derived from live TUs cross-checked against the map. Returns a dict."""
+     mapping = mapping or derive()
++    from . import owned_text
++    boundaries = owned_text.accounting(REPO)
+     total_funcs = total_bytes = 0
+-    promoted_funcs = promoted_bytes = 0
++    promoted_funcs = promoted_bytes = promoted_slot_bytes = preserved_padding_bytes = 0
+     per_segment = []
+     for s in mapping["segments"]:
+         if s["refusal"] or not s["functions"]:
+             continue
+-        pf = pb = 0
++        pf = pb = slot_bytes = padding_bytes = 0
+         for f in s["functions"]:
+             total_funcs += 1
+             total_bytes += f["size"]
+             if f.get("state") == "promoted":
+                 pf += 1
+-                pb += f["size"]
++                slot_bytes += f["size"]
++                boundary = boundaries.get(("src/" + s["rom_tu"] + ".c", f["name"]))
++                if boundary:
++                    if f["size"] != boundary["logical_body_bytes"] + boundary["padding_bytes"]:
++                        raise owned_text.TextBoundaryError("coverage slot disagrees with proven logical body and padding")
++                    pb += boundary["logical_body_bytes"]
++                    padding_bytes += boundary["padding_bytes"]
++                else:
++                    pb += f["size"]
+         promoted_funcs += pf
+         promoted_bytes += pb
++        promoted_slot_bytes += slot_bytes
++        preserved_padding_bytes += padding_bytes
+         if s["converted"]:
+             per_segment.append({"segment": s["yaml_name"], "rom_tu": s["rom_tu"],
+                                 "promoted": pf, "functions": len(s["functions"]),
+-                                "bytes": pb})
++                                "bytes": pb, "slot_bytes": slot_bytes,
++                                "preserved_padding_bytes": padding_bytes})
+     return {
+         "promoted_functions": promoted_funcs, "promoted_bytes": promoted_bytes,
+         "static_functions": total_funcs, "static_bytes": total_bytes,
++        "promoted_slot_bytes": promoted_slot_bytes,
++        "preserved_padding_bytes": preserved_padding_bytes,
+         "segments": per_segment,
+     }
+ 
+--- a/Makefile
++++ b/Makefile
+@@ -271,7 +271,8 @@
+ 	$(V)$(PYTHON) -m tools.conveyor.pipeline.owned_data split $< $< $@ --objcopy $(OBJCOPY)
+ 
+ # Reapply ownership before linking even without make extract. Rendering is idempotent.
+-$(LD_SCRIPT): rom_owned_data.json tools/conveyor/pipeline/owned_data.py
++TEXT_BOUNDARY_INPUTS = $(shell $(PYTHON) -m tools.conveyor.pipeline.owned_text inputs)
++$(LD_SCRIPT): rom_owned_data.json tools/conveyor/pipeline/owned_data.py tools/conveyor/pipeline/owned_text.py $(TEXT_BOUNDARY_INPUTS)
+ 	$(V)$(PYTHON) -m tools.conveyor.pipeline.owned_data linker $@
+ 
+ # Companions and metadata are immutable during promotion; force source/asset rebuilds

@@ -1,0 +1,21 @@
+{
+  "status": "frozen complete native nonmatch; explicit true-signature cast does not emit original direct call",
+  "source": "cloud/work/static_C117/__scExec.c",
+  "source_sha256": "00344ac243d38672c002b97f2c4523694cf396362ab16da738b5a91d74de1e5c",
+  "flags": "/* flags: -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm */",
+  "target_id": "__scExec",
+  "original_bytes": 360,
+  "true_symbol_bytes": 376,
+  "strict_including_stack": 775,
+  "frame_bytes": 32,
+  "full_word_differences": 68,
+  "accepted_credit": 0,
+  "zero_input_cache_contract": {
+    "actual_native_call": "JAL osInvalICache with no arguments",
+    "explicit_actual_signature_source": "((void (*)(void))osInvalICache)();",
+    "compiler_output": "LUI/ADDI/JALR (nonmatching)",
+    "common_prototype_preserved": true
+  },
+  "remaining_residual": "Two actual64-bit timestamp stores emit extra LUI; cache cast indirect-call sequence adds two more words, temp ring shifts. No further speculative storage/qualifier/alias/header workaround.",
+  "provenance": "Independent full three-input RCP task execution, actual SDK __scExec and original native current-task/timestamp/state/list-pointer/DP-buffer contracts; consumed actual rv/status check. Existing unchanged physical carriers/globals only."
+}

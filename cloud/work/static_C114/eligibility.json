@@ -1,0 +1,22 @@
+{
+  "locks": [
+    {
+      "path": "matched.lock.json",
+      "sha256": "dc99032030c56842337d770d78bf91af10e4dcd9784160956b5a6adf6b55939d",
+      "entries": []
+    },
+    {
+      "path": "/tmp/rush-static-acceptance-20261002/matched.lock.json",
+      "sha256": "ce3f24c0d62fa034f1a459295309b5eb403e64b6bc7e433bd7f70e188d7d31fe",
+      "entries": []
+    }
+  ],
+  "slot": {
+    "name": "osCreateScheduler",
+    "vaddr": "0x80000450",
+    "size": 388,
+    "state": "passthrough"
+  },
+  "archived_full_cloud_definitions_before_packet": [],
+  "accepted_credit": 0
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "function": "viewport_setup",
+    "round_trip_ok": true,
+    "reason": null,
+    "canonical_old_tier": "raw_word",
+    "canonical_old_sha256": "5bb55a675a0778752e38a430510dc67358281ce1f4e4f870577784078b7ccf41",
+    "fresh_original_assembly_sha256": "c256915880c347bf4875bdf0c9cb1dbd9a3c38cc5a097a1589858943352cf2aa"
+  },
+  {
+    "function": "display_update",
+    "round_trip_ok": true,
+    "reason": null,
+    "canonical_old_tier": "raw_word",
+    "canonical_old_sha256": "4dfdcd4080c92fa0eaa9d03a34e75d2656617e2b3c252199c744ca4426648b1d",
+    "fresh_original_assembly_sha256": "8168ab0ed0cf46b4a6ee03bed14bc2f0c8aa889b261567f59cdd3b449c0005d0"
+  },
+  {
+    "function": "__round_helper",
+    "round_trip_ok": true,
+    "reason": null,
+    "canonical_old_tier": "raw_word",
+    "canonical_old_sha256": "8b615f14901115f24526de672135b2908eacfc37b2e5745d015d5b7f90bfea13",
+    "fresh_original_assembly_sha256": "ca8ce9d32f1ec6fa8cab00e8da8a38c9f8d46eb71668da71ff655e5fbacd6969"
+  },
+  {
+    "function": "__ecvt_internal",
+    "round_trip_ok": true,
+    "reason": null,
+    "canonical_old_tier": "raw_word",
+    "canonical_old_sha256": "b06c535bb45ead920aaf23643eafacc1bc2174400d6670faf657d994a1f15305",
+    "fresh_original_assembly_sha256": "b28b85077a46ff1b7cbcdadc2d536fc5a736288215706e26e3f07ff875b72c68"
+  }
+]

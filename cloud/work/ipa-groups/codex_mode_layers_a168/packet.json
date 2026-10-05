@@ -1,0 +1,99 @@
+{
+  "source_sha256": "6f41dead38c23b2a4c8c33b4adef6143c0e1a47103bf8b7ece82644c880a0b3d",
+  "manifest_sha256": "3d57df4f99444cd87fda13f917e39629d5a0def4f3500dcbd2b339545b28cf4f",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "comparisons": {
+    "mode_select_input": {
+      "differing": 2,
+      "total": 38,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "entity_transform_calc": {
+      "differing": 0,
+      "total": 110,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "client_sync": {
+      "differing": 0,
+      "total": 54,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "entity_hierarchy_update": {
+      "differing": 0,
+      "total": 34,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80091BA8": {
+      "differing": 0,
+      "total": 21,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80091B00": {
+      "differing": 11,
+      "total": 42,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "scheduler_recv": {
+      "differing": 0,
+      "total": 40,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800DFBA0": {
+      "differing": 293,
+      "total": 298,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_801406C0 at .text+0x8d0"
+      ],
+      "extra_words": 44
+    }
+  },
+  "verdict": "NONMATCH",
+  "all_source_sha256": {
+    "group.c": "6f41dead38c23b2a4c8c33b4adef6143c0e1a47103bf8b7ece82644c880a0b3d",
+    "group.json": "3d57df4f99444cd87fda13f917e39629d5a0def4f3500dcbd2b339545b28cf4f"
+  },
+  "unclaimed_context_nonmatches": {
+    "func_80091B00": {
+      "differing": 11,
+      "total": 42,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800DFBA0": {
+      "differing": 293,
+      "total": 298,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_801406C0 at .text+0x8d0"
+      ],
+      "extra_words": 44
+    }
+  }
+}

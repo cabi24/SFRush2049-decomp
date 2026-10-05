@@ -1,0 +1,34 @@
+ASMPROC src/rom/lib_e9a0.c
+cfe: Warning 581: src/rom/lib_e9a0.c:63: Macro OS_MESG_TYPE_LOOPBACK redefined.
+cfe: Warning 581: src/rom/lib_e9a0.c:64: Macro OS_MESG_TYPE_DMAREAD redefined.
+cfe: Warning 581: src/rom/lib_e9a0.c:65: Macro OS_MESG_TYPE_DMAWRITE redefined.
+cfe: Warning 581: src/rom/lib_e9a0.c:70: Macro IO_WRITE redefined.
+cfe: Warning 581: src/rom/lib_e9a0.c:82: Macro K1_TO_PHYS redefined.
+cfe: Warning 709: src/rom/lib_e9a0.c, line 201: Incompatible pointer type assignment
+             osEPiRawStartDma(mb->piHandle, 0x05000510 , (info->bmCtlShadow | 0x80000000));
+ -------------------------------^
+cfe: Warning 709: src/rom/lib_e9a0.c, line 210: Incompatible pointer type assignment
+                 osEPiRawStartDma(mb->piHandle, 0x05000510 , info->bmCtlShadow | 0x10000000 );
+ -----------------------------------^
+cfe: Warning 709: src/rom/lib_e9a0.c, line 211: Incompatible pointer type assignment
+                 osEPiRawStartDma(mb->piHandle, 0x05000510 , info->bmCtlShadow);
+ -----------------------------------^
+cfe: Warning 709: src/rom/lib_e9a0.c, line 212: Incompatible pointer type assignment
+                 osEPiRawReadIo(mb->piHandle, 0x05000508 , &stat);
+ ---------------------------------^
+cfe: Warning 709: src/rom/lib_e9a0.c, line 215: Incompatible pointer type assignment
+                     osEPiRawStartDma(mb->piHandle, 0x05000510 , info->bmCtlShadow | 0x01000000 );
+ ---------------------------------------^
+cfe: Warning 709: src/rom/lib_e9a0.c, line 246: Incompatible pointer type assignment
+                     ret = dm->edma(mb->piHandle, 0 , mb->devAddr, mb->dramAddr, mb->size);
+ -------------------------------------^
+cfe: Warning 709: src/rom/lib_e9a0.c, line 250: Incompatible pointer type assignment
+                     ret = dm->edma(mb->piHandle, 1 , mb->devAddr, mb->dramAddr, mb->size);
+ -------------------------------------^
+LD build/us/rush2049.us.elf
+/usr/bin/mips-linux-gnu-ld.bfd: warning: build/us/rush2049.us.elf has a LOAD segment with RWX permissions
+OBJCOPY build/us/rush2049.us.z64
+Build complete: build/us/rush2049.us.z64
+Verifying built ROM hash...
+build/us/rush2049.us.z64: OK
+ROM matches!

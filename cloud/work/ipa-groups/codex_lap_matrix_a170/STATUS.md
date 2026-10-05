@@ -1,0 +1,5 @@
+# A170 unchanged real matrix-callee context — NONMATCH
+
+Actual stat_lap_split@800FEA00 source is unchanged frozen B8 valid pointer-first source, except adding exact literal flags line1. It consumes all four actualinputs, constructs genuine delta3/output3 arrays and performs signed-square directional table selection; no unused local or pressure buffer. Complete genuine37-word func_800A61B0 from A12 appended as separate retained ordinary context. Both actual entries retained. This previously untested missing-callee contract control leaves stat_lap_split6/152 unchanged, noextras or referenceerrors; matrix0/37 exact already accepted and unclaimed. Full original96-byte frame/array68/80 homes still agree. Initial vector load/store scheduling and commutative signed-product multiplication operand order remain; no further coloring/reflow controls.
+
+No caller stand-in or compiler/scorer mutation. Current main650 lock targetabsent/canonical608-byte interval clear; contextmatrix already accepted and zero newcredit. Frozen hashes/flags/results in packet.json. No publication claim. OriginalB8source/hash untouched.

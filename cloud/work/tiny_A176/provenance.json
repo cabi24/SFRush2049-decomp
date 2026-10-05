@@ -1,0 +1,17 @@
+{
+  "function": "vector_normalize_length",
+  "address": "0x8008B4C4",
+  "native_bytes": 380,
+  "source_sha256": "9aef2684e44fee844bb16d2d8ef9fc1b1f7509bce8b05b78c747ea19d74de5f2",
+  "donors": {
+    "reference/repos/rushtherock/game/visuals.c": "143fb78b0317cfca6e068a2992ffa52b51996184d53c1109769cd969c58ca331",
+    "reference/repos/rushtherock/LIB/fmath.h": "cf14fd9628e3ad952a39d13ff569e9482ebe00ecf1d94b972cf079099c2d32d1"
+  },
+  "source_provenance": [
+    "visuals.c:PointInDir uses two genuine CopyVector and CrossVector macros and actual three-axis basis",
+    "fmath.h:CrossVector comma-expression ordering retained verbatim in operation/operand structure",
+    "Actual N64 guarded reciprocal/scale replaces arcade unconditional direction helper; branch retained exactly",
+    "Unused donor temp omitted; all reconstructed locals consumed"
+  ],
+  "claims": []
+}

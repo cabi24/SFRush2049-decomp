@@ -1,0 +1,9 @@
+{
+  "group_relocation_verified": true,
+  "constant_pool_bytes": 32,
+  "constant_pool_address": "0x80124394",
+  "word_diffs": {
+    "func_800E0B20": 28
+  },
+  "accepted": false
+}

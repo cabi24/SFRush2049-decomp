@@ -1,0 +1,16 @@
+{
+  "status": "frozen complete genuine runtime closure, nonmatch",
+  "source": "cloud/work/game_C106/group.c",
+  "source_sha256": "d3e2317c146928f754d55fd244e129db0bfa3fec456fda8126025b89dfb27bfe",
+  "members": [
+    "entity_anim_texture"
+  ],
+  "context": [
+    "model_bounds_calc",
+    "matrix_scale_apply"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "accepted_credit": 0,
+  "reason": "Original matrix_scale_apply out-of-line but this real closure has only one actual caller; it inlines. Real model_bounds_calc remains independently18/18 exact without historical stand-in callers."
+}

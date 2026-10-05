@@ -1,0 +1,35 @@
+{
+  "source_sha256": "ac2e0e0d7dd780b1f647fcdbc179f4da2b5a8229d307bce141ff995433b3876c",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "object_sha256": "9d957d3b5d89451c7816363efba63242cacd841309e2986ee709a7a4380f49af",
+  "canonical": {
+    "func_800A3724": {
+      "differing": 21,
+      "total": 22,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 2
+    },
+    "car_lod_select": {
+      "differing": 81,
+      "total": 81,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_801460E0 at .text+0x184",
+        "unpaired R_MIPS_HI16 for D_801460E0 at .text+0x104",
+        "unpaired R_MIPS_HI16 for D_801460E0 at .text+0xe4"
+      ],
+      "extra_words": 93
+    },
+    "func_80091FBC": {
+      "differing": 87,
+      "total": 88,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "target_id": "__scHandleRSP",
+  "original_target_roundtrip": [
+    true,
+    null
+  ],
+  "accepted_credit": 0,
+  "results": [
+    {
+      "source": "cloud/work/static_C110/__scHandleRSP.c",
+      "source_sha256": "fc9e1ab936a9002241a38c52efe38018bdb5b412b1ab041099553995906515b8",
+      "flags": "/* flags: -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm */",
+      "object_sha256": "d53d980a43a33932c0dca613afe9efe377174cdf475f419efaaf548e080a9759",
+      "canonical_strict_including_stack": 0,
+      "original_bytes": 380,
+      "true_symbol_bytes": 380,
+      "emitted_text_bytes": 384,
+      "frame_bytes": 40,
+      "full_word_differences": 0,
+      "extra_nonzero_words": 0,
+      "masks": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "full_native_match": true
+    }
+  ]
+}

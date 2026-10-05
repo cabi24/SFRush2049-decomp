@@ -1,0 +1,25 @@
+{
+  "function": "__scTaskReady",
+  "source_sha256": "8ea2455ca998870ac1e0da5d228b6586e4cb3725e22d0c96319a02d6fdbd21fb",
+  "flags": "-g1 -O1 -mips2 -G 0 -non_shared",
+  "original_bytes": 176,
+  "true_symbol_bytes": 176,
+  "canonical_strict_including_stack": 0,
+  "full_word_differences": 0,
+  "extra_nonzero_words": 0,
+  "masks": 0,
+  "unresolved": [],
+  "unverified": [],
+  "errors": [],
+  "original_target_roundtrip": [
+    true,
+    null
+  ],
+  "object_sha256": "70e25825708997f84b23557e60a74eebdf97c4d02e111a81c0ee10f0f8f910d1",
+  "current_module_pin": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "production_recipe_migration_safe": false,
+  "accepted_credit": 0,
+  "research_object_match": true,
+  "production_blocker": "Existing lib1050 accepted viDeadlinePassed and viStub use O2; C67 records native-byte drift for deadline under g1/O1. No supported converted-TU boundary/lock migration command currently exists.",
+  "possible_remedy_under_audit": "Separate genuine SDK scheduler and VI extension at viTickStart80001350/ROM1F50, preserve original native bodies and flags, regenerate real layout/TUs/linker, and verify original full ROM and denominator before promotion. No split yet."
+}

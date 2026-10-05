@@ -1,0 +1,6 @@
+{
+  "review": "C96 explicit-return negative control",
+  "finding": "The cloud extra_words field intentionally counts only nonzero trailing words, so a zero-valued extra instruction can report zero extras. This is not an accepted false MATCH: the control still differs in 65 original words.",
+  "acceptance": "Current accepted bodies additionally pass supported original-placement and full source-built image/ROM gates. No masks, scoring semantics or acceptance gates changed.",
+  "worker_policy": "Continue to inspect actual ELF/native extent and distinguish executable delay-slot words from ordinary alignment; do not turn a negative body into a positive based only on extra_words0."
+}

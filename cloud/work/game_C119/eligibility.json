@@ -1,0 +1,23 @@
+{
+  "locks": [
+    {
+      "path": "blob_matched.lock.json",
+      "sha256": "5417aecd2aceb9b7e2f5a777b3c84b6a012fde1de8943b9ff58d8ca81d033bd8",
+      "exact_keys": []
+    },
+    {
+      "path": "/tmp/rush-static-acceptance-20261002/blob_matched.lock.json",
+      "sha256": "634a6aa98297c69cb4b4e7251013d53a9d10687fcfd0ff66a0706a3ff8adfda6",
+      "exact_keys": []
+    }
+  ],
+  "native_start": "0x800b0180",
+  "native_bytes": 848,
+  "aliases": [
+    "cpak_read",
+    "func_800B0180"
+  ],
+  "full_archived_sources": [],
+  "reservation": "C119",
+  "accepted_credit": 0
+}

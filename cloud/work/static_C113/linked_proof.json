@@ -1,0 +1,22 @@
+{
+  "source": "cloud/work/static_C113/__scScheduleCore.native_test.c",
+  "source_sha256": "be07026ddb9fa75f74cb9815ed072d105c6f77458d921cb250d186d688005f67",
+  "fully_linked_text_bytes": 880,
+  "original_function_bytes": 872,
+  "all_original_text_bytes_exact": true,
+  "native_word_count": 218,
+  "extra_text_zero_bytes": 8,
+  "extra_text_only_zero": true,
+  "table_native_start": "0x8002D4A4",
+  "table_meaningful_bytes": 28,
+  "emitted_rodata_bytes": 32,
+  "all_generated_table_bytes_exact": true,
+  "table_sha256": "296bdccd2705527c030fc06033b427a2139f83edf56a82bc6cb4985e6460065f",
+  "emitted_zero_tail_bytes": 4,
+  "emitted_tail_only_zero": true,
+  "original_excluded_tail_nonzero_bytes": 4,
+  "original_neighbor_sha256": "21bcd658d2e3905e33c37e724cecb360b3275ff3935c77187648ef78691b1a5b",
+  "link_script": "build/C113/private.ld",
+  "ordinary_whole_module_and_owned_data_gates_required": true,
+  "accepted_credit": 0
+}

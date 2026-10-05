@@ -1,0 +1,12 @@
+{
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source_sha256": "97f619ca95c4a5463eec1403f06166ac15a0cd926269c7349214eced4c1ef8ce",
+  "comparison": {
+    "differing": 110,
+    "total": 111,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  }
+}

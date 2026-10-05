@@ -1,0 +1,23 @@
+{
+  "source_sha256": "57c85b9301ce1e70f521c42c5e9d72dabba412fb15a012aa7241e93c6ca1c8a5",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-unlock-compiler/candidates/texture_reconstruction/edge_reuse_height.c",
+  "accepted": false,
+  "canonical_verdict": "4/445 words differ",
+  "comparison": {
+    "differing": 4,
+    "total": 445,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "2d5026a83106b0d783b341c9d595eb21df718f7eae72c94f14685e751f043721",
+  "emitted_words": 448,
+  "aligned": {
+    "aligned_exact": 444,
+    "aligned_opcode": 444,
+    "aligned_opcode_reg": 444
+  },
+  "frame_bytes": 32749
+}

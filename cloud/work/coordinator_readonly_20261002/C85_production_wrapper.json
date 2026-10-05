@@ -1,0 +1,17 @@
+{
+  "function": "fcvt",
+  "frozen_module_sha256": "a49fbfc2c64294ec642baa617e988c3ad5a7b8aa57e007a77eef18f19f75660e",
+  "actual_build_wrapper": "tools/asm-processor/build.py",
+  "full_native_original_text_bytes": 8528,
+  "all_original_text_bytes_exact": true,
+  "logical_table_bytes": 356,
+  "emitted_table_bytes": 368,
+  "table_original_bytes_exact": true,
+  "table_address": "0x8002D558",
+  "excluded_zero_tail_bytes": 12,
+  "following_original_nonzero_bytes": 8,
+  "data_bytes": 0,
+  "object_sha256": "08a589d3e54fbd9ac262f8705c5975835adf3872617c143e2de5cf739e3a7ca3",
+  "full_ROM_or_coverage_claim": false,
+  "production_ownership_support_required": true
+}

@@ -1,0 +1,3 @@
+# B107 follow-up: consumed coordinate intermediate, nonmatch
+
+Original B107 sources and hashes remain unchanged. The single new complete control loads each actual position coordinate into one consumed f32 scalar before its corner addition, following the vecadd input read order. It produces38/164 strict differences and zero nonzero excess words, errors or unresolved/unverified references. It does not improve the original12-word residual. The scalar is consumed in every original x/y/z tire and body addition; no fake storage or pressure is introduced. No coverage or acceptance is claimed. Exact flags, independent result and source hash are in results.json; raw objects/disassembly remain private.

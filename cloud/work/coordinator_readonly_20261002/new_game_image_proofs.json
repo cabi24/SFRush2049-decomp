@@ -1,0 +1,131 @@
+{
+  "original_image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+  "proofs": [
+    {
+      "packet": "func_800D60AC",
+      "object_sha256": "f21e9258ab86006fe61bb571773f52ff26c83e2b0f894c6a69478295bc3e2a41",
+      "members": [
+        {
+          "function": "func_800D60AC",
+          "vaddr": "0x800d60ac",
+          "bytes": 180,
+          "differing": 0,
+          "body_sha256": "5e29126461cdc56658010a0b4de7e5c624f727c1b55f29dd8a5625b8b7e67ca0"
+        }
+      ],
+      "composed_image_exact": true,
+      "accepted_coverage": false
+    },
+    {
+      "packet": "race_init_helper",
+      "object_sha256": "f9668770aef2368122ece66b448d1851690ef566d804a376c72fec3d83633212",
+      "members": [
+        {
+          "function": "race_init_helper",
+          "vaddr": "0x800ec0dc",
+          "bytes": 180,
+          "differing": 0,
+          "body_sha256": "ea8591cf4745b0273963764a4a4ec4a9b29e20e8b094b6cb04430fee23cb43fe"
+        }
+      ],
+      "composed_image_exact": true,
+      "accepted_coverage": false
+    },
+    {
+      "packet": "func_800FDF88",
+      "object_sha256": "80dd1bed7391623a201231395a3004e05da07cd7cf1059c18de057f97a028753",
+      "members": [
+        {
+          "function": "func_800FDF88",
+          "vaddr": "0x800fdf88",
+          "bytes": 248,
+          "differing": 0,
+          "body_sha256": "c2efc3706860379e4ffa7def431d9a7bf429304092f410b0ea69e09845dfd641"
+        }
+      ],
+      "composed_image_exact": true,
+      "accepted_coverage": false
+    },
+    {
+      "packet": "car_mass_set",
+      "object_sha256": "03194d265467627cb563cad56bff7414192b523fdf48682656ad4d1db9b6926b",
+      "members": [
+        {
+          "function": "car_mass_set",
+          "vaddr": "0x800a7ae4",
+          "bytes": 276,
+          "differing": 0,
+          "body_sha256": "ec7e2f2126e3e6ee059a4362e1888d3940d3077bf8eb171230d0bc6cdb914283"
+        }
+      ],
+      "composed_image_exact": true,
+      "accepted_coverage": false
+    },
+    {
+      "packet": "codex_messages_a137",
+      "object_sha256": "a3735f667d6d63f345cc6d63cdb980fc2c292289ee41e6528083e18287b666bd",
+      "members": [
+        {
+          "function": "object_type1_create",
+          "vaddr": "0x800c87f4",
+          "bytes": 104,
+          "differing": 0,
+          "body_sha256": "8902e248dfe436ff4e4a3c37d97a158d163072d888fa3a5ee34eabb4a3a47197"
+        },
+        {
+          "function": "object_type7_create",
+          "vaddr": "0x800c878c",
+          "bytes": 104,
+          "differing": 0,
+          "body_sha256": "3953674972717a957c34adbbb3f877d27c62b831e0743348617436169b0daaca"
+        }
+      ],
+      "composed_image_exact": true,
+      "accepted_coverage": false
+    },
+    {
+      "packet": "codex_transform_b109",
+      "object_sha256": "9620635ea6b69cc607c8a563f38155f3a4a9656301e035a27aa0a30560956f95",
+      "members": [
+        {
+          "function": "entity_transform_calc",
+          "vaddr": "0x80091ca4",
+          "bytes": 440,
+          "differing": 0,
+          "body_sha256": "12cf24b1371782655ff6ccaac6c0e47a73c2eafc31a058ec251f5a701f99c995"
+        },
+        {
+          "function": "client_sync",
+          "vaddr": "0x80091e5c",
+          "bytes": 216,
+          "differing": 0,
+          "body_sha256": "e00bd77c09dae04d25cb1de2a0b41bc572c7c250e42507ee9078efbc0ba245b5"
+        },
+        {
+          "function": "entity_hierarchy_update",
+          "vaddr": "0x80091f34",
+          "bytes": 136,
+          "differing": 0,
+          "body_sha256": "91ae6e572e43923d6b37dcd487074200c38ec930e0485b6a003a5b4ffa0896bf"
+        },
+        {
+          "function": "stat_lap_complete",
+          "vaddr": "0x800fe924",
+          "bytes": 220,
+          "differing": 0,
+          "body_sha256": "101dc3bbf6663579ad460d602c4e688e14ec410e4aae11b236de1cef9a38920a"
+        },
+        {
+          "function": "game_timer_resume",
+          "vaddr": "0x800fe848",
+          "bytes": 220,
+          "differing": 0,
+          "body_sha256": "5297500d8e20b977e756d1cc73ccca7ed36e3fef45c5b73eb4cc1126ad899767"
+        }
+      ],
+      "composed_image_exact": true,
+      "accepted_coverage": false
+    }
+  ],
+  "shared_sources_or_locks_modified": false
+}

@@ -1,0 +1,52 @@
+--- /dev/null
++++ b/tests/conveyor/test_asm_owned_directives.py
+@@ -0,0 +1,49 @@
++"""Bounded incbin must preserve existing data directive sizing/alignment."""
++import importlib.util
++from pathlib import Path
++
++import pytest
++
++
++def parser():
++    path = Path(__file__).resolve().parents[2] / 'tools/asm-processor/asm_processor.py'
++    spec = importlib.util.spec_from_file_location('owned_directive_asm', path)
++    module = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(module)
++    return module
++
++
++@pytest.mark.parametrize('directive', ['.word symbol, 7', '.gpword symbol, 7', '.float 1.0, 2.0'])
++def test_word_directives_align_and_count_each_operand(directive):
++    asm = parser(); block = asm.GlobalAsmBlock('fixture'); block.cur_section = '.rodata'
++    block.process_line('.byte 1', 'utf-8')
++    block.process_line(directive, 'utf-8')
++    assert block.fn_section_sizes['.rodata'] == 12
++
++
++def test_double_directive_aligns_to_word_and_counts_eight_byte_operands():
++    asm = parser(); block = asm.GlobalAsmBlock('fixture'); block.cur_section = '.rodata'
++    block.process_line('.byte 1', 'utf-8')
++    block.process_line('.double 1.0, 2.0', 'utf-8')
++    assert block.fn_section_sizes['.rodata'] == 20
++
++
++@pytest.mark.parametrize('prefix,alignment,total', [(None, 8, 8), ('.word 1', 4, 12)])
++def test_late_double_preserves_mod_eight_alignment(prefix, alignment, total):
++    asm = parser(); block = asm.GlobalAsmBlock('fixture'); block.cur_section = '.late_rodata'
++    if prefix:
++        block.process_line(prefix, 'utf-8')
++    block.process_line('.double 1.0', 'utf-8')
++    assert block.fn_section_sizes['.late_rodata'] == total
++    assert block.late_rodata_alignment == alignment
++    block.process_line('.word 1', 'utf-8')
++    with pytest.raises(asm.Failure, match='different start addresses mod 8'):
++        block.process_line('.double 2.0', 'utf-8')
++
++
++def test_bounded_incbin_mixes_with_existing_numeric_directives(tmp_path, monkeypatch):
++    monkeypatch.chdir(tmp_path); (tmp_path / 'data.bin').write_bytes(b'12345678')
++    asm = parser(); block = asm.GlobalAsmBlock('fixture'); block.cur_section = '.rodata'
++    for line in ['.incbin "data.bin", 0, 1', '.word a, b', '.float 1.0', '.double 2.0, 3.0', '.gpword c']:
++        block.process_line(line, 'utf-8')
++    assert block.fn_section_sizes['.rodata'] == 36

@@ -1,0 +1,197 @@
+{
+  "accepted_box_source_form_O1": {
+    "source_sha256": "5f954d4dff6bd25016ada07e4e17be10e3f351e075a9522b4ed9791581bde060",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "294/294 words differ (5 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x0 at +0x1cc, .rodata+0x0 at +0x1d4)",
+    "emitted_words": 300,
+    "aligned": {
+      "aligned_exact": 48,
+      "aligned_opcode": 224,
+      "aligned_opcode_reg": 90
+    },
+    "frame_bytes": 64,
+    "historical_before_global_address_correction": true,
+    "current_linked_proof": false
+  },
+  "accepted_box_source_form_O2": {
+    "source_sha256": "5f954d4dff6bd25016ada07e4e17be10e3f351e075a9522b4ed9791581bde060",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "292/294 words differ (40 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x0 at +0x174, .rodata+0x0 at +0x17c)",
+    "emitted_words": 336,
+    "aligned": {
+      "aligned_exact": 35,
+      "aligned_opcode": 205,
+      "aligned_opcode_reg": 73
+    },
+    "frame_bytes": 40,
+    "historical_before_global_address_correction": true,
+    "current_linked_proof": false
+  },
+  "actual_cell_stride_O1": {
+    "source_sha256": "04f20a19b1d2a721de0ca110bdb2bdda54c8ba6cfc2fd8e1c68c2cd4673b8ce6",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "293/294 words differ (16 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x0 at +0x1ec, .rodata+0x0 at +0x1f4)",
+    "emitted_words": 312,
+    "aligned": {
+      "aligned_exact": 59,
+      "aligned_opcode": 239,
+      "aligned_opcode_reg": 102
+    },
+    "frame_bytes": 72,
+    "historical_before_global_address_correction": true,
+    "current_linked_proof": false
+  },
+  "actual_cell_stride_O2": {
+    "source_sha256": "04f20a19b1d2a721de0ca110bdb2bdda54c8ba6cfc2fd8e1c68c2cd4673b8ce6",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "290/294 words differ (38 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x0 at +0x16c, .rodata+0x0 at +0x174)",
+    "emitted_words": 332,
+    "aligned": {
+      "aligned_exact": 34,
+      "aligned_opcode": 203,
+      "aligned_opcode_reg": 72
+    },
+    "frame_bytes": 48,
+    "historical_before_global_address_correction": true,
+    "current_linked_proof": false
+  },
+  "captured_track_O1": {
+    "source_sha256": "aa3463124cd9029b046c762b495d6151b5187eacb320f55b4ad02ffd21043095",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "294/294 words differ (7 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x0 at +0x1cc, .rodata+0x0 at +0x1d4)",
+    "emitted_words": 304,
+    "aligned": {
+      "aligned_exact": 48,
+      "aligned_opcode": 227,
+      "aligned_opcode_reg": 90
+    },
+    "frame_bytes": 72,
+    "historical_before_global_address_correction": true,
+    "current_linked_proof": false
+  },
+  "captured_track_O2": {
+    "source_sha256": "aa3463124cd9029b046c762b495d6151b5187eacb320f55b4ad02ffd21043095",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "290/294 words differ (38 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x0 at +0x16c, .rodata+0x0 at +0x174)",
+    "emitted_words": 332,
+    "aligned": {
+      "aligned_exact": 34,
+      "aligned_opcode": 203,
+      "aligned_opcode_reg": 72
+    },
+    "frame_bytes": 40,
+    "historical_before_global_address_correction": true,
+    "current_linked_proof": false
+  },
+  "indexed_scene_objects_O1": {
+    "source_sha256": "d401e0a5352588c4287b46bd257c832d4cd19072885544e43f8e9f68e434ebf0",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "294/294 words differ (34 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x0 at +0x1cc, .rodata+0x0 at +0x1d4)",
+    "emitted_words": 328,
+    "aligned": {
+      "aligned_exact": 46,
+      "aligned_opcode": 225,
+      "aligned_opcode_reg": 88
+    },
+    "frame_bytes": 72,
+    "historical_before_global_address_correction": true,
+    "current_linked_proof": false
+  },
+  "indexed_scene_objects_O2": {
+    "source_sha256": "d401e0a5352588c4287b46bd257c832d4cd19072885544e43f8e9f68e434ebf0",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "286/294 words differ (57 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x0 at +0x16c, .rodata+0x0 at +0x174)",
+    "emitted_words": 352,
+    "aligned": {
+      "aligned_exact": 37,
+      "aligned_opcode": 208,
+      "aligned_opcode_reg": 75
+    },
+    "frame_bytes": 40,
+    "historical_before_global_address_correction": true,
+    "current_linked_proof": false
+  },
+  "native_vertical_fraction": {
+    "source_sha256": "b3d7fba29d9dd0ec1d0ae0954d6a55937d2f96619302d048b4ac9e1bc174cca1",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "292/294 words differ (17 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x0 at +0x1f0, .rodata+0x0 at +0x1f8)",
+    "emitted_words": 312,
+    "aligned": {
+      "aligned_exact": 60,
+      "aligned_opcode": 243,
+      "aligned_opcode_reg": 103
+    },
+    "frame_bytes": 80,
+    "historical_before_global_address_correction": true,
+    "current_linked_proof": false
+  },
+  "register_cell_distance": {
+    "source_sha256": "546f0dd42629eb88ff3be5ab94f2820b81d5a7964324e3a5a434dfc417d8efec",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "287/294 words differ (2 section-relative relocations unverified: .rodata+0x0 at +0x1b0, .rodata+0x0 at +0x1b8)",
+    "emitted_words": 288,
+    "aligned": {
+      "aligned_exact": 54,
+      "aligned_opcode": 224,
+      "aligned_opcode_reg": 96
+    },
+    "frame_bytes": 64,
+    "historical_before_global_address_correction": true,
+    "current_linked_proof": false
+  },
+  "register_tail": {
+    "source_sha256": "dce40f066e32cc9ab98ce0100a002a05932bbd857512e03e651c0c7769bb2a78",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "278/294 words differ (4 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x0 at +0x1e0, .rodata+0x0 at +0x1e8)",
+    "emitted_words": 300,
+    "aligned": {
+      "aligned_exact": 46,
+      "aligned_opcode": 225,
+      "aligned_opcode_reg": 89
+    },
+    "frame_bytes": 64,
+    "historical_before_global_address_correction": true,
+    "current_linked_proof": false
+  },
+  "relative_array_O1": {
+    "source_sha256": "e266131d1476dac32d5838e4d2a8ee2757debb329dd52e37f2ee61ba61424064",
+    "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "280/294 words differ (4 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x0 at +0x1e0, .rodata+0x0 at +0x1e8)",
+    "emitted_words": 300,
+    "aligned": {
+      "aligned_exact": 55,
+      "aligned_opcode": 225,
+      "aligned_opcode_reg": 95
+    },
+    "frame_bytes": 64,
+    "historical_before_global_address_correction": true,
+    "current_linked_proof": false
+  },
+  "relative_array_O2": {
+    "source_sha256": "e266131d1476dac32d5838e4d2a8ee2757debb329dd52e37f2ee61ba61424064",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "292/294 words differ (41 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x0 at +0x178, .rodata+0x0 at +0x180)",
+    "emitted_words": 336,
+    "aligned": {
+      "aligned_exact": 32,
+      "aligned_opcode": 204,
+      "aligned_opcode_reg": 71
+    },
+    "frame_bytes": 40,
+    "historical_before_global_address_correction": true,
+    "current_linked_proof": false
+  }
+}

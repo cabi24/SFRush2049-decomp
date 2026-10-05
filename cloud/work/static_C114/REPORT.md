@@ -1,0 +1,7 @@
+C114 — full scheduler initialization, exact research
+
+Actual osCreateScheduler at80000450 is388B/97 words. It consumes all5 original SDK inputs (scheduler, actual stack, priority, u8 VI mode, u8 field count); resets native task count and actual queue/task/client fields, initializes retrace/pre-NMI messages, queues, real VI mode/event callbacks, then creates/starts the actual scheduler thread atoffsetB0. Existing SDK physical carrier fields and80-byte OSViMode table entry match native offsets.
+
+Rocky literal g1/O1 proof is strict0 including all stack words; true388B extent and32B frame match. All97 fully relocated original words exact; no masks/unresolved/unverified/errors. Object.text has12 zero alignment bytes outside logical extent; no initialized data or source-owned globals defined. Original target roundtrip passes. verify.py reproduces complete native proof.
+
+Misleading physical helper names are retained: osSetEventMesg is one-input VI-manager setup (254 priority), osSetThreadPri is actual one-input VI-mode setter, osSetIntMask is actual VI black flag setter, osSetTimerIntr is actual queue/message/field-count setter. osCreateThread six actual inputs include proper __scMain callback. Required genuine declarations are recorded in manifest; no shared header changed. No unused inputs/locals, fake pressure/storage/runtime work/qualifiers/reflows. Zero accepted credit pending ordinary supported prefix recipe/locks/promotions/full-ROM/test gates.

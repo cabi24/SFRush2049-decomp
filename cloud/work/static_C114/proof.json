@@ -1,0 +1,28 @@
+{
+  "target_id": "osCreateScheduler",
+  "original_target_roundtrip": [
+    true,
+    null
+  ],
+  "accepted_credit": 0,
+  "results": [
+    {
+      "source": "cloud/work/static_C114/osCreateScheduler.c",
+      "source_sha256": "806244ffa65c54d25c637615db72919495e228c65e48e21cc4e0b863717fb9b2",
+      "flags": "/* flags: -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm */",
+      "object_sha256": "2506108c80c903357e01e3695049eece02a76b4c2e9a7564316a7ce4ff473f16",
+      "canonical_strict_including_stack": 0,
+      "original_bytes": 388,
+      "true_symbol_bytes": 388,
+      "emitted_text_bytes": 400,
+      "frame_bytes": 32,
+      "full_word_differences": 0,
+      "extra_nonzero_words": 0,
+      "masks": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "full_native_match": true
+    }
+  ]
+}

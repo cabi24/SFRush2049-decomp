@@ -1,0 +1,27 @@
+{
+  "status": "frozen complete native exact; ordinary root recipe/lock/promotion/ROM gates pending",
+  "target_id": "osCreateScheduler",
+  "source": "cloud/work/static_C114/osCreateScheduler.c",
+  "source_sha256": "806244ffa65c54d25c637615db72919495e228c65e48e21cc4e0b863717fb9b2",
+  "flags": "/* flags: -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm */",
+  "original_address": "0x80000450",
+  "original_bytes": 388,
+  "true_symbol_bytes": 388,
+  "all_original_words_exact": 97,
+  "strict_including_stack": 0,
+  "frame_bytes": 32,
+  "section_bytes": 400,
+  "trailing_zero_section_padding_bytes": 12,
+  "masks": 0,
+  "unknown_unverified_relocations": 0,
+  "accepted_credit": 0,
+  "required_declarations": [
+    "extern s16 __osScTaskCount;",
+    "extern OSViMode gViModeTableBase[];",
+    "extern void osSetEventMesg(OSPri);",
+    "extern void osSetTimerIntr(OSMesgQueue *, OSMesg, s32);",
+    "extern void __scMain(void *);"
+  ],
+  "input_contract": "Five actual consumed SDK inputs: OSSched*, stack pointer, OSPri, u8 mode and u8 numFields. No added/unused formals.",
+  "provenance": "Independent complete native scheduler initialization, actual SDK osCreateScheduler control flow/ABI; existing physical carrier offsets and observed misleading helper symbols preserved with verified contracts. Existing gViModeTableBase80-byte OSViMode carrier, no local/source-defined storage. No pressure/qualifier/unused local/dummy runtime work/line shaping."
+}

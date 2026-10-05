@@ -1,0 +1,265 @@
+{
+  "source_sha256": "eec4cd1e26ccf8ea8e5cd96effb1c5be522055f96b8b133c06d1aaaaf7304e16",
+  "manifest_sha256": "e9dfb59ae8f4a29e43f5e74b8203eee66a96f5965d316ab986be0370aa702166",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "comparisons": {
+    "car_angular_velocity_clamp": {
+      "differing": 196,
+      "total": 201,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 3
+    },
+    "car_cg_height_set": {
+      "differing": 0,
+      "total": 41,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800A8174": {
+      "differing": 0,
+      "total": 34,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800A81FC": {
+      "differing": 0,
+      "total": 34,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800A8284": {
+      "differing": 0,
+      "total": 317,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800A8778": {
+      "differing": 0,
+      "total": 389,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "car_collision_init": {
+      "differing": 0,
+      "total": 103,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800A8F38": {
+      "differing": 0,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "car_collision_update": {
+      "differing": 0,
+      "total": 60,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800A9054": {
+      "differing": 0,
+      "total": 142,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800A928C": {
+      "differing": 0,
+      "total": 65,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "car_crash_detect": {
+      "differing": 0,
+      "total": 224,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800A9710": {
+      "differing": 0,
+      "total": 172,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "car_crash_response": {
+      "differing": 0,
+      "total": 408,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800AA028": {
+      "differing": 0,
+      "total": 127,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800AA224": {
+      "differing": 0,
+      "total": 138,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "car_reset_position": {
+      "differing": 0,
+      "total": 173,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "car_spawn_at_checkpoint": {
+      "differing": 0,
+      "total": 267,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800AAB3C": {
+      "differing": 0,
+      "total": 203,
+      "unresolved": [],
+      "unverified": [
+        ".data+0x0 at +0x0",
+        ".data+0x0 at +0x4",
+        ".data+0x0 at +0x2bc",
+        ".data+0x0 at +0x2c0"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "audio_reverb_update": {
+      "differing": 0,
+      "total": 61,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "audio_effect_process": {
+      "differing": 0,
+      "total": 23,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "synced_model_render": {
+      "differing": 0,
+      "total": 23,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "MP_TargetSpeed": {
+      "differing": 0,
+      "total": 28,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "assign_default_paths": {
+      "differing": 0,
+      "total": 28,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "stat_race_end": {
+      "differing": 0,
+      "total": 29,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80095F8C": {
+      "differing": 0,
+      "total": 19,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80095EF4": {
+      "differing": 0,
+      "total": 38,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "audio_buffer_sync": {
+      "differing": 0,
+      "total": 26,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_counter_decrement": {
+      "differing": 0,
+      "total": 27,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_counter_increment": {
+      "differing": 0,
+      "total": 28,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800A47C0": {
+      "differing": 0,
+      "total": 63,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "all_source_sha256": {
+    "zlib.c": "eec4cd1e26ccf8ea8e5cd96effb1c5be522055f96b8b133c06d1aaaaf7304e16",
+    "heap.c": "fd45f48e07a0d7410cf1b11051d1777b78f98d0f9b399be3a0989f120748d5fd"
+  }
+}

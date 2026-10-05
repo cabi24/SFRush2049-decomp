@@ -1,0 +1,16 @@
+{
+  "differing": 131,
+  "total": 133,
+  "unresolved": [],
+  "unverified": [],
+  "errors": [],
+  "extra_words": 6,
+  "source_sha256": "f287c34450490d5ed713ec3d81dd9f5b89a0fbfda26761d2e3a1bb0453df3ae0",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "target": "debug_stats",
+  "original_address": "0x800FCDF8",
+  "original_size": 532,
+  "verdict": "NONMATCH",
+  "eligibility": "Current LOCAL lock absent; canonical532-byte interval clear; archive has prototypes only."
+}

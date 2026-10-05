@@ -1,0 +1,410 @@
+"""Whole-module ownership of proven static RAM blocks.
+
+ROM slots and storage blocks share rom_owned_data.json, but this module changes
+only storage_blocks. BSS ownership is activated atomically for every real member
+of a module; a one-function splice cannot silently introduce local storage.
+"""
+import argparse
+import hashlib
+import json
+import re
+import shlex
+import subprocess
+from pathlib import Path
+
+REGISTRY = "rom_owned_data.json"
+LINKER = "rom_owned_storage.ld"
+OVERRIDES = "src/rom/storage_overrides.mk"
+
+
+def _sha(path):
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def _number(value):
+    return int(value, 0) if isinstance(value, str) else int(value)
+
+
+def _path(value):
+    if not isinstance(value, (str, Path)) or not re.fullmatch(r"[A-Za-z0-9_./-]+", str(value)):
+        raise ValueError("unsafe storage path characters")
+    p = Path(value)
+    if p.is_absolute() or ".." in p.parts:
+        raise ValueError("storage paths must be relative repository paths")
+    return p
+
+
+def storage_blocks(repo, active_only=False):
+    from .owned_data import load_registry
+    rows = load_registry(Path(repo))["storage_blocks"]
+    owners, tus, ranges = set(), set(), []
+    for row in rows:
+        owner, tu = row["owner"], row["tu"]
+        if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", owner):
+            raise ValueError("invalid storage owner")
+        if owner in owners or tu in tus:
+            raise ValueError("duplicate storage owner or TU")
+        if row["flags"] != "-g0 -O2 -mips2 -G 0 -non_shared":
+            raise ValueError("only the verified static O2 storage ABI is supported")
+        owners.add(owner); tus.add(tu)
+        _path(tu); _path(row["source"]); _path(row["passthrough_asm"])
+        if row.get("kind") != "bss":
+            raise ValueError("owned storage requires genuine zero-initialized BSS")
+        for field in ("source_section", "input_section", "output_section"):
+            if not re.fullmatch(r"\.[A-Za-z0-9_.]+", row[field]):
+                raise ValueError("invalid storage section name")
+        if row["source_section"] == row["input_section"]:
+            raise ValueError("storage must have a distinct owned input section")
+        start, size = _number(row["vram_start"]), _number(row["size"])
+        if size <= 0 or start % 16 or size % 16:
+            raise ValueError("storage block must have proven 16-byte boundaries")
+        if any(start < end and old < start + size for old, end in ranges):
+            raise ValueError("storage blocks overlap")
+        ranges.append((start, start + size))
+        if not row["members"] or len(row["members"]) != len(set(row["members"])):
+            raise ValueError("storage members must be nonempty and unique")
+        aliases = set()
+        for alias in row["aliases"]:
+            if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", alias["symbol"]):
+                raise ValueError("invalid storage alias")
+            off, length = _number(alias["offset"]), _number(alias["size"])
+            if alias["symbol"] in aliases or off < 0 or length <= 0 or off + length > size:
+                raise ValueError("invalid storage alias extent")
+            aliases.add(alias["symbol"])
+        for item in row.get("context_files", []):
+            _path(item["path"]); _path(item["source"])
+    return [r for r in rows if r.get("active", False)] if active_only else rows
+
+
+def owner_for_tu(repo, tu):
+    rel = str(Path(tu).relative_to(repo)) if Path(tu).is_absolute() else str(tu)
+    return next((r for r in storage_blocks(repo) if r["tu"] == rel), None)
+
+
+def assert_context(repo, row):
+    from ..seeds.extract_candidates import extract_named_function
+    tu = Path(repo) / row["tu"]
+    if not tu.is_file() or _sha(tu) != row["source_sha256"]:
+        raise ValueError("owned storage TU differs from its complete verified source")
+    for fn in row["members"]:
+        if not extract_named_function(tu, fn):
+            raise ValueError("owned storage module lacks real member " + fn)
+    for item in row.get("context_files", []):
+        if _sha(Path(repo) / item["path"]) != item["sha256"]:
+            raise ValueError("owned storage typed context changed: " + item["path"])
+
+
+def tu_states(repo, tu):
+    row = owner_for_tu(repo, tu)
+    if not row or not row.get("active", False):
+        return {}
+    assert_context(repo, row)
+    return {fn: "promoted" for fn in row["members"]}
+
+
+def require_single_function_safe(repo, tu):
+    row = owner_for_tu(repo, tu)
+    if row:
+        raise SystemExit("refusing: " + row["owner"] +
+                         " owns a complete real storage module; use owned_storage promote/revert")
+
+
+def package_paths(repo, tu):
+    repo = Path(repo)
+    row = owner_for_tu(repo, tu)
+    if not row:
+        return []
+    rels = {REGISTRY, LINKER, OVERRIDES, "Makefile", "splat.us.yaml",
+            "rush2049.us.ld", "matched.lock.json", row["tu"], row["passthrough_asm"],
+            "tools/conveyor/pipeline/owned_storage.py", "tools/conveyor/pipeline/owned_data.py",
+            "tools/conveyor/seeds/extract_candidates.py", row["source"]}
+    for item in row.get("context_files", []):
+        rels.update((item["path"], item["source"], item["before_source"]))
+    rels.add(row["tu_before_source"])
+    return sorted((repo / _path(p) for p in rels), key=str)
+
+
+def generate(repo):
+    repo = Path(repo)
+    rows = storage_blocks(repo, active_only=True)
+    linker = ["/* Generated from rom_owned_data.json storage_blocks; do not hand edit. */",
+              "SECTIONS", "{"]
+    mk = ["# Generated from rom_owned_data.json storage_blocks; do not hand edit."]
+    if rows:
+        mk += ["ifeq ($(COMPILER),ido)",
+               "LDFLAGS := -T " + LINKER + " $(LDFLAGS)",
+               "$(ELF): " + LINKER + " " + REGISTRY]
+    for row in rows:
+        assert_context(repo, row)
+        obj = "$(BUILD_DIR)/" + str(Path(row["tu"]).with_suffix(".o"))
+        ldobj = "build/us/" + str(Path(row["tu"]).with_suffix(".o"))
+        section = row["output_section"]
+        linker += ["    " + section + " " + hex(_number(row["vram_start"])) +
+                   " (NOLOAD) : SUBALIGN(16)", "    {",
+                   "        __" + row["owner"] + "_bss_start = .;",
+                   "        " + ldobj + "(" + row["input_section"] + ");",
+                   "        __" + row["owner"] + "_bss_end = .;", "    }",
+                   "    ASSERT(SIZEOF(" + section + ") == " + hex(_number(row["size"])) +
+                   ', "owned storage size changed: ' + row["owner"] + '")']
+        for alias in row["aliases"]:
+            linker.append("    ASSERT(" + alias["symbol"] + " == ADDR(" + section + ") + " +
+                          hex(_number(alias["offset"])) + ', "owned storage alias moved: ' + alias["symbol"] + '")')
+        oldobj = "$(BUILD_DIR)/" + str(Path(row["passthrough_asm"]).with_suffix(".o"))
+        deps = " ".join(item["path"] for item in row.get("context_files", []))
+        mk += ["O_FILES := $(filter-out " + oldobj + ",$(O_FILES))",
+               obj + ": CFLAGS := $(filter-out -O%,$(CFLAGS)) -O2",
+               obj + ": " + row["tu"] + " " + REGISTRY + " " + deps,
+               "\t@mkdir -p $(dir $@)", "\t@echo \"CC $< (complete owned storage)\"",
+               "\t$(V)$(CC) -c -g0 $(CFLAGS) -o $@ $<",
+               "\t$(V)$(OBJCOPY) --rename-section " + row["source_section"] + "=" + row["input_section"] + " $@"]
+    linker += ["}", "INSERT AFTER .data;"]
+    if rows:
+        mk.append("endif")
+    (repo / LINKER).write_text("\n".join(linker) + "\n")
+    p = repo / OVERRIDES; p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text("\n".join(mk) + "\n")
+
+
+def register(repo, record):
+    """Prepare an inactive owner without replacing another owner's metadata."""
+    from .owned_data import load_registry
+    repo = Path(repo)
+    registry = load_registry(repo)
+    if record.get("active", False):
+        raise ValueError("registration must be inactive; activation requires the full transaction")
+    existing = next((r for r in registry["storage_blocks"] if r["owner"] == record["owner"]), None)
+    if existing:
+        if existing != record:
+            raise ValueError("storage owner already registered with different evidence")
+        return
+    source = repo / _path(record["source"])
+    baseline = repo / _path(record["tu_before_source"])
+    if _sha(source) != record["source_sha256"] or _sha(baseline) != record["tu_before_sha256"]:
+        raise ValueError("registration source evidence changed")
+    tu = repo / _path(record["tu"])
+    if tu.exists() and tu.read_bytes() != baseline.read_bytes():
+        raise ValueError("registration would overwrite existing TU work")
+    original = _snapshot([repo / REGISTRY, repo / LINKER, repo / OVERRIDES, tu])
+    try:
+        registry["storage_blocks"].append(record)
+        (repo / REGISTRY).write_text(json.dumps(registry, indent=2) + "\n")
+        storage_blocks(repo)  # Validate overlaps and complete metadata before installing.
+        tu.parent.mkdir(parents=True, exist_ok=True); tu.write_bytes(baseline.read_bytes())
+        generate(repo)
+    except BaseException:
+        _restore(original)
+        raise
+
+
+def _snapshot(paths):
+    return {p: (p.read_bytes(), p.stat().st_mode) if p.is_file() else None for p in paths}
+
+
+def _restore(snapshot):
+    for p, saved in snapshot.items():
+        if saved is None:
+            p.unlink(missing_ok=True)
+        else:
+            p.parent.mkdir(parents=True, exist_ok=True); p.write_bytes(saved[0]); p.chmod(saved[1])
+
+
+def _gate(repo, paths, via_builder):
+    from . import promote
+    if not via_builder:
+        if not promote._have_local_ido():
+            raise promote.Refusal("matching storage promotion requires IDO; pass --via-builder")
+        # Header changes affect every accepted TU; never allow stale-object evidence.
+        for p in (Path(repo) / "src/rom").glob("*.c"):
+            p.touch()
+        proc = promote._run(["make", "COMPILER=ido", "-j4"], timeout=1800)
+        return proc.returncode == 0 and "ROM matches!" in proc.stdout, (proc.stdout + proc.stderr)[-2000:]
+    remote_value = promote.BUILDER_REPO
+    remote = ("$HOME/" + shlex.quote(remote_value[2:])) if remote_value.startswith("~/") else shlex.quote(remote_value)
+    remote_rels = [str(p.relative_to(repo)) for p in paths]
+    for p, rel in zip(paths, remote_rels):
+        if p.is_file():
+            result = promote._run(["ssh", promote.BUILDER, "mkdir -p " + remote + "/" + shlex.quote(str(Path(rel).parent))])
+            if result.returncode:
+                return False, result.stderr
+            result = promote._run(["rsync", "-az", str(p), promote.BUILDER + ":" + remote_value + "/" + rel])
+        else:
+            # Missing TU/generated package paths are real rollback deletions.
+            result = promote._run(["ssh", promote.BUILDER, "rm -f -- " + remote + "/" + shlex.quote(rel)])
+        if result.returncode:
+            return False, result.stderr
+    proc = promote._run(["ssh", promote.BUILDER, "cd " + remote +
+                         " && touch src/rom/*.c && make COMPILER=ido -j4 && make test"], timeout=1800)
+    return proc.returncode == 0 and "ROM matches!" in proc.stdout, (proc.stdout + proc.stderr)[-2000:]
+
+
+def run_promotion(owner, via_builder=False, data=None):
+    from . import promote, lock as lockmod
+    from .owned_data import load_registry
+    repo = Path(promote.REPO)
+    registry = load_registry(repo)
+    row = next((r for r in registry["storage_blocks"] if r["owner"] == owner), None)
+    if row is None or row.get("active", False):
+        raise promote.Refusal("storage owner must be registered and inactive")
+    paths = package_paths(repo, row["tu"])
+    if not promote._git_clean(paths):
+        raise promote.Refusal("storage promotion requires clean complete package paths")
+    source = repo / row["source"]
+    if _sha(source) != row["source_sha256"]:
+        raise promote.Refusal("storage source hash differs from proven complete module")
+    entries = lockmod.load_lock(repo / "matched.lock.json")
+    for fn in row["members"]:
+        lockmod.require_promotable_population(fn, data or promote.DEFAULT_DATA)
+        spec = row["source"] + ":" + fn
+        entry = entries.get(spec)
+        if (not entry or entry.get("verified") not in ("score0", "rom-sha1") or
+            entry.get("flagset") != row["flags"] or
+            entry.get("body_sha256") != lockmod.body_sha(source, fn)):
+            raise promote.Refusal("missing exact normal strict body lock: " + spec)
+    if source.read_text().splitlines()[0] != "/* flags: " + row["flags"] + " */":
+        raise promote.Refusal("complete storage literal flags line differs")
+    if not via_builder and not promote._have_local_ido():
+        raise promote.Refusal("matching storage promotion requires IDO; pass --via-builder")
+    before_tu = repo / row["tu"]
+    if not before_tu.is_file() or _sha(before_tu) != row["tu_before_sha256"]:
+        raise promote.Refusal("storage promotion requires its tracked original placeholder")
+    if _sha(repo / row["passthrough_asm"]) != row["passthrough_sha256"]:
+        raise promote.Refusal("original whole-module passthrough assembly differs")
+    for item in row.get("context_files", []):
+        if _sha(repo / item["path"]) != item["before_sha256"]:
+            raise promote.Refusal("original typed context differs")
+    original = _snapshot(paths)
+    try:
+        tu = repo / row["tu"]; tu.parent.mkdir(parents=True, exist_ok=True); tu.write_bytes(source.read_bytes())
+        for item in row.get("context_files", []):
+            candidate = repo / item["source"]
+            if _sha(candidate) != item["sha256"]:
+                raise promote.Refusal("typed context candidate hash differs")
+            (repo / item["path"]).write_bytes(candidate.read_bytes())
+        yaml = repo / "splat.us.yaml"; old = row["yaml_old_entry"]; new = row["yaml_new_entry"]
+        text = yaml.read_text()
+        if text.count(old) != 1:
+            raise promote.Refusal("expected original SPLAT entry missing or ambiguous")
+        yaml.write_text(text.replace(old, new, 1))
+        linker = repo / "rush2049.us.ld"; text = linker.read_text()
+        oldobj = "build/us/" + str(Path(row["passthrough_asm"]).with_suffix(".o"))
+        newobj = "build/us/" + str(Path(row["tu"]).with_suffix(".o"))
+        if text.count(oldobj + "(") != 4:
+            raise promote.Refusal("expected original SPLAT four-section owner differs")
+        linker.write_text(text.replace(oldobj + "(", newobj + "("))
+        row["active"] = True
+        (repo / REGISTRY).write_text(json.dumps(registry, indent=2) + "\n")
+        generate(repo)
+        ok, detail = _gate(repo, paths, via_builder)
+        if not ok:
+            raise promote.Refusal("complete storage ROM gate failed: " + detail)
+        # Migrate ordinary body locks only AFTER the package's real ROM gate.
+        for fn in row["members"]:
+            entries.pop(row["source"] + ":" + fn)
+            entries[row["tu"] + ":" + fn] = dict(body_sha256=lockmod.body_sha(tu, fn),
+                target_id=fn, flagset=row["flags"], verified="rom-sha1", toolkit_sha=None,
+                verified_at=__import__('time').strftime('%Y-%m-%d'), storage_owner=owner)
+        lockmod.save_lock(entries, repo / "matched.lock.json")
+        # Use standard promotion schema; a single DB transaction covers both members.
+        conn = promote.dbmod.connect(Path(data or promote.DEFAULT_DATA) / "conveyor.db")
+        try:
+            with promote.dbmod.tx(conn):
+                for fn in row["members"]:
+                    conn.execute("INSERT INTO promotion_record (target_id,source_sha,build_ok,sha1_ok,outcome,created_at,source,flags,evidence,rom_tu) VALUES (?,?,1,1,'promoted',strftime('%Y-%m-%dT%H:%M:%fZ','now'),?,?,?,?) ON CONFLICT(target_id) WHERE outcome='promoted' DO UPDATE SET source_sha=excluded.source_sha,build_ok=1,sha1_ok=1,created_at=excluded.created_at,source=excluded.source,flags=excluded.flags,evidence=excluded.evidence,rom_tu=excluded.rom_tu", (fn,lockmod.body_sha(tu,fn),row["source"],row["flags"],json.dumps({"storage_owner":owner,"complete_source_sha256":row["source_sha256"]}),str(Path(row["tu"]).with_suffix(''))[4:]))
+                result = promote._run(["git", "commit", "-q", "-m", "Promote complete " + owner + " storage module (ROM SHA-1 exact)", "--"] + [str(p.relative_to(repo)) for p in paths if p.exists()])
+                if result.returncode:
+                    raise promote.Refusal("storage commit failed: " + result.stderr)
+        finally:
+            conn.close()
+    except BaseException:
+        _restore(original)
+        restored, detail = _gate(repo, paths, via_builder)
+        if not restored:
+            raise promote.Refusal("storage package restored locally but builder restore gate failed: " + detail)
+        raise
+    return owner
+
+
+def run_revert(owner, via_builder=False, data=None):
+    from . import promote, lock as lockmod
+    from .owned_data import load_registry
+    repo = Path(promote.REPO)
+    registry = load_registry(repo)
+    row = next((r for r in registry["storage_blocks"] if r["owner"] == owner), None)
+    if not row or not row.get("active", False):
+        raise promote.Refusal("storage owner must be active to revert")
+    assert_context(repo, row)
+    paths = package_paths(repo, row["tu"])
+    if not promote._git_clean(paths):
+        raise promote.Refusal("storage revert requires clean complete package paths")
+    if not via_builder and not promote._have_local_ido():
+        raise promote.Refusal("matching storage revert requires IDO; pass --via-builder")
+    baseline = repo / row["tu_before_source"]
+    if _sha(baseline) != row["tu_before_sha256"]:
+        raise promote.Refusal("original storage placeholder hash differs")
+    original = _snapshot(paths)
+    try:
+        (repo / row["tu"]).write_bytes(baseline.read_bytes())
+        for item in row.get("context_files", []):
+            before = repo / item["before_source"]
+            if _sha(before) != item["before_sha256"]:
+                raise promote.Refusal("original typed context hash differs")
+            (repo / item["path"]).write_bytes(before.read_bytes())
+        yaml = repo / "splat.us.yaml"; text = yaml.read_text()
+        if text.count(row["yaml_new_entry"]) != 1:
+            raise promote.Refusal("owned SPLAT entry differs")
+        yaml.write_text(text.replace(row["yaml_new_entry"], row["yaml_old_entry"], 1))
+        linker = repo / "rush2049.us.ld"; text = linker.read_text()
+        before_obj = "build/us/" + str(Path(row["passthrough_asm"]).with_suffix(".o"))
+        owned_obj = "build/us/" + str(Path(row["tu"]).with_suffix(".o"))
+        if text.count(owned_obj + "(") != 4:
+            raise promote.Refusal("owned generated linker differs")
+        linker.write_text(text.replace(owned_obj + "(", before_obj + "("))
+        row["active"] = False
+        (repo / REGISTRY).write_text(json.dumps(registry, indent=2) + "\n")
+        generate(repo)
+        ok, detail = _gate(repo, paths, via_builder)
+        if not ok:
+            raise promote.Refusal("storage revert ROM gate failed: " + detail)
+        entries = lockmod.load_lock(repo / "matched.lock.json")
+        for fn in row["members"]:
+            entries.pop(row["tu"] + ":" + fn, None)
+        lockmod.save_lock(entries, repo / "matched.lock.json")
+        conn = promote.dbmod.connect(Path(data or promote.DEFAULT_DATA) / "conveyor.db")
+        try:
+            with promote.dbmod.tx(conn):
+                for fn in row["members"]:
+                    conn.execute("UPDATE promotion_record SET outcome='reverted' WHERE target_id=? AND outcome='promoted'", (fn,))
+                result = promote._run(["git", "commit", "-q", "-m", "Revert complete " + owner + " storage module (ROM SHA-1 exact)", "--"] + [str(p.relative_to(repo)) for p in paths if p.exists()])
+                if result.returncode:
+                    raise promote.Refusal("storage revert commit failed: " + result.stderr)
+        finally:
+            conn.close()
+    except BaseException:
+        _restore(original)
+        restored, detail = _gate(repo, paths, via_builder)
+        if not restored:
+            raise promote.Refusal("storage revert restored locally but builder restore gate failed: " + detail)
+        raise
+    return owner
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    sub = parser.add_subparsers(dest="command", required=True)
+    sub.add_parser("generate")
+    p = sub.add_parser("register"); p.add_argument("--from", dest="record", required=True)
+    for command in ("promote", "revert"):
+        p = sub.add_parser(command); p.add_argument("owner"); p.add_argument("--via-builder", action="store_true"); p.add_argument("--data")
+    args = parser.parse_args()
+    if args.command in ("generate", "register"):
+        from ..seeds.extract_candidates import REPO
+        if args.command == "generate":
+            generate(REPO)
+        else:
+            register(REPO, json.loads(Path(args.record).read_text()))
+    else:
+        (run_promotion if args.command == "promote" else run_revert)(args.owner, args.via_builder, args.data)
+
+
+if __name__ == "__main__":
+    main()

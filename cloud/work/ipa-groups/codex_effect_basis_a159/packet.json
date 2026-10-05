@@ -1,0 +1,11 @@
+{
+  "status": "NONMATCH",
+  "claims": [],
+  "frozen": true,
+  "source_sha256": {
+    "caller.c": "f3f0e5811abda70a0973cee728f1496a876ae9ac87a0c46666e7067087715e26",
+    "basis.c": "e700fd99ac6c7d16c09ee043bec59f0c782ceabd78b09f412fe24901f6e643ea",
+    "allocation.c": "c8ea55b83fd58ef281bfeed810e9790fb419c16a17e2a53335cc3c182d6cff2b"
+  },
+  "manifest_sha256": "11566f1b6bc6e09c885538a3202cf16d35e478e1dbe3f7400f394ab1fa41d471"
+}

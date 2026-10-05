@@ -1,0 +1,24 @@
+{
+  "source_sha256": "c8591efe72e1b67f4bcc5bf575c0d5e694c66e3db0397af59086298f7e6ba311",
+  "manifest_sha256": "bb51990f623bc57667d4b3c1c3064d398dbd51d661a7f1aa85503514a94080b6",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "comparisons": {
+    "init_state_continue": {
+      "differing": 171,
+      "total": 178,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 8
+    },
+    "countdown": {
+      "differing": 650,
+      "total": 668,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 4
+    }
+  }
+}

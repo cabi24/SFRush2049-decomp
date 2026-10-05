@@ -1,0 +1,17 @@
+{
+  "function": "camera_dolly",
+  "source_sha256": "fe70c8677374aecc6cec0e209a8d0b18f744cc4c8c785af2bd9345184dd73f13",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "target_manifest_sha256": "6ffda622b1aed921d85aa20d3996959aa69a433cbca46e0b83d98ad13e3bd6e8",
+  "expected_bytes": 2300,
+  "canonical_verdict": "MATCH",
+  "object_accepted": true,
+  "linked": {
+    "differing": 0,
+    "total": 575,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  }
+}

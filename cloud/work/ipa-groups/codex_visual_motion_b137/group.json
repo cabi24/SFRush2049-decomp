@@ -1,0 +1,28 @@
+{
+  "members": [
+    "buffer_swap"
+  ],
+  "context": [
+    "entity_transform_calc",
+    "client_sync",
+    "entity_hierarchy_update",
+    "stat_lap_complete",
+    "game_timer_resume",
+    "func_80091BA8",
+    "func_80091B00",
+    "scheduler_recv"
+  ],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "client_sync",
+    "entity_hierarchy_update",
+    "scheduler_recv",
+    "stat_lap_complete",
+    "game_timer_resume",
+    "buffer_swap"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

@@ -1,0 +1,3 @@
+# A168 complete real mode layer closure — natural residual
+
+Final direct-expanded helper body is2/38, no extra/unverified/errors. Initial20/38 failed to snapshot its actual entity handle across blocking receive; repaired native snapshot2/38. Local actual queue pointer consumed by receive/jam changes no words. None is a match. Full real sole direct caller func_800DFBA0 is293/298+44 with strict own end-HI16 error; never claimed. Genuine unchanged A114 prefix remains198 member+21lookup+40scheduler words exact, message allocator11/42 remains honest. Source/manifest frozen in packet. No fake caller, padding, unused locals, modifiers or source reflow.

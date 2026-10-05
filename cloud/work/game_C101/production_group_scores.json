@@ -1,0 +1,250 @@
+[
+  {
+    "object": "complete_callers.o",
+    "source": "group_complete_callers.c",
+    "source_sha256": "abc67df9637cbe48ec291e410bef0d171707c513d042e55bf41b5081252ee250",
+    "object_sha256": "e0e247bf02df22399266cbfda904a305208c2dce5d5732f58ed685c56ce0157c",
+    "results": [
+      {
+        "function": "camera_target_track",
+        "differing": 122,
+        "total": 159,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      {
+        "function": "func_80092278",
+        "differing": 5,
+        "total": 58,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      {
+        "function": "func_80091FBC",
+        "differing": 0,
+        "total": 88,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      {
+        "function": "func_8009211C",
+        "differing": 0,
+        "total": 87,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      {
+        "function": "entity_flags_apply",
+        "differing": 39,
+        "total": 73,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      {
+        "function": "high_scores_display",
+        "differing": 86,
+        "total": 117,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    ]
+  },
+  {
+    "object": "clamp_carrier.o",
+    "source": "group_clamp_carrier.c",
+    "source_sha256": "109551f9c243a464881f75792abd4c3b8b6f7541433e17ce06f085b746383230",
+    "object_sha256": "c4c5576d8e3e0efc1da832bd890e7631a0bc15b65f94de55a8fd4a56298bc958",
+    "results": [
+      {
+        "function": "camera_target_track",
+        "differing": 70,
+        "total": 159,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      {
+        "function": "func_80092278",
+        "differing": 5,
+        "total": 58,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      {
+        "function": "func_80091FBC",
+        "differing": 0,
+        "total": 88,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      {
+        "function": "func_8009211C",
+        "differing": 0,
+        "total": 87,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      {
+        "function": "entity_flags_apply",
+        "differing": 39,
+        "total": 73,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      {
+        "function": "high_scores_display",
+        "differing": 86,
+        "total": 117,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    ]
+  },
+  {
+    "object": "real_limits.o",
+    "source": "group_real_limits.c",
+    "source_sha256": "514b4e53129ca1c6b9e81c4c824612d21b68ca63872c2978933b79557a04f8cc",
+    "object_sha256": "8817b1c6305860015b2d83e85d5216a873e1a42d7f8afb2e717c9d70a4395f05",
+    "results": [
+      {
+        "function": "camera_target_track",
+        "differing": 70,
+        "total": 159,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      {
+        "function": "func_80092278",
+        "differing": 5,
+        "total": 58,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      {
+        "function": "func_80091FBC",
+        "differing": 0,
+        "total": 88,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      {
+        "function": "func_8009211C",
+        "differing": 0,
+        "total": 87,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      {
+        "function": "entity_flags_apply",
+        "differing": 39,
+        "total": 73,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      {
+        "function": "high_scores_display",
+        "differing": 86,
+        "total": 117,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    ]
+  },
+  {
+    "object": "consumed_carriers.o",
+    "source": "group_consumed_carriers.c",
+    "source_sha256": "ec193365796db370d961f214e909ad817ae38333b799281bc97047d3bb18298d",
+    "object_sha256": "8e9b509454dd84ed21a2ea30d2234932fabbfc724a6b2fa86ca6f3898d645b82",
+    "results": [
+      {
+        "function": "camera_target_track",
+        "differing": 70,
+        "total": 159,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      {
+        "function": "func_80092278",
+        "differing": 5,
+        "total": 58,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      {
+        "function": "func_80091FBC",
+        "differing": 0,
+        "total": 88,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      {
+        "function": "func_8009211C",
+        "differing": 0,
+        "total": 87,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      {
+        "function": "entity_flags_apply",
+        "differing": 39,
+        "total": 73,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      {
+        "function": "high_scores_display",
+        "differing": 86,
+        "total": 117,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    ]
+  }
+]

@@ -1,0 +1,344 @@
+{
+  "scope": "Read-only feasibility audit; alternate YAML geometry is private and not a production migration. No sources/locks/pins/targets/registries/layout/build/Git changed.",
+  "original_segment": {
+    "yaml_name": "0x1050",
+    "rom_tu": "rom/lib_1050",
+    "vram_start": "0x80000450",
+    "size": 4512,
+    "converted": true,
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "functions": [
+      {
+        "name": "osCreateScheduler",
+        "vaddr": "0x80000450",
+        "size": 388,
+        "state": "passthrough"
+      },
+      {
+        "name": "osScAddClient",
+        "vaddr": "0x800005d4",
+        "size": 104,
+        "state": "passthrough"
+      },
+      {
+        "name": "__scMain",
+        "vaddr": "0x8000063c",
+        "size": 324,
+        "state": "passthrough"
+      },
+      {
+        "name": "__scSchedule",
+        "vaddr": "0x80000780",
+        "size": 256,
+        "state": "passthrough"
+      },
+      {
+        "name": "__scHandleRetrace",
+        "vaddr": "0x80000880",
+        "size": 208,
+        "state": "passthrough"
+      },
+      {
+        "name": "__scHandleRSP",
+        "vaddr": "0x80000950",
+        "size": 380,
+        "state": "passthrough"
+      },
+      {
+        "name": "__scHandleRDP",
+        "vaddr": "0x80000acc",
+        "size": 216,
+        "state": "passthrough"
+      },
+      {
+        "name": "__scTaskReady",
+        "vaddr": "0x80000ba4",
+        "size": 176,
+        "state": "passthrough"
+      },
+      {
+        "name": "__scExecTask",
+        "vaddr": "0x80000c54",
+        "size": 280,
+        "state": "passthrough"
+      },
+      {
+        "name": "__scAppendList",
+        "vaddr": "0x80000d6c",
+        "size": 180,
+        "state": "passthrough"
+      },
+      {
+        "name": "__scExec",
+        "vaddr": "0x80000e20",
+        "size": 360,
+        "state": "passthrough"
+      },
+      {
+        "name": "__scHandlePreNMI",
+        "vaddr": "0x80000f88",
+        "size": 96,
+        "state": "passthrough"
+      },
+      {
+        "name": "__scScheduleCore",
+        "vaddr": "0x80000fe8",
+        "size": 872,
+        "state": "passthrough"
+      },
+      {
+        "name": "viTickStart",
+        "vaddr": "0x80001350",
+        "size": 112,
+        "state": "passthrough"
+      },
+      {
+        "name": "viEnableAccum",
+        "vaddr": "0x800013c0",
+        "size": 28,
+        "state": "passthrough"
+      },
+      {
+        "name": "viDisableAccum",
+        "vaddr": "0x800013dc",
+        "size": 24,
+        "state": "passthrough"
+      },
+      {
+        "name": "viUpdateTime",
+        "vaddr": "0x800013f4",
+        "size": 252,
+        "state": "passthrough"
+      },
+      {
+        "name": "viScheduleTick",
+        "vaddr": "0x800014f0",
+        "size": 76,
+        "state": "passthrough"
+      },
+      {
+        "name": "viAddTicks",
+        "vaddr": "0x8000153c",
+        "size": 60,
+        "state": "passthrough"
+      },
+      {
+        "name": "viGetTimeToDeadline",
+        "vaddr": "0x80001578",
+        "size": 68,
+        "state": "passthrough"
+      },
+      {
+        "name": "viDeadlinePassed",
+        "vaddr": "0x800015bc",
+        "size": 32,
+        "state": "promoted"
+      },
+      {
+        "name": "viStub",
+        "vaddr": "0x800015dc",
+        "size": 20,
+        "state": "promoted"
+      }
+    ],
+    "refusal": null
+  },
+  "proposed_segments": [
+    {
+      "yaml_name": "0x1050",
+      "rom_tu": "rom/lib_1050_sdk",
+      "vram_start": "0x80000450",
+      "size": 3840,
+      "converted": true,
+      "flagset": null,
+      "functions": [
+        {
+          "name": "osCreateScheduler",
+          "vaddr": "0x80000450",
+          "size": 388,
+          "state": "passthrough"
+        },
+        {
+          "name": "osScAddClient",
+          "vaddr": "0x800005d4",
+          "size": 104,
+          "state": "passthrough"
+        },
+        {
+          "name": "__scMain",
+          "vaddr": "0x8000063c",
+          "size": 324,
+          "state": "passthrough"
+        },
+        {
+          "name": "__scSchedule",
+          "vaddr": "0x80000780",
+          "size": 256,
+          "state": "passthrough"
+        },
+        {
+          "name": "__scHandleRetrace",
+          "vaddr": "0x80000880",
+          "size": 208,
+          "state": "passthrough"
+        },
+        {
+          "name": "__scHandleRSP",
+          "vaddr": "0x80000950",
+          "size": 380,
+          "state": "passthrough"
+        },
+        {
+          "name": "__scHandleRDP",
+          "vaddr": "0x80000acc",
+          "size": 216,
+          "state": "passthrough"
+        },
+        {
+          "name": "__scTaskReady",
+          "vaddr": "0x80000ba4",
+          "size": 176,
+          "state": "passthrough"
+        },
+        {
+          "name": "__scExecTask",
+          "vaddr": "0x80000c54",
+          "size": 280,
+          "state": "passthrough"
+        },
+        {
+          "name": "__scAppendList",
+          "vaddr": "0x80000d6c",
+          "size": 180,
+          "state": "passthrough"
+        },
+        {
+          "name": "__scExec",
+          "vaddr": "0x80000e20",
+          "size": 360,
+          "state": "passthrough"
+        },
+        {
+          "name": "__scHandlePreNMI",
+          "vaddr": "0x80000f88",
+          "size": 96,
+          "state": "passthrough"
+        },
+        {
+          "name": "__scScheduleCore",
+          "vaddr": "0x80000fe8",
+          "size": 872,
+          "state": "passthrough"
+        }
+      ],
+      "refusal": null
+    },
+    {
+      "yaml_name": "0x1f50",
+      "rom_tu": "rom/lib_1050",
+      "vram_start": "0x80001350",
+      "size": 672,
+      "converted": true,
+      "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "functions": [
+        {
+          "name": "viTickStart",
+          "vaddr": "0x80001350",
+          "size": 112,
+          "state": "passthrough"
+        },
+        {
+          "name": "viEnableAccum",
+          "vaddr": "0x800013c0",
+          "size": 28,
+          "state": "passthrough"
+        },
+        {
+          "name": "viDisableAccum",
+          "vaddr": "0x800013dc",
+          "size": 24,
+          "state": "passthrough"
+        },
+        {
+          "name": "viUpdateTime",
+          "vaddr": "0x800013f4",
+          "size": 252,
+          "state": "passthrough"
+        },
+        {
+          "name": "viScheduleTick",
+          "vaddr": "0x800014f0",
+          "size": 76,
+          "state": "passthrough"
+        },
+        {
+          "name": "viAddTicks",
+          "vaddr": "0x8000153c",
+          "size": 60,
+          "state": "passthrough"
+        },
+        {
+          "name": "viGetTimeToDeadline",
+          "vaddr": "0x80001578",
+          "size": 68,
+          "state": "passthrough"
+        },
+        {
+          "name": "viDeadlinePassed",
+          "vaddr": "0x800015bc",
+          "size": 32,
+          "state": "promoted"
+        },
+        {
+          "name": "viStub",
+          "vaddr": "0x800015dc",
+          "size": 20,
+          "state": "promoted"
+        }
+      ],
+      "refusal": null
+    }
+  ],
+  "functions_conserved": true,
+  "bytes_conserved": true,
+  "all_split_segments_structurally_clean": true,
+  "existing_vi_locks": [
+    {
+      "spec": "src/rom/lib_1050.c:viDeadlinePassed",
+      "pinned_flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "pinned_body_sha256": "6736d4fef06bb76a8df5d9a88f3646c8ea73e00db04965c5c478ecff505ec76d",
+      "current_body_sha256": "6736d4fef06bb76a8df5d9a88f3646c8ea73e00db04965c5c478ecff505ec76d",
+      "unchanged": true,
+      "preserved_source_path": "src/rom/lib_1050.c"
+    },
+    {
+      "spec": "src/rom/lib_1050.c:viStub",
+      "pinned_flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "pinned_body_sha256": "3bb1444602b811a27b01288e45830fafc6386a86e9424f19a9e44d84409eeab1",
+      "current_body_sha256": "3bb1444602b811a27b01288e45830fafc6386a86e9424f19a9e44d84409eeab1",
+      "unchanged": true,
+      "preserved_source_path": "src/rom/lib_1050.c"
+    }
+  ],
+  "prefix_accepted_members": [],
+  "suffix_accepted_members": [
+    "viDeadlinePassed",
+    "viStub"
+  ],
+  "default_generated_suffix_loses_promoted_bodies": true,
+  "active_storage_owners_for_original_tu": [],
+  "active_owned_rom_slots_for_original_tu": [],
+  "original_static_denominator": {
+    "functions": 230,
+    "slot_bytes": 61440
+  },
+  "split_static_denominator": {
+    "functions": 230,
+    "slot_bytes": 61440
+  },
+  "population_and_native_slots_conserved": true,
+  "active_text_boundaries_for_original_tu": [],
+  "natural_boundary_ROM": "0x1F50",
+  "natural_boundary_VRAM": "0x80001350",
+  "both_output_text_starts_and_lengths_16_aligned": true
+}

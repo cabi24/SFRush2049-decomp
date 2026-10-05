@@ -1,0 +1,16 @@
+[
+  {
+    "source": "menu_control_settings_coordinate.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "sha256": "10661e073042054cfadd2e5f36389bb793b418d1379554034954d9fc4f5c5734",
+    "comparison": {
+      "differing": 38,
+      "total": 164,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 164
+  }
+]

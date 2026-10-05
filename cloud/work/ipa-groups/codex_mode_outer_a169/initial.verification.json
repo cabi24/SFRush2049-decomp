@@ -1,0 +1,80 @@
+{
+  "source_sha256": "1c452fa15a2b7a08d1bb18c98bfdfef53486ae1011018a53eab09aed4acfc8d9",
+  "manifest_sha256": "ff2c796b9245d06ea74e1acaf30c25735c0e6d77756fc038442b9e9c0af3003a",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "comparisons": {
+    "func_800DFBA0": {
+      "differing": 242,
+      "total": 298,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    },
+    "entity_transform_calc": {
+      "differing": 0,
+      "total": 110,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "client_sync": {
+      "differing": 0,
+      "total": 54,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "entity_hierarchy_update": {
+      "differing": 0,
+      "total": 34,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80091BA8": {
+      "differing": 0,
+      "total": 21,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80091B00": {
+      "differing": 11,
+      "total": 42,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "scheduler_recv": {
+      "differing": 0,
+      "total": 40,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "mode_select_input": {
+      "differing": 38,
+      "total": 38,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 16
+    },
+    "func_800E05F0": {
+      "differing": 294,
+      "total": 332,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

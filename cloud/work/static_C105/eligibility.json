@@ -1,0 +1,21 @@
+{
+  "target_id": "__scTaskReady",
+  "actual_mapped_slot": {
+    "function": "__scTaskReady",
+    "address": "0x80000ba4",
+    "native_slot_bytes": 176,
+    "segment": "0x1050",
+    "converted": true,
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "historical_pool_score": 2080,
+    "historical_words": 44,
+    "score_is_stale_lead_only": true
+  },
+  "main_lock_entries": [],
+  "private_lock_entries": [],
+  "main_lock_sha256": "4fb94c530eb996356b8dd00af8d5223440207d5443d7d333c4818cecb228e825",
+  "private_lock_sha256": "dc99032030c56842337d770d78bf91af10e4dcd9784160956b5a6adf6b55939d",
+  "archive_real_definition_paths_before_packet": [],
+  "archive_index_evidence": "build/C104/static_archive_index.json",
+  "current_module_flags_preserved": "-g0 -O2 -mips2 -G 0 -non_shared"
+}

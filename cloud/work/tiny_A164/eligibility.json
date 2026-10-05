@@ -1,0 +1,11 @@
+{
+  "lock_sha256": "f8bc2cb5dc9f3aa22503586e9e2ef3fd9e95bab70125f4eaf378312fe8f40ee9",
+  "target": {
+    "kind": "function",
+    "size": 420,
+    "target_id": "dma_wait_complete",
+    "vaddr": 2148051520
+  },
+  "accepted": false,
+  "accepted_overlaps": []
+}

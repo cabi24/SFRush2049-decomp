@@ -1,0 +1,18 @@
+{
+  "object": "build/C120/native_array_order.o",
+  "object_sha256": "e15b471e0dfcc58f9ccbbbaabffd935764d52bd98506c346d8734f4f4481f5ac",
+  "results": [
+    {
+      "name": "func_800D1AB0",
+      "slot_bytes": 560,
+      "true_symbol_bytes": 584,
+      "refusal": "func_800D1AB0: 6 extra words (nonzero beyond target length)"
+    },
+    {
+      "name": "func_800F8EC8",
+      "slot_bytes": 1024,
+      "true_symbol_bytes": 932,
+      "refusal": "func_800F8EC8: compiled body is 936 bytes, shorter than the 1024-byte extent"
+    }
+  ]
+}

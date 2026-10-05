@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "passed": 12,
+  "command": "PYTHONPATH=build/codex-B22-followup python -m pytest -q build/codex-B22-followup/test_owned_text.py"
+}

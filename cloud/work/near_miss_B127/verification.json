@@ -1,0 +1,62 @@
+[
+  {
+    "source": "music_seq_load_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "284acedebe424dcca9e059816f65f16fcdc774016f25e1f8751e9e54ece68362",
+    "object_sha256": "b71add74c78ef2d648785028d0ef409386443c8c95d4a4879b6bd60e6bac1973",
+    "comparison": {
+      "differing": 304,
+      "total": 357,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 348
+  },
+  {
+    "source": "music_seq_load_fields.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "9b55d258a184792df6dd86b7d5ed5dde0a9a1a2ef9e75a56830dcf9a0fde683f",
+    "object_sha256": "65443b4f4449cce222dffd67b873d344bc0c318a9648391f5b0c4f7d5a383e29",
+    "comparison": {
+      "differing": 304,
+      "total": 357,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 348
+  },
+  {
+    "source": "music_seq_load_donor_declarations.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "fcc46e06681e4de60910359446e4ae112179fb7188428d2ff60becf7b78bfa02",
+    "object_sha256": "e3df183c51c0488b194645397b76f5d154f123b91f042d779cffcbb7fba57dfb",
+    "comparison": {
+      "differing": 304,
+      "total": 357,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 348
+  },
+  {
+    "source": "music_seq_load_flag_carrier.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "9e091078c5eba4c50e2f7037e153be4ba1ce67091e55915750eecf2d228f7cda",
+    "object_sha256": "9749c8cafc5bf16616b2923d21a99ddf1adff421c14e8d6f088c360239d4e17e",
+    "comparison": {
+      "differing": 308,
+      "total": 357,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 348
+  }
+]

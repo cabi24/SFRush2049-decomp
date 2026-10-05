@@ -1,0 +1,22 @@
+{
+  "locks": [
+    {
+      "path": "matched.lock.json",
+      "sha256": "dc99032030c56842337d770d78bf91af10e4dcd9784160956b5a6adf6b55939d",
+      "entries": []
+    },
+    {
+      "path": "/tmp/rush-static-acceptance-20261002/matched.lock.json",
+      "sha256": "dc99032030c56842337d770d78bf91af10e4dcd9784160956b5a6adf6b55939d",
+      "entries": []
+    }
+  ],
+  "archived_full_cloud_definitions_before_packet": [],
+  "existing_unaccepted_older_sdk_source": "src/libultra/os_scheduler.c521; lacks both native check-only paths",
+  "mapped_native_function": {
+    "name": "__scAppendList",
+    "vaddr": "0x80000d6c",
+    "size": 180,
+    "state": "passthrough"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "source_unchanged": {
+    "caller.c": "c5ff07d0eae3d6fcda22513a92c166c2338cdc40cc890d9321d3b29fb9407b1e",
+    "magnitude.c": "feb5c4c69b21ca28c2e434c18d649a9c82b742b30adcd00d00c1f69bc07ba36c"
+  },
+  "origin": "Frozen A162 complete real caller and actual norm source. Only ordinary keep list changed to genuine caller; no source/flags changes."
+}

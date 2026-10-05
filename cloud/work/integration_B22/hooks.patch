@@ -1,0 +1,83 @@
+--- a/tools/conveyor/pipeline/owned_data.py
++++ b/tools/conveyor/pipeline/owned_data.py
+@@ -210,7 +210,8 @@
+             lines += ['_binary_' + name + '_end = ABSOLUTE(.);', '_binary_' + name + '_size = ABSOLUTE(_binary_' + name + '_end - _binary_' + name + '_start);']
+         lines += ['/* ROM_OWNED_DATA_END ' + marker + ' */']
+         text = text.replace(original, ('\n' + indent).join(lines))
+-    return text
++    from . import owned_text
++    return owned_text.rewrite_linker(text, repo)
+ 
+ 
+ def companion_block(row):
+@@ -248,6 +249,8 @@
+         from . import owned_storage
+         paths.update(str(Path(p).relative_to(repo)) if Path(p).is_absolute() else _relative(p)
+                      for p in owned_storage.package_paths(repo, tu))
++    from . import owned_text
++    paths.update(str(p.relative_to(repo)) for p in owned_text.package_paths(repo, tu))
+     return [Path(repo) / p for p in sorted(paths)]
+ 
+ 
+--- a/tools/conveyor/pipeline/layout.py
++++ b/tools/conveyor/pipeline/layout.py
+@@ -348,28 +348,43 @@
+     """Linked-C coverage: promoted functions/bytes over the static code range,
+     derived from live TUs cross-checked against the map. Returns a dict."""
+     mapping = mapping or derive()
++    from . import owned_text
++    boundaries = owned_text.accounting(REPO)
+     total_funcs = total_bytes = 0
+-    promoted_funcs = promoted_bytes = 0
++    promoted_funcs = promoted_bytes = promoted_slot_bytes = preserved_padding_bytes = 0
+     per_segment = []
+     for s in mapping["segments"]:
+         if s["refusal"] or not s["functions"]:
+             continue
+-        pf = pb = 0
++        pf = pb = slot_bytes = padding_bytes = 0
+         for f in s["functions"]:
+             total_funcs += 1
+             total_bytes += f["size"]
+             if f.get("state") == "promoted":
+                 pf += 1
+-                pb += f["size"]
++                slot_bytes += f["size"]
++                boundary = boundaries.get(("src/" + s["rom_tu"] + ".c", f["name"]))
++                if boundary:
++                    if f["size"] != boundary["logical_body_bytes"] + boundary["padding_bytes"]:
++                        raise owned_text.TextBoundaryError("coverage slot disagrees with proven logical body and padding")
++                    pb += boundary["logical_body_bytes"]
++                    padding_bytes += boundary["padding_bytes"]
++                else:
++                    pb += f["size"]
+         promoted_funcs += pf
+         promoted_bytes += pb
++        promoted_slot_bytes += slot_bytes
++        preserved_padding_bytes += padding_bytes
+         if s["converted"]:
+             per_segment.append({"segment": s["yaml_name"], "rom_tu": s["rom_tu"],
+                                 "promoted": pf, "functions": len(s["functions"]),
+-                                "bytes": pb})
++                                "bytes": pb, "slot_bytes": slot_bytes,
++                                "preserved_padding_bytes": padding_bytes})
+     return {
+         "promoted_functions": promoted_funcs, "promoted_bytes": promoted_bytes,
+         "static_functions": total_funcs, "static_bytes": total_bytes,
++        "promoted_slot_bytes": promoted_slot_bytes,
++        "preserved_padding_bytes": preserved_padding_bytes,
+         "segments": per_segment,
+     }
+ 
+--- a/Makefile
++++ b/Makefile
+@@ -271,7 +271,8 @@
+ 	$(V)$(PYTHON) -m tools.conveyor.pipeline.owned_data split $< $< $@ --objcopy $(OBJCOPY)
+ 
+ # Reapply ownership before linking even without make extract. Rendering is idempotent.
+-$(LD_SCRIPT): rom_owned_data.json tools/conveyor/pipeline/owned_data.py
++TEXT_BOUNDARY_INPUTS = $(shell $(PYTHON) -m tools.conveyor.pipeline.owned_text inputs)
++$(LD_SCRIPT): rom_owned_data.json tools/conveyor/pipeline/owned_data.py tools/conveyor/pipeline/owned_text.py $(TEXT_BOUNDARY_INPUTS)
+ 	$(V)$(PYTHON) -m tools.conveyor.pipeline.owned_data linker $@
+ 
+ # Companions and metadata are immutable during promotion; force source/asset rebuilds

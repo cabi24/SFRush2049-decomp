@@ -1,0 +1,63 @@
+{
+  "source_sha256": "dcacf9fa7dd0bdf1b4c64b71f1fb82cab8575962214b8acd975848255e170b4f",
+  "canonical": {
+    "entity_transform_calc": {
+      "differing": 0,
+      "total": 110,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "client_sync": {
+      "differing": 0,
+      "total": 54,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "entity_hierarchy_update": {
+      "differing": 0,
+      "total": 34,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80091BA8": {
+      "differing": 0,
+      "total": 21,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80091B00": {
+      "differing": 11,
+      "total": 42,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "scheduler_recv": {
+      "differing": 0,
+      "total": 40,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "full_original_word_differences": {
+    "entity_transform_calc": 0,
+    "client_sync": 0,
+    "entity_hierarchy_update": 0
+  },
+  "body_bytes": {
+    "entity_transform_calc": 440,
+    "client_sync": 216,
+    "entity_hierarchy_update": 136
+  }
+}

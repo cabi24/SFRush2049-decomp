@@ -1,0 +1,30 @@
+{
+  "source_sha256": "75f0873647d2e572655416f2bb1f3530228e05810fa115cd3dc18ee10a049ffb",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-tire-compiler/candidates/actual_tire_helpers_group/group.c",
+  "accepted": false,
+  "canonical_verdict": "2/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+  "comparison": {
+    "differing": 2,
+    "total": 422,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0x498",
+      ".rodata+0x0 at +0x4a8",
+      ".rodata+0x4 at +0x5a8",
+      ".rodata+0x4 at +0x5b0",
+      ".rodata+0x8 at +0x60c",
+      ".rodata+0x8 at +0x614"
+    ],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "139e6964d1120a1c4ac54d0147f15542adf8d3cbfff6af4f3415c05599a292bf",
+  "emitted_words": 425,
+  "aligned": {
+    "aligned_exact": 414,
+    "aligned_opcode": 422,
+    "aligned_opcode_reg": 422
+  },
+  "frame_bytes": 152
+}

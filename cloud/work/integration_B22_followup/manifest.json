@@ -1,0 +1,9 @@
+{
+  "endpoint_proof.json": "a9a201d24aad873390bf04ca854e58feaa5c06cfdd6208d47163a88b8e14a28f",
+  "owned_text.py": "e2c86d53345dd618889e56e2f7b757ef7afa0d0ccefdf5a781887ae4e6af5eac",
+  "standalone_followup.patch": "c43cc950177f0a0043265fc263fab200081eb2eff32803d5f9f82c0d7f756e79",
+  "standalone_proof.json": "c5e3f856db01e8e08538483b5f780fb06a294f9d27f28c56c985e61a6d62bffb",
+  "test_owned_text.py": "55241983979ca23d6e42a0a8a43e91e63325bed5dfbebbadc65a379c71e6fd73",
+  "tests.json": "2065c07721385ed89e94b1fd853eefe0ab79fc99afe5064821068c99f3702209",
+  "text_boundary_record.json": "a28997f582ddcdc6443699069fb6618fe7f3b92e30e809668b60037b41154070"
+}

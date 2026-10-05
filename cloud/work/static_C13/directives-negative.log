@@ -1,0 +1,205 @@
+FFFFFFF                                                                  [100%]
+=================================== FAILURES ===================================
+______ test_word_directives_align_and_count_each_operand[.word symbol, 7] ______
+
+directive = '.word symbol, 7'
+
+    @pytest.mark.parametrize('directive', ['.word symbol, 7', '.gpword symbol, 7', '.float 1.0, 2.0'])
+    def test_word_directives_align_and_count_each_operand(directive):
+        asm = parser(); block = asm.GlobalAsmBlock('fixture'); block.cur_section = '.rodata'
+        block.process_line('.byte 1', 'utf-8')
+>       block.process_line(directive, 'utf-8')
+
+tests/conveyor/test_asm_owned_directives.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tools/asm-processor/asm_processor.py:661: in process_line
+    self.fail("asm directive not supported", real_line)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <owned_directive_asm.GlobalAsmBlock object at 0x7fff4260c190>
+message = 'asm directive not supported', line = '.word symbol, 7'
+
+    def fail(self, message, line=None):
+        context = self.fn_desc
+        if line:
+            context += ", at line \"" + line + "\""
+>       raise Failure(message + "\nwithin " + context)
+E       owned_directive_asm.Failure: asm directive not supported
+E       within fixture, at line ".word symbol, 7"
+
+tools/asm-processor/asm_processor.py:523: Failure
+_____ test_word_directives_align_and_count_each_operand[.gpword symbol, 7] _____
+
+directive = '.gpword symbol, 7'
+
+    @pytest.mark.parametrize('directive', ['.word symbol, 7', '.gpword symbol, 7', '.float 1.0, 2.0'])
+    def test_word_directives_align_and_count_each_operand(directive):
+        asm = parser(); block = asm.GlobalAsmBlock('fixture'); block.cur_section = '.rodata'
+        block.process_line('.byte 1', 'utf-8')
+>       block.process_line(directive, 'utf-8')
+
+tests/conveyor/test_asm_owned_directives.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tools/asm-processor/asm_processor.py:661: in process_line
+    self.fail("asm directive not supported", real_line)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <owned_directive_asm.GlobalAsmBlock object at 0x7fff4259af90>
+message = 'asm directive not supported', line = '.gpword symbol, 7'
+
+    def fail(self, message, line=None):
+        context = self.fn_desc
+        if line:
+            context += ", at line \"" + line + "\""
+>       raise Failure(message + "\nwithin " + context)
+E       owned_directive_asm.Failure: asm directive not supported
+E       within fixture, at line ".gpword symbol, 7"
+
+tools/asm-processor/asm_processor.py:523: Failure
+______ test_word_directives_align_and_count_each_operand[.float 1.0, 2.0] ______
+
+directive = '.float 1.0, 2.0'
+
+    @pytest.mark.parametrize('directive', ['.word symbol, 7', '.gpword symbol, 7', '.float 1.0, 2.0'])
+    def test_word_directives_align_and_count_each_operand(directive):
+        asm = parser(); block = asm.GlobalAsmBlock('fixture'); block.cur_section = '.rodata'
+        block.process_line('.byte 1', 'utf-8')
+>       block.process_line(directive, 'utf-8')
+
+tests/conveyor/test_asm_owned_directives.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tools/asm-processor/asm_processor.py:661: in process_line
+    self.fail("asm directive not supported", real_line)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <owned_directive_asm.GlobalAsmBlock object at 0x7fff41f85ed0>
+message = 'asm directive not supported', line = '.float 1.0, 2.0'
+
+    def fail(self, message, line=None):
+        context = self.fn_desc
+        if line:
+            context += ", at line \"" + line + "\""
+>       raise Failure(message + "\nwithin " + context)
+E       owned_directive_asm.Failure: asm directive not supported
+E       within fixture, at line ".float 1.0, 2.0"
+
+tools/asm-processor/asm_processor.py:523: Failure
+_____ test_double_directive_aligns_to_word_and_counts_eight_byte_operands ______
+
+    def test_double_directive_aligns_to_word_and_counts_eight_byte_operands():
+        asm = parser(); block = asm.GlobalAsmBlock('fixture'); block.cur_section = '.rodata'
+        block.process_line('.byte 1', 'utf-8')
+>       block.process_line('.double 1.0, 2.0', 'utf-8')
+
+tests/conveyor/test_asm_owned_directives.py:27: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tools/asm-processor/asm_processor.py:661: in process_line
+    self.fail("asm directive not supported", real_line)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <owned_directive_asm.GlobalAsmBlock object at 0x7fff41e12b10>
+message = 'asm directive not supported', line = '.double 1.0, 2.0'
+
+    def fail(self, message, line=None):
+        context = self.fn_desc
+        if line:
+            context += ", at line \"" + line + "\""
+>       raise Failure(message + "\nwithin " + context)
+E       owned_directive_asm.Failure: asm directive not supported
+E       within fixture, at line ".double 1.0, 2.0"
+
+tools/asm-processor/asm_processor.py:523: Failure
+___________ test_late_double_preserves_mod_eight_alignment[None-8-8] ___________
+
+prefix = None, alignment = 8, total = 8
+
+    @pytest.mark.parametrize('prefix,alignment,total', [(None, 8, 8), ('.word 1', 4, 12)])
+    def test_late_double_preserves_mod_eight_alignment(prefix, alignment, total):
+        asm = parser(); block = asm.GlobalAsmBlock('fixture'); block.cur_section = '.late_rodata'
+        if prefix:
+            block.process_line(prefix, 'utf-8')
+>       block.process_line('.double 1.0', 'utf-8')
+
+tests/conveyor/test_asm_owned_directives.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tools/asm-processor/asm_processor.py:661: in process_line
+    self.fail("asm directive not supported", real_line)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <owned_directive_asm.GlobalAsmBlock object at 0x7fff41f80050>
+message = 'asm directive not supported', line = '.double 1.0'
+
+    def fail(self, message, line=None):
+        context = self.fn_desc
+        if line:
+            context += ", at line \"" + line + "\""
+>       raise Failure(message + "\nwithin " + context)
+E       owned_directive_asm.Failure: asm directive not supported
+E       within fixture, at line ".double 1.0"
+
+tools/asm-processor/asm_processor.py:523: Failure
+_________ test_late_double_preserves_mod_eight_alignment[.word 1-4-12] _________
+
+prefix = '.word 1', alignment = 4, total = 12
+
+    @pytest.mark.parametrize('prefix,alignment,total', [(None, 8, 8), ('.word 1', 4, 12)])
+    def test_late_double_preserves_mod_eight_alignment(prefix, alignment, total):
+        asm = parser(); block = asm.GlobalAsmBlock('fixture'); block.cur_section = '.late_rodata'
+        if prefix:
+>           block.process_line(prefix, 'utf-8')
+
+tests/conveyor/test_asm_owned_directives.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tools/asm-processor/asm_processor.py:661: in process_line
+    self.fail("asm directive not supported", real_line)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <owned_directive_asm.GlobalAsmBlock object at 0x7fff427fbfd0>
+message = 'asm directive not supported', line = '.word 1'
+
+    def fail(self, message, line=None):
+        context = self.fn_desc
+        if line:
+            context += ", at line \"" + line + "\""
+>       raise Failure(message + "\nwithin " + context)
+E       owned_directive_asm.Failure: asm directive not supported
+E       within fixture, at line ".word 1"
+
+tools/asm-processor/asm_processor.py:523: Failure
+__________ test_bounded_incbin_mixes_with_existing_numeric_directives __________
+
+tmp_path = PosixPath('/tmp/pytest-of-cburnes/pytest-253/test_bounded_incbin_mixes_with0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fff41f722d0>
+
+    def test_bounded_incbin_mixes_with_existing_numeric_directives(tmp_path, monkeypatch):
+        monkeypatch.chdir(tmp_path); (tmp_path / 'data.bin').write_bytes(b'12345678')
+        asm = parser(); block = asm.GlobalAsmBlock('fixture'); block.cur_section = '.rodata'
+        for line in ['.incbin "data.bin", 0, 1', '.word a, b', '.float 1.0', '.double 2.0, 3.0', '.gpword c']:
+>           block.process_line(line, 'utf-8')
+
+/tmp/static-C13-rom/tests/conveyor/test_asm_owned_directives.py:48: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/tmp/static-C13-rom/tools/asm-processor/asm_processor.py:661: in process_line
+    self.fail("asm directive not supported", real_line)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <owned_directive_asm.GlobalAsmBlock object at 0x7fff41f72dd0>
+message = 'asm directive not supported', line = '.word a, b'
+
+    def fail(self, message, line=None):
+        context = self.fn_desc
+        if line:
+            context += ", at line \"" + line + "\""
+>       raise Failure(message + "\nwithin " + context)
+E       owned_directive_asm.Failure: asm directive not supported
+E       within fixture, at line ".word a, b"
+
+/tmp/static-C13-rom/tools/asm-processor/asm_processor.py:523: Failure
+=========================== short test summary info ============================
+FAILED tests/conveyor/test_asm_owned_directives.py::test_word_directives_align_and_count_each_operand[.word symbol, 7]
+FAILED tests/conveyor/test_asm_owned_directives.py::test_word_directives_align_and_count_each_operand[.gpword symbol, 7]
+FAILED tests/conveyor/test_asm_owned_directives.py::test_word_directives_align_and_count_each_operand[.float 1.0, 2.0]
+FAILED tests/conveyor/test_asm_owned_directives.py::test_double_directive_aligns_to_word_and_counts_eight_byte_operands
+FAILED tests/conveyor/test_asm_owned_directives.py::test_late_double_preserves_mod_eight_alignment[None-8-8]
+FAILED tests/conveyor/test_asm_owned_directives.py::test_late_double_preserves_mod_eight_alignment[.word 1-4-12]
+FAILED tests/conveyor/test_asm_owned_directives.py::test_bounded_incbin_mixes_with_existing_numeric_directives

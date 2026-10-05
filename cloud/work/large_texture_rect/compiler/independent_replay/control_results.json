@@ -1,0 +1,140 @@
+[
+  {
+    "source_sha256": "4df5b2f78e7366029e764bed40de4e152edda3ca7c5859007ce795e0edaac8f7",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "baseline.c",
+    "accepted": false,
+    "canonical_verdict": "4/445 words differ",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "1cfb77ece664270debf3c79fa9c457e6e3017004314bee5efe72fb26fb24ae0b",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 444,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "4904f244d9a849f884c6cdf0df7c2e0bee1d194d9a0c15582e53894e33e6b8fd",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "edge_branch_local_assignment.c",
+    "accepted": false,
+    "canonical_verdict": "6/445 words differ",
+    "comparison": {
+      "differing": 6,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "c6899c0da3e8f90038596b6b52dfe0aa300dc742920980d4a03e9ecd2e8fe82a",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 442,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "b2cdd1f2f38d3d850218a07f788fbaf0b3ec749733336f46a4973971b0995c64",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "edge_branch_local_initializer.c",
+    "accepted": false,
+    "canonical_verdict": "6/445 words differ",
+    "comparison": {
+      "differing": 6,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "4135b721f14dc3e4ec44b9b81e718f4166bb6ce05135791283fcebbd055c1356",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 442,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "1c17ea96e2b35700f4216f667ee9bdde44203af73c3f8625484e582e52baa973",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "edge_sdk_argument_line.c",
+    "accepted": false,
+    "canonical_verdict": "4/445 words differ",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "e1d5ed41c2a548a0fdcc7d644100273b8923139ac361f103344811ef180b5661",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 444,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "34687e4ef115ea7c17bfa60d03227fa5b35d06f09c01f1cc6794b871a72871ca",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "sdk_arguments_separate.c",
+    "accepted": false,
+    "canonical_verdict": "4/445 words differ",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "1f83b8a88a47108ec87cc4be19e4882d3b6a8540f92f0140442b56118e5da1d7",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 444,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  },
+  {
+    "source_sha256": "f851bd0865f979962c1248261959176b924eabf4fbb28f2f580d905703a71487",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "sdk_command_lines.c",
+    "accepted": false,
+    "canonical_verdict": "4/445 words differ",
+    "comparison": {
+      "differing": 4,
+      "total": 445,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "866294340b6ac450f5924060093e35399eb1dd9f01023334bbf02c8187932c5e",
+    "emitted_words": 448,
+    "aligned": {
+      "aligned_exact": 444,
+      "aligned_opcode": 444,
+      "aligned_opcode_reg": 444
+    },
+    "frame_bytes": 104
+  }
+]

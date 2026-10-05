@@ -1,0 +1,32 @@
+{
+  "status": "frozen bounded full-native nonmatch; no combined owned-data claim",
+  "sources": [
+    {
+      "source": "cloud/work/static_C115/__scMain.c",
+      "source_sha256": "603663d0d1be36dbe61b51a03cb58de0c5fa4795d62960386e0d0ac3466e2700",
+      "canonical_strict_including_stack": 235,
+      "true_symbol_bytes": 328,
+      "frame_bytes": 40,
+      "full_word_differences": 56
+    },
+    {
+      "source": "cloud/work/static_C115/__scMain.native_time_words.c",
+      "source_sha256": "b64bd54b81b23c1516e7f3347741f5021170dca28c15c787811a56d84a3a0b86",
+      "canonical_strict_including_stack": 1213,
+      "true_symbol_bytes": 344,
+      "frame_bytes": 48,
+      "full_word_differences": 68
+    }
+  ],
+  "original_bytes": 324,
+  "accepted_credit": 0,
+  "table": {
+    "native_start": "0x8002D490",
+    "native_bytes": 20,
+    "contiguous_with_C113_28_byte_table": true,
+    "potential_complete_combined_range": "0x8002D490-0x8002D4C0/48B",
+    "combined_complete_source_exact": false
+  },
+  "remaining_residual": "Actual64-bit timestamp assignment emits extra LUI and subtraction load/borrow ordering differs; native 324B vs initial328B. Grounded existing-word/address64cast worsens344B/48-byte frame. No fake qualifiers/pressure/padding/shaping.",
+  "provenance": "Independent full five-event native scheduler thread informed by original SDK __scMain, real three consumed locals and existing runtime callbacks/globals only."
+}

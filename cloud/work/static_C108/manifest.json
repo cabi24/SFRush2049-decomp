@@ -1,0 +1,23 @@
+{
+  "status": "frozen complete native research nonmatch",
+  "sources": [
+    {
+      "source": "cloud/work/static_C108/__scHandleRetrace.c",
+      "source_sha256": "62d658650af0e3f2e67b53a0daa9350174078c95a7f76801c5acb339cbcc468d",
+      "canonical_strict_including_stack": 108,
+      "true_symbol_bytes": 204,
+      "full_word_differences": 24
+    },
+    {
+      "source": "cloud/work/static_C108/__scHandleRetrace.native_locals.c",
+      "source_sha256": "216c2a91c19866ba5c4afdd0c6761d61b1e12f93b56156ea609dccf9d6106664",
+      "canonical_strict_including_stack": 100,
+      "true_symbol_bytes": 204,
+      "full_word_differences": 22
+    }
+  ],
+  "accepted_credit": 0,
+  "original_bytes": 208,
+  "provenance": "Full actual retrace swap/client notification reconstructed from native assembly; SDK sched.c215-223 declarations are actual donor evidence. Removing obsolete scheduling state aligns both native zero-initialized pointer homes. Actual donor rspTask/i/sp/dp retained; any future commit must disclose genuine unused-local dependence per PROMPT rule7.",
+  "remaining_residual": "Original clear pendingSwap store remains before branch+nop; g1/O1 compiler schedules store into branch delay, one fewer true word. No padding/qualifiers/source shaping tried."
+}

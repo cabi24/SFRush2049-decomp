@@ -1,0 +1,44 @@
+{
+  "target": "dma_wait_complete",
+  "sources": {
+    "dma_wait_complete.c": "0bf70bd7cd4b89857a0b559d7d1018db209a2ddc8729e84a359684a94db5b48b",
+    "control.async_task.c": "22d1f7b7eb4a619f712339e47141cd59585e97a58582791da633f3aceca6360b"
+  },
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "result": "NONMATCH",
+  "comparisons": {
+    "dma_wait_complete.c": {
+      "differing": 83,
+      "total": 105,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "source_sha256": "0bf70bd7cd4b89857a0b559d7d1018db209a2ddc8729e84a359684a94db5b48b",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "claims": []
+    },
+    "control.async_task.c": {
+      "differing": 66,
+      "total": 105,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 4,
+      "source_sha256": "22d1f7b7eb4a619f712339e47141cd59585e97a58582791da633f3aceca6360b",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "claims": []
+    }
+  },
+  "sdk_provenance": {
+    "OSScClient8": "reference/repos/ultralib/include/PR/sched.h",
+    "mandatory_thread_userdata": "car_shadow_render A5DF4..A5E08 exact dma_wait_complete address passed as osCreateThread callback, userdata0,id9,priority9",
+    "async_producer": "reference/repos/ultralib/src/sched/sched.c __scHandleRDP current task clear and __scExec task assignment",
+    "native_member_reads": [
+      "8008AB30 word at scheduler+628",
+      "8008AB44 word at scheduler+628"
+    ],
+    "unknown_callee": "func_800205E4 conventional actual-address declaration; no alias/new body; current canonical address_named fallback resolves genuine jal target"
+  }
+}

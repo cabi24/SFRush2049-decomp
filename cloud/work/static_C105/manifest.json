@@ -1,0 +1,18 @@
+{
+  "status": "frozen full-native exact research, unsupported module recipe migration",
+  "source": "cloud/work/static_C105/__scTaskReady.sdk_flow.debug_o1.c",
+  "source_sha256": "8ea2455ca998870ac1e0da5d228b6586e4cb3725e22d0c96319a02d6fdbd21fb",
+  "flags": "-g1 -O1 -mips2 -G 0 -non_shared",
+  "original_bytes": 176,
+  "true_symbol_bytes": 176,
+  "strict_including_stack": 0,
+  "complete_native_words_exact": 44,
+  "masks": 0,
+  "unknown_or_unverified_relocations": 0,
+  "claimed_coverage_bytes": 0,
+  "accepted_credit": 0,
+  "provenance": "Independent complete native reconstruction of actual two-input scheduler framebuffer/pending-swap gate. Original SDK assignment-expression and final return control flow at reference/repos/ultralib/src/sched/sched.c340\u2013361 informed bounded source hypotheses. No unused donor locals copied, no added runtime work/formals. Existing global storage only referenced, never redefined.",
+  "current_module": "rom/lib_1050",
+  "current_flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "known_migration_blocker": "C67 exact whole-module proof finds unchanged accepted viDeadlinePassed expands four words under g1/O1; preserve all original locks and pins pending coordinator supported whole-module assessment."
+}

@@ -1,0 +1,8 @@
+{
+  "head": "c50cacd57569f47216f152db751361500c65d15b",
+  "github_actions_run": 37009355986,
+  "url": "https://github.com/cabi24/SFRush2049-decomp/actions/runs/37009355986",
+  "status": "completed",
+  "conclusion": "success",
+  "evidence": "Read-only gh run list --branch master --limit 3; private acceptance branch does not trigger this workflow."
+}

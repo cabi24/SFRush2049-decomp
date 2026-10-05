@@ -1,0 +1,17 @@
+{
+  "members": [
+    "func_800A3724",
+    "car_lod_select"
+  ],
+  "context": [
+    "func_80091FBC"
+  ],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "car_lod_select"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+}

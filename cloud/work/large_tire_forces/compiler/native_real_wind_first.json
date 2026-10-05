@@ -1,0 +1,30 @@
+{
+  "source_sha256": "11b9cb2fec7e9d1f1cd3992d77b71f8327738893e53b8c13eb98834c82070dbe",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-tire-compiler/candidates/native_real_wind_first.c",
+  "accepted": false,
+  "canonical_verdict": "30/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+  "comparison": {
+    "differing": 30,
+    "total": 422,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0x498",
+      ".rodata+0x0 at +0x4a8",
+      ".rodata+0x4 at +0x5a8",
+      ".rodata+0x4 at +0x5b0",
+      ".rodata+0x8 at +0x60c",
+      ".rodata+0x8 at +0x614"
+    ],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "13fb77250ba6b5fbbf1954316c0decac5b7b74b04da5e3d71c33c98d1de79a5d",
+  "emitted_words": 424,
+  "aligned": {
+    "aligned_exact": 386,
+    "aligned_opcode": 422,
+    "aligned_opcode_reg": 422
+  },
+  "frame_bytes": 152
+}

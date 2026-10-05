@@ -1,0 +1,16 @@
+{
+  "source_sha256": "63f6a94b952d7f326de6507e2482c37e829a785820d62f20cd4623fe06212fc9",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "compile_exit": 0,
+  "stderr": "cfe: Warning 773: /home/cburnes/agents/A/scratch/static-A171/sqrtf.c, line 2: pragma argument 'sqrtf' must be declared prior to being used in a pragma\n __pragma(1, sqrtf);\n ------------^\n",
+  "stdout": "",
+  "claims": [],
+  "strict_score": 700,
+  "raw_word_differences": 7,
+  "original_words": 4,
+  "native_words": 8,
+  "symbol_offsets": {
+    "sqrtf": 0
+  },
+  "object_sha256": "ba7eea18af32a057549d77421b97e1f124b0eee36e30a068f25f37870dbb2bae"
+}

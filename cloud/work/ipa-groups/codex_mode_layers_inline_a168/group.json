@@ -1,0 +1,25 @@
+{
+  "members": [
+    "mode_select_input"
+  ],
+  "context": [
+    "entity_transform_calc",
+    "client_sync",
+    "entity_hierarchy_update",
+    "func_80091BA8",
+    "func_80091B00",
+    "scheduler_recv",
+    "func_800DFBA0"
+  ],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "client_sync",
+    "entity_hierarchy_update",
+    "scheduler_recv",
+    "func_800DFBA0"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

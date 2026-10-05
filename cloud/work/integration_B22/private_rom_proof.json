@@ -1,0 +1,45 @@
+{
+  "builder": "watchman2:~/agents/B/B21-private-rom (isolated)",
+  "snapshot": "B18/B21 privately stock-ROM-proven source tree; current root full-ROM acceptance still required",
+  "compiler": "pinned IDO with explicit CC, COMPILER=ido make-j2 then make test",
+  "retail_sha1": "3f99351d7bb61656614bdb2aa1a90cfe55d1922c",
+  "steps": [
+    {
+      "step": "baseline",
+      "exit_code": 0,
+      "rom_matches": 2,
+      "stdout_sha256": "42a1b1942cadf6a901a9d7e9546dc6db9877c86c54a7d72dd9dc31636dcbf85b"
+    },
+    {
+      "step": "candidate",
+      "exit_code": 0,
+      "rom_matches": 2,
+      "stdout_sha256": "f1f018874bccce2ed944dbeb61fbe37d6dd36778830dc87aaec5cfc6b6073b38"
+    },
+    {
+      "step": "regenerated_candidate",
+      "exit_code": 0,
+      "rom_matches": 2,
+      "stdout_sha256": "42a1b1942cadf6a901a9d7e9546dc6db9877c86c54a7d72dd9dc31636dcbf85b"
+    },
+    {
+      "step": "rollback",
+      "exit_code": 0,
+      "rom_matches": 2,
+      "stdout_sha256": "f1f018874bccce2ed944dbeb61fbe37d6dd36778830dc87aaec5cfc6b6073b38"
+    },
+    {
+      "step": "full_rollback",
+      "exit_code": 0,
+      "rom_matches": 2,
+      "stdout_sha256": "6b3884d16dd8bdc0b86a48eb9e3936b4c24b3d70a3dd805a873c9471b5ef1244"
+    }
+  ],
+  "regeneration": "Actual local make extract with SPLAT venv, then exact proposed owned_text.rewrite_linker output replayed; no production root files modified",
+  "logical_c_body_bytes": 32,
+  "preserved_padding_bytes": 96,
+  "baseline_text_bytes": 256,
+  "candidate_text_bytes": 160,
+  "private_builder_restored": true,
+  "proposed_linker_sha256": "4df52c716b323adaa9581621b23e93dc87b111fc01366f5b34bf6357365b2ca6"
+}

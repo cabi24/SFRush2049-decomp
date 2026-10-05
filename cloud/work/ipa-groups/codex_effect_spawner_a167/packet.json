@@ -1,0 +1,40 @@
+{
+  "source_sha256": "43ce66f8d2c6b55680e0ee23a698d18e90a91dab12a21872a08a6c8444ebe0d7",
+  "manifest_sha256": "31f715578036afaa43c8e29f3fa62e46e500fe38fb0a27ff332ed5e701897c22",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "comparisons": {
+    "entity_physics_update": {
+      "differing": 176,
+      "total": 178,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80090308": {
+      "differing": 282,
+      "total": 282,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_8012E700 at .text+0x4c0"
+      ],
+      "extra_words": 58
+    },
+    "func_80090284": {
+      "differing": 31,
+      "total": 33,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "source_hashes": {
+    "effects.c": "43ce66f8d2c6b55680e0ee23a698d18e90a91dab12a21872a08a6c8444ebe0d7",
+    "allocator.c": "df707e48ea28bd4e34bc1d6a255d7c198891ec6e5199f9d781350a2c0ef77ad5",
+    "group.json": "31f715578036afaa43c8e29f3fa62e46e500fe38fb0a27ff332ed5e701897c22"
+  },
+  "verdict": "NONMATCH"
+}

@@ -1,0 +1,162 @@
+--- a/tools/conveyor/pipeline/owned_text.py
++++ b/tools/conveyor/pipeline/owned_text.py
+@@ -3,9 +3,82 @@
+ A boundary belongs to a real SPLAT segment, survives C/asm conversion, and
+ never manufactures a C function or credits linker fill as C body bytes.
+ """
+-import hashlib,re
++import hashlib,re,json
+ from pathlib import Path
+ 
++from ..seeds.extract_candidates import extract_functions
++
++# Same static-code ROM mapping as VRAM_DELTA; parity tested.
++VRAM_DELTA = 0x7FFFF400
++
++def normalize_body(text):
++    """Comment-stripped, whitespace-collapsed body text. String and char
++    literals are preserved verbatim so the hash still moves when they
++    change; everything a compiler ignores is squeezed out."""
++    segments, buf = [], []
++    i, n = 0, len(text)
++
++    def flush():
++        if buf:
++            segments.append(re.sub(r"\s+", " ", "".join(buf)))
++            buf.clear()
++
++    while i < n:
++        c = text[i]
++        if c == "/" and i + 1 < n and text[i + 1] == "*":
++            j = text.find("*/", i + 2)
++            i = n if j == -1 else j + 2
++            buf.append(" ")
++        elif c == "/" and i + 1 < n and text[i + 1] == "/":
++            j = text.find("\n", i)
++            i = n if j == -1 else j
++        elif c in "\"'":
++            j = i + 1
++            while j < n:
++                if text[j] == "\\":
++                    j += 2
++                    continue
++                if text[j] == c:
++                    break
++                j += 1
++            j = min(j + 1, n)
++            flush()
++            segments.append(text[i:j])
++            i = j
++        else:
++            buf.append(c)
++            i += 1
++    flush()
++    return "".join(segments).strip()
++
++
++def body_sha(source_path, name):
++    """Normalized-body hash of one function, or None if it can't be found."""
++    try:
++        text = Path(source_path).read_text(errors="replace")
++    except OSError:
++        return None
++    for got, start, end in extract_functions(text):
++        if got == name:
++            return hashlib.sha256(
++                normalize_body(text[start:end]).encode()
++            ).hexdigest()
++    return None
++
++
++
++def _subsegments(path):
++    rows=[];in_code=False
++    for line in Path(path).read_text().splitlines():
++        if line.strip()=="type: code":
++            in_code=True
++        if not in_code:
++            continue
++        m=re.match(r"^\s*-\s*\[\s*(0x[0-9A-Fa-f]+)\s*,\s*([A-Za-z0-9_]+)\s*(?:,\s*([^\]]+?)\s*)?\]\s*$",line)
++        if m:
++            rows.append(dict(off=int(m[1],16),type=m[2],name=(m[3] or "").strip() or None))
++    return rows
++
+ class TextBoundaryError(ValueError):
+     pass
+ 
+@@ -31,7 +104,6 @@
+     return result
+ 
+ def _checked(repo,row,check_rom=True):
+-    from . import layout,lock
+     repo=Path(repo);r=dict(row)
+     for key in ('owner','function'):
+         if not re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*',r[key]):
+@@ -44,9 +116,9 @@
+     if (min(start,r['function_offset'])<0 or r['logical_body_bytes']<=0 or r['padding_bytes']<=0 or
+         any(r[k]%4 for k in ('extent_bytes','function_offset','logical_body_bytes','padding_bytes')) or
+         body_end+r['padding_bytes']!=size or r['next_rom_start']!=start+size or
+-        r['vram_start']!=start+layout.VRAM_DELTA):
++        r['vram_start']!=start+VRAM_DELTA):
+         raise TextBoundaryError('invalid logical body / zero-fill / original extent')
+-    subsegments,_=layout.parse_subsegments(repo/'splat.us.yaml')
++    subsegments=_subsegments(repo/'splat.us.yaml')
+     indices=[i for i,s in enumerate(subsegments) if s['off']==start]
+     if len(indices)!=1 or indices[0]+1>=len(subsegments):
+         raise TextBoundaryError('original boundary has no unique following SPLAT segment')
+@@ -85,25 +157,19 @@
+             raise TextBoundaryError('original full text extent changed')
+         if len(padding)!=r['padding_bytes'] or any(padding) or hashlib.sha256(padding).hexdigest()!=r['padding_sha256']:
+             raise TextBoundaryError('original trailing bytes are not the proven zero fill')
+-    asm=repo/r['asm_authority']
+-    if _sha(asm)!=r['asm_authority_sha256']:
+-        raise TextBoundaryError('original endlabel authority changed')
+-    text=asm.read_text();marker='endlabel '+r['function']
+-    if text.count(marker)!=1:
+-        raise TextBoundaryError('logical endpoint is not unique')
+-    body,tail=text.split(marker)
+-    body_words=re.findall(r'/\*\s*[0-9a-fA-F]+\s+([0-9a-fA-F]{8})\s+([0-9a-fA-F]{8})\s*\*/',body)
+-    tail_words=re.findall(r'/\*\s*[0-9a-fA-F]+\s+([0-9a-fA-F]{8})\s+([0-9a-fA-F]{8})\s*\*/',tail)
+-    address=r['vram_start']+r['function_offset']
+-    expected_addresses=list(range(address,address+r['logical_body_bytes'],4))
+-    if [int(v,16) for v,w in body_words]!=expected_addresses or len(body_words)*4!=r['logical_body_bytes']:
+-        raise TextBoundaryError('original logical body endpoint/extent changed')
+-    if [int(v,16) for v,w in tail_words]!=list(range(address+r['logical_body_bytes'],r['vram_start']+size,4)) or any(int(w,16) for v,w in tail_words):
+-        raise TextBoundaryError('original assembly tail is not exactly the proven fill')
+-    if check_rom and b''.join(int(w,16).to_bytes(4,'big') for v,w in body_words)!=original[r['function_offset']:body_end]:
+-        raise TextBoundaryError('original logical body differs from retail')
++    authority=repo/r['asm_authority']
++    if _sha(authority)!=r['asm_authority_sha256']:
++        raise TextBoundaryError('original endpoint proof changed')
++    proof=json.loads(authority.read_text())
++    expected={key:r[key] for key in ('function','logical_body_bytes','padding_bytes','function_offset','extent_bytes','retail_extent_sha256','padding_sha256')}
++    if any(proof.get(key)!=value for key,value in expected.items()):
++        raise TextBoundaryError('original endpoint proof disagrees with boundary')
++    if proof.get('endpoint_vram')!=r['vram_start']+body_end or not re.fullmatch(r'[0-9a-f]{64}',proof.get('logical_body_sha256','')):
++        raise TextBoundaryError('original logical endpoint/hash invalid')
++    if check_rom and hashlib.sha256(original[r['function_offset']:body_end]).hexdigest()!=proof['logical_body_sha256']:
++        raise TextBoundaryError('original logical body hash differs from retail')
+     source=repo/r['source']
+-    if _sha(source)!=r['source_sha256'] or lock.body_sha(source,r['function'])!=r['body_sha256']:
++    if _sha(source)!=r['source_sha256'] or body_sha(source,r['function'])!=r['body_sha256']:
+         raise TextBoundaryError('proven canonical body/source changed')
+     if source.read_text().splitlines()[0]!='/* flags: '+r['flags']+' */':
+         raise TextBoundaryError('literal canonical flags changed')
+@@ -115,7 +181,7 @@
+             raise TextBoundaryError('inline assembly cannot replace proven linker fill')
+         if any(name not in allowed for name, _, _ in extract_functions((repo/r['tu']).read_text())):
+             raise TextBoundaryError('live TU contains an unproven additional function')
+-        actual=lock.body_sha(repo/r['tu'],r['function'])
++        actual=body_sha(repo/r['tu'],r['function'])
+         if actual is not None and actual!=r['body_sha256']:
+             raise TextBoundaryError('live boundary function differs from proven canonical body')
+     return r
+@@ -154,7 +220,7 @@
+     repo=Path(repo);rel=str(Path(tu).relative_to(repo)) if Path(tu).is_absolute() else str(tu)
+     rows=[r for r in boundaries(repo) if r['tu']==rel]
+     if not rows:return []
+-    paths={'rom_owned_data.json','splat.us.yaml','symbol_addrs.us.txt','Makefile','rush2049.us.ld','tools/conveyor/pipeline/owned_text.py','tools/conveyor/pipeline/owned_data.py','tools/conveyor/pipeline/layout.py'}
++    paths={'rom_owned_data.json','splat.us.yaml','symbol_addrs.us.txt','Makefile','rush2049.us.ld','tools/conveyor/pipeline/owned_text.py','tools/conveyor/pipeline/owned_data.py','tools/conveyor/seeds/extract_candidates.py'}
+     for r in rows:paths.update((r['source'],r['asm_authority']))
+     return [repo/p for p in sorted(paths)]
+ 

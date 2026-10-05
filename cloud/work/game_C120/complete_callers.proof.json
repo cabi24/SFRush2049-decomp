@@ -1,0 +1,24 @@
+{
+  "object": "build/C120/complete_callers.o",
+  "object_sha256": "31c4a6c84cdf92b4658347b15d9898db95ec741af8bf62f96c0b47067abe56d5",
+  "results": [
+    {
+      "name": "func_800D1AB0",
+      "slot_bytes": 560,
+      "true_symbol_bytes": 584,
+      "refusal": "func_800D1AB0: 6 extra words (nonzero beyond target length)"
+    },
+    {
+      "name": "func_800F8EC8",
+      "slot_bytes": 1024,
+      "true_symbol_bytes": 932,
+      "refusal": "func_800F8EC8: compiled body is 944 bytes, shorter than the 1024-byte extent"
+    },
+    {
+      "name": "car_setup_confirm",
+      "slot_bytes": 884,
+      "true_symbol_bytes": 888,
+      "refusal": "car_setup_confirm: 1 extra words (nonzero beyond target length)"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+Running splat...
+splat 0.41.0 (powered by spimdisasm 1.42.2)
+  0%|          | 0/3408 [00:00<?, ?it/s]Loading symbols (symbol_addrs.us):   0%|          | 0/3408 [00:00<?, ?it/s]Loading symbols (symbol_addrs.us): 100%|██████████| 3408/3408 [00:00<00:00, 177697.79it/s]
+  0%|          | 0/5 [00:00<?, ?it/s]Scanning header:   0%|          | 0/5 [00:00<?, ?it/s]Scanning ipl3:   0%|          | 0/5 [00:00<?, ?it/s]  Scanning entry:   0%|          | 0/5 [00:00<?, ?it/s]Scanning main:   0%|          | 0/5 [00:00<?, ?it/s] Scanning main:  80%|████████  | 4/5 [00:00<00:00, 10.19it/s]Scanning data:  80%|████████  | 4/5 [00:00<00:00, 10.19it/s]Scanning data: 100%|██████████| 5/5 [00:00<00:00, 12.72it/s]
+  0%|          | 0/5 [00:00<?, ?it/s]Splitting header:   0%|          | 0/5 [00:00<?, ?it/s]Splitting ipl3:   0%|          | 0/5 [00:00<?, ?it/s]  Splitting entry:   0%|          | 0/5 [00:00<?, ?it/s]Splitting main:   0%|          | 0/5 [00:00<?, ?it/s] Splitting main:  80%|████████  | 4/5 [00:00<00:00, 34.74it/s]Splitting data:  80%|████████  | 4/5 [00:00<00:00, 34.74it/s]Splitting data: 100%|██████████| 5/5 [00:00<00:00, 38.53it/s]
+  0%|          | 0/5 [00:00<?, ?it/s]Linker script header:   0%|          | 0/5 [00:00<?, ?it/s]Linker script ipl3:   0%|          | 0/5 [00:00<?, ?it/s]  Linker script entry:   0%|          | 0/5 [00:00<?, ?it/s]Linker script main:   0%|          | 0/5 [00:00<?, ?it/s] Linker script data:   0%|          | 0/5 [00:00<?, ?it/s]Linker script data: 100%|██████████| 5/5 [00:00<00:00, 273.87it/s]
+Split 12 MB (100.00%) in defined segments
+              header:     64 B (0.00%) 1 split, 0 cached
+                 bin:    12 MB (99.51%) 2 split, 0 cached
+                hasm:     80 B (0.00%) 1 split, 0 cached
+                   c:    43 KB (0.34%) 63 split, 0 cached
+                 asm:    18 KB (0.14%) 23 split, 0 cached
+             unknown:      0 B (0.00%) from unknown bin files

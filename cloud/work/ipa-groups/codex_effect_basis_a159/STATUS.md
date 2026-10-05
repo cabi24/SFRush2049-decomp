@@ -1,0 +1,7 @@
+# A159 full genuine effect/vector group — nonmatch
+
+Separately labeled real helper-context followup for R5 two-input func_8008E408 @8008E408,1544B386w. Complete caller's two objects, all four flag-selector arms, actual short speed magnitude, full nine-float basis/three-float direction arrays, threshold scale, four wheel offsets, original LCG random velocity, positions, kind and descriptor creation are re-audited. Real vector_normalize_length95w, norm11w, scale20w, reciprocal norm20w, normalization35w, nine-float copy19w, pool allocator18w and descriptor allocator75w are complete genuine sources, no stand-in callers or missing switch arms. Normalization uses only consumed vector/length/reciprocal values; old R5 six-unused-local pressure source is excluded.
+
+Native caller's snapshot atE444 is never consumed; old unused loc168 is omitted and no dead runtime work is introduced. Actual35w vector normalization return type and actual75w signed-half descriptor return/index ABI are corrected in the caller's declarations. All helper entries remain actual ordinary exported functions.
+
+Fresh native caller383/386 with no extra words or linked reference/errors. Real norm/scale/reciprocal/copy/pool helpers total88 words strict zero, unclaimed; other contexts retain vector basis95/95 plus2 extra, normalization35/35, allocator69/75. Original caller frame256, genuine source144; no guessed capacity or frame pressure. All source hashes, manifest, eligibility and complete proofs are frozen. No match/coverage claim or allocator/coloring repeats.

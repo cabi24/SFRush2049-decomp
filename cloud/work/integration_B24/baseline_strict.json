@@ -1,0 +1,9 @@
+{
+  "function": "dll_init",
+  "strict_score": 10,
+  "raw_word_diff": 1,
+  "words": 35,
+  "target_sha256": "c2ec2a73626c2b391f1e9f60072a44f49e34956b95003c4250e2993a0ec49199",
+  "module_sha256": "41b90e3985318502435164caa257cfa84329d93d53f2193e1d631831dca4f6b3",
+  "case": "original unnormalized low-word alias; same fresh complete module and canonical settings"
+}

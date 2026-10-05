@@ -1,0 +1,87 @@
+{
+  "source_sha256": "41538c2ef4a5b29c8d500308216a3965a88135350f386af396fcaa2342a46ce8",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "object_sha256": "cacb5a5d1793bf5ee7d9340a96acb881f537a3fb90f681a09bbc4b3a0823c627",
+  "canonical": {
+    "func_800C4F68": {
+      "differing": 352,
+      "total": 354,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "camera_follow_path": {
+      "differing": 250,
+      "total": 371,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800C4CF8": {
+      "differing": 0,
+      "total": 156,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "math_utility": {
+      "differing": 0,
+      "total": 19,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80098A54": {
+      "differing": 0,
+      "total": 34,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800C40E8": {
+      "differing": 37,
+      "total": 38,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 4
+    },
+    "func_800C4180": {
+      "differing": 0,
+      "total": 32,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_8009C3F8": {
+      "differing": 92,
+      "total": 113,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "camera_update_c": {
+      "differing": 6,
+      "total": 9,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "select_screen_update": {
+      "differing": 7,
+      "total": 9,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

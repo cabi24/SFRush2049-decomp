@@ -1,0 +1,30 @@
+{
+  "source_sha256": "a78bf705049cb5d0db9fc8bcb09efa0ac819ba1e11c4d65c6daf377a3f68e8bb",
+  "flags": "-g3 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-tire-compiler/candidates/native_expression_scoped_tsc.c",
+  "accepted": false,
+  "canonical_verdict": "36/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+  "comparison": {
+    "differing": 36,
+    "total": 422,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0x498",
+      ".rodata+0x0 at +0x4a8",
+      ".rodata+0x4 at +0x5a8",
+      ".rodata+0x4 at +0x5b0",
+      ".rodata+0x8 at +0x60c",
+      ".rodata+0x8 at +0x614"
+    ],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "bfebdf342b5424d79e11d2db20a41e1e299789123c146fb894a87cef78fe7631",
+  "emitted_words": 424,
+  "aligned": {
+    "aligned_exact": 409,
+    "aligned_opcode": 420,
+    "aligned_opcode_reg": 417
+  },
+  "frame_bytes": 152
+}

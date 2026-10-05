@@ -1,0 +1,28 @@
+{
+  "source_sha256": "a78bf705049cb5d0db9fc8bcb09efa0ac819ba1e11c4d65c6daf377a3f68e8bb",
+  "flags": "-g1 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-tire-compiler/candidates/native_expression_scoped_tsc.c",
+  "accepted": false,
+  "canonical_verdict": "416/422 words differ (81 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x0 at +0x540, .rodata+0x0 at +0x544; unpaired R_MIPS_HI16 for D_80142DB0 at .text+0x694)",
+  "comparison": {
+    "differing": 416,
+    "total": 422,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0x540",
+      ".rodata+0x0 at +0x544"
+    ],
+    "errors": [
+      "unpaired R_MIPS_HI16 for D_80142DB0 at .text+0x694"
+    ],
+    "extra_words": 81
+  },
+  "object_sha256": "08c5be871ab85015fdec8a2293c0738e2eea18fc9286270f872f3d76e0f7bacf",
+  "emitted_words": 512,
+  "aligned": {
+    "aligned_exact": 63,
+    "aligned_opcode": 312,
+    "aligned_opcode_reg": 88
+  },
+  "frame_bytes": 104
+}

@@ -1,0 +1,42 @@
+{
+  "object": "build/C104/group_real_caller.o",
+  "object_sha256": "9e75d856e81a446e7f963c6ec4371e4675da505456b347d418f4e6f9ef7bf4db",
+  "results": [
+    {
+      "name": "object_create",
+      "slot_bytes": 112,
+      "true_symbol_bytes": 128,
+      "refusal": "object_create: 4 extra words (nonzero beyond target length)"
+    },
+    {
+      "name": "slot_state_setup",
+      "slot_bytes": 232,
+      "true_symbol_bytes": 688,
+      "refusal": "slot_state_setup: 111 extra words (nonzero beyond target length)"
+    },
+    {
+      "name": "sound_update_channel",
+      "slot_bytes": 488,
+      "true_symbol_bytes": 8,
+      "refusal": "sound_update_channel: compiled body is 8 bytes, shorter than the 488-byte extent"
+    },
+    {
+      "name": "func_80096288",
+      "slot_bytes": 16,
+      "true_symbol_bytes": 16,
+      "word_differences": 3,
+      "difference_indices": [
+        0,
+        1,
+        3
+      ],
+      "frame": null
+    },
+    {
+      "name": "world_trigger_check",
+      "slot_bytes": 216,
+      "true_symbol_bytes": 244,
+      "refusal": "world_trigger_check: 7 extra words (nonzero beyond target length)"
+    }
+  ]
+}

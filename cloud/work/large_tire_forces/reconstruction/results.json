@@ -1,0 +1,828 @@
+{
+  "donor_actual_literal_types": {
+    "source_sha256": "cde40bacb479d61aa7dfe02c2a46b0fae5f9a85aedc16a4aed496c9b77ef6dc9",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "95/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a4, .rodata+0x4 at +0x5ac, .rodata+0x8 at +0x608, .rodata+0x8 at +0x610)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 404,
+      "aligned_opcode": 420,
+      "aligned_opcode_reg": 413
+    },
+    "frame_bytes": 152
+  },
+  "donor_actual_literal_types.words": {},
+  "donor_airfact_integer_one": {
+    "source_sha256": "110746c94b71b4a5989f9dfe826b8281b28b61cc166240455cda69db33628af4",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "269/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x490, .rodata+0x0 at +0x4a0, .rodata+0x4 at +0x59c, .rodata+0x4 at +0x5a4, .rodata+0x8 at +0x600, .rodata+0x8 at +0x608)",
+    "emitted_words": 420,
+    "aligned": {
+      "aligned_exact": 283,
+      "aligned_opcode": 415,
+      "aligned_opcode_reg": 299
+    },
+    "frame_bytes": 152
+  },
+  "donor_airfact_integer_one.words": {},
+  "donor_airfact_original_one": {
+    "source_sha256": "696f1625120abfc53d6b944a00d7e8af0a676c906100f67cd92c1b39b29116e5",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "269/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x490, .rodata+0x0 at +0x4a0, .rodata+0x4 at +0x59c, .rodata+0x4 at +0x5a4, .rodata+0x8 at +0x600, .rodata+0x8 at +0x608)",
+    "emitted_words": 420,
+    "aligned": {
+      "aligned_exact": 283,
+      "aligned_opcode": 415,
+      "aligned_opcode_reg": 299
+    },
+    "frame_bytes": 152
+  },
+  "donor_airfact_original_one.words": {},
+  "donor_airfact_reuse": {
+    "source_sha256": "64b6967e9767b622d3e1a3135565d1f9d615ca3c351974e860926d9cbc207b1a",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "265/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x490, .rodata+0x0 at +0x4a0, .rodata+0x4 at +0x59c, .rodata+0x4 at +0x5a4, .rodata+0x8 at +0x600, .rodata+0x8 at +0x608)",
+    "emitted_words": 420,
+    "aligned": {
+      "aligned_exact": 285,
+      "aligned_opcode": 413,
+      "aligned_opcode_reg": 304
+    },
+    "frame_bytes": 152
+  },
+  "donor_airfact_reuse.words": {},
+  "donor_consumed_variables": {
+    "source_sha256": "5172c8714d7bb0fddb14c0ba42a61d46eb5636817a314af3983e0a7356a0ec75",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "265/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x490, .rodata+0x0 at +0x4a0, .rodata+0x4 at +0x59c, .rodata+0x4 at +0x5a4, .rodata+0x8 at +0x600, .rodata+0x8 at +0x608)",
+    "emitted_words": 420,
+    "aligned": {
+      "aligned_exact": 285,
+      "aligned_opcode": 413,
+      "aligned_opcode_reg": 304
+    },
+    "frame_bytes": 152
+  },
+  "donor_consumed_variables.words": {},
+  "donor_direct": {
+    "source_sha256": "7743f95af553016df0ef125a70fe9da044ac3fda48716d8cdd3d134ced970670",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "292/422 words differ",
+    "emitted_words": 420,
+    "aligned": {
+      "aligned_exact": 263,
+      "aligned_opcode": 413,
+      "aligned_opcode_reg": 304
+    },
+    "frame_bytes": 144
+  },
+  "donor_direct.words": {},
+  "donor_direct_literals": {
+    "source_sha256": "6f8189807f8ee1e469105dd0e6bf1a2ed26afa3b52a5a1587e02bf2bbec0ed53",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "290/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x490, .rodata+0x0 at +0x4a0, .rodata+0x4 at +0x59c, .rodata+0x4 at +0x5a4, .rodata+0x8 at +0x600, .rodata+0x8 at +0x608)",
+    "emitted_words": 420,
+    "aligned": {
+      "aligned_exact": 257,
+      "aligned_opcode": 413,
+      "aligned_opcode_reg": 304
+    },
+    "frame_bytes": 144
+  },
+  "donor_direct_literals.words": {},
+  "donor_front_float_conversion": {
+    "source_sha256": "b72070e2ed0231693ddba8c3f9868de9eb3586e5b14a7216a6506ad475ee8f2d",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "111/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a4, .rodata+0x4 at +0x5ac, .rodata+0x8 at +0x608, .rodata+0x8 at +0x610)",
+    "emitted_words": 420,
+    "aligned": {
+      "aligned_exact": 355,
+      "aligned_opcode": 418,
+      "aligned_opcode_reg": 367
+    },
+    "frame_bytes": 152
+  },
+  "donor_front_float_conversion.words": {},
+  "donor_front_integer_one": {
+    "source_sha256": "4fa5677cf9417a47bd81855b29e18717b331a3b107e443e7a0627a2f9829ddd9",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "111/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a4, .rodata+0x4 at +0x5ac, .rodata+0x8 at +0x608, .rodata+0x8 at +0x610)",
+    "emitted_words": 420,
+    "aligned": {
+      "aligned_exact": 355,
+      "aligned_opcode": 418,
+      "aligned_opcode_reg": 367
+    },
+    "frame_bytes": 152
+  },
+  "donor_front_integer_one.words": {},
+  "donor_front_original_one": {
+    "source_sha256": "e27fdb639458ca3afedcb00779fc3cda254311418a4d877ee2c2ed52ba12318e",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "297/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x4a4, .rodata+0x0 at +0x4b4, .rodata+0x4 at +0x5b0, .rodata+0x4 at +0x5b8, .rodata+0x8 at +0x614, .rodata+0x8 at +0x61c)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 292,
+      "aligned_opcode": 416,
+      "aligned_opcode_reg": 310
+    },
+    "frame_bytes": 152
+  },
+  "donor_front_original_one.words": {},
+  "donor_initialized_airfact": {
+    "source_sha256": "90ae658cc397f70c5036971bb8efa9e9f68dc89381a23d6f2b2eab22ca8848a9",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "95/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a4, .rodata+0x4 at +0x5ac, .rodata+0x8 at +0x608, .rodata+0x8 at +0x610)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 404,
+      "aligned_opcode": 420,
+      "aligned_opcode_reg": 413
+    },
+    "frame_bytes": 152
+  },
+  "donor_initialized_airfact.words": {},
+  "donor_literals": {
+    "source_sha256": "4c1b298c0a2fc659288290ce80aa78481c8d28f9eccc28ade794d4ab5455410b",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "266/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x490, .rodata+0x0 at +0x4a0, .rodata+0x4 at +0x59c, .rodata+0x4 at +0x5a4, .rodata+0x8 at +0x600, .rodata+0x8 at +0x608)",
+    "emitted_words": 420,
+    "aligned": {
+      "aligned_exact": 283,
+      "aligned_opcode": 413,
+      "aligned_opcode_reg": 304
+    },
+    "frame_bytes": 192
+  },
+  "donor_literals.words": {},
+  "donor_native": {
+    "source_sha256": "dac8b3e6019c4e49a2188d56e952c1f805036e8501930ab7ca6bcc032391df6c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "268/422 words differ",
+    "emitted_words": 420,
+    "aligned": {
+      "aligned_exact": 289,
+      "aligned_opcode": 413,
+      "aligned_opcode_reg": 304
+    },
+    "frame_bytes": 192
+  },
+  "donor_native.words": {},
+  "donor_original_declarations": {
+    "source_sha256": "fc7704b6979697189e909bc2776b7385897efa63e262e88cba23e9a2a26a9267",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "290/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x490, .rodata+0x0 at +0x4a0, .rodata+0x4 at +0x59c, .rodata+0x4 at +0x5a4, .rodata+0x8 at +0x600, .rodata+0x8 at +0x608)",
+    "emitted_words": 420,
+    "aligned": {
+      "aligned_exact": 257,
+      "aligned_opcode": 413,
+      "aligned_opcode_reg": 304
+    },
+    "frame_bytes": 168
+  },
+  "donor_original_declarations.words": {},
+  "donor_parameter_fields": {
+    "source_sha256": "93d6d1fb2661254ef28b1a9b8619e6a1b38ea927b1afb11d47e5e1c0707c5160",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "268/422 words differ",
+    "emitted_words": 420,
+    "aligned": {
+      "aligned_exact": 289,
+      "aligned_opcode": 413,
+      "aligned_opcode_reg": 304
+    },
+    "frame_bytes": 192
+  },
+  "donor_parameter_fields.words": {},
+  "donor_rear_predicate": {
+    "source_sha256": "9c11386f3e2b0017d2c2499a3e9e08266ec6bdf49c8a88f562858e58744affc0",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "202/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a4, .rodata+0x4 at +0x5ac, .rodata+0x8 at +0x608, .rodata+0x8 at +0x610)",
+    "emitted_words": 420,
+    "aligned": {
+      "aligned_exact": 282,
+      "aligned_opcode": 409,
+      "aligned_opcode_reg": 301
+    },
+    "frame_bytes": 152
+  },
+  "donor_rear_predicate.words": {},
+  "donor_scalar_declaration_order": {
+    "source_sha256": "b94f7f957a2d772910b6059d8dd20dc26f0bfd4399adae4db01c15b581c3ace9",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "95/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a4, .rodata+0x4 at +0x5ac, .rodata+0x8 at +0x608, .rodata+0x8 at +0x610)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 404,
+      "aligned_opcode": 420,
+      "aligned_opcode_reg": 413
+    },
+    "frame_bytes": 152
+  },
+  "donor_scalar_declaration_order.words": {},
+  "donor_terrain_integer_zero": {
+    "source_sha256": "5a66597bc8704ce94d1e18a371a9fdecba9a913bd3d2af4e48df98c4423bc706",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "266/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x490, .rodata+0x0 at +0x4a0, .rodata+0x4 at +0x59c, .rodata+0x4 at +0x5a4, .rodata+0x8 at +0x600, .rodata+0x8 at +0x608)",
+    "emitted_words": 420,
+    "aligned": {
+      "aligned_exact": 286,
+      "aligned_opcode": 415,
+      "aligned_opcode_reg": 302
+    },
+    "frame_bytes": 152
+  },
+  "donor_terrain_integer_zero.words": {},
+  "donor_throttle_scope": {
+    "source_sha256": "1fba17fdf9e999162aa66ef3c2f3378504e3a7753238f57ca7ebb4af57ee9705",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "289/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x490, .rodata+0x0 at +0x4a0, .rodata+0x4 at +0x59c, .rodata+0x4 at +0x5a4, .rodata+0x8 at +0x600, .rodata+0x8 at +0x608)",
+    "emitted_words": 420,
+    "aligned": {
+      "aligned_exact": 259,
+      "aligned_opcode": 413,
+      "aligned_opcode_reg": 304
+    },
+    "frame_bytes": 152
+  },
+  "donor_throttle_scope.words": {},
+  "native_airfact_argument_capture": {
+    "source_sha256": "84a13cb5ca9149f0b6dace040704136fc10331389cc73e3d1ab5b948f36205e3",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "2/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 414,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 152
+  },
+  "native_airfact_argument_capture.words": {},
+  "native_airfact_integer_literal": {
+    "source_sha256": "c488f1acfb127b09d0dd5bef3006777fc88326391bcbcc885d46d49c8aa29f75",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "271/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x490, .rodata+0x0 at +0x4a0, .rodata+0x4 at +0x5a0, .rodata+0x4 at +0x5a8, .rodata+0x8 at +0x604, .rodata+0x8 at +0x60c)",
+    "emitted_words": 420,
+    "aligned": {
+      "aligned_exact": 293,
+      "aligned_opcode": 417,
+      "aligned_opcode_reg": 308
+    },
+    "frame_bytes": 152
+  },
+  "native_airfact_integer_literal.words": {},
+  "native_airfact_original_literal": {
+    "source_sha256": "1dd0d708702d1fa66e278ab0df0b8362372fa9d176583138d0aa4876d1ba241f",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "271/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x490, .rodata+0x0 at +0x4a0, .rodata+0x4 at +0x5a0, .rodata+0x4 at +0x5a8, .rodata+0x8 at +0x604, .rodata+0x8 at +0x60c)",
+    "emitted_words": 420,
+    "aligned": {
+      "aligned_exact": 293,
+      "aligned_opcode": 417,
+      "aligned_opcode_reg": 308
+    },
+    "frame_bytes": 152
+  },
+  "native_airfact_original_literal.words": {},
+  "native_constant_airfact": {
+    "source_sha256": "498d93b3f4cfa6c9d5fcd9d0f00fe7678615394344a73283cbed871d15e6c3ac",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "2/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 414,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 152
+  },
+  "native_constant_airfact.words": {},
+  "native_donor_vector_arrays": {
+    "source_sha256": "d1bc4acae941cf429794579c4a889c45060b9c0f169f3f7798def74d13836a85",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "2/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 414,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 152
+  },
+  "native_donor_vector_arrays.words": {},
+  "native_expression_g3O2": {
+    "source_sha256": "a78bf705049cb5d0db9fc8bcb09efa0ac819ba1e11c4d65c6daf377a3f68e8bb",
+    "flags": "-g3 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "36/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 409,
+      "aligned_opcode": 420,
+      "aligned_opcode_reg": 417
+    },
+    "frame_bytes": 152
+  },
+  "native_expression_g3O2.words": {},
+  "native_expression_original_declarations": {
+    "source_sha256": "f9733dfade893c58a00dc0630a12afb59ae32826555466759cfaa83e81e2bedf",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "4/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 412,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 168
+  },
+  "native_expression_original_declarations.words": {},
+  "native_expression_scoped_tsc": {
+    "source_sha256": "a78bf705049cb5d0db9fc8bcb09efa0ac819ba1e11c4d65c6daf377a3f68e8bb",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "2/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 414,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 152
+  },
+  "native_expression_scoped_tsc.words": {},
+  "native_front_both_argument_capture": {
+    "source_sha256": "1d71ecc3641f8eebc7301c31d1d59c174032afea03aeb7f89fae01de92996015",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "2/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 414,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 152
+  },
+  "native_front_both_argument_capture.words": {},
+  "native_front_explicit_product": {
+    "source_sha256": "754179561a220eeb502a40a17bdaf7f6f9199532e6443e4b9e294d1e1833b3a9",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "2/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 414,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 152
+  },
+  "native_front_explicit_product.words": {},
+  "native_front_result_conversion": {
+    "source_sha256": "d5f9ea41fe7be023122fcfa551315eb30da8535a73d10254f1f4a871c974f68e",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "2/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 414,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 152
+  },
+  "native_front_result_conversion.words": {},
+  "native_front_traction_argument_capture": {
+    "source_sha256": "434027b7893e04c938aa0898e7cf50d3c4bf1a5efe3f628817b5c207336d1da1",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "2/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 414,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 152
+  },
+  "native_front_traction_argument_capture.words": {},
+  "native_initialized_poortract": {
+    "source_sha256": "d0a561eb4bb91db7f245c156e6a7c4755198777d48d85e4e40be9f1577182dca",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "8/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 408,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 416
+    },
+    "frame_bytes": 152
+  },
+  "native_initialized_poortract.words": {},
+  "native_integer_declarations": {
+    "source_sha256": "3987a5aa9ed0ce1849ba61697328d6fb697a46fa6f79fbef4ba2f68f749d831a",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "8/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 408,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 416
+    },
+    "frame_bytes": 152
+  },
+  "native_integer_declarations.words": {},
+  "native_poortract_after_airfact": {
+    "source_sha256": "efb7730c034c1b28583ac42c89d503bea57d9f1a72dcb72df72341ab6cdbbeeb",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "2/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 414,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 152
+  },
+  "native_poortract_after_airfact.words": {},
+  "native_poortract_argument_capture": {
+    "source_sha256": "f279a8f14d33bd14a8c1e03bbd5b62a9c2eb312e49d158f222905adb84073f1f",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "2/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 414,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 152
+  },
+  "native_poortract_argument_capture.words": {},
+  "native_poortract_byte": {
+    "source_sha256": "3a745de54aa9710f94ab744c9af4d9bc7d86a305a9ef485ddaae226c6de37e52",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "272/422 words differ (2 extra words (nonzero beyond target length); 6 section-relative relocations unverified: .rodata+0x0 at +0x4a4, .rodata+0x0 at +0x4b4, .rodata+0x4 at +0x5b4, .rodata+0x4 at +0x5bc, .rodata+0x8 at +0x618, .rodata+0x8 at +0x620)",
+    "emitted_words": 428,
+    "aligned": {
+      "aligned_exact": 323,
+      "aligned_opcode": 418,
+      "aligned_opcode_reg": 329
+    },
+    "frame_bytes": 152
+  },
+  "native_poortract_byte.words": {},
+  "native_poortract_conditional": {
+    "source_sha256": "9cfc8abe315772f274036288a196b3b27a3bbb34e729e4084803d1c3c7d89cab",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "278/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x49c, .rodata+0x0 at +0x4ac, .rodata+0x4 at +0x5ac, .rodata+0x4 at +0x5b4, .rodata+0x8 at +0x610, .rodata+0x8 at +0x618)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 397,
+      "aligned_opcode": 416,
+      "aligned_opcode_reg": 405
+    },
+    "frame_bytes": 152
+  },
+  "native_poortract_conditional.words": {},
+  "native_poortract_const": {
+    "source_sha256": "0b83a13bfda215d6a1402a88cf8a8e07722712e4d2a502fdde23156f2e75774c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "2/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 414,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 152
+  },
+  "native_poortract_const.words": {},
+  "native_poortract_halfword": {
+    "source_sha256": "4907be740dca5a75809838c33cf099a10ebc922aa012ea9b9deec9cfc844148a",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "272/422 words differ (2 extra words (nonzero beyond target length); 6 section-relative relocations unverified: .rodata+0x0 at +0x4a4, .rodata+0x0 at +0x4b4, .rodata+0x4 at +0x5b4, .rodata+0x4 at +0x5bc, .rodata+0x8 at +0x618, .rodata+0x8 at +0x620)",
+    "emitted_words": 428,
+    "aligned": {
+      "aligned_exact": 323,
+      "aligned_opcode": 418,
+      "aligned_opcode_reg": 329
+    },
+    "frame_bytes": 152
+  },
+  "native_poortract_halfword.words": {},
+  "native_poortract_last_declaration": {
+    "source_sha256": "4f6eedcf07a900b431c877bd6867e97296731d137113ecceecc5a11c8863cc42",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "2/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 414,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 152
+  },
+  "native_poortract_last_declaration.words": {},
+  "native_poortract_register": {
+    "source_sha256": "4bd1059ff65514987e3b7c8822881bf594701a22ec5ab633075b170df53624b8",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "2/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 414,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 152
+  },
+  "native_poortract_register.words": {},
+  "native_poortract_scope": {
+    "source_sha256": "70fa758d457d7fb4f872da08b372a0465c78937161fae812f880999e11830f91",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "2/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 414,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 152
+  },
+  "native_poortract_scope.words": {},
+  "native_rear_surface_capture": {
+    "source_sha256": "f40a9d9dd3f80854e3ed1c5d2fa6984ac54504fbe5b141e849d43db1a0c6c96e",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "35/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 381,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 417
+    },
+    "frame_bytes": 152
+  },
+  "native_rear_surface_capture.words": {},
+  "native_rear_surface_direct_airfact": {
+    "source_sha256": "9a0c27004e49955c609611a2ec0105f4ac9bc6e08e2393223726b762a9941a39",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "7/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 409,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 417
+    },
+    "frame_bytes": 152
+  },
+  "native_rear_surface_direct_airfact.words": {},
+  "native_row_assignment_capture": {
+    "source_sha256": "5781fd86f5d334abcf1d15fd98e3a0ee806298d6abf666abad932ffd0ed71d7e",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "8/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 408,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 416
+    },
+    "frame_bytes": 160
+  },
+  "native_row_assignment_capture.words": {},
+  "native_row_conditional": {
+    "source_sha256": "9ee7597602261ada13aa4560cdbbe9fceafa52c6125264548e7c26cd55546994",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "8/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 408,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 416
+    },
+    "frame_bytes": 152
+  },
+  "native_row_conditional.words": {},
+  "native_row_expression": {
+    "source_sha256": "6eba71cac9d547b5e4659ec1ae68c0c11bd0426c169526f59897f0e6393e43ff",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "32/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 384,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 144
+  },
+  "native_row_expression.words": {},
+  "native_row_first_declaration": {
+    "source_sha256": "78c0becf2af8db1e76d8e6a56b36994c8932180224128a59cb2e0de0c2c3d4bf",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "8/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 408,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 416
+    },
+    "frame_bytes": 152
+  },
+  "native_row_first_declaration.words": {},
+  "native_row_halfword": {
+    "source_sha256": "0851dc373d82eab750cdbd0168e82086b16d0fa2bfbd9358c7f43c8b9303a026",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "98/422 words differ (1 extra words (nonzero beyond target length); 6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5b0, .rodata+0x4 at +0x5b8, .rodata+0x8 at +0x614, .rodata+0x8 at +0x61c)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 383,
+      "aligned_opcode": 418,
+      "aligned_opcode_reg": 393
+    },
+    "frame_bytes": 152
+  },
+  "native_row_halfword.words": {},
+  "native_scoped_rear_traction": {
+    "source_sha256": "f8e0b919821688c08d376c9b70403504b9406960e4c1c6bad7a1d5738eca8932",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "30/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 386,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 152
+  },
+  "native_scoped_rear_traction.words": {},
+  "native_scoped_row": {
+    "source_sha256": "965b5b0db26464187daa629b8697f12aefdf3021b3cb9929c86636625f7b798f",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "8/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 408,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 416
+    },
+    "frame_bytes": 152
+  },
+  "native_scoped_row.words": {},
+  "native_separate_rear_traction": {
+    "source_sha256": "13ca01b71745046bf6c975981e3e8cd871396d7e0edb6b93708434f92cade0a1",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "30/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 386,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 152
+  },
+  "native_separate_rear_traction.words": {},
+  "native_staged_rear_traction": {
+    "source_sha256": "dfad21d73694b7ed3ea7267bcff5fc7d82e2e538d182d1b4aa67b795af634409",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "274/422 words differ (3 extra words (nonzero beyond target length); 6 section-relative relocations unverified: .rodata+0x0 at +0x4a8, .rodata+0x0 at +0x4b8, .rodata+0x4 at +0x5b8, .rodata+0x4 at +0x5c0, .rodata+0x8 at +0x61c, .rodata+0x8 at +0x624)",
+    "emitted_words": 428,
+    "aligned": {
+      "aligned_exact": 407,
+      "aligned_opcode": 418,
+      "aligned_opcode_reg": 415
+    },
+    "frame_bytes": 152
+  },
+  "native_staged_rear_traction.words": {},
+  "native_surface_factor_scope": {
+    "source_sha256": "5f945c5c30dda7e63d8e61f6055aed4b8c5ac9476d85becdae71dfa65d744294",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "2/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 414,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 152
+  },
+  "native_surface_factor_scope.words": {},
+  "native_surface_row_pointer": {
+    "source_sha256": "ad6c322851a0be58d4b8539fe77ca8743a831387d7da4ce2bb672f8e45635ac3",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "30/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 386,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 152
+  },
+  "native_surface_row_pointer.words": {},
+  "native_traction_demorgan": {
+    "source_sha256": "ef49457e349c9e3a54fbf80f1e2591ac31459bfb4b9a7d92936a680df39afffb",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "275/422 words differ (2 extra words (nonzero beyond target length); 6 section-relative relocations unverified: .rodata+0x0 at +0x4a4, .rodata+0x0 at +0x4b4, .rodata+0x4 at +0x5b4, .rodata+0x4 at +0x5bc, .rodata+0x8 at +0x618, .rodata+0x8 at +0x620)",
+    "emitted_words": 428,
+    "aligned": {
+      "aligned_exact": 411,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 152
+  },
+  "native_traction_demorgan.words": {},
+  "native_traction_first_demorgan": {
+    "source_sha256": "708d93890b1cdd16009447fe08330aa115ebc2e523e811ad955a30346ad4cdc0",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "277/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x49c, .rodata+0x0 at +0x4ac, .rodata+0x4 at +0x5ac, .rodata+0x4 at +0x5b4, .rodata+0x8 at +0x610, .rodata+0x8 at +0x618)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 413,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 152
+  },
+  "native_traction_first_demorgan.words": {},
+  "native_traction_second_demorgan": {
+    "source_sha256": "e2c76d41eca9fc42bccf0f5550c111bf5e64f90d426bfc28368d09f4c0e16d82",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "269/422 words differ (1 extra words (nonzero beyond target length); 6 section-relative relocations unverified: .rodata+0x0 at +0x4a0, .rodata+0x0 at +0x4b0, .rodata+0x4 at +0x5b0, .rodata+0x4 at +0x5b8, .rodata+0x8 at +0x614, .rodata+0x8 at +0x61c)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 412,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 152
+  },
+  "native_traction_second_demorgan.words": {},
+  "native_tsc_function_scope": {
+    "source_sha256": "9e60ae7b968f46e493b36c026064f96cff8802abbf9bc5c7a2758e2e91795a90",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "accepted": false,
+    "canonical_verdict": "2/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)",
+    "emitted_words": 424,
+    "aligned": {
+      "aligned_exact": 414,
+      "aligned_opcode": 422,
+      "aligned_opcode_reg": 422
+    },
+    "frame_bytes": 152
+  },
+  "native_tsc_function_scope.words": {}
+}

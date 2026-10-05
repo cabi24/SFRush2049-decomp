@@ -1,0 +1,11 @@
+{
+  "local_lock_sha256": "b6427ddd9186cfb0e9381f16db90008063e0bfde5cf47c62a35903b66df89a0c",
+  "entry": {
+    "kind": "function",
+    "size": 236,
+    "target_id": "audio_buffer_manage",
+    "vaddr": 2148097020
+  },
+  "accepted_overlaps": [],
+  "unchanged_prefix_source_sha256": "31e83b37efe3f3c951cd9d4cf8f48720d3aa05ab434d2a1aaf30f47831ae1e85"
+}

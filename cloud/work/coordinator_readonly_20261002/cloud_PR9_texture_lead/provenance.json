@@ -1,0 +1,16 @@
+{
+  "pr": 9,
+  "head": "56dd6a60704934e3931e7677c9f6821b228fd349",
+  "source_files": {
+    "cloud/work/large_texture_rect/compiler/REPORT.md": "8fddcaa07b14147cabfd2e3570983fbdaa0e4f93721b8b5911d1f94a2a0c122c",
+    "cloud/work/large_texture_rect/compiler/baseline.c": "4df5b2f78e7366029e764bed40de4e152edda3ca7c5859007ce795e0edaac8f7",
+    "cloud/work/large_texture_rect/compiler/control_results.json": "60a11a4f2db9a1f134226533a1111e12d813971dd02a57023d840833b0bef976",
+    "cloud/work/large_texture_rect/layout_probe/README.md": "8ef0036523c74e6a1e1c09c73a73245b04d7c153d41a6b523a5e2a72a5a53771",
+    "cloud/work/large_texture_rect/layout_probe/results.json": "433029189cfcebd2fda1e925d0135bc8b6363e06029f42f601e58d7f2757c1e4",
+    "cloud/work/large_texture_rect/selection.json": "f8c5803e17f1c2e9bdee581d481f1210894dc37aea3c9e08494c64205b3d97fb"
+  },
+  "review_status": "Selective independent replay only, no acceptance or coverage credit, no wholesale archive merge.",
+  "fresh_root_replay": "root_review.json",
+  "canonical_verdict": "4/445 words differ",
+  "object_accepted": false
+}

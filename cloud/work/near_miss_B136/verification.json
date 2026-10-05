@@ -1,0 +1,77 @@
+{
+  "native": {
+    "source": "attract_or_transition_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "b98499de6a92f124c81529012be9cc4c754c6e321bf6b1a8605ee16d7dd5da79",
+    "object_sha256": "384c8c9faf30a1a8192f649a1c438c6cfc2ed5504b9247e48481d82ec87409b0",
+    "comparison": {
+      "differing": 507,
+      "total": 519,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 516
+  },
+  "scoped": {
+    "source": "attract_or_transition_scoped.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "5ac3705ce00803742a8b323db6c9354b2523303b967b4d1169de3ee80e2be614",
+    "object_sha256": "88bf6fe734dadcbc62a114cb606baf51c7a0503c40d55b0cbd2613d9379ff65e",
+    "comparison": {
+      "differing": 503,
+      "total": 519,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 516
+  },
+  "O2": {
+    "source": "attract_or_transition_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "dcacee70be9e3278928ff07e5b3dcc5d1a943f21b784a56c596f34d4eacb43ee",
+    "object_sha256": "7c944eb6baae8072aaf98bf69afdb062f13b2a5bffb1f6f768983e71df40279c",
+    "comparison": {
+      "differing": 503,
+      "total": 519,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 516
+  },
+  "dispatch": {
+    "source": "attract_or_transition_dispatch.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "f08c2def8023ac47c89272ac18ad6bfe46c9b5a7b65feaed72e051334289c262",
+    "object_sha256": "e73fdff88707c075636a4d35bae3b6cdd2e2dd889fc806c5224ee755ad506a65",
+    "comparison": {
+      "differing": 496,
+      "total": 519,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 516
+  },
+  "gfx": {
+    "source": "attract_or_transition_gfx.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "c70d468f1e55b30dde3bcd0b1bb4496db9a6ebbccd5b43ab0ddbea026d1fc796",
+    "object_sha256": "477ff38332f214c0b71523ac2baa1b11801c336e0f44164a8812ef4cb87751de",
+    "comparison": {
+      "differing": 496,
+      "total": 519,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 516
+  }
+}

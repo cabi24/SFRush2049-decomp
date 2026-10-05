@@ -1,0 +1,33 @@
+{
+  "locks": [
+    {
+      "path": "matched.lock.json",
+      "sha256": "dc99032030c56842337d770d78bf91af10e4dcd9784160956b5a6adf6b55939d",
+      "entries": []
+    },
+    {
+      "path": "/tmp/rush-static-acceptance-20261002/matched.lock.json",
+      "sha256": "cdfac20d1e9518db0c06695d93457848c2852c52cc1cef286785a8158cb984ea",
+      "entries": []
+    }
+  ],
+  "slot": {
+    "name": "__scHandlePreNMI",
+    "vaddr": "0x80000f88",
+    "size": 96,
+    "state": "passthrough"
+  },
+  "prior_archived_full_definitions": [
+    "cloud/work/static_C50/__scHandlePreNMI.compare.c",
+    "cloud/work/static_C50/__scHandlePreNMI.r4300.c",
+    "cloud/work/static_C50/__scHandlePreNMI.c",
+    "cloud/work/static_C50/__scHandlePreNMI.as1_o1.c",
+    "cloud/work/static_C50/__scHandlePreNMI.sdk.c",
+    "cloud/work/static_C50/__scHandlePreNMI.emptyelse.c",
+    "cloud/work/static_C50/__scHandlePreNMI.assembler_o1.c",
+    "cloud/work/static_C50/__scHandlePreNMI.sdk_u32.c",
+    "cloud/work/static_C50/__scHandlePreNMI.nested.c"
+  ],
+  "fresh_evidence": "All9 earlier C50 controls use g0/O0; new legitimate separated whole SDK prefix g1/O1 is now independently verified by root. Current actual SDK carriers replace old opaque types without layout changes.",
+  "accepted_credit": 0
+}

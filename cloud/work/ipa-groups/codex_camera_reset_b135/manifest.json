@@ -1,0 +1,11 @@
+{
+  "claims": [],
+  "files": {
+    "cloud/work/ipa-groups/codex_camera_reset_b135/group.c": "41538c2ef4a5b29c8d500308216a3965a88135350f386af396fcaa2342a46ce8",
+    "cloud/work/ipa-groups/codex_camera_reset_b135/group.json": "2ec1ef65b4fbcb497e40adf2c78974069afc036e32e153a36fedc64cc09bb690",
+    "cloud/work/ipa-groups/codex_camera_reset_b135/verification.json": "43e83130e95f98af609216c5259ac8902a43f44ede3f0935e9ae6c0aeac31d48",
+    "cloud/work/ipa-groups/codex_camera_reset_b135/caller_diagnose.json": "6224356547ba823a3d2e2c6b6a5529eda0ac0c935bd15aae51cfe35c6a780604",
+    "cloud/work/ipa-groups/codex_camera_reset_b135/helper_diagnose.json": "988072ffbd456ac7ccada320efdbc57fc99e3ebd5f9e2eef486e6ab7c859e215",
+    "cloud/work/near_miss_B135.md": "9f54584c2afc6c120b884b0f8fbdff000a0aeb6c28953156fcf8c8d4020ac498"
+  }
+}

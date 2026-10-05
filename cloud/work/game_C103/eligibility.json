@@ -1,0 +1,16 @@
+{
+  "slot": {
+    "kind": "function",
+    "size": 1688,
+    "target_id": "func_800E23A4",
+    "vaddr": 2148410276
+  },
+  "main_lock_sha256": "b6427ddd9186cfb0e9381f16db90008063e0bfde5cf47c62a35903b66df89a0c",
+  "private_lock_sha256": "213d8da140b5663952b60245effbc75c90cd0a1b5d35841bb6da1d8e0d73194b",
+  "main_locked": false,
+  "private_locked": false,
+  "private_game_lock_count": 645,
+  "locked_overlaps": [],
+  "frozen_parent_source_sha256": "a78bf705049cb5d0db9fc8bcb09efa0ac819ba1e11c4d65c6daf377a3f68e8bb",
+  "purpose": "authorized independent PR9 near-match replay and genuine source-lifetime/type audit; no duplicate credit"
+}

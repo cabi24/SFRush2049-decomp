@@ -1,0 +1,18 @@
+{
+  "members": [
+    "stat_lap_split"
+  ],
+  "context": [
+    "func_800A61B0"
+  ],
+  "files": [
+    "caller.c",
+    "matrix.c"
+  ],
+  "keep": [
+    "stat_lap_split",
+    "func_800A61B0"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}

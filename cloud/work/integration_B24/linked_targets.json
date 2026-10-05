@@ -1,0 +1,62 @@
+[
+  {
+    "function": "dll_remove",
+    "words": 16,
+    "asm_sha256": "e286fe9c57135b8afb4e16c174cb1dd25828bcf56f2759f2a0a013858efa2439",
+    "target_sha256": "a3803e5d4aaf06be6df289dc64c4a470fd86580eeb63e3ba80f0fc4384f235c9",
+    "linked_body_sha256": "6950f1d67e7328147547bdd321085cf5f0e2327d377a5d6ae2dfca3d5a3c6708",
+    "linked_body_differences": 0,
+    "tail_alignment_bytes": 0,
+    "target_gate": true
+  },
+  {
+    "function": "dll_init",
+    "words": 35,
+    "asm_sha256": "68cc535bc3fd530845196466b92dfff95f796c33a1ae7df46a9129cdfbb69eb4",
+    "target_sha256": "321befc936cee5bd08c815a671f798b064dff2603e9cb9503a7a78a0de651304",
+    "linked_body_sha256": "8f2b9610d426b2e0d3e58e4b7bf37b12b68de150ae9986a5da701131053e3676",
+    "linked_body_differences": 0,
+    "tail_alignment_bytes": 4,
+    "target_gate": true
+  },
+  {
+    "function": "dll_update",
+    "words": 94,
+    "asm_sha256": "f8856653ba4f106805afbc67e4de861a34f0a25c3a69f47f4a3b426aad020152",
+    "target_sha256": "dd7637b111b0f60e06a47c134e6b56972179faca417dd06920f2bd81719be258",
+    "linked_body_sha256": "d3d1b7505351e7f1879a5bf783d70b8b72fb7944cb33d0e4a1b145628790e637",
+    "linked_body_differences": 0,
+    "tail_alignment_bytes": 8,
+    "target_gate": true
+  },
+  {
+    "function": "dll_reschedule",
+    "words": 29,
+    "asm_sha256": "d8313fddf0b431a49f7a93549f0fde245cdae73b21e3fb8f791fd9037e27b79d",
+    "target_sha256": "07fc5ff1844157e83ffbb101873b6996c7682e33d68d294f3af01115a741abeb",
+    "linked_body_sha256": "004bd86171881e85109ebfb6270293e64dae313629b329bd8e4e9a01dbce54fe",
+    "linked_body_differences": 0,
+    "tail_alignment_bytes": 12,
+    "target_gate": true
+  },
+  {
+    "function": "dll_insert",
+    "words": 98,
+    "asm_sha256": "b45b5321132dad5260fd26dbe7d068326ccea96a4cc43c7ff8f72ed7bf780950",
+    "target_sha256": "38a34759181c618a276a0f42f8e049dd5f5a05a22f60dc25439bcf3c404fdd7d",
+    "linked_body_sha256": "52b36f0b6f5dacda367d896ca1f49a12cec60934de1bbfcd4beb0a7b4cc62bc4",
+    "linked_body_differences": 0,
+    "tail_alignment_bytes": 8,
+    "target_gate": true
+  },
+  {
+    "function": "dll_get_priority",
+    "words": 6,
+    "asm_sha256": "d04379dd5fbf08dba4df1bcb04b22ca5b1178de9676f296f9bf5e4eacfb66000",
+    "target_sha256": "1c220b7382b3db545dcfabba77fd3e4569248a6bdc5f2cdb2ffe4b84e89de9d3",
+    "linked_body_sha256": "3f70d03c2463f2fbb8d304ce2e5ddaa1872554d4c6a9a424d8eff49475dfec67",
+    "linked_body_differences": 0,
+    "tail_alignment_bytes": 8,
+    "target_gate": true
+  }
+]

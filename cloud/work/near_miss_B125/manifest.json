@@ -1,0 +1,12 @@
+{
+  "claims": [],
+  "files": {
+    "cloud/work/near_miss_B125/func_800F8EC8_byte_offsets.c": "cc1a3b371686a288c384d1bfb0d99331a90e8b7db6757c01d7d2bcdea9d738f1",
+    "cloud/work/near_miss_B125/func_800F8EC8_native.c": "d18e9fe6a1b5bb8bbb5bac1508ebdc940624cc1ab9c3b03c3ebab74fd6aade83",
+    "cloud/work/near_miss_B125/func_800F8EC8_donor_declarations.c": "90a85c7939c209e63534cc95a090b4de11647a23359fc16ad613269243d5d347",
+    "cloud/work/near_miss_B125/func_800F8EC8_address_views.c": "09f6c55f837856010855e8b6eee99eb8b8fad9e0d6dc94f5b9f6e2bb556f6c48",
+    "cloud/work/near_miss_B125/func_800F8EC8_O2.c": "14993841eea95bcbb51768d103e1e4a7542da963744a970d0cb6584d4c99b693",
+    "cloud/work/near_miss_B125/verification.json": "8ca12b7274d8bea315c03d7ae1aee0cf9dc496c07835278c430775c1d2da7341",
+    "cloud/work/near_miss_B125.md": "b572e4a58ad11fecc6b8a7fac0c499f32b91c8ded89f67dcbaa2dd34bbe5e83a"
+  }
+}

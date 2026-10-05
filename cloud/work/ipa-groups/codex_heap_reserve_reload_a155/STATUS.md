@@ -1,0 +1,7 @@
+# A155 genuine exact-range heap reservation — nonmatch
+
+Fresh eligible NextMaxPath @800A0FDC is the complete two-input address/size reservation routine. It holds the real message queue, uses unchanged true func_80095F8C lookup context, aligns size to32, finds the containing block, inserts an address-aligned block, preserves or absorbs the leading fragment, splits a trailing fragment only when at least64 bytes remain, repairs next/previous/tail links, initializes FEDCBA98 metadata and occupancy, unlocks and returns the requested payload. Native source retains the original unconditional dereferences; it does not invent failed-range defaults or null guards.
+
+Retail A1058..A1074 compares the containing capacity but both paths immediately converge with the same result. No meaningful difference in memory or consumed output exists; the source omits this semantically dead comparison rather than introduce a dummy predicate or volatile work. The original frame is72; this genuine source emits56, with no artificial storage introduced.
+
+Fresh full-body strict scoring is111/130 differences, zero extra words/errors/unresolved/unverified references. All393 unchanged heap and memmove context words remain strict zero and are unclaimed. A separately labeled actual repeated previous-field-load control also remains111/130; it does not improve the lead. Source, manifest, eligibility and score proof are frozen, claims empty. No frame, local-order or coloring sweep.

@@ -1,0 +1,56 @@
+[
+  {
+    "source": "func_8010D3C0_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "cb1a5488fe19b11e7aad5624f19739dafb3e69188290fe09165adfa913251350",
+    "object_sha256": "e46657cd97518053aacba1b69dd9774423c0f75eea4f4f0809f30e2967c8d899",
+    "comparison": {
+      "differing": 99,
+      "total": 176,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xd4",
+        ".rodata+0x0 at +0xdc"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 176
+  },
+  {
+    "source": "func_8010D3C0_scalar_amounts.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "bfcfe3c8f0f5c59d6271417c3403ba2aa810cbfcf7a953b997c3380e7e971b83",
+    "object_sha256": "74bfbd74fe6597e8228f80c86056ce5fc29fc8f5de6b803acc7dd795ce1c554d",
+    "comparison": {
+      "differing": 99,
+      "total": 176,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xd4",
+        ".rodata+0x0 at +0xdc"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 176
+  },
+  {
+    "source": "func_8010D3C0_case_flow.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "9fc9302c8b86c3686fa631ebf195dd52e77a2151ed74ce479c2b975dbf069913",
+    "object_sha256": "696945406269309d80d33f777101477d3b7fe624edd6ddc962cc0ee2d3ea2b3a",
+    "comparison": {
+      "differing": 99,
+      "total": 176,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xd4",
+        ".rodata+0x0 at +0xdc"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 176
+  }
+]

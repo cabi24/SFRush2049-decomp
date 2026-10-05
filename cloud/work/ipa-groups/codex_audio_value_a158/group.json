@@ -1,0 +1,29 @@
+{
+  "members": [
+    "audio_buffer_manage"
+  ],
+  "context": [
+    "audio_fade_control",
+    "gfx_setup_e700",
+    "audio_timing_sync",
+    "func_800956BC",
+    "audio_bus_route",
+    "sound_priority_set",
+    "audio_stream_control"
+  ],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "gfx_setup_e700",
+    "audio_timing_sync",
+    "audio_bus_route",
+    "sound_priority_set",
+    "audio_stream_control",
+    "func_800956BC",
+    "audio_buffer_manage"
+  ],
+  "provenance": "A158 actual fourth float-field queue caller appended to unchanged genuine A139 source; no old context claim"
+}

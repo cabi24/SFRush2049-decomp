@@ -1,0 +1,33 @@
+{
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "files": [
+    "caller.c",
+    "basis.c",
+    "allocation.c"
+  ],
+  "members": [
+    "func_8008E408"
+  ],
+  "context": [
+    "vector_normalize_length",
+    "func_8008B3C8",
+    "vector_copy_scale",
+    "func_8008B424",
+    "func_8008E0B8",
+    "math_utility",
+    "func_8008E3C0",
+    "func_8008E26C"
+  ],
+  "claims": [],
+  "keep": [
+    "func_8008E408",
+    "vector_normalize_length",
+    "func_8008B3C8",
+    "vector_copy_scale",
+    "func_8008B424",
+    "func_8008E0B8",
+    "math_utility",
+    "func_8008E3C0",
+    "func_8008E26C"
+  ]
+}

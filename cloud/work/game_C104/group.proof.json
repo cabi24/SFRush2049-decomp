@@ -1,0 +1,51 @@
+{
+  "object": "build/C104/group.o",
+  "object_sha256": "9438703dff1e759de891cb36324813ba8c27721eb00d7da87d68780ca75d4d7f",
+  "results": [
+    {
+      "name": "object_create",
+      "slot_bytes": 112,
+      "true_symbol_bytes": 332,
+      "refusal": "object_create: 54 extra words (nonzero beyond target length)"
+    },
+    {
+      "name": "slot_state_setup",
+      "slot_bytes": 232,
+      "true_symbol_bytes": 8,
+      "refusal": "slot_state_setup: compiled body is 8 bytes, shorter than the 232-byte extent"
+    },
+    {
+      "name": "sound_update_channel",
+      "slot_bytes": 488,
+      "true_symbol_bytes": 468,
+      "refusal": "sound_update_channel: compiled body is 468 bytes, shorter than the 488-byte extent"
+    },
+    {
+      "name": "func_80096288",
+      "slot_bytes": 16,
+      "true_symbol_bytes": 16,
+      "word_differences": 3,
+      "difference_indices": [
+        0,
+        1,
+        3
+      ],
+      "frame": null
+    },
+    {
+      "name": "object_byte9_set",
+      "slot_bytes": 64,
+      "true_symbol_bytes": 64,
+      "word_differences": 6,
+      "difference_indices": [
+        1,
+        2,
+        4,
+        5,
+        7,
+        11
+      ],
+      "frame": 24
+    }
+  ]
+}

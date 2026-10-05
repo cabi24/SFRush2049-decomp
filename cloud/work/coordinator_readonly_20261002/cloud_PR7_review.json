@@ -1,0 +1,14 @@
+{
+  "pr": 7,
+  "url": "https://github.com/cabi24/SFRush2049-decomp/pull/7",
+  "head": "a0897358b0777e3f831cc12c16d8c3a7e390729b",
+  "review_status": "Narrow tar extraction ownership fix reviewed; exact pinned checksum guard unchanged.",
+  "private_tests": 4,
+  "private_tests_exit": 0,
+  "ci": "Verify37001408190 success at PRhead",
+  "sources": {
+    "tools/cloud/setup.sh": "e78fafc84cb5cde638bbcab528b96de3d6837e39b3b1f8f8d6c69e55d8f13e4b",
+    "tests/conveyor/test_cloud_setup.py": "0ccd12b9efe1d75b90d21de7796c1e9fc419f4b7361901909af2533db48fc4f8"
+  },
+  "merge_status": "Merged only into isolated acceptance branch3c64058a; four focused setup checks and full suite776passed568skipped exited0; sharedmaster remains unchanged."
+}

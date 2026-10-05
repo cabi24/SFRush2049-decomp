@@ -1,0 +1,22 @@
+{
+  "locks": [
+    {
+      "path": "matched.lock.json",
+      "sha256": "dc99032030c56842337d770d78bf91af10e4dcd9784160956b5a6adf6b55939d",
+      "entries": []
+    },
+    {
+      "path": "/tmp/rush-static-acceptance-20261002/matched.lock.json",
+      "sha256": "ebbd0a2747082427ca2429b579157972746efb2dbd1932af0e74ce2a465a3607",
+      "entries": []
+    }
+  ],
+  "slot": {
+    "name": "__scSchedule",
+    "vaddr": "0x80000780",
+    "size": 256,
+    "state": "passthrough"
+  },
+  "archived_full_cloud_definitions_before_packet": [],
+  "accepted_credit": 0
+}

@@ -1,0 +1,28 @@
+{
+  "target_id": "__scExecTask",
+  "original_target_roundtrip": [
+    true,
+    null
+  ],
+  "accepted_credit": 0,
+  "results": [
+    {
+      "source": "cloud/work/static_C112/__scExecTask.c",
+      "source_sha256": "8ab5410be4de524ca1217b59afbe75db9c52ec4a6d9588e4fadad504b8010df9",
+      "flags": "/* flags: -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm */",
+      "object_sha256": "c78c7c9b5882fedb58137242375d67d8556e80b78e51dc268d67dd7fef80d518",
+      "canonical_strict_including_stack": 0,
+      "original_bytes": 280,
+      "true_symbol_bytes": 280,
+      "emitted_text_bytes": 288,
+      "frame_bytes": 32,
+      "full_word_differences": 0,
+      "extra_nonzero_words": 0,
+      "masks": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "full_native_match": true
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "effect_cleanup",
+    "func_800E0B20"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+}

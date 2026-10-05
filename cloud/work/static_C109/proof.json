@@ -1,0 +1,28 @@
+{
+  "target_id": "__scHandleRDP",
+  "original_target_roundtrip": [
+    true,
+    null
+  ],
+  "accepted_credit": 0,
+  "results": [
+    {
+      "source": "cloud/work/static_C109/__scHandleRDP.c",
+      "source_sha256": "3f59450b23d52d1c5881a6b46b9a75da591db3be370a38e463d5ddb11d512966",
+      "flags": "/* flags: -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm */",
+      "object_sha256": "a2dc9cdf4405c559b416eeb5444e38559936a7bc48d5e037d879e62e9546b4a8",
+      "canonical_strict_including_stack": 0,
+      "original_bytes": 216,
+      "true_symbol_bytes": 216,
+      "emitted_text_bytes": 224,
+      "frame_bytes": 40,
+      "full_word_differences": 0,
+      "extra_nonzero_words": 0,
+      "masks": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "full_native_match": true
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# B120: func_800A4E58 model-table loader (444 bytes / 111 words)
+
+No claim. Complete native body reads all six real packed model sections, narrows each stored count to unsigned16, aligns halfword sections to the actual even-cell boundary, and relocates three true pointer/offset arrays against the loaded model base. Record20 and Header40 field views derive from original accesses. LOCAL main lock, protected aliases/intervals and archived full source/filenames audited; root notified before reconstruction.
+
+Standalone native110/111 differs. Genuine complete context group111/111 differs: original four-word func_80096288 tests its actual incoming a2 and returns on either path. The original loader deliberately sets a0=current model index,a1=zero,a2=zero before that call, grounding those three ABI slots including its first two unused inputs. Context source has only that genuine conditional; IDO eliminates it to a two-word return and changes the caller. Context is4/4 differing and receives no claim; existing accepted legacy source is untouched. No synthetic unused condition, dead switch or fake caller was copied to retain instructions.
+
+Workbench diagnosis ran on the complete context baseline; no pressure/coloring refinements followed. Both comparisons have zero errors, unresolved/unverified references and nonzero excess words, but remain structural nonmatches. Literal flags and fresh source/object hashes are preserved with verification files. Raw target data/objects remain private temporary files. No accepted sources, locks or splices changed.

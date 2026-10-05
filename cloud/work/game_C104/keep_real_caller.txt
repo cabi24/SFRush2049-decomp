@@ -1,0 +1,3 @@
+object_create
+world_trigger_check
+func_80096288

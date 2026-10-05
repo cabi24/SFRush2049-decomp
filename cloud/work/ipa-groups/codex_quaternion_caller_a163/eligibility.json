@@ -1,0 +1,11 @@
+{
+  "lock_sha256": "f8bc2cb5dc9f3aa22503586e9e2ef3fd9e95bab70125f4eaf378312fe8f40ee9",
+  "target": {
+    "kind": "function",
+    "size": 384,
+    "target_id": "func_800BFBE8",
+    "vaddr": 2148269032
+  },
+  "accepted": false,
+  "accepted_overlaps": []
+}

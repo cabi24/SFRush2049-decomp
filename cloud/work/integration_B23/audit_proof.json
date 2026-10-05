@@ -1,0 +1,124 @@
+{
+  "candidate_source_sha256": "8ea97f1232f2b872f37530130da9d8ccca45c26ba87a1ec9f03b317c61a22bd3",
+  "candidate_object_sha256": "cf6ef9419de187408830580f00ae1e867fadf42b5830d24a440231443d43cd28",
+  "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+  "accepted_members": [
+    {
+      "function": "dll_remove",
+      "body_sha256": "a1cad86d2a4504ad6c0db40f658baac3a91a3158aaa351daa5c43ec08f1fe4df",
+      "lock_flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "candidate_body_unchanged": true
+    },
+    {
+      "function": "dll_update",
+      "body_sha256": "a312c0513076bd3db3d21ea29cb59932cfbb34cd8ccfed376bcda7ff7cf28cc6",
+      "lock_flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "candidate_body_unchanged": true
+    },
+    {
+      "function": "dll_reschedule",
+      "body_sha256": "45c8e3c1299e9dcec5de8852f30053709ec9d963bb8ba5c118aae2f946d13343",
+      "lock_flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "candidate_body_unchanged": true
+    },
+    {
+      "function": "dll_insert",
+      "body_sha256": "02d281cf3dc0d038f2439d375d40a6e9d14ee67adb94844bc259e8ff38f81e77",
+      "lock_flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "candidate_body_unchanged": true
+    },
+    {
+      "function": "dll_get_priority",
+      "body_sha256": "2c12a312d5e992cd9ae033704f757fb22d27d69d5741ef129dccfb35e47be5ad",
+      "lock_flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "candidate_body_unchanged": true
+    }
+  ],
+  "linked_section_bound_symbols": [
+    {
+      "symbol": "__osBaseTimer",
+      "address": "0x80037c30",
+      "size": 32,
+      "section_index": "3"
+    },
+    {
+      "symbol": "__osTimerList",
+      "address": "0x8002c3f0",
+      "size": 4,
+      "section_index": "2"
+    },
+    {
+      "symbol": "gViTimeAccumHi",
+      "address": "0x80037c50",
+      "size": 8,
+      "section_index": "3"
+    },
+    {
+      "symbol": "gViLastCount",
+      "address": "0x80037c58",
+      "size": 4,
+      "section_index": "3"
+    },
+    {
+      "symbol": "gViRetraceCount",
+      "address": "0x80037c5c",
+      "size": 4,
+      "section_index": "3"
+    },
+    {
+      "symbol": "__osTimerCounter",
+      "address": "0x80037c60",
+      "size": 4,
+      "section_index": "3"
+    }
+  ],
+  "linked_comparisons": [
+    {
+      "section": ".text",
+      "bytes": 1120,
+      "byte_differences": 0,
+      "sha256": "3390233c9dafc6c501d8e30063065bb50affaf98319b2641a52ad05e3d3d8166"
+    },
+    {
+      "section": ".data",
+      "bytes": 16,
+      "byte_differences": 0,
+      "sha256": "3c1a6f5433a5490b4c6df69ff14fe6cd7df420acdf36f18e0491bc2e3aab4206"
+    }
+  ],
+  "startup": {
+    "clear_start": "0x8002e8e0",
+    "clear_end_exclusive": "0x80086a50",
+    "entry_sha256": "de3530934473f7a99e7938ea495df595f444cf15cf65f7b65611268ca118a8bc",
+    "timer_bss_covered": true,
+    "initialized_pointer_below_clear_range": true
+  },
+  "header_hashes": {
+    "src/rom/rom_tu.h": "a7a1d4a1d9220b912b7ad0ec62bcd796e7abce207b9aa7f249339f18064de662",
+    "include/m2c_types.h": "93ab9028d3acf10515babd91636d6bd1c243110d1b70972d7758c83b65e932d0",
+    "include/PR/os_time.h": "a224b0b67e8b01fc2dabcbf391785be35127884645648abfd9ffc29f7d10c8cc"
+  },
+  "link_command": [
+    "mips-linux-gnu-ld",
+    "-m",
+    "elf32btsmip",
+    "-T",
+    "model.ld",
+    "-T",
+    "externs.ld",
+    "-T",
+    "functions.ld",
+    "-o",
+    "model.elf",
+    "candidate.o"
+  ],
+  "absolute_owned_symbol_definitions_excluded": [
+    "__osBaseTimer",
+    "__osTimerList",
+    "gViTimeAccumHi",
+    "gViLastCount",
+    "gViRetraceCount",
+    "__osTimerCounter"
+  ],
+  "scope": "Independent genuine-section local linker proof, no new full-ROM or strict-score claim"
+}

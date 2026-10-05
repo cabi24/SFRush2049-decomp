@@ -1,0 +1,5 @@
+# A163 genuine quaternion caller context — bounded NONMATCH
+
+One separately labeled actual caller-contract control for frozen A100 func_800BFBE8@800BFBE8384B96w. Helper unchanged except literal O3 first-line flags; original A100 source/hash remain untouched. The complete genuine153w camera_build_view_matrix original source body is unchanged from historical camera_aspect_ratio; its real camera/control/scene/key layouts and ordinary two consumed formals retained. All old stand-ins/other bodies/track_spline unused pad are excluded. Both real entries kept ordinarily; caller already accepted and is only unclaimed context.
+
+Fresh canonical helper remains5/96 differing words, no errors/extras/unknown/unverified refs; actual caller153/153 plus6 extras outside its whole-program original closure. No further keep/source controls, no artificial frame pressure/local storage/padding/formals/synthetic callers. The original quaternion scaled-x spill/home and frame residual remains unresolved. Claims empty. Full hashes/context_origin/eligibility proofs frozen; shared acceptance state untouched.

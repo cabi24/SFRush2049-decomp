@@ -1,0 +1,32 @@
+[
+  {
+    "source": "save_settings_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "06af945dbc816df9a41a65af047437fb59778e7d92118da3f06deb2f0e07f9b9",
+    "object_sha256": "2b89125bc0dfcb6c390b24fdfe84bb4d2e75c2f665f3bcc6a64efb8ce9480d10",
+    "comparison": {
+      "differing": 18,
+      "total": 146,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 148
+  },
+  {
+    "source": "save_settings_homes.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "7485bfc0492332dd368ebb11256e74a1861497280c120401a7d906bfa3d42cf3",
+    "object_sha256": "e8ebc5287760f5563baea96e1dca67a4f55aa47f1ca5833ff8428e9a432379f1",
+    "comparison": {
+      "differing": 0,
+      "total": 146,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 148
+  }
+]

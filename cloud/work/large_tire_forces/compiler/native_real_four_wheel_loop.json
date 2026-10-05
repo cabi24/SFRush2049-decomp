@@ -1,0 +1,30 @@
+{
+  "source_sha256": "92e51228b238b8156efd1b8fb7a5e4ec2159e72a648152373f18d22ecd83a27f",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-tire-compiler/candidates/native_real_four_wheel_loop.c",
+  "accepted": false,
+  "canonical_verdict": "419/422 words differ (6 section-relative relocations unverified: .rodata+0x0 at +0x424, .rodata+0x0 at +0x434, .rodata+0x4 at +0x530, .rodata+0x4 at +0x538, .rodata+0x8 at +0x594, .rodata+0x8 at +0x59c)",
+  "comparison": {
+    "differing": 419,
+    "total": 422,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0x424",
+      ".rodata+0x0 at +0x434",
+      ".rodata+0x4 at +0x530",
+      ".rodata+0x4 at +0x538",
+      ".rodata+0x8 at +0x594",
+      ".rodata+0x8 at +0x59c"
+    ],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "a546fbe38df9c8491c36fb2552e885d47dec580a44b9d4e7f6ecd7a041da2fe5",
+  "emitted_words": 396,
+  "aligned": {
+    "aligned_exact": 172,
+    "aligned_opcode": 365,
+    "aligned_opcode_reg": 184
+  },
+  "frame_bytes": 160
+}

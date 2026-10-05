@@ -1,0 +1,23 @@
+{
+  "source_sha256": "85da4bef04160c8d6176677c097209b147537ad37aea10feb3bc1df7108effe1",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-unlock-compiler/candidates/texture_reconstruction/edge_initialize_block.c",
+  "accepted": false,
+  "canonical_verdict": "6/445 words differ",
+  "comparison": {
+    "differing": 6,
+    "total": 445,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "ce86e59db2d30d53ae341f16163360a253dbb00712e186efd80d22fbd9aedaf6",
+  "emitted_words": 448,
+  "aligned": {
+    "aligned_exact": 442,
+    "aligned_opcode": 444,
+    "aligned_opcode_reg": 444
+  },
+  "frame_bytes": 32749
+}

@@ -1,0 +1,23 @@
+{
+  "locks": [
+    {
+      "path": "matched.lock.json",
+      "sha256": "dc99032030c56842337d770d78bf91af10e4dcd9784160956b5a6adf6b55939d",
+      "entries": []
+    },
+    {
+      "path": "/tmp/rush-static-acceptance-20261002/matched.lock.json",
+      "sha256": "73a3614a9803882f0a3e916cec590ad1fc0df25b8adc51b90b64fb59f2fa5633",
+      "entries": []
+    }
+  ],
+  "slot": {
+    "name": "viGetTimeToDeadline",
+    "vaddr": "0x80001578",
+    "size": 68,
+    "state": "passthrough"
+  },
+  "archived_full_cloud_definitions_before_packet": [],
+  "accepted_credit": 0,
+  "recipe": "existing g0/O2 VI pin preserved; accepted deadline/stub untouched"
+}

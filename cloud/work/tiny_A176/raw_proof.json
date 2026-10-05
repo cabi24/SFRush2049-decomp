@@ -1,0 +1,20 @@
+{
+  "source_sha256": "9aef2684e44fee844bb16d2d8ef9fc1b1f7509bce8b05b78c747ea19d74de5f2",
+  "object_sha256": "7cb69a884931e27cb7d10c00087fdb6a134b468a951e2f9816c8ed4a6cb9baf0",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "comparison": {
+    "differing": 0,
+    "total": 95,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "raw_unmasked": {
+    "words": 95,
+    "bytes": 380,
+    "exact": true
+  },
+  "target_sha256": "69d08849de911967b66b4b5793f084dd55ed03440759c5c4c476116f9fd936e1"
+}

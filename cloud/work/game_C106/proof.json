@@ -1,0 +1,52 @@
+{
+  "original_target_roundtrip": [
+    true,
+    null
+  ],
+  "results": [
+    {
+      "source": "cloud/work/game_C106/entity_anim_texture.o2.c",
+      "source_sha256": "9f82345835ae24a36889dec512326d2cc380fb7de8ebb3b44a346824cfb9385b",
+      "object_sha256": "2aeea8f2ecb9342706088ca09a547e678808bf498d5c513ac147e0cbeb2be853",
+      "true_symbol_bytes": {
+        "entity_anim_texture": 600
+      },
+      "unmasked_native_comparison": {
+        "differing": 155,
+        "total": 159,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "strict_including_stack": 5237
+    },
+    {
+      "source": "cloud/work/game_C106/group.c",
+      "source_sha256": "d3e2317c146928f754d55fd244e129db0bfa3fec456fda8126025b89dfb27bfe",
+      "object_sha256": "dba0c68d4cc4839f110133bab414a35684297a01f61e78b9180970a5dae6da92",
+      "true_symbol_bytes": {
+        "entity_anim_texture": 700,
+        "matrix_scale_apply": 8,
+        "model_bounds_calc": 72
+      },
+      "unmasked_native_comparison": {
+        "differing": 147,
+        "total": 159,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 16
+      },
+      "model_bounds_calc_complete18word_context_comparison": {
+        "differing": 0,
+        "total": 18,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  ],
+  "claims": []
+}

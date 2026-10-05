@@ -1,0 +1,14 @@
+{
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "game_results_input",
+    "input_new_data_wrapper",
+    "Input_ApplyPadConfig",
+    "func_800EF5B0",
+    "stat_race_update",
+    "brake_light_update"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+}

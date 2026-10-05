@@ -1,0 +1,60 @@
+{
+  "note": "Nonmatching improved research. Particle has unverified pool refs; HUD has9 extra words and truncated relocation. Include only selected source and numerical/semantic receipts, no objects/disassembly/word arrays or sweep variants.",
+  "candidates": [
+    {
+      "target": "func_800E23A4",
+      "accepted": false,
+      "coverage_credit": false,
+      "target_bytes": 1688,
+      "reported_differences": 2,
+      "source": "cloud/work/large_tire_forces/reconstruction/native_expression_scoped_tsc.c",
+      "source_sha256": "a78bf705049cb5d0db9fc8bcb09efa0ac819ba1e11c4d65c6daf377a3f68e8bb",
+      "receipt": "cloud/work/large_tire_forces/compiler/native_expression_scoped_tsc_linked.json",
+      "receipt_sha256": "1dbfdc04f6a48cfbeba3eea2e69c5a6e72396a946a9177f3fef16e6c90783f8c"
+    },
+    {
+      "target": "func_800F7F3C",
+      "accepted": false,
+      "coverage_credit": false,
+      "target_bytes": 1396,
+      "reported_differences": 270,
+      "source": "cloud/work/large_rank_sort/compiler/native_semantics.c",
+      "source_sha256": "73f6bf0ca04b032617ac54b150f0d6f489343e96861f1583b27afa187663e90e",
+      "receipt": "cloud/work/large_rank_sort/compiler/control_results.json",
+      "receipt_sha256": "70a2dcba556eebd3c7f6289a1080ab86b89d489ec82324aad8bfb1ea277b03eb"
+    },
+    {
+      "target": "func_80087110",
+      "accepted": false,
+      "coverage_credit": false,
+      "target_bytes": 1780,
+      "reported_differences": 4,
+      "source": "cloud/work/large_texture_rect/compiler/baseline.c",
+      "source_sha256": "4df5b2f78e7366029e764bed40de4e152edda3ca7c5859007ce795e0edaac8f7",
+      "receipt": "cloud/work/large_texture_rect/compiler/control_results.json",
+      "receipt_sha256": "60a11a4f2db9a1f134226533a1111e12d813971dd02a57023d840833b0bef976"
+    },
+    {
+      "target": "entity_update_callback",
+      "accepted": false,
+      "coverage_credit": false,
+      "target_bytes": 2184,
+      "reported_differences": 506,
+      "source": "cloud/work/large_particle_quad/reconstruction/native_literals.c",
+      "source_sha256": "4259627dbdc557e692a7d38c2beab98c8ec2f495c9f92a622b5e5c45c2e14073",
+      "receipt": "cloud/work/large_particle_quad/compiler/ABI_REPORT.md",
+      "receipt_sha256": "efd2fd93fd1869c9ec25769c36389c4f64c12e98dc5f889013d55e939cfabaf6"
+    },
+    {
+      "target": "game_results_input",
+      "accepted": false,
+      "coverage_credit": false,
+      "target_bytes": 1732,
+      "reported_differences": 408,
+      "source": "cloud/work/large_hud_marker/compiler/actual_input_group/group.c",
+      "source_sha256": "c1ba20ffea6756262b22ea8f42123919651e55832290cbada22ea88d8ad814a8",
+      "receipt": "cloud/work/large_hud_marker/compiler/actual_input_group.json",
+      "receipt_sha256": "c826fe8b735df24e2afe53df187b21d8361f8ee4904348903413734c515f6348"
+    }
+  ]
+}
