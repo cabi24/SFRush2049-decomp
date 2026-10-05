@@ -1,0 +1,65 @@
+{
+  "diagnostic_only": true,
+  "source_sha256": "952efc079b818e9579b74d625871cd86756750016371efe7c7493574692c4beb",
+  "no_force_controls": true,
+  "stock_ucode_sha256": "62cb0dfee4cc2e081c41e1905581d9772603fd975c9040301b318773845a8037",
+  "native_listing_ucode_sha256": "62cb0dfee4cc2e081c41e1905581d9772603fd975c9040301b318773845a8037",
+  "print_trace_ucode_sha256": "62cb0dfee4cc2e081c41e1905581d9772603fd975c9040301b318773845a8037",
+  "optimized_ucode_equal_to_stock": true,
+  "decisions": [
+    {
+      "phase": "p1",
+      "web": "165",
+      "save": "1.333333",
+      "nocs": "3",
+      "totalsave": "4.000000",
+      "bestreg": "t3",
+      "numintf": "20",
+      "decision": "color",
+      "forced": "-2",
+      "role": "offset",
+      "occurrence_block_ids": [
+        31,
+        36,
+        40,
+        32
+      ],
+      "default_live_block_ids": [
+        33,
+        34,
+        35,
+        37,
+        39
+      ],
+      "normalization_input": 9
+    },
+    {
+      "phase": "p1",
+      "web": "154",
+      "save": "1.000000",
+      "nocs": "4",
+      "totalsave": "4.000000",
+      "bestreg": "t4",
+      "numintf": "20",
+      "decision": "color",
+      "forced": "-2",
+      "role": "height",
+      "occurrence_block_ids": [
+        30,
+        31,
+        36,
+        40
+      ],
+      "default_live_block_ids": [
+        32,
+        33,
+        34,
+        35,
+        37,
+        39
+      ],
+      "normalization_input": 10
+    }
+  ],
+  "provenance": "Existing print-only global-color instrumented executable and native -zdbug:5 listing with host float-formatting wrapper support; numerical matching verification uses only the stock toolchain."
+}

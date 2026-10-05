@@ -881,6 +881,7 @@ func_8009E9D8:
 .section .text.func_8009EA68, "ax", @progbits
 .globl func_8009EA68
 func_8009EA68:
+    /* compiled from src/blob/func_8009EA68.c */
     .word 0x3C018012
     .word 0xC4243B04
     .word 0x27BDFFE0
@@ -927,6 +928,7 @@ func_8009EA68:
 .section .text.gfx_setup_fc, "ax", @progbits
 .globl gfx_setup_fc
 gfx_setup_fc:
+    /* compiled from src/blob/gfx_setup_fc.c */
     .word 0x3C018012
     .word 0xC4243B0C
     .word 0x27BDFFE0

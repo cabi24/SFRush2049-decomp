@@ -52,7 +52,12 @@
    "reason": "same group: internal controller_poll breaks standalone-matched process_inputs (89w -> 111w)"
   }
  ],
- "force_internal": [],
+ "force_internal": [
+  {
+   "name": "func_80092278",
+   "reason": "internal list allocator shared with camera_target_track (unmatched); retail passes its arguments through IPA, so it must stay out of keep in the shadow unit as in frontier_list_alloc_sound"
+  }
+ ],
  "prefer_definition": [
   {
    "name": "func_800BF01C",

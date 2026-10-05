@@ -5136,6 +5136,7 @@ best_times_display:
 .section .text.high_scores_display, "ax", @progbits
 .globl high_scores_display
 high_scores_display:
+    /* compiled from src/blob/high_scores_display.c */
     .word 0x27BDFFD8
     .word 0xAFA40028
     .word 0xAFBF001C

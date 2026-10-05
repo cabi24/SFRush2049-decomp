@@ -1,0 +1,307 @@
+[W5D] bit at=cm proc=audio_mixer_main bit=0 kind=3 dtype=J ref=682|0 text=varM(3439-20)r
+[W5D] bit at=cm proc=audio_mixer_main bit=1 kind=3 dtype=J ref=682|0 text=varM(3439-20)r
+[W5D] bit at=cm proc=audio_mixer_main bit=2 kind=4 dtype=J ref=166|0 text=str.J(varM(3439-20)r,0)
+[W5D] bit at=cm proc=audio_mixer_main bit=3 kind=4 dtype=J ref=604|0 text=ilod.J(ldaS(1166+0))
+[W5D] bit at=cm proc=audio_mixer_main bit=4 kind=4 dtype=J ref=1185|0 text=geq.J(ilod.J(ldaS(1166+0)),1)
+[W5D] bit at=cm proc=audio_mixer_main bit=5 kind=4 dtype=J ref=1288|0 text=cg1.J(ilod.J(ldaS(1166+0)))
+[W5D] bit at=cm proc=audio_mixer_main bit=6 kind=3 dtype=J ref=746|0 text=varM(3439-16)
+[W5D] bit at=cm proc=audio_mixer_main bit=7 kind=3 dtype=J ref=746|0 text=varM(3439-16)
+[W5D] bit at=cm proc=audio_mixer_main bit=8 kind=4 dtype=J ref=841|0 text=mpy.J(varM(3439-20)r,80)
+[W5D] bit at=cm proc=audio_mixer_main bit=9 kind=4 dtype=J ref=1569|0 text=ixa.J(ldaS(1166+0),mpy.J(varM(3439-20)r,80))
+[W5D] bit at=cm proc=audio_mixer_main bit=10 kind=4 dtype=R ref=332|0 text=ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-20)r,80)))
+[W5D] bit at=cm proc=audio_mixer_main bit=11 kind=4 dtype=J ref=465|0 text=cvt.J(ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-20)r,80))))
+[W5D] bit at=cm proc=audio_mixer_main bit=12 kind=4 dtype=J ref=1168|0 text=str.J(varM(3439-16),cvt.J(ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-20)r,80)))))
+[W5D] bit at=cm proc=audio_mixer_main bit=13 kind=3 dtype=J ref=778|0 text=varM(3439-14)
+[W5D] bit at=cm proc=audio_mixer_main bit=14 kind=3 dtype=J ref=778|0 text=varM(3439-14)
+[W5D] bit at=cm proc=audio_mixer_main bit=15 kind=4 dtype=R ref=332|1 text=ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-20)r,80)))
+[W5D] bit at=cm proc=audio_mixer_main bit=16 kind=4 dtype=J ref=547|0 text=cvt.J(ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-20)r,80))))
+[W5D] bit at=cm proc=audio_mixer_main bit=17 kind=4 dtype=J ref=1094|0 text=str.J(varM(3439-14),cvt.J(ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-20)r,80)))))
+[W5D] bit at=cm proc=audio_mixer_main bit=18 kind=3 dtype=J ref=810|0 text=varM(3439-12)
+[W5D] bit at=cm proc=audio_mixer_main bit=19 kind=3 dtype=J ref=810|0 text=varM(3439-12)
+[W5D] bit at=cm proc=audio_mixer_main bit=20 kind=4 dtype=R ref=332|2 text=ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-20)r,80)))
+[W5D] bit at=cm proc=audio_mixer_main bit=21 kind=4 dtype=J ref=629|0 text=cvt.J(ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-20)r,80))))
+[W5D] bit at=cm proc=audio_mixer_main bit=22 kind=4 dtype=J ref=73|0 text=str.J(varM(3439-12),cvt.J(ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-20)r,80)))))
+[W5D] bit at=cm proc=audio_mixer_main bit=23 kind=3 dtype=J ref=439|0 text=varP(3439+2)r
+[W5D] bit at=cm proc=audio_mixer_main bit=24 kind=3 dtype=J ref=439|0 text=varP(3439+2)r
+[W5D] bit at=cm proc=audio_mixer_main bit=25 kind=4 dtype=J ref=1423|0 text=les.J(varP(3439+2)r,0)
+[W5D] bit at=cm proc=audio_mixer_main bit=26 kind=4 dtype=J ref=962|0 text=cg1.J(varP(3439+2)r)
+[W5D] bit at=cm proc=audio_mixer_main bit=27 kind=3 dtype=J ref=618|0 text=varM(3439-24)r
+[W5D] bit at=cm proc=audio_mixer_main bit=28 kind=3 dtype=J ref=618|0 text=varM(3439-24)r
+[W5D] bit at=cm proc=audio_mixer_main bit=29 kind=4 dtype=J ref=166|1 text=str.J(varM(3439-24)r,0)
+[W5D] bit at=cm proc=audio_mixer_main bit=30 kind=4 dtype=J ref=1221|0 text=equ.J(varM(3439-24)r,0)
+[W5D] bit at=cm proc=audio_mixer_main bit=31 kind=4 dtype=J ref=1324|0 text=cg1.J(varM(3439-24)r)
+[W5D] bit at=cm proc=audio_mixer_main bit=32 kind=4 dtype=J ref=1596|0 text=cvtl.J(varM(3439-20)r)
+[W5D] bit at=cm proc=audio_mixer_main bit=33 kind=4 dtype=J ref=825|0 text=ixa.J(ldaS(1166+0),varM(3439-20)r)
+[W5D] bit at=cm proc=audio_mixer_main bit=34 kind=4 dtype=J ref=252|0 text=mpy.J(varM(3439-24)r,2)
+[W5D] bit at=cm proc=audio_mixer_main bit=35 kind=4 dtype=J ref=587|0 text=ixa.J(ixa.J(ldaS(1166+0),varM(3439-20)r),mpy.J(varM(3439-24)r,2))
+[W5D] bit at=cm proc=audio_mixer_main bit=36 kind=3 dtype=J ref=1485|0 text=varR(0+2)r
+[W5D] bit at=cm proc=audio_mixer_main bit=37 kind=3 dtype=J ref=1485|0 text=varR(0+2)r
+[W5D] bit at=cm proc=audio_mixer_main bit=38 kind=4 dtype=J ref=477|0 text=istr.J(ixa.J(ixa.J(ldaS(1166+0),varM(3439-20)r),mpy.J(varM(3439-24)r,2)),varR(0+2)r)
+[W5D] bit at=cm proc=audio_mixer_main bit=39 kind=4 dtype=J ref=141|0 text=geq.J(varM(3439-24)r,5)
+[W5D] bit at=cm proc=audio_mixer_main bit=40 kind=4 dtype=J ref=1330|0 text=cg1.J(varM(3439-24)r)
+[W5D] bit at=cm proc=audio_mixer_main bit=41 kind=4 dtype=J ref=1600|0 text=add.J(varM(3439-24)r,-5)
+[W5D] bit at=cm proc=audio_mixer_main bit=42 kind=4 dtype=J ref=194|0 text=cvtl.J(add.J(varM(3439-24)r,-5))
+[W5D] bit at=cm proc=audio_mixer_main bit=43 kind=4 dtype=J ref=416|0 text=add.J(varM(3439-24)r,-1)
+[W5D] bit at=cm proc=audio_mixer_main bit=44 kind=4 dtype=J ref=1064|0 text=cvtl.J(add.J(varM(3439-24)r,-1))
+[W5D] bit at=cm proc=audio_mixer_main bit=45 kind=4 dtype=J ref=1443|0 text=add.J(varM(3439-24)r,1)
+[W5D] bit at=cm proc=audio_mixer_main bit=46 kind=4 dtype=J ref=454|0 text=str.J(varM(3439-24)r,add.J(varM(3439-24)r,1))
+[W5D] bit at=cm proc=audio_mixer_main bit=47 kind=4 dtype=J ref=360|0 text=les.J(varM(3439-24)r,20)
+[W5D] bit at=cm proc=audio_mixer_main bit=48 kind=4 dtype=J ref=1340|0 text=cg1.J(varM(3439-24)r)
+[W5D] bit at=cm proc=audio_mixer_main bit=49 kind=4 dtype=J ref=1221|1 text=equ.J(varP(3439+2)r,0)
+[W5D] bit at=cm proc=audio_mixer_main bit=50 kind=4 dtype=J ref=988|0 text=cg1.J(varP(3439+2)r)
+[W5D] bit at=cm proc=audio_mixer_main bit=51 kind=4 dtype=J ref=1529|0 text=mpy.J(varP(3439+2)r,2)
+[W5D] bit at=cm proc=audio_mixer_main bit=52 kind=4 dtype=J ref=1004|0 text=ixa.J(ixa.J(ldaS(1166+0),varM(3439-20)r),mpy.J(varP(3439+2)r,2))
+[W5D] bit at=cm proc=audio_mixer_main bit=53 kind=4 dtype=J ref=252|1 text=istr.J(ixa.J(ixa.J(ldaS(1166+0),varM(3439-20)r),mpy.J(varP(3439+2)r,2)),varR(0+2)r)
+[W5D] bit at=cm proc=audio_mixer_main bit=54 kind=4 dtype=L ref=540|0 text=ilod.L(ldaS(1164+8))
+[W5D] bit at=cm proc=audio_mixer_main bit=55 kind=4 dtype=J ref=1387|0 text=cvt.J(ilod.L(ldaS(1164+8)))
+[W5D] bit at=cm proc=audio_mixer_main bit=56 kind=4 dtype=J ref=920|0 text=geq.J(cvt.J(ilod.L(ldaS(1164+8))),1)
+[W5D] bit at=cm proc=audio_mixer_main bit=57 kind=4 dtype=J ref=1269|0 text=cg1.J(cvt.J(ilod.L(ldaS(1164+8))))
+[W5D] bit at=cm proc=audio_mixer_main bit=58 kind=4 dtype=J ref=1468|0 text=cvtl.J(varM(3439-24)r)
+[W5D] bit at=cm proc=audio_mixer_main bit=59 kind=4 dtype=J ref=477|1 text=istr.J(ixa.J(ixa.J(ldaS(1166+0),varM(3439-20)r),mpy.J(varM(3439-24)r,2)),varR(0+2)r)
+[W5D] bit at=cm proc=audio_mixer_main bit=60 kind=4 dtype=J ref=478|0 text=les.J(varM(3439-24)r,cvt.J(ilod.L(ldaS(1164+8))))
+[W5D] bit at=cm proc=audio_mixer_main bit=61 kind=4 dtype=J ref=1356|0 text=cg1.J(varM(3439-24)r)
+[W5D] bit at=cm proc=audio_mixer_main bit=62 kind=4 dtype=J ref=1275|0 text=cg1.J(cvt.J(ilod.L(ldaS(1164+8))))
+[W5D] bit at=cm proc=audio_mixer_main bit=63 kind=4 dtype=J ref=587|1 text=add.J(varP(3439+2)r,-1)
+[W5D] bit at=cm proc=audio_mixer_main bit=64 kind=4 dtype=J ref=390|0 text=cvtl.J(add.J(varP(3439+2)r,-1))
+[W5D] bit at=cm proc=audio_mixer_main bit=65 kind=4 dtype=J ref=464|0 text=add.J(varM(3439-20)r,1)
+[W5D] bit at=cm proc=audio_mixer_main bit=66 kind=4 dtype=J ref=1120|0 text=str.J(varM(3439-20)r,add.J(varM(3439-20)r,1))
+[W5D] bit at=cm proc=audio_mixer_main bit=67 kind=4 dtype=J ref=348|0 text=les.J(varM(3439-20)r,ilod.J(ldaS(1166+0)))
+[W5D] bit at=cm proc=audio_mixer_main bit=68 kind=4 dtype=J ref=1494|0 text=cg1.J(varM(3439-20)r)
+[W5D] bit at=cm proc=audio_mixer_main bit=69 kind=4 dtype=J ref=1338|0 text=cg1.J(ilod.J(ldaS(1166+0)))
+[W5D] bit at=cm proc=audio_mixer_main bit=70 kind=4 dtype=R ref=243|0 text=istr.R(ldaS(1169+0),3)
+[W5D] bit at=cm proc=audio_mixer_main bit=71 kind=4 dtype=R ref=700|0 text=ilod.R(ldaS(1169+0))
+[W5D] bit at=cm proc=audio_mixer_main bit=72 kind=4 dtype=R ref=1111|0 text=istr.R(ldaS(1170+0),ilod.R(ldaS(1169+0)))
+[W5D] bit at=cm proc=audio_mixer_main bit=73 kind=3 dtype=J ref=490|0 text=varM(3439-32)r
+[W5D] bit at=cm proc=audio_mixer_main bit=74 kind=3 dtype=J ref=490|0 text=varM(3439-32)r
+[W5D] bit at=cm proc=audio_mixer_main bit=75 kind=4 dtype=J ref=166|2 text=str.J(varM(3439-32)r,0)
+[W5D] bit at=cm proc=audio_mixer_main bit=76 kind=3 dtype=J ref=426|0 text=varM(3439-36)
+[W5D] bit at=cm proc=audio_mixer_main bit=77 kind=3 dtype=J ref=426|0 text=varM(3439-36)
+[W5D] bit at=cm proc=audio_mixer_main bit=78 kind=4 dtype=J ref=166|3 text=str.J(varM(3439-36),0)
+[W5D] bit at=cm proc=audio_mixer_main bit=79 kind=4 dtype=J ref=1342|0 text=cg1.J(ilod.J(ldaS(1166+0)))
+[W5D] bit at=cm proc=audio_mixer_main bit=80 kind=3 dtype=A ref=362|0 text=varM(3439-40)r
+[W5D] bit at=cm proc=audio_mixer_main bit=81 kind=3 dtype=A ref=362|0 text=varM(3439-40)r
+[W5D] bit at=cm proc=audio_mixer_main bit=82 kind=4 dtype=A ref=1018|0 text=str.A(varM(3439-40)r,ldaM(3439-36))
+[W5D] bit at=cm proc=audio_mixer_main bit=83 kind=4 dtype=J ref=1142|0 text=add.J(varM(3439-36),1)
+[W5D] bit at=cm proc=audio_mixer_main bit=84 kind=4 dtype=J ref=342|0 text=equ.J(add.J(varM(3439-36),1),ilod.J(ldaS(1166+0)))
+[W5D] bit at=cm proc=audio_mixer_main bit=85 kind=4 dtype=J ref=803|0 text=cg1.J(add.J(varM(3439-36),1))
+[W5D] bit at=cm proc=audio_mixer_main bit=86 kind=4 dtype=J ref=1346|0 text=cg1.J(ilod.J(ldaS(1166+0)))
+[W5D] bit at=cm proc=audio_mixer_main bit=87 kind=4 dtype=J ref=604|1 text=ilod.J(ldaS(1166+0))
+[W5D] bit at=cm proc=audio_mixer_main bit=88 kind=4 dtype=J ref=326|0 text=str.J(varR(0+2)r,ilod.J(ldaS(1166+0)))
+[W5D] bit at=cm proc=audio_mixer_main bit=89 kind=4 dtype=J ref=1156|0 text=ilod.J(varM(3439-40)r)
+[W5D] bit at=cm proc=audio_mixer_main bit=90 kind=4 dtype=J ref=347|0 text=add.J(ilod.J(varM(3439-40)r),1)
+[W5D] bit at=cm proc=audio_mixer_main bit=91 kind=4 dtype=J ref=1458|0 text=str.J(varR(0+2)r,add.J(ilod.J(varM(3439-40)r),1))
+[W5D] bit at=cm proc=audio_mixer_main bit=92 kind=3 dtype=J ref=554|0 text=varM(3439-28)r
+[W5D] bit at=cm proc=audio_mixer_main bit=93 kind=3 dtype=J ref=554|0 text=varM(3439-28)r
+[W5D] bit at=cm proc=audio_mixer_main bit=94 kind=4 dtype=J ref=927|0 text=str.J(varM(3439-28)r,varR(0+2)r)
+[W5D] bit at=cm proc=audio_mixer_main bit=95 kind=4 dtype=J ref=35|0 text=mpy.J(varM(3439-36),80)
+[W5D] bit at=cm proc=audio_mixer_main bit=96 kind=4 dtype=J ref=1341|0 text=ixa.J(ldaS(1166+0),mpy.J(varM(3439-36),80))
+[W5D] bit at=cm proc=audio_mixer_main bit=97 kind=4 dtype=J ref=1495|0 text=ilod.J(ixa.J(ldaS(1166+0),mpy.J(varM(3439-36),80)))
+[W5D] bit at=cm proc=audio_mixer_main bit=98 kind=4 dtype=J ref=498|0 text=mpy.J(varR(0+2)r,80)
+[W5D] bit at=cm proc=audio_mixer_main bit=99 kind=4 dtype=J ref=1247|0 text=ixa.J(ldaS(1166+0),mpy.J(varR(0+2)r,80))
+[W5D] bit at=cm proc=audio_mixer_main bit=100 kind=4 dtype=J ref=1307|0 text=ilod.J(ixa.J(ldaS(1166+0),mpy.J(varR(0+2)r,80)))
+[W5D] bit at=cm proc=audio_mixer_main bit=101 kind=3 dtype=R ref=346|0 text=varR(0+32)r
+[W5D] bit at=cm proc=audio_mixer_main bit=102 kind=3 dtype=R ref=346|0 text=varR(0+32)r
+[W5D] bit at=cm proc=audio_mixer_main bit=103 kind=4 dtype=R ref=29|0 text=istr.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-36),80)),varR(0+32)r)
+[W5D] bit at=cm proc=audio_mixer_main bit=104 kind=4 dtype=J ref=1024|0 text=geq.J(varM(3439-36),1)
+[W5D] bit at=cm proc=audio_mixer_main bit=105 kind=4 dtype=J ref=998|0 text=cg1.J(varM(3439-36))
+[W5D] bit at=cm proc=audio_mixer_main bit=106 kind=4 dtype=J ref=604|2 text=ilod.J(ldaS(1166+0))
+[W5D] bit at=cm proc=audio_mixer_main bit=107 kind=4 dtype=J ref=91|0 text=equ.J(varM(3439-36),ilod.J(ldaS(1166+0)))
+[W5D] bit at=cm proc=audio_mixer_main bit=108 kind=4 dtype=J ref=1000|0 text=cg1.J(varM(3439-36))
+[W5D] bit at=cm proc=audio_mixer_main bit=109 kind=4 dtype=J ref=1013|0 text=cg1.J(ilod.J(ldaS(1166+0)))
+[W5D] bit at=cm proc=audio_mixer_main bit=110 kind=4 dtype=J ref=209|0 text=str.J(varM(3439-32)r,1)
+[W5D] bit at=cm proc=audio_mixer_main bit=111 kind=4 dtype=J ref=1164|0 text=neq.J(varM(3439-32)r,0)
+[W5D] bit at=cm proc=audio_mixer_main bit=112 kind=4 dtype=J ref=1132|0 text=cg1.J(varM(3439-32)r)
+[W5D] bit at=cm proc=audio_mixer_main bit=113 kind=4 dtype=R ref=1495|1 text=ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-36),80)))
+[W5D] bit at=cm proc=audio_mixer_main bit=114 kind=4 dtype=R ref=1543|0 text=add.R(ilod.R(ldaS(1169+0)),ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-36),80))))
+[W5D] bit at=cm proc=audio_mixer_main bit=115 kind=4 dtype=R ref=380|0 text=istr.R(ldaS(1169+0),add.R(ilod.R(ldaS(1169+0)),ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-36),80)))))
+[W5D] bit at=cm proc=audio_mixer_main bit=116 kind=4 dtype=J ref=471|0 text=geq.J(varM(3439-36),ilod.J(ldaS(1166+0)))
+[W5D] bit at=cm proc=audio_mixer_main bit=117 kind=4 dtype=J ref=1008|0 text=cg1.J(varM(3439-36))
+[W5D] bit at=cm proc=audio_mixer_main bit=118 kind=4 dtype=J ref=387|0 text=cg1.J(ilod.J(ldaS(1166+0)))
+[W5D] bit at=cm proc=audio_mixer_main bit=119 kind=4 dtype=R ref=732|0 text=ilod.R(ldaS(1170+0))
+[W5D] bit at=cm proc=audio_mixer_main bit=120 kind=4 dtype=R ref=719|0 text=add.R(ilod.R(ldaS(1170+0)),ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-36),80))))
+[W5D] bit at=cm proc=audio_mixer_main bit=121 kind=4 dtype=R ref=469|0 text=istr.R(ldaS(1170+0),add.R(ilod.R(ldaS(1170+0)),ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-36),80)))))
+[W5D] bit at=cm proc=audio_mixer_main bit=122 kind=4 dtype=J ref=1610|0 text=str.J(varM(3439-36),add.J(varM(3439-36),1))
+[W5D] bit at=cm proc=audio_mixer_main bit=123 kind=4 dtype=J ref=253|0 text=les.J(varM(3439-36),ilod.J(ldaS(1166+0)))
+[W5D] bit at=cm proc=audio_mixer_main bit=124 kind=4 dtype=J ref=1012|0 text=cg1.J(varM(3439-36))
+[W5D] bit at=cm proc=audio_mixer_main bit=125 kind=4 dtype=J ref=1368|0 text=cg1.J(ilod.J(ldaS(1166+0)))
+[W5D] bit at=cm proc=audio_mixer_main bit=126 kind=4 dtype=J ref=101|0 text=neq.J(varM(3439-24)r,20)
+[W5D] bit at=cm proc=audio_mixer_main bit=127 kind=4 dtype=A ref=1460|0 text=str.A(varR(0+2)r,add.J(varM(3439-36),1))
+[W5D] regcand proc=audio_mixer_main what=const bb=0 ctx=0 decision=0 text=0
+[W5D] regcand proc=audio_mixer_main what=lda bb=0 ctx=3 decision=1 text=ldaS(1166+0)
+[W5D] regcand proc=audio_mixer_main what=const bb=0 ctx=1 decision=0 text=1
+[W5D] regcand proc=audio_mixer_main what=const bb=2 ctx=1 decision=0 text=0
+[W5D] regcand proc=audio_mixer_main what=const bb=3 ctx=0 decision=0 text=0
+[W5D] regcand proc=audio_mixer_main what=const bb=4 ctx=3 decision=0 text=0
+[W5D] regcand proc=audio_mixer_main what=const bb=12 ctx=1 decision=0 text=1
+[W5D] regcand proc=audio_mixer_main what=const bb=12 ctx=3 decision=1 text=20
+[W5D] regcand proc=audio_mixer_main what=const bb=25 ctx=1 decision=0 text=1
+[W5D] regcand proc=audio_mixer_main what=lda bb=25 ctx=3 decision=1 text=ldaS(1166+0)
+[W5D] regcand proc=audio_mixer_main what=lda bb=27 ctx=1 decision=1 text=ldaS(1169+0)
+[W5D] regcand proc=audio_mixer_main what=const bb=27 ctx=3 decision=1 text=3
+[W5D] regcand proc=audio_mixer_main what=lda bb=27 ctx=1 decision=1 text=ldaS(1170+0)
+[W5D] regcand proc=audio_mixer_main what=lda bb=27 ctx=3 decision=1 text=ldaS(1169+0)
+[W5D] regcand proc=audio_mixer_main what=const bb=27 ctx=0 decision=0 text=0
+[W5D] regcand proc=audio_mixer_main what=const bb=27 ctx=0 decision=0 text=0
+[W5D] regcand proc=audio_mixer_main what=const bb=27 ctx=1 decision=0 text=1
+[W5D] regcand proc=audio_mixer_main what=const bb=29 ctx=1 decision=0 text=1
+[W5D] regcand proc=audio_mixer_main what=lda bb=30 ctx=3 decision=1 text=ldaS(1166+0)
+[W5D] regcand proc=audio_mixer_main what=lda bb=32 ctx=0 decision=1 text=ldaS(1166+0)
+[W5D] regcand proc=audio_mixer_main what=const bb=32 ctx=5 decision=1 text=80
+[W5D] regcand proc=audio_mixer_main what=lda bb=33 ctx=0 decision=1 text=ldaS(1166+0)
+[W5D] regcand proc=audio_mixer_main what=const bb=33 ctx=5 decision=1 text=80
+[W5D] regcand proc=audio_mixer_main what=const bb=33 ctx=1 decision=0 text=1
+[W5D] regcand proc=audio_mixer_main what=lda bb=34 ctx=3 decision=1 text=ldaS(1166+0)
+[W5D] regcand proc=audio_mixer_main what=const bb=35 ctx=0 decision=0 text=1
+[W5D] regcand proc=audio_mixer_main what=const bb=36 ctx=3 decision=0 text=0
+[W5D] regcand proc=audio_mixer_main what=lda bb=37 ctx=1 decision=1 text=ldaS(1169+0)
+[W5D] regcand proc=audio_mixer_main what=lda bb=37 ctx=3 decision=1 text=ldaS(1169+0)
+[W5D] regcand proc=audio_mixer_main what=lda bb=38 ctx=3 decision=1 text=ldaS(1166+0)
+[W5D] regcand proc=audio_mixer_main what=lda bb=39 ctx=1 decision=1 text=ldaS(1170+0)
+[W5D] regcand proc=audio_mixer_main what=lda bb=39 ctx=3 decision=1 text=ldaS(1170+0)
+[W5D] regcand proc=audio_mixer_main what=const bb=40 ctx=1 decision=0 text=1
+[W5D] regcand proc=audio_mixer_main what=lda bb=40 ctx=3 decision=1 text=ldaS(1166+0)
+[W5D] regcand proc=audio_mixer_main what=const bb=7 ctx=1 decision=0 text=5
+[W5D] regcand proc=audio_mixer_main what=const bb=8 ctx=1 decision=0 text=-5
+[W5D] regcand proc=audio_mixer_main what=const bb=10 ctx=1 decision=0 text=-1
+[W5D] regcand proc=audio_mixer_main what=const bb=15 ctx=3 decision=0 text=0
+[W5D] regcand proc=audio_mixer_main what=lda bb=17 ctx=3 decision=1 text=ldaS(1164+8)
+[W5D] regcand proc=audio_mixer_main what=const bb=17 ctx=1 decision=0 text=1
+[W5D] regcand proc=audio_mixer_main what=const bb=20 ctx=1 decision=0 text=1
+[W5D] regcand proc=audio_mixer_main what=lda bb=20 ctx=3 decision=1 text=ldaS(1164+8)
+[W5D] regcand proc=audio_mixer_main what=const bb=23 ctx=1 decision=0 text=-1
+[W5D] ordinal proc=audio_mixer_main cdx_proc=488
+[W5D] bit at=gc proc=audio_mixer_main bit=0 kind=3 dtype=J ref=682|0 text=varM(3439-20)r
+[W5D] bit at=gc proc=audio_mixer_main bit=1 kind=3 dtype=J ref=682|0 text=varM(3439-20)r
+[W5D] bit at=gc proc=audio_mixer_main bit=2 kind=4 dtype=J ref=166|0 text=str.J(varM(3439-20)r,0)
+[W5D] bit at=gc proc=audio_mixer_main bit=3 kind=4 dtype=J ref=604|0 text=ilod.J(ldaS(1166+0))
+[W5D] bit at=gc proc=audio_mixer_main bit=4 kind=4 dtype=J ref=1185|0 text=geq.J(ilod.J(ldaS(1166+0)),1)
+[W5D] bit at=gc proc=audio_mixer_main bit=5 kind=4 dtype=J ref=1288|0 text=cg1.J(ilod.J(ldaS(1166+0)))
+[W5D] bit at=gc proc=audio_mixer_main bit=6 kind=3 dtype=J ref=746|0 text=varM(3439-16)
+[W5D] bit at=gc proc=audio_mixer_main bit=7 kind=3 dtype=J ref=746|0 text=varM(3439-16)
+[W5D] bit at=gc proc=audio_mixer_main bit=8 kind=4 dtype=J ref=841|0 text=mpy.J(varM(3439-20)r,80)
+[W5D] bit at=gc proc=audio_mixer_main bit=9 kind=4 dtype=J ref=1569|0 text=ixa.J(ldaS(1166+0),mpy.J(varM(3439-20)r,80))
+[W5D] bit at=gc proc=audio_mixer_main bit=10 kind=4 dtype=R ref=332|0 text=ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-20)r,80)))
+[W5D] bit at=gc proc=audio_mixer_main bit=11 kind=4 dtype=J ref=465|0 text=cvt.J(ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-20)r,80))))
+[W5D] bit at=gc proc=audio_mixer_main bit=12 kind=4 dtype=J ref=1168|0 text=str.J(varM(3439-16),cvt.J(ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-20)r,80)))))
+[W5D] bit at=gc proc=audio_mixer_main bit=13 kind=3 dtype=J ref=778|0 text=varM(3439-14)
+[W5D] bit at=gc proc=audio_mixer_main bit=14 kind=3 dtype=J ref=778|0 text=varM(3439-14)
+[W5D] bit at=gc proc=audio_mixer_main bit=15 kind=4 dtype=R ref=332|1 text=ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-20)r,80)))
+[W5D] bit at=gc proc=audio_mixer_main bit=16 kind=4 dtype=J ref=547|0 text=cvt.J(ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-20)r,80))))
+[W5D] bit at=gc proc=audio_mixer_main bit=17 kind=4 dtype=J ref=1094|0 text=str.J(varM(3439-14),cvt.J(ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-20)r,80)))))
+[W5D] bit at=gc proc=audio_mixer_main bit=18 kind=3 dtype=J ref=810|0 text=varM(3439-12)
+[W5D] bit at=gc proc=audio_mixer_main bit=19 kind=3 dtype=J ref=810|0 text=varM(3439-12)
+[W5D] bit at=gc proc=audio_mixer_main bit=20 kind=4 dtype=R ref=332|2 text=ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-20)r,80)))
+[W5D] bit at=gc proc=audio_mixer_main bit=21 kind=4 dtype=J ref=629|0 text=cvt.J(ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-20)r,80))))
+[W5D] bit at=gc proc=audio_mixer_main bit=22 kind=4 dtype=J ref=73|0 text=str.J(varM(3439-12),cvt.J(ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-20)r,80)))))
+[W5D] bit at=gc proc=audio_mixer_main bit=23 kind=3 dtype=J ref=439|0 text=varP(3439+2)r
+[W5D] bit at=gc proc=audio_mixer_main bit=24 kind=3 dtype=J ref=439|0 text=varP(3439+2)r
+[W5D] bit at=gc proc=audio_mixer_main bit=25 kind=4 dtype=J ref=1423|0 text=les.J(varP(3439+2)r,0)
+[W5D] bit at=gc proc=audio_mixer_main bit=26 kind=4 dtype=J ref=962|0 text=cg1.J(varP(3439+2)r)
+[W5D] bit at=gc proc=audio_mixer_main bit=27 kind=3 dtype=J ref=618|0 text=varM(3439-24)r
+[W5D] bit at=gc proc=audio_mixer_main bit=28 kind=3 dtype=J ref=618|0 text=varM(3439-24)r
+[W5D] bit at=gc proc=audio_mixer_main bit=29 kind=4 dtype=J ref=166|1 text=str.J(varM(3439-24)r,0)
+[W5D] bit at=gc proc=audio_mixer_main bit=30 kind=4 dtype=J ref=1221|0 text=equ.J(varM(3439-24)r,0)
+[W5D] bit at=gc proc=audio_mixer_main bit=31 kind=4 dtype=J ref=1324|0 text=cg1.J(varM(3439-24)r)
+[W5D] bit at=gc proc=audio_mixer_main bit=32 kind=4 dtype=J ref=1596|0 text=cvtl.J(varM(3439-20)r)
+[W5D] bit at=gc proc=audio_mixer_main bit=33 kind=4 dtype=J ref=825|0 text=ixa.J(ldaS(1166+0),varM(3439-20)r)
+[W5D] bit at=gc proc=audio_mixer_main bit=34 kind=4 dtype=J ref=252|0 text=mpy.J(varM(3439-24)r,2)
+[W5D] bit at=gc proc=audio_mixer_main bit=35 kind=4 dtype=J ref=587|0 text=ixa.J(ixa.J(ldaS(1166+0),varM(3439-20)r),mpy.J(varM(3439-24)r,2))
+[W5D] bit at=gc proc=audio_mixer_main bit=36 kind=3 dtype=J ref=1485|0 text=varR(0+2)r
+[W5D] bit at=gc proc=audio_mixer_main bit=37 kind=3 dtype=J ref=1485|0 text=varR(0+2)r
+[W5D] bit at=gc proc=audio_mixer_main bit=38 kind=4 dtype=J ref=477|0 text=istr.J(ixa.J(ixa.J(ldaS(1166+0),varM(3439-20)r),mpy.J(varM(3439-24)r,2)),varR(0+2)r)
+[W5D] bit at=gc proc=audio_mixer_main bit=39 kind=4 dtype=J ref=141|0 text=geq.J(varM(3439-24)r,5)
+[W5D] bit at=gc proc=audio_mixer_main bit=40 kind=4 dtype=J ref=1330|0 text=cg1.J(varM(3439-24)r)
+[W5D] bit at=gc proc=audio_mixer_main bit=41 kind=4 dtype=J ref=1600|0 text=add.J(varM(3439-24)r,-5)
+[W5D] bit at=gc proc=audio_mixer_main bit=42 kind=4 dtype=J ref=194|0 text=cvtl.J(add.J(varM(3439-24)r,-5))
+[W5D] bit at=gc proc=audio_mixer_main bit=43 kind=4 dtype=J ref=416|0 text=add.J(varM(3439-24)r,-1)
+[W5D] bit at=gc proc=audio_mixer_main bit=44 kind=4 dtype=J ref=1064|0 text=cvtl.J(add.J(varM(3439-24)r,-1))
+[W5D] bit at=gc proc=audio_mixer_main bit=45 kind=4 dtype=J ref=1443|0 text=add.J(varM(3439-24)r,1)
+[W5D] bit at=gc proc=audio_mixer_main bit=46 kind=4 dtype=J ref=454|0 text=str.J(varM(3439-24)r,add.J(varM(3439-24)r,1))
+[W5D] bit at=gc proc=audio_mixer_main bit=47 kind=4 dtype=J ref=360|0 text=les.J(varM(3439-24)r,20)
+[W5D] bit at=gc proc=audio_mixer_main bit=48 kind=4 dtype=J ref=1340|0 text=cg1.J(varM(3439-24)r)
+[W5D] bit at=gc proc=audio_mixer_main bit=49 kind=4 dtype=J ref=1221|1 text=equ.J(varP(3439+2)r,0)
+[W5D] bit at=gc proc=audio_mixer_main bit=50 kind=4 dtype=J ref=988|0 text=cg1.J(varP(3439+2)r)
+[W5D] bit at=gc proc=audio_mixer_main bit=51 kind=4 dtype=J ref=1529|0 text=mpy.J(varP(3439+2)r,2)
+[W5D] bit at=gc proc=audio_mixer_main bit=52 kind=4 dtype=J ref=1004|0 text=ixa.J(ixa.J(ldaS(1166+0),varM(3439-20)r),mpy.J(varP(3439+2)r,2))
+[W5D] bit at=gc proc=audio_mixer_main bit=53 kind=4 dtype=J ref=252|1 text=istr.J(ixa.J(ixa.J(ldaS(1166+0),varM(3439-20)r),mpy.J(varP(3439+2)r,2)),varR(0+2)r)
+[W5D] bit at=gc proc=audio_mixer_main bit=54 kind=4 dtype=L ref=540|0 text=ilod.L(ldaS(1164+8))
+[W5D] bit at=gc proc=audio_mixer_main bit=55 kind=4 dtype=J ref=1387|0 text=cvt.J(ilod.L(ldaS(1164+8)))
+[W5D] bit at=gc proc=audio_mixer_main bit=56 kind=4 dtype=J ref=920|0 text=geq.J(cvt.J(ilod.L(ldaS(1164+8))),1)
+[W5D] bit at=gc proc=audio_mixer_main bit=57 kind=4 dtype=J ref=1269|0 text=cg1.J(cvt.J(ilod.L(ldaS(1164+8))))
+[W5D] bit at=gc proc=audio_mixer_main bit=58 kind=4 dtype=J ref=1468|0 text=cvtl.J(varM(3439-24)r)
+[W5D] bit at=gc proc=audio_mixer_main bit=59 kind=4 dtype=J ref=477|1 text=istr.J(ixa.J(ixa.J(ldaS(1166+0),varM(3439-20)r),mpy.J(varM(3439-24)r,2)),varR(0+2)r)
+[W5D] bit at=gc proc=audio_mixer_main bit=60 kind=4 dtype=J ref=478|0 text=les.J(varM(3439-24)r,cvt.J(ilod.L(ldaS(1164+8))))
+[W5D] bit at=gc proc=audio_mixer_main bit=61 kind=4 dtype=J ref=1356|0 text=cg1.J(varM(3439-24)r)
+[W5D] bit at=gc proc=audio_mixer_main bit=62 kind=4 dtype=J ref=1275|0 text=cg1.J(cvt.J(ilod.L(ldaS(1164+8))))
+[W5D] bit at=gc proc=audio_mixer_main bit=63 kind=4 dtype=J ref=587|1 text=add.J(varP(3439+2)r,-1)
+[W5D] bit at=gc proc=audio_mixer_main bit=64 kind=4 dtype=J ref=390|0 text=cvtl.J(add.J(varP(3439+2)r,-1))
+[W5D] bit at=gc proc=audio_mixer_main bit=65 kind=4 dtype=J ref=464|0 text=add.J(varM(3439-20)r,1)
+[W5D] bit at=gc proc=audio_mixer_main bit=66 kind=4 dtype=J ref=1120|0 text=str.J(varM(3439-20)r,add.J(varM(3439-20)r,1))
+[W5D] bit at=gc proc=audio_mixer_main bit=67 kind=4 dtype=J ref=348|0 text=les.J(varM(3439-20)r,ilod.J(ldaS(1166+0)))
+[W5D] bit at=gc proc=audio_mixer_main bit=68 kind=4 dtype=J ref=1494|0 text=cg1.J(varM(3439-20)r)
+[W5D] bit at=gc proc=audio_mixer_main bit=69 kind=4 dtype=J ref=1338|0 text=cg1.J(ilod.J(ldaS(1166+0)))
+[W5D] bit at=gc proc=audio_mixer_main bit=70 kind=4 dtype=R ref=243|0 text=istr.R(ldaS(1169+0),3)
+[W5D] bit at=gc proc=audio_mixer_main bit=71 kind=4 dtype=R ref=700|0 text=ilod.R(ldaS(1169+0))
+[W5D] bit at=gc proc=audio_mixer_main bit=72 kind=4 dtype=R ref=1111|0 text=istr.R(ldaS(1170+0),ilod.R(ldaS(1169+0)))
+[W5D] bit at=gc proc=audio_mixer_main bit=73 kind=3 dtype=J ref=490|0 text=varM(3439-32)r
+[W5D] bit at=gc proc=audio_mixer_main bit=74 kind=3 dtype=J ref=490|0 text=varM(3439-32)r
+[W5D] bit at=gc proc=audio_mixer_main bit=75 kind=4 dtype=J ref=166|2 text=str.J(varM(3439-32)r,0)
+[W5D] bit at=gc proc=audio_mixer_main bit=76 kind=3 dtype=J ref=426|0 text=varM(3439-36)
+[W5D] bit at=gc proc=audio_mixer_main bit=77 kind=3 dtype=J ref=426|0 text=varM(3439-36)
+[W5D] bit at=gc proc=audio_mixer_main bit=78 kind=4 dtype=J ref=166|3 text=str.J(varM(3439-36),0)
+[W5D] bit at=gc proc=audio_mixer_main bit=79 kind=4 dtype=J ref=1342|0 text=cg1.J(ilod.J(ldaS(1166+0)))
+[W5D] bit at=gc proc=audio_mixer_main bit=80 kind=3 dtype=A ref=362|0 text=varM(3439-40)r
+[W5D] bit at=gc proc=audio_mixer_main bit=81 kind=3 dtype=A ref=362|0 text=varM(3439-40)r
+[W5D] bit at=gc proc=audio_mixer_main bit=82 kind=4 dtype=A ref=1018|0 text=str.A(varM(3439-40)r,ldaM(3439-36))
+[W5D] bit at=gc proc=audio_mixer_main bit=83 kind=4 dtype=J ref=1142|0 text=add.J(varM(3439-36),1)
+[W5D] bit at=gc proc=audio_mixer_main bit=84 kind=4 dtype=J ref=342|0 text=equ.J(add.J(varM(3439-36),1),ilod.J(ldaS(1166+0)))
+[W5D] bit at=gc proc=audio_mixer_main bit=85 kind=4 dtype=J ref=803|0 text=cg1.J(add.J(varM(3439-36),1))
+[W5D] bit at=gc proc=audio_mixer_main bit=86 kind=4 dtype=J ref=1346|0 text=cg1.J(ilod.J(ldaS(1166+0)))
+[W5D] bit at=gc proc=audio_mixer_main bit=87 kind=4 dtype=J ref=604|1 text=ilod.J(ldaS(1166+0))
+[W5D] bit at=gc proc=audio_mixer_main bit=88 kind=4 dtype=J ref=326|0 text=str.J(varR(0+2)r,ilod.J(ldaS(1166+0)))
+[W5D] bit at=gc proc=audio_mixer_main bit=89 kind=4 dtype=J ref=1156|0 text=ilod.J(varM(3439-40)r)
+[W5D] bit at=gc proc=audio_mixer_main bit=90 kind=4 dtype=J ref=347|0 text=add.J(ilod.J(varM(3439-40)r),1)
+[W5D] bit at=gc proc=audio_mixer_main bit=91 kind=4 dtype=J ref=1458|0 text=str.J(varR(0+2)r,add.J(ilod.J(varM(3439-40)r),1))
+[W5D] bit at=gc proc=audio_mixer_main bit=92 kind=3 dtype=J ref=554|0 text=varM(3439-28)r
+[W5D] bit at=gc proc=audio_mixer_main bit=93 kind=3 dtype=J ref=554|0 text=varM(3439-28)r
+[W5D] bit at=gc proc=audio_mixer_main bit=94 kind=4 dtype=J ref=927|0 text=str.J(varM(3439-28)r,varR(0+2)r)
+[W5D] bit at=gc proc=audio_mixer_main bit=95 kind=4 dtype=J ref=35|0 text=mpy.J(varM(3439-36),80)
+[W5D] bit at=gc proc=audio_mixer_main bit=96 kind=4 dtype=J ref=1341|0 text=ixa.J(ldaS(1166+0),mpy.J(varM(3439-36),80))
+[W5D] bit at=gc proc=audio_mixer_main bit=97 kind=4 dtype=J ref=1495|0 text=ilod.J(ixa.J(ldaS(1166+0),mpy.J(varM(3439-36),80)))
+[W5D] bit at=gc proc=audio_mixer_main bit=98 kind=4 dtype=J ref=498|0 text=mpy.J(varR(0+2)r,80)
+[W5D] bit at=gc proc=audio_mixer_main bit=99 kind=4 dtype=J ref=1247|0 text=ixa.J(ldaS(1166+0),mpy.J(varR(0+2)r,80))
+[W5D] bit at=gc proc=audio_mixer_main bit=100 kind=4 dtype=J ref=1307|0 text=ilod.J(ixa.J(ldaS(1166+0),mpy.J(varR(0+2)r,80)))
+[W5D] bit at=gc proc=audio_mixer_main bit=101 kind=3 dtype=R ref=346|0 text=varR(0+32)r
+[W5D] bit at=gc proc=audio_mixer_main bit=102 kind=3 dtype=R ref=346|0 text=varR(0+32)r
+[W5D] bit at=gc proc=audio_mixer_main bit=103 kind=4 dtype=R ref=29|0 text=istr.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-36),80)),varR(0+32)r)
+[W5D] bit at=gc proc=audio_mixer_main bit=104 kind=4 dtype=J ref=1024|0 text=geq.J(varM(3439-36),1)
+[W5D] bit at=gc proc=audio_mixer_main bit=105 kind=4 dtype=J ref=998|0 text=cg1.J(varM(3439-36))
+[W5D] bit at=gc proc=audio_mixer_main bit=106 kind=4 dtype=J ref=604|2 text=ilod.J(ldaS(1166+0))
+[W5D] bit at=gc proc=audio_mixer_main bit=107 kind=4 dtype=J ref=91|0 text=equ.J(varM(3439-36),ilod.J(ldaS(1166+0)))
+[W5D] bit at=gc proc=audio_mixer_main bit=108 kind=4 dtype=J ref=1000|0 text=cg1.J(varM(3439-36))
+[W5D] bit at=gc proc=audio_mixer_main bit=109 kind=4 dtype=J ref=1013|0 text=cg1.J(ilod.J(ldaS(1166+0)))
+[W5D] bit at=gc proc=audio_mixer_main bit=110 kind=4 dtype=J ref=209|0 text=str.J(varM(3439-32)r,1)
+[W5D] bit at=gc proc=audio_mixer_main bit=111 kind=4 dtype=J ref=1164|0 text=neq.J(varM(3439-32)r,0)
+[W5D] bit at=gc proc=audio_mixer_main bit=112 kind=4 dtype=J ref=1132|0 text=cg1.J(varM(3439-32)r)
+[W5D] bit at=gc proc=audio_mixer_main bit=113 kind=4 dtype=R ref=1495|1 text=ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-36),80)))
+[W5D] bit at=gc proc=audio_mixer_main bit=114 kind=4 dtype=R ref=1543|0 text=add.R(ilod.R(ldaS(1169+0)),ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-36),80))))
+[W5D] bit at=gc proc=audio_mixer_main bit=115 kind=4 dtype=R ref=380|0 text=istr.R(ldaS(1169+0),add.R(ilod.R(ldaS(1169+0)),ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-36),80)))))
+[W5D] bit at=gc proc=audio_mixer_main bit=116 kind=4 dtype=J ref=471|0 text=geq.J(varM(3439-36),ilod.J(ldaS(1166+0)))
+[W5D] bit at=gc proc=audio_mixer_main bit=117 kind=4 dtype=J ref=1008|0 text=cg1.J(varM(3439-36))
+[W5D] bit at=gc proc=audio_mixer_main bit=118 kind=4 dtype=J ref=387|0 text=cg1.J(ilod.J(ldaS(1166+0)))
+[W5D] bit at=gc proc=audio_mixer_main bit=119 kind=4 dtype=R ref=732|0 text=ilod.R(ldaS(1170+0))
+[W5D] bit at=gc proc=audio_mixer_main bit=120 kind=4 dtype=R ref=719|0 text=add.R(ilod.R(ldaS(1170+0)),ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-36),80))))
+[W5D] bit at=gc proc=audio_mixer_main bit=121 kind=4 dtype=R ref=469|0 text=istr.R(ldaS(1170+0),add.R(ilod.R(ldaS(1170+0)),ilod.R(ixa.J(ldaS(1166+0),mpy.J(varM(3439-36),80)))))
+[W5D] bit at=gc proc=audio_mixer_main bit=122 kind=4 dtype=J ref=1610|0 text=str.J(varM(3439-36),add.J(varM(3439-36),1))
+[W5D] bit at=gc proc=audio_mixer_main bit=123 kind=4 dtype=J ref=253|0 text=les.J(varM(3439-36),ilod.J(ldaS(1166+0)))
+[W5D] bit at=gc proc=audio_mixer_main bit=124 kind=4 dtype=J ref=1012|0 text=cg1.J(varM(3439-36))
+[W5D] bit at=gc proc=audio_mixer_main bit=125 kind=4 dtype=J ref=1368|0 text=cg1.J(ilod.J(ldaS(1166+0)))
+[W5D] bit at=gc proc=audio_mixer_main bit=126 kind=4 dtype=J ref=101|0 text=neq.J(varM(3439-24)r,20)
+[W5D] bit at=gc proc=audio_mixer_main bit=127 kind=4 dtype=A ref=1460|0 text=str.A(varR(0+2)r,add.J(varM(3439-36),1))
+[W5D] bit at=gc proc=audio_mixer_main bit=128 kind=1 dtype=A ref=86|0 text=ldaS(1166+0)
+[W5D] bit at=gc proc=audio_mixer_main bit=129 kind=2 dtype=J ref=20|0 text=20
+[W5D] bit at=gc proc=audio_mixer_main bit=130 kind=1 dtype=A ref=134|0 text=ldaS(1169+0)
+[W5D] bit at=gc proc=audio_mixer_main bit=131 kind=2 dtype=R ref=0|1 text=3
+[W5D] bit at=gc proc=audio_mixer_main bit=132 kind=1 dtype=A ref=150|0 text=ldaS(1170+0)
+[W5D] bit at=gc proc=audio_mixer_main bit=133 kind=2 dtype=J ref=80|0 text=80
+[W5D] bit at=gc proc=audio_mixer_main bit=134 kind=1 dtype=A ref=54|0 text=ldaS(1164+8)

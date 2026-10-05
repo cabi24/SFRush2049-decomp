@@ -1,0 +1,66 @@
+{
+  "review_result": "PASS_RESEARCH_ONLY",
+  "match_or_promotion_approval": false,
+  "reviewed_commit": "dfc5451f6acd79b1da8ccde439fa65e590276de2",
+  "reviewed_files_sha256": {
+    "cloud/work/texture_rect_structural_factoring/DESIGN.md": "20e7e7ab18cb587f80e69ceae0ce1ae86288298455a106cfb515a83b11d30674",
+    "cloud/work/texture_rect_structural_factoring/REPORT.md": "b2a1489ef69fe57c56bc5f56863d52e7d3d40bf2ceb954b91d5e571200f6d983",
+    "cloud/work/texture_rect_structural_factoring/unsigned_eight.c": "93a8de53c148925377562566fd7e91ff357d07fc58794a6c420a3f30611796ca",
+    "cloud/work/texture_rect_structural_factoring/stretched_tail_join.c": "ee138e570c97fb1988df98bb03fcbf37d53f213e76b7e251ff56dbf94c273c8e",
+    "cloud/work/texture_rect_structural_factoring/verify.py": "d01977567f7d98d9ced1c504efbe28260cbbf352a551f9461329e98ba6fe9fd0",
+    "cloud/work/texture_rect_structural_factoring/verification.json": "b9102d07d5d156f114962bc80b67c45f13f00d86c2f2d5d08ed5511149482b23"
+  },
+  "independent_replay": {
+    "result": "PASS",
+    "host_UBSan_cases_each": 6926,
+    "fully_linked_cases_each": 6926,
+    "all_16_emitting_paths_each": true,
+    "all_candidate_instructions_exercised_each": true,
+    "external_reads_writes_and_interleaving_difference_cases_each": 0,
+    "wrong_join_phase_rejections": 162,
+    "wrong_join_vertical_sign_rejections": 339,
+    "all_receipt_fields_except_whole_object_hashes_equal": true
+  },
+  "complete_extent_review": {
+    "native_bytes": 1780,
+    "unsigned_eight_bytes": 1776,
+    "joined_bytes": 1320,
+    "full_link_proofs_equal_committed_receipts": true,
+    "both_controls_rejected_as_matches": true,
+    "missing_tail_cannot_be_treated_as_prefix_match": true,
+    "gnu_and_project_relocation_equal": true,
+    "unresolved_or_unverified_or_errors": false
+  },
+  "object_hash_difference": {
+    "only_different_ELF_section": ".mdebug",
+    "independent_build_directory_embedded_in_metadata": true,
+    "executable_data_and_relocation_sections_identical": true,
+    "linked_body_hashes_equal": true
+  },
+  "source_and_context_review": [
+    "Exactly the two predeclared controls are present; no score-driven iteration is implied.",
+    "The eight-site unsigned source is clearly separated from the older signed near-match.",
+    "The factoring changes only consumed derivative and T-origin values and the stretched common packet tail; clipping, mode-zero code and dispatch order are preserved.",
+    "Pinned SDK blobs are checked before generating the full Gfx context; downloaded headers remain in ignored build storage.",
+    "Unsigned arithmetic and the implementation-defined stretched-bottom conversion are explicitly bounded and tested.",
+    "Event equality means kind and address sequence; packet values and safety invariants are checked independently."
+  ],
+  "prior_single_emitter_comparison": {
+    "source_bound_receipt": "cloud/work/texture_rect_fresh_behavior/fresh_verification.json",
+    "field": "stock_compile.read_event_order_differs_in_cases",
+    "count": 6578,
+    "implementation_checked": "The old field name says read order, but the verifier compares complete external event lists."
+  },
+  "publication_review": "No ROM, native instruction arrays, raw dumps, binary objects, SDK headers, credentials or forced controls are included.",
+  "limits": [
+    "These are bounded host/integer-machine tests on the stated disjoint, nonracing domain, not hardware rendering or gameplay reachability proof.",
+    "Failure of this spelling to produce eight packet regions is not a claim that compiler tail duplication is generally impossible.",
+    "No promotion, match, image/compression/ROM claim or production-source change."
+  ],
+  "reviewer_validation": {
+    "focused_tests_passed": 35,
+    "scheduling_stock_replay_test_executed": true,
+    "python_compilation": "PASS",
+    "diff_whitespace_check": "PASS"
+  }
+}

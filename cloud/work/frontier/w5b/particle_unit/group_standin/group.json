@@ -1,0 +1,18 @@
+{
+ "members": [
+  "render_display_list",
+  "func_80099B30"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "zz_a",
+  "zz_b"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "claims": [],
+ "note": "w5b draft: render_display_list body with stand-in callers zz_a/zz_b (three call sites keep it out of line; IPA gives it the retail parameter registers s0,s1,s3,s4,s5). Not a match; not spliceable. func_80099B30 is the agentB provisional body."
+}

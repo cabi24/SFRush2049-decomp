@@ -1,0 +1,474 @@
+{
+  "accepted": false,
+  "eligible_for_promotion": false,
+  "hypothesis": "unchanged kept rectangle is affected by authentic graphics-group context",
+  "source_bindings": {
+    "cloud/work/frontier/w4a/func_80087110/best.c": "f8355db6884b85c77a25b21c7aae746be236ed10a3dc8fee93264259cf4c6f8f",
+    "src/blob/groups/gfx_modes/group.json": "7682e970bdc43f284fe1a285c1ad5c7b02adb192c9817fe6f52e883fa5bda815",
+    "src/blob/groups/gfx_modes/func_80086A50.c": "6550ec6da46a6b474c088ae89d03f4e62593758d4aa11c842f51e63437d4b3e1",
+    "src/blob/groups/gfx_modes/modes.c": "bb685680603f1ed4f2433f359747715ffaa2085c402b66d1109fb6bb17e40df4",
+    "src/blob/groups/gfx_modes/func_8008A148.c": "7de40c951eb651b658bc6f1de412cc9fbc70851edc7e8c13047d1ef31a9d551f",
+    "src/blob/groups/gfx_modes/rect.c": "a1feb67072ebbdc68d6e578a9dac22d89675f6ad8ee5f11ec2b87183b803d929",
+    "src/blob/groups/gfx_modes/init.c": "6f49bbe093b77eab9fbfde6211d031f83e3c5eaf5215f968356bbed574d7745d",
+    "src/blob/groups/gfx_modes/object_render.c": "82a359f4bc20de2bc0111250e90488d4646f697711ca4c124eccb053082a5339"
+  },
+  "baseline_flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "native_inventory": {
+    "direct_callers": [
+      {
+        "caller": "Input_ProcessGameplayPad",
+        "entry": "0x800a04c4",
+        "offset": "0x914",
+        "address": "0x800a0dd8"
+      },
+      {
+        "caller": "Input_ProcessGameplayPad",
+        "entry": "0x800a04c4",
+        "offset": "0x9e8",
+        "address": "0x800a0eac"
+      },
+      {
+        "caller": "audio_doppler_calc",
+        "entry": "0x800b6788",
+        "offset": "0x3f8",
+        "address": "0x800b6b80"
+      }
+    ],
+    "typed_definition_inventory": [
+      {
+        "name": "audio_doppler_calc",
+        "source": "work/game/audio/audio_doppler_calc/base.c",
+        "source_sha256": "9f06c5a5892cc388a2ebde19621abad000c4b43561b3849acf19d4d18be2526d",
+        "line": 16,
+        "empty_body_after_comment_removal": true
+      },
+      {
+        "name": "Input_ProcessGameplayPad",
+        "source": "work/game/physics/Input_ProcessGameplayPad/base.c",
+        "source_sha256": "e8d7991417b93aa81534a63005b444362514a39bffe7ab12f8e126b6efbf3347",
+        "line": 16,
+        "empty_body_after_comment_removal": true
+      }
+    ],
+    "definition_scan_limit": "ordinary void/s32/int/u32 function definitions in src, cloud/work, work",
+    "physical_neighbors": [
+      {
+        "name": "func_80086A50",
+        "address": "0x80086a50",
+        "bytes": 1548,
+        "accepted_recipe": {
+          "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+          "group": "gfx_modes",
+          "source": "src/blob/groups/gfx_modes/group.json",
+          "source_sha256": "fce33efade1d4b1834fbc86ac6c04432014d53c9ffe14396c78b9e6db7acd574",
+          "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+          "verified": "image_gate",
+          "verified_at": "2026-10-05"
+        }
+      },
+      {
+        "name": "func_8008705C",
+        "address": "0x8008705c",
+        "bytes": 180,
+        "accepted_recipe": {
+          "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+          "group": "gfx_modes",
+          "source": "src/blob/groups/gfx_modes/group.json",
+          "source_sha256": "fce33efade1d4b1834fbc86ac6c04432014d53c9ffe14396c78b9e6db7acd574",
+          "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+          "verified": "image_gate",
+          "verified_at": "2026-10-05"
+        }
+      },
+      {
+        "name": "func_80087110",
+        "address": "0x80087110",
+        "bytes": 1780,
+        "accepted_recipe": null
+      },
+      {
+        "name": "func_80087804",
+        "address": "0x80087804",
+        "bytes": 220,
+        "accepted_recipe": {
+          "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+          "source": "src/blob/func_80087804.c",
+          "source_sha256": "19cc628d2e7bd18b0700319740c08348b98de6f59300eb375a23be091e09d985",
+          "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+          "verified": "image_gate",
+          "verified_at": "2026-09-28"
+        }
+      },
+      {
+        "name": "func_800878E0",
+        "address": "0x800878e0",
+        "bytes": 296,
+        "accepted_recipe": {
+          "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+          "group": "gfx_modes",
+          "source": "src/blob/groups/gfx_modes/group.json",
+          "source_sha256": "fce33efade1d4b1834fbc86ac6c04432014d53c9ffe14396c78b9e6db7acd574",
+          "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+          "verified": "image_gate",
+          "verified_at": "2026-10-05"
+        }
+      },
+      {
+        "name": "object_render",
+        "address": "0x80087a08",
+        "bytes": 10048,
+        "accepted_recipe": {
+          "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+          "source": "src/blob/object_render.c",
+          "source_sha256": "df3cecd38a2dbb04656a8f51a8fbd0cc1bbfc500b1db7654194a2bab91d3f762",
+          "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+          "verified": "image_gate",
+          "verified_at": "2026-10-05"
+        }
+      }
+    ],
+    "target_callee_count": 0
+  },
+  "existing_group_recipe": {
+    "members": [
+      "func_80086A50",
+      "func_8008705C",
+      "func_800878E0",
+      "func_8008A148",
+      "func_8008A46C",
+      "sound_init"
+    ],
+    "files": [
+      "func_80086A50.c",
+      "modes.c",
+      "func_8008A148.c",
+      "rect.c",
+      "init.c",
+      "object_render.c"
+    ],
+    "keep": [
+      "func_8008705C",
+      "func_800878E0",
+      "func_8008A148",
+      "func_8008A46C",
+      "sound_init",
+      "object_render"
+    ],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "unprototyped": [],
+    "context": [
+      "object_render"
+    ],
+    "note": "Real group, no stand-ins: gfx_modes (func_80086A50.c, modes.c) and src/blob/func_8008A148.c copied unchanged, plus rect.c. func_80086A50's own jump table scores as 2 unverified section-relative relocations here exactly as in gfx_modes; it is not claimed. sound_init (PR #86) stores the s64 cache D_8012E688 with one lui, so object_render.c (which defines it) is compiled in as unchanged context; object_render stays locked as its single.",
+    "provenance": "frontier waves 1-2 + PR #86 (sound_init), 2026-10-05"
+  },
+  "augmented_group_recipe": {
+    "members": [
+      "func_80086A50",
+      "func_8008705C",
+      "func_800878E0",
+      "func_8008A148",
+      "func_8008A46C",
+      "sound_init",
+      "func_80087110"
+    ],
+    "files": [
+      "func_80086A50.c",
+      "modes.c",
+      "func_8008A148.c",
+      "rect.c",
+      "init.c",
+      "object_render.c",
+      "texture_rectangle.c"
+    ],
+    "keep": [
+      "func_8008705C",
+      "func_800878E0",
+      "func_8008A148",
+      "func_8008A46C",
+      "sound_init",
+      "object_render",
+      "func_80087110"
+    ],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "unprototyped": [],
+    "context": [
+      "object_render"
+    ],
+    "note": "Real group, no stand-ins: gfx_modes (func_80086A50.c, modes.c) and src/blob/func_8008A148.c copied unchanged, plus rect.c. func_80086A50's own jump table scores as 2 unverified section-relative relocations here exactly as in gfx_modes; it is not claimed. sound_init (PR #86) stores the s64 cache D_8012E688 with one lui, so object_render.c (which defines it) is compiled in as unchanged context; object_render stays locked as its single.",
+    "provenance": "frontier waves 1-2 + PR #86 (sound_init), 2026-10-05",
+    "claims": []
+  },
+  "compiler_components": {
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+  },
+  "protected_manifest_sha256": "df9bc7af469722b962807a9338c4cea43aa15360cfede7b783de8d0f38453c7d",
+  "object_sha256": {
+    "standalone": "8860a4c4996d4d617a9f4687df393f57711ee6dfe9dee2f935b30f2bc71551cd",
+    "accepted_group": "6ce54195a03e02fd2411d6f7ebef856faac968f26e16c4a96d68d48ce85a8274",
+    "augmented_group": "70b4ac8618c3f90c86c745cc93590a944788b5f60aa8270af6e6bbd4d0632baf"
+  },
+  "results": {
+    "standalone": {
+      "func_80087110": {
+        "differing": 4,
+        "total": 445,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 1780,
+        "exact_extent": true,
+        "strict_score_zero": false,
+        "notes": [],
+        "fully_relocated_body_sha256": "8ced2a588337f504ff6bd865a609a63a66f0c4f89a9c6c0d9cb8abf1c2a2a7a4",
+        "residual_offsets": [
+          "0x4c8",
+          "0x4cc",
+          "0x4d0",
+          "0x4d4"
+        ]
+      }
+    },
+    "accepted_group": {
+      "func_80086A50": {
+        "differing": 0,
+        "total": 387,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 1548,
+        "exact_extent": true,
+        "strict_score_zero": true,
+        "notes": [
+          "own .rodata verified at 0x80123870..0x80123884"
+        ],
+        "fully_relocated_body_sha256": null,
+        "residual_offsets": null
+      },
+      "func_8008705C": {
+        "differing": 0,
+        "total": 45,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 180,
+        "exact_extent": true,
+        "strict_score_zero": true,
+        "notes": [],
+        "fully_relocated_body_sha256": "6b717318f61515e078e75bdd4bb570c50e9fe676ff2847d0f7c43d7e01eb9ac1",
+        "residual_offsets": []
+      },
+      "func_800878E0": {
+        "differing": 0,
+        "total": 74,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 296,
+        "exact_extent": true,
+        "strict_score_zero": true,
+        "notes": [],
+        "fully_relocated_body_sha256": "f8a00435e231f977bc38197993238f02132a0e43c0163442382397e294ffb85f",
+        "residual_offsets": []
+      },
+      "func_8008A148": {
+        "differing": 0,
+        "total": 145,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 580,
+        "exact_extent": true,
+        "strict_score_zero": true,
+        "notes": [],
+        "fully_relocated_body_sha256": "2e8d6ff8fe95e13f22f813166207832cd1060ff4fd5eb23ac8644635deb3ffb5",
+        "residual_offsets": []
+      },
+      "func_8008A46C": {
+        "differing": 0,
+        "total": 118,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 472,
+        "exact_extent": true,
+        "strict_score_zero": true,
+        "notes": [],
+        "fully_relocated_body_sha256": "8c0ebf3191642ab97feca93283dadddc6e039c865f99e542d4302bdc8e05905c",
+        "residual_offsets": []
+      },
+      "sound_init": {
+        "differing": 0,
+        "total": 100,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 400,
+        "exact_extent": true,
+        "strict_score_zero": true,
+        "notes": [],
+        "fully_relocated_body_sha256": "dac85a66df515c931ee79094a8f3b9cda18d34f3844b4e9039ff7c88728af9e2",
+        "residual_offsets": []
+      },
+      "object_render": {
+        "differing": 0,
+        "total": 2512,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 10048,
+        "exact_extent": true,
+        "strict_score_zero": true,
+        "notes": [],
+        "fully_relocated_body_sha256": "510cd6c2e1c0453264f9f912090e3de3063d7654d30fdf68cb4fd2fc6fed1e36",
+        "residual_offsets": []
+      }
+    },
+    "augmented_group": {
+      "func_80086A50": {
+        "differing": 0,
+        "total": 387,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 1548,
+        "exact_extent": true,
+        "strict_score_zero": true,
+        "notes": [
+          "own .rodata verified at 0x80123870..0x80123884"
+        ],
+        "fully_relocated_body_sha256": null,
+        "residual_offsets": null
+      },
+      "func_8008705C": {
+        "differing": 0,
+        "total": 45,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 180,
+        "exact_extent": true,
+        "strict_score_zero": true,
+        "notes": [],
+        "fully_relocated_body_sha256": "6b717318f61515e078e75bdd4bb570c50e9fe676ff2847d0f7c43d7e01eb9ac1",
+        "residual_offsets": []
+      },
+      "func_800878E0": {
+        "differing": 0,
+        "total": 74,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 296,
+        "exact_extent": true,
+        "strict_score_zero": true,
+        "notes": [],
+        "fully_relocated_body_sha256": "f8a00435e231f977bc38197993238f02132a0e43c0163442382397e294ffb85f",
+        "residual_offsets": []
+      },
+      "func_8008A148": {
+        "differing": 0,
+        "total": 145,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 580,
+        "exact_extent": true,
+        "strict_score_zero": true,
+        "notes": [],
+        "fully_relocated_body_sha256": "2e8d6ff8fe95e13f22f813166207832cd1060ff4fd5eb23ac8644635deb3ffb5",
+        "residual_offsets": []
+      },
+      "func_8008A46C": {
+        "differing": 0,
+        "total": 118,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 472,
+        "exact_extent": true,
+        "strict_score_zero": true,
+        "notes": [],
+        "fully_relocated_body_sha256": "8c0ebf3191642ab97feca93283dadddc6e039c865f99e542d4302bdc8e05905c",
+        "residual_offsets": []
+      },
+      "sound_init": {
+        "differing": 0,
+        "total": 100,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 400,
+        "exact_extent": true,
+        "strict_score_zero": true,
+        "notes": [],
+        "fully_relocated_body_sha256": "dac85a66df515c931ee79094a8f3b9cda18d34f3844b4e9039ff7c88728af9e2",
+        "residual_offsets": []
+      },
+      "object_render": {
+        "differing": 0,
+        "total": 2512,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 10048,
+        "exact_extent": true,
+        "strict_score_zero": true,
+        "notes": [],
+        "fully_relocated_body_sha256": "510cd6c2e1c0453264f9f912090e3de3063d7654d30fdf68cb4fd2fc6fed1e36",
+        "residual_offsets": []
+      },
+      "func_80087110": {
+        "differing": 4,
+        "total": 445,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 1780,
+        "exact_extent": true,
+        "strict_score_zero": false,
+        "notes": [],
+        "fully_relocated_body_sha256": "8ced2a588337f504ff6bd865a609a63a66f0c4f89a9c6c0d9cb8abf1c2a2a7a4",
+        "residual_offsets": [
+          "0x4c8",
+          "0x4cc",
+          "0x4d0",
+          "0x4d4"
+        ]
+      }
+    }
+  },
+  "neighbor_receipts_unchanged": {
+    "func_80086A50": true,
+    "func_8008705C": true,
+    "func_800878E0": true,
+    "func_8008A148": true,
+    "func_8008A46C": true,
+    "sound_init": true,
+    "object_render": true
+  },
+  "all_original_sources_unchanged": true,
+  "rectangle_receipt_unchanged": true
+}

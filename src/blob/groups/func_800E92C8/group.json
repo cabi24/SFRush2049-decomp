@@ -1,23 +1,21 @@
 {
-  "members": [
-    "func_800EA2DC"
-  ],
-  "files": [
-    "group.c"
-  ],
-  "keep": [
-    "func_800E95DC",
-    "func_800EA108",
-    "func_800EA2DC",
-    "__standin_func_800E92C8"
-  ],
-  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
-  "generated": "blob_group seed from build/ipa_groups.json",
-  "unprototyped": [],
-  "context": [
-    "func_800E92C8",
-    "func_800E95DC",
-    "func_800EA108"
-  ],
-  "provenance": "cloud Lanes A (PRs #1-#4), cloud/work/ipa-groups/func_800E92C8"
+ "members": [
+  "func_800E92C8",
+  "func_800EA108",
+  "func_800EA2DC"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "func_800E95DC",
+  "func_800EA108",
+  "func_800EA2DC"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [
+  "func_800E95DC"
+ ],
+ "provenance": "frontier wave 5 (w5c), 2026-10-05; cloud/work/frontier/w5c/RESULTS.md"
 }
