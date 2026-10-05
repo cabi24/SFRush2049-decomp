@@ -49,7 +49,9 @@ void func_80019BE4(VoiceState *state)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
 #pragma pack(1)
-typedef struct VoiceState_80019C8C { u8 unknown00[16];u32 child,parent;u8 unknown18[12]; u32 flags;u8 unknown28[34];u8 channel,set;u8 unknown4C[2]; u16 base_key,key;u8 unknown52[14];u32 identifier; u8 unknown64[40];u32 glide;u8 unknown90[4];u32 pitch; u8 unknown98[40];s8 cents;u8 original_key;u8 unknownC2[222]; } VoiceState_80019C8C;
+/* Array stride 0x1A0; expose the selector at +0x55 and value at +0xC2
+ * without changing the field names used by the accepted body below. */
+typedef struct VoiceState_80019C8C { u8 unknown00[16];u32 child,parent;u8 unknown18[12]; u32 flags;u8 unknown28[34];u8 channel,set;u8 unknown4C[2]; u16 base_key,key;u8 unknown52[3];u8 channel55;u8 unknown56[10];u32 identifier; u8 unknown64[40];u32 glide;u8 unknown90[4];u32 pitch; u8 unknown98[40];s8 cents;u8 original_key;u16 valueC2;u8 unknownC4[220]; } VoiceState_80019C8C;
 #pragma pack(0)
 extern VoiceState_80019C8C D_8004BEB8[];
 extern u8 D_8004FA18;

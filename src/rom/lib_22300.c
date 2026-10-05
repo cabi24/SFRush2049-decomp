@@ -244,6 +244,7 @@ u8 func_80022C58(MacroState_80022C58 *state, MacroCommand_80022C58 *command)
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_8002321C.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800232A4.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800233B0.s")
+extern u8 func_800233B0(MacroState *, MacroCommand *, u32);
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023520.s")
 /* PROMOTED 2026-10-04 — func_80023544
  * Source:   cloud/matches/boot_tail/func_80023544.c (in-repo, locked)
@@ -251,7 +252,6 @@ u8 func_80022C58(MacroState_80022C58 *state, MacroCommand_80022C58 *command)
  * Evidence: lock:cloud/matches/boot_tail/func_80023544.c:func_80023544 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-extern u8 func_800233B0(MacroState *, MacroCommand *, u32);
 u8 func_80023544(MacroState *state, MacroCommand *command)
 {
     return func_800233B0(state, command, 0);

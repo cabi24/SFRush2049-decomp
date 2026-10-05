@@ -1,0 +1,79 @@
+{
+  "result": "PASS",
+  "calls": 7634,
+  "rows": [
+    {
+      "function": "func_8001B29C",
+      "calls": 2305,
+      "source": "cloud/work/boot_tail_promotion/voice_lists/sources/func_8001B29C.c",
+      "source_sha256": "4943e21184974ff114bc306762087ca2c3468bfeb703644f600eaeb880b0c81c",
+      "harness_source": "cloud/work/boot_tail/BT03-high-larger/test_semantics.py",
+      "harness_method": "test_chain_8001B29C",
+      "result": "PASS"
+    },
+    {
+      "function": "func_8001B3A0",
+      "calls": 2305,
+      "source": "cloud/work/boot_tail_promotion/voice_lists/sources/func_8001B3A0.c",
+      "source_sha256": "453d54ca00c4e9e7075e6810732a81eb883ff8d972d324915a1874d34d0b13f8",
+      "harness_source": "cloud/work/boot_tail/BT03-high-larger/test_semantics.py",
+      "harness_method": "test_chain_8001B3A0",
+      "result": "PASS"
+    },
+    {
+      "function": "func_8001B7C0",
+      "calls": 2305,
+      "source": "cloud/work/boot_tail_promotion/voice_lists/sources/func_8001B7C0.c",
+      "source_sha256": "8d8facffa00951637614b73a8d0672b627be8700293f7dbad4d1c4a762b44e4a",
+      "harness_source": "cloud/work/boot_tail/BT03-high-larger/test_semantics.py",
+      "harness_method": "test_chain_8001B7C0",
+      "result": "PASS"
+    },
+    {
+      "function": "func_8001B8C4",
+      "calls": 33,
+      "source": "cloud/work/boot_tail_promotion/voice_lists/sources/func_8001B8C4.c",
+      "source_sha256": "cdd7f71816a6713f79cfc5c532a5e0f034d3ebf50ee6aa36353dc1595cac6c5b",
+      "harness_source": "cloud/work/boot_tail/BT03-high-runtime/test_semantics.py",
+      "harness_method": "test_handle_chain_keeps_stale_successors",
+      "result": "PASS"
+    },
+    {
+      "function": "func_8001B968",
+      "calls": 257,
+      "source": "cloud/work/boot_tail_promotion/voice_lists/sources/func_8001B968.c",
+      "source_sha256": "ab1fd32fdb2197eb6850c960b2c9e888b94995a010754e92b2b0a7790726a92a",
+      "harness_source": "cloud/work/boot_tail/BT03-high-routing/test_semantics.py",
+      "harness_method": "test_packed_handle_getter",
+      "result": "PASS"
+    },
+    {
+      "function": "func_8001EB10",
+      "calls": 64,
+      "source": "cloud/work/boot_tail_promotion/voice_lists/sources/func_8001EB10.c",
+      "source_sha256": "ddb652ae9319cd1cf55375b219905f72f6da6db40546692fe6d45abdca992094",
+      "harness_source": "cloud/work/boot_tail/BT03-high-runtime-followon/test_semantics.py",
+      "harness_method": "test_voice_detach_and_pool_order",
+      "result": "PASS"
+    },
+    {
+      "function": "func_8001ECE0",
+      "calls": 109,
+      "source": "cloud/work/boot_tail_promotion/voice_lists/sources/func_8001ECE0.c",
+      "source_sha256": "27e6dfa21f9c53b6affeaa16536364249b256a4e4be57c8c1a6b65df51c1200e",
+      "harness_source": "cloud/work/boot_tail/BT03-high-chains/test_semantics.py",
+      "harness_method": "test_keyed_pool_insertion",
+      "result": "PASS"
+    },
+    {
+      "function": "func_8001F9D0",
+      "calls": 256,
+      "source": "cloud/work/boot_tail_promotion/voice_lists/sources/func_8001F9D0.c",
+      "source_sha256": "c81a2cd7ea21e77b4fcaa4901c6b5f94ca94170490251926fd17144750231daa",
+      "harness_source": "cloud/work/boot_tail/BT03-high-init/test_semantics.py",
+      "harness_method": "test_state_reset_call_order",
+      "result": "PASS"
+    }
+  ],
+  "scope": "Actual adapted C89 sources, ASan/UBSan; established bounded valid-record/list domains. Native IDO separately checks layouts."
+}

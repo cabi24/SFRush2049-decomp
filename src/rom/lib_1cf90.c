@@ -11,8 +11,7 @@
  * Evidence: lock:cloud/matches/boot_tail/func_8001C3CC.c:func_8001C3CC (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-typedef int (*SampleCallback)(short *, u32, short *, u32, u32);
-typedef struct SampleBuffer { u8 mode; u8 unknown01[3]; SampleCallback callback; short *buffer; u32 samples; u32 position; u32 context; } SampleBuffer;
+#include "boot_tail_sample_contract.h"
 extern u8 D_8004FA18;
 extern SampleBuffer D_8004FA50[];
 extern u32 func_80014C18(int);
@@ -84,7 +83,6 @@ unsigned short func_8001CCC0(unsigned int value)
  * Evidence: lock:cloud/matches/boot_tail/func_8001D084.c:func_8001D084 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-typedef struct StateNode { struct StateNode *next; struct StateNode *previous; u32 flags08; u8 unknown0C[40]; u32 identifier34; } StateNode;
 extern StateNode *D_8004FD50;
 extern int func_8001B8C4(u32);
 void func_8001D084(StateNode *state)
@@ -143,7 +141,6 @@ int func_8001D460(void *state, const void *first, const void *second, float four
 extern unsigned char D_8002C630;
 extern void func_80014594(void);
 extern void func_800145DC(void);
-typedef struct StatePrefix { unsigned char unknown00[8]; unsigned int flags08; unsigned char unknown0C[40]; unsigned int identifier34; } StatePrefix;
 unsigned int func_8001D518(StatePrefix *state)
 {
     unsigned int result;
@@ -212,7 +209,6 @@ void func_8001D5C0(SpatialState *state)
  * Evidence: lock:cloud/matches/boot_tail/func_8001D8B0.c:func_8001D8B0 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-typedef struct LinkNode { struct LinkNode *next; struct LinkNode *previous; } LinkNode;
 extern LinkNode *D_8004FD54;
 int func_8001D8B0(LinkNode *node)
 {

@@ -11,10 +11,16 @@
  * Evidence: lock:cloud/matches/boot_tail/func_8001EAA0.c:func_8001EAA0 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
+/* The used/free sequence lists share a 16-byte doubly linked node.
+ * Voice records have a 0x1A0 stride; parent, node and reset word occupy
+ * previously opaque fields at +0x14, +0x18 and +0x28 respectively.
+ * Keep these declarations before any future early list-helper promotion. */
 #pragma pack(1)
-typedef struct SequenceNode { struct SequenceNode *next; u32 unknown04; u32 key; int value; } SequenceNode;
+typedef struct SequenceNode { struct SequenceNode *next; struct SequenceNode *previous; u32 key; int value; } SequenceNode;
+typedef struct VoiceState { u32 command00; u8 unknown04[12]; u32 next_identifier; u32 parent_identifier; SequenceNode *entry18; u8 unknown1C[8]; u32 flags24; u32 value28; u8 unknown2C[32]; u8 external4C; u8 unknown4D[19]; u32 identifier60; u8 unknown64[89]; u8 activeBD; u8 unknownBE[226]; } VoiceState;
 #pragma pack(0)
 extern SequenceNode *D_80050C50;
+extern VoiceState D_8004BEB8[];
 SequenceNode *func_8001EAA0(u32 key)
 {
     SequenceNode *node;
@@ -147,9 +153,7 @@ void func_8001F864(void)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
 #pragma pack(1)
-typedef struct VoiceState { u32 command00; u8 unknown04[12]; u32 next_identifier; u8 unknown14[16]; u32 flags24; u8 unknown28[36]; u8 external4C; u8 unknown4D[19]; u32 identifier60; u8 unknown64[89]; u8 activeBD; u8 unknownBE[226]; } VoiceState;
 #pragma pack(0)
-extern VoiceState D_8004BEB8[];
 extern int func_8001F13C(u8, u8, u16, u8);
 extern void func_8001EB10(VoiceState *);
 extern u8 func_8001467C(int);
