@@ -1,0 +1,986 @@
+{
+  "base_revision": "e24b47d89a0c8ffade1e4c75ad76b9d390a1c232",
+  "status": "MATCHING_RESEARCH",
+  "candidate_bytes": 524,
+  "newly_discovered_instruction_match_bytes": 0,
+  "accepted_byte_gain": 0,
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "donor_url": "https://github.com/historicalsource/rushtherock/blob/845329d7b36f5a384c5625ed9a0aef584ab46139/LIB/asincos.c",
+  "source_bindings": {
+    "cloud/work/ipa-groups/dot_trig_kernel_20261005/group.c": "b29f78b3720ae8cd9ed786185e94929e2059a2d5c50ba86667035704b7ce9dd8",
+    "cloud/work/ipa-groups/dot_trig_kernel_20261005/group.json": "3d44983b7040c1e744999698ef270d50eff871dace6db6b74ea8d52b954839c3",
+    "cloud/work/frontier/w6a/dev/part_asin.c": "2d4d0ef5fb33ed56a984fff220cc1a50daf0f04827a28dcfc689e3a44ef9afa0",
+    "cloud/work/ipa-groups/codex_trig_roots_a21/group.c": "513a0babc5e3ea1704813f082d33ebc2602fff509480b4a52e46fbc60fb8adee",
+    "cloud/work/ipa-groups/codex_trig_roots_a21/group.json": "29998168c5229b740721629c8ee230f102f8fa288de86d215f46517da3b630ff",
+    "cloud/work/frontier/dot_trig_kernel_20261005/verify.py": "984c7d86ba20511f03d6966b41de99981a4a4516c14ce103882538b2553cce3c",
+    "cloud/work/frontier/dot_trig_kernel_20261005/native.py": "ed895269b774582185cefd50ecbe8a8c4f5ed9125bddbb913db3046f5542ab8d",
+    "cloud/work/frontier/dot_trig_kernel_20261005/host.c": "09402c35c871ec48b4fa333006e67039d6a64a162856d3dbc5fb5fca62747404"
+  },
+  "compiler_sha256": {
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+  },
+  "ranges": {
+    "func_8009C3F8": [
+      "0x8009c3f8",
+      "0x8009c5bc"
+    ],
+    "camera_update_c": [
+      "0x8009c5bc",
+      "0x8009c5e0"
+    ],
+    "select_screen_update": [
+      "0x800bfd68",
+      "0x800bfd8c"
+    ]
+  },
+  "object": {
+    "func_8009C3F8": {
+      "differing": 0,
+      "total": 113,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "elf_bytes": 452,
+      "native_bytes": 452
+    },
+    "camera_update_c": {
+      "differing": 0,
+      "total": 9,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "elf_bytes": 36,
+      "native_bytes": 36
+    },
+    "select_screen_update": {
+      "differing": 0,
+      "total": 9,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "elf_bytes": 36,
+      "native_bytes": 36
+    }
+  },
+  "gnu_link": {
+    "all_complete_bodies_equal": true,
+    "owned_literal_bytes": 48,
+    "owned_literal_address": "0x80123abc",
+    "relocation_count": 32,
+    "relocations": [
+      {
+        "offset": 0,
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 4,
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 68,
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 76,
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 156,
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 160,
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 164,
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 168,
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 176,
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 184,
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 188,
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 200,
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 204,
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 216,
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 220,
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 232,
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 236,
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 248,
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 252,
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 264,
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 268,
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 280,
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 284,
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 296,
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 360,
+        "type": 5,
+        "symbol": "D_8011F010"
+      },
+      {
+        "offset": 368,
+        "type": 6,
+        "symbol": "D_8011F010"
+      },
+      {
+        "offset": 336,
+        "type": 5,
+        "symbol": "D_8011F010"
+      },
+      {
+        "offset": 388,
+        "type": 6,
+        "symbol": "D_8011F010"
+      },
+      {
+        "offset": 408,
+        "type": 5,
+        "symbol": "D_8011F010"
+      },
+      {
+        "offset": 420,
+        "type": 6,
+        "symbol": "D_8011F010"
+      },
+      {
+        "offset": 464,
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "offset": 500,
+        "type": 4,
+        "symbol": ".text"
+      }
+    ],
+    "elf_functions": {
+      "func_8009C3F8": [
+        0,
+        452
+      ],
+      "camera_update_c": [
+        488,
+        36
+      ],
+      "select_screen_update": [
+        452,
+        36
+      ]
+    },
+    "text_alignment_outside_functions": 4,
+    "wrapper_final_placement_claimed": false,
+    "object_sha256": "5d083ec5f139fa8d70701803ae1d1e6d679ee47ed99a402dbc648d5a6cb79222",
+    "linked_text_sha256": "dd01563cc8e2f04c03dc1552861086e220a9d641f0ed8062943ab6e91d8984d0"
+  },
+  "controls": {
+    "archived_a21": {
+      "func_8009C3F8": {
+        "differing": 92,
+        "total": 113,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_bytes": 440,
+        "native_bytes": 452
+      },
+      "camera_update_c": {
+        "differing": 6,
+        "total": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_bytes": 32,
+        "native_bytes": 36
+      },
+      "select_screen_update": {
+        "differing": 7,
+        "total": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_bytes": 32,
+        "native_bytes": 36
+      }
+    },
+    "flag_first": {
+      "func_8009C3F8": {
+        "differing": 0,
+        "total": 113,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_bytes": 452,
+        "native_bytes": 452
+      },
+      "camera_update_c": {
+        "differing": 2,
+        "total": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_bytes": 36,
+        "native_bytes": 36
+      },
+      "select_screen_update": {
+        "differing": 2,
+        "total": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_bytes": 36,
+        "native_bytes": 36
+      }
+    },
+    "folded_half_literal": {
+      "func_8009C3F8": {
+        "differing": 88,
+        "total": 113,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x0",
+          ".rodata+0x0 at +0x4",
+          ".rodata+0x4 at +0x44",
+          ".rodata+0x4 at +0x4c",
+          ".rodata+0x8 at +0x54",
+          ".rodata+0x8 at +0x94",
+          ".rodata+0xc at +0x98",
+          ".rodata+0xc at +0x9c",
+          ".rodata+0x10 at +0xa4",
+          ".rodata+0x10 at +0xac",
+          ".rodata+0x14 at +0xb0",
+          ".rodata+0x14 at +0xbc",
+          ".rodata+0x18 at +0xc0",
+          ".rodata+0x18 at +0xcc",
+          ".rodata+0x1c at +0xd0",
+          ".rodata+0x1c at +0xdc",
+          ".rodata+0x20 at +0xe0",
+          ".rodata+0x20 at +0xec",
+          ".rodata+0x24 at +0xf0",
+          ".rodata+0x24 at +0xfc",
+          ".rodata+0x28 at +0x100",
+          ".rodata+0x28 at +0x10c",
+          ".rodata+0x2c at +0x110",
+          ".rodata+0x2c at +0x11c"
+        ],
+        "errors": [
+          "own .rodata+0x10 referenced at +0xac differs from retail 0x80123202 (content mismatch; compared bytes omitted)",
+          "own .rodata+0x14 referenced at +0xbc differs from retail 0x80118012 (content mismatch; compared bytes omitted)"
+        ],
+        "extra_words": 0,
+        "elf_bytes": 440,
+        "native_bytes": 452
+      },
+      "camera_update_c": {
+        "differing": 0,
+        "total": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_bytes": 36,
+        "native_bytes": 36
+      },
+      "select_screen_update": {
+        "differing": 0,
+        "total": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_bytes": 36,
+        "native_bytes": 36
+      }
+    }
+  },
+  "controls_gnu": {
+    "archived_a21": {
+      "functions": {
+        "func_8009C3F8": {
+          "full_extent_differing_positions": 92,
+          "elf_bytes": 440,
+          "native_bytes": 452,
+          "excess_inside_function_words": 0,
+          "body_sha256": "23a610b38a23af4d715e6558ba0681144304e7b3220f3f72000b85238037c73d"
+        },
+        "camera_update_c": {
+          "full_extent_differing_positions": 7,
+          "elf_bytes": 32,
+          "native_bytes": 36,
+          "excess_inside_function_words": 0,
+          "body_sha256": "944f8f1cc2a15f4ca269a31d2c560b8cefed4d891e4036095814e4c665abae87"
+        },
+        "select_screen_update": {
+          "full_extent_differing_positions": 7,
+          "elf_bytes": 32,
+          "native_bytes": 36,
+          "excess_inside_function_words": 0,
+          "body_sha256": "97d8da10201d2c869226f04c8cf2eee40145bcfcf96d7733ba4cfa3bd0882b1f"
+        }
+      },
+      "all_relocations_linked": 32,
+      "owned_rodata_bytes": 0
+    },
+    "flag_first": {
+      "functions": {
+        "func_8009C3F8": {
+          "full_extent_differing_positions": 0,
+          "elf_bytes": 452,
+          "native_bytes": 452,
+          "excess_inside_function_words": 0,
+          "body_sha256": "3b38ececf11ac95f6d792549c2fc9337703741283c9171745e1d8333496065e0"
+        },
+        "camera_update_c": {
+          "full_extent_differing_positions": 2,
+          "elf_bytes": 36,
+          "native_bytes": 36,
+          "excess_inside_function_words": 0,
+          "body_sha256": "1f083ea78e32107a6ea62235e9660db8f8f82810bbbee8b9270d3b1fe2db6d16"
+        },
+        "select_screen_update": {
+          "full_extent_differing_positions": 2,
+          "elf_bytes": 36,
+          "native_bytes": 36,
+          "excess_inside_function_words": 0,
+          "body_sha256": "439357dfae4a4e4dcbcaa1a988464bc7d7eb4c08605720feaba53fa9b26b0557"
+        }
+      },
+      "all_relocations_linked": 32,
+      "owned_rodata_bytes": 48
+    },
+    "folded_half_literal": {
+      "functions": {
+        "func_8009C3F8": {
+          "full_extent_differing_positions": 88,
+          "elf_bytes": 440,
+          "native_bytes": 452,
+          "excess_inside_function_words": 0,
+          "body_sha256": "983578f4fa2b522838075ed8985cc19c349d0204b284becaed76064b2efb8229"
+        },
+        "camera_update_c": {
+          "full_extent_differing_positions": 0,
+          "elf_bytes": 36,
+          "native_bytes": 36,
+          "excess_inside_function_words": 0,
+          "body_sha256": "c39cff2bc58286a145a2b2d4664692de6d07d08836cc93451f77b5fbbba40d6d"
+        },
+        "select_screen_update": {
+          "full_extent_differing_positions": 0,
+          "elf_bytes": 36,
+          "native_bytes": 36,
+          "excess_inside_function_words": 0,
+          "body_sha256": "c8287716c83ec41e7e6473a9f22f2a25288b3fc1a5195ed5160f41caf28cb2c1"
+        }
+      },
+      "all_relocations_linked": 32,
+      "owned_rodata_bytes": 48
+    }
+  },
+  "caller_census": {
+    "func_8009C3F8": [
+      {
+        "caller": "camera_update_c",
+        "call_address": "0x8009c5c8"
+      },
+      {
+        "caller": "particle_system",
+        "call_address": "0x8009ce90"
+      },
+      {
+        "caller": "select_screen_update",
+        "call_address": "0x800bfd74"
+      },
+      {
+        "caller": "func_800BFD8C",
+        "call_address": "0x800bfedc"
+      },
+      {
+        "caller": "camera_follow_path",
+        "call_address": "0x800c4bc0"
+      }
+    ],
+    "camera_update_c": [],
+    "select_screen_update": []
+  },
+  "behavior": {
+    "cases": 12444,
+    "native_executions": 49776,
+    "unchanged_host_c89_ubsan": true,
+    "all_native_and_gnu_results_and_traces_equal": true,
+    "read_only_data_preserved": true,
+    "full_stack_canaries_and_saved_registers": true,
+    "dynamic_coverage_equals_static_cfg": true,
+    "private_kernel_inputs": [
+      "f16",
+      "a0"
+    ],
+    "ordinary_wrapper_input": "f12",
+    "coverage": {
+      "func_8009C3F8": {
+        "executed_offsets": [
+          0,
+          4,
+          8,
+          12,
+          16,
+          20,
+          24,
+          28,
+          32,
+          36,
+          40,
+          48,
+          52,
+          56,
+          60,
+          64,
+          68,
+          72,
+          76,
+          84,
+          88,
+          92,
+          96,
+          100,
+          104,
+          108,
+          112,
+          116,
+          120,
+          124,
+          128,
+          132,
+          136,
+          140,
+          144,
+          148,
+          152,
+          156,
+          160,
+          164,
+          168,
+          172,
+          176,
+          180,
+          184,
+          188,
+          192,
+          196,
+          200,
+          204,
+          208,
+          212,
+          216,
+          220,
+          224,
+          228,
+          232,
+          236,
+          240,
+          244,
+          248,
+          252,
+          256,
+          260,
+          264,
+          268,
+          272,
+          276,
+          280,
+          284,
+          288,
+          292,
+          296,
+          300,
+          304,
+          308,
+          312,
+          316,
+          320,
+          324,
+          328,
+          332,
+          336,
+          340,
+          344,
+          348,
+          352,
+          356,
+          360,
+          364,
+          368,
+          372,
+          376,
+          380,
+          384,
+          388,
+          392,
+          396,
+          400,
+          404,
+          408,
+          412,
+          416,
+          420,
+          424,
+          428,
+          432,
+          436,
+          440,
+          444,
+          448
+        ],
+        "unexecuted_offsets": [
+          44,
+          80
+        ]
+      },
+      "camera_update_c": {
+        "executed_offsets": [
+          0,
+          4,
+          8,
+          12,
+          16,
+          20,
+          24,
+          28,
+          32
+        ],
+        "unexecuted_offsets": []
+      },
+      "select_screen_update": {
+        "executed_offsets": [
+          0,
+          4,
+          8,
+          12,
+          16,
+          20,
+          24,
+          28,
+          32
+        ],
+        "unexecuted_offsets": []
+      }
+    },
+    "branch_outcomes": 15,
+    "rejected_source_mutants": {
+      "half_range_boundary": {
+        "rejected": true,
+        "input": 0.5000000596046448,
+        "mode": 0
+      },
+      "polynomial_coefficient": {
+        "rejected": true,
+        "input": 0.2373046875,
+        "mode": 0
+      },
+      "negative_asin_sign": {
+        "rejected": true,
+        "input": -1.401298464324817e-45,
+        "mode": 0
+      },
+      "mode_reduction_index": {
+        "rejected": true,
+        "input": 0.5000000596046448,
+        "mode": 0
+      },
+      "acos_negative_table": {
+        "rejected": true,
+        "input": -0.5000000596046448,
+        "mode": 1
+      }
+    }
+  },
+  "genuine_context": {
+    "trig_bodies": {
+      "func_8009C3F8": {
+        "differing": 0,
+        "total": 113,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_bytes": 452,
+        "native_bytes": 452
+      },
+      "camera_update_c": {
+        "differing": 0,
+        "total": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_bytes": 36,
+        "native_bytes": 36
+      },
+      "select_screen_update": {
+        "differing": 0,
+        "total": 9,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_bytes": 36,
+        "native_bytes": 36
+      }
+    },
+    "gnu_link": {
+      "all_complete_bodies_equal": true,
+      "owned_literal_bytes": 48,
+      "owned_literal_address": "0x80123abc",
+      "relocation_count": 32,
+      "relocations": [
+        {
+          "offset": 0,
+          "type": 5,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 4,
+          "type": 6,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 68,
+          "type": 5,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 76,
+          "type": 6,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 156,
+          "type": 5,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 160,
+          "type": 6,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 164,
+          "type": 5,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 168,
+          "type": 6,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 176,
+          "type": 5,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 184,
+          "type": 6,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 188,
+          "type": 5,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 200,
+          "type": 6,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 204,
+          "type": 5,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 216,
+          "type": 6,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 220,
+          "type": 5,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 232,
+          "type": 6,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 236,
+          "type": 5,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 248,
+          "type": 6,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 252,
+          "type": 5,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 264,
+          "type": 6,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 268,
+          "type": 5,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 280,
+          "type": 6,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 284,
+          "type": 5,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 296,
+          "type": 6,
+          "symbol": ".rodata"
+        },
+        {
+          "offset": 360,
+          "type": 5,
+          "symbol": "D_8011F010"
+        },
+        {
+          "offset": 368,
+          "type": 6,
+          "symbol": "D_8011F010"
+        },
+        {
+          "offset": 336,
+          "type": 5,
+          "symbol": "D_8011F010"
+        },
+        {
+          "offset": 388,
+          "type": 6,
+          "symbol": "D_8011F010"
+        },
+        {
+          "offset": 408,
+          "type": 5,
+          "symbol": "D_8011F010"
+        },
+        {
+          "offset": 420,
+          "type": 6,
+          "symbol": "D_8011F010"
+        },
+        {
+          "offset": 464,
+          "type": 4,
+          "symbol": ".text"
+        },
+        {
+          "offset": 500,
+          "type": 4,
+          "symbol": ".text"
+        }
+      ],
+      "elf_functions": {
+        "func_8009C3F8": [
+          0,
+          452
+        ],
+        "camera_update_c": [
+          488,
+          36
+        ],
+        "select_screen_update": [
+          452,
+          36
+        ]
+      },
+      "text_alignment_outside_functions": 4,
+      "wrapper_final_placement_claimed": false,
+      "object_sha256": "9d8b07ba7ebc1699e0d29c319a186f555484fb2fa5d741a5cec9b2edd2308297",
+      "linked_text_sha256": "09bbce7e21d6ab4a5d0768d60d08916ea74c40d7657fd947eb0cccfa0f7d6173"
+    },
+    "unclaimed_context": {
+      "func_800D348C": {
+        "differing": 369,
+        "total": 421,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x30 at +0x8",
+          ".rodata+0x30 at +0xc"
+        ],
+        "errors": [],
+        "extra_words": 96,
+        "elf_bytes": 2088,
+        "native_bytes": 1684
+      },
+      "stunt_combo_display": {
+        "differing": 1101,
+        "total": 1175,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x34 at +0x2d4",
+          ".rodata+0x34 at +0x2d8",
+          ".rodata+0x38 at +0x520",
+          ".rodata+0x38 at +0x524",
+          ".rodata+0x3c at +0x4fc",
+          ".rodata+0x3c at +0x530",
+          ".rodata+0x40 at +0x6d4",
+          ".rodata+0x40 at +0x6dc",
+          ".rodata+0x44 at +0x878",
+          ".rodata+0x44 at +0x87c",
+          ".rodata+0x48 at +0x9a8",
+          ".rodata+0x48 at +0x9ac",
+          ".rodata+0x4c at +0xa18",
+          ".rodata+0x4c at +0xa1c",
+          ".rodata+0x50 at +0xa38",
+          ".rodata+0x50 at +0xa3c"
+        ],
+        "errors": [
+          "own .rodata+0x40 referenced at +0x6dc differs from retail 0x80118015 (content mismatch; compared bytes omitted)"
+        ],
+        "extra_words": 1,
+        "elf_bytes": 4704,
+        "native_bytes": 4700
+      },
+      "camera_follow_path": {
+        "differing": 250,
+        "total": 371,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_bytes": 1328,
+        "native_bytes": 1484
+      },
+      "func_8008B2E4": {
+        "differing": 4,
+        "total": 18,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_bytes": 72,
+        "native_bytes": 72
+      }
+    },
+    "source_bindings": {
+      "cloud/work/frontier/dot_camera_path_contracts/group.c": "7f174edd860ea991dae707e3c7e4b3595c77dd9719f8db6fe89aca19d385d009",
+      "cloud/work/frontier/dot_camera_path_contracts/group.json": "a7316ceb2af589eb1971ca225e1fd519ac626836875730b44d26da5658f02dff"
+    },
+    "only_caller_changes": [
+      "Correct kernel declaration to float-first/int-second.",
+      "Adapt its single real camera call to float-first/int-second."
+    ]
+  },
+  "limitations": [
+    "Only modes 0 and 1 and finite binary32 input are proven.",
+    "FCSR exception flags, signaling NaNs and hardware timing are unmodeled.",
+    "Real D348C/stunt/camera context is compiled but remains unclaimed and unexecuted; particle_system and BFD8C are audit-only.",
+    "No full-game shadow unit, image, compression, ROM, acceptance or coverage claim.",
+    "GNU checks the unchanged complete object; noncontiguous final wrapper placement is not a linker claim."
+  ]
+}
