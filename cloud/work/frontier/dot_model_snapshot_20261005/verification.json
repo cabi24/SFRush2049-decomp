@@ -1,0 +1,231 @@
+{
+  "status": "STRICT_MATCH_CANDIDATE",
+  "function": "func_800D4DFC",
+  "range": [
+    "0x800D4DFC",
+    "0x800D4EF4"
+  ],
+  "base_revision": "cc4d5fdd",
+  "candidate_bytes": 248,
+  "accepted_byte_gain": 0,
+  "source_sha256": "55614669eca6c5bd77b33a7cdd6de4a709b6ccf5ff307c0e17e35badebec77bb",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "object": {
+    "differing": 0,
+    "total": 62,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "verdict": "MATCH",
+    "symbol_bytes": 248,
+    "native_bytes": 248,
+    "body_sha256": "ca28252c847a1f30066fa1988428c66de66fd50c211c652f8d8415cd18a43f2f",
+    "all_gnu_linked_words_equal": true,
+    "relocations": [
+      {
+        "offset": 20,
+        "type": 4,
+        "symbol": "math_utility"
+      },
+      {
+        "offset": 60,
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "offset": 68,
+        "type": 6,
+        "symbol": ".rodata"
+      }
+    ],
+    "own_literal_address": "0x801241a4",
+    "own_literal_bytes": 4,
+    "excluded_zero_text_alignment_bytes": 8,
+    "excluded_zero_rodata_alignment_bytes": 12
+  },
+  "controls": {
+    "o2": {
+      "differing": 0,
+      "total": 62,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "MATCH",
+      "symbol_bytes": 248,
+      "native_bytes": 248,
+      "source_sha256": "55614669eca6c5bd77b33a7cdd6de4a709b6ccf5ff307c0e17e35badebec77bb"
+    },
+    "a98_correct_owned_literal": {
+      "differing": 4,
+      "total": 62,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "4/62 words differ",
+      "symbol_bytes": 248,
+      "native_bytes": 248,
+      "source_sha256": "f1142030b728d953b0735c04ebbc58139b84828642c9e46a4ecfac8ba4d04e79"
+    },
+    "separate_vector_statements": {
+      "differing": 4,
+      "total": 62,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "4/62 words differ",
+      "symbol_bytes": 248,
+      "native_bytes": 248,
+      "source_sha256": "0420cfd577c93cbf28d5301d92f60b4b4e2a9c4f8b63009586f4a4f9c5a28760"
+    },
+    "authentic_final_vector_macro_only": {
+      "differing": 0,
+      "total": 62,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "MATCH",
+      "symbol_bytes": 248,
+      "native_bytes": 248,
+      "source_sha256": "21d4fc22bbd2480a9b103ebb75ee6bffe9e315ff08c099d4e67873c19ecb9399"
+    },
+    "archived_a98": {
+      "differing": 4,
+      "total": 62,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "4/62 words differ",
+      "symbol_bytes": 248,
+      "native_bytes": 248,
+      "source_sha256": "ee97fd8a46ab68f27b6000190644126ddd0dce295c1cd83d2da0c3d91e27b3f7"
+    }
+  },
+  "context": {
+    "bodies": {
+      "func_800D4DFC": {
+        "differing": 0,
+        "total": 62,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "verdict": "MATCH",
+        "symbol_bytes": 248,
+        "native_bytes": 248
+      },
+      "math_utility": {
+        "differing": 0,
+        "total": 19,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "verdict": "MATCH",
+        "symbol_bytes": 76,
+        "native_bytes": 76
+      },
+      "players_race_update": {
+        "differing": 0,
+        "total": 37,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "verdict": "MATCH",
+        "symbol_bytes": 148,
+        "native_bytes": 148
+      },
+      "func_800D4D84": {
+        "differing": 0,
+        "total": 30,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "verdict": "MATCH",
+        "symbol_bytes": 120,
+        "native_bytes": 120
+      },
+      "battle_mode_setup": {
+        "differing": 0,
+        "total": 87,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "verdict": "MATCH",
+        "symbol_bytes": 348,
+        "native_bytes": 348
+      }
+    },
+    "source_sha256": {
+      "src/blob/math_utility.c": "ae72a0b474c5cadfdd021f84e2298e42650d093fe915164a06dba350a5a7732a",
+      "src/blob/players_race_update.c": "6c4ff56da823f00ef1fcfc1a2b6ceef7f59ae5b1159fb3cde0bfb424d92ba27f",
+      "src/blob/func_800D4D84.c": "2e086fb3eaeb3715419e6d1597d5a24d0834230968ccf91fa2a6e94ee839471f",
+      "src/blob/battle_mode_setup.c": "be2b46aaf95577e73f2324074c8eedc31cf99db79648ecbe01bac737a7e89da1"
+    },
+    "existing_exported_roots_preserved": true,
+    "limit": "Five genuine bodies; separate accepted type views, not a unified full-game shadow unit."
+  },
+  "behavior": {
+    "cases": 4096,
+    "native_and_gnu_runs": 8192,
+    "native_target_instructions_executed": 62,
+    "real_native_callee_instructions_executed": 19,
+    "host_c89_ubsan": "passed",
+    "complete_2056_byte_snapshots_equal": true,
+    "callee_arguments_and_saved_registers_checked": true,
+    "stack_and_untouched_memory_checked": true,
+    "expected_output_sha256": "8875aabd5c27c40dbf1f32014209e127e105444a72df2484a44bc2c1fa29679e",
+    "negative_controls": {
+      "wrong_coefficient": {
+        "rejected": true,
+        "case_index": 6
+      },
+      "wrong_second_radius": {
+        "rejected": true,
+        "case_index": 100
+      },
+      "skip_shadow_component": {
+        "rejected": true,
+        "case_index": 0
+      },
+      "wrong_position_vector": {
+        "rejected": true,
+        "case_index": 0
+      },
+      "reversed_basis_copy": {
+        "rejected": true,
+        "case_index": 0
+      }
+    }
+  },
+  "target_manifest_sha256": "098c5096b16bbf96f1f987842ad33a5733284ab16e497c43e05ad0a429e4cef8",
+  "tool_sha256": {
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+  },
+  "packet_sha256": {
+    "verify.py": "007544dc7983d65828c25983afa50938ade736a6a739f73d03f6a1d75e989f7f",
+    "native.py": "a7f7b8bdef112b0d6bf1db27995806c2eb95f3cc8cc33242f0e8aa2387320f53",
+    "host.c": "90fad45cf079ae50b0551c23b79f0b951b6e0a76016547569c3398481e949bde",
+    "provenance.json": "e71c73a92371431909c7a9aeb59084a6a543d3307764cf49611d85fe08d0b63c"
+  },
+  "limits": [
+    "No full-game shadow unit, splice, linked game image, compression or ROM proof.",
+    "Finite binary32 round-to-nearest arithmetic with signed-halfword-range conversions only.",
+    "No signaling NaN, FCSR/exception, arbitrary pointer, gameplay or exact original-source claim."
+  ]
+}
