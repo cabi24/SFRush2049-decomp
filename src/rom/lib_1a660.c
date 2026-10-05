@@ -290,4 +290,71 @@ u16 func_8001B968(u32 key)
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001BDB8.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001BE14.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001C19C.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001C1D8.s")
+/* PROMOTED 2026-10-05 — func_8001C1D8
+ * Source:   cloud/work/boot_tail_promotion/wave4_sources/func_8001C1D8.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/wave4_sources/func_8001C1D8.c:func_8001C1D8 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave4_voice.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+typedef struct ChannelState {u32 word00,word04,flags08,pending0C,unknown10;u8 kind14;u8 unknown15[3];u32 value18;u8 unknown1C[12];} ChannelState;
+extern ChannelState D_8004F300[32];
+extern short D_8004BE98[16];
+extern u32 D_8004F804;
+extern u8 D_8004F2F8;
+extern void func_80019A60(u32,u8);
+extern void func_8001E9B0(void);
+extern void func_8001F864(void);
+extern void func_800218CC(void);
+void func_8001C1D8(u32 configuration)
+{
+    int i;
+    D_8004F800 = configuration;
+    D_8004F804 = 10240;
+    func_80019A60(120,255);
+    D_8004F2F8 = 0;
+    for (i=0;i<32;i++) {
+        D_8004BEB8[i].identifier = 0xFFFFFFFFU;
+        D_8004BEB8[i].command00 = 0;
+        D_8004BEB8[i].flags = 0;
+        D_8004BEB8[i].age28 = 0;
+        D_8004BEB8[i].channel2E = 0;
+        D_8004BEB8[i].loop68 = 0;
+        D_8004BEB8[i].channel = 255;
+        D_8004BEB8[i].volume30 = 0;
+        D_8004BEB8[i].depth99 = 128;
+        D_8004BEB8[i].flag9A = 0;
+        D_8004BEB8[i].panning38 = 0x3F0000;
+        D_8004BEB8[i].words40[0] = 0;
+        D_8004BEB8[i].words40[1] = 0;
+        D_8004BEB8[i].status48 = 0;
+        D_8004BEB8[i].status49 = 0;
+        D_8004BEB8[i].activeBD = 0;
+        D_8004BEB8[i].groupBE = 23;
+        D_8004BEB8[i].word16C = 0;
+        D_8004BEB8[i].half170 = 0;
+        D_8004BEB8[i].word178 = 0;
+        D_8004BEB8[i].half17C = 0;
+        D_8004BEB8[i].glide = 100;
+        D_8004BEB8[i].state98 = 0;
+    }
+    for (i=0;i<32;i++) {
+        D_8004F300[i].word00 = 0;
+        D_8004F300[i].word04 = 0;
+        D_8004F300[i].pending0C = 0;
+        D_8004F300[i].kind14 = 4;
+        D_8004F300[i].value18 = 0x7F0000;
+    }
+    D_8004F300[31].kind14 = 1;
+    for (i=0;i<8;i++) D_8004F300[i+23].kind14 = 0;
+    D_8004F300[21].word00 = 0x7F0000;
+    D_8004F300[22].word00 = 0x7F0000;
+    func_8001E9B0();
+    func_8001F864();
+    for (i=0;i<16;i++) {
+        D_8004BE98[i] = 0;
+    }
+    func_800218CC();
+}
+
