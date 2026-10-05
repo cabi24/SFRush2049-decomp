@@ -6893,6 +6893,7 @@ func_800BDA24:
 .section .text.camera_shake_start, "ax", @progbits
 .globl camera_shake_start
 camera_shake_start:
+    /* compiled from src/blob/camera_shake_start.c */
     .word 0x27BDFF90
     .word 0x3C0E8011
     .word 0x8DCE74B4

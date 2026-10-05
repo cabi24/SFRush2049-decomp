@@ -312,6 +312,7 @@ object_bytes_sum_global:
 .section .text.object_manager_update, "ax", @progbits
 .globl object_manager_update
 object_manager_update:
+    /* compiled from src/blob/object_manager_update.c */
     .word 0x27BDFFC0
     .word 0x00056400
     .word 0x000C7403

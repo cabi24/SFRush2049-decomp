@@ -34,5 +34,7 @@
   "object_type_byte3_get"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
- "provenance": "frontier wave 3 (w3a), 2026-10-05; cloud/work/frontier/w3a/RESULTS.md"
+ "claims": [
+  "object_manager_update"
+ ]
 }

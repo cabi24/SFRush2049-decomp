@@ -1198,6 +1198,7 @@ render_mode_select:
 .section .text.func_8008E26C, "ax", @progbits
 .globl func_8008E26C
 func_8008E26C:
+    /* compiled from src/blob/func_8008E26C.c */
     .word 0x3C098015
     .word 0x25296990
     .word 0x8D280000
@@ -6240,6 +6241,7 @@ func_80092DCC:
 .section .text.string_copy_format, "ax", @progbits
 .globl string_copy_format
 string_copy_format:
+    /* compiled from src/blob/string_copy_format.c */
     .word 0x27BDFF60
     .word 0xAFB20024
     .word 0xAFB10020
