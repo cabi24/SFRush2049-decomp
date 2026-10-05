@@ -1,0 +1,298 @@
+{
+  "accepted_byte_gain": 0,
+  "base": "cc4d5fdd",
+  "behavior": {
+    "all_instruction_offsets_executed": 35,
+    "caller_save_clobber_and_callee_save_checks": "passed",
+    "cases": 8064,
+    "host_asan_ubsan": "passed",
+    "mutants": {
+      "invert_predicate": {
+        "differing_cases": 8022,
+        "rejected": true
+      },
+      "omit_fourth_list": {
+        "differing_cases": 3828,
+        "rejected": true
+      },
+      "prefetch_next_before_operation": {
+        "differing_cases": 2334,
+        "rejected": true
+      },
+      "zero_action": {
+        "differing_cases": 6265,
+        "rejected": true
+      }
+    },
+    "native_memory_and_call_snapshots": "equal_to_oracle",
+    "native_runs": 16128
+  },
+  "causal_controls": {
+    "raw_counted": {
+      "differing": 0,
+      "elf_function_bytes": 140,
+      "errors": [],
+      "extra_words": 0,
+      "total": 35,
+      "unresolved": [],
+      "unverified": []
+    },
+    "raw_pointer_prior": {
+      "differing": 22,
+      "elf_function_bytes": 140,
+      "errors": [],
+      "extra_words": 0,
+      "total": 35,
+      "unresolved": [],
+      "unverified": []
+    },
+    "typed_counted": {
+      "differing": 0,
+      "elf_function_bytes": 140,
+      "errors": [],
+      "extra_words": 0,
+      "total": 35,
+      "unresolved": [],
+      "unverified": []
+    },
+    "typed_pointer": {
+      "differing": 22,
+      "elf_function_bytes": 140,
+      "errors": [],
+      "extra_words": 0,
+      "total": 35,
+      "unresolved": [],
+      "unverified": []
+    }
+  },
+  "comparison": {
+    "differing": 0,
+    "elf_function_bytes": 140,
+    "errors": [],
+    "extra_words": 0,
+    "total": 35,
+    "unresolved": [],
+    "unverified": []
+  },
+  "compiler_sha256": {
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5"
+  },
+  "context": {
+    "func_80091FBC": {
+      "differing": 0,
+      "elf_function_bytes": 352,
+      "errors": [],
+      "extra_words": 0,
+      "total": 88,
+      "unresolved": [],
+      "unverified": []
+    },
+    "func_8009211C": {
+      "differing": 0,
+      "elf_function_bytes": 348,
+      "errors": [],
+      "extra_words": 0,
+      "total": 87,
+      "unresolved": [],
+      "unverified": []
+    },
+    "visual_objects_update": {
+      "differing": 0,
+      "elf_function_bytes": 140,
+      "errors": [],
+      "extra_words": 0,
+      "total": 35,
+      "unresolved": [],
+      "unverified": []
+    }
+  },
+  "context_scope": "unchanged accepted list primitives, not a complete caller/callee closure",
+  "context_sources": {
+    "src/blob/func_80091FBC.c": "d408b65b5959e87c58256bab68b9c7e9893de99a178dfb1062900e954c418b79",
+    "src/blob/func_8009211C.c": "20d73de239d47ec0799b4bfbf4a03023abb8f99359f5603ee68c7dd2a89edd99"
+  },
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "gnu_link": {
+    "code_sha256": "e367b2326136721212d31fda878c270e19d9bde3911d2647bf4ce558b3f5d464",
+    "equal_bytes": 140,
+    "relocation_count": 5,
+    "zero_alignment_bytes": 4
+  },
+  "inputs": {
+    "cloud/matches/visual_objects_update.c": "b0c01419e28731a66770980fdfc5e3fbe0df965e25bccbf90ded9b6f152a2b78",
+    "cloud/work/frontier/dot_visual_lists_20261005/host.c": "cf95ab08d6bac85851287fff299f7b4b977bd94b79a406c0564138a3d001285e",
+    "cloud/work/frontier/dot_visual_lists_20261005/native.py": "fa8963329bff2f3b39b623b24b1fa718fc3d6ff7aa48bc7cb8287fcad9877806",
+    "cloud/work/frontier/dot_visual_lists_20261005/verify.py": "40f126cd9f36d5571566239d67d4f6f5891e697cdf447c8537fe748c132b5fcf",
+    "cloud/work/tiny_A42/visual_objects_update.c": "2c45ca95a277d2d572ccd63ced3c9e35938996c14ffefb2b7d81f7911815a643"
+  },
+  "mdebug_sha256": "8292e5468b2b241e3f927556977c3b02673e1bb96d415131aee900fc9e96c08d",
+  "o2_comparison": {
+    "differing": 0,
+    "elf_function_bytes": 140,
+    "errors": [],
+    "extra_words": 0,
+    "total": 35,
+    "unresolved": [],
+    "unverified": []
+  },
+  "o32_layout": "verified_by_compile_time_assertions",
+  "object_sha256": "ea9d7e4ea0b3070672fe25606783eeb82252466aea391595191d5d430a12451b",
+  "owned_data_sections": {},
+  "portability_controls": {
+    "all_non_debug_sections_and_ABI_metadata_equal": true,
+    "each_mdebug_contains_exactly_one_source_path": true,
+    "full_object_and_mdebug_hashes_differ": true,
+    "identical_source_at_two_absolute_paths": true,
+    "semantic_mutations": {
+      ".options": "rejected",
+      ".reginfo": "rejected",
+      ".rel.text": "rejected",
+      ".symtab": "rejected",
+      ".text": "rejected",
+      "ELF_ABI_flags": "rejected"
+    }
+  },
+  "portable_elf": {
+    "header": [
+      1,
+      8,
+      1,
+      0,
+      0,
+      268435456,
+      52,
+      0,
+      0,
+      40,
+      9,
+      2
+    ],
+    "ident_sha256": "09c0a2e371bc7075dab213f9a61fa9eb0652b8ded2a072900494ba7d1bcd2e9d",
+    "sections": [
+      {
+        "address": 0,
+        "alignment": 0,
+        "entry_size": 0,
+        "flags": 0,
+        "info": 0,
+        "link": 0,
+        "name": "",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0,
+        "type": 0
+      },
+      {
+        "address": 0,
+        "alignment": 4,
+        "entry_size": 16,
+        "flags": 0,
+        "info": 2,
+        "link": 3,
+        "name": ".symtab",
+        "sha256": "63ae8ddd4acf6d56b4351658b7603f0c75ae70f2d7db9aae631dd575ca090320",
+        "size": 80,
+        "type": 2
+      },
+      {
+        "address": 0,
+        "alignment": 1,
+        "entry_size": 1,
+        "flags": 0,
+        "info": 0,
+        "link": 0,
+        "name": ".shstrtab",
+        "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9",
+        "size": 69,
+        "type": 3
+      },
+      {
+        "address": 0,
+        "alignment": 1,
+        "entry_size": 1,
+        "flags": 0,
+        "info": 0,
+        "link": 0,
+        "name": ".strtab",
+        "sha256": "7d8ad84cbc53ee93254258f8ca85c5dcfbec08bac68be4ccaf84cab5ee1a7731",
+        "size": 60,
+        "type": 3
+      },
+      {
+        "address": 0,
+        "alignment": 16,
+        "entry_size": 1,
+        "flags": 6,
+        "info": 0,
+        "link": 0,
+        "name": ".text",
+        "sha256": "74a1bde03702152c614196e3f9aedf4db2f5b8702a618d9e4d523f85da55ebca",
+        "size": 144,
+        "type": 1
+      },
+      {
+        "address": 0,
+        "alignment": 8,
+        "entry_size": 1,
+        "flags": 0,
+        "info": 0,
+        "link": 0,
+        "name": ".options",
+        "sha256": "3da48f6cd0e51b7fada5a5c745c171871567f4a1d0b1bbc33d3d3181c7679f51",
+        "size": 32,
+        "type": 1879048205
+      },
+      {
+        "address": 0,
+        "alignment": 4,
+        "entry_size": 1,
+        "flags": 2,
+        "info": 0,
+        "link": 0,
+        "name": ".reginfo",
+        "sha256": "fa76f81252c176465ebdf5a0b686d9c936396309993ff6a5a3f02d230d24cdd4",
+        "size": 24,
+        "type": 1879048198
+      },
+      {
+        "address": 0,
+        "alignment": 4,
+        "entry_size": 8,
+        "flags": 0,
+        "info": 4,
+        "link": 1,
+        "name": ".rel.text",
+        "sha256": "cd1fdc9d391f596d22f2db5af1ce9bf98c6b1fa1a8f4a0110dbd00d90fc80940",
+        "size": 40,
+        "type": 9
+      },
+      {
+        "address": 0,
+        "alignment": 4,
+        "entry_size": 1,
+        "flags": 0,
+        "info": 0,
+        "link": 0,
+        "name": ".mdebug",
+        "scope": "nonallocated ECOFF debug metadata; fingerprinted separately",
+        "type": 1879048197
+      }
+    ]
+  },
+  "schema": 1,
+  "status": "MATCH",
+  "target": {
+    "bytes": 140,
+    "end_exclusive": "0x800B5688",
+    "name": "visual_objects_update",
+    "sha256": "e367b2326136721212d31fda878c270e19d9bde3911d2647bf4ce558b3f5d464",
+    "start": "0x800B55FC",
+    "words": 35
+  },
+  "target_manifest_sha256": "4edb1ea79f7e73439fbde631dc869d00f4d3166232f0a271783970852e313f7d"
+}
