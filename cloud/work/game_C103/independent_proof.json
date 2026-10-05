@@ -1,0 +1,279 @@
+{
+  "original_roundtrip_gate": [
+    true,
+    null
+  ],
+  "protocol": "Actual production member_slices and protected relocate; full native body and source-built pool validation; no masks or substitutions",
+  "results": [
+    {
+      "source": "cloud/work/game_C103/baseline.c",
+      "source_sha256": "a78bf705049cb5d0db9fc8bcb09efa0ac819ba1e11c4d65c6daf377a3f68e8bb",
+      "object_sha256": "b1746227dbdc0864c69e58ab816b7032a8314964786248d490afe181bbfe186e",
+      "true_symbol_bytes": 1688,
+      "canonical_unlinked_strict_including_stack": 8,
+      "complete_12_byte_literal_pool_exact": true,
+      "pool_meaningful_bytes": 12,
+      "emitted_pool_bytes": 16,
+      "emitted_pool_alignment_tail_all_zero": true,
+      "protected_pool_and_relocation_gate": true,
+      "byte_count": 1688,
+      "word_differences": 2,
+      "difference_word_indices": [
+        179,
+        190
+      ],
+      "native_frame_bytes": 152,
+      "poortract_spill_offsets": [
+        120,
+        120
+      ]
+    },
+    {
+      "source": "cloud/work/game_C103/unsigned_boolean.c",
+      "source_sha256": "aae94d274e7ebf925a63ead6bcd6c77cc661cab2ae677f4f7baac5ea95be39bb",
+      "object_sha256": "91c0f3235e32aa5f42fe5a981496e8db13fbeba76601c59230a4ea38f7578f8b",
+      "true_symbol_bytes": 1688,
+      "canonical_unlinked_strict_including_stack": 8,
+      "complete_12_byte_literal_pool_exact": true,
+      "pool_meaningful_bytes": 12,
+      "emitted_pool_bytes": 16,
+      "emitted_pool_alignment_tail_all_zero": true,
+      "protected_pool_and_relocation_gate": true,
+      "byte_count": 1688,
+      "word_differences": 2,
+      "difference_word_indices": [
+        179,
+        190
+      ],
+      "native_frame_bytes": 152,
+      "poortract_spill_offsets": [
+        120,
+        120
+      ]
+    },
+    {
+      "source": "cloud/work/game_C103/constant_airfact.c",
+      "source_sha256": "498d93b3f4cfa6c9d5fcd9d0f00fe7678615394344a73283cbed871d15e6c3ac",
+      "object_sha256": "6ef64a98a8929f0bf25587d8987b260b7e9f32819a953f2e6b7030e06912a3cb",
+      "true_symbol_bytes": 1688,
+      "canonical_unlinked_strict_including_stack": 8,
+      "complete_12_byte_literal_pool_exact": true,
+      "pool_meaningful_bytes": 12,
+      "emitted_pool_bytes": 16,
+      "emitted_pool_alignment_tail_all_zero": true,
+      "protected_pool_and_relocation_gate": true,
+      "byte_count": 1688,
+      "word_differences": 2,
+      "difference_word_indices": [
+        179,
+        190
+      ],
+      "native_frame_bytes": 152,
+      "poortract_spill_offsets": [
+        120,
+        120
+      ]
+    },
+    {
+      "source": "cloud/work/game_C103/tire_phase_lifetime.c",
+      "source_sha256": "18b3bc32f3315bbd334b8a27aa75a75c26b9f41b8e4c566ae379b95e04cd20ed",
+      "object_sha256": "badd14d08a785e12115032f5c9732ee5082e0bc4fee5e4ff96918cbb691ae694",
+      "true_symbol_bytes": 1688,
+      "canonical_unlinked_strict_including_stack": 8,
+      "complete_12_byte_literal_pool_exact": true,
+      "pool_meaningful_bytes": 12,
+      "emitted_pool_bytes": 16,
+      "emitted_pool_alignment_tail_all_zero": true,
+      "protected_pool_and_relocation_gate": true,
+      "byte_count": 1688,
+      "word_differences": 2,
+      "difference_word_indices": [
+        179,
+        190
+      ],
+      "native_frame_bytes": 152,
+      "poortract_spill_offsets": [
+        120,
+        120
+      ]
+    },
+    {
+      "source": "cloud/work/game_C103/donor_index_declaration.c",
+      "source_sha256": "0800f67c2e1c0751bcb5de4b0cfbb1d426f1a09ac2a2eeef171a8b8268e097c7",
+      "object_sha256": "8196a5299faf771cae249b62e1d5874fe46678ffc2c9f06d16733fae4b39e646",
+      "true_symbol_bytes": 1688,
+      "canonical_unlinked_strict_including_stack": 128,
+      "complete_12_byte_literal_pool_exact": true,
+      "pool_meaningful_bytes": 12,
+      "emitted_pool_bytes": 16,
+      "emitted_pool_alignment_tail_all_zero": true,
+      "protected_pool_and_relocation_gate": true,
+      "byte_count": 1688,
+      "word_differences": 30,
+      "difference_word_indices": [
+        12,
+        14,
+        16,
+        19,
+        20,
+        25,
+        30,
+        32,
+        34,
+        35,
+        40,
+        45,
+        47,
+        49,
+        50,
+        56,
+        61,
+        63,
+        65,
+        66,
+        81,
+        84,
+        107,
+        110,
+        167,
+        170,
+        179,
+        190,
+        197,
+        198
+      ],
+      "native_frame_bytes": 152,
+      "poortract_spill_offsets": [
+        116,
+        116
+      ]
+    },
+    {
+      "source": "cloud/work/game_C103/donor_gameoverdrag_declaration.c",
+      "source_sha256": "97ffafefba5cba8c0ed02dd11a2f6cd15561e951f8f350985bfb183e6065fcdf",
+      "object_sha256": "deb70dc16073f59ffc65b18316c8e7935645f2fbc2eee1c3698e21a426549b94",
+      "true_symbol_bytes": 1688,
+      "canonical_unlinked_strict_including_stack": 128,
+      "complete_12_byte_literal_pool_exact": true,
+      "pool_meaningful_bytes": 12,
+      "emitted_pool_bytes": 16,
+      "emitted_pool_alignment_tail_all_zero": true,
+      "protected_pool_and_relocation_gate": true,
+      "byte_count": 1688,
+      "word_differences": 30,
+      "difference_word_indices": [
+        12,
+        14,
+        16,
+        19,
+        20,
+        25,
+        30,
+        32,
+        34,
+        35,
+        40,
+        45,
+        47,
+        49,
+        50,
+        56,
+        61,
+        63,
+        65,
+        66,
+        81,
+        84,
+        107,
+        110,
+        167,
+        170,
+        179,
+        190,
+        197,
+        198
+      ],
+      "native_frame_bytes": 152,
+      "poortract_spill_offsets": [
+        116,
+        116
+      ]
+    },
+    {
+      "source": "cloud/work/game_C103/consumed_airfact_reuse.c",
+      "source_sha256": "f7b61fa3ee10b36365696041dbf7917bc49f3518a68949ac8c6f969f5f7d109d",
+      "object_sha256": "994986cef32a64be310ca31f6020b9fe1e578fd3c3c4f86a906139056456f5e9",
+      "true_symbol_bytes": 1688,
+      "canonical_unlinked_strict_including_stack": 138,
+      "complete_12_byte_literal_pool_exact": true,
+      "pool_meaningful_bytes": 12,
+      "emitted_pool_bytes": 16,
+      "emitted_pool_alignment_tail_all_zero": true,
+      "protected_pool_and_relocation_gate": true,
+      "byte_count": 1688,
+      "word_differences": 32,
+      "difference_word_indices": [
+        0,
+        12,
+        14,
+        16,
+        19,
+        20,
+        25,
+        30,
+        32,
+        34,
+        35,
+        40,
+        45,
+        47,
+        49,
+        50,
+        56,
+        61,
+        63,
+        65,
+        66,
+        81,
+        84,
+        107,
+        110,
+        167,
+        170,
+        179,
+        190,
+        197,
+        198,
+        419
+      ],
+      "native_frame_bytes": 144,
+      "poortract_spill_offsets": [
+        116,
+        116
+      ]
+    },
+    {
+      "source": "cloud/work/game_C103/donor_index_airfact_reuse.c",
+      "source_sha256": "4254d941f2c2ed348eaeb16514285f478f76586bf626a824a3a4cfa97e253fb8",
+      "object_sha256": "1287d8f1444674cd4c1569a4726943795c00466740b62841b5878801fb897ab4",
+      "true_symbol_bytes": 1688,
+      "canonical_unlinked_strict_including_stack": 8,
+      "complete_12_byte_literal_pool_exact": true,
+      "pool_meaningful_bytes": 12,
+      "emitted_pool_bytes": 16,
+      "emitted_pool_alignment_tail_all_zero": true,
+      "protected_pool_and_relocation_gate": true,
+      "byte_count": 1688,
+      "word_differences": 2,
+      "difference_word_indices": [
+        179,
+        190
+      ],
+      "native_frame_bytes": 152,
+      "poortract_spill_offsets": [
+        120,
+        120
+      ]
+    }
+  ]
+}

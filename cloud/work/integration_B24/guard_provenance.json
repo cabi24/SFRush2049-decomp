@@ -1,0 +1,27 @@
+{
+  "target": "dll_init",
+  "relationship": {
+    "base": "gViTimeAccumHi",
+    "alias": "gViTimeAccumLo",
+    "offset": 4,
+    "base_address": "0x80037c50",
+    "alias_address": "0x80037c54"
+  },
+  "guard": "Existing _sdk_field_offsets(time): exact live/SDK unsigned long long u64 and typedef u64 OSTime, plus both authoritative resolved addresses",
+  "changed_original_relocation_sites": [
+    "0x8000c090 HI16",
+    "0x8000c09c LO16"
+  ],
+  "candidate": "cloud/work/static_C16/candidate.c",
+  "candidate_sha256": "8ea97f1232f2b872f37530130da9d8ccca45c26ba87a1ec9f03b317c61a22bd3",
+  "new_source_shape_or_section_aliases": false,
+  "files": {
+    "include/types.h": "0c3169319a4e10b8a2c7d850791df9bafcf923b57411c64bfa6ca83bb639bf57",
+    "include/PR/os_time.h": "a224b0b67e8b01fc2dabcbf391785be35127884645648abfd9ffc29f7d10c8cc",
+    "reference/repos/ultralib/include/PR/ultratypes.h": "e25fc6df3953acbab2234ece2218ec74080cdc3e673ce1ec5896d4ce921bb4de",
+    "reference/repos/ultralib/include/PR/os_time.h": "21bd983fa7b11daa6a06c053b5e9cd7c08420dd20657c4fd61be434389af3342",
+    "reference/repos/ultralib/src/os/timerintr.c": "916cc48fad757289146c4f6f004ddd3ddcb66b57c24ecf6ceea7b485483c57d2",
+    "tools/conveyor/jobs/scoring.py": "107fa8b627acd0b88f10c309973f97c2ee990786387b652f23b3c3175ce525d5",
+    "tools/cloud/score.py": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0"
+  }
+}

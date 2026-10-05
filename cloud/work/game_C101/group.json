@@ -1,0 +1,25 @@
+{
+  "members": [
+    "camera_target_track"
+  ],
+  "context": [
+    "func_80092278",
+    "entity_flags_apply",
+    "high_scores_display",
+    "func_80091FBC",
+    "func_8009211C"
+  ],
+  "claims": [],
+  "files": [
+    "group_clamp_carrier.c"
+  ],
+  "keep": [
+    "camera_target_track",
+    "entity_flags_apply",
+    "high_scores_display",
+    "func_80091FBC",
+    "func_8009211C"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "Complete original ten-input caller; unchanged previously reconstructed true caller contexts and accepted polymorphic list helpers. No substitute roots or pressure."
+}

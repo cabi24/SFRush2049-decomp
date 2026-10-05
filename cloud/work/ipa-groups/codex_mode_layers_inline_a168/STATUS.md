@@ -1,0 +1,9 @@
+# A168 mode_select_input152B MATCH — coordinator gates pending
+
+Fresh full mode_select_input@800DFB08 has all38 words strict-zero, no extra/unknown/unverified/reference errors. Full unmasked relocated152-byte equality in raw_proof.json. Supported production member-only group_bodies resolves exact152B; word_diffs zero in canonical_proof.json. No table or data relocation exists. No splice/lock/ROM/commit by worker. Claims empty until coordinator gates.
+
+Source099ac1306bc54a6a055a80e34a31a44b02dfbe51f282a361607291394acfd322, manifest3d57df4f99444cd87fda13f917e39629d5a0def4f3500dcbd2b339545b28cf4f. Literal line1 and actual -g0 -O3 -mips2 -G 0 -non_shared.
+
+One source annotation __inline on complete genuine entity_hierarchy_update is grounded by original inline runtime operations, documented in INLINE_AUDIT.md. That actual ordinary retained entry still34/34 exact; all accepted A114 helper members and true lookup/scheduler contexts remain exact. Message allocator remains11/42, as before. Complete sole direct caller func_800DFBA0 is genuine reconstructed298-word source, no stand-in. It remains293/298+44 with own end-HI16 error and is unclaimed; its ordinary public entry supplies actual caller context. Caller has no native switch tables. Its four-contact/steering/power reduction, three actual layers and every original real call are present; no pressure or fake runtime work.
+
+Original direct-expanded natural variant remains separately frozen at2/38. Earlier initial20/38 source failed real handle snapshot before blocking receive; not accepted. The matching source calls the actual hierarchy wrapper, so C argument evaluation preserves this original snapshot naturally. No dummy local, predicate, reordered scalar pressure, discarded runtime work or scorer change. Existing production accepted source/locks preserved.

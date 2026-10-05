@@ -1,0 +1,16 @@
+{
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "keep": [
+    "entity_update_callback",
+    "func_8008B2B4"
+  ],
+  "members": [
+    "entity_update_callback"
+  ],
+  "context": [
+    "func_8008B2B4"
+  ]
+}

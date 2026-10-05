@@ -1,0 +1,4 @@
+object_create
+world_trigger_check
+object_byte9_set
+func_80096288

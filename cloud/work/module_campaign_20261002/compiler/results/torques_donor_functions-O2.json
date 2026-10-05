@@ -1,0 +1,21 @@
+{
+  "source_sha256": "e7129478a0e54ddff849f928c20a97e7d9417922c0cf7d5c0013beaff14bf210",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "accepted": false,
+  "comparison": {
+    "differing": 320,
+    "total": 320,
+    "unresolved": [
+      ".text+0x0 at +0x68",
+      ".text+0xb0 at +0x88",
+      ".text+0x30 at +0x98",
+      ".text+0x0 at +0xd4",
+      ".text+0xb0 at +0xe8",
+      ".text+0x30 at +0xf8"
+    ],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "07226f12ca1c08f6738b4d105da16422246c5c496032c13e001b70e3fc61686b"
+}

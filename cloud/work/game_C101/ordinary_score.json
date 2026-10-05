@@ -1,0 +1,13 @@
+{
+  "source_sha256": "a81baa40c7a851d2f465e0bcdd05d5637ce3c26ec26979511ab26e22c5aa2a16",
+  "object_sha256": "1da11df5189315129bd04428555840768fd61f250e873cf7cd064394652ceec6",
+  "strict": 3062,
+  "linked": {
+    "differing": 151,
+    "total": 159,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  }
+}

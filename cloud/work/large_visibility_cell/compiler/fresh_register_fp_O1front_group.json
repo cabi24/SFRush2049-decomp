@@ -1,0 +1,26 @@
+{
+  "source_sha256": "9c098b345cf35fb493fe7fe942c7ddf7e5cf274cf19180edff897ed8a8255cf8",
+  "flags": "frontend -g0 -O1; protected group stages O3",
+  "source": "/home/cburnes/agents/large-visibility-compiler/candidates/fresh_register_fp_O1front_group/group.c",
+  "accepted": false,
+  "canonical_verdict": "290/294 words differ (64 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x0 at +0x16c, .rodata+0x0 at +0x174)",
+  "comparison": {
+    "differing": 290,
+    "total": 294,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0x16c",
+      ".rodata+0x0 at +0x174"
+    ],
+    "errors": [],
+    "extra_words": 64
+  },
+  "object_sha256": "6d336f260c27a489d2a7b0f798031eb8e4835ef9513a123ab2999c9a56bf573b",
+  "emitted_words": 360,
+  "aligned": {
+    "aligned_exact": 22,
+    "aligned_opcode": 218,
+    "aligned_opcode_reg": 60
+  },
+  "frame_bytes": 128
+}

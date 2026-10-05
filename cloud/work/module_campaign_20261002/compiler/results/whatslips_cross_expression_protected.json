@@ -1,0 +1,12 @@
+{
+  "object_sha256": "3169c14422f0aedb16466710e862c730a1b13494ba13540beec41910dc86eaf6",
+  "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+  "target": "func_800E2AC4",
+  "target_bytes": 428,
+  "tool_sha256": "7dded5c4706be2183c2810f55646f3d9fcb25a59b8bab61a43ce630aac1ae96f",
+  "accepted": false,
+  "full_body_sha256": "456e82d155ace41c0db277c2cbe0fd836de32ced5209631bb8107a6bdc8de11c",
+  "native_body_sha256": "c46dded791e9eaf39ce536db6ce22316d2f5152cc712049a44080cb597e6e9cd",
+  "protected_word_differences": 7,
+  "exact_body_bytes": false
+}

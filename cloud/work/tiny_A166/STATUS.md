@@ -1,0 +1,7 @@
+# A166 state initialization/teardown
+
+Frozen genuine full debug_stats body, one actually consumed start input, actual signed-half loop indices, model2056-byte and input76-byte existing-memory views. No stack arrays, pressure, padding or unused formals. Original boolean combines the unset-state test and setup call; a failed setup call must reload state before deciding whether to render. The earlier nested-if draft omitted that possible callee state change and is rejected; its historical verification is kept as initial.verification.json. Final source reproduces the original short-circuit condition and reload.
+
+Ordinary O2 final is131/133 differing plus6 excess words, no unresolved/unverified references or errors. Claims empty. Original helper uses unsaved S0–S3. Its only three direct JAL call sites are the genuine debug_collision state caller, and that complete133-word caller is reconstructed separately in codex_state_caller_a166. No invented caller.
+
+Both actual entries retained: helper131/133+6, caller130/133. Genuine caller alone retained in separately labeled codex_state_calleronly_a166: helper117/133, caller81/133, no extras or relocation errors. The authentic closure recovers helper24-byte frame and caller48-byte frame but leaves real dataflow/register differences, including repeated constant1 held in S0 and a cached flag address rather than original direct loads/stores. No qualifiers or predicates were added to alter scheduling. All packets remain NONMATCH and all claims empty.

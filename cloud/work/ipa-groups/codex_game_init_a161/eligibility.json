@@ -1,0 +1,11 @@
+{
+  "lock_sha256": "b6427ddd9186cfb0e9381f16db90008063e0bfde5cf47c62a35903b66df89a0c",
+  "target": {
+    "kind": "function",
+    "size": 820,
+    "target_id": "game_late_init",
+    "vaddr": 2148461180
+  },
+  "accepted": false,
+  "accepted_overlaps": []
+}

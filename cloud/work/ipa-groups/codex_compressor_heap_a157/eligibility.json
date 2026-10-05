@@ -1,0 +1,12 @@
+{
+  "local_lock_sha256": "b6427ddd9186cfb0e9381f16db90008063e0bfde5cf47c62a35903b66df89a0c",
+  "entry": {
+    "kind": "function",
+    "size": 804,
+    "target_id": "car_angular_velocity_clamp",
+    "vaddr": 2148183656
+  },
+  "accepted_overlaps": [],
+  "zlib_origin_sha256": "6babcf1bcb37d1c562368460a03089beaf01d6bab24f033027bbb481ac73a8fb",
+  "heap_origin_sha256": "53f4b1acfc51df086066aaa181e9f106d361e98b41c6a70cd5406daef710108e"
+}

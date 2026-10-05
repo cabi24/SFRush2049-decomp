@@ -1,0 +1,45 @@
+{
+  "status": "frozen complete real caller nonmatch",
+  "source": "cloud/work/game_C101/group_clamp_carrier.c",
+  "source_sha256": "109551f9c243a464881f75792abd4c3b8b6f7541433e17ce06f085b746383230",
+  "object_sha256": "c4c5576d8e3e0efc1da832bd890e7631a0bc15b65f94de55a8fd4a56298bc958",
+  "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "compile_pipeline": "production blob_group builder_script stages",
+  "new_target": "camera_target_track",
+  "new_original_bytes": 636,
+  "new_candidate_symbol": [
+    1672,
+    "4"
+  ],
+  "original_frame": 56,
+  "candidate_frame": 48,
+  "native_raw_differing_words": 70,
+  "native_raw_total_words": 159,
+  "canonical_target_sha256": "df4d6a90a94abc1337ab2a08b198059fb373d165ecfab367e0eee9866271953d",
+  "canonical_roundtrip_gate": [
+    true,
+    null
+  ],
+  "accepted_helper_word_differences": {
+    "func_80091FBC": 0,
+    "func_8009211C": 0
+  },
+  "allocator_word_differences": 5,
+  "allocator_credit": 0,
+  "new_credit": 0,
+  "complete_actual_callers": [
+    "camera_target_track",
+    "entity_flags_apply",
+    "high_scores_display"
+  ],
+  "accepted_helper_sources_retained_verbatim_from": "cloud/work/ipa-groups/codex_list_alloc_a54/group.c",
+  "ordinary_singleton_strict": 3062,
+  "strict_group_refusal": "function-scoped canonical scorer refuses existing R_MIPS_26 .text bare hexadecimal 2bc operand; no instruction or target masks or substitutions applied",
+  "invalid_whole_object_strict_diagnostic_not_function_score": "group_score.json",
+  "evidence": [
+    "eligibility.json",
+    "production_group_scores.json",
+    "ordinary_score.json"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "members": [
+    "func_800C4F68",
+    "camera_follow_path"
+  ],
+  "context": [
+    "func_800C4CF8",
+    "math_utility",
+    "func_80098A54",
+    "func_800C40E8",
+    "func_800C4180",
+    "func_8009C3F8",
+    "camera_update_c",
+    "select_screen_update"
+  ],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800C4F68",
+    "func_800C4CF8",
+    "math_utility",
+    "func_80098A54",
+    "func_800C40E8",
+    "func_800C4180",
+    "camera_update_c",
+    "select_screen_update"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+}

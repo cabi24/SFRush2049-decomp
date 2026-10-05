@@ -1,0 +1,11 @@
+{
+  "local_lock_sha256": "b6427ddd9186cfb0e9381f16db90008063e0bfde5cf47c62a35903b66df89a0c",
+  "entry": {
+    "kind": "function",
+    "size": 224,
+    "target_id": "voice_stop_2",
+    "vaddr": 2148222776
+  },
+  "accepted_overlaps": [],
+  "in_root_private_priority_snapshot": false
+}

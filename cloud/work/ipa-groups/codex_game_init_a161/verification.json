@@ -1,0 +1,114 @@
+{
+  "source_sha256": "b2b7478604e0b73a9c1535d089f07b4e434a81d3434e9a962c00feada170d864",
+  "manifest_sha256": "3eda16f0dfc6e404d4b8bb74f85b82362a6c74feceaab25a4874a043efcfd44a",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "comparisons": {
+    "game_late_init": {
+      "differing": 184,
+      "total": 205,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_80149DA0 at .text+0x94c"
+      ],
+      "extra_words": 3
+    },
+    "audio_reverb_update": {
+      "differing": 0,
+      "total": 61,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "audio_effect_process": {
+      "differing": 0,
+      "total": 23,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "synced_model_render": {
+      "differing": 0,
+      "total": 23,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "MP_TargetSpeed": {
+      "differing": 0,
+      "total": 28,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "assign_default_paths": {
+      "differing": 0,
+      "total": 28,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "stat_race_end": {
+      "differing": 0,
+      "total": 29,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80095F8C": {
+      "differing": 0,
+      "total": 19,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80095EF4": {
+      "differing": 0,
+      "total": 38,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "audio_buffer_sync": {
+      "differing": 0,
+      "total": 26,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_counter_decrement": {
+      "differing": 0,
+      "total": 27,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_counter_increment": {
+      "differing": 0,
+      "total": 28,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800A47C0": {
+      "differing": 0,
+      "total": 63,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

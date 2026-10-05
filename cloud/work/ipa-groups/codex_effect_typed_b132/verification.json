@@ -1,0 +1,63 @@
+{
+  "source_sha256": "8618f66681d8d838582e123cffb427a0b9c4d656faf509b4f84daef789ecf1b2",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "object_sha256": "cdbd8f2cfd4d750f02575d24615abf97b4fc4c9f72303c1a76daf01b24accbce",
+  "canonical": {
+    "audio_effect_setup": {
+      "differing": 6,
+      "total": 46,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80098FB8": {
+      "differing": 189,
+      "total": 189,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 25
+    },
+    "func_80091FBC": {
+      "differing": 0,
+      "total": 88,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_8009211C": {
+      "differing": 0,
+      "total": 87,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "audio_pitch_adjust": {
+      "differing": 18,
+      "total": 18,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "entity_flag_check": {
+      "differing": 0,
+      "total": 25,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800988D8": {
+      "differing": 80,
+      "total": 95,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 1
+    }
+  }
+}

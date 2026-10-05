@@ -1,0 +1,23 @@
+{
+  "members": [
+    "object_create"
+  ],
+  "context": [
+    "slot_state_setup",
+    "sound_update_channel",
+    "func_80096288",
+    "object_byte9_set",
+    "world_trigger_check"
+  ],
+  "files": [
+    "group_complete_callers.c"
+  ],
+  "keep": [
+    "object_create",
+    "world_trigger_check",
+    "object_byte9_set",
+    "func_80096288"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}

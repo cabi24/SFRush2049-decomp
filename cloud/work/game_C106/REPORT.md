@@ -1,0 +1,5 @@
+C106 frozen honest nonmatch: full entity_anim_texture native2-input record/mode body and true helper contracts.
+
+O2 singleton strict5237;155/159 full-word differences. Protected complete native compare has0 unresolved/unverified/errors. Genuine3-body O3 closure keeps model_bounds_calc exactly18/18 words,72B, including every actual call relocation, WITHOUT historical stand-in roots. The accepted source body is unchanged, and no new helper credit or accepted replacement is proposed.
+
+New target remains147/159 differences+16 extra words. matrix_scale_apply inlines because only entity_anim_texture is its included actual caller. No false address-taken root or dummy caller was introduced to retain it. The other real callers are buffer_swap1676B, anim_state_update1840B and drone_ai_update3280B; completing an actual second caller is real whole-program work, not an artificial root. This bounded packet stops after ordinary and actual O3 closure compilation. Original target roundtrip passes. All main source/header/targets/registries/locks/Git remain untouched.

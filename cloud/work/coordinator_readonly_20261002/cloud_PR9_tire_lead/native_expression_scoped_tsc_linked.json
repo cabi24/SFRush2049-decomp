@@ -1,0 +1,13 @@
+{
+  "accepted": false,
+  "source_sha256": "a78bf705049cb5d0db9fc8bcb09efa0ac819ba1e11c4d65c6daf377a3f68e8bb",
+  "object_sha256": "d0378d869bfc6c1993113473087cdeaa7a78bb4058988cb3bcb28d781bba8e8c",
+  "extent_bytes": 1688,
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "word_diffs": 2,
+  "difference_word_indices": [
+    179,
+    190
+  ],
+  "relocation": "Protected blob_group.relocate: all12 source-built pool bytes and every HI/LO site verified against native image"
+}

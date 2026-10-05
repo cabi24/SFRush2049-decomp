@@ -1,0 +1,12 @@
+{
+  "local_lock_sha256": "b6427ddd9186cfb0e9381f16db90008063e0bfde5cf47c62a35903b66df89a0c",
+  "entry": {
+    "kind": "function",
+    "size": 1544,
+    "target_id": "func_8008E408",
+    "vaddr": 2148066312
+  },
+  "accepted_overlaps": [],
+  "caller_origin_sha256": "6d7358ef8a3b48c9e9ae382a04af28aad93b9524eb0b1b948863db138a7a7fc8",
+  "allocation_origin_sha256": "c8ea55b83fd58ef281bfeed810e9790fb419c16a17e2a53335cc3c182d6cff2b"
+}

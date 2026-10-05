@@ -1,0 +1,29 @@
+{
+  "group": "codex_velocities_callerkeep_a165",
+  "source_hashes": {
+    "caller.c": "c5ff07d0eae3d6fcda22513a92c166c2338cdc40cc890d9321d3b29fb9407b1e",
+    "magnitude.c": "feb5c4c69b21ca28c2e434c18d649a9c82b742b30adcd00d00c1f69bc07ba36c"
+  },
+  "manifest_sha256": "3f3d7191dc106988ebcd709a2c3b119cc16cd683dfcbdd437e9d9d8988eb05f7",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "result": "NONMATCH",
+  "comparisons": {
+    "func_800E114C": {
+      "differing": 230,
+      "total": 237,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_8008B3C8": {
+      "differing": 0,
+      "total": 11,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

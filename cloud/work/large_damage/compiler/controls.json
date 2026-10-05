@@ -1,0 +1,867 @@
+[
+  {
+    "variant": "actual_cleanup_group",
+    "source_sha256": "2a69593cffde67b4356e50268c65264c303b024dd932728d581736412709c334",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "group.c",
+    "accepted": false,
+    "canonical_verdict": "28/395 words differ (16 section-relative relocations unverified: .rodata+0x0 at +0x40, .rodata+0x0 at +0x44, .rodata+0x4 at +0x48, .rodata+0x4 at +0x4c, .rodata+0x8 at +0x50, .rodata+0x8 at +0x54, .rodata+0xc at +0x128, .rodata+0xc at +0x140, .rodata+0x10 at +0x25c, .rodata+0x10 at +0x260, .rodata+0x14 at +0x278, .rodata+0x14 at +0x27c, .rodata+0x18 at +0x464, .rodata+0x18 at +0x474, .rodata+0x1c at +0x580, .rodata+0x1c at +0x590)",
+    "comparison": {
+      "differing": 28,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x40",
+        ".rodata+0x0 at +0x44",
+        ".rodata+0x4 at +0x48",
+        ".rodata+0x4 at +0x4c",
+        ".rodata+0x8 at +0x50",
+        ".rodata+0x8 at +0x54",
+        ".rodata+0xc at +0x128",
+        ".rodata+0xc at +0x140",
+        ".rodata+0x10 at +0x25c",
+        ".rodata+0x10 at +0x260",
+        ".rodata+0x14 at +0x278",
+        ".rodata+0x14 at +0x27c",
+        ".rodata+0x18 at +0x464",
+        ".rodata+0x18 at +0x474",
+        ".rodata+0x1c at +0x580",
+        ".rodata+0x1c at +0x590"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "236ab9e22e9b4dd3bc45b7e4bd62f5de5644ae55fde0443f12952e027caa712b",
+    "emitted_words": 396,
+    "aligned": {
+      "aligned_exact": 352,
+      "aligned_opcode": 390,
+      "aligned_opcode_reg": 389
+    },
+    "frame_bytes": 56
+  },
+  {
+    "variant": "arcade_thump_order",
+    "source_sha256": "f8da08a2a0b803e2d8f86fa4c04d2df2e276c2c69b1586adbd0c84e7e6358080",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "arcade_thump_order.c",
+    "accepted": false,
+    "canonical_verdict": "355/395 words differ",
+    "comparison": {
+      "differing": 355,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "f65f8a146b5c20c99bbadc05f6942d3aebcc78d87e98bb82756538500d73edd4",
+    "emitted_words": 396,
+    "aligned": {
+      "aligned_exact": 215,
+      "aligned_opcode": 363,
+      "aligned_opcode_reg": 244
+    },
+    "frame_bytes": 56
+  },
+  {
+    "variant": "baseline_O2",
+    "source_sha256": "dfa5214c4e20121224dd97ce5bb8447b91e497bd86ec57c82545e88f2caff182",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "baseline.c",
+    "accepted": false,
+    "canonical_verdict": "356/395 words differ",
+    "comparison": {
+      "differing": 356,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "960e80f3c6f8b452b1be1ea02264ea458be0424458453e62bbfafda6a89e53fa",
+    "emitted_words": 396,
+    "aligned": {
+      "aligned_exact": 215,
+      "aligned_opcode": 358,
+      "aligned_opcode_reg": 242
+    },
+    "frame_bytes": 56
+  },
+  {
+    "variant": "baseline_O3",
+    "source_sha256": "dfa5214c4e20121224dd97ce5bb8447b91e497bd86ec57c82545e88f2caff182",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "baseline.c",
+    "accepted": false,
+    "canonical_verdict": "356/395 words differ",
+    "comparison": {
+      "differing": 356,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "90d667c3530c400ecaf42045df36b86017c112041a18235c5208d31c6aab11b1",
+    "emitted_words": 396,
+    "aligned": {
+      "aligned_exact": 215,
+      "aligned_opcode": 358,
+      "aligned_opcode_reg": 242
+    },
+    "frame_bytes": 56
+  },
+  {
+    "variant": "callback_s8",
+    "source_sha256": "e0a6fbcbb3615c8aded6a4feeb9c4212dc8e78a877a90b4c725c462fe54e4dc3",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "callback_s8.c",
+    "accepted": false,
+    "canonical_verdict": "356/395 words differ",
+    "comparison": {
+      "differing": 356,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "113944047e2394a3adf8a0dceccad64eb56841f56189f63a4f9e2826b016a4e3",
+    "emitted_words": 396,
+    "aligned": {
+      "aligned_exact": 215,
+      "aligned_opcode": 358,
+      "aligned_opcode_reg": 242
+    },
+    "frame_bytes": 56
+  },
+  {
+    "variant": "compression_declorder",
+    "source_sha256": "a1f2d44d616162d4a9d415d3be30f6cc2e0e1dbe2dad4ca79f263cf3a2d3d35a",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "compression_declorder.c",
+    "accepted": false,
+    "canonical_verdict": "180/395 words differ (16 section-relative relocations unverified: .rodata+0x0 at +0x40, .rodata+0x0 at +0x44, .rodata+0x4 at +0x48, .rodata+0x4 at +0x4c, .rodata+0x8 at +0x50, .rodata+0x8 at +0x54, .rodata+0xc at +0x128, .rodata+0xc at +0x140, .rodata+0x10 at +0x25c, .rodata+0x10 at +0x260, .rodata+0x14 at +0x278, .rodata+0x14 at +0x27c, .rodata+0x18 at +0x464, .rodata+0x18 at +0x474, .rodata+0x1c at +0x578, .rodata+0x1c at +0x588)",
+    "comparison": {
+      "differing": 180,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x40",
+        ".rodata+0x0 at +0x44",
+        ".rodata+0x4 at +0x48",
+        ".rodata+0x4 at +0x4c",
+        ".rodata+0x8 at +0x50",
+        ".rodata+0x8 at +0x54",
+        ".rodata+0xc at +0x128",
+        ".rodata+0xc at +0x140",
+        ".rodata+0x10 at +0x25c",
+        ".rodata+0x10 at +0x260",
+        ".rodata+0x14 at +0x278",
+        ".rodata+0x14 at +0x27c",
+        ".rodata+0x18 at +0x464",
+        ".rodata+0x18 at +0x474",
+        ".rodata+0x1c at +0x578",
+        ".rodata+0x1c at +0x588"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "3ebb8425f594d4670e072423516414ef2fb1cf4183031bd6422cc2ccee31a168",
+    "emitted_words": 392,
+    "aligned": {
+      "aligned_exact": 238,
+      "aligned_opcode": 363,
+      "aligned_opcode_reg": 307
+    },
+    "frame_bytes": 64
+  },
+  {
+    "variant": "compression_local",
+    "source_sha256": "a685bad7ef7fd355d76c1d5d3cf7cbdad6d0aa96682c7130b0d166864eff0e5a",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "compression_local.c",
+    "accepted": false,
+    "canonical_verdict": "180/395 words differ (16 section-relative relocations unverified: .rodata+0x0 at +0x40, .rodata+0x0 at +0x44, .rodata+0x4 at +0x48, .rodata+0x4 at +0x4c, .rodata+0x8 at +0x50, .rodata+0x8 at +0x54, .rodata+0xc at +0x128, .rodata+0xc at +0x140, .rodata+0x10 at +0x25c, .rodata+0x10 at +0x260, .rodata+0x14 at +0x278, .rodata+0x14 at +0x27c, .rodata+0x18 at +0x464, .rodata+0x18 at +0x474, .rodata+0x1c at +0x578, .rodata+0x1c at +0x588)",
+    "comparison": {
+      "differing": 180,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x40",
+        ".rodata+0x0 at +0x44",
+        ".rodata+0x4 at +0x48",
+        ".rodata+0x4 at +0x4c",
+        ".rodata+0x8 at +0x50",
+        ".rodata+0x8 at +0x54",
+        ".rodata+0xc at +0x128",
+        ".rodata+0xc at +0x140",
+        ".rodata+0x10 at +0x25c",
+        ".rodata+0x10 at +0x260",
+        ".rodata+0x14 at +0x278",
+        ".rodata+0x14 at +0x27c",
+        ".rodata+0x18 at +0x464",
+        ".rodata+0x18 at +0x474",
+        ".rodata+0x1c at +0x578",
+        ".rodata+0x1c at +0x588"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "79c2eaf7664862fa0b50464a381b9f01049ccd440234fa727e9d46fcfb0d1bd6",
+    "emitted_words": 392,
+    "aligned": {
+      "aligned_exact": 238,
+      "aligned_opcode": 363,
+      "aligned_opcode_reg": 307
+    },
+    "frame_bytes": 64
+  },
+  {
+    "variant": "constant_globals",
+    "source_sha256": "904ea228b340e87c4f77505136506a24425cb2aa153466a79ef158066133c4a2",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "constant_globals.c",
+    "accepted": false,
+    "canonical_verdict": "356/395 words differ",
+    "comparison": {
+      "differing": 356,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "ef24fe8ed983a46845f5f1d13e109e7cf44c3aca51d4ab5de4c7741004a8c532",
+    "emitted_words": 396,
+    "aligned": {
+      "aligned_exact": 215,
+      "aligned_opcode": 358,
+      "aligned_opcode_reg": 242
+    },
+    "frame_bytes": 56
+  },
+  {
+    "variant": "declorder_group",
+    "source_sha256": "9e030ebf20f37368297d10b4b144cf036c16496e6d0feef828109460b76bff9b",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "group.c",
+    "accepted": false,
+    "canonical_verdict": "57/395 words differ (16 section-relative relocations unverified: .rodata+0x0 at +0x40, .rodata+0x0 at +0x44, .rodata+0x4 at +0x48, .rodata+0x4 at +0x4c, .rodata+0x8 at +0x50, .rodata+0x8 at +0x54, .rodata+0xc at +0x128, .rodata+0xc at +0x140, .rodata+0x10 at +0x25c, .rodata+0x10 at +0x260, .rodata+0x14 at +0x278, .rodata+0x14 at +0x27c, .rodata+0x18 at +0x464, .rodata+0x18 at +0x474, .rodata+0x1c at +0x580, .rodata+0x1c at +0x590)",
+    "comparison": {
+      "differing": 57,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x40",
+        ".rodata+0x0 at +0x44",
+        ".rodata+0x4 at +0x48",
+        ".rodata+0x4 at +0x4c",
+        ".rodata+0x8 at +0x50",
+        ".rodata+0x8 at +0x54",
+        ".rodata+0xc at +0x128",
+        ".rodata+0xc at +0x140",
+        ".rodata+0x10 at +0x25c",
+        ".rodata+0x10 at +0x260",
+        ".rodata+0x14 at +0x278",
+        ".rodata+0x14 at +0x27c",
+        ".rodata+0x18 at +0x464",
+        ".rodata+0x18 at +0x474",
+        ".rodata+0x1c at +0x580",
+        ".rodata+0x1c at +0x590"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "5486461d9a3498f8668de0520c858b7fe671004535556cdb30d34b49fbf8e3af",
+    "emitted_words": 396,
+    "aligned": {
+      "aligned_exact": 323,
+      "aligned_opcode": 390,
+      "aligned_opcode_reg": 389
+    },
+    "frame_bytes": 64
+  },
+  {
+    "variant": "native_literals",
+    "source_sha256": "4b2b90ec0301a8e48d9f1130752cb0365e109ceae28778a70dccf8c47035f5ae",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "native_literals.c",
+    "accepted": false,
+    "canonical_verdict": "163/395 words differ (16 section-relative relocations unverified: .rodata+0x0 at +0x40, .rodata+0x0 at +0x44, .rodata+0x4 at +0x48, .rodata+0x4 at +0x4c, .rodata+0x8 at +0x50, .rodata+0x8 at +0x54, .rodata+0xc at +0x128, .rodata+0xc at +0x140, .rodata+0x10 at +0x25c, .rodata+0x10 at +0x260, .rodata+0x14 at +0x278, .rodata+0x14 at +0x27c, .rodata+0x18 at +0x464, .rodata+0x18 at +0x474, .rodata+0x1c at +0x578, .rodata+0x1c at +0x588)",
+    "comparison": {
+      "differing": 163,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x40",
+        ".rodata+0x0 at +0x44",
+        ".rodata+0x4 at +0x48",
+        ".rodata+0x4 at +0x4c",
+        ".rodata+0x8 at +0x50",
+        ".rodata+0x8 at +0x54",
+        ".rodata+0xc at +0x128",
+        ".rodata+0xc at +0x140",
+        ".rodata+0x10 at +0x25c",
+        ".rodata+0x10 at +0x260",
+        ".rodata+0x14 at +0x278",
+        ".rodata+0x14 at +0x27c",
+        ".rodata+0x18 at +0x464",
+        ".rodata+0x18 at +0x474",
+        ".rodata+0x1c at +0x578",
+        ".rodata+0x1c at +0x588"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "f860b9941040dc14d0098e04792ab74d44d1ddb28da1cec9297a2a1bda6826c9",
+    "emitted_words": 392,
+    "aligned": {
+      "aligned_exact": 259,
+      "aligned_opcode": 363,
+      "aligned_opcode_reg": 307
+    },
+    "frame_bytes": 56
+  },
+  {
+    "variant": "native_locals_group",
+    "source_sha256": "f7ec5047a4dfce421f00f849afb3dd4f999cce6afd8cd8437c6bfc218f8f2698",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "group.c",
+    "accepted": false,
+    "canonical_verdict": "MATCH (16 section-relative relocations unverified: .rodata+0x0 at +0x40, .rodata+0x0 at +0x44, .rodata+0x4 at +0x48, .rodata+0x4 at +0x4c, .rodata+0x8 at +0x50, .rodata+0x8 at +0x54, .rodata+0xc at +0x128, .rodata+0xc at +0x140, .rodata+0x10 at +0x25c, .rodata+0x10 at +0x260, .rodata+0x14 at +0x278, .rodata+0x14 at +0x27c, .rodata+0x18 at +0x464, .rodata+0x18 at +0x474, .rodata+0x1c at +0x580, .rodata+0x1c at +0x590)",
+    "comparison": {
+      "differing": 0,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x40",
+        ".rodata+0x0 at +0x44",
+        ".rodata+0x4 at +0x48",
+        ".rodata+0x4 at +0x4c",
+        ".rodata+0x8 at +0x50",
+        ".rodata+0x8 at +0x54",
+        ".rodata+0xc at +0x128",
+        ".rodata+0xc at +0x140",
+        ".rodata+0x10 at +0x25c",
+        ".rodata+0x10 at +0x260",
+        ".rodata+0x14 at +0x278",
+        ".rodata+0x14 at +0x27c",
+        ".rodata+0x18 at +0x464",
+        ".rodata+0x18 at +0x474",
+        ".rodata+0x1c at +0x580",
+        ".rodata+0x1c at +0x590"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "d86b80f8ab24e13d99b4edf1005a0053901d90d9a901c07bda2d8c2014bca356",
+    "emitted_words": 396,
+    "aligned": {
+      "aligned_exact": 379,
+      "aligned_opcode": 395,
+      "aligned_opcode_reg": 395
+    },
+    "frame_bytes": 56
+  },
+  {
+    "variant": "reconstruction-literals",
+    "source_sha256": "c5949f5fb793824fc59f84fa7c2abd8fc60db1eda6c61825278d44ebbee7f5dd",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "literals.c",
+    "accepted": false,
+    "canonical_verdict": "166/395 words differ (16 section-relative relocations unverified: .rodata+0x0 at +0x40, .rodata+0x0 at +0x44, .rodata+0x4 at +0x48, .rodata+0x4 at +0x4c, .rodata+0x8 at +0x50, .rodata+0x8 at +0x54, .rodata+0xc at +0x128, .rodata+0xc at +0x140, .rodata+0x10 at +0x25c, .rodata+0x10 at +0x260, .rodata+0x14 at +0x278, .rodata+0x14 at +0x27c, .rodata+0x18 at +0x464, .rodata+0x18 at +0x474, .rodata+0x1c at +0x578, .rodata+0x1c at +0x588)",
+    "comparison": {
+      "differing": 166,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x40",
+        ".rodata+0x0 at +0x44",
+        ".rodata+0x4 at +0x48",
+        ".rodata+0x4 at +0x4c",
+        ".rodata+0x8 at +0x50",
+        ".rodata+0x8 at +0x54",
+        ".rodata+0xc at +0x128",
+        ".rodata+0xc at +0x140",
+        ".rodata+0x10 at +0x25c",
+        ".rodata+0x10 at +0x260",
+        ".rodata+0x14 at +0x278",
+        ".rodata+0x14 at +0x27c",
+        ".rodata+0x18 at +0x464",
+        ".rodata+0x18 at +0x474",
+        ".rodata+0x1c at +0x578",
+        ".rodata+0x1c at +0x588"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "9bdb326153761512f9b6ef28bc97b199f11f3a8884a4eb465225a2af7c7bd5cd",
+    "emitted_words": 392,
+    "aligned": {
+      "aligned_exact": 255,
+      "aligned_opcode": 368,
+      "aligned_opcode_reg": 309
+    },
+    "frame_bytes": 56
+  },
+  {
+    "variant": "reconstruction-loop_array_cast",
+    "source_sha256": "b4adf63b422039b78bb6df934b72999ef0c4f7794ea752f0c66ed954e1595b0a",
+    "flags": "group",
+    "source": "main.c",
+    "accepted": false,
+    "canonical_verdict": "21/395 words differ (16 section-relative relocations unverified: .rodata+0x0 at +0x40, .rodata+0x0 at +0x44, .rodata+0x4 at +0x48, .rodata+0x4 at +0x4c, .rodata+0x8 at +0x50, .rodata+0x8 at +0x54, .rodata+0xc at +0x128, .rodata+0xc at +0x140, .rodata+0x10 at +0x25c, .rodata+0x10 at +0x260, .rodata+0x14 at +0x278, .rodata+0x14 at +0x27c, .rodata+0x18 at +0x464, .rodata+0x18 at +0x474, .rodata+0x1c at +0x580, .rodata+0x1c at +0x590)",
+    "comparison": {
+      "differing": 21,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x40",
+        ".rodata+0x0 at +0x44",
+        ".rodata+0x4 at +0x48",
+        ".rodata+0x4 at +0x4c",
+        ".rodata+0x8 at +0x50",
+        ".rodata+0x8 at +0x54",
+        ".rodata+0xc at +0x128",
+        ".rodata+0xc at +0x140",
+        ".rodata+0x10 at +0x25c",
+        ".rodata+0x10 at +0x260",
+        ".rodata+0x14 at +0x278",
+        ".rodata+0x14 at +0x27c",
+        ".rodata+0x18 at +0x464",
+        ".rodata+0x18 at +0x474",
+        ".rodata+0x1c at +0x580",
+        ".rodata+0x1c at +0x590"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "d419fdc4d92d661aa76cc20131d8999ace241b7788590b98731a06d5987d826a",
+    "emitted_words": 396,
+    "aligned": {
+      "aligned_exact": 358,
+      "aligned_opcode": 395,
+      "aligned_opcode_reg": 395
+    },
+    "frame_bytes": 56
+  },
+  {
+    "variant": "reconstruction-loop_level_first",
+    "source_sha256": "5f6bc00bf8d62d1d2099007aa2f2a73ab1cfcd59560c9a85f63d18f6d21c9b17",
+    "flags": "group",
+    "source": "main.c",
+    "accepted": false,
+    "canonical_verdict": "22/395 words differ (16 section-relative relocations unverified: .rodata+0x0 at +0x40, .rodata+0x0 at +0x44, .rodata+0x4 at +0x48, .rodata+0x4 at +0x4c, .rodata+0x8 at +0x50, .rodata+0x8 at +0x54, .rodata+0xc at +0x128, .rodata+0xc at +0x140, .rodata+0x10 at +0x25c, .rodata+0x10 at +0x260, .rodata+0x14 at +0x278, .rodata+0x14 at +0x27c, .rodata+0x18 at +0x464, .rodata+0x18 at +0x474, .rodata+0x1c at +0x580, .rodata+0x1c at +0x590)",
+    "comparison": {
+      "differing": 22,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x40",
+        ".rodata+0x0 at +0x44",
+        ".rodata+0x4 at +0x48",
+        ".rodata+0x4 at +0x4c",
+        ".rodata+0x8 at +0x50",
+        ".rodata+0x8 at +0x54",
+        ".rodata+0xc at +0x128",
+        ".rodata+0xc at +0x140",
+        ".rodata+0x10 at +0x25c",
+        ".rodata+0x10 at +0x260",
+        ".rodata+0x14 at +0x278",
+        ".rodata+0x14 at +0x27c",
+        ".rodata+0x18 at +0x464",
+        ".rodata+0x18 at +0x474",
+        ".rodata+0x1c at +0x580",
+        ".rodata+0x1c at +0x590"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "2da7038569206b5599e4d65adf04e61873e075544139977f0998510b5667302c",
+    "emitted_words": 396,
+    "aligned": {
+      "aligned_exact": 357,
+      "aligned_opcode": 395,
+      "aligned_opcode_reg": 394
+    },
+    "frame_bytes": 56
+  },
+  {
+    "variant": "reconstruction-loop_native_order",
+    "source_sha256": "2a69593cffde67b4356e50268c65264c303b024dd932728d581736412709c334",
+    "flags": "group",
+    "source": "main.c",
+    "accepted": false,
+    "canonical_verdict": "28/395 words differ (16 section-relative relocations unverified: .rodata+0x0 at +0x40, .rodata+0x0 at +0x44, .rodata+0x4 at +0x48, .rodata+0x4 at +0x4c, .rodata+0x8 at +0x50, .rodata+0x8 at +0x54, .rodata+0xc at +0x128, .rodata+0xc at +0x140, .rodata+0x10 at +0x25c, .rodata+0x10 at +0x260, .rodata+0x14 at +0x278, .rodata+0x14 at +0x27c, .rodata+0x18 at +0x464, .rodata+0x18 at +0x474, .rodata+0x1c at +0x580, .rodata+0x1c at +0x590)",
+    "comparison": {
+      "differing": 28,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x40",
+        ".rodata+0x0 at +0x44",
+        ".rodata+0x4 at +0x48",
+        ".rodata+0x4 at +0x4c",
+        ".rodata+0x8 at +0x50",
+        ".rodata+0x8 at +0x54",
+        ".rodata+0xc at +0x128",
+        ".rodata+0xc at +0x140",
+        ".rodata+0x10 at +0x25c",
+        ".rodata+0x10 at +0x260",
+        ".rodata+0x14 at +0x278",
+        ".rodata+0x14 at +0x27c",
+        ".rodata+0x18 at +0x464",
+        ".rodata+0x18 at +0x474",
+        ".rodata+0x1c at +0x580",
+        ".rodata+0x1c at +0x590"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "a20ceb38f3978d7143982a5d90cc26b990acd616210875edfdf5801074221066",
+    "emitted_words": 396,
+    "aligned": {
+      "aligned_exact": 352,
+      "aligned_opcode": 390,
+      "aligned_opcode_reg": 389
+    },
+    "frame_bytes": 56
+  },
+  {
+    "variant": "reconstruction-loop_struct_cast",
+    "source_sha256": "8198f3a4a0fc93703cf95b74aa1bbf78bca351d657816053617be0b1b7e49a23",
+    "flags": "group",
+    "source": "main.c",
+    "accepted": false,
+    "canonical_verdict": "21/395 words differ (16 section-relative relocations unverified: .rodata+0x0 at +0x40, .rodata+0x0 at +0x44, .rodata+0x4 at +0x48, .rodata+0x4 at +0x4c, .rodata+0x8 at +0x50, .rodata+0x8 at +0x54, .rodata+0xc at +0x128, .rodata+0xc at +0x140, .rodata+0x10 at +0x25c, .rodata+0x10 at +0x260, .rodata+0x14 at +0x278, .rodata+0x14 at +0x27c, .rodata+0x18 at +0x464, .rodata+0x18 at +0x474, .rodata+0x1c at +0x580, .rodata+0x1c at +0x590)",
+    "comparison": {
+      "differing": 21,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x40",
+        ".rodata+0x0 at +0x44",
+        ".rodata+0x4 at +0x48",
+        ".rodata+0x4 at +0x4c",
+        ".rodata+0x8 at +0x50",
+        ".rodata+0x8 at +0x54",
+        ".rodata+0xc at +0x128",
+        ".rodata+0xc at +0x140",
+        ".rodata+0x10 at +0x25c",
+        ".rodata+0x10 at +0x260",
+        ".rodata+0x14 at +0x278",
+        ".rodata+0x14 at +0x27c",
+        ".rodata+0x18 at +0x464",
+        ".rodata+0x18 at +0x474",
+        ".rodata+0x1c at +0x580",
+        ".rodata+0x1c at +0x590"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "9c8a0375e6546edbdc116d3408aff4b5c748c7b25432756d326b38cc288bd36c",
+    "emitted_words": 396,
+    "aligned": {
+      "aligned_exact": 358,
+      "aligned_opcode": 395,
+      "aligned_opcode_reg": 395
+    },
+    "frame_bytes": 56
+  },
+  {
+    "variant": "reconstruction-typed_level_first",
+    "source_sha256": "93369c21f505609c6c9ba615a639ad6dd81f6756ac25446659b88233d01cb234",
+    "flags": "group",
+    "source": "main.c",
+    "accepted": false,
+    "canonical_verdict": "27/395 words differ (16 section-relative relocations unverified: .rodata+0x0 at +0x40, .rodata+0x0 at +0x44, .rodata+0x4 at +0x48, .rodata+0x4 at +0x4c, .rodata+0x8 at +0x50, .rodata+0x8 at +0x54, .rodata+0xc at +0x128, .rodata+0xc at +0x140, .rodata+0x10 at +0x25c, .rodata+0x10 at +0x260, .rodata+0x14 at +0x278, .rodata+0x14 at +0x27c, .rodata+0x18 at +0x464, .rodata+0x18 at +0x474, .rodata+0x1c at +0x580, .rodata+0x1c at +0x590)",
+    "comparison": {
+      "differing": 27,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x40",
+        ".rodata+0x0 at +0x44",
+        ".rodata+0x4 at +0x48",
+        ".rodata+0x4 at +0x4c",
+        ".rodata+0x8 at +0x50",
+        ".rodata+0x8 at +0x54",
+        ".rodata+0xc at +0x128",
+        ".rodata+0xc at +0x140",
+        ".rodata+0x10 at +0x25c",
+        ".rodata+0x10 at +0x260",
+        ".rodata+0x14 at +0x278",
+        ".rodata+0x14 at +0x27c",
+        ".rodata+0x18 at +0x464",
+        ".rodata+0x18 at +0x474",
+        ".rodata+0x1c at +0x580",
+        ".rodata+0x1c at +0x590"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "70c7fa7f87f8ff8282e23f296897a0830363404406f8947421b0a27c9bf38b5c",
+    "emitted_words": 396,
+    "aligned": {
+      "aligned_exact": 352,
+      "aligned_opcode": 395,
+      "aligned_opcode_reg": 395
+    },
+    "frame_bytes": 56
+  },
+  {
+    "variant": "reconstruction-typed_mask_first",
+    "source_sha256": "ba50445a69fb78ce9a792f361b8f67192ddec321c73cdcc9950443e615f06260",
+    "flags": "group",
+    "source": "main.c",
+    "accepted": false,
+    "canonical_verdict": "33/395 words differ (16 section-relative relocations unverified: .rodata+0x0 at +0x40, .rodata+0x0 at +0x44, .rodata+0x4 at +0x48, .rodata+0x4 at +0x4c, .rodata+0x8 at +0x50, .rodata+0x8 at +0x54, .rodata+0xc at +0x128, .rodata+0xc at +0x140, .rodata+0x10 at +0x25c, .rodata+0x10 at +0x260, .rodata+0x14 at +0x278, .rodata+0x14 at +0x27c, .rodata+0x18 at +0x464, .rodata+0x18 at +0x474, .rodata+0x1c at +0x580, .rodata+0x1c at +0x590)",
+    "comparison": {
+      "differing": 33,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x40",
+        ".rodata+0x0 at +0x44",
+        ".rodata+0x4 at +0x48",
+        ".rodata+0x4 at +0x4c",
+        ".rodata+0x8 at +0x50",
+        ".rodata+0x8 at +0x54",
+        ".rodata+0xc at +0x128",
+        ".rodata+0xc at +0x140",
+        ".rodata+0x10 at +0x25c",
+        ".rodata+0x10 at +0x260",
+        ".rodata+0x14 at +0x278",
+        ".rodata+0x14 at +0x27c",
+        ".rodata+0x18 at +0x464",
+        ".rodata+0x18 at +0x474",
+        ".rodata+0x1c at +0x580",
+        ".rodata+0x1c at +0x590"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "7e6d8e70be2c851d91ada1cc0541d8881aafb89cfda54d0e1d20dc428bd1dcc0",
+    "emitted_words": 396,
+    "aligned": {
+      "aligned_exact": 347,
+      "aligned_opcode": 390,
+      "aligned_opcode_reg": 390
+    },
+    "frame_bytes": 56
+  },
+  {
+    "variant": "reconstruction-typed_model",
+    "source_sha256": "0b7dd9cefec1692f1c2ffaacbf8cdbe67bfeb84aced4ba5d1db8a1b467a428c7",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "typed_model.c",
+    "accepted": false,
+    "canonical_verdict": "357/395 words differ",
+    "comparison": {
+      "differing": 357,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "ed195135aa3b371674d7cf48f7da3ec972674a4a4263205c73e50b8ee34a0845",
+    "emitted_words": 396,
+    "aligned": {
+      "aligned_exact": 204,
+      "aligned_opcode": 363,
+      "aligned_opcode_reg": 244
+    },
+    "frame_bytes": 56
+  },
+  {
+    "variant": "reuse_group",
+    "source_sha256": "9b5ad690f3c6f2c7a7b3b2646f96ecc877b5d0da5d3a6ca0a790c749914928f3",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "group.c",
+    "accepted": false,
+    "canonical_verdict": "28/395 words differ (16 section-relative relocations unverified: .rodata+0x0 at +0x40, .rodata+0x0 at +0x44, .rodata+0x4 at +0x48, .rodata+0x4 at +0x4c, .rodata+0x8 at +0x50, .rodata+0x8 at +0x54, .rodata+0xc at +0x128, .rodata+0xc at +0x140, .rodata+0x10 at +0x25c, .rodata+0x10 at +0x260, .rodata+0x14 at +0x278, .rodata+0x14 at +0x27c, .rodata+0x18 at +0x464, .rodata+0x18 at +0x474, .rodata+0x1c at +0x580, .rodata+0x1c at +0x590)",
+    "comparison": {
+      "differing": 28,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x40",
+        ".rodata+0x0 at +0x44",
+        ".rodata+0x4 at +0x48",
+        ".rodata+0x4 at +0x4c",
+        ".rodata+0x8 at +0x50",
+        ".rodata+0x8 at +0x54",
+        ".rodata+0xc at +0x128",
+        ".rodata+0xc at +0x140",
+        ".rodata+0x10 at +0x25c",
+        ".rodata+0x10 at +0x260",
+        ".rodata+0x14 at +0x278",
+        ".rodata+0x14 at +0x27c",
+        ".rodata+0x18 at +0x464",
+        ".rodata+0x18 at +0x474",
+        ".rodata+0x1c at +0x580",
+        ".rodata+0x1c at +0x590"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "14f2343008407fd1202c724593d715cceb9b6aa96d5c6deb19e3a91fb4ffda69",
+    "emitted_words": 396,
+    "aligned": {
+      "aligned_exact": 352,
+      "aligned_opcode": 390,
+      "aligned_opcode_reg": 389
+    },
+    "frame_bytes": 56
+  },
+  {
+    "variant": "samples2_group",
+    "source_sha256": "a7db7eabed3993bfcba93c296bd47bf3078e99fc1dfb3060fd37f0df1d2e3680",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "group.c",
+    "accepted": false,
+    "canonical_verdict": "49/395 words differ (16 section-relative relocations unverified: .rodata+0x0 at +0x40, .rodata+0x0 at +0x44, .rodata+0x4 at +0x48, .rodata+0x4 at +0x4c, .rodata+0x8 at +0x50, .rodata+0x8 at +0x54, .rodata+0xc at +0x128, .rodata+0xc at +0x140, .rodata+0x10 at +0x25c, .rodata+0x10 at +0x260, .rodata+0x14 at +0x278, .rodata+0x14 at +0x27c, .rodata+0x18 at +0x464, .rodata+0x18 at +0x474, .rodata+0x1c at +0x580, .rodata+0x1c at +0x590)",
+    "comparison": {
+      "differing": 49,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x40",
+        ".rodata+0x0 at +0x44",
+        ".rodata+0x4 at +0x48",
+        ".rodata+0x4 at +0x4c",
+        ".rodata+0x8 at +0x50",
+        ".rodata+0x8 at +0x54",
+        ".rodata+0xc at +0x128",
+        ".rodata+0xc at +0x140",
+        ".rodata+0x10 at +0x25c",
+        ".rodata+0x10 at +0x260",
+        ".rodata+0x14 at +0x278",
+        ".rodata+0x14 at +0x27c",
+        ".rodata+0x18 at +0x464",
+        ".rodata+0x18 at +0x474",
+        ".rodata+0x1c at +0x580",
+        ".rodata+0x1c at +0x590"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "54da2f34d7cf04ee7280429ed9bdec708d9b8a30d7a7a5cd8cb13b5e3bbcbdbe",
+    "emitted_words": 396,
+    "aligned": {
+      "aligned_exact": 331,
+      "aligned_opcode": 390,
+      "aligned_opcode_reg": 389
+    },
+    "frame_bytes": 64
+  },
+  {
+    "variant": "samples3_group",
+    "source_sha256": "0f3ea907695d59769c0e5bf13abf568974bc470e6deca26c06125d5509716b9c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "group.c",
+    "accepted": false,
+    "canonical_verdict": "38/395 words differ (16 section-relative relocations unverified: .rodata+0x0 at +0x40, .rodata+0x0 at +0x44, .rodata+0x4 at +0x48, .rodata+0x4 at +0x4c, .rodata+0x8 at +0x50, .rodata+0x8 at +0x54, .rodata+0xc at +0x128, .rodata+0xc at +0x140, .rodata+0x10 at +0x25c, .rodata+0x10 at +0x260, .rodata+0x14 at +0x278, .rodata+0x14 at +0x27c, .rodata+0x18 at +0x464, .rodata+0x18 at +0x474, .rodata+0x1c at +0x580, .rodata+0x1c at +0x590)",
+    "comparison": {
+      "differing": 38,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x40",
+        ".rodata+0x0 at +0x44",
+        ".rodata+0x4 at +0x48",
+        ".rodata+0x4 at +0x4c",
+        ".rodata+0x8 at +0x50",
+        ".rodata+0x8 at +0x54",
+        ".rodata+0xc at +0x128",
+        ".rodata+0xc at +0x140",
+        ".rodata+0x10 at +0x25c",
+        ".rodata+0x10 at +0x260",
+        ".rodata+0x14 at +0x278",
+        ".rodata+0x14 at +0x27c",
+        ".rodata+0x18 at +0x464",
+        ".rodata+0x18 at +0x474",
+        ".rodata+0x1c at +0x580",
+        ".rodata+0x1c at +0x590"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "dd5e82dd8b4b93499b60c3b09e15b73aed6f60168e0e33ea469e6fb0ed7ec76d",
+    "emitted_words": 396,
+    "aligned": {
+      "aligned_exact": 342,
+      "aligned_opcode": 390,
+      "aligned_opcode_reg": 389
+    },
+    "frame_bytes": 64
+  },
+  {
+    "variant": "samples4_group",
+    "source_sha256": "e7b9766df49460a03829bcb0b64d4247a510d2a5c3b0bf5074ccde182a93cb81",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "group.c",
+    "accepted": false,
+    "canonical_verdict": "57/395 words differ (16 section-relative relocations unverified: .rodata+0x0 at +0x40, .rodata+0x0 at +0x44, .rodata+0x4 at +0x48, .rodata+0x4 at +0x4c, .rodata+0x8 at +0x50, .rodata+0x8 at +0x54, .rodata+0xc at +0x128, .rodata+0xc at +0x140, .rodata+0x10 at +0x25c, .rodata+0x10 at +0x260, .rodata+0x14 at +0x278, .rodata+0x14 at +0x27c, .rodata+0x18 at +0x464, .rodata+0x18 at +0x474, .rodata+0x1c at +0x580, .rodata+0x1c at +0x590)",
+    "comparison": {
+      "differing": 57,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x40",
+        ".rodata+0x0 at +0x44",
+        ".rodata+0x4 at +0x48",
+        ".rodata+0x4 at +0x4c",
+        ".rodata+0x8 at +0x50",
+        ".rodata+0x8 at +0x54",
+        ".rodata+0xc at +0x128",
+        ".rodata+0xc at +0x140",
+        ".rodata+0x10 at +0x25c",
+        ".rodata+0x10 at +0x260",
+        ".rodata+0x14 at +0x278",
+        ".rodata+0x14 at +0x27c",
+        ".rodata+0x18 at +0x464",
+        ".rodata+0x18 at +0x474",
+        ".rodata+0x1c at +0x580",
+        ".rodata+0x1c at +0x590"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "9eef3008f441c9ff2ecba50c95fdc828f882bb7a6f1ce9a51932f1e7d2549db3",
+    "emitted_words": 396,
+    "aligned": {
+      "aligned_exact": 323,
+      "aligned_opcode": 390,
+      "aligned_opcode_reg": 389
+    },
+    "frame_bytes": 72
+  },
+  {
+    "variant": "thump_local_thresholds",
+    "source_sha256": "10db4e32742f50e8e20fc01602233d27a50995631953638a8d0404e6f2fe2959",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source": "thump_local_thresholds.c",
+    "accepted": false,
+    "canonical_verdict": "190/395 words differ",
+    "comparison": {
+      "differing": 190,
+      "total": 395,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "object_sha256": "c70ada3d8ca31d8f85469045aef7bc92fc27a8a9a6c6231ae57c4b6920fc67f1",
+    "emitted_words": 392,
+    "aligned": {
+      "aligned_exact": 248,
+      "aligned_opcode": 362,
+      "aligned_opcode_reg": 301
+    },
+    "frame_bytes": 72
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "source_sha256": "bbaa72f7a5f82452f96f0d73e6df4f8d0a7781b238e9d50afa7d52f0d1a288b0",
+  "manifest_sha256": "81c764078535adba21c664bc5de8f5208c87a06ba444e17be3857a672dfc93b4",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "comparisons": {
+    "stat_lap_split": {
+      "differing": 6,
+      "total": 152,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_800A61B0": {
+      "differing": 0,
+      "total": 37,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "verdict": "NONMATCH",
+  "all_source_sha256": {
+    "caller.c": "bbaa72f7a5f82452f96f0d73e6df4f8d0a7781b238e9d50afa7d52f0d1a288b0",
+    "matrix.c": "fbf873c145e3135d79efeaaf48984ac979c9d6d8d6287842b8e23e585ddc85a8",
+    "group.json": "81c764078535adba21c664bc5de8f5208c87a06ba444e17be3857a672dfc93b4"
+  }
+}

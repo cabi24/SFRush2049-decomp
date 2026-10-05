@@ -1,0 +1,2 @@
+func_800F8EC8
+car_setup_confirm

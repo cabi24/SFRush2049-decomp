@@ -1,0 +1,36 @@
+{
+  "status": "frozen exact complete native research; pending supported SDK split recipe/promotions",
+  "source": "cloud/work/static_C109/__scHandleRDP.c",
+  "source_sha256": "3f59450b23d52d1c5881a6b46b9a75da591db3be370a38e463d5ddb11d512966",
+  "flags": "/* flags: -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm */",
+  "target_id": "__scHandleRDP",
+  "original_address": "0x80000ACC",
+  "original_bytes": 216,
+  "true_symbol_bytes": 216,
+  "all_original_words_exact": 54,
+  "strict_including_stack": 0,
+  "frame_bytes": 40,
+  "object_section_bytes": 224,
+  "trailing_zero_section_padding_bytes": 8,
+  "masks": 0,
+  "unknown_unverified_relocations": 0,
+  "accepted_credit": 0,
+  "required_declarations": [
+    "extern s32 __scExecTask(OSSched *, OSScTask *);",
+    "extern s32 __scScheduleCore(OSSched *, OSScTask **, OSScTask **, s32);"
+  ],
+  "required_existing_context": [
+    "OSSched",
+    "OSScTask",
+    "__scExec"
+  ],
+  "context_hashes": {
+    "src/rom/rom_tu.h": "a7a1d4a1d9220b912b7ad0ec62bcd796e7abce207b9aa7f249339f18064de662",
+    "include/rom_auto.h": "19c91f4227b58dc67b9cf73d3046d5516ffea3133be6c1f61be3b3cea257d027",
+    "include/m2c_types.h": "93ab9028d3acf10515babd91636d6bd1c243110d1b70972d7758c83b65e932d0",
+    "include/types.h": "0c3169319a4e10b8a2c7d850791df9bafcf923b57411c64bfa6ca83bb639bf57",
+    "include/PR/os.h": "cd435b51c7aec3f5f6548081b90a2c179503ea81adaaf110f138774b46df6809",
+    "include/PR/os_message.h": "abcd94ab267e900fe34aa5d135de9bbea97b569ba92b28b603a05ee0990695df"
+  },
+  "provenance": "Independent complete native RDP task completion, informed by actual SDK sched.c __scHandleRDP control flow. Existing physical carrier offsets match native; both native assertion-condition checks preserved without invented failure payload. All four locals are actually consumed; no pressure/unused locals/formals/dummy calls/storage qualifiers/line shaping."
+}

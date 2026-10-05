@@ -16,10 +16,15 @@ def test_jal_decode_excludes_tail_and_indirect_calls():
 def test_current_native_identity_and_closed_direct_topology():
     fresh = audit.audit()
     saved = json.loads((PACKET / 'verification.json').read_text())
-    assert fresh['targets'] == saved['targets']
+    # The receipt is a dated record (2026-10-03). Since then func_800DE860 and
+    # the root itself were matched and spliced (2026-10-04, frontier waves 0/2),
+    # and the group source the packet used as accepted context was superseded,
+    # so live lock state and context identity are no longer compared.
+    live = lambda targets: {name: {k: v for k, v in facts.items() if k != 'accepted_lock_present'}
+                            for name, facts in targets.items()}
+    assert live(fresh['targets']) == live(saved['targets'])
     assert fresh['baseline_source_sha256'] == saved['baseline_source_sha256']
     assert fresh['claims'] == []
-    assert fresh['accepted_context_source_identical']
     root = fresh['targets']['render_large_objects']
     assert root['native_words'] == 1413
     assert root['entry_frame_bytes'] == 472

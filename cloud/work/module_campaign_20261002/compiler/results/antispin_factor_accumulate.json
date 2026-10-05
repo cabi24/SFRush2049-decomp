@@ -1,0 +1,14 @@
+{
+  "source_sha256": "04fbac23e48bf5dabe7240a03356223a7195d2982abd303ba39456ecbd7d8343",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "comparison": {
+    "differing": 40,
+    "total": 100,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "accepted": false,
+  "object_sha256": "e0b752954f1f6a48532465e33aafd15a80c7ce044afcd3f5210b0955ed23334f"
+}

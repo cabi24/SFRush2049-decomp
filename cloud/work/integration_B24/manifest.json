@@ -1,0 +1,14 @@
+{
+  "baseline_strict.json": "e220c734d5b60b8adad8c6a149ce43d1bd3f619af2c056ccf9dfac71d6ac7d41",
+  "context_hashes.json": "00add995ee9d3d943f4abd38477eb00cd2c22b94f14d156882ddd2e520b6673e",
+  "fresh_linked.json": "5e05cd640d543b4e82298f31d8c88aa2e2398f4a939d8f2408a649c16d35b67b",
+  "guard_provenance.json": "b8b1ed5381ab8ef7c59c67a97a26a8a8bc3fd6868e21ebfce6261ca0169f4b6f",
+  "linked_targets.json": "5d3b4fdff0e6868aa8365d3eaa8c54703e2f16c0ac9f1f0ce1f52d85cdb6c1f0",
+  "score_module.py": "4aa3bcf2b12a096fd5af033dab3b205aa71f822ee59f38cf0aba901625848d86",
+  "strict_verification.json": "281e6c31ba76072c3cbf48efeb3d359ac0c30ca274015ab60e9b7474d8ce0081",
+  "targets.patch": "cd1d9c1bc93e423c75d7d658aaeefc01f66c61559af4cde5044ac393b025756f",
+  "targets.py": "b7b64159337b8a6e3db99685851e2b12834abae0bcd74c7b98fe17a6199331c6",
+  "test_dll_init_alias.py": "69aeacda4e7808479078ded06b61f2fee701432ddb142e72076fa2210550f709",
+  "tests.json": "cbdca545a9f51b83b3d6bbc7f070906877a5291102f0d090237baa5afc8adfc9",
+  "verify_targets.py": "fa1b56728aa6d16085e8855a1e23ca6a4b89a63e765a126c715208f9bbfca28c"
+}

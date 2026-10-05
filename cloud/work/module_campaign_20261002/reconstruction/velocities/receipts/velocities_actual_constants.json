@@ -1,0 +1,23 @@
+{
+  "source_sha256": "3bf5dd45d576142a4050995a01a35afe29e6699a50bbb5f38ad8e0c9f16c5ee0",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "comparison": {
+    "differing": 199,
+    "total": 237,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0x14",
+      ".rodata+0x0 at +0x7c",
+      ".rodata+0x4 at +0x94",
+      ".rodata+0x4 at +0x98",
+      ".rodata+0x8 at +0xe0",
+      ".rodata+0x8 at +0xe4",
+      ".rodata+0xc at +0x120",
+      ".rodata+0xc at +0x124"
+    ],
+    "errors": [],
+    "extra_words": 0
+  },
+  "accepted": false,
+  "object_sha256": "86d35fd1b46f525bc673c2d0a434b452535bfb1fd0daec0659ea1d4d2e19b184"
+}

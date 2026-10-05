@@ -1,0 +1,23 @@
+{
+  "source_sha256": "cfbd02f8d6bbbc6ff8127fbc85a55c39c0fe332601963e249eccc7cb0f69583d",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-hud-compiler/candidates/root_m2c_input_group/group.c",
+  "accepted": false,
+  "canonical_verdict": "432/433 words differ (15 extra words (nonzero beyond target length))",
+  "comparison": {
+    "differing": 432,
+    "total": 433,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 15
+  },
+  "object_sha256": "eb24f71c14247e8f057e061dc46861e1458a9f44f97b0ce159d227eae8d0cf9b",
+  "emitted_words": 452,
+  "aligned": {
+    "aligned_exact": 87,
+    "aligned_opcode": 348,
+    "aligned_opcode_reg": 126
+  },
+  "frame_bytes": 168
+}

@@ -1,0 +1,27 @@
+{
+  "source_sha256": "1b67d203aad45d481dfc950b2108b216f715cb7ff9ef26c68d15a55a14e58fdc",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-visibility-compiler/candidates/actual_length_group/group.c",
+  "accepted": false,
+  "canonical_verdict": "293/294 words differ (38 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x0 at +0x168, .rodata+0x0 at +0x170)",
+  "comparison": {
+    "differing": 293,
+    "total": 294,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0x168",
+      ".rodata+0x0 at +0x170"
+    ],
+    "errors": [],
+    "extra_words": 38
+  },
+  "object_sha256": "33f120aabb6ab4cb38580a0f020edf1a148c9b35f4174485d18e4b9fe5e01566",
+  "emitted_words": 334,
+  "aligned": {
+    "aligned_exact": 28,
+    "aligned_opcode": 194,
+    "aligned_opcode_reg": 67
+  },
+  "frame_bytes": 112,
+  "source_mapping_erratum": "Pre-erratum source used wrong high-address aliases for count/fallback; true native globals are D_8011E748 and D_8011E75C. These receipts remain unaccepted and their source hashes refer to archived pre-correction controls."
+}

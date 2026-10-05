@@ -1,0 +1,7 @@
+C108 — full scheduler retrace source, frozen nonmatch
+
+Actual mapped __scHandleRetrace at80000880 is208 bytes/52 original words. It increments the real retrace counter, applies a pending framebuffer after at least2 unsigned retraces, calls the actual display helper, records/clears pending swap, and notifies each actual client queue with scheduler as the retrace message. Existing SDK types/declarations reference original globals only, no new data/BSS.
+
+The complete genuine SDK local-declaration replay is strict108. A bounded removal of obsolete scheduling state aligns both original zero-initialized sp/dp pointer homes at20/1C, yielding strict100. Both have exact48-byte frame but204 true bytes, one fewer word than the original. Native pendingSwap clear store precedes branch/nop; compiler schedules this store into the branch delay. Complete relocation resolution has zero masks/errors/unknowns; original target roundtrip succeeds. No fake locals/storage, volatile shaping, unused inputs, reflow or mask was used.
+
+Original SDK sched.c215-223 explicitly supplies rspTask/client/i/state/sp=0/dp=0. The actual N64 retrace no longer contains the task-drain/scheduling block; retained actual donor rspTask/i/sp/dp remain unused and are disclosed. Any eventual source acceptance must disclose this dependence under PROMPT rule7 and independently prove native placement. Current packets have zero accepted credit, and module flags/locks remain untouched.

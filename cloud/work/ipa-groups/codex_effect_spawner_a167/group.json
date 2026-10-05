@@ -1,0 +1,20 @@
+{
+  "members": [
+    "entity_physics_update",
+    "func_80090308"
+  ],
+  "context": [
+    "func_80090284"
+  ],
+  "files": [
+    "effects.c",
+    "allocator.c"
+  ],
+  "keep": [
+    "entity_physics_update",
+    "func_80090308",
+    "func_80090284"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}

@@ -1,0 +1,27 @@
+# Spatial visibility independent compiler audit
+
+Target physics_float_calc at 0x8009EBC0 has 294 executable words /1,176bytes, frame136, saved s0 and ra, and no native JAL. Native first argument is homed but unused; a1 points to three floats; a2 is the real force-visible flag. One direct caller at 0x8009F07C passes its integer player index, a position pointer at incoming base+36, and flag0. The target consumes no hidden incoming registers.
+
+The historical physics label is misleading. The body chooses a spatial104-byte cell using origin subtraction, asymmetric five-bound comparisons, XZ radius and a height adjustment. It chooses one of nineteen real16-byte mask rows and updates the high visibility bit of68-byte scene objects. The switch uses nineteen actual source-built jump-table entries. These require full protected data relocation before any acceptance claim.
+
+Native loads a local pointer at100sp when entering the switch. Every valid case overwrites it; the out-of-range case leaves it undefined. No default initialization is invented. The pointer-difference index is assigned to128sp but not later consumed; ordinary O1 genuinely retains this native assignment, while O2 removes it. Native explicit signed DIV104 includes divide-by-zero and signed-overflow guards, whereas a C typed pointer difference uses an internal constant division without those guards. A real consumed signed cell-byte stride in explicit byte-distance division and next-cell multiplication is therefore supported by native instructions.
+
+Ordinary baseline O1 produces64frame/336paddedwords/292differences+39extra/209alignedopcodes; O2/O3 produce104frame/336words/290differences+40extra/194opcodes. G2O2 produces64frame/384words/289differences+78extra. G3O2 and G3O1 preserve the same unsuccessful structures as ordinary levels.
+
+Actual accepted func_8009D444 is the six-word2D length helper and computes sqrtf(x*x+y*y). Its whole O3 source context, called with z then x, produces112frame/334words/293differences+38extra, giving no native frame lead. Full actual donor vecsub at reference/repos/rushtherock/game/vecmath.c:74 uses three postincremented subtraction stores. Combined genuine vecsub+length context produces40frame/336words/292differences+41extra. N64 inline ancestry for donor vecsub is a hypothesis; no fabricated source helper was used.
+
+The similarly named vector_diff_process is unsuitable: its complete native20-word body subtracts then calls the already-accepted3x3 transform800A61B0 using additional ABI state. It does not implement the XZ radius operation. No ordinary three-subtraction leaf was identified in the complete small native target inventory.
+
+No candidate is accepted. No pressure locals, padding, extra source operations, synthetic callee, tests, lock changes, image mutations or commit was introduced. Raw objects/assembly remain in ignored build/large_visibility_cell/compiler; source and numerical receipts are in this packet. Fresh isolated Rocky harness large-visibility-compiler copies only protected tools/asm and comparison scripts, with initially empty candidates/results. Toolkit hash796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5.
+
+## Address mapping erratum
+
+Fresh typed m2c exposed a baseline global-name error: the native signed negative offsets from LUI0x8012 place the count table and fallback mask at D_8011E748 and D_8011E75C. They are not D_8012E748/E75C. Every owned source context has been corrected. Previous numerical receipts are explicitly labeled pre-erratum and unaccepted; their historical source hashes should not be compared to corrected sources. They provide structural controls only and no accepted native address proof.
+
+## Correct-address fresh source controls
+
+The independently replayed repaired `reconstruction/native_fresh.c` has source SHA256242ec91a1a439f034a6766c4546c3a3c11beb1f4740124a644466f5ff67c8229. O1 emits80-frame/332-padded-words with214 aligned opcodes; O2 and standalone O3 emit120-frame/360-padded-words with218 opcodes. The true count/fallback globals are correct in these receipts. An actual whole O3 group with the already-accepted six-word func_8009D444 source raises the fresh frame to128 and emits358 words, retaining218 aligned opcodes. It does not provide a native frame match.
+
+Real `register` tail locals plus a consumed signed cell-byte stride improve the O1 structure to253 aligned opcodes,300 padded words and80-frame. Keeping the actual three floating temporary values in registers as the native f0/f2/f12 does produces255 aligned opcodes,292 padded words and80-frame. The latter source is `fresh_register_fp.c`, source SHA2569c098b345cf35fb493fe7fe942c7ddf7e5cf274cf19180edff897ed8a8255cf8. This remains288/294 full-word differences with an unverified source-built switch table; no match or coverage credit is claimed.
+
+A true three-element float subtraction array retains255 aligned opcodes under O1 but adds sixteen padded words (308 versus292); g2O2 on scalar and array versions falls to233 aligned opcodes. Compiling either real source through O1 frontend then the existing protected O3 group stages emits360 words with218/228 opcode alignment and fails. A bounded ordinary O1/as1-O3 pass-through is completely inert: the object hash is identical to ordinary O1. None explains the native136-byte frame. These are bounded source/flag ownership controls, not a register or line-number permutation search.

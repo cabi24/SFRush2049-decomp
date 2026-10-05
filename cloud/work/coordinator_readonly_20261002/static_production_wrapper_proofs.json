@@ -1,0 +1,344 @@
+[
+  {
+    "module": "lib_21f0",
+    "build_exit": 0,
+    "stderr": "",
+    "frozen_source_sha256": "d317f72691e70ba8828ab887b9d052d3116bc0e1503280ae5650defb1a863f57",
+    "members": [
+      {
+        "function": "display_update",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "function": "viewport_setup",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "function": "display_mode_tick",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "function": "get_tv_offset",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "function": "apply_display_mode",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "function": "get_viewport_pos",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "function": "get_viewport_offset",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "function": "update_viewport",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    ],
+    "object_sha256": "86db6c335e332168d27c5aa085a5157f54f7dfbf00757d67728c415363eb972d"
+  },
+  {
+    "module": "lib_2cf0",
+    "build_exit": 0,
+    "stderr": "",
+    "frozen_source_sha256": "5df96eee6916aa3b7bc6e138d15d7009c3b66a70d492ac7e2b74083624afc8f0",
+    "members": [
+      {
+        "function": "main",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "function": "idle_thread_entry",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "function": "game_init",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "function": "audio_thread_entry",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    ],
+    "object_sha256": "2c6fdb7f38fce125e3387658e269c374c507bbe5a103d36f8edc70a778c17d08"
+  },
+  {
+    "module": "lib_3140",
+    "build_exit": 0,
+    "stderr": "",
+    "frozen_source_sha256": "d1369ec5fdb2c1695f50e3b5c0ffa87e8a1c3ade62e938576f47fbb3bedc99db",
+    "members": [
+      {
+        "function": "dma_queue_init",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "function": "dma_wait",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "function": "dma_signal",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "function": "lzss_decompress",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "function": "inflate_decompress",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    ],
+    "object_sha256": "f429a922382f8314dec20d880a9a30ace5bade6324e018f91ea38dec79ab2fcd"
+  },
+  {
+    "module": "lib_3330",
+    "build_exit": 0,
+    "stderr": "",
+    "frozen_source_sha256": "3dfd0b5e503a207ed3b1ec991d34f32936dcf2c5627d611c8be64ba2f8bf1b66",
+    "members": [
+      {
+        "function": "memchr",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    ],
+    "object_sha256": "6de12d98bd7b3ba8862504b57e748ffe9e30923ffe176a6e9731de8a1323172f"
+  },
+  {
+    "module": "lib_34a0",
+    "build_exit": 0,
+    "stderr": "",
+    "frozen_source_sha256": "3278ec22c194616962c2e5ba6414da422336cced7ee5cd2f2f265dbb7916bd11",
+    "members": [
+      {
+        "function": "modf",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "function": "modff",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "function": "__isinf",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "function": "__isnan",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "function": "fcvt",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "function": "__ecvt_internal",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "function": "__round_helper",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "function": "__write_exponent",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      },
+      {
+        "function": "sprintf",
+        "differing_words": 0,
+        "delta": 0,
+        "missing_zero_padding": 0,
+        "extra_nonzero": 0,
+        "masks": 0,
+        "unresolved": [],
+        "unverified": [],
+        "errors": []
+      }
+    ],
+    "object_sha256": "8c4b94ae559d3d05cc0098eef29a4d62509d709337567a8124ad994a96be7e05"
+  }
+]

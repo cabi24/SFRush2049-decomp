@@ -1,0 +1,11 @@
+{
+  "boundary_proposal.patch": "8aa56201c8282dddd8903eac2a20a77b32cd691b3507bc4af64b973ec0d7b56c",
+  "hook_baselines.json": "651387623a4f682e28fe69d965510d22345dd66ca29319a4c846714e5725cee2",
+  "hooks.patch": "dbb42334837562a54e40c96d86129f5b88d8e45d3290b747f25f2d43b1b88aaa",
+  "osDpWait.original.s": "4046193b6369d644a1d90ed2a4d93d3e3b683b1d8d802e8fa753fbf6168699ed",
+  "owned_text.py": "f16346da7d121cb8f9934d5b4370f23322fe08e2c421e7022f6e0e3e2bf20d2c",
+  "private_rom_proof.json": "53b5dffe5ea5018483fd142cdaf88269b159ba4f1ab3d2ad31fd77c0a6e96c8b",
+  "test_owned_text.py": "01049ef9d34994033f0c0969fd87fe51bbd81d01e32ed9bc56d4bf279f42aeb5",
+  "tests.json": "8fd4e7452d78dae12e581aae09dd0423363992919c041957ad20633b738e9dc4",
+  "text_boundary_record.json": "2ece58ade7c96f9b077e2abd059dc6fac4b3e37f0a2d211798832c9bd4fe25c1"
+}

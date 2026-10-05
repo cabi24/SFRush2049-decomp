@@ -1,0 +1,31 @@
+{
+  "source_sha256": "d98f97b6e4e5f60be4abcd68af02fc70ea851dd7cbee3872d11eb1c0897b3c8d",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "object_sha256": "b71d2aaa1e90db59924e8eebf6ed99786ee625194842fc6388f90288f3b0b1ea",
+  "canonical": {
+    "checkpoint_hit": {
+      "differing": 128,
+      "total": 145,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "dust_cloud_effect": {
+      "differing": 127,
+      "total": 150,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "slot_state_setup": {
+      "differing": 18,
+      "total": 58,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

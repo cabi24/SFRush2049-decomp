@@ -1,0 +1,10 @@
+{
+  "status": "frozen honest nonmatch",
+  "source": "cloud/work/static_C118/viGetTimeToDeadline.c",
+  "source_sha256": "c5efbc43579cf347727d4e5fdfce26f62e27eeb8ce3cd317c6322c83df5e6ec2",
+  "proof": "cloud/work/static_C118/proof.json",
+  "native_extent_bytes": 68,
+  "true_symbol_extent_bytes": 52,
+  "accepted_credit": 0,
+  "constraint": "Existing VI g0/O2 pin and accepted neighbors preserved. No artificial extra returns or padding."
+}

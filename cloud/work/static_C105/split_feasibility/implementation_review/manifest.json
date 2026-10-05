@@ -1,0 +1,67 @@
+{
+  "status": "frozen final isolated implementation; no real split/pin/promotion/commit",
+  "clone": "/tmp/rush-static-layout-split-C-20261002",
+  "branch": "codex/static-layout-split-20261002",
+  "head": "148f5ac97228cb679cb46f0308746b86be55c5f9",
+  "files": [
+    {
+      "path": "tools/conveyor/pipeline/layout_split.py",
+      "sha256": "cb3c6376c560b1899de7c497816f4be582196750150f3467421bd8da1904d6e8",
+      "bytes": 16711
+    },
+    {
+      "path": "tools/conveyor/pipeline/layout.py",
+      "sha256": "684d3b628919983065752948f0c68b77634c52e132c08332ccbd206b9ec1183b",
+      "bytes": 24804
+    },
+    {
+      "path": "tests/conveyor/unit/test_layout_split.py",
+      "sha256": "529f43405691d4666d878348105ade508cdfd71f293adb402a62f076e978a1e7",
+      "bytes": 14652
+    },
+    {
+      "path": "specs/004-promotion-splicing/contracts/layout-map.md",
+      "sha256": "1817e4fa9f3d06be160814fac8436f119528be4153a56216a676513b7e00f5c7",
+      "bytes": 4691
+    }
+  ],
+  "tests": [
+    {
+      "name": "regressions",
+      "exit": 0,
+      "passed": 127,
+      "skipped": 0,
+      "log": "/tmp/rush-C-layout-split-final-reviewed-regressions.log",
+      "exit_file": "/tmp/rush-C-layout-split-final-reviewed-regressions.exit"
+    },
+    {
+      "name": "full-suite",
+      "exit": 0,
+      "passed": 817,
+      "skipped": 572,
+      "log": "/tmp/rush-C-layout-split-final-reviewed-full-suite.log",
+      "exit_file": "/tmp/rush-C-layout-split-final-reviewed-full-suite.exit"
+    }
+  ],
+  "command": "python3 -m tools.conveyor.pipeline.layout split 0x1050 0x1f50 --new-tu rom/lib_1050_sdk --keep suffix",
+  "expected_geometry": {
+    "sdk_prefix_slots": 13,
+    "sdk_prefix_bytes": 3840,
+    "vi_suffix_slots": 9,
+    "vi_suffix_bytes": 672,
+    "static_slots": 230,
+    "static_bytes": 61440
+  },
+  "accepted_credit": 0,
+  "review_guards": [
+    "exactly one standard rom_tu.h context include",
+    "all original slot geometry/states/coverage counters",
+    "all original assembly words/symbol file",
+    "unchanged locks/protected context/accepted flags",
+    "affected or foreign physical owned-range refusal",
+    "normal SPLAT generation; moved asm cleanup",
+    "rollback all supported output surfaces including linker sidecars on BaseException"
+  ],
+  "independent_full_rom_gate_required": true,
+  "submodule_note": "Pinned toolkit submodules initialized locally from acceptance clone. Existing mips_to_c working changes inherited from acceptance clone; not feature edits."
+}

@@ -1,0 +1,17 @@
+{
+  "members": [
+    "voice_stop_2"
+  ],
+  "context": [
+    "format_string_parse",
+    "audio_bus_mix"
+  ],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "audio_bus_mix"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

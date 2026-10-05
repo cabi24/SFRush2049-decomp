@@ -1,0 +1,12 @@
+{
+  "exit_code": 0,
+  "passed": 58,
+  "new_cases": 10,
+  "existing_cases": 48,
+  "suites": [
+    "new owned_text tests",
+    "existing owned_data tests",
+    "existing layout tests"
+  ],
+  "portable_without_committed_rom": true
+}

@@ -1,0 +1,30 @@
+{
+  "group": "codex_init_countdown_a160",
+  "source_hashes": {
+    "init.c": "c8591efe72e1b67f4bcc5bf575c0d5e694c66e3db0397af59086298f7e6ba311",
+    "countdown.c": "4e048c2c33c46822763268fc13adfa555aeaff7d4c05cf0495e3c57bfc4f6180"
+  },
+  "manifest_sha256": "bb51990f623bc57667d4b3c1c3064d398dbd51d661a7f1aa85503514a94080b6",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "result": "NONMATCH",
+  "description": "Complete genuine six-slot resource initialization and unchanged actual countdown caller. Original initialization is zero-input and writes unsaved s0-s8; no unused formal or artificial register pressure added.",
+  "comparisons": {
+    "init_state_continue": {
+      "differing": 171,
+      "total": 178,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 8
+    },
+    "countdown": {
+      "differing": 650,
+      "total": 668,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 4
+    }
+  }
+}

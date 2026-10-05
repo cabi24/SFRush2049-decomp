@@ -1,0 +1,10 @@
+{
+  "claims": [],
+  "files": {
+    "cloud/work/ipa-groups/codex_menu_entry_b126/context.c": "2c04dd1f670b9e613af9dcb910ce487d48670628e80a2727c156e82411371aa0",
+    "cloud/work/ipa-groups/codex_menu_entry_b126/wrapper.c": "b5c06df3f10a0857d8d2e921973ab79818919f89d3b24b0f2205bf862f383cea",
+    "cloud/work/ipa-groups/codex_menu_entry_b126/group.json": "06b5a8ee40e4c2d479f5b1e1172d8d071b01e44390a91de05efd5242090960e7",
+    "cloud/work/ipa-groups/codex_menu_entry_b126/verification.json": "2774e375d7a6824cc38df88ebf8d102cf0d85318c9fa2d4eacdd3f608e3aaa05",
+    "cloud/work/ipa-groups/codex_menu_entry_b126/STATUS.md": "5945711bce52781319f7a86a4287b0a5129014ce0c2cdbd0489f746dc1b68227"
+  }
+}

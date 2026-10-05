@@ -1,0 +1,17 @@
+{
+  "function": "audio_dsp_process",
+  "source_sha256": "da90c16d7db94a42b3b07c71188e30efa5c4c6e362321a25e65fcd15c292893c",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "target_manifest_sha256": "6ffda622b1aed921d85aa20d3996959aa69a433cbca46e0b83d98ad13e3bd6e8",
+  "expected_bytes": 388,
+  "canonical_verdict": "MATCH",
+  "object_accepted": true,
+  "linked": {
+    "differing": 0,
+    "total": 97,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  }
+}

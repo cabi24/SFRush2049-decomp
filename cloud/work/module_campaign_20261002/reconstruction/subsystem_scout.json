@@ -1,0 +1,47 @@
+{
+  "accepted": false,
+  "coverage_credit": 0,
+  "preferred_next": {
+    "function": "anim_state_update",
+    "address": "0x8008D93C",
+    "bytes": 1840,
+    "words": 460,
+    "donor": "reference/repos/rushtherock/game/visuals.c:AnimateTire (1869-1963)",
+    "prior_work": "Initial read-only scout only; no full bespoke caller source found in archive filenames. Complete wrappers need genuine context; no compilation performed by this scout.",
+    "main_abi": "Visual pointer and signed halfword operation; frame224; saved s0 and ra",
+    "callee_context": {
+      "model_bounds_calc@8008B26C": "18 words; actual s0 Boolean and a3 Visual pointer; five caller identities including private matrix_scale_apply",
+      "matrix_scale_apply@8008D8D8": "25 words; actual t0 Visual pointer, s0 Boolean and a3 part; called by tire, entity_anim_texture, buffer_swap, drone_ai_update",
+      "rand@8008B2B4": "Accepted actual12-word ANSI rand body used inline in native tire",
+      "matrix_helpers": "Actual D870,D6FC and euler_to_matrix helpers accepted; native formals must be audited from call sites"
+    },
+    "new_lever": "Direct donor real position/matrix/angles arrays and repeated original Random expressions instead of a scalar native seed. Full original wrapper closure may be costly; do not treat hidden conventions as ordinary."
+  },
+  "rejected_or_frozen": [
+    {
+      "family": "road/stree C6404/C6AA0",
+      "bytes": [
+        1468,
+        1564
+      ],
+      "reason": "N64 compressed collision mesh helpers require archived hidden-register polygon closure AD4C8/C3AD0, not direct simple stree donor."
+    },
+    {
+      "family": "road CF06C/CF374",
+      "bytes": [
+        548,
+        656
+      ],
+      "reason": "Existing complete donor bodies and real matrix context plateaus; no new array control."
+    },
+    {
+      "family": "initiali carsetup/initialize",
+      "reason": "D0BA0/D14F4 already accepted."
+    },
+    {
+      "family": "surface impulse E1F80",
+      "bytes": 1060,
+      "reason": "One fresh true mph conversion control inert; separate packet frozen."
+    }
+  ]
+}

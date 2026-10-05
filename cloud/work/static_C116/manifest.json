@@ -1,0 +1,19 @@
+{
+  "status": "frozen complete native exact, ordinary root lock/promotion/ROM gates pending",
+  "source": "cloud/work/static_C116/__scHandlePreNMI.c",
+  "source_sha256": "818610cf01e275a45241de72ed9a9f325777a41c194271c2aa51dda9c896bcaf",
+  "flags": "/* flags: -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm */",
+  "target_id": "__scHandlePreNMI",
+  "original_address": "0x80000F88",
+  "original_bytes": 96,
+  "true_symbol_bytes": 96,
+  "original_words_exact": 24,
+  "strict_including_stack": 0,
+  "frame_bytes": 24,
+  "section_bytes": 96,
+  "masks": 0,
+  "unknown_unverified_relocations": 0,
+  "accepted_credit": 0,
+  "required_new_declarations": [],
+  "provenance": "Existing actual SDK __scYield graphics-task preemption flow, including genuine SC_LOGGING-only empty else in nonlogging build. New supported prefix g1/O1 evidence solves old C50 g0/O0 refusal; current unchanged OSSched/OSScTask carriers. All one input consumed, no extra locals/work/qualifier/formals/pressure/source tricks."
+}

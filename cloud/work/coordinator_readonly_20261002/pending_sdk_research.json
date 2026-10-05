@@ -1,0 +1,32 @@
+{
+  "accepted_credit": 0,
+  "independent_exact_objects": [
+    {
+      "function": "osScAddClient",
+      "bytes": 104,
+      "proof": "C67_independent.json"
+    },
+    {
+      "function": "__scTaskReady",
+      "bytes": 176,
+      "proof": "C105_independent.json"
+    }
+  ],
+  "additional_static_bytes_only_if_full_acceptance_succeeds": 280,
+  "production_blocker": "Current combined SDK/VI TU has O2-locked accepted VI source. Explicit validated natural boundary split is being implemented separately; unchanged baseline full-ROM must pass first. No accepted source/layout/pin changes yet.",
+  "production_source_proposals": [
+    {
+      "function": "__scTaskReady",
+      "source_sha256": "90c30cb4706773bde0308965e90ab920d142ab0f08c5248fde8290a7a1ee186d",
+      "proof": "C105_production_proposal_independent.json"
+    },
+    {
+      "function": "osScAddClient",
+      "source_sha256": "1e42e45f9d0301f49565857514547c77e475d123ad6f93ae0884850caf1a34fa",
+      "proof": "C67_production_proposal_independent.json"
+    }
+  ],
+  "proposed_flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm",
+  "proposed_type_context": "Use original project OSSched and OSScTask types from unchanged common SDK headers; additional declarations only.",
+  "proposal_header_sha256": "219d648c5e446eec9670963126356f9f6537931ae534055dd5bab5da378a54fc"
+}

@@ -1,0 +1,3 @@
+object_create
+object_byte9_set
+func_80096288

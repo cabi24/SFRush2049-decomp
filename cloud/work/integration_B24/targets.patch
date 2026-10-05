@@ -1,0 +1,11 @@
+--- a/tools/conveyor/pipeline/targets.py
++++ b/tools/conveyor/pipeline/targets.py
+@@ -643,7 +643,7 @@
+ def _typed_data_field_aliases(lines, target_id):
+     """Equivalent SDK field relocations, guarded by types and all addresses."""
+     relationships = []
+-    if target_id == "osGetTime":
++    if target_id in ("osGetTime", "dll_init"):
+         offsets = _sdk_field_offsets("time")
+         if offsets is not None:
+             relationships = [("gViTimeAccumLo", "gViTimeAccumHi", offsets["low_word"])]

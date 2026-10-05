@@ -1,0 +1,29 @@
+{
+  "members": [
+    "func_8008B640",
+    "physics_velocity_integrate_a"
+  ],
+  "context": [
+    "model_bounds_calc",
+    "physics_velocity_integrate_b",
+    "physics_velocity_integrate_c",
+    "physics_velocity_integrate_d",
+    "physics_velocity_integrate_e",
+    "physics_velocity_integrate_f",
+    "vector_normalize_length"
+  ],
+  "claims": [],
+  "files": [
+    "group.c",
+    "basis.c"
+  ],
+  "keep": [
+    "vector_normalize_length",
+    "physics_velocity_integrate_b",
+    "physics_velocity_integrate_c",
+    "physics_velocity_integrate_d",
+    "physics_velocity_integrate_e",
+    "physics_velocity_integrate_f"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

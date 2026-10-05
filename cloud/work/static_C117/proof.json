@@ -1,0 +1,28 @@
+{
+  "target_id": "__scExec",
+  "original_target_roundtrip": [
+    true,
+    null
+  ],
+  "accepted_credit": 0,
+  "results": [
+    {
+      "source": "cloud/work/static_C117/__scExec.c",
+      "source_sha256": "00344ac243d38672c002b97f2c4523694cf396362ab16da738b5a91d74de1e5c",
+      "flags": "/* flags: -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm */",
+      "object_sha256": "da46c0d0d21cba3561693d29789459032fc2df8a553c6f3c0260d03ac279fe28",
+      "canonical_strict_including_stack": 775,
+      "original_bytes": 360,
+      "true_symbol_bytes": 376,
+      "emitted_text_bytes": 384,
+      "frame_bytes": 32,
+      "full_word_differences": 68,
+      "extra_nonzero_words": 3,
+      "masks": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "full_native_match": false
+    }
+  ]
+}

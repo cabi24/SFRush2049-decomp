@@ -1,0 +1,12 @@
+{
+  "claims": [],
+  "files": {
+    "cloud/work/near_miss_B136/attract_or_transition_O2.c": "dcacee70be9e3278928ff07e5b3dcc5d1a943f21b784a56c596f34d4eacb43ee",
+    "cloud/work/near_miss_B136/attract_or_transition_dispatch.c": "f08c2def8023ac47c89272ac18ad6bfe46c9b5a7b65feaed72e051334289c262",
+    "cloud/work/near_miss_B136/attract_or_transition_gfx.c": "c70d468f1e55b30dde3bcd0b1bb4496db9a6ebbccd5b43ab0ddbea026d1fc796",
+    "cloud/work/near_miss_B136/attract_or_transition_native.c": "b98499de6a92f124c81529012be9cc4c754c6e321bf6b1a8605ee16d7dd5da79",
+    "cloud/work/near_miss_B136/attract_or_transition_scoped.c": "5ac3705ce00803742a8b323db6c9354b2523303b967b4d1169de3ee80e2be614",
+    "cloud/work/near_miss_B136/verification.json": "caa06d07c7be4bff02c5265b4f1b0cfacf8979b114f8fa33525886496a575dfe",
+    "cloud/work/near_miss_B136.md": "6d13684fa018711f056a24c3db13d1c4c166a8687fb542e49f97e9019615d97b"
+  }
+}

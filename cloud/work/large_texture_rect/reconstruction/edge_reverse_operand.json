@@ -1,0 +1,23 @@
+{
+  "source_sha256": "a49599156e9240961c5f5bdd2342736e397d8ae07049ea7d4337620fe4f09dcf",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-unlock-compiler/candidates/texture_reconstruction/edge_reverse_operand.c",
+  "accepted": false,
+  "canonical_verdict": "4/445 words differ",
+  "comparison": {
+    "differing": 4,
+    "total": 445,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "53bcbfe6d01cc86d79a47c43335ffafd213972753ef4e1f52472f2a01ef966f2",
+  "emitted_words": 448,
+  "aligned": {
+    "aligned_exact": 444,
+    "aligned_opcode": 444,
+    "aligned_opcode_reg": 444
+  },
+  "frame_bytes": 32749
+}

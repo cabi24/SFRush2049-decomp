@@ -1,0 +1,18 @@
+{
+  "object": "build/C120/group.o",
+  "object_sha256": "6a6ad6bdfbe40de692fc3d9d5bb83a44c2103464ebafb2c885c90d48a9103ce8",
+  "results": [
+    {
+      "name": "func_800D1AB0",
+      "slot_bytes": 560,
+      "true_symbol_bytes": 600,
+      "refusal": "func_800D1AB0: 10 extra words (nonzero beyond target length)"
+    },
+    {
+      "name": "func_800F8EC8",
+      "slot_bytes": 1024,
+      "true_symbol_bytes": 932,
+      "refusal": "func_800F8EC8: compiled body is 936 bytes, shorter than the 1024-byte extent"
+    }
+  ]
+}

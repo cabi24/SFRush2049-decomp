@@ -1,0 +1,62 @@
+{
+  "object_create": {
+    "slot": {
+      "kind": "function",
+      "size": 112,
+      "target_id": "object_create",
+      "vaddr": 2148221680
+    },
+    "locked": {
+      "main": false,
+      "private": false
+    }
+  },
+  "slot_state_setup": {
+    "slot": {
+      "kind": "function",
+      "size": 232,
+      "target_id": "slot_state_setup",
+      "vaddr": 2148221440
+    },
+    "locked": {
+      "main": false,
+      "private": false
+    }
+  },
+  "sound_update_channel": {
+    "slot": {
+      "kind": "function",
+      "size": 488,
+      "target_id": "sound_update_channel",
+      "vaddr": 2148220184
+    },
+    "locked": {
+      "main": false,
+      "private": false
+    }
+  },
+  "func_80096288": {
+    "slot": {
+      "kind": "function",
+      "size": 16,
+      "target_id": "func_80096288",
+      "vaddr": 2148098696
+    },
+    "locked": {
+      "main": true,
+      "private": true
+    }
+  },
+  "object_byte9_set": {
+    "slot": {
+      "kind": "function",
+      "size": 64,
+      "target_id": "object_byte9_set",
+      "vaddr": 2148221376
+    },
+    "locked": {
+      "main": true,
+      "private": true
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "claims": [],
+  "frozen_b109_prefix_sha256": "98c6a7ce0d7d4b5edfe60b51228dc6eb60687aab5af263246f2f1195e03c881a",
+  "files": {
+    "cloud/work/ipa-groups/codex_visual_motion_scoped_b137/anim_tire_donor.c": "b79cd0a8ca703c9f11f152b4a464fcb0f74159393ddd05db7df958b2ce49e17b",
+    "cloud/work/ipa-groups/codex_visual_motion_scoped_b137/entity_anim_texture.c": "59ddd98fadeb2567e12fd51ff00463c2f5b624669dac5eb2d3d8cb0486753424",
+    "cloud/work/ipa-groups/codex_visual_motion_scoped_b137/group.c": "db9f87089a4df7a486c6c8b85aa55c44b874d19a5522f031ccc89061045e9479",
+    "cloud/work/ipa-groups/codex_visual_motion_scoped_b137/rand.c": "4d7d62f78adb32386a21ce11790ee88054be058b7f08bfc6214ff68011a3628b",
+    "cloud/work/ipa-groups/codex_visual_motion_scoped_b137/visibility_wrappers.c": "f0822deb546dc3e5471f93b68210c712f69873fd26d99925a285d9eb532e7050",
+    "cloud/work/ipa-groups/codex_visual_motion_scoped_b137/group.json": "4daeb7dbde792473614dd57afe4aaf3a3fccc1a94807daf85a483170d93bd22a",
+    "cloud/work/ipa-groups/codex_visual_motion_scoped_b137/verification.json": "b89eefd1d04ec35db094821d6b751a4181238266dcfcad350d6137e26e4f4655",
+    "cloud/work/near_miss_B137.md": "3ab7139c1ad59a64f2f6e2d3f86d0079326f0f85e815c88ce744d4d342efe4ba"
+  }
+}

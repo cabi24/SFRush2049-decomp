@@ -1,0 +1,16 @@
+{
+  "source_sha256": "e4d770042b7fb90b905586ee2cab06543a746f7e33aa0d906a53cfdbbefef8ba",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "compile_exit": 0,
+  "stderr": "",
+  "stdout": "",
+  "claims": [],
+  "strict_score": 0,
+  "raw_word_differences": 0,
+  "original_words": 4,
+  "native_words": 4,
+  "symbol_offsets": {
+    "sqrtf": 0
+  },
+  "object_sha256": "6a0a1a47c30132053325fa2f5f60ea40eb0c1f3b60e6c730c65d0c2bec5eb86e"
+}

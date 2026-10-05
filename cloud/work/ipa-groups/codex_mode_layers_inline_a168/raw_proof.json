@@ -1,0 +1,15 @@
+{
+  "source_sha256": "099ac1306bc54a6a055a80e34a31a44b02dfbe51f282a361607291394acfd322",
+  "manifest_sha256": "3d57df4f99444cd87fda13f917e39629d5a0def4f3500dcbd2b339545b28cf4f",
+  "object_sha256": "7d53fb55c8e89a6b1882bb414c42d6d78e51b5a461d20eac45b0cbf8fc780762",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "exact_functions": {
+    "mode_select_input": {
+      "words": 38,
+      "bytes": 152,
+      "unmasked_exact": true
+    }
+  },
+  "unclaimed_nonmatches": []
+}

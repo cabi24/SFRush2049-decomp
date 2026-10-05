@@ -1,0 +1,14 @@
+{
+  "source_sha256": "3a9db271ed6afcf84296179e815072a8335d1d2a2da046c16772f67accff1d73",
+  "canonical_verdict": "MATCH",
+  "canonical": {
+    "differing": 0,
+    "total": 45,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "expected_bytes": 180,
+  "accepted_credit": false
+}

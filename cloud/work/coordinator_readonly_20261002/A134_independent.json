@@ -1,0 +1,17 @@
+{
+  "function": "race_init_helper",
+  "source_sha256": "7b136851ee5e0ad7de78e97ffb8fc3329f69f23e51cd0a5279f1dba2b83b9641",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "target_manifest_sha256": "6ffda622b1aed921d85aa20d3996959aa69a433cbca46e0b83d98ad13e3bd6e8",
+  "expected_bytes": 180,
+  "canonical_verdict": "MATCH",
+  "object_accepted": true,
+  "linked": {
+    "differing": 0,
+    "total": 45,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  }
+}

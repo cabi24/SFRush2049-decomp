@@ -1,0 +1,62 @@
+[
+  {
+    "source": "audio_mixer_main_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "f40b473124c182639353caeb55a3f3044fff1c61e768a3401ed7cb53c56e3550",
+    "object_sha256": "d5e5367fb7381a96be549dd84289c462150187d45a428a7fd60513d1d3523a2d",
+    "comparison": {
+      "differing": 155,
+      "total": 183,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 184
+  },
+  {
+    "source": "audio_mixer_main_views.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "9b88a3a350a1df3ace1b5493e3f7d7aa83a80e9964bcdd7c34688f57604cc61f",
+    "object_sha256": "097aa5cf0438a9edb75d772c1e34225b5af3b4fe15df62e221487678d084bc94",
+    "comparison": {
+      "differing": 175,
+      "total": 183,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 4
+    },
+    "text_words": 188
+  },
+  {
+    "source": "audio_mixer_main_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "5ca92654aaa99ce33ec112a55102836a3ff3cbca3771eec9c0b0aa924ff91d3d",
+    "object_sha256": "ecb60f2fccd1725ea862ce8e283750ac394ae05436f6c9c8ee63806e8c46a076",
+    "comparison": {
+      "differing": 155,
+      "total": 183,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 184
+  },
+  {
+    "source": "audio_mixer_main_routes.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "aef6eb7b241a3c1824b24eb0c910564a8d9cf682b05d5fc74101c04446dbc272",
+    "object_sha256": "7bc14f3ccb4a38c48612d67f9d43936447c4b99a12ce060235e8eb8481d2166c",
+    "comparison": {
+      "differing": 150,
+      "total": 183,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 184
+  }
+]

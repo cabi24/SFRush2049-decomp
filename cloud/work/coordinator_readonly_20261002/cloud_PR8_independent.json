@@ -1,0 +1,23 @@
+{
+  "source_sha256": "6c538f6747f3a45db0f34e9ff96270cc1c1cfcef6e5b8d3b3568da2063a51f88",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "canonical": {
+    "func_8008C680": {
+      "differing": 0,
+      "total": 40,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_8008C5E0": {
+      "differing": 0,
+      "total": 40,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "object_sha256": "52276cb32a1b21a824aa539137449897eb7f6dafec8055640b32531e1097d4c0"
+}

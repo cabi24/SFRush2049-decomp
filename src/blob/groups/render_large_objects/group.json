@@ -1,20 +1,16 @@
 {
-  "members": [
-    "func_800F92C8"
-  ],
-  "files": [
-    "group.c"
-  ],
-  "keep": [
-    "render_large_objects",
-    "func_800DE860"
-  ],
-  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
-  "generated": "hand-written from the assembly (cloud hail-mary + round 5); see STATUS.md",
-  "unprototyped": [],
-  "context": [
-    "func_800DE860",
-    "render_large_objects"
-  ],
-  "provenance": "cloud rounds 4-5 (PR #6), cloud/work/ipa-groups/render_large_objects"
+ "members": [
+  "func_800F92C8",
+  "render_large_objects"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "render_large_objects"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "provenance": "frontier wave 2 (w2j), 2026-10-04; cloud/work/frontier/w2j/RESULTS.md"
 }

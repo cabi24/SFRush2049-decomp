@@ -1,0 +1,23 @@
+{
+  "source_sha256": "5705c152ceb4544cf265111e6ff5eeb08ddf7f74c1642677893e54fe6748086d",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-unlock-compiler/candidates/texture_reconstruction/stretch_vertical_first.c",
+  "accepted": false,
+  "canonical_verdict": "388/445 words differ",
+  "comparison": {
+    "differing": 388,
+    "total": 445,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "171d186998205db11dc6905410dfb8e1d558b2df7c50e072a9a3ae2b9e44f801",
+  "emitted_words": 444,
+  "aligned": {
+    "aligned_exact": 256,
+    "aligned_opcode": 419,
+    "aligned_opcode_reg": 275
+  },
+  "frame_bytes": 32749
+}

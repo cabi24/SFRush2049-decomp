@@ -1,0 +1,183 @@
+# San Francisco Rush 2049 (N64) - US Version
+# Splat configuration for ROM extraction and decompilation
+
+name: San Francisco Rush 2049 (US)
+sha1: 3f99351d7bb61656614bdb2aa1a90cfe55d1922c
+
+options:
+  basename: rush2049
+  target_path: baserom.us.z64
+  elf_path: build/us/rush2049.us.elf
+  base_path: .
+  platform: n64
+  compiler: IDO  # Likely IDO 5.3 or 7.1
+
+  # Output paths
+  asm_path: asm/us
+  src_path: src
+  build_path: build/us
+  asset_path: assets/us
+  cache_path: .splat_cache
+
+  # Build settings
+  create_asm_dependencies: True
+  ld_script_path: rush2049.us.ld
+  ld_dependencies: True
+
+  # Analysis settings
+  find_file_boundaries: True
+  header_encoding: ASCII
+
+  # Compiler/assembler settings
+  o_as_suffix: True
+  use_legacy_include_asm: False
+  mips_abi_float_regs: o32
+
+  section_order: [".text", ".data", ".rodata", ".bss"]
+  auto_link_sections: [".data", ".rodata", ".bss"]
+
+  # Symbol files
+  symbol_addrs_path:
+    - symbol_addrs.us.txt
+  reloc_addrs_path:
+    - reloc_addrs.us.txt
+
+  undefined_funcs_auto_path: undefined_funcs_auto.us.txt
+  undefined_syms_auto_path: undefined_syms_auto.us.txt
+
+  # Extensions
+  extensions_path: tools/splat_ext
+
+  # String detection
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+
+  # N64 SDK symbols
+  libultra_symbols: True
+  hardware_regs: True
+
+  # Graphics microcode (Rush 2049 likely uses F3DEX2)
+  gfx_ucode: f3dex2
+
+segments:
+  # N64 ROM Header (0x00 - 0x40)
+  - name: header
+    type: header
+    start: 0x0
+
+  # IPL3 Boot code (0x40 - 0x1000)
+  - name: ipl3
+    type: bin
+    start: 0x40
+
+  # Entry point / boot code
+  - name: entry
+    type: code
+    start: 0x1000
+    vram: 0x80000400
+    subsegments:
+      - [0x1000, hasm]
+
+  # Main code segment - split based on splat's file boundary detection
+  - name: main
+    type: code
+    start: 0x1050
+    vram: 0x80000450
+    follows_vram: entry
+    subsegments:
+      - [0x1050, c, rom/lib_1050]
+      - [0x21F0, asm]
+      - [0x2CF0, asm]
+      - [0x3140, asm]
+      - [0x3330, asm]
+      - [0x3390, asm]
+      - [0x34A0, asm]
+      - [0x55F0, asm]
+      - [0x5610, c, rom/lib_5610]
+      - [0x7600, c, rom/lib_7600]
+      - [0x7630, asm]
+      - [0x7940, c, rom/lib_7940]
+      - [0x79A0, c, rom/lib_79a0]
+      - [0x7A10, c, rom/lib_7a10]
+      - [0x7AD0, c, rom/lib_7ad0]
+      - [0x7B30, c, rom/lib_7b30]
+      - [0x7C80, c, rom/lib_7c80]
+      - [0x7FB0, asm]
+      - [0x8040, c, rom/lib_8040]
+      - [0x81E0, c, rom/lib_81e0]
+      - [0x8330, c, rom/lib_8330]
+      - [0x83D0, c, rom/lib_83d0]
+      - [0x8410, asm]
+      - [0x8440, c, rom/lib_8440]
+      - [0x8700, c, rom/lib_8700]
+      - [0x8800, c, rom/lib_8800]
+      - [0x88A0, asm]
+      - [0x8920, c, rom/lib_8920]
+      - [0x8A80, c, rom/lib_8a80]
+      - [0x8DD0, c, rom/lib_8dd0]
+      - [0x8E10, c, rom/lib_8e10]
+      - [0x90E0, asm]
+      - [0x9190, asm]
+      - [0x9230, c, rom/lib_9230]
+      - [0x92F0, c, rom/lib_92f0]
+      - [0x9330, asm]
+      - [0x9660, c, rom/lib_9660]
+      - [0x9820, c, rom/lib_9820]
+      - [0x9AB0, c, rom/lib_9ab0]
+      - [0x9DE0, c, rom/lib_9de0]
+      - [0xA050, c, rom/lib_a050]
+      - [0xA330, c, rom/lib_a330]
+      - [0xA5B0, c, rom/lib_a5b0]
+      - [0xA5F0, asm]
+      - [0xA800, c, rom/lib_a800]
+      - [0xA810, c, rom/lib_a810]
+      - [0xAB20, c, rom/lib_ab20]
+      - [0xAF50, c, rom/lib_af50]
+      - [0xB120, c, rom/lib_b120]
+      - [0xB300, c, rom/lib_b300]
+      - [0xB570, c, rom/lib_b570]
+      - [0xB9F0, c, rom/lib_b9f0]
+      - [0xBE40, c, rom/lib_be40]
+      - [0xBFE0, c, rom/lib_bfe0]
+      - [0xC990, c, rom/lib_c990]
+      - [0xCA70, c, rom/lib_ca70]
+      - [0xCC50, c, rom/lib_cc50]
+      - [0xD0B0, asm]
+      - [0xD140, c, rom/lib_d140]
+      - [0xD260, c, rom/lib_d260]
+      - [0xD270, c, rom/lib_d270]
+      - [0xD570, asm]
+      - [0xD580, c, rom/lib_d580]
+      - [0xDEB0, asm]
+      - [0xE1C0, c, rom/lib_e1c0]
+      - [0xE240, c, rom/lib_e240]
+      - [0xE250, c, rom/lib_e250]
+      - [0xE280, c, rom/lib_e280]
+      - [0xE310, c, rom/lib_e310]
+      - [0xE340, c, rom/lib_e340]
+      - [0xE370, asm]
+      - [0xE390, c, rom/lib_e390]
+      - [0xE3F0, c, rom/lib_e3f0]
+      - [0xE440, asm]
+      - [0xE490, asm]
+      - [0xE4F0, asm]
+      - [0xE7C0, c, rom/lib_e7c0]
+      - [0xE8D0, c, rom/lib_e8d0]
+      - [0xE9A0, c, rom/lib_e9a0]
+      - [0xEFC0, asm]
+      - [0xEFD0, c, rom/lib_efd0]
+      - [0xF0B0, c, rom/lib_f0b0]
+      - [0xF160, c, rom/lib_f160]
+      - [0xF450, c, rom/lib_f450]
+      - [0xF4D0, c, rom/lib_f4d0]
+      - [0xF700, c, rom/lib_f700]
+
+  # Remaining ROM data (to be further segmented)
+  - type: bin
+    start: 0x10000
+    name: data
+
+  # End of ROM
+  - [0xC00000]

@@ -1,0 +1,773 @@
+--- a/Makefile
++++ b/Makefile
+@@ -93,6 +93,9 @@
+ HARDWARE_REGS := hardware_regs.ld
+ SYMS_LD := $(BUILD_DIR)/syms.ld
+ 
++# Ownership dependencies ensure a registry/companion edit cannot reuse stale inputs.
++OWNED_ROM_COMPANIONS := $(shell $(PYTHON) -m tools.conveyor.pipeline.owned_data companions)
++
+ # Linker flags
+ # --accept-unknown-input-arch allows linking binary blobs with different apparent arch
+ LDFLAGS      := -T $(LD_SCRIPT) -T $(SYMS_LD) -T $(HARDWARE_REGS) -Map $(BUILD_DIR)/rush2049.$(VERSION).map --no-check-sections --accept-unknown-input-arch
+@@ -251,17 +254,25 @@
+ GAME_BLOB_SLOT := 0xAFCB10
+ GAME_BLOB_LEN  := 326180
+ 
+-$(BUILD_DIR)/$(ASSETS_DIR)/data.o: $(ASSETS_DIR)/data.bin $(GAME_BLOB) tools/compose_data.py | $(BUILD_DIR)/$(ASSETS_DIR)
++$(BUILD_DIR)/$(ASSETS_DIR)/data.o: $(ASSETS_DIR)/data.bin $(GAME_BLOB) tools/compose_data.py rom_owned_data.json tools/conveyor/pipeline/owned_data.py $(OWNED_ROM_COMPANIONS) | $(BUILD_DIR)/$(ASSETS_DIR)
+ 	@echo "BIN $< + game-code blob built from sources"
+ 	$(V)$(PYTHON) tools/compose_data.py $< $(GAME_BLOB) $(BUILD_DIR)/$(ASSETS_DIR)/data.composed.bin \
+ 	    --slot $(GAME_BLOB_SLOT) --length $(GAME_BLOB_LEN)
+-	$(V)$(OBJCOPY) -I binary -O elf32-big $(BUILD_DIR)/$(ASSETS_DIR)/data.composed.bin $@
++	$(V)$(PYTHON) -m tools.conveyor.pipeline.owned_data split $< $(BUILD_DIR)/$(ASSETS_DIR)/data.composed.bin $@ --objcopy $(OBJCOPY)
+ 
+ # Convert binary files to objects (using MIPS big-endian ELF format)
+ # Use elf32-big for binary files to avoid ABI conflicts
+-$(BUILD_DIR)/$(ASSETS_DIR)/%.o: $(ASSETS_DIR)/%.bin | $(BUILD_DIR)/$(ASSETS_DIR)
++$(BUILD_DIR)/$(ASSETS_DIR)/%.o: $(ASSETS_DIR)/%.bin rom_owned_data.json tools/conveyor/pipeline/owned_data.py $(OWNED_ROM_COMPANIONS) | $(BUILD_DIR)/$(ASSETS_DIR)
+ 	@echo "BIN $<"
+-	$(V)$(OBJCOPY) -I binary -O elf32-big $< $@
++	$(V)$(PYTHON) -m tools.conveyor.pipeline.owned_data split $< $< $@ --objcopy $(OBJCOPY)
++
++# Reapply ownership before linking even without make extract. Rendering is idempotent.
++$(LD_SCRIPT): rom_owned_data.json tools/conveyor/pipeline/owned_data.py
++	$(V)$(PYTHON) -m tools.conveyor.pipeline.owned_data linker $@
++
++# Companions and metadata are immutable during promotion; force source/asset rebuilds
++# when their package changes. Promotion also explicitly touches its synced TU.
++$(SRC_ROM_O): rom_owned_data.json tools/conveyor/pipeline/owned_data.py $(OWNED_ROM_COMPANIONS)
+ 
+ # Link ELF
+ $(ELF): $(O_FILES) $(LD_SCRIPT) $(SYMS_LD)
+@@ -305,6 +316,7 @@
+ extract: $(BASEROM)
+ 	@echo "Running splat..."
+ 	$(V)$(SPLAT_PYTHON) -m splat split splat.$(VERSION).yaml
++	$(V)$(PYTHON) -m tools.conveyor.pipeline.owned_data linker $(LD_SCRIPT)
+ 
+ # ============================================================
+ # Progress tracking
+--- /dev/null
++++ b/tools/conveyor/pipeline/owned_data.py
+@@ -0,0 +1,269 @@
++"""Own source-produced readonly slots inside existing ROM data containers.
++
++Registry offsets describe real slots in ignored extracted assets. Splitting removes
++those bytes from the linked container; the owner's actual section replaces them.
++Passthrough companions and promotion are one TU transaction. No ROM score masks.
++"""
++import argparse
++import hashlib
++import json
++import re
++import subprocess
++from pathlib import Path
++
++REGISTRY = 'rom_owned_data.json'
++REPO = Path(__file__).resolve().parents[3]
++IDENT = re.compile(r'[A-Za-z_]\w*\Z')
++
++
++class OwnershipError(ValueError):
++    pass
++
++
++def _relative(value):
++    if not isinstance(value, (str, Path)) or not re.fullmatch(r'[A-Za-z0-9_./-]+', str(value)):
++        raise OwnershipError('unsafe ownership path characters')
++    p = Path(value)
++    if p.is_absolute() or '..' in p.parts or not p.parts:
++        raise OwnershipError('ownership paths must be repository-relative')
++    return p.as_posix()
++
++
++def load_registry(repo=REPO):
++    p = Path(repo) / REGISTRY
++    if not p.exists():
++        return {'schema': 1, 'rom_slots': [], 'storage_blocks': []}
++    try:
++        data = json.loads(p.read_text())
++    except (OSError, ValueError) as exc:
++        raise OwnershipError('unreadable ownership registry') from exc
++    if not isinstance(data, dict):
++        raise OwnershipError('ownership registry must be an object')
++    if data.get('schema') != 1:
++        raise OwnershipError('unsupported ownership registry schema')
++    for k in ['rom_slots', 'storage_blocks']:
++        if not isinstance(data.get(k, []), list):
++            raise OwnershipError(k + ' must be a list')
++        data.setdefault(k, [])
++    return data
++
++
++def rom_slots(repo=REPO, *, check_source=True):
++    repo = Path(repo)
++    result, owners, sections, containers = [], set(), set(), {}
++    for raw in load_registry(repo)['rom_slots']:
++        required = {'owner', 'tu', 'source', 'offset', 'size', 'container_vram', 'sha256', 'passthrough_asm'}
++        if not isinstance(raw, dict) or not required.issubset(raw):
++            raise OwnershipError('missing required ROM owner metadata')
++        r = dict(raw)
++        if not isinstance(r['owner'], str) or not IDENT.fullmatch(r['owner']):
++            raise OwnershipError('invalid ROM owner name')
++        for k in ['tu', 'source', 'passthrough_asm']:
++            r[k] = _relative(r[k])
++            if not (repo / r[k]).resolve().is_relative_to(repo.resolve()):
++                raise OwnershipError('ownership path resolves outside repository')
++        if not r['tu'].startswith('src/rom/') or not r['tu'].endswith('.c'):
++            raise OwnershipError('ROM owner must identify a ROM TU')
++        if not r['source'].startswith('assets/') or not r['source'].endswith('.bin'):
++            raise OwnershipError('ROM container must identify an extracted binary asset')
++        if r.get('composed_source') is not None:
++            r['composed_source'] = _relative(r['composed_source'])
++            if not (repo / r['composed_source']).resolve().is_relative_to(repo.resolve()):
++                raise OwnershipError('composed input path resolves outside repository')
++        r['owner_object'] = 'build/us/' + str(Path(r['tu']).with_suffix('.o'))
++        r['container_object'] = 'build/us/' + str(Path(r['source']).with_suffix('.o'))
++        r.setdefault('container_section', '.data')
++        r.setdefault('owner_section', '.rodata')
++        for k in ['container_section', 'owner_section']:
++            if not isinstance(r[k], str) or not re.fullmatch(r'\.(?:data|rodata)(?:\.[A-Za-z_]\w*)*', r[k]):
++                raise OwnershipError('only owned data/readonly sections are supported')
++        for k in ['offset', 'size', 'container_vram']:
++            if isinstance(r.get(k), str):
++                try:
++                    r[k] = int(r[k], 0)
++                except ValueError as exc:
++                    raise OwnershipError('invalid ownership integer') from exc
++            if type(r.get(k)) is not int or r[k] < 0:
++                raise OwnershipError('nonnegative integer required for ' + k)
++        if not r['size'] or r['offset'] % 16 or r['size'] % 16:
++            raise OwnershipError('owned slots must occupy complete 16-byte aligned sections')
++        if r['container_vram'] + r['offset'] + r['size'] > 0x100000000:
++            raise OwnershipError('owned slot address overflows MIPS image')
++        if not isinstance(r['sha256'], str) or not re.fullmatch(r'[0-9a-f]{64}', r['sha256']):
++            raise OwnershipError('owned slot requires exact original SHA-256')
++        section = (r['owner_object'], r['owner_section'])
++        if r['owner'] in owners or section in sections:
++            raise OwnershipError('duplicate owner or input section')
++        owners.add(r['owner']); sections.add(section)
++        group = containers.setdefault(r['source'], [])
++        if group and (group[0]['container_section'], group[0]['container_vram']) != (r['container_section'], r['container_vram']):
++            raise OwnershipError('inconsistent container ownership')
++        # This region is already produced from game C sources by blob_rom;
++        # ownership cannot replace any part of that compressed source image.
++        if r['source'] == 'assets/us/data.bin':
++            from .blob_rom import ROM_OFFSET, LENGTH
++            built_start = ROM_OFFSET - 0x10000
++            if r['offset'] < built_start + LENGTH and built_start < r['offset'] + r['size']:
++                raise OwnershipError('owned slot overlaps source-built compressed game blob')
++        group.append(r); result.append(r)
++    for source, rows in containers.items():
++        rows.sort(key=lambda r: r['offset'])
++        for a, b in zip(rows, rows[1:]):
++            if a['offset'] + a['size'] > b['offset']:
++                raise OwnershipError('owned slots overlap')
++        if check_source:
++            p = repo / source
++            if not p.resolve().is_relative_to(repo.resolve()):
++                raise OwnershipError('source resolves outside repository')
++            try:
++                data = p.read_bytes()
++            except OSError as exc:
++                raise OwnershipError('owned source container is missing or unreadable') from exc
++            for r in rows:
++                if r['offset'] + r['size'] > len(data):
++                    raise OwnershipError('owned slot exceeds source bounds')
++                if hashlib.sha256(data[r['offset']:r['offset'] + r['size']]).hexdigest() != r['sha256']:
++                    raise OwnershipError('owned slot original-byte identity changed')
++    return sorted(result, key=lambda r: (r['source'], r['offset']))
++
++
++def _groups(repo):
++    groups = {}
++    for r in rom_slots(repo):
++        groups.setdefault(r['source'], []).append(r)
++    return groups
++
++
++def _slices(rows, length):
++    cursor = 0
++    for i, r in enumerate(rows):
++        yield i, cursor, r['offset']
++        cursor = r['offset'] + r['size']
++    yield len(rows), cursor, length
++
++
++def section_name(rows, i):
++    return rows[0]['container_section'] + '.owned' + str(i)
++
++
++def split_container(repo, source, composed, output, *, objcopy='mips-linux-gnu-objcopy'):
++    """Remove owned bytes, retaining only actual prefix/inter-slot/suffix inputs."""
++    source = _relative(source); rows = _groups(repo).get(source, [])
++    data = Path(composed).read_bytes(); original = (Path(repo) / source).read_bytes()
++    if len(data) != len(original):
++        raise OwnershipError('composed container size changed')
++    if not rows:
++        subprocess.run([objcopy, '-I', 'binary', '-O', 'elf32-big', str(composed), str(output)], check=True)
++        return []
++    # Also check the composed range, so an unrelated overlay cannot hide an owner.
++    for r in rows:
++        if hashlib.sha256(data[r['offset']:r['offset'] + r['size']]).hexdigest() != r['sha256']:
++            raise OwnershipError('composed input altered an owned slot')
++    output = Path(output); output.parent.mkdir(parents=True, exist_ok=True)
++    chunks = []
++    for i, start, end in _slices(rows, len(data)):
++        chunk = output.with_name(output.name + '.owned' + str(i) + '.bin')
++        chunk.write_bytes(data[start:end]); chunks.append((section_name(rows, i), chunk))
++    nonempty = [(name, chunk) for name, chunk in chunks if chunk.stat().st_size]
++    if nonempty:
++        first_name, first = nonempty[0]
++        subprocess.run([objcopy, '-I', 'binary', '-O', 'elf32-big', '--rename-section', '.data=' + first_name, str(first), str(output)], check=True)
++    else:
++        # A completely owned container still needs a valid empty ELF input.
++        # The bootstrap byte is removed before linking; no fake payload remains.
++        empty = output.with_name(output.name + '.empty.bin'); empty.write_bytes(b'\0')
++        subprocess.run([objcopy, '-I', 'binary', '-O', 'elf32-big', str(empty), str(output)], check=True)
++        subprocess.run([objcopy, '-I', 'elf32-big', '-O', 'elf32-big', '--remove-section', '.data', str(output)], check=True)
++    for name, chunk in nonempty[1:]:
++        subprocess.run([objcopy, '-I', 'elf32-big', '-O', 'elf32-big', '--add-section', name + '=' + str(chunk), '--set-section-flags', name + '=alloc,load,data,contents', str(output)], check=True)
++    return [str(p) for _, p in chunks]
++
++
++def rewrite_linker(text, repo=REPO):
++    """Apply ownership to SPLAT output, idempotently, with fixed-address/size gates."""
++    # Restore ALL generated blocks, even if rows were removed from registry.
++    text = re.sub(r'/\* ROM_OWNED_SECTION_MOVED ([^\n]+) \*/', r'\1;', text)
++    pattern = r'/\* ROM_OWNED_DATA_BEGIN ([A-Za-z0-9_./-]+\(\.[A-Za-z0-9_.]+\)) \*/.*?/\* ROM_OWNED_DATA_END \1 \*/'
++    text = re.sub(pattern, lambda m: m.group(1) + ';', text, flags=re.S)
++    for source, rows in _groups(repo).items():
++        obj = rows[0]['container_object']; section = rows[0]['container_section']
++        original = obj + '(' + section + ');'
++        for r in rows:
++            owned = r['owner_object'] + '(' + r['owner_section'] + ')'
++            if text.count(owned + ';') != 1:
++                raise OwnershipError('expected exactly one original owner-section linker input')
++            text = text.replace(owned + ';', '/* ROM_OWNED_SECTION_MOVED ' + owned + ' */')
++        if text.count(original) != 1:
++            raise OwnershipError('expected exactly one original container linker input')
++        indent = re.search(r'(?m)^([ \t]*)' + re.escape(original), text).group(1)
++        marker = obj + '(' + section + ')'
++        lines = ['/* ROM_OWNED_DATA_BEGIN ' + marker + ' */']
++        binary_names = {re.sub(r'[^A-Za-z0-9]', '_', name) for name in [source, rows[0].get('composed_source', source)]}
++        lines += ['_binary_' + name + '_start = ABSOLUTE(.);' for name in sorted(binary_names)]
++        for i, r in enumerate(rows):
++            start = 'rom_owned_' + r['owner'] + '_START'; end = 'rom_owned_' + r['owner'] + '_END'
++            lines += [obj + '(' + section_name(rows, i) + ');', start + ' = ABSOLUTE(.);', r['owner_object'] + '(' + r['owner_section'] + ');', end + ' = ABSOLUTE(.);', 'ASSERT(' + start + ' == ' + hex(r['container_vram'] + r['offset']) + ', "owned ROM slot address changed");', 'ASSERT(' + end + ' - ' + start + ' == ' + hex(r['size']) + ', "owned ROM slot size changed");']
++        lines += [obj + '(' + section_name(rows, len(rows)) + ');']
++        for name in sorted(binary_names):
++            lines += ['_binary_' + name + '_end = ABSOLUTE(.);', '_binary_' + name + '_size = ABSOLUTE(_binary_' + name + '_end - _binary_' + name + '_start);']
++        lines += ['/* ROM_OWNED_DATA_END ' + marker + ' */']
++        text = text.replace(original, ('\n' + indent).join(lines))
++    return text
++
++
++def companion_block(row):
++    return ('/* ROM_OWNED_RODATA_BEGIN ' + row['owner'] + ' */\n'
++            '#pragma GLOBAL_ASM("' + row['passthrough_asm'] + '")\n'
++            '/* ROM_OWNED_RODATA_END ' + row['owner'] + ' */\n')
++
++
++def companions_for_tu(repo, tu, states):
++    return ''.join(companion_block(r) for r in rom_slots(repo)
++                   if r['tu'] == _relative(tu) and states.get(r['owner']) == 'passthrough')
++
++
++def strip_companion(text, owner, repo=REPO, tu=None):
++    rows = [r for r in rom_slots(repo) if r['owner'] == owner]
++    if not rows:
++        return text
++    r = rows[0]
++    if tu is not None and r['tu'] != _relative(tu):
++        raise OwnershipError('owner belongs to another TU')
++    block = companion_block(r)
++    if text.count(block) != 1:
++        raise OwnershipError('expected exactly one owned passthrough companion')
++    return text.replace(block, '', 1)
++
++
++def promotion_paths(repo, tu):
++    """Immutable lifecycle paths checked/synced alongside the single mutable TU."""
++    tu = _relative(tu); rows = [r for r in rom_slots(repo) if r['tu'] == tu]
++    paths = set()
++    if rows:
++        paths.update([REGISTRY, 'Makefile', 'rush2049.us.ld', 'tools/conveyor/pipeline/owned_data.py', 'tools/asm-processor/asm_processor.py'])
++        paths.update(r['passthrough_asm'] for r in rows)
++    if any(r.get('tu') == tu for r in load_registry(repo)['storage_blocks']):
++        from . import owned_storage
++        paths.update(str(Path(p).relative_to(repo)) if Path(p).is_absolute() else _relative(p)
++                     for p in owned_storage.package_paths(repo, tu))
++    return [Path(repo) / p for p in sorted(paths)]
++
++
++def main(argv=None):
++    p = argparse.ArgumentParser(description=__doc__)
++    p.add_argument('--repo', type=Path, default=REPO)
++    sub = p.add_subparsers(dest='command', required=True)
++    split = sub.add_parser('split'); split.add_argument('source'); split.add_argument('composed'); split.add_argument('output'); split.add_argument('--objcopy', default='mips-linux-gnu-objcopy')
++    ld = sub.add_parser('linker'); ld.add_argument('path')
++    sub.add_parser('companions')
++    a = p.parse_args(argv)
++    if a.command == 'split':
++        split_container(a.repo, a.source, a.composed, a.output, objcopy=a.objcopy)
++    elif a.command == 'companions':
++        print(' '.join(sorted({r['passthrough_asm'] for r in rom_slots(a.repo)})))
++    else:
++        path = Path(a.path); path.write_text(rewrite_linker(path.read_text(), a.repo))
++
++
++if __name__ == '__main__':
++    main()
+--- a/tools/conveyor/pipeline/layout.py
++++ b/tools/conveyor/pipeline/layout.py
+@@ -21,6 +21,7 @@
+ from pathlib import Path
+ 
+ from . import targets as targetsmod
++from . import owned_data
+ 
+ REPO = targetsmod.REPO
+ SPLAT_YAML = REPO / "splat.us.yaml"
+@@ -296,6 +297,11 @@
+         '#include "rom_tu.h"',
+         "",
+     ]
++    companions = owned_data.companions_for_tu(
++        REPO, "src/" + name + ".c",
++        {f["name"]: f.get("state", "passthrough") for f in seg["functions"]})
++    if companions:
++        out.extend([companions.rstrip("\n"), ""])
+     tu_base = name  # e.g. rom/lib_8800
+     for f in seg["functions"]:
+         if f.get("state") == "promoted" and f.get("body"):
+--- a/tools/conveyor/pipeline/promote.py
++++ b/tools/conveyor/pipeline/promote.py
+@@ -20,6 +20,8 @@
+ import time
+ from pathlib import Path
+ 
++from . import owned_data
++
+ from ..coordinator import db as dbmod
+ from ..client import DEFAULT_DATA
+ from ..seeds.extract_candidates import REPO, extract_named_function
+@@ -58,10 +60,16 @@
+ def _build_and_gate(via_builder, tu_rel):
+     """Full matching build + SHA-1 verify. Returns (ok, detail)."""
+     if via_builder:
+-        sync = _run(["rsync", "-az", str(REPO / tu_rel),
+-                     f"{BUILDER}:{BUILDER_REPO}/{tu_rel}"])
+-        if sync.returncode != 0:
+-            return False, "rsync to builder failed: " + sync.stderr.strip()[:300]
++        package = [REPO / tu_rel] + owned_data.promotion_paths(REPO, str(tu_rel))
++        for path in package:
++            if not path.is_file():
++                return False, "owned promotion package file missing: " + str(path)
++        for path in package:
++            rel = path.relative_to(REPO)
++            sync = _run(["rsync", "-az", str(path),
++                         f"{BUILDER}:{BUILDER_REPO}/{rel}"])
++            if sync.returncode != 0:
++                return False, "rsync to builder failed: " + sync.stderr.strip()[:300]
+         # rsync -a preserves the Pi's mtime, which can predate the builder's
+         # last-built object — make would then skip the rebuild and the gate
+         # would verify a STALE ROM (caught live by the SC-003 drill). Touch
+@@ -104,6 +112,8 @@
+     if pragma not in text:
+         raise Refusal(f"refusing: {func} has no passthrough slot in "
+                       f"{tu_path.name} (already promoted?)")
++    text = owned_data.strip_companion(text, func, REPO,
++                                     str(tu_path.relative_to(REPO)))
+     tu_path.write_text(text.replace(pragma, header + "\n" + body.rstrip() + "\n", 1))
+ 
+ 
+@@ -148,7 +158,7 @@
+     tu_rel = Path("src") / f"{seg['rom_tu']}.c"
+     tu_path = REPO / tu_rel
+     lockfile = REPO / "matched.lock.json"
+-    if not _git_clean([tu_path, lockfile]):
++    if not _git_clean([tu_path, lockfile] + owned_data.promotion_paths(REPO, str(tu_rel))):
+         raise Refusal("refusing: working tree dirty under the TU or lockfile")
+ 
+     body = extract_named_function(REPO / source, func)
+--- a/tools/asm-processor/asm_processor.py
++++ b/tools/asm-processor/asm_processor.py
+@@ -630,27 +630,17 @@
+             self.late_rodata_alignment = value
+             changed_section = True
+         elif line.startswith('.incbin'):
+-            self.add_sized(int(line.split(',')[-1].strip(), 0), real_line)
+-        elif line.startswith('.word') or line.startswith('.gpword') or line.startswith('.float'):
+-            self.align4()
+-            self.add_sized(4 * len(line.split(',')), real_line)
+-        elif line.startswith('.double'):
+-            self.align4()
+-            if self.cur_section == '.late_rodata':
+-                align8 = self.fn_section_sizes[self.cur_section] % 8
+-                # Automatically set late_rodata_alignment, so the generated C code uses doubles.
+-                # This gives us correct alignment for the transferred doubles even when the
+-                # late_rodata_alignment is wrong, e.g. for non-matching compilation.
+-                if not self.late_rodata_alignment:
+-                    self.late_rodata_alignment = 8 - align8
+-                    self.late_rodata_alignment_from_content = True
+-                elif self.late_rodata_alignment != 8 - align8:
+-                    if self.late_rodata_alignment_from_content:
+-                        self.fail("found two .double directives with different start addresses mod 8. Make sure to provide explicit alignment padding.", real_line)
+-                    else:
+-                        self.fail(".double at address that is not 0 mod 8 (based on .late_rodata_alignment assumption). Make sure to provide explicit alignment padding.", real_line)
+-            self.add_sized(8 * len(line.split(',')), real_line)
+-            emitting_double = True
++            match = re.fullmatch(r'.incbin\s+"([^"\\\n]+)"\s*,\s*(0[xX][0-9A-Fa-f]+|[0-9]+)\s*,\s*(0[xX][0-9A-Fa-f]+|[0-9]+)', line)
++            if match is None or self.cur_section not in ['.data', '.rodata']:
++                self.fail("incbin requires bounded skip,size in .data/.rodata", real_line)
++            skip, size = int(match.group(2), 0), int(match.group(3), 0)
++            try:
++                file_size = os.path.getsize(match.group(1))
++            except OSError:
++                self.fail("incbin input file is unavailable", real_line)
++            if skip > file_size or size > file_size - skip:
++                self.fail("incbin range exceeds input file bounds", real_line)
++            self.add_sized(size, real_line)
+         elif line.startswith('.space'):
+             self.add_sized(int(line.split()[1], 0), real_line)
+         elif line.startswith('.balign') or line.startswith('.align'):
+--- /dev/null
++++ b/rom_owned_data.json
+@@ -0,0 +1,19 @@
++{
++  "schema": 1,
++  "rom_slots": [
++    {
++      "owner": "osSpTaskLoad_full",
++      "tu": "src/rom/lib_e9a0.c",
++      "source": "assets/us/data.bin",
++      "container_section": ".data",
++      "owner_section": ".rodata",
++      "offset": "0x1e460",
++      "size": "0x20",
++      "container_vram": "0x8000f400",
++      "sha256": "7cd466024e8a90377babb0f8d67c4da7d5c38af1acf59be025edb7b8456ebb9d",
++      "passthrough_asm": "asm/us/nonmatchings/rom/lib_e9a0/osSpTaskLoad_full.table.s",
++      "composed_source": "build/us/assets/us/data.composed.bin"
++    }
++  ],
++  "storage_blocks": []
++}
+--- /dev/null
++++ b/asm/us/nonmatchings/rom/lib_e9a0/osSpTaskLoad_full.table.s
+@@ -0,0 +1,4 @@
++.section .rodata
++.balign 4
++glabel jtbl_8002D860_main
++.incbin "assets/us/data.bin", 0x1E460, 0x20
+--- a/src/rom/lib_e9a0.c
++++ b/src/rom/lib_e9a0.c
+@@ -3,6 +3,80 @@
+  * Slots are GLOBAL_ASM passthroughs until promoted; do not hand-edit
+  * passthrough lines. */
+ #include "rom_tu.h"
++
++typedef struct {
++    u32      errStatus;         /* error status */
++    void    *dramAddr;          /* RDRAM buffer address (DMA) */
++    void    *C2Addr;            /* C2 buffer address */
++    u32      sectorSize;        /* size of transfering sector */
++    u32      C1ErrNum;          /* total # of C1 errors */
++    u32      C1ErrSector[4];    /* error sectors */
++} __OSBlockInfo;
++
++typedef struct {
++    u32             cmdType;        /* for disk only */
++    u16             transferMode;   /* Block, Track, or sector?   */
++    u16             blockNum;       /* which block is transfering */
++    s32             sectorNum;      /* which sector is transfering */
++    u32             devAddr;        /* Device buffer address */
++    u32             bmCtlShadow;    /* asic bm_ctl(510) register shadow ram */
++    u32             seqCtlShadow;   /* asic seq_ctl(518) register shadow ram */
++    __OSBlockInfo   block[2];       /* bolck transfer info */
++} __OSTranxInfo;
++
++
++typedef struct __OSDiskPiHandle_s {
++    struct __OSDiskPiHandle_s *next;          /* point to next handle on the table */
++    u8                   type;          /* DEVICE_TYPE_BULK for disk */
++    u8                   latency;       /* domain latency */
++    u8                   pageSize;      /* domain page size */
++    u8                   relDuration;   /* domain release duration */
++    u8                   pulse;         /* domain pulse width */
++    u8                   domain;        /* which domain */
++    u32                  baseAddress;   /* Domain address */
++    u32                  speed;         /* for roms only */
++    /* The following are "private" elements" */
++    __OSTranxInfo        transferInfo;  /* for disk only */
++} __OSDiskPiHandle;
++typedef struct {OSIoMesgHdr hdr;void *dramAddr;u32 devAddr,size;__OSDiskPiHandle *piHandle;} __OSDiskIoMesg;
++
++typedef struct {s32 active;OSThread *thread;OSMesgQueue *cmdQueue,*evtQueue,*acsQueue;s32 (*dma)(s32,u32,void*,u32);s32 (*edma)(OSPiHandle*,s32,u32,void*,u32);} OSDevMgr;
++#define DEVICE_TYPE_64DD 2
++#define LEO_CMD_TYPE_0 0
++#define LEO_CMD_TYPE_1 1
++#define LEO_SECTOR_MODE 3
++#define LEO_TRACK_MODE 2
++#define LEO_ERROR_29 29
++#define LEO_ERROR_4 4
++#define LEO_ERROR_GOOD 0
++#define LEO_BM_CTL 0x05000510
++#define LEO_STATUS 0x05000508
++#define LEO_BM_CTL_RESET 0x10000000
++#define LEO_BM_CTL_CLR_MECHANIC_INTR 0x01000000
++#define LEO_STATUS_MECHANIC_INTERRUPT 0x02000000
++#define PI_STATUS_REG 0xA4600010
++#define PI_CLR_INTR 2
++#define OS_IM_PI 0x00100401
++#define SR_IBIT4 0x800
++#define OS_MESG_NOBLOCK 0
++#define OS_MESG_BLOCK 1
++#define OS_MESG_TYPE_LOOPBACK 10
++#define OS_MESG_TYPE_DMAREAD 11
++#define OS_MESG_TYPE_DMAWRITE 12
++#define OS_READ 0
++#define OS_WRITE 1
++#define OS_MESG_TYPE_EDMAREAD 15
++#define OS_MESG_TYPE_EDMAWRITE 16
++#define IO_WRITE(a,b) (*(volatile u32 *)(a)=(b))
++extern void osEPiRawWriteIo(u32),__osPiGetCmdQueue(u32);
++extern s32 osEPiRawStartDma(OSPiHandle*,u32,u32),osEPiRawReadIo(OSPiHandle*,u32,u32*);
++
++
++
++/* ROM_OWNED_RODATA_BEGIN osSpTaskLoad_full */
++#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_e9a0/osSpTaskLoad_full.table.s")
++/* ROM_OWNED_RODATA_END osSpTaskLoad_full */
++
+ 
+ /* Canonical EPi hardware protocol; existing IO_READ/IO_WRITE macros suffice. */
+ #define PI_STATUS_IO_BUSY 2
+--- a/rush2049.us.ld
++++ b/rush2049.us.ld
+@@ -330,7 +330,7 @@
+         build/us/asm/us/E4F0.o(.rodata);
+         build/us/src/rom/lib_e7c0.o(.rodata);
+         build/us/src/rom/lib_e8d0.o(.rodata);
+-        build/us/src/rom/lib_e9a0.o(.rodata);
++        /* ROM_OWNED_SECTION_MOVED build/us/src/rom/lib_e9a0.o(.rodata) */
+         build/us/asm/us/EFC0.o(.rodata);
+         build/us/src/rom/lib_efd0.o(.rodata);
+         build/us/src/rom/lib_f0b0.o(.rodata);
+@@ -449,7 +449,21 @@
+     {
+         FILL(0x00000000);
+         data_DATA_START = .;
+-        build/us/assets/us/data.o(.data);
++        /* ROM_OWNED_DATA_BEGIN build/us/assets/us/data.o(.data) */
++        _binary_assets_us_data_bin_start = ABSOLUTE(.);
++        _binary_build_us_assets_us_data_composed_bin_start = ABSOLUTE(.);
++        build/us/assets/us/data.o(.data.owned0);
++        rom_owned_osSpTaskLoad_full_START = ABSOLUTE(.);
++        build/us/src/rom/lib_e9a0.o(.rodata);
++        rom_owned_osSpTaskLoad_full_END = ABSOLUTE(.);
++        ASSERT(rom_owned_osSpTaskLoad_full_START == 0x8002d860, "owned ROM slot address changed");
++        ASSERT(rom_owned_osSpTaskLoad_full_END - rom_owned_osSpTaskLoad_full_START == 0x20, "owned ROM slot size changed");
++        build/us/assets/us/data.o(.data.owned1);
++        _binary_assets_us_data_bin_end = ABSOLUTE(.);
++        _binary_assets_us_data_bin_size = ABSOLUTE(_binary_assets_us_data_bin_end - _binary_assets_us_data_bin_start);
++        _binary_build_us_assets_us_data_composed_bin_end = ABSOLUTE(.);
++        _binary_build_us_assets_us_data_composed_bin_size = ABSOLUTE(_binary_build_us_assets_us_data_composed_bin_end - _binary_build_us_assets_us_data_composed_bin_start);
++        /* ROM_OWNED_DATA_END build/us/assets/us/data.o(.data) */
+         data_DATA_END = .;
+         data_DATA_SIZE = ABSOLUTE(data_DATA_END - data_DATA_START);
+     }
+--- /dev/null
++++ b/tests/conveyor/test_owned_data.py
+@@ -0,0 +1,189 @@
++import copy
++import hashlib
++import importlib.util
++import json
++from pathlib import Path
++import subprocess
++
++import pytest
++from tools.conveyor.pipeline import owned_data as O, layout as L, promote as P
++
++
++@pytest.fixture
++def owner(tmp_path):
++    (tmp_path/'assets/us').mkdir(parents=True)
++    data=bytes(range(96));(tmp_path/'assets/us/data.bin').write_bytes(data)
++    row={'owner':'f','tu':'src/rom/lib_test.c','source':'assets/us/data.bin','offset':16,'size':32,'container_vram':0x80000000,'sha256':hashlib.sha256(data[16:48]).hexdigest(),'passthrough_asm':'asm/us/f.table.s'}
++    reg={'schema':1,'rom_slots':[row],'storage_blocks':[]}
++    (tmp_path/O.REGISTRY).write_text(json.dumps(reg))
++    return tmp_path,row,reg
++
++
++def save(repo,reg):
++    (repo/O.REGISTRY).write_text(json.dumps(reg))
++
++
++@pytest.mark.parametrize('changes',[
++    {'offset':80}, {'size':0}, {'offset':17}, {'size':17},
++    {'sha256':'0'*64}, {'tu':'../x.c'}, {'owner_section':'.text'},
++    {'container_vram':0xFFFFFFFF},
++])
++def test_invalid_owner_refuses(owner,changes):
++    repo,row,reg=owner;row.update(changes);save(repo,reg)
++    with pytest.raises(O.OwnershipError):O.rom_slots(repo)
++
++
++def test_overlapping_and_duplicate_input_sections_refuse(owner):
++    repo,row,reg=owner;other=copy.deepcopy(row);other.update(owner='other',tu='src/rom/lib_other.c',offset=32,sha256=hashlib.sha256(bytes(range(96))[32:64]).hexdigest());reg['rom_slots'].append(other);save(repo,reg)
++    with pytest.raises(O.OwnershipError,match='overlap'):O.rom_slots(repo)
++    other['offset']=48;other['tu']=row['tu'];save(repo,reg)
++    with pytest.raises(O.OwnershipError,match='input section'):O.rom_slots(repo)
++
++
++def test_preserves_separate_storage_registry(owner):
++    repo,row,reg=owner;reg['storage_blocks']=[{'owner':'other','tu':'src/rom/other.c'}];save(repo,reg)
++    assert O.load_registry(repo)['storage_blocks']==reg['storage_blocks']
++
++
++def test_split_excludes_actual_owned_bytes(owner,monkeypatch):
++    repo,row,reg=owner;composed=repo/'composed.bin';data=(repo/row['source']).read_bytes();composed.write_bytes(data)
++    calls=[];monkeypatch.setattr(O.subprocess,'run',lambda argv,**kw:calls.append(argv))
++    chunks=O.split_container(repo,row['source'],composed,repo/'build/data.o')
++    assert [Path(p).read_bytes() for p in chunks]==[data[:16],data[48:]]
++    assert '.data=.data.owned0' in calls[0]
++    assert '.data.owned1='+chunks[1] in calls[1]
++    composed.write_bytes(data[:16]+b'X'*32+data[48:])
++    with pytest.raises(O.OwnershipError,match='altered'):O.split_container(repo,row['source'],composed,repo/'bad.o')
++
++
++def test_linker_regeneration_stable_and_exact_slot(owner):
++    repo,row,reg=owner;stock='SECTIONS {\n .x {\n  build/us/src/rom/lib_test.o(.rodata);\n  build/us/assets/us/data.o(.data);\n }\n}\n'
++    got=O.rewrite_linker(stock,repo)
++    assert got==O.rewrite_linker(got,repo)
++    assert got==O.rewrite_linker(stock,repo)
++    assert 'build/us/assets/us/data.o(.data);' not in got
++    assert got.count('build/us/src/rom/lib_test.o(.rodata);')==1
++    assert '== 0x80000010' in got and '== 0x20' in got
++    with pytest.raises(O.OwnershipError):O.rewrite_linker(stock+stock,repo)
++
++
++def test_generate_companion_only_for_actual_passthrough(owner,monkeypatch):
++    repo,row,reg=owner;monkeypatch.setattr(L,'REPO',repo)
++    seg={'rom_tu':'rom/lib_test','yaml_name':'0x1000','functions':[{'name':'f','state':'passthrough'}]}
++    baseline=L.generate_tu(seg,'hash');assert O.companion_block(O.rom_slots(repo)[0]) in baseline
++    assert baseline==L.generate_tu(seg,'hash')
++    seg['functions'][0].update(state='promoted',body='void f(void) {}')
++    assert 'f.table.s' not in L.generate_tu(seg,'hash')
++
++
++def test_splice_failure_leaves_original_companion_and_success_removes_both(owner,monkeypatch):
++    repo,row,reg=owner;monkeypatch.setattr(P,'REPO',repo)
++    tu=repo/row['tu'];tu.parent.mkdir(parents=True);slot='#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_test/f.s")'
++    original=O.companion_block(O.rom_slots(repo)[0])+slot+'\n'
++    tu.write_text(original.replace('ROM_OWNED_RODATA_END f','BROKEN_END'))
++    before=tu.read_text()
++    with pytest.raises(O.OwnershipError):P._splice(tu,'f',{'rom_tu':'rom/lib_test'},'void f(void) {}','header')
++    assert tu.read_text()==before
++    tu.write_text(original);P._splice(tu,'f',{'rom_tu':'rom/lib_test'},'void f(void) {}','header')
++    assert 'GLOBAL_ASM' not in tu.read_text()
++    # Existing transaction restores the complete TU snapshot, including real companion.
++    tu.write_text(original);assert O.companion_block(O.rom_slots(repo)[0]) in tu.read_text()
++
++
++def load_asm():
++    path=Path(__file__).resolve().parents[2]/'tools/asm-processor/asm_processor.py'
++    spec=importlib.util.spec_from_file_location('owned_asm',path);module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);return module
++
++
++@pytest.mark.parametrize('directive,section',[('.incbin "data.bin", 0, 4','.text'),('.incbin "data.bin", 0','.rodata'),('.incbin "data.bin", 0, -1','.rodata'),('.incbin "data.bin", 4, 8','.rodata'),('.incbin "missing.bin", 0, 4','.rodata')])
++def test_incbin_rejects_text_unbounded_or_outside_file(tmp_path,monkeypatch,directive,section):
++    monkeypatch.chdir(tmp_path);(tmp_path/'data.bin').write_bytes(b'12345678')
++    asm=load_asm();block=asm.GlobalAsmBlock('fixture');block.cur_section=section
++    with pytest.raises(asm.Failure):block.process_line(directive,'utf-8')
++
++
++def test_incbin_count_from_real_bounded_file(tmp_path,monkeypatch):
++    monkeypatch.chdir(tmp_path);(tmp_path/'data.bin').write_bytes(b'12345678')
++    asm=load_asm();block=asm.GlobalAsmBlock('fixture');block.cur_section='.rodata';block.process_line('.incbin "data.bin", 2, 4','utf-8')
++    assert block.fn_section_sizes['.rodata']==4
++
++
++@pytest.mark.parametrize('path',['assets/us/x".bin','assets/us/x\n.bin','assets/us/x;.bin','/tmp/x','../x'])
++def test_unsafe_paths_refused(owner,path):
++    repo,row,reg=owner;row['passthrough_asm']=path;save(repo,reg)
++    with pytest.raises(O.OwnershipError):O.rom_slots(repo)
++
++
++def test_generated_asm_symlink_cannot_escape(owner,tmp_path):
++    repo,row,reg=owner;outside=repo.parent/'outside';outside.write_text('x');(repo/'asm/us').mkdir(parents=True);(repo/row['passthrough_asm']).symlink_to(outside)
++    with pytest.raises(O.OwnershipError,match='outside'):O.rom_slots(repo)
++
++
++def test_missing_and_truncated_source_refuse(owner):
++    repo,row,reg=owner;p=repo/row['source'];p.unlink()
++    with pytest.raises(O.OwnershipError,match='missing'):O.rom_slots(repo)
++    p.write_bytes(b'short')
++    with pytest.raises(O.OwnershipError,match='bounds'):O.rom_slots(repo)
++
++
++def test_missing_metadata_field_refuses_cleanly(owner):
++    repo,row,reg=owner;del row['size'];save(repo,reg)
++    with pytest.raises(O.OwnershipError,match='metadata'):O.rom_slots(repo)
++
++
++def test_duplicate_owner_refuses(owner):
++    repo,row,reg=owner;reg['rom_slots'].append(copy.deepcopy(row));save(repo,reg)
++    with pytest.raises(O.OwnershipError,match='duplicate'):O.rom_slots(repo)
++
++
++def test_source_built_game_blob_cannot_be_owned(owner):
++    from tools.conveyor.pipeline.blob_rom import ROM_OFFSET
++    repo,row,reg=owner;row['offset']=ROM_OFFSET-0x10000;save(repo,reg)
++    with pytest.raises(O.OwnershipError,match='source-built'):O.rom_slots(repo)
++
++
++def test_empty_registry_restores_all_generated_linker_inputs(owner):
++    repo,row,reg=owner;stock='SECTIONS {\n build/us/src/rom/lib_test.o(.rodata);\n build/us/assets/us/data.o(.data);\n}\n';rendered=O.rewrite_linker(stock,repo)
++    reg['rom_slots']=[];save(repo,reg);restored=O.rewrite_linker(rendered,repo)
++    assert restored==stock
++    assert O.rewrite_linker(stock,repo)==stock
++
++
++def test_no_owner_split_keeps_original_binary_recipe(owner,monkeypatch):
++    repo,row,reg=owner;reg['rom_slots']=[];save(repo,reg);calls=[];monkeypatch.setattr(O.subprocess,'run',lambda a,**k:calls.append(a))
++    assert O.split_container(repo,row['source'],repo/row['source'],repo/'none.o')==[]
++    assert calls==[['mips-linux-gnu-objcopy','-I','binary','-O','elf32-big',str(repo/row['source']),str(repo/'none.o')]]
++
++
++@pytest.mark.parametrize('offset,size',[(0,32),(64,32),(0,96)])
++def test_zero_length_edge_slices_make_real_valid_elf(owner,offset,size):
++    repo,row,reg=owner;data=(repo/row['source']).read_bytes();row.update(offset=offset,size=size,sha256=hashlib.sha256(data[offset:offset+size]).hexdigest());save(repo,reg)
++    out=repo/'edge.o';O.split_container(repo,row['source'],repo/row['source'],out)
++    table=subprocess.check_output(['mips-linux-gnu-readelf','-S',str(out)],text=True)
++    assert '.data ' not in table
++    assert out.is_file()
++
++
++def test_adjacent_slots_do_not_feed_empty_chunks_to_objcopy(owner):
++    repo,row,reg=owner;data=(repo/row['source']).read_bytes();other=copy.deepcopy(row);other.update(owner='other',tu='src/rom/other.c',offset=48,sha256=hashlib.sha256(data[48:80]).hexdigest());reg['rom_slots'].append(other);save(repo,reg)
++    out=repo/'adjacent.o';O.split_container(repo,row['source'],repo/row['source'],out)
++    table=subprocess.check_output(['mips-linux-gnu-readelf','-S',str(out)],text=True)
++    assert '.data.owned0' in table and '.data.owned2' in table and '.data.owned1' not in table
++
++
++def test_owned_gate_failure_restores_companion_and_function(tmp_path, monkeypatch):
++    spec = importlib.util.spec_from_file_location("promotion_fixture", Path(__file__).parent / "unit/test_promote.py")
++    module = importlib.util.module_from_spec(spec); spec.loader.exec_module(module)
++    r, mp, lock, data = module.repo.__wrapped__(tmp_path, monkeypatch)
++    (r / "assets/us").mkdir(parents=True)
++    raw = bytes(range(96)); (r / "assets/us/data.bin").write_bytes(raw)
++    row = {"owner":"strlen", "tu":"src/rom/lib_8800.c", "source":"assets/us/data.bin", "offset":16, "size":32, "container_vram":0x80000000, "sha256":hashlib.sha256(raw[16:48]).hexdigest(), "passthrough_asm":"asm/us/strlen.table.s"}
++    save(r, {"schema":1,"rom_slots":[row],"storage_blocks":[]})
++    tu = r / row["tu"]; baseline = O.companion_block(row) + tu.read_text(); tu.write_text(baseline)
++    module._git(r, "add", "-A"); module._git(r, "commit", "-q", "-m", "ownership baseline")
++    module._mock_gate(mp, False, "deliberately bad table")
++    with pytest.raises(P.Refusal, match="GATE FAILED"):
++        P.run_promotion("0x8800:strlen", "src/libc/string.c", data=data)
++    assert tu.read_text() == baseline
++    assert "src/libc/string.c:strlen" in json.loads(lock.read_text())
++    assert module._outcomes(data)[-1]["outcome"] == "failed"

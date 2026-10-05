@@ -1,0 +1,11 @@
+{
+  "local_lock_sha256": "b6427ddd9186cfb0e9381f16db90008063e0bfde5cf47c62a35903b66df89a0c",
+  "entry": {
+    "kind": "function",
+    "size": 712,
+    "target_id": "init_state_continue",
+    "vaddr": 2148511596
+  },
+  "accepted_overlaps": [],
+  "countdown_origin_sha256": "4e048c2c33c46822763268fc13adfa555aeaff7d4c05cf0495e3c57bfc4f6180"
+}

@@ -1,0 +1,13 @@
+{
+  "source_sha256": "14cc652ba1a7679a91e8f106de9c8f4b4afc633d6a58e9edcf8f22ddb6fc643a",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "comparison": {
+    "differing": 88,
+    "total": 173,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  }
+}

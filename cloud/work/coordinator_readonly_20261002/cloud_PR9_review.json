@@ -1,0 +1,11 @@
+{
+  "pr": 9,
+  "head": "56dd6a60704934e3931e7677c9f6821b228fd349",
+  "scope": "1560 research-only paths under cloud/work; historical source snapshots and receipts, no accepted coverage.",
+  "ci": "Verify37022382228 success; archive receipt explicitly reports no fresh compiler/image/ROM acceptance.",
+  "whole_archive_merge_status": "Not merged into the isolated acceptance branch. Snapshot includes GNU-derived C79 candidate sources excluded from this branch accepted BSD implementation.",
+  "selected_lead": "cloud_PR9_tire_lead/native_expression_scoped_tsc.c",
+  "selected_source_sha256": "a78bf705049cb5d0db9fc8bcb09efa0ac819ba1e11c4d65c6daf377a3f68e8bb",
+  "independent_status": "C103 fresh protected full1688B and12Bpool replay reproduces only2 native stack-offset differences; no accepted credit.",
+  "shared_master_changed": false
+}

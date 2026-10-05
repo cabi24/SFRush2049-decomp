@@ -1,0 +1,11 @@
+{
+  "note": "Historical exact labels only; no acceptance credit. Names lacking canonical metadata require manual lookup; all entries require fresh eligibility and strict replay.",
+  "leads": [
+    {
+      "path": "cloud/work/large_camera_dolly/reconstruction/control_results.json",
+      "function": "patchspeed_sum_order",
+      "verdict": "MATCH",
+      "source": "cloud/work/large_camera_dolly/reconstruction/patchspeed_sum_order.c"
+    }
+  ]
+}

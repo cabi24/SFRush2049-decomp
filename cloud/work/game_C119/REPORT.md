@@ -1,0 +1,9 @@
+# C119 complete per-car effects reset refusal
+
+The historical cpak_read symbol at 800B0180 is a complete 848-byte effects-reset routine. It consumes one signed16 car index, computes an unsigned64 elapsed timing value through three genuine compiler helpers, compares three original external float thresholds, starts effects according to per-car flags and four unsigned16 state fields, then calls 21 real callback records and the real cpak_init helper. Its native ABI is ordinary: frame72 preserves s0/s1/ra. No mutable storage is defined by these reconstructed sources.
+
+The first complete native source produces 852 bytes and frame80. Auditing the actual cpak_init body shows it consumes a full32-bit index, so the second source corrects the prototype without changing the public common header. It produces 844 bytes and frame80: 204/212 full relocated native words differ due scheduling/register-ring/geometry differences. Workbench diagnosis preceded the one meaningful elapsed-timing phase control, which did not improve the result.
+
+IDO automatically emits __ll_mul/__ull_div/__ull_to_f for genuine unsigned64 C arithmetic. The existing project symbol table labels their observed native addresses __muldi3/__udivdi3/__floatundisf. The private verifier explicitly records these research address correspondences; it changes no target, source symbol, accepted alias or scoring mask. No positive or promotion claim follows from this research mapping.
+
+All real inputs, callback fields, flags, thresholds and native extents are retained. There is no artificial pressure, unused formal, dummy runtime work, padding or recipe sweep. Frozen hashes, original round-trip gate and strict scores are in manifest.json; protected production relocation results are separate per-object proofs. Accepted coverage credit is zero.

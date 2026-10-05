@@ -1,0 +1,32 @@
+[
+  {
+    "source": "audio_interrupt_handler_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "682c075a3d8b5afaa78dee3a5ff37ee31e73c813fcbd4ca5ba8164998ac8c42d",
+    "object_sha256": "31186717c0bafa0ab0ec041cd949e9d68e1101adfc1f2746ebade0d913614172",
+    "comparison": {
+      "differing": 281,
+      "total": 343,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 324
+  },
+  {
+    "source": "audio_interrupt_handler_branch_flow.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "2739e50d97e12a8e33b2f32c1051010c51ef90aca3ecbd7bd5cffd29fec9f560",
+    "object_sha256": "d01574258cc45a61a1fb438ffb0a8493a48c7b4c5e9cf944b83b30ff04376c85",
+    "comparison": {
+      "differing": 306,
+      "total": 343,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 344
+  }
+]

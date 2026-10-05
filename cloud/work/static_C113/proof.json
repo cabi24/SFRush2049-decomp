@@ -1,0 +1,52 @@
+{
+  "target_id": "__scScheduleCore",
+  "original_target_roundtrip": [
+    true,
+    null
+  ],
+  "accepted_credit": 0,
+  "results": [
+    {
+      "source": "cloud/work/static_C113/__scScheduleCore.c",
+      "source_sha256": "411bc64b6dd4cee27731ec11928822ed7ceb69e0b4ca3ffaf65a4debb0de03b2",
+      "flags": "/* flags: -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm */",
+      "object_sha256": "6cb64c26d5ab186d9a76c2af71af441c630e0cadff96291b93eee17d502c223b",
+      "canonical_strict_including_stack": 905,
+      "original_bytes": 872,
+      "true_symbol_bytes": 864,
+      "emitted_text_bytes": 864,
+      "frame_bytes": 40,
+      "full_word_differences": 121,
+      "extra_nonzero_words": 0,
+      "masks": 2,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x11c",
+        ".rodata+0x0 at +0x124"
+      ],
+      "errors": [],
+      "full_native_match": false
+    },
+    {
+      "source": "cloud/work/static_C113/__scScheduleCore.native_test.c",
+      "source_sha256": "be07026ddb9fa75f74cb9815ed072d105c6f77458d921cb250d186d688005f67",
+      "flags": "/* flags: -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm */",
+      "object_sha256": "220fd4cad88c57f091735ca164664a66bd24bf9e7080b9057f6994027f6c2035",
+      "canonical_strict_including_stack": 0,
+      "original_bytes": 872,
+      "true_symbol_bytes": 872,
+      "emitted_text_bytes": 880,
+      "frame_bytes": 40,
+      "full_word_differences": 2,
+      "extra_nonzero_words": 0,
+      "masks": 2,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x11c",
+        ".rodata+0x0 at +0x124"
+      ],
+      "errors": [],
+      "full_native_match": false
+    }
+  ]
+}

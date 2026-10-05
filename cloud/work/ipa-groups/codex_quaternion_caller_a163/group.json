@@ -1,0 +1,18 @@
+{
+  "members": [
+    "func_800BFBE8"
+  ],
+  "context": [
+    "camera_build_view_matrix"
+  ],
+  "files": [
+    "helper.c",
+    "caller.c"
+  ],
+  "keep": [
+    "func_800BFBE8",
+    "camera_build_view_matrix"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}

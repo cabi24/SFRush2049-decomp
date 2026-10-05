@@ -1,0 +1,56 @@
+{
+  "local_head_at_freeze": "7c4d12c368a7f938f5b405c78f602dde34d4087e",
+  "target": {
+    "name": "save_settings",
+    "vaddr": "0x800DE20C",
+    "size": 584,
+    "words": 146
+  },
+  "native_layout": {
+    "frame": 152,
+    "done": 151,
+    "sound": 144,
+    "x": 136,
+    "y": 128,
+    "red": 124,
+    "green": 120,
+    "blue": 116,
+    "alpha": 112
+  },
+  "array_capacity_basis": {
+    "capacity": 4,
+    "native_player_limit": "props_render chooses literal4 at800F6AF8 or2 at800F6B04 into loop bound sp160, bounded loop and player count update at800F72FC",
+    "display_count": "display_list_flush800FB7C8..800FB7E0 writes1 or copies D8014A108 into D80151AD0",
+    "additional_native_resets": [
+      "playgame_state_change800CA49C/800CA4A8 sets both1",
+      "ghost_race_setup800D5288 sets player count1",
+      "func800DE45C800DE82C/800DE84C resets both1"
+    ],
+    "corroboration": [
+      "include/game/carsel.h MAX_PLAYERS4",
+      "include/game/multiplayer.h MP_MAX_PLAYERS4"
+    ]
+  },
+  "ABI": {
+    "slots": 7,
+    "consumed": [
+      0,
+      1,
+      4,
+      5,
+      6
+    ],
+    "unused_intermediate_slots": [
+      2,
+      3
+    ],
+    "native_unused_homes": [
+      "sw a2,160(sp)",
+      "sw a3,164(sp)"
+    ],
+    "necessary_slot_mapping": "original reads stack args4..6 at168/172/176; unused register slots2/3 retained as actual word ABI carriers",
+    "callback_slot6": "control_settings original lw t0,1912(sp) and jalr t0 at800DD4F0; actual callback result tested"
+  },
+  "no_added_storage": true,
+  "no_synthetic_context": true
+}

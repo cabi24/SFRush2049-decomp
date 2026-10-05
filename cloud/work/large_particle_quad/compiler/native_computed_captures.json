@@ -1,0 +1,32 @@
+{
+  "source_sha256": "b82bde3bd3f397c77f828e84dfc96a32cc5bd193013ae5ea8f316bee94b8ced1",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-particle-compiler/candidates/native_computed_captures.c",
+  "accepted": false,
+  "canonical_verdict": "510/546 words differ (8 section-relative relocations unverified: .rodata+0x0 at +0x58c, .rodata+0x0 at +0x5b4, .rodata+0x4 at +0x5d0, .rodata+0x4 at +0x5d8, .rodata+0x8 at +0x73c, .rodata+0x8 at +0x758, .rodata+0xc at +0x814, .rodata+0xc at +0x818)",
+  "comparison": {
+    "differing": 510,
+    "total": 546,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0x58c",
+      ".rodata+0x0 at +0x5b4",
+      ".rodata+0x4 at +0x5d0",
+      ".rodata+0x4 at +0x5d8",
+      ".rodata+0x8 at +0x73c",
+      ".rodata+0x8 at +0x758",
+      ".rodata+0xc at +0x814",
+      ".rodata+0xc at +0x818"
+    ],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "efa85d1adcbabfb7bf479c466eecb6ee9103a0fd7a088ade40aec4c1e23f845f",
+  "emitted_words": 548,
+  "aligned": {
+    "aligned_exact": 172,
+    "aligned_opcode": 528,
+    "aligned_opcode_reg": 197
+  },
+  "frame_bytes": 216
+}

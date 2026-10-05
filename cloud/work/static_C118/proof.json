@@ -1,0 +1,28 @@
+{
+  "target_id": "viGetTimeToDeadline",
+  "original_target_roundtrip": [
+    true,
+    null
+  ],
+  "accepted_credit": 0,
+  "results": [
+    {
+      "source": "cloud/work/static_C118/viGetTimeToDeadline.c",
+      "source_sha256": "c5efbc43579cf347727d4e5fdfce26f62e27eeb8ce3cd317c6322c83df5e6ec2",
+      "flags": "/* flags: -g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm */",
+      "object_sha256": "13688751da7cf50ae1ec38a7d9f94e291aea47b0acae4cf0a2d6faebc3a4078a",
+      "canonical_strict_including_stack": 400,
+      "original_bytes": 68,
+      "true_symbol_bytes": 52,
+      "emitted_text_bytes": 64,
+      "frame_bytes": 0,
+      "full_word_differences": 3,
+      "extra_nonzero_words": 0,
+      "masks": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "full_native_match": false
+    }
+  ]
+}

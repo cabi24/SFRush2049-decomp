@@ -1,0 +1,23 @@
+{
+  "source_sha256": "50c249766c6db93df2510aca1d90774c087cc75b1e51a5d3fe4b6d1ddcae406a",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "source": "/home/cburnes/agents/large-unlock-compiler/candidates/reconstruction/best_no_flag_capture_index.c",
+  "accepted": false,
+  "canonical_verdict": "661/682 words differ (1 extra words (nonzero beyond target length))",
+  "comparison": {
+    "differing": 661,
+    "total": 682,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 1
+  },
+  "object_sha256": "e265ca4c8a2ef17774202d28833e64e1f7df2aec2f6fccf1dfd0665cda4b7f32",
+  "emitted_words": 684,
+  "aligned": {
+    "aligned_exact": 583,
+    "aligned_opcode": 672,
+    "aligned_opcode_reg": 600
+  },
+  "frame_bytes": 64
+}

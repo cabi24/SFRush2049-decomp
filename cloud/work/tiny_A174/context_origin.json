@@ -1,0 +1,7 @@
+{
+  "prior_source": "cloud/work/near_miss_B94/entity_process_main_intrinsic.c",
+  "prior_source_sha256": "0692a73d6e5fbf4b5dd280fd25dde45d3adab04fbed8a50a487461cfac05237b",
+  "direct_donor": "reference/repos/rushtherock/game/visuals.c:AnimateShadow",
+  "donor_sha256": "143fb78b0317cfca6e068a2992ffa52b51996184d53c1109769cd969c58ca331",
+  "new_hypothesis": "Original genuine xyz[4][3] shape and consumed single len reuse for real edge expansion; N64 asymmetric width parameters retained. No unused donor arrays or artificial frame."
+}

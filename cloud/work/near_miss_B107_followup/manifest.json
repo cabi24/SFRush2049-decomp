@@ -1,0 +1,13 @@
+{
+  "packet": "B107_followup",
+  "function": "menu_control_settings",
+  "address": "0x800CF374",
+  "bytes": 656,
+  "claims": [],
+  "report": "cloud/work/near_miss_B107_followup.md",
+  "report_sha256": "3d857a5628324c836f829f288e33c30add12b2cda6c2815f9f50e2d9a6d3de8c",
+  "files": {
+    "menu_control_settings_coordinate.c": "10661e073042054cfadd2e5f36389bb793b418d1379554034954d9fc4f5c5734",
+    "results.json": "0d87d2596bb6485eea5193f00f6c8407d39e44f12373c2446314cfccfa33f440"
+  }
+}

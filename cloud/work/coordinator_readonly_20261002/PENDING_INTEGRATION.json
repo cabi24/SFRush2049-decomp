@@ -1,0 +1,166 @@
+{
+  "head_at_review": "7c4d12c368a7f938f5b405c78f602dde34d4087e",
+  "ownership": "Shared main integration stays with its active coordinator. Root verifies and commits only its separate acceptance clone, data store and builder. Prior 41-function backlog is now accepted on main.",
+  "game_candidates": [
+    {
+      "function": "func_800B78F0",
+      "source": "cloud/work/tiny_A102/func_800B78F0.c",
+      "source_sha256": "173e3f414aa4d3a33a1549bb465da77874219389be5fe41086b8689878670f4a",
+      "bytes": 336,
+      "flags": "/* flags: -g0 -O2 -mips2 -G 0 -non_shared */",
+      "already_locked": true,
+      "proof": "cloud/work/integration_40/A102_independent.json",
+      "isolated_acceptance_status": "Already accepted on shared main; no pending or duplicate credit."
+    },
+    {
+      "function": "dispatch_handler",
+      "source": "cloud/work/near_miss_B95/dispatch_handler_native.c",
+      "source_sha256": "3de5caa9f1e87bd31c18a000a14baa0f37796810def384f4b8498179230eb7b1",
+      "bytes": 1028,
+      "flags": "/* flags: -g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul */",
+      "already_locked": true,
+      "proof": "cloud/work/coordinator_readonly_20261002/B95_independent.json",
+      "isolated_acceptance_status": "Already accepted on shared main; no pending or duplicate credit."
+    },
+    {
+      "function": "menu_audio_settings",
+      "source": "cloud/work/near_miss_B96/menu_audio_settings_vectors.c",
+      "source_sha256": "7348847086e77bb47e20d9c7d7bd5ddd1391a15a7ed71a0abd6c1007fc5ae843",
+      "bytes": 816,
+      "flags": "/* flags: -g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul */",
+      "already_locked": true,
+      "proof": "cloud/work/coordinator_readonly_20261002/B96_independent.json",
+      "isolated_acceptance_status": "Already accepted on shared main; no pending or duplicate credit."
+    },
+    {
+      "function": "entity_transform_calc",
+      "source_sha256": "dcacf9fa7dd0bdf1b4c64b71f1fb82cab8575962214b8acd975848255e170b4f",
+      "bytes": 440,
+      "already_locked": true,
+      "proof": "cloud/work/coordinator_readonly_20261002/A114_independent.json",
+      "isolated_acceptance_status": "Already accepted on shared main; no pending or duplicate credit.",
+      "original_candidate_group": "cloud/work/ipa-groups/codex_transform_a114",
+      "accepted_group": "codex_transform_b109",
+      "accepted_source_sha256": "98c6a7ce0d7d4b5edfe60b51228dc6eb60687aab5af263246f2f1195e03c881a",
+      "accepted_manifest_sha256": "2981db500155bd0430b40d9d432bc27bfbafc2535e89fddc529ae294c31c97ca"
+    },
+    {
+      "function": "client_sync",
+      "source_sha256": "dcacf9fa7dd0bdf1b4c64b71f1fb82cab8575962214b8acd975848255e170b4f",
+      "bytes": 216,
+      "already_locked": true,
+      "proof": "cloud/work/coordinator_readonly_20261002/A114_independent.json",
+      "isolated_acceptance_status": "Already accepted on shared main; no pending or duplicate credit.",
+      "original_candidate_group": "cloud/work/ipa-groups/codex_transform_a114",
+      "accepted_group": "codex_transform_b109",
+      "accepted_source_sha256": "98c6a7ce0d7d4b5edfe60b51228dc6eb60687aab5af263246f2f1195e03c881a",
+      "accepted_manifest_sha256": "2981db500155bd0430b40d9d432bc27bfbafc2535e89fddc529ae294c31c97ca"
+    },
+    {
+      "function": "entity_hierarchy_update",
+      "source_sha256": "dcacf9fa7dd0bdf1b4c64b71f1fb82cab8575962214b8acd975848255e170b4f",
+      "bytes": 136,
+      "already_locked": true,
+      "proof": "cloud/work/coordinator_readonly_20261002/A114_independent.json",
+      "isolated_acceptance_status": "Already accepted on shared main; no pending or duplicate credit.",
+      "original_candidate_group": "cloud/work/ipa-groups/codex_transform_a114",
+      "accepted_group": "codex_transform_b109",
+      "accepted_source_sha256": "98c6a7ce0d7d4b5edfe60b51228dc6eb60687aab5af263246f2f1195e03c881a",
+      "accepted_manifest_sha256": "2981db500155bd0430b40d9d432bc27bfbafc2535e89fddc529ae294c31c97ca"
+    }
+  ],
+  "unintegrated_game_functions": 0,
+  "unintegrated_game_bytes": 0,
+  "game_coverage_credit_in_this_packet": 0,
+  "static_baseline_manifest": "cloud/work/static_debug_consolidation/manifest.json",
+  "static_baseline_sources": 26,
+  "static_baseline_bytes": 8656,
+  "static_additional_formatter": "cloud/work/static_C85/proposal/README.md",
+  "static_additional_formatter_bytes": 3948,
+  "static_credit_in_this_packet": 0,
+  "requirements": [
+    "Owning integrator compares exact source hashes, source review and current target extents.",
+    "Use supported splice/group and scoped static target refresh, conversion, verified lock/promotion workflows.",
+    "Preserve complete original BSD notices and grounded shared declarations; excluded GNU C79 remains unpublished.",
+    "Rerun source-built image, original full ROM SHA1, all locks and full pytest with captured exit before accepting/pushing.",
+    "Keep farm stopped until shared integration transaction is complete."
+  ],
+  "cloud_pr7_review": "cloud/work/coordinator_readonly_20261002/cloud_PR7_review.json",
+  "pending_game_image_proof": "cloud/work/coordinator_readonly_20261002/pending_single_image_proofs.json",
+  "debug_recipe_final_private_patch": "cloud/work/coordinator_readonly_20261002/debug_recipe.integration.patch",
+  "debug_recipe_final_review": "cloud/work/coordinator_readonly_20261002/debug_recipe.review.json",
+  "formatter_actual_production_wrapper_plus_ownership_proof": "cloud/work/coordinator_readonly_20261002/C85_root_wrapper_owned_table_proof.json",
+  "duplicate_credit_correction": {
+    "functions": [
+      "func_800CEC8C",
+      "listener_position_set",
+      "tournament_unlock_check",
+      "particle_velocity_set",
+      "func_800D60AC",
+      "race_init_helper",
+      "func_800FDF88",
+      "car_mass_set",
+      "object_type1_create",
+      "object_type7_create"
+    ],
+    "bytes": 1896,
+    "reason": "These O3 rematches already have accepted O2 source-built entries in the current local main game lock; preserve accepted definitions and award zero additional credit."
+  },
+  "isolated_static_branch": "https://github.com/cabi24/SFRush2049-decomp/tree/codex/static-acceptance-20261002",
+  "static_private_accepted_functions": 27,
+  "static_private_accepted_bytes": 12604,
+  "static_private_percent": 67.28,
+  "static_shared_master_percent": 46.76,
+  "new_game_splice_status": "Fourteen genuine new game functions normally spliced and pushed on isolated branch; exact original source image/deflate, exact full ROM, zero lock problems and captured full pytest exit0 (776passed569skipped). CloudPR7/8 exactheads mergedprivately.",
+  "truly_new_game_functions": 14,
+  "truly_new_game_bytes": 5544,
+  "private_game_percent": 14.83,
+  "isolated_accepted_branch_head": "148f5ac97228cb679cb46f0308746b86be55c5f9",
+  "private_game_native_functions": 645,
+  "private_game_native_bytes": 95968,
+  "private_static_native_functions": 147,
+  "private_static_native_bytes": 41336,
+  "isolated_accepted_branch_proof": "cloud/work/static_acceptance/final_acceptance.json",
+  "integration_route": "Repository protected-path policy requires maintainer/coordinator direct integration for lock and original asm edits; do not open a PR that would weaken that policy. All verified changes are pushed on the separate acceptance branch for the active shared coordinator.",
+  "cloud_PR7_integrated_privately": true,
+  "cloud_PR8_integrated_privately": true,
+  "unintegrated_scope": "No pending private acceptance among the listed candidates; shared main still awaits its owning coordinator.",
+  "last_source_acceptance_head": "9c3ecc458e80de00148b00b2812be8a3b15e0605",
+  "latest_commit_note": "Documentation-only handoff clarification; accepted source and previous complete gates unchanged.",
+  "latest_pushed_isolated_head": "6f350868",
+  "new_pending_main_game": [
+    {
+      "function": "mode_select_input",
+      "bytes": 152,
+      "status": "accepted and gated isolated branch6f350868"
+    }
+  ],
+  "new_pending_main_static": [
+    {
+      "function": "osScAddClient",
+      "bytes": 104,
+      "status": "normal promotion/source-built ROM and all captured tests passed privately"
+    },
+    {
+      "function": "__scTaskReady",
+      "bytes": 176,
+      "status": "normal promotion/source-built ROM and all captured tests passed privately"
+    },
+    {
+      "function": "__scHandleRDP",
+      "bytes": 216,
+      "status": "normal promotion/source-built ROM and all captured tests passed privately"
+    },
+    {
+      "function": "__scHandleRSP",
+      "bytes": 380,
+      "status": "normal promotion/source-built ROM and all captured tests passed privately"
+    }
+  ],
+  "research_pending_only": [
+    "save_settings584B image exact; fullROM gating in progress",
+    "__scSchedule256B strict/pool0; promotion pending",
+    "__scExecTask280B strict/pool0; promotion pending",
+    "__scScheduleCore872B+28B table fresh fully linked research; ownership transaction pending"
+  ]
+}

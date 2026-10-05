@@ -1,0 +1,26 @@
+{
+  "source_sha256": "ba96c02f883571645d24395ebd429bc40c3a196b5b655ec0464749482c44bc94",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "object_sha256": "2d73077c6a152a0c481fd1884145018b2878fcd459b6258ef4543fc775619e7b",
+  "canonical": {
+    "engine_sound_update": {
+      "differing": 328,
+      "total": 357,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_80150F80 at .text+0x718",
+        "unpaired R_MIPS_HI16 for D_80150E28 at .text+0x720"
+      ],
+      "extra_words": 78
+    },
+    "engine_torque_calc": {
+      "differing": 217,
+      "total": 224,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

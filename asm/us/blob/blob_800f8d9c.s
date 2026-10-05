@@ -414,6 +414,7 @@ func_800F9398:
 .section .text.render_large_objects, "ax", @progbits
 .globl render_large_objects
 render_large_objects:
+    /* compiled from src/blob/render_large_objects.c */
     .word 0x27BDFE28
     .word 0xAFBF0074
     .word 0xAFBE0070

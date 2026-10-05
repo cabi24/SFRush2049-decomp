@@ -1,0 +1,25 @@
+{
+  "function": "func_800E23A4",
+  "address": "0x800E23A4",
+  "bytes": 1688,
+  "words": 422,
+  "accepted": false,
+  "purpose": "Tire force and vehicle drag updater",
+  "arcade_ancestor": "reference/repos/rushtherock/game/drivsym.c:forces1",
+  "target_object_sha256": "52e342b998fd004e7ae5ba7712dd80184e5aee2526277fc699df853e3fe5e4b1",
+  "tier": "reloc_aware",
+  "baseline_game_percent": 13.97,
+  "baseline_static_percent": 46.76,
+  "team": {
+    "reconstruction": {
+      "agent": "large_next_reconstruction",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high"
+    },
+    "compiler": {
+      "agent": "large_next_compiler",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high"
+    }
+  }
+}

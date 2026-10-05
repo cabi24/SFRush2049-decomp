@@ -1,0 +1,26 @@
+{
+  "source_sha256": "7a658d38e2dbdceef233315963440e283df82ca2e8a6f36204cd567a3abc7ed6",
+  "flags": "frontend -g0 -O1; protected group stages O3",
+  "source": "/home/cburnes/agents/large-visibility-compiler/candidates/fresh_delta_array_O1front_group/group.c",
+  "accepted": false,
+  "canonical_verdict": "292/294 words differ (65 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x0 at +0x178, .rodata+0x0 at +0x180)",
+  "comparison": {
+    "differing": 292,
+    "total": 294,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0x178",
+      ".rodata+0x0 at +0x180"
+    ],
+    "errors": [],
+    "extra_words": 65
+  },
+  "object_sha256": "dcbdf7115c9e5c2e66d7c9f62d129396e14e57ca22fe6a60de78b04ebb0e8c77",
+  "emitted_words": 360,
+  "aligned": {
+    "aligned_exact": 26,
+    "aligned_opcode": 228,
+    "aligned_opcode_reg": 64
+  },
+  "frame_bytes": 80
+}

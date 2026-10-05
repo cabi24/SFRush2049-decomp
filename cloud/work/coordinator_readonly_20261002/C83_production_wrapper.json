@@ -1,0 +1,11 @@
+{
+  "function": "memset",
+  "whole_native_module_sha256": "042660941d5e5bb1f9b4aee22acea074fbfa464323b4f171c88fed4875359268",
+  "actual_wrapper": "tools/asm-processor/build.py",
+  "actual_flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "original_words": 68,
+  "differing_full_words": 0,
+  "object_text_bytes": 272,
+  "original_zero_alignment_words_retained": 3,
+  "shared_source_or_lock_changes": false
+}

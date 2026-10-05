@@ -1,0 +1,15 @@
+{
+  "members": [
+    "engine_sound_update",
+    "engine_torque_calc"
+  ],
+  "context": [],
+  "claims": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "engine_sound_update"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+}

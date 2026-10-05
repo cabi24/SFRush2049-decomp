@@ -1,0 +1,15 @@
+{
+  "integration_status": "Live prior root draft remains uncommitted; frozen review patch, no new production writes.",
+  "patch_sha256": "edfba0e0c5baa9fbb3d33b274d52ea9e148584299c2605ae38699e9937ebeccd",
+  "paths": [
+    "tools/asm-processor/build.py",
+    "tools/conveyor/pipeline/layout.py",
+    "tools/asm-processor/compiler_flags.py",
+    "tests/conveyor/test_debug_build_flags.py"
+  ],
+  "validated": "Actual IDO unchanged g1/O1 invocation through production wrapper reproduces27 original members in5 whole modules plus memset and complete formatter; focused recipe/layout tests and previous full suite passed.",
+  "known_review_note": "Private final proposal fixes last-option -O3 handling before selecting measured g1/g2 O1 model, preserves legacy flags and real IDO arguments. Live uncommitted helper is unchanged.",
+  "private_recipe_tests": 15,
+  "private_recipe_tests_exit": 0,
+  "private_helper_sha256": "7ee13d9a029dbc683a9754f3b852dce4e14e8e9369f74ae0e5abd3e728dd6445"
+}

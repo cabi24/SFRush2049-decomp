@@ -1,0 +1,9 @@
+# B121: func_800DE45C configuration application (255 words / 1020 bytes)
+
+No coverage claim. Complete native body initializes the four real76-byte control records, reads exactly41 signed-byte settings, issues both genuine four-consumed-input speed_set calls, transfers actual byte/half/word settings and clears real state fields. LOCAL main lock, aliases/protected interval, archived bodies/filenames and A ownership audited before root reservation.
+
+Every group preserves the complete A145 clean real four-caller prefix byte-for-byte. Existing vsync_wait stays0/37 but is already accepted, with no new credit. The speed helper remains47/51 with5 nonzero excess words, wrappers6/22 and continue_prompt10/23, identical to A145 frozen baseline; none was called accepted or receives a claim.
+
+Initial true record view:236/255 differing, no excess. Workbench diagnosis ran before one bounded address-grounded field-view control, changing record fields to their actual conventional D_address scalar externs, preserving exact original order of four consecutive short resets, and using equivalent <=40 loop bounds. That control224/255 remains a large nonmatch. A duplicate declaration error during this field-view conversion was corrected before its recorded fresh compile; no scorer or alias registration changed. Original frame56 is correct but instruction scheduling, loop choice and global base coalescing differ substantially.
+
+All target comparisons have zero errors, unresolved/unverified references and excess words. Literal flags and fresh source/object hashes are recorded in each verification file. Native bounds derive solely from actual loop count41 and original four76-byte records; no fake pressure, extra storage, unused formals, synthetic caller or reflow sweep. Shared accepted sources, locks and splices untouched; raw targets/objects stay private temporary evidence.

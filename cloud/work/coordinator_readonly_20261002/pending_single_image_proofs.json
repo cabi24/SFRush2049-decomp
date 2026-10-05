@@ -1,0 +1,50 @@
+{
+  "original_image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+  "functions": {
+    "func_800B78F0": {
+      "source_sha256": "173e3f414aa4d3a33a1549bb465da77874219389be5fe41086b8689878670f4a",
+      "object_sha256": "af36aeb300ccd94f5f0c183e27291c3620cc84fd8da871df4a8db5ea00cd1d64",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "vaddr": "0x800b78f0",
+      "body_bytes": 336,
+      "original_words": 84,
+      "all_original_words_exact": true,
+      "body_sha256": "3d9fda0e8afa16c8e43938369bddaf878cba4580f15014e48f7f435c9e4970aa",
+      "proof_method": "Fresh private IDO compile, ordinary blob_splice GNU link at original address and original symbol bindings, full unmasked image byte equality. No splice."
+    },
+    "dispatch_handler": {
+      "source_sha256": "3de5caa9f1e87bd31c18a000a14baa0f37796810def384f4b8498179230eb7b1",
+      "object_sha256": "e0190be008c0ab5dd9561b3e44180d0881dc20ffa4772100f95e3bda819566e8",
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "vaddr": "0x800b74a0",
+      "body_bytes": 1028,
+      "original_words": 257,
+      "all_original_words_exact": true,
+      "body_sha256": "21a02928c539b8245d8f31d68e81a52c43a252f127da03437e864f108309bdd6",
+      "proof_method": "Fresh private IDO compile, ordinary blob_splice GNU link at original address and original symbol bindings, full unmasked image byte equality. No splice."
+    },
+    "menu_audio_settings": {
+      "source_sha256": "7348847086e77bb47e20d9c7d7bd5ddd1391a15a7ed71a0abd6c1007fc5ae843",
+      "object_sha256": "ad166ba34ce54cef81d73e92348e7f6aa3dd34200186256f7a75928e319fc973",
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "vaddr": "0x800ced3c",
+      "body_bytes": 816,
+      "original_words": 204,
+      "all_original_words_exact": true,
+      "body_sha256": "4e66a58a5d38d4d7afdbb9ba0df98ccdd2e51d6b06444d43e81e4d816972156d",
+      "proof_method": "Fresh private IDO compile, ordinary blob_splice GNU link at original address and original symbol bindings, full unmasked image byte equality. No splice."
+    },
+    "camera_dolly": {
+      "source_sha256": "fe70c8677374aecc6cec0e209a8d0b18f744cc4c8c785af2bd9345184dd73f13",
+      "object_sha256": "54b664748e9fcbee77251f148dc0edce0871688e2675780dc044e3875ef483b5",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "vaddr": "0x800bc2bc",
+      "body_bytes": 2300,
+      "original_words": 575,
+      "all_original_words_exact": true,
+      "body_sha256": "cc08f5c05dc6b7a2ad25af92dc6f0f9212b1f5cbde35fae1f904ed395dc38d19",
+      "proof_method": "Fresh private IDO compile, ordinary blob_splice GNU link at original address and original symbol bindings, full unmasked image byte equality. No splice."
+    }
+  },
+  "coverage_added": 0
+}

@@ -1,0 +1,51 @@
+{
+  "status": "frozen honest nonmatch",
+  "accepted_credit": 0,
+  "native_target": "cpak_read@800B0180",
+  "native_bytes": 848,
+  "roundtrip_gate": [
+    true,
+    null
+  ],
+  "flags": "/* flags: -g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm */",
+  "results": [
+    {
+      "source": "cloud/work/game_C119/cpak_read.c",
+      "source_sha256": "4f4832d7b43d680e99735c1a0f37e9a950f69c1158a250b8f752ba5c592c5105",
+      "object": "build/C119/candidate.o",
+      "object_sha256": "aec8af0dbe5baa2fc52546f385ec261dd5579c69825bbe0e46a3a796879ae8b5",
+      "canonical_strict_including_stack": 1608,
+      "proof": "cloud/work/game_C119/candidate.proof.json"
+    },
+    {
+      "source": "cloud/work/game_C119/cpak_read.native_contracts.c",
+      "source_sha256": "b4d36d129b8b297f1ff3484aeb4636305f0e0afd1670d85d3d06c1b616506fd9",
+      "object": "build/C119/native_contracts.o",
+      "object_sha256": "ac14fc27cb8d627233a8243c54a62003d6d6f9f8b68afd61e5dd27a37777bf39",
+      "canonical_strict_including_stack": 1403,
+      "proof": "cloud/work/game_C119/native_contracts.proof.json"
+    },
+    {
+      "source": "cloud/work/game_C119/cpak_read.native_time_phase.c",
+      "source_sha256": "ba67c5edf6f9ff2bc6c8f1075ccd57b124c7ba2641acadb3871d908ee195927e",
+      "object": "build/C119/native_time_phase.o",
+      "object_sha256": "5678fb171d29f9b62651cc350217dcba5b6826b20f688ebe28bdbd54e792f11f",
+      "canonical_strict_including_stack": 1427,
+      "proof": "cloud/work/game_C119/native_time_phase.proof.json"
+    }
+  ],
+  "runtime_aliases_research_only": {
+    "__ll_mul": {
+      "address": "0x8000DA58",
+      "legacy_label": "__muldi3"
+    },
+    "__ull_div": {
+      "address": "0x8000D958",
+      "legacy_label": "__udivdi3"
+    },
+    "__ull_to_f": {
+      "address": "0x80009BC8",
+      "legacy_label": "__floatundisf"
+    }
+  }
+}

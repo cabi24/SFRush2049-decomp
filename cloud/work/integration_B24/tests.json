@@ -1,0 +1,6 @@
+{
+  "exit_code": 0,
+  "passed": 27,
+  "skipped": 0,
+  "scope": "private patched target module; unchanged existing target-assembly and typed-alias suites plus three dll_init tests"
+}

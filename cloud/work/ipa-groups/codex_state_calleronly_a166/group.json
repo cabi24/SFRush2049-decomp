@@ -1,0 +1,16 @@
+{
+  "members": [
+    "debug_stats",
+    "debug_collision"
+  ],
+  "context": [],
+  "files": [
+    "helper.c",
+    "caller.c"
+  ],
+  "keep": [
+    "debug_collision"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}

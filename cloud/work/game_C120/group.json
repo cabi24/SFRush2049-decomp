@@ -1,0 +1,17 @@
+{
+  "members": [
+    "func_800D1AB0"
+  ],
+  "context": [
+    "func_800F8EC8"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800F8EC8"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "claims": [],
+  "provenance": "Complete native ranking leaf with actual unchanged B125 caller context; six-entry consumed arrays grounded by setup domain, no stand-ins."
+}

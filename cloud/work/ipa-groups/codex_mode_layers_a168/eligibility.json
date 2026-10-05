@@ -1,0 +1,12 @@
+{
+  "target": {
+    "kind": "function",
+    "size": 152,
+    "target_id": "mode_select_input",
+    "vaddr": 2148399880
+  },
+  "lock_sha256": "5417aecd2aceb9b7e2f5a777b3c84b6a012fde1de8943b9ff58d8ca81d033bd8",
+  "locked": false,
+  "overlaps": [],
+  "archive": "No complete target/caller bodies; only previous scouts/prototypes. Only mode helper may add152B; A114 contexts already accepted and caller is nonmatch."
+}

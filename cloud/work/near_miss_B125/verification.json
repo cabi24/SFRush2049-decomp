@@ -1,0 +1,77 @@
+[
+  {
+    "source": "func_800F8EC8_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "d18e9fe6a1b5bb8bbb5bac1508ebdc940624cc1ab9c3b03c3ebab74fd6aade83",
+    "object_sha256": "4334caf05b2b483af8f5cb2f5816b5b40669292273d852d1170ac457de34198e",
+    "comparison": {
+      "differing": 254,
+      "total": 256,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 236
+  },
+  {
+    "source": "func_800F8EC8_O2.c",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "14993841eea95bcbb51768d103e1e4a7542da963744a970d0cb6584d4c99b693",
+    "object_sha256": "ca9f0a84b4debd20bc0757018d405a01b9b2f65f482bd53ebbd20e6af822497c",
+    "comparison": {
+      "differing": 254,
+      "total": 256,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 236
+  },
+  {
+    "source": "func_800F8EC8_byte_offsets.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "cc1a3b371686a288c384d1bfb0d99331a90e8b7db6757c01d7d2bcdea9d738f1",
+    "object_sha256": "8ee1dc3a72185f8355e811e2e4e50f668e219eb794228e537fd0e208599e08bb",
+    "comparison": {
+      "differing": 254,
+      "total": 256,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 236
+  },
+  {
+    "source": "func_800F8EC8_address_views.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "09f6c55f837856010855e8b6eee99eb8b8fad9e0d6dc94f5b9f6e2bb556f6c48",
+    "object_sha256": "3076c1fee2e83c5d90cf1e24fbc499d79b3904ce70427568a49e4f8658a9e926",
+    "comparison": {
+      "differing": 253,
+      "total": 256,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 240
+  },
+  {
+    "source": "func_800F8EC8_donor_declarations.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "90a85c7939c209e63534cc95a090b4de11647a23359fc16ad613269243d5d347",
+    "object_sha256": "718a9659b0d8027972965af8495b1287029b77b87ea61ac7ebad1c289362371c",
+    "comparison": {
+      "differing": 254,
+      "total": 256,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 236
+  }
+]

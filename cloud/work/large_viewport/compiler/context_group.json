@@ -1,0 +1,10 @@
+{
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "wheel_render_full",
+    "arb_rate_set"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul"
+}

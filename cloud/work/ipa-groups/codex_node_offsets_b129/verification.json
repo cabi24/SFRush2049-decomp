@@ -1,0 +1,23 @@
+{
+  "source_sha256": "707a510fc9ee8fe9afa7724ab73e04a69e68fdef429a1519422d9556d89f7ab5",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "object_sha256": "d19a4ad7ef17433885e568cae440545eddaf240cd31d65aaf8e9176a031aa371",
+  "canonical": {
+    "engine_sound_update": {
+      "differing": 328,
+      "total": 357,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 22
+    },
+    "engine_torque_calc": {
+      "differing": 217,
+      "total": 224,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

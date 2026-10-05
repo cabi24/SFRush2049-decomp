@@ -1035,6 +1035,7 @@ func_800878E0:
 .section .text.object_render, "ax", @progbits
 .globl object_render
 object_render:
+    /* compiled from src/blob/object_render.c */
     .word 0x27BDFD88
     .word 0xAFB00014
     .word 0x8FB002A0

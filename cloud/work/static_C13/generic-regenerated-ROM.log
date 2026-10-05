@@ -1,0 +1,31 @@
+AS asm/us/21F0.s
+AS asm/us/2CF0.s
+AS asm/us/3140.s
+AS asm/us/3330.s
+AS asm/us/3390.s
+AS asm/us/34A0.s
+AS asm/us/55F0.s
+AS asm/us/7630.s
+AS asm/us/7FB0.s
+AS asm/us/8410.s
+AS asm/us/88A0.s
+AS asm/us/90E0.s
+AS asm/us/9190.s
+AS asm/us/9330.s
+AS asm/us/A5F0.s
+AS asm/us/D0B0.s
+AS asm/us/D570.s
+AS asm/us/DEB0.s
+AS asm/us/E370.s
+AS asm/us/E440.s
+AS asm/us/E490.s
+AS asm/us/E4F0.s
+AS asm/us/EFC0.s
+AS asm/us/header.s
+LD build/us/rush2049.us.elf
+/usr/bin/mips-linux-gnu-ld.bfd: warning: build/us/rush2049.us.elf has a LOAD segment with RWX permissions
+OBJCOPY build/us/rush2049.us.z64
+Build complete: build/us/rush2049.us.z64
+Verifying built ROM hash...
+build/us/rush2049.us.z64: OK
+ROM matches!

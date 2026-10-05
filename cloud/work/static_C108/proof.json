@@ -1,0 +1,46 @@
+{
+  "target_id": "__scHandleRetrace",
+  "original_target_roundtrip": [
+    true,
+    null
+  ],
+  "accepted_credit": 0,
+  "results": [
+    {
+      "source": "cloud/work/static_C108/__scHandleRetrace.c",
+      "source_sha256": "62d658650af0e3f2e67b53a0daa9350174078c95a7f76801c5acb339cbcc468d",
+      "flags": "/* flags: -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm */",
+      "object_sha256": "cea60f57ee8d7117c312a8028621c3dd8f275ad5e0b9ea4139e656b05e4e2f64",
+      "canonical_strict_including_stack": 108,
+      "original_bytes": 208,
+      "true_symbol_bytes": 204,
+      "emitted_text_bytes": 208,
+      "frame_bytes": 48,
+      "full_word_differences": 24,
+      "extra_nonzero_words": 0,
+      "masks": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "full_native_match": false
+    },
+    {
+      "source": "cloud/work/static_C108/__scHandleRetrace.native_locals.c",
+      "source_sha256": "216c2a91c19866ba5c4afdd0c6761d61b1e12f93b56156ea609dccf9d6106664",
+      "flags": "/* flags: -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm */",
+      "object_sha256": "baed3e67977085a2c1875e39a0d071e058167f1116d0e99af3351ac3042ea7c3",
+      "canonical_strict_including_stack": 100,
+      "original_bytes": 208,
+      "true_symbol_bytes": 204,
+      "emitted_text_bytes": 208,
+      "frame_bytes": 48,
+      "full_word_differences": 22,
+      "extra_nonzero_words": 0,
+      "masks": 0,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "full_native_match": false
+    }
+  ]
+}

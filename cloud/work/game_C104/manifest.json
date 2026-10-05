@@ -1,0 +1,12 @@
+{
+  "status": "frozen complete real caller/context nonmatch",
+  "claims": [],
+  "accepted_credit": 0,
+  "source": "cloud/work/game_C104/group_complete_callers.c",
+  "source_sha256": "4c44290bb0e0b4f2133ccf1ef7867dd8586a4f1094ec3f23cbf21c4313834490",
+  "native_word_differences": 1,
+  "native_bytes": 112,
+  "frame_bytes": 48,
+  "source_context_origin": "Full sound_update_channel/object_byte9_set from codex_sound_channel_extra, full slot_state_setup from codex_heap_parent_a15, real world_trigger_check from codex_defaults_a16; real empty native body restored without historical unreachable shaping",
+  "protected_relocation_proof": "group_complete_callers.proof.json"
+}

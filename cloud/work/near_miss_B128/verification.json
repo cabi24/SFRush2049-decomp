@@ -1,0 +1,32 @@
+[
+  {
+    "source": "audio_queue_process_native.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "2d0b8911fad9d16f84f36c53d503d6dc5fa4d45a4f470efb34fec21816a0d0b6",
+    "object_sha256": "599598049ca01301302c322c2d2e3e4eb101f7bf504e960dae68bf03c94dfb4a",
+    "comparison": {
+      "differing": 117,
+      "total": 169,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 164
+  },
+  {
+    "source": "audio_queue_process_phase_flow.c",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "source_sha256": "b7373f86502e609f337203bc5c9ca3c650bb234ff1f6b2db2e4e8e1e70405705",
+    "object_sha256": "f676cbcd02dc2ba628947cabd714d52131cc084bbc20752f28eedea5eafc0d83",
+    "comparison": {
+      "differing": 117,
+      "total": 169,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "text_words": 164
+  }
+]

@@ -1,0 +1,82 @@
+{
+  "func_8008B3C8": {
+    "accepted_lock": {
+      "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source": "src/blob/func_8008B3C8.c",
+      "source_sha256": "a64ca9d0624c3541c45cca2c659e6cf7e6605ffaf92b496e842f23c5c052eb3e",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-09-30"
+    },
+    "registered_entry": {
+      "kind": "function",
+      "size": 44,
+      "target_id": "func_8008B3C8",
+      "vaddr": 2148053960
+    }
+  },
+  "vector_copy_scale": {
+    "accepted_lock": {
+      "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source": "src/blob/vector_copy_scale.c",
+      "source_sha256": "612829c652ceff9b8b7e83216fbca240f1827e75bd25c7db8bb285de3d087eaf",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-09-23"
+    },
+    "registered_entry": {
+      "kind": "function",
+      "size": 80,
+      "target_id": "vector_copy_scale",
+      "vaddr": 2148054132
+    }
+  },
+  "func_8008B424": {
+    "accepted_lock": {
+      "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "source": "src/blob/func_8008B424.c",
+      "source_sha256": "664db61fb4774987464f508b30983e10157c46ae847634478876d92d0fb74ca5",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-01"
+    },
+    "registered_entry": {
+      "kind": "function",
+      "size": 80,
+      "target_id": "func_8008B424",
+      "vaddr": 2148054052
+    }
+  },
+  "math_utility": {
+    "accepted_lock": {
+      "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source": "src/blob/math_utility.c",
+      "source_sha256": "ae72a0b474c5cadfdd021f84e2298e42650d093fe915164a06dba350a5a7732a",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-09-23"
+    },
+    "registered_entry": {
+      "kind": "function",
+      "size": 76,
+      "target_id": "math_utility",
+      "vaddr": 2148062896
+    }
+  },
+  "func_8008E3C0": {
+    "accepted_lock": {
+      "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source": "src/blob/func_8008E3C0.c",
+      "source_sha256": "a22ce160f1ed270b03e20d6edfe81c4a4826b678a5d0c66ae7d9fedb44f5d99e",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-09-23"
+    },
+    "registered_entry": {
+      "kind": "function",
+      "size": 72,
+      "target_id": "func_8008E3C0",
+      "vaddr": 2148066240
+    }
+  }
+}

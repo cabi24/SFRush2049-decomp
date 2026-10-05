@@ -210,7 +210,7 @@
       "native_words": 1307
     },
     "func_800DE860": {
-      "accepted_lock_present": true,
+      "accepted_lock_present": false,
       "address": "0x800DE860",
       "direct_callees": {},
       "direct_callers": {

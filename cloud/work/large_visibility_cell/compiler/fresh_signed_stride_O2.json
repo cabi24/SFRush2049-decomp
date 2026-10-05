@@ -1,0 +1,26 @@
+{
+  "source_sha256": "10eb2ee65336d016ba6814d7e831ed1b83c54a779ef9bdf4328b2671a6afdd49",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "/home/cburnes/agents/large-visibility-compiler/candidates/fresh_signed_stride.c",
+  "accepted": false,
+  "canonical_verdict": "290/294 words differ (64 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x0 at +0x16c, .rodata+0x0 at +0x174)",
+  "comparison": {
+    "differing": 290,
+    "total": 294,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0x16c",
+      ".rodata+0x0 at +0x174"
+    ],
+    "errors": [],
+    "extra_words": 64
+  },
+  "object_sha256": "871ea5f01e340fc1ac454448103954a30f5eaacf3019de99ee004c0dff7eea52",
+  "emitted_words": 360,
+  "aligned": {
+    "aligned_exact": 22,
+    "aligned_opcode": 218,
+    "aligned_opcode_reg": 60
+  },
+  "frame_bytes": 128
+}

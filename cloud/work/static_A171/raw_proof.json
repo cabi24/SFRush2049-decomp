@@ -1,0 +1,21 @@
+{
+  "source_sha256": "e4d770042b7fb90b905586ee2cab06543a746f7e33aa0d906a53cfdbbefef8ba",
+  "object_sha256": "6a0a1a47c30132053325fa2f5f60ea40eb0c1f3b60e6c730c65d0c2bec5eb86e",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "address": "0x8000e3c0",
+  "rom_offset": "0xefc0",
+  "slot_bytes": 16,
+  "original_runtime_bytes": 8,
+  "original_alignment_bytes": 8,
+  "native_symbol_offset": 0,
+  "native_symbol_size": 8,
+  "whole_text_bytes": 16,
+  "relocation_sections": [],
+  "all_16_original_bytes_exact": true,
+  "original_slot_sha256": "4ea14d5f89379ec41118bbacbd120dec7513472a303805a5461b4438f53a0626",
+  "target_gate": [
+    true,
+    null
+  ],
+  "claims": []
+}

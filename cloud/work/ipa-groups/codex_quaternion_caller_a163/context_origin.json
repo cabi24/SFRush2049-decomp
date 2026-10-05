@@ -1,0 +1,7 @@
+{
+  "old_group_source_sha256": "476b62f5a03fd687106fcd7122018f8682f63b9f6e208ed42c0d2a0cf9f3e8a9",
+  "old_target_body": "camera_build_view_matrix",
+  "body_unchanged": true,
+  "excluded": "All stand-ins, all other function bodies and unused track_spline pad array. Only original relevant real typed objects/prototypes retained.",
+  "helper_original_sha256": "a296f2930cccd5afef758706049fe52aaca96005787ffb56c349531464211ee2"
+}

@@ -1,0 +1,23 @@
+{
+  "function": "osScAddClient",
+  "source_sha256": "1e42e45f9d0301f49565857514547c77e475d123ad6f93ae0884850caf1a34fa",
+  "flags": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul -Xcpluscomm",
+  "original_bytes": 104,
+  "true_symbol_bytes": 104,
+  "canonical_strict_including_stack": 0,
+  "full_word_differences": 0,
+  "extra_nonzero_words": 0,
+  "masks": 0,
+  "unresolved": [],
+  "unverified": [],
+  "errors": [],
+  "original_target_roundtrip": [
+    true,
+    null
+  ],
+  "object_sha256": "76d0660c88339723ac07042ec9690d4c6e6b1fc262f5b016f511ce89ad3a6529",
+  "current_module_pin": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "production_recipe_migration_safe": false,
+  "accepted_credit": 0,
+  "research_object_match": true
+}

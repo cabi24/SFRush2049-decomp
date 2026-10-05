@@ -1,0 +1,13 @@
+{
+  "actual_slot": {
+    "kind": "function",
+    "size": 636,
+    "target_id": "entity_anim_texture",
+    "vaddr": 2148079732
+  },
+  "main_locked": false,
+  "private_locked": false,
+  "other_real_full_definitions": [],
+  "accepted_context_preserved_in_main": true,
+  "model_bounds_calc_new_context_body_exact": true
+}

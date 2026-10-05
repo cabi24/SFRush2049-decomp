@@ -1,0 +1,10 @@
+{
+  "members": ["func_800F92C8", "render_large_objects"],
+  "claims": ["func_800F92C8", "render_large_objects"],
+  "files": ["group.c"],
+  "keep": ["render_large_objects"],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "unprototyped": [],
+  "context": [],
+  "provenance": "frontier wave 2, agent w2j: arcade drones.c DoDrones/assign_drones/linear_interp; supersedes src/blob/groups/render_large_objects (func_800F92C8 with an extern literal, root as unmatched context)"
+}

@@ -1,0 +1,43 @@
+{
+  "source_sha256": "40072afd28d510be6cd4eaac6b278880034767a9a225fe2289f42f66ee7c587a",
+  "manifest_sha256": "82e397ba7f925ac176f985450c12b6f1f16e94efa33c0ab38f165efb30233a1c",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "comparisons": {
+    "voice_stop_2": {
+      "differing": 0,
+      "total": 56,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x18 at +0x3c",
+        ".rodata+0x18 at +0x44"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "format_string_parse": {
+      "differing": 0,
+      "total": 45,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x20",
+        ".rodata+0x0 at +0x28"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "audio_bus_mix": {
+      "differing": 167,
+      "total": 180,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x44 at +0xf0",
+        ".rodata+0x44 at +0xf8",
+        ".rodata+0x8c at +0x19c",
+        ".rodata+0x8c at +0x1a4"
+      ],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}

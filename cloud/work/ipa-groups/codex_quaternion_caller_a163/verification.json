@@ -1,0 +1,24 @@
+{
+  "source_sha256": "9ad37f53252e52fc6314dbcb2788a1a5ec25af78dfb275a1a9176fba44464384",
+  "manifest_sha256": "93a8d7086fcfb0e7fbaac96d6acb7bbcbb78f30647f62c7d7fa2b624d61c1c92",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "comparisons": {
+    "func_800BFBE8": {
+      "differing": 5,
+      "total": 96,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "camera_build_view_matrix": {
+      "differing": 153,
+      "total": 153,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 6
+    }
+  }
+}

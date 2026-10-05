@@ -1,0 +1,40 @@
+{
+  "source_sha256": "4b2b90ec0301a8e48d9f1130752cb0365e109ceae28778a70dccf8c47035f5ae",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source": "cloud/work/large_damage/compiler/native_literals.c",
+  "accepted": false,
+  "canonical_verdict": "163/395 words differ (16 section-relative relocations unverified: .rodata+0x0 at +0x40, .rodata+0x0 at +0x44, .rodata+0x4 at +0x48, .rodata+0x4 at +0x4c, .rodata+0x8 at +0x50, .rodata+0x8 at +0x54, .rodata+0xc at +0x128, .rodata+0xc at +0x140, .rodata+0x10 at +0x25c, .rodata+0x10 at +0x260, .rodata+0x14 at +0x278, .rodata+0x14 at +0x27c, .rodata+0x18 at +0x464, .rodata+0x18 at +0x474, .rodata+0x1c at +0x578, .rodata+0x1c at +0x588)",
+  "comparison": {
+    "differing": 163,
+    "total": 395,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0x40",
+      ".rodata+0x0 at +0x44",
+      ".rodata+0x4 at +0x48",
+      ".rodata+0x4 at +0x4c",
+      ".rodata+0x8 at +0x50",
+      ".rodata+0x8 at +0x54",
+      ".rodata+0xc at +0x128",
+      ".rodata+0xc at +0x140",
+      ".rodata+0x10 at +0x25c",
+      ".rodata+0x10 at +0x260",
+      ".rodata+0x14 at +0x278",
+      ".rodata+0x14 at +0x27c",
+      ".rodata+0x18 at +0x464",
+      ".rodata+0x18 at +0x474",
+      ".rodata+0x1c at +0x578",
+      ".rodata+0x1c at +0x588"
+    ],
+    "errors": [],
+    "extra_words": 0
+  },
+  "object_sha256": "f860b9941040dc14d0098e04792ab74d44d1ddb28da1cec9297a2a1bda6826c9",
+  "emitted_words": 392,
+  "aligned": {
+    "aligned_exact": 259,
+    "aligned_opcode": 363,
+    "aligned_opcode_reg": 307
+  },
+  "frame_bytes": 56
+}

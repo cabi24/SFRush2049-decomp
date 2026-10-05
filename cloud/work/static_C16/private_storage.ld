@@ -1,0 +1,1 @@
+SECTIONS { .timer_manager_bss 0x80037C30 (NOLOAD) : { timer_bss_start = ABSOLUTE(.); build/us/src/rom/lib_cc50.o(.bss.timer_manager); timer_bss_end = ABSOLUTE(.); } ASSERT(timer_bss_end-timer_bss_start==0x40,"timer BSS size") ASSERT(__osBaseTimer==timer_bss_start,"base timer allocation") } INSERT AFTER .data;

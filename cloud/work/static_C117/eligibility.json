@@ -1,0 +1,23 @@
+{
+  "locks": [
+    {
+      "path": "matched.lock.json",
+      "sha256": "dc99032030c56842337d770d78bf91af10e4dcd9784160956b5a6adf6b55939d",
+      "entries": []
+    },
+    {
+      "path": "/tmp/rush-static-acceptance-20261002/matched.lock.json",
+      "sha256": "e4a24a6d5f7a674254afae279e2120d76fb616b0a9e53f4a52790dc4bd297960",
+      "entries": []
+    }
+  ],
+  "slot": {
+    "name": "__scExec",
+    "vaddr": "0x80000e20",
+    "size": 360,
+    "state": "passthrough"
+  },
+  "archived_full_cloud_definitions_before_packet": [],
+  "accepted_credit": 0,
+  "scope": "Complete real three-input task execution; root authorized actual zero-input cache signature pointer cast without common prototype mutation."
+}

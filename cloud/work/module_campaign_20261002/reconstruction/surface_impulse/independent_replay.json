@@ -1,0 +1,64 @@
+[
+  {
+    "mode": "ordinary-O2",
+    "source_sha256": "21588ca39b9125e24cb835a2f3b9ac27dd64e11ca0d8357dd28fd738c428b232",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "object_sha256": "4044daa52830775153975fe4fc9a048268dbf591e5c714492740992046d3fb55",
+    "protected_manifest_sha256": "156cef1f09df80f4ef45d44bad1ab83115c50021b872a5ec3617189b51b3d6e7",
+    "comparison": {
+      "differing": 93,
+      "total": 265,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x80",
+        ".rodata+0x0 at +0xf4",
+        ".rodata+0x4 at +0x244",
+        ".rodata+0x4 at +0x248"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "true_strict_score": 904,
+    "full_body_sha256": "46f0008dd70dc5abb5c916a7d2e06a8b2ad89f8dcdd050ed000a72f4b34c28b4",
+    "native_body_sha256": "e211317f62c3d4afdf58164d32de977f8258f603e13fec39c98ccad6f4e5a4dd",
+    "full_body_bytes": 1060,
+    "exact_bytes_equal": false,
+    "masks_count": 4,
+    "unresolved_count": 0,
+    "unverified_count": 4,
+    "error_count": 0,
+    "accepted": false,
+    "toolkit_sha256": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5"
+  },
+  {
+    "mode": "ordinary-O3",
+    "source_sha256": "21588ca39b9125e24cb835a2f3b9ac27dd64e11ca0d8357dd28fd738c428b232",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "object_sha256": "b882f9398d95f964d7e810c337ccf44ae22a68095500f38538b8f48f3786631e",
+    "protected_manifest_sha256": "156cef1f09df80f4ef45d44bad1ab83115c50021b872a5ec3617189b51b3d6e7",
+    "comparison": {
+      "differing": 93,
+      "total": 265,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x80",
+        ".rodata+0x0 at +0xf4",
+        ".rodata+0x4 at +0x244",
+        ".rodata+0x4 at +0x248"
+      ],
+      "errors": [],
+      "extra_words": 0
+    },
+    "true_strict_score": 904,
+    "full_body_sha256": "46f0008dd70dc5abb5c916a7d2e06a8b2ad89f8dcdd050ed000a72f4b34c28b4",
+    "native_body_sha256": "e211317f62c3d4afdf58164d32de977f8258f603e13fec39c98ccad6f4e5a4dd",
+    "full_body_bytes": 1060,
+    "exact_bytes_equal": false,
+    "masks_count": 4,
+    "unresolved_count": 0,
+    "unverified_count": 4,
+    "error_count": 0,
+    "accepted": false,
+    "toolkit_sha256": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5"
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "function": "func_800CEC8C",
+  "source_sha256": "4216cbe8a1e1fb19a670ce148df8eec23eb4547835fec2ee7de691f691133a40",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "target_manifest_sha256": "6ffda622b1aed921d85aa20d3996959aa69a433cbca46e0b83d98ad13e3bd6e8",
+  "expected_bytes": 176,
+  "canonical_verdict": "MATCH",
+  "object_accepted": true,
+  "linked": {
+    "differing": 0,
+    "total": 44,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  }
+}

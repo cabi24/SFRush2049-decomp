@@ -1,0 +1,10 @@
+{
+  "claims": [],
+  "frozen_b109_prefix_sha256": "98c6a7ce0d7d4b5edfe60b51228dc6eb60687aab5af263246f2f1195e03c881a",
+  "files": {
+    "cloud/work/ipa-groups/codex_visual_motion_b137/group.c": "4b39e48aa0ba4cb60c7dfd8592a852d96a3e6d9ad0847a7924091aab6e06825f",
+    "cloud/work/ipa-groups/codex_visual_motion_b137/group.json": "0463ef517ec5803b26fc784f8bfe53a64b0a5f8dcea40c1a8a79b6dabdd217f3",
+    "cloud/work/ipa-groups/codex_visual_motion_b137/verification.json": "a8b6b6fb53fa747457b36b91113d52b5822ed87a1bf147d9559ed828b9ffd544",
+    "cloud/work/near_miss_B137.md": "3ab7139c1ad59a64f2f6e2d3f86d0079326f0f85e815c88ce744d4d342efe4ba"
+  }
+}

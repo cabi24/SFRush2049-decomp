@@ -1,0 +1,39 @@
+{
+  "group": "codex_init_region_countdown_a160",
+  "source_hashes": {
+    "init.c": "c8591efe72e1b67f4bcc5bf575c0d5e694c66e3db0397af59086298f7e6ba311",
+    "countdown.c": "4e048c2c33c46822763268fc13adfa555aeaff7d4c05cf0495e3c57bfc4f6180",
+    "helper.c": "ca8eba03136b08ee6cbf9ba653ecd6252789024989c1490f8a3ff5544942d850"
+  },
+  "manifest_sha256": "aec9f750b94667726c40b7d4fd8776e9a24130836ef6bdd8e91dfd2c28bf5bf1",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "result": "NONMATCH",
+  "description": "Separately labeled genuine three-body closure. All three source files copied unchanged; actual countdown supplies both real init and region callee context. No source mutations, pressure or synthesized caller.",
+  "comparisons": {
+    "init_state_continue": {
+      "differing": 171,
+      "total": 178,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 8
+    },
+    "func_800AB18C": {
+      "differing": 187,
+      "total": 231,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "countdown": {
+      "differing": 656,
+      "total": 668,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 9
+    }
+  }
+}

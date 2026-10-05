@@ -1,0 +1,24 @@
+{
+  "candidate": "forceapart_single_scalar_group",
+  "function": "menu_load_options",
+  "source_sha256": "ce0f99433f56b9f1a2792254d7d87a6f1a312ac44c87886dd84ff02ab88374a5",
+  "object_sha256": "0382593c6da086b0be1d067a2b96e4e29a294061ec40aadfbdb478421448af50",
+  "comparison": {
+    "differing": 25,
+    "total": 91,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "helper_comparisons": {
+    "func_800A61B0": {
+      "differing": 0,
+      "total": 37,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  }
+}
