@@ -6863,6 +6863,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-01"
   },
+  "visual_objects_update": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/visual_objects_update.c",
+    "source_sha256": "b0c01419e28731a66770980fdfc5e3fbe0df965e25bccbf90ded9b6f152a2b78",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
+  },
   "vsync_wait": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_vsync_a145",

@@ -1871,6 +1871,7 @@ func_800B55F4:
 .section .text.visual_objects_update, "ax", @progbits
 .globl visual_objects_update
 visual_objects_update:
+    /* compiled from src/blob/visual_objects_update.c */
     .word 0x27BDFFD8
     .word 0xAFB30020
     .word 0xAFB2001C
