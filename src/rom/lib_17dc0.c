@@ -3,6 +3,7 @@
  * Slots are GLOBAL_ASM passthroughs until promoted; do not hand-edit
  * passthrough lines. */
 #include "rom_tu.h"
+#include "sequence_context.h"
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_800171C0.s")
 /* PROMOTED 2026-10-04 — func_8001729C
@@ -11,13 +12,11 @@
  * Evidence: lock:cloud/matches/boot_tail/func_8001729C.c:func_8001729C (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-typedef struct AudioNode { struct AudioNode *next; struct AudioNode *previous; unsigned char unknown08[16]; } AudioNode;
-typedef struct AudioState { unsigned char unknown00[3960]; AudioNode *active; AudioNode *pending; } AudioState;
-extern AudioNode *D_80043EB0;
-extern AudioState *D_8004BE80;
-void func_8001729C(AudioState *state)
+extern SequenceNode *D_80043EB0;
+extern SequenceContext *D_8004BE80;
+void func_8001729C(SequenceContext *state)
 {
-    AudioNode *node;
+    SequenceNode *node;
     node = state->active;
     if (node != 0) {
         while (node->next != 0) {
@@ -50,18 +49,16 @@ void func_8001729C(AudioState *state)
  * Evidence: lock:cloud/matches/boot_tail/func_8001734C.c:func_8001734C (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-typedef struct Entry { struct Entry *next; struct Entry *previous; u32 identifier; } Entry;
-typedef struct ContextPrefix { u8 unknown000[0xF68]; u32 activeF68; u32 savedF6C; u32 lowF70; u32 highF74; Entry *headF78; Entry *headF7C; } ContextPrefix;
 extern int func_8001FA18(u32);
-void func_8001734C(ContextPrefix *context)
+void func_8001734C(SequenceContext *context)
 {
-    Entry *entry;
-    entry = context->headF78;
+    SequenceNode *entry;
+    entry = context->active;
     while (entry != 0) {
         func_8001FA18(entry->identifier);
         entry = entry->next;
     }
-    entry = context->headF7C;
+    entry = context->pending;
     while (entry != 0) {
         func_8001FA18(entry->identifier);
         entry = entry->next;
@@ -74,10 +71,10 @@ void func_8001734C(ContextPrefix *context)
  * Evidence: lock:cloud/matches/boot_tail/func_800173B4.c:func_800173B4 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-AudioNode *func_800173B4(void)
+SequenceNode *func_800173B4(void)
 {
-    AudioNode *node;
-    AudioNode *head;
+    SequenceNode *node;
+    SequenceNode *head;
     node = D_80043EB0;
     if (node != 0) {
         D_80043EB0 = node->next;
@@ -101,7 +98,7 @@ AudioNode *func_800173B4(void)
  * Evidence: lock:cloud/matches/boot_tail/func_80017410.c:func_80017410 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void func_80017410(AudioNode *node)
+void func_80017410(SequenceNode *node)
 {
     if (node->next != 0) {
         node->next->previous = node->previous;
@@ -125,7 +122,7 @@ void func_80017410(AudioNode *node)
  * Evidence: lock:cloud/matches/boot_tail/func_80017470.c:func_80017470 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void func_80017470(AudioNode *node)
+void func_80017470(SequenceNode *node)
 {
     if (node->next != 0) {
         node->next->previous = node->previous;
@@ -149,9 +146,9 @@ void func_80017470(AudioNode *node)
  * Evidence: lock:cloud/matches/boot_tail/func_800174D0.c:func_800174D0 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void func_800174D0(AudioNode *node)
+void func_800174D0(SequenceNode *node)
 {
-    AudioNode *head;
+    SequenceNode *head;
     if (node->next != 0) {
         node->next->previous = node->previous;
     }
@@ -189,8 +186,7 @@ void func_800175A8(void)
  * Evidence: lock:cloud/matches/boot_tail/func_80017644.c:func_80017644 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-typedef struct VoiceRecord { u32 identifier; u8 unknown004[0x10C]; u32 first110; u32 second114; u8 unknown118[0xEA8]; u8 activeFC0; u8 inactiveFC1; u16 valueFC2; u8 unknownFC4[0x20]; u32 firstFE4; u32 secondFE8; u16 valueFEC; u8 flagsFEE; u8 unknownFEF[9]; } VoiceRecord;
-extern VoiceRecord D_80043EB8[8];
+extern SequenceContext D_80043EB8[8];
 u32 func_80017644(u32 identifier)
 {
     int i;
