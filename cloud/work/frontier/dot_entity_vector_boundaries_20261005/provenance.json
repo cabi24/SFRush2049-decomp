@@ -1,0 +1,14 @@
+{
+  "game/vecmath.c": {
+    "commit": "845329d7b36f5a384c5625ed9a0aef584ab46139",
+    "sha256": "7909033d4e95a86d94dc14b96539b272dbd9e8fd7f7b7e67f6b8cbbc0ca2ee31",
+    "git_blob_sha1": "0b78ea9b673ebac141b7bd3f204620eeef6ae374",
+    "url": "https://github.com/historicalsource/rushtherock/blob/845329d7b36f5a384c5625ed9a0aef584ab46139/game/vecmath.c"
+  },
+  "LIB/fmath.h": {
+    "commit": "845329d7b36f5a384c5625ed9a0aef584ab46139",
+    "sha256": "cf14fd9628e3ad952a39d13ff569e9482ebe00ecf1d94b972cf079099c2d32d1",
+    "git_blob_sha1": "1689354918120237f78897f7192c52ad45b3fa1d",
+    "url": "https://github.com/historicalsource/rushtherock/blob/845329d7b36f5a384c5625ed9a0aef584ab46139/LIB/fmath.h"
+  }
+}
