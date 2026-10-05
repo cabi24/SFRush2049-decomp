@@ -1,0 +1,25 @@
+{
+  "owner": "dot graphics matching worker",
+  "branch": "work/wave8-graphics-source",
+  "base_revision": "e24b47d89a0c8ffade1e4c75ad76b9d390a1c232",
+  "status": "independent_review_requested",
+  "target": "func_800A7BF8",
+  "address": "0x800A7BF8",
+  "end_exclusive": "0x800A7C9C",
+  "native_bytes": 164,
+  "ownership_checked_at": "2026-10-05T22:28:00Z",
+  "ownership_evidence": [
+    "Fresh initial origin/master fetch: 31b2799e; final rebase to e24b47d8 after unrelated PR109 integration",
+    "No target accepted in blob_matched.lock.json",
+    "Visible open PRs 109 through 113 concern different targets",
+    "Latest wave-1 through wave-6 results and incorporated research searched",
+    "Exact range announced to parent and the disjoint engine matching worker before edits"
+  ],
+  "ownership_limit": "Unpublished concurrent work cannot be ruled out.",
+  "source_provenance": "Complete N64-native typed reconstruction, with accepted child/sibling accessors corroborating record stride and offsets. No original arcade donor or original N64 declaration is claimed.",
+  "prior_source": "cloud/work/near-miss/func_800A7BF8/base.c",
+  "prior_result": "Archived m2c/permuter seed: freshly 35/41 differences; 160-byte symbol against 164 native bytes",
+  "edited_context": [],
+  "candidate_source": "cloud/matches/func_800A7BF8.c",
+  "accepted_byte_gain": 0
+}
