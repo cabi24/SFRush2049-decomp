@@ -1,0 +1,28 @@
+{
+  "repository": "https://github.com/historicalsource/rushtherock",
+  "revision": "845329d7b36f5a384c5625ed9a0aef584ab46139",
+  "files": {
+    "game/initiali.c": {
+      "git_blob": "8d0df4c3c62da908256a51f8da7227dc4e3a4b3a",
+      "sha256": "4ef22dc984482ddaf6f5eab6425e3d90d66438283c0b6de0668dbbdaacf1eb18",
+      "url": "https://github.com/historicalsource/rushtherock/blob/845329d7b36f5a384c5625ed9a0aef584ab46139/game/initiali.c"
+    },
+    "game/modeldat.h": {
+      "git_blob": "3097b51485c8c0ac2208c04dca8286a7ce2d5910",
+      "sha256": "f83352f57044d7fe48aecb1dfce5fd3db14cd8deab142319f7d1067a4ab62a93",
+      "url": "https://github.com/historicalsource/rushtherock/blob/845329d7b36f5a384c5625ed9a0aef584ab46139/game/modeldat.h"
+    },
+    "game/tiredes.h": {
+      "git_blob": "d1ca6eed8f314be98345d9e550683387d87fc2e5",
+      "sha256": "24c2139a5cbcc79b9564ac09d5e967759b2f3e7e4db5f6d498ccfdbaaa2aa3a4",
+      "url": "https://github.com/historicalsource/rushtherock/blob/845329d7b36f5a384c5625ed9a0aef584ab46139/game/tiredes.h"
+    }
+  },
+  "source_lines": "game/initiali.c:362-391",
+  "native_adaptations": [
+    "Model load is already combined before the call.",
+    "Native tire coefficient fields preserve the donor order.",
+    "Native l2 is formed by addition.",
+    "Original reciprocal constants are rounded from double to binary32 before multiplication."
+  ]
+}
