@@ -565,6 +565,117 @@ python3 -m tools.conveyor.pipeline.blob_rom coverage     # what `make progress` 
   passes again. The drill checks for that message specifically, because a
   broken build also "fails" and would prove nothing.
 
+## Call-graph frontier (work order for game code)
+
+The game image is one whole-program `-O3` unit emitted callee-first, so the
+order that keeps every compile in real context is bottom-up over the call graph.
+`pipeline/frontier.py` derives it from the layout, the splice lock, the image's
+`jal` words and the IPA scan; it reads no scores.
+
+```bash
+python3 -m tools.conveyor.pipeline.frontier scan      # build/frontier.json + summary
+python3 -m tools.conveyor.pipeline.frontier next [--recipe single|group|unit] [--min-bytes N]
+python3 -m tools.conveyor.pipeline.frontier hubs      # unmatched functions most code waits on
+python3 -m tools.conveyor.pipeline.frontier show NAME # callees, blockers, unit, prior source
+python3 -m tools.conveyor.pipeline.frontier next --skip-in-flight --exclude-file taken.txt [--json]
+python3 -m tools.conveyor.pipeline.frontier assign --agents 3 --per 7 --skip-in-flight
+python3 -m tools.conveyor.pipeline.frontier stubs [--unlocked] [--json]
+python3 -m tools.conveyor.pipeline.frontier calibrate # detector hit rates against the lock
+```
+
+- **layer 1** = every in-image callee is locked. `next` lists ready work ranked by
+  own bytes plus the bytes of callers it alone unblocks.
+- **recipe**: `single` (alone at `-O2`, `blob_splice`), `group` (whole-program `-O3`
+  group with its now-real callees as context, `blob_group`), `unit` (register-parameter
+  callee: needs its real setters in the group too).
+- `src` in a row means unspliced source already exists (group context, cloud match,
+  near-miss directory); `show` lists the paths. Presence only, not a score.
+
+- **Whole-program signatures** are decoded from the image words and move a
+  function from `single` to `group`: `unsaved_callee_regs` (writes `s0`–`s8`
+  without a save) and `temp_ring` (expression temporaries wrap `t9`→`t6` with the
+  low temporaries untouched; `ring` in a row). A detector may change the recipe
+  only while `frontier calibrate` shows it flagging **zero** standalone locks
+  (entries without `"group"`); a test enforces that against the live lock.
+  2026-10-04, 687 locked: unsaved 0/553 standalone, 25/134 group members;
+  ring 0/553, 34/134 (strict arm 23, t5 arm 23), 180/529 unmatched of which 26
+  had no other signature. The inlined-callee pattern (descending `ra,t5,t4…`
+  loads, then the stores) matches one function in the whole image, so it is a
+  `hints` entry (`inline?` in a row) and does not change the recipe.
+- **Provisional set**: `cloud/work/frontier/provisional.json`
+  (`{name: {"evidence": dir, "note": text}}`) lists bodies proven only with
+  stand-in callers. They count as satisfied when layering and readying their
+  callers, never as matched; they leave `next`/`assign`, appear on their own
+  line in `report`, and `show` prints `PROVISIONAL` with the evidence path. Add
+  an entry by hand with the stand-in group directory; it is ignored once the
+  function is locked. A stand-in proof is still not spliceable.
+- **Work-queue hygiene**: `--exclude-file PATH` (repeatable; one name per line,
+  `#` comments, a pasted `next` listing works), `--skip-in-flight` (names with a
+  `cloud/matches/NAME.c` that are not locked yet), `--json`. `assign` deals the
+  ready queue into disjoint batches: a `unit`/`group` function travels with the
+  open partners of its unit (`  + name` lines) and is never split; each batch
+  gets a share of every recipe; a bundle larger than `--per` is reported on
+  stderr instead.
+- **`stubs`**: the caller-less `jr ra; nop` functions (159, all locked as empty
+  functions today) with data-word references and both address neighbours and
+  their state; `show NAME` lists the stubs adjacent to NAME. 110 of the 159
+  have an unmatched neighbour. Use it for the "deleted static inlined next
+  door" check before writing a function.
+- `ipa scan` now also writes `unsaved`, `ring` and `internal` (= `members` plus
+  both classes) to `build/ipa_members.json`; `members` is unchanged because
+  `diagnose` and `ipa groups` read it. `ipa.load_internal()` returns the wider
+  set. Proposed, not applied: `farm.py` and `cloud_worklist.py` call
+  `load_internal()` instead of `load_members()` so `-O2` permuter time stops
+  going to internal functions; rerun `ipa scan` first.
+
+Reports recompute from the current lock on every run; rerun `scan` after a splice,
+an extent change or `ipa scan` when another tool consumes the JSON. The plan that
+uses this order is [docs/plans/2026-10-04-frontier-plan.md](../../docs/plans/2026-10-04-frontier-plan.md).
+
+## Whole-program shadow unit (`blob_unit`)
+
+Every locked game body built as ONE IDO `-O3` `uld -kp` unit and compared with the
+image, in about 3 s. It is a **shadow gate**: it proves the locked bodies are
+consistent in one program. It does not feed the image or the ROM, and an `EQUAL`
+from it is a lead, not acceptance (`blob_splice`/`blob_group` → `blob_rom` still are).
+
+```bash
+python3 -m tools.conveyor.pipeline.blob_unit check            # all locked bodies; exit 1 if any differs
+python3 -m tools.conveyor.pipeline.blob_unit manifest         # build/blob_unit.json only
+python3 -m tools.conveyor.pipeline.blob_unit layout           # unit .text order vs image order
+python3 -m tools.conveyor.pipeline.blob_unit --tag me score NAME... \
+    [--with cand.c ...] [--internal NAME] [--keep NAME] [--block NAME] [--neighbours]
+```
+
+- **Manifest** (`build/blob_unit.json`, generated from the lock, `src/blob/*.c` and the
+  group specs; never hand-edited): files in descending-address link order, one
+  definition per function (a group's private copy of a neighbour becomes a prototype;
+  same-named stand-ins are renamed per file), the `-kp` keep list and the internal set.
+  A function is internal only when a locked group defines it without keeping it; every
+  single and every new lock entry is kept. Nothing depends on the lock's size.
+- **Overrides** (`src/blob/unit_overrides.json`, tracked, a `reason` per entry):
+  `inline_blockers`, `force_keep`, `force_internal`, `prefer_definition`, `align`.
+- **Shadow-build devices, not source.** Locked sources are never edited. The staged
+  copies (`build/blob_unit/<tag>/stage/`, IDO `cc -E` output) get the stripping and
+  renaming above, a dead `if (0) {...}` block in each inline blocker so `umerge` does
+  not inline it, and a pad function before each `align` entry (position-dependent code:
+  it must start at its image offset modulo 32). Each of these stands for something the
+  real source or layout would supply; resolving them is plan C phases 3 and 5.
+- **Comparison**: each body's slice is relocated to its image address and compared word
+  for word; references into the unit's own `.rodata`/`.data` are checked against the
+  image bytes at the address the retail words encode (whole literal / jump table). An
+  unresolved symbol or a call into a stand-in is a failure, never a mask.
+- **`score`** builds the same unit plus candidate sources and reports only the named
+  functions, with their real callers and callees in the unit. A candidate's definitions
+  replace any other; `--internal NAME` takes it off the keep list. Use your own `--tag`
+  (separate local and builder directories). `--neighbours` also lists locked bodies the
+  candidate breaks.
+- Builder directory: `~/rush2049/scratch/frontier/unit/<tag>` (not `/tmp/blobsplice`,
+  `/tmp/blobgroup` or `~/rush2049/repo`), at most 4 jobs. `cc -E` output is cached by
+  content in `build/blob_unit/cache/`.
+
+Run `check` after every splice; it is not wired into `blob_splice`/`blob_group` yet.
+
 ## Known V1 limitations
 
 - `verify_promote` still lands matched source in `work/<...>/<fn>/matched.c`

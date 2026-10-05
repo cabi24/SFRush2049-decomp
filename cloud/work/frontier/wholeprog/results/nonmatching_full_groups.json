@@ -1,0 +1,399 @@
+[
+ {
+  "name": "camera_clip_planes",
+  "kind": "group",
+  "file": "g_codex_entity_helpers_a10__group.c",
+  "kept": true,
+  "status": "DIFF",
+  "target_words": 55,
+  "got_words": 52,
+  "differing": 38,
+  "internal_callees": [
+   "func_80091BA8",
+   "func_800BF01C"
+  ],
+  "kept_callees": [],
+  "unit_callers": [
+   "camera_look_at_point"
+  ],
+  "unresolved": [],
+  "errors": [],
+  "detail": null,
+  "diff": "    +0x040  want 1040001d beqz v0,0x78                  got 1040001b beqz v0,0x70                \n    +0x044  want 00000000 nop                           got 3c048014 lui a0,0x8014               \n    +0x048  want 8c450040 lw a1,64(v0)                  got 8c430040 lw v1,64(v0)                \n    +0x04c  want 0c02fc07 jal 0xbf01c                   got c4e40000 lwc1 $f4,0(a3)              \n    +0x050  want 00a02025 move a0,a1                    got c7a20024 lwc1 $f2,36(sp)             \n    +0x054  want c4e40000 lwc1 $f4,0(a3)                got 44800000 mtc1 zero,$f0               \n",
+  "class": "size differs; has internal (visible, non-kept) callees"
+ },
+ {
+  "name": "camera_shake_update",
+  "kind": "group",
+  "file": "g_codex_sound_channel_extra__group.c",
+  "kept": true,
+  "status": "DIFF",
+  "target_words": 45,
+  "got_words": 45,
+  "differing": 6,
+  "internal_callees": [
+   "sound_update_channel"
+  ],
+  "kept_callees": [],
+  "unit_callers": [],
+  "unresolved": [],
+  "errors": [],
+  "detail": null,
+  "diff": "    +0x00c  want 3089ffff andi t1,a0,0xffff             got 308affff andi t2,a0,0xffff           \n    +0x014  want 00004025 move t0,zero                  got 00002825 move a1,zero                \n    +0x03c  want 11210004 beq t1,at,0x14                got 11410004 beq t2,at,0x14              \n    +0x040  want 01201025 move v0,t1                    got 01401025 move v0,t2                  \n    +0x044  want 29210100 slti at,t1,256                got 29410100 slti at,t2,256              \n    +0x060  want 00097840 sll t7,t1,0x1                 got 000a7840 sll t7,t2,0x1               \n",
+  "class": "same size; has internal callees"
+ },
+ {
+  "name": "effect_spawn",
+  "kind": "single",
+  "file": "s_effect_spawn.c",
+  "kept": true,
+  "status": "DIFF",
+  "target_words": 27,
+  "got_words": 45,
+  "differing": 27,
+  "internal_callees": [
+   "func_800E7038"
+  ],
+  "kept_callees": [
+   "func_800C77C4"
+  ],
+  "unit_callers": [],
+  "unresolved": [],
+  "errors": [],
+  "detail": null,
+  "diff": "    +0x000  want 27bdffd8 addiu sp,sp,-40               got 27bdffa8 addiu sp,sp,-88             \n    +0x004  want afbf0024 sw ra,36(sp)                  got afbf0054 sw ra,84(sp)                \n    +0x008  want afb20020 sw s2,32(sp)                  got afbe0050 sw s8,80(sp)                \n    +0x00c  want afb1001c sw s1,28(sp)                  got afb7004c sw s7,76(sp)                \n    +0x010  want 0c039c0e jal 0xe7038                   got afb60048 sw s6,72(sp)                \n    +0x014  want afb00018 sw s0,24(sp)                  got afb50044 sw s5,68(sp)                \n",
+  "class": "size differs; has internal (visible, non-kept) callees"
+ },
+ {
+  "name": "func_8008B2B4",
+  "kind": "single",
+  "file": "s_func_8008B2B4.c",
+  "kept": false,
+  "status": "DIFF",
+  "target_words": 12,
+  "got_words": 2,
+  "differing": 12,
+  "internal_callees": [],
+  "kept_callees": [],
+  "unit_callers": [
+   "anim_state_update"
+  ],
+  "unresolved": [],
+  "errors": [],
+  "detail": null,
+  "diff": "    +0x000  want 3c038011 lui v1,0x8011                 got 03e00008 jr ra                       \n    +0x004  want 2463735c addiu v1,v1,29532             got 00000000 nop                         \n    +0x008  want 8c6e0000 lw t6,0(v1)                   got (missing)\n    +0x00c  want 3c0141c6 lui at,0x41c6                 got (missing)\n    +0x010  want 34214e6d ori at,at,0x4e6d              got (missing)\n    +0x014  want 01c10019 multu t6,at                   got (missing)\n",
+  "class": "size differs; member itself internal"
+ },
+ {
+  "name": "func_80096288",
+  "kind": "single",
+  "file": "s_func_80096288.c",
+  "kept": false,
+  "status": "DIFF",
+  "target_words": 4,
+  "got_words": 2,
+  "differing": 3,
+  "internal_callees": [],
+  "kept_callees": [],
+  "unit_callers": [
+   "slot_value_get",
+   "sound_update_channel",
+   "suspension_setup"
+  ],
+  "unresolved": [],
+  "errors": [],
+  "detail": null,
+  "diff": "    +0x000  want 10c00001 beqz a2,0x8                   got 03e00008 jr ra                       \n    +0x008  want 03e00008 jr ra                         got (missing)\n    +0x00c  want 00000000 nop                           got (missing)\n",
+  "class": "size differs; member itself internal"
+ },
+ {
+  "name": "func_800A5158",
+  "kind": "single",
+  "file": "s_func_800A5158.c",
+  "kept": true,
+  "status": "DIFF",
+  "target_words": 32,
+  "got_words": 43,
+  "differing": 7,
+  "internal_callees": [],
+  "kept_callees": [
+   "audio_frame_sync",
+   "func_800A510C"
+  ],
+  "unit_callers": [],
+  "unresolved": [],
+  "errors": [],
+  "detail": null,
+  "diff": "    +0x010  want 15c00017 bnez t6,0x60                  got 15c00022 bnez t6,0x8c                \n    +0x068  want 0c029443 jal 0xa510c                   got 3c048014 lui a0,0x8014               \n    +0x06c  want 00000000 nop                           got 3c058014 lui a1,0x8014               \n    +0x070  want 8fbf001c lw ra,28(sp)                  got 84a5fec8 lh a1,-312(a1)              \n    +0x074  want 27bd0020 addiu sp,sp,32                got 90840a10 lbu a0,2576(a0)             \n    +0x078  want 03e00008 jr ra                         got 50850009 beql a0,a1,0x28             \n",
+  "class": "size differs; kept, only kept/external callees"
+ },
+ {
+  "name": "func_800DCD58",
+  "kind": "group",
+  "file": "g_codex_control_settings_a4__group.c",
+  "kept": false,
+  "status": "DIFF",
+  "target_words": 39,
+  "got_words": 45,
+  "differing": 24,
+  "internal_callees": [],
+  "kept_callees": [
+   "audio_doppler"
+  ],
+  "unit_callers": [
+   "control_settings"
+  ],
+  "unresolved": [],
+  "errors": [],
+  "detail": null,
+  "diff": "    +0x034  want 03198821 addu s1,t8,t9                 got 03198021 addu s0,t8,t9               \n    +0x038  want 8e300020 lw s0,32(s1)                  got 8e020020 lw v0,32(s0)                \n    +0x044  want 320e0c00 andi t6,s0,0xc00              got 304e0c00 andi t6,v0,0xc00            \n    +0x048  want 51c00008 beqzl t6,0x24                 got 11c0000d beqz t6,0x38                \n    +0x04c  want 32180002 andi t8,s0,0x2                got 304f1000 andi t7,v0,0x1000           \n    +0x050  want 0c02d7e2 jal 0xb5f88                   got 11e00003 beqz t7,0x10                \n",
+  "class": "size differs; member itself internal"
+ },
+ {
+  "name": "func_800F68A4",
+  "kind": "group",
+  "file": "g_codex_sound_channel_extra__group.c",
+  "kept": true,
+  "status": "DIFF",
+  "target_words": 33,
+  "got_words": 33,
+  "differing": 4,
+  "internal_callees": [
+   "sound_update_channel"
+  ],
+  "kept_callees": [],
+  "unit_callers": [],
+  "unresolved": [],
+  "errors": [],
+  "detail": null,
+  "diff": "    +0x008  want 00804825 move t1,a0                    got 00805025 move t2,a0                  \n    +0x010  want 00004025 move t0,zero                  got 00002825 move a1,zero                \n    +0x038  want 01202025 move a0,t1                    got 01402025 move a0,t2                  \n    +0x06c  want 0122c821 addu t9,t1,v0                 got 0142c821 addu t9,t2,v0               \n",
+  "class": "same size; has internal callees"
+ },
+ {
+  "name": "leaderboard_update",
+  "kind": "group",
+  "file": "g_codex_entity_helpers_a10__group.c",
+  "kept": true,
+  "status": "DIFF",
+  "target_words": 32,
+  "got_words": 29,
+  "differing": 14,
+  "internal_callees": [
+   "func_80091BA8",
+   "func_800BF01C"
+  ],
+  "kept_callees": [
+   "results_time_display"
+  ],
+  "unit_callers": [
+   "camera_fov_control",
+   "camera_look_at_point"
+  ],
+  "unresolved": [],
+  "errors": [],
+  "detail": null,
+  "diff": "    +0x034  want 00401825 move v1,v0                    got 00e02025 move a0,a3                  \n    +0x048  want 10000009 b 0x28                        got 10000006 b 0x1c                      \n    +0x050  want 0c02fc07 jal 0xbf01c                   got 00002825 move a1,zero                \n    +0x054  want 8c640040 lw a0,64(v1)                  got 0c001d78 jal 0x75e0                  \n    +0x058  want 00e02025 move a0,a3                    got 00003025 move a2,zero                \n    +0x05c  want 00002825 move a1,zero                  got 0c02fc29 jal 0xbf0a4                 \n",
+  "class": "size differs; has internal (visible, non-kept) callees"
+ },
+ {
+  "name": "mode_byte2_set",
+  "kind": "group",
+  "file": "g_codex_sound_channel__group.c",
+  "kept": true,
+  "status": "DIFF",
+  "target_words": 20,
+  "got_words": 20,
+  "differing": 1,
+  "internal_callees": [
+   "sound_update_channel"
+  ],
+  "kept_callees": [],
+  "unit_callers": [
+   "world_velocity_integrate"
+  ],
+  "unresolved": [],
+  "errors": [],
+  "detail": null,
+  "diff": "    +0x01c  want 00004025 move t0,zero                  got 00002825 move a1,zero                \n",
+  "class": "same size; has internal callees"
+ },
+ {
+  "name": "mode_byte_set",
+  "kind": "group",
+  "file": "g_codex_sound_channel__group.c",
+  "kept": true,
+  "status": "DIFF",
+  "target_words": 20,
+  "got_words": 20,
+  "differing": 1,
+  "internal_callees": [
+   "sound_update_channel"
+  ],
+  "kept_callees": [],
+  "unit_callers": [
+   "world_velocity_integrate"
+  ],
+  "unresolved": [],
+  "errors": [],
+  "detail": null,
+  "diff": "    +0x01c  want 00004025 move t0,zero                  got 00002825 move a1,zero                \n",
+  "class": "same size; has internal callees"
+ },
+ {
+  "name": "object_activate",
+  "kind": "single",
+  "file": "s_object_activate.c",
+  "kept": true,
+  "status": "DIFF",
+  "target_words": 38,
+  "got_words": 36,
+  "differing": 28,
+  "internal_callees": [],
+  "kept_callees": [
+   "func_80091FBC",
+   "func_8009211C",
+   "func_800D52CC"
+  ],
+  "unit_callers": [],
+  "unresolved": [],
+  "errors": [],
+  "detail": null,
+  "diff": "    +0x010  want 1081001c beq a0,at,0x74                got 1081001a beq a0,at,0x6c              \n    +0x02c  want 0c0354b3 jal 0xd52cc                   got 820e0009 lb t6,9(s0)                 \n    +0x030  want 02002025 move a0,s0                    got 3c048014 lui a0,0x8014               \n    +0x034  want 820e0009 lb t6,9(s0)                   got 24846188 addiu a0,a0,24968           \n    +0x038  want 3c048014 lui a0,0x8014                 got 11c00004 beqz t6,0x14                \n    +0x03c  want 24846188 addiu a0,a0,24968             got 00000000 nop                         \n",
+  "class": "size differs; kept, only kept/external callees"
+ },
+ {
+  "name": "object_byte9_set",
+  "kind": "group",
+  "file": "g_codex_sound_channel_extra__group.c",
+  "kept": true,
+  "status": "DIFF",
+  "target_words": 16,
+  "got_words": 16,
+  "differing": 5,
+  "internal_callees": [
+   "sound_update_channel"
+  ],
+  "kept_callees": [],
+  "unit_callers": [
+   "slot_state_setup"
+  ],
+  "unresolved": [],
+  "errors": [],
+  "detail": null,
+  "diff": "    +0x004  want 00044e00 sll t1,a0,0x18                got 00045600 sll t2,a0,0x18              \n    +0x008  want 00097603 sra t6,t1,0x18                got 000a7603 sra t6,t2,0x18              \n    +0x010  want 01c04825 move t1,t6                    got 01c05025 move t2,t6                  \n    +0x01c  want 00004025 move t0,zero                  got 00002825 move a1,zero                \n    +0x02c  want a0690009 sb t1,9(v1)                   got a06a0009 sb t2,9(v1)                 \n",
+  "class": "same size; has internal callees"
+ },
+ {
+  "name": "object_type_byte2_get",
+  "kind": "group",
+  "file": "g_codex_sound_channel__group.c",
+  "kept": true,
+  "status": "DIFF",
+  "target_words": 10,
+  "got_words": 10,
+  "differing": 1,
+  "internal_callees": [
+   "sound_update_channel"
+  ],
+  "kept_callees": [],
+  "unit_callers": [
+   "object_bytes23_sum"
+  ],
+  "unresolved": [],
+  "errors": [],
+  "detail": null,
+  "diff": "    +0x00c  want 00004025 move t0,zero                  got 00002825 move a1,zero                \n",
+  "class": "same size; has internal callees"
+ },
+ {
+  "name": "object_type_byte3_get",
+  "kind": "group",
+  "file": "g_codex_sound_channel__group.c",
+  "kept": true,
+  "status": "DIFF",
+  "target_words": 10,
+  "got_words": 10,
+  "differing": 1,
+  "internal_callees": [
+   "sound_update_channel"
+  ],
+  "kept_callees": [],
+  "unit_callers": [
+   "object_bytes23_sum"
+  ],
+  "unresolved": [],
+  "errors": [],
+  "detail": null,
+  "diff": "    +0x00c  want 00004025 move t0,zero                  got 00002825 move a1,zero                \n",
+  "class": "same size; has internal callees"
+ },
+ {
+  "name": "process_inputs",
+  "kind": "single",
+  "file": "s_process_inputs.c",
+  "kept": true,
+  "status": "DIFF",
+  "target_words": 89,
+  "got_words": 111,
+  "differing": 89,
+  "internal_callees": [
+   "controller_poll"
+  ],
+  "kept_callees": [],
+  "unit_callers": [
+   "control_settings",
+   "game_loop"
+  ],
+  "unresolved": [],
+  "errors": [],
+  "detail": null,
+  "diff": "    +0x000  want 27bdffe8 addiu sp,sp,-24               got 27bdffa8 addiu sp,sp,-88             \n    +0x004  want afbf0014 sw ra,20(sp)                  got afbf0054 sw ra,84(sp)                \n    +0x008  want 0c032577 jal 0xc95dc                   got afbe0050 sw s8,80(sp)                \n    +0x00c  want 00000000 nop                           got afb7004c sw s7,76(sp)                \n    +0x010  want 3c038015 lui v1,0x8015                 got afb60048 sw s6,72(sp)                \n    +0x014  want 3c048015 lui a0,0x8015                 got afb50044 sw s5,68(sp)                \n",
+  "class": "size differs; has internal (visible, non-kept) callees"
+ },
+ {
+  "name": "results_screen_update",
+  "kind": "group",
+  "file": "g_codex_entity_helpers_a10__group.c",
+  "kept": true,
+  "status": "DIFF",
+  "target_words": 32,
+  "got_words": 29,
+  "differing": 14,
+  "internal_callees": [
+   "func_80091BA8",
+   "func_800BF01C"
+  ],
+  "kept_callees": [
+   "scheduler_recv"
+  ],
+  "unit_callers": [
+   "camera_aspect_ratio",
+   "camera_fov_control",
+   "camera_look_at_point",
+   "player_conditional_check"
+  ],
+  "unresolved": [],
+  "errors": [],
+  "detail": null,
+  "diff": "    +0x034  want 00401825 move v1,v0                    got 00e02025 move a0,a3                  \n    +0x048  want 1000000a b 0x2c                        got 10000007 b 0x20                      \n    +0x050  want 0c02fc07 jal 0xbf01c                   got 00002825 move a1,zero                \n    +0x054  want 8c640040 lw a0,64(v1)                  got 0c001d78 jal 0x75e0                  \n    +0x058  want 00e02025 move a0,a3                    got 00003025 move a2,zero                \n    +0x05c  want 00002825 move a1,zero                  got 0c024701 jal 0x91c04                 \n",
+  "class": "size differs; has internal (visible, non-kept) callees"
+ },
+ {
+  "name": "task_complete_signal",
+  "kind": "group",
+  "file": "g_codex_task_complete_signal__group.c",
+  "kept": true,
+  "status": "DIFF",
+  "target_words": 36,
+  "got_words": 42,
+  "differing": 5,
+  "internal_callees": [],
+  "kept_callees": [],
+  "unit_callers": [],
+  "unresolved": [],
+  "errors": [],
+  "detail": null,
+  "diff": "    +0x07c  want 8fbf001c lw ra,28(sp)                  got 00000000 nop                         \n    +0x080  want 8fb00014 lw s0,20(sp)                  got 00000000 nop                         \n    +0x084  want 8fb10018 lw s1,24(sp)                  got 00000000 nop                         \n    +0x088  want 03e00008 jr ra                         got 00000000 nop                         \n    +0x08c  want 27bd0020 addiu sp,sp,32                got 00000000 nop                         \n",
+  "class": "size differs; kept, only kept/external callees"
+ }
+]

@@ -3014,6 +3014,7 @@ func_800B9F60:
 .section .text.audio_channel_alloc, "ax", @progbits
 .globl audio_channel_alloc
 audio_channel_alloc:
+    /* compiled from src/blob/audio_channel_alloc.c */
     .word 0x27BDFF88
     .word 0xAFB60040
     .word 0x00A4082A
@@ -5903,6 +5904,7 @@ camera_dolly:
 .section .text.camera_follow_target, "ax", @progbits
 .globl camera_follow_target
 camera_follow_target:
+    /* compiled from src/blob/camera_follow_target.c */
     .word 0x27BDFFA0
     .word 0xC7AC0078
     .word 0x44808000
@@ -6373,6 +6375,7 @@ camera_smooth_follow:
 .section .text.race_setup_1, "ax", @progbits
 .globl race_setup_1
 race_setup_1:
+    /* compiled from src/blob/race_setup_1.c */
     .word 0x3C0E8011
     .word 0x8DCE74B4
     .word 0x27BDFFD8

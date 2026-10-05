@@ -44,6 +44,7 @@ import subprocess
 import sys
 from pathlib import Path
 
+from ...cloud import owndata
 from . import blob_build, blob_layout, blob_splice
 
 REPO = blob_splice.REPO
@@ -193,9 +194,139 @@ class _TableWindows:
         raise GroupError(f"jump table addend {addend:#x} outside verified windows")
 
 
+class _ReferenceWindows:
+    """Per-reference placements of one own section: {object offset: image
+    address}, each verified by content for a member that is being output."""
+
+    def __init__(self, section, addresses):
+        self.section = section
+        self.addresses = dict(addresses)
+
+    def address(self, addend):
+        try:
+            return self.addresses[addend]
+        except KeyError:
+            raise GroupError(f"{self.section}+0x{addend:x} is not a verified "
+                             "own-data reference of a member") from None
+
+
 def _local_address(placement, addend):
-    return (placement.address(addend) if isinstance(placement, _TableWindows)
+    return (placement.address(addend)
+            if isinstance(placement, (_TableWindows, _ReferenceWindows))
             else placement + addend)
+
+
+_RELOC_TYPES = {2: "R_MIPS_32", 4: "R_MIPS_26", 5: "R_MIPS_HI16", 6: "R_MIPS_LO16"}
+
+
+def _same_records(ours, elf_records):
+    """Whether the readelf view of a relocation table equals the ELF reader's."""
+    theirs = list(elf_records)
+    return len(ours) == len(theirs) and all(
+        offset == r_offset and name == sym["name"]
+        and kind == _RELOC_TYPES.get(r_type, kind)
+        for (offset, kind, name), (r_offset, r_type, sym) in zip(ours, theirs))
+
+
+def _member_own_data(obj, members, slices, text, rels, image, addresses):
+    """{member: owndata.Result}: every own-data reference of every output
+    member, checked by content against the image (tools/cloud/owndata.py).
+
+    Any reference that fails or cannot be checked refuses the group; the
+    message names the member, the site, the retail address and both values.
+    Functions that are not output (context, stand-ins) are not verified: their
+    references only bound the members' windows.
+    """
+    if image is None:
+        raise GroupError("relocations against the unit's own data need the image")
+    try:
+        elf = owndata._Object(obj)
+        text_index = [i for i, sec in enumerate(elf.sections) if sec["name"] == ".text"]
+        # owndata reads the object itself. It must be looking at the very text
+        # and relocation records this module relocates.
+        if (len(text_index) != 1 or elf.raw(text_index[0]) != bytes(text)
+                or not _same_records(rels, elf.relocations(text_index[0]))):
+            raise GroupError("own data: the object's .text or its relocation records "
+                             "differ between the two ELF readers")
+    except (ValueError, struct.error, IndexError) as exc:
+        raise GroupError(f"own data: {exc}") from exc
+    data, base = image
+    retail = owndata.ImageData.from_image(data, base)
+    results = {}
+    for member in members:
+        off, vaddr, size = slices[member]
+        if not base <= vaddr or vaddr + size > base + len(data):
+            raise GroupError(f"{member}: extent is outside the image")
+        body = data[vaddr - base:vaddr - base + size]
+        want = list(struct.unpack(f">{size // 4}I", body))
+        result = owndata.verify(obj, member, want, address=vaddr, image=retail,
+                                start=off, addresses=addresses)
+        problems = result.failures + result.unverified
+        if problems:
+            raise GroupError(f"{member}: " + "; ".join(problems))
+        results[member] = result
+    return results
+
+
+def _reference_windows(obj, section, wanted, results, section_rels, syms, in_member):
+    """A `_ReferenceWindows` for one own section from the members' verified
+    references (`results`, see `_member_own_data`).
+
+    wanted        object offsets the members' relocation pairs name; each must
+                  be the start of a verified window
+    section_rels  the section's own relocations (jump-table entries)
+
+    Refused: one object offset placed at two image addresses, two different
+    object windows placed over the same image bytes, a referenced offset
+    without a verified window, and a table entry that enters a member's text
+    outside every verified window (a table cut short by a foreign reference).
+    """
+    try:
+        elf = owndata._Object(obj)
+        index = [i for i, sec in enumerate(elf.sections) if sec["name"] == section]
+        if len(index) != 1 or not _same_records(section_rels, elf.relocations(index[0])):
+            raise GroupError(f"{section}: its relocation records differ between the "
+                             "two ELF readers")
+    except (ValueError, struct.error, IndexError) as exc:
+        raise GroupError(f"{section}: {exc}") from exc
+    placed = {}                     # object offset -> [image address, end, member]
+    for member, result in results.items():
+        for lo, hi, address, _cls in result.placements.get(section, []):
+            seen = placed.get(lo)
+            if seen is None:
+                placed[lo] = [address, hi, member]
+            elif seen[0] != address:
+                raise GroupError(
+                    f"{section}+0x{lo:x} is placed at different image addresses: "
+                    f"0x{seen[0]:08x} ({seen[2]}), 0x{address:08x} ({member})")
+            else:
+                seen[1] = max(seen[1], hi)
+    for offset in sorted(wanted):
+        if offset not in placed:
+            raise GroupError(f"{section}+0x{offset:x} is referenced by a member but "
+                             "was not verified against the image")
+    spans = sorted((address, address + hi - lo, lo, member)
+                   for lo, (address, hi, member) in placed.items())
+    for (_a, end, lo, member), (address, _e, other_lo, other) in zip(spans, spans[1:]):
+        if address < end:
+            raise GroupError(
+                f"{section}+0x{lo:x} ({member}) and {section}+0x{other_lo:x} ({other}) "
+                f"are placed over the same image bytes at 0x{address:08x}")
+    raw = _section_bytes(obj, section)
+    text_ndx = _sections(obj)[".text"][0]
+    for offset, _kind, name in section_rels:
+        symbol = syms.get(name)
+        if name != ".text" and (not symbol or symbol[1] != text_ndx):
+            continue
+        if offset % 4 or offset < 0 or offset + 4 > len(raw):
+            raise GroupError(f"{section}: unaligned or out-of-section table relocation")
+        target = struct.unpack(">I", raw[offset:offset + 4])[0]
+        target += 0 if name == ".text" else symbol[0]
+        if in_member(target) and not any(lo <= offset < hi
+                                         for lo, (_a, hi, _m) in placed.items()):
+            raise GroupError(f"{section}+0x{offset:x}: a table entry into member text "
+                             f"(.text+0x{target:x}) is outside every verified reference")
+    return _ReferenceWindows(section, {lo: address for lo, (address, _h, _m) in placed.items()})
 
 
 def _jump_table_windows(obj, references, rels, syms, data_target, image_bytes):
@@ -268,12 +399,19 @@ def _jump_table_windows(obj, references, rels, syms, data_target, image_bytes):
 
 def _local_data_bases(obj, rels, syms, in_member, image_word, image_bytes,
                       known=lambda name: None, relocated=None, data_target=None,
-                      table_member=None):
+                      table_member=None, per_reference=None):
     """Verified placements for the unit's own data sections.
 
     Ordinary placements are one section base. Only after that existing proof
     refuses a .rodata section can complete native jump-table evidence select
     independent _TableWindows placements. All covered context pairs then count.
+
+    Retail lays .rodata out per function, so members that are not address
+    neighbours have their literals and tables at unrelated image addresses and
+    no whole-section proof can hold. When both proofs above refuse a section,
+    `per_reference(section, offsets, refusal)` (see `relocate`) may place it
+    reference by reference instead: `offsets` are the object offsets the
+    output members reference. Without it the refusal stands.
 
     A function-local static lives in the unit's .data, so its relocations name
     a section of this object, not an image symbol. The section's image address
@@ -306,7 +444,7 @@ def _local_data_bases(obj, rels, syms, in_member, image_word, image_bytes,
 
     text = _text(obj)
     word = lambda o: struct.unpack(">I", text[o:o + 4])[0]
-    candidates, reach, pending = {}, {}, []
+    candidates, reach, pending, wanted = {}, {}, [], {}
     for offset, rtype, name in rels:
         if not in_member(offset):
             continue
@@ -328,10 +466,10 @@ def _local_data_bases(obj, rels, syms, in_member, image_word, image_bytes,
                 retail = ((image_word(h) & 0xFFFF) << 16) + _sext16(image_word(offset) & 0xFFFF)
                 candidates.setdefault(section, set()).add((retail - ours) & 0xFFFFFFFF)
             reach[section] = max(reach.get(section, 0), ours + 4)
+            wanted.setdefault(section, set()).add(ours)
         else:
             raise GroupError(f"unsupported {rtype} against {section} at .text+0x{offset:x}")
-    bases = {}
-    for section, found in candidates.items():
+    def whole_section(section, found):
         # Try the original contiguous-section proof first. In particular, a
         # successful old path never examines a context's own partial pairs.
         if len(found) == 1:
@@ -346,8 +484,7 @@ def _local_data_bases(obj, rels, syms, in_member, image_word, image_bytes,
             used = max(reach[section], len(data.rstrip(b"\0")))
             used = min((used + 3) & ~3, len(data))
             if image_bytes(base, used) == data[:used]:
-                bases[section] = base
-                continue
+                return base
             refusal = GroupError(f"{section}: {used} bytes at 0x{base:08x} differ from the image")
         else:
             refusal = GroupError(f"{section}: relocation sites disagree on its image address "
@@ -384,9 +521,18 @@ def _local_data_bases(obj, rels, syms, in_member, image_word, image_bytes,
         if len({(address - offset) & 0xFFFFFFFF
                 for offset, address in references}) <= 1:
             raise refusal
-        bases[section] = _jump_table_windows(
+        return _jump_table_windows(
             obj, references, relocated.get(section, []), syms,
             data_target, image_bytes)
+
+    bases = {}
+    for section, found in candidates.items():
+        try:
+            bases[section] = whole_section(section, found)
+        except GroupError as refusal:
+            if per_reference is None:
+                raise
+            bases[section] = per_reference(section, wanted[section], refusal)
     return bases
 
 
@@ -447,6 +593,13 @@ def relocate(obj, slices, text_ndx, extern, members=None, image=None):
     anything else (and any relocation outside .text) is refused. HI16/LO16
     pairs against the unit's own data sections need `image` (bytes, base
     address); see `_local_data_bases`.
+
+    Own data is placed as one section base where that is provable (members
+    that are neighbours in the image). Otherwise every own-data reference of
+    every output member is verified by content at the address the retail
+    words encode at its site (tools/cloud/owndata.py) and relocated to exactly
+    that address. Functions that are not output (context, stand-ins) are not
+    verified then; their references cannot refuse the members.
 
     Check body lengths for members being spliced. Other slices supply context
     addresses only; those functions need not match their retail bodies.
@@ -516,10 +669,31 @@ def relocate(obj, slices, text_ndx, extern, members=None, image=None):
             raise GroupError(f"jump table entry names {name}, which has no image address")
         return addr + addend
 
+    relocated = {o[len(".rel"):]: v for o, v in others.items()}
+    output = list(slices if members is None else members)
+    verified = []                   # the members' owndata results, computed once
+
+    def function_address(name):
+        return slices[name][1] if name in slices else known(name)
+
+    def per_reference(section, offsets, refusal):
+        """Place `section` reference by reference after the whole-section
+        proofs refused it. A failure here reports both reasons."""
+        try:
+            if not verified:
+                verified.append(_member_own_data(obj, output, slices, text, rels, image,
+                                                 function_address))
+            return _reference_windows(obj, section, offsets, verified[0],
+                                      relocated.get(section, []), syms, in_member)
+        except GroupError as exc:
+            raise GroupError(f"{exc} [per-reference placement tried because the "
+                             f"whole-section placement was refused: {refusal}]") from refusal
+
     local = _local_data_bases(obj, rels, syms, in_member, image_word, image_at, known,
-                              relocated={o[len(".rel"):]: v for o, v in others.items()},
+                              relocated=relocated,
                               data_target=data_target,
-                              table_member=lambda o: any(lo <= o < hi for lo, hi, _ in covered))
+                              table_member=lambda o: any(lo <= o < hi for lo, hi, _ in covered),
+                              per_reference=per_reference)
     sec_index = {ndx: name for name, (ndx, _, _) in _sections(obj).items()
                  if name in local}
 
@@ -860,9 +1034,18 @@ def main():
             spec = load(args.group)
             out = compile_group(spec)
             doc = blob_layout.load()
-            bodies = group_bodies(args.group, doc, include_context=True)
+            unplaced = None
+            try:
+                bodies = group_bodies(args.group, doc, include_context=True)
+            except GroupError as exc:
+                # Context is unmatched code: its own data need not verify.
+                # Only the members decide (as in `splice`).
+                bodies = group_bodies(args.group, doc)
+                unplaced = exc
             diffs = word_diffs(bodies, doc)
             print(f"compiled {args.group} -> {out}")
+            if unplaced is not None:
+                print(f"  context not compared: {unplaced}")
             for name, n in diffs.items():
                 role = "member" if name in spec["members"] else "context"
                 words = len(bodies[name]) // 4

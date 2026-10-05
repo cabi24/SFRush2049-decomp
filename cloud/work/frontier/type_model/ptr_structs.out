@@ -1,0 +1,9 @@
+reg+offset accesses (non-sp, non-absolute base): all 14919  in unmatched 10723
+absolute refs: all 18304  in unmatched 15583
+top distinctive (off>=0x100) pointer accesses by #unmatched functions:
+  lh 0x7c6:27, lb 0x35c:11, lb 0x7cc:10, lh 0x6c4:9, lw 0x3a4:8, lb 0x640:8, lb 0x35d:8, lwc1 0x79c:7, lwc1 0x798:7, lwc1 0x794:7, lwc1 0x220:7, swc1 0x12c:6, swc1 0x128:6, swc1 0x124:6, lwc1 0x228:6, lwc1 0x224:6, lwc1 0x12c:6, lwc1 0x128:6, lwc1 0x124:6, lw 0x7d4:6, lh 0x7e2:6, sb 0x640:5, lwc1 0x634:5, lwc1 0x3f0:5, lwc1 0x234:5, lwc1 0x22c:5, lw 0x208:5, swc1 0x234:4, swc1 0x22c:4, lwc1 0x5f4:4, lwc1 0x5ec:4, lw 0x74b4:4, lw 0x3b0:4, lw 0x388:4, lb 0x35b:4, swc1 0x72c:3, swc1 0x728:3, swc1 0x5dc:3, swc1 0x5cc:3, swc1 0x230:3
+unmatched functions whose largest pointer offset is MODELDAT-sized (max off 0x400..0x80f): 52, bytes 69488
+unmatched functions whose largest pointer offset is CAR-sized (max off 0x100..0x3b7): 37, bytes 42496
+unmatched functions whose largest pointer offset is >=0x810: 43, bytes 57832
+functions reading lh 0x7C6(ptr) [MODELDAT.net_node hallmark]: 35 unmatched 27 bytes 41192
+  offsets (>=0x40) seen in >=4 of those functions: 0x48/lwc1:4, 0x48/swc1:4, 0xc4/lwc1:4, 0xd0/lwc1:4, 0x124/lwc1:4, 0x128/lwc1:4, 0x12c/lwc1:4, 0x220/lwc1:5, 0x224/lwc1:4, 0x228/lwc1:4, 0x3f0/lwc1:5, 0x3f8/lh:4, 0x640/lb:8, 0x640/sb:7, 0x6c4/lh:5, 0x730/sb:4, 0x794/lwc1:5, 0x798/lwc1:5, 0x79c/lwc1:5, 0x7c6/lh:35, 0x7cc/lb:12, 0x7d4/lw:6, 0x7e2/lh:6, 0x7e4/lh:4

@@ -1,0 +1,27 @@
+Members:
+audio_helper:
+  MATCH
+func_800E7B44:
+  MATCH
+audio_dma_sync:
+  MATCH
+audio_task_complete:
+  MATCH
+func_800E7C2C:
+  MATCH
+
+Context (informational; excluded from exit status):
+func_800E7D0C:
+    +0x000  want 3c0e8011 lui t6,0x8011                 got 3c028011 lui v0,0x8011               
+    +0x004  want 81ce6488 lb t6,25736(t6)               got 24426488 addiu v0,v0,25736           
+    +0x008  want 27bdffe8 addiu sp,sp,-24               got 804e0000 lb t6,0(v0)                 
+    +0x00c  want afbf0014 sw ra,20(sp)                  got 27bdffe8 addiu sp,sp,-24             
+    +0x010  want afa40018 sw a0,24(sp)                  got afbf0014 sw ra,20(sp)                
+    +0x014  want 15c0000f bnez t6,0x40                  got afa40018 sw a0,24(sp)                
+    +0x018  want afa5001c sw a1,28(sp)                  got 15c0000e bnez t6,0x3c                
+    +0x01c  want 240f0001 li t7,1                       got afa5001c sw a1,28(sp)                
+    +0x020  want 3c018011 lui at,0x8011                 got 240f0001 li t7,1                     
+    +0x02c  want a02f6488 sb t7,25736(at)               got a04f0000 sb t7,0(v0)                 
+    +0x05c  want 2442001f addiu v0,v0,31                got 3c038015 lui v1,0x8015               
+    +0x060  want 2401ffe0 li at,-32                     got 2442001f addiu v0,v0,31              
+  15/49 words differ (1 extra words (nonzero beyond target length))

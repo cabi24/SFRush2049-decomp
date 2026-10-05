@@ -1,0 +1,93 @@
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+typedef signed char s8;
+typedef unsigned char u8;
+typedef short s16;
+typedef unsigned short u16;
+typedef int s32;
+typedef unsigned int u32;
+typedef float f32;
+
+#define MAX_LINKS 6
+#define LINK_ACTIVE 0x80
+#define DRONE 1
+#define HUMAN 2
+
+typedef struct {
+    /* 0x000 */ u8 pad0[0x7C6];
+    /* 0x7C6 */ s16 slot;
+    /* 0x7C8 */ s16 in_game;
+    /* 0x7CA */ s16 we_control;
+    /* 0x7CC */ s8 drone_type;
+    /* 0x7CD */ u8 pad7CD[0x3B];
+} MODELDAT; /* 0x808 */
+
+typedef struct {
+    /* 0x000 */ u8 pad0[0xEE];
+    /* 0x0EE */ u8 unkEE;
+    /* 0x0EF */ u8 padEF[0x26C];
+    /* 0x35B */ s8 place;
+    /* 0x35C */ u8 pad35C[0x5C];
+} CAR_DATA; /* 0x3B8 */
+
+typedef struct {
+    /* 0x0 */ u8 pad0[5];
+    /* 0x5 */ u8 unk5;
+    /* 0x6 */ u8 flags;
+    /* 0x7 */ u8 owner;
+} Link; /* 0x8 */
+
+extern volatile s16 D_801543CA;        /* number of cars */
+extern s8 D_80152744;         /* num_active_cars */
+extern MODELDAT D_8014A250[]; /* model */
+extern CAR_DATA D_80152818[]; /* game_car */
+extern Link D_80153E88[];     /* gLink */
+extern s16 D_8015274C;        /* num_our_drones */
+extern s16 D_80152768;        /* num_drones */
+extern s16 D_80153FD2;        /* num_humans */
+extern s16 D_80143A40[];      /* humans */
+extern s16 D_801527D8[];      /* drones */
+extern s16 D_80152808[];      /* our_drones */
+extern s32 D_80143FF4;
+
+void func_800EC914(void) {
+    s32 i;
+    s32 index;
+    MODELDAT *m;
+    CAR_DATA *gc;
+
+    D_80152744 = 0;
+    for (i = 0; i < D_801543CA; i++) {
+        m = &D_8014A250[i];
+        gc = &D_80152818[i];
+        m->we_control = (D_80153E88[i].owner == 0);
+        m->drone_type = 0;
+        m->in_game = (D_80153E88[i].flags & LINK_ACTIVE) != 0;
+        if (m->in_game) {
+            D_8014A250[D_80152744++].slot = i;
+            gc->place = i;
+            gc->unkEE = D_80153E88[i].unk5;
+            m->drone_type = (D_80153E88[i].owner < MAX_LINKS) ? DRONE : HUMAN;
+        }
+    }
+    for (i = D_801543CA; i < MAX_LINKS; i++) {
+        m = &D_8014A250[i];
+        m->we_control = (D_80153E88[i].owner == 0);
+        m->drone_type = 0;
+        m->in_game = 0;
+    }
+    D_8015274C = 0;
+    D_80152768 = D_8015274C;
+    D_80153FD2 = D_8015274C;
+    for (i = 0; i < D_80152744; i++) {
+        index = D_8014A250[i].slot;
+        if (D_8014A250[index].drone_type == HUMAN) {
+            D_80143A40[D_80153FD2++] = index;
+        } else {
+            D_801527D8[D_80152768++] = index;
+            if (D_8014A250[index].we_control) {
+                D_80152808[D_8015274C++] = index;
+            }
+        }
+    }
+    D_80143FF4 = 0;
+}

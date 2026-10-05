@@ -8018,6 +8018,7 @@ func_800DDF28:
 .section .text.display_settings, "ax", @progbits
 .globl display_settings
 display_settings:
+    /* compiled from src/blob/display_settings.c */
     .word 0x27BDFFD0
     .word 0x2401000A
     .word 0xAFBF002C

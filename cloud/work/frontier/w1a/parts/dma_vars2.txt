@@ -1,0 +1,80 @@
+=== s32cast
+void *audio_dma_sync(Heap *heap, u32 size)
+{
+    void *p;
+
+    osRecvMesg(D_80152770, 0, 1);
+    p = audio_helper(size, (Heap *)((s32)heap != 0 ? (s32)heap : (s32)D_801527C8), 0, 0);
+    osJamMesg(D_80152770, 0, 0);
+    return p;
+}
+=== u32cast
+void *audio_dma_sync(Heap *heap, u32 size)
+{
+    void *p;
+
+    osRecvMesg(D_80152770, 0, 1);
+    p = audio_helper(size, (Heap *)((u32)heap != 0 ? (u32)heap : (u32)D_801527C8), 0, 0);
+    osJamMesg(D_80152770, 0, 0);
+    return p;
+}
+=== voidp
+void *audio_dma_sync(void *heap, u32 size)
+{
+    void *p;
+
+    osRecvMesg(D_80152770, 0, 1);
+    p = audio_helper(size, heap != 0 ? heap : (void *)D_801527C8, 0, 0);
+    osJamMesg(D_80152770, 0, 0);
+    return p;
+}
+=== s32param
+void *audio_dma_sync(s32 heap, u32 size)
+{
+    void *p;
+
+    osRecvMesg(D_80152770, 0, 1);
+    p = audio_helper(size, (Heap *)(heap != 0 ? heap : (s32)D_801527C8), 0, 0);
+    osJamMesg(D_80152770, 0, 0);
+    return p;
+}
+=== s32param2
+void *audio_dma_sync(s32 heap, u32 size)
+{
+    void *p;
+
+    osRecvMesg(D_80152770, 0, 1);
+    p = audio_helper(size, heap != 0 ? (Heap *)heap : D_801527C8, 0, 0);
+    osJamMesg(D_80152770, 0, 0);
+    return p;
+}
+=== u32param
+void *audio_dma_sync(u32 heap, u32 size)
+{
+    void *p;
+
+    osRecvMesg(D_80152770, 0, 1);
+    p = audio_helper(size, (Heap *)(heap ? heap : (u32)D_801527C8), 0, 0);
+    osJamMesg(D_80152770, 0, 0);
+    return p;
+}
+=== oror
+void *audio_dma_sync(Heap *heap, u32 size)
+{
+    void *p;
+
+    osRecvMesg(D_80152770, 0, 1);
+    p = audio_helper(size, (Heap *)((u32)heap || (heap = D_801527C8), heap), 0, 0);
+    osJamMesg(D_80152770, 0, 0);
+    return p;
+}
+=== comma
+void *audio_dma_sync(Heap *heap, u32 size)
+{
+    void *p;
+
+    osRecvMesg(D_80152770, 0, 1);
+    p = audio_helper(size, (heap != 0 ? 0 : (heap = D_801527C8), heap), 0, 0);
+    osJamMesg(D_80152770, 0, 0);
+    return p;
+}

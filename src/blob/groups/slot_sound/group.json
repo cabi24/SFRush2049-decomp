@@ -1,0 +1,39 @@
+{
+ "members": [
+  "func_80096288",
+  "slot_value_get",
+  "display_list_alloc",
+  "player_state_get",
+  "slot_deactivate",
+  "sound_update_channel",
+  "mode_byte2_set",
+  "object_type_byte2_get",
+  "object_type_byte3_get",
+  "mode_byte_set"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "slot_value_get",
+  "display_list_alloc",
+  "player_state_get",
+  "slot_deactivate",
+  "mode_byte2_set",
+  "object_type_byte2_get",
+  "object_type_byte3_get",
+  "mode_byte_set"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "claims": [
+  "display_list_alloc",
+  "sound_update_channel",
+  "slot_value_get",
+  "player_state_get",
+  "slot_deactivate"
+ ],
+ "note": "Real group, no stand-ins. func_80096288 (locked single) is a member here with a dead if(0) switch appended and must stay internal; mode_byte*/object_type_byte* are the already-locked real callers from codex_sound_channel, unchanged. audio_loop_control is external (kept, ABI).",
+ "provenance": "frontier wave 1 (w1a), 2026-10-04; cloud/work/frontier/w1a/RESULTS.md"
+}

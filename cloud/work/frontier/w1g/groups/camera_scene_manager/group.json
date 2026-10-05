@@ -1,0 +1,27 @@
+{
+ "members": [
+  "func_800C1B60",
+  "func_800C2004",
+  "func_800C220C",
+  "func_800C3578",
+  "camera_scene_manager"
+ ],
+ "context": [
+  "func_800C2944",
+  "func_800C26C4",
+  "func_800C2430"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "camera_scene_manager",
+  "func_800C3578"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "claims": [
+  "func_800C3578"
+ ],
+ "note": "Real unit without stand-ins. func_800C3578 is strict. func_800C1B60 (4 jump-table relocations), func_800C2004 and func_800C220C (2 each, the 0.15f literal) are code-identical with own-rodata unverified. camera_scene_manager is not matched."
+}

@@ -916,6 +916,7 @@ func_800BEA6C:
 .section .text.race_setup_2, "ax", @progbits
 .globl race_setup_2
 race_setup_2:
+    /* compiled from src/blob/race_setup_2.c */
     .word 0x27BDFF78
     .word 0xAFA40088
     .word 0x87AE008A
@@ -1147,6 +1148,7 @@ race_setup_2:
 .section .text.camera_blend_between, "ax", @progbits
 .globl camera_blend_between
 camera_blend_between:
+    /* compiled from src/blob/camera_blend_between.c */
     .word 0x27BDFF70
     .word 0xAFB6005C
     .word 0x3C168015
@@ -1792,6 +1794,7 @@ func_800BF778:
 .section .text.func_800BF780, "ax", @progbits
 .globl func_800BF780
 func_800BF780:
+    /* compiled from src/blob/func_800BF780.c */
     .word 0x00A03825
     .word 0x24050003
     .word 0x00001025
@@ -2525,6 +2528,7 @@ camera_free_look:
 .section .text.func_800C0294, "ax", @progbits
 .globl func_800C0294
 func_800C0294:
+    /* compiled from src/blob/func_800C0294.c */
     .word 0x3C078015
     .word 0x94E7267C
     .word 0x3C038015
@@ -4147,6 +4151,7 @@ func_800C1A00:
 .section .text.func_800C1B60, "ax", @progbits
 .globl func_800C1B60
 func_800C1B60:
+    /* compiled from src/blob/func_800C1B60.c */
     .word 0x00097100
     .word 0x01C97023
     .word 0x3C0F8015
@@ -4448,6 +4453,7 @@ func_800C1B60:
 .section .text.func_800C2004, "ax", @progbits
 .globl func_800C2004
 func_800C2004:
+    /* compiled from src/blob/func_800C2004.c */
     .word 0x00117140
     .word 0x01D17023
     .word 0x3C0F8015
@@ -4582,6 +4588,7 @@ func_800C2004:
 .section .text.func_800C220C, "ax", @progbits
 .globl func_800C220C
 func_800C220C:
+    /* compiled from src/blob/func_800C220C.c */
     .word 0x00117140
     .word 0x01D17023
     .word 0x3C0F8015
@@ -5863,6 +5870,7 @@ camera_scene_manager:
 .section .text.func_800C3578, "ax", @progbits
 .globl func_800C3578
 func_800C3578:
+    /* compiled from src/blob/func_800C3578.c */
     .word 0x00047100
     .word 0x01C47023
     .word 0x3C0F8015

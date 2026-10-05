@@ -1,0 +1,23 @@
+{
+ "members": [
+  "func_800E4300",
+  "func_800E451C"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "__standin_func_800E451C_a",
+  "__standin_func_800E451C_b"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "claims": [
+  "func_800E4300"
+ ],
+ "provisional": [
+  "func_800E451C"
+ ],
+ "note": "func_800E4300 is strict with its only (real) caller in the unit. func_800E451C is code-identical; 10 relocations into its own .rodata (five float literals) are unverified by the scorer, and its only caller func_800E4B58 is a stand-in, so it is provisional, not a claim. Prelude change: D_80152768 is declared volatile s16 (needed by func_800E451C)."
+}

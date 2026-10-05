@@ -1,0 +1,77 @@
+=== ret
+void display_list_alloc(s32 index)
+{
+    ResSlot *slot;
+
+    func_80096288(index, 0, 0);
+    slot = &D_80156D38[index];
+    audio_loop_control(slot->data, 0);
+    slot->active = 1;
+    return;
+}
+=== inl_static
+static void slot_activate(s32 index)
+{
+    ResSlot *slot;
+
+    func_80096288(index, 0, 0);
+    slot = &D_80156D38[index];
+    audio_loop_control(slot->data, 0);
+    slot->active = 1;
+}
+void display_list_alloc(s32 index)
+{
+    slot_activate(index);
+}
+=== inl_set
+static void slot_set_active(ResSlot *slot, s32 v)
+{
+    slot->active = v;
+}
+void display_list_alloc(s32 index)
+{
+    ResSlot *slot;
+
+    func_80096288(index, 0, 0);
+    slot = &D_80156D38[index];
+    audio_loop_control(slot->data, 0);
+    slot_set_active(slot, 1);
+}
+=== index_twice
+void display_list_alloc(s32 index)
+{
+    func_80096288(index, 0, 0);
+    audio_loop_control(D_80156D38[index].data, 0);
+    D_80156D38[index].active = 1;
+}
+=== do_while0
+void display_list_alloc(s32 index)
+{
+    ResSlot *slot;
+
+    func_80096288(index, 0, 0);
+    slot = &D_80156D38[index];
+    audio_loop_control(slot->data, 0);
+    do { slot->active = 1; } while (0);
+}
+=== if1
+void display_list_alloc(s32 index)
+{
+    ResSlot *slot;
+
+    func_80096288(index, 0, 0);
+    slot = &D_80156D38[index];
+    audio_loop_control(slot->data, 0);
+    if (slot != 0) { slot->active = 1; }
+}
+=== empty_after
+void display_list_alloc(s32 index)
+{
+    ResSlot *slot;
+
+    func_80096288(index, 0, 0);
+    slot = &D_80156D38[index];
+    audio_loop_control(slot->data, 0);
+    slot->active = 1;
+    func_80096288(index, 0, 0);
+}

@@ -4618,6 +4618,7 @@ player_conditional_check:
 .section .text.func_800D5524, "ax", @progbits
 .globl func_800D5524
 func_800D5524:
+    /* compiled from src/blob/func_800D5524.c */
     .word 0x27BDFFC8
     .word 0xAFBF0034
     .word 0xAFB60030

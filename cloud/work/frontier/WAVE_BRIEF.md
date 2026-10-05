@@ -1,0 +1,67 @@
+# Matching-wave brief (frontier plan, workstream D)
+
+Read first: `CLAUDE.md`, `docs/plans/2026-10-04-frontier-plan.md` (§1 model, §2 rules, §3 D per-function
+procedure — follow that procedure), and the quirks list in `cloud/PLAYBOOK.md`.
+
+## Goal
+Strict `MATCH` from `tools/cloud/score.py` for as many of your assigned game functions as you can, as
+IDO 5.3 / C89 source. Names are historical labels, not semantics.
+
+## Facts you need
+- The game is one whole-program **-O3** unit. Default flags: `-g0 -O3 -mips2 -G 0 -non_shared`; also try `-O2`
+  on the first structurally right draft and keep whichever is closer.
+- `python3 -m tools.conveyor.pipeline.frontier show NAME` gives callees, callers that must be in the unit, IPA
+  register facts and paths of prior source. `grep -r NAME cloud/work docs dot_handoff.md` finds older attempts
+  and their stop notes; start from the best prior source.
+- `python3 cloud/work/tools/tdis.py NAME` disassembles the retail function. Matched house style: `src/blob/*.c`
+  and `cloud/matches/*.c`. Arcade source for semantics: `reference/repos/rushtherock/` (find the ancestor by
+  behaviour and constants, never by name).
+- Classify from the disassembly before writing (plan §3 D step 2): register-parameter callee, unsaved
+  callee-saved registers, four-wide `t6`-`t9` ring, inlined callee (descending `ra,t5,t4…` loads then stores).
+  Any of these means it cannot match alone: build a real `-O3` group (`group.json` + sources; examples in
+  `src/blob/groups/*/` and `cloud/work/frontier/agentB/Input_ApplyPadConfig/group/`) with the real partner
+  functions. Already-matched partners' sources are in `src/blob/` — reuse them unchanged as context/members.
+  If the real partners are unmatched, prove the body with stand-in callers and report it as **provisional**
+  (not a match, not spliceable).
+- A function's own float literals / jump tables / local statics score as `MATCH (N section-relative
+  relocations unverified …)` in the (unpatched) scorer. Write natural literals, never `extern f32 D_8012xxxx`,
+  and report it as "code identical, own-rodata unverified": the splice verifies the bytes against the image, so
+  the integrator can land it. Check each literal's bits against the retail word yourself (the splice refused a
+  `9.5493f` that should have been `9.549305f`).
+- To test a function inside the real whole-program unit (an internal function with its real callers, or a
+  caller that inlines a locked callee): from the repo root on the Pi,
+  `python3 -m tools.conveyor.pipeline.blob_unit --tag <you> score NAME [NAME…] --with path/cand.c`
+  (3–5 s; `--internal FN`, `--keep FN`, `--block FN`, `--neighbours`). Always pass your own `--tag`.
+- Read §0 "What wave 1 changed in the method" in the plan before starting: arcade declaration lists and literal
+  spellings, deleted-static stubs (`frontier stubs`, `frontier show NAME`), one variable = one register, and
+  the large-function tools in `cloud/work/frontier/w1b/` (`o3s.sh`, `bscore.py`, `gen.py`).
+- Literal types matter (`1` vs `1.0f`), declaration order sets stack slots, each named local costs a slot,
+  use SDK GBI macros for display-list words.
+
+## Builder (IDO runs only there)
+```
+ssh watchman2 'cp -r ~/rush2049/scratch/frontier/base ~/rush2049/scratch/frontier/<you>'      # once
+scp cand.c watchman2:rush2049/scratch/frontier/<you>/cand/NAME.c
+ssh watchman2 'cd ~/rush2049/scratch/frontier/<you> && IDO_DIR=$HOME/rush2049/cache/toolkits/796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5/ido python3 tools/cloud/score.py fn cand/NAME.c NAME --flags "-g0 -O3 -mips2 -G 0 -non_shared"'
+…  python3 tools/cloud/score.py group cand/<groupdir>          # -O3 group directory
+```
+Work ONLY inside your own scratch copy on the builder. Never touch `~/rush2049/repo`, `/tmp/blobsplice`,
+`/tmp/blobgroup`; never run make or the conveyor there. At most 2 cores; the box is shared and other agents
+are running. Helper scripts (aligned diffs, batch scoring) are in `cloud/work/frontier/w1f/` and `w1b/` (the older `agentC/full.py` crashes on runs of `nop`).
+
+## Discipline
+- Run `python3 tools/workbench.py diagnose` (docs/external/README.md) on a near-miss before searching.
+- Stop a function after ~50 variants with no movement on the same residual: write it up and move on.
+  Breadth beats depth in this wave.
+- Only what the scorer printed counts. Quote it exactly.
+
+## Deliverables (local repo only)
+Do not commit, splice, or edit `src/blob`, `asm/`, `*.lock.json`, `tools/`, `include/`, or other agents' dirs.
+- Strict MATCH: `cloud/matches/NAME.c` (line 1 `/* flags: … */`; header comment with real semantics, arcade
+  ancestor if proven, and any shaping quirk). For a group match: the group dir at
+  `cloud/work/frontier/<you>/groups/<group>/` with `"claims"` listing the strict members.
+- Otherwise: `cloud/work/frontier/<you>/NAME/best.c` + notes.
+- `cloud/work/frontier/<you>/RESULTS.md`: per function — state (MATCH / code-identical-unverified /
+  provisional / N words off), flags, exact scorer command and output, residual lane, what was tried, best next
+  hypothesis, struct layouts and global types recovered.
+Final message: the table, plus anything that generalises.

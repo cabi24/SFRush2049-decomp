@@ -1,0 +1,83 @@
+{
+ "comment": "Hand decisions for the whole-program shadow unit (tools/conveyor/pipeline/blob_unit.py). Everything else in build/blob_unit.json is derived from blob_matched.lock.json and the group specs. Inline blockers are applied to STAGED copies only; the locked sources are not edited. Evidence: cloud/work/frontier/wholeprog/README.md (M3, M4, failure table).",
+ "inline_blockers": [
+  {
+   "name": "audio_distance_atten",
+   "reason": "retail calls it by jal (func_800DCD58); our 15-word body is small enough for umerge to inline"
+  },
+  {
+   "name": "audio_doppler",
+   "reason": "retail calls it by jal (func_800DCD58 39w -> 45w when inlined)"
+  },
+  {
+   "name": "func_80096288",
+   "reason": "4-word body; inlined into internal sound_update_channel it changes that callee's IPA registers and so camera_shake_update, func_800F68A4, object_byte9_set"
+  },
+  {
+   "name": "func_800A510C",
+   "reason": "kept 19-word callee; func_800A5158 is 32w in retail, 43w with it inlined"
+  },
+  {
+   "name": "func_800BF01C",
+   "reason": "2-word body that retail still calls by jal"
+  },
+  {
+   "name": "func_800D52CC",
+   "reason": "empty kept callee; object_activate is 38w in retail, 36w with it inlined"
+  },
+  {
+   "name": "mode_byte2_set",
+   "reason": "20-word body retail calls by jal; found by the wholeprog autoblock pass (umerge -v vs retail jal words)"
+  },
+  {
+   "name": "mode_byte_set",
+   "reason": "20-word body retail calls by jal; found by the wholeprog autoblock pass"
+  },
+  {
+   "name": "object_byte9_set",
+   "reason": "16-word body retail calls by jal; found by the wholeprog autoblock pass"
+  }
+ ],
+ "force_keep": [
+  {
+   "name": "func_8008B2B4",
+   "reason": "locked single that a group lists as internal context; internal, all its visible calls are inlined and the body is emptied (12w -> 2w)"
+  },
+  {
+   "name": "func_800E7038",
+   "reason": "group controller_poll makes this unverified context internal; standalone-matched effect_spawn needs it kept (27w -> 45w otherwise)"
+  },
+  {
+   "name": "controller_poll",
+   "reason": "same group: internal controller_poll breaks standalone-matched process_inputs (89w -> 111w)"
+  }
+ ],
+ "force_internal": [],
+ "prefer_definition": [
+  {
+   "name": "func_800BF01C",
+   "file": "src/blob/groups/codex_entity_helpers_a10/group.c",
+   "reason": "locked as `(void) {}` but its callers pass one argument; with the zero-parameter definition visible camera_clip_planes, leaderboard_update and results_screen_update drop the argument load (32w -> 33w). The one-parameter definition still produces the locked 2-word body"
+  },
+  {
+   "name": "func_800AFD54",
+   "file": "src/blob/groups/frontier_skid_marks/group.c",
+   "reason": "locked as an empty stub, but it is the retail remains of the inlined ContinueSkid: the real definition in the skid-mark group is what gives func_800AF8C0/save_validate their second call sites, so they stay out of line (plan decision D3)"
+  },
+  {
+   "name": "func_800AFB30",
+   "file": "src/blob/groups/frontier_skid_marks/group.c",
+   "reason": "locked as an empty stub, but it is the retail remains of the inlined GetSkid: the real definition in the skid-mark group is what gives func_800AF8C0/save_validate their second call sites, so they stay out of line (plan decision D3)"
+  }
+ ],
+ "align": [
+  {
+   "name": "task_complete_signal",
+   "reason": "position dependent: as1 pads the unreachable epilogue after its infinite loop to a 32-byte boundary of .text, so the body is 36 words only when it starts at its image offset modulo 32 (35-45 words elsewhere; wholeprog README M8). The shadow unit is not laid out like retail yet, so a pad function is emitted before it"
+  },
+  {
+   "name": "audio_queue_process",
+   "reason": "position dependent, same mechanism as task_complete_signal: as1 pads the unreachable epilogue after the Rumble Pak thread's endless loop to a 32-byte boundary of .text (169 words only at its image offset modulo 32; 170 in the shadow unit otherwise). Its own group fixes the offset by file order; the shadow unit needs a pad"
+  }
+ ]
+}

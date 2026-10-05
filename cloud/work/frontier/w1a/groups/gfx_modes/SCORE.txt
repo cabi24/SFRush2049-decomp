@@ -1,0 +1,7 @@
+Members:
+func_80086A50:
+  MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0xc, .rodata+0x0 at +0x14)
+func_8008705C:
+  MATCH
+func_800878E0:
+  MATCH

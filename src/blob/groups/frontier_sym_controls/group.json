@@ -1,0 +1,17 @@
+{
+ "members": [
+  "func_800E3430",
+  "func_800E3724"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "func_800E3724"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "note": "Real two-body group, no stand-ins: arcade controls() (func_800E3430, internal: uses $f20-$f26 unsaved) and its caller sym() (func_800E3724). Own float literals are verified against the image by the group splice.",
+ "provenance": "frontier wave 1 (w1d), 2026-10-04; cloud/work/frontier/w1d/RESULTS.md"
+}

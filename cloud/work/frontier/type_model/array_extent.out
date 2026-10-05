@@ -1,0 +1,36 @@
+80152818 S=0x3b8 idx_offs=116 end_ptr_k=[1, 6]
+   0:139a/116ok/132f 1:9a/7ok/5f 2:3a/3ok/3f 3:2a/1ok/2f 4:1a/1ok/1f 5:0a/0ok/0f 6:68a/33ok/64f 7:44a/12ok/66f 8:43a/21ok/15f 9:0a/0ok/0f 10:16a/0ok/5f 11:41a/20ok/11f
+8014A250 S=0x808 idx_offs=128 end_ptr_k=[6, 46]
+   0:159a/128ok/99f 1:3a/3ok/4f 2:1a/1ok/1f 3:1a/1ok/1f 4:2a/0ok/2f 5:0a/0ok/0f 6:1a/1ok/3f 7:0a/0ok/0f 8:0a/0ok/0f 9:0a/0ok/0f 10:0a/0ok/0f 11:0a/0ok/0f
+80144030 S=0x304 idx_offs=22 end_ptr_k=[4, 29]
+   0:28a/22ok/39f 1:2a/2ok/2f 2:1a/1ok/1f 3:2a/2ok/2f 4:19a/2ok/39f 5:1a/1ok/1f 6:0a/0ok/0f 7:2a/2ok/1f 8:0a/0ok/0f 9:0a/0ok/0f 10:65a/0ok/63f 11:40a/6ok/99f
+8012E700 S=0x44 idx_offs=19 end_ptr_k=[]
+   0:23a/19ok/69f 1:1a/1ok/1f 2:0a/0ok/0f 3:0a/0ok/0f 4:0a/0ok/0f 5:0a/0ok/0f 6:0a/0ok/0f 7:0a/0ok/0f 8:0a/0ok/0f 9:0a/0ok/0f 10:0a/0ok/0f 11:0a/0ok/0f
+8014A0C8 S=0x4c idx_offs=12 end_ptr_k=[]
+   0:8a/4ok/140f 1:16a/12ok/58f 2:10a/9ok/40f 3:5a/4ok/5f 4:5a/4ok/2f 5:14a/5ok/88f 6:16a/9ok/2f 7:4a/3ok/1f 8:14a/5ok/2f 9:0a/0ok/0f 10:0a/0ok/0f 11:0a/0ok/0f
+80151FC8 S=0x78 idx_offs=35 end_ptr_k=[12, 16, 66]
+   0:19a/11ok/37f 1:32a/32ok/8f 2:1a/1ok/1f 3:0a/0ok/0f 4:2a/2ok/2f 5:2a/1ok/5f 6:0a/0ok/0f 7:1a/0ok/3f 8:0a/0ok/0f 9:3a/3ok/10f 10:0a/0ok/0f 11:0a/0ok/0f
+80140808 S=0x78 idx_offs=8 end_ptr_k=[4, 62]
+   0:20a/8ok/3f 1:0a/0ok/0f 2:0a/0ok/0f 3:0a/0ok/0f 4:10a/3ok/23f 5:0a/0ok/0f 6:8a/1ok/14f 7:1a/1ok/1f 8:19a/2ok/47f 9:0a/0ok/0f 10:0a/0ok/0f 11:1a/0ok/1f
+80150B7C S=0x98 idx_offs=14 end_ptr_k=[]
+   0:22a/14ok/22f 1:0a/0ok/0f 2:0a/0ok/0f 3:5a/0ok/6f 4:31a/4ok/7f 5:33a/4ok/12f 6:27a/7ok/22f 7:14a/2ok/3f 8:0a/0ok/0f 9:0a/0ok/0f 10:0a/0ok/0f 11:0a/0ok/0f
+80154660 S=0x190 idx_offs=24 end_ptr_k=[6, 24]
+   0:35a/24ok/3f 1:0a/0ok/0f 2:0a/0ok/0f 3:0a/0ok/0f 4:0a/0ok/0f 5:0a/0ok/0f 6:21a/11ok/6f 7:36a/4ok/9f 8:0a/0ok/0f 9:0a/0ok/0f 10:0a/0ok/0f 11:0a/0ok/0f
+8017A510 S=0x48 idx_offs=22 end_ptr_k=[1, 2, 4]
+   0:22a/22ok/15f 1:2a/2ok/2f 2:2a/2ok/2f 3:2a/2ok/2f 4:5a/5ok/17f 5:0a/0ok/0f 6:0a/0ok/0f 7:0a/0ok/0f 8:0a/0ok/0f 9:0a/0ok/0f 10:0a/0ok/0f 11:0a/0ok/0f
+80151CF4 S=0x50 idx_offs=10 end_ptr_k=[10, 31, 33, 35]
+   0:15a/10ok/25f 1:2a/2ok/2f 2:0a/0ok/0f 3:0a/0ok/0f 4:0a/0ok/0f 5:0a/0ok/0f 6:0a/0ok/0f 7:0a/0ok/0f 8:0a/0ok/0f 9:3a/0ok/1f 10:28a/9ok/39f 11:20a/5ok/3f
+801406C0 S=0x3c idx_offs=3 end_ptr_k=[14, 18]
+   0:3a/3ok/3f 1:0a/0ok/0f 2:0a/0ok/0f 3:0a/0ok/0f 4:13a/2ok/12f 5:13a/2ok/37f 6:7a/1ok/1f 7:6a/1ok/2f 8:0a/0ok/0f 9:0a/0ok/0f 10:0a/0ok/0f 11:0a/0ok/0f
+80139320 S=0x40 idx_offs=24 end_ptr_k=[52]
+   0:24a/24ok/14f 1:0a/0ok/0f 2:0a/0ok/0f 3:0a/0ok/0f 4:0a/0ok/0f 5:0a/0ok/0f 6:0a/0ok/0f 7:0a/0ok/0f 8:0a/0ok/0f 9:0a/0ok/0f 10:0a/0ok/0f 11:0a/0ok/0f
+801526A8 S=0xc idx_offs=3 end_ptr_k=[8, 13, 14, 16, 21, 24]
+   0:3a/3ok/6f 1:0a/0ok/0f 2:0a/0ok/0f 3:0a/0ok/0f 4:3a/3ok/8f 5:0a/0ok/0f 6:2a/2ok/7f 7:0a/0ok/0f 8:1a/1ok/2f 9:1a/1ok/6f 10:1a/1ok/6f 11:2a/2ok/16f
+80149A78 S=0x20 idx_offs=1 end_ptr_k=[4, 7, 8, 25, 27, 52, 53]
+   0:1a/1ok/4f 1:0a/0ok/0f 2:0a/0ok/0f 3:0a/0ok/0f 4:16a/1ok/8f 5:9a/1ok/7f 6:10a/0ok/9f 7:18a/1ok/22f 8:8a/1ok/19f 9:0a/0ok/0f 10:0a/0ok/0f 11:0a/0ok/0f
+80156D38 S=0x14 idx_offs=7 end_ptr_k=[64]
+   0:8a/7ok/20f 1:1a/1ok/1f 2:0a/0ok/0f 3:0a/0ok/0f 4:0a/0ok/0f 5:0a/0ok/0f 6:0a/0ok/0f 7:0a/0ok/0f 8:0a/0ok/0f 9:0a/0ok/0f 10:0a/0ok/0f 11:0a/0ok/0f
+80140420 S=0x54 idx_offs=3 end_ptr_k=[8, 18]
+   0:3a/3ok/3f 1:0a/0ok/0f 2:0a/0ok/0f 3:0a/0ok/0f 4:0a/0ok/0f 5:0a/0ok/0f 6:5a/1ok/13f 7:1a/0ok/5f 8:3a/1ok/3f 9:0a/0ok/0f 10:5a/0ok/4f 11:16a/3ok/43f
+80111998 S=0x440 idx_offs=29 end_ptr_k=[35, 48, 58]
+   0:29a/29ok/5f 1:0a/0ok/0f 2:0a/0ok/0f 3:0a/0ok/0f 4:9a/3ok/4f 5:0a/0ok/0f 6:1a/1ok/1f 7:0a/0ok/0f 8:13a/0ok/6f 9:38a/0ok/44f 10:47a/4ok/58f 11:22a/1ok/15f

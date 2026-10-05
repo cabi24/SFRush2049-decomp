@@ -1,0 +1,10 @@
+{
+ "members": ["func_8008B3F4", "camera_update_d"],
+ "files": ["group.c"],
+ "keep": ["func_8008B3F4", "camera_update_d"],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "claims": [],
+ "note": "Real two-body group, no stand-ins: func_8008B3F4 (already matched, no jal callers in the image) is inlined twice into camera_update_d at -O3. Claims are empty because the scorer cannot verify own-.rodata references (5 x 0.0001f: 0x80123884 for func_8008B3F4, 0x80123AEC..0x80123AF8 for camera_update_d); all text words are identical."
+}

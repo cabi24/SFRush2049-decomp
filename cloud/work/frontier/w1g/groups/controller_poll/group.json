@@ -1,0 +1,28 @@
+{
+ "members": [
+  "controller_poll"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "func_800E7134",
+  "process_inputs",
+  "player_mode_set",
+  "player_state_set",
+  "controller_poll",
+  "__standin_func_800E7038"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [
+  "func_800C9590",
+  "player_mode_set",
+  "player_state_set",
+  "func_800E7038",
+  "func_800E7134",
+  "process_inputs"
+ ],
+ "claims": [],
+ "note": "Work in progress: controller_poll is not matched (see controller_poll/NOTES.md). controller_poll is in keep (it saves s0-s8 like an ABI function); func_800C9590 is internal with its two real callers."
+}

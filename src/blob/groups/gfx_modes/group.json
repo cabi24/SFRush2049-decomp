@@ -1,0 +1,24 @@
+{
+ "members": [
+  "func_80086A50",
+  "func_8008705C",
+  "func_800878E0"
+ ],
+ "files": [
+  "func_80086A50.c",
+  "modes.c"
+ ],
+ "keep": [
+  "func_8008705C",
+  "func_800878E0"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "claims": [
+  "func_8008705C",
+  "func_800878E0"
+ ],
+ "note": "Real three-body group, no stand-ins. func_80086A50 (already locked from src/blob/groups/func_80086A50 with stand-in callers) is rewritten here with SDK GBI macros: same 387 words, but each macro's block-scoped _g makes uopt colour a2/a3 in the callee, which is what pushes the callers' mask/pointer webs to t0/t1. With the locked hand-pushed f.c the callers are 3 and 19 words off.",
+ "provenance": "frontier wave 1 (w1a), 2026-10-04; cloud/work/frontier/w1a/RESULTS.md"
+}

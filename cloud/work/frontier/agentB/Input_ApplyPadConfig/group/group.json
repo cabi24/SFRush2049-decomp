@@ -1,0 +1,10 @@
+{
+ "members": ["Input_InitPadHandlers", "Input_ApplyPadConfig"],
+ "files": ["group.c"],
+ "keep": ["Input_InitPadHandlers", "Input_ApplyPadConfig"],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "claims": ["Input_ApplyPadConfig"],
+ "note": "Real two-body group, no stand-ins: Input_InitPadHandlers (already matched, no jal callers in the image) is inlined into Input_ApplyPadConfig at -O3."
+}

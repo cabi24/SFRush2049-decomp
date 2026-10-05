@@ -1,0 +1,96 @@
+total bytes 85108
+  other      27800   32.7%
+  zero       24164   28.4%
+  str        15540   18.3%
+  dptr        6312    7.4%
+  fltlike     4060    4.8%
+  flt         3284    3.9%
+  fnptr       2040    2.4%
+  jtbl        1896    2.2%
+  bptr          12    0.0%
+
+coarse map (0x400 windows): addr, composition
+8010FD7C refs=  46 other:436 dptr:332 fltlike:168 zero:84 flt:4
+8011017C refs= 204 zero:628 dptr:228 other:96 flt:72
+8011057C refs= 125 fltlike:404 zero:292 other:196 flt:64 dptr:40
+8011097C refs=   8 fltlike:560 other:220 dptr:196 str:48
+80110D7C refs=  19 other:472 zero:252 fltlike:212 dptr:40 flt:32
+8011117C refs=  29 zero:612 other:200 fltlike:176 flt:24 dptr:12
+8011157C refs= 120 other:532 zero:372 fltlike:96 dptr:16 flt:8
+8011197C refs=  88 zero:852 other:88 flt:56 dptr:28
+80111D7C refs=  16 zero:912 other:88 flt:24
+8011217C refs=   0 zero:936 other:88
+8011257C refs=   0 zero:936 other:88
+8011297C refs=  55 other:424 zero:412 dptr:80 fnptr:76 flt:32
+80112D7C refs=   0 other:568 zero:224 fnptr:116 dptr:116
+8011317C refs=   0 other:572 zero:228 fnptr:112 dptr:112
+8011357C refs=   1 other:552 zero:252 fnptr:116 dptr:104
+8011397C refs=   0 other:568 zero:228 dptr:116 fnptr:112
+80113D7C refs=  80 other:636 zero:236 fltlike:52 fnptr:44 dptr:32
+8011417C refs=  90 zero:536 other:204 fltlike:188 flt:64 dptr:16
+8011457C refs= 226 other:368 zero:280 dptr:220 fltlike:116 flt:28
+8011497C refs=  16 zero:468 dptr:300 other:224 fnptr:32
+80114D7C refs=   0 other:556 zero:264 fnptr:112 dptr:92
+8011517C refs=   0 other:524 zero:296 fnptr:116 dptr:88
+8011557C refs=   1 other:552 zero:252 fnptr:112 dptr:108
+8011597C refs=  41 other:628 zero:364 fnptr:20 dptr:12
+80115D7C refs=  54 other:676 zero:344 flt:4
+8011617C refs= 140 zero:684 other:224 dptr:68 flt:24 fltlike:24
+8011657C refs=  10 zero:928 other:80 flt:16
+8011697C refs=  58 zero:788 other:180 flt:52 fnptr:4
+80116D7C refs= 173 zero:888 other:124 fnptr:8 dptr:4
+8011717C refs= 544 other:560 zero:264 dptr:92 fnptr:60 fltlike:32
+8011757C refs=   0 other:432 dptr:160 fltlike:156 fnptr:148 zero:128
+8011797C refs=   1 other:420 dptr:172 fltlike:164 fnptr:164 zero:104
+80117D7C refs=   0 other:432 fnptr:172 fltlike:172 dptr:168 zero:80
+8011817C refs=   0 other:432 fltlike:168 dptr:168 fnptr:168 zero:88
+8011857C refs=   0 other:420 dptr:176 fltlike:172 fnptr:168 zero:88
+8011897C refs=   1 fltlike:408 other:300 zero:124 dptr:100 fnptr:92
+80118D7C refs= 245 zero:560 dptr:244 other:204 fltlike:12 flt:4
+8011917C refs=   0 zero:444 other:316 dptr:240 fltlike:24
+8011957C refs=   0 other:496 zero:324 dptr:180 fltlike:24
+8011997C refs=   0 other:488 zero:332 dptr:192 fltlike:12
+80119D7C refs=   0 other:512 zero:328 dptr:184
+8011A17C refs=   2 zero:400 other:392 dptr:232
+8011A57C refs=  10 zero:444 dptr:404 other:176
+8011A97C refs= 209 zero:772 other:124 flt:88 dptr:24 fnptr:16
+8011AD7C refs=  37 dptr:492 other:480 flt:32 zero:20
+8011B17C refs=  36 dptr:696 other:148 zero:100 fltlike:72 flt:8
+8011B57C refs=  35 other:1016 zero:8
+8011B97C refs=   0 other:708 zero:304 fltlike:8 bptr:4
+8011BD7C refs=   1 other:660 zero:356 fltlike:8
+8011C17C refs=   0 other:504 zero:504 fltlike:8 str:8
+8011C57C refs=   1 other:644 zero:380
+8011C97C refs=   0 other:620 zero:396 fltlike:8
+8011CD7C refs=   1 other:664 zero:332 fltlike:28
+8011D17C refs=   0 other:516 zero:488 fltlike:20
+8011D57C refs=   1 other:656 zero:368
+8011D97C refs=   1 other:512 zero:476 fltlike:36
+8011DD7C refs=   0 other:536 zero:476 fltlike:12
+8011E17C refs=   9 other:544 zero:452 fltlike:28
+8011E57C refs=  31 other:512 zero:436 fltlike:64 str:8 flt:4
+8011E97C refs= 141 other:600 zero:356 fnptr:32 dptr:28 bptr:8
+8011ED7C refs=  22 other:416 zero:388 str:204 flt:12 fltlike:4
+8011F17C refs=   0 str:1012 other:12
+8011F57C refs=  49 other:376 str:276 fltlike:276 zero:64 flt:32
+8011F97C refs=   2 str:828 other:124 fltlike:56 zero:16
+8011FD7C refs=   0 str:1024
+8012017C refs=  30 str:956 other:52 fltlike:12 flt:4
+8012057C refs=  11 str:1004 other:16 zero:4
+8012097C refs=   0 str:1020 other:4
+80120D7C refs=  82 str:596 other:280 zero:68 fltlike:48 flt:32
+8012117C refs=  16 str:1000 other:12 fltlike:12
+8012157C refs=   0 str:1008 other:16
+8012197C refs=  13 str:972 other:48 fltlike:4
+80121D7C refs=  12 str:988 other:20 zero:8 flt:4 fltlike:4
+8012217C refs=   0 str:960 other:64
+8012257C refs=  22 str:852 other:152 zero:16 fltlike:4
+8012297C refs=   0 str:1024
+80122D7C refs=   0 str:1024
+8012317C refs=   8 str:664 other:252 zero:108
+8012357C refs=  56 other:720 flt:200 jtbl:64 str:32 zero:4
+8012397C refs= 122 jtbl:568 flt:444 other:12
+80123D7C refs= 136 jtbl:508 flt:500 other:16
+8012417C refs= 185 flt:704 jtbl:300 other:16 fltlike:4
+8012457C refs= 167 flt:616 jtbl:404 other:4
+8012497C refs=  15 flt:56 jtbl:52 zero:8

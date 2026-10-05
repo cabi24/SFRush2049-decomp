@@ -1,0 +1,38 @@
+{
+ "func_80099B30": {
+  "evidence": "cloud/work/frontier/agentB/func_80099B30/group_standin",
+  "note": "wave 0: strict MATCH only in an -O3 group with stand-in callers; closes in a real group with render_display_list and particle_system"
+ },
+ "func_800B66B0": {
+  "evidence": "cloud/work/frontier/agentA/func_800B66B0/group_standin",
+  "note": "wave 0: strict MATCH only in an -O3 group with stand-in callers zz_a/zz_b; closes in a real group with its only caller menu_input_process"
+ },
+ "func_800D1AB0": {
+  "evidence": "cloud/work/frontier/agentC/func_800D1AB0/standin_group",
+  "note": "wave 0: strict MATCH only in an -O3 group with stand-in callers; closes in a real group with car_setup_confirm and func_800F8EC8"
+ },
+ "func_800AD4C8": {
+  "evidence": "cloud/work/frontier/w1g/groups/func_800AD4C8",
+  "note": "wave 1: strict MATCH with both real callers in the unit, but those callers (func_800C3AD0, input_process_controller) are themselves kept alive by stand-ins, so the group is not spliceable yet"
+ },
+ "func_800C3AD0": {
+  "evidence": "cloud/work/frontier/w1g/groups/func_800AD4C8",
+  "note": "wave 1: byte-identical in the unit; its own callers (camera_trigger_check, camera_victory, entity_update) are stand-ins"
+ },
+ "input_process_controller": {
+  "evidence": "cloud/work/frontier/w1g/groups/func_800AD4C8",
+  "note": "wave 1: byte-identical in the unit; its own caller input_deadzone_apply is a stand-in"
+ },
+ "func_800E4300": {
+  "evidence": "cloud/work/frontier/w1g/groups/func_800E4300",
+  "note": "wave 1: strict MATCH with its only real caller func_800E451C in the unit, which is kept alive by a stand-in"
+ },
+ "func_800E451C": {
+  "evidence": "cloud/work/frontier/w1g/groups/func_800E4300",
+  "note": "wave 1: code identical (arcade MP_IntervalPos with mp_interval_pos inlined), own float literals unverified by the scorer; its only caller func_800E4B58 is a stand-in"
+ },
+ "func_800E6460": {
+  "evidence": "cloud/work/frontier/w1d/groups/control_input_E681C",
+  "note": "wave 1: strict MATCH as an internal member with its real caller func_800E681C kept and no stand-ins; closes when func_800E681C (16/179 words) matches"
+ }
+}

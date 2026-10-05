@@ -1,0 +1,36 @@
+files: 622 single 543 group 79 bytes single 42436455 group 2395566
+[single-file sources] struct/union typedef occurrences 20047; distinct names 157; distinct bodies 204; distinct (name,body) 206; names with >1 body 25
+   most repeated names: PadConfigx416(3 bodies), Gfxx415(1 bodies), OSMesgQueuex415(2 bodies), OSTask_tx414(1 bodies), OSTaskx414(1 bodies), __OSThreadContextx414(2 bodies), OSThreadx414(1 bodies), OSIoMesgHdrx414(1 bodies), OSIoMesgx414(1 bodies), OSPiHandlex414(1 bodies), OSPfsx414(1 bodies), OSPfsStatex414(1 bodies)
+   names used by exactly one file: 81; by >=2 files: 76
+   generic-looking names (S, T, Entry, Node...): 12
+[group sources] struct/union typedef occurrences 1139; distinct names 146; distinct bodies 175; distinct (name,body) 175; names with >1 body 24
+[all] struct/union typedef occurrences 21186; distinct names 233; distinct bodies 324; distinct (name,body) 327; names with >1 body 46
+D_ addresses declared (extern) anywhere: 2315; declared in >=2 files: 2306; with conflicting declared types: 282
+   conflicts that change kind/base type (not just qualifiers/array bound spelling): 277
+   D_8012E700: 10 spellings in 430 files: s32 $ x419 | Ent $[] x2 | Object68 $[] x2 | volatile unsigned char $ x1 | IndexedRecord44 $[] x1
+   D_80150B70: 8 spellings in 428 files: s32 $ x419 | u8 $[][0x98] x2 | Control152 $[] x2 | Ent $[] x1 | PartSlot $[] x1
+   D_801391F0: 5 spellings in 425 files: s32 $ x420 | void *$ x2 | Node *$ x1 | BNode *$ x1 | struct CamNode *$ x1
+   D_801407F0: 5 spellings in 426 files: u16 $ x420 | Header $ x2 | PathGraph $ x2 | volatile PGraph $ x1 | Graph $ x1
+   D_80151CE8: 5 spellings in 427 files: s32 $ x421 | TrackRecord $[] x2 | Section $[] x2 | Track812 $ x1 | Path $ x1
+   D_80152770: 5 spellings in 427 files: s32 $ x423 | s32 $[] x1 | M2C_UNK $ x1 | OSMesgQueue $ x1 | char $[] x1
+   D_80156D38: 5 spellings in 424 files: s32 $ x417 | Voice $[64] x3 | ResSlot $[64] x2 | volatile unsigned char $ x1 | ResSlot $[] x1
+   D_8014A250: 4 spellings in 439 files: D_8014A250_Record $ x434 | Car $[] x2 | Model2056 $[] x2 | CarState $[] x1
+   D_8011128C: 4 spellings in 425 files: s8 $ x421 | s8 $[] x2 | s8 $[][13] x1 | s8 $[13] x1
+   D_8011418C: 4 spellings in 424 files: s32 $ x421 | f32 $[9] x1 | Pose $ x1 | f32 $[][3] x1
+   D_80124EEC: 4 spellings in 423 files: s32 $ x420 | u8 *$ x1 | int $ x1 | QNode *$ x1
+   D_8012E6D8: 4 spellings in 424 files: s32 $ x421 | List16 $ x1 | D_8012E6E0_Node *$ x1 | u8 $[] x1
+   D_80140BDC: 4 spellings in 421 files: s32 $ x418 | volatile char $ x1 | u8 $[] x1 | u8 $ x1
+   D_80144030: 4 spellings in 424 files: s8 $ x421 | CarSlot $[] x1 | Car $[] x1 | M2C_UNK $ x1
+   D_80146150: 4 spellings in 427 files: s32 $ x421 | Object *$[] x4 | ResourceRoot *$[] x1 | Car *$[] x1
+declared D_ addresses by region: {'bss': 892, 'static': 53, 'data': 684, 'rodata': 678, 'code': 8}
+
+-- prelude vs hand-written --
+single-file source sizes: median 104335  files >50KB (carry the generated context prelude): 402  files <=50KB: 141
+struct typedef names from the shared prelude (>=300 files): 48; of those with a variant body elsewhere: 9
+hand-written struct typedef names: 185; distinct bodies 261; names with >1 body: 37; names appearing in exactly 1 file: 120
+   identical bodies declared under >1 name: 3
+D_ addresses with a prelude default declaration: 2185; only hand-declared: 130
+addresses where >=1 file overrides the prelude default with a different type: 266
+addresses with >=2 mutually different hand-written types: 61
+hand-only addresses: 130, of which conflicting: 16
+addresses given a struct-typed declaration by at least one hand source: 94

@@ -2455,6 +2455,7 @@ menu_save_options:
 .section .text.menu_load_options, "ax", @progbits
 .globl menu_load_options
 menu_load_options:
+    /* compiled from src/blob/menu_load_options.c */
     .word 0x27BDFFB0
     .word 0xAFBF0014
     .word 0x00804025
@@ -3604,6 +3605,7 @@ menu_video_settings:
 .section .text.menu_control_settings, "ax", @progbits
 .globl menu_control_settings
 menu_control_settings:
+    /* compiled from src/blob/menu_control_settings.c */
     .word 0x27BDFF80
     .word 0xAFB20028
     .word 0x00809025
@@ -4331,6 +4333,7 @@ func_800CFDEC:
 .section .text.menu_vibration_test, "ax", @progbits
 .globl menu_vibration_test
 menu_vibration_test:
+    /* compiled from src/blob/menu_vibration_test.c */
     .word 0x27BDFF78
     .word 0xF7BA0020
     .word 0xF7B80018
@@ -4718,6 +4721,7 @@ sound_position_set:
 .section .text.func_800D0424, "ax", @progbits
 .globl func_800D0424
 func_800D0424:
+    /* compiled from src/blob/func_800D0424.c */
     .word 0x27BDFF50
     .word 0xAFBF0034
     .word 0xAFB60030
