@@ -1,0 +1,10 @@
+{
+  "owner": "dot viewport-rate worker",
+  "base_commit": "55ddfc6b53d96d4c5dcaaa8891dedafb037b3994",
+  "function": "arb_rate_set",
+  "address": "0x800A5908",
+  "target_bytes": 312,
+  "status": "COMPLETE-NONMATCH",
+  "claims": [],
+  "reopen_evidence": "Accepted exhaust_smoke_effect demonstrates that integer literal * 2 preserves mul.s while * 2.0f becomes add.s."
+}

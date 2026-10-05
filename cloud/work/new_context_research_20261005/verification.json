@@ -1,0 +1,452 @@
+{
+  "base_commit": "55ddfc6b53d96d4c5dcaaa8891dedafb037b3994",
+  "ci_notes": [
+    "Conveyor baseline is freshly established at this pinned base, not inferred from any historical count.",
+    "Cloud reports two failed unittest subtests inside one test; JUnit reported counts include subtest events.",
+    "Lane-local aggregate environment differences are preserved in their packets but superseded by these fresh paired results.",
+    "Exact-head hosted-CI conclusion will be reported in the PR body after publication."
+  ],
+  "claims": [],
+  "date": "2026-10-05",
+  "environment": {
+    "both_worktrees_have_exact_local_submodules": true,
+    "full_hosted_ci_parity_claimed": false,
+    "ido_compiler_sha256": {
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5"
+    },
+    "pytest_version": "9.1.1",
+    "python_version": "3.12.14",
+    "submodules": {
+      "tools/decomp-permuter": "ec2efeebb33e2b1de81e39fbf7cbe3cd97350472",
+      "tools/mips_to_c": "7fda1c6821148c65cb6aa52d3a356048554ca1cf"
+    },
+    "toolchain": "Pinned IDO 5.3 static recompilation and GNU MIPS binutils; no MIPS cross GCC"
+  },
+  "explicit_replays": [
+    {
+      "command": "python3 cloud/work/frontier/name_lookup_callers_20261005/audit.py --output build/new-context-integration/name.json",
+      "exit_code": 0,
+      "name": "name_audit"
+    },
+    {
+      "command": "python3 cloud/work/dot_viewport_rate_reopen/replay.py --output build/new-context-integration/viewport.json",
+      "exit_code": 0,
+      "name": "viewport_replay"
+    },
+    {
+      "command": "python3 cloud/work/frontier/dot_audio_bus_reopen/verify.py build/new-context-integration/audio.json",
+      "exit_code": 0,
+      "name": "audio_verification"
+    },
+    {
+      "command": "python3 cloud/work/frontier/dot_audio_bus_reopen/verify_semantics.py build/new-context-integration/audio-semantics.json",
+      "exit_code": 0,
+      "name": "audio_semantics"
+    },
+    {
+      "command": "python3 tools/cloud/check_submissions.py --base 55ddfc6b53d96d4c5dcaaa8891dedafb037b3994 --head HEAD",
+      "exit_code": 0,
+      "name": "changed_submissions"
+    },
+    {
+      "command": "python3 -m tools.cloud.guard_paths --base 55ddfc6b53d96d4c5dcaaa8891dedafb037b3994 --head HEAD --lock-revision 55ddfc6b53d96d4c5dcaaa8891dedafb037b3994",
+      "exit_code": 0,
+      "name": "guard"
+    },
+    {
+      "command": "git diff --check 55ddfc6b53d96d4c5dcaaa8891dedafb037b3994 HEAD",
+      "exit_code": 0,
+      "name": "diff_check"
+    }
+  ],
+  "focused_tests": {
+    "command": "env -u IDO_DIR REQUIRE_TOOLCHAIN=1 python3 -m pytest tests/conveyor/test_dot_audio_bus_reopen.py tests/conveyor/test_dot_viewport_rate_reopen.py tests/conveyor/test_name_lookup_caller_contract.py -q -rs",
+    "error_entries": 0,
+    "exit_code": 0,
+    "failure_entries": 0,
+    "failure_multiset": [],
+    "junit_reported_test_count": 21,
+    "skip_reasons": {},
+    "skipped": 0,
+    "testcase_elements": 21
+  },
+  "gates_not_run": [
+    "whole_program_shadow",
+    "image",
+    "compressed_stream",
+    "cartridge_sha1"
+  ],
+  "new_bytes": 0,
+  "new_functions": 0,
+  "normal_checks": {
+    "changed_submissions_checked": 0,
+    "changed_submissions_exit_code": 0,
+    "diff_check_exit_code": 0,
+    "group_sanity_exit_code": 0,
+    "guard_exit_code": 0,
+    "single_sanity_exit_code": 0,
+    "static_locks_exit_code": 0,
+    "static_locks_intact": 383
+  },
+  "normal_workflow_replays": {
+    "cloud": {
+      "base": {
+        "error_entries": 0,
+        "exit_code": 1,
+        "failure_entries": 2,
+        "failure_multiset": [
+          {
+            "count": 1,
+            "failure_message": "AssertionError: \"IDO compile failed:\\nuld:\\nCan't open: (one (Fatal error in: /usr/lib/uld Fatal error in: /usr/lib/uld  Signal 11 \\n\" is not None",
+            "test": "tests.cloud.test_builder.Validate::test_matches_agree_with_score_py"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: \"IDO compile failed:\\nuld:\\nCan't open: (the (Fatal error in: /usr/lib/uld Fatal error in: /usr/lib/uld  Signal 11 \\n\" is not None",
+            "test": "tests.cloud.test_builder.Validate::test_matches_agree_with_score_py"
+          }
+        ],
+        "junit_reported_test_count": 296,
+        "skip_reasons": {},
+        "skipped": 0,
+        "testcase_elements": 269
+      },
+      "combined": {
+        "error_entries": 0,
+        "exit_code": 1,
+        "failure_entries": 2,
+        "failure_multiset": [
+          {
+            "count": 1,
+            "failure_message": "AssertionError: \"IDO compile failed:\\nuld:\\nCan't open: (one (Fatal error in: /usr/lib/uld Fatal error in: /usr/lib/uld  Signal 11 \\n\" is not None",
+            "test": "tests.cloud.test_builder.Validate::test_matches_agree_with_score_py"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: \"IDO compile failed:\\nuld:\\nCan't open: (the (Fatal error in: /usr/lib/uld Fatal error in: /usr/lib/uld  Signal 11 \\n\" is not None",
+            "test": "tests.cloud.test_builder.Validate::test_matches_agree_with_score_py"
+          }
+        ],
+        "junit_reported_test_count": 296,
+        "skip_reasons": {},
+        "skipped": 0,
+        "testcase_elements": 269
+      },
+      "command": "REQUIRE_TOOLCHAIN=1 python3 -m pytest tests/cloud -q -rs -m 'not node_required'",
+      "failure_multiset_equal": true,
+      "skip_multiset_equal": true
+    },
+    "conveyor": {
+      "base": {
+        "error_entries": 0,
+        "exit_code": 1,
+        "failure_entries": 20,
+        "failure_multiset": [
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x154, .rodata+0x0 at +0x158)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=124, unresolved=[], unverified=['.rodata+0x0 at +0x154', '.rodata+0x0 at +0x158'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[camera_blend_between]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (8 section-relative relocations unverified: .rodata+0x4 at +0x44, .rodata+0x4 at +0x54, .rodata+0x8 at +0x58, .rodata+0x8 at +0x70, .rodata+0xc at +0x88, .rodata+0xc at +0xf8, .rodata+0x10 at +0x100, .rodata+0x10 at +0x118)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=196, unresolved=[], unverified=['.rodata+0x4 at +0x44', '.rodata+0x4 at +0x54', '.rodata...a+0xc at +0x88', '.rodata+0xc at +0xf8', '.rodata+0x10 at +0x100', '.rodata+0x10 at +0x118'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[camera_update_d]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (4 section-relative relocations unverified: .data+0x0 at +0x40, .data+0x0 at +0x44, .data+0x0 at +0x94, .data+0x0 at +0x98)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=152, unresolved=[], unverified=['.data+0x0 at +0x40', '.data+0x0 at +0x44', '.data+0x0 at +0x94', '.data+0x0 at +0x98'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[display_settings]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (6 section-relative relocations unverified: .rodata+0x0 at +0x9c, .rodata+0x0 at +0xa0, .rodata+0x4 at +0xa8, .rodata+0x4 at +0xc0, .rodata+0x8 at +0x88, .rodata+0x8 at +0x144)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=113, unresolved=[], unverified=['.rodata+0x0 at +0x9c', '.rodata+0x0 at +0xa0', '.rodata+0x4 at +0xa8', '.rodata+0x4 at +0xc0', '.rodata+0x8 at +0x88', '.rodata+0x8 at +0x144'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[exhaust_smoke_effect]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x0, .rodata+0x0 at +0x4)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=12, unresolved=[], unverified=['.rodata+0x0 at +0x0', '.rodata+0x0 at +0x4'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_8008B3F4]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x34, .rodata+0x0 at +0x40)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=106, unresolved=[], unverified=['.rodata+0x0 at +0x34', '.rodata+0x0 at +0x40'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800BA61C]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (8 section-relative relocations unverified: .rodata+0x0 at +0x230, .rodata+0x0 at +0x238, .rodata+0x4 at +0x240, .rodata+0x4 at +0x248, .rodata+0x8 at +0x2fc, .rodata+0x8 at +0x300, .rodata+0xc at +0x308, .rodata+0xc at +0x30c)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=211, unresolved=[], unverified=['.rodata+0x0 at +0x230', '.rodata+0x0 at +0x238', '.roda...a+0x8 at +0x2fc', '.rodata+0x8 at +0x300', '.rodata+0xc at +0x308', '.rodata+0xc at +0x30c'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800DE860]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (6 section-relative relocations unverified: .rodata+0x0 at +0x10, .rodata+0x0 at +0x74, .rodata+0x4 at +0x8c, .rodata+0x4 at +0x90, .rodata+0x8 at +0x170, .rodata+0x8 at +0x1b0)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=237, unresolved=[], unverified=['.rodata+0x0 at +0x10', '.rodata+0x0 at +0x74', '.rodata+0x4 at +0x8c', '.rodata+0x4 at +0x90', '.rodata+0x8 at +0x170', '.rodata+0x8 at +0x1b0'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E114C]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=422, unresolved=[], unverified=['.rodata+0x0 at +0x498', '.rodata+0x0 at +0x4a8', '.rodata+0x4 at +0x5a8', '.rodata+0x4 at +0x5b0', '.rodata+0x8 at +0x60c', '.rodata+0x8 at +0x614'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E23A4]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (4 section-relative relocations unverified: .rodata+0x0 at +0x74, .rodata+0x0 at +0x94, .rodata+0x4 at +0x244, .rodata+0x4 at +0x258)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=324, unresolved=[], unverified=['.rodata+0x0 at +0x74', '.rodata+0x0 at +0x94', '.rodata+0x4 at +0x244', '.rodata+0x4 at +0x258'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E5D64]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (6 section-relative relocations unverified: .data+0x0 at +0x2c, .data+0x0 at +0x38, .data+0x0 at +0x3c, .data+0x0 at +0x4c, .data+0x0 at +0x58, .data+0x0 at +0x60)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=34, unresolved=[], unverified=['.data+0x0 at +0x2c', '.data+0x0 at +0x38', '.data+0x0 at +0x3c', '.data+0x0 at +0x4c', '.data+0x0 at +0x58', '.data+0x0 at +0x60'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800EC270]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (8 section-relative relocations unverified: .rodata+0x0 at +0x3c, .rodata+0x0 at +0x54, .rodata+0x4 at +0x238, .rodata+0x4 at +0x254, .rodata+0x8 at +0x298, .rodata+0x8 at +0x2a4, .rodata+0xc at +0x3b4, .rodata+0xc at +0x3d0)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=401, unresolved=[], unverified=['.rodata+0x0 at +0x3c', '.rodata+0x0 at +0x54', '.rodata...a+0x8 at +0x298', '.rodata+0x8 at +0x2a4', '.rodata+0xc at +0x3b4', '.rodata+0xc at +0x3d0'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_80106D94]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x1e4, .rodata+0x0 at +0x1e8)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=143, unresolved=[], unverified=['.rodata+0x0 at +0x1e4', '.rodata+0x0 at +0x1e8'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[hud_speed_display]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (8 section-relative relocations unverified: .rodata+0x0 at +0x2ec, .rodata+0x0 at +0x2f0, .rodata+0x4 at +0x3b4, .rodata+0x4 at +0x3cc, .rodata+0x8 at +0x5ec, .rodata+0x8 at +0x5f0, .rodata+0xc at +0x660, .rodata+0xc at +0x664)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=589, unresolved=[], unverified=['.rodata+0x0 at +0x2ec', '.rodata+0x0 at +0x2f0', '.roda...a+0x8 at +0x5ec', '.rodata+0x8 at +0x5f0', '.rodata+0xc at +0x660', '.rodata+0xc at +0x664'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[menu_options_screen]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (4 section-relative relocations unverified: .rodata+0x0 at +0x94, .rodata+0x0 at +0x98, .rodata+0x4 at +0xc4, .rodata+0x4 at +0xcc)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=471, unresolved=[], unverified=['.rodata+0x0 at +0x94', '.rodata+0x0 at +0x98', '.rodata+0x4 at +0xc4', '.rodata+0x4 at +0xcc'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[race_setup_1]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x2c4, .rodata+0x0 at +0x2cc)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=227, unresolved=[], unverified=['.rodata+0x0 at +0x2c4', '.rodata+0x0 at +0x2cc'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[race_setup_2]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (14 section-relative relocations unverified: .rodata+0x0 at +0x1ac, .rodata+0x0 at +0x1b0, .rodata+0x4 at +0x20c, .rodata+0x4 at +0x214, .rodata+0x8 at +0x290, .rodata+0x8 at +0x298, .rodata+0xc at +0x2fc, .rodata+0xc at +0x300, .rodata+0x10 at +0x344, .rodata+0x10 at +0x34c, .rodata+0x14 at +0x3bc, .rodata+0x14 at +0x3c4, .rodata+0x18 at +0x50c, .rodata+0x18 at +0x510)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=356, unresolved=[], unverified=['.rodata+0x0 at +0x1ac', '.rodata+0x0 at +0x1b0', '.roda...14 at +0x3bc', '.rodata+0x14 at +0x3c4', '.rodata+0x18 at +0x50c', '.rodata+0x18 at +0x510'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[random_float]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x2bc, .rodata+0x0 at +0x2c0)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=221, unresolved=[], unverified=['.rodata+0x0 at +0x2bc', '.rodata+0x0 at +0x2c0'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[track_select_handler]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x6c, .rodata+0x0 at +0x70)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=95, unresolved=[], unverified=['.rodata+0x0 at +0x6c', '.rodata+0x0 at +0x70'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[vector_normalize_length]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (10 section-relative relocations unverified: .rodata+0x0 at +0x48, .rodata+0x0 at +0x4c, .rodata+0x4 at +0x50, .rodata+0x4 at +0x68, .rodata+0x8 at +0xf4, .rodata+0x8 at +0xfc, .rodata+0xc at +0x3c4, .rodata+0xc at +0x3c8, .rodata+0x10 at +0x694, .rodata+0x10 at +0x6a4)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=661, unresolved=[], unverified=['.rodata+0x0 at +0x48', '.rodata+0x0 at +0x4c', '.rodata...0xc at +0x3c4', '.rodata+0xc at +0x3c8', '.rodata+0x10 at +0x694', '.rodata+0x10 at +0x6a4'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[world_gravity_apply]"
+          }
+        ],
+        "junit_reported_test_count": 1708,
+        "skip_reasons": {
+          "baserom.us.z64 not present": 1,
+          "canonical SDK checkout absent": 28,
+          "derived asm not present": 1,
+          "needs gcc, the ROM and the extracted image": 1,
+          "needs the coordinator's generated blob layout": 1,
+          "needs the mips cross gcc": 9
+        },
+        "skipped": 41,
+        "testcase_elements": 1708
+      },
+      "combined": {
+        "error_entries": 0,
+        "exit_code": 1,
+        "failure_entries": 20,
+        "failure_multiset": [
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x154, .rodata+0x0 at +0x158)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=124, unresolved=[], unverified=['.rodata+0x0 at +0x154', '.rodata+0x0 at +0x158'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[camera_blend_between]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (8 section-relative relocations unverified: .rodata+0x4 at +0x44, .rodata+0x4 at +0x54, .rodata+0x8 at +0x58, .rodata+0x8 at +0x70, .rodata+0xc at +0x88, .rodata+0xc at +0xf8, .rodata+0x10 at +0x100, .rodata+0x10 at +0x118)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=196, unresolved=[], unverified=['.rodata+0x4 at +0x44', '.rodata+0x4 at +0x54', '.rodata...a+0xc at +0x88', '.rodata+0xc at +0xf8', '.rodata+0x10 at +0x100', '.rodata+0x10 at +0x118'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[camera_update_d]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (4 section-relative relocations unverified: .data+0x0 at +0x40, .data+0x0 at +0x44, .data+0x0 at +0x94, .data+0x0 at +0x98)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=152, unresolved=[], unverified=['.data+0x0 at +0x40', '.data+0x0 at +0x44', '.data+0x0 at +0x94', '.data+0x0 at +0x98'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[display_settings]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (6 section-relative relocations unverified: .rodata+0x0 at +0x9c, .rodata+0x0 at +0xa0, .rodata+0x4 at +0xa8, .rodata+0x4 at +0xc0, .rodata+0x8 at +0x88, .rodata+0x8 at +0x144)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=113, unresolved=[], unverified=['.rodata+0x0 at +0x9c', '.rodata+0x0 at +0xa0', '.rodata+0x4 at +0xa8', '.rodata+0x4 at +0xc0', '.rodata+0x8 at +0x88', '.rodata+0x8 at +0x144'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[exhaust_smoke_effect]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x0, .rodata+0x0 at +0x4)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=12, unresolved=[], unverified=['.rodata+0x0 at +0x0', '.rodata+0x0 at +0x4'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_8008B3F4]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x34, .rodata+0x0 at +0x40)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=106, unresolved=[], unverified=['.rodata+0x0 at +0x34', '.rodata+0x0 at +0x40'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800BA61C]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (8 section-relative relocations unverified: .rodata+0x0 at +0x230, .rodata+0x0 at +0x238, .rodata+0x4 at +0x240, .rodata+0x4 at +0x248, .rodata+0x8 at +0x2fc, .rodata+0x8 at +0x300, .rodata+0xc at +0x308, .rodata+0xc at +0x30c)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=211, unresolved=[], unverified=['.rodata+0x0 at +0x230', '.rodata+0x0 at +0x238', '.roda...a+0x8 at +0x2fc', '.rodata+0x8 at +0x300', '.rodata+0xc at +0x308', '.rodata+0xc at +0x30c'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800DE860]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (6 section-relative relocations unverified: .rodata+0x0 at +0x10, .rodata+0x0 at +0x74, .rodata+0x4 at +0x8c, .rodata+0x4 at +0x90, .rodata+0x8 at +0x170, .rodata+0x8 at +0x1b0)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=237, unresolved=[], unverified=['.rodata+0x0 at +0x10', '.rodata+0x0 at +0x74', '.rodata+0x4 at +0x8c', '.rodata+0x4 at +0x90', '.rodata+0x8 at +0x170', '.rodata+0x8 at +0x1b0'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E114C]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (6 section-relative relocations unverified: .rodata+0x0 at +0x498, .rodata+0x0 at +0x4a8, .rodata+0x4 at +0x5a8, .rodata+0x4 at +0x5b0, .rodata+0x8 at +0x60c, .rodata+0x8 at +0x614)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=422, unresolved=[], unverified=['.rodata+0x0 at +0x498', '.rodata+0x0 at +0x4a8', '.rodata+0x4 at +0x5a8', '.rodata+0x4 at +0x5b0', '.rodata+0x8 at +0x60c', '.rodata+0x8 at +0x614'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E23A4]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (4 section-relative relocations unverified: .rodata+0x0 at +0x74, .rodata+0x0 at +0x94, .rodata+0x4 at +0x244, .rodata+0x4 at +0x258)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=324, unresolved=[], unverified=['.rodata+0x0 at +0x74', '.rodata+0x0 at +0x94', '.rodata+0x4 at +0x244', '.rodata+0x4 at +0x258'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E5D64]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (6 section-relative relocations unverified: .data+0x0 at +0x2c, .data+0x0 at +0x38, .data+0x0 at +0x3c, .data+0x0 at +0x4c, .data+0x0 at +0x58, .data+0x0 at +0x60)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=34, unresolved=[], unverified=['.data+0x0 at +0x2c', '.data+0x0 at +0x38', '.data+0x0 at +0x3c', '.data+0x0 at +0x4c', '.data+0x0 at +0x58', '.data+0x0 at +0x60'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800EC270]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (8 section-relative relocations unverified: .rodata+0x0 at +0x3c, .rodata+0x0 at +0x54, .rodata+0x4 at +0x238, .rodata+0x4 at +0x254, .rodata+0x8 at +0x298, .rodata+0x8 at +0x2a4, .rodata+0xc at +0x3b4, .rodata+0xc at +0x3d0)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=401, unresolved=[], unverified=['.rodata+0x0 at +0x3c', '.rodata+0x0 at +0x54', '.rodata...a+0x8 at +0x298', '.rodata+0x8 at +0x2a4', '.rodata+0xc at +0x3b4', '.rodata+0xc at +0x3d0'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_80106D94]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x1e4, .rodata+0x0 at +0x1e8)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=143, unresolved=[], unverified=['.rodata+0x0 at +0x1e4', '.rodata+0x0 at +0x1e8'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[hud_speed_display]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (8 section-relative relocations unverified: .rodata+0x0 at +0x2ec, .rodata+0x0 at +0x2f0, .rodata+0x4 at +0x3b4, .rodata+0x4 at +0x3cc, .rodata+0x8 at +0x5ec, .rodata+0x8 at +0x5f0, .rodata+0xc at +0x660, .rodata+0xc at +0x664)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=589, unresolved=[], unverified=['.rodata+0x0 at +0x2ec', '.rodata+0x0 at +0x2f0', '.roda...a+0x8 at +0x5ec', '.rodata+0x8 at +0x5f0', '.rodata+0xc at +0x660', '.rodata+0xc at +0x664'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[menu_options_screen]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (4 section-relative relocations unverified: .rodata+0x0 at +0x94, .rodata+0x0 at +0x98, .rodata+0x4 at +0xc4, .rodata+0x4 at +0xcc)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=471, unresolved=[], unverified=['.rodata+0x0 at +0x94', '.rodata+0x0 at +0x98', '.rodata+0x4 at +0xc4', '.rodata+0x4 at +0xcc'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[race_setup_1]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x2c4, .rodata+0x0 at +0x2cc)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=227, unresolved=[], unverified=['.rodata+0x0 at +0x2c4', '.rodata+0x0 at +0x2cc'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[race_setup_2]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (14 section-relative relocations unverified: .rodata+0x0 at +0x1ac, .rodata+0x0 at +0x1b0, .rodata+0x4 at +0x20c, .rodata+0x4 at +0x214, .rodata+0x8 at +0x290, .rodata+0x8 at +0x298, .rodata+0xc at +0x2fc, .rodata+0xc at +0x300, .rodata+0x10 at +0x344, .rodata+0x10 at +0x34c, .rodata+0x14 at +0x3bc, .rodata+0x14 at +0x3c4, .rodata+0x18 at +0x50c, .rodata+0x18 at +0x510)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=356, unresolved=[], unverified=['.rodata+0x0 at +0x1ac', '.rodata+0x0 at +0x1b0', '.roda...14 at +0x3bc', '.rodata+0x14 at +0x3c4', '.rodata+0x18 at +0x50c', '.rodata+0x18 at +0x510'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[random_float]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x2bc, .rodata+0x0 at +0x2c0)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=221, unresolved=[], unverified=['.rodata+0x0 at +0x2bc', '.rodata+0x0 at +0x2c0'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[track_select_handler]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (2 section-relative relocations unverified: .rodata+0x0 at +0x6c, .rodata+0x0 at +0x70)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=95, unresolved=[], unverified=['.rodata+0x0 at +0x6c', '.rodata+0x0 at +0x70'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[vector_normalize_length]"
+          },
+          {
+            "count": 1,
+            "failure_message": "AssertionError: MATCH (10 section-relative relocations unverified: .rodata+0x0 at +0x48, .rodata+0x0 at +0x4c, .rodata+0x4 at +0x50, .rodata+0x4 at +0x68, .rodata+0x8 at +0xf4, .rodata+0x8 at +0xfc, .rodata+0xc at +0x3c4, .rodata+0xc at +0x3c8, .rodata+0x10 at +0x694, .rodata+0x10 at +0x6a4)\nassert False\n +  where False = accepted()\n +    where accepted = Comparison(differing=0, total=661, unresolved=[], unverified=['.rodata+0x0 at +0x48', '.rodata+0x0 at +0x4c', '.rodata...0xc at +0x3c4', '.rodata+0xc at +0x3c8', '.rodata+0x10 at +0x694', '.rodata+0x10 at +0x6a4'], errors=[], extra_words=0).accepted",
+            "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[world_gravity_apply]"
+          }
+        ],
+        "junit_reported_test_count": 1729,
+        "skip_reasons": {
+          "baserom.us.z64 not present": 1,
+          "canonical SDK checkout absent": 28,
+          "derived asm not present": 1,
+          "needs gcc, the ROM and the extracted image": 1,
+          "needs the coordinator's generated blob layout": 1,
+          "needs the mips cross gcc": 9
+        },
+        "skipped": 41,
+        "testcase_elements": 1729
+      },
+      "command": "REQUIRE_TOOLCHAIN=1 python3 -m pytest tests/conveyor -q -rs -m 'not node_required'",
+      "failure_multiset_equal": true,
+      "skip_multiset_equal": true
+    }
+  },
+  "publication_boundary": "Draft PR only; independent checker merges. Source/tests/research only. No ROM bytes, raw assembly, native data dumps, credentials, unrelated private data, production edits, target edits, symbol edits, lock edits, flag changes, scorer edits, builder changes, or coverage claim.",
+  "receipts": {
+    "audio": {
+      "all_code_and_semantic_evidence_equal": true,
+      "exact_json_equality": true,
+      "fresh_sha256": "56233af3a7319a3ec942b3b5fa6a2a810538bad1f8d108b63737c417c252f9de",
+      "path": "cloud/work/frontier/dot_audio_bus_reopen/verification.json",
+      "saved_sha256": "56233af3a7319a3ec942b3b5fa6a2a810538bad1f8d108b63737c417c252f9de"
+    },
+    "audio_semantics": {
+      "all_code_and_semantic_evidence_equal": true,
+      "exact_json_equality": true,
+      "fresh_sha256": "c3498505c755df25c11198e7f8ea186931a10afa289ec90052d2e2a4c68733ba",
+      "path": "cloud/work/frontier/dot_audio_bus_reopen/semantics.json",
+      "saved_sha256": "c3498505c755df25c11198e7f8ea186931a10afa289ec90052d2e2a4c68733ba"
+    },
+    "name": {
+      "all_code_and_semantic_evidence_equal": true,
+      "exact_json_equality": true,
+      "fresh_sha256": "012e3e85b196e6659b44589b1e2b268d45c1adf19d9c430a5a3ca2d166c91d3b",
+      "path": "cloud/work/frontier/name_lookup_callers_20261005/verification.json",
+      "saved_sha256": "012e3e85b196e6659b44589b1e2b268d45c1adf19d9c430a5a3ca2d166c91d3b"
+    },
+    "viewport": {
+      "all_code_and_semantic_evidence_equal": true,
+      "exact_json_equality": false,
+      "fresh_sha256": "bcddbd7dc4c434420f427737be1b2a18b4fde370877ad0cb4025017366613661",
+      "path": "cloud/work/dot_viewport_rate_reopen/verification.json",
+      "saved_sha256": "0aec075bb64e809146612303157b5a16de265164f0765658f1d52f1c830c06e6"
+    }
+  },
+  "source_and_test_sha256": {
+    "cloud/work/dot_viewport_rate_reopen/README.md": "864624f1089dd8d71451fa4f9d165ab190fb201892241fa9d0d7eb5c263f6b23",
+    "cloud/work/dot_viewport_rate_reopen/candidate.c": "4419edfa18ab65b221ec6c2966976c310807b0b2d137bdddcef2db5597e76796",
+    "cloud/work/dot_viewport_rate_reopen/claim.json": "d852943d7a81d3c728157e4904da4fa9339dda0fe02305d99c70041d5b5230a3",
+    "cloud/work/dot_viewport_rate_reopen/replay.py": "ca870ec1b5daa2de10d4775df133ea6774576ff11fdd0398a14006bc02a2b41a",
+    "cloud/work/dot_viewport_rate_reopen/verification.json": "0aec075bb64e809146612303157b5a16de265164f0765658f1d52f1c830c06e6",
+    "cloud/work/dot_viewport_rate_reopen/verify_semantics.py": "bb3f85f269c405b5f17577a5028ffeadf46100e834ec6f6da687fce44f37c33d",
+    "cloud/work/frontier/dot_audio_bus_reopen/README.md": "19b9854b66843372c3144b6f0d30d7895c78d612667f2c63ef2752053070f999",
+    "cloud/work/frontier/dot_audio_bus_reopen/checks.json": "279b9014964e783f74767415a852f95d1a690505502cfc7c818cd218c7d68d03",
+    "cloud/work/frontier/dot_audio_bus_reopen/experiments.json": "6a85df21e7b5a0f5ddb5c5aa2c6120b7abd28e5c3ed6040b3701b10828c3b2ea",
+    "cloud/work/frontier/dot_audio_bus_reopen/group.c": "b2cb59164614713407adb7d25ae8ddcbb19bc422b85c1c08a66cfb3d2093ebfd",
+    "cloud/work/frontier/dot_audio_bus_reopen/group.json": "87be881934f297a2dbbc05f3b621f795d7404cc6862850f74dc9547b726da109",
+    "cloud/work/frontier/dot_audio_bus_reopen/packet.json": "9b395d524719ae4ff28190571eac59630a7ee62492dcb405c4882af44c850e47",
+    "cloud/work/frontier/dot_audio_bus_reopen/semantics.json": "c3498505c755df25c11198e7f8ea186931a10afa289ec90052d2e2a4c68733ba",
+    "cloud/work/frontier/dot_audio_bus_reopen/verification.json": "56233af3a7319a3ec942b3b5fa6a2a810538bad1f8d108b63737c417c252f9de",
+    "cloud/work/frontier/dot_audio_bus_reopen/verify.py": "7d9e9df1de6159e6b36653f288eeeb725a5621a8413fbd8040eefdcf15bc8871",
+    "cloud/work/frontier/dot_audio_bus_reopen/verify_semantics.py": "f54abdfdc00c30c750d7702e0f8dcacf0b7f5cced36416b52a039b84d5b1420a",
+    "cloud/work/frontier/name_lookup_callers_20261005/RESULTS.md": "1f954f08a2688714b947e2a394b5913f8c1958b9794ef2e755afe167025fce5b",
+    "cloud/work/frontier/name_lookup_callers_20261005/audit.py": "d9d60e87d38cbbb68e63ffb69ca75cc39ed6d44c0370c7c09946a1a46c7433c9",
+    "cloud/work/frontier/name_lookup_callers_20261005/collision_sound_play.c": "e0088e57a0e02f0d1c188115278d4654df676cdd0d10610135997a084f1a6e2f",
+    "cloud/work/frontier/name_lookup_callers_20261005/verification.json": "012e3e85b196e6659b44589b1e2b268d45c1adf19d9c430a5a3ca2d166c91d3b",
+    "tests/conveyor/test_dot_audio_bus_reopen.py": "6aff06277acf621c66543e688f365163eaa19b447349839b865b3b2a0d1b6c2b",
+    "tests/conveyor/test_dot_viewport_rate_reopen.py": "081a8a23a2c70450273d71046cf2b0d4edfb44f990f45376510e22a15503fe93",
+    "tests/conveyor/test_name_lookup_caller_contract.py": "5a05518d5dcae4743f2a06af5b33f98726aa99e27a68f5b0413fccc2e5403ba4"
+  },
+  "source_test_tree_commit": "8802055cb1ac0aed8be62f2c58ad19ab79a18a34",
+  "status": "RESEARCH_ONLY_NO_NEW_MATCHES",
+  "viewport_object_path_control": {
+    "differing_sections": [
+      ".mdebug"
+    ],
+    "function_reports_equal_excluding_object_sha256": true,
+    "raw_object_sha256_equal": false,
+    "same_source_text": true
+  }
+}

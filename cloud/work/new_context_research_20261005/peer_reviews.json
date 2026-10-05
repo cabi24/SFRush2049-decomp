@@ -1,0 +1,274 @@
+{
+  "reviews": {
+    "audio_bus_setter": {
+      "base_commit": "55ddfc6b53d96d4c5dcaaa8891dedafb037b3994",
+      "changed_paths": [
+        "cloud/work/frontier/dot_audio_bus_reopen/README.md",
+        "cloud/work/frontier/dot_audio_bus_reopen/checks.json",
+        "cloud/work/frontier/dot_audio_bus_reopen/experiments.json",
+        "cloud/work/frontier/dot_audio_bus_reopen/group.c",
+        "cloud/work/frontier/dot_audio_bus_reopen/group.json",
+        "cloud/work/frontier/dot_audio_bus_reopen/packet.json",
+        "cloud/work/frontier/dot_audio_bus_reopen/semantics.json",
+        "cloud/work/frontier/dot_audio_bus_reopen/verification.json",
+        "cloud/work/frontier/dot_audio_bus_reopen/verify.py",
+        "cloud/work/frontier/dot_audio_bus_reopen/verify_semantics.py",
+        "tests/conveyor/test_dot_audio_bus_reopen.py"
+      ],
+      "findings": [
+        "Caller remains 141/180 differing words and has declared ELF size712 versus native720; no padding-based closure.",
+        "Helper has exact224-byte ELF extent, complete44-byte owned switch table, and full relocated equality; this is subordinate body evidence only in a nonmatching caller context.",
+        "Accepted checksum context remains exact180 bytes with its24-byte owned switch table verified.",
+        "Native caller page stores at outgoing+12 remain unexplained; helper consumes owner,selector,value and no fourth page input is invented.",
+        "Three genuine inlined setters explain native record mutations. Stub name assignment remains a labeled source-order hypothesis.",
+        "Semantic replay uses explicit checksum/persistence contracts and synthetic160-byte profiles; it does not establish full game or ROM execution.",
+        "The author full-suite failure report is disclosed, but this review did not rerun aggregates or assess the pristine-base comparison."
+      ],
+      "independent_checks": {
+        "accepted_checksum_definition_exactly_preserved": true,
+        "author_packet_mutated_by_reviewer": false,
+        "changed_then_same_value_sequences": 6524,
+        "fresh_semantics_equals_saved_receipt": true,
+        "fresh_verification_equals_saved_receipt": true,
+        "native_caller_and_helper_manually_inspected": true,
+        "native_mode_selector_maps_and_record_shapes_reviewed": true,
+        "native_vs_host_cases": 204562,
+        "no_protected_source_or_tool_changes": true,
+        "raw_target_bytes_or_assembly_in_changed_files": false,
+        "scoped_tests_passed": 6,
+        "wrong_field_control_first_failure": {
+          "mode": -128,
+          "resource_present": true,
+          "selector": 0,
+          "value": -128
+        },
+        "wrong_field_semantic_control_rejected": true
+      },
+      "required_publication_boundaries": {
+        "claims": [],
+        "matching_caller_claim": false,
+        "new_bytes": 0,
+        "new_functions": 0,
+        "rom_coverage_claim": false,
+        "standalone_helper_claim": false
+      },
+      "review_result": "PASS_FOR_NONMATCH_RESEARCH_PUBLICATION_ONLY",
+      "reviewed_commit": "8328254757e10803a79c77e3a161eac1e15a32d8",
+      "source_sha256": "b2cb59164614713407adb7d25ae8ddcbb19bc422b85c1c08a66cfb3d2093ebfd",
+      "test_only_supplement": {
+        "REQUIRE_TOOLCHAIN": 1,
+        "checks": "Uses actual score.IDO fallback; fresh compile compares full comparison/extent/owned-table fields and negative controls; claims remain empty. No acceptance widening.",
+        "fresh_tests_passed_with_IDO_DIR_unset": 7,
+        "result": "PASS",
+        "reviewed_commit": "2b6263005af3ae2e32c3a04dfae6fa11c94d3a19",
+        "scope": "14-line test-only addition; source and saved proof receipts unchanged"
+      }
+    },
+    "name_lookup_callers": {
+      "accepted_caller_match": false,
+      "base_commit": "55ddfc6b53d96d4c5dcaaa8891dedafb037b3994",
+      "claims": [],
+      "fresh_audit_sha256": "012e3e85b196e6659b44589b1e2b268d45c1adf19d9c430a5a3ca2d166c91d3b",
+      "fresh_focused_tests": {
+        "passed": 5,
+        "skipped": 0
+      },
+      "independent_gnu_link": {
+        "collision_sound_play": {
+          "different_words": 0,
+          "elf_function_bytes": 216,
+          "gnu_link_matches_full_canonical_relocation": true,
+          "linked_function_sha256": "875df7bdff24807d88481bb5710c15f4930577e264cdd98fa267bd041bcba5fa",
+          "owned_sections": {},
+          "resolved_external_symbol_count": 3,
+          "target_bytes": 216,
+          "zero_section_padding_bytes": 8
+        },
+        "func_800B24EC": {
+          "different_words": 0,
+          "elf_function_bytes": 364,
+          "gnu_link_matches_full_canonical_relocation": true,
+          "linked_function_sha256": "22ccee42826816c61c8ad198ddb3767a6b5523f51d1c3b676284968d0661a517",
+          "owned_sections": {},
+          "resolved_external_symbol_count": 6,
+          "target_bytes": 364,
+          "zero_section_padding_bytes": 4
+        },
+        "physics_collision_test": {
+          "different_words": 5,
+          "elf_function_bytes": 240,
+          "gnu_link_matches_full_canonical_relocation": true,
+          "linked_function_sha256": "f2e58915aaa616ec7c63dd08878eb30afea37cca9342ebd2a3a12af63a176ab0",
+          "owned_sections": {},
+          "resolved_external_symbol_count": 12,
+          "target_bytes": 240,
+          "zero_section_padding_bytes": 0
+        },
+        "pool_linked_list_init": {
+          "different_words": 0,
+          "elf_function_bytes": 128,
+          "gnu_link_matches_full_canonical_relocation": true,
+          "linked_function_sha256": "3f2592576b29a309dae8689a708bad14871706d58e200e9debc1a62c6e6b6760",
+          "owned_sections": {},
+          "resolved_external_symbol_count": 0,
+          "target_bytes": 128,
+          "zero_section_padding_bytes": 0
+        }
+      },
+      "limitations": [
+        "Byte equality is diagnostic while five actual arguments conflict with four formals.",
+        "No claim that the fifth argument meaning or original declaration is established.",
+        "Physics caller remains five words different.",
+        "No image, compression, full-ROM or full aggregate CI claim.",
+        "Generic outgoing_word helper is a bounded local observation; selected four sites were checked directly."
+      ],
+      "native_call_contract_review": {
+        "callee_frame_bytes": 104,
+        "canonical_formals": 4,
+        "direct_call_sites": 32,
+        "direct_callers": 16,
+        "fifth_input_stack_load_observed": false,
+        "manual_local_register_and_delay_slot_inspection": true,
+        "owned_callers_fifth_word": 1,
+        "sfx_zero_fifth_controls": 2
+      },
+      "negative_controls": [
+        "actual four-formal prototype rejects preserved fifth actual",
+        "extra declared zero word accepted by padded scorer but rejected by ELF extent gate",
+        "wrong callee relocation rejected by full comparison"
+      ],
+      "publication_scope": "Five research/test files only; no protected or accepted-source changes, no raw objects/ROM/assembly dumps.",
+      "reviewed_commit": "b96ba5058bde0a4f1fd7777c0fc6257509780402",
+      "source_bound_files": {
+        "cloud/work/frontier/name_lookup_callers_20261005/RESULTS.md": "1f954f08a2688714b947e2a394b5913f8c1958b9794ef2e755afe167025fce5b",
+        "cloud/work/frontier/name_lookup_callers_20261005/audit.py": "d9d60e87d38cbbb68e63ffb69ca75cc39ed6d44c0370c7c09946a1a46c7433c9",
+        "cloud/work/frontier/name_lookup_callers_20261005/collision_sound_play.c": "e0088e57a0e02f0d1c188115278d4654df676cdd0d10610135997a084f1a6e2f",
+        "cloud/work/frontier/name_lookup_callers_20261005/verification.json": "012e3e85b196e6659b44589b1e2b268d45c1adf19d9c430a5a3ca2d166c91d3b",
+        "tests/conveyor/test_name_lookup_caller_contract.py": "5a05518d5dcae4743f2a06af5b33f98726aa99e27a68f5b0413fccc2e5403ba4"
+      },
+      "verdict": "PASS_RESEARCH_ONLY_ABI_BLOCKED"
+    },
+    "viewport_rate_setter": {
+      "callee_proof": {
+        "callee_bytes": 452,
+        "callee_owned_data_failures": [],
+        "callee_owned_data_unverified": [],
+        "callee_owned_literal_bytes": 12,
+        "callee_owned_literal_references": 3,
+        "callee_owned_literal_relocation_sites": 6,
+        "callee_strict_words_equal": 113,
+        "callee_unchanged_source_sha256": "59200d38648fee1fa298a598531cc832d0aea608b6b7a0e7bfb198a5828b7be7",
+        "caller_relocated_sha256": "c9314eef08f52c0e59ec1ed5af6ba953e4d27734c6c3fb39c931cf111da3932e",
+        "independent_gnu_link_agrees": true,
+        "outside_function_zero_alignment_bytes": 4,
+        "resolved_symbols": {
+          "D_8002AFC4": "0x8002afc4",
+          "D_8011EA30": "0x8011ea30",
+          "D_80124FC8": "0x80124fc8",
+          "D_80151AA0": "0x80151aa0",
+          "D_8017A510": "0x8017a510",
+          "func_8008C720": "0x8008c720",
+          "func_800A557C": "0x800a557c"
+        }
+      },
+      "candidate": {
+        "differing_words": 31,
+        "elf_function_bytes": 312,
+        "excess_bytes": 0,
+        "full_extent_relocations": {
+          "errors": [],
+          "masks": 0,
+          "unresolved": [],
+          "unverified": []
+        },
+        "missing_bytes": 0,
+        "relocated_sha256": "c9314eef08f52c0e59ec1ed5af6ba953e4d27734c6c3fb39c931cf111da3932e",
+        "target_bytes": 312
+      },
+      "changed_paths": [
+        "cloud/work/dot_viewport_rate_reopen/README.md",
+        "cloud/work/dot_viewport_rate_reopen/candidate.c",
+        "cloud/work/dot_viewport_rate_reopen/claim.json",
+        "cloud/work/dot_viewport_rate_reopen/replay.py",
+        "cloud/work/dot_viewport_rate_reopen/verification.json",
+        "cloud/work/dot_viewport_rate_reopen/verify_semantics.py",
+        "tests/conveyor/test_dot_viewport_rate_reopen.py"
+      ],
+      "corrupted_owned_literal_rejected": true,
+      "float_arithmetic": {
+        "single_add": 4,
+        "single_multiply": 0
+      },
+      "focused_tests": {
+        "default_ido_path_with_IDO_DIR_unset_passed": 9,
+        "negative_alpha_change_detected": true,
+        "negative_wrong_callee_rejected": true,
+        "passed": 9,
+        "require_toolchain_environment": "REQUIRE_TOOLCHAIN=1"
+      },
+      "fresh_single_object_metadata_control": {
+        "differing_sections": [
+          ".mdebug"
+        ],
+        "text_and_rodata_equal": true
+      },
+      "integer_arithmetic": {
+        "single_add": 0,
+        "single_multiply": 4
+      },
+      "limits": [
+        "Approval is for a bounded research packet only: caller remains 31/78 words different.",
+        "Semantic callback is a model of the accepted callee write range and return value; it does not prove projection/trigonometric behavior or exceptional floating-point inputs.",
+        "The original SDK donor was not independently re-audited because that prior donor checkout is absent; exact prior B83 macro is preserved and this limitation is explicit.",
+        "No whole-unit, image, compression, or cartridge verification."
+      ],
+      "native_arithmetic": {
+        "single_add": 0,
+        "single_multiply": 4
+      },
+      "new_match_claims": [],
+      "object_hash_difference_note": "Fresh temporary compilation paths can affect non-code ELF metadata; all recorded code extents, relocation results, residual offsets, toolchain/source/target hashes, linked-code hashes, and semantic results reproduce. Raw object hashes are retained as per-build provenance, not equated across builds.",
+      "protected_paths_unchanged": true,
+      "receipt_differences": [
+        "/experiments/0/object_sha256",
+        "/experiments/2/object_sha256",
+        "/experiments/4/object_sha256",
+        "/experiments/6/object_sha256",
+        "/experiments/8/object_sha256",
+        "/experiments/9/object_sha256",
+        "/experiments/10/object_sha256",
+        "/experiments/11/object_sha256",
+        "/experiments/12/object_sha256",
+        "/experiments/13/object_sha256",
+        "/experiments/14/object_sha256",
+        "/experiments/15/object_sha256",
+        "/experiments/16/object_sha256",
+        "/experiments/17/object_sha256"
+      ],
+      "receipt_semantic_and_code_evidence_equal": true,
+      "replay_equals_stored_full_receipt": false,
+      "replayed_receipt_sha256": "2b0d85e4e20a82010d6cbc964c7edd631fcc10a1afa54a769389139ebc259d0b",
+      "reviewed_commit": "76cb7c9136cbc5b9ea18a9dcd7c62a5b935978cb",
+      "semantic_scope": {
+        "captured_arguments_per_call": 7,
+        "cases": 4160,
+        "host_c_comparisons": 4160,
+        "invalid_nan_infinite_or_out_of_range_inputs_tested": false,
+        "native_and_candidate_executions": 8320,
+        "output_words_per_case": 85,
+        "scope": "finite viewport inputs fitting signed 16-bit; modeled accepted callee writes"
+      },
+      "source_commit": "7832ff0c29421ecd9f9db155f46b96d073f65264",
+      "source_review": [
+        "Integer multiplier is a genuine arithmetic source form supported by newly accepted callee evidence and independently reproduced opcode-class counts.",
+        "Opaque alpha value 1 is an explicit source inference from the native constant bit. It is semantically coherent with alpha=255 but is not asserted to be recovered original spelling.",
+        "Accepted 452-byte callee source is copied unchanged; all 113 words are independently linked at native address and compared, with all three literals verified.",
+        "Full STT_FUNC extents retain overlong control relocations. The 324-byte integer control remains a nonmatch with 12 excess bytes even though its clipped HI16 error disappears after full relocation.",
+        "No stand-in, dummy argument, arbitrary padding, fake shift work, source-context modification, scorer relaxation, protected target change, or matching credit is present."
+      ],
+      "status": "REVIEW_PASS_FOR_BOUNDED_NONMATCH_ONLY",
+      "test_gate_fix_commit": "76cb7c9136cbc5b9ea18a9dcd7c62a5b935978cb"
+    }
+  },
+  "scope": "Independent source, extent, relocation, own-data, semantic and no-credit review; not merge approval."
+}
