@@ -1,0 +1,390 @@
+[
+  {
+    "control": "active_register",
+    "differing_words": 15,
+    "elf_symbol_bytes": 164,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "all_byte",
+    "differing_words": 15,
+    "elf_symbol_bytes": 164,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "block_local_loads",
+    "differing_words": 15,
+    "elf_symbol_bytes": 164,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "cached_count",
+    "differing_words": 39,
+    "elf_symbol_bytes": 380,
+    "target_bytes": 164,
+    "extra_nonzero_words": 52,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "cached_count_half",
+    "differing_words": 39,
+    "elf_symbol_bytes": 380,
+    "target_bytes": 164,
+    "extra_nonzero_words": 52,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "car_byte",
+    "differing_words": 15,
+    "elf_symbol_bytes": 164,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "car_half",
+    "differing_words": 15,
+    "elf_symbol_bytes": 164,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "combined_local",
+    "differing_words": 16,
+    "elf_symbol_bytes": 164,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "condition_assign",
+    "differing_words": 15,
+    "elf_symbol_bytes": 164,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "conditional_value",
+    "differing_words": 15,
+    "elf_symbol_bytes": 164,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "continue_branch",
+    "differing_words": 15,
+    "elf_symbol_bytes": 164,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "flag_first",
+    "differing_words": 15,
+    "elf_symbol_bytes": 164,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "for_pointer_counter",
+    "differing_words": 40,
+    "elf_symbol_bytes": 144,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "guarded_do",
+    "differing_words": 15,
+    "elf_symbol_bytes": 164,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "guarded_for",
+    "differing_words": 36,
+    "elf_symbol_bytes": 168,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "index",
+    "differing_words": 27,
+    "elf_symbol_bytes": 164,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "index_flag_local",
+    "differing_words": 15,
+    "elf_symbol_bytes": 164,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "index_flag_local_s8",
+    "differing_words": 15,
+    "elf_symbol_bytes": 164,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "index_flag_only",
+    "differing_words": 27,
+    "elf_symbol_bytes": 164,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "index_half",
+    "differing_words": 39,
+    "elf_symbol_bytes": 168,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "index_local",
+    "differing_words": 26,
+    "elf_symbol_bytes": 164,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "local_active_unsigned",
+    "differing_words": 15,
+    "elf_symbol_bytes": 164,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "local_car_unsigned",
+    "differing_words": 15,
+    "elf_symbol_bytes": 164,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "negative_condition",
+    "differing_words": 15,
+    "elf_symbol_bytes": 164,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "nested_car_assign",
+    "differing_words": 15,
+    "elf_symbol_bytes": 164,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "pointer_count",
+    "differing_words": 39,
+    "elf_symbol_bytes": 168,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "pointer_count_load_locals",
+    "differing_words": 23,
+    "elf_symbol_bytes": 164,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "pointer_end",
+    "differing_words": 40,
+    "elf_symbol_bytes": 176,
+    "target_bytes": 164,
+    "extra_nonzero_words": 2,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "pointer_load_locals",
+    "differing_words": 40,
+    "elf_symbol_bytes": 176,
+    "target_bytes": 164,
+    "extra_nonzero_words": 2,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "propagate_zero",
+    "differing_words": 16,
+    "elf_symbol_bytes": 164,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "while_loop",
+    "differing_words": 15,
+    "elf_symbol_bytes": 164,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true,
+    "accepted_context_matches": {
+      "Input_ApplyPadConfig": true,
+      "Input_InitPadHandlers": true
+    }
+  },
+  {
+    "control": "baseline_o2",
+    "differing_words": 39,
+    "elf_symbol_bytes": 168,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true
+  },
+  {
+    "control": "baseline_o3",
+    "differing_words": 39,
+    "elf_symbol_bytes": 168,
+    "target_bytes": 164,
+    "extra_nonzero_words": 0,
+    "all_relocations_verified": true
+  }
+]

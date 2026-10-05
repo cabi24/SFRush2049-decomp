@@ -1,0 +1,44 @@
+{
+  "verdict": "PASS: strict complete C40E8 object match; no integration, caller, image, or cartridge claim",
+  "author_commit": "2d865c158b3b9ecfc8d32be88abb9c203c499688",
+  "reviewed_integration_commit": "34030d729a62a82b69f7023f0f85d018d4b686f9",
+  "reviewed_integration_tree": "1fed4a9835f58c1bbce10f40f2f1ef90dd349e59",
+  "author": "OpenAI <noreply@openai.com>",
+  "author_identity_changed_by_reviewer": false,
+  "files_sha256": {
+    "cloud/matches/func_800C40E8.c": "eada8486e973797c7db2abde554af72f9be3f69a32444eaef125e7ad59f5c57f",
+    "cloud/work/frontier/dot_matrix_row02/README.md": "065297f0809d70accbbd9120600fda88088270a78f04b2ecce2f08f52ce4c916",
+    "cloud/work/frontier/dot_matrix_row02/verification.json": "2da5d6b30c950c8a179a8e22fadcf32c93f48454a466d583afe2ea7287bce96f",
+    "cloud/work/frontier/dot_matrix_row02/verify.py": "f7800920d212dcf2e643fc0dbe2b328dd2fcb2eba0c2803f7b35679213f10173",
+    "tests/conveyor/test_dot_matrix_row02.py": "b921946c5d9cb9b533a591e3ec6ef5efd29daf6e0c745c89889b94ac2cb183d5"
+  },
+  "source_packet_identical_to_author_commit": true,
+  "receipt_replay_byte_identical": true,
+  "receipt_sha256": "2da5d6b30c950c8a179a8e22fadcf32c93f48454a466d583afe2ea7287bce96f",
+  "checks": {
+    "O2": "strict 0/38 words; exact ELF st_size 152; no relocations, unresolved, unverified, errors, or nonzero excess",
+    "O3": "strict 0/38 words; exact ELF st_size 152; no relocations, unresolved, unverified, errors, or nonzero excess",
+    "wrong_rotation_control": "rejected",
+    "short_extent_control": "148-byte reported extent rejected",
+    "focused_matrix_tests": 4,
+    "host_cases": 4102
+  },
+  "manual_review": [
+    "Ordinary float sine in f12, float cosine in f14, matrix pointer in a2; no additional inputs or calls.",
+    "Full native body reads and writes rows 0 and 2; row 1 unchanged.",
+    "One result local holds an actual output while original inputs remain live; native frame and spill arise naturally.",
+    "No fake parameters, padding, stand-ins, forced instructions, new storage, or protected changes.",
+    "Direct callers camera_follow_path and stunt_combo_display verified by target call scan; they remain outside this claim."
+  ],
+  "integration_shim_review": {
+    "path": "tests/cloud/test_graphics_init_match.py",
+    "sha256": "e4d14ebb538490da9b46c953e36eb15443e8dd990d768399658506495559f2b1",
+    "compiler_replay_test_passed": true,
+    "findings": "Recompiles actual source group, accepted baselines, and controls; compares full records. CI REQUIRE_TOOLCHAIN converts IDO-unavailable skips to failure. Does not freeze unrelated catalog or compiler hashes. Original reviewed graphics source/recipe/verifier/receipt unchanged."
+  },
+  "limits": [
+    "Broad aggregate verification is publisher-owned and not duplicated here.",
+    "No caller-group, whole-program shadow, linked image, compressed-stream, or ROM gate performed.",
+    "No publication or merge by reviewer."
+  ]
+}
