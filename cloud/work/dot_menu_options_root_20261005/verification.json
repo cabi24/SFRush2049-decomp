@@ -1,0 +1,109 @@
+{
+  "base_commit": "7487788a0ed4aae747aeb9bb0309e45fa78e1d9b",
+  "claims": [],
+  "fixture_capacity_is_native_evidence": false,
+  "fixture_header_capacity": 128,
+  "host_root_cases": 410370,
+  "host_slot_cases": 24576,
+  "native_contracts": {
+    "callback": {
+      "caller": "replay_save_prompt -> sound_control",
+      "member_offset": 28,
+      "state_unused": true,
+      "static_record_addresses": [
+        "0x80116D4C",
+        "0x80116D70"
+      ],
+      "target_slots_verified": true,
+      "type": "s32 (void *state)"
+    },
+    "format": {
+      "address": "0x80121018",
+      "sha256": "6ab21815c07afe44dd8e54c07c99a9d44dd4979076df0ae7a88e5124498a04df",
+      "text": "CONTROLLER %d %s",
+      "verified": true
+    },
+    "menu_switch": {
+      "cases": 14,
+      "labels": [
+        25,
+        13,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        26,
+        14
+      ],
+      "signed_selector_offsets": [
+        null,
+        10,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        18,
+        11
+      ],
+      "table_sha256": "9553ae220d84e787538be59a4fbee35d0daee9c6b6f035cc107f99852810f5a7",
+      "verified": true
+    },
+    "root": {
+      "address": "0x8010AEAC",
+      "bytes": 1652,
+      "direct_incoming_jal_count": 0,
+      "end_exclusive": "0x8010B520",
+      "sha256": "f3e943ca4521f85900d4ebf6463ce1595d9187ab43dbcae17b6e9f199ad24321"
+    },
+    "slot_state_setup": {
+      "address": "0x800B4200",
+      "bytes": 232,
+      "private_register_abi_unresolved": true,
+      "sha256": "55d29fb1f5b5789d8b2467a1287a0d16e872cfb6d0c6aa3653bf7b69cc2f0144",
+      "source_semantics_audited": true
+    },
+    "storage": {
+      "buffer_stack_offset": 176,
+      "capacity": null,
+      "later_short_stack_offset": 218,
+      "native_frame_bytes": 240,
+      "required_bytes_formula": "13 + decimal_text_length + suffix_length",
+      "source_declaration_verified": false,
+      "suffix": "D_8017A4E0.labels[233]; runtime length unknown"
+    }
+  },
+  "native_elf_extent_proved": false,
+  "native_group_match_claimed": false,
+  "native_layout_checks": 6,
+  "native_literal_ownership_proved": false,
+  "native_root_compiled": false,
+  "native_root_scored": false,
+  "new_verified_function_bytes": 0,
+  "previous_menu_context_sha256": "79a38a70a0b436a117d5622376fbf018b920216e73304b89145c7ceb755a09fe",
+  "production_changes": false,
+  "root_compilation_gate": "passed fail-closed test",
+  "sanitizers": "ASan and UBSan passed",
+  "slot_ido_syntax_check": true,
+  "source_sha256": {
+    "host_root_test.c": "24054cd3a1f9fa5a6834000883eee2656cb7e88278e1a48ed11ddb61d2271713",
+    "host_slot_test.c": "2388c274641f0f2295193669ea7c7faebdf8671f391c5838178d96004d325b1a",
+    "layout_probe.c": "258be2755b8dfb7a8f275bc1b79b52a3828ddb40162ded24482d606ed7b7059c",
+    "menu_context.h": "b46f4462c25c5c072dfc444122cfd1f1b0fe34cd7b38e8a711c745bc39ee5b06",
+    "root.c": "8f788d7e4b00e4bd85bf49254e4bc926c1de62b2bc091b8b448ab5120239de42",
+    "slot_state_setup.c": "b28c4a340302f416ff7b0d3ac4c3839ba764a8f0d5fe397c193963248395c362",
+    "verify.py": "d7ad5784b621310430bc91c3cf5c4f7bd2ad4efce446d370b487e5d95e209220"
+  },
+  "status": "complete control-flow reconstruction; native declaration/ABI blocked"
+}
