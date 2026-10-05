@@ -18,7 +18,7 @@ extern u8 D_8002C630;
 extern void func_80014594(void);
 extern void func_800145DC(void);
 extern VoiceState D_8004BEB8[];
-extern u32 func_8001EDF4(u32);
+extern int func_8001EDF4(u32);
 extern void func_80020610(u8, u8, u8, u8);
 int func_8001FD2C(u32 identifier, u8 value)
 {
