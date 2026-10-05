@@ -1,0 +1,22 @@
+{
+ "members": [
+  "car_setup_confirm",
+  "func_800D1AB0"
+ ],
+ "files": [
+  "func_800F8EC8.c",
+  "car_setup_confirm.c",
+  "func_800D1AB0.c"
+ ],
+ "keep": [
+  "car_setup_confirm",
+  "func_800F8EC8"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [
+  "func_800F8EC8"
+ ],
+ "claims": [],
+ "note": "Real group, no stand-ins. func_800D1AB0 prints MATCH here with its two real callers as keep roots (car_setup_confirm 2 words off on an alias symbol, func_800F8EC8 unmatched context from cloud/work/near_miss_B125). Nothing is claimed: func_800D1AB0 stays provisional until car_setup_confirm closes (needs a second symbol for 0x8014A250)."
+}

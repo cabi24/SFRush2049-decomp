@@ -2836,6 +2836,7 @@ func_800B9B64:
 .section .text.physics_friction_apply, "ax", @progbits
 .globl physics_friction_apply
 physics_friction_apply:
+    /* compiled from src/blob/physics_friction_apply.c */
     .word 0x27BDFFA0
     .word 0xAFB20028
     .word 0x3C128014
@@ -3420,6 +3421,7 @@ audio_priority_find:
 .section .text.func_800BA61C, "ax", @progbits
 .globl func_800BA61C
 func_800BA61C:
+    /* compiled from src/blob/func_800BA61C.c */
     .word 0x00047400
     .word 0x000E7C03
     .word 0x000FC080
