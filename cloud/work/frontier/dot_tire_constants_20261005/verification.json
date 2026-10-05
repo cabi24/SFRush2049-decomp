@@ -1,0 +1,264 @@
+{
+  "accepted_byte_gain": 0,
+  "behavior": {
+    "cases": 4096,
+    "host_c89_ubsan": "passed",
+    "layouts": {
+      "-1": 820,
+      "0": 819,
+      "1": 819,
+      "2": 819,
+      "3": 819
+    },
+    "limit": "Finite nonzero fixture denominators; no FCSR, NaN, infinity, invalid-pointer, concurrency or gameplay proof.",
+    "linked_instructions_executed": 65,
+    "native_executions": 8192,
+    "native_target_instructions_executed": 65,
+    "negative_controls": {
+      "reversed_stiffness_ratio": {
+        "cases_checked": 64,
+        "cases_disagreeing": 64,
+        "rejected": true
+      },
+      "wrong_l3": {
+        "cases_checked": 64,
+        "cases_disagreeing": 64,
+        "rejected": true
+      },
+      "wrong_load_scale": {
+        "cases_checked": 64,
+        "cases_disagreeing": 64,
+        "rejected": true
+      },
+      "wrong_m1": {
+        "cases_checked": 64,
+        "cases_disagreeing": 64,
+        "rejected": true
+      },
+      "wrong_model_field": {
+        "cases_checked": 64,
+        "cases_disagreeing": 56,
+        "rejected": true
+      },
+      "wrong_patch_reset": {
+        "cases_checked": 64,
+        "cases_disagreeing": 64,
+        "rejected": true
+      }
+    },
+    "saved_registers_stack_and_untouched_bytes": "passed",
+    "whole_record_output_sha256": "f3577e289e71ab2c9dc844580439e4549b420b9f7deba00d0355a7152475ebf8"
+  },
+  "candidate_bytes": 260,
+  "context": {
+    "bodies": {
+      "func_800D0A1C": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "native_bytes": 24,
+        "symbol_bytes": 24,
+        "total": 6,
+        "unresolved": [],
+        "unverified": [],
+        "verdict": "MATCH"
+      },
+      "track_info_display": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "native_bytes": 1124,
+        "symbol_bytes": 1124,
+        "total": 281,
+        "unresolved": [],
+        "unverified": [],
+        "verdict": "MATCH"
+      },
+      "track_preview_handler": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "native_bytes": 260,
+        "symbol_bytes": 260,
+        "total": 65,
+        "unresolved": [],
+        "unverified": [],
+        "verdict": "MATCH"
+      }
+    },
+    "keep": [
+      "track_info_display",
+      "func_800D0A1C",
+      "track_preview_handler"
+    ],
+    "limit": "Separate existing type views; compiler context, not full-game shadow or caller execution.",
+    "original_recipe_sha256": "0e267b92060b3d7ab20208633d4f124f47956e0c36e3c58f786dc6d4e8f837cd",
+    "unchanged_context_sha256": {
+      "group.c": "369200bb7c17a48d4dad8909a7ba53d12077696d5fc932f675956eaf84b8734f"
+    }
+  },
+  "controls": {
+    "archived_a96": {
+      "differing": 62,
+      "errors": [],
+      "extra_words": 1,
+      "native_bytes": 260,
+      "source_sha256": "df67b80efa8e110a2cd8dc53c5fb43c0a11de0e1ae2f6b6f415c973435f21cf2",
+      "symbol_bytes": 264,
+      "total": 65,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "62/65 words differ (1 extra words (nonzero beyond target length))"
+    },
+    "archived_b27": {
+      "differing": 48,
+      "errors": [],
+      "extra_words": 1,
+      "native_bytes": 260,
+      "source_sha256": "d4d1179102a6a4a36408c3f7e95418014263c48057a3f6a56a73f6fca682086b",
+      "symbol_bytes": 264,
+      "total": 65,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "48/65 words differ (1 extra words (nonzero beyond target length))"
+    },
+    "donor_multiply_l2": {
+      "differing": 35,
+      "errors": [],
+      "extra_words": 2,
+      "native_bytes": 260,
+      "source_sha256": "4cacc677bd0230260f09075ec34fff3b68c6161d0f2e97eac3df3daf6594c369",
+      "symbol_bytes": 268,
+      "total": 65,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x9c",
+        ".rodata+0x0 at +0xb8",
+        ".rodata+0x4 at +0xbc",
+        ".rodata+0x4 at +0xcc",
+        ".rodata+0x8 at +0xd0",
+        ".rodata+0x8 at +0xe0",
+        ".rodata+0xc at +0xe4",
+        ".rodata+0xc at +0xf4"
+      ],
+      "verdict": "35/65 words differ (2 extra words (nonzero beyond target length); 8 section-relative relocations unverified: .rodata+0x0 at +0x9c, .rodata+0x0 at +0xb8, .rodata+0x4 at +0xbc, .rodata+0x4 at +0xcc, .rodata+0x8 at +0xd0, .rodata+0x8 at +0xe0, .rodata+0xc at +0xe4, .rodata+0xc at +0xf4)"
+    },
+    "float_first_m2_reciprocal": {
+      "differing": 0,
+      "errors": [
+        "own .rodata+0x4 referenced at +0xc4 differs from retail 0x8012413C (+0x0: retail 3e969697, got 3e969696; 4 bytes compared)"
+      ],
+      "extra_words": 0,
+      "native_bytes": 260,
+      "source_sha256": "4d0c8f3e898b63a1071c03e562df6d65a5eca3523536fbaf1073dd3ac7d34064",
+      "symbol_bytes": 260,
+      "total": 65,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x70",
+        ".rodata+0x0 at +0xb0",
+        ".rodata+0x4 at +0xb4",
+        ".rodata+0x4 at +0xc4",
+        ".rodata+0x8 at +0xc8",
+        ".rodata+0x8 at +0xd8",
+        ".rodata+0xc at +0xdc",
+        ".rodata+0xc at +0xec"
+      ],
+      "verdict": "NOT VERIFIED (8 section-relative relocations unverified: .rodata+0x0 at +0x70, .rodata+0x0 at +0xb0, .rodata+0x4 at +0xb4, .rodata+0x4 at +0xc4, .rodata+0x8 at +0xc8, .rodata+0x8 at +0xd8, .rodata+0xc at +0xdc, .rodata+0xc at +0xec; own .rodata+0x4 referenced at +0xc4 differs from retail 0x8012413C (+0x0: retail 3e969697, got 3e969696; 4 bytes compared))"
+    },
+    "o2": {
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 260,
+      "source_sha256": "ebe234eebd87e5977debf9de295e998d6319ab5ea97a09f9efbdda54f6349a4d",
+      "symbol_bytes": 260,
+      "total": 65,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "MATCH"
+    }
+  },
+  "direct_callers": [
+    [
+      "track_info_display",
+      "0x800d0e54"
+    ],
+    [
+      "track_info_display",
+      "0x800d0e68"
+    ]
+  ],
+  "function": "track_preview_handler",
+  "object": {
+    "all_gnu_linked_words_equal": true,
+    "body_sha256": "9ff90e6689972acc04bdb20ad93c95f7fa546aae94ff10445949be20434132f2",
+    "differing": 0,
+    "errors": [],
+    "excluded_zero_text_alignment_bytes": 12,
+    "extra_words": 0,
+    "literal_address": "0x80124138",
+    "literal_bytes": 16,
+    "literal_sha256": "edac428a234f736d384199059a6f94722f0127c200be91b21784981ce15d897e",
+    "native_bytes": 260,
+    "relocations": [
+      {
+        "offset": 112,
+        "symbol": ".rodata",
+        "type": 5
+      },
+      {
+        "offset": 176,
+        "symbol": ".rodata",
+        "type": 6
+      },
+      {
+        "offset": 180,
+        "symbol": ".rodata",
+        "type": 5
+      },
+      {
+        "offset": 196,
+        "symbol": ".rodata",
+        "type": 6
+      },
+      {
+        "offset": 200,
+        "symbol": ".rodata",
+        "type": 5
+      },
+      {
+        "offset": 216,
+        "symbol": ".rodata",
+        "type": 6
+      },
+      {
+        "offset": 220,
+        "symbol": ".rodata",
+        "type": 5
+      },
+      {
+        "offset": 236,
+        "symbol": ".rodata",
+        "type": 6
+      }
+    ],
+    "symbol_bytes": 260,
+    "total": 65,
+    "unresolved": [],
+    "unverified": [],
+    "verdict": "MATCH"
+  },
+  "own_data_manifest_sha256": "a11be55c29c9aedd10e2ff0439c48c1171a14d2dc0d975e66f29e3667c738594",
+  "packet_sha256": {
+    "claim.json": "c29b2a3dbbf3aafe6204963606b44bbeaf01800130fc85bd884a65b4c3a056bf",
+    "host.c": "1182e7285963fd06acc318287e2c6d3ee89889ff2cf4eda77d8a9f8c15192aff",
+    "native.py": "da440b59c7a9fd0f710c3a88a9708621ab41b134c57ec370f52a4817d11aaf35",
+    "provenance.json": "39da981b50c36c9acd9120dfe66709b5952100f6519082afebb3e157c58a6f50",
+    "verify.py": "f97ef01ae9e694cc1b25ff70f6fb65920c1b1facb6918ca5e9f1e619bf395e6e"
+  },
+  "scorer_sha256": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+  "source_sha256": "ebe234eebd87e5977debf9de295e998d6319ab5ea97a09f9efbdda54f6349a4d",
+  "status": "STRICT_MATCH_CANDIDATE",
+  "target_manifest_sha256": "0bfdfdfc5e03c1f3261c7455f3922082d99673defacd5dbb692629624e757652"
+}

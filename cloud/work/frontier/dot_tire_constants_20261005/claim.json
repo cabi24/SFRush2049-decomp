@@ -1,0 +1,32 @@
+{
+  "base": "e24b47d89a0c8ffade1e4c75ad76b9d390a1c232",
+  "claimed_function": "track_preview_handler",
+  "range": [
+    "0x800D08E4",
+    "0x800D09E8"
+  ],
+  "bytes": 260,
+  "new_match_candidate": true,
+  "accepted_byte_gain": 0,
+  "open_prs_checked": [
+    110,
+    111,
+    112,
+    113,
+    114,
+    115
+  ],
+  "prior_attempts": [
+    "cloud/work/tiny_A96",
+    "cloud/work/near_miss_B27"
+  ],
+  "excluded_active_functions": [
+    "func_8010E72C",
+    "func_800A7BF8",
+    "func_800D11BC",
+    "func_800D1248",
+    "func_800E95DC"
+  ],
+  "new_lead": "Authentic initiali.c tire_constants field expressions and copy_tire_info load formula, rather than decompiler scalar ownership.",
+  "limit": "No visibility into unpublished work on other machines."
+}
