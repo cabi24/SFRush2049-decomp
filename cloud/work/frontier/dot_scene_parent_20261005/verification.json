@@ -1,0 +1,263 @@
+{
+  "accepted_byte_gain": 0,
+  "address": "0x800a7bf8",
+  "archive_sha256": "32686a50bc958b988c8cd610fe3e8d13dc2839ab23c83f2edc5a4dfeee4c1b0c",
+  "base_revision": "e24b47d89a0c8ffade1e4c75ad76b9d390a1c232",
+  "behavior": {
+    "all_conditional_outcomes_covered": true,
+    "branch_sites": 6,
+    "cases": 9220,
+    "corpus_sha256": "d196844aae9c4a155b815fca74d9d67c75bb35573fdf70e4e60b1550e266c9c9",
+    "full_record_count_stack_and_saved_register_preservation": true,
+    "host_c89_ubsan": "passed",
+    "instruction_offsets_covered": 41,
+    "native_executions": 18440,
+    "negative_controls": {
+      "sentinel_before_comparison": {
+        "actual": -1,
+        "expected": 0,
+        "first_counterexample": 34,
+        "rejected": true
+      },
+      "skip_first_child": {
+        "actual": -1,
+        "expected": 0,
+        "first_counterexample": 34,
+        "rejected": true
+      },
+      "skip_siblings": {
+        "actual": -1,
+        "expected": 1,
+        "first_counterexample": 124,
+        "rejected": true
+      },
+      "wrong_failure": {
+        "actual": 0,
+        "expected": -1,
+        "first_counterexample": 0,
+        "rejected": true
+      },
+      "wrong_owner": {
+        "actual": 1,
+        "expected": 0,
+        "first_counterexample": 34,
+        "rejected": true
+      }
+    },
+    "source_host_executions": 9220,
+    "unknown_opcode_rejected": true
+  },
+  "compiler_sha256": {
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5"
+  },
+  "context": {
+    "bodies": {
+      "func_8008AE10": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "native_bytes": 28,
+        "symbol_bytes": 28,
+        "total": 7,
+        "unresolved": [],
+        "unverified": [],
+        "verdict": "MATCH"
+      },
+      "func_8008AE2C": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "native_bytes": 28,
+        "symbol_bytes": 28,
+        "total": 7,
+        "unresolved": [],
+        "unverified": [],
+        "verdict": "MATCH"
+      },
+      "func_800A7BF8": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "native_bytes": 164,
+        "symbol_bytes": 164,
+        "total": 41,
+        "unresolved": [],
+        "unverified": [],
+        "verdict": "MATCH"
+      }
+    },
+    "limit": "Three unchanged genuine bodies; shared record accessor regression, not actual caller closure or full-game shadow unit.",
+    "source_sha256": {
+      "src/blob/func_8008AE10.c": "3815c636574cb2007d9cd4e6bca85a95e2b9308551d50a546b9770087b264600",
+      "src/blob/func_8008AE2C.c": "7dd3f7f6e3bcc506ff05c591e99964b4e400bba3f5f0b30d41236447c8a83e5f"
+    }
+  },
+  "controls": {
+    "accepted_accessor_calls": {
+      "func_8008AE10": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "native_bytes": 28,
+        "symbol_bytes": 28,
+        "total": 7,
+        "unresolved": [],
+        "unverified": [],
+        "verdict": "MATCH"
+      },
+      "func_8008AE2C": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "native_bytes": 28,
+        "symbol_bytes": 28,
+        "total": 7,
+        "unresolved": [],
+        "unverified": [],
+        "verdict": "MATCH"
+      },
+      "func_800A7BF8": {
+        "differing": 37,
+        "errors": [],
+        "extra_words": 2,
+        "native_bytes": 164,
+        "symbol_bytes": 176,
+        "total": 41,
+        "unresolved": [],
+        "unverified": [],
+        "verdict": "37/41 words differ (2 extra words (nonzero beyond target length))"
+      }
+    },
+    "archived_full_width_counter": {
+      "differing": 34,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 164,
+      "symbol_bytes": 168,
+      "total": 41,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "34/41 words differ"
+    },
+    "archived_m2c": {
+      "differing": 35,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 164,
+      "symbol_bytes": 160,
+      "total": 41,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "35/41 words differ"
+    },
+    "o2": {
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 164,
+      "symbol_bytes": 164,
+      "total": 41,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "MATCH"
+    },
+    "unnamed_record": {
+      "differing": 11,
+      "errors": [],
+      "extra_words": 0,
+      "native_bytes": 164,
+      "symbol_bytes": 164,
+      "total": 41,
+      "unresolved": [],
+      "unverified": [],
+      "verdict": "11/41 words differ"
+    }
+  },
+  "direct_callers": [
+    [
+      "transmission_shift",
+      "0x800abc34"
+    ],
+    [
+      "transmission_shift",
+      "0x800abc98"
+    ]
+  ],
+  "end_exclusive": "0x800a7c9c",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "function": "func_800A7BF8",
+  "limits": [
+    "Finite accessible sibling chains; no cyclic/corrupt/concurrent graph proof.",
+    "Record fixtures use 1..512 entries; arbitrary positive out-of-range counts and runtime gameplay are untested.",
+    "Negative links below -1 are tested only on equality-short-circuit paths before dereference.",
+    "Exact code includes signed-half input/return narrowing; parent indices above 32767 are not behaviorally exercised.",
+    "No direct arcade donor, original C declaration recovery, actual transmission_shift execution, full-game shadow, splice, image, compression or ROM claim."
+  ],
+  "native_bytes": 164,
+  "object": {
+    "differing": 0,
+    "errors": [],
+    "extra_words": 0,
+    "gnu_body_sha256": "e6755540f027338ed3ac973bca07f388c0d2820bdac7a8c9cd5238d570d7e3c3",
+    "gnu_linked_full_body_equal": true,
+    "native_bytes": 164,
+    "own_data_bytes": 0,
+    "relocations": [
+      {
+        "offset": 0,
+        "symbol": "D_80156990",
+        "type": 5
+      },
+      {
+        "offset": 4,
+        "symbol": "D_80156990",
+        "type": 6
+      },
+      {
+        "offset": 28,
+        "symbol": "D_8012E700",
+        "type": 5
+      },
+      {
+        "offset": 40,
+        "symbol": "D_8012E700",
+        "type": 6
+      },
+      {
+        "offset": 32,
+        "symbol": "D_8012E700",
+        "type": 5
+      },
+      {
+        "offset": 36,
+        "symbol": "D_8012E700",
+        "type": 6
+      }
+    ],
+    "symbol_bytes": 164,
+    "total": 41,
+    "unresolved": [],
+    "unverified": [],
+    "verdict": "MATCH",
+    "zero_alignment_bytes": 12
+  },
+  "object_provenance": {
+    "linked_elf_sha256": "98c11f4d0548aa38cbaeb66e14ba284eda53a2226d47dcbed3eb6410345678a2",
+    "note": "Full ELF hashes are build-path provenance; .mdebug can differ across worktrees.",
+    "object_sha256": "0358d1d4d227253e0097efc152651f8078b9f3bfa96a7333459366bc0394b6d8"
+  },
+  "packet_sha256": {
+    "host.c": "64287a5cd1fff7e5aee4731777b985274776378c76f87fd633aff7ed9d721c9b",
+    "native.py": "ae0259504285e9db47aad9807a40600b96e5e12465b379565ec9c8b83d8648b9",
+    "verify.py": "41724b50986bc7fa26625e8ee1a436121c67e28c91afc7be31cc4c6591d3f6f2"
+  },
+  "scorer_sha256": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+  "source_sha256": "e27ae412588129fa3bec1be4af6a8f5337ed012da725557db4d077506d83988d",
+  "status": "STRICT_MATCH_CANDIDATE",
+  "target_manifest_sha256": "0bfdfdfc5e03c1f3261c7455f3922082d99673defacd5dbb692629624e757652",
+  "target_sha256": "e6755540f027338ed3ac973bca07f388c0d2820bdac7a8c9cd5238d570d7e3c3"
+}
