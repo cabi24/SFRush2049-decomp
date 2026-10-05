@@ -1,0 +1,82 @@
+{
+  "reviewer": "independent voice-dispatch worker",
+  "reviewed_head": "2615d377e8b4a538473fd9b22ac041a41e8378a5",
+  "reviewed_tree": "abfb94c30b1743d780f2721a238596b6a65b84a8",
+  "verdict": "APPROVE_COMPLETE_NONMATCH_RESEARCH",
+  "blocking_findings": [],
+  "source_sha256": "62c2e4af4057da50de7a4184c55300d9f0da3af9976bcc862ad2f03a3bfa444a",
+  "replayed": [
+    "verify.py output exactly equals committed verification.json",
+    "test_semantics.py output exactly equals committed semantics.json: 5,632 complete native and 5,632 complete compiler executions, with 1,272 actual-source host differential calls",
+    "test_host.py output exactly equals committed host_verification.json: 76,024 actual-source ASan/UBSan cases, empty sanitizer stderr",
+    "test_mutations.py output exactly equals committed negative_controls.json: all four deliberate defects rejected"
+  ],
+  "actual_source_and_abi_review": [
+    "Entire 226-word canonical body inspected, together with complete 80-byte func_800203EC caller and 16-byte func_8001E930 helper. Confirmed three real O32 inputs: u8 volume, u16 duration, u8 group; void return usage; duration zero becomes one; normalized word is passed by pointer to scale by 256.",
+    "All seven update sites and loop predicates inspected: selectors 255/252 select type pairs 0,1/2,3; selectors 250,251,253,254 select 2,3,0,1. Default performs direct indexing with no invented guard.",
+    "Forty-byte record, type at 20, pause volume at 24, and writes restricted to offsets 28,32,36 agree with native addressing and existing initializer source. Unsigned subtraction followed by signed interpretation and signed division preserves native wrapping fixed-point behavior.",
+    "Natural complete C89 function only: declared callee, no helper stub, inline assembly, fake input, keeper, padding local, pressure trick, manual unrolling, source-code instruction injection, or protected-path modification.",
+    "Interpreter delay slots, likely branches, signed division, narrow loads, stack memory, actual helper body, bounds and exact write-set assertions inspected. The host oracle independently handles signed quotient through unsigned magnitude arithmetic."
+  ],
+  "provenance": {
+    "source_url": "https://github.com/AxioDL/musyx/blob/78d2e16e4905fc675952162d331c24d5198b2687/src/musyx/runtime/synth.c",
+    "source_blob": "0559ed2e7d5d8abd4627440fd71f807581c03aad",
+    "source_sha256": "b39853d921970c7b255d85d46f2ddd827948660062e335a919ce007d7a47cc48",
+    "independent_fetch": "Reviewer independently fetched pinned synth.c in this session, inspected synthPauseVolume, and recomputed both SHA-256 and Git blob hash. Pinned CC0-1.0 LICENSE was independently fetched/read in the same session.",
+    "license_blob": "0e259d42c996742e9e3cba14c677129b2c1b6311",
+    "family_limit": "Newer float fields, active flags and storage are not treated as native source proof."
+  },
+  "stock_scorer": {
+    "differing_words": 76,
+    "total_words": 226,
+    "extra_nonzero_words": 0,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0x64",
+      ".rodata+0x0 at +0x6c"
+    ],
+    "errors": [],
+    "accepted": false
+  },
+  "independent_complete_proof": {
+    "function_bytes": 904,
+    "full_word_differences": 76,
+    "candidate_section_bytes": 912,
+    "zero_text_tail_bytes": 8,
+    "table_entry_count": 6,
+    "table_entries_matching": 6,
+    "table_sha256": "a1b9a25984b45dee83746aee148a632d9c8dcd9a86d20dc74e131e760839356f",
+    "zero_rodata_tail_bytes": 8,
+    "relocations": {
+      "text": 17,
+      "table": 6,
+      "total": 23
+    },
+    "python_relocation_equals_gnu_ld": true,
+    "additional_reviewer_checks": "Fresh ELF relocation inventory confirms exactly six ordered table R_MIPS_32 relocations to .text and 23 total relocations; output extent/padding, all six absolute destinations, every full target word, and local receipt equality against the original authorized proof independently checked. The packet also compiles eleven IDO layout assertions without changing candidate output.",
+    "placement_limit": "Temporary research placement only; production storage ownership remains unassigned."
+  },
+  "artifact_sha256": {
+    "func_8001BE14_NONMATCH.c": "62c2e4af4057da50de7a4184c55300d9f0da3af9976bcc862ad2f03a3bfa444a",
+    "verify.py": "a31a6f3786a3cbbbeec1b432bbb0f997fb2ad2bce29a020023d0a83db5203015",
+    "test_semantics.py": "8abaa533a8ab40cfe78237533ae9cca0a58a4ea023c359265757e43b3d63e368",
+    "test_host.py": "ceed71f5c2385269dd868df77cc23615ca8165cb99db7716593f4d4496b209a4",
+    "test_mutations.py": "01728f5fa56f96d52d7a8b087da0434415485735b13fec2cea2bca086f0aac8d",
+    "host_sanitized.c": "03968cacd1d2c7519e6a38e3ecbaf3b0b2d18b23eadf12ce9bd109cff645d706",
+    "verification.json": "23110282f6ba871bcf2e3a464001a1576fbf29febf7a721c60621ad37fdde2b8",
+    "semantics.json": "055b2b6b84a662729a221b1b54725f38b05773a9d1a213f593e09269aef916bf",
+    "host_verification.json": "f76e3bc1c0661eb11c78b33e1e608a2f993dc55820d9f8ef9c675e7e80c306b4",
+    "negative_controls.json": "3aa4354f2bd8dba0d5afc4e4d521abbc6ab8a8cccae01cf6fdf31dff3daae452",
+    "dispatch_proof.json": "f4ab1ec60182dfddb92421bec8bd0c1a82e3001f837b942324fee6d5c9a634ed",
+    "input_pins.json": "5a6d13d6832f85b332ae026f87a73881db4a54617bfdc8deff97cf5006dc1d3e"
+  },
+  "scope_review": "Only packet-local research files differ from cf4b9c6; frozen working tree clean. No matches directory or protected scorer/symbol/layout/target/lock changes, no raw bytes/dumps/objects or unrelated content. No further asset reads performed.",
+  "limitations": [
+    "No strict match or verified-body credit: retained O2 body still has 76 full-word differences and the unchanged scorer still rejects two local-rodata references.",
+    "Native/candidate selectors 32..249 are tested only in deliberately extended synthetic memory. These out-of-array selectors are excluded from valid-C host tests and do not establish safe production storage.",
+    "Coverage is 198/226 native instructions; 28 fault/check-path instructions are unreachable with normalized positive 1..65535 divisor.",
+    "LeakSanitizer is disabled only for the disclosed ptrace limitation; AddressSanitizer and UndefinedBehaviorSanitizer remain active, and no dynamic allocation exists in the source/harness.",
+    "Unsigned-to-signed conversion is implementation-defined C behavior, exercised as two-complement behavior by IDO and GCC. No claim of portability to other integer representations.",
+    "No production integration, actual audio/hardware/timing, complete engine, or cartridge/ROM proof. O1 remains a rejected oversized control, with excess words and split relocation pairs explicitly reported."
+  ]
+}

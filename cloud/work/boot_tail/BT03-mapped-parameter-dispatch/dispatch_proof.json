@@ -1,0 +1,61 @@
+{
+  "function": "func_8001BE14",
+  "function_start": "0x8001BE14",
+  "function_end_exclusive": "0x8001C19C",
+  "function_size_bytes": 904,
+  "canonical_function_sha256": "0e590f39a0d6dc184e6b5c96286b0147c98362d56872f5dc584d054e9a9cfa66",
+  "dispatch_pc": "0x8001BE84",
+  "guard_failure_target": "0x8001C130",
+  "table_ram_start": "0x8002D8E8",
+  "table_ram_end_exclusive": "0x8002D900",
+  "table_rom_start": "0x0002E4E8",
+  "table_rom_end_exclusive": "0x0002E500",
+  "asset_start_offset": "0x0001E4E8",
+  "asset_end_offset_exclusive": "0x0001E500",
+  "table_size_bytes": 24,
+  "table_sha256": "a1b9a25984b45dee83746aee148a632d9c8dcd9a86d20dc74e131e760839356f",
+  "entry_width_bytes": 4,
+  "encoding": "big-endian absolute MIPS virtual address",
+  "index_rule": "unsigned(selector - 250) < 6; address = table + 4 * index",
+  "selector_to_target": [
+    {
+      "selector": 250,
+      "target": "0x8001C048",
+      "target_function_offset": "0x00000234"
+    },
+    {
+      "selector": 251,
+      "target": "0x8001C050",
+      "target_function_offset": "0x0000023C"
+    },
+    {
+      "selector": 252,
+      "target": "0x8001BF68",
+      "target_function_offset": "0x00000154"
+    },
+    {
+      "selector": 253,
+      "target": "0x8001C058",
+      "target_function_offset": "0x00000244"
+    },
+    {
+      "selector": 254,
+      "target": "0x8001C060",
+      "target_function_offset": "0x0000024C"
+    },
+    {
+      "selector": 255,
+      "target": "0x8001BE8C",
+      "target_function_offset": "0x00000078"
+    }
+  ],
+  "checks": {
+    "direct_unpack_equals_independent_big_endian_decode": true,
+    "canonical_guard_index_stride_base_load_and_jump_chain_validated": true,
+    "guard_failure_skips_table_load": true,
+    "all_targets_aligned_and_inside_function_extent": true
+  },
+  "readiness": "Mapping gap resolved; available for a separate matching claim. Compilation, relocation resolution, strict scoring and semantic validation remain required.",
+  "parent_receipt_sha256": "5ce55846a4f15b1ccb0509eead322cb1ac19d9c03168b9a5308e65648be93214",
+  "storage_ownership": "No rom_owned_data.json ROM-slot owner is declared for these ranges. The mappings establish function dispatch use, not a source translation-unit or production linker ownership assignment."
+}

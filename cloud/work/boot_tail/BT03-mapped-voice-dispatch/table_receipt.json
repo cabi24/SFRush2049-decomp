@@ -1,0 +1,62 @@
+{
+  "function": "func_8001B9F8",
+  "function_start": "0x8001B9F8",
+  "function_end_exclusive": "0x8001BDB8",
+  "function_size_bytes": 960,
+  "canonical_function_sha256": "fba782a757db40de237ff3d5ccfcb1434fa3ca697a1d3850d0d48a01d747ba11",
+  "dispatch_pc": "0x8001BA6C",
+  "guard_failure_target": "0x8001BD3C",
+  "table_ram_start": "0x8002D8D0",
+  "table_ram_end_exclusive": "0x8002D8E8",
+  "table_rom_start": "0x0002E4D0",
+  "table_rom_end_exclusive": "0x0002E4E8",
+  "asset_start_offset": "0x0001E4D0",
+  "asset_end_offset_exclusive": "0x0001E4E8",
+  "table_size_bytes": 24,
+  "table_sha256": "5802bcf542a95119599664217aa458924827df31404496eb0d9eaf483e162047",
+  "entry_width_bytes": 4,
+  "encoding": "big-endian absolute MIPS virtual address",
+  "index_rule": "unsigned(selector - 250) < 6; address = table + 4 * index",
+  "selector_to_target": [
+    {
+      "selector": 250,
+      "target": "0x8001BC48",
+      "target_function_offset": "0x00000250"
+    },
+    {
+      "selector": 251,
+      "target": "0x8001BC50",
+      "target_function_offset": "0x00000258"
+    },
+    {
+      "selector": 252,
+      "target": "0x8001BB5C",
+      "target_function_offset": "0x00000164"
+    },
+    {
+      "selector": 253,
+      "target": "0x8001BC58",
+      "target_function_offset": "0x00000260"
+    },
+    {
+      "selector": 254,
+      "target": "0x8001BC60",
+      "target_function_offset": "0x00000268"
+    },
+    {
+      "selector": 255,
+      "target": "0x8001BA74",
+      "target_function_offset": "0x0000007C"
+    }
+  ],
+  "checks": {
+    "direct_unpack_equals_independent_big_endian_decode": true,
+    "canonical_guard_index_stride_base_load_and_jump_chain_validated": true,
+    "guard_failure_skips_table_load": true,
+    "all_targets_aligned_and_inside_function_extent": true
+  },
+  "readiness": "Mapping gap resolved; available for a separate matching claim. Compilation, relocation resolution, strict scoring and semantic validation remain required.",
+  "receipt_source_sha256": "5ce55846a4f15b1ccb0509eead322cb1ac19d9c03168b9a5308e65648be93214",
+  "original_source": "cloud/work/boot_tail/dispatch-table-proof/dispatch-table-proof-2026-10-04.json",
+  "production_storage_ownership": "unassigned"
+}

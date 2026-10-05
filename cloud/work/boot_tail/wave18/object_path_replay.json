@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "source_path": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/func_8001BE14_NONMATCH.c",
+  "source_sha256": "62c2e4af4057da50de7a4184c55300d9f0da3af9976bcc862ad2f03a3bfa444a",
+  "qualification": "Complete-object hashes are source-path provenance. Both authored hashes reproduce from the original frozen checkout. Only .mdebug section contents/length differ at the integration path; all executable, data, relocation, symbol and string section bytes are identical. ELF file offsets may follow the changed diagnostic-section length. Original packet receipts are unchanged.",
+  "rows": [
+    {
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "authored_object_sha256": "184cb2394e6beb09d7f2cac01fba67daed560baa3c812b8671ee7a72be2438a7",
+      "integration_object_sha256": "871e9f0ff8f1c2e14f70864c3479bd24f2879182bc57ab6c3f5a09c77e5e70c8",
+      "changed_section_names": [
+        ".mdebug"
+      ],
+      "unchanged_sections": {
+        ".symtab": {
+          "size": 96,
+          "sha256": "82e813cdd46589d73db0eb72e4d4a81ccbd98677237c5fe9861e57fc49f406e7"
+        },
+        ".shstrtab": {
+          "size": 89,
+          "sha256": "8f9ef4da8f13a941a83e6812d294cb09f4a5b80e48a8e1326c61b5008916f1cb"
+        },
+        ".strtab": {
+          "size": 54,
+          "sha256": "463e75d6ccb8527fb3c17dfe8f708a26b95bc2e1570a9d4b80b7a5955f6e234d"
+        },
+        ".text": {
+          "size": 912,
+          "sha256": "e866e61506b89cc86ea76c4cb6539b9bb08fa0a3f4ecf36dd295451fb5971e95"
+        },
+        ".rodata": {
+          "size": 32,
+          "sha256": "41045d70e20f8ff1e5b63fe18c80e38da233c2b5c4c62f67ac2710f2d1b7ad62"
+        },
+        ".options": {
+          "size": 32,
+          "sha256": "da1aa8ef7d4dada30950ff3d6fde8dc8023ccff537feb17b1c39c51d7432d321"
+        },
+        ".reginfo": {
+          "size": 24,
+          "sha256": "900fc9bba582a83b24cdb4a7ccbfe02a40791ce198416ec25a3ee674aff703d3"
+        },
+        ".rel.text": {
+          "size": 136,
+          "sha256": "1b6fbc4281335fc4103d0e465ba13662bc6b5c1b249bb86e332c72e52191eee8"
+        },
+        ".rel.rodata": {
+          "size": 48,
+          "sha256": "90e10b377cd0d6a8b720cf583ddcaa9a8cfa085bacc965bb1b3e1107f08fd4f7"
+        }
+      },
+      "diagnostic_sections": {
+        "author": {
+          "size": 736,
+          "sha256": "cee9d684c34a2098311122b692e9276f456e11abdbb463921a01e1b9d62ead05"
+        },
+        "integration": {
+          "size": 740,
+          "sha256": "4831c29e5a9b6106f5f89b8428599589ec3d815b2d376bd95a2ee7e74584526b"
+        }
+      }
+    },
+    {
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "authored_object_sha256": "7f0cfff232bd079f78fb242194c03f73abfd70936f969a1ddc5283067c662375",
+      "integration_object_sha256": "33e76f50978e8edd63c1aae496865766d3ebd3361d480cd73e0f731dda05292b",
+      "changed_section_names": [
+        ".mdebug"
+      ],
+      "unchanged_sections": {
+        ".symtab": {
+          "size": 96,
+          "sha256": "d98f8eb6888612570b46b4cbcd3f05acf4ca03bd52b882824beefa576f20c4f7"
+        },
+        ".shstrtab": {
+          "size": 89,
+          "sha256": "8f9ef4da8f13a941a83e6812d294cb09f4a5b80e48a8e1326c61b5008916f1cb"
+        },
+        ".strtab": {
+          "size": 54,
+          "sha256": "463e75d6ccb8527fb3c17dfe8f708a26b95bc2e1570a9d4b80b7a5955f6e234d"
+        },
+        ".text": {
+          "size": 1008,
+          "sha256": "3236cd46bdbfb965cc247a90df78e10bda41d1c36eca526f6b5e168901f5b0b6"
+        },
+        ".rodata": {
+          "size": 32,
+          "sha256": "3f1bf3eff61f26eac5cdd8438a89c806e507fbc356fb7465fb18814cf072fa5b"
+        },
+        ".options": {
+          "size": 32,
+          "sha256": "81225f1073b48650ba8c0c09a7141caf8aef865a6f9171f34e5fd7feea53fbc2"
+        },
+        ".reginfo": {
+          "size": 24,
+          "sha256": "fc02d92bb70437ec0adfac658e22242a18f745e9bd4bbf66ce71b66b2d0cc1ae"
+        },
+        ".rel.text": {
+          "size": 248,
+          "sha256": "e299f4fcf3d5947473d71490ecdd48a38eeb59635e42bfb63cd1467b5bca9f8c"
+        },
+        ".rel.rodata": {
+          "size": 48,
+          "sha256": "90e10b377cd0d6a8b720cf583ddcaa9a8cfa085bacc965bb1b3e1107f08fd4f7"
+        }
+      },
+      "diagnostic_sections": {
+        "author": {
+          "size": 764,
+          "sha256": "185ff843241d34f0778fd47b4de22321ce04814f2380aaf51395dac4dbac68b4"
+        },
+        "integration": {
+          "size": 768,
+          "sha256": "f558b428a60a36a8034cc80c8c95b99143a2990625ebd1dcdd40678b078121b9"
+        }
+      }
+    }
+  ]
+}

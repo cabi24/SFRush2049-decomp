@@ -1,0 +1,3135 @@
+{
+  "result": "COMPLETE_NONMATCH",
+  "base_commit": "cf4b9c619c72e83aa5da2e8b5c110765f9b03693",
+  "matching_functions": 0,
+  "verified_body_bytes": 0,
+  "scorer_unchanged_sha256": "9de8385b28938c012ba679ea1f899cd7e5fe351d2c51129c5319442c84b679c4",
+  "manifest_sha256": "6bd3e6ef05e6123e4ea4dd0d814c0abb16f202a91d8d0a381eca14322c8a36d5",
+  "mapping_proof_sha256": "8349581feba6931e811a9cc1ef6d16db29be0c11e6eb13203c9d84ac7999b00f",
+  "pinned_compiler_hashes_verified": true,
+  "canonical_manifests_and_extents_verified": true,
+  "strict_getter_replay_pass": true,
+  "production_table_ownership": "unassigned",
+  "results": [
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/nonmatch/func_80023BDC.c",
+      "source_sha256": "d0065dfc1d6574935fab467a9cae0c04e1b07ab39a68ad0cf65b5bdf34ba6ea5",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 82,
+        "total": 101,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x9c",
+          ".rodata+0x0 at +0xa4"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 404,
+        "text_section_bytes": 416,
+        "full_word_differing": 82,
+        "extra_nonzero_words": 0,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023C8C",
+          "0x80023C98",
+          "0x80023CA4",
+          "0x80023CB8",
+          "0x80023C8C"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 40,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 124,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 156,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 164,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 376,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "5a6da554719bca885abef43d60e4a95a004238cd7b2a3b81d2091ead50633ad7",
+        "linked_table_sha256": "f144a64eef9988f7b81eeebba4f29af6c05801afdf74d8f0c700b04b2138bc91"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/nonmatch/func_80023BDC.c",
+      "source_sha256": "d0065dfc1d6574935fab467a9cae0c04e1b07ab39a68ad0cf65b5bdf34ba6ea5",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 99,
+        "total": 101,
+        "extra_words": 18,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xb8",
+          ".rodata+0x0 at +0xc0"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 476,
+        "text_section_bytes": 480,
+        "full_word_differing": 99,
+        "extra_nonzero_words": 18,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023CA8",
+          "0x80023CBC",
+          "0x80023CD0",
+          "0x80023CEC",
+          "0x80023CA8"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 64,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 152,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 184,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 192,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 444,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "b9e14d06c168dba46a7d1a001d61da1e53608978b89a4b469ec62f1788cc0279",
+        "linked_table_sha256": "2e1e4a0d1422617f77bcb87197cdff2f12c3fd2a7b74bd6ebd0fa2baeba05e0d"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_explicit_arguments.c",
+      "source_sha256": "c1df675b0227a07c34e97a1aeaba07f7e041eb58de96585c117b76fc11668b48",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 93,
+        "total": 101,
+        "extra_words": 6,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xb0",
+          ".rodata+0x0 at +0xb8"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 432,
+        "text_section_bytes": 432,
+        "full_word_differing": 93,
+        "extra_nonzero_words": 6,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023CA0",
+          "0x80023CAC",
+          "0x80023CB8",
+          "0x80023CCC",
+          "0x80023CA0"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 36,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 136,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 176,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 184,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 404,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "8c2644675c4b66b23472177a7fdc9edc7b52dca3009c89fce2497462e226a19e",
+        "linked_table_sha256": "12b6d99adffa5ee7f641944a17d87e24986d5c9ac8a2e871afeb2c2607dbd569"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_explicit_arguments.c",
+      "source_sha256": "c1df675b0227a07c34e97a1aeaba07f7e041eb58de96585c117b76fc11668b48",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 100,
+        "total": 101,
+        "extra_words": 4,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x90",
+          ".rodata+0x0 at +0x98"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 420,
+        "text_section_bytes": 432,
+        "full_word_differing": 100,
+        "extra_nonzero_words": 4,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023C80",
+          "0x80023C94",
+          "0x80023CA8",
+          "0x80023CC4",
+          "0x80023C80"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 48,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 112,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 144,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 152,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 388,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "edb51720cdead5a54abe4a50930bca32e68e2b268c2d8bc12e67cbbe1aeac4d6",
+        "linked_table_sha256": "bae5d87995e048f9ce44fa92ed0f70df188d244b598bdebdaa03b9f0afd248f9"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_explicit_masks.c",
+      "source_sha256": "e635c7921b648f422b3fa5811b11994b1d3eece0883f11c2cbf0f0bc79562cad",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 88,
+        "total": 101,
+        "extra_words": 3,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xac",
+          ".rodata+0x0 at +0xb4"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 420,
+        "text_section_bytes": 432,
+        "full_word_differing": 88,
+        "extra_nonzero_words": 3,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023C9C",
+          "0x80023CA8",
+          "0x80023CB4",
+          "0x80023CC8",
+          "0x80023C9C"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 40,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 132,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 172,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 180,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 392,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "7f58cce695ed255ccaf0fb6a1db5b3e1190efb97f71096fd7e774a1942deb3ef",
+        "linked_table_sha256": "2f4f0fe4fd169c13baa208cf61edf7b966dbff70cda9f164a53fb0ff8d6d1212"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_explicit_masks.c",
+      "source_sha256": "e635c7921b648f422b3fa5811b11994b1d3eece0883f11c2cbf0f0bc79562cad",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 100,
+        "total": 101,
+        "extra_words": 16,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xb0",
+          ".rodata+0x0 at +0xb8"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 468,
+        "text_section_bytes": 480,
+        "full_word_differing": 100,
+        "extra_nonzero_words": 16,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023CA0",
+          "0x80023CB4",
+          "0x80023CC8",
+          "0x80023CE4",
+          "0x80023CA0"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 64,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 144,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 176,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 184,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 436,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "81dfd56023f61a5611bc44bfcda703392612344ddfa2c82f8f474892894c6477",
+        "linked_table_sha256": "0fbd8d269730475db6d9db7b0b9a0541b5749941c1f6394a6d52fad6d119f642"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_explicit_narrow_results.c",
+      "source_sha256": "2e27a9fabf428b26c40a940d11d236bfdcf9d30ade55a1691ecf3b15faf77b5f",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 93,
+        "total": 101,
+        "extra_words": 6,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xb0",
+          ".rodata+0x0 at +0xb8"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 432,
+        "text_section_bytes": 432,
+        "full_word_differing": 93,
+        "extra_nonzero_words": 6,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023CA0",
+          "0x80023CAC",
+          "0x80023CB8",
+          "0x80023CCC",
+          "0x80023CA0"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 36,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 136,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 176,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 184,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 404,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "8c2644675c4b66b23472177a7fdc9edc7b52dca3009c89fce2497462e226a19e",
+        "linked_table_sha256": "12b6d99adffa5ee7f641944a17d87e24986d5c9ac8a2e871afeb2c2607dbd569"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_explicit_narrow_results.c",
+      "source_sha256": "2e27a9fabf428b26c40a940d11d236bfdcf9d30ade55a1691ecf3b15faf77b5f",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 100,
+        "total": 101,
+        "extra_words": 4,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x90",
+          ".rodata+0x0 at +0x98"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 420,
+        "text_section_bytes": 432,
+        "full_word_differing": 100,
+        "extra_nonzero_words": 4,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023C80",
+          "0x80023C94",
+          "0x80023CA8",
+          "0x80023CC4",
+          "0x80023C80"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 48,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 112,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 144,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 152,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 388,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "edb51720cdead5a54abe4a50930bca32e68e2b268c2d8bc12e67cbbe1aeac4d6",
+        "linked_table_sha256": "bae5d87995e048f9ce44fa92ed0f70df188d244b598bdebdaa03b9f0afd248f9"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_explicit_word_promotions.c",
+      "source_sha256": "1300569dac534d2312992a1f73f3f7a79f9db3a6a12a95474c19576cc60ea958",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 88,
+        "total": 101,
+        "extra_words": 3,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xac",
+          ".rodata+0x0 at +0xb4"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 420,
+        "text_section_bytes": 432,
+        "full_word_differing": 88,
+        "extra_nonzero_words": 3,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023C9C",
+          "0x80023CA8",
+          "0x80023CB4",
+          "0x80023CC8",
+          "0x80023C9C"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 40,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 132,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 172,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 180,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 392,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "7f58cce695ed255ccaf0fb6a1db5b3e1190efb97f71096fd7e774a1942deb3ef",
+        "linked_table_sha256": "2f4f0fe4fd169c13baa208cf61edf7b966dbff70cda9f164a53fb0ff8d6d1212"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_explicit_word_promotions.c",
+      "source_sha256": "1300569dac534d2312992a1f73f3f7a79f9db3a6a12a95474c19576cc60ea958",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 100,
+        "total": 101,
+        "extra_words": 16,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xb0",
+          ".rodata+0x0 at +0xb8"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 468,
+        "text_section_bytes": 480,
+        "full_word_differing": 100,
+        "extra_nonzero_words": 16,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023CA0",
+          "0x80023CB4",
+          "0x80023CC8",
+          "0x80023CE4",
+          "0x80023CA0"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 64,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 144,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 176,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 184,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 436,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "81dfd56023f61a5611bc44bfcda703392612344ddfa2c82f8f474892894c6477",
+        "linked_table_sha256": "0fbd8d269730475db6d9db7b0b9a0541b5749941c1f6394a6d52fad6d119f642"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_initial.c",
+      "source_sha256": "586fd4c09d96943198bb91c2d7a4f4c5732cf10640d07b0cbcc4a28cfab006b8",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 93,
+        "total": 101,
+        "extra_words": 6,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xb0",
+          ".rodata+0x0 at +0xb8"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 432,
+        "text_section_bytes": 432,
+        "full_word_differing": 93,
+        "extra_nonzero_words": 6,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023CA0",
+          "0x80023CAC",
+          "0x80023CB8",
+          "0x80023CCC",
+          "0x80023CA0"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 36,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 136,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 176,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 184,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 404,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "8c2644675c4b66b23472177a7fdc9edc7b52dca3009c89fce2497462e226a19e",
+        "linked_table_sha256": "12b6d99adffa5ee7f641944a17d87e24986d5c9ac8a2e871afeb2c2607dbd569"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_initial.c",
+      "source_sha256": "586fd4c09d96943198bb91c2d7a4f4c5732cf10640d07b0cbcc4a28cfab006b8",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 100,
+        "total": 101,
+        "extra_words": 4,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x90",
+          ".rodata+0x0 at +0x98"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 420,
+        "text_section_bytes": 432,
+        "full_word_differing": 100,
+        "extra_nonzero_words": 4,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023C80",
+          "0x80023C94",
+          "0x80023CA8",
+          "0x80023CC4",
+          "0x80023C80"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 48,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 112,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 144,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 152,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 388,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "edb51720cdead5a54abe4a50930bca32e68e2b268c2d8bc12e67cbbe1aeac4d6",
+        "linked_table_sha256": "bae5d87995e048f9ce44fa92ed0f70df188d244b598bdebdaa03b9f0afd248f9"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_masked_immediate.c",
+      "source_sha256": "6363604bb8105ebfa40c3149d70717e3d6302dc65ef8c3111136095b0e55deea",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 88,
+        "total": 101,
+        "extra_words": 3,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xac",
+          ".rodata+0x0 at +0xb4"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 420,
+        "text_section_bytes": 432,
+        "full_word_differing": 88,
+        "extra_nonzero_words": 3,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023C9C",
+          "0x80023CA8",
+          "0x80023CB4",
+          "0x80023CC8",
+          "0x80023C9C"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 40,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 132,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 172,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 180,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 392,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "130134d88d309ddefc0c0ddc98f6fc787e04ee57e6abc07c6519a25ac7b297bb",
+        "linked_table_sha256": "2f4f0fe4fd169c13baa208cf61edf7b966dbff70cda9f164a53fb0ff8d6d1212"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_masked_immediate.c",
+      "source_sha256": "6363604bb8105ebfa40c3149d70717e3d6302dc65ef8c3111136095b0e55deea",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 100,
+        "total": 101,
+        "extra_words": 17,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xb4",
+          ".rodata+0x0 at +0xbc"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 472,
+        "text_section_bytes": 480,
+        "full_word_differing": 100,
+        "extra_nonzero_words": 17,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023CA4",
+          "0x80023CB8",
+          "0x80023CCC",
+          "0x80023CE8",
+          "0x80023CA4"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 64,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 148,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 180,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 188,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 440,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "4b0d479f03e618fa04e429b7d5db5ec74d0616f9f08dce6585942625c46a68e3",
+        "linked_table_sha256": "9b1b28e8efcf0e931bae4205994184329c1e5135058515473d1ae47bbd7d5ebd"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_old_style_declarations.c",
+      "source_sha256": "e14b081742d925d77d683a68bbfcbf3a89ef5c51cfd981d5c309affdb317347a",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 93,
+        "total": 101,
+        "extra_words": 6,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xb0",
+          ".rodata+0x0 at +0xb8"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 432,
+        "text_section_bytes": 432,
+        "full_word_differing": 93,
+        "extra_nonzero_words": 6,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023CA0",
+          "0x80023CAC",
+          "0x80023CB8",
+          "0x80023CCC",
+          "0x80023CA0"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 36,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 136,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 176,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 184,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 404,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "8c2644675c4b66b23472177a7fdc9edc7b52dca3009c89fce2497462e226a19e",
+        "linked_table_sha256": "12b6d99adffa5ee7f641944a17d87e24986d5c9ac8a2e871afeb2c2607dbd569"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_old_style_declarations.c",
+      "source_sha256": "e14b081742d925d77d683a68bbfcbf3a89ef5c51cfd981d5c309affdb317347a",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 100,
+        "total": 101,
+        "extra_words": 16,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xa8",
+          ".rodata+0x0 at +0xb0"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 468,
+        "text_section_bytes": 480,
+        "full_word_differing": 100,
+        "extra_nonzero_words": 16,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023C98",
+          "0x80023CAC",
+          "0x80023CC0",
+          "0x80023CDC",
+          "0x80023C98"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 56,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 136,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 168,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 176,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 436,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "0db3011ff33c18511b760c18adcdf30a4697efbff94aeee91ef41f12f886d1cd",
+        "linked_table_sha256": "15dc846478d258d6f5260b9644516dcef717be5f7ed0e1c9c86c56cad4d2d481"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_register_values.c",
+      "source_sha256": "4b9ee9e1107f8ebf8918bffc9cc1788d708c96a9a06cf3fe45e6cc758162e7a8",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 93,
+        "total": 101,
+        "extra_words": 6,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xb0",
+          ".rodata+0x0 at +0xb8"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 432,
+        "text_section_bytes": 432,
+        "full_word_differing": 93,
+        "extra_nonzero_words": 6,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023CA0",
+          "0x80023CAC",
+          "0x80023CB8",
+          "0x80023CCC",
+          "0x80023CA0"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 36,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 136,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 176,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 184,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 404,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "8c2644675c4b66b23472177a7fdc9edc7b52dca3009c89fce2497462e226a19e",
+        "linked_table_sha256": "12b6d99adffa5ee7f641944a17d87e24986d5c9ac8a2e871afeb2c2607dbd569"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_register_values.c",
+      "source_sha256": "4b9ee9e1107f8ebf8918bffc9cc1788d708c96a9a06cf3fe45e6cc758162e7a8",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 98,
+        "total": 101,
+        "extra_words": 3,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xb8",
+          ".rodata+0x0 at +0xc0"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 416,
+        "text_section_bytes": 416,
+        "full_word_differing": 98,
+        "extra_nonzero_words": 3,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023CA8",
+          "0x80023CB0",
+          "0x80023CB8",
+          "0x80023CC8",
+          "0x80023CA8"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 60,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 144,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 184,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 192,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 372,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "118e2fde2facb731f96846df8ecdd49e4845397d529816052086899cea015993",
+        "linked_table_sha256": "5bfee76fda420f3e191cc3df2f6ffea79ab9fbed8bbf5cc9898c85da2eb4dd62"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_sdk_word_types.c",
+      "source_sha256": "0829a80765bd435ff63cc20f3ce21d4487960ab0eac4265df610932bddea0bcb",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 93,
+        "total": 101,
+        "extra_words": 6,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xb0",
+          ".rodata+0x0 at +0xb8"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 432,
+        "text_section_bytes": 432,
+        "full_word_differing": 93,
+        "extra_nonzero_words": 6,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023CA0",
+          "0x80023CAC",
+          "0x80023CB8",
+          "0x80023CCC",
+          "0x80023CA0"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 36,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 136,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 176,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 184,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 404,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "8c2644675c4b66b23472177a7fdc9edc7b52dca3009c89fce2497462e226a19e",
+        "linked_table_sha256": "12b6d99adffa5ee7f641944a17d87e24986d5c9ac8a2e871afeb2c2607dbd569"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_sdk_word_types.c",
+      "source_sha256": "0829a80765bd435ff63cc20f3ce21d4487960ab0eac4265df610932bddea0bcb",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 100,
+        "total": 101,
+        "extra_words": 4,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x90",
+          ".rodata+0x0 at +0x98"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 420,
+        "text_section_bytes": 432,
+        "full_word_differing": 100,
+        "extra_nonzero_words": 4,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023C80",
+          "0x80023C94",
+          "0x80023CA8",
+          "0x80023CC4",
+          "0x80023C80"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 48,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 112,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 144,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 152,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 388,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "edb51720cdead5a54abe4a50930bca32e68e2b268c2d8bc12e67cbbe1aeac4d6",
+        "linked_table_sha256": "bae5d87995e048f9ce44fa92ed0f70df188d244b598bdebdaa03b9f0afd248f9"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_word_call_contract.c",
+      "source_sha256": "152a613dd48d16bc350d08f73f899c339866d0b4aa5f0587455fbe0a2e2eec45",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 93,
+        "total": 101,
+        "extra_words": 8,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xb8",
+          ".rodata+0x0 at +0xc0"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 440,
+        "text_section_bytes": 448,
+        "full_word_differing": 93,
+        "extra_nonzero_words": 8,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023CA8",
+          "0x80023CB4",
+          "0x80023CC0",
+          "0x80023CD4",
+          "0x80023CA8"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 44,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 144,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 184,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 192,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 412,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "2834fc625a60451514e8aeaff3f0fdaf4377005ae71d093bb02187c52832568f",
+        "linked_table_sha256": "00cc294ab41ef7661b7cba510940fae26fa018a874e2832778ed51f74df84ae4"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_word_call_contract.c",
+      "source_sha256": "152a613dd48d16bc350d08f73f899c339866d0b4aa5f0587455fbe0a2e2eec45",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 100,
+        "total": 101,
+        "extra_words": 18,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xb0",
+          ".rodata+0x0 at +0xb8"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 476,
+        "text_section_bytes": 480,
+        "full_word_differing": 100,
+        "extra_nonzero_words": 18,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023CA0",
+          "0x80023CB4",
+          "0x80023CC8",
+          "0x80023CE4",
+          "0x80023CA0"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 64,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 144,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 176,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 184,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 444,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "81dfd56023f61a5611bc44bfcda703392612344ddfa2c82f8f474892894c6477",
+        "linked_table_sha256": "0fbd8d269730475db6d9db7b0b9a0541b5749941c1f6394a6d52fad6d119f642"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_word_command.c",
+      "source_sha256": "5bdd566d46981f6fbea6d8832af292bd35e248143f6029e8a2c194b865518ceb",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 93,
+        "total": 101,
+        "extra_words": 6,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xb0",
+          ".rodata+0x0 at +0xb8"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 432,
+        "text_section_bytes": 432,
+        "full_word_differing": 93,
+        "extra_nonzero_words": 6,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023CA0",
+          "0x80023CAC",
+          "0x80023CB8",
+          "0x80023CCC",
+          "0x80023CA0"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 36,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 136,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 176,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 184,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 404,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "8c2644675c4b66b23472177a7fdc9edc7b52dca3009c89fce2497462e226a19e",
+        "linked_table_sha256": "12b6d99adffa5ee7f641944a17d87e24986d5c9ac8a2e871afeb2c2607dbd569"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_word_command.c",
+      "source_sha256": "5bdd566d46981f6fbea6d8832af292bd35e248143f6029e8a2c194b865518ceb",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 100,
+        "total": 101,
+        "extra_words": 4,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x90",
+          ".rodata+0x0 at +0x98"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 420,
+        "text_section_bytes": 432,
+        "full_word_differing": 100,
+        "extra_nonzero_words": 4,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023C80",
+          "0x80023C94",
+          "0x80023CA8",
+          "0x80023CC4",
+          "0x80023C80"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 48,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 112,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 144,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 152,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 388,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "edb51720cdead5a54abe4a50930bca32e68e2b268c2d8bc12e67cbbe1aeac4d6",
+        "linked_table_sha256": "bae5d87995e048f9ce44fa92ed0f70df188d244b598bdebdaa03b9f0afd248f9"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_word_left.c",
+      "source_sha256": "1dfe2602efa604169d7adf94202378678edd93cac813104be6bf16ae9cac7d41",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 88,
+        "total": 101,
+        "extra_words": 1,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xa4",
+          ".rodata+0x0 at +0xac"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 412,
+        "text_section_bytes": 416,
+        "full_word_differing": 88,
+        "extra_nonzero_words": 1,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023C94",
+          "0x80023CA0",
+          "0x80023CAC",
+          "0x80023CC0",
+          "0x80023C94"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 40,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 124,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 164,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 172,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 384,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "b76a27cd96145e4465e31b1919ad1fa653256eb0332276ec701003700b92ed70",
+        "linked_table_sha256": "6b13f7170afdede240e319e586f9febf57084c4886cab4366bb73ce1e4ebd65b"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_word_left.c",
+      "source_sha256": "1dfe2602efa604169d7adf94202378678edd93cac813104be6bf16ae9cac7d41",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 101,
+        "total": 101,
+        "extra_words": 16,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xb0",
+          ".rodata+0x0 at +0xb8"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 468,
+        "text_section_bytes": 480,
+        "full_word_differing": 101,
+        "extra_nonzero_words": 16,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023CA0",
+          "0x80023CB4",
+          "0x80023CC8",
+          "0x80023CE4",
+          "0x80023CA0"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 64,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 144,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 176,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 184,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 436,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "eca5de43db0b59b17f87a92ef2a4f4083320fb966024a1c0754eac36c45fa786",
+        "linked_table_sha256": "0fbd8d269730475db6d9db7b0b9a0541b5749941c1f6394a6d52fad6d119f642"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_word_operands.c",
+      "source_sha256": "d0065dfc1d6574935fab467a9cae0c04e1b07ab39a68ad0cf65b5bdf34ba6ea5",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 82,
+        "total": 101,
+        "extra_words": 0,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x9c",
+          ".rodata+0x0 at +0xa4"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 404,
+        "text_section_bytes": 416,
+        "full_word_differing": 82,
+        "extra_nonzero_words": 0,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023C8C",
+          "0x80023C98",
+          "0x80023CA4",
+          "0x80023CB8",
+          "0x80023C8C"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 40,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 124,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 156,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 164,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 376,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "5a6da554719bca885abef43d60e4a95a004238cd7b2a3b81d2091ead50633ad7",
+        "linked_table_sha256": "f144a64eef9988f7b81eeebba4f29af6c05801afdf74d8f0c700b04b2138bc91"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_word_operands.c",
+      "source_sha256": "d0065dfc1d6574935fab467a9cae0c04e1b07ab39a68ad0cf65b5bdf34ba6ea5",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 99,
+        "total": 101,
+        "extra_words": 18,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xb8",
+          ".rodata+0x0 at +0xc0"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 476,
+        "text_section_bytes": 480,
+        "full_word_differing": 99,
+        "extra_nonzero_words": 18,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023CA8",
+          "0x80023CBC",
+          "0x80023CD0",
+          "0x80023CEC",
+          "0x80023CA8"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 64,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 152,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 184,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 192,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 444,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "b9e14d06c168dba46a7d1a001d61da1e53608978b89a4b469ec62f1788cc0279",
+        "linked_table_sha256": "2e1e4a0d1422617f77bcb87197cdff2f12c3fd2a7b74bd6ebd0fa2baeba05e0d"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_word_right.c",
+      "source_sha256": "6a1e9eee60fac48a7b474fa01a4de6a5d7d8cb22849bb3a4d7534a3a6dca2d50",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 90,
+        "total": 101,
+        "extra_words": 1,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xa4",
+          ".rodata+0x0 at +0xac"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 412,
+        "text_section_bytes": 416,
+        "full_word_differing": 90,
+        "extra_nonzero_words": 1,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023C94",
+          "0x80023CA0",
+          "0x80023CAC",
+          "0x80023CC0",
+          "0x80023C94"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 40,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 132,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 164,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 172,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 384,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "4f8e02dd8bb6ec6ac1344d9ee848b6aad1f9a073fda67f215fe0412942c55653",
+        "linked_table_sha256": "6b13f7170afdede240e319e586f9febf57084c4886cab4366bb73ce1e4ebd65b"
+      }
+    },
+    {
+      "source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/controls/func_80023BDC_word_right.c",
+      "source_sha256": "6a1e9eee60fac48a7b474fa01a4de6a5d7d8cb22849bb3a4d7534a3a6dca2d50",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared",
+      "effective_flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "scorer": {
+        "differing": 99,
+        "total": 101,
+        "extra_words": 18,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0xb8",
+          ".rodata+0x0 at +0xc0"
+        ],
+        "errors": [],
+        "accepted": false
+      },
+      "link_proof": {
+        "independent_relocation_agrees_with_gnu_linker": true,
+        "all_relocations_resolved": true,
+        "masks_used": 0,
+        "function_symbol_bytes": 476,
+        "text_section_bytes": 480,
+        "full_word_differing": 99,
+        "extra_nonzero_words": 18,
+        "text_equal": false,
+        "table_bytes_compared": 20,
+        "candidate_rodata_alignment_tail_bytes": 12,
+        "alignment_tail_is_not_claimed_native_data": true,
+        "candidate_case_targets": [
+          "0x80023CA8",
+          "0x80023CBC",
+          "0x80023CD0",
+          "0x80023CEC",
+          "0x80023CA8"
+        ],
+        "case_mapping_equal": false,
+        "exact_text_and_table": false,
+        "relocations": [
+          {
+            "section": ".text",
+            "offset": 64,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 152,
+            "type": 4,
+            "symbol": "func_80023AD4"
+          },
+          {
+            "section": ".text",
+            "offset": 184,
+            "type": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 192,
+            "type": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "section": ".text",
+            "offset": 444,
+            "type": 4,
+            "symbol": "func_80023B50"
+          },
+          {
+            "section": ".rodata",
+            "offset": 0,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 4,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 8,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 12,
+            "type": 2,
+            "symbol": ".text"
+          },
+          {
+            "section": ".rodata",
+            "offset": 16,
+            "type": 2,
+            "symbol": ".text"
+          }
+        ],
+        "linked_text_sha256": "0e01746bf5787946feda54dc5503fbc6589b31e6abf94e59a9ba56050daf5546",
+        "linked_table_sha256": "2e1e4a0d1422617f77bcb87197cdff2f12c3fd2a7b74bd6ebd0fa2baeba05e0d"
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "result": "PASS",
+  "source_sha256": "62c2e4af4057da50de7a4184c55300d9f0da3af9976bcc862ad2f03a3bfa444a",
+  "negative_controls": [
+    {
+      "mutation": "wrong_type_for_selector_250",
+      "oracle_rejected": true
+    },
+    {
+      "mutation": "wrong_delta_divisor",
+      "oracle_rejected": true
+    },
+    {
+      "mutation": "missing_conversion_call",
+      "oracle_rejected": true
+    },
+    {
+      "mutation": "swapped_actual_jump_table_cases_250_251",
+      "oracle_rejected": true
+    }
+  ]
+}

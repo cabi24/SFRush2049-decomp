@@ -1,0 +1,10 @@
+{
+  "result": "PASS",
+  "calls": 76024,
+  "source_sha256": "62c2e4af4057da50de7a4184c55300d9f0da3af9976bcc862ad2f03a3bfa444a",
+  "harness_sha256": "03968cacd1d2c7519e6a38e3ecbaf3b0b2d18b23eadf12ce9bd109cff645d706",
+  "compiler": "gcc (Debian 14.2.0-19) 14.2.0",
+  "sanitizer_stderr": "",
+  "leak_detection": "disabled: LeakSanitizer cannot run under the execution environment ptrace; tested code performs no dynamic allocation",
+  "coverage": "every u16 duration, all valid selectors, all 256 type values, complete record bytes and layout"
+}

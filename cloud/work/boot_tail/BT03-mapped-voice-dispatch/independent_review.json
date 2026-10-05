@@ -1,0 +1,78 @@
+{
+  "reviewer": "independent macro-dispatch worker",
+  "reviewed_head": "0c3a8a6446eb274da44fd829f7c9cb79ca759ed7",
+  "reviewed_tree": "1b9636b4232ebf9b11d89a13707756cbc9976f5d",
+  "verdict": "APPROVE_COMPLETE_NONMATCH_RESEARCH",
+  "blocking_findings": [],
+  "source_sha256": "4db951c8530624f4e789ac4d873562485ff1b6c1d4223a661f78825e4248f40f",
+  "replayed": [
+    "verify.py: complete output equals committed verification.json",
+    "diagnose.py: complete output equals committed diagnosis.json",
+    "test_semantics.py: complete output equals committed semantics.json; 8,620 native/candidate executions and 58,368 actual-source ASan/UBSan cases"
+  ],
+  "independent_inspection": [
+    "Whole 240-word canonical target and whole 8001E930 helper inspected; all four caller bodies and seven call sites checked. Five-input O32 ABI, incoming sp+16 identifier, byte/halfword narrowing, void-return usage and duration normalization confirmed.",
+    "All six selector mappings checked against authorized source-free receipt; no asset data was opened.",
+    "Actual C and native replay/oracle/host harness inspected: fixed-point unsigned subtraction then signed32 division, types0/1/2/3 grouping, mode preservation, direct default writes, all32 faders and source-domain limits agree.",
+    "Source-family synthVolume was independently fetched at pinned AxioDL/musyx revision78d2e16e4905fc675952162d331c24d5198b2687, blob0559ed2e7d5d8abd4627440fd71f807581c03aad; pinned CC0 license already independently read in this review session.",
+    "All23 candidate relocations resolved independently in Python and compared with GNU-linked complete text/table. No masks or target-word replacement.",
+    "Only packet-local files changed from cf4b9c6, working tree clean, and whitespace checks passed. No raw native dump, object, protected path change, match submission or promotion."
+  ],
+  "stock_scorer": {
+    "differing_words": 83,
+    "total_words": 240,
+    "extra_nonzero_words": 0,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0x68",
+      ".rodata+0x0 at +0x70"
+    ],
+    "errors": [],
+    "accepted": false
+  },
+  "independent_complete_proof": {
+    "function_bytes": 960,
+    "full_word_differences": 83,
+    "table_entries_matching": 6,
+    "table_equal": true,
+    "no_mask_independent_python_relocation_equals_gnu": true,
+    "all_relocations": 23,
+    "table_sha256": "5802bcf542a95119599664217aa458924827df31404496eb0d9eaf483e162047",
+    "layout_checks": [
+      "sizeof(void *)==4",
+      "sizeof(MasterFader)==40",
+      "(unsigned int)&((MasterFader*)0)->volume==0",
+      "(unsigned int)&((MasterFader*)0)->target==4",
+      "(unsigned int)&((MasterFader*)0)->delta==8",
+      "(unsigned int)&((MasterFader*)0)->time==12",
+      "(unsigned int)&((MasterFader*)0)->seqId==16",
+      "(unsigned int)&((MasterFader*)0)->type==20",
+      "(unsigned int)&((MasterFader*)0)->seqMode==21",
+      "(unsigned int)&((MasterFader*)0)->pauseVol==24",
+      "(unsigned int)&((MasterFader*)0)->pauseTarget==28",
+      "(unsigned int)&((MasterFader*)0)->pauseDelta==32",
+      "(unsigned int)&((MasterFader*)0)->pauseTime==36"
+    ],
+    "layout_check_leaves_text_unchanged": true,
+    "pinned_ido_files_verified": true,
+    "approved_mapping_receipt_equal": true
+  },
+  "artifact_sha256": {
+    "verify.py": "c485afa50aeb8fa67bd22533cfac2a858ed490c50de1c4a89fefff9ba10ac2d6",
+    "diagnose.py": "fb1d628fd9e720d281d6eecbf30162958a980df8efad3d783d61b43656dd6c9b",
+    "test_semantics.py": "a87d3c21933035c56cbfa5cda3782df8d3cd6e38b631a75c7a0d2d61d8fe85db",
+    "native_replay.py": "912b5b3f65f2e88ab40c542fd005850ea9fad9d26e860d413c480681e9358edb",
+    "verification.json": "3dee083b3101fb59423d3b71c14eaf89776eed142dfa0e5863f4183a0920cd36",
+    "diagnosis.json": "de54f321c7d441bccc8dfb37da8a82cc69898ae4efdeba18b842cd1428215b31",
+    "semantics.json": "136fc7ef472034874757eda161632f69abd56bad534d3fe6b0e99c962f5abced",
+    "abi_proof.json": "0551da7510c182b842ae0be110fa5a54c2335f0dfab90dd5fd52af88dbcb8f90",
+    "table_receipt.json": "6156d836a6676921e2da58b9eb8f85dd3f2c518663fe98defeb483c6f05cbcad"
+  },
+  "limitations": [
+    "Source remains COMPLETE-NONMATCH with zero verified-body credit despite exact generated table.",
+    "Direct selectors32..249 are unchecked out-of-array indexing and are excluded from defined-C fixtures.",
+    "Helper effects and storage are synthetic contracts; no whole-engine, audio/hardware, transitive implementation or ROM verification.",
+    "LeakSanitizer alone is disabled for the disclosed container limitation; ASan/UBSan remain enabled and host harness has no dynamic allocation.",
+    "The unchanged scorer still rejects two local-rodata references, and production table ownership is unassigned."
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "result": "PASS",
+  "source_sha256": "d0065dfc1d6574935fab467a9cae0c04e1b07ab39a68ad0cf65b5bdf34ba6ea5",
+  "checks": [
+    "sizeof(void *) == 4",
+    "sizeof(u32) == 4",
+    "sizeof(s32) == 4",
+    "sizeof(s16) == 2",
+    "sizeof(u8) == 1",
+    "sizeof(MacroCommand) == 8",
+    "(unsigned int)&((MacroCommand *)0)->word1 == 4"
+  ],
+  "assertions_leave_candidate_text_unchanged": true,
+  "voice_state_layout": "opaque, never accessed"
+}
