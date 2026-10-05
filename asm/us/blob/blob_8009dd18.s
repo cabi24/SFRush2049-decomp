@@ -3448,6 +3448,7 @@ NextMaxPath:
 .section .text.PrevMaxPath, "ax", @progbits
 .globl PrevMaxPath
 PrevMaxPath:
+    /* compiled from src/blob/PrevMaxPath.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x826E0000
@@ -3476,6 +3477,7 @@ PrevMaxPath:
 .section .text.InitMaxPath, "ax", @progbits
 .globl InitMaxPath
 InitMaxPath:
+    /* compiled from src/blob/InitMaxPath.c */
     .word 0x27BDFFC0
     .word 0xAFB40038
     .word 0xAFB30034
@@ -3547,6 +3549,7 @@ assign_default_paths:
 .section .text.sync_maxpath_to_checkpoint, "ax", @progbits
 .globl sync_maxpath_to_checkpoint
 sync_maxpath_to_checkpoint:
+    /* compiled from src/blob/sync_maxpath_to_checkpoint.c */
     .word 0x27BDFFC0
     .word 0xAFB40038
     .word 0xAFB30034

@@ -49,6 +49,11 @@
   "InitMaxPath",
   "sync_maxpath_to_checkpoint"
  ],
- "provenance": "frontier waves 2-3 (w2g, w2b, w2f, w2e, w2c, w3c), 2026-10-05",
- "note": "Extends the locked group src/blob/groups/codex_heap_release_a25 (all its files unchanged copies) with overlay_loader.c. New claims: PrevMaxPath (internal, register parameters), InitMaxPath, sync_maxpath_to_checkpoint. All three EQUAL in the whole-program unit (blob_unit score --with overlay_loader.c --internal PrevMaxPath, 0 neighbours broken). display_enable (also calls PrevMaxPath) is not included: its real caller playgame_state_change is unmatched."
+ "provenance": "frontier wave 3 (w3c), 2026-10-05; cloud/work/frontier/w3c/RESULTS.md",
+ "note": "Extends the locked group src/blob/groups/codex_heap_release_a25 (all its files unchanged copies) with overlay_loader.c. New claims: PrevMaxPath (internal, register parameters), InitMaxPath, sync_maxpath_to_checkpoint. All three EQUAL in the whole-program unit (blob_unit score --with overlay_loader.c --internal PrevMaxPath, 0 neighbours broken). display_enable (also calls PrevMaxPath) is not included: its real caller playgame_state_change is unmatched.",
+ "claims": [
+  "PrevMaxPath",
+  "InitMaxPath",
+  "sync_maxpath_to_checkpoint"
+ ]
 }
