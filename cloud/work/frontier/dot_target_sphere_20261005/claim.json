@@ -1,0 +1,15 @@
+{
+  "base": "e24b47d89a0c8ffade1e4c75ad76b9d390a1c232",
+  "claimed_function": "steering_apply",
+  "start": "0x8010C6C8",
+  "end_exclusive": "0x8010C7CC",
+  "native_bytes": 260,
+  "accepted_byte_gain": 0,
+  "open_prs_checked": [110,111,112,113,114,115,116,117,118,119],
+  "excluded_active_functions": ["func_8010E4E4", "func_800AC9BC", "track_preview_handler", "mode_select_input"],
+  "prior_attempt": "cloud/work/near_miss_B71/steering_apply_native.c",
+  "new_source_evidence": "Pinned OverlapTarget scalar-before-vector declarations, distance-before-radius computation, and direct boolean return; neighboring cylinder reconstruction in PR #111 corroborates the first two phases.",
+  "donor_revision": "845329d7b36f5a384c5625ed9a0aef584ab46139",
+  "context_only": ["func_8010C02C", "func_8010C7CC"],
+  "limit": "Local locks, fetched branches, current open PRs and the coordinator's current claims were checked; unpublished work on unrelated machines is not visible."
+}
