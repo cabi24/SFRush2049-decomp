@@ -1,0 +1,49 @@
+{
+  "reviewed_commit": "5dd80cd549c9c0502a3f03de9ae8ac5b54f1785f",
+  "status": "PASS",
+  "claim": "func_800B0EA0",
+  "target_bytes": 192,
+  "elf_st_size": 192,
+  "extent_to_next_function": 192,
+  "target_sha256": "383d05be585f89ba87deaf4c9d746fe7fc3b1788ee6c37746dd71f320929602c",
+  "object_function_sha256": "383d05be585f89ba87deaf4c9d746fe7fc3b1788ee6c37746dd71f320929602c",
+  "helper_relocations": 0,
+  "mips_interpreter_vs_host_cases": 10075,
+  "native_calls": [
+    {
+      "caller": "sound_bank_unload",
+      "offset": "0x39c"
+    },
+    {
+      "caller": "sound_bank_unload",
+      "offset": "0x3cc"
+    },
+    {
+      "caller": "sound_bank_unload",
+      "offset": "0x400"
+    }
+  ],
+  "receipt_reproduces": true,
+  "all_changed_file_sha256": {
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/README.md": "c3c73d2f5a2664c4b6ab954c62cf4158f1c949ad5d14097f2e81bbb29e920e45",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/alloc_at.c": "5e0c8c02067df2c7343185639853dbb44dd54aa449aa7ec7333e4e934380c1b2",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/controls/indexed_ramps.c": "5c9b974956f815935fe0e460b09b169806fd73d539bdbed6a2011f3755a1454b",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/controls/out_of_line_brightening.c": "dcd64235107c012a586762947b8ecfd336ffec7721ad3ff3b2ea266233fff6e8",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/controls/separate_channels.c": "0d73ea6f6cf5d04de4d717bc75a668bf804e14532decfc2e934e1bdb4d84651f",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/group.json": "134c5a61eb0fc4cc853be859e1f9bcd2499be5a000b55798b70f043dfd4a8b1b",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/heap_release.c": "b6ba31e402778bf4b80d4e596476f72f4e8937e6308afd9351351721e44acecf",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/host_test.c": "a4da9bd15d34131c45a7e305cc3e64e45f84b167673f9ced245ba558bc894f97",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/interpolate.c": "4f6a7f563e139c8aaacf3068c93553d5d97dffb3e0b67a164d9d930ae7876ee5",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/layout_probe.c": "b58aa937f7c3a7b5331d709bb94052702b19210b534860d0e67648c64226b6e9",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/palette.c": "f12f4a07228a436bcd7029e317edb1749259a0454136740ab0f83fa045918900",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/verification.json": "955ff7ebe6ec8764fd2c7a4e1d665da189532a416698d835523432cb64afbea2",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/verify.py": "2589f1cea4e88d4ad6fc1ccbe0def7573f3c8b6408dca0f72181654335f8cb15",
+    "tests/conveyor/test_palette_generation.py": "c0cc7be0adfa6e1b692cefc0f753742c2791607322d7ec5faec7805258fd1d0e"
+  },
+  "limitations": [
+    "Palette root remains NONMATCH",
+    "No whole-program source-unit gate",
+    "No image, compression or full-ROM gate",
+    "Only helper claimed; no duplicate accepted-context credit"
+  ]
+}

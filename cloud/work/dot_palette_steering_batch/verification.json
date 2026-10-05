@@ -1,0 +1,154 @@
+{
+  "base_commit": "cf10b3392d7f00ae42d75c008b79fdc2541aab6b",
+  "verified_source_commit": "9a2b2ba9d22ad1426d120439ca4e9adee4496a87",
+  "verified_source_tree": "3005816b8534c95690dadbb5331038924d831e14",
+  "new_strict_complete_function_bytes": 192,
+  "new_image_or_rom_coverage_bytes": 0,
+  "sole_match_claim": "func_800B0EA0",
+  "research_nonmatches": {
+    "sound_bank_unload": {
+      "target_bytes": 1248,
+      "differing_words": 262,
+      "target_words": 312,
+      "nonzero_excess_words": 192,
+      "elf_st_size": 2048
+    },
+    "steering_sensitivity": {
+      "target_bytes": 928,
+      "differing_words": 106,
+      "target_words": 232,
+      "nonzero_excess_words": 0,
+      "elf_st_size": 928,
+      "frame_bytes": 104
+    }
+  },
+  "unchanged_strict_context_functions": {
+    "palette": 13,
+    "steering": 4
+  },
+  "focused_tests": {
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0
+  },
+  "aggregate": {
+    "command": "REQUIRE_TOOLCHAIN=1 python3 -m pytest tests/conveyor tests/cloud -q -rs -o addopts='' -m 'not node_required'",
+    "passed": 1926,
+    "failed": 17,
+    "skipped": 41,
+    "deselected": 9,
+    "subtests_passed": 25,
+    "elapsed_seconds": 299.3,
+    "baseline_failure_multiset_equal": true,
+    "baseline_commit": "cf10b3392d7f00ae42d75c008b79fdc2541aab6b",
+    "baseline_scope": "Fresh unchanged-master replay of tests/conveyor/test_cloud_score.py and tests/cloud/test_builder.py",
+    "failure_ids_with_multiplicity": [
+      "tests.cloud.test_builder.Validate::test_matches_agree_with_score_py",
+      "tests.cloud.test_builder.Validate::test_matches_agree_with_score_py",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[camera_blend_between]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[camera_update_d]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[display_settings]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_8008B3F4]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800DE860]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E114C]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E23A4]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E5D64]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800EC270]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_80106D94]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[race_setup_1]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[race_setup_2]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[random_float]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[track_select_handler]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[vector_normalize_length]"
+    ],
+    "known_failures": "15 existing Conveyor local-section relocation uncertainties and two existing Cloud descriptive-flag-header subtests. No fix or waiver.",
+    "skip_limits": "Existing environment/private-input skips remain; no full-suite pass is claimed."
+  },
+  "gates": {
+    "protected_path_guard": "PASS",
+    "changed_submission_checker": "PASS: one group, sole helper claim",
+    "static_locks_intact": 383,
+    "diff_check": "PASS",
+    "image_or_rom_gate_run": false,
+    "remote_builder_used": false
+  },
+  "negative_controls": {
+    "bounded_palette_controls_replayed": 3,
+    "bounded_steering_controls_replayed": 20,
+    "false_parent_claim_rejected": true,
+    "altered_helper_alpha_rejected": true
+  },
+  "palette_host_tests": {
+    "interpolation_cases": 983040,
+    "palette_cases": 4098,
+    "asan": "PASS",
+    "ubsan": "PASS",
+    "leak_detection": false,
+    "limit": "Checked host service stubs; no N64 or whole-program execution claim. LeakSanitizer unavailable in local ptrace environment."
+  },
+  "independent_reviews": {
+    "palette": "cloud/work/ipa-groups/dot_palette_generation_20261005/peer_review.json",
+    "steering": "cloud/work/dot_steering_medium/peer_review.json",
+    "palette_native_interpreter_vs_host_cases": 10075
+  },
+  "receipts": {
+    "palette": {
+      "path": "cloud/work/ipa-groups/dot_palette_generation_20261005/verification.json",
+      "sha256": "955ff7ebe6ec8764fd2c7a4e1d665da189532a416698d835523432cb64afbea2",
+      "fresh_replay_byte_identical": true
+    },
+    "steering": {
+      "path": "cloud/work/dot_steering_medium/verification.json",
+      "sha256": "4e1b00022315d4f057777662fd5078017c277e979a2066dbf0ef76bea0d9c27c",
+      "fresh_replay_byte_identical": true
+    }
+  },
+  "source_artifact_sha256": {
+    "cloud/work/dot_steering_medium/README.md": "e16b6b6f10d2f416076ac9fc92ed43f5445a7b69a21ba821feb9511351d8971d",
+    "cloud/work/dot_steering_medium/context_provenance.json": "a8d779eadffffef9e3fcfa3993a9fac4f34c65d97b747c3bdfbd87fdce279020",
+    "cloud/work/dot_steering_medium/controls.json": "a351820fd228ee1100bfb1e2a04885797498eb265167a56656b313cd04d20268",
+    "cloud/work/dot_steering_medium/group.c": "79421c1ec41730c444ccf522d9e2444be829450c6a24220d000ad2b0c1880432",
+    "cloud/work/dot_steering_medium/group.json": "3c360023fcf5f4f9f48f1b38b6759cfeaed53bf2e59287e3bff00b73afc20a36",
+    "cloud/work/dot_steering_medium/peer_review.json": "1914cf241a0f18e2962ca97f2c32ffe853ab4932859f72e17c05c4bddcb2cb88",
+    "cloud/work/dot_steering_medium/replay.py": "d3d55f451e9bd77c9539f1acf99de3097247734cabee071f16827b4406b6f446",
+    "cloud/work/dot_steering_medium/selection.json": "5701a7044e9ce83e2eab657640bb214e58622940968f800aaee8332f35d2f262",
+    "cloud/work/dot_steering_medium/variants/baseline.inc": "9278267399fd0dce67cc9f8f6f2d391f285c245063169d3a0e50f31e7c279e5e",
+    "cloud/work/dot_steering_medium/variants/branch_local_y.inc": "6b38830e6db9fd887a0b9096ca9bdbc273af01b65141633f3afbb00738c9e399",
+    "cloud/work/dot_steering_medium/variants/capture_entry_fields.inc": "8a836c8fe356762a56ba44a676b866bf0affa1562989b67a2a9619fb736933be",
+    "cloud/work/dot_steering_medium/variants/captured_length.inc": "e072ea41f2326f477f18425e5508e0966dba2c7cbea1635fab0dd1bf93c56f8f",
+    "cloud/work/dot_steering_medium/variants/common_quotient.inc": "a749e066b9bcae3fd5474660f8eee4a5dde5eef38046d2b227af1f8661ac8029",
+    "cloud/work/dot_steering_medium/variants/common_quotient_x_first.inc": "d926c081505abdb11d6d8a2996871e2abf98f046c58db146b7391658045cc93f",
+    "cloud/work/dot_steering_medium/variants/consumed_length_reuse.inc": "ff714a53abe25d1f8676437bae152c777f220eb854d8b6acdb5b1e2934ecc134",
+    "cloud/work/dot_steering_medium/variants/cosine_length.inc": "fd96c503901ac43af514a2f614fc69052dd2e1ae767d71c88b1e0fa85b6de4df",
+    "cloud/work/dot_steering_medium/variants/fraction_in_clamped_z.inc": "f79ba4723d12b5dff89ba3cc780f98bfa971cd894af87d2d8fabce940c087615",
+    "cloud/work/dot_steering_medium/variants/fraction_in_distance.inc": "313ebc834ade51afc7c89365a68665f8818f886e8b88b09b120285dacf359eaf",
+    "cloud/work/dot_steering_medium/variants/fraction_reuse.inc": "47142c138321f0a675886e7d7872ec4b66ad22fb0abf6551380917514a2b7c92",
+    "cloud/work/dot_steering_medium/variants/height_before_xy.inc": "6407667551c0b6246d970b7418a74aa6467d597cb951bcdfb23c8552212b6f95",
+    "cloud/work/dot_steering_medium/variants/height_before_y.inc": "d5c2ce577865da1f49b66e7525b5843eed6e60ea84c7f1170f9bbf9b50c4e542",
+    "cloud/work/dot_steering_medium/variants/height_first_reuse.inc": "bb35d50aadb1be12f78bf33200ee950e87e4b2f7c4365fa4e27009f0a0ed26f2",
+    "cloud/work/dot_steering_medium/variants/native.inc": "4262ef090c120dd0eb34b389d391a9bb87140acdb303fe686955c4dc7443e4f5",
+    "cloud/work/dot_steering_medium/variants/native_stack_homes.inc": "954d8e3bf0ee7a9a045a9ef437744207e6abc51d62d594dab2979201ad675be9",
+    "cloud/work/dot_steering_medium/variants/reuse_slope_values.inc": "e26050866a77196c5b6ac7e5f522a72e7eee5002c436f99b544a52ed0ef3c366",
+    "cloud/work/dot_steering_medium/variants/reuse_sqrt_scalar.inc": "cb455007805a7487ff177d27c87ba8a6fe30234181859b188b80ab581726fb45",
+    "cloud/work/dot_steering_medium/variants/side_before_width.inc": "04b1df11e3547b94f6198bc50eec5326612a479e3fa7103d07c7775da3c3a18d",
+    "cloud/work/dot_steering_medium/variants/x_before_width.inc": "99fc99c546a4433786ba84e2e2c150ae020dd2a39fd8f6c56d21b502f8f2291f",
+    "cloud/work/dot_steering_medium/verification.json": "4e1b00022315d4f057777662fd5078017c277e979a2066dbf0ef76bea0d9c27c",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/README.md": "c3c73d2f5a2664c4b6ab954c62cf4158f1c949ad5d14097f2e81bbb29e920e45",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/alloc_at.c": "5e0c8c02067df2c7343185639853dbb44dd54aa449aa7ec7333e4e934380c1b2",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/controls/indexed_ramps.c": "5c9b974956f815935fe0e460b09b169806fd73d539bdbed6a2011f3755a1454b",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/controls/out_of_line_brightening.c": "dcd64235107c012a586762947b8ecfd336ffec7721ad3ff3b2ea266233fff6e8",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/controls/separate_channels.c": "0d73ea6f6cf5d04de4d717bc75a668bf804e14532decfc2e934e1bdb4d84651f",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/group.json": "134c5a61eb0fc4cc853be859e1f9bcd2499be5a000b55798b70f043dfd4a8b1b",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/heap_release.c": "b6ba31e402778bf4b80d4e596476f72f4e8937e6308afd9351351721e44acecf",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/host_test.c": "a4da9bd15d34131c45a7e305cc3e64e45f84b167673f9ced245ba558bc894f97",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/interpolate.c": "4f6a7f563e139c8aaacf3068c93553d5d97dffb3e0b67a164d9d930ae7876ee5",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/layout_probe.c": "b58aa937f7c3a7b5331d709bb94052702b19210b534860d0e67648c64226b6e9",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/palette.c": "f12f4a07228a436bcd7029e317edb1749259a0454136740ab0f83fa045918900",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/peer_review.json": "413f6c55af09dad2adb88222254080fed9200390f0b225304d947fd37d4b646a",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/verification.json": "955ff7ebe6ec8764fd2c7a4e1d665da189532a416698d835523432cb64afbea2",
+    "cloud/work/ipa-groups/dot_palette_generation_20261005/verify.py": "2589f1cea4e88d4ad6fc1ccbe0def7573f3c8b6408dca0f72181654335f8cb15",
+    "tests/conveyor/test_palette_generation.py": "c0cc7be0adfa6e1b692cefc0f753742c2791607322d7ec5faec7805258fd1d0e",
+    "tests/conveyor/test_palette_steering_evidence.py": "4ab266f3db4fe6a1c3ce739d2b263839db1aa54b7ef242e4adfce4020a6a2167"
+  },
+  "publication_limit": "Source, tests, hashes and sanitized verification only; no ROM bytes, raw assembly dumps, generated binaries, credentials or unrelated private data."
+}

@@ -1,0 +1,11 @@
+{
+  "base_commit": "cf10b3392d7f00ae42d75c008b79fdc2541aab6b",
+  "source": "src/blob/groups/frontier_traction_control/group.c",
+  "body_sha256": {
+    "vector_diff_process": "8959c5b9c9760f5d9d6c7423a2fbcb6b247b6a3cacdba8d4ccbc938e026df5d9",
+    "func_800A61B0": "bb6ec9bba9e14199a2fb32a47f3db7bde6b89c982e0999263b542ee1e64492f7",
+    "math_utility": "6f60458aa608818e035e6a40c9de45dbb8f04434de967070b57e7f6d4f6aa382",
+    "traction_control": "5f1d80fc86fbafd580e24e45dd1ffcb676d69790efd6aa99b4111bcaba803c59"
+  },
+  "note": "All four complete context bodies are token- and whitespace-identical to the accepted source. PathRec declaration retains the original fields and 0x84 stride; names are interpretation by use, not established meanings for steering."
+}
