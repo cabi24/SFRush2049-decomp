@@ -1,0 +1,16 @@
+{
+  "base": "e24b47d89a0c8ffade1e4c75ad76b9d390a1c232",
+  "owner": "dot/audio-lane",
+  "target": "mode_select_input",
+  "start": "0x800DFB08",
+  "end": "0x800DFBA0",
+  "bytes": 152,
+  "checked_at": "2026-10-05T22:39:27Z",
+  "checks": [
+    "current locks and overlap intervals",
+    "open PRs through 115",
+    "archived A168/A169 and frontier w6c",
+    "root confirmed no other active ownership"
+  ],
+  "scope": "Fresh proof and registration of archived natural helper; accepted allocator context replaces old nonmatching allocator."
+}
