@@ -134,7 +134,11 @@ def splice(cands):
             have = tu_statements(text)
         # Preprocessor lines (#pragma pack(1) ... #pragma pack()) are positional
         # and always kept; only declaration statements are deduplicated.
-        decls = [s for s in c["row"]["preamble"] if s.startswith("#") or norm(s) not in have]
+        # An #include already made before the slot is a guarded no-op; skip it.
+        before = tu_statements(text[:text.index(pragma)])
+        decls = [s for s in c["row"]["preamble"]
+                 if (s.startswith("#") and not (s.startswith("#include") and norm(s) in before))
+                 or (not s.startswith("#") and norm(s) not in have)]
         body = extract_named_function(REPO / c["src"], c["fn"])
         header = promotemod._provenance_header(
             c["fn"], f"{c['src']} (in-repo, locked)", c["seg"]["flagset"],
