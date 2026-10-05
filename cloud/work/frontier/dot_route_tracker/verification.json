@@ -1,0 +1,180 @@
+{
+  "base": "52904b374dc5eb8e88d5e003d6ea4666cdde71d2",
+  "claims": [],
+  "data_manifest_sha256": "a11be55c29c9aedd10e2ff0439c48c1171a14d2dc0d975e66f29e3667c738594",
+  "diagnosis": {
+    "candidate_frame": 72,
+    "causal_next_variant": null,
+    "limitation": "Workbench comparison uses a relocation-free native object; canonical scorer owns exact word results.",
+    "reason": "Frame provenance and second-loop CSE remain unexplained. No further variants run.",
+    "save_bytes_candidate": 40,
+    "save_bytes_target": 40,
+    "target_frame": 80,
+    "true_instruction_delta": 1,
+    "verdict": "structure-mismatch"
+  },
+  "object_sha256": "470ad909253b4e583ce80ccee5d6449df07ad724815dd1650104211895ef3feb",
+  "owndata_sha256": "7722fe8754ddf8ed4f946beade42d9a00694c9b31ab0cc361fe3dab824417264",
+  "recipe": {
+    "claims": [],
+    "context": [
+      "func_800BA2B8",
+      "func_800BA61C",
+      "audio_channel_alloc"
+    ],
+    "files": [
+      "group.c",
+      "func_800BA2B8.c",
+      "func_800BA61C.c",
+      "audio_channel_alloc.c"
+    ],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "keep": [
+      "audio_mixer_main",
+      "func_800BA2B8",
+      "func_800BA61C",
+      "audio_channel_alloc"
+    ],
+    "members": [
+      "audio_mixer_main",
+      "audio_priority_find"
+    ]
+  },
+  "results": {
+    "audio_channel_alloc": {
+      "canonical_strict_match": true,
+      "canonical_summary": "MATCH",
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 169,
+        "unresolved": [],
+        "unverified": []
+      },
+      "entry_stack_adjust": -120,
+      "own_data": {
+        "failures": [],
+        "notes": [],
+        "ok": true,
+        "references": 0,
+        "sites": 0,
+        "unverified": []
+      },
+      "symbol_slice_bytes": 676
+    },
+    "audio_mixer_main": {
+      "canonical_strict_match": false,
+      "canonical_summary": "64/183 words differ (1 extra words (nonzero beyond target length))",
+      "comparison": {
+        "differing": 64,
+        "errors": [],
+        "extra_words": 1,
+        "total": 183,
+        "unresolved": [],
+        "unverified": []
+      },
+      "entry_stack_adjust": -72,
+      "own_data": {
+        "failures": [],
+        "notes": [],
+        "ok": true,
+        "references": 0,
+        "sites": 0,
+        "unverified": []
+      },
+      "symbol_slice_bytes": 736
+    },
+    "audio_priority_find": {
+      "canonical_strict_match": true,
+      "canonical_summary": "MATCH",
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 108,
+        "unresolved": [],
+        "unverified": []
+      },
+      "entry_stack_adjust": -24,
+      "own_data": {
+        "failures": [],
+        "notes": [],
+        "ok": true,
+        "references": 0,
+        "sites": 0,
+        "unverified": []
+      },
+      "symbol_slice_bytes": 432
+    },
+    "func_800BA2B8": {
+      "canonical_strict_match": true,
+      "canonical_summary": "MATCH",
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 109,
+        "unresolved": [],
+        "unverified": []
+      },
+      "entry_stack_adjust": null,
+      "own_data": {
+        "failures": [],
+        "notes": [
+          "own .rodata verified at 0x80123DFC..0x80123E00"
+        ],
+        "ok": true,
+        "references": 1,
+        "sites": 2,
+        "unverified": []
+      },
+      "symbol_slice_bytes": 436
+    },
+    "func_800BA61C": {
+      "canonical_strict_match": true,
+      "canonical_summary": "MATCH",
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 106,
+        "unresolved": [],
+        "unverified": []
+      },
+      "entry_stack_adjust": null,
+      "own_data": {
+        "failures": [],
+        "notes": [
+          "own .rodata verified at 0x80123E00..0x80123E04"
+        ],
+        "ok": true,
+        "references": 1,
+        "sites": 2,
+        "unverified": []
+      },
+      "symbol_slice_bytes": 424
+    }
+  },
+  "schema": 1,
+  "scope": "research-only real five-body group",
+  "scorer_sha256": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+  "sources": {
+    "cloud/work/frontier/dot_route_tracker/group.c": "504a5f313424bc580024990bde7d0ef15c024fe85fe8b0f40dfa97da8361b1b8",
+    "src/blob/audio_channel_alloc.c": "ac97c82e9b406d344c1e810cab1c1ae8b14a11a13616a9e399db8cfcc3314c62",
+    "src/blob/func_800BA2B8.c": "ff7aa7efcf610217a3125b0fb7008e07fedfe6df313f326854b2820ba0e28e25",
+    "src/blob/func_800BA61C.c": "f6cb217a2b3afb8eafda65f611f62e59b9f8de9cb01f46656daea1694ded9bb4"
+  },
+  "target_manifest_sha256": "6f55bbc7f9eaecf7f3cc35b27285714adefebc169429450cbeeabe98c105bbe8",
+  "tool_executable_sha256": {
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b"
+  },
+  "toolkit_id_from_context_lock": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5"
+}
