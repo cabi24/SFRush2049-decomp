@@ -1,0 +1,177 @@
+{
+  "status": "BLOCKED_ON_CAPACITY",
+  "scope": "Root-only semantic research and tests, stacked on menu-row PR #88; not native matching or production acceptance",
+  "reviewed_intake_commit": "1eec5e27a5ee01cade704415c3bd966ea2117ecd",
+  "pre_receipt_integration_commit": "0c1aedd0e6d2b4847b3bf8dce3c4146c6b5faec4",
+  "master_base_commit": "cf10b3392d7f00ae42d75c008b79fdc2541aab6b",
+  "dependency": {
+    "pr": 88,
+    "branch": "dot/menu-row-caller-20261005",
+    "remote_head": "6627928714f423d3a88aaf811a3b62bc46d00be7",
+    "tree": "5c1513c910646e9ee39fcad8dbfd1c6d74be7133",
+    "equivalent_local_base": "5cf5c32afc39a5cf08898339c7eb953345013d5e",
+    "retarget": "Independent checker may retarget after #88 merges; not performed here"
+  },
+  "new_verified_function_bytes": 0,
+  "new_image_or_rom_coverage_bytes": 0,
+  "root_native_compile_run": false,
+  "root_score_run": false,
+  "native_blockers": [
+    "Original header array declaration/capacity unproved",
+    "Private-register downstream ABI/context not validated"
+  ],
+  "source_unchanged_from_peer_review": true,
+  "focused": {
+    "command": "REQUIRE_TOOLCHAIN=1 python3 -m pytest tests/conveyor/test_dot_menu_options_root.py tests/conveyor/test_dot_menu_row_caller.py -q -rs -o addopts=",
+    "exit_code": 0,
+    "passed": 11,
+    "failed": 0,
+    "skipped": 0,
+    "fresh_full_verifier_replay": true,
+    "receipt_byte_identical": true,
+    "root_host_cases": 410370,
+    "slot_host_cases": 24576,
+    "sanitizers": [
+      "ASan",
+      "UBSan"
+    ],
+    "o32_layout_checks": 6,
+    "slot_compilation": "syntax only; no private-ABI matching claim",
+    "root_compilation": "fails closed without test fixture macros"
+  },
+  "aggregate": {
+    "command": "REQUIRE_TOOLCHAIN=1 python3 -m pytest tests/conveyor tests/cloud -q -rs -m 'not node_required'",
+    "exit_code": 1,
+    "passed": 1931,
+    "failed": 17,
+    "skipped": 41,
+    "deselected": 9,
+    "subtests_passed": 25,
+    "seconds": 298.278,
+    "baseline_commit": "cf10b3392d7f00ae42d75c008b79fdc2541aab6b",
+    "baseline_evidence": "Reused exact-base unchanged replay of tests/conveyor/test_cloud_score.py and tests/cloud/test_builder.py from PR #88 integration",
+    "baseline_junit_sha256": "2e3fc0e9ba54dbf61001709afc56421760c37a32cd0f372a80f700b9fb2b54c6",
+    "baseline_failure_multiset_equal": true,
+    "failure_ids_with_multiplicity": [
+      "tests.cloud.test_builder.Validate::test_matches_agree_with_score_py",
+      "tests.cloud.test_builder.Validate::test_matches_agree_with_score_py",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[camera_blend_between]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[camera_update_d]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[display_settings]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_8008B3F4]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800DE860]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E114C]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E23A4]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E5D64]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800EC270]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_80106D94]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[race_setup_1]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[race_setup_2]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[random_float]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[track_select_handler]",
+      "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[vector_normalize_length]"
+    ],
+    "limits": "15 existing Conveyor local-section relocation failures and two existing Cloud descriptive-flag-header failures; no unrelated fixes, waivers or full-suite-pass claim"
+  },
+  "gates": {
+    "root_only_protected_guard": {
+      "command": [
+        "python3",
+        "-m",
+        "tools.cloud.guard_paths",
+        "--base",
+        "5cf5c32a",
+        "--head",
+        "HEAD",
+        "--lock-revision",
+        "cf10b339"
+      ],
+      "exit_code": 0
+    },
+    "master_protected_guard": {
+      "command": [
+        "python3",
+        "-m",
+        "tools.cloud.guard_paths",
+        "--base",
+        "cf10b339",
+        "--head",
+        "HEAD",
+        "--lock-revision",
+        "cf10b339"
+      ],
+      "exit_code": 0
+    },
+    "static_locks": {
+      "command": [
+        "make",
+        "check-matched"
+      ],
+      "exit_code": 0
+    },
+    "root_only_changed_submissions": {
+      "command": [
+        "python3",
+        "tools/cloud/check_submissions.py",
+        "--base",
+        "5cf5c32a",
+        "--head",
+        "HEAD"
+      ],
+      "exit_code": 0
+    },
+    "master_changed_submissions": {
+      "command": [
+        "python3",
+        "tools/cloud/check_submissions.py",
+        "--base",
+        "cf10b339",
+        "--head",
+        "HEAD"
+      ],
+      "exit_code": 1
+    },
+    "whitespace": {
+      "command": [
+        "git",
+        "diff",
+        "cf10b339",
+        "--check"
+      ],
+      "exit_code": 0
+    }
+  },
+  "gates_scope_note": "Root-only changed-submission check processes zero native submissions. Against-master check includes unchanged PR #88 and fails on its two ordinary-scorer own-literal fixups. Separate row full proof passes; it does not override the strict CLI gate.",
+  "toolchain_setup": {
+    "ido": "Pinned v1.2 IDO 5.3 copied into ignored tools/cloud/ido before all checks; hashes equal reviewed row proof",
+    "compiler_sha256": {
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+      "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913"
+    },
+    "mips_to_c_commit": "7fda1c6821148c65cb6aa52d3a356048554ca1cf",
+    "decomp_permuter_commit": "ec2efeebb33e2b1de81e39fbf7cbe3cd97350472",
+    "submodule_files_checked": 1366,
+    "submodule_content_mismatches": 0
+  },
+  "remote_ci_expected": "NOT_TRIGGERED: existing Verify pull_request workflow only targets master, while this draft targets the row dependency branch. Check exact published head after creation; do not infer success.",
+  "production_changes": false,
+  "image_rom_gate_run": false,
+  "source_artifact_sha256": {
+    "cloud/work/dot_menu_options_root_20261005/REPORT.md": "1f1291c3643300981432feb3d9639a7ea873c3e6b10a9695282b3e50a46a44de",
+    "cloud/work/dot_menu_options_root_20261005/host_root_test.c": "24054cd3a1f9fa5a6834000883eee2656cb7e88278e1a48ed11ddb61d2271713",
+    "cloud/work/dot_menu_options_root_20261005/host_slot_test.c": "2388c274641f0f2295193669ea7c7faebdf8671f391c5838178d96004d325b1a",
+    "cloud/work/dot_menu_options_root_20261005/layout_probe.c": "258be2755b8dfb7a8f275bc1b79b52a3828ddb40162ded24482d606ed7b7059c",
+    "cloud/work/dot_menu_options_root_20261005/menu_context.h": "b46f4462c25c5c072dfc444122cfd1f1b0fe34cd7b38e8a711c745bc39ee5b06",
+    "cloud/work/dot_menu_options_root_20261005/peer_review.json": "4e4018e4d3d3caf9e7cfbd18dfe753c276fb8ee859c1d81f5be78ae75987adf5",
+    "cloud/work/dot_menu_options_root_20261005/root.c": "8f788d7e4b00e4bd85bf49254e4bc926c1de62b2bc091b8b448ab5120239de42",
+    "cloud/work/dot_menu_options_root_20261005/slot_state_setup.c": "b28c4a340302f416ff7b0d3ac4c3839ba764a8f0d5fe397c193963248395c362",
+    "cloud/work/dot_menu_options_root_20261005/verification.json": "b85479f84c35962d100fcbc3f805c8061a3450acd6522a1bdd95f3cda571a764",
+    "cloud/work/dot_menu_options_root_20261005/verify.py": "d7ad5784b621310430bc91c3cf5c4f7bd2ad4efce446d370b487e5d95e209220",
+    "tests/conveyor/test_dot_menu_options_root.py": "1a4241e93050e06a3e0cea663c28687e5a9413b00787140f10d200b276aa6671"
+  },
+  "publication_scope": "Only source, tests and sanitized hashes/counts/research verification. No ROM bytes, raw assembly dumps, generated binaries, credentials or unrelated private data."
+}
