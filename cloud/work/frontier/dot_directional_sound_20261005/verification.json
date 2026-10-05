@@ -1,0 +1,540 @@
+{
+  "base_revision": "cc4d5fdd",
+  "function": "stat_lap_split",
+  "range": [
+    "0x800FEA00",
+    "0x800FEC60"
+  ],
+  "status": "STRICT_MATCH_PENDING_INDEPENDENT_REVIEW",
+  "new_candidate_bytes": 608,
+  "accepted_byte_gain": 0,
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "assembler_erratum_flag": "-Wab,-r4300_mul",
+  "source_sha256": "f9563673b971d17d830a9897e9aabf42f223188e3c16679663e9e65b4f5f19fc",
+  "object": {
+    "differing": 0,
+    "total": 152,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "verdict": "MATCH",
+    "symbol_bytes": 608,
+    "native_bytes": 608,
+    "own_data_notes": [
+      "own .rodata verified at 0x80124824..0x80124828"
+    ]
+  },
+  "own_literal": {
+    "address": "0x80124824",
+    "expression": ".924f * .924f",
+    "bytes_verified": 4,
+    "value": 0.8537760376930237,
+    "zero_section_alignment_bytes": 12
+  },
+  "text_alignment_bytes_outside_symbol": 0,
+  "relocations": [
+    {
+      "offset": 0,
+      "type": 5,
+      "symbol": "D_8010FFC0"
+    },
+    {
+      "offset": 4,
+      "type": 6,
+      "symbol": "D_8010FFC0"
+    },
+    {
+      "offset": 56,
+      "type": 5,
+      "symbol": "D_80153E8F"
+    },
+    {
+      "offset": 64,
+      "type": 6,
+      "symbol": "D_80153E8F"
+    },
+    {
+      "offset": 100,
+      "type": 5,
+      "symbol": "player_array"
+    },
+    {
+      "offset": 104,
+      "type": 6,
+      "symbol": "player_array"
+    },
+    {
+      "offset": 184,
+      "type": 4,
+      "symbol": "func_800A61B0"
+    },
+    {
+      "offset": 348,
+      "type": 5,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 352,
+      "type": 6,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 508,
+      "type": 4,
+      "symbol": "high_scores_display"
+    },
+    {
+      "offset": 236,
+      "type": 5,
+      "symbol": "D_8011F020"
+    },
+    {
+      "offset": 536,
+      "type": 6,
+      "symbol": "D_8011F020"
+    },
+    {
+      "offset": 240,
+      "type": 5,
+      "symbol": "D_8011F040"
+    },
+    {
+      "offset": 532,
+      "type": 6,
+      "symbol": "D_8011F040"
+    },
+    {
+      "offset": 584,
+      "type": 4,
+      "symbol": "high_scores_display"
+    }
+  ],
+  "gnu_link": {
+    "all_152_words_equal": true,
+    "symbol_bytes": 608,
+    "literal_bytes_equal": true,
+    "relocation_count": 15
+  },
+  "alias_causality": {
+    "diagnostic_only": true,
+    "eligible_for_promotion": false,
+    "change": "Remove one compiler-generated v0/stack no-alias directive from the late-pointer listing.",
+    "natural_source_omits_that_directive": true,
+    "comparison": {
+      "differing": 0,
+      "total": 152,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "MATCH",
+      "symbol_bytes": 608,
+      "native_bytes": 608,
+      "own_data_notes": [
+        "own .rodata verified at 0x80124824..0x80124828"
+      ]
+    }
+  },
+  "controls": {
+    "late_pointer": {
+      "differing": 5,
+      "total": 152,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "5/152 words differ",
+      "symbol_bytes": 608,
+      "native_bytes": 608,
+      "own_data_notes": [
+        "own .rodata verified at 0x80124824..0x80124828"
+      ]
+    },
+    "expanded_product": {
+      "differing": 1,
+      "total": 152,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "1/152 words differ",
+      "symbol_bytes": 608,
+      "native_bytes": 608,
+      "own_data_notes": [
+        "own .rodata verified at 0x80124824..0x80124828"
+      ]
+    },
+    "archived_b8": {
+      "differing": 6,
+      "total": 152,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "6/152 words differ",
+      "symbol_bytes": 608,
+      "native_bytes": 608,
+      "own_data_notes": []
+    },
+    "o2": {
+      "differing": 144,
+      "total": 152,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x158",
+        ".rodata+0x0 at +0x15c"
+      ],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "144/152 words differ (2 section-relative relocations unverified: .rodata+0x0 at +0x158, .rodata+0x0 at +0x15c)",
+      "symbol_bytes": 596,
+      "native_bytes": 608,
+      "own_data_notes": [
+        "not verified: .rodata+0x0 at +0x15c: retail bytes at 0x3FFF8012 are not available"
+      ]
+    }
+  },
+  "genuine_context": {
+    "stat_lap_split": {
+      "differing": 0,
+      "total": 152,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "MATCH",
+      "symbol_bytes": 608,
+      "native_bytes": 608,
+      "own_data_notes": [
+        "own .rodata verified at 0x80124824..0x80124828"
+      ]
+    },
+    "func_800A61B0": {
+      "differing": 0,
+      "total": 37,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "MATCH",
+      "symbol_bytes": 148,
+      "native_bytes": 148,
+      "own_data_notes": []
+    },
+    "func_80092278": {
+      "differing": 0,
+      "total": 58,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "MATCH",
+      "symbol_bytes": 232,
+      "native_bytes": 232,
+      "own_data_notes": []
+    },
+    "entity_flags_apply": {
+      "differing": 0,
+      "total": 73,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "MATCH",
+      "symbol_bytes": 292,
+      "native_bytes": 292,
+      "own_data_notes": []
+    },
+    "high_scores_display": {
+      "differing": 0,
+      "total": 117,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "MATCH",
+      "symbol_bytes": 468,
+      "native_bytes": 468,
+      "own_data_notes": []
+    },
+    "func_8009211C": {
+      "differing": 0,
+      "total": 87,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "MATCH",
+      "symbol_bytes": 348,
+      "native_bytes": 348,
+      "own_data_notes": []
+    },
+    "func_80091FBC": {
+      "differing": 0,
+      "total": 88,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "MATCH",
+      "symbol_bytes": 352,
+      "native_bytes": 352,
+      "own_data_notes": []
+    },
+    "func_8010C7F4": {
+      "differing": 0,
+      "total": 96,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "MATCH",
+      "symbol_bytes": 384,
+      "native_bytes": 384,
+      "own_data_notes": []
+    },
+    "func_8010D9CC": {
+      "differing": 0,
+      "total": 75,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "MATCH",
+      "symbol_bytes": 300,
+      "native_bytes": 300,
+      "own_data_notes": []
+    },
+    "func_8010DAF8": {
+      "differing": 0,
+      "total": 48,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "MATCH",
+      "symbol_bytes": 192,
+      "native_bytes": 192,
+      "own_data_notes": []
+    },
+    "func_8010DF90": {
+      "differing": 0,
+      "total": 91,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "MATCH",
+      "symbol_bytes": 364,
+      "native_bytes": 364,
+      "own_data_notes": []
+    }
+  },
+  "context_sources": {
+    "src/blob/func_800A61B0.c": "0d8334e0223e4b3f9498c2ed324e5a35847593c90e4b107a80306d4149e824af",
+    "src/blob/groups/frontier_list_alloc_sound/group.c": "10e56edc406cf5f81991f7271d7dc2f6721dd6dc1425d7209c76e468bc8ddc46",
+    "src/blob/func_8010C7F4.c": "4610b0611f323281f407c5182571c7f43c1a450128ae9d419531d3ca229f8e00",
+    "src/blob/func_8010D9CC.c": "b90d7374a2b0975810c16d912c38e462fc2e314b5bf1f87fad463ed40076edcf",
+    "src/blob/func_8010DAF8.c": "7a39ba68fd984100ac9f516bab276f9513fbd7a29413bbff0fa1c17b137cc857",
+    "src/blob/func_8010DF90.c": "754af3cb0fe13ff64c05598ff09dbb32381476b1dd143dc4c6b39eda7219f7d1"
+  },
+  "behavior": {
+    "cases": 4578,
+    "native_linked_access_traces_equal": true,
+    "host_ubsan": true,
+    "real_native_matrix_callee": true,
+    "sound_callee": "synthetic seven-argument callback with caller-save clobbers",
+    "distinct_pan_pairs": 5,
+    "executed_instruction_offsets": [
+      0,
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      28,
+      32,
+      36,
+      40,
+      44,
+      48,
+      52,
+      56,
+      60,
+      64,
+      68,
+      72,
+      76,
+      80,
+      84,
+      88,
+      92,
+      96,
+      100,
+      104,
+      108,
+      112,
+      116,
+      120,
+      124,
+      128,
+      132,
+      136,
+      140,
+      144,
+      148,
+      152,
+      156,
+      160,
+      164,
+      168,
+      172,
+      176,
+      180,
+      184,
+      188,
+      192,
+      196,
+      200,
+      204,
+      208,
+      212,
+      216,
+      220,
+      224,
+      228,
+      232,
+      236,
+      240,
+      244,
+      248,
+      252,
+      256,
+      260,
+      264,
+      268,
+      272,
+      276,
+      280,
+      284,
+      288,
+      292,
+      296,
+      300,
+      304,
+      308,
+      312,
+      316,
+      320,
+      324,
+      328,
+      332,
+      336,
+      340,
+      344,
+      348,
+      352,
+      356,
+      360,
+      364,
+      368,
+      372,
+      376,
+      380,
+      384,
+      388,
+      392,
+      396,
+      400,
+      404,
+      408,
+      412,
+      416,
+      420,
+      424,
+      428,
+      432,
+      436,
+      440,
+      448,
+      452,
+      456,
+      460,
+      464,
+      468,
+      472,
+      476,
+      480,
+      484,
+      488,
+      492,
+      496,
+      500,
+      504,
+      508,
+      512,
+      516,
+      520,
+      524,
+      528,
+      532,
+      536,
+      540,
+      544,
+      548,
+      552,
+      556,
+      560,
+      564,
+      568,
+      572,
+      576,
+      580,
+      584,
+      588,
+      592,
+      596,
+      600,
+      604
+    ],
+    "unexecuted_instruction_offsets": [
+      444
+    ],
+    "dynamic_coverage_equals_conservative_static_cfg": true,
+    "rejected_mutants": {
+      "wrong_threshold": 442,
+      "wrong_axis": 200,
+      "wrong_state": 48,
+      "missing_center": 58,
+      "unsigned_pan": 56,
+      "wrong_failure": 0
+    },
+    "domain": "Finite binary32 inputs, eight valid player slots, synthetic signed pan tables; no FCSR/NaN claims."
+  },
+  "target_manifest_sha256": "098c5096b16bbf96f1f987842ad33a5733284ab16e497c43e05ad0a429e4cef8",
+  "compiler_sha256": {
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+  },
+  "packet_sha256": {
+    "verify.py": "83781fde76c440e1b2c3f9b1735340c5e4426698824f604f2382d46b66da0644",
+    "semantics.py": "7ecc737bdd760c54e963f19d44ea9bf9fc4c3d8d15fbfe2cef063b5460b18b77",
+    "native.py": "2020e0cbbcb33cb88ab19422c3be6d0971ff90042fcb8669dc0c72d16accf645",
+    "host.c": "68d85b497334f01581273d8a09293ba8f7cdf8b82f443086d063ffa2b622ec82"
+  },
+  "limitations": [
+    "No full-game shadow unit, splice, image, compression or ROM gate.",
+    "Source contract requires a valid player slot even on early-return paths.",
+    "Sound API uses a synthetic callback; actual sound subsystem behavior is not emulated.",
+    "Finite binary32 host round-to-nearest tests exclude FCSR effects and signaling NaNs.",
+    "Claim checks cannot reveal unpublished work."
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "base_revision": "cc4d5fdd",
+  "owner": "dot directional sound matching",
+  "status": "strict_match_awaiting_independent_review",
+  "target": "stat_lap_split",
+  "range": [
+    "0x800FEA00",
+    "0x800FEC60"
+  ],
+  "bytes": 608,
+  "prior_work": [
+    "cloud/work/near_miss_B8.md",
+    "cloud/work/ipa-groups/codex_lap_matrix_a170/STATUS.md"
+  ],
+  "new_evidence": [
+    "Arcade carsnd.c target_sound declaration initializer and compound signed-square pattern",
+    "Wave-5 accepted real high_scores_display group",
+    "Causal no-alias scheduling diagnosis"
+  ],
+  "ownership_checks": [
+    "Fetched origin/master; checked current lock and tracked claim files",
+    "Read w5a, w5b, w5c, w5d results",
+    "Open PRs 98 and 99 do not contain this target",
+    "Excluded parent active EF62C, 108DA8, 108F40 and prior exhausted 87110 work"
+  ],
+  "limitations": [
+    "Cannot observe unpublished work"
+  ],
+  "direct_callers": [
+    {
+      "function": "func_8010C7F4",
+      "size": 384,
+      "call_sites": [
+        "0x8010c958"
+      ],
+      "locked": true
+    },
+    {
+      "function": "func_8010D3C0",
+      "size": 704,
+      "call_sites": [
+        "0x8010d464"
+      ],
+      "locked": false
+    },
+    {
+      "function": "func_8010D9CC",
+      "size": 300,
+      "call_sites": [
+        "0x8010dae0"
+      ],
+      "locked": true
+    },
+    {
+      "function": "func_8010DAF8",
+      "size": 192,
+      "call_sites": [
+        "0x8010dba0"
+      ],
+      "locked": true
+    },
+    {
+      "function": "func_8010DBB8",
+      "size": 324,
+      "call_sites": [
+        "0x8010dce4"
+      ],
+      "locked": false
+    },
+    {
+      "function": "func_8010DCFC",
+      "size": 660,
+      "call_sites": [
+        "0x8010df74"
+      ],
+      "locked": false
+    },
+    {
+      "function": "func_8010DF90",
+      "size": 364,
+      "call_sites": [
+        "0x8010e0e0"
+      ],
+      "locked": true
+    },
+    {
+      "function": "func_8010E72C",
+      "size": 252,
+      "call_sites": [
+        "0x8010e80c"
+      ],
+      "locked": false
+    }
+  ]
+}
