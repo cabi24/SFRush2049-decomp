@@ -1,0 +1,410 @@
+{
+  "GNU_ld_version": "GNU ld (GNU Binutils for Debian) 2.44",
+  "accepted_byte_gain": 0,
+  "claims": [
+    "steering_apply"
+  ],
+  "compiler_sha256": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+  "donor": {
+    "ancestor": "game/targets.c:673-693 OverlapTarget; N64 pointer-interface sphere adaptation",
+    "files": {
+      "LIB/stdtypes.h": "62f04af756d7151ec4d06841da2678384f883082debd1060e92ffc21bc1d3188",
+      "game/targets.c": "9e169133299450b46fbdd96b9c26e786c192c189618bcd5ebdffba0c8fb4bd31",
+      "game/vecmath.c": "7909033d4e95a86d94dc14b96539b272dbd9e8fd7f7b7e67f6b8cbbc0ca2ee31",
+      "game/vecmath.h": "76526aaa1894d9cef992ea07fa524cf7348e02cbede5a646a66f04d6e317cf3f"
+    },
+    "revision": "845329d7b36f5a384c5625ed9a0aef584ab46139",
+    "vector_macros": "game/vecmath.h:20-21"
+  },
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "genuine_context": {
+    "comparisons": {
+      "func_8010C02C": {
+        "GNU_complete_body_differences": 0,
+        "GNU_linked_equal_project_relocation": true,
+        "body_sha256": "c280d4c006443830896a4b845316a8ce28ceea5a43baf365533033a3df3cdd51",
+        "comparison": {
+          "differing": 0,
+          "elf_function_bytes": 696,
+          "errors": [],
+          "extra_words": 0,
+          "total": 174,
+          "unresolved": [],
+          "unverified": []
+        },
+        "complete_excess_words": 0,
+        "function_bytes": 696,
+        "function_offset": 24,
+        "missing_words": 0,
+        "object_sha256": "7d72713921ac8914dfed4818ca0b4293e01ae371e659a9a2129044fb9f30459c",
+        "owned_data_bytes": 0,
+        "relocations": [
+          "00000070  00000705 R_MIPS_HI16       00000000   D_80150F38",
+          "00000074  00000706 R_MIPS_LO16       00000000   D_80150F38",
+          "00000050  00000605 R_MIPS_HI16       00000000   D_8014A250",
+          "00000054  00000606 R_MIPS_LO16       00000000   D_8014A250",
+          "00000150  00000804 R_MIPS_26         00000000   func_8009E820",
+          "000001c0  00000904 R_MIPS_26         00000000   func_800A61B0",
+          "00000284  00000a04 R_MIPS_26         00000000   random_float",
+          "000002d4  00000405 R_MIPS_HI16       00000000   D_8014AA3A",
+          "000002ec  00000406 R_MIPS_LO16       00000000   D_8014AA3A",
+          "0000031c  00000305 R_MIPS_HI16       00000000   player_array",
+          "00000320  00000306 R_MIPS_LO16       00000000   player_array"
+        ],
+        "remaining_section_all_zero": false,
+        "remaining_section_bytes": 272,
+        "stack_frame_bytes": [
+          168
+        ],
+        "text_bytes": 992
+      },
+      "func_8010C7CC": {
+        "GNU_complete_body_differences": 0,
+        "GNU_linked_equal_project_relocation": true,
+        "body_sha256": "75810d9327293d6232cd134ea485acb3ffd758e1c3608f661b1516dfbfa3bd0d",
+        "comparison": {
+          "differing": 0,
+          "elf_function_bytes": 24,
+          "errors": [],
+          "extra_words": 0,
+          "total": 6,
+          "unresolved": [],
+          "unverified": []
+        },
+        "complete_excess_words": 0,
+        "function_bytes": 24,
+        "function_offset": 0,
+        "missing_words": 0,
+        "object_sha256": "7d72713921ac8914dfed4818ca0b4293e01ae371e659a9a2129044fb9f30459c",
+        "owned_data_bytes": 0,
+        "relocations": [
+          "00000070  00000705 R_MIPS_HI16       00000000   D_80150F38",
+          "00000074  00000706 R_MIPS_LO16       00000000   D_80150F38",
+          "00000050  00000605 R_MIPS_HI16       00000000   D_8014A250",
+          "00000054  00000606 R_MIPS_LO16       00000000   D_8014A250",
+          "00000150  00000804 R_MIPS_26         00000000   func_8009E820",
+          "000001c0  00000904 R_MIPS_26         00000000   func_800A61B0",
+          "00000284  00000a04 R_MIPS_26         00000000   random_float",
+          "000002d4  00000405 R_MIPS_HI16       00000000   D_8014AA3A",
+          "000002ec  00000406 R_MIPS_LO16       00000000   D_8014AA3A",
+          "0000031c  00000305 R_MIPS_HI16       00000000   player_array",
+          "00000320  00000306 R_MIPS_LO16       00000000   player_array"
+        ],
+        "remaining_section_all_zero": false,
+        "remaining_section_bytes": 968,
+        "stack_frame_bytes": [],
+        "text_bytes": 992
+      },
+      "steering_apply": {
+        "GNU_complete_body_differences": 0,
+        "GNU_linked_equal_project_relocation": true,
+        "body_sha256": "153d98655443c6bef69bd5b71b452d82ac05de3adde92ee362fd63a1a2b76116",
+        "comparison": {
+          "differing": 0,
+          "elf_function_bytes": 260,
+          "errors": [],
+          "extra_words": 0,
+          "total": 65,
+          "unresolved": [],
+          "unverified": []
+        },
+        "complete_excess_words": 0,
+        "function_bytes": 260,
+        "function_offset": 720,
+        "missing_words": 0,
+        "object_sha256": "7d72713921ac8914dfed4818ca0b4293e01ae371e659a9a2129044fb9f30459c",
+        "owned_data_bytes": 0,
+        "relocations": [
+          "00000070  00000705 R_MIPS_HI16       00000000   D_80150F38",
+          "00000074  00000706 R_MIPS_LO16       00000000   D_80150F38",
+          "00000050  00000605 R_MIPS_HI16       00000000   D_8014A250",
+          "00000054  00000606 R_MIPS_LO16       00000000   D_8014A250",
+          "00000150  00000804 R_MIPS_26         00000000   func_8009E820",
+          "000001c0  00000904 R_MIPS_26         00000000   func_800A61B0",
+          "00000284  00000a04 R_MIPS_26         00000000   random_float",
+          "000002d4  00000405 R_MIPS_HI16       00000000   D_8014AA3A",
+          "000002ec  00000406 R_MIPS_LO16       00000000   D_8014AA3A",
+          "0000031c  00000305 R_MIPS_HI16       00000000   player_array",
+          "00000320  00000306 R_MIPS_LO16       00000000   player_array"
+        ],
+        "remaining_section_all_zero": true,
+        "remaining_section_bytes": 12,
+        "stack_frame_bytes": [
+          32
+        ],
+        "text_bytes": 992
+      }
+    },
+    "scope": "genuine adjacent callback bodies, unchanged separate type views; not full shadow unit",
+    "sources": {
+      "func_8010C02C": "cf5ace6577bd5511cf4274cd4eac5dae315419c4fcf60c3cea1c9a8d93900d82",
+      "func_8010C7CC": "e8ca4a734d87a7f6d67a44975e70704e86ad7e141301c56b63a92dea8245c89f",
+      "steering_apply": "af00cf5e8216d88c0aa0ffae12a749188064f512892b6729cb2d7ff395441ee1"
+    }
+  },
+  "native_references": {
+    "aligned_pointer_data_sites": [
+      "0x80117518"
+    ],
+    "direct_JAL_sites": [],
+    "limit": "Pointer-valued data is registration evidence, not execution or a proven caller contract.",
+    "opaque_data_manifest_sha256": "a11be55c29c9aedd10e2ff0439c48c1171a14d2dc0d975e66f29e3667c738594"
+  },
+  "native_selector_proof": {
+    "all_patterns": true,
+    "cases": 65536,
+    "scope": "protected native plus independently calculated addresses and oracle; accessible record per case",
+    "selector_bits": 16
+  },
+  "proof_sources": {
+    "host.c": "a52b97856232cc485895aa322f0ef334f8b4685c9c6b712ed79f1634ff5bf739",
+    "native.py": "93cf67886f444040406e3b1c91faeffd841327399b61c769ed2205eb55e48fcb",
+    "verify.py": "04e8a8b16a90adb740d35498f918529ff57a6bc75c11e5a5d7a661121a7fbc32"
+  },
+  "protected_manifest_sha256": "0bfdfdfc5e03c1f3261c7455f3922082d99673defacd5dbb692629624e757652",
+  "schema": 1,
+  "scorer_sha256": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+  "status": "strict_matches_unspliced",
+  "targets": {
+    "steering_apply": {
+      "GNU_complete_body_differences": 0,
+      "GNU_linked_equal_project_relocation": true,
+      "O2_comparison": {
+        "differing": 0,
+        "elf_function_bytes": 260,
+        "errors": [],
+        "extra_words": 0,
+        "total": 65,
+        "unresolved": [],
+        "unverified": []
+      },
+      "O32_layout_assertions": "passed",
+      "behavior": {
+        "cases": 18171,
+        "conditional_branch_outcomes": {
+          "0x28": [
+            false,
+            true
+          ],
+          "0xc8": [
+            false,
+            true
+          ],
+          "0xf0": [
+            false,
+            true
+          ]
+        },
+        "executed_instruction_offsets": 65,
+        "host_C89_UBSan": "passed",
+        "memory_canaries_access_order_O32_preservation": "passed",
+        "mutants": {
+          "cylinder_instead_of_sphere": {
+            "differing_cases": 7420,
+            "rejected": true
+          },
+          "radial_boundary_excluded": {
+            "differing_cases": 153,
+            "rejected": true
+          },
+          "wrong_axis": {
+            "differing_cases": 7722,
+            "rejected": true
+          },
+          "wrong_disable_gate": {
+            "differing_cases": 16290,
+            "rejected": true
+          },
+          "wrong_radius": {
+            "differing_cases": 6642,
+            "rejected": true
+          }
+        },
+        "native_and_GNU_runs": 36342,
+        "oracle": "binary32_round_after_each_operation",
+        "output_alias_modes": 9,
+        "unconditional_branch_outcome": {
+          "0x30": [
+            true
+          ]
+        },
+        "unreachable_offsets": []
+      },
+      "body_sha256": "153d98655443c6bef69bd5b71b452d82ac05de3adde92ee362fd63a1a2b76116",
+      "comparison": {
+        "differing": 0,
+        "elf_function_bytes": 260,
+        "errors": [],
+        "extra_words": 0,
+        "total": 65,
+        "unresolved": [],
+        "unverified": []
+      },
+      "complete_excess_words": 0,
+      "end_exclusive": "0x8010c7cc",
+      "function_bytes": 260,
+      "function_offset": 0,
+      "historical_source_sha256": "5d10c6662e9d24c951ede3179867e8c3506b05c6c6e3d4d79e083a55dc32d938",
+      "missing_words": 0,
+      "object_sha256": "c43151060a904be7d27fdaf9e70d4b484f74220d1f8dcbcb1565f399904982d2",
+      "owned_data_bytes": 0,
+      "relocations": [
+        "00000004  00000405 R_MIPS_HI16       00000000   D_8014AA3A",
+        "0000001c  00000406 R_MIPS_LO16       00000000   D_8014AA3A",
+        "0000004c  00000305 R_MIPS_HI16       00000000   player_array",
+        "00000050  00000306 R_MIPS_LO16       00000000   player_array"
+      ],
+      "remaining_section_all_zero": true,
+      "remaining_section_bytes": 12,
+      "source_controls": {
+        "explicit_branch_return": {
+          "GNU_complete_body_differences": 36,
+          "GNU_linked_equal_project_relocation": true,
+          "body_sha256": "ff384357a08b4be89be568a8ba034a017c898dd20b8b49a17b18b6827556a93c",
+          "comparison": {
+            "differing": 34,
+            "elf_function_bytes": 268,
+            "errors": [],
+            "extra_words": 2,
+            "total": 65,
+            "unresolved": [],
+            "unverified": []
+          },
+          "complete_excess_words": 2,
+          "function_bytes": 268,
+          "function_offset": 0,
+          "missing_words": 0,
+          "object_sha256": "c86a6f1e6e344229d7590bbb93a05c1cff4e0d9f65b35daa99d7504925ec5bea",
+          "owned_data_bytes": 0,
+          "relocations": [
+            "00000004  00000405 R_MIPS_HI16       00000000   D_8014AA3A",
+            "0000001c  00000406 R_MIPS_LO16       00000000   D_8014AA3A",
+            "0000004c  00000305 R_MIPS_HI16       00000000   player_array",
+            "00000050  00000306 R_MIPS_LO16       00000000   player_array"
+          ],
+          "remaining_section_all_zero": true,
+          "remaining_section_bytes": 4,
+          "source_sha256": "df3a1db91c0f1a5c065f9de5ad544c59b5806eab85d2b1f6a463c0c201bd97a4",
+          "stack_frame_bytes": [
+            32
+          ],
+          "text_bytes": 272
+        },
+        "historical": {
+          "GNU_complete_body_differences": 47,
+          "GNU_linked_equal_project_relocation": true,
+          "body_sha256": "3744094bcd01b69614ca556febf0f2ec43949168ff781eec6e26ca67924767d2",
+          "comparison": {
+            "differing": 47,
+            "elf_function_bytes": 252,
+            "errors": [],
+            "extra_words": 0,
+            "total": 65,
+            "unresolved": [],
+            "unverified": []
+          },
+          "complete_excess_words": 0,
+          "function_bytes": 252,
+          "function_offset": 0,
+          "missing_words": 2,
+          "object_sha256": "7df803b74b9af1488198e8205c4ae72290cd4d2110eca702f18bcd6482e3fac8",
+          "owned_data_bytes": 0,
+          "relocations": [
+            "00000004  00000305 R_MIPS_HI16       00000000   D_8014AA14",
+            "0000001c  00000306 R_MIPS_LO16       00000000   D_8014AA14",
+            "0000004c  00000405 R_MIPS_HI16       00000000   player_array",
+            "00000050  00000406 R_MIPS_LO16       00000000   player_array"
+          ],
+          "remaining_section_all_zero": true,
+          "remaining_section_bytes": 4,
+          "source_sha256": "5d10c6662e9d24c951ede3179867e8c3506b05c6c6e3d4d79e083a55dc32d938",
+          "stack_frame_bytes": [
+            24
+          ],
+          "text_bytes": 256
+        },
+        "radius_before_distance": {
+          "GNU_complete_body_differences": 31,
+          "GNU_linked_equal_project_relocation": true,
+          "body_sha256": "413288f163e8104fcfe187ca0bdff320ae4e74f87065e59539cf4e6e2ee7034d",
+          "comparison": {
+            "differing": 31,
+            "elf_function_bytes": 256,
+            "errors": [],
+            "extra_words": 0,
+            "total": 65,
+            "unresolved": [],
+            "unverified": []
+          },
+          "complete_excess_words": 0,
+          "function_bytes": 256,
+          "function_offset": 0,
+          "missing_words": 1,
+          "object_sha256": "ce94ef2d93aff2b59692e803f5805e88665d22e95258c2e9f01db4883110da04",
+          "owned_data_bytes": 0,
+          "relocations": [
+            "00000004  00000405 R_MIPS_HI16       00000000   D_8014AA3A",
+            "0000001c  00000406 R_MIPS_LO16       00000000   D_8014AA3A",
+            "0000004c  00000305 R_MIPS_HI16       00000000   player_array",
+            "00000050  00000306 R_MIPS_LO16       00000000   player_array"
+          ],
+          "remaining_section_all_zero": true,
+          "remaining_section_bytes": 0,
+          "source_sha256": "b7ae3ef95b0c5b1520b5fd31aa12e5bddef9c4e50bb22fb6a777819f7c16f030",
+          "stack_frame_bytes": [
+            32
+          ],
+          "text_bytes": 256
+        },
+        "vectors_before_scalars": {
+          "GNU_complete_body_differences": 2,
+          "GNU_linked_equal_project_relocation": true,
+          "body_sha256": "d1a31c539bed4d1ff889a736337c3c2da09f526279b67836be0af125608075df",
+          "comparison": {
+            "differing": 2,
+            "elf_function_bytes": 260,
+            "errors": [],
+            "extra_words": 0,
+            "total": 65,
+            "unresolved": [],
+            "unverified": []
+          },
+          "complete_excess_words": 0,
+          "function_bytes": 260,
+          "function_offset": 0,
+          "missing_words": 0,
+          "object_sha256": "3c15707992a23c889e97a4786053056c7302651d1c9ac8c629741423e3e84668",
+          "owned_data_bytes": 0,
+          "relocations": [
+            "00000004  00000405 R_MIPS_HI16       00000000   D_8014AA3A",
+            "0000001c  00000406 R_MIPS_LO16       00000000   D_8014AA3A",
+            "0000004c  00000305 R_MIPS_HI16       00000000   player_array",
+            "00000050  00000306 R_MIPS_LO16       00000000   player_array"
+          ],
+          "remaining_section_all_zero": true,
+          "remaining_section_bytes": 12,
+          "source_sha256": "851f669ba2a261261be55512e217c91c462e42bd4bf2455a3c7f2b604a171c08",
+          "stack_frame_bytes": [
+            24
+          ],
+          "text_bytes": 272
+        }
+      },
+      "source_sha256": "af00cf5e8216d88c0aa0ffae12a749188064f512892b6729cb2d7ff395441ee1",
+      "stack_frame_bytes": [
+        32
+      ],
+      "start": "0x8010c6c8",
+      "text_bytes": 272
+    }
+  },
+  "toolchain": {
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5"
+  }
+}
