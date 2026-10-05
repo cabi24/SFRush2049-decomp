@@ -1,0 +1,28 @@
+{
+  "members": [
+    "func_800F1930"
+  ],
+  "context": [
+    "func_800F207C",
+    "func_800F2718",
+    "func_800F0F44",
+    "func_800F1210",
+    "billboard_render"
+  ],
+  "files": [
+    "func_800F2718.c",
+    "func_800F207C.c",
+    "func_800F0F44.c",
+    "func_800F1210.c",
+    "func_800F1930.c",
+    "billboard_render.c"
+  ],
+  "keep": [
+    "billboard_render"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [
+    "func_800F1930"
+  ],
+  "name": "dot_billboard_save_input"
+}

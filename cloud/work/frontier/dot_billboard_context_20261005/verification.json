@@ -1,0 +1,356 @@
+{
+  "base_commit": "f88dc3cb3807b8be3246b719a9b1e008210b477c",
+  "status": "MATCH_IN_GENUINE_INCOMPLETE_CONTEXT",
+  "claims": [
+    "func_800F1930"
+  ],
+  "new_matching_candidate_bytes": 980,
+  "accepted_byte_gain": 0,
+  "production_integration_status": "BLOCKED_ON_INHERITED_DECLARATIONS_AND_OPEN_CONTEXT",
+  "remaining_type_contracts": [
+    "Copied accepted F2718 passes an argument to viDeadlinePassed and declares s32(s32), while other group sources declare s32(void).",
+    "Copied accepted F2718 and F207C/billboard retain noncanonical InputRecord layouts and resource_type_select signedness declarations.",
+    "F0F44 Ref.pos begins at native offset 20; its original array extent is unknown and the inherited [4] is not proven."
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "source_sha256": {
+    "group/func_800F2718.c": "4af528260039fd0220d52acec370d662d85c67622b51abf7e2fff2af459ccdf0",
+    "group/func_800F207C.c": "6a60b7a5e4f5d5edad5a75f966bb994a7bbd807ce7c5f8041cbc7f5c1601aed7",
+    "group/func_800F0F44.c": "b4e9940ae73e7959017767225a099f0e5eb3cbb22618b16efade38e7000154a7",
+    "group/func_800F1210.c": "2d36c156676df203b910372b21dd4231553ab1a03e0d18ee1d0f6b9128635631",
+    "group/func_800F1930.c": "eedb1ad33f218d525d36189d9becf93cca9cc8240e33b1e261cce1022d16e7ff",
+    "group/billboard_render.c": "47278f88f6ca3ae439730ae805eac6d94546bd13ce6d1ec6aa8b2c0f439feb2b",
+    "group/group.json": "7ad49a2bc53e0be3b26d3c18482fa63f50a295b36413b90dffd071e0a5db0adc",
+    "semantic_test.c": "412c370c225ffa7a193d745bab525517a6b8933ef542264a017a951ccb9e9d94"
+  },
+  "tools_sha256": {
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+    "tools/conveyor/pipeline/blob_group.py": "340e24d21c67e1c0c8ab3711614492e9ac0b98d81d3d13221996d234b4a39e1a",
+    "cloud/work/frontier/dot_billboard_helpers_20261005/verify.py": "34ce850eb69dae16af853c5f3114d1dead9c0251e3c3530f3494de9bcb391a6c"
+  },
+  "compiler_sha256": {
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+  },
+  "comparison": {
+    "func_800F1930": {
+      "differing": 0,
+      "total": 245,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "elf_function_bytes": 980,
+      "native_bytes": 980,
+      "full_extent_relocated_equal": true,
+      "resolved_body_sha256": "974e0f071078e4f29a6e7edd87feb9f6ca8c73ef233fc5ced3ee212e6fc6209b",
+      "native_sha256": "974e0f071078e4f29a6e7edd87feb9f6ca8c73ef233fc5ced3ee212e6fc6209b",
+      "frame_bytes": 24
+    },
+    "func_800F207C": {
+      "differing": 0,
+      "total": 421,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "elf_function_bytes": 1684,
+      "native_bytes": 1684,
+      "full_extent_relocated_equal": true,
+      "resolved_body_sha256": "ebc900f5f5fcb18d898bdc055c85900d3098c460f96d588dd9954165ae7d0168",
+      "native_sha256": "ebc900f5f5fcb18d898bdc055c85900d3098c460f96d588dd9954165ae7d0168",
+      "frame_bytes": 24
+    },
+    "func_800F2718": {
+      "differing": 0,
+      "total": 92,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "elf_function_bytes": 368,
+      "native_bytes": 368,
+      "full_extent_relocated_equal": true,
+      "resolved_body_sha256": "a04cb1f45b6b5269ca31a449f0c27a1d5b94fbb27dd77f0a19e6ed950f96b017",
+      "native_sha256": "a04cb1f45b6b5269ca31a449f0c27a1d5b94fbb27dd77f0a19e6ed950f96b017",
+      "frame_bytes": 24
+    },
+    "func_800F0F44": {
+      "differing": 68,
+      "total": 116,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "elf_function_bytes": 468,
+      "native_bytes": 464,
+      "full_extent_relocated_equal": false,
+      "resolved_body_sha256": "2ac337fd7f9ad22f753952906bc512c59ec8ab71f82dae123af185bf91ef6eba",
+      "native_sha256": "4097b6efb7e861a06aad59008c3ca4730d25af695b97ad36553118cba4663ae2",
+      "frame_bytes": 56
+    },
+    "func_800F1210": {
+      "differing": 399,
+      "total": 454,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x4c",
+        ".rodata+0x0 at +0x54",
+        ".rodata+0x14 at +0x1c0",
+        ".rodata+0x14 at +0x1c8"
+      ],
+      "errors": [
+        "own .rodata+0x0 referenced at +0x54 differs from retail 0x801245B8 (jump table entry 4: retail 800f1370, got 800f1374; 20 bytes compared)"
+      ],
+      "extra_words": 0,
+      "elf_function_bytes": 1788,
+      "native_bytes": 1816,
+      "full_extent_relocated_equal": false,
+      "resolved_body_sha256": "7b448ff1c577b2890f7fd038157a88413193fd47f24669ef4e424bd157c7b627",
+      "native_sha256": "c6fb36a11b9e441906119b861abba4d588886b9cf6ab013cd77b428e0af3859c",
+      "frame_bytes": 48
+    },
+    "billboard_render": {
+      "differing": 236,
+      "total": 244,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x2c at +0x8c",
+        ".rodata+0x2c at +0x94"
+      ],
+      "errors": [],
+      "extra_words": 0,
+      "elf_function_bytes": 960,
+      "native_bytes": 976,
+      "full_extent_relocated_equal": false,
+      "resolved_body_sha256": "bccbadc4bfc11f54ec6eb93a3e8f9ac794960edc28294c8711ef0f3f29bf0bc4",
+      "native_sha256": "9792fe217d213987797c79d41ecf410b53f687411fffe6732e13f660de8c38bc",
+      "frame_bytes": 88
+    }
+  },
+  "controls": {
+    "signed_mode_literal": {
+      "func_800F1930": {
+        "differing": 1,
+        "total": 245,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 980,
+        "native_bytes": 980,
+        "full_extent_relocated_equal": false,
+        "resolved_body_sha256": "7a63f21765e3af4d488fd53257ccc0985d45e1ab9238c145f3d77d4cd9f99ab7",
+        "native_sha256": "974e0f071078e4f29a6e7edd87feb9f6ca8c73ef233fc5ced3ee212e6fc6209b",
+        "frame_bytes": 24
+      },
+      "func_800F207C": {
+        "differing": 0,
+        "total": 421,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 1684,
+        "native_bytes": 1684,
+        "full_extent_relocated_equal": true,
+        "resolved_body_sha256": "ebc900f5f5fcb18d898bdc055c85900d3098c460f96d588dd9954165ae7d0168",
+        "native_sha256": "ebc900f5f5fcb18d898bdc055c85900d3098c460f96d588dd9954165ae7d0168",
+        "frame_bytes": 24
+      },
+      "func_800F2718": {
+        "differing": 0,
+        "total": 92,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 368,
+        "native_bytes": 368,
+        "full_extent_relocated_equal": true,
+        "resolved_body_sha256": "a04cb1f45b6b5269ca31a449f0c27a1d5b94fbb27dd77f0a19e6ed950f96b017",
+        "native_sha256": "a04cb1f45b6b5269ca31a449f0c27a1d5b94fbb27dd77f0a19e6ed950f96b017",
+        "frame_bytes": 24
+      },
+      "func_800F0F44": {
+        "differing": 110,
+        "total": 116,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 460,
+        "native_bytes": 464,
+        "full_extent_relocated_equal": false,
+        "resolved_body_sha256": "5b1991b3570ef4645db4f81c66075e3585345717138b9708a84cd8ab6a426dea",
+        "native_sha256": "4097b6efb7e861a06aad59008c3ca4730d25af695b97ad36553118cba4663ae2",
+        "frame_bytes": 24
+      },
+      "func_800F1210": {
+        "differing": 399,
+        "total": 454,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x4c",
+          ".rodata+0x0 at +0x54",
+          ".rodata+0x14 at +0x1c0",
+          ".rodata+0x14 at +0x1c8"
+        ],
+        "errors": [
+          "own .rodata+0x0 referenced at +0x54 differs from retail 0x801245B8 (jump table entry 4: retail 800f1370, got 800f1374; 20 bytes compared)"
+        ],
+        "extra_words": 0,
+        "elf_function_bytes": 1788,
+        "native_bytes": 1816,
+        "full_extent_relocated_equal": false,
+        "resolved_body_sha256": "46b21a8c9902cc0ea0a5bfdf1c6f3c6518acc6998fab2751aa3459255f94a2f0",
+        "native_sha256": "c6fb36a11b9e441906119b861abba4d588886b9cf6ab013cd77b428e0af3859c",
+        "frame_bytes": 48
+      },
+      "billboard_render": {
+        "differing": 236,
+        "total": 244,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x2c at +0x8c",
+          ".rodata+0x2c at +0x94"
+        ],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 960,
+        "native_bytes": 976,
+        "full_extent_relocated_equal": false,
+        "resolved_body_sha256": "bccbadc4bfc11f54ec6eb93a3e8f9ac794960edc28294c8711ef0f3f29bf0bc4",
+        "native_sha256": "9792fe217d213987797c79d41ecf410b53f687411fffe6732e13f660de8c38bc",
+        "frame_bytes": 88
+      }
+    },
+    "genuine_slot_context": {
+      "func_800F1930": {
+        "differing": 0,
+        "total": 245,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 980,
+        "native_bytes": 980,
+        "full_extent_relocated_equal": true,
+        "resolved_body_sha256": "974e0f071078e4f29a6e7edd87feb9f6ca8c73ef233fc5ced3ee212e6fc6209b",
+        "native_sha256": "974e0f071078e4f29a6e7edd87feb9f6ca8c73ef233fc5ced3ee212e6fc6209b",
+        "frame_bytes": 24
+      },
+      "func_800F207C": {
+        "differing": 0,
+        "total": 421,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 1684,
+        "native_bytes": 1684,
+        "full_extent_relocated_equal": true,
+        "resolved_body_sha256": "ebc900f5f5fcb18d898bdc055c85900d3098c460f96d588dd9954165ae7d0168",
+        "native_sha256": "ebc900f5f5fcb18d898bdc055c85900d3098c460f96d588dd9954165ae7d0168",
+        "frame_bytes": 24
+      },
+      "func_800F2718": {
+        "differing": 0,
+        "total": 92,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 368,
+        "native_bytes": 368,
+        "full_extent_relocated_equal": true,
+        "resolved_body_sha256": "a04cb1f45b6b5269ca31a449f0c27a1d5b94fbb27dd77f0a19e6ed950f96b017",
+        "native_sha256": "a04cb1f45b6b5269ca31a449f0c27a1d5b94fbb27dd77f0a19e6ed950f96b017",
+        "frame_bytes": 24
+      },
+      "func_800F0F44": {
+        "differing": 68,
+        "total": 116,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 468,
+        "native_bytes": 464,
+        "full_extent_relocated_equal": false,
+        "resolved_body_sha256": "2ac337fd7f9ad22f753952906bc512c59ec8ab71f82dae123af185bf91ef6eba",
+        "native_sha256": "4097b6efb7e861a06aad59008c3ca4730d25af695b97ad36553118cba4663ae2",
+        "frame_bytes": 56
+      },
+      "func_800F1210": {
+        "differing": 399,
+        "total": 454,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x4c",
+          ".rodata+0x0 at +0x54",
+          ".rodata+0x14 at +0x1c0",
+          ".rodata+0x14 at +0x1c8"
+        ],
+        "errors": [
+          "own .rodata+0x0 referenced at +0x54 differs from retail 0x801245B8 (jump table entry 4: retail 800f1370, got 800f1374; 20 bytes compared)"
+        ],
+        "extra_words": 0,
+        "elf_function_bytes": 1788,
+        "native_bytes": 1816,
+        "full_extent_relocated_equal": false,
+        "resolved_body_sha256": "95babd7cf1261c04d93c69ea23fe4996f76623abaec81990fbf9d64d3dcba929",
+        "native_sha256": "c6fb36a11b9e441906119b861abba4d588886b9cf6ab013cd77b428e0af3859c",
+        "frame_bytes": 48
+      },
+      "billboard_render": {
+        "differing": 236,
+        "total": 244,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x2c at +0x8c",
+          ".rodata+0x2c at +0x94"
+        ],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 960,
+        "native_bytes": 976,
+        "full_extent_relocated_equal": false,
+        "resolved_body_sha256": "bccbadc4bfc11f54ec6eb93a3e8f9ac794960edc28294c8711ef0f3f29bf0bc4",
+        "native_sha256": "9792fe217d213987797c79d41ecf410b53f687411fffe6732e13f660de8c38bc",
+        "frame_bytes": 88
+      },
+      "slot_state_setup": {
+        "differing": 18,
+        "total": 58,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 232,
+        "native_bytes": 232,
+        "full_extent_relocated_equal": false,
+        "resolved_body_sha256": "06a92b7a9376a41713a85b7106f57b94769b75cc19f48c874740f9f6525979cc",
+        "native_sha256": "55d29fb1f5b5789d8b2467a1287a0d16e872cfb6d0c6aa3653bf7b69cc2f0144",
+        "frame_bytes": 32
+      }
+    }
+  },
+  "independent_group_relocation_equal": {
+    "func_800F1930": true,
+    "func_800F207C": true,
+    "func_800F2718": true
+  },
+  "slot_context_inputs_sha256": {
+    "cloud/work/dot_menu_options_root_20261005/slot_state_setup.c": "b28c4a340302f416ff7b0d3ac4c3839ba764a8f0d5fe397c193963248395c362",
+    "cloud/work/dot_menu_options_root_20261005/menu_context.h": "b46f4462c25c5c072dfc444122cfd1f1b0fe34cd7b38e8a711c745bc39ee5b06"
+  },
+  "host_test": "103 save-input scenarios passed"
+}
