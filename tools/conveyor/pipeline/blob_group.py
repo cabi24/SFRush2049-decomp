@@ -173,6 +173,7 @@ def _section_bytes(obj, name):
 
 
 LOCAL_DATA = (".data", ".sdata", ".rodata", ".rdata", ".lit4", ".lit8")
+LOCAL_BSS = (".bss", ".sbss")       # no bytes: verified by address, per reference
 
 
 def _sext16(v):
@@ -419,7 +420,10 @@ def _local_data_bases(obj, rels, syms, in_member, image_word, image_bytes,
     site must agree on one base, and the section's bytes must equal the image
     there. Trailing zero bytes beyond the last referenced word are IDO's
     alignment padding (the linked program placed the next unit's data there)
-    and are not compared. .bss and other sections are refused.
+    and are not compared. .bss/.sbss (no bytes) are always placed per
+    reference through `per_reference`, which applies owndata's address-only
+    rules (one address per object, inside GAME_BSS, no overlaps); without it
+    they are refused, as are other sections.
 
     A symbol with a known image address (`known(name)`, e.g. D_80149B64
     defined by the unit) resolves by name like any extern, wherever the unit
@@ -451,7 +455,8 @@ def _local_data_bases(obj, rels, syms, in_member, image_word, image_bytes,
         section, value = section_of(name)
         if section is None or section == ".text":
             continue
-        if section not in LOCAL_DATA or secs[section][1] != "PROGBITS":
+        if not ((section in LOCAL_DATA and secs[section][1] == "PROGBITS")
+                or (section in LOCAL_BSS and secs[section][1] == "NOBITS")):
             raise GroupError(f"relocation against {section} ({secs[section][1]}) "
                              "is not supported")
         if rtype == "R_MIPS_HI16":
@@ -527,6 +532,16 @@ def _local_data_bases(obj, rels, syms, in_member, image_word, image_bytes,
 
     bases = {}
     for section, found in candidates.items():
+        if section in LOCAL_BSS:
+            # Nothing to compare by content, so no whole-section proof exists:
+            # every object is placed where retail's words put it, after the
+            # address-only checks of tools/cloud/owndata.py.
+            refusal = GroupError(f"{section} is zero-initialised: it can only be placed "
+                                 "per reference")
+            if per_reference is None:
+                raise refusal
+            bases[section] = per_reference(section, wanted[section], refusal)
+            continue
         try:
             bases[section] = whole_section(section, found)
         except GroupError as refusal:

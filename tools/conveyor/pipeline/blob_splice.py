@@ -169,12 +169,23 @@ def own_data_placements(object_path, target_id, vaddr, size, provides, image=Non
 
     Objects without such references return "" before the image is read, so
     their link is exactly what it always was. A reference that cannot be
-    checked (e.g. .bss) also places nothing; the image gate then refuses the
-    body as before. A reference that is checked and differs is a BuildError
-    naming the site, the retail address and both values."""
+    checked also places nothing; the image gate then refuses the body as
+    before. A reference that is checked and differs is a BuildError naming
+    the site, the retail address and both values.
+
+    Zero-initialised own data (.bss) is verified by address only and placed
+    per object; see `_own_data` and `link_function`."""
+    return _own_data(object_path, target_id, vaddr, size, provides, image)[0]
+
+
+def _own_data(object_path, target_id, vaddr, size, provides, image=None):
+    """(linker-script lines, verified .bss references) for the object.
+
+    The .bss references are owndata `bss_sites` entries:
+    (section, object offset, hi sites, lo site, image address)."""
     try:
         if not owndata.own_references(object_path, target_id, limit=size):
-            return ""
+            return "", []
     except (ValueError, IndexError) as exc:
         raise blob_build.BuildError(f"{target_id}: {exc}") from exc
     data, base = image if image is not None else _retail_image()
@@ -198,8 +209,42 @@ def own_data_placements(object_path, target_id, vaddr, size, provides, image=Non
             f"{target_id}: {exc}; the single-function link cannot place them") from exc
     # SUBALIGN(1): IDO aligns its data sections to 16, retail's literals sit at
     # any word; without it ld would round the section up past the address.
-    return "".join(f"    .own{index} 0x{address:08X} : SUBALIGN(1) {{ *({name}) }}\n"
-                   for index, (name, address) in enumerate(sorted(bases.items())))
+    lines = [f"    .own{index} 0x{address:08X} : SUBALIGN(1) {{ *({name}) }}\n"
+             for index, (name, address) in enumerate(sorted(bases.items()))]
+    # Zero-initialised objects: NOLOAD, so nothing is emitted, at the address
+    # of the section's first verified object. One input section cannot be
+    # split, so objects retail keeps at other distances are relocated per
+    # reference after the link (`_place_bss`).
+    for index, (name, objects) in enumerate(sorted(result.bss().items())):
+        first = min(objects)
+        lines.append(f"    .ownbss{index} 0x{(objects[first] - first) & 0xFFFFFFFF:08X} (NOLOAD)"
+                     f" : SUBALIGN(1) {{ *({name}) }}\n")
+    return "".join(lines), list(result.bss_sites)
+
+
+def _place_bss(data, start, size, references, target_id):
+    """Apply verified .bss references to the linked body `data` (from the
+    function's start): each HI16/LO16 immediate is set for the object's
+    verified image address, exactly as the linker would for a symbol there.
+    Only the 16-bit immediates of the listed sites change; a HI16 shared by
+    references whose addresses need different upper halves is refused."""
+    data = bytearray(data)
+    his = {}
+    for _section, _offset, hi_sites, lo_site, address in references:
+        for site, value in [(h, ((address + 0x8000) >> 16) & 0xFFFF) for h in hi_sites] + \
+                [(lo_site, address & 0xFFFF)]:
+            at = site - start
+            if not 0 <= at <= size - 4:
+                raise blob_build.BuildError(f"{target_id}: .bss reference site "
+                                            f"+0x{at:x} is outside the function")
+            if site in hi_sites:
+                if his.setdefault(site, value) != value:
+                    raise blob_build.BuildError(
+                        f"{target_id}: HI16 at +0x{at:x} serves .bss objects whose "
+                        "addresses need different upper halves")
+            word = int.from_bytes(data[at:at + 4], "big")
+            data[at:at + 4] = ((word & 0xFFFF0000) | value).to_bytes(4, "big")
+    return bytes(data)
 
 
 def link_function(object_path, target_id, vaddr, size, provides=None, work=None,
@@ -215,7 +260,9 @@ def link_function(object_path, target_id, vaddr, size, provides=None, work=None,
     and every one of them must resolve. The object's own data sections
     (literals, jump tables, local statics) are verified against `image`
     (bytes, base address; default: the layout's retail image) and placed at
-    the addresses retail uses; see `own_data_placements`."""
+    the addresses retail uses; see `own_data_placements`. Zero-initialised
+    objects (.bss) are verified by address only, never emitted, and placed
+    per object after the link (`_place_bss`)."""
     if provides is None:
         provides = {name: addr for addr, name in blob_tu.data_symbols().items()}
     provides = dict(provides)
@@ -236,7 +283,7 @@ def link_function(object_path, target_id, vaddr, size, provides=None, work=None,
     # an absolute assignment GNU ld places these globals after the function.
     # Only externally visible data objects are rebound; function definitions
     # and local statics retain their normal link semantics.
-    own_data = own_data_placements(object_path, target_id, vaddr, size, provides, image)
+    own_data, bss = _own_data(object_path, target_id, vaddr, size, provides, image)
     provides = "\n".join((f"    {name} = 0x{addr:08X};" if name in defined_data
                            else f"    PROVIDE({name} = 0x{addr:08X});")
                           for name, addr in sorted(provides.items())
@@ -290,6 +337,8 @@ def link_function(object_path, target_id, vaddr, size, provides=None, work=None,
     if extra:
         raise blob_build.BuildError(f"{target_id}: {extra} extra words "
                                     "(nonzero beyond target length)")
+    if bss:
+        data = _place_bss(data, start, size, bss, target_id)
     return data[:size]
 
 

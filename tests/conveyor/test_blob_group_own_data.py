@@ -273,11 +273,45 @@ def test_lo16_without_hi16_in_a_member_is_refused(tmp_path):
         _relocate(obj, image, ["f", "g"], names=["f", "g"])
 
 
-def test_bss_reference_in_a_member_is_refused(tmp_path):
+def test_bss_reference_outside_game_bss_is_refused(tmp_path):
     obj = _two_literal_object(tmp_path, _load("zeroed"), extra="    .bss\nzeroed: .space 4\n")
     image = _image({0x00: _pair(F_LIT) + [JR_RA, 0], 0x20: _pair(G_LIT) + [JR_RA, 0]},
                    {G_LIT: [B]})
-    with pytest.raises(blob_group.GroupError, match=r"\.bss \(NOBITS\) is not supported"):
+    # F_LIT is inside the image: retail initialises it, so it is no .bss object
+    with pytest.raises(blob_group.GroupError,
+                       match=r"^f: own \.bss\+0x0 .*not in a known game \.bss range"):
+        _relocate(obj, image, ["f", "g"], names=["f", "g"])
+
+
+BSS = 0x80156940                    # inside tools/cloud/owndata.GAME_BSS
+ZEROED = "    .bss\nzeroed_f: .space 4\nzeroed_g: .space 4\n"
+
+
+def test_bss_statics_of_two_members_are_placed_per_object(tmp_path):
+    obj = _two_literal_object(tmp_path, _load("zeroed_f"), _load("zeroed_g"), extra=ZEROED)
+    # retail keeps them 8 apart, and in the other order: no section base exists
+    image = _image({0x00: _pair(BSS + 8) + [JR_RA, 0], 0x20: _pair(BSS) + [JR_RA, 0]}, {})
+    bodies = _relocate(obj, image, ["f", "g"], names=["f", "g"])
+    assert bodies["f"] == _body(image, "f") and bodies["g"] == _body(image, "g")
+    # a member with a literal and a context-free .bss member together
+    obj = _two_literal_object(tmp_path, _load("zeroed_f"), extra=ZEROED)
+    image = _image({0x00: _pair(BSS) + [JR_RA, 0], 0x20: _pair(G_LIT) + [JR_RA, 0]},
+                   {G_LIT: [B]})
+    bodies = _relocate(obj, image, ["f", "g"], names=["f", "g"])
+    assert bodies["f"] == _body(image, "f") and bodies["g"] == _body(image, "g")
+
+
+def test_bss_statics_of_two_members_must_not_overlap(tmp_path):
+    obj = _two_literal_object(tmp_path, _load("zeroed_f"), _load("zeroed_g"), extra=ZEROED)
+    image = _image({0x00: _pair(BSS) + [JR_RA, 0], 0x20: _pair(BSS + 2) + [JR_RA, 0]}, {})
+    with pytest.raises(blob_group.GroupError, match="placed over the same image bytes"):
+        _relocate(obj, image, ["f", "g"], names=["f", "g"])
+
+
+def test_one_bss_static_read_at_two_addresses_is_refused(tmp_path):
+    obj = _two_literal_object(tmp_path, _load("zeroed_f"), _load("zeroed_f"), extra=ZEROED)
+    image = _image({0x00: _pair(BSS) + [JR_RA, 0], 0x20: _pair(BSS + 8) + [JR_RA, 0]}, {})
+    with pytest.raises(blob_group.GroupError, match="placed at different image addresses"):
         _relocate(obj, image, ["f", "g"], names=["f", "g"])
 
 

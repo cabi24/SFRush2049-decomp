@@ -4552,6 +4552,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_800F0674": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_800F0674.c",
+    "source_sha256": "ee77e1c78bc1b782c673338fec1df55ac1858a067080cfae2c08205e767d50de",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
+  },
   "func_800F084C": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800F084C.c",

@@ -1098,6 +1098,7 @@ skid_mark_render:
 .section .text.func_800F0674, "ax", @progbits
 .globl func_800F0674
 func_800F0674:
+    /* compiled from src/blob/func_800F0674.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x00803825

@@ -53,6 +53,7 @@ import time
 from pathlib import Path
 
 from . import blob_layout, blob_splice
+from ...cloud import owndata
 
 REPO = blob_splice.REPO
 BUILDER = blob_splice.BUILDER
@@ -581,7 +582,8 @@ def _sext16(v):
 
 STUB_WORDS = (0x03E00008, 0x00000000)       # jr ra; nop
 NOTE_STUBTAIL = "stub tail"
-NOTE_BSS = "own zero-initialised data (addresses consistent, nothing to compare)"
+NOTE_BSS = ("own zero-initialised data (addresses consistent, inside game .bss, "
+            "no overlaps; nothing to compare)")
 
 
 def compare_unit(obj, names, extents, extern, image, base, show=6):
@@ -718,12 +720,26 @@ def compare_unit(obj, names, extents, extern, image, base, show=6):
             unknown_words[section] = set()
         return section_bytes[section]
 
-    def verify_own(section, ours, retail):
+    bss_objects = {}             # (section, offset) -> (retail address, size)
+
+    def verify_own(section, ours, retail, width):
         """'ok' | 'bss' | error text, for one own-data reference: the bytes
         from the referenced offset up to the next offset any function of the
-        unit references must equal the image at the address retail encodes."""
+        unit references must equal the image at the address retail encodes.
+
+        Zero-initialised data has no bytes: its extent (up to the next
+        referenced offset, or the access `width` for the last object) must
+        lie inside a game .bss range (owndata.GAME_BSS); overlaps between
+        objects are checked once the whole unit is seen."""
         ndx = obj.index.get(section)
         if ndx is None or obj.sections[ndx]["type"] == SHT_NOBITS:
+            refs = referenced.get(section, [])
+            k = bisect.bisect_right(refs, ours)
+            size = refs[k] - ours if k < len(refs) else width
+            if owndata.bss_range(retail, size) is None:
+                return (f"{section}+0x{ours:x}: retail words encode 0x{retail:08x} "
+                        f"(+{size} bytes), outside every known game .bss range")
+            bss_objects[(section, ours)] = (retail, size)
             return "bss"
         if obj.sections[ndx]["type"] != SHT_PROGBITS:
             return f"reference into {section}, which is not a data section"
@@ -815,7 +831,8 @@ def compare_unit(obj, names, extents, extern, image, base, show=6):
                 img_lo = image_word(vaddr + site - off)
                 target = ((img_hi & 0xFFFF) << 16) + _sext16(img_lo & 0xFFFF)
                 ours = (0 if section.startswith("COMMON:") else sym["value"]) + addend
-                verdict = verify_own(section, ours, target)
+                width = owndata.ACCESS_WIDTH.get(word(text, site) >> 26, 1)
+                verdict = verify_own(section, ours, target, width)
                 own_map.setdefault((section, ours), {}).setdefault(target, name)
                 res["own_data"] += verdict == "ok"
                 if verdict == "bss":
@@ -855,6 +872,23 @@ def compare_unit(obj, names, extents, extern, image, base, show=6):
             res["error"] = "; ".join(errors[:4]) + (f" (+{len(errors) - 4} more)" if len(errors) > 4 else "")
         else:
             res["status"] = "ok"
+    def refuse(key, extra):
+        for member in own_map.get(key, {}).values():
+            res = results[member]
+            res["status"] = "fail"
+            res["error"] = extra if not res["error"] else res["error"] + "; " + extra
+
+    # Distinct zero-initialised objects must not share retail storage.
+    spans = sorted((address, address + size, key) for key, (address, size)
+                   in bss_objects.items())
+    for i, (address, end, key) in enumerate(spans):
+        for other, _other_end, other_key in spans[i + 1:]:
+            if other >= end:
+                break
+            extra = (f"{key[0]}+0x{key[1]:x} at 0x{address:08x} and {other_key[0]}+0x"
+                     f"{other_key[1]:x} at 0x{other:08x} overlap in the image")
+            refuse(key, extra)
+            refuse(other_key, extra)
     # One object offset must mean one image address across the whole unit.
     for (section, ours), found in sorted(own_map.items()):
         if len(found) > 1:

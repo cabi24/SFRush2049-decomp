@@ -314,12 +314,110 @@ def test_own_data_objects_may_sit_at_independent_addresses(tmp_path):
         result.bases()
 
 
-def test_uninitialised_own_section_cannot_be_verified(tmp_path):
-    obj = build(tmp_path, [LUI_AT, LW_T0, JR_RA, 0], [(0, ".bss", 5), (4, ".bss", 6)])
-    want = [LUI_AT | hi(DATA), LW_T0 | lo(DATA), JR_RA, 0]
-    result = verify(obj, want, image((DATA, bytes(16))))
-    assert not result.sites and not result.failures
-    assert ".bss is not initialised own data" in result.unverified[0]
+# --- zero-initialised own data (.bss): verified by address only ----------------
+
+BSS = 0x80156940                    # inside owndata.GAME_BSS
+LH_T0, SW_T0, LB_T0 = 0x84280000, 0xAC280000, 0x80280000
+
+# Three statics at .bss+0/+4/+8 (as IDO lays out `static u8 *op1, *sp; static
+# s16 cnt;`): op1 stored, sp loaded twice (one shared lui), cnt halfword.
+BSS_WORDS = [LUI_AT, SW_T0, LUI_AT, LW_T0 | 4, LW_T0 | 4, LUI_AT, LH_T0 | 8, JR_RA, 0]
+BSS_RELS = [(0, ".bss", 5), (4, ".bss", 6), (8, ".bss", 5), (12, ".bss", 6),
+            (16, ".bss", 6), (20, ".bss", 5), (24, ".bss", 6)]
+
+
+def bss_want(op1=BSS, sp=BSS + 8, cnt=BSS + 0x10, sp2=None):
+    sp2 = sp if sp2 is None else sp2
+    return [LUI_AT | hi(op1), SW_T0 | lo(op1), LUI_AT | hi(sp), LW_T0 | lo(sp),
+            LW_T0 | lo(sp2), LUI_AT | hi(cnt), LH_T0 | lo(cnt), JR_RA, 0]
+
+
+def bss_object(tmp_path, words=BSS_WORDS, rels=BSS_RELS, **kw):
+    return build(tmp_path, words, rels, **kw)
+
+
+def test_bss_objects_are_placed_per_object_at_the_retail_addresses(tmp_path):
+    """Retail keeps the three statics 8 apart where the object has them 4
+    apart: placement is per object, never one section base."""
+    result = verify(bss_object(tmp_path), bss_want(), image((F, bytes(36))))
+    assert result.ok and result.sites == set(range(0, 28, 4))
+    assert result.bss() == {".bss": {0: BSS, 4: BSS + 8, 8: BSS + 0x10}}
+    assert result.bases() == {}                 # never a section base
+    # extents: up to the next referenced offset; the last one by access width
+    assert sorted(result.placements[".bss"]) == [(0, 4, BSS, "bss"), (4, 8, BSS + 8, "bss"),
+                                                 (8, 10, BSS + 0x10, "bss")]
+    assert result.notes[0] == ("own .bss placed at 0x80156940 (4 bytes; zero-initialised: "
+                               "verified by address only, nothing to compare)")
+    assert {(e[1], e[3], e[4]) for e in result.bss_sites} == {
+        (0, 4, BSS), (4, 12, BSS + 8), (4, 16, BSS + 8), (8, 24, BSS + 0x10)}
+    # no retail data is needed (or consulted) for .bss
+    assert verify(bss_object(tmp_path), bss_want(), None).ok
+
+
+def test_bss_object_read_at_two_addresses_fails(tmp_path):
+    result = verify(bss_object(tmp_path), bss_want(sp2=BSS + 0xC), None)
+    assert not result.ok
+    assert result.failures == ["own .bss+0x4 (referenced at +0xc, +0x10): retail reads this "
+                               "one object at different addresses 0x80156948, 0x8015694C"]
+    assert result.sites == {0, 4, 20, 24}       # op1 and cnt still proven
+    assert 4 not in result.bss().get(".bss", {})
+
+
+def test_bss_address_outside_game_bss(tmp_path):
+    # beyond the zeroed range, no retail bytes: unknown storage -> unverified
+    result = verify(bss_object(tmp_path), bss_want(cnt=0x80180000), None)
+    assert not result.failures and len(result.unverified) == 1
+    assert "0x80180000 (+2 bytes) is not in a known game .bss range" in result.unverified[0]
+    assert result.sites == set(range(0, 20, 4))
+    # inside the image (retail has bytes there): it cannot be .bss -> failure
+    result = verify(bss_object(tmp_path), bss_want(op1=DATA), image((DATA, w(7))))
+    assert "retail has initialised bytes there" in result.failures[0]
+    # straddling the end of the range: the access width counts
+    end = owndata.GAME_BSS[0][1]
+    assert verify(bss_object(tmp_path), bss_want(cnt=end - 2), None).ok
+    words = BSS_WORDS[:6] + [LW_T0 | 8] + BSS_WORDS[7:]
+    result = verify(bss_object(tmp_path, words=words), bss_want(cnt=end - 2)[:6]
+                    + [LW_T0 | lo(end - 2), JR_RA, 0], None)
+    assert "(+4 bytes) is not in a known game .bss range" in result.unverified[0]
+
+
+def test_overlapping_bss_objects_fail(tmp_path):
+    # sp (.bss+4, 4 bytes) placed two bytes into op1's storage
+    result = verify(bss_object(tmp_path), bss_want(sp=BSS + 2), None)
+    assert not result.ok and len(result.failures) == 1
+    assert "own .bss+0x0 at 0x80156940..0x80156944 and own .bss+0x4 at " \
+           "0x80156942..0x80156946 overlap" in result.failures[0]
+    assert result.sites == {20, 24} and set(result.bss()[".bss"]) == {8}
+    # adjacent is fine
+    assert verify(bss_object(tmp_path), bss_want(sp=BSS + 4, cnt=BSS + 8), None).ok
+
+
+def test_bss_offset_outside_the_section_fails(tmp_path):
+    words = [LUI_AT, LW_T0 | 0x40, JR_RA, 0]
+    obj = bss_object(tmp_path, words=words, rels=[(0, ".bss", 5), (4, ".bss", 6)])
+    result = verify(obj, [LUI_AT | hi(BSS), LW_T0 | lo(BSS), JR_RA, 0], None)
+    assert "offset is outside the section" in result.failures[0]
+
+
+def test_bss_mixed_with_rodata_in_one_function(tmp_path):
+    words = LITERAL_WORDS[:4] + [LUI_AT, LB_T0, JR_RA, 0]
+    rels = LITERAL_RELS + [(16, ".bss", 5), (20, ".bss", 6)]
+    obj = build(tmp_path, words, rels, rodata=FLOATS + bytes(8))
+    want = literal_want() + [LUI_AT | hi(BSS), LB_T0 | lo(BSS), JR_RA, 0]
+    want = want[:4] + want[6:]
+    result = verify(obj, want, image((RODATA, FLOATS)))
+    assert result.ok and result.sites == set(range(0, 24, 4))
+    assert result.bases() == {".rodata": RODATA}
+    assert result.bss() == {".bss": {0: BSS}}
+    assert [n.split(" (")[0] for n in result.notes] == [
+        "own .bss placed at 0x80156940", "own .rodata verified at 0x80124000..0x80124008"]
+    # a wrong literal does not affect the static, and vice versa
+    result = verify(obj, want, image((RODATA, w(0x3B23D70A, 0x44BBA000))))
+    assert "differs from retail 0x80124004" in result.failures[0]
+    assert result.bss() == {".bss": {0: BSS}} and {16, 20} <= result.sites
+    result = verify(obj, want[:4] + [LUI_AT | hi(0x80180000), LB_T0 | lo(0x80180000)]
+                    + want[6:], image((RODATA, FLOATS)))
+    assert not result.ok and result.bases() == {".rodata": RODATA} and not result.bss()
 
 
 def test_stray_and_unpaired_own_relocations_are_never_sites(tmp_path):
@@ -485,23 +583,43 @@ def test_scorer_own_data_static_right_and_wrong(tmp_path, monkeypatch, score):
     assert not result.accepted(True)
 
 
-def test_scorer_bss_reference_stays_unverified(tmp_path, monkeypatch, score):
-    obj = build(tmp_path, [LUI_AT, LW_T0, JR_RA, 0], [(0, ".bss", 5), (4, ".bss", 6)])
-    want = [LUI_AT | hi(DATA), LW_T0 | lo(DATA), JR_RA, 0]
-    result = scored(score, monkeypatch, obj, want, image((DATA, bytes(16))))
-    assert not result.accepted() and result.accepted(True) and len(result.unverified) == 2
+def test_scorer_bss_statics_are_a_strict_match(tmp_path, monkeypatch, score):
+    result = scored(score, monkeypatch, bss_object(tmp_path), bss_want(), None)
+    assert result.accepted() and result.summary() == "MATCH"
+    assert len(result.notes) == 3 and "verified by address only" in result.notes[0]
+
+
+def test_scorer_bss_wrong_address_is_never_accepted(tmp_path, monkeypatch, score):
+    obj = bss_object(tmp_path)
+    # one of sp's two loads reads elsewhere: a failure, even with unverified allowed
+    result = scored(score, monkeypatch, obj, bss_want(sp2=BSS + 0xC), None)
+    assert not result.accepted(True) and "different addresses" in result.summary()
+    # overlapping objects
+    result = scored(score, monkeypatch, obj, bss_want(sp=BSS + 2), None)
+    assert not result.accepted(True) and "overlap" in result.summary()
+    # outside every known .bss range: unverified, as before this rule existed
+    result = scored(score, monkeypatch, obj, bss_want(cnt=0x80180000), None)
+    assert not result.accepted() and result.accepted(True)
+    assert any("not in a known game .bss range" in n for n in result.notes)
+    # a .bss reference read from initialised retail data
+    result = scored(score, monkeypatch, obj, bss_want(op1=DATA), image((DATA, w(7))))
+    assert not result.accepted(True) and "initialised bytes" in result.summary()
 
 
 def test_scorer_partly_verified_function_is_not_a_match(tmp_path, monkeypatch, score):
-    """One literal proven, one static in .bss: every masked word must be proven."""
+    """One literal proven, one static not: every masked word must be proven."""
     words = [LUI_AT, LWC1_F4, LUI_AT, LW_T0, JR_RA, 0]
     rels = [(0, ".rodata", 5), (4, ".rodata", 6), (8, ".bss", 5), (12, ".bss", 6)]
     obj = build(tmp_path, words, rels, rodata=FLOATS)
-    want = [LUI_AT | hi(RODATA), LWC1_F4 | lo(RODATA), LUI_AT | hi(DATA), LW_T0 | lo(DATA),
-            JR_RA, 0]
-    result = scored(score, monkeypatch, obj, want, image((RODATA, FLOATS), (DATA, bytes(8))))
-    assert not result.accepted() and len(result.unverified) == 4
+    outside = 0x80180000
+    want = [LUI_AT | hi(RODATA), LWC1_F4 | lo(RODATA), LUI_AT | hi(outside),
+            LW_T0 | lo(outside), JR_RA, 0]
+    result = scored(score, monkeypatch, obj, want, image((RODATA, FLOATS)))
+    assert not result.accepted() and result.accepted(True) and len(result.unverified) == 4
     assert "own .rodata verified" in result.notes[0]
+    want[2:4] = [LUI_AT | hi(BSS), LW_T0 | lo(BSS)]
+    result = scored(score, monkeypatch, obj, want, image((RODATA, FLOATS)))
+    assert result.accepted() and result.summary() == "MATCH"
 
 
 # Verified literals must not relax anything else in the same function.
@@ -663,3 +781,66 @@ def test_splice_link_without_own_data_is_unchanged_and_never_reads_the_image(tmp
                       "    PROVIDE(callee = 0x80010000);\n"
                       "    /DISCARD/ : { *(.pdr) *(.mdebug*) *(.comment) *(.note*)"
                       " *(.reginfo) *(.options) *(.MIPS.abiflags) }\n}\n")
+
+
+BSS_ASM = (" lui $at,%hi(op1)\n sw $t0,%lo(op1)($at)\n"
+           " lui $at,%hi(sp)\n lw $t0,%lo(sp)($at)\n lw $t0,%lo(sp)($at)\n"
+           " lui $at,%hi(cnt)\n lh $t0,%lo(cnt)($at)\n jr $ra\n nop\n")
+
+
+def _bss_object(tmp_path, body=BSS_ASM, rodata=""):
+    return _assembled(tmp_path, body, rodata=rodata,
+                      data=".bss\n.balign 16\nop1: .space 4\nsp: .space 4\ncnt: .space 8\n")
+
+
+@binutils
+def test_splice_link_places_bss_objects_per_object_and_emits_nothing(tmp_path):
+    from tools.conveyor.pipeline import blob_build, blob_splice
+    obj = _bss_object(tmp_path)
+    work = tmp_path / "work"
+    for want in (bss_want(), bss_want(op1=BSS + 0x100, sp=BSS, cnt=BSS + 0x10),
+                 bss_want(op1=BSS, sp=BSS + 4, cnt=BSS + 8)):
+        body = blob_splice.link_function(obj, "f", F, 36, provides={}, work=work,
+                                         image=_retail(want))
+        assert body == w(*want)
+    script = (work / "f.ld").read_text()
+    # one NOLOAD section at the first object's delta; nothing else is emitted
+    assert ".ownbss0 0x80156940 (NOLOAD) : SUBALIGN(1) { *(.bss) }" in script
+    assert len(body) == 36
+    # disagreeing references, overlap: refused, naming the object
+    with pytest.raises(blob_build.BuildError, match=r"own \.bss\+0x4 .*different addresses"):
+        blob_splice.link_function(obj, "f", F, 36, provides={}, work=work,
+                                  image=_retail(bss_want(sp2=BSS + 0xC)))
+    with pytest.raises(blob_build.BuildError, match="overlap"):
+        blob_splice.link_function(obj, "f", F, 36, provides={}, work=work,
+                                  image=_retail(bss_want(sp=BSS + 2)))
+
+
+@binutils
+def test_splice_link_bss_outside_game_bss_is_not_placed(tmp_path):
+    """An unverified object is not placed: its words then differ from retail
+    and the image gate refuses the body, exactly as before the .bss rule."""
+    from tools.conveyor.pipeline import blob_splice
+    obj = _bss_object(tmp_path)
+    work = tmp_path / "work"
+    want = bss_want(cnt=0x80180000)
+    body = blob_splice.link_function(obj, "f", F, 36, provides={}, work=work,
+                                     image=_retail(want))
+    # op1 and sp are proven and placed; cnt is not, and its words differ
+    got = struct.unpack(">9I", body)
+    assert [i for i in range(9) if got[i] != want[i]] == [5, 6]
+
+
+@binutils
+def test_splice_link_bss_with_a_literal(tmp_path):
+    from tools.conveyor.pipeline import blob_splice
+    obj = _bss_object(tmp_path, body=LITERAL_ASM.replace(" jr $ra\n nop\n", "") + BSS_ASM,
+                      rodata=".balign 16\nlit:\n .word 0x3B23D70A, 0x44BB8000\n")
+    want = literal_want()[:4] + bss_want()
+    work = tmp_path / "work"
+    body = blob_splice.link_function(obj, "f", F, 52, provides={}, work=work,
+                                     image=_retail(want, lit=(RODATA, FLOATS)))
+    assert body == w(*want)
+    script = (work / "f.ld").read_text()
+    assert ".own0 0x80124000 : SUBALIGN(1) { *(.rodata) }" in script
+    assert ".ownbss0 0x80156940 (NOLOAD)" in script

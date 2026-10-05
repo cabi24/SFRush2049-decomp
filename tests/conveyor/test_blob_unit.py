@@ -542,6 +542,28 @@ def test_own_bss_reference_is_noted_not_failed():
     assert res["f"]["status"] == "ok" and res["f"]["notes"] == [bu.NOTE_BSS]
 
 
+def _bss_f(first, second):
+    """f stores to .bss+0x10 and loads .bss+0x14 (two statics)."""
+    relocs = [(0, bu.R_MIPS_HI16, 7), (4, bu.R_MIPS_LO16, 7),
+              (8, bu.R_MIPS_HI16, 7), (12, bu.R_MIPS_LO16, 7)]
+    f = [0x3C010000, 0xAC280010, 0x3C010000, 0x8C280014, JR_RA, NOP, JR_RA, NOP]
+    image = [0x3C010000 | _hi(first), 0xAC280000 | (first & 0xFFFF),
+             0x3C010000 | _hi(second), 0x8C280000 | (second & 0xFFFF), JR_RA, NOP, JR_RA, NOP]
+    return _compare(_unit(f, G_UNIT, relocs), image)
+
+
+def test_own_bss_objects_sit_anywhere_in_game_bss_without_overlap():
+    res = _bss_f(0x80156940, 0x80156948)            # 8 apart where the unit has 4
+    assert res["f"]["status"] == "ok" and res["f"]["notes"] == [bu.NOTE_BSS]
+    res = _bss_f(0x80156940, 0x80156942)            # overlap
+    assert res["f"]["status"] == "fail" and "overlap in the image" in res["f"]["error"]
+    res = _bss_f(0x80156940, 0x80180000)            # beyond the zeroed range
+    assert res["f"]["status"] == "fail"
+    assert "outside every known game .bss range" in res["f"]["error"]
+    res = _bss_f(0x80156940, 0x8017A63E)            # last object: a 4-byte load
+    assert "0x8017a63e (+4 bytes), outside" in res["f"]["error"]
+
+
 def test_emission_summary():
     obj = _unit(F_UNIT, G_UNIT, F_RELOCS)
     info = bu.emission(obj, {"f": (F_ADDR, 32), "g": (F_ADDR + 32, 8)})

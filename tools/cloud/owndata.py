@@ -30,8 +30,15 @@ Rules (see cloud/work/frontier/rodata/README.md):
   references into one read-only section must agree on a single section base.
   `.data` is laid out per translation unit; its windows are checked
   independently and reported with their addresses as a distinct class.
-* Uninitialised sections (.bss) cannot be checked by content and stay
-  unverified.
+* Uninitialised sections (.bss, .sbss) have no bytes in the image, so they
+  are verified by ADDRESS only (see `_verify_uninitialised` and
+  cloud/work/frontier/bss/README.md). Each referenced object offset is
+  placed on its own (per object, like .data), at the one address every
+  retail word referring to it encodes; that address range must lie inside a
+  known game .bss range (GAME_BSS) and must not overlap another object of
+  the function. What this proves: once the objects are placed there, every
+  code word that refers to them equals retail. It does not prove the
+  objects' sizes, types or initial (zero) contents.
 
 Standard library only: tools/cloud must run from a bare checkout.
 
@@ -53,22 +60,51 @@ REPO = Path(__file__).resolve().parents[2]
 READ_ONLY = (".rodata", ".rdata", ".lit4", ".lit8")
 WRITABLE = (".data", ".sdata")
 OWN_SECTIONS = READ_ONLY + WRITABLE
+UNINITIALISED = (".bss", ".sbss")
 
-SHT_PROGBITS, SHT_SYMTAB, SHT_RELA, SHT_REL = 1, 2, 4, 9
+SHT_PROGBITS, SHT_SYMTAB, SHT_RELA, SHT_NOBITS, SHT_REL = 1, 2, 4, 8, 9
 STT_FUNC, STT_SECTION = 2, 3
 R_MIPS_32, R_MIPS_HI16, R_MIPS_LO16 = 2, 5, 6
 DOUBLEWORD_OPCODES = (0x35, 0x3D, 0x37, 0x3F)      # ldc1, sdc1, ld, sd
+
+# The game's zero-initialised storage: [start, end) image addresses. Nothing
+# here is in the ROM; boot code zeroes it. Source: the static boot routine at
+# 0x8000233C (work/boot/game_init/README.md) calls
+# bzero(0x801249F0, 0x8017A640 - 0x801249F0); the linked game image ends at
+# 0x801249F0 (asm/us/blob symbols.json). Add a range only with such evidence.
+GAME_BSS = (
+    (0x801249F0, 0x8017A640, "game .bss: zeroed by boot code at 0x80002350 (bzero)"),
+)
+
+# Bytes a load or store moves, by opcode; anything else that carries a LO16
+# (addiu, ori: an address is formed) proves only one byte of the object.
+ACCESS_WIDTH = {0x20: 1, 0x24: 1, 0x28: 1,                  # lb lbu sb
+                0x21: 2, 0x25: 2, 0x29: 2,                  # lh lhu sh
+                0x23: 4, 0x2B: 4, 0x31: 4, 0x39: 4,         # lw sw lwc1 swc1
+                0x22: 4, 0x26: 4, 0x2A: 4, 0x2E: 4,         # lwl lwr swl swr
+                0x27: 4,                                    # lwu
+                0x35: 8, 0x3D: 8, 0x37: 8, 0x3F: 8}         # ldc1 sdc1 ld sd
 
 ARTIFACT_NAME = "opaque.hex"
 ARTIFACT_LINE = 32                                  # bytes per line
 
 
 def section_class(name):
-    """'rodata', 'data' or None for a section name."""
+    """'rodata', 'data', 'bss' or None for a section name."""
     if name in READ_ONLY:
         return "rodata"
     if name in WRITABLE:
         return "data"
+    if name in UNINITIALISED:
+        return "bss"
+    return None
+
+
+def bss_range(address, size):
+    """The GAME_BSS entry holding [address, address + size), or None."""
+    for start, end, why in GAME_BSS:
+        if start <= address and address + size <= end:
+            return start, end, why
     return None
 
 
@@ -233,6 +269,9 @@ class Result:
     placements: dict = field(default_factory=dict)
     zero: set = field(default_factory=set)      # (section name, image address)
     references: int = 0
+    # Verified .bss references: [(section name, object offset, hi sites,
+    # lo site, image address)]; sites are offsets in the function's section.
+    bss_sites: list = field(default_factory=list)
 
     @property
     def ok(self):
@@ -240,14 +279,29 @@ class Result:
 
     def bases(self):
         """{section name: image address of the section start}, or ValueError
-        when one section's windows sit at independent image addresses."""
+        when one section's windows sit at independent image addresses.
+
+        Zero-initialised sections are left out: they are placed per object
+        (see `bss`), never as one section base."""
         out = {}
         for name, windows in self.placements.items():
+            if any(cls == "bss" for _lo, _hi, _address, cls in windows):
+                continue
             found = {(address - lo) & 0xFFFFFFFF for lo, _hi, address, _cls in windows}
             if len(found) != 1:
                 raise ValueError(f"own {name} windows sit at independent image addresses "
                                  f"{sorted(hex(b) for b in found)}")
             out[name] = found.pop()
+        return out
+
+    def bss(self):
+        """{section name: {object offset: image address}} of verified
+        zero-initialised objects."""
+        out = {}
+        for name, windows in self.placements.items():
+            for lo, _hi, address, cls in windows:
+                if cls == "bss":
+                    out.setdefault(name, {})[lo] = address
         return out
 
 
@@ -387,6 +441,7 @@ def verify(obj, name, want, address=None, image=None, start=None, addresses=None
         return None, f"table entry .text+0x{offset:x} is outside the function"
 
     deltas = {}                     # read-only section -> {delta: where}
+    uninitialised = []              # .bss windows, verified by address below
     for (section, offset), uses in sorted(windows.items()):
         sec = obj.sections[section]
         cls = section_class(sec["name"])
@@ -394,6 +449,9 @@ def verify(obj, name, want, address=None, image=None, start=None, addresses=None
         where = uses[0][2]
         label = f"own {sec['name']}"
         raw = obj.raw(section)
+        if cls == "bss" and sec["type"] == SHT_NOBITS:
+            uninitialised.append((section, offset, uses, sites))
+            continue
         if cls is None or raw is None:
             result.unverified.extend(
                 f"{w}: {sec['name']} is not initialised own data and cannot be checked by content"
@@ -490,9 +548,89 @@ def verify(obj, name, want, address=None, image=None, start=None, addresses=None
                 for _offset, sites in uses:
                     blocked.update(sites)
             result.placements.pop(name_, None)
+    _verify_uninitialised(obj, uninitialised, starts, image, result, blocked)
     result.sites -= blocked
+    result.bss_sites = [entry for entry in result.bss_sites
+                        if not blocked & set(entry[2] + (entry[3],))]
     result.notes = _notes(result.placements, result.zero)
     return result
+
+
+def _verify_uninitialised(obj, windows, starts, image, result, blocked):
+    """Address-only verification of own .bss references (no bytes exist).
+
+    windows   [(section index, object offset, uses, sites)], `uses` as in
+              `verify`: [(retail address, Reference, where)]
+    starts    section index -> every object offset any function references
+
+    Each referenced object offset is one object, placed on its own:
+      * every retail word pair referring to it encodes the same address
+        (otherwise a failure: the source's objects are not retail's);
+      * its extent is the gap to the next referenced offset of the section,
+        or, for the last one, the widest access made to it (the section's
+        tail is IDO alignment padding and proves nothing);
+      * that extent lies inside one GAME_BSS range. An address with retail
+        bytes (inside the image) is a failure: retail initialises it, so
+        the object cannot be zero-initialised. Anything else outside the
+        ranges stays unverified;
+      * no two objects overlap in the image (a failure).
+    A verified object adds a placement (class 'bss') and its sites."""
+    candidates = []
+    for section, offset, uses, sites in windows:
+        sec = obj.sections[section]
+        label = f"own {sec['name']}+0x{offset:x}"
+        addresses = {addr for addr, _ref, _where in uses}
+        at = ", ".join(f"+0x{ref.lo_site:x}" for _a, ref, _w in uses)
+        if len(addresses) != 1:
+            result.failures.append(
+                f"{label} (referenced at {at}): retail reads this one object at different "
+                "addresses " + ", ".join(f"0x{a:08X}" for a in sorted(addresses)))
+            blocked.update(sites)
+            continue
+        address = addresses.pop()
+        if not 0 <= offset < sec["size"]:
+            result.failures.append(f"{label}: offset is outside the section "
+                                   f"(0x{sec['size']:x} bytes)")
+            blocked.update(sites)
+            continue
+        following = min((s for s in starts[section] if s > offset), default=None)
+        if following is not None and following <= sec["size"]:
+            size = following - offset
+        else:
+            widest = max(ACCESS_WIDTH.get(ref.opcode, 1) for _a, ref, _w in uses)
+            size = min(widest, sec["size"] - offset)
+        if bss_range(address, size) is None:
+            inside = image is not None and image.read(address, 1) is not None
+            message = (f"{label} (referenced at {at}): retail address 0x{address:08X} "
+                       f"(+{size} bytes) is not in a known game .bss range")
+            if inside:
+                result.failures.append(message + "; retail has initialised bytes there")
+            else:
+                result.unverified.append(message)
+            blocked.update(sites)
+            continue
+        candidates.append((address, address + size, sec["name"], offset, uses, sites, label))
+    clash = set()
+    ordered = sorted(candidates, key=lambda c: (c[0], c[1]))
+    for i, first in enumerate(ordered):
+        for j in range(i + 1, len(ordered)):
+            second = ordered[j]
+            if second[0] >= first[1]:
+                break
+            result.failures.append(
+                f"{first[6]} at 0x{first[0]:08X}..0x{first[1]:08X} and {second[6]} at "
+                f"0x{second[0]:08X}..0x{second[1]:08X} overlap: distinct objects of the "
+                "source would share retail storage")
+            clash.update((i, j))
+    for i, (address, end, name, offset, uses, sites, _label) in enumerate(ordered):
+        if i in clash:
+            blocked.update(sites)
+            continue
+        result.placements.setdefault(name, []).append((offset, offset + end - address,
+                                                       address, "bss"))
+        result.sites.update(sites)
+        for _a, ref, _w in uses:
+            result.bss_sites.append((name, offset, ref.hi_sites, ref.lo_site, address))
 
 
 def _notes(placements, zero=()):
@@ -505,7 +643,10 @@ def _notes(placements, zero=()):
             else:
                 merged.append([address, address + hi - lo, cls])
         for lo, hi, cls in merged:
-            if cls == "data":
+            if cls == "bss":
+                notes.append(f"own {name} placed at 0x{lo:08X} ({hi - lo} bytes; zero-initialised: "
+                             "verified by address only, nothing to compare)")
+            elif cls == "data":
                 # An all-zero object proves little by content: say so.
                 what = "bytes, all zero" if (name, lo) in zero else "bytes"
                 notes.append(f"own {name} verified at 0x{lo:08X} ({hi - lo} {what}; "
