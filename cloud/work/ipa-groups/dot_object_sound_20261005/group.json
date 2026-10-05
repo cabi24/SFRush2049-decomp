@@ -1,0 +1,16 @@
+{
+  "files": [
+    "candidate.c"
+  ],
+  "members": [
+    "func_8010DBB8"
+  ],
+  "claims": [
+    "func_8010DBB8"
+  ],
+  "keep": [
+    "func_8010DBB8"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "note": "Authentic substantive arcade dotprod helper is internalized and inlined by O3; no helper/stub coverage claim."
+}
