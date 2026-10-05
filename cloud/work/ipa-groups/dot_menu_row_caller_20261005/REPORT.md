@@ -134,3 +134,13 @@ unmatched, and this packet does not establish a production-ready unit.
 See `integration.json` for the actual aggregate result, unchanged-baseline
 comparison, protected-path checks, and toolchain setup. No unrelated baseline
 failure is fixed or waived here.
+
+The strict changed-submission CLI currently **fails (exit 1)** on the helper's
+two unverified own-literal relocations. The full verifier resolves these fixups
+and passes, but does not override the ordinary scorer's gate. The first remote
+CI run stopped at that submission step; static-lock, Conveyor and Cloud test
+steps were skipped, including the newly added full-proof replay test. Their
+local results above remain separately verified. The initial integration PASS
+label was a reporting error from reading the progress message without checking
+the command's exit status. No scorer change, `allow_unverified` waiver, claim
+removal or unrelated CI repair is made.
