@@ -1,0 +1,2718 @@
+   +008  lw t6,0(s4)                      lw t6,0(s4)
+|  +00c  beqz s1,0x27ec                   beqz s1,0x27e8
+   +010  sw t6,596(sp)                    sw t6,596(sp)
+   +1b4  lhu t9,0(s0)                     lhu t9,0(s0)
+|                                         lui s2,0xf200
+   +1b8  sra t8,t7,0x5                    sra t8,t7,0x5
+   +268  lhu t7,4(s0)                     lhu t7,4(s0)
+|  +26c  lui at,0xf200                    
+   +270  sra t9,t7,0x5                    sra t9,t7,0x5
+   +320  sll t9,t7,0xc                    sll t9,t7,0xc
+|  +324  or t6,t9,at                      or t6,t9,s2
+   +328  sra t7,t8,0x5                    sra t7,t8,0x5
+   +3e8  lui t7,0xe600                    lui t7,0xe600
+|  +3ec  li t3,2047                       lui s2,0xf200
+   +3f0  addiu t8,t6,8                    addiu t8,t6,8
+   +404  lui t8,0xf300                    lui t8,0xf300
+|                                         li t3,2047
+   +408  addiu t6,t4,8                    addiu t6,t4,8
+   +518  lw t7,596(sp)                    lw t7,596(sp)
+|  +51c  lui t9,0xf200                    
+   +520  addiu t6,t7,8                    addiu t6,t7,8
+   +524  sw t6,596(sp)                    sw t6,596(sp)
+|  +528  sw t9,0(t7)                      sw s2,0(t7)
+|  +52c  lhu t8,16(s1)                    lhu t9,16(s1)
+   +530  move t2,t7                       move t2,t7
+|                                         addiu t8,t9,-1
+|                                         sll t7,t8,0x2
+|                                         lhu t8,18(s1)
+|                                         andi t6,t7,0xfff
+|                                         sll t9,t6,0xc
+   +534  addiu t7,t8,-1                   addiu t7,t8,-1
+   +538  sll t6,t7,0x2                    sll t6,t7,0x2
+|  +53c  lhu t7,18(s1)                    andi t8,t6,0xfff
+|  +540  andi t9,t6,0xfff                 or t7,t9,t8
+|  +544  sll t8,t9,0xc                    
+|  +548  addiu t6,t7,-1                   
+|  +54c  sll t9,t6,0x2                    
+|  +550  andi t7,t9,0xfff                 
+|  +554  or t6,t8,t7                      
+   +558  b 0x26d8                         b 0x26d8
+|  +55c  sw t6,4(t2)                      sw t7,4(t2)
+   +560  beqz s0,0x778                    beqz s0,0x778
+   +570  lui ra,0xf518                    lui ra,0xf518
+|  +574  addiu t8,v0,8                    addiu t9,v0,8
+|  +578  sw t8,596(sp)                    sw t9,596(sp)
+|  +57c  lhu t7,16(s1)                    lhu t8,16(s1)
+   +580  andi a2,a1,0x3                   andi a2,a1,0x3
+   +584  andi a3,t3,0xf                   andi a3,t3,0xf
+|  +588  addiu t6,t7,-1                   addiu t7,t8,-1
+|  +58c  andi t9,t6,0xfff                 andi t6,t7,0xfff
+|  +590  or t8,t9,at                      or t9,t6,at
+|  +594  sw t8,0(v0)                      sw t9,0(v0)
+|  +598  lw t7,24(s1)                     lw t8,24(s1)
+   +59c  lui t5,0x700                     lui t5,0x700
+   +5a0  andi t0,t2,0x3                   andi t0,t2,0x3
+|  +5a4  sw t7,4(v0)                      sw t8,4(v0)
+   +5a8  lw v1,596(sp)                    lw v1,596(sp)
+   +5b0  lui at,0xf400                    lui at,0xf400
+|  +5b4  addiu t9,v1,8                    addiu t6,v1,8
+|                                         sw t6,596(sp)
+|                                         lhu t9,4(s0)
+|                                         lhu t7,0(s0)
+|                                         lui s2,0xf200
+|                                         sra t8,t9,0x5
+|                                         sra t6,t7,0x5
+|                                         subu t9,t8,t6
+|                                         sll t7,t9,0x1
+|                                         addiu t8,t7,9
+|                                         sra t6,t8,0x3
+|                                         andi t9,t6,0x1ff
+|                                         sll t7,t9,0x9
+|                                         or t8,t7,ra
+|                                         sll t6,a2,0x12
+|                                         move a2,t6
+|                                         sll t9,a3,0xe
+|                                         move a3,t9
+|                                         or t6,t6,t5
+|                                         sll t7,t0,0x8
+|                                         sw t8,0(v1)
+|                                         sll t8,t1,0x4
+|                                         move t0,t7
+|                                         or t9,t6,t9
+|                                         or t7,t9,t7
+|                                         move t1,t8
+|                                         or t8,t7,t8
+|                                         sw t8,4(v1)
+|                                         lw t6,596(sp)
+|                                         lui t7,0xe600
+|                                         addiu t9,t6,8
+   +5b8  sw t9,596(sp)                    sw t9,596(sp)
+|  +5bc  lhu t8,4(s0)                     sw zero,4(t6)
+|  +5c0  lhu t6,0(s0)                     sw t7,0(t6)
+|  +5c4  sra t7,t8,0x5                    
+|  +5c8  sra t9,t6,0x5                    
+|  +5cc  subu t8,t7,t9                    
+|  +5d0  sll t6,t8,0x1                    
+|  +5d4  addiu t7,t6,9                    
+|  +5d8  sra t9,t7,0x3                    
+|  +5dc  andi t8,t9,0x1ff                 
+|  +5e0  sll t6,t8,0x9                    
+|  +5e4  or t7,t6,ra                      
+|  +5e8  sll t9,a2,0x12                   
+|  +5ec  move a2,t9                       
+|  +5f0  sll t8,a3,0xe                    
+|  +5f4  move a3,t8                       
+|  +5f8  or t9,t9,t5                      
+|  +5fc  sll t6,t0,0x8                    
+|  +600  sw t7,0(v1)                      
+|  +604  sll t7,t1,0x4                    
+|  +608  move t0,t6                       
+|  +60c  or t8,t9,t8                      
+|  +610  or t6,t8,t6                      
+|  +614  move t1,t7                       
+|  +618  or t7,t6,t7                      
+|  +61c  sw t7,4(v1)                      
+|  +620  lw t9,596(sp)                    
+|  +624  lui t6,0xe600                    
+|  +628  addiu t8,t9,8                    
+|  +62c  sw t8,596(sp)                    
+|  +630  sw zero,4(t9)                    
+|  +634  sw t6,0(t9)                      
+   +638  lw v0,596(sp)                    lw v0,596(sp)
+|  +63c  addiu t9,v0,8                    addiu t6,v0,8
+|  +640  sw t9,596(sp)                    
+|  +644  lhu t8,0(s0)                     
+|  +648  sra t6,t8,0x5                    
+|  +64c  sll t7,t6,0x2                    
+|  +650  andi t9,t7,0xfff                 
+|  +654  lhu t7,2(s0)                     
+|  +658  sll t8,t9,0xc                    
+|  +65c  or t6,t8,at                      
+|  +660  sra t9,t7,0x5                    
+|  +664  sll t8,t9,0x2                    
+|  +668  andi t7,t8,0xfff                 
+|  +66c  or t9,t6,t7                      
+|  +670  sw t9,0(v0)                      
+|  +674  lhu t8,4(s0)                     
+|  +678  lui at,0xf200                    
+|  +67c  sra t6,t8,0x5                    
+|  +680  sll t7,t6,0x2                    
+|  +684  andi t9,t7,0xfff                 
+|  +688  lhu t7,6(s0)                     
+|  +68c  sll t8,t9,0xc                    
+|  +690  or t6,t8,t5                      
+|  +694  sra t9,t7,0x5                    
+|  +698  sll t8,t9,0x2                    
+|  +69c  andi t7,t8,0xfff                 
+|  +6a0  or t9,t6,t7                      
+|  +6a4  sw t9,4(v0)                      
+|  +6a8  lw t8,596(sp)                    
+|  +6ac  lui t7,0xe700                    
+|  +6b0  addiu t6,t8,8                    
+   +6b4  sw t6,596(sp)                    sw t6,596(sp)
+|  +6b8  sw zero,4(t8)                    
+|  +6bc  sw t7,0(t8)                      
+|  +6c0  lw a0,596(sp)                    
+|  +6c4  addiu t8,a0,8                    
+|  +6c8  sw t8,596(sp)                    
+|  +6cc  lhu t6,4(s0)                     
+   +6d0  lhu t9,0(s0)                     lhu t9,0(s0)
+|  +6d4  sra t7,t6,0x5                    
+|  +6d8  sra t8,t9,0x5                    
+|  +6dc  subu t6,t7,t8                    
+|  +6e0  sll t9,t6,0x1                    
+|  +6e4  addiu t7,t9,9                    
+|  +6e8  sra t8,t7,0x3                    
+|  +6ec  andi t6,t8,0x1ff                 
+|  +6f0  sll t9,t6,0x9                    
+|  +6f4  or t8,a2,a3                      
+|  +6f8  or t6,t8,t0                      
+|  +6fc  or t7,t9,ra                      
+|  +700  or t9,t6,t1                      
+|  +704  sw t9,4(a0)                      
+|  +708  sw t7,0(a0)                      
+|  +70c  lw v0,596(sp)                    
+|  +710  addiu t8,v0,8                    
+|  +714  sw t8,596(sp)                    
+|  +718  lhu t6,0(s0)                     
+|  +71c  sra t9,t6,0x5                    
+|  +720  sll t7,t9,0x2                    
+|  +724  andi t8,t7,0xfff                 
+|  +728  lhu t7,2(s0)                     
+|  +72c  sll t6,t8,0xc                    
+|  +730  or t9,t6,at                      
+|  +734  sra t8,t7,0x5                    
+|  +738  sll t6,t8,0x2                    
+|  +73c  andi t7,t6,0xfff                 
+|  +740  or t8,t9,t7                      
+|  +744  sw t8,0(v0)                      
+|  +748  lhu t6,4(s0)                     
+|  +74c  sra t9,t6,0x5                    
+|  +750  sll t7,t9,0x2                    
+|  +754  lhu t9,6(s0)                     
+|  +758  andi t8,t7,0xfff                 
+|  +75c  sll t6,t8,0xc                    
+   +760  sra t7,t9,0x5                    sra t7,t9,0x5
+   +764  sll t8,t7,0x2                    sll t8,t7,0x2
+|  +768  andi t9,t8,0xfff                 andi t6,t8,0xfff
+|  +76c  or t7,t6,t9                      lhu t8,2(s0)
+|  +770  b 0x26d8                         sll t9,t6,0xc
+|  +774  sw t7,4(v0)                      or t7,t9,at
+|  +778  lw t8,596(sp)                    sra t6,t8,0x5
+|  +77c  lui t9,0xfd18                    sll t9,t6,0x2
+|  +780  andi a2,a1,0x3                   andi t8,t9,0xfff
+|  +784  addiu t6,t8,8                    or t6,t7,t8
+|  +788  sw t6,596(sp)                    sw t6,0(v0)
+|  +78c  sw t9,0(t8)                      lhu t9,4(s0)
+|  +790  lw t7,24(s1)                     sra t7,t9,0x5
+|  +794  lui ra,0xf518                    sll t8,t7,0x2
+|  +798  sll t9,a2,0x12                   andi t6,t8,0xfff
+|  +79c  sw t7,4(t8)                      lhu t8,6(s0)
+|  +7a0  lw t8,596(sp)                    sll t9,t6,0xc
+|  +7a4  andi a3,t3,0xf                   or t7,t9,t5
+|  +7a8  sll t7,a3,0xe                    sra t6,t8,0x5
+|  +7ac  addiu t6,t8,8                    sll t9,t6,0x2
+|  +7b0  sw t6,596(sp)                    andi t8,t9,0xfff
+|  +7b4  move a2,t9                       or t6,t7,t8
+|  +7b8  andi t0,t2,0x3                   sw t6,4(v0)
+|  +7bc  sw ra,0(t8)                      
+|  +7c0  move v1,t8                       
+|  +7c4  sll t8,t0,0x8                    
+|  +7c8  or t9,t9,t5                      
+|  +7cc  move a3,t7                       
+|  +7d0  andi t1,s2,0xf                   
+|  +7d4  sll t6,t1,0x4                    
+|  +7d8  or t7,t9,t7                      
+|  +7dc  move t0,t8                       
+|  +7e0  or t8,t7,t8                      
+|  +7e4  move t1,t6                       
+|  +7e8  or t6,t8,t6                      
+|  +7ec  sw t6,4(v1)                      
+   +7f0  lw t9,596(sp)                    lw t9,596(sp)
+|  +7f4  lui t8,0xe600                    lui t8,0xe700
+|  +7f8  li t3,2047                       
+   +7fc  addiu t7,t9,8                    addiu t7,t9,8
+   +808  sw t8,0(t9)                      sw t8,0(t9)
+|                                         lw a0,596(sp)
+|                                         addiu t9,a0,8
+|                                         sw t9,596(sp)
+|                                         lhu t7,4(s0)
+|                                         lhu t6,0(s0)
+|                                         sra t8,t7,0x5
+|                                         sra t9,t6,0x5
+|                                         subu t7,t8,t9
+|                                         sll t6,t7,0x1
+|                                         addiu t8,t6,9
+|                                         sra t9,t8,0x3
+|                                         andi t7,t9,0x1ff
+|                                         sll t6,t7,0x9
+|                                         or t9,a2,a3
+|                                         or t7,t9,t0
+|                                         or t8,t6,ra
+|                                         or t6,t7,t1
+|                                         sw t6,4(a0)
+|                                         sw t8,0(a0)
+|                                         lw v0,596(sp)
+|                                         addiu t9,v0,8
+|                                         sw t9,596(sp)
+|                                         lhu t7,0(s0)
+|                                         sra t6,t7,0x5
+|                                         sll t8,t6,0x2
+|                                         andi t9,t8,0xfff
+|                                         lhu t8,2(s0)
+|                                         sll t7,t9,0xc
+|                                         or t6,t7,s2
+|                                         sra t9,t8,0x5
+|                                         sll t7,t9,0x2
+|                                         andi t8,t7,0xfff
+|                                         or t9,t6,t8
+|                                         sw t9,0(v0)
+|                                         lhu t7,4(s0)
+|                                         sra t6,t7,0x5
+|                                         sll t8,t6,0x2
+|                                         lhu t6,6(s0)
+|                                         andi t9,t8,0xfff
+|                                         sll t7,t9,0xc
+|                                         sra t8,t6,0x5
+|                                         sll t9,t8,0x2
+|                                         andi t6,t9,0xfff
+|                                         or t8,t7,t6
+|                                         b 0x26d8
+|                                         sw t8,4(v0)
+|                                         lw t9,596(sp)
+|                                         lui t6,0xfd18
+|                                         andi a2,a1,0x3
+|                                         addiu t7,t9,8
+|                                         sw t7,596(sp)
+|                                         sw t6,0(t9)
+|                                         lw t8,24(s1)
+|                                         lui ra,0xf518
+|                                         sll t6,a2,0x12
+|                                         sw t8,4(t9)
+|                                         lw t9,596(sp)
+|                                         andi a3,t3,0xf
+|                                         sll t8,a3,0xe
+|                                         addiu t7,t9,8
+|                                         sw t7,596(sp)
+|                                         move a2,t6
+|                                         andi t0,t2,0x3
+|                                         sw ra,0(t9)
+|                                         move v1,t9
+|                                         sll t9,t0,0x8
+|                                         or t6,t6,t5
+|                                         move a3,t8
+|                                         andi t1,s2,0xf
+|                                         sll t7,t1,0x4
+|                                         or t8,t6,t8
+|                                         move t0,t9
+|                                         or t9,t8,t9
+|                                         move t1,t7
+|                                         or t7,t9,t7
+|                                         sw t7,4(v1)
+|                                         lw t6,596(sp)
+|                                         lui t9,0xe600
+|                                         lui s2,0xf200
+|                                         addiu t8,t6,8
+|                                         sw t8,596(sp)
+|                                         sw zero,4(t6)
+|                                         sw t9,0(t6)
+   +80c  lw t4,596(sp)                    lw t4,596(sp)
+|  +810  lui t7,0xf300                    lui t8,0xf300
+|  +814  addiu t9,t4,8                    li t3,2047
+|  +818  sw t9,596(sp)                    addiu t6,t4,8
+|  +81c  sw t7,0(t4)                      sw t6,596(sp)
+|  +820  lhu t8,18(s1)                    sw t8,0(t4)
+|                                         lhu t9,18(s1)
+   +824  lhu a0,16(s1)                    lhu a0,16(s1)
+|  +828  multu a0,t8                      multu a0,t9
+   +82c  sll v1,a0,0x2                    sll v1,a0,0x2
+   +84c  bgez v1,0x85c                    bgez v1,0x860
+|  +850  sra t6,v1,0x3                    sra t7,v1,0x3
+   +854  addiu at,v1,7                    addiu at,v1,7
+|  +858  sra t6,at,0x3                    sra t7,at,0x3
+|  +85c  bgtz t6,0x86c                    bgtz t7,0x870
+|  +860  move v1,t6                       move v1,t7
+   +864  b 0x870                          b 0x874
+   +870  bgtz v1,0x880                    bgtz v1,0x884
+|  +874  addiu t9,a1,2047                 addiu t6,a1,2047
+   +878  b 0x884                          b 0x888
+   +880  move v0,v1                       move v0,v1
+|  +884  div zero,t9,v0                   div zero,t6,v0
+|  +888  mflo t7                          mflo t8
+|  +88c  andi t8,t7,0xfff                 andi t9,t8,0xfff
+   +890  bnez v0,0x89c                    bnez v0,0x8a0
+   +8a4  lui at,0x8000                    lui at,0x8000
+|  +8a8  bne t9,at,0x8b4                  bne t6,at,0x8b8
+   +8ac  nop                              nop
+   +8b0  break 0x6                        break 0x6
+|  +8b4  andi t9,t3,0xfff                 andi t6,t3,0xfff
+|  +8b8  sll t7,t9,0xc                    sll t8,t6,0xc
+|  +8bc  or t6,t8,t5                      or t7,t9,t5
+|  +8c0  or t8,t6,t7                      or t9,t7,t8
+|  +8c4  sw t8,4(t4)                      sw t9,4(t4)
+|                                         lw t6,596(sp)
+|                                         lui t8,0xe700
+|                                         addiu t7,t6,8
+|                                         sw t7,596(sp)
+|                                         sw zero,4(t6)
+|                                         sw t8,0(t6)
+   +8c8  lw t9,596(sp)                    lw t9,596(sp)
+|  +8cc  lui t7,0xe700                    move v1,t6
+   +8d0  addiu t6,t9,8                    addiu t6,t9,8
+   +8d4  sw t6,596(sp)                    sw t6,596(sp)
+|  +8d8  sw zero,4(t9)                    
+|  +8dc  sw t7,0(t9)                      
+|  +8e0  lw t8,596(sp)                    
+|  +8e4  move v1,t9                       
+|  +8e8  addiu t9,t8,8                    
+|  +8ec  sw t9,596(sp)                    
+|  +8f0  lhu t6,16(s1)                    
+|  +8f4  move a0,t8                       
+|  +8f8  sll t7,t6,0x1                    
+|  +8fc  addiu t8,t7,7                    
+|  +900  sra t9,t8,0x3                    
+|  +904  andi t6,t9,0x1ff                 
+|  +908  sll t7,t6,0x9                    
+|  +90c  or t9,a2,a3                      
+|  +910  or t6,t9,t0                      
+|  +914  or t8,t7,ra                      
+|  +918  or t7,t6,t1                      
+|  +91c  sw t7,4(a0)                      
+|  +920  sw t8,0(a0)                      
+|  +924  lw t8,596(sp)                    
+|  +928  lui t6,0xf200                    
+|  +92c  addiu t9,t8,8                    
+|  +930  sw t9,596(sp)                    
+|  +934  sw t6,0(t8)                      
+   +938  lhu t7,16(s1)                    lhu t7,16(s1)
+|  +93c  move t2,t8                       move a0,t9
+|                                         sll t8,t7,0x1
+|                                         addiu t9,t8,7
+|                                         sra t6,t9,0x3
+|                                         andi t7,t6,0x1ff
+|                                         sll t8,t7,0x9
+|                                         or t6,a2,a3
+|                                         or t7,t6,t0
+|                                         or t9,t8,ra
+|                                         or t8,t7,t1
+|                                         sw t8,4(a0)
+|                                         sw t9,0(a0)
+|                                         lw t9,596(sp)
+|                                         addiu t6,t9,8
+|                                         sw t6,596(sp)
+|                                         sw s2,0(t9)
+|                                         lhu t7,16(s1)
+|                                         move t2,t9
+   +940  addiu t8,t7,-1                   addiu t8,t7,-1
+   +a18  lhu t7,0(s0)                     lhu t7,0(s0)
+|                                         lui s2,0xf200
+   +a1c  sra t6,t9,0x5                    sra t6,t9,0x5
+   +ac8  lhu t8,4(s0)                     lhu t8,4(s0)
+|  +acc  lui at,0xf200                    
+   +ad0  sra t9,t8,0x5                    sra t9,t8,0x5
+   +b7c  sll t8,t7,0xc                    sll t8,t7,0xc
+|  +b80  or t9,t8,at                      or t9,t8,s2
+   +b84  sra t7,t6,0x5                    sra t7,t6,0x5
+   +c44  lui t8,0xe600                    lui t8,0xe600
+|  +c48  li t3,2047                       lui s2,0xf200
+   +c4c  addiu t7,t6,8                    addiu t7,t6,8
+   +c60  lui t7,0xf300                    lui t7,0xf300
+|  +c64  lui ra,0xf548                    li t3,2047
+   +c68  addiu t6,t9,8                    addiu t6,t9,8
+   +c7c  move t4,t9                       move t4,t9
+|                                         lui ra,0xf548
+   +c80  multu a0,t8                      multu a0,t8
+   +d78  lw t7,596(sp)                    lw t7,596(sp)
+|  +d7c  lui t6,0xf200                    
+   +d80  addiu t8,t7,8                    addiu t8,t7,8
+   +d84  sw t8,596(sp)                    sw t8,596(sp)
+|                                         sw s2,0(t7)
+|                                         lhu t6,16(s1)
+|                                         move t2,t7
+|                                         addiu t9,t6,-1
+|                                         sll t7,t9,0x2
+|                                         lhu t9,18(s1)
+|                                         andi t8,t7,0xfff
+|                                         sll t6,t8,0xc
+|                                         addiu t7,t9,-1
+|                                         sll t8,t7,0x2
+|                                         andi t9,t8,0xfff
+|                                         or t7,t6,t9
+|                                         b 0x26d8
+|                                         sw t7,4(t2)
+|                                         beqz s0,0xfe8
+|                                         lui t5,0x700
+|                                         lw v0,596(sp)
+|                                         lui at,0xfd48
+|                                         lui ra,0xf548
+|                                         addiu t6,v0,8
+|                                         sw t6,596(sp)
+|                                         lhu t9,16(s1)
+|                                         andi a2,a1,0x3
+|                                         andi a3,t3,0xf
+|                                         sra t7,t9,0x1
+|                                         addiu t8,t7,-1
+|                                         andi t6,t8,0xfff
+|                                         or t9,t6,at
+|                                         sw t9,0(v0)
+|                                         lw t7,24(s1)
+|                                         lui t5,0x700
+|                                         andi t0,t2,0x3
+|                                         sw t7,4(v0)
+|                                         lw v1,596(sp)
+|                                         andi t1,s2,0xf
+|                                         lui at,0xf400
+|                                         addiu t6,v1,8
+|                                         sw t6,596(sp)
+|                                         lhu t9,4(s0)
+|                                         lhu t8,0(s0)
+|                                         lui s2,0xf200
+|                                         sra t7,t9,0x5
+|                                         sra t6,t8,0x5
+|                                         subu t9,t7,t6
+|                                         addiu t8,t9,1
+|                                         sra t7,t8,0x1
+|                                         addiu t6,t7,7
+|                                         sra t9,t6,0x3
+|                                         andi t8,t9,0x1ff
+|                                         sll t7,t8,0x9
+|                                         or t6,t7,ra
+|                                         sll t9,a2,0x12
+|                                         move a2,t9
+|                                         sll t8,a3,0xe
+|                                         move a3,t8
+|                                         or t9,t9,t5
+|                                         sll t7,t0,0x8
+|                                         sw t6,0(v1)
+|                                         sll t6,t1,0x4
+|                                         move t0,t7
+|                                         or t8,t9,t8
+|                                         or t7,t8,t7
+|                                         move t1,t6
+|                                         or t6,t7,t6
+|                                         sw t6,4(v1)
+|                                         lw t9,596(sp)
+|                                         lui t7,0xe600
+|                                         addiu t8,t9,8
+|                                         sw t8,596(sp)
+|                                         sw zero,4(t9)
+|                                         sw t7,0(t9)
+|                                         lw v0,596(sp)
+|                                         addiu t9,v0,8
+|                                         sw t9,596(sp)
+|                                         lhu t8,0(s0)
+|                                         sra t7,t8,0x5
+|                                         sll t6,t7,0x1
+|                                         andi t9,t6,0xfff
+|                                         lhu t6,2(s0)
+|                                         sll t8,t9,0xc
+|                                         or t7,t8,at
+|                                         sra t9,t6,0x5
+|                                         sll t8,t9,0x2
+|                                         andi t6,t8,0xfff
+|                                         or t9,t7,t6
+|                                         sw t9,0(v0)
+|                                         lhu t8,4(s0)
+|                                         lui at,0xf540
+|                                         sra t7,t8,0x5
+|                                         sll t6,t7,0x1
+|                                         andi t9,t6,0xfff
+|                                         lhu t6,6(s0)
+|                                         sll t8,t9,0xc
+|                                         or t7,t8,t5
+|                                         sra t9,t6,0x5
+|                                         sll t8,t9,0x2
+|                                         andi t6,t8,0xfff
+|                                         or t9,t7,t6
+|                                         sw t9,4(v0)
+|                                         lw t8,596(sp)
+|                                         lui t6,0xe700
+|                                         addiu t7,t8,8
+|                                         sw t7,596(sp)
+|                                         sw zero,4(t8)
+|                                         sw t6,0(t8)
+|                                         lw a0,596(sp)
+|                                         addiu t8,a0,8
+|                                         sw t8,596(sp)
+|                                         lhu t7,4(s0)
+|                                         lhu t9,0(s0)
+|                                         sra t6,t7,0x5
+|                                         sra t8,t9,0x5
+|                                         subu t7,t6,t8
+|                                         addiu t9,t7,1
+|                                         sra t6,t9,0x1
+|                                         addiu t8,t6,7
+|                                         sra t7,t8,0x3
+|                                         andi t9,t7,0x1ff
+|                                         sll t6,t9,0x9
+|                                         or t7,a2,a3
+|                                         or t9,t7,t0
+|                                         or t8,t6,at
+|                                         or t6,t9,t1
+|                                         sw t6,4(a0)
+|                                         sw t8,0(a0)
+|                                         lw v0,596(sp)
+|                                         addiu t7,v0,8
+|                                         sw t7,596(sp)
+|                                         lhu t9,0(s0)
+|                                         sra t6,t9,0x5
+|                                         sll t8,t6,0x2
+|                                         andi t7,t8,0xfff
+|                                         lhu t8,2(s0)
+|                                         sll t9,t7,0xc
+|                                         or t6,t9,s2
+|                                         sra t7,t8,0x5
+|                                         sll t9,t7,0x2
+|                                         andi t8,t9,0xfff
+|                                         or t7,t6,t8
+|                                         sw t7,0(v0)
+|                                         lhu t9,4(s0)
+|                                         sra t6,t9,0x5
+|                                         sll t8,t6,0x2
+|                                         lhu t6,6(s0)
+|                                         andi t7,t8,0xfff
+|                                         sll t9,t7,0xc
+|                                         sra t8,t6,0x5
+|                                         sll t7,t8,0x2
+|                                         andi t6,t7,0xfff
+|                                         or t8,t9,t6
+|                                         b 0x26d8
+|                                         sw t8,4(v0)
+|                                         lw t7,596(sp)
+|                                         lui t6,0xfd50
+|                                         andi a2,a1,0x3
+|                                         addiu t9,t7,8
+|                                         sw t9,596(sp)
+   +d88  sw t6,0(t7)                      sw t6,0(t7)
+|                                         lw t8,24(s1)
+|                                         lui t6,0xf550
+|                                         andi a3,t3,0xf
+|                                         sw t8,4(t7)
+|                                         lw t7,596(sp)
+|                                         sll t8,a2,0x12
+|                                         move a2,t8
+|                                         addiu t9,t7,8
+|                                         sw t9,596(sp)
+|                                         sw t6,0(t7)
+|                                         move v1,t7
+|                                         sll t7,a3,0xe
+|                                         andi t0,t2,0x3
+|                                         sll t9,t0,0x8
+|                                         move a3,t7
+|                                         or t8,t8,t5
+|                                         andi t1,s2,0xf
+|                                         sll t6,t1,0x4
+|                                         or t7,t8,t7
+|                                         move t0,t9
+|                                         or t9,t7,t9
+|                                         move t1,t6
+|                                         or t6,t9,t6
+|                                         sw t6,4(v1)
+|                                         lw t8,596(sp)
+|                                         lui t9,0xe600
+|                                         lui s2,0xf200
+|                                         addiu t7,t8,8
+|                                         sw t7,596(sp)
+|                                         sw zero,4(t8)
+|                                         sw t9,0(t8)
+|                                         lw t6,596(sp)
+|                                         lui t7,0xf300
+|                                         li t3,2047
+|                                         addiu t8,t6,8
+|                                         sw t8,596(sp)
+|                                         sw t7,0(t6)
+|                                         lhu t9,18(s1)
+|                                         lhu a0,16(s1)
+|                                         move t4,t6
+|                                         multu a0,t9
+|                                         mflo v0
+|                                         addiu v0,v0,3
+|                                         sra t6,v0,0x2
+|                                         addiu v0,t6,-1
+|                                         slti at,v0,2047
+|                                         beqz at,0x10c8
+|                                         nop
+|                                         b 0x10c8
+|                                         move t3,v0
+|                                         bgez a0,0x10d8
+|                                         sra v1,a0,0x4
+|                                         addiu at,a0,15
+|                                         sra v1,at,0x4
+|                                         bgtz v1,0x10e8
+|                                         move a1,v1
+|                                         b 0x10e8
+|                                         li a1,1
+|                                         bgtz v1,0x10f8
+|                                         addiu t8,a1,2047
+|                                         b 0x10fc
+|                                         li v0,1
+|                                         move v0,v1
+|                                         div zero,t8,v0
+|                                         mflo t7
+|                                         andi t9,t7,0xfff
+|                                         bnez v0,0x1114
+|                                         nop
+|                                         break 0x7
+|                                         li at,-1
+|                                         bne v0,at,0x112c
+|                                         lui at,0x8000
+|                                         bne t8,at,0x112c
+|                                         nop
+|                                         break 0x6
+|                                         andi t8,t3,0xfff
+|                                         sll t7,t8,0xc
+|                                         or t6,t9,t5
+|                                         or t9,t6,t7
+|                                         sw t9,4(t4)
+|                                         lw t8,596(sp)
+|                                         lui t7,0xe700
+|                                         lui at,0xf540
+|                                         addiu t6,t8,8
+|                                         sw t6,596(sp)
+|                                         sw zero,4(t8)
+|                                         sw t7,0(t8)
+|                                         lw t9,596(sp)
+|                                         move v1,t8
+|                                         addiu t8,t9,8
+|                                         sw t8,596(sp)
+|                                         lhu t6,16(s1)
+|                                         move a0,t9
+|                                         sra t7,t6,0x1
+|                                         addiu t9,t7,7
+|                                         sra t8,t9,0x3
+|                                         andi t6,t8,0x1ff
+|                                         sll t7,t6,0x9
+|                                         or t8,a2,a3
+|                                         or t6,t8,t0
+|                                         or t9,t7,at
+|                                         or t7,t6,t1
+|                                         sw t7,4(a0)
+|                                         sw t9,0(a0)
+|                                         lw t9,596(sp)
+|                                         addiu t8,t9,8
+|                                         sw t8,596(sp)
+|                                         sw s2,0(t9)
+|                                         lhu t6,16(s1)
+|                                         move t2,t9
+|                                         addiu t7,t6,-1
+|                                         sll t9,t7,0x2
+|                                         lhu t7,18(s1)
+|                                         andi t8,t9,0xfff
+|                                         sll t6,t8,0xc
+|                                         addiu t9,t7,-1
+|                                         sll t8,t9,0x2
+|                                         andi t7,t8,0xfff
+|                                         or t9,t6,t7
+|                                         b 0x26d8
+|                                         sw t9,4(t2)
+|                                         bne v0,at,0x1a54
+|                                         lui v1,0x8018
+|                                         addiu v1,v1,-22984
+|                                         lw t8,0(v1)
+|                                         lw t6,596(sp)
+|                                         lui t9,0xe300
+|                                         beqz t8,0x1218
+|                                         addiu t7,t6,8
+|                                         sw t7,596(sp)
+|                                         ori t9,t9,0x1001
+|                                         sw t9,0(t6)
+|                                         sw zero,4(t6)
+|                                         sw zero,0(v1)
+|                                         lbu t8,20(s1)
+|                                         li a0,1
+|                                         bne a0,t8,0x1630
+|                                         nop
+|                                         beqz s0,0x1438
+|                                         lui t5,0x700
+|                                         lw v0,596(sp)
+|                                         lui at,0xfd88
+|                                         lui ra,0xf588
+|                                         addiu t7,v0,8
+|                                         sw t7,596(sp)
+   +d8c  lhu t9,16(s1)                    lhu t9,16(s1)
+|  +d90  move t2,t7                       andi a2,a1,0x3
+|                                         andi a3,t3,0xf
+|                                         addiu t8,t9,-1
+|                                         andi t6,t8,0xfff
+|                                         or t7,t6,at
+|                                         sw t7,0(v0)
+|                                         lw t9,24(s1)
+|                                         lui t5,0x700
+|                                         andi t0,t2,0x3
+|                                         sw t9,4(v0)
+|                                         lw v1,596(sp)
+|                                         andi t1,s2,0xf
+|                                         lui at,0xf400
+|                                         addiu t6,v1,8
+|                                         sw t6,596(sp)
+|                                         lhu t7,4(s0)
+|                                         lhu t8,0(s0)
+|                                         lui s2,0xf200
+|                                         sra t9,t7,0x5
+|                                         sra t6,t8,0x5
+|                                         subu t7,t9,t6
+|                                         addiu t8,t7,8
+|                                         sra t9,t8,0x3
+|                                         andi t6,t9,0x1ff
+|                                         sll t7,t6,0x9
+|                                         or t8,t7,ra
+|                                         sll t9,a2,0x12
+|                                         move a2,t9
+|                                         sll t6,a3,0xe
+|                                         move a3,t6
+|                                         or t9,t9,t5
+|                                         sll t7,t0,0x8
+|                                         sw t8,0(v1)
+|                                         sll t8,t1,0x4
+|                                         move t0,t7
+|                                         or t6,t9,t6
+|                                         or t7,t6,t7
+|                                         move t1,t8
+|                                         or t8,t7,t8
+|                                         sw t8,4(v1)
+|                                         lw t9,596(sp)
+|                                         lui t7,0xe600
+|                                         addiu t6,t9,8
+|                                         sw t6,596(sp)
+|                                         sw zero,4(t9)
+|                                         sw t7,0(t9)
+|                                         lw v0,596(sp)
+|                                         addiu t9,v0,8
+|                                         sw t9,596(sp)
+|                                         lhu t6,0(s0)
+|                                         sra t7,t6,0x5
+|                                         sll t8,t7,0x2
+|                                         andi t9,t8,0xfff
+|                                         lhu t8,2(s0)
+|                                         sll t6,t9,0xc
+|                                         or t7,t6,at
+|                                         sra t9,t8,0x5
+|                                         sll t6,t9,0x2
+|                                         andi t8,t6,0xfff
+|                                         or t9,t7,t8
+|                                         sw t9,0(v0)
+|                                         lhu t6,4(s0)
+|                                         sra t7,t6,0x5
+|                                         sll t8,t7,0x2
+|                                         andi t9,t8,0xfff
+|                                         lhu t8,6(s0)
+|                                         sll t6,t9,0xc
+|                                         or t7,t6,t5
+|                                         sra t9,t8,0x5
+|                                         sll t6,t9,0x2
+|                                         andi t8,t6,0xfff
+|                                         or t9,t7,t8
+|                                         sw t9,4(v0)
+|                                         lw t6,596(sp)
+|                                         lui t8,0xe700
+|                                         addiu t7,t6,8
+|                                         sw t7,596(sp)
+|                                         sw zero,4(t6)
+|                                         sw t8,0(t6)
+|                                         lw a0,596(sp)
+|                                         addiu t6,a0,8
+|                                         sw t6,596(sp)
+|                                         lhu t7,4(s0)
+|                                         lhu t9,0(s0)
+|                                         sra t8,t7,0x5
+|                                         sra t6,t9,0x5
+|                                         subu t7,t8,t6
+|                                         addiu t9,t7,8
+|                                         sra t8,t9,0x3
+|                                         andi t6,t8,0x1ff
+|                                         sll t7,t6,0x9
+|                                         or t8,a2,a3
+|                                         or t6,t8,t0
+|                                         or t9,t7,ra
+|                                         or t7,t6,t1
+|                                         sw t7,4(a0)
+|                                         sw t9,0(a0)
+|                                         lw v0,596(sp)
+|                                         addiu t8,v0,8
+|                                         sw t8,596(sp)
+|                                         lhu t6,0(s0)
+|                                         sra t7,t6,0x5
+|                                         sll t9,t7,0x2
+|                                         andi t8,t9,0xfff
+|                                         lhu t9,2(s0)
+|                                         sll t6,t8,0xc
+|                                         or t7,t6,s2
+|                                         sra t8,t9,0x5
+|                                         sll t6,t8,0x2
+|                                         andi t9,t6,0xfff
+|                                         or t8,t7,t9
+|                                         sw t8,0(v0)
+|                                         lhu t6,4(s0)
+|                                         sra t7,t6,0x5
+|                                         sll t9,t7,0x2
+|                                         lhu t7,6(s0)
+|                                         andi t8,t9,0xfff
+|                                         sll t6,t8,0xc
+|                                         sra t9,t7,0x5
+|                                         sll t8,t9,0x2
+|                                         andi t7,t8,0xfff
+|                                         or t9,t6,t7
+|                                         b 0x26d8
+|                                         sw t9,4(v0)
+|                                         lw t8,596(sp)
+|                                         lui t7,0xfd90
+|                                         andi a2,a1,0x3
+|                                         addiu t6,t8,8
+|                                         sw t6,596(sp)
+|                                         sw t7,0(t8)
+|                                         lw t9,24(s1)
+|                                         lui t7,0xf590
+|                                         andi a3,t3,0xf
+|                                         sw t9,4(t8)
+|                                         lw t8,596(sp)
+|                                         sll t9,a2,0x12
+|                                         move a2,t9
+|                                         addiu t6,t8,8
+|                                         sw t6,596(sp)
+|                                         sw t7,0(t8)
+|                                         move v1,t8
+|                                         sll t8,a3,0xe
+|                                         andi t0,t2,0x3
+|                                         sll t6,t0,0x8
+|                                         move a3,t8
+|                                         or t9,t9,t5
+|                                         andi t1,s2,0xf
+|                                         sll t7,t1,0x4
+|                                         or t8,t9,t8
+|                                         move t0,t6
+|                                         or t6,t8,t6
+|                                         move t1,t7
+|                                         or t7,t6,t7
+|                                         sw t7,4(v1)
+|                                         lw t9,596(sp)
+|                                         lui t6,0xe600
+|                                         lui s2,0xf200
+|                                         addiu t8,t9,8
+|                                         sw t8,596(sp)
+|                                         sw zero,4(t9)
+|                                         sw t6,0(t9)
+|                                         lw t7,596(sp)
+|                                         lui t8,0xf300
+|                                         li t3,2047
+|                                         addiu t9,t7,8
+|                                         sw t9,596(sp)
+|                                         sw t8,0(t7)
+|                                         lhu t6,18(s1)
+|                                         lhu a0,16(s1)
+|                                         move t4,t7
+|                                         lui ra,0xf588
+|                                         multu a0,t6
+|                                         mflo v0
+|                                         addiu v0,v0,1
+|                                         sra t7,v0,0x1
+|                                         addiu v0,t7,-1
+|                                         slti at,v0,2047
+|                                         beqz at,0x151c
+|                                         nop
+|                                         b 0x151c
+|                                         move t3,v0
+|                                         bgez a0,0x152c
+|                                         sra v1,a0,0x3
+|                                         addiu at,a0,7
+|                                         sra v1,at,0x3
+|                                         bgtz v1,0x153c
+|                                         move a1,v1
+|                                         b 0x153c
+|                                         li a1,1
+|                                         bgtz v1,0x154c
+|                                         addiu t9,a1,2047
+|                                         b 0x1550
+|                                         li v0,1
+|                                         move v0,v1
+|                                         div zero,t9,v0
+|                                         mflo t8
+|                                         andi t6,t8,0xfff
+|                                         bnez v0,0x1568
+|                                         nop
+|                                         break 0x7
+|                                         li at,-1
+|                                         bne v0,at,0x1580
+|                                         lui at,0x8000
+|                                         bne t9,at,0x1580
+|                                         nop
+|                                         break 0x6
+|                                         andi t9,t3,0xfff
+|                                         sll t8,t9,0xc
+|                                         or t7,t6,t5
+|                                         or t6,t7,t8
+|                                         sw t6,4(t4)
+|                                         lw t9,596(sp)
+|                                         lui t8,0xe700
+|                                         addiu t7,t9,8
+|                                         sw t7,596(sp)
+|                                         sw zero,4(t9)
+|                                         sw t8,0(t9)
+|                                         lw t6,596(sp)
+|                                         move v1,t9
+|                                         addiu t9,t6,8
+|                                         sw t9,596(sp)
+|                                         lhu t7,16(s1)
+|                                         move a0,t6
+|                                         addiu t8,t7,7
+|                                         sra t6,t8,0x3
+|                                         andi t9,t6,0x1ff
+|                                         sll t7,t9,0x9
+|                                         or t6,a2,a3
+|                                         or t9,t6,t0
+|                                         or t8,t7,ra
+|                                         or t7,t9,t1
+|                                         sw t7,4(a0)
+|                                         sw t8,0(a0)
+|                                         lw t8,596(sp)
+|                                         addiu t6,t8,8
+|                                         sw t6,596(sp)
+|                                         sw s2,0(t8)
+|                                         lhu t9,16(s1)
+|                                         move t2,t8
+   +d94  addiu t7,t9,-1                   addiu t7,t9,-1
+   +db4  or t8,t9,t7                      or t8,t9,t7
+|  +db8  b 0x26d8                         b 0x26d8
+   +dbc  sw t8,4(t2)                      sw t8,4(t2)
+   +dc8  lw v0,596(sp)                    lw v0,596(sp)
+|  +dcc  lui at,0xfd48                    lui at,0xfd88
+|  +dd0  lui ra,0xf548                    lui ra,0xf588
+   +dd4  addiu t9,v0,8                    addiu t9,v0,8
+   +e24  lhu t6,0(s0)                     lhu t6,0(s0)
+|                                         lui s2,0xf200
+   +e28  sra t8,t7,0x5                    sra t8,t7,0x5
+   +edc  lhu t6,4(s0)                     lhu t6,4(s0)
+|  +ee0  lui at,0xf540                    lui at,0xf580
+   +ee4  sra t8,t6,0x5                    sra t8,t6,0x5
+   +f78  lw v0,596(sp)                    lw v0,596(sp)
+|  +f7c  lui at,0xf200                    
+   +f80  addiu t8,v0,8                    addiu t8,v0,8
+   +f9c  sll t7,t8,0xc                    sll t7,t8,0xc
+|  +fa0  or t9,t7,at                      or t9,t7,s2
+   +fa4  sra t8,t6,0x5                    sra t8,t6,0x5
+   +fdc  or t6,t7,t9                      or t6,t7,t9
+|  +fe0  b 0x26d8                         b 0x26d8
+   +fe4  sw t6,4(v0)                      sw t6,4(v0)
+   +fe8  lw t8,596(sp)                    lw t8,596(sp)
+|  +fec  lui t9,0xfd50                    lui t9,0xfd90
+   +ff0  andi a2,a1,0x3                   andi a2,a1,0x3
+  +1000  lw t6,24(s1)                     lw t6,24(s1)
+| +1004  lui t9,0xf550                    lui t9,0xf590
+  +1008  andi a3,t3,0xf                   andi a3,t3,0xf
+  +1064  lui t7,0xe600                    lui t7,0xe600
+| +1068  li t3,2047                       lui s2,0xf200
+  +106c  addiu t8,t6,8                    addiu t8,t6,8
+  +1080  lui t8,0xf300                    lui t8,0xf300
+|                                         li t3,2047
+  +1084  addiu t6,t9,8                    addiu t6,t9,8
+  +1140  lui t8,0xe700                    lui t8,0xe700
+| +1144  lui at,0xf540                    lui at,0xf580
+  +1148  addiu t9,t6,8                    addiu t9,t6,8
+  +119c  lw t7,596(sp)                    lw t7,596(sp)
+| +11a0  lui t9,0xf200                    
+  +11a4  addiu t6,t7,8                    addiu t6,t7,8
+  +11a8  sw t6,596(sp)                    sw t6,596(sp)
+| +11ac  sw t9,0(t7)                      sw s2,0(t7)
+| +11b0  lhu t8,16(s1)                    lhu t9,16(s1)
+  +11b4  move t2,t7                       move t2,t7
+|                                         addiu t8,t9,-1
+|                                         sll t7,t8,0x2
+|                                         lhu t8,18(s1)
+|                                         andi t6,t7,0xfff
+|                                         sll t9,t6,0xc
+  +11b8  addiu t7,t8,-1                   addiu t7,t8,-1
+  +11bc  sll t6,t7,0x2                    sll t6,t7,0x2
+| +11c0  lhu t7,18(s1)                    andi t8,t6,0xfff
+| +11c4  andi t9,t6,0xfff                 or t7,t9,t8
+| +11c8  sll t8,t9,0xc                    b 0x26d8
+| +11cc  addiu t6,t7,-1                   sw t7,4(t2)
+| +11d0  sll t9,t6,0x2                    li at,3
+| +11d4  andi t7,t9,0xfff                 bne v0,at,0x26d8
+| +11d8  or t6,t8,t7                      
+| +11dc  b 0x26d8                         
+| +11e0  sw t6,4(t2)                      
+| +11e4  bne v0,at,0x1a54                 
+  +11e8  lui v1,0x8018                    lui v1,0x8018
+  +11ec  addiu v1,v1,-22984               addiu v1,v1,-22984
+| +11f0  lw t9,0(v1)                      lw t6,0(v1)
+| +11f4  lw t8,596(sp)                    lw t9,596(sp)
+| +11f8  lui t6,0xe300                    lui t7,0xe300
+| +11fc  beqz t9,0x1218                   beqz t6,0x1a8c
+| +1200  addiu t7,t8,8                    addiu t8,t9,8
+| +1204  sw t7,596(sp)                    sw t8,596(sp)
+| +1208  ori t6,t6,0x1001                 ori t7,t7,0x1001
+| +120c  sw t6,0(t8)                      sw t7,0(t9)
+| +1210  sw zero,4(t8)                    sw zero,4(t9)
+  +1214  sw zero,0(v1)                    sw zero,0(v1)
+| +1218  lbu t9,20(s1)                    lbu v0,20(s1)
+|                                         bnel a0,v0,0x1ea8
+  +121c  li a0,1                          li a0,1
+| +1220  bne a0,t9,0x1630                 beqz s0,0x1cb0
+| +1224  nop                              
+| +1228  beqz s0,0x1438                   
+  +122c  lui t5,0x700                     lui t5,0x700
+  +1230  lw v0,596(sp)                    lw v0,596(sp)
+| +1234  lui at,0xfd88                    lui at,0xfd70
+| +1238  lui ra,0xf588                    lui ra,0xf570
+| +123c  addiu t7,v0,8                    addiu t9,v0,8
+| +1240  sw t7,596(sp)                    sw t9,596(sp)
+| +1244  lhu t6,16(s1)                    lhu t8,16(s1)
+  +1248  andi a2,a1,0x3                   andi a2,a1,0x3
+  +124c  andi a3,t3,0xf                   andi a3,t3,0xf
+| +1250  addiu t9,t6,-1                   addiu t7,t8,-1
+| +1254  andi t8,t9,0xfff                 andi t6,t7,0xfff
+| +1258  or t7,t8,at                      or t9,t6,at
+| +125c  sw t7,0(v0)                      
+| +1260  lw t6,24(s1)                     
+| +1264  lui t5,0x700                     
+| +1268  andi t0,t2,0x3                   
+| +126c  sw t6,4(v0)                      
+| +1270  lw v1,596(sp)                    
+| +1274  andi t1,s2,0xf                   
+| +1278  lui at,0xf400                    
+| +127c  addiu t8,v1,8                    
+| +1280  sw t8,596(sp)                    
+| +1284  lhu t7,4(s0)                     
+| +1288  lhu t9,0(s0)                     
+| +128c  sra t6,t7,0x5                    
+| +1290  sra t8,t9,0x5                    
+| +1294  subu t7,t6,t8                    
+| +1298  addiu t9,t7,8                    
+| +129c  sra t6,t9,0x3                    
+| +12a0  andi t8,t6,0x1ff                 
+| +12a4  sll t7,t8,0x9                    
+| +12a8  or t9,t7,ra                      
+| +12ac  sll t6,a2,0x12                   
+| +12b0  move a2,t6                       
+| +12b4  sll t8,a3,0xe                    
+| +12b8  move a3,t8                       
+| +12bc  or t6,t6,t5                      
+| +12c0  sll t7,t0,0x8                    
+| +12c4  sw t9,0(v1)                      
+| +12c8  sll t9,t1,0x4                    
+| +12cc  move t0,t7                       
+| +12d0  or t8,t6,t8                      
+| +12d4  or t7,t8,t7                      
+| +12d8  move t1,t9                       
+| +12dc  or t9,t7,t9                      
+| +12e0  sw t9,4(v1)                      
+| +12e4  lw t6,596(sp)                    
+| +12e8  lui t7,0xe600                    
+| +12ec  addiu t8,t6,8                    
+| +12f0  sw t8,596(sp)                    
+| +12f4  sw zero,4(t6)                    
+| +12f8  sw t7,0(t6)                      
+| +12fc  lw v0,596(sp)                    
+| +1300  addiu t6,v0,8                    
+| +1304  sw t6,596(sp)                    
+| +1308  lhu t8,0(s0)                     
+| +130c  sra t7,t8,0x5                    
+| +1310  sll t9,t7,0x2                    
+| +1314  andi t6,t9,0xfff                 
+| +1318  lhu t9,2(s0)                     
+| +131c  sll t8,t6,0xc                    
+| +1320  or t7,t8,at                      
+| +1324  sra t6,t9,0x5                    
+| +1328  sll t8,t6,0x2                    
+| +132c  andi t9,t8,0xfff                 
+| +1330  or t6,t7,t9                      
+| +1334  sw t6,0(v0)                      
+| +1338  lhu t8,4(s0)                     
+| +133c  lui at,0xf200                    
+| +1340  sra t7,t8,0x5                    
+| +1344  sll t9,t7,0x2                    
+| +1348  andi t6,t9,0xfff                 
+| +134c  lhu t9,6(s0)                     
+| +1350  sll t8,t6,0xc                    
+| +1354  or t7,t8,t5                      
+| +1358  sra t6,t9,0x5                    
+| +135c  sll t8,t6,0x2                    
+| +1360  andi t9,t8,0xfff                 
+| +1364  or t6,t7,t9                      
+| +1368  sw t6,4(v0)                      
+| +136c  lw t8,596(sp)                    
+| +1370  lui t9,0xe700                    
+| +1374  addiu t7,t8,8                    
+| +1378  sw t7,596(sp)                    
+| +137c  sw zero,4(t8)                    
+| +1380  sw t9,0(t8)                      
+| +1384  lw a0,596(sp)                    
+| +1388  addiu t8,a0,8                    
+| +138c  sw t8,596(sp)                    
+| +1390  lhu t7,4(s0)                     
+| +1394  lhu t6,0(s0)                     
+| +1398  sra t9,t7,0x5                    
+| +139c  sra t8,t6,0x5                    
+| +13a0  subu t7,t9,t8                    
+| +13a4  addiu t6,t7,8                    
+| +13a8  sra t9,t6,0x3                    
+| +13ac  andi t8,t9,0x1ff                 
+| +13b0  sll t7,t8,0x9                    
+| +13b4  or t9,a2,a3                      
+| +13b8  or t8,t9,t0                      
+| +13bc  or t6,t7,ra                      
+| +13c0  or t7,t8,t1                      
+| +13c4  sw t7,4(a0)                      
+| +13c8  sw t6,0(a0)                      
+| +13cc  lw v0,596(sp)                    
+| +13d0  addiu t9,v0,8                    
+| +13d4  sw t9,596(sp)                    
+| +13d8  lhu t8,0(s0)                     
+| +13dc  sra t7,t8,0x5                    
+| +13e0  sll t6,t7,0x2                    
+| +13e4  andi t9,t6,0xfff                 
+| +13e8  lhu t6,2(s0)                     
+| +13ec  sll t8,t9,0xc                    
+| +13f0  or t7,t8,at                      
+| +13f4  sra t9,t6,0x5                    
+| +13f8  sll t8,t9,0x2                    
+| +13fc  andi t6,t8,0xfff                 
+| +1400  or t9,t7,t6                      
+| +1404  sw t9,0(v0)                      
+| +1408  lhu t8,4(s0)                     
+| +140c  sra t7,t8,0x5                    
+| +1410  sll t6,t7,0x2                    
+| +1414  lhu t7,6(s0)                     
+| +1418  andi t9,t6,0xfff                 
+| +141c  sll t8,t9,0xc                    
+| +1420  sra t6,t7,0x5                    
+| +1424  sll t9,t6,0x2                    
+| +1428  andi t7,t9,0xfff                 
+| +142c  or t6,t8,t7                      
+| +1430  b 0x26d8                         
+| +1434  sw t6,4(v0)                      
+| +1438  lw t9,596(sp)                    
+| +143c  lui t7,0xfd90                    
+| +1440  andi a2,a1,0x3                   
+| +1444  addiu t8,t9,8                    
+| +1448  sw t8,596(sp)                    
+| +144c  sw t7,0(t9)                      
+| +1450  lw t6,24(s1)                     
+| +1454  lui t7,0xf590                    
+| +1458  andi a3,t3,0xf                   
+| +145c  sw t6,4(t9)                      
+| +1460  lw t9,596(sp)                    
+| +1464  sll t6,a2,0x12                   
+| +1468  move a2,t6                       
+| +146c  addiu t8,t9,8                    
+| +1470  sw t8,596(sp)                    
+| +1474  sw t7,0(t9)                      
+| +1478  move v1,t9                       
+| +147c  sll t9,a3,0xe                    
+| +1480  andi t0,t2,0x3                   
+| +1484  sll t8,t0,0x8                    
+| +1488  move a3,t9                       
+| +148c  or t6,t6,t5                      
+| +1490  andi t1,s2,0xf                   
+| +1494  sll t7,t1,0x4                    
+| +1498  or t9,t6,t9                      
+| +149c  move t0,t8                       
+| +14a0  or t8,t9,t8                      
+| +14a4  move t1,t7                       
+| +14a8  or t7,t8,t7                      
+| +14ac  sw t7,4(v1)                      
+| +14b0  lw t6,596(sp)                    
+| +14b4  lui t8,0xe600                    
+| +14b8  li t3,2047                       
+| +14bc  addiu t9,t6,8                    
+| +14c0  sw t9,596(sp)                    
+| +14c4  sw zero,4(t6)                    
+| +14c8  sw t8,0(t6)                      
+| +14cc  lw t7,596(sp)                    
+| +14d0  lui t9,0xf300                    
+| +14d4  lui ra,0xf588                    
+| +14d8  addiu t6,t7,8                    
+| +14dc  sw t6,596(sp)                    
+| +14e0  sw t9,0(t7)                      
+| +14e4  lhu t8,18(s1)                    
+| +14e8  lhu a0,16(s1)                    
+| +14ec  move t4,t7                       
+| +14f0  multu a0,t8                      
+| +14f4  mflo v0                          
+| +14f8  addiu v0,v0,1                    
+| +14fc  sra t7,v0,0x1                    
+| +1500  addiu v0,t7,-1                   
+| +1504  slti at,v0,2047                  
+| +1508  beqz at,0x1518                   
+| +150c  nop                              
+| +1510  b 0x1518                         
+| +1514  move t3,v0                       
+| +1518  bgez a0,0x1528                   
+| +151c  sra v1,a0,0x3                    
+| +1520  addiu at,a0,7                    
+| +1524  sra v1,at,0x3                    
+| +1528  bgtz v1,0x1538                   
+| +152c  move a1,v1                       
+| +1530  b 0x1538                         
+| +1534  li a1,1                          
+| +1538  bgtz v1,0x1548                   
+| +153c  addiu t6,a1,2047                 
+| +1540  b 0x154c                         
+| +1544  li v0,1                          
+| +1548  move v0,v1                       
+| +154c  div zero,t6,v0                   
+| +1550  mflo t9                          
+| +1554  andi t8,t9,0xfff                 
+| +1558  bnez v0,0x1564                   
+| +155c  nop                              
+| +1560  break 0x7                        
+| +1564  li at,-1                         
+| +1568  bne v0,at,0x157c                 
+| +156c  lui at,0x8000                    
+| +1570  bne t6,at,0x157c                 
+| +1574  nop                              
+| +1578  break 0x6                        
+| +157c  andi t6,t3,0xfff                 
+| +1580  sll t9,t6,0xc                    
+| +1584  or t7,t8,t5                      
+| +1588  or t8,t7,t9                      
+| +158c  sw t8,4(t4)                      
+| +1590  lw t6,596(sp)                    
+| +1594  lui t9,0xe700                    
+| +1598  addiu t7,t6,8                    
+| +159c  sw t7,596(sp)                    
+| +15a0  sw zero,4(t6)                    
+| +15a4  sw t9,0(t6)                      
+| +15a8  lw t8,596(sp)                    
+| +15ac  move v1,t6                       
+| +15b0  addiu t6,t8,8                    
+| +15b4  sw t6,596(sp)                    
+| +15b8  lhu t7,16(s1)                    
+| +15bc  move a0,t8                       
+| +15c0  addiu t9,t7,7                    
+| +15c4  sra t8,t9,0x3                    
+| +15c8  andi t6,t8,0x1ff                 
+| +15cc  sll t7,t6,0x9                    
+| +15d0  or t8,a2,a3                      
+| +15d4  or t6,t8,t0                      
+| +15d8  or t9,t7,ra                      
+| +15dc  or t7,t6,t1                      
+| +15e0  sw t7,4(a0)                      
+| +15e4  sw t9,0(a0)                      
+| +15e8  lw t9,596(sp)                    
+| +15ec  lui t6,0xf200                    
+| +15f0  addiu t8,t9,8                    
+| +15f4  sw t8,596(sp)                    
+| +15f8  sw t6,0(t9)                      
+| +15fc  lhu t7,16(s1)                    
+| +1600  move t2,t9                       
+| +1604  addiu t9,t7,-1                   
+| +1608  sll t8,t9,0x2                    
+| +160c  lhu t9,18(s1)                    
+| +1610  andi t6,t8,0xfff                 
+| +1614  sll t7,t6,0xc                    
+| +1618  addiu t8,t9,-1                   
+| +161c  sll t6,t8,0x2                    
+| +1620  andi t9,t6,0xfff                 
+| +1624  or t8,t7,t9                      
+| +1628  b 0x26d8                         
+| +162c  sw t8,4(t2)                      
+| +1630  beqz s0,0x1858                   
+| +1634  lui t5,0x700                     
+| +1638  lw v0,596(sp)                    
+| +163c  lui at,0xfd88                    
+| +1640  lui ra,0xf588                    
+| +1644  addiu t7,v0,8                    
+| +1648  sw t7,596(sp)                    
+| +164c  lhu t9,16(s1)                    
+| +1650  andi a2,a1,0x3                   
+| +1654  andi a3,t3,0xf                   
+| +1658  sra t8,t9,0x1                    
+| +165c  addiu t6,t8,-1                   
+| +1660  andi t7,t6,0xfff                 
+| +1664  or t9,t7,at                      
+  +1668  sw t9,0(v0)                      sw t9,0(v0)
+  +1684  lui at,0xf400                    lui at,0xf400
+| +1688  addiu t7,v1,8                    addiu t6,v1,8
+|                                         sw t6,596(sp)
+|                                         lhu t9,4(s0)
+|                                         lhu t7,0(s0)
+|                                         lui s2,0xf200
+|                                         sra t8,t9,0x5
+|                                         sra t6,t7,0x5
+|                                         subu t9,t8,t6
+|                                         sll t7,t9,0x1
+|                                         addiu t8,t7,9
+|                                         sra t6,t8,0x3
+|                                         andi t9,t6,0x1ff
+|                                         sll t7,t9,0x9
+|                                         or t8,t7,ra
+|                                         sll t6,a2,0x12
+|                                         move a2,t6
+|                                         sll t9,a3,0xe
+|                                         move a3,t9
+|                                         or t6,t6,t5
+|                                         sll t7,t0,0x8
+|                                         sw t8,0(v1)
+|                                         sll t8,t1,0x4
+|                                         move t0,t7
+|                                         or t9,t6,t9
+|                                         or t7,t9,t7
+|                                         move t1,t8
+|                                         or t8,t7,t8
+|                                         sw t8,4(v1)
+|                                         lw t6,596(sp)
+|                                         lui t7,0xe600
+|                                         addiu t9,t6,8
+|                                         sw t9,596(sp)
+|                                         sw zero,4(t6)
+|                                         sw t7,0(t6)
+|                                         lw v0,596(sp)
+|                                         addiu t6,v0,8
+|                                         sw t6,596(sp)
+|                                         lhu t9,0(s0)
+|                                         sra t7,t9,0x5
+|                                         sll t8,t7,0x2
+|                                         andi t6,t8,0xfff
+|                                         lhu t8,2(s0)
+|                                         sll t9,t6,0xc
+|                                         or t7,t9,at
+|                                         sra t6,t8,0x5
+|                                         sll t9,t6,0x2
+|                                         andi t8,t9,0xfff
+|                                         or t6,t7,t8
+|                                         sw t6,0(v0)
+|                                         lhu t9,4(s0)
+|                                         sra t7,t9,0x5
+|                                         sll t8,t7,0x2
+|                                         andi t6,t8,0xfff
+|                                         lhu t8,6(s0)
+|                                         sll t9,t6,0xc
+|                                         or t7,t9,t5
+|                                         sra t6,t8,0x5
+|                                         sll t9,t6,0x2
+|                                         andi t8,t9,0xfff
+|                                         or t6,t7,t8
+|                                         sw t6,4(v0)
+|                                         lw t9,596(sp)
+|                                         lui t8,0xe700
+|                                         addiu t7,t9,8
+  +168c  sw t7,596(sp)                    sw t7,596(sp)
+| +1690  lhu t9,4(s0)                     
+| +1694  lhu t6,0(s0)                     
+| +1698  sra t8,t9,0x5                    
+| +169c  sra t7,t6,0x5                    
+| +16a0  subu t9,t8,t7                    
+| +16a4  addiu t6,t9,1                    
+| +16a8  sra t8,t6,0x1                    
+| +16ac  addiu t7,t8,7                    
+| +16b0  sra t9,t7,0x3                    
+| +16b4  andi t6,t9,0x1ff                 
+| +16b8  sll t8,t6,0x9                    
+| +16bc  or t7,t8,ra                      
+| +16c0  sll t9,a2,0x12                   
+| +16c4  move a2,t9                       
+| +16c8  sll t6,a3,0xe                    
+| +16cc  move a3,t6                       
+| +16d0  or t9,t9,t5                      
+| +16d4  sll t8,t0,0x8                    
+| +16d8  sw t7,0(v1)                      
+| +16dc  sll t7,t1,0x4                    
+| +16e0  move t0,t8                       
+| +16e4  or t6,t9,t6                      
+| +16e8  or t8,t6,t8                      
+| +16ec  move t1,t7                       
+| +16f0  or t7,t8,t7                      
+| +16f4  sw t7,4(v1)                      
+| +16f8  lw t9,596(sp)                    
+| +16fc  lui t8,0xe600                    
+| +1700  addiu t6,t9,8                    
+| +1704  sw t6,596(sp)                    
+  +1708  sw zero,4(t9)                    sw zero,4(t9)
+  +170c  sw t8,0(t9)                      sw t8,0(t9)
+|                                         lw a0,596(sp)
+|                                         addiu t9,a0,8
+|                                         sw t9,596(sp)
+|                                         lhu t7,4(s0)
+|                                         lhu t6,0(s0)
+|                                         sra t8,t7,0x5
+|                                         sra t9,t6,0x5
+|                                         subu t7,t8,t9
+|                                         sll t6,t7,0x1
+|                                         addiu t8,t6,9
+|                                         sra t9,t8,0x3
+|                                         andi t7,t9,0x1ff
+|                                         sll t6,t7,0x9
+|                                         or t9,a2,a3
+|                                         or t7,t9,t0
+|                                         or t8,t6,ra
+|                                         or t6,t7,t1
+|                                         sw t6,4(a0)
+|                                         sw t8,0(a0)
+  +1710  lw v0,596(sp)                    lw v0,596(sp)
+  +1718  sw t9,596(sp)                    sw t9,596(sp)
+| +171c  lhu t6,0(s0)                     lhu t7,0(s0)
+| +1720  sra t8,t6,0x5                    sra t6,t7,0x5
+| +1724  sll t7,t8,0x1                    sll t8,t6,0x2
+| +1728  andi t9,t7,0xfff                 andi t9,t8,0xfff
+| +172c  lhu t7,2(s0)                     lhu t8,2(s0)
+| +1730  sll t6,t9,0xc                    sll t7,t9,0xc
+| +1734  or t8,t6,at                      or t6,t7,s2
+| +1738  sra t9,t7,0x5                    sra t9,t8,0x5
+| +173c  sll t6,t9,0x2                    sll t7,t9,0x2
+| +1740  andi t7,t6,0xfff                 andi t8,t7,0xfff
+| +1744  or t9,t8,t7                      or t9,t6,t8
+  +1748  sw t9,0(v0)                      sw t9,0(v0)
+| +174c  lhu t6,4(s0)                     lhu t7,4(s0)
+| +1750  lui at,0xf580                    sra t6,t7,0x5
+| +1754  sra t8,t6,0x5                    sll t8,t6,0x2
+| +1758  sll t7,t8,0x1                    lhu t6,6(s0)
+| +175c  andi t9,t7,0xfff                 andi t9,t8,0xfff
+| +1760  lhu t7,6(s0)                     sll t7,t9,0xc
+| +1764  sll t6,t9,0xc                    
+| +1768  or t8,t6,t5                      
+| +176c  sra t9,t7,0x5                    
+| +1770  sll t6,t9,0x2                    
+| +1774  andi t7,t6,0xfff                 
+| +1778  or t9,t8,t7                      
+| +177c  sw t9,4(v0)                      
+| +1780  lw t6,596(sp)                    
+| +1784  lui t7,0xe700                    
+| +1788  addiu t8,t6,8                    
+| +178c  sw t8,596(sp)                    
+| +1790  sw zero,4(t6)                    
+| +1794  sw t7,0(t6)                      
+| +1798  lw a0,596(sp)                    
+| +179c  addiu t6,a0,8                    
+| +17a0  sw t6,596(sp)                    
+| +17a4  lhu t8,4(s0)                     
+| +17a8  lhu t9,0(s0)                     
+| +17ac  sra t7,t8,0x5                    
+| +17b0  sra t6,t9,0x5                    
+| +17b4  subu t8,t7,t6                    
+| +17b8  addiu t9,t8,1                    
+| +17bc  sra t7,t9,0x1                    
+| +17c0  addiu t6,t7,7                    
+| +17c4  sra t8,t6,0x3                    
+| +17c8  andi t9,t8,0x1ff                 
+| +17cc  sll t7,t9,0x9                    
+| +17d0  or t8,a2,a3                      
+| +17d4  or t9,t8,t0                      
+| +17d8  or t6,t7,at                      
+| +17dc  or t7,t9,t1                      
+| +17e0  sw t7,4(a0)                      
+| +17e4  sw t6,0(a0)                      
+| +17e8  lw v0,596(sp)                    
+| +17ec  lui at,0xf200                    
+| +17f0  addiu t8,v0,8                    
+| +17f4  sw t8,596(sp)                    
+| +17f8  lhu t9,0(s0)                     
+| +17fc  sra t7,t9,0x5                    
+| +1800  sll t6,t7,0x2                    
+| +1804  andi t8,t6,0xfff                 
+| +1808  lhu t6,2(s0)                     
+| +180c  sll t9,t8,0xc                    
+| +1810  or t7,t9,at                      
+  +1814  sra t8,t6,0x5                    sra t8,t6,0x5
+  +1820  or t8,t7,t6                      or t8,t7,t6
+| +1824  sw t8,0(v0)                      b 0x26d8
+| +1828  lhu t9,4(s0)                     sw t8,4(v0)
+| +182c  sra t7,t9,0x5                    lw t9,596(sp)
+| +1830  sll t6,t7,0x2                    lui t6,0xfd70
+| +1834  lhu t7,6(s0)                     
+| +1838  andi t8,t6,0xfff                 
+| +183c  sll t9,t8,0xc                    
+| +1840  sra t6,t7,0x5                    
+| +1844  sll t8,t6,0x2                    
+| +1848  andi t7,t8,0xfff                 
+| +184c  or t6,t9,t7                      
+| +1850  b 0x26d8                         
+| +1854  sw t6,4(v0)                      
+| +1858  lw t8,596(sp)                    
+| +185c  lui t7,0xfd90                    
+  +1860  andi a2,a1,0x3                   andi a2,a1,0x3
+| +1864  addiu t9,t8,8                    addiu t7,t9,8
+| +1868  sw t9,596(sp)                    sw t7,596(sp)
+| +186c  sw t7,0(t8)                      sw t6,0(t9)
+| +1870  lw t6,24(s1)                     lw t8,24(s1)
+| +1874  lui t7,0xf590                    lui ra,0xf570
+|                                         sll t6,a2,0x12
+|                                         sw t8,4(t9)
+|                                         lw t9,596(sp)
+  +1878  andi a3,t3,0xf                   andi a3,t3,0xf
+| +187c  sw t6,4(t8)                      sll t8,a3,0xe
+| +1880  lw t8,596(sp)                    addiu t7,t9,8
+| +1884  sll t6,a2,0x12                   sw t7,596(sp)
+  +1888  move a2,t6                       move a2,t6
+| +188c  addiu t9,t8,8                    
+| +1890  sw t9,596(sp)                    
+| +1894  sw t7,0(t8)                      
+| +1898  move v1,t8                       
+| +189c  sll t8,a3,0xe                    
+  +18a0  andi t0,t2,0x3                   andi t0,t2,0x3
+|                                         sw ra,0(t9)
+|                                         move v1,t9
+  +18a4  sll t9,t0,0x8                    sll t9,t0,0x8
+|                                         or t6,t6,t5
+  +18a8  move a3,t8                       move a3,t8
+| +18ac  or t6,t6,t5                      
+  +18b0  andi t1,s2,0xf                   andi t1,s2,0xf
+  +18d4  lui t9,0xe600                    lui t9,0xe600
+| +18d8  li t3,2047                       lui s2,0xf200
+  +18dc  addiu t8,t6,8                    addiu t8,t6,8
+  +18e8  sw t9,0(t6)                      sw t9,0(t6)
+| +18ec  lw t7,596(sp)                    lw t4,596(sp)
+  +18f0  lui t8,0xf300                    lui t8,0xf300
+| +18f4  addiu t6,t7,8                    li t3,2047
+|                                         addiu t6,t4,8
+  +18f8  sw t6,596(sp)                    sw t6,596(sp)
+| +18fc  sw t8,0(t7)                      sw t8,0(t4)
+  +1900  lhu t9,18(s1)                    lhu t9,18(s1)
+  +1904  lhu a0,16(s1)                    lhu a0,16(s1)
+| +1908  move t4,t7                       
+  +190c  multu a0,t9                      multu a0,t9
+|                                         sll v1,a0,0x1
+  +1910  mflo v0                          mflo v0
+| +1914  addiu v0,v0,3                    addiu v0,v0,-1
+| +1918  sra t7,v0,0x2                    
+| +191c  addiu v0,t7,-1                   
+  +1920  slti at,v0,2047                  slti at,v0,2047
+  +1930  move t3,v0                       move t3,v0
+| +1934  bgez a0,0x1944                   bgez v1,0x1d98
+| +1938  sra v1,a0,0x4                    sra t7,v1,0x3
+| +193c  addiu at,a0,15                   addiu at,v1,7
+| +1940  sra v1,at,0x4                    sra t7,at,0x3
+| +1944  bgtz v1,0x1954                   bgtz t7,0x1da8
+|                                         move v1,t7
+|                                         b 0x1dac
+|                                         li a1,1
+  +1948  move a1,v1                       move a1,v1
+| +194c  b 0x1954                         
+| +1950  li a1,1                          
+  +1954  bgtz v1,0x1964                   bgtz v1,0x1dbc
+  +19b0  lui t8,0xe700                    lui t8,0xe700
+| +19b4  lui at,0xf580                    
+  +19b8  addiu t7,t6,8                    addiu t7,t6,8
+  +19dc  move a0,t9                       move a0,t9
+| +19e0  sra t8,t7,0x1                    sll t8,t7,0x1
+  +19e4  addiu t9,t8,7                    addiu t9,t8,7
+  +19f8  or t7,t6,t0                      or t7,t6,t0
+| +19fc  or t9,t8,at                      or t9,t8,ra
+  +1a00  or t8,t7,t1                      or t8,t7,t1
+  +1a0c  lw t9,596(sp)                    lw t9,596(sp)
+| +1a10  lui t7,0xf200                    
+  +1a14  addiu t6,t9,8                    addiu t6,t9,8
+  +1a18  sw t6,596(sp)                    sw t6,596(sp)
+| +1a1c  sw t7,0(t9)                      sw s2,0(t9)
+| +1a20  lhu t8,16(s1)                    lhu t7,16(s1)
+  +1a24  move t2,t9                       move t2,t9
+|                                         addiu t8,t7,-1
+|                                         sll t9,t8,0x2
+|                                         lhu t8,18(s1)
+|                                         andi t6,t9,0xfff
+|                                         sll t7,t6,0xc
+  +1a28  addiu t9,t8,-1                   addiu t9,t8,-1
+  +1a2c  sll t6,t9,0x2                    sll t6,t9,0x2
+| +1a30  lhu t9,18(s1)                    andi t8,t6,0xfff
+| +1a34  andi t7,t6,0xfff                 or t9,t7,t8
+| +1a38  sll t8,t7,0xc                    b 0x26d8
+| +1a3c  addiu t6,t9,-1                   sw t9,4(t2)
+| +1a40  sll t7,t6,0x2                    
+| +1a44  andi t9,t7,0xfff                 
+| +1a48  or t6,t8,t9                      
+| +1a4c  b 0x26d8                         
+| +1a50  sw t6,4(t2)                      
+| +1a54  li at,3                          
+| +1a58  bne v0,at,0x26d8                 
+| +1a5c  lui v1,0x8018                    
+| +1a60  addiu v1,v1,-22984               
+| +1a64  lw t7,0(v1)                      
+| +1a68  lw t8,596(sp)                    
+| +1a6c  lui t6,0xe300                    
+| +1a70  beqz t7,0x1a8c                   
+| +1a74  addiu t9,t8,8                    
+| +1a78  sw t9,596(sp)                    
+| +1a7c  ori t6,t6,0x1001                 
+| +1a80  sw t6,0(t8)                      
+| +1a84  sw zero,4(t8)                    
+| +1a88  sw zero,0(v1)                    
+| +1a8c  lbu v0,20(s1)                    
+| +1a90  bnel a0,v0,0x1ea8                
+  +1a94  li a0,1                          li a0,1
+| +1a98  beqz s0,0x1cb0                   bne a0,v0,0x22b8
+|                                         nop
+|                                         beqz s0,0x20c0
+  +1a9c  lui t5,0x700                     lui t5,0x700
+  +1aa0  lw v0,596(sp)                    lw v0,596(sp)
+| +1aa4  lui at,0xfd70                    lui at,0xfd68
+| +1aa8  lui ra,0xf570                    lui ra,0xf568
+| +1aac  addiu t8,v0,8                    addiu t7,v0,8
+| +1ab0  sw t8,596(sp)                    sw t7,596(sp)
+| +1ab4  lhu t9,16(s1)                    lhu t8,16(s1)
+  +1ab8  andi a2,a1,0x3                   andi a2,a1,0x3
+  +1abc  andi a3,t3,0xf                   andi a3,t3,0xf
+| +1ac0  addiu t6,t9,-1                   addiu t9,t8,-1
+| +1ac4  andi t7,t6,0xfff                 andi t6,t9,0xfff
+| +1ac8  or t8,t7,at                      or t7,t6,at
+| +1acc  sw t8,0(v0)                      sw t7,0(v0)
+| +1ad0  lw t9,24(s1)                     lw t8,24(s1)
+  +1ad4  lui t5,0x700                     lui t5,0x700
+  +1ad8  andi t0,t2,0x3                   andi t0,t2,0x3
+| +1adc  sw t9,4(v0)                      sw t8,4(v0)
+  +1ae0  lw v1,596(sp)                    lw v1,596(sp)
+  +1ae8  lui at,0xf400                    lui at,0xf400
+| +1aec  addiu t7,v1,8                    addiu t6,v1,8
+| +1af0  sw t7,596(sp)                    sw t6,596(sp)
+| +1af4  lhu t8,4(s0)                     lhu t7,4(s0)
+| +1af8  lhu t6,0(s0)                     lhu t9,0(s0)
+| +1afc  sra t9,t8,0x5                    lui s2,0xf200
+| +1b00  sra t7,t6,0x5                    sra t8,t7,0x5
+| +1b04  subu t8,t9,t7                    sra t6,t9,0x5
+| +1b08  sll t6,t8,0x1                    subu t7,t8,t6
+| +1b0c  addiu t9,t6,9                    addiu t9,t7,8
+| +1b10  sra t7,t9,0x3                    sra t8,t9,0x3
+| +1b14  andi t8,t7,0x1ff                 andi t6,t8,0x1ff
+| +1b18  sll t6,t8,0x9                    sll t7,t6,0x9
+| +1b1c  or t9,t6,ra                      or t9,t7,ra
+| +1b20  sll t7,a2,0x12                   sll t8,a2,0x12
+| +1b24  move a2,t7                       move a2,t8
+| +1b28  sll t8,a3,0xe                    sll t6,a3,0xe
+| +1b2c  move a3,t8                       move a3,t6
+| +1b30  or t7,t7,t5                      or t8,t8,t5
+| +1b34  sll t6,t0,0x8                    sll t7,t0,0x8
+  +1b38  sw t9,0(v1)                      sw t9,0(v1)
+  +1b3c  sll t9,t1,0x4                    sll t9,t1,0x4
+| +1b40  move t0,t6                       move t0,t7
+| +1b44  or t8,t7,t8                      
+  +1b48  or t6,t8,t6                      or t6,t8,t6
+|                                         or t7,t6,t7
+  +1b4c  move t1,t9                       move t1,t9
+| +1b50  or t9,t6,t9                      or t9,t7,t9
+  +1b54  sw t9,4(v1)                      sw t9,4(v1)
+| +1b58  lw t7,596(sp)                    
+| +1b5c  lui t6,0xe600                    
+| +1b60  addiu t8,t7,8                    
+| +1b64  sw t8,596(sp)                    
+| +1b68  sw zero,4(t7)                    
+| +1b6c  sw t6,0(t7)                      
+| +1b70  lw v0,596(sp)                    
+| +1b74  addiu t7,v0,8                    
+| +1b78  sw t7,596(sp)                    
+| +1b7c  lhu t8,0(s0)                     
+| +1b80  sra t6,t8,0x5                    
+| +1b84  sll t9,t6,0x2                    
+| +1b88  andi t7,t9,0xfff                 
+| +1b8c  lhu t9,2(s0)                     
+| +1b90  sll t8,t7,0xc                    
+| +1b94  or t6,t8,at                      
+| +1b98  sra t7,t9,0x5                    
+| +1b9c  sll t8,t7,0x2                    
+| +1ba0  andi t9,t8,0xfff                 
+| +1ba4  or t7,t6,t9                      
+| +1ba8  sw t7,0(v0)                      
+| +1bac  lhu t8,4(s0)                     
+| +1bb0  lui at,0xf200                    
+| +1bb4  sra t6,t8,0x5                    
+| +1bb8  sll t9,t6,0x2                    
+| +1bbc  andi t7,t9,0xfff                 
+| +1bc0  lhu t9,6(s0)                     
+| +1bc4  sll t8,t7,0xc                    
+| +1bc8  or t6,t8,t5                      
+| +1bcc  sra t7,t9,0x5                    
+| +1bd0  sll t8,t7,0x2                    
+| +1bd4  andi t9,t8,0xfff                 
+| +1bd8  or t7,t6,t9                      
+| +1bdc  sw t7,4(v0)                      
+  +1be0  lw t8,596(sp)                    lw t8,596(sp)
+| +1be4  lui t9,0xe700                    lui t7,0xe600
+  +1be8  addiu t6,t8,8                    addiu t6,t8,8
+  +1bf0  sw zero,4(t8)                    sw zero,4(t8)
+| +1bf4  sw t9,0(t8)                      sw t7,0(t8)
+| +1bf8  lw a0,596(sp)                    
+| +1bfc  addiu t8,a0,8                    
+| +1c00  sw t8,596(sp)                    
+| +1c04  lhu t6,4(s0)                     
+| +1c08  lhu t7,0(s0)                     
+| +1c0c  sra t9,t6,0x5                    
+| +1c10  sra t8,t7,0x5                    
+| +1c14  subu t6,t9,t8                    
+| +1c18  sll t7,t6,0x1                    
+| +1c1c  addiu t9,t7,9                    
+| +1c20  sra t8,t9,0x3                    
+| +1c24  andi t6,t8,0x1ff                 
+| +1c28  sll t7,t6,0x9                    
+| +1c2c  or t8,a2,a3                      
+| +1c30  or t6,t8,t0                      
+| +1c34  or t9,t7,ra                      
+| +1c38  or t7,t6,t1                      
+| +1c3c  sw t7,4(a0)                      
+| +1c40  sw t9,0(a0)                      
+  +1c44  lw v0,596(sp)                    lw v0,596(sp)
+  +1c88  sll t9,t7,0x2                    sll t9,t7,0x2
+|                                         andi t8,t9,0xfff
+|                                         lhu t9,6(s0)
+|                                         sll t6,t8,0xc
+|                                         or t7,t6,t5
+|                                         sra t8,t9,0x5
+|                                         sll t6,t8,0x2
+|                                         andi t9,t6,0xfff
+|                                         or t8,t7,t9
+|                                         sw t8,4(v0)
+|                                         lw t6,596(sp)
+|                                         lui t9,0xe700
+|                                         addiu t7,t6,8
+|                                         sw t7,596(sp)
+|                                         sw zero,4(t6)
+|                                         sw t9,0(t6)
+|                                         lw a0,596(sp)
+|                                         addiu t6,a0,8
+|                                         sw t6,596(sp)
+|                                         lhu t7,4(s0)
+|                                         lhu t8,0(s0)
+|                                         sra t9,t7,0x5
+|                                         sra t6,t8,0x5
+|                                         subu t7,t9,t6
+|                                         addiu t8,t7,8
+|                                         sra t9,t8,0x3
+|                                         andi t6,t9,0x1ff
+|                                         sll t7,t6,0x9
+|                                         or t9,a2,a3
+|                                         or t6,t9,t0
+|                                         or t8,t7,ra
+|                                         or t7,t6,t1
+|                                         sw t7,4(a0)
+|                                         sw t8,0(a0)
+|                                         lw v0,596(sp)
+|                                         addiu t9,v0,8
+|                                         sw t9,596(sp)
+|                                         lhu t6,0(s0)
+|                                         sra t7,t6,0x5
+|                                         sll t8,t7,0x2
+|                                         andi t9,t8,0xfff
+|                                         lhu t8,2(s0)
+|                                         sll t6,t9,0xc
+|                                         or t7,t6,s2
+|                                         sra t9,t8,0x5
+|                                         sll t6,t9,0x2
+|                                         andi t8,t6,0xfff
+|                                         or t9,t7,t8
+|                                         sw t9,0(v0)
+|                                         lhu t6,4(s0)
+|                                         sra t7,t6,0x5
+|                                         sll t8,t7,0x2
+|                                         lhu t7,6(s0)
+|                                         andi t9,t8,0xfff
+|                                         sll t6,t9,0xc
+|                                         sra t8,t7,0x5
+|                                         sll t9,t8,0x2
+|                                         andi t7,t9,0xfff
+|                                         or t8,t6,t7
+|                                         b 0x26d8
+|                                         sw t8,4(v0)
+|                                         lw t9,596(sp)
+|                                         lui t7,0xfd70
+|                                         andi a2,a1,0x3
+|                                         addiu t6,t9,8
+|                                         sw t6,596(sp)
+|                                         sw t7,0(t9)
+|                                         lw t8,24(s1)
+|                                         lui ra,0xf570
+|                                         sll t7,a2,0x12
+|                                         sw t8,4(t9)
+|                                         lw t9,596(sp)
+|                                         andi a3,t3,0xf
+|                                         sll t8,a3,0xe
+|                                         addiu t6,t9,8
+|                                         sw t6,596(sp)
+|                                         move a2,t7
+|                                         andi t0,t2,0x3
+|                                         sw ra,0(t9)
+|                                         move v1,t9
+|                                         sll t9,t0,0x8
+|                                         or t7,t7,t5
+|                                         move a3,t8
+|                                         andi t1,s2,0xf
+|                                         sll t6,t1,0x4
+|                                         or t8,t7,t8
+|                                         move t0,t9
+|                                         or t9,t8,t9
+|                                         move t1,t6
+|                                         or t6,t9,t6
+|                                         sw t6,4(v1)
+|                                         lw t7,596(sp)
+|                                         lui t9,0xe600
+|                                         lui s2,0xf200
+|                                         addiu t8,t7,8
+|                                         sw t8,596(sp)
+|                                         sw zero,4(t7)
+|                                         sw t9,0(t7)
+|                                         lw t6,596(sp)
+|                                         lui t8,0xf300
+|                                         lui ra,0xf568
+|                                         addiu t7,t6,8
+|                                         sw t7,596(sp)
+|                                         sw t8,0(t6)
+|                                         lhu t9,18(s1)
+|                                         lhu a0,16(s1)
+|                                         move t4,t6
+|                                         li t3,2047
+|                                         multu a0,t9
+|                                         mflo v0
+|                                         addiu v0,v0,1
+|                                         sra t6,v0,0x1
+|                                         addiu v0,t6,-1
+|                                         slti at,v0,2047
+|                                         beqz at,0x21a4
+|                                         nop
+|                                         b 0x21a4
+|                                         move t3,v0
+|                                         bgez a0,0x21b4
+|                                         sra v1,a0,0x3
+|                                         addiu at,a0,7
+|                                         sra v1,at,0x3
+|                                         bgtz v1,0x21c4
+|                                         move a1,v1
+|                                         b 0x21c4
+|                                         li a1,1
+|                                         bgtz v1,0x21d4
+|                                         addiu t7,a1,2047
+|                                         b 0x21d8
+|                                         li v0,1
+|                                         move v0,v1
+|                                         div zero,t7,v0
+|                                         mflo t8
+|                                         andi t9,t8,0xfff
+|                                         bnez v0,0x21f0
+|                                         nop
+|                                         break 0x7
+|                                         li at,-1
+|                                         bne v0,at,0x2208
+|                                         lui at,0x8000
+|                                         bne t7,at,0x2208
+|                                         nop
+|                                         break 0x6
+|                                         andi t7,t3,0xfff
+|                                         sll t8,t7,0xc
+|                                         or t6,t9,t5
+|                                         or t9,t6,t8
+|                                         sw t9,4(t4)
+|                                         lw t7,596(sp)
+|                                         lui t8,0xe700
+|                                         addiu t6,t7,8
+|                                         sw t6,596(sp)
+|                                         sw zero,4(t7)
+|                                         sw t8,0(t7)
+|                                         lw t9,596(sp)
+|                                         move v1,t7
+|                                         addiu t7,t9,8
+|                                         sw t7,596(sp)
+|                                         lhu t6,16(s1)
+|                                         move a0,t9
+|                                         addiu t8,t6,7
+|                                         sra t9,t8,0x3
+|                                         andi t7,t9,0x1ff
+|                                         sll t6,t7,0x9
+|                                         or t9,a2,a3
+|                                         or t7,t9,t0
+|                                         or t8,t6,ra
+|                                         or t6,t7,t1
+|                                         sw t6,4(a0)
+|                                         sw t8,0(a0)
+|                                         lw t8,596(sp)
+|                                         addiu t9,t8,8
+|                                         sw t9,596(sp)
+|                                         sw s2,0(t8)
+|                                         lhu t7,16(s1)
+|                                         move t2,t8
+|                                         addiu t6,t7,-1
+|                                         sll t8,t6,0x2
+|                                         lhu t6,18(s1)
+|                                         andi t9,t8,0xfff
+|                                         sll t7,t9,0xc
+|                                         addiu t8,t6,-1
+|                                         sll t9,t8,0x2
+|                                         andi t6,t9,0xfff
+|                                         or t8,t7,t6
+|                                         b 0x26d8
+|                                         sw t8,4(t2)
+|                                         beqz s0,0x24e0
+|                                         lui t5,0x700
+|                                         lw v0,596(sp)
+|                                         lui at,0xfd68
+|                                         lui ra,0xf568
+|                                         addiu t7,v0,8
+|                                         sw t7,596(sp)
+|                                         lhu t6,16(s1)
+|                                         andi a2,a1,0x3
+|                                         andi a3,t3,0xf
+|                                         sra t8,t6,0x1
+|                                         addiu t9,t8,-1
+|                                         andi t7,t9,0xfff
+|                                         or t6,t7,at
+|                                         sw t6,0(v0)
+|                                         lw t8,24(s1)
+|                                         lui t5,0x700
+|                                         andi t0,t2,0x3
+|                                         sw t8,4(v0)
+|                                         lw v1,596(sp)
+|                                         andi t1,s2,0xf
+|                                         lui at,0xf400
+|                                         addiu t7,v1,8
+|                                         sw t7,596(sp)
+|                                         lhu t6,4(s0)
+|                                         lhu t9,0(s0)
+|                                         lui s2,0xf200
+|                                         sra t8,t6,0x5
+|                                         sra t7,t9,0x5
+|                                         subu t6,t8,t7
+|                                         addiu t9,t6,1
+|                                         sra t8,t9,0x1
+|                                         addiu t7,t8,7
+|                                         sra t6,t7,0x3
+|                                         andi t9,t6,0x1ff
+|                                         sll t8,t9,0x9
+|                                         or t7,t8,ra
+|                                         sll t6,a2,0x12
+|                                         move a2,t6
+|                                         sll t9,a3,0xe
+|                                         move a3,t9
+|                                         or t6,t6,t5
+|                                         sll t8,t0,0x8
+|                                         sw t7,0(v1)
+|                                         sll t7,t1,0x4
+|                                         move t0,t8
+|                                         or t9,t6,t9
+|                                         or t8,t9,t8
+|                                         move t1,t7
+|                                         or t7,t8,t7
+|                                         sw t7,4(v1)
+|                                         lw t6,596(sp)
+|                                         lui t8,0xe600
+|                                         addiu t9,t6,8
+|                                         sw t9,596(sp)
+|                                         sw zero,4(t6)
+|                                         sw t8,0(t6)
+|                                         lw v0,596(sp)
+|                                         addiu t6,v0,8
+|                                         sw t6,596(sp)
+|                                         lhu t9,0(s0)
+|                                         sra t8,t9,0x5
+|                                         sll t7,t8,0x1
+|                                         andi t6,t7,0xfff
+|                                         lhu t7,2(s0)
+|                                         sll t9,t6,0xc
+|                                         or t8,t9,at
+|                                         sra t6,t7,0x5
+|                                         sll t9,t6,0x2
+|                                         andi t7,t9,0xfff
+|                                         or t6,t8,t7
+|                                         sw t6,0(v0)
+|                                         lhu t9,4(s0)
+|                                         lui at,0xf560
+|                                         sra t8,t9,0x5
+|                                         sll t7,t8,0x1
+|                                         andi t6,t7,0xfff
+|                                         lhu t7,6(s0)
+|                                         sll t9,t6,0xc
+|                                         or t8,t9,t5
+|                                         sra t6,t7,0x5
+|                                         sll t9,t6,0x2
+|                                         andi t7,t9,0xfff
+|                                         or t6,t8,t7
+|                                         sw t6,4(v0)
+|                                         lw t9,596(sp)
+|                                         lui t7,0xe700
+|                                         addiu t8,t9,8
+|                                         sw t8,596(sp)
+|                                         sw zero,4(t9)
+|                                         sw t7,0(t9)
+|                                         lw a0,596(sp)
+|                                         addiu t9,a0,8
+|                                         sw t9,596(sp)
+|                                         lhu t8,4(s0)
+|                                         lhu t6,0(s0)
+|                                         sra t7,t8,0x5
+|                                         sra t9,t6,0x5
+|                                         subu t8,t7,t9
+|                                         addiu t6,t8,1
+|                                         sra t7,t6,0x1
+|                                         addiu t9,t7,7
+|                                         sra t8,t9,0x3
+|                                         andi t6,t8,0x1ff
+|                                         sll t7,t6,0x9
+|                                         or t8,a2,a3
+|                                         or t6,t8,t0
+|                                         or t9,t7,at
+|                                         or t7,t6,t1
+|                                         sw t7,4(a0)
+|                                         sw t9,0(a0)
+|                                         lw v0,596(sp)
+|                                         addiu t8,v0,8
+|                                         sw t8,596(sp)
+|                                         lhu t6,0(s0)
+|                                         sra t7,t6,0x5
+|                                         sll t9,t7,0x2
+|                                         andi t8,t9,0xfff
+|                                         lhu t9,2(s0)
+|                                         sll t6,t8,0xc
+|                                         or t7,t6,s2
+|                                         sra t8,t9,0x5
+|                                         sll t6,t8,0x2
+|                                         andi t9,t6,0xfff
+|                                         or t8,t7,t9
+|                                         sw t8,0(v0)
+|                                         lhu t6,4(s0)
+|                                         sra t7,t6,0x5
+|                                         sll t9,t7,0x2
+  +1c8c  lhu t7,6(s0)                     lhu t7,6(s0)
+  +1ca4  or t9,t6,t7                      or t9,t6,t7
+| +1ca8  b 0x26d8                         b 0x26d8
+  +1cac  sw t9,4(v0)                      sw t9,4(v0)
+  +1d2c  lui t8,0xe600                    lui t8,0xe600
+| +1d30  li t3,2047                       lui s2,0xf200
+  +1d34  addiu t9,t7,8                    addiu t9,t7,8
+  +1d40  sw t8,0(t7)                      sw t8,0(t7)
+| +1d44  lw t4,596(sp)                    lw t6,596(sp)
+  +1d48  lui t9,0xf300                    lui t9,0xf300
+| +1d4c  addiu t7,t4,8                    li t3,2047
+|                                         addiu t7,t6,8
+  +1d50  sw t7,596(sp)                    sw t7,596(sp)
+| +1d54  sw t9,0(t4)                      sw t9,0(t6)
+  +1d58  lhu t8,18(s1)                    lhu t8,18(s1)
+  +1d5c  lhu a0,16(s1)                    lhu a0,16(s1)
+|                                         move t4,t6
+  +1d60  multu a0,t8                      multu a0,t8
+| +1d64  sll v1,a0,0x1                    
+  +1d68  mflo v0                          mflo v0
+| +1d6c  addiu v0,v0,-1                   addiu v0,v0,3
+|                                         sra t6,v0,0x2
+|                                         addiu v0,t6,-1
+  +1d70  slti at,v0,2047                  slti at,v0,2047
+  +1d80  move t3,v0                       move t3,v0
+| +1d84  bgez v1,0x1d94                   bgez a0,0x25d0
+| +1d88  sra t6,v1,0x3                    sra v1,a0,0x4
+| +1d8c  addiu at,v1,7                    addiu at,a0,15
+| +1d90  sra t6,at,0x3                    sra v1,at,0x4
+| +1d94  bgtz t6,0x1da4                   bgtz v1,0x25e0
+| +1d98  move v1,t6                       move a1,v1
+| +1d9c  b 0x1da8                         b 0x25e0
+  +1da0  li a1,1                          li a1,1
+| +1da4  move a1,v1                       
+  +1da8  bgtz v1,0x1db8                   bgtz v1,0x25f0
+  +1e04  lui t9,0xe700                    lui t9,0xe700
+|                                         lui at,0xf560
+  +1e08  addiu t6,t7,8                    addiu t6,t7,8
+  +1e2c  move a0,t8                       move a0,t8
+| +1e30  sll t9,t6,0x1                    sra t9,t6,0x1
+  +1e34  addiu t8,t9,7                    addiu t8,t9,7
+  +1e48  or t6,t7,t0                      or t6,t7,t0
+| +1e4c  or t8,t9,ra                      or t8,t9,at
+  +1e50  or t9,t6,t1                      or t9,t6,t1
+  +1e5c  lw t8,596(sp)                    lw t8,596(sp)
+| +1e60  lui t6,0xf200                    
+  +1e64  addiu t7,t8,8                    addiu t7,t8,8
+  +1e68  sw t7,596(sp)                    sw t7,596(sp)
+| +1e6c  sw t6,0(t8)                      sw s2,0(t8)
+| +1e70  lhu t9,16(s1)                    lhu t6,16(s1)
+  +1e74  move t2,t8                       move t2,t8
+| +1e78  addiu t8,t9,-1                   addiu t9,t6,-1
+| +1e7c  sll t7,t8,0x2                    
+| +1e80  lhu t8,18(s1)                    
+| +1e84  andi t6,t7,0xfff                 
+| +1e88  sll t9,t6,0xc                    
+| +1e8c  addiu t7,t8,-1                   
+| +1e90  sll t6,t7,0x2                    
+| +1e94  andi t8,t6,0xfff                 
+| +1e98  or t7,t9,t8                      
+| +1e9c  b 0x26d8                         
+| +1ea0  sw t7,4(t2)                      
+| +1ea4  li a0,1                          
+| +1ea8  bne a0,v0,0x22b8                 
+| +1eac  nop                              
+| +1eb0  beqz s0,0x20c0                   
+| +1eb4  lui t5,0x700                     
+| +1eb8  lw v0,596(sp)                    
+| +1ebc  lui at,0xfd68                    
+| +1ec0  lui ra,0xf568                    
+| +1ec4  addiu t9,v0,8                    
+| +1ec8  sw t9,596(sp)                    
+| +1ecc  lhu t8,16(s1)                    
+| +1ed0  andi a2,a1,0x3                   
+| +1ed4  andi a3,t3,0xf                   
+| +1ed8  addiu t7,t8,-1                   
+| +1edc  andi t6,t7,0xfff                 
+| +1ee0  or t9,t6,at                      
+| +1ee4  sw t9,0(v0)                      
+| +1ee8  lw t8,24(s1)                     
+| +1eec  lui t5,0x700                     
+| +1ef0  andi t0,t2,0x3                   
+| +1ef4  sw t8,4(v0)                      
+| +1ef8  lw v1,596(sp)                    
+| +1efc  andi t1,s2,0xf                   
+| +1f00  lui at,0xf400                    
+| +1f04  addiu t6,v1,8                    
+| +1f08  sw t6,596(sp)                    
+| +1f0c  lhu t9,4(s0)                     
+| +1f10  lhu t7,0(s0)                     
+| +1f14  sra t8,t9,0x5                    
+| +1f18  sra t6,t7,0x5                    
+| +1f1c  subu t9,t8,t6                    
+| +1f20  addiu t7,t9,8                    
+| +1f24  sra t8,t7,0x3                    
+| +1f28  andi t6,t8,0x1ff                 
+| +1f2c  sll t9,t6,0x9                    
+| +1f30  or t7,t9,ra                      
+| +1f34  sll t8,a2,0x12                   
+| +1f38  move a2,t8                       
+| +1f3c  sll t6,a3,0xe                    
+| +1f40  move a3,t6                       
+| +1f44  or t8,t8,t5                      
+| +1f48  sll t9,t0,0x8                    
+| +1f4c  sw t7,0(v1)                      
+| +1f50  sll t7,t1,0x4                    
+| +1f54  move t0,t9                       
+| +1f58  or t6,t8,t6                      
+| +1f5c  or t9,t6,t9                      
+| +1f60  move t1,t7                       
+| +1f64  or t7,t9,t7                      
+| +1f68  sw t7,4(v1)                      
+| +1f6c  lw t8,596(sp)                    
+| +1f70  lui t9,0xe600                    
+| +1f74  addiu t6,t8,8                    
+| +1f78  sw t6,596(sp)                    
+| +1f7c  sw zero,4(t8)                    
+| +1f80  sw t9,0(t8)                      
+| +1f84  lw v0,596(sp)                    
+| +1f88  addiu t8,v0,8                    
+| +1f8c  sw t8,596(sp)                    
+| +1f90  lhu t6,0(s0)                     
+| +1f94  sra t9,t6,0x5                    
+| +1f98  sll t7,t9,0x2                    
+| +1f9c  andi t8,t7,0xfff                 
+| +1fa0  lhu t7,2(s0)                     
+| +1fa4  sll t6,t8,0xc                    
+| +1fa8  or t9,t6,at                      
+| +1fac  sra t8,t7,0x5                    
+| +1fb0  sll t6,t8,0x2                    
+| +1fb4  andi t7,t6,0xfff                 
+| +1fb8  or t8,t9,t7                      
+| +1fbc  sw t8,0(v0)                      
+| +1fc0  lhu t6,4(s0)                     
+| +1fc4  lui at,0xf200                    
+| +1fc8  sra t9,t6,0x5                    
+| +1fcc  sll t7,t9,0x2                    
+| +1fd0  andi t8,t7,0xfff                 
+| +1fd4  lhu t7,6(s0)                     
+| +1fd8  sll t6,t8,0xc                    
+| +1fdc  or t9,t6,t5                      
+| +1fe0  sra t8,t7,0x5                    
+| +1fe4  sll t6,t8,0x2                    
+| +1fe8  andi t7,t6,0xfff                 
+| +1fec  or t8,t9,t7                      
+| +1ff0  sw t8,4(v0)                      
+| +1ff4  lw t6,596(sp)                    
+| +1ff8  lui t7,0xe700                    
+| +1ffc  addiu t9,t6,8                    
+| +2000  sw t9,596(sp)                    
+| +2004  sw zero,4(t6)                    
+| +2008  sw t7,0(t6)                      
+| +200c  lw a0,596(sp)                    
+| +2010  addiu t6,a0,8                    
+| +2014  sw t6,596(sp)                    
+| +2018  lhu t9,4(s0)                     
+| +201c  lhu t8,0(s0)                     
+| +2020  sra t7,t9,0x5                    
+| +2024  sra t6,t8,0x5                    
+| +2028  subu t9,t7,t6                    
+| +202c  addiu t8,t9,8                    
+| +2030  sra t7,t8,0x3                    
+| +2034  andi t6,t7,0x1ff                 
+| +2038  sll t9,t6,0x9                    
+| +203c  or t7,a2,a3                      
+| +2040  or t6,t7,t0                      
+| +2044  or t8,t9,ra                      
+| +2048  or t9,t6,t1                      
+| +204c  sw t9,4(a0)                      
+| +2050  sw t8,0(a0)                      
+| +2054  lw v0,596(sp)                    
+| +2058  addiu t7,v0,8                    
+| +205c  sw t7,596(sp)                    
+| +2060  lhu t6,0(s0)                     
+| +2064  sra t9,t6,0x5                    
+  +2068  sll t8,t9,0x2                    sll t8,t9,0x2
+| +206c  andi t7,t8,0xfff                 lhu t9,18(s1)
+| +2070  lhu t8,2(s0)                     
+| +2074  sll t6,t7,0xc                    
+| +2078  or t9,t6,at                      
+| +207c  sra t7,t8,0x5                    
+| +2080  sll t6,t7,0x2                    
+| +2084  andi t8,t6,0xfff                 
+| +2088  or t7,t9,t8                      
+| +208c  sw t7,0(v0)                      
+| +2090  lhu t6,4(s0)                     
+| +2094  sra t9,t6,0x5                    
+| +2098  sll t8,t9,0x2                    
+| +209c  lhu t9,6(s0)                     
+  +20a0  andi t7,t8,0xfff                 andi t7,t8,0xfff
+  +20a4  sll t6,t7,0xc                    sll t6,t7,0xc
+| +20a8  sra t8,t9,0x5                    addiu t8,t9,-1
+  +20ac  sll t7,t8,0x2                    sll t7,t8,0x2
+  +20b4  or t8,t6,t9                      or t8,t6,t9
+| +20b8  b 0x26d8                         sw t8,4(t2)
+| +20bc  sw t8,4(v0)                      beqz s3,0x2744
+|                                         lui s2,0xf200
+  +20c0  lw t7,596(sp)                    lw t7,596(sp)
+| +20c4  lui t9,0xfd70                    addiu v0,t7,-8
+| +20c8  andi a2,a1,0x3                   sw v0,596(sp)
+| +20cc  addiu t6,t7,8                    addiu t9,v0,8
+| +20d0  sw t6,596(sp)                    
+| +20d4  sw t9,0(t7)                      
+| +20d8  lw t8,24(s1)                     
+| +20dc  lui ra,0xf570                    
+| +20e0  sll t9,a2,0x12                   
+| +20e4  sw t8,4(t7)                      
+| +20e8  lw t7,596(sp)                    
+| +20ec  andi a3,t3,0xf                   
+| +20f0  sll t8,a3,0xe                    
+| +20f4  addiu t6,t7,8                    
+| +20f8  sw t6,596(sp)                    
+| +20fc  move a2,t9                       
+| +2100  andi t0,t2,0x3                   
+| +2104  sw ra,0(t7)                      
+| +2108  move v1,t7                       
+| +210c  sll t7,t0,0x8                    
+| +2110  or t9,t9,t5                      
+| +2114  move a3,t8                       
+| +2118  andi t1,s2,0xf                   
+| +211c  sll t6,t1,0x4                    
+| +2120  or t8,t9,t8                      
+| +2124  move t0,t7                       
+| +2128  or t7,t8,t7                      
+| +212c  move t1,t6                       
+| +2130  or t6,t7,t6                      
+| +2134  sw t6,4(v1)                      
+| +2138  lw t9,596(sp)                    
+| +213c  lui t7,0xe600                    
+| +2140  lui ra,0xf568                    
+| +2144  addiu t8,t9,8                    
+| +2148  sw t8,596(sp)                    
+| +214c  sw zero,4(t9)                    
+| +2150  sw t7,0(t9)                      
+| +2154  lw t6,596(sp)                    
+| +2158  lui t8,0xf300                    
+| +215c  li t3,2047                       
+| +2160  addiu t9,t6,8                    
+  +2164  sw t9,596(sp)                    sw t9,596(sp)
+| +2168  sw t8,0(t6)                      lhu t8,0(s3)
+| +216c  lhu t7,18(s1)                    
+| +2170  lhu a0,16(s1)                    
+| +2174  move t4,t6                       
+| +2178  multu a0,t7                      
+| +217c  mflo v0                          
+| +2180  addiu v0,v0,1                    
+| +2184  sra t6,v0,0x1                    
+| +2188  addiu v0,t6,-1                   
+| +218c  slti at,v0,2047                  
+| +2190  beqz at,0x21a0                   
+| +2194  nop                              
+| +2198  b 0x21a0                         
+| +219c  move t3,v0                       
+| +21a0  bgez a0,0x21b0                   
+| +21a4  sra v1,a0,0x3                    
+| +21a8  addiu at,a0,7                    
+| +21ac  sra v1,at,0x3                    
+| +21b0  bgtz v1,0x21c0                   
+| +21b4  move a1,v1                       
+| +21b8  b 0x21c0                         
+| +21bc  li a1,1                          
+| +21c0  bgtz v1,0x21d0                   
+| +21c4  addiu t9,a1,2047                 
+| +21c8  b 0x21d4                         
+| +21cc  li v0,1                          
+| +21d0  move v0,v1                       
+| +21d4  div zero,t9,v0                   
+| +21d8  mflo t8                          
+| +21dc  andi t7,t8,0xfff                 
+| +21e0  bnez v0,0x21ec                   
+| +21e4  nop                              
+| +21e8  break 0x7                        
+| +21ec  li at,-1                         
+| +21f0  bne v0,at,0x2204                 
+| +21f4  lui at,0x8000                    
+| +21f8  bne t9,at,0x2204                 
+| +21fc  nop                              
+| +2200  break 0x6                        
+| +2204  andi t9,t3,0xfff                 
+| +2208  sll t8,t9,0xc                    
+| +220c  or t6,t7,t5                      
+| +2210  or t7,t6,t8                      
+| +2214  sw t7,4(t4)                      
+| +2218  lw t9,596(sp)                    
+| +221c  lui t8,0xe700                    
+| +2220  addiu t6,t9,8                    
+| +2224  sw t6,596(sp)                    
+| +2228  sw zero,4(t9)                    
+| +222c  sw t8,0(t9)                      
+| +2230  lw t7,596(sp)                    
+| +2234  move v1,t9                       
+| +2238  addiu t9,t7,8                    
+| +223c  sw t9,596(sp)                    
+| +2240  lhu t6,16(s1)                    
+| +2244  move a0,t7                       
+| +2248  addiu t8,t6,7                    
+  +224c  sra t7,t8,0x3                    sra t7,t8,0x3
+| +2250  andi t9,t7,0x1ff                 andi t6,t7,0xfff
+| +2254  sll t6,t9,0x9                    lhu t7,2(s3)
+| +2258  or t7,a2,a3                      sll t9,t6,0xc
+| +225c  or t9,t7,t0                      or t8,t9,s2
+| +2260  or t8,t6,ra                      sra t6,t7,0x3
+| +2264  or t6,t9,t1                      andi t9,t6,0xfff
+| +2268  sw t6,4(a0)                      or t7,t8,t9
+| +226c  sw t8,0(a0)                      sw t7,0(v0)
+| +2270  lw t8,596(sp)                    lhu t6,4(s3)
+| +2274  lui t9,0xf200                    
+| +2278  addiu t7,t8,8                    
+| +227c  sw t7,596(sp)                    
+| +2280  sw t9,0(t8)                      
+| +2284  lhu t6,16(s1)                    
+| +2288  move t2,t8                       
+| +228c  addiu t8,t6,-1                   
+| +2290  sll t7,t8,0x2                    
+| +2294  lhu t8,18(s1)                    
+| +2298  andi t9,t7,0xfff                 
+| +229c  sll t6,t9,0xc                    
+| +22a0  addiu t7,t8,-1                   
+| +22a4  sll t9,t7,0x2                    
+| +22a8  andi t8,t9,0xfff                 
+| +22ac  or t7,t6,t8                      
+| +22b0  b 0x26d8                         
+| +22b4  sw t7,4(t2)                      
+| +22b8  beqz s0,0x24e0                   
+| +22bc  lui t5,0x700                     
+| +22c0  lw v0,596(sp)                    
+| +22c4  lui at,0xfd68                    
+| +22c8  lui ra,0xf568                    
+| +22cc  addiu t6,v0,8                    
+| +22d0  sw t6,596(sp)                    
+| +22d4  lhu t8,16(s1)                    
+| +22d8  andi a2,a1,0x3                   
+| +22dc  andi a3,t3,0xf                   
+| +22e0  sra t7,t8,0x1                    
+| +22e4  addiu t9,t7,-1                   
+| +22e8  andi t6,t9,0xfff                 
+| +22ec  or t8,t6,at                      
+| +22f0  sw t8,0(v0)                      
+| +22f4  lw t7,24(s1)                     
+| +22f8  lui t5,0x700                     
+| +22fc  andi t0,t2,0x3                   
+| +2300  sw t7,4(v0)                      
+| +2304  lw v1,596(sp)                    
+| +2308  andi t1,s2,0xf                   
+| +230c  lui at,0xf400                    
+| +2310  addiu t6,v1,8                    
+| +2314  sw t6,596(sp)                    
+| +2318  lhu t8,4(s0)                     
+| +231c  lhu t9,0(s0)                     
+| +2320  sra t7,t8,0x5                    
+| +2324  sra t6,t9,0x5                    
+| +2328  subu t8,t7,t6                    
+| +232c  addiu t9,t8,1                    
+| +2330  sra t7,t9,0x1                    
+| +2334  addiu t6,t7,7                    
+  +2338  sra t8,t6,0x3                    sra t8,t6,0x3
+| +233c  andi t9,t8,0x1ff                 lhu t6,6(s3)
+| +2340  sll t7,t9,0x9                    
+| +2344  or t6,t7,ra                      
+| +2348  sll t8,a2,0x12                   
+| +234c  move a2,t8                       
+| +2350  sll t9,a3,0xe                    
+| +2354  move a3,t9                       
+| +2358  or t8,t8,t5                      
+| +235c  sll t7,t0,0x8                    
+| +2360  sw t6,0(v1)                      
+| +2364  sll t6,t1,0x4                    
+| +2368  move t0,t7                       
+| +236c  or t9,t8,t9                      
+| +2370  or t7,t9,t7                      
+| +2374  move t1,t6                       
+| +2378  or t6,t7,t6                      
+| +237c  sw t6,4(v1)                      
+| +2380  lw t8,596(sp)                    
+| +2384  lui t7,0xe600                    
+| +2388  addiu t9,t8,8                    
+| +238c  sw t9,596(sp)                    
+| +2390  sw zero,4(t8)                    
+| +2394  sw t7,0(t8)                      
+| +2398  lw v0,596(sp)                    
+| +239c  addiu t8,v0,8                    
+| +23a0  sw t8,596(sp)                    
+| +23a4  lhu t9,0(s0)                     
+| +23a8  sra t7,t9,0x5                    
+| +23ac  sll t6,t7,0x1                    
+| +23b0  andi t8,t6,0xfff                 
+| +23b4  lhu t6,2(s0)                     
+| +23b8  sll t9,t8,0xc                    
+| +23bc  or t7,t9,at                      
+| +23c0  sra t8,t6,0x5                    
+| +23c4  sll t9,t8,0x2                    
+| +23c8  andi t6,t9,0xfff                 
+| +23cc  or t8,t7,t6                      
+| +23d0  sw t8,0(v0)                      
+| +23d4  lhu t9,4(s0)                     
+| +23d8  lui at,0xf560                    
+| +23dc  sra t7,t9,0x5                    
+| +23e0  sll t6,t7,0x1                    
+| +23e4  andi t8,t6,0xfff                 
+| +23e8  lhu t6,6(s0)                     
+| +23ec  sll t9,t8,0xc                    
+| +23f0  or t7,t9,t5                      
+| +23f4  sra t8,t6,0x5                    
+| +23f8  sll t9,t8,0x2                    
+| +23fc  andi t6,t9,0xfff                 
+| +2400  or t8,t7,t6                      
+| +2404  sw t8,4(v0)                      
+| +2408  lw t9,596(sp)                    
+| +240c  lui t6,0xe700                    
+| +2410  addiu t7,t9,8                    
+| +2414  sw t7,596(sp)                    
+| +2418  sw zero,4(t9)                    
+| +241c  sw t6,0(t9)                      
+| +2420  lw a0,596(sp)                    
+| +2424  addiu t9,a0,8                    
+| +2428  sw t9,596(sp)                    
+| +242c  lhu t7,4(s0)                     
+| +2430  lhu t8,0(s0)                     
+| +2434  sra t6,t7,0x5                    
+| +2438  sra t9,t8,0x5                    
+| +243c  subu t7,t6,t9                    
+| +2440  addiu t8,t7,1                    
+| +2444  sra t6,t8,0x1                    
+| +2448  addiu t9,t6,7                    
+| +244c  sra t7,t9,0x3                    
+| +2450  andi t8,t7,0x1ff                 
+| +2454  sll t6,t8,0x9                    
+| +2458  or t7,a2,a3                      
+| +245c  or t8,t7,t0                      
+| +2460  or t9,t6,at                      
+| +2464  or t6,t8,t1                      
+| +2468  sw t6,4(a0)                      
+| +246c  sw t9,0(a0)                      
+| +2470  lw v0,596(sp)                    
+| +2474  lui at,0xf200                    
+| +2478  addiu t7,v0,8                    
+| +247c  sw t7,596(sp)                    
+| +2480  lhu t8,0(s0)                     
+| +2484  sra t6,t8,0x5                    
+| +2488  sll t9,t6,0x2                    
+| +248c  andi t7,t9,0xfff                 
+| +2490  lhu t9,2(s0)                     
+| +2494  sll t8,t7,0xc                    
+| +2498  or t6,t8,at                      
+| +249c  sra t7,t9,0x5                    
+| +24a0  sll t8,t7,0x2                    
+  +24a4  andi t9,t8,0xfff                 andi t9,t8,0xfff
+| +24a8  or t7,t6,t9                      sll t7,t9,0xc
+| +24ac  sw t7,0(v0)                      sra t8,t6,0x3
+| +24b0  lhu t8,4(s0)                     andi t9,t8,0xfff
+| +24b4  sra t6,t8,0x5                    or t6,t7,t9
+| +24b8  sll t9,t6,0x2                    b 0x27a8
+| +24bc  lhu t6,6(s0)                     sw t6,4(v0)
+| +24c0  andi t7,t9,0xfff                 beqz s0,0x27a8
+| +24c4  sll t8,t7,0xc                    
+| +24c8  sra t9,t6,0x5                    
+| +24cc  sll t7,t9,0x2                    
+| +24d0  andi t6,t7,0xfff                 
+| +24d4  or t9,t8,t6                      
+| +24d8  b 0x26d8                         
+| +24dc  sw t9,4(v0)                      
+| +24e0  lw t7,596(sp)                    
+| +24e4  lui t6,0xfd70                    
+| +24e8  andi a2,a1,0x3                   
+| +24ec  addiu t8,t7,8                    
+| +24f0  sw t8,596(sp)                    
+| +24f4  sw t6,0(t7)                      
+| +24f8  lw t9,24(s1)                     
+| +24fc  lui ra,0xf570                    
+| +2500  sll t6,a2,0x12                   
+| +2504  sw t9,4(t7)                      
+| +2508  lw t7,596(sp)                    
+| +250c  andi a3,t3,0xf                   
+| +2510  sll t9,a3,0xe                    
+| +2514  addiu t8,t7,8                    
+| +2518  sw t8,596(sp)                    
+| +251c  move a2,t6                       
+| +2520  andi t0,t2,0x3                   
+| +2524  sw ra,0(t7)                      
+| +2528  move v1,t7                       
+| +252c  sll t7,t0,0x8                    
+| +2530  or t6,t6,t5                      
+| +2534  move a3,t9                       
+| +2538  andi t1,s2,0xf                   
+| +253c  sll t8,t1,0x4                    
+| +2540  or t9,t6,t9                      
+| +2544  move t0,t7                       
+| +2548  or t7,t9,t7                      
+| +254c  move t1,t8                       
+| +2550  or t8,t7,t8                      
+| +2554  sw t8,4(v1)                      
+| +2558  lw t6,596(sp)                    
+| +255c  lui t7,0xe600                    
+| +2560  li t3,2047                       
+| +2564  addiu t9,t6,8                    
+| +2568  sw t9,596(sp)                    
+| +256c  sw zero,4(t6)                    
+| +2570  sw t7,0(t6)                      
+| +2574  lw t8,596(sp)                    
+| +2578  lui t9,0xf300                    
+| +257c  addiu t6,t8,8                    
+| +2580  sw t6,596(sp)                    
+| +2584  sw t9,0(t8)                      
+| +2588  lhu t7,18(s1)                    
+| +258c  lhu a0,16(s1)                    
+| +2590  move t4,t8                       
+| +2594  multu a0,t7                      
+| +2598  mflo v0                          
+| +259c  addiu v0,v0,3                    
+| +25a0  sra t8,v0,0x2                    
+| +25a4  addiu v0,t8,-1                   
+| +25a8  slti at,v0,2047                  
+| +25ac  beqz at,0x25bc                   
+| +25b0  nop                              
+| +25b4  b 0x25bc                         
+| +25b8  move t3,v0                       
+| +25bc  bgez a0,0x25cc                   
+| +25c0  sra v1,a0,0x4                    
+| +25c4  addiu at,a0,15                   
+| +25c8  sra v1,at,0x4                    
+| +25cc  bgtz v1,0x25dc                   
+| +25d0  move a1,v1                       
+| +25d4  b 0x25dc                         
+| +25d8  li a1,1                          
+| +25dc  bgtz v1,0x25ec                   
+| +25e0  addiu t6,a1,2047                 
+| +25e4  b 0x25f0                         
+| +25e8  li v0,1                          
+| +25ec  move v0,v1                       
+| +25f0  div zero,t6,v0                   
+| +25f4  mflo t9                          
+| +25f8  andi t7,t9,0xfff                 
+| +25fc  bnez v0,0x2608                   
+| +2600  nop                              
+| +2604  break 0x7                        
+| +2608  li at,-1                         
+| +260c  bne v0,at,0x2620                 
+| +2610  lui at,0x8000                    
+| +2614  bne t6,at,0x2620                 
+| +2618  nop                              
+| +261c  break 0x6                        
+| +2620  andi t6,t3,0xfff                 
+| +2624  sll t9,t6,0xc                    
+| +2628  or t8,t7,t5                      
+| +262c  or t7,t8,t9                      
+| +2630  sw t7,4(t4)                      
+| +2634  lw t6,596(sp)                    
+| +2638  lui t9,0xe700                    
+| +263c  lui at,0xf560                    
+| +2640  addiu t8,t6,8                    
+| +2644  sw t8,596(sp)                    
+| +2648  sw zero,4(t6)                    
+| +264c  sw t9,0(t6)                      
+| +2650  lw t7,596(sp)                    
+| +2654  move v1,t6                       
+| +2658  addiu t6,t7,8                    
+| +265c  sw t6,596(sp)                    
+| +2660  lhu t8,16(s1)                    
+| +2664  move a0,t7                       
+| +2668  sra t9,t8,0x1                    
+| +266c  addiu t7,t9,7                    
+| +2670  sra t6,t7,0x3                    
+| +2674  andi t8,t6,0x1ff                 
+| +2678  sll t9,t8,0x9                    
+| +267c  or t6,a2,a3                      
+| +2680  or t8,t6,t0                      
+| +2684  or t7,t9,at                      
+| +2688  or t9,t8,t1                      
+| +268c  sw t9,4(a0)                      
+| +2690  sw t7,0(a0)                      
+| +2694  lw t7,596(sp)                    
+| +2698  lui t8,0xf200                    
+| +269c  addiu t6,t7,8                    
+| +26a0  sw t6,596(sp)                    
+| +26a4  sw t8,0(t7)                      
+| +26a8  lhu t9,16(s1)                    
+| +26ac  move t2,t7                       
+| +26b0  addiu t7,t9,-1                   
+| +26b4  sll t6,t7,0x2                    
+| +26b8  lhu t7,18(s1)                    
+| +26bc  andi t8,t6,0xfff                 
+| +26c0  sll t9,t8,0xc                    
+| +26c4  addiu t6,t7,-1                   
+| +26c8  sll t8,t6,0x2                    
+| +26cc  andi t7,t8,0xfff                 
+| +26d0  or t6,t9,t7                      
+| +26d4  sw t6,4(t2)                      
+| +26d8  beqz s3,0x2744                   
+  +26dc  lw t8,596(sp)                    lw t8,596(sp)
+  +26e4  sw v0,596(sp)                    sw v0,596(sp)
+| +26e8  addiu t7,v0,8                    addiu t9,v0,8
+| +26ec  sw t7,596(sp)                    sw t9,596(sp)
+| +26f0  lhu t6,0(s3)                     lhu t6,0(s0)
+| +26f4  lui at,0xf200                    
+| +26f8  sra t8,t6,0x3                    
+| +26fc  andi t9,t8,0xfff                 
+| +2700  lhu t8,2(s3)                     
+| +2704  sll t7,t9,0xc                    
+| +2708  or t6,t7,at                      
+| +270c  sra t9,t8,0x3                    
+| +2710  andi t7,t9,0xfff                 
+| +2714  or t8,t6,t7                      
+| +2718  sw t8,0(v0)                      
+| +271c  lhu t9,4(s3)                     
+| +2720  sra t6,t9,0x3                    
+| +2724  lhu t9,6(s3)                     
+| +2728  andi t7,t6,0xfff                 
+| +272c  sll t8,t7,0xc                    
+| +2730  sra t6,t9,0x3                    
+| +2734  andi t7,t6,0xfff                 
+| +2738  or t9,t8,t7                      
+| +273c  b 0x27ac                         
+| +2740  sw t9,4(v0)                      
+| +2744  beqz s0,0x27ac                   
+| +2748  lw t6,596(sp)                    
+| +274c  addiu v0,t6,-8                   
+| +2750  sw v0,596(sp)                    
+| +2754  addiu t7,v0,8                    
+| +2758  sw t7,596(sp)                    
+| +275c  lhu t9,0(s0)                     
+| +2760  lui at,0xf200                    
+| +2764  sra t6,t9,0x3                    
+| +2768  andi t8,t6,0xfff                 
+| +276c  lhu t6,2(s0)                     
+| +2770  sll t7,t8,0xc                    
+| +2774  or t9,t7,at                      
+  +2778  sra t8,t6,0x3                    sra t8,t6,0x3
+  +277c  andi t7,t8,0xfff                 andi t7,t8,0xfff
+| +2780  or t6,t9,t7                      lhu t8,2(s0)
+| +2784  sw t6,0(v0)                      sll t9,t7,0xc
+| +2788  lhu t8,4(s0)                     or t6,t9,s2
+| +278c  sra t9,t8,0x3                    sra t7,t8,0x3
+| +2790  lhu t8,6(s0)                     andi t9,t7,0xfff
+| +2794  andi t7,t9,0xfff                 or t8,t6,t9
+| +2798  sll t6,t7,0xc                    sw t8,0(v0)
+| +279c  sra t9,t8,0x3                    lhu t7,4(s0)
+| +27a0  andi t7,t9,0xfff                 sra t6,t7,0x3
+| +27a4  or t8,t6,t7                      lhu t7,6(s0)
+| +27a8  sw t8,4(v0)                      andi t9,t6,0xfff
+|                                         sll t8,t9,0xc
+|                                         sra t6,t7,0x3
+|                                         andi t9,t6,0xfff
+|                                         or t7,t8,t9
+|                                         sw t7,4(v0)
+  +27ac  lh v0,22(s1)                     lh v0,22(s1)
+  +27b0  bltzl v0,0x27e8                  bltzl v0,0x27e4
+| +27b4  lw t8,596(sp)                    lw t7,596(sp)
+| +27b8  lw t9,28(s1)                     lw t6,28(s1)
+| +27bc  sll t6,t9,0x2                    sll t8,t6,0x2
+| +27c0  bltzl t6,0x27e8                  bltzl t8,0x27e4
+| +27c4  lw t8,596(sp)                    lw t7,596(sp)
+  +27c8  beqz s5,0x27e4                   beqz s5,0x27e0
+  +27cc  addiu a0,sp,596                  addiu a0,sp,596
+| +27d0  sll t7,v0,0x2                    sll t9,v0,0x2
+| +27d4  subu t7,t7,v0                    subu t9,t9,v0
+| +27d8  sll t7,t7,0x3                    sll t9,t9,0x3
+  +27dc  jal 0x99b30                      jal 0x99b30
+| +27e0  addu a1,t7,s5                    addu a1,t9,s5
+| +27e4  lw t8,596(sp)                    lw t7,596(sp)
+| +27e8  sw t8,0(s4)                      sw t7,0(s4)
+  +27ec  lw ra,20(sp)                     lw ra,20(sp)
+want 2559 words, got 2558; differing rows 2500; unverified 0 unresolved 0

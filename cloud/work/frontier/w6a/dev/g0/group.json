@@ -1,0 +1,2 @@
+{"members": ["render_display_list", "func_80099B30", "func_8009C3F8", "particle_system", "track_collision_wall", "func_8009F058"],
+ "files": ["group.c"], "keep": ["zz_caller", "zz_caller2", "camera_update_c", "select_screen_update"], "flags": "-g0 -O3 -mips2 -G 0 -non_shared", "unprototyped": [], "context": [], "claims": []}

@@ -41,6 +41,7 @@ func_800EF5B0:
 .section .text.func_800EF62C, "ax", @progbits
 .globl func_800EF62C
 func_800EF62C:
+    /* compiled from src/blob/func_800EF62C.c */
     .word 0x27BDFFE0
     .word 0xAFBF0014
     .word 0x8C82002C

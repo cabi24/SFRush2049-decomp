@@ -1,0 +1,707 @@
+procedure track_collision_wall  (colouring ordinal 6)
+
+== expression bits (variables omitted unless --all) ==
+   2  varP(29+0)r
+        antloc 0,120 | coloredparms iscolored1 mvarbits | p1:w2 save=0.06 nocs=31 split->-
+   4  ilod.A@0(varP(29+0)r)
+        antloc 0 | indmults
+   6  varM(29-12)r
+        antloc 100 | iscolored1 mvarbits | p1:w6 save=1.32 nocs=31 split->- | p1:w478 save=1.00 nocs=30 split->-
+   8  str.J(varM(29-12)r,0)
+        antloc 0,101
+   9  varM(29-16)r
+        antloc 69,84,90,99,101,104,106,120 | iscolored1 mvarbits | p1:w9 save=3.94 nocs=31 color->s1
+  11  str.J(varM(29-16)r,0)
+        antloc 0,85 | DELETE 85 | INSERT 84
+  12  varM(29-20)r
+        antloc 104 | iscolored1 mvarbits | p1:w12 save=1.32 nocs=31 split->- | p1:w479 save=1.00 nocs=30 split->-
+  14  str.J(varM(29-20)r,0)
+        antloc 0
+  15  varP(29+8)r
+        antloc 1,3,9,11,14,16,18,20,21,23,25,27,28,31,38,42,46,47,51,52,54,58,59,63,64,65,66,67,69,73,74,82,86,87,89,91,95,96,98,110,112,113,116 | DELETE 3,21,23,27,28,42,46,47,51,52,54,59,63,67,73,74,87,96,112 | coloredparms iscolored1 mvarbits | p1:w15 save=61.00 nocs=31 color->s7
+  17  ilod.L@0(varP(29+8)r)
+        antloc 1,9,14,21,23,25,46,51,66,67,74,98,113,116 | DELETE 1,9,14,25,46,51,67,74,98,116 | INSERT 0,24,92,115 | iscolored1 indmults | p1:w17 save=41.22 nocs=9 color->v0
+  18  and.L(ilod.L@0(varP(29+8)r),-2147483648)
+        antloc 1
+  19  ilod.J@24(varP(29+8)r)
+        antloc 3,98,110,112 | DELETE 110,112 | INSERT 2,40,44,49,56,109,118 | iscolored1 indmults | p1:w19 save=120.00 nocs=3 color->v0
+  20  geq.J(ilod.J@24(varP(29+8)r),0)
+        antloc 3,98
+  21  cg1.J(ilod.J@24(varP(29+8)r))
+        antloc 3
+  22  varP(29+20)r
+        antloc 4 | iscolored1 mvarbits | p1:w22 save=0.32 nocs=31 split->-
+  24  neq.J(varP(29+20)r,0)
+        antloc 4
+  25  cg1.J(varP(29+20)r)
+        antloc 4
+  26  varM(29-8)r
+        antloc 57,92,105 | iscolored1 mvarbits | p1:w26 save=2.92 nocs=24 split->- | p1:w468 save=1.74 nocs=23 split->-
+  28  str.J(varM(29-8)r,1)
+        antloc 6
+  29  str.J(varM(29-8)r,0)
+        antloc 7,22,26
+  30  ilod.J@0(ldaS(30+0))
+        antloc 8,112 | DELETE 8 | INSERT 3 | iscolored1 indmults | p1:w30 save=6.67 nocs=3 color->v1
+  31  equ.J(0,ilod.J@0(ldaS(30+0)))
+        antloc 8
+  32  cg1.J(ilod.J@0(ldaS(30+0)))
+        antloc 8 | DELETE 8 | INSERT 3
+  33  and.L(ilod.L@0(varP(29+8)r),262144)
+        antloc 9,113
+  34  ilod.J@0(ldaS(31+0))
+        antloc 10 | indmults
+  35  les.J(ilod.J@0(ldaS(31+0)),0)
+        antloc 10
+  36  cg1.J(ilod.J@0(ldaS(31+0)))
+        antloc 10
+  37  sub.A(varP(29+8)r,ldaS(32+0))
+        antloc 11,16 | indmults
+  38  cvt.J(sub.A(varP(29+8)r,ldaS(32+0)))
+        antloc 11,16
+  39  div.J(cvt.J(sub.A(varP(29+8)r,ldaS(32+0))),68)
+        antloc 11,16
+  40  istr.J@0(ldaS(31+0),div.J(cvt.J(sub.A(varP(29+8)r,ldaS(32+0))),68))
+        antloc 11
+  41  ilod.J@0(ldaS(33+0))
+        antloc 13,115 | indmults
+  42  equ.J(0,ilod.J@0(ldaS(33+0)))
+        antloc 13
+  43  cg1.J(ilod.J@0(ldaS(33+0)))
+        antloc 13
+  44  and.L(ilod.L@0(varP(29+8)r),8388608)
+        antloc 14,116
+  45  ilod.J@0(ldaS(34+0))
+        antloc 15 | indmults
+  46  les.J(ilod.J@0(ldaS(34+0)),0)
+        antloc 15
+  47  cg1.J(ilod.J@0(ldaS(34+0)))
+        antloc 15
+  48  istr.J@0(ldaS(34+0),div.J(cvt.J(sub.A(varP(29+8)r,ldaS(32+0))),68))
+        antloc 16
+  49  varP(29+12)r
+        antloc 18,21,24,38,42,47,52,54,82,89,98 | coloredparms iscolored1 mvarbits | p1:w49 save=3.55 nocs=31 color->s2
+  53  neq.J(varR(0+2)r,0)
+        antloc 19,39,43,48,55
+  54  cg1.J(varR(0+2)r)
+        antloc 19
+  55  ilod.J@22(varP(29+8)r)
+        antloc 20,91,98 | DELETE 91,98 | INSERT 83,90 | iscolored1 indmults | p1:w55 save=15.00 nocs=4 color->t0
+  56  les.J(ilod.J@22(varP(29+8)r),0)
+        antloc 20
+  57  cg1.J(ilod.J@22(varP(29+8)r))
+        antloc 20
+  58  shl.J(256,varP(29+12)r)
+        antloc 21
+  59  cvt.L(shl.J(256,varP(29+12)r))
+        antloc 21
+  60  and.L(ilod.L@0(varP(29+8)r),cvt.L(shl.J(256,varP(29+12)r)))
+        antloc 21
+  61  and.L(ilod.L@0(varP(29+8)r),4096)
+        antloc 23
+  62  varM(29-56)r
+        iscolored1 mvarbits | p1:w62 save=30.00 nocs=1 color->v1
+  64  str.A(varM(29-56)r,varM(29-4))
+        antloc 24
+  65  add.A(varM(29-4),8)
+        antloc 24,57,63,64,65,69,70,71,72,84,103,108 | indmults
+  68  ilod.A@0(ldaS(21+0))
+        indmults
+  69  mpy.J(varP(29+12)r,16)
+        antloc 24 | indmults
+  70  ixa.J(ilod.A@0(ldaS(21+0)),mpy.J(varP(29+12)r,16))
+        indmults
+  71  add.A(ixa.J(ilod.A@0(ldaS(21+0)),mpy.J(varP(29+12)r,16)),64)
+        indmults
+  74  and.L(ilod.L@0(varP(29+8)r),128)
+        antloc 25
+  75  ilod.A@8(varP(29+8)r)
+        antloc 27,38,42,47,52,54,82 | iscolored1 indmults | p1:w75 save=30.00 nocs=1 color->v0
+  76  ilod.R@36(ilod.A@8(varP(29+8)r))
+        antloc 27,82 | indmults
+  78  ilod.R@40(ilod.A@8(varP(29+8)r))
+        indmults
+  80  ilod.R@44(ilod.A@8(varP(29+8)r))
+        antloc 82 | indmults
+  83  ilod.R@12(varP(29+8)r)
+        antloc 28,31 | indmults
+  84  neq.R(3,ilod.R@12(varP(29+8)r))
+        antloc 28
+  85  cg1.R(ilod.R@12(varP(29+8)r))
+        antloc 28
+  86  varM(29-24)r
+        antloc 31,33 | iscolored1 mvarbits | p1:w86 save=10.00 nocs=1 color->v0
+  88  str.J(varM(29-24)r,0)
+        antloc 29
+  89  varM(29-28)r
+        antloc 31,36 | iscolored1 mvarbits | p1:w89 save=1600.00 nocs=2 color->v0
+  91  str.J(varM(29-28)r,0)
+        antloc 30,35
+  92  ixa.J(ldaS(37+0),varM(29-24)r)
+        antloc 31 | DELETE 31 | INSERT 29 | iscolored1 indmults | p1:w92 save=155.00 nocs=2 color->a2
+  93  mpy.J(varM(29-28)r,4)
+        antloc 31,36 | DELETE 31,36 | INSERT 30,35 | indmults
+  94  ixa.J(ixa.J(ldaS(37+0),varM(29-24)r),mpy.J(varM(29-28)r,4))
+        antloc 31 | DELETE 31 | INSERT 30 | iscolored1 indmults | p1:w94 save=1550.00 nocs=2 color->v1
+  95  ixa.J(ldaS(36+0),varM(29-24)r)
+        antloc 31 | DELETE 31 | INSERT 29 | iscolored1 indmults | p1:w95 save=205.00 nocs=2 color->a1
+  96  ixa.J(ixa.J(ldaS(36+0),varM(29-24)r),mpy.J(varM(29-28)r,4))
+        antloc 31 | DELETE 31 | INSERT 30 | iscolored1 indmults | p1:w96 save=1550.00 nocs=2 color->a0
+  97  ilod.R@0(ixa.J(ixa.J(ldaS(36+0),varM(29-24)r),mpy.J(varM(29-28)r,4)))
+        antloc 31 | indmults
+  98  mpy.R(ilod.R@0(ixa.J(ixa.J(ldaS(36+0),varM(29-24)r),mpy.J(varM(29-28)r,4))),ilod.R@12(varP(29+8)r))
+        antloc 31
+ 100  add.J(varM(29-28)r,1)
+        antloc 31,36 | indmults
+ 104  add.J(varM(29-24)r,1)
+        antloc 33 | indmults
+ 108  ixa.J(ldaS(37+0),mpy.J(varM(29-28)r,4))
+        antloc 36 | DELETE 36 | INSERT 35 | iscolored1 indmults | p1:w108 save=200.00 nocs=2 color->a0
+ 109  ixa.J(ldaS(36+0),mpy.J(varM(29-28)r,4))
+        antloc 36 | DELETE 36 | INSERT 35 | iscolored1 indmults | p1:w109 save=200.00 nocs=2 color->a1
+ 110  ilod.R@48(ixa.J(ldaS(36+0),mpy.J(varM(29-28)r,4)))
+        antloc 36 | indmults
+ 111  istr.R@48(ixa.J(ldaS(37+0),mpy.J(varM(29-28)r,4)),ilod.R@48(ixa.J(ldaS(36+0),mpy.J(varM(29-28)r,4))))
+        antloc 36
+ 112  mpy.J(varM(29-28)r,16)
+        antloc 36 | DELETE 36 | INSERT 35 | indmults
+ 113  ixa.J(ldaS(37+0),mpy.J(varM(29-28)r,16))
+        antloc 36 | DELETE 36 | INSERT 35 | iscolored1 indmults | p1:w113 save=200.00 nocs=2 color->a2
+ 114  ixa.J(ldaS(36+0),mpy.J(varM(29-28)r,16))
+        antloc 36 | DELETE 36 | INSERT 35 | iscolored1 indmults | p1:w114 save=250.00 nocs=2 color->v1
+ 115  ilod.R@12(ixa.J(ldaS(36+0),mpy.J(varM(29-28)r,16)))
+        antloc 36 | indmults
+ 118  add.A(ilod.A@8(varP(29+8)r),36)
+        antloc 38,42,47 | indmults
+ 119  ilod.A@0(ldaS(39+0))
+        antloc 38,42,47,52,54 | indmults
+ 120  ilod.R@16(varP(29+8)r)
+        antloc 38,42,47,52,54 | indmults
+ 121  varP(29+16)r
+        antloc 38,42,47,52,54,89,93,94 | iscolored1 mvarbits | p1:w121 save=2.58 nocs=31 split->- | p1:w469 save=2.00 nocs=30 split->- | p1:w472 save=1.67 nocs=30 split->- | p1:w476 save=1.00 nocs=30 split->- | p1:w480 save=0.33 nocs=30 split->-
+ 123  cg1.J(varR(0+2)r)
+        antloc 39
+ 124  cg1.J(varR(0+2)r)
+        antloc 43
+ 125  and.L(ilod.L@0(varP(29+8)r),32768)
+        antloc 46
+ 126  cg1.J(varR(0+2)r)
+        antloc 48
+ 127  and.L(ilod.L@0(varP(29+8)r),4194304)
+        antloc 51,74
+ 128  cg1.J(varR(0+2)r)
+        antloc 55
+ 129  varM(29-60)r
+        iscolored1 mvarbits | p1:w129 save=30.00 nocs=1 color->v0
+ 131  str.A(varM(29-60)r,varM(29-4))
+        antloc 57
+ 132  xor.J(varM(29-8)r,1)
+        antloc 57
+ 133  cvt.L(xor.J(varM(29-8)r,1))
+        antloc 57
+ 134  and.L(cvt.L(xor.J(varM(29-8)r,1)),255)
+        antloc 57
+ 135  shl.L(and.L(cvt.L(xor.J(varM(29-8)r,1)),255),0)
+        antloc 57
+ 136  ior.L(shl.L(and.L(cvt.L(xor.J(varM(29-8)r,1)),255),0),-633864192)
+        antloc 57
+ 140  add.A(ilod.A@0(ldaS(39+0)),64)
+        indmults
+ 142  ilod.J@26(varP(29+8)r)
+        antloc 58,59 | DELETE 59 | iscolored1 indmults | p1:w142 save=15.00 nocs=2 color->v1
+ 143  geq.J(ilod.J@26(varP(29+8)r),0)
+        antloc 58
+ 144  cg1.J(ilod.J@26(varP(29+8)r))
+        antloc 58
+ 145  varM(29-148)r
+        antloc 60,61 | DELETE 60,61 | iscolored1 mvarbits | p1:w145 save=20.00 nocs=2 color->v0
+ 147  str.J(varM(29-148)r,ilod.J@26(varP(29+8)r))
+        antloc 59
+ 150  equ.J(varM(29-148)r,1)
+        antloc 60
+ 151  cg1.J(varM(29-148)r)
+        antloc 60
+ 152  equ.J(varM(29-148)r,2)
+        antloc 61
+ 153  cg1.J(varM(29-148)r)
+        antloc 61
+ 154  varM(29-64)r
+        iscolored1 mvarbits | p1:w154 save=30.00 nocs=1 color->v0
+ 156  str.A(varM(29-64)r,varM(29-4))
+        antloc 63
+ 159  varM(29-68)r
+        iscolored1 mvarbits | p1:w159 save=30.00 nocs=1 color->v1
+ 163  ilod.A@28(varP(29+8)r)
+        indmults
+ 164  add.A(ilod.A@28(varP(29+8)r),8)
+        indmults
+ 167  varM(29-72)r
+        iscolored1 mvarbits | p1:w167 save=30.00 nocs=1 color->a0
+ 173  varM(29-76)r
+        iscolored1 mvarbits | p1:w173 save=30.00 nocs=1 color->v0
+ 175  str.A(varM(29-76)r,varM(29-4))
+        antloc 64
+ 178  varM(29-80)r
+        iscolored1 mvarbits | p1:w178 save=30.00 nocs=1 color->v1
+ 183  varM(29-84)r
+        iscolored1 mvarbits | p1:w183 save=30.00 nocs=1 color->a0
+ 188  varM(29-88)r
+        iscolored1 mvarbits | p1:w188 save=30.00 nocs=1 color->v0
+ 190  str.A(varM(29-88)r,varM(29-4))
+        antloc 65
+ 193  varM(29-92)r
+        iscolored1 mvarbits | p1:w193 save=30.00 nocs=1 color->v1
+ 198  varM(29-96)r
+        iscolored1 mvarbits | p1:w198 save=30.00 nocs=1 color->a0
+ 202  add.A(ilod.A@28(varP(29+8)r),24)
+        indmults
+ 205  varM(29-100)r
+        iscolored1 mvarbits | p1:w205 save=30.00 nocs=1 color->a1
+ 210  and.L(ilod.L@0(varP(29+8)r),16)
+        antloc 66
+ 211  and.L(ilod.L@0(varP(29+8)r),32)
+        antloc 67
+ 212  add.A(varM(29-4),16)
+        antloc 69,84 | indmults
+ 213  istr.A@0(ldaS(5+0),add.A(varM(29-4),16))
+        antloc 69,84
+ 214  varM(29-104)r
+        iscolored1 mvarbits | p1:w214 save=30.00 nocs=1 color->v0
+ 216  str.A(varM(29-104)r,varM(29-4))
+        antloc 69
+ 218  ilod.A@0(ldaS(5+0))
+        antloc 102 | indmults
+ 221  varM(29-108)r
+        iscolored1 mvarbits | p1:w221 save=30.00 nocs=1 color->v1
+ 226  str.J(varM(29-12)r,1)
+        antloc 69,84
+ 227  str.J(varM(29-20)r,varM(29-16)r)
+        antloc 69,84
+ 228  varM(29-112)r
+        iscolored1 mvarbits | p1:w228 save=30.00 nocs=1 color->v0
+ 230  str.A(varM(29-112)r,varM(29-4))
+        antloc 70
+ 232  cvt.L(ldaS(43+0))
+        antloc 70
+ 234  varM(29-116)r
+        iscolored1 mvarbits | p1:w234 save=30.00 nocs=1 color->v0
+ 236  str.A(varM(29-116)r,varM(29-4))
+        antloc 71
+ 238  cvt.L(ldaS(44+0))
+        antloc 71
+ 240  varM(29-120)r
+        iscolored1 mvarbits | p1:w240 save=30.00 nocs=1 color->v0
+ 242  str.A(varM(29-120)r,varM(29-4))
+        antloc 72
+ 245  varM(29-32)r
+        antloc 84,85 | DELETE 85 | iscolored1 mvarbits | p1:w245 save=10.00 nocs=4 color->t0
+ 247  ilod.L@4(varP(29+8)r)
+        antloc 73,74 | DELETE 74 | iscolored1 indmults | p1:w247 save=15.00 nocs=2 color->v1
+ 248  and.L(ilod.L@4(varP(29+8)r),7)
+        antloc 73
+ 249  cvt.J(and.L(ilod.L@4(varP(29+8)r),7))
+        antloc 73
+ 250  str.J(varM(29-32)r,cvt.J(and.L(ilod.L@4(varP(29+8)r),7)))
+        antloc 73
+ 253  varM(29-36)r
+        antloc 76,77,78,79,80,81,84 | DELETE 77,78,79,80,81 | iscolored1 mvarbits | p1:w253 save=15.00 nocs=4 color->a2
+ 255  and.L(ilod.L@4(varP(29+8)r),8184)
+        antloc 74
+ 256  shr.L(and.L(ilod.L@4(varP(29+8)r),8184),3)
+        antloc 74
+ 257  mpy.L(shr.L(and.L(ilod.L@4(varP(29+8)r),8184),3),16)
+        antloc 74
+ 258  ixa.L(ldaS(45+0),mpy.L(shr.L(and.L(ilod.L@4(varP(29+8)r),8184),3),16))
+        antloc 74
+ 259  str.A(varM(29-36)r,ixa.L(ldaS(45+0),mpy.L(shr.L(and.L(ilod.L@4(varP(29+8)r),8184),3),16)))
+        antloc 74
+ 260  ilod.R@0(ldaS(46+0))
+        antloc 75,82 | DELETE 82 | iscolored2 indmults | p1:w260 save=10.00 nocs=3 color->?
+ 261  les.R(ilod.R@0(ldaS(46+0)),196614)
+        antloc 75
+ 262  cg1.R(ilod.R@0(ldaS(46+0)))
+        antloc 75
+ 265  mpy.J(varP(29+12)r,152)
+        antloc 82 | DELETE 82 | INSERT 76 | indmults
+ 266  ixa.J(ldaS(19+0),mpy.J(varP(29+12)r,152))
+        antloc 82 | DELETE 82 | INSERT 76 | iscolored1 indmults | p1:w266 save=10.00 nocs=3 color->a0
+ 268  ilod.J@0(varM(29-36)r)
+        antloc 76,78 | DELETE 78 | iscolored1 indmults | p1:w268 save=15.00 nocs=2 color->v0
+ 269  ilod.J@112(varM(29-36)r)
+        antloc 76,77 | DELETE 77 | iscolored1 indmults | p1:w269 save=15.00 nocs=2 color->v1
+ 270  les.J(ilod.J@0(varM(29-36)r),ilod.J@112(varM(29-36)r))
+        antloc 76
+ 271  cg1.J(ilod.J@0(varM(29-36)r))
+        antloc 76
+ 272  cg1.J(ilod.J@112(varM(29-36)r))
+        antloc 76
+ 273  varM(29-44)r
+        antloc 82 | iscolored2 mvarbits | p1:w273 save=23.33 nocs=3 color->?
+ 275  cvt.R(ilod.J@112(varM(29-36)r))
+        antloc 77
+ 276  str.R(varM(29-44)r,cvt.R(ilod.J@112(varM(29-36)r)))
+        antloc 77
+ 277  cvt.R(ilod.J@0(varM(29-36)r))
+        antloc 78
+ 278  str.R(varM(29-44)r,cvt.R(ilod.J@0(varM(29-36)r)))
+        antloc 78
+ 279  ilod.J@4(varM(29-36)r)
+        antloc 79,81 | DELETE 81 | iscolored1 indmults | p1:w279 save=15.00 nocs=2 color->v0
+ 280  ilod.J@116(varM(29-36)r)
+        antloc 79,80 | DELETE 80 | iscolored1 indmults | p1:w280 save=15.00 nocs=2 color->v1
+ 281  les.J(ilod.J@4(varM(29-36)r),ilod.J@116(varM(29-36)r))
+        antloc 79
+ 282  cg1.J(ilod.J@4(varM(29-36)r))
+        antloc 79
+ 283  cg1.J(ilod.J@116(varM(29-36)r))
+        antloc 79
+ 284  varM(29-48)r
+        antloc 82 | iscolored2 mvarbits | p1:w284 save=35.00 nocs=2 color->?
+ 286  cvt.R(ilod.J@116(varM(29-36)r))
+        antloc 80
+ 287  str.R(varM(29-48)r,cvt.R(ilod.J@116(varM(29-36)r)))
+        antloc 80
+ 288  cvt.R(ilod.J@4(varM(29-36)r))
+        antloc 81
+ 289  str.R(varM(29-48)r,cvt.R(ilod.J@4(varM(29-36)r)))
+        antloc 81
+ 292  mpy.R(varM(29-44)r,varM(29-44)r)
+        antloc 82
+ 293  mpy.R(varM(29-48)r,varM(29-48)r)
+        antloc 82
+ 294  add.R(mpy.R(varM(29-44)r,varM(29-44)r),mpy.R(varM(29-48)r,varM(29-48)r))
+        antloc 82
+ 295  sqrt.R(add.R(mpy.R(varM(29-44)r,varM(29-44)r),mpy.R(varM(29-48)r,varM(29-48)r)))
+        antloc 82
+ 297  varM(29-52)r
+        iscolored2 mvarbits | p1:w297 save=20.00 nocs=1 color->?
+ 301  ilod.R@36(varM(29-40)r)
+        indmults
+ 304  ilod.R@44(varM(29-40)r)
+        indmults
+ 309  cg1.R(ilod.R@0(ldaS(46+0)))
+        antloc 82
+ 311  varM(29-124)r
+        iscolored1 mvarbits | p1:w311 save=30.00 nocs=1 color->v0
+ 313  str.A(varM(29-124)r,varM(29-4))
+        antloc 84
+ 316  varM(29-128)r
+        iscolored1 mvarbits | p1:w316 save=30.00 nocs=1 color->v1
+ 323  varM(29-132)r
+        iscolored1 mvarbits | p1:w323 save=30.00 nocs=1 color->a0
+ 326  add.J(varM(29-32)r,1)
+        antloc 84 | iscolored1 indmults | p1:w326 save=30.00 nocs=1 color->a1
+ 327  and.L(add.J(varM(29-32)r,1),255)
+        antloc 84
+ 328  shl.L(and.L(add.J(varM(29-32)r,1),255),12)
+        antloc 84
+ 329  ior.L(shl.L(and.L(add.J(varM(29-32)r,1),255),12),16777216)
+        antloc 84
+ 330  and.L(add.J(varM(29-32)r,1),127)
+        antloc 84
+ 331  shl.L(and.L(add.J(varM(29-32)r,1),127),1)
+        antloc 84
+ 332  ior.L(ior.L(shl.L(and.L(add.J(varM(29-32)r,1),255),12),16777216),shl.L(and.L(add.J(varM(29-32)r,1),127),1))
+        antloc 84
+ 335  varM(29-136)r
+        antloc 85 | DELETE 85 | iscolored1 mvarbits | p1:w335 save=15.00 nocs=2 color->a3
+ 339  mpy.J(varM(29-32)r,2)
+        antloc 85 | indmults
+ 340  cvt.L(mpy.J(varM(29-32)r,2))
+        antloc 85
+ 341  and.L(cvt.L(mpy.J(varM(29-32)r,2)),65535)
+        antloc 85
+ 342  shl.L(and.L(cvt.L(mpy.J(varM(29-32)r,2)),65535),0)
+        antloc 85
+ 343  istr.L@4(varM(29-136)r,shl.L(and.L(cvt.L(mpy.J(varM(29-32)r,2)),65535),0))
+        antloc 85
+ 344  ilod.A@56(varP(29+8)r)
+        antloc 86,87,95,96 | DELETE 87,96 | iscolored1 indmults | p1:w344 save=30.00 nocs=2 color->v1
+ 345  neq.A(0,ilod.A@56(varP(29+8)r))
+        antloc 86,95
+ 346  cg1.A(ilod.A@56(varP(29+8)r))
+        antloc 86
+ 347  varM(29-152)r
+        antloc 89,98 | iscolored1 mvarbits | p1:w347 save=20.00 nocs=3 color->t1
+ 349  str.A(varM(29-152)r,ilod.A@56(varP(29+8)r))
+        antloc 87,96
+ 350  varP(29+28)r
+        antloc 88,97 | iscolored1 mvarbits | p1:w350 save=0.65 nocs=31 split->-
+ 352  str.A(varM(29-152)r,varP(29+28)r)
+        antloc 88,97
+ 353  varP(29+4)r
+        antloc 89 | coloredparms iscolored1 mvarbits | p1:w353 save=0.32 nocs=31 split->- | p1:w507 save=0.32 nocs=31 split->-
+ 355  varP(29+24)r
+        antloc 89,98 | iscolored1 mvarbits | p1:w355 save=0.65 nocs=31 split->-
+ 358  add.J(varM(29-16)r,varR(0+2)r)
+        antloc 90,99 | indmults
+ 360  geq.J(ilod.J@22(varP(29+8)r),0)
+        antloc 91
+ 361  cg1.J(ilod.J@22(varP(29+8)r))
+        antloc 91
+ 362  equ.J(varM(29-8)r,1)
+        antloc 92,105
+ 363  cg1.J(varM(29-8)r)
+        antloc 92
+ 364  varM(29-156)r
+        antloc 98 | iscolored1 mvarbits | p1:w364 save=10.00 nocs=3 color->t2
+ 366  add.J(varP(29+16)r,1)
+        antloc 93 | indmults
+ 367  str.J(varM(29-156)r,add.J(varP(29+16)r,1))
+        antloc 93
+ 368  str.J(varM(29-156)r,varP(29+16)r)
+        antloc 94
+ 369  cg1.A(ilod.A@56(varP(29+8)r))
+        antloc 95
+ 370  mpy.J(ilod.J@22(varP(29+8)r),68)
+        antloc 98 | indmults
+ 371  ixa.J(ldaS(32+0),mpy.J(ilod.J@22(varP(29+8)r),68))
+        antloc 98 | indmults
+ 372  cg1.J(ilod.J@24(varP(29+8)r))
+        antloc 98
+ 373  and.L(ilod.L@0(varP(29+8)r),8)
+        antloc 98
+ 374  ior.L(and.L(ilod.L@0(varP(29+8)r),8),varP(29+24)r)
+        antloc 98
+ 375  cvt.J(ior.L(and.L(ilod.L@0(varP(29+8)r),8),varP(29+24)r))
+        antloc 98
+ 376  neq.J(varM(29-12)r,0)
+        antloc 100
+ 377  cg1.J(varM(29-12)r)
+        antloc 100 | DELETE 100 | INSERT 22,83,86
+ 378  equ.J(varM(29-16)r,0)
+        antloc 101,106
+ 379  cg1.J(varM(29-16)r)
+        antloc 101
+ 380  add.A(ilod.A@0(ldaS(5+0)),-16)
+        antloc 102 | indmults
+ 381  str.A(varM(29-4),add.A(ilod.A@0(ldaS(5+0)),-16))
+        antloc 102
+ 382  varM(29-140)r
+        iscolored1 mvarbits | p1:w382 save=30.00 nocs=1 color->v0
+ 384  str.A(varM(29-140)r,varM(29-4))
+        antloc 103
+ 388  istr.A@0(ldaS(5+0),0)
+        antloc 104
+ 389  add.J(varM(29-16)r,varM(29-20)r)
+        antloc 104 | indmults
+ 391  cg1.J(varM(29-8)r)
+        antloc 105
+ 392  cg1.J(varM(29-16)r)
+        antloc 106
+ 393  add.A(varM(29-4),-8)
+        antloc 107 | indmults
+ 395  varM(29-144)r
+        iscolored1 mvarbits | p1:w395 save=30.00 nocs=1 color->v0
+ 397  str.A(varM(29-144)r,varM(29-4))
+        antloc 108
+ 400  les.J(ilod.J@24(varP(29+8)r),0)
+        antloc 110
+ 401  cg1.J(ilod.J@24(varP(29+8)r))
+        antloc 110
+ 402  mpy.J(ilod.J@24(varP(29+8)r),68)
+        antloc 112 | indmults
+ 403  ixa.J(ldaS(32+0),mpy.J(ilod.J@24(varP(29+8)r),68))
+        antloc 112 | indmults
+ 405  neq.J(0,ilod.J@0(ldaS(30+0)))
+        antloc 112
+ 406  cg1.J(ilod.J@0(ldaS(30+0)))
+        antloc 112
+ 407  neq.J(0,ilod.J@0(ldaS(33+0)))
+        antloc 115
+ 408  cg1.J(ilod.J@0(ldaS(33+0)))
+        antloc 115
+ 412  ilod.R@36(ixa.J(ldaS(19+0),mpy.J(varP(29+12)r,152)))
+        antloc 82 | indmults
+ 413  sub.R(ilod.R@36(ilod.A@8(varP(29+8)r)),ilod.R@36(ixa.J(ldaS(19+0),mpy.J(varP(29+12)r,152))))
+        antloc 82
+ 415  ilod.R@44(ixa.J(ldaS(19+0),mpy.J(varP(29+12)r,152)))
+        antloc 82 | indmults
+ 416  sub.R(ilod.R@44(ilod.A@8(varP(29+8)r)),ilod.R@44(ixa.J(ldaS(19+0),mpy.J(varP(29+12)r,152))))
+        antloc 82
+ 418  -2147483648
+        iscolored1 | p1:w418 save=0.32 nocs=31 split->-
+ 419  ldaS(32+0)
+        iscolored1 | p1:w419 save=4.19 nocs=31 color->s0
+ 420  68
+        iscolored1 | p1:w420 save=3.55 nocs=31 color->s3
+ 421  ldaS(30+0)
+        iscolored1 | p1:w421 save=3.23 nocs=31 color->s8
+ 422  262144
+        iscolored1 | p1:w422 save=3.55 nocs=31 color->s4
+ 423  ldaS(33+0)
+        iscolored1 | p1:w423 save=3.55 nocs=31 color->s5
+ 424  8388608
+        iscolored1 | p1:w424 save=3.55 nocs=31 color->s6
+ 425  ldaS(31+0)
+        iscolored1 | p1:w425 save=0.65 nocs=31 split->-
+ 426  68
+        iscolored1 | p1:w426 save=0.65 nocs=31 split->-
+ 427  ldaS(34+0)
+        iscolored1 | p1:w427 save=0.65 nocs=31 split->-
+ 428  1
+        iscolored1 | p1:w428 save=0.97 nocs=31 split->-
+ 429  ldaM(29-4)
+        iscolored1 | p1:w429 save=0.65 nocs=31 split->-
+ 430  ldaS(5+0)
+        iscolored1 | p1:w430 save=2.26 nocs=31 split->- | p1:w471 save=1.67 nocs=30 split->- | p1:w475 save=1.33 nocs=30 split->- | p1:w477 save=10.00 nocs=1 color->a0
+ 431  -667418622
+        iscolored1 | p1:w431 save=0.32 nocs=31 split->-
+ 432  64
+        iscolored1 | p1:w432 save=0.32 nocs=31 split->-
+ 433  -553648128
+        iscolored1 | p1:w433 save=0.32 nocs=31 split->-
+ 434  16781330
+        iscolored1 | p1:w434 save=0.32 nocs=31 split->-
+ 435  ldaS(21+0)
+        iscolored1 | p1:w435 save=0.32 nocs=31 split->-
+ 436  2
+        iscolored1 | p1:w436 save=0.32 nocs=31 split->-
+ 437  -570425344
+        iscolored1 | p1:w437 save=0.65 nocs=31 split->-
+ 438  -570359808
+        iscolored1 | p1:w438 save=0.65 nocs=31 split->-
+ 439  16810000
+        iscolored1 | p1:w439 save=0.65 nocs=31 split->-
+ 440  ldaS(43+0)
+        iscolored1 | p1:w440 save=0.32 nocs=31 split->-
+ 441  50331648
+        iscolored1 | p1:w441 save=0.65 nocs=31 split->-
+ 442  14
+        iscolored1 | p1:w442 save=0.32 nocs=31 split->-
+ 443  ldaS(44+0)
+        iscolored1 | p1:w443 save=0.32 nocs=31 split->-
+ 444  ldaS(45+0)
+        iscolored1 | p1:w444 save=0.32 nocs=31 split->-
+ 445  4194304
+        iscolored1 | p1:w445 save=0.65 nocs=31 split->-
+ 446  ldaS(46+0)
+        iscolored1 | p1:w446 save=0.32 nocs=31 split->-
+ 447  196614
+        iscolored2 | p1:w447 save=0.32 nocs=31 split->-
+ 448  589830
+        iscolored2 | p1:w448 save=0.32 nocs=31 split->-
+ 449  ldaS(4+0)
+        iscolored1 | p1:w449 save=0.32 nocs=31 split->-
+ 450  ldaS(47+0)
+        iscolored1 | p1:w450 save=0.32 nocs=31 split->-
+ 451  16777216
+        iscolored1 | p1:w451 save=0.32 nocs=31 split->-
+ 452  -620625920
+        iscolored1 | p1:w452 save=0.97 nocs=31 split->- | p1:w485 save=0.33 nocs=30 split->-
+ 453  48
+        iscolored1 | p1:w453 save=0.32 nocs=31 split->-
+ 454  -603453942
+        iscolored1 | p1:w454 save=0.97 nocs=31 split->- | p1:w486 save=0.33 nocs=30 split->-
+ 455  -603453174
+        iscolored1 | p1:w455 save=0.97 nocs=31 split->- | p1:w487 save=0.33 nocs=30 split->-
+ 456  -603452406
+        iscolored1 | p1:w456 save=0.32 nocs=31 split->-
+ 457  24
+        iscolored1 | p1:w457 save=0.65 nocs=31 split->-
+ 458  ldaS(23+0)
+        iscolored1 | p1:w458 save=20.00 nocs=1 color->v1
+ 459  65536
+        iscolored1 | p1:w459 save=0.32 nocs=31 split->-
+ 460  3
+        iscolored2 | p1:w460 save=0.32 nocs=31 split->-
+ 461  ldaS(36+67502560)
+        iscolored1 | p1:w461 save=3.23 nocs=31 color->t3
+ 462  ldaS(36+0)
+        iscolored1 | p1:w462 save=3.23 nocs=31 color->t4
+ 463  ldaS(37+0)
+        iscolored1 | p1:w463 save=0.32 nocs=31 split->-
+ 464  ldaS(39+0)
+        iscolored1 | p1:w464 save=2.58 nocs=31 split->- | p1:w470 save=20.00 nocs=1 color->v1 | p1:w473 save=0.67 nocs=30 split->-
+ 465  -633864192
+        iscolored1 | p1:w465 save=0.32 nocs=31 split->-
+ 466  ldaS(36+0)
+        iscolored1 | p1:w466 save=0.32 nocs=31 split->-
+ 467  ldaS(40+0)
+        iscolored1 | p1:w467 save=0.32 nocs=31 split->-
+
+== register candidates for constants / addresses (makelivranges) ==
+  const    -16                    ctx=1 remat          blocks 102
+  const    -2147483648            ctx=2 LIVE-RANGE     blocks 1
+  const    -553648128             ctx=3 LIVE-RANGE     blocks 103
+  const    -570359808             ctx=3 LIVE-RANGE     blocks 69,84
+  const    -570425344             ctx=3 LIVE-RANGE     blocks 69,84
+  const    -603452406             ctx=3 LIVE-RANGE     blocks 65
+  const    -603453174             ctx=3 LIVE-RANGE     blocks 65,64,63
+  const    -603453942             ctx=3 LIVE-RANGE     blocks 65,64,63
+  const    -620625920             ctx=3 LIVE-RANGE     blocks 65,64,63
+  const    -633864192             ctx=2 LIVE-RANGE     blocks 57
+  const    -667418622             ctx=3 LIVE-RANGE     blocks 108
+  const    -8                     ctx=1 remat          blocks 107
+  const    0                      ctx=0 remat          blocks 0,0,0,22,101,104,26,69,85,29,30,35,57,7
+  const    0                      ctx=1 remat          blocks 110,3,10,15,20,91,98,58
+  const    0                      ctx=3 remat          blocks 112,115,4,8,13,19,95,100,101,104,106,103,59,69,86,73,84,84,84,39,43,48,55
+  const    1                      ctx=0 remat          blocks 6,69,84,84
+  const    1                      ctx=1 remat          blocks 93,84,31
+  const    1                      ctx=2 remat          blocks 57
+  const    1                      ctx=3 LIVE-RANGE     blocks 92,105,60
+  const    12                     ctx=0 remat          blocks 84
+  const    127                    ctx=2 remat          blocks 84
+  const    128                    ctx=2 remat          blocks 25
+  const    14                     ctx=3 LIVE-RANGE     blocks 72
+  const    16                     ctx=1 remat          blocks 69,84
+  const    16                     ctx=2 remat          blocks 66,69
+  const    16                     ctx=5 remat          blocks 24,74
+  const    16777216               ctx=2 LIVE-RANGE     blocks 84
+  const    16781330               ctx=3 LIVE-RANGE     blocks 24
+  const    16810000               ctx=3 LIVE-RANGE     blocks 70,71
+  const    196614                 ctx=1 LIVE-RANGE     blocks 75
+  const    2                      ctx=3 LIVE-RANGE     blocks 61
+  const    2                      ctx=5 remat          blocks 85
+  const    24                     ctx=1 remat          blocks 65
+  const    24                     ctx=3 LIVE-RANGE     blocks 64,63
+  const    255                    ctx=2 remat          blocks 84,57
+  const    256                    ctx=0 remat          blocks 21
+  const    262144                 ctx=2 LIVE-RANGE     blocks 113,9
+  const    3                      ctx=0 remat          blocks 74
+  const    3                      ctx=1 remat          blocks 31
+  const    3                      ctx=3 LIVE-RANGE     blocks 28
+  const    32                     ctx=2 remat          blocks 67
+  const    32768                  ctx=2 remat          blocks 46
+  const    36                     ctx=1 remat          blocks 38,42,47
+  const    4096                   ctx=2 remat          blocks 23
+  const    4194304                ctx=2 LIVE-RANGE     blocks 74,51
+  const    48                     ctx=3 LIVE-RANGE     blocks 65
+  const    50331648               ctx=3 LIVE-RANGE     blocks 72,84
+  const    589830                 ctx=5 LIVE-RANGE     blocks 82
+  const    64                     ctx=1 remat          blocks 24,57
+  const    64                     ctx=3 LIVE-RANGE     blocks 108
+  const    65535                  ctx=2 remat          blocks 85
+  const    65536                  ctx=2 LIVE-RANGE     blocks 27
+  const    68                     ctx=5 LIVE-RANGE     blocks 112,11,16,98
+  const    7                      ctx=2 remat          blocks 73
+  const    8                      ctx=1 remat          blocks 108,103,24,69,69,70,72,71,84,84,84,84,65,65,65,65,65,64,64,64,64,63,63,63,63,57
+  const    8                      ctx=2 remat          blocks 98
+  const    8184                   ctx=2 remat          blocks 74
+  const    8388608                ctx=2 LIVE-RANGE     blocks 116,14
+  lda      ldaM(29-4)             ctx=0 LIVE-RANGE     blocks 98,89
+  lda      ldaS(21+0)             ctx=3 LIVE-RANGE     blocks 24
+  lda      ldaS(23+0)             ctx=1 LIVE-RANGE     blocks 27,27,27
+  lda      ldaS(30+0)             ctx=3 LIVE-RANGE     blocks 112
+  lda      ldaS(31+0)             ctx=1 LIVE-RANGE     blocks 11
+  lda      ldaS(31+0)             ctx=3 LIVE-RANGE     blocks 10
+  lda      ldaS(32+0)             ctx=0 LIVE-RANGE     blocks 112,98
+  lda      ldaS(32+0)             ctx=1 LIVE-RANGE     blocks 11,16
+  lda      ldaS(33+0)             ctx=3 LIVE-RANGE     blocks 115,13
+  lda      ldaS(34+0)             ctx=1 LIVE-RANGE     blocks 16
+  lda      ldaS(34+0)             ctx=3 LIVE-RANGE     blocks 15
+  cvtconst ldaS(36+0)             ctx=0 LIVE-RANGE     blocks 36
+  lda      ldaS(36+0)             ctx=0 LIVE-RANGE     blocks 42
+  cvtconst ldaS(36+67502560)      ctx=0 LIVE-RANGE     blocks 33
+  lda      ldaS(37+0)             ctx=0 LIVE-RANGE     blocks 38
+  lda      ldaS(39+0)             ctx=1 LIVE-RANGE     blocks 57
+  lda      ldaS(39+0)             ctx=3 LIVE-RANGE     blocks 38,57,57,42,47,52,54
+  lda      ldaS(4+0)              ctx=1 LIVE-RANGE     blocks 84
+  lda      ldaS(40+0)             ctx=0 LIVE-RANGE     blocks 47
+  lda      ldaS(43+0)             ctx=0 LIVE-RANGE     blocks 70
+  lda      ldaS(44+0)             ctx=0 LIVE-RANGE     blocks 71
+  lda      ldaS(45+0)             ctx=0 LIVE-RANGE     blocks 74
+  lda      ldaS(46+0)             ctx=3 LIVE-RANGE     blocks 75
+  lda      ldaS(47+0)             ctx=1 LIVE-RANGE     blocks 84
+  lda      ldaS(5+0)              ctx=1 LIVE-RANGE     blocks 104,69,84
+  lda      ldaS(5+0)              ctx=3 LIVE-RANGE     blocks 102,103,69,84

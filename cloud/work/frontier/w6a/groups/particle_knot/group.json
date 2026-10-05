@@ -1,0 +1,26 @@
+{
+ "members": [
+  "render_display_list",
+  "func_80099B30",
+  "func_8009C3F8",
+  "camera_update_c",
+  "select_screen_update",
+  "particle_system",
+  "track_collision_wall",
+  "func_8009F058"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "camera_update_c",
+  "select_screen_update",
+  "zz_caller",
+  "zz_caller2"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "claims": [],
+ "note": "w6a particle-system knot. All member bodies are real. zz_caller/zz_caller2 stand in for func_8009F058's only caller Input_ProcessGameplayPad (unmatched); func_8009C3F8's other callers camera_follow_path and func_800BFD8C are absent. score.py group: every member MATCH except func_8009F058 (22/1307: the stack offset of the t0 save slot, 68 vs 72; uopt allocates one spill-temp home fewer than retail, see RESULTS.md). Nothing claimed: provisional until func_8009F058 and the callers are real."
+}

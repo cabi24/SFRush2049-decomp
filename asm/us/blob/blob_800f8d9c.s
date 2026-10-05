@@ -5843,6 +5843,7 @@ game_timer_reset:
 .section .text.stat_race_update, "ax", @progbits
 .globl stat_race_update
 stat_race_update:
+    /* compiled from src/blob/stat_race_update.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x00A04825

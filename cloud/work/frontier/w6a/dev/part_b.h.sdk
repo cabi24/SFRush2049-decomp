@@ -1,0 +1,346 @@
+
+/* ---- F3DEX2 forms (reference/repos/ultralib/include/PR/gbi.h, F3DEX_GBI_2) ---- */
+#define G_VTX 0x01
+#define G_CULLDL 0x03
+#define G_TRI1 0x05
+#define G_TRI2 0x06
+#define G_TEXTURE 0xD7
+#define G_POPMTX 0xD8
+#define G_GEOMETRYMODE 0xD9
+#define G_MTX 0xDA
+#define G_MOVEWORD 0xDB
+#define G_MOVEMEM 0xDC
+#define G_ENDDL 0xDF
+#define G_SETOTHERMODE_L 0xE2
+#define G_SETPRIMDEPTH 0xEE
+#define G_SETSCISSOR 0xED
+#define G_FILLRECT 0xF6
+#define G_SETFOGCOLOR 0xF8
+#define G_SETPRIMCOLOR 0xFA
+#define G_SETENVCOLOR 0xFB
+#define G_SETCOMBINE 0xFC
+#define G_DL_NOPUSH 0x01
+#define G_MV_VIEWPORT 8
+#define G_MV_LIGHT 10
+#define G_MVO_LOOKATX 0
+#define G_MVO_LOOKATY 24
+#define G_MW_NUMLIGHT 0x02
+#define G_MW_FOG 0x08
+#define G_MW_PERSPNORM 0x0E
+#define G_MWO_NUMLIGHT 0x00
+#define G_MWO_FOG 0x00
+#define NUML(n) ((n) * 24)
+#define NUMLIGHTS_0 1
+#define NUMLIGHTS_1 1
+#define NUMLIGHTS_2 2
+#define G_MTX_NOPUSH 0x00
+#define G_MTX_PUSH 0x01
+#define G_MTX_MUL 0x00
+#define G_MTX_LOAD 0x02
+#define G_MTX_MODELVIEW 0x00
+#define G_MTX_PROJECTION 0x04
+#define G_FOG 0x00010000
+#define G_LIGHTING 0x00020000
+#define G_TEXTURE_GEN 0x00040000
+#define G_MDSFT_CYCLETYPE 20
+#define G_MDSFT_ZSRCSEL 2
+#define G_MDSFT_RENDERMODE 3
+#define G_CYC_1CYCLE (0 << G_MDSFT_CYCLETYPE)
+#define G_CYC_2CYCLE (1 << G_MDSFT_CYCLETYPE)
+#define G_ZS_PIXEL (0 << G_MDSFT_ZSRCSEL)
+#define G_ZS_PRIM (1 << G_MDSFT_ZSRCSEL)
+#define G_ON 1
+#define G_SC_NON_INTERLACE 0
+#define BOWTIE_VAL 0
+
+#define gDma2p(pkt, c, adrs, len, idx, ofs) \
+{ \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = (_SHIFTL((c), 24, 8) | _SHIFTL(((len) - 1) / 8, 19, 5) | _SHIFTL((ofs) / 8, 8, 8) | _SHIFTL((idx), 0, 8)); \
+    _g->words.w1 = (unsigned int)(adrs); \
+}
+#define gSPBranchList(pkt, dl) gDma1p(pkt, G_DL, dl, 0, G_DL_NOPUSH)
+#define gSPEndDisplayList(pkt) \
+{ \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = _SHIFTL(G_ENDDL, 24, 8); \
+    _g->words.w1 = 0; \
+}
+#define gSPMatrix(pkt, m, p) gDma2p((pkt), G_MTX, (m), sizeof(Mtx), (p) ^ G_MTX_PUSH, 0)
+#define gSPPopMatrixN(pkt, n, num) gDma2p((pkt), G_POPMTX, (num) * 64, 64, 2, 0)
+#define gSPPopMatrix(pkt, n) gSPPopMatrixN((pkt), (n), 1)
+#define gSPViewport(pkt, v) gDma2p((pkt), G_MOVEMEM, (v), sizeof(Vp), G_MV_VIEWPORT, 0)
+#define gSPVertex(pkt, v, n, v0) \
+{ \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = _SHIFTL(G_VTX, 24, 8) | _SHIFTL((n), 12, 8) | _SHIFTL((v0) + (n), 1, 7); \
+    _g->words.w1 = (unsigned int)(v); \
+}
+#define gSPCullDisplayList(pkt, vstart, vend) \
+{ \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = _SHIFTL(G_CULLDL, 24, 8) | _SHIFTL((vstart) * 2, 0, 16); \
+    _g->words.w1 = _SHIFTL((vend) * 2, 0, 16); \
+}
+#define __gsSP1Triangle_w1(v0, v1, v2) (_SHIFTL((v0) * 2, 16, 8) | _SHIFTL((v1) * 2, 8, 8) | _SHIFTL((v2) * 2, 0, 8))
+#define __gsSP1Triangle_w1f(v0, v1, v2, flag) \
+    (((flag) == 0) ? __gsSP1Triangle_w1(v0, v1, v2) : \
+     ((flag) == 1) ? __gsSP1Triangle_w1(v1, v2, v0) : \
+                     __gsSP1Triangle_w1(v2, v0, v1))
+#define gSP1Triangle(pkt, v0, v1, v2, flag) \
+{ \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = _SHIFTL(G_TRI1, 24, 8) | __gsSP1Triangle_w1f(v0, v1, v2, flag); \
+    _g->words.w1 = 0; \
+}
+#define gSP2Triangles(pkt, v00, v01, v02, flag0, v10, v11, v12, flag1) \
+{ \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = (_SHIFTL(G_TRI2, 24, 8) | __gsSP1Triangle_w1f(v00, v01, v02, flag0)); \
+    _g->words.w1 = __gsSP1Triangle_w1f(v10, v11, v12, flag1); \
+}
+#define gMoveWd(pkt, index, offset, data) gDma1p((pkt), G_MOVEWORD, data, offset, index)
+#define gSPNumLights(pkt, n) gMoveWd(pkt, G_MW_NUMLIGHT, G_MWO_NUMLIGHT, NUML(n))
+#define gSPLight(pkt, l, n) gDma2p((pkt), G_MOVEMEM, (l), sizeof(Light), G_MV_LIGHT, (n) * 24 + 24)
+#define gSPSetLights0(pkt, name) \
+{ \
+    gSPNumLights(pkt, NUMLIGHTS_0); \
+    gSPLight(pkt, &name.l[0], 1); \
+    gSPLight(pkt, &name.a, 2); \
+}
+#define gSPSetLights1(pkt, name) \
+{ \
+    gSPNumLights(pkt, NUMLIGHTS_1); \
+    gSPLight(pkt, &name.l[0], 1); \
+    gSPLight(pkt, &name.a, 2); \
+}
+#define gSPSetLights2(pkt, name) \
+{ \
+    gSPNumLights(pkt, NUMLIGHTS_2); \
+    gSPLight(pkt, &name.l[0], 1); \
+    gSPLight(pkt, &name.l[1], 2); \
+    gSPLight(pkt, &name.a, 3); \
+}
+#define gSPLookAtX(pkt, l) gDma2p((pkt), G_MOVEMEM, (l), sizeof(Light), G_MV_LIGHT, G_MVO_LOOKATX)
+#define gSPLookAtY(pkt, l) gDma2p((pkt), G_MOVEMEM, (l), sizeof(Light), G_MV_LIGHT, G_MVO_LOOKATY)
+#define gSPLookAt(pkt, la) \
+{ \
+    gSPLookAtX(pkt, la) \
+    gSPLookAtY(pkt, (char *)(la) + 16) \
+}
+#define gSPGeometryMode(pkt, c, s) \
+{ \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = _SHIFTL(G_GEOMETRYMODE, 24, 8) | _SHIFTL(~(u32)(c), 0, 24); \
+    _g->words.w1 = (u32)(s); \
+}
+#define gSPSetGeometryMode(pkt, word) gSPGeometryMode((pkt), 0, (word))
+#define gSPClearGeometryMode(pkt, word) gSPGeometryMode((pkt), (word), 0)
+#define gSPTexture(pkt, s, t, level, tile, on) \
+{ \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = (_SHIFTL(G_TEXTURE, 24, 8) | _SHIFTL(BOWTIE_VAL, 16, 8) | _SHIFTL((level), 11, 3) | \
+                    _SHIFTL((tile), 8, 3) | _SHIFTL((on), 1, 7)); \
+    _g->words.w1 = (_SHIFTL((s), 16, 16) | _SHIFTL((t), 0, 16)); \
+}
+#define gSPPerspNormalize(pkt, s) gMoveWd(pkt, G_MW_PERSPNORM, 0, (s))
+#define gSPFogFactor(pkt, fm, fo) gMoveWd(pkt, G_MW_FOG, G_MWO_FOG, (_SHIFTL(fm, 16, 16) | _SHIFTL(fo, 0, 16)))
+#define gSPFogPosition(pkt, min, max) \
+    gSPFogFactor(pkt, (500 * 256 / ((max) - (min))), (500 - (min)) * 256 / ((max) - (min)))
+#define gDPSetCycleType(pkt, type) gSPSetOtherMode(pkt, G_SETOTHERMODE_H, G_MDSFT_CYCLETYPE, 2, type)
+#define gDPSetDepthSource(pkt, src) gSPSetOtherMode(pkt, G_SETOTHERMODE_L, G_MDSFT_ZSRCSEL, 1, src)
+#define gDPSetRenderMode(pkt, c0, c1) gSPSetOtherMode(pkt, G_SETOTHERMODE_L, G_MDSFT_RENDERMODE, 29, (c0) | (c1))
+#define gDPSetCombine(pkt, muxs0, muxs1) \
+{ \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = _SHIFTL(G_SETCOMBINE, 24, 8) | _SHIFTL(muxs0, 0, 24); \
+    _g->words.w1 = (unsigned int)(muxs1); \
+}
+#define gDPSetColor(pkt, c, d) \
+{ \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = _SHIFTL(c, 24, 8); \
+    _g->words.w1 = (unsigned int)(d); \
+}
+#define DPRGBColor(pkt, cmd, r, g, b, a) \
+    gDPSetColor(pkt, cmd, (_SHIFTL(r, 24, 8) | _SHIFTL(g, 16, 8) | _SHIFTL(b, 8, 8) | _SHIFTL(a, 0, 8)))
+#define gDPSetEnvColor(pkt, r, g, b, a) DPRGBColor(pkt, G_SETENVCOLOR, r, g, b, a)
+#define gDPSetFogColor(pkt, r, g, b, a) DPRGBColor(pkt, G_SETFOGCOLOR, r, g, b, a)
+#define gDPSetPrimColor(pkt, m, l, r, g, b, a) \
+{ \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = (_SHIFTL(G_SETPRIMCOLOR, 24, 8) | _SHIFTL(m, 8, 8) | _SHIFTL(l, 0, 8)); \
+    _g->words.w1 = (_SHIFTL(r, 24, 8) | _SHIFTL(g, 16, 8) | _SHIFTL(b, 8, 8) | _SHIFTL(a, 0, 8)); \
+}
+#define gDPSetPrimDepth(pkt, z, dz) gDPSetColor(pkt, G_SETPRIMDEPTH, _SHIFTL(z, 16, 16) | _SHIFTL(dz, 0, 16))
+#define gDPSetScissor(pkt, mode, ulx, uly, lrx, lry) \
+{ \
+    Gfx *_g = (Gfx *)pkt; \
+    _g->words.w0 = _SHIFTL(G_SETSCISSOR, 24, 8) | _SHIFTL((int)((float)(ulx) * 4.0F), 12, 12) | \
+                   _SHIFTL((int)((float)(uly) * 4.0F), 0, 12); \
+    _g->words.w1 = _SHIFTL(mode, 24, 2) | _SHIFTL((int)((float)(lrx) * 4.0F), 12, 12) | \
+                   _SHIFTL((int)((float)(lry) * 4.0F), 0, 12); \
+}
+#define gDPFillRectangle(pkt, ulx, uly, lrx, lry) \
+{ \
+    Gfx *_g = (Gfx *)(pkt); \
+    _g->words.w0 = (_SHIFTL(G_FILLRECT, 24, 8) | _SHIFTL((lrx), 14, 10) | _SHIFTL((lry), 2, 10)); \
+    _g->words.w1 = (_SHIFTL((ulx), 14, 10) | _SHIFTL((uly), 2, 10)); \
+}
+
+/* ---- types ---- */
+typedef s32 Mtx_t[4][4];
+typedef union {
+    Mtx_t m;
+    long long int force_structure_alignment;
+} Mtx;
+typedef struct {
+    short vscale[4];
+    short vtrans[4];
+} Vp_t;
+typedef union {
+    Vp_t vp;
+    long long int force_structure_alignment[2];
+} Vp;
+typedef struct {
+    short ob[3];
+    unsigned short flag;
+    short tc[2];
+    unsigned char cn[4];
+} Vtx_t;
+typedef union {
+    Vtx_t v;
+    long long int force_structure_alignment;
+} Vtx;
+typedef struct {
+    unsigned char col[3];
+    char pad1;
+    unsigned char colc[3];
+    char pad2;
+    signed char dir[3];
+    char pad3;
+} Light_t;
+typedef union {
+    Light_t l;
+    long long int force_structure_alignment[2];
+} Light;
+typedef struct {
+    unsigned char col[3];
+    char pad1;
+    unsigned char colc[3];
+    char pad2;
+} Ambient_t;
+typedef union {
+    Ambient_t l;
+    long long int force_structure_alignment[1];
+} Ambient;
+typedef struct {
+    Ambient a;
+    Light l[2];
+} Lights2;
+typedef struct {
+    Light l[2];
+} LookAt;
+typedef f32 MtxF[4][4];
+
+/* per-view graphics buffer (*D_8015B250) */
+typedef struct {
+    Vp vp[4];       /* 0x000 */
+    Vtx vtx[4];     /* 0x040 */
+    Mtx proj[4];    /* 0x080 */
+    Mtx look[4];    /* 0x180 */
+    LookAt la[32];  /* 0x280 */
+    Mtx ident;      /* 0x680 */
+} GfxBuf;
+
+/* view record D_80150B70[] (0x98 bytes) */
+typedef struct {
+    f32 rot[3][3];
+    f32 pos[3];
+    u8 pad30[0x98 - 0x30];
+} View;
+
+/* LOD level of a model; the set's levels start at +20 (count is the s16 at +22) */
+typedef struct {
+    s16 unk0;
+    s16 count;
+    u16 tex;
+    u16 flags;
+    f32 dist;
+    Gfx *dl;
+} LodLevel;
+typedef struct {
+    u8 pad0[20];
+    LodLevel lv[4];
+    u8 pad54[4];
+} LodSet; /* 88 bytes */
+
+/* scene node D_8012E700[] (0x44 bytes) */
+typedef struct Node {
+    u32 flags;
+    u32 lights;
+    View *obj;
+    f32 scale;
+    f32 w;
+    u16 model;
+    s16 child;
+    s16 next;
+    s16 mode;
+    Lights2 *light;
+    Texture *tex[4];
+    TexRect *rect;
+    TexRect *clip;
+    Palette *pal;
+    u8 prim[4];
+    u8 env[4];
+} Node;
+
+typedef struct {
+    LodSet *sets;
+    s32 count;
+} LodTable;
+typedef struct {
+    Texture *tex;
+    s32 count;
+} TexTable;
+typedef struct {
+    Palette *pal;
+    s32 count;
+} PalTable;
+
+extern GfxBuf *D_8015B250;
+extern Mtx *D_8015B260;
+extern Node D_8012E700[];
+extern View D_80150B70[];
+extern LodTable D_801161F4[];
+extern TexTable D_80151AE8[];
+extern PalTable D_80138670[];
+extern f32 D_80124EE8;
+extern f32 D_80124EF0[4][4];
+extern f32 D_80124F30[4][4];
+extern f32 D_801403D8[4][4];
+extern f32 D_80124F78[3];
+extern s8 D_80124F84;
+extern s16 D_80124FC4;
+extern s16 D_80124FCC;
+extern s16 D_80124FE0;
+extern s16 D_80124FE2;
+extern Texture *D_8017A508;
+extern Vtx D_80157248[];
+extern Vtx D_8011EF10[];
+extern Vtx D_8011EF90[];
+extern f32 D_80151AA0;
+
+void camera_update_d(LookAt *l, f32 xEye, f32 yEye, f32 zEye, f32 xAt, f32 yAt, f32 zAt,
+                     f32 xUp, f32 yUp, f32 zUp);
+f32 func_8008E0B8(f32 *v);
+f32 func_8008C768(f32 y, f32 x);
+s32 track_collision_edge(Node *node, s32 view);
+s32 func_8009D99C(s32 idx, f32 (*m)[4], f32 *pos, Mtx *out, f32 w, s32 absolute);
+void func_8009D708(s32 idx, View *obj, Mtx *m, f32 scale, s32 absolute);
+s32 func_8009D45C(s32 idx, View *src, Mtx *out, f32 w, s32 absolute);
+float sqrtf(float);
+#pragma intrinsic(sqrtf)
+float fabsf(float);
+#pragma intrinsic(fabsf)
+extern Gfx *D_80161430;

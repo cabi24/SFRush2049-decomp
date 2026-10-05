@@ -64,7 +64,7 @@ def test_oracle_boundary_and_mutant_witnesses():
     for case in witnesses:assert native.run(case)==packet.semantics.oracle(case)
 
 def test_fresh_complete_compiler_and_semantic_replay(tmp_path):
-    available=Path(packet.score.ido('cc')).exists() and all(shutil.which(n) for n in ['cc','mips-linux-gnu-ld','mips-linux-gnu-objcopy'])
+    available=(packet.score.IDO / 'cc').exists() and all(shutil.which(n) for n in ['cc','mips-linux-gnu-ld','mips-linux-gnu-objcopy'])
     if not available:
         if os.environ.get('REQUIRE_TOOLCHAIN')=='1':pytest.fail('required compiler or GNU toolchain unavailable')
         pytest.skip('IDO/GNU MIPS/host toolchain unavailable')

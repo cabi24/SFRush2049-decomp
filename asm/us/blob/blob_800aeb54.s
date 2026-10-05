@@ -5177,6 +5177,7 @@ func_800B3704:
 .section .text.sound_control, "ax", @progbits
 .globl sound_control
 sound_control:
+    /* compiled from src/blob/sound_control.c */
     .word 0x27BDFFC0
     .word 0xAFB40028
     .word 0x0007A400

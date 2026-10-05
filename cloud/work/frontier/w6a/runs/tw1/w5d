@@ -1,0 +1,1075 @@
+[W5D] bit at=cm proc=track_collision_wall bit=0 kind=3 dtype=A ref=1424|0 text=varM(29-4)
+[W5D] bit at=cm proc=track_collision_wall bit=1 kind=3 dtype=A ref=1424|0 text=varM(29-4)
+[W5D] bit at=cm proc=track_collision_wall bit=2 kind=3 dtype=A ref=893|0 text=varP(29+0)r
+[W5D] bit at=cm proc=track_collision_wall bit=3 kind=3 dtype=A ref=893|0 text=varP(29+0)r
+[W5D] bit at=cm proc=track_collision_wall bit=4 kind=4 dtype=A ref=599|0 text=ilod.A@0(varP(29+0)r)
+[W5D] bit at=cm proc=track_collision_wall bit=5 kind=4 dtype=A ref=1034|0 text=str.A(varM(29-4),ilod.A@0(varP(29+0)r))
+[W5D] bit at=cm proc=track_collision_wall bit=6 kind=3 dtype=J ref=1296|0 text=varM(29-12)r
+[W5D] bit at=cm proc=track_collision_wall bit=7 kind=3 dtype=J ref=1296|0 text=varM(29-12)r
+[W5D] bit at=cm proc=track_collision_wall bit=8 kind=4 dtype=J ref=166|0 text=str.J(varM(29-12)r,0)
+[W5D] bit at=cm proc=track_collision_wall bit=9 kind=3 dtype=J ref=1232|0 text=varM(29-16)r
+[W5D] bit at=cm proc=track_collision_wall bit=10 kind=3 dtype=J ref=1232|0 text=varM(29-16)r
+[W5D] bit at=cm proc=track_collision_wall bit=11 kind=4 dtype=J ref=166|1 text=str.J(varM(29-16)r,0)
+[W5D] bit at=cm proc=track_collision_wall bit=12 kind=3 dtype=J ref=1168|0 text=varM(29-20)r
+[W5D] bit at=cm proc=track_collision_wall bit=13 kind=3 dtype=J ref=1168|0 text=varM(29-20)r
+[W5D] bit at=cm proc=track_collision_wall bit=14 kind=4 dtype=J ref=166|2 text=str.J(varM(29-20)r,0)
+[W5D] bit at=cm proc=track_collision_wall bit=15 kind=3 dtype=A ref=1021|0 text=varP(29+8)r
+[W5D] bit at=cm proc=track_collision_wall bit=16 kind=3 dtype=A ref=1021|0 text=varP(29+8)r
+[W5D] bit at=cm proc=track_collision_wall bit=17 kind=4 dtype=L ref=855|0 text=ilod.L@0(varP(29+8)r)
+[W5D] bit at=cm proc=track_collision_wall bit=18 kind=4 dtype=L ref=243|0 text=and.L(ilod.L@0(varP(29+8)r),-2147483648)
+[W5D] bit at=cm proc=track_collision_wall bit=19 kind=4 dtype=J ref=855|1 text=ilod.J@24(varP(29+8)r)
+[W5D] bit at=cm proc=track_collision_wall bit=20 kind=4 dtype=J ref=22|0 text=geq.J(ilod.J@24(varP(29+8)r),0)
+[W5D] bit at=cm proc=track_collision_wall bit=21 kind=4 dtype=J ref=1035|0 text=cg1.J(ilod.J@24(varP(29+8)r))
+[W5D] bit at=cm proc=track_collision_wall bit=22 kind=3 dtype=J ref=1213|0 text=varP(29+20)r
+[W5D] bit at=cm proc=track_collision_wall bit=23 kind=3 dtype=J ref=1213|0 text=varP(29+20)r
+[W5D] bit at=cm proc=track_collision_wall bit=24 kind=4 dtype=J ref=1164|0 text=neq.J(varP(29+20)r,0)
+[W5D] bit at=cm proc=track_collision_wall bit=25 kind=4 dtype=J ref=895|0 text=cg1.J(varP(29+20)r)
+[W5D] bit at=cm proc=track_collision_wall bit=26 kind=3 dtype=J ref=1360|0 text=varM(29-8)r
+[W5D] bit at=cm proc=track_collision_wall bit=27 kind=3 dtype=J ref=1360|0 text=varM(29-8)r
+[W5D] bit at=cm proc=track_collision_wall bit=28 kind=4 dtype=J ref=814|0 text=str.J(varM(29-8)r,1)
+[W5D] bit at=cm proc=track_collision_wall bit=29 kind=4 dtype=J ref=166|3 text=str.J(varM(29-8)r,0)
+[W5D] bit at=cm proc=track_collision_wall bit=30 kind=4 dtype=J ref=1489|0 text=ilod.J@0(ldaS(30+0))
+[W5D] bit at=cm proc=track_collision_wall bit=31 kind=4 dtype=J ref=1221|0 text=equ.J(0,ilod.J@0(ldaS(30+0)))
+[W5D] bit at=cm proc=track_collision_wall bit=32 kind=4 dtype=J ref=1455|0 text=cg1.J(ilod.J@0(ldaS(30+0)))
+[W5D] bit at=cm proc=track_collision_wall bit=33 kind=4 dtype=L ref=912|0 text=and.L(ilod.L@0(varP(29+8)r),262144)
+[W5D] bit at=cm proc=track_collision_wall bit=34 kind=4 dtype=J ref=1521|0 text=ilod.J@0(ldaS(31+0))
+[W5D] bit at=cm proc=track_collision_wall bit=35 kind=4 dtype=J ref=1423|0 text=les.J(ilod.J@0(ldaS(31+0)),0)
+[W5D] bit at=cm proc=track_collision_wall bit=36 kind=4 dtype=J ref=1523|0 text=cg1.J(ilod.J@0(ldaS(31+0)))
+[W5D] bit at=cm proc=track_collision_wall bit=37 kind=4 dtype=A ref=1485|1 text=sub.A(varP(29+8)r,ldaS(32+0))
+[W5D] bit at=cm proc=track_collision_wall bit=38 kind=4 dtype=J ref=1138|0 text=cvt.J(sub.A(varP(29+8)r,ldaS(32+0)))
+[W5D] bit at=cm proc=track_collision_wall bit=39 kind=4 dtype=J ref=699|0 text=div.J(cvt.J(sub.A(varP(29+8)r,ldaS(32+0))),68)
+[W5D] bit at=cm proc=track_collision_wall bit=40 kind=4 dtype=J ref=9|0 text=istr.J@0(ldaS(31+0),div.J(cvt.J(sub.A(varP(29+8)r,ldaS(32+0))),68))
+[W5D] bit at=cm proc=track_collision_wall bit=41 kind=4 dtype=J ref=1585|0 text=ilod.J@0(ldaS(33+0))
+[W5D] bit at=cm proc=track_collision_wall bit=42 kind=4 dtype=J ref=1221|1 text=equ.J(0,ilod.J@0(ldaS(33+0)))
+[W5D] bit at=cm proc=track_collision_wall bit=43 kind=4 dtype=J ref=38|0 text=cg1.J(ilod.J@0(ldaS(33+0)))
+[W5D] bit at=cm proc=track_collision_wall bit=44 kind=4 dtype=L ref=215|0 text=and.L(ilod.L@0(varP(29+8)r),8388608)
+[W5D] bit at=cm proc=track_collision_wall bit=45 kind=4 dtype=J ref=1617|0 text=ilod.J@0(ldaS(34+0))
+[W5D] bit at=cm proc=track_collision_wall bit=46 kind=4 dtype=J ref=1423|1 text=les.J(ilod.J@0(ldaS(34+0)),0)
+[W5D] bit at=cm proc=track_collision_wall bit=47 kind=4 dtype=J ref=106|0 text=cg1.J(ilod.J@0(ldaS(34+0)))
+[W5D] bit at=cm proc=track_collision_wall bit=48 kind=4 dtype=J ref=396|0 text=istr.J@0(ldaS(34+0),div.J(cvt.J(sub.A(varP(29+8)r,ldaS(32+0))),68))
+[W5D] bit at=cm proc=track_collision_wall bit=49 kind=3 dtype=J ref=1085|0 text=varP(29+12)r
+[W5D] bit at=cm proc=track_collision_wall bit=50 kind=3 dtype=J ref=1085|0 text=varP(29+12)r
+[W5D] bit at=cm proc=track_collision_wall bit=51 kind=3 dtype=J ref=1485|2 text=varR(0+2)r
+[W5D] bit at=cm proc=track_collision_wall bit=52 kind=3 dtype=J ref=1485|2 text=varR(0+2)r
+[W5D] bit at=cm proc=track_collision_wall bit=53 kind=4 dtype=J ref=1204|0 text=neq.J(varR(0+2)r,0)
+[W5D] bit at=cm proc=track_collision_wall bit=54 kind=4 dtype=J ref=1239|0 text=cg1.J(varR(0+2)r)
+[W5D] bit at=cm proc=track_collision_wall bit=55 kind=4 dtype=J ref=855|2 text=ilod.J@22(varP(29+8)r)
+[W5D] bit at=cm proc=track_collision_wall bit=56 kind=4 dtype=J ref=42|0 text=geq.J(ilod.J@22(varP(29+8)r),0)
+[W5D] bit at=cm proc=track_collision_wall bit=57 kind=4 dtype=J ref=346|0 text=cg1.J(ilod.J@22(varP(29+8)r))
+[W5D] bit at=cm proc=track_collision_wall bit=58 kind=4 dtype=J ref=541|0 text=shl.J(256,varP(29+12)r)
+[W5D] bit at=cm proc=track_collision_wall bit=59 kind=4 dtype=L ref=1407|0 text=cvt.L(shl.J(256,varP(29+12)r))
+[W5D] bit at=cm proc=track_collision_wall bit=60 kind=4 dtype=L ref=1040|0 text=and.L(ilod.L@0(varP(29+8)r),cvt.L(shl.J(256,varP(29+12)r)))
+[W5D] bit at=cm proc=track_collision_wall bit=61 kind=4 dtype=L ref=571|0 text=and.L(ilod.L@0(varP(29+8)r),4096)
+[W5D] bit at=cm proc=track_collision_wall bit=62 kind=3 dtype=A ref=592|0 text=varM(29-56)r
+[W5D] bit at=cm proc=track_collision_wall bit=63 kind=3 dtype=A ref=592|0 text=varM(29-56)r
+[W5D] bit at=cm proc=track_collision_wall bit=64 kind=4 dtype=A ref=113|0 text=str.A(varM(29-56)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=65 kind=4 dtype=A ref=710|0 text=add.A(varM(29-4),8)
+[W5D] bit at=cm proc=track_collision_wall bit=66 kind=4 dtype=A ref=1530|0 text=str.A(varM(29-4),add.A(varM(29-4),8))
+[W5D] bit at=cm proc=track_collision_wall bit=67 kind=4 dtype=L ref=787|0 text=istr.L@0(varM(29-56)r,16781330)
+[W5D] bit at=cm proc=track_collision_wall bit=68 kind=4 dtype=A ref=1201|0 text=ilod.A@0(ldaS(21+0))
+[W5D] bit at=cm proc=track_collision_wall bit=69 kind=4 dtype=J ref=1211|0 text=mpy.J(varP(29+12)r,16)
+[W5D] bit at=cm proc=track_collision_wall bit=70 kind=4 dtype=J ref=1016|0 text=ixa.J(ilod.A@0(ldaS(21+0)),mpy.J(varP(29+12)r,16))
+[W5D] bit at=cm proc=track_collision_wall bit=71 kind=4 dtype=A ref=1141|0 text=add.A(ixa.J(ilod.A@0(ldaS(21+0)),mpy.J(varP(29+12)r,16)),64)
+[W5D] bit at=cm proc=track_collision_wall bit=72 kind=4 dtype=L ref=455|0 text=cvt.L(add.A(ixa.J(ilod.A@0(ldaS(21+0)),mpy.J(varP(29+12)r,16)),64))
+[W5D] bit at=cm proc=track_collision_wall bit=73 kind=4 dtype=L ref=1426|0 text=istr.L@4(varM(29-56)r,cvt.L(add.A(ixa.J(ilod.A@0(ldaS(21+0)),mpy.J(varP(29+12)r,16)),64)))
+[W5D] bit at=cm proc=track_collision_wall bit=74 kind=4 dtype=L ref=316|0 text=and.L(ilod.L@0(varP(29+8)r),128)
+[W5D] bit at=cm proc=track_collision_wall bit=75 kind=4 dtype=A ref=855|3 text=ilod.A@8(varP(29+8)r)
+[W5D] bit at=cm proc=track_collision_wall bit=76 kind=4 dtype=R ref=1469|0 text=ilod.R@36(ilod.A@8(varP(29+8)r))
+[W5D] bit at=cm proc=track_collision_wall bit=77 kind=4 dtype=R ref=407|0 text=istr.R@0(ldaS(23+0),ilod.R@36(ilod.A@8(varP(29+8)r)))
+[W5D] bit at=cm proc=track_collision_wall bit=78 kind=4 dtype=R ref=1469|1 text=ilod.R@40(ilod.A@8(varP(29+8)r))
+[W5D] bit at=cm proc=track_collision_wall bit=79 kind=4 dtype=R ref=427|0 text=istr.R@4(ldaS(23+0),ilod.R@40(ilod.A@8(varP(29+8)r)))
+[W5D] bit at=cm proc=track_collision_wall bit=80 kind=4 dtype=R ref=1469|2 text=ilod.R@44(ilod.A@8(varP(29+8)r))
+[W5D] bit at=cm proc=track_collision_wall bit=81 kind=4 dtype=R ref=447|0 text=istr.R@8(ldaS(23+0),ilod.R@44(ilod.A@8(varP(29+8)r)))
+[W5D] bit at=cm proc=track_collision_wall bit=82 kind=4 dtype=L ref=498|0 text=and.L(ilod.L@0(varP(29+8)r),65536)
+[W5D] bit at=cm proc=track_collision_wall bit=83 kind=4 dtype=R ref=855|4 text=ilod.R@12(varP(29+8)r)
+[W5D] bit at=cm proc=track_collision_wall bit=84 kind=4 dtype=R ref=1304|0 text=neq.R(3,ilod.R@12(varP(29+8)r))
+[W5D] bit at=cm proc=track_collision_wall bit=85 kind=4 dtype=R ref=527|0 text=cg1.R(ilod.R@12(varP(29+8)r))
+[W5D] bit at=cm proc=track_collision_wall bit=86 kind=3 dtype=J ref=1104|0 text=varM(29-24)r
+[W5D] bit at=cm proc=track_collision_wall bit=87 kind=3 dtype=J ref=1104|0 text=varM(29-24)r
+[W5D] bit at=cm proc=track_collision_wall bit=88 kind=4 dtype=J ref=166|4 text=str.J(varM(29-24)r,0)
+[W5D] bit at=cm proc=track_collision_wall bit=89 kind=3 dtype=J ref=1040|1 text=varM(29-28)r
+[W5D] bit at=cm proc=track_collision_wall bit=90 kind=3 dtype=J ref=1040|1 text=varM(29-28)r
+[W5D] bit at=cm proc=track_collision_wall bit=91 kind=4 dtype=J ref=186|0 text=str.J(varM(29-28)r,0)
+[W5D] bit at=cm proc=track_collision_wall bit=92 kind=4 dtype=J ref=1330|0 text=ixa.J(ldaS(37+0),varM(29-24)r)
+[W5D] bit at=cm proc=track_collision_wall bit=93 kind=4 dtype=J ref=370|0 text=mpy.J(varM(29-28)r,4)
+[W5D] bit at=cm proc=track_collision_wall bit=94 kind=4 dtype=J ref=1242|0 text=ixa.J(ixa.J(ldaS(37+0),varM(29-24)r),mpy.J(varM(29-28)r,4))
+[W5D] bit at=cm proc=track_collision_wall bit=95 kind=4 dtype=J ref=1161|0 text=ixa.J(ldaS(36+0),varM(29-24)r)
+[W5D] bit at=cm proc=track_collision_wall bit=96 kind=4 dtype=J ref=876|0 text=ixa.J(ixa.J(ldaS(36+0),varM(29-24)r),mpy.J(varM(29-28)r,4))
+[W5D] bit at=cm proc=track_collision_wall bit=97 kind=4 dtype=R ref=565|0 text=ilod.R@0(ixa.J(ixa.J(ldaS(36+0),varM(29-24)r),mpy.J(varM(29-28)r,4)))
+[W5D] bit at=cm proc=track_collision_wall bit=98 kind=4 dtype=R ref=578|0 text=mpy.R(ilod.R@0(ixa.J(ixa.J(ldaS(36+0),varM(29-24)r),mpy.J(varM(29-28)r,4))),ilod.R@12(varP(29+8)r))
+[W5D] bit at=cm proc=track_collision_wall bit=99 kind=4 dtype=R ref=337|0 text=istr.R@0(ixa.J(ixa.J(ldaS(37+0),varM(29-24)r),mpy.J(varM(29-28)r,4)),mpy.R(ilod.R@0(ixa.J(ixa.J(ldaS(36+0),varM(29-24)r),mpy.J(varM(29-28)r,4))),ilod.R@12(varP(29+8)r)))
+[W5D] bit at=cm proc=track_collision_wall bit=100 kind=4 dtype=J ref=826|0 text=add.J(varM(29-28)r,1)
+[W5D] bit at=cm proc=track_collision_wall bit=101 kind=4 dtype=J ref=172|0 text=str.J(varM(29-28)r,add.J(varM(29-28)r,1))
+[W5D] bit at=cm proc=track_collision_wall bit=102 kind=4 dtype=J ref=263|0 text=les.J(varM(29-28)r,3)
+[W5D] bit at=cm proc=track_collision_wall bit=103 kind=4 dtype=J ref=58|0 text=cg1.J(varM(29-28)r)
+[W5D] bit at=cm proc=track_collision_wall bit=104 kind=4 dtype=J ref=1446|0 text=add.J(varM(29-24)r,1)
+[W5D] bit at=cm proc=track_collision_wall bit=105 kind=4 dtype=J ref=666|0 text=str.J(varM(29-24)r,add.J(varM(29-24)r,1))
+[W5D] bit at=cm proc=track_collision_wall bit=106 kind=4 dtype=J ref=544|0 text=les.J(varM(29-24)r,3)
+[W5D] bit at=cm proc=track_collision_wall bit=107 kind=4 dtype=J ref=737|0 text=cg1.J(varM(29-24)r)
+[W5D] bit at=cm proc=track_collision_wall bit=108 kind=4 dtype=J ref=17|0 text=ixa.J(ldaS(37+0),mpy.J(varM(29-28)r,4))
+[W5D] bit at=cm proc=track_collision_wall bit=109 kind=4 dtype=J ref=720|0 text=ixa.J(ldaS(36+0),mpy.J(varM(29-28)r,4))
+[W5D] bit at=cm proc=track_collision_wall bit=110 kind=4 dtype=R ref=253|0 text=ilod.R@48(ixa.J(ldaS(36+0),mpy.J(varM(29-28)r,4)))
+[W5D] bit at=cm proc=track_collision_wall bit=111 kind=4 dtype=R ref=1139|0 text=istr.R@48(ixa.J(ldaS(37+0),mpy.J(varM(29-28)r,4)),ilod.R@48(ixa.J(ldaS(36+0),mpy.J(varM(29-28)r,4))))
+[W5D] bit at=cm proc=track_collision_wall bit=112 kind=4 dtype=J ref=507|0 text=mpy.J(varM(29-28)r,16)
+[W5D] bit at=cm proc=track_collision_wall bit=113 kind=4 dtype=J ref=4|1 text=ixa.J(ldaS(37+0),mpy.J(varM(29-28)r,16))
+[W5D] bit at=cm proc=track_collision_wall bit=114 kind=4 dtype=J ref=1453|0 text=ixa.J(ldaS(36+0),mpy.J(varM(29-28)r,16))
+[W5D] bit at=cm proc=track_collision_wall bit=115 kind=4 dtype=R ref=100|0 text=ilod.R@12(ixa.J(ldaS(36+0),mpy.J(varM(29-28)r,16)))
+[W5D] bit at=cm proc=track_collision_wall bit=116 kind=4 dtype=R ref=1005|0 text=istr.R@12(ixa.J(ldaS(37+0),mpy.J(varM(29-28)r,16)),ilod.R@12(ixa.J(ldaS(36+0),mpy.J(varM(29-28)r,16))))
+[W5D] bit at=cm proc=track_collision_wall bit=117 kind=4 dtype=J ref=73|0 text=cg1.J(varM(29-28)r)
+[W5D] bit at=cm proc=track_collision_wall bit=118 kind=4 dtype=A ref=370|1 text=add.A(ilod.A@8(varP(29+8)r),36)
+[W5D] bit at=cm proc=track_collision_wall bit=119 kind=4 dtype=A ref=158|0 text=ilod.A@0(ldaS(39+0))
+[W5D] bit at=cm proc=track_collision_wall bit=120 kind=4 dtype=R ref=855|5 text=ilod.R@16(varP(29+8)r)
+[W5D] bit at=cm proc=track_collision_wall bit=121 kind=3 dtype=J ref=1149|0 text=varP(29+16)r
+[W5D] bit at=cm proc=track_collision_wall bit=122 kind=3 dtype=J ref=1149|0 text=varP(29+16)r
+[W5D] bit at=cm proc=track_collision_wall bit=123 kind=4 dtype=J ref=1323|0 text=cg1.J(varR(0+2)r)
+[W5D] bit at=cm proc=track_collision_wall bit=124 kind=4 dtype=J ref=1339|0 text=cg1.J(varR(0+2)r)
+[W5D] bit at=cm proc=track_collision_wall bit=125 kind=4 dtype=L ref=429|0 text=and.L(ilod.L@0(varP(29+8)r),32768)
+[W5D] bit at=cm proc=track_collision_wall bit=126 kind=4 dtype=J ref=1359|0 text=cg1.J(varR(0+2)r)
+[W5D] bit at=cm proc=track_collision_wall bit=127 kind=4 dtype=L ref=1097|0 text=and.L(ilod.L@0(varP(29+8)r),4194304)
+[W5D] bit at=cm proc=track_collision_wall bit=128 kind=4 dtype=J ref=1387|0 text=cg1.J(varR(0+2)r)
+[W5D] bit at=cm proc=track_collision_wall bit=129 kind=3 dtype=A ref=528|0 text=varM(29-60)r
+[W5D] bit at=cm proc=track_collision_wall bit=130 kind=3 dtype=A ref=528|0 text=varM(29-60)r
+[W5D] bit at=cm proc=track_collision_wall bit=131 kind=4 dtype=A ref=250|0 text=str.A(varM(29-60)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=132 kind=4 dtype=J ref=635|0 text=xor.J(varM(29-8)r,1)
+[W5D] bit at=cm proc=track_collision_wall bit=133 kind=4 dtype=L ref=49|0 text=cvt.L(xor.J(varM(29-8)r,1))
+[W5D] bit at=cm proc=track_collision_wall bit=134 kind=4 dtype=L ref=647|0 text=and.L(cvt.L(xor.J(varM(29-8)r,1)),255)
+[W5D] bit at=cm proc=track_collision_wall bit=135 kind=4 dtype=L ref=1145|0 text=shl.L(and.L(cvt.L(xor.J(varM(29-8)r,1)),255),0)
+[W5D] bit at=cm proc=track_collision_wall bit=136 kind=4 dtype=L ref=502|0 text=ior.L(shl.L(and.L(cvt.L(xor.J(varM(29-8)r,1)),255),0),-633864192)
+[W5D] bit at=cm proc=track_collision_wall bit=137 kind=4 dtype=L ref=480|0 text=istr.L@0(varM(29-60)r,ior.L(shl.L(and.L(cvt.L(xor.J(varM(29-8)r,1)),255),0),-633864192))
+[W5D] bit at=cm proc=track_collision_wall bit=138 kind=4 dtype=L ref=223|0 text=cvt.L(ilod.A@0(ldaS(39+0)))
+[W5D] bit at=cm proc=track_collision_wall bit=139 kind=4 dtype=L ref=650|0 text=istr.L@4(varM(29-60)r,cvt.L(ilod.A@0(ldaS(39+0))))
+[W5D] bit at=cm proc=track_collision_wall bit=140 kind=4 dtype=A ref=862|0 text=add.A(ilod.A@0(ldaS(39+0)),64)
+[W5D] bit at=cm proc=track_collision_wall bit=141 kind=4 dtype=A ref=1153|0 text=istr.A@0(ldaS(39+0),add.A(ilod.A@0(ldaS(39+0)),64))
+[W5D] bit at=cm proc=track_collision_wall bit=142 kind=4 dtype=J ref=855|6 text=ilod.J@26(varP(29+8)r)
+[W5D] bit at=cm proc=track_collision_wall bit=143 kind=4 dtype=J ref=122|0 text=geq.J(ilod.J@26(varP(29+8)r),0)
+[W5D] bit at=cm proc=track_collision_wall bit=144 kind=4 dtype=J ref=916|0 text=cg1.J(ilod.J@26(varP(29+8)r))
+[W5D] bit at=cm proc=track_collision_wall bit=145 kind=3 dtype=J ref=739|0 text=varM(29-148)r
+[W5D] bit at=cm proc=track_collision_wall bit=146 kind=3 dtype=J ref=739|0 text=varM(29-148)r
+[W5D] bit at=cm proc=track_collision_wall bit=147 kind=4 dtype=J ref=1398|0 text=str.J(varM(29-148)r,ilod.J@26(varP(29+8)r))
+[W5D] bit at=cm proc=track_collision_wall bit=148 kind=4 dtype=J ref=1221|2 text=equ.J(varM(29-148)r,0)
+[W5D] bit at=cm proc=track_collision_wall bit=149 kind=4 dtype=J ref=59|0 text=cg1.J(varM(29-148)r)
+[W5D] bit at=cm proc=track_collision_wall bit=150 kind=4 dtype=J ref=516|0 text=equ.J(varM(29-148)r,1)
+[W5D] bit at=cm proc=track_collision_wall bit=151 kind=4 dtype=J ref=61|0 text=cg1.J(varM(29-148)r)
+[W5D] bit at=cm proc=track_collision_wall bit=152 kind=4 dtype=J ref=1430|0 text=equ.J(varM(29-148)r,2)
+[W5D] bit at=cm proc=track_collision_wall bit=153 kind=4 dtype=J ref=63|0 text=cg1.J(varM(29-148)r)
+[W5D] bit at=cm proc=track_collision_wall bit=154 kind=3 dtype=A ref=464|0 text=varM(29-64)r
+[W5D] bit at=cm proc=track_collision_wall bit=155 kind=3 dtype=A ref=464|0 text=varM(29-64)r
+[W5D] bit at=cm proc=track_collision_wall bit=156 kind=4 dtype=A ref=387|0 text=str.A(varM(29-64)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=157 kind=4 dtype=L ref=1176|0 text=istr.L@0(varM(29-64)r,-620625920)
+[W5D] bit at=cm proc=track_collision_wall bit=158 kind=4 dtype=L ref=1491|0 text=istr.L@4(varM(29-64)r,24)
+[W5D] bit at=cm proc=track_collision_wall bit=159 kind=3 dtype=A ref=400|0 text=varM(29-68)r
+[W5D] bit at=cm proc=track_collision_wall bit=160 kind=3 dtype=A ref=400|0 text=varM(29-68)r
+[W5D] bit at=cm proc=track_collision_wall bit=161 kind=4 dtype=A ref=524|0 text=str.A(varM(29-68)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=162 kind=4 dtype=L ref=982|0 text=istr.L@0(varM(29-68)r,-603453942)
+[W5D] bit at=cm proc=track_collision_wall bit=163 kind=4 dtype=A ref=855|7 text=ilod.A@28(varP(29+8)r)
+[W5D] bit at=cm proc=track_collision_wall bit=164 kind=4 dtype=A ref=662|0 text=add.A(ilod.A@28(varP(29+8)r),8)
+[W5D] bit at=cm proc=track_collision_wall bit=165 kind=4 dtype=L ref=589|0 text=cvt.L(add.A(ilod.A@28(varP(29+8)r),8))
+[W5D] bit at=cm proc=track_collision_wall bit=166 kind=4 dtype=L ref=578|1 text=istr.L@4(varM(29-68)r,cvt.L(add.A(ilod.A@28(varP(29+8)r),8)))
+[W5D] bit at=cm proc=track_collision_wall bit=167 kind=3 dtype=A ref=336|0 text=varM(29-72)r
+[W5D] bit at=cm proc=track_collision_wall bit=168 kind=3 dtype=A ref=336|0 text=varM(29-72)r
+[W5D] bit at=cm proc=track_collision_wall bit=169 kind=4 dtype=A ref=661|0 text=str.A(varM(29-72)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=170 kind=4 dtype=L ref=266|0 text=istr.L@0(varM(29-72)r,-603453174)
+[W5D] bit at=cm proc=track_collision_wall bit=171 kind=4 dtype=L ref=1158|0 text=cvt.L(ilod.A@28(varP(29+8)r))
+[W5D] bit at=cm proc=track_collision_wall bit=172 kind=4 dtype=L ref=646|0 text=istr.L@4(varM(29-72)r,cvt.L(ilod.A@28(varP(29+8)r)))
+[W5D] bit at=cm proc=track_collision_wall bit=173 kind=3 dtype=A ref=272|0 text=varM(29-76)r
+[W5D] bit at=cm proc=track_collision_wall bit=174 kind=3 dtype=A ref=272|0 text=varM(29-76)r
+[W5D] bit at=cm proc=track_collision_wall bit=175 kind=4 dtype=A ref=798|0 text=str.A(varM(29-76)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=176 kind=4 dtype=L ref=670|0 text=istr.L@0(varM(29-76)r,-620625920)
+[W5D] bit at=cm proc=track_collision_wall bit=177 kind=4 dtype=L ref=743|0 text=istr.L@4(varM(29-76)r,24)
+[W5D] bit at=cm proc=track_collision_wall bit=178 kind=3 dtype=A ref=208|0 text=varM(29-80)r
+[W5D] bit at=cm proc=track_collision_wall bit=179 kind=3 dtype=A ref=208|0 text=varM(29-80)r
+[W5D] bit at=cm proc=track_collision_wall bit=180 kind=4 dtype=A ref=935|0 text=str.A(varM(29-80)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=181 kind=4 dtype=L ref=1071|0 text=istr.L@0(varM(29-80)r,-603453942)
+[W5D] bit at=cm proc=track_collision_wall bit=182 kind=4 dtype=L ref=1379|0 text=istr.L@4(varM(29-80)r,cvt.L(add.A(ilod.A@28(varP(29+8)r),8)))
+[W5D] bit at=cm proc=track_collision_wall bit=183 kind=3 dtype=A ref=144|0 text=varM(29-84)r
+[W5D] bit at=cm proc=track_collision_wall bit=184 kind=3 dtype=A ref=144|0 text=varM(29-84)r
+[W5D] bit at=cm proc=track_collision_wall bit=185 kind=4 dtype=A ref=1072|0 text=str.A(varM(29-84)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=186 kind=4 dtype=L ref=704|0 text=istr.L@0(varM(29-84)r,-603453174)
+[W5D] bit at=cm proc=track_collision_wall bit=187 kind=4 dtype=L ref=173|0 text=istr.L@4(varM(29-84)r,cvt.L(ilod.A@28(varP(29+8)r)))
+[W5D] bit at=cm proc=track_collision_wall bit=188 kind=3 dtype=A ref=80|0 text=varM(29-88)r
+[W5D] bit at=cm proc=track_collision_wall bit=189 kind=3 dtype=A ref=80|0 text=varM(29-88)r
+[W5D] bit at=cm proc=track_collision_wall bit=190 kind=4 dtype=A ref=1209|0 text=str.A(varM(29-88)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=191 kind=4 dtype=L ref=164|0 text=istr.L@0(varM(29-88)r,-620625920)
+[W5D] bit at=cm proc=track_collision_wall bit=192 kind=4 dtype=L ref=1386|1 text=istr.L@4(varM(29-88)r,48)
+[W5D] bit at=cm proc=track_collision_wall bit=193 kind=3 dtype=A ref=16|1 text=varM(29-92)r
+[W5D] bit at=cm proc=track_collision_wall bit=194 kind=3 dtype=A ref=16|1 text=varM(29-92)r
+[W5D] bit at=cm proc=track_collision_wall bit=195 kind=4 dtype=A ref=1366|0 text=str.A(varM(29-92)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=196 kind=4 dtype=L ref=1180|0 text=istr.L@0(varM(29-92)r,-603453942)
+[W5D] bit at=cm proc=track_collision_wall bit=197 kind=4 dtype=L ref=581|0 text=istr.L@4(varM(29-92)r,cvt.L(add.A(ilod.A@28(varP(29+8)r),8)))
+[W5D] bit at=cm proc=track_collision_wall bit=198 kind=3 dtype=A ref=1571|0 text=varM(29-96)r
+[W5D] bit at=cm proc=track_collision_wall bit=199 kind=3 dtype=A ref=1571|0 text=varM(29-96)r
+[W5D] bit at=cm proc=track_collision_wall bit=200 kind=4 dtype=A ref=1483|0 text=str.A(varM(29-96)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=201 kind=4 dtype=L ref=1142|0 text=istr.L@0(varM(29-96)r,-603453174)
+[W5D] bit at=cm proc=track_collision_wall bit=202 kind=4 dtype=A ref=1556|0 text=add.A(ilod.A@28(varP(29+8)r),24)
+[W5D] bit at=cm proc=track_collision_wall bit=203 kind=4 dtype=L ref=660|0 text=cvt.L(add.A(ilod.A@28(varP(29+8)r),24))
+[W5D] bit at=cm proc=track_collision_wall bit=204 kind=4 dtype=L ref=747|0 text=istr.L@4(varM(29-96)r,cvt.L(add.A(ilod.A@28(varP(29+8)r),24)))
+[W5D] bit at=cm proc=track_collision_wall bit=205 kind=3 dtype=A ref=1507|0 text=varM(29-100)r
+[W5D] bit at=cm proc=track_collision_wall bit=206 kind=3 dtype=A ref=1507|0 text=varM(29-100)r
+[W5D] bit at=cm proc=track_collision_wall bit=207 kind=4 dtype=A ref=1|1 text=str.A(varM(29-100)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=208 kind=4 dtype=L ref=817|0 text=istr.L@0(varM(29-100)r,-603452406)
+[W5D] bit at=cm proc=track_collision_wall bit=209 kind=4 dtype=L ref=82|0 text=istr.L@4(varM(29-100)r,cvt.L(ilod.A@28(varP(29+8)r)))
+[W5D] bit at=cm proc=track_collision_wall bit=210 kind=4 dtype=L ref=1204|1 text=and.L(ilod.L@0(varP(29+8)r),16)
+[W5D] bit at=cm proc=track_collision_wall bit=211 kind=4 dtype=L ref=349|0 text=and.L(ilod.L@0(varP(29+8)r),32)
+[W5D] bit at=cm proc=track_collision_wall bit=212 kind=4 dtype=A ref=1360|1 text=add.A(varM(29-4),16)
+[W5D] bit at=cm proc=track_collision_wall bit=213 kind=4 dtype=A ref=942|0 text=istr.A@0(ldaS(5+0),add.A(varM(29-4),16))
+[W5D] bit at=cm proc=track_collision_wall bit=214 kind=3 dtype=A ref=1443|0 text=varM(29-104)r
+[W5D] bit at=cm proc=track_collision_wall bit=215 kind=3 dtype=A ref=1443|0 text=varM(29-104)r
+[W5D] bit at=cm proc=track_collision_wall bit=216 kind=4 dtype=A ref=138|0 text=str.A(varM(29-104)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=217 kind=4 dtype=L ref=1404|0 text=istr.L@0(varM(29-104)r,-570425344)
+[W5D] bit at=cm proc=track_collision_wall bit=218 kind=4 dtype=A ref=689|0 text=ilod.A@0(ldaS(5+0))
+[W5D] bit at=cm proc=track_collision_wall bit=219 kind=4 dtype=L ref=1129|0 text=cvt.L(ilod.A@0(ldaS(5+0)))
+[W5D] bit at=cm proc=track_collision_wall bit=220 kind=4 dtype=L ref=1315|0 text=istr.L@4(varM(29-104)r,cvt.L(ilod.A@0(ldaS(5+0))))
+[W5D] bit at=cm proc=track_collision_wall bit=221 kind=3 dtype=A ref=1379|1 text=varM(29-108)r
+[W5D] bit at=cm proc=track_collision_wall bit=222 kind=3 dtype=A ref=1379|1 text=varM(29-108)r
+[W5D] bit at=cm proc=track_collision_wall bit=223 kind=4 dtype=A ref=295|0 text=str.A(varM(29-108)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=224 kind=4 dtype=L ref=1129|1 text=istr.L@0(varM(29-108)r,-570359808)
+[W5D] bit at=cm proc=track_collision_wall bit=225 kind=4 dtype=L ref=303|0 text=istr.L@4(varM(29-108)r,0)
+[W5D] bit at=cm proc=track_collision_wall bit=226 kind=4 dtype=J ref=174|0 text=str.J(varM(29-12)r,1)
+[W5D] bit at=cm proc=track_collision_wall bit=227 kind=4 dtype=J ref=254|0 text=str.J(varM(29-20)r,varM(29-16)r)
+[W5D] bit at=cm proc=track_collision_wall bit=228 kind=3 dtype=A ref=1315|1 text=varM(29-112)r
+[W5D] bit at=cm proc=track_collision_wall bit=229 kind=3 dtype=A ref=1315|1 text=varM(29-112)r
+[W5D] bit at=cm proc=track_collision_wall bit=230 kind=4 dtype=A ref=432|0 text=str.A(varM(29-112)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=231 kind=4 dtype=L ref=1187|0 text=istr.L@0(varM(29-112)r,16810000)
+[W5D] bit at=cm proc=track_collision_wall bit=232 kind=4 dtype=L ref=460|0 text=cvt.L(ldaS(43+0))
+[W5D] bit at=cm proc=track_collision_wall bit=233 kind=4 dtype=L ref=659|0 text=istr.L@4(varM(29-112)r,cvt.L(ldaS(43+0)))
+[W5D] bit at=cm proc=track_collision_wall bit=234 kind=3 dtype=A ref=1251|0 text=varM(29-116)r
+[W5D] bit at=cm proc=track_collision_wall bit=235 kind=3 dtype=A ref=1251|0 text=varM(29-116)r
+[W5D] bit at=cm proc=track_collision_wall bit=236 kind=4 dtype=A ref=549|0 text=str.A(varM(29-116)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=237 kind=4 dtype=L ref=258|0 text=istr.L@0(varM(29-116)r,16810000)
+[W5D] bit at=cm proc=track_collision_wall bit=238 kind=4 dtype=L ref=780|0 text=cvt.L(ldaS(44+0))
+[W5D] bit at=cm proc=track_collision_wall bit=239 kind=4 dtype=L ref=310|0 text=istr.L@4(varM(29-116)r,cvt.L(ldaS(44+0)))
+[W5D] bit at=cm proc=track_collision_wall bit=240 kind=3 dtype=A ref=1187|1 text=varM(29-120)r
+[W5D] bit at=cm proc=track_collision_wall bit=241 kind=3 dtype=A ref=1187|1 text=varM(29-120)r
+[W5D] bit at=cm proc=track_collision_wall bit=242 kind=4 dtype=A ref=706|0 text=str.A(varM(29-120)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=243 kind=4 dtype=L ref=853|0 text=istr.L@0(varM(29-120)r,50331648)
+[W5D] bit at=cm proc=track_collision_wall bit=244 kind=4 dtype=L ref=1285|0 text=istr.L@4(varM(29-120)r,14)
+[W5D] bit at=cm proc=track_collision_wall bit=245 kind=4 dtype=L ref=855|8 text=ilod.L@4(varP(29+8)r)
+[W5D] bit at=cm proc=track_collision_wall bit=246 kind=4 dtype=L ref=467|0 text=and.L(ilod.L@4(varP(29+8)r),7)
+[W5D] bit at=cm proc=track_collision_wall bit=247 kind=3 dtype=J ref=976|0 text=varM(29-32)r
+[W5D] bit at=cm proc=track_collision_wall bit=248 kind=3 dtype=J ref=976|0 text=varM(29-32)r
+[W5D] bit at=cm proc=track_collision_wall bit=249 kind=4 dtype=J ref=1546|1 text=cvt.J(and.L(ilod.L@4(varP(29+8)r),7))
+[W5D] bit at=cm proc=track_collision_wall bit=250 kind=4 dtype=J ref=66|0 text=str.J(varM(29-32)r,cvt.J(and.L(ilod.L@4(varP(29+8)r),7)))
+[W5D] bit at=cm proc=track_collision_wall bit=251 kind=3 dtype=A ref=912|1 text=varM(29-36)r
+[W5D] bit at=cm proc=track_collision_wall bit=252 kind=3 dtype=A ref=912|1 text=varM(29-36)r
+[W5D] bit at=cm proc=track_collision_wall bit=253 kind=4 dtype=L ref=540|0 text=and.L(ilod.L@4(varP(29+8)r),8184)
+[W5D] bit at=cm proc=track_collision_wall bit=254 kind=4 dtype=L ref=1235|0 text=shr.L(and.L(ilod.L@4(varP(29+8)r),8184),3)
+[W5D] bit at=cm proc=track_collision_wall bit=255 kind=4 dtype=L ref=966|0 text=mpy.L(shr.L(and.L(ilod.L@4(varP(29+8)r),8184),3),16)
+[W5D] bit at=cm proc=track_collision_wall bit=256 kind=4 dtype=L ref=978|0 text=ixa.L(ldaS(45+0),mpy.L(shr.L(and.L(ilod.L@4(varP(29+8)r),8184),3),16))
+[W5D] bit at=cm proc=track_collision_wall bit=257 kind=4 dtype=A ref=475|0 text=str.A(varM(29-36)r,ixa.L(ldaS(45+0),mpy.L(shr.L(and.L(ilod.L@4(varP(29+8)r),8184),3),16)))
+[W5D] bit at=cm proc=track_collision_wall bit=258 kind=4 dtype=R ref=382|0 text=ilod.R@0(ldaS(46+0))
+[W5D] bit at=cm proc=track_collision_wall bit=259 kind=4 dtype=R ref=2|1 text=les.R(ilod.R@0(ldaS(46+0)),196614)
+[W5D] bit at=cm proc=track_collision_wall bit=260 kind=4 dtype=R ref=996|0 text=cg1.R(ilod.R@0(ldaS(46+0)))
+[W5D] bit at=cm proc=track_collision_wall bit=261 kind=3 dtype=A ref=848|0 text=varM(29-40)r
+[W5D] bit at=cm proc=track_collision_wall bit=262 kind=3 dtype=A ref=848|0 text=varM(29-40)r
+[W5D] bit at=cm proc=track_collision_wall bit=263 kind=4 dtype=J ref=283|0 text=mpy.J(varP(29+12)r,152)
+[W5D] bit at=cm proc=track_collision_wall bit=264 kind=4 dtype=J ref=654|0 text=ixa.J(ldaS(19+0),mpy.J(varP(29+12)r,152))
+[W5D] bit at=cm proc=track_collision_wall bit=265 kind=4 dtype=A ref=1011|0 text=str.A(varM(29-40)r,ixa.J(ldaS(19+0),mpy.J(varP(29+12)r,152)))
+[W5D] bit at=cm proc=track_collision_wall bit=266 kind=4 dtype=J ref=1549|0 text=ilod.J@0(varM(29-36)r)
+[W5D] bit at=cm proc=track_collision_wall bit=267 kind=4 dtype=J ref=1549|1 text=ilod.J@112(varM(29-36)r)
+[W5D] bit at=cm proc=track_collision_wall bit=268 kind=4 dtype=J ref=254|1 text=les.J(ilod.J@0(varM(29-36)r),ilod.J@112(varM(29-36)r))
+[W5D] bit at=cm proc=track_collision_wall bit=269 kind=4 dtype=J ref=94|0 text=cg1.J(ilod.J@0(varM(29-36)r))
+[W5D] bit at=cm proc=track_collision_wall bit=270 kind=4 dtype=J ref=101|0 text=cg1.J(ilod.J@112(varM(29-36)r))
+[W5D] bit at=cm proc=track_collision_wall bit=271 kind=3 dtype=R ref=784|0 text=varM(29-44)r
+[W5D] bit at=cm proc=track_collision_wall bit=272 kind=3 dtype=R ref=784|0 text=varM(29-44)r
+[W5D] bit at=cm proc=track_collision_wall bit=273 kind=4 dtype=R ref=1439|0 text=cvt.R(ilod.J@112(varM(29-36)r))
+[W5D] bit at=cm proc=track_collision_wall bit=274 kind=4 dtype=R ref=734|0 text=str.R(varM(29-44)r,cvt.R(ilod.J@112(varM(29-36)r)))
+[W5D] bit at=cm proc=track_collision_wall bit=275 kind=4 dtype=R ref=520|0 text=cvt.R(ilod.J@0(varM(29-36)r))
+[W5D] bit at=cm proc=track_collision_wall bit=276 kind=4 dtype=R ref=324|0 text=str.R(varM(29-44)r,cvt.R(ilod.J@0(varM(29-36)r)))
+[W5D] bit at=cm proc=track_collision_wall bit=277 kind=4 dtype=J ref=1549|2 text=ilod.J@4(varM(29-36)r)
+[W5D] bit at=cm proc=track_collision_wall bit=278 kind=4 dtype=J ref=1549|3 text=ilod.J@116(varM(29-36)r)
+[W5D] bit at=cm proc=track_collision_wall bit=279 kind=4 dtype=J ref=394|0 text=les.J(ilod.J@4(varM(29-36)r),ilod.J@116(varM(29-36)r))
+[W5D] bit at=cm proc=track_collision_wall bit=280 kind=4 dtype=J ref=120|0 text=cg1.J(ilod.J@4(varM(29-36)r))
+[W5D] bit at=cm proc=track_collision_wall bit=281 kind=4 dtype=J ref=130|0 text=cg1.J(ilod.J@116(varM(29-36)r))
+[W5D] bit at=cm proc=track_collision_wall bit=282 kind=3 dtype=R ref=720|1 text=varM(29-48)r
+[W5D] bit at=cm proc=track_collision_wall bit=283 kind=3 dtype=R ref=720|1 text=varM(29-48)r
+[W5D] bit at=cm proc=track_collision_wall bit=284 kind=4 dtype=R ref=39|0 text=cvt.R(ilod.J@116(varM(29-36)r))
+[W5D] bit at=cm proc=track_collision_wall bit=285 kind=4 dtype=R ref=899|0 text=str.R(varM(29-48)r,cvt.R(ilod.J@116(varM(29-36)r)))
+[W5D] bit at=cm proc=track_collision_wall bit=286 kind=4 dtype=R ref=739|1 text=cvt.R(ilod.J@4(varM(29-36)r))
+[W5D] bit at=cm proc=track_collision_wall bit=287 kind=4 dtype=R ref=982|1 text=str.R(varM(29-48)r,cvt.R(ilod.J@4(varM(29-36)r)))
+[W5D] bit at=cm proc=track_collision_wall bit=288 kind=3 dtype=R ref=346|1 text=varR(0+32)r
+[W5D] bit at=cm proc=track_collision_wall bit=289 kind=3 dtype=R ref=346|1 text=varR(0+32)r
+[W5D] bit at=cm proc=track_collision_wall bit=290 kind=4 dtype=R ref=61|1 text=mpy.R(varM(29-44)r,varM(29-44)r)
+[W5D] bit at=cm proc=track_collision_wall bit=291 kind=4 dtype=R ref=856|0 text=mpy.R(varM(29-48)r,varM(29-48)r)
+[W5D] bit at=cm proc=track_collision_wall bit=292 kind=4 dtype=R ref=982|2 text=add.R(mpy.R(varM(29-44)r,varM(29-44)r),mpy.R(varM(29-48)r,varM(29-48)r))
+[W5D] bit at=cm proc=track_collision_wall bit=293 kind=4 dtype=R ref=230|0 text=sqrt.R(add.R(mpy.R(varM(29-44)r,varM(29-44)r),mpy.R(varM(29-48)r,varM(29-48)r)))
+[W5D] bit at=cm proc=track_collision_wall bit=294 kind=4 dtype=R ref=1057|0 text=str.R(varR(0+32)r,sqrt.R(add.R(mpy.R(varM(29-44)r,varM(29-44)r),mpy.R(varM(29-48)r,varM(29-48)r))))
+[W5D] bit at=cm proc=track_collision_wall bit=295 kind=3 dtype=R ref=656|0 text=varM(29-52)r
+[W5D] bit at=cm proc=track_collision_wall bit=296 kind=3 dtype=R ref=656|0 text=varM(29-52)r
+[W5D] bit at=cm proc=track_collision_wall bit=297 kind=4 dtype=R ref=690|0 text=mpy.R(varR(0+32)r,589830)
+[W5D] bit at=cm proc=track_collision_wall bit=298 kind=4 dtype=R ref=1461|0 text=str.R(varM(29-52)r,mpy.R(varR(0+32)r,589830))
+[W5D] bit at=cm proc=track_collision_wall bit=299 kind=4 dtype=R ref=509|0 text=ilod.R@36(varM(29-40)r)
+[W5D] bit at=cm proc=track_collision_wall bit=300 kind=4 dtype=R ref=994|0 text=sub.R(ilod.R@36(ilod.A@8(varP(29+8)r)),ilod.R@36(varM(29-40)r))
+[W5D] bit at=cm proc=track_collision_wall bit=301 kind=4 dtype=R ref=879|0 text=str.R(varM(29-44)r,sub.R(ilod.R@36(ilod.A@8(varP(29+8)r)),ilod.R@36(varM(29-40)r)))
+[W5D] bit at=cm proc=track_collision_wall bit=302 kind=4 dtype=R ref=509|1 text=ilod.R@44(varM(29-40)r)
+[W5D] bit at=cm proc=track_collision_wall bit=303 kind=4 dtype=R ref=1074|0 text=sub.R(ilod.R@44(ilod.A@8(varP(29+8)r)),ilod.R@44(varM(29-40)r))
+[W5D] bit at=cm proc=track_collision_wall bit=304 kind=4 dtype=R ref=642|0 text=str.R(varM(29-48)r,sub.R(ilod.R@44(ilod.A@8(varP(29+8)r)),ilod.R@44(varM(29-40)r)))
+[W5D] bit at=cm proc=track_collision_wall bit=305 kind=4 dtype=R ref=268|0 text=sub.R(varR(0+32)r,varM(29-52)r)
+[W5D] bit at=cm proc=track_collision_wall bit=306 kind=4 dtype=R ref=356|0 text=les.R(ilod.R@0(ldaS(46+0)),sub.R(varR(0+32)r,varM(29-52)r))
+[W5D] bit at=cm proc=track_collision_wall bit=307 kind=4 dtype=R ref=1010|0 text=cg1.R(ilod.R@0(ldaS(46+0)))
+[W5D] bit at=cm proc=track_collision_wall bit=308 kind=4 dtype=R ref=782|0 text=cg1.R(sub.R(varR(0+32)r,varM(29-52)r))
+[W5D] bit at=cm proc=track_collision_wall bit=309 kind=3 dtype=A ref=1123|0 text=varM(29-124)r
+[W5D] bit at=cm proc=track_collision_wall bit=310 kind=3 dtype=A ref=1123|0 text=varM(29-124)r
+[W5D] bit at=cm proc=track_collision_wall bit=311 kind=4 dtype=A ref=823|0 text=str.A(varM(29-124)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=312 kind=4 dtype=L ref=1160|0 text=istr.L@0(varM(29-124)r,-570425344)
+[W5D] bit at=cm proc=track_collision_wall bit=313 kind=4 dtype=L ref=504|0 text=istr.L@4(varM(29-124)r,cvt.L(ilod.A@0(ldaS(5+0))))
+[W5D] bit at=cm proc=track_collision_wall bit=314 kind=3 dtype=A ref=1059|0 text=varM(29-128)r
+[W5D] bit at=cm proc=track_collision_wall bit=315 kind=3 dtype=A ref=1059|0 text=varM(29-128)r
+[W5D] bit at=cm proc=track_collision_wall bit=316 kind=4 dtype=A ref=960|0 text=str.A(varM(29-128)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=317 kind=4 dtype=L ref=1211|1 text=istr.L@0(varM(29-128)r,-570359808)
+[W5D] bit at=cm proc=track_collision_wall bit=318 kind=4 dtype=L ref=263|1 text=istr.L@4(varM(29-128)r,0)
+[W5D] bit at=cm proc=track_collision_wall bit=319 kind=4 dtype=J ref=223|1 text=istr.J@0(ldaS(4+0),0)
+[W5D] bit at=cm proc=track_collision_wall bit=320 kind=4 dtype=A ref=283|1 text=istr.A@0(ldaS(47+0),0)
+[W5D] bit at=cm proc=track_collision_wall bit=321 kind=3 dtype=A ref=995|0 text=varM(29-132)r
+[W5D] bit at=cm proc=track_collision_wall bit=322 kind=3 dtype=A ref=995|0 text=varM(29-132)r
+[W5D] bit at=cm proc=track_collision_wall bit=323 kind=4 dtype=A ref=1097|1 text=str.A(varM(29-132)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=324 kind=4 dtype=J ref=166|5 text=add.J(varM(29-32)r,1)
+[W5D] bit at=cm proc=track_collision_wall bit=325 kind=4 dtype=L ref=1201|1 text=and.L(add.J(varM(29-32)r,1),255)
+[W5D] bit at=cm proc=track_collision_wall bit=326 kind=4 dtype=L ref=1194|1 text=shl.L(and.L(add.J(varM(29-32)r,1),255),12)
+[W5D] bit at=cm proc=track_collision_wall bit=327 kind=4 dtype=L ref=1105|0 text=ior.L(shl.L(and.L(add.J(varM(29-32)r,1),255),12),16777216)
+[W5D] bit at=cm proc=track_collision_wall bit=328 kind=4 dtype=L ref=810|0 text=and.L(add.J(varM(29-32)r,1),127)
+[W5D] bit at=cm proc=track_collision_wall bit=329 kind=4 dtype=L ref=1150|0 text=shl.L(and.L(add.J(varM(29-32)r,1),127),1)
+[W5D] bit at=cm proc=track_collision_wall bit=330 kind=4 dtype=L ref=1571|1 text=ior.L(ior.L(shl.L(and.L(add.J(varM(29-32)r,1),255),12),16777216),shl.L(and.L(add.J(varM(29-32)r,1),127),1))
+[W5D] bit at=cm proc=track_collision_wall bit=331 kind=4 dtype=L ref=248|0 text=istr.L@0(varM(29-132)r,ior.L(ior.L(shl.L(and.L(add.J(varM(29-32)r,1),255),12),16777216),shl.L(and.L(add.J(varM(29-32)r,1),127),1)))
+[W5D] bit at=cm proc=track_collision_wall bit=332 kind=4 dtype=L ref=148|0 text=istr.L@4(varM(29-132)r,varM(29-36)r)
+[W5D] bit at=cm proc=track_collision_wall bit=333 kind=3 dtype=A ref=931|0 text=varM(29-136)r
+[W5D] bit at=cm proc=track_collision_wall bit=334 kind=3 dtype=A ref=931|0 text=varM(29-136)r
+[W5D] bit at=cm proc=track_collision_wall bit=335 kind=4 dtype=A ref=1234|0 text=str.A(varM(29-136)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=336 kind=4 dtype=L ref=355|0 text=istr.L@0(varM(29-136)r,50331648)
+[W5D] bit at=cm proc=track_collision_wall bit=337 kind=4 dtype=J ref=936|0 text=mpy.J(varM(29-32)r,2)
+[W5D] bit at=cm proc=track_collision_wall bit=338 kind=4 dtype=L ref=1212|0 text=cvt.L(mpy.J(varM(29-32)r,2))
+[W5D] bit at=cm proc=track_collision_wall bit=339 kind=4 dtype=L ref=1541|0 text=and.L(cvt.L(mpy.J(varM(29-32)r,2)),65535)
+[W5D] bit at=cm proc=track_collision_wall bit=340 kind=4 dtype=L ref=1145|1 text=shl.L(and.L(cvt.L(mpy.J(varM(29-32)r,2)),65535),0)
+[W5D] bit at=cm proc=track_collision_wall bit=341 kind=4 dtype=L ref=697|0 text=istr.L@4(varM(29-136)r,shl.L(and.L(cvt.L(mpy.J(varM(29-32)r,2)),65535),0))
+[W5D] bit at=cm proc=track_collision_wall bit=342 kind=4 dtype=A ref=855|9 text=ilod.A@56(varP(29+8)r)
+[W5D] bit at=cm proc=track_collision_wall bit=343 kind=4 dtype=A ref=55|0 text=neq.A(0,ilod.A@56(varP(29+8)r))
+[W5D] bit at=cm proc=track_collision_wall bit=344 kind=4 dtype=A ref=728|0 text=cg1.A(ilod.A@56(varP(29+8)r))
+[W5D] bit at=cm proc=track_collision_wall bit=345 kind=3 dtype=A ref=675|0 text=varM(29-152)r
+[W5D] bit at=cm proc=track_collision_wall bit=346 kind=3 dtype=A ref=675|0 text=varM(29-152)r
+[W5D] bit at=cm proc=track_collision_wall bit=347 kind=4 dtype=A ref=1480|0 text=str.A(varM(29-152)r,ilod.A@56(varP(29+8)r))
+[W5D] bit at=cm proc=track_collision_wall bit=348 kind=3 dtype=A ref=1341|0 text=varP(29+28)r
+[W5D] bit at=cm proc=track_collision_wall bit=349 kind=3 dtype=A ref=1341|0 text=varP(29+28)r
+[W5D] bit at=cm proc=track_collision_wall bit=350 kind=4 dtype=A ref=87|0 text=str.A(varM(29-152)r,varP(29+28)r)
+[W5D] bit at=cm proc=track_collision_wall bit=351 kind=3 dtype=A ref=957|0 text=varP(29+4)r
+[W5D] bit at=cm proc=track_collision_wall bit=352 kind=3 dtype=A ref=957|0 text=varP(29+4)r
+[W5D] bit at=cm proc=track_collision_wall bit=353 kind=3 dtype=J ref=1277|0 text=varP(29+24)r
+[W5D] bit at=cm proc=track_collision_wall bit=354 kind=3 dtype=J ref=1277|0 text=varP(29+24)r
+[W5D] bit at=cm proc=track_collision_wall bit=355 kind=4 dtype=J ref=774|0 text=str.J(varM(29-148)r,varR(0+2)r)
+[W5D] bit at=cm proc=track_collision_wall bit=356 kind=4 dtype=J ref=660|1 text=add.J(varM(29-16)r,varR(0+2)r)
+[W5D] bit at=cm proc=track_collision_wall bit=357 kind=4 dtype=J ref=768|0 text=str.J(varM(29-16)r,add.J(varM(29-16)r,varR(0+2)r))
+[W5D] bit at=cm proc=track_collision_wall bit=358 kind=4 dtype=J ref=638|0 text=cg1.J(ilod.J@22(varP(29+8)r))
+[W5D] bit at=cm proc=track_collision_wall bit=359 kind=4 dtype=J ref=250|1 text=equ.J(varM(29-8)r,1)
+[W5D] bit at=cm proc=track_collision_wall bit=360 kind=4 dtype=J ref=1371|0 text=cg1.J(varM(29-8)r)
+[W5D] bit at=cm proc=track_collision_wall bit=361 kind=3 dtype=J ref=611|0 text=varM(29-156)r
+[W5D] bit at=cm proc=track_collision_wall bit=362 kind=3 dtype=J ref=611|0 text=varM(29-156)r
+[W5D] bit at=cm proc=track_collision_wall bit=363 kind=4 dtype=J ref=277|0 text=add.J(varP(29+16)r,1)
+[W5D] bit at=cm proc=track_collision_wall bit=364 kind=4 dtype=J ref=781|0 text=str.J(varM(29-156)r,add.J(varP(29+16)r,1))
+[W5D] bit at=cm proc=track_collision_wall bit=365 kind=4 dtype=J ref=572|0 text=str.J(varM(29-156)r,varP(29+16)r)
+[W5D] bit at=cm proc=track_collision_wall bit=366 kind=4 dtype=A ref=849|0 text=cg1.A(ilod.A@56(varP(29+8)r))
+[W5D] bit at=cm proc=track_collision_wall bit=367 kind=4 dtype=J ref=1103|0 text=mpy.J(ilod.J@22(varP(29+8)r),68)
+[W5D] bit at=cm proc=track_collision_wall bit=368 kind=4 dtype=J ref=1356|0 text=ixa.J(ldaS(32+0),mpy.J(ilod.J@22(varP(29+8)r),68))
+[W5D] bit at=cm proc=track_collision_wall bit=369 kind=4 dtype=J ref=1329|0 text=cg1.J(ilod.J@24(varP(29+8)r))
+[W5D] bit at=cm proc=track_collision_wall bit=370 kind=4 dtype=L ref=782|1 text=and.L(ilod.L@0(varP(29+8)r),8)
+[W5D] bit at=cm proc=track_collision_wall bit=371 kind=4 dtype=L ref=151|0 text=ior.L(and.L(ilod.L@0(varP(29+8)r),8),varP(29+24)r)
+[W5D] bit at=cm proc=track_collision_wall bit=372 kind=4 dtype=J ref=83|0 text=cvt.J(ior.L(and.L(ilod.L@0(varP(29+8)r),8),varP(29+24)r))
+[W5D] bit at=cm proc=track_collision_wall bit=373 kind=4 dtype=J ref=1164|1 text=neq.J(varM(29-12)r,0)
+[W5D] bit at=cm proc=track_collision_wall bit=374 kind=4 dtype=J ref=1259|0 text=cg1.J(varM(29-12)r)
+[W5D] bit at=cm proc=track_collision_wall bit=375 kind=4 dtype=J ref=1221|3 text=equ.J(varM(29-16)r,0)
+[W5D] bit at=cm proc=track_collision_wall bit=376 kind=4 dtype=J ref=1133|0 text=cg1.J(varM(29-16)r)
+[W5D] bit at=cm proc=track_collision_wall bit=377 kind=4 dtype=A ref=1591|0 text=add.A(ilod.A@0(ldaS(5+0)),-16)
+[W5D] bit at=cm proc=track_collision_wall bit=378 kind=4 dtype=A ref=1339|1 text=str.A(varM(29-4),add.A(ilod.A@0(ldaS(5+0)),-16))
+[W5D] bit at=cm proc=track_collision_wall bit=379 kind=3 dtype=A ref=867|0 text=varM(29-140)r
+[W5D] bit at=cm proc=track_collision_wall bit=380 kind=3 dtype=A ref=867|0 text=varM(29-140)r
+[W5D] bit at=cm proc=track_collision_wall bit=381 kind=4 dtype=A ref=1371|1 text=str.A(varM(29-140)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=382 kind=4 dtype=L ref=895|1 text=istr.L@0(varM(29-140)r,-553648128)
+[W5D] bit at=cm proc=track_collision_wall bit=383 kind=4 dtype=L ref=263|2 text=istr.L@4(varM(29-140)r,0)
+[W5D] bit at=cm proc=track_collision_wall bit=384 kind=4 dtype=L ref=443|0 text=istr.L@-4(ilod.A@0(ldaS(5+0)),varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=385 kind=4 dtype=A ref=283|2 text=istr.A@0(ldaS(5+0),0)
+[W5D] bit at=cm proc=track_collision_wall bit=386 kind=4 dtype=J ref=208|1 text=add.J(varM(29-16)r,varM(29-20)r)
+[W5D] bit at=cm proc=track_collision_wall bit=387 kind=4 dtype=J ref=1488|0 text=str.J(varM(29-16)r,add.J(varM(29-16)r,varM(29-20)r))
+[W5D] bit at=cm proc=track_collision_wall bit=388 kind=4 dtype=J ref=1397|0 text=cg1.J(varM(29-8)r)
+[W5D] bit at=cm proc=track_collision_wall bit=389 kind=4 dtype=J ref=1143|0 text=cg1.J(varM(29-16)r)
+[W5D] bit at=cm proc=track_collision_wall bit=390 kind=4 dtype=A ref=1149|1 text=add.A(varM(29-4),-8)
+[W5D] bit at=cm proc=track_collision_wall bit=391 kind=4 dtype=A ref=332|0 text=str.A(varM(29-4),add.A(varM(29-4),-8))
+[W5D] bit at=cm proc=track_collision_wall bit=392 kind=3 dtype=A ref=803|0 text=varM(29-144)r
+[W5D] bit at=cm proc=track_collision_wall bit=393 kind=3 dtype=A ref=803|0 text=varM(29-144)r
+[W5D] bit at=cm proc=track_collision_wall bit=394 kind=4 dtype=A ref=1508|0 text=str.A(varM(29-144)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=395 kind=4 dtype=L ref=1515|0 text=istr.L@0(varM(29-144)r,-667418622)
+[W5D] bit at=cm proc=track_collision_wall bit=396 kind=4 dtype=L ref=940|1 text=istr.L@4(varM(29-144)r,64)
+[W5D] bit at=cm proc=track_collision_wall bit=397 kind=4 dtype=J ref=1443|1 text=les.J(ilod.J@24(varP(29+8)r),0)
+[W5D] bit at=cm proc=track_collision_wall bit=398 kind=4 dtype=J ref=1365|0 text=cg1.J(ilod.J@24(varP(29+8)r))
+[W5D] bit at=cm proc=track_collision_wall bit=399 kind=4 dtype=J ref=1073|0 text=mpy.J(ilod.J@24(varP(29+8)r),68)
+[W5D] bit at=cm proc=track_collision_wall bit=400 kind=4 dtype=J ref=1582|0 text=ixa.J(ldaS(32+0),mpy.J(ilod.J@24(varP(29+8)r),68))
+[W5D] bit at=cm proc=track_collision_wall bit=401 kind=4 dtype=A ref=1242|1 text=str.A(varP(29+8)r,ixa.J(ldaS(32+0),mpy.J(ilod.J@24(varP(29+8)r),68)))
+[W5D] bit at=cm proc=track_collision_wall bit=402 kind=4 dtype=J ref=50|0 text=cg1.J(ilod.J@0(ldaS(30+0)))
+[W5D] bit at=cm proc=track_collision_wall bit=403 kind=4 dtype=J ref=248|1 text=cg1.J(ilod.J@0(ldaS(33+0)))
+[W5D] bit at=cm proc=track_collision_wall bit=404 kind=4 dtype=A ref=917|0 text=istr.A@0(varP(29+0)r,varM(29-4))
+[W5D] bit at=cm proc=track_collision_wall bit=405 kind=4 dtype=J ref=706|1 text=str.J(varR(0+2)r,varM(29-16)r)
+[W5D] bit at=cm proc=track_collision_wall bit=406 kind=4 dtype=J ref=4|2 text=neq.J(varM(29-28)r,3)
+[W5D] bit at=cm proc=track_collision_wall bit=407 kind=4 dtype=R ref=121|0 text=ilod.R@36(ixa.J(ldaS(19+0),mpy.J(varP(29+12)r,152)))
+[W5D] bit at=cm proc=track_collision_wall bit=408 kind=4 dtype=R ref=154|0 text=sub.R(ilod.R@36(ilod.A@8(varP(29+8)r)),ilod.R@36(ixa.J(ldaS(19+0),mpy.J(varP(29+12)r,152))))
+[W5D] bit at=cm proc=track_collision_wall bit=409 kind=4 dtype=? ref=1371|2 text=str.?(varM(29-44)r,sub.R(ilod.R@36(ilod.A@8(varP(29+8)r)),ilod.R@36(ixa.J(ldaS(19+0),mpy.J(varP(29+12)r,152)))))
+[W5D] bit at=cm proc=track_collision_wall bit=410 kind=4 dtype=R ref=121|1 text=ilod.R@44(ixa.J(ldaS(19+0),mpy.J(varP(29+12)r,152)))
+[W5D] bit at=cm proc=track_collision_wall bit=411 kind=4 dtype=R ref=234|0 text=sub.R(ilod.R@44(ilod.A@8(varP(29+8)r)),ilod.R@44(ixa.J(ldaS(19+0),mpy.J(varP(29+12)r,152))))
+[W5D] bit at=cm proc=track_collision_wall bit=412 kind=4 dtype=? ref=1226|1 text=str.?(varM(29-48)r,sub.R(ilod.R@44(ilod.A@8(varP(29+8)r)),ilod.R@44(ixa.J(ldaS(19+0),mpy.J(varP(29+12)r,152)))))
+[W5D] regcand proc=track_collision_wall what=const bb=0 ctx=0 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=0 ctx=0 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=0 ctx=0 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=1 ctx=2 decision=1 text=-2147483648
+[W5D] regcand proc=track_collision_wall what=const bb=113 ctx=1 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=lda bb=115 ctx=0 decision=1 text=ldaS(32+0)
+[W5D] regcand proc=track_collision_wall what=const bb=115 ctx=5 decision=1 text=68
+[W5D] regcand proc=track_collision_wall what=const bb=115 ctx=3 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=lda bb=115 ctx=3 decision=1 text=ldaS(30+0)
+[W5D] regcand proc=track_collision_wall what=const bb=116 ctx=2 decision=1 text=262144
+[W5D] regcand proc=track_collision_wall what=const bb=118 ctx=3 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=lda bb=118 ctx=3 decision=1 text=ldaS(33+0)
+[W5D] regcand proc=track_collision_wall what=const bb=119 ctx=2 decision=1 text=8388608
+[W5D] regcand proc=track_collision_wall what=const bb=3 ctx=1 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=4 ctx=3 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=6 ctx=0 decision=0 text=1
+[W5D] regcand proc=track_collision_wall what=const bb=8 ctx=3 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=9 ctx=2 decision=1 text=262144
+[W5D] regcand proc=track_collision_wall what=lda bb=10 ctx=3 decision=1 text=ldaS(31+0)
+[W5D] regcand proc=track_collision_wall what=const bb=10 ctx=1 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=lda bb=11 ctx=1 decision=1 text=ldaS(31+0)
+[W5D] regcand proc=track_collision_wall what=lda bb=11 ctx=1 decision=1 text=ldaS(32+0)
+[W5D] regcand proc=track_collision_wall what=const bb=11 ctx=5 decision=1 text=68
+[W5D] regcand proc=track_collision_wall what=const bb=13 ctx=3 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=lda bb=13 ctx=3 decision=1 text=ldaS(33+0)
+[W5D] regcand proc=track_collision_wall what=const bb=14 ctx=2 decision=1 text=8388608
+[W5D] regcand proc=track_collision_wall what=lda bb=15 ctx=3 decision=1 text=ldaS(34+0)
+[W5D] regcand proc=track_collision_wall what=const bb=15 ctx=1 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=lda bb=16 ctx=1 decision=1 text=ldaS(34+0)
+[W5D] regcand proc=track_collision_wall what=lda bb=16 ctx=1 decision=1 text=ldaS(32+0)
+[W5D] regcand proc=track_collision_wall what=const bb=16 ctx=5 decision=1 text=68
+[W5D] regcand proc=track_collision_wall what=const bb=19 ctx=3 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=21 ctx=1 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=22 ctx=0 decision=0 text=256
+[W5D] regcand proc=track_collision_wall what=const bb=24 ctx=2 decision=0 text=4096
+[W5D] regcand proc=track_collision_wall what=const bb=25 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=25 ctx=3 decision=1 text=16781330
+[W5D] regcand proc=track_collision_wall what=lda bb=25 ctx=3 decision=1 text=ldaS(21+0)
+[W5D] regcand proc=track_collision_wall what=const bb=25 ctx=5 decision=0 text=16
+[W5D] regcand proc=track_collision_wall what=const bb=25 ctx=1 decision=0 text=64
+[W5D] regcand proc=track_collision_wall what=const bb=26 ctx=2 decision=0 text=128
+[W5D] regcand proc=track_collision_wall what=const bb=27 ctx=0 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=59 ctx=1 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=60 ctx=3 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=61 ctx=3 decision=1 text=1
+[W5D] regcand proc=track_collision_wall what=const bb=62 ctx=3 decision=1 text=2
+[W5D] regcand proc=track_collision_wall what=const bb=67 ctx=2 decision=0 text=16
+[W5D] regcand proc=track_collision_wall what=const bb=68 ctx=2 decision=0 text=32
+[W5D] regcand proc=track_collision_wall what=lda bb=70 ctx=1 decision=1 text=ldaS(5+0)
+[W5D] regcand proc=track_collision_wall what=const bb=70 ctx=1 decision=0 text=16
+[W5D] regcand proc=track_collision_wall what=const bb=70 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=70 ctx=3 decision=1 text=-570425344
+[W5D] regcand proc=track_collision_wall what=lda bb=70 ctx=3 decision=1 text=ldaS(5+0)
+[W5D] regcand proc=track_collision_wall what=const bb=70 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=70 ctx=3 decision=1 text=-570359808
+[W5D] regcand proc=track_collision_wall what=const bb=70 ctx=3 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=70 ctx=0 decision=0 text=1
+[W5D] regcand proc=track_collision_wall what=const bb=70 ctx=0 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=70 ctx=2 decision=0 text=16
+[W5D] regcand proc=track_collision_wall what=const bb=71 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=71 ctx=3 decision=1 text=16810000
+[W5D] regcand proc=track_collision_wall what=lda bb=71 ctx=0 decision=1 text=ldaS(43+0)
+[W5D] regcand proc=track_collision_wall what=const bb=73 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=73 ctx=3 decision=1 text=50331648
+[W5D] regcand proc=track_collision_wall what=const bb=73 ctx=3 decision=1 text=14
+[W5D] regcand proc=track_collision_wall what=const bb=87 ctx=3 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=lda bb=90 ctx=0 decision=1 text=ldaM(29-4)
+[W5D] regcand proc=track_collision_wall what=const bb=94 ctx=1 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=95 ctx=3 decision=1 text=1
+[W5D] regcand proc=track_collision_wall what=const bb=96 ctx=1 decision=0 text=1
+[W5D] regcand proc=track_collision_wall what=const bb=98 ctx=3 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=lda bb=101 ctx=0 decision=1 text=ldaM(29-4)
+[W5D] regcand proc=track_collision_wall what=lda bb=101 ctx=0 decision=1 text=ldaS(32+0)
+[W5D] regcand proc=track_collision_wall what=const bb=101 ctx=5 decision=1 text=68
+[W5D] regcand proc=track_collision_wall what=const bb=101 ctx=1 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=101 ctx=2 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=103 ctx=3 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=104 ctx=0 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=104 ctx=3 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=lda bb=105 ctx=3 decision=1 text=ldaS(5+0)
+[W5D] regcand proc=track_collision_wall what=const bb=105 ctx=1 decision=0 text=-16
+[W5D] regcand proc=track_collision_wall what=lda bb=107 ctx=1 decision=1 text=ldaS(5+0)
+[W5D] regcand proc=track_collision_wall what=const bb=107 ctx=3 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=107 ctx=0 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=108 ctx=3 decision=1 text=1
+[W5D] regcand proc=track_collision_wall what=const bb=109 ctx=3 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=110 ctx=1 decision=0 text=-8
+[W5D] regcand proc=track_collision_wall what=const bb=111 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=111 ctx=3 decision=1 text=-667418622
+[W5D] regcand proc=track_collision_wall what=const bb=111 ctx=3 decision=1 text=64
+[W5D] regcand proc=track_collision_wall what=const bb=106 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=106 ctx=3 decision=1 text=-553648128
+[W5D] regcand proc=track_collision_wall what=const bb=106 ctx=3 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=lda bb=106 ctx=3 decision=1 text=ldaS(5+0)
+[W5D] regcand proc=track_collision_wall what=const bb=72 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=72 ctx=3 decision=1 text=16810000
+[W5D] regcand proc=track_collision_wall what=lda bb=72 ctx=0 decision=1 text=ldaS(44+0)
+[W5D] regcand proc=track_collision_wall what=const bb=74 ctx=2 decision=0 text=7
+[W5D] regcand proc=track_collision_wall what=lda bb=75 ctx=0 decision=1 text=ldaS(45+0)
+[W5D] regcand proc=track_collision_wall what=const bb=75 ctx=2 decision=0 text=8184
+[W5D] regcand proc=track_collision_wall what=const bb=75 ctx=0 decision=0 text=3
+[W5D] regcand proc=track_collision_wall what=const bb=75 ctx=5 decision=0 text=16
+[W5D] regcand proc=track_collision_wall what=const bb=75 ctx=2 decision=1 text=4194304
+[W5D] regcand proc=track_collision_wall what=lda bb=76 ctx=3 decision=1 text=ldaS(46+0)
+[W5D] regcand proc=track_collision_wall what=const bb=76 ctx=1 decision=1 text=196614
+[W5D] regcand proc=track_collision_wall what=const bb=83 ctx=5 decision=1 text=589830
+[W5D] regcand proc=track_collision_wall what=lda bb=85 ctx=1 decision=1 text=ldaS(5+0)
+[W5D] regcand proc=track_collision_wall what=const bb=85 ctx=1 decision=0 text=16
+[W5D] regcand proc=track_collision_wall what=const bb=85 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=85 ctx=3 decision=1 text=-570425344
+[W5D] regcand proc=track_collision_wall what=lda bb=85 ctx=3 decision=1 text=ldaS(5+0)
+[W5D] regcand proc=track_collision_wall what=const bb=85 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=85 ctx=3 decision=1 text=-570359808
+[W5D] regcand proc=track_collision_wall what=const bb=85 ctx=3 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=lda bb=85 ctx=1 decision=1 text=ldaS(4+0)
+[W5D] regcand proc=track_collision_wall what=const bb=85 ctx=3 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=85 ctx=0 decision=0 text=1
+[W5D] regcand proc=track_collision_wall what=lda bb=85 ctx=1 decision=1 text=ldaS(47+0)
+[W5D] regcand proc=track_collision_wall what=const bb=85 ctx=3 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=85 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=85 ctx=1 decision=0 text=1
+[W5D] regcand proc=track_collision_wall what=const bb=85 ctx=2 decision=0 text=255
+[W5D] regcand proc=track_collision_wall what=const bb=85 ctx=0 decision=0 text=12
+[W5D] regcand proc=track_collision_wall what=const bb=85 ctx=2 decision=1 text=16777216
+[W5D] regcand proc=track_collision_wall what=const bb=85 ctx=2 decision=0 text=127
+[W5D] regcand proc=track_collision_wall what=const bb=85 ctx=0 decision=0 text=1
+[W5D] regcand proc=track_collision_wall what=const bb=85 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=85 ctx=3 decision=1 text=50331648
+[W5D] regcand proc=track_collision_wall what=const bb=86 ctx=5 decision=0 text=2
+[W5D] regcand proc=track_collision_wall what=const bb=86 ctx=2 decision=0 text=65535
+[W5D] regcand proc=track_collision_wall what=const bb=86 ctx=0 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=66 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=66 ctx=3 decision=1 text=-620625920
+[W5D] regcand proc=track_collision_wall what=const bb=66 ctx=3 decision=1 text=48
+[W5D] regcand proc=track_collision_wall what=const bb=66 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=66 ctx=3 decision=1 text=-603453942
+[W5D] regcand proc=track_collision_wall what=const bb=66 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=66 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=66 ctx=3 decision=1 text=-603453174
+[W5D] regcand proc=track_collision_wall what=const bb=66 ctx=1 decision=0 text=24
+[W5D] regcand proc=track_collision_wall what=const bb=66 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=66 ctx=3 decision=1 text=-603452406
+[W5D] regcand proc=track_collision_wall what=const bb=65 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=65 ctx=3 decision=1 text=-620625920
+[W5D] regcand proc=track_collision_wall what=const bb=65 ctx=3 decision=1 text=24
+[W5D] regcand proc=track_collision_wall what=const bb=65 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=65 ctx=3 decision=1 text=-603453942
+[W5D] regcand proc=track_collision_wall what=const bb=65 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=65 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=65 ctx=3 decision=1 text=-603453174
+[W5D] regcand proc=track_collision_wall what=const bb=64 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=64 ctx=3 decision=1 text=-620625920
+[W5D] regcand proc=track_collision_wall what=const bb=64 ctx=3 decision=1 text=24
+[W5D] regcand proc=track_collision_wall what=const bb=64 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=64 ctx=3 decision=1 text=-603453942
+[W5D] regcand proc=track_collision_wall what=const bb=64 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=64 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=64 ctx=3 decision=1 text=-603453174
+[W5D] regcand proc=track_collision_wall what=lda bb=28 ctx=1 decision=1 text=ldaS(23+0)
+[W5D] regcand proc=track_collision_wall what=lda bb=28 ctx=1 decision=1 text=ldaS(23+0)
+[W5D] regcand proc=track_collision_wall what=lda bb=28 ctx=1 decision=1 text=ldaS(23+0)
+[W5D] regcand proc=track_collision_wall what=const bb=28 ctx=2 decision=1 text=65536
+[W5D] regcand proc=track_collision_wall what=const bb=29 ctx=3 decision=1 text=3
+[W5D] regcand proc=track_collision_wall what=const bb=30 ctx=0 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=31 ctx=0 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=32 ctx=1 decision=0 text=1
+[W5D] regcand proc=track_collision_wall what=const bb=32 ctx=1 decision=0 text=3
+[W5D] regcand proc=track_collision_wall what=cvtconst bb=34 ctx=0 decision=1 text=ldaS(36+72)
+[W5D] regcand proc=track_collision_wall what=const bb=36 ctx=0 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=cvtconst bb=37 ctx=0 decision=1 text=ldaS(36+0)
+[W5D] regcand proc=track_collision_wall what=lda bb=39 ctx=0 decision=1 text=ldaS(37+0)
+[W5D] regcand proc=track_collision_wall what=const bb=39 ctx=1 decision=0 text=36
+[W5D] regcand proc=track_collision_wall what=lda bb=39 ctx=3 decision=1 text=ldaS(39+0)
+[W5D] regcand proc=track_collision_wall what=const bb=40 ctx=3 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=58 ctx=1 decision=0 text=8
+[W5D] regcand proc=track_collision_wall what=const bb=58 ctx=2 decision=0 text=1
+[W5D] regcand proc=track_collision_wall what=const bb=58 ctx=2 decision=0 text=255
+[W5D] regcand proc=track_collision_wall what=const bb=58 ctx=0 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=58 ctx=2 decision=1 text=-633864192
+[W5D] regcand proc=track_collision_wall what=lda bb=58 ctx=3 decision=1 text=ldaS(39+0)
+[W5D] regcand proc=track_collision_wall what=lda bb=58 ctx=1 decision=1 text=ldaS(39+0)
+[W5D] regcand proc=track_collision_wall what=lda bb=58 ctx=3 decision=1 text=ldaS(39+0)
+[W5D] regcand proc=track_collision_wall what=const bb=58 ctx=1 decision=0 text=64
+[W5D] regcand proc=track_collision_wall what=lda bb=43 ctx=0 decision=1 text=ldaS(36+0)
+[W5D] regcand proc=track_collision_wall what=const bb=43 ctx=1 decision=0 text=36
+[W5D] regcand proc=track_collision_wall what=lda bb=43 ctx=3 decision=1 text=ldaS(39+0)
+[W5D] regcand proc=track_collision_wall what=const bb=44 ctx=3 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=47 ctx=2 decision=0 text=32768
+[W5D] regcand proc=track_collision_wall what=lda bb=48 ctx=0 decision=1 text=ldaS(40+0)
+[W5D] regcand proc=track_collision_wall what=const bb=48 ctx=1 decision=0 text=36
+[W5D] regcand proc=track_collision_wall what=lda bb=48 ctx=3 decision=1 text=ldaS(39+0)
+[W5D] regcand proc=track_collision_wall what=const bb=49 ctx=3 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=52 ctx=2 decision=1 text=4194304
+[W5D] regcand proc=track_collision_wall what=lda bb=53 ctx=3 decision=1 text=ldaS(39+0)
+[W5D] regcand proc=track_collision_wall what=lda bb=55 ctx=3 decision=1 text=ldaS(39+0)
+[W5D] regcand proc=track_collision_wall what=const bb=56 ctx=3 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=92 ctx=0 decision=0 text=0
+[W5D] regcand proc=track_collision_wall what=const bb=7 ctx=0 decision=0 text=0
+[W5D] ordinal proc=track_collision_wall cdx_proc=6
+[W5D] bit at=gc proc=track_collision_wall bit=0 kind=3 dtype=A ref=1424|0 text=varM(29-4)
+[W5D] bit at=gc proc=track_collision_wall bit=1 kind=3 dtype=A ref=1424|0 text=varM(29-4)
+[W5D] bit at=gc proc=track_collision_wall bit=2 kind=3 dtype=A ref=893|0 text=varP(29+0)r
+[W5D] bit at=gc proc=track_collision_wall bit=3 kind=3 dtype=A ref=893|0 text=varP(29+0)r
+[W5D] bit at=gc proc=track_collision_wall bit=4 kind=4 dtype=A ref=599|0 text=ilod.A@0(varP(29+0)r)
+[W5D] bit at=gc proc=track_collision_wall bit=5 kind=4 dtype=A ref=1034|0 text=str.A(varM(29-4),ilod.A@0(varP(29+0)r))
+[W5D] bit at=gc proc=track_collision_wall bit=6 kind=3 dtype=J ref=1296|0 text=varM(29-12)r
+[W5D] bit at=gc proc=track_collision_wall bit=7 kind=3 dtype=J ref=1296|0 text=varM(29-12)r
+[W5D] bit at=gc proc=track_collision_wall bit=8 kind=4 dtype=J ref=166|0 text=str.J(varM(29-12)r,0)
+[W5D] bit at=gc proc=track_collision_wall bit=9 kind=3 dtype=J ref=1232|0 text=varM(29-16)r
+[W5D] bit at=gc proc=track_collision_wall bit=10 kind=3 dtype=J ref=1232|0 text=varM(29-16)r
+[W5D] bit at=gc proc=track_collision_wall bit=11 kind=4 dtype=J ref=166|1 text=str.J(varM(29-16)r,0)
+[W5D] bit at=gc proc=track_collision_wall bit=12 kind=3 dtype=J ref=1168|0 text=varM(29-20)r
+[W5D] bit at=gc proc=track_collision_wall bit=13 kind=3 dtype=J ref=1168|0 text=varM(29-20)r
+[W5D] bit at=gc proc=track_collision_wall bit=14 kind=4 dtype=J ref=166|2 text=str.J(varM(29-20)r,0)
+[W5D] bit at=gc proc=track_collision_wall bit=15 kind=3 dtype=A ref=1021|0 text=varP(29+8)r
+[W5D] bit at=gc proc=track_collision_wall bit=16 kind=3 dtype=A ref=1021|0 text=varP(29+8)r
+[W5D] bit at=gc proc=track_collision_wall bit=17 kind=4 dtype=L ref=855|0 text=ilod.L@0(varP(29+8)r)
+[W5D] bit at=gc proc=track_collision_wall bit=18 kind=4 dtype=L ref=243|0 text=and.L(ilod.L@0(varP(29+8)r),-2147483648)
+[W5D] bit at=gc proc=track_collision_wall bit=19 kind=4 dtype=J ref=855|1 text=ilod.J@24(varP(29+8)r)
+[W5D] bit at=gc proc=track_collision_wall bit=20 kind=4 dtype=J ref=22|0 text=geq.J(ilod.J@24(varP(29+8)r),0)
+[W5D] bit at=gc proc=track_collision_wall bit=21 kind=4 dtype=J ref=1035|0 text=cg1.J(ilod.J@24(varP(29+8)r))
+[W5D] bit at=gc proc=track_collision_wall bit=22 kind=3 dtype=J ref=1213|0 text=varP(29+20)r
+[W5D] bit at=gc proc=track_collision_wall bit=23 kind=3 dtype=J ref=1213|0 text=varP(29+20)r
+[W5D] bit at=gc proc=track_collision_wall bit=24 kind=4 dtype=J ref=1164|0 text=neq.J(varP(29+20)r,0)
+[W5D] bit at=gc proc=track_collision_wall bit=25 kind=4 dtype=J ref=895|0 text=cg1.J(varP(29+20)r)
+[W5D] bit at=gc proc=track_collision_wall bit=26 kind=3 dtype=J ref=1360|0 text=varM(29-8)r
+[W5D] bit at=gc proc=track_collision_wall bit=27 kind=3 dtype=J ref=1360|0 text=varM(29-8)r
+[W5D] bit at=gc proc=track_collision_wall bit=28 kind=4 dtype=J ref=814|0 text=str.J(varM(29-8)r,1)
+[W5D] bit at=gc proc=track_collision_wall bit=29 kind=4 dtype=J ref=166|3 text=str.J(varM(29-8)r,0)
+[W5D] bit at=gc proc=track_collision_wall bit=30 kind=4 dtype=J ref=1489|0 text=ilod.J@0(ldaS(30+0))
+[W5D] bit at=gc proc=track_collision_wall bit=31 kind=4 dtype=J ref=1221|0 text=equ.J(0,ilod.J@0(ldaS(30+0)))
+[W5D] bit at=gc proc=track_collision_wall bit=32 kind=4 dtype=J ref=1455|0 text=cg1.J(ilod.J@0(ldaS(30+0)))
+[W5D] bit at=gc proc=track_collision_wall bit=33 kind=4 dtype=L ref=912|0 text=and.L(ilod.L@0(varP(29+8)r),262144)
+[W5D] bit at=gc proc=track_collision_wall bit=34 kind=4 dtype=J ref=1521|0 text=ilod.J@0(ldaS(31+0))
+[W5D] bit at=gc proc=track_collision_wall bit=35 kind=4 dtype=J ref=1423|0 text=les.J(ilod.J@0(ldaS(31+0)),0)
+[W5D] bit at=gc proc=track_collision_wall bit=36 kind=4 dtype=J ref=1523|0 text=cg1.J(ilod.J@0(ldaS(31+0)))
+[W5D] bit at=gc proc=track_collision_wall bit=37 kind=4 dtype=A ref=1485|1 text=sub.A(varP(29+8)r,ldaS(32+0))
+[W5D] bit at=gc proc=track_collision_wall bit=38 kind=4 dtype=J ref=1138|0 text=cvt.J(sub.A(varP(29+8)r,ldaS(32+0)))
+[W5D] bit at=gc proc=track_collision_wall bit=39 kind=4 dtype=J ref=699|0 text=div.J(cvt.J(sub.A(varP(29+8)r,ldaS(32+0))),68)
+[W5D] bit at=gc proc=track_collision_wall bit=40 kind=4 dtype=J ref=9|0 text=istr.J@0(ldaS(31+0),div.J(cvt.J(sub.A(varP(29+8)r,ldaS(32+0))),68))
+[W5D] bit at=gc proc=track_collision_wall bit=41 kind=4 dtype=J ref=1585|0 text=ilod.J@0(ldaS(33+0))
+[W5D] bit at=gc proc=track_collision_wall bit=42 kind=4 dtype=J ref=1221|1 text=equ.J(0,ilod.J@0(ldaS(33+0)))
+[W5D] bit at=gc proc=track_collision_wall bit=43 kind=4 dtype=J ref=38|0 text=cg1.J(ilod.J@0(ldaS(33+0)))
+[W5D] bit at=gc proc=track_collision_wall bit=44 kind=4 dtype=L ref=215|0 text=and.L(ilod.L@0(varP(29+8)r),8388608)
+[W5D] bit at=gc proc=track_collision_wall bit=45 kind=4 dtype=J ref=1617|0 text=ilod.J@0(ldaS(34+0))
+[W5D] bit at=gc proc=track_collision_wall bit=46 kind=4 dtype=J ref=1423|1 text=les.J(ilod.J@0(ldaS(34+0)),0)
+[W5D] bit at=gc proc=track_collision_wall bit=47 kind=4 dtype=J ref=106|0 text=cg1.J(ilod.J@0(ldaS(34+0)))
+[W5D] bit at=gc proc=track_collision_wall bit=48 kind=4 dtype=J ref=396|0 text=istr.J@0(ldaS(34+0),div.J(cvt.J(sub.A(varP(29+8)r,ldaS(32+0))),68))
+[W5D] bit at=gc proc=track_collision_wall bit=49 kind=3 dtype=J ref=1085|0 text=varP(29+12)r
+[W5D] bit at=gc proc=track_collision_wall bit=50 kind=3 dtype=J ref=1085|0 text=varP(29+12)r
+[W5D] bit at=gc proc=track_collision_wall bit=51 kind=3 dtype=J ref=1485|2 text=varR(0+2)r
+[W5D] bit at=gc proc=track_collision_wall bit=52 kind=3 dtype=J ref=1485|2 text=varR(0+2)r
+[W5D] bit at=gc proc=track_collision_wall bit=53 kind=4 dtype=J ref=1204|0 text=neq.J(varR(0+2)r,0)
+[W5D] bit at=gc proc=track_collision_wall bit=54 kind=4 dtype=J ref=1239|0 text=cg1.J(varR(0+2)r)
+[W5D] bit at=gc proc=track_collision_wall bit=55 kind=4 dtype=J ref=855|2 text=ilod.J@22(varP(29+8)r)
+[W5D] bit at=gc proc=track_collision_wall bit=56 kind=4 dtype=J ref=42|0 text=geq.J(ilod.J@22(varP(29+8)r),0)
+[W5D] bit at=gc proc=track_collision_wall bit=57 kind=4 dtype=J ref=346|0 text=cg1.J(ilod.J@22(varP(29+8)r))
+[W5D] bit at=gc proc=track_collision_wall bit=58 kind=4 dtype=J ref=541|0 text=shl.J(256,varP(29+12)r)
+[W5D] bit at=gc proc=track_collision_wall bit=59 kind=4 dtype=L ref=1407|0 text=cvt.L(shl.J(256,varP(29+12)r))
+[W5D] bit at=gc proc=track_collision_wall bit=60 kind=4 dtype=L ref=1040|0 text=and.L(ilod.L@0(varP(29+8)r),cvt.L(shl.J(256,varP(29+12)r)))
+[W5D] bit at=gc proc=track_collision_wall bit=61 kind=4 dtype=L ref=571|0 text=and.L(ilod.L@0(varP(29+8)r),4096)
+[W5D] bit at=gc proc=track_collision_wall bit=62 kind=3 dtype=A ref=592|0 text=varM(29-56)r
+[W5D] bit at=gc proc=track_collision_wall bit=63 kind=3 dtype=A ref=592|0 text=varM(29-56)r
+[W5D] bit at=gc proc=track_collision_wall bit=64 kind=4 dtype=A ref=113|0 text=str.A(varM(29-56)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=65 kind=4 dtype=A ref=710|0 text=add.A(varM(29-4),8)
+[W5D] bit at=gc proc=track_collision_wall bit=66 kind=4 dtype=A ref=1530|0 text=str.A(varM(29-4),add.A(varM(29-4),8))
+[W5D] bit at=gc proc=track_collision_wall bit=67 kind=4 dtype=L ref=787|0 text=istr.L@0(varM(29-56)r,16781330)
+[W5D] bit at=gc proc=track_collision_wall bit=68 kind=4 dtype=A ref=1201|0 text=ilod.A@0(ldaS(21+0))
+[W5D] bit at=gc proc=track_collision_wall bit=69 kind=4 dtype=J ref=1211|0 text=mpy.J(varP(29+12)r,16)
+[W5D] bit at=gc proc=track_collision_wall bit=70 kind=4 dtype=J ref=1016|0 text=ixa.J(ilod.A@0(ldaS(21+0)),mpy.J(varP(29+12)r,16))
+[W5D] bit at=gc proc=track_collision_wall bit=71 kind=4 dtype=A ref=1141|0 text=add.A(ixa.J(ilod.A@0(ldaS(21+0)),mpy.J(varP(29+12)r,16)),64)
+[W5D] bit at=gc proc=track_collision_wall bit=72 kind=4 dtype=L ref=455|0 text=cvt.L(add.A(ixa.J(ilod.A@0(ldaS(21+0)),mpy.J(varP(29+12)r,16)),64))
+[W5D] bit at=gc proc=track_collision_wall bit=73 kind=4 dtype=L ref=1426|0 text=istr.L@4(varM(29-56)r,cvt.L(add.A(ixa.J(ilod.A@0(ldaS(21+0)),mpy.J(varP(29+12)r,16)),64)))
+[W5D] bit at=gc proc=track_collision_wall bit=74 kind=4 dtype=L ref=316|0 text=and.L(ilod.L@0(varP(29+8)r),128)
+[W5D] bit at=gc proc=track_collision_wall bit=75 kind=4 dtype=A ref=855|3 text=ilod.A@8(varP(29+8)r)
+[W5D] bit at=gc proc=track_collision_wall bit=76 kind=4 dtype=R ref=1469|0 text=ilod.R@36(ilod.A@8(varP(29+8)r))
+[W5D] bit at=gc proc=track_collision_wall bit=77 kind=4 dtype=R ref=407|0 text=istr.R@0(ldaS(23+0),ilod.R@36(ilod.A@8(varP(29+8)r)))
+[W5D] bit at=gc proc=track_collision_wall bit=78 kind=4 dtype=R ref=1469|1 text=ilod.R@40(ilod.A@8(varP(29+8)r))
+[W5D] bit at=gc proc=track_collision_wall bit=79 kind=4 dtype=R ref=427|0 text=istr.R@4(ldaS(23+0),ilod.R@40(ilod.A@8(varP(29+8)r)))
+[W5D] bit at=gc proc=track_collision_wall bit=80 kind=4 dtype=R ref=1469|2 text=ilod.R@44(ilod.A@8(varP(29+8)r))
+[W5D] bit at=gc proc=track_collision_wall bit=81 kind=4 dtype=R ref=447|0 text=istr.R@8(ldaS(23+0),ilod.R@44(ilod.A@8(varP(29+8)r)))
+[W5D] bit at=gc proc=track_collision_wall bit=82 kind=4 dtype=L ref=498|0 text=and.L(ilod.L@0(varP(29+8)r),65536)
+[W5D] bit at=gc proc=track_collision_wall bit=83 kind=4 dtype=R ref=855|4 text=ilod.R@12(varP(29+8)r)
+[W5D] bit at=gc proc=track_collision_wall bit=84 kind=4 dtype=R ref=1304|0 text=neq.R(3,ilod.R@12(varP(29+8)r))
+[W5D] bit at=gc proc=track_collision_wall bit=85 kind=4 dtype=R ref=527|0 text=cg1.R(ilod.R@12(varP(29+8)r))
+[W5D] bit at=gc proc=track_collision_wall bit=86 kind=3 dtype=J ref=1104|0 text=varM(29-24)r
+[W5D] bit at=gc proc=track_collision_wall bit=87 kind=3 dtype=J ref=1104|0 text=varM(29-24)r
+[W5D] bit at=gc proc=track_collision_wall bit=88 kind=4 dtype=J ref=166|4 text=str.J(varM(29-24)r,0)
+[W5D] bit at=gc proc=track_collision_wall bit=89 kind=3 dtype=J ref=1040|1 text=varM(29-28)r
+[W5D] bit at=gc proc=track_collision_wall bit=90 kind=3 dtype=J ref=1040|1 text=varM(29-28)r
+[W5D] bit at=gc proc=track_collision_wall bit=91 kind=4 dtype=J ref=186|0 text=str.J(varM(29-28)r,0)
+[W5D] bit at=gc proc=track_collision_wall bit=92 kind=4 dtype=J ref=1330|0 text=ixa.J(ldaS(37+0),varM(29-24)r)
+[W5D] bit at=gc proc=track_collision_wall bit=93 kind=4 dtype=J ref=370|0 text=mpy.J(varM(29-28)r,4)
+[W5D] bit at=gc proc=track_collision_wall bit=94 kind=4 dtype=J ref=1242|0 text=ixa.J(ixa.J(ldaS(37+0),varM(29-24)r),mpy.J(varM(29-28)r,4))
+[W5D] bit at=gc proc=track_collision_wall bit=95 kind=4 dtype=J ref=1161|0 text=ixa.J(ldaS(36+0),varM(29-24)r)
+[W5D] bit at=gc proc=track_collision_wall bit=96 kind=4 dtype=J ref=876|0 text=ixa.J(ixa.J(ldaS(36+0),varM(29-24)r),mpy.J(varM(29-28)r,4))
+[W5D] bit at=gc proc=track_collision_wall bit=97 kind=4 dtype=R ref=565|0 text=ilod.R@0(ixa.J(ixa.J(ldaS(36+0),varM(29-24)r),mpy.J(varM(29-28)r,4)))
+[W5D] bit at=gc proc=track_collision_wall bit=98 kind=4 dtype=R ref=578|0 text=mpy.R(ilod.R@0(ixa.J(ixa.J(ldaS(36+0),varM(29-24)r),mpy.J(varM(29-28)r,4))),ilod.R@12(varP(29+8)r))
+[W5D] bit at=gc proc=track_collision_wall bit=99 kind=4 dtype=R ref=337|0 text=istr.R@0(ixa.J(ixa.J(ldaS(37+0),varM(29-24)r),mpy.J(varM(29-28)r,4)),mpy.R(ilod.R@0(ixa.J(ixa.J(ldaS(36+0),varM(29-24)r),mpy.J(varM(29-28)r,4))),ilod.R@12(varP(29+8)r)))
+[W5D] bit at=gc proc=track_collision_wall bit=100 kind=4 dtype=J ref=826|0 text=add.J(varM(29-28)r,1)
+[W5D] bit at=gc proc=track_collision_wall bit=101 kind=4 dtype=J ref=172|0 text=str.J(varM(29-28)r,add.J(varM(29-28)r,1))
+[W5D] bit at=gc proc=track_collision_wall bit=102 kind=4 dtype=J ref=263|0 text=les.J(varM(29-28)r,3)
+[W5D] bit at=gc proc=track_collision_wall bit=103 kind=4 dtype=J ref=58|0 text=cg1.J(varM(29-28)r)
+[W5D] bit at=gc proc=track_collision_wall bit=104 kind=4 dtype=J ref=1446|0 text=add.J(varM(29-24)r,1)
+[W5D] bit at=gc proc=track_collision_wall bit=105 kind=4 dtype=J ref=666|0 text=str.J(varM(29-24)r,add.J(varM(29-24)r,1))
+[W5D] bit at=gc proc=track_collision_wall bit=106 kind=4 dtype=J ref=544|0 text=les.J(varM(29-24)r,3)
+[W5D] bit at=gc proc=track_collision_wall bit=107 kind=4 dtype=J ref=737|0 text=cg1.J(varM(29-24)r)
+[W5D] bit at=gc proc=track_collision_wall bit=108 kind=4 dtype=J ref=17|0 text=ixa.J(ldaS(37+0),mpy.J(varM(29-28)r,4))
+[W5D] bit at=gc proc=track_collision_wall bit=109 kind=4 dtype=J ref=720|0 text=ixa.J(ldaS(36+0),mpy.J(varM(29-28)r,4))
+[W5D] bit at=gc proc=track_collision_wall bit=110 kind=4 dtype=R ref=253|0 text=ilod.R@48(ixa.J(ldaS(36+0),mpy.J(varM(29-28)r,4)))
+[W5D] bit at=gc proc=track_collision_wall bit=111 kind=4 dtype=R ref=1139|0 text=istr.R@48(ixa.J(ldaS(37+0),mpy.J(varM(29-28)r,4)),ilod.R@48(ixa.J(ldaS(36+0),mpy.J(varM(29-28)r,4))))
+[W5D] bit at=gc proc=track_collision_wall bit=112 kind=4 dtype=J ref=507|0 text=mpy.J(varM(29-28)r,16)
+[W5D] bit at=gc proc=track_collision_wall bit=113 kind=4 dtype=J ref=4|1 text=ixa.J(ldaS(37+0),mpy.J(varM(29-28)r,16))
+[W5D] bit at=gc proc=track_collision_wall bit=114 kind=4 dtype=J ref=1453|0 text=ixa.J(ldaS(36+0),mpy.J(varM(29-28)r,16))
+[W5D] bit at=gc proc=track_collision_wall bit=115 kind=4 dtype=R ref=100|0 text=ilod.R@12(ixa.J(ldaS(36+0),mpy.J(varM(29-28)r,16)))
+[W5D] bit at=gc proc=track_collision_wall bit=116 kind=4 dtype=R ref=1005|0 text=istr.R@12(ixa.J(ldaS(37+0),mpy.J(varM(29-28)r,16)),ilod.R@12(ixa.J(ldaS(36+0),mpy.J(varM(29-28)r,16))))
+[W5D] bit at=gc proc=track_collision_wall bit=117 kind=4 dtype=J ref=73|0 text=cg1.J(varM(29-28)r)
+[W5D] bit at=gc proc=track_collision_wall bit=118 kind=4 dtype=A ref=370|1 text=add.A(ilod.A@8(varP(29+8)r),36)
+[W5D] bit at=gc proc=track_collision_wall bit=119 kind=4 dtype=A ref=158|0 text=ilod.A@0(ldaS(39+0))
+[W5D] bit at=gc proc=track_collision_wall bit=120 kind=4 dtype=R ref=855|5 text=ilod.R@16(varP(29+8)r)
+[W5D] bit at=gc proc=track_collision_wall bit=121 kind=3 dtype=J ref=1149|0 text=varP(29+16)r
+[W5D] bit at=gc proc=track_collision_wall bit=122 kind=3 dtype=J ref=1149|0 text=varP(29+16)r
+[W5D] bit at=gc proc=track_collision_wall bit=123 kind=4 dtype=J ref=1323|0 text=cg1.J(varR(0+2)r)
+[W5D] bit at=gc proc=track_collision_wall bit=124 kind=4 dtype=J ref=1339|0 text=cg1.J(varR(0+2)r)
+[W5D] bit at=gc proc=track_collision_wall bit=125 kind=4 dtype=L ref=429|0 text=and.L(ilod.L@0(varP(29+8)r),32768)
+[W5D] bit at=gc proc=track_collision_wall bit=126 kind=4 dtype=J ref=1359|0 text=cg1.J(varR(0+2)r)
+[W5D] bit at=gc proc=track_collision_wall bit=127 kind=4 dtype=L ref=1097|0 text=and.L(ilod.L@0(varP(29+8)r),4194304)
+[W5D] bit at=gc proc=track_collision_wall bit=128 kind=4 dtype=J ref=1387|0 text=cg1.J(varR(0+2)r)
+[W5D] bit at=gc proc=track_collision_wall bit=129 kind=3 dtype=A ref=528|0 text=varM(29-60)r
+[W5D] bit at=gc proc=track_collision_wall bit=130 kind=3 dtype=A ref=528|0 text=varM(29-60)r
+[W5D] bit at=gc proc=track_collision_wall bit=131 kind=4 dtype=A ref=250|0 text=str.A(varM(29-60)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=132 kind=4 dtype=J ref=635|0 text=xor.J(varM(29-8)r,1)
+[W5D] bit at=gc proc=track_collision_wall bit=133 kind=4 dtype=L ref=49|0 text=cvt.L(xor.J(varM(29-8)r,1))
+[W5D] bit at=gc proc=track_collision_wall bit=134 kind=4 dtype=L ref=647|0 text=and.L(cvt.L(xor.J(varM(29-8)r,1)),255)
+[W5D] bit at=gc proc=track_collision_wall bit=135 kind=4 dtype=L ref=1145|0 text=shl.L(and.L(cvt.L(xor.J(varM(29-8)r,1)),255),0)
+[W5D] bit at=gc proc=track_collision_wall bit=136 kind=4 dtype=L ref=502|0 text=ior.L(shl.L(and.L(cvt.L(xor.J(varM(29-8)r,1)),255),0),-633864192)
+[W5D] bit at=gc proc=track_collision_wall bit=137 kind=4 dtype=L ref=480|0 text=istr.L@0(varM(29-60)r,ior.L(shl.L(and.L(cvt.L(xor.J(varM(29-8)r,1)),255),0),-633864192))
+[W5D] bit at=gc proc=track_collision_wall bit=138 kind=4 dtype=L ref=223|0 text=cvt.L(ilod.A@0(ldaS(39+0)))
+[W5D] bit at=gc proc=track_collision_wall bit=139 kind=4 dtype=L ref=650|0 text=istr.L@4(varM(29-60)r,cvt.L(ilod.A@0(ldaS(39+0))))
+[W5D] bit at=gc proc=track_collision_wall bit=140 kind=4 dtype=A ref=862|0 text=add.A(ilod.A@0(ldaS(39+0)),64)
+[W5D] bit at=gc proc=track_collision_wall bit=141 kind=4 dtype=A ref=1153|0 text=istr.A@0(ldaS(39+0),add.A(ilod.A@0(ldaS(39+0)),64))
+[W5D] bit at=gc proc=track_collision_wall bit=142 kind=4 dtype=J ref=855|6 text=ilod.J@26(varP(29+8)r)
+[W5D] bit at=gc proc=track_collision_wall bit=143 kind=4 dtype=J ref=122|0 text=geq.J(ilod.J@26(varP(29+8)r),0)
+[W5D] bit at=gc proc=track_collision_wall bit=144 kind=4 dtype=J ref=916|0 text=cg1.J(ilod.J@26(varP(29+8)r))
+[W5D] bit at=gc proc=track_collision_wall bit=145 kind=3 dtype=J ref=739|0 text=varM(29-148)r
+[W5D] bit at=gc proc=track_collision_wall bit=146 kind=3 dtype=J ref=739|0 text=varM(29-148)r
+[W5D] bit at=gc proc=track_collision_wall bit=147 kind=4 dtype=J ref=1398|0 text=str.J(varM(29-148)r,ilod.J@26(varP(29+8)r))
+[W5D] bit at=gc proc=track_collision_wall bit=148 kind=4 dtype=J ref=1221|2 text=equ.J(varM(29-148)r,0)
+[W5D] bit at=gc proc=track_collision_wall bit=149 kind=4 dtype=J ref=59|0 text=cg1.J(varM(29-148)r)
+[W5D] bit at=gc proc=track_collision_wall bit=150 kind=4 dtype=J ref=516|0 text=equ.J(varM(29-148)r,1)
+[W5D] bit at=gc proc=track_collision_wall bit=151 kind=4 dtype=J ref=61|0 text=cg1.J(varM(29-148)r)
+[W5D] bit at=gc proc=track_collision_wall bit=152 kind=4 dtype=J ref=1430|0 text=equ.J(varM(29-148)r,2)
+[W5D] bit at=gc proc=track_collision_wall bit=153 kind=4 dtype=J ref=63|0 text=cg1.J(varM(29-148)r)
+[W5D] bit at=gc proc=track_collision_wall bit=154 kind=3 dtype=A ref=464|0 text=varM(29-64)r
+[W5D] bit at=gc proc=track_collision_wall bit=155 kind=3 dtype=A ref=464|0 text=varM(29-64)r
+[W5D] bit at=gc proc=track_collision_wall bit=156 kind=4 dtype=A ref=387|0 text=str.A(varM(29-64)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=157 kind=4 dtype=L ref=1176|0 text=istr.L@0(varM(29-64)r,-620625920)
+[W5D] bit at=gc proc=track_collision_wall bit=158 kind=4 dtype=L ref=1491|0 text=istr.L@4(varM(29-64)r,24)
+[W5D] bit at=gc proc=track_collision_wall bit=159 kind=3 dtype=A ref=400|0 text=varM(29-68)r
+[W5D] bit at=gc proc=track_collision_wall bit=160 kind=3 dtype=A ref=400|0 text=varM(29-68)r
+[W5D] bit at=gc proc=track_collision_wall bit=161 kind=4 dtype=A ref=524|0 text=str.A(varM(29-68)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=162 kind=4 dtype=L ref=982|0 text=istr.L@0(varM(29-68)r,-603453942)
+[W5D] bit at=gc proc=track_collision_wall bit=163 kind=4 dtype=A ref=855|7 text=ilod.A@28(varP(29+8)r)
+[W5D] bit at=gc proc=track_collision_wall bit=164 kind=4 dtype=A ref=662|0 text=add.A(ilod.A@28(varP(29+8)r),8)
+[W5D] bit at=gc proc=track_collision_wall bit=165 kind=4 dtype=L ref=589|0 text=cvt.L(add.A(ilod.A@28(varP(29+8)r),8))
+[W5D] bit at=gc proc=track_collision_wall bit=166 kind=4 dtype=L ref=578|1 text=istr.L@4(varM(29-68)r,cvt.L(add.A(ilod.A@28(varP(29+8)r),8)))
+[W5D] bit at=gc proc=track_collision_wall bit=167 kind=3 dtype=A ref=336|0 text=varM(29-72)r
+[W5D] bit at=gc proc=track_collision_wall bit=168 kind=3 dtype=A ref=336|0 text=varM(29-72)r
+[W5D] bit at=gc proc=track_collision_wall bit=169 kind=4 dtype=A ref=661|0 text=str.A(varM(29-72)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=170 kind=4 dtype=L ref=266|0 text=istr.L@0(varM(29-72)r,-603453174)
+[W5D] bit at=gc proc=track_collision_wall bit=171 kind=4 dtype=L ref=1158|0 text=cvt.L(ilod.A@28(varP(29+8)r))
+[W5D] bit at=gc proc=track_collision_wall bit=172 kind=4 dtype=L ref=646|0 text=istr.L@4(varM(29-72)r,cvt.L(ilod.A@28(varP(29+8)r)))
+[W5D] bit at=gc proc=track_collision_wall bit=173 kind=3 dtype=A ref=272|0 text=varM(29-76)r
+[W5D] bit at=gc proc=track_collision_wall bit=174 kind=3 dtype=A ref=272|0 text=varM(29-76)r
+[W5D] bit at=gc proc=track_collision_wall bit=175 kind=4 dtype=A ref=798|0 text=str.A(varM(29-76)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=176 kind=4 dtype=L ref=670|0 text=istr.L@0(varM(29-76)r,-620625920)
+[W5D] bit at=gc proc=track_collision_wall bit=177 kind=4 dtype=L ref=743|0 text=istr.L@4(varM(29-76)r,24)
+[W5D] bit at=gc proc=track_collision_wall bit=178 kind=3 dtype=A ref=208|0 text=varM(29-80)r
+[W5D] bit at=gc proc=track_collision_wall bit=179 kind=3 dtype=A ref=208|0 text=varM(29-80)r
+[W5D] bit at=gc proc=track_collision_wall bit=180 kind=4 dtype=A ref=935|0 text=str.A(varM(29-80)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=181 kind=4 dtype=L ref=1071|0 text=istr.L@0(varM(29-80)r,-603453942)
+[W5D] bit at=gc proc=track_collision_wall bit=182 kind=4 dtype=L ref=1379|0 text=istr.L@4(varM(29-80)r,cvt.L(add.A(ilod.A@28(varP(29+8)r),8)))
+[W5D] bit at=gc proc=track_collision_wall bit=183 kind=3 dtype=A ref=144|0 text=varM(29-84)r
+[W5D] bit at=gc proc=track_collision_wall bit=184 kind=3 dtype=A ref=144|0 text=varM(29-84)r
+[W5D] bit at=gc proc=track_collision_wall bit=185 kind=4 dtype=A ref=1072|0 text=str.A(varM(29-84)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=186 kind=4 dtype=L ref=704|0 text=istr.L@0(varM(29-84)r,-603453174)
+[W5D] bit at=gc proc=track_collision_wall bit=187 kind=4 dtype=L ref=173|0 text=istr.L@4(varM(29-84)r,cvt.L(ilod.A@28(varP(29+8)r)))
+[W5D] bit at=gc proc=track_collision_wall bit=188 kind=3 dtype=A ref=80|0 text=varM(29-88)r
+[W5D] bit at=gc proc=track_collision_wall bit=189 kind=3 dtype=A ref=80|0 text=varM(29-88)r
+[W5D] bit at=gc proc=track_collision_wall bit=190 kind=4 dtype=A ref=1209|0 text=str.A(varM(29-88)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=191 kind=4 dtype=L ref=164|0 text=istr.L@0(varM(29-88)r,-620625920)
+[W5D] bit at=gc proc=track_collision_wall bit=192 kind=4 dtype=L ref=1386|1 text=istr.L@4(varM(29-88)r,48)
+[W5D] bit at=gc proc=track_collision_wall bit=193 kind=3 dtype=A ref=16|1 text=varM(29-92)r
+[W5D] bit at=gc proc=track_collision_wall bit=194 kind=3 dtype=A ref=16|1 text=varM(29-92)r
+[W5D] bit at=gc proc=track_collision_wall bit=195 kind=4 dtype=A ref=1366|0 text=str.A(varM(29-92)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=196 kind=4 dtype=L ref=1180|0 text=istr.L@0(varM(29-92)r,-603453942)
+[W5D] bit at=gc proc=track_collision_wall bit=197 kind=4 dtype=L ref=581|0 text=istr.L@4(varM(29-92)r,cvt.L(add.A(ilod.A@28(varP(29+8)r),8)))
+[W5D] bit at=gc proc=track_collision_wall bit=198 kind=3 dtype=A ref=1571|0 text=varM(29-96)r
+[W5D] bit at=gc proc=track_collision_wall bit=199 kind=3 dtype=A ref=1571|0 text=varM(29-96)r
+[W5D] bit at=gc proc=track_collision_wall bit=200 kind=4 dtype=A ref=1483|0 text=str.A(varM(29-96)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=201 kind=4 dtype=L ref=1142|0 text=istr.L@0(varM(29-96)r,-603453174)
+[W5D] bit at=gc proc=track_collision_wall bit=202 kind=4 dtype=A ref=1556|0 text=add.A(ilod.A@28(varP(29+8)r),24)
+[W5D] bit at=gc proc=track_collision_wall bit=203 kind=4 dtype=L ref=660|0 text=cvt.L(add.A(ilod.A@28(varP(29+8)r),24))
+[W5D] bit at=gc proc=track_collision_wall bit=204 kind=4 dtype=L ref=747|0 text=istr.L@4(varM(29-96)r,cvt.L(add.A(ilod.A@28(varP(29+8)r),24)))
+[W5D] bit at=gc proc=track_collision_wall bit=205 kind=3 dtype=A ref=1507|0 text=varM(29-100)r
+[W5D] bit at=gc proc=track_collision_wall bit=206 kind=3 dtype=A ref=1507|0 text=varM(29-100)r
+[W5D] bit at=gc proc=track_collision_wall bit=207 kind=4 dtype=A ref=1|1 text=str.A(varM(29-100)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=208 kind=4 dtype=L ref=817|0 text=istr.L@0(varM(29-100)r,-603452406)
+[W5D] bit at=gc proc=track_collision_wall bit=209 kind=4 dtype=L ref=82|0 text=istr.L@4(varM(29-100)r,cvt.L(ilod.A@28(varP(29+8)r)))
+[W5D] bit at=gc proc=track_collision_wall bit=210 kind=4 dtype=L ref=1204|1 text=and.L(ilod.L@0(varP(29+8)r),16)
+[W5D] bit at=gc proc=track_collision_wall bit=211 kind=4 dtype=L ref=349|0 text=and.L(ilod.L@0(varP(29+8)r),32)
+[W5D] bit at=gc proc=track_collision_wall bit=212 kind=4 dtype=A ref=1360|1 text=add.A(varM(29-4),16)
+[W5D] bit at=gc proc=track_collision_wall bit=213 kind=4 dtype=A ref=942|0 text=istr.A@0(ldaS(5+0),add.A(varM(29-4),16))
+[W5D] bit at=gc proc=track_collision_wall bit=214 kind=3 dtype=A ref=1443|0 text=varM(29-104)r
+[W5D] bit at=gc proc=track_collision_wall bit=215 kind=3 dtype=A ref=1443|0 text=varM(29-104)r
+[W5D] bit at=gc proc=track_collision_wall bit=216 kind=4 dtype=A ref=138|0 text=str.A(varM(29-104)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=217 kind=4 dtype=L ref=1404|0 text=istr.L@0(varM(29-104)r,-570425344)
+[W5D] bit at=gc proc=track_collision_wall bit=218 kind=4 dtype=A ref=689|0 text=ilod.A@0(ldaS(5+0))
+[W5D] bit at=gc proc=track_collision_wall bit=219 kind=4 dtype=L ref=1129|0 text=cvt.L(ilod.A@0(ldaS(5+0)))
+[W5D] bit at=gc proc=track_collision_wall bit=220 kind=4 dtype=L ref=1315|0 text=istr.L@4(varM(29-104)r,cvt.L(ilod.A@0(ldaS(5+0))))
+[W5D] bit at=gc proc=track_collision_wall bit=221 kind=3 dtype=A ref=1379|1 text=varM(29-108)r
+[W5D] bit at=gc proc=track_collision_wall bit=222 kind=3 dtype=A ref=1379|1 text=varM(29-108)r
+[W5D] bit at=gc proc=track_collision_wall bit=223 kind=4 dtype=A ref=295|0 text=str.A(varM(29-108)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=224 kind=4 dtype=L ref=1129|1 text=istr.L@0(varM(29-108)r,-570359808)
+[W5D] bit at=gc proc=track_collision_wall bit=225 kind=4 dtype=L ref=303|0 text=istr.L@4(varM(29-108)r,0)
+[W5D] bit at=gc proc=track_collision_wall bit=226 kind=4 dtype=J ref=174|0 text=str.J(varM(29-12)r,1)
+[W5D] bit at=gc proc=track_collision_wall bit=227 kind=4 dtype=J ref=254|0 text=str.J(varM(29-20)r,varM(29-16)r)
+[W5D] bit at=gc proc=track_collision_wall bit=228 kind=3 dtype=A ref=1315|1 text=varM(29-112)r
+[W5D] bit at=gc proc=track_collision_wall bit=229 kind=3 dtype=A ref=1315|1 text=varM(29-112)r
+[W5D] bit at=gc proc=track_collision_wall bit=230 kind=4 dtype=A ref=432|0 text=str.A(varM(29-112)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=231 kind=4 dtype=L ref=1187|0 text=istr.L@0(varM(29-112)r,16810000)
+[W5D] bit at=gc proc=track_collision_wall bit=232 kind=4 dtype=L ref=460|0 text=cvt.L(ldaS(43+0))
+[W5D] bit at=gc proc=track_collision_wall bit=233 kind=4 dtype=L ref=659|0 text=istr.L@4(varM(29-112)r,cvt.L(ldaS(43+0)))
+[W5D] bit at=gc proc=track_collision_wall bit=234 kind=3 dtype=A ref=1251|0 text=varM(29-116)r
+[W5D] bit at=gc proc=track_collision_wall bit=235 kind=3 dtype=A ref=1251|0 text=varM(29-116)r
+[W5D] bit at=gc proc=track_collision_wall bit=236 kind=4 dtype=A ref=549|0 text=str.A(varM(29-116)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=237 kind=4 dtype=L ref=258|0 text=istr.L@0(varM(29-116)r,16810000)
+[W5D] bit at=gc proc=track_collision_wall bit=238 kind=4 dtype=L ref=780|0 text=cvt.L(ldaS(44+0))
+[W5D] bit at=gc proc=track_collision_wall bit=239 kind=4 dtype=L ref=310|0 text=istr.L@4(varM(29-116)r,cvt.L(ldaS(44+0)))
+[W5D] bit at=gc proc=track_collision_wall bit=240 kind=3 dtype=A ref=1187|1 text=varM(29-120)r
+[W5D] bit at=gc proc=track_collision_wall bit=241 kind=3 dtype=A ref=1187|1 text=varM(29-120)r
+[W5D] bit at=gc proc=track_collision_wall bit=242 kind=4 dtype=A ref=706|0 text=str.A(varM(29-120)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=243 kind=4 dtype=L ref=853|0 text=istr.L@0(varM(29-120)r,50331648)
+[W5D] bit at=gc proc=track_collision_wall bit=244 kind=4 dtype=L ref=1285|0 text=istr.L@4(varM(29-120)r,14)
+[W5D] bit at=gc proc=track_collision_wall bit=245 kind=4 dtype=L ref=855|8 text=ilod.L@4(varP(29+8)r)
+[W5D] bit at=gc proc=track_collision_wall bit=246 kind=4 dtype=L ref=467|0 text=and.L(ilod.L@4(varP(29+8)r),7)
+[W5D] bit at=gc proc=track_collision_wall bit=247 kind=3 dtype=J ref=976|0 text=varM(29-32)r
+[W5D] bit at=gc proc=track_collision_wall bit=248 kind=3 dtype=J ref=976|0 text=varM(29-32)r
+[W5D] bit at=gc proc=track_collision_wall bit=249 kind=4 dtype=J ref=1546|1 text=cvt.J(and.L(ilod.L@4(varP(29+8)r),7))
+[W5D] bit at=gc proc=track_collision_wall bit=250 kind=4 dtype=J ref=66|0 text=str.J(varM(29-32)r,cvt.J(and.L(ilod.L@4(varP(29+8)r),7)))
+[W5D] bit at=gc proc=track_collision_wall bit=251 kind=3 dtype=A ref=912|1 text=varM(29-36)r
+[W5D] bit at=gc proc=track_collision_wall bit=252 kind=3 dtype=A ref=912|1 text=varM(29-36)r
+[W5D] bit at=gc proc=track_collision_wall bit=253 kind=4 dtype=L ref=540|0 text=and.L(ilod.L@4(varP(29+8)r),8184)
+[W5D] bit at=gc proc=track_collision_wall bit=254 kind=4 dtype=L ref=1235|0 text=shr.L(and.L(ilod.L@4(varP(29+8)r),8184),3)
+[W5D] bit at=gc proc=track_collision_wall bit=255 kind=4 dtype=L ref=966|0 text=mpy.L(shr.L(and.L(ilod.L@4(varP(29+8)r),8184),3),16)
+[W5D] bit at=gc proc=track_collision_wall bit=256 kind=4 dtype=L ref=978|0 text=ixa.L(ldaS(45+0),mpy.L(shr.L(and.L(ilod.L@4(varP(29+8)r),8184),3),16))
+[W5D] bit at=gc proc=track_collision_wall bit=257 kind=4 dtype=A ref=475|0 text=str.A(varM(29-36)r,ixa.L(ldaS(45+0),mpy.L(shr.L(and.L(ilod.L@4(varP(29+8)r),8184),3),16)))
+[W5D] bit at=gc proc=track_collision_wall bit=258 kind=4 dtype=R ref=382|0 text=ilod.R@0(ldaS(46+0))
+[W5D] bit at=gc proc=track_collision_wall bit=259 kind=4 dtype=R ref=2|1 text=les.R(ilod.R@0(ldaS(46+0)),196614)
+[W5D] bit at=gc proc=track_collision_wall bit=260 kind=4 dtype=R ref=996|0 text=cg1.R(ilod.R@0(ldaS(46+0)))
+[W5D] bit at=gc proc=track_collision_wall bit=261 kind=3 dtype=A ref=848|0 text=varM(29-40)r
+[W5D] bit at=gc proc=track_collision_wall bit=262 kind=3 dtype=A ref=848|0 text=varM(29-40)r
+[W5D] bit at=gc proc=track_collision_wall bit=263 kind=4 dtype=J ref=283|0 text=mpy.J(varP(29+12)r,152)
+[W5D] bit at=gc proc=track_collision_wall bit=264 kind=4 dtype=J ref=654|0 text=ixa.J(ldaS(19+0),mpy.J(varP(29+12)r,152))
+[W5D] bit at=gc proc=track_collision_wall bit=265 kind=4 dtype=A ref=1011|0 text=str.A(varM(29-40)r,ixa.J(ldaS(19+0),mpy.J(varP(29+12)r,152)))
+[W5D] bit at=gc proc=track_collision_wall bit=266 kind=4 dtype=J ref=1549|0 text=ilod.J@0(varM(29-36)r)
+[W5D] bit at=gc proc=track_collision_wall bit=267 kind=4 dtype=J ref=1549|1 text=ilod.J@112(varM(29-36)r)
+[W5D] bit at=gc proc=track_collision_wall bit=268 kind=4 dtype=J ref=254|1 text=les.J(ilod.J@0(varM(29-36)r),ilod.J@112(varM(29-36)r))
+[W5D] bit at=gc proc=track_collision_wall bit=269 kind=4 dtype=J ref=94|0 text=cg1.J(ilod.J@0(varM(29-36)r))
+[W5D] bit at=gc proc=track_collision_wall bit=270 kind=4 dtype=J ref=101|0 text=cg1.J(ilod.J@112(varM(29-36)r))
+[W5D] bit at=gc proc=track_collision_wall bit=271 kind=3 dtype=R ref=784|0 text=varM(29-44)r
+[W5D] bit at=gc proc=track_collision_wall bit=272 kind=3 dtype=R ref=784|0 text=varM(29-44)r
+[W5D] bit at=gc proc=track_collision_wall bit=273 kind=4 dtype=R ref=1439|0 text=cvt.R(ilod.J@112(varM(29-36)r))
+[W5D] bit at=gc proc=track_collision_wall bit=274 kind=4 dtype=R ref=734|0 text=str.R(varM(29-44)r,cvt.R(ilod.J@112(varM(29-36)r)))
+[W5D] bit at=gc proc=track_collision_wall bit=275 kind=4 dtype=R ref=520|0 text=cvt.R(ilod.J@0(varM(29-36)r))
+[W5D] bit at=gc proc=track_collision_wall bit=276 kind=4 dtype=R ref=324|0 text=str.R(varM(29-44)r,cvt.R(ilod.J@0(varM(29-36)r)))
+[W5D] bit at=gc proc=track_collision_wall bit=277 kind=4 dtype=J ref=1549|2 text=ilod.J@4(varM(29-36)r)
+[W5D] bit at=gc proc=track_collision_wall bit=278 kind=4 dtype=J ref=1549|3 text=ilod.J@116(varM(29-36)r)
+[W5D] bit at=gc proc=track_collision_wall bit=279 kind=4 dtype=J ref=394|0 text=les.J(ilod.J@4(varM(29-36)r),ilod.J@116(varM(29-36)r))
+[W5D] bit at=gc proc=track_collision_wall bit=280 kind=4 dtype=J ref=120|0 text=cg1.J(ilod.J@4(varM(29-36)r))
+[W5D] bit at=gc proc=track_collision_wall bit=281 kind=4 dtype=J ref=130|0 text=cg1.J(ilod.J@116(varM(29-36)r))
+[W5D] bit at=gc proc=track_collision_wall bit=282 kind=3 dtype=R ref=720|1 text=varM(29-48)r
+[W5D] bit at=gc proc=track_collision_wall bit=283 kind=3 dtype=R ref=720|1 text=varM(29-48)r
+[W5D] bit at=gc proc=track_collision_wall bit=284 kind=4 dtype=R ref=39|0 text=cvt.R(ilod.J@116(varM(29-36)r))
+[W5D] bit at=gc proc=track_collision_wall bit=285 kind=4 dtype=R ref=899|0 text=str.R(varM(29-48)r,cvt.R(ilod.J@116(varM(29-36)r)))
+[W5D] bit at=gc proc=track_collision_wall bit=286 kind=4 dtype=R ref=739|1 text=cvt.R(ilod.J@4(varM(29-36)r))
+[W5D] bit at=gc proc=track_collision_wall bit=287 kind=4 dtype=R ref=982|1 text=str.R(varM(29-48)r,cvt.R(ilod.J@4(varM(29-36)r)))
+[W5D] bit at=gc proc=track_collision_wall bit=288 kind=3 dtype=R ref=346|1 text=varR(0+32)r
+[W5D] bit at=gc proc=track_collision_wall bit=289 kind=3 dtype=R ref=346|1 text=varR(0+32)r
+[W5D] bit at=gc proc=track_collision_wall bit=290 kind=4 dtype=R ref=61|1 text=mpy.R(varM(29-44)r,varM(29-44)r)
+[W5D] bit at=gc proc=track_collision_wall bit=291 kind=4 dtype=R ref=856|0 text=mpy.R(varM(29-48)r,varM(29-48)r)
+[W5D] bit at=gc proc=track_collision_wall bit=292 kind=4 dtype=R ref=982|2 text=add.R(mpy.R(varM(29-44)r,varM(29-44)r),mpy.R(varM(29-48)r,varM(29-48)r))
+[W5D] bit at=gc proc=track_collision_wall bit=293 kind=4 dtype=R ref=230|0 text=sqrt.R(add.R(mpy.R(varM(29-44)r,varM(29-44)r),mpy.R(varM(29-48)r,varM(29-48)r)))
+[W5D] bit at=gc proc=track_collision_wall bit=294 kind=4 dtype=R ref=1057|0 text=str.R(varR(0+32)r,sqrt.R(add.R(mpy.R(varM(29-44)r,varM(29-44)r),mpy.R(varM(29-48)r,varM(29-48)r))))
+[W5D] bit at=gc proc=track_collision_wall bit=295 kind=3 dtype=R ref=656|0 text=varM(29-52)r
+[W5D] bit at=gc proc=track_collision_wall bit=296 kind=3 dtype=R ref=656|0 text=varM(29-52)r
+[W5D] bit at=gc proc=track_collision_wall bit=297 kind=4 dtype=R ref=690|0 text=mpy.R(varR(0+32)r,589830)
+[W5D] bit at=gc proc=track_collision_wall bit=298 kind=4 dtype=R ref=1461|0 text=str.R(varM(29-52)r,mpy.R(varR(0+32)r,589830))
+[W5D] bit at=gc proc=track_collision_wall bit=299 kind=4 dtype=R ref=509|0 text=ilod.R@36(varM(29-40)r)
+[W5D] bit at=gc proc=track_collision_wall bit=300 kind=4 dtype=R ref=994|0 text=sub.R(ilod.R@36(ilod.A@8(varP(29+8)r)),ilod.R@36(varM(29-40)r))
+[W5D] bit at=gc proc=track_collision_wall bit=301 kind=4 dtype=R ref=879|0 text=str.R(varM(29-44)r,sub.R(ilod.R@36(ilod.A@8(varP(29+8)r)),ilod.R@36(varM(29-40)r)))
+[W5D] bit at=gc proc=track_collision_wall bit=302 kind=4 dtype=R ref=509|1 text=ilod.R@44(varM(29-40)r)
+[W5D] bit at=gc proc=track_collision_wall bit=303 kind=4 dtype=R ref=1074|0 text=sub.R(ilod.R@44(ilod.A@8(varP(29+8)r)),ilod.R@44(varM(29-40)r))
+[W5D] bit at=gc proc=track_collision_wall bit=304 kind=4 dtype=R ref=642|0 text=str.R(varM(29-48)r,sub.R(ilod.R@44(ilod.A@8(varP(29+8)r)),ilod.R@44(varM(29-40)r)))
+[W5D] bit at=gc proc=track_collision_wall bit=305 kind=4 dtype=R ref=268|0 text=sub.R(varR(0+32)r,varM(29-52)r)
+[W5D] bit at=gc proc=track_collision_wall bit=306 kind=4 dtype=R ref=356|0 text=les.R(ilod.R@0(ldaS(46+0)),sub.R(varR(0+32)r,varM(29-52)r))
+[W5D] bit at=gc proc=track_collision_wall bit=307 kind=4 dtype=R ref=1010|0 text=cg1.R(ilod.R@0(ldaS(46+0)))
+[W5D] bit at=gc proc=track_collision_wall bit=308 kind=4 dtype=R ref=782|0 text=cg1.R(sub.R(varR(0+32)r,varM(29-52)r))
+[W5D] bit at=gc proc=track_collision_wall bit=309 kind=3 dtype=A ref=1123|0 text=varM(29-124)r
+[W5D] bit at=gc proc=track_collision_wall bit=310 kind=3 dtype=A ref=1123|0 text=varM(29-124)r
+[W5D] bit at=gc proc=track_collision_wall bit=311 kind=4 dtype=A ref=823|0 text=str.A(varM(29-124)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=312 kind=4 dtype=L ref=1160|0 text=istr.L@0(varM(29-124)r,-570425344)
+[W5D] bit at=gc proc=track_collision_wall bit=313 kind=4 dtype=L ref=504|0 text=istr.L@4(varM(29-124)r,cvt.L(ilod.A@0(ldaS(5+0))))
+[W5D] bit at=gc proc=track_collision_wall bit=314 kind=3 dtype=A ref=1059|0 text=varM(29-128)r
+[W5D] bit at=gc proc=track_collision_wall bit=315 kind=3 dtype=A ref=1059|0 text=varM(29-128)r
+[W5D] bit at=gc proc=track_collision_wall bit=316 kind=4 dtype=A ref=960|0 text=str.A(varM(29-128)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=317 kind=4 dtype=L ref=1211|1 text=istr.L@0(varM(29-128)r,-570359808)
+[W5D] bit at=gc proc=track_collision_wall bit=318 kind=4 dtype=L ref=263|1 text=istr.L@4(varM(29-128)r,0)
+[W5D] bit at=gc proc=track_collision_wall bit=319 kind=4 dtype=J ref=223|1 text=istr.J@0(ldaS(4+0),0)
+[W5D] bit at=gc proc=track_collision_wall bit=320 kind=4 dtype=A ref=283|1 text=istr.A@0(ldaS(47+0),0)
+[W5D] bit at=gc proc=track_collision_wall bit=321 kind=3 dtype=A ref=995|0 text=varM(29-132)r
+[W5D] bit at=gc proc=track_collision_wall bit=322 kind=3 dtype=A ref=995|0 text=varM(29-132)r
+[W5D] bit at=gc proc=track_collision_wall bit=323 kind=4 dtype=A ref=1097|1 text=str.A(varM(29-132)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=324 kind=4 dtype=J ref=166|5 text=add.J(varM(29-32)r,1)
+[W5D] bit at=gc proc=track_collision_wall bit=325 kind=4 dtype=L ref=1201|1 text=and.L(add.J(varM(29-32)r,1),255)
+[W5D] bit at=gc proc=track_collision_wall bit=326 kind=4 dtype=L ref=1194|1 text=shl.L(and.L(add.J(varM(29-32)r,1),255),12)
+[W5D] bit at=gc proc=track_collision_wall bit=327 kind=4 dtype=L ref=1105|0 text=ior.L(shl.L(and.L(add.J(varM(29-32)r,1),255),12),16777216)
+[W5D] bit at=gc proc=track_collision_wall bit=328 kind=4 dtype=L ref=810|0 text=and.L(add.J(varM(29-32)r,1),127)
+[W5D] bit at=gc proc=track_collision_wall bit=329 kind=4 dtype=L ref=1150|0 text=shl.L(and.L(add.J(varM(29-32)r,1),127),1)
+[W5D] bit at=gc proc=track_collision_wall bit=330 kind=4 dtype=L ref=1571|1 text=ior.L(ior.L(shl.L(and.L(add.J(varM(29-32)r,1),255),12),16777216),shl.L(and.L(add.J(varM(29-32)r,1),127),1))
+[W5D] bit at=gc proc=track_collision_wall bit=331 kind=4 dtype=L ref=248|0 text=istr.L@0(varM(29-132)r,ior.L(ior.L(shl.L(and.L(add.J(varM(29-32)r,1),255),12),16777216),shl.L(and.L(add.J(varM(29-32)r,1),127),1)))
+[W5D] bit at=gc proc=track_collision_wall bit=332 kind=4 dtype=L ref=148|0 text=istr.L@4(varM(29-132)r,varM(29-36)r)
+[W5D] bit at=gc proc=track_collision_wall bit=333 kind=3 dtype=A ref=931|0 text=varM(29-136)r
+[W5D] bit at=gc proc=track_collision_wall bit=334 kind=3 dtype=A ref=931|0 text=varM(29-136)r
+[W5D] bit at=gc proc=track_collision_wall bit=335 kind=4 dtype=A ref=1234|0 text=str.A(varM(29-136)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=336 kind=4 dtype=L ref=355|0 text=istr.L@0(varM(29-136)r,50331648)
+[W5D] bit at=gc proc=track_collision_wall bit=337 kind=4 dtype=J ref=936|0 text=mpy.J(varM(29-32)r,2)
+[W5D] bit at=gc proc=track_collision_wall bit=338 kind=4 dtype=L ref=1212|0 text=cvt.L(mpy.J(varM(29-32)r,2))
+[W5D] bit at=gc proc=track_collision_wall bit=339 kind=4 dtype=L ref=1541|0 text=and.L(cvt.L(mpy.J(varM(29-32)r,2)),65535)
+[W5D] bit at=gc proc=track_collision_wall bit=340 kind=4 dtype=L ref=1145|1 text=shl.L(and.L(cvt.L(mpy.J(varM(29-32)r,2)),65535),0)
+[W5D] bit at=gc proc=track_collision_wall bit=341 kind=4 dtype=L ref=697|0 text=istr.L@4(varM(29-136)r,shl.L(and.L(cvt.L(mpy.J(varM(29-32)r,2)),65535),0))
+[W5D] bit at=gc proc=track_collision_wall bit=342 kind=4 dtype=A ref=855|9 text=ilod.A@56(varP(29+8)r)
+[W5D] bit at=gc proc=track_collision_wall bit=343 kind=4 dtype=A ref=55|0 text=neq.A(0,ilod.A@56(varP(29+8)r))
+[W5D] bit at=gc proc=track_collision_wall bit=344 kind=4 dtype=A ref=728|0 text=cg1.A(ilod.A@56(varP(29+8)r))
+[W5D] bit at=gc proc=track_collision_wall bit=345 kind=3 dtype=A ref=675|0 text=varM(29-152)r
+[W5D] bit at=gc proc=track_collision_wall bit=346 kind=3 dtype=A ref=675|0 text=varM(29-152)r
+[W5D] bit at=gc proc=track_collision_wall bit=347 kind=4 dtype=A ref=1480|0 text=str.A(varM(29-152)r,ilod.A@56(varP(29+8)r))
+[W5D] bit at=gc proc=track_collision_wall bit=348 kind=3 dtype=A ref=1341|0 text=varP(29+28)r
+[W5D] bit at=gc proc=track_collision_wall bit=349 kind=3 dtype=A ref=1341|0 text=varP(29+28)r
+[W5D] bit at=gc proc=track_collision_wall bit=350 kind=4 dtype=A ref=87|0 text=str.A(varM(29-152)r,varP(29+28)r)
+[W5D] bit at=gc proc=track_collision_wall bit=351 kind=3 dtype=A ref=957|0 text=varP(29+4)r
+[W5D] bit at=gc proc=track_collision_wall bit=352 kind=3 dtype=A ref=957|0 text=varP(29+4)r
+[W5D] bit at=gc proc=track_collision_wall bit=353 kind=3 dtype=J ref=1277|0 text=varP(29+24)r
+[W5D] bit at=gc proc=track_collision_wall bit=354 kind=3 dtype=J ref=1277|0 text=varP(29+24)r
+[W5D] bit at=gc proc=track_collision_wall bit=355 kind=4 dtype=J ref=774|0 text=str.J(varM(29-148)r,varR(0+2)r)
+[W5D] bit at=gc proc=track_collision_wall bit=356 kind=4 dtype=J ref=660|1 text=add.J(varM(29-16)r,varR(0+2)r)
+[W5D] bit at=gc proc=track_collision_wall bit=357 kind=4 dtype=J ref=768|0 text=str.J(varM(29-16)r,add.J(varM(29-16)r,varR(0+2)r))
+[W5D] bit at=gc proc=track_collision_wall bit=358 kind=4 dtype=J ref=638|0 text=cg1.J(ilod.J@22(varP(29+8)r))
+[W5D] bit at=gc proc=track_collision_wall bit=359 kind=4 dtype=J ref=250|1 text=equ.J(varM(29-8)r,1)
+[W5D] bit at=gc proc=track_collision_wall bit=360 kind=4 dtype=J ref=1371|0 text=cg1.J(varM(29-8)r)
+[W5D] bit at=gc proc=track_collision_wall bit=361 kind=3 dtype=J ref=611|0 text=varM(29-156)r
+[W5D] bit at=gc proc=track_collision_wall bit=362 kind=3 dtype=J ref=611|0 text=varM(29-156)r
+[W5D] bit at=gc proc=track_collision_wall bit=363 kind=4 dtype=J ref=277|0 text=add.J(varP(29+16)r,1)
+[W5D] bit at=gc proc=track_collision_wall bit=364 kind=4 dtype=J ref=781|0 text=str.J(varM(29-156)r,add.J(varP(29+16)r,1))
+[W5D] bit at=gc proc=track_collision_wall bit=365 kind=4 dtype=J ref=572|0 text=str.J(varM(29-156)r,varP(29+16)r)
+[W5D] bit at=gc proc=track_collision_wall bit=366 kind=4 dtype=A ref=849|0 text=cg1.A(ilod.A@56(varP(29+8)r))
+[W5D] bit at=gc proc=track_collision_wall bit=367 kind=4 dtype=J ref=1103|0 text=mpy.J(ilod.J@22(varP(29+8)r),68)
+[W5D] bit at=gc proc=track_collision_wall bit=368 kind=4 dtype=J ref=1356|0 text=ixa.J(ldaS(32+0),mpy.J(ilod.J@22(varP(29+8)r),68))
+[W5D] bit at=gc proc=track_collision_wall bit=369 kind=4 dtype=J ref=1329|0 text=cg1.J(ilod.J@24(varP(29+8)r))
+[W5D] bit at=gc proc=track_collision_wall bit=370 kind=4 dtype=L ref=782|1 text=and.L(ilod.L@0(varP(29+8)r),8)
+[W5D] bit at=gc proc=track_collision_wall bit=371 kind=4 dtype=L ref=151|0 text=ior.L(and.L(ilod.L@0(varP(29+8)r),8),varP(29+24)r)
+[W5D] bit at=gc proc=track_collision_wall bit=372 kind=4 dtype=J ref=83|0 text=cvt.J(ior.L(and.L(ilod.L@0(varP(29+8)r),8),varP(29+24)r))
+[W5D] bit at=gc proc=track_collision_wall bit=373 kind=4 dtype=J ref=1164|1 text=neq.J(varM(29-12)r,0)
+[W5D] bit at=gc proc=track_collision_wall bit=374 kind=4 dtype=J ref=1259|0 text=cg1.J(varM(29-12)r)
+[W5D] bit at=gc proc=track_collision_wall bit=375 kind=4 dtype=J ref=1221|3 text=equ.J(varM(29-16)r,0)
+[W5D] bit at=gc proc=track_collision_wall bit=376 kind=4 dtype=J ref=1133|0 text=cg1.J(varM(29-16)r)
+[W5D] bit at=gc proc=track_collision_wall bit=377 kind=4 dtype=A ref=1591|0 text=add.A(ilod.A@0(ldaS(5+0)),-16)
+[W5D] bit at=gc proc=track_collision_wall bit=378 kind=4 dtype=A ref=1339|1 text=str.A(varM(29-4),add.A(ilod.A@0(ldaS(5+0)),-16))
+[W5D] bit at=gc proc=track_collision_wall bit=379 kind=3 dtype=A ref=867|0 text=varM(29-140)r
+[W5D] bit at=gc proc=track_collision_wall bit=380 kind=3 dtype=A ref=867|0 text=varM(29-140)r
+[W5D] bit at=gc proc=track_collision_wall bit=381 kind=4 dtype=A ref=1371|1 text=str.A(varM(29-140)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=382 kind=4 dtype=L ref=895|1 text=istr.L@0(varM(29-140)r,-553648128)
+[W5D] bit at=gc proc=track_collision_wall bit=383 kind=4 dtype=L ref=263|2 text=istr.L@4(varM(29-140)r,0)
+[W5D] bit at=gc proc=track_collision_wall bit=384 kind=4 dtype=L ref=443|0 text=istr.L@-4(ilod.A@0(ldaS(5+0)),varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=385 kind=4 dtype=A ref=283|2 text=istr.A@0(ldaS(5+0),0)
+[W5D] bit at=gc proc=track_collision_wall bit=386 kind=4 dtype=J ref=208|1 text=add.J(varM(29-16)r,varM(29-20)r)
+[W5D] bit at=gc proc=track_collision_wall bit=387 kind=4 dtype=J ref=1488|0 text=str.J(varM(29-16)r,add.J(varM(29-16)r,varM(29-20)r))
+[W5D] bit at=gc proc=track_collision_wall bit=388 kind=4 dtype=J ref=1397|0 text=cg1.J(varM(29-8)r)
+[W5D] bit at=gc proc=track_collision_wall bit=389 kind=4 dtype=J ref=1143|0 text=cg1.J(varM(29-16)r)
+[W5D] bit at=gc proc=track_collision_wall bit=390 kind=4 dtype=A ref=1149|1 text=add.A(varM(29-4),-8)
+[W5D] bit at=gc proc=track_collision_wall bit=391 kind=4 dtype=A ref=332|0 text=str.A(varM(29-4),add.A(varM(29-4),-8))
+[W5D] bit at=gc proc=track_collision_wall bit=392 kind=3 dtype=A ref=803|0 text=varM(29-144)r
+[W5D] bit at=gc proc=track_collision_wall bit=393 kind=3 dtype=A ref=803|0 text=varM(29-144)r
+[W5D] bit at=gc proc=track_collision_wall bit=394 kind=4 dtype=A ref=1508|0 text=str.A(varM(29-144)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=395 kind=4 dtype=L ref=1515|0 text=istr.L@0(varM(29-144)r,-667418622)
+[W5D] bit at=gc proc=track_collision_wall bit=396 kind=4 dtype=L ref=940|1 text=istr.L@4(varM(29-144)r,64)
+[W5D] bit at=gc proc=track_collision_wall bit=397 kind=4 dtype=J ref=1443|1 text=les.J(ilod.J@24(varP(29+8)r),0)
+[W5D] bit at=gc proc=track_collision_wall bit=398 kind=4 dtype=J ref=1365|0 text=cg1.J(ilod.J@24(varP(29+8)r))
+[W5D] bit at=gc proc=track_collision_wall bit=399 kind=4 dtype=J ref=1073|0 text=mpy.J(ilod.J@24(varP(29+8)r),68)
+[W5D] bit at=gc proc=track_collision_wall bit=400 kind=4 dtype=J ref=1582|0 text=ixa.J(ldaS(32+0),mpy.J(ilod.J@24(varP(29+8)r),68))
+[W5D] bit at=gc proc=track_collision_wall bit=401 kind=4 dtype=A ref=1242|1 text=str.A(varP(29+8)r,ixa.J(ldaS(32+0),mpy.J(ilod.J@24(varP(29+8)r),68)))
+[W5D] bit at=gc proc=track_collision_wall bit=402 kind=4 dtype=J ref=50|0 text=cg1.J(ilod.J@0(ldaS(30+0)))
+[W5D] bit at=gc proc=track_collision_wall bit=403 kind=4 dtype=J ref=248|1 text=cg1.J(ilod.J@0(ldaS(33+0)))
+[W5D] bit at=gc proc=track_collision_wall bit=404 kind=4 dtype=A ref=917|0 text=istr.A@0(varP(29+0)r,varM(29-4))
+[W5D] bit at=gc proc=track_collision_wall bit=405 kind=4 dtype=J ref=706|1 text=str.J(varR(0+2)r,varM(29-16)r)
+[W5D] bit at=gc proc=track_collision_wall bit=406 kind=4 dtype=J ref=4|2 text=neq.J(varM(29-28)r,3)
+[W5D] bit at=gc proc=track_collision_wall bit=407 kind=4 dtype=R ref=121|0 text=ilod.R@36(ixa.J(ldaS(19+0),mpy.J(varP(29+12)r,152)))
+[W5D] bit at=gc proc=track_collision_wall bit=408 kind=4 dtype=R ref=154|0 text=sub.R(ilod.R@36(ilod.A@8(varP(29+8)r)),ilod.R@36(ixa.J(ldaS(19+0),mpy.J(varP(29+12)r,152))))
+[W5D] bit at=gc proc=track_collision_wall bit=409 kind=4 dtype=? ref=1371|2 text=str.?(varM(29-44)r,sub.R(ilod.R@36(ilod.A@8(varP(29+8)r)),ilod.R@36(ixa.J(ldaS(19+0),mpy.J(varP(29+12)r,152)))))
+[W5D] bit at=gc proc=track_collision_wall bit=410 kind=4 dtype=R ref=121|1 text=ilod.R@44(ixa.J(ldaS(19+0),mpy.J(varP(29+12)r,152)))
+[W5D] bit at=gc proc=track_collision_wall bit=411 kind=4 dtype=R ref=234|0 text=sub.R(ilod.R@44(ilod.A@8(varP(29+8)r)),ilod.R@44(ixa.J(ldaS(19+0),mpy.J(varP(29+12)r,152))))
+[W5D] bit at=gc proc=track_collision_wall bit=412 kind=4 dtype=? ref=1226|1 text=str.?(varM(29-48)r,sub.R(ilod.R@44(ilod.A@8(varP(29+8)r)),ilod.R@44(ixa.J(ldaS(19+0),mpy.J(varP(29+12)r,152)))))
+[W5D] bit at=gc proc=track_collision_wall bit=413 kind=2 dtype=L ref=46|0 text=-2147483648
+[W5D] bit at=gc proc=track_collision_wall bit=414 kind=1 dtype=A ref=1370|0 text=ldaS(32+0)
+[W5D] bit at=gc proc=track_collision_wall bit=415 kind=2 dtype=J ref=68|1 text=68
+[W5D] bit at=gc proc=track_collision_wall bit=416 kind=1 dtype=A ref=1338|0 text=ldaS(30+0)
+[W5D] bit at=gc proc=track_collision_wall bit=417 kind=2 dtype=L ref=1485|0 text=262144
+[W5D] bit at=gc proc=track_collision_wall bit=418 kind=1 dtype=A ref=1386|0 text=ldaS(33+0)
+[W5D] bit at=gc proc=track_collision_wall bit=419 kind=2 dtype=L ref=569|0 text=8388608
+[W5D] bit at=gc proc=track_collision_wall bit=420 kind=1 dtype=A ref=1354|0 text=ldaS(31+0)
+[W5D] bit at=gc proc=track_collision_wall bit=421 kind=2 dtype=L ref=68|0 text=68
+[W5D] bit at=gc proc=track_collision_wall bit=422 kind=1 dtype=A ref=1402|0 text=ldaS(34+0)
+[W5D] bit at=gc proc=track_collision_wall bit=423 kind=2 dtype=L ref=395|0 text=16781330
+[W5D] bit at=gc proc=track_collision_wall bit=424 kind=1 dtype=A ref=1194|0 text=ldaS(21+0)
+[W5D] bit at=gc proc=track_collision_wall bit=425 kind=2 dtype=J ref=1|0 text=1
+[W5D] bit at=gc proc=track_collision_wall bit=426 kind=2 dtype=J ref=2|0 text=2
+[W5D] bit at=gc proc=track_collision_wall bit=427 kind=1 dtype=A ref=938|0 text=ldaS(5+0)
+[W5D] bit at=gc proc=track_collision_wall bit=428 kind=2 dtype=L ref=164|1 text=-570425344
+[W5D] bit at=gc proc=track_collision_wall bit=429 kind=2 dtype=L ref=940|0 text=-570359808
+[W5D] bit at=gc proc=track_collision_wall bit=430 kind=2 dtype=L ref=1542|0 text=16810000
+[W5D] bit at=gc proc=track_collision_wall bit=431 kind=1 dtype=A ref=1546|0 text=ldaS(43+0)
+[W5D] bit at=gc proc=track_collision_wall bit=432 kind=2 dtype=L ref=176|0 text=50331648
+[W5D] bit at=gc proc=track_collision_wall bit=433 kind=2 dtype=L ref=14|0 text=14
+[W5D] bit at=gc proc=track_collision_wall bit=434 kind=1 dtype=A ref=1424|1 text=ldaM(29-4)
+[W5D] bit at=gc proc=track_collision_wall bit=435 kind=2 dtype=L ref=1176|1 text=-667418622
+[W5D] bit at=gc proc=track_collision_wall bit=436 kind=2 dtype=L ref=64|1 text=64
+[W5D] bit at=gc proc=track_collision_wall bit=437 kind=2 dtype=L ref=1302|0 text=-553648128
+[W5D] bit at=gc proc=track_collision_wall bit=438 kind=1 dtype=A ref=1562|0 text=ldaS(44+0)
+[W5D] bit at=gc proc=track_collision_wall bit=439 kind=1 dtype=A ref=1578|0 text=ldaS(45+0)
+[W5D] bit at=gc proc=track_collision_wall bit=440 kind=2 dtype=L ref=1094|0 text=4194304
+[W5D] bit at=gc proc=track_collision_wall bit=441 kind=1 dtype=A ref=1594|0 text=ldaS(46+0)
+[W5D] bit at=gc proc=track_collision_wall bit=442 kind=2 dtype=R ref=1152|0 text=196614
+[W5D] bit at=gc proc=track_collision_wall bit=443 kind=2 dtype=R ref=218|0 text=589830
+[W5D] bit at=gc proc=track_collision_wall bit=444 kind=1 dtype=A ref=922|0 text=ldaS(4+0)
+[W5D] bit at=gc proc=track_collision_wall bit=445 kind=1 dtype=A ref=1610|0 text=ldaS(47+0)
+[W5D] bit at=gc proc=track_collision_wall bit=446 kind=2 dtype=L ref=1138|1 text=16777216
+[W5D] bit at=gc proc=track_collision_wall bit=447 kind=2 dtype=L ref=1540|0 text=-620625920
+[W5D] bit at=gc proc=track_collision_wall bit=448 kind=2 dtype=L ref=48|0 text=48
+[W5D] bit at=gc proc=track_collision_wall bit=449 kind=2 dtype=L ref=785|0 text=-603453942
+[W5D] bit at=gc proc=track_collision_wall bit=450 kind=2 dtype=L ref=1553|0 text=-603453174
+[W5D] bit at=gc proc=track_collision_wall bit=451 kind=2 dtype=L ref=702|0 text=-603452406
+[W5D] bit at=gc proc=track_collision_wall bit=452 kind=2 dtype=L ref=24|0 text=24
+[W5D] bit at=gc proc=track_collision_wall bit=453 kind=1 dtype=A ref=1226|0 text=ldaS(23+0)
+[W5D] bit at=gc proc=track_collision_wall bit=454 kind=2 dtype=L ref=776|0 text=65536
+[W5D] bit at=gc proc=track_collision_wall bit=455 kind=2 dtype=R ref=0|1 text=3
+[W5D] bit at=gc proc=track_collision_wall bit=456 kind=1 dtype=A ref=0|0 text=ldaS(36+72)
+[W5D] bit at=gc proc=track_collision_wall bit=457 kind=1 dtype=A ref=0|0 text=ldaS(36+0)
+[W5D] bit at=gc proc=track_collision_wall bit=458 kind=1 dtype=A ref=1450|0 text=ldaS(37+0)
+[W5D] bit at=gc proc=track_collision_wall bit=459 kind=1 dtype=A ref=1482|0 text=ldaS(39+0)
+[W5D] bit at=gc proc=track_collision_wall bit=460 kind=2 dtype=L ref=212|0 text=-633864192
+[W5D] bit at=gc proc=track_collision_wall bit=461 kind=1 dtype=A ref=1434|0 text=ldaS(36+0)
+[W5D] bit at=gc proc=track_collision_wall bit=462 kind=1 dtype=A ref=1498|0 text=ldaS(40+0)

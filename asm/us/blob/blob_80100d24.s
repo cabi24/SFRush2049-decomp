@@ -10726,6 +10726,7 @@ struct_callback_init:
 .section .text.state_update_global, "ax", @progbits
 .globl state_update_global
 state_update_global:
+    /* compiled from src/blob/state_update_global.c */
     .word 0x27BDFFE8
     .word 0x3C028015
     .word 0x8C429D98
