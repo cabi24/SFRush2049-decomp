@@ -35,3 +35,4 @@ func_8001E9B0	cloud/work/boot_tail_promotion/wave4_sources/func_8001E9B0.c	-g0 -
 func_8001EE34	cloud/work/boot_tail_promotion/wave4_sources/func_8001EE34.c	-g0 -O2 -mips2 -G 0 -non_shared	locked cloud/work/boot_tail_promotion/wave4_sources/func_8001EE34.c:func_8001EE34 (score0)
 func_800251A8	cloud/work/boot_tail_promotion/wave4_sources/func_800251A8.c	-g0 -O2 -mips2 -G 0 -non_shared	locked cloud/work/boot_tail_promotion/wave4_sources/func_800251A8.c:func_800251A8 (score0)
 func_80025C68	cloud/work/boot_tail_promotion/wave4_sources/func_80025C68.c	-g0 -O2 -mips2 -G 0 -non_shared	locked cloud/work/boot_tail_promotion/wave4_sources/func_80025C68.c:func_80025C68 (score0)
+func_8001C1D8	cloud/work/boot_tail_promotion/wave4_sources/func_8001C1D8.c	-g0 -O2 -mips2 -G 0 -non_shared	locked cloud/work/boot_tail_promotion/wave4_sources/func_8001C1D8.c:func_8001C1D8 (score0)

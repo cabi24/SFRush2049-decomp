@@ -50,8 +50,10 @@ void func_80019BE4(VoiceState *state)
  */
 #pragma pack(1)
 /* Array stride 0x1A0; expose the selector at +0x55 and value at +0xC2
- * without changing the field names used by the accepted body below. */
-typedef struct VoiceState_80019C8C { u8 unknown00[16];u32 child,parent;u8 unknown18[12]; u32 flags;u8 unknown28[34];u8 channel,set;u8 unknown4C[2]; u16 base_key,key;u8 unknown52[3];u8 channel55;u8 unknown56[10];u32 identifier; u8 unknown64[40];u32 glide;u8 unknown90[4];u32 pitch; u8 unknown98[40];s8 cents;u8 original_key;u16 valueC2;u8 unknownC4[220]; } VoiceState_80019C8C;
+ * without changing the field names used by the accepted body below.
+ * Wave 4 names the fields func_8001C1D8 initializes, carved from the
+ * unknown ranges; every offset and the 0x1A0 size are unchanged. */
+typedef struct VoiceState_80019C8C { u32 command00;u8 unknown04[12];u32 child,parent;u8 unknown18[12]; u32 flags;u32 age28;u8 unknown2C[2];u8 channel2E,unknown2F;u32 volume30;u8 unknown34[4];u32 panning38;u8 unknown3C[4];u32 words40[2];u8 status48,status49;u8 channel,set;u8 unknown4C[2]; u16 base_key,key;u8 unknown52[3];u8 channel55;u8 unknown56[10];u32 identifier; u8 unknown64[4];u16 loop68;u8 unknown6A[34];u32 glide;u8 unknown90[4];u32 pitch; u8 state98,depth99,flag9A;u8 unknown9B[34];u8 activeBD,groupBE,unknownBF;s8 cents;u8 original_key;u16 valueC2;u8 unknownC4[168];u32 word16C;u16 half170;u8 unknown172[6];u32 word178;u16 half17C;u8 unknown17E[34]; } VoiceState_80019C8C;
 #pragma pack(0)
 extern VoiceState_80019C8C D_8004BEB8[];
 extern u8 D_8004FA18;
