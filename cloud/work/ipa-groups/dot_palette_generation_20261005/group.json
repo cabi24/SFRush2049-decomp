@@ -1,0 +1,45 @@
+{
+  "members": [
+    "func_800B0EA0"
+  ],
+  "context": [
+    "sound_bank_unload",
+    "audio_reverb_update",
+    "audio_effect_process",
+    "synced_model_render",
+    "MP_TargetSpeed",
+    "assign_default_paths",
+    "stat_race_end",
+    "NextMaxPath",
+    "menu_item_select",
+    "func_80095F8C",
+    "func_80095EF4",
+    "audio_buffer_sync",
+    "object_counter_decrement",
+    "object_counter_increment"
+  ],
+  "files": [
+    "palette.c",
+    "interpolate.c",
+    "heap_release.c",
+    "alloc_at.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "audio_effect_process",
+    "synced_model_render",
+    "MP_TargetSpeed",
+    "assign_default_paths",
+    "stat_race_end",
+    "audio_buffer_sync",
+    "object_counter_decrement",
+    "object_counter_increment",
+    "NextMaxPath",
+    "menu_item_select",
+    "sound_bank_unload"
+  ],
+  "claims": [
+    "func_800B0EA0"
+  ],
+  "note": "Complete genuine palette caller plus unchanged accepted heap-release context. Only RGB5551 interpolation is claimed; the 1248-byte palette caller remains nonmatching research."
+}

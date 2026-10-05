@@ -1,0 +1,42 @@
+{
+  "base_commit": "cf10b3392d7f00ae42d75c008b79fdc2541aab6b",
+  "target": {
+    "function": "steering_sensitivity",
+    "address": "0x800AD128",
+    "bytes": 928,
+    "source_reason": "The w2g traction group explicitly retained the old untouched A12 steering context. The genuine two matrix-rotation callees now have separate strict proofs; the accepted traction group establishes the helper formal order and PathRec layout.",
+    "callers": [
+      {
+        "function": "input_deadzone_apply",
+        "call_offset": "0x4f0"
+      },
+      {
+        "function": "camera_trigger_check",
+        "call_offset": "0x2d4"
+      },
+      {
+        "function": "camera_victory",
+        "call_offset": "0x420"
+      },
+      {
+        "function": "entity_update",
+        "call_offset": "0x36c"
+      }
+    ]
+  },
+  "other_credible_target": {
+    "function": "sound_bank_unload",
+    "address": "0x800B10D4",
+    "bytes": 1248,
+    "helper": "func_800B0EA0",
+    "helper_bytes": 192,
+    "evidence": "Three genuine RGB5551 helper calls, two actual 31-entry ramp loops and a 30-entry ramp; complete native caller was absent from archived sources.",
+    "ownership": "Reported to coordinator; reserved by separate palette worker. No implementation here."
+  },
+  "rejected_old_candidate": {
+    "function": "camera_track_spline",
+    "bytes": 860,
+    "reason": "Frontier single hint is incomplete: native input pointer is a3 and old camera_aspect_ratio context already documents wrong inferred IPA parameter assignment. Needs genuine camera_update caller repair, not a new ordinary-source retry."
+  },
+  "scope": "Research packet only; no locked context, symbol, target, scorer, gate, source-image or ROM changes."
+}

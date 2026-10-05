@@ -1,0 +1,45 @@
+{
+  "reviewed_commit": "b0c7fecc4e1fabd1cb8a7fc06cbcd2496c792c59",
+  "source_sha256": "79421c1ec41730c444ccf522d9e2444be829450c6a24220d000ad2b0c1880432",
+  "packet_replay_equal": true,
+  "accepted_source_bodies_identical": [
+    "vector_diff_process",
+    "traction_control",
+    "func_800A61B0",
+    "math_utility"
+  ],
+  "actual_four_callers_verified": true,
+  "full_extent_audit": {
+    "steering_sensitivity": {
+      "extent_bytes": 928,
+      "target_bytes": 928,
+      "full_extent_exact": false,
+      "full_extent_uncertainties": 0
+    },
+    "vector_diff_process": {
+      "extent_bytes": 80,
+      "target_bytes": 80,
+      "full_extent_exact": true,
+      "full_extent_uncertainties": 0
+    },
+    "traction_control": {
+      "extent_bytes": 992,
+      "target_bytes": 992,
+      "full_extent_exact": true,
+      "full_extent_uncertainties": 0
+    },
+    "func_800A61B0": {
+      "extent_bytes": 148,
+      "target_bytes": 148,
+      "full_extent_exact": true,
+      "full_extent_uncertainties": 0
+    },
+    "math_utility": {
+      "extent_bytes": 76,
+      "target_bytes": 76,
+      "full_extent_exact": true,
+      "full_extent_uncertainties": 0
+    }
+  },
+  "review": "PASS as bounded NONMATCH research; no coverage or ROM claim"
+}
