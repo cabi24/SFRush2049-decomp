@@ -51,6 +51,12 @@
    "slot_bytes": 44
   },
   {
+   "function": "func_80010A40",
+   "segment": "0x11640",
+   "slot_bytes": 552,
+   "wave": 4
+  },
+  {
    "function": "func_80010C68",
    "segment": "0x11640",
    "slot_bytes": 212
@@ -147,6 +153,12 @@
    "function": "func_80012660",
    "segment": "0x11640",
    "slot_bytes": 208
+  },
+  {
+   "function": "func_80013964",
+   "segment": "0x11640",
+   "slot_bytes": 112,
+   "wave": 4
   },
   {
    "function": "func_80013C84",
@@ -403,6 +415,18 @@
    "slot_bytes": 40
   },
   {
+   "function": "func_80017108",
+   "segment": "0x16320",
+   "slot_bytes": 184,
+   "wave": 4
+  },
+  {
+   "function": "func_800171C0",
+   "segment": "0x17dc0",
+   "slot_bytes": 220,
+   "wave": 4
+  },
+  {
    "function": "func_8001729C",
    "segment": "0x17dc0",
    "slot_bytes": 176
@@ -444,6 +468,12 @@
    "slot_bytes": 12
   },
   {
+   "function": "func_800175B4",
+   "segment": "0x17dc0",
+   "slot_bytes": 144,
+   "wave": 4
+  },
+  {
    "function": "func_80017644",
    "segment": "0x17dc0",
    "slot_bytes": 220
@@ -459,6 +489,12 @@
    "segment": "0x17dc0",
    "slot_bytes": 80,
    "wave": 3
+  },
+  {
+   "function": "func_80018B8C",
+   "segment": "0x17dc0",
+   "slot_bytes": 96,
+   "wave": 4
   },
   {
    "function": "func_80018C2C",
@@ -483,9 +519,33 @@
    "slot_bytes": 64
   },
   {
+   "function": "func_80018E6C",
+   "segment": "0x17dc0",
+   "slot_bytes": 72,
+   "wave": 4
+  },
+  {
+   "function": "func_80018EB4",
+   "segment": "0x17dc0",
+   "slot_bytes": 108,
+   "wave": 4
+  },
+  {
+   "function": "func_80018F20",
+   "segment": "0x17dc0",
+   "slot_bytes": 132,
+   "wave": 4
+  },
+  {
    "function": "func_80018FA4",
    "segment": "0x17dc0",
    "slot_bytes": 72
+  },
+  {
+   "function": "func_80018FEC",
+   "segment": "0x17dc0",
+   "slot_bytes": 128,
+   "wave": 4
   },
   {
    "function": "func_8001906C",
@@ -514,6 +574,12 @@
    "slot_bytes": 88
   },
   {
+   "function": "func_800193C8",
+   "segment": "0x17dc0",
+   "slot_bytes": 88,
+   "wave": 4
+  },
+  {
    "function": "func_80019850",
    "segment": "0x17dc0",
    "slot_bytes": 76
@@ -523,6 +589,12 @@
    "segment": "0x17dc0",
    "slot_bytes": 300,
    "wave": 3
+  },
+  {
+   "function": "func_800199F4",
+   "segment": "0x17dc0",
+   "slot_bytes": 108,
+   "wave": 4
   },
   {
    "function": "func_80019AA8",
@@ -578,6 +650,12 @@
    "segment": "0x1a660",
    "slot_bytes": 144,
    "wave": 3
+  },
+  {
+   "function": "func_8001C1D8",
+   "segment": "0x1a660",
+   "slot_bytes": 440,
+   "wave": 4
   },
   {
    "function": "func_8001C3CC",
@@ -695,6 +773,12 @@
    "slot_bytes": 16
   },
   {
+   "function": "func_8001E9B0",
+   "segment": "0x1f5b0",
+   "slot_bytes": 240,
+   "wave": 4
+  },
+  {
    "function": "func_8001EAA0",
    "segment": "0x1f5b0",
    "slot_bytes": 76
@@ -720,6 +804,12 @@
    "function": "func_8001EDF4",
    "segment": "0x1f5b0",
    "slot_bytes": 64
+  },
+  {
+   "function": "func_8001EE34",
+   "segment": "0x1f5b0",
+   "slot_bytes": 104,
+   "wave": 4
   },
   {
    "function": "func_8001EE9C",
@@ -907,6 +997,12 @@
    "function": "func_80021700",
    "segment": "0x22300",
    "slot_bytes": 100
+  },
+  {
+   "function": "func_800218CC",
+   "segment": "0x22300",
+   "slot_bytes": 112,
+   "wave": 4
   },
   {
    "function": "func_80021B9C",
@@ -1104,6 +1200,12 @@
    "wave": 3
   },
   {
+   "function": "func_800251A8",
+   "segment": "0x25bb0",
+   "slot_bytes": 188,
+   "wave": 4
+  },
+  {
    "function": "func_80025264",
    "segment": "0x25bb0",
    "slot_bytes": 72
@@ -1138,6 +1240,24 @@
    "wave": 3
   },
   {
+   "function": "func_80025C68",
+   "segment": "0x25bb0",
+   "slot_bytes": 284,
+   "wave": 4
+  },
+  {
+   "function": "func_80025D84",
+   "segment": "0x25bb0",
+   "slot_bytes": 60,
+   "wave": 4
+  },
+  {
+   "function": "func_80025DC0",
+   "segment": "0x25bb0",
+   "slot_bytes": 240,
+   "wave": 4
+  },
+  {
    "function": "func_80025EB0",
    "segment": "0x26ab0",
    "slot_bytes": 196
@@ -1158,121 +1278,11 @@
    "slot_bytes": 24
   }
  ],
- "refused": {
-  "func_80010A40": {
-   "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
-   "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
-   "slot_bytes": 552
-  },
-  "func_80013964": {
-   "group": "dependent accepted-body relock has no true-0 proof: relocation symbol split",
-   "detail": "Requires the audio_record_contracts two-cell table declaration (unsigned short *D_800382D8[2]), which changes accepted func_8001144C to free D_800382D8[1]. That adapted body scores true 10 through the pool: the target relocates against D_800382DC as its own symbol while the body reaches it as D_800382D8+4 (same class as the 19 relocation-split refusals). Relocated bytes are identical per the packet, but no true score 0 exists, so neither relock nor promotion was performed. Fix needs target symbol naming, not source.",
-   "slot_bytes": 112
-  },
-  "func_80017108": {
-   "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
-   "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
-   "slot_bytes": 184
-  },
-  "func_800171C0": {
-   "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
-   "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
-   "slot_bytes": 220
-  },
-  "func_800175B4": {
-   "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
-   "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
-   "slot_bytes": 144
-  },
-  "func_80018B8C": {
-   "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
-   "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
-   "slot_bytes": 96
-  },
-  "func_80018E6C": {
-   "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
-   "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
-   "slot_bytes": 72
-  },
-  "func_80018EB4": {
-   "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
-   "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
-   "slot_bytes": 108
-  },
-  "func_80018F20": {
-   "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
-   "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
-   "slot_bytes": 132
-  },
-  "func_80018FEC": {
-   "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
-   "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
-   "slot_bytes": 128
-  },
-  "func_800193C8": {
-   "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
-   "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
-   "slot_bytes": 88
-  },
-  "func_800199F4": {
-   "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
-   "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
-   "slot_bytes": 108
-  },
-  "func_8001C1D8": {
-   "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
-   "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
-   "slot_bytes": 440
-  },
-  "func_8001E9B0": {
-   "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
-   "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
-   "slot_bytes": 240
-  },
-  "func_8001EE34": {
-   "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
-   "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
-   "slot_bytes": 104
-  },
-  "func_800218CC": {
-   "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
-   "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
-   "slot_bytes": 112
-  },
-  "func_800251A8": {
-   "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
-   "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
-   "slot_bytes": 188
-  },
-  "func_80025C68": {
-   "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
-   "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
-   "slot_bytes": 284
-  },
-  "func_80025D84": {
-   "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
-   "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
-   "slot_bytes": 60
-  },
-  "func_80025DC0": {
-   "group": "no true-0 proof: target splits an interior data address into its own D_ symbol",
-   "detail": "no true score 0 against the splat-derived target: relocation symbol split (target names an interior data address as its own D_ symbol; the body reaches it as base+offset). Fix needs target symbol naming, not source.",
-   "slot_bytes": 240
-  }
- },
+ "refused": {},
  "summary": {
   "bodies": 241,
-  "promoted": 221,
-  "refused_by_group": {
-   "no true-0 proof: target splits an interior data address into its own D_ symbol": {
-    "functions": 19,
-    "slot_bytes": 3500
-   },
-   "dependent accepted-body relock has no true-0 proof: relocation symbol split": {
-    "functions": 1,
-    "slot_bytes": 112
-   }
-  },
+  "promoted": 241,
+  "refused_by_group": {},
   "wave3": {
    "promoted": 52,
    "slot_bytes": 8620,
@@ -1282,6 +1292,21 @@
     "f695fae7"
    ],
    "see": "cloud/work/boot_tail_promotion/WAVE3.md"
+  },
+  "wave4": {
+   "promoted": 20,
+   "slot_bytes": 3612,
+   "commits": [
+    "7c49d8ff",
+    "206a6235",
+    "f7362923",
+    "5fcc92a7",
+    "62d984bb",
+    "162bd57a",
+    "9b7d51a0",
+    "3d8e760b"
+   ],
+   "see": "cloud/work/boot_tail_promotion/WAVE4.md"
   }
  }
 }
