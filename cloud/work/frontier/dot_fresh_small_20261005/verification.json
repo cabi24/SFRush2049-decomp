@@ -1,0 +1,164 @@
+{
+  "status": "NONMATCH",
+  "claims": [],
+  "accepted_byte_gain": 0,
+  "base_commit": "f88dc3cb3807b8be3246b719a9b1e008210b477c",
+  "compiler_sha256": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+  "target_manifest_sha256": "29f115c83342d771c0c293cbb09c34c6e7a045a3e54a128f6082e251fc250697",
+  "targets": {
+    "func_800DC628": {
+      "status": "NONMATCH",
+      "source_sha256": "9c91c302adc1cc55c04168f3f76a68e88478cd8aaba8104a3c618505ec55ecd1",
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "start": "0x800dc628",
+      "end_exclusive": "0x800dc720",
+      "target_sha256": "a9580f8d31ae3075dd2220cffeff13ee80d0d107d13317e0ed64bdff1b66b7cb",
+      "baseline_source": "cloud/work/heads_B14/func_800DC628_wordsize.c",
+      "baseline": {
+        "differing": 40,
+        "total": 62,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 248
+      },
+      "comparison": {
+        "differing": 20,
+        "total": 62,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 248
+      },
+      "independent_gnu_link_verified": true,
+      "linked_code_sha256": "76626c490b66d68a7305f11e47e4e4b8837bebe1a7bdbe3b835bb98c1a5b0717",
+      "alignment_bytes": 8,
+      "differing_word_offsets": [
+        0,
+        4,
+        8,
+        16,
+        20,
+        24,
+        28,
+        32,
+        40,
+        128,
+        132,
+        136,
+        140,
+        148,
+        180,
+        188,
+        192,
+        196,
+        200,
+        208
+      ],
+      "own_literal": null
+    },
+    "func_800D4DFC": {
+      "status": "NONMATCH",
+      "source_sha256": "9e7df9482de3a5bc2cb94a3110a82341f1432fc61d00c1c3cee456891534bb15",
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "start": "0x800d4dfc",
+      "end_exclusive": "0x800d4ef4",
+      "target_sha256": "ca28252c847a1f30066fa1988428c66de66fd50c211c652f8d8415cd18a43f2f",
+      "baseline_source": "cloud/work/tiny_A62/func_800D4DFC.c",
+      "baseline": {
+        "differing": 16,
+        "total": 62,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 248
+      },
+      "comparison": {
+        "differing": 12,
+        "total": 62,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 248
+      },
+      "independent_gnu_link_verified": true,
+      "linked_code_sha256": "1367f2013b7adef8d2e1671f877c3e01e549340a88d1e16d93989b636360ad55",
+      "alignment_bytes": 8,
+      "differing_word_offsets": [
+        96,
+        104,
+        108,
+        112,
+        116,
+        120,
+        140,
+        160,
+        192,
+        200,
+        220,
+        228
+      ],
+      "own_literal": {
+        "address": "0x801241A4",
+        "value": 2.72727275,
+        "bytes_verified": 4
+      }
+    }
+  },
+  "accepted_context": {
+    "source_sha256": "ae72a0b474c5cadfdd021f84e2298e42650d093fe915164a06dba350a5a7732a",
+    "caller": {
+      "differing": 12,
+      "total": 62,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "elf_function_bytes": 248
+    },
+    "math_utility": {
+      "differing": 0,
+      "total": 19,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "elf_function_bytes": 76
+    }
+  },
+  "stopped_controls": {
+    "func_800A43FC": {
+      "differing": 51,
+      "total": 53,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "elf_function_bytes": 124
+    },
+    "battle_mode_setup": {
+      "differing": 12,
+      "total": 87,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "elf_function_bytes": 348
+    }
+  },
+  "host_semantics": {
+    "host_source_sha256": "7a4246202d1793c74e2faa9eeeae50fe2629cb403a976f998f83006d5f4abad9",
+    "packing_cases": 4608,
+    "snapshot_cases": 4096,
+    "asan_ubsan": "passed",
+    "negative_controls": {
+      "wrong_coefficient": "rejected_by_semantic_assertion",
+      "wrong_position_reset": "rejected_by_semantic_assertion"
+    },
+    "limit": "Bounded host/reference checks, not native execution or full-game verification"
+  }
+}
