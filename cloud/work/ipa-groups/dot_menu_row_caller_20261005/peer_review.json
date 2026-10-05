@@ -1,0 +1,29 @@
+{
+  "result": "PASS: bounded research publication; no blocker found",
+  "commit": "7487788a0ed4aae747aeb9bb0309e45fa78e1d9b",
+  "tree": "a5da3d8c0d9393fea22f1615b825c5ad54090cd4",
+  "base": "cf10b3392d7f00ae42d75c008b79fdc2541aab6b",
+  "source_sha256": "79a38a70a0b436a117d5622376fbf018b920216e73304b89145c7ceb755a09fe",
+  "manifest_sha256": "29597162ae65df2172ca51781f385fac535e5c30e3596d769518f6c2327bea19",
+  "accepted_setter_sha256": "ced1420bc1b0bb4bb8dd693d4d83b7d7d004562da1268871fa1ef9657eeed173",
+  "replayed_verification_sha256": "16d36d58cbe481efbca345f5bbb26516cf03702a2cdcaad21bb641fdfe07d058",
+  "checks": [
+    "Full helper 300-byte extent equal under production relocation and independent GNU linking",
+    "Claimed helper owns one verified four-byte literal; ELF st_size and extent both 300",
+    "Accepted setter 28-byte body unchanged and exact, both accepted and refined source",
+    "Nine O32 layout checks and 1769 ASan/UBSan host cases passed",
+    "Three packet pytest tests passed",
+    "All three source-form negative controls reproduced",
+    "All fourteen native jump-table entries and helper call argument mappings checked independently",
+    "Wrong non-immediate literal yields masked score zero but strict own-data failure",
+    "Protected-path guard passed and all 383 locked functions intact",
+    "Only eight new packet/test files; no protected or production source changes"
+  ],
+  "source_assessment": "Five meaningful helper inputs and fourteen genuine complete-caller call sites; unknown record gaps are justified by native offsets. Packed color word/channel views are a defensible source reconstruction, not proof of the unique original C type. No artificial pressure locals, dummy callers/inputs, register annotations, or volatility.",
+  "limits": [
+    "func_8010A8D0 remains NONMATCH: 367/375 differing words, 1480 emitted versus 1500 target bytes",
+    "func_8010AEAC and downstream slot_state_setup IPA source context remain absent",
+    "Host tests cover source behavior, not native execution",
+    "No splice, lock, shadow-unit, full image, cartridge gate, or ROM coverage claim"
+  ]
+}
