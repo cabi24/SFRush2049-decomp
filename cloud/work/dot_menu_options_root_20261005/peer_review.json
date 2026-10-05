@@ -1,0 +1,32 @@
+{
+  "reviewer": "Independent source and native-contract review",
+  "reviewed_commit": "1eec5e27a5ee01cade704415c3bd966ea2117ecd",
+  "base_commit": "7487788a0ed4aae747aeb9bb0309e45fa78e1d9b",
+  "scope": [
+    "cloud/work/dot_menu_options_root_20261005/",
+    "tests/conveyor/test_dot_menu_options_root.py"
+  ],
+  "result": "PASS for bounded PARTIAL-SOURCE research and draft review; not native matching or production acceptance",
+  "publication_blockers": [],
+  "unresolved_native_gates": [
+    "Original local header capacity remains unproved; root compilation fails closed without fixture macros.",
+    "Private register ABI and genuine downstream compiler context remain unproved.",
+    "No root native compile, score, relocated-byte proof, ELF/literal-ownership proof, image/ROM gate, or new matching bytes."
+  ],
+  "verification_receipt_sha256": "b85479f84c35962d100fcbc3f805c8061a3450acd6522a1bdd95f3cda571a764",
+  "checks": [
+    "Fresh pinned scoped suite: 9 passed at the reviewed intake.",
+    "Fresh pinned verify.py replay equals tracked verification.json byte for byte.",
+    "ASan/UBSan host fixtures: 410370 root cases and 24576 slot cases passed.",
+    "Six pinned IDO O32 layout assertions and slot syntax-only compilation passed; root remains gated.",
+    "Protected, integrity-checked 413-word root independently inspected: mode branch, both header paths, queue ordering, signed visibility/scroll logic, all 14 switch arms, spacing, cleanup and both returns.",
+    "Protected 58-word slot independently inspected: signed previous slot, low-byte store, full-input -1/0/difference predicates, lookup/load/activation order, post-callback slot rereads, private s2/t0 conventions.",
+    "Callback slots independently replayed; protected replay_save_prompt and sound_control inspected, proving state pointer argument and integer-result consumption.",
+    "Genuine packed-color setter and formatter wrapper inspected; unbounded percent-s behavior and frame-inferred credits buffer checked against cited sources.",
+    "Report and receipt preserve capacity uncertainty, fixture-only 128-byte capacity, zero native coverage, no duplicate helper credit and unchanged earlier packet.",
+    "git diff --check passed; commit contains exactly the ten scoped files; working tree clean."
+  ],
+  "notes": [
+    "Review made no tracked source changes. Only sanitized evidence is published."
+  ]
+}
