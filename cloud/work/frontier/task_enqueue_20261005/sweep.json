@@ -1,0 +1,870 @@
+{
+  "claims": [],
+  "results": [
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        0,
+        2,
+        1,
+        3
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        0,
+        2,
+        3,
+        1
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        0,
+        3,
+        1,
+        2
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        0,
+        3,
+        2,
+        1
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        1,
+        0,
+        2,
+        3
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        1,
+        0,
+        3,
+        2
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        1,
+        2,
+        0,
+        3
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        1,
+        2,
+        3,
+        0
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        1,
+        3,
+        0,
+        2
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        1,
+        3,
+        2,
+        0
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        2,
+        0,
+        1,
+        3
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        2,
+        0,
+        3,
+        1
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        2,
+        1,
+        0,
+        3
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        2,
+        1,
+        3,
+        0
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        2,
+        3,
+        0,
+        1
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        2,
+        3,
+        1,
+        0
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        3,
+        0,
+        1,
+        2
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        3,
+        0,
+        2,
+        1
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        3,
+        1,
+        0,
+        2
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        3,
+        1,
+        2,
+        0
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        3,
+        2,
+        0,
+        1
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "volatile_control": false
+    },
+    {
+      "comparison": {
+        "differing": 27,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "volatile_control": true
+    },
+    {
+      "comparison": {
+        "differing": 26,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "volatile_control": true
+    },
+    {
+      "comparison": {
+        "differing": 29,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        0,
+        2,
+        1,
+        3
+      ],
+      "volatile_control": true
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        0,
+        2,
+        3,
+        1
+      ],
+      "volatile_control": true
+    },
+    {
+      "comparison": {
+        "differing": 27,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        0,
+        3,
+        1,
+        2
+      ],
+      "volatile_control": true
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        0,
+        3,
+        2,
+        1
+      ],
+      "volatile_control": true
+    },
+    {
+      "comparison": {
+        "differing": 28,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        1,
+        0,
+        2,
+        3
+      ],
+      "volatile_control": true
+    },
+    {
+      "comparison": {
+        "differing": 27,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        1,
+        0,
+        3,
+        2
+      ],
+      "volatile_control": true
+    },
+    {
+      "comparison": {
+        "differing": 28,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        1,
+        2,
+        0,
+        3
+      ],
+      "volatile_control": true
+    },
+    {
+      "comparison": {
+        "differing": 27,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        1,
+        2,
+        3,
+        0
+      ],
+      "volatile_control": true
+    },
+    {
+      "comparison": {
+        "differing": 29,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        1,
+        3,
+        0,
+        2
+      ],
+      "volatile_control": true
+    },
+    {
+      "comparison": {
+        "differing": 29,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        1,
+        3,
+        2,
+        0
+      ],
+      "volatile_control": true
+    },
+    {
+      "comparison": {
+        "differing": 29,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        2,
+        0,
+        1,
+        3
+      ],
+      "volatile_control": true
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        2,
+        0,
+        3,
+        1
+      ],
+      "volatile_control": true
+    },
+    {
+      "comparison": {
+        "differing": 27,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        2,
+        1,
+        0,
+        3
+      ],
+      "volatile_control": true
+    },
+    {
+      "comparison": {
+        "differing": 26,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        2,
+        1,
+        3,
+        0
+      ],
+      "volatile_control": true
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        2,
+        3,
+        0,
+        1
+      ],
+      "volatile_control": true
+    },
+    {
+      "comparison": {
+        "differing": 27,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        2,
+        3,
+        1,
+        0
+      ],
+      "volatile_control": true
+    },
+    {
+      "comparison": {
+        "differing": 27,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        3,
+        0,
+        1,
+        2
+      ],
+      "volatile_control": true
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        3,
+        0,
+        2,
+        1
+      ],
+      "volatile_control": true
+    },
+    {
+      "comparison": {
+        "differing": 29,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        3,
+        1,
+        0,
+        2
+      ],
+      "volatile_control": true
+    },
+    {
+      "comparison": {
+        "differing": 29,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        3,
+        1,
+        2,
+        0
+      ],
+      "volatile_control": true
+    },
+    {
+      "comparison": {
+        "differing": 30,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        3,
+        2,
+        0,
+        1
+      ],
+      "volatile_control": true
+    },
+    {
+      "comparison": {
+        "differing": 27,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_function_bytes": 124,
+      "store_order": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "volatile_control": true
+    }
+  ],
+  "variant_count": 48
+}

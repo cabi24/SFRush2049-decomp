@@ -1,0 +1,264 @@
+{
+  "acceptance_checks": {
+    "both_nonmatch_receipts": "reproduced without accepting either candidate",
+    "changed_submissions": "3/3 strict MATCH",
+    "matrix_complete_extent_replay": "8/8 exact cases",
+    "protected_path_guard": "pass",
+    "scorer_sanity_group": "pass",
+    "scorer_sanity_single": "pass",
+    "static_locks": "383 intact",
+    "string_complete_extent_replay": "3/3 exact cases",
+    "string_host_cases": 66311
+  },
+  "aggregate": {
+    "all_failures_have_identical_prior_baseline_messages": true,
+    "command": "REQUIRE_TOOLCHAIN=1 python3 -m pytest -o addopts='' tests/conveyor tests/cloud -q -rs -m 'not node_required'",
+    "corrected_cloud_command": "REQUIRE_TOOLCHAIN=1 python3 -m pytest -o addopts='' tests/cloud -q -rs -m 'not node_required'",
+    "corrected_cloud_junit_summary": {
+      "errors": "0",
+      "failures": "2",
+      "skipped": "0",
+      "tests": "304",
+      "time": "196.699"
+    },
+    "corrected_cloud_log_sha256": "9e671ad840495b0542d70ce2c354144d0446b8bcb5b05a6b7b73526fdd23a2a3",
+    "corrected_cloud_summary": "2 failed, 277 passed, 25 subtests passed in 196.70s (0:03:16)",
+    "corrected_cloud_xml_sha256": "8e2b0c65e93afcb28e2160d166bec43827738bee618849579d714a349a7c62ff",
+    "exit_code": 1,
+    "failures": [
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "e5ecfc5625f218953f33d5b42393e23d4e56fa399fe677d9561a01d6be27ee4c",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[camera_blend_between]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "114266d16a765ada1a11155112d7e5f670b40eea1a7817a9a4430e9f26dd6215",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[camera_update_d]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "95a61967b8ec23702dadc97b7c706ae5b266dcd551e053c7cf1c648be5448f7b",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[display_settings]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "9d2425d3da2ec30387a80891866895ee0a36e38266d0188012e506cac8e8efff",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_8008B3F4]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "c38f8958e5a342901de172aee59305139527ce3725ba95dfef179816edbd8d0c",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800DE860]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "370c03d3c5334133f520a5ee4297c9995bc780f7f7d4be14fc90d32da0cdac7c",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E114C]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "947dfa61060bd73983fe122fa129b815177ee53b71ac1f03f192482e2427c005",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E23A4]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "04a6d3b761bdfdf0b9295666771dd7455535bee1e5a33010ee57887cf553ddf2",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800E5D64]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "46a694528fe10f25e2787a7a24e05918bf749ad5e2780b3f0ec3b925ce69a5c0",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_800EC270]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "75401c9b903cb0177c8a3a4e59e361e71eebf74b9cc83ab22112e4aa6ab0df63",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[func_80106D94]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "a11b8fede06b82f8d2e0e4b51ecef3e14c228529ba850f5b75e25abbf30096e8",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[race_setup_1]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "bb459c6adb3aaaf35ccbee5efa7f82dd2fecef6d0b52000774711dd6a7e33d4a",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[race_setup_2]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "d8016b3d29c48825588c8e2ab26a718f6ebab2ec8021eea54f5eed10cb81655d",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[random_float]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "ee2461ff4ca3340547833b423834cb37d3aad69623846890a249af6569d24187",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[track_select_handler]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "488dced5e954f43cbdd9f13be8ec10e4f30628aac66b3419ca17096e8392a43d",
+        "subtest_failure_index": 0,
+        "test": "tests.conveyor.test_cloud_score::test_locked_single_function_is_strict_match[vector_normalize_length]"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "72a33e2ba9f9eb1d5af5180bda2f9f2e0362ced1857a5b8dd7f150dbc9c8a6d1",
+        "subtest_failure_index": 0,
+        "test": "tests.cloud.test_builder.Validate::test_matches_agree_with_score_py"
+      },
+      {
+        "baseline_message_identical": true,
+        "message_sha256": "2e2692edb19a620ec9375c2e7be6c4eccfcdd43d1dee49903609066baee273ca",
+        "subtest_failure_index": 1,
+        "test": "tests.cloud.test_builder.Validate::test_matches_agree_with_score_py"
+      }
+    ],
+    "initial_junit_summary": {
+      "errors": "12",
+      "failures": "21",
+      "skipped": "41",
+      "tests": "1989",
+      "time": "241.737"
+    },
+    "initial_setup_issue": "18 Cloud cases saw missing conventional IDO path despite working IDO_DIR; pinned binaries materialized, then complete Cloud suite rerun without source changes",
+    "log_sha256": "339ef482346b25f0ec583bd8f95002d78b9fe7503385ed1cbc1406e9ad612cff",
+    "skip_categories": [
+      "9 tests lack MIPS cross-GCC",
+      "32 tests require unavailable SDK/ROM/generated/private inputs"
+    ],
+    "skip_count": 41,
+    "validated_conveyor_cases": 1712,
+    "validated_conveyor_summary": {
+      "errors": 0,
+      "failed": 15,
+      "passed": 1656,
+      "skipped": 41
+    },
+    "xml_sha256": "6831924762adc9ba91213bd98b4a49b3cef1160b86b13b93ee07b35cc61b3122"
+  },
+  "base_commit": "cf10b3392d7f00ae42d75c008b79fdc2541aab6b",
+  "cartridge_coverage_delta_claimed": false,
+  "focused_tests": {
+    "failed": 0,
+    "passed": 13,
+    "skipped": 0
+  },
+  "independent_peer_reviews": {
+    "enqueue": {
+      "commit": "59fd442043b1b89fdc1fd7b6afcfeedc0c660719",
+      "extent_note": "Canonical 30/32 differences include one section-alignment word; real body is 124 bytes against 128, so 30 unequal body words plus one missing word.",
+      "focused_tests": 5,
+      "fresh_48_controls_and_ABI_replayed": true,
+      "receipt_sha256": "4c52fe37a5e129c20c492c01f9b0ad729c1fdb8452bf30be085627c2d7e44881",
+      "verdict": "PASS for nonmatch research only"
+    },
+    "masked_rng": {
+      "UBSan_cases": 576,
+      "commit": "1b785864d2d35f94c496e70cc44c7f18221b968c",
+      "focused_tests": 3,
+      "fresh_receipt_equal": true,
+      "verdict": "PASS for nonmatch research only"
+    },
+    "matrix": {
+      "commit": "059fcdadd0fec78ee62313f6db7a683b87230a7a",
+      "focused_tests": 5,
+      "independent_bitwise_behavior_cases": 4028,
+      "receipt_sha256": "b7d638320145b9ca48bb683e2b369fa3ac0a0bd9305c1d7b1f3ea85f19609c1f",
+      "scorer_core_tests": 40,
+      "strict_complete_cases": 8,
+      "verdict": "PASS for object-match source; genuine caller group unchanged"
+    },
+    "string": {
+      "additional_ASan_UBSan_cases": 2585,
+      "commit": "81dacf01d9061502cc9ed8301b7f7ccf40da76a2",
+      "limitation": "LeakSanitizer disabled because runtime ptrace prevents it; ASan/UBSan passed",
+      "receipt_sha256": "15658b3c8b1550880147c097c05b06a01ae0de43687f1e7f8d4f0f06a993b4af",
+      "strict_complete_cases": 3,
+      "verdict": "PASS for object-match source"
+    }
+  },
+  "new_complete_object_matches": {
+    "func_800ACFF8": 152,
+    "func_800AD090": 152,
+    "func_800BE744": 120
+  },
+  "new_object_evidence_bytes": 424,
+  "nonmatch_research": {
+    "func_800B23E0": {
+      "bounded_compiles": 41,
+      "differing_words": 13,
+      "elf_bytes": 268,
+      "target_bytes": 268,
+      "target_words": 67
+    },
+    "func_8010FBE0": {
+      "bounded_store_order_controls": 48,
+      "differing_words": 30,
+      "elf_bytes": 124,
+      "target_bytes": 128,
+      "target_words": 32
+    }
+  },
+  "object_hash_metadata_note": "String single-source full-object hashes differ across worktree paths only in .mdebug; executable and relocation sections and all complete-body proofs agree.",
+  "production_promotions": 0,
+  "schema": 1,
+  "source_bound_sha256": {
+    "cloud/matches/func_800ACFF8.c": "d68c239dbbd43517be51024c5138839635d781633f7f79b88fbb08f2675af580",
+    "cloud/matches/func_800AD090.c": "570265295a027ace7d99383b7e24b4ccdec2f1fcf6f904eea30bdae920cc6793",
+    "cloud/matches/func_800BE744.c": "d7074d624a4b1d617eb5ed75ac11a3784fdd4ab9e0ac24f84412f3af44dff24b",
+    "cloud/work/frontier/dot_fresh_masked_rng/RESULTS.md": "c5cbc0e69c40e5d8111f1e2805ec9abfee9d35f363c3882c30045fbf28bb879b",
+    "cloud/work/frontier/dot_fresh_masked_rng/best.c": "2c5c62ded849c36876fab17fd5db1667ad43704cd256a8e3d4b001ad9b61e7ac",
+    "cloud/work/frontier/dot_fresh_masked_rng/experiments.json": "e732670f7a1f4926a88d160773ee479b2c87f573f7b7f3ef2755b5e1e5888cb8",
+    "cloud/work/frontier/dot_fresh_masked_rng/experiments.py": "4da7e4c6afb66ac534e2274ebac63eac44e48d08f71cd209acaebe189b252e81",
+    "cloud/work/frontier/dot_fresh_masked_rng/verification.json": "8be68fafb09c637d627515b2ab2b9c9d32062a0718ba8d5d6a69b7138cddd22e",
+    "cloud/work/frontier/dot_fresh_masked_rng/verify.py": "c72b062ce0a6093455e2621b7596d3306af572e98bff344ee3c462ab0af6d2dc",
+    "cloud/work/frontier/dot_fresh_string/README.md": "714bd4d0ce78d401b95c50c1506ae94b2b4f28d7f34134865aecab658fc73dcc",
+    "cloud/work/frontier/dot_fresh_string/cached_first_nonmatch.c": "c8b7f97773f4683d4843ade0849cae3cf43beecfe9ae4d1d925f336a46c3a3bc",
+    "cloud/work/frontier/dot_fresh_string/verification.json": "950eaab697dbea09528607804895e00620860c5ea87827f97e7849d044cc104b",
+    "cloud/work/frontier/dot_fresh_string/verify.py": "c6edbbd195464e9b8833ffe6278e9fa06ca8488849e27e842954845b973a2b1c",
+    "cloud/work/frontier/dot_matrix_rows/README.md": "45692e0074c2013b082c7ca56ffafaa206ca873e63ee30527c27b58ef187687d",
+    "cloud/work/frontier/dot_matrix_rows/verification.json": "1f18b1987eea11bc9b23d51e0d1827c0edba84975c08cf86912a0ef1c972632b",
+    "cloud/work/frontier/dot_matrix_rows/verify.py": "b824764bed77196a4a52e0c33aa9bb6609e094ec9328f720c3fe1775156a0ba8",
+    "cloud/work/frontier/task_enqueue_20261005/README.md": "7b22d02bf4b14d346fcc8d84cabb1451f0c699dea89820fef6f8fa6c8264cd71",
+    "cloud/work/frontier/task_enqueue_20261005/abi_probe.c": "3d2b3b18a110060ed2b694b185e06df7087d80f85e18629a58a6c05c42bc7c81",
+    "cloud/work/frontier/task_enqueue_20261005/candidate.c": "8a45698d9d78bf50633c2b49e53b3e6c8986d593545c708932a52104aa95f822",
+    "cloud/work/frontier/task_enqueue_20261005/sweep.json": "be97839bb4d26ee3c6fd1618efbd01cebf20a7d404190a94927142be27846be1",
+    "cloud/work/frontier/task_enqueue_20261005/sweep.py": "6871562d078b103f31861ddb5836d0d7a542195dea9cd33a697ecbf190b5194c",
+    "cloud/work/frontier/task_enqueue_20261005/verification.json": "eee729cad4db0b9457456a61b8e7068bd04c5385c2a462c7f77190cd6e521548",
+    "cloud/work/frontier/task_enqueue_20261005/verify.py": "e1b0483fab9a46eb536d8ee1be28920c34fbd01107f11640244eaeeccdaf5232",
+    "tests/cloud/test_dot_fresh_masked_rng.py": "a47be3ba140dac6c9af1ee6cb2bcd0b815d519b90fd2d3e72dc64f6e5d6e8759",
+    "tests/cloud/test_task_enqueue_research.py": "a5d8c52ca85fb9496c1c9c78f145133d11e5fe85d66ed6b64bf097abc2b4e278",
+    "tests/conveyor/test_dot_matrix_rows.py": "d61d65748f142c3c191aa4d9c584fe36764844b72ea2e064d651dbc81a96f28e"
+  },
+  "source_intake_commit": "e1a612f696ef06398d80ab44e7339612e7d5345b",
+  "unchanged_boundaries": [
+    "production sources and native callers",
+    "static and blob locks",
+    "protected target bytes/manifests/symbols",
+    "shared context and headers",
+    "scorer and build gates",
+    "compiler flags/toolchain"
+  ],
+  "unrun_required_integration_gates": [
+    "whole-program shadow",
+    "source-built image",
+    "exact compressed stream",
+    "full-ROM SHA-1"
+  ]
+}
