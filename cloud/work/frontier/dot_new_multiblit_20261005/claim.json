@@ -1,0 +1,33 @@
+{
+  "date_utc": "2026-10-05T21:07:14Z",
+  "base": "cc4d5fdd0bbc42dbf6be49f00d9454af8cb9c4f5",
+  "function": "sound_control",
+  "range": ["0x800B37E8", "0x800B39BC"],
+  "bytes": 468,
+  "scope": "Matching candidate only; no accepted-byte or ROM-coverage claim",
+  "checks": {
+    "fresh_origin_master": true,
+    "accepted_lock_absent": true,
+    "open_pull_requests_checked": [98, 99, 100, 101, 102],
+    "wave_results_checked": "frontier agentA-C and waves 1-5",
+    "prior_best": "cloud/work/tiny_A78/sound_control.callback.c",
+    "prior_residual_words": 9,
+    "coordinator_claim_confirmed": true,
+    "unpublished_work_excluded": false
+  },
+  "donor": {
+    "repository": "historicalsource/rushtherock",
+    "revision": "845329d7b36f5a384c5625ed9a0aef584ab46139",
+    "source": "LIB/blit.c NewMultiBlit",
+    "source_sha256": "34652da79c592dfd0c77e93ba717bd0d3e52e9ae869c01d69b01d650da93a080",
+    "header": "LIB/blit.h Blit and MULTIBLIT",
+    "header_sha256": "91516a3935024254702dbb1b66d3f87258cfbe3ca878f22ddc5e9cd10e4a1c6a"
+  },
+  "superseded_scout": {
+    "function": "func_800B3704",
+    "range": ["0x800B3704", "0x800B37E8"],
+    "status": "NONMATCH 14/57, ancillary research only",
+    "new_evidence": "Authentic unsigned AnimID and signed AnimDTA account for separate native -1 materializations",
+    "rejected_fourth_formal": "Two native callers pass a fourth value, but a four-formal control worsens to 55/57 plus excess; not adopted"
+  }
+}
