@@ -1,0 +1,102 @@
+{
+  "status": "EXACT-BODY; VOLATILE-CONTRACT REVIEW PENDING",
+  "accepted_byte_gain": 0,
+  "base": "cc4d5fdd0bbc42dbf6be49f00d9454af8cb9c4f5",
+  "code": {
+    "differing": 0,
+    "total": 102,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "elf_function_bytes": 408,
+    "source_sha256": "7c529a925636816f309e255176da6a5761dda91e5d016352c50a4325955c3694",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "start": "0x80108da8",
+    "end_exclusive": "0x80108f40",
+    "full_extent_equal": true,
+    "gnu_link_equal": true,
+    "body_sha256": "d6688e834c8a3faae7913d9e3727ffb99ed6579581dd767976b2ff2dfb2bb7bf",
+    "own_data_bytes": 0,
+    "object_function_offset": 8,
+    "alignment_bytes": 0,
+    "preceding_bytes_excluded": 8
+  },
+  "target_manifest_sha256": "098c5096b16bbf96f1f987842ad33a5733284ab16e497c43e05ad0a429e4cef8",
+  "compiler_sha256": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+  "sources": {
+    "cloud/work/frontier/dot_108da8_20261005/candidate.c": "7c529a925636816f309e255176da6a5761dda91e5d016352c50a4325955c3694",
+    "cloud/work/frontier/dot_108da8_20261005/host.c": "c770c139b6856c1196cdb2f068a471c8d0153e5ef201ab3fc14ee082827f41b9",
+    "cloud/work/frontier/dot_108da8_20261005/native.py": "b5fb437481389f3d9b0cb7f9bd457b3538fc28af2121e2be6fa4dbaa0309bf05",
+    "cloud/work/frontier/dot_108da8_20261005/verify.py": "b6a03d95d6532664595669bcc4bc60afb80c47a2c33bf3d122433d28341094fc",
+    "cloud/work/frontier/dot_108da8_20261005/audit_contract.py": "73107b1cd508006f6febc62cd2e6788d27dc201f732f8a4a8bc3cf5b50a69011"
+  },
+  "semantics": {
+    "cases": 8416,
+    "native_runs": 16832,
+    "whole_target_instructions_visited": 102,
+    "target_instructions": 102,
+    "host_ubsan": "passed",
+    "ordered_call_snapshots": "equal",
+    "callee_save_and_stack": "preserved",
+    "output_sha256": "9bb0d7aa15ef78bfc58619b572d5cd4cbec2fbed39d6c9e1cceab012de01d89c",
+    "negative_controls": {
+      "constant_hidden_return": "rejected",
+      "wrong_object_mode": "rejected"
+    },
+    "limits": "Bounded integer instruction interpreter and mocked audited O32 callees; no async-thread, real-callee, or cartridge execution."
+  },
+  "accepted_regressions": {
+    "func_800EC914": {
+      "source": "src/blob/func_800EC914.c",
+      "source_sha256": "65b68d97388fd50b72410d280c83b41f3e6b196711147105280bff4aace153f7",
+      "comparison": {
+        "differing": 0,
+        "total": 149,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 596
+      }
+    },
+    "func_800EF5B0": {
+      "source": "src/blob/func_800EF5B0.c",
+      "source_sha256": "b67eb68eed2d09822d6e94505261cd3ee6ba96751addf74a464d85e982fe4016",
+      "comparison": {
+        "differing": 0,
+        "total": 31,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 124
+      }
+    },
+    "Input_InitPadHandlers": {
+      "source": "src/blob/Input_InitPadHandlers.c",
+      "source_sha256": "ead712dc76132767c33bb85cd8bcd24fbb6d89fcbf0606edbdb4ece28a60bfaa",
+      "comparison": {
+        "differing": 0,
+        "total": 16,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 64
+      }
+    },
+    "Input_ApplyPadConfig": {
+      "group": "src/blob/groups/frontier_pad_config",
+      "comparison": {
+        "differing": 0,
+        "total": 48,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "elf_function_bytes": 192
+      }
+    }
+  }
+}

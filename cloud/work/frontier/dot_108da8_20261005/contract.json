@@ -1,0 +1,77 @@
+{
+  "global": "D_801543CA",
+  "signed_width_bits": 16,
+  "reference_counts": {
+    "load": 22,
+    "store": 4,
+    "form": 17
+  },
+  "referencing_functions": [
+    "car_setup_confirm",
+    "func_800EB90C",
+    "func_800EC190",
+    "func_800EC914",
+    "func_800F8EC8",
+    "func_80100E58",
+    "func_80108DA8",
+    "func_80108F40",
+    "func_80109A60",
+    "init_state_continue",
+    "props_render",
+    "race_finish",
+    "world_physics_tick"
+  ],
+  "native_function_sha256": {
+    "car_setup_confirm": "302759489f274b1aa9543aa88533274215a0245c8098bf974886fbe509d963be",
+    "func_800EB90C": "aa0258a2cdc7b37d234aa6a42eea2b3f562d18537e86ff0f691209a9c89fc18e",
+    "func_800EC190": "863d3ee0dce54cb4fde045d613011a8b7819638e60a29a08fc92b19ad02fa4a6",
+    "world_physics_tick": "e41ed6529d5a3ec5c8df01410c1c2aae00b936b8b8f7a65d4356eb427a3cc77e",
+    "func_800EC914": "bf1b2cfc806035000e074eaca697bfbc2dafe7cfea1aa3f5d7b16d9b958ae4be",
+    "props_render": "f70cc4999d8882d7d3489641e8f929b258cf5fa311251c45d4e86607d72870d6",
+    "func_800F8EC8": "704a856de34cd61f04accb71b0a04e032ca11754cab89505fd0ec5757e69780f",
+    "init_state_continue": "1a4da3f7591d065356b637b0b239d0687a3317f54491ee965ec13c31635722a5",
+    "func_80100E58": "1ef074ec1c53efab55d79fa190eb7deefe4aaf359de22c211d5c1580f9e0b5d3",
+    "race_finish": "b15859b3659e176387300f284ec5854d3a3805a044a90451ff132df1f13622bf",
+    "func_80108DA8": "d6688e834c8a3faae7913d9e3727ffb99ed6579581dd767976b2ff2dfb2bb7bf",
+    "func_80108F40": "81f798da7d0622d861ee5f966bf3059e4a4fb6118e9d6b40d1f4589ca3f08af7",
+    "func_80109A60": "e37050334aa67600c1074f754a9bbd6cba4eff6c4feb50b6138d9330f937fe8b"
+  },
+  "writer_sites": [
+    {
+      "function": "func_800EC190",
+      "address": "0x800ec1b0"
+    },
+    {
+      "function": "props_render",
+      "address": "0x800f6cc8"
+    },
+    {
+      "function": "props_render",
+      "address": "0x800f72c0"
+    },
+    {
+      "function": "init_state_continue",
+      "address": "0x800faff0"
+    }
+  ],
+  "writers_interpretation": "Four native halfword stores across initialization/setup routines. No asynchronous/device writer established.",
+  "independent_read_semantics": {
+    "function": "func_800EB90C",
+    "first_load": "0x800EB9B8",
+    "loop_reload": "0x800EB9FC",
+    "backedge": "0x800EB9F8",
+    "backedge_destination": "0x800EB9BC",
+    "loop_cycle_has_calls": false,
+    "loop_cycle_has_stores": false,
+    "opposite_exit_edge_store": "0x800EB9F0",
+    "qualifier_inference": "Corroborates a repeatedly observable count read independent of 108DA8 compilation; it is not original source text."
+  },
+  "accepted_declaration": {
+    "path": "src/blob/func_800EC914.c",
+    "source_sha256": "65b68d97388fd50b72410d280c83b41f3e6b196711147105280bff4aace153f7",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
+  },
+  "shared_generated_header": "include/game_globals.h declares ordinary s16; it is generated width evidence, not authoritative qualifier provenance.",
+  "limit": "Archived linear-reference census revalidated against current protected words. It may miss indirect, DMA or asynchronous writers."
+}
