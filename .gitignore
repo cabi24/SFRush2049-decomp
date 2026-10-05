@@ -91,3 +91,5 @@ tools/cloud/ido/
 
 # Third-party reference copies (see docs/external/README.md)
 docs/external/files/
+# Generated variant sweeps from matching agents (recreated by the gen/batch scripts)
+cloud/work/frontier/w*/*/[be][0-9]*/
