@@ -1,0 +1,20 @@
+{
+  "base_commit": "e0e734babdac3c6a79d2f87f7f895e34aa170148",
+  "new_candidate": {
+    "name": "func_800E79F8",
+    "start": "0x800E79F8",
+    "end_exclusive": "0x800E7A98",
+    "bytes": 160,
+    "accepted_at_snapshot": false
+  },
+  "existing_context_stub": {
+    "name": "func_800E79F0",
+    "start": "0x800E79F0",
+    "bytes": 8,
+    "accepted_at_snapshot": true,
+    "source_identity": "inferred from adjacent stub topology and accepted free-total sibling"
+  },
+  "group": "group/group.json",
+  "accepted_byte_gain": 0,
+  "publication_scope": "source, tests and verification only; no production or protected edits"
+}
