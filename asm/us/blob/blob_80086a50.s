@@ -3768,6 +3768,7 @@ func_8008A3E4:
 .section .text.func_8008A46C, "ax", @progbits
 .globl func_8008A46C
 func_8008A46C:
+    /* compiled from src/blob/func_8008A46C.c */
     .word 0x3C028013
     .word 0x8C42E60C
     .word 0x27BDFFE8
@@ -4185,6 +4186,7 @@ controller_rumble_thunk:
 .section .text.dma_wait_complete, "ax", @progbits
 .globl dma_wait_complete
 dma_wait_complete:
+    /* compiled from src/blob/dma_wait_complete.c */
     .word 0x27BDFF98
     .word 0xAFBE0040
     .word 0x3C1E8015
@@ -4961,6 +4963,7 @@ vector_copy_scale:
 .section .text.vector_normalize_length, "ax", @progbits
 .globl vector_normalize_length
 vector_normalize_length:
+    /* compiled from src/blob/vector_normalize_length.c */
     .word 0x27BDFFD8
     .word 0xAFBF0024
     .word 0xF7B60018

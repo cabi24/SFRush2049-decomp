@@ -4440,6 +4440,7 @@ menu_vibration_test:
 .section .text.track_select_handler, "ax", @progbits
 .globl track_select_handler
 track_select_handler:
+    /* compiled from src/blob/track_select_handler.c */
     .word 0x27BDFF60
     .word 0xAFBF002C
     .word 0xAFB00028

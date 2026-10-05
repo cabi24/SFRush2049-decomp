@@ -1,0 +1,15 @@
+{
+ "members": [
+  "audio_priority_find"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "standin_caller"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "context": [],
+ "claims": [],
+ "note": "PROVISIONAL: stand-in caller (two call sites). Real caller audio_mixer_main is unmatched; not spliceable."
+}

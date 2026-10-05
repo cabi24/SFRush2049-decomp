@@ -1,0 +1,24 @@
+{
+ "members": [
+  "NextMaxPath",
+  "PrevMaxPath",
+  "InitMaxPath",
+  "sync_maxpath_to_checkpoint",
+  "func_80095F8C",
+  "display_enable"
+ ],
+ "files": [
+  "func_80095F8C.c",
+  "alloc_at.c"
+ ],
+ "keep": [
+  "InitMaxPath",
+  "sync_maxpath_to_checkpoint",
+  "func_80095F8C",
+  "display_enable"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "claims": []
+}

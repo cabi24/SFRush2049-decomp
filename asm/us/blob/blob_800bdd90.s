@@ -95,6 +95,7 @@ func_800BDEB0:
 .section .text.camera_zoom_fov, "ax", @progbits
 .globl camera_zoom_fov
 camera_zoom_fov:
+    /* compiled from src/blob/camera_zoom_fov.c */
     .word 0x27BDFFA0
     .word 0xAFBF003C
     .word 0xAFBE0038

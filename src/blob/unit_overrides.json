@@ -78,6 +78,10 @@
   {
    "name": "audio_queue_process",
    "reason": "position dependent, same mechanism as task_complete_signal: as1 pads the unreachable epilogue after the Rumble Pak thread's endless loop to a 32-byte boundary of .text (169 words only at its image offset modulo 32; 170 in the shadow unit otherwise). Its own group fixes the offset by file order; the shadow unit needs a pad"
+  },
+  {
+   "name": "dma_wait_complete",
+   "reason": "position dependent, same mechanism as task_complete_signal and audio_queue_process: the scheduler-client thread ends in an endless loop and as1 pads its unreachable epilogue to a 32-byte boundary of .text (105 words only at its image offset modulo 32; 103 in the shadow unit otherwise)"
   }
  ]
 }

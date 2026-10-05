@@ -3313,6 +3313,7 @@ MP_TargetSpeed:
 .section .text.NextMaxPath, "ax", @progbits
 .globl NextMaxPath
 NextMaxPath:
+    /* compiled from src/blob/NextMaxPath.c */
     .word 0x27BDFFB8
     .word 0x00804025
     .word 0xAFBF0014

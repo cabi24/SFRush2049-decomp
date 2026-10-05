@@ -1,32 +1,38 @@
 {
-  "members": [
-    "audio_reverb_update",
-    "audio_effect_process",
-    "synced_model_render",
-    "MP_TargetSpeed",
-    "assign_default_paths",
-    "stat_race_end"
-  ],
-  "context": [
-    "func_80095F8C",
-    "func_80095EF4",
-    "audio_buffer_sync",
-    "object_counter_decrement",
-    "object_counter_increment"
-  ],
-  "files": [
-    "group.c"
-  ],
-  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
-  "keep": [
-    "audio_effect_process",
-    "synced_model_render",
-    "MP_TargetSpeed",
-    "assign_default_paths",
-    "stat_race_end",
-    "audio_buffer_sync",
-    "object_counter_decrement",
-    "object_counter_increment"
-  ],
-  "provenance": "A25 actual two-input heap release and five genuine direct callers; accepted lookup and counter callers copied unchanged and independently matched in this same group"
+ "members": [
+  "audio_reverb_update",
+  "audio_effect_process",
+  "synced_model_render",
+  "MP_TargetSpeed",
+  "assign_default_paths",
+  "stat_race_end",
+  "NextMaxPath",
+  "menu_item_select"
+ ],
+ "context": [
+  "func_80095F8C",
+  "func_80095EF4",
+  "audio_buffer_sync",
+  "object_counter_decrement",
+  "object_counter_increment"
+ ],
+ "files": [
+  "group.c",
+  "alloc_at.c"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "keep": [
+  "audio_effect_process",
+  "synced_model_render",
+  "MP_TargetSpeed",
+  "assign_default_paths",
+  "stat_race_end",
+  "audio_buffer_sync",
+  "object_counter_decrement",
+  "object_counter_increment",
+  "NextMaxPath",
+  "menu_item_select"
+ ],
+ "provenance": "frontier wave 2 (w2g NextMaxPath, w2b menu_item_select), 2026-10-04",
+ "note": "Real group, no stand-ins: src/blob/groups/codex_heap_release_a25/group.c unchanged (its six members and five context functions all still MATCH) plus alloc_at.c. Supersedes codex_heap_release_a25 if spliced as one group; or keep that group and add NextMaxPath as a member with alloc_at.c as a second file. menu_item_select (heap resize-in-place, frontier w2b) appended to group.c."
 }

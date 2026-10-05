@@ -1,0 +1,19 @@
+{
+ "members": [
+  "audio_priority_find"
+ ],
+ "context": [
+  "audio_mixer_main"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "audio_mixer_main"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "claims": [
+  "audio_priority_find"
+ ],
+ "note": "frontier wave 2 (w2b). Real two-body group, no stand-ins. audio_priority_find is strict MATCH as an internal function with its real caller; audio_mixer_main is a real reconstruction that does not match yet (31/183 words) and is context only. A stand-in-caller proof of the same body is in cloud/work/frontier/w2b/audio_priority_find/standin_group/."
+}
