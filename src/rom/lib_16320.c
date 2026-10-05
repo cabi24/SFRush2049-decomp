@@ -193,4 +193,34 @@ int func_80017018(const PackedLeadingKey *left, const PackedLeadingKey *right)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80017040.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80017108.s")
+/* PROMOTED 2026-10-05 — func_80017108
+ * Source:   cloud/matches/boot_tail/func_80017108.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/matches/boot_tail/func_80017108.c:func_80017108 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave4.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct ResourceRange { u16 count; u16 first; } ResourceRange;
+#pragma pack(0)
+extern int D_80038608;
+extern int D_8003C610;
+extern int D_8003CE18;
+extern int D_8003DA20;
+extern ResourceRange D_8003DA28[512];
+extern void func_80014CF4(void);
+void func_80017108(void)
+{
+    int i;
+    D_800385A0 = 0;
+    D_80038608 = 0;
+    D_8003C610 = 0;
+    D_8003CE18 = 0;
+    D_80042228 = 0;
+    D_8003DA20 = 0;
+    for (i = 0; i < 512; ++i) {
+        D_8003DA28[i].count = 0;
+        D_8003DA28[i].first = 0;
+    }
+    func_80014CF4();
+}
+

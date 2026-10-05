@@ -30,7 +30,28 @@ int func_80021700(u32 id)
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80021764.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800217E4.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80021844.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800218CC.s")
+/* PROMOTED 2026-10-05 — func_800218CC
+ * Source:   cloud/matches/boot_tail/func_800218CC.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/matches/boot_tail/func_800218CC.c:func_800218CC (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave4.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern u8 D_80056160[8][16];
+extern u8 D_800561E0[32];
+void func_800218CC(void)
+{
+    u32 row;
+    u32 index;
+    for (row = 0; row < 8; row++) {
+        for (index = 0; index < 16; index++) {
+            D_80056160[row][index] = 255;
+        }
+    }
+    for (index = 0; index < 32; index++) {
+        D_800561E0[index] = 255;
+    }
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_8002193C.s")
 /* PROMOTED 2026-10-04 — func_80021B9C
  * Source:   cloud/matches/boot_tail/func_80021B9C.c (in-repo, locked)

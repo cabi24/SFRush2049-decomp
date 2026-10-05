@@ -367,7 +367,28 @@ AudioCacheNode *func_80012660(unsigned int tag)
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80012730.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80012D18.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80013964.s")
+/* PROMOTED 2026-10-05 — func_80013964
+ * Source:   cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80013964.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80013964.c:func_80013964 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave4.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern unsigned char D_8003829E;
+extern unsigned short D_800382E0[];
+extern unsigned int D_80038034;
+extern unsigned int D_80038030;
+void func_80013964(void)
+{
+    unsigned int cursor;
+    D_800382D4 = &D_800382E0[D_8003829E];
+    D_800382D0 = D_800382D8[D_8003829E];
+    cursor = (unsigned int)D_800382D0 + 16;
+    D_80038034 = cursor & ~15U;
+    D_80038030 = cursor;
+    *D_800382D4 = 0;
+    *D_800382D0 = 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_800139D4.s")
 /* PROMOTED 2026-10-05 — func_80013C84
  * Source:   cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80013C84.c (in-repo, locked)
