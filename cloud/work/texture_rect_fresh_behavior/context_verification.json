@@ -1,0 +1,356 @@
+{
+  "body_sha256": "2c86f1b5b3e2040f297ce7dc3c01e96f151926d44fd5cdcf99a56bb6bbb9ecca",
+  "baseline_sha256": "f8355db6884b85c77a25b21c7aae746be236ed10a3dc8fee93264259cf4c6f8f",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "SDK_git_blob_ids": {
+    "libreultra_gbi.h": "b418e0321f48acd86187a066a873211f0e0ff9cb",
+    "mbi.h": "9956ef20eeb3090533be9d0f513ada78e208041c"
+  },
+  "variants": {
+    "frozen_baseline": {
+      "source_sha256": "f8355db6884b85c77a25b21c7aae746be236ed10a3dc8fee93264259cf4c6f8f",
+      "object_sha256": "62fdf16f81ebac231c3c21cd105fac87d7b435c9d9049f525f894e693962fb17",
+      "elf_function_bytes": 1780,
+      "differing_words": 4,
+      "residual_offsets": [
+        "0x4c8",
+        "0x4cc",
+        "0x4d0",
+        "0x4d4"
+      ],
+      "linked_body_sha256": "8ced2a588337f504ff6bd865a609a63a66f0c4f89a9c6c0d9cb8abf1c2a2a7a4",
+      "full_link_proof": {
+        "target_bytes": 1780,
+        "elf_function_bytes": 1780,
+        "linked_address": "0x80087110",
+        "linked_text_bytes": 1792,
+        "alignment_padding_bytes": 12,
+        "alignment_padding_all_zero": true,
+        "exact_extent": true,
+        "byte_equal": false,
+        "accepted_exact_match": false,
+        "project_scorer_differing_words": 4,
+        "project_scorer_target_words": 445,
+        "project_scorer_extra_words": 0,
+        "project_scorer_accepted": false,
+        "residual_offsets": [
+          "0x4c8",
+          "0x4cc",
+          "0x4d0",
+          "0x4d4"
+        ],
+        "gnu_linker_equals_project_relocator": true,
+        "unresolved": [],
+        "unverified": [],
+        "relocation_errors": [],
+        "undefined_symbols": [
+          "D_8012E608",
+          "D_8012E60C",
+          "D_8012E610",
+          "D_8012E668",
+          "D_8012E674",
+          "D_80149438",
+          "D_8014A248"
+        ],
+        "own_literal_or_data_sections": [],
+        "relocation_counts": {
+          "R_MIPS_HI16": 16,
+          "R_MIPS_LO16": 16
+        },
+        "protected_manifest_sha256": "df9bc7af469722b962807a9338c4cea43aa15360cfede7b783de8d0f38453c7d",
+        "protected_manifest_entries_verified": 23,
+        "target_sha256": "095bf2a25976a20563d68f9854a77f6716441255ba27cab03ab7015fdedf478c",
+        "linked_body_sha256": "8ced2a588337f504ff6bd865a609a63a66f0c4f89a9c6c0d9cb8abf1c2a2a7a4"
+      },
+      "semantics": {
+        "result": "PASS",
+        "cases": 6828,
+        "categories": {
+          "clip_flip_stretch": 816,
+          "word_arguments_and_packet_masks": 12,
+          "defined_C_random": 3000,
+          "native_modular_stress": 3000
+        },
+        "host_C_UBSan_cases": 3828,
+        "host_dialect": "C99 for strict signed-shift UBSan coverage",
+        "sanitizer_negative_controls": {
+          "negative_left_shift": {
+            "expected_failure_observed": true,
+            "exit_code": 1
+          },
+          "signed_overflow": {
+            "expected_failure_observed": true,
+            "exit_code": 1
+          }
+        },
+        "emitting_cases": 941,
+        "rejected_cases": 5887,
+        "output_paths": {
+          "mode0_flip0_stretchFalse": 45,
+          "mode0_flip0_stretchTrue": 38,
+          "mode0_flip4_stretchFalse": 37,
+          "mode0_flip4_stretchTrue": 48,
+          "mode0_flip8_stretchFalse": 37,
+          "mode0_flip8_stretchTrue": 41,
+          "mode0_flip12_stretchFalse": 34,
+          "mode0_flip12_stretchTrue": 48,
+          "mode_nonzero_flip0_stretchFalse": 76,
+          "mode_nonzero_flip0_stretchTrue": 69,
+          "mode_nonzero_flip4_stretchFalse": 79,
+          "mode_nonzero_flip4_stretchTrue": 82,
+          "mode_nonzero_flip8_stretchFalse": 75,
+          "mode_nonzero_flip8_stretchTrue": 75,
+          "mode_nonzero_flip12_stretchFalse": 86,
+          "mode_nonzero_flip12_stretchTrue": 71
+        },
+        "native_instruction_offsets_executed": 445,
+        "candidate_instruction_offsets_executed": 445,
+        "native_unexecuted_offsets": [],
+        "models": [
+          "complete protected native stream",
+          "complete GNU-linked IDO stream",
+          "unchanged C source compiled with host UBSan on defined-domain cases",
+          "independent modulo-32-bit clipping and packet oracle"
+        ],
+        "memory_bounds_callee_saves_and_external_order": "PASS",
+        "limitations": [
+          "instruction-model replay, not N64 hardware or graphical validation",
+          "disjoint valid globals and aligned command storage, no racing mutation",
+          "full-word stress tests validate native modulo arithmetic only; signed C overflow and negative left shifts are excluded from the host domain",
+          "parameterized clip/mode tests do not establish all values occur in gameplay"
+        ]
+      },
+      "new_native_cases": 98
+    },
+    "authentic_macros_minimal_Gfx": {
+      "source_sha256": "b444e4e93892f3096a90448960aeb2ce62759cc705592761f3c2321b681013b7",
+      "object_sha256": "943a69411f6d021b53031543fb0671ac879d03d0d550a35fe7acd9deb98f069a",
+      "elf_function_bytes": 1780,
+      "differing_words": 4,
+      "residual_offsets": [
+        "0x4c8",
+        "0x4cc",
+        "0x4d0",
+        "0x4d4"
+      ],
+      "linked_body_sha256": "8ced2a588337f504ff6bd865a609a63a66f0c4f89a9c6c0d9cb8abf1c2a2a7a4",
+      "full_link_proof": {
+        "target_bytes": 1780,
+        "elf_function_bytes": 1780,
+        "linked_address": "0x80087110",
+        "linked_text_bytes": 1792,
+        "alignment_padding_bytes": 12,
+        "alignment_padding_all_zero": true,
+        "exact_extent": true,
+        "byte_equal": false,
+        "accepted_exact_match": false,
+        "project_scorer_differing_words": 4,
+        "project_scorer_target_words": 445,
+        "project_scorer_extra_words": 0,
+        "project_scorer_accepted": false,
+        "residual_offsets": [
+          "0x4c8",
+          "0x4cc",
+          "0x4d0",
+          "0x4d4"
+        ],
+        "gnu_linker_equals_project_relocator": true,
+        "unresolved": [],
+        "unverified": [],
+        "relocation_errors": [],
+        "undefined_symbols": [
+          "D_8012E608",
+          "D_8012E60C",
+          "D_8012E610",
+          "D_8012E668",
+          "D_8012E674",
+          "D_80149438",
+          "D_8014A248"
+        ],
+        "own_literal_or_data_sections": [],
+        "relocation_counts": {
+          "R_MIPS_HI16": 16,
+          "R_MIPS_LO16": 16
+        },
+        "protected_manifest_sha256": "df9bc7af469722b962807a9338c4cea43aa15360cfede7b783de8d0f38453c7d",
+        "protected_manifest_entries_verified": 23,
+        "target_sha256": "095bf2a25976a20563d68f9854a77f6716441255ba27cab03ab7015fdedf478c",
+        "linked_body_sha256": "8ced2a588337f504ff6bd865a609a63a66f0c4f89a9c6c0d9cb8abf1c2a2a7a4"
+      },
+      "semantics": {
+        "result": "PASS",
+        "cases": 6828,
+        "categories": {
+          "clip_flip_stretch": 816,
+          "word_arguments_and_packet_masks": 12,
+          "defined_C_random": 3000,
+          "native_modular_stress": 3000
+        },
+        "host_C_UBSan_cases": 3828,
+        "host_dialect": "C99 for strict signed-shift UBSan coverage",
+        "sanitizer_negative_controls": {
+          "negative_left_shift": {
+            "expected_failure_observed": true,
+            "exit_code": 1
+          },
+          "signed_overflow": {
+            "expected_failure_observed": true,
+            "exit_code": 1
+          }
+        },
+        "emitting_cases": 941,
+        "rejected_cases": 5887,
+        "output_paths": {
+          "mode0_flip0_stretchFalse": 45,
+          "mode0_flip0_stretchTrue": 38,
+          "mode0_flip4_stretchFalse": 37,
+          "mode0_flip4_stretchTrue": 48,
+          "mode0_flip8_stretchFalse": 37,
+          "mode0_flip8_stretchTrue": 41,
+          "mode0_flip12_stretchFalse": 34,
+          "mode0_flip12_stretchTrue": 48,
+          "mode_nonzero_flip0_stretchFalse": 76,
+          "mode_nonzero_flip0_stretchTrue": 69,
+          "mode_nonzero_flip4_stretchFalse": 79,
+          "mode_nonzero_flip4_stretchTrue": 82,
+          "mode_nonzero_flip8_stretchFalse": 75,
+          "mode_nonzero_flip8_stretchTrue": 75,
+          "mode_nonzero_flip12_stretchFalse": 86,
+          "mode_nonzero_flip12_stretchTrue": 71
+        },
+        "native_instruction_offsets_executed": 445,
+        "candidate_instruction_offsets_executed": 445,
+        "native_unexecuted_offsets": [],
+        "models": [
+          "complete protected native stream",
+          "complete GNU-linked IDO stream",
+          "unchanged C source compiled with host UBSan on defined-domain cases",
+          "independent modulo-32-bit clipping and packet oracle"
+        ],
+        "memory_bounds_callee_saves_and_external_order": "PASS",
+        "limitations": [
+          "instruction-model replay, not N64 hardware or graphical validation",
+          "disjoint valid globals and aligned command storage, no racing mutation",
+          "full-word stress tests validate native modulo arithmetic only; signed C overflow and negative left shifts are excluded from the host domain",
+          "parameterized clip/mode tests do not establish all values occur in gameplay"
+        ]
+      },
+      "new_native_cases": 98
+    },
+    "full_SDK_Gfx_and_macros": {
+      "source_sha256": "10931baf0c0b8016b04a26e0e99d02323bee1335753d162419e7d7e43a793358",
+      "object_sha256": "eae1949c80555ee8ca4a6d8d37f59590aabbabea911ab663b1f8d19b0c7c7697",
+      "elf_function_bytes": 1780,
+      "differing_words": 4,
+      "residual_offsets": [
+        "0x4c8",
+        "0x4cc",
+        "0x4d0",
+        "0x4d4"
+      ],
+      "linked_body_sha256": "8ced2a588337f504ff6bd865a609a63a66f0c4f89a9c6c0d9cb8abf1c2a2a7a4",
+      "full_link_proof": {
+        "target_bytes": 1780,
+        "elf_function_bytes": 1780,
+        "linked_address": "0x80087110",
+        "linked_text_bytes": 1792,
+        "alignment_padding_bytes": 12,
+        "alignment_padding_all_zero": true,
+        "exact_extent": true,
+        "byte_equal": false,
+        "accepted_exact_match": false,
+        "project_scorer_differing_words": 4,
+        "project_scorer_target_words": 445,
+        "project_scorer_extra_words": 0,
+        "project_scorer_accepted": false,
+        "residual_offsets": [
+          "0x4c8",
+          "0x4cc",
+          "0x4d0",
+          "0x4d4"
+        ],
+        "gnu_linker_equals_project_relocator": true,
+        "unresolved": [],
+        "unverified": [],
+        "relocation_errors": [],
+        "undefined_symbols": [
+          "D_8012E608",
+          "D_8012E60C",
+          "D_8012E610",
+          "D_8012E668",
+          "D_8012E674",
+          "D_80149438",
+          "D_8014A248"
+        ],
+        "own_literal_or_data_sections": [],
+        "relocation_counts": {
+          "R_MIPS_HI16": 16,
+          "R_MIPS_LO16": 16
+        },
+        "protected_manifest_sha256": "df9bc7af469722b962807a9338c4cea43aa15360cfede7b783de8d0f38453c7d",
+        "protected_manifest_entries_verified": 23,
+        "target_sha256": "095bf2a25976a20563d68f9854a77f6716441255ba27cab03ab7015fdedf478c",
+        "linked_body_sha256": "8ced2a588337f504ff6bd865a609a63a66f0c4f89a9c6c0d9cb8abf1c2a2a7a4"
+      },
+      "semantics": {
+        "result": "PASS",
+        "cases": 6828,
+        "categories": {
+          "clip_flip_stretch": 816,
+          "word_arguments_and_packet_masks": 12,
+          "defined_C_random": 3000,
+          "native_modular_stress": 3000
+        },
+        "host_C_UBSan_cases": 3828,
+        "host_dialect": "C99 for strict signed-shift UBSan coverage",
+        "sanitizer_negative_controls": {
+          "negative_left_shift": {
+            "expected_failure_observed": true,
+            "exit_code": 1
+          },
+          "signed_overflow": {
+            "expected_failure_observed": true,
+            "exit_code": 1
+          }
+        },
+        "emitting_cases": 941,
+        "rejected_cases": 5887,
+        "output_paths": {
+          "mode0_flip0_stretchFalse": 45,
+          "mode0_flip0_stretchTrue": 38,
+          "mode0_flip4_stretchFalse": 37,
+          "mode0_flip4_stretchTrue": 48,
+          "mode0_flip8_stretchFalse": 37,
+          "mode0_flip8_stretchTrue": 41,
+          "mode0_flip12_stretchFalse": 34,
+          "mode0_flip12_stretchTrue": 48,
+          "mode_nonzero_flip0_stretchFalse": 76,
+          "mode_nonzero_flip0_stretchTrue": 69,
+          "mode_nonzero_flip4_stretchFalse": 79,
+          "mode_nonzero_flip4_stretchTrue": 82,
+          "mode_nonzero_flip8_stretchFalse": 75,
+          "mode_nonzero_flip8_stretchTrue": 75,
+          "mode_nonzero_flip12_stretchFalse": 86,
+          "mode_nonzero_flip12_stretchTrue": 71
+        },
+        "native_instruction_offsets_executed": 445,
+        "candidate_instruction_offsets_executed": 445,
+        "native_unexecuted_offsets": [],
+        "models": [
+          "complete protected native stream",
+          "complete GNU-linked IDO stream",
+          "unchanged C source compiled with host UBSan on defined-domain cases",
+          "independent modulo-32-bit clipping and packet oracle"
+        ],
+        "memory_bounds_callee_saves_and_external_order": "PASS",
+        "limitations": [
+          "instruction-model replay, not N64 hardware or graphical validation",
+          "disjoint valid globals and aligned command storage, no racing mutation",
+          "full-word stress tests validate native modulo arithmetic only; signed C overflow and negative left shifts are excluded from the host domain",
+          "parameterized clip/mode tests do not establish all values occur in gameplay"
+        ]
+      },
+      "new_native_cases": 98
+    }
+  }
+}

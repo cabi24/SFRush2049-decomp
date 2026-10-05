@@ -1,0 +1,150 @@
+{
+  "function": "func_80087110",
+  "source": "cloud/work/frontier/w4a/func_80087110/best.c",
+  "source_sha256": "f8355db6884b85c77a25b21c7aae746be236ed10a3dc8fee93264259cf4c6f8f",
+  "baseline": {
+    "differing": 4,
+    "total": 445,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "flags": [
+    "-g0",
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Wab,-r4300_mul"
+  ],
+  "tool_sha256": {
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "as0": "72670d53952459fe5ac463e8844182cf4df9f6ccf469826c82ca858fdd665564",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+  },
+  "accepted": false,
+  "diagnostic_only": true,
+  "controls": [
+    {
+      "name": "identity",
+      "diagnostic_only": true,
+      "eligible_for_promotion": false,
+      "object_sha256": "b04018f6d0a68bd4e42883575adbd7c238a9d08f858c913a5033b66ff91f67a4",
+      "comparison": {
+        "differing": 4,
+        "total": 445,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    {
+      "name": "remove_alias_before_46",
+      "diagnostic_only": true,
+      "eligible_for_promotion": false,
+      "object_sha256": "cd0ca676979f7d2e91cc704d45483e7caa7c3c2069cba7058ef072c5e3a6258f",
+      "comparison": {
+        "differing": 0,
+        "total": 445,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    {
+      "name": "move_alias_after_46",
+      "diagnostic_only": true,
+      "eligible_for_promotion": false,
+      "object_sha256": "cd0ca676979f7d2e91cc704d45483e7caa7c3c2069cba7058ef072c5e3a6258f",
+      "comparison": {
+        "differing": 0,
+        "total": 445,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    {
+      "name": "remove_alias_before_47",
+      "diagnostic_only": true,
+      "eligible_for_promotion": false,
+      "object_sha256": "5ad3d9da35fcb3cd103e96ac5d7d99393a0c69d35dd9c047975c3dff8ba11b04",
+      "comparison": {
+        "differing": 53,
+        "total": 445,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    {
+      "name": "move_alias_after_47",
+      "diagnostic_only": true,
+      "eligible_for_promotion": false,
+      "object_sha256": "5ad3d9da35fcb3cd103e96ac5d7d99393a0c69d35dd9c047975c3dff8ba11b04",
+      "comparison": {
+        "differing": 53,
+        "total": 445,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  ],
+  "source_controls": [
+    {
+      "source": "cloud/work/texture_rect_compiler_boundary/both_body_do.c",
+      "source_sha256": "98a0adc8027464275b43845a6e223269c96a7cef2e1ec00395d264e0754b9c35",
+      "accepted": false,
+      "eligible_for_promotion": false,
+      "input_kind": "C source",
+      "comparison": {
+        "differing": 8,
+        "total": 445,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    {
+      "source": "cloud/work/texture_rect_compiler_boundary/height_before_do.c",
+      "source_sha256": "99a3c8b36bb9284084899cd43fcc900c64e0a91a4ab43408ecde331851ac891f",
+      "accepted": false,
+      "eligible_for_promotion": false,
+      "input_kind": "C source",
+      "comparison": {
+        "differing": 174,
+        "total": 445,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    {
+      "source": "cloud/work/texture_rect_compiler_boundary/setup_do.c",
+      "source_sha256": "3fb16b926eb91443d08b7836685658c76fb683df3143d021f78984aacebd2ea1",
+      "accepted": false,
+      "eligible_for_promotion": false,
+      "input_kind": "C source",
+      "comparison": {
+        "differing": 29,
+        "total": 445,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  ]
+}

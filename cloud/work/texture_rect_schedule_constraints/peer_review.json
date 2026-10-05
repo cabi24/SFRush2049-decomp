@@ -1,0 +1,53 @@
+{
+  "review_result": "PASS_RESEARCH_ONLY",
+  "match_or_promotion_approval": false,
+  "reviewed_base_commit": "493e7835",
+  "reviewed_files_sha256": {
+    "cloud/work/texture_rect_schedule_constraints/REPORT.md": "eb741c18c03c90693597886b9d72e1fd941864efd270bb3ce5ab7bdd773c5c3e",
+    "cloud/work/texture_rect_schedule_constraints/guarded_exit.c": "952efc079b818e9579b74d625871cd86756750016371efe7c7493574692c4beb",
+    "cloud/work/texture_rect_schedule_constraints/verify.py": "4ce6ea87cc46dc124e7e6fdd65b9381d7f8e18b0fe1e3b668b8523bab7748019",
+    "cloud/work/texture_rect_schedule_constraints/verification.json": "5ab25e4756ec7cd543a5e0a6b7bcc2fb0c76d0227b8ce56e2aefcb9a8b079e5c",
+    "cloud/work/texture_rect_schedule_constraints/allocation_diagnostic_receipt.json": "c164ae4272e87407264056eae622b3b28403aa1e6df71af2aa7a996aed435300"
+  },
+  "independent_stock_replay": {
+    "result": "PASS",
+    "receipt_controls_equal": true,
+    "baseline_differing_words": 4,
+    "guarded_exit_differing_words": 12,
+    "function_bytes_each": 1780,
+    "expected_alignment_bytes_each": 12,
+    "unresolved_or_unverified_or_errors": false,
+    "gnu_and_project_relocation_equal": true
+  },
+  "independent_residual_classification": {
+    "original_four_schedule_words_unchanged_from_baseline": true,
+    "additional_eight_residuals_are_exact_t3_t4_exchange": true,
+    "prior_fallback_dispatch_full_link_hash_equal": true
+  },
+  "diagnostic_review": {
+    "raw_native_memberships_equal_receipt": true,
+    "raw_trace_decisions_equal_receipt": true,
+    "stock_listing_and_trace_ucode_hashes_equal": true,
+    "source_bound": true,
+    "no_force_controls_observed": true,
+    "diagnostic_binaries_rebuilt_or_reexecuted_by_reviewer": false
+  },
+  "source_review": [
+    "Only the declared both-flags while/return control restructuring differs from the frozen complete source.",
+    "All eight live packet emitters, arithmetic, global declarations and six formals remain intact.",
+    "The retained post-exit alias-close observation plus exact t3/t4 exchange supports separate schedule and allocation effects.",
+    "Backward constraints are explicitly limited to this topology; no unique original source or general impossibility claim."
+  ],
+  "publication_review": "Only C, scripts, prose and scalar/hash receipts are present. No native words, raw dumps, ROM objects, credentials or forced compiler controls are included. The verifier only reads a short compiler-metadata pattern.",
+  "limits": [
+    "The diagnostic traces were independently inspected and hash-checked, not generated with rebuilt diagnostic binaries.",
+    "No new behavioral coverage, accepted source, image/compression/ROM gate, or matching credit is claimed."
+  ],
+  "ci_test": "tests/cloud/test_texture_rect_schedule_constraints.py",
+  "reviewer_validation": {
+    "focused_tests_passed": 35,
+    "scheduling_stock_replay_test_executed": true,
+    "python_compilation": "PASS",
+    "diff_whitespace_check": "PASS"
+  }
+}

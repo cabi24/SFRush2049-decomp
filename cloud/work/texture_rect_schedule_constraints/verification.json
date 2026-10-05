@@ -1,0 +1,127 @@
+{
+  "accepted": false,
+  "research_only": true,
+  "flags": [
+    "-g0",
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Wab,-r4300_mul"
+  ],
+  "tool_sha256": {
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+  },
+  "controls": {
+    "baseline": {
+      "source": "cloud/work/frontier/w4a/func_80087110/best.c",
+      "source_sha256": "f8355db6884b85c77a25b21c7aae746be236ed10a3dc8fee93264259cf4c6f8f",
+      "critical_alias_close_after_unconditional_exit": true,
+      "full_elf_verification": {
+        "target_bytes": 1780,
+        "elf_function_bytes": 1780,
+        "linked_address": "0x80087110",
+        "linked_text_bytes": 1792,
+        "alignment_padding_bytes": 12,
+        "alignment_padding_all_zero": true,
+        "exact_extent": true,
+        "byte_equal": false,
+        "accepted_exact_match": false,
+        "project_scorer_differing_words": 4,
+        "project_scorer_target_words": 445,
+        "project_scorer_extra_words": 0,
+        "project_scorer_accepted": false,
+        "residual_offsets": [
+          "0x4c8",
+          "0x4cc",
+          "0x4d0",
+          "0x4d4"
+        ],
+        "gnu_linker_equals_project_relocator": true,
+        "unresolved": [],
+        "unverified": [],
+        "relocation_errors": [],
+        "undefined_symbols": [
+          "D_8012E608",
+          "D_8012E60C",
+          "D_8012E610",
+          "D_8012E668",
+          "D_8012E674",
+          "D_80149438",
+          "D_8014A248"
+        ],
+        "own_literal_or_data_sections": [],
+        "relocation_counts": {
+          "R_MIPS_HI16": 16,
+          "R_MIPS_LO16": 16
+        },
+        "protected_manifest_sha256": "df9bc7af469722b962807a9338c4cea43aa15360cfede7b783de8d0f38453c7d",
+        "protected_manifest_entries_verified": 23,
+        "target_sha256": "095bf2a25976a20563d68f9854a77f6716441255ba27cab03ab7015fdedf478c",
+        "linked_body_sha256": "8ced2a588337f504ff6bd865a609a63a66f0c4f89a9c6c0d9cb8abf1c2a2a7a4"
+      }
+    },
+    "guarded_exit": {
+      "source": "cloud/work/texture_rect_schedule_constraints/guarded_exit.c",
+      "source_sha256": "952efc079b818e9579b74d625871cd86756750016371efe7c7493574692c4beb",
+      "critical_alias_close_after_unconditional_exit": true,
+      "full_elf_verification": {
+        "target_bytes": 1780,
+        "elf_function_bytes": 1780,
+        "linked_address": "0x80087110",
+        "linked_text_bytes": 1792,
+        "alignment_padding_bytes": 12,
+        "alignment_padding_all_zero": true,
+        "exact_extent": true,
+        "byte_equal": false,
+        "accepted_exact_match": false,
+        "project_scorer_differing_words": 12,
+        "project_scorer_target_words": 445,
+        "project_scorer_extra_words": 0,
+        "project_scorer_accepted": false,
+        "residual_offsets": [
+          "0x3d0",
+          "0x3d4",
+          "0x3e4",
+          "0x3ec",
+          "0x464",
+          "0x47c",
+          "0x4c8",
+          "0x4cc",
+          "0x4d0",
+          "0x4d4",
+          "0x5e4",
+          "0x5fc"
+        ],
+        "gnu_linker_equals_project_relocator": true,
+        "unresolved": [],
+        "unverified": [],
+        "relocation_errors": [],
+        "undefined_symbols": [
+          "D_8012E608",
+          "D_8012E60C",
+          "D_8012E610",
+          "D_8012E668",
+          "D_8012E674",
+          "D_80149438",
+          "D_8014A248"
+        ],
+        "own_literal_or_data_sections": [],
+        "relocation_counts": {
+          "R_MIPS_HI16": 16,
+          "R_MIPS_LO16": 16
+        },
+        "protected_manifest_sha256": "df9bc7af469722b962807a9338c4cea43aa15360cfede7b783de8d0f38453c7d",
+        "protected_manifest_entries_verified": 23,
+        "target_sha256": "095bf2a25976a20563d68f9854a77f6716441255ba27cab03ab7015fdedf478c",
+        "linked_body_sha256": "ca9ec43290346368916e16d7cdec1ee967dde09b4cd8e00e2f59bcd2b0ca60c4"
+      }
+    }
+  },
+  "guarded_exit_equals_prior_rejected_fallback_dispatch": true
+}

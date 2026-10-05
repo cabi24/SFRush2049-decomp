@@ -1,0 +1,551 @@
+{
+  "baseline": {
+    "diagnostic_only": true,
+    "no_force_controls": true,
+    "optimized_ucode_equal_to_stock": true,
+    "decisions": [
+      {
+        "phase": "p1",
+        "proc": "0",
+        "web": "8",
+        "save": "1.600000",
+        "nocs": "10",
+        "totalsave": "16.000000",
+        "bestcolor": "4",
+        "bestreg": "a1",
+        "numintf": "51",
+        "decision": "color",
+        "forced": "-2",
+        "native_listing_membership": {
+          "occurrence_block_ids": [
+            4,
+            3,
+            2,
+            10,
+            23,
+            25,
+            27,
+            28,
+            35,
+            37,
+            39,
+            40
+          ],
+          "default_live_block_ids": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            20,
+            21,
+            22,
+            24,
+            26,
+            30,
+            31,
+            32,
+            33,
+            34,
+            36,
+            38
+          ],
+          "normalization_input": 36,
+          "normalized_nocs": 10
+        }
+      },
+      {
+        "phase": "p1",
+        "proc": "0",
+        "web": "162",
+        "save": "1.500000",
+        "nocs": "4",
+        "totalsave": "6.000000",
+        "bestcolor": "5",
+        "bestreg": "a2",
+        "numintf": "26",
+        "decision": "color",
+        "forced": "-2",
+        "native_listing_membership": {
+          "occurrence_block_ids": [
+            31,
+            35,
+            37,
+            39,
+            40,
+            32
+          ],
+          "default_live_block_ids": [
+            33,
+            34,
+            36,
+            38
+          ],
+          "normalization_input": 10,
+          "normalized_nocs": 4
+        }
+      },
+      {
+        "phase": "p1",
+        "proc": "0",
+        "web": "154",
+        "save": "1.333333",
+        "nocs": "3",
+        "totalsave": "4.000000",
+        "bestcolor": "10",
+        "bestreg": "t3",
+        "numintf": "20",
+        "decision": "color",
+        "forced": "-2",
+        "native_listing_membership": {
+          "occurrence_block_ids": [
+            30,
+            31,
+            35,
+            39
+          ],
+          "default_live_block_ids": [
+            32,
+            33,
+            34,
+            36,
+            38
+          ],
+          "normalization_input": 9,
+          "normalized_nocs": 3
+        }
+      },
+      {
+        "phase": "p1",
+        "proc": "0",
+        "web": "165",
+        "save": "1.333333",
+        "nocs": "3",
+        "totalsave": "4.000000",
+        "bestcolor": "11",
+        "bestreg": "t4",
+        "numintf": "20",
+        "decision": "color",
+        "forced": "-2",
+        "native_listing_membership": {
+          "occurrence_block_ids": [
+            31,
+            35,
+            39,
+            32
+          ],
+          "default_live_block_ids": [
+            33,
+            34,
+            36,
+            38
+          ],
+          "normalization_input": 8,
+          "normalized_nocs": 3
+        }
+      }
+    ],
+    "source_sha256": "f8355db6884b85c77a25b21c7aae746be236ed10a3dc8fee93264259cf4c6f8f",
+    "source_status": "unaccepted research control",
+    "source_comparison_differing": 4,
+    "membership_provenance": "Native uopt -zdbug:5 listing, unchanged generated uopt source; ecvt/fcvt host-formatting wrappers implemented for diagnostics only. Completed output Ucode byte-identical to stock."
+  },
+  "both_body_do": {
+    "diagnostic_only": true,
+    "no_force_controls": true,
+    "optimized_ucode_equal_to_stock": true,
+    "decisions": [
+      {
+        "phase": "p1",
+        "proc": "0",
+        "web": "8",
+        "save": "1.600000",
+        "nocs": "10",
+        "totalsave": "16.000000",
+        "bestcolor": "4",
+        "bestreg": "a1",
+        "numintf": "51",
+        "decision": "color",
+        "forced": "-2",
+        "native_listing_membership": {
+          "occurrence_block_ids": [
+            4,
+            3,
+            2,
+            10,
+            23,
+            25,
+            27,
+            28,
+            36,
+            39,
+            41,
+            42
+          ],
+          "default_live_block_ids": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            20,
+            21,
+            22,
+            24,
+            26,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            38,
+            40
+          ],
+          "normalization_input": 37,
+          "normalized_nocs": 10
+        }
+      },
+      {
+        "phase": "p1",
+        "proc": "0",
+        "web": "162",
+        "save": "1.500000",
+        "nocs": "4",
+        "totalsave": "6.000000",
+        "bestcolor": "5",
+        "bestreg": "a2",
+        "numintf": "26",
+        "decision": "color",
+        "forced": "-2",
+        "native_listing_membership": {
+          "occurrence_block_ids": [
+            31,
+            36,
+            39,
+            41,
+            42,
+            32
+          ],
+          "default_live_block_ids": [
+            33,
+            34,
+            35,
+            38,
+            40
+          ],
+          "normalization_input": 11,
+          "normalized_nocs": 4
+        }
+      },
+      {
+        "phase": "p1",
+        "proc": "0",
+        "web": "165",
+        "save": "1.333333",
+        "nocs": "3",
+        "totalsave": "4.000000",
+        "bestcolor": "10",
+        "bestreg": "t3",
+        "numintf": "20",
+        "decision": "color",
+        "forced": "-2",
+        "native_listing_membership": {
+          "occurrence_block_ids": [
+            31,
+            36,
+            41,
+            32
+          ],
+          "default_live_block_ids": [
+            33,
+            34,
+            35,
+            38,
+            40
+          ],
+          "normalization_input": 9,
+          "normalized_nocs": 3
+        }
+      },
+      {
+        "phase": "p1",
+        "proc": "0",
+        "web": "154",
+        "save": "1.000000",
+        "nocs": "4",
+        "totalsave": "4.000000",
+        "bestcolor": "11",
+        "bestreg": "t4",
+        "numintf": "20",
+        "decision": "color",
+        "forced": "-2",
+        "native_listing_membership": {
+          "occurrence_block_ids": [
+            30,
+            31,
+            36,
+            41
+          ],
+          "default_live_block_ids": [
+            32,
+            33,
+            34,
+            35,
+            38,
+            40
+          ],
+          "normalization_input": 10,
+          "normalized_nocs": 4
+        }
+      }
+    ],
+    "source_sha256": "98a0adc8027464275b43845a6e223269c96a7cef2e1ec00395d264e0754b9c35",
+    "source_status": "unaccepted research control",
+    "source_comparison_differing": 8,
+    "membership_provenance": "Native uopt -zdbug:5 listing, unchanged generated uopt source; ecvt/fcvt host-formatting wrappers implemented for diagnostics only. Completed output Ucode byte-identical to stock."
+  },
+  "height_before_do": {
+    "diagnostic_only": true,
+    "no_force_controls": true,
+    "optimized_ucode_equal_to_stock": true,
+    "decisions": [
+      {
+        "phase": "p1",
+        "proc": "0",
+        "web": "8",
+        "save": "1.600000",
+        "nocs": "10",
+        "totalsave": "16.000000",
+        "bestcolor": "4",
+        "bestreg": "a1",
+        "numintf": "51",
+        "decision": "color",
+        "forced": "-2"
+      },
+      {
+        "phase": "p1",
+        "proc": "0",
+        "web": "162",
+        "save": "1.500000",
+        "nocs": "4",
+        "totalsave": "6.000000",
+        "bestcolor": "5",
+        "bestreg": "a2",
+        "numintf": "26",
+        "decision": "color",
+        "forced": "-2"
+      },
+      {
+        "phase": "p1",
+        "proc": "0",
+        "web": "165",
+        "save": "1.333333",
+        "nocs": "3",
+        "totalsave": "4.000000",
+        "bestcolor": "10",
+        "bestreg": "t3",
+        "numintf": "20",
+        "decision": "color",
+        "forced": "-2"
+      },
+      {
+        "phase": "p2",
+        "proc": "0",
+        "web": "154",
+        "save": "1.333333",
+        "nocs": "3",
+        "totalsave": "4.000000",
+        "bestcolor": "11",
+        "bestreg": "t4",
+        "numintf": "16",
+        "decision": "color",
+        "forced": "-2"
+      }
+    ],
+    "source_sha256": "99a3c8b36bb9284084899cd43fcc900c64e0a91a4ab43408ecde331851ac891f",
+    "source_status": "unaccepted research control",
+    "source_comparison_differing": 174
+  },
+  "setup_do": {
+    "diagnostic_only": true,
+    "no_force_controls": true,
+    "optimized_ucode_equal_to_stock": true,
+    "decisions": [
+      {
+        "phase": "p1",
+        "proc": "0",
+        "web": "162",
+        "save": "1.500000",
+        "nocs": "4",
+        "totalsave": "6.000000",
+        "bestcolor": "4",
+        "bestreg": "a1",
+        "numintf": "26",
+        "decision": "color",
+        "forced": "-2",
+        "native_listing_membership": {
+          "occurrence_block_ids": [
+            32,
+            38,
+            41,
+            43,
+            44,
+            33
+          ],
+          "default_live_block_ids": [
+            34,
+            35,
+            36,
+            37,
+            40,
+            42
+          ],
+          "normalization_input": 12,
+          "normalized_nocs": 4
+        }
+      },
+      {
+        "phase": "p1",
+        "proc": "0",
+        "web": "8",
+        "save": "1.454545",
+        "nocs": "11",
+        "totalsave": "16.000000",
+        "bestcolor": "5",
+        "bestreg": "a2",
+        "numintf": "51",
+        "decision": "color",
+        "forced": "-2",
+        "native_listing_membership": {
+          "occurrence_block_ids": [
+            4,
+            3,
+            2,
+            10,
+            23,
+            25,
+            27,
+            28,
+            38,
+            41,
+            43,
+            44
+          ],
+          "default_live_block_ids": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            20,
+            21,
+            22,
+            24,
+            26,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            40,
+            42
+          ],
+          "normalization_input": 39,
+          "normalized_nocs": 11
+        }
+      },
+      {
+        "phase": "p1",
+        "proc": "0",
+        "web": "154",
+        "save": "1.000000",
+        "nocs": "4",
+        "totalsave": "4.000000",
+        "bestcolor": "10",
+        "bestreg": "t3",
+        "numintf": "20",
+        "decision": "color",
+        "forced": "-2",
+        "native_listing_membership": {
+          "occurrence_block_ids": [
+            31,
+            32,
+            38,
+            43
+          ],
+          "default_live_block_ids": [
+            33,
+            34,
+            35,
+            36,
+            37,
+            40,
+            42
+          ],
+          "normalization_input": 11,
+          "normalized_nocs": 4
+        }
+      },
+      {
+        "phase": "p1",
+        "proc": "0",
+        "web": "165",
+        "save": "1.000000",
+        "nocs": "4",
+        "totalsave": "4.000000",
+        "bestcolor": "11",
+        "bestreg": "t4",
+        "numintf": "20",
+        "decision": "color",
+        "forced": "-2",
+        "native_listing_membership": {
+          "occurrence_block_ids": [
+            32,
+            38,
+            43,
+            33
+          ],
+          "default_live_block_ids": [
+            34,
+            35,
+            36,
+            37,
+            40,
+            42
+          ],
+          "normalization_input": 10,
+          "normalized_nocs": 4
+        }
+      }
+    ],
+    "source_sha256": "3fb16b926eb91443d08b7836685658c76fb683df3143d021f78984aacebd2ea1",
+    "source_status": "unaccepted research control",
+    "source_comparison_differing": 29,
+    "membership_provenance": "Native uopt -zdbug:5 listing, unchanged generated uopt source; ecvt/fcvt host-formatting wrappers implemented for diagnostics only. Completed output Ucode byte-identical to stock."
+  }
+}

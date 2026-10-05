@@ -1,0 +1,88 @@
+{
+  "status": "APPROVED_RESEARCH_ONLY",
+  "matching_claim": false,
+  "cartridge_claim": false,
+  "packet_sha256": {
+    "DESIGN.md": "5563b74a56940c77d126b7e42100a3b12091fd4e16bbfe1026c596ed7b9d2011",
+    "REPORT.md": "094ffde46139e2228c0c593595b142fed195b863158f967b832bbb201f5ac993",
+    "rectangle.c": "71db41453f568ca283ecb1ec19e9c5c9c845a65c74f7bcc65bbf198200c6ee76",
+    "verify_behavior.py": "9dbe09346d478f9fd07630f82743c0fd0e0115156907e46d98c9fa5f9b20ad75",
+    "context_probe.py": "3457a428ead59cd14cef582252642424630284abb3c30c911a1c081b63a066df",
+    "fresh_verification.json": "877ba2b4cb9546109df7a147f996ed7d161c03a256bba1fe0f43ea2895ce6a3c",
+    "context_verification.json": "720b835c5747d63b4e601296479234280b6f418c1d84d1c5c42e158a0a578917"
+  },
+  "SDK_repository": "n64decomp/libreultra",
+  "SDK_blobs_independently_confirmed_by_GitHub": {
+    "libreultra_gbi.h": "b418e0321f48acd86187a066a873211f0e0ff9cb",
+    "mbi.h": "9956ef20eeb3090533be9d0f513ada78e208041c"
+  },
+  "SDK_local_normalization": "One connector-added final newline removed only for Git blob identity verification; no content substitution.",
+  "behavior": {
+    "host_native_oracle_cases": 6926,
+    "host_UBSan_cases": 6926,
+    "native_offsets_executed": 445,
+    "compiled_cases": 6926,
+    "compiled_function_bytes": 540,
+    "target_bytes": 1780,
+    "linked_body_sha256": "899191261f027e38fd920828d3b1ac57e44b4c0a49ce5cbb8757eaf11e8fc391",
+    "independent_object_sha256": "6ad902d4baee8faf4556b38f0984ca04c2591e59c6bf70c815230f6e86ca140c",
+    "different_object_sections_vs_author": [
+      ".mdebug"
+    ],
+    "independent_receipt_equals_author_except_object_sha256": true
+  },
+  "mutants": {
+    "reject_zero_area": {
+      "new_cases_rejecting": 24,
+      "prior_host_cases_rejecting": 193
+    },
+    "narrow_y_to_short": {
+      "new_cases_rejecting": 2,
+      "prior_host_cases_rejecting": 0
+    },
+    "stretch_in_mode_zero": {
+      "new_cases_rejecting": 16,
+      "prior_host_cases_rejecting": 156
+    },
+    "post_stretch_texture_height": {
+      "new_cases_rejecting": 16,
+      "prior_host_cases_rejecting": 133
+    },
+    "phase_without_vertical_flip": {
+      "new_cases_rejecting": 16,
+      "prior_host_cases_rejecting": 135
+    },
+    "reclip_command_bottom": {
+      "new_cases_rejecting": 48,
+      "prior_host_cases_rejecting": 279
+    }
+  },
+  "sdk_context": {
+    "variants": 3,
+    "all_function_bytes": 1780,
+    "all_differing_words": 4,
+    "linked_body_sha256": "8ced2a588337f504ff6bd865a609a63a66f0c4f89a9c6c0d9cb8abf1c2a2a7a4",
+    "all_6828_case_replays_pass": true,
+    "extra_native_cases_per_variant": 98,
+    "independent_receipt_equals_author_except_object_sha256": true
+  },
+  "host_layout": {
+    "int_bytes": 4,
+    "unsigned_int_bytes": 4,
+    "Gfx_bytes": 16
+  },
+  "limits": [
+    "Finite model-based tests, not graphical hardware or gameplay proof.",
+    "Valid disjoint ordinary globals and packet storage; no concurrent mutation.",
+    "Source parameter types and gameplay reachability beyond caller-supported bounds remain unproven.",
+    "Native emulator and scalar oracle are shared with the earlier verifier; source formulation and compiler outputs are separately exercised.",
+    "Default CI validates source bindings, 98 native/oracle cases and computational narrowing sensitivity without SDK or compilers; full SDK/host/IDO reproduction is explicit."
+  ],
+  "checks": {
+    "new_SDK_free_tests": 11,
+    "combined_rectangle_tests": 20,
+    "result": "PASS",
+    "python_syntax": "PASS",
+    "diff_check": "PASS"
+  }
+}

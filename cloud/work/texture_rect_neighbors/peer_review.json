@@ -1,0 +1,33 @@
+{
+  "status": "APPROVED_RESEARCH_ONLY",
+  "reviewed_commit": "aa490534ce3cc9c13fe98db8f93699b3de786f87",
+  "matching_claim": false,
+  "cartridge_claim": false,
+  "packet_sha256": {
+    "DESIGN.md": "bc4b549795494b30fbe59fa1cb279e34cf87eb9342aebcf3124df142dee4619b",
+    "REPORT.md": "e3589f1f854c3582a62ba33cf080d617cbb4ad36b9991926bcf99d50d92d2df1",
+    "sdk_sibling_all.c": "fe3b7856a0ee29ccee9cc3c4479fe7844da57cb3295bf8649d27d75cdbf508c7",
+    "sdk_sibling_both.c": "58909f54d183cef13467b4b62d6f73336d1541cef3bd87a5d8adc3290fabe74e",
+    "verification.json": "f71b3ee5329292fccae70abd520b20196980735ab6a32e7bd17a362da5f206d7",
+    "verify.py": "7521b8b90f528816ab81f4e7d812e6e99bd78d2be82a5540719d2ef6929f7996"
+  },
+  "test_sha256": "0dbec8ef4a4056d8dc70397ddea5093c046de862105ad499dadaf7a74e6251b8",
+  "independent_stock_receipt_equals_archived": true,
+  "independent_stock_receipt_sha256": "f71b3ee5329292fccae70abd520b20196980735ab6a32e7bd17a362da5f206d7",
+  "pinned_sdk_git_blob": "b418e0321f48acd86187a066a873211f0e0ff9cb",
+  "gDPLoadTileGeneric_preprocessed_whitespace_free_sha256": "4b1f254b5f078d11662e88399a07913e48d3d4089e253416d917549253e13762",
+  "normalized_ugen_lines": 495,
+  "normalized_ugen_sha256": "5ccd566a12beebe77a9aefe3c151af505067e03accb223123b38f993c2355331",
+  "all_three_alias_boundaries_follow_unconditional_exit": true,
+  "rectangle_sources": 3,
+  "native_and_compiled_cases_per_source": 6926,
+  "defined_host_cases_per_source": 3828,
+  "unchanged_graphics_members_strict_zero": 6,
+  "focused_tests_passed": 37,
+  "limits": [
+    "No original-source identity or promoted-match claim",
+    "98 extra cases checked on native/linked integer execution, not signed host C",
+    "Ugen normalization removes only comments and file/location directives; it is not assembler input",
+    "No N64 hardware, image-splice, compression or full-ROM validation"
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "target_bytes": 1780,
+  "elf_function_bytes": 1780,
+  "linked_address": "0x80087110",
+  "linked_text_bytes": 1792,
+  "alignment_padding_bytes": 12,
+  "alignment_padding_all_zero": true,
+  "exact_extent": true,
+  "byte_equal": false,
+  "accepted_exact_match": false,
+  "project_scorer_differing_words": 8,
+  "project_scorer_target_words": 445,
+  "project_scorer_extra_words": 0,
+  "project_scorer_accepted": false,
+  "residual_offsets": [
+    "0x3d0",
+    "0x3d4",
+    "0x3e4",
+    "0x3ec",
+    "0x464",
+    "0x47c",
+    "0x5e4",
+    "0x5fc"
+  ],
+  "gnu_linker_equals_project_relocator": true,
+  "unresolved": [],
+  "unverified": [],
+  "relocation_errors": [],
+  "undefined_symbols": [
+    "D_8012E608",
+    "D_8012E60C",
+    "D_8012E610",
+    "D_8012E668",
+    "D_8012E674",
+    "D_80149438",
+    "D_8014A248"
+  ],
+  "own_literal_or_data_sections": [],
+  "relocation_counts": {
+    "R_MIPS_HI16": 16,
+    "R_MIPS_LO16": 16
+  },
+  "protected_manifest_sha256": "df9bc7af469722b962807a9338c4cea43aa15360cfede7b783de8d0f38453c7d",
+  "protected_manifest_entries_verified": 23,
+  "target_sha256": "095bf2a25976a20563d68f9854a77f6716441255ba27cab03ab7015fdedf478c",
+  "linked_body_sha256": "9f6ff53de5a77a9733162b1f63a5971057782812e27c6d6ef62aee69358e894c",
+  "function": "func_80087110",
+  "source_sha256": "98a0adc8027464275b43845a6e223269c96a7cef2e1ec00395d264e0754b9c35",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "object_sha256": "6e99a43bb9e0a1580eea6d6ee332892428855c00199698661c8a2c553fc07e8e",
+  "gnu_linker": "GNU ld (GNU Binutils for Debian) 2.44",
+  "host_compiler": "cc (Debian 14.2.0-19) 14.2.0",
+  "claims": [],
+  "status": "RESEARCH_ONLY",
+  "compiler_sha256": {
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+  },
+  "semantics": {
+    "result": "PASS",
+    "cases": 6828,
+    "categories": {
+      "clip_flip_stretch": 816,
+      "word_arguments_and_packet_masks": 12,
+      "defined_C_random": 3000,
+      "native_modular_stress": 3000
+    },
+    "host_C_UBSan_cases": 3828,
+    "host_dialect": "C99 for strict signed-shift UBSan coverage",
+    "sanitizer_negative_controls": {
+      "negative_left_shift": {
+        "expected_failure_observed": true,
+        "exit_code": 1
+      },
+      "signed_overflow": {
+        "expected_failure_observed": true,
+        "exit_code": 1
+      }
+    },
+    "emitting_cases": 941,
+    "rejected_cases": 5887,
+    "output_paths": {
+      "mode0_flip0_stretchFalse": 45,
+      "mode0_flip0_stretchTrue": 38,
+      "mode0_flip4_stretchFalse": 37,
+      "mode0_flip4_stretchTrue": 48,
+      "mode0_flip8_stretchFalse": 37,
+      "mode0_flip8_stretchTrue": 41,
+      "mode0_flip12_stretchFalse": 34,
+      "mode0_flip12_stretchTrue": 48,
+      "mode_nonzero_flip0_stretchFalse": 76,
+      "mode_nonzero_flip0_stretchTrue": 69,
+      "mode_nonzero_flip4_stretchFalse": 79,
+      "mode_nonzero_flip4_stretchTrue": 82,
+      "mode_nonzero_flip8_stretchFalse": 75,
+      "mode_nonzero_flip8_stretchTrue": 75,
+      "mode_nonzero_flip12_stretchFalse": 86,
+      "mode_nonzero_flip12_stretchTrue": 71
+    },
+    "native_instruction_offsets_executed": 445,
+    "candidate_instruction_offsets_executed": 445,
+    "native_unexecuted_offsets": [],
+    "models": [
+      "complete protected native stream",
+      "complete GNU-linked IDO stream",
+      "unchanged C source compiled with host UBSan on defined-domain cases",
+      "independent modulo-32-bit clipping and packet oracle"
+    ],
+    "memory_bounds_callee_saves_and_external_order": "PASS",
+    "limitations": [
+      "instruction-model replay, not N64 hardware or graphical validation",
+      "disjoint valid globals and aligned command storage, no racing mutation",
+      "full-word stress tests validate native modulo arithmetic only; signed C overflow and negative left shifts are excluded from the host domain",
+      "parameterized clip/mode tests do not establish all values occur in gameplay"
+    ]
+  }
+}
