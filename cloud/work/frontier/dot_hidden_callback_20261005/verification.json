@@ -1,0 +1,221 @@
+{
+  "status": "STRICT_MATCH_PENDING_INDEPENDENT_REVIEW",
+  "accepted_byte_gain": 0,
+  "base_revision": "cc4d5fdd0bbc42dbf6be49f00d9454af8cb9c4f5",
+  "function": "state_update_global",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "source": "cloud/matches/state_update_global.c",
+  "source_sha256": "4a55e13ddeffb597529ab15f4208e2fad77fdb481ccb345bf4ee28e549330625",
+  "code": {
+    "differing": 0,
+    "total": 28,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "verdict": "MATCH",
+    "symbol_bytes": 112,
+    "native_bytes": 112,
+    "start": "0x8010b560",
+    "end_exclusive": "0x8010b5d0",
+    "full_symbol_equality": true,
+    "independent_gnu_link": true,
+    "body_sha256": "f6c6d560d9fec4655cd774bd5da62442f4893bbb0cfc07505a37372d6fd7c689",
+    "relocations": [
+      {
+        "offset": 4,
+        "type": 5,
+        "symbol": "D_80149D98"
+      },
+      {
+        "offset": 8,
+        "type": 6,
+        "symbol": "D_80149D98"
+      },
+      {
+        "offset": 36,
+        "type": 4,
+        "symbol": "Input_ApplyPadConfig"
+      },
+      {
+        "offset": 56,
+        "type": 5,
+        "symbol": "D_80117358"
+      },
+      {
+        "offset": 68,
+        "type": 6,
+        "symbol": "D_80117358"
+      },
+      {
+        "offset": 76,
+        "type": 4,
+        "symbol": "Input_ApplyPadConfig"
+      }
+    ],
+    "own_data_bytes": 0,
+    "excluded_preceding_helper_bytes": 60,
+    "excluded_zero_alignment_bytes": 4
+  },
+  "controls": {
+    "archived_direct_o3": {
+      "differing": 3,
+      "total": 28,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "3/28 words differ",
+      "symbol_bytes": 112,
+      "native_bytes": 112,
+      "source": "cloud/work/near_miss_B/state_update_global_best.c",
+      "source_sha256": "01196e25d1c79896844bbbc3b6f81c996a7146b45e4ce2f2de49aacc7bc53998",
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+    },
+    "helper_o2": {
+      "differing": 27,
+      "total": 28,
+      "unresolved": [
+        "Hidden+0x0 at +0x18"
+      ],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "verdict": "27/28 words differ (unresolved symbols: Hidden+0x0 at +0x18)",
+      "symbol_bytes": 92,
+      "native_bytes": 112,
+      "source": "cloud/matches/state_update_global.c",
+      "source_sha256": "4a55e13ddeffb597529ab15f4208e2fad77fdb481ccb345bf4ee28e549330625",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared"
+    }
+  },
+  "genuine_context": {
+    "context_source": "src/blob/groups/frontier_pad_config/group.c",
+    "context_sha256": "851ffac18d1fa64431c2961d9d2683f279982ae3e329bff67710abe893f94a1d",
+    "context_unchanged": true,
+    "existing_roots_preserved": true,
+    "bodies": {
+      "state_update_global": {
+        "differing": 0,
+        "total": 28,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "verdict": "MATCH",
+        "symbol_bytes": 112,
+        "native_bytes": 112
+      },
+      "Input_ApplyPadConfig": {
+        "differing": 0,
+        "total": 48,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "verdict": "MATCH",
+        "symbol_bytes": 192,
+        "native_bytes": 192
+      },
+      "Input_InitPadHandlers": {
+        "differing": 0,
+        "total": 16,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "verdict": "MATCH",
+        "symbol_bytes": 64,
+        "native_bytes": 64
+      }
+    },
+    "limit": "This is the genuine three-body callback/callee group, not the full-game shadow unit."
+  },
+  "behavior": {
+    "cases": 15744,
+    "native_runs": 31488,
+    "host_ubsan": "passed",
+    "target_instructions_covered": 28,
+    "target_instructions": 28,
+    "ordered_callback_snapshots": "equal",
+    "full_untouched_blit_and_stack_canaries": "preserved",
+    "o32_saved_registers": "preserved",
+    "global_loads_per_native_run": 1,
+    "output_sha256": "3d881a0664ef9f3019d27ddd6470549169e11994eb9917c02822a38383a3b5b6",
+    "negative_controls": {
+      "stale_hide_return": {
+        "rejected": true,
+        "witness": [
+          0,
+          -128,
+          -1,
+          256,
+          0
+        ]
+      },
+      "unsigned_hide": {
+        "rejected": true,
+        "witness": [
+          0,
+          -128,
+          -1,
+          256,
+          0
+        ]
+      },
+      "clear_before_update": {
+        "rejected": true,
+        "witness": [
+          0,
+          -128,
+          0,
+          256,
+          0
+        ]
+      },
+      "skip_visible_update": {
+        "rejected": true,
+        "witness": [
+          0,
+          -128,
+          0,
+          256,
+          0
+        ]
+      },
+      "positive_only_global": {
+        "rejected": true,
+        "witness": [
+          -1,
+          -128,
+          -1,
+          256,
+          0
+        ]
+      }
+    }
+  },
+  "packet_sha256": {
+    "verify.py": "4d3a25538c2d107f2485a3202fd9d75249d0b9e24816bdd99b5c327f29db9b60",
+    "native.py": "c371fb49d3f958ce465242a6b3c7334e79b4686b4e1cb0e805e4fdc0cac205c9",
+    "host.c": "d21351ab6ed02da85c371f68d7ae0e7f554b577374714d7ec453fa9644a9dde8"
+  },
+  "compiler_sha256": {
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+  },
+  "target_manifest_sha256": "098c5096b16bbf96f1f987842ad33a5733284ab16e497c43e05ad0a429e4cef8",
+  "limits": [
+    "No full-game shadow unit, splice, linked image, compressed stream or ROM gate.",
+    "Bounded native interpreter and adversarial UpdateBlit mock, not actual callee or gameplay execution.",
+    "The host compiles unchanged C using its native pointer layout; ELF/native checks independently establish the O32 offsets.",
+    "Only the 112-byte callback is claimed; the preceding standalone helper and section alignment are excluded.",
+    "Claim checks cannot reveal unpublished worker activity."
+  ]
+}
