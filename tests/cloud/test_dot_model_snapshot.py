@@ -14,7 +14,7 @@ proof=importlib.util.module_from_spec(spec);sys.modules[spec.name]=proof;spec.lo
 
 
 def toolchain():
-    if not Path(proof.score.ido('cc')).exists():pytest.skip('IDO missing')
+    if not (proof.score.IDO / 'cc').exists():pytest.skip('IDO missing')
     if not shutil.which('mips-linux-gnu-ld'):pytest.skip('MIPS binutils missing')
     if not shutil.which('cc'):pytest.skip('C compiler missing')
 
