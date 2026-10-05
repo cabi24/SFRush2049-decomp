@@ -44,7 +44,45 @@ int func_800162AC(u16 id, SampleRecord *records)
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_800163A8.s")
+/* PROMOTED 2026-10-05 — func_800163A8
+ * Source:   cloud/work/boot_tail_promotion/sources/func_800163A8.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/sources/func_800163A8.c:func_800163A8 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "boot_tail_sample_contract.h"
+extern void func_80014D08(void *, unsigned int);
+extern int func_800161A0(SampleRecord *);
+int func_800163A8(unsigned short id)
+{
+    SampleRecord *resource;
+    int used;
+    int found;
+    unsigned int i;
+    found = 0;
+    for (i = 0; i < (unsigned int)D_800385A0; i++) {
+        used = 0;
+        for (resource = D_800385A8[i].records; resource->identifier != 0xffff; resource++) {
+            if (resource->identifier == id) {
+                found = 1;
+                if (--resource->references == 0) {
+                    func_80014D08(resource->descriptor, resource->offset);
+                }
+            }
+            if (resource->references != 0) {
+                used = 1;
+            }
+        }
+        if (found) {
+            if (!used) {
+                func_800161A0(D_800385A8[i].records);
+            }
+            return 1;
+        }
+    }
+    return 0;
+}
+
 /* PROMOTED 2026-10-04 — func_800164D0
  * Source:   cloud/matches/boot_tail/func_800164D0.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

@@ -47,8 +47,83 @@ unsigned int func_8001EAEC(void)
     return value;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1f5b0/func_8001EB10.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1f5b0/func_8001ECE0.s")
+/* PROMOTED 2026-10-05 — func_8001EB10
+ * Source:   cloud/work/boot_tail_promotion/voice_lists/sources/func_8001EB10.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/voice_lists/sources/func_8001EB10.c:func_8001EB10 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+extern SequenceNode *D_80050C50, *D_80050C54;
+extern void func_80021844(VoiceState *);
+void func_8001EB10(VoiceState *state)
+{
+    func_80021844(state);
+    if (state->identifier60 != 0xFFFFFFFFU) {
+        if (state->parent_identifier != 0xFFFFFFFFU) {
+            D_8004BEB8[(state->parent_identifier & 255)].next_identifier=state->next_identifier;
+            if (state->next_identifier != 0xFFFFFFFFU) {
+                D_8004BEB8[(state->next_identifier & 255)].parent_identifier=state->parent_identifier;
+            }
+        } else if (state->next_identifier != 0xFFFFFFFFU) {
+            state->entry18->value=state->next_identifier;
+            D_8004BEB8[(state->next_identifier & 255)].parent_identifier=0xFFFFFFFFU;
+            D_8004BEB8[(state->next_identifier & 255)].entry18=state->entry18;
+        } else {
+            if (state->entry18->previous != 0) {
+                state->entry18->previous->next=state->entry18->next;
+            } else {
+                D_80050C50=state->entry18->next;
+            }
+            if (state->entry18->next != 0) {
+                state->entry18->next->previous=state->entry18->previous;
+            }
+            state->entry18->next=D_80050C54;
+            if (D_80050C54 != 0) D_80050C54->previous=state->entry18;
+            state->entry18->previous=0;
+            D_80050C54=state->entry18;
+        }
+    }
+}
+
+/* PROMOTED 2026-10-05 — func_8001ECE0
+ * Source:   cloud/work/boot_tail_promotion/voice_lists/sources/func_8001ECE0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/voice_lists/sources/func_8001ECE0.c:func_8001ECE0 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+extern u32 func_8001EAEC(void);
+u32 func_8001ECE0(VoiceState *state)
+{
+    SequenceNode *current;
+    SequenceNode *previous;
+    SequenceNode *node;
+    u32 key;
+    key = func_8001EAEC();
+    previous = 0;
+    for (current = D_80050C50; current != 0; current = current->next) {
+        if (key < current->key) break;
+        if (key == current->key) key = func_8001EAEC();
+        previous = current;
+    }
+    node = D_80050C54;
+    if (node == 0) return 0xFFFFFFFFU;
+    if ((D_80050C54 = D_80050C54->next) != 0)
+        D_80050C54->previous = 0;
+    if (previous == 0) D_80050C50 = node;
+    else previous->next = node;
+    node->previous = previous;
+    node->next = current;
+    if (current != 0) current->previous = node;
+    node->key = key;
+    node->value = state->identifier60;
+    state->entry18 = node;
+    return key;
+}
+
 /* PROMOTED 2026-10-04 — func_8001EDF4
  * Source:   cloud/matches/boot_tail/func_8001EDF4.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -178,7 +253,23 @@ int func_8001F898(u8 channel)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1f5b0/func_8001F954.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1f5b0/func_8001F9D0.s")
+/* PROMOTED 2026-10-05 — func_8001F9D0
+ * Source:   cloud/work/boot_tail_promotion/voice_lists/sources/func_8001F9D0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/voice_lists/sources/func_8001F9D0.c:func_8001F9D0 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+extern void func_8001F6EC(VoiceState *);
+void func_8001F9D0(VoiceState *state)
+{
+    func_8001EB10(state);
+    state->flags24 &= ~3U;
+    state->value28 = 0;
+    func_8001F6EC(state);
+}
+
 /* PROMOTED 2026-10-04 — func_8001FA18
  * Source:   cloud/matches/boot_tail/func_8001FA18.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

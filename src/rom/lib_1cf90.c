@@ -45,7 +45,25 @@ void func_8001C3CC(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001C508.s")
+/* PROMOTED 2026-10-05 — func_8001C508
+ * Source:   cloud/work/boot_tail_promotion/sources/func_8001C508.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/sources/func_8001C508.c:func_8001C508 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "boot_tail_sample_contract.h"
+extern unsigned char D_8004FA18;
+extern void func_80014C60(short *, unsigned int);
+void func_8001C508(void)
+{
+    int i;
+    for (i = 0; i < D_8004FA18; i++) {
+        if (D_8004FA50[i].mode == 1) {
+            func_80014C60(D_8004FA50[i].buffer, D_8004FA50[i].samples);
+        }
+    }
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001C580.s")
 /* PROMOTED 2026-10-04 — func_8001C770
  * Source:   cloud/matches/boot_tail/func_8001C770.c (in-repo, locked)
@@ -59,7 +77,29 @@ unsigned int func_8001C770(unsigned int count)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001C77C.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001C7F4.s")
+/* PROMOTED 2026-10-05 — func_8001C7F4
+ * Source:   cloud/work/boot_tail_promotion/sources/func_8001C7F4.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/sources/func_8001C7F4.c:func_8001C7F4 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "boot_tail_sample_contract.h"
+extern unsigned char D_8002C630;
+extern void func_80014594(void);
+extern void func_800145DC(void);
+extern void func_8001F954(unsigned int);
+void func_8001C7F4(unsigned int channel)
+{
+    if (D_8002C630) {
+        func_80014594();
+        if (D_8004FA50[channel].mode == 1) {
+            D_8004FA50[channel].mode = 0;
+            func_8001F954(channel);
+        }
+        func_800145DC();
+    }
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001C860.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001CC9C.s")
 /* PROMOTED 2026-10-04 — func_8001CCC0
@@ -131,7 +171,25 @@ int func_8001D460(void *state, const void *first, const void *second, float four
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001D4CC.s")
+/* PROMOTED 2026-10-05 — func_8001D4CC
+ * Source:   cloud/work/boot_tail_promotion/sources/func_8001D4CC.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/sources/func_8001D4CC.c:func_8001D4CC (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "boot_tail_sample_contract.h"
+extern void func_8001D084(StateNode *);
+int func_8001D4CC(StateNode *state)
+{
+    if (D_8002C630) {
+        func_80014594();
+        func_8001D084(state);
+        func_800145DC();
+        return 1;
+    }
+    return 0;
+}
+
 /* PROMOTED 2026-10-04 — func_8001D518
  * Source:   cloud/matches/boot_tail/func_8001D518.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -240,6 +298,114 @@ void func_8001D928(void)
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001D944.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001DA74.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001DC08.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001DDE0.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001E0C0.s")
+/* PROMOTED 2026-10-05 — func_8001DDE0
+ * Source:   cloud/work/boot_tail_promotion/sources/func_8001DDE0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/sources/func_8001DDE0.c:func_8001DDE0 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "boot_tail_sample_contract.h"
+extern const float D_8002D90C;
+extern void func_8001D928(void);
+extern void func_8001C860(StateNode *, float *, float *, float *, float *, float *);
+extern int func_8001DA74(StateNode *, float, float, float, float, float);
+extern unsigned int func_8001B1D0(unsigned short, unsigned char, unsigned char);
+extern unsigned int func_800201D0(unsigned int);
+extern void func_8001D944(StateNode *, float);
+extern int func_8001B8C4(unsigned int);
+extern void func_8001CCDC(StateNode *, float, float, float, float, float);
+extern void func_8001DC08(void);
+void func_8001DDE0(void)
+{
+    StateNode *emitter;
+    StateNode *next;
+    float volume;
+    float x_pan;
+    float y_pan;
+    float z_pan;
+    float pitch;
+
+    func_8001D928();
+    emitter = D_8004FD50;
+    for (; emitter != 0; emitter = next) {
+        next = emitter->next;
+        if (emitter->flags08 & 0x40000) {
+            func_8001D084(emitter);
+            continue;
+        }
+        if (emitter->flags08 & 0x20001) {
+            func_8001C860(emitter, &volume, &pitch, &x_pan, &y_pan, &z_pan);
+        }
+        if (!(emitter->flags08 & 0x80000)) {
+            if (emitter->flags08 & 0x20000) {
+                if (volume == 0.0f && (emitter->flags08 & 4)) {
+                    emitter->flags08 |= 0x80000;
+                    emitter->flags08 &= ~0x20000;
+                    goto found_emitter;
+                }
+                if (emitter->flags08 & 1) {
+                    if (func_8001DA74(emitter, volume, x_pan, y_pan, z_pan, pitch)) {
+                        continue;
+                    }
+                } else {
+                    if ((emitter->identifier34 = func_8001B1D0(emitter->sound_id, 127, 64)) == 0xFFFFFFFFU) {
+                        if (!(emitter->flags08 & 2)) {
+                            emitter->flags08 |= 0x40000;
+                            emitter->flags08 &= ~0x20000;
+                        } else {
+                            continue;
+                        }
+                    }
+                }
+            } else if ((emitter->identifier34 = func_800201D0(emitter->identifier34)) == 0xFFFFFFFFU) {
+                if (emitter->flags08 & 2) {
+                    emitter->flags08 |= 0x20000;
+                } else {
+                    emitter->flags08 |= 0x40000;
+                }
+            }
+found_emitter:
+            if (emitter->identifier34 != 0xFFFFFFFFU) {
+                if (emitter->flags08 & 1) {
+                    func_8001D944(emitter, volume);
+                }
+                if (volume == 0.0f && (emitter->flags08 & 4)) {
+                    func_8001B8C4(emitter->identifier34);
+                    emitter->identifier34 = 0xFFFFFFFFU;
+                    if (emitter->flags08 & 2) {
+                        emitter->flags08 |= 0x80000;
+                    } else {
+                        emitter->flags08 |= 0x40000;
+                    }
+                } else {
+                    func_8001CCDC(emitter, volume, x_pan, y_pan, z_pan, pitch);
+                }
+            }
+            if (emitter->flags08 & 0x100000) {
+                emitter->fade += D_8002D90C;
+                if (emitter->fade >= 1.0f) {
+                    emitter->flags08 &= ~0x100000;
+                }
+            }
+        } else if (volume != 0.0f) {
+            emitter->flags08 &= ~0x80000;
+            emitter->flags08 |= 0x20000;
+        }
+    }
+    func_8001DC08();
+}
+
+/* PROMOTED 2026-10-05 — func_8001E0C0
+ * Source:   cloud/work/boot_tail_promotion/sources/func_8001E0C0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/sources/func_8001E0C0.c:func_8001E0C0 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "boot_tail_sample_contract.h"
+void func_8001E0C0(void)
+{
+    D_8004FD50 = 0;
+    D_8004FD54 = 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001E0D4.s")

@@ -62,7 +62,27 @@ u8 func_80021BC0(MacroState *state, MacroCommand *command)
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80021BF0.s")
+/* PROMOTED 2026-10-05 — func_80021BF0
+ * Source:   cloud/work/boot_tail_promotion/macro_stream_contracts/sources/func_80021BF0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/macro_stream_contracts/sources/func_80021BF0.c:func_80021BF0 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroState_80021BF0 { u32 field00; u32 field04; u32 field08; u32 field0C; u8 unknown10[0xC]; MacroCommand *field1C; MacroCommand *field20; u8 unknown24[0xA]; u8 field2E; } MacroState_80021BF0;
+typedef struct MacroControl_80021BF0 { u32 field0; u32 field4; u32 field8; } MacroControl_80021BF0;
+#pragma pack(0)
+extern u8 func_80021BC0(MacroState *, MacroCommand *);
+u8 func_80021BF0(MacroState_80021BF0 *state, MacroCommand *command)
+{
+    if (((command->word[0] >> 8) & 0xFF) == 0 || state->field08 == 0) {
+        return func_80021BC0((MacroState *)state, command);
+    }
+    state->field00 = state->field08;
+    state->field04 = state->field0C;
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80021C58.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80021CDC.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80021D5C.s")
@@ -186,8 +206,53 @@ u8 func_800225DC(MacroState_800225DC *state, MacroCommand_800225DC *command)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800225FC.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80022678.s")
+/* PROMOTED 2026-10-05 — func_800225FC
+ * Source:   cloud/work/boot_tail_promotion/macro_stream_contracts/sources/func_800225FC.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/macro_stream_contracts/sources/func_800225FC.c:func_800225FC (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroState_800225FC { u8 unknown00[0x4A]; u8 channel4A; u8 set4B; u8 unknown4C[4]; u16 note50; u8 unknown52[0x6E]; s8 detuneC0; u8 lastNoteC1; } MacroState_800225FC;
+#pragma pack()
+extern void func_80020F4C(u8, u8, u8);
+extern int func_80021764(MacroState *);
+u8 func_800225FC(MacroState_800225FC *state, MacroCommand *command)
+{
+    state->note50 = (u8)(command->word[0] >> 8) & 0x7F;
+    state->detuneC0 = command->word[0] >> 16;
+    if (func_80021764((MacroState *)state)) {
+        func_80020F4C(state->channel4A, state->set4B, state->note50);
+    }
+    command->word[0] = 4;
+    return func_8002193C((MacroState *)state, command);
+}
+
+/* PROMOTED 2026-10-05 — func_80022678
+ * Source:   cloud/work/boot_tail_promotion/macro_stream_contracts/sources/func_80022678.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/macro_stream_contracts/sources/func_80022678.c:func_80022678 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroState_80022678 { u8 unknown00[0x4A]; u8 channel4A; u8 set4B; u8 unknown4C[2]; u16 originalNote4E; u16 note50; u8 unknown52[0x6E]; s8 detuneC0; } MacroState_80022678;
+#pragma pack()
+u8 func_80022678(MacroState_80022678 *state, MacroCommand *command)
+{
+    if ((u8)(command->word[0] >> 24) == 0) {
+        state->note50 += (s8)(u8)(command->word[0] >> 8);
+    } else {
+        state->note50 = state->originalNote4E + (s8)(u8)(command->word[0] >> 8);
+    }
+    state->note50 = (s16)state->note50 < 0 ? 0 : state->note50 > 127 ? 127 : state->note50;
+    state->detuneC0 = command->word[0] >> 16;
+    if (func_80021764((MacroState *)state)) {
+        func_80020F4C(state->channel4A, state->set4B, state->note50);
+    }
+    command->word[0] = 4;
+    return func_8002193C((MacroState *)state, command);
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_8002279C.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80022874.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80022A40.s")
@@ -245,7 +310,20 @@ u8 func_80022C58(MacroState_80022C58 *state, MacroCommand_80022C58 *command)
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800232A4.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800233B0.s")
 extern u8 func_800233B0(MacroState *, MacroCommand *, u32);
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023520.s")
+/* PROMOTED 2026-10-05 — func_80023520
+ * Source:   cloud/work/boot_tail_promotion/macro_stream_contracts/sources/func_80023520.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/macro_stream_contracts/sources/func_80023520.c:func_80023520 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroState_80023520 { u8 unknown00[0x30]; u32 field30; u8 unknown34[0x2C]; u32 field60; } MacroState_80023520;
+#pragma pack(0)
+u8 func_80023520(MacroState_80023520 *state, MacroCommand *command)
+{
+    return func_800233B0((MacroState *)state, command, state->field30);
+}
+
 /* PROMOTED 2026-10-04 — func_80023544
  * Source:   cloud/matches/boot_tail/func_80023544.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -309,14 +387,110 @@ u8 func_80023818(MacroState_80023818 *state, MacroCommand_80023818 *command)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023844.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023870.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_8002389C.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800238C8.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800238F4.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023920.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_8002394C.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023978.s")
+/* PROMOTED 2026-10-05 — func_80023844
+ * Source:   cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_80023844.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_80023844.c:func_80023844 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+u8 func_80023844(MacroState_80023818 *state, MacroCommand_80023818 *command)
+{
+    func_80023754(state, (MacroControl_80023818 *)((u8 *)state + 0xD6),
+                  command, 0x00400000);
+    return 0;
+}
+
+/* PROMOTED 2026-10-05 — func_80023870
+ * Source:   cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_80023870.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_80023870.c:func_80023870 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+u8 func_80023870(MacroState_80023818 *state, MacroCommand_80023818 *command)
+{
+    func_80023754(state, (MacroControl_80023818 *)((u8 *)state + 0xFA),
+                  command, 0x00800000);
+    return 0;
+}
+
+/* PROMOTED 2026-10-05 — func_8002389C
+ * Source:   cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_8002389C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_8002389C.c:func_8002389C (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+u8 func_8002389C(MacroState_80023818 *state, MacroCommand_80023818 *command)
+{
+    func_80023754(state, (MacroControl_80023818 *)((u8 *)state + 0x11E),
+                  command, 0x01000000);
+    return 0;
+}
+
+/* PROMOTED 2026-10-05 — func_800238C8
+ * Source:   cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_800238C8.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_800238C8.c:func_800238C8 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+u8 func_800238C8(MacroState_80023818 *state, MacroCommand_80023818 *command)
+{
+    func_80023754(state, (MacroControl_80023818 *)((u8 *)state + 0x130),
+                  command, 0x08000000);
+    return 0;
+}
+
+/* PROMOTED 2026-10-05 — func_800238F4
+ * Source:   cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_800238F4.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_800238F4.c:func_800238F4 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+u8 func_800238F4(MacroState_80023818 *state, MacroCommand_80023818 *command)
+{
+    func_80023754(state, (MacroControl_80023818 *)((u8 *)state + 0x142),
+                  command, 0x04000000);
+    return 0;
+}
+
+/* PROMOTED 2026-10-05 — func_80023920
+ * Source:   cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_80023920.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_80023920.c:func_80023920 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+u8 func_80023920(MacroState_80023818 *state, MacroCommand_80023818 *command)
+{
+    func_80023754(state, (MacroControl_80023818 *)((u8 *)state + 0x154),
+                  command, 0x02000000);
+    return 0;
+}
+
+/* PROMOTED 2026-10-05 — func_8002394C
+ * Source:   cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_8002394C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_8002394C.c:func_8002394C (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+u8 func_8002394C(MacroState_80023818 *state, MacroCommand_80023818 *command)
+{
+    func_80023754(state, (MacroControl_80023818 *)((u8 *)state + 0xE8),
+                  command, 0x10000000);
+    return 0;
+}
+
+/* PROMOTED 2026-10-05 — func_80023978
+ * Source:   cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_80023978.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/macro_wrapper_contracts/sources/func_80023978.c:func_80023978 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+u8 func_80023978(MacroState_80023818 *state, MacroCommand_80023818 *command)
+{
+    func_80023754(state, (MacroControl_80023818 *)((u8 *)state + 0x10C),
+                  command, 0x20000000);
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800239A4.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023AD4.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023B50.s")

@@ -216,7 +216,21 @@ int func_80020174(unsigned short item, unsigned char channel, unsigned char valu
     return result;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_800201D0.s")
+/* PROMOTED 2026-10-05 — func_800201D0
+ * Source:   cloud/matches/boot_tail/func_800201D0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/matches/boot_tail/func_800201D0.c:func_800201D0 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern int func_8001EDF4(unsigned int);
+unsigned int func_800201D0(unsigned int value)
+{
+    if (func_8001EDF4(value) != -1) {
+        return value;
+    }
+    return 0xFFFFFFFF;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_80020200.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_8002021C.s")
 /* PROMOTED 2026-10-04 — func_80020274

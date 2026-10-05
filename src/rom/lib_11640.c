@@ -49,7 +49,24 @@ void func_80010D3C(unsigned int *frequency)
     *frequency = D_8003828C;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80010D74.s")
+/* PROMOTED 2026-10-05 — func_80010D74
+ * Source:   cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80010D74.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80010D74.c:func_80010D74 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern int osJamMesg(OSMesgQueue *, OSMesg, int);
+extern void (*D_8003801C)(void *);
+extern void *D_80038228[];
+void func_80010D74(void)
+{
+    unsigned char command[1];
+    command[0] = 255;
+    osJamMesg((OSMesgQueue *)D_800381F8, command, 1);
+    D_8003801C(D_80038228[0]);
+    D_8003801C(D_800381F0);
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80010DD8.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80010E80.s")
 /* PROMOTED 2026-10-04 — func_80011074
@@ -121,7 +138,24 @@ void func_80011848(void)
     D_8003801C(D_8003802C);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80011894.s")
+/* PROMOTED 2026-10-05 — func_80011894
+ * Source:   cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80011894.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80011894.c:func_80011894 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern unsigned int D_80038038;
+extern unsigned int D_8003803C;
+extern unsigned short D_80038028;
+void func_80011894(void)
+{
+    unsigned int value;
+    value = (unsigned int)D_8003802C;
+    D_8003803C = value & ~15U;
+    D_80038038 = value;
+    D_80038028 = 0;
+}
+
 /* PROMOTED 2026-10-04 — func_800118C0
  * Source:   cloud/work/boot_tail_promotion/sources/func_800118C0.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -188,7 +222,20 @@ void func_80011A3C(AudioState *audio)
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80011A64.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80011C1C.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80011C84.s")
+/* PROMOTED 2026-10-05 — func_80011C84
+ * Source:   cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80011C84.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80011C84.c:func_80011C84 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "boot_tail_audio_record.h"
+void func_80011C84(unsigned short index)
+{
+    AudioState *audio = &D_80038294[index];
+    func_80011A10(audio);
+    audio->active = 1;
+}
+
 /* PROMOTED 2026-10-04 — func_80011CD8
  * Source:   cloud/work/boot_tail_promotion/sources/func_80011CD8.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -320,7 +367,25 @@ AudioCacheNode *func_80012660(unsigned int tag)
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80012D18.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80013964.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_800139D4.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80013C84.s")
+/* PROMOTED 2026-10-05 — func_80013C84
+ * Source:   cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80013C84.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80013C84.c:func_80013C84 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "boot_tail_audio_record.h"
+extern unsigned short D_8003829C;
+void func_80013C84(void)
+{
+    int i;
+    for (i = 0; i < D_8003829C; i++) {
+        if (D_80038294[i].active != 0) {
+            D_80038294[i].position = D_80038294[i].current;
+            D_80038294[i].current = (unsigned int) D_80038294[i].sample_position;
+        }
+    }
+}
+
 /* PROMOTED 2026-10-04 — func_80013D70
  * Source:   cloud/matches/boot_tail/func_80013D70.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -560,7 +625,45 @@ int func_800146AC(void)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_800146B4.s")
+/* PROMOTED 2026-10-05 — func_800146B4
+ * Source:   cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_800146B4.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_800146B4.c:func_800146B4 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "boot_tail_audio_record.h"
+#pragma pack(1)
+typedef struct SampleInfo_800146B4 { unsigned int frequency; void *data; unsigned int offset; unsigned int length; unsigned int loopStart; unsigned int loopLength; unsigned char format; } SampleInfo_800146B4;
+#pragma pack()
+extern void func_80011C1C(unsigned short, unsigned short);
+void func_800146B4(unsigned int index, SampleInfo_800146B4 *sample, unsigned char reset)
+{
+    func_80011C1C(index, 0);
+    if (reset) {
+        D_80038294[index].initial_count = 0;
+        D_80038294[index].value22 = 0;
+        D_80038294[index].value24 = 1.0f;
+        D_80038294[index].release_count = 20;
+    }
+    D_80038294[index].data = sample->data;
+    D_80038294[index].sample_position = sample->offset;
+    D_80038294[index].current = D_80038294[index].position = sample->offset;
+    D_80038294[index].length = sample->length;
+    D_80038294[index].loop_start = sample->loopStart;
+    D_80038294[index].loop_length = sample->loopLength;
+    D_80038294[index].format = sample->format;
+    if (D_80038294[index].loop_length != 0) {
+        D_80038294[index].tail = D_80038294[index].length -
+            D_80038294[index].loop_length - D_80038294[index].loop_start;
+        if (D_80038294[index].tail < 10) D_80038294[index].tail = 0;
+    } else {
+        D_80038294[index].tail = 0;
+    }
+    if (((unsigned long)sample->data & 0xF0000000UL) != 0x80000000UL) {
+        D_80038294[index].flags |= 1;
+    }
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_8001489C.s")
 /* PROMOTED 2026-10-04 — func_800148F8
  * Source:   cloud/matches/boot_tail/func_800148F8.c (in-repo, locked)
@@ -588,7 +691,18 @@ void func_800149BC(unsigned int index)
     func_80011C84((unsigned short)index);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_800149DC.s")
+/* PROMOTED 2026-10-05 — func_800149DC
+ * Source:   cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_800149DC.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_800149DC.c:func_800149DC (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "boot_tail_audio_record.h"
+void func_800149DC(int index)
+{
+    D_80038294[index].pending = 0;
+}
+
 /* PROMOTED 2026-10-04 — func_80014A04
  * Source:   cloud/matches/boot_tail/func_80014A04.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -600,13 +714,82 @@ void func_80014A04(int unused)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80014A0C.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80014A74.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80014AF0.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80014B3C.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80014BB0.s")
+/* PROMOTED 2026-10-05 — func_80014A74
+ * Source:   cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014A74.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014A74.c:func_80014A74 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "boot_tail_audio_record.h"
+extern void func_8001E0E0(unsigned short *, unsigned short *, unsigned int, unsigned int, unsigned int, unsigned short *, unsigned int, unsigned short *);
+void func_80014A74(int index, unsigned int volume, unsigned int pan, unsigned int span, unsigned int aux)
+{
+    AudioSlot *slot;
+    slot = &D_80038294[index];
+    func_8001E0E0(&slot->value42, &slot->value40, volume, pan, span,
+                  &slot->value44, aux, &slot->value46);
+}
+
+/* PROMOTED 2026-10-05 — func_80014AF0
+ * Source:   cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014AF0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014AF0.c:func_80014AF0 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "boot_tail_audio_record.h"
+void func_80014AF0(int index)
+{
+    if (D_80038294[index].active) {
+        D_80038294[index].active = 0;
+        D_80038294[index].release_pending = 1;
+    }
+}
+
+/* PROMOTED 2026-10-05 — func_80014B3C
+ * Source:   cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014B3C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014B3C.c:func_80014B3C (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "boot_tail_audio_record.h"
+void func_80014B3C(int index)
+{
+    if (D_80038294[index].active != 0) {
+        D_80038294[index].release_count = 20;
+        if (D_80038294[index].pending != 0) {
+            D_80038294[index].pending = 0;
+        } else {
+            func_80011A3C(&D_80038294[index]);
+        }
+    }
+}
+
+/* PROMOTED 2026-10-05 — func_80014BB0
+ * Source:   cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014BB0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014BB0.c:func_80014BB0 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "boot_tail_audio_record.h"
+void func_80014BB0(int index)
+{
+    D_80038294[index].active = 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80014BD8.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80014BF8.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80014C18.s")
+/* PROMOTED 2026-10-05 — func_80014C18
+ * Source:   cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014C18.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014C18.c:func_80014C18 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "boot_tail_audio_record.h"
+unsigned int func_80014C18(int index)
+{
+    return D_80038294[index].position;
+}
+
 /* PROMOTED 2026-10-04 — func_80014C40
  * Source:   cloud/matches/boot_tail/func_80014C40.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

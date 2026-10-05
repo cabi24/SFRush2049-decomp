@@ -121,8 +121,70 @@ void func_8001B154(void)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001B1D0.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001B29C.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001B3A0.s")
+/* PROMOTED 2026-10-05 — func_8001B29C
+ * Source:   cloud/work/boot_tail_promotion/voice_lists/sources/func_8001B29C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/voice_lists/sources/func_8001B29C.c:func_8001B29C (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+extern int func_8001EDF4(u32);
+extern void func_80020610(u8, u8, u8, u8);
+int func_8001B29C(u32 identifier, u8 value)
+{
+    int result;
+    u32 index;
+    result = -1;
+    identifier = func_8001EDF4(identifier);
+    while (identifier != 0xFFFFFFFFU) {
+        index = identifier & 255;
+        if (D_8004BEB8[index].identifier == identifier) {
+            result = 0;
+            if (D_8004BEB8[index].flags & 2) {
+                func_80020610(10, index, D_8004BEB8[index].channel55, value);
+            } else {
+                func_80020610(10, index, D_8004BEB8[index].set, value);
+            }
+            identifier = D_8004BEB8[index].child;
+        } else {
+            return result;
+        }
+    }
+    return result;
+}
+
+/* PROMOTED 2026-10-05 — func_8001B3A0
+ * Source:   cloud/work/boot_tail_promotion/voice_lists/sources/func_8001B3A0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/voice_lists/sources/func_8001B3A0.c:func_8001B3A0 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+int func_8001B3A0(u32 identifier, u8 value)
+{
+    int result;
+    u32 index;
+    result = -1;
+    identifier = func_8001EDF4(identifier);
+    while (identifier != 0xFFFFFFFFU) {
+        index = identifier & 255;
+        if (D_8004BEB8[index].identifier == identifier) {
+            result = 0;
+            if (D_8004BEB8[index].flags & 2) {
+                func_80020610(131, index, D_8004BEB8[index].channel55, value);
+            } else {
+                func_80020610(131, index, D_8004BEB8[index].set, value);
+            }
+            identifier = D_8004BEB8[index].child;
+        } else {
+            return result;
+        }
+    }
+    return result;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001B4A4.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001B5F4.s")
 /* PROMOTED 2026-10-04 — func_8001B744
@@ -142,9 +204,86 @@ void func_8001B744(struct VoiceState *destination, struct VoiceState *source)
     func_80020DA8(132, destination, source);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001B7C0.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001B8C4.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001B968.s")
+/* PROMOTED 2026-10-05 — func_8001B7C0
+ * Source:   cloud/work/boot_tail_promotion/voice_lists/sources/func_8001B7C0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/voice_lists/sources/func_8001B7C0.c:func_8001B7C0 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+int func_8001B7C0(u32 identifier, u8 value)
+{
+    int result;
+    u32 index;
+    result = -1;
+    identifier = func_8001EDF4(identifier);
+    while (identifier != 0xFFFFFFFFU) {
+        index = identifier & 255;
+        if (D_8004BEB8[index].identifier == identifier) {
+            result = 0;
+            if (D_8004BEB8[index].flags & 2) {
+                func_80020610(7, index, D_8004BEB8[index].channel55, value);
+            } else {
+                func_80020610(7, index, D_8004BEB8[index].set, value);
+            }
+            identifier = D_8004BEB8[index].child;
+        } else {
+            return result;
+        }
+    }
+    return result;
+}
+
+/* PROMOTED 2026-10-05 — func_8001B8C4
+ * Source:   cloud/work/boot_tail_promotion/voice_lists/sources/func_8001B8C4.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/voice_lists/sources/func_8001B8C4.c:func_8001B8C4 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+extern u8 D_8002C630;
+int func_8001B8C4(u32 key)
+{
+    u32 index;
+    int result;
+    result = -1;
+    if (D_8002C630) {
+        key = func_8001EDF4(key);
+        while (key != 0xFFFFFFFFU) {
+            index = key & 255;
+            if (D_8004BEB8[index].identifier == key) {
+                D_8004BEB8[index].flags |= 8;
+                result = 0;
+            }
+            key = D_8004BEB8[index].child;
+        }
+    }
+    return result;
+}
+
+/* PROMOTED 2026-10-05 — func_8001B968
+ * Source:   cloud/work/boot_tail_promotion/voice_lists/sources/func_8001B968.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/voice_lists/sources/func_8001B968.c:func_8001B968 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context_wave3.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+u16 func_8001B968(u32 key)
+{
+    int identifier;
+    identifier = func_8001EDF4(key);
+    if (identifier != -1) {
+        if (D_8004BEB8[identifier & 255].identifier == (u32)identifier &&
+            !(D_8004BEB8[identifier & 255].flags & 2)) {
+            return D_8004BEB8[identifier & 255].valueC2;
+        }
+    }
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001B9F8.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001BDB8.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001BE14.s")
