@@ -1,0 +1,48 @@
+{
+ "members": [
+  "audio_reverb_update",
+  "audio_effect_process",
+  "synced_model_render",
+  "MP_TargetSpeed",
+  "assign_default_paths",
+  "stat_race_end",
+  "NextMaxPath",
+  "menu_item_select",
+  "car_damage_visual",
+  "car_angular_velocity_clamp"
+ ],
+ "context": [
+  "func_80095F8C",
+  "func_80095EF4",
+  "audio_buffer_sync",
+  "object_counter_decrement",
+  "object_counter_increment",
+  "func_800A51D8"
+ ],
+ "files": [
+  "group.c",
+  "alloc_at.c",
+  "car_damage_visual.c",
+  "deflate_mem.c"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "keep": [
+  "audio_effect_process",
+  "synced_model_render",
+  "MP_TargetSpeed",
+  "assign_default_paths",
+  "stat_race_end",
+  "audio_buffer_sync",
+  "object_counter_decrement",
+  "object_counter_increment",
+  "NextMaxPath",
+  "menu_item_select",
+  "car_damage_visual",
+  "car_angular_velocity_clamp"
+ ],
+ "provenance": "frontier wave 2 (w2c), 2026-10-05; extends src/blob/groups/codex_heap_release_a25",
+ "note": "Real group, no stand-ins: src/blob/groups/codex_heap_release_a25 sources unchanged (group.c, alloc_at.c, car_damage_visual.c as of lock 759) plus deflate_mem.c (car_angular_velocity_clamp). zlib callees (func_800AAB3C, car_spawn_at_checkpoint) and audio_dma_sync are external ABI calls. Only car_angular_velocity_clamp is a new claim. Keep the existing prefer_definition entry for func_800A51D8 (car_damage_visual.c).",
+ "claims": [
+  "car_angular_velocity_clamp"
+ ]
+}

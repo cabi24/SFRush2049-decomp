@@ -52,7 +52,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_heap_release_a25",
     "source": "src/blob/groups/codex_heap_release_a25/group.json",
-    "source_sha256": "4caf841779bed4da9a9ee2f83cccf6dd3bbacb5dff9a30af6effac810288b6cc",
+    "source_sha256": "f1927400e7548bc2ad6217a2d4aefecbf124b3dcb7db58d4eb0c733583f7b5db",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-05"
@@ -70,7 +70,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_heap_release_a25",
     "source": "src/blob/groups/codex_heap_release_a25/group.json",
-    "source_sha256": "4caf841779bed4da9a9ee2f83cccf6dd3bbacb5dff9a30af6effac810288b6cc",
+    "source_sha256": "f1927400e7548bc2ad6217a2d4aefecbf124b3dcb7db58d4eb0c733583f7b5db",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-05"
@@ -111,7 +111,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_heap_release_a25",
     "source": "src/blob/groups/codex_heap_release_a25/group.json",
-    "source_sha256": "4caf841779bed4da9a9ee2f83cccf6dd3bbacb5dff9a30af6effac810288b6cc",
+    "source_sha256": "f1927400e7548bc2ad6217a2d4aefecbf124b3dcb7db58d4eb0c733583f7b5db",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-05"
@@ -170,7 +170,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_heap_release_a25",
     "source": "src/blob/groups/codex_heap_release_a25/group.json",
-    "source_sha256": "4caf841779bed4da9a9ee2f83cccf6dd3bbacb5dff9a30af6effac810288b6cc",
+    "source_sha256": "f1927400e7548bc2ad6217a2d4aefecbf124b3dcb7db58d4eb0c733583f7b5db",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-05"
@@ -232,7 +232,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_heap_release_a25",
     "source": "src/blob/groups/codex_heap_release_a25/group.json",
-    "source_sha256": "4caf841779bed4da9a9ee2f83cccf6dd3bbacb5dff9a30af6effac810288b6cc",
+    "source_sha256": "f1927400e7548bc2ad6217a2d4aefecbf124b3dcb7db58d4eb0c733583f7b5db",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-05"
@@ -452,6 +452,15 @@
     "verified": "image_gate",
     "verified_at": "2026-10-04"
   },
+  "car_angular_velocity_clamp": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_heap_release_a25",
+    "source": "src/blob/groups/codex_heap_release_a25/group.json",
+    "source_sha256": "f1927400e7548bc2ad6217a2d4aefecbf124b3dcb7db58d4eb0c733583f7b5db",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
+  },
   "car_cg_height_set": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "zlib_deflate",
@@ -501,7 +510,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_heap_release_a25",
     "source": "src/blob/groups/codex_heap_release_a25/group.json",
-    "source_sha256": "4caf841779bed4da9a9ee2f83cccf6dd3bbacb5dff9a30af6effac810288b6cc",
+    "source_sha256": "f1927400e7548bc2ad6217a2d4aefecbf124b3dcb7db58d4eb0c733583f7b5db",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-05"
@@ -547,6 +556,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "championship_standings": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "championship_standings",
+    "source": "src/blob/groups/championship_standings/group.json",
+    "source_sha256": "8f9d722ac609fbebc851ed2c03ac7ee23f1deb7f972c0c861b5c73e354a4946c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
   },
   "client_sync": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -2969,6 +2987,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_800BA2B8": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_800BA2B8.c",
+    "source_sha256": "ff7aa7efcf610217a3125b0fb7008e07fedfe6df313f326854b2820ba0e28e25",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-05"
+  },
   "func_800BA61C": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800BA61C.c",
@@ -3376,7 +3402,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_heap_release_a25",
     "source": "src/blob/groups/codex_heap_release_a25/group.json",
-    "source_sha256": "4caf841779bed4da9a9ee2f83cccf6dd3bbacb5dff9a30af6effac810288b6cc",
+    "source_sha256": "f1927400e7548bc2ad6217a2d4aefecbf124b3dcb7db58d4eb0c733583f7b5db",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-05"
@@ -3891,10 +3917,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "championship_standings",
     "source": "src/blob/groups/championship_standings/group.json",
-    "source_sha256": "2adcb0f3ab24b3a11e5f8985a25dc483edf76e78fdffb39c49e759553578e7ce",
+    "source_sha256": "8f9d722ac609fbebc851ed2c03ac7ee23f1deb7f972c0c861b5c73e354a4946c",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-05"
   },
   "func_800DC1AC": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -5230,7 +5256,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_heap_release_a25",
     "source": "src/blob/groups/codex_heap_release_a25/group.json",
-    "source_sha256": "4caf841779bed4da9a9ee2f83cccf6dd3bbacb5dff9a30af6effac810288b6cc",
+    "source_sha256": "f1927400e7548bc2ad6217a2d4aefecbf124b3dcb7db58d4eb0c733583f7b5db",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-05"
@@ -6109,7 +6135,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_heap_release_a25",
     "source": "src/blob/groups/codex_heap_release_a25/group.json",
-    "source_sha256": "4caf841779bed4da9a9ee2f83cccf6dd3bbacb5dff9a30af6effac810288b6cc",
+    "source_sha256": "f1927400e7548bc2ad6217a2d4aefecbf124b3dcb7db58d4eb0c733583f7b5db",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-05"
@@ -6183,7 +6209,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_heap_release_a25",
     "source": "src/blob/groups/codex_heap_release_a25/group.json",
-    "source_sha256": "4caf841779bed4da9a9ee2f83cccf6dd3bbacb5dff9a30af6effac810288b6cc",
+    "source_sha256": "f1927400e7548bc2ad6217a2d4aefecbf124b3dcb7db58d4eb0c733583f7b5db",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-05"

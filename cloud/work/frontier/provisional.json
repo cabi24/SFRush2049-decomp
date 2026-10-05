@@ -42,5 +42,9 @@
  "func_800E7FA0": {
   "evidence": "cloud/work/frontier/w2e/func_800E7FA0/grp",
   "note": "wave 2: 40/311 words with a stand-in caller; only caller func_800E847C (2,100 bytes) is unmatched. NOT a match - recorded so the next agent starts here"
+ },
+ "camera_track_spline": {
+  "evidence": "cloud/work/frontier/w2c/camera_track_spline",
+  "note": "wave 2: strict MATCH with a stand-in caller; only caller camera_update is unmatched"
  }
 }

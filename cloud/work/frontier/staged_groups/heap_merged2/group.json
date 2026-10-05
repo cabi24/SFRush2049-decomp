@@ -1,0 +1,48 @@
+{
+ "members": [
+  "audio_reverb_update",
+  "audio_effect_process",
+  "synced_model_render",
+  "MP_TargetSpeed",
+  "assign_default_paths",
+  "stat_race_end",
+  "NextMaxPath",
+  "menu_item_select",
+  "car_damage_visual",
+  "func_800CB9D0",
+  "car_angular_velocity_clamp"
+ ],
+ "context": [
+  "func_80095F8C",
+  "func_80095EF4",
+  "audio_buffer_sync",
+  "object_counter_decrement",
+  "object_counter_increment",
+  "func_800A51D8"
+ ],
+ "files": [
+  "group.c",
+  "alloc_at.c",
+  "car_damage_visual.c",
+  "func_800CB9D0.c",
+  "deflate_mem.c"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "keep": [
+  "audio_effect_process",
+  "synced_model_render",
+  "MP_TargetSpeed",
+  "assign_default_paths",
+  "stat_race_end",
+  "audio_buffer_sync",
+  "object_counter_decrement",
+  "object_counter_increment",
+  "NextMaxPath",
+  "menu_item_select",
+  "car_damage_visual",
+  "func_800CB9D0",
+  "car_angular_velocity_clamp"
+ ],
+ "provenance": "frontier wave 2 (w2g, w2b, w2f, w2e), 2026-10-05",
+ "note": "Extends the locked group src/blob/groups/codex_heap_release_a25 (group.c, alloc_at.c, car_damage_visual.c are unchanged copies of the locked files) with func_800CB9D0.c, which calls the internal audio_reverb_update (address in a1, tag in a2). Only func_800CB9D0 is a new claim. It is also EQUAL in the whole-program unit (blob_unit score --with func_800CB9D0.c)."
+}

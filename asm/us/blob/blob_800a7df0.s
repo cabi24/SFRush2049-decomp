@@ -3232,6 +3232,7 @@ func_800AAB3C:
 .section .text.car_angular_velocity_clamp, "ax", @progbits
 .globl car_angular_velocity_clamp
 car_angular_velocity_clamp:
+    /* compiled from src/blob/car_angular_velocity_clamp.c */
     .word 0x27BDFF38
     .word 0xAFBF0024
     .word 0xAFA400AC

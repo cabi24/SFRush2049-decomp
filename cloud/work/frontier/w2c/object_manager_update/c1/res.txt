@@ -1,0 +1,108 @@
+s0_L051.c:   FAIL object_manager_update: 16 of 133 words differ
+s1_L073.c:   FAIL object_manager_update: 117 of 133 words differ; compiled body is 120 words, target 133
+s0_L052.c:   FAIL object_manager_update: 16 of 133 words differ
+s1_L075.c:   FAIL object_manager_update: 117 of 133 words differ; compiled body is 120 words, target 133
+s0_L053.c:   FAIL object_manager_update: 16 of 133 words differ
+s1_L076.c:   FAIL object_manager_update: 117 of 133 words differ; compiled body is 120 words, target 133
+s0_L054.c:   FAIL object_manager_update: 16 of 133 words differ
+s1_L077.c:   FAIL object_manager_update: 117 of 133 words differ; compiled body is 120 words, target 133
+s0_L055.c:   FAIL object_manager_update: 16 of 133 words differ
+s1_L078.c:   FAIL object_manager_update: 120 of 133 words differ; compiled body is 123 words, target 133
+s0_L056.c:   FAIL object_manager_update: 16 of 133 words differ
+s1_L080.c:   FAIL object_manager_update: 117 of 133 words differ; compiled body is 120 words, target 133
+s0_L057.c:   FAIL object_manager_update: 16 of 133 words differ
+s1_L081.c:   FAIL object_manager_update: 120 of 133 words differ; compiled body is 124 words, target 133
+s0_L059.c:   FAIL object_manager_update: 16 of 133 words differ
+s1_L083.c:   FAIL object_manager_update: 117 of 133 words differ; compiled body is 120 words, target 133
+s0_L060.c:   FAIL object_manager_update: 16 of 133 words differ
+s1_L084.c:   FAIL object_manager_update: 117 of 133 words differ; compiled body is 120 words, target 133
+s0_L061.c:   FAIL object_manager_update: 16 of 133 words differ
+s1_L085.c:   FAIL object_manager_update: 117 of 133 words differ; compiled body is 120 words, target 133
+s0_L063.c:   FAIL object_manager_update: 16 of 133 words differ
+s1_L086.c:   FAIL object_manager_update: 117 of 133 words differ; compiled body is 120 words, target 133
+s0_L064.c:   FAIL object_manager_update: 16 of 133 words differ
+s1_L088.c:   FAIL object_manager_update: 117 of 133 words differ; compiled body is 120 words, target 133
+s0_L065.c:   FAIL object_manager_update: 16 of 133 words differ
+s0_L066.c:   FAIL object_manager_update: 106 of 133 words differ; compiled body is 132 words, target 133
+s1_L089.c:   FAIL object_manager_update: 117 of 133 words differ; compiled body is 120 words, target 133
+s0_L067.c:   FAIL object_manager_update: 76 of 133 words differ
+s1_L090.c:   FAIL object_manager_update: 117 of 133 words differ; compiled body is 120 words, target 133
+s0_L068.c:   FAIL object_manager_update: 84 of 133 words differ; compiled body is 136 words, target 133
+s1_L092.c:   FAIL object_manager_update: 117 of 133 words differ; compiled body is 120 words, target 133
+s0_L070.c:   FAIL object_manager_update: 12 of 133 words differ
+s1_L096.c:   FAIL object_manager_update: 117 of 133 words differ; compiled body is 120 words, target 133
+s1_L097.c:   FAIL object_manager_update: 117 of 133 words differ; compiled body is 120 words, target 133
+s0_L071.c:   FAIL object_manager_update: 133 of 133 words differ; compiled body is 135 words, target 133
+s1_L099.c:   FAIL object_manager_update: 116 of 133 words differ; compiled body is 119 words, target 133
+s0_L073.c:   FAIL object_manager_update: 12 of 133 words differ
+s2_L051.c:   FAIL object_manager_update: 22 of 133 words differ
+s0_L075.c:   FAIL object_manager_update: 12 of 133 words differ
+s2_L052.c:   FAIL object_manager_update: 22 of 133 words differ
+s0_L076.c:   FAIL object_manager_update: 38 of 133 words differ
+s0_L077.c:   FAIL object_manager_update: 14 of 133 words differ
+s2_L053.c:   FAIL object_manager_update: 22 of 133 words differ
+s2_L054.c:   FAIL object_manager_update: 22 of 133 words differ
+s0_L078.c:   FAIL object_manager_update: 71 of 133 words differ; compiled body is 136 words, target 133
+s2_L055.c:   FAIL object_manager_update: 22 of 133 words differ
+s0_L080.c:   FAIL object_manager_update: 12 of 133 words differ
+s2_L056.c:   FAIL object_manager_update: 16 of 133 words differ
+s0_L081.c:   FAIL object_manager_update: 75 of 133 words differ; compiled body is 137 words, target 133
+s2_L057.c:   FAIL object_manager_update: 16 of 133 words differ
+s0_L083.c:   FAIL object_manager_update: 12 of 133 words differ
+s2_L059.c:   FAIL object_manager_update: 22 of 133 words differ
+s0_L084.c:   FAIL object_manager_update: 12 of 133 words differ
+s2_L060.c:   FAIL object_manager_update: 16 of 133 words differ
+s0_L085.c:   FAIL object_manager_update: 31 of 133 words differ
+s2_L061.c:   FAIL object_manager_update: 16 of 133 words differ
+s0_L086.c:   FAIL object_manager_update: 12 of 133 words differ
+s2_L063.c:   FAIL object_manager_update: 107 of 133 words differ; compiled body is 134 words, target 133
+s0_L088.c:   FAIL object_manager_update: 92 of 133 words differ; compiled body is 132 words, target 133
+s0_L089.c:   FAIL object_manager_update: 12 of 133 words differ
+s2_L064.c:   FAIL object_manager_update: 106 of 133 words differ; compiled body is 134 words, target 133
+s0_L090.c:   FAIL object_manager_update: 12 of 133 words differ
+s2_L065.c:   FAIL object_manager_update: 106 of 133 words differ; compiled body is 134 words, target 133
+s0_L092.c:   FAIL object_manager_update: 12 of 133 words differ
+s2_L066.c:   FAIL object_manager_update: 119 of 133 words differ; compiled body is 134 words, target 133
+s0_L096.c:   FAIL object_manager_update: 12 of 133 words differ
+s2_L067.c:   FAIL object_manager_update: 129 of 133 words differ; compiled body is 135 words, target 133
+s0_L097.c:   FAIL object_manager_update: 12 of 133 words differ
+s2_L068.c:   FAIL object_manager_update: 133 of 133 words differ; compiled body is 137 words, target 133
+s0_L099.c:   FAIL object_manager_update: 31 of 133 words differ; compiled body is 132 words, target 133
+s2_L070.c:   FAIL object_manager_update: 133 of 133 words differ; compiled body is 135 words, target 133
+s1_L051.c:   FAIL object_manager_update: 117 of 133 words differ; compiled body is 120 words, target 133
+s2_L071.c:   FAIL object_manager_update: 131 of 133 words differ; compiled body is 137 words, target 133
+s1_L052.c:   FAIL object_manager_update: 117 of 133 words differ; compiled body is 120 words, target 133
+s2_L073.c:   FAIL object_manager_update: 133 of 133 words differ; compiled body is 135 words, target 133
+s1_L053.c:   FAIL object_manager_update: 117 of 133 words differ; compiled body is 120 words, target 133
+s2_L075.c:   FAIL object_manager_update: 133 of 133 words differ; compiled body is 135 words, target 133
+s1_L054.c:   FAIL object_manager_update: 16 of 133 words differ
+s2_L076.c:   FAIL object_manager_update: 132 of 133 words differ; compiled body is 135 words, target 133
+s1_L055.c:   FAIL object_manager_update: 117 of 133 words differ; compiled body is 120 words, target 133
+s2_L077.c:   FAIL object_manager_update: 132 of 133 words differ; compiled body is 135 words, target 133
+s1_L056.c:   FAIL object_manager_update: 119 of 133 words differ; compiled body is 122 words, target 133
+s2_L078.c:   FAIL object_manager_update: 133 of 133 words differ; compiled body is 137 words, target 133
+s1_L057.c:   FAIL object_manager_update: 119 of 133 words differ; compiled body is 122 words, target 133
+s2_L080.c:   FAIL object_manager_update: 133 of 133 words differ; compiled body is 135 words, target 133
+s1_L059.c:   FAIL object_manager_update: 117 of 133 words differ; compiled body is 120 words, target 133
+s2_L081.c:   FAIL object_manager_update: 131 of 133 words differ; compiled body is 139 words, target 133
+s1_L060.c:   FAIL object_manager_update: 119 of 133 words differ; compiled body is 122 words, target 133
+s2_L083.c:   FAIL object_manager_update: 133 of 133 words differ; compiled body is 135 words, target 133
+s1_L061.c:   FAIL object_manager_update: 119 of 133 words differ; compiled body is 122 words, target 133
+s2_L084.c:   FAIL object_manager_update: 133 of 133 words differ; compiled body is 135 words, target 133
+s1_L063.c:   FAIL object_manager_update: 119 of 133 words differ; compiled body is 122 words, target 133
+s2_L085.c:   FAIL object_manager_update: 133 of 133 words differ; compiled body is 135 words, target 133
+s1_L064.c:   FAIL object_manager_update: 119 of 133 words differ; compiled body is 122 words, target 133
+s2_L086.c:   FAIL object_manager_update: 133 of 133 words differ; compiled body is 135 words, target 133
+s1_L065.c:   FAIL object_manager_update: 119 of 133 words differ; compiled body is 122 words, target 133
+s2_L088.c:   FAIL object_manager_update: 129 of 133 words differ; compiled body is 134 words, target 133
+s1_L066.c:   FAIL object_manager_update: 119 of 133 words differ; compiled body is 119 words, target 133
+s2_L089.c:   FAIL object_manager_update: 133 of 133 words differ; compiled body is 135 words, target 133
+s1_L067.c:   FAIL object_manager_update: 120 of 133 words differ; compiled body is 120 words, target 133
+s2_L090.c:   FAIL object_manager_update: 133 of 133 words differ; compiled body is 135 words, target 133
+s1_L068.c:   FAIL object_manager_update: 120 of 133 words differ; compiled body is 123 words, target 133
+s2_L092.c:   FAIL object_manager_update: 133 of 133 words differ; compiled body is 135 words, target 133
+s1_L070.c:   FAIL object_manager_update: 117 of 133 words differ; compiled body is 120 words, target 133
+s2_L096.c:   FAIL object_manager_update: 133 of 133 words differ; compiled body is 135 words, target 133
+s1_L071.c:   FAIL object_manager_update: 119 of 133 words differ; compiled body is 119 words, target 133
+s2_L097.c:   FAIL object_manager_update: 28 of 133 words differ
+s2_L099.c:   FAIL object_manager_update: 31 of 133 words differ; compiled body is 132 words, target 133

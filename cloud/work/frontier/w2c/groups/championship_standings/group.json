@@ -1,0 +1,25 @@
+{
+ "members": [
+  "func_800DC120",
+  "championship_standings"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "championship_standings",
+  "tournament_trophy_award",
+  "func_800DC1AC",
+  "__standin_func_800DC120"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [
+  "func_800DC1AC",
+  "tournament_trophy_award"
+ ],
+ "provenance": "frontier wave 2 (w2c), 2026-10-04; extends src/blob/groups/championship_standings (func_800DC120 unchanged)",
+ "claims": [
+  "championship_standings"
+ ]
+}

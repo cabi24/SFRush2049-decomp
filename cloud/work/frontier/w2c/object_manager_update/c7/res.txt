@@ -1,0 +1,16 @@
+m0_o0.c:   FAIL object_manager_update: 2 of 133 words differ
+m4_o0.c:   FAIL object_manager_update: 2 of 133 words differ
+m0_o1.c:   FAIL object_manager_update: 2 of 133 words differ
+m4_o1.c:   FAIL object_manager_update: 2 of 133 words differ
+m1_o0.c:   FAIL object_manager_update: 2 of 133 words differ
+m5_o0.c:   FAIL object_manager_update: 2 of 133 words differ
+m1_o1.c:   FAIL object_manager_update: 2 of 133 words differ
+m5_o1.c:   FAIL object_manager_update: 2 of 133 words differ
+m2_o0.c:   FAIL object_manager_update: 2 of 133 words differ
+m6_o0.c:   FAIL object_manager_update: 2 of 133 words differ
+m2_o1.c:   FAIL object_manager_update: 2 of 133 words differ
+m6_o1.c:   FAIL object_manager_update: 2 of 133 words differ
+m3_o0.c:   FAIL object_manager_update: 2 of 133 words differ
+m7_o0.c:   FAIL object_manager_update: 2 of 133 words differ
+m3_o1.c:   FAIL object_manager_update: 2 of 133 words differ
+m7_o1.c:   FAIL object_manager_update: 2 of 133 words differ

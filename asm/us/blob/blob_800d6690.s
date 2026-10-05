@@ -6020,6 +6020,7 @@ func_800DC1AC:
 .section .text.championship_standings, "ax", @progbits
 .globl championship_standings
 championship_standings:
+    /* compiled from src/blob/championship_standings.c */
     .word 0x27BDFFD0
     .word 0x3C028011
     .word 0x944270E8

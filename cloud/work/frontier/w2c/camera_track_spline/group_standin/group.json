@@ -1,0 +1,17 @@
+{
+ "members": [
+  "camera_track_spline"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "__standin_camera_track_spline_caller"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "claims": [],
+ "note": "PROVISIONAL: stand-in caller; real callers (camera_update) unmatched. Not spliceable.",
+ "provenance": "frontier wave 2 (w2c), 2026-10-04"
+}
