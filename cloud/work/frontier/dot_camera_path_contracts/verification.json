@@ -1,0 +1,593 @@
+{
+  "base": "f88dc3cb",
+  "claims": [],
+  "classification": "NONMATCH / incomplete IPA closure",
+  "diagnostic_seed_group": {
+    "camera_follow_path": {
+      "comparison": {
+        "differing": 250,
+        "errors": [],
+        "extra_words": 0,
+        "total": 371,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 1336,
+      "elf_end_exclusive": 1336,
+      "elf_start": 0,
+      "frame_bytes": 112,
+      "full_body_nonzero_excess_words": 0,
+      "full_body_relocations": {
+        "errors": [],
+        "unresolved": [],
+        "unverified": []
+      },
+      "full_body_resolved_sha256": "884b27ff3c6bfb33153f00f5bd4088522abb0c79f0d40445d4245b5945205562",
+      "native_bytes": 1484,
+      "nonzero_alignment_words": 0,
+      "own_data_notes": [],
+      "strict_match": false,
+      "summary": "250/371 words differ",
+      "zero_alignment_bytes": 0
+    },
+    "func_8008B2E4": {
+      "comparison": {
+        "differing": 4,
+        "errors": [],
+        "extra_words": 0,
+        "total": 18,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 72,
+      "elf_end_exclusive": 1408,
+      "elf_start": 1336,
+      "frame_bytes": 0,
+      "full_body_nonzero_excess_words": 0,
+      "full_body_relocations": {
+        "errors": [],
+        "unresolved": [],
+        "unverified": []
+      },
+      "full_body_resolved_sha256": "ec837c477ca7eb05d097823147138876f75a8eee9a40cc8eb1e0832963fce1f5",
+      "native_bytes": 72,
+      "nonzero_alignment_words": 0,
+      "own_data_notes": [],
+      "strict_match": false,
+      "summary": "4/18 words differ",
+      "zero_alignment_bytes": 0
+    },
+    "func_800D348C": {
+      "comparison": {
+        "differing": 378,
+        "errors": [],
+        "extra_words": 0,
+        "total": 421,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x8",
+          ".rodata+0x0 at +0xc"
+        ]
+      },
+      "elf_bytes": 1672,
+      "elf_end_exclusive": 3080,
+      "elf_start": 1408,
+      "frame_bytes": 304,
+      "full_body_nonzero_excess_words": 0,
+      "full_body_relocations": {
+        "errors": [],
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x8",
+          ".rodata+0x0 at +0xc"
+        ]
+      },
+      "full_body_resolved_sha256": "0150ed75d51e75c90298c0d55f738d99afbaba4ba2ce80edcd9a54184d2c4ae6",
+      "native_bytes": 1684,
+      "nonzero_alignment_words": 0,
+      "own_data_notes": [
+        "not verified: .rodata+0x0 at +0xc: retail bytes at 0x417FA110 are not available"
+      ],
+      "strict_match": false,
+      "summary": "378/421 words differ (2 section-relative relocations unverified: .rodata+0x0 at +0x8, .rodata+0x0 at +0xc)",
+      "zero_alignment_bytes": 0
+    },
+    "stunt_combo_display": {
+      "comparison": {
+        "differing": 1101,
+        "errors": [
+          "own .rodata+0x10 referenced at +0x6dc differs from retail 0x80118015 (+0x0: retail and candidate literal bytes differ; 4 bytes compared)"
+        ],
+        "extra_words": 1,
+        "total": 1175,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x4 at +0x2d4",
+          ".rodata+0x4 at +0x2d8",
+          ".rodata+0x8 at +0x520",
+          ".rodata+0x8 at +0x524",
+          ".rodata+0xc at +0x4fc",
+          ".rodata+0xc at +0x530",
+          ".rodata+0x10 at +0x6d4",
+          ".rodata+0x10 at +0x6dc",
+          ".rodata+0x14 at +0x878",
+          ".rodata+0x14 at +0x87c",
+          ".rodata+0x18 at +0x9a8",
+          ".rodata+0x18 at +0x9ac",
+          ".rodata+0x1c at +0xa18",
+          ".rodata+0x1c at +0xa1c",
+          ".rodata+0x20 at +0xa38",
+          ".rodata+0x20 at +0xa3c"
+        ]
+      },
+      "elf_bytes": 4704,
+      "elf_end_exclusive": 7784,
+      "elf_start": 3080,
+      "frame_bytes": 424,
+      "full_body_nonzero_excess_words": 1,
+      "full_body_relocations": {
+        "errors": [],
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x4 at +0x2d4",
+          ".rodata+0x4 at +0x2d8",
+          ".rodata+0x8 at +0x520",
+          ".rodata+0x8 at +0x524",
+          ".rodata+0xc at +0x4fc",
+          ".rodata+0xc at +0x530",
+          ".rodata+0x10 at +0x6d4",
+          ".rodata+0x10 at +0x6dc",
+          ".rodata+0x14 at +0x878",
+          ".rodata+0x14 at +0x87c",
+          ".rodata+0x18 at +0x9a8",
+          ".rodata+0x18 at +0x9ac",
+          ".rodata+0x1c at +0xa18",
+          ".rodata+0x1c at +0xa1c",
+          ".rodata+0x20 at +0xa38",
+          ".rodata+0x20 at +0xa3c"
+        ]
+      },
+      "full_body_resolved_sha256": "54735e1119eccfcb5466c573adb18f4f81cb23c2b4fa8cb83d9aaedc8fc0207b",
+      "native_bytes": 4700,
+      "nonzero_alignment_words": 0,
+      "own_data_notes": [
+        "not verified: .rodata+0x4 at +0x2d8: retail bytes at 0x30000000 are not available",
+        "not verified: .rodata+0x8 at +0x524: retail bytes at 0x012B8012 are not available",
+        "not verified: .rodata+0xc at +0x530: retail bytes at 0x001907EA are not available",
+        "not verified: .rodata+0x14 at +0x87c: retail bytes at 0x3FC05000 are not available",
+        "not verified: .rodata+0x18 at +0x9ac: retail bytes at 0x20000018 are not available",
+        "not verified: .rodata+0x1c at +0xa1c: retail bytes at 0x41A05000 are not available",
+        "not verified: .rodata+0x20 at +0xa3c: retail bytes at 0x012C4000 are not available"
+      ],
+      "strict_match": false,
+      "summary": "1101/1175 words differ (1 extra words (nonzero beyond target length); 16 section-relative relocations unverified: .rodata+0x4 at +0x2d4, .rodata+0x4 at +0x2d8, .rodata+0x8 at +0x520, .rodata+0x8 at +0x524, .rodata+0xc at +0x4fc, .rodata+0xc at +0x530, .rodata+0x10 at +0x6d4, .rodata+0x10 at +0x6dc, .rodata+0x14 at +0x878, .rodata+0x14 at +0x87c, .rodata+0x18 at +0x9a8, .rodata+0x18 at +0x9ac, .rodata+0x1c at +0xa18, .rodata+0x1c at +0xa1c, .rodata+0x20 at +0xa38, .rodata+0x20 at +0xa3c; own .rodata+0x10 referenced at +0x6dc differs from retail 0x80118015 (+0x0: retail and candidate literal bytes differ; 4 bytes compared))",
+      "zero_alignment_bytes": 8
+    }
+  },
+  "native": {
+    "camera_follow_path": {
+      "bytes": 1484,
+      "calls": [
+        {
+          "destination": "0x80098a54",
+          "name": "func_80098A54",
+          "site": "0x800c4b9c"
+        },
+        {
+          "destination": "0x800c4200",
+          "name": "camera_trigger_check",
+          "site": "0x800c4bac"
+        },
+        {
+          "destination": "0x8009c3f8",
+          "name": "func_8009C3F8",
+          "site": "0x800c4bc0"
+        },
+        {
+          "destination": "0x800c4180",
+          "name": "func_800C4180",
+          "site": "0x800c4bf0"
+        },
+        {
+          "destination": "0x80008730",
+          "name": null,
+          "site": "0x800c4bfc"
+        },
+        {
+          "destination": "0x800088f0",
+          "name": null,
+          "site": "0x800c4c0c"
+        },
+        {
+          "destination": "0x800c40e8",
+          "name": "func_800C40E8",
+          "site": "0x800c4c84"
+        }
+      ],
+      "direct_callers": [
+        {
+          "caller": "func_800C4F68",
+          "site": "0x800c4fcc"
+        },
+        {
+          "caller": "func_800C4F68",
+          "site": "0x800c5494"
+        },
+        {
+          "caller": "stunt_combo_display",
+          "site": "0x800d419c"
+        },
+        {
+          "caller": "stunt_combo_display",
+          "site": "0x800d4ab4"
+        }
+      ],
+      "end_exclusive": "0x800c4c9c",
+      "frame_bytes": 104,
+      "sha256": "f941d1265b00c6bdfc63ed676861edca12921a9b00e371a9397e1d179694845c",
+      "start": "0x800c46d0"
+    },
+    "func_8008B2E4": {
+      "bytes": 72,
+      "calls": [],
+      "direct_callers": [],
+      "end_exclusive": "0x8008b32c",
+      "frame_bytes": 0,
+      "sha256": "ba9c8043ae09ad367b6cfc05f8cecf7258c9f6b4ba74f877755617abfd558095",
+      "start": "0x8008b2e4"
+    },
+    "func_800D348C": {
+      "bytes": 1684,
+      "calls": [
+        {
+          "destination": "0x8038ca24",
+          "name": null,
+          "site": "0x800d34bc"
+        },
+        {
+          "destination": "0x800d3430",
+          "name": "func_800D3430",
+          "site": "0x800d3808"
+        }
+      ],
+      "direct_callers": [
+        {
+          "caller": "stunt_combo_display",
+          "site": "0x800d40a4"
+        }
+      ],
+      "end_exclusive": "0x800d3b20",
+      "frame_bytes": 200,
+      "sha256": "d50f3a0ea6722787bae30e15966a6dbef80f1388e18342398e2a9e607865b59f",
+      "start": "0x800d348c"
+    },
+    "stunt_combo_display": {
+      "bytes": 4700,
+      "calls": [
+        {
+          "destination": "0x8008d6b0",
+          "name": "math_utility",
+          "site": "0x800d3ca8"
+        },
+        {
+          "destination": "0x800d11bc",
+          "name": "func_800D11BC",
+          "site": "0x800d3d40"
+        },
+        {
+          "destination": "0x800c4180",
+          "name": "func_800C4180",
+          "site": "0x800d3ecc"
+        },
+        {
+          "destination": "0x800c4200",
+          "name": "camera_trigger_check",
+          "site": "0x800d3ef0"
+        },
+        {
+          "destination": "0x800c4180",
+          "name": "func_800C4180",
+          "site": "0x800d3f20"
+        },
+        {
+          "destination": "0x80008730",
+          "name": null,
+          "site": "0x800d3f30"
+        },
+        {
+          "destination": "0x800088f0",
+          "name": null,
+          "site": "0x800d3f44"
+        },
+        {
+          "destination": "0x80008730",
+          "name": null,
+          "site": "0x800d3f5c"
+        },
+        {
+          "destination": "0x800088f0",
+          "name": null,
+          "site": "0x800d3f68"
+        },
+        {
+          "destination": "0x8008d6b0",
+          "name": "math_utility",
+          "site": "0x800d3f7c"
+        },
+        {
+          "destination": "0x800c40e8",
+          "name": "func_800C40E8",
+          "site": "0x800d3f98"
+        },
+        {
+          "destination": "0x800d348c",
+          "name": "func_800D348C",
+          "site": "0x800d40a4"
+        },
+        {
+          "destination": "0x800c46d0",
+          "name": "camera_follow_path",
+          "site": "0x800d419c"
+        },
+        {
+          "destination": "0x800c4c9c",
+          "name": "func_800C4C9C",
+          "site": "0x800d4330"
+        },
+        {
+          "destination": "0x800d2c10",
+          "name": "func_800D2C10",
+          "site": "0x800d4474"
+        },
+        {
+          "destination": "0x800d2a74",
+          "name": "difficulty_select",
+          "site": "0x800d45f0"
+        },
+        {
+          "destination": "0x800d2928",
+          "name": "lap_count_select",
+          "site": "0x800d4658"
+        },
+        {
+          "destination": "0x800015bc",
+          "name": null,
+          "site": "0x800d47a0"
+        },
+        {
+          "destination": "0x800d24c8",
+          "name": "race_countdown_display",
+          "site": "0x800d47c0"
+        },
+        {
+          "destination": "0x800015bc",
+          "name": null,
+          "site": "0x800d48f0"
+        },
+        {
+          "destination": "0x800d24c8",
+          "name": "race_countdown_display",
+          "site": "0x800d4910"
+        },
+        {
+          "destination": "0x800015bc",
+          "name": null,
+          "site": "0x800d4a3c"
+        },
+        {
+          "destination": "0x800d24c8",
+          "name": "race_countdown_display",
+          "site": "0x800d4a5c"
+        },
+        {
+          "destination": "0x800c46d0",
+          "name": "camera_follow_path",
+          "site": "0x800d4ab4"
+        },
+        {
+          "destination": "0x8009e820",
+          "name": "func_8009E820",
+          "site": "0x800d4b70"
+        },
+        {
+          "destination": "0x800d14f4",
+          "name": "func_800D14F4",
+          "site": "0x800d4be0"
+        },
+        {
+          "destination": "0x800d14f4",
+          "name": "func_800D14F4",
+          "site": "0x800d4bf4"
+        },
+        {
+          "destination": "0x8008d6b0",
+          "name": "math_utility",
+          "site": "0x800d4c9c"
+        },
+        {
+          "destination": "0x800d11bc",
+          "name": "func_800D11BC",
+          "site": "0x800d4cd4"
+        }
+      ],
+      "direct_callers": [
+        {
+          "caller": "func_800E543C",
+          "site": "0x800e55f8"
+        }
+      ],
+      "end_exclusive": "0x800d4d84",
+      "frame_bytes": 400,
+      "sha256": "ab9cc42ef0cd22b58ca845f080f8ca49e36ea6169fd908c65603938df9ba9fce",
+      "start": "0x800d3b28"
+    }
+  },
+  "natural_group": {
+    "camera_follow_path": {
+      "comparison": {
+        "differing": 250,
+        "errors": [],
+        "extra_words": 0,
+        "total": 371,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 1336,
+      "elf_end_exclusive": 1336,
+      "elf_start": 0,
+      "frame_bytes": 112,
+      "full_body_nonzero_excess_words": 0,
+      "full_body_relocations": {
+        "errors": [],
+        "unresolved": [],
+        "unverified": []
+      },
+      "full_body_resolved_sha256": "884b27ff3c6bfb33153f00f5bd4088522abb0c79f0d40445d4245b5945205562",
+      "native_bytes": 1484,
+      "nonzero_alignment_words": 0,
+      "own_data_notes": [],
+      "strict_match": false,
+      "summary": "250/371 words differ",
+      "zero_alignment_bytes": 0
+    },
+    "func_8008B2E4": {
+      "comparison": {
+        "differing": 4,
+        "errors": [],
+        "extra_words": 0,
+        "total": 18,
+        "unresolved": [],
+        "unverified": []
+      },
+      "elf_bytes": 72,
+      "elf_end_exclusive": 1408,
+      "elf_start": 1336,
+      "frame_bytes": 0,
+      "full_body_nonzero_excess_words": 0,
+      "full_body_relocations": {
+        "errors": [],
+        "unresolved": [],
+        "unverified": []
+      },
+      "full_body_resolved_sha256": "ec837c477ca7eb05d097823147138876f75a8eee9a40cc8eb1e0832963fce1f5",
+      "native_bytes": 72,
+      "nonzero_alignment_words": 0,
+      "own_data_notes": [],
+      "strict_match": false,
+      "summary": "4/18 words differ",
+      "zero_alignment_bytes": 0
+    },
+    "func_800D348C": {
+      "comparison": {
+        "differing": 369,
+        "errors": [],
+        "extra_words": 96,
+        "total": 421,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x8",
+          ".rodata+0x0 at +0xc"
+        ]
+      },
+      "elf_bytes": 2088,
+      "elf_end_exclusive": 3496,
+      "elf_start": 1408,
+      "frame_bytes": 160,
+      "full_body_nonzero_excess_words": 96,
+      "full_body_relocations": {
+        "errors": [],
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x8",
+          ".rodata+0x0 at +0xc"
+        ]
+      },
+      "full_body_resolved_sha256": "ff3269ef46e0c1e871f8fa5980a112bf608aefc34790ac1c65c7f68dcd0cc90b",
+      "native_bytes": 1684,
+      "nonzero_alignment_words": 0,
+      "own_data_notes": [
+        "not verified: .rodata+0x0 at +0xc: retail bytes at 0x417FA110 are not available"
+      ],
+      "strict_match": false,
+      "summary": "369/421 words differ (96 extra words (nonzero beyond target length); 2 section-relative relocations unverified: .rodata+0x0 at +0x8, .rodata+0x0 at +0xc)",
+      "zero_alignment_bytes": 0
+    },
+    "stunt_combo_display": {
+      "comparison": {
+        "differing": 1101,
+        "errors": [
+          "own .rodata+0x10 referenced at +0x6dc differs from retail 0x80118015 (+0x0: retail and candidate literal bytes differ; 4 bytes compared)"
+        ],
+        "extra_words": 1,
+        "total": 1175,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x4 at +0x2d4",
+          ".rodata+0x4 at +0x2d8",
+          ".rodata+0x8 at +0x520",
+          ".rodata+0x8 at +0x524",
+          ".rodata+0xc at +0x4fc",
+          ".rodata+0xc at +0x530",
+          ".rodata+0x10 at +0x6d4",
+          ".rodata+0x10 at +0x6dc",
+          ".rodata+0x14 at +0x878",
+          ".rodata+0x14 at +0x87c",
+          ".rodata+0x18 at +0x9a8",
+          ".rodata+0x18 at +0x9ac",
+          ".rodata+0x1c at +0xa18",
+          ".rodata+0x1c at +0xa1c",
+          ".rodata+0x20 at +0xa38",
+          ".rodata+0x20 at +0xa3c"
+        ]
+      },
+      "elf_bytes": 4704,
+      "elf_end_exclusive": 8200,
+      "elf_start": 3496,
+      "frame_bytes": 424,
+      "full_body_nonzero_excess_words": 1,
+      "full_body_relocations": {
+        "errors": [],
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x4 at +0x2d4",
+          ".rodata+0x4 at +0x2d8",
+          ".rodata+0x8 at +0x520",
+          ".rodata+0x8 at +0x524",
+          ".rodata+0xc at +0x4fc",
+          ".rodata+0xc at +0x530",
+          ".rodata+0x10 at +0x6d4",
+          ".rodata+0x10 at +0x6dc",
+          ".rodata+0x14 at +0x878",
+          ".rodata+0x14 at +0x87c",
+          ".rodata+0x18 at +0x9a8",
+          ".rodata+0x18 at +0x9ac",
+          ".rodata+0x1c at +0xa18",
+          ".rodata+0x1c at +0xa1c",
+          ".rodata+0x20 at +0xa38",
+          ".rodata+0x20 at +0xa3c"
+        ]
+      },
+      "full_body_resolved_sha256": "54735e1119eccfcb5466c573adb18f4f81cb23c2b4fa8cb83d9aaedc8fc0207b",
+      "native_bytes": 4700,
+      "nonzero_alignment_words": 0,
+      "own_data_notes": [
+        "not verified: .rodata+0x4 at +0x2d8: retail bytes at 0x30000000 are not available",
+        "not verified: .rodata+0x8 at +0x524: retail bytes at 0x012B8012 are not available",
+        "not verified: .rodata+0xc at +0x530: retail bytes at 0x001907EA are not available",
+        "not verified: .rodata+0x14 at +0x87c: retail bytes at 0x3FC05000 are not available",
+        "not verified: .rodata+0x18 at +0x9ac: retail bytes at 0x20000018 are not available",
+        "not verified: .rodata+0x1c at +0xa1c: retail bytes at 0x41A05000 are not available",
+        "not verified: .rodata+0x20 at +0xa3c: retail bytes at 0x012C4000 are not available"
+      ],
+      "strict_match": false,
+      "summary": "1101/1175 words differ (1 extra words (nonzero beyond target length); 16 section-relative relocations unverified: .rodata+0x4 at +0x2d4, .rodata+0x4 at +0x2d8, .rodata+0x8 at +0x520, .rodata+0x8 at +0x524, .rodata+0xc at +0x4fc, .rodata+0xc at +0x530, .rodata+0x10 at +0x6d4, .rodata+0x10 at +0x6dc, .rodata+0x14 at +0x878, .rodata+0x14 at +0x87c, .rodata+0x18 at +0x9a8, .rodata+0x18 at +0x9ac, .rodata+0x1c at +0xa18, .rodata+0x1c at +0xa1c, .rodata+0x20 at +0xa38, .rodata+0x20 at +0xa3c; own .rodata+0x10 referenced at +0x6dc differs from retail 0x80118015 (+0x0: retail and candidate literal bytes differ; 4 bytes compared))",
+      "zero_alignment_bytes": 8
+    }
+  },
+  "schema": 1,
+  "source_hashes": {
+    "group.c": "7f174edd860ea991dae707e3c7e4b3595c77dd9719f8db6fe89aca19d385d009",
+    "group.json": "a7316ceb2af589eb1971ca225e1fd519ac626836875730b44d26da5658f02dff",
+    "helper_seed.c": "8080298f8e2af9c711649157a15fc7f26c027037bed5be788a38b80912722e0f"
+  }
+}
