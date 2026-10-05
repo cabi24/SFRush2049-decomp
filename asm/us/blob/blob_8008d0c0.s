@@ -3898,6 +3898,7 @@ entity_physics_update:
 .section .text.entity_collision_detect, "ax", @progbits
 .globl entity_collision_detect
 entity_collision_detect:
+    /* compiled from src/blob/entity_collision_detect.c */
     .word 0x3C188011
     .word 0x8F1870FC
     .word 0x27BDFFD0
@@ -4107,6 +4108,7 @@ entity_collision_detect:
 .section .text.func_80090E9C, "ax", @progbits
 .globl func_80090E9C
 func_80090E9C:
+    /* compiled from src/blob/func_80090E9C.c */
     .word 0x3C018012
     .word 0xC42439D0
     .word 0x27BDFFE0
@@ -4153,6 +4155,7 @@ func_80090E9C:
 .section .text.func_80090F44, "ax", @progbits
 .globl func_80090F44
 func_80090F44:
+    /* compiled from src/blob/func_80090F44.c */
     .word 0x3C018012
     .word 0xC42439D8
     .word 0x27BDFFE0
@@ -5449,6 +5452,7 @@ func_8009211C:
 .section .text.func_80092278, "ax", @progbits
 .globl func_80092278
 func_80092278:
+    /* compiled from src/blob/func_80092278.c */
     .word 0x3C038011
     .word 0x3C048014
     .word 0x3C068014
@@ -5511,6 +5515,7 @@ func_80092278:
 .section .text.entity_flags_apply, "ax", @progbits
 .globl entity_flags_apply
 entity_flags_apply:
+    /* compiled from src/blob/entity_flags_apply.c */
     .word 0x27BDFFD8
     .word 0xAFA40028
     .word 0xAFBF001C

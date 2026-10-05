@@ -2050,6 +2050,7 @@ sound_loop_set:
 .section .text.func_800B5898, "ax", @progbits
 .globl func_800B5898
 func_800B5898:
+    /* compiled from src/blob/func_800B5898.c */
     .word 0x3C018012
     .word 0xC4243DB4
     .word 0x27BDFFE0
@@ -2096,6 +2097,7 @@ func_800B5898:
 .section .text.func_800B5940, "ax", @progbits
 .globl func_800B5940
 func_800B5940:
+    /* compiled from src/blob/func_800B5940.c */
     .word 0x3C018012
     .word 0xC4243DBC
     .word 0x27BDFFE0

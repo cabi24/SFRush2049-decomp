@@ -1,0 +1,26 @@
+{
+  "members": [
+    "func_800E92C8",
+    "func_800EA108",
+    "func_800EA2DC"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800E95DC",
+    "func_800EA108",
+    "func_800EA2DC"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "unprototyped": [],
+  "context": [
+    "func_800E95DC"
+  ],
+  "claims": [
+    "func_800E92C8",
+    "func_800EA108",
+    "func_800EA2DC"
+  ],
+  "provenance": "w5c: supersedes src/blob/groups/func_800E92C8 (cloud Lanes A seed); E92C8 = arcade update_rear_camera, EA108 = arcade DeathCam"
+}

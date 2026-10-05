@@ -4188,6 +4188,7 @@ sfx_volume_set:
 .section .text.sfx_position_3d, "ax", @progbits
 .globl sfx_position_3d
 sfx_position_3d:
+    /* compiled from src/blob/sfx_position_3d.c */
     .word 0x27BDFF90
     .word 0x00802825
     .word 0x3C048012
