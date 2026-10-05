@@ -1,0 +1,24 @@
+{
+  "base": "e0e734babdac3c6a79d2f87f7f895e34aa170148",
+  "target": "func_800E95DC",
+  "start": "0x800E95DC",
+  "end_exclusive": "0x800E9C70",
+  "bytes": 1684,
+  "context_read_only": [
+    "func_800E92C8",
+    "func_800EA108",
+    "func_800EA2DC"
+  ],
+  "excluded": [
+    "func_8010C448",
+    "func_8010C588",
+    "func_800E79F8",
+    "func_800DED78",
+    "func_800D4DFC",
+    "visual_objects_update",
+    "func_800D11BC",
+    "func_800D1248"
+  ],
+  "publication": "not published; parent review required",
+  "accepted_byte_gain": 0
+}
