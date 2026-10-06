@@ -432,8 +432,9 @@ void func_803AB5FC(void)
 void func_803AC330(u8 *,f32,s32);
 void func_803ACF5C(s32 category)
 {
-    u8 text[48],*data;
     s32 track,y,i;
+    u8 *data;
+    u8 text[48];
     func_800B669C(1,3);
     track=D_803BA858/2;
     if(D_803BA858&1)track+=6;
