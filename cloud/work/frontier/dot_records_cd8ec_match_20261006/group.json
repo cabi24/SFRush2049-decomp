@@ -1,0 +1,18 @@
+{
+  "members": [
+    "func_800CD8EC"
+  ],
+  "context": [
+    "format_string_parse"
+  ],
+  "claims": [],
+  "files": [
+    "hash.c",
+    "candidate.c"
+  ],
+  "keep": [
+    "func_800CD8EC"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "Observed local CD8EC match candidate, using the real accepted hash implementation. Partial compiler visibility is a hypothesis; no accepted coverage claim."
+}
