@@ -1,0 +1,190 @@
+{
+  "status": "RESEARCH-ONLY; three child semantic reconstructions admitted with explicit domains; parent matching closure incomplete",
+  "base": "dea99f09ab19b1d3b324ed7097162f7b378e7096",
+  "scope": "Read-only independent first-milestone contract audit; no repository edits, compiler tuning, publication, or coverage claim.",
+  "identity": {
+    "image": "B",
+    "rom_stream": "0xB6FEC4",
+    "image_size": 43888,
+    "image_sha256": "b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd",
+    "target_files_unchanged_from_current_master": true,
+    "checks": "Manifest hashes verified; in-memory decompressed pinned data.bin image matched image identity; full inspected disassembly instruction streams compared to image for all eight bodies."
+  },
+  "bodies": [
+    {
+      "name": "func_8038D200",
+      "interval": [
+        "0x8038D200",
+        "0x8038D328"
+      ],
+      "size": 296,
+      "sha256": "474ecb6290207ace7925c37d398ae36bc2e33b6a4041ee62d3d4202fb3f16772",
+      "incoming": {
+        "s1": "record pointer",
+        "a0": "mode"
+      },
+      "frame": 24,
+      "saves": "ra only at frame+0x14",
+      "homes": [],
+      "unsaved_local_s_registers": [
+        "s0",
+        "s2"
+      ]
+    },
+    {
+      "name": "func_8038D328",
+      "interval": [
+        "0x8038D328",
+        "0x8038D3A4"
+      ],
+      "size": 124,
+      "sha256": "5d8fc0875c56105d63e0eaee161b6ec6900d742563b85d047035984fb0fa904a",
+      "incoming": {
+        "s1": "resource-table index",
+        "s2": "parent scene handle",
+        "s3": "flags",
+        "s4": "transform-mode discriminator"
+      },
+      "frame": 24,
+      "saves": "ra only at frame+0x14",
+      "homes": [],
+      "unsaved_local_s_registers": [
+        "s0"
+      ],
+      "return": "allocated pool object pointer in v0"
+    },
+    {
+      "name": "func_8038E088",
+      "interval": [
+        "0x8038E088",
+        "0x8038E114"
+      ],
+      "size": 140,
+      "sha256": "434d8ec74a3bebf916add5908bede08ac3395d67e028441b9e30d20e2073af9a",
+      "incoming": {
+        "s1": "record pointer"
+      },
+      "frame": 24,
+      "saves": "ra only at frame+0x14",
+      "homes": [],
+      "unsaved_local_s_registers": [
+        "s0"
+      ]
+    },
+    {
+      "name": "func_8038E114",
+      "interval": [
+        "0x8038E114",
+        "0x8038F560"
+      ],
+      "size": 5196,
+      "sha256": "d1dc2c70973b1780b81b37730a974fc4921b14ab4d368437d899a6fe9f7ef8e0",
+      "incoming": "No consumed incoming formal or home established; reads global list8039A530",
+      "frame": 288,
+      "saves": "ra only at frame+0x2C",
+      "homes": [],
+      "private_state": "Uses unsaved s0..s8 and f20,f22,f24,f26,f28,f30; caller owns conventional preservation."
+    },
+    {
+      "name": "func_8038FCE0",
+      "interval": [
+        "0x8038FCE0",
+        "0x803908D0"
+      ],
+      "size": 3056,
+      "sha256": "3574383f8241f87f1aa201bc4a7265e49cd818b8b6f7e6564ecca4131b6682e2",
+      "role": "Sole direct B-image caller of E114 at80390878 (+0xB98); saves/restores s0..s8 and f20..f30 pairs."
+    }
+  ],
+  "call_edges": {
+    "D200_from_E114": [
+      "0x129C",
+      "0x12D4",
+      "0x12E8",
+      "0x1320",
+      "0x1358",
+      "0x1390",
+      "0x13C8"
+    ],
+    "D328_from_E114": [
+      "0x2E0",
+      "0x308",
+      "0x128C",
+      "0x12C4",
+      "0x1310",
+      "0x1348",
+      "0x1380",
+      "0x13B8"
+    ],
+    "E088_from_E114": [
+      "0x3CC",
+      "0x59C"
+    ],
+    "E114_from_FCE0": [
+      "0xB98"
+    ],
+    "scope": "Complete authenticated B-image direct-jal census; indirect/other-image callers not excluded."
+  },
+  "D200_semantics": [
+    "Load object from record+0x60; copy position record+0x20/24/28 to object+0x2C/30/34.",
+    "Mode1 copies nine floats from8011418C to object+8; mode2 skips copy; other modes copy record+0x38 to object+8.",
+    "If flags+7 has any0x70 bit, scale object matrix row2 by0.2 when flags has0x80 and0x10 and signed kind+6 is1 or8; otherwise kind0 scales by0.2 if0x80 set, else0.4. Other cases leave row2 unscaled.",
+    "Reload flags after scaling; bit2 calls PitchUV(0.18f,object+8).",
+    "Float constants authenticated at80394DB8/4DBC/4DC0. math_utility and func80090F44 are accepted nine-float-copy and PitchUV sources respectively.",
+    "Domain requires valid record and primary object; no null guard or source-order-of-formals proof."
+  ],
+  "D328_semantics": [
+    "Allocate from pool80394F70 via8008E3C0; no null check before object+4 write.",
+    "Read word resource table80399B18[index], pass null transform if discriminator nonzero, otherwise object+8; pass parent and flags to8008E398.",
+    "Store entire signed scene-index result word to object+4; return allocated object.",
+    "Actual parent resource indices1,2,3,4,5,7,8,9; flags0,0x2000,0x2080,0x800000; parents-1 or primary object scene handle; transform discriminator0 or1.",
+    "Pool allocator can return null; semantic tests/source must state successful allocation domain rather than add a guard."
+  ],
+  "E088_semantics": [
+    "Unsigned kind+6 switch: kind3 releases secondary record+0x64 then primary+0x60; kinds0,1,2,4,6,7,8 release only primary; kind5 and >=9 no-op.",
+    "For each object, narrow object+4 word to signed16 for80090254, then release object to pool80394F70 via800AFA84.",
+    "Primary pointer reload occurs after secondary callbacks; retain ordering. No null guard or record slot clearing.",
+    "Nine-entry table80394DF4 is authenticated. All targets are within full E088 extent."
+  ],
+  "data_setup": {
+    "function": "B:803908D0",
+    "pool": "Offsets+0x60..+0x7C initialize80394F70, backing8039AE98, stride0x3C,count0x18,fifth argument0.",
+    "resources": "Offsets+0xA0..+0xF0 initialize first ten resource words80399B18..80399B40 from name table803942EC; offsets+0xF4..+0x13C initialize next seven80399B40..80399B5C from80394314, all through80092E2C. Total contiguous table is17 words; D328 callsites consume only indices1..9.",
+    "limitation": "Registration/setup code is evidence of layout; execution order/lifetime is not dynamically proved.",
+    "correction": "Initial message identified first ten-entry loop only; author correctly pointed out adjacent seven-entry continuation. Combined native table bound corrected to17 before final."
+  },
+  "return_contract_correction": {
+    "path": "src/blob/groups/dot_sign_extend/group.c",
+    "lines": "12-14",
+    "finding": "Accepted source declares8008E398/sign_extend_call void but D328 consumes v0 at+0x40/+0x64. Native wrapper narrows a2 to signed16, calls8008E26C, then leaves v0 unchanged. Accepted E26C source returns(s16)i at line89.",
+    "research_contract": "s32 returning wrapper with full32 first/second/fourth inputs and32-bit parent input narrowed internally to signed16. Do not propagate generated s16-first/void-return declaration.",
+    "action": "Use corrected external contract in research only; protected accepted source remains untouched. Reconciliation belongs to integration owner."
+  },
+  "f22_liveness": {
+    "entry_load": "E114+0x40 loads own frame+0xA8 (entrySP-0x78), not caller argument home.",
+    "case_map": {
+      "0": "0x878",
+      "1": "0x8A4",
+      "2": "0x6C0",
+      "3": "0x61C",
+      "4": "0x764",
+      "5": "0x8D8",
+      "6": "0x7BC",
+      "7": "0x8D0",
+      "8": "0x8D8"
+    },
+    "table": "80394E20",
+    "finding": "Only kind7 skips assigning f22. It branches at+0x980 directly to+0x1104, avoiding all arithmetic consumers+0xCE4/D10/D1C/D28/D34/D44. That route spills/reloads f22 across D498 then joins+0x1228. D498 has no kind+6 write. Remaining kinds/default define f22 before geometry uses.",
+    "conclusion": "High-confidence lazy scratch spill; do not fabricate a formal or arbitrary initializer. Full source semantic proof still needs non-aliasing/real external-call domain."
+  },
+  "closure_blockers": [
+    "E114 plus three children is not the complete genuine private-TU closure. Real FCE0 source is needed for conventional caller preservation.",
+    "E114 also calls private DA78[8038DA78,8038DDDC),868 bytes, incoming s1 record/s2 prior-position,frame0x90 saves ra only; calls+0x9B0/+0xA08 spill live state.",
+    "E114 also calls private D498[8038D498,8038D798),768 bytes,incoming s2 record,frame0x68 saves ra only; call+0x111C spills live state.",
+    "DDDC[8038DDDC,8038E088),684 bytes is conventional O32 and preserves s0..s8/f20/f22; do not invent the same private contract for it.",
+    "Original C argument order for unhomed private inputs is not proven by register order. Child semantic parameters may be chosen clearly but cannot support ABI matching claims.",
+    "Parent full source, remaining helper contracts, genuine source visibility/roots, bounded behavioral reconstruction and strict compiler/data relocation proofs remain open. No arbitrary clobber masks, synthetic callers, or padding-formals substitute for them."
+  ],
+  "verification_scope": "Fresh native identity, complete extent, direct-call census, handwritten control-flow/ABI/data audit. No compiled candidate or behavioral emulator executed; no matching/ROM/coverage claim.",
+  "confidence": "High for authenticated extents, direct instruction behavior, tables, input registers, spills and source-prototype inconsistency. Source names/order and full runtime lifetime remain hypotheses."
+}
