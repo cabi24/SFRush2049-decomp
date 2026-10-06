@@ -1,0 +1,14 @@
+{
+  "owner": "dot runtime-A callback worker",
+  "branch": "work/runtime-a-callback-20261006",
+  "base": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "image": "A",
+  "function": "func_803A6A28",
+  "start": "0x803A6A28",
+  "end": "0x803A6B50",
+  "bytes": 296,
+  "status": "strict-match-awaiting-independent-review",
+  "edited_context": [],
+  "overlap_check": "Current master and open PRs checked before assignment; A:80393004 is excluded as PR139 and B:8038CA24 is independently owned.",
+  "coverage_claim": false
+}
