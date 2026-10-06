@@ -1,0 +1,422 @@
+{
+  "base_revision": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "status": "MATCH_PENDING_INDEPENDENT_REVIEW",
+  "claims": [
+    "func_8008B000"
+  ],
+  "native_range": [
+    "0x8008B000",
+    "0x8008B0D8"
+  ],
+  "candidate_bytes": 216,
+  "accepted_byte_gain": 0,
+  "source_sha256": "0d8406b591b6f9fc081ac2de50555d6dba5b7611e3963688b99cf11cfc7deb8c",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "assembler_erratum_flag": "-Wab,-r4300_mul",
+  "O2": {
+    "canonical": {
+      "differing": 0,
+      "total": 54,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "canonical_verdict": "MATCH",
+    "elf_bytes": 216,
+    "native_bytes": 216,
+    "complete_differing_offsets": [],
+    "gnu_sha256": "fd6dc4cd08ec09e74d888bae1963fa2a301c8efa8c3a1f435e2c1b661048e20c",
+    "relocations": [
+      {
+        "offset": 24,
+        "type": 5,
+        "symbol": "D_801161F4"
+      },
+      {
+        "offset": 36,
+        "type": 6,
+        "symbol": "D_801161F4"
+      }
+    ],
+    "no_owned_data": true
+  },
+  "O3": {
+    "canonical": {
+      "differing": 0,
+      "total": 54,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "canonical_verdict": "MATCH",
+    "elf_bytes": 216,
+    "native_bytes": 216,
+    "complete_differing_offsets": [],
+    "gnu_sha256": "fd6dc4cd08ec09e74d888bae1963fa2a301c8efa8c3a1f435e2c1b661048e20c",
+    "relocations": [
+      {
+        "offset": 24,
+        "type": 5,
+        "symbol": "D_801161F4"
+      },
+      {
+        "offset": 36,
+        "type": 6,
+        "symbol": "D_801161F4"
+      }
+    ],
+    "no_owned_data": true
+  },
+  "zero_alignment_bytes_outside_function": 8,
+  "shared_data_context": {
+    "canonical": {
+      "differing": 0,
+      "total": 54,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "canonical_verdict": "MATCH",
+    "elf_bytes": 216,
+    "native_bytes": 216,
+    "complete_differing_offsets": [],
+    "gnu_sha256": "fd6dc4cd08ec09e74d888bae1963fa2a301c8efa8c3a1f435e2c1b661048e20c",
+    "relocations": [
+      {
+        "offset": 24,
+        "type": 5,
+        "symbol": "D_801161F4"
+      },
+      {
+        "offset": 36,
+        "type": 6,
+        "symbol": "D_801161F4"
+      }
+    ],
+    "no_owned_data": true
+  },
+  "accepted_consumer": {
+    "canonical": {
+      "differing": 0,
+      "total": 52,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "canonical_verdict": "MATCH",
+    "elf_bytes": 208,
+    "native_bytes": 208,
+    "complete_differing_offsets": [],
+    "gnu_sha256": "ff7b6c61be46e621116c5250c0923b9330dbf817a0565ead203d4b6a1103aa48",
+    "relocations": [
+      {
+        "offset": 8,
+        "type": 5,
+        "symbol": "D_80156990"
+      },
+      {
+        "offset": 12,
+        "type": 6,
+        "symbol": "D_80156990"
+      },
+      {
+        "offset": 32,
+        "type": 5,
+        "symbol": "D_8012E700"
+      },
+      {
+        "offset": 52,
+        "type": 6,
+        "symbol": "D_8012E700"
+      },
+      {
+        "offset": 64,
+        "type": 5,
+        "symbol": "D_801161F4"
+      },
+      {
+        "offset": 68,
+        "type": 6,
+        "symbol": "D_801161F4"
+      },
+      {
+        "offset": 116,
+        "type": 4,
+        "symbol": "func_8008AD04"
+      }
+    ],
+    "no_owned_data": true
+  },
+  "production_reader_equal": [
+    "func_8008B000",
+    "car_gear_shift"
+  ],
+  "o32_layout_assertions": {
+    "span16": "sizeof(RecordSpan16)==16",
+    "record88": "sizeof(ModelRecord)==88",
+    "bank8": "sizeof(ModelBank)==8",
+    "header_flags10": "O(ModelRecord,spans[0].flags)==10",
+    "count22": "O(ModelRecord,spans[0].tail)==22",
+    "slot0_value24": "O(ModelRecord,spans[1].value)==24",
+    "slot0_flags26": "O(ModelRecord,spans[1].flags)==26",
+    "slot3_value72": "O(ModelRecord,spans[4].value)==72"
+  },
+  "archived_seed": {
+    "canonical": {
+      "differing": 53,
+      "total": 54,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "canonical_verdict": "53/54 words differ",
+    "elf_bytes": 208,
+    "native_bytes": 216,
+    "complete_differing_offsets": [
+      0,
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      28,
+      32,
+      36,
+      40,
+      44,
+      48,
+      56,
+      60,
+      64,
+      68,
+      72,
+      76,
+      80,
+      84,
+      88,
+      92,
+      96,
+      100,
+      104,
+      108,
+      112,
+      116,
+      120,
+      124,
+      128,
+      132,
+      136,
+      140,
+      144,
+      148,
+      152,
+      156,
+      160,
+      164,
+      168,
+      172,
+      176,
+      180,
+      184,
+      188,
+      192,
+      196,
+      200,
+      204,
+      208,
+      212
+    ],
+    "gnu_sha256": "3bec9fc42032de8dbd0526c7b2e1152ddfb2dfc92285230cf2984cc30ec92f51",
+    "relocations": [
+      {
+        "offset": 24,
+        "type": 5,
+        "symbol": "D_801161F4"
+      },
+      {
+        "offset": 36,
+        "type": 6,
+        "symbol": "D_801161F4"
+      }
+    ],
+    "no_owned_data": true
+  },
+  "archived_source_sha256": "d1d1655996bc2185272b81fc0c8f00b52d31ae05848a3c7ba4dd17d9e497f7fe",
+  "behavior": {
+    "cases": 4480,
+    "native_and_gnu_executions": 17920,
+    "host_invocations": 8960,
+    "reachable_instruction_offsets": [
+      0,
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      28,
+      32,
+      36,
+      40,
+      44,
+      48,
+      52,
+      56,
+      60,
+      64,
+      68,
+      72,
+      76,
+      80,
+      84,
+      88,
+      92,
+      96,
+      100,
+      104,
+      108,
+      112,
+      116,
+      124,
+      128,
+      132,
+      136,
+      140,
+      144,
+      148,
+      152,
+      156,
+      160,
+      164,
+      168,
+      172,
+      176,
+      180,
+      184,
+      188,
+      192,
+      196,
+      200,
+      204,
+      208,
+      212
+    ],
+    "unreachable_duplicate_load_offset": 120,
+    "branch_outcomes": [
+      [
+        80,
+        false
+      ],
+      [
+        80,
+        true
+      ],
+      [
+        104,
+        false
+      ],
+      [
+        104,
+        true
+      ],
+      [
+        132,
+        true
+      ],
+      [
+        152,
+        false
+      ],
+      [
+        152,
+        true
+      ],
+      [
+        196,
+        false
+      ],
+      [
+        196,
+        true
+      ]
+    ],
+    "full_memory_and_trace_equal": true,
+    "argument_homes_and_saved_registers": true,
+    "host_c89_ubsan": true,
+    "compiled_semantic_mutants_rejected": [
+      "fallthrough_after_single",
+      "moving_flag_in_bulk",
+      "wrong_handle_mask",
+      "wrong_flag_bit",
+      "zero_selects_bulk"
+    ],
+    "malformed_controls_rejected": [
+      "unknown_opcode",
+      "truncated",
+      "unmapped_table"
+    ],
+    "corpus_sha256": "e46f28b3c5389091a4d67bff893b2a10c8d853f0bdb6792c87380b221f1481f7",
+    "output_sha256": "5631b6ad405de5524cf5bf7841790ee348e7f886b3dcae3e8d4ad0defc5d6723"
+  },
+  "native_direct_call_sites": [
+    {
+      "function": "physics_velocity_integrate_a",
+      "offset": "0x290",
+      "selector": 0
+    }
+  ],
+  "input_native_sha256": {
+    "func_8008B000": "fd6dc4cd08ec09e74d888bae1963fa2a301c8efa8c3a1f435e2c1b661048e20c",
+    "car_gear_shift": "ff7b6c61be46e621116c5250c0923b9330dbf817a0565ead203d4b6a1103aa48",
+    "entity_render_mode": "6eaf7b0ac1636d3ea87d4ee6ea2cccdefbc0b73dce3c4bd0f3d886893bec350f",
+    "physics_velocity_integrate_a": "374fb193ca11bbbb83df4ac377fb0e95d71e028e90b528bcc9e9c36386c06172",
+    "string_copy_format": "f9db451d5a599be631df70f07d838fb7010fb72bb3a80108938fe9119979c00b",
+    "validate_and_call": "95fc3dfd6b129487175fdc64f099b529b2f45b9900c8f40db02e633ce22d3b45"
+  },
+  "consumed_symbols": {
+    "D_801161F4": "0x801161f4",
+    "D_8012E700": "0x8012e700",
+    "D_80156990": "0x80156990",
+    "car_gear_shift": "0x800a7c9c",
+    "func_8008AD04": "0x8008ad04",
+    "func_8008B000": "0x8008b000",
+    "func_80092DCC": "0x80092dcc"
+  },
+  "target_manifest_sha256": "dade78464a022fedd2c5ba651ee1bca5ffd4ec99bfa4d2413d27256540bed02c",
+  "accepted_consumer_source_sha256": "28b49d1ae7307b8f08d337263eb42153dd9ea0688544f1fdcb17754833517094",
+  "compiler_sha256": {
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+  },
+  "tools_sha256": {
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+    "tools/conveyor/pipeline/blob_group.py": "340e24d21c67e1c0c8ab3711614492e9ac0b98d81d3d13221996d234b4a39e1a"
+  },
+  "packet_sha256": {
+    "verify.py": "988913b6ef5eed2cfe87b45a70562e07588d0dd832bfa92703cae16662c18cca",
+    "native.py": "4e3ea3e5b623cf0d913a7ce33ae24c4ee8589ff50de90f0f77cf8958cd5c39ff",
+    "host.c": "3516fc4cbede7a1d3fcf78778d0a9fedb431856aeb8075df51d020e4cda91981",
+    "claim.json": "86481e8c55b2bd702e5e5df75d902a23d719ecc5ee5df35d7656029600de613d"
+  },
+  "limitations": [
+    "No original typedef, donor ancestry, or original TU membership claim.",
+    "Direct caller is read-only: its full private-ABI closure is not recompiled or executed.",
+    "Shared-data consumer context is not proof of a recovered contiguous translation unit.",
+    "Negative selector -1 is instruction-proven but its gameplay use is not established.",
+    "Mapped records, signed count <=4, selectors >=-1; invalid pointers, larger capacities, and lower selectors excluded.",
+    "Finite deterministic proof; no concurrency, gameplay, full-game shadow/image/compression/ROM gates."
+  ]
+}
