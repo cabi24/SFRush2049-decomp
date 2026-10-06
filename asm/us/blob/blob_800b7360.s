@@ -850,6 +850,7 @@ particles_update:
 .section .text.func_800B7FF8, "ax", @progbits
 .globl func_800B7FF8
 func_800B7FF8:
+    /* compiled from src/blob/func_800B7FF8.c */
     .word 0x3C028011
     .word 0x8C4274B4
     .word 0x27BDFFE8

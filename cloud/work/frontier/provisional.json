@@ -16,8 +16,8 @@
   "note": "wave 1: byte-identical in the unit; its own caller input_deadzone_apply is a stand-in"
  },
  "func_800E4300": {
-  "evidence": "cloud/work/frontier/w1g/groups/func_800E4300",
-  "note": "wave 1: strict MATCH with its only real caller func_800E451C in the unit, which is kept alive by a stand-in"
+  "evidence": "cloud/work/ipa-groups/dot_nearest_path_context_20261005",
+  "note": "PR #128 re-verified it with its complete real callers (E451C, E4B58, E398C), all still NONMATCH, so it stays provisional"
  },
  "func_800E451C": {
   "evidence": "cloud/work/frontier/w1g/groups/func_800E4300",
@@ -66,5 +66,9 @@
  "func_800A3640": {
   "evidence": "cloud/work/frontier/w8b/func_800A3640",
   "note": "wave 8: EQUAL in the shadow unit only with a stand-in caller; its only caller track_render_process is unmatched"
+ },
+ "speed_set": {
+  "evidence": "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006",
+  "note": "PR #138: strict MATCH as an internal member; three of its four real callers (speed_mode0_wrapper, speed_mode1_wrapper, continue_prompt) are unmatched context, so it stays provisional"
  }
 }

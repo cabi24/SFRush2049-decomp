@@ -19,7 +19,10 @@ def receipt():
 
 
 def test_fresh_source_bound_census():
-    assert audit.verify() == receipt()
+    # verify() compares every bound key with the saved evidence and raises on
+    # any difference; only live acceptance state (which callers are matched
+    # yet) is allowed to move.
+    audit.verify(receipt())
 
 
 def test_counts_are_bounded_dependency_surface_not_matches():

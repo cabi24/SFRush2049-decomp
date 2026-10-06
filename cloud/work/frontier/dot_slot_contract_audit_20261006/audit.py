@@ -193,9 +193,21 @@ def verify(saved=None):
     if saved is None:
         saved = json.loads((HERE / 'evidence.json').read_text())
     current = collect()
+
+    def stable(key, value):
+        # Which callers are already accepted is read from the live lock and
+        # grows as matching proceeds; the census itself (sites, captures,
+        # pairings) is what this packet binds.
+        if key == 'callers':
+            return {n: {k: v for k, v in r.items()
+                        if k not in ('accepted', 'other_unaccepted_direct_game_calls')}
+                    for n, r in value.items()}
+        if key == 'summary':
+            return {k: v for k, v in value.items() if k != 'accepted_callers'}
+        return value
     for key in ('format', 'source_sha256', 'helpers', 'summary', 'no_copy_sites',
                 'outside_adjacent_wrapper_sequence', 'wrapper_callers', 'callers'):
-        if current[key] != saved[key]:
+        if stable(key, current[key]) != stable(key, saved[key]):
             raise AuditError('source-bound audit differs: %s' % key)
     return current
 
