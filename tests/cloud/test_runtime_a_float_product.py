@@ -1,5 +1,7 @@
 """Fast source packet guards; full replay uses the optional installed toolchain."""
+import hashlib
 import importlib.util
+import json
 import os
 from pathlib import Path
 import random
@@ -52,3 +54,8 @@ def test_full_source_bound_replay():
     env = dict(os.environ, PYTHONDONTWRITEBYTECODE='1')
     p = subprocess.run([sys.executable,str(PACKET/'verify.py'),'--repo',str(repo),'--check'],env=env,capture_output=True,text=True)
     assert p.returncode == 0, p.stdout+p.stderr
+
+
+def test_receipt_binds_published_scorer():
+    receipt = json.loads((PACKET/'verification.json').read_text())
+    assert receipt['scorer_sha256'] == hashlib.sha256((ROOT/'tools/cloud/score.py').read_bytes()).hexdigest()

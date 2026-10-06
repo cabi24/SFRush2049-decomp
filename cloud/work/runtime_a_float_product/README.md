@@ -162,6 +162,17 @@ verifier; the candidate and harness still come from the packet's own tree.
 For its test command, set `RUSH_RECOVERY_ROOT` to that full checkout. The
 receipt binds source, verifier, model, harness, compiler, selected native
 bodies, protected manifest, full resolved code and relocations. It excludes
-path-sensitive raw debug-file hashes. The current focused result is 12 tests
+path-sensitive raw debug-file hashes. The current focused result is 13 tests
 passed; no broad suite, image/deflate/ROM gate, or hardware run is claimed.
 No ROM bytes or raw assembly dumps are committed.
+
+## Current-tool receipt refresh
+
+The published packet accidentally retained the older scorer fingerprint
+`9de8385b` even though its own checkout carries scorer `08e7c781`. A complete
+replay with the published checkout's tools changes exactly that fingerprint
+and the three empty `comparison.notes` arrays emitted by the current scorer
+for O1/O2/O3. All source, native, compiler, manifest, relocation, behavior and
+caller-contract results remain unchanged. The entire fresh receipt is kept;
+no comparison fields or tool fingerprints are excluded from equality.
+A fast test also binds the saved receipt directly to the published scorer.
