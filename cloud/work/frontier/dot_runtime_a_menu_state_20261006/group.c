@@ -70,7 +70,7 @@ void func_80398C3C(void)
         entity_flags_apply(39,0,1,0);
         if(++D_803B9BC6>=D_803B9BC4)D_803B9BC6=0;
         if(D_803B9E3A<D_803B9BC4) {
-            if(D_803B9E3C+1==D_803B9E3A) {
+            if(D_803B9E3C==D_803B9E3A-1) {
                 if(++D_803B9E38>=D_803B9BC4)D_803B9E38=0;
             } else D_803B9E3C++;
         }

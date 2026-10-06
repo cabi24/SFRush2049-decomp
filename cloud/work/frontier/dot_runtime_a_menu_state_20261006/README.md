@@ -7,13 +7,20 @@ Stock IDO 5.3 group pipeline, actual `-g0 -O3 -mips2 -G 0 -non_shared`.
 
 - `func_80398B40`: **40/40 strict**, 160 bytes. State entry/setup.
 - `func_80398E70`: **152/152 strict**, 608 bytes. Player selection and dialog entry.
-- `func_80398C3C`: **79/141 differing**, 564 bytes, research context.
+- `func_80398C3C`: **141/141 strict**, 564 bytes. Scroll-position/input update.
 - `func_803990D0`: **8/173 differing**, 692 bytes, research root.
 
-Only the first two bodies are claimed: **768 new candidate bytes**. Every
+The three helper bodies are claimed: **1,332 new candidate bytes**. Every
 member reports zero unresolved symbols, unverified own-section references,
 relocation errors and extra words. No behavioral, integration, source-originality
 or cartridge-coverage claim follows from this local result.
+
+The scroll endpoint expression is `position == visible_count - 1`, equivalent
+to the initial `position + 1 == visible_count` for the signed-halfword globals.
+The former avoids a different shared expression web and closes the initial
+79-word positional residual. The root's remaining eight differences are its
+112-byte native versus 96-byte candidate frame and actual local home offsets;
+no padding or unused locals are added to force those offsets.
 
 All four bodies are complete real functions. The root and input routines call
 the state setter using its actual one-word mode input; IDO assigns native s0
