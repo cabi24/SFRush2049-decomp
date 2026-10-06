@@ -1,0 +1,23 @@
+{
+  "members": [
+    "func_800C7578"
+  ],
+  "context": [
+    "format_string_parse",
+    "object_data_allocate",
+    "menu_dialog_close"
+  ],
+  "files": [
+    "hash.c",
+    "candidate.c",
+    "other_callers.c"
+  ],
+  "keep": [
+    "func_800C7578",
+    "object_data_allocate",
+    "menu_dialog_close"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "provenance": "Observed local C7578 match candidate only. Genuine setting records, actual accepted hash source and two real hash callers. Visibility remains a source hypothesis; independent checker owns acceptance."
+}
