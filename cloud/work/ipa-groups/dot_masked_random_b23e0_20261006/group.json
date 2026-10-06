@@ -1,0 +1,23 @@
+{
+  "files": [
+    "rand.c",
+    "range.c",
+    "selector.c"
+  ],
+  "members": [
+    "func_800B23E0"
+  ],
+  "context": [
+    "func_8008B2E4",
+    "func_8008B2B4"
+  ],
+  "keep": [
+    "func_800B23E0",
+    "func_8008B2E4",
+    "func_8008B2B4"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [
+    "func_800B23E0"
+  ]
+}

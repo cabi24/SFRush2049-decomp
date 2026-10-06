@@ -1,0 +1,18 @@
+{
+  "base_revision": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "target": "func_800B23E0",
+  "range": [
+    "0x800B23E0",
+    "0x800B24EC"
+  ],
+  "native_bytes": 268,
+  "status": "MATCH_CANDIDATE_NOT_ACCEPTED",
+  "accepted_byte_gain": 0,
+  "range_context_source_commit": "abb93615",
+  "range_context_source_path": "cloud/work/ipa-groups/dot_random_range_b2e4_20261005/range.c",
+  "donor_revision": "845329d7b36f5a384c5625ed9a0aef584ab46139",
+  "donor_path": "LIB/fmath.c",
+  "donor_sha256": "491a48966d659335f31c49f0673337d802aaf4e30dc8fd3b002c791d0820c6f2",
+  "donor_url": "https://github.com/historicalsource/rushtherock/blob/845329d7b36f5a384c5625ed9a0aef584ab46139/LIB/fmath.c#L801-L808",
+  "ownership": "No overlap with accepted locks or open PR targets through 130; parent reserved B23E0 before source changes. Both context bodies earn no new claim."
+}
