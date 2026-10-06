@@ -5,11 +5,13 @@ typedef signed short s16;
 typedef unsigned char u8;
 typedef unsigned int u32;
 typedef struct OSMesgQueue OSMesgQueue;
+typedef struct Voice Voice;
 typedef struct Slot18 { s16 f0; s8 f2; s8 f3; u8 pad[0x14]; } Slot18;
 typedef struct CleanupRow { u32 unknown00; int identifier; u8 unknown08[56]; } CleanupRow;
 extern OSMesgQueue D_80142728, D_801427A8;
 extern s8 D_8011062C, D_80110634;
-extern int D_801105B4, D_80110648, D_80110630;
+extern int D_801105B4, D_80110648;
+extern Voice *D_80110630;
 extern u32 state_word_a;
 extern CleanupRow D_801102B4[12];
 extern int osRecvMesg(OSMesgQueue *, void **, int);
@@ -17,7 +19,7 @@ extern int osJamMesg(OSMesgQueue *, void *, int);
 extern Slot18 *func_80091B00(void);
 extern void entity_spawn_callback(s16, int, int);
 extern void sound_handles_clear(int);
-extern void sound_stop(int);
+extern void sound_stop(Voice *);
 extern void ambient_sounds_clear(void);
 void credits_screen(void)
 {

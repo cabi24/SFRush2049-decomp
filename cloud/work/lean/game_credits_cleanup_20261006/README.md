@@ -50,3 +50,7 @@ Both baseline and candidate compile at the same flags, reporting canonical score
 and true ELF extent. No independent review, behavior harness, full suite, CI
 wait or ROM gate was run. Checker/Claude owns verification, acceptance and ROM
 integration. No production source, lock, target or tool is changed.
+
+The final sound-stop interface uses the current locked `sound_stop(Voice *)`
+prototype and an opaque Voice-pointer handle global. Historical integer-handle
+declarations were normalized without changing the helper body or its O32 slot.
