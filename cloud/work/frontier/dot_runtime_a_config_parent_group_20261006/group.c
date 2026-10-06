@@ -111,14 +111,11 @@ void func_8039B214(void)
     }
 }
 
-/* Local research correction: the real wrapper forwards the allocator's s32
- * result unchanged, and both native calls below consume that result. This
- * context does not edit the production void definition or its lock. */
-extern s32 func_8008E26C(u32, u32, s16, u32);
-s32 sign_extend_call(u32 value, u32 data, s32 index, u32 flags)
-{
-    return func_8008E26C(value, data, (s16)index, flags);
-}
+/* The main-blob wrapper forwards the allocator's s32 result unchanged.
+ * Its genuine returning body is supplied separately in wrapper_return.c;
+ * it must not be inlined into this separately compiled runtime image.
+ * Production definitions and locks are unchanged. */
+extern s32 sign_extend_call(u32 value, u32 data, s32 index, u32 flags);
 
 typedef struct Item { u8 other[16]; u8 player; } Item;
 typedef struct Selection { Item *item; } Selection;
