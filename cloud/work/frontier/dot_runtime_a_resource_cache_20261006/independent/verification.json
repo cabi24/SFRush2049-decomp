@@ -1,0 +1,247 @@
+{
+  "verdict": "RESEARCH-ONLY",
+  "source_sha256": "29d1dfaaeed5d9f51862bb456ee677280f72e9da259d562a98caae42a135694a",
+  "review": {
+    "source": "cloud/work/frontier/dot_runtime_a_resource_cache_20261006/candidate.c",
+    "source_sha256": "29d1dfaaeed5d9f51862bb456ee677280f72e9da259d562a98caae42a135694a",
+    "target_sha256": "02e3869e40edbc543340d6887bda6ec3743edb8d793990921b7432c6d935231e",
+    "native_bytes": 364,
+    "manifest": {
+      "extents.json": "0d97935254a6f2c724dfe68b08087e0a451e56d0aedb2121748abe7b6cc0798b",
+      "ovl_a_8038a400.s": "94f5fdb45838b6d21fb761209bf2cb60602f90ea8725b16cae2c3cebe0aa7685",
+      "symbols.json": "d5a6c8dccb0380f54f080d45d82a5e71f917be86f9568bf4b7fbe10a89f2a769"
+    },
+    "game_manifest": {
+      "blob_80086a50.s": "ba721352e95376f6ce8ec05f8e5219f8fcbd92b0df977b0761e606f535c7a63d",
+      "blob_8008d0c0.s": "9f6bda37e56d1373f4579652878d66da03c105cfb778d66cd8d2e25b9e00c302",
+      "blob_800947f0.s": "2b51286c2e542c851a9ca93fb115d63f999563babe6790993b5fc5ee5fc750ef",
+      "blob_800966d8.s": "352cac208346e290f2d37a50d64e10b8bfcb0ac41a45462d32fa47bd6a4415ef",
+      "blob_8009dd18.s": "f9d2236d8ac4e1cafabdcfeb45085faeffdd12ebfd7759a7f0ee689abdcfc97e",
+      "blob_800a4508.s": "ef05d9829d5c65fa671c77f39aba4b7993c17883e6f2e0f80f49a10876e1ef57",
+      "blob_800a7df0.s": "a085c918680b1ce58cf773001bbfc4b6dc4fafc81a83628c490c74b98a9c3307",
+      "blob_800aeb54.s": "9fb26c1a7748fb810f814310dae38b41c08ae3c5a363f5b5b3603944b177f612",
+      "blob_800b3b4c.s": "f853ecc521a4302a0b27adcb0a031be43dbbe5c60120c854d126a0d03136b460",
+      "blob_800b7360.s": "bd72c4f5c591295a0a6f5c350f350fa1d54d41f05433377f42e6d0215e556f19",
+      "blob_800bdd90.s": "bf8a235711aeb9c151e8f0c4cf7f5f94764c63532d16871de2eab6f5befb59b5",
+      "blob_800c46d0.s": "66904e25e8dd171bf5ff9f937c78c7a09325f737fc49c15056bfafae29fbcd61",
+      "blob_800cbe08.s": "3bfcd465371fdf9fbbc2bca6f795766c47637d063a62090897c48ef124a58011",
+      "blob_800d1004.s": "c044a570528af864dce8ea70ce9e7a33e588c4755830cf82a95c95961831e9d3",
+      "blob_800d6690.s": "af2b96cbe7ec9ab12eb31fe3f60503ad58e4e5972580f6ab12c7c7f242f0f01e",
+      "blob_800de454.s": "bb7940421befc5ad9780372e21ab0ddd806ef63032c4eb385a318d08af3ef14f",
+      "blob_800e7030.s": "3a9737632b9e09f3723d7601414cdc8c2224688d0828269a10a7ae6e878c5ca7",
+      "blob_800ef5b0.s": "1c075597840ba0d4ce607b0025df300f147a94f231f2503aea2f21be9a4a7cef",
+      "blob_800f8d9c.s": "54011762c87c8b7b13c522f781e674be72156d6313e653ee89147a635bad0e2f",
+      "blob_80100d24.s": "117d428475270098f48317f43dc5b404023bc365cf4460b9d93a68951b2fb99d",
+      "blob_8010e0fc.s": "c0c9ba877349c3aed66e35a51b1afdb5c5d147d196b54ba1e2fafb45b77f574c",
+      "blob_8010fd7c.s": "ad3456595bad8f1e62ac4d8ce1710c2c6d6851dd05c509de0904b22538a4df13",
+      "symbols.json": "ea80bea2d751ca4f4e8ac636d2a9a5278e10267dd1f0a138a9fea5118a1b7c7d"
+    },
+    "object_sha256": "6c11ac2b5433dbbd932bdd8b3f6c99285ce57157c2377835bffa565bccb72959",
+    "elf_sha256": "16aa73f08b0daae991c12c02d7b5ac81bd1327883683c296ed271cfaa1f6e9f1",
+    "all_relocations": [
+      {
+        "offset": 12,
+        "type": 5,
+        "symbol": "D_803BA230",
+        "target_section": 4
+      },
+      {
+        "offset": 40,
+        "type": 6,
+        "symbol": "D_803BA230",
+        "target_section": 4
+      },
+      {
+        "offset": 104,
+        "type": 5,
+        "symbol": "D_803BA230",
+        "target_section": 4
+      },
+      {
+        "offset": 108,
+        "type": 6,
+        "symbol": "D_803BA230",
+        "target_section": 4
+      },
+      {
+        "offset": 148,
+        "type": 5,
+        "symbol": "D_803BA230",
+        "target_section": 4
+      },
+      {
+        "offset": 156,
+        "type": 6,
+        "symbol": "D_803BA230",
+        "target_section": 4
+      },
+      {
+        "offset": 208,
+        "type": 5,
+        "symbol": "D_803BA230",
+        "target_section": 4
+      },
+      {
+        "offset": 216,
+        "type": 6,
+        "symbol": "D_803BA230",
+        "target_section": 4
+      },
+      {
+        "offset": 228,
+        "type": 5,
+        "symbol": "D_803BA230",
+        "target_section": 4
+      },
+      {
+        "offset": 236,
+        "type": 6,
+        "symbol": "D_803BA230",
+        "target_section": 4
+      },
+      {
+        "offset": 276,
+        "type": 4,
+        "symbol": "audio_frame_sync",
+        "target_section": 4
+      },
+      {
+        "offset": 312,
+        "type": 5,
+        "symbol": "D_80142B08",
+        "target_section": 4
+      },
+      {
+        "offset": 340,
+        "type": 6,
+        "symbol": "D_80142B08",
+        "target_section": 4
+      },
+      {
+        "offset": 336,
+        "type": 4,
+        "symbol": "func_800BB02C",
+        "target_section": 4
+      }
+    ],
+    "bindings": {
+      "D_803BA230": "0x803ba230",
+      "audio_frame_sync": "0x80097798",
+      "D_80142B08": "0x80142b08",
+      "func_800BB02C": "0x800bb02c"
+    },
+    "whole_linked_elf_audited": true,
+    "whole_linked_elf_match": false,
+    "strict_differing_native_word_offsets": [
+      "0x120",
+      "0x124",
+      "0x12c",
+      "0x130",
+      "0x134"
+    ],
+    "zero_padding_bytes": 4,
+    "owned_data_bytes": 0,
+    "negative_full_elf_views": {
+      "entry": "rejected",
+      "section": "rejected",
+      "symbol": "rejected",
+      "extent": "rejected",
+      "padding": "rejected",
+      "excess": "rejected",
+      "binding": "rejected",
+      "storage": "rejected",
+      "relocation": "rejected",
+      "text_drift": "rejected"
+    },
+    "behavior": {
+      "cases": 7264,
+      "covered_words": 91,
+      "branch_outcomes": 20,
+      "host_source_vs_native_state_and_helper_trace": true,
+      "compiled_candidate_vs_native_state_and_helper_trace": true,
+      "all_loaded_byte_patterns": true,
+      "all_negative_sentinel_bytes": true,
+      "helper_mutation": true,
+      "randomized_caller_saved_registers": true,
+      "stack_and_callee_saved_registers": true,
+      "untouched_reserved_bytes": true
+    }
+  },
+  "mutants": {
+    "source_sha256": "29d1dfaaeed5d9f51862bb456ee677280f72e9da259d562a98caae42a135694a",
+    "mutants": {
+      "loaded_must_equal_one": {
+        "rejected": true,
+        "failure": "(2, 60, -32768, (1, ([4294967295, 526663596, 2987693808, 1111568645, 1853028250, 2949043620, 147732892, 1950675089, 3041071867, 2605792232, 1942423468, 1416712694, 1524565840, 2589"
+      },
+      "only_minus_one_is_free": {
+        "rejected": true,
+        "failure": "(256, 60, -32768, (0, ([41767742, 116874203, 316442430, 3364149921, 1960451865, 1203537885, 3490051383, 3137281774, 2011682455, 1771156412, 2570818376, 2189748730, 2971286176, 3879"
+      },
+      "drop_last_record": {
+        "rejected": true,
+        "failure": "(5760, 60, -89, (0, ([3344135904, 1569233438, 1486482892, 82690511, 45876709, 3178685456, 2326679274, 2996937649, 1288897575, 3476778635, 2036767455, 2861508992, 3553481029, 130196"
+      },
+      "wrong_resource_bias": {
+        "rejected": true,
+        "failure": "(0, 'trace')"
+      },
+      "wrong_loader_argument": {
+        "rejected": true,
+        "failure": "(0, 'trace')"
+      },
+      "wrong_table_index": {
+        "rejected": true,
+        "failure": "(0, 60, -32768, (1, ([0, 480754183, 1391472708, 3652440716, 2263010155, 1902795723, 1858341593, 1039840814, 1991494693, 3282696237, 303751375, 602278250, 1372429820, 4084357705, 40"
+      },
+      "reject_negative_handle": {
+        "rejected": true,
+        "failure": "(256, 60, -32768, (0, ([4294967295, 116874203, 316442430, 3364149921, 1960451865, 1203537885, 3490051383, 3137281774, 2011682455, 1771156412, 2570818376, 2189748730, 2971286176, 38"
+      },
+      "unsigned_record_id": {
+        "rejected": true,
+        "failure": "(256, 60, -32768, (0, ([41767742, 116874203, 316442430, 3364149921, 1960451865, 1203537885, 3490051383, 3137281774, 2011682455, 1771156412, 2570818376, 2189748730, 2971286176, 3879"
+      },
+      "omit_second_helper": {
+        "rejected": true,
+        "failure": "(0, 'trace')"
+      }
+    }
+  },
+  "context": {
+    "func_8039156C": {
+      "source_sha256": "28f105fb20180d731004251fa48c2cf18f85aac9295a3b0932d9470ba7051106",
+      "native_sha256": "3c19122ba6e1818e8a893dcba647233fa9abaef35e581733b02fdb7e38a11aa1",
+      "fresh_context_unchanged": true,
+      "whole_linked_native_match": true,
+      "size": 116,
+      "alignment": 12,
+      "bindings": {
+        "D_80153E88": "0x80153e88",
+        "D_803BA230": "0x803ba230"
+      }
+    },
+    "func_80390D2C": {
+      "source_sha256": "6e85b1b1ba395ffcd1971caf8069dcfc613193baae452ab4fe4c183141cf91e7",
+      "native_sha256": "878577ec3ac311656b9c225a27f9f5933734152eb6fc81d7f2a375a5f5c9acf4",
+      "fresh_context_unchanged": true,
+      "whole_linked_native_match": true,
+      "size": 160,
+      "alignment": 0,
+      "bindings": {
+        "D_803BA230": "0x803ba230",
+        "func_800AC898": "0x800ac898",
+        "func_80096130": "0x80096130",
+        "func_800FE4AC": "0x800fe4ac"
+      }
+    }
+  },
+  "artifacts": {
+    "review.py": "82f8b42af7a4b7fdc93d9be8efc24b898caefba562fdb0715ccb293faaf38b25",
+    "host.c": "7609b6b562eea636e42424856ae43b8eace0a09ceaab5be6af9974be335dea89",
+    "mutants.py": "bffd0e48b6488a9452246831d826077f97e9f2bf9b89cf9911fdb81201bac27b",
+    "context.py": "7d51a515e8ca8bdd7c3f77f5968da7d912a5dd0ada52bf071447713faf33fecb",
+    "REVIEW.md": "e48fc3fbf22acbf900bc66253727f6e09cd67d329ee3190affa5519c2986cc20"
+  },
+  "portable_adaptation": "Original independent scripts adapted only for repository-relative inputs, ignored output paths, explicit source macro, stable receipt source name and fail-closed missing-harness/optimization checks; complete replay passed. Final review removed a remaining sibling-worktree path from the context verifier, replacing it with immutable source-hash checks plus standalone manifest authentication; the native replay still passes. The independent mutant launcher also explicitly rejects Python optimization so assertion removal cannot produce false passes."
+}
