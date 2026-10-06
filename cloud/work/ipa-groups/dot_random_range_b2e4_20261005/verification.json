@@ -1,0 +1,208 @@
+{
+  "base_revision": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "status": "STRICT_MATCH_PENDING_INDEPENDENT_REVIEW",
+  "claims": [
+    "func_8008B2E4"
+  ],
+  "range": [
+    "0x8008B2E4",
+    "0x8008B32C"
+  ],
+  "new_candidate_bytes": 72,
+  "accepted_byte_gain": 0,
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "direct_native_callers": [],
+  "assembler_erratum_flag_added_by_scorer": "-Wab,-r4300_mul",
+  "source_sha256": {
+    "range.c": "7d85a0dfb9be865a8e0d6f56579a0666aada1934488327a26beabb2d3d774148",
+    "rand.c": "4d7d62f78adb32386a21ce11790ee88054be058b7f08bfc6214ff68011a3628b",
+    "group.json": "8f44bcb11023e54aa2d67998243dfb06624951524c25d5c94f07ed59cc76bbe1"
+  },
+  "target_manifest_sha256": "dade78464a022fedd2c5ba651ee1bca5ffd4ec99bfa4d2413d27256540bed02c",
+  "object": {
+    "differing": 0,
+    "total": 18,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "canonical_verdict": "MATCH",
+    "symbol_bytes": 72,
+    "symbol_offset": 48,
+    "native_bytes": 72,
+    "full_extent_equal": true,
+    "all_relocations_resolved": true,
+    "relocated_body_sha256": "ba9c8043ae09ad367b6cfc05f8cecf7258c9f6b4ba74f877755617abfd558095"
+  },
+  "accepted_context": {
+    "differing": 0,
+    "total": 12,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "canonical_verdict": "MATCH",
+    "symbol_bytes": 48,
+    "symbol_offset": 0,
+    "native_bytes": 48,
+    "full_extent_equal": true,
+    "all_relocations_resolved": true,
+    "relocated_body_sha256": "fed3efb3a551d286be3bcf5cb50bd0b46fb94f874f1773499a50d4094da77e67"
+  },
+  "relocations": [
+    {
+      "offset": 0,
+      "type": 5,
+      "symbol": "D_8011735C"
+    },
+    {
+      "offset": 4,
+      "type": 6,
+      "symbol": "D_8011735C"
+    },
+    {
+      "offset": 48,
+      "type": 5,
+      "symbol": "D_8011735C"
+    },
+    {
+      "offset": 52,
+      "type": 6,
+      "symbol": "D_8011735C"
+    }
+  ],
+  "zero_alignment_bytes_outside_symbols": 8,
+  "no_owned_data_or_literals": true,
+  "gnu_link": {
+    "full_pair_equal": true,
+    "context_address": "0x8008b2b4",
+    "candidate_address": "0x8008b2e4",
+    "function_bytes": [
+      48,
+      72
+    ],
+    "body_sha256": "ba9c8043ae09ad367b6cfc05f8cecf7258c9f6b4ba74f877755617abfd558095"
+  },
+  "production_reader_equal": {
+    "func_8008B2B4": true,
+    "func_8008B2E4": true
+  },
+  "controls": {
+    "without_outer_mask": {
+      "differing": 3,
+      "total": 18,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "canonical_verdict": "3/18 words differ",
+      "symbol_bytes": 72,
+      "symbol_offset": 48,
+      "native_bytes": 72,
+      "full_extent_equal": false,
+      "all_relocations_resolved": true,
+      "relocated_body_sha256": "7c5472c2ba1e6315884aafff8339df847d1dce1dc1fca33918ce55fdd56ba08d"
+    },
+    "direct_return": {
+      "differing": 0,
+      "total": 18,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "canonical_verdict": "MATCH",
+      "symbol_bytes": 72,
+      "symbol_offset": 48,
+      "native_bytes": 72,
+      "full_extent_equal": true,
+      "all_relocations_resolved": true,
+      "relocated_body_sha256": "ba9c8043ae09ad367b6cfc05f8cecf7258c9f6b4ba74f877755617abfd558095"
+    },
+    "arcade_double_denominator": {
+      "differing": 12,
+      "total": 18,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 3,
+      "canonical_verdict": "12/18 words differ (3 extra words (nonzero beyond target length))",
+      "symbol_bytes": 84,
+      "symbol_offset": 48,
+      "native_bytes": 72,
+      "full_extent_equal": false,
+      "all_relocations_resolved": true,
+      "relocated_body_sha256": "c9cfda58be1f2bfd0e151d8047fb708e72734debb1c3fb8788bcd312f95f5c32"
+    },
+    "archived_standalone": {
+      "differing": 3,
+      "total": 18,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "canonical_verdict": "3/18 words differ",
+      "symbol_bytes": 72,
+      "symbol_offset": 0,
+      "native_bytes": 72,
+      "full_extent_equal": false,
+      "all_relocations_resolved": true,
+      "relocated_body_sha256": "7c5472c2ba1e6315884aafff8339df847d1dce1dc1fca33918ce55fdd56ba08d"
+    }
+  },
+  "archived_source_sha256": "241e13f2481605d3999e760193d9a4b1ea591caf2ccfc593ba3e1271ce63b4b5",
+  "host_native_linked": {
+    "cases": 135204,
+    "native_executions": 270408,
+    "all_32768_random_outputs_covered": true,
+    "instruction_offsets_executed": 18,
+    "host_ubsan": true,
+    "host_wrap_semantics": "-fwrapv",
+    "linked_replay": true,
+    "output_sha256": "27e5073aa7978d97b185300d8465d561331dc07fa7aa02c3552a05655f0d3902",
+    "mutation_discriminators": {
+      "wrong_mask": {
+        "first_case": 65537,
+        "seed": 2902681219,
+        "scale_bits": 1065353216
+      },
+      "wrong_denominator": {
+        "first_case": 5,
+        "seed": 266638786,
+        "scale_bits": 1065353216
+      },
+      "ignore_scale_sign": {
+        "first_case": 2,
+        "seed": 4235699843,
+        "scale_bits": 3212836864
+      }
+    },
+    "domain": "finite normal scales/products plus signed zero; default rounding; excludes NaN, infinity, subnormal arithmetic and overflow"
+  },
+  "compiler_sha256": {
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+  },
+  "tools_sha256": {
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+    "tools/conveyor/pipeline/blob_group.py": "340e24d21c67e1c0c8ab3711614492e9ac0b98d81d3d13221996d234b4a39e1a"
+  },
+  "packet_sha256": {
+    "verify.py": "df949adca71d3f08010bca539d1561d236fb29c84a7ef90a68c1b1d11b37a5e7",
+    "verify_semantics.py": "da983e763f345edc580c19e053af9e3f50a3ede864a27d60b591bdecf031d71c",
+    "semantic_test.c": "e8b9bc325d18b78c5e96ed04fd96d64b622c87f30d144de927e03fc9cb9d401b",
+    "claim.json": "d1528696d249492b6ce415f6882e6ac23211a963bd2953d326a988cd65881d18"
+  },
+  "limitations": [
+    "No full-game shadow, image, compression or ROM verification.",
+    "Host -fwrapv explicitly defines the unchanged accepted rand signed-overflow behavior.",
+    "Arithmetic proof excludes NaN, infinity, subnormal arithmetic, overflow and nondefault rounding.",
+    "No direct native callers were found; inlined uses and original whole-program roots are not proven."
+  ]
+}
