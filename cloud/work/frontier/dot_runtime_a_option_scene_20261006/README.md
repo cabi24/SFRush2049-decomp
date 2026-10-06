@@ -53,8 +53,8 @@ not repeated or retried here; this draft does not duplicate #171/#230 credit.
 With stock IDO and GNU MIPS tools configured:
 
 ```
-python tools/cloud/score.py --targets asm/us/ovl_a group \
-  cloud/work/frontier/dot_runtime_a_option_scene_20261006
+python tools/cloud/score.py group \
+  cloud/work/frontier/dot_runtime_a_option_scene_20261006 --targets asm/us/ovl_a
 ```
 
 Matching compilation/scoring and residual diagnosis only. No proof packet,
