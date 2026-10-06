@@ -1037,6 +1037,15 @@
     "verified": "image_gate",
     "verified_at": "2026-10-02"
   },
+  "entity_update": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_entity_update",
+    "source": "src/blob/groups/frontier_entity_update/group.json",
+    "source_sha256": "4cc2fc4ea39214b131bf2602cc490bce12f884167e60be8fe35ad7a492a52544",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-06"
+  },
   "euler_to_matrix": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "source": "src/blob/euler_to_matrix.c",
@@ -1465,6 +1474,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-23"
+  },
+  "func_8008E408": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_func_8008E408",
+    "source": "src/blob/groups/frontier_func_8008E408/group.json",
+    "source_sha256": "ef401235117b32791355d7deb25f365a8cebfeaa07a88b8a967835e9301c6eef",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-06"
   },
   "func_8008FFB8": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -6829,6 +6847,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-02"
+  },
+  "race_countdown_display": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_race_countdown_display",
+    "source": "src/blob/groups/frontier_race_countdown_display/group.json",
+    "source_sha256": "7811ce211c44f5a166238e0759e25b36d2f574844521f99abafed4207946b293",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-06"
   },
   "race_init_helper": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

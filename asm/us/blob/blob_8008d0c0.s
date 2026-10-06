@@ -1317,6 +1317,7 @@ func_8008E3C0:
 .section .text.func_8008E408, "ax", @progbits
 .globl func_8008E408
 func_8008E408:
+    /* compiled from src/blob/func_8008E408.c */
     .word 0x00043C00
     .word 0x00077403
     .word 0x000EC100

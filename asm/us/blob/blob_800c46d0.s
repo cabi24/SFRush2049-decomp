@@ -2337,6 +2337,7 @@ entity_iterate:
 .section .text.entity_update, "ax", @progbits
 .globl entity_update
 entity_update:
+    /* compiled from src/blob/entity_update.c */
     .word 0x27BDFEB8
     .word 0xAFBF0064
     .word 0xAFBE0060

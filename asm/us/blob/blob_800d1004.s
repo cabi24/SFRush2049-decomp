@@ -1408,6 +1408,7 @@ func_800D2458:
 .section .text.race_countdown_display, "ax", @progbits
 .globl race_countdown_display
 race_countdown_display:
+    /* compiled from src/blob/race_countdown_display.c */
     .word 0x27BDFF60
     .word 0xAFBF0024
     .word 0xAFA500A4

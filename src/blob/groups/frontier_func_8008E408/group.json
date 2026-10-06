@@ -1,0 +1,19 @@
+{
+ "members": [
+  "func_8008E408"
+ ],
+ "context": [
+  "func_8008B2E4"
+ ],
+ "files": [
+  "func_8008E408.c",
+  "func_8008B2E4.c"
+ ],
+ "keep": [
+  "func_8008E408",
+  "func_8008B2E4"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "note": "w12l (wave 12): func_8008E408 (cloud/matches/func_8008E408.c, w12h) via the group path. umerge inlines the locked single func_8008B2E4 (copied unchanged; its static rand is inlined in it) twice, plus the file's static attach. Supersedes nothing; no unit_overrides.",
+ "provenance": "frontier wave 12 (w12l group), cloud/work/frontier/w12l/groups/func_8008E408"
+}

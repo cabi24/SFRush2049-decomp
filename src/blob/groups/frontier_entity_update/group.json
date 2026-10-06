@@ -1,0 +1,44 @@
+{
+ "members": [
+  "entity_update"
+ ],
+ "context": [
+  "func_800AD650",
+  "handbrake_apply",
+  "func_800C36A0",
+  "camera_trigger_check",
+  "func_800AD4C8",
+  "func_800C3AD0",
+  "input_process_controller",
+  "func_800AD5D0",
+  "func_800AC9BC",
+  "effect_cleanup",
+  "func_800B61A8"
+ ],
+ "files": [
+  "entity_update.c",
+  "effect_cleanup.c",
+  "func_800B61A8.c",
+  "group.c",
+  "camera_trigger_check.c"
+ ],
+ "keep": [
+  "entity_update",
+  "effect_cleanup",
+  "func_800B61A8",
+  "__standin_func_800AD4C8",
+  "__standin_func_800C3AD0_a",
+  "__standin_func_800C3AD0_b",
+  "__standin_input_process_controller_a",
+  "__standin_input_process_controller_b",
+  "func_800AD5D0",
+  "handbrake_apply",
+  "func_800AC9BC",
+  "__standin_c36a0_a",
+  "__standin_c36a0_b",
+  "camera_trigger_check"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "note": "w12l (wave 12): entity_update (cloud/matches/entity_update.c, w12a) via the group path. It needs umerge to inline effect_cleanup and func_800B61A8 (locked singles, copied unchanged) and the internal IPA convention of func_800C3AD0 (params s0,s2,s4..s8,f20), which only the locked group func_800AD4C8's sources give: group.c and camera_trigger_check.c are unchanged copies, its keep list is reused, and its members stay locked in func_800AD4C8 (context here, all MATCH; func_800AC9BC 52/56 as in func_800AD4C8 itself). Supersedes nothing; no unit_overrides.",
+ "provenance": "frontier wave 12 (w12l group), cloud/work/frontier/w12l/groups/entity_update"
+}
