@@ -3966,6 +3966,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-02"
   },
+  "func_800CCB40": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_800CCB40.c",
+    "source_sha256": "81966c72399edf6b480d75814b8dfb8537c375ee3be9288fe94c1474db47a297",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-06"
+  },
   "func_800CCCCC": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
