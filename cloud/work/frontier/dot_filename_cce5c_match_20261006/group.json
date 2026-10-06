@@ -1,0 +1,26 @@
+{
+  "members": [
+    "func_800CCE5C"
+  ],
+  "context": [
+    "format_string_parse",
+    "func_800C7578",
+    "object_data_allocate",
+    "menu_dialog_close"
+  ],
+  "files": [
+    "hash.c",
+    "candidate.c",
+    "other_callers.c",
+    "filename.c"
+  ],
+  "keep": [
+    "func_800C7578",
+    "object_data_allocate",
+    "menu_dialog_close",
+    "func_800CCE5C"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [],
+  "provenance": "Observed local CCE5C match candidate. Existing filename-update source plus actual accepted hash and genuine callers, including PR 193 setting-record source. No accepted-coverage claim."
+}
