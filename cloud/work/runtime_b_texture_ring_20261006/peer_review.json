@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "reviewed_at_utc": "2026-10-06T01:14:39Z",
+  "base": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "image": "B",
+  "function": "func_8038A8CC",
+  "address": "0x8038A8CC",
+  "end": "0x8038A95C",
+  "bytes": 144,
+  "frozen_files_sha256": {
+    "cloud/matches/ovl_b/func_8038A8CC.c": "ed3e89d10c85953ea667eb09e48d9b9d0c3196a62f0e1053f79d50d5d0391819",
+    "cloud/work/runtime_b_texture_ring_20261006/verify.py": "ea973ec876e5fcb57ee2a69ef518d9d35169ec1df8b5790dc0481c8e8ae2b035",
+    "cloud/work/runtime_b_texture_ring_20261006/host_test.c": "1593a35963cc43c0986179f5a220f57a17277a8144715c2735264ad1af7b81d8",
+    "cloud/work/runtime_b_texture_ring_20261006/test_packet.py": "c30637dc44f0f190570690e5eae4d9ebe211d03104d19af4eb72bfed4eb19b14",
+    "cloud/work/runtime_b_texture_ring_20261006/README.md": "b786a1a9f449bf7479b18e0b5cae4ded51605b3fe2a020bb90239d4fd9eadf9f",
+    "cloud/work/runtime_b_texture_ring_20261006/verification.json": "87174cac59e48831319d8fd53e8fa5d523d2421496cc3e487143b53ad0230764",
+    "cloud/work/runtime_b_texture_ring_20261006/tool_provenance.json": "70c239136f4e779f2fdc3dc5d8689454315d9fa5f06d9eeb9a3796665db878b9"
+  },
+  "independent_checks": {
+    "complete_elf_function_and_text_bytes": 144,
+    "all_relocation_entries_checked": 15,
+    "defined_functions": 1,
+    "owned_storage_bytes": 0,
+    "gnu_absolute_native_link": "PASS, complete 36-word equality and all five external addresses checked",
+    "image_identity": "B protected target/extents/symbol hashes checked; image A address falls inside unrelated func_8038A820",
+    "accepted_helper_source_sha256": "405f7b1f5c31e4e4c19b82d745a778e85c2046903cea6d439d5d0564e925712b",
+    "helper_abi": "NameEntry *(char *, s16 *, s8, s8, s32); diagnostic policy 1 is authentic fifth formal",
+    "consumer_audit": "B:8038A408 witnesses signed-byte flag, unsigned-halfword index, four-byte pointers and wrap at 25",
+    "separate_native_and_host_cases": 3072,
+    "instruction_coverage": "36/36",
+    "callback_memory_effects": "Full non-stack mapped state compared; helper observes cleared header and original slots; later mutations to header/padding/index/adjacent memory survive while all 25 slots clear. Caller-saved GPR clobber includes ra; saved GPRs/frame restored.",
+    "negative_controls": {
+      "native_function_address_drift": "rejected",
+      "external_binding_drift": "rejected",
+      "truncated_function_size": "rejected",
+      "shifted_function_value": "rejected",
+      "unaccounted_owned_storage": "rejected",
+      "too_few_slots": "rejected",
+      "reset_header_after_callback": "rejected",
+      "wrong_fifth_argument": "rejected",
+      "wrong_high_bound": "rejected"
+    }
+  },
+  "producer_frozen_replay": {
+    "verify_check": "PASS",
+    "focused_tests": "6/6 PASS, including a second complete replay",
+    "fixtures_per_replay": 4096,
+    "native_executions_per_replay": 12288,
+    "host_ubsan_cases_per_replay": 4096,
+    "nonvacuous_memory_comparison": "136 nonstack bytes required, explicit global keys and focused callback-state test",
+    "source_mutants_rejected": 5
+  },
+  "resolved_before_freeze": [
+    "Initial producer decoder omitted native OR; corrected without candidate change.",
+    "Initial producer memory predicate excluded KSEG0 globals; corrected to remove only explicit stack interval and require 136 bytes plus key presence. All frozen checks rerun. Independent reviewer comparisons were nonvacuous."
+  ],
+  "scope": "Local matching-candidate proof only. No accepted coverage, runtime-image composition, recompression, ROM SHA-1, broad repository suite, hosted CI, publication or merge performed by reviewer."
+}
