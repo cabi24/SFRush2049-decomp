@@ -1,0 +1,18 @@
+{
+  "members": [
+    "func_8039B00C",
+    "func_8039C140"
+  ],
+  "claims": [
+    "func_8039B00C"
+  ],
+  "context": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_8039C140"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "Minimal real C140 parent plus B00C cleanup; only B00C is a new local O3 matching claim. All other routines remain true external declarations."
+}
