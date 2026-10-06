@@ -1,0 +1,20 @@
+{
+  "members": [
+    "func_8008B2E4"
+  ],
+  "context": [
+    "func_8008B2B4"
+  ],
+  "files": [
+    "rand.c",
+    "range.c"
+  ],
+  "keep": [
+    "func_8008B2B4",
+    "func_8008B2E4"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [
+    "func_8008B2E4"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "base_revision": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "date_utc": "2026-10-05T23:48:58Z",
+  "function": "func_8008B2E4",
+  "range": [
+    "0x8008B2E4",
+    "0x8008B32C"
+  ],
+  "bytes": 72,
+  "accepted_lock_absent": true,
+  "coordinator_range_checked": true,
+  "prior_context_result": "3/18 differing words; earlier 13-control spellings unavailable in this task",
+  "prior_packets": [
+    "cloud/work/bigfish/LIBRARY_HUNT.md",
+    "cloud/work/frontier/dot_camera_path_contracts/README.md"
+  ],
+  "donor": {
+    "repository": "historicalsource/rushtherock",
+    "revision": "845329d7b36f5a384c5625ed9a0aef584ab46139",
+    "file": "LIB/fmath.c",
+    "function": "Random",
+    "lines": [
+      801,
+      808
+    ],
+    "sha256": "491a48966d659335f31c49f0673337d802aaf4e30dc8fd3b002c791d0820c6f2"
+  },
+  "unpublished_work_excluded": false,
+  "accepted_byte_gain": 0
+}
