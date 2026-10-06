@@ -1,0 +1,768 @@
+{
+  "status": "COMPLETE-NONMATCH children; PARTIAL-SOURCE parent; NOT READY-MATCH",
+  "base": "dea99f09ab19b1d3b324ed7097162f7b378e7096",
+  "image_sha256": "b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd",
+  "target_manifest_sha256": "3b7ccbab80467e2538f107543f612db239c380a44000730c5f78f6dbb062bd98",
+  "source_sha256": "2dc2612d12962195b09ef7726a7479c150ece5d6acc6fec3244fe1572e758009",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "tools": {
+    "score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+    "owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad"
+  },
+  "compiler": {
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+  },
+  "artifact_hashes": {
+    "children.c": "2dc2612d12962195b09ef7726a7479c150ece5d6acc6fec3244fe1572e758009",
+    "native.py": "e50cf13732584303f311bd249f600b522a7935ada324a5220237970fe628d0f3",
+    "host_test.c": "a878afc6d750a6a8967eb445d81cb0ab880d2f853350c9a2f127c53e59621c1e",
+    "verify.py": "9af65c78863dcb3232e6c564284f0772d180b86c5f28a8521e1c5f921c5b3d58",
+    "parent_regions.md": "905b14f05a968e350fac8401e764aabc3d5cf3befb2ea2dda89c4f8a1db54797",
+    "contract_audit.json": "5975ba31b3a1ec9c09663d00d42436155964dd7c36519b59aa39da33ca089157",
+    "README.md": "e9c85c2e69ba8ab8af09599fce3684d89ca8d1cb1b7a33226b4d7b30d1438e2c"
+  },
+  "intervals": {
+    "func_8038D200": {
+      "name": "func_8038D200",
+      "address": "0x8038D200",
+      "size": 296,
+      "evidence": [
+        "jal",
+        "prologue"
+      ],
+      "end": "0x8038d328",
+      "sha256": "474ecb6290207ace7925c37d398ae36bc2e33b6a4041ee62d3d4202fb3f16772",
+      "direct_calls": [
+        {
+          "site": "0x8038d238",
+          "destination": "0x8008d6b0"
+        },
+        {
+          "site": "0x8038d250",
+          "destination": "0x8008d6b0"
+        },
+        {
+          "site": "0x8038d310",
+          "destination": "0x80090f44"
+        }
+      ]
+    },
+    "func_8038D328": {
+      "name": "func_8038D328",
+      "address": "0x8038D328",
+      "size": 124,
+      "evidence": [
+        "jal",
+        "prologue"
+      ],
+      "end": "0x8038d3a4",
+      "sha256": "5d8fc0875c56105d63e0eaee161b6ec6900d742563b85d047035984fb0fa904a",
+      "direct_calls": [
+        {
+          "site": "0x8038d334",
+          "destination": "0x8008e3c0"
+        },
+        {
+          "site": "0x8038d35c",
+          "destination": "0x8008e398"
+        },
+        {
+          "site": "0x8038d384",
+          "destination": "0x8008e398"
+        }
+      ]
+    },
+    "func_8038E088": {
+      "name": "func_8038E088",
+      "address": "0x8038E088",
+      "size": 140,
+      "evidence": [
+        "jal",
+        "prologue"
+      ],
+      "end": "0x8038e114",
+      "sha256": "434d8ec74a3bebf916add5908bede08ac3395d67e028441b9e30d20e2073af9a",
+      "direct_calls": [
+        {
+          "site": "0x8038e0c4",
+          "destination": "0x80090254"
+        },
+        {
+          "site": "0x8038e0d4",
+          "destination": "0x800afa84"
+        },
+        {
+          "site": "0x8038e0ec",
+          "destination": "0x80090254"
+        },
+        {
+          "site": "0x8038e0fc",
+          "destination": "0x800afa84"
+        }
+      ]
+    },
+    "func_8038E114": {
+      "name": "func_8038E114",
+      "address": "0x8038E114",
+      "size": 5196,
+      "evidence": [
+        "jal"
+      ],
+      "end": "0x8038f560",
+      "sha256": "d1dc2c70973b1780b81b37730a974fc4921b14ab4d368437d899a6fe9f7ef8e0",
+      "direct_calls": [
+        {
+          "site": "0x8038e328",
+          "destination": "0x8008d6b0"
+        },
+        {
+          "site": "0x8038e338",
+          "destination": "0x80090f44"
+        },
+        {
+          "site": "0x8038e390",
+          "destination": "0x800afa84"
+        },
+        {
+          "site": "0x8038e3f4",
+          "destination": "0x8038d328"
+        },
+        {
+          "site": "0x8038e404",
+          "destination": "0x8008e06c"
+        },
+        {
+          "site": "0x8038e41c",
+          "destination": "0x8038d328"
+        },
+        {
+          "site": "0x8038e430",
+          "destination": "0x8008e06c"
+        },
+        {
+          "site": "0x8038e484",
+          "destination": "0x8008d870"
+        },
+        {
+          "site": "0x8038e4e0",
+          "destination": "0x8038e088"
+        },
+        {
+          "site": "0x8038e4f0",
+          "destination": "0x800afa84"
+        },
+        {
+          "site": "0x8038e520",
+          "destination": "0x8008d6b0"
+        },
+        {
+          "site": "0x8038e568",
+          "destination": "0x8008e06c"
+        },
+        {
+          "site": "0x8038e578",
+          "destination": "0x8008e06c"
+        },
+        {
+          "site": "0x8038e5b0",
+          "destination": "0x8008e06c"
+        },
+        {
+          "site": "0x8038e5c0",
+          "destination": "0x8008e06c"
+        },
+        {
+          "site": "0x8038e5f0",
+          "destination": "0x800b61a8"
+        },
+        {
+          "site": "0x8038e660",
+          "destination": "0x8008b32c"
+        },
+        {
+          "site": "0x8038e6b0",
+          "destination": "0x8038e088"
+        },
+        {
+          "site": "0x8038e6c0",
+          "destination": "0x800afa84"
+        },
+        {
+          "site": "0x8038e884",
+          "destination": "0x8038dddc"
+        },
+        {
+          "site": "0x8038eac4",
+          "destination": "0x8038da78"
+        },
+        {
+          "site": "0x8038eb1c",
+          "destination": "0x8038da78"
+        },
+        {
+          "site": "0x8038eb88",
+          "destination": "0x800add58"
+        },
+        {
+          "site": "0x8038ec5c",
+          "destination": "0x800abcc8"
+        },
+        {
+          "site": "0x8038ec70",
+          "destination": "0x800a61b0"
+        },
+        {
+          "site": "0x8038ec98",
+          "destination": "0x8009e820"
+        },
+        {
+          "site": "0x8038ecb0",
+          "destination": "0x800a61b0"
+        },
+        {
+          "site": "0x8038ecc4",
+          "destination": "0x8009e820"
+        },
+        {
+          "site": "0x8038ece0",
+          "destination": "0x8038d798"
+        },
+        {
+          "site": "0x8038ecf4",
+          "destination": "0x800af06c"
+        },
+        {
+          "site": "0x8038ed4c",
+          "destination": "0x800a61b0"
+        },
+        {
+          "site": "0x8038ed74",
+          "destination": "0x8009e820"
+        },
+        {
+          "site": "0x8038ed84",
+          "destination": "0x8008b2e4"
+        },
+        {
+          "site": "0x8038eddc",
+          "destination": "0x800aefe0"
+        },
+        {
+          "site": "0x8038f010",
+          "destination": "0x800b24ec"
+        },
+        {
+          "site": "0x8038f01c",
+          "destination": "0x8008e3c0"
+        },
+        {
+          "site": "0x8038f04c",
+          "destination": "0x800a78bc"
+        },
+        {
+          "site": "0x8038f064",
+          "destination": "0x800afa84"
+        },
+        {
+          "site": "0x8038f0dc",
+          "destination": "0x8038d798"
+        },
+        {
+          "site": "0x8038f0fc",
+          "destination": "0x8038d798"
+        },
+        {
+          "site": "0x8038f110",
+          "destination": "0x800af06c"
+        },
+        {
+          "site": "0x8038f154",
+          "destination": "0x8038d3a4"
+        },
+        {
+          "site": "0x8038f1c0",
+          "destination": "0x8038d798"
+        },
+        {
+          "site": "0x8038f1dc",
+          "destination": "0x8038d798"
+        },
+        {
+          "site": "0x8038f1f0",
+          "destination": "0x800af06c"
+        },
+        {
+          "site": "0x8038f230",
+          "destination": "0x8038d498"
+        },
+        {
+          "site": "0x8038f3a0",
+          "destination": "0x8038d328"
+        },
+        {
+          "site": "0x8038f3b0",
+          "destination": "0x8038d200"
+        },
+        {
+          "site": "0x8038f3d8",
+          "destination": "0x8038d328"
+        },
+        {
+          "site": "0x8038f3e8",
+          "destination": "0x8038d200"
+        },
+        {
+          "site": "0x8038f3fc",
+          "destination": "0x8038d200"
+        },
+        {
+          "site": "0x8038f424",
+          "destination": "0x8038d328"
+        },
+        {
+          "site": "0x8038f434",
+          "destination": "0x8038d200"
+        },
+        {
+          "site": "0x8038f45c",
+          "destination": "0x8038d328"
+        },
+        {
+          "site": "0x8038f46c",
+          "destination": "0x8038d200"
+        },
+        {
+          "site": "0x8038f494",
+          "destination": "0x8038d328"
+        },
+        {
+          "site": "0x8038f4a4",
+          "destination": "0x8038d200"
+        },
+        {
+          "site": "0x8038f4cc",
+          "destination": "0x8038d328"
+        },
+        {
+          "site": "0x8038f4dc",
+          "destination": "0x8038d200"
+        }
+      ]
+    },
+    "func_8038FCE0": {
+      "name": "func_8038FCE0",
+      "address": "0x8038FCE0",
+      "size": 3056,
+      "evidence": [
+        "game_jal",
+        "prologue"
+      ],
+      "end": "0x803908d0",
+      "sha256": "3574383f8241f87f1aa201bc4a7265e49cd818b8b6f7e6564ecca4131b6682e2",
+      "direct_calls": [
+        {
+          "site": "0x8038fd78",
+          "destination": "0x80090254"
+        },
+        {
+          "site": "0x8038fd88",
+          "destination": "0x800afa84"
+        },
+        {
+          "site": "0x8038fe8c",
+          "destination": "0x8038f938"
+        },
+        {
+          "site": "0x8038fec8",
+          "destination": "0x8038f568"
+        },
+        {
+          "site": "0x80390068",
+          "destination": "0x8008e3c0"
+        },
+        {
+          "site": "0x803900f0",
+          "destination": "0x8008d6b0"
+        },
+        {
+          "site": "0x80390120",
+          "destination": "0x800b61a8"
+        },
+        {
+          "site": "0x80390160",
+          "destination": "0x80090f44"
+        },
+        {
+          "site": "0x80390254",
+          "destination": "0x80090f44"
+        },
+        {
+          "site": "0x803902c0",
+          "destination": "0x80090e9c"
+        },
+        {
+          "site": "0x803902cc",
+          "destination": "0x80090f44"
+        },
+        {
+          "site": "0x803902f4",
+          "destination": "0x80090f44"
+        },
+        {
+          "site": "0x80390324",
+          "destination": "0x8008b2e4"
+        },
+        {
+          "site": "0x80390340",
+          "destination": "0x80090e9c"
+        },
+        {
+          "site": "0x8039034c",
+          "destination": "0x8008b2e4"
+        },
+        {
+          "site": "0x80390368",
+          "destination": "0x80090f44"
+        },
+        {
+          "site": "0x80390374",
+          "destination": "0x8008e3c0"
+        },
+        {
+          "site": "0x803904d8",
+          "destination": "0x8008d6b0"
+        },
+        {
+          "site": "0x803904e4",
+          "destination": "0x8008b2e4"
+        },
+        {
+          "site": "0x803904f8",
+          "destination": "0x8009ea68"
+        },
+        {
+          "site": "0x80390510",
+          "destination": "0x8008e398"
+        },
+        {
+          "site": "0x80390520",
+          "destination": "0x8008b2e4"
+        },
+        {
+          "site": "0x803907e0",
+          "destination": "0x8038d054"
+        },
+        {
+          "site": "0x8039085c",
+          "destination": "0x8008d0c0"
+        },
+        {
+          "site": "0x80390868",
+          "destination": "0x800afa84"
+        },
+        {
+          "site": "0x80390878",
+          "destination": "0x8038e114"
+        },
+        {
+          "site": "0x80390880",
+          "destination": "0x8038cb20"
+        }
+      ]
+    },
+    "func_8038DA78": {
+      "name": "func_8038DA78",
+      "address": "0x8038DA78",
+      "size": 868,
+      "evidence": [
+        "jal",
+        "prologue"
+      ],
+      "end": "0x8038dddc",
+      "sha256": "7c7128167920d9661e579931d669aa4821c940234e8d7ed09ee89235bc7b2dcf",
+      "direct_calls": [
+        {
+          "site": "0x8038dd5c",
+          "destination": "0x800a61b0"
+        },
+        {
+          "site": "0x8038dd68",
+          "destination": "0x8008c768"
+        }
+      ]
+    },
+    "func_8038D498": {
+      "name": "func_8038D498",
+      "address": "0x8038D498",
+      "size": 768,
+      "evidence": [
+        "jal",
+        "prologue"
+      ],
+      "end": "0x8038d798",
+      "sha256": "fc6f18de1f301b86d8a9708aa066babbedc370b22067858a2248578597aa2d6e",
+      "direct_calls": [
+        {
+          "site": "0x8038d694",
+          "destination": "0x8038d3a4"
+        },
+        {
+          "site": "0x8038d6ec",
+          "destination": "0x800a61b0"
+        }
+      ]
+    },
+    "func_8038DDDC": {
+      "name": "func_8038DDDC",
+      "address": "0x8038DDDC",
+      "size": 684,
+      "evidence": [
+        "jal",
+        "prologue"
+      ],
+      "end": "0x8038e088",
+      "sha256": "563f3b6af390cc58174ebca64e3487d91b4eb330c987a8d182cf13e5138116fa",
+      "direct_calls": [
+        {
+          "site": "0x8038defc",
+          "destination": "0x800a61b0"
+        },
+        {
+          "site": "0x8038dffc",
+          "destination": "0x80090e9c"
+        },
+        {
+          "site": "0x8038e00c",
+          "destination": "0x80090e9c"
+        },
+        {
+          "site": "0x8038e038",
+          "destination": "0x80090f44"
+        },
+        {
+          "site": "0x8038e048",
+          "destination": "0x80090f44"
+        }
+      ]
+    },
+    "func_8038CB20": {
+      "name": "func_8038CB20",
+      "address": "0x8038CB20",
+      "size": 1332,
+      "evidence": [
+        "jal",
+        "prologue"
+      ],
+      "end": "0x8038d054",
+      "sha256": "8c74e45fab0e5ecb9b1e0f6494c3888c001dbacaf9cb5bf148580adcd9fd1626",
+      "direct_calls": [
+        {
+          "site": "0x8038cbb0",
+          "destination": "0x8008d0c0"
+        },
+        {
+          "site": "0x8038cbbc",
+          "destination": "0x800afa84"
+        },
+        {
+          "site": "0x8038cc6c",
+          "destination": "0x8008c074"
+        },
+        {
+          "site": "0x8038ccf0",
+          "destination": "0x800afa84"
+        },
+        {
+          "site": "0x8038cdf0",
+          "destination": "0x8008e3c0"
+        },
+        {
+          "site": "0x8038cfa4",
+          "destination": "0x800a78bc"
+        },
+        {
+          "site": "0x8038d004",
+          "destination": "0x800afa84"
+        }
+      ]
+    }
+  },
+  "ordinary_abi_smoke_comparisons": {
+    "func_8038D200": {
+      "differing": 71,
+      "total": 74,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0xc8",
+        ".rodata+0x0 at +0xd0",
+        ".rodata+0x4 at +0xc4",
+        ".rodata+0x4 at +0xd4",
+        ".rodata+0x8 at +0x110",
+        ".rodata+0x8 at +0x114"
+      ],
+      "errors": [],
+      "extra_words": 1,
+      "status": "71/74 words differ (1 extra words (nonzero beyond target length); 6 section-relative relocations unverified: .rodata+0x0 at +0xc8, .rodata+0x0 at +0xd0, .rodata+0x4 at +0xc4, .rodata+0x4 at +0xd4, .rodata+0x8 at +0x110, .rodata+0x8 at +0x114)",
+      "notes": [
+        "not verified: .rodata+0x0 at +0xd0: no retail data available",
+        "not verified: .rodata+0x4 at +0xd4: no retail data available",
+        "not verified: .rodata+0x8 at +0x114: no retail data available"
+      ]
+    },
+    "func_8038D328": {
+      "differing": 31,
+      "total": 31,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 7,
+      "status": "31/31 words differ (7 extra words (nonzero beyond target length))",
+      "notes": []
+    },
+    "func_8038E088": {
+      "differing": 28,
+      "total": 35,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0xc at +0x20",
+        ".rodata+0xc at +0x28"
+      ],
+      "errors": [],
+      "extra_words": 0,
+      "status": "28/35 words differ (2 section-relative relocations unverified: .rodata+0xc at +0x20, .rodata+0xc at +0x28)",
+      "notes": [
+        "not verified: .rodata+0xc at +0x28: no retail data available"
+      ]
+    }
+  },
+  "object": {
+    "sha256": "9a16e0fb5d6b2d52dd55b86f143951ed266551e75764cd808712c59a232532d1",
+    "allocated_sections": [
+      {
+        "name": ".text",
+        "address": "0x0",
+        "size": 608,
+        "sha256": "a9ce7c7d295fd1a0e8db7186218a174b9c50bc7cc3e843b4e54e99402989f0cf"
+      },
+      {
+        "name": ".rodata",
+        "address": "0x0",
+        "size": 48,
+        "sha256": "cc350a4d62770e5390c36c8323e6c977c72aed6077b9a0ea1711613ec807f46b"
+      },
+      {
+        "name": ".reginfo",
+        "address": "0x0",
+        "size": 24,
+        "sha256": "c5fc4b734009db073f567af5cb8954e256772db42ed08efd632ea41642adb4c5"
+      }
+    ],
+    "functions": {
+      "func_8038D200": {
+        "address": "0x0",
+        "size": 304
+      },
+      "func_8038D328": {
+        "address": "0x130",
+        "size": 156
+      },
+      "func_8038E088": {
+        "address": "0x1cc",
+        "size": 140
+      }
+    },
+    "undefined_symbols": [
+      "D_8011418C",
+      "D_80394F70",
+      "D_80399B18",
+      "func_8008E398",
+      "func_8008E3C0",
+      "func_80090F44",
+      "func_800AFA84",
+      "math_utility",
+      "sound_call_minimal"
+    ]
+  },
+  "independent_link": {
+    "sha256": "aeba77b7d62e95b29343b5d713a6e495040b49d279dfd1aab3c5877a78c7b02f",
+    "allocated_sections": [
+      {
+        "name": ".text",
+        "address": "0x81000000",
+        "size": 608,
+        "sha256": "f6c6ccaa54c8fbb07d00e0a40c0c76065b4ed54f1790c0ecbf89ac5fd4495fc7"
+      },
+      {
+        "name": ".rodata",
+        "address": "0x81010000",
+        "size": 48,
+        "sha256": "44bf20e373d5e85ad31f526d09e294d5f6c622747ebf70babe7ecde8ce6f9f10"
+      }
+    ],
+    "functions": {
+      "func_8038E088": {
+        "address": "0x810001cc",
+        "size": 140
+      },
+      "func_8038D328": {
+        "address": "0x81000130",
+        "size": 156
+      },
+      "func_8038D200": {
+        "address": "0x81000000",
+        "size": 304
+      }
+    },
+    "undefined_symbols": []
+  },
+  "native_behavior": {
+    "paired_fixtures": 33024,
+    "native_instruction_coverage": {
+      "func_8038E088": 35,
+      "func_8038D328": 31,
+      "func_8038D200": 74
+    },
+    "candidate_instruction_coverage": {
+      "func_8038E088": 35,
+      "func_8038D328": 39,
+      "func_8038D200": 76
+    },
+    "negative_controls": [
+      "null allocation refused",
+      "unknown opcode refused"
+    ]
+  },
+  "host_result": "791296 bounded host fixtures passed",
+  "sanitizers": "ASan, UBSan, bounds; leak detection disabled because sandbox ptrace is incompatible",
+  "rejected_semantic_mutants": [
+    "copy mode",
+    "scale",
+    "transform selection",
+    "secondary cleanup"
+  ],
+  "native_layout": {
+    "sizeof(void *)": 4,
+    "sizeof(BRecord)": 104,
+    "sizeof(BObject)": 60,
+    "(u32)&((BRecord *)0)->kind": 6,
+    "(u32)&((BRecord *)0)->flags": 7,
+    "(u32)&((BRecord *)0)->position": 32,
+    "(u32)&((BRecord *)0)->uv": 56,
+    "(u32)&((BRecord *)0)->attached_effect": 92,
+    "(u32)&((BRecord *)0)->primary": 96,
+    "(u32)&((BRecord *)0)->secondary": 100,
+    "(u32)&((BObject *)0)->uv": 8,
+    "(u32)&((BObject *)0)->position": 44
+  },
+  "protected_inputs_unchanged": true,
+  "new_matching_claims": [],
+  "not_run": [
+    "complete E114/FCE0 reconstruction",
+    "O3 private closure compile",
+    "image/stream/full-ROM gates"
+  ]
+}
