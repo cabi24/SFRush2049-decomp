@@ -71,8 +71,8 @@ install overlapping copies together; the checker chooses the integration unit.
 With stock IDO and GNU MIPS tools configured:
 
 ```
-python tools/cloud/score.py --targets asm/us/ovl_a group \
-  cloud/work/frontier/dot_runtime_a_text_helpers_20261006 --claims
+python tools/cloud/score.py group \
+  cloud/work/frontier/dot_runtime_a_text_helpers_20261006 --claims --targets asm/us/ovl_a
 ```
 
 Only matching compilation/scoring was used for this lean publication. There is
