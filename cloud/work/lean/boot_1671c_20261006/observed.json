@@ -1,0 +1,35 @@
+{
+  "base": "f2e8380d3b368d00efc9cac3e37cdc7059b1f6e2",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "automatic_backend_flag": "-Wab,-r4300_mul",
+  "function": "func_8001671C",
+  "target_bytes": 636,
+  "rows": [
+    {
+      "source": "baseline",
+      "source_sha256": "5f99615ab10d72d23c9564b04ac7a9277fdb9ba976f7799803f277f621cb3801",
+      "result": {
+        "differing": 133,
+        "total": 159,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 1
+      },
+      "function_bytes": 644
+    },
+    {
+      "source": "candidate",
+      "source_sha256": "09a9e75a2e161ec187a053c39f0b3a1ba34e28f94dc239dff214d66456590d23",
+      "result": {
+        "differing": 40,
+        "total": 159,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 3
+      },
+      "function_bytes": 652
+    }
+  ]
+}
