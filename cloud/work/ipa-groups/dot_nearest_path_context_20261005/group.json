@@ -1,0 +1,21 @@
+{
+  "members": [
+    "func_800E4300"
+  ],
+  "context": [
+    "func_800E451C",
+    "func_800E398C",
+    "func_800E4B58"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_800E4B58"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [
+    "func_800E4300"
+  ],
+  "note": "Only the 540-byte nearest-point helper is claimed. Complete E451C/E398C/E4B58 context remains nonmatching. No stand-ins, artificial padding or volatile shaping."
+}
