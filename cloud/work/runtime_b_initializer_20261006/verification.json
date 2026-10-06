@@ -1,0 +1,480 @@
+{
+  "accepted_or_coverage_bytes": 0,
+  "address": "0x803908d0",
+  "base": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "behavior": {
+    "branch_outcomes": 8,
+    "caller_save_poisoning": true,
+    "compiled_host_mutants_rejected": [
+      "wrong_high_bound",
+      "wrong_error_policy",
+      "omit_last_model",
+      "omit_last_handle",
+      "wrong_pool_count"
+    ],
+    "complete_mapped_state_and_callback_snapshots": true,
+    "count_reads_per_case": 27,
+    "dynamic_calls_per_case": 32,
+    "fixtures": 1024,
+    "host_c89_ubsan_bounds_cases": 1024,
+    "instruction_offsets": 140,
+    "native_project_gnu_executions": 3072,
+    "saved_registers_and_stack_canaries": true,
+    "scope": "Ordinary O32 helper-boundary model, not helper implementation execution. All count bytes; two independent count/name mutation modes; valid backed name/output arrays; four 52-byte player-effect records. Synthetic pool fills stress preservation, not actual pool construction; name contents, table searches, allocator behavior, aliases, concurrency, FCSR, hardware and gameplay are outside the proof.",
+    "static_call_sites": 9,
+    "unknown_instruction_rejected": true
+  },
+  "bytes": 560,
+  "consumer": {
+    "address": "0x8038f938",
+    "bytes": 928,
+    "layout": "52-byte record; signed handle at +0, float matrix at +4, float position at +40/+44/+48",
+    "name": "func_8038F938",
+    "native_sha256": "1b5eb1e66549eb1cc0fba50a3dc3e432e295fde04bf1777be2a5bcdfccd9e106"
+  },
+  "controls": {
+    "O3": {
+      "body_identical": true,
+      "differing_words": 6,
+      "gnu_whole_object_equal": true,
+      "source_sha256": "3e52567b1b463df1d2b377225f4c8c8e10d2e408a8e99b71957d1643d1d5e9c4"
+    },
+    "initial": {
+      "differing_words": 75,
+      "function_bytes": 556,
+      "scope": "Historical initial isolated source control, not a complete-body acceptance candidate",
+      "source_sha256": "4c1f68378a38eb0b4cfce1b84163155f62c02fe37e3a952d00ff310f5937f8a5",
+      "target_words": 140,
+      "text_bytes": 560
+    },
+    "nonvolatile_count": {
+      "body_identical": true,
+      "differing_words": 6,
+      "gnu_whole_object_equal": true,
+      "source_sha256": "78deb46a9f9a2dc299de9939f0066bc40e0245fab4070f1937ad820df20330d3"
+    }
+  },
+  "elf": {
+    "alignment_bytes_outside_function": 0,
+    "bindings": {
+      "D_80140BDC": "0x80140bdc",
+      "D_803942EC": "0x803942ec",
+      "D_80394314": "0x80394314",
+      "D_80394330": "0x80394330",
+      "D_80394344": "0x80394344",
+      "D_80394F70": "0x80394f70",
+      "D_80394F88": "0x80394f88",
+      "D_80394F90": "0x80394f90",
+      "D_80399AF8": "0x80399af8",
+      "D_80399B08": "0x80399b08",
+      "D_80399B18": "0x80399b18",
+      "D_80399B40": "0x80399b40",
+      "D_80399B60": "0x80399b60",
+      "D_8039A520": "0x8039a520",
+      "D_8039A538": "0x8039a538",
+      "D_8039A5F8": "0x8039a5f8",
+      "D_8039A610": "0x8039a610",
+      "D_8039AE80": "0x8039ae80",
+      "D_8039AE98": "0x8039ae98",
+      "func_800B24EC": "0x800b24ec",
+      "func_8038D1A8": "0x8038d1a8",
+      "string_copy_format": "0x80092e2c",
+      "struct_fields_init": "0x800b0550"
+    },
+    "differing_offsets": [
+      "0x15c",
+      "0x160",
+      "0x170",
+      "0x1ac",
+      "0x1b0",
+      "0x1c0"
+    ],
+    "differing_words": 6,
+    "function_bytes": 560,
+    "gnu_agrees_with_project": true,
+    "linked_sha256": "48700a3730d29b97517402fcb9d1410c4173678a6d8bc03de87782b343174692",
+    "native_layout_assertions": 4,
+    "native_sha256": "223cb6a64300cc013396397ccc2f7c18aed9cedf76e90057cb2fdddaf186271e",
+    "owned_data_bytes": 0,
+    "relocations": [
+      {
+        "offset": 8,
+        "symbol": "D_80394F88",
+        "type": 5
+      },
+      {
+        "offset": 36,
+        "symbol": "D_80394F88",
+        "type": 6
+      },
+      {
+        "offset": 12,
+        "symbol": "D_8039A520",
+        "type": 5
+      },
+      {
+        "offset": 44,
+        "symbol": "D_8039A520",
+        "type": 6
+      },
+      {
+        "offset": 16,
+        "symbol": "D_80399B60",
+        "type": 5
+      },
+      {
+        "offset": 40,
+        "symbol": "D_80399B60",
+        "type": 6
+      },
+      {
+        "offset": 56,
+        "symbol": "struct_fields_init",
+        "type": 4
+      },
+      {
+        "offset": 64,
+        "symbol": "D_8039A5F8",
+        "type": 5
+      },
+      {
+        "offset": 76,
+        "symbol": "D_8039A5F8",
+        "type": 6
+      },
+      {
+        "offset": 68,
+        "symbol": "D_8039A538",
+        "type": 5
+      },
+      {
+        "offset": 72,
+        "symbol": "D_8039A538",
+        "type": 6
+      },
+      {
+        "offset": 88,
+        "symbol": "struct_fields_init",
+        "type": 4
+      },
+      {
+        "offset": 96,
+        "symbol": "D_80394F70",
+        "type": 5
+      },
+      {
+        "offset": 108,
+        "symbol": "D_80394F70",
+        "type": 6
+      },
+      {
+        "offset": 100,
+        "symbol": "D_8039AE98",
+        "type": 5
+      },
+      {
+        "offset": 104,
+        "symbol": "D_8039AE98",
+        "type": 6
+      },
+      {
+        "offset": 120,
+        "symbol": "struct_fields_init",
+        "type": 4
+      },
+      {
+        "offset": 128,
+        "symbol": "D_8039AE80",
+        "type": 5
+      },
+      {
+        "offset": 140,
+        "symbol": "D_8039AE80",
+        "type": 6
+      },
+      {
+        "offset": 132,
+        "symbol": "D_8039A610",
+        "type": 5
+      },
+      {
+        "offset": 136,
+        "symbol": "D_8039A610",
+        "type": 6
+      },
+      {
+        "offset": 152,
+        "symbol": "struct_fields_init",
+        "type": 4
+      },
+      {
+        "offset": 160,
+        "symbol": "D_803942EC",
+        "type": 5
+      },
+      {
+        "offset": 188,
+        "symbol": "D_803942EC",
+        "type": 6
+      },
+      {
+        "offset": 164,
+        "symbol": "D_80399B18",
+        "type": 5
+      },
+      {
+        "offset": 184,
+        "symbol": "D_80399B18",
+        "type": 6
+      },
+      {
+        "offset": 168,
+        "symbol": "D_80399B18",
+        "type": 5
+      },
+      {
+        "offset": 180,
+        "symbol": "D_80399B18",
+        "type": 6
+      },
+      {
+        "offset": 172,
+        "symbol": "D_80140BDC",
+        "type": 5
+      },
+      {
+        "offset": 176,
+        "symbol": "D_80140BDC",
+        "type": 6
+      },
+      {
+        "offset": 216,
+        "symbol": "string_copy_format",
+        "type": 4
+      },
+      {
+        "offset": 244,
+        "symbol": "D_80394314",
+        "type": 5
+      },
+      {
+        "offset": 264,
+        "symbol": "D_80394314",
+        "type": 6
+      },
+      {
+        "offset": 248,
+        "symbol": "D_80399B40",
+        "type": 5
+      },
+      {
+        "offset": 260,
+        "symbol": "D_80399B40",
+        "type": 6
+      },
+      {
+        "offset": 252,
+        "symbol": "D_80399B40",
+        "type": 5
+      },
+      {
+        "offset": 256,
+        "symbol": "D_80399B40",
+        "type": 6
+      },
+      {
+        "offset": 292,
+        "symbol": "string_copy_format",
+        "type": 4
+      },
+      {
+        "offset": 320,
+        "symbol": "D_80394330",
+        "type": 5
+      },
+      {
+        "offset": 340,
+        "symbol": "D_80394330",
+        "type": 6
+      },
+      {
+        "offset": 324,
+        "symbol": "D_80399AF8",
+        "type": 5
+      },
+      {
+        "offset": 336,
+        "symbol": "D_80399AF8",
+        "type": 6
+      },
+      {
+        "offset": 328,
+        "symbol": "D_80399AF8",
+        "type": 5
+      },
+      {
+        "offset": 332,
+        "symbol": "D_80399AF8",
+        "type": 6
+      },
+      {
+        "offset": 376,
+        "symbol": "func_800B24EC",
+        "type": 4
+      },
+      {
+        "offset": 400,
+        "symbol": "D_80394344",
+        "type": 5
+      },
+      {
+        "offset": 420,
+        "symbol": "D_80394344",
+        "type": 6
+      },
+      {
+        "offset": 404,
+        "symbol": "D_80399B08",
+        "type": 5
+      },
+      {
+        "offset": 416,
+        "symbol": "D_80399B08",
+        "type": 6
+      },
+      {
+        "offset": 408,
+        "symbol": "D_80399B08",
+        "type": 5
+      },
+      {
+        "offset": 412,
+        "symbol": "D_80399B08",
+        "type": 6
+      },
+      {
+        "offset": 456,
+        "symbol": "func_800B24EC",
+        "type": 4
+      },
+      {
+        "offset": 484,
+        "symbol": "D_80394F90",
+        "type": 5
+      },
+      {
+        "offset": 488,
+        "symbol": "D_80394F90",
+        "type": 6
+      },
+      {
+        "offset": 492,
+        "symbol": "D_80394F90",
+        "type": 5
+      },
+      {
+        "offset": 500,
+        "symbol": "D_80394F90",
+        "type": 6
+      },
+      {
+        "offset": 504,
+        "symbol": "D_80394F90",
+        "type": 5
+      },
+      {
+        "offset": 512,
+        "symbol": "D_80394F90",
+        "type": 6
+      },
+      {
+        "offset": 516,
+        "symbol": "D_80394F90",
+        "type": 5
+      },
+      {
+        "offset": 528,
+        "symbol": "D_80394F90",
+        "type": 6
+      },
+      {
+        "offset": 524,
+        "symbol": "func_8038D1A8",
+        "type": 4
+      }
+    ],
+    "text_bytes": 560
+  },
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "helpers": {
+    "func_800B24EC": {
+      "execution": "abstract O32 boundary; implementation not executed",
+      "native_address": "0x800b24ec",
+      "native_bytes": 364,
+      "native_sha256": "22ccee42826816c61c8ad198ddb3767a6b5523f51d1c3b676284968d0661a517",
+      "path": "src/blob/func_800B24EC.c",
+      "source_sha256": "405f7b1f5c31e4e4c19b82d745a778e85c2046903cea6d439d5d0564e925712b"
+    },
+    "func_8038D1A8": {
+      "execution": "abstract O32 boundary; implementation not executed",
+      "native_address": "0x8038d1a8",
+      "native_bytes": 88,
+      "native_sha256": "4cd7d1c4cbb93391caedcfbc01a0854d8c77613651a827596adf77409327bb1e",
+      "path": "cloud/matches/ovl_b/func_8038D1A8.c",
+      "source_sha256": "0e5e4937aef4315a7695966227a6b5d571b04822b47150708f886d6d25cc178e"
+    },
+    "pool_linked_list_init": {
+      "execution": "abstract O32 boundary; implementation not executed",
+      "native_address": "0x800b04d0",
+      "native_bytes": 128,
+      "native_sha256": "3f2592576b29a309dae8689a708bad14871706d58e200e9debc1a62c6e6b6760",
+      "path": "src/blob/pool_linked_list_init.c",
+      "source_sha256": "381ea8fccdd114ee943d33f1ed180785cec9c9a816612a02d4b384457f79b8aa"
+    },
+    "string_copy_format": {
+      "execution": "abstract O32 boundary; implementation not executed",
+      "native_address": "0x80092e2c",
+      "native_bytes": 436,
+      "native_sha256": "f9db451d5a599be631df70f07d838fb7010fb72bb3a80108938fe9119979c00b",
+      "path": "src/blob/string_copy_format.c",
+      "source_sha256": "39da5493aa21715ffaf036d8479f446fce60f24f2042dd1501a7b101cbed1e16"
+    },
+    "struct_fields_init": {
+      "execution": "abstract O32 boundary; implementation not executed",
+      "native_address": "0x800b0550",
+      "native_bytes": 48,
+      "native_sha256": "36e96c76281479e9fe6ebf53f44a3dac299848a351c532e1cbe9fb324102b66b",
+      "path": "src/blob/struct_fields_init.c",
+      "source_sha256": "09dd58a9a18fd13530f82786f423b9945516df1b4fb8e5af29122159beac946b"
+    }
+  },
+  "image": "B",
+  "image_sha256": "b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd",
+  "inputs_sha256": {
+    "asm/us/blob/SHA256SUMS": "dade78464a022fedd2c5ba651ee1bca5ffd4ec99bfa4d2413d27256540bed02c",
+    "asm/us/ovl_b/SHA256SUMS": "3b7ccbab80467e2538f107543f612db239c380a44000730c5f78f6dbb062bd98",
+    "asm/us/ovl_b/extents.json": "e10f77db903d5a6d82a04d006cdaf5c3871ed57ce2bff738d45f500914c8202b",
+    "asm/us/ovl_b/ovl_b_8038a400.s": "5e84a0c03a155cbb13ee19a694bd3aeb1321e9b48144a9d8029f7691a7f916db",
+    "asm/us/ovl_b/symbols.json": "0f9633fc7cb724c2acb129064716906d92c9ef6867359893e7130b2e8e1b897d",
+    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
+  },
+  "packet_sha256": {
+    "controls/initial.c": "4c1f68378a38eb0b4cfce1b84163155f62c02fe37e3a952d00ff310f5937f8a5",
+    "host_test.c": "59383efe0313c3519a09666cf29461099508e5f28d3ef0226fc6e1b1b09ea809",
+    "test_packet.py": "1d1fe239069c4a6a6c85d6c9811a46ecd6a187ca6844b99f884c214b68fa80d1",
+    "verify.py": "2fcd0d216e07ac007deb1b115dc6caabf572c0a90c6cf4631600b6f729ceabf3"
+  },
+  "source_sha256": "3e52567b1b463df1d2b377225f4c8c8e10d2e408a8e99b71957d1643d1d5e9c4",
+  "status": "NONMATCH",
+  "tool_sha256": {
+    "gcc": "a23ecab8ff08f09ad8c80602c2c5df7f49e09c25905cb8975902e101bf72635f",
+    "ido_as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+    "ido_cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "ido_cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "ido_ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "ido_uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "mips-linux-gnu-ld": "4c398a15e38dbb71a8420628aa1da5c80a089818440666f4ca7eb40d2fc37878",
+    "mips-linux-gnu-readelf": "7d7e289083502012e282c96e03b2c9ebdb0bfbfae85eff0c3b434778799a8f67"
+  }
+}
