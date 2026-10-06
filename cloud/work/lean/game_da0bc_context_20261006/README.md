@@ -54,3 +54,7 @@ It reports canonical strict scores, all unresolved/unverified/error fields,
 source hashes and ELF extents. No comparison boundary, target or scorer changes.
 No independent review, behavior harness, full suite, CI wait or ROM gate was
 run. Checker/Claude owns verification, acceptance and ROM integration.
+
+The final sound-stop interface uses the current locked `sound_stop(Voice *)`
+prototype and an opaque Voice-pointer handle global. Historical integer-handle
+declarations were normalized without changing the helper body or its O32 slot.

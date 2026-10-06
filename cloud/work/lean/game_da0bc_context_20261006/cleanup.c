@@ -3,13 +3,15 @@ typedef signed char s8;
 typedef signed short s16;
 typedef unsigned char u8;
 typedef unsigned int u32;
+typedef struct Voice Voice;
 typedef struct CleanupRow { u32 unknown00; int identifier; u8 unknown08[56]; } CleanupRow;
 extern CleanupRow D_8011650C[32];
 extern u32 D_801174B4;
-extern int D_80116DA4, D_80116D98, D_80116D0C;
+extern int D_80116DA4, D_80116D0C;
+extern Voice *D_80116D98;
 extern s8 D_80116D94;
 extern void sound_handles_clear(int);
-extern void sound_stop(int);
+extern void sound_stop(Voice *);
 extern void ambient_sounds_clear(void);
 extern void entity_spawn_callback(s16, int, int);
 void func_800DA0BC(void)

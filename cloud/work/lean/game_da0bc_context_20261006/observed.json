@@ -4,7 +4,7 @@
   "automatic_backend_flag": "-Wab,-r4300_mul",
   "source_sha256": {
     "caller.c": "37da94b5178384b1e2d85bb08685f242d76e99b072608e541d8cbf0858aba8a0",
-    "cleanup.c": "ee261460610ae531e053e2dc3ffec55531f8c2e744eb0d5e509459fa314a527b",
+    "cleanup.c": "0fc4ff58570e50793d68ca67adde1f75119650e7f63b880fe2e0262d516bba83",
     "group.json": "18b84de9dbda82e8936ad9505ca09f5c6d26f977d0174804ad3fe9f8df8a1b6c"
   },
   "rows": [
