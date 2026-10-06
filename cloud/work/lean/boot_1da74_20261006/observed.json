@@ -1,0 +1,35 @@
+{
+  "base": "f2e8380d3b368d00efc9cac3e37cdc7059b1f6e2",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "automatic_backend_flag": "-Wab,-r4300_mul",
+  "function": "func_8001DA74",
+  "target_bytes": 404,
+  "rows": [
+    {
+      "source": "baseline",
+      "source_sha256": "60a3da400e5fb86764367ec87df6b9d750cb5d2c23ee74a77ebcb27c40ba85a1",
+      "result": {
+        "differing": 59,
+        "total": 101,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "function_bytes": 396
+    },
+    {
+      "source": "candidate",
+      "source_sha256": "8c0f6bc13ebe7ff240554a39693432733a94c53fc70283252568addd02187edf",
+      "result": {
+        "differing": 10,
+        "total": 101,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "function_bytes": 400
+    }
+  ]
+}
