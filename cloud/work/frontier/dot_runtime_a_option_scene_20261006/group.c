@@ -19,7 +19,7 @@ extern s32 D_8014A110,D_803AF980;
 extern s32 D_803B77D4[][21];
 extern s8 D_80146108[],D_8014978C,D_80156994;
 extern s8 D_803B8314[19];
-extern s32 func_800F7644(void);
+extern s32 func_800F7644(s32);
 
 s32 func_8038ACB0(s32 index)
 {
@@ -47,7 +47,7 @@ s32 func_8038B834(s32 index)
 {
     s8 *option = &D_803B8314[index];
     if (!*option) return 0;
-    if (!func_800F7644()) return 0;
+    if (!func_800F7644(index)) return 0;
     if (D_8014A110 == 4) return option >= D_803B8314 + 14 && option < D_803B8314 + 18;
     if (D_8014A110 == 5) return option >= D_803B8314 + 18 && option < D_803B8314 + 19;
     if (D_8014A110 == 6) return option >= D_803B8314 + 6 && option < D_803B8314 + 14;

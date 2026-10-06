@@ -30,7 +30,10 @@ DFEC is kept as a root in this minimal group. Its native outer caller is not
 included, so its save/frame and private-callee behavior remain different. ACB0
 has one natural index formal; no fictitious first argument was added to force
 the native a1 parameter register. No synthetic caller, retention barrier,
-forced register or unused frame filler is present. B834 remains nonmatching;
+forced register or unused frame filler is present. The protected 88-byte main-blob helper `func_800F7644` consumes the option
+index in a0. B834 therefore passes its real index explicitly; the initial
+no-argument research declaration is corrected without changing these scores.
+B834 remains nonmatching;
 its pointer-range spelling is a native-layout research view.
 
 Native floats `D_803B930C` through `D_803B9328`, color `D_803B8394` and other
