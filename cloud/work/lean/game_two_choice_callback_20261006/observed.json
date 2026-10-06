@@ -1,0 +1,102 @@
+{
+  "base": "f2e8380d3b368d00efc9cac3e37cdc7059b1f6e2",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "automatic_backend_flag": "-Wab,-r4300_mul",
+  "source_sha256": {
+    "callback.c": "4ae062c69e67bc6639026d43918483718e04a27af6049c262d529b0af47f1d48",
+    "slot_context.c": "1d19ad3000273569000654ca8f8d93d4e040eb476738998cf5e87847c18c2e8b",
+    "countdown_caller.c": "d41ecea76cddbccd58af80410a26666fa283e45beb5bd0a6d21cd712b1b43837",
+    "group.json": "db26afe6d855733be40f6ac99d77857ae794b689113149ea39bd7a75f6e78276"
+  },
+  "rows": [
+    {
+      "mode": "baseline_cast_repair",
+      "function": "func_8010B9C8",
+      "result": {
+        "differing": 171,
+        "total": 175,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x1ec",
+          ".rodata+0x0 at +0x1f4"
+        ],
+        "errors": [],
+        "extra_words": 0
+      },
+      "function_bytes": 524,
+      "target_bytes": 700,
+      "frame_bytes": [
+        88
+      ]
+    },
+    {
+      "mode": "candidate_single",
+      "function": "func_8010B9C8",
+      "result": {
+        "differing": 175,
+        "total": 175,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "function_bytes": 652,
+      "target_bytes": 700,
+      "frame_bytes": [
+        104
+      ]
+    },
+    {
+      "mode": "genuine_context_control",
+      "function": "func_8010B9C8",
+      "result": {
+        "differing": 167,
+        "total": 175,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "function_bytes": 680,
+      "target_bytes": 700,
+      "frame_bytes": [
+        120
+      ]
+    },
+    {
+      "mode": "genuine_context_control",
+      "function": "func_80106B3C",
+      "result": {
+        "differing": 105,
+        "total": 150,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 4
+      },
+      "function_bytes": 604,
+      "target_bytes": 600,
+      "frame_bytes": [
+        64
+      ]
+    },
+    {
+      "mode": "genuine_context_control",
+      "function": "slot_state_setup",
+      "result": {
+        "differing": 18,
+        "total": 58,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 2
+      },
+      "function_bytes": 232,
+      "target_bytes": 232,
+      "frame_bytes": [
+        32
+      ]
+    }
+  ],
+  "baseline_note": "One void ** address cast only; seed retains undefined stack-alias reads and is not a semantic reference."
+}
