@@ -1,0 +1,488 @@
+[W5D] bit at=cm proc=engine_sound_update bit=0 kind=4 dtype=L ref=411|0 text=ilod.L@0(ldaS(907+0))
+[W5D] bit at=cm proc=engine_sound_update bit=1 kind=4 dtype=L ref=860|0 text=and.L(ilod.L@0(ldaS(907+0)),8)
+[W5D] bit at=cm proc=engine_sound_update bit=2 kind=4 dtype=J ref=1137|0 text=ilod.J@0(ldaS(19+0))
+[W5D] bit at=cm proc=engine_sound_update bit=3 kind=4 dtype=J ref=599|0 text=ilod.J@0(ldaS(4758+0))
+[W5D] bit at=cm proc=engine_sound_update bit=4 kind=3 dtype=R ref=515|0 text=varM(4756-32)
+[W5D] bit at=cm proc=engine_sound_update bit=5 kind=3 dtype=R ref=515|0 text=varM(4756-32)
+[W5D] bit at=cm proc=engine_sound_update bit=6 kind=4 dtype=R ref=166|0 text=str.R(varM(4756-32),3)
+[W5D] bit at=cm proc=engine_sound_update bit=7 kind=3 dtype=R ref=451|0 text=varM(4756-36)
+[W5D] bit at=cm proc=engine_sound_update bit=8 kind=3 dtype=R ref=451|0 text=varM(4756-36)
+[W5D] bit at=cm proc=engine_sound_update bit=9 kind=4 dtype=R ref=166|1 text=str.R(varM(4756-36),3)
+[W5D] bit at=cm proc=engine_sound_update bit=10 kind=3 dtype=R ref=579|0 text=varM(4756-28)
+[W5D] bit at=cm proc=engine_sound_update bit=11 kind=3 dtype=R ref=579|0 text=varM(4756-28)
+[W5D] bit at=cm proc=engine_sound_update bit=12 kind=4 dtype=R ref=166|2 text=str.R(varM(4756-28),3)
+[W5D] bit at=cm proc=engine_sound_update bit=13 kind=3 dtype=J ref=963|0 text=varM(4756-4)r
+[W5D] bit at=cm proc=engine_sound_update bit=14 kind=3 dtype=J ref=963|0 text=varM(4756-4)r
+[W5D] bit at=cm proc=engine_sound_update bit=15 kind=4 dtype=J ref=186|0 text=str.J(varM(4756-4)r,0)
+[W5D] bit at=cm proc=engine_sound_update bit=16 kind=3 dtype=J ref=835|0 text=varM(4756-12)r
+[W5D] bit at=cm proc=engine_sound_update bit=17 kind=3 dtype=J ref=835|0 text=varM(4756-12)r
+[W5D] bit at=cm proc=engine_sound_update bit=18 kind=4 dtype=J ref=186|1 text=str.J(varM(4756-12)r,0)
+[W5D] bit at=cm proc=engine_sound_update bit=19 kind=4 dtype=J ref=1135|0 text=geq.J(ilod.J@0(ldaS(4758+0)),1)
+[W5D] bit at=cm proc=engine_sound_update bit=20 kind=4 dtype=J ref=1286|0 text=cg1.J(ilod.J@0(ldaS(4758+0)))
+[W5D] bit at=cm proc=engine_sound_update bit=21 kind=4 dtype=J ref=883|0 text=ilod.J@0(ldaS(517+0))
+[W5D] bit at=cm proc=engine_sound_update bit=22 kind=4 dtype=J ref=1072|0 text=equ.J(2,ilod.J@0(ldaS(517+0)))
+[W5D] bit at=cm proc=engine_sound_update bit=23 kind=4 dtype=J ref=239|0 text=cg1.J(ilod.J@0(ldaS(517+0)))
+[W5D] bit at=cm proc=engine_sound_update bit=24 kind=4 dtype=A ref=1610|0 text=ilod.A@0(ldaS(4739+0))
+[W5D] bit at=cm proc=engine_sound_update bit=25 kind=4 dtype=A ref=1063|0 text=add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)
+[W5D] bit at=cm proc=engine_sound_update bit=26 kind=4 dtype=J ref=939|0 text=ilod.J@22(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r))
+[W5D] bit at=cm proc=engine_sound_update bit=27 kind=4 dtype=J ref=1297|0 text=geq.J(ilod.J@22(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),1)
+[W5D] bit at=cm proc=engine_sound_update bit=28 kind=4 dtype=J ref=353|0 text=cg1.J(ilod.J@22(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)))
+[W5D] bit at=cm proc=engine_sound_update bit=29 kind=3 dtype=J ref=899|0 text=varM(4756-8)r
+[W5D] bit at=cm proc=engine_sound_update bit=30 kind=3 dtype=J ref=899|0 text=varM(4756-8)r
+[W5D] bit at=cm proc=engine_sound_update bit=31 kind=4 dtype=J ref=186|2 text=str.J(varM(4756-8)r,0)
+[W5D] bit at=cm proc=engine_sound_update bit=32 kind=4 dtype=J ref=939|1 text=ilod.J@20(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r))
+[W5D] bit at=cm proc=engine_sound_update bit=33 kind=4 dtype=J ref=1317|0 text=geq.J(ilod.J@20(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),1)
+[W5D] bit at=cm proc=engine_sound_update bit=34 kind=4 dtype=J ref=1302|0 text=cg1.J(ilod.J@20(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)))
+[W5D] bit at=cm proc=engine_sound_update bit=35 kind=4 dtype=A ref=939|2 text=ilod.A@28(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r))
+[W5D] bit at=cm proc=engine_sound_update bit=36 kind=4 dtype=J ref=182|0 text=mpy.J(varM(4756-8)r,68)
+[W5D] bit at=cm proc=engine_sound_update bit=37 kind=4 dtype=J ref=1358|0 text=ixa.J(ilod.A@28(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),mpy.J(varM(4756-8)r,68))
+[W5D] bit at=cm proc=engine_sound_update bit=38 kind=4 dtype=L ref=1529|0 text=ilod.L@64(ixa.J(ilod.A@28(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),mpy.J(varM(4756-8)r,68)))
+[W5D] bit at=cm proc=engine_sound_update bit=39 kind=4 dtype=L ref=987|0 text=and.L(ilod.L@64(ixa.J(ilod.A@28(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),mpy.J(varM(4756-8)r,68))),16777216)
+[W5D] bit at=cm proc=engine_sound_update bit=40 kind=4 dtype=J ref=1015|0 text=add.J(varM(4756-8)r,1)
+[W5D] bit at=cm proc=engine_sound_update bit=41 kind=4 dtype=J ref=332|0 text=str.J(varM(4756-8)r,add.J(varM(4756-8)r,1))
+[W5D] bit at=cm proc=engine_sound_update bit=42 kind=4 dtype=J ref=1587|0 text=les.J(varM(4756-8)r,ilod.J@20(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)))
+[W5D] bit at=cm proc=engine_sound_update bit=43 kind=4 dtype=J ref=283|0 text=cg1.J(varM(4756-8)r)
+[W5D] bit at=cm proc=engine_sound_update bit=44 kind=4 dtype=J ref=1314|0 text=cg1.J(ilod.J@20(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)))
+[W5D] bit at=cm proc=engine_sound_update bit=45 kind=4 dtype=J ref=367|0 text=cg1.J(ilod.J@22(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)))
+[W5D] bit at=cm proc=engine_sound_update bit=46 kind=4 dtype=L ref=1272|0 text=cvt.L(ilod.J@22(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)))
+[W5D] bit at=cm proc=engine_sound_update bit=47 kind=4 dtype=L ref=939|3 text=ilod.L@16(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r))
+[W5D] bit at=cm proc=engine_sound_update bit=48 kind=4 dtype=L ref=743|0 text=and.L(ilod.L@16(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),4)
+[W5D] bit at=cm proc=engine_sound_update bit=49 kind=4 dtype=L ref=1066|0 text=and.L(ilod.L@16(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),8)
+[W5D] bit at=cm proc=engine_sound_update bit=50 kind=4 dtype=J ref=475|0 text=ilod.J@0(ldaS(909+0))
+[W5D] bit at=cm proc=engine_sound_update bit=51 kind=4 dtype=L ref=990|0 text=and.L(ilod.L@16(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),32768)
+[W5D] bit at=cm proc=engine_sound_update bit=52 kind=3 dtype=J ref=771|0 text=varM(4756-16)r
+[W5D] bit at=cm proc=engine_sound_update bit=53 kind=3 dtype=J ref=771|0 text=varM(4756-16)r
+[W5D] bit at=cm proc=engine_sound_update bit=54 kind=4 dtype=J ref=186|3 text=str.J(varM(4756-16)r,0)
+[W5D] bit at=cm proc=engine_sound_update bit=55 kind=4 dtype=J ref=1400|0 text=str.J(varM(4756-16)r,1)
+[W5D] bit at=cm proc=engine_sound_update bit=56 kind=4 dtype=L ref=93|0 text=and.L(ilod.L@16(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),16)
+[W5D] bit at=cm proc=engine_sound_update bit=57 kind=3 dtype=J ref=707|0 text=varM(4756-20)r
+[W5D] bit at=cm proc=engine_sound_update bit=58 kind=3 dtype=J ref=707|0 text=varM(4756-20)r
+[W5D] bit at=cm proc=engine_sound_update bit=59 kind=4 dtype=J ref=186|4 text=str.J(varM(4756-20)r,0)
+[W5D] bit at=cm proc=engine_sound_update bit=60 kind=4 dtype=J ref=760|0 text=str.J(varM(4756-20)r,1)
+[W5D] bit at=cm proc=engine_sound_update bit=61 kind=4 dtype=J ref=1377|0 text=cg1.J(ilod.J@20(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)))
+[W5D] bit at=cm proc=engine_sound_update bit=62 kind=4 dtype=J ref=902|0 text=ilod.J@0(ldaS(3705+0))
+[W5D] bit at=cm proc=engine_sound_update bit=63 kind=4 dtype=L ref=1217|0 text=and.L(ilod.L@64(ixa.J(ilod.A@28(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),mpy.J(varM(4756-8)r,68))),-4097)
+[W5D] bit at=cm proc=engine_sound_update bit=64 kind=4 dtype=L ref=331|0 text=istr.L@64(ixa.J(ilod.A@28(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),mpy.J(varM(4756-8)r,68)),and.L(ilod.L@64(ixa.J(ilod.A@28(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),mpy.J(varM(4756-8)r,68))),-4097))
+[W5D] bit at=cm proc=engine_sound_update bit=65 kind=4 dtype=L ref=1099|0 text=and.L(ilod.L@64(ixa.J(ilod.A@28(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),mpy.J(varM(4756-8)r,68))),1)
+[W5D] bit at=cm proc=engine_sound_update bit=66 kind=4 dtype=J ref=523|0 text=cvtl.J(varM(4756-4)r)
+[W5D] bit at=cm proc=engine_sound_update bit=67 kind=4 dtype=J ref=337|0 text=cg1.J(varM(4756-8)r)
+[W5D] bit at=cm proc=engine_sound_update bit=68 kind=4 dtype=J ref=1395|0 text=cg1.J(ilod.J@20(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)))
+[W5D] bit at=cm proc=engine_sound_update bit=69 kind=4 dtype=J ref=423|0 text=cg1.J(ilod.J@22(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)))
+[W5D] bit at=cm proc=engine_sound_update bit=70 kind=4 dtype=L ref=658|0 text=and.L(ilod.L@16(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),2048)
+[W5D] bit at=cm proc=engine_sound_update bit=71 kind=4 dtype=J ref=36|0 text=add.J(varM(4756-4)r,1)
+[W5D] bit at=cm proc=engine_sound_update bit=72 kind=4 dtype=J ref=380|0 text=str.J(varM(4756-4)r,add.J(varM(4756-4)r,1))
+[W5D] bit at=cm proc=engine_sound_update bit=73 kind=4 dtype=J ref=1225|0 text=add.J(varM(4756-12)r,36)
+[W5D] bit at=cm proc=engine_sound_update bit=74 kind=4 dtype=J ref=74|0 text=str.J(varM(4756-12)r,add.J(varM(4756-12)r,36))
+[W5D] bit at=cm proc=engine_sound_update bit=75 kind=4 dtype=J ref=1296|0 text=les.J(varM(4756-4)r,ilod.J@0(ldaS(4758+0)))
+[W5D] bit at=cm proc=engine_sound_update bit=76 kind=4 dtype=J ref=483|0 text=cg1.J(varM(4756-4)r)
+[W5D] bit at=cm proc=engine_sound_update bit=77 kind=4 dtype=J ref=1374|0 text=cg1.J(ilod.J@0(ldaS(4758+0)))
+[W5D] bit at=cm proc=engine_sound_update bit=78 kind=4 dtype=J ref=916|0 text=ixa.J(ldaS(3708+0),varM(4756-4)r)
+[W5D] bit at=cm proc=engine_sound_update bit=79 kind=4 dtype=J ref=645|0 text=ilod.J@0(ixa.J(ldaS(3708+0),varM(4756-4)r))
+[W5D] bit at=cm proc=engine_sound_update bit=80 kind=4 dtype=J ref=1371|0 text=ixa.J(ldaS(4740+0),varM(4756-4)r)
+[W5D] bit at=cm proc=engine_sound_update bit=81 kind=4 dtype=L ref=1555|0 text=ilod.L@0(ixa.J(ldaS(4740+0),varM(4756-4)r))
+[W5D] bit at=cm proc=engine_sound_update bit=82 kind=4 dtype=J ref=640|0 text=cvt.J(ilod.L@0(ixa.J(ldaS(4740+0),varM(4756-4)r)))
+[W5D] bit at=cm proc=engine_sound_update bit=83 kind=4 dtype=J ref=394|0 text=mpy.J(ilod.J@0(ixa.J(ldaS(3708+0),varM(4756-4)r)),cvt.J(ilod.L@0(ixa.J(ldaS(4740+0),varM(4756-4)r))))
+[W5D] bit at=cm proc=engine_sound_update bit=84 kind=4 dtype=J ref=528|0 text=mpy.J(varM(4756-4)r,4)
+[W5D] bit at=cm proc=engine_sound_update bit=85 kind=4 dtype=J ref=1372|0 text=ixa.J(ldaS(4743+0),mpy.J(varM(4756-4)r,4))
+[W5D] bit at=cm proc=engine_sound_update bit=86 kind=3 dtype=A ref=1485|0 text=varR(0+2)r
+[W5D] bit at=cm proc=engine_sound_update bit=87 kind=3 dtype=A ref=1485|0 text=varR(0+2)r
+[W5D] bit at=cm proc=engine_sound_update bit=88 kind=4 dtype=A ref=927|0 text=istr.A@0(ixa.J(ldaS(4743+0),mpy.J(varM(4756-4)r,4)),varR(0+2)r)
+[W5D] bit at=cm proc=engine_sound_update bit=89 kind=4 dtype=J ref=771|1 text=les.J(varM(4756-4)r,8)
+[W5D] bit at=cm proc=engine_sound_update bit=90 kind=4 dtype=J ref=497|0 text=cg1.J(varM(4756-4)r)
+[W5D] bit at=cm proc=engine_sound_update bit=91 kind=4 dtype=J ref=1158|0 text=ilod.J@0(ldaS(3713+0))
+[W5D] bit at=cm proc=engine_sound_update bit=92 kind=4 dtype=J ref=462|0 text=mpy.J(ilod.J@0(ldaS(3713+0)),64)
+[W5D] bit at=cm proc=engine_sound_update bit=93 kind=4 dtype=A ref=1579|0 text=istr.A@0(ldaS(445+0),varR(0+2)r)
+[W5D] bit at=cm proc=engine_sound_update bit=94 kind=4 dtype=J ref=663|0 text=ilod.J@0(ldaS(4760+0))
+[W5D] bit at=cm proc=engine_sound_update bit=95 kind=4 dtype=J ref=156|0 text=geq.J(ilod.J@0(ldaS(4760+0)),1)
+[W5D] bit at=cm proc=engine_sound_update bit=96 kind=4 dtype=J ref=1526|0 text=cg1.J(ilod.J@0(ldaS(4760+0)))
+[W5D] bit at=cm proc=engine_sound_update bit=97 kind=3 dtype=A ref=387|0 text=varM(4756-40)r
+[W5D] bit at=cm proc=engine_sound_update bit=98 kind=3 dtype=A ref=387|0 text=varM(4756-40)r
+[W5D] bit at=cm proc=engine_sound_update bit=99 kind=4 dtype=A ref=127|0 text=ilod.A@0(ldaS(3529+0))
+[W5D] bit at=cm proc=engine_sound_update bit=100 kind=4 dtype=J ref=677|0 text=ixa.J(ilod.A@0(ldaS(3529+0)),mpy.J(varM(4756-4)r,4))
+[W5D] bit at=cm proc=engine_sound_update bit=101 kind=4 dtype=A ref=167|0 text=ilod.A@0(ixa.J(ilod.A@0(ldaS(3529+0)),mpy.J(varM(4756-4)r,4)))
+[W5D] bit at=cm proc=engine_sound_update bit=102 kind=4 dtype=A ref=475|1 text=str.A(varM(4756-40)r,ilod.A@0(ixa.J(ilod.A@0(ldaS(3529+0)),mpy.J(varM(4756-4)r,4))))
+[W5D] bit at=cm proc=engine_sound_update bit=103 kind=3 dtype=A ref=643|0 text=varM(4756-24)r
+[W5D] bit at=cm proc=engine_sound_update bit=104 kind=3 dtype=A ref=643|0 text=varM(4756-24)r
+[W5D] bit at=cm proc=engine_sound_update bit=105 kind=4 dtype=A ref=1311|0 text=ilod.A@16(ldaS(328+16))
+[W5D] bit at=cm proc=engine_sound_update bit=106 kind=4 dtype=A ref=1382|0 text=str.A(varM(4756-24)r,ilod.A@16(ldaS(328+16)))
+[W5D] bit at=cm proc=engine_sound_update bit=107 kind=4 dtype=A ref=1184|0 text=neq.A(varM(4756-24)r,0)
+[W5D] bit at=cm proc=engine_sound_update bit=108 kind=4 dtype=A ref=1490|0 text=cg1.A(varM(4756-24)r)
+[W5D] bit at=cm proc=engine_sound_update bit=109 kind=4 dtype=L ref=99|0 text=ilod.L@4(varM(4756-24)r)
+[W5D] bit at=cm proc=engine_sound_update bit=110 kind=4 dtype=J ref=662|0 text=cvt.J(ilod.L@4(varM(4756-24)r))
+[W5D] bit at=cm proc=engine_sound_update bit=111 kind=4 dtype=J ref=1532|0 text=and.J(cvt.J(ilod.L@4(varM(4756-24)r)),8)
+[W5D] bit at=cm proc=engine_sound_update bit=112 kind=4 dtype=J ref=99|1 text=ilod.J@8(varM(4756-24)r)
+[W5D] bit at=cm proc=engine_sound_update bit=113 kind=4 dtype=A ref=33|0 text=cvt.A(ilod.J@8(varM(4756-24)r))
+[W5D] bit at=cm proc=engine_sound_update bit=114 kind=4 dtype=A ref=1030|0 text=equ.A(varM(4756-40)r,cvt.A(ilod.J@8(varM(4756-24)r)))
+[W5D] bit at=cm proc=engine_sound_update bit=115 kind=4 dtype=A ref=984|0 text=cg1.A(varM(4756-40)r)
+[W5D] bit at=cm proc=engine_sound_update bit=116 kind=4 dtype=A ref=276|0 text=cg1.A(cvt.A(ilod.J@8(varM(4756-24)r)))
+[W5D] bit at=cm proc=engine_sound_update bit=117 kind=4 dtype=A ref=1461|0 text=istr.A@0(ixa.J(ilod.A@0(ldaS(3529+0)),mpy.J(varM(4756-4)r,4)),varM(4756-24)r)
+[W5D] bit at=cm proc=engine_sound_update bit=118 kind=4 dtype=A ref=99|2 text=ilod.A@0(varM(4756-24)r)
+[W5D] bit at=cm proc=engine_sound_update bit=119 kind=4 dtype=A ref=509|0 text=str.A(varM(4756-24)r,ilod.A@0(varM(4756-24)r))
+[W5D] bit at=cm proc=engine_sound_update bit=120 kind=4 dtype=A ref=1500|0 text=cg1.A(varM(4756-24)r)
+[W5D] bit at=cm proc=engine_sound_update bit=121 kind=4 dtype=A ref=1530|0 text=equ.A(varM(4756-40)r,ilod.A@0(ixa.J(ilod.A@0(ldaS(3529+0)),mpy.J(varM(4756-4)r,4))))
+[W5D] bit at=cm proc=engine_sound_update bit=122 kind=4 dtype=A ref=992|0 text=cg1.A(varM(4756-40)r)
+[W5D] bit at=cm proc=engine_sound_update bit=123 kind=4 dtype=A ref=552|0 text=cg1.A(ilod.A@0(ixa.J(ilod.A@0(ldaS(3529+0)),mpy.J(varM(4756-4)r,4))))
+[W5D] bit at=cm proc=engine_sound_update bit=124 kind=4 dtype=A ref=243|0 text=istr.A@0(ixa.J(ilod.A@0(ldaS(3529+0)),mpy.J(varM(4756-4)r,4)),0)
+[W5D] bit at=cm proc=engine_sound_update bit=125 kind=4 dtype=J ref=777|0 text=les.J(varM(4756-4)r,ilod.J@0(ldaS(4760+0)))
+[W5D] bit at=cm proc=engine_sound_update bit=126 kind=4 dtype=J ref=529|0 text=cg1.J(varM(4756-4)r)
+[W5D] bit at=cm proc=engine_sound_update bit=127 kind=4 dtype=J ref=1548|0 text=cg1.J(ilod.J@0(ldaS(4760+0)))
+[W5D] bit at=cm proc=engine_sound_update bit=128 kind=4 dtype=J ref=774|0 text=equ.J(6,ilod.J@0(ldaS(517+0)))
+[W5D] bit at=cm proc=engine_sound_update bit=129 kind=4 dtype=J ref=373|0 text=cg1.J(ilod.J@0(ldaS(517+0)))
+[W5D] bit at=cm proc=engine_sound_update bit=130 kind=4 dtype=A ref=119|0 text=ilod.A@20(ldaS(4743+0))
+[W5D] bit at=cm proc=engine_sound_update bit=131 kind=4 dtype=J ref=753|0 text=mpy.J(varM(4756-4)r,136)
+[W5D] bit at=cm proc=engine_sound_update bit=132 kind=4 dtype=J ref=1146|0 text=ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136))
+[W5D] bit at=cm proc=engine_sound_update bit=133 kind=4 dtype=J ref=243|1 text=istr.J@134(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),0)
+[W5D] bit at=cm proc=engine_sound_update bit=134 kind=4 dtype=J ref=96|0 text=istr.J@0(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=cm proc=engine_sound_update bit=135 kind=4 dtype=J ref=96|1 text=istr.J@4(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=cm proc=engine_sound_update bit=136 kind=4 dtype=J ref=96|2 text=istr.J@8(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=cm proc=engine_sound_update bit=137 kind=4 dtype=J ref=99|3 text=les.J(varM(4756-4)r,16)
+[W5D] bit at=cm proc=engine_sound_update bit=138 kind=4 dtype=J ref=537|0 text=cg1.J(varM(4756-4)r)
+[W5D] bit at=cm proc=engine_sound_update bit=139 kind=4 dtype=J ref=273|0 text=istr.J@0(ldaS(3519+0),0)
+[W5D] bit at=cm proc=engine_sound_update bit=140 kind=4 dtype=J ref=1531|0 text=ixa.J(ldaS(4738+0),mpy.J(varM(4756-4)r,4))
+[W5D] bit at=cm proc=engine_sound_update bit=141 kind=4 dtype=A ref=1557|0 text=ilod.A@0(ixa.J(ldaS(4743+0),mpy.J(varM(4756-4)r,4)))
+[W5D] bit at=cm proc=engine_sound_update bit=142 kind=4 dtype=A ref=1356|0 text=istr.A@0(ixa.J(ldaS(4738+0),mpy.J(varM(4756-4)r,4)),ilod.A@0(ixa.J(ldaS(4743+0),mpy.J(varM(4756-4)r,4))))
+[W5D] bit at=cm proc=engine_sound_update bit=143 kind=4 dtype=J ref=547|0 text=cg1.J(varM(4756-4)r)
+[W5D] bit at=cm proc=engine_sound_update bit=144 kind=4 dtype=A ref=1530|1 text=cg1.A(varM(4756-24)r)
+[W5D] bit at=cm proc=engine_sound_update bit=145 kind=4 dtype=A ref=1536|0 text=cg1.A(varM(4756-24)r)
+[W5D] bit at=cm proc=engine_sound_update bit=146 kind=4 dtype=J ref=401|0 text=cg1.J(ilod.J@0(ldaS(517+0)))
+[W5D] bit at=cm proc=engine_sound_update bit=147 kind=4 dtype=J ref=1459|0 text=neq.J(varM(4756-4)r,16)
+[W5D] bit at=cm proc=engine_sound_update bit=148 kind=4 dtype=J ref=512|0 text=neq.J(varM(4756-4)r,8)
+[W5D] bit at=cm proc=engine_sound_update bit=149 kind=4 dtype=J ref=243|2 text=istr.J@270(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),0)
+[W5D] bit at=cm proc=engine_sound_update bit=150 kind=4 dtype=J ref=96|3 text=istr.J@136(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=cm proc=engine_sound_update bit=151 kind=4 dtype=J ref=96|4 text=istr.J@140(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=cm proc=engine_sound_update bit=152 kind=4 dtype=J ref=96|5 text=istr.J@144(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=cm proc=engine_sound_update bit=153 kind=4 dtype=J ref=243|3 text=istr.J@406(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),0)
+[W5D] bit at=cm proc=engine_sound_update bit=154 kind=4 dtype=J ref=96|6 text=istr.J@272(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=cm proc=engine_sound_update bit=155 kind=4 dtype=J ref=96|7 text=istr.J@276(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=cm proc=engine_sound_update bit=156 kind=4 dtype=J ref=96|8 text=istr.J@280(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=cm proc=engine_sound_update bit=157 kind=4 dtype=J ref=243|4 text=istr.J@542(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),0)
+[W5D] bit at=cm proc=engine_sound_update bit=158 kind=4 dtype=J ref=96|9 text=istr.J@408(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=cm proc=engine_sound_update bit=159 kind=4 dtype=J ref=96|10 text=istr.J@412(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=cm proc=engine_sound_update bit=160 kind=4 dtype=J ref=96|11 text=istr.J@416(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=cm proc=engine_sound_update bit=161 kind=4 dtype=J ref=1423|0 text=add.J(varM(4756-4)r,4)
+[W5D] bit at=cm proc=engine_sound_update bit=162 kind=4 dtype=J ref=440|0 text=str.J(varM(4756-4)r,add.J(varM(4756-4)r,4))
+[W5D] bit at=cm proc=engine_sound_update bit=163 kind=4 dtype=J ref=577|0 text=cg1.J(varM(4756-4)r)
+[W5D] bit at=cm proc=engine_sound_update bit=164 kind=4 dtype=J ref=645|1 text=ilod.J@1(ixa.J(ldaS(3708+0),varM(4756-4)r))
+[W5D] bit at=cm proc=engine_sound_update bit=165 kind=4 dtype=A ref=1557|1 text=ilod.A@4(ixa.J(ldaS(4743+0),mpy.J(varM(4756-4)r,4)))
+[W5D] bit at=cm proc=engine_sound_update bit=166 kind=4 dtype=A ref=1376|0 text=istr.A@4(ixa.J(ldaS(4738+0),mpy.J(varM(4756-4)r,4)),ilod.A@4(ixa.J(ldaS(4743+0),mpy.J(varM(4756-4)r,4))))
+[W5D] bit at=cm proc=engine_sound_update bit=167 kind=4 dtype=J ref=645|2 text=ilod.J@2(ixa.J(ldaS(3708+0),varM(4756-4)r))
+[W5D] bit at=cm proc=engine_sound_update bit=168 kind=4 dtype=A ref=1557|2 text=ilod.A@8(ixa.J(ldaS(4743+0),mpy.J(varM(4756-4)r,4)))
+[W5D] bit at=cm proc=engine_sound_update bit=169 kind=4 dtype=A ref=1396|0 text=istr.A@8(ixa.J(ldaS(4738+0),mpy.J(varM(4756-4)r,4)),ilod.A@8(ixa.J(ldaS(4743+0),mpy.J(varM(4756-4)r,4))))
+[W5D] bit at=cm proc=engine_sound_update bit=170 kind=4 dtype=J ref=645|3 text=ilod.J@3(ixa.J(ldaS(3708+0),varM(4756-4)r))
+[W5D] bit at=cm proc=engine_sound_update bit=171 kind=4 dtype=A ref=1557|3 text=ilod.A@12(ixa.J(ldaS(4743+0),mpy.J(varM(4756-4)r,4)))
+[W5D] bit at=cm proc=engine_sound_update bit=172 kind=4 dtype=A ref=1416|0 text=istr.A@12(ixa.J(ldaS(4738+0),mpy.J(varM(4756-4)r,4)),ilod.A@12(ixa.J(ldaS(4743+0),mpy.J(varM(4756-4)r,4))))
+[W5D] bit at=cm proc=engine_sound_update bit=173 kind=4 dtype=J ref=595|0 text=cg1.J(varM(4756-4)r)
+[W5D] regcand proc=engine_sound_update what=lda bb=0 ctx=3 decision=1 text=ldaS(907+0)
+[W5D] regcand proc=engine_sound_update what=const bb=0 ctx=2 decision=0 text=8
+[W5D] regcand proc=engine_sound_update what=lda bb=1 ctx=3 decision=1 text=ldaS(19+0)
+[W5D] regcand proc=engine_sound_update what=lda bb=3 ctx=3 decision=1 text=ldaS(4758+0)
+[W5D] regcand proc=engine_sound_update what=const bb=4 ctx=0 decision=1 text=3
+[W5D] regcand proc=engine_sound_update what=const bb=4 ctx=0 decision=1 text=3
+[W5D] regcand proc=engine_sound_update what=const bb=4 ctx=0 decision=1 text=3
+[W5D] regcand proc=engine_sound_update what=const bb=4 ctx=0 decision=0 text=0
+[W5D] regcand proc=engine_sound_update what=const bb=4 ctx=0 decision=0 text=0
+[W5D] regcand proc=engine_sound_update what=const bb=4 ctx=1 decision=0 text=1
+[W5D] regcand proc=engine_sound_update what=const bb=6 ctx=3 decision=1 text=2
+[W5D] regcand proc=engine_sound_update what=lda bb=6 ctx=3 decision=1 text=ldaS(517+0)
+[W5D] regcand proc=engine_sound_update what=const bb=7 ctx=1 decision=0 text=1
+[W5D] regcand proc=engine_sound_update what=const bb=8 ctx=0 decision=0 text=0
+[W5D] regcand proc=engine_sound_update what=const bb=8 ctx=1 decision=0 text=1
+[W5D] regcand proc=engine_sound_update what=const bb=10 ctx=2 decision=1 text=16777216
+[W5D] regcand proc=engine_sound_update what=const bb=18 ctx=2 decision=0 text=4
+[W5D] regcand proc=engine_sound_update what=const bb=19 ctx=2 decision=0 text=8
+[W5D] regcand proc=engine_sound_update what=lda bb=21 ctx=3 decision=1 text=ldaS(909+0)
+[W5D] regcand proc=engine_sound_update what=const bb=22 ctx=2 decision=0 text=8
+[W5D] regcand proc=engine_sound_update what=const bb=27 ctx=2 decision=0 text=32768
+[W5D] regcand proc=engine_sound_update what=const bb=28 ctx=0 decision=0 text=0
+[W5D] regcand proc=engine_sound_update what=const bb=30 ctx=2 decision=0 text=16
+[W5D] regcand proc=engine_sound_update what=const bb=31 ctx=0 decision=0 text=0
+[W5D] regcand proc=engine_sound_update what=const bb=33 ctx=1 decision=0 text=1
+[W5D] regcand proc=engine_sound_update what=const bb=36 ctx=2 decision=1 text=-4097
+[W5D] regcand proc=engine_sound_update what=const bb=37 ctx=2 decision=0 text=1
+[W5D] regcand proc=engine_sound_update what=const bb=38 ctx=0 decision=0 text=-1
+[W5D] regcand proc=engine_sound_update what=lda bb=38 ctx=0 decision=1 text=ldaM(4756-36)
+[W5D] regcand proc=engine_sound_update what=const bb=38 ctx=0 decision=0 text=0
+[W5D] regcand proc=engine_sound_update what=const bb=39 ctx=1 decision=0 text=1
+[W5D] regcand proc=engine_sound_update what=const bb=42 ctx=1 decision=0 text=1
+[W5D] regcand proc=engine_sound_update what=const bb=48 ctx=1 decision=0 text=1
+[W5D] regcand proc=engine_sound_update what=const bb=48 ctx=1 decision=0 text=36
+[W5D] regcand proc=engine_sound_update what=lda bb=50 ctx=3 decision=1 text=ldaS(3705+0)
+[W5D] regcand proc=engine_sound_update what=const bb=53 ctx=0 decision=0 text=0
+[W5D] regcand proc=engine_sound_update what=lda bb=53 ctx=0 decision=1 text=ldaS(4740+0)
+[W5D] regcand proc=engine_sound_update what=const bb=55 ctx=1 decision=0 text=1
+[W5D] regcand proc=engine_sound_update what=const bb=55 ctx=1 decision=0 text=8
+[W5D] regcand proc=engine_sound_update what=lda bb=57 ctx=3 decision=1 text=ldaS(3713+0)
+[W5D] regcand proc=engine_sound_update what=const bb=58 ctx=0 decision=0 text=0
+[W5D] regcand proc=engine_sound_update what=const bb=58 ctx=5 decision=0 text=64
+[W5D] regcand proc=engine_sound_update what=lda bb=59 ctx=1 decision=1 text=ldaS(445+0)
+[W5D] regcand proc=engine_sound_update what=const bb=60 ctx=0 decision=0 text=0
+[W5D] regcand proc=engine_sound_update what=lda bb=60 ctx=3 decision=1 text=ldaS(4760+0)
+[W5D] regcand proc=engine_sound_update what=const bb=60 ctx=1 decision=0 text=1
+[W5D] regcand proc=engine_sound_update what=lda bb=62 ctx=3 decision=1 text=ldaS(3529+0)
+[W5D] regcand proc=engine_sound_update what=lda bb=62 ctx=3 decision=1 text=ldaS(328+16)
+[W5D] regcand proc=engine_sound_update what=const bb=62 ctx=3 decision=0 text=0
+[W5D] regcand proc=engine_sound_update what=const bb=64 ctx=2 decision=0 text=8
+[W5D] regcand proc=engine_sound_update what=const bb=70 ctx=3 decision=0 text=0
+[W5D] regcand proc=engine_sound_update what=const bb=71 ctx=1 decision=0 text=1
+[W5D] regcand proc=engine_sound_update what=lda bb=71 ctx=3 decision=1 text=ldaS(4760+0)
+[W5D] regcand proc=engine_sound_update what=const bb=73 ctx=3 decision=1 text=6
+[W5D] regcand proc=engine_sound_update what=lda bb=73 ctx=3 decision=1 text=ldaS(517+0)
+[W5D] regcand proc=engine_sound_update what=lda bb=95 ctx=3 decision=1 text=ldaS(4743+0)
+[W5D] regcand proc=engine_sound_update what=const bb=95 ctx=3 decision=0 text=0
+[W5D] regcand proc=engine_sound_update what=lda bb=95 ctx=3 decision=1 text=ldaS(4743+0)
+[W5D] regcand proc=engine_sound_update what=const bb=95 ctx=3 decision=1 text=-1
+[W5D] regcand proc=engine_sound_update what=lda bb=95 ctx=3 decision=1 text=ldaS(4743+0)
+[W5D] regcand proc=engine_sound_update what=const bb=95 ctx=3 decision=1 text=-1
+[W5D] regcand proc=engine_sound_update what=lda bb=95 ctx=3 decision=1 text=ldaS(4743+0)
+[W5D] regcand proc=engine_sound_update what=const bb=95 ctx=3 decision=1 text=-1
+[W5D] regcand proc=engine_sound_update what=lda bb=95 ctx=3 decision=1 text=ldaS(4743+0)
+[W5D] regcand proc=engine_sound_update what=const bb=95 ctx=3 decision=0 text=0
+[W5D] regcand proc=engine_sound_update what=lda bb=95 ctx=3 decision=1 text=ldaS(4743+0)
+[W5D] regcand proc=engine_sound_update what=const bb=95 ctx=3 decision=1 text=-1
+[W5D] regcand proc=engine_sound_update what=lda bb=95 ctx=3 decision=1 text=ldaS(4743+0)
+[W5D] regcand proc=engine_sound_update what=const bb=95 ctx=3 decision=1 text=-1
+[W5D] regcand proc=engine_sound_update what=lda bb=95 ctx=3 decision=1 text=ldaS(4743+0)
+[W5D] regcand proc=engine_sound_update what=const bb=95 ctx=3 decision=1 text=-1
+[W5D] regcand proc=engine_sound_update what=lda bb=95 ctx=3 decision=1 text=ldaS(4743+0)
+[W5D] regcand proc=engine_sound_update what=const bb=95 ctx=3 decision=0 text=0
+[W5D] regcand proc=engine_sound_update what=lda bb=95 ctx=3 decision=1 text=ldaS(4743+0)
+[W5D] regcand proc=engine_sound_update what=const bb=95 ctx=3 decision=1 text=-1
+[W5D] regcand proc=engine_sound_update what=lda bb=95 ctx=3 decision=1 text=ldaS(4743+0)
+[W5D] regcand proc=engine_sound_update what=const bb=95 ctx=3 decision=1 text=-1
+[W5D] regcand proc=engine_sound_update what=lda bb=95 ctx=3 decision=1 text=ldaS(4743+0)
+[W5D] regcand proc=engine_sound_update what=const bb=95 ctx=3 decision=1 text=-1
+[W5D] regcand proc=engine_sound_update what=lda bb=95 ctx=3 decision=1 text=ldaS(4743+0)
+[W5D] regcand proc=engine_sound_update what=const bb=95 ctx=3 decision=0 text=0
+[W5D] regcand proc=engine_sound_update what=lda bb=95 ctx=3 decision=1 text=ldaS(4743+0)
+[W5D] regcand proc=engine_sound_update what=const bb=95 ctx=3 decision=1 text=-1
+[W5D] regcand proc=engine_sound_update what=lda bb=95 ctx=3 decision=1 text=ldaS(4743+0)
+[W5D] regcand proc=engine_sound_update what=const bb=95 ctx=3 decision=1 text=-1
+[W5D] regcand proc=engine_sound_update what=lda bb=95 ctx=3 decision=1 text=ldaS(4743+0)
+[W5D] regcand proc=engine_sound_update what=const bb=95 ctx=3 decision=1 text=-1
+[W5D] regcand proc=engine_sound_update what=cvtconst bb=95 ctx=0 decision=1 text=2176
+[W5D] regcand proc=engine_sound_update what=lda bb=77 ctx=1 decision=1 text=ldaS(3519+0)
+[W5D] regcand proc=engine_sound_update what=const bb=77 ctx=3 decision=0 text=0
+[W5D] regcand proc=engine_sound_update what=lda bb=97 ctx=0 decision=1 text=ldaS(4738+0)
+[W5D] regcand proc=engine_sound_update what=const bb=97 ctx=5 decision=0 text=4
+[W5D] regcand proc=engine_sound_update what=lda bb=97 ctx=0 decision=1 text=ldaS(4743+0)
+[W5D] regcand proc=engine_sound_update what=lda bb=99 ctx=0 decision=1 text=ldaS(4738+0)
+[W5D] regcand proc=engine_sound_update what=const bb=99 ctx=5 decision=0 text=4
+[W5D] regcand proc=engine_sound_update what=lda bb=99 ctx=0 decision=1 text=ldaS(4743+0)
+[W5D] regcand proc=engine_sound_update what=lda bb=101 ctx=0 decision=1 text=ldaS(4738+0)
+[W5D] regcand proc=engine_sound_update what=const bb=101 ctx=5 decision=0 text=4
+[W5D] regcand proc=engine_sound_update what=lda bb=101 ctx=0 decision=1 text=ldaS(4743+0)
+[W5D] regcand proc=engine_sound_update what=lda bb=103 ctx=0 decision=1 text=ldaS(4738+0)
+[W5D] regcand proc=engine_sound_update what=const bb=103 ctx=5 decision=0 text=4
+[W5D] regcand proc=engine_sound_update what=lda bb=103 ctx=0 decision=1 text=ldaS(4743+0)
+[W5D] regcand proc=engine_sound_update what=const bb=104 ctx=1 decision=0 text=4
+[W5D] regcand proc=engine_sound_update what=const bb=104 ctx=3 decision=1 text=8
+[W5D] regcand proc=engine_sound_update what=const bb=82 ctx=3 decision=0 text=0
+[W5D] regcand proc=engine_sound_update what=const bb=85 ctx=3 decision=0 text=0
+[W5D] regcand proc=engine_sound_update what=const bb=87 ctx=3 decision=1 text=6
+[W5D] regcand proc=engine_sound_update what=lda bb=87 ctx=3 decision=1 text=ldaS(517+0)
+[W5D] regcand proc=engine_sound_update what=lda bb=88 ctx=3 decision=1 text=ldaS(3705+0)
+[W5D] regcand proc=engine_sound_update what=const bb=67 ctx=3 decision=0 text=0
+[W5D] regcand proc=engine_sound_update what=const bb=32 ctx=0 decision=0 text=1
+[W5D] regcand proc=engine_sound_update what=const bb=29 ctx=0 decision=0 text=1
+[W5D] regcand proc=engine_sound_update what=const bb=45 ctx=2 decision=0 text=2048
+[W5D] regcand proc=engine_sound_update what=const bb=12 ctx=1 decision=0 text=1
+[W5D] regcand proc=engine_sound_update what=const bb=14 ctx=1 decision=0 text=1
+[W5D] ordinal proc=engine_sound_update cdx_proc=397
+[W5D] bit at=gc proc=engine_sound_update bit=0 kind=4 dtype=L ref=411|0 text=ilod.L@0(ldaS(907+0))
+[W5D] bit at=gc proc=engine_sound_update bit=1 kind=4 dtype=L ref=860|0 text=and.L(ilod.L@0(ldaS(907+0)),8)
+[W5D] bit at=gc proc=engine_sound_update bit=2 kind=4 dtype=J ref=1137|0 text=ilod.J@0(ldaS(19+0))
+[W5D] bit at=gc proc=engine_sound_update bit=3 kind=4 dtype=J ref=599|0 text=ilod.J@0(ldaS(4758+0))
+[W5D] bit at=gc proc=engine_sound_update bit=4 kind=3 dtype=R ref=515|0 text=varM(4756-32)
+[W5D] bit at=gc proc=engine_sound_update bit=5 kind=3 dtype=R ref=515|0 text=varM(4756-32)
+[W5D] bit at=gc proc=engine_sound_update bit=6 kind=4 dtype=R ref=166|0 text=str.R(varM(4756-32),3)
+[W5D] bit at=gc proc=engine_sound_update bit=7 kind=3 dtype=R ref=451|0 text=varM(4756-36)
+[W5D] bit at=gc proc=engine_sound_update bit=8 kind=3 dtype=R ref=451|0 text=varM(4756-36)
+[W5D] bit at=gc proc=engine_sound_update bit=9 kind=4 dtype=R ref=166|1 text=str.R(varM(4756-36),3)
+[W5D] bit at=gc proc=engine_sound_update bit=10 kind=3 dtype=R ref=579|0 text=varM(4756-28)
+[W5D] bit at=gc proc=engine_sound_update bit=11 kind=3 dtype=R ref=579|0 text=varM(4756-28)
+[W5D] bit at=gc proc=engine_sound_update bit=12 kind=4 dtype=R ref=166|2 text=str.R(varM(4756-28),3)
+[W5D] bit at=gc proc=engine_sound_update bit=13 kind=3 dtype=J ref=963|0 text=varM(4756-4)r
+[W5D] bit at=gc proc=engine_sound_update bit=14 kind=3 dtype=J ref=963|0 text=varM(4756-4)r
+[W5D] bit at=gc proc=engine_sound_update bit=15 kind=4 dtype=J ref=186|0 text=str.J(varM(4756-4)r,0)
+[W5D] bit at=gc proc=engine_sound_update bit=16 kind=3 dtype=J ref=835|0 text=varM(4756-12)r
+[W5D] bit at=gc proc=engine_sound_update bit=17 kind=3 dtype=J ref=835|0 text=varM(4756-12)r
+[W5D] bit at=gc proc=engine_sound_update bit=18 kind=4 dtype=J ref=186|1 text=str.J(varM(4756-12)r,0)
+[W5D] bit at=gc proc=engine_sound_update bit=19 kind=4 dtype=J ref=1135|0 text=geq.J(ilod.J@0(ldaS(4758+0)),1)
+[W5D] bit at=gc proc=engine_sound_update bit=20 kind=4 dtype=J ref=1286|0 text=cg1.J(ilod.J@0(ldaS(4758+0)))
+[W5D] bit at=gc proc=engine_sound_update bit=21 kind=4 dtype=J ref=883|0 text=ilod.J@0(ldaS(517+0))
+[W5D] bit at=gc proc=engine_sound_update bit=22 kind=4 dtype=J ref=1072|0 text=equ.J(2,ilod.J@0(ldaS(517+0)))
+[W5D] bit at=gc proc=engine_sound_update bit=23 kind=4 dtype=J ref=239|0 text=cg1.J(ilod.J@0(ldaS(517+0)))
+[W5D] bit at=gc proc=engine_sound_update bit=24 kind=4 dtype=A ref=1610|0 text=ilod.A@0(ldaS(4739+0))
+[W5D] bit at=gc proc=engine_sound_update bit=25 kind=4 dtype=A ref=1063|0 text=add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)
+[W5D] bit at=gc proc=engine_sound_update bit=26 kind=4 dtype=J ref=939|0 text=ilod.J@22(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r))
+[W5D] bit at=gc proc=engine_sound_update bit=27 kind=4 dtype=J ref=1297|0 text=geq.J(ilod.J@22(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),1)
+[W5D] bit at=gc proc=engine_sound_update bit=28 kind=4 dtype=J ref=353|0 text=cg1.J(ilod.J@22(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)))
+[W5D] bit at=gc proc=engine_sound_update bit=29 kind=3 dtype=J ref=899|0 text=varM(4756-8)r
+[W5D] bit at=gc proc=engine_sound_update bit=30 kind=3 dtype=J ref=899|0 text=varM(4756-8)r
+[W5D] bit at=gc proc=engine_sound_update bit=31 kind=4 dtype=J ref=186|2 text=str.J(varM(4756-8)r,0)
+[W5D] bit at=gc proc=engine_sound_update bit=32 kind=4 dtype=J ref=939|1 text=ilod.J@20(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r))
+[W5D] bit at=gc proc=engine_sound_update bit=33 kind=4 dtype=J ref=1317|0 text=geq.J(ilod.J@20(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),1)
+[W5D] bit at=gc proc=engine_sound_update bit=34 kind=4 dtype=J ref=1302|0 text=cg1.J(ilod.J@20(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)))
+[W5D] bit at=gc proc=engine_sound_update bit=35 kind=4 dtype=A ref=939|2 text=ilod.A@28(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r))
+[W5D] bit at=gc proc=engine_sound_update bit=36 kind=4 dtype=J ref=182|0 text=mpy.J(varM(4756-8)r,68)
+[W5D] bit at=gc proc=engine_sound_update bit=37 kind=4 dtype=J ref=1358|0 text=ixa.J(ilod.A@28(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),mpy.J(varM(4756-8)r,68))
+[W5D] bit at=gc proc=engine_sound_update bit=38 kind=4 dtype=L ref=1529|0 text=ilod.L@64(ixa.J(ilod.A@28(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),mpy.J(varM(4756-8)r,68)))
+[W5D] bit at=gc proc=engine_sound_update bit=39 kind=4 dtype=L ref=987|0 text=and.L(ilod.L@64(ixa.J(ilod.A@28(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),mpy.J(varM(4756-8)r,68))),16777216)
+[W5D] bit at=gc proc=engine_sound_update bit=40 kind=4 dtype=J ref=1015|0 text=add.J(varM(4756-8)r,1)
+[W5D] bit at=gc proc=engine_sound_update bit=41 kind=4 dtype=J ref=332|0 text=str.J(varM(4756-8)r,add.J(varM(4756-8)r,1))
+[W5D] bit at=gc proc=engine_sound_update bit=42 kind=4 dtype=J ref=1587|0 text=les.J(varM(4756-8)r,ilod.J@20(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)))
+[W5D] bit at=gc proc=engine_sound_update bit=43 kind=4 dtype=J ref=283|0 text=cg1.J(varM(4756-8)r)
+[W5D] bit at=gc proc=engine_sound_update bit=44 kind=4 dtype=J ref=1314|0 text=cg1.J(ilod.J@20(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)))
+[W5D] bit at=gc proc=engine_sound_update bit=45 kind=4 dtype=J ref=367|0 text=cg1.J(ilod.J@22(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)))
+[W5D] bit at=gc proc=engine_sound_update bit=46 kind=4 dtype=L ref=1272|0 text=cvt.L(ilod.J@22(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)))
+[W5D] bit at=gc proc=engine_sound_update bit=47 kind=4 dtype=L ref=939|3 text=ilod.L@16(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r))
+[W5D] bit at=gc proc=engine_sound_update bit=48 kind=4 dtype=L ref=743|0 text=and.L(ilod.L@16(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),4)
+[W5D] bit at=gc proc=engine_sound_update bit=49 kind=4 dtype=L ref=1066|0 text=and.L(ilod.L@16(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),8)
+[W5D] bit at=gc proc=engine_sound_update bit=50 kind=4 dtype=J ref=475|0 text=ilod.J@0(ldaS(909+0))
+[W5D] bit at=gc proc=engine_sound_update bit=51 kind=4 dtype=L ref=990|0 text=and.L(ilod.L@16(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),32768)
+[W5D] bit at=gc proc=engine_sound_update bit=52 kind=3 dtype=J ref=771|0 text=varM(4756-16)r
+[W5D] bit at=gc proc=engine_sound_update bit=53 kind=3 dtype=J ref=771|0 text=varM(4756-16)r
+[W5D] bit at=gc proc=engine_sound_update bit=54 kind=4 dtype=J ref=186|3 text=str.J(varM(4756-16)r,0)
+[W5D] bit at=gc proc=engine_sound_update bit=55 kind=4 dtype=J ref=1400|0 text=str.J(varM(4756-16)r,1)
+[W5D] bit at=gc proc=engine_sound_update bit=56 kind=4 dtype=L ref=93|0 text=and.L(ilod.L@16(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),16)
+[W5D] bit at=gc proc=engine_sound_update bit=57 kind=3 dtype=J ref=707|0 text=varM(4756-20)r
+[W5D] bit at=gc proc=engine_sound_update bit=58 kind=3 dtype=J ref=707|0 text=varM(4756-20)r
+[W5D] bit at=gc proc=engine_sound_update bit=59 kind=4 dtype=J ref=186|4 text=str.J(varM(4756-20)r,0)
+[W5D] bit at=gc proc=engine_sound_update bit=60 kind=4 dtype=J ref=760|0 text=str.J(varM(4756-20)r,1)
+[W5D] bit at=gc proc=engine_sound_update bit=61 kind=4 dtype=J ref=1377|0 text=cg1.J(ilod.J@20(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)))
+[W5D] bit at=gc proc=engine_sound_update bit=62 kind=4 dtype=J ref=902|0 text=ilod.J@0(ldaS(3705+0))
+[W5D] bit at=gc proc=engine_sound_update bit=63 kind=4 dtype=L ref=1217|0 text=and.L(ilod.L@64(ixa.J(ilod.A@28(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),mpy.J(varM(4756-8)r,68))),-4097)
+[W5D] bit at=gc proc=engine_sound_update bit=64 kind=4 dtype=L ref=331|0 text=istr.L@64(ixa.J(ilod.A@28(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),mpy.J(varM(4756-8)r,68)),and.L(ilod.L@64(ixa.J(ilod.A@28(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),mpy.J(varM(4756-8)r,68))),-4097))
+[W5D] bit at=gc proc=engine_sound_update bit=65 kind=4 dtype=L ref=1099|0 text=and.L(ilod.L@64(ixa.J(ilod.A@28(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),mpy.J(varM(4756-8)r,68))),1)
+[W5D] bit at=gc proc=engine_sound_update bit=66 kind=4 dtype=J ref=523|0 text=cvtl.J(varM(4756-4)r)
+[W5D] bit at=gc proc=engine_sound_update bit=67 kind=4 dtype=J ref=337|0 text=cg1.J(varM(4756-8)r)
+[W5D] bit at=gc proc=engine_sound_update bit=68 kind=4 dtype=J ref=1395|0 text=cg1.J(ilod.J@20(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)))
+[W5D] bit at=gc proc=engine_sound_update bit=69 kind=4 dtype=J ref=423|0 text=cg1.J(ilod.J@22(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)))
+[W5D] bit at=gc proc=engine_sound_update bit=70 kind=4 dtype=L ref=658|0 text=and.L(ilod.L@16(add.A(ilod.A@0(ldaS(4739+0)),varM(4756-12)r)),2048)
+[W5D] bit at=gc proc=engine_sound_update bit=71 kind=4 dtype=J ref=36|0 text=add.J(varM(4756-4)r,1)
+[W5D] bit at=gc proc=engine_sound_update bit=72 kind=4 dtype=J ref=380|0 text=str.J(varM(4756-4)r,add.J(varM(4756-4)r,1))
+[W5D] bit at=gc proc=engine_sound_update bit=73 kind=4 dtype=J ref=1225|0 text=add.J(varM(4756-12)r,36)
+[W5D] bit at=gc proc=engine_sound_update bit=74 kind=4 dtype=J ref=74|0 text=str.J(varM(4756-12)r,add.J(varM(4756-12)r,36))
+[W5D] bit at=gc proc=engine_sound_update bit=75 kind=4 dtype=J ref=1296|0 text=les.J(varM(4756-4)r,ilod.J@0(ldaS(4758+0)))
+[W5D] bit at=gc proc=engine_sound_update bit=76 kind=4 dtype=J ref=483|0 text=cg1.J(varM(4756-4)r)
+[W5D] bit at=gc proc=engine_sound_update bit=77 kind=4 dtype=J ref=1374|0 text=cg1.J(ilod.J@0(ldaS(4758+0)))
+[W5D] bit at=gc proc=engine_sound_update bit=78 kind=4 dtype=J ref=916|0 text=ixa.J(ldaS(3708+0),varM(4756-4)r)
+[W5D] bit at=gc proc=engine_sound_update bit=79 kind=4 dtype=J ref=645|0 text=ilod.J@0(ixa.J(ldaS(3708+0),varM(4756-4)r))
+[W5D] bit at=gc proc=engine_sound_update bit=80 kind=4 dtype=J ref=1371|0 text=ixa.J(ldaS(4740+0),varM(4756-4)r)
+[W5D] bit at=gc proc=engine_sound_update bit=81 kind=4 dtype=L ref=1555|0 text=ilod.L@0(ixa.J(ldaS(4740+0),varM(4756-4)r))
+[W5D] bit at=gc proc=engine_sound_update bit=82 kind=4 dtype=J ref=640|0 text=cvt.J(ilod.L@0(ixa.J(ldaS(4740+0),varM(4756-4)r)))
+[W5D] bit at=gc proc=engine_sound_update bit=83 kind=4 dtype=J ref=394|0 text=mpy.J(ilod.J@0(ixa.J(ldaS(3708+0),varM(4756-4)r)),cvt.J(ilod.L@0(ixa.J(ldaS(4740+0),varM(4756-4)r))))
+[W5D] bit at=gc proc=engine_sound_update bit=84 kind=4 dtype=J ref=528|0 text=mpy.J(varM(4756-4)r,4)
+[W5D] bit at=gc proc=engine_sound_update bit=85 kind=4 dtype=J ref=1372|0 text=ixa.J(ldaS(4743+0),mpy.J(varM(4756-4)r,4))
+[W5D] bit at=gc proc=engine_sound_update bit=86 kind=3 dtype=A ref=1485|0 text=varR(0+2)r
+[W5D] bit at=gc proc=engine_sound_update bit=87 kind=3 dtype=A ref=1485|0 text=varR(0+2)r
+[W5D] bit at=gc proc=engine_sound_update bit=88 kind=4 dtype=A ref=927|0 text=istr.A@0(ixa.J(ldaS(4743+0),mpy.J(varM(4756-4)r,4)),varR(0+2)r)
+[W5D] bit at=gc proc=engine_sound_update bit=89 kind=4 dtype=J ref=771|1 text=les.J(varM(4756-4)r,8)
+[W5D] bit at=gc proc=engine_sound_update bit=90 kind=4 dtype=J ref=497|0 text=cg1.J(varM(4756-4)r)
+[W5D] bit at=gc proc=engine_sound_update bit=91 kind=4 dtype=J ref=1158|0 text=ilod.J@0(ldaS(3713+0))
+[W5D] bit at=gc proc=engine_sound_update bit=92 kind=4 dtype=J ref=462|0 text=mpy.J(ilod.J@0(ldaS(3713+0)),64)
+[W5D] bit at=gc proc=engine_sound_update bit=93 kind=4 dtype=A ref=1579|0 text=istr.A@0(ldaS(445+0),varR(0+2)r)
+[W5D] bit at=gc proc=engine_sound_update bit=94 kind=4 dtype=J ref=663|0 text=ilod.J@0(ldaS(4760+0))
+[W5D] bit at=gc proc=engine_sound_update bit=95 kind=4 dtype=J ref=156|0 text=geq.J(ilod.J@0(ldaS(4760+0)),1)
+[W5D] bit at=gc proc=engine_sound_update bit=96 kind=4 dtype=J ref=1526|0 text=cg1.J(ilod.J@0(ldaS(4760+0)))
+[W5D] bit at=gc proc=engine_sound_update bit=97 kind=3 dtype=A ref=387|0 text=varM(4756-40)r
+[W5D] bit at=gc proc=engine_sound_update bit=98 kind=3 dtype=A ref=387|0 text=varM(4756-40)r
+[W5D] bit at=gc proc=engine_sound_update bit=99 kind=4 dtype=A ref=127|0 text=ilod.A@0(ldaS(3529+0))
+[W5D] bit at=gc proc=engine_sound_update bit=100 kind=4 dtype=J ref=677|0 text=ixa.J(ilod.A@0(ldaS(3529+0)),mpy.J(varM(4756-4)r,4))
+[W5D] bit at=gc proc=engine_sound_update bit=101 kind=4 dtype=A ref=167|0 text=ilod.A@0(ixa.J(ilod.A@0(ldaS(3529+0)),mpy.J(varM(4756-4)r,4)))
+[W5D] bit at=gc proc=engine_sound_update bit=102 kind=4 dtype=A ref=475|1 text=str.A(varM(4756-40)r,ilod.A@0(ixa.J(ilod.A@0(ldaS(3529+0)),mpy.J(varM(4756-4)r,4))))
+[W5D] bit at=gc proc=engine_sound_update bit=103 kind=3 dtype=A ref=643|0 text=varM(4756-24)r
+[W5D] bit at=gc proc=engine_sound_update bit=104 kind=3 dtype=A ref=643|0 text=varM(4756-24)r
+[W5D] bit at=gc proc=engine_sound_update bit=105 kind=4 dtype=A ref=1311|0 text=ilod.A@16(ldaS(328+16))
+[W5D] bit at=gc proc=engine_sound_update bit=106 kind=4 dtype=A ref=1382|0 text=str.A(varM(4756-24)r,ilod.A@16(ldaS(328+16)))
+[W5D] bit at=gc proc=engine_sound_update bit=107 kind=4 dtype=A ref=1184|0 text=neq.A(varM(4756-24)r,0)
+[W5D] bit at=gc proc=engine_sound_update bit=108 kind=4 dtype=A ref=1490|0 text=cg1.A(varM(4756-24)r)
+[W5D] bit at=gc proc=engine_sound_update bit=109 kind=4 dtype=L ref=99|0 text=ilod.L@4(varM(4756-24)r)
+[W5D] bit at=gc proc=engine_sound_update bit=110 kind=4 dtype=J ref=662|0 text=cvt.J(ilod.L@4(varM(4756-24)r))
+[W5D] bit at=gc proc=engine_sound_update bit=111 kind=4 dtype=J ref=1532|0 text=and.J(cvt.J(ilod.L@4(varM(4756-24)r)),8)
+[W5D] bit at=gc proc=engine_sound_update bit=112 kind=4 dtype=J ref=99|1 text=ilod.J@8(varM(4756-24)r)
+[W5D] bit at=gc proc=engine_sound_update bit=113 kind=4 dtype=A ref=33|0 text=cvt.A(ilod.J@8(varM(4756-24)r))
+[W5D] bit at=gc proc=engine_sound_update bit=114 kind=4 dtype=A ref=1030|0 text=equ.A(varM(4756-40)r,cvt.A(ilod.J@8(varM(4756-24)r)))
+[W5D] bit at=gc proc=engine_sound_update bit=115 kind=4 dtype=A ref=984|0 text=cg1.A(varM(4756-40)r)
+[W5D] bit at=gc proc=engine_sound_update bit=116 kind=4 dtype=A ref=276|0 text=cg1.A(cvt.A(ilod.J@8(varM(4756-24)r)))
+[W5D] bit at=gc proc=engine_sound_update bit=117 kind=4 dtype=A ref=1461|0 text=istr.A@0(ixa.J(ilod.A@0(ldaS(3529+0)),mpy.J(varM(4756-4)r,4)),varM(4756-24)r)
+[W5D] bit at=gc proc=engine_sound_update bit=118 kind=4 dtype=A ref=99|2 text=ilod.A@0(varM(4756-24)r)
+[W5D] bit at=gc proc=engine_sound_update bit=119 kind=4 dtype=A ref=509|0 text=str.A(varM(4756-24)r,ilod.A@0(varM(4756-24)r))
+[W5D] bit at=gc proc=engine_sound_update bit=120 kind=4 dtype=A ref=1500|0 text=cg1.A(varM(4756-24)r)
+[W5D] bit at=gc proc=engine_sound_update bit=121 kind=4 dtype=A ref=1530|0 text=equ.A(varM(4756-40)r,ilod.A@0(ixa.J(ilod.A@0(ldaS(3529+0)),mpy.J(varM(4756-4)r,4))))
+[W5D] bit at=gc proc=engine_sound_update bit=122 kind=4 dtype=A ref=992|0 text=cg1.A(varM(4756-40)r)
+[W5D] bit at=gc proc=engine_sound_update bit=123 kind=4 dtype=A ref=552|0 text=cg1.A(ilod.A@0(ixa.J(ilod.A@0(ldaS(3529+0)),mpy.J(varM(4756-4)r,4))))
+[W5D] bit at=gc proc=engine_sound_update bit=124 kind=4 dtype=A ref=243|0 text=istr.A@0(ixa.J(ilod.A@0(ldaS(3529+0)),mpy.J(varM(4756-4)r,4)),0)
+[W5D] bit at=gc proc=engine_sound_update bit=125 kind=4 dtype=J ref=777|0 text=les.J(varM(4756-4)r,ilod.J@0(ldaS(4760+0)))
+[W5D] bit at=gc proc=engine_sound_update bit=126 kind=4 dtype=J ref=529|0 text=cg1.J(varM(4756-4)r)
+[W5D] bit at=gc proc=engine_sound_update bit=127 kind=4 dtype=J ref=1548|0 text=cg1.J(ilod.J@0(ldaS(4760+0)))
+[W5D] bit at=gc proc=engine_sound_update bit=128 kind=4 dtype=J ref=774|0 text=equ.J(6,ilod.J@0(ldaS(517+0)))
+[W5D] bit at=gc proc=engine_sound_update bit=129 kind=4 dtype=J ref=373|0 text=cg1.J(ilod.J@0(ldaS(517+0)))
+[W5D] bit at=gc proc=engine_sound_update bit=130 kind=4 dtype=A ref=119|0 text=ilod.A@20(ldaS(4743+0))
+[W5D] bit at=gc proc=engine_sound_update bit=131 kind=4 dtype=J ref=753|0 text=mpy.J(varM(4756-4)r,136)
+[W5D] bit at=gc proc=engine_sound_update bit=132 kind=4 dtype=J ref=1146|0 text=ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136))
+[W5D] bit at=gc proc=engine_sound_update bit=133 kind=4 dtype=J ref=243|1 text=istr.J@134(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),0)
+[W5D] bit at=gc proc=engine_sound_update bit=134 kind=4 dtype=J ref=96|0 text=istr.J@0(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=gc proc=engine_sound_update bit=135 kind=4 dtype=J ref=96|1 text=istr.J@4(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=gc proc=engine_sound_update bit=136 kind=4 dtype=J ref=96|2 text=istr.J@8(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=gc proc=engine_sound_update bit=137 kind=4 dtype=J ref=99|3 text=les.J(varM(4756-4)r,16)
+[W5D] bit at=gc proc=engine_sound_update bit=138 kind=4 dtype=J ref=537|0 text=cg1.J(varM(4756-4)r)
+[W5D] bit at=gc proc=engine_sound_update bit=139 kind=4 dtype=J ref=273|0 text=istr.J@0(ldaS(3519+0),0)
+[W5D] bit at=gc proc=engine_sound_update bit=140 kind=4 dtype=J ref=1531|0 text=ixa.J(ldaS(4738+0),mpy.J(varM(4756-4)r,4))
+[W5D] bit at=gc proc=engine_sound_update bit=141 kind=4 dtype=A ref=1557|0 text=ilod.A@0(ixa.J(ldaS(4743+0),mpy.J(varM(4756-4)r,4)))
+[W5D] bit at=gc proc=engine_sound_update bit=142 kind=4 dtype=A ref=1356|0 text=istr.A@0(ixa.J(ldaS(4738+0),mpy.J(varM(4756-4)r,4)),ilod.A@0(ixa.J(ldaS(4743+0),mpy.J(varM(4756-4)r,4))))
+[W5D] bit at=gc proc=engine_sound_update bit=143 kind=4 dtype=J ref=547|0 text=cg1.J(varM(4756-4)r)
+[W5D] bit at=gc proc=engine_sound_update bit=144 kind=4 dtype=A ref=1530|1 text=cg1.A(varM(4756-24)r)
+[W5D] bit at=gc proc=engine_sound_update bit=145 kind=4 dtype=A ref=1536|0 text=cg1.A(varM(4756-24)r)
+[W5D] bit at=gc proc=engine_sound_update bit=146 kind=4 dtype=J ref=401|0 text=cg1.J(ilod.J@0(ldaS(517+0)))
+[W5D] bit at=gc proc=engine_sound_update bit=147 kind=4 dtype=J ref=1459|0 text=neq.J(varM(4756-4)r,16)
+[W5D] bit at=gc proc=engine_sound_update bit=148 kind=4 dtype=J ref=512|0 text=neq.J(varM(4756-4)r,8)
+[W5D] bit at=gc proc=engine_sound_update bit=149 kind=4 dtype=J ref=243|2 text=istr.J@270(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),0)
+[W5D] bit at=gc proc=engine_sound_update bit=150 kind=4 dtype=J ref=96|3 text=istr.J@136(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=gc proc=engine_sound_update bit=151 kind=4 dtype=J ref=96|4 text=istr.J@140(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=gc proc=engine_sound_update bit=152 kind=4 dtype=J ref=96|5 text=istr.J@144(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=gc proc=engine_sound_update bit=153 kind=4 dtype=J ref=243|3 text=istr.J@406(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),0)
+[W5D] bit at=gc proc=engine_sound_update bit=154 kind=4 dtype=J ref=96|6 text=istr.J@272(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=gc proc=engine_sound_update bit=155 kind=4 dtype=J ref=96|7 text=istr.J@276(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=gc proc=engine_sound_update bit=156 kind=4 dtype=J ref=96|8 text=istr.J@280(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=gc proc=engine_sound_update bit=157 kind=4 dtype=J ref=243|4 text=istr.J@542(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),0)
+[W5D] bit at=gc proc=engine_sound_update bit=158 kind=4 dtype=J ref=96|9 text=istr.J@408(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=gc proc=engine_sound_update bit=159 kind=4 dtype=J ref=96|10 text=istr.J@412(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=gc proc=engine_sound_update bit=160 kind=4 dtype=J ref=96|11 text=istr.J@416(ixa.J(ilod.A@20(ldaS(4743+0)),mpy.J(varM(4756-4)r,136)),-1)
+[W5D] bit at=gc proc=engine_sound_update bit=161 kind=4 dtype=J ref=1423|0 text=add.J(varM(4756-4)r,4)
+[W5D] bit at=gc proc=engine_sound_update bit=162 kind=4 dtype=J ref=440|0 text=str.J(varM(4756-4)r,add.J(varM(4756-4)r,4))
+[W5D] bit at=gc proc=engine_sound_update bit=163 kind=4 dtype=J ref=577|0 text=cg1.J(varM(4756-4)r)
+[W5D] bit at=gc proc=engine_sound_update bit=164 kind=4 dtype=J ref=645|1 text=ilod.J@1(ixa.J(ldaS(3708+0),varM(4756-4)r))
+[W5D] bit at=gc proc=engine_sound_update bit=165 kind=4 dtype=A ref=1557|1 text=ilod.A@4(ixa.J(ldaS(4743+0),mpy.J(varM(4756-4)r,4)))
+[W5D] bit at=gc proc=engine_sound_update bit=166 kind=4 dtype=A ref=1376|0 text=istr.A@4(ixa.J(ldaS(4738+0),mpy.J(varM(4756-4)r,4)),ilod.A@4(ixa.J(ldaS(4743+0),mpy.J(varM(4756-4)r,4))))
+[W5D] bit at=gc proc=engine_sound_update bit=167 kind=4 dtype=J ref=645|2 text=ilod.J@2(ixa.J(ldaS(3708+0),varM(4756-4)r))
+[W5D] bit at=gc proc=engine_sound_update bit=168 kind=4 dtype=A ref=1557|2 text=ilod.A@8(ixa.J(ldaS(4743+0),mpy.J(varM(4756-4)r,4)))
+[W5D] bit at=gc proc=engine_sound_update bit=169 kind=4 dtype=A ref=1396|0 text=istr.A@8(ixa.J(ldaS(4738+0),mpy.J(varM(4756-4)r,4)),ilod.A@8(ixa.J(ldaS(4743+0),mpy.J(varM(4756-4)r,4))))
+[W5D] bit at=gc proc=engine_sound_update bit=170 kind=4 dtype=J ref=645|3 text=ilod.J@3(ixa.J(ldaS(3708+0),varM(4756-4)r))
+[W5D] bit at=gc proc=engine_sound_update bit=171 kind=4 dtype=A ref=1557|3 text=ilod.A@12(ixa.J(ldaS(4743+0),mpy.J(varM(4756-4)r,4)))
+[W5D] bit at=gc proc=engine_sound_update bit=172 kind=4 dtype=A ref=1416|0 text=istr.A@12(ixa.J(ldaS(4738+0),mpy.J(varM(4756-4)r,4)),ilod.A@12(ixa.J(ldaS(4743+0),mpy.J(varM(4756-4)r,4))))
+[W5D] bit at=gc proc=engine_sound_update bit=173 kind=4 dtype=J ref=595|0 text=cg1.J(varM(4756-4)r)
+[W5D] bit at=gc proc=engine_sound_update bit=174 kind=1 dtype=A ref=799|0 text=ldaS(907+0)
+[W5D] bit at=gc proc=engine_sound_update bit=175 kind=1 dtype=A ref=1162|0 text=ldaS(19+0)
+[W5D] bit at=gc proc=engine_sound_update bit=176 kind=1 dtype=A ref=893|0 text=ldaS(4758+0)
+[W5D] bit at=gc proc=engine_sound_update bit=177 kind=2 dtype=R ref=0|0 text=3
+[W5D] bit at=gc proc=engine_sound_update bit=178 kind=2 dtype=J ref=2|0 text=2
+[W5D] bit at=gc proc=engine_sound_update bit=179 kind=1 dtype=A ref=1035|0 text=ldaS(517+0)
+[W5D] bit at=gc proc=engine_sound_update bit=180 kind=2 dtype=L ref=1138|0 text=16777216
+[W5D] bit at=gc proc=engine_sound_update bit=181 kind=1 dtype=A ref=831|0 text=ldaS(909+0)
+[W5D] bit at=gc proc=engine_sound_update bit=182 kind=2 dtype=L ref=760|1 text=-4097
+[W5D] bit at=gc proc=engine_sound_update bit=183 kind=1 dtype=A ref=451|1 text=ldaM(4756-36)
+[W5D] bit at=gc proc=engine_sound_update bit=184 kind=1 dtype=A ref=235|0 text=ldaS(3705+0)
+[W5D] bit at=gc proc=engine_sound_update bit=185 kind=1 dtype=A ref=605|0 text=ldaS(4740+0)
+[W5D] bit at=gc proc=engine_sound_update bit=186 kind=1 dtype=A ref=363|0 text=ldaS(3713+0)
+[W5D] bit at=gc proc=engine_sound_update bit=187 kind=1 dtype=A ref=1502|0 text=ldaS(445+0)
+[W5D] bit at=gc proc=engine_sound_update bit=188 kind=1 dtype=A ref=925|0 text=ldaS(4760+0)
+[W5D] bit at=gc proc=engine_sound_update bit=189 kind=1 dtype=A ref=657|0 text=ldaS(3529+0)
+[W5D] bit at=gc proc=engine_sound_update bit=190 kind=1 dtype=A ref=1249|0 text=ldaS(328+16)
+[W5D] bit at=gc proc=engine_sound_update bit=191 kind=2 dtype=J ref=6|0 text=6
+[W5D] bit at=gc proc=engine_sound_update bit=192 kind=1 dtype=A ref=653|0 text=ldaS(4743+0)
+[W5D] bit at=gc proc=engine_sound_update bit=193 kind=2 dtype=J ref=1618|0 text=-1
+[W5D] bit at=gc proc=engine_sound_update bit=194 kind=2 dtype=J ref=0|0 text=2176
+[W5D] bit at=gc proc=engine_sound_update bit=195 kind=1 dtype=A ref=497|1 text=ldaS(3519+0)
+[W5D] bit at=gc proc=engine_sound_update bit=196 kind=1 dtype=A ref=573|0 text=ldaS(4738+0)
+[W5D] bit at=gc proc=engine_sound_update bit=197 kind=2 dtype=J ref=8|1 text=8

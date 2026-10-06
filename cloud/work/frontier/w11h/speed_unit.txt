@@ -1,0 +1,7 @@
+  EQUAL speed_set: 51 words (internal, c_group.c)
+  EQUAL speed_mode0_wrapper: 22 words (kept, c_group.c)
+  EQUAL speed_mode1_wrapper: 22 words (kept, c_group.c)
+  EQUAL continue_prompt: 23 words (kept, c_group.c)
+  EQUAL vsync_wait: 37 words (kept, c_group.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 5/5 equal; object build/blob_unit/w11h/unit.o (6.9s)

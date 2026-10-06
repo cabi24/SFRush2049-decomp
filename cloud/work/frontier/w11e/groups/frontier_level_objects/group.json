@@ -1,0 +1,27 @@
+{
+ "members": [
+  "engine_sound_update",
+  "engine_torque_calc",
+  "transmission_ratio_get"
+ ],
+ "context": [
+  "func_800AB7D0",
+  "func_800AC660"
+ ],
+ "claims": [
+  "engine_sound_update",
+  "engine_torque_calc",
+  "transmission_ratio_get"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "engine_sound_update",
+  "transmission_ratio_get"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "Closed real unit, no stand-ins: engine_torque_calc (internal, node in s1 by IPA) with both of its real callers. func_800AB7D0 and func_800AC660 are caller-less retail stubs locked as empty singles; here they are the inlined state-assignment helper and entity-flags getter, so the shadow unit needs prefer_definition entries pointing at this file (as func_800AFD54) and both must stay internal. transmission_ratio_get owns the string literals \"_BW\", \"_FW\", \"GOLD\" at 0x80121D40..0x80121D4C. Supersedes no locked group.",
+ "provenance": "frontier wave 11 (w11e), 2026-10-06; cloud/work/frontier/w11e/RESULTS.md"
+}

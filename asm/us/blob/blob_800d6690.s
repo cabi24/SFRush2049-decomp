@@ -5292,6 +5292,7 @@ func_800DB1E0:
 .section .text.continue_prompt, "ax", @progbits
 .globl continue_prompt
 continue_prompt:
+    /* compiled from src/blob/continue_prompt.c */
     .word 0x27BDFFC8
     .word 0xF7B40010
     .word 0xAFBF0034

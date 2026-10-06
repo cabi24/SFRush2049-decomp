@@ -2118,6 +2118,7 @@ resource_process_thunk:
 .section .text.camera_update_a, "ax", @progbits
 .globl camera_update_a
 camera_update_a:
+    /* compiled from src/blob/camera_update_a.c */
     .word 0x27BDFFD8
     .word 0xAFB30020
     .word 0xAFB2001C

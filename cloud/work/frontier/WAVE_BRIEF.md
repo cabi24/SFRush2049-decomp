@@ -54,6 +54,13 @@ IDO 5.3 / C89 source. Names are historical labels, not semantics.
 - **Tied colouring priorities resolve by first appearance in source**; splitting `x = a; x += b;` moves it.
 - Check older drafts' global addresses against the retail disassembly before tuning (w9e found a wrong one).
 
+## Shared tracing toolkit
+`cloud/work/frontier/tools/trace/` (read its README.md): `install.sh <your builder scratch>` once, then
+`us.sh` (unit score + rows), `udiff.py --ops/--norm`, `ctrace.sh`/`sum.sh` (colouring decisions, numintf,
+callee-saved cost), `force.sh` (forced colouring oracle), `spill.sh`/`spcensus.sh` (spill-temp/frame layout),
+`ugt.sh` (ugen order), `as1t.sh` (scheduler). Set `TAG=<lane>`. Run `force.sh` with the suspected webs before
+writing variants: if forcing reaches 0 rows the residual is colour-only.
+
 ## Permission denials
 If any tool call is denied by a permission/safety check, do NOT retry it in another form (different paths,
 globs, quoting, tools or hosts). Record it in RESULTS.md and continue without it.

@@ -1,0 +1,69 @@
+c00.c: want 43 words, got 44; differing rows 27; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 41 of 43 words differ; compiled body is 44 words, target 43 
+c01.c: want 43 words, got 43; differing rows 20; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 18 of 43 words differ 
+c02.c: want 43 words, got 43; differing rows 20; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 18 of 43 words differ 
+c03.c: want 43 words, got 43; differing rows 20; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 18 of 43 words differ 
+c04.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c05.c: want 43 words, got 45; differing rows 19; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 31 of 43 words differ; compiled body is 45 words, target 43 
+c06.c: want 43 words, got 43; differing rows 20; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 18 of 43 words differ 
+c07.c: want 43 words, got 43; differing rows 20; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 18 of 43 words differ 
+c08.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c09.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c10.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c11.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c12.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c13.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c14.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c15.c: want 43 words, got 45; differing rows 19; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 27 of 43 words differ; compiled body is 45 words, target 43 
+c16.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c17.c: want 43 words, got 45; differing rows 19; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 27 of 43 words differ; compiled body is 45 words, target 43 
+c18.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c19.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c20.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c21.c: want 43 words, got 44; differing rows 22; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 33 of 43 words differ; compiled body is 44 words, target 43 
+c22.c: want 43 words, got 44; differing rows 22; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 35 of 43 words differ; compiled body is 44 words, target 43 
+c23.c: want 43 words, got 44; differing rows 27; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 41 of 43 words differ; compiled body is 44 words, target 43 
+c24.c: want 43 words, got 43; differing rows 20; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 18 of 43 words differ 
+c25.c: want 43 words, got 43; differing rows 20; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 18 of 43 words differ 
+c26.c: want 43 words, got 43; differing rows 20; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 18 of 43 words differ 
+c27.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c28.c: want 43 words, got 45; differing rows 19; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 31 of 43 words differ; compiled body is 45 words, target 43 
+c29.c: want 43 words, got 43; differing rows 20; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 18 of 43 words differ 
+c30.c: want 43 words, got 43; differing rows 20; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 18 of 43 words differ 
+c31.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c32.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c33.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c34.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c35.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c36.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c37.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c38.c: want 43 words, got 45; differing rows 19; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 27 of 43 words differ; compiled body is 45 words, target 43 
+c39.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c40.c: want 43 words, got 45; differing rows 19; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 27 of 43 words differ; compiled body is 45 words, target 43 
+c41.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c42.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c43.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c44.c: want 43 words, got 44; differing rows 22; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 33 of 43 words differ; compiled body is 44 words, target 43 
+c45.c: want 43 words, got 44; differing rows 22; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 35 of 43 words differ; compiled body is 44 words, target 43 
+c46.c: want 43 words, got 44; differing rows 27; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 41 of 43 words differ; compiled body is 44 words, target 43 
+c47.c: want 43 words, got 43; differing rows 20; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 18 of 43 words differ 
+c48.c: want 43 words, got 43; differing rows 20; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 18 of 43 words differ 
+c49.c: want 43 words, got 43; differing rows 20; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 18 of 43 words differ 
+c50.c: want 43 words, got 43; differing rows 20; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 18 of 43 words differ 
+c51.c: want 43 words, got 47; differing rows 21; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 31 of 43 words differ; compiled body is 47 words, target 43 
+c52.c: want 43 words, got 43; differing rows 20; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 18 of 43 words differ 
+c53.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c54.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c55.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c56.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c57.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c58.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c59.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c60.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c61.c: want 43 words, got 45; differing rows 19; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 27 of 43 words differ; compiled body is 45 words, target 43 
+c62.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c63.c: want 43 words, got 45; differing rows 19; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 27 of 43 words differ; compiled body is 45 words, target 43 
+c64.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c65.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c66.c: want 43 words, got 43; differing rows 16; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 14 of 43 words differ 
+c67.c: want 43 words, got 44; differing rows 22; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 33 of 43 words differ; compiled body is 44 words, target 43 
+c68.c: want 43 words, got 44; differing rows 22; unverified 0 unresolved 0 ::   FAIL func_800E7A98: 33 of 43 words differ; compiled body is 44 words, target 43 

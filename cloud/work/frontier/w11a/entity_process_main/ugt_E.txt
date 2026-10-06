@@ -1,0 +1,4444 @@
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 2 > f_alloc_mark
+DKWB-CALL 3 > f_alloc_scb
+DKWB-CALL 4 > f_alloc_page
+DKWB-CALL 4 <
+DKWB-CALL 3 <
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_mark
+DKWB-CALL 2 > f_alloc_scb
+DKWB-CALL 3 > f_alloc_page
+DKWB-CALL 3 <
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_tree
+DKWB-CALL 2 > f_free_tree
+DKWB-CALL 2 <
+DKWB-CALL 2 > f_free_node
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_tree
+DKWB-CALL 2 > f_free_tree
+DKWB-CALL 3 > f_free_node
+DKWB-CALL 3 <
+DKWB-CALL 2 <
+DKWB-CALL 2 > f_free_node
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_tree
+DKWB-CALL 2 > f_free_tree
+DKWB-CALL 2 <
+DKWB-CALL 2 > f_free_node
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_tree
+DKWB-CALL 2 > f_free_tree
+DKWB-CALL 3 > f_free_node
+DKWB-CALL 3 <
+DKWB-CALL 2 <
+DKWB-CALL 2 > f_free_node
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_tree
+DKWB-CALL 2 > f_free_tree
+DKWB-CALL 2 <
+DKWB-CALL 2 > f_free_node
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_tree
+DKWB-CALL 2 > f_free_tree
+DKWB-CALL 2 <
+DKWB-CALL 2 > f_free_node
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_tree
+DKWB-CALL 2 > f_free_tree
+DKWB-CALL 2 <
+DKWB-CALL 2 > f_free_node
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_tree
+DKWB-CALL 2 > f_free_tree
+DKWB-CALL 3 > f_free_node
+DKWB-CALL 3 <
+DKWB-CALL 2 <
+DKWB-CALL 2 > f_free_node
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_tree
+DKWB-CALL 2 > f_free_tree
+DKWB-CALL 2 <
+DKWB-CALL 2 > f_free_node
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_tree
+DKWB-CALL 2 > f_free_tree
+DKWB-CALL 3 > f_free_node
+DKWB-CALL 3 <
+DKWB-CALL 2 <
+DKWB-CALL 2 > f_free_node
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_tree
+DKWB-CALL 2 > f_free_tree
+DKWB-CALL 2 <
+DKWB-CALL 2 > f_free_node
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_tree
+DKWB-CALL 2 > f_free_tree
+DKWB-CALL 2 <
+DKWB-CALL 2 > f_free_node
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_tree
+DKWB-CALL 2 > f_free_tree
+DKWB-CALL 3 > f_free_node
+DKWB-CALL 3 <
+DKWB-CALL 2 <
+DKWB-CALL 2 > f_free_node
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_tree
+DKWB-CALL 2 > f_free_tree
+DKWB-CALL 3 > f_free_node
+DKWB-CALL 3 <
+DKWB-CALL 2 <
+DKWB-CALL 2 > f_free_tree
+DKWB-CALL 3 > f_free_node
+DKWB-CALL 3 <
+DKWB-CALL 2 <
+DKWB-CALL 2 > f_free_node
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-PROC BEGIN proc=0
+DKWB-CALL 1 > f_add_to_free_list
+DKWB-FREELIST ADD proc=0 reg=14 emitted=1 line=91
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_add_to_free_list
+DKWB-FREELIST ADD proc=0 reg=15 emitted=1 line=91
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_add_to_free_list
+DKWB-FREELIST ADD proc=0 reg=24 emitted=1 line=91
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_add_to_free_list
+DKWB-FREELIST ADD proc=0 reg=25 emitted=1 line=91
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_add_to_free_list
+DKWB-FREELIST ADD proc=0 reg=8 emitted=1 line=91
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_add_to_free_list
+DKWB-FREELIST ADD proc=0 reg=9 emitted=1 line=91
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_add_to_free_list
+DKWB-FREELIST ADD proc=0 reg=10 emitted=1 line=91
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_add_to_free_list
+DKWB-FREELIST ADD proc=0 reg=11 emitted=1 line=91
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_add_to_free_list
+DKWB-FREELIST ADD proc=0 reg=12 emitted=1 line=91
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_add_to_free_list
+DKWB-FREELIST ADD proc=0 reg=13 emitted=1 line=91
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_add_to_fp_free_list
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_add_to_fp_free_list
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_add_to_fp_free_list
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_add_to_fp_free_list
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_add_to_fp_free_list
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_add_to_fp_free_list
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_remove_from_free_list
+DKWB-FREELIST REMOVE proc=0 reg=2 emitted=1 line=91
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_remove_from_free_list
+DKWB-FREELIST REMOVE proc=0 reg=3 emitted=1 line=91
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_remove_from_free_list
+DKWB-FREELIST REMOVE proc=0 reg=8 emitted=1 line=91
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_remove_from_free_list
+DKWB-FREELIST REMOVE proc=0 reg=9 emitted=1 line=91
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_remove_from_free_list
+DKWB-FREELIST REMOVE proc=0 reg=10 emitted=1 line=91
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_remove_from_free_list
+DKWB-FREELIST REMOVE proc=0 reg=11 emitted=1 line=91
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_remove_from_free_list
+DKWB-FREELIST REMOVE proc=0 reg=12 emitted=1 line=91
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_remove_from_free_list
+DKWB-FREELIST REMOVE proc=0 reg=13 emitted=1 line=91
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_remove_from_fp_free_list
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_remove_from_fp_free_list
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=1 line=91
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=5 emitted=2 line=91
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=5 emitted=3 line=91
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=120 emitted=3 line=91
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=14 emitted=3 line=91
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=14 emitted=5 line=91
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=5 emitted=5 line=91
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=232 emitted=5 line=91
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=15 emitted=5 line=91
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=15 emitted=7 line=91
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=5 emitted=7 line=91
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=12 emitted=9 line=96
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=10 line=96
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=10 line=96
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=184 emitted=10 line=96
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=24 emitted=10 line=96
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=144 emitted=11 line=96
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=25 emitted=11 line=96
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=24 emitted=12 line=96
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=25 emitted=12 line=96
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=11 emitted=13 line=96
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=14 line=97
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=192 emitted=14 line=97
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=14 emitted=14 line=97
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=152 emitted=15 line=97
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=15 emitted=15 line=97
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=14 emitted=16 line=97
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=15 emitted=16 line=97
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=10 emitted=17 line=97
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=5 emitted=18 line=102
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=12 emitted=21 line=103
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=22 line=103
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=22 line=103
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=10 emitted=24 line=103
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=13 emitted=25 line=103
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=27 line=104
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=13 emitted=27 line=104
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=152 emitted=27 line=104
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=24 emitted=27 line=104
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=10 emitted=28 line=104
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=24 emitted=28 line=104
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=29 line=104
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=12 emitted=29 line=104
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=12 emitted=33 line=104
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=0 emitted=35 line=106
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=12 emitted=35 line=106
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=96 emitted=37 line=107
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=25 emitted=37 line=107
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=25 emitted=38 line=107
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=12 emitted=38 line=107
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=10 emitted=46 line=111
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=10 emitted=47 line=111
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=10 emitted=50 line=112
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=10 emitted=51 line=112
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=11 emitted=70 line=115
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=248 emitted=70 line=115
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=14 emitted=70 line=115
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=14 emitted=71 line=115
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=10 emitted=72 line=115
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=144 emitted=72 line=115
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=15 emitted=72 line=115
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=15 emitted=73 line=115
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=11 emitted=74 line=115
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=40 emitted=74 line=115
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=24 emitted=74 line=115
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=24 emitted=75 line=115
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=152 emitted=75 line=115
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=25 emitted=75 line=115
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=25 emitted=76 line=115
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=8 emitted=77 line=115
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=14 emitted=77 line=115
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=14 emitted=78 line=115
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=10 emitted=79 line=115
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=160 emitted=79 line=115
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=15 emitted=79 line=115
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=15 emitted=80 line=115
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=10 emitted=83 line=115
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=13 emitted=84 line=115
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=12 emitted=86 line=117
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=136 emitted=86 line=117
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=24 emitted=86 line=117
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=24 emitted=87 line=117
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=13 emitted=87 line=117
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=248 emitted=87 line=117
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=25 emitted=87 line=117
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=10 emitted=88 line=117
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=25 emitted=88 line=117
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=89 line=117
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=90 line=118
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=72 emitted=90 line=118
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=14 emitted=90 line=118
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=14 emitted=91 line=118
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=184 emitted=91 line=118
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=15 emitted=91 line=118
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=15 emitted=92 line=118
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=92 line=118
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=0 emitted=97 line=122
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=0 emitted=98 line=122
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_fp_reg
+DKWB-FREELIST ALLOC_FP proc=0 reg=120 emitted=98 line=122
+DKWB-FREELIST ALLOC_FP_RESULT proc=0 reg=36 emitted=98 line=122
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=7 emitted=103 line=122
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=106 line=123
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=107 line=123
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=10 emitted=107 line=123
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=107 line=123
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=248 emitted=107 line=123
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=24 emitted=107 line=123
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=24 emitted=108 line=123
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=7 emitted=111 line=123
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=111 line=123
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=3 emitted=112 line=123
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=3 emitted=112 line=123
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=3 emitted=119 line=125
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=123 line=122
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=124 line=122
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=16 emitted=124 line=122
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=25 emitted=124 line=122
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=25 emitted=126 line=122
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=126 line=122
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=128 emitted=126 line=122
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=14 emitted=126 line=122
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=14 emitted=128 line=122
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=128 line=122
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=128 line=122
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_fp_reg
+DKWB-FREELIST ALLOC_FP proc=0 reg=112 emitted=130 line=128
+DKWB-FREELIST ALLOC_FP_RESULT proc=0 reg=38 emitted=130 line=128
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=0 emitted=134 line=130
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=9 emitted=144 line=130
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=8 emitted=145 line=130
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=6 emitted=146 line=130
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=149 line=131
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=150 line=131
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=5 emitted=151 line=131
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=24 emitted=151 line=131
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=15 emitted=151 line=131
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=15 emitted=153 line=131
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=5 emitted=153 line=131
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=8 emitted=155 line=131
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=155 line=131
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=5 emitted=156 line=131
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=136 emitted=156 line=131
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=24 emitted=156 line=131
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=24 emitted=158 line=131
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=5 emitted=158 line=131
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=248 emitted=158 line=131
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=25 emitted=158 line=131
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=25 emitted=160 line=131
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=5 emitted=160 line=131
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=5 emitted=162 line=132
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=88 emitted=162 line=132
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=14 emitted=162 line=132
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=7 emitted=163 line=132
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=14 emitted=163 line=132
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=16 emitted=163 line=132
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=15 emitted=163 line=132
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=15 emitted=164 line=132
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_fp_reg
+DKWB-FREELIST ALLOC_FP proc=0 reg=32 emitted=172 line=132
+DKWB-FREELIST ALLOC_FP_RESULT proc=0 reg=40 emitted=172 line=132
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=180 line=133
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=6 emitted=180 line=133
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=80 emitted=180 line=133
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=24 emitted=180 line=133
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=9 emitted=181 line=133
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=24 emitted=181 line=133
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=182 line=133
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=5 emitted=182 line=133
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=6 emitted=182 line=133
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=16 emitted=182 line=133
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=25 emitted=182 line=133
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=11 emitted=183 line=133
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=25 emitted=183 line=133
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=3 emitted=184 line=133
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=3 emitted=184 line=133
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_fp_reg
+DKWB-FREELIST ALLOC_FP proc=0 reg=168 emitted=184 line=133
+DKWB-FREELIST ALLOC_FP_RESULT proc=0 reg=42 emitted=184 line=133
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=185 line=133
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=3 emitted=187 line=134
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_fp_reg
+DKWB-FREELIST ALLOC_FP proc=0 reg=64 emitted=187 line=134
+DKWB-FREELIST ALLOC_FP_RESULT proc=0 reg=36 emitted=187 line=134
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_fp_reg
+DKWB-FREELIST ALLOC_FP proc=0 reg=176 emitted=188 line=134
+DKWB-FREELIST ALLOC_FP_RESULT proc=0 reg=38 emitted=188 line=134
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_fp_reg
+DKWB-FREELIST ALLOC_FP proc=0 reg=32 emitted=189 line=134
+DKWB-FREELIST ALLOC_FP_RESULT proc=0 reg=40 emitted=189 line=134
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=190 line=134
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=3 emitted=192 line=135
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_fp_reg
+DKWB-FREELIST ALLOC_FP proc=0 reg=184 emitted=192 line=135
+DKWB-FREELIST ALLOC_FP_RESULT proc=0 reg=42 emitted=192 line=135
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=193 line=135
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=195 line=130
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=196 line=130
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=104 emitted=196 line=130
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=14 emitted=196 line=130
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=14 emitted=198 line=130
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=198 line=130
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=216 emitted=198 line=130
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=15 emitted=198 line=130
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=15 emitted=200 line=130
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=200 line=130
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=200 line=130
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=11 emitted=206 line=138
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=96 emitted=206 line=138
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=24 emitted=206 line=138
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=24 emitted=207 line=138
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=208 emitted=207 line=138
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=25 emitted=207 line=138
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=25 emitted=208 line=138
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=212 line=139
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=10 emitted=216 line=141
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=217 line=141
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=222 line=145
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=120 emitted=222 line=145
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=14 emitted=222 line=145
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=80 emitted=223 line=145
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=15 emitted=223 line=145
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=14 emitted=224 line=145
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=15 emitted=224 line=145
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=3 emitted=225 line=145
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=3 emitted=225 line=145
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=3 emitted=227 line=146
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=0 emitted=229 line=147
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=235 line=148
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=72 emitted=235 line=148
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=24 emitted=235 line=148
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=9 emitted=236 line=148
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=24 emitted=236 line=148
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=237 line=148
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=237 line=148
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=238 line=148
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_fp_reg
+DKWB-FREELIST ALLOC_FP proc=0 reg=208 emitted=242 line=149
+DKWB-FREELIST ALLOC_FP_RESULT proc=0 reg=36 emitted=242 line=149
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=243 line=149
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_fp_reg
+DKWB-FREELIST ALLOC_FP proc=0 reg=32 emitted=245 line=150
+DKWB-FREELIST ALLOC_FP_RESULT proc=0 reg=38 emitted=245 line=150
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=246 line=150
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=248 line=152
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=249 line=152
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_fp_reg
+DKWB-FREELIST ALLOC_FP proc=0 reg=56 emitted=253 line=153
+DKWB-FREELIST ALLOC_FP_RESULT proc=0 reg=40 emitted=253 line=153
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=254 line=153
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_fp_reg
+DKWB-FREELIST ALLOC_FP proc=0 reg=136 emitted=256 line=154
+DKWB-FREELIST ALLOC_FP_RESULT proc=0 reg=42 emitted=256 line=154
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=257 line=154
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=261 line=147
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=262 line=147
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=0 emitted=262 line=147
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=25 emitted=262 line=147
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=25 emitted=264 line=147
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=264 line=147
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=112 emitted=264 line=147
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=14 emitted=264 line=147
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=14 emitted=266 line=147
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=266 line=147
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=266 line=147
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=3 emitted=268 line=157
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=3 emitted=270 line=158
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=0 emitted=272 line=159
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=278 line=160
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=64 emitted=278 line=160
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=15 emitted=278 line=160
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=9 emitted=279 line=160
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=15 emitted=279 line=160
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=280 line=160
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=280 line=160
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=281 line=160
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_fp_reg
+DKWB-FREELIST ALLOC_FP proc=0 reg=160 emitted=284 line=161
+DKWB-FREELIST ALLOC_FP_RESULT proc=0 reg=36 emitted=284 line=161
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_fp_reg
+DKWB-FREELIST ALLOC_FP proc=0 reg=88 emitted=285 line=161
+DKWB-FREELIST ALLOC_FP_RESULT proc=0 reg=38 emitted=285 line=161
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=286 line=161
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_fp_reg
+DKWB-FREELIST ALLOC_FP proc=0 reg=96 emitted=288 line=162
+DKWB-FREELIST ALLOC_FP_RESULT proc=0 reg=40 emitted=288 line=162
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_fp_reg
+DKWB-FREELIST ALLOC_FP proc=0 reg=24 emitted=289 line=162
+DKWB-FREELIST ALLOC_FP_RESULT proc=0 reg=42 emitted=289 line=162
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=290 line=162
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=292 line=164
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=293 line=164
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_fp_reg
+DKWB-FREELIST ALLOC_FP proc=0 reg=8 emitted=296 line=165
+DKWB-FREELIST ALLOC_FP_RESULT proc=0 reg=36 emitted=296 line=165
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_fp_reg
+DKWB-FREELIST ALLOC_FP proc=0 reg=192 emitted=297 line=165
+DKWB-FREELIST ALLOC_FP_RESULT proc=0 reg=38 emitted=297 line=165
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=298 line=165
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_fp_reg
+DKWB-FREELIST ALLOC_FP proc=0 reg=200 emitted=300 line=166
+DKWB-FREELIST ALLOC_FP_RESULT proc=0 reg=40 emitted=300 line=166
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_fp_reg
+DKWB-FREELIST ALLOC_FP proc=0 reg=128 emitted=301 line=166
+DKWB-FREELIST ALLOC_FP_RESULT proc=0 reg=42 emitted=301 line=166
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=302 line=166
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=306 line=159
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=307 line=159
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=152 emitted=307 line=159
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=24 emitted=307 line=159
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=24 emitted=309 line=159
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=309 line=159
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=8 emitted=309 line=159
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=25 emitted=309 line=159
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=25 emitted=311 line=159
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=311 line=159
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=311 line=159
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=10 emitted=313 line=159
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=13 emitted=314 line=159
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=12 emitted=323 line=169
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=232 emitted=323 line=169
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=14 emitted=323 line=169
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=14 emitted=324 line=169
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=13 emitted=324 line=169
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=88 emitted=324 line=169
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=15 emitted=324 line=169
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=10 emitted=325 line=169
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=15 emitted=325 line=169
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=326 line=169
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=326 line=169
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=24 emitted=326 line=169
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=24 emitted=326 line=169
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=24 emitted=327 line=169
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=136 emitted=327 line=169
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=25 emitted=327 line=169
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=25 emitted=328 line=169
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=328 line=169
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_fp_reg
+DKWB-FREELIST ALLOC_FP proc=0 reg=104 emitted=330 line=170
+DKWB-FREELIST ALLOC_FP_RESULT proc=0 reg=36 emitted=330 line=170
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=8 emitted=355 line=170
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_fp_reg
+DKWB-FREELIST ALLOC_FP proc=0 reg=224 emitted=359 line=170
+DKWB-FREELIST ALLOC_FP_RESULT proc=0 reg=38 emitted=359 line=170
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_fp_reg
+DKWB-FREELIST ALLOC_FP proc=0 reg=0 emitted=360 line=170
+DKWB-FREELIST ALLOC_FP_RESULT proc=0 reg=40 emitted=360 line=170
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=0 emitted=360 line=170
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=14 emitted=360 line=170
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=152 emitted=360 line=170
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=15 emitted=360 line=170
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_tree
+DKWB-CALL 2 > f_free_node
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_fp_reg
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=14 emitted=396 line=170
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=15 emitted=396 line=170
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=8 emitted=396 line=170
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=8 emitted=398 line=171
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=120 emitted=398 line=171
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=24 emitted=398 line=171
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=24 emitted=399 line=171
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=56 emitted=402 line=172
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=25 emitted=402 line=172
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=25 emitted=403 line=172
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=8 emitted=403 line=172
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=11 emitted=406 line=175
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=407 line=175
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=408 line=176
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=11 emitted=409 line=176
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=410 line=176
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=410 line=176
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=411 line=176
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=12 emitted=415 line=177
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=16 emitted=415 line=177
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=14 emitted=415 line=177
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=14 emitted=416 line=177
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=13 emitted=416 line=177
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=128 emitted=416 line=177
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=15 emitted=416 line=177
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=10 emitted=417 line=177
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=15 emitted=417 line=177
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=418 line=177
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=208 emitted=419 line=178
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=24 emitted=419 line=178
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=24 emitted=420 line=178
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=420 line=178
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=136 emitted=420 line=178
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=25 emitted=420 line=178
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=25 emitted=421 line=178
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=64 emitted=421 line=178
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=14 emitted=421 line=178
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=422 line=178
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=176 emitted=422 line=178
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=15 emitted=422 line=178
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=14 emitted=423 line=178
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=15 emitted=423 line=178
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=104 emitted=423 line=178
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=24 emitted=423 line=178
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=24 emitted=424 line=178
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=424 line=178
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=12 emitted=433 line=180
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=40 emitted=433 line=180
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=25 emitted=433 line=180
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=25 emitted=434 line=180
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=13 emitted=434 line=180
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=152 emitted=434 line=180
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=14 emitted=434 line=180
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=10 emitted=435 line=180
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=14 emitted=435 line=180
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=436 line=180
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=436 line=180
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=16 emitted=436 line=180
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=15 emitted=436 line=180
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=15 emitted=437 line=180
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=128 emitted=437 line=180
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=24 emitted=437 line=180
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=24 emitted=438 line=180
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=2 emitted=438 line=180
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=12 emitted=451 line=183
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=152 emitted=451 line=183
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=25 emitted=451 line=183
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=25 emitted=452 line=183
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=13 emitted=452 line=183
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_get_free_reg
+DKWB-FREELIST ALLOC_GP proc=0 reg=8 emitted=452 line=183
+DKWB-CALL 2 > f_get_one_free_reg
+DKWB-CALL 2 <
+DKWB-FREELIST ALLOC_GP_RESULT proc=0 reg=14 emitted=452 line=183
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=10 emitted=453 line=183
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=14 emitted=453 line=183
+DKWB-CALL 2 > f_remove_from_list
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=4 emitted=454 line=183
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=5 emitted=455 line=183
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=9 emitted=455 line=183
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=0 emitted=456 line=183
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_move_to_dest
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=8 emitted=457 line=183
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=0 emitted=458 line=183
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_free_reg
+DKWB-FREELIST FREE proc=0 reg=0 emitted=459 line=183
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_release
+DKWB-CALL 2 > f_alloc_free
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_mark
+DKWB-CALL 2 > f_alloc_scb
+DKWB-CALL 3 > f_alloc_page
+DKWB-CALL 3 <
+DKWB-CALL 2 <
+DKWB-CALL 1 <
+DKWB-CALL 1 > f_alloc_new
+DKWB-CALL 1 <
+==LISTING==
+	.verstamp	3 19
+	.option	pic0
+	.extern	D_80140418 1
+	.extern	D_8011AD8C 4
+	.text	
+	.align	2
+	.file	2 "g.c"
+	.globl	entity_process_main
+	.loc	2 91
+ #  91	void entity_process_main(Visual *v, s16 op) {
+	.ent	entity_process_main 2
+entity_process_main:
+	.option	O3
+	subu	$sp, 280
+	sw	$31, 68($sp)
+	s.d	$f26, 56($sp)
+	s.d	$f24, 48($sp)
+	s.d	$f22, 40($sp)
+	s.d	$f20, 32($sp)
+	.mask	0x80000000, -212
+	.fmask	0x0FF00000, -224
+	.frame	$sp, 280, $31
+	.loc	2 91
+	move	$12, $4
+	sw	$5, 284($sp)
+	sll	$14, $5, 16
+	move	$5, $14
+	sra	$15, $5, 16
+	move	$5, $15
+	.loc	2 91
+	.loc	2 96
+ #  92	    f32 pos[3], mat[3][3], xyz[4][3], dist[4], d1, d2, d3, d4;
+ #  93	    s32 pad1; Poly *poly;
+ #  94	    s16 i, whl;
+ #  95	    s32 xlu;
+ #  96	    CarData *car = &D_80152818[v->slot];
+	lh	$2, 8($12)
+	mul	$24, $2, 952
+	la	$25, D_80152818
+	addu	$11, $24, $25
+	.loc	2 97
+ #  97	    ModelDat *m = &D_8014A250[v->slot];
+	mul	$14, $2, 2056
+	la	$15, D_8014A250
+	addu	$10, $14, $15
+	.loc	2 102
+ #  98	    f32 wscale, fscale, bscale, len, offset;
+ #  99	    s32 body;
+ # 100	    f32 *scale;
+ # 101	
+ # 102	    if (op == 0) {
+	bne	$5, 0, $33
+	.loc	2 102
+	.loc	2 103
+ # 103	        if (v->objnum >= 0) {
+	lh	$2, 6($12)
+	blt	$2, 0, $32
+	la	$10, D_8015B268
+	li	$13, 88
+	.loc	2 103
+	.loc	2 104
+ # 104	            func_8008D0C0(&D_8015B268[v->objnum]);
+	mul	$24, $2, $13
+	addu	$4, $10, $24
+	sw	$12, 280($sp)
+	.livereg	0x0800000E,0x00000000
+	jal	func_8008D0C0
+	lw	$12, 280($sp)
+$32:
+	.loc	2 106
+ # 105	        }
+ # 106	        v->func = 0;
+	sw	$0, 20($12)
+	.loc	2 107
+ # 107	        v->objnum = -1;
+	li	$25, -1
+	sh	$25, 6($12)
+	.loc	2 108
+ # 108	        return;
+	b	$55
+$33:
+	li.s	$f20, 2.0000000000000000e+01
+	.loc	2 111
+ # 109	    }
+ # 110	
+ # 111	    d1 = m->airdist[3] - m->airdist[1];
+	l.s	$f12, 1912($10)
+	l.s	$f14, 1904($10)
+	sub.s	$f26, $f12, $f14
+	.loc	2 112
+ # 112	    offset = m->airdist[2] - m->airdist[0];
+	l.s	$f16, 1908($10)
+	l.s	$f18, 1900($10)
+	sub.s	$f2, $f16, $f18
+	.loc	2 113
+ # 113	    fscale = m->airdist[1] - m->airdist[0];
+	sub.s	$f22, $f14, $f18
+	.loc	2 114
+ # 114	    bscale = m->airdist[3] - m->airdist[2];
+	sub.s	$f24, $f12, $f16
+	.loc	2 115
+ # 115	    if (fabsf(d1) > 20 || fabsf(offset) > 20 || fabsf(fscale) > 20 || fabsf(bscale) > 20 ||
+	abs.s	$f0, $f26
+	c.lt.s	$f20, $f0
+	bc1t	$34
+	abs.s	$f0, $f2
+	c.lt.s	$f20, $f0
+	bc1t	$34
+	abs.s	$f0, $f22
+	c.lt.s	$f20, $f0
+	bc1t	$34
+	abs.s	$f0, $f24
+	c.lt.s	$f20, $f0
+	bc1t	$34
+	lb	$14, 863($11)
+	bne	$14, 0, $34
+	lh	$15, 1732($10)
+	bge	$15, 0, $34
+	lw	$24, 232($11)
+	and	$25, $24, 8
+	bne	$25, 0, $34
+	lb	$14, D_80140418
+	bne	$14, 0, $34
+	lb	$15, 2015($10)
+	beq	$15, 0, $35
+$34:
+	la	$10, D_8015B268
+	li	$13, 88
+	.loc	2 116
+ # 116	        car->unk35F != 0 || m->moving_state > -1 || (car->flags & 8) || D_80140418 != 0 || m->hide_car) {
+	.loc	2 117
+ # 117	        poly = &D_8015B268[v->objnum];
+	lh	$24, 6($12)
+	mul	$25, $24, $13
+	addu	$2, $10, $25
+	.loc	2 118
+ # 118	        poly->flags |= 0x8000;
+	lhu	$14, 2($2)
+	or	$15, $14, 32768
+	sh	$15, 2($2)
+	.loc	2 119
+ # 119	        return;
+	b	$55
+$35:
+	.loc	2 122
+ # 120	    }
+ # 121	
+ # 122	    for (d1 = i = 0; i < 4; i++) {
+	move	$4, $0
+	mtc1	$0, $f4
+	cvt.s.w	$f26, $f4
+	li.s	$f2, 0.0
+	addu	$7, $sp, 168
+$36:
+	.loc	2 122
+	.loc	2 123
+ # 123	        d1 += (dist[i] = m->airdist[i]);
+	mul	$2, $4, 4
+	addu	$24, $10, $2
+	l.s	$f0, 1900($24)
+	.noalias	$7,$gp
+	.noalias	$3,$gp
+	addu	$3, $7, $2
+	s.s	$f0, 0($3)
+	add.s	$f26, $f26, $f0
+	.loc	2 124
+ # 124	        if (dist[i] < 0.0f) {
+	c.lt.s	$f0, $f2
+	bc1f	$37
+	.loc	2 124
+	.loc	2 125
+ # 125	            dist[i] = 0.0f;
+	s.s	$f2, 0($3)
+	.alias	$3,$gp
+$37:
+	.loc	2 122
+ # 122	    for (d1 = i = 0; i < 4; i++) {
+	addu	$4, $4, 1
+	sll	$25, $4, 16
+	move	$4, $25
+	sra	$14, $4, 16
+	move	$4, $14
+	blt	$4, 4, $36
+	.loc	2 128
+ # 123	        d1 += (dist[i] = m->airdist[i]);
+ # 124	        if (dist[i] < 0.0f) {
+ # 125	            dist[i] = 0.0f;
+ # 126	        }
+ # 127	    }
+ # 128	    d1 *= 0.25f;
+	li.s	$f6, 0.25
+	mul.s	$f26, $f26, $f6
+	.loc	2 130
+ # 129	
+ # 130	    for (i = 0; i < 4; i++) {
+	move	$4, $0
+	li.s	$f18, 1.0
+	li.s	$f16, 0.1
+	li.s	$f14, 2.0
+	li.s	$f12, 10.0
+	addu	$9, $sp, 184
+	li	$8, 5
+	li	$6, 12
+$38:
+	.loc	2 130
+	.loc	2 131
+ # 131	        whl = (i < 2) ? i : 5 - i;
+	bge	$4, 2, $39
+	sll	$5, $4, 16
+	sra	$15, $5, 16
+	move	$5, $15
+	b	$40
+$39:
+	subu	$5, $8, $4
+	sll	$24, $5, 16
+	move	$5, $24
+	sra	$25, $5, 16
+	move	$5, $25
+$40:
+	.loc	2 132
+ # 132	        offset = (dist[whl] > 10.0f) ? 2.0f : dist[whl] * 0.1f + 1.0f;
+	mul	$14, $5, 4
+	addu	$15, $7, $14
+	.noalias	$15,$gp
+	l.s	$f0, 0($15)
+	.alias	$15,$gp
+	c.lt.s	$f12, $f0
+	bc1f	$41
+	mov.s	$f2, $f14
+	b	$42
+$41:
+	mul.s	$f8, $f0, $f16
+	add.s	$f2, $f8, $f18
+$42:
+	.loc	2 133
+ # 133	        xyz[i][0] = car->dr_tirepos[whl][0];
+	.noalias	$9,$7
+	.noalias	$9,$gp
+	.noalias	$2,$7
+	.noalias	$2,$gp
+	mul	$24, $4, $6
+	addu	$2, $9, $24
+	mul	$25, $5, $6
+	addu	$3, $11, $25
+	l.s	$f10, 116($3)
+	s.s	$f10, 0($2)
+	.loc	2 134
+ # 134	        xyz[i][1] = car->dr_tirepos[whl][1] - dist[whl] + offset;
+	l.s	$f4, 120($3)
+	sub.s	$f6, $f4, $f0
+	add.s	$f8, $f6, $f2
+	s.s	$f8, 4($2)
+	.loc	2 135
+ # 135	        xyz[i][2] = car->dr_tirepos[whl][2];
+	l.s	$f10, 124($3)
+	s.s	$f10, 8($2)
+	.loc	2 130
+ # 130	    for (i = 0; i < 4; i++) {
+	addu	$4, $4, 1
+	sll	$14, $4, 16
+	move	$4, $14
+	sra	$15, $4, 16
+	move	$4, $15
+	blt	$4, 4, $38
+	.alias	$2,$7
+	.alias	$2,$gp
+	.alias	$7,$9
+	.alias	$7,$gp
+	.loc	2 138
+ # 138	    if (car->flags & 0x10) {
+	lw	$24, 232($11)
+	and	$25, $24, 16
+	beq	$25, 0, $43
+	.loc	2 138
+	.loc	2 139
+ # 139	        body = 13;
+	li	$2, 13
+	b	$44
+$43:
+	.loc	2 140
+ # 140	    } else {
+	.loc	2 141
+ # 141	        body = m->body_type;
+	lbu	$2, 8($10)
+$44:
+	.loc	2 143
+ # 142	    }
+ # 143	    scale = D_8011F914[body];
+	.loc	2 145
+ # 144	
+ # 145	    fscale = scale[0];
+	.noalias	$3,$9
+	.noalias	$3,$sp
+	mul	$14, $2, 16
+	la	$15, D_8011F914
+	addu	$3, $14, $15
+	l.s	$f22, 0($3)
+	.loc	2 146
+ # 146	    bscale = scale[1];
+	l.s	$f24, 4($3)
+	.loc	2 147
+ # 147	    for (i = 0; i < 3; i++) {
+	move	$4, $0
+$45:
+	.loc	2 147
+	.loc	2 148
+ # 148	        len = xyz[0][i] - xyz[1][i];
+	.noalias	$2,$3
+	.noalias	$2,$gp
+	mul	$24, $4, 4
+	addu	$2, $9, $24
+	l.s	$f2, 0($2)
+	l.s	$f12, 12($2)
+	sub.s	$f0, $f2, $f12
+	.loc	2 149
+ # 149	        xyz[0][i] += len * fscale;
+	mul.s	$f14, $f0, $f22
+	add.s	$f4, $f2, $f14
+	s.s	$f4, 0($2)
+	.loc	2 150
+ # 150	        xyz[1][i] -= len * fscale;
+	sub.s	$f6, $f12, $f14
+	s.s	$f6, 12($2)
+	.loc	2 152
+ # 151	
+ # 152	        len = xyz[3][i] - xyz[2][i];
+	l.s	$f16, 36($2)
+	l.s	$f18, 24($2)
+	sub.s	$f0, $f16, $f18
+	.loc	2 153
+ # 153	        xyz[3][i] += len * bscale;
+	mul.s	$f20, $f0, $f24
+	add.s	$f8, $f16, $f20
+	s.s	$f8, 36($2)
+	.loc	2 154
+ # 154	        xyz[2][i] -= len * bscale;
+	sub.s	$f10, $f18, $f20
+	s.s	$f10, 24($2)
+	.alias	$2,$3
+	.alias	$2,$gp
+	.loc	2 147
+ # 147	    for (i = 0; i < 3; i++) {
+	addu	$4, $4, 1
+	sll	$25, $4, 16
+	move	$4, $25
+	sra	$14, $4, 16
+	move	$4, $14
+	blt	$4, 3, $45
+	.loc	2 157
+ # 157	    fscale = scale[2];
+	l.s	$f22, 8($3)
+	.loc	2 158
+ # 158	    bscale = scale[3];
+	l.s	$f24, 12($3)
+	.loc	2 159
+ # 159	    for (i = 0; i < 3; i++) {
+	move	$4, $0
+$46:
+	.loc	2 159
+	.loc	2 160
+ # 160	        len = xyz[0][i] - xyz[3][i];
+	.noalias	$2,$3
+	.noalias	$2,$gp
+	mul	$15, $4, 4
+	addu	$2, $9, $15
+	l.s	$f2, 0($2)
+	l.s	$f16, 36($2)
+	sub.s	$f0, $f2, $f16
+	.loc	2 161
+ # 161	        xyz[0][i] += len * fscale;
+	mul.s	$f4, $f0, $f22
+	add.s	$f6, $f2, $f4
+	s.s	$f6, 0($2)
+	.loc	2 162
+ # 162	        xyz[3][i] -= len * bscale;
+	mul.s	$f8, $f0, $f24
+	sub.s	$f10, $f16, $f8
+	s.s	$f10, 36($2)
+	.loc	2 164
+ # 163	
+ # 164	        len = xyz[1][i] - xyz[2][i];
+	l.s	$f12, 12($2)
+	l.s	$f18, 24($2)
+	sub.s	$f0, $f12, $f18
+	.loc	2 165
+ # 165	        xyz[1][i] += len * fscale;
+	mul.s	$f4, $f0, $f22
+	add.s	$f6, $f12, $f4
+	s.s	$f6, 12($2)
+	.loc	2 166
+ # 166	        xyz[2][i] -= len * bscale;
+	mul.s	$f8, $f0, $f24
+	sub.s	$f10, $f18, $f8
+	s.s	$f10, 24($2)
+	.alias	$2,$3
+	.alias	$2,$gp
+	.loc	2 159
+ # 159	    for (i = 0; i < 3; i++) {
+	addu	$4, $4, 1
+	sll	$24, $4, 16
+	move	$4, $24
+	sra	$25, $4, 16
+	move	$4, $25
+	blt	$4, 3, $46
+	la	$10, D_8015B268
+	li	$13, 88
+	li.s	$f2, 20.0
+	.loc	2 169
+ # 169	    D_8015B268[v->objnum].flags &= 0x7FFF;
+	.noalias	$10,$3
+	.noalias	$10,$9
+	.noalias	$10,$sp
+	.noalias	$2,$3
+	.noalias	$2,$9
+	.noalias	$2,$sp
+	lh	$14, 6($12)
+	mul	$15, $14, $13
+	addu	$2, $10, $15
+	lhu	$24, 2($2)
+	and	$25, $24, 32767
+	sh	$25, 2($2)
+	.loc	2 170
+ # 170	    D_8011AD8C[3] = 255.0f - rng(d1 * 8.0f, 20.0f, 255.0f);
+	li.s	$f4, 8.0
+	mul.s	$f0, $f26, $f4
+	c.lt.s	$f0, $f2
+	bc1f	$47
+	.alias	$2,$3
+	.alias	$2,$9
+	.alias	$2,$sp
+	mov.s	$f0, $f2
+	li.s	$f12, 255.0
+	b	$50
+$47:
+	li.s	$f12, 255.0
+	c.lt.s	$f12, $f0
+	bc1f	$48
+	mov.s	$f2, $f12
+	b	$49
+$48:
+	mov.s	$f2, $f0
+$49:
+	mov.s	$f0, $f2
+$50:
+	la	$8, D_8011AD8C
+	.noalias	$8,$3
+	.noalias	$8,$9
+	.noalias	$8,$10
+	.noalias	$8,$sp
+	sub.s	$f6, $f12, $f0
+	cfc1	$14, $31
+	li	$15, 1
+	ctc1	$15, $31
+	cvt.w.s	$f8, $f6
+	cfc1	$15, $31
+	.set	 noat
+	and	$1, $15, 4
+	and	$15, $15, 120
+	.set	 at
+	beq	$15, 0, $57
+	li.s	$f8, 2147483648.0
+	sub.s	$f8, $f6, $f8
+	li	$15, 1
+	ctc1	$15, $31
+	cvt.w.s	$f8, $f8
+	cfc1	$15, $31
+	.set	 noat
+	and	$1, $15, 4
+	and	$15, $15, 120
+	.set	 at
+	bne	$15, 0, $58
+	.set	 noat
+	mfc1	$15, $f8
+	li	$1, -2147483648
+	or	$15, $15, $1
+	.set	 at
+	b	$56
+$58:
+	li	$15, -1
+	b	$56
+$57:
+	mfc1	$15, $f8
+	blt	$15, 0, $58
+$56:
+	ctc1	$14, $31
+	sb	$15, 3($8)
+	.loc	2 171
+ # 171	    if (D_8011AD8C[3] > 192) {
+	lbu	$24, 3($8)
+	blt	$24, 193, $51
+	.loc	2 171
+	.loc	2 172
+ # 172	        D_8011AD8C[3] = 192;
+	li	$25, 192
+	sb	$25, 3($8)
+$51:
+	.loc	2 175
+ # 173	    }
+ # 174	
+ # 175	    i = car->unk35C;
+	lb	$4, 860($11)
+	.loc	2 176
+ # 176	    if (i >= 0 && (car->unk35D == 0 || car->unk35D == 1)) {
+	blt	$4, 0, $53
+	lb	$2, 861($11)
+	beq	$2, 0, $52
+	bne	$2, 1, $53
+$52:
+	.loc	2 176
+	.loc	2 177
+ # 177	        poly = &D_8015B268[v->objnum];
+	lh	$14, 6($12)
+	mul	$15, $14, $13
+	addu	$2, $10, $15
+	.loc	2 178
+ # 178	        poly->flags = ~(1 << i) & poly->flags;
+	li	$24, 1
+	sll	$25, $24, $4
+	not	$14, $25
+	lhu	$15, 2($2)
+	and	$24, $14, $15
+	sh	$24, 2($2)
+	b	$54
+$53:
+	.loc	2 179
+ # 179	    } else {
+	.loc	2 180
+ # 180	        D_8015B268[v->objnum].flags |= 0xF;
+	.noalias	$2,$3
+	.noalias	$2,$8
+	.noalias	$2,$9
+	.noalias	$2,$sp
+	lh	$25, 6($12)
+	mul	$14, $25, $13
+	addu	$2, $10, $14
+	lhu	$15, 2($2)
+	or	$24, $15, 15
+	sh	$24, 2($2)
+	.alias	$2,$3
+	.alias	$2,$8
+	.alias	$2,$9
+	.alias	$2,$sp
+$54:
+	.loc	2 182
+ # 181	    }
+ # 182	    if (scale == 0) DEBUG_PRINT(("x"));
+	.alias	$3,$8
+	.alias	$3,$9
+	.alias	$3,$10
+	.alias	$3,$sp
+	.loc	2 182
+	.loc	2 183
+ # 183	    func_8008C074(&D_8015B268[v->objnum], 4, xyz, 0, D_8011AD8C, 0, 0);
+	lh	$25, 6($12)
+	mul	$14, $25, $13
+	addu	$4, $10, $14
+	li	$5, 4
+	move	$6, $9
+	move	$7, $0
+	sw	$8, 16($sp)
+	sw	$0, 20($sp)
+	sw	$0, 24($sp)
+	.livereg	0x0F00000E,0x00000000
+	jal	func_8008C074
+	.alias	$8,$9
+	.alias	$8,$10
+	.alias	$8,$sp
+	.alias	$9,$10
+	.alias	$9,$gp
+	.alias	$10,$sp
+	.loc	2 184
+ # 184	}
+$55:
+	.livereg	0x0000FF0E,0x00000FFF
+	l.d	$f20, 32($sp)
+	l.d	$f22, 40($sp)
+	l.d	$f24, 48($sp)
+	l.d	$f26, 56($sp)
+	lw	$31, 68($sp)
+	addu	$sp, 280
+	j	$31
+	.end	entity_process_main

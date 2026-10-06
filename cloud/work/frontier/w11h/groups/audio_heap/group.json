@@ -1,0 +1,34 @@
+{
+ "members": [
+  "audio_helper",
+  "func_800E7B44",
+  "audio_dma_sync",
+  "audio_task_complete",
+  "func_800E7C2C",
+  "func_800E7D0C",
+  "func_800E7D04",
+  "func_80097468"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "audio_dma_sync",
+  "audio_task_complete",
+  "func_800E7C2C",
+  "func_800E7D0C"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "claims": [
+  "audio_dma_sync",
+  "audio_task_complete",
+  "func_800E7C2C",
+  "func_800E7D0C",
+  "func_800E7D04",
+  "func_80097468"
+ ],
+ "note": "Real group, no stand-ins. audio_helper and func_800E7B44 are already locked from src/blob/groups/audio_heap; their source changes here (audio_helper parameter order heap,size; heap_or_default static) and both still score MATCH. func_800E7D0C stays context (3 scheduling words + flag access). w11h (wave 11): func_800E7D0C, func_800E7D04 and func_80097468 are members; the last two are locked stubs defined here for real (deleted statics) and need force_internal + prefer_definition entries.",
+ "provenance": "frontier wave 1 (w1a), 2026-10-04; cloud/work/frontier/w1a/RESULTS.md"
+}

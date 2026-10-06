@@ -1,0 +1,38 @@
+{
+ "members": [
+  "object_manager_update",
+  "object_byte9_set",
+  "func_800F68A4",
+  "camera_shake_update",
+  "object_bytes23_sum",
+  "object_bytes_sum_global"
+ ],
+ "context": [
+  "sound_update_channel",
+  "func_80096288",
+  "slot_value_get",
+  "mode_byte2_set",
+  "mode_byte_set",
+  "object_type_byte2_get",
+  "object_type_byte3_get"
+ ],
+ "files": [
+  "group.c",
+  "object_manager_update.c"
+ ],
+ "keep": [
+  "object_manager_update",
+  "object_byte9_set",
+  "object_bytes23_sum",
+  "object_bytes_sum_global",
+  "func_800F68A4",
+  "camera_shake_update",
+  "slot_value_get",
+  "mode_byte2_set",
+  "mode_byte_set",
+  "object_type_byte2_get",
+  "object_type_byte3_get"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "provenance": "frontier wave 3 (w3a), 2026-10-05; cloud/work/frontier/w3a/RESULTS.md"
+}

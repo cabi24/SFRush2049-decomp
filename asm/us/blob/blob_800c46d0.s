@@ -4997,6 +4997,7 @@ sync_entry_register:
 .section .text.speed_set, "ax", @progbits
 .globl speed_set
 speed_set:
+    /* compiled from src/blob/speed_set.c */
     .word 0x27BDFFE8
     .word 0x3C138014
     .word 0x26732728
@@ -5052,6 +5053,7 @@ speed_set:
 .section .text.speed_mode0_wrapper, "ax", @progbits
 .globl speed_mode0_wrapper
 speed_mode0_wrapper:
+    /* compiled from src/blob/speed_mode0_wrapper.c */
     .word 0x27BDFFC8
     .word 0xAFBF0034
     .word 0xAFB2002C
@@ -5118,6 +5120,7 @@ resource_slots_clear_multiple:
 .section .text.speed_mode1_wrapper, "ax", @progbits
 .globl speed_mode1_wrapper
 speed_mode1_wrapper:
+    /* compiled from src/blob/speed_mode1_wrapper.c */
     .word 0x27BDFFC8
     .word 0xAFBF0034
     .word 0xAFB2002C

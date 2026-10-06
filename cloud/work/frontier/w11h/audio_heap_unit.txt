@@ -1,0 +1,10 @@
+  EQUAL func_800E7D0C: 49 words (kept, c_group.c)
+  EQUAL func_800E7D04: 2 words (internal, c_group.c)
+  EQUAL func_80097468: 2 words (internal, c_group.c)
+  EQUAL audio_helper: 57 words (internal, c_group.c)
+  EQUAL func_800E7B44: 58 words (internal, c_group.c)
+  EQUAL audio_dma_sync: 31 words (kept, c_group.c)
+  EQUAL audio_task_complete: 104 words (kept, c_group.c)
+  EQUAL func_800E7C2C: 54 words (kept, c_group.c)
+  locked bodies that differ in this unit: 0
+blob_unit score: 8/8 equal; object build/blob_unit/w11h/unit.o (8.0s)

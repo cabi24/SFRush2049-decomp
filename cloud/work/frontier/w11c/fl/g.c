@@ -1,0 +1,50 @@
+void camera_free_look(Camera *cam) {
+    f32 out[4];
+    f32 d[3];
+    CamCtl *ctl;
+    CamScene *sc;
+    f32 t;
+    f32 dur;
+    s32 next;
+    s32 idx;
+    s32 near;
+    f32 dist;
+
+    ctl = cam->ctl;
+    sc = cam->ctl->scene;
+    idx = ctl->idx;
+    if (sc->keys[idx].flags & 0x20) {
+        goto plain;
+    }
+    if (ctl->mode & 8) {
+        t = sc->keys[idx].dur - ctl->t;
+    } else {
+        t = ctl->t;
+    }
+    dur = sc->keys[idx].dur;
+    if (dur == 0.0f) {
+plain:
+        func_800BFBE8(cam->m[0], sc->keys[idx].rot, 1);
+    } else {
+        if ((next = idx + 1) >= sc->count && (sc->flags & 2)) {
+            next = 0;
+        }
+        func_800BFD8C(t / dur, sc->keys[idx].rot, sc->keys[next].rot, out);
+        func_800BFBE8(cam->m[0], out, 1);
+    }
+    if (sc->flags & 0x20) {
+        near = 1;
+        if (gameplay_mode == 5) {
+            d[0] = cam->pos[0] - ((f32 *) &player_array)[2];
+            d[1] = cam->pos[1] - ((f32 *) &player_array)[3];
+            d[2] = cam->pos[2] - ((f32 *) &player_array)[4];
+            dist = d[0] * d[0] + d[1] * d[1] + d[2] * d[2];
+            if (D_80123E84 < dist) {
+                near = 0;
+            }
+        }
+        if (near != 0) {
+            camera_first_person(sc->id, cam->pos, ctl->mat, cam->m[0]);
+        }
+    }
+}

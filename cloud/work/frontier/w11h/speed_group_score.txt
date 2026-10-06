@@ -1,0 +1,12 @@
+Members:
+speed_set:
+  MATCH
+vsync_wait:
+  MATCH
+speed_mode0_wrapper:
+  MATCH
+speed_mode1_wrapper:
+  MATCH
+continue_prompt:
+  MATCH
+    own .rodata verified at 0x80124280..0x80124284
