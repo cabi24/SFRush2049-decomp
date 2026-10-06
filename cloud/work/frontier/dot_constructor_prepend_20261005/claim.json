@@ -1,0 +1,16 @@
+{
+  "owner": "dot constructor prepend research",
+  "state": "complete-research-awaiting-independent-review",
+  "base": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "branch": "dot/fresh-path-source-20261005",
+  "targets": [{"name": "car_stats_display", "start": "0x800D197C", "end": "0x800D1AB0", "native_bytes": 308}],
+  "edit_scope": ["cloud/work/frontier/dot_constructor_prepend_20261005/", "tests/conveyor/test_dot_constructor_prepend.py"],
+  "accepted_context_read_only": ["src/blob/func_800D18D8.c", "src/blob/func_80091FBC.c", "src/blob/func_8009211C.c"],
+  "claims": [],
+  "accepted_byte_gain": 0,
+  "open_prs_checked": [110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127],
+  "prior_source": "cloud/work/game_C41/car_stats_display.floats.c",
+  "question": "Test the accepted allocator/list context and correct the constructor's list-head contract.",
+  "stop": "The full-context check is inert. Do not repeat it or tune varargs/register spellings without independent original-interface, compiler, or translation-unit evidence.",
+  "scope_limit": "No visibility into unpublished work elsewhere. No original arcade donor or original N64 typedef is claimed."
+}
