@@ -56,6 +56,7 @@ read-only status command. Old phase percentages and next-session TODOs are archi
 
 | Task | Entry point |
 |---|---|
+| Continue the frontier matching waves (current state, method, open items) | [Frontier handoff](docs/plans/2026-10-06-frontier-handoff.md) |
 | Match or investigate a function | [Matching skill](.claude/skills/match-function/SKILL.md) |
 | Put verified C into the cartridge | [Promotion skill](.claude/skills/promote-match/SKILL.md) |
 | Refresh game targets, symbols, prototypes, or histograms | [Context skill](.claude/skills/refresh-game-context/SKILL.md) |

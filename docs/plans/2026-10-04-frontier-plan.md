@@ -1,5 +1,7 @@
 # Frontier plan: matching the game image in call-graph order
 
+> **Current status and how to run the next wave:** see [2026-10-06 frontier handoff](2026-10-06-frontier-handoff.md) (after wave 12).
+
 **Written:** 2026-10-04, on `master` at `abc0f256` plus the uncommitted files listed in [Appendix B](#appendix-b-what-exists-uncommitted).
 **For:** whoever continues this work (written to be followed step by step by an agent that has not seen the session that produced it).
 **Scope:** the compressed game image only (540 unmatched functions, 457,224 bytes). Static cartridge code is out of scope.
