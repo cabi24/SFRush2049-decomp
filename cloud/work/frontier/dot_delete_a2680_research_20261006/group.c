@@ -1,3 +1,4 @@
+/* Error predicate contract: src/blob/func_8008A6A4.c returns s32 and consumes s32 port. */
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
 typedef signed char s8;typedef unsigned char u8;typedef signed int s32;typedef unsigned int u32;
 #define NULL ((void *)0)
@@ -190,8 +191,8 @@ extern u8 D_801460E0[];
 void osCreateMesgQueue(OSMesgQueue *,void **,s32);
 s32 osPfsRename(void *,u16,u32,u8 *,u8 *);
 s32 osPfsFreeBlocks(void *,s32 *);
-void func_8008A6A4(void);
-typedef void (*PakErrorCallback)(s32,s32,s32,s32,s8 *,s8 *,void (*)(void));
+s32 func_8008A6A4(s32);
+typedef void (*PakErrorCallback)(s32,s32,s32,s32,s8 *,s8 *,s32 (*)(s32));
 extern PakErrorCallback D_80144008;
 void func_8009211C(void *,void *);
 void func_80091FBC(void *,void *,void *);
