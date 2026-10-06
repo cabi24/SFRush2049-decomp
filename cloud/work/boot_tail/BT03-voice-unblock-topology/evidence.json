@@ -1,0 +1,318 @@
+{
+  "status": "PASS",
+  "base": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "recipe": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "sole_new_match": "func_8001F954",
+  "new_matching_bytes": 124,
+  "accepted_byte_gain": 0,
+  "rows": [
+    {
+      "function": "func_8001F954",
+      "source_path": "cloud/matches/boot_tail/func_8001F954.c",
+      "source_sha256": "9681a183355a574946d7b680d39f0801bf0eb5e99a04fe81fb4e587933a80333",
+      "exact_current_lock_body": false,
+      "elf_size": 124,
+      "text_size": 128,
+      "alignment_zero_bytes": 4,
+      "complete_native_body_sha256": "13abd5451f04320560902bea5b4b3ad7ad236f5bbc5757504ebe8a15b8eae4fc",
+      "bindings": {
+        "func_8001467C": 2147567228,
+        "func_80014AF0": 2147568368,
+        "D_8004BEB8": 2147794616,
+        "func_8001F6EC": 2147612396
+      },
+      "comparison": {
+        "differing": 0,
+        "total": 31,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "behavior": {
+        "cases": 2112,
+        "native_and_linked_executions": 4224,
+        "all_instruction_offsets_covered": [
+          0,
+          4,
+          8,
+          12,
+          16,
+          20,
+          24,
+          28,
+          32,
+          36,
+          40,
+          44,
+          48,
+          52,
+          56,
+          60,
+          64,
+          68,
+          72,
+          76,
+          80,
+          84,
+          88,
+          92,
+          96,
+          100,
+          104,
+          108,
+          112,
+          116,
+          120
+        ],
+        "negative_controls_rejected": [
+          "wrong_identifier_field",
+          "wrong_clear_field",
+          "wrong_sentinel"
+        ],
+        "scope": "1F954 body with explicit side-effecting helper hooks; valid slots 0..31 and FFFFFFFF only; no helper/native whole-runtime claim"
+      }
+    },
+    {
+      "function": "func_80014AF0",
+      "source_path": "cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014AF0.c",
+      "source_sha256": "5302fb6b574c5412814c5dd97da8fcc437b1f87e62977d48569ca7737e725afb",
+      "exact_current_lock_body": true,
+      "elf_size": 76,
+      "text_size": 80,
+      "alignment_zero_bytes": 4,
+      "complete_native_body_sha256": "a73a1150b9ee51ca62257d2c15768acaa3523d9cd73cf21e39c6b05122199a36",
+      "bindings": {
+        "D_80038294": 2147713684
+      },
+      "comparison": {
+        "differing": 0,
+        "total": 19,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    {
+      "function": "func_8001C7F4",
+      "source_path": "cloud/work/boot_tail_promotion/sources/func_8001C7F4.c",
+      "source_sha256": "163159a629228d42d34e0ee8e21471743ea952c3e627b92b6b254ee97ccf474b",
+      "exact_current_lock_body": true,
+      "elf_size": 108,
+      "text_size": 112,
+      "alignment_zero_bytes": 4,
+      "complete_native_body_sha256": "2bf4ec94a067823efdfba48cf52f020673a29be51937496f6332276e6b3e8e41",
+      "bindings": {
+        "D_8002C630": 2147665456,
+        "func_80014594": 2147566996,
+        "D_8004FA50": 2147809872,
+        "func_8001F954": 2147613012,
+        "func_800145DC": 2147567068
+      },
+      "comparison": {
+        "differing": 0,
+        "total": 27,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  ],
+  "controls": [
+    {
+      "source": "baseline",
+      "source_sha256": "6eb20d3d26f50b4f34ed83fc6a9bd463270ce5dae706144bc6ae25dbb616b030",
+      "elf_size": 124,
+      "complete_body_diff_offsets": [
+        96,
+        100
+      ],
+      "zero_alignment_bytes": 4,
+      "comparison": {
+        "differing": 2,
+        "total": 31,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    {
+      "source": "signed_boundary",
+      "source_sha256": "e683322727d8d1f8f014968b5a65de400a239ef806ed62a4b4af6a55812a0878",
+      "elf_size": 124,
+      "complete_body_diff_offsets": [],
+      "zero_alignment_bytes": 4,
+      "comparison": {
+        "differing": 0,
+        "total": 31,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    {
+      "source": "named_pointer_restored",
+      "source_sha256": "fc4000e3de2c6057973ee323ecb7b0b7131d1f4bc287f3da91d645d3f9f1699b",
+      "elf_size": 124,
+      "complete_body_diff_offsets": [
+        96,
+        100
+      ],
+      "zero_alignment_bytes": 4,
+      "comparison": {
+        "differing": 2,
+        "total": 31,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    {
+      "source": "nested_guard",
+      "source_sha256": "5897368781b8af3e273629eb82f671ed22a416d87130d577b91cf942138c9c40",
+      "elf_size": 124,
+      "complete_body_diff_offsets": [],
+      "zero_alignment_bytes": 4,
+      "comparison": {
+        "differing": 0,
+        "total": 31,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    {
+      "source": "final_O1",
+      "source_sha256": "9681a183355a574946d7b680d39f0801bf0eb5e99a04fe81fb4e587933a80333",
+      "elf_size": 188,
+      "complete_body_diff_offsets": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36,
+        40,
+        44,
+        48,
+        52,
+        56,
+        60,
+        64,
+        68,
+        72,
+        76,
+        80,
+        84,
+        88,
+        92,
+        96,
+        100,
+        104,
+        108,
+        112,
+        116,
+        120,
+        124,
+        128,
+        132,
+        136,
+        140,
+        144,
+        148,
+        152,
+        156,
+        160,
+        164,
+        168,
+        172,
+        176,
+        180,
+        184
+      ],
+      "zero_alignment_bytes": 4,
+      "comparison": {
+        "differing": 31,
+        "total": 31,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 15
+      }
+    }
+  ],
+  "host": "2112 actual-source cases passed",
+  "actual_c_negative_controls_rejected": [
+    "wrong_clear_field",
+    "wrong_identifier_value",
+    "wrong_sentinel"
+  ],
+  "input_sha256": {
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+    "tools/conveyor/seeds/extract_candidates.py": "0f0c753a0f279f2b93f636995d1008f5fbda863491af451120b9e4afb29b0f53",
+    "include/boot_tail_audio_record.h": "128e9566a872e604ccfbf8352120a40cfc546c4d49b32321dd440cbf088348a7",
+    "include/boot_tail_sample_contract.h": "47f15953b674de3262411e79f4fd46873b8ca79c067790a087876c16da965f77",
+    "asm/us/boot_tail/SHA256SUMS": "6bd3e6ef05e6123e4ea4dd0d814c0abb16f202a91d8d0a381eca14322c8a36d5",
+    "asm/us/boot_tail/boot_tail_8000f3a4.s": "0dc55ce51ebe828207816f4f0b878b8928da64694f7f247bf8749f68cf91b224",
+    "asm/us/boot_tail/extents.json": "0d69358c528171a2c53e7468dd5b48afe7611006ab3800dbfbb10e079b008fcf",
+    "asm/us/boot_tail/symbols.json": "bd200aeb947e5da64c9e810dc6fbe15ef5c3f2f26633071cf7363cdb1b1fcba9",
+    "tools/conveyor/pipeline/lock.py": "f8dc9290990fab8748c84fa8949522c8dcc3ff828285d7ea90fc99f9dffa4ca0",
+    "matched.lock.json": "e1f894d33c2c30320add9a62b2d20823dd37392c778ee6ef9e4bfd9ebcd6b12b",
+    "asm/us/nonmatchings/rom/lib_1f5b0/func_8001F954.s": "82085297a4536846cb21540a885c0921b48adf9c640ccabecc104d987fe6abcb",
+    "asm/us/nonmatchings/rom/lib_11640/func_80014AF0.s": "9e5ec93bc68ecdd063f91cf0a15b4e86d92403c0ef605b9e6112a4d9a556cda8",
+    "asm/us/nonmatchings/rom/lib_1cf90/func_8001C7F4.s": "1b1a9d76ccd237b6a434e263add782ae778ada1ab4a5bb0b15a97b60f3f62177",
+    "asm/us/nonmatchings/rom/lib_11640/func_8001467C.s": "7049d11ed4e540351a02da3d04d4edf0d563b29d5ca54e54864c89cc7b7f0125",
+    "asm/us/nonmatchings/rom/lib_1f5b0/func_8001F6EC.s": "beb437797a092c77a4cbefadde2b96997e3a33fce849bbe0224fef17027cec4a",
+    "cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014AF0.c": "5302fb6b574c5412814c5dd97da8fcc437b1f87e62977d48569ca7737e725afb",
+    "src/rom/lib_11640.c": "9fd99f3d69bf1f06b4a0d223e024404440f03bfef8449360ef0d7361a87e9b10",
+    "cloud/work/boot_tail_promotion/sources/func_8001C7F4.c": "163159a629228d42d34e0ee8e21471743ea952c3e627b92b6b254ee97ccf474b",
+    "src/rom/lib_1cf90.c": "5352226208ce15459639ca17c65b55fc9b7c078da838a62ecd8faa7067255a48",
+    "cloud/work/boot_tail/BT03-high-init/nonmatch/func_8001F954.c": "6eb20d3d26f50b4f34ed83fc6a9bd463270ce5dae706144bc6ae25dbb616b030",
+    "packet:native_behavior.py": "b6dafc6d0a3b215078e7705c8c2d625b39a96aa6ce9a53345d05095ddfb46a21",
+    "packet:test_host.c": "dc1d50468ae4c4cbd05a828fba74a5858632eeac696b82edc3ccbf3eacae4bd0",
+    "packet:verify.py": "f716cc9e6c1816540d05df9c8b9d54aed69c6003d415ae278c93c15339cac6ca"
+  },
+  "ido_sha256": {
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "upas": "7fa9be3c14bfe854bb539312af5f4f40c29b975996bdd6868f489f82fb427d5b",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "crtn.o": "62197e97a5e56e21c6a4e76ffe9f634cf90b47046ebe4841086108101ce496eb",
+    "crt1.o": "95bd24880e95e102bbdf2a1cfa2e10d391cb57784a42db19afd609c0904aee28",
+    "libc.so.1": "803f8b127194a79d92c5caea62fd39097be16d3fcd9870b4470123cebd5d27fe",
+    "acpp": "7bfdf2f79010eb95bd47e165036cac04a69e5f1290fde11736e5f6934f3e9189",
+    "libm.so": "8acc66c2d1315b90f38a280fe04a26d0e61b5ca377976ed5d7f88bb064bd2e35",
+    "ld": "266c5a22192ce532a6dcdb7127c1da72faa37e7e71d44677ab91d723b8ed2113",
+    "strip": "bf39eca7d4357b699d59077078c657c5af428b0e57d5dd7835c3d0f915e801bf",
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "libc.so": "803f8b127194a79d92c5caea62fd39097be16d3fcd9870b4470123cebd5d27fe",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b",
+    "err.english.cc": "6f2d777730f0a70328bb932c116c1c195da765cb9bbdee8c6d3eaf7d6ad77e78",
+    "libexc.so": "b59bf75bcbff1526ad4e3b2b49b313788a6e4c97df5b69b4bc2ddbd6726c5864",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "c++filt": "60791cf1d07ba780a4e8aa25d53c741d4b7d5427f891f7287b1bed0b6ba3e665",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+    "ujoin": "34a6fff6e693f8c9505777d2860b4795fe97a01e89ce8616f4a5b624b11c451d",
+    "copt": "e62a2a7276d2f9fa7f5daac25e01abe92cf4765173391cb0b616434c9c8122b3",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "libgen.so": "bb66dea1242000f648e890252cbe47037310559cc0ecda8ed212c0e545bf8063",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "as0": "72670d53952459fe5ac463e8844182cf4df9f6ccf469826c82ca858fdd665564"
+  },
+  "limits": [
+    "Boundary hooks do not execute the two nonmatching native helper bodies",
+    "Valid slots 0..31 and FFFFFFFF only; no malformed-state or hardware claim",
+    "No full TU, source-image, compression, full-ROM or CI gate is claimed",
+    "T050 remains in force; no 1F13C compiler attempt occurred"
+  ]
+}
