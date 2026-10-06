@@ -1,0 +1,113 @@
+{
+  "base": "f2e8380d3b368d00efc9cac3e37cdc7059b1f6e2",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "automatic_backend_flag": "-Wab,-r4300_mul",
+  "caller_path": "caller.c",
+  "caller_sha256": "37da94b5178384b1e2d85bb08685f242d76e99b072608e541d8cbf0858aba8a0",
+  "source_sha256": {
+    "ordinary.c": "9cf247b4580a4cc666890fd3a53af9f4a830c33a138e51ecb958a5b0e7052dbc",
+    "qualified_hypothesis.c": "20bca4f8c06fd5e3fb342df39d5bf328500493b5f1dbdd392042c0db8abcdb77"
+  },
+  "rows": [
+    {
+      "mode": "ordinary",
+      "function": "func_800DA2C0",
+      "result": {
+        "differing": 505,
+        "total": 579,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x84",
+          ".rodata+0x0 at +0x88",
+          ".rodata+0x4 at +0x244",
+          ".rodata+0x4 at +0x248",
+          ".rodata+0x8 at +0x274",
+          ".rodata+0x8 at +0x278",
+          ".rodata+0xc at +0x298",
+          ".rodata+0xc at +0x2d8",
+          ".rodata+0x10 at +0x2fc",
+          ".rodata+0x10 at +0x314",
+          ".rodata+0x14 at +0x358",
+          ".rodata+0x14 at +0x370"
+        ],
+        "errors": [],
+        "extra_words": 0
+      },
+      "function_bytes": 2204,
+      "target_bytes": 2316,
+      "frame_bytes": [
+        152
+      ]
+    },
+    {
+      "mode": "ordinary",
+      "function": "func_800DB1E0",
+      "result": {
+        "differing": 215,
+        "total": 350,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x18 at +0x274",
+          ".rodata+0x18 at +0x27c"
+        ],
+        "errors": [],
+        "extra_words": 0
+      },
+      "function_bytes": 1396,
+      "target_bytes": 1400,
+      "frame_bytes": [
+        128
+      ]
+    },
+    {
+      "mode": "qualified_hypothesis",
+      "function": "func_800DA2C0",
+      "result": {
+        "differing": 485,
+        "total": 579,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x84",
+          ".rodata+0x0 at +0x88",
+          ".rodata+0x4 at +0x264",
+          ".rodata+0x4 at +0x268",
+          ".rodata+0x8 at +0x294",
+          ".rodata+0x8 at +0x298",
+          ".rodata+0xc at +0x2b8",
+          ".rodata+0xc at +0x2f8",
+          ".rodata+0x10 at +0x31c",
+          ".rodata+0x10 at +0x334",
+          ".rodata+0x14 at +0x378",
+          ".rodata+0x14 at +0x390"
+        ],
+        "errors": [],
+        "extra_words": 0
+      },
+      "function_bytes": 2268,
+      "target_bytes": 2316,
+      "frame_bytes": [
+        152
+      ]
+    },
+    {
+      "mode": "qualified_hypothesis",
+      "function": "func_800DB1E0",
+      "result": {
+        "differing": 215,
+        "total": 350,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x18 at +0x274",
+          ".rodata+0x18 at +0x27c"
+        ],
+        "errors": [],
+        "extra_words": 0
+      },
+      "function_bytes": 1396,
+      "target_bytes": 1400,
+      "frame_bytes": [
+        128
+      ]
+    }
+  ]
+}
