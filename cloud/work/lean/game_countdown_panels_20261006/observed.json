@@ -1,0 +1,87 @@
+{
+  "base": "f2e8380d3b368d00efc9cac3e37cdc7059b1f6e2",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "automatic_backend_flag": "-Wab,-r4300_mul",
+  "source_sha256": {
+    "callback.c": "7bba089bd4c8f580e3ba3922e07d9b0934ef03e2b2c55eaeeea928fbc2930072",
+    "slot_context.c": "1d19ad3000273569000654ca8f8d93d4e040eb476738998cf5e87847c18c2e8b",
+    "replay_caller.c": "65c0e9a01bfecfaee66abcc11886a13b910e0b8f12155731e480943cf80a79b3",
+    "group.json": "bcb883f20cce261462a4679c0113b139f0df9f433a182799e3b35fd737fc57f3"
+  },
+  "rows": [
+    {
+      "mode": "baseline_single",
+      "function": "func_80106874",
+      "result": {
+        "differing": 175,
+        "total": 178,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 9
+      },
+      "function_bytes": 748,
+      "target_bytes": 712
+    },
+    {
+      "mode": "candidate_group",
+      "function": "func_80106874",
+      "result": {
+        "differing": 101,
+        "total": 178,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 1
+      },
+      "function_bytes": 716,
+      "target_bytes": 712
+    },
+    {
+      "mode": "candidate_group",
+      "function": "replay_save_prompt",
+      "result": {
+        "differing": 373,
+        "total": 385,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x390",
+          ".rodata+0x0 at +0x394",
+          ".rodata+0x4 at +0x3a0",
+          ".rodata+0x4 at +0x3a4",
+          ".rodata+0x8 at +0x3b0",
+          ".rodata+0x8 at +0x3bc",
+          ".rodata+0xc at +0x3f0",
+          ".rodata+0xc at +0x3f4",
+          ".rodata+0x10 at +0x400",
+          ".rodata+0x10 at +0x404",
+          ".rodata+0x14 at +0x41c",
+          ".rodata+0x14 at +0x428",
+          ".rodata+0x18 at +0x484",
+          ".rodata+0x18 at +0x488"
+        ],
+        "errors": [
+          "own .rodata+0x4 referenced at +0x3a4 differs from retail 0x80124238 (+0x0: retail [redacted], got [redacted]; 4 bytes compared)",
+          "own .rodata+0xc referenced at +0x3f4 differs from retail 0x8011418C (+0x0: retail [redacted], got [redacted]; 4 bytes compared)"
+        ],
+        "extra_words": 13
+      },
+      "function_bytes": 1584,
+      "target_bytes": 1540
+    },
+    {
+      "mode": "candidate_group",
+      "function": "slot_state_setup",
+      "result": {
+        "differing": 18,
+        "total": 58,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 2
+      },
+      "function_bytes": 232,
+      "target_bytes": 232
+    }
+  ]
+}
