@@ -1,5 +1,5 @@
 {
-  "schema": 1,
+  "schema": 2,
   "status": "NONMATCH",
   "accepted_byte_gain": 0,
   "function": "car_stats_display",
@@ -27,6 +27,33 @@
     "src/blob/func_80091FBC.c": "d408b65b5959e87c58256bab68b9c7e9893de99a178dfb1062900e954c418b79",
     "src/blob/func_8009211C.c": "20d73de239d47ec0799b4bfbf4a03023abb8f99359f5603ee68c7dd2a89edd99"
   },
+  "portability_controls": {
+    "source_path_controls": {
+      "archived": {
+        "identical_source_at_two_absolute_paths": true,
+        "only_nonallocated_mdebug_payload_and_physical_offsets_vary": true,
+        "each_mdebug_contains_exactly_one_source_path": true
+      },
+      "corrected": {
+        "identical_source_at_two_absolute_paths": true,
+        "only_nonallocated_mdebug_payload_and_physical_offsets_vary": true,
+        "each_mdebug_contains_exactly_one_source_path": true
+      },
+      "corrected_header_o2": {
+        "identical_source_at_two_absolute_paths": true,
+        "only_nonallocated_mdebug_payload_and_physical_offsets_vary": true,
+        "each_mdebug_contains_exactly_one_source_path": true
+      }
+    },
+    "semantic_mutations": {
+      ".text": "rejected",
+      ".rel.text": "rejected",
+      ".symtab": "rejected",
+      ".reginfo": "rejected",
+      ".options": "rejected",
+      "ELF_ABI_flags": "rejected"
+    }
+  },
   "object_adverse_controls": [
     "shortened_ELF_extent",
     "unsupported_relocation"
@@ -34,6 +61,133 @@
   "compile": {
     "archived": {
       "object_sha256": "f9f144ecab5f5f5e8e8219d07f2fc5206599a168505408fbd7c1c0b6fe7a10d8",
+      "mdebug_sha256": "4bb9cf4ea975b8a26f715ba30f7ba5bde37f607a4b2b1d4fe7b89d5c5e982489",
+      "portable_elf": {
+        "ident_sha256": "09c0a2e371bc7075dab213f9a61fa9eb0652b8ded2a072900494ba7d1bcd2e9d",
+        "header": [
+          1,
+          8,
+          1,
+          0,
+          0,
+          268435456,
+          52,
+          0,
+          0,
+          40,
+          9,
+          2
+        ],
+        "sections": [
+          {
+            "name": "",
+            "type": 0,
+            "flags": 0,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 0,
+            "entry_size": 0,
+            "size": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": ".symtab",
+            "type": 2,
+            "flags": 0,
+            "address": 0,
+            "link": 3,
+            "info": 2,
+            "alignment": 4,
+            "entry_size": 16,
+            "size": 160,
+            "sha256": "1d55dc1c55f3ccc1a0a0bf244f4f2218d522c8e5b80a22b547452d11c3972301"
+          },
+          {
+            "name": ".shstrtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 1,
+            "size": 69,
+            "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+          },
+          {
+            "name": ".strtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 1,
+            "size": 107,
+            "sha256": "03d49549999cbd359fc2e8df2ef9145cbc9c96c8cc4ba85da4db90a0b610fa8a"
+          },
+          {
+            "name": ".text",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 16,
+            "entry_size": 1,
+            "size": 320,
+            "sha256": "ded6ade46503162818553ea1ef8158725534e0de819670ea49ff4a37e7c10798"
+          },
+          {
+            "name": ".options",
+            "type": 1879048205,
+            "flags": 0,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 8,
+            "entry_size": 1,
+            "size": 32,
+            "sha256": "c7049acb2880065e6ad12987c0c5233d9da064e5dd7570c340619cf0597bee80"
+          },
+          {
+            "name": ".reginfo",
+            "type": 1879048198,
+            "flags": 2,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 4,
+            "entry_size": 1,
+            "size": 24,
+            "sha256": "bab61de76ae3b5f5ce8a404f4d48c6c2b51132902ea8cc9b92400be27ef2682f"
+          },
+          {
+            "name": ".rel.text",
+            "type": 9,
+            "flags": 0,
+            "address": 0,
+            "link": 1,
+            "info": 4,
+            "alignment": 4,
+            "entry_size": 8,
+            "size": 96,
+            "sha256": "3367d791c1aa4f901eef62917d296e60aaf5cf197b6a4f383e843c79ee1c6eca"
+          },
+          {
+            "name": ".mdebug",
+            "type": 1879048197,
+            "flags": 0,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 4,
+            "entry_size": 1,
+            "scope": "nonallocated ECOFF debug metadata; fingerprinted separately"
+          }
+        ]
+      },
       "functions": {
         "car_stats_display": {
           "symbol_bytes": 308,
@@ -144,6 +298,133 @@
     },
     "corrected": {
       "object_sha256": "c8cbe71551e41fca13e117900d16c4b25b57e358326c4447c933d90049d619a4",
+      "mdebug_sha256": "018c6c1f7a39cf9679905593fb864d4484ed4e834e79e2263c6ab87c73d35215",
+      "portable_elf": {
+        "ident_sha256": "09c0a2e371bc7075dab213f9a61fa9eb0652b8ded2a072900494ba7d1bcd2e9d",
+        "header": [
+          1,
+          8,
+          1,
+          0,
+          0,
+          268435456,
+          52,
+          0,
+          0,
+          40,
+          9,
+          2
+        ],
+        "sections": [
+          {
+            "name": "",
+            "type": 0,
+            "flags": 0,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 0,
+            "entry_size": 0,
+            "size": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": ".symtab",
+            "type": 2,
+            "flags": 0,
+            "address": 0,
+            "link": 3,
+            "info": 2,
+            "alignment": 4,
+            "entry_size": 16,
+            "size": 160,
+            "sha256": "9e797748bb60dc463aa715baa148fd183012ee7a325834f9733e6c75a256b776"
+          },
+          {
+            "name": ".shstrtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 1,
+            "size": 69,
+            "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+          },
+          {
+            "name": ".strtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 1,
+            "size": 107,
+            "sha256": "03d49549999cbd359fc2e8df2ef9145cbc9c96c8cc4ba85da4db90a0b610fa8a"
+          },
+          {
+            "name": ".text",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 16,
+            "entry_size": 1,
+            "size": 320,
+            "sha256": "ded6ade46503162818553ea1ef8158725534e0de819670ea49ff4a37e7c10798"
+          },
+          {
+            "name": ".options",
+            "type": 1879048205,
+            "flags": 0,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 8,
+            "entry_size": 1,
+            "size": 32,
+            "sha256": "c7049acb2880065e6ad12987c0c5233d9da064e5dd7570c340619cf0597bee80"
+          },
+          {
+            "name": ".reginfo",
+            "type": 1879048198,
+            "flags": 2,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 4,
+            "entry_size": 1,
+            "size": 24,
+            "sha256": "bab61de76ae3b5f5ce8a404f4d48c6c2b51132902ea8cc9b92400be27ef2682f"
+          },
+          {
+            "name": ".rel.text",
+            "type": 9,
+            "flags": 0,
+            "address": 0,
+            "link": 1,
+            "info": 4,
+            "alignment": 4,
+            "entry_size": 8,
+            "size": 96,
+            "sha256": "3367d791c1aa4f901eef62917d296e60aaf5cf197b6a4f383e843c79ee1c6eca"
+          },
+          {
+            "name": ".mdebug",
+            "type": 1879048197,
+            "flags": 0,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 4,
+            "entry_size": 1,
+            "scope": "nonallocated ECOFF debug metadata; fingerprinted separately"
+          }
+        ]
+      },
       "functions": {
         "car_stats_display": {
           "symbol_bytes": 308,
@@ -254,6 +535,133 @@
     },
     "corrected_header_o2": {
       "object_sha256": "261eaf67cd716e777a97999730364ec3efa9cb264325f937f69b09110575ba1c",
+      "mdebug_sha256": "b27b17e19c4f63e6cc024712b2851838074f22b4a04fd705f15a9c18ca5d82f7",
+      "portable_elf": {
+        "ident_sha256": "09c0a2e371bc7075dab213f9a61fa9eb0652b8ded2a072900494ba7d1bcd2e9d",
+        "header": [
+          1,
+          8,
+          1,
+          0,
+          0,
+          268435456,
+          52,
+          0,
+          0,
+          40,
+          9,
+          2
+        ],
+        "sections": [
+          {
+            "name": "",
+            "type": 0,
+            "flags": 0,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 0,
+            "entry_size": 0,
+            "size": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": ".symtab",
+            "type": 2,
+            "flags": 0,
+            "address": 0,
+            "link": 3,
+            "info": 2,
+            "alignment": 4,
+            "entry_size": 16,
+            "size": 160,
+            "sha256": "9e797748bb60dc463aa715baa148fd183012ee7a325834f9733e6c75a256b776"
+          },
+          {
+            "name": ".shstrtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 1,
+            "size": 69,
+            "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+          },
+          {
+            "name": ".strtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 1,
+            "size": 107,
+            "sha256": "03d49549999cbd359fc2e8df2ef9145cbc9c96c8cc4ba85da4db90a0b610fa8a"
+          },
+          {
+            "name": ".text",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 16,
+            "entry_size": 1,
+            "size": 320,
+            "sha256": "ded6ade46503162818553ea1ef8158725534e0de819670ea49ff4a37e7c10798"
+          },
+          {
+            "name": ".options",
+            "type": 1879048205,
+            "flags": 0,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 8,
+            "entry_size": 1,
+            "size": 32,
+            "sha256": "c7049acb2880065e6ad12987c0c5233d9da064e5dd7570c340619cf0597bee80"
+          },
+          {
+            "name": ".reginfo",
+            "type": 1879048198,
+            "flags": 2,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 4,
+            "entry_size": 1,
+            "size": 24,
+            "sha256": "bab61de76ae3b5f5ce8a404f4d48c6c2b51132902ea8cc9b92400be27ef2682f"
+          },
+          {
+            "name": ".rel.text",
+            "type": 9,
+            "flags": 0,
+            "address": 0,
+            "link": 1,
+            "info": 4,
+            "alignment": 4,
+            "entry_size": 8,
+            "size": 96,
+            "sha256": "3367d791c1aa4f901eef62917d296e60aaf5cf197b6a4f383e843c79ee1c6eca"
+          },
+          {
+            "name": ".mdebug",
+            "type": 1879048197,
+            "flags": 0,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 4,
+            "entry_size": 1,
+            "scope": "nonallocated ECOFF debug metadata; fingerprinted separately"
+          }
+        ]
+      },
       "functions": {
         "car_stats_display": {
           "symbol_bytes": 308,
@@ -364,6 +772,133 @@
     },
     "context": {
       "object_sha256": "a5f9afd546fe41208e669ba603aa1d8c9d7ea99389ed274fd2f23a25fbd4dd0e",
+      "mdebug_sha256": "8f9474368783f670132ecd39e74f6e51fabc7d27d10955c7bceab4c3625a8d5f",
+      "portable_elf": {
+        "ident_sha256": "09c0a2e371bc7075dab213f9a61fa9eb0652b8ded2a072900494ba7d1bcd2e9d",
+        "header": [
+          1,
+          8,
+          1,
+          0,
+          0,
+          268435456,
+          52,
+          0,
+          0,
+          40,
+          9,
+          2
+        ],
+        "sections": [
+          {
+            "name": "",
+            "type": 0,
+            "flags": 0,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 0,
+            "entry_size": 0,
+            "size": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "name": ".symtab",
+            "type": 2,
+            "flags": 0,
+            "address": 0,
+            "link": 3,
+            "info": 2,
+            "alignment": 4,
+            "entry_size": 16,
+            "size": 240,
+            "sha256": "c54d7f39a71a19775005252d05eef0ee80f50047e5a764a28079211b346f8e08"
+          },
+          {
+            "name": ".shstrtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 1,
+            "size": 69,
+            "sha256": "45547fe059ef27449a80b9f8deaea1de311d3a12383be1a1eb28ee5175ad72f9"
+          },
+          {
+            "name": ".strtab",
+            "type": 3,
+            "flags": 0,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 1,
+            "entry_size": 1,
+            "size": 165,
+            "sha256": "a577d36912a05e6ecc474927f1502d0d6a100cceb4b8c311e05c9427e7cb99eb"
+          },
+          {
+            "name": ".text",
+            "type": 1,
+            "flags": 6,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 16,
+            "entry_size": 1,
+            "size": 1184,
+            "sha256": "74e4207993b3ab7dac935a87d77b0e5bd42f4ba62192889d6f5e737b953a8adf"
+          },
+          {
+            "name": ".options",
+            "type": 1879048205,
+            "flags": 0,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 8,
+            "entry_size": 1,
+            "size": 32,
+            "sha256": "c7049acb2880065e6ad12987c0c5233d9da064e5dd7570c340619cf0597bee80"
+          },
+          {
+            "name": ".reginfo",
+            "type": 1879048198,
+            "flags": 2,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 4,
+            "entry_size": 1,
+            "size": 24,
+            "sha256": "bab61de76ae3b5f5ce8a404f4d48c6c2b51132902ea8cc9b92400be27ef2682f"
+          },
+          {
+            "name": ".rel.text",
+            "type": 9,
+            "flags": 0,
+            "address": 0,
+            "link": 1,
+            "info": 4,
+            "alignment": 4,
+            "entry_size": 8,
+            "size": 168,
+            "sha256": "4ffecca2fccfcec182129b2dfea814c62797ba59cdb7f06cde1ea3dd0d13e33c"
+          },
+          {
+            "name": ".mdebug",
+            "type": 1879048197,
+            "flags": 0,
+            "address": 0,
+            "link": 0,
+            "info": 0,
+            "alignment": 4,
+            "entry_size": 1,
+            "scope": "nonallocated ECOFF debug metadata; fingerprinted separately"
+          }
+        ]
+      },
       "functions": {
         "car_stats_display": {
           "symbol_bytes": 308,

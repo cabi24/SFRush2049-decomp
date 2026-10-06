@@ -18,6 +18,73 @@ def run(args):
     assert p.returncode==0,(args,p.stdout,p.stderr)
     return p.stdout
 
+
+def portable_elf(data):
+    """Bind every section and ABI attribute except nonallocated ECOFF debug data.
+
+    Absolute source paths change .mdebug size and physical file offsets. Neither
+    executable/data bytes, relocations, symbols nor MIPS ABI metadata are masked.
+    """
+    assert data[:6]==b"\x7fELF\x01\x02"
+    header=struct.unpack_from('>HHIIIIIHHHHHH',data,16)
+    assert header[0]==1 and header[1]==8 and header[9]==0
+    shoff,shsize,shnum,names_index=header[5],header[10],header[11],header[12]
+    assert shsize==40 and shoff+shnum*shsize<=len(data)
+    sections=[struct.unpack_from('>10I',data,shoff+shsize*i) for i in range(shnum)]
+    names=sections[names_index];records=[]
+    for row in sections:
+        index,typ,flags,addr,offset,size,link,info,align,entry_size=row
+        assert typ==8 or offset+size<=len(data)
+        assert index<names[5]
+        start=names[4]+index
+        name=data[start:data.index(b'\0',start,names[4]+names[5])].decode()
+        record=dict(name=name,type=typ,flags=flags,address=addr,link=link,
+                    info=info,alignment=align,entry_size=entry_size)
+        if name=='.mdebug':
+            assert typ==0x70000005 and flags==0 and addr==0,'unexpected allocated/debug section'
+            record['scope']='nonallocated ECOFF debug metadata; fingerprinted separately'
+        else:
+            record['size']=size
+            record['sha256']=sha(data[offset:offset+size]) if typ!=8 else None
+        records.append(record)
+    return {'ident_sha256':sha(data[:16]),'header':list(header[:5])+list(header[6:]),'sections':records}
+
+def debug_payload(obj):
+    data,sections=score._elf(obj)
+    rows=[s for s in sections if s['name']=='.mdebug'];assert len(rows)==1
+    section=rows[0]
+    return data[section['off']:section['off']+section['size']]
+
+def portability_controls(objects,work):
+    """Reproduce the source-path cause before excluding full-object provenance."""
+    reports={}
+    for label in ['archived','corrected','corrected_header_o2']:
+        source=ROOT/'cloud/work/game_C41/car_stats_display.floats.c' if label=='archived' else SOURCE
+        flags=FLAGS.replace('-O3','-O2') if label=='corrected_header_o2' else FLAGS
+        reference=portable_elf(objects[label].read_bytes());controls=[]
+        for dirname in ['path_a','different_length_path_b']:
+            directory=work/(label+'_'+dirname);directory.mkdir()
+            moved=directory/source.name;moved.write_bytes(source.read_bytes())
+            obj=directory/'candidate.o';score.compile_single(moved,flags,obj)
+            assert portable_elf(obj.read_bytes())==reference,'source-path change affected semantic ELF'
+            debug=debug_payload(obj)
+            assert debug.count(str(moved).encode()+b'\0')==1
+            controls.append((sha(obj.read_bytes()),sha(debug)))
+        assert controls[0][0]!=controls[1][0] and controls[0][1]!=controls[1][1]
+        reports[label]={'identical_source_at_two_absolute_paths':True,
+                        'only_nonallocated_mdebug_payload_and_physical_offsets_vary':True,
+                        'each_mdebug_contains_exactly_one_source_path':True}
+    data,sections=score._elf(objects['corrected']);reference=portable_elf(data);mutations={}
+    for name in ['.text','.rel.text','.symtab','.reginfo','.options']:
+        section=next(s for s in sections if s['name']==name);assert section['size']
+        altered=bytearray(data);altered[section['off']]^=1
+        assert portable_elf(altered)!=reference,name
+        mutations[name]='rejected'
+    altered=bytearray(data);altered[39]^=1
+    assert portable_elf(altered)!=reference
+    mutations['ELF_ABI_flags']='rejected'
+    return {'source_path_controls':reports,'semantic_mutations':mutations}
+
 def functions(obj):
     data,secs=score._elf(obj);ti=score._text_index(secs)
     return {s['name']:s for i,sec in enumerate(secs) if sec['type']==2
@@ -76,7 +143,8 @@ def link_proof(obj,work):
                     'gnu_equals_project_relocation':True,'canonical':cmp}
         bodies[n]=words;covered.update(range(start,end))
     outside=bytes(raw[i] for i in range(len(raw)) if i not in covered);assert not any(outside)
-    return {'object_sha256':sha(data),'functions':reports,'excluded_zero_text_padding':len(outside),'owned_data_bytes':0},bodies
+    return {'object_sha256':sha(data),'mdebug_sha256':sha(debug_payload(obj)),
+            'portable_elf':portable_elf(data),'functions':reports,'excluded_zero_text_padding':len(outside),'owned_data_bytes':0},bodies
 
 def compile_proof(work):
     objects={};source=SOURCE.read_text()
@@ -98,7 +166,7 @@ def compile_proof(work):
     assert bodies['archived'][FN]==bodies['corrected'][FN]==bodies['context'][FN]
     assert all(reports['context']['functions'][n]['differing_words']==0 for n in CONTEXT)
     negative_object_checks(objects['corrected'],work)
-    return reports,bodies['corrected'][FN],hashes
+    return reports,bodies['corrected'][FN],hashes,portability_controls(objects,work)
 
 def negative_object_checks(obj,work):
     data,secs=score._elf(obj);ti=score._text_index(secs)
@@ -178,10 +246,10 @@ def behavior(words,work):
 
 def verify():
     with tempfile.TemporaryDirectory(prefix='constructor-proof-') as t:
-        work=Path(t);proof,words,hashes=compile_proof(work);runtime=behavior(words,work)
+        work=Path(t);proof,words,hashes,path_controls=compile_proof(work);runtime=behavior(words,work)
     addresses=score.image_symbols();target=addresses[FN];call=0x0c000000|((target>>2)&0x3ffffff)
     callers=[{'function':n,'call_site':hex(addresses[n]+4*i)} for n,w in score.targets().items() for i,v in enumerate(w) if v==call]
-    return {'schema':1,'status':'NONMATCH','accepted_byte_gain':0,'function':FN,'start':hex(target),
+    return {'schema':2,'status':'NONMATCH','accepted_byte_gain':0,'function':FN,'start':hex(target),
             'end':hex(target+308),'source_sha256':sha(SOURCE.read_bytes()),'flags':FLAGS,
             'archived_source_sha256':sha((ROOT/'cloud/work/game_C41/car_stats_display.floats.c').read_bytes()),
             'target_sha256':sha(struct.pack('>77I',*score.targets()[FN])),
@@ -190,12 +258,22 @@ def verify():
             'host_compiler_version':run(['cc','--version']).splitlines()[0],
             'base':'cd22879d40b3de443cfde047b86e75e159b6cec6',
             'protected_manifest_sha256':sha((score.ASM_DIR/'SHA256SUMS').read_bytes()),
-            'context_source_sha256':hashes,'object_adverse_controls':['shortened_ELF_extent','unsupported_relocation'],'compile':proof,'behavior':runtime,'direct_callers':callers}
+            'context_source_sha256':hashes,'portability_controls':path_controls,'object_adverse_controls':['shortened_ELF_extent','unsupported_relocation'],'compile':proof,'behavior':runtime,'direct_callers':callers}
+
+def portable(receipt):
+    """Keep run/tool provenance in the receipt; compare all portable proof fields."""
+    receipt=json.loads(json.dumps(receipt))
+    for field in ['gnu_linker_version','host_compiler_version']:receipt.pop(field,None)
+    for label,compiled in receipt['compile'].items():
+        # Group inputs are relative names and its full object remains stable.
+        if label!='context':
+            for field in ['object_sha256','mdebug_sha256']:compiled.pop(field,None)
+    return receipt
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--write',action='store_true');args=p.parse_args()
     result=verify();dest=HERE/'verification.json'
     if args.write:dest.write_text(json.dumps(result,indent=2)+'\n')
-    else:assert result==json.loads(dest.read_text()),'Frozen receipt differs'
+    else:assert portable(result)==portable(json.loads(dest.read_text())),'Frozen receipt differs'
     print('NONMATCH 24/77; complete GNU/context proof; %s bounded cases'%result['behavior']['cases'])
 if __name__=='__main__':main()

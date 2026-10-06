@@ -98,14 +98,36 @@ python3 -m pytest -q tests/conveyor/test_dot_constructor_prepend.py
 ```
 
 `--write` regenerates the frozen receipt; the default command compares a fresh
-proof against it. The receipt binds source, target, accepted context, compiler
-hashes, object hashes, full-body results, and runtime checks. Base and ownership
+proof against its portable evidence. IDO embeds the absolute source path in
+nonallocated ECOFF `.mdebug`, even with `-g0`. Controlled builds of each
+single-source variant at two differently sized paths show that only `.mdebug`
+payload/size and physical file offsets vary. Every other ELF section is equal.
+The original-path builds reproduce all three saved full-object hashes.
+
+The receipt keeps complete object/debug hashes and host/linker identities as
+run provenance. Portable replay excludes only the three single-object/debug
+hashes and the GNU linker/host compiler version strings. The relative-input
+group's full object/debug hashes remain equality requirements. All four objects
+also bind every non-debug section's bytes, size and attributes plus ELF identity
+and ABI metadata. In particular, code, relocation records, symbols, `.options`,
+`.reginfo`, data/BSS and target/source/context hashes remain checked. Physical
+file offsets and the verified nonallocated `.mdebug` payload/size are the only
+ELF fingerprint exclusions; allocated or executable debug sections are rejected.
+
+Actual IDO source-path controls and synthetic mutations reject changes to code,
+relocations, symbols, data, ABI and section attributes. Native/host behavioral
+checks, malformed-object controls and independent GNU relocation are unchanged.
+Tool identity remains visible, while portable replay requires the same verified
+native results. Base and ownership
 are recorded in `claim.json`. The target is unlocked on base `cd22879d`.
 Only additive source/research/test files are included. No ROM bytes, assembly
 dumps, binaries, protected-source edits, or matching submission are added.
 
 ## Local test scope
 
-Six focused packet tests and the selected cloud scorer, submission, protected-path,
-and integrity regressions pass: **738 tests total, no failures or skips**. This
-is a selected regression run, not the full repository suite or remote CI.
+The original packet's six focused tests and selected cloud scorer, submission,
+protected-path and integrity regressions passed: **738 tests, no failures or
+skips**. The portability follow-up passes **32 focused packet tests**. A broader
+local attempt passed **764 tests** but encountered 27 setup errors from a missing
+sparse-checkout hook file and exhausted scratch inodes. No broad all-green result,
+full repository suite or remote CI pass is claimed for this follow-up.
