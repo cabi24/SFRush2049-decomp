@@ -1,0 +1,43 @@
+{
+  "base_commit": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "reservation": {
+    "target": "audio_channel_setup",
+    "start": "0x80094888",
+    "end": "0x800949D4",
+    "context": "func_80090770",
+    "context_start": "0x80090770",
+    "context_end": "0x8009079C",
+    "open_prs_checked_through": 130
+  },
+  "donor": {
+    "repository": "historicalsource/rushtherock",
+    "commit": "845329d7b36f5a384c5625ed9a0aef584ab46139",
+    "path": "game/targets.c",
+    "function": "AnimateFlag",
+    "lines": [
+      1391,
+      1445
+    ],
+    "git_blob": "54bb56793a3a5fbfbcc2e3e60a61a30153a9943d",
+    "sha256": "9e169133299450b46fbdd96b9c26e786c192c189618bcd5ebdffba0c8fb4bd31",
+    "verification": "Pinned GitHub fetch returned this blob ID; local complete file independently has this Git blob ID and SHA-256.",
+    "url": "https://github.com/historicalsource/rushtherock/blob/845329d7b36f5a384c5625ed9a0aef584ab46139/game/targets.c#L1391-L1445"
+  },
+  "accepted_setter": {
+    "path": "src/blob/func_80090770.c",
+    "sha256": "74beff9a631d97d9f734372aea9fbc8a0a1378d897ff4222df3ed121058f74b7",
+    "copy": "group/setter.c",
+    "contract": "Signed-half index and unsigned-half value; 68-byte record stride, offset 20. Entire accepted source copied unchanged. No direct arcade implementation is claimed."
+  },
+  "archive": {
+    "path": "cloud/work/frontier/w7b/audio_channel_setup/best.c",
+    "copy": "controls/archive.c",
+    "meaning": "Complete previous caller with anonymous static setter; copied unchanged. The new caller changes only that helper boundary and removes its no-longer-used Resource68 declaration."
+  },
+  "source_limits": [
+    "The timer countdown and type-flag cleanup are N64 adaptations, not literal arcade donor source.",
+    "The donor supplies a genuine ZOID_SetObjectDef call boundary; native setter identification is from its exact signature and memory effects.",
+    "Original N64 source naming, original linkage/inline qualifier and original translation-unit layout are not recovered.",
+    "The volatile frame-clock view is inherited from the archive and corroborated by an independently hashed repeated-read witness. No asynchronous-write proof is claimed."
+  ]
+}

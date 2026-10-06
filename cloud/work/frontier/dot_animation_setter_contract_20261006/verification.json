@@ -1,0 +1,258 @@
+{
+  "accepted_byte_gain": 0,
+  "base_commit": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "behavior": {
+    "both_outcomes": true,
+    "callee_saves_and_stack_canaries": "passed",
+    "cases": 2400,
+    "complete_instruction_coverage": 83,
+    "conditional_branches": 7,
+    "full_nonstack_memory_and_callback_snapshots": "equal",
+    "host_c89_ubsan": "passed",
+    "malformed_native_controls": {
+      "truncated_body": true,
+      "unknown_opcode": true,
+      "wrong_callback": true,
+      "wrong_stack_save": true
+    },
+    "native_executions": 4800,
+    "semantic_mutants_rejected": {
+      "advance_twice": 533,
+      "omit_current_frame": 209,
+      "reverse_cleanup_priority": 204,
+      "wrong_interval": 678,
+      "wrong_mapping": 209
+    }
+  },
+  "claims": [],
+  "clock_witness": {
+    "clock_address": 2147675028,
+    "clock_read_offsets": [
+      76,
+      80,
+      100
+    ],
+    "function": "func_8010E694",
+    "intervening_calls_or_stores": 0,
+    "meaning": "Independent repeated observations support a volatile view, not proof of original qualifier or asynchronous writes.",
+    "target_sha256": "9ff59400a36f059e02bb821b703362b03556882a6289cb7ad433b12dd36bda2f"
+  },
+  "compile": {
+    "audio_channel_setup": {
+      "differing": 3,
+      "elf_function_bytes": 332,
+      "errors": [],
+      "extra_words": 0,
+      "function_unrelocated_sha256": "d36b59550eefefa1693e5944f4af1befbab8bcad2504d8ff5677461403d7c1e7",
+      "total": 83,
+      "unresolved": [],
+      "unverified": []
+    },
+    "func_80090770": {
+      "differing": 0,
+      "elf_function_bytes": 44,
+      "errors": [],
+      "extra_words": 0,
+      "function_unrelocated_sha256": "c616c005c72d1827b6f0e461643d0985b926e5a7cfec13971023f30b060b48af",
+      "total": 11,
+      "unresolved": [],
+      "unverified": []
+    }
+  },
+  "compiler_sha256": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+  "compiler_stage_sha256": {
+    "as0": "72670d53952459fe5ac463e8844182cf4df9f6ccf469826c82ca858fdd665564",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b"
+  },
+  "complete_gnu_proof": {
+    "audio_channel_setup": {
+      "complete_differing_offsets": [
+        252,
+        280,
+        284
+      ],
+      "consumed_symbols": {
+        "D_8002EB94": 2147675028,
+        "D_801170FC": 2148626684,
+        "D_80117530": 2148627760,
+        "D_8012E700": 2148722432,
+        "D_801427C0": 2148804544,
+        "entity_spawn_callback": 2148073608,
+        "entity_transform_apply": 2148075420
+      },
+      "elf_function_bytes": 332,
+      "full_target_bytes": 332,
+      "gnu_and_project_equal": true,
+      "gnu_readelf_size_verified": true,
+      "linked_sha256": "e2d891dd91f8b8ed001da699183198aab7268244ebd2d31f24c457636a61e01b",
+      "owned_data_bytes": 0,
+      "relocation_count": 12,
+      "target_sha256": "942648c64d346a7b94e84108e581d9372d5959c89c3150a41bd67e9056866431"
+    },
+    "func_80090770": {
+      "complete_differing_offsets": [],
+      "consumed_symbols": {
+        "D_8012E700": 2148722432
+      },
+      "elf_function_bytes": 44,
+      "full_target_bytes": 44,
+      "gnu_and_project_equal": true,
+      "gnu_readelf_size_verified": true,
+      "linked_sha256": "63c22792e9508d3ecf6bf1a7ca33f1e474feb47957aae72f5bc45941c4c62fa7",
+      "owned_data_bytes": 0,
+      "relocation_count": 2,
+      "target_sha256": "63c22792e9508d3ecf6bf1a7ca33f1e474feb47957aae72f5bc45941c4c62fa7"
+    }
+  },
+  "controls": {
+    "archive": {
+      "differing": 3,
+      "elf_function_bytes": 332,
+      "errors": [],
+      "extra_words": 0,
+      "function_unrelocated_sha256": "d36b59550eefefa1693e5944f4af1befbab8bcad2504d8ff5677461403d7c1e7",
+      "total": 83,
+      "unresolved": [],
+      "unverified": []
+    },
+    "ordinary_clock": {
+      "differing": 69,
+      "elf_function_bytes": 328,
+      "errors": [],
+      "extra_words": 0,
+      "function_unrelocated_sha256": "8f228251d773022c7468b3badf72d677b7b544d14f75310b0f7c18e64a392ed9",
+      "total": 83,
+      "unresolved": [],
+      "unverified": []
+    }
+  },
+  "entry_addresses": {
+    "audio_channel_setup": 2148092040,
+    "func_80090770": 2148075376,
+    "func_8010E694": 2148591252
+  },
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "gnu_ld_sha256": "4c398a15e38dbb71a8420628aa1da5c80a089818440666f4ca7eb40d2fc37878",
+  "input_sha256": {
+    "cloud/work/frontier/dot_animation_setter_contract_20261006/controls/archive.c": "98f18a4e9587db19ac2fdf397875032597365bf7f22bb2ddb4aa71ad92da2def",
+    "cloud/work/frontier/dot_animation_setter_contract_20261006/group/caller.c": "58a2d792ae80ac52d78618c7c61f47a60a6226dee8b149673acd90f1cd5225ba",
+    "cloud/work/frontier/dot_animation_setter_contract_20261006/group/group.json": "3415ccb85615cb4dc4490c65594b56d91acfd3e7b4dd6bb4182c9315d4cf7262",
+    "cloud/work/frontier/dot_animation_setter_contract_20261006/group/setter.c": "74beff9a631d97d9f734372aea9fbc8a0a1378d897ff4222df3ed121058f74b7",
+    "cloud/work/frontier/dot_animation_setter_contract_20261006/host.c": "d4e4cd8bf5ca1171487ba7a3a81ba7d6a389338c72c86390b33d4f65c1c9ea5f",
+    "cloud/work/frontier/dot_animation_setter_contract_20261006/native.py": "ebfc763db5c0caf8517296bd8288b2bcdf5abe5a598d05f8c7fc9d0486ccae27",
+    "cloud/work/frontier/dot_animation_setter_contract_20261006/provenance.json": "d4d72a362842d805672535f116211b7f51834c9f47b8abbfd4ead75594b14037",
+    "cloud/work/frontier/dot_animation_setter_contract_20261006/verify.py": "4c1cd10620c80813429c31a80933016e5c1e15f8e23350bf2d41aaee49b0ca78"
+  },
+  "interval": [
+    "0x80094888",
+    "0x800949D4"
+  ],
+  "limits": [
+    "External callback contract hooks only; actual callback internals are not executed.",
+    "Finite binary32 samples; no FCSR, NaN, concurrency or gameplay claim.",
+    "Per-body GNU linking does not establish original contiguous translation-unit placement.",
+    "No shadow, image, compression, ROM, production admission or hosted CI gate."
+  ],
+  "o32_layout_assertions": 14,
+  "ordinary_clock_complete_gnu": {
+    "complete_differing_offsets": [
+      40,
+      56,
+      60,
+      64,
+      68,
+      72,
+      76,
+      80,
+      84,
+      88,
+      92,
+      96,
+      100,
+      104,
+      108,
+      112,
+      116,
+      120,
+      124,
+      128,
+      132,
+      136,
+      140,
+      144,
+      148,
+      152,
+      156,
+      160,
+      164,
+      168,
+      172,
+      176,
+      180,
+      184,
+      188,
+      192,
+      196,
+      200,
+      204,
+      208,
+      212,
+      216,
+      220,
+      224,
+      228,
+      232,
+      236,
+      240,
+      244,
+      248,
+      252,
+      256,
+      260,
+      264,
+      268,
+      272,
+      276,
+      280,
+      284,
+      288,
+      292,
+      296,
+      300,
+      304,
+      308,
+      312,
+      316,
+      320,
+      324,
+      328
+    ],
+    "consumed_symbols": {
+      "D_8002EB94": 2147675028,
+      "D_801170FC": 2148626684,
+      "D_80117530": 2148627760,
+      "D_8012E700": 2148722432,
+      "D_801427C0": 2148804544,
+      "entity_spawn_callback": 2148073608,
+      "entity_transform_apply": 2148075420
+    },
+    "elf_function_bytes": 328,
+    "full_target_bytes": 332,
+    "gnu_and_project_equal": true,
+    "gnu_readelf_size_verified": true,
+    "linked_sha256": "1d6ff71c0a3f4310d90f05e432be0a27b4364ccd7b402db87d74636b2c064658",
+    "owned_data_bytes": 0,
+    "relocation_count": 12,
+    "target_sha256": "942648c64d346a7b94e84108e581d9372d5959c89c3150a41bd67e9056866431"
+  },
+  "status": "NONMATCH",
+  "target": "audio_channel_setup",
+  "target_manifest_provenance": "dade78464a022fedd2c5ba651ee1bca5ffd4ec99bfa4d2413d27256540bed02c"
+}

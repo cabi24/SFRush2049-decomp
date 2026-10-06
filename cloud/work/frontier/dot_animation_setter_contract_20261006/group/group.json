@@ -1,0 +1,18 @@
+{
+  "members": [
+    "audio_channel_setup"
+  ],
+  "context": [
+    "func_80090770"
+  ],
+  "files": [
+    "caller.c",
+    "setter.c"
+  ],
+  "keep": [
+    "audio_channel_setup",
+    "func_80090770"
+  ],
+  "claims": [],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}
