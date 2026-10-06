@@ -1,0 +1,1265 @@
+{
+  "format": 1,
+  "historical_base": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "scope": "Registered game-body direct JAL census only. Call-label adjacency and simple return captures are syntactic; queue identity, CFG liveness, indirect/overlay calls and matching readiness are not proved.",
+  "source_sha256": {
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+    "cloud/work/s20261004/D/notes.md": "0c8ba564114679cf72e753b2ebb90e92ca855e95c6e2a8fb07ae7d3eba56fe5a",
+    "cloud/work/s20261004/E/notes.md": "6c926ca5a0db9d557a4268aacc34309de2fb89d231ede33472ae9a18d21df664",
+    "cloud/work/s20261004/E/src/helper.h": "820d5df968a0dab590e9745b473878978c8abb7a0aabb5f9fabaa5a206a626dc",
+    "cloud/work/game_C104/REPORT.md": "9061fbc008f205a0130d6c365211beee6b9f0b5deae7d59776cb01fba5c2fb87",
+    "cloud/work/dot_menu_options_root_20261005/slot_state_setup.c": "b28c4a340302f416ff7b0d3ac4c3839ba764a8f0d5fe397c193963248395c362",
+    "src/blob/groups/credits_scroll_grp/group.json": "e818744d9a4a45a321095ab3620f1278b3d4b25337ff5408736a9e7fa42cc63a",
+    "src/blob/groups/credits_scroll_grp/gr3_c.c": "e7b9028f96cb5c8c1df07c1281c298cf88ec06f34a21bd82c4bd684f1d653737",
+    "src/blob/groups/slot_sound/group.c": "5ab15c1c3fc65c78e1d416dbb6c6067f638345906caacf202ec18e6c3a8dcbf4"
+  },
+  "helpers": {
+    "slot_state_setup": {
+      "start": "0x800B4200",
+      "bytes": 232,
+      "body_sha256": "55d29fb1f5b5789d8b2467a1287a0d16e872cfb6d0c6aa3653bf7b69cc2f0144"
+    },
+    "object_create": {
+      "start": "0x800B42F0",
+      "bytes": 112,
+      "body_sha256": "faee709c3df1e073e647c2851a4c4ce19db047599daaa796882845fa345f6858"
+    },
+    "sound_update_channel": {
+      "start": "0x800B3D18",
+      "bytes": 488,
+      "body_sha256": "843f08a4e541babf1af03e56b8e6b066d220408edf658e142f404844369e515c"
+    },
+    "func_80096288": {
+      "start": "0x80096288",
+      "bytes": 16,
+      "body_sha256": "64e6fe82a9a8105fd73c45eff39203a632b71731116ae93b43be76782c6c8422"
+    },
+    "object_byte9_set": {
+      "start": "0x800B41C0",
+      "bytes": 64,
+      "body_sha256": "cd19e3089685917a05f400f998bf57a4bd6e370863561775900968e6879f93f6"
+    }
+  },
+  "summary": {
+    "callers": 65,
+    "sites": 170,
+    "adjacent_call_label_pairs": 167,
+    "captures": {
+      "s0": 123,
+      "s1": 7,
+      "s4": 7,
+      "s5": 2,
+      "s7": 1,
+      "stack_word": 21
+    },
+    "accepted_callers": [
+      "credits_scroll"
+    ],
+    "unaccepted_caller_bytes": 74428,
+    "only_selector_unaccepted_direct_game_dependency": {
+      "object_create": 112,
+      "func_800D9058": 328,
+      "world_trigger_check": 216,
+      "dust_cloud_effect": 600,
+      "skid_mark_render": 1396,
+      "checkpoint_hit": 580,
+      "func_80107EDC": 632,
+      "func_80109F54": 1504
+    },
+    "bounded_dependency_bytes": 5368
+  },
+  "no_copy_sites": [
+    {
+      "function": "particle_render",
+      "address": "0x800B8670"
+    },
+    {
+      "function": "func_800D9058",
+      "address": "0x800D9098"
+    },
+    {
+      "function": "game_results_render",
+      "address": "0x800FF434"
+    },
+    {
+      "function": "func_80106B3C",
+      "address": "0x80106C48"
+    },
+    {
+      "function": "func_8010EA08",
+      "address": "0x8010EB00"
+    },
+    {
+      "function": "func_8010F218",
+      "address": "0x8010F954"
+    }
+  ],
+  "outside_adjacent_wrapper_sequence": [
+    {
+      "function": "world_velocity_integrate",
+      "address": "0x800ED8A8"
+    },
+    {
+      "function": "world_velocity_integrate",
+      "address": "0x800ED918"
+    },
+    {
+      "function": "world_trigger_check",
+      "address": "0x800EDD54"
+    }
+  ],
+  "wrapper_callers": {
+    "playgame_state_change": [
+      "0x800CAB8C",
+      "0x800CAB94",
+      "0x800CAB9C",
+      "0x800CABA4",
+      "0x800CABAC",
+      "0x800CABB4",
+      "0x800CABBC",
+      "0x800CABC4",
+      "0x800CABCC",
+      "0x800CABD4"
+    ]
+  },
+  "callers": {
+    "object_create": {
+      "start": "0x800B42F0",
+      "bytes": 112,
+      "body_sha256": "faee709c3df1e073e647c2851a4c4ce19db047599daaa796882845fa345f6858",
+      "accepted": false,
+      "sites": [
+        "0x800B4320"
+      ],
+      "captures": {
+        "stack_word": 1
+      },
+      "other_unaccepted_direct_game_calls": []
+    },
+    "voice_stop": {
+      "start": "0x800B438C",
+      "bytes": 552,
+      "body_sha256": "36d01d43f0e04c7f9772101adac59dc18eb372e5302a5ccd7238062887e36b65",
+      "accepted": false,
+      "sites": [
+        "0x800B43AC"
+      ],
+      "captures": {
+        "s0": 1
+      },
+      "other_unaccepted_direct_game_calls": [
+        "object_bytes_sum_global"
+      ]
+    },
+    "func_800B4FB0": {
+      "start": "0x800B4FB0",
+      "bytes": 1472,
+      "body_sha256": "823415c6364620b5724c15b28de0736e89b1304d957b818b7301a634015403c2",
+      "accepted": false,
+      "sites": [
+        "0x800B505C",
+        "0x800B50AC",
+        "0x800B51D0",
+        "0x800B529C",
+        "0x800B542C",
+        "0x800B547C"
+      ],
+      "captures": {
+        "s1": 6
+      },
+      "other_unaccepted_direct_game_calls": [
+        "object_bytes_sum_global",
+        "voice_stop"
+      ]
+    },
+    "sound_loop_set": {
+      "start": "0x800B574C",
+      "bytes": 332,
+      "body_sha256": "5fb14ce0def5ae36a1a3c8b448abedd7c4d08abf8b6e3ef40059141f20cf8fb8",
+      "accepted": false,
+      "sites": [
+        "0x800B576C"
+      ],
+      "captures": {
+        "s0": 1
+      },
+      "other_unaccepted_direct_game_calls": [
+        "object_bytes_sum_global"
+      ]
+    },
+    "particles_update": {
+      "start": "0x800B7A40",
+      "bytes": 1464,
+      "body_sha256": "bade19bc1c71133a72d6c59782e9e6a1f3183f10f6abdd09f0c8f6cf4b1db4d3",
+      "accepted": false,
+      "sites": [
+        "0x800B7ABC",
+        "0x800B7AF0"
+      ],
+      "captures": {
+        "s0": 2
+      },
+      "other_unaccepted_direct_game_calls": [
+        "car_lights_render",
+        "state_utility"
+      ]
+    },
+    "particle_render": {
+      "start": "0x800B8650",
+      "bytes": 448,
+      "body_sha256": "822aa6eff79af97fc1c2814adfb5256e3ce25f421a7bf0d98cae71061833dfcc",
+      "accepted": false,
+      "sites": [
+        "0x800B8670"
+      ],
+      "captures": {},
+      "other_unaccepted_direct_game_calls": [
+        "object_bytes_sum_global"
+      ]
+    },
+    "playgame_state_change": {
+      "start": "0x800CA3B4",
+      "bytes": 2544,
+      "body_sha256": "b36a6e6d7ff8a517f1091d31090f2018fa037e40dab8407b278bdea90a284084",
+      "accepted": false,
+      "sites": [
+        "0x800CABF0",
+        "0x800CAC24",
+        "0x800CAC58"
+      ],
+      "captures": {
+        "stack_word": 3
+      },
+      "other_unaccepted_direct_game_calls": [
+        "audio_frame_sync",
+        "display_enable",
+        "func_800A3424",
+        "func_800A7480",
+        "func_800C813C",
+        "func_800C885C",
+        "game_mode_handler",
+        "hud_setup",
+        "object_create",
+        "speed_set",
+        "tire_compound_set"
+      ]
+    },
+    "credits_scroll": {
+      "start": "0x800D67C0",
+      "bytes": 332,
+      "body_sha256": "b1970bd6437f85ef54876885ad6c57902f113eaf1a3f9d9f17eef0692eb6dfc7",
+      "accepted": true,
+      "sites": [
+        "0x800D67E0"
+      ],
+      "captures": {
+        "s0": 1
+      },
+      "other_unaccepted_direct_game_calls": [
+        "object_bytes_sum_global"
+      ]
+    },
+    "drone_collision_avoid": {
+      "start": "0x800D6E7C",
+      "bytes": 852,
+      "body_sha256": "f4a38f66950b265e5721144d191e9bf0f3dacc7c2e63309ffea404e14e1f759b",
+      "accepted": false,
+      "sites": [
+        "0x800D6E9C"
+      ],
+      "captures": {
+        "s0": 1
+      },
+      "other_unaccepted_direct_game_calls": [
+        "object_bytes_sum_global"
+      ]
+    },
+    "func_800D9058": {
+      "start": "0x800D9058",
+      "bytes": 328,
+      "body_sha256": "cd018c2d74519f00ebff5cb7d9211917174aa83ee1029c875c26c4821c7cd497",
+      "accepted": false,
+      "sites": [
+        "0x800D9098"
+      ],
+      "captures": {},
+      "other_unaccepted_direct_game_calls": []
+    },
+    "time_result_display": {
+      "start": "0x800DA174",
+      "bytes": 332,
+      "body_sha256": "ce780a42c980e71922add627f4cecbcd2bc700dbe3cafd5aa82e4b747935d2d9",
+      "accepted": false,
+      "sites": [
+        "0x800DA194"
+      ],
+      "captures": {
+        "s0": 1
+      },
+      "other_unaccepted_direct_game_calls": [
+        "object_bytes_sum_global"
+      ]
+    },
+    "replay_save_prompt": {
+      "start": "0x800DABDC",
+      "bytes": 1540,
+      "body_sha256": "faaa38a0bc0196b816e4801ff24500c29384994c0c4608e3e46637f87e87a065",
+      "accepted": false,
+      "sites": [
+        "0x800DAC08",
+        "0x800DAC48",
+        "0x800DB0F8",
+        "0x800DB144"
+      ],
+      "captures": {
+        "s0": 4
+      },
+      "other_unaccepted_direct_game_calls": [
+        "object_bytes_sum_global",
+        "particle_lifetime_set",
+        "time_result_display"
+      ]
+    },
+    "attract_mode_handler": {
+      "start": "0x800DC88C",
+      "bytes": 264,
+      "body_sha256": "4cf7e4dca62d3e45cff6f5ac33310c8009e7afc3976c3c5429611607af1d51f9",
+      "accepted": false,
+      "sites": [
+        "0x800DC8AC"
+      ],
+      "captures": {
+        "s0": 1
+      },
+      "other_unaccepted_direct_game_calls": [
+        "camera_auto_follow"
+      ]
+    },
+    "attract_demo_handler": {
+      "start": "0x800DC99C",
+      "bytes": 820,
+      "body_sha256": "27d3a8ed3371fc0abce83e343ced4995b40b9b43758bf72797fe2f40df3d0493",
+      "accepted": false,
+      "sites": [
+        "0x800DC9CC",
+        "0x800DCB00",
+        "0x800DCB98",
+        "0x800DCC30"
+      ],
+      "captures": {
+        "s0": 4
+      },
+      "other_unaccepted_direct_game_calls": [
+        "camera_auto_follow",
+        "object_bytes_sum_global",
+        "state_utility"
+      ]
+    },
+    "attract_video_handler": {
+      "start": "0x800DCDF4",
+      "bytes": 692,
+      "body_sha256": "29c9a74c6d39a53dea6170e17d3e588a1f302176a7ad904ff80dfbdfb63a4b6b",
+      "accepted": false,
+      "sites": [
+        "0x800DCE1C",
+        "0x800DCF5C",
+        "0x800DD004"
+      ],
+      "captures": {
+        "s0": 3
+      },
+      "other_unaccepted_direct_game_calls": [
+        "camera_auto_follow",
+        "object_bytes_sum_global",
+        "state_utility"
+      ]
+    },
+    "func_800DD0C0": {
+      "start": "0x800DD0C0",
+      "bytes": 908,
+      "body_sha256": "bb6dbb9f29beb77bcbd081f97a12640d638d1c435ccf14baa251f8fe6be1dd01",
+      "accepted": false,
+      "sites": [
+        "0x800DD0FC",
+        "0x800DD2C0",
+        "0x800DD374",
+        "0x800DD420"
+      ],
+      "captures": {
+        "s0": 4
+      },
+      "other_unaccepted_direct_game_calls": [
+        "camera_auto_follow",
+        "object_bytes_sum_global",
+        "state_utility"
+      ]
+    },
+    "control_settings": {
+      "start": "0x800DD4AC",
+      "bytes": 2552,
+      "body_sha256": "4d3aa255622988f9aca73eb9930959b55cc3660dfcab2437f92e642d8dfa2363",
+      "accepted": false,
+      "sites": [
+        "0x800DD5B4",
+        "0x800DD600",
+        "0x800DD6EC",
+        "0x800DD800"
+      ],
+      "captures": {
+        "s0": 4
+      },
+      "other_unaccepted_direct_game_calls": [
+        "attract_demo_handler",
+        "attract_mode_handler",
+        "attract_video_handler",
+        "camera_auto_follow",
+        "func_800DD0C0",
+        "state_utility"
+      ]
+    },
+    "world_velocity_integrate": {
+      "start": "0x800ED804",
+      "bytes": 712,
+      "body_sha256": "6106dde1822a60576d5e86b119b0b4022513b68cebe2ce5e5e789ca6eafb4f4b",
+      "accepted": false,
+      "sites": [
+        "0x800ED8A8",
+        "0x800ED918"
+      ],
+      "captures": {},
+      "other_unaccepted_direct_game_calls": [
+        "audio_doppler_calc"
+      ]
+    },
+    "world_trigger_check": {
+      "start": "0x800EDCE8",
+      "bytes": 216,
+      "body_sha256": "c61e640dd5a9e43b9f4946fc6d76a154f4c1609d4ae1d3c302b601f2d5282612",
+      "accepted": false,
+      "sites": [
+        "0x800EDD54"
+      ],
+      "captures": {},
+      "other_unaccepted_direct_game_calls": []
+    },
+    "emitter_update": {
+      "start": "0x800EEDB0",
+      "bytes": 1240,
+      "body_sha256": "ccb2dec14bcbeedf8857f8edcd962891ca1f410a6887a28148bd7960af111e40",
+      "accepted": false,
+      "sites": [
+        "0x800EF08C",
+        "0x800EF0D0",
+        "0x800EF108"
+      ],
+      "captures": {
+        "s0": 3
+      },
+      "other_unaccepted_direct_game_calls": [
+        "state_utility"
+      ]
+    },
+    "func_800EF288": {
+      "start": "0x800EF288",
+      "bytes": 808,
+      "body_sha256": "4558842b6be059f68809f832cfb1b92732a67bc283fa75d6af692a4a5257c31a",
+      "accepted": false,
+      "sites": [
+        "0x800EF2E8",
+        "0x800EF330",
+        "0x800EF368"
+      ],
+      "captures": {
+        "s0": 3
+      },
+      "other_unaccepted_direct_game_calls": [
+        "state_utility"
+      ]
+    },
+    "explosion_effect": {
+      "start": "0x800EF8F4",
+      "bytes": 1460,
+      "body_sha256": "db663db29d8b18aa91ba9ea5b9226870bd9ffb998b84848703cbd444e2109bbb",
+      "accepted": false,
+      "sites": [
+        "0x800EF988",
+        "0x800EF9B8",
+        "0x800EFBC8",
+        "0x800EFBFC",
+        "0x800EFD2C"
+      ],
+      "captures": {
+        "s0": 5
+      },
+      "other_unaccepted_direct_game_calls": [
+        "state_utility"
+      ]
+    },
+    "dust_cloud_effect": {
+      "start": "0x800EFEA8",
+      "bytes": 600,
+      "body_sha256": "f7175848a7f49c139b0cc9d5a1136ce4043882ba1c21276e4b5a3e9cbb7e1012",
+      "accepted": false,
+      "sites": [
+        "0x800EFFF4",
+        "0x800F0028"
+      ],
+      "captures": {
+        "stack_word": 2
+      },
+      "other_unaccepted_direct_game_calls": []
+    },
+    "skid_mark_render": {
+      "start": "0x800F0100",
+      "bytes": 1396,
+      "body_sha256": "21a6a43dd40e7319680d611f31439c44612bee87855aae4427128e75c1da5382",
+      "accepted": false,
+      "sites": [
+        "0x800F0458"
+      ],
+      "captures": {
+        "s0": 1
+      },
+      "other_unaccepted_direct_game_calls": []
+    },
+    "func_800F0914": {
+      "start": "0x800F0914",
+      "bytes": 1584,
+      "body_sha256": "5716ba84db2bda2f059034e9d8303711bbe1a9ddb422ddaf26afff2c0e64ca69",
+      "accepted": false,
+      "sites": [
+        "0x800F0EA8"
+      ],
+      "captures": {
+        "s0": 1
+      },
+      "other_unaccepted_direct_game_calls": [
+        "object_bytes_sum_global"
+      ]
+    },
+    "func_800F1210": {
+      "start": "0x800F1210",
+      "bytes": 1816,
+      "body_sha256": "c6fb36a11b9e441906119b861abba4d588886b9cf6ab013cd77b428e0af3859c",
+      "accepted": false,
+      "sites": [
+        "0x800F15DC",
+        "0x800F1670",
+        "0x800F16E4",
+        "0x800F17E4"
+      ],
+      "captures": {
+        "s0": 4
+      },
+      "other_unaccepted_direct_game_calls": [
+        "func_800F0914",
+        "func_800F0F44",
+        "object_bytes_sum_global",
+        "sound_stop"
+      ]
+    },
+    "func_800F857C": {
+      "start": "0x800F857C",
+      "bytes": 464,
+      "body_sha256": "8c4e29430e1c577c4e7eae95803cf05bf81259bda910b4f02f74735755bfd38b",
+      "accepted": false,
+      "sites": [
+        "0x800F85CC",
+        "0x800F866C"
+      ],
+      "captures": {
+        "s0": 2
+      },
+      "other_unaccepted_direct_game_calls": [
+        "object_bytes_sum_global"
+      ]
+    },
+    "countdown_handler": {
+      "start": "0x800FBC30",
+      "bytes": 496,
+      "body_sha256": "903a33743d334b2c4c3721feca3a326c86cf397f7685c4f65194459a8fcd1005",
+      "accepted": false,
+      "sites": [
+        "0x800FBD38"
+      ],
+      "captures": {
+        "s0": 1
+      },
+      "other_unaccepted_direct_game_calls": [
+        "state_utility"
+      ]
+    },
+    "game_timer_display": {
+      "start": "0x800FECA4",
+      "bytes": 352,
+      "body_sha256": "1a33de85b63e5ed77cd6f07e8c61af3c36fbc978420147715dc54c4c61d21d99",
+      "accepted": false,
+      "sites": [
+        "0x800FECFC",
+        "0x800FED6C"
+      ],
+      "captures": {
+        "stack_word": 2
+      },
+      "other_unaccepted_direct_game_calls": [
+        "object_bytes_sum_global"
+      ]
+    },
+    "game_results_update": {
+      "start": "0x800FEE04",
+      "bytes": 1172,
+      "body_sha256": "47db3878607e637a6fd562be228622ef93925ee055c26698cfa4473d80856ce8",
+      "accepted": false,
+      "sites": [
+        "0x800FEE44",
+        "0x800FEEE8"
+      ],
+      "captures": {
+        "s0": 2
+      },
+      "other_unaccepted_direct_game_calls": [
+        "brake_light_update",
+        "state_utility"
+      ]
+    },
+    "game_results_render": {
+      "start": "0x800FF298",
+      "bytes": 1164,
+      "body_sha256": "96d4e33c9339f376d6dd006b4f1a2bb46f3f4133c86f58188d9ca39b60ab4fad",
+      "accepted": false,
+      "sites": [
+        "0x800FF324",
+        "0x800FF434"
+      ],
+      "captures": {
+        "s0": 1
+      },
+      "other_unaccepted_direct_game_calls": [
+        "game_results_update",
+        "object_bytes_sum_global",
+        "state_utility"
+      ]
+    },
+    "game_results_exit": {
+      "start": "0x800FFDE8",
+      "bytes": 1916,
+      "body_sha256": "cf431b860003f6c5d8401b823ece11a12597053cf50b9e991e96377d39a92ce7",
+      "accepted": false,
+      "sites": [
+        "0x800FFE34",
+        "0x800FFF40",
+        "0x800FFF70",
+        "0x80100050",
+        "0x8010007C",
+        "0x80100150",
+        "0x8010017C"
+      ],
+      "captures": {
+        "s0": 7
+      },
+      "other_unaccepted_direct_game_calls": [
+        "brake_light_update",
+        "camera_auto_follow",
+        "race_position_update",
+        "state_utility"
+      ]
+    },
+    "func_80100564": {
+      "start": "0x80100564",
+      "bytes": 1576,
+      "body_sha256": "64a8aed5a727c7a07f01a1a5864e51038f60e537b0c51e8a74e701982097a770",
+      "accepted": false,
+      "sites": [
+        "0x80100654"
+      ],
+      "captures": {
+        "s0": 1
+      },
+      "other_unaccepted_direct_game_calls": [
+        "camera_auto_follow",
+        "game_results_exit",
+        "object_bytes_sum_global",
+        "race_position_update",
+        "state_utility"
+      ]
+    },
+    "func_80100B8C": {
+      "start": "0x80100B8C",
+      "bytes": 408,
+      "body_sha256": "bd6b058889ac10411ae9df278c0009f4e41a72e47ec3f1e7974852ae3a4296bc",
+      "accepted": false,
+      "sites": [
+        "0x80100BF0",
+        "0x80100C84"
+      ],
+      "captures": {
+        "stack_word": 2
+      },
+      "other_unaccepted_direct_game_calls": [
+        "camera_auto_follow"
+      ]
+    },
+    "func_80100E58": {
+      "start": "0x80100E58",
+      "bytes": 2732,
+      "body_sha256": "1ef074ec1c53efab55d79fa190eb7deefe4aaf359de22c211d5c1580f9e0b5d3",
+      "accepted": false,
+      "sites": [
+        "0x80101054",
+        "0x80101128",
+        "0x80101208",
+        "0x801012E0",
+        "0x801014D4",
+        "0x80101560",
+        "0x80101754",
+        "0x801017B4"
+      ],
+      "captures": {
+        "s0": 8
+      },
+      "other_unaccepted_direct_game_calls": [
+        "func_80100D5C",
+        "race_position_update",
+        "state_utility"
+      ]
+    },
+    "func_80101904": {
+      "start": "0x80101904",
+      "bytes": 1152,
+      "body_sha256": "becc39979d69f112de618aa6242da40511858e42634d6eda0b7be40c598a5ef2",
+      "accepted": false,
+      "sites": [
+        "0x80101A64",
+        "0x80101AFC"
+      ],
+      "captures": {
+        "s0": 2
+      },
+      "other_unaccepted_direct_game_calls": [
+        "func_80100D5C",
+        "race_position_update",
+        "state_utility"
+      ]
+    },
+    "func_80101D84": {
+      "start": "0x80101D84",
+      "bytes": 1176,
+      "body_sha256": "5a91e6103070e55276fa97806896e15267c329a702eb0106b9b222b31c6a7ea7",
+      "accepted": false,
+      "sites": [
+        "0x80101EDC",
+        "0x80101F70",
+        "0x80102050",
+        "0x801021A4"
+      ],
+      "captures": {
+        "s0": 4
+      },
+      "other_unaccepted_direct_game_calls": [
+        "func_80100D5C",
+        "race_position_update",
+        "state_utility"
+      ]
+    },
+    "func_8010221C": {
+      "start": "0x8010221C",
+      "bytes": 548,
+      "body_sha256": "ffd161f096a16260bd5fc933845091633ae6490aab9166a2be47655ee5b058c4",
+      "accepted": false,
+      "sites": [
+        "0x80102260",
+        "0x801022D8"
+      ],
+      "captures": {
+        "s0": 2
+      },
+      "other_unaccepted_direct_game_calls": [
+        "func_80100E58",
+        "func_80101904",
+        "func_80101D84",
+        "object_bytes_sum_global",
+        "state_utility"
+      ]
+    },
+    "func_80102448": {
+      "start": "0x80102448",
+      "bytes": 1336,
+      "body_sha256": "3b5283404d850b1c3648673ce2e7acb800e14ccf6bf8c5e9364c2b01844ce3cb",
+      "accepted": false,
+      "sites": [
+        "0x80102618",
+        "0x80102748",
+        "0x80102910"
+      ],
+      "captures": {
+        "s0": 3
+      },
+      "other_unaccepted_direct_game_calls": [
+        "func_80100D5C",
+        "race_position_update",
+        "state_utility"
+      ]
+    },
+    "func_80102980": {
+      "start": "0x80102980",
+      "bytes": 1456,
+      "body_sha256": "3a39ddabf997cb61c9e8e4d89617e76991963337e4a62f004aa01690b8099d99",
+      "accepted": false,
+      "sites": [
+        "0x80102BC8"
+      ],
+      "captures": {
+        "s0": 1
+      },
+      "other_unaccepted_direct_game_calls": [
+        "func_80100D5C",
+        "race_position_update",
+        "state_utility"
+      ]
+    },
+    "func_80102F30": {
+      "start": "0x80102F30",
+      "bytes": 3560,
+      "body_sha256": "3277195138a39afef44bb022e00422269403b1976613b6c165f7fc822c76001d",
+      "accepted": false,
+      "sites": [
+        "0x801031D0",
+        "0x801032DC",
+        "0x8010337C",
+        "0x801034A0",
+        "0x801036AC",
+        "0x80103744",
+        "0x80103950",
+        "0x801039EC",
+        "0x80103BF8"
+      ],
+      "captures": {
+        "s0": 1,
+        "s4": 7,
+        "s5": 1
+      },
+      "other_unaccepted_direct_game_calls": [
+        "func_80100D5C",
+        "func_8010221C",
+        "func_80102448",
+        "func_80102980",
+        "race_position_update",
+        "state_utility"
+      ]
+    },
+    "func_80103D28": {
+      "start": "0x80103D28",
+      "bytes": 2516,
+      "body_sha256": "2f1df67e368d3d85cf7244a10421cdbdac1ae9633568b30e5fa32368af54cad2",
+      "accepted": false,
+      "sites": [
+        "0x80103D48"
+      ],
+      "captures": {
+        "s0": 1
+      },
+      "other_unaccepted_direct_game_calls": [
+        "object_bytes_sum_global",
+        "state_utility"
+      ]
+    },
+    "func_80104B14": {
+      "start": "0x80104B14",
+      "bytes": 2404,
+      "body_sha256": "31fd308b3137e7391dba4c91dc6eb4a29179bd991b9cbced0fa6bca6f2beb354",
+      "accepted": false,
+      "sites": [
+        "0x80104B30",
+        "0x80104BAC",
+        "0x80104C18",
+        "0x80104CB0",
+        "0x80104DA0",
+        "0x80104E6C",
+        "0x8010500C",
+        "0x801050C4",
+        "0x8010532C",
+        "0x8010539C"
+      ],
+      "captures": {
+        "s0": 10
+      },
+      "other_unaccepted_direct_game_calls": [
+        "camera_auto_follow",
+        "object_bytes_sum_global",
+        "state_utility"
+      ]
+    },
+    "func_80105480": {
+      "start": "0x80105480",
+      "bytes": 1780,
+      "body_sha256": "863ca583ebb7454187921952f1afb165e58ba2f18c5897622db53ff81c70d8e8",
+      "accepted": false,
+      "sites": [
+        "0x80105514",
+        "0x80105788",
+        "0x80105874",
+        "0x80105910",
+        "0x801059B4",
+        "0x80105A80"
+      ],
+      "captures": {
+        "s0": 5,
+        "stack_word": 1
+      },
+      "other_unaccepted_direct_game_calls": [
+        "func_80103D28",
+        "func_80104B14",
+        "race_position_update",
+        "state_utility"
+      ]
+    },
+    "func_80105EA8": {
+      "start": "0x80105EA8",
+      "bytes": 2508,
+      "body_sha256": "dd1cc1dcfadabb3bd3e326b60ad6da9c5fc8c735d4968e58784ef9f684542f88",
+      "accepted": false,
+      "sites": [
+        "0x80105FA0"
+      ],
+      "captures": {
+        "s0": 1
+      },
+      "other_unaccepted_direct_game_calls": [
+        "camera_auto_follow",
+        "object_bytes_sum_global"
+      ]
+    },
+    "func_80106874": {
+      "start": "0x80106874",
+      "bytes": 712,
+      "body_sha256": "888a5135be2f8d2b8840e6c8fc0544276bd626183a5724ad8c6882f38400f0e4",
+      "accepted": false,
+      "sites": [
+        "0x801068B0",
+        "0x80106934"
+      ],
+      "captures": {
+        "s0": 2
+      },
+      "other_unaccepted_direct_game_calls": [
+        "object_bytes_sum_global"
+      ]
+    },
+    "func_80106B3C": {
+      "start": "0x80106B3C",
+      "bytes": 600,
+      "body_sha256": "ff2a0f62fabf11d7e1f5eea16da65cb91c49d068295d53a4596bd69384c419db",
+      "accepted": false,
+      "sites": [
+        "0x80106BC8",
+        "0x80106C48"
+      ],
+      "captures": {
+        "s0": 1
+      },
+      "other_unaccepted_direct_game_calls": [
+        "state_utility"
+      ]
+    },
+    "checkpoint_hit": {
+      "start": "0x801073D8",
+      "bytes": 580,
+      "body_sha256": "a4c1d773dd0ec48364b4882beeabe0ed79f37947d9d9622c27b89b3f20c84ad1",
+      "accepted": false,
+      "sites": [
+        "0x801074EC",
+        "0x80107520"
+      ],
+      "captures": {
+        "stack_word": 2
+      },
+      "other_unaccepted_direct_game_calls": []
+    },
+    "lap_complete": {
+      "start": "0x8010761C",
+      "bytes": 1232,
+      "body_sha256": "9c8af2bec57a0064bc733102f1b4b413ccab75dbf90cda7a240b35fbacf456f5",
+      "accepted": false,
+      "sites": [
+        "0x801078E8",
+        "0x80107918"
+      ],
+      "captures": {
+        "s0": 2
+      },
+      "other_unaccepted_direct_game_calls": [
+        "state_utility"
+      ]
+    },
+    "race_finish": {
+      "start": "0x80107AF4",
+      "bytes": 1000,
+      "body_sha256": "b15859b3659e176387300f284ec5854d3a3805a044a90451ff132df1f13622bf",
+      "accepted": false,
+      "sites": [
+        "0x80107BCC",
+        "0x80107BFC",
+        "0x80107D30",
+        "0x80107D60",
+        "0x80107D9C",
+        "0x80107DCC"
+      ],
+      "captures": {
+        "s0": 6
+      },
+      "other_unaccepted_direct_game_calls": [
+        "state_utility"
+      ]
+    },
+    "func_80107EDC": {
+      "start": "0x80107EDC",
+      "bytes": 632,
+      "body_sha256": "bc6edf16ce07ac6b423ace3261633df98f31781a6604d3f2542d7b3ed198372b",
+      "accepted": false,
+      "sites": [
+        "0x80107FA0",
+        "0x80107FDC"
+      ],
+      "captures": {
+        "s0": 2
+      },
+      "other_unaccepted_direct_game_calls": []
+    },
+    "func_80108154": {
+      "start": "0x80108154",
+      "bytes": 896,
+      "body_sha256": "bbd16223b572f65dd28273759bfc70cbe764ea2209c8483d8bd34266a840bef5",
+      "accepted": false,
+      "sites": [
+        "0x8010829C",
+        "0x801082D8"
+      ],
+      "captures": {
+        "stack_word": 2
+      },
+      "other_unaccepted_direct_game_calls": [
+        "object_bytes_sum_global"
+      ]
+    },
+    "func_801084D4": {
+      "start": "0x801084D4",
+      "bytes": 1500,
+      "body_sha256": "ea3ce6c865c6c58007b8a5ff741c7f05fe7c6ab1bebfb8ab7b274af933b43091",
+      "accepted": false,
+      "sites": [
+        "0x80108580",
+        "0x801085BC"
+      ],
+      "captures": {
+        "s0": 2
+      },
+      "other_unaccepted_direct_game_calls": [
+        "state_utility"
+      ]
+    },
+    "func_80108AB0": {
+      "start": "0x80108AB0",
+      "bytes": 760,
+      "body_sha256": "6fd1e202ddda9cf171d89702d30617080135529d0e41ba1533b927f697e8fa3b",
+      "accepted": false,
+      "sites": [
+        "0x80108C14",
+        "0x80108C50"
+      ],
+      "captures": {
+        "s0": 2
+      },
+      "other_unaccepted_direct_game_calls": [
+        "state_utility"
+      ]
+    },
+    "func_80109F54": {
+      "start": "0x80109F54",
+      "bytes": 1504,
+      "body_sha256": "24b23f674b840e3fd2a7e5d40a1eae988de4c60f04f3f9cdbedfa5433ce3e14f",
+      "accepted": false,
+      "sites": [
+        "0x8010A37C",
+        "0x8010A3AC"
+      ],
+      "captures": {
+        "stack_word": 2
+      },
+      "other_unaccepted_direct_game_calls": []
+    },
+    "func_8010A53C": {
+      "start": "0x8010A53C",
+      "bytes": 616,
+      "body_sha256": "baad176dd742b676b857f469c6ed3805a3e0881a445dd2cd510bdc519819eb54",
+      "accepted": false,
+      "sites": [
+        "0x8010A678"
+      ],
+      "captures": {
+        "s1": 1
+      },
+      "other_unaccepted_direct_game_calls": [
+        "state_utility"
+      ]
+    },
+    "func_8010A8D0": {
+      "start": "0x8010A8D0",
+      "bytes": 1500,
+      "body_sha256": "c304dbcbcf457681079f085c834ae2401537000281b3ce1bd1336f4aa28914a6",
+      "accepted": false,
+      "sites": [
+        "0x8010A94C",
+        "0x8010A9C8"
+      ],
+      "captures": {
+        "s0": 2
+      },
+      "other_unaccepted_direct_game_calls": [
+        "brake_light_update",
+        "func_8010A7A4",
+        "state_utility"
+      ]
+    },
+    "func_8010AEAC": {
+      "start": "0x8010AEAC",
+      "bytes": 1652,
+      "body_sha256": "f3e943ca4521f85900d4ebf6463ce1595d9187ab43dbcae17b6e9f199ad24321",
+      "accepted": false,
+      "sites": [
+        "0x8010AF2C",
+        "0x8010B038"
+      ],
+      "captures": {
+        "s5": 1,
+        "s7": 1
+      },
+      "other_unaccepted_direct_game_calls": [
+        "func_8010A7A4",
+        "func_8010A8D0",
+        "object_bytes_sum_global",
+        "state_utility"
+      ]
+    },
+    "func_8010B5D0": {
+      "start": "0x8010B5D0",
+      "bytes": 556,
+      "body_sha256": "489afb44bae48695fd9b724fd5a10858664849889773455ddd098dfc52267060",
+      "accepted": false,
+      "sites": [
+        "0x8010B638"
+      ],
+      "captures": {
+        "stack_word": 1
+      },
+      "other_unaccepted_direct_game_calls": [
+        "state_utility"
+      ]
+    },
+    "func_8010B7FC": {
+      "start": "0x8010B7FC",
+      "bytes": 460,
+      "body_sha256": "e7c76806ddf713393bf44a746622081b2d71c021c333d7d28913614c7e095911",
+      "accepted": false,
+      "sites": [
+        "0x8010B874",
+        "0x8010B8BC"
+      ],
+      "captures": {
+        "s0": 2
+      },
+      "other_unaccepted_direct_game_calls": [
+        "object_bytes_sum_global",
+        "state_utility"
+      ]
+    },
+    "func_8010B9C8": {
+      "start": "0x8010B9C8",
+      "bytes": 700,
+      "body_sha256": "d4052a2411466efd872920dc4d288d592d31cfdcc6c400c48817aa837f672665",
+      "accepted": false,
+      "sites": [
+        "0x8010BA3C",
+        "0x8010BA94"
+      ],
+      "captures": {
+        "stack_word": 2
+      },
+      "other_unaccepted_direct_game_calls": [
+        "object_bytes_sum_global",
+        "state_utility"
+      ]
+    },
+    "func_8010BC84": {
+      "start": "0x8010BC84",
+      "bytes": 928,
+      "body_sha256": "47ccc7f2d354b445d36b8ff12dc4fcd60834f91f92ed2c32b7622ef5f524a3ba",
+      "accepted": false,
+      "sites": [
+        "0x8010BD80",
+        "0x8010BE40"
+      ],
+      "captures": {
+        "s0": 2
+      },
+      "other_unaccepted_direct_game_calls": [
+        "object_bytes_sum_global",
+        "state_utility"
+      ]
+    },
+    "func_8010E8B4": {
+      "start": "0x8010E8B4",
+      "bytes": 340,
+      "body_sha256": "5d057d846e6cebc942e636a560ff130affeb086cb8a37f2b6d532abb88a744c4",
+      "accepted": false,
+      "sites": [
+        "0x8010E90C"
+      ],
+      "captures": {
+        "stack_word": 1
+      },
+      "other_unaccepted_direct_game_calls": [
+        "object_bytes_sum_global",
+        "sound_loop_set"
+      ]
+    },
+    "func_8010EA08": {
+      "start": "0x8010EA08",
+      "bytes": 2056,
+      "body_sha256": "0178e74db41e12ffec09eec341bf0afca7b818b571d8f8464ca053f1a478a752",
+      "accepted": false,
+      "sites": [
+        "0x8010EA58",
+        "0x8010EB00",
+        "0x8010EE54",
+        "0x8010EFA8"
+      ],
+      "captures": {
+        "s0": 3
+      },
+      "other_unaccepted_direct_game_calls": [
+        "brake_light_update",
+        "camera_auto_follow",
+        "object_bytes_sum_global",
+        "state_utility"
+      ]
+    },
+    "func_8010F218": {
+      "start": "0x8010F218",
+      "bytes": 2444,
+      "body_sha256": "f2e311efb73f6f0f97520f1ed6099f65538f5ccd2d3cf31bf62b4807b6e5f249",
+      "accepted": false,
+      "sites": [
+        "0x8010F844",
+        "0x8010F954"
+      ],
+      "captures": {
+        "s0": 1
+      },
+      "other_unaccepted_direct_game_calls": [
+        "func_8010EA08",
+        "object_bytes_sum_global",
+        "state_utility"
+      ]
+    }
+  }
+}
