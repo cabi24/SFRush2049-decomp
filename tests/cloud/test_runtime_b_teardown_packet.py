@@ -34,10 +34,12 @@ def test_frozen_portable_replay(tmp_path, optimized):
                             cwd=elsewhere, capture_output=True, text=True)
     assert result.returncode == 0, result.stdout + result.stderr
     fresh, saved = json.loads(receipt.read_text()), json.loads((PACKET / 'verification.json').read_text())
-    # Game-blob manifest files change with every splice; image-B inputs stay bound.
+    # Game-blob manifest files and the game lock list change with every splice;
+    # image-B inputs stay bound.
     for proof in (fresh, saved):
         proof['inputs_sha256'] = {k: v for k, v in proof['inputs_sha256'].items()
-                                  if not k.startswith('asm/us/blob/')}
+                                  if not k.startswith('asm/us/blob/')
+                                  and k != 'blob_matched.lock.json'}
     assert fresh == saved
 
 
