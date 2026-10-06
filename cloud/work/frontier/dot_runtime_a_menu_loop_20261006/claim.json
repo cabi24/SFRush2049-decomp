@@ -1,0 +1,16 @@
+{
+  "base": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "branch": "work/runtime-a-next-menu-20261006",
+  "target": "A:func_803A4340",
+  "entry": "0x803A4340",
+  "end": "0x803A44EC",
+  "bytes": 428,
+  "status": "research-frozen-nonmatch",
+  "source": "candidate.c",
+  "source_sha256": "194c86d784441d782e0f57b59738b8c27fc127912383d820c31389ce6bcee7a0",
+  "full_body_differing_words": 4,
+  "matching_bytes": 0,
+  "accepted_bytes": 0,
+  "scope": "Source, bounded verification, controls and research only; no production/protected path changes",
+  "next": "Independent review, then draft research publication; merge remains checker-owned"
+}
