@@ -1,0 +1,587 @@
+{
+  "status": "NONMATCH; bounded research only",
+  "image": "A",
+  "address": "0x8039d300",
+  "end": "0x8039d494",
+  "native_bytes": 404,
+  "native_sha256": "e0bf3d0731f618da18552bced27d621bec55be5f5cc274d1554c3a9656b046bc",
+  "source_sha256": "84750380d2f3c6539e495d92f9db317a9c3084f8a6d8002a55bc949ca4848206",
+  "harness_sha256": "054cfd43f12466e0d819299882d82f13a1ad558531753c4a730a2df0b7893fa1",
+  "model_sha256": "08a1dc653a61f0716d12b73932535fca2544ea43ccc64f4c85f0fe2ba2eb38d6",
+  "verifier_sha256": "2bab18b7b91b6e9bb5224e763ac0f9c61590223a20930d6a7d3a494943e921e4",
+  "proofs": {
+    "O1": {
+      "comparison": {
+        "differing": 100,
+        "total": 101,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 28,
+        "notes": []
+      },
+      "function_bytes": 516,
+      "alignment_bytes": 12,
+      "owned_data_bytes": 0,
+      "relocations": [
+        [
+          0,
+          5,
+          "D_803BA190",
+          4
+        ],
+        [
+          4,
+          6,
+          "D_803BA190",
+          4
+        ],
+        [
+          12,
+          5,
+          "D_803B9FD0",
+          4
+        ],
+        [
+          24,
+          6,
+          "D_803B9FD0",
+          4
+        ],
+        [
+          56,
+          5,
+          "D_80110E85",
+          4
+        ],
+        [
+          68,
+          6,
+          "D_80110E85",
+          4
+        ],
+        [
+          72,
+          5,
+          "D_803B28C8",
+          4
+        ],
+        [
+          76,
+          6,
+          "D_803B28C8",
+          4
+        ],
+        [
+          116,
+          5,
+          "D_80111049",
+          4
+        ],
+        [
+          128,
+          6,
+          "D_80111049",
+          4
+        ],
+        [
+          132,
+          5,
+          "D_803B2948",
+          4
+        ],
+        [
+          136,
+          6,
+          "D_803B2948",
+          4
+        ],
+        [
+          176,
+          5,
+          "D_8011108D",
+          4
+        ],
+        [
+          188,
+          6,
+          "D_8011108D",
+          4
+        ],
+        [
+          192,
+          5,
+          "D_803B2978",
+          4
+        ],
+        [
+          196,
+          6,
+          "D_803B2978",
+          4
+        ],
+        [
+          236,
+          5,
+          "D_801111A9",
+          4
+        ],
+        [
+          248,
+          6,
+          "D_801111A9",
+          4
+        ],
+        [
+          252,
+          5,
+          "D_803B2A08",
+          4
+        ],
+        [
+          256,
+          6,
+          "D_803B2A08",
+          4
+        ],
+        [
+          296,
+          5,
+          "D_8011123D",
+          4
+        ],
+        [
+          308,
+          6,
+          "D_8011123D",
+          4
+        ],
+        [
+          312,
+          5,
+          "D_803B2A58",
+          4
+        ],
+        [
+          316,
+          6,
+          "D_803B2A58",
+          4
+        ]
+      ],
+      "relocated_text_sha256": "be30fdbeb2bd0095dcb555c2b262a2f8d433d48f141263a149069bf3aba4da4d",
+      "full_gnu_agreement": true
+    },
+    "O2": {
+      "comparison": {
+        "differing": 99,
+        "total": 101,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      },
+      "function_bytes": 384,
+      "alignment_bytes": 0,
+      "owned_data_bytes": 0,
+      "relocations": [
+        [
+          0,
+          5,
+          "D_803B9FD0",
+          4
+        ],
+        [
+          12,
+          6,
+          "D_803B9FD0",
+          4
+        ],
+        [
+          28,
+          5,
+          "D_80110E85",
+          4
+        ],
+        [
+          40,
+          6,
+          "D_80110E85",
+          4
+        ],
+        [
+          48,
+          5,
+          "D_803B28C8",
+          4
+        ],
+        [
+          56,
+          6,
+          "D_803B28C8",
+          4
+        ],
+        [
+          76,
+          5,
+          "D_80111049",
+          4
+        ],
+        [
+          96,
+          6,
+          "D_80111049",
+          4
+        ],
+        [
+          116,
+          5,
+          "D_803B2948",
+          4
+        ],
+        [
+          132,
+          6,
+          "D_803B2948",
+          4
+        ],
+        [
+          108,
+          5,
+          "D_8011108D",
+          4
+        ],
+        [
+          128,
+          6,
+          "D_8011108D",
+          4
+        ],
+        [
+          140,
+          5,
+          "D_803B2978",
+          4
+        ],
+        [
+          148,
+          6,
+          "D_803B2978",
+          4
+        ],
+        [
+          176,
+          5,
+          "D_801111A9",
+          4
+        ],
+        [
+          196,
+          6,
+          "D_801111A9",
+          4
+        ],
+        [
+          212,
+          5,
+          "D_803B2A08",
+          4
+        ],
+        [
+          224,
+          6,
+          "D_803B2A08",
+          4
+        ],
+        [
+          204,
+          5,
+          "D_8011123D",
+          4
+        ],
+        [
+          220,
+          6,
+          "D_8011123D",
+          4
+        ],
+        [
+          236,
+          5,
+          "D_803B2A58",
+          4
+        ],
+        [
+          244,
+          6,
+          "D_803B2A58",
+          4
+        ],
+        [
+          240,
+          5,
+          "D_803BA190",
+          4
+        ],
+        [
+          248,
+          6,
+          "D_803BA190",
+          4
+        ]
+      ],
+      "relocated_text_sha256": "3d4714a8a9df0467a379c7e8f9b2808307aa2d617c823471b8588398933a02c0",
+      "full_gnu_agreement": true
+    },
+    "O3": {
+      "comparison": {
+        "differing": 99,
+        "total": 101,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      },
+      "function_bytes": 384,
+      "alignment_bytes": 0,
+      "owned_data_bytes": 0,
+      "relocations": [
+        [
+          0,
+          5,
+          "D_803B9FD0",
+          4
+        ],
+        [
+          12,
+          6,
+          "D_803B9FD0",
+          4
+        ],
+        [
+          28,
+          5,
+          "D_80110E85",
+          4
+        ],
+        [
+          40,
+          6,
+          "D_80110E85",
+          4
+        ],
+        [
+          48,
+          5,
+          "D_803B28C8",
+          4
+        ],
+        [
+          56,
+          6,
+          "D_803B28C8",
+          4
+        ],
+        [
+          76,
+          5,
+          "D_80111049",
+          4
+        ],
+        [
+          96,
+          6,
+          "D_80111049",
+          4
+        ],
+        [
+          116,
+          5,
+          "D_803B2948",
+          4
+        ],
+        [
+          132,
+          6,
+          "D_803B2948",
+          4
+        ],
+        [
+          108,
+          5,
+          "D_8011108D",
+          4
+        ],
+        [
+          128,
+          6,
+          "D_8011108D",
+          4
+        ],
+        [
+          140,
+          5,
+          "D_803B2978",
+          4
+        ],
+        [
+          148,
+          6,
+          "D_803B2978",
+          4
+        ],
+        [
+          176,
+          5,
+          "D_801111A9",
+          4
+        ],
+        [
+          196,
+          6,
+          "D_801111A9",
+          4
+        ],
+        [
+          212,
+          5,
+          "D_803B2A08",
+          4
+        ],
+        [
+          224,
+          6,
+          "D_803B2A08",
+          4
+        ],
+        [
+          204,
+          5,
+          "D_8011123D",
+          4
+        ],
+        [
+          220,
+          6,
+          "D_8011123D",
+          4
+        ],
+        [
+          236,
+          5,
+          "D_803B2A58",
+          4
+        ],
+        [
+          244,
+          6,
+          "D_803B2A58",
+          4
+        ],
+        [
+          240,
+          5,
+          "D_803BA190",
+          4
+        ],
+        [
+          248,
+          6,
+          "D_803BA190",
+          4
+        ]
+      ],
+      "relocated_text_sha256": "3d4714a8a9df0467a379c7e8f9b2808307aa2d617c823471b8588398933a02c0",
+      "full_gnu_agreement": true
+    }
+  },
+  "behavior": {
+    "cases": 1231,
+    "compiled_caller_contract_failures": 1231,
+    "trace_sha256": "2dd69d751540c73a6ed108771b67da8c807a3f6faf927c0172d10039fc462904",
+    "native_instructions_covered": 101,
+    "branch_outcomes": 2
+  },
+  "exceptional_inputs_refused": [
+    "0x7f800000",
+    "0xff800000",
+    "0x7fc00000",
+    "0x7f800001",
+    "0x7fbfffff",
+    "0x1",
+    "0x80000001"
+  ],
+  "negative_controls": {
+    "reassociate": {
+      "strict_match": false,
+      "bounded_behavior_or_store_trace_rejected": true
+    },
+    "drop_fifth": {
+      "strict_match": false,
+      "bounded_behavior_or_store_trace_rejected": true
+    },
+    "coalesce_stores": {
+      "strict_match": false,
+      "bounded_behavior_or_store_trace_rejected": true
+    }
+  },
+  "anchors": {
+    "D_803B9FD0": "0x803b9fd0",
+    "D_803BA190": "0x803ba190",
+    "D_80110E85": "0x80110e85",
+    "D_80111049": "0x80111049",
+    "D_8011108D": "0x8011108d",
+    "D_801111A9": "0x801111a9",
+    "D_8011123D": "0x8011123d",
+    "D_803B28C8": "0x803b28c8",
+    "D_803B2948": "0x803b2948",
+    "D_803B2978": "0x803b2978",
+    "D_803B2A08": "0x803b2a08",
+    "D_803B2A58": "0x803b2a58"
+  },
+  "native_bindings": {
+    "func_803A0FD8": [
+      2151288792,
+      3796,
+      "661a6c6d552d31d34f6284c659cc8565e599f8b2fa734317a6817d9ba58281a1"
+    ],
+    "func_803A1EAC": [
+      2151292588,
+      7104,
+      "9160fdb9d9c7e58ec66c11d7b33053193a894bb142df01995e5a39ca25f6eaf6"
+    ],
+    "func_803A4134": [
+      2151301428,
+      524,
+      "c79fb81fa3af695c6fa11fb403e7ddba62771bdd022442c8cc4410715c21f9eb"
+    ]
+  },
+  "direct_call_sites": [
+    [
+      "func_803A0FD8",
+      "0x803a10ec"
+    ],
+    [
+      "func_803A1EAC",
+      "0x803a3880"
+    ]
+  ],
+  "tools": {
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+  },
+  "scorer_sha256": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+  "protected_manifest_sha256": "27f81bfaba058e89167168e3eb724d530de3b5fa8df12617138df25f149af82d",
+  "limits": [
+    "Stable, disjoint, synthetic valid backing: player0..3, selector0..12, five rows0..2, four floats each; not a proof of every game reachable index",
+    "Binary32 normal/zero inputs and normal/zero intermediate products under round-to-nearest ties-even only; no hardware FCSR, trap, subnormal or NaN payload equivalence",
+    "NaN/infinity/subnormal probes are explicit domain refusals, not arithmetic compatibility claims",
+    "No genuine caller group compiled; native preserves t3/t4/t5 and f16/f18, candidate clobbers them",
+    "No image/compression/ROM gates; no coverage credit; no broad suite"
+  ]
+}
