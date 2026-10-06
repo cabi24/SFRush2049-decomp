@@ -1,0 +1,139 @@
+{
+  "base": "dea99f09ab19b1d3b324ed7097162f7b378e7096",
+  "status": "PASS: bounded NONMATCH research only",
+  "gain_bytes": 0,
+  "source_sha256": {
+    "group.c": "5ab15c1c3fc65c78e1d416dbb6c6067f638345906caacf202ec18e6c3a8dcbf4",
+    "func_800A4E58.c": "bf3a17569ca1dedf0ce2bd4ee5ac680337f6ebf5fdcec9d7e61683646d8ef8d3",
+    "entity_render_mode.c": "3007b53d07cd2f48046e375874859cf8efa35cf2212da3acf1ef8c4adef25f05",
+    "func_800979A0.c": "2e25793116905b32424d9039497b32801a3a67bc98c53a9e60e94d3952424d04"
+  },
+  "accepted_context": {
+    "func_80096288": {
+      "bytes": 16,
+      "strict_match": true,
+      "gnu_full_extent_match": true
+    },
+    "slot_value_get": {
+      "bytes": 60,
+      "strict_match": true,
+      "gnu_full_extent_match": true
+    },
+    "display_list_alloc": {
+      "bytes": 92,
+      "strict_match": true,
+      "gnu_full_extent_match": true
+    },
+    "player_state_get": {
+      "bytes": 60,
+      "strict_match": true,
+      "gnu_full_extent_match": true
+    },
+    "slot_deactivate": {
+      "bytes": 88,
+      "strict_match": true,
+      "gnu_full_extent_match": true
+    },
+    "sound_update_channel": {
+      "bytes": 488,
+      "strict_match": true,
+      "gnu_full_extent_match": true
+    },
+    "mode_byte2_set": {
+      "bytes": 80,
+      "strict_match": true,
+      "gnu_full_extent_match": true
+    },
+    "object_type_byte2_get": {
+      "bytes": 40,
+      "strict_match": true,
+      "gnu_full_extent_match": true
+    },
+    "object_type_byte3_get": {
+      "bytes": 40,
+      "strict_match": true,
+      "gnu_full_extent_match": true
+    },
+    "mode_byte_set": {
+      "bytes": 80,
+      "strict_match": true,
+      "gnu_full_extent_match": true
+    },
+    "func_800A4E58": {
+      "bytes": 444,
+      "strict_match": true,
+      "gnu_full_extent_match": true
+    },
+    "entity_render_mode": {
+      "bytes": 284,
+      "strict_match": true,
+      "gnu_full_extent_match": true
+    }
+  },
+  "negative_controls": {
+    "kept_validator": {
+      "differing_words": 35,
+      "rejected": true
+    },
+    "remove_real_second_formal": {
+      "differing_words": 68,
+      "rejected": true
+    },
+    "caller_without_context": {
+      "differing_words": 51,
+      "rejected": true
+    },
+    "wrong_global_address": {
+      "rejected": true
+    }
+  },
+  "caller": {
+    "native_bytes": 292,
+    "candidate_elf_bytes": 288,
+    "differing_words": 12,
+    "differing_word_indexes": [
+      6,
+      15,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72
+    ],
+    "gnu_relocations": 35,
+    "gnu_body_sha256": "194a124562cd3a65104a2cdceb2388f085bb1ee076ade43569aedc29880ecef0",
+    "strict_match": false
+  },
+  "full_object": {
+    "function_count": 13,
+    "body_bytes": 2060,
+    "text_bytes": 2064,
+    "text_padding_bytes": 4,
+    "owned_data_bytes": 0,
+    "all_defined_functions_checked": true
+  },
+  "behavior": {
+    "cases": 960,
+    "native_and_candidate_executions": 1920,
+    "native_caller_instructions_covered": 73,
+    "candidate_caller_instructions_covered": 72,
+    "all_caller_conditional_branches_both_outcomes": true,
+    "real_display_list_alloc_and_validator_executed": true,
+    "ordinary_external_caller_saves_poisoned": true,
+    "nonstack_reads_writes_calls_memory_equal": true,
+    "independent_byte_offset_oracle_equal": true,
+    "unchanged_c89_ubsan_host_cases": 960,
+    "saved_registers_and_real_second_argument_home": true
+  },
+  "limitations": [
+    "Finite accessible cases and explicit external-service stubs; not full runtime proof.",
+    "No source matching credit, promotion, splicing, whole-image or ROM hash claim.",
+    "GNU links complete ELF function extents separately; this is not the complete production unit link.",
+    "No volatility, fabricated formal, helper substitution, assembly patch, or instruction padding repair."
+  ]
+}
