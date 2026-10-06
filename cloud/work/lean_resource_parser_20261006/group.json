@@ -1,0 +1,28 @@
+{
+  "files": [
+    "callers.c",
+    "parse.c",
+    "candidate.c"
+  ],
+  "members": [
+    "func_80096CA8"
+  ],
+  "context": [
+    "audio_frame_sync",
+    "brake_force_apply",
+    "fp_call_wrapper",
+    "func_80097694",
+    "func_80096288",
+    "func_800972C4",
+    "suspension_setup",
+    "func_80097164"
+  ],
+  "keep": [
+    "audio_frame_sync",
+    "brake_force_apply",
+    "fp_call_wrapper",
+    "suspension_setup"
+  ],
+  "claims": [],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}
