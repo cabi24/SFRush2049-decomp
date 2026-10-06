@@ -1,0 +1,30 @@
+{
+  "files": [
+    "measure.c",
+    "setup.c",
+    "caller.c",
+    "speed.c"
+  ],
+  "keep": [
+    "func_800D7634",
+    "speed_mode0_wrapper",
+    "speed_mode1_wrapper",
+    "continue_prompt",
+    "vsync_wait"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "members": [
+    "drone_collision_avoid"
+  ],
+  "context": [
+    "drone_pathfind_main",
+    "func_800D7634",
+    "speed_set",
+    "speed_mode0_wrapper",
+    "speed_mode1_wrapper",
+    "continue_prompt",
+    "vsync_wait"
+  ],
+  "claims": [],
+  "provenance": "Observed local research candidate with a single untuned44-byte scratch-buffer hypothesis; no accepted coverage or runtime-bound claim."
+}
