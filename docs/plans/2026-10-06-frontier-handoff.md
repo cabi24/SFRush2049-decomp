@@ -265,3 +265,5 @@ Read the shared rules file `<scratchpad>/w13common.txt` and follow it (substitut
 - Tools: `cloud/work/frontier/tools/` (`splice_singles.py`, `install_group.py`, `trace/`).
 - Brief that every lane reads: `cloud/work/frontier/WAVE_BRIEF.md`; add each wave's lessons there.
 - Builder: `ssh watchman2`. The toolkit IDO is at `~/rush2049/cache/toolkits/796ae99a…bfbf5/ido`. Never touch `~/rush2049/repo` or the shared `/tmp/blobsplice` and `/tmp/blobgroup`.
+- **Not part of this work:** the `tools/mips_to_c` submodule has uncommitted local edits (`m2c/arch_mips.py`, `m2c/translate.py`, a test output file and a new `m2c/rush_ipa.py`), dated 2026-09-29. They predate waves 9–12 and were never committed or used by them. They are most likely the m2c IPA patch work from late September. Leave them alone unless the owner says otherwise.
+- **Two Claude profiles on the Pi:** `~/.claude-work/` and `~/.claude/` keep separate memory directories for this repo. A note saved in one is invisible to a session using the other, so this handoff (linked from CLAUDE.md) is the shared source of truth.
