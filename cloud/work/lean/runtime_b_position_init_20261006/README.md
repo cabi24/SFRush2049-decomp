@@ -34,7 +34,8 @@ Allocates from the external pool at B:0x80395EE8, returns null on failure, sets
 mode flags/lifetime, copies the supplied position into four triples, then
 separates the last two along their second coordinate. Mode 0/1/2/3 selects
 flags 1/2/4/8 and offsets 0.75/0.5/0.35/0.025; mode 3 also clears lifetime.
-The native third incoming argument is genuinely homed but otherwise unused.
+The native third incoming argument is a second position pointer, genuinely
+homed but otherwise unused; the real FCE0 caller supplies its position twice.
 The pool allocator remains external and unmodified.
 
 Field names and the four-position interpretation are descriptive native

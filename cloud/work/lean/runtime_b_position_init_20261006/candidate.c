@@ -13,7 +13,7 @@ typedef struct Effect {
 typedef struct Pool Pool;
 extern Pool D_80395EE8;
 extern Effect *func_8008E3C0(Pool *);
-Effect *func_8038D054(s32 mode, f32 *position, s32 unused)
+Effect *func_8038D054(s32 mode, f32 *position, f32 *unused_position)
 {
     Effect *effect;
     f32 offset;
