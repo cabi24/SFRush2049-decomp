@@ -17,22 +17,25 @@ three are claimed. Remaining observations:
 | AB5FC | 124/147 | 0 | 0 | 0 |
 | AB848 | 394/416 | 0 | 0 | 0 |
 | ABEC8 | 243/282 | 0 | 2 | 0 |
-| AC54C | 6/170 | 0 | 0 | 0 |
-| AC7F4 | 7/166 | 0 | 0 | 0 |
+| AC54C | 2/170 | 0 | 0 | 0 |
+| AC7F4 | 2/166 | 0 | 0 | 0 |
 | ACA94 | 166/178 | 5 | 2 | 0 |
-| ACD5C | 6/128 | 0 | 0 | 0 |
+| ACD5C | 2/128 | 0 | 0 | 0 |
 | AD0D4 | 145/296 | 3 | 2 | 1 |
 | AD57C | 348/523 | 0 | 8 | 0 |
 
 No member has unresolved symbols. The near panels retain frame/local-address
 residuals. Larger bodies retain scheduling, control and own-data-layout gaps.
 
-Follow-on to [draft #253](https://github.com/cabi24/SFRush2049-decomp/pull/253).
-The new candidate is ACF5C only: moving its existing 48-byte text-buffer
-declaration after the scalar/pointer locals changes its sole differing address
-from sp+64 to native sp+48, retaining the same 112-byte frame. No buffer size,
-statement, parameter or other function changes. AC330 and AAF0C retain their
-previous exact scores; they are not new candidate credit in this follow-on.
+Follow-on research to [draft #271](https://github.com/cabi24/SFRush2049-decomp/pull/271), which extends [#253](https://github.com/cabi24/SFRush2049-decomp/pull/253).
+This change only reorders the existing local declarations in AC54C (680 bytes),
+AC7F4 (664 bytes), and ACD5C (512 bytes). Their real 48-byte buffers and x/y
+coordinate slots now use the native offsets. Scores improve respectively
+6/170 to 2/170, 7/166 to 2/166, and 6/128 to 2/128 differing words.
+Each remaining difference is the frame allocation/deallocation immediate:
+the candidate allocates eight bytes more than native. Capacities and statements
+are unchanged; no padding or synthetic locals were added. There is no new
+matching claim. The three previous candidates retain exact scores.
 
 ## Reproduce
 

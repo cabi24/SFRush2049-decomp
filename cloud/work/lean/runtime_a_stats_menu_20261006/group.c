@@ -453,8 +453,10 @@ void func_803ACF5C(s32 category)
 }
 void func_803ACD5C(void)
 {
-    u8 text[48],*data,*label;
-    s32 i,x,y;
+    u8 *data,*label;
+    s32 i;
+    s32 x,y;
+    u8 text[48];
     if(D_803BA800)data=PROFILE_DATA+1404+D_803BA858*12;
     else data=D_80151578+D_803BA858*12-144;
     object_create(11);dispatch_handler(1);
@@ -502,8 +504,10 @@ void func_803ACA94(void)
 }
 void func_803AC54C(void)
 {
-    u8 text[48],*data,*label;
-    s32 i,x,y;
+    u8 *data,*label;
+    s32 i;
+    s32 x,y;
+    u8 text[48];
     if(D_803BA800)data=PROFILE_DATA+1668+D_803BA860*28;
     else data=D_80151618+D_803BA860*28;
     object_create(11);dispatch_handler(1);
@@ -531,8 +535,10 @@ void func_803AC54C(void)
 }
 void func_803AC7F4(void)
 {
-    u8 text[48],*data,*label;
-    s32 i,x,y;
+    u8 *data,*label;
+    s32 i;
+    s32 x,y;
+    u8 text[48];
     if(D_803BA800)data=PROFILE_DATA+1068+D_803BA858*24;
     else data=D_801515F8+D_803BA858*24-576;
     object_create(11);dispatch_handler(1);
