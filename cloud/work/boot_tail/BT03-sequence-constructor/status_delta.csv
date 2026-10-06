@@ -1,0 +1,2 @@
+address,name,size,status,diff_words,source_path,note
+0x800178B0,func_800178B0,1160,nonmatch,206,cloud/work/boot_tail/BT03-sequence-constructor/func_800178B0.c,"First complete reconstruction; full ELF and relocation proof, all reachable native instructions exercised, no matching credit. Native frame 152 versus candidate 120. Independent review pending."

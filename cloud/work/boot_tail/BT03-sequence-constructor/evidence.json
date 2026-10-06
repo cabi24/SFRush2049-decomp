@@ -1,0 +1,320 @@
+{
+  "status": "COMPLETE-NONMATCH",
+  "new_matching_bytes": 0,
+  "base": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "target": {
+    "name": "func_800178B0",
+    "start": "0x800178B0",
+    "end_exclusive": "0x80017D38",
+    "bytes": 1160
+  },
+  "source_sha256": "f430f408655278160bb32ec2ff322b6c5ccf6067a53f89c7d5c60e8148c463da",
+  "harness_sha256": {
+    "verify.py": "f835e280b5196ac2ff8eb2fcbe933aef1e4fb2b6f26ed9b52f6f8caa0eb31692",
+    "native_behavior.py": "a3cf27fc17f15ee0ad8afa440291a9d8a665be2e77370025cc91f80c4b15c91c",
+    "test_packet.py": "d97aba84fe2550ddfd8dd75753cb93307d429257e7ab93cc5c4c206b274a00b0",
+    "test_host.c": "67b0da62f0fe13db4c3435fc0f91ff1cb918d21b86be4b7f8c00a7b18344cafb"
+  },
+  "manifest_sha256": "6bd3e6ef05e6123e4ea4dd0d814c0abb16f202a91d8d0a381eca14322c8a36d5",
+  "native_inputs": {
+    "func_800178B0": {
+      "bytes": 1160,
+      "sha256": "e2d3b7c8631d3ff01d9ec07b44abeab7d197f2eb0e93c9a68d6a9d1abcaf4b3a"
+    },
+    "func_8001558C": {
+      "bytes": 348,
+      "sha256": "0f31586beb8ddd721bc8adb8d3c27758389ca1fd0028659b6c72e3356067fcc7"
+    },
+    "func_8001785C": {
+      "bytes": 84,
+      "sha256": "83b2bcefef3e6a485db73213b886f8c0d65c59013716f3fa08e5632294810d35"
+    },
+    "func_8001C19C": {
+      "bytes": 60,
+      "sha256": "19a4228e64d62d3b85a7922ce828098af32ecb908faeaf9081e60dea59c0224b"
+    },
+    "func_8001B9F8": {
+      "bytes": 960,
+      "sha256": "fba782a757db40de237ff3d5ccfcb1434fa3ca697a1d3850d0d48a01d747ba11"
+    },
+    "func_80019A60": {
+      "bytes": 72,
+      "sha256": "601e4ef7d80299d1d4959e59d6266636427f5281507c3099b54f533f51dd5bb2"
+    },
+    "func_80020820": {
+      "bytes": 484,
+      "sha256": "6425baaa9614a250f9aac366ed3469a7f7ad36c8499e4ca6f7a55809533b176a"
+    },
+    "func_80017720": {
+      "bytes": 204,
+      "sha256": "60a14c88647c100d6d9f52adb4e0217171e0f35130e1287ac8c8cc1464b59395"
+    },
+    "func_80020610": {
+      "bytes": 156,
+      "sha256": "9037f618c9672f865a80019c52075512f43091b7514049629c350a29646d1df3"
+    },
+    "func_800175B4": {
+      "bytes": 144,
+      "sha256": "bb1dc9338e32bb3b1026c0fec6043e10436f8fa9e71ce2e6aa80ce37745d551b"
+    }
+  },
+  "direct_tail_callers": [
+    {
+      "function": "func_8001558C",
+      "site": "0x80015660"
+    },
+    {
+      "function": "func_8001558C",
+      "site": "0x8001568c"
+    }
+  ],
+  "native_layout": {
+    "sizes": {
+      "BankRecord": 8,
+      "ChannelSetup": 8,
+      "Program": 132,
+      "SequenceData": 20,
+      "GroupMap": 2,
+      "SequenceOptions": 32,
+      "SequenceStream": 16,
+      "SequenceTrack": 40,
+      "SequenceContext": 4088
+    },
+    "offsets": {
+      "Program": {
+        "channels": 4
+      },
+      "SequenceOptions": {
+        "flags": 0,
+        "enabled": 4,
+        "speed": 12,
+        "fade_time": 14,
+        "volume": 16,
+        "map_count": 18,
+        "map": 20,
+        "fade_count": 24,
+        "fade_groups": 28
+      },
+      "SequenceTrack": {
+        "events": 12,
+        "pitch": 16,
+        "modulation": 20,
+        "number": 39
+      },
+      "SequenceContext": {
+        "bank_a": 4,
+        "map_a": 8,
+        "bank_b": 136,
+        "map_b": 140,
+        "data": 268,
+        "enabled": 272,
+        "lookahead": 288,
+        "tempo": 292,
+        "streams": 296,
+        "groups": 1320,
+        "tracks": 1384,
+        "master": 3944,
+        "note_head": 3960,
+        "note_tail": 3964,
+        "programs": 3968,
+        "active": 4032,
+        "available": 4033,
+        "speed": 4034,
+        "group": 4036,
+        "state": 4037,
+        "counter": 4038,
+        "request_and_result": 4040,
+        "pending": 4084
+      }
+    }
+  },
+  "compiled_rows": [
+    {
+      "source": "cloud/work/boot_tail/BT03-sequence-constructor/func_800178B0.c",
+      "source_sha256": "f430f408655278160bb32ec2ff322b6c5ccf6067a53f89c7d5c60e8148c463da",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "function_bytes": 1160,
+      "text_section_bytes": 1168,
+      "tail_padding_bytes": 8,
+      "tail_padding_all_zero": true,
+      "resolved_text_sha256": "0cc3b10569dff8b02cc682647933d9b8d04b22d74dab23477a2d49b4e54c343c",
+      "frame_bytes": 120,
+      "nonempty_owned_data_sections": [],
+      "comparison": {
+        "differing": 206,
+        "total": 290,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "accepted": false
+    },
+    {
+      "source": "cloud/work/boot_tail/BT03-sequence-constructor/func_800178B0.c",
+      "source_sha256": "f430f408655278160bb32ec2ff322b6c5ccf6067a53f89c7d5c60e8148c463da",
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "function_bytes": 1752,
+      "text_section_bytes": 1760,
+      "tail_padding_bytes": 8,
+      "tail_padding_all_zero": true,
+      "resolved_text_sha256": "32fa25a4ec0c2aed4a1c9c5c498c98967210b857b7ecbfaed928daebb7fd1b6a",
+      "frame_bytes": 80,
+      "nonempty_owned_data_sections": [],
+      "comparison": {
+        "differing": 290,
+        "total": 290,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 143
+      },
+      "accepted": false
+    },
+    {
+      "source": "cloud/work/boot_tail/BT03-sequence-constructor/controls/baseline.c",
+      "source_sha256": "84522911d84c3c4f6f1c0623079c2e89bcb9e6926cf2e5ef74b81b68de3933f1",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "function_bytes": 1144,
+      "text_section_bytes": 1152,
+      "tail_padding_bytes": 8,
+      "tail_padding_all_zero": true,
+      "resolved_text_sha256": "980ee4277bfd1d4f54d47dac4fa730fa3a44b1ae71edf546e1163bebaba0e93d",
+      "frame_bytes": 120,
+      "nonempty_owned_data_sections": [],
+      "comparison": {
+        "differing": 260,
+        "total": 290,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "accepted": false
+    },
+    {
+      "source": "cloud/work/boot_tail/BT03-sequence-constructor/controls/guard.c",
+      "source_sha256": "8cf0bdadae9559db7554358f824642dfdae012f438a4fb8c791ecc2d774430b9",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "function_bytes": 1160,
+      "text_section_bytes": 1168,
+      "tail_padding_bytes": 8,
+      "tail_padding_all_zero": true,
+      "resolved_text_sha256": "0cc3b10569dff8b02cc682647933d9b8d04b22d74dab23477a2d49b4e54c343c",
+      "frame_bytes": 120,
+      "nonempty_owned_data_sections": [],
+      "comparison": {
+        "differing": 206,
+        "total": 290,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "accepted": false
+    },
+    {
+      "source": "cloud/work/boot_tail/BT03-sequence-constructor/controls/store_order.c",
+      "source_sha256": "9c870ee0c1c5aeb4610ac4b0691afc5d47491fde0b362144cba9f8bfc5c1c498",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "function_bytes": 1156,
+      "text_section_bytes": 1168,
+      "tail_padding_bytes": 12,
+      "tail_padding_all_zero": true,
+      "resolved_text_sha256": "8c00714c9f08c3c9e1130d0c4b7a0c1dc4857eaa8d509480a517394a494946d0",
+      "frame_bytes": 120,
+      "nonempty_owned_data_sections": [],
+      "comparison": {
+        "differing": 215,
+        "total": 290,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "accepted": false
+    },
+    {
+      "source": "cloud/work/boot_tail/BT03-sequence-constructor/controls/packed.c",
+      "source_sha256": "6a79c39f75a736f957fd32706a47ab52352307471e3e81ca6f31b239869d07fe",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "function_bytes": 1152,
+      "text_section_bytes": 1152,
+      "tail_padding_bytes": 0,
+      "tail_padding_all_zero": true,
+      "resolved_text_sha256": "0ce5eeee2f8468fe20e62981a4290370de106db5e4aff1f8a6f2e3798cd77420",
+      "frame_bytes": 120,
+      "nonempty_owned_data_sections": [],
+      "comparison": {
+        "differing": 258,
+        "total": 290,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "accepted": false
+    },
+    {
+      "source": "cloud/work/boot_tail/BT03-sequence-constructor/controls/selected_index.c",
+      "source_sha256": "bdce81f8a5cefb2d3d4bf1f9490f6c6ef86559dafab161d8d916877fc0d6c2c5",
+      "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "function_bytes": 1172,
+      "text_section_bytes": 1184,
+      "tail_padding_bytes": 12,
+      "tail_padding_all_zero": true,
+      "resolved_text_sha256": "cb25cb79415eb1c0410a1a9c0dddcd8f0b1f3ab6c340c8b64694c2736ccdaac3",
+      "frame_bytes": 120,
+      "nonempty_owned_data_sections": [],
+      "comparison": {
+        "differing": 259,
+        "total": 290,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 3
+      },
+      "accepted": false
+    }
+  ],
+  "behavior": {
+    "status": "PASS",
+    "cases": 1782,
+    "native_reachable_instructions": 288,
+    "all_reachable_native_instructions_covered": true,
+    "native_instruction_coverage": 288,
+    "native_instruction_count": 290,
+    "native_steps": 6589660,
+    "candidate_steps": 6607084,
+    "native_call_count": 99136,
+    "candidate_call_count": 99136,
+    "result_sha256": "e7c7a2af0b8665c909358c41cb54b69f482c7c7eff1b5d1d2088ec94b6617e30",
+    "uncovered_native_offsets": [
+      276,
+      312
+    ],
+    "scope": "Finite valid banks and offsets, all 32 option-bit combinations, first/middle/last/no free slot, null/present setup and master, zero/nonzero counts, live option/program mutation, caller-save clobbering, complete non-stack memory and callback trace equality. External helpers use explicit boundary models."
+  },
+  "host_behavior": {
+    "status": "PASS",
+    "cases": 16896,
+    "flags": [
+      "-std=c89",
+      "-pedantic-errors",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fsanitize=undefined,address",
+      "-fno-sanitize-recover=all",
+      "-no-pie"
+    ],
+    "source_sha256": "67b0da62f0fe13db4c3435fc0f91ff1cb918d21b86be4b7f8c00a7b18344cafb",
+    "leak_detection": false,
+    "scope": "LP64 semantic fields, not native layout; all 256 slot masks, 32 option combinations plus null options, null/present defaults and master."
+  },
+  "limits": [
+    "No source match, production change, lock change, image/compression/ROM gate or hosted CI claim.",
+    "Native helper models verify this body and its call boundaries; they are not full middleware execution.",
+    "All pointer offsets and indices use valid finite storage; malformed resources are outside the observed contract."
+  ]
+}
