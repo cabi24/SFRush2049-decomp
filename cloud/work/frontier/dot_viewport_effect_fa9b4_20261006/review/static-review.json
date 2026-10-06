@@ -1,0 +1,75 @@
+{
+  "native_alignment": {
+    "stack_adjustments": [
+      {
+        "offset": 0,
+        "adjustment": -192
+      },
+      {
+        "offset": 920,
+        "adjustment": 192
+      }
+    ],
+    "doubleword_fp_accesses": [
+      {
+        "offset": 40,
+        "stack_offset": 48,
+        "store": true
+      },
+      {
+        "offset": 884,
+        "stack_offset": 48,
+        "store": false
+      }
+    ]
+  },
+  "existing_object_alignment": {
+    "stack_adjustments": [
+      {
+        "offset": 0,
+        "adjustment": -128
+      },
+      {
+        "offset": 908,
+        "adjustment": 128
+      }
+    ],
+    "doubleword_fp_accesses": [
+      {
+        "offset": 36,
+        "stack_offset": 56,
+        "store": true
+      },
+      {
+        "offset": 44,
+        "stack_offset": 48,
+        "store": true
+      },
+      {
+        "offset": 868,
+        "stack_offset": 48,
+        "store": false
+      },
+      {
+        "offset": 872,
+        "stack_offset": 56,
+        "store": false
+      }
+    ]
+  },
+  "negative_controls": [
+    "Misaligned doubleword store rejected in native words",
+    "Misaligned doubleword store rejected in existing-object words"
+  ],
+  "comparison": {
+    "differing": 227,
+    "total": 231,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "source_sha256": "e843f3500c6a952dd067949a7d5f894febfb8d635d77baa480778360dc95f4ee",
+  "object_sha256": "03cd24df3ce24448c2f8dc2e91e2f0553565b8dff60113b0da27c72ec361e9b5",
+  "target_compilations": 0
+}

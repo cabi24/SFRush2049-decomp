@@ -1,0 +1,14 @@
+{
+  "status": "PASS: bounded existing-linked-output/native agreement; NOT STRICT MATCH",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "fixtures": 1008,
+  "compiled_instructions_covered": 460,
+  "branch_outcomes": 46,
+  "elf_sha256": "acee7782ca03fcf63a8078f01a6f472b6c7c356da15647b9986a570ba17e1154",
+  "target_compiler_invocations": 0,
+  "packet_sha256": {
+    "candidate.c": "65593ef2a077ce151f6ef43a5843593c302b8d5588c3cb47bb4f2ae51c440ee6",
+    "compiled_machine.py": "a7829ea83d6ddc430895e9ff07cdf79085b893098667bc43acf7b71f31d8bc5f",
+    "verify_linked.py": "dab2f064141208724aa015696c8f547bc28e4e6cdd9f09e532590ce37f6dd98b"
+  }
+}

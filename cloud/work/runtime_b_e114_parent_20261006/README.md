@@ -1,5 +1,17 @@
 # Image B: E114 parent-context reconstruction, first milestone
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
 **Research only. Three complete semantic child sources, one partial genuine
 parent region, and a corrected minimum closure. No matching-byte claim.**
 
@@ -138,3 +150,33 @@ ordering, source-image composition, recompression and full-ROM gates were not
 run. The next useful work is complete real DA78/D498/E114/FCE0 source and
 contract closure, followed by one justified whole-context baseline. Until
 then, this packet remains PARTIAL-SOURCE parent / COMPLETE-NONMATCH children.
+
+## Integration and source-path portability (2026-10-06)
+
+Whole-manifest and scorer/own-data tool digests remain historical provenance.
+The raw object digest also depends on nonallocated ECOFF source-path metadata.
+It is excluded from receipt comparison only after `object.portable_elf` binds
+all ELF header/section/ABI attributes, symbols, relocation tables, executable
+and data bytes, and storage extents. Nonallocated `.mdebug` payload and physical
+file offsets are the only unbound object details. Every replay compiles the
+same children source in another directory and rejects mutations to text, owned
+rodata, relocation and symbol tables, register metadata and ELF ABI flags.
+
+Source, verifier, compiler identity, actual flags, selected native intervals,
+complete linked ELF, owned data, behavior, layout and rejection controls remain
+binding. No source body or claim changed. This packet remains bounded research;
+its partial parent/private-ABI children are not matching submissions.
+
+### Linked-ELF portability
+
+The raw GNU-linked file hash is historical provenance. Frozen replay instead
+binds every allocated section byte and virtual extent, section attributes, ELF
+ABI identity/flags/entry point, and sorted symbol name/value/extent/type/binding/
+visibility/section facts. Unknown sections and retained relocations are refused.
+Physical file offsets, string-table packing, symbol order, load-segment grouping,
+segment permissions and physical addresses are not this section-based native
+interpreter's inputs. This does not claim OS-loader equivalence or a runnable
+ROM; the existing source-only, nonmatching scope is unchanged. Regression links using GNU
+`--hash-size=1` and `-z max-page-size=0x1000` change the raw file hash while retaining
+this semantic fingerprint; hostile byte, extent, symbol, section and ABI changes
+remain rejected. Pinned IDO and every source/behavior claim stay unchanged.

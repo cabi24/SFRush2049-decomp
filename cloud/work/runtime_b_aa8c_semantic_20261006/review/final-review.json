@@ -1,0 +1,82 @@
+{
+  "status": "INDEPENDENT_FULL_BODY_SEMANTIC_REVIEW_PASS",
+  "base_commit": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "native_targets": {
+    "func_8038A95C": {
+      "address": "0x8038a95c",
+      "size": 184,
+      "sha256": "f6f3b782e02e565f5bf723f54839b9c7f80483f410028f6a9db7e595b580664e"
+    },
+    "func_8038AA14": {
+      "address": "0x8038aa14",
+      "size": 120,
+      "sha256": "9f23d5a9e52f138ede5552e5f931250ec7df73aa654150fd157966e6ca83808d"
+    },
+    "func_8038AA8C": {
+      "address": "0x8038aa8c",
+      "size": 7812,
+      "sha256": "c8842f0b25b7c17e36345611643e4b67a7c0c17929f7be6ba93785b530b67b39"
+    }
+  },
+  "packet_sha256": {
+    "semantic.c": "6846a52f128d00e2fbd640e38256ffcbeb1d242b02bcc0a512a5ec5132abd722",
+    "semantic_bus.h": "100dfd86fbcd6ea51e7ab4ed431d5741f9aecf06ee9a35802ac814351107827d",
+    "host_bus.c": "14db8c8262fc8731679be84322003b52e482c934713109a3f1b1239ec07019af",
+    "native.py": "1b3c166897f995531afec40e4c232c9a1299c8a817b2602b866edd80f98e8816",
+    "fixture.py": "dc9fd2336e29b639df22f6d9bdd54b8f1a363ac9196b40b5a2069be6109f6c4e",
+    "targets.py": "6aaea4e62699a200a4a0d32e4925d29fd3b58d51aa763be39f4e874d9bacff9b",
+    "verify.py": "5bba313e864df9966f36b1d73975eada211753af190a913abca44129afd86d32"
+  },
+  "review_sha256": "f0b259c2285328e4484409e98f28970e9530b17cff7940e326612034ec068ad0",
+  "extra_pairs_per_host_configuration": 2766,
+  "host_configurations": [
+    "cc C99 O0, ffp-contract=off",
+    "cc C99 O3, ffp-contract=off, UBSan no-recovery"
+  ],
+  "fixture_categories": {
+    "entry_guards": 140,
+    "cleanup_masks": 512,
+    "cleanup_widths": 8,
+    "alpha_clamp": 24,
+    "all_models": 936,
+    "source_overlap": 48,
+    "rng_grid_edges": 18,
+    "timer_float_edges": 24,
+    "rounded_float": 256,
+    "helper_mutation": 800
+  },
+  "statically_unreachable_words": [
+    "0x8038ab8c",
+    "0x8038c488"
+  ],
+  "native_words": 2020,
+  "branch_outcomes": 111,
+  "uncovered": [
+    "0x8038ab8c",
+    "0x8038ade8",
+    "0x8038adec",
+    "0x8038adf0",
+    "0x8038adf4",
+    "0x8038adf8",
+    "0x8038adfc",
+    "0x8038ae00",
+    "0x8038c488"
+  ],
+  "source_negative_controls_rejected": [
+    "wrong resource",
+    "narrow sentinel",
+    "wrong extra ID",
+    "wrong trigger signedness",
+    "wrong texture reset",
+    "skip mode8 physical loads",
+    "erase live cache reread",
+    "refresh retained player"
+  ],
+  "limits": [
+    "shared explicit service effect models",
+    "no native scene-helper integration or FCSR proof",
+    "owners 4/5 attachment-storage domain unresolved",
+    "original external C objects unresolved",
+    "no IDO compilation, strict MATCH, or gameplay claim"
+  ]
+}

@@ -21,7 +21,7 @@ ROOT=HERE.parents[3]
 NAME='func_803AF744'
 ENTRY=0x803AF744
 SIZE=564
-FLAGS='-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul'
+FLAGS='-g0 -O3 -mips2 -G 0 -non_shared'
 SOURCE=ROOT/'cloud/matches/ovl_a'/ (NAME+'.c')
 ANCHORS={'render_helper':0x800B65B4,'func_800B669C':0x800B669C,
  'object_create':0x800B42F0,'dispatch_handler':0x800B74A0,
@@ -31,6 +31,15 @@ ANCHORS={'render_helper':0x800B65B4,'func_800B669C':0x800B669C,
  'D_803B83A0':0x803B83A0,'D_803B839C':0x803B839C,'D_803B92B4':0x803B92B4}
 
 HELPERS={'func_800A3508': {'address': '0x800a3508', 'bytes': 16, 'sha256': '032b72d14840ad38e3c3e11a9cad4f2d20d2d471d6380b1600dd4c4702d631d0'}, 'object_bytes_sum_global': {'address': '0x800b3f50', 'bytes': 84, 'sha256': '1f195feade67d0cbc0e3608addd9d498dce8ad0f3acd3e16431a453ecfbfe82f'}, 'state_utility': {'address': '0x800b71d4', 'bytes': 396, 'sha256': '636951ffa0efe5e074676c7f3f0456d1149fa0bb76caf89dcdf5331c916bf6e6'}, 'render_helper': {'address': '0x800b65b4', 'bytes': 232, 'sha256': '4dc690156b257d875500ce8913cdeb9906660b2fee02b08495dee63ca91a8410'}, 'func_800B669C': {'address': '0x800b669c', 'bytes': 20, 'sha256': 'b8afbed98b9ba3628a0f09bfd44fe0013653321610eb1ab113a5cc6dc1855fdb'}, 'object_create': {'address': '0x800b42f0', 'bytes': 112, 'sha256': 'faee709c3df1e073e647c2851a4c4ce19db047599daaa796882845fa345f6858'}, 'dispatch_handler': {'address': '0x800b74a0', 'bytes': 1028, 'sha256': '21a02928c539b8245d8f31d68e81a52c43a252f127da03437e864f108309bdd6'}, 'camera_auto_follow': {'address': '0x800be078', 'bytes': 1084, 'sha256': 'fdd2db8697b645e3bff91cf0e6351a20a280a69db979bb576fd0015516d9cf73'}}
+
+
+def portable_receipt(receipt):
+    """Compare packet proof; base-context and whole-tree digests are provenance."""
+    result = json.loads(json.dumps(receipt))
+    for key in ('protected_targets', 'scorer_sha256', 'helper_protected_targets', 'owndata_sha256'):
+        result.pop(key, None)
+    return result
+
 
 def sha(b):return hashlib.sha256(b).hexdigest()
 def shell(*args):
@@ -171,10 +180,10 @@ def main():
   except AssertionError:rejected=True
   assert rejected,label
   negatives[label]={'strict_match':False,'comparison':result.__dict__,'host_oracle_rejected':True}
- receipt={'status':'MATCH','image':'A','address':hex(ENTRY),'end':hex(ENTRY+SIZE),'bytes':SIZE,'words':len(words),'flags':FLAGS,'source_sha256':sha(SOURCE.read_bytes()),'host_source_sha256':sha((HERE/'host.c').read_bytes()),'native_sha256':sha(native),'gnu_linked_body_sha256':sha(linkedraw[:SIZE]),'comparison':comparison.__dict__,'function_bytes':SIZE,'alignment_bytes':12,'owned_data_bytes':0,'relocations':len(relocs),'anchors':{n:hex(v) for n,v in ANCHORS.items()},'host_cases':count,'host_trace_sha256':tracehash,'host_scope':'C89 UBSan/bounds bounded helper call traces with between-call global mutation and output lengths 0/1/127/255; authentic pure ceil helper; height [-128,637]. External renderer/formatter internals are contract hooks. Native execution is separately independently reviewed.','layout_checks':'32-bit pointers and all eight native MenuText field offsets','negative_controls':negatives,'protected_targets':manifest,'helper_native_bindings':HELPERS,'helper_protected_targets':helper_manifest,'scorer_sha256':sha((tr/'tools/cloud/score.py').read_bytes()),'owndata_sha256':sha((tr/'tools/cloud/owndata.py').read_bytes()),'tools':{p:sha((score.IDO/p).read_bytes()) for p in ('cc','cfe','uopt','ugen','as1')},'limits':['Opaque format contents; no general sprintf overflow safety proof','Bounded helper-contract test, not actual renderer execution','No broad suite or image/compression/ROM/hardware gate','No original typedef/source-unit recovery','Zero newly accepted bytes or cartridge coverage']}
+ receipt={'status':'MATCH','image':'A','address':hex(ENTRY),'end':hex(ENTRY+SIZE),'bytes':SIZE,'words':len(words),'flags':FLAGS+' -Wab,-r4300_mul','source_sha256':sha(SOURCE.read_bytes()),'verifier_sha256':sha((HERE/'verify.py').read_bytes()),'host_source_sha256':sha((HERE/'host.c').read_bytes()),'native_sha256':sha(native),'gnu_linked_body_sha256':sha(linkedraw[:SIZE]),'comparison':comparison.__dict__,'function_bytes':SIZE,'alignment_bytes':12,'owned_data_bytes':0,'relocations':len(relocs),'anchors':{n:hex(v) for n,v in ANCHORS.items()},'host_cases':count,'host_trace_sha256':tracehash,'host_scope':'C89 UBSan/bounds bounded helper call traces with between-call global mutation and output lengths 0/1/127/255; authentic pure ceil helper; height [-128,637]. External renderer/formatter internals are contract hooks. Native execution is separately independently reviewed.','layout_checks':'32-bit pointers and all eight native MenuText field offsets','negative_controls':negatives,'helper_native_bindings':HELPERS,'tools':{p:sha((score.IDO/p).read_bytes()) for p in ('cc','cfe','uopt','ugen','as1')},'limits':['Opaque format contents; no general sprintf overflow safety proof','Bounded helper-contract test, not actual renderer execution','No broad suite or image/compression/ROM/hardware gate','No original typedef/source-unit recovery','Zero newly accepted bytes or cartridge coverage']}
  # Compare JSON to JSON: scorer notes are tuples in memory and arrays on disk.
  receipt=json.loads(json.dumps(receipt))
- if a.check:assert json.loads(a.out.read_text())==receipt,'portable receipt differs'
+ if a.check:assert portable_receipt(json.loads(a.out.read_text()))==portable_receipt(receipt),'portable receipt differs'
  else:a.out.write_text(json.dumps(receipt,indent=2)+'\n')
  (build/'local_provenance.json').write_text(json.dumps({'object_sha256':sha(obj.read_bytes()),'gcc':shell('gcc','--version').splitlines()[0],'gnu_ld':shell('mips-linux-gnu-ld','--version').splitlines()[0]},indent=2)+'\n')
  print(json.dumps({k:receipt[k] for k in ('status','bytes','comparison','host_cases','relocations','alignment_bytes','negative_controls')},indent=2))

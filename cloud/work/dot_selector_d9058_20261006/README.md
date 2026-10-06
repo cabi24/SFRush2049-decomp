@@ -1,5 +1,24 @@
 # D9058: complete caller reconstruction, private-ABI context still open
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
+## Integration portability update (2026-10-06)
+
+The context-origin source is read at the recorded base commit. Replay comparison excludes only historical whole-manifest and context-origin hashes. Complete native words, source/verifier bindings, physical GNU placement, all ELF extents, relocations, ABI and behavioral evidence remain strict. ASan/UBSan checks passed with `ASAN_OPTIONS=detect_leaks=0:halt_on_error=1`; leak checking cannot execute under this environment’s ptrace and is not claimed.
+
+Focused packet tests passed with IDO available and with IDO absent. Compiler-dependent tests skip without IDO or the MIPS GNU linker. These scoped results do not claim the required aggregate repository-suite pass; that matrix is recorded separately before any publication. No protected production files, native assets, accepted locks or compiler policy are changed.
+
+
 Status: **NONMATCH**, bounded source/ABI research. No matching or coverage credit.
 Claim: `func_800D9058`, `[0x800D9058, 0x800D91A0)`, 328 native bytes / 82 words.
 Base: `cd22879d40b3de443cfde047b86e75e159b6cec6`.

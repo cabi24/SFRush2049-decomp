@@ -1,0 +1,670 @@
+{
+  "status": "PASS",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "packet_sha256": {
+    "cloud/matches/voice_unblock_production/func_8001F954.c": "b8470dfb92f83d0e56d977c477f819857a7e5afc205420236511eb7007ed89d8",
+    "cloud/matches/voice_unblock_production/group.json": "f615f731f9ce80291f93013d3f3f58b8943aa9094c00cdef559d09909e132196",
+    "verify.py": "a8b8a2092e292bf08087ef7a2f42016edbb028951c8e66cb68c8e40ae40848ec",
+    "host_test.c": "a73949906da926a8516cd18766f395da065cc840f07733a634895692007c9e06"
+  },
+  "proof": {
+    "source_contract": {
+      "body_change": [
+        "identifier -> identifier60",
+        "valueBD -> activeBD"
+      ],
+      "record_declarations_equal_base": [
+        "SequenceNode",
+        "VoiceState"
+      ],
+      "genuine_context": "standalone, external real helpers; no fabricated bodies"
+    },
+    "standalone": {
+      "adapted_exact_O3": {
+        "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+        "comparison": {
+          "differing": 0,
+          "total": 31,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "elf_bytes": 124,
+        "native_sha256": "13abd5451f04320560902bea5b4b3ad7ad236f5bbc5757504ebe8a15b8eae4fc",
+        "compiled_body_sha256": "13abd5451f04320560902bea5b4b3ad7ad236f5bbc5757504ebe8a15b8eae4fc",
+        "owned_data_bytes": 0,
+        "gnu_link": {
+          "body_sha256": "13abd5451f04320560902bea5b4b3ad7ad236f5bbc5757504ebe8a15b8eae4fc",
+          "linked_text_bytes": 128,
+          "alignment_zero_bytes": 4,
+          "bindings": {
+            "func_8001467C": 2147567228,
+            "func_80014AF0": 2147568368,
+            "D_8004BEB8": 2147794616,
+            "func_8001F6EC": 2147612396
+          }
+        }
+      },
+      "adapted_production_O2": {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "comparison": {
+          "differing": 0,
+          "total": 31,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "elf_bytes": 124,
+        "native_sha256": "13abd5451f04320560902bea5b4b3ad7ad236f5bbc5757504ebe8a15b8eae4fc",
+        "compiled_body_sha256": "13abd5451f04320560902bea5b4b3ad7ad236f5bbc5757504ebe8a15b8eae4fc",
+        "owned_data_bytes": 0,
+        "gnu_link": {
+          "body_sha256": "13abd5451f04320560902bea5b4b3ad7ad236f5bbc5757504ebe8a15b8eae4fc",
+          "linked_text_bytes": 128,
+          "alignment_zero_bytes": 4,
+          "bindings": {
+            "func_8001467C": 2147567228,
+            "func_80014AF0": 2147568368,
+            "D_8004BEB8": 2147794616,
+            "func_8001F6EC": 2147612396
+          }
+        }
+      },
+      "legacy_O2": {
+        "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+        "comparison": {
+          "differing": 0,
+          "total": 31,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "elf_bytes": 124,
+        "native_sha256": "13abd5451f04320560902bea5b4b3ad7ad236f5bbc5757504ebe8a15b8eae4fc",
+        "compiled_body_sha256": "13abd5451f04320560902bea5b4b3ad7ad236f5bbc5757504ebe8a15b8eae4fc",
+        "owned_data_bytes": 0,
+        "gnu_link": {
+          "body_sha256": "13abd5451f04320560902bea5b4b3ad7ad236f5bbc5757504ebe8a15b8eae4fc",
+          "linked_text_bytes": 128,
+          "alignment_zero_bytes": 4,
+          "bindings": {
+            "func_8001467C": 2147567228,
+            "func_80014AF0": 2147568368,
+            "D_8004BEB8": 2147794616,
+            "func_8001F6EC": 2147612396
+          }
+        }
+      }
+    },
+    "O3_group": {
+      "spec": {
+        "files": [
+          "func_8001F954.c"
+        ],
+        "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+        "keep": [
+          "func_8001F954"
+        ],
+        "members": [
+          "func_8001F954"
+        ],
+        "claims": [
+          "func_8001F954"
+        ],
+        "context": [],
+        "allow_unverified": false
+      },
+      "backend_invocations": [
+        [
+          "cc",
+          "-j",
+          "-g0",
+          "-O3",
+          "-mips2",
+          "-G",
+          "0",
+          "-non_shared",
+          "func_8001F954.c"
+        ],
+        [
+          "uld",
+          "-L/usr/lib/mips2/nonshared",
+          "-_SYSTYPE_SVR4",
+          "-mips2",
+          "-non_shared",
+          "-g0",
+          "-no_AutoGnum",
+          "-kp",
+          "keep.txt",
+          "func_8001F954.u",
+          "-ko",
+          "linked"
+        ],
+        [
+          "usplit",
+          "-mips2",
+          "-o",
+          "split",
+          "-t",
+          "st",
+          "linked"
+        ],
+        [
+          "umerge",
+          "-Olimit",
+          "5000",
+          "-mips2",
+          "-EB",
+          "-g0",
+          "-O3",
+          "split",
+          "-o",
+          "merged",
+          "-t",
+          "st"
+        ],
+        [
+          "uopt",
+          "-G",
+          "0",
+          "-Olimit",
+          "5000",
+          "-mips2",
+          "-EB",
+          "-g0",
+          "-O3",
+          "merged",
+          "opt",
+          "-t",
+          "st",
+          "optlog"
+        ],
+        [
+          "ugen",
+          "-G",
+          "0",
+          "-mips2",
+          "-EB",
+          "-g0",
+          "-O3",
+          "opt",
+          "-o",
+          "gen",
+          "-t",
+          "st",
+          "-temp",
+          "ugtmp"
+        ],
+        [
+          "as1",
+          "-elf",
+          "-G",
+          "0",
+          "-p0",
+          "-mips2",
+          "-EB",
+          "-g0",
+          "-O3",
+          "-r4300_mul",
+          "-Olimit",
+          "5000",
+          "gen",
+          "-o",
+          "<output.o>",
+          "-t",
+          "st"
+        ]
+      ],
+      "comparison": {
+        "differing": 0,
+        "total": 31,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "elf_bytes": 124,
+      "native_sha256": "13abd5451f04320560902bea5b4b3ad7ad236f5bbc5757504ebe8a15b8eae4fc",
+      "compiled_body_sha256": "13abd5451f04320560902bea5b4b3ad7ad236f5bbc5757504ebe8a15b8eae4fc",
+      "owned_data_bytes": 0,
+      "gnu_link": {
+        "body_sha256": "13abd5451f04320560902bea5b4b3ad7ad236f5bbc5757504ebe8a15b8eae4fc",
+        "linked_text_bytes": 128,
+        "alignment_zero_bytes": 4,
+        "bindings": {
+          "func_8001467C": 2147567228,
+          "func_80014AF0": 2147568368,
+          "D_8004BEB8": 2147794616,
+          "func_8001F6EC": 2147612396
+        }
+      }
+    },
+    "context": {
+      "status": "ok",
+      "dropped_basic_typedefs": [
+        "typedef unsigned char u8;",
+        "typedef unsigned int u32;"
+      ],
+      "inserted_declarations": [
+        "#pragma pack(1)",
+        "#pragma pack(0)",
+        "extern void func_8001F6EC(VoiceState *state);"
+      ],
+      "all_base_C_bodies_unchanged": true
+    },
+    "expected_refusals": [
+      "legacy conflicting VoiceState",
+      "later-only helper prototype removed by whole-file dedup"
+    ],
+    "whole_TU": {
+      "rows": {
+        "func_8001E9B0": {
+          "comparison": {
+            "differing": 0,
+            "total": 60,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "elf_bytes": 240,
+          "native_sha256": "74299d451bfad8d4c283623ebf0b700fbb2dd9efe1f7569dd546a6acc860f377",
+          "compiled_body_sha256": "74299d451bfad8d4c283623ebf0b700fbb2dd9efe1f7569dd546a6acc860f377",
+          "owned_data_bytes": 0
+        },
+        "func_8001EAA0": {
+          "comparison": {
+            "differing": 0,
+            "total": 19,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "elf_bytes": 76,
+          "native_sha256": "62bd33ecd9af826d02f0f7cec4dd924e755160cd4f822fe1d079983ca7e31ddc",
+          "compiled_body_sha256": "62bd33ecd9af826d02f0f7cec4dd924e755160cd4f822fe1d079983ca7e31ddc",
+          "owned_data_bytes": 0
+        },
+        "func_8001EAEC": {
+          "comparison": {
+            "differing": 0,
+            "total": 9,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "elf_bytes": 36,
+          "native_sha256": "f037bf0b9239a43d781e4fe8decc9a06a0b19cd5ab44919a4aeb2f0ff0bcbe50",
+          "compiled_body_sha256": "f037bf0b9239a43d781e4fe8decc9a06a0b19cd5ab44919a4aeb2f0ff0bcbe50",
+          "owned_data_bytes": 0
+        },
+        "func_8001EB10": {
+          "comparison": {
+            "differing": 0,
+            "total": 116,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "elf_bytes": 464,
+          "native_sha256": "810a730488047d99a6bb97c46cc425f112056a675c7b57b11ee5d28c604f5fe1",
+          "compiled_body_sha256": "810a730488047d99a6bb97c46cc425f112056a675c7b57b11ee5d28c604f5fe1",
+          "owned_data_bytes": 0
+        },
+        "func_8001ECE0": {
+          "comparison": {
+            "differing": 0,
+            "total": 69,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "elf_bytes": 276,
+          "native_sha256": "2593f31923c3fdce29d018a4abf6bc4011f1b3d232f7493e56d2d18d5fcd8532",
+          "compiled_body_sha256": "2593f31923c3fdce29d018a4abf6bc4011f1b3d232f7493e56d2d18d5fcd8532",
+          "owned_data_bytes": 0
+        },
+        "func_8001EDF4": {
+          "comparison": {
+            "differing": 0,
+            "total": 16,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "elf_bytes": 64,
+          "native_sha256": "f6a4fe346797da44ac5fad1a431291558de004dfdaf514ffae0c034acb84a278",
+          "compiled_body_sha256": "f6a4fe346797da44ac5fad1a431291558de004dfdaf514ffae0c034acb84a278",
+          "owned_data_bytes": 0
+        },
+        "func_8001EE34": {
+          "comparison": {
+            "differing": 0,
+            "total": 26,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "elf_bytes": 104,
+          "native_sha256": "20cfe02e8f42acad180d4041a5f25f0c7a51a088ed2af222750f927405afe83b",
+          "compiled_body_sha256": "20cfe02e8f42acad180d4041a5f25f0c7a51a088ed2af222750f927405afe83b",
+          "owned_data_bytes": 0
+        },
+        "func_8001EE9C": {
+          "comparison": {
+            "differing": 0,
+            "total": 60,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "elf_bytes": 240,
+          "native_sha256": "3f1f7e514081bd7ed8abd6a62efa8c0981ec3869714354293027c91999caa74e",
+          "compiled_body_sha256": "3f1f7e514081bd7ed8abd6a62efa8c0981ec3869714354293027c91999caa74e",
+          "owned_data_bytes": 0
+        },
+        "func_8001EF8C": {
+          "comparison": {
+            "differing": 0,
+            "total": 108,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "elf_bytes": 432,
+          "native_sha256": "c6c6ec47d789734467a06fe0f69e11e7efe16edc46ee7860783d75a05851a02f",
+          "compiled_body_sha256": "c6c6ec47d789734467a06fe0f69e11e7efe16edc46ee7860783d75a05851a02f",
+          "owned_data_bytes": 0
+        },
+        "func_8001F13C": {
+          "comparison": {
+            "differing": 0,
+            "total": 364,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "elf_bytes": 1456,
+          "native_sha256": "e9859680372e0b2b20fc37ae8e9e724fcca1125ca1ef09bdc7544c8090b7ea8f",
+          "compiled_body_sha256": "e9859680372e0b2b20fc37ae8e9e724fcca1125ca1ef09bdc7544c8090b7ea8f",
+          "owned_data_bytes": 0
+        },
+        "func_8001F6EC": {
+          "comparison": {
+            "differing": 0,
+            "total": 64,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "elf_bytes": 256,
+          "native_sha256": "755a34ee559b47aac46b787b7f59e71a83e1c82d90b93ba425dec3d6fc6d88f4",
+          "compiled_body_sha256": "755a34ee559b47aac46b787b7f59e71a83e1c82d90b93ba425dec3d6fc6d88f4",
+          "owned_data_bytes": 0
+        },
+        "func_8001F7EC": {
+          "comparison": {
+            "differing": 0,
+            "total": 30,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "elf_bytes": 120,
+          "native_sha256": "2ef457e96e055e0e798cb1a2f89753a85e837d10de3727089158d65484f79312",
+          "compiled_body_sha256": "2ef457e96e055e0e798cb1a2f89753a85e837d10de3727089158d65484f79312",
+          "owned_data_bytes": 0
+        },
+        "func_8001F864": {
+          "comparison": {
+            "differing": 0,
+            "total": 13,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "elf_bytes": 52,
+          "native_sha256": "c54e1bb5c063b4fe6a0ff349090ebec95caa2fdb0d3248e94d8aa803bb220496",
+          "compiled_body_sha256": "c54e1bb5c063b4fe6a0ff349090ebec95caa2fdb0d3248e94d8aa803bb220496",
+          "owned_data_bytes": 0
+        },
+        "func_8001F898": {
+          "comparison": {
+            "differing": 0,
+            "total": 47,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "elf_bytes": 188,
+          "native_sha256": "d239f69e4ab6ccdaa23887a527cd4be7e2e698bad5cc9dd06410d29b95b039bd",
+          "compiled_body_sha256": "d239f69e4ab6ccdaa23887a527cd4be7e2e698bad5cc9dd06410d29b95b039bd",
+          "owned_data_bytes": 0
+        },
+        "func_8001F954": {
+          "comparison": {
+            "differing": 0,
+            "total": 31,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "elf_bytes": 124,
+          "native_sha256": "13abd5451f04320560902bea5b4b3ad7ad236f5bbc5757504ebe8a15b8eae4fc",
+          "compiled_body_sha256": "13abd5451f04320560902bea5b4b3ad7ad236f5bbc5757504ebe8a15b8eae4fc",
+          "owned_data_bytes": 0
+        },
+        "func_8001F9D0": {
+          "comparison": {
+            "differing": 0,
+            "total": 18,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "elf_bytes": 72,
+          "native_sha256": "390594cf94f2b216dd78abed6f4969ade7ebab3ae17eb0502475e4e1551627e9",
+          "compiled_body_sha256": "390594cf94f2b216dd78abed6f4969ade7ebab3ae17eb0502475e4e1551627e9",
+          "owned_data_bytes": 0
+        },
+        "func_8001FA18": {
+          "comparison": {
+            "differing": 0,
+            "total": 51,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "elf_bytes": 204,
+          "native_sha256": "0cb9c4ca1eb107de27ce426a2447f38206c88ff76afb03d67c96c113a6a208da",
+          "compiled_body_sha256": "0cb9c4ca1eb107de27ce426a2447f38206c88ff76afb03d67c96c113a6a208da",
+          "owned_data_bytes": 0
+        },
+        "func_8001FAE4": {
+          "comparison": {
+            "differing": 0,
+            "total": 50,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "elf_bytes": 200,
+          "native_sha256": "59ccc15dec243e76651645ba0e37b84ca32f151451e9335f7aa28734dd3890ad",
+          "compiled_body_sha256": "59ccc15dec243e76651645ba0e37b84ca32f151451e9335f7aa28734dd3890ad",
+          "owned_data_bytes": 0
+        }
+      },
+      "base_C_bodies": [
+        "func_8001E9B0",
+        "func_8001EAA0",
+        "func_8001EAEC",
+        "func_8001EB10",
+        "func_8001ECE0",
+        "func_8001EDF4",
+        "func_8001EE34",
+        "func_8001EE9C",
+        "func_8001F7EC",
+        "func_8001F864",
+        "func_8001F898",
+        "func_8001F9D0",
+        "func_8001FA18",
+        "func_8001FAE4"
+      ],
+      "unchanged_passthroughs": [
+        "func_8001EF8C",
+        "func_8001F13C",
+        "func_8001F6EC"
+      ],
+      "membership_unchanged": true,
+      "newly_compiled_C_body": "func_8001F954",
+      "recipe": "-G 0 -mips2 -O2 -non_shared -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm; base include paths; asm-processor + GNU as -march=vr4300 -mabi=32"
+    },
+    "genuine_caller_helper": {
+      "func_80014AF0": {
+        "source_path": "cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014AF0.c",
+        "equals_base_production_body": true,
+        "comparison": {
+          "differing": 0,
+          "total": 19,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "elf_bytes": 76,
+        "native_sha256": "a73a1150b9ee51ca62257d2c15768acaa3523d9cd73cf21e39c6b05122199a36",
+        "compiled_body_sha256": "a73a1150b9ee51ca62257d2c15768acaa3523d9cd73cf21e39c6b05122199a36",
+        "owned_data_bytes": 0,
+        "gnu_link": {
+          "body_sha256": "a73a1150b9ee51ca62257d2c15768acaa3523d9cd73cf21e39c6b05122199a36",
+          "linked_text_bytes": 80,
+          "alignment_zero_bytes": 4,
+          "bindings": {
+            "D_80038294": 2147713684
+          }
+        }
+      },
+      "func_8001C7F4": {
+        "source_path": "cloud/work/boot_tail_promotion/sources/func_8001C7F4.c",
+        "equals_base_production_body": true,
+        "comparison": {
+          "differing": 0,
+          "total": 27,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "elf_bytes": 108,
+        "native_sha256": "2bf4ec94a067823efdfba48cf52f020673a29be51937496f6332276e6b3e8e41",
+        "compiled_body_sha256": "2bf4ec94a067823efdfba48cf52f020673a29be51937496f6332276e6b3e8e41",
+        "owned_data_bytes": 0,
+        "gnu_link": {
+          "body_sha256": "2bf4ec94a067823efdfba48cf52f020673a29be51937496f6332276e6b3e8e41",
+          "linked_text_bytes": 112,
+          "alignment_zero_bytes": 4,
+          "bindings": {
+            "D_8002C630": 2147665456,
+            "func_80014594": 2147566996,
+            "D_8004FA50": 2147809872,
+            "func_8001F954": 2147613012,
+            "func_800145DC": 2147567068
+          }
+        }
+      }
+    },
+    "native_layout": {
+      "VoiceState_bytes": 416,
+      "SequenceNode_bytes": 16,
+      "offsets": {
+        "command00": 0,
+        "next_identifier": 16,
+        "parent_identifier": 20,
+        "entry18": 24,
+        "flags24": 36,
+        "value28": 40,
+        "external4C": 76,
+        "identifier60": 96,
+        "activeBD": 189
+      }
+    },
+    "native_behavior": {
+      "cases": 2112,
+      "native_and_linked_executions": 4224,
+      "all_instruction_offsets_covered": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36,
+        40,
+        44,
+        48,
+        52,
+        56,
+        60,
+        64,
+        68,
+        72,
+        76,
+        80,
+        84,
+        88,
+        92,
+        96,
+        100,
+        104,
+        108,
+        112,
+        116,
+        120
+      ],
+      "negative_controls_rejected": [
+        "wrong_identifier_field",
+        "wrong_clear_field",
+        "wrong_sentinel"
+      ],
+      "scope": "1F954 body with explicit side-effecting helper hooks; valid slots 0..31 and FFFFFFFF only; no helper/native whole-runtime claim"
+    },
+    "host_behavior": "2112 actual-source cases passed",
+    "host_mutants_rejected": [
+      "wrong_clear_field",
+      "wrong_identifier",
+      "wrong_sentinel"
+    ]
+  },
+  "new_matching_bytes": 0,
+  "previous_match_preserved_bytes": 124,
+  "accepted_byte_gain": 0,
+  "limits": [
+    "No live source, context, lock, target, gate or promotion mutation",
+    "Production O2 relock/context/promotion and private full-ROM gate remain maintainer work",
+    "Bounded slots 0..31 and sentinel only; boundary hooks do not execute helper bodies",
+    "No image, compression, full-ROM, hardware, gameplay or hosted CI claim"
+  ]
+}

@@ -1,5 +1,17 @@
 # Image-B event-ring producer: 396-byte complete match
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
 B:func_803914B4, [0x803914B4,0x80391640), 396 bytes / 99 words.
 Natural standalone IDO 5.3 C at `-g0 -O3 -mips2 -G 0 -non_shared
 -Wab,-r4300_mul` strictly matches every relocated native word.
@@ -103,3 +115,21 @@ private image bytes are neither packet contents nor publication artifacts.
 
 Independent review is required before draft publication. No production,
 protected target, lock, scorer or shared header changes. No CI watcher.
+
+## Integration-portable replay (2026-10-06)
+
+Scorer, whole-manifest and accepted-context digests are historical provenance,
+not live-tree requirements. The verifier normalizes only enumerated provenance
+fields on both receipt sides. Packet source and verifier bindings, compiler
+identity/actual flags, selected native bodies and addresses, complete emitted
+extents, relocations, owned data and behavioral checks remain binding.
+The existing bare O3 header is unchanged; the canonical scorer still adds
+`-Wab,-r4300_mul`, recorded as actual compiler provenance. The test wrapper
+is deliberately excluded from `packet_sha256`.
+
+### Host-tool portability
+
+The receipt records host GCC and GNU linker binary hashes as provenance, not
+frozen proof inputs. Pinned IDO hashes, packet/source hashes, native words, ELF
+extents and relocations, GNU-linked text bytes, and all behavior/mutation checks
+remain binding. A host tool change must pass those same checks.

@@ -10,12 +10,10 @@
   },
   "source_sha256": "f430f408655278160bb32ec2ff322b6c5ccf6067a53f89c7d5c60e8148c463da",
   "harness_sha256": {
-    "verify.py": "f835e280b5196ac2ff8eb2fcbe933aef1e4fb2b6f26ed9b52f6f8caa0eb31692",
+    "verify.py": "eb5c932feee28d403a3677dd99d5b790db351e5f24acd8afa2b73a3b392d7511",
     "native_behavior.py": "a3cf27fc17f15ee0ad8afa440291a9d8a665be2e77370025cc91f80c4b15c91c",
-    "test_packet.py": "d97aba84fe2550ddfd8dd75753cb93307d429257e7ab93cc5c4c206b274a00b0",
     "test_host.c": "67b0da62f0fe13db4c3435fc0f91ff1cb918d21b86be4b7f8c00a7b18344cafb"
   },
-  "manifest_sha256": "6bd3e6ef05e6123e4ea4dd0d814c0abb16f202a91d8d0a381eca14322c8a36d5",
   "native_inputs": {
     "func_800178B0": {
       "bytes": 1160,

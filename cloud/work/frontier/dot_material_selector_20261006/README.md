@@ -1,5 +1,26 @@
 # Complete model-record slot setter match
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
+## Integration portability update (2026-10-06)
+
+Master `dea99f09ab19b1d3b324ed7097162f7b378e7096` has already accepted a different source representation of this target. Its existing `cloud/matches/func_8008B000.c` is left byte-for-byte unchanged. This packet preserves the historical defined-layout representation as `candidate.c`; the earlier new-submission claim below is superseded, and this packet now has empty claims and zero acceptance gain. The master representation uses `Model`/`Part`; this packet uses a complete `ModelRecord` with five spans and selector-plus-one access. No body was tuned during this repair.
+
+Fresh canonical IDO replay verifies this packet source as a complete strict 216-byte MATCH under the literal first-line recipe `-g0 -O3 -mips2 -G 0 -non_shared`. The scorer additionally supplies its existing `-Wab,-r4300_mul` backend policy. The function needs no callers, inlined helpers or deleted-static stubs in its compilation unit. The historical accepted `car_gear_shift` is an optional shared-data context witness read at the recorded base. The archived negative control retains its explicitly recorded O2 recipe.
+
+Focused packet tests passed with IDO available and with IDO absent. Compiler-dependent tests skip without IDO or the MIPS GNU linker. These scoped results do not claim the required aggregate repository-suite pass; that matrix is recorded separately before any publication. No protected production files, native assets, accepted locks or compiler policy are changed.
+
+
 Target `func_8008B000`, **[0x8008B000, 0x8008B0D8), 216 bytes / 54 words**.
 Base: `cd22879d40b3de443cfde047b86e75e159b6cec6`.
 

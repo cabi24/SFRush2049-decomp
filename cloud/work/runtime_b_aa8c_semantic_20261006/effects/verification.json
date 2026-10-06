@@ -1,0 +1,382 @@
+{
+  "status": "BOUNDED_ACTUAL_NATIVE_SERVICE_CHECKS",
+  "base_commit": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "cases": 61,
+  "native_instruction_coverage": 480,
+  "native_targets": {
+    "model_data_load": {
+      "address": "0x8008ae8c",
+      "size": 372,
+      "sha256": "ca795d2f870fb8dd2aee7c41f04db122d52c303205b20392e4247ea4e2c6375d"
+    },
+    "model_transform_setup": {
+      "address": "0x8008b0d8",
+      "size": 404,
+      "sha256": "90f162724388aaa4946f189aadfe0377f486bddf7ab0cbe8c30c767b8a878a5f"
+    },
+    "func_8008B3A0": {
+      "address": "0x8008b3a0",
+      "size": 40,
+      "sha256": "5dc88b8d6b0745ce7c1ec93bfeb09555c46c86e1b8b0056aa1e15f7587cea5af"
+    },
+    "math_utility": {
+      "address": "0x8008d6b0",
+      "size": 76,
+      "sha256": "e2b566e9e8acf312ddb9d228ba6cfb6fdbc517c14b00cbd5386e37ec51fc8159"
+    },
+    "func_8008D6FC": {
+      "address": "0x8008d6fc",
+      "size": 104,
+      "sha256": "fea0f2ff6d35ed6b505b3d8d24d1a2e1ad65d2a9dcf61f05bade3e6ca1432a47"
+    },
+    "func_8008D870": {
+      "address": "0x8008d870",
+      "size": 104,
+      "sha256": "51c6f2512658f3454200d0ef59e5cf69b64d1dbce7ae1845a9d37902bc345d79"
+    },
+    "func_8008E06C": {
+      "address": "0x8008e06c",
+      "size": 44,
+      "sha256": "cfc0187f19608ade0130a6b43c7f01b66fb9f7b7f6fd85540cf346e335328635"
+    },
+    "func_8008E144": {
+      "address": "0x8008e144",
+      "size": 88,
+      "sha256": "fda384e44d52c652208626161be54dc7dc99ad84cb7dafdf32510040e69a7730"
+    },
+    "render_mode_select": {
+      "address": "0x8008e19c",
+      "size": 208,
+      "sha256": "f24b2003bbaf0d78f56ac90e2a8fa62cd705bdfbd3571295405a63a0be864b8e"
+    },
+    "func_8008E26C": {
+      "address": "0x8008e26c",
+      "size": 300,
+      "sha256": "54c0fe9d2ad5160f5dca1268f7819ecec5ab1c447f7cf0f0a14ab0a57c78fc90"
+    },
+    "sign_extend_call": {
+      "address": "0x8008e398",
+      "size": 40,
+      "sha256": "7fd128bef40a72ad661e6bd2ac8b83a32a5921f63ff3a11b6fae562a62182f51"
+    },
+    "func_8008FFD0": {
+      "address": "0x8008ffd0",
+      "size": 92,
+      "sha256": "baecccbf0df54bb855a00a2ead47d0f8d83ca3325c9b6b2487132f57156c61a4"
+    },
+    "func_8009002C": {
+      "address": "0x8009002c",
+      "size": 92,
+      "sha256": "9e83f3e4d82b57f7d3463d0886ab50c490ee1b2d8ce82cc9af10e854d75c8ce0"
+    },
+    "entity_spawn_callback": {
+      "address": "0x80090088",
+      "size": 416,
+      "sha256": "0a341263df072121b6344998cef815065803fdd5ba4974c9520a3ecb60c8cdbe"
+    },
+    "sound_call_minimal": {
+      "address": "0x80090254",
+      "size": 48,
+      "sha256": "d60649ae7c407e455923d680fc3603abf94e6efd24dc6285c6ba6d38249d9aec"
+    },
+    "func_80090770": {
+      "address": "0x80090770",
+      "size": 44,
+      "sha256": "63c22792e9508d3ecf6bf1a7ca33f1e474feb47957aae72f5bc45941c4c62fa7"
+    }
+  },
+  "inspected_service_callgraph": {
+    "model_data_load": [
+      "0x8008ae8c"
+    ],
+    "model_transform_setup": [
+      "0x8008b0d8"
+    ],
+    "func_8008B3A0": [],
+    "math_utility": [],
+    "func_8008D6FC": [
+      "0x8008d6b0"
+    ],
+    "func_8008D870": [],
+    "func_8008E06C": [],
+    "func_8008E144": [],
+    "render_mode_select": [
+      "0x8008e144"
+    ],
+    "func_8008E26C": [
+      "0x8008e19c"
+    ],
+    "sign_extend_call": [
+      "0x8008e26c"
+    ],
+    "func_8008FFD0": [],
+    "func_8009002C": [],
+    "entity_spawn_callback": [
+      "0x8008ffd0",
+      "0x8009002c",
+      "0x80090088"
+    ],
+    "sound_call_minimal": [
+      "0x80090088"
+    ],
+    "func_80090770": []
+  },
+  "aa8c_direct_calls": [
+    [
+      "0x8038ab40",
+      "0x8038aa14"
+    ],
+    [
+      "0x8038ab5c",
+      "0x8038a95c"
+    ],
+    [
+      "0x8038ab7c",
+      "0x8008ae8c"
+    ],
+    [
+      "0x8038abd8",
+      "0x8008e06c"
+    ],
+    [
+      "0x8038abf0",
+      "0x8008b3a0"
+    ],
+    [
+      "0x8038ac10",
+      "0x8008ae8c"
+    ],
+    [
+      "0x8038ac4c",
+      "0x8008b0d8"
+    ],
+    [
+      "0x8038ac64",
+      "0x8008ae8c"
+    ],
+    [
+      "0x8038ac74",
+      "0x8008b0d8"
+    ],
+    [
+      "0x8038adc4",
+      "0x8038aa14"
+    ],
+    [
+      "0x8038adec",
+      "0x8038a95c"
+    ],
+    [
+      "0x8038aeb8",
+      "0x8008d6b0"
+    ],
+    [
+      "0x8038b0e8",
+      "0x8008e398"
+    ],
+    [
+      "0x8038b138",
+      "0x8008e06c"
+    ],
+    [
+      "0x8038b168",
+      "0x8008ae8c"
+    ],
+    [
+      "0x8038b198",
+      "0x8008d6b0"
+    ],
+    [
+      "0x8038b32c",
+      "0x8008e398"
+    ],
+    [
+      "0x8038b35c",
+      "0x8008e06c"
+    ],
+    [
+      "0x8038b37c",
+      "0x8008ae8c"
+    ],
+    [
+      "0x8038b3b8",
+      "0x8008b2e4"
+    ],
+    [
+      "0x8038b46c",
+      "0x8008d6b0"
+    ],
+    [
+      "0x8038b6b4",
+      "0x8008e398"
+    ],
+    [
+      "0x8038b704",
+      "0x8008e06c"
+    ],
+    [
+      "0x8038b734",
+      "0x8008ae8c"
+    ],
+    [
+      "0x8038b7bc",
+      "0x80090770"
+    ],
+    [
+      "0x8038b824",
+      "0x8008d6fc"
+    ],
+    [
+      "0x8038b9c8",
+      "0x8008d6b0"
+    ],
+    [
+      "0x8038bc6c",
+      "0x8008ae8c"
+    ],
+    [
+      "0x8038bcdc",
+      "0x8008b0d8"
+    ],
+    [
+      "0x8038bd28",
+      "0x8008ae8c"
+    ],
+    [
+      "0x8038bd38",
+      "0x8008b2e4"
+    ],
+    [
+      "0x8038bd58",
+      "0x8008b2e4"
+    ],
+    [
+      "0x8038bd98",
+      "0x8009ea68"
+    ],
+    [
+      "0x8038bda8",
+      "0x8008b2e4"
+    ],
+    [
+      "0x8038bde4",
+      "0x8008b32c"
+    ],
+    [
+      "0x8038be20",
+      "0x8008b0d8"
+    ],
+    [
+      "0x8038be70",
+      "0x8008ae8c"
+    ],
+    [
+      "0x8038beb4",
+      "0x8009ea68"
+    ],
+    [
+      "0x8038bec4",
+      "0x8008b2e4"
+    ],
+    [
+      "0x8038bf00",
+      "0x8008b32c"
+    ],
+    [
+      "0x8038bf30",
+      "0x8008b0d8"
+    ],
+    [
+      "0x8038bf80",
+      "0x8008ae8c"
+    ],
+    [
+      "0x8038c004",
+      "0x8008d6b0"
+    ],
+    [
+      "0x8038c224",
+      "0x8008d6b0"
+    ],
+    [
+      "0x8038c448",
+      "0x8008ae8c"
+    ],
+    [
+      "0x8038c510",
+      "0x8008d870"
+    ],
+    [
+      "0x8038c5b8",
+      "0x8008ae8c"
+    ],
+    [
+      "0x8038c5e0",
+      "0x8008b2e4"
+    ],
+    [
+      "0x8038c63c",
+      "0x8008b2e4"
+    ],
+    [
+      "0x8038c6a4",
+      "0x8008d870"
+    ],
+    [
+      "0x8038c6c4",
+      "0x8008b0d8"
+    ],
+    [
+      "0x8038c704",
+      "0x8008ae8c"
+    ],
+    [
+      "0x8038c754",
+      "0x8008b0d8"
+    ],
+    [
+      "0x8038c794",
+      "0x8008ae8c"
+    ],
+    [
+      "0x8038c7b0",
+      "0x8008b2e4"
+    ],
+    [
+      "0x8038c7e4",
+      "0x8009ea68"
+    ],
+    [
+      "0x8038c7f4",
+      "0x8008b2e4"
+    ],
+    [
+      "0x8038c830",
+      "0x8008b32c"
+    ],
+    [
+      "0x8038c860",
+      "0x8008b0d8"
+    ],
+    [
+      "0x8038c8b0",
+      "0x8008ae8c"
+    ],
+    [
+      "0x8038c8dc",
+      "0x8008b32c"
+    ]
+  ],
+  "negative_controls": [
+    "unmapped scene read rejected",
+    "unknown opcode rejected"
+  ],
+  "verifier_sha256": "b2e11d13e9c865a9377b49590588a85074497bceec2e4e8952ce415e6d580ead",
+  "scope_limits": [
+    "not full AA8C execution",
+    "not source matching",
+    "not arbitrary invalid handles",
+    "no FCSR or FP arithmetic tests",
+    "no general caller or original-source-object proof"
+  ]
+}

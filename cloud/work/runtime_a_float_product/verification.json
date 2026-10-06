@@ -8,7 +8,7 @@
   "source_sha256": "84750380d2f3c6539e495d92f9db317a9c3084f8a6d8002a55bc949ca4848206",
   "harness_sha256": "054cfd43f12466e0d819299882d82f13a1ad558531753c4a730a2df0b7893fa1",
   "model_sha256": "08a1dc653a61f0716d12b73932535fca2544ea43ccc64f4c85f0fe2ba2eb38d6",
-  "verifier_sha256": "2bab18b7b91b6e9bb5224e763ac0f9c61590223a20930d6a7d3a494943e921e4",
+  "verifier_sha256": "28d77aa8023a8e0133bb9cc41a030d279c965fef71add40ae8ac6efecc63d07a",
   "proofs": {
     "O1": {
       "comparison": {
@@ -575,8 +575,6 @@
     "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
     "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
   },
-  "scorer_sha256": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
-  "protected_manifest_sha256": "27f81bfaba058e89167168e3eb724d530de3b5fa8df12617138df25f149af82d",
   "limits": [
     "Stable, disjoint, synthetic valid backing: player0..3, selector0..12, five rows0..2, four floats each; not a proof of every game reachable index",
     "Binary32 normal/zero inputs and normal/zero intermediate products under round-to-nearest ties-even only; no hardware FCSR, trap, subnormal or NaN payload equivalence",

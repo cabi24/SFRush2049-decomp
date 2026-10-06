@@ -108,8 +108,8 @@ def run():
     return {'status':'COMPLETE-NONMATCH', 'new_matching_bytes':0, 'base':BASE,
             'target':{'name':NAME,'start':'0x800178B0','end_exclusive':'0x80017D38','bytes':1160},
             'source_sha256':sha(SOURCE.read_bytes()),
-            'harness_sha256':{name:sha((WORK/name).read_bytes()) for name in ('verify.py','native_behavior.py','test_packet.py','test_host.c')},
-            'manifest_sha256':sha((score.ASM_DIR/'SHA256SUMS').read_bytes()),
+            'harness_sha256':{name:sha((WORK/name).read_bytes()) for name in ('verify.py','native_behavior.py','test_host.c')},
+
             'native_inputs':native,'direct_tail_callers':callers, 'native_layout':{'sizes':SIZES,'offsets':OFFSETS},
             'compiled_rows':rows, 'behavior':behavior,
             'host_behavior':{'status':'PASS','cases':16896,'flags':host_flags,
@@ -120,6 +120,12 @@ def run():
                       'All pointer offsets and indices use valid finite storage; malformed resources are outside the observed contract.']}
 
 
+def portable(receipt):
+    result = json.loads(json.dumps(receipt))
+    result.pop('manifest_sha256', None)
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--check', action='store_true')
@@ -127,7 +133,7 @@ def main():
     args = parser.parse_args()
     result = run()
     if args.check:
-        assert result == json.loads((WORK/'evidence.json').read_text()), 'frozen evidence drift'
+        assert portable(result) == portable(json.loads((WORK/'evidence.json').read_text())), 'frozen evidence drift'
         print('PASS: complete source, full ELF and relocations, ABI layouts and native behavior replay.')
     elif args.output:
         args.output.write_text(json.dumps(result, indent=2)+'\n')

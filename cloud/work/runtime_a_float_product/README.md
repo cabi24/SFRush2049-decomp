@@ -1,5 +1,17 @@
 # Image A selected car-stat vector product: bounded nonmatch
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
 Research only. `candidate.c` is not a match, is not registered for splicing,
 and must not replace the native function in a caller group. Zero accepted bytes
 and zero cartridge-coverage credit are claimed.
@@ -173,6 +185,17 @@ The published packet accidentally retained the older scorer fingerprint
 replay with the published checkout's tools changes exactly that fingerprint
 and the three empty `comparison.notes` arrays emitted by the current scorer
 for O1/O2/O3. All source, native, compiler, manifest, relocation, behavior and
-caller-contract results remain unchanged. The entire fresh receipt is kept;
-no comparison fields or tool fingerprints are excluded from equality.
-A fast test also binds the saved receipt directly to the published scorer.
+caller-contract results remained unchanged. The entire fresh receipt was kept.
+At that historical stage, no comparison fields or tool fingerprints were
+excluded from equality, and a fast test bound the saved receipt to the scorer.
+The integration-portability change below supersedes that policy: historical
+scorer/whole-manifest provenance is nonbinding, while the fast test binds the
+packet verifier and selected native-word identity.
+
+## Integration-portable replay (2026-10-06)
+
+Scorer, whole-manifest and accepted-context digests are historical provenance,
+not live-tree requirements. The verifier normalizes only enumerated provenance
+fields on both receipt sides. Packet source and verifier bindings, compiler
+identity/actual flags, selected native bodies and addresses, complete emitted
+extents, relocations, owned data and behavioral checks remain binding.

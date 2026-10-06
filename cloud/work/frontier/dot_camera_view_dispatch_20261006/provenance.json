@@ -1,0 +1,26 @@
+{
+  "base_commit": "dea99f09ab19b1d3b324ed7097162f7b378e7096",
+  "donor_commit": "845329d7b36f5a384c5625ed9a0aef584ab46139",
+  "ancestor": "game/camera.c::setcamview",
+  "sources": [
+    {
+      "path": "game/camera.c",
+      "git_blob": "821101d287b804e67f47238874514ce1ba846e26",
+      "sha256": "48a6a113b5b88908bc23c0ac8904b10af2a25dff7bc7e8aa68622aecabf3efb9",
+      "url": "https://github.com/historicalsource/rushtherock/blob/845329d7b36f5a384c5625ed9a0aef584ab46139/game/camera.c"
+    },
+    {
+      "path": "game/vecmath.h",
+      "git_blob": "58c9d80ddb08ac7e2a7f54817adaacc20b953420",
+      "sha256": "76526aaa1894d9cef992ea07fa524cf7348e02cbede5a646a66f04d6e317cf3f",
+      "url": "https://github.com/historicalsource/rushtherock/blob/845329d7b36f5a384c5625ed9a0aef584ab46139/game/vecmath.h"
+    },
+    {
+      "path": "LIB/fmath.h",
+      "git_blob": "1689354918120237f78897f7192c52ad45b3fa1d",
+      "sha256": "cf14fd9628e3ad952a39d13ff569e9482ebe00ecf1d94b972cf079099c2d32d1",
+      "url": "https://github.com/historicalsource/rushtherock/blob/845329d7b36f5a384c5625ed9a0aef584ab46139/LIB/fmath.h"
+    }
+  ],
+  "dependencies": "Complete ordinary O32 root. All helpers remain external; no caller, inline helper, deleted-static stub or group dependency is required to compile this nonmatching source."
+}

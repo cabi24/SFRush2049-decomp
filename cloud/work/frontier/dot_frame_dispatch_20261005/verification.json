@@ -715,19 +715,9 @@
   },
   "source_bindings": {
     "cloud/matches/func_800B7FF8.c": "54ed29b8a95b66c6decd85ea936fdac2b805429cdedc3e2275b2c4505c1ac30b",
-    "src/blob/Effects_UpdateEmitters.c": "13bb5aca1026aa051f699f2f630d27994b44a0c66741bab3c4c61d1d6e492da2",
-    "cloud/work/game_C31/func_800B7FF8.bits.c": "87c66542cc78e0a69711e6e2c1bcc9ee8755b3af5673bb0d592f9726b65ce72b",
-    "cloud/work/frontier/dot_frame_dispatch_20261005/verify.py": "5db5063ff56ebd1a1b38612254dd608b7bdc635988a236388963ec36daae2281",
+    "cloud/work/frontier/dot_frame_dispatch_20261005/verify.py": "aebb8117438f462ee16b9ee69445716144fd61c1f864340e39cdc5d2324899f6",
     "cloud/work/frontier/dot_frame_dispatch_20261005/native.py": "2a4e50b4d7b198b7eb4961edd17f9e7b19411306e640ea38394f1f46eaaa4156",
-    "cloud/work/frontier/dot_frame_dispatch_20261005/host.c": "323d99a9f8722524ff1e6e2beaf48a86f7d0d83b7d46faf14b45f6ef91b35d37",
-    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
-    "asm/us/nonmatchings/rom/lib_1050/viTickStart.s": "7d4fc71e9403da4beead7c910b464bd8fe2470b3abdc3eeeae6dcd83576654b5",
-    "asm/us/nonmatchings/rom/lib_1050/viUpdateTime.s": "90c4b2b290211614faa23bcf054845829596ee3299b701bc6bf73cc10ccf2502"
-  },
-  "historical_native_provenance": {
-    "asm/us/blob/SHA256SUMS": "0bfdfdfc5e03c1f3261c7455f3922082d99673defacd5dbb692629624e757652",
-    "asm/us/blob/symbols.json": "ea80bea2d751ca4f4e8ac636d2a9a5278e10267dd1f0a138a9fea5118a1b7c7d",
-    "symbol_addrs.us.txt": "3db8a69ed8b00120f0926fb610bd0aa8905d936a4cb2eb2238eb62883e7a92a1"
+    "cloud/work/frontier/dot_frame_dispatch_20261005/host.c": "323d99a9f8722524ff1e6e2beaf48a86f7d0d83b7d46faf14b45f6ef91b35d37"
   },
   "compiler_sha256": {
     "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",

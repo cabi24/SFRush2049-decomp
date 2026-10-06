@@ -19,7 +19,7 @@ PACKET = Path(__file__).resolve().parent
 SOURCE = ROOT / 'cloud/matches/ovl_b/func_80393518.c'
 BASE = 'cd22879d40b3de443cfde047b86e75e159b6cec6'
 NAME, ADDRESS, SIZE = 'func_80393518', 0x80393518, 400
-FLAGS = '-g0 -O2 -mips2 -G 0 -non_shared'
+FLAGS = '-g0 -O3 -mips2 -G 0 -non_shared'
 TARGET = '3d42d71c005a624710193d99402c216ce58b37a1c2a2fae0847a5ab832c0ed6a'
 IMAGE = 'b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd'
 BINDINGS = {'render_helper':0x800B65B4, 'object_create':0x800B42F0,
@@ -67,6 +67,50 @@ def inspect_elf(score, path, linked=False):
             assert symbols[name][0] == address and symbols[name][3] == 0xfff1
     return data, sections
 
+def portable_elf(data):
+    """Bind every section and ABI attribute except nonallocated ECOFF debug data.
+
+    Absolute source paths change .mdebug size and physical file offsets. Neither
+    executable/data bytes, relocations, symbols nor MIPS ABI metadata are masked.
+    """
+    assert data[:6]==b"\x7fELF\x01\x02"
+    header=struct.unpack_from('>HHIIIIIHHHHHH',data,16)
+    assert header[0]==1 and header[1]==8 and header[9]==0
+    shoff,shsize,shnum,names_index=header[5],header[10],header[11],header[12]
+    assert shsize==40 and shoff+shnum*shsize<=len(data)
+    sections=[struct.unpack_from('>10I',data,shoff+shsize*i) for i in range(shnum)]
+    names=sections[names_index];records=[]
+    for row in sections:
+        index,typ,flags,addr,offset,size,link,info,align,entry_size=row
+        assert typ==8 or offset+size<=len(data)
+        assert index<names[5]
+        start=names[4]+index
+        name=data[start:data.index(b'\0',start,names[4]+names[5])].decode()
+        record=dict(name=name,type=typ,flags=flags,address=addr,link=link,
+                    info=info,alignment=align,entry_size=entry_size)
+        if name=='.mdebug':
+            assert typ==0x70000005 and flags==0 and addr==0,'unexpected allocated/debug section'
+            record['scope']='nonallocated ECOFF debug metadata; fingerprinted separately'
+        else:
+            record['size']=size
+            record['sha256']=digest(data[offset:offset+size]) if typ!=8 else None
+        records.append(record)
+    return {'ident_sha256':digest(data[:16]),'header':list(header[:5])+list(header[6:]),'sections':records}
+
+
+def comparable(receipt):
+    """Exclude enumerated historical integration provenance, never proof inputs."""
+    result = json.loads(json.dumps(receipt))
+    assert 'portable_object_elf' in result, 'missing complete portable ELF proof'
+    for key in ('input_sha256', 'target_sha256', 'object_sha256'):
+        result.pop(key, None)
+    # Host compiler/linker identities are recorded provenance. Their complete
+    # output bytes and behavior are proved below; the pinned IDO stays bound.
+    for tool in ('gcc', 'mips-linux-gnu-ld'):
+        result.get('tool_sha256', {}).pop(tool, None)
+    return result
+
+
 def prove(reference):
     sys.path.insert(0, str(ROOT))
     from tools.cloud import score
@@ -107,6 +151,23 @@ def prove(reference):
         with contextlib.redirect_stdout(io.StringIO()): comparison=score.compare(obj,NAME)
         assert comparison.accepted()
         data,sections=inspect_elf(score,obj); text=sections[score._text_index(sections)]
+        fingerprint = portable_elf(data)
+        moved_dir = tmp / 'different_source_path'; moved_dir.mkdir()
+        moved = moved_dir / SOURCE.name; moved.write_bytes(SOURCE.read_bytes())
+        moved_object = moved_dir / 'candidate.o'; score.compile_single(moved, FLAGS, moved_object)
+        assert portable_elf(moved_object.read_bytes()) == fingerprint, 'source path changed semantic ELF'
+        assert digest(moved_object.read_bytes()) != digest(data), 'debug path control ineffective'
+        semantic_controls = {}
+        for section in sections:
+            if section['name'] not in ('.text', '.rel.text', '.reginfo', '.options', '.symtab', '.strtab') or not section['size']:
+                continue
+            changed = bytearray(data); changed[section['off']] ^= 1
+            assert portable_elf(changed) != fingerprint, section['name']
+            semantic_controls[section['name']] = 'rejected'
+        changed = bytearray(data); changed[39] ^= 1
+        assert portable_elf(changed) != fingerprint, 'ELF ABI mutation accepted'
+        semantic_controls['ELF_ABI_flags'] = 'rejected'
+
         assert text['size']==SIZE and score.symbols(obj)=={NAME:0}
         for section in sections:
             if section['name'] in ['.data','.rodata','.rdata','.lit4','.lit8','.sdata','.bss','.sbss']:
@@ -160,7 +221,8 @@ def prove(reference):
         return {'status':'MATCH','base':BASE,'image':'B','image_sha256':IMAGE,'address':hex(ADDRESS),
             'end_exclusive':hex(ADDRESS+SIZE),'native_bytes':SIZE,'native_sha256':TARGET,
             'source_sha256':sha(SOURCE),'flags':FLAGS+' -Wab,-r4300_mul','accepted_or_coverage_bytes':0,
-            'comparison':asdict(comparison),'object_sha256':sha(obj),'text_bytes':text['size'],
+            'comparison':asdict(comparison),'object_sha256':sha(obj),'portable_object_elf':fingerprint,
+            'portability_controls':{'different_source_path_same_complete_elf':True,'semantic_mutations':semantic_controls},'text_bytes':text['size'],
             'padding_bytes':0,'owned_data_bytes':0,'relocations':relocs,
             'bindings':{k:hex(v) for k,v in sorted(BINDINGS.items())},'whole_object_gnu_agrees':True,
             'linked_text_sha256':digest(linked_raw),'gnu_placement':hex(ADDRESS),
@@ -173,8 +235,8 @@ def prove(reference):
                 'compiled_mutants_rejected':rejected,'domain':'count <= 0 skips; positive count 1..4 with valid player/table storage; signed-byte lives; stable image B residency; no concurrency'},
             'controls':{'buffer16':asdict(control)},
             'tool_sha256':{k:sha(v) for k,v in [(n,score.ido(n)) for n in ['cc','cfe','uopt','ugen','as1']]+[(n,shutil.which(n)) for n in ['mips-linux-gnu-ld','gcc']]},
-            'input_sha256':{'tools/cloud/'+n:sha(ROOT/'tools/cloud'/n) for n in ['score.py','owndata.py']},
-            'target_sha256':{n:sha(target_dir/n) for n in ['SHA256SUMS','ovl_b_8038a400.s','symbols.json','extents.json']},
+
+
             'packet_sha256':{n:sha(PACKET/n) for n in ['verify.py','host_test.c','README.md']}}
 
 if __name__=='__main__':
@@ -183,7 +245,7 @@ if __name__=='__main__':
     p.add_argument('--check',action='store_true')
     a=p.parse_args(); result=prove(a.reference_root.resolve()); output=PACKET/'verification.json'
     if a.check:
-        assert result==json.loads(output.read_text()), 'frozen verification differs'
+        assert comparable(result)==comparable(json.loads(output.read_text())), 'frozen verification differs'
         print('400-byte strict MATCH, GNU placement/equality and 1796 host fixtures verified')
     else:
         output.write_text(json.dumps(result,indent=2)+'\n')

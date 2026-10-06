@@ -1,0 +1,459 @@
+{
+  "status": "PASS",
+  "paired_cases": 552,
+  "root_invocations_per_image": 856,
+  "failures": [],
+  "internal_calls_hooked": false,
+  "external_helpers": "bounded deterministic effect models, not game-service equivalence",
+  "domain": "FCE0 root; signed count <=4; F938 owner0..3; valid indices; initialized aligned disjoint storage; real singly-linked active/free pool nodes; successful required object/release allocations; finite normal-or-zero binary32/default rounding; D498 distance strictly nonzero on impulse paths; no exception/FCSR/subnormal model",
+  "behavior_sha256": "40c4164d5ffa3766c3a906adaf05f3e67a06f7002a55f13293504ce50b40d921",
+  "native_executed_instructions": 2815,
+  "candidate_executed_instructions": 2852,
+  "native_branch_outcomes": 360,
+  "candidate_branch_outcomes": 486,
+  "external_services": [
+    "allocate",
+    "angle",
+    "area_effect",
+    "attached_effect",
+    "bounce_effect",
+    "burst",
+    "color",
+    "copy",
+    "create_scene",
+    "damage",
+    "delete_scene",
+    "frame_tail",
+    "matrix_effect",
+    "player_update",
+    "quad",
+    "random",
+    "release",
+    "release_quad",
+    "resource",
+    "rest_effect",
+    "scale",
+    "sound",
+    "steer",
+    "texture",
+    "vector_transform",
+    "world_collision"
+  ],
+  "native_internal_edges": [
+    [
+      "0x8038e3f4",
+      "0x8038d328"
+    ],
+    [
+      "0x8038e41c",
+      "0x8038d328"
+    ],
+    [
+      "0x8038e4e0",
+      "0x8038e088"
+    ],
+    [
+      "0x8038e6b0",
+      "0x8038e088"
+    ],
+    [
+      "0x8038eac4",
+      "0x8038da78"
+    ],
+    [
+      "0x8038eb1c",
+      "0x8038da78"
+    ],
+    [
+      "0x8038f230",
+      "0x8038d498"
+    ],
+    [
+      "0x8038f3a0",
+      "0x8038d328"
+    ],
+    [
+      "0x8038f3b0",
+      "0x8038d200"
+    ],
+    [
+      "0x8038f3d8",
+      "0x8038d328"
+    ],
+    [
+      "0x8038f3e8",
+      "0x8038d200"
+    ],
+    [
+      "0x8038f3fc",
+      "0x8038d200"
+    ],
+    [
+      "0x8038f424",
+      "0x8038d328"
+    ],
+    [
+      "0x8038f434",
+      "0x8038d200"
+    ],
+    [
+      "0x8038f45c",
+      "0x8038d328"
+    ],
+    [
+      "0x8038f46c",
+      "0x8038d200"
+    ],
+    [
+      "0x8038f494",
+      "0x8038d328"
+    ],
+    [
+      "0x8038f4a4",
+      "0x8038d200"
+    ],
+    [
+      "0x8038f4cc",
+      "0x8038d328"
+    ],
+    [
+      "0x8038f4dc",
+      "0x8038d200"
+    ],
+    [
+      "0x8038fe8c",
+      "0x8038f938"
+    ],
+    [
+      "0x80390878",
+      "0x8038e114"
+    ]
+  ],
+  "candidate_internal_edges": [
+    [
+      "0x81000b40",
+      "0x81000108"
+    ],
+    [
+      "0x81000b68",
+      "0x81000108"
+    ],
+    [
+      "0x81000c28",
+      "0x81000828"
+    ],
+    [
+      "0x81000e44",
+      "0x81000828"
+    ],
+    [
+      "0x81001254",
+      "0x81000504"
+    ],
+    [
+      "0x8100138c",
+      "0x81000184"
+    ],
+    [
+      "0x810013e0",
+      "0x81000184"
+    ],
+    [
+      "0x81001bd4",
+      "0x81000108"
+    ],
+    [
+      "0x81001be4",
+      "0x81000000"
+    ],
+    [
+      "0x81001c0c",
+      "0x81000108"
+    ],
+    [
+      "0x81001c1c",
+      "0x81000000"
+    ],
+    [
+      "0x81001c30",
+      "0x81000000"
+    ],
+    [
+      "0x81001c58",
+      "0x81000108"
+    ],
+    [
+      "0x81001c68",
+      "0x81000000"
+    ],
+    [
+      "0x81001c90",
+      "0x81000108"
+    ],
+    [
+      "0x81001ca0",
+      "0x81000000"
+    ],
+    [
+      "0x81001cc8",
+      "0x81000108"
+    ],
+    [
+      "0x81001cd8",
+      "0x81000000"
+    ],
+    [
+      "0x81001d00",
+      "0x81000108"
+    ],
+    [
+      "0x81001d10",
+      "0x81000000"
+    ],
+    [
+      "0x810022f0",
+      "0x81001d8c"
+    ],
+    [
+      "0x81002cec",
+      "0x810008a0"
+    ]
+  ],
+  "native_coverage": {
+    "func_8038D200": {
+      "executed_instructions": 74,
+      "total_instructions": 74,
+      "unexecuted_offsets": []
+    },
+    "func_8038D328": {
+      "executed_instructions": 31,
+      "total_instructions": 31,
+      "unexecuted_offsets": []
+    },
+    "func_8038D498": {
+      "executed_instructions": 190,
+      "total_instructions": 192,
+      "unexecuted_offsets": [
+        "0x88",
+        "0xb0"
+      ]
+    },
+    "func_8038DA78": {
+      "executed_instructions": 216,
+      "total_instructions": 217,
+      "unexecuted_offsets": [
+        "0x20"
+      ]
+    },
+    "func_8038E088": {
+      "executed_instructions": 35,
+      "total_instructions": 35,
+      "unexecuted_offsets": []
+    },
+    "func_8038E114": {
+      "executed_instructions": 1281,
+      "total_instructions": 1299,
+      "unexecuted_offsets": [
+        "0x28c",
+        "0x298",
+        "0x2dc",
+        "0x3a0",
+        "0x3b8",
+        "0x3ec",
+        "0x448",
+        "0x474",
+        "0x540",
+        "0x5bc",
+        "0xb58",
+        "0xc30",
+        "0xcd8",
+        "0xfd8",
+        "0x10f0",
+        "0x10f4",
+        "0x10f8",
+        "0x1190"
+      ]
+    },
+    "func_8038F938": {
+      "executed_instructions": 230,
+      "total_instructions": 232,
+      "unexecuted_offsets": [
+        "0x208",
+        "0x2e8"
+      ]
+    },
+    "func_8038FCE0": {
+      "executed_instructions": 758,
+      "total_instructions": 764,
+      "unexecuted_offsets": [
+        "0xbc",
+        "0x260",
+        "0x2e4",
+        "0x310",
+        "0x31c",
+        "0x358"
+      ]
+    }
+  },
+  "candidate_coverage": {
+    "func_8038D200": {
+      "executed_instructions": 66,
+      "total_instructions": 66,
+      "unexecuted_offsets": []
+    },
+    "func_8038D328": {
+      "executed_instructions": 31,
+      "total_instructions": 31,
+      "unexecuted_offsets": []
+    },
+    "func_8038D498": {
+      "executed_instructions": 199,
+      "total_instructions": 201,
+      "unexecuted_offsets": [
+        "0x8c",
+        "0xb4"
+      ]
+    },
+    "func_8038DA78": {
+      "executed_instructions": 223,
+      "total_instructions": 224,
+      "unexecuted_offsets": [
+        "0x1f0"
+      ]
+    },
+    "func_8038E088": {
+      "executed_instructions": 30,
+      "total_instructions": 30,
+      "unexecuted_offsets": []
+    },
+    "func_8038E114": {
+      "executed_instructions": 1310,
+      "total_instructions": 1339,
+      "unexecuted_offsets": [
+        "0x23c",
+        "0x248",
+        "0x294",
+        "0x298",
+        "0x29c",
+        "0x358",
+        "0x370",
+        "0x3a8",
+        "0x418",
+        "0x41c",
+        "0x420",
+        "0x44c",
+        "0x4f0",
+        "0x698",
+        "0x740",
+        "0x844",
+        "0x918",
+        "0xa28",
+        "0xac4",
+        "0xb2c",
+        "0xc5c",
+        "0xd14",
+        "0xe30",
+        "0xe70",
+        "0xf88",
+        "0xf8c",
+        "0xf90",
+        "0xfcc",
+        "0x1014"
+      ]
+    },
+    "func_8038F938": {
+      "executed_instructions": 239,
+      "total_instructions": 241,
+      "unexecuted_offsets": [
+        "0x258",
+        "0x318"
+      ]
+    },
+    "func_8038FCE0": {
+      "executed_instructions": 754,
+      "total_instructions": 765,
+      "unexecuted_offsets": [
+        "0xb0",
+        "0x268",
+        "0x2f8",
+        "0x328",
+        "0x34c",
+        "0x384",
+        "0x3b8",
+        "0x524",
+        "0x62c",
+        "0x8e8",
+        "0xac0"
+      ]
+    }
+  },
+  "binding": {
+    "source_sha256": "fc80a9075c6357b1833bc53b7810f8a4ee2c2f874e1bc8ba03f47fcb10e32d95",
+    "linked_elf_sha256": "f96391a78a196c39b0829020365eb39f668cb28653a51a31715959001c70c665",
+    "boundaries_sha256": "4b49489910e43c707139a85b05e07992a9a637a0f2816382bfbf43494e55a28f",
+    "candidate_function_bytes": 11588,
+    "candidate_text_padding_bytes": 12
+  },
+  "verifier_source_sha256": {
+    "closure.py": "f18d6b9cd80acca7c8688a314ab210080f64d6864dec80599bdfcbcbce877b5e",
+    "adapter.py": "36df55b30fb5824cc76738a869d0884aa2c44ce2254cf06bb94cdfbe8471c8ad",
+    "verify.py": "f98286cca1417c8dda95ac316ec942e4954bfa89bb7efbaafbabac9bbd40ce16",
+    "controls.py": "34bc8d29c9abb58c647312dd76191e57ff5f958898629bb78a4b46c4d2f28c46"
+  },
+  "reproduction_arguments": [
+    "--reference-root",
+    "rush-sixth-baseline",
+    "--linked-elf",
+    "closure-diagnostic-tmp-ZNENOp/closure.elf",
+    "--boundaries",
+    "runtime-b-closure-map/boundaries.json",
+    "--source",
+    "runtime-b-closure-map/closure.c",
+    "--output",
+    "runtime-b-closure-map/semantic-replay.json"
+  ],
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "native_authentication": {
+    "func_8038D200": {
+      "address": "0x8038d200",
+      "size": 296,
+      "sha256": "474ecb6290207ace7925c37d398ae36bc2e33b6a4041ee62d3d4202fb3f16772"
+    },
+    "func_8038D328": {
+      "address": "0x8038d328",
+      "size": 124,
+      "sha256": "5d8fc0875c56105d63e0eaee161b6ec6900d742563b85d047035984fb0fa904a"
+    },
+    "func_8038D498": {
+      "address": "0x8038d498",
+      "size": 768,
+      "sha256": "fc6f18de1f301b86d8a9708aa066babbedc370b22067858a2248578597aa2d6e"
+    },
+    "func_8038DA78": {
+      "address": "0x8038da78",
+      "size": 868,
+      "sha256": "7c7128167920d9661e579931d669aa4821c940234e8d7ed09ee89235bc7b2dcf"
+    },
+    "func_8038E088": {
+      "address": "0x8038e088",
+      "size": 140,
+      "sha256": "434d8ec74a3bebf916add5908bede08ac3395d67e028441b9e30d20e2073af9a"
+    },
+    "func_8038E114": {
+      "address": "0x8038e114",
+      "size": 5196,
+      "sha256": "d1dc2c70973b1780b81b37730a974fc4921b14ab4d368437d899a6fe9f7ef8e0"
+    },
+    "func_8038F938": {
+      "address": "0x8038f938",
+      "size": 928,
+      "sha256": "1b5eb1e66549eb1cc0fba50a3dc3e432e295fde04bf1777be2a5bcdfccd9e106"
+    },
+    "func_8038FCE0": {
+      "address": "0x8038fce0",
+      "size": 3056,
+      "sha256": "3574383f8241f87f1aa201bc4a7265e49cd818b8b6f7e6564ecca4131b6682e2"
+    }
+  },
+  "candidate": "linked ELF"
+}

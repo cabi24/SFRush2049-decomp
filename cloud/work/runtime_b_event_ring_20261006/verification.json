@@ -109,13 +109,11 @@
   "helpers": {
     "func_800F7E30": {
       "address": "0x800f7e30",
-      "source_sha256": "616d94533ad40b0e8352ad54868475739a3d7fc78080a635984e5b3e8d12dd91",
       "native_bytes": 64,
       "native_sha256": "e4f37357cdb1427d997212d7b5697d2aab09fb36dc37fc56d90e43b8b288fa39"
     },
     "effect_cleanup": {
       "address": "0x800c55e4",
-      "source_sha256": "2fb2335212654629179e0d318ff5a6649f03f9725d4e8660e47096c1ed508ded",
       "native_bytes": 96,
       "native_sha256": "5944e122e9f8669ba19715fb802ad067c886d45bb1d39aab3f7504ed1e14a52e"
     }
@@ -190,19 +188,9 @@
     "mips-linux-gnu-ld": "4c398a15e38dbb71a8420628aa1da5c80a089818440666f4ca7eb40d2fc37878",
     "gcc": "a23ecab8ff08f09ad8c80602c2c5df7f49e09c25905cb8975902e101bf72635f"
   },
-  "inputs_sha256": {
-    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
-    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
-    "asm/us/ovl_b/SHA256SUMS": "3b7ccbab80467e2538f107543f612db239c380a44000730c5f78f6dbb062bd98",
-    "asm/us/ovl_b/ovl_b_8038a400.s": "5e84a0c03a155cbb13ee19a694bd3aeb1321e9b48144a9d8029f7691a7f916db",
-    "asm/us/ovl_b/symbols.json": "0f9633fc7cb724c2acb129064716906d92c9ef6867359893e7130b2e8e1b897d",
-    "asm/us/ovl_b/extents.json": "e10f77db903d5a6d82a04d006cdaf5c3871ed57ce2bff738d45f500914c8202b",
-    "asm/us/blob/SHA256SUMS": "dade78464a022fedd2c5ba651ee1bca5ffd4ec99bfa4d2413d27256540bed02c"
-  },
   "packet_sha256": {
-    "verify.py": "66d45218c60d30b2b336fdde94499f76ca09c8c7f5cb4af2f0d6d0dda14168d4",
+    "verify.py": "52a2a5897f32d2ee1b65ee7fb777563f192e4130d06b9a9d333d4f6ca1ed3e7a",
     "host_test.c": "5a15d0632673e496c6fad04cd7471b529e772c4a3c5df35ae0b76d35fb91803a",
-    "test_packet.py": "c6307f1deb93e6af162f3414a12cbff4043b7992dcca283c9238c1a0ae114094",
-    "README.md": "24b3c79375c65aa1fa65260534047fe61493a057cec1fb88aef766f9f6fd40b5"
+    "README.md": "d05d897fe84fa8d8a48a5702458f27bf3481e69fe10aad7d73d209f86ccf6873"
   }
 }

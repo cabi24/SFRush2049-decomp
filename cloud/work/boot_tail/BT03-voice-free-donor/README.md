@@ -1,5 +1,17 @@
 # Voice-free authentic donor route: 28/64 NONMATCH
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
 **Research only.** `func_8001F6EC`, `[0x8001F6EC,0x8001F7EC)`, remains a
 complete **256-byte / 64-word NONMATCH**, with **28 differing words**. The
 archived baseline freshly reproduces 30 differences. New matching bytes,
@@ -161,3 +173,12 @@ coalescing. The authentic donor ordering, nested index assignment and command
 pointer declaration are now measured; they are not fresh hypotheses anymore.
 T050 remains in force and `8001F13C` was never attempted. No full-TU, source-image,
 compression, full-ROM, hosted-CI or gameplay result is claimed.
+
+## Integration-portable replay (2026-10-06)
+
+`portable_receipt()` compares both saved and fresh evidence after excluding only
+explicit historical whole-tree/tool/source-context digests. Packet source and
+verifier bindings, selected native bodies and addresses, ELF extents, relocations,
+owned data, behavior, and compiler executable identities remain authoritative.
+Accepted production context is read from the recorded base commit rather than
+the live integrated tree. Tests are deliberately not hashed into receipts.

@@ -1,5 +1,17 @@
 # Sequence-start caller in accepted slot context
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
 Research only. `func_800979A0`, game image `[0x800979A0, 0x80097AC4)`, is a complete 292-byte / 73-word function. The type-corrected C emits 288 bytes and remains **NONMATCH: 12/73 positional words differ**. All twelve reused accepted `slot_sound` functions remain strict, complete-body matches. No matching submission, accepted-byte gain, image splice, compressed-stream or ROM result is claimed.
 
 ## New evidence and admission
@@ -58,3 +70,13 @@ Independent review reports PASS for bounded NONMATCH research in `independent/re
 - Negative controls reject keeping the validator as public ABI (35-word residual), deleting the genuinely homed second argument (68), compiling without real context (51), and resolving a global to the wrong address.
 
 The producer receipt itself claims only full compile/relocation/body verification; the independent behavioral evidence has the finite scope above. No broad suite, real hardware, unrestricted alias/concurrency, full image or ROM gate was run. Generated objects, raw native assembly and diagnostic dumps remain outside this packet and must not be published.
+
+## Integration-portable replay (2026-10-06)
+
+Scorer, whole-manifest and accepted-context digests are historical provenance,
+not live-tree requirements. The verifier normalizes only enumerated provenance
+fields on both receipt sides. Packet source and verifier bindings, compiler
+identity/actual flags, selected native bodies and addresses, complete emitted
+extents, relocations, owned data and behavioral checks remain binding.
+Production context is read with `git show BASE:path` at the recorded base,
+never from the current production tree.

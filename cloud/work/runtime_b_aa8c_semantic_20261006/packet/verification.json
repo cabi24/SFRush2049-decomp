@@ -1,0 +1,62 @@
+{
+  "status": "COMPLETE PHYSICAL-ADDRESS SEMANTIC MODEL; original C object/domain unresolved; no MIPS candidate",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "native_targets": {
+    "func_8038A95C": {
+      "address": "0x8038a95c",
+      "size": 184,
+      "sha256": "f6f3b782e02e565f5bf723f54839b9c7f80483f410028f6a9db7e595b580664e"
+    },
+    "func_8038AA14": {
+      "address": "0x8038aa14",
+      "size": 120,
+      "sha256": "9f23d5a9e52f138ede5552e5f931250ec7df73aa654150fd157966e6ca83808d"
+    },
+    "func_8038AA8C": {
+      "address": "0x8038aa8c",
+      "size": 7812,
+      "sha256": "c8842f0b25b7c17e36345611643e4b67a7c0c17929f7be6ba93785b530b67b39"
+    }
+  },
+  "image_sha256": "b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd",
+  "behavior": {
+    "paired_fixtures": 1759,
+    "covered_words": 2027,
+    "total_words": 2029,
+    "branch_outcomes": 112,
+    "covered_direct_calls": 64,
+    "structurally_unreachable_words": [
+      "0x8038ab8c",
+      "0x8038c488"
+    ],
+    "wrong_contracts_rejected": [
+      "erase mode8 loads",
+      "resource word stride",
+      "wrong extra resource slot",
+      "wrong cleanup trailing byte",
+      "random initial texture instead of slot0",
+      "short group muzzle duration",
+      "wrong slot pair wrap",
+      "narrow sentinel comparison",
+      "early sentinel store",
+      "drop fresh second cached-kind test",
+      "unsupported opcode",
+      "unmapped owner"
+    ],
+    "domain": "owners 0..3 for attachment paths; guarded non-attachment owners 4/5; modes 0..8; models 0,6,12; finite f32 animation fixtures",
+    "host_compiler": "cc (Debian 14.2.0-19) 14.2.0",
+    "host_flags": "-std=c99 -O0 -ffp-contract=off -fPIC -shared -Wall -Wextra -Werror",
+    "IDO_invocations": 0,
+    "matching_claims": []
+  },
+  "packet_sha256": {
+    "semantic.c": "6846a52f128d00e2fbd640e38256ffcbeb1d242b02bcc0a512a5ec5132abd722",
+    "semantic_bus.h": "100dfd86fbcd6ea51e7ab4ed431d5741f9aecf06ee9a35802ac814351107827d",
+    "host_bus.c": "14db8c8262fc8731679be84322003b52e482c934713109a3f1b1239ec07019af",
+    "native.py": "1b3c166897f995531afec40e4c232c9a1299c8a817b2602b866edd80f98e8816",
+    "fixture.py": "dc9fd2336e29b639df22f6d9bdd54b8f1a363ac9196b40b5a2069be6109f6c4e",
+    "targets.py": "6aaea4e62699a200a4a0d32e4925d29fd3b58d51aa763be39f4e874d9bacff9b",
+    "verify.py": "5bba313e864df9966f36b1d73975eada211753af190a913abca44129afd86d32",
+    "README.md": "fdde631aa522b67294eaef506becbd01637169fc6bbc386015fbaded1c517a9c"
+  }
+}

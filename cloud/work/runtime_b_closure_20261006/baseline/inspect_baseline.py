@@ -1,0 +1,169 @@
+#!/usr/bin/env python3
+"""Inspect the existing, unmodified one-shot ELF. Never invokes a compiler.
+
+ECOFF layout references (read-only source documentation):
+https://gnu.googlesource.com/binutils-gdb/+/refs/heads/master/include/coff/mips.h
+https://gnu.googlesource.com/binutils-gdb/+/37f7f684de0e53c8add5ff43d73082bf98985321/include/coff/symconst.h
+"""
+import argparse
+from dataclasses import asdict
+import hashlib
+import importlib.util
+import json
+from pathlib import Path
+import struct
+import subprocess
+import sys
+import zlib
+sys.dont_write_bytecode=True
+HERE=Path(__file__).resolve().parent
+BASE='6b2e9e506fe3d2267a710e41c85af5364ccd00c7'
+
+def sha(x):return hashlib.sha256(x).hexdigest()
+def signed16(x):return x-65536 if x&32768 else x
+
+def sections(score,path):
+    raw,ss=score._elf(path)
+    h=struct.unpack_from('>16sHHIIIIIHHHHHH',raw)
+    for i,s in enumerate(ss):
+        sh=struct.unpack_from('>10I',raw,h[6]+i*h[11])
+        s.update(index=i,address=sh[3],flags=sh[2],alignment=sh[8])
+    return raw,ss
+
+def procedures(score,path):
+    raw,ss=sections(score,path)
+    debug=next(s for s in ss if s['name']=='.mdebug')
+    header=struct.unpack_from('>HH23I',raw,debug['off'])
+    assert header[0]==0x7009
+    names='ilineMax cbLine cbLineOffset idnMax cbDnOffset ipdMax cbPdOffset isymMax cbSymOffset ioptMax cbOptOffset iauxMax cbAuxOffset issMax cbSsOffset issExtMax cbSsExtOffset ifdMax cbFdOffset crfd cbRfdOffset iextMax cbExtOffset'.split()
+    h=dict(zip(names,header[2:]));out={}
+    for f in range(h['ifdMax']):
+        fd=struct.unpack_from('>10I2H7I',raw,h['cbFdOffset']+72*f)
+        string_base=h['cbSsOffset']+fd[2];syms=[]
+        for i in range(fd[5]):
+            iss,value,info=struct.unpack_from('>III',raw,h['cbSymOffset']+12*(fd[4]+i))
+            name=raw[string_base+iss:].split(b'\0',1)[0].decode()
+            syms.append(dict(name=name,value=value,st=info>>26,sc=(info>>21)&31,index=info&0xfffff))
+        pd={}
+        for i in range(fd[11]):
+            p=struct.unpack_from('>9I2H3I',raw,h['cbPdOffset']+52*(fd[10]+i))
+            pd[p[1]]=p
+        for i,s in enumerate(syms):
+            if s['st'] not in (6,14) or s['sc']!=1:continue
+            end=[x for x in syms if x['st']==8 and x['sc']==1 and x['index']==i and x['name']==s['name']]
+            assert len(end)==1 and end[0]['value']%4==0 and end[0]['value']>0
+            p=pd[i];assert p[0]==s['value']
+            out[s['name']]=dict(offset=s['value'],size=end[0]['value'],
+                kind='stStaticProc' if s['st']==14 else 'stProc',frame_bytes=p[8],
+                integer_save_mask=hex(p[3]),float_save_mask=hex(p[6]),
+                frame_register=p[9],return_register=p[10],source_line_start=p[11],source_line_end=p[12],
+                evidence='ECOFF procedure + matching stEnd length + PDR address/frame cross-check')
+    text=next(s for s in ss if s['name']=='.text');owned=set()
+    for n,s in out.items():
+        assert s['offset']+s['size']<=text['size']
+        span=set(range(s['offset'],s['offset']+s['size']))
+        assert not owned&span,('overlap',n)
+        owned|=span
+    unowned=set(range(text['size']))-owned
+    assert not any(raw[text['off']+i] for i in unowned),'nonzero text outside compiler procedure extents'
+    return out,dict(text_size=text['size'],procedure_bytes=len(owned),zero_alignment_bytes=len(unowned),
+                    zero_alignment_offsets=[hex(x) for x in sorted(unowned)])
+
+def validate_link(score,obj,elf):
+    a,ss=sections(score,obj);b,ls=sections(score,elf);by_name={s['name']:s for s in ls}
+    syms={s['name']:s for i,sec in enumerate(ls) if sec['type']==2 for s in score._symbol_table(b,ls,i)}
+    checked=[];changed={}
+    for rel in ss:
+        if rel['type']!=9:continue
+        target=ss[rel['info']];linked=by_name[target['name']]
+        table=score._symbol_table(a,ss,rel['link']);pending=[]
+        assert target['size']==linked['size']
+        def base(s):
+            if s['section']==0:
+                assert s['name'] in syms and syms[s['name']]['section']!=0
+                return syms[s['name']]['value']
+            if s['section']==0xfff1:return s['value']
+            return by_name[ss[s['section']]['name']]['address']+s['value']
+        def check(off,want,typ,name):
+            got=struct.unpack_from('>I',b,linked['off']+off)[0]
+            assert got==(want&0xffffffff),('GNU relocation mismatch',target['name'],hex(off),typ,name)
+            changed.setdefault(target['name'],set()).update(range(off,off+4))
+            checked.append(dict(section=target['name'],offset=hex(off),type=typ,symbol=name))
+        for off,info in struct.iter_unpack('>II',a[rel['off']:rel['off']+rel['size']]):
+            ix,typ=info>>8,info&255;s=table[ix];word=struct.unpack_from('>I',a,target['off']+off)[0]
+            if typ==2:check(off,word+base(s),typ,s['name'])
+            elif typ==4:
+                value=base(s)+((word&0x3ffffff)<<2)
+                assert value%4==0
+                check(off,(word&0xfc000000)|((value>>2)&0x3ffffff),typ,s['name'])
+            elif typ==5:pending.append((off,ix,word))
+            elif typ==6:
+                matching=[p for p in pending if p[1]==ix];lo=signed16(word&0xffff)
+                for hi_off,_,hi_word in matching:
+                    value=base(s)+((hi_word&0xffff)<<16)+lo
+                    check(hi_off,(hi_word&0xffff0000)|(((value+0x8000)>>16)&0xffff),5,s['name'])
+                value=base(s)+(((matching[0][2]&0xffff)<<16) if matching else 0)+lo
+                check(off,(word&0xffff0000)|(value&0xffff),typ,s['name'])
+                pending=[p for p in pending if p[1]!=ix]
+            else:raise AssertionError(('unsupported relocation',typ))
+        assert not pending,'unpaired HI16'
+    unchanged=0
+    for name in ('.text','.rodata'):
+        s=next(s for s in ss if s['name']==name);t=by_name[name]
+        assert s['size']==t['size']
+        for off in set(range(s['size']))-changed.get(name,set()):
+            assert a[s['off']+off]==b[t['off']+off],('changed unrelocated byte',name,off)
+            unchanged+=1
+    return dict(status='PASS: every object relocation reproduces GNU-linked words; other text/rodata bytes unchanged',
+                relocation_count=len(checked),unrelocated_bytes_checked=unchanged,relocations=checked)
+
+def main():
+    p=argparse.ArgumentParser();p.add_argument('--reference-root',type=Path,required=True)
+    p.add_argument('--build-receipt',type=Path,default=HERE/'build.json')
+    p.add_argument('--output',type=Path,default=HERE/'boundaries.json');args=p.parse_args()
+    root=args.reference_root.resolve();sys.path.insert(0,str(root/'tools/cloud'))
+    spec=importlib.util.spec_from_file_location('closure_inspect_score',root/'tools/cloud/score.py')
+    score=importlib.util.module_from_spec(spec);sys.modules[spec.name]=score;spec.loader.exec_module(score)
+    score.ASM_DIR=root/'asm/us/ovl_b';targets=score.targets()
+    prior=json.loads(args.build_receipt.read_text());obj=Path(prior['object_local_path']);elf=Path(prior['semantic_elf_local_path'])
+    assert sha(obj.read_bytes())==prior['object']['sha256'] and sha(elf.read_bytes())==prior['linked']['sha256']
+    procs,accounting=procedures(score,obj)
+    expected={'func_8038'+x for x in ('D200','D328','D498','DA78','E088','E114','F938','FCE0')}
+    assert set(procs)==expected
+    raw,ls=sections(score,elf);text=next(s for s in ls if s['name']=='.text')
+    asset=subprocess.check_output(['git','-C',str(root),'show',BASE+':assets/us/data.bin'])
+    dec=zlib.decompressobj(-15);image=dec.decompress(asset[0xB6FEC4-0x283D0:])
+    assert dec.eof and sha(image)=='b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd'
+    data_image=score.owndata.ImageData.from_image(image,0x8038A400)
+    for name,meta in procs.items():
+        off,size=meta['offset'],meta['size'];want=targets[name]
+        got=list(struct.unpack_from('>'+str(size//4)+'I',raw,text['off']+off))
+        bad=[i for i,w in enumerate(want) if i>=len(got) or got[i]!=w]
+        extras=got[len(want):]
+        # Unmodified owndata API uses the kept symbol only to locate .text;
+        # the explicit compiler-recorded start and clipped target length prevent
+        # one private procedure from borrowing its neighbor's instructions.
+        own=score.owndata.verify(obj,'func_8038FCE0',want[:len(got)],address=int(name[-8:],16),
+                                image=data_image,start=off,addresses=score.address_named)
+        meta.update(address=hex(text['address']+off),native_size=4*len(want),
+            native_sha256=sha(struct.pack('>'+str(len(want))+'I',*want)),
+            linked_member_sha256=sha(raw[text['off']+off:text['off']+off+size]),
+            full_unmasked_research_placement=dict(differing_words=len(bad),native_words=len(want),
+                missing_words=max(0,len(want)-len(got)),extra_words=len(extras),
+                extra_nonzero_words=sum(x!=0 for x in extras),first_different_offsets=[hex(4*i) for i in bad[:12]],
+                status='BYTE-EXACT PRIVATE BODY; NOT ACCEPTED' if not bad and not extras else 'NONMATCH',
+                limits='Full unchanged GNU-linked member, including research-placed internal calls and own-data addresses; no relocation masks; not a native-placement normalized score.'),
+            pinned_native_own_data=asdict(own),
+            own_data_limits='Unmodified API, kept FCE0 symbol used only as .text locator with explicit ECOFF start; only common native/candidate extent has comparable native words. Structural code differences prevent native data-placement proof. Candidate excess relocations are nevertheless fully checked in whole-ELF GNU relocation validation.')
+    result=dict(status='COMPLETE-ELF NONMATCH DIAGNOSTIC; original object unchanged; zero new compilations',
+      source_sha256=prior['source_sha256'],object_sha256=prior['object']['sha256'],linked_sha256=prior['linked']['sha256'],
+      procedure_boundary_source='.mdebug ECOFF symbols and procedure descriptors, not guessed prologues',
+      no_private_body_eliminated=True,functions=procs,text_accounting=accounting,
+      exact_link_relocation_validation=validate_link(score,obj,elf),
+      canonical_scorer_limit='ELF STT_FUNC contains FCE0 only. Canonical root score and hidden-static unresolved calls remain in build.json; this supplemental parser does not edit scorer, symbol table, ELF or source to manufacture equality.',
+      decoder_references=['https://gnu.googlesource.com/binutils-gdb/+/refs/heads/master/include/coff/mips.h',
+      'https://gnu.googlesource.com/binutils-gdb/+/37f7f684de0e53c8add5ff43d73082bf98985321/include/coff/symconst.h'])
+    args.output.write_text(json.dumps(result,indent=2,default=lambda x:sorted(x) if isinstance(x,set) else str(x))+'\n')
+    print(json.dumps(dict(functions={n:dict(size=x['size'],frame=x['frame_bytes'],differences=x['full_unmasked_research_placement']['differing_words']) for n,x in procs.items()},
+                         accounting=accounting,relocations=result['exact_link_relocation_validation']['relocation_count']),indent=2))
+if __name__=='__main__':main()

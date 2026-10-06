@@ -1,0 +1,67 @@
+{
+  "status": "PARTIAL-SOURCE; bounded native behavior verified; no compiled candidate or matching claim",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "image_sha256": "b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd",
+  "targets": {
+    "func_8038A95C": {
+      "address": "0x8038a95c",
+      "size": 184,
+      "sha256": "f6f3b782e02e565f5bf723f54839b9c7f80483f410028f6a9db7e595b580664e"
+    },
+    "func_8038AA14": {
+      "address": "0x8038aa14",
+      "size": 120,
+      "sha256": "9f23d5a9e52f138ede5552e5f931250ec7df73aa654150fd157966e6ca83808d"
+    },
+    "func_8038AA8C": {
+      "address": "0x8038aa8c",
+      "size": 7812,
+      "sha256": "c8842f0b25b7c17e36345611643e4b67a7c0c17929f7be6ba93785b530b67b39"
+    }
+  },
+  "packet_sha256": {
+    "layouts.h": "ccb0914aede66fa9f68e7b76e4275ed33e4b05b54eaf272e26bdfa533e0db03e",
+    "cleanup_helpers.c": "0830068df9627d0eeb61f1f7e98466556b656895731fbc25352daa52ca178e47",
+    "aa8c_entry.c.fragment": "c86b6ca70bd51519fd9411c781f813a76704a85b22431c4b3b8e583a98a62866",
+    "native.py": "aaeb81807dacc77fd57289e7825d8b666d93442dd4ea35a6dde9892401006a6d",
+    "reference.py": "eb347aad946f7d06b464fa9367140fc7cdc7e030f74dbc24eda621af3a11928b",
+    "verify.py": "285d33afe31dbdbf90fa85dac7a5b5854ac75c9668f63d9c9734504bd2fccb09",
+    "README.md": "bdaa3f45da6871ac01d83d56f8745c7b5ff621b8eece854eabbcc83c8173332e"
+  },
+  "behavior": {
+    "paired_native_reference_fixtures": 8160,
+    "native_instruction_coverage": {
+      "A95C": 46,
+      "AA14": 30,
+      "AA8C_entry": 64,
+      "AA8C_exit_epilogue": 10
+    },
+    "conditional_branch_outcomes": 18,
+    "wrong_contracts_rejected": [
+      "narrow sentinel",
+      "early store",
+      "wide removal argument",
+      "wrong trailing byte",
+      "unconditional extra clear",
+      "wide update test",
+      "inhibit exactly one",
+      "mode instead of cache",
+      "early handle read",
+      "reload owner",
+      "unsupported opcode",
+      "unmapped owner",
+      "unaligned descriptor"
+    ],
+    "domain": "owners 0..3 only; orthogonal cached/inhibit byte domains; explicit update and mutation cases"
+  },
+  "compiler_invocations": 0,
+  "new_matching_claims": [],
+  "not_run": [
+    "complete AA8C source",
+    "private O3 closure compilation",
+    "compiled C behavior",
+    "strict matching",
+    "object/relocation/owned-data proof",
+    "ROM/image construction"
+  ]
+}

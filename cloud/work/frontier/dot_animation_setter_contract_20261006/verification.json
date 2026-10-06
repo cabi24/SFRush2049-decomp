@@ -148,7 +148,7 @@
     "cloud/work/frontier/dot_animation_setter_contract_20261006/host.c": "d4e4cd8bf5ca1171487ba7a3a81ba7d6a389338c72c86390b33d4f65c1c9ea5f",
     "cloud/work/frontier/dot_animation_setter_contract_20261006/native.py": "ebfc763db5c0caf8517296bd8288b2bcdf5abe5a598d05f8c7fc9d0486ccae27",
     "cloud/work/frontier/dot_animation_setter_contract_20261006/provenance.json": "d4d72a362842d805672535f116211b7f51834c9f47b8abbfd4ead75594b14037",
-    "cloud/work/frontier/dot_animation_setter_contract_20261006/verify.py": "4c1cd10620c80813429c31a80933016e5c1e15f8e23350bf2d41aaee49b0ca78"
+    "cloud/work/frontier/dot_animation_setter_contract_20261006/verify.py": "1d55da41ecf90379ff369d3728f1ced9b199f1dff5d46bc2e99614211080b2f3"
   },
   "interval": [
     "0x80094888",
@@ -253,6 +253,5 @@
     "target_sha256": "942648c64d346a7b94e84108e581d9372d5959c89c3150a41bd67e9056866431"
   },
   "status": "NONMATCH",
-  "target": "audio_channel_setup",
-  "target_manifest_provenance": "dade78464a022fedd2c5ba651ee1bca5ffd4ec99bfa4d2413d27256540bed02c"
+  "target": "audio_channel_setup"
 }

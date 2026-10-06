@@ -1,5 +1,17 @@
 # Image-A projected settings-bar callback
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
 **Complete NONMATCH: 4/193 words differ. Zero matching, accepted-byte, or ROM
 coverage gain.** The full interval is `[0x803AE63C,0x803AE940)`, 772 bytes.
 This is a frozen source/contract research packet, not a matching submission.
@@ -119,3 +131,11 @@ supplies unchanged protected game/image-A targets and current scorer/toolchain.
 The packet writes only its ignored build directory and receipt. All code/source
 and artifact hashes are bound in `verification.json`; no raw native words,
 disassembly, objects, ROM bytes, credentials or unrelated data are published.
+
+## Integration-portable replay (2026-10-06)
+
+Scorer, whole-manifest and accepted-context digests are historical provenance,
+not live-tree requirements. The verifier normalizes only enumerated provenance
+fields on both receipt sides. Packet source and verifier bindings, compiler
+identity/actual flags, selected native bodies and addresses, complete emitted
+extents, relocations, owned data and behavioral checks remain binding.

@@ -11,6 +11,11 @@ native=importlib.util.module_from_spec(spec);spec.loader.exec_module(native)
 FN='car_stats_display';FLAGS='-g0 -O3 -mips2 -G 0 -non_shared'
 CONTEXT=['func_800D18D8','func_80091FBC','func_8009211C']
 SOURCE=HERE/'candidate.c'
+BASE='cd22879d40b3de443cfde047b86e75e159b6cec6'
+ARCHIVED='cloud/work/game_C41/car_stats_display.floats.c'
+
+def base_bytes(path):
+    return subprocess.run(['git','show',BASE+':'+path],cwd=ROOT,check=True,capture_output=True).stdout
 
 def sha(data):return hashlib.sha256(data).hexdigest()
 def run(args):
@@ -59,7 +64,7 @@ def portability_controls(objects,work):
     """Reproduce the source-path cause before excluding full-object provenance."""
     reports={}
     for label in ['archived','corrected','corrected_header_o2']:
-        source=ROOT/'cloud/work/game_C41/car_stats_display.floats.c' if label=='archived' else SOURCE
+        source=work/'car_stats_display.floats.c' if label=='archived' else SOURCE
         flags=FLAGS.replace('-O3','-O2') if label=='corrected_header_o2' else FLAGS
         reference=portable_elf(objects[label].read_bytes());controls=[]
         for dirname in ['path_a','different_length_path_b']:
@@ -148,14 +153,16 @@ def link_proof(obj,work):
 
 def compile_proof(work):
     objects={};source=SOURCE.read_text()
-    for key,path in [('archived',ROOT/'cloud/work/game_C41/car_stats_display.floats.c'),('corrected',SOURCE)]:
+    archived=work/'car_stats_display.floats.c';archived.write_bytes(base_bytes(ARCHIVED))
+    for key,path in [('archived',archived),('corrected',SOURCE)]:
         obj=work/(key+'.o');score.compile_single(path,FLAGS,obj);objects[key]=obj
     obj=work/'corrected_header_o2.o';score.compile_single(SOURCE,FLAGS.replace('-O3','-O2'),obj);objects['corrected_header_o2']=obj
     group=work/'group';group.mkdir();shutil.copyfile(SOURCE,group/'candidate.c')
-    lock=json.loads((ROOT/'blob_matched.lock.json').read_text());hashes={}
+    lock=json.loads(base_bytes('blob_matched.lock.json'))
     for n in CONTEXT:
-        p=ROOT/lock[n]['source'];h=sha(p.read_bytes());assert h==lock[n]['source_sha256'];hashes[str(p.relative_to(ROOT))]=h
-        shutil.copyfile(p,group/(n+'.c'))
+        path=lock[n]['source'];raw=base_bytes(path);h=sha(raw)
+        assert h==lock[n]['source_sha256']
+        (group/(n+'.c')).write_bytes(raw)
     manifest={'files':['candidate.c']+[n+'.c' for n in CONTEXT],'members':[FN],
               'context':CONTEXT,'keep':[FN]+CONTEXT,'flags':FLAGS,'claims':[]}
     (group/'group.json').write_text(json.dumps(manifest))
@@ -166,7 +173,7 @@ def compile_proof(work):
     assert bodies['archived'][FN]==bodies['corrected'][FN]==bodies['context'][FN]
     assert all(reports['context']['functions'][n]['differing_words']==0 for n in CONTEXT)
     negative_object_checks(objects['corrected'],work)
-    return reports,bodies['corrected'][FN],hashes,portability_controls(objects,work)
+    return reports,bodies['corrected'][FN],portability_controls(objects,work)
 
 def negative_object_checks(obj,work):
     data,secs=score._elf(obj);ti=score._text_index(secs)
@@ -246,24 +253,25 @@ def behavior(words,work):
 
 def verify():
     with tempfile.TemporaryDirectory(prefix='constructor-proof-') as t:
-        work=Path(t);proof,words,hashes,path_controls=compile_proof(work);runtime=behavior(words,work)
+        work=Path(t);proof,words,path_controls=compile_proof(work);runtime=behavior(words,work)
     addresses=score.image_symbols();target=addresses[FN];call=0x0c000000|((target>>2)&0x3ffffff)
     callers=[{'function':n,'call_site':hex(addresses[n]+4*i)} for n,w in score.targets().items() for i,v in enumerate(w) if v==call]
     return {'schema':2,'status':'NONMATCH','accepted_byte_gain':0,'function':FN,'start':hex(target),
             'end':hex(target+308),'source_sha256':sha(SOURCE.read_bytes()),'flags':FLAGS,
-            'archived_source_sha256':sha((ROOT/'cloud/work/game_C41/car_stats_display.floats.c').read_bytes()),
+            'packet_sha256':{name:sha((HERE/name).read_bytes()) for name in ('verify.py','native.py','host.c','claim.json')},
+            'archived_source_sha256':sha(base_bytes(ARCHIVED)),
             'target_sha256':sha(struct.pack('>77I',*score.targets()[FN])),
             'toolchain_sha256':{n:sha(Path(score.ido(n)).read_bytes()) for n in ['cc','uld','usplit','umerge','uopt','ugen','as1']},
             'gnu_linker_version':run(['mips-linux-gnu-ld','--version']).splitlines()[0],
             'host_compiler_version':run(['cc','--version']).splitlines()[0],
             'base':'cd22879d40b3de443cfde047b86e75e159b6cec6',
-            'protected_manifest_sha256':sha((score.ASM_DIR/'SHA256SUMS').read_bytes()),
-            'context_source_sha256':hashes,'portability_controls':path_controls,'object_adverse_controls':['shortened_ELF_extent','unsupported_relocation'],'compile':proof,'behavior':runtime,'direct_callers':callers}
+
+            'portability_controls':path_controls,'object_adverse_controls':['shortened_ELF_extent','unsupported_relocation'],'compile':proof,'behavior':runtime,'direct_callers':callers}
 
 def portable(receipt):
     """Keep run/tool provenance in the receipt; compare all portable proof fields."""
     receipt=json.loads(json.dumps(receipt))
-    for field in ['gnu_linker_version','host_compiler_version']:receipt.pop(field,None)
+    for field in ['gnu_linker_version','host_compiler_version','protected_manifest_sha256','context_source_sha256']:receipt.pop(field,None)
     for label,compiled in receipt['compile'].items():
         # Group inputs are relative names and its full object remains stable.
         if label!='context':

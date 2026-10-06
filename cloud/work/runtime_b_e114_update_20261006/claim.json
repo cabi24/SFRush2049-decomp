@@ -1,0 +1,17 @@
+{
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "packet": "runtime_b_e114_update_20261006",
+  "scope": "complete E114 semantic source and bounded verification only",
+  "native_interval": [
+    "0x8038E114",
+    "0x8038F560"
+  ],
+  "exclusions": [
+    "F938",
+    "protected files",
+    "publication",
+    "CI monitoring",
+    "matching experimentation"
+  ],
+  "parent_overlap_acknowledged": true
+}

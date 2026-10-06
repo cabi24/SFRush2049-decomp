@@ -1,0 +1,21 @@
+{
+  "packet": "runtime_b_da78_position_20261006",
+  "owner": "DA78 reconstruction worker; coordinator assigned",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "target": [
+    "0x8038DA78",
+    "0x8038DDDC"
+  ],
+  "claimed_native_bytes": 868,
+  "claim_kind": "research source only; zero matching/accepted credit",
+  "edit_paths": [
+    "cloud/work/runtime_b_da78_position_20261006/",
+    "tests/cloud/test_runtime_b_da78_position.py"
+  ],
+  "read_only": [
+    "all production source",
+    "all accepted/protected metadata and tools",
+    "all other research packets"
+  ],
+  "state": "source frozen; independent review and current-master full-suite gates pending"
+}

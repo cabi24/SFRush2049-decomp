@@ -1,17 +1,10 @@
 {
   "format": 1,
   "historical_base": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "acceptance_as_of_commit": "cd22879d40b3de443cfde047b86e75e159b6cec6",
   "scope": "Registered game-body direct JAL census only. Call-label adjacency and simple return captures are syntactic; queue identity, CFG liveness, indirect/overlay calls and matching readiness are not proved.",
   "source_sha256": {
-    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
-    "cloud/work/s20261004/D/notes.md": "0c8ba564114679cf72e753b2ebb90e92ca855e95c6e2a8fb07ae7d3eba56fe5a",
-    "cloud/work/s20261004/E/notes.md": "6c926ca5a0db9d557a4268aacc34309de2fb89d231ede33472ae9a18d21df664",
-    "cloud/work/s20261004/E/src/helper.h": "820d5df968a0dab590e9745b473878978c8abb7a0aabb5f9fabaa5a206a626dc",
-    "cloud/work/game_C104/REPORT.md": "9061fbc008f205a0130d6c365211beee6b9f0b5deae7d59776cb01fba5c2fb87",
-    "cloud/work/dot_menu_options_root_20261005/slot_state_setup.c": "b28c4a340302f416ff7b0d3ac4c3839ba764a8f0d5fe397c193963248395c362",
-    "src/blob/groups/credits_scroll_grp/group.json": "e818744d9a4a45a321095ab3620f1278b3d4b25337ff5408736a9e7fa42cc63a",
-    "src/blob/groups/credits_scroll_grp/gr3_c.c": "e7b9028f96cb5c8c1df07c1281c298cf88ec06f34a21bd82c4bd684f1d653737",
-    "src/blob/groups/slot_sound/group.c": "5ab15c1c3fc65c78e1d416dbb6c6067f638345906caacf202ec18e6c3a8dcbf4"
+    "audit.py": "c5a80a99df442717d7ec6d20d7af0530025221adf12dec205a539eda1ccd9158"
   },
   "helpers": {
     "slot_state_setup": {

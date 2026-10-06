@@ -1,0 +1,75 @@
+{
+  "status": "COMPLETE: one approved genuine-context diagnostic, independently verified private D328 equality, seven NONMATCH bodies, zero accepted coverage",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "source_sha256": "fc80a9075c6357b1833bc53b7810f8a4ee2c2f874e1bc8ba03f47fcb10e32d95",
+  "combined_compile_count": 1,
+  "target_compiler_layout_facts": 89,
+  "genuine_native_function_bytes": 11376,
+  "compiled_function_bytes": 11588,
+  "zero_text_padding_bytes": 12,
+  "owned_rodata_bytes": 320,
+  "independently_validated_relocations": 414,
+  "D328": {
+    "bytes": 124,
+    "unmasked_differences": 0,
+    "missing_words": 0,
+    "excess_words": 0,
+    "own_data_references": 0,
+    "native_and_linked_sha256": "5d8fc0875c56105d63e0eaee161b6ec6900d742563b85d047035984fb0fa904a",
+    "independent_review_status": "INDEPENDENT PRIVATE-BODY EQUALITY VERIFIED; RESEARCH ONLY; ZERO ACCEPTED COVERAGE",
+    "canonical_name_based_scorer_admission": false,
+    "accepted_coverage_bytes": 0
+  },
+  "behavior": {
+    "paired_cases": 552,
+    "root_invocations_per_image": 856,
+    "behavior_sha256": "40c4164d5ffa3766c3a906adaf05f3e67a06f7002a55f13293504ce50b40d921",
+    "native_instruction_coverage": [
+      2815,
+      2844
+    ],
+    "candidate_instruction_coverage": [
+      2852,
+      2897
+    ],
+    "negative_controls": 10,
+    "separate_full_replay_equal": true,
+    "private_children_hooked": false
+  },
+  "remaining": [
+    "Seven complete bodies NONMATCH",
+    "Original TU/export/object-array identities and private formal order unproven",
+    "Accepted E398 void wrapper conflicts with consumed native return",
+    "Canonical scorer lacks hidden-static ECOFF procedure discovery",
+    "No production splice/image/compression/ROM, full project suite, publication or CI gate performed"
+  ],
+  "retention": "Temporary compiler directory removed; source and metadata only",
+  "files_sha256": {
+    "README.md": "e7a9722fa8517683680e27fcfa795bcee1b7162d42862f73d9d511368e17bf5b",
+    "assemble.py": "c41fe218150fd09db2901d63d358b51492d7c5f0597412c003fd5c45d5a687c5",
+    "assembly.json": "10021c9c82055f12993080a3a3a7673915e21b0e28e62d4883779b34bced8e60",
+    "audit.py": "4fe9303eff38eb91db5afba317f20b6d1348d2a95a1c9f120be8b7105d753e93",
+    "boundaries.json": "4b49489910e43c707139a85b05e07992a9a637a0f2816382bfbf43494e55a28f",
+    "build.json": "e67868b3bbd957a1214782d987865043d53a40772d52ef0dccf581ce2faec4f4",
+    "build_once.py": "9b806fc195fd27468085cc5a850718c211928370c978a43e7fce6235b1402645",
+    "cleanup.json": "4c9fabb39729f0841a4bf7657a22d3f545d895c92a1c58ffdb59caf16d74e133",
+    "closure.c": "fc80a9075c6357b1833bc53b7810f8a4ee2c2f874e1bc8ba03f47fcb10e32d95",
+    "compatibility.md": "d7b3f77700a41dd6aa75fe8d40757450e3c959206da890b4123e3cc759704d82",
+    "group.json": "eba5faebf8d8e3748f5840b593ede2986e496e528f6aa53ecfb76ee11506b94b",
+    "independent-d328/README.md": "45bef1b54108dcec28788970d1fe3c79d953863bade6c2bf9287c4b6048ad2f1",
+    "independent-d328/review.json": "f8560cf1dadf811fabcdefd41064249acb9d27da7652a9d88996ece185c75d66",
+    "inspect_baseline.py": "8fc764ab468804c1c944add118d4747d72ab02e764ccf23a96d67a1925e1afde",
+    "inventory.json": "4695b94d787330999860ca83fba2ec4dd2a54ff31ee8cdf6c6ea4436e8879eea",
+    "semantic-controls-replay.json": "b65a232e2aabf1c65b2da2ba9087a1659e1f674b29ee6826cc928080ee0347ce",
+    "semantic-replay.json": "9fb86da7ca962c56bad5083f7d0f4149cd5d087d778a3d5d04d121fb7ce3f965",
+    "semantics/README.md": "4539add9a5c0b65dbfe7ecffdbe6812367e695ebc22944f40358ba1964344aa6",
+    "semantics/adapter.py": "36df55b30fb5824cc76738a869d0884aa2c44ce2254cf06bb94cdfbe8471c8ad",
+    "semantics/closure-verification.json": "06b63f52073bc8d943564e003e518664809c5963c98234153fbc50ee66fcb80d",
+    "semantics/closure.py": "f18d6b9cd80acca7c8688a314ab210080f64d6864dec80599bdfcbcbce877b5e",
+    "semantics/controls.json": "b65a232e2aabf1c65b2da2ba9087a1659e1f674b29ee6826cc928080ee0347ce",
+    "semantics/controls.py": "34bc8d29c9abb58c647312dd76191e57ff5f958898629bb78a4b46c4d2f28c46",
+    "semantics/verify.py": "f98286cca1417c8dda95ac316ec942e4954bfa89bb7efbaafbabac9bbd40ce16",
+    "shared_schema.proposed.h": "cea0a07408c834c1a602fef3f62aad1735728e9691340fa8659e86e2d10adb4c",
+    "toolchain-provenance.json": "3d8538084fe9130d2cae2ac7e59b35ad187e7ce655dcd8e9e0d9e70a79170b22"
+  }
+}

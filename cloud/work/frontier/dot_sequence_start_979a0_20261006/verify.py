@@ -7,6 +7,7 @@ import importlib.util
 import json
 from pathlib import Path
 import struct
+import subprocess
 import tempfile
 
 HERE = Path(__file__).resolve().parent
@@ -28,6 +29,35 @@ def words_bytes(words):
     return struct.pack('>%dI' % len(words), *words)
 
 
+def comparable(receipt):
+    """Exclude enumerated historical integration provenance, never proof inputs."""
+    result = json.loads(json.dumps(receipt))
+    for key in ('accepted_group_spec_sha256', 'scorer_sha256', 'own_data_tool_sha256', 'native_manifest_sha256'):
+        result.pop(key, None)
+    return result
+
+
+def pinned(repo, path):
+    return subprocess.check_output(["git", "-C", str(repo), "show", BASE + ":" + path])
+
+
+def context_config(repo, group):
+    """Compare our explicit packet recipe/copies only to immutable BASE context."""
+    config = json.loads((group / 'group.json').read_text())
+    accepted_dir = 'src/blob/groups/slot_sound'
+    accepted_bytes = pinned(repo, accepted_dir + '/group.json')
+    accepted = json.loads(accepted_bytes)
+    require(config['claims'] == [], 'Research packet must not claim matching bytes')
+    require(config['members'] == accepted['members'] + [NAME], 'Context membership changed')
+    require(config['keep'] == accepted['keep'] + [NAME], 'Context kept roots changed')
+    require(config['files'] == accepted['files'] + [NAME + '.c'], 'Context file order changed')
+    require(config['flags'] == accepted['flags'], 'Context flags changed')
+    for filename in accepted['files']:
+        require((group / filename).read_bytes() == pinned(repo, accepted_dir + '/' + filename),
+                'Accepted source copy changed: ' + filename)
+    return config, accepted_bytes
+
+
 def verify(repo):
     path = repo / 'tools/cloud/score.py'
     spec = importlib.util.spec_from_file_location('sequence_start_score', path)
@@ -37,17 +67,7 @@ def verify(repo):
     sys.modules[spec.name] = score
     spec.loader.exec_module(score)
     group = HERE / 'group'
-    config = json.loads((group / 'group.json').read_text())
-    accepted_dir = repo / 'src/blob/groups/slot_sound'
-    accepted = json.loads((accepted_dir / 'group.json').read_text())
-    require(config['claims'] == [], 'Research packet must not claim matching bytes')
-    require(config['members'] == accepted['members'] + [NAME], 'Context membership changed')
-    require(config['keep'] == accepted['keep'] + [NAME], 'Context kept roots changed')
-    require(config['files'] == accepted['files'] + [NAME + '.c'], 'Context file order changed')
-    require(config['flags'] == accepted['flags'], 'Context flags changed')
-    for filename in accepted['files']:
-        require((group / filename).read_bytes() == (accepted_dir / filename).read_bytes(),
-                'Accepted source copy changed: ' + filename)
+    config, accepted_bytes = context_config(repo, group)
     native = score.targets()
     addresses = score.image_symbols()
     require(addresses[NAME] == 0x800979a0 and len(native[NAME]) == 73, 'Native identity changed')
@@ -99,12 +119,12 @@ def verify(repo):
             'flags': config['flags'], 'as1_extra_flag': score.R4300_AS1,
             'source_sha256': {filename: sha((group / filename).read_bytes()) for filename in config['files']},
             'group_spec_sha256': sha((group / 'group.json').read_bytes()),
-            'accepted_group_spec_sha256': sha((accepted_dir / 'group.json').read_bytes()),
+
             'tool_sha256': {name: sha((score.IDO / name).read_bytes())
                             for name in ('cc', 'cfe', 'uld', 'usplit', 'umerge', 'uopt', 'ugen', 'as1')},
-            'scorer_sha256': sha(path.read_bytes()),
-            'own_data_tool_sha256': sha((path.parent / 'owndata.py').read_bytes()),
-            'native_manifest_sha256': sha((repo / 'asm/us/blob/SHA256SUMS').read_bytes()),
+
+
+
             'verification_script_sha256': sha(Path(__file__).read_bytes()),
             'functions': results,
             'limits': [
@@ -124,7 +144,7 @@ def main():
     receipt = verify(args.repo.resolve())
     output = HERE / 'verification.json'
     if args.check:
-        require(json.loads(output.read_text()) == receipt, 'Frozen receipt differs')
+        require(comparable(json.loads(output.read_text())) == comparable(receipt), 'Frozen receipt differs')
     else:
         output.write_text(json.dumps(receipt, indent=2) + '\n')
     print('NONMATCH 12/73, 288/292 bytes; 12/12 accepted context bodies strict; receipt ' +

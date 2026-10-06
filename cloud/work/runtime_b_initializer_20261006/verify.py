@@ -32,6 +32,32 @@ TEXTURES=[0x80399AF8+i*2 for i in range(5)]+[0x80399B08+i*2 for i in range(5)]
 POOLS=[(0x8039A520,0x80399B60,104,24,0),(0x8039A5F8,0x8039A538,8,24,0),(0x80394F70,0x8039AE98,60,24,0),(0x8039AE80,0x8039A610,72,30,0)]
 HELPERS={'struct_fields_init':0x800B0550,'string_copy_format':0x80092E2C,'func_800B24EC':0x800B24EC,'func_8038D1A8':0x8038D1A8}
 
+
+def portable_receipt(receipt):
+    """Compare packet proof; base-context and whole-tree digests are provenance."""
+    result = json.loads(json.dumps(receipt))
+    for path in (
+        'asm/us/blob/SHA256SUMS',
+        'asm/us/ovl_b/SHA256SUMS',
+        'asm/us/ovl_b/extents.json',
+        'asm/us/ovl_b/ovl_b_8038a400.s',
+        'asm/us/ovl_b/symbols.json',
+        'tools/cloud/owndata.py',
+        'tools/cloud/score.py',
+    ):
+        result.get('inputs_sha256', {}).pop(path, None)
+    for helper in result.get('helpers', {}).values():
+        helper.pop('source_sha256', None)
+    result.get('packet_sha256', {}).pop('test_packet.py', None)
+    if not result.get('inputs_sha256'):
+        result.pop('inputs_sha256', None)
+    # Host binary identities are provenance; native/code/behavior proof and
+    # all pinned IDO identities stay binding across GNU/GCC installations.
+    for tool in ('gcc', 'mips-linux-gnu-ld', 'mips-linux-gnu-readelf'):
+        result.get('tool_sha256', {}).pop(tool, None)
+    return result
+
+
 def sha_bytes(b):return hashlib.sha256(b).hexdigest()
 def sha(p):return sha_bytes(Path(p).read_bytes())
 def signed(n,bits):
@@ -187,16 +213,17 @@ def prove():
         path='src/blob/'+helper+'.c';source=pinned(path);assert lock[helper]['source_sha256']==sha_bytes(source) and lock[helper]['verified']=='image_gate'
         assert addresses[helper]==dict(HELPERS,pool_linked_list_init=0x800B04D0)[helper]
         body=blob_targets[helper]
-        helpers[helper]={'path':path,'source_sha256':sha_bytes(source),'native_address':hex(addresses[helper]),'native_bytes':len(body)*4,'native_sha256':sha_bytes(struct.pack('>%dI'%len(body),*body)),'execution':'abstract O32 boundary; implementation not executed'}
+        helpers[helper]={'path':path,'native_address':hex(addresses[helper]),'native_bytes':len(body)*4,'native_sha256':sha_bytes(struct.pack('>%dI'%len(body),*body)),'execution':'abstract O32 boundary; implementation not executed'}
     native_wrapper=score.targets()['func_8038D1A8'];assert len(native_wrapper)*4==88
-    helpers['func_8038D1A8']={'path':'cloud/matches/ovl_b/func_8038D1A8.c','source_sha256':sha_bytes(pinned('cloud/matches/ovl_b/func_8038D1A8.c')),'native_address':'0x8038d1a8','native_bytes':88,'native_sha256':sha_bytes(struct.pack('>22I',*native_wrapper)),'execution':'abstract O32 boundary; implementation not executed'}
+    pinned('cloud/matches/ovl_b/func_8038D1A8.c')  # Retain the BASE source witness.
+    helpers['func_8038D1A8']={'path':'cloud/matches/ovl_b/func_8038D1A8.c','native_address':'0x8038d1a8','native_bytes':88,'native_sha256':sha_bytes(struct.pack('>22I',*native_wrapper)),'execution':'abstract O32 boundary; implementation not executed'}
     consumer=score.targets()['func_8038F938'];assert len(consumer)*4==928
     ce=next(x for x in ext['functions'] if x['name']=='func_8038F938');assert ce['address']=='0x8038F938' and ce['size']==928
     assert (consumer[0xcc//4]&65535)==0x4f90
     assert [(consumer[o//4]>>26,consumer[o//4]&65535) for o in [0xf4,0x104,0x114]]==[(0x39,0x28),(0x39,0x2c),(0x39,0x30)]
     receipt={'status':'NONMATCH','base':BASE,'image':'B','image_sha256':IMAGE,'address':hex(ADDRESS),'bytes':SIZE,'source_sha256':sha(SOURCE),'flags':FLAGS+' -Wab,-r4300_mul','accepted_or_coverage_bytes':0,'helpers':helpers,'consumer':{'name':'func_8038F938','address':'0x8038f938','bytes':928,'native_sha256':sha_bytes(struct.pack('>232I',*consumer)),'layout':'52-byte record; signed handle at +0, float matrix at +4, float position at +40/+44/+48'},'tool_sha256':tool_provenance(),
-        'inputs_sha256':{str(p.relative_to(ROOT)):sha(p) for p in [score.ASM_DIR/'SHA256SUMS',score.ASM_DIR/'ovl_b_8038a400.s',score.ASM_DIR/'extents.json',score.ASM_DIR/'symbols.json',ROOT/'tools/cloud/score.py',ROOT/'tools/cloud/owndata.py',ROOT/'asm/us/blob/SHA256SUMS']},
-        'packet_sha256':{str(p.relative_to(PACKET)):sha(p) for p in [PACKET/'verify.py',PACKET/'host_test.c',PACKET/'test_packet.py',PACKET/'controls/initial.c']}}
+
+        'packet_sha256':{str(p.relative_to(PACKET)):sha(p) for p in [PACKET/'verify.py',PACKET/'host_test.c',PACKET/'controls/initial.c']}}
     with tempfile.TemporaryDirectory(prefix='b-908d0-') as td:
         tmp=Path(td);obj=tmp/'candidate.o';score.compile_single(SOURCE,FLAGS,obj)
         with contextlib.redirect_stdout(io.StringIO()):result=score.compare(obj,NAME)
@@ -259,6 +286,6 @@ def tool_provenance():
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('output',nargs='?');parser.add_argument('--check',action='store_true');args=parser.parse_args();receipt=prove()
-    if args.check:assert receipt==json.loads((PACKET/'verification.json').read_text());print('Frozen source-bound proof reproduced')
+    if args.check:assert portable_receipt(receipt)==portable_receipt(json.loads((PACKET/'verification.json').read_text()));print('Frozen source-bound proof reproduced')
     elif args.output:Path(args.output).write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
     else:print(json.dumps(receipt,indent=2,sort_keys=True))

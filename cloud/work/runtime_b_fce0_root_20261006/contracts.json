@@ -1,0 +1,156 @@
+{
+  "status": "RESEARCH-ONLY complete FCE0 semantic source; no private-ABI or original-TU proof",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "ordinary_root": {
+    "name": "func_8038FCE0",
+    "interval": [
+      "0x8038FCE0",
+      "0x803908D0"
+    ],
+    "size": 3056,
+    "frame": 208,
+    "inputs": "No consumed incoming formal or argument home; globals drive this body.",
+    "preserves": "s0..s8 and f20..f31; native saves paired f20/f22/f24/f26/f28/f30."
+  },
+  "root_direct_calls": {
+    "0x80090254": [
+      "0x98"
+    ],
+    "0x800afa84": [
+      "0xa8",
+      "0xb88"
+    ],
+    "0x8038f938": [
+      "0x1ac"
+    ],
+    "0x8038f568": [
+      "0x1e8"
+    ],
+    "0x8008e3c0": [
+      "0x388",
+      "0x694"
+    ],
+    "0x8008d6b0": [
+      "0x410",
+      "0x7f8"
+    ],
+    "0x800b61a8": [
+      "0x440"
+    ],
+    "0x80090f44": [
+      "0x480",
+      "0x574",
+      "0x5ec",
+      "0x614",
+      "0x688"
+    ],
+    "0x80090e9c": [
+      "0x5e0",
+      "0x660"
+    ],
+    "0x8008b2e4": [
+      "0x644",
+      "0x66c",
+      "0x804",
+      "0x840"
+    ],
+    "0x8009ea68": [
+      "0x818"
+    ],
+    "0x8008e398": [
+      "0x830"
+    ],
+    "0x8038d054": [
+      "0xb00"
+    ],
+    "0x8008d0c0": [
+      "0xb7c"
+    ],
+    "0x8038e114": [
+      "0xb98"
+    ],
+    "0x8038cb20": [
+      "0xba0"
+    ]
+  },
+  "private_F938": {
+    "interval": [
+      "0x8038F938",
+      "0x8038FCD8"
+    ],
+    "size": 928,
+    "sha256": "1b5eb1e66549eb1cc0fba50a3dc3e432e295fde04bf1777be2a5bcdfccd9e106",
+    "incoming": {
+      "s0": "player+0x38C status block",
+      "s2": "952-byte player record",
+      "s3": "2056-byte vehicle record selected before call",
+      "s5": "signed player owner"
+    },
+    "frame": 56,
+    "saves": "ra only",
+    "clobbers": "unsaved s1/s3/s4/s6/f20; source argument order is provisional",
+    "source_visibility": "Not reconstructed in this packet. Semantic external facade only; no ABI equivalence asserted."
+  },
+  "private_E114": {
+    "interval": [
+      "0x8038E114",
+      "0x8038F560"
+    ],
+    "size": 5196,
+    "call_site": "0x80390878",
+    "incoming": "No consumed formal established; reads global linked list.",
+    "source_visibility": "External semantic facade only. Prior parent/child packet owns reconstruction; no fake kept root."
+  },
+  "D054": {
+    "interval": [
+      "0x8038D054",
+      "0x8038D1A8"
+    ],
+    "size": 340,
+    "contract": "a0 mode, a1 position pointer, a2 genuinely homed at entry SP+8 but never read again. Native root supplies record position in both a1 and a2. Returns allocated effect pointer or null.",
+    "domain": "Root selects mode 0/1/2 only. General D054 default uses uninitialized scratch and is not covered."
+  },
+  "F568": {
+    "contract": "Conventional O32, a0 player pointer; saves/restores all s registers and nonvolatile float pairs. Side effects remain bounded external models here."
+  },
+  "CB20": {
+    "contract": "No meaningful input recovered at root call; root ignores return. Full body not executed in this packet."
+  },
+  "other_calls": {
+    "8008E3C0": "Pool pointer -> pointer, null supported for primary record and secondary debris allocation; primary failure does not undo kind-3 latch.",
+    "800AFA84": "Pool and object; list next is captured before callback.",
+    "80090254": "Full scene word narrowed to signed 16 bits.",
+    "8008E398": "Returns scene index consumed by FCE0. Accepted wrapper void-return declaration is inconsistent with native consumption; research declaration only.",
+    "8008D6B0": "Nine-float matrix copy source/destination.",
+    "80090F44/80090E9C": "First float in f12, second argument matrix pointer in a1.",
+    "8009EA68": "Scale first float f12, matrix a1.",
+    "8008B2E4": "Float range f12 -> f0. Four ordered calls on successful kind-1 secondary-allocation path; two on secondary failure.",
+    "800B61A8": "Resource/sound integer, signed owner, 1,1; return unused.",
+    "8008D0C0": "Full 32-bit release handle, return unused."
+  },
+  "known_minimum_private_closure": {
+    "bytes": 11376,
+    "members": {
+      "FCE0": 3056,
+      "E114": 5196,
+      "DA78": 868,
+      "D498": 768,
+      "D200": 296,
+      "D328": 124,
+      "E088": 140,
+      "F938": 928
+    },
+    "limitation": "Lower bound, not proven original TU/export roots. Conventional external helpers are not counted."
+  },
+  "domains": [
+    "Acyclic debris/release lists of 0..4 nodes; zero/normal finite binary32 operands/results, default rounding, no concurrent mutation. NaNs/infinities, denormals, overflow/underflow/exception behavior and nondefault FCSR excluded.",
+    "Initial live player count <=4; signed nonpositive count skips player region. Hook-modified count remains 0..4.",
+    "Player owner selects existing vehicle (producer tests 0..3; independently reviewed 0..12); model 0..12; player kind 0..8 at table accesses.",
+    "Non-null valid input pointer is needed by the first reset read, even though a later fire path contains a null check.",
+    "All mapped records, tables, pools and player/vehicle ranges are aligned and mutually disjoint. Returned primary records/debris have full initialized storage.",
+    "Record kind can be mutated after matrix copy to exercise default switch, while player kind stays in range.",
+    "Matrix/angle/sound/allocator/private-parent helpers use explicit side-effecting boundary models, not their real compiled bodies.",
+    "Main-image bounds table uses 13 synthetic rows; B-image table/constant slices are authenticated."
+  ],
+  "source_ancestry": "Native semantic reconstruction; no whole-function arcade donor or original C identifiers/TU established."
+}

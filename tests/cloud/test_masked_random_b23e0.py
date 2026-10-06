@@ -15,7 +15,7 @@ proof=importlib.util.module_from_spec(spec);spec.loader.exec_module(proof)
 
 @pytest.fixture(scope='module')
 def replay(tmp_path_factory):
-    if not (proof.score.IDO/'cc').exists() or not shutil.which('mips-linux-gnu-ld') or not shutil.which('cc'):
+    if not (proof.score.IDO/'cc').is_file() or not shutil.which('mips-linux-gnu-ld') or not shutil.which('cc'):
         pytest.skip('IDO, GNU MIPS tools and host compiler required')
     return proof.verify(tmp_path_factory.mktemp('masked-rng'))
 
@@ -27,7 +27,7 @@ def test_source_bound_receipt():
     assert group['context']==['func_8008B2E4','func_8008B2B4']
     assert set(group['keep'])==set(proof.NAMES)
     assert saved['new_candidate_bytes']==268 and saved['accepted_byte_gain']==0
-    assert (PACKET/'rand.c').read_bytes()==(ROOT/'src/blob/func_8008B2B4.c').read_bytes()
+    assert (PACKET/'rand.c').read_bytes()==proof.base_bytes('src/blob/func_8008B2B4.c')
 
 def test_complete_portable_replay(replay):
     assert proof.portable(replay)==proof.portable(json.loads((PACKET/'verification.json').read_text()))
@@ -98,7 +98,8 @@ def test_fresh_data_manifest_required_after_warm_read(tmp_path,monkeypatch):
     with pytest.raises(SystemExit,match='SHA-256 mismatch'):proof.image_window()
 
 def test_wrong_function_extent_is_not_full_match(tmp_path):
-    if not (proof.score.IDO/'cc').exists():pytest.skip('IDO required')
+    if not (proof.score.IDO/'cc').is_file() or not shutil.which('mips-linux-gnu-ld'):
+        pytest.skip('pinned IDO and MIPS GNU linker required')
     obj=tmp_path/'candidate.o';proof.score.compile_group(PACKET,obj)
     raw,sections=proof.score._elf(obj);changed=bytearray(raw)
     found=False
@@ -113,3 +114,29 @@ def test_wrong_function_extent_is_not_full_match(tmp_path):
     assert found;obj.write_bytes(changed)
     report=proof.inspect(obj,proof.FN)
     assert not report['full_extent_equal'] and report['full_differing_positions']==1
+
+
+def test_live_source_and_lock_churn_does_not_change_base_context(monkeypatch):
+    old_read=Path.read_bytes
+    def changed(path):
+        if path==ROOT/'src/blob/func_8008B2B4.c':return b'changed integration source'
+        return old_read(path)
+    monkeypatch.setattr(Path,'read_bytes',changed)
+    assert (PACKET/'rand.c').read_bytes()==proof.base_bytes('src/blob/func_8008B2B4.c')
+
+
+def test_matching_source_header_has_exact_group_recipe():
+    assert (PACKET/'selector.c').read_text().splitlines()[0]=='/* flags: -g0 -O3 -mips2 -G 0 -non_shared */'
+    assert json.loads((PACKET/'group.json').read_text())['flags']==proof.FLAGS
+
+
+def test_portable_receipt_keeps_packet_and_native_proof():
+    import copy
+    saved=json.loads((PACKET/'verification.json').read_text())
+    changed=copy.deepcopy(saved)
+    changed['target_manifest_historical_sha256']='0'*64
+    changed['data_manifest_historical_sha256']='0'*64
+    changed['tools_sha256']={}
+    assert proof.portable(changed)==proof.portable(saved)
+    changed['selected_native_body_sha256'][proof.FN]='0'*64
+    assert proof.portable(changed)!=proof.portable(saved)

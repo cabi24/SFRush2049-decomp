@@ -13,7 +13,7 @@ ROOT=HERE.parents[3]
 NAME='func_803A6A28'
 ENTRY=0x803A6A28
 SIZE=296
-FLAGS='-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul'
+FLAGS='-g0 -O3 -mips2 -G 0 -non_shared'
 SOURCE=ROOT/'cloud/matches/ovl_a'/f'{NAME}.c'
 # Independently decoded call/data addresses, compared to the protected symbol map.
 ANCHORS={'render_helper':0x800B65B4,'object_create':0x800B42F0,
@@ -23,6 +23,15 @@ ANCHORS={'render_helper':0x800B65B4,'object_create':0x800B42F0,
  'state_utility':0x800B71D4,'D_8017A4E4':0x8017A4E4,
  'D_80156978':0x80156978,'D_80156994':0x80156994,
  'D_803B87E8':0x803B87E8,'D_8002E440':0x8002E440,'D_8002E444':0x8002E444}
+
+
+def portable_receipt(receipt):
+    """Retain proof; omit whole-tree provenance and path-sensitive raw-object digest."""
+    result = json.loads(json.dumps(receipt))
+    for key in ('protected_targets', 'scorer_sha256', 'base', 'object_sha256'):
+        result.pop(key, None)
+    return result
+
 
 def sha(b): return hashlib.sha256(b).hexdigest()
 def sh(args):
@@ -121,6 +130,6 @@ def main():
  # A wrong optional-branch condition must fail the entire-body proof.
  mutant=build/'wrong_guard.c';mutant.write_text(SOURCE.read_text().replace('== 0x3C000','!= 0x3C000'))
  mutantobj=build/'wrong_guard.o';score.compile_single(mutant,FLAGS,mutantobj);wrong=score.compare(mutantobj,NAME,show=0);assert not wrong.accepted()
- receipt={'status':'MATCH','base':sh(['git','-C',ROOT,'rev-parse','HEAD']).strip(),'image':'A','address':hex(ENTRY),'end':hex(ENTRY+SIZE),'bytes':SIZE,'words':len(words),'flags':FLAGS,'source_sha256':sha(SOURCE.read_bytes()),'native_sha256':sha(target),'object_sha256':sha(obj.read_bytes()),'gnu_linked_body_sha256':sha(linkedraw[:SIZE]),'comparison':comparison.__dict__,'function_bytes':SIZE,'alignment_bytes':8,'owned_data_bytes':0,'relocations':len(relocs),'anchors':{n:hex(v) for n,v in ANCHORS.items()},'host_cases':cases,'host_trace_sha256':tracehash.hexdigest(),'host_scope':'C89 UBSan/bounds call traces against independent oracle, including external-call changes to later-observed globals; no actual renderer implementation execution','native_execution':'No native interpreter execution claimed; full-byte IDO/production/GNU identity proven','layout_checks':'32-bit pointer width and pointer fields at 920/936','negative_wrong_guard':wrong.__dict__,'protected_targets':manifest,'scorer_sha256':sha((repo/'tools/cloud/score.py').read_bytes()),'tools':{p:sha((score.IDO/p).read_bytes()) for p in ('cc','cfe','uopt','ugen','as1')},'limits':['No broad repository suite','No image/compression/ROM/hardware gate','No cartridge coverage claim','No original typedef or TU-boundary recovery claim']}
+ receipt={'status':'MATCH','base':sh(['git','-C',ROOT,'rev-parse','HEAD']).strip(),'image':'A','address':hex(ENTRY),'end':hex(ENTRY+SIZE),'bytes':SIZE,'words':len(words),'flags':FLAGS+' -Wab,-r4300_mul','source_sha256':sha(SOURCE.read_bytes()),'verifier_sha256':sha((HERE/'verify.py').read_bytes()),'host_source_sha256':sha((HERE/'host.c').read_bytes()),'native_sha256':sha(target),'object_sha256':sha(obj.read_bytes()),'gnu_linked_body_sha256':sha(linkedraw[:SIZE]),'comparison':comparison.__dict__,'function_bytes':SIZE,'alignment_bytes':8,'owned_data_bytes':0,'relocations':len(relocs),'anchors':{n:hex(v) for n,v in ANCHORS.items()},'host_cases':cases,'host_trace_sha256':tracehash.hexdigest(),'host_scope':'C89 UBSan/bounds call traces against independent oracle, including external-call changes to later-observed globals; no actual renderer implementation execution','native_execution':'No native interpreter execution claimed; full-byte IDO/production/GNU identity proven','layout_checks':'32-bit pointer width and pointer fields at 920/936','negative_wrong_guard':wrong.__dict__,'tools':{p:sha((score.IDO/p).read_bytes()) for p in ('cc','cfe','uopt','ugen','as1')},'limits':['No broad repository suite','No image/compression/ROM/hardware gate','No cartridge coverage claim','No original typedef or TU-boundary recovery claim']}
  a.out.write_text(json.dumps(receipt,indent=2)+'\n');print(json.dumps({k:receipt[k] for k in ('status','bytes','comparison','host_cases','relocations','alignment_bytes','negative_wrong_guard')},indent=2))
 if __name__=='__main__':main()

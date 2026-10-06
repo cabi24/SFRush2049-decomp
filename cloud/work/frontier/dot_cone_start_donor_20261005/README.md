@@ -1,5 +1,17 @@
 # Cone-hit initializer: genuine matrix contract correction
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
 **NONMATCH. No matching claim, accepted-byte gain or production change.**
 `func_8010DCFC`, **0x8010DCFC–0x8010DF90**, 660 bytes / 165 words.
 
@@ -120,3 +132,15 @@ The changed-submission scanner schedules zero matching jobs because claims are
 empty and this is a research path. No production source, lock, protected target,
 shared header, compiler recipe or scorer is edited. Acceptance and any future
 integration remain with the independent checker.
+
+
+## Integration-portable replay (2026-10-06)
+
+Production context and lock facts are historical evidence at the receipt's stated
+base commit, read through `git show BASE:path` when used. Later source splices or
+lock additions do not change those historical facts. Whole manifests and tool or
+accepted-context digests are provenance, excluded by explicit field/path lists
+from portable proof equality. Packet source/verifier bindings, selected native
+words, complete extents, relocations, owned data and bounded behavior remain
+binding. Tests are not hashed into the receipt. Compiler-dependent tests skip
+when pinned IDO or the MIPS GNU linker is absent; source/native-only checks run.

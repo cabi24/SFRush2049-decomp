@@ -1,0 +1,44 @@
+{
+  "status": "BOUNDED HOST/NATIVE SEMANTIC AGREEMENT; NOT A TARGET MATCH",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "targets": {
+    "func_80090308": {
+      "address": "0x80090308",
+      "size": 1128,
+      "sha256": "dd5fb2b4ba651dfc726d27571fc810534f081935e00ed42fdeb70f5456d87169"
+    },
+    "save_write_data": {
+      "address": "0x800af06c",
+      "size": 1200,
+      "sha256": "3d7f79a62ea3664248e76b8cd9fc06dbd8142ab8d31e6167e8c1ca246323fca1"
+    }
+  },
+  "fixtures": 1008,
+  "covered_instructions": 510,
+  "executed_branch_outcomes": 45,
+  "target_compiler_invocations": 0,
+  "host_command": [
+    "/usr/bin/cc",
+    "-std=c99",
+    "-O0",
+    "-ffp-contract=off",
+    "-fPIC",
+    "-shared",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "/workspace/scratch/e1dc04a487a3/tagged-effect-service/packet/host.c",
+    "-o",
+    "<temporary-host-library>"
+  ],
+  "packet_sha256": {
+    "candidate.c": "65593ef2a077ce151f6ef43a5843593c302b8d5588c3cb47bb4f2ae51c440ee6",
+    "host.c": "4fc04717bea1a348719592e80c4985297091d82b62523b9430d488c75c892d9e",
+    "host_adapter.py": "a8494625ee685cea1a0a61acf2c46ade641614c711dbe2566552d86accb548ed",
+    "native.py": "8b5b8cf75bd2c02450690e24d8ce39e28f3dfe0e2f7c02db8c1f824689d6c5c6",
+    "fixture.py": "ea984332a3330185e29ce85eb1d5f336590c66d31114c377999c1e2a3c68342e",
+    "inputs.py": "0e72b97b496f086985a0de159e7c91eb9797beb9d06d872ff4095d64a7124ba3",
+    "verify.py": "f30e1ae8624b5ba61c2fb66cc2e90ecd83b99ebe5cff3e82954716553cbf5c7a",
+    "check_layout.c": "887dbf2661470b996244e9b16324bc0b98f803e439e301ffd8d140f6c6c942e6"
+  }
+}

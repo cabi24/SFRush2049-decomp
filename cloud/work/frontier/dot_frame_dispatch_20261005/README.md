@@ -1,5 +1,17 @@
 # Frame dispatcher: source-supported observation contract
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
 Base: `e24b47d89a0c8ffade1e4c75ad76b9d390a1c232` (2026-10-05).
 Target: `func_800B7FF8`, complete **0x800B7FF8–0x800B80C8**, 208 bytes / 52 words.
 
@@ -121,3 +133,19 @@ including 18 packet checks and the existing scorer, guard, integrity and
 submission suites.
 Both documented scorer sanity examples pass. All **402 static source locks** are
 intact. This is scoped local validation, not a full-suite or CI pass.
+
+
+## Integration-portable replay (2026-10-06)
+
+Production context and lock facts are historical evidence at the receipt's stated
+base commit, read through `git show BASE:path` when used. Later source splices or
+lock additions do not change those historical facts. Whole manifests and tool or
+accepted-context digests are provenance, excluded by explicit field/path lists
+from portable proof equality. Packet source/verifier bindings, selected native
+words, complete extents, relocations, owned data and bounded behavior remain
+binding. Tests are not hashed into the receipt. Compiler-dependent tests skip
+when pinned IDO or the MIPS GNU linker is absent; source/native-only checks run.
+
+The standalone candidate and genuine-caller replay both use the exact bare O3
+recipe. The standalone match does not require a caller, inline helper or
+deleted-static stub; the separate caller proof preserves the real caller body.

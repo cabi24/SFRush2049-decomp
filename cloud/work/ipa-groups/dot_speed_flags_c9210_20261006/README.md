@@ -1,5 +1,24 @@
 # Complete command-writer match from full-word flag inputs
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
+## Integration portability update (2026-10-06)
+
+The receipt no longer hashes its pytest wrapper. Base-commit source ancestry and recipe checks remain intact. Replay comparison excludes only the historical accepted-source digest; packet sources, verifier, recipe, native words/addresses, relocations, owned data and behavior remain strict.
+
+Focused packet tests passed with IDO available and with IDO absent. Compiler-dependent tests skip without IDO or the MIPS GNU linker. These scoped results do not claim the required aggregate repository-suite pass; that matrix is recorded separately before any publication. No protected production files, native assets, accepted locks or compiler policy are changed.
+
+
 **Sole new matching claim:** `speed_set`, `[0x800C9210, 0x800C92DC)`,
 204 bytes / 51 words. **Accepted-byte and ROM-coverage gain: zero.**
 Base: `cd22879d40b3de443cfde047b86e75e159b6cec6`.

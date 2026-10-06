@@ -1,7 +1,20 @@
 # Image A select-screen stat-bar callback
 
-Candidate: `cloud/matches/ovl_a/func_803A4134.c`, ordinary IDO 5.3 O2,
-`-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul`.
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
+Candidate: `cloud/matches/ovl_a/func_803A4134.c`, ordinary IDO 5.3 O3,
+`-g0 -O3 -mips2 -G 0 -non_shared` through the canonical scorer, which adds
+`-Wab,-r4300_mul`. Historical O2 evidence is identified below.
 The full native interval is `[0x803A4134,0x803A4340)`: 524 bytes / 131 words.
 This is source/object evidence only; newly accepted bytes and ROM coverage are zero.
 
@@ -113,3 +126,19 @@ The receipt excludes path-sensitive object hashes; local provenance stays in
 ignored build output. No ROM bytes, raw disassembly, binaries, credentials or
 unrelated private data are published. Image splice/compression/full-ROM gates,
 merging and final coverage acceptance remain with the independent checker.
+
+## Integration-portable replay (2026-10-06)
+
+Scorer, whole-manifest and accepted-context digests are historical provenance,
+not live-tree requirements. The verifier normalizes only enumerated provenance
+fields on both receipt sides. Packet source and verifier bindings, compiler
+identity/actual flags, selected native bodies and addresses, complete emitted
+extents, relocations, owned data and behavioral checks remain binding.
+
+The submission now uses the bare header
+`/* flags: -g0 -O3 -mips2 -G 0 -non_shared */`. Fresh O3 strict replay
+uses the unchanged canonical scorer, which adds `-Wab,-r4300_mul`; the receipt
+records those actual compiler flags. The complete standalone function needs
+no callers, inlined helpers or deleted-static stubs in its translation unit.
+Historical O2 source/receipt evidence remains available at integration commit
+`6b2e9e506fe3d2267a710e41c85af5364ccd00c7`; it is not relabeled as O3.

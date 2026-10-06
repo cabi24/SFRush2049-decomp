@@ -7,7 +7,7 @@
   "base": "cd22879d40b3de443cfde047b86e75e159b6cec6",
   "status": "strict_match_pending_independent_review",
   "source": "cloud/matches/ovl_a/func_803AF744.c",
-  "source_sha256": "f0702d35fea4778434273b65384ad853716a8fcf34821868d2bc64731c6b76cb",
+  "source_sha256": "503da85ae6c6597a4b21f5c4bde0077f31043cfec8429a2b6f1f608a807b6bf0",
   "newly_accepted_bytes": 0,
   "scope": "Six additive source/proof/research files only; no production or protected edits."
 }

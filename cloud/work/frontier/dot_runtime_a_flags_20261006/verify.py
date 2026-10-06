@@ -7,6 +7,7 @@ artifacts stay under build/. This receipt contains hashes, never ROM words.
 import argparse
 import ctypes
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -19,14 +20,19 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[3]
 sys.path.insert(0, str(ROOT / 'tools/cloud'))
 import score
-sys.path.insert(0, str(HERE))
-import native
+native_spec = importlib.util.spec_from_file_location('runtime_a_flags_native_proof', HERE / 'native.py')
+native = importlib.util.module_from_spec(native_spec); native_spec.loader.exec_module(native)
 
 NAME = 'func_80393004'
 SOURCE = ROOT / 'cloud/matches/ovl_a' / (NAME + '.c')
 ARCHIVED = ROOT / 'cloud/work/r16_runtime_images/near_miss' / (NAME + '.c')
 TARGETS = ROOT / 'asm/us/ovl_a'
 ENTRY, SIZE = native.ENTRY, 180
+BASE = 'cd22879d40b3de443cfde047b86e75e159b6cec6'
+FLAGS = '-g0 -O3 -mips2 -G 0 -non_shared'
+PROVENANCE_INPUTS = ('tools/cloud/score.py','tools/cloud/owndata.py',
+                     'asm/us/ovl_a/SHA256SUMS','asm/us/ovl_a/extents.json',
+                     'asm/us/ovl_a/symbols.json','asm/us/ovl_a/ovl_a_8038a400.s')
 
 
 def sha(data):
@@ -37,6 +43,16 @@ def sh(args):
     proc = subprocess.run([str(x) for x in args], text=True, capture_output=True)
     assert proc.returncode == 0, '%s\n%s\n%s' % (' '.join(map(str, args)), proc.stdout, proc.stderr)
     return proc.stdout
+
+
+def portable(receipt):
+    """Compare proof, retaining host tool versions only as receipt provenance."""
+    result = json.loads(json.dumps(receipt))
+    for field in ('gnu_ld', 'host_cc'):
+        result.pop(field, None)
+    for path in PROVENANCE_INPUTS:
+        result['input_sha256'].pop(path, None)
+    return result
 
 
 def elf(path):
@@ -146,7 +162,7 @@ def main(out):
     extent = next(x for x in metadata['functions'] if x['name'] == NAME)
     assert extent['address'] == '0x80393004' and extent['size'] == SIZE and len(target) == SIZE
     obj, linked = build / 'candidate.o', build / 'candidate.elf'
-    score.compile_single(str(SOURCE), score.DEFAULT_FLAGS, obj)
+    score.compile_single(str(SOURCE), FLAGS, obj)
     raw, relocs = inspect(obj)
     comparison = score.compare(obj, NAME, show=0)
     assert comparison.accepted(), comparison.summary()
@@ -282,10 +298,7 @@ def main(out):
                 caller_sites.append({'function': name, 'site': '0x%08X' % (int(name[5:], 16) + 4 * i)})
     assert len(caller_sites) == 3
     writer = struct.pack('>%dI' % len(targets['func_803930B8']), *targets['func_803930B8'])
-    inputs = [SOURCE, ARCHIVED, HERE / 'native.py', HERE / 'host.c', HERE / 'verify.py',
-              ROOT / 'tools/cloud/score.py', ROOT / 'tools/cloud/owndata.py',
-              TARGETS / 'SHA256SUMS', TARGETS / 'extents.json', TARGETS / 'symbols.json',
-              TARGETS / 'ovl_a_8038a400.s']
+    inputs = [SOURCE, ARCHIVED, HERE / 'native.py', HERE / 'host.c', HERE / 'verify.py']
     result = {'schema': 1, 'status': 'MATCH; bounded behavioral proof',
               'image': {'name': 'A', 'base': metadata['base'], 'rom_offset': metadata['rom_offset'],
                         'size': metadata['size'], 'sha256': metadata['image_sha256']},
@@ -293,7 +306,8 @@ def main(out):
                            'target_sha256': sha(target), 'gnu_linked_sha256': sha(linkedbody),
                            'elf_function_size': 180, 'section_size': 192, 'alignment_zero_bytes': 12,
                            'relocations': relocs, 'owned_data_bytes': 0},
-              'source_sha256': sha(SOURCE.read_bytes()), 'recipe': score.DEFAULT_FLAGS,
+              'source_sha256': sha(SOURCE.read_bytes()), 'recipe': FLAGS,
+              'base_commit': BASE, 'historical_control_recipe': score.DEFAULT_FLAGS,
               'assembler_addition': score.R4300_CC, 'score': comparison.summary(), 'controls': controls,
               'behavior': {'cases': cases, 'native_executions': cases * 2 + 6,
                            'host_cases': cases + 3, 'count_values': len(counts),

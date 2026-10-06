@@ -24,6 +24,7 @@ def test_receipt_has_no_matching_claim():
 def test_source_hash_and_real_list_members():
     r=json.loads((PACKET/'verification.json').read_text())
     assert v.sha(v.SOURCE.read_bytes())==r['source_sha256']
+    for name,digest in r['packet_sha256'].items():assert v.sha((PACKET/name).read_bytes())==digest
     source=v.SOURCE.read_text()
     assert 'u32 count, head, tail;' in source
     assert 'func_80091FBC(&D_80149860, obj, D_80149860.head);' in source
@@ -53,14 +54,12 @@ def test_native_unmapped_read_rejected():
     with pytest.raises(AssertionError):m.run()
 
 
-def test_fresh_frozen_replay():
+def test_fresh_frozen_replay(monkeypatch):
+    reject_live_context(monkeypatch)
     required=['mips-linux-gnu-ld','cc']
     if not all(shutil.which(x) for x in required):pytest.skip('Needs native/host compiler tools')
-    if not Path(v.score.ido('cc')).exists():pytest.skip('Needs pinned IDO')
-    fresh=v.portable(v.verify());saved=v.portable(json.loads((PACKET/'verification.json').read_text()))
-    # The whole blob manifest changes with every splice; selected bodies stay bound.
-    fresh.pop('protected_manifest_sha256',None);saved.pop('protected_manifest_sha256',None)
-    assert fresh==saved
+    if not (v.score.IDO/'cc').is_file():pytest.skip('pinned IDO and MIPS GNU linker required')
+    assert v.portable(v.verify())==v.portable(json.loads((PACKET/'verification.json').read_text()))
 
 
 def synthetic_elf(payloads=None,debug_path=b'/first/source.c\0',debug_flags=0):
@@ -127,14 +126,14 @@ def test_portable_elf_binds_section_attributes(field):
 
 def test_portable_receipt_excludes_only_proven_path_and_host_provenance():
     receipt=json.loads((PACKET/'verification.json').read_text());changed=copy.deepcopy(receipt)
-    for field in ['gnu_linker_version','host_compiler_version']:changed[field]='other host build'
+    for field in ['gnu_linker_version','host_compiler_version','protected_manifest_sha256','context_source_sha256']:changed[field]='other historical provenance'
     for label in ['archived','corrected','corrected_header_o2']:
         for field in ['object_sha256','mdebug_sha256']:changed['compile'][label][field]='other source path'
     assert v.portable(receipt)==v.portable(changed)
     assert receipt==json.loads((PACKET/'verification.json').read_text())
     assert changed['compile']['corrected']['object_sha256']=='other source path'
-    # Every top-level proof remains bound except the two documented host identities.
-    for field in receipt.keys()-{'gnu_linker_version','host_compiler_version'}:
+    # Every top-level proof remains bound except the explicit historical fields.
+    for field in receipt.keys()-{'gnu_linker_version','host_compiler_version','protected_manifest_sha256','context_source_sha256'}:
         altered=copy.deepcopy(receipt)
         if field=='compile':
             altered[field]['corrected']['functions'][v.FN]['body_sha256']='changed'
@@ -145,3 +144,24 @@ def test_portable_receipt_excludes_only_proven_path_and_host_provenance():
         for field in compiled.keys()-excluded:
             altered=copy.deepcopy(receipt);altered['compile'][label][field]='changed'
             assert v.portable(receipt)!=v.portable(altered),(label,field)
+
+
+def reject_live_context(monkeypatch):
+    for method in ('read_bytes','read_text'):
+        original=getattr(Path,method)
+        def guarded(path,*args,_original=original,**kwargs):
+            if path==ROOT/'blob_matched.lock.json' or (ROOT/'src/blob') in path.parents:
+                raise AssertionError('packet read live production context: '+str(path))
+            return _original(path,*args,**kwargs)
+        monkeypatch.setattr(Path,method,guarded)
+
+
+def test_portable_receipt_keeps_packet_and_native_proof():
+    import copy
+    saved=json.loads((PACKET/'verification.json').read_text())
+    changed=copy.deepcopy(saved)
+    changed['context_source_sha256']={'historical context':'changed'}
+    changed['protected_manifest_sha256']='0'*64
+    assert v.portable(changed)==v.portable(saved)
+    changed['target_sha256']='0'*64
+    assert v.portable(changed)!=v.portable(saved)

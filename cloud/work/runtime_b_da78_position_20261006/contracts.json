@@ -1,0 +1,122 @@
+{
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "entry": {
+    "address": "0x8038DA78",
+    "end": "0x8038DDDC",
+    "bytes": 868,
+    "native_sha256": "7c7128167920d9661e579931d669aa4821c940234e8d7ed09ee89235bc7b2dcf",
+    "frame_bytes": 144,
+    "saved_registers": [
+      "ra"
+    ],
+    "semantic_inputs": {
+      "s1": "BRecord*",
+      "s2": "previous position f32[3] pointer"
+    },
+    "unsaved_writes": [
+      "s0",
+      "s3",
+      "s4",
+      "s5",
+      "s6",
+      "s7",
+      "s8",
+      "f20",
+      "f22",
+      "f24",
+      "f26",
+      "f28",
+      "f30"
+    ],
+    "ordinary_abi_claim": false
+  },
+  "callers": [
+    {
+      "name": "func_8038E114",
+      "address": "0x8038EAC4",
+      "offset": "0x9B0",
+      "previous": "record+0x2C for record kinds4/6"
+    },
+    {
+      "name": "func_8038E114",
+      "address": "0x8038EB1C",
+      "offset": "0xA08",
+      "previous": "real E114 frame+0xF4 snapshot for other non7 kinds"
+    }
+  ],
+  "caller_preservation": "Both E114 sites spill s0/s5/s6 and f20/f22, reload f24/f26/f28/f30 constants afterward; FCE0 is ordinary root, closure visibility remains unproven.",
+  "layout": {
+    "BRecord_bytes": 104,
+    "BPlayer_bytes": 952,
+    "BVehicle_bytes": 2056,
+    "record": {
+      "owner": 4,
+      "kind": 6,
+      "flags": 7,
+      "radius": 16,
+      "position": 32,
+      "previous_position": 44
+    },
+    "player": {
+      "position": 8,
+      "uv": 44,
+      "active_signed": 776,
+      "owner_signed": 859,
+      "kind_signed": 900
+    },
+    "vehicle": {
+      "blocked_signed": 1600,
+      "state_signed16": 1732
+    }
+  },
+  "data": {
+    "players": "0x80152818",
+    "vehicles": "0x8014A250",
+    "player_count_signed16": "0x801543CA",
+    "denominator_threshold": {
+      "address": "0x80394DDC",
+      "bits": "0x3A83126F"
+    },
+    "angle_threshold": {
+      "address": "0x80394DE0",
+      "bits": "0x3FACCCCD"
+    }
+  },
+  "helpers": [
+    {
+      "name": "func_800A61B0",
+      "address": "0x800a61b0",
+      "size": 148,
+      "native_sha256": "d4a8abe8e545bf66990622a473a82b4b0af3d35d4a951c60c185a9884093ce4e",
+      "historical_source": "src/blob/func_800A61B0.c"
+    },
+    {
+      "name": "func_8008C768",
+      "address": "0x8008c768",
+      "size": 268,
+      "native_sha256": "4f7c7ec415f30e265c26687a37a63fffbe966a3955a89f76374caa0fd628c618",
+      "historical_source": "src/blob/func_8008C768.c"
+    }
+  ],
+  "helper_contracts": {
+    "func_800A61B0": "Ordinary a0 source/a1 dest/a2 basis. Exactly three sequential rounded binary32 row dot products; no global writes or allocation. Inputs and destination disjoint for DA78.",
+    "func_8008C768": "Ordinary f12=y/f14=x/f0 result; atan2-like approximation calls8008C680/8008C720. Tests compare identical deterministic rounded host atan2 or supplied boundary outputs at this contract; exact native approximation is not executed."
+  },
+  "semantics": [
+    "kind3 immediately returns null without dereferencing previous.",
+    "Entry delta=position-previous; normal=(-delta.x,0,-delta.z); reject abs(dot)<0.001. Retain explicit y*zero and native association.",
+    "Loop count is signed16 and reloaded each iteration; reject same signed owner, vehicle.state!=-1, inactive player, blocked vehicle.",
+    "Project player onto original horizontal direction; reject fraction<0 or nearest<fraction. Exact ties replace the prior result.",
+    "Point uses original full3D delta and previous. Vertical acceptance is inclusive[-radius,3.5+radius]. Horizontal acceptance is inclusive distance<=(radius+6.75)-0.5.",
+    "For player.kind5, recompute previous-current_record_position, transform by player.uv, and OR flags bit0 iff abs(angle)<1.35. Earlier clipped position is deliberately re-read here.",
+    "Each accepted hit stores point to record.position and updates nearest/result. It continues scanning, so no first-hit early return."
+  ],
+  "proof_limits": [
+    "Complete semantic adapter, not recovered native private ABI or original formal order.",
+    "Fixtures map four players/vehicles and admit nonpositive signed count through4; this is a bounded test domain, not an assertion that runtime count is always<=4.",
+    "previous may alias record.previous_position or be disjoint; never alias record.position or unrelated regions. All storage aligned, initialized, live and single-threaded.",
+    "Zero and finite normal binary32 inputs/intermediates/results, default rounding, no overflow/underflow or exception/FCSR effects; no NaN/infinity/denormal equivalence.",
+    "Adversarial callback writes deliberately expand real helper effects to probe count reload/position snapshots/flag preservation, not claims about native helper writes.",
+    "No exact atan2 approximation, full-game lifetime, source/TU visibility, genuine closure MATCH, accepted-byte/image/compression/ROM claim."
+  ]
+}

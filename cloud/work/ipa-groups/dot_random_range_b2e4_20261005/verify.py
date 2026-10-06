@@ -25,6 +25,12 @@ FN = 'func_8008B2E4'
 CONTEXT = 'func_8008B2B4'
 FLAGS = '-g0 -O3 -mips2 -G 0 -non_shared'
 
+BASE = 'cd22879d40b3de443cfde047b86e75e159b6cec6'
+
+def base_bytes(path):
+    return subprocess.run(['git', 'show', BASE + ':' + path], cwd=ROOT,
+                          check=True, capture_output=True).stdout
+
 def sha(data):
     return hashlib.sha256(data).hexdigest()
 
@@ -50,7 +56,7 @@ def inspect(obj, name):
 
 def verify(directory):
     directory.mkdir(parents=True, exist_ok=True)
-    assert (HERE/'rand.c').read_bytes() == (ROOT/'src/blob/func_8008B2B4.c').read_bytes()
+    assert (HERE/'rand.c').read_bytes() == base_bytes('src/blob/func_8008B2B4.c')
     native, addresses = score.targets(), score.image_symbols()
     direct_call_word = 0x0c000000 | ((addresses[FN] >> 2) & 0x03ffffff)
     direct_callers = [name for name,words in native.items() if direct_call_word in words]
@@ -63,8 +69,9 @@ def verify(directory):
               'accepted_byte_gain': 0, 'flags': FLAGS, 'direct_native_callers': direct_callers,
               'assembler_erratum_flag_added_by_scorer': score.R4300_CC,
               'source_sha256': {p:sha((HERE/p).read_bytes()) for p in ('range.c','rand.c','group.json')},
-              'target_manifest_sha256': sha((score.ASM_DIR/'SHA256SUMS').read_bytes()),
-              'object': inspect(obj, FN), 'accepted_context': inspect(obj, CONTEXT)}
+
+              'object': inspect(obj, FN), 'accepted_context': inspect(obj, CONTEXT),
+              'selected_native_body_sha256':{name:sha(struct.pack('>%dI'%len(native[name]),*native[name])) for name in (FN,CONTEXT)}}
     assert all(result[key]['full_extent_equal'] and result[key]['all_relocations_resolved']
                and result[key]['canonical_verdict']=='MATCH' for key in ('object','accepted_context'))
     data, sections = score._elf(obj)
@@ -130,18 +137,23 @@ def verify(directory):
     assert result['controls']['direct_return']['full_extent_equal']
     assert result['controls']['arcade_double_denominator']['differing'] == 12
     # Earlier standalone source remains the old lead, not the submitted recipe.
-    old = ROOT/'cloud/work/bigfish/libhunt/nearmiss/func_8008B2E4_frand.c'
+    old = directory/'archived.c'
+    old.write_bytes(base_bytes('cloud/work/bigfish/libhunt/nearmiss/func_8008B2E4_frand.c'))
     score.compile_single(old,FLAGS,directory/'old.o')
     result['controls']['archived_standalone'] = inspect(directory/'old.o',FN)
     result['archived_source_sha256'] = sha(old.read_bytes())
     result['host_native_linked'] = semantics.verify(directory,native[FN],list(struct.unpack('>18I',linked_bytes[48:120])))
     result['compiler_sha256'] = {n:sha(Path(score.ido(n)).read_bytes()) for n in ['cc','cfe','uld','usplit','umerge','uopt','ugen','as1']}
-    result['tools_sha256'] = {p:sha((ROOT/p).read_bytes()) for p in ['tools/cloud/score.py','tools/cloud/owndata.py','tools/conveyor/pipeline/blob_group.py']}
     result['packet_sha256'] = {p:sha((HERE/p).read_bytes()) for p in ['verify.py','verify_semantics.py','semantic_test.c','claim.json']}
     result['limitations'] = ['No full-game shadow, image, compression or ROM verification.',
                             'Host -fwrapv explicitly defines the unchanged accepted rand signed-overflow behavior.',
                             'Arithmetic proof excludes NaN, infinity, subnormal arithmetic, overflow and nondefault rounding.',
                             'No direct native callers were found; inlined uses and original whole-program roots are not proven.']
+    return result
+
+def portable(result):
+    result=json.loads(json.dumps(result))
+    for name in ('target_manifest_sha256','tools_sha256'):result.pop(name, None)
     return result
 
 if __name__ == '__main__':

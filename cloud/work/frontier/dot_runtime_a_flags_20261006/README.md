@@ -1,5 +1,40 @@
 # Image A availability-row initializer
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+pinned IDO executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
+## Host tool version portability (2026-10-06)
+
+GNU linker and host GCC version strings (`gnu_ld` and `host_cc`) remain in the
+receipt as provenance, but `portable()` excludes them from equality. Their
+versions may change without changing the complete native/linked words, ELF
+extents, relocations, owned data or behavioral results. The pinned IDO executable
+hashes and every proof field remain strict. Regression tests vary each version
+string independently and reject changes to those proof fields.
+
+The fresh replay checks for all five receipt-bound IDO tools, the MIPS GNU
+linker and host GCC before starting. Missing tools skip in the ordinary portable
+suite and fail explicitly with `REQUIRE_TOOLCHAIN=1`; regression tests cover both
+modes for every required executable.
+
+## Integration portability update (2026-10-06)
+
+Fresh canonical IDO replay verifies the unchanged function body as a complete strict 180-byte MATCH under the literal first-line recipe `-g0 -O3 -mips2 -G 0 -non_shared`. The scorer additionally supplies its existing `-Wab,-r4300_mul` backend policy. No callers, inlined helpers or deleted-static stubs are needed in the compilation unit. Historical negative controls retain their separately recorded O2 recipe.
+
+The input map keeps historical whole-image metadata and scorer hashes as provenance; `portable()` excludes exactly those named entries from replay and source-binding equality. It retains the candidate/verifier/native engine/host sources, selected target and producer bodies, consumed relocation addresses, complete ELF extent, owned-data and behavior proof. A guarded fresh O3 replay is now collected by the cloud tests.
+
+Focused packet tests passed with IDO available and with IDO absent. Compiler-dependent tests skip without IDO or the MIPS GNU linker. These scoped results do not claim the required aggregate repository-suite pass; that matrix is recorded separately before any publication. No protected production files, native assets, accepted locks or compiler policy are changed.
+
+
 `A:func_80393004`, `[0x80393004, 0x803930B8)`: **180 bytes / 45 words MATCH**.
 This is a source submission, not accepted cartridge coverage. No image,
 compression, ROM or gameplay gate ran.

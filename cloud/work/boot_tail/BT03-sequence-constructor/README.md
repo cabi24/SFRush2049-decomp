@@ -1,5 +1,24 @@
 # Sequence constructor 800178B0: complete reconstruction
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
+## Integration portability update (2026-10-06)
+
+The receipt no longer hashes its pytest wrapper. `portable()` excludes only the whole-manifest provenance from replay equality. Native target/helper inputs, the source/verifier/native engine/host harness, full compiled extents, relocations, layouts and behavior remain binding. The nested source-mutant compiler test now skips cleanly when IDO or the MIPS linker is absent; pure native/receipt tests still run.
+
+Focused packet tests passed with IDO available and with IDO absent. Compiler-dependent tests skip without IDO or the MIPS GNU linker. These scoped results do not claim the required aggregate repository-suite pass; that matrix is recorded separately before any publication. No protected production files, native assets, accepted locks or compiler policy are changed.
+
+
 **COMPLETE-NONMATCH. Zero new matching bytes or cartridge coverage.**
 
 This packet adds the first complete C reconstruction for boot-tail

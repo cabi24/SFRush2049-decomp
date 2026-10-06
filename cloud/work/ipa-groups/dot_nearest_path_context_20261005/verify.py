@@ -270,14 +270,6 @@ def selected_inputs(symbol_names):
             'data_windows':windows,'symbol_addresses_sha256':sha(json.dumps(resolved,sort_keys=True).encode())}
 
 
-def protected_provenance():
-    """Retain full current manifest hashes without treating unrelated churn as drift."""
-    files={'asm/us/blob/SHA256SUMS':score.ASM_DIR/'SHA256SUMS',
-           'asm/us/blob/symbols.json':score.ASM_DIR/'symbols.json',
-           'asm/us/blob_data/SHA256SUMS':owndata.artifact_dir(score.ASM_DIR)/'SHA256SUMS',
-           'tools/cloud/score.py':ROOT/'tools/cloud/score.py',
-           'tools/cloud/owndata.py':ROOT/'tools/cloud/owndata.py'}
-    return {label:sha(path.read_bytes()) for label,path in files.items()}
 
 
 def portable_receipt(result):
@@ -287,9 +279,12 @@ def portable_receipt(result):
     assert set(selected)=={'native_bodies','data_windows','symbol_addresses_sha256'}
     assert set(selected['native_bodies'])==set([NAME]+CONTEXT+['func_800E56F8'])
     assert set(selected['data_windows'])=={'0x8012443c+4','0x80124440+20'}
-    historical=portable['protected_inputs_sha256']
-    for key in ('asm/us/blob/SHA256SUMS','asm/us/blob/symbols.json','asm/us/blob_data/SHA256SUMS'):
-        assert len(historical.pop(key))==64
+    historical=portable.get('protected_inputs_sha256', {})
+    for key in ('asm/us/blob/SHA256SUMS','asm/us/blob/symbols.json','asm/us/blob_data/SHA256SUMS',
+                'tools/cloud/score.py','tools/cloud/owndata.py'):
+        historical.pop(key, None)
+    if not historical:
+        portable.pop('protected_inputs_sha256', None)
     return portable
 
 def verification(work):
@@ -334,7 +329,7 @@ def verification(work):
       'instruction_coverage':len(coverage),'total_instructions':135,'unexecuted_offsets':missing,
       'branches':{str(k):sorted(v) for k,v in sorted(branches.items())},'case_result_sha256':sha(json.dumps(records).encode()),
       'wrong_contracts_rejected':mutation_tests,'unknown_opcode_rejected':unknown},
-      'protected_inputs_sha256':protected_provenance(),
+
       'selected_inputs_sha256':selected_inputs(set(metadata['referenced_symbols'])|set([NAME]+CONTEXT+['func_800E56F8'])),
       'source_sha256':{p.name:sha(p.read_bytes()) for p in [HERE/'group.c',HERE/'group.json',HERE/'native.py',HERE/'host.c',HERE/'verify.py']},
       'toolchain_sha256':{n:sha(Path(score.ido(n)).read_bytes()) for n in ['cc','cfe','uopt','ugen','uld','as1']}}

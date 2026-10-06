@@ -8,7 +8,7 @@ HERE=Path(__file__).resolve().parent
 ROOT=HERE.parents[3]
 NAME='func_803A4134';ENTRY=0x803A4134;SIZE=524
 SOURCE=ROOT/'cloud/matches/ovl_a'/ (NAME+'.c')
-FLAGS='-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul'
+FLAGS='-g0 -O3 -mips2 -G 0 -non_shared'
 NATIVE='c79fb81fa3af695c6fa11fb403e7ddba62771bdd022442c8cc4410715c21f9eb'
 ANCHORS={'D_8014A108':0x8014A108,'D_8014A110':0x8014A110,'D_803B85D8':0x803B85D8,'D_803BA028':0x803BA028,'D_803BA190':0x803BA190,'func_800EF5B0':0x800EF5B0,'input_new_data_wrapper':0x80094F88,'Input_ApplyPadConfig':0x80094EC8}
 HELPERS={'func_800EF5B0':[0x800EF5B0,124,'b9b278845d966d684513a894e9b728164b3291016e67967a1a51fb395c30eadd'], 'input_new_data_wrapper':[0x80094F88,60,'51bff8e44879d93b2c44f11fea4c78e7a725283b496a06d94290f1793f4763b3'], 'Input_ApplyPadConfig':[0x80094EC8,192,'3282399bd7919e39047f452faa4070df2ef7b4b91d82318591c2592e7bfda590'], 'sound_control':[0x800B37E8,468,'56fb7406e5ae20cf6e85f574d6bc988e5e5d6dd694cfee5e7ef20c1ed73daad9'], 'state_update_global':[0x8010B560,112,'f6c6d560d9fec4655cd774bd5da62442f4893bbb0cfc07505a37372d6fd7c689']}
@@ -31,6 +31,14 @@ def inspect(path,linked=False):
         assert len(relocs)==16
         assert all(off<SIZE and off%4==0 and kind in (4,5,6) and symbol in ANCHORS and target==index for off,kind,symbol,target in relocs)
     return raw,relocs
+
+def comparable(receipt):
+    """Exclude enumerated historical integration provenance, never proof inputs."""
+    result = json.loads(json.dumps(receipt))
+    for key in ('protected_targets', 'helper_protected_targets', 'scorer_sha256'):
+        result.pop(key, None)
+    return result
+
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--repo',type=Path,default=ROOT);ap.add_argument('--tools-repo',type=Path,default=ROOT);ap.add_argument('--out',type=Path,default=HERE/'verification.json');ap.add_argument('--check',action='store_true');a=ap.parse_args()
@@ -66,9 +74,9 @@ def main():
         failed=next((list(c) for c in samples if changed(c)!=semantics.oracle(c)),None);assert failed is not None,label
         mo=build/(label+'.o');score.compile_single(p,FLAGS,mo);result=score.compare(mo,NAME,show=0);assert not result.accepted()
         negatives[label]={'case':failed,'host_rejected':True,'strict_match':False,'comparison':result.__dict__}
-    receipt={'status':'MATCH','image':'A','address':hex(ENTRY),'end':hex(ENTRY+SIZE),'bytes':SIZE,'words':len(words),'flags':FLAGS,'source_sha256':sha(SOURCE.read_bytes()),'native_sha256':sha(native),'gnu_linked_body_sha256':sha(linkedraw[:SIZE]),'comparison':comparison.__dict__,'function_bytes':SIZE,'alignment_bytes':4,'owned_data_bytes':0,'relocations':len(relocs),'anchors':{n:hex(v) for n,v in ANCHORS.items()},'behavior':behavior,'layout_checks':fields,'negative_controls':negatives,'protected_targets':manifest,'helper_native_bindings':HELPERS,'helper_protected_targets':helper_manifest,'producer_native_sha256':sha(pb),'support_sha256':{p.name:sha(p.read_bytes()) for p in (HERE/'host.c',HERE/'semantics.py',HERE/'elf_support.py')},'scorer_sha256':sha((tr/'tools/cloud/score.py').read_bytes()),'tools':{p:sha((score.IDO/p).read_bytes()) for p in ('cc','cfe','uopt','ugen','as1')},'limits':['Table-read player/bar 0..3; rejected uninitialized players through15 tested','Finite signed32-convertible arithmetic only; host float-to-s16 tests restrict truncated result to signed16','Wider signed16 wrapping is native-only evidence, not portable C behavior','Helpers are side-effecting O32 contract hooks; real renderer and texture data do not execute','Actual descriptor table and asset float ranges not available; no reachability or full resource-range proof','No full image/compression/ROM/hardware gate, no coverage acceptance or original-source claim']}
+    receipt={'status':'MATCH','image':'A','address':hex(ENTRY),'end':hex(ENTRY+SIZE),'bytes':SIZE,'words':len(words),'flags':FLAGS+' '+score.R4300_CC,'source_sha256':sha(SOURCE.read_bytes()),'native_sha256':sha(native),'gnu_linked_body_sha256':sha(linkedraw[:SIZE]),'comparison':comparison.__dict__,'function_bytes':SIZE,'alignment_bytes':4,'owned_data_bytes':0,'relocations':len(relocs),'anchors':{n:hex(v) for n,v in ANCHORS.items()},'behavior':behavior,'layout_checks':fields,'negative_controls':negatives,'helper_native_bindings':HELPERS,'producer_native_sha256':sha(pb),'support_sha256':{p.name:sha(p.read_bytes()) for p in (HERE/'host.c',HERE/'semantics.py',HERE/'elf_support.py',HERE/'verify.py',HERE/'claim.json')},'tools':{p:sha((score.IDO/p).read_bytes()) for p in ('cc','cfe','uopt','ugen','as1')},'limits':['Table-read player/bar 0..3; rejected uninitialized players through15 tested','Finite signed32-convertible arithmetic only; host float-to-s16 tests restrict truncated result to signed16','Wider signed16 wrapping is native-only evidence, not portable C behavior','Helpers are side-effecting O32 contract hooks; real renderer and texture data do not execute','Actual descriptor table and asset float ranges not available; no reachability or full resource-range proof','No full image/compression/ROM/hardware gate, no coverage acceptance or original-source claim']}
     receipt=json.loads(json.dumps(receipt))
-    if a.check:assert json.loads(a.out.read_text())==receipt,'portable receipt differs'
+    if a.check:assert comparable(json.loads(a.out.read_text()))==comparable(receipt),'portable receipt differs'
     else:a.out.write_text(json.dumps(receipt,indent=2)+'\n')
     (build/'local_provenance.json').write_text(json.dumps({'object_sha256':sha(obj.read_bytes()),'gcc':shell('gcc','--version').splitlines()[0],'gnu_ld':shell('mips-linux-gnu-ld','--version').splitlines()[0]},indent=2)+'\n')
     print(json.dumps({k:receipt[k] for k in ('status','bytes','relocations','comparison','behavior')},indent=2))

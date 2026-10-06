@@ -5,6 +5,7 @@ import importlib.util
 import json
 from pathlib import Path
 import struct
+import shutil
 
 import pytest
 
@@ -29,7 +30,7 @@ def test_source_change_is_only_genuine_boundary():
 
 
 def test_accepted_context_is_unchanged():
-    original=(ROOT/'src/blob/func_80090770.c').read_bytes()
+    original=proof.base_bytes('src/blob/func_80090770.c')
     assert original==(PACKET/'group/setter.c').read_bytes()
     assert hashlib.sha256(original).hexdigest()=='74beff9a631d97d9f734372aea9fbc8a0a1378d897ff4222df3ed121058f74b7'
     recipe=json.loads((PACKET/'group/group.json').read_text())
@@ -46,7 +47,8 @@ def test_donor_and_n64_identity_are_separate():
 
 
 def test_full_replay():
-    if not (proof.score.IDO/'cc').exists():pytest.skip('pinned IDO is not installed')
+    if not (proof.score.IDO/'cc').is_file() or not shutil.which('mips-linux-gnu-ld'):
+        pytest.skip('pinned IDO and MIPS GNU linker required')
     assert proof.portable(proof.verify())==proof.portable(saved())
 
 

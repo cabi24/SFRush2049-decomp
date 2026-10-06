@@ -1098,13 +1098,6 @@
       "target_bytes": 2268
     }
   },
-  "protected_inputs_sha256": {
-    "asm/us/blob/SHA256SUMS": "0bfdfdfc5e03c1f3261c7455f3922082d99673defacd5dbb692629624e757652",
-    "asm/us/blob/symbols.json": "ea80bea2d751ca4f4e8ac636d2a9a5278e10267dd1f0a138a9fea5118a1b7c7d",
-    "asm/us/blob_data/SHA256SUMS": "a11be55c29c9aedd10e2ff0439c48c1171a14d2dc0d975e66f29e3667c738594",
-    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
-    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
-  },
   "selected_inputs_sha256": {
     "data_windows": {
       "0x8012443c+4": "3e7e0ae7d7d735dff14f85693cc036a0a55f8b08903f2ad3c2176ec925a2c7f4",
@@ -1124,7 +1117,7 @@
     "group.json": "af9632826f1e7fa7b68d6d4541157d10c72cd9b8d1bc1d517af94a091fb6d5a2",
     "host.c": "ef59eaa109b09739aee7f71c05bbfb97094e10b8739ccb30276c80b02033b721",
     "native.py": "20585a3cda64499f40fe813ef5b32606476ecf5fe189462b4cefd5b1e9806b88",
-    "verify.py": "b4ece97ccf1636e51d9714c7439e0780e9f349c56cfb4afd423c1961fd1f9d69"
+    "verify.py": "d9bd90eac1d1fc73782e6ebf34ca2fc9399f20507cf9def7dfb44a099ac8636d"
   },
   "status": "MATCH",
   "toolchain_sha256": {

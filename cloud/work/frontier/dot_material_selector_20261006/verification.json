@@ -1,17 +1,15 @@
 {
   "base_revision": "cd22879d40b3de443cfde047b86e75e159b6cec6",
-  "status": "MATCH_PENDING_INDEPENDENT_REVIEW",
-  "claims": [
-    "func_8008B000"
-  ],
+  "status": "STRICT_MATCH_RESEARCH_ALREADY_ACCEPTED_TARGET",
+  "claims": [],
   "native_range": [
     "0x8008B000",
     "0x8008B0D8"
   ],
   "candidate_bytes": 216,
   "accepted_byte_gain": 0,
-  "source_sha256": "0d8406b591b6f9fc081ac2de50555d6dba5b7611e3963688b99cf11cfc7deb8c",
-  "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "source_sha256": "d3404bb35cd6663366ccaf4f0e57ae9819c929c14ef84ff07d3ef9dfd1223795",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
   "assembler_erratum_flag": "-Wab,-r4300_mul",
   "O2": {
     "canonical": {
@@ -248,6 +246,7 @@
     "no_owned_data": true
   },
   "archived_source_sha256": "d1d1655996bc2185272b81fc0c8f00b52d31ae05848a3c7ba4dd17d9e497f7fe",
+  "archived_control_flags": "-g0 -O2 -mips2 -G 0 -non_shared",
   "behavior": {
     "cases": 4480,
     "native_and_gnu_executions": 17920,
@@ -388,8 +387,6 @@
     "func_8008B000": "0x8008b000",
     "func_80092DCC": "0x80092dcc"
   },
-  "target_manifest_sha256": "dade78464a022fedd2c5ba651ee1bca5ffd4ec99bfa4d2413d27256540bed02c",
-  "accepted_consumer_source_sha256": "28b49d1ae7307b8f08d337263eb42153dd9ea0688544f1fdcb17754833517094",
   "compiler_sha256": {
     "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
     "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
@@ -400,16 +397,11 @@
     "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
     "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
   },
-  "tools_sha256": {
-    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
-    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
-    "tools/conveyor/pipeline/blob_group.py": "340e24d21c67e1c0c8ab3711614492e9ac0b98d81d3d13221996d234b4a39e1a"
-  },
   "packet_sha256": {
-    "verify.py": "3779d35ef9a21b7c28e4394758f4a65a86d4f8d62049dec4c24f643d08a97131",
+    "verify.py": "2ba0813a4639cbe9d81f37ee06a52b90bfcb7198419f8671a409047c19839270",
     "native.py": "4e3ea3e5b623cf0d913a7ce33ae24c4ee8589ff50de90f0f77cf8958cd5c39ff",
-    "host.c": "808dd3486d820c0b69bcc01a5dde56d6e13b270c1888446b46c757eb190305e6",
-    "claim.json": "86481e8c55b2bd702e5e5df75d902a23d719ecc5ee5df35d7656029600de613d"
+    "host.c": "5cb8347d57039411bd02a5727a007fb93faee88a108781974b92bfcbbce00aad",
+    "claim.json": "00562cf755c4587884135ff75fabe11509257c8a248ff5e47e532af65c85b94a"
   },
   "limitations": [
     "No original typedef, donor ancestry, or original TU membership claim.",

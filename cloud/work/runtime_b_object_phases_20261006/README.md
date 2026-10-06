@@ -1,5 +1,17 @@
 # Runtime B object selection and phase initialization
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
 **Strict MATCH: `func_8039133C`, [0x8039133C,0x80391490), 340 bytes / 85 words.**
 The first natural typed reconstruction matches ordinary IDO 5.3 O2. This is
 new matching-candidate evidence, with **zero accepted-byte or ROM-coverage gain**.
@@ -104,27 +116,6 @@ There is no graceful allocation-failure claim. Finite round-to-nearest RNG
 arithmetic is exercised; NaNs, FCSR exception effects and other rounding modes
 are not covered.
 
-## Current-tool provenance refresh
-
-The original receipt recorded scorer SHA-256
-`9de8385b28938c012ba679ea1f899cd7e5fe351d2c51129c5319442c84b679c4`,
-while the published branch at `8636cabec85efc040f79c19108adb30d023aa88b`
-contains scorer SHA-256
-`08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69`.
-A fresh replay with that exact branch's tools and native inputs passed all
-native, project-relocated, independent GNU-link and C89/UBSan proof gates.
-Every proof field and binary-tool hash reproduced unchanged; the sole original
-receipt difference was the scorer's recorded hash.
-
-The branch scorer adds owned-data handling, but this object has no owned data
-or section-relative references. All 340 native bytes still match, with all 11
-relocations resolved and no masked words. The refreshed receipt binds the
-current scorer and strengthened test file; matching source, verifier, host
-harness, protected inputs and tool binaries remain unchanged. The complete-proof
-unittest now requires equality with the entire frozen receipt, so a future
-provenance mismatch cannot pass merely by returning `MATCH`. A metadata mismatch
-alone does not establish a native-byte or behavioral failure.
-
 ## Reproduce
 
 From a repository with the standard IDO and GNU MIPS toolchain configured:
@@ -141,3 +132,27 @@ only source, tests, hashes and metadata are published. The packet-specific tests
 are a focused check, not a full-suite or CI claim. Source-built runtime image,
 compression, cartridge SHA-1, acceptance and merging remain with the independent
 checker. No CI watcher is created.
+
+## Integration-portable replay (2026-10-06)
+
+`portable_receipt()` compares both saved and fresh evidence after excluding only
+explicit historical whole-tree/tool/source-context digests. Packet source and
+verifier bindings, selected native bodies and addresses, ELF extents, relocations,
+owned data, behavior, and compiler executable identities remain authoritative.
+Accepted production context is read from the recorded base commit rather than
+the live integrated tree. Tests are deliberately not hashed into receipts.
+
+The unchanged candidate body was freshly strict-matched through the canonical
+scorer with the bare source recipe `-g0 -O3 -mips2 -G 0 -non_shared`; the scorer
+still injects its mandatory `-Wab,-r4300_mul` backend flag. Full packet proof was
+replayed under O3. No same-unit callers, inline helpers, or deleted-static stubs
+are required. Historical O2 results remain available in Git history.
+
+## Historical master provenance follow-up
+
+The master follow-up merged at `83f4ae311dfd662565530dbd748941fdad6a47ba`
+resolved an earlier scorer-fingerprint-only receipt mismatch. All 340 native bytes,
+11 relocations and behavioral evidence reproduced unchanged. This aggregate keeps
+the stronger complete portable receipt comparison and missing-toolchain guard;
+it does not restore the historical scorer or pytest-file digest predicates.
+The recorded BASE source/lock context and all actual native proof stay binding.

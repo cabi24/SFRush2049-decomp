@@ -19,9 +19,7 @@ def test_saved_input_identity():
     assert receipt['image'] == 'B' and receipt['address'] == '0x8038ca24'
     assert receipt['bytes'] == 236 and receipt['status'] == 'MATCH'
     assert verify.sha(verify.SOURCE) == receipt['source_sha256']
-    for path, digest in receipt['inputs_sha256'].items():
-        if path == 'asm/us/blob/SHA256SUMS':
-            continue    # game-image manifest: changes with every game splice, unrelated to image B
+    for path, digest in verify.portable_receipt(receipt)['inputs_sha256'].items():
         assert verify.sha(ROOT / path) == digest
 
 
@@ -49,7 +47,7 @@ def test_write_footprint_and_unknown_decoder_rejection():
 
 def require_toolchain():
     missing = [name for name in ['mips-linux-gnu-ld', 'mips-linux-gnu-objcopy', 'mips-linux-gnu-nm', 'gcc'] if not shutil.which(name)]
-    if missing or not (verify.score.IDO / 'cc').exists():
+    if missing or not (verify.score.IDO / 'cc').is_file():
         pytest.skip('requires IDO and MIPS GNU/host compiler tools: ' + ', '.join(missing))
 
 
@@ -112,7 +110,4 @@ def test_fresh_full_elf_gnu_native_host_replay(monkeypatch, tmp_path, fail_blob_
     receipt = verify.prove()
     assert verify.score.ASM_DIR == previous
     saved = json.loads((PACKET / 'verification.json').read_text())
-    # The blob manifest changes with every splice; image-B inputs stay bound.
-    for proof in (receipt, saved):
-        proof['inputs_sha256'].pop('asm/us/blob/SHA256SUMS', None)
-    assert receipt == saved
+    assert verify.portable_receipt(receipt) == verify.portable_receipt(saved)

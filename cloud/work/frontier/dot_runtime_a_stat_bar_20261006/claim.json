@@ -7,9 +7,10 @@
   "bytes": 524,
   "words": 131,
   "source": "cloud/matches/ovl_a/func_803A4134.c",
-  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
   "scope": "complete standalone object, all relocations, GNU placement, bounded caller semantics",
   "accepted_bytes": 0,
   "merge_authority": "independent checker",
-  "rom_gate": "not run"
+  "rom_gate": "not run",
+  "implicit_compiler_flag": "-Wab,-r4300_mul"
 }

@@ -1,4 +1,4 @@
-/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
 /* Image A, 0x803A4134..0x803A4340: select-screen stat-bar BLIT callback.
  * Arcade ancestry: historicalsource/rushtherock 845329d7b36f5a384c5625ed9a0aef584ab46139,
  * game/select.c:2383 AnimateBar. This is N64-specific layout/control flow,

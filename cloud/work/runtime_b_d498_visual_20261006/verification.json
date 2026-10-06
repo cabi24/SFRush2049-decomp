@@ -1,0 +1,898 @@
+{
+  "status": "COMPLETE-SEMANTIC-SOURCE / RESEARCH-ONLY; native private ABI not reproduced",
+  "provenance": {
+    "compiler_tools_sha256": {
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+    },
+    "gnu_ld_sha256": "4c398a15e38dbb71a8420628aa1da5c80a089818440666f4ca7eb40d2fc37878",
+    "gnu_ld_version": "GNU ld (GNU Binutils for Debian) 2.44",
+    "build_route": "unchanged canonical score.compile_single; whole object linked; no group or keep list"
+  },
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "target": {
+    "name": "func_8038D498",
+    "entry": "0x8038d498",
+    "size": 768,
+    "sha256": "fc6f18de1f301b86d8a9708aa066babbedc370b22067858a2248578597aa2d6e"
+  },
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "canonical_added_backend_flag": "-Wab,-r4300_mul",
+  "sources_sha256": {
+    "visual.c": "f97e37fdbb701210bda355121ce988bd146eb274475645c827c3431e64a2bcea",
+    "native.py": "47738a7fe94e8f665326425d77cec7a5ef81339d6d4a0130f39918177cf55395",
+    "verify.py": "ff4183dac2ffcde4e1649b7de3da34dd95550b1ef51aa8eaf4a16a98c3918fec",
+    "layout.c": "3712abf0de49efdcbf25ebe4dfac5ea41417ed49344d22045c3175d027a77cf3",
+    "contracts.json": "fd738780d06243cef61b8d5a83cdd1005172ee20e908d9f050021b7d2cc6365c"
+  },
+  "object": {
+    "functions": {
+      "func_8038D498": {
+        "address": "0x0",
+        "size": 920
+      }
+    },
+    "allocated": [
+      {
+        "name": ".text",
+        "size": 928,
+        "address": "0x0",
+        "sha256": "79b8c8290fb8b3e04a6d4d020d0d336810793cd6ad7df0af2c480e1a16a701dc"
+      },
+      {
+        "name": ".rodata",
+        "size": 16,
+        "address": "0x0",
+        "sha256": "4979cbd440466819101393b29b42b19064ffe9d7b8068c22e18df254c3e90a41"
+      },
+      {
+        "name": ".reginfo",
+        "size": 24,
+        "address": "0x0",
+        "sha256": "bbf06f40a8fcfbe503a24d8f45d60f270ffa78654afbc0a24f7d200b0c7f03ba"
+      }
+    ],
+    "relocations": [
+      {
+        "section": ".rel.text",
+        "offset": 72,
+        "type": 5,
+        "symbol": "D_80152818"
+      },
+      {
+        "section": ".rel.text",
+        "offset": 76,
+        "type": 6,
+        "symbol": "D_80152818"
+      },
+      {
+        "section": ".rel.text",
+        "offset": 112,
+        "type": 5,
+        "symbol": "D_8012E700"
+      },
+      {
+        "section": ".rel.text",
+        "offset": 148,
+        "type": 6,
+        "symbol": "D_8012E700"
+      },
+      {
+        "section": ".rel.text",
+        "offset": 236,
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".rel.text",
+        "offset": 244,
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".rel.text",
+        "offset": 188,
+        "type": 5,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".rel.text",
+        "offset": 284,
+        "type": 6,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".rel.text",
+        "offset": 300,
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".rel.text",
+        "offset": 304,
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".rel.text",
+        "offset": 312,
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".rel.text",
+        "offset": 320,
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".rel.text",
+        "offset": 124,
+        "type": 5,
+        "symbol": "D_8014A250"
+      },
+      {
+        "section": ".rel.text",
+        "offset": 176,
+        "type": 6,
+        "symbol": "D_8014A250"
+      },
+      {
+        "section": ".rel.text",
+        "offset": 568,
+        "type": 4,
+        "symbol": "func_8038D3A4"
+      },
+      {
+        "section": ".rel.text",
+        "offset": 660,
+        "type": 4,
+        "symbol": "func_800A61B0"
+      },
+      {
+        "section": ".rel.text",
+        "offset": 824,
+        "type": 5,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".rel.text",
+        "offset": 828,
+        "type": 6,
+        "symbol": "D_801543CA"
+      }
+    ]
+  },
+  "linked": {
+    "functions": {
+      "func_8038D498": {
+        "address": "0x81000000",
+        "size": 920
+      }
+    },
+    "allocated": [
+      {
+        "name": ".text",
+        "size": 928,
+        "address": "0x81000000",
+        "sha256": "39954128c27c9ebe35ee707b6f37cb785df2d31bfd35f804461fc6ce114b0689"
+      },
+      {
+        "name": ".rodata",
+        "size": 16,
+        "address": "0x81010000",
+        "sha256": "4979cbd440466819101393b29b42b19064ffe9d7b8068c22e18df254c3e90a41"
+      }
+    ]
+  },
+  "external_bindings": {
+    "D_8012E700": "0x8012e700",
+    "D_8014A250": "0x8014a250",
+    "D_80152818": "0x80152818",
+    "D_801543CA": "0x801543ca",
+    "func_800A61B0": "0x800a61b0",
+    "func_8038D3A4": "0x8038d3a4"
+  },
+  "coverage_exclusions": {
+    "native +0x88/+0xB0": "Unreachable duplicate mtc1 landing operations: each follows an unconditional branch with a live delay slot; preceding likely branch targets skip this duplicate.",
+    "candidate +0xF8": "Same duplicated mtc1 pattern after unconditional branch+0xF0 with delay slot+0xF4; likely branch+0xE4 targets+0xFC."
+  },
+  "behavior": {
+    "paired_cases": 1658,
+    "behavior_sha256": "a4cc48b29771d9cea707fb886a5e7c882e507481dee1b284443df4c2a8a0627b",
+    "native_executed_offsets": [
+      "0x0",
+      "0x4",
+      "0x8",
+      "0xc",
+      "0x10",
+      "0x14",
+      "0x18",
+      "0x1c",
+      "0x20",
+      "0x24",
+      "0x28",
+      "0x2c",
+      "0x30",
+      "0x34",
+      "0x38",
+      "0x3c",
+      "0x40",
+      "0x44",
+      "0x48",
+      "0x4c",
+      "0x50",
+      "0x54",
+      "0x58",
+      "0x5c",
+      "0x60",
+      "0x64",
+      "0x68",
+      "0x6c",
+      "0x70",
+      "0x74",
+      "0x78",
+      "0x7c",
+      "0x80",
+      "0x84",
+      "0x8c",
+      "0x90",
+      "0x94",
+      "0x98",
+      "0x9c",
+      "0xa0",
+      "0xa4",
+      "0xa8",
+      "0xac",
+      "0xb4",
+      "0xb8",
+      "0xbc",
+      "0xc0",
+      "0xc4",
+      "0xc8",
+      "0xcc",
+      "0xd0",
+      "0xd4",
+      "0xd8",
+      "0xdc",
+      "0xe0",
+      "0xe4",
+      "0xe8",
+      "0xec",
+      "0xf0",
+      "0xf4",
+      "0xf8",
+      "0xfc",
+      "0x100",
+      "0x104",
+      "0x108",
+      "0x10c",
+      "0x110",
+      "0x114",
+      "0x118",
+      "0x11c",
+      "0x120",
+      "0x124",
+      "0x128",
+      "0x12c",
+      "0x130",
+      "0x134",
+      "0x138",
+      "0x13c",
+      "0x140",
+      "0x144",
+      "0x148",
+      "0x14c",
+      "0x150",
+      "0x154",
+      "0x158",
+      "0x15c",
+      "0x160",
+      "0x164",
+      "0x168",
+      "0x16c",
+      "0x170",
+      "0x174",
+      "0x178",
+      "0x17c",
+      "0x180",
+      "0x184",
+      "0x188",
+      "0x18c",
+      "0x190",
+      "0x194",
+      "0x198",
+      "0x19c",
+      "0x1a0",
+      "0x1a4",
+      "0x1a8",
+      "0x1ac",
+      "0x1b0",
+      "0x1b4",
+      "0x1b8",
+      "0x1bc",
+      "0x1c0",
+      "0x1c4",
+      "0x1c8",
+      "0x1cc",
+      "0x1d0",
+      "0x1d4",
+      "0x1d8",
+      "0x1dc",
+      "0x1e0",
+      "0x1e4",
+      "0x1e8",
+      "0x1ec",
+      "0x1f0",
+      "0x1f4",
+      "0x1f8",
+      "0x1fc",
+      "0x200",
+      "0x204",
+      "0x208",
+      "0x20c",
+      "0x210",
+      "0x214",
+      "0x218",
+      "0x21c",
+      "0x220",
+      "0x224",
+      "0x228",
+      "0x22c",
+      "0x230",
+      "0x234",
+      "0x238",
+      "0x23c",
+      "0x240",
+      "0x244",
+      "0x248",
+      "0x24c",
+      "0x250",
+      "0x254",
+      "0x258",
+      "0x25c",
+      "0x260",
+      "0x264",
+      "0x268",
+      "0x26c",
+      "0x270",
+      "0x274",
+      "0x278",
+      "0x27c",
+      "0x280",
+      "0x284",
+      "0x288",
+      "0x28c",
+      "0x290",
+      "0x294",
+      "0x298",
+      "0x29c",
+      "0x2a0",
+      "0x2a4",
+      "0x2a8",
+      "0x2ac",
+      "0x2b0",
+      "0x2b4",
+      "0x2b8",
+      "0x2bc",
+      "0x2c0",
+      "0x2c4",
+      "0x2c8",
+      "0x2cc",
+      "0x2d0",
+      "0x2d4",
+      "0x2d8",
+      "0x2dc",
+      "0x2e0",
+      "0x2e4",
+      "0x2e8",
+      "0x2ec",
+      "0x2f0",
+      "0x2f4",
+      "0x2f8",
+      "0x2fc"
+    ],
+    "native_unexecuted_offsets": [
+      "0x88",
+      "0xb0"
+    ],
+    "candidate_executed_offsets": [
+      "0x0",
+      "0x4",
+      "0x8",
+      "0xc",
+      "0x10",
+      "0x14",
+      "0x18",
+      "0x1c",
+      "0x20",
+      "0x24",
+      "0x28",
+      "0x2c",
+      "0x30",
+      "0x34",
+      "0x38",
+      "0x3c",
+      "0x40",
+      "0x44",
+      "0x48",
+      "0x4c",
+      "0x50",
+      "0x54",
+      "0x58",
+      "0x5c",
+      "0x60",
+      "0x64",
+      "0x68",
+      "0x6c",
+      "0x70",
+      "0x74",
+      "0x78",
+      "0x7c",
+      "0x80",
+      "0x84",
+      "0x88",
+      "0x8c",
+      "0x90",
+      "0x94",
+      "0x98",
+      "0x9c",
+      "0xa0",
+      "0xa4",
+      "0xa8",
+      "0xac",
+      "0xb0",
+      "0xb4",
+      "0xb8",
+      "0xbc",
+      "0xc0",
+      "0xc4",
+      "0xc8",
+      "0xcc",
+      "0xd0",
+      "0xd4",
+      "0xd8",
+      "0xdc",
+      "0xe0",
+      "0xe4",
+      "0xe8",
+      "0xec",
+      "0xf0",
+      "0xf4",
+      "0xfc",
+      "0x100",
+      "0x104",
+      "0x108",
+      "0x10c",
+      "0x110",
+      "0x114",
+      "0x118",
+      "0x11c",
+      "0x120",
+      "0x124",
+      "0x128",
+      "0x12c",
+      "0x130",
+      "0x134",
+      "0x138",
+      "0x13c",
+      "0x140",
+      "0x144",
+      "0x148",
+      "0x14c",
+      "0x150",
+      "0x154",
+      "0x158",
+      "0x15c",
+      "0x160",
+      "0x164",
+      "0x168",
+      "0x16c",
+      "0x170",
+      "0x174",
+      "0x178",
+      "0x17c",
+      "0x180",
+      "0x184",
+      "0x188",
+      "0x18c",
+      "0x190",
+      "0x194",
+      "0x198",
+      "0x19c",
+      "0x1a0",
+      "0x1a4",
+      "0x1a8",
+      "0x1ac",
+      "0x1b0",
+      "0x1b4",
+      "0x1b8",
+      "0x1bc",
+      "0x1c0",
+      "0x1c4",
+      "0x1c8",
+      "0x1cc",
+      "0x1d0",
+      "0x1d4",
+      "0x1d8",
+      "0x1dc",
+      "0x1e0",
+      "0x1e4",
+      "0x1e8",
+      "0x1ec",
+      "0x1f0",
+      "0x1f4",
+      "0x1f8",
+      "0x1fc",
+      "0x200",
+      "0x204",
+      "0x208",
+      "0x20c",
+      "0x210",
+      "0x214",
+      "0x218",
+      "0x21c",
+      "0x220",
+      "0x224",
+      "0x228",
+      "0x22c",
+      "0x230",
+      "0x234",
+      "0x238",
+      "0x23c",
+      "0x240",
+      "0x244",
+      "0x248",
+      "0x24c",
+      "0x250",
+      "0x254",
+      "0x258",
+      "0x25c",
+      "0x260",
+      "0x264",
+      "0x268",
+      "0x26c",
+      "0x270",
+      "0x274",
+      "0x278",
+      "0x27c",
+      "0x280",
+      "0x284",
+      "0x288",
+      "0x28c",
+      "0x290",
+      "0x294",
+      "0x298",
+      "0x29c",
+      "0x2a0",
+      "0x2a4",
+      "0x2a8",
+      "0x2ac",
+      "0x2b0",
+      "0x2b4",
+      "0x2b8",
+      "0x2bc",
+      "0x2c0",
+      "0x2c4",
+      "0x2c8",
+      "0x2cc",
+      "0x2d0",
+      "0x2d4",
+      "0x2d8",
+      "0x2dc",
+      "0x2e0",
+      "0x2e4",
+      "0x2e8",
+      "0x2ec",
+      "0x2f0",
+      "0x2f4",
+      "0x2f8",
+      "0x2fc",
+      "0x300",
+      "0x304",
+      "0x308",
+      "0x30c",
+      "0x310",
+      "0x314",
+      "0x318",
+      "0x31c",
+      "0x320",
+      "0x324",
+      "0x328",
+      "0x32c",
+      "0x330",
+      "0x334",
+      "0x338",
+      "0x33c",
+      "0x340",
+      "0x344",
+      "0x348",
+      "0x34c",
+      "0x350",
+      "0x354",
+      "0x358",
+      "0x35c",
+      "0x360",
+      "0x364",
+      "0x368",
+      "0x36c",
+      "0x370",
+      "0x374",
+      "0x378",
+      "0x37c",
+      "0x380",
+      "0x384",
+      "0x388",
+      "0x38c",
+      "0x390",
+      "0x394"
+    ],
+    "candidate_unexecuted_offsets": [
+      "0xf8"
+    ],
+    "native_branch_outcomes": 20,
+    "candidate_branch_outcomes": 30,
+    "native_branch_edges": [
+      [
+        "0x70",
+        false
+      ],
+      [
+        "0x70",
+        true
+      ],
+      [
+        "0x80",
+        true
+      ],
+      [
+        "0x9c",
+        false
+      ],
+      [
+        "0x9c",
+        true
+      ],
+      [
+        "0xa8",
+        true
+      ],
+      [
+        "0xf0",
+        false
+      ],
+      [
+        "0xf0",
+        true
+      ],
+      [
+        "0x130",
+        false
+      ],
+      [
+        "0x130",
+        true
+      ],
+      [
+        "0x148",
+        false
+      ],
+      [
+        "0x148",
+        true
+      ],
+      [
+        "0x154",
+        false
+      ],
+      [
+        "0x154",
+        true
+      ],
+      [
+        "0x16c",
+        false
+      ],
+      [
+        "0x16c",
+        true
+      ],
+      [
+        "0x1dc",
+        false
+      ],
+      [
+        "0x1dc",
+        true
+      ],
+      [
+        "0x2e8",
+        false
+      ],
+      [
+        "0x2e8",
+        true
+      ]
+    ],
+    "candidate_branch_edges": [
+      [
+        "0xb8",
+        false
+      ],
+      [
+        "0xb8",
+        true
+      ],
+      [
+        "0xc8",
+        true
+      ],
+      [
+        "0xe4",
+        false
+      ],
+      [
+        "0xe4",
+        true
+      ],
+      [
+        "0xf0",
+        true
+      ],
+      [
+        "0x114",
+        false
+      ],
+      [
+        "0x114",
+        true
+      ],
+      [
+        "0x128",
+        false
+      ],
+      [
+        "0x128",
+        true
+      ],
+      [
+        "0x154",
+        false
+      ],
+      [
+        "0x154",
+        true
+      ],
+      [
+        "0x170",
+        false
+      ],
+      [
+        "0x170",
+        true
+      ],
+      [
+        "0x180",
+        false
+      ],
+      [
+        "0x180",
+        true
+      ],
+      [
+        "0x198",
+        false
+      ],
+      [
+        "0x198",
+        true
+      ],
+      [
+        "0x1e0",
+        false
+      ],
+      [
+        "0x1e0",
+        true
+      ],
+      [
+        "0x214",
+        false
+      ],
+      [
+        "0x214",
+        true
+      ],
+      [
+        "0x2bc",
+        false
+      ],
+      [
+        "0x2dc",
+        false
+      ],
+      [
+        "0x2dc",
+        true
+      ],
+      [
+        "0x304",
+        false
+      ],
+      [
+        "0x320",
+        false
+      ],
+      [
+        "0x320",
+        true
+      ],
+      [
+        "0x348",
+        false
+      ],
+      [
+        "0x348",
+        true
+      ]
+    ],
+    "domain": "aligned initialized disjoint record/object/scenes/players/vehicles; signed count<=4; indexed owners and scene slots mapped; accepted distance positive and finite; zero/finite normal arithmetic; default rounding; bounded helper models and separately labeled widened mutation probes"
+  },
+  "layout_facts": [
+    104,
+    60,
+    952,
+    2056,
+    68,
+    4,
+    5,
+    96,
+    4,
+    44,
+    8,
+    44,
+    776,
+    859,
+    292,
+    316,
+    1732,
+    12
+  ],
+  "negative_controls": [
+    "wrong_first_tier_boundary",
+    "wrong_second_tier_boundary",
+    "wrong_mask_signedness",
+    "truncated_scene_index",
+    "wrong_vehicle_eligibility_index",
+    "wrong_impulse_output_index",
+    "wrong_radius_boundary",
+    "lost_existing_mask_bits",
+    "late_mask_write",
+    "uncaptured_source_owner",
+    "uncaptured_center",
+    "lost_vertical_bias",
+    "uncleared_horizontal_y",
+    "wrong_count_signedness",
+    "unknown opcode refused",
+    "zero-distance domain excluded for native and candidate",
+    "null primary rejected even with nonpositive count"
+  ],
+  "nonmatch": {
+    "different_word_positions": 192,
+    "native_words": 192,
+    "candidate_words": 230,
+    "extra_nonzero_words": 38,
+    "scope": "full linked research-placement words; no native owned-data placement or strict match claim"
+  },
+  "native_tables": [
+    {
+      "address": "0x80394dc8",
+      "size": 12,
+      "sha256": "64269825e78000a446204ed28647e4f9c81f34343f67eb867cef38a112f47239"
+    }
+  ],
+  "limits": "Ordinary one-input semantic adapter; actual native entry remains private s2. External transform is rounded row-dot contract; damage is bounded model; no match or ROM claim"
+}

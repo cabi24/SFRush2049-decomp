@@ -1,0 +1,208 @@
+{
+  "status": "complete semantic body; private-context reconstruction incomplete",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "source": "update.c",
+  "extent": [
+    "0x8038E114",
+    "0x8038F560"
+  ],
+  "native_size": 5196,
+  "direct_calls": {
+    "0x8008D6B0": [
+      "0x214",
+      "0x40c"
+    ],
+    "0x80090F44": [
+      "0x224"
+    ],
+    "0x800AFA84": [
+      "0x27c",
+      "0x3dc",
+      "0x5ac",
+      "0xf50"
+    ],
+    "0x8038D328": [
+      "0x2e0",
+      "0x308",
+      "0x128c",
+      "0x12c4",
+      "0x1310",
+      "0x1348",
+      "0x1380",
+      "0x13b8"
+    ],
+    "0x8008E06C": [
+      "0x2f0",
+      "0x31c",
+      "0x454",
+      "0x464",
+      "0x49c",
+      "0x4ac"
+    ],
+    "0x8008D870": [
+      "0x370"
+    ],
+    "0x8038E088": [
+      "0x3cc",
+      "0x59c"
+    ],
+    "0x800B61A8": [
+      "0x4dc"
+    ],
+    "0x8008B32C": [
+      "0x54c"
+    ],
+    "0x8038DDDC": [
+      "0x770"
+    ],
+    "0x8038DA78": [
+      "0x9b0",
+      "0xa08"
+    ],
+    "0x800ADD58": [
+      "0xa74"
+    ],
+    "0x800ABCC8": [
+      "0xb48"
+    ],
+    "0x800A61B0": [
+      "0xb5c",
+      "0xb9c",
+      "0xc38"
+    ],
+    "0x8009E820": [
+      "0xb84",
+      "0xbb0",
+      "0xc60"
+    ],
+    "0x8038D798": [
+      "0xbcc",
+      "0xfc8",
+      "0xfe8",
+      "0x10ac",
+      "0x10c8"
+    ],
+    "0x800AF06C": [
+      "0xbe0",
+      "0xffc",
+      "0x10dc"
+    ],
+    "0x8008B2E4": [
+      "0xc70"
+    ],
+    "0x800AEFE0": [
+      "0xcc8"
+    ],
+    "0x800B24EC": [
+      "0xefc"
+    ],
+    "0x8008E3C0": [
+      "0xf08"
+    ],
+    "0x800A78BC": [
+      "0xf38"
+    ],
+    "0x8038D3A4": [
+      "0x1040"
+    ],
+    "0x8038D498": [
+      "0x111c"
+    ],
+    "0x8038D200": [
+      "0x129c",
+      "0x12d4",
+      "0x12e8",
+      "0x1320",
+      "0x1358",
+      "0x1390",
+      "0x13c8"
+    ]
+  },
+  "private_boundaries": {
+    "DA78": {
+      "native_inputs": {
+        "s1": "record",
+        "s2": "previous-position pointer"
+      },
+      "result": "v0 collision target pointer",
+      "source_interface": "BPlayer *private_DA78(BRecord *, f32[3])",
+      "limits": "Readable semantic order only; body not linked. E114 spills live state then restores constants."
+    },
+    "D498": {
+      "native_inputs": {
+        "s2": "record"
+      },
+      "source_interface": "void private_D498(BRecord *)",
+      "limits": "Body not linked. E114 saves record/player/lazy radius, then restores constant lanes."
+    },
+    "D328": {
+      "native_inputs": {
+        "s1": "resource",
+        "s2": "parent",
+        "s3": "flags",
+        "s4": "omit transform"
+      },
+      "result": "v0 allocated 60-byte object",
+      "domain": "successful allocation required"
+    },
+    "D200": {
+      "native_inputs": {
+        "s1": "record",
+        "a0": "mode"
+      },
+      "effect": "primary scene transform"
+    },
+    "E088": {
+      "native_inputs": {
+        "s1": "record"
+      },
+      "effect": "release secondary/primary as kind requires"
+    }
+  },
+  "ordinary_boundaries": {
+    "800ADD58": "previous vector, mutable position, output 3x3 basis, float extent, mode0, maskFFFF -> collision truth value",
+    "800A61B0": "world-to-local 3-vector transform, accepted base source ordered row products",
+    "8009E820": "local-to-world 3-vector transform, accepted base source ordered column products",
+    "800A78BC": "4 corners, unsigned16 resource, color pointer, unsigned16 flags020F,indexed1 -> opaque quad-record pointer; zero means release allocated list node",
+    "8038DDDC": "ordinary O32 record steering boundary; saves conventional s/f state",
+    "8038D798": "position, previous, signed owner, strength900, integer damage",
+    "8038D3A4": "owner player, hit player, integer damage reduced by0.35 when flag1",
+    "800B24EC": "resource name, output unsigned16,zero,signed8(count-1),one",
+    "8008E06C": "signed16 scene handle, pointer to local big-endian color word",
+    "8008D870": "signed16 scene handle, texture entry from bank/10-bit index,-1"
+  },
+  "record_field_10": "collision_extent: caller value feeds world-collision extent and DA78 player radius; previous elapsed label was semantically misleading",
+  "actual_locals": [
+    "captured next record",
+    "previous position triple",
+    "player attachment offset triple",
+    "collision basis matrix",
+    "local velocity/up-edge triple",
+    "side-edge triple",
+    "four three-coordinate quad corners",
+    "color word"
+  ],
+  "lazy_radius": "kind7 bypasses all consumers; no initializer or caller argument introduced",
+  "base_context_paths": [
+    "src/blob/func_800A61B0.c",
+    "src/blob/func_8009E820.c",
+    "src/blob/groups/frontier_skid_marks/func_800A78BC.c",
+    "cloud/work/runtime_b_e114_parent_20261006/contract_audit.json"
+  ],
+  "domains": [
+    "valid aligned disjoint records/objects/players/vehicles/effects/scenes and in-range indices",
+    "acyclic list and successful pool allocations",
+    "finite normal binary32/zero, default rounding, no out-of-range integer conversion",
+    "no arbitrary aliasing or concurrency; hooks are bounded contracts, not private-body proofs"
+  ],
+  "closure": {
+    "minimum_native_bytes": 11376,
+    "still_missing_authentic_source": [
+      "DA78",
+      "D498"
+    ],
+    "ordinary_root": "FCE0",
+    "other_private_member": "F938",
+    "original_TU_visibility_proven": false
+  }
+}

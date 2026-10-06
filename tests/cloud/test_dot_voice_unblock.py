@@ -32,8 +32,10 @@ def test_real_current_caller_and_helper_contracts():
     assert rows['func_8001C7F4']['source_path'] == 'cloud/work/boot_tail_promotion/sources/func_8001C7F4.c'
     assert rows['func_80014AF0']['source_path'] == 'cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014AF0.c'
     assert all(rows[name]['exact_current_lock_body'] for name in ('func_8001C7F4', 'func_80014AF0'))
-    assert 'include/boot_tail_sample_contract.h' in receipt()['input_sha256']
-    assert 'include/boot_tail_audio_record.h' in receipt()['input_sha256']
+    record = receipt()
+    for header in ('include/boot_tail_sample_contract.h', 'include/boot_tail_audio_record.h'):
+        assert header not in record['input_sha256']
+        assert subprocess.check_output(['git', 'show', record['base'] + ':' + header], cwd=ROOT)
 
 
 def test_bounded_native_proof_and_mutations():
@@ -73,7 +75,7 @@ def test_reject_invalid_replay_opcode():
 
 def test_full_replay_from_unrelated_working_directory(tmp_path):
     ido = Path(os.environ.get('IDO_DIR', ROOT / 'tools/cloud/ido'))
-    if not (ido / 'cc').exists() or not shutil.which('mips-linux-gnu-ld'):
+    if not (ido / 'cc').is_file() or not shutil.which('mips-linux-gnu-ld'):
         pytest.skip('IDO or MIPS binutils unavailable')
     result = subprocess.run([sys.executable, str(PACKET / 'verify.py'), '--check'],
                             cwd=tmp_path, text=True, capture_output=True)

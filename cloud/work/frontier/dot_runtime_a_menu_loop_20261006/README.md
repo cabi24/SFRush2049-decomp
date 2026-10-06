@@ -1,5 +1,17 @@
 # Image-A nested menu callback: four stack-home words remain
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
 **Research only, NONMATCH.** `A:func_803A4340`,
 `[0x803A4340,0x803A44EC)`, **428 bytes / 107 words**, remains **4/107**.
 The complete candidate has the correct 112-byte frame and differs only in four
@@ -123,7 +135,7 @@ IDO 5.3 flags: `-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul`.
 - Five compiled wrong-source mutants are rejected by host behavior and native
   scoring: inverted skip, inverted mode, wrong spacing, signed texture height,
   wrong text index. These are negative controls, not candidate variants.
-- Nine focused tests pass with `REQUIRE_TOOLCHAIN=1`, including exact frozen
+- Six focused tests pass with `REQUIRE_TOOLCHAIN=1`, including exact frozen
   receipt/control replay from an unrelated working directory and fail-closed
   Python optimization checks. No broad repository suite was run.
 
@@ -163,20 +175,22 @@ caller bounds. Hardware, unrestricted pointers, malformed data, asynchronous
 writers, concurrency, gameplay, runtime-image construction, compression and
 full-ROM identity remain unverified. This packet earns zero new coverage.
 
-## Exact-checkout replay repair
+## Integration-portable replay (2026-10-06)
 
-Focused tests discover IDO exactly as the scorer does: explicit `IDO_DIR`
-takes precedence, otherwise use this tool checkout's `tools/cloud/ido`.
-All five required compiler executables must be present; `REQUIRE_TOOLCHAIN=1`
-still fails rather than skipping when any are missing. Tests cover the
-configured default, explicit configuration and invalid explicit override.
+`portable_receipt()` compares both saved and fresh evidence after excluding only
+explicit historical whole-tree/tool/source-context digests. Packet source and
+verifier bindings, selected native bodies and addresses, ELF extents, relocations,
+owned data, behavior, and compiler executable identities remain authoritative.
+Accepted production context is read from the recorded base commit rather than
+the live integrated tree. Tests are deliberately not hashed into receipts.
 
-The original receipt's helper manifest came from an older protected checkout
-(`496a72b0`), whereas the published branch inherits `cd22879d`. The refreshed
-receipt records the actual published checkout's 21 changed blob-region
-fingerprints and symbol manifest. Every region's complete native word sequence
-is unchanged; all seven selected helper bodies, their sizes and addresses,
-all target/proof fields, and the complete controls ledger remain unchanged.
-The verifier still checks full manifests, selected native hashes and address
-bindings. This is an exact-checkout refresh, not permission to ignore future
-protected-input or tool drift.
+## Rebase follow-up: IDO discovery and historical receipt refresh
+
+The master follow-up merged at `83f4ae311dfd662565530dbd748941fdad6a47ba`
+adds explicit/default IDO discovery checks for cc, cfe, uopt, ugen and as1.
+Those checks and their three synthetic discovery cases are retained here together
+with the MIPS GNU linker guard; two additional cases verify missing-linker behavior.
+The earlier branch refresh changed only historical whole-manifest fingerprints;
+all selected helper bodies, extents, addresses and actual target/proof fields were
+unchanged. Those redundant fingerprints are omitted by the current schema above.
+Full current-tree replay and integration testing remain separate gates.

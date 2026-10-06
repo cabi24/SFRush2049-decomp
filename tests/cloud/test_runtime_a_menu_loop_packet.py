@@ -2,6 +2,7 @@
 import importlib.util
 import json
 import os
+import shutil
 from pathlib import Path
 import subprocess
 import sys
@@ -23,6 +24,9 @@ def protected_repo():
   reason='IDO toolchain unavailable at %s: missing %s'%(ido, ', '.join(missing))
   if os.environ.get('REQUIRE_TOOLCHAIN')=='1':pytest.fail(reason)
   pytest.skip(reason)
+ if not shutil.which('mips-linux-gnu-ld'):
+  if os.environ.get('REQUIRE_TOOLCHAIN')=='1':pytest.fail('MIPS GNU linker required')
+  pytest.skip('pinned IDO and MIPS GNU linker required')
  return path
 
 def test_scoped_no_draw_paths():
@@ -59,9 +63,11 @@ def test_optimized_python_fails_closed():
  result=subprocess.run([sys.executable,'-O',str(PACKET/'verify.py'),'--check'],capture_output=True,text=True)
  assert result.returncode!=0 and 'verification requires assertions' in result.stderr
 
+
 @pytest.mark.parametrize('explicit',[False,True])
 def test_configured_ido_discovery(tmp_path,monkeypatch,explicit):
  monkeypatch.setattr(sys.modules[__name__],'ROOT',tmp_path)
+ monkeypatch.setattr(shutil,'which',lambda program:str(tmp_path/program))
  monkeypatch.delenv('RUSH_PROTECTED_REPO',raising=False)
  monkeypatch.delenv('IDO_DIR',raising=False)
  monkeypatch.setenv('REQUIRE_TOOLCHAIN','1')
@@ -76,8 +82,10 @@ def test_configured_ido_discovery(tmp_path,monkeypatch,explicit):
  with pytest.raises(pytest.fail.Exception,match='missing ugen'):protected_repo()
 
 
+
 def test_explicit_missing_ido_does_not_use_default(tmp_path,monkeypatch):
  monkeypatch.setattr(sys.modules[__name__],'ROOT',tmp_path)
+ monkeypatch.setattr(shutil,'which',lambda program:str(tmp_path/program))
  monkeypatch.delenv('RUSH_PROTECTED_REPO',raising=False)
  monkeypatch.setenv('REQUIRE_TOOLCHAIN','1')
  (tmp_path/'asm/us/ovl_a').mkdir(parents=True)
@@ -86,3 +94,20 @@ def test_explicit_missing_ido_does_not_use_default(tmp_path,monkeypatch):
  for name in ('cc','cfe','uopt','ugen','as1'):(default/name).touch()
  monkeypatch.setenv('IDO_DIR',str(tmp_path/'missing-explicit'))
  with pytest.raises(pytest.fail.Exception,match='missing-explicit'):protected_repo()
+
+
+
+@pytest.mark.parametrize('required',[False,True])
+def test_missing_linker_is_guarded(tmp_path,monkeypatch,required):
+ monkeypatch.setattr(sys.modules[__name__],'ROOT',tmp_path)
+ monkeypatch.delenv('RUSH_PROTECTED_REPO',raising=False)
+ monkeypatch.delenv('IDO_DIR',raising=False)
+ if required:monkeypatch.setenv('REQUIRE_TOOLCHAIN','1')
+ else:monkeypatch.delenv('REQUIRE_TOOLCHAIN',raising=False)
+ (tmp_path/'asm/us/ovl_a').mkdir(parents=True)
+ (tmp_path/'asm/us/ovl_a/extents.json').write_text('{}')
+ ido=tmp_path/'tools/cloud/ido';ido.mkdir(parents=True)
+ for name in ('cc','cfe','uopt','ugen','as1'):(ido/name).touch()
+ monkeypatch.setattr(shutil,'which',lambda program:None)
+ expected=pytest.fail.Exception if required else pytest.skip.Exception
+ with pytest.raises(expected,match='linker required'):protected_repo()

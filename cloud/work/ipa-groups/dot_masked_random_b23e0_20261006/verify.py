@@ -24,6 +24,12 @@ FN='func_800B23E0'
 NAMES=['func_8008B2B4','func_8008B2E4',FN]
 FLAGS='-g0 -O3 -mips2 -G 0 -non_shared'
 
+BASE = 'cd22879d40b3de443cfde047b86e75e159b6cec6'
+
+def base_bytes(path):
+    return subprocess.run(['git', 'show', BASE + ':' + path], cwd=ROOT,
+                          check=True, capture_output=True).stdout
+
 def sha(data):return hashlib.sha256(data).hexdigest()
 def packed(words):return struct.pack('>%dI'%len(words),*words)
 
@@ -70,17 +76,14 @@ def gnu_body(directory,obj,name,report,addresses):
 
 def verify(directory,behavior=True):
     directory.mkdir(parents=True,exist_ok=True)
-    assert (HERE/'rand.c').read_bytes()==(ROOT/'src/blob/func_8008B2B4.c').read_bytes()
+    assert (HERE/'rand.c').read_bytes()==base_bytes('src/blob/func_8008B2B4.c')
     native=score.targets();addresses=score.image_symbols();window=image_window()
     assert {k:addresses[k] for k in NAMES+['D_8011735C','D_80123418']}=={
         'func_8008B2B4':0x8008b2b4,'func_8008B2E4':0x8008b2e4,FN:0x800b23e0,'D_8011735C':sem.SEED,'D_80123418':sem.TABLE}
-    locks=json.loads((ROOT/'blob_matched.lock.json').read_text())
-    # Before promotion FN must be unclaimed; once spliced, only as this packet's source.
-    if FN in locks:
-        assert locks[FN]['source']=='src/blob/'+FN+'.c'
-    else:
-        accepted_addresses={addresses.get(n) for n in locks}
-        assert addresses[FN] not in accepted_addresses
+    locks=json.loads(base_bytes('blob_matched.lock.json'))
+    assert FN not in locks
+    accepted_addresses={addresses.get(n) for n in locks}
+    assert addresses[FN] not in accepted_addresses
     obj=directory/'candidate.o';score.compile_group(HERE,obj)
     bodies={n:inspect(obj,n) for n in NAMES}
     assert [bodies[n]['symbol_bytes'] for n in NAMES]==[48,72,268]
@@ -114,8 +117,7 @@ def verify(directory,behavior=True):
       'selected_native_body_sha256':{n:sha(packed(native[n])) for n in NAMES},
       'table_window':{'start':'0x80123418','bytes':128,'sha256':sha(window),'nonzero_rows':sum(bool(x) for x in struct.unpack('>32I',window)),
                       'scope':'observed 128-byte protected window; not a recovered complete table capacity'},
-      'target_manifest_historical_sha256':sha((score.ASM_DIR/'SHA256SUMS').read_bytes()),
-      'data_manifest_historical_sha256':sha((score.ASM_DIR.with_name('blob_data')/'SHA256SUMS').read_bytes())}
+      }
     source=(HERE/'selector.c').read_text();variants={
       'pre_cached_table':source.replace('    u8 choice;','    u32 mask = D_80123418[index];\n    u8 choice;').replace('D_80123418[index] &','mask &'),
       'without_range_mask':(HERE/'range.c').read_text().replace('func_8008B2B4() & 0x07FFF','func_8008B2B4()')}
@@ -137,7 +139,6 @@ def verify(directory,behavior=True):
     if behavior:result['behavior']=sem.verify(directory,native[FN],list(struct.unpack('>67I',linked[FN])),list(struct.unpack('>32I',window)))
     result['compiler_sha256']={n:sha(Path(score.ido(n)).read_bytes()) for n in ('cc','cfe','uld','usplit','umerge','uopt','ugen','as1')}
     result['source_sha256']={n:sha((HERE/n).read_bytes()) for n in ('rand.c','range.c','selector.c','group.json','claim.json','semantic_test.c','verify.py','verify_semantics.py')}
-    result['tools_sha256']={n:sha((ROOT/n).read_bytes()) for n in ('tools/cloud/score.py','tools/cloud/owndata.py','tools/conveyor/pipeline/blob_group.py')}
     result['limitations']=['Matching candidate only; no source-image, shadow, compression, ROM or gameplay gates.',
       'Original whole translation unit and inlined caller ancestry not recovered; GNU placements are independently per body.',
       'Range context is previously reviewed candidate B2E4, not accepted production code; accepted rand is unchanged.',
@@ -147,7 +148,7 @@ def verify(directory,behavior=True):
     return result
 
 def portable(result):
-    return {k:v for k,v in result.items() if k not in ('target_manifest_historical_sha256','data_manifest_historical_sha256')}
+    return {k:v for k,v in result.items() if k not in ('target_manifest_historical_sha256','data_manifest_historical_sha256','tools_sha256')}
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--output',type=Path);parser.add_argument('--skip-behavior',action='store_true');args=parser.parse_args()

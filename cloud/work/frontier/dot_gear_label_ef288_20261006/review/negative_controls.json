@@ -1,0 +1,93 @@
+{
+  "reload_gear_instead_of_snapshot": {
+    "rejected": true,
+    "first_different_event": 12,
+    "native_event": [
+      7,
+      -32635,
+      -32699,
+      82
+    ],
+    "wrong_source_event": [
+      7,
+      -32635,
+      -32699,
+      55
+    ]
+  },
+  "cache_label_across_width_callback": {
+    "rejected": true,
+    "first_different_event": 7,
+    "native_event": [
+      7,
+      -32642,
+      -32699,
+      1002
+    ],
+    "wrong_source_event": [
+      7,
+      -32642,
+      -32699,
+      1000
+    ]
+  },
+  "omit_glyph_position_row_reload": {
+    "rejected": true,
+    "first_different_event": 12,
+    "native_event": [
+      7,
+      -32764,
+      -32768,
+      82
+    ],
+    "wrong_source_event": [
+      7,
+      -32635,
+      -32699,
+      82
+    ]
+  },
+  "unsigned_gear_load": {
+    "rejected": true,
+    "first_different_event": 12,
+    "native_event": [
+      7,
+      -32635,
+      -32699,
+      82
+    ],
+    "wrong_source_event": [
+      7,
+      -32635,
+      -32699,
+      47
+    ]
+  },
+  "cache_loop_player_count": {
+    "rejected": true,
+    "first_different_event": 15,
+    "native_event": [
+      1,
+      -1,
+      0,
+      0
+    ],
+    "wrong_source_event": [
+      5,
+      0,
+      0,
+      0
+    ]
+  },
+  "unknown_opcode": {
+    "rejected": true,
+    "reason": "('opcode', '0x800ef288', 63)"
+  },
+  "truncated_native_extent": {
+    "rejected": true,
+    "reason": "('PC', '0x800ef580')"
+  },
+  "wrong_selector_a0_instead_of_s2": {
+    "rejected": true
+  }
+}

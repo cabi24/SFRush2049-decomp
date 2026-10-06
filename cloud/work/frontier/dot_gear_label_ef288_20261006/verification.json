@@ -1,0 +1,1321 @@
+{
+  "status": "NONMATCH",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "function": "func_800EF288",
+  "start": "0x800EF288",
+  "end": "0x800EF5B0",
+  "native_bytes": 808,
+  "native_words_sha256": "4558842b6be059f68809f832cfb1b92732a67bc283fa75d6af692a4a5257c31a",
+  "source_hashes": {
+    "candidate.c": "a7ef198e3c87750594e19658e97bab7ddf135053a3475bf1d7fd525b15c4e02d",
+    "context.c": "e202453501444783bac5466e989c514e893bf6ba59606906edfb498d922193bf",
+    "group.json": "161d77b787c7e7cbb260296aae415bfc7702804cf8c627187a480607d7661431",
+    "host.c": "4e7c0490f4948412f1d11666a791e35b4166304f692d1eb9fa59ff4ab2665bcc",
+    "native.py": "d9a95984324b96dcfd9bcc58cdc0924566b751589e195d2f6b096c502782f992",
+    "verify.py": "f1ab6333da53e57c25a471b38142e7b3e6943ef8c110783f916fcec707453832"
+  },
+  "behavior": {
+    "cases": 2257,
+    "host_equals_native": true,
+    "compiled_equals_native": true,
+    "visited_native_words": 202,
+    "native_words": 202,
+    "unvisited_offsets": [],
+    "branch_outcomes": {
+      "72": [
+        false,
+        true
+      ],
+      "124": [
+        true
+      ],
+      "136": [
+        false,
+        true
+      ],
+      "196": [
+        true
+      ],
+      "268": [
+        false,
+        true
+      ],
+      "300": [
+        false
+      ],
+      "316": [
+        false,
+        true
+      ],
+      "328": [
+        false,
+        true
+      ],
+      "384": [
+        false,
+        true
+      ],
+      "596": [
+        false,
+        true
+      ],
+      "604": [
+        true
+      ],
+      "612": [
+        false,
+        true
+      ],
+      "624": [
+        true
+      ],
+      "732": [
+        false,
+        true
+      ]
+    }
+  },
+  "matching_bytes": 0,
+  "claims": [],
+  "base_context": {
+    "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+    "aliases": [
+      "func_800EF288"
+    ],
+    "prior_c_or_h_definitions": [],
+    "base_claim_files": [],
+    "base_locked": false,
+    "context_path": "cloud/work/dot_selector_d9058_20261006/context.c",
+    "context_transform": "Move the unchanged canonical O3 header to line 1.",
+    "rejected_prior_text": "ollama_analysis/overnight2_decompiled.txt contains an inline-assembly dump, not a C reconstruction."
+  },
+  "compile": {
+    "functions": {
+      "func_800EF288": {
+        "symbol_bytes": 788,
+        "native_bytes": 808,
+        "complete_differing_words": 179,
+        "differing_offsets": [
+          0,
+          52,
+          72,
+          100,
+          104,
+          108,
+          112,
+          116,
+          120,
+          124,
+          128,
+          132,
+          136,
+          144,
+          148,
+          152,
+          156,
+          160,
+          164,
+          168,
+          172,
+          176,
+          180,
+          184,
+          188,
+          192,
+          196,
+          200,
+          204,
+          208,
+          212,
+          216,
+          220,
+          224,
+          228,
+          232,
+          236,
+          240,
+          244,
+          248,
+          252,
+          256,
+          260,
+          264,
+          268,
+          272,
+          276,
+          280,
+          284,
+          288,
+          292,
+          296,
+          300,
+          304,
+          308,
+          312,
+          316,
+          320,
+          324,
+          328,
+          332,
+          336,
+          340,
+          344,
+          348,
+          352,
+          356,
+          360,
+          364,
+          368,
+          372,
+          376,
+          380,
+          384,
+          388,
+          392,
+          396,
+          400,
+          404,
+          408,
+          412,
+          416,
+          420,
+          424,
+          428,
+          432,
+          436,
+          440,
+          444,
+          448,
+          452,
+          456,
+          460,
+          464,
+          468,
+          472,
+          476,
+          480,
+          484,
+          488,
+          492,
+          496,
+          500,
+          504,
+          508,
+          512,
+          516,
+          520,
+          524,
+          528,
+          532,
+          536,
+          540,
+          544,
+          548,
+          552,
+          556,
+          560,
+          564,
+          568,
+          572,
+          576,
+          580,
+          584,
+          588,
+          592,
+          596,
+          600,
+          604,
+          608,
+          612,
+          616,
+          620,
+          624,
+          628,
+          632,
+          636,
+          640,
+          644,
+          648,
+          652,
+          656,
+          660,
+          664,
+          668,
+          672,
+          676,
+          680,
+          684,
+          688,
+          692,
+          696,
+          700,
+          704,
+          708,
+          712,
+          716,
+          720,
+          724,
+          728,
+          732,
+          736,
+          740,
+          744,
+          748,
+          752,
+          756,
+          760,
+          764,
+          768,
+          772,
+          776,
+          780,
+          784,
+          788,
+          792,
+          796,
+          800,
+          804
+        ],
+        "compiled_words_sha256": "d7d7fe265afb42edfb6f1b0d01e80197c57ca4bf049a11fa55acad389a00312f",
+        "native_words_sha256": "4558842b6be059f68809f832cfb1b92732a67bc283fa75d6af692a4a5257c31a",
+        "canonical": {
+          "differing": 179,
+          "total": 202,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "relocations": [
+          {
+            "offset": 48,
+            "type": 4,
+            "symbol": "render_helper"
+          },
+          {
+            "offset": 56,
+            "type": 5,
+            "symbol": "D_80151AD0"
+          },
+          {
+            "offset": 60,
+            "type": 6,
+            "symbol": "D_80151AD0"
+          },
+          {
+            "offset": 68,
+            "type": 5,
+            "symbol": "D_801461D0"
+          },
+          {
+            "offset": 76,
+            "type": 6,
+            "symbol": "D_801461D0"
+          },
+          {
+            "offset": 88,
+            "type": 4,
+            "symbol": "osRecvMesg"
+          },
+          {
+            "offset": 96,
+            "type": 4,
+            "symbol": "slot_state_setup"
+          },
+          {
+            "offset": 112,
+            "type": 4,
+            "symbol": "osJamMesg"
+          },
+          {
+            "offset": 140,
+            "type": 5,
+            "symbol": "D_801461D0"
+          },
+          {
+            "offset": 144,
+            "type": 6,
+            "symbol": "D_801461D0"
+          },
+          {
+            "offset": 156,
+            "type": 4,
+            "symbol": "osRecvMesg"
+          },
+          {
+            "offset": 164,
+            "type": 4,
+            "symbol": "slot_state_setup"
+          },
+          {
+            "offset": 180,
+            "type": 4,
+            "symbol": "osJamMesg"
+          },
+          {
+            "offset": 136,
+            "type": 5,
+            "symbol": "D_801461D0"
+          },
+          {
+            "offset": 196,
+            "type": 6,
+            "symbol": "D_801461D0"
+          },
+          {
+            "offset": 208,
+            "type": 4,
+            "symbol": "osRecvMesg"
+          },
+          {
+            "offset": 216,
+            "type": 4,
+            "symbol": "slot_state_setup"
+          },
+          {
+            "offset": 232,
+            "type": 4,
+            "symbol": "osJamMesg"
+          },
+          {
+            "offset": 248,
+            "type": 5,
+            "symbol": "D_8014A250"
+          },
+          {
+            "offset": 252,
+            "type": 6,
+            "symbol": "D_8014A250"
+          },
+          {
+            "offset": 240,
+            "type": 5,
+            "symbol": "D_80151AD0"
+          },
+          {
+            "offset": 244,
+            "type": 6,
+            "symbol": "D_80151AD0"
+          },
+          {
+            "offset": 264,
+            "type": 5,
+            "symbol": "D_80115BE8"
+          },
+          {
+            "offset": 276,
+            "type": 6,
+            "symbol": "D_80115BE8"
+          },
+          {
+            "offset": 268,
+            "type": 5,
+            "symbol": "D_8017A4E0"
+          },
+          {
+            "offset": 272,
+            "type": 6,
+            "symbol": "D_8017A4E0"
+          },
+          {
+            "offset": 280,
+            "type": 5,
+            "symbol": "D_80161394"
+          },
+          {
+            "offset": 284,
+            "type": 6,
+            "symbol": "D_80161394"
+          },
+          {
+            "offset": 316,
+            "type": 5,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 348,
+            "type": 6,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 396,
+            "type": 4,
+            "symbol": "dispatch_handler"
+          },
+          {
+            "offset": 412,
+            "type": 4,
+            "symbol": "object_utility"
+          },
+          {
+            "offset": 456,
+            "type": 4,
+            "symbol": "state_utility"
+          },
+          {
+            "offset": 464,
+            "type": 4,
+            "symbol": "dispatch_handler"
+          },
+          {
+            "offset": 480,
+            "type": 4,
+            "symbol": "object_utility"
+          },
+          {
+            "offset": 516,
+            "type": 4,
+            "symbol": "state_utility"
+          },
+          {
+            "offset": 524,
+            "type": 5,
+            "symbol": "D_80151AD0"
+          },
+          {
+            "offset": 528,
+            "type": 6,
+            "symbol": "D_80151AD0"
+          },
+          {
+            "offset": 616,
+            "type": 4,
+            "symbol": "dispatch_handler"
+          },
+          {
+            "offset": 648,
+            "type": 4,
+            "symbol": "state_utility"
+          },
+          {
+            "offset": 656,
+            "type": 4,
+            "symbol": "dispatch_handler"
+          },
+          {
+            "offset": 688,
+            "type": 4,
+            "symbol": "state_utility"
+          },
+          {
+            "offset": 696,
+            "type": 5,
+            "symbol": "D_80151AD0"
+          },
+          {
+            "offset": 700,
+            "type": 6,
+            "symbol": "D_80151AD0"
+          },
+          {
+            "offset": 728,
+            "type": 4,
+            "symbol": "render_helper"
+          }
+        ]
+      },
+      "slot_state_setup": {
+        "symbol_bytes": 248,
+        "native_bytes": 232,
+        "complete_differing_words": 34,
+        "differing_offsets": [
+          0,
+          4,
+          12,
+          24,
+          28,
+          32,
+          48,
+          52,
+          60,
+          64,
+          92,
+          104,
+          120,
+          124,
+          132,
+          136,
+          140,
+          144,
+          160,
+          172,
+          184,
+          192,
+          196,
+          204,
+          208,
+          212,
+          216,
+          220,
+          224,
+          228,
+          232,
+          236,
+          240,
+          244
+        ],
+        "compiled_words_sha256": "92f7dbca900853692e6f6d2b02dcccb6019bd17bf3af424f1dec68d86e024df8",
+        "native_words_sha256": "55d29fb1f5b5789d8b2467a1287a0d16e872cfb6d0c6aa3653bf7b69cc2f0144",
+        "canonical": {
+          "differing": 30,
+          "total": 58,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 3
+        },
+        "relocations": [
+          {
+            "offset": 0,
+            "type": 5,
+            "symbol": "D_80149DA0"
+          },
+          {
+            "offset": 4,
+            "type": 6,
+            "symbol": "D_80149DA0"
+          },
+          {
+            "offset": 40,
+            "type": 4,
+            "symbol": "func_80097694"
+          },
+          {
+            "offset": 48,
+            "type": 5,
+            "symbol": "D_80149780"
+          },
+          {
+            "offset": 52,
+            "type": 6,
+            "symbol": "D_80149780"
+          },
+          {
+            "offset": 84,
+            "type": 4,
+            "symbol": "audio_frame_sync"
+          },
+          {
+            "offset": 96,
+            "type": 4,
+            "symbol": "display_list_alloc"
+          },
+          {
+            "offset": 112,
+            "type": 4,
+            "symbol": "func_80097694"
+          },
+          {
+            "offset": 120,
+            "type": 5,
+            "symbol": "D_801497A4"
+          },
+          {
+            "offset": 124,
+            "type": 6,
+            "symbol": "D_801497A4"
+          },
+          {
+            "offset": 136,
+            "type": 5,
+            "symbol": "D_80114740"
+          },
+          {
+            "offset": 140,
+            "type": 6,
+            "symbol": "D_80114740"
+          },
+          {
+            "offset": 164,
+            "type": 4,
+            "symbol": "audio_frame_sync"
+          },
+          {
+            "offset": 176,
+            "type": 4,
+            "symbol": "display_list_alloc"
+          },
+          {
+            "offset": 188,
+            "type": 4,
+            "symbol": "sound_update_channel"
+          },
+          {
+            "offset": 204,
+            "type": 4,
+            "symbol": "sound_update_channel"
+          },
+          {
+            "offset": 212,
+            "type": 5,
+            "symbol": "D_801497F0"
+          },
+          {
+            "offset": 216,
+            "type": 6,
+            "symbol": "D_801497F0"
+          }
+        ]
+      },
+      "func_80096288": {
+        "symbol_bytes": 16,
+        "native_bytes": 16,
+        "complete_differing_words": 3,
+        "differing_offsets": [
+          0,
+          4,
+          12
+        ],
+        "compiled_words_sha256": "f9e77de3221db6174e0d87d3101de46b81de1684d1061988be35c3c3951e8a9b",
+        "native_words_sha256": "64e6fe82a9a8105fd73c45eff39203a632b71731116ae93b43be76782c6c8422",
+        "canonical": {
+          "differing": 3,
+          "total": 4,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "relocations": []
+      },
+      "sound_update_channel": {
+        "symbol_bytes": 468,
+        "native_bytes": 488,
+        "complete_differing_words": 120,
+        "differing_offsets": [
+          0,
+          4,
+          8,
+          12,
+          16,
+          20,
+          24,
+          28,
+          32,
+          36,
+          40,
+          44,
+          48,
+          52,
+          56,
+          60,
+          64,
+          68,
+          72,
+          76,
+          80,
+          84,
+          88,
+          92,
+          96,
+          100,
+          104,
+          108,
+          112,
+          116,
+          120,
+          124,
+          128,
+          132,
+          136,
+          140,
+          144,
+          148,
+          152,
+          156,
+          160,
+          164,
+          168,
+          172,
+          176,
+          180,
+          184,
+          188,
+          192,
+          196,
+          200,
+          204,
+          208,
+          212,
+          216,
+          220,
+          224,
+          228,
+          232,
+          236,
+          240,
+          244,
+          248,
+          252,
+          256,
+          260,
+          264,
+          268,
+          272,
+          276,
+          280,
+          284,
+          288,
+          292,
+          296,
+          300,
+          304,
+          308,
+          312,
+          316,
+          320,
+          324,
+          328,
+          332,
+          336,
+          340,
+          344,
+          348,
+          352,
+          356,
+          360,
+          364,
+          368,
+          372,
+          376,
+          384,
+          388,
+          392,
+          396,
+          400,
+          404,
+          408,
+          412,
+          416,
+          420,
+          424,
+          428,
+          432,
+          436,
+          440,
+          448,
+          452,
+          456,
+          460,
+          464,
+          468,
+          472,
+          476,
+          480,
+          484
+        ],
+        "compiled_words_sha256": "dc4c42e42761aeab87e144434f6f14264789e5a7cfa44e82ece86b71ad42ec50",
+        "native_words_sha256": "843f08a4e541babf1af03e56b8e6b066d220408edf658e142f404844369e515c",
+        "canonical": {
+          "differing": 120,
+          "total": 122,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "relocations": [
+          {
+            "offset": 0,
+            "type": 5,
+            "symbol": "D_80149780"
+          },
+          {
+            "offset": 4,
+            "type": 6,
+            "symbol": "D_80149780"
+          },
+          {
+            "offset": 8,
+            "type": 5,
+            "symbol": "D_80156D44"
+          },
+          {
+            "offset": 32,
+            "type": 6,
+            "symbol": "D_80156D44"
+          },
+          {
+            "offset": 12,
+            "type": 5,
+            "symbol": "D_801497F0"
+          },
+          {
+            "offset": 36,
+            "type": 6,
+            "symbol": "D_801497F0"
+          },
+          {
+            "offset": 60,
+            "type": 5,
+            "symbol": "D_801497F0"
+          },
+          {
+            "offset": 72,
+            "type": 6,
+            "symbol": "D_801497F0"
+          },
+          {
+            "offset": 64,
+            "type": 5,
+            "symbol": "D_80149800"
+          },
+          {
+            "offset": 68,
+            "type": 6,
+            "symbol": "D_80149800"
+          },
+          {
+            "offset": 172,
+            "type": 5,
+            "symbol": "D_80149878"
+          },
+          {
+            "offset": 176,
+            "type": 6,
+            "symbol": "D_80149878"
+          },
+          {
+            "offset": 180,
+            "type": 5,
+            "symbol": "D_80149878"
+          },
+          {
+            "offset": 184,
+            "type": 6,
+            "symbol": "D_80149878"
+          },
+          {
+            "offset": 220,
+            "type": 5,
+            "symbol": "D_80149800"
+          },
+          {
+            "offset": 236,
+            "type": 6,
+            "symbol": "D_80149800"
+          },
+          {
+            "offset": 284,
+            "type": 5,
+            "symbol": "D_801497A4"
+          },
+          {
+            "offset": 288,
+            "type": 6,
+            "symbol": "D_801497A4"
+          },
+          {
+            "offset": 296,
+            "type": 5,
+            "symbol": "D_80151AE8"
+          },
+          {
+            "offset": 312,
+            "type": 6,
+            "symbol": "D_80151AE8"
+          },
+          {
+            "offset": 308,
+            "type": 5,
+            "symbol": "D_80149820"
+          },
+          {
+            "offset": 316,
+            "type": 6,
+            "symbol": "D_80149820"
+          },
+          {
+            "offset": 368,
+            "type": 5,
+            "symbol": "D_80149B60"
+          },
+          {
+            "offset": 372,
+            "type": 6,
+            "symbol": "D_80149B60"
+          },
+          {
+            "offset": 380,
+            "type": 5,
+            "symbol": "D_80149B70"
+          },
+          {
+            "offset": 384,
+            "type": 6,
+            "symbol": "D_80149B70"
+          },
+          {
+            "offset": 412,
+            "type": 5,
+            "symbol": "D_80149B08"
+          },
+          {
+            "offset": 420,
+            "type": 6,
+            "symbol": "D_80149B08"
+          },
+          {
+            "offset": 404,
+            "type": 5,
+            "symbol": "D_80149B08"
+          },
+          {
+            "offset": 424,
+            "type": 6,
+            "symbol": "D_80149B08"
+          },
+          {
+            "offset": 444,
+            "type": 5,
+            "symbol": "D_80149B28"
+          },
+          {
+            "offset": 452,
+            "type": 6,
+            "symbol": "D_80149B28"
+          },
+          {
+            "offset": 432,
+            "type": 5,
+            "symbol": "D_80149B28"
+          },
+          {
+            "offset": 456,
+            "type": 6,
+            "symbol": "D_80149B28"
+          }
+        ]
+      },
+      "object_byte9_set": {
+        "symbol_bytes": 64,
+        "native_bytes": 64,
+        "complete_differing_words": 6,
+        "differing_offsets": [
+          4,
+          8,
+          16,
+          20,
+          28,
+          44
+        ],
+        "compiled_words_sha256": "7921bec0652308580cb0017f096cb858cbe490f76f9cd9909a2bfc030c48bb58",
+        "native_words_sha256": "cd19e3089685917a05f400f998bf57a4bd6e370863561775900968e6879f93f6",
+        "canonical": {
+          "differing": 6,
+          "total": 16,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "relocations": [
+          {
+            "offset": 24,
+            "type": 4,
+            "symbol": "sound_update_channel"
+          },
+          {
+            "offset": 32,
+            "type": 5,
+            "symbol": "D_801497F0"
+          },
+          {
+            "offset": 36,
+            "type": 6,
+            "symbol": "D_801497F0"
+          }
+        ]
+      },
+      "object_create": {
+        "symbol_bytes": 112,
+        "native_bytes": 112,
+        "complete_differing_words": 1,
+        "differing_offsets": [
+          52
+        ],
+        "compiled_words_sha256": "d1870a5850a03ea4720c279279d025a3540783fc16ec1fba131b34972c628491",
+        "native_words_sha256": "faee709c3df1e073e647c2851a4c4ce19db047599daaa796882845fa345f6858",
+        "canonical": {
+          "differing": 1,
+          "total": 28,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "relocations": [
+          {
+            "offset": 12,
+            "type": 5,
+            "symbol": "D_801461D0"
+          },
+          {
+            "offset": 32,
+            "type": 6,
+            "symbol": "D_801461D0"
+          },
+          {
+            "offset": 40,
+            "type": 4,
+            "symbol": "osRecvMesg"
+          },
+          {
+            "offset": 48,
+            "type": 4,
+            "symbol": "slot_state_setup"
+          },
+          {
+            "offset": 56,
+            "type": 5,
+            "symbol": "D_801461D0"
+          },
+          {
+            "offset": 64,
+            "type": 6,
+            "symbol": "D_801461D0"
+          },
+          {
+            "offset": 72,
+            "type": 4,
+            "symbol": "osJamMesg"
+          }
+        ]
+      },
+      "world_trigger_check": {
+        "symbol_bytes": 228,
+        "native_bytes": 216,
+        "complete_differing_words": 42,
+        "differing_offsets": [
+          44,
+          48,
+          52,
+          56,
+          60,
+          64,
+          68,
+          72,
+          76,
+          80,
+          100,
+          104,
+          108,
+          112,
+          116,
+          120,
+          124,
+          128,
+          132,
+          136,
+          140,
+          144,
+          148,
+          152,
+          156,
+          160,
+          164,
+          168,
+          172,
+          176,
+          180,
+          184,
+          188,
+          192,
+          196,
+          200,
+          204,
+          208,
+          212,
+          216,
+          220,
+          224
+        ],
+        "compiled_words_sha256": "1a39ecba223831933ac665cad218fef7f8153cd948f31589292c95c660af44b4",
+        "native_words_sha256": "c61e640dd5a9e43b9f4946fc6d76a154f4c1609d4ae1d3c302b601f2d5282612",
+        "canonical": {
+          "differing": 39,
+          "total": 54,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 3
+        },
+        "relocations": [
+          {
+            "offset": 8,
+            "type": 5,
+            "symbol": "D_801461D0"
+          },
+          {
+            "offset": 28,
+            "type": 6,
+            "symbol": "D_801461D0"
+          },
+          {
+            "offset": 36,
+            "type": 4,
+            "symbol": "osRecvMesg"
+          },
+          {
+            "offset": 68,
+            "type": 5,
+            "symbol": "D_80149B48"
+          },
+          {
+            "offset": 96,
+            "type": 6,
+            "symbol": "D_80149B48"
+          },
+          {
+            "offset": 72,
+            "type": 5,
+            "symbol": "D_80114748"
+          },
+          {
+            "offset": 92,
+            "type": 6,
+            "symbol": "D_80114748"
+          },
+          {
+            "offset": 76,
+            "type": 5,
+            "symbol": "D_80149D92"
+          },
+          {
+            "offset": 88,
+            "type": 6,
+            "symbol": "D_80149D92"
+          },
+          {
+            "offset": 80,
+            "type": 5,
+            "symbol": "D_80149D9E"
+          },
+          {
+            "offset": 84,
+            "type": 6,
+            "symbol": "D_80149D9E"
+          },
+          {
+            "offset": 44,
+            "type": 5,
+            "symbol": "D_80149DA0"
+          },
+          {
+            "offset": 64,
+            "type": 6,
+            "symbol": "D_80149DA0"
+          },
+          {
+            "offset": 48,
+            "type": 5,
+            "symbol": "D_80149B60"
+          },
+          {
+            "offset": 60,
+            "type": 6,
+            "symbol": "D_80149B60"
+          },
+          {
+            "offset": 52,
+            "type": 5,
+            "symbol": "D_80149B70"
+          },
+          {
+            "offset": 56,
+            "type": 6,
+            "symbol": "D_80149B70"
+          },
+          {
+            "offset": 108,
+            "type": 4,
+            "symbol": "func_800B6748"
+          },
+          {
+            "offset": 116,
+            "type": 5,
+            "symbol": "D_80149DA0"
+          },
+          {
+            "offset": 124,
+            "type": 6,
+            "symbol": "D_80149DA0"
+          },
+          {
+            "offset": 120,
+            "type": 4,
+            "symbol": "slot_state_setup"
+          },
+          {
+            "offset": 128,
+            "type": 5,
+            "symbol": "D_80149B88"
+          },
+          {
+            "offset": 132,
+            "type": 6,
+            "symbol": "D_80149B88"
+          },
+          {
+            "offset": 140,
+            "type": 5,
+            "symbol": "D_8002AFC4"
+          },
+          {
+            "offset": 144,
+            "type": 6,
+            "symbol": "D_8002AFC4"
+          },
+          {
+            "offset": 176,
+            "type": 5,
+            "symbol": "D_8011474C"
+          },
+          {
+            "offset": 180,
+            "type": 6,
+            "symbol": "D_8011474C"
+          },
+          {
+            "offset": 184,
+            "type": 5,
+            "symbol": "D_8011473C"
+          },
+          {
+            "offset": 188,
+            "type": 6,
+            "symbol": "D_8011473C"
+          },
+          {
+            "offset": 148,
+            "type": 5,
+            "symbol": "D_801461D0"
+          },
+          {
+            "offset": 152,
+            "type": 6,
+            "symbol": "D_801461D0"
+          },
+          {
+            "offset": 192,
+            "type": 4,
+            "symbol": "osJamMesg"
+          }
+        ]
+      }
+    },
+    "owned_data_bytes": 0,
+    "zero_alignment_bytes": 12,
+    "complete_text_bytes": 1936,
+    "GNU_project_placement_equal": true,
+    "GNU_placement": "0x80000000",
+    "native_map_is_separate_diagnostic": true
+  },
+  "selector_ABI": {
+    "native_input": "s2",
+    "compiled_input": "s1",
+    "matching_contract": false
+  },
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "mandatory_backend_flag": "-r4300_mul"
+}

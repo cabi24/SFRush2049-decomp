@@ -366,18 +366,12 @@
     "unknown_opcode",
     "escaped_code"
   ],
-  "protected_targets": {
-    "extents.json": "0d97935254a6f2c724dfe68b08087e0a451e56d0aedb2121748abe7b6cc0798b",
-    "ovl_a_8038a400.s": "94f5fdb45838b6d21fb761209bf2cb60602f90ea8725b16cae2c3cebe0aa7685",
-    "symbols.json": "d5a6c8dccb0380f54f080d45d82a5e71f917be86f9568bf4b7fbe10a89f2a769"
-  },
   "support_sha256": {
     "native.py": "0df21e7d521c35b2bddb0865a0d2adf903c29983ff5d157900c069cd168f96ef",
     "elf_support.py": "2f3ab96521aa807cb2b29523fea5bff964aea395fbf73649c4d4ff663523e1d9",
     "host.c": "525d947a0fd2101e8b4b6ab75080d5b5042223869b73e5d18b2d7fc8860c0b29",
-    "verify.py": "6e78e475a037e4bfdcaa46b01f138ff88a9c5fef8de306e155311ca5f5717eb7"
+    "verify.py": "2ac70e7569892ac2eeb6cb4ad96656fd72fbf35721f15a465ce058a93072d021"
   },
-  "scorer_sha256": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
   "limits": [
     "No full-image, source-shadow, compression, ROM, hardware or accepted coverage proof",
     "Native caller E3BC has private t4 input and s0 clobber; it is only executed from protected native code, not reconstructed or claimed",

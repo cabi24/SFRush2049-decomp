@@ -81,14 +81,27 @@ def test_halfword_narrowing_is_before_cap():
 
 
 def test_fresh_frozen_replay():
+    if not (v.score.IDO / 'cc').is_file() or not shutil.which('mips-linux-gnu-ld'):
+        pytest.skip('pinned IDO and MIPS GNU linker required')
     required = ['mips-linux-gnu-ld', 'cc']
     ready = all(shutil.which(x) for x in required) and (v.score.IDO / 'cc').exists()
     if not ready:
         if os.environ.get('REQUIRE_TOOLCHAIN') == '1':
             pytest.fail('Pinned IDO/MIPS/host tools required')
         pytest.skip('Pinned IDO/MIPS/host tools unavailable')
-    fresh, saved = v.verify(), receipt()
-    # The whole blob manifest changes with every splice; selected bodies stay bound.
-    for proof in (fresh, saved):
-        proof.pop('protected_target_manifest_sha256', None)
-    assert fresh == saved
+    assert v.portable(v.verify()) == v.portable(receipt())
+
+
+def test_portability_keeps_packet_and_native_proof_strict():
+    import copy
+    import json
+    saved = json.loads((PACKET / 'verification.json').read_text())
+    changed = copy.deepcopy(saved)
+    for field in ('protected_target_manifest_sha256','context_origin_sha256'):
+        changed[field] = 'unrelated integration provenance'
+    assert v.portable(changed) == v.portable(saved)
+    assert saved == json.loads((PACKET / 'verification.json').read_text())
+    for field in ['source_hashes', 'native_sha256', 'compile', 'behavior', 'negative_elf_drills', 'start', 'end', 'real_parent']:
+        mutant = copy.deepcopy(changed)
+        mutant[field] = 'proof drift'
+        assert v.portable(mutant) != v.portable(saved), field

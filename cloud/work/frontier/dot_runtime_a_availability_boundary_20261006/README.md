@@ -1,5 +1,17 @@
 # Image-A option availability: genuine caller-preservation boundary
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
 **Complete NONMATCH research: image A `func_8039D494`,
 [0x8039D494,0x8039D6A4), 528 bytes / 132 words.**
 The complete natural C differs in **18 register-only words**. Matching-candidate,
@@ -128,3 +140,11 @@ separately in local `build/availability_boundary/local_provenance.json`.
 No native words, assembly dumps, objects, ROM bytes, credentials or unrelated
 private data are published. Source-shadow, image, compression, ROM SHA-1,
 hardware/gameplay validation and merging remain with the independent checker.
+
+## Integration-portable replay (2026-10-06)
+
+Scorer, whole-manifest and accepted-context digests are historical provenance,
+not live-tree requirements. The verifier normalizes only enumerated provenance
+fields on both receipt sides. Packet source and verifier bindings, compiler
+identity/actual flags, selected native bodies and addresses, complete emitted
+extents, relocations, owned data and behavioral checks remain binding.

@@ -1,0 +1,61 @@
+{
+  "status": "PASS: bounded existing-object/native semantic agreement and complete ELF integrity; NOT STRICT MATCH",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "target_compiler_invocations": 0,
+  "host_compiler_invocations": 0,
+  "object": {
+    "object_sha256": "a107a90ac2b689d3f3fdcc2d258306d5e2d6d1e49339bdb32b72fddaaa5e9cbb",
+    "elf_sha256": "acee7782ca03fcf63a8078f01a6f472b6c7c356da15647b9986a570ba17e1154",
+    "source_sha256": "65593ef2a077ce151f6ef43a5843593c302b8d5588c3cb47bb4f2ae51c440ee6",
+    "root_bytes": 2096,
+    "text_bytes": 2112,
+    "prefix_bytes": 8,
+    "tail_alignment_bytes": 8,
+    "emitted_functions": [
+      "save_write_data"
+    ],
+    "private90308": "naturally absent; body inlined",
+    "relocations_verified": 118,
+    "external_bindings_verified": 39,
+    "unresolved_relocations": 0,
+    "owned_data_bytes": 0,
+    "owned_data_references": 0,
+    "object_metadata_reginfo_bytes": 24,
+    "complete_function_sha256": "014b3fb803941d19b80dc485d7516ecc60b93b7cf4b5484777cb80e723286d33"
+  },
+  "fixtures": 210,
+  "compiled_instructions_covered": 507,
+  "branch_outcomes": 51,
+  "strict_comparison": {
+    "differing_native_words": 298,
+    "native_words": 300,
+    "extra_words_total": 224,
+    "extra_words_nonzero": 220,
+    "match": false
+  },
+  "packet": {
+    "candidate.c": "65593ef2a077ce151f6ef43a5843593c302b8d5588c3cb47bb4f2ae51c440ee6",
+    "native.py": "8b5b8cf75bd2c02450690e24d8ce39e28f3dfe0e2f7c02db8c1f824689d6c5c6",
+    "fixture.py": "ea984332a3330185e29ce85eb1d5f336590c66d31114c377999c1e2a3c68342e",
+    "compiled_machine.py": "a7829ea83d6ddc430895e9ff07cdf79085b893098667bc43acf7b71f31d8bc5f"
+  },
+  "native": {
+    "save_write_data": {
+      "address": "0x800af06c",
+      "bytes": 1200,
+      "sha256": "3d7f79a62ea3664248e76b8cd9fc06dbd8142ab8d31e6167e8c1ca246323fca1"
+    },
+    "func_80090308": {
+      "address": "0x80090308",
+      "bytes": 1128,
+      "sha256": "dd5fb2b4ba651dfc726d27571fc810534f081935e00ed42fdeb70f5456d87169"
+    }
+  },
+  "receipt_honesty": "Current source and historical native identities, object/ELF hashes, complete extents, every relocation and own-data accounting agree with the receipts and actual artifacts. Canonical flags and one-build count are recorded provenance consistent with build_once.py; this no-compilation audit does not independently reconstruct the compiler process history or regenerate the source-to-object mapping.",
+  "limitations": [
+    "Valid aligned initialized bounded storage and finite normal-or-zero binary32 under default rounding",
+    "External services remain explicit effect models; no full scene/audio/gameplay or callback lifetime proof",
+    "Private90308 native stack convention is preserved in reference execution; emitted helper is naturally inlined",
+    "No original-TU admission, strict match, integration, ROM, publication or CI claim"
+  ]
+}

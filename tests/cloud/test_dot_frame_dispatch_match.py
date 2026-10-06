@@ -14,14 +14,16 @@ v=importlib.util.module_from_spec(spec);spec.loader.exec_module(v)
 
 def receipt():return json.loads((PACKET/'verification.json').read_text())
 
-def test_bound_source_and_tools():
-    for name,digest in receipt()['source_bindings'].items():
+def test_bound_packet_source_and_native_words():
+    for name,digest in v.comparable_receipt(receipt())['source_bindings'].items():
         assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest()==digest
     v.assert_native_bindings(receipt()['native_bindings'])
 
 def test_global_manifest_digest_is_historical_only():
     saved=receipt();current=json.loads(json.dumps(saved))
-    current['historical_native_provenance']={name:'unrelated revision' for name in current['historical_native_provenance']}
+    assert 'historical_native_provenance' not in current
+    current['historical_native_provenance']={'legacy manifest': 'unrelated revision'}
+    for name in v.HISTORICAL_SOURCES:current['source_bindings'][name]='0'*64
     assert v.comparable_receipt(current)==v.comparable_receipt(saved)
 
 def test_selected_symbols_cover_all_consumed_relocations():
@@ -115,8 +117,30 @@ def test_callback_mode_must_be_reread():
     case=(0x200000,1,4,n.word(.1),n.word(12.0),1,7,0,0)
     assert n.Machine(v.score.targets()[v.FN],case).run()[2]==1
 
-def test_fresh_full_replay(tmp_path):
+def test_fresh_full_replay(tmp_path,monkeypatch):
+    reject_live_context(monkeypatch)
     if not (v.score.IDO/'cc').is_file() or not shutil.which('mips-linux-gnu-ld'):
         if os.environ.get('REQUIRE_TOOLCHAIN')=='1':pytest.fail('pinned toolchain missing')
         pytest.skip('pinned IDO and GNU MIPS toolchain required')
     assert v.comparable_receipt(v.verify(tmp_path))==v.comparable_receipt(receipt())
+
+
+def reject_live_context(monkeypatch):
+    for method in ('read_bytes','read_text'):
+        original=getattr(Path,method)
+        def guarded(path,*args,_original=original,**kwargs):
+            if path==ROOT/'blob_matched.lock.json' or (ROOT/'src/blob') in path.parents:
+                raise AssertionError('packet read live production context: '+str(path))
+            return _original(path,*args,**kwargs)
+        monkeypatch.setattr(Path,method,guarded)
+
+
+def test_portable_receipt_keeps_packet_and_native_proof():
+    import copy
+    saved=json.loads((PACKET/'verification.json').read_text())
+    changed=copy.deepcopy(saved)
+    for key in v.HISTORICAL_SOURCES:changed['source_bindings'][key]='0'*64
+    changed['historical_native_provenance']={}
+    assert v.comparable_receipt(changed)==v.comparable_receipt(saved)
+    changed['O3']['gnu']['linked_body_sha256']='0'*64
+    assert v.comparable_receipt(changed)!=v.comparable_receipt(saved)

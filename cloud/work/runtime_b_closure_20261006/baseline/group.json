@@ -1,0 +1,9 @@
+{
+  "files": [
+    "closure.c"
+  ],
+  "keep": [
+    "func_8038FCE0"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

@@ -1,0 +1,105 @@
+{
+  "status": "PASS: bounded independent source/native challenges; not strict match or gameplay proof",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "native": {
+    "math_utility": {
+      "address": "0x8008d6b0",
+      "bytes": 76,
+      "sha256": "e2b566e9e8acf312ddb9d228ba6cfb6fdbc517c14b00cbd5386e37ec51fc8159"
+    },
+    "func_8008E26C": {
+      "address": "0x8008e26c",
+      "bytes": 300,
+      "sha256": "54c0fe9d2ad5160f5dca1268f7819ecec5ab1c447f7cf0f0a14ab0a57c78fc90"
+    },
+    "entity_spawn_init": {
+      "address": "0x8008ea10",
+      "bytes": 5544,
+      "sha256": "21476242fe1fd3da148631a748f35db1ee8b898c49a031b674b4f719b0e91f8a"
+    },
+    "entity_spawn_callback": {
+      "address": "0x80090088",
+      "bytes": 416,
+      "sha256": "0a341263df072121b6344998cef815065803fdd5ba4974c9520a3ecb60c8cdbe"
+    },
+    "func_80090284": {
+      "address": "0x80090284",
+      "bytes": 132,
+      "sha256": "30a84341f5dadb3b164c8e49d76c350693b8369e33e6f62663cf9d2c8fe807eb"
+    },
+    "func_80090308": {
+      "address": "0x80090308",
+      "bytes": 1128,
+      "sha256": "dd5fb2b4ba651dfc726d27571fc810534f081935e00ed42fdeb70f5456d87169"
+    },
+    "entity_physics_update": {
+      "address": "0x800908a0",
+      "bytes": 712,
+      "sha256": "1b79380ce3f4ffed899490871ba429397a8051c8786fe77c33b0e7fcfec36fa2"
+    },
+    "entity_collision_detect": {
+      "address": "0x80090b68",
+      "bytes": 820,
+      "sha256": "505b41e3e8fb42e0d8f374117d5bd5e9acd19eaeb708a29363edb12512d56e6e"
+    },
+    "entity_update_callback": {
+      "address": "0x80090fec",
+      "bytes": 2184,
+      "sha256": "e66d88a28474d069e371d71305ed50cf4a79f264af208b4b69503fee95253b31"
+    },
+    "camera_target_track": {
+      "address": "0x800aed64",
+      "bytes": 636,
+      "sha256": "a057021cac52f5037d124838784fd62d4b2bf90a961c66b6a6b83344cb7da032"
+    },
+    "save_write_data": {
+      "address": "0x800af06c",
+      "bytes": 1200,
+      "sha256": "3d7f79a62ea3664248e76b8cd9fc06dbd8142ab8d31e6167e8c1ca246323fca1"
+    }
+  },
+  "fixtures": 420,
+  "host_optimizations": [
+    "-O0",
+    "-O2"
+  ],
+  "native_instructions_covered": 571,
+  "branch_outcomes": 49,
+  "mutants_rejected": [
+    "shortcut-not-dependent-on-mode",
+    "inclusive-half-threshold",
+    "inclusive-one-threshold",
+    "snapshot-color",
+    "captured-private-range",
+    "position-third-component"
+  ],
+  "target_compilations": 0,
+  "packet": {
+    "candidate.c": "65593ef2a077ce151f6ef43a5843593c302b8d5588c3cb47bb4f2ae51c440ee6",
+    "host.c": "4fc04717bea1a348719592e80c4985297091d82b62523b9430d488c75c892d9e",
+    "host_adapter.py": "a8494625ee685cea1a0a61acf2c46ade641614c711dbe2566552d86accb548ed",
+    "native.py": "8b5b8cf75bd2c02450690e24d8ce39e28f3dfe0e2f7c02db8c1f824689d6c5c6",
+    "fixture.py": "ea984332a3330185e29ce85eb1d5f336590c66d31114c377999c1e2a3c68342e"
+  },
+  "limitations": [
+    "Valid aligned initialized storage and nonaliasing input/global objects",
+    "Finite normal-or-zero binary32 under default rounding; no FCSR/exceptions/subnormal arithmetic proof",
+    "External effect models rather than complete scene/audio execution",
+    "No source matching, original translation-unit admission, publication or CI claims"
+  ],
+  "manual_audit": {
+    "source_layout": "PASS: node24, transform48, player952, extra60, debris84, group400, scene68",
+    "mode_views": "PASS: global signed shortcut precedes mode; index short or position triplet as selected",
+    "private_90308": "PASS: true incoming SP+2 short; complete real helper body; outer saved-register preservation",
+    "callbacks": "PASS: registered fixed (node*,signed-half) functions; input pointer never retained",
+    "rounding": "PASS in bounded normal-or-zero binary32 default-rounding domain; separate native operations",
+    "optional_sound": "PASS: inclusive0.5/1.0 thresholds, live enable byte, ten O32 arguments",
+    "freeze": "Source and harness hashes rechecked unchanged after challenge",
+    "review_result": "No remaining source-contract blocker; canonical strict match and historical TU admission remain separate"
+  },
+  "reproduction": [
+    "python3 independent/audit_contracts.py --reference-root REPOSITORY --output contract-receipt.json",
+    "TMPDIR=WORKSPACE_TMP python3 independent/challenge.py --packet-dir PACKET --reference-root REPOSITORY --output independent-challenge.json"
+  ],
+  "own_audit_source_sha256": "983249264f8143ead29dbef4d036c1ef89e336df6847264d71c2167b54fcd894"
+}

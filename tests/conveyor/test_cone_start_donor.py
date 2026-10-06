@@ -11,12 +11,13 @@ spec=importlib.util.spec_from_file_location('cone_start_proof',HERE/'verify.py')
 proof=importlib.util.module_from_spec(spec);spec.loader.exec_module(proof)
 
 def toolchain():
-    if not Path(proof.score.ido('cc')).exists() or not shutil.which('mips-linux-gnu-ld'):
+    if not (proof.score.IDO/'cc').is_file() or not shutil.which('mips-linux-gnu-ld'):
         pytest.skip('pinned IDO and GNU MIPS tools required')
 
-def test_complete_replay_matches_receipt():
+def test_complete_replay_matches_receipt(monkeypatch):
+    reject_live_context(monkeypatch)
     toolchain()
-    assert json.loads(json.dumps(proof.main()))==json.loads((HERE/'verification.json').read_text())
+    assert proof.portable(proof.main())==proof.portable(json.loads((HERE/'verification.json').read_text()))
 
 def test_record_offsets_and_matrix_capacity():
     toolchain()
@@ -61,3 +62,24 @@ def test_research_path_has_no_matching_claims():
     from tools.cloud import check_submissions
     assert list(check_submissions.commands(ROOT,[str((HERE/'candidate.c').relative_to(ROOT))]))==[]
     assert json.loads((HERE/'provenance.json').read_text())['claims']==[]
+
+
+def reject_live_context(monkeypatch):
+    for method in ('read_bytes','read_text'):
+        original=getattr(Path,method)
+        def guarded(path,*args,_original=original,**kwargs):
+            if path==ROOT/'blob_matched.lock.json' or (ROOT/'src/blob') in path.parents:
+                raise AssertionError('packet read live production context: '+str(path))
+            return _original(path,*args,**kwargs)
+        monkeypatch.setattr(Path,method,guarded)
+
+
+def test_portable_receipt_keeps_packet_and_native_proof():
+    import copy
+    saved=json.loads((HERE/'verification.json').read_text())
+    changed=copy.deepcopy(saved)
+    changed['compiler']['context_source_sha256']={'historical context':'changed'}
+    changed['buffer_contract']['accepted_writer_source_sha256']='changed'
+    assert proof.portable(changed)==proof.portable(saved)
+    changed['compiler']['candidate']['gnu_body_sha256']='0'*64
+    assert proof.portable(changed)!=proof.portable(saved)

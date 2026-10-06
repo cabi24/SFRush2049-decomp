@@ -1,0 +1,88 @@
+{
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "function": "func_800EF288",
+  "native_bytes": 808,
+  "native_sha256": "4558842b6be059f68809f832cfb1b92732a67bc283fa75d6af692a4a5257c31a",
+  "source_sha256": "a7ef198e3c87750594e19658e97bab7ddf135053a3475bf1d7fd525b15c4e02d",
+  "reviewed_interpreter_sha256": "b2f7e81eeb8db86f8d994eafe7b373cfe2b58eb2a6ec447efe0310d694d3f085",
+  "cases": 7281,
+  "case_families": {
+    "baseline": 1,
+    "signed-count-enable-coordinates": 440,
+    "skip-masks-signed-bytes": 1536,
+    "all-gear-byte-values": 256,
+    "callback-mutations": 2024,
+    "nonpositive-count-after-callback": 24,
+    "seeded-random": 3000
+  },
+  "native_instruction_words_visited": 202,
+  "native_instruction_words": 202,
+  "unvisited_offsets": [],
+  "branches": {
+    "0x48": [
+      false,
+      true
+    ],
+    "0x7c": [
+      true
+    ],
+    "0x88": [
+      false,
+      true
+    ],
+    "0xc4": [
+      true
+    ],
+    "0x10c": [
+      false,
+      true
+    ],
+    "0x12c": [
+      false
+    ],
+    "0x13c": [
+      false,
+      true
+    ],
+    "0x148": [
+      false,
+      true
+    ],
+    "0x180": [
+      false,
+      true
+    ],
+    "0x254": [
+      false,
+      true
+    ],
+    "0x25c": [
+      true
+    ],
+    "0x264": [
+      false,
+      true
+    ],
+    "0x270": [
+      true
+    ],
+    "0x2dc": [
+      false,
+      true
+    ]
+  },
+  "trace_sha256": "8f49bf22fd4c3e41dee212c16ed032ff2ab4e384e82eec516f68e739ec0d44cc",
+  "host_sanitizer_cases": 10000,
+  "target_compilation_performed": false,
+  "limitations": [
+    "Finite contract-hook behavior checks; does not execute selector, queues, renderer, width implementation or gameplay.",
+    "Uses audited producer MIPS engine with independent fixture and callbacks; not a second independent emulator.",
+    "Host ABI represents pointers at host width; source record scalar offsets are statically asserted; no native GearAssets sizeof claim.",
+    "Test storage is four model records, four cars, and four layout rows; no original capacities or arbitrary-index validity proved."
+  ],
+  "context_origin_at_base": "cloud/work/dot_selector_d9058_20261006/context.c",
+  "context_equals_base_except_hoisted_O3_header": true,
+  "host_compiler": "cc (Debian 14.2.0-19) 14.2.0",
+  "negative_controls_passed": 8,
+  "negative_controls_report": "negative_controls.json"
+}

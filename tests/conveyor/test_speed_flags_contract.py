@@ -75,3 +75,19 @@ def test_all_direct_callers_are_accounted_for():
     census=v.caller_audit()
     assert census['direct_jal_sites']==21 and census['distinct_callers']==13
     assert census['all_witnessed_flag_values']==[0,1]
+
+
+def test_portability_keeps_packet_and_native_proof_strict():
+    import copy
+    import json
+    saved = json.loads((HERE / 'verification.json').read_text())
+    changed = copy.deepcopy(saved)
+    for field in ('accepted_source_sha256',):
+        changed[field] = 'unrelated integration provenance'
+    assert v.portable(changed) == v.portable(saved)
+    assert saved == json.loads((HERE / 'verification.json').read_text())
+    for field in ['target', 'inputs', 'native_body_sha256', 'native_intervals', 'flags', 'compiler_sha256', 'current_comparisons', 'gnu_complete_body_comparisons', 'gnu_total_relocations', 'owned_data_sections', 'external_symbol_bindings', 'behavior']:
+        mutant = copy.deepcopy(changed)
+        mutant[field] = 'proof drift'
+        assert v.portable(mutant) != v.portable(saved), field
+    assert 'tests/conveyor/test_speed_flags_contract.py' not in saved['inputs']

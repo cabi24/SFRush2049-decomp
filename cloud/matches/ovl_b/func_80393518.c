@@ -1,4 +1,4 @@
-/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
 /* Runtime image B: 0x80393518..0x803936A8. */
 typedef signed char s8;
 typedef signed short s16;

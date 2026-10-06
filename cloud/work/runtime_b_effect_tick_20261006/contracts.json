@@ -1,0 +1,75 @@
+{
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "targets": {
+    "func_80390B10": {
+      "address": "0x80390b10",
+      "size": 552,
+      "sha256": "656cfd510c2a08aa09c0dbba417f7e6bf84781681746380fddabce66c455fef8"
+    },
+    "func_80390D38": {
+      "address": "0x80390d38",
+      "size": 552,
+      "sha256": "e90f5ca0395a6429e0137efb62e2a8077600aff474bf298d5e47d98aec520355"
+    },
+    "func_80390F60": {
+      "address": "0x80390f60",
+      "size": 988,
+      "sha256": "6d91e9692637c1d96f48b3a1afcc63d3348212a42baf882e7e71034426a30bb3"
+    }
+  },
+  "direct_callers": {
+    "func_80390F60": [
+      {
+        "population": "blob",
+        "caller": "render_viewport_init",
+        "site": "0x800faa1c",
+        "kind": "jal"
+      }
+    ],
+    "func_80390D38": [
+      {
+        "population": "ovl_b",
+        "caller": "func_80390F60",
+        "site": "0x80390f70",
+        "kind": "jal"
+      }
+    ],
+    "func_80390B10": [
+      {
+        "population": "ovl_b",
+        "caller": "func_80390F60",
+        "site": "0x80390f78",
+        "kind": "jal"
+      }
+    ]
+  },
+  "external_services": {
+    "model_transform_setup": {
+      "address": "0x8008b0d8",
+      "size": 404,
+      "sha256": "90f162724388aaa4946f189aadfe0377f486bddf7ab0cbe8c30c767b8a878a5f",
+      "prototype": "void func_8008B0D8(s32 index, s32 mode, u32 viewports);",
+      "base_source": "src/blob/model_transform_setup.c"
+    },
+    "func_8008B2E4": {
+      "address": "0x8008b2e4",
+      "size": 72,
+      "sha256": "ba9c8043ae09ad367b6cfc05f8cecf7258c9f6b4ba74f877755617abfd558095",
+      "prototype": "f32 func_8008B2E4(f32 range);",
+      "base_source": "src/blob/func_8008B2E4.c"
+    },
+    "func_80090770": {
+      "address": "0x80090770",
+      "size": 44,
+      "sha256": "63c22792e9508d3ecf6bf1a7ca33f1e474feb47957aae72f5bc45941c4c62fa7",
+      "prototype": "void func_80090770(s16 index, u16 value);",
+      "base_source": "src/blob/func_80090770.c"
+    }
+  },
+  "pointer_literals_in_B": {
+    "func_80390B10": [],
+    "func_80390D38": [],
+    "func_80390F60": []
+  },
+  "limits": "Direct-edge census and aligned B-image pointer literals support, but do not prove, original private visibility. Computed addresses, indirect reachability, other runtime images and original source-file boundaries are not globally proved."
+}

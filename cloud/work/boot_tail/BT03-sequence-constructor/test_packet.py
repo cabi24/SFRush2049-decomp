@@ -5,6 +5,8 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+import shutil
+import pytest
 
 WORK = Path(__file__).resolve().parent
 ROOT = WORK.parents[3]
@@ -131,6 +133,8 @@ class PacketTests(unittest.TestCase):
             self.simple([instruction(4,immediate=1), instruction(4,immediate=1), special(rs=31,fn=8),0])
 
     def test_real_source_mutation_rejected(self):
+        if not (score.IDO / 'cc').is_file() or not shutil.which('mips-linux-gnu-ld'):
+            pytest.skip('pinned IDO and MIPS GNU linker required')
         with tempfile.TemporaryDirectory(prefix='sequence-negative-') as tmp:
             tmp = Path(tmp)
             source = tmp/'mutant.c'
@@ -153,3 +157,19 @@ class PacketTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+def test_portability_keeps_packet_and_native_proof_strict():
+    import copy
+    import json
+    saved = json.loads((WORK / 'evidence.json').read_text())
+    changed = copy.deepcopy(saved)
+    for field in ('manifest_sha256',):
+        changed[field] = 'unrelated integration provenance'
+    assert verify.portable(changed) == verify.portable(saved)
+    assert saved == json.loads((WORK / 'evidence.json').read_text())
+    for field in ['source_sha256', 'harness_sha256', 'native_inputs', 'target', 'native_layout', 'compiled_rows', 'behavior', 'host_behavior']:
+        mutant = copy.deepcopy(changed)
+        mutant[field] = 'proof drift'
+        assert verify.portable(mutant) != verify.portable(saved), field
+    assert 'test_packet.py' not in saved['harness_sha256']

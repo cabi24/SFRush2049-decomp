@@ -1,0 +1,156 @@
+{
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "group_source_sha256": "61325efa5cbe8acf1091f34690048ed65d74fefc87a19ee8c815036dc93328f7",
+  "producer_source_files": {
+    "source/car_lod_select.c": "3d69aa18e7aeb10b20483dafd15a2b1561c814a2ac435e2967ed7e092b837e44",
+    "source/common.c": "8130ba034c394b5b965049271226c3e21c2f4e6fbbc7449862fa74314335383b",
+    "source/group.c": "93e891e0fe91c7799eed6c0f578394444b87b9b283e6404c22ee05d5628ef82a",
+    "source/heap_release.c": "68252074b6a4bf9fec918bb115f108ba6838e1696172399ca8febb0d86d720d7",
+    "source/helpers.c": "bbed22c3ec314d1ff757ef09d2654b21fcd39aa8ec66d840eb15ecc221cebd64",
+    "source/pak_types.h": "5e312d27c6cec07d6aac99c7fe53e3585d6049077b25ed5b741232d22d79cd46",
+    "source/status_update.c": "c860424dd31d387ac4aab25a1102f47a9c326e13568e4bf93678e3a2b6ad8786",
+    "source/track_process_main.c": "29ebd9606d22f7ffe4aceaaeda6cd119b16f5e509553920a225d32d7b4377ef7",
+    "source/track_render_process.c": "8c884351dcc54cc1e0872a88b882b2a22f11e0ba3e9996a5a98993d319c0c4a2"
+  },
+  "build_recipe": {
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "files": [
+      "group.c"
+    ],
+    "keep": [
+      "func_800A1E94",
+      "func_80095F8C",
+      "func_80095EF4",
+      "audio_reverb_update",
+      "func_800A43FC",
+      "car_lod_select",
+      "track_process_main",
+      "track_render_process"
+    ]
+  },
+  "target_sha256": {
+    "audio_reverb_update": "9819b47716bced504227b5117fa1e0bf3144db7f0ffab1b198909a1c9421e221",
+    "car_lod_select": "5cf04af1fdca72100b3e0a2a033f2f3061255c1c44046d35d9bc98998c869893",
+    "func_80095EC0": "91a46e121284a2911e13fb040b9939e8ea7f89a7ec78714b7367da3a7de5a559",
+    "func_80095EF4": "435071b6f94e442c8489101d13366a31dbe4088bf7006c2357eca6a252a459ab",
+    "func_80095F8C": "98396da74ec2786665375bc530e724757b7304a9aa09744ff96cb4ff1511ae4e",
+    "func_800A1E94": "62b190e1ab82d2d78f8a607b2cb53206bc85e657155def153f1e61c06409b7be",
+    "func_800A3640": "396d5bb70ffb9baf475bec66ae0e0cc364a581f0c75197fcc802233eb3c38a20",
+    "func_800A3724": "7a403028b49b2685282378bd393b71334b21c5483ba84ca9800f562b848f3502",
+    "func_800A43FC": "82228d4b27e116ead98dc43c51bb2ff07886c2c3cf602e9cb58ce22071e3966f",
+    "no_catchup": "32bbc47b3e77ef4949234743309a40160496fbbc37e18265c7e70b43a8914f96",
+    "track_process_main": "6c90d7caa962ffabf6c30b7c6f9917e7a58dbc8e2fb66eb50b732ece1e4beb0b",
+    "track_render_process": "ffa8f13e745a8a6d18e83c25633eda053f0862ddf1fb5a45adebd8456530354f"
+  },
+  "accepted_context_at_base": {
+    "audio_reverb_update": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "group": "codex_heap_release_a25",
+      "source": "src/blob/groups/codex_heap_release_a25/group.json",
+      "verified": "image_gate"
+    },
+    "func_80095EC0": {
+      "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source": "src/blob/func_80095EC0.c",
+      "verified": "image_gate"
+    },
+    "func_80095EF4": {
+      "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source": "src/blob/func_80095EF4.c",
+      "verified": "image_gate"
+    },
+    "func_80095F8C": {
+      "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source": "src/blob/func_80095F8C.c",
+      "verified": "image_gate"
+    },
+    "func_800A1E94": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "group": "codex_pfs_status_c90",
+      "source": "src/blob/groups/codex_pfs_status_c90/group.json",
+      "verified": "image_gate"
+    },
+    "func_800A43FC": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "source": "src/blob/func_800A43FC.c",
+      "verified": "image_gate"
+    },
+    "no_catchup": {
+      "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+      "source": "src/blob/no_catchup.c",
+      "verified": "image_gate"
+    }
+  },
+  "semantic_source_review": {
+    "decision": "PASS_INDEPENDENT_BOUNDED_SEMANTIC_REVIEW",
+    "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+    "source_files": {
+      "source/car_lod_select.c": "3d69aa18e7aeb10b20483dafd15a2b1561c814a2ac435e2967ed7e092b837e44",
+      "source/common.c": "8130ba034c394b5b965049271226c3e21c2f4e6fbbc7449862fa74314335383b",
+      "source/group.c": "93e891e0fe91c7799eed6c0f578394444b87b9b283e6404c22ee05d5628ef82a",
+      "source/heap_release.c": "68252074b6a4bf9fec918bb115f108ba6838e1696172399ca8febb0d86d720d7",
+      "source/helpers.c": "bbed22c3ec314d1ff757ef09d2654b21fcd39aa8ec66d840eb15ecc221cebd64",
+      "source/pak_types.h": "5e312d27c6cec07d6aac99c7fe53e3585d6049077b25ed5b741232d22d79cd46",
+      "source/status_update.c": "c860424dd31d387ac4aab25a1102f47a9c326e13568e4bf93678e3a2b6ad8786",
+      "source/track_process_main.c": "29ebd9606d22f7ffe4aceaaeda6cd119b16f5e509553920a225d32d7b4377ef7",
+      "source/track_render_process.c": "8c884351dcc54cc1e0872a88b882b2a22f11e0ba3e9996a5a98993d319c0c4a2"
+    },
+    "target_compilations": 0,
+    "publication_attempts": 0,
+    "source_corrections_required": [],
+    "checks": {
+      "producer_fresh_host_replay": 210,
+      "extended_native_host_executions": 954,
+      "extended_scenarios": 159,
+      "extended_compiler_configurations": [
+        "GCC O2",
+        "GCC C89 O1 UBSan bounds no-recover"
+      ],
+      "nonempty_cleanup_reset_executions": 104,
+      "o32_host_layout_assertions": 68,
+      "fail_closed_drills": 9,
+      "genuine_caller_role_checks": "PASS"
+    },
+    "next_gate": "Choose only evidence-supported real root/visibility context before any target experiment; no strict-MATCH or original source claim. Publication remains paused.",
+    "artifacts": [
+      "review.md",
+      "baseline-results.json",
+      "independent-results.json",
+      "helper-results.json",
+      "fail-closed-results.json",
+      "caller-results.json"
+    ]
+  },
+  "compiled_caller_behavior": {
+    "status": "PASS_BOUNDED_NATIVE_COMPILED_AGREEMENT",
+    "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+    "object_sha256": "c5d3ac81cb75e759e67bb3e001361b3b853351b042e5598f35e5fdcc26f0ed33",
+    "target_compilations": 0,
+    "execution_count": 1164,
+    "failures": [],
+    "limits": [
+      "Executes complete compiled A377C plus actual compiled empty-list A3640 and exact compiled A3724; prepend operation is inlined in caller.",
+      "Unchanged reviewed SDK/UI/list/codec hooks and interpreter; no extra target or host compilation.",
+      "All modeled nonstack bytes and service traces compared; stack scratch intentionally excluded because frames differ.",
+      "Nonempty cleanup and heap internals are outside these compiled caller fixtures. Source-only review independently covers nonempty cleanup.",
+      "A377C return value is not meaningful and is not compared. Saved registers, stack restoration, script consumption and final lock release are enforced by the unchanged interpreter."
+    ]
+  },
+  "original_baseline_object_sha256": "c5d3ac81cb75e759e67bb3e001361b3b853351b042e5598f35e5fdcc26f0ed33",
+  "source_order": [
+    "source/group.c",
+    "source/common.c",
+    "source/pak_types.h",
+    "source/heap_release.c",
+    "source/helpers.c",
+    "source/status_update.c",
+    "source/car_lod_select.c",
+    "source/track_process_main.c",
+    "source/track_render_process.c"
+  ],
+  "claims": [
+    "func_800A3724"
+  ],
+  "verifier_sha256": "f1f499709f8684c757a4c3cec4d6ea892901a8452c8dc27e18150937ca0398db",
+  "group_json_sha256": "4e94a9e1d48ba35de6fdd117c252d813d510ffd37f7d18cd7c1d4436967fd091"
+}

@@ -1,4 +1,4 @@
-/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
 /* Image A only: [0x80393004, 0x803930B8), 180 native bytes.
  * Initialize two menu availability rows using the selected player's count.
  * The producer at A:803930B8 fills four counts: -4..-1 sentinels or a

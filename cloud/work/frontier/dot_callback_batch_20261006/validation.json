@@ -1,0 +1,115 @@
+{
+  "status": "LOCAL ADDITIVE NONMATCH RESEARCH; focused validation passed",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "claims": [],
+  "accepted_coverage_bytes": 0,
+  "scope": "Separate source-only additive staging; no edits to the tested 345-file tree or rush-sixth-baseline; no full checkout, external writes or CI monitoring.",
+  "unchanged_c_sources": {
+    "cloud/work/frontier/dot_gear_label_ef288_20261006/candidate.c": "a7ef198e3c87750594e19658e97bab7ddf135053a3475bf1d7fd525b15c4e02d",
+    "cloud/work/frontier/dot_gear_label_ef288_20261006/context.c": "e202453501444783bac5466e989c514e893bf6ba59606906edfb498d922193bf",
+    "cloud/work/frontier/dot_gear_label_ef288_20261006/host.c": "4e7c0490f4948412f1d11666a791e35b4166304f692d1eb9fa59ff4ab2665bcc",
+    "cloud/work/frontier/dot_gear_label_ef288_20261006/review/candidate.c": "a7ef198e3c87750594e19658e97bab7ddf135053a3475bf1d7fd525b15c4e02d",
+    "cloud/work/frontier/dot_gear_label_ef288_20261006/review/host_audit.c": "1d4b71f428c13c76bfd84553e8791a0443a11e095b4a1426e3d4509dd3b9ac49",
+    "cloud/work/frontier/dot_viewport_effect_fa9b4_20261006/candidate.c": "e843f3500c6a952dd067949a7d5f894febfb8d635d77baa480778360dc95f4ee",
+    "cloud/work/frontier/dot_viewport_effect_fa9b4_20261006/host.c": "5ba71f5c30b9b342b85da0b7539c9ae36012198b5e0a952832a345ef32d3bfa0",
+    "cloud/work/frontier/dot_viewport_effect_fa9b4_20261006/review/frozen_candidate.c": "e843f3500c6a952dd067949a7d5f894febfb8d635d77baa480778360dc95f4ee",
+    "cloud/work/frontier/dot_viewport_effect_fa9b4_20261006/review/host_review.c": "b46592339cd3286e1f2cd37579021d7e7ec1645090716fbc31af6340338091c1"
+  },
+  "changed_wrapper_sources": [
+    {
+      "path": "cloud/work/frontier/dot_gear_label_ef288_20261006/verify.py",
+      "original_sha256": "fa19e3c5291146fbcabda65f7b9b5af50d775c00f6c258d96bb55c8cda07422c",
+      "staged_sha256": "f1ab6333da53e57c25a471b38142e7b3e6943ef8c110783f916fcec707453832"
+    },
+    {
+      "path": "cloud/work/frontier/dot_gear_label_ef288_20261006/review/audit.py",
+      "original_sha256": "a1dc6fa0520d3db519babbfca4e84ea7ab9ef28c4b1093bc69be5b2df6d45aad",
+      "staged_sha256": "5973d09a46991e6604d046d71a3a97522cb3c13bae775e586f186cd8dc4ac927"
+    },
+    {
+      "path": "cloud/work/frontier/dot_gear_label_ef288_20261006/review/negative.py",
+      "original_sha256": "e6c2e4241258608428a7c2346950df0c1eb77ca81800f264d8768ff7baed9474",
+      "staged_sha256": "191e2e5ddf438e7dce8305511a4b3b7b92049d39521e710b59d0a3d9c5cdac6b"
+    },
+    {
+      "path": "cloud/work/frontier/dot_viewport_effect_fa9b4_20261006/review/build_review_host.py",
+      "original_sha256": "5b8da3861df07bfb90f57f426268e379000e4da2460343a16bc1a0b93599e721",
+      "staged_sha256": "e660cac5e1e03c36e66d9dbf7dc08c35dcb054f4f8815e878ebf3704dac71583"
+    },
+    {
+      "path": "cloud/work/frontier/dot_viewport_effect_fa9b4_20261006/review/mutations.py",
+      "original_sha256": "1abef64a9383f26423f7e7aa559dd8227bb433302fd859962d30ff5a63bc287a",
+      "staged_sha256": "2f119e4a5d968ef771c5e64620ef397035eeade39e3cf16cf900bf543541b737"
+    },
+    {
+      "path": "cloud/work/frontier/dot_viewport_effect_fa9b4_20261006/review/review.py",
+      "original_sha256": "ae3ba2434a831f435e13d902b07147a2557b666d6b414163f528c1acd07ca347",
+      "staged_sha256": "bc62311b8ef63e28ee97c3ff4b12758efbe1faa2645a90045aeb6755b7373614"
+    },
+    {
+      "path": "cloud/work/frontier/dot_viewport_effect_fa9b4_20261006/review/static_review.py",
+      "original_sha256": "3014c10ed389e05e8d6070c578a33fec715a0ba61020c2063da9314e6e2ed4ba",
+      "staged_sha256": "f3d9b42224e3c123698aa24666f15d465b64321436e0227bcaa0aa27d6f463ce"
+    }
+  ],
+  "test_adjustments": [
+    "The viewport focused test moves from packet/test_packet.py to tests/cloud/test_viewport_effect_fa9b4.py and locates its packet from the repository root.",
+    "Added tests/cloud/test_callback_source_reviews.py for actual source/native bindings and independent review replays; tests are not receipt-pinned."
+  ],
+  "proof_equality": {
+    "gear_root": "Entire regenerated verification receipt equals original after removing only source_hashes.verify.py on both sides; all 7 compiled function words/hashes/extents, 139 relocations, zero own-data, 12 alignment bytes and behavior remain identical.",
+    "gear_review": "All fields emitted by the 7,281-case fresh audit equal the archived review; 8 negative controls exactly equal; original manually recorded historical context metadata remains intact.",
+    "viewport_producer": "Both 10,000-case semantic receipts, 17-service additional-contract audit and 12-target identity/two wrong-image control receipt exactly equal their originals.",
+    "viewport_review": "2,548 fixtures, 2,145 repeated-boundary schedules, 22,729 applied mutations; normal and UBSan receipts exactly equal original; 16 source mutants and static native/object alignment receipt exactly equal original.",
+    "native_comparisons": {
+      "func_800EF288": {
+        "status": "NONMATCH",
+        "candidate_bytes": 788,
+        "native_bytes": 808,
+        "differing_words": 179
+      },
+      "render_viewport_init": {
+        "status": "NONMATCH",
+        "candidate_bytes": 912,
+        "native_bytes": 924,
+        "differing_words": 227
+      }
+    }
+  },
+  "focused_matrix": [
+    {
+      "environment": "Pinned IDO and MIPS GNU linker present",
+      "passed": 13,
+      "skipped": 0,
+      "seconds": 58.59
+    },
+    {
+      "environment": "IDO_DIR points to missing directory",
+      "passed": 7,
+      "skipped": 6,
+      "seconds": 27.35
+    },
+    {
+      "environment": "Pinned IDO present; PATH excludes MIPS GNU linker",
+      "passed": 7,
+      "skipped": 6,
+      "seconds": 24.11
+    }
+  ],
+  "sanitizers": {
+    "gear_literal_source_ASan_UBSan_cases": 10000,
+    "viewport_literal_source_ASan_UBSan_cases": 10000,
+    "viewport_independent_UBSan_cases": 2548
+  },
+  "replay_environment": "rush-recovery-env.sh, writable workspace TMPDIR, PYTHONDONTWRITEBYTECODE=1, unrelated test/subprocess working directories; canonical tools/history supplied separately with RUSH_TOOL_ROOT and RUSH_REFERENCE_ROOT.",
+  "compilation_scope": "Frozen canonical O3 gear group reproduced for verifier receipt and focused fixture, without source or flags tuning. Viewport focused and independent checks reused the original canonical O3 object. Normal CI may rebuild frozen sources after explicit compiler/linker guards.",
+  "portability": "24 authored C/Python/group files and 36 selected native target identities bound; no mutable tool/context/manifest/lock/production hashes and no test-file receipt pins. Historical context is read at the recorded base.",
+  "limits": [
+    "All producer/reviewer domain and ABI limits remain in their READMEs and receipts.",
+    "Gear native selector input s2 differs from compiled s1; source-context and private ABI composition remain unproved.",
+    "Viewport boundaries are ordinary opaque services; B-image residency and valid finite initialized index/pointer/float domains remain assumptions.",
+    "Independent fixtures reuse producer instruction interpreters, not independent CPU implementations.",
+    "This is a focused source/contract validation, not the required future full current-master present/absent integration gate.",
+    "Publication remains paused pending explicit user confirmation."
+  ]
+}

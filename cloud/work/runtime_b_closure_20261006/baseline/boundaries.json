@@ -1,0 +1,2974 @@
+{
+  "status": "COMPLETE-ELF NONMATCH DIAGNOSTIC; original object unchanged; zero new compilations",
+  "source_sha256": "fc80a9075c6357b1833bc53b7810f8a4ee2c2f874e1bc8ba03f47fcb10e32d95",
+  "object_sha256": "a298c26fab7559c4f51030dfb613bcc0729dd8c8889f599640cc9d67dd924f13",
+  "linked_sha256": "f96391a78a196c39b0829020365eb39f668cb28653a51a31715959001c70c665",
+  "procedure_boundary_source": ".mdebug ECOFF symbols and procedure descriptors, not guessed prologues",
+  "no_private_body_eliminated": true,
+  "functions": {
+    "func_8038D200": {
+      "offset": 0,
+      "size": 264,
+      "kind": "stStaticProc",
+      "frame_bytes": 24,
+      "integer_save_mask": "0x80000000",
+      "float_save_mask": "0x0",
+      "frame_register": 29,
+      "return_register": 31,
+      "source_line_start": 232,
+      "source_line_end": 264,
+      "evidence": "ECOFF procedure + matching stEnd length + PDR address/frame cross-check",
+      "address": "0x81000000",
+      "native_size": 296,
+      "native_sha256": "474ecb6290207ace7925c37d398ae36bc2e33b6a4041ee62d3d4202fb3f16772",
+      "linked_member_sha256": "383ffd811d933b2244e81c404d40da92b7fa51f218b665611ac37712fcd3e9bd",
+      "full_unmasked_research_placement": {
+        "differing_words": 52,
+        "native_words": 74,
+        "missing_words": 8,
+        "extra_words": 0,
+        "extra_nonzero_words": 0,
+        "first_different_offsets": [
+          "0x44",
+          "0x58",
+          "0x60",
+          "0x64",
+          "0x68",
+          "0x6c",
+          "0x70",
+          "0x74",
+          "0x78",
+          "0x7c",
+          "0x80",
+          "0x84"
+        ],
+        "status": "NONMATCH",
+        "limits": "Full unchanged GNU-linked member, including research-placed internal calls and own-data addresses; no relocation masks; not a native-placement normalized score."
+      },
+      "pinned_native_own_data": {
+        "sites": [],
+        "notes": [],
+        "failures": [],
+        "unverified": [
+          ".rodata+0x0 at +0xb4: retail bytes at 0x00200024 are not available",
+          ".rodata+0x4 at +0xb8: retail bytes at 0x32020028 are not available",
+          ".rodata+0x8 at +0xf4: retail bytes at 0x51023202 are not available"
+        ],
+        "placements": {},
+        "zero": [],
+        "references": 3,
+        "bss_sites": []
+      },
+      "own_data_limits": "Unmodified API, kept FCE0 symbol used only as .text locator with explicit ECOFF start; only common native/candidate extent has comparable native words. Structural code differences prevent native data-placement proof. Candidate excess relocations are nevertheless fully checked in whole-ELF GNU relocation validation."
+    },
+    "func_8038D328": {
+      "offset": 264,
+      "size": 124,
+      "kind": "stStaticProc",
+      "frame_bytes": 24,
+      "integer_save_mask": "0x80000000",
+      "float_save_mask": "0x0",
+      "frame_register": 29,
+      "return_register": 31,
+      "source_line_start": 269,
+      "source_line_end": 279,
+      "evidence": "ECOFF procedure + matching stEnd length + PDR address/frame cross-check",
+      "address": "0x81000108",
+      "native_size": 124,
+      "native_sha256": "5d8fc0875c56105d63e0eaee161b6ec6900d742563b85d047035984fb0fa904a",
+      "linked_member_sha256": "5d8fc0875c56105d63e0eaee161b6ec6900d742563b85d047035984fb0fa904a",
+      "full_unmasked_research_placement": {
+        "differing_words": 0,
+        "native_words": 31,
+        "missing_words": 0,
+        "extra_words": 0,
+        "extra_nonzero_words": 0,
+        "first_different_offsets": [],
+        "status": "BYTE-EXACT PRIVATE BODY; NOT ACCEPTED",
+        "limits": "Full unchanged GNU-linked member, including research-placed internal calls and own-data addresses; no relocation masks; not a native-placement normalized score."
+      },
+      "pinned_native_own_data": {
+        "sites": [],
+        "notes": [],
+        "failures": [],
+        "unverified": [],
+        "placements": {},
+        "zero": [],
+        "references": 0,
+        "bss_sites": []
+      },
+      "own_data_limits": "Unmodified API, kept FCE0 symbol used only as .text locator with explicit ECOFF start; only common native/candidate extent has comparable native words. Structural code differences prevent native data-placement proof. Candidate excess relocations are nevertheless fully checked in whole-ELF GNU relocation validation."
+    },
+    "func_8038D498": {
+      "offset": 1284,
+      "size": 804,
+      "kind": "stStaticProc",
+      "frame_bytes": 128,
+      "integer_save_mask": "0x80000000",
+      "float_save_mask": "0x0",
+      "frame_register": 29,
+      "return_register": 31,
+      "source_line_start": 284,
+      "source_line_end": 337,
+      "evidence": "ECOFF procedure + matching stEnd length + PDR address/frame cross-check",
+      "address": "0x81000504",
+      "native_size": 768,
+      "native_sha256": "fc6f18de1f301b86d8a9708aa066babbedc370b22067858a2248578597aa2d6e",
+      "linked_member_sha256": "ca3f6c89104aa925175b76225117dee831b12204ed540d4146bc3f045e16f992",
+      "full_unmasked_research_placement": {
+        "differing_words": 182,
+        "native_words": 192,
+        "missing_words": 0,
+        "extra_words": 9,
+        "extra_nonzero_words": 8,
+        "first_different_offsets": [
+          "0x0",
+          "0x8",
+          "0xc",
+          "0x10",
+          "0x28",
+          "0x2c",
+          "0x30",
+          "0x38",
+          "0x3c",
+          "0x40",
+          "0x44",
+          "0x48"
+        ],
+        "status": "NONMATCH",
+        "limits": "Full unchanged GNU-linked member, including research-placed internal calls and own-data addresses; no relocation masks; not a native-placement normalized score."
+      },
+      "pinned_native_own_data": {
+        "sites": [],
+        "notes": [],
+        "failures": [],
+        "unverified": [
+          ".rodata+0x14 at +0xb0: retail bytes at 0x0002C000 are not available",
+          ".rodata+0x18 at +0xec: retail bytes at 0x00380000 are not available",
+          ".rodata+0x1c at +0x104: retail bytes at 0x00138039 are not available"
+        ],
+        "placements": {},
+        "zero": [],
+        "references": 3,
+        "bss_sites": []
+      },
+      "own_data_limits": "Unmodified API, kept FCE0 symbol used only as .text locator with explicit ECOFF start; only common native/candidate extent has comparable native words. Structural code differences prevent native data-placement proof. Candidate excess relocations are nevertheless fully checked in whole-ELF GNU relocation validation."
+    },
+    "func_8038DA78": {
+      "offset": 388,
+      "size": 896,
+      "kind": "stStaticProc",
+      "frame_bytes": 152,
+      "integer_save_mask": "0x80000000",
+      "float_save_mask": "0x0",
+      "frame_register": 29,
+      "return_register": 31,
+      "source_line_start": 341,
+      "source_line_end": 392,
+      "evidence": "ECOFF procedure + matching stEnd length + PDR address/frame cross-check",
+      "address": "0x81000184",
+      "native_size": 868,
+      "native_sha256": "7c7128167920d9661e579931d669aa4821c940234e8d7ed09ee89235bc7b2dcf",
+      "linked_member_sha256": "eb518fe25b247a2713c9d2eb82b58d337896aae054a879803f5c42dd12cbf610",
+      "full_unmasked_research_placement": {
+        "differing_words": 215,
+        "native_words": 217,
+        "missing_words": 0,
+        "extra_words": 7,
+        "extra_nonzero_words": 6,
+        "first_different_offsets": [
+          "0x0",
+          "0x8",
+          "0x10",
+          "0x14",
+          "0x18",
+          "0x1c",
+          "0x20",
+          "0x24",
+          "0x28",
+          "0x2c",
+          "0x30",
+          "0x34"
+        ],
+        "status": "NONMATCH",
+        "limits": "Full unchanged GNU-linked member, including research-placed internal calls and own-data addresses; no relocation masks; not a native-placement normalized score."
+      },
+      "pinned_native_own_data": {
+        "sites": [],
+        "notes": [],
+        "failures": [],
+        "unverified": [
+          ".rodata+0xc at +0x94: retail bytes at 0x00740018 are not available",
+          ".rodata+0x10 at +0xd8: retail bytes at 0x801543CA are not available"
+        ],
+        "placements": {},
+        "zero": [],
+        "references": 2,
+        "bss_sites": []
+      },
+      "own_data_limits": "Unmodified API, kept FCE0 symbol used only as .text locator with explicit ECOFF start; only common native/candidate extent has comparable native words. Structural code differences prevent native data-placement proof. Candidate excess relocations are nevertheless fully checked in whole-ELF GNU relocation validation."
+    },
+    "func_8038E088": {
+      "offset": 2088,
+      "size": 120,
+      "kind": "stStaticProc",
+      "frame_bytes": 24,
+      "integer_save_mask": "0x80000000",
+      "float_save_mask": "0x0",
+      "frame_register": 29,
+      "return_register": 31,
+      "source_line_start": 397,
+      "source_line_end": 417,
+      "evidence": "ECOFF procedure + matching stEnd length + PDR address/frame cross-check",
+      "address": "0x81000828",
+      "native_size": 140,
+      "native_sha256": "434d8ec74a3bebf916add5908bede08ac3395d67e028441b9e30d20e2073af9a",
+      "linked_member_sha256": "8ad574f2ce179e445c91a1612bf9b64ee66e96bb38e45f38c65f26fb67c0a8e0",
+      "full_unmasked_research_placement": {
+        "differing_words": 33,
+        "native_words": 35,
+        "missing_words": 5,
+        "extra_words": 0,
+        "extra_nonzero_words": 0,
+        "first_different_offsets": [
+          "0x8",
+          "0xc",
+          "0x10",
+          "0x14",
+          "0x18",
+          "0x1c",
+          "0x20",
+          "0x24",
+          "0x28",
+          "0x2c",
+          "0x30",
+          "0x34"
+        ],
+        "status": "NONMATCH",
+        "limits": "Full unchanged GNU-linked member, including research-placed internal calls and own-data addresses; no relocation masks; not a native-placement normalized score."
+      },
+      "pinned_native_own_data": {
+        "sites": [],
+        "notes": [],
+        "failures": [],
+        "unverified": [
+          ".rodata+0x20 at +0x24: retail bytes at 0x08210008 are not available"
+        ],
+        "placements": {},
+        "zero": [],
+        "references": 1,
+        "bss_sites": []
+      },
+      "own_data_limits": "Unmodified API, kept FCE0 symbol used only as .text locator with explicit ECOFF start; only common native/candidate extent has comparable native words. Structural code differences prevent native data-placement proof. Candidate excess relocations are nevertheless fully checked in whole-ELF GNU relocation validation."
+    },
+    "func_8038E114": {
+      "offset": 2208,
+      "size": 5356,
+      "kind": "stStaticProc",
+      "frame_bytes": 272,
+      "integer_save_mask": "0x80000000",
+      "float_save_mask": "0x0",
+      "frame_register": 29,
+      "return_register": 31,
+      "source_line_start": 421,
+      "source_line_end": 741,
+      "evidence": "ECOFF procedure + matching stEnd length + PDR address/frame cross-check",
+      "address": "0x810008a0",
+      "native_size": 5196,
+      "native_sha256": "d1dc2c70973b1780b81b37730a974fc4921b14ab4d368437d899a6fe9f7ef8e0",
+      "linked_member_sha256": "57abaf82bdc9e29852c02747b09408b8192651636a4b4a7f6a83e89d23f0db0e",
+      "full_unmasked_research_placement": {
+        "differing_words": 1281,
+        "native_words": 1299,
+        "missing_words": 0,
+        "extra_words": 40,
+        "extra_nonzero_words": 39,
+        "first_different_offsets": [
+          "0x0",
+          "0x4",
+          "0x8",
+          "0xc",
+          "0x10",
+          "0x18",
+          "0x1c",
+          "0x20",
+          "0x28",
+          "0x2c",
+          "0x30",
+          "0x34"
+        ],
+        "status": "NONMATCH",
+        "limits": "Full unchanged GNU-linked member, including research-placed internal calls and own-data addresses; no relocation masks; not a native-placement normalized score."
+      },
+      "pinned_native_own_data": {
+        "sites": [],
+        "notes": [],
+        "failures": [],
+        "unverified": [
+          ".rodata+0x44 at +0x1d0: retail bytes at 0x002800E4 are not available",
+          ".rodata+0x48 at +0x618: retail bytes at 0x4E200000 are not available",
+          ".rodata+0x68 at +0x628: retail bytes at 0x80034120 are not available",
+          ".rodata+0x6c at +0xa10: retail bytes at 0x00A78039 are not available",
+          ".rodata+0x70 at +0xa2c: retail bytes at 0x4460F000 are not available",
+          ".rodata+0x74 at +0xc30: retail bytes at 0xEB940002 are not available",
+          ".rodata+0x78 at +0xc70: retail bytes at 0x60002CB9 are not available",
+          ".rodata+0x7c at +0xcf8: retail bytes at 0x80140BDC are not available",
+          ".rodata+0x80 at +0xd5c: retail bytes at 0x00AC0024 are not available",
+          ".rodata+0x84 at +0xdfc: retail bytes at 0x00200048 are not available",
+          ".rodata+0x88 at +0xec0: retail bytes at 0x00682200 are not available",
+          ".rodata+0x8c at +0xf94: retail bytes at 0x00032025 are not available",
+          ".rodata+0x90 at +0xfa4: retail bytes at 0x00081000 are not available",
+          "own .rodata .rodata+0x94 at +0x1310: table entry .text+0x1d18 is outside the function"
+        ],
+        "placements": {},
+        "zero": [],
+        "references": 14,
+        "bss_sites": []
+      },
+      "own_data_limits": "Unmodified API, kept FCE0 symbol used only as .text locator with explicit ECOFF start; only common native/candidate extent has comparable native words. Structural code differences prevent native data-placement proof. Candidate excess relocations are nevertheless fully checked in whole-ELF GNU relocation validation."
+    },
+    "func_8038F938": {
+      "offset": 7564,
+      "size": 964,
+      "kind": "stStaticProc",
+      "frame_bytes": 56,
+      "integer_save_mask": "0x80000000",
+      "float_save_mask": "0x0",
+      "frame_register": 29,
+      "return_register": 31,
+      "source_line_start": 746,
+      "source_line_end": 829,
+      "evidence": "ECOFF procedure + matching stEnd length + PDR address/frame cross-check",
+      "address": "0x81001d8c",
+      "native_size": 928,
+      "native_sha256": "1b5eb1e66549eb1cc0fba50a3dc3e432e295fde04bf1777be2a5bcdfccd9e106",
+      "linked_member_sha256": "af99d5a58eba234affd614e2b10cf44890756364dc58b110993dafdf506b23cc",
+      "full_unmasked_research_placement": {
+        "differing_words": 215,
+        "native_words": 232,
+        "missing_words": 0,
+        "extra_words": 9,
+        "extra_nonzero_words": 8,
+        "first_different_offsets": [
+          "0x14",
+          "0x18",
+          "0x28",
+          "0x2c",
+          "0x34",
+          "0x38",
+          "0x3c",
+          "0x44",
+          "0x4c",
+          "0x54",
+          "0x58",
+          "0x5c"
+        ],
+        "status": "NONMATCH",
+        "limits": "Full unchanged GNU-linked member, including research-placed internal calls and own-data addresses; no relocation masks; not a native-placement normalized score."
+      },
+      "pinned_native_own_data": {
+        "sites": [],
+        "notes": [],
+        "failures": [
+          "own .rodata+0xc0 referenced at +0x224 differs from retail 0x80394EA8 (+0x0: retail 3d75c28f, got 3d4ccccd; 4 bytes compared)"
+        ],
+        "unverified": [
+          ".rodata+0xb8 at +0x88: retail bytes at 0x000403A1 are not available",
+          ".rodata+0xbc at +0x168: retail bytes at 0x00527880 are not available",
+          ".rodata+0xc4 at +0x25c: retail bytes at 0x000C2400 are not available",
+          ".rodata+0xc8 at +0x274: retail bytes at 0x00004EAC are not available",
+          ".rodata+0xcc at +0x2c4: retail bytes at 0x02017880 are not available",
+          ".rodata+0xd0 at +0x2d4: retail bytes at 0x30210004 are not available",
+          ".rodata+0xd4 at +0x2f4: retail bytes at 0x0004000C are not available"
+        ],
+        "placements": {},
+        "zero": [],
+        "references": 8,
+        "bss_sites": []
+      },
+      "own_data_limits": "Unmodified API, kept FCE0 symbol used only as .text locator with explicit ECOFF start; only common native/candidate extent has comparable native words. Structural code differences prevent native data-placement proof. Candidate excess relocations are nevertheless fully checked in whole-ELF GNU relocation validation."
+    },
+    "func_8038FCE0": {
+      "offset": 8528,
+      "size": 3060,
+      "kind": "stProc",
+      "frame_bytes": 208,
+      "integer_save_mask": "0xc0ff0000",
+      "float_save_mask": "0xfff00000",
+      "frame_register": 29,
+      "return_register": 31,
+      "source_line_start": 833,
+      "source_line_end": 1066,
+      "evidence": "ECOFF procedure + matching stEnd length + PDR address/frame cross-check",
+      "address": "0x81002150",
+      "native_size": 3056,
+      "native_sha256": "3574383f8241f87f1aa201bc4a7265e49cd818b8b6f7e6564ecca4131b6682e2",
+      "linked_member_sha256": "db837328b7318557c7bd26a82471686dcce31b2e2eb4d791ac7af6d438014880",
+      "full_unmasked_research_placement": {
+        "differing_words": 740,
+        "native_words": 764,
+        "missing_words": 0,
+        "extra_words": 1,
+        "extra_nonzero_words": 1,
+        "first_different_offsets": [
+          "0x48",
+          "0x50",
+          "0x54",
+          "0x58",
+          "0x5c",
+          "0x60",
+          "0x64",
+          "0x68",
+          "0x78",
+          "0x7c",
+          "0x84",
+          "0x88"
+        ],
+        "status": "NONMATCH",
+        "limits": "Full unchanged GNU-linked member, including research-placed internal calls and own-data addresses; no relocation masks; not a native-placement normalized score."
+      },
+      "pinned_native_own_data": {
+        "sites": [],
+        "notes": [],
+        "failures": [],
+        "unverified": [
+          ".rodata+0xd8 at +0x4c0: retail bytes at 0x32820014 are not available",
+          ".rodata+0xfc at +0x4e8: retail bytes at 0x41703000 are not available",
+          ".rodata+0x100 at +0x4f8: retail bytes at 0x00C403AC are not available",
+          ".rodata+0x104 at +0x5d8: retail bytes at 0x001003B4 are not available",
+          ".rodata+0x108 at +0x674: retail bytes at 0x4EEF8039 are not available",
+          ".rodata+0x10c at +0x6b4: retail bytes at 0x001943A4 are not available",
+          ".rodata+0x110 at +0x6e4: retail bytes at 0x009C0008 are not available",
+          ".rodata+0x114 at +0x70c: retail bytes at 0x40FFC812 are not available",
+          ".rodata+0x118 at +0x714: retail bytes at 0x702100A4 are not available",
+          ".rodata+0x11c at +0x734: retail bytes at 0x2202002C are not available",
+          ".rodata+0x120 at +0x73c: retail bytes at 0x00A40048 are not available",
+          ".rodata+0x124 at +0x884: retail bytes at 0x2182003C are not available",
+          ".rodata+0x128 at +0x88c: retail bytes at 0x00183280 are not available",
+          ".rodata+0x12c at +0x8c0: retail bytes at 0x00440040 are not available",
+          ".rodata+0x130 at +0x928: retail bytes at 0x03840019 are not available"
+        ],
+        "placements": {},
+        "zero": [],
+        "references": 15,
+        "bss_sites": []
+      },
+      "own_data_limits": "Unmodified API, kept FCE0 symbol used only as .text locator with explicit ECOFF start; only common native/candidate extent has comparable native words. Structural code differences prevent native data-placement proof. Candidate excess relocations are nevertheless fully checked in whole-ELF GNU relocation validation."
+    }
+  },
+  "text_accounting": {
+    "text_size": 11600,
+    "procedure_bytes": 11588,
+    "zero_alignment_bytes": 12,
+    "zero_alignment_offsets": [
+      "0x2d44",
+      "0x2d45",
+      "0x2d46",
+      "0x2d47",
+      "0x2d48",
+      "0x2d49",
+      "0x2d4a",
+      "0x2d4b",
+      "0x2d4c",
+      "0x2d4d",
+      "0x2d4e",
+      "0x2d4f"
+    ]
+  },
+  "exact_link_relocation_validation": {
+    "status": "PASS: every object relocation reproduces GNU-linked words; other text/rodata bytes unchanged",
+    "relocation_count": 414,
+    "unrelocated_bytes_checked": 10264,
+    "relocations": [
+      {
+        "section": ".text",
+        "offset": "0x34",
+        "type": 5,
+        "symbol": "D_8011418C"
+      },
+      {
+        "section": ".text",
+        "offset": "0x3c",
+        "type": 6,
+        "symbol": "D_8011418C"
+      },
+      {
+        "section": ".text",
+        "offset": "0x38",
+        "type": 4,
+        "symbol": "math_utility"
+      },
+      {
+        "section": ".text",
+        "offset": "0x50",
+        "type": 4,
+        "symbol": "math_utility"
+      },
+      {
+        "section": ".text",
+        "offset": "0xac",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0xb4",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0xa8",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0xb8",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0xec",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0xf4",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0xf0",
+        "type": 4,
+        "symbol": "func_80090F44"
+      },
+      {
+        "section": ".text",
+        "offset": "0x110",
+        "type": 5,
+        "symbol": "D_80394F70"
+      },
+      {
+        "section": ".text",
+        "offset": "0x118",
+        "type": 6,
+        "symbol": "D_80394F70"
+      },
+      {
+        "section": ".text",
+        "offset": "0x114",
+        "type": 4,
+        "symbol": "func_8008E3C0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x128",
+        "type": 5,
+        "symbol": "D_80399B18"
+      },
+      {
+        "section": ".text",
+        "offset": "0x130",
+        "type": 6,
+        "symbol": "D_80399B18"
+      },
+      {
+        "section": ".text",
+        "offset": "0x13c",
+        "type": 4,
+        "symbol": "func_8008E398"
+      },
+      {
+        "section": ".text",
+        "offset": "0x150",
+        "type": 5,
+        "symbol": "D_80399B18"
+      },
+      {
+        "section": ".text",
+        "offset": "0x158",
+        "type": 6,
+        "symbol": "D_80399B18"
+      },
+      {
+        "section": ".text",
+        "offset": "0x164",
+        "type": 4,
+        "symbol": "func_8008E398"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1fc",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x218",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x248",
+        "type": 5,
+        "symbol": "D_80152818"
+      },
+      {
+        "section": ".text",
+        "offset": "0x24c",
+        "type": 6,
+        "symbol": "D_80152818"
+      },
+      {
+        "section": ".text",
+        "offset": "0x20c",
+        "type": 5,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x240",
+        "type": 6,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x258",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x25c",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2a4",
+        "type": 5,
+        "symbol": "D_8014A250"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2a8",
+        "type": 6,
+        "symbol": "D_8014A250"
+      },
+      {
+        "section": ".text",
+        "offset": "0x480",
+        "type": 4,
+        "symbol": "func_800A61B0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x48c",
+        "type": 4,
+        "symbol": "func_8008C768"
+      },
+      {
+        "section": ".text",
+        "offset": "0x4d8",
+        "type": 5,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x4dc",
+        "type": 6,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x510",
+        "type": 5,
+        "symbol": "D_80152818"
+      },
+      {
+        "section": ".text",
+        "offset": "0x514",
+        "type": 6,
+        "symbol": "D_80152818"
+      },
+      {
+        "section": ".text",
+        "offset": "0x538",
+        "type": 5,
+        "symbol": "D_8012E700"
+      },
+      {
+        "section": ".text",
+        "offset": "0x55c",
+        "type": 6,
+        "symbol": "D_8012E700"
+      },
+      {
+        "section": ".text",
+        "offset": "0x5ac",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x5b4",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x56c",
+        "type": 5,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x5dc",
+        "type": 6,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x5ec",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x5f0",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x5f8",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x608",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x5fc",
+        "type": 5,
+        "symbol": "D_8014A250"
+      },
+      {
+        "section": ".text",
+        "offset": "0x604",
+        "type": 6,
+        "symbol": "D_8014A250"
+      },
+      {
+        "section": ".text",
+        "offset": "0x704",
+        "type": 4,
+        "symbol": "func_8038D3A4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x75c",
+        "type": 4,
+        "symbol": "func_800A61B0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x800",
+        "type": 5,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x804",
+        "type": 6,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x844",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x84c",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x85c",
+        "type": 4,
+        "symbol": "func_80090254"
+      },
+      {
+        "section": ".text",
+        "offset": "0x864",
+        "type": 5,
+        "symbol": "D_80394F70"
+      },
+      {
+        "section": ".text",
+        "offset": "0x868",
+        "type": 6,
+        "symbol": "D_80394F70"
+      },
+      {
+        "section": ".text",
+        "offset": "0x86c",
+        "type": 4,
+        "symbol": "func_800AFA84"
+      },
+      {
+        "section": ".text",
+        "offset": "0x878",
+        "type": 4,
+        "symbol": "func_80090254"
+      },
+      {
+        "section": ".text",
+        "offset": "0x880",
+        "type": 5,
+        "symbol": "D_80394F70"
+      },
+      {
+        "section": ".text",
+        "offset": "0x884",
+        "type": 6,
+        "symbol": "D_80394F70"
+      },
+      {
+        "section": ".text",
+        "offset": "0x888",
+        "type": 4,
+        "symbol": "func_800AFA84"
+      },
+      {
+        "section": ".text",
+        "offset": "0x8a0",
+        "type": 5,
+        "symbol": "D_8039A530"
+      },
+      {
+        "section": ".text",
+        "offset": "0x8a4",
+        "type": 6,
+        "symbol": "D_8039A530"
+      },
+      {
+        "section": ".text",
+        "offset": "0x8a8",
+        "type": 5,
+        "symbol": "D_80394390"
+      },
+      {
+        "section": ".text",
+        "offset": "0x8ac",
+        "type": 6,
+        "symbol": "D_80394390"
+      },
+      {
+        "section": ".text",
+        "offset": "0x8fc",
+        "type": 5,
+        "symbol": "D_80152818"
+      },
+      {
+        "section": ".text",
+        "offset": "0x908",
+        "type": 6,
+        "symbol": "D_80152818"
+      },
+      {
+        "section": ".text",
+        "offset": "0x900",
+        "type": 5,
+        "symbol": "D_8014A250"
+      },
+      {
+        "section": ".text",
+        "offset": "0x90c",
+        "type": 6,
+        "symbol": "D_8014A250"
+      },
+      {
+        "section": ".text",
+        "offset": "0x920",
+        "type": 5,
+        "symbol": "D_80394B08"
+      },
+      {
+        "section": ".text",
+        "offset": "0x960",
+        "type": 6,
+        "symbol": "D_80394B08"
+      },
+      {
+        "section": ".text",
+        "offset": "0x94c",
+        "type": 5,
+        "symbol": "D_80394B08"
+      },
+      {
+        "section": ".text",
+        "offset": "0x954",
+        "type": 6,
+        "symbol": "D_80394B08"
+      },
+      {
+        "section": ".text",
+        "offset": "0x924",
+        "type": 5,
+        "symbol": "D_803943A4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x95c",
+        "type": 6,
+        "symbol": "D_803943A4"
+      },
+      {
+        "section": ".text",
+        "offset": "0xa64",
+        "type": 4,
+        "symbol": "math_utility"
+      },
+      {
+        "section": ".text",
+        "offset": "0xa6c",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0xa70",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0xa74",
+        "type": 4,
+        "symbol": "func_80090F44"
+      },
+      {
+        "section": ".text",
+        "offset": "0xa94",
+        "type": 5,
+        "symbol": "D_8039A520"
+      },
+      {
+        "section": ".text",
+        "offset": "0xa9c",
+        "type": 6,
+        "symbol": "D_8039A520"
+      },
+      {
+        "section": ".text",
+        "offset": "0xacc",
+        "type": 4,
+        "symbol": "func_800AFA84"
+      },
+      {
+        "section": ".text",
+        "offset": "0xb40",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0xb50",
+        "type": 4,
+        "symbol": "func_8008E06C"
+      },
+      {
+        "section": ".text",
+        "offset": "0xb68",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0xb7c",
+        "type": 4,
+        "symbol": "func_8008E06C"
+      },
+      {
+        "section": ".text",
+        "offset": "0xb88",
+        "type": 5,
+        "symbol": "D_8012E67C"
+      },
+      {
+        "section": ".text",
+        "offset": "0xb94",
+        "type": 6,
+        "symbol": "D_8012E67C"
+      },
+      {
+        "section": ".text",
+        "offset": "0xb8c",
+        "type": 5,
+        "symbol": "D_80399AF8"
+      },
+      {
+        "section": ".text",
+        "offset": "0xba8",
+        "type": 6,
+        "symbol": "D_80399AF8"
+      },
+      {
+        "section": ".text",
+        "offset": "0xbac",
+        "type": 5,
+        "symbol": "D_80151AE8"
+      },
+      {
+        "section": ".text",
+        "offset": "0xbc4",
+        "type": 6,
+        "symbol": "D_80151AE8"
+      },
+      {
+        "section": ".text",
+        "offset": "0xbd0",
+        "type": 4,
+        "symbol": "func_8008D870"
+      },
+      {
+        "section": ".text",
+        "offset": "0xc28",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0xc30",
+        "type": 5,
+        "symbol": "D_8039A520"
+      },
+      {
+        "section": ".text",
+        "offset": "0xc34",
+        "type": 6,
+        "symbol": "D_8039A520"
+      },
+      {
+        "section": ".text",
+        "offset": "0xc38",
+        "type": 4,
+        "symbol": "func_800AFA84"
+      },
+      {
+        "section": ".text",
+        "offset": "0xc74",
+        "type": 4,
+        "symbol": "math_utility"
+      },
+      {
+        "section": ".text",
+        "offset": "0xccc",
+        "type": 4,
+        "symbol": "func_8008E06C"
+      },
+      {
+        "section": ".text",
+        "offset": "0xcdc",
+        "type": 4,
+        "symbol": "func_8008E06C"
+      },
+      {
+        "section": ".text",
+        "offset": "0xd1c",
+        "type": 4,
+        "symbol": "func_8008E06C"
+      },
+      {
+        "section": ".text",
+        "offset": "0xd2c",
+        "type": 4,
+        "symbol": "func_8008E06C"
+      },
+      {
+        "section": ".text",
+        "offset": "0xd3c",
+        "type": 5,
+        "symbol": "D_803942C0"
+      },
+      {
+        "section": ".text",
+        "offset": "0xd58",
+        "type": 6,
+        "symbol": "D_803942C0"
+      },
+      {
+        "section": ".text",
+        "offset": "0xd5c",
+        "type": 4,
+        "symbol": "func_800B61A8"
+      },
+      {
+        "section": ".text",
+        "offset": "0xdec",
+        "type": 4,
+        "symbol": "func_8008B32C"
+      },
+      {
+        "section": ".text",
+        "offset": "0xdfc",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0xe00",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0xe44",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0xe4c",
+        "type": 5,
+        "symbol": "D_8039A520"
+      },
+      {
+        "section": ".text",
+        "offset": "0xe50",
+        "type": 6,
+        "symbol": "D_8039A520"
+      },
+      {
+        "section": ".text",
+        "offset": "0xe54",
+        "type": 4,
+        "symbol": "func_800AFA84"
+      },
+      {
+        "section": ".text",
+        "offset": "0xe10",
+        "type": 5,
+        "symbol": "D_80152818"
+      },
+      {
+        "section": ".text",
+        "offset": "0xe20",
+        "type": 6,
+        "symbol": "D_80152818"
+      },
+      {
+        "section": ".text",
+        "offset": "0xeb0",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0xeb8",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0xec4",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0xec8",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0xecc",
+        "type": 5,
+        "symbol": "D_80142764"
+      },
+      {
+        "section": ".text",
+        "offset": "0xed0",
+        "type": 6,
+        "symbol": "D_80142764"
+      },
+      {
+        "section": ".text",
+        "offset": "0xed4",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0xed8",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0xee0",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0xef4",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0xf80",
+        "type": 5,
+        "symbol": "D_80142764"
+      },
+      {
+        "section": ".text",
+        "offset": "0xf84",
+        "type": 6,
+        "symbol": "D_80142764"
+      },
+      {
+        "section": ".text",
+        "offset": "0xf88",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0xf8c",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0xfa0",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0xfac",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x102c",
+        "type": 4,
+        "symbol": "func_8038DDDC"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1040",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1044",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1074",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1080",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x10b8",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x10bc",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x112c",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1130",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1158",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x115c",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1188",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x118c",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1254",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0x12ac",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x12b0",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x12dc",
+        "type": 5,
+        "symbol": "D_8012E700"
+      },
+      {
+        "section": ".text",
+        "offset": "0x12e0",
+        "type": 6,
+        "symbol": "D_8012E700"
+      },
+      {
+        "section": ".text",
+        "offset": "0x12b8",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x12cc",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x138c",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0x13e0",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1448",
+        "type": 4,
+        "symbol": "func_800ADD58"
+      },
+      {
+        "section": ".text",
+        "offset": "0x14b0",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x14d0",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x14ac",
+        "type": 5,
+        "symbol": "D_80394CFC"
+      },
+      {
+        "section": ".text",
+        "offset": "0x14b8",
+        "type": 6,
+        "symbol": "D_80394CFC"
+      },
+      {
+        "section": ".text",
+        "offset": "0x14ec",
+        "type": 4,
+        "symbol": "func_800ABCC8"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1500",
+        "type": 4,
+        "symbol": "func_800A61B0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x150c",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1510",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x152c",
+        "type": 4,
+        "symbol": "func_800A61B0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1540",
+        "type": 4,
+        "symbol": "func_8009E820"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1574",
+        "type": 4,
+        "symbol": "func_8038D798"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1588",
+        "type": 4,
+        "symbol": "func_800AF06C"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1594",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1598",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x15c4",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x15c8",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x15ec",
+        "type": 4,
+        "symbol": "func_800A61B0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x15f8",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x15fc",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1614",
+        "type": 4,
+        "symbol": "func_8009E820"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1624",
+        "type": 4,
+        "symbol": "func_8008B2E4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1648",
+        "type": 5,
+        "symbol": "D_801141B0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1658",
+        "type": 6,
+        "symbol": "D_801141B0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x167c",
+        "type": 4,
+        "symbol": "func_800AEFE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1698",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x169c",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1700",
+        "type": 4,
+        "symbol": "func_8038D798"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1720",
+        "type": 4,
+        "symbol": "func_8038D798"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1734",
+        "type": 4,
+        "symbol": "func_800AF06C"
+      },
+      {
+        "section": ".text",
+        "offset": "0x175c",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1760",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1778",
+        "type": 4,
+        "symbol": "func_8038D3A4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1690",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1788",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x17e0",
+        "type": 4,
+        "symbol": "func_8038D798"
+      },
+      {
+        "section": ".text",
+        "offset": "0x17fc",
+        "type": 4,
+        "symbol": "func_8038D798"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1810",
+        "type": 4,
+        "symbol": "func_800AF06C"
+      },
+      {
+        "section": ".text",
+        "offset": "0x181c",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1834",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1840",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1844",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1ad4",
+        "type": 5,
+        "symbol": "D_80394F88"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1ad8",
+        "type": 6,
+        "symbol": "D_80394F88"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1adc",
+        "type": 5,
+        "symbol": "D_80394D08"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1ae0",
+        "type": 6,
+        "symbol": "D_80394D08"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1ae8",
+        "type": 5,
+        "symbol": "D_80394F88"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1b08",
+        "type": 6,
+        "symbol": "D_80394F88"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1aec",
+        "type": 5,
+        "symbol": "D_80140BDC"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1af0",
+        "type": 6,
+        "symbol": "D_80140BDC"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1b0c",
+        "type": 4,
+        "symbol": "func_800B24EC"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1b14",
+        "type": 5,
+        "symbol": "D_8039A5F8"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1b1c",
+        "type": 6,
+        "symbol": "D_8039A5F8"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1b18",
+        "type": 4,
+        "symbol": "func_8008E3C0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1b20",
+        "type": 5,
+        "symbol": "D_80394F88"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1b40",
+        "type": 6,
+        "symbol": "D_80394F88"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1b24",
+        "type": 5,
+        "symbol": "D_803942E8"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1b3c",
+        "type": 6,
+        "symbol": "D_803942E8"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1b48",
+        "type": 4,
+        "symbol": "func_800A78BC"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1b58",
+        "type": 5,
+        "symbol": "D_8039A5F8"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1b5c",
+        "type": 6,
+        "symbol": "D_8039A5F8"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1b60",
+        "type": 4,
+        "symbol": "func_800AFA84"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1ba8",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1bb0",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1bd4",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1be4",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1c0c",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1c1c",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1c30",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1c58",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1c68",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1c90",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1ca0",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1cc8",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1cd8",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1d00",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1d10",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1d90",
+        "type": 5,
+        "symbol": "D_8039438C"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1d98",
+        "type": 6,
+        "symbol": "D_8039438C"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1dc0",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1dd0",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1de0",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1e14",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1e58",
+        "type": 5,
+        "symbol": "D_80394F90"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1e60",
+        "type": 6,
+        "symbol": "D_80394F90"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1e88",
+        "type": 4,
+        "symbol": "func_80090254"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1ea0",
+        "type": 5,
+        "symbol": "D_80394F90"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1ea4",
+        "type": 6,
+        "symbol": "D_80394F90"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1edc",
+        "type": 4,
+        "symbol": "math_utility"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1ee8",
+        "type": 4,
+        "symbol": "func_80090F44"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1ef0",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1ef4",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1efc",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1f18",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1f3c",
+        "type": 5,
+        "symbol": "D_80394358"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1f50",
+        "type": 6,
+        "symbol": "D_80394358"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1f64",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1fb0",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1fb4",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1fe8",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1ffc",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2000",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2040",
+        "type": 4,
+        "symbol": "func_80090254"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2008",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2050",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2054",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2060",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x207c",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2080",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x20e4",
+        "type": 5,
+        "symbol": "D_80399B54"
+      },
+      {
+        "section": ".text",
+        "offset": "0x20f8",
+        "type": 6,
+        "symbol": "D_80399B54"
+      },
+      {
+        "section": ".text",
+        "offset": "0x20fc",
+        "type": 4,
+        "symbol": "func_8008E398"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2138",
+        "type": 4,
+        "symbol": "func_8008E06C"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2158",
+        "type": 5,
+        "symbol": "D_8039AE90"
+      },
+      {
+        "section": ".text",
+        "offset": "0x215c",
+        "type": 6,
+        "symbol": "D_8039AE90"
+      },
+      {
+        "section": ".text",
+        "offset": "0x21a0",
+        "type": 5,
+        "symbol": "D_80142764"
+      },
+      {
+        "section": ".text",
+        "offset": "0x21b0",
+        "type": 6,
+        "symbol": "D_80142764"
+      },
+      {
+        "section": ".text",
+        "offset": "0x21a4",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x21ac",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x21dc",
+        "type": 4,
+        "symbol": "func_80090254"
+      },
+      {
+        "section": ".text",
+        "offset": "0x21e4",
+        "type": 5,
+        "symbol": "D_8039AE80"
+      },
+      {
+        "section": ".text",
+        "offset": "0x21e8",
+        "type": 6,
+        "symbol": "D_8039AE80"
+      },
+      {
+        "section": ".text",
+        "offset": "0x21ec",
+        "type": 4,
+        "symbol": "func_800AFA84"
+      },
+      {
+        "section": ".text",
+        "offset": "0x21f4",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x21fc",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2280",
+        "type": 5,
+        "symbol": "D_80152818"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2284",
+        "type": 6,
+        "symbol": "D_80152818"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2274",
+        "type": 5,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2278",
+        "type": 6,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x22ac",
+        "type": 5,
+        "symbol": "D_803943A4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x22bc",
+        "type": 6,
+        "symbol": "D_803943A4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x22b0",
+        "type": 5,
+        "symbol": "D_80394B08"
+      },
+      {
+        "section": ".text",
+        "offset": "0x22b8",
+        "type": 6,
+        "symbol": "D_80394B08"
+      },
+      {
+        "section": ".text",
+        "offset": "0x22cc",
+        "type": 5,
+        "symbol": "D_8014A250"
+      },
+      {
+        "section": ".text",
+        "offset": "0x22dc",
+        "type": 6,
+        "symbol": "D_8014A250"
+      },
+      {
+        "section": ".text",
+        "offset": "0x22f0",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0x22f8",
+        "type": 5,
+        "symbol": "D_80394B08"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2304",
+        "type": 6,
+        "symbol": "D_80394B08"
+      },
+      {
+        "section": ".text",
+        "offset": "0x22fc",
+        "type": 5,
+        "symbol": "D_803943A4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2300",
+        "type": 6,
+        "symbol": "D_803943A4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2330",
+        "type": 4,
+        "symbol": "func_8038F568"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2378",
+        "type": 5,
+        "symbol": "D_8011F844"
+      },
+      {
+        "section": ".text",
+        "offset": "0x237c",
+        "type": 6,
+        "symbol": "D_8011F844"
+      },
+      {
+        "section": ".text",
+        "offset": "0x23fc",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2414",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2400",
+        "type": 5,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2444",
+        "type": 6,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2458",
+        "type": 5,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x246c",
+        "type": 6,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2490",
+        "type": 5,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2498",
+        "type": 6,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x24c8",
+        "type": 5,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x24d0",
+        "type": 6,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x24d8",
+        "type": 5,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2504",
+        "type": 6,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x250c",
+        "type": 5,
+        "symbol": "D_8039A520"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2514",
+        "type": 6,
+        "symbol": "D_8039A520"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2510",
+        "type": 4,
+        "symbol": "func_8008E3C0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2520",
+        "type": 5,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2528",
+        "type": 6,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x25c0",
+        "type": 4,
+        "symbol": "math_utility"
+      },
+      {
+        "section": ".text",
+        "offset": "0x25cc",
+        "type": 5,
+        "symbol": "D_803942C0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x25f4",
+        "type": 6,
+        "symbol": "D_803942C0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x25f0",
+        "type": 4,
+        "symbol": "func_800B61A8"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2608",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2610",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x262c",
+        "type": 4,
+        "symbol": "func_80090F44"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2634",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2638",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x263c",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2648",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2724",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2728",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2758",
+        "type": 4,
+        "symbol": "func_80090F44"
+      },
+      {
+        "section": ".text",
+        "offset": "0x27c0",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x27c4",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x27e4",
+        "type": 4,
+        "symbol": "func_80090E9C"
+      },
+      {
+        "section": ".text",
+        "offset": "0x27f0",
+        "type": 4,
+        "symbol": "func_80090F44"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2800",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2804",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2820",
+        "type": 4,
+        "symbol": "func_80090F44"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2830",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2834",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x284c",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x285c",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2858",
+        "type": 4,
+        "symbol": "func_8008B2E4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2860",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2864",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2874",
+        "type": 4,
+        "symbol": "func_80090E9C"
+      },
+      {
+        "section": ".text",
+        "offset": "0x287c",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2884",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2880",
+        "type": 4,
+        "symbol": "func_8008B2E4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2888",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x288c",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x289c",
+        "type": 4,
+        "symbol": "func_80090F44"
+      },
+      {
+        "section": ".text",
+        "offset": "0x28a4",
+        "type": 5,
+        "symbol": "D_8039AE80"
+      },
+      {
+        "section": ".text",
+        "offset": "0x28ac",
+        "type": 6,
+        "symbol": "D_8039AE80"
+      },
+      {
+        "section": ".text",
+        "offset": "0x28a8",
+        "type": 4,
+        "symbol": "func_8008E3C0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x28b8",
+        "type": 5,
+        "symbol": "D_80394AFC"
+      },
+      {
+        "section": ".text",
+        "offset": "0x28c4",
+        "type": 6,
+        "symbol": "D_80394AFC"
+      },
+      {
+        "section": ".text",
+        "offset": "0x28bc",
+        "type": 5,
+        "symbol": "D_80394AFC"
+      },
+      {
+        "section": ".text",
+        "offset": "0x28c0",
+        "type": 6,
+        "symbol": "D_80394AFC"
+      },
+      {
+        "section": ".text",
+        "offset": "0x29c4",
+        "type": 4,
+        "symbol": "math_utility"
+      },
+      {
+        "section": ".text",
+        "offset": "0x29cc",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x29d4",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x29d0",
+        "type": 4,
+        "symbol": "func_8008B2E4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x29d8",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x29dc",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x29e4",
+        "type": 4,
+        "symbol": "func_8009EA68"
+      },
+      {
+        "section": ".text",
+        "offset": "0x29ec",
+        "type": 5,
+        "symbol": "D_80399B18"
+      },
+      {
+        "section": ".text",
+        "offset": "0x29f0",
+        "type": 6,
+        "symbol": "D_80399B18"
+      },
+      {
+        "section": ".text",
+        "offset": "0x29fc",
+        "type": 4,
+        "symbol": "func_8008E398"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2a08",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2a10",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2a0c",
+        "type": 4,
+        "symbol": "func_8008B2E4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2a74",
+        "type": 5,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2a78",
+        "type": 6,
+        "symbol": ".rodata"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2c5c",
+        "type": 4,
+        "symbol": "func_8038D054"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2c98",
+        "type": 5,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2c9c",
+        "type": 6,
+        "symbol": "D_801543CA"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2cb8",
+        "type": 5,
+        "symbol": "D_8039A5F8"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2cbc",
+        "type": 6,
+        "symbol": "D_8039A5F8"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2cd0",
+        "type": 4,
+        "symbol": "func_8008D0C0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2cdc",
+        "type": 4,
+        "symbol": "func_800AFA84"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2cec",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2cf4",
+        "type": 4,
+        "symbol": "func_8038CB20"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0x20",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0x24",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0x28",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0x2c",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0x30",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0x34",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0x38",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0x3c",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0x40",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0x48",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0x4c",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0x50",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0x54",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0x58",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0x5c",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0x60",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0x64",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0x94",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0x98",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0x9c",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0xa0",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0xa4",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0xa8",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0xac",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0xb0",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0xb4",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0xd8",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0xdc",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0xe0",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0xe4",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0xe8",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0xec",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0xf0",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0xf4",
+        "type": 2,
+        "symbol": ".text"
+      },
+      {
+        "section": ".rodata",
+        "offset": "0xf8",
+        "type": 2,
+        "symbol": ".text"
+      }
+    ]
+  },
+  "canonical_scorer_limit": "ELF STT_FUNC contains FCE0 only. Canonical root score and hidden-static unresolved calls remain in build.json; this supplemental parser does not edit scorer, symbol table, ELF or source to manufacture equality.",
+  "decoder_references": [
+    "https://gnu.googlesource.com/binutils-gdb/+/refs/heads/master/include/coff/mips.h",
+    "https://gnu.googlesource.com/binutils-gdb/+/37f7f684de0e53c8add5ff43d73082bf98985321/include/coff/symconst.h"
+  ]
+}

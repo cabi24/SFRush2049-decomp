@@ -1,5 +1,24 @@
 # Animation setter boundary: verified unchanged three-word nonmatch
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
+## Integration portability update (2026-10-06)
+
+The accepted setter source and the absent-target lock fact are now read with `git show` at the recorded base commit. Neither the live production source nor the live lock state is a replay precondition. The original 3/83 complete-word caller NONMATCH and exact 44-byte setter are unchanged.
+
+Focused packet tests passed with IDO available and with IDO absent. Compiler-dependent tests skip without IDO or the MIPS GNU linker. These scoped results do not claim the required aggregate repository-suite pass; that matrix is recorded separately before any publication. No protected production files, native assets, accepted locks or compiler policy are changed.
+
+
 **Research only.** `audio_channel_setup`, [0x80094888, 0x800949D4), is a
 332-byte animation callback despite its historical audio name. The complete
 candidate still differs in **3/83 words**, exactly as the archived w7b source.

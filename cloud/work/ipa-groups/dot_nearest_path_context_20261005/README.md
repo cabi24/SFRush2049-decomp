@@ -1,5 +1,17 @@
 # Nearest-path helper with genuine callers
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
 ## Result and admission boundary
 
 `func_800E4300`, **0x800E4300–0x800E451C, 540 bytes / 135 words**, is a strict
@@ -164,3 +176,18 @@ python3 -m pytest -q tests/cloud/test_dot_nearest_path_context.py
 
 Publication and merging are separate. This packet is an additive cloud
 submission; all production/locked files remain unchanged.
+
+
+## Integration-portable replay (2026-10-06)
+
+This packet compiles its own genuine caller reconstruction and does not read
+live accepted source or locks. Whole manifests and tool or
+accepted-context digests are provenance, excluded by explicit field/path lists
+from portable proof equality. Packet source/verifier bindings, selected native
+words, complete extents, relocations, owned data and bounded behavior remain
+binding. Tests are not hashed into the receipt. Compiler-dependent tests skip
+when pinned IDO or the MIPS GNU linker is absent; source/native-only checks run.
+
+The exact bare O3 recipe in `group.c` and `group.json` remains unchanged.
+The registered claim requires its real enclosing callers and naturally inlined
+helper in the same unit; no deleted-static stand-in is added.

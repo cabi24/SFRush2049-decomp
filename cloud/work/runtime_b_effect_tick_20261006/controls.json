@@ -1,0 +1,20 @@
+{
+  "rejected": [
+    "alpha_wrong_clamp",
+    "countdown_wrong_signedness",
+    "phase3_wrong_lookup",
+    "wrong_countdown_decrement",
+    "wrong_status_bit_clear",
+    "fade_in_wrong_saturation",
+    "reset_wrong_range",
+    "wrong_sentinel",
+    "wrong_expiry_boundary",
+    "wrong_search_kind",
+    "wrong_search_eligibility",
+    "wrong_setter_resource",
+    "wrong_animation",
+    "selected_index_reused_after_call",
+    "child_order_reversed",
+    "unknown_opcode_refused"
+  ]
+}

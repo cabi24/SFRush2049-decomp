@@ -1,0 +1,19 @@
+{
+  "members": [
+    "func_800B66B0"
+  ],
+  "context": [
+    "menu_input_process"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "menu_input_process"
+  ],
+  "claims": [
+    "func_800B66B0"
+  ],
+  "provenance": "The two real call sites in the complete menu_input_process source internalize the measured helper. Caller is unclaimed NONMATCH context from base 6b2e9e506fe3d2267a710e41c85af5364ccd00c7; no synthetic callers or deleted-static stubs."
+}

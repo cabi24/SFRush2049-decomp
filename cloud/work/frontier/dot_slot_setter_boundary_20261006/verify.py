@@ -21,6 +21,7 @@ FLAGS = '-g0 -O3 -mips2 -G 0 -non_shared'
 NAMES = ['func_8008E06C', 'func_80092BC8', 'func_80092BF4']
 SOURCE_PATHS = ['src/blob/func_8008E06C.c', 'src/blob/func_80092BC8.c',
                 'cloud/work/tiny_A44/func_80092BF4.c', 'src/blob/sfx_stop.c']
+BASE = 'cd22879d40b3de443cfde047b86e75e159b6cec6'
 MASK = 0xffffffff
 
 # Only this packet's selected entries and consumed relocation symbols are pinned.
@@ -52,6 +53,17 @@ def verify_address_anchors():
 
 def sha(data):
     return hashlib.sha256(data).hexdigest()
+
+
+def base_bytes(path):
+    return subprocess.run(['git','show',BASE+':'+path],cwd=ROOT,check=True,capture_output=True).stdout
+
+
+def portable(receipt):
+    result = json.loads(json.dumps(receipt))
+    for path in ('src/blob/func_8008E06C.c','src/blob/func_80092BC8.c','src/blob/sfx_stop.c'):
+        result['input_hashes'].pop(path,None)
+    return result
 
 
 def functions(obj):
@@ -256,8 +268,8 @@ def main():
             d = work/label; d.mkdir()
             if label == 'original_helpers':
                 group['files'] = ['first.c','second.c','caller.c']
-                (d/'first.c').write_bytes((ROOT/SOURCE_PATHS[0]).read_bytes())
-                (d/'second.c').write_bytes((ROOT/SOURCE_PATHS[1]).read_bytes())
+                (d/'first.c').write_bytes(base_bytes(SOURCE_PATHS[0]))
+                (d/'second.c').write_bytes(base_bytes(SOURCE_PATHS[1]))
                 start = source.index('void func_8008E06C')
                 end = source.index('void func_80092BF4')
                 caller = source[:start] + 'void func_8008E06C(s16, s32 *);\nvoid func_80092BC8(s16, s32 *);\n' + source[end:]
@@ -278,10 +290,12 @@ def main():
             if label == 'normalized_helpers': bodies=built
         for level in ['O2','O3']:
             d=work/level;d.mkdir();obj=d/'baseline.o'
-            score.compile_single(ROOT/SOURCE_PATHS[2],FLAGS.replace('O3',level),obj)
+            snapshot=d/'baseline.c';snapshot.write_bytes(base_bytes(SOURCE_PATHS[2]))
+            score.compile_single(snapshot,FLAGS.replace('O3',level),obj)
             records['direct_'+level]=inspect(obj,[NAMES[2]],d)[0]
         d=work/'record_witness';d.mkdir();obj=d/'witness.o'
-        score.compile_single(ROOT/SOURCE_PATHS[3],FLAGS,obj)
+        snapshot=d/'sfx_stop.c';snapshot.write_bytes(base_bytes(SOURCE_PATHS[3]))
+        score.compile_single(snapshot,FLAGS,obj)
         records['unchanged_record_consumer']=inspect(obj,['sfx_stop'],d)[0]
         assert records['unchanged_record_consumer']['functions']['sfx_stop']['status'] == 'MATCH'
         native = native_checks(bodies)
@@ -296,9 +310,9 @@ def main():
             for n in NAMES:
                 if dst == addresses[n] and caller != n: callers[n].append(caller)
     assert not any(callers.values())
-    report={'status':'NONMATCH; no new matching claims', 'flags':FLAGS,
+    report={'base_commit':BASE,'status':'NONMATCH; no new matching claims', 'flags':FLAGS,
             'source_sha256':sha((HERE/'group.c').read_bytes()),
-            'input_hashes':{p:sha((ROOT/p).read_bytes()) for p in SOURCE_PATHS},
+            'input_hashes':{p:sha(base_bytes(p)) for p in SOURCE_PATHS if not p.startswith('src/blob/')},
             'experiments':records,'native':native,'host':host,
             'native_address_anchors':anchors,'direct_native_callers':callers,'claims':[], 'accepted_byte_gain':0,
             'toolchain_sha256':{n:sha((score.IDO/n).read_bytes()) for n in ['cc','cfe','uld','umerge','uopt','ugen','as1']},

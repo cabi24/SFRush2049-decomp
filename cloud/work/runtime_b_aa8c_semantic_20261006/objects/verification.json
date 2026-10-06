@@ -1,0 +1,178 @@
+{
+  "status": "SOURCE_OBJECT_BLOCKED_WITH_NARROWED_OWNER_CONTRACT",
+  "base_commit": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "targets": {
+    "blob:init_state_continue": {
+      "address": "0x800faf6c",
+      "size": 712,
+      "sha256": "1a4da3f7591d065356b637b0b239d0687a3317f54491ee965ec13c31635722a5"
+    },
+    "blob:world_physics_tick": {
+      "address": "0x800ec2f8",
+      "size": 1564,
+      "sha256": "e41ed6529d5a3ec5c8df01410c1c2aae00b936b8b8f7a65d4356eb427a3cc77e"
+    },
+    "blob:InitMaxPath": {
+      "address": "0x800a1244",
+      "size": 136,
+      "sha256": "39fb255a22f38bd9e8485207ac94a5c2db4ed68dbcc53658b7998f32d14daefa"
+    },
+    "blob:PrevMaxPath": {
+      "address": "0x800a11e4",
+      "size": 96,
+      "sha256": "36b09bc3ca7abf5fc154625c926df393b276b7ad505117aa2f332fc85daec711"
+    },
+    "ovl_a:func_80390418": {
+      "address": "0x80390418",
+      "size": 1552,
+      "sha256": "b664c440279a02ed5addb6fadd24591f27d4f85b00dc6ee202db7fc0dfe19bd7"
+    },
+    "ovl_b:func_8038AA8C": {
+      "address": "0x8038aa8c",
+      "size": 7812,
+      "sha256": "c8842f0b25b7c17e36345611643e4b67a7c0c17929f7be6ba93785b530b67b39"
+    },
+    "ovl_b:func_8038A408": {
+      "address": "0x8038a408",
+      "size": 1220,
+      "sha256": "74b8e3e4041f08169fd092b93059b1690ea5bb22539867b010cb7c2f5b446644"
+    },
+    "ovl_b:func_8038C910": {
+      "address": "0x8038c910",
+      "size": 276,
+      "sha256": "792a927c17040f381a69c0a5220e168255ad4f3dc8fa6a380cc26fd314813cbf"
+    },
+    "ovl_b:func_8038F568": {
+      "address": "0x8038f568",
+      "size": 976,
+      "sha256": "59c890d15451458cb3ad28b0bcc1f36ef2574076012164ce629347b5f9889a03"
+    },
+    "ovl_b:func_8038FCE0": {
+      "address": "0x8038fce0",
+      "size": 3056,
+      "sha256": "3574383f8241f87f1aa201bc4a7265e49cd818b8b6f7e6564ecca4131b6682e2"
+    }
+  },
+  "fixture_counts": {
+    "setup_full_native": 105,
+    "flag_projection": 630,
+    "UI_scan_clamp": 567
+  },
+  "coverage": {
+    "blob": 77,
+    "ovl_a": 28,
+    "ovl_b": 0
+  },
+  "owner_result": "After actual mode-6 configuration with count 1..4 and the physics projection, slots 4/5 are inactive. Counts 5/6 are native counterexamples; no whole-program invariant claimed.",
+  "ui_result": "For positive incoming count, a scan of four 16-byte controller entries clamps it to 1..4. It does not establish every caller passed through this path.",
+  "counterexamples": [
+    {
+      "count": 5,
+      "active_owners": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "count": 6,
+      "active_owners": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  ],
+  "image_metadata": {
+    "initialized_start": "0x8038a400",
+    "initialized_end": "0x80394f70",
+    "bss_end_from_loader": "0x8039b440",
+    "queried_object_symbols_absent": [
+      "0x803943a4",
+      "0x80394884",
+      "0x80394888",
+      "0x803948b8"
+    ]
+  },
+  "mode8_address_intervals": [
+    {
+      "model": 0,
+      "start": "0x80394884",
+      "end": "0x80394890"
+    },
+    {
+      "model": 1,
+      "start": "0x80394890",
+      "end": "0x8039489c"
+    },
+    {
+      "model": 2,
+      "start": "0x8039489c",
+      "end": "0x803948a8"
+    },
+    {
+      "model": 3,
+      "start": "0x803948a8",
+      "end": "0x803948b4"
+    },
+    {
+      "model": 4,
+      "start": "0x803948b4",
+      "end": "0x803948c0"
+    },
+    {
+      "model": 5,
+      "start": "0x803948c0",
+      "end": "0x803948cc"
+    },
+    {
+      "model": 6,
+      "start": "0x803948cc",
+      "end": "0x803948d8"
+    },
+    {
+      "model": 7,
+      "start": "0x803948d8",
+      "end": "0x803948e4"
+    },
+    {
+      "model": 8,
+      "start": "0x803948e4",
+      "end": "0x803948f0"
+    },
+    {
+      "model": 9,
+      "start": "0x803948f0",
+      "end": "0x803948fc"
+    },
+    {
+      "model": 10,
+      "start": "0x803948fc",
+      "end": "0x80394908"
+    },
+    {
+      "model": 11,
+      "start": "0x80394908",
+      "end": "0x80394914"
+    },
+    {
+      "model": 12,
+      "start": "0x80394914",
+      "end": "0x80394920"
+    }
+  ],
+  "limits": [
+    "Original data declaration, extent and effective type remain unavailable.",
+    "Setup ordering and every active-count/config producer are not closed.",
+    "No IDO compile, strict match, or gameplay proof."
+  ],
+  "owned_files": {
+    "verify.py": "1fa7f48200cfcbab97ce029562033c0d74457e6b1a67430ccf844e0ab0b9cfe0",
+    "README.md": "471b65749aec998c17f94a2c41124b6fc66e279b39c5bd9dd01088f19962c21c"
+  }
+}

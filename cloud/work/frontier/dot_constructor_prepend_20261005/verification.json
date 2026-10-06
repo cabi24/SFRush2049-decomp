@@ -7,6 +7,12 @@
   "end": "0x800d1ab0",
   "source_sha256": "d70f5c263914906b5b67af9e475a266a400c304ea373190d8fc791a2b8f6d281",
   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "packet_sha256": {
+    "verify.py": "de0f2ffd3134e26b611cd7ac0bcf112432ef6e60bfdea620356982cc11c11da3",
+    "native.py": "a5e6f2344e372af36a7d729e77e31660b3edd639058fea64b721b3af7e7fb256",
+    "host.c": "fb88117033624963714d3d1bcf85df5dc15998adb6b3ad812e27b8a441668bf8",
+    "claim.json": "757b86fc90cf14054300086d75c19072a8fd0cdf2334990ed5e759e7ab952806"
+  },
   "archived_source_sha256": "9379de779f4a0e1403256a94cf9a9159695d816a46a11a8dfa727f4ce3c27522",
   "target_sha256": "d98df93343830cd849be749da6664a95ff9d62eff8b89721a79ac86cce1583e6",
   "toolchain_sha256": {
@@ -21,12 +27,6 @@
   "gnu_linker_version": "GNU ld (GNU Binutils for Debian) 2.44",
   "host_compiler_version": "cc (Debian 14.2.0-19) 14.2.0",
   "base": "cd22879d40b3de443cfde047b86e75e159b6cec6",
-  "protected_manifest_sha256": "dade78464a022fedd2c5ba651ee1bca5ffd4ec99bfa4d2413d27256540bed02c",
-  "context_source_sha256": {
-    "src/blob/func_800D18D8.c": "358a80d085a6f05dd4a1c13eaf09f95d405529130c752ce05fa5c547032f738c",
-    "src/blob/func_80091FBC.c": "d408b65b5959e87c58256bab68b9c7e9893de99a178dfb1062900e954c418b79",
-    "src/blob/func_8009211C.c": "20d73de239d47ec0799b4bfbf4a03023abb8f99359f5603ee68c7dd2a89edd99"
-  },
   "portability_controls": {
     "source_path_controls": {
       "archived": {
@@ -60,8 +60,8 @@
   ],
   "compile": {
     "archived": {
-      "object_sha256": "f9f144ecab5f5f5e8e8219d07f2fc5206599a168505408fbd7c1c0b6fe7a10d8",
-      "mdebug_sha256": "4bb9cf4ea975b8a26f715ba30f7ba5bde37f607a4b2b1d4fe7b89d5c5e982489",
+      "object_sha256": "9689d375b4a38e94a0bda228bc9fec0374cc79f84aa4f3a5747570d001a32ffe",
+      "mdebug_sha256": "9e3808085a1b7c5f425a482146f72eb46eb0abe366dba2f0589e0b89c32b6dc5",
       "portable_elf": {
         "ident_sha256": "09c0a2e371bc7075dab213f9a61fa9eb0652b8ded2a072900494ba7d1bcd2e9d",
         "header": [
@@ -297,8 +297,8 @@
       "owned_data_bytes": 0
     },
     "corrected": {
-      "object_sha256": "c8cbe71551e41fca13e117900d16c4b25b57e358326c4447c933d90049d619a4",
-      "mdebug_sha256": "018c6c1f7a39cf9679905593fb864d4484ed4e834e79e2263c6ab87c73d35215",
+      "object_sha256": "62ea9fddc4a7bf1871448f76987025a60170ca4065d2f9855179674573e32181",
+      "mdebug_sha256": "ed3b05de1dbe9071ae8991d85918cc8869c13dd5e40cd454f41fdd32d7e4d03b",
       "portable_elf": {
         "ident_sha256": "09c0a2e371bc7075dab213f9a61fa9eb0652b8ded2a072900494ba7d1bcd2e9d",
         "header": [
@@ -534,8 +534,8 @@
       "owned_data_bytes": 0
     },
     "corrected_header_o2": {
-      "object_sha256": "261eaf67cd716e777a97999730364ec3efa9cb264325f937f69b09110575ba1c",
-      "mdebug_sha256": "b27b17e19c4f63e6cc024712b2851838074f22b4a04fd705f15a9c18ca5d82f7",
+      "object_sha256": "c8fa779b909f9eb0675a50f8c6d42345fe674c10e9ee4086381e6483d8ae1888",
+      "mdebug_sha256": "174f42469e248b6d5424ed9126542d5c2ca8849b4ca87c22b5bdd338f6fa02ca",
       "portable_elf": {
         "ident_sha256": "09c0a2e371bc7075dab213f9a61fa9eb0652b8ded2a072900494ba7d1bcd2e9d",
         "header": [

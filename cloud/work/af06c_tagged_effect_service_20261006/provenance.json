@@ -1,0 +1,51 @@
+{
+  "scope": "AF06C complete typed semantic reconstruction and one diagnostic baseline",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "source_sha256": "65593ef2a077ce151f6ef43a5843593c302b8d5588c3cb47bb4f2ae51c440ee6",
+  "source_kind": "complete C89-compatible typed research source",
+  "precompile_gates": {
+    "layout": "28 GCC ILP32 syntax-only assertions passed",
+    "owner_host_native_fixtures": 1008,
+    "independent_host_native_fixtures": 420,
+    "independent_wrong_source_controls_rejected": 6,
+    "independent_native_only_fixtures": 864,
+    "source_contract_audit": "PASS before target compilation"
+  },
+  "target_build": {
+    "count": 1,
+    "route": "unchanged canonical score.compile_single",
+    "source_header_flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "mandatory_injected_backend_flag": "-Wab,-r4300_mul",
+    "whole_real_helper_context": "static func_80090308, complete body",
+    "allocator_boundary": "ordinary extern func_80090284(void)",
+    "natural_private_helper_result": "inlined; no separately emitted symbol",
+    "emitted_named_functions": {"save_write_data": {"offset": 8, "bytes": 2096}},
+    "text_bytes": 2112,
+    "compiler_generated_unlabelled_prefix_bytes": 8,
+    "alignment_tail_bytes": 8,
+    "native_root_bytes": 1200,
+    "differing_words": 298,
+    "native_root_words": 300,
+    "nonzero_extra_words": 220,
+    "unresolved_relocations": 0,
+    "unverified_relocations": 0,
+    "own_data_references": 0,
+    "match": false
+  },
+  "postcompile_checks": {
+    "owner_linked_native_fixtures": 1008,
+    "focused_pytest": {"passed": 3, "failed": 0},
+    "aggregate_suite": "not run; no publication requested in this task"
+  },
+  "prohibited_shaping_absent": [
+    "invented helper implementations or prototypes",
+    "fake arguments or keepers",
+    "dead reads retained for pressure",
+    "register-pressure locals",
+    "assembly or volatile shaping",
+    "stack padding or ABI carrier changes",
+    "alternate optimization flags or repeat target compile"
+  ],
+  "publication": "stopped; no external writes or CI watching",
+  "acceptance": "research only; no strict-match, lock, TU, integration or ROM claim"
+}

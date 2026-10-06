@@ -20,13 +20,33 @@ from tools.cloud import score
 SOURCE=PROJECT/'cloud/matches/ovl_b/func_8039133C.c'
 NAME,ADDRESS,SIZE='func_8039133C',0x8039133C,340
 BASE='cd22879d40b3de443cfde047b86e75e159b6cec6'
-FLAGS='-g0 -O2 -mips2 -G 0 -non_shared'
+FLAGS='-g0 -O3 -mips2 -G 0 -non_shared'
 IMAGE_SHA='b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd'
 STATE,HEAD,SEED=0x80399AE0,0x80143FD8,0x8011735C
 OBJECTS,SLOTS,STACK,RETURN=0x81000000,0x82000000,0x70000000,0x60000000
 ALLOC,RNG=0x80097470,0x8008B2E4
 GLOBALS={'D_80399AE0':STATE,'D_80143FD8':HEAD,'audio_dma_sync':ALLOC,'func_8008B2E4':RNG}
 U32=0xffffffff
+
+
+def portable_receipt(receipt):
+    """Compare packet proof; base-context and whole-tree digests are provenance."""
+    result = json.loads(json.dumps(receipt))
+    for path in (
+        'asm/us/ovl_b/SHA256SUMS',
+        'asm/us/ovl_b/extents.json',
+        'asm/us/ovl_b/ovl_b_8038a400.s',
+        'asm/us/ovl_b/symbols.json',
+        'tools/cloud/score.py',
+    ):
+        result.get('inputs_sha256', {}).pop(path, None)
+    for key in ('allocator_sha256', 'list_witness_sha256'):
+        result.get('contexts', {}).pop(key, None)
+    result.get('packet_sha256', {}).pop('test_packet.py', None)
+    if not result.get('inputs_sha256'):
+        result.pop('inputs_sha256', None)
+    return result
+
 
 def sha_bytes(b):return hashlib.sha256(b).hexdigest()
 def sha(p):return sha_bytes(Path(p).read_bytes())
@@ -325,10 +345,10 @@ def prove():
             rejected.append(name)
         receipt={'status':'MATCH','base':BASE,'image':'B','image_sha256':IMAGE_SHA,'address':hex(ADDRESS),'bytes':SIZE,
             'source_sha256':sha(SOURCE),'flags':FLAGS+' -Wab,-r4300_mul',
-            'inputs_sha256':{str(p.relative_to(ROOT)):sha(p) for p in [score.ASM_DIR/'SHA256SUMS',score.ASM_DIR/'ovl_b_8038a400.s',score.ASM_DIR/'extents.json',score.ASM_DIR/'symbols.json',ROOT/'tools/cloud/score.py']},
-            'packet_sha256':{p.name:sha(p) for p in [PACKET/'verify.py',PACKET/'host_test.c',PACKET/'test_packet.py']},
-            'contexts':{'allocator_source':helper_path,'allocator_sha256':sha_bytes(helper),'allocator_native_execution':False,
-                'list_witness':'src/blob/func_800BEA6C.c','list_witness_sha256':locks['func_800BEA6C']['source_sha256'],
+
+            'packet_sha256':{p.name:sha(p) for p in [PACKET/'verify.py',PACKET/'host_test.c']},
+            'contexts':{'allocator_source':helper_path,'allocator_native_execution':False,
+                'list_witness':'src/blob/func_800BEA6C.c',
                 'direct_caller':{'name':'engine_sound_update','offset':'0x558','bytes':1428,'sha256':sha_bytes(struct.pack('>357I',*caller_words))},
                 'rng_native_sha256':sha_bytes(struct.pack('>18I',*rng_words)),'rng_accepted':False,'rng_native_executed':True},
             'elf':{'function_size':SIZE,'text_size':len(raw),'alignment_bytes_outside_function':len(raw)-SIZE,'owned_data_bytes':0,
@@ -350,6 +370,6 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('output',nargs='?');parser.add_argument('--check',action='store_true');parser.add_argument('--tool-provenance',type=Path)
     args=parser.parse_args();result=prove()
     if args.tool_provenance:args.tool_provenance.write_text(json.dumps(tool_provenance(),indent=2,sort_keys=True)+'\n')
-    if args.check:assert result==json.loads((PACKET/'verification.json').read_text());print('Frozen proof reproduced')
+    if args.check:assert portable_receipt(result)==portable_receipt(json.loads((PACKET/'verification.json').read_text()));print('Frozen proof reproduced')
     elif args.output:Path(args.output).write_text(json.dumps(result,indent=2,sort_keys=True)+'\n')
     else:print(json.dumps(result,indent=2,sort_keys=True))

@@ -1,0 +1,183 @@
+{
+  "status": "NONMATCH research only",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "authored_sources": {
+    "cloud/work/frontier/dot_callback_batch_20261006/verify_packet.py": "dea3d2f6dc70b83ff368913b61dd720e3a70b175346d9a405d2c231c5e0ca262",
+    "cloud/work/frontier/dot_gear_label_ef288_20261006/candidate.c": "a7ef198e3c87750594e19658e97bab7ddf135053a3475bf1d7fd525b15c4e02d",
+    "cloud/work/frontier/dot_gear_label_ef288_20261006/context.c": "e202453501444783bac5466e989c514e893bf6ba59606906edfb498d922193bf",
+    "cloud/work/frontier/dot_gear_label_ef288_20261006/group.json": "161d77b787c7e7cbb260296aae415bfc7702804cf8c627187a480607d7661431",
+    "cloud/work/frontier/dot_gear_label_ef288_20261006/host.c": "4e7c0490f4948412f1d11666a791e35b4166304f692d1eb9fa59ff4ab2665bcc",
+    "cloud/work/frontier/dot_gear_label_ef288_20261006/native.py": "d9a95984324b96dcfd9bcc58cdc0924566b751589e195d2f6b096c502782f992",
+    "cloud/work/frontier/dot_gear_label_ef288_20261006/review/audit.py": "5973d09a46991e6604d046d71a3a97522cb3c13bae775e586f186cd8dc4ac927",
+    "cloud/work/frontier/dot_gear_label_ef288_20261006/review/candidate.c": "a7ef198e3c87750594e19658e97bab7ddf135053a3475bf1d7fd525b15c4e02d",
+    "cloud/work/frontier/dot_gear_label_ef288_20261006/review/host_audit.c": "1d4b71f428c13c76bfd84553e8791a0443a11e095b4a1426e3d4509dd3b9ac49",
+    "cloud/work/frontier/dot_gear_label_ef288_20261006/review/native_reviewed.py": "b2f7e81eeb8db86f8d994eafe7b373cfe2b58eb2a6ec447efe0310d694d3f085",
+    "cloud/work/frontier/dot_gear_label_ef288_20261006/review/negative.py": "191e2e5ddf438e7dce8305511a4b3b7b92049d39521e710b59d0a3d9c5cdac6b",
+    "cloud/work/frontier/dot_gear_label_ef288_20261006/verify.py": "f1ab6333da53e57c25a471b38142e7b3e6943ef8c110783f916fcec707453832",
+    "cloud/work/frontier/dot_viewport_effect_fa9b4_20261006/audit_helpers.py": "15ff354efc9d41acde81183d51ca6c93bac5152824506efb9df1281488aec4fd",
+    "cloud/work/frontier/dot_viewport_effect_fa9b4_20261006/baseline.py": "49bcdee725e382dbcd457fe5274c4dbf110f103b46bbc635351ec123bfcf4b73",
+    "cloud/work/frontier/dot_viewport_effect_fa9b4_20261006/candidate.c": "e843f3500c6a952dd067949a7d5f894febfb8d635d77baa480778360dc95f4ee",
+    "cloud/work/frontier/dot_viewport_effect_fa9b4_20261006/host.c": "5ba71f5c30b9b342b85da0b7539c9ae36012198b5e0a952832a345ef32d3bfa0",
+    "cloud/work/frontier/dot_viewport_effect_fa9b4_20261006/review/build_review_host.py": "e660cac5e1e03c36e66d9dbf7dc08c35dcb054f4f8815e878ebf3704dac71583",
+    "cloud/work/frontier/dot_viewport_effect_fa9b4_20261006/review/frozen_candidate.c": "e843f3500c6a952dd067949a7d5f894febfb8d635d77baa480778360dc95f4ee",
+    "cloud/work/frontier/dot_viewport_effect_fa9b4_20261006/review/host_review.c": "b46592339cd3286e1f2cd37579021d7e7ec1645090716fbc31af6340338091c1",
+    "cloud/work/frontier/dot_viewport_effect_fa9b4_20261006/review/mutations.py": "2f119e4a5d968ef771c5e64620ef397035eeade39e3cf16cf900bf543541b737",
+    "cloud/work/frontier/dot_viewport_effect_fa9b4_20261006/review/review.py": "bc62311b8ef63e28ee97c3ff4b12758efbe1faa2645a90045aeb6755b7373614",
+    "cloud/work/frontier/dot_viewport_effect_fa9b4_20261006/review/static_review.py": "f3d9b42224e3c123698aa24666f15d465b64321436e0227bcaa0aa27d6f463ce",
+    "cloud/work/frontier/dot_viewport_effect_fa9b4_20261006/runtime_contract_audit.py": "4e186c4f050009c84131e41ed8b0ed358f7327792f007e8598a534a25e264b83",
+    "cloud/work/frontier/dot_viewport_effect_fa9b4_20261006/verify_semantics.py": "c4efbb435e05a7f45a87de6ea4295f42fc8969a5cbf70cfc2844d6bea219da5c"
+  },
+  "native_targets": {
+    "blob": {
+      "InitMaxPath": {
+        "bytes": 136,
+        "sha256": "39fb255a22f38bd9e8485207ac94a5c2db4ed68dbcc53658b7998f32d14daefa"
+      },
+      "PrevMaxPath": {
+        "bytes": 96,
+        "sha256": "36b09bc3ca7abf5fc154625c926df393b276b7ad505117aa2f332fc85daec711"
+      },
+      "camera_position_update": {
+        "bytes": 452,
+        "sha256": "f530a1b7824f07c1d5417b559532abc6cc7d13db432373826a6a9b499a33b4db"
+      },
+      "camera_scene_manager": {
+        "bytes": 2456,
+        "sha256": "af9393277f546ff5b8c127422cf426ea29dd2882a28610ee11ad02b9b32a9011"
+      },
+      "camera_target_track": {
+        "bytes": 636,
+        "sha256": "a057021cac52f5037d124838784fd62d4b2bf90a961c66b6a6b83344cb7da032"
+      },
+      "cpak_read": {
+        "bytes": 848,
+        "sha256": "e32341a2af38077f94963b65812b7e61edfeb015f793b351988250ce88606009"
+      },
+      "display_enable": {
+        "bytes": 316,
+        "sha256": "68c5a299aa4fb32e5122fbb59b9fe0834882f1ef92e84e5bc3fecbb2809d0dab"
+      },
+      "entity_flags_apply": {
+        "bytes": 292,
+        "sha256": "5efca54fa178493c1e74e67a1283bdc58e23307e0db4c5fc35fe3f81ce54e53e"
+      },
+      "func_80090284": {
+        "bytes": 132,
+        "sha256": "30a84341f5dadb3b164c8e49d76c350693b8369e33e6f62663cf9d2c8fe807eb"
+      },
+      "func_80090308": {
+        "bytes": 1128,
+        "sha256": "dd5fb2b4ba651dfc726d27571fc810534f081935e00ed42fdeb70f5456d87169"
+      },
+      "func_80096288": {
+        "bytes": 16,
+        "sha256": "64e6fe82a9a8105fd73c45eff39203a632b71731116ae93b43be76782c6c8422"
+      },
+      "func_800C3578": {
+        "bytes": 148,
+        "sha256": "c118989c64831a918f7439b9890f54f3cc51dfddb00ce99c8b26ee4ce4f0cd61"
+      },
+      "func_800D169C": {
+        "bytes": 556,
+        "sha256": "d5e14d9c9a66046776b118a9356c63143ca4984c90f6b216bf2b4d29cfb186d6"
+      },
+      "func_800D5524": {
+        "bytes": 628,
+        "sha256": "c8f07ad20e578b17abbd7f562fe7ef3e57317056dca1f13a1b2884d241f26755"
+      },
+      "func_800EF288": {
+        "bytes": 808,
+        "sha256": "4558842b6be059f68809f832cfb1b92732a67bc283fa75d6af692a4a5257c31a"
+      },
+      "func_800F8E90": {
+        "bytes": 56,
+        "sha256": "efc5523efe6cdf7d5ac61d7d404a87d5f2f25a8a9578d6a0bfd4bf3d169b4bd6"
+      },
+      "func_800F8EC8": {
+        "bytes": 1024,
+        "sha256": "704a856de34cd61f04accb71b0a04e032ca11754cab89505fd0ec5757e69780f"
+      },
+      "hud_render": {
+        "bytes": 2420,
+        "sha256": "fa9a2dac5b163a1d500d44081cdc4f32c67147641485c7ade7c475f6bc683f84"
+      },
+      "menu_controller_remap": {
+        "bytes": 1548,
+        "sha256": "25dc7e4b84c59a20856690cc14327f8fcc37865eb546e89acfe5433cc8a36109"
+      },
+      "object_byte9_set": {
+        "bytes": 64,
+        "sha256": "cd19e3089685917a05f400f998bf57a4bd6e370863561775900968e6879f93f6"
+      },
+      "object_create": {
+        "bytes": 112,
+        "sha256": "faee709c3df1e073e647c2851a4c4ce19db047599daaa796882845fa345f6858"
+      },
+      "playgame_state_change": {
+        "bytes": 2544,
+        "sha256": "b36a6e6d7ff8a517f1091d31090f2018fa037e40dab8407b278bdea90a284084"
+      },
+      "race_init_helper": {
+        "bytes": 180,
+        "sha256": "ea8591cf4745b0273963764a4a4ec4a9b29e20e8b094b6cb04430fee23cb43fe"
+      },
+      "race_setup_1": {
+        "bytes": 1884,
+        "sha256": "e9e77f4573da1407216092a0c4338a5b5c35595b31f9ebc3e2de215953dbb80e"
+      },
+      "race_setup_2": {
+        "bytes": 908,
+        "sha256": "c227031a3bc7e07175593ff7f1ee39798647f1b6cdad8f240b9ce115e8927d25"
+      },
+      "render_large_objects": {
+        "bytes": 5652,
+        "sha256": "04ff94b2dfea00abe7f297e4ba22eeaa0bbd5ac9f1238af653dae3d3ca4299ff"
+      },
+      "render_viewport_init": {
+        "bytes": 924,
+        "sha256": "654bb1ced64803ad473a7bb8d1238cdd95fba6868c75e49697192678c14fb9d9"
+      },
+      "save_write_data": {
+        "bytes": 1200,
+        "sha256": "3d7f79a62ea3664248e76b8cd9fc06dbd8142ab8d31e6167e8c1ca246323fca1"
+      },
+      "skid_mark_render": {
+        "bytes": 1396,
+        "sha256": "21a6a43dd40e7319680d611f31439c44612bee87855aae4427128e75c1da5382"
+      },
+      "slot_state_setup": {
+        "bytes": 232,
+        "sha256": "55d29fb1f5b5789d8b2467a1287a0d16e872cfb6d0c6aa3653bf7b69cc2f0144"
+      },
+      "sound_update_channel": {
+        "bytes": 488,
+        "sha256": "843f08a4e541babf1af03e56b8e6b066d220408edf658e142f404844369e515c"
+      },
+      "world_trigger_check": {
+        "bytes": 216,
+        "sha256": "c61e640dd5a9e43b9f4946fc6d76a154f4c1609d4ae1d3c302b601f2d5282612"
+      }
+    },
+    "ovl_b": {
+      "func_8038FCE0": {
+        "bytes": 3056,
+        "sha256": "3574383f8241f87f1aa201bc4a7265e49cd818b8b6f7e6564ecca4131b6682e2"
+      },
+      "func_80390B10": {
+        "bytes": 552,
+        "sha256": "656cfd510c2a08aa09c0dbba417f7e6bf84781681746380fddabce66c455fef8"
+      },
+      "func_80390D38": {
+        "bytes": 552,
+        "sha256": "e90f5ca0395a6429e0137efb62e2a8077600aff474bf298d5e47d98aec520355"
+      },
+      "func_80390F60": {
+        "bytes": 988,
+        "sha256": "6d91e9692637c1d96f48b3a1afcc63d3348212a42baf882e7e71034426a30bb3"
+      }
+    }
+  },
+  "claims": [],
+  "accepted_coverage_bytes": 0,
+  "binding_scope": "Only owned C/Python sources, group declaration and selected canonical native target words. No live manifests, tools, context, locks, production source or test-file receipt pins."
+}
