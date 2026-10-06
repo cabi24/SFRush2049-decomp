@@ -1,0 +1,33 @@
+{
+  "files": [
+    "candidate.c",
+    "context.c",
+    "voice.c",
+    "font_metrics.c"
+  ],
+  "members": [
+    "func_800B4FB0"
+  ],
+  "context": [
+    "slot_state_setup",
+    "sound_update_channel",
+    "object_byte9_set",
+    "func_80096288",
+    "object_create",
+    "world_trigger_check",
+    "voice_stop",
+    "object_manager_update",
+    "object_bytes_sum_global"
+  ],
+  "keep": [
+    "func_800B4FB0",
+    "object_create",
+    "world_trigger_check",
+    "object_byte9_set",
+    "func_80096288",
+    "object_manager_update",
+    "object_bytes_sum_global"
+  ],
+  "claims": [],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}
