@@ -1,0 +1,33 @@
+{
+  "members": [
+    "sound_priority_set"
+  ],
+  "context": [
+    "audio_fade_control",
+    "gfx_setup_e700",
+    "audio_timing_sync",
+    "func_800956BC",
+    "func_80091FBC",
+    "func_8009211C",
+    "audio_stream_control",
+    "audio_buffer_manage",
+    "audio_bus_route"
+  ],
+  "claims": [],
+  "files": [
+    "group.c",
+    "lists.c",
+    "lookup.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "gfx_setup_e700",
+    "audio_timing_sync",
+    "audio_bus_route",
+    "sound_priority_set",
+    "audio_stream_control",
+    "audio_buffer_manage",
+    "func_80091FBC",
+    "func_8009211C"
+  ]
+}
