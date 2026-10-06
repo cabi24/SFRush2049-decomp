@@ -1,0 +1,35 @@
+{
+  "base": "f2e8380d3b368d00efc9cac3e37cdc7059b1f6e2",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "automatic_backend_flag": "-Wab,-r4300_mul",
+  "function": "func_80016998",
+  "target_bytes": 608,
+  "rows": [
+    {
+      "source": "baseline",
+      "source_sha256": "671a2aa10a63c931339834b9dcf428cb375cf1902d6932b08b9e1d49d34c0a33",
+      "result": {
+        "differing": 106,
+        "total": 152,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 4
+      },
+      "function_bytes": 628
+    },
+    {
+      "source": "candidate",
+      "source_sha256": "0ab5670a70385e8d0217f3781badcad77808fb6366f8a49d5657b8d62ebe9e29",
+      "result": {
+        "differing": 76,
+        "total": 152,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 3
+      },
+      "function_bytes": 624
+    }
+  ]
+}
