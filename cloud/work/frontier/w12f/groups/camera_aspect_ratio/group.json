@@ -1,0 +1,31 @@
+{
+ "members": [
+  "camera_aspect_ratio",
+  "camera_fov_control",
+  "camera_build_view_matrix",
+  "func_800C15FC",
+  "camera_process_input"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "camera_update",
+  "camera_process_input",
+  "__standin_camera_aspect_ratio",
+  "__standin_camera_fov_control",
+  "__standin_camera_free_look",
+  "__standin_camera_look_at_point"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "generated": "blob_group seed from build/ipa_groups.json",
+ "unprototyped": [],
+ "context": [
+  "camera_free_look",
+  "camera_look_at_point",
+  "camera_update",
+  "camera_track_spline"
+ ],
+ "provenance": "frontier wave 12 (w12f), 2026-10-06; work base superseding the locked camera_aspect_ratio group (same members, same code; camera_build_view_matrix parameter order (cam, idx)); camera_update 17/719 and camera_look_at_point 38/199 are context; cloud/work/frontier/w12f/RESULTS.md",
+ "claims": []
+}

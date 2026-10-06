@@ -1,0 +1,3123 @@
+ugen proc ordinal 643 (procs in listing: 1085, PROC BEGIN records: 1085)
+DKWB-FREELIST ADD proc=643 reg=14 emitted=1 line=4223
+DKWB-FREELIST ADD proc=643 reg=15 emitted=1 line=4223
+DKWB-FREELIST ADD proc=643 reg=24 emitted=1 line=4223
+DKWB-FREELIST ADD proc=643 reg=25 emitted=1 line=4223
+DKWB-FREELIST ADD proc=643 reg=8 emitted=1 line=4223
+DKWB-FREELIST ADD proc=643 reg=9 emitted=1 line=4223
+DKWB-FREELIST ADD proc=643 reg=10 emitted=1 line=4223
+DKWB-FREELIST ADD proc=643 reg=11 emitted=1 line=4223
+DKWB-FREELIST ADD proc=643 reg=12 emitted=1 line=4223
+DKWB-FREELIST ADD proc=643 reg=13 emitted=1 line=4223
+DKWB-FREELIST REMOVE proc=643 reg=2 emitted=1 line=4223
+DKWB-FREELIST REMOVE proc=643 reg=3 emitted=1 line=4223
+DKWB-FREELIST REMOVE proc=643 reg=8 emitted=1 line=4223
+DKWB-FREELIST REMOVE proc=643 reg=9 emitted=1 line=4223
+DKWB-FREELIST REMOVE proc=643 reg=10 emitted=1 line=4223
+DKWB-FREELIST REMOVE proc=643 reg=11 emitted=1 line=4223
+DKWB-FREELIST REMOVE proc=643 reg=12 emitted=1 line=4223
+DKWB-FREELIST REMOVE proc=643 reg=13 emitted=1 line=4223
+DKWB-FREELIST FREE proc=643 reg=4 emitted=1 line=4223
+DKWB-EMIT-V1 proc=643 block=0 emit=2 op=87 line=4223 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=5 emitted=2 line=4223
+DKWB-EMIT-V1 proc=643 block=0 emit=3 op=87 line=4223 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=5 emitted=3 line=4223
+DKWB-FREELIST ALLOC_GP proc=643 reg=48 emitted=3 line=4223
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=3 line=4223
+DKWB-EMIT-V1 proc=643 block=0 emit=4 op=79 line=4223 buffer=fwd fn=f_emit_rri_
+DKWB-EMIT-V1 proc=643 block=0 emit=5 op=49 line=4223 buffer=fwd fn=f_emit_rr
+DKWB-FREELIST FREE proc=643 reg=14 emitted=5 line=4223
+DKWB-FREELIST FREE proc=643 reg=5 emitted=5 line=4223
+DKWB-FREELIST ALLOC_GP proc=643 reg=160 emitted=5 line=4223
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=5 line=4223
+DKWB-EMIT-V1 proc=643 block=0 emit=6 op=83 line=4223 buffer=fwd fn=f_emit_rri_
+DKWB-EMIT-V1 proc=643 block=0 emit=7 op=49 line=4223 buffer=fwd fn=f_emit_rr
+DKWB-FREELIST FREE proc=643 reg=15 emitted=7 line=4223
+DKWB-FREELIST FREE proc=643 reg=5 emitted=7 line=4223
+DKWB-EMIT-V1 proc=643 block=0 emit=8 op=28 line=4223 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=0 emit=9 op=28 line=4246 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=0 emitted=9 line=4246
+DKWB-EMIT-V1 proc=643 block=0 emit=10 op=70 line=4246 buffer=fwd fn=f_emit_rob
+DKWB-EMIT-V1 proc=643 block=0 emit=11 op=28 line=4247 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=5 emitted=11 line=4247
+DKWB-EMIT-V1 proc=643 block=0 emit=12 op=26 line=4247 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=0 emit=13 op=28 line=4247 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=0 emit=14 op=28 line=4248 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=0 emit=15 op=42 line=4248 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=4 emitted=15 line=4248
+DKWB-EMIT-V1 proc=643 block=0 emit=16 op=41 line=4248 buffer=fwd fn=f_emit_ri_
+DKWB-FREELIST FREE proc=643 reg=5 emitted=16 line=4248
+DKWB-EMIT-V1 proc=643 block=0 emit=17 op=53 line=4248 buffer=fwd fn=f_emit_regmask
+DKWB-EMIT-V1 proc=643 block=0 emit=18 op=35 line=4248 buffer=fwd fn=f_emit_a
+DKWB-EMIT-V1 proc=643 block=0 emit=19 op=28 line=4249 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=0 emit=20 op=4 line=4249 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=1 emit=21 op=3002 line=4249 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=1 emit=22 op=28 line=4251 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=1 emit=23 op=42 line=4251 buffer=fwd fn=f_emit_ra
+DKWB-FREELIST FREE proc=643 reg=2 emitted=23 line=4251
+DKWB-FREELIST FREE proc=643 reg=2 emitted=23 line=4251
+DKWB-FREELIST ALLOC_GP proc=643 reg=216 emitted=23 line=4251
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=23 line=4251
+DKWB-EMIT-V1 proc=643 block=1 emit=24 op=3 line=4251 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=24 line=4251
+DKWB-EMIT-V1 proc=643 block=1 emit=25 op=26 line=4251 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=1 emit=25 op=26 line=4251 buffer=fwd fn=f_emit_rill
+DKWB-FREELIST FREE proc=643 reg=2 emitted=25 line=4251
+DKWB-FREELIST ALLOC_GP proc=643 reg=112 emitted=25 line=4251
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=25 line=4251
+DKWB-EMIT-V1 proc=643 block=1 emit=26 op=3 line=4251 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=25 emitted=26 line=4251
+DKWB-EMIT-V1 proc=643 block=1 emit=27 op=13 line=4251 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=1 emit=27 op=13 line=4251 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=2 emit=28 op=3003 line=4251 buffer=fwd fn=f_define_label
+DKWB-FREELIST ALLOC_GP proc=643 reg=152 emitted=28 line=4251
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=28 line=4251
+DKWB-EMIT-V1 proc=643 block=2 emit=29 op=42 line=4251 buffer=fwd fn=f_emit_ra
+DKWB-FREELIST FREE proc=643 reg=14 emitted=29 line=4251
+DKWB-EMIT-V1 proc=643 block=2 emit=30 op=26 line=4251 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=2 emit=31 op=28 line=4251 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=2 emit=32 op=28 line=4252 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_GP proc=643 reg=232 emitted=32 line=4252
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=32 line=4252
+DKWB-EMIT-V1 proc=643 block=2 emit=33 op=42 line=4252 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=15 emitted=33 line=4252
+DKWB-FREELIST ALLOC_GP proc=643 reg=160 emitted=33 line=4252
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=33 line=4252
+DKWB-EMIT-V1 proc=643 block=2 emit=34 op=42 line=4252 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=24 emitted=34 line=4252
+DKWB-EMIT-V1 proc=643 block=2 emit=35 op=87 line=4252 buffer=fwd fn=f_emit_rob
+DKWB-EMIT-V1 proc=643 block=2 emit=36 op=28 line=4253 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST MOVE_END proc=643 reg=24 emitted=36 line=4253
+DKWB-FREELIST FREE proc=643 reg=24 emitted=36 line=4253
+DKWB-EMIT-V1 proc=643 block=2 emit=37 op=42 line=4253 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=22 emitted=37 line=4253
+DKWB-EMIT-V1 proc=643 block=2 emit=38 op=28 line=4254 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=22 emitted=38 line=4254
+DKWB-EMIT-V1 proc=643 block=2 emit=39 op=42 line=4254 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=30 emitted=39 line=4254
+DKWB-EMIT-V1 proc=643 block=2 emit=40 op=28 line=4255 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=40 line=4255
+DKWB-EMIT-V1 proc=643 block=2 emit=41 op=42 line=4255 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=4 emitted=41 line=4255
+DKWB-FREELIST FREE proc=643 reg=4 emitted=41 line=4255
+DKWB-FREELIST ALLOC_GP proc=643 reg=216 emitted=41 line=4255
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=41 line=4255
+DKWB-EMIT-V1 proc=643 block=2 emit=42 op=3 line=4255 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=25 emitted=42 line=4255
+DKWB-EMIT-V1 proc=643 block=2 emit=43 op=13 line=4255 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=2 emit=43 op=13 line=4255 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=2 emit=44 op=28 line=4255 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=2 emit=45 op=28 line=4256 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=45 line=4256
+DKWB-FREELIST ALLOC_GP proc=643 reg=224 emitted=45 line=4256
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=45 line=4256
+DKWB-EMIT-V1 proc=643 block=2 emit=46 op=3 line=4256 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=14 emitted=46 line=4256
+DKWB-EMIT-V1 proc=643 block=2 emit=47 op=13 line=4256 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=2 emit=47 op=13 line=4256 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=2 emit=48 op=28 line=4256 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=2 emit=49 op=28 line=4257 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=49 line=4257
+DKWB-FREELIST ALLOC_GP proc=643 reg=232 emitted=49 line=4257
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=49 line=4257
+DKWB-EMIT-V1 proc=643 block=2 emit=50 op=3 line=4257 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=15 emitted=50 line=4257
+DKWB-EMIT-V1 proc=643 block=2 emit=51 op=26 line=4257 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=2 emit=51 op=26 line=4257 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=2 emit=52 op=28 line=4257 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=2 emit=53 op=28 line=4258 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=53 line=4258
+DKWB-FREELIST ALLOC_GP proc=643 reg=240 emitted=53 line=4258
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=53 line=4258
+DKWB-EMIT-V1 proc=643 block=2 emit=54 op=3 line=4258 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=54 line=4258
+DKWB-EMIT-V1 proc=643 block=2 emit=55 op=26 line=4258 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=2 emit=55 op=26 line=4258 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=2 emit=56 op=28 line=4258 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=2 emit=57 op=28 line=4259 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=22 emitted=57 line=4259
+DKWB-EMIT-V1 proc=643 block=2 emit=58 op=40 line=4259 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=3 emitted=58 line=4259
+DKWB-FREELIST FREE proc=643 reg=3 emitted=58 line=4259
+DKWB-FREELIST ALLOC_GP proc=643 reg=32 emitted=58 line=4259
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=58 line=4259
+DKWB-EMIT-V1 proc=643 block=2 emit=59 op=3 line=4259 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=25 emitted=59 line=4259
+DKWB-EMIT-V1 proc=643 block=2 emit=60 op=13 line=4259 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=2 emit=60 op=13 line=4259 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=2 emit=61 op=28 line=4259 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=2 emit=62 op=28 line=4260 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=3 emitted=62 line=4260
+DKWB-FREELIST ALLOC_GP proc=643 reg=224 emitted=62 line=4260
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=62 line=4260
+DKWB-EMIT-V1 proc=643 block=2 emit=63 op=3 line=4260 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=14 emitted=63 line=4260
+DKWB-FREELIST FREE proc=643 reg=22 emitted=63 line=4260
+DKWB-EMIT-V1 proc=643 block=2 emit=64 op=76 line=4260 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=2 emit=65 op=28 line=4261 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=22 emitted=65 line=4261
+DKWB-FREELIST ALLOC_GP proc=643 reg=120 emitted=65 line=4261
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=65 line=4261
+DKWB-EMIT-V1 proc=643 block=2 emit=66 op=40 line=4261 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=15 emitted=66 line=4261
+DKWB-FREELIST ALLOC_GP proc=643 reg=232 emitted=66 line=4261
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=66 line=4261
+DKWB-EMIT-V1 proc=643 block=2 emit=67 op=64 line=4261 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=67 line=4261
+DKWB-FREELIST FREE proc=643 reg=22 emitted=67 line=4261
+DKWB-EMIT-V1 proc=643 block=2 emit=68 op=76 line=4261 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=2 emit=69 op=28 line=4262 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=69 line=4262
+DKWB-FREELIST ALLOC_GP proc=643 reg=128 emitted=69 line=4262
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=69 line=4262
+DKWB-EMIT-V1 proc=643 block=2 emit=70 op=42 line=4262 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=22 emitted=70 line=4262
+DKWB-FREELIST ALLOC_GP proc=643 reg=240 emitted=70 line=4262
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=70 line=4262
+DKWB-EMIT-V1 proc=643 block=2 emit=71 op=39 line=4262 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=14 emitted=71 line=4262
+DKWB-FREELIST ALLOC_GP proc=643 reg=96 emitted=71 line=4262
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=71 line=4262
+DKWB-EMIT-V1 proc=643 block=2 emit=72 op=56 line=4262 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=25 emitted=72 line=4262
+DKWB-FREELIST FREE proc=643 reg=15 emitted=72 line=4262
+DKWB-FREELIST ALLOC_GP proc=643 reg=24 emitted=72 line=4262
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=72 line=4262
+DKWB-EMIT-V1 proc=643 block=2 emit=73 op=2 line=4262 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=24 emitted=73 line=4262
+DKWB-FREELIST ALLOC_FP proc=643 reg=208 emitted=73 line=4262
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=36 emitted=73 line=4262
+DKWB-EMIT-V1 proc=643 block=2 emit=74 op=118 line=4262 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=22 emitted=74 line=4262
+DKWB-FREELIST ALLOC_FP proc=643 reg=64 emitted=74 line=4262
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=38 emitted=74 line=4262
+DKWB-EMIT-V1 proc=643 block=2 emit=75 op=118 line=4262 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST ALLOC_FP proc=643 reg=248 emitted=75 line=4262
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=40 emitted=75 line=4262
+DKWB-EMIT-V1 proc=643 block=2 emit=76 op=127 line=4262 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=22 emitted=76 line=4262
+DKWB-EMIT-V1 proc=643 block=2 emit=77 op=121 line=4262 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=30 emitted=77 line=4262
+DKWB-EMIT-V1 proc=643 block=2 emit=78 op=42 line=4262 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=4 emitted=78 line=4262
+DKWB-EMIT-V1 proc=643 block=3 emit=79 op=3004 line=4262 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=3 emit=80 op=28 line=4264 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=80 line=4264
+DKWB-FREELIST ALLOC_GP proc=643 reg=184 emitted=80 line=4264
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=80 line=4264
+DKWB-EMIT-V1 proc=643 block=3 emit=81 op=3 line=4264 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=14 emitted=81 line=4264
+DKWB-EMIT-V1 proc=643 block=3 emit=82 op=13 line=4264 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=3 emit=82 op=13 line=4264 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=3 emit=83 op=28 line=4264 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=3 emit=84 op=28 line=4265 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=3 emit=85 op=42 line=4265 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=16 emitted=85 line=4265
+DKWB-EMIT-V1 proc=643 block=3 emit=86 op=53 line=4265 buffer=fwd fn=f_emit_regmask
+DKWB-EMIT-V1 proc=643 block=3 emit=87 op=35 line=4265 buffer=fwd fn=f_emit_a
+DKWB-FREELIST FREE proc=643 reg=30 emitted=87 line=4265
+DKWB-EMIT-V1 proc=643 block=3 emit=88 op=42 line=4265 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=4 emitted=88 line=4265
+DKWB-EMIT-V1 proc=643 block=4 emit=89 op=3005 line=4265 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=4 emit=90 op=28 line=4267 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=90 line=4267
+DKWB-FREELIST ALLOC_GP proc=643 reg=240 emitted=90 line=4267
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=90 line=4267
+DKWB-EMIT-V1 proc=643 block=4 emit=91 op=3 line=4267 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=25 emitted=91 line=4267
+DKWB-FREELIST FREE proc=643 reg=30 emitted=91 line=4267
+DKWB-EMIT-V1 proc=643 block=4 emit=92 op=87 line=4267 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=30 emitted=92 line=4267
+DKWB-EMIT-V1 proc=643 block=4 emit=93 op=42 line=4267 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=4 emitted=93 line=4267
+DKWB-EMIT-V1 proc=643 block=4 emit=94 op=4 line=4267 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=5 emit=95 op=3006 line=4267 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=5 emit=96 op=28 line=4269 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=5 emit=97 op=28 line=4270 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=97 line=4270
+DKWB-FREELIST ALLOC_GP proc=643 reg=216 emitted=97 line=4270
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=97 line=4270
+DKWB-EMIT-V1 proc=643 block=5 emit=98 op=3 line=4270 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=15 emitted=98 line=4270
+DKWB-EMIT-V1 proc=643 block=5 emit=99 op=13 line=4270 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=5 emit=99 op=13 line=4270 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=5 emit=100 op=28 line=4270 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=5 emit=101 op=28 line=4271 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=101 line=4271
+DKWB-FREELIST ALLOC_GP proc=643 reg=152 emitted=101 line=4271
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=101 line=4271
+DKWB-EMIT-V1 proc=643 block=5 emit=102 op=3 line=4271 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=102 line=4271
+DKWB-FREELIST FREE proc=643 reg=30 emitted=102 line=4271
+DKWB-EMIT-V1 proc=643 block=5 emit=103 op=87 line=4271 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=5 emit=104 op=28 line=4272 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=5 emit=105 op=42 line=4272 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=16 emitted=105 line=4272
+DKWB-EMIT-V1 proc=643 block=5 emit=106 op=53 line=4272 buffer=fwd fn=f_emit_regmask
+DKWB-EMIT-V1 proc=643 block=5 emit=107 op=35 line=4272 buffer=fwd fn=f_emit_a
+DKWB-FREELIST FREE proc=643 reg=30 emitted=107 line=4272
+DKWB-EMIT-V1 proc=643 block=5 emit=108 op=42 line=4272 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=4 emitted=108 line=4272
+DKWB-EMIT-V1 proc=643 block=6 emit=109 op=3007 line=4272 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=6 emit=110 op=28 line=4274 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=110 line=4274
+DKWB-FREELIST ALLOC_GP proc=643 reg=96 emitted=110 line=4274
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=110 line=4274
+DKWB-EMIT-V1 proc=643 block=6 emit=111 op=3 line=4274 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=14 emitted=111 line=4274
+DKWB-FREELIST FREE proc=643 reg=30 emitted=111 line=4274
+DKWB-EMIT-V1 proc=643 block=6 emit=112 op=87 line=4274 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=30 emitted=112 line=4274
+DKWB-EMIT-V1 proc=643 block=6 emit=113 op=42 line=4274 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=4 emitted=113 line=4274
+DKWB-EMIT-V1 proc=643 block=6 emit=114 op=4 line=4274 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=7 emit=115 op=3008 line=4274 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=7 emit=116 op=28 line=4276 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=7 emit=117 op=28 line=4277 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=117 line=4277
+DKWB-FREELIST ALLOC_GP proc=643 reg=144 emitted=117 line=4277
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=117 line=4277
+DKWB-EMIT-V1 proc=643 block=7 emit=118 op=3 line=4277 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=25 emitted=118 line=4277
+DKWB-EMIT-V1 proc=643 block=7 emit=119 op=13 line=4277 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=7 emit=119 op=13 line=4277 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=7 emit=120 op=41 line=4277 buffer=fwd fn=f_emit_ri_
+DKWB-FREELIST FREE proc=643 reg=6 emitted=120 line=4277
+DKWB-FREELIST FREE proc=643 reg=4 emitted=120 line=4277
+DKWB-FREELIST FREE proc=643 reg=6 emitted=120 line=4277
+DKWB-FREELIST ALLOC_GP proc=643 reg=152 emitted=120 line=4277
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=120 line=4277
+DKWB-EMIT-V1 proc=643 block=7 emit=121 op=3 line=4277 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=15 emitted=121 line=4277
+DKWB-EMIT-V1 proc=643 block=7 emit=122 op=13 line=4277 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=7 emit=122 op=13 line=4277 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=7 emit=123 op=28 line=4277 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=7 emit=124 op=28 line=4278 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=124 line=4278
+DKWB-FREELIST ALLOC_GP proc=643 reg=48 emitted=124 line=4278
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=124 line=4278
+DKWB-EMIT-V1 proc=643 block=7 emit=125 op=42 line=4278 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=24 emitted=125 line=4278
+DKWB-FREELIST ALLOC_GP proc=643 reg=232 emitted=125 line=4278
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=125 line=4278
+DKWB-EMIT-V1 proc=643 block=7 emit=126 op=42 line=4278 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=14 emitted=126 line=4278
+DKWB-FREELIST ALLOC_GP proc=643 reg=88 emitted=126 line=4278
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=126 line=4278
+DKWB-EMIT-V1 proc=643 block=7 emit=127 op=3 line=4278 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=25 emitted=127 line=4278
+DKWB-EMIT-V1 proc=643 block=7 emit=128 op=13 line=4278 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=7 emit=128 op=13 line=4278 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=7 emit=129 op=28 line=4278 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=7 emit=130 op=28 line=4279 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=130 line=4279
+DKWB-FREELIST ALLOC_GP proc=643 reg=96 emitted=130 line=4279
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=130 line=4279
+DKWB-EMIT-V1 proc=643 block=7 emit=131 op=3 line=4279 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=15 emitted=131 line=4279
+DKWB-FREELIST FREE proc=643 reg=30 emitted=131 line=4279
+DKWB-EMIT-V1 proc=643 block=7 emit=132 op=87 line=4279 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=7 emit=133 op=28 line=4280 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=133 line=4280
+DKWB-FREELIST ALLOC_GP proc=643 reg=248 emitted=133 line=4280
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=133 line=4280
+DKWB-EMIT-V1 proc=643 block=7 emit=134 op=42 line=4280 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=24 emitted=134 line=4280
+DKWB-FREELIST ALLOC_GP proc=643 reg=104 emitted=134 line=4280
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=134 line=4280
+DKWB-EMIT-V1 proc=643 block=7 emit=135 op=64 line=4280 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=14 emitted=135 line=4280
+DKWB-FREELIST FREE proc=643 reg=30 emitted=135 line=4280
+DKWB-EMIT-V1 proc=643 block=7 emit=136 op=87 line=4280 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=7 emit=137 op=28 line=4281 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=137 line=4281
+DKWB-FREELIST ALLOC_GP proc=643 reg=72 emitted=137 line=4281
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=137 line=4281
+DKWB-EMIT-V1 proc=643 block=7 emit=138 op=42 line=4281 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=25 emitted=138 line=4281
+DKWB-FREELIST ALLOC_GP proc=643 reg=184 emitted=138 line=4281
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=138 line=4281
+DKWB-EMIT-V1 proc=643 block=7 emit=139 op=3 line=4281 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=15 emitted=139 line=4281
+DKWB-EMIT-V1 proc=643 block=7 emit=140 op=26 line=4281 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=7 emit=140 op=26 line=4281 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=7 emit=141 op=28 line=4281 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=7 emit=142 op=28 line=4282 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_GP proc=643 reg=80 emitted=142 line=4282
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=142 line=4282
+DKWB-EMIT-V1 proc=643 block=7 emit=143 op=42 line=4282 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=24 emitted=143 line=4282
+DKWB-EMIT-V1 proc=643 block=7 emit=144 op=39 line=4282 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=2 emitted=144 line=4282
+DKWB-EMIT-V1 proc=643 block=7 emit=145 op=40 line=4282 buffer=fwd fn=f_emit_ra
+DKWB-FREELIST FREE proc=643 reg=3 emitted=145 line=4282
+DKWB-FREELIST FREE proc=643 reg=2 emitted=145 line=4282
+DKWB-FREELIST ALLOC_GP proc=643 reg=16 emitted=145 line=4282
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=145 line=4282
+DKWB-EMIT-V1 proc=643 block=7 emit=146 op=56 line=4282 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=3 emitted=146 line=4282
+DKWB-FREELIST FREE proc=643 reg=14 emitted=146 line=4282
+DKWB-EMIT-V1 proc=643 block=7 emit=147 op=76 line=4282 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=8 emit=148 op=3009 line=4282 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=8 emit=149 op=28 line=4284 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=8 emit=150 op=42 line=4284 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=16 emitted=150 line=4284
+DKWB-EMIT-V1 proc=643 block=8 emit=151 op=53 line=4284 buffer=fwd fn=f_emit_regmask
+DKWB-EMIT-V1 proc=643 block=8 emit=152 op=35 line=4284 buffer=fwd fn=f_emit_a
+DKWB-EMIT-V1 proc=643 block=8 emit=153 op=28 line=4285 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=8 emit=154 op=4 line=4285 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=9 emit=155 op=3010 line=4285 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=9 emit=156 op=41 line=4285 buffer=fwd fn=f_emit_ri_
+DKWB-FREELIST FREE proc=643 reg=6 emitted=156 line=4285
+DKWB-EMIT-V1 proc=643 block=9 emit=157 op=28 line=4288 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=157 line=4288
+DKWB-FREELIST ALLOC_GP proc=643 reg=0 emitted=157 line=4288
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=157 line=4288
+DKWB-EMIT-V1 proc=643 block=9 emit=158 op=3 line=4288 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=25 emitted=158 line=4288
+DKWB-EMIT-V1 proc=643 block=9 emit=159 op=13 line=4288 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=9 emit=159 op=13 line=4288 buffer=fwd fn=f_emit_rill
+DKWB-FREELIST FREE proc=643 reg=4 emitted=159 line=4288
+DKWB-FREELIST ALLOC_GP proc=643 reg=224 emitted=159 line=4288
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=159 line=4288
+DKWB-EMIT-V1 proc=643 block=9 emit=160 op=3 line=4288 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=15 emitted=160 line=4288
+DKWB-EMIT-V1 proc=643 block=9 emit=161 op=13 line=4288 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=9 emit=161 op=13 line=4288 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=9 emit=162 op=28 line=4288 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=9 emit=163 op=28 line=4289 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=163 line=4289
+DKWB-EMIT-V1 proc=643 block=9 emit=164 op=42 line=4289 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=3 emitted=164 line=4289
+DKWB-EMIT-V1 proc=643 block=9 emit=165 op=28 line=4290 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=3 emitted=165 line=4290
+DKWB-EMIT-V1 proc=643 block=9 emit=166 op=42 line=4290 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=2 emitted=166 line=4290
+DKWB-FREELIST FREE proc=643 reg=2 emitted=166 line=4290
+DKWB-FREELIST ALLOC_GP proc=643 reg=56 emitted=166 line=4290
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=166 line=4290
+DKWB-EMIT-V1 proc=643 block=9 emit=167 op=3 line=4290 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=167 line=4290
+DKWB-EMIT-V1 proc=643 block=9 emit=168 op=13 line=4290 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=9 emit=168 op=13 line=4290 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=9 emit=169 op=28 line=4290 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=9 emit=170 op=28 line=4291 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=2 emitted=170 line=4291
+DKWB-FREELIST ALLOC_GP proc=643 reg=248 emitted=170 line=4291
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=170 line=4291
+DKWB-EMIT-V1 proc=643 block=9 emit=171 op=3 line=4291 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=14 emitted=171 line=4291
+DKWB-FREELIST FREE proc=643 reg=3 emitted=171 line=4291
+DKWB-EMIT-V1 proc=643 block=9 emit=172 op=87 line=4291 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=30 emitted=172 line=4291
+DKWB-EMIT-V1 proc=643 block=9 emit=173 op=42 line=4291 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=4 emitted=173 line=4291
+DKWB-EMIT-V1 proc=643 block=9 emit=174 op=4 line=4291 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=10 emit=175 op=3011 line=4291 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=10 emit=176 op=28 line=4292 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=176 line=4292
+DKWB-FREELIST ALLOC_GP proc=643 reg=40 emitted=176 line=4292
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=176 line=4292
+DKWB-EMIT-V1 proc=643 block=10 emit=177 op=3 line=4292 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=25 emitted=177 line=4292
+DKWB-EMIT-V1 proc=643 block=10 emit=178 op=13 line=4292 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=10 emit=178 op=13 line=4292 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=10 emit=179 op=28 line=4292 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=10 emit=180 op=28 line=4293 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=3 emitted=180 line=4293
+DKWB-EMIT-V1 proc=643 block=10 emit=181 op=42 line=4293 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=2 emitted=181 line=4293
+DKWB-EMIT-V1 proc=643 block=10 emit=182 op=28 line=4294 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=2 emitted=182 line=4294
+DKWB-EMIT-V1 proc=643 block=10 emit=183 op=40 line=4294 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=5 emitted=183 line=4294
+DKWB-FREELIST FREE proc=643 reg=5 emitted=183 line=4294
+DKWB-FREELIST ALLOC_GP proc=643 reg=128 emitted=183 line=4294
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=183 line=4294
+DKWB-EMIT-V1 proc=643 block=10 emit=184 op=3 line=4294 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=15 emitted=184 line=4294
+DKWB-EMIT-V1 proc=643 block=10 emit=185 op=13 line=4294 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=10 emit=185 op=13 line=4294 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=10 emit=186 op=28 line=4294 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=10 emit=187 op=28 line=4295 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=5 emitted=187 line=4295
+DKWB-FREELIST ALLOC_GP proc=643 reg=64 emitted=187 line=4295
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=187 line=4295
+DKWB-EMIT-V1 proc=643 block=10 emit=188 op=3 line=4295 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=188 line=4295
+DKWB-FREELIST FREE proc=643 reg=2 emitted=188 line=4295
+DKWB-EMIT-V1 proc=643 block=10 emit=189 op=76 line=4295 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=10 emit=190 op=28 line=4296 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=2 emitted=190 line=4296
+DKWB-FREELIST ALLOC_GP proc=643 reg=216 emitted=190 line=4296
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=190 line=4296
+DKWB-EMIT-V1 proc=643 block=10 emit=191 op=40 line=4296 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=14 emitted=191 line=4296
+DKWB-FREELIST ALLOC_GP proc=643 reg=72 emitted=191 line=4296
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=191 line=4296
+DKWB-EMIT-V1 proc=643 block=10 emit=192 op=64 line=4296 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=25 emitted=192 line=4296
+DKWB-FREELIST FREE proc=643 reg=2 emitted=192 line=4296
+DKWB-EMIT-V1 proc=643 block=10 emit=193 op=76 line=4296 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=10 emit=194 op=28 line=4297 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=3 emitted=194 line=4297
+DKWB-FREELIST ALLOC_GP proc=643 reg=224 emitted=194 line=4297
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=194 line=4297
+DKWB-EMIT-V1 proc=643 block=10 emit=195 op=42 line=4297 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=2 emitted=195 line=4297
+DKWB-FREELIST ALLOC_GP proc=643 reg=80 emitted=195 line=4297
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=195 line=4297
+DKWB-EMIT-V1 proc=643 block=10 emit=196 op=39 line=4297 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=24 emitted=196 line=4297
+DKWB-FREELIST ALLOC_GP proc=643 reg=192 emitted=196 line=4297
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=196 line=4297
+DKWB-EMIT-V1 proc=643 block=10 emit=197 op=56 line=4297 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=15 emitted=197 line=4297
+DKWB-FREELIST FREE proc=643 reg=14 emitted=197 line=4297
+DKWB-FREELIST ALLOC_GP proc=643 reg=120 emitted=197 line=4297
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=197 line=4297
+DKWB-EMIT-V1 proc=643 block=10 emit=198 op=2 line=4297 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=25 emitted=198 line=4297
+DKWB-FREELIST ALLOC_FP proc=643 reg=48 emitted=198 line=4297
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=42 emitted=198 line=4297
+DKWB-EMIT-V1 proc=643 block=10 emit=199 op=118 line=4297 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=2 emitted=199 line=4297
+DKWB-FREELIST ALLOC_FP proc=643 reg=160 emitted=199 line=4297
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=36 emitted=199 line=4297
+DKWB-EMIT-V1 proc=643 block=10 emit=200 op=118 line=4297 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST ALLOC_FP proc=643 reg=88 emitted=200 line=4297
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=38 emitted=200 line=4297
+DKWB-EMIT-V1 proc=643 block=10 emit=201 op=127 line=4297 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=2 emitted=201 line=4297
+DKWB-EMIT-V1 proc=643 block=10 emit=202 op=121 line=4297 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=30 emitted=202 line=4297
+DKWB-EMIT-V1 proc=643 block=10 emit=203 op=42 line=4297 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=4 emitted=203 line=4297
+DKWB-EMIT-V1 proc=643 block=10 emit=204 op=4 line=4297 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=11 emit=205 op=3012 line=4297 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=11 emit=206 op=28 line=4298 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=11 emit=207 op=28 line=4299 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=5 emitted=207 line=4299
+DKWB-FREELIST ALLOC_GP proc=643 reg=64 emitted=207 line=4299
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=207 line=4299
+DKWB-EMIT-V1 proc=643 block=11 emit=208 op=3 line=4299 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=208 line=4299
+DKWB-FREELIST FREE proc=643 reg=2 emitted=208 line=4299
+DKWB-EMIT-V1 proc=643 block=11 emit=209 op=76 line=4299 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=11 emit=210 op=28 line=4300 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=2 emitted=210 line=4300
+DKWB-FREELIST ALLOC_GP proc=643 reg=216 emitted=210 line=4300
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=210 line=4300
+DKWB-EMIT-V1 proc=643 block=11 emit=211 op=40 line=4300 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=15 emitted=211 line=4300
+DKWB-FREELIST ALLOC_GP proc=643 reg=72 emitted=211 line=4300
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=211 line=4300
+DKWB-EMIT-V1 proc=643 block=11 emit=212 op=64 line=4300 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=14 emitted=212 line=4300
+DKWB-FREELIST FREE proc=643 reg=2 emitted=212 line=4300
+DKWB-EMIT-V1 proc=643 block=11 emit=213 op=76 line=4300 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=11 emit=214 op=28 line=4301 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=3 emitted=214 line=4301
+DKWB-FREELIST ALLOC_GP proc=643 reg=224 emitted=214 line=4301
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=214 line=4301
+DKWB-EMIT-V1 proc=643 block=11 emit=215 op=42 line=4301 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=2 emitted=215 line=4301
+DKWB-FREELIST ALLOC_GP proc=643 reg=80 emitted=215 line=4301
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=215 line=4301
+DKWB-EMIT-V1 proc=643 block=11 emit=216 op=39 line=4301 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=24 emitted=216 line=4301
+DKWB-FREELIST ALLOC_GP proc=643 reg=192 emitted=216 line=4301
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=216 line=4301
+DKWB-EMIT-V1 proc=643 block=11 emit=217 op=56 line=4301 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=25 emitted=217 line=4301
+DKWB-FREELIST FREE proc=643 reg=15 emitted=217 line=4301
+DKWB-FREELIST ALLOC_GP proc=643 reg=120 emitted=217 line=4301
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=217 line=4301
+DKWB-EMIT-V1 proc=643 block=11 emit=218 op=2 line=4301 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=14 emitted=218 line=4301
+DKWB-FREELIST ALLOC_FP proc=643 reg=48 emitted=218 line=4301
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=40 emitted=218 line=4301
+DKWB-EMIT-V1 proc=643 block=11 emit=219 op=118 line=4301 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=2 emitted=219 line=4301
+DKWB-FREELIST ALLOC_FP proc=643 reg=160 emitted=219 line=4301
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=42 emitted=219 line=4301
+DKWB-EMIT-V1 proc=643 block=11 emit=220 op=118 line=4301 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST ALLOC_FP proc=643 reg=88 emitted=220 line=4301
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=36 emitted=220 line=4301
+DKWB-EMIT-V1 proc=643 block=11 emit=221 op=127 line=4301 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=2 emitted=221 line=4301
+DKWB-EMIT-V1 proc=643 block=11 emit=222 op=121 line=4301 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=30 emitted=222 line=4301
+DKWB-EMIT-V1 proc=643 block=11 emit=223 op=42 line=4301 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=4 emitted=223 line=4301
+DKWB-EMIT-V1 proc=643 block=12 emit=224 op=3013 line=4301 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=12 emit=225 op=28 line=4304 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=225 line=4304
+DKWB-FREELIST ALLOC_GP proc=643 reg=208 emitted=225 line=4304
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=225 line=4304
+DKWB-EMIT-V1 proc=643 block=12 emit=226 op=3 line=4304 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=226 line=4304
+DKWB-FREELIST FREE proc=643 reg=30 emitted=226 line=4304
+DKWB-EMIT-V1 proc=643 block=12 emit=227 op=87 line=4304 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=12 emit=228 op=28 line=4305 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=228 line=4305
+DKWB-EMIT-V1 proc=643 block=12 emit=229 op=42 line=4305 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=4 emitted=229 line=4305
+DKWB-FREELIST FREE proc=643 reg=4 emitted=229 line=4305
+DKWB-FREELIST ALLOC_GP proc=643 reg=144 emitted=229 line=4305
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=229 line=4305
+DKWB-EMIT-V1 proc=643 block=12 emit=230 op=3 line=4305 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=25 emitted=230 line=4305
+DKWB-EMIT-V1 proc=643 block=12 emit=231 op=13 line=4305 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=12 emit=231 op=13 line=4305 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=12 emit=232 op=41 line=4305 buffer=fwd fn=f_emit_ri_
+DKWB-FREELIST FREE proc=643 reg=2 emitted=232 line=4305
+DKWB-EMIT-V1 proc=643 block=12 emit=233 op=28 line=4305 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=12 emit=234 op=28 line=4306 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=234 line=4306
+DKWB-FREELIST FREE proc=643 reg=2 emitted=234 line=4306
+DKWB-FREELIST ALLOC_GP proc=643 reg=8 emitted=234 line=4306
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=234 line=4306
+DKWB-EMIT-V1 proc=643 block=12 emit=235 op=3 line=4306 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=15 emitted=235 line=4306
+DKWB-EMIT-V1 proc=643 block=12 emit=236 op=13 line=4306 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=12 emit=236 op=13 line=4306 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=12 emit=237 op=28 line=4306 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=12 emit=238 op=28 line=4307 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=238 line=4307
+DKWB-FREELIST ALLOC_GP proc=643 reg=200 emitted=238 line=4307
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=238 line=4307
+DKWB-EMIT-V1 proc=643 block=12 emit=239 op=3 line=4307 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=14 emitted=239 line=4307
+DKWB-FREELIST FREE proc=643 reg=30 emitted=239 line=4307
+DKWB-EMIT-V1 proc=643 block=12 emit=240 op=87 line=4307 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=12 emit=241 op=28 line=4308 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=241 line=4308
+DKWB-FREELIST ALLOC_GP proc=643 reg=96 emitted=241 line=4308
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=241 line=4308
+DKWB-EMIT-V1 proc=643 block=12 emit=242 op=42 line=4308 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=24 emitted=242 line=4308
+DKWB-FREELIST FREE proc=643 reg=6 emitted=242 line=4308
+DKWB-FREELIST ALLOC_GP proc=643 reg=208 emitted=242 line=4308
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=242 line=4308
+DKWB-EMIT-V1 proc=643 block=12 emit=243 op=64 line=4308 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=25 emitted=243 line=4308
+DKWB-FREELIST FREE proc=643 reg=30 emitted=243 line=4308
+DKWB-EMIT-V1 proc=643 block=12 emit=244 op=87 line=4308 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=12 emit=245 op=28 line=4309 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=245 line=4309
+DKWB-FREELIST ALLOC_GP proc=643 reg=176 emitted=245 line=4309
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=245 line=4309
+DKWB-EMIT-V1 proc=643 block=12 emit=246 op=42 line=4309 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=15 emitted=246 line=4309
+DKWB-FREELIST ALLOC_GP proc=643 reg=32 emitted=246 line=4309
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=246 line=4309
+DKWB-EMIT-V1 proc=643 block=12 emit=247 op=3 line=4309 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=14 emitted=247 line=4309
+DKWB-EMIT-V1 proc=643 block=12 emit=248 op=26 line=4309 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=12 emit=248 op=26 line=4309 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=12 emit=249 op=28 line=4309 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=12 emit=250 op=28 line=4310 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_GP proc=643 reg=184 emitted=250 line=4310
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=250 line=4310
+DKWB-EMIT-V1 proc=643 block=12 emit=251 op=42 line=4310 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=24 emitted=251 line=4310
+DKWB-EMIT-V1 proc=643 block=12 emit=252 op=39 line=4310 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=2 emitted=252 line=4310
+DKWB-EMIT-V1 proc=643 block=12 emit=253 op=40 line=4310 buffer=fwd fn=f_emit_ra
+DKWB-FREELIST FREE proc=643 reg=3 emitted=253 line=4310
+DKWB-FREELIST FREE proc=643 reg=2 emitted=253 line=4310
+DKWB-FREELIST ALLOC_GP proc=643 reg=120 emitted=253 line=4310
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=253 line=4310
+DKWB-EMIT-V1 proc=643 block=12 emit=254 op=56 line=4310 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=3 emitted=254 line=4310
+DKWB-FREELIST FREE proc=643 reg=25 emitted=254 line=4310
+DKWB-EMIT-V1 proc=643 block=12 emit=255 op=76 line=4310 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=13 emit=256 op=3014 line=4310 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=13 emit=257 op=28 line=4312 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=13 emit=258 op=42 line=4312 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=16 emitted=258 line=4312
+DKWB-EMIT-V1 proc=643 block=13 emit=259 op=53 line=4312 buffer=fwd fn=f_emit_regmask
+DKWB-EMIT-V1 proc=643 block=13 emit=260 op=35 line=4312 buffer=fwd fn=f_emit_a
+DKWB-EMIT-V1 proc=643 block=13 emit=261 op=4 line=4312 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=14 emit=262 op=3015 line=4312 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=14 emit=263 op=28 line=4313 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=14 emit=264 op=28 line=4314 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=264 line=4314
+DKWB-FREELIST ALLOC_GP proc=643 reg=104 emitted=264 line=4314
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=264 line=4314
+DKWB-EMIT-V1 proc=643 block=14 emit=265 op=3 line=4314 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=15 emitted=265 line=4314
+DKWB-FREELIST FREE proc=643 reg=30 emitted=265 line=4314
+DKWB-EMIT-V1 proc=643 block=14 emit=266 op=87 line=4314 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=14 emit=267 op=28 line=4315 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=267 line=4315
+DKWB-FREELIST ALLOC_GP proc=643 reg=0 emitted=267 line=4315
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=267 line=4315
+DKWB-EMIT-V1 proc=643 block=14 emit=268 op=42 line=4315 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=14 emitted=268 line=4315
+DKWB-FREELIST FREE proc=643 reg=2 emitted=268 line=4315
+DKWB-FREELIST ALLOC_GP proc=643 reg=112 emitted=268 line=4315
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=268 line=4315
+DKWB-EMIT-V1 proc=643 block=14 emit=269 op=64 line=4315 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=24 emitted=269 line=4315
+DKWB-FREELIST FREE proc=643 reg=30 emitted=269 line=4315
+DKWB-EMIT-V1 proc=643 block=14 emit=270 op=87 line=4315 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=14 emit=271 op=28 line=4316 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=271 line=4316
+DKWB-FREELIST ALLOC_GP proc=643 reg=80 emitted=271 line=4316
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=271 line=4316
+DKWB-EMIT-V1 proc=643 block=14 emit=272 op=42 line=4316 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=25 emitted=272 line=4316
+DKWB-FREELIST ALLOC_GP proc=643 reg=192 emitted=272 line=4316
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=272 line=4316
+DKWB-EMIT-V1 proc=643 block=14 emit=273 op=3 line=4316 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=15 emitted=273 line=4316
+DKWB-EMIT-V1 proc=643 block=14 emit=274 op=26 line=4316 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=14 emit=274 op=26 line=4316 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=14 emit=275 op=28 line=4316 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=14 emit=276 op=28 line=4317 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_GP proc=643 reg=88 emitted=276 line=4317
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=276 line=4317
+DKWB-EMIT-V1 proc=643 block=14 emit=277 op=42 line=4317 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=14 emitted=277 line=4317
+DKWB-EMIT-V1 proc=643 block=14 emit=278 op=39 line=4317 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=2 emitted=278 line=4317
+DKWB-EMIT-V1 proc=643 block=14 emit=279 op=40 line=4317 buffer=fwd fn=f_emit_ra
+DKWB-FREELIST FREE proc=643 reg=3 emitted=279 line=4317
+DKWB-FREELIST FREE proc=643 reg=2 emitted=279 line=4317
+DKWB-FREELIST ALLOC_GP proc=643 reg=24 emitted=279 line=4317
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=279 line=4317
+DKWB-EMIT-V1 proc=643 block=14 emit=280 op=56 line=4317 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=3 emitted=280 line=4317
+DKWB-FREELIST FREE proc=643 reg=24 emitted=280 line=4317
+DKWB-EMIT-V1 proc=643 block=14 emit=281 op=76 line=4317 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=15 emit=282 op=3016 line=4317 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=15 emit=283 op=28 line=4319 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=15 emit=284 op=42 line=4319 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=16 emitted=284 line=4319
+DKWB-EMIT-V1 proc=643 block=15 emit=285 op=53 line=4319 buffer=fwd fn=f_emit_regmask
+DKWB-EMIT-V1 proc=643 block=15 emit=286 op=35 line=4319 buffer=fwd fn=f_emit_a
+DKWB-EMIT-V1 proc=643 block=16 emit=287 op=3017 line=4319 buffer=fwd fn=f_define_label
+DKWB-FREELIST FREE proc=643 reg=30 emitted=287 line=4319
+DKWB-EMIT-V1 proc=643 block=16 emit=288 op=42 line=4319 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=4 emitted=288 line=4319
+DKWB-EMIT-V1 proc=643 block=16 emit=289 op=4 line=4319 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=17 emit=290 op=3018 line=4319 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=17 emit=291 op=41 line=4319 buffer=fwd fn=f_emit_ri_
+DKWB-FREELIST FREE proc=643 reg=2 emitted=291 line=4319
+DKWB-EMIT-V1 proc=643 block=17 emit=292 op=28 line=4321 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=292 line=4321
+DKWB-FREELIST FREE proc=643 reg=2 emitted=292 line=4321
+DKWB-FREELIST ALLOC_GP proc=643 reg=120 emitted=292 line=4321
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=292 line=4321
+DKWB-EMIT-V1 proc=643 block=17 emit=293 op=3 line=4321 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=25 emitted=293 line=4321
+DKWB-EMIT-V1 proc=643 block=17 emit=294 op=13 line=4321 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=17 emit=294 op=13 line=4321 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=17 emit=295 op=28 line=4321 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=17 emit=296 op=28 line=4322 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=296 line=4322
+DKWB-FREELIST ALLOC_GP proc=643 reg=128 emitted=296 line=4322
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=296 line=4322
+DKWB-EMIT-V1 proc=643 block=17 emit=297 op=3 line=4322 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=15 emitted=297 line=4322
+DKWB-FREELIST FREE proc=643 reg=30 emitted=297 line=4322
+DKWB-EMIT-V1 proc=643 block=17 emit=298 op=87 line=4322 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=17 emit=299 op=28 line=4323 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=299 line=4323
+DKWB-FREELIST ALLOC_GP proc=643 reg=24 emitted=299 line=4323
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=299 line=4323
+DKWB-EMIT-V1 proc=643 block=17 emit=300 op=42 line=4323 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=14 emitted=300 line=4323
+DKWB-FREELIST FREE proc=643 reg=6 emitted=300 line=4323
+DKWB-FREELIST ALLOC_GP proc=643 reg=136 emitted=300 line=4323
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=300 line=4323
+DKWB-EMIT-V1 proc=643 block=17 emit=301 op=64 line=4323 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=24 emitted=301 line=4323
+DKWB-FREELIST FREE proc=643 reg=30 emitted=301 line=4323
+DKWB-EMIT-V1 proc=643 block=17 emit=302 op=87 line=4323 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=17 emit=303 op=28 line=4324 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=303 line=4324
+DKWB-FREELIST ALLOC_GP proc=643 reg=104 emitted=303 line=4324
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=303 line=4324
+DKWB-EMIT-V1 proc=643 block=17 emit=304 op=42 line=4324 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=25 emitted=304 line=4324
+DKWB-FREELIST ALLOC_GP proc=643 reg=216 emitted=304 line=4324
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=304 line=4324
+DKWB-EMIT-V1 proc=643 block=17 emit=305 op=3 line=4324 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=15 emitted=305 line=4324
+DKWB-EMIT-V1 proc=643 block=17 emit=306 op=26 line=4324 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=17 emit=306 op=26 line=4324 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=17 emit=307 op=28 line=4324 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=17 emit=308 op=28 line=4325 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_GP proc=643 reg=112 emitted=308 line=4325
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=308 line=4325
+DKWB-EMIT-V1 proc=643 block=17 emit=309 op=42 line=4325 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=14 emitted=309 line=4325
+DKWB-EMIT-V1 proc=643 block=17 emit=310 op=39 line=4325 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=2 emitted=310 line=4325
+DKWB-EMIT-V1 proc=643 block=17 emit=311 op=40 line=4325 buffer=fwd fn=f_emit_ra
+DKWB-FREELIST FREE proc=643 reg=3 emitted=311 line=4325
+DKWB-FREELIST FREE proc=643 reg=2 emitted=311 line=4325
+DKWB-FREELIST ALLOC_GP proc=643 reg=48 emitted=311 line=4325
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=311 line=4325
+DKWB-EMIT-V1 proc=643 block=17 emit=312 op=56 line=4325 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=3 emitted=312 line=4325
+DKWB-FREELIST FREE proc=643 reg=24 emitted=312 line=4325
+DKWB-EMIT-V1 proc=643 block=17 emit=313 op=76 line=4325 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=18 emit=314 op=3019 line=4325 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=18 emit=315 op=28 line=4327 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=18 emit=316 op=42 line=4327 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=16 emitted=316 line=4327
+DKWB-EMIT-V1 proc=643 block=18 emit=317 op=53 line=4327 buffer=fwd fn=f_emit_regmask
+DKWB-EMIT-V1 proc=643 block=18 emit=318 op=35 line=4327 buffer=fwd fn=f_emit_a
+DKWB-FREELIST FREE proc=643 reg=30 emitted=318 line=4327
+DKWB-EMIT-V1 proc=643 block=18 emit=319 op=42 line=4327 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=4 emitted=319 line=4327
+DKWB-EMIT-V1 proc=643 block=19 emit=320 op=3020 line=4327 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=19 emit=321 op=28 line=4332 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=321 line=4332
+DKWB-FREELIST ALLOC_GP proc=643 reg=104 emitted=321 line=4332
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=321 line=4332
+DKWB-EMIT-V1 proc=643 block=19 emit=322 op=3 line=4332 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=25 emitted=322 line=4332
+DKWB-EMIT-V1 proc=643 block=19 emit=323 op=26 line=4332 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=19 emit=323 op=26 line=4332 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=19 emit=324 op=28 line=4332 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=19 emit=325 op=28 line=4333 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=0 emitted=325 line=4333
+DKWB-EMIT-V1 proc=643 block=19 emit=326 op=49 line=4333 buffer=fwd fn=f_emit_rr
+DKWB-EMIT-V1 proc=643 block=19 emit=327 op=28 line=4334 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=19 emit=328 op=28 line=4335 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=22 emitted=328 line=4335
+DKWB-FREELIST ALLOC_FP proc=643 reg=152 emitted=328 line=4335
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=38 emitted=328 line=4335
+DKWB-EMIT-V1 proc=643 block=19 emit=329 op=118 line=4335 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST ALLOC_GP proc=643 reg=80 emitted=329 line=4335
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=329 line=4335
+DKWB-EMIT-V1 proc=643 block=19 emit=330 op=36 line=4335 buffer=fwd fn=f_emit_ra
+DKWB-FREELIST FREE proc=643 reg=15 emitted=330 line=4335
+DKWB-FREELIST ALLOC_FP proc=643 reg=8 emitted=330 line=4335
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=40 emitted=330 line=4335
+DKWB-EMIT-V1 proc=643 block=19 emit=331 op=118 line=4335 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST ALLOC_FP proc=643 reg=192 emitted=331 line=4335
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=42 emitted=331 line=4335
+DKWB-EMIT-V1 proc=643 block=19 emit=332 op=124 line=4335 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=22 emitted=332 line=4335
+DKWB-EMIT-V1 proc=643 block=19 emit=333 op=121 line=4335 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=19 emit=334 op=28 line=4336 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=22 emitted=334 line=4336
+DKWB-EMIT-V1 proc=643 block=19 emit=335 op=39 line=4336 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=2 emitted=335 line=4336
+DKWB-EMIT-V1 proc=643 block=19 emit=336 op=28 line=4337 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=336 line=4337
+DKWB-FREELIST ALLOC_GP proc=643 reg=128 emitted=336 line=4337
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=336 line=4337
+DKWB-EMIT-V1 proc=643 block=19 emit=337 op=42 line=4337 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=2 emitted=337 line=4337
+DKWB-FREELIST ALLOC_GP proc=643 reg=168 emitted=337 line=4337
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=337 line=4337
+DKWB-EMIT-V1 proc=643 block=19 emit=338 op=56 line=4337 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=14 emitted=338 line=4337
+DKWB-FREELIST FREE proc=643 reg=24 emitted=338 line=4337
+DKWB-EMIT-V1 proc=643 block=19 emit=339 op=2 line=4337 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=3 emitted=339 line=4337
+DKWB-EMIT-V1 proc=643 block=20 emit=340 op=3021 line=4337 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=20 emit=341 op=28 line=4337 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=20 emit=342 op=28 line=4338 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=3 emitted=342 line=4338
+DKWB-EMIT-V1 proc=643 block=20 emit=343 op=118 line=4338 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=20 emit=344 op=28 line=4339 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=22 emitted=344 line=4339
+DKWB-EMIT-V1 proc=643 block=20 emit=345 op=118 line=4339 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=20 emit=346 op=199 line=4339 buffer=fwd fn=f_emit_rr
+DKWB-EMIT-V1 proc=643 block=20 emit=347 op=7 line=4339 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=20 emit=348 op=28 line=4339 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=20 emit=349 op=28 line=4340 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_FP proc=643 reg=48 emitted=349 line=4340
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=36 emitted=349 line=4340
+DKWB-EMIT-V1 proc=643 block=20 emit=350 op=127 line=4340 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=22 emitted=350 line=4340
+DKWB-EMIT-V1 proc=643 block=20 emit=351 op=121 line=4340 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=20 emit=352 op=28 line=4341 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=22 emitted=352 line=4341
+DKWB-EMIT-V1 proc=643 block=20 emit=353 op=40 line=4341 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=3 emitted=353 line=4341
+DKWB-FREELIST FREE proc=643 reg=3 emitted=353 line=4341
+DKWB-FREELIST ALLOC_GP proc=643 reg=240 emitted=353 line=4341
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=353 line=4341
+DKWB-EMIT-V1 proc=643 block=20 emit=354 op=3 line=4341 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=25 emitted=354 line=4341
+DKWB-EMIT-V1 proc=643 block=20 emit=355 op=13 line=4341 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=20 emit=355 op=13 line=4341 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=20 emit=356 op=28 line=4341 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=20 emit=357 op=28 line=4342 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=2 emitted=357 line=4342
+DKWB-EMIT-V1 proc=643 block=20 emit=358 op=26 line=4342 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=20 emit=359 op=28 line=4342 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=20 emit=360 op=28 line=4343 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=360 line=4343
+DKWB-FREELIST ALLOC_GP proc=643 reg=72 emitted=360 line=4343
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=360 line=4343
+DKWB-EMIT-V1 proc=643 block=20 emit=361 op=42 line=4343 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=15 emitted=361 line=4343
+DKWB-FREELIST ALLOC_GP proc=643 reg=184 emitted=361 line=4343
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=361 line=4343
+DKWB-EMIT-V1 proc=643 block=20 emit=362 op=3 line=4343 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=14 emitted=362 line=4343
+DKWB-EMIT-V1 proc=643 block=20 emit=363 op=13 line=4343 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=20 emit=363 op=13 line=4343 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=20 emit=364 op=28 line=4343 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=20 emit=365 op=28 line=4344 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=0 emitted=365 line=4344
+DKWB-EMIT-V1 proc=643 block=20 emit=366 op=49 line=4344 buffer=fwd fn=f_emit_rr
+DKWB-EMIT-V1 proc=643 block=20 emit=367 op=42 line=4344 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=19 emitted=367 line=4344
+DKWB-EMIT-V1 proc=643 block=20 emit=368 op=41 line=4344 buffer=fwd fn=f_emit_ri_
+DKWB-FREELIST FREE proc=643 reg=23 emitted=368 line=4344
+DKWB-EMIT-V1 proc=643 block=20 emit=369 op=53 line=4344 buffer=fwd fn=f_emit_regmask
+DKWB-EMIT-V1 proc=643 block=20 emit=370 op=35 line=4344 buffer=fwd fn=f_emit_a
+DKWB-EMIT-V1 proc=643 block=20 emit=371 op=28 line=4345 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=20 emit=372 op=28 line=4346 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=20 emit=373 op=42 line=4346 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=16 emitted=373 line=4346
+DKWB-EMIT-V1 proc=643 block=20 emit=374 op=53 line=4346 buffer=fwd fn=f_emit_regmask
+DKWB-EMIT-V1 proc=643 block=20 emit=375 op=35 line=4346 buffer=fwd fn=f_emit_a
+DKWB-FREELIST FREE proc=643 reg=30 emitted=375 line=4346
+DKWB-EMIT-V1 proc=643 block=20 emit=376 op=42 line=4346 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=4 emitted=376 line=4346
+DKWB-EMIT-V1 proc=643 block=20 emit=377 op=4 line=4346 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=21 emit=378 op=3022 line=4346 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=21 emit=379 op=28 line=4347 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=21 emit=380 op=28 line=4348 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=3 emitted=380 line=4348
+DKWB-FREELIST ALLOC_GP proc=643 reg=184 emitted=380 line=4348
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=380 line=4348
+DKWB-EMIT-V1 proc=643 block=21 emit=381 op=3 line=4348 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=381 line=4348
+DKWB-FREELIST FREE proc=643 reg=22 emitted=381 line=4348
+DKWB-EMIT-V1 proc=643 block=21 emit=382 op=76 line=4348 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=21 emit=383 op=28 line=4349 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=22 emitted=383 line=4349
+DKWB-FREELIST ALLOC_GP proc=643 reg=80 emitted=383 line=4349
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=383 line=4349
+DKWB-EMIT-V1 proc=643 block=21 emit=384 op=40 line=4349 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=25 emitted=384 line=4349
+DKWB-FREELIST ALLOC_GP proc=643 reg=192 emitted=384 line=4349
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=384 line=4349
+DKWB-EMIT-V1 proc=643 block=21 emit=385 op=64 line=4349 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=15 emitted=385 line=4349
+DKWB-FREELIST FREE proc=643 reg=22 emitted=385 line=4349
+DKWB-EMIT-V1 proc=643 block=21 emit=386 op=76 line=4349 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=21 emit=387 op=28 line=4350 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=387 line=4350
+DKWB-EMIT-V1 proc=643 block=21 emit=388 op=42 line=4350 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=4 emitted=388 line=4350
+DKWB-FREELIST FREE proc=643 reg=4 emitted=388 line=4350
+DKWB-FREELIST ALLOC_GP proc=643 reg=128 emitted=388 line=4350
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=388 line=4350
+DKWB-EMIT-V1 proc=643 block=21 emit=389 op=3 line=4350 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=14 emitted=389 line=4350
+DKWB-EMIT-V1 proc=643 block=21 emit=390 op=13 line=4350 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=21 emit=390 op=13 line=4350 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=21 emit=391 op=28 line=4350 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=21 emit=392 op=28 line=4351 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=392 line=4351
+DKWB-FREELIST ALLOC_GP proc=643 reg=136 emitted=392 line=4351
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=392 line=4351
+DKWB-EMIT-V1 proc=643 block=21 emit=393 op=64 line=4351 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=393 line=4351
+DKWB-FREELIST FREE proc=643 reg=30 emitted=393 line=4351
+DKWB-EMIT-V1 proc=643 block=21 emit=394 op=87 line=4351 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=21 emit=395 op=28 line=4352 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=21 emit=396 op=41 line=4352 buffer=fwd fn=f_emit_ri_
+DKWB-FREELIST FREE proc=643 reg=23 emitted=396 line=4352
+DKWB-EMIT-V1 proc=643 block=21 emit=397 op=28 line=4353 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_FP proc=643 reg=144 emitted=397 line=4353
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=38 emitted=397 line=4353
+DKWB-EMIT-V1 proc=643 block=21 emit=398 op=252 line=4353 buffer=fwd fn=f_emit_rfi
+DKWB-FREELIST FREE proc=643 reg=22 emitted=399 line=4353
+DKWB-EMIT-V1 proc=643 block=21 emit=400 op=121 line=4353 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=30 emitted=400 line=4353
+DKWB-EMIT-V1 proc=643 block=21 emit=401 op=42 line=4353 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=4 emitted=401 line=4353
+DKWB-EMIT-V1 proc=643 block=22 emit=402 op=3023 line=4353 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=22 emit=403 op=28 line=4356 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=403 line=4356
+DKWB-FREELIST ALLOC_GP proc=643 reg=80 emitted=403 line=4356
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=403 line=4356
+DKWB-EMIT-V1 proc=643 block=22 emit=404 op=3 line=4356 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=25 emitted=404 line=4356
+DKWB-EMIT-V1 proc=643 block=22 emit=405 op=13 line=4356 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=22 emit=405 op=13 line=4356 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=22 emit=406 op=28 line=4356 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=22 emit=407 op=28 line=4357 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=407 line=4357
+DKWB-EMIT-V1 proc=643 block=22 emit=408 op=39 line=4357 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=4 emitted=408 line=4357
+DKWB-EMIT-V1 proc=643 block=22 emit=409 op=53 line=4357 buffer=fwd fn=f_emit_regmask
+DKWB-EMIT-V1 proc=643 block=22 emit=410 op=35 line=4357 buffer=fwd fn=f_emit_a
+DKWB-EMIT-V1 proc=643 block=22 emit=411 op=4 line=4357 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=23 emit=412 op=3024 line=4357 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=23 emit=413 op=28 line=4359 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=23 emit=414 op=28 line=4360 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=2 emitted=414 line=4360
+DKWB-FREELIST ALLOC_GP proc=643 reg=64 emitted=414 line=4360
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=414 line=4360
+DKWB-EMIT-V1 proc=643 block=23 emit=415 op=2 line=4360 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=15 emitted=415 line=4360
+DKWB-FREELIST FREE proc=643 reg=22 emitted=415 line=4360
+DKWB-EMIT-V1 proc=643 block=23 emit=416 op=76 line=4360 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=23 emit=417 op=4 line=4360 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=24 emit=418 op=3025 line=4360 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=24 emit=419 op=28 line=4362 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=2 emitted=419 line=4362
+DKWB-FREELIST ALLOC_GP proc=643 reg=184 emitted=419 line=4362
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=419 line=4362
+DKWB-EMIT-V1 proc=643 block=24 emit=420 op=2 line=4362 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=30 emitted=420 line=4362
+DKWB-FREELIST ALLOC_GP proc=643 reg=72 emitted=420 line=4362
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=420 line=4362
+DKWB-EMIT-V1 proc=643 block=24 emit=421 op=39 line=4362 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=14 emitted=421 line=4362
+DKWB-FREELIST FREE proc=643 reg=24 emitted=421 line=4362
+DKWB-EMIT-V1 proc=643 block=24 emit=422 op=26 line=4362 buffer=fwd fn=f_emit_branch_rrll
+DKWB-EMIT-V1 proc=643 block=24 emit=422 op=26 line=4362 buffer=fwd fn=f_emit_rrll
+DKWB-EMIT-V1 proc=643 block=24 emit=423 op=28 line=4362 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=24 emit=424 op=28 line=4363 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=424 line=4363
+DKWB-FREELIST ALLOC_GP proc=643 reg=192 emitted=424 line=4363
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=424 line=4363
+DKWB-EMIT-V1 proc=643 block=24 emit=425 op=42 line=4363 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=25 emitted=425 line=4363
+DKWB-FREELIST ALLOC_GP proc=643 reg=48 emitted=425 line=4363
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=425 line=4363
+DKWB-EMIT-V1 proc=643 block=24 emit=426 op=3 line=4363 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=15 emitted=426 line=4363
+DKWB-EMIT-V1 proc=643 block=24 emit=427 op=13 line=4363 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=24 emit=427 op=13 line=4363 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=24 emit=428 op=28 line=4363 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=24 emit=429 op=28 line=4364 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=3 emitted=429 line=4364
+DKWB-FREELIST ALLOC_GP proc=643 reg=240 emitted=429 line=4364
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=429 line=4364
+DKWB-EMIT-V1 proc=643 block=24 emit=430 op=3 line=4364 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=14 emitted=430 line=4364
+DKWB-FREELIST FREE proc=643 reg=22 emitted=430 line=4364
+DKWB-EMIT-V1 proc=643 block=24 emit=431 op=76 line=4364 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=24 emit=432 op=28 line=4365 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=22 emitted=432 line=4365
+DKWB-FREELIST ALLOC_GP proc=643 reg=136 emitted=432 line=4365
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=432 line=4365
+DKWB-EMIT-V1 proc=643 block=24 emit=433 op=40 line=4365 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=24 emitted=433 line=4365
+DKWB-FREELIST ALLOC_GP proc=643 reg=248 emitted=433 line=4365
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=433 line=4365
+DKWB-EMIT-V1 proc=643 block=24 emit=434 op=64 line=4365 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=25 emitted=434 line=4365
+DKWB-FREELIST FREE proc=643 reg=22 emitted=434 line=4365
+DKWB-EMIT-V1 proc=643 block=24 emit=435 op=76 line=4365 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=24 emit=436 op=28 line=4366 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=2 emitted=436 line=4366
+DKWB-FREELIST ALLOC_GP proc=643 reg=72 emitted=436 line=4366
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=436 line=4366
+DKWB-EMIT-V1 proc=643 block=24 emit=437 op=2 line=4366 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=15 emitted=437 line=4366
+DKWB-FREELIST FREE proc=643 reg=22 emitted=437 line=4366
+DKWB-EMIT-V1 proc=643 block=24 emit=438 op=76 line=4366 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=24 emit=439 op=4 line=4366 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=25 emit=440 op=3026 line=4366 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=25 emit=441 op=28 line=4367 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=25 emit=442 op=28 line=4368 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=0 emitted=442 line=4368
+DKWB-FREELIST FREE proc=643 reg=22 emitted=442 line=4368
+DKWB-EMIT-V1 proc=643 block=25 emit=443 op=76 line=4368 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=25 emit=444 op=28 line=4369 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=444 line=4369
+DKWB-FREELIST ALLOC_GP proc=643 reg=48 emitted=444 line=4369
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=444 line=4369
+DKWB-EMIT-V1 proc=643 block=25 emit=445 op=42 line=4369 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=14 emitted=445 line=4369
+DKWB-FREELIST ALLOC_GP proc=643 reg=160 emitted=445 line=4369
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=445 line=4369
+DKWB-EMIT-V1 proc=643 block=25 emit=446 op=3 line=4369 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=446 line=4369
+DKWB-EMIT-V1 proc=643 block=25 emit=447 op=13 line=4369 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=25 emit=447 op=13 line=4369 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=25 emit=448 op=28 line=4369 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=25 emit=449 op=28 line=4370 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=449 line=4370
+DKWB-EMIT-V1 proc=643 block=25 emit=450 op=39 line=4370 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=4 emitted=450 line=4370
+DKWB-EMIT-V1 proc=643 block=25 emit=451 op=53 line=4370 buffer=fwd fn=f_emit_regmask
+DKWB-EMIT-V1 proc=643 block=25 emit=452 op=35 line=4370 buffer=fwd fn=f_emit_a
+DKWB-EMIT-V1 proc=643 block=25 emit=453 op=4 line=4370 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=26 emit=454 op=3027 line=4370 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=26 emit=455 op=28 line=4373 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=26 emit=456 op=28 line=4374 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=2 emitted=456 line=4374
+DKWB-FREELIST ALLOC_GP proc=643 reg=32 emitted=456 line=4374
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=456 line=4374
+DKWB-EMIT-V1 proc=643 block=26 emit=457 op=2 line=4374 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=25 emitted=457 line=4374
+DKWB-FREELIST FREE proc=643 reg=22 emitted=457 line=4374
+DKWB-EMIT-V1 proc=643 block=26 emit=458 op=76 line=4374 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=26 emit=459 op=28 line=4375 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=22 emitted=459 line=4375
+DKWB-EMIT-V1 proc=643 block=26 emit=460 op=39 line=4375 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=2 emitted=460 line=4375
+DKWB-EMIT-V1 proc=643 block=26 emit=461 op=28 line=4376 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=461 line=4376
+DKWB-FREELIST ALLOC_GP proc=643 reg=224 emitted=461 line=4376
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=461 line=4376
+DKWB-EMIT-V1 proc=643 block=26 emit=462 op=42 line=4376 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=2 emitted=462 line=4376
+DKWB-FREELIST ALLOC_GP proc=643 reg=8 emitted=462 line=4376
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=462 line=4376
+DKWB-EMIT-V1 proc=643 block=26 emit=463 op=56 line=4376 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=15 emitted=463 line=4376
+DKWB-FREELIST FREE proc=643 reg=14 emitted=463 line=4376
+DKWB-FREELIST ALLOC_GP proc=643 reg=192 emitted=463 line=4376
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=463 line=4376
+DKWB-EMIT-V1 proc=643 block=26 emit=464 op=2 line=4376 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=24 emitted=464 line=4376
+DKWB-FREELIST ALLOC_GP proc=643 reg=120 emitted=464 line=4376
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=464 line=4376
+DKWB-EMIT-V1 proc=643 block=26 emit=465 op=42 line=4376 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=25 emitted=465 line=4376
+DKWB-FREELIST ALLOC_GP proc=643 reg=232 emitted=465 line=4376
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=465 line=4376
+DKWB-EMIT-V1 proc=643 block=26 emit=466 op=3 line=4376 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=15 emitted=466 line=4376
+DKWB-EMIT-V1 proc=643 block=26 emit=467 op=13 line=4376 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=26 emit=467 op=13 line=4376 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=26 emit=468 op=28 line=4376 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=26 emit=469 op=28 line=4377 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=26 emit=470 op=41 line=4377 buffer=fwd fn=f_emit_ri_
+DKWB-FREELIST FREE proc=643 reg=23 emitted=470 line=4377
+DKWB-EMIT-V1 proc=643 block=26 emit=471 op=28 line=4378 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=471 line=4378
+DKWB-FREELIST ALLOC_GP proc=643 reg=24 emitted=471 line=4378
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=471 line=4378
+DKWB-EMIT-V1 proc=643 block=26 emit=472 op=42 line=4378 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=14 emitted=472 line=4378
+DKWB-FREELIST ALLOC_GP proc=643 reg=136 emitted=472 line=4378
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=472 line=4378
+DKWB-EMIT-V1 proc=643 block=26 emit=473 op=64 line=4378 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=473 line=4378
+DKWB-FREELIST FREE proc=643 reg=30 emitted=473 line=4378
+DKWB-EMIT-V1 proc=643 block=26 emit=474 op=87 line=4378 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=26 emit=475 op=28 line=4379 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_FP proc=643 reg=104 emitted=475 line=4379
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=40 emitted=475 line=4379
+DKWB-EMIT-V1 proc=643 block=26 emit=476 op=252 line=4379 buffer=fwd fn=f_emit_rfi
+DKWB-FREELIST FREE proc=643 reg=22 emitted=477 line=4379
+DKWB-EMIT-V1 proc=643 block=26 emit=478 op=121 line=4379 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=26 emit=479 op=4 line=4379 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=27 emit=480 op=3028 line=4379 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=27 emit=481 op=28 line=4380 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=2 emitted=481 line=4380
+DKWB-FREELIST ALLOC_GP proc=643 reg=40 emitted=481 line=4380
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=481 line=4380
+DKWB-EMIT-V1 proc=643 block=27 emit=482 op=2 line=4380 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=30 emitted=482 line=4380
+DKWB-FREELIST ALLOC_GP proc=643 reg=184 emitted=482 line=4380
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=482 line=4380
+DKWB-EMIT-V1 proc=643 block=27 emit=483 op=39 line=4380 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=25 emitted=483 line=4380
+DKWB-FREELIST FREE proc=643 reg=15 emitted=483 line=4380
+DKWB-EMIT-V1 proc=643 block=27 emit=484 op=26 line=4380 buffer=fwd fn=f_emit_branch_rrll
+DKWB-EMIT-V1 proc=643 block=27 emit=484 op=26 line=4380 buffer=fwd fn=f_emit_rrll
+DKWB-EMIT-V1 proc=643 block=27 emit=485 op=28 line=4380 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=27 emit=486 op=28 line=4381 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=486 line=4381
+DKWB-EMIT-V1 proc=643 block=27 emit=487 op=42 line=4381 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=4 emitted=487 line=4381
+DKWB-FREELIST FREE proc=643 reg=4 emitted=487 line=4381
+DKWB-FREELIST ALLOC_GP proc=643 reg=88 emitted=487 line=4381
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=487 line=4381
+DKWB-EMIT-V1 proc=643 block=27 emit=488 op=3 line=4381 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=14 emitted=488 line=4381
+DKWB-EMIT-V1 proc=643 block=27 emit=489 op=13 line=4381 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=27 emit=489 op=13 line=4381 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=27 emit=490 op=28 line=4381 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=27 emit=491 op=28 line=4382 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=22 emitted=491 line=4382
+DKWB-FREELIST ALLOC_GP proc=643 reg=96 emitted=491 line=4382
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=491 line=4382
+DKWB-EMIT-V1 proc=643 block=27 emit=492 op=40 line=4382 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=24 emitted=492 line=4382
+DKWB-FREELIST ALLOC_GP proc=643 reg=208 emitted=492 line=4382
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=492 line=4382
+DKWB-EMIT-V1 proc=643 block=27 emit=493 op=3 line=4382 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=25 emitted=493 line=4382
+DKWB-FREELIST FREE proc=643 reg=22 emitted=493 line=4382
+DKWB-EMIT-V1 proc=643 block=27 emit=494 op=76 line=4382 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=27 emit=495 op=28 line=4383 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=22 emitted=495 line=4383
+DKWB-FREELIST ALLOC_GP proc=643 reg=104 emitted=495 line=4383
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=495 line=4383
+DKWB-EMIT-V1 proc=643 block=27 emit=496 op=40 line=4383 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=15 emitted=496 line=4383
+DKWB-FREELIST ALLOC_GP proc=643 reg=216 emitted=496 line=4383
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=496 line=4383
+DKWB-EMIT-V1 proc=643 block=27 emit=497 op=64 line=4383 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=14 emitted=497 line=4383
+DKWB-FREELIST FREE proc=643 reg=22 emitted=497 line=4383
+DKWB-EMIT-V1 proc=643 block=27 emit=498 op=76 line=4383 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=27 emit=499 op=28 line=4384 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=2 emitted=499 line=4384
+DKWB-FREELIST ALLOC_GP proc=643 reg=40 emitted=499 line=4384
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=499 line=4384
+DKWB-EMIT-V1 proc=643 block=27 emit=500 op=2 line=4384 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=500 line=4384
+DKWB-FREELIST FREE proc=643 reg=22 emitted=500 line=4384
+DKWB-EMIT-V1 proc=643 block=27 emit=501 op=76 line=4384 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=27 emit=502 op=4 line=4384 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=28 emit=503 op=3029 line=4384 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=28 emit=504 op=28 line=4385 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=504 line=4385
+DKWB-FREELIST ALLOC_GP proc=643 reg=120 emitted=504 line=4385
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=504 line=4385
+DKWB-EMIT-V1 proc=643 block=28 emit=505 op=3 line=4385 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=25 emitted=505 line=4385
+DKWB-EMIT-V1 proc=643 block=28 emit=506 op=13 line=4385 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=28 emit=506 op=13 line=4385 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=28 emit=507 op=28 line=4385 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=28 emit=508 op=28 line=4386 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=22 emitted=508 line=4386
+DKWB-FREELIST ALLOC_GP proc=643 reg=128 emitted=508 line=4386
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=508 line=4386
+DKWB-EMIT-V1 proc=643 block=28 emit=509 op=40 line=4386 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=15 emitted=509 line=4386
+DKWB-FREELIST ALLOC_GP proc=643 reg=240 emitted=509 line=4386
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=509 line=4386
+DKWB-EMIT-V1 proc=643 block=28 emit=510 op=3 line=4386 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=14 emitted=510 line=4386
+DKWB-FREELIST FREE proc=643 reg=22 emitted=510 line=4386
+DKWB-EMIT-V1 proc=643 block=28 emit=511 op=76 line=4386 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=28 emit=512 op=28 line=4387 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=22 emitted=512 line=4387
+DKWB-FREELIST ALLOC_GP proc=643 reg=136 emitted=512 line=4387
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=512 line=4387
+DKWB-EMIT-V1 proc=643 block=28 emit=513 op=40 line=4387 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=24 emitted=513 line=4387
+DKWB-FREELIST ALLOC_GP proc=643 reg=248 emitted=513 line=4387
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=513 line=4387
+DKWB-EMIT-V1 proc=643 block=28 emit=514 op=64 line=4387 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=25 emitted=514 line=4387
+DKWB-FREELIST FREE proc=643 reg=22 emitted=514 line=4387
+DKWB-EMIT-V1 proc=643 block=28 emit=515 op=76 line=4387 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=28 emit=516 op=28 line=4388 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=2 emitted=516 line=4388
+DKWB-FREELIST ALLOC_GP proc=643 reg=72 emitted=516 line=4388
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=516 line=4388
+DKWB-EMIT-V1 proc=643 block=28 emit=517 op=2 line=4388 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=15 emitted=517 line=4388
+DKWB-FREELIST FREE proc=643 reg=22 emitted=517 line=4388
+DKWB-EMIT-V1 proc=643 block=28 emit=518 op=76 line=4388 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=28 emit=519 op=28 line=4389 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_FP proc=643 reg=40 emitted=519 line=4389
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=42 emitted=519 line=4389
+DKWB-EMIT-V1 proc=643 block=28 emit=520 op=252 line=4389 buffer=fwd fn=f_emit_rfi
+DKWB-FREELIST FREE proc=643 reg=22 emitted=521 line=4389
+DKWB-EMIT-V1 proc=643 block=28 emit=522 op=121 line=4389 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=28 emit=523 op=28 line=4390 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=523 line=4390
+DKWB-FREELIST ALLOC_GP proc=643 reg=192 emitted=523 line=4390
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=523 line=4390
+DKWB-EMIT-V1 proc=643 block=28 emit=524 op=42 line=4390 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=14 emitted=524 line=4390
+DKWB-FREELIST ALLOC_GP proc=643 reg=48 emitted=524 line=4390
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=524 line=4390
+DKWB-EMIT-V1 proc=643 block=28 emit=525 op=64 line=4390 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=525 line=4390
+DKWB-FREELIST FREE proc=643 reg=30 emitted=525 line=4390
+DKWB-EMIT-V1 proc=643 block=28 emit=526 op=87 line=4390 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=28 emit=527 op=4 line=4390 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=29 emit=528 op=3030 line=4390 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=29 emit=529 op=28 line=4391 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=529 line=4391
+DKWB-FREELIST ALLOC_GP proc=643 reg=152 emitted=529 line=4391
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=529 line=4391
+DKWB-EMIT-V1 proc=643 block=29 emit=530 op=3 line=4391 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=25 emitted=530 line=4391
+DKWB-EMIT-V1 proc=643 block=29 emit=531 op=26 line=4391 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=29 emit=531 op=26 line=4391 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=29 emit=532 op=28 line=4391 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=29 emit=533 op=28 line=4392 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=0 emitted=533 line=4392
+DKWB-EMIT-V1 proc=643 block=29 emit=534 op=49 line=4392 buffer=fwd fn=f_emit_rr
+DKWB-EMIT-V1 proc=643 block=29 emit=535 op=42 line=4392 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=19 emitted=535 line=4392
+DKWB-EMIT-V1 proc=643 block=29 emit=536 op=53 line=4392 buffer=fwd fn=f_emit_regmask
+DKWB-EMIT-V1 proc=643 block=29 emit=537 op=35 line=4392 buffer=fwd fn=f_emit_a
+DKWB-EMIT-V1 proc=643 block=29 emit=538 op=28 line=4393 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=538 line=4393
+DKWB-FREELIST ALLOC_GP proc=643 reg=168 emitted=538 line=4393
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=538 line=4393
+DKWB-EMIT-V1 proc=643 block=29 emit=539 op=42 line=4393 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=15 emitted=539 line=4393
+DKWB-FREELIST ALLOC_GP proc=643 reg=24 emitted=539 line=4393
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=539 line=4393
+DKWB-EMIT-V1 proc=643 block=29 emit=540 op=3 line=4393 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=14 emitted=540 line=4393
+DKWB-EMIT-V1 proc=643 block=29 emit=541 op=13 line=4393 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=29 emit=541 op=13 line=4393 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=29 emit=542 op=28 line=4393 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=29 emit=543 op=28 line=4394 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=543 line=4394
+DKWB-EMIT-V1 proc=643 block=29 emit=544 op=39 line=4394 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=4 emitted=544 line=4394
+DKWB-EMIT-V1 proc=643 block=29 emit=545 op=53 line=4394 buffer=fwd fn=f_emit_regmask
+DKWB-EMIT-V1 proc=643 block=29 emit=546 op=35 line=4394 buffer=fwd fn=f_emit_a
+DKWB-EMIT-V1 proc=643 block=30 emit=547 op=3031 line=4394 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=30 emit=548 op=28 line=4399 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=22 emitted=548 line=4399
+DKWB-EMIT-V1 proc=643 block=30 emit=549 op=39 line=4399 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=2 emitted=549 line=4399
+DKWB-FREELIST FREE proc=643 reg=30 emitted=549 line=4399
+DKWB-FREELIST ALLOC_GP proc=643 reg=224 emitted=549 line=4399
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=549 line=4399
+DKWB-EMIT-V1 proc=643 block=30 emit=550 op=42 line=4399 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=2 emitted=550 line=4399
+DKWB-FREELIST ALLOC_GP proc=643 reg=8 emitted=550 line=4399
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=550 line=4399
+DKWB-EMIT-V1 proc=643 block=30 emit=551 op=56 line=4399 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=551 line=4399
+DKWB-FREELIST FREE proc=643 reg=25 emitted=551 line=4399
+DKWB-EMIT-V1 proc=643 block=30 emit=552 op=2 line=4399 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=3 emitted=552 line=4399
+DKWB-EMIT-V1 proc=643 block=30 emit=553 op=4 line=4399 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=31 emit=554 op=3032 line=4399 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=31 emit=555 op=28 line=4400 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=31 emit=556 op=28 line=4401 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=31 emit=557 op=41 line=4401 buffer=fwd fn=f_emit_ri_
+DKWB-FREELIST FREE proc=643 reg=23 emitted=557 line=4401
+DKWB-EMIT-V1 proc=643 block=32 emit=558 op=3033 line=4401 buffer=fwd fn=f_define_label
+DKWB-FREELIST FREE proc=643 reg=23 emitted=558 line=4401
+DKWB-EMIT-V1 proc=643 block=32 emit=559 op=13 line=4401 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=32 emit=560 op=28 line=4404 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=3 emitted=560 line=4404
+DKWB-EMIT-V1 proc=643 block=32 emit=561 op=42 line=4404 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=2 emitted=561 line=4404
+DKWB-EMIT-V1 proc=643 block=32 emit=562 op=28 line=4405 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=2 emitted=562 line=4405
+DKWB-FREELIST ALLOC_GP proc=643 reg=104 emitted=562 line=4405
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=562 line=4405
+DKWB-EMIT-V1 proc=643 block=32 emit=563 op=3 line=4405 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=15 emitted=563 line=4405
+DKWB-EMIT-V1 proc=643 block=32 emit=564 op=26 line=4405 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=32 emit=564 op=26 line=4405 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=32 emit=565 op=28 line=4405 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=32 emit=566 op=28 line=4406 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=32 emit=567 op=42 line=4406 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=7 emitted=567 line=4406
+DKWB-EMIT-V1 proc=643 block=32 emit=568 op=53 line=4406 buffer=fwd fn=f_emit_regmask
+DKWB-EMIT-V1 proc=643 block=32 emit=569 op=35 line=4406 buffer=fwd fn=f_emit_a
+DKWB-EMIT-V1 proc=643 block=32 emit=570 op=28 line=4407 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_GP proc=643 reg=80 emitted=570 line=4407
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=570 line=4407
+DKWB-EMIT-V1 proc=643 block=32 emit=571 op=41 line=4407 buffer=fwd fn=f_emit_ri_
+DKWB-FREELIST FREE proc=643 reg=14 emitted=571 line=4407
+DKWB-EMIT-V1 proc=643 block=32 emit=572 op=70 line=4407 buffer=fwd fn=f_emit_rob
+DKWB-EMIT-V1 proc=643 block=32 emit=573 op=28 line=4408 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=573 line=4408
+DKWB-FREELIST ALLOC_GP proc=643 reg=48 emitted=573 line=4408
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=573 line=4408
+DKWB-EMIT-V1 proc=643 block=32 emit=574 op=42 line=4408 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=22 emitted=574 line=4408
+DKWB-FREELIST ALLOC_GP proc=643 reg=160 emitted=574 line=4408
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=574 line=4408
+DKWB-EMIT-V1 proc=643 block=32 emit=575 op=39 line=4408 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=25 emitted=575 line=4408
+DKWB-FREELIST ALLOC_GP proc=643 reg=16 emitted=575 line=4408
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=575 line=4408
+DKWB-EMIT-V1 proc=643 block=32 emit=576 op=56 line=4408 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=576 line=4408
+DKWB-FREELIST FREE proc=643 reg=15 emitted=576 line=4408
+DKWB-FREELIST ALLOC_GP proc=643 reg=200 emitted=576 line=4408
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=576 line=4408
+DKWB-EMIT-V1 proc=643 block=32 emit=577 op=2 line=4408 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=14 emitted=577 line=4408
+DKWB-EMIT-V1 proc=643 block=32 emit=578 op=42 line=4408 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=2 emitted=578 line=4408
+DKWB-EMIT-V1 proc=643 block=33 emit=579 op=3034 line=4408 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=33 emit=580 op=28 line=4410 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=2 emitted=580 line=4410
+DKWB-FREELIST ALLOC_GP proc=643 reg=24 emitted=580 line=4410
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=580 line=4410
+DKWB-EMIT-V1 proc=643 block=33 emit=581 op=3 line=4410 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=25 emitted=581 line=4410
+DKWB-EMIT-V1 proc=643 block=33 emit=582 op=13 line=4410 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=33 emit=582 op=13 line=4410 buffer=fwd fn=f_emit_rill
+DKWB-FREELIST FREE proc=643 reg=2 emitted=582 line=4410
+DKWB-FREELIST ALLOC_GP proc=643 reg=176 emitted=582 line=4410
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=582 line=4410
+DKWB-EMIT-V1 proc=643 block=33 emit=583 op=3 line=4410 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=583 line=4410
+DKWB-EMIT-V1 proc=643 block=33 emit=584 op=26 line=4410 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=33 emit=584 op=26 line=4410 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=34 emit=585 op=3035 line=4410 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=34 emit=586 op=28 line=4410 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=34 emit=587 op=28 line=4411 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_GP proc=643 reg=72 emitted=587 line=4411
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=587 line=4411
+DKWB-EMIT-V1 proc=643 block=34 emit=588 op=41 line=4411 buffer=fwd fn=f_emit_ri_
+DKWB-FREELIST FREE proc=643 reg=15 emitted=588 line=4411
+DKWB-EMIT-V1 proc=643 block=34 emit=589 op=70 line=4411 buffer=fwd fn=f_emit_rob
+DKWB-EMIT-V1 proc=643 block=34 emit=590 op=28 line=4412 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=34 emit=591 op=42 line=4412 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=17 emitted=591 line=4412
+DKWB-EMIT-V1 proc=643 block=34 emit=592 op=53 line=4412 buffer=fwd fn=f_emit_regmask
+DKWB-EMIT-V1 proc=643 block=34 emit=593 op=35 line=4412 buffer=fwd fn=f_emit_a
+DKWB-EMIT-V1 proc=643 block=35 emit=594 op=3036 line=4412 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=35 emit=595 op=28 line=4414 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_GP proc=643 reg=192 emitted=595 line=4414
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=595 line=4414
+DKWB-EMIT-V1 proc=643 block=35 emit=596 op=37 line=4414 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=14 emitted=596 line=4414
+DKWB-EMIT-V1 proc=643 block=35 emit=597 op=13 line=4414 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=35 emit=598 op=28 line=4414 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=35 emit=599 op=28 line=4415 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=599 line=4415
+DKWB-FREELIST ALLOC_GP proc=643 reg=128 emitted=599 line=4415
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=599 line=4415
+DKWB-EMIT-V1 proc=643 block=35 emit=600 op=42 line=4415 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=25 emitted=600 line=4415
+DKWB-FREELIST ALLOC_GP proc=643 reg=240 emitted=600 line=4415
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=600 line=4415
+DKWB-EMIT-V1 proc=643 block=35 emit=601 op=3 line=4415 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=601 line=4415
+DKWB-EMIT-V1 proc=643 block=35 emit=602 op=13 line=4415 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=35 emit=602 op=13 line=4415 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=35 emit=603 op=28 line=4415 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=35 emit=604 op=28 line=4416 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=35 emit=605 op=42 line=4416 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=16 emitted=605 line=4416
+DKWB-EMIT-V1 proc=643 block=35 emit=606 op=53 line=4416 buffer=fwd fn=f_emit_regmask
+DKWB-EMIT-V1 proc=643 block=35 emit=607 op=35 line=4416 buffer=fwd fn=f_emit_a
+DKWB-EMIT-V1 proc=643 block=35 emit=608 op=4 line=4416 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=36 emit=609 op=3037 line=4416 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=36 emit=610 op=28 line=4417 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=36 emit=611 op=28 line=4418 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=36 emit=612 op=42 line=4418 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=16 emitted=612 line=4418
+DKWB-EMIT-V1 proc=643 block=36 emit=613 op=53 line=4418 buffer=fwd fn=f_emit_regmask
+DKWB-EMIT-V1 proc=643 block=36 emit=614 op=35 line=4418 buffer=fwd fn=f_emit_a
+DKWB-EMIT-V1 proc=643 block=36 emit=615 op=4 line=4418 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=37 emit=616 op=3038 line=4418 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=37 emit=617 op=28 line=4420 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=37 emit=618 op=28 line=4421 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=37 emit=619 op=42 line=4421 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=16 emitted=619 line=4421
+DKWB-EMIT-V1 proc=643 block=37 emit=620 op=53 line=4421 buffer=fwd fn=f_emit_regmask
+DKWB-EMIT-V1 proc=643 block=37 emit=621 op=35 line=4421 buffer=fwd fn=f_emit_a
+DKWB-EMIT-V1 proc=643 block=38 emit=622 op=3039 line=4421 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=38 emit=623 op=28 line=4423 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_GP proc=643 reg=128 emitted=623 line=4423
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=623 line=4423
+DKWB-EMIT-V1 proc=643 block=38 emit=624 op=42 line=4423 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=15 emitted=624 line=4423
+DKWB-FREELIST ALLOC_GP proc=643 reg=56 emitted=624 line=4423
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=624 line=4423
+DKWB-EMIT-V1 proc=643 block=38 emit=625 op=39 line=4423 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=14 emitted=625 line=4423
+DKWB-FREELIST ALLOC_GP proc=643 reg=168 emitted=625 line=4423
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=625 line=4423
+DKWB-EMIT-V1 proc=643 block=38 emit=626 op=56 line=4423 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST ALLOC_GP proc=643 reg=200 emitted=626 line=4423
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=626 line=4423
+DKWB-EMIT-V1 proc=643 block=38 emit=627 op=36 line=4423 buffer=fwd fn=f_emit_ra
+DKWB-FREELIST FREE proc=643 reg=25 emitted=627 line=4423
+DKWB-FREELIST FREE proc=643 reg=24 emitted=627 line=4423
+DKWB-EMIT-V1 proc=643 block=38 emit=628 op=2 line=4423 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=4 emitted=628 line=4423
+DKWB-EMIT-V1 proc=643 block=38 emit=629 op=28 line=4424 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=629 line=4424
+DKWB-FREELIST ALLOC_GP proc=643 reg=64 emitted=629 line=4424
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=629 line=4424
+DKWB-EMIT-V1 proc=643 block=38 emit=630 op=39 line=4424 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=15 emitted=630 line=4424
+DKWB-EMIT-V1 proc=643 block=38 emit=631 op=13 line=4424 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=38 emit=632 op=28 line=4424 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=38 emit=633 op=28 line=4425 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_GP proc=643 reg=72 emitted=633 line=4425
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=633 line=4425
+DKWB-EMIT-V1 proc=643 block=38 emit=634 op=42 line=4425 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=14 emitted=634 line=4425
+DKWB-FREELIST ALLOC_FP proc=643 reg=0 emitted=634 line=4425
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=36 emitted=634 line=4425
+DKWB-EMIT-V1 proc=643 block=38 emit=635 op=118 line=4425 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST ALLOC_GP proc=643 reg=184 emitted=635 line=4425
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=635 line=4425
+DKWB-EMIT-V1 proc=643 block=38 emit=636 op=36 line=4425 buffer=fwd fn=f_emit_ra
+DKWB-FREELIST FREE proc=643 reg=25 emitted=636 line=4425
+DKWB-FREELIST ALLOC_FP proc=643 reg=112 emitted=636 line=4425
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=38 emitted=636 line=4425
+DKWB-EMIT-V1 proc=643 block=38 emit=637 op=118 line=4425 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=38 emit=638 op=127 line=4425 buffer=fwd fn=f_emit_rrr
+DKWB-EMIT-V1 proc=643 block=38 emit=639 op=28 line=4426 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST MOVE_END proc=643 reg=14 emitted=639 line=4426
+DKWB-FREELIST FREE proc=643 reg=14 emitted=639 line=4426
+DKWB-EMIT-V1 proc=643 block=38 emit=640 op=121 line=4426 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=38 emit=641 op=28 line=4427 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_FP proc=643 reg=48 emitted=641 line=4427
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=40 emitted=641 line=4427
+DKWB-EMIT-V1 proc=643 block=38 emit=642 op=252 line=4427 buffer=fwd fn=f_emit_rfi
+DKWB-EMIT-V1 proc=643 block=38 emit=644 op=199 line=4427 buffer=fwd fn=f_emit_rr
+DKWB-EMIT-V1 proc=643 block=38 emit=645 op=7 line=4427 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=38 emit=646 op=28 line=4427 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=38 emit=647 op=28 line=4428 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=647 line=4428
+DKWB-EMIT-V1 proc=643 block=38 emit=648 op=39 line=4428 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=2 emitted=648 line=4428
+DKWB-EMIT-V1 proc=643 block=38 emit=649 op=28 line=4429 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=2 emitted=649 line=4429
+DKWB-EMIT-V1 proc=643 block=38 emit=650 op=26 line=4429 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=38 emit=651 op=28 line=4429 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=38 emit=652 op=28 line=4430 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_FP proc=643 reg=216 emitted=652 line=4430
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=42 emitted=652 line=4430
+DKWB-EMIT-V1 proc=643 block=38 emit=653 op=252 line=4430 buffer=fwd fn=f_emit_rfi
+DKWB-FREELIST MOVE_END proc=643 reg=14 emitted=654 line=4430
+DKWB-FREELIST FREE proc=643 reg=14 emitted=654 line=4430
+DKWB-EMIT-V1 proc=643 block=38 emit=655 op=121 line=4430 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=38 emit=656 op=4 line=4430 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=39 emit=657 op=3040 line=4430 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=39 emit=658 op=28 line=4431 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=2 emitted=658 line=4431
+DKWB-EMIT-V1 proc=643 block=39 emit=659 op=26 line=4431 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=39 emit=660 op=28 line=4431 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=39 emit=661 op=28 line=4432 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_FP proc=643 reg=120 emitted=661 line=4432
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=36 emitted=661 line=4432
+DKWB-EMIT-V1 proc=643 block=39 emit=662 op=118 line=4432 buffer=fwd fn=f_emit_ra
+DKWB-FREELIST ALLOC_GP proc=643 reg=192 emitted=662 line=4432
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=662 line=4432
+DKWB-EMIT-V1 proc=643 block=39 emit=663 op=42 line=4432 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=24 emitted=663 line=4432
+DKWB-EMIT-V1 proc=643 block=39 emit=664 op=121 line=4432 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=40 emit=665 op=3041 line=4432 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=40 emit=666 op=28 line=4434 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_GP proc=643 reg=160 emitted=666 line=4434
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=666 line=4434
+DKWB-EMIT-V1 proc=643 block=40 emit=667 op=42 line=4434 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=15 emitted=667 line=4434
+DKWB-FREELIST ALLOC_GP proc=643 reg=16 emitted=667 line=4434
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=667 line=4434
+DKWB-EMIT-V1 proc=643 block=40 emit=668 op=39 line=4434 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=25 emitted=668 line=4434
+DKWB-FREELIST ALLOC_GP proc=643 reg=128 emitted=668 line=4434
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=668 line=4434
+DKWB-EMIT-V1 proc=643 block=40 emit=669 op=2 line=4434 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST MOVE_END proc=643 reg=15 emitted=669 line=4434
+DKWB-FREELIST FREE proc=643 reg=14 emitted=669 line=4434
+DKWB-FREELIST FREE proc=643 reg=15 emitted=669 line=4434
+DKWB-EMIT-V1 proc=643 block=40 emit=670 op=76 line=4434 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST MOVE_END proc=643 reg=14 emitted=670 line=4434
+DKWB-FREELIST FREE proc=643 reg=14 emitted=670 line=4434
+DKWB-EMIT-V1 proc=643 block=40 emit=671 op=49 line=4434 buffer=fwd fn=f_emit_rr
+DKWB-EMIT-V1 proc=643 block=40 emit=672 op=28 line=4435 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_GP proc=643 reg=136 emitted=672 line=4435
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=672 line=4435
+DKWB-EMIT-V1 proc=643 block=40 emit=673 op=42 line=4435 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=24 emitted=673 line=4435
+DKWB-FREELIST ALLOC_GP proc=643 reg=64 emitted=673 line=4435
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=673 line=4435
+DKWB-EMIT-V1 proc=643 block=40 emit=674 op=39 line=4435 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=2 emitted=674 line=4435
+DKWB-FREELIST FREE proc=643 reg=25 emitted=674 line=4435
+DKWB-EMIT-V1 proc=643 block=40 emit=675 op=23 line=4435 buffer=fwd fn=f_emit_branch_rrll
+DKWB-EMIT-V1 proc=643 block=40 emit=675 op=23 line=4435 buffer=fwd fn=f_emit_rrll
+DKWB-EMIT-V1 proc=643 block=40 emit=676 op=28 line=4435 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=40 emit=677 op=28 line=4436 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST MOVE_END proc=643 reg=15 emitted=677 line=4436
+DKWB-FREELIST FREE proc=643 reg=0 emitted=677 line=4436
+DKWB-FREELIST FREE proc=643 reg=15 emitted=677 line=4436
+DKWB-EMIT-V1 proc=643 block=40 emit=678 op=76 line=4436 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=40 emit=679 op=28 line=4437 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=0 emitted=679 line=4437
+DKWB-EMIT-V1 proc=643 block=40 emit=680 op=49 line=4437 buffer=fwd fn=f_emit_rr
+DKWB-EMIT-V1 proc=643 block=41 emit=681 op=3042 line=4437 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=41 emit=682 op=28 line=4439 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_GP proc=643 reg=152 emitted=682 line=4439
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=682 line=4439
+DKWB-EMIT-V1 proc=643 block=41 emit=683 op=42 line=4439 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=14 emitted=683 line=4439
+DKWB-FREELIST ALLOC_GP proc=643 reg=80 emitted=683 line=4439
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=683 line=4439
+DKWB-EMIT-V1 proc=643 block=41 emit=684 op=39 line=4439 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=24 emitted=684 line=4439
+DKWB-FREELIST FREE proc=643 reg=2 emitted=684 line=4439
+DKWB-EMIT-V1 proc=643 block=41 emit=685 op=2 line=4439 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=3 emitted=685 line=4439
+DKWB-FREELIST ALLOC_GP proc=643 reg=16 emitted=685 line=4439
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=685 line=4439
+DKWB-EMIT-V1 proc=643 block=41 emit=686 op=79 line=4439 buffer=fwd fn=f_emit_rri_
+DKWB-EMIT-V1 proc=643 block=41 emit=687 op=49 line=4439 buffer=fwd fn=f_emit_rr
+DKWB-FREELIST FREE proc=643 reg=25 emitted=687 line=4439
+DKWB-FREELIST FREE proc=643 reg=3 emitted=687 line=4439
+DKWB-FREELIST ALLOC_GP proc=643 reg=128 emitted=687 line=4439
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=687 line=4439
+DKWB-EMIT-V1 proc=643 block=41 emit=688 op=83 line=4439 buffer=fwd fn=f_emit_rri_
+DKWB-EMIT-V1 proc=643 block=41 emit=689 op=49 line=4439 buffer=fwd fn=f_emit_rr
+DKWB-FREELIST FREE proc=643 reg=15 emitted=689 line=4439
+DKWB-FREELIST FREE proc=643 reg=3 emitted=689 line=4439
+DKWB-EMIT-V1 proc=643 block=41 emit=690 op=28 line=4440 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST MOVE_END proc=643 reg=14 emitted=690 line=4440
+DKWB-FREELIST FREE proc=643 reg=14 emitted=690 line=4440
+DKWB-FREELIST ALLOC_GP proc=643 reg=16 emitted=690 line=4440
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=690 line=4440
+DKWB-EMIT-V1 proc=643 block=41 emit=691 op=39 line=4440 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=3 emitted=691 line=4440
+DKWB-FREELIST FREE proc=643 reg=24 emitted=691 line=4440
+DKWB-EMIT-V1 proc=643 block=41 emit=692 op=13 line=4440 buffer=fwd fn=f_emit_branch_rrll
+DKWB-EMIT-V1 proc=643 block=41 emit=692 op=13 line=4440 buffer=fwd fn=f_emit_rrll
+DKWB-EMIT-V1 proc=643 block=41 emit=693 op=28 line=4440 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=41 emit=694 op=28 line=4441 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=3 emitted=694 line=4441
+DKWB-FREELIST ALLOC_GP proc=643 reg=136 emitted=694 line=4441
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=694 line=4441
+DKWB-EMIT-V1 proc=643 block=41 emit=695 op=56 line=4441 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=25 emitted=695 line=4441
+DKWB-EMIT-V1 proc=643 block=41 emit=696 op=40 line=4441 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=2 emitted=696 line=4441
+DKWB-EMIT-V1 proc=643 block=41 emit=697 op=28 line=4442 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=697 line=4442
+DKWB-FREELIST ALLOC_GP proc=643 reg=144 emitted=697 line=4442
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=697 line=4442
+DKWB-EMIT-V1 proc=643 block=41 emit=698 op=42 line=4442 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=15 emitted=698 line=4442
+DKWB-FREELIST ALLOC_GP proc=643 reg=0 emitted=698 line=4442
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=698 line=4442
+DKWB-EMIT-V1 proc=643 block=41 emit=699 op=3 line=4442 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=699 line=4442
+DKWB-EMIT-V1 proc=643 block=41 emit=700 op=26 line=4442 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=41 emit=700 op=26 line=4442 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=41 emit=701 op=28 line=4442 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=41 emit=702 op=28 line=4443 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST MOVE_END proc=643 reg=14 emitted=702 line=4443
+DKWB-FREELIST FREE proc=643 reg=14 emitted=702 line=4443
+DKWB-FREELIST ALLOC_GP proc=643 reg=8 emitted=702 line=4443
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=702 line=4443
+DKWB-EMIT-V1 proc=643 block=41 emit=703 op=39 line=4443 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=25 emitted=703 line=4443
+DKWB-FREELIST ALLOC_GP proc=643 reg=120 emitted=703 line=4443
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=703 line=4443
+DKWB-EMIT-V1 proc=643 block=41 emit=704 op=56 line=4443 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=2 emitted=704 line=4443
+DKWB-FREELIST FREE proc=643 reg=15 emitted=704 line=4443
+DKWB-EMIT-V1 proc=643 block=41 emit=705 op=76 line=4443 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=42 emit=706 op=3043 line=4443 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=42 emit=707 op=28 line=4445 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_GP proc=643 reg=16 emitted=707 line=4445
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=707 line=4445
+DKWB-EMIT-V1 proc=643 block=42 emit=708 op=42 line=4445 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=3 emitted=708 line=4445
+DKWB-FREELIST FREE proc=643 reg=24 emitted=708 line=4445
+DKWB-EMIT-V1 proc=643 block=42 emit=709 op=76 line=4445 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=42 emit=710 op=28 line=4447 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=43 emit=711 op=3044 line=4447 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=43 emit=712 op=28 line=4451 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=4 emitted=712 line=4451
+DKWB-FREELIST ALLOC_GP proc=643 reg=248 emitted=712 line=4451
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=712 line=4451
+DKWB-EMIT-V1 proc=643 block=43 emit=713 op=39 line=4451 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=14 emitted=713 line=4451
+DKWB-EMIT-V1 proc=643 block=43 emit=714 op=26 line=4451 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=43 emit=715 op=28 line=4451 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=43 emit=716 op=28 line=4452 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=22 emitted=716 line=4452
+DKWB-FREELIST ALLOC_GP proc=643 reg=184 emitted=716 line=4452
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=716 line=4452
+DKWB-EMIT-V1 proc=643 block=43 emit=717 op=40 line=4452 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=25 emitted=717 line=4452
+DKWB-FREELIST ALLOC_GP proc=643 reg=40 emitted=717 line=4452
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=717 line=4452
+DKWB-EMIT-V1 proc=643 block=43 emit=718 op=3 line=4452 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=15 emitted=718 line=4452
+DKWB-EMIT-V1 proc=643 block=43 emit=719 op=13 line=4452 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=43 emit=719 op=13 line=4452 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=43 emit=720 op=28 line=4452 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=43 emit=721 op=28 line=4453 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=721 line=4453
+DKWB-FREELIST ALLOC_GP proc=643 reg=120 emitted=721 line=4453
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=721 line=4453
+DKWB-EMIT-V1 proc=643 block=43 emit=722 op=42 line=4453 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=22 emitted=722 line=4453
+DKWB-FREELIST ALLOC_GP proc=643 reg=232 emitted=722 line=4453
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=722 line=4453
+DKWB-EMIT-V1 proc=643 block=43 emit=723 op=39 line=4453 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=14 emitted=723 line=4453
+DKWB-FREELIST ALLOC_GP proc=643 reg=88 emitted=723 line=4453
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=723 line=4453
+DKWB-EMIT-V1 proc=643 block=43 emit=724 op=56 line=4453 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=724 line=4453
+DKWB-FREELIST FREE proc=643 reg=25 emitted=724 line=4453
+DKWB-FREELIST ALLOC_GP proc=643 reg=16 emitted=724 line=4453
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=724 line=4453
+DKWB-EMIT-V1 proc=643 block=43 emit=725 op=2 line=4453 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=15 emitted=725 line=4453
+DKWB-FREELIST ALLOC_FP proc=643 reg=200 emitted=725 line=4453
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=38 emitted=725 line=4453
+DKWB-EMIT-V1 proc=643 block=43 emit=726 op=118 line=4453 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=22 emitted=726 line=4453
+DKWB-FREELIST ALLOC_FP proc=643 reg=56 emitted=726 line=4453
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=40 emitted=726 line=4453
+DKWB-EMIT-V1 proc=643 block=43 emit=727 op=118 line=4453 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST ALLOC_FP proc=643 reg=240 emitted=727 line=4453
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=42 emitted=727 line=4453
+DKWB-EMIT-V1 proc=643 block=43 emit=728 op=222 line=4453 buffer=fwd fn=f_emit_rr
+DKWB-FREELIST ALLOC_FP proc=643 reg=168 emitted=728 line=4453
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=36 emitted=728 line=4453
+DKWB-EMIT-V1 proc=643 block=43 emit=729 op=130 line=4453 buffer=fwd fn=f_emit_rrr
+DKWB-EMIT-V1 proc=643 block=43 emit=730 op=121 line=4453 buffer=fwd fn=f_emit_rob
+DKWB-EMIT-V1 proc=643 block=43 emit=731 op=28 line=4454 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=731 line=4454
+DKWB-FREELIST ALLOC_GP proc=643 reg=136 emitted=731 line=4454
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=731 line=4454
+DKWB-EMIT-V1 proc=643 block=43 emit=732 op=42 line=4454 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=22 emitted=732 line=4454
+DKWB-FREELIST ALLOC_GP proc=643 reg=248 emitted=732 line=4454
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=732 line=4454
+DKWB-EMIT-V1 proc=643 block=43 emit=733 op=39 line=4454 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=24 emitted=733 line=4454
+DKWB-FREELIST ALLOC_GP proc=643 reg=104 emitted=733 line=4454
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=733 line=4454
+DKWB-EMIT-V1 proc=643 block=43 emit=734 op=56 line=4454 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=14 emitted=734 line=4454
+DKWB-FREELIST FREE proc=643 reg=25 emitted=734 line=4454
+DKWB-FREELIST ALLOC_GP proc=643 reg=32 emitted=734 line=4454
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=734 line=4454
+DKWB-EMIT-V1 proc=643 block=43 emit=735 op=2 line=4454 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=15 emitted=735 line=4454
+DKWB-FREELIST ALLOC_FP proc=643 reg=216 emitted=735 line=4454
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=40 emitted=735 line=4454
+DKWB-EMIT-V1 proc=643 block=43 emit=736 op=118 line=4454 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=22 emitted=736 line=4454
+DKWB-FREELIST ALLOC_FP proc=643 reg=72 emitted=736 line=4454
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=38 emitted=736 line=4454
+DKWB-EMIT-V1 proc=643 block=43 emit=737 op=118 line=4454 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST ALLOC_FP proc=643 reg=0 emitted=737 line=4454
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=42 emitted=737 line=4454
+DKWB-EMIT-V1 proc=643 block=43 emit=738 op=222 line=4454 buffer=fwd fn=f_emit_rr
+DKWB-FREELIST ALLOC_FP proc=643 reg=184 emitted=738 line=4454
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=36 emitted=738 line=4454
+DKWB-EMIT-V1 proc=643 block=43 emit=739 op=130 line=4454 buffer=fwd fn=f_emit_rrr
+DKWB-EMIT-V1 proc=643 block=43 emit=740 op=121 line=4454 buffer=fwd fn=f_emit_rob
+DKWB-EMIT-V1 proc=643 block=43 emit=741 op=28 line=4455 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=741 line=4455
+DKWB-FREELIST ALLOC_GP proc=643 reg=152 emitted=741 line=4455
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=741 line=4455
+DKWB-EMIT-V1 proc=643 block=43 emit=742 op=42 line=4455 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=22 emitted=742 line=4455
+DKWB-FREELIST ALLOC_GP proc=643 reg=8 emitted=742 line=4455
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=742 line=4455
+DKWB-EMIT-V1 proc=643 block=43 emit=743 op=39 line=4455 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=14 emitted=743 line=4455
+DKWB-FREELIST ALLOC_GP proc=643 reg=120 emitted=743 line=4455
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=743 line=4455
+DKWB-EMIT-V1 proc=643 block=43 emit=744 op=56 line=4455 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=744 line=4455
+DKWB-FREELIST FREE proc=643 reg=25 emitted=744 line=4455
+DKWB-FREELIST ALLOC_GP proc=643 reg=48 emitted=744 line=4455
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=744 line=4455
+DKWB-EMIT-V1 proc=643 block=43 emit=745 op=2 line=4455 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=15 emitted=745 line=4455
+DKWB-FREELIST ALLOC_FP proc=643 reg=232 emitted=745 line=4455
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=38 emitted=745 line=4455
+DKWB-EMIT-V1 proc=643 block=43 emit=746 op=118 line=4455 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=22 emitted=746 line=4455
+DKWB-FREELIST ALLOC_FP proc=643 reg=88 emitted=746 line=4455
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=40 emitted=746 line=4455
+DKWB-EMIT-V1 proc=643 block=43 emit=747 op=118 line=4455 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST ALLOC_FP proc=643 reg=16 emitted=747 line=4455
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=42 emitted=747 line=4455
+DKWB-EMIT-V1 proc=643 block=43 emit=748 op=222 line=4455 buffer=fwd fn=f_emit_rr
+DKWB-FREELIST ALLOC_FP proc=643 reg=200 emitted=748 line=4455
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=36 emitted=748 line=4455
+DKWB-EMIT-V1 proc=643 block=43 emit=749 op=130 line=4455 buffer=fwd fn=f_emit_rrr
+DKWB-EMIT-V1 proc=643 block=43 emit=750 op=121 line=4455 buffer=fwd fn=f_emit_rob
+DKWB-EMIT-V1 proc=643 block=43 emit=751 op=4 line=4455 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=44 emit=752 op=3045 line=4455 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=44 emit=753 op=28 line=4456 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=44 emit=754 op=28 line=4457 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=754 line=4457
+DKWB-FREELIST ALLOC_GP proc=643 reg=208 emitted=754 line=4457
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=754 line=4457
+DKWB-EMIT-V1 proc=643 block=44 emit=755 op=42 line=4457 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=22 emitted=755 line=4457
+DKWB-FREELIST ALLOC_GP proc=643 reg=64 emitted=755 line=4457
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=755 line=4457
+DKWB-EMIT-V1 proc=643 block=44 emit=756 op=39 line=4457 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=24 emitted=756 line=4457
+DKWB-FREELIST ALLOC_GP proc=643 reg=176 emitted=756 line=4457
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=756 line=4457
+DKWB-EMIT-V1 proc=643 block=44 emit=757 op=56 line=4457 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=14 emitted=757 line=4457
+DKWB-FREELIST FREE proc=643 reg=25 emitted=757 line=4457
+DKWB-FREELIST ALLOC_GP proc=643 reg=104 emitted=757 line=4457
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=757 line=4457
+DKWB-EMIT-V1 proc=643 block=44 emit=758 op=2 line=4457 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=15 emitted=758 line=4457
+DKWB-FREELIST ALLOC_FP proc=643 reg=32 emitted=758 line=4457
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=40 emitted=758 line=4457
+DKWB-EMIT-V1 proc=643 block=44 emit=759 op=118 line=4457 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=22 emitted=759 line=4457
+DKWB-FREELIST ALLOC_FP proc=643 reg=144 emitted=759 line=4457
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=38 emitted=759 line=4457
+DKWB-EMIT-V1 proc=643 block=44 emit=760 op=118 line=4457 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST ALLOC_FP proc=643 reg=72 emitted=760 line=4457
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=42 emitted=760 line=4457
+DKWB-EMIT-V1 proc=643 block=44 emit=761 op=130 line=4457 buffer=fwd fn=f_emit_rrr
+DKWB-EMIT-V1 proc=643 block=44 emit=762 op=121 line=4457 buffer=fwd fn=f_emit_rob
+DKWB-EMIT-V1 proc=643 block=44 emit=763 op=28 line=4458 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=763 line=4458
+DKWB-FREELIST ALLOC_GP proc=643 reg=40 emitted=763 line=4458
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=763 line=4458
+DKWB-EMIT-V1 proc=643 block=44 emit=764 op=42 line=4458 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=22 emitted=764 line=4458
+DKWB-FREELIST ALLOC_GP proc=643 reg=152 emitted=764 line=4458
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=764 line=4458
+DKWB-EMIT-V1 proc=643 block=44 emit=765 op=39 line=4458 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=14 emitted=765 line=4458
+DKWB-FREELIST ALLOC_GP proc=643 reg=8 emitted=765 line=4458
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=765 line=4458
+DKWB-EMIT-V1 proc=643 block=44 emit=766 op=56 line=4458 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=766 line=4458
+DKWB-FREELIST FREE proc=643 reg=25 emitted=766 line=4458
+DKWB-FREELIST ALLOC_GP proc=643 reg=192 emitted=766 line=4458
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=766 line=4458
+DKWB-EMIT-V1 proc=643 block=44 emit=767 op=2 line=4458 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=15 emitted=767 line=4458
+DKWB-FREELIST ALLOC_FP proc=643 reg=120 emitted=767 line=4458
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=36 emitted=767 line=4458
+DKWB-EMIT-V1 proc=643 block=44 emit=768 op=118 line=4458 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=22 emitted=768 line=4458
+DKWB-FREELIST ALLOC_FP proc=643 reg=232 emitted=768 line=4458
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=40 emitted=768 line=4458
+DKWB-EMIT-V1 proc=643 block=44 emit=769 op=118 line=4458 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST ALLOC_FP proc=643 reg=160 emitted=769 line=4458
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=38 emitted=769 line=4458
+DKWB-EMIT-V1 proc=643 block=44 emit=770 op=130 line=4458 buffer=fwd fn=f_emit_rrr
+DKWB-EMIT-V1 proc=643 block=44 emit=771 op=121 line=4458 buffer=fwd fn=f_emit_rob
+DKWB-EMIT-V1 proc=643 block=44 emit=772 op=28 line=4459 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=772 line=4459
+DKWB-FREELIST ALLOC_GP proc=643 reg=128 emitted=772 line=4459
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=772 line=4459
+DKWB-EMIT-V1 proc=643 block=44 emit=773 op=42 line=4459 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=22 emitted=773 line=4459
+DKWB-FREELIST ALLOC_GP proc=643 reg=240 emitted=773 line=4459
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=773 line=4459
+DKWB-EMIT-V1 proc=643 block=44 emit=774 op=39 line=4459 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=24 emitted=774 line=4459
+DKWB-FREELIST ALLOC_GP proc=643 reg=96 emitted=774 line=4459
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=774 line=4459
+DKWB-EMIT-V1 proc=643 block=44 emit=775 op=56 line=4459 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=14 emitted=775 line=4459
+DKWB-FREELIST FREE proc=643 reg=25 emitted=775 line=4459
+DKWB-FREELIST ALLOC_GP proc=643 reg=24 emitted=775 line=4459
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=775 line=4459
+DKWB-EMIT-V1 proc=643 block=44 emit=776 op=2 line=4459 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=15 emitted=776 line=4459
+DKWB-FREELIST ALLOC_FP proc=643 reg=208 emitted=776 line=4459
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=42 emitted=776 line=4459
+DKWB-EMIT-V1 proc=643 block=44 emit=777 op=118 line=4459 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=22 emitted=777 line=4459
+DKWB-FREELIST ALLOC_FP proc=643 reg=64 emitted=777 line=4459
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=36 emitted=777 line=4459
+DKWB-EMIT-V1 proc=643 block=44 emit=778 op=118 line=4459 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST ALLOC_FP proc=643 reg=248 emitted=778 line=4459
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=40 emitted=778 line=4459
+DKWB-EMIT-V1 proc=643 block=44 emit=779 op=130 line=4459 buffer=fwd fn=f_emit_rrr
+DKWB-EMIT-V1 proc=643 block=44 emit=780 op=121 line=4459 buffer=fwd fn=f_emit_rob
+DKWB-EMIT-V1 proc=643 block=45 emit=781 op=3046 line=4459 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=45 emit=782 op=28 line=4461 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_GP proc=643 reg=216 emitted=782 line=4461
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=782 line=4461
+DKWB-EMIT-V1 proc=643 block=45 emit=783 op=42 line=4461 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=24 emitted=783 line=4461
+DKWB-EMIT-V1 proc=643 block=45 emit=784 op=37 line=4461 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=4 emitted=784 line=4461
+DKWB-EMIT-V1 proc=643 block=45 emit=785 op=2 line=4461 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=5 emitted=785 line=4461
+DKWB-FREELIST MOVE_END proc=643 reg=24 emitted=785 line=4461
+DKWB-FREELIST FREE proc=643 reg=24 emitted=785 line=4461
+DKWB-EMIT-V1 proc=643 block=45 emit=786 op=2 line=4461 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=6 emitted=786 line=4461
+DKWB-FREELIST MOVE_END proc=643 reg=24 emitted=786 line=4461
+DKWB-FREELIST FREE proc=643 reg=24 emitted=786 line=4461
+DKWB-EMIT-V1 proc=643 block=45 emit=787 op=2 line=4461 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=7 emitted=787 line=4461
+DKWB-EMIT-V1 proc=643 block=45 emit=788 op=53 line=4461 buffer=fwd fn=f_emit_regmask
+DKWB-EMIT-V1 proc=643 block=45 emit=789 op=35 line=4461 buffer=fwd fn=f_emit_a
+DKWB-EMIT-V1 proc=643 block=46 emit=790 op=3047 line=4461 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=46 emit=791 op=28 line=4463 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=22 emitted=791 line=4463
+DKWB-EMIT-V1 proc=643 block=46 emit=792 op=39 line=4463 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=3 emitted=792 line=4463
+DKWB-EMIT-V1 proc=643 block=46 emit=793 op=28 line=4464 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=793 line=4464
+DKWB-FREELIST ALLOC_GP proc=643 reg=208 emitted=793 line=4464
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=793 line=4464
+DKWB-EMIT-V1 proc=643 block=46 emit=794 op=42 line=4464 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=3 emitted=794 line=4464
+DKWB-FREELIST ALLOC_GP proc=643 reg=248 emitted=794 line=4464
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=794 line=4464
+DKWB-EMIT-V1 proc=643 block=46 emit=795 op=56 line=4464 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=14 emitted=795 line=4464
+DKWB-FREELIST FREE proc=643 reg=25 emitted=795 line=4464
+DKWB-EMIT-V1 proc=643 block=46 emit=796 op=2 line=4464 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=6 emitted=796 line=4464
+DKWB-EMIT-V1 proc=643 block=46 emit=797 op=28 line=4465 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=6 emitted=797 line=4465
+DKWB-FREELIST ALLOC_GP proc=643 reg=144 emitted=797 line=4465
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=797 line=4465
+DKWB-EMIT-V1 proc=643 block=46 emit=798 op=42 line=4465 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=15 emitted=798 line=4465
+DKWB-FREELIST ALLOC_GP proc=643 reg=0 emitted=798 line=4465
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=798 line=4465
+DKWB-EMIT-V1 proc=643 block=46 emit=799 op=3 line=4465 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=799 line=4465
+DKWB-EMIT-V1 proc=643 block=46 emit=800 op=26 line=4465 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=46 emit=800 op=26 line=4465 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=46 emit=801 op=28 line=4465 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=46 emit=802 op=28 line=4466 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=3 emitted=802 line=4466
+DKWB-EMIT-V1 proc=643 block=46 emit=803 op=2 line=4466 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=2 emitted=803 line=4466
+DKWB-FREELIST FREE proc=643 reg=2 emitted=803 line=4466
+DKWB-EMIT-V1 proc=643 block=46 emit=804 op=49 line=4466 buffer=fwd fn=f_emit_rr
+DKWB-EMIT-V1 proc=643 block=46 emit=805 op=28 line=4467 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=0 emitted=805 line=4467
+DKWB-EMIT-V1 proc=643 block=46 emit=806 op=49 line=4467 buffer=fwd fn=f_emit_rr
+DKWB-FREELIST FREE proc=643 reg=30 emitted=806 line=4467
+DKWB-FREELIST ALLOC_GP proc=643 reg=128 emitted=806 line=4467
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=806 line=4467
+DKWB-EMIT-V1 proc=643 block=46 emit=807 op=39 line=4467 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=2 emitted=807 line=4467
+DKWB-FREELIST FREE proc=643 reg=14 emitted=807 line=4467
+DKWB-EMIT-V1 proc=643 block=46 emit=808 op=23 line=4467 buffer=fwd fn=f_emit_branch_rrll
+DKWB-EMIT-V1 proc=643 block=46 emit=808 op=23 line=4467 buffer=fwd fn=f_emit_rrll
+DKWB-EMIT-V1 proc=643 block=46 emit=809 op=28 line=4467 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=46 emit=810 op=28 line=4468 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=0 emitted=810 line=4468
+DKWB-EMIT-V1 proc=643 block=46 emit=811 op=49 line=4468 buffer=fwd fn=f_emit_rr
+DKWB-EMIT-V1 proc=643 block=47 emit=812 op=3048 line=4468 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=47 emit=813 op=28 line=4470 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=22 emitted=813 line=4470
+DKWB-FREELIST ALLOC_GP proc=643 reg=176 emitted=813 line=4470
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=813 line=4470
+DKWB-EMIT-V1 proc=643 block=47 emit=814 op=40 line=4470 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=25 emitted=814 line=4470
+DKWB-FREELIST ALLOC_GP proc=643 reg=32 emitted=814 line=4470
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=814 line=4470
+DKWB-EMIT-V1 proc=643 block=47 emit=815 op=3 line=4470 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=15 emitted=815 line=4470
+DKWB-EMIT-V1 proc=643 block=47 emit=816 op=13 line=4470 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=47 emit=816 op=13 line=4470 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=47 emit=817 op=28 line=4470 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=47 emit=818 op=28 line=4471 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=6 emitted=818 line=4471
+DKWB-FREELIST ALLOC_FP proc=643 reg=112 emitted=818 line=4471
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=38 emitted=818 line=4471
+DKWB-EMIT-V1 proc=643 block=47 emit=819 op=118 line=4471 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=22 emitted=819 line=4471
+DKWB-FREELIST ALLOC_FP proc=643 reg=224 emitted=819 line=4471
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=42 emitted=819 line=4471
+DKWB-EMIT-V1 proc=643 block=47 emit=820 op=118 line=4471 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=47 emit=821 op=127 line=4471 buffer=fwd fn=f_emit_rrr
+DKWB-EMIT-V1 proc=643 block=47 emit=822 op=4 line=4471 buffer=fwd fn=f_emit_ll
+DKWB-EMIT-V1 proc=643 block=48 emit=823 op=3049 line=4471 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=48 emit=824 op=28 line=4472 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=48 emit=825 op=28 line=4473 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=22 emitted=825 line=4473
+DKWB-EMIT-V1 proc=643 block=48 emit=826 op=118 line=4473 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=49 emit=827 op=3050 line=4473 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=49 emit=828 op=28 line=4475 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=0 emitted=828 line=4475
+DKWB-EMIT-V1 proc=643 block=49 emit=829 op=49 line=4475 buffer=fwd fn=f_emit_rr
+DKWB-EMIT-V1 proc=643 block=49 emit=830 op=2 line=4475 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=4 emitted=830 line=4475
+DKWB-EMIT-V1 proc=643 block=49 emit=831 op=2 line=4475 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=5 emitted=831 line=4475
+DKWB-EMIT-V1 proc=643 block=50 emit=832 op=3051 line=4475 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=50 emit=833 op=28 line=4475 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=50 emit=834 op=28 line=4476 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=834 line=4476
+DKWB-EMIT-V1 proc=643 block=50 emit=835 op=42 line=4476 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=2 emitted=835 line=4476
+DKWB-FREELIST FREE proc=643 reg=22 emitted=835 line=4476
+DKWB-FREELIST ALLOC_GP proc=643 reg=216 emitted=835 line=4476
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=835 line=4476
+DKWB-EMIT-V1 proc=643 block=50 emit=836 op=39 line=4476 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=24 emitted=836 line=4476
+DKWB-FREELIST ALLOC_GP proc=643 reg=72 emitted=836 line=4476
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=836 line=4476
+DKWB-EMIT-V1 proc=643 block=50 emit=837 op=56 line=4476 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=2 emitted=837 line=4476
+DKWB-FREELIST FREE proc=643 reg=14 emitted=837 line=4476
+DKWB-FREELIST ALLOC_GP proc=643 reg=0 emitted=837 line=4476
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=837 line=4476
+DKWB-EMIT-V1 proc=643 block=50 emit=838 op=2 line=4476 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=25 emitted=838 line=4476
+DKWB-FREELIST FREE proc=643 reg=3 emitted=838 line=4476
+DKWB-FREELIST ALLOC_GP proc=643 reg=112 emitted=838 line=4476
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=838 line=4476
+DKWB-EMIT-V1 proc=643 block=50 emit=839 op=2 line=4476 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=15 emitted=839 line=4476
+DKWB-EMIT-V1 proc=643 block=50 emit=840 op=118 line=4476 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=50 emit=841 op=28 line=4477 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=50 emit=842 op=48 line=4477 buffer=fwd fn=f_emit_alias
+DKWB-FREELIST FREE proc=643 reg=7 emitted=842 line=4477
+DKWB-FREELIST ALLOC_GP proc=643 reg=232 emitted=842 line=4477
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=842 line=4477
+DKWB-EMIT-V1 proc=643 block=50 emit=843 op=56 line=4477 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=2 emitted=843 line=4477
+DKWB-FREELIST FREE proc=643 reg=24 emitted=843 line=4477
+DKWB-FREELIST ALLOC_GP proc=643 reg=160 emitted=843 line=4477
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=843 line=4477
+DKWB-EMIT-V1 proc=643 block=50 emit=844 op=2 line=4477 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=14 emitted=844 line=4477
+DKWB-FREELIST FREE proc=643 reg=3 emitted=844 line=4477
+DKWB-FREELIST ALLOC_GP proc=643 reg=16 emitted=844 line=4477
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=844 line=4477
+DKWB-EMIT-V1 proc=643 block=50 emit=845 op=2 line=4477 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=25 emitted=845 line=4477
+DKWB-FREELIST ALLOC_FP proc=643 reg=200 emitted=845 line=4477
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=36 emitted=845 line=4477
+DKWB-EMIT-V1 proc=643 block=50 emit=846 op=118 line=4477 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST ALLOC_FP proc=643 reg=56 emitted=846 line=4477
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=40 emitted=846 line=4477
+DKWB-EMIT-V1 proc=643 block=50 emit=847 op=127 line=4477 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=6 emitted=847 line=4477
+DKWB-FREELIST ALLOC_FP proc=643 reg=96 emitted=847 line=4477
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=38 emitted=847 line=4477
+DKWB-EMIT-V1 proc=643 block=50 emit=848 op=118 line=4477 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST ALLOC_FP proc=643 reg=24 emitted=848 line=4477
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=42 emitted=848 line=4477
+DKWB-EMIT-V1 proc=643 block=50 emit=849 op=133 line=4477 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST ALLOC_FP proc=643 reg=208 emitted=849 line=4477
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=36 emitted=849 line=4477
+DKWB-EMIT-V1 proc=643 block=50 emit=850 op=130 line=4477 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST ALLOC_FP proc=643 reg=64 emitted=850 line=4477
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=38 emitted=850 line=4477
+DKWB-EMIT-V1 proc=643 block=50 emit=851 op=124 line=4477 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=4 emitted=851 line=4477
+DKWB-EMIT-V1 proc=643 block=50 emit=852 op=121 line=4477 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=50 emit=853 op=28 line=4475 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=3 emitted=853 line=4475
+DKWB-EMIT-V1 proc=643 block=50 emit=854 op=2 line=4475 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=3 emitted=854 line=4475
+DKWB-FREELIST FREE proc=643 reg=4 emitted=854 line=4475
+DKWB-EMIT-V1 proc=643 block=50 emit=855 op=2 line=4475 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=4 emitted=855 line=4475
+DKWB-FREELIST FREE proc=643 reg=4 emitted=855 line=4475
+DKWB-FREELIST FREE proc=643 reg=5 emitted=855 line=4475
+DKWB-EMIT-V1 proc=643 block=50 emit=856 op=24 line=4475 buffer=fwd fn=f_emit_branch_rrll
+DKWB-EMIT-V1 proc=643 block=50 emit=856 op=24 line=4475 buffer=fwd fn=f_emit_rrll
+DKWB-EMIT-V1 proc=643 block=50 emit=857 op=49 line=4475 buffer=fwd fn=f_emit_alias
+DKWB-EMIT-V1 proc=643 block=50 emit=858 op=28 line=4479 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=0 emitted=858 line=4479
+DKWB-EMIT-V1 proc=643 block=50 emit=859 op=49 line=4479 buffer=fwd fn=f_emit_rr
+DKWB-EMIT-V1 proc=643 block=50 emit=860 op=42 line=4479 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=2 emitted=860 line=4479
+DKWB-EMIT-V1 proc=643 block=50 emit=861 op=41 line=4479 buffer=fwd fn=f_emit_ri_
+DKWB-FREELIST FREE proc=643 reg=3 emitted=861 line=4479
+DKWB-EMIT-V1 proc=643 block=51 emit=862 op=3052 line=4479 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=51 emit=863 op=28 line=4479 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=51 emit=864 op=28 line=4480 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_FP proc=643 reg=96 emitted=864 line=4480
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=40 emitted=864 line=4480
+DKWB-EMIT-V1 proc=643 block=51 emit=865 op=118 line=4480 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=2 emitted=865 line=4480
+DKWB-FREELIST ALLOC_FP proc=643 reg=208 emitted=865 line=4480
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=42 emitted=865 line=4480
+DKWB-EMIT-V1 proc=643 block=51 emit=866 op=118 line=4480 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST ALLOC_FP proc=643 reg=136 emitted=866 line=4480
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=36 emitted=866 line=4480
+DKWB-EMIT-V1 proc=643 block=51 emit=867 op=130 line=4480 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=2 emitted=867 line=4480
+DKWB-EMIT-V1 proc=643 block=51 emit=868 op=121 line=4480 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=51 emit=869 op=28 line=4481 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_FP proc=643 reg=104 emitted=869 line=4481
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=38 emitted=869 line=4481
+DKWB-EMIT-V1 proc=643 block=51 emit=870 op=118 line=4481 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=2 emitted=870 line=4481
+DKWB-FREELIST ALLOC_FP proc=643 reg=216 emitted=870 line=4481
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=40 emitted=870 line=4481
+DKWB-EMIT-V1 proc=643 block=51 emit=871 op=118 line=4481 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST ALLOC_FP proc=643 reg=144 emitted=871 line=4481
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=42 emitted=871 line=4481
+DKWB-EMIT-V1 proc=643 block=51 emit=872 op=130 line=4481 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=2 emitted=872 line=4481
+DKWB-EMIT-V1 proc=643 block=51 emit=873 op=121 line=4481 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=51 emit=874 op=28 line=4482 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_FP proc=643 reg=112 emitted=874 line=4482
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=36 emitted=874 line=4482
+DKWB-EMIT-V1 proc=643 block=51 emit=875 op=118 line=4482 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=2 emitted=875 line=4482
+DKWB-FREELIST ALLOC_FP proc=643 reg=224 emitted=875 line=4482
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=38 emitted=875 line=4482
+DKWB-EMIT-V1 proc=643 block=51 emit=876 op=118 line=4482 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST ALLOC_FP proc=643 reg=152 emitted=876 line=4482
+DKWB-FREELIST ALLOC_FP_RESULT proc=643 reg=40 emitted=876 line=4482
+DKWB-EMIT-V1 proc=643 block=51 emit=877 op=130 line=4482 buffer=fwd fn=f_emit_rrr
+DKWB-FREELIST FREE proc=643 reg=2 emitted=877 line=4482
+DKWB-EMIT-V1 proc=643 block=51 emit=878 op=121 line=4482 buffer=fwd fn=f_emit_rab
+DKWB-EMIT-V1 proc=643 block=51 emit=879 op=28 line=4479 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=23 emitted=879 line=4479
+DKWB-EMIT-V1 proc=643 block=51 emit=880 op=2 line=4479 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=23 emitted=880 line=4479
+DKWB-FREELIST FREE proc=643 reg=2 emitted=880 line=4479
+DKWB-EMIT-V1 proc=643 block=51 emit=881 op=2 line=4479 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=2 emitted=881 line=4479
+DKWB-FREELIST FREE proc=643 reg=23 emitted=881 line=4479
+DKWB-FREELIST FREE proc=643 reg=3 emitted=881 line=4479
+DKWB-EMIT-V1 proc=643 block=51 emit=882 op=26 line=4479 buffer=fwd fn=f_emit_branch_rrll
+DKWB-EMIT-V1 proc=643 block=51 emit=882 op=26 line=4479 buffer=fwd fn=f_emit_rrll
+DKWB-EMIT-V1 proc=643 block=52 emit=883 op=3053 line=4479 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=52 emit=884 op=28 line=4485 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST ALLOC_GP proc=643 reg=24 emitted=884 line=4485
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=15 emitted=884 line=4485
+DKWB-EMIT-V1 proc=643 block=52 emit=885 op=42 line=4485 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=15 emitted=885 line=4485
+DKWB-FREELIST ALLOC_GP proc=643 reg=208 emitted=885 line=4485
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=885 line=4485
+DKWB-EMIT-V1 proc=643 block=52 emit=886 op=38 line=4485 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=24 emitted=886 line=4485
+DKWB-FREELIST ALLOC_GP proc=643 reg=64 emitted=886 line=4485
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=14 emitted=886 line=4485
+DKWB-EMIT-V1 proc=643 block=52 emit=887 op=3 line=4485 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=14 emitted=887 line=4485
+DKWB-EMIT-V1 proc=643 block=52 emit=888 op=26 line=4485 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=52 emit=888 op=26 line=4485 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=52 emit=889 op=28 line=4485 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=52 emit=890 op=28 line=4486 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST FREE proc=643 reg=30 emitted=890 line=4486
+DKWB-FREELIST ALLOC_GP proc=643 reg=216 emitted=890 line=4486
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=25 emitted=890 line=4486
+DKWB-EMIT-V1 proc=643 block=52 emit=891 op=42 line=4486 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=25 emitted=891 line=4486
+DKWB-FREELIST ALLOC_GP proc=643 reg=72 emitted=891 line=4486
+DKWB-FREELIST ALLOC_GP_RESULT proc=643 reg=24 emitted=891 line=4486
+DKWB-EMIT-V1 proc=643 block=52 emit=892 op=3 line=4486 buffer=fwd fn=f_emit_rri_
+DKWB-FREELIST FREE proc=643 reg=24 emitted=892 line=4486
+DKWB-EMIT-V1 proc=643 block=52 emit=893 op=26 line=4486 buffer=fwd fn=f_emit_branch_rill
+DKWB-EMIT-V1 proc=643 block=52 emit=893 op=26 line=4486 buffer=fwd fn=f_emit_rill
+DKWB-EMIT-V1 proc=643 block=52 emit=894 op=28 line=4486 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=52 emit=895 op=28 line=4487 buffer=fwd fn=f_emit_dir2
+DKWB-FREELIST MOVE_END proc=643 reg=15 emitted=895 line=4487
+DKWB-FREELIST FREE proc=643 reg=15 emitted=895 line=4487
+DKWB-EMIT-V1 proc=643 block=52 emit=896 op=39 line=4487 buffer=fwd fn=f_emit_rab
+DKWB-FREELIST FREE proc=643 reg=4 emitted=896 line=4487
+DKWB-FREELIST FREE proc=643 reg=0 emitted=896 line=4487
+DKWB-EMIT-V1 proc=643 block=52 emit=897 op=49 line=4487 buffer=fwd fn=f_emit_rr
+DKWB-FREELIST FREE proc=643 reg=0 emitted=897 line=4487
+DKWB-EMIT-V1 proc=643 block=52 emit=898 op=49 line=4487 buffer=fwd fn=f_emit_rr
+DKWB-EMIT-V1 proc=643 block=52 emit=899 op=53 line=4487 buffer=fwd fn=f_emit_regmask
+DKWB-EMIT-V1 proc=643 block=52 emit=900 op=35 line=4487 buffer=fwd fn=f_emit_a
+DKWB-EMIT-V1 proc=643 block=53 emit=901 op=3054 line=4487 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=53 emit=902 op=28 line=4489 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=53 emit=903 op=36 line=4489 buffer=fwd fn=f_emit_ra
+DKWB-FREELIST FREE proc=643 reg=4 emitted=903 line=4489
+DKWB-EMIT-V1 proc=643 block=53 emit=904 op=42 line=4489 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=5 emitted=904 line=4489
+DKWB-EMIT-V1 proc=643 block=53 emit=905 op=53 line=4489 buffer=fwd fn=f_emit_regmask
+DKWB-EMIT-V1 proc=643 block=53 emit=906 op=35 line=4489 buffer=fwd fn=f_emit_a
+DKWB-EMIT-V1 proc=643 block=53 emit=907 op=28 line=4490 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=53 emit=908 op=42 line=4490 buffer=fwd fn=f_emit_rob
+DKWB-FREELIST FREE proc=643 reg=4 emitted=908 line=4490
+DKWB-EMIT-V1 proc=643 block=53 emit=909 op=41 line=4490 buffer=fwd fn=f_emit_ri_
+DKWB-FREELIST FREE proc=643 reg=5 emitted=909 line=4490
+DKWB-EMIT-V1 proc=643 block=53 emit=910 op=53 line=4490 buffer=fwd fn=f_emit_regmask
+DKWB-EMIT-V1 proc=643 block=53 emit=911 op=35 line=4490 buffer=fwd fn=f_emit_a
+DKWB-EMIT-V1 proc=643 block=53 emit=912 op=28 line=4495 buffer=fwd fn=f_emit_dir2
+DKWB-EMIT-V1 proc=643 block=54 emit=913 op=3055 line=4495 buffer=fwd fn=f_define_label
+DKWB-EMIT-V1 proc=643 block=54 emit=914 op=53 line=4495 buffer=fwd fn=f_emit_regmask
+DKWB-EMIT-V1 proc=643 block=54 emit=65000 op=21 line=4495 buffer=back fn=f_demit_dir0
+DKWB-EMIT-V1 proc=643 block=54 emit=64999 op=4 line=4495 buffer=back fn=f_demit_dir1
+DKWB-EMIT-V1 proc=643 block=54 emit=915 op=3463 line=4495 buffer=fwd fn=f_emit_file
+DKWB-EMIT-V1 proc=643 block=54 emit=64994 op=2 line=4495 buffer=back fn=f_demit_dir0
+DKWB-EMIT-V1 proc=643 block=54 emit=64993 op=28 line=4495 buffer=back fn=f_demit_dir2
+DKWB-EMIT-V1 proc=643 block=54 emit=64992 op=27 line=4495 buffer=back fn=f_demit_dir1
+DKWB-EMIT-V1 proc=643 block=54 emit=64991 op=0 line=4495 buffer=back fn=f_demit_dir0
+DKWB-EMIT-V1 proc=643 block=54 emit=915 op=3 line=4495 buffer=fwd fn=f_emit_optimize_level
+DKWB-EMIT-V1 proc=643 block=54 emit=64989 op=86 line=4495 buffer=back fn=f_demit_ri
+DKWB-EMIT-V1 proc=643 block=54 emit=64988 op=87 line=4495 buffer=back fn=f_demit_rob_
+DKWB-EMIT-V1 proc=643 block=54 emit=64987 op=87 line=4495 buffer=back fn=f_demit_rob_
+DKWB-EMIT-V1 proc=643 block=54 emit=64986 op=87 line=4495 buffer=back fn=f_demit_rob_
+DKWB-EMIT-V1 proc=643 block=54 emit=64985 op=87 line=4495 buffer=back fn=f_demit_rob_
+DKWB-EMIT-V1 proc=643 block=54 emit=64984 op=87 line=4495 buffer=back fn=f_demit_rob_
+DKWB-EMIT-V1 proc=643 block=54 emit=64983 op=87 line=4495 buffer=back fn=f_demit_rob_
+DKWB-EMIT-V1 proc=643 block=54 emit=64982 op=87 line=4495 buffer=back fn=f_demit_rob_
+DKWB-EMIT-V1 proc=643 block=54 emit=64981 op=87 line=4495 buffer=back fn=f_demit_rob_
+DKWB-EMIT-V1 proc=643 block=54 emit=64980 op=87 line=4495 buffer=back fn=f_demit_rob_
+DKWB-EMIT-V1 proc=643 block=54 emit=64979 op=87 line=4495 buffer=back fn=f_demit_rob_
+DKWB-EMIT-V1 proc=643 block=54 emit=64978 op=122 line=4495 buffer=back fn=f_demit_rob_
+DKWB-EMIT-V1 proc=643 block=54 emit=64977 op=122 line=4495 buffer=back fn=f_demit_rob_
+DKWB-EMIT-V1 proc=643 block=54 emit=915 op=119 line=4495 buffer=fwd fn=f_emit_rob
+DKWB-EMIT-V1 proc=643 block=54 emit=916 op=119 line=4495 buffer=fwd fn=f_emit_rob
+DKWB-EMIT-V1 proc=643 block=54 emit=917 op=42 line=4495 buffer=fwd fn=f_emit_rob
+DKWB-EMIT-V1 proc=643 block=54 emit=918 op=42 line=4495 buffer=fwd fn=f_emit_rob
+DKWB-EMIT-V1 proc=643 block=54 emit=919 op=42 line=4495 buffer=fwd fn=f_emit_rob
+DKWB-EMIT-V1 proc=643 block=54 emit=920 op=42 line=4495 buffer=fwd fn=f_emit_rob
+DKWB-EMIT-V1 proc=643 block=54 emit=921 op=42 line=4495 buffer=fwd fn=f_emit_rob
+DKWB-EMIT-V1 proc=643 block=54 emit=922 op=42 line=4495 buffer=fwd fn=f_emit_rob
+DKWB-EMIT-V1 proc=643 block=54 emit=923 op=42 line=4495 buffer=fwd fn=f_emit_rob
+DKWB-EMIT-V1 proc=643 block=54 emit=924 op=42 line=4495 buffer=fwd fn=f_emit_rob
+DKWB-EMIT-V1 proc=643 block=54 emit=925 op=42 line=4495 buffer=fwd fn=f_emit_rob
+DKWB-EMIT-V1 proc=643 block=54 emit=926 op=42 line=4495 buffer=fwd fn=f_emit_rob
+DKWB-EMIT-V1 proc=643 block=54 emit=64976 op=38 line=4495 buffer=back fn=f_demit_mask
+DKWB-EMIT-V1 proc=643 block=54 emit=64975 op=39 line=4495 buffer=back fn=f_demit_mask
+DKWB-EMIT-V1 proc=643 block=54 emit=927 op=2 line=4495 buffer=fwd fn=f_emit_ri_
+DKWB-EMIT-V1 proc=643 block=54 emit=928 op=34 line=4495 buffer=fwd fn=f_emit_r
+DKWB-EMIT-V1 proc=643 block=54 emit=64974 op=248 line=4495 buffer=back fn=f_demit_frame
+DKWB-EMIT-V1 proc=643 block=54 emit=929 op=24 line=4495 buffer=fwd fn=f_emit_dir0
+DKWB-EMIT-V1 proc=643 block=54 emit=1 op=28 line=4126 buffer=fwd fn=f_emit_dir2
+==LISTING==
+	.ent	camera_update 2
+camera_update:
+	.option	O3
+	subu	$sp, 248
+	sw	$31, 76($sp)
+	sw	$30, 72($sp)
+	sw	$23, 68($sp)
+	sw	$22, 64($sp)
+	sw	$21, 60($sp)
+	sw	$20, 56($sp)
+	sw	$19, 52($sp)
+	sw	$18, 48($sp)
+	sw	$17, 44($sp)
+	sw	$16, 40($sp)
+	s.d	$f22, 32($sp)
+	s.d	$f20, 24($sp)
+	.mask	0xC0FF0000, -172
+	.fmask	0x00F00000, -216
+	.frame	$sp, 248, $31
+	.loc	3463 4223
+	sw	$4, 248($sp)
+	sw	$5, 252($sp)
+	sll	$14, $5, 16
+	move	$5, $14
+	sra	$15, $5, 16
+	move	$5, $15
+	.loc	3463 4223
+	.loc	3463 4246
+	sb	$0, 207($sp)
+	.loc	3463 4247
+	bne	$5, 0, $3002
+	.loc	3463 4247
+	.loc	3463 4248
+	lw	$4, 248($sp)
+	li	$5, 1
+	.livereg	0x0C00000E,0x00000000
+	jal	entity_transform_apply
+	.loc	3463 4249
+	b	$3055
+$3002:
+	.loc	3463 4251
+	lw	$2, state_word_a
+	and	$24, $2, 8126464
+	bne	$24, 0, $3003
+	and	$25, $2, 8
+	beq	$25, 0, $3055
+$3003:
+	lw	$14, D_801170FC
+	bne	$14, 0, $3055
+	.loc	3463 4251
+	.loc	3463 4252
+	lw	$15, 248($sp)
+	lw	$24, 12($15)
+	sw	$24, 244($sp)
+	.loc	3463 4253
+	lw	$22, 108($24)
+	.loc	3463 4254
+	lw	$30, 0($22)
+	.loc	3463 4255
+	lw	$4, 16($30)
+	and	$25, $4, 64
+	beq	$25, 0, $3020
+	.loc	3463 4255
+	.loc	3463 4256
+	and	$14, $4, 16384
+	beq	$14, 0, $3008
+	.loc	3463 4256
+	.loc	3463 4257
+	and	$15, $4, 512
+	bne	$15, 0, $3006
+	.loc	3463 4257
+	.loc	3463 4258
+	and	$24, $4, 1024
+	bne	$24, 0, $3020
+	.loc	3463 4258
+	.loc	3463 4259
+	lhu	$3, 14($22)
+	and	$25, $3, 4
+	beq	$25, 0, $3004
+	.loc	3463 4259
+	.loc	3463 4260
+	and	$14, $3, -5
+	sh	$14, 14($22)
+	.loc	3463 4261
+	lhu	$15, 14($22)
+	or	$24, $15, 8
+	sh	$24, 14($22)
+	.loc	3463 4262
+	lw	$25, 28($30)
+	lh	$14, 12($22)
+	mul	$15, $14, 68
+	addu	$24, $25, $15
+	l.s	$f4, 56($24)
+	l.s	$f6, 4($22)
+	sub.s	$f8, $f4, $f6
+	s.s	$f8, 4($22)
+	lw	$4, 16($30)
+$3004:
+	.loc	3463 4264
+	and	$14, $4, 256
+	beq	$14, 0, $3005
+	.loc	3463 4264
+	.loc	3463 4265
+	lw	$16, 244($sp)
+	.livereg	0x0000800E,0x00000000
+	jal	camera_aspect_ratio
+	lw	$4, 16($30)
+$3005:
+	.loc	3463 4267
+	and	$25, $4, -257
+	sw	$25, 16($30)
+	lw	$4, 16($30)
+	b	$3020
+$3006:
+	.loc	3463 4269
+	.loc	3463 4270
+	and	$15, $4, 1024
+	beq	$15, 0, $3007
+	.loc	3463 4270
+	.loc	3463 4271
+	and	$24, $4, -1281
+	sw	$24, 16($30)
+	.loc	3463 4272
+	lw	$16, 244($sp)
+	.livereg	0x0000800E,0x00000000
+	jal	camera_aspect_ratio
+	lw	$4, 16($30)
+$3007:
+	.loc	3463 4274
+	and	$14, $4, -513
+	sw	$14, 16($30)
+	lw	$4, 16($30)
+	b	$3020
+$3008:
+	.loc	3463 4276
+	.loc	3463 4277
+	and	$25, $4, 8192
+	beq	$25, 0, $3010
+	li	$6, 1048576
+	and	$15, $4, $6
+	beq	$15, 0, $3010
+	.loc	3463 4277
+	.loc	3463 4278
+	lw	$24, 24($30)
+	lw	$14, 16($24)
+	and	$25, $14, 256
+	beq	$25, 0, $3010
+	.loc	3463 4278
+	.loc	3463 4279
+	and	$15, $4, -1048577
+	sw	$15, 16($30)
+	.loc	3463 4280
+	lw	$24, 16($30)
+	or	$14, $24, 2098176
+	sw	$14, 16($30)
+	.loc	3463 4281
+	lw	$25, 16($30)
+	and	$15, $25, 32768
+	bne	$15, 0, $3009
+	.loc	3463 4281
+	.loc	3463 4282
+	lw	$24, 244($sp)
+	lh	$2, 14($24)
+	lhu	$3, D_80142A7A
+	mul	$14, $2, 68
+	sh	$3, D_8012E714($14)
+$3009:
+	.loc	3463 4284
+	lw	$16, 244($sp)
+	.livereg	0x0000800E,0x00000000
+	jal	camera_fov_control
+	.loc	3463 4285
+	b	$3055
+$3010:
+	li	$6, 1048576
+	.loc	3463 4288
+	and	$25, $4, 1024
+	beq	$25, 0, $3020
+	and	$15, $4, 512
+	beq	$15, 0, $3020
+	.loc	3463 4288
+	.loc	3463 4289
+	lw	$3, 24($30)
+	.loc	3463 4290
+	lw	$2, 16($3)
+	and	$24, $2, 256
+	beq	$24, 0, $3011
+	.loc	3463 4290
+	.loc	3463 4291
+	and	$14, $2, -257
+	sw	$14, 16($3)
+	lw	$4, 16($30)
+	b	$3013
+$3011:
+	.loc	3463 4292
+	and	$25, $4, 4096
+	beq	$25, 0, $3013
+	.loc	3463 4292
+	.loc	3463 4293
+	lw	$2, 32($3)
+	.loc	3463 4294
+	lhu	$5, 14($2)
+	and	$15, $5, 8
+	beq	$15, 0, $3012
+	.loc	3463 4294
+	.loc	3463 4295
+	and	$24, $5, -9
+	sh	$24, 14($2)
+	.loc	3463 4296
+	lhu	$14, 14($2)
+	or	$25, $14, 4
+	sh	$25, 14($2)
+	.loc	3463 4297
+	lw	$15, 28($3)
+	lh	$24, 12($2)
+	mul	$14, $24, 68
+	addu	$25, $15, $14
+	l.s	$f10, 56($25)
+	l.s	$f4, 4($2)
+	sub.s	$f6, $f10, $f4
+	s.s	$f6, 4($2)
+	lw	$4, 16($30)
+	b	$3013
+$3012:
+	.loc	3463 4298
+	.loc	3463 4299
+	and	$24, $5, -5
+	sh	$24, 14($2)
+	.loc	3463 4300
+	lhu	$15, 14($2)
+	or	$14, $15, 8
+	sh	$14, 14($2)
+	.loc	3463 4301
+	lw	$25, 28($3)
+	lh	$24, 12($2)
+	mul	$15, $24, 68
+	addu	$14, $25, $15
+	l.s	$f8, 56($14)
+	l.s	$f10, 4($2)
+	sub.s	$f4, $f8, $f10
+	s.s	$f4, 4($2)
+	lw	$4, 16($30)
+$3013:
+	.loc	3463 4304
+	and	$24, $4, -1793
+	sw	$24, 16($30)
+	.loc	3463 4305
+	lw	$4, 16($30)
+	and	$25, $4, 4096
+	beq	$25, 0, $3018
+	li	$2, 2097152
+	.loc	3463 4305
+	.loc	3463 4306
+	and	$15, $4, $2
+	beq	$15, 0, $3015
+	.loc	3463 4306
+	.loc	3463 4307
+	and	$14, $4, -2097153
+	sw	$14, 16($30)
+	.loc	3463 4308
+	lw	$24, 16($30)
+	or	$25, $24, $6
+	sw	$25, 16($30)
+	.loc	3463 4309
+	lw	$15, 16($30)
+	and	$14, $15, 32768
+	bne	$14, 0, $3014
+	.loc	3463 4309
+	.loc	3463 4310
+	lw	$24, 244($sp)
+	lh	$2, 14($24)
+	lhu	$3, D_80142A78
+	mul	$25, $2, 68
+	sh	$3, D_8012E714($25)
+$3014:
+	.loc	3463 4312
+	lw	$16, 244($sp)
+	.livereg	0x0000800E,0x00000000
+	jal	camera_aspect_ratio
+	b	$3017
+$3015:
+	.loc	3463 4313
+	.loc	3463 4314
+	and	$15, $4, -1048577
+	sw	$15, 16($30)
+	.loc	3463 4315
+	lw	$14, 16($30)
+	or	$24, $14, $2
+	sw	$24, 16($30)
+	.loc	3463 4316
+	lw	$25, 16($30)
+	and	$15, $25, 32768
+	bne	$15, 0, $3016
+	.loc	3463 4316
+	.loc	3463 4317
+	lw	$14, 244($sp)
+	lh	$2, 14($14)
+	lhu	$3, D_80142A7A
+	mul	$24, $2, 68
+	sh	$3, D_8012E714($24)
+$3016:
+	.loc	3463 4319
+	lw	$16, 244($sp)
+	.livereg	0x0000800E,0x00000000
+	jal	camera_fov_control
+$3017:
+	lw	$4, 16($30)
+	b	$3020
+$3018:
+	li	$2, 2097152
+	.loc	3463 4321
+	and	$25, $4, $2
+	beq	$25, 0, $3020
+	.loc	3463 4321
+	.loc	3463 4322
+	and	$15, $4, -2097153
+	sw	$15, 16($30)
+	.loc	3463 4323
+	lw	$14, 16($30)
+	or	$24, $14, $6
+	sw	$24, 16($30)
+	.loc	3463 4324
+	lw	$25, 16($30)
+	and	$15, $25, 32768
+	bne	$15, 0, $3019
+	.loc	3463 4324
+	.loc	3463 4325
+	lw	$14, 244($sp)
+	lh	$2, 14($14)
+	lhu	$3, D_80142A78
+	mul	$24, $2, 68
+	sh	$3, D_8012E714($24)
+$3019:
+	.loc	3463 4327
+	lw	$16, 244($sp)
+	.livereg	0x0000800E,0x00000000
+	jal	camera_aspect_ratio
+	lw	$4, 16($30)
+$3020:
+	.loc	3463 4332
+	and	$25, $4, 256
+	bne	$25, 0, $3055
+	.loc	3463 4332
+	.loc	3463 4333
+	move	$23, $0
+	.loc	3463 4334
+	.loc	3463 4335
+	l.s	$f6, 4($22)
+	la	$15, D_8002EB94
+	l.s	$f8, 0($15)
+	add.s	$f10, $f6, $f8
+	s.s	$f10, 4($22)
+	.loc	3463 4336
+	lh	$2, 12($22)
+	.loc	3463 4337
+	lw	$14, 28($30)
+	mul	$24, $2, 68
+	addu	$3, $14, $24
+$3021:
+	.loc	3463 4337
+	.loc	3463 4338
+	l.s	$f0, 56($3)
+	.loc	3463 4339
+	l.s	$f2, 4($22)
+	c.le.s	$f0, $f2
+	bc1f	$3032
+	.loc	3463 4339
+	.loc	3463 4340
+	sub.s	$f4, $f2, $f0
+	s.s	$f4, 4($22)
+	.loc	3463 4341
+	lhu	$3, 14($22)
+	and	$25, $3, 8
+	beq	$25, 0, $3025
+	.loc	3463 4341
+	.loc	3463 4342
+	bne	$2, 0, $3024
+	.loc	3463 4342
+	.loc	3463 4343
+	lw	$15, 16($30)
+	and	$14, $15, 16384
+	beq	$14, 0, $3022
+	.loc	3463 4343
+	.loc	3463 4344
+	move	$4, $0
+	lw	$19, 244($sp)
+	li	$23, 1
+	.livereg	0x0800110E,0x00000000
+	jal	camera_build_view_matrix
+	.loc	3463 4345
+	.loc	3463 4346
+	lw	$16, 244($sp)
+	.livereg	0x0000800E,0x00000000
+	jal	camera_fov_control
+	lw	$4, 16($30)
+	b	$3023
+$3022:
+	.loc	3463 4347
+	.loc	3463 4348
+	and	$24, $3, -9
+	sh	$24, 14($22)
+	.loc	3463 4349
+	lhu	$25, 14($22)
+	or	$15, $25, 4
+	sh	$15, 14($22)
+	.loc	3463 4350
+	lw	$4, 16($30)
+	and	$14, $4, 128
+	beq	$14, 0, $3023
+	.loc	3463 4350
+	.loc	3463 4351
+	or	$24, $4, 256
+	sw	$24, 16($30)
+	.loc	3463 4352
+	li	$23, 1
+	.loc	3463 4353
+	li.s	$f6, 0.0
+	s.s	$f6, 4($22)
+	lw	$4, 16($30)
+$3023:
+	.loc	3463 4356
+	and	$25, $4, 32
+	beq	$25, 0, $3031
+	.loc	3463 4356
+	.loc	3463 4357
+	lh	$4, 22($30)
+	.livereg	0x0800000E,0x00000000
+	jal	listener_position_set
+	b	$3031
+$3024:
+	.loc	3463 4359
+	.loc	3463 4360
+	addu	$15, $2, -1
+	sh	$15, 12($22)
+	b	$3031
+$3025:
+	.loc	3463 4362
+	addu	$14, $2, 1
+	lh	$24, 20($30)
+	bne	$14, $24, $3027
+	.loc	3463 4362
+	.loc	3463 4363
+	lw	$25, 16($30)
+	and	$15, $25, 128
+	beq	$15, 0, $3026
+	.loc	3463 4363
+	.loc	3463 4364
+	and	$14, $3, -5
+	sh	$14, 14($22)
+	.loc	3463 4365
+	lhu	$24, 14($22)
+	or	$25, $24, 8
+	sh	$25, 14($22)
+	.loc	3463 4366
+	addu	$15, $2, -1
+	sh	$15, 12($22)
+	b	$3031
+$3026:
+	.loc	3463 4367
+	.loc	3463 4368
+	sh	$0, 12($22)
+	.loc	3463 4369
+	lw	$14, 16($30)
+	and	$24, $14, 32
+	beq	$24, 0, $3031
+	.loc	3463 4369
+	.loc	3463 4370
+	lh	$4, 22($30)
+	.livereg	0x0800000E,0x00000000
+	jal	listener_position_set
+	b	$3031
+$3027:
+	.loc	3463 4373
+	.loc	3463 4374
+	addu	$25, $2, 1
+	sh	$25, 12($22)
+	.loc	3463 4375
+	lh	$2, 12($22)
+	.loc	3463 4376
+	lw	$15, 28($30)
+	mul	$14, $2, 68
+	addu	$24, $15, $14
+	lw	$25, 64($24)
+	and	$15, $25, 64
+	beq	$15, 0, $3028
+	.loc	3463 4376
+	.loc	3463 4377
+	li	$23, 1
+	.loc	3463 4378
+	lw	$14, 16($30)
+	or	$24, $14, 256
+	sw	$24, 16($30)
+	.loc	3463 4379
+	li.s	$f8, 0.0
+	s.s	$f8, 4($22)
+	b	$3031
+$3028:
+	.loc	3463 4380
+	addu	$25, $2, 1
+	lh	$15, 20($30)
+	bne	$25, $15, $3031
+	.loc	3463 4380
+	.loc	3463 4381
+	lw	$4, 16($30)
+	and	$14, $4, 1
+	beq	$14, 0, $3029
+	.loc	3463 4381
+	.loc	3463 4382
+	lhu	$24, 14($22)
+	and	$25, $24, -5
+	sh	$25, 14($22)
+	.loc	3463 4383
+	lhu	$15, 14($22)
+	or	$14, $15, 8
+	sh	$14, 14($22)
+	.loc	3463 4384
+	addu	$24, $2, -1
+	sh	$24, 12($22)
+	b	$3031
+$3029:
+	.loc	3463 4385
+	and	$25, $4, 16384
+	beq	$25, 0, $3030
+	.loc	3463 4385
+	.loc	3463 4386
+	lhu	$15, 14($22)
+	and	$14, $15, -5
+	sh	$14, 14($22)
+	.loc	3463 4387
+	lhu	$24, 14($22)
+	or	$25, $24, 8
+	sh	$25, 14($22)
+	.loc	3463 4388
+	addu	$15, $2, -1
+	sh	$15, 12($22)
+	.loc	3463 4389
+	li.s	$f10, 0.0
+	s.s	$f10, 4($22)
+	.loc	3463 4390
+	lw	$14, 16($30)
+	or	$24, $14, 256
+	sw	$24, 16($30)
+	b	$3031
+$3030:
+	.loc	3463 4391
+	and	$25, $4, 2
+	bne	$25, 0, $3031
+	.loc	3463 4391
+	.loc	3463 4392
+	move	$4, $0
+	lw	$19, 244($sp)
+	.livereg	0x0800100E,0x00000000
+	jal	camera_build_view_matrix
+	.loc	3463 4393
+	lw	$15, 16($30)
+	and	$14, $15, 32
+	beq	$14, 0, $3031
+	.loc	3463 4393
+	.loc	3463 4394
+	lh	$4, 22($30)
+	.livereg	0x0800000E,0x00000000
+	jal	listener_position_set
+$3031:
+	.loc	3463 4399
+	lh	$2, 12($22)
+	lw	$24, 28($30)
+	mul	$25, $2, 68
+	addu	$3, $24, $25
+	b	$3033
+$3032:
+	.loc	3463 4400
+	.loc	3463 4401
+	li	$23, 1
+$3033:
+	beq	$23, 0, $3021
+	.loc	3463 4404
+	lw	$2, 64($3)
+	.loc	3463 4405
+	and	$15, $2, 2
+	bne	$15, 0, $3034
+	.loc	3463 4405
+	.loc	3463 4406
+	lw	$7, 244($sp)
+	.livereg	0x0100000E,0x00000000
+	jal	camera_track_spline
+	.loc	3463 4407
+	li	$14, 1
+	sb	$14, 207($sp)
+	.loc	3463 4408
+	lw	$24, 28($30)
+	lh	$25, 12($22)
+	mul	$15, $25, 68
+	addu	$14, $24, $15
+	lw	$2, 64($14)
+$3034:
+	.loc	3463 4410
+	and	$25, $2, 16
+	beq	$25, 0, $3035
+	and	$24, $2, 4
+	bne	$24, 0, $3036
+$3035:
+	.loc	3463 4410
+	.loc	3463 4411
+	li	$15, 1
+	sb	$15, 207($sp)
+	.loc	3463 4412
+	lw	$17, 244($sp)
+	.livereg	0x0000400E,0x00000000
+	jal	camera_free_look
+$3036:
+	.loc	3463 4414
+	lb	$14, 207($sp)
+	beq	$14, 0, $3038
+	.loc	3463 4414
+	.loc	3463 4415
+	lw	$25, 16($30)
+	and	$24, $25, 256
+	beq	$24, 0, $3037
+	.loc	3463 4415
+	.loc	3463 4416
+	lw	$16, 244($sp)
+	.livereg	0x0000800E,0x00000000
+	jal	camera_fov_control
+	b	$3039
+$3037:
+	.loc	3463 4417
+	.loc	3463 4418
+	lw	$16, 244($sp)
+	.livereg	0x0000800E,0x00000000
+	jal	camera_look_at_point
+	b	$3039
+$3038:
+	.loc	3463 4420
+	.loc	3463 4421
+	lw	$16, 244($sp)
+	.livereg	0x0000800E,0x00000000
+	jal	camera_fov_control
+$3039:
+	.loc	3463 4423
+	lw	$15, 244($sp)
+	lh	$14, 16($15)
+	mul	$25, $14, 48
+	la	$24, D_80117530
+	addu	$4, $25, $24
+	.loc	3463 4424
+	lh	$15, 20($4)
+	beq	$15, -1, $3044
+	.loc	3463 4424
+	.loc	3463 4425
+	lw	$14, 248($sp)
+	l.s	$f4, 16($14)
+	la	$25, D_8002EB94
+	l.s	$f6, 0($25)
+	sub.s	$f0, $f4, $f6
+	.loc	3463 4426
+	s.s	$f0, 16($14)
+	.loc	3463 4427
+	li.s	$f8, 0.0
+	c.le.s	$f0, $f8
+	bc1f	$3055
+	.loc	3463 4427
+	.loc	3463 4428
+	lh	$2, 20($4)
+	.loc	3463 4429
+	bne	$2, 361, $3040
+	.loc	3463 4429
+	.loc	3463 4430
+	li.s	$f10, 0.25
+	s.s	$f10, 16($14)
+	b	$3041
+$3040:
+	.loc	3463 4431
+	bne	$2, 365, $3041
+	.loc	3463 4431
+	.loc	3463 4432
+	l.s	$f4, D_80123E8C
+	lw	$24, 248($sp)
+	s.s	$f4, 16($24)
+$3041:
+	.loc	3463 4434
+	lw	$15, 248($sp)
+	lh	$25, 4($15)
+	addu	$14, $25, 1
+	sh	$14, 4($15)
+	move	$2, $14
+	.loc	3463 4435
+	lw	$24, 244($sp)
+	lh	$25, 90($24)
+	blt	$2, $25, $3042
+	.loc	3463 4435
+	.loc	3463 4436
+	sh	$0, 4($15)
+	.loc	3463 4437
+	move	$2, $0
+$3042:
+	.loc	3463 4439
+	lw	$14, 244($sp)
+	lh	$24, 88($14)
+	addu	$3, $24, $2
+	sll	$25, $3, 16
+	move	$3, $25
+	sra	$15, $3, 16
+	move	$3, $15
+	.loc	3463 4440
+	lh	$24, 80($14)
+	beq	$3, $24, $3044
+	.loc	3463 4440
+	.loc	3463 4441
+	mul	$25, $3, 2
+	lhu	$2, D_801427C0($25)
+	.loc	3463 4442
+	lw	$15, 16($30)
+	and	$24, $15, 32768
+	bne	$24, 0, $3043
+	.loc	3463 4442
+	.loc	3463 4443
+	lh	$25, 14($14)
+	mul	$15, $25, 68
+	sh	$2, D_8012E714($15)
+$3043:
+	.loc	3463 4445
+	lw	$24, 244($sp)
+	sh	$3, 80($24)
+	.loc	3463 4447
+$3044:
+	.loc	3463 4451
+	lh	$14, 16($4)
+	bne	$14, 4, $3047
+	.loc	3463 4451
+	.loc	3463 4452
+	lhu	$25, 14($22)
+	and	$15, $25, 8
+	beq	$15, 0, $3045
+	.loc	3463 4452
+	.loc	3463 4453
+	lw	$24, 28($30)
+	lh	$14, 12($22)
+	mul	$25, $14, 68
+	addu	$15, $24, $25
+	l.s	$f6, 12($15)
+	l.s	$f8, 16($22)
+	neg.s	$f10, $f8
+	mul.s	$f4, $f6, $f10
+	s.s	$f4, 192($sp)
+	.loc	3463 4454
+	lw	$14, 28($30)
+	lh	$24, 12($22)
+	mul	$25, $24, 68
+	addu	$15, $14, $25
+	l.s	$f8, 16($15)
+	l.s	$f6, 16($22)
+	neg.s	$f10, $f6
+	mul.s	$f4, $f8, $f10
+	s.s	$f4, 196($sp)
+	.loc	3463 4455
+	lw	$24, 28($30)
+	lh	$14, 12($22)
+	mul	$25, $14, 68
+	addu	$15, $24, $25
+	l.s	$f6, 20($15)
+	l.s	$f8, 16($22)
+	neg.s	$f10, $f8
+	mul.s	$f4, $f6, $f10
+	s.s	$f4, 200($sp)
+	b	$3046
+$3045:
+	.loc	3463 4456
+	.loc	3463 4457
+	lw	$14, 28($30)
+	lh	$24, 12($22)
+	mul	$25, $24, 68
+	addu	$15, $14, $25
+	l.s	$f8, 12($15)
+	l.s	$f6, 16($22)
+	mul.s	$f10, $f8, $f6
+	s.s	$f10, 192($sp)
+	.loc	3463 4458
+	lw	$24, 28($30)
+	lh	$14, 12($22)
+	mul	$25, $14, 68
+	addu	$15, $24, $25
+	l.s	$f4, 16($15)
+	l.s	$f8, 16($22)
+	mul.s	$f6, $f4, $f8
+	s.s	$f6, 196($sp)
+	.loc	3463 4459
+	lw	$14, 28($30)
+	lh	$24, 12($22)
+	mul	$25, $24, 68
+	addu	$15, $14, $25
+	l.s	$f10, 20($15)
+	l.s	$f4, 16($22)
+	mul.s	$f8, $f10, $f4
+	s.s	$f8, 200($sp)
+$3046:
+	.loc	3463 4461
+	lw	$24, 244($sp)
+	lb	$4, 101($24)
+	addu	$5, $sp, 192
+	addu	$6, $24, 56
+	addu	$7, $24, 20
+	.livereg	0x0F00000E,0x00000000
+	jal	func_800AB750
+$3047:
+	.loc	3463 4463
+	lh	$3, 12($22)
+	.loc	3463 4464
+	lw	$14, 28($30)
+	mul	$25, $3, 68
+	addu	$6, $14, $25
+	.loc	3463 4465
+	lw	$15, 64($6)
+	and	$24, $15, 16
+	bne	$24, 0, $3053
+	.loc	3463 4465
+	.loc	3463 4466
+	addu	$2, $3, 1
+	move	$7, $2
+	.loc	3463 4467
+	move	$23, $0
+	lh	$14, 20($30)
+	blt	$2, $14, $3048
+	.loc	3463 4467
+	.loc	3463 4468
+	move	$7, $0
+$3048:
+	.loc	3463 4470
+	lhu	$25, 14($22)
+	and	$15, $25, 8
+	beq	$15, 0, $3049
+	.loc	3463 4470
+	.loc	3463 4471
+	l.s	$f6, 56($6)
+	l.s	$f10, 4($22)
+	sub.s	$f2, $f6, $f10
+	b	$3050
+$3049:
+	.loc	3463 4472
+	.loc	3463 4473
+	l.s	$f2, 4($22)
+$3050:
+	.loc	3463 4475
+	move	$3, $0
+	addu	$4, $sp, 180
+	addu	$5, $sp, 192
+$3051:
+	.loc	3463 4475
+	.loc	3463 4476
+	lw	$2, 28($30)
+	lh	$24, 12($22)
+	mul	$14, $24, 68
+	addu	$25, $2, $14
+	addu	$15, $25, $3
+	l.s	$f0, 24($15)
+	.loc	3463 4477
+	.noalias	$4,$gp
+	mul	$24, $7, 68
+	addu	$14, $2, $24
+	addu	$25, $14, $3
+	l.s	$f4, 24($25)
+	sub.s	$f8, $f4, $f0
+	l.s	$f6, 56($6)
+	div.s	$f10, $f2, $f6
+	mul.s	$f4, $f8, $f10
+	add.s	$f6, $f4, $f0
+	s.s	$f6, 0($4)
+	.loc	3463 4475
+	addu	$3, $3, 4
+	addu	$4, $4, 4
+	bltu	$4, $5, $3051
+	.alias	$4,$gp
+	.loc	3463 4479
+	move	$23, $0
+	lw	$2, 244($sp)
+	li	$3, 3
+$3052:
+	.loc	3463 4479
+	.loc	3463 4480
+	l.s	$f8, 180($sp)
+	l.s	$f10, 20($2)
+	mul.s	$f4, $f8, $f10
+	s.s	$f4, 20($2)
+	.loc	3463 4481
+	l.s	$f6, 184($sp)
+	l.s	$f8, 32($2)
+	mul.s	$f10, $f6, $f8
+	s.s	$f10, 32($2)
+	.loc	3463 4482
+	l.s	$f4, 188($sp)
+	l.s	$f6, 44($2)
+	mul.s	$f8, $f4, $f6
+	s.s	$f8, 44($2)
+	.loc	3463 4479
+	addu	$23, $23, 1
+	addu	$2, $2, 4
+	bne	$23, $3, $3052
+$3053:
+	.loc	3463 4485
+	lw	$15, 244($sp)
+	lbu	$24, 4($15)
+	and	$14, $24, 2
+	bne	$14, 0, $3055
+	.loc	3463 4485
+	.loc	3463 4486
+	lw	$25, 16($30)
+	and	$24, $25, 32768
+	bne	$24, 0, $3054
+	.loc	3463 4486
+	.loc	3463 4487
+	lh	$4, 14($15)
+	move	$5, $0
+	move	$6, $0
+	.livereg	0x0E00000E,0x00000000
+	jal	entity_spawn_callback
+$3054:
+	.loc	3463 4489
+	la	$4, D_80143FC8
+	lw	$5, 244($sp)
+	.livereg	0x0C00000E,0x00000000
+	jal	func_800AFA84
+	.loc	3463 4490
+	lw	$4, 248($sp)
+	li	$5, 1
+	.livereg	0x0C00000E,0x00000000
+	jal	entity_transform_apply
+	.loc	3463 4495
+$3055:
+	.livereg	0x0000FF0E,0x00000FFF
+	l.d	$f20, 24($sp)
+	l.d	$f22, 32($sp)
+	lw	$16, 40($sp)
+	lw	$17, 44($sp)
+	lw	$18, 48($sp)
+	lw	$19, 52($sp)
+	lw	$20, 56($sp)
+	lw	$21, 60($sp)
+	lw	$22, 64($sp)
+	lw	$23, 68($sp)
+	lw	$31, 76($sp)
+	lw	$30, 72($sp)
+	addu	$sp, 248
+	j	$31
+	.end	camera_update
