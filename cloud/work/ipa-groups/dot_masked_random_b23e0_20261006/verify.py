@@ -75,9 +75,12 @@ def verify(directory,behavior=True):
     assert {k:addresses[k] for k in NAMES+['D_8011735C','D_80123418']}=={
         'func_8008B2B4':0x8008b2b4,'func_8008B2E4':0x8008b2e4,FN:0x800b23e0,'D_8011735C':sem.SEED,'D_80123418':sem.TABLE}
     locks=json.loads((ROOT/'blob_matched.lock.json').read_text())
-    assert FN not in locks
-    accepted_addresses={addresses.get(n) for n in locks}
-    assert addresses[FN] not in accepted_addresses
+    # Before promotion FN must be unclaimed; once spliced, only as this packet's source.
+    if FN in locks:
+        assert locks[FN]['source']=='src/blob/'+FN+'.c'
+    else:
+        accepted_addresses={addresses.get(n) for n in locks}
+        assert addresses[FN] not in accepted_addresses
     obj=directory/'candidate.o';score.compile_group(HERE,obj)
     bodies={n:inspect(obj,n) for n in NAMES}
     assert [bodies[n]['symbol_bytes'] for n in NAMES]==[48,72,268]

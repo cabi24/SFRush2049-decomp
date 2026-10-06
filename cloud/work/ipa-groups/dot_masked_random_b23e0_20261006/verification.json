@@ -383,7 +383,7 @@
     "group.json": "593c6d9bcc46fdeb95a95db0d4f7efb958d058b8d5fc5dafb1b11f8f84d9b3cd",
     "claim.json": "b15c8a0fa36706c95f55149da56e689b3802ffe18a32d6d09b8b910eedb5e138",
     "semantic_test.c": "f60891ac7335c89f8552fe08ee903dfc62f976906b9fee1be45a84db9c79ee61",
-    "verify.py": "c709d4f35892a5596f85b47528bd8b25b8100b3d8746c112c7aab58a9592e976",
+    "verify.py": "deedae1915e5136e5a181d8e8bd83f98d8e4f040e3b257bcd8788e7e97e1e6ab",
     "verify_semantics.py": "8abdde7c0e328aa2abd00b82727910534b7a978ab5bbc0470497d10575cc3935"
   },
   "tools_sha256": {

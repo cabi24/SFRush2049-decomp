@@ -90,7 +90,10 @@ class RuntimeCachePacket(unittest.TestCase):
         output=ROOT/'build/runtime_a_cache/test-replay.json'
         p=subprocess.run([sys.executable,str(PACKET/'verify.py'),'--repo',str(repo),'--output',str(output)],cwd='/tmp',capture_output=True,text=True)
         self.assertEqual(p.returncode,0,p.stdout+p.stderr)
-        self.assertEqual(verify.portable(json.loads(output.read_text())),verify.portable(json.loads((PACKET/'verification.json').read_text())))
+        fresh=verify.portable(json.loads(output.read_text()));saved=verify.portable(json.loads((PACKET/'verification.json').read_text()))
+        # The whole blob manifest changes with every splice; selected bodies stay bound.
+        fresh.pop('game_manifest',None);saved.pop('game_manifest',None)
+        self.assertEqual(fresh,saved)
 
 def synthetic_elf(payloads=None,debug=b'/source.c\0',debug_flags=0):
     payloads=payloads or {}

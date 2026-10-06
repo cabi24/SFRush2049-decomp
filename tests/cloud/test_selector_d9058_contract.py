@@ -87,4 +87,8 @@ def test_fresh_frozen_replay():
         if os.environ.get('REQUIRE_TOOLCHAIN') == '1':
             pytest.fail('Pinned IDO/MIPS/host tools required')
         pytest.skip('Pinned IDO/MIPS/host tools unavailable')
-    assert v.verify() == receipt()
+    fresh, saved = v.verify(), receipt()
+    # The whole blob manifest changes with every splice; selected bodies stay bound.
+    for proof in (fresh, saved):
+        proof.pop('protected_target_manifest_sha256', None)
+    assert fresh == saved

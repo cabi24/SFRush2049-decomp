@@ -33,7 +33,12 @@ def test_frozen_portable_replay(tmp_path, optimized):
     result = subprocess.run(cmd + [str(PACKET / 'verify.py'), '--output', str(receipt)],
                             cwd=elsewhere, capture_output=True, text=True)
     assert result.returncode == 0, result.stdout + result.stderr
-    assert json.loads(receipt.read_text()) == json.loads((PACKET / 'verification.json').read_text())
+    fresh, saved = json.loads(receipt.read_text()), json.loads((PACKET / 'verification.json').read_text())
+    # Game-blob manifest files change with every splice; image-B inputs stay bound.
+    for proof in (fresh, saved):
+        proof['inputs_sha256'] = {k: v for k, v in proof['inputs_sha256'].items()
+                                  if not k.startswith('asm/us/blob/')}
+    assert fresh == saved
 
 
 def test_unknown_instruction_and_bad_memory_fail_closed():
