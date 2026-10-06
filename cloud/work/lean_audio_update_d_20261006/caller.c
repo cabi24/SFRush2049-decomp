@@ -289,7 +289,10 @@ void finish_state_alt(void)
         func_800B912C(D_8014978C);
         entity=D_801391F0;
         if (entity) {
-            do {entity_transform_apply(entity,1);} while (D_801391F0);
+            do {
+                entity_transform_apply(entity,1);
+                entity=D_801391F0;
+            } while (entity);
         }
         func_800B0580();
         D_80151AD0=1;

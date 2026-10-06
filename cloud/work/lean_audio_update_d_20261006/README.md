@@ -35,7 +35,7 @@ That caller is unclaimed and remains NONMATCH. Both real native callers are
 present; the target itself is internal and is not forced into the exported roots.
 
 The second caller preserves queue-message byte +2, the actual loop-carried
-selection global, the fixed object snapshot across its repeated callback, and
+selection global, the post-callback object reload before its next iteration, and
 the true F857C mode-1 argument. Pointer-valued UI-object handles/returns have
 explicit pointer declarations rather than the old signed-integer guesses.
 The two queue states both use the real D_80138870 symbol; the raw decompiler's
@@ -73,3 +73,8 @@ This lean packet contains only C, required real context, recipe and these notes.
 No independent verification, test harness, receipts, full tests, CI wait,
 image/ROM integration or merge was performed. The independent checker owns
 acceptance and merging.
+
+Correction during the subsequent caller work: the initial packet retained the
+first object pointer across the repeated callback. Native code reloads the
+current object after each callback; that reload is now restored here. The sole
+claimed shutdown helper still prints MATCH after this source correction.
