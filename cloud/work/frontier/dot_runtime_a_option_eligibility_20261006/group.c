@@ -1,6 +1,4 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
-/* F744 local group candidate: 22/22 words, 88 bytes.
- * Complete DDA8/E1C0 callers are previously published research context. */
 typedef signed char s8;
 typedef unsigned char u8;
 typedef signed short s16;
@@ -36,11 +34,12 @@ extern void func_800B7360(u8,u8,u8,u8);
 
 void func_803ADDA8(void)
 {
-    char text[48];
-    s16 point[2];
-    s32 i,j,x;
+    s32 j,x;
     f32 y;
     Slot60 *slot;
+    s32 i;
+    char text[48];
+    s16 point[2];
     render_helper(0.0f);
     func_800B669C(0,1);
     brake_light_update(0,D_803B68D4,&D_80150B70[0],0,point);
@@ -91,8 +90,9 @@ void func_803ADDA8(void)
 void func_803ADDA8(void);
 s32 func_803AE1C0(void *callback_context)
 {
+    s32 i;
     char text[48];
-    s32 i,j,x;
+    s32 j,x;
     f32 y;
     if(D_803B6A48==1) {
         func_803ADDA8();
@@ -108,30 +108,29 @@ s32 func_803AE1C0(void *callback_context)
     object_create(10);
     y=40.0f;
     for(i=0;i<10;i++) {
-        if(func_8038F744(i)) {
-            if(i==D_803B6A68)dispatch_handler(22);
-            else func_800B7360(224,224,224,255);
-            state_utility(160,(s16)y,countdown_state.indexed[countdown_state.indices[20]+i]);
-            if(i==0) {
-                x=230;
-                for(j=0;j<4;j++) {
-                    fcvt_wrapper(text,D_803B8CD8,j+1);
-                    if(D_803B6A68==0) {
-                        if(j+1==D_8014A108)dispatch_handler(22);
-                        else func_800B7360(64,64,64,255);
-                    } else if(j+1==D_8014A108) {
-                        func_800B7360(0,0,0,255);
-                        state_utility(x+1,(s16)(y+1.0f),text);
-                        func_800B7360(224,224,224,255);
-                    } else {
-                        func_800B7360(64,64,64,255);
-                    }
-                    state_utility(x,(s16)y,text);
-                    x+=16;
+        if(!func_8038F744(i))continue;
+        if(i==D_803B6A68)dispatch_handler(22);
+        else func_800B7360(224,224,224,255);
+        state_utility(160,(s16)y,countdown_state.indexed[countdown_state.indices[20]+i]);
+        if(i==0) {
+            x=230;
+            for(j=0;j<4;j++) {
+                fcvt_wrapper(text,D_803B8CD8,j+1);
+                if(D_803B6A68==0) {
+                    if(j+1==D_8014A108)dispatch_handler(22);
+                    else func_800B7360(64,64,64,255);
+                } else if(j+1==D_8014A108) {
+                    func_800B7360(0,0,0,255);
+                    state_utility(x+1,(s16)(y+1.0f),text);
+                    func_800B7360(224,224,224,255);
+                } else {
+                    func_800B7360(64,64,64,255);
                 }
+                state_utility(x,(s16)y,text);
+                x+=16;
             }
-            y+=22.5f;
         }
+        y+=22.5f;
     }
     func_800ED66C(-1.0f);
     func_800B669C(0,3);

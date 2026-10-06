@@ -1,4 +1,4 @@
-# Runtime-A option eligibility: 88-byte local candidate
+# Runtime-A option menu: matching candidates
 
 Frozen base `f2e8380d3b368d00efc9cac3e37cdc7059b1f6e2`.
 Stock IDO 5.3 group pipeline, actual
@@ -17,11 +17,16 @@ t6. Complete actual DDA8/E1C0 callers from #225 naturally supply the temporary
 reservation and close those two words. No dummy formal, forced register,
 pressure routine, fake caller, volatile or asm was added.
 
-F744 is therefore group-only. Its high caller declaration is aligned with the
-real signed-byte-return definition; both complete high bodies retain their
-previous scores: DDA8 24/262 and E1C0 14/215, with no extra, unresolved,
-unverified or error fields using the authenticated image. Only F744 is claimed;
-the earlier high-A bodies are context with no duplicate byte credit.
+Follow-on to [draft #273](https://github.com/cabi24/SFRush2049-decomp/pull/273):
+**AE1C0 now matches all 215/215 words, 860 bytes**, with zero differing words,
+uncertainty, unresolved symbols, errors or extras. Reordering existing local
+declarations gives the native loop-index/text-buffer locations. Expressing the
+actual eligibility skip as an early `continue` closes the remaining register
+allocation differences. No buffer sizes, arguments or observable ordering change.
+DDA8 improves from 24/262 to 6/262 differing words; its remaining differences
+are frame size and position/index temporary allocation. It is research context.
+F744 retains 22/22 exact words. Only the 860-byte high root is newly claimed;
+the earlier low-helper candidate is preserved without duplicate credit.
 
 ## Context limits and reproduction
 
