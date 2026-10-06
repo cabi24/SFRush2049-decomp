@@ -1,0 +1,285 @@
+{
+  "accepted_byte_gain": 0,
+  "accepted_source_sha256": "67e4e1edba4cd2f4d750f66c926635c9258c99c61e294d8a3f3ebae24250087f",
+  "base": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "behavior": {
+    "cases": 8000,
+    "conditional_branch_outcomes": 9,
+    "executed_instruction_offsets": 49,
+    "full_record_call_snapshots": "equal",
+    "host_c89_asan_ubsan": "passed",
+    "native_executions": 16000,
+    "native_negative_controls": {
+      "redirect_record_store": "rejected",
+      "truncated_body": "rejected",
+      "unknown_instruction": "rejected",
+      "wrong_command_byte": "rejected",
+      "wrong_saved_return_slot": "rejected"
+    },
+    "scope": "Finite normal values and signed zero; 32-bit flag carriers truncated at byte stores. No NaN, subnormal, infinity, FCSR exception or concurrency proof.",
+    "source_mutants_rejected": {
+      "first_flag_zero": 6688,
+      "omit_amount_lower_clamp": 1802,
+      "omit_blend_upper_clamp": 435,
+      "swap_flag_destinations": 7125
+    },
+    "stack_canaries_and_documented_register_contract": "passed",
+    "unreachable_offsets": [
+      120,
+      152
+    ]
+  },
+  "caller_audit": {
+    "all_witnessed_flag_values": [
+      0,
+      1
+    ],
+    "direct_jal_sites": 21,
+    "distinct_callers": 13,
+    "native_body_sha256": {
+      "RaceStateMachine_Update": "536e0227190db8f732b1f1cb6e16fc6bb2e186983d79251733247652ac7b986c",
+      "continue_prompt": "69da50505a3618a4384e2ac42143b2926d51c2c198bff6ca6850e824b8a75b9d",
+      "countdown": "4758aed23651b551bef23980e53f9ae3474d770068e78641834687bf384c1a10",
+      "drone_pathfind_main": "c4164a53e2a5f10ae3d1e5cad4a98338969acdda5b8bd28da39db1dfefcf93bc",
+      "func_800D6160": "1e8fe7fbfe635af70e5e0f4cc6500de71b6a76f80f8f70e8a60afa6478ea01f4",
+      "func_800D6530": "ff98dedc682a4187c342b43aee12dd91b3899076efe40bdc2adf896470fc7cd9",
+      "func_800D7634": "913f909c775daa199f9f0588ff5ce11c1ceea95bf4594571768f6d63b804410a",
+      "func_800DE45C": "f620679a2314881ca0b15b49542cc255d1a257dc9e9f28081dd623bb280adec1",
+      "playgame_state_change": "b36a6e6d7ff8a517f1091d31090f2018fa037e40dab8407b278bdea90a284084",
+      "speed_mode0_wrapper": "71c500cfc0c18d2a306e57a277d7aa0b1ea07b5eba55cfcc8be0f3eca8a70f52",
+      "speed_mode1_wrapper": "78790a2c0ce7c981e572ac576f2caf3e06e6b408a1420dbc8868a4921840853a",
+      "track_texture_load": "ee143ee84039e77ca2074c3a4574ae5a7d2d7710a81c8a9c0538515b0e690c7f",
+      "vsync_wait": "ed831597353b680cf13cda7e40b5a9a6211d1ba954087a004591af13dafca7c9"
+    },
+    "native_starts": {
+      "RaceStateMachine_Update": "0x800DB81C",
+      "continue_prompt": "0x800DB758",
+      "countdown": "0x800FBF88",
+      "drone_pathfind_main": "0x800D71D0",
+      "func_800D6160": "0x800D6160",
+      "func_800D6530": "0x800D6530",
+      "func_800D7634": "0x800D7634",
+      "func_800DE45C": "0x800DE45C",
+      "playgame_state_change": "0x800CA3B4",
+      "speed_mode0_wrapper": "0x800C92DC",
+      "speed_mode1_wrapper": "0x800C93AC",
+      "track_texture_load": "0x800F5F90",
+      "vsync_wait": "0x800FB234"
+    },
+    "scope": "Manifest-verified registered game bodies; direct JAL instructions only. No computed, static-image or overlay call proof."
+  },
+  "compiler_sha256": {
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5"
+  },
+  "current_comparisons": {
+    "continue_prompt": {
+      "complete_extent_differing_positions": 10,
+      "differing": 10,
+      "elf_extent_bytes": 92,
+      "errors": [],
+      "extra_words": 0,
+      "native_extent_bytes": 92,
+      "total": 23,
+      "unresolved": [],
+      "unverified": []
+    },
+    "speed_mode0_wrapper": {
+      "complete_extent_differing_positions": 6,
+      "differing": 6,
+      "elf_extent_bytes": 88,
+      "errors": [],
+      "extra_words": 0,
+      "native_extent_bytes": 88,
+      "total": 22,
+      "unresolved": [],
+      "unverified": []
+    },
+    "speed_mode1_wrapper": {
+      "complete_extent_differing_positions": 6,
+      "differing": 6,
+      "elf_extent_bytes": 88,
+      "errors": [],
+      "extra_words": 0,
+      "native_extent_bytes": 88,
+      "total": 22,
+      "unresolved": [],
+      "unverified": []
+    },
+    "speed_set": {
+      "complete_extent_differing_positions": 0,
+      "differing": 0,
+      "elf_extent_bytes": 204,
+      "errors": [],
+      "extra_words": 0,
+      "native_extent_bytes": 204,
+      "total": 51,
+      "unresolved": [],
+      "unverified": []
+    },
+    "vsync_wait": {
+      "complete_extent_differing_positions": 0,
+      "differing": 0,
+      "elf_extent_bytes": 148,
+      "errors": [],
+      "extra_words": 0,
+      "native_extent_bytes": 148,
+      "total": 37,
+      "unresolved": [],
+      "unverified": []
+    }
+  },
+  "external_symbol_bindings": {
+    "D_8010FFC0": "0x8010FFC0",
+    "D_80124280": "0x80124280",
+    "D_801247EC": "0x801247EC",
+    "D_80142728": "0x80142728",
+    "D_801427A8": "0x801427A8",
+    "D_80146115": "0x80146115",
+    "func_80091B00": "0x80091B00",
+    "osJamMesg": "0x800075E0",
+    "osRecvMesg": "0x80007270"
+  },
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "gnu_complete_body_comparisons": {
+    "continue_prompt": {
+      "bytes": 92,
+      "differing_complete_positions": 10,
+      "relocated_sha256": "4249e6c99552188079e1ccbebb3876fec1d47e77b25b3bada2d31f9a673a949c"
+    },
+    "speed_mode0_wrapper": {
+      "bytes": 88,
+      "differing_complete_positions": 6,
+      "relocated_sha256": "0f8d632c54732efbe7a38ee366bb38a3f0988282874f354a2f645c681aed2bc6"
+    },
+    "speed_mode1_wrapper": {
+      "bytes": 88,
+      "differing_complete_positions": 6,
+      "relocated_sha256": "c03409820ea9c8b8190b2abf92d8f3386f42d05876e21ce8597d6c800fe930ca"
+    },
+    "speed_set": {
+      "bytes": 204,
+      "differing_complete_positions": 0,
+      "relocated_sha256": "79077417308e89d366e20e56c9b0ac2e72f1d9ea00e5369cb40521a4b3115b76"
+    },
+    "vsync_wait": {
+      "bytes": 148,
+      "differing_complete_positions": 0,
+      "relocated_sha256": "ed831597353b680cf13cda7e40b5a9a6211d1ba954087a004591af13dafca7c9"
+    }
+  },
+  "gnu_total_relocations": 20,
+  "inputs": {
+    "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/callers.json": "26ddd8ab7aa3f5ec17c080a5002ec8d5de92c8cf6a7791c20596deb290f77723",
+    "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/group.c": "e40da7c2f2f3e14ddcdfdc2dd6436abf932641b19bd3828e010e0887f354ed81",
+    "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/group.json": "15e33843ad08fa394ce6b50753c534a5d4711977ae1b3e35e9b7f61b5d47fe6c",
+    "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/host.c": "8c73379a210e409c56778c2f000e217cfaca53d33c80d0127cf1fb9fcbba8a8e",
+    "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/native.py": "1e78747580716e9e9d4ccca42fd0f0dc30ca5fdb165e4ac781d78e8a039b4976",
+    "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/verify.py": "76ca7a05c5f5978c50014e0937a982f3590ba586038b13273572aa15ddbbf7a3",
+    "tests/conveyor/test_speed_flags_contract.py": "fdf6dd05df3124dcfadff3c5f86361586a9611e2366d6c72544f2b92d5ab6d64"
+  },
+  "native_body_sha256": {
+    "continue_prompt": "69da50505a3618a4384e2ac42143b2926d51c2c198bff6ca6850e824b8a75b9d",
+    "speed_mode0_wrapper": "71c500cfc0c18d2a306e57a277d7aa0b1ea07b5eba55cfcc8be0f3eca8a70f52",
+    "speed_mode1_wrapper": "78790a2c0ce7c981e572ac576f2caf3e06e6b408a1420dbc8868a4921840853a",
+    "speed_set": "79077417308e89d366e20e56c9b0ac2e72f1d9ea00e5369cb40521a4b3115b76",
+    "vsync_wait": "ed831597353b680cf13cda7e40b5a9a6211d1ba954087a004591af13dafca7c9"
+  },
+  "native_intervals": {
+    "continue_prompt": {
+      "end_exclusive": "0x800DB7B4",
+      "start": "0x800DB758"
+    },
+    "speed_mode0_wrapper": {
+      "end_exclusive": "0x800C9334",
+      "start": "0x800C92DC"
+    },
+    "speed_mode1_wrapper": {
+      "end_exclusive": "0x800C9404",
+      "start": "0x800C93AC"
+    },
+    "speed_set": {
+      "end_exclusive": "0x800C92DC",
+      "start": "0x800C9210"
+    },
+    "vsync_wait": {
+      "end_exclusive": "0x800FB2C8",
+      "start": "0x800FB234"
+    }
+  },
+  "original_s8_control": {
+    "continue_prompt": {
+      "complete_extent_differing_positions": 10,
+      "differing": 10,
+      "elf_extent_bytes": 92,
+      "errors": [],
+      "extra_words": 0,
+      "native_extent_bytes": 92,
+      "total": 23,
+      "unresolved": [],
+      "unverified": []
+    },
+    "speed_mode0_wrapper": {
+      "complete_extent_differing_positions": 6,
+      "differing": 6,
+      "elf_extent_bytes": 88,
+      "errors": [],
+      "extra_words": 0,
+      "native_extent_bytes": 88,
+      "total": 22,
+      "unresolved": [],
+      "unverified": []
+    },
+    "speed_mode1_wrapper": {
+      "complete_extent_differing_positions": 6,
+      "differing": 6,
+      "elf_extent_bytes": 88,
+      "errors": [],
+      "extra_words": 0,
+      "native_extent_bytes": 88,
+      "total": 22,
+      "unresolved": [],
+      "unverified": []
+    },
+    "speed_set": {
+      "complete_extent_differing_positions": 53,
+      "differing": 47,
+      "elf_extent_bytes": 228,
+      "errors": [],
+      "extra_words": 5,
+      "native_extent_bytes": 204,
+      "total": 51,
+      "unresolved": [],
+      "unverified": []
+    },
+    "vsync_wait": {
+      "complete_extent_differing_positions": 0,
+      "differing": 0,
+      "elf_extent_bytes": 148,
+      "errors": [],
+      "extra_words": 0,
+      "native_extent_bytes": 148,
+      "total": 37,
+      "unresolved": [],
+      "unverified": []
+    }
+  },
+  "owned_data_sections": {},
+  "schema": 1,
+  "status": "MATCH",
+  "target": {
+    "bytes": 204,
+    "end_exclusive": "0x800C92DC",
+    "name": "speed_set",
+    "sha256": "79077417308e89d366e20e56c9b0ac2e72f1d9ea00e5369cb40521a4b3115b76",
+    "start": "0x800C9210",
+    "words": 51
+  },
+  "target_relocations": 8,
+  "zero_alignment_bytes": 4
+}

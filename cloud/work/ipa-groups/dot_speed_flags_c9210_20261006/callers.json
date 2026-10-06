@@ -1,0 +1,310 @@
+{
+  "total_sites": 21,
+  "distinct_callers": 13,
+  "sites": [
+    {
+      "caller": "speed_mode0_wrapper",
+      "jal": "0x800C9308",
+      "first": {
+        "pc": "0x800C9304",
+        "value": 1
+      },
+      "second": {
+        "pc": "0x800C930C",
+        "value": 0
+      },
+      "s4_definition": null
+    },
+    {
+      "caller": "speed_mode1_wrapper",
+      "jal": "0x800C93D8",
+      "first": {
+        "pc": "0x800C93D4",
+        "value": 0
+      },
+      "second": {
+        "pc": "0x800C93DC",
+        "value": 1
+      },
+      "s4_definition": null
+    },
+    {
+      "caller": "playgame_state_change",
+      "jal": "0x800CA584",
+      "first": {
+        "pc": "0x800CA57C",
+        "value": 0
+      },
+      "second": {
+        "pc": "0x800CA580",
+        "value": 1
+      },
+      "s4_definition": null
+    },
+    {
+      "caller": "playgame_state_change",
+      "jal": "0x800CA664",
+      "first": {
+        "pc": "0x800CA65C",
+        "value": 0
+      },
+      "second": {
+        "pc": "0x800CA660",
+        "value": 1
+      },
+      "s4_definition": null
+    },
+    {
+      "caller": "playgame_state_change",
+      "jal": "0x800CA76C",
+      "first": {
+        "pc": "0x800CA764",
+        "value": 1
+      },
+      "second": {
+        "pc": "0x800CA768",
+        "value": 0
+      },
+      "s4_definition": null
+    },
+    {
+      "caller": "func_800D6160",
+      "jal": "0x800D6240",
+      "first": {
+        "pc": "0x800D6238",
+        "value": 1
+      },
+      "second": {
+        "pc": "0x800D623C",
+        "value": 0
+      },
+      "s4_definition": null
+    },
+    {
+      "caller": "func_800D6530",
+      "jal": "0x800D6658",
+      "first": {
+        "pc": "0x800D6650",
+        "value": 0
+      },
+      "second": {
+        "pc": "0x800D6654",
+        "value": 1
+      },
+      "s4_definition": null
+    },
+    {
+      "caller": "drone_pathfind_main",
+      "jal": "0x800D75B8",
+      "first": {
+        "pc": "0x800D75B0",
+        "value": 1
+      },
+      "second": {
+        "pc": "0x800D75B4",
+        "value": 0
+      },
+      "s4_definition": null
+    },
+    {
+      "caller": "func_800D7634",
+      "jal": "0x800D77D4",
+      "first": {
+        "pc": "0x800D77CC",
+        "value": 1
+      },
+      "second": {
+        "pc": "0x800D77D0",
+        "value": 0
+      },
+      "s4_definition": null
+    },
+    {
+      "caller": "func_800D7634",
+      "jal": "0x800D78FC",
+      "first": {
+        "pc": "0x800D78F4",
+        "value": 1
+      },
+      "second": {
+        "pc": "0x800D78F8",
+        "value": 0
+      },
+      "s4_definition": null
+    },
+    {
+      "caller": "func_800D7634",
+      "jal": "0x800D7A30",
+      "first": {
+        "pc": "0x800D7A28",
+        "value": 0
+      },
+      "second": {
+        "pc": "0x800D7A2C",
+        "value": 1
+      },
+      "s4_definition": null
+    },
+    {
+      "caller": "func_800D7634",
+      "jal": "0x800D7A9C",
+      "first": {
+        "pc": "0x800D7A94",
+        "value": 1
+      },
+      "second": {
+        "pc": "0x800D7A98",
+        "value": 0
+      },
+      "s4_definition": null
+    },
+    {
+      "caller": "func_800D7634",
+      "jal": "0x800D7B74",
+      "first": {
+        "pc": "0x800D7B6C",
+        "value": 1
+      },
+      "second": {
+        "pc": "0x800D7B70",
+        "value": 0
+      },
+      "s4_definition": null
+    },
+    {
+      "caller": "continue_prompt",
+      "jal": "0x800DB788",
+      "first": {
+        "pc": "0x800DB784",
+        "value": 1
+      },
+      "second": {
+        "pc": "0x800DB78C",
+        "value": 0
+      },
+      "s4_definition": null
+    },
+    {
+      "caller": "RaceStateMachine_Update",
+      "jal": "0x800DB990",
+      "first": {
+        "pc": "0x800DB98C",
+        "value": 1
+      },
+      "second": {
+        "pc": "0x800DB994",
+        "value": 0
+      },
+      "s4_definition": null
+    },
+    {
+      "caller": "func_800DE45C",
+      "jal": "0x800DE57C",
+      "first": {
+        "pc": "0x800DE574",
+        "value": 0
+      },
+      "second": {
+        "pc": "0x800DE578",
+        "value": 1
+      },
+      "s4_definition": null
+    },
+    {
+      "caller": "func_800DE45C",
+      "jal": "0x800DE5B0",
+      "first": {
+        "pc": "0x800DE5A8",
+        "value": 1
+      },
+      "second": {
+        "pc": "0x800DE5AC",
+        "value": 0
+      },
+      "s4_definition": null
+    },
+    {
+      "caller": "track_texture_load",
+      "jal": "0x800F6038",
+      "first": {
+        "pc": "0x800F6030",
+        "value": 1
+      },
+      "second": {
+        "pc": "0x800F6034",
+        "value": 0
+      },
+      "s4_definition": null
+    },
+    {
+      "caller": "vsync_wait",
+      "jal": "0x800FB29C",
+      "first": {
+        "pc": "0x800FB298",
+        "value": 0
+      },
+      "second": {
+        "pc": "0x800FB2A0",
+        "value": 1
+      },
+      "s4_definition": null
+    },
+    {
+      "caller": "countdown",
+      "jal": "0x800FC794",
+      "first": {
+        "pc": "0x800FC790",
+        "value": 1
+      },
+      "second": {
+        "pc": "0x800FC798",
+        "value": 0
+      },
+      "s4_definition": null
+    },
+    {
+      "caller": "countdown",
+      "jal": "0x800FC7D0",
+      "first": {
+        "pc": "0x800FC7CC",
+        "value": 1
+      },
+      "second": {
+        "pc": "0x800FC7D4",
+        "value": 0
+      },
+      "s4_definition": "0x800FC698"
+    }
+  ],
+  "scope": "Manifest-verified registered game bodies; direct JAL instructions only. No computed, static-image or overlay call proof.",
+  "native_caller_sha256": {
+    "RaceStateMachine_Update": "536e0227190db8f732b1f1cb6e16fc6bb2e186983d79251733247652ac7b986c",
+    "continue_prompt": "69da50505a3618a4384e2ac42143b2926d51c2c198bff6ca6850e824b8a75b9d",
+    "countdown": "4758aed23651b551bef23980e53f9ae3474d770068e78641834687bf384c1a10",
+    "drone_pathfind_main": "c4164a53e2a5f10ae3d1e5cad4a98338969acdda5b8bd28da39db1dfefcf93bc",
+    "func_800D6160": "1e8fe7fbfe635af70e5e0f4cc6500de71b6a76f80f8f70e8a60afa6478ea01f4",
+    "func_800D6530": "ff98dedc682a4187c342b43aee12dd91b3899076efe40bdc2adf896470fc7cd9",
+    "func_800D7634": "913f909c775daa199f9f0588ff5ce11c1ceea95bf4594571768f6d63b804410a",
+    "func_800DE45C": "f620679a2314881ca0b15b49542cc255d1a257dc9e9f28081dd623bb280adec1",
+    "playgame_state_change": "b36a6e6d7ff8a517f1091d31090f2018fa037e40dab8407b278bdea90a284084",
+    "speed_mode0_wrapper": "71c500cfc0c18d2a306e57a277d7aa0b1ea07b5eba55cfcc8be0f3eca8a70f52",
+    "speed_mode1_wrapper": "78790a2c0ce7c981e572ac576f2caf3e06e6b408a1420dbc8868a4921840853a",
+    "track_texture_load": "ee143ee84039e77ca2074c3a4574ae5a7d2d7710a81c8a9c0538515b0e690c7f",
+    "vsync_wait": "ed831597353b680cf13cda7e40b5a9a6211d1ba954087a004591af13dafca7c9"
+  },
+  "native_caller_addresses": {
+    "RaceStateMachine_Update": "0x800DB81C",
+    "continue_prompt": "0x800DB758",
+    "countdown": "0x800FBF88",
+    "drone_pathfind_main": "0x800D71D0",
+    "func_800D6160": "0x800D6160",
+    "func_800D6530": "0x800D6530",
+    "func_800D7634": "0x800D7634",
+    "func_800DE45C": "0x800DE45C",
+    "playgame_state_change": "0x800CA3B4",
+    "speed_mode0_wrapper": "0x800C92DC",
+    "speed_mode1_wrapper": "0x800C93AC",
+    "track_texture_load": "0x800F5F90",
+    "vsync_wait": "0x800FB234"
+  }
+}

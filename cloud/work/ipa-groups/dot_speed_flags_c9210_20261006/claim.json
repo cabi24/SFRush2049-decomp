@@ -1,0 +1,16 @@
+{
+  "base": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "owner": "dot speed flag reconstruction",
+  "status": "frozen_for_independent_review",
+  "claim": {
+    "name": "speed_set",
+    "start": "0x800C9210",
+    "end_exclusive": "0x800C92DC",
+    "native_bytes": 204
+  },
+  "accepted_byte_gain": 0,
+  "unchanged_matching_context": ["vsync_wait"],
+  "nonmatching_context": ["speed_mode0_wrapper", "speed_mode1_wrapper", "continue_prompt"],
+  "unclaimed_initial_probe": "func_800D6160 remains nonmatching; no source or byte claim",
+  "publication": "Draft pull request after independent review; merging and acceptance remain checker-owned"
+}
