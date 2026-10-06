@@ -16,8 +16,9 @@ stand-in callers:
 
 With only the first caller, IDO inlined B120 and left an 8-byte stub. Adding the
 second genuine caller produces B120's complete strict matching body. The two
-callers remain unclaimed NONMATCH context: B214 is 126/209 words off; BE48 is
-190/190 off plus 11 extra words. Their enclosing/private ABI context is not
+callers remain unclaimed NONMATCH context: B214 is 125/209 words off; BE48 is
+190/190 off plus eight extra words and an unpaired HI16 relocation in its own
+unclaimed extent. Their enclosing/private ABI context is not
 reconstructed here. This is not a claim that the whole module or closure is
 matched or safely integrable.
 
@@ -26,11 +27,12 @@ matched or safely integrable.
 BE48 consumes the return register from both calls to 0x8008E398, storing the
 resulting handles in D_803B3448 and D_803B344C. The production sign_extend_call
 source currently declares void despite forwarding the real allocator's s32
-result unchanged. This research group includes its actual body with an explicit
-s32 return, rather than merely inventing a returning forward declaration.
-The returning local wrapper itself scores strict MATCH, 10/10 against the protected
-main-blob target. It is context only, with no duplicate byte claim or production
-source/lock change.
+result unchanged. The genuine returning implementation is supplied separately in
+wrapper_return.c, not merely asserted by a forward declaration. It scores
+standalone strict MATCH, 10/10 against the protected main-blob target. The
+runtime-A group sees its external s32 contract only. This respects the genuine
+image boundary and does not inline main-blob code into the runtime unit. No
+duplicate byte claim or production source/lock change is made.
 
 The source preserves the actual config selector snapshot across resource calls.
 Record declarations express observed offsets/strides, not original type names.
@@ -47,12 +49,17 @@ From repository root with documented IDO:
 python3 tools/cloud/score.py group cloud/work/frontier/dot_runtime_a_config_caller_group_20261006 --claims --targets asm/us/ovl_a
 ```
 
-The wrapper belongs to the main blob, so the image-A command reports that
-cross-image context target as unavailable; B120's claim is resolved normally.
 To inspect all three runtime scores omit --claims. group.json lists every
-included body and declares only B120 as a claim. Do not move B120 into
+runtime body and declares only B120 as a claim; external_sources documents the
+separate wrapper sidecar without compiling it into the unit. Compile that
+sidecar with score.py fn and --targets asm/us/blob to reproduce its own score. Do not move B120 into
 cloud/matches: it is not a standalone match.
 
 Lean source/context/scoring handoff only. No full tests, semantic proof,
 image/compression/ROM acceptance, or coverage gain is claimed. The independent
 checker owns validation, integration and merging.
+
+Correction after initial publication: the first draft compiled the returning
+wrapper inside the runtime group. It is now separated at the actual main-blob
+boundary. B120 remains strict MATCH; the local claim did not depend on that
+cross-image inlining. Context scores above describe the corrected build.

@@ -7,17 +7,17 @@
   "claims": [
     "func_8039B120"
   ],
-  "context": [
-    "sign_extend_call"
-  ],
+  "context": [],
   "files": [
     "group.c"
   ],
   "keep": [
     "func_8039B214",
-    "func_8039BE48",
-    "sign_extend_call"
+    "func_8039BE48"
   ],
   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
-  "provenance": "Fixed f2e8380d: complete native-derived real callers B214/BE48; only B120 claimed as a local group match. Returning wrapper is research context, not a production change."
+  "provenance": "Fixed f2e8380d: complete native-derived real callers B214/BE48; only B120 claimed as a local group match. Returning wrapper is research context, not a production change.",
+  "external_sources": [
+    "wrapper_return.c"
+  ]
 }
