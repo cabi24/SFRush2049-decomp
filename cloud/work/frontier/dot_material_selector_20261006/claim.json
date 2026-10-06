@@ -1,0 +1,11 @@
+{
+  "base_revision": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "target": "func_8008B000",
+  "range": ["0x8008B000", "0x8008B0D8"],
+  "native_bytes": 216,
+  "source": "cloud/matches/func_8008B000.c",
+  "population": "game",
+  "accepted_byte_gain": 0,
+  "original_typedefs_recovered": false,
+  "status": "MATCH_PENDING_INDEPENDENT_REVIEW"
+}
