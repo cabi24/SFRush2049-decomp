@@ -343,7 +343,7 @@
     "group/group.json": "d2ac5502ebf9245827cf0a32c2d24bdcacd413ebf5e1a15b32e91121a976244b",
     "group/heap_max.c": "b8783350a6b2d0dbd12e01c09be0187e5e217ea7955345bde2df2092cb53154a",
     "host.c": "ad21894808d0162ff2dd72b708e3fa633f805fc10cafb510cb0f6a625a2d4a44",
-    "verify.py": "cce74cd66896c42f5ab532c0fad339b79ab83ff9448c692c29711a8dcf57ea55"
+    "verify.py": "bd910d3699da84b3ff3dfa03a7b8f27074b58b3135acef7b5f40a3b77d7079ef"
   },
   "status": "MATCH",
   "target_manifest_sha256": "10ade23172cf5838d982beba5eebd5444f04546efe4a5c804ced5b34295336f6"

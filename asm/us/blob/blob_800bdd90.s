@@ -3807,6 +3807,7 @@ func_800C15FC:
 .section .text.camera_process_input, "ax", @progbits
 .globl camera_process_input
 camera_process_input:
+    /* compiled from src/blob/camera_process_input.c */
     .word 0x27BDFF08
     .word 0x3C0E8011
     .word 0x8DCE750C

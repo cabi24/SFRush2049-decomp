@@ -124,7 +124,10 @@ def contexts(work):
     bodies = source[source.index('u32 func_800E79F8(Heap *heap)'):]
     result = {}
     for name in CONTEXT:
-        path = ROOT / 'src/blob/groups' / name
+        # Contexts superseded after this packet was frozen are kept byte-identical.
+        path = ROOT / 'cloud/work/frontier/superseded' / name
+        if not path.exists():
+            path = ROOT / 'src/blob/groups' / name
         spec = json.loads((path / 'group.json').read_text())
         accepted = (path / 'group.c').read_text()
         baseline = group(work / (name + '_baseline'), accepted, spec['members'], spec['keep'])

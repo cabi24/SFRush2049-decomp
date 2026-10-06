@@ -4522,6 +4522,7 @@ listener_position_set:
 .section .text.engine_sound_update, "ax", @progbits
 .globl engine_sound_update
 engine_sound_update:
+    /* compiled from src/blob/engine_sound_update.c */
     .word 0x27BDFF60
     .word 0x3C0E8011
     .word 0x8DCE74B4

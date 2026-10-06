@@ -1,3 +1,13 @@
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/*
+ * Camera unit cluster (wave 11, lane w11c; builds on w10d).  All camera-unit functions in one file:
+ * camera_aspect_ratio, camera_fov_control, camera_build_view_matrix (locked, unchanged), camera_free_look,
+ * camera_look_at_point, camera_track_spline, func_800C15FC (the inlined slot setter = retail stub),
+ * camera_process_input, camera_update.
+ *   blob_unit --tag w11c score camera_update camera_free_look camera_look_at_point camera_track_spline
+ *       camera_process_input func_800C15FC --with best.c --internal func_800C15FC --neighbours
+ * Residuals and every disclosed quirk: ../RESULTS.md.
+ */
 float fabsf(float);
 float sqrtf(float);
 #pragma intrinsic (fabsf)
@@ -3823,54 +3833,60 @@ void camera_fov_control(Camera *cam) {
     }
 }
 
+
 void camera_free_look(Camera *cam) {
     f32 out[4];
     f32 d[3];
     CamCtl *ctl;
     CamScene *sc;
     CamKey *k;
+    CamKey *keys;
     f32 t;
+    f32 dur;
     s32 next;
+    s32 idx;
     s32 near;
-    f32 *pp;
-    f32 *m;
+    f32 dist;
 
-    m = cam->m[0];
     ctl = cam->ctl;
-    sc = ctl->scene;
-    k = &sc->keys[ctl->idx];
-    if (!(k->flags & 0x20)) {
-        if (ctl->mode & 8) {
-            t = k->dur - ctl->t;
-        } else {
-            t = ctl->t;
-        }
-        if (k->dur == 0.0f) {
-            goto plain;
-        }
-        next = ctl->idx + 1;
+    sc = cam->ctl->scene;
+    idx = ctl->idx;
+    k = &sc->keys[idx];
+    keys = sc->keys;
+    if (k->flags & 0x20) {
+        goto plain;
+    }
+    if (ctl->mode & 8) {
+        t = k->dur;
+        t -= ctl->t;
+    } else {
+        t = ctl->t;
+    }
+    dur = k->dur;
+    if (dur == 0.0f) {
+plain:
+        func_800BFBE8(cam->m[0], k->rot, 1);
+    } else {
+        next = idx + 1;
         if (next >= sc->count && (sc->flags & 2)) {
             next = 0;
         }
-        func_800BFD8C(t / k->dur, k->rot, sc->keys[next].rot, out);
-        func_800BFBE8(m, out, 1);
-    } else {
-plain:
-        func_800BFBE8(m, k->rot, 1);
+        func_800BFD8C(t / dur, k->rot, keys[next].rot, out);
+        func_800BFBE8(cam->m[0], out, 1);
     }
     if (sc->flags & 0x20) {
         near = 1;
         if (gameplay_mode == 5) {
-            pp = (f32 *) &player_array;
-            d[0] = cam->pos[0] - pp[2];
-            d[1] = cam->pos[1] - pp[3];
-            d[2] = cam->pos[2] - pp[4];
-            if (D_80123E84 < d[2] * d[2] + (d[0] * d[0] + d[1] * d[1])) {
+            d[0] = cam->pos[0] - ((f32 *) &player_array)[2];
+            d[1] = cam->pos[1] - ((f32 *) &player_array)[3];
+            d[2] = cam->pos[2] - ((f32 *) &player_array)[4];
+            dist = d[0] * d[0] + d[1] * d[1] + d[2] * d[2];
+            if (22500.0f < dist) {
                 near = 0;
             }
         }
         if (near != 0) {
-            camera_first_person(sc->id, cam->pos, ctl->mat, m);
+            camera_first_person(sc->id, cam->pos, ctl->mat, cam->m[0]);
         }
     }
 }
@@ -3881,30 +3897,26 @@ void camera_look_at_point(Camera *cam) {
     f32 r;
     s32 a;
     s32 b;
-    s32 handle;
-    s32 kind;
-    s32 id;
+    s32 x;
+    s32 y;
+    s32 tt;
 
     if (cam->state == 1) {
-        handle = cam->handle;
-        if (handle != -1) {
-            kind = *(s32 *) ((u8 *) D_80117530 + cam->tbl * 0x30 + 0x20);
-            if (kind == 1) {
-                a = (s32) cam->ctl->f10;
+        if (cam->handle != -1) {
+            if (D_80117530[cam->tbl].s20 == 1) {
                 b = (s32) cam->ctl->f14;
+                a = (s32) cam->ctl->f10;
                 if (b == 0) {
-                    b = 1;
-                    if (a != 0) {
-                        b = a;
-                    }
+                    b = a != 0 ? a : 1;
                 }
-                if (a < 0) {
-                    a = -a;
-                }
-                if (b < 0) {
-                    b = -b;
-                }
-                r = ((f32) a / (f32) b) * 0.5f + 0.5f;
+tt = 0;
+if (b < 0) {
+ tt = 1;
+ }
+ if (tt) {}
+                x = a < 0 ? -a : a;
+                y = b < 0 ? -b : b;
+                r = ((f32) x / (f32) y) * 0.5f + .5f;
                 f = r;
                 if (r < 0.0f || r > 1.0f) {
                     if (r < 0.0f) {
@@ -3916,15 +3928,15 @@ void camera_look_at_point(Camera *cam) {
             } else {
                 f = 1.0f;
             }
-            if (kind == 0x12) {
-                camera_clip_planes(handle, (s32) cam->pos, (s32) &D_801141B0, 0.8f, 1.0f);
+            if (D_80117530[cam->tbl].s20 == 0x12) {
+                camera_clip_planes(cam->handle, (s32) cam->pos, (s32) &D_801141B0, 0.8f, 1.0f);
                 return;
             }
-            if (kind == 0x61) {
-                camera_clip_planes(handle, (s32) cam->pos, (s32) &D_801141B0, 1.0f, 0.75f);
+            if (D_80117530[cam->tbl].s20 == 0x61) {
+                camera_clip_planes(cam->handle, (s32) cam->pos, (s32) &D_801141B0, 1.0f, 0.75f);
                 return;
             }
-            camera_clip_planes(handle, (s32) cam->pos, (s32) &D_801141B0, 0.75f * f + 0.25f, f);
+            camera_clip_planes(cam->handle, (s32) cam->pos, (s32) &D_801141B0, 0.75f * f + 0.25f, f);
         }
     } else {
         if (cam->state == 2) {
@@ -3933,11 +3945,9 @@ void camera_look_at_point(Camera *cam) {
         }
         if (leaderboard_update(cam->handle) == 0) {
             results_screen_update(cam->handle);
-            t = &D_80117530[cam->tbl];
-            id = *(s32 *) ((u8 *) t + 0x20);
-            if (id != -1) {
-                cam->handle = camera_track_entry(cam, t->f2C, id, t->s28);
-                if (*(s32 *) ((u8 *) &D_80117530[cam->tbl] + 0x20) == 1) {
+            if (D_80117530[cam->tbl].s20 != -1) {
+                cam->handle = camera_track_entry(cam, D_80117530[cam->tbl].f2C, D_80117530[cam->tbl].s20, D_80117530[cam->tbl].s28);
+                if (D_80117530[cam->tbl].s20 == 1) {
                     camera_clip_planes(cam->handle, (s32) cam->pos, (s32) &D_801141B0, 0.0f, 1.0f);
                 }
             } else {
@@ -3987,32 +3997,32 @@ void camera_build_view_matrix(s32 idx, Camera *cam) {
 }
 
 void camera_track_spline(Camera *cam) {
+    f32 v[3];
+    f32 w[3];
+    f32 u[3];
     CamCtl *ctl;
     CamScene *sc;
     CamKey *k;
     CamKey *keys;
-    s16 idx;
-    s16 n;
+    s32 idx;
+    s32 n;
     s32 next;
     s32 near;
-    s32 i;
-    f32 v[3];
-    f32 w[3];
     f32 t;
     f32 d;
     f32 a;
-    f32 b;
     f32 c;
-    f32 *pp;
+    f32 dv;
+    s32 i;
+    s32 j;
 
     ctl = cam->ctl;
     idx = ctl->idx;
     sc = ctl->scene;
+    k = &sc->keys[idx];
     n = sc->count;
     keys = sc->keys;
-    k = &keys[idx];
     if (idx < n - 1 || (sc->flags & 2) != 0 || !(sc->flags & 0x80)) {
-        next = idx + 1;
         if (k->flags & 0x10000008) {
             if (ctl->mode & 8) {
                 t = k->dur - ctl->t;
@@ -4021,18 +4031,24 @@ void camera_track_spline(Camera *cam) {
             }
             d = k->f34 * (t / k->dur);
         } else {
+            next = idx + 1;
             if (next >= n && (sc->flags & 2)) {
                 next = 0;
             }
             a = k->f3C;
-            b = keys[next].f3C;
+            d = keys[next].f3C;
+            dv = d - a;
             if (ctl->mode & 8) {
                 t = k->dur - ctl->t;
             } else {
                 t = ctl->t;
             }
-            c = (t * t * (b - a)) / (k->dur * 2.0f);
-            d = a * t + c;
+            c = (t * t * dv) / (k->dur * 2);
+            if (d < a) {
+                d = a * t + c;
+            } else {
+                d = a * t + c;
+            }
         }
         v[0] = k->dir[0];
         v[1] = k->dir[1];
@@ -4043,24 +4059,25 @@ void camera_track_spline(Camera *cam) {
         v[0] = v[0] * d;
         v[1] = v[1] * d;
         v[2] = v[2] * d;
-        for (i = 0; i < 3; i++) {
-            v[i] = (f32) (s32) (v[i] * 32.0f) * 0.03125f;
+        for (i = 0; &v[i] < &v[3]; i++) {
+            j = v[i] * 32.0f;
+            v[i] = j * 0.03125f;
         }
-        cam->pos[0] = v[0] + k->pos[0];
-        cam->pos[1] = v[1] + k->pos[1];
-        cam->pos[2] = v[2] + k->pos[2];
+        cam->pos[0] = k->pos[0] + v[0];
+        cam->pos[1] = k->pos[1] + v[1];
+        cam->pos[2] = k->pos[2] + v[2];
         v[0] = cam->pos[0] - ctl->look[0];
         v[1] = cam->pos[1] - ctl->look[1];
         v[2] = cam->pos[2] - ctl->look[2];
-        ctl->f10 = sqrtf(v[2] * v[2] + (v[0] * v[0] + v[1] * v[1])) / D_8002EB94;
+        ctl->f10 = sqrtf(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]) / *(volatile f32 *) &D_8002EB94;
         if (sc->flags & 0x20) {
             near = 1;
             if (gameplay_mode == 5) {
-                pp = (f32 *) &player_array;
-                w[0] = cam->pos[0] - pp[2];
-                w[1] = cam->pos[1] - pp[3];
-                w[2] = cam->pos[2] - pp[4];
-                if (D_80123E88 < w[2] * w[2] + (w[0] * w[0] + w[1] * w[1])) {
+                w[0] = cam->pos[0] - ((f32 *) &player_array)[2];
+                w[1] = cam->pos[1] - ((f32 *) &player_array)[3];
+                w[2] = cam->pos[2] - ((f32 *) &player_array)[4];
+                d = w[0] * w[0] + w[1] * w[1] + w[2] * w[2];
+                if (202500.0f < d) {
                     near = 0;
                 }
             }
@@ -4071,32 +4088,72 @@ void camera_track_spline(Camera *cam) {
     }
 }
 
-void camera_process_input(Camera *cam) {
-    CamTbl *tbl;
-    volatile s32 unused;
-    CamCtl *ctl;
-    CamScene *sc;
+/*
+ * func_800C15FC (retail: caller-less `jr ra; nop` stub between camera_update and camera_process_input):
+ * the slot setter D_8012E700[slot].x14 = v (0x44-byte records), inlined by umerge at every call site
+ * (camera_update x4, camera_process_input x1) and therefore deleted.  Must stay INTERNAL (non-static,
+ * not kept) so that the stub remains.  Its two parameters give retail's v0/v1 pair; with its two
+ * locals it reserves the four frame slots per call site that both callers' frames need.
+ */
+void func_800C15FC(s32 slot, u16 v) {
+    u8 *base;
+    u16 *p;
 
-    unused = D_8011750C;
+    base = (u8 *) &D_8012E714;
+    p = (u16 *) (base + slot * 0x44);
+    *p = v;
+}
+
+/*
+ * camera_process_input(cam): first-frame set-up of a scripted camera.  state = 2; unless already started
+ * (cam->flags & 1): reset the controller (mode 0, t 0); in gameplay mode 2 with a scene id > 0 snap the
+ * camera to every key flagged 0x1000000 and do the first-person set-up from key 0; otherwise register the
+ * camera (D_8013C300[D_8013F1DC++]), store the largest key f3C in ctl->f14, build the view matrix of the
+ * first key flagged 1 but not 0x1000 (and flag it 0x1000), set the s5A period from the table's s14
+ * (361 -> 4, 365 -> 20), start the scene (flags 0x100000 -> 0x200400 and the entity slot value
+ * D_80142A7A unless 0x8000) and link a new update node from func_80090284 (period 0.25 / 0.0425).  Then
+ * cam->flags |= 1.  N64-only (scripted attract/replay cameras); no arcade ancestor.
+ * Quirks, all needed for the 248-byte frame (every stack offset checked against retail):
+ *  - `u8 col[4] = {255, 0, 0, 255}`: initialised local aggregate; IDO copies it from an anonymous .data
+ *    word (retail 0x8011750C = 0xFF0000FF) to 200(sp) and never reads it (debug colour whose user is
+ *    compiled out).  Own .data: verified by the scorer/splice, not a reference to a named global.
+ *  - DISCLOSED: `s32 unused[11]` (top 44 bytes, 204..247) and `unused1`/`unused2` (two slots between the
+ *    function's locals and the mode-2 block) are unused locals.  They are the exact frame residual;
+ *    nothing natural found explains them (block-scoped and inlined locals are always allocated below the
+ *    function-level ones; natural splits of the existing variables change the code).
+ *  - the mode-2 locals are block-scoped, `k` in its own loop-body block (allocated after `mat`).
+ */
+void camera_process_input(Camera *cam) {
+    s32 unused[11];
+    u8 col[4] = { 255, 0, 0, 255 };
+    CamTbl *tbl;
+    CamScene *sc;
+    CamCtl *ctl;
+    s32 i;
+    f32 mx;
+    CamNode *node;
+    s32 unused1;
+    s32 unused2;
+
     cam->state = 2;
     tbl = &D_80117530[cam->tbl];
     ctl = cam->ctl;
-    sc = ctl->scene;
+    sc = cam->ctl->scene;
     if (!(cam->flags & 1)) {
         ctl->mode = 0;
         ctl->t = 0.0f;
         if (gameplay_mode == 2 && sc->id > 0) {
             CamScene *s;
-            CamKey *k;
-            s32 i;
+            s32 j;
             f32 v[3];
             f32 delta[3];
             f32 mat[9];
 
             s = cam->ctl->scene;
-            for (i = 0; i < s->count; i++) {
-                k = &s->keys[i];
-                if (k->flags & 0x1000000) {
+            for (j = 0; j < s->count; j++) {
+                CamKey *k = &s->keys[j];
+
+                if (s->keys[j].flags & 0x1000000) {
                     cam->pos[0] = k->pos[0];
                     cam->pos[1] = k->pos[1];
                     cam->pos[2] = k->pos[2];
@@ -4116,11 +4173,6 @@ void camera_process_input(Camera *cam) {
                 camera_first_person(s->id, cam->pos, mat, cam->m);
             }
         } else {
-            s32 i;
-            f32 mx;
-            s32 fl;
-            CamNode *node;
-
             if (sc->flags & 0x20) {
                 D_8013C300[D_8013F1DC++] = cam;
             }
@@ -4143,26 +4195,25 @@ void camera_process_input(Camera *cam) {
             } else if (tbl->s14 == 365) {
                 cam->s5A = 20;
             }
-            fl = sc->flags;
-            if ((fl & 0x40) && !(fl & 0x4000)) {
-                sc->flags = fl & ~0x100000;
+            if ((sc->flags & 0x40) && !(sc->flags & 0x4000)) {
+                sc->flags &= ~0x100000;
                 sc->flags |= 0x200400;
                 if (!(sc->flags & 0x8000)) {
-                    *(u16 *) ((u8 *) &D_8012E714 + cam->slot * 0x44) = D_80142A7A;
+                    func_800C15FC(cam->slot, D_80142A7A);
                 }
-                node = func_80090284();
-                if (node != NULL) {
-                    node->s04 = 0;
-                    node->cam = cam;
-                    node->w14 = tbl->w0C;
-                    if (tbl->s14 == 361) {
-                        node->f10 = 0.25f;
-                    } else if (tbl->s14 == 365) {
-                        node->f10 = D_80123E90;
-                    }
-                    node->next = D_801391F0;
-                    D_801391F0 = node;
+            }
+            node = func_80090284();
+            if (node != NULL) {
+                node->s04 = 0;
+                node->w14 = tbl->w0C;
+                node->cam = cam;
+                if (tbl->s14 == 361) {
+                    node->f10 = 0.25f;
+                } else if (tbl->s14 == 365) {
+                    node->f10 = 0.0425f;
                 }
+                node->next = D_801391F0;
+                D_801391F0 = node;
             }
         }
         cam->flags |= 1;
@@ -4171,27 +4222,26 @@ void camera_process_input(Camera *cam) {
 
 void camera_update(CamNode *node, s16 flag) {
     Camera *cam;
-    f32 padA[9];
+    CamCtl *ctl;
+    CamScene *sc;
+    CamScene *lk;
+    CamCtl *lc;
+    CamKey *k;
+    CamTbl *tb;
+    f32 *pdt;
+    s32 idx;
+    s32 i;
     s8 moved;
     f32 dv[3];
     f32 sv[3];
-    f32 padB[6];
-    s32 i;
     f32 f;
-    s32 done;
     s32 v;
+    s32 id;
+    s32 cnt;
     s32 nx;
     f32 tt;
-    CamTbl *tb;
     s16 na;
     u16 m;
-    CamScene *lk;
-    s32 fl;
-    f32 *pdt;
-    CamKey *k;
-    CamScene *sc;
-    CamCtl *lc;
-    CamCtl *ctl;
 
     moved = 0;
     if (flag == 0) {
@@ -4202,124 +4252,104 @@ void camera_update(CamNode *node, s16 flag) {
         cam = node->cam;
         ctl = cam->ctl;
         sc = ctl->scene;
-        fl = sc->flags;
-        if (fl & 0x40) {
-            if (fl & 0x4000) {
-                if (!(fl & 0x200)) {
-                    if (!(fl & 0x400)) {
-                        m = ctl->mode;
-                        if (m & 4) {
-                            ctl->mode = m & 0xFFFB;
+        if (sc->flags & 0x40) {
+            if (sc->flags & 0x4000) {
+                if (!(sc->flags & 0x200)) {
+                    if (!(sc->flags & 0x400)) {
+                        if (ctl->mode & 4) {
+                            ctl->mode &= ~4;
                             ctl->mode |= 8;
                             ctl->t = sc->keys[ctl->idx].dur - ctl->t;
                         }
                         if (sc->flags & 0x100) {
                             camera_aspect_ratio(cam);
                         }
-                        fl = sc->flags & ~0x100;
-                        sc->flags = fl;
+                        sc->flags = sc->flags & ~0x100;
                     }
                 } else {
-                    if (fl & 0x400) {
-                        sc->flags = fl & ~0x500;
+                    if (sc->flags & 0x400) {
+                        sc->flags = sc->flags & ~0x500;
                         camera_aspect_ratio(cam);
                     }
-                    fl = sc->flags & ~0x200;
-                    sc->flags = fl;
+                    sc->flags = sc->flags & ~0x200;
                 }
             } else {
-                if ((fl & 0x2000) && (fl & 0x100000)) {
-                    v = fl & 0xFFEFFFFF;
+                if ((sc->flags & 0x2000) && (sc->flags & 0x100000)) {
                     if (sc->link->flags & 0x100) {
-                        sc->flags = v;
-                        *(u32 *)&sc->flags |= 0x200400;
-                        v = sc->flags;
-                        if (!(v & 0x8000)) {
-                            *(u16 *) ((u8 *) &D_8012E714 + cam->slot * 0x44) = D_80142A7A;
+                        sc->flags &= ~0x100000;
+                        sc->flags |= 0x200400;
+                        if (!(sc->flags & 0x8000)) {
+                            func_800C15FC(cam->slot, D_80142A7A);
                         }
                         camera_fov_control(cam);
                         return;
                     }
                 }
-                if ((fl & 0x400) && (fl & 0x200)) {
+                if ((sc->flags & 0x400) && (sc->flags & 0x200)) {
                     lk = sc->link;
-                    v = lk->flags;
-                    if (v & 0x100) {
-                        lk->flags = v & ~0x100;
-                    } else if (fl & 0x1000) {
+                    if (lk->flags & 0x100) {
+                        lk->flags &= ~0x100;
+                    } else if (sc->flags & 0x1000) {
                         lc = lk->cur;
-                        m = lc->mode;
-                        if (m & 8) {
-                            lc->mode = m & 0xFFF7;
+                        if (lc->mode & 8) {
+                            lc->mode &= ~8;
                             lc->mode |= 4;
                             lc->t = lk->keys[lc->idx].dur - lc->t;
                         } else {
-                            lc->mode = m & 0xFFFB;
+                            lc->mode &= ~4;
                             lc->mode |= 8;
                             lc->t = lk->keys[lc->idx].dur - lc->t;
                         }
                     }
-                    fl = sc->flags & ~0x700;
-                    sc->flags = fl;
-                    if (fl & 0x1000) {
-                        if (fl & 0x200000) {
-                            v = fl & 0xFFDFFFFF;
-                            sc->flags = v;
-                            *(u32 *)&sc->flags |= 0x100000;
-                            v = sc->flags;
-                            if (!(v & 0x8000)) {
-                                *(u16 *) ((u8 *) &D_8012E714 + cam->slot * 0x44) = D_80142A78;
+                    sc->flags = sc->flags & ~0x700;
+                    if (sc->flags & 0x1000) {
+                        if (sc->flags & 0x200000) {
+                            sc->flags &= ~0x200000;
+                            sc->flags |= 0x100000;
+                            if (!(sc->flags & 0x8000)) {
+                                func_800C15FC(cam->slot, D_80142A78);
                             }
                             camera_aspect_ratio(cam);
                         } else {
-                            v = fl & 0xFFEFFFFF;
-                            sc->flags = v;
-                            *(u32 *)&sc->flags |= 0x200000;
-                            v = sc->flags;
-                            if (!(v & 0x8000)) {
-                                *(u16 *) ((u8 *) &D_8012E714 + cam->slot * 0x44) = D_80142A7A;
+                            sc->flags &= ~0x100000;
+                            sc->flags |= 0x200000;
+                            if (!(sc->flags & 0x8000)) {
+                                func_800C15FC(cam->slot, D_80142A7A);
                             }
                             camera_fov_control(cam);
                         }
-                        fl = sc->flags;
-                    } else if (fl & 0x200000) {
-                        v = fl & 0xFFDFFFFF;
-                        sc->flags = v;
-                        *(u32 *)&sc->flags |= 0x100000;
-                        v = sc->flags;
-                        if (!(v & 0x8000)) {
-                            *(u16 *) ((u8 *) &D_8012E714 + cam->slot * 0x44) = D_80142A78;
+                    } else if (sc->flags & 0x200000) {
+                        sc->flags &= ~0x200000;
+                        sc->flags |= 0x100000;
+                        if (!(sc->flags & 0x8000)) {
+                            func_800C15FC(cam->slot, D_80142A78);
                         }
                         camera_aspect_ratio(cam);
-                        fl = sc->flags;
                     }
                 }
             }
         }
-        if (!(fl & 0x100)) {
-            done = 0;
+        if (!(sc->flags & 0x100)) {
+            i = 0;
             pdt = (f32 *)(u32)&D_8002EB94;
-            ctl->t = ctl->t + *pdt;
-            k = &sc->keys[ctl->idx];
+            ctl->t += *pdt;
+            idx = ctl->idx;
             do {
-                f = k->dur;
+                f = sc->keys[idx].dur;
                 if (f <= ctl->t) {
-                    m = ctl->mode;
                     ctl->t = ctl->t - f;
-                    if (m & 8) {
-                        if (ctl->idx == 0) {
-                            v = m & 0xFFF7;
+                    if (ctl->mode & 8) {
+                        if (idx == 0) {
                             if (sc->flags & 0x4000) {
-                                done = 1;
                                 camera_build_view_matrix(0, cam);
+                                i = 1;
                                 camera_fov_control(cam);
                             } else {
-                                ctl->mode = v;
+                                ctl->mode &= ~8;
                                 ctl->mode |= 4;
-                                fl = sc->flags;
-                                if (fl & 0x80) {
-                                    sc->flags = fl | 0x100;
-                                    done = 1;
+                                if (sc->flags & 0x80) {
+                                    sc->flags |= 0x100;
+                                    i = 1;
                                     ctl->t = 0.0f;
                                 }
                             }
@@ -4327,14 +4357,13 @@ void camera_update(CamNode *node, s16 flag) {
                                 listener_position_set(sc->id);
                             }
                         } else {
-                            ctl->idx = ctl->idx - 1;
+                            ctl->idx = idx - 1;
                         }
-                    } else if (sc->count == ctl->idx + 1) {
-                        v = m & 0xFFFB;
+                    } else if (idx + 1 == sc->count) {
                         if (sc->flags & 0x80) {
-                            ctl->mode = v;
+                            ctl->mode &= ~4;
                             ctl->mode |= 8;
-                            ctl->idx = ctl->idx - 1;
+                            ctl->idx = idx - 1;
                         } else {
                             ctl->idx = 0;
                             if (sc->flags & 0x20) {
@@ -4342,27 +4371,24 @@ void camera_update(CamNode *node, s16 flag) {
                             }
                         }
                     } else {
-                        ctl->idx = ctl->idx + 1;
-                        na = ctl->idx;
-                        if (sc->keys[na].flags & 0x40) {
-                            done = 1;
-                            sc->flags = sc->flags | 0x100;
+                        ctl->idx = idx + 1;
+                        idx = ctl->idx;
+                        if (sc->keys[idx].flags & 0x40) {
+                            i = 1;
+                            sc->flags |= 0x100;
                             ctl->t = 0.0f;
-                        } else if (sc->count == na + 1) {
-                            fl = sc->flags;
-                            if (fl & 1) {
-                                v = ctl->mode & 0xFFFB;
-                                ctl->mode = v;
+                        } else if (sc->count == idx + 1) {
+                            if (sc->flags & 1) {
+                                ctl->mode &= ~4;
                                 ctl->mode |= 8;
-                                ctl->idx = na - 1;
-                            } else if (fl & 0x4000) {
-                                v = ctl->mode & 0xFFFB;
-                                ctl->mode = v;
+                                ctl->idx = idx - 1;
+                            } else if (sc->flags & 0x4000) {
+                                ctl->mode &= ~4;
                                 ctl->mode |= 8;
-                                ctl->idx = na - 1;
+                                ctl->idx = idx - 1;
                                 ctl->t = 0.0f;
-                                sc->flags = sc->flags | 0x100;
-                            } else if (!(fl & 2)) {
+                                sc->flags |= 0x100;
+                            } else if (!(sc->flags & 2)) {
                                 camera_build_view_matrix(0, cam);
                                 if (sc->flags & 0x20) {
                                     listener_position_set(sc->id);
@@ -4370,12 +4396,12 @@ void camera_update(CamNode *node, s16 flag) {
                             }
                         }
                     }
-                    k = &sc->keys[ctl->idx];
+                    idx = ctl->idx;
                 } else {
-                    done = 1;
+                    i = 1;
                 }
-            } while (done == 0);
-            v = k->flags;
+            } while (i == 0);
+            v = sc->keys[idx].flags;
             if (!(v & 2)) {
                 camera_track_spline(cam);
                 moved = 1;
@@ -4396,25 +4422,25 @@ void camera_update(CamNode *node, s16 flag) {
             }
             tb = &D_80117530[cam->tbl];
             if (tb->s14 != -1) {
-                f = node->f10 - *pdt;
+                f = node->f10 - *(f32 *)(s32)&D_8002EB94;
                 node->f10 = f;
                 if (f <= 0.0f) {
-                    v = tb->s14;
-                    if (v == 0x169) {
+                    id = tb->s14;
+                    if (id == 0x169) {
                         node->f10 = 0.25f;
-                    } else if (v == 0x16D) {
+                    } else if (id == 0x16D) {
                         node->f10 = D_80123E8C;
                     }
-                    node->s04 = node->s04 + 1;
-                    na = node->s04;
-                    if (na >= cam->s5A) {
+                    cnt = ++node->s04;
+                    if (cnt >= cam->s5A) {
                         node->s04 = 0;
-                        na = 0;
+                        cnt = 0;
                     }
-                    na = cam->s58 + na;
+                    na = cam->s58 + cnt;
                     if (na != cam->s50) {
+                        m = (&D_801427C0)[na];
                         if (!(sc->flags & 0x8000)) {
-                            *(u16 *) ((u8 *) &D_8012E714 + cam->slot * 0x44) = (&D_801427C0)[na];
+                            *(u16 *) ((u8 *) &D_8012E714 + cam->slot * 0x44) = m;
                         }
                         cam->s50 = na;
                     }

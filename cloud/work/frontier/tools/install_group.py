@@ -46,8 +46,16 @@ def restore(why):
         shutil.rmtree(root / g, ignore_errors=True)
         if (backup / "groups" / g).exists():
             shutil.copytree(backup / "groups" / g, root / g)
+    restored = {}
     for f in (backup / "singles").glob("*.c") if (backup / "singles").exists() else ():
         shutil.copy(f, blob_splice.SRC_DIR / f.name)
+        restored[f.stem] = blob_splice.SRC_DIR / f.name
+    lock = json.loads(lock_before)
+    by_flags = {}                             # a revert deleted their objects
+    for fn, path in restored.items():
+        by_flags.setdefault(lock[fn]["flagset"], {})[fn] = path
+    for flags, sources in by_flags.items():
+        blob_splice.compile_on_builder(sources, flags)
     for g in touched:                         # a failed splice left a fresh object behind
         if (root / g / "group.json").exists():
             blob_group.compile_group(blob_group.load(g))

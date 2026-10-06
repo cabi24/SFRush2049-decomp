@@ -3876,6 +3876,7 @@ func_800AB7D0:
 .section .text.engine_torque_calc, "ax", @progbits
 .globl engine_torque_calc
 engine_torque_calc:
+    /* compiled from src/blob/engine_torque_calc.c */
     .word 0x27BDFFA0
     .word 0xAFBF0014
     .word 0x862E0010
@@ -4206,6 +4207,7 @@ transmission_shift:
 .section .text.transmission_ratio_get, "ax", @progbits
 .globl transmission_ratio_get
 transmission_ratio_get:
+    /* compiled from src/blob/transmission_ratio_get.c */
     .word 0x27BDFF60
     .word 0xAFBF0034
     .word 0xAFB40030

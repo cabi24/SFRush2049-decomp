@@ -366,10 +366,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "camera_aspect_ratio",
     "source": "src/blob/groups/camera_aspect_ratio/group.json",
-    "source_sha256": "6a5541e82a2c50a61f615c7094466d3ed5e2f6c06825365e96ad5b5de7aa184c",
+    "source_sha256": "d0e03edb0730fe504e9ae76a5b022c0dd9676f95635665eef359f2d13a3b09e5",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-06"
   },
   "camera_blend_between": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -383,10 +383,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "camera_aspect_ratio",
     "source": "src/blob/groups/camera_aspect_ratio/group.json",
-    "source_sha256": "6a5541e82a2c50a61f615c7094466d3ed5e2f6c06825365e96ad5b5de7aa184c",
+    "source_sha256": "d0e03edb0730fe504e9ae76a5b022c0dd9676f95635665eef359f2d13a3b09e5",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-06"
   },
   "camera_cinematic_mode": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -450,10 +450,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "camera_aspect_ratio",
     "source": "src/blob/groups/camera_aspect_ratio/group.json",
-    "source_sha256": "6a5541e82a2c50a61f615c7094466d3ed5e2f6c06825365e96ad5b5de7aa184c",
+    "source_sha256": "d0e03edb0730fe504e9ae76a5b022c0dd9676f95635665eef359f2d13a3b09e5",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-06"
   },
   "camera_lerp_position": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -462,6 +462,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-05"
+  },
+  "camera_process_input": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "camera_aspect_ratio",
+    "source": "src/blob/groups/camera_aspect_ratio/group.json",
+    "source_sha256": "d0e03edb0730fe504e9ae76a5b022c0dd9676f95635665eef359f2d13a3b09e5",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-06"
   },
   "camera_race_setup": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -908,6 +917,24 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-30"
+  },
+  "engine_sound_update": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_level_objects",
+    "source": "src/blob/groups/frontier_level_objects/group.json",
+    "source_sha256": "817469ecbcf6b9edd8e84cfa8c18246fdcbec671547e6570871b929d1a460b0d",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-06"
+  },
+  "engine_torque_calc": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_level_objects",
+    "source": "src/blob/groups/frontier_level_objects/group.json",
+    "source_sha256": "817469ecbcf6b9edd8e84cfa8c18246fdcbec671547e6570871b929d1a460b0d",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-06"
   },
   "entity_audio_update": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -2817,12 +2844,13 @@
     "verified_at": "2026-09-30"
   },
   "func_800AB7D0": {
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "source": "src/blob/func_800AB7D0.c",
-    "source_sha256": "d78fa25c59300de6bcd3d4cd1afcd7f37cfdadc48d9f2617388e0e2b63a2fa86",
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_level_objects",
+    "source": "src/blob/groups/frontier_level_objects/group.json",
+    "source_sha256": "817469ecbcf6b9edd8e84cfa8c18246fdcbec671547e6570871b929d1a460b0d",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-06"
   },
   "func_800ABB58": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -2833,12 +2861,13 @@
     "verified_at": "2026-09-29"
   },
   "func_800AC660": {
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "source": "src/blob/func_800AC660.c",
-    "source_sha256": "16d269fe8bb56501a5f3db54588c288bc926c3f9ebfc96f3ef086ebfce40787a",
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_level_objects",
+    "source": "src/blob/groups/frontier_level_objects/group.json",
+    "source_sha256": "817469ecbcf6b9edd8e84cfa8c18246fdcbec671547e6570871b929d1a460b0d",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-06"
   },
   "func_800AC8D4": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -3666,12 +3695,13 @@
     "verified_at": "2026-10-01"
   },
   "func_800C15FC": {
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "source": "src/blob/func_800C15FC.c",
-    "source_sha256": "e96971baeacf7ce3b59ffdf433f79a09f024590b73276d7b0c59fdf849b7743d",
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "camera_aspect_ratio",
+    "source": "src/blob/groups/camera_aspect_ratio/group.json",
+    "source_sha256": "d0e03edb0730fe504e9ae76a5b022c0dd9676f95635665eef359f2d13a3b09e5",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-06"
   },
   "func_800C1A00": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -7490,6 +7520,15 @@
     "group": "frontier_steering_sensitivity",
     "source": "src/blob/groups/frontier_steering_sensitivity/group.json",
     "source_sha256": "2f8ba21651e2ff27568c0622d0b8b6bde960405c2099a112b048e325eccb2c42",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-06"
+  },
+  "transmission_ratio_get": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_level_objects",
+    "source": "src/blob/groups/frontier_level_objects/group.json",
+    "source_sha256": "817469ecbcf6b9edd8e84cfa8c18246fdcbec671547e6570871b929d1a460b0d",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-06"

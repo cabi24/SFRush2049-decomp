@@ -92,6 +92,18 @@
   {
    "name": "func_80097468",
    "reason": "deleted helper inlined into its audio_heap callers; only the retail stub remains"
+  },
+  {
+   "name": "func_800AB7D0",
+   "reason": "deleted static inlined into its callers; only the retail stub remains"
+  },
+  {
+   "name": "func_800AC660",
+   "reason": "deleted static inlined into its callers; only the retail stub remains"
+  },
+  {
+   "name": "engine_torque_calc",
+   "reason": "IPA register-parameter callee of engine_sound_update/transmission_ratio_get (frontier_level_objects)"
   }
  ],
  "prefer_definition": [
@@ -169,6 +181,21 @@
    "name": "func_80097468",
    "file": "src/blob/groups/audio_heap/group.c",
    "reason": "locked as an empty stub; a deleted static inlined into func_800E7D0C / its audio_heap siblings (wave 11, w11h): the real definition in the group reproduces the inlined bodies"
+  },
+  {
+   "name": "func_800AB7D0",
+   "file": "src/blob/groups/frontier_level_objects/group.c",
+   "reason": "locked as an empty stub; the inlined state-assignment block of engine_torque_calc (wave 9 w9e frame trace; wave 11 w11e)"
+  },
+  {
+   "name": "func_800AC660",
+   "file": "src/blob/groups/frontier_level_objects/group.c",
+   "reason": "locked as an empty stub; inlined getter of transmission_ratio_get; named after this caller-less stub (naming hypothesis, w11e)"
+  },
+  {
+   "name": "func_800C15FC",
+   "file": "src/blob/groups/camera_aspect_ratio/group.c",
+   "reason": "locked as an empty stub; the camera slot setter inlined into camera_update and camera_process_input (wave 11, w11c)"
   }
  ],
  "align": [

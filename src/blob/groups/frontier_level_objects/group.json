@@ -7,11 +7,6 @@
   "func_800AC660"
  ],
  "context": [],
- "claims": [
-  "engine_sound_update",
-  "engine_torque_calc",
-  "transmission_ratio_get"
- ],
  "files": [
   "group.c"
  ],
