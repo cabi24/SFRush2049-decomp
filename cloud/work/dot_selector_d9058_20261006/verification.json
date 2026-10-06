@@ -1,0 +1,1369 @@
+{
+  "status": "NONMATCH",
+  "claims": [],
+  "new_verified_matching_bytes": 0,
+  "base": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "function": "func_800D9058",
+  "start": "0x800D9058",
+  "end": "0x800D91A0",
+  "native_bytes": 328,
+  "native_sha256": "cd018c2d74519f00ebff5cb7d9211917174aa83ee1029c875c26c4821c7cd497",
+  "source_hashes": {
+    "candidate.c": "ca98939e2dad8b69f4da09bd0d27cf6d6137589a8e9ae7f328bb78a606126335",
+    "context.c": "2963fbe58bb796af2a1b94086dfd01cfa29c8dadbdfd5f89612e3bf47b511fe2",
+    "group.json": "19bd59bf9d0b0eb1a93f4b867cebb5a8fa244ad10c191eab04f36c36f95f5d58",
+    "host.c": "2350c45f0367b46ca7a72d82d741a84211e972af3783ed1516ef21940bbb3286",
+    "native.py": "3aa0861a688a7e0fe7e52893c1f6779b4a4e4d6e952baed809316993ecdaaf68",
+    "verify.py": "9ab5a7dbfe6df6bc6903da589cc961a11d90e6d7fd1e6dac421cbb90409e6aae"
+  },
+  "real_parent": [
+    {
+      "caller": "func_800D91A0",
+      "site": "0x800D9310"
+    }
+  ],
+  "parent_reconstructed": false,
+  "context_origin": "cloud/work/game_C104/group_complete_callers.c",
+  "context_origin_sha256": "4c44290bb0e0b4f2133ccf1ef7867dd8586a4f1094ec3f23cbf21c4313834490",
+  "protected_target_manifest_sha256": "dade78464a022fedd2c5ba651ee1bca5ffd4ec99bfa4d2413d27256540bed02c",
+  "compile": {
+    "standalone": {
+      "functions": {
+        "func_800D9058": {
+          "symbol_bytes": 336,
+          "native_bytes": 328,
+          "complete_differing_words": 74,
+          "differing_offsets": [
+            8,
+            12,
+            24,
+            28,
+            32,
+            40,
+            44,
+            48,
+            52,
+            60,
+            68,
+            72,
+            76,
+            80,
+            84,
+            88,
+            92,
+            96,
+            100,
+            104,
+            108,
+            112,
+            116,
+            120,
+            124,
+            128,
+            132,
+            136,
+            140,
+            144,
+            148,
+            152,
+            156,
+            160,
+            164,
+            168,
+            172,
+            176,
+            180,
+            184,
+            192,
+            196,
+            200,
+            204,
+            208,
+            212,
+            220,
+            224,
+            228,
+            232,
+            236,
+            240,
+            244,
+            248,
+            252,
+            256,
+            260,
+            264,
+            268,
+            272,
+            276,
+            280,
+            284,
+            288,
+            292,
+            296,
+            300,
+            304,
+            308,
+            316,
+            320,
+            324,
+            328,
+            332
+          ],
+          "body_sha256": "34330830896b20c3f15325bf91f6052243f1078efe8573660e6b7b64a5ee162b",
+          "gnu_equals_project_relocation": true,
+          "canonical": {
+            "differing": 72,
+            "total": 82,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 1
+          },
+          "relocations": [
+            {
+              "offset": 0,
+              "type": 5,
+              "symbol": "D_80151AD0"
+            },
+            {
+              "offset": 4,
+              "type": 6,
+              "symbol": "D_80151AD0"
+            },
+            {
+              "offset": 8,
+              "type": 5,
+              "symbol": "D_80113E8C"
+            },
+            {
+              "offset": 32,
+              "type": 6,
+              "symbol": "D_80113E8C"
+            },
+            {
+              "offset": 40,
+              "type": 5,
+              "symbol": "D_801461D0"
+            },
+            {
+              "offset": 44,
+              "type": 6,
+              "symbol": "D_801461D0"
+            },
+            {
+              "offset": 56,
+              "type": 4,
+              "symbol": "osRecvMesg"
+            },
+            {
+              "offset": 64,
+              "type": 4,
+              "symbol": "slot_state_setup"
+            },
+            {
+              "offset": 72,
+              "type": 5,
+              "symbol": "D_801461D0"
+            },
+            {
+              "offset": 76,
+              "type": 6,
+              "symbol": "D_801461D0"
+            },
+            {
+              "offset": 84,
+              "type": 4,
+              "symbol": "osJamMesg"
+            },
+            {
+              "offset": 96,
+              "type": 5,
+              "symbol": "D_8014A10A"
+            },
+            {
+              "offset": 100,
+              "type": 6,
+              "symbol": "D_8014A10A"
+            },
+            {
+              "offset": 276,
+              "type": 5,
+              "symbol": "D_801174B4"
+            },
+            {
+              "offset": 292,
+              "type": 6,
+              "symbol": "D_801174B4"
+            }
+          ]
+        }
+      },
+      "owned_data_bytes": 0,
+      "excluded_zero_text_padding_bytes": 0,
+      "gnu_unmodified_object_text_address": "0x80000000",
+      "native_comparison_uses_explicit_original_entry_map": true
+    },
+    "clean_context": {
+      "functions": {
+        "func_800D9058": {
+          "symbol_bytes": 364,
+          "native_bytes": 328,
+          "complete_differing_words": 86,
+          "differing_offsets": [
+            8,
+            12,
+            24,
+            28,
+            32,
+            36,
+            40,
+            44,
+            48,
+            52,
+            56,
+            60,
+            64,
+            68,
+            72,
+            76,
+            80,
+            84,
+            88,
+            92,
+            96,
+            100,
+            104,
+            108,
+            112,
+            116,
+            120,
+            124,
+            128,
+            132,
+            136,
+            140,
+            144,
+            148,
+            152,
+            156,
+            160,
+            164,
+            168,
+            172,
+            176,
+            180,
+            184,
+            188,
+            192,
+            196,
+            200,
+            204,
+            208,
+            212,
+            216,
+            220,
+            224,
+            228,
+            232,
+            236,
+            240,
+            244,
+            248,
+            252,
+            256,
+            264,
+            268,
+            272,
+            276,
+            280,
+            284,
+            288,
+            292,
+            296,
+            300,
+            304,
+            308,
+            312,
+            316,
+            320,
+            324,
+            328,
+            332,
+            336,
+            340,
+            344,
+            348,
+            352,
+            356,
+            360
+          ],
+          "body_sha256": "c4f2da2479a35f687440efc54df30b014f02a25fe953dc7c54d1e377e2fa24ef",
+          "gnu_equals_project_relocation": true,
+          "canonical": {
+            "differing": 77,
+            "total": 82,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 9
+          },
+          "relocations": [
+            {
+              "offset": 0,
+              "type": 5,
+              "symbol": "D_80151AD0"
+            },
+            {
+              "offset": 4,
+              "type": 6,
+              "symbol": "D_80151AD0"
+            },
+            {
+              "offset": 12,
+              "type": 5,
+              "symbol": "D_80113E8C"
+            },
+            {
+              "offset": 32,
+              "type": 6,
+              "symbol": "D_80113E8C"
+            },
+            {
+              "offset": 40,
+              "type": 5,
+              "symbol": "D_801461D0"
+            },
+            {
+              "offset": 60,
+              "type": 6,
+              "symbol": "D_801461D0"
+            },
+            {
+              "offset": 72,
+              "type": 4,
+              "symbol": "osRecvMesg"
+            },
+            {
+              "offset": 80,
+              "type": 4,
+              "symbol": "slot_state_setup"
+            },
+            {
+              "offset": 88,
+              "type": 5,
+              "symbol": "D_801461D0"
+            },
+            {
+              "offset": 92,
+              "type": 6,
+              "symbol": "D_801461D0"
+            },
+            {
+              "offset": 100,
+              "type": 4,
+              "symbol": "osJamMesg"
+            },
+            {
+              "offset": 112,
+              "type": 5,
+              "symbol": "D_8014A10A"
+            },
+            {
+              "offset": 116,
+              "type": 6,
+              "symbol": "D_8014A10A"
+            },
+            {
+              "offset": 292,
+              "type": 5,
+              "symbol": "D_801174B4"
+            },
+            {
+              "offset": 308,
+              "type": 6,
+              "symbol": "D_801174B4"
+            }
+          ]
+        },
+        "slot_state_setup": {
+          "symbol_bytes": 248,
+          "native_bytes": 232,
+          "complete_differing_words": 34,
+          "differing_offsets": [
+            0,
+            4,
+            12,
+            24,
+            28,
+            32,
+            48,
+            52,
+            60,
+            64,
+            92,
+            104,
+            120,
+            124,
+            132,
+            136,
+            140,
+            144,
+            160,
+            172,
+            184,
+            192,
+            196,
+            204,
+            208,
+            212,
+            216,
+            220,
+            224,
+            228,
+            232,
+            236,
+            240,
+            244
+          ],
+          "body_sha256": "92f7dbca900853692e6f6d2b02dcccb6019bd17bf3af424f1dec68d86e024df8",
+          "gnu_equals_project_relocation": true,
+          "canonical": {
+            "differing": 30,
+            "total": 58,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 3
+          },
+          "relocations": [
+            {
+              "offset": 0,
+              "type": 5,
+              "symbol": "D_80149DA0"
+            },
+            {
+              "offset": 4,
+              "type": 6,
+              "symbol": "D_80149DA0"
+            },
+            {
+              "offset": 40,
+              "type": 4,
+              "symbol": "func_80097694"
+            },
+            {
+              "offset": 48,
+              "type": 5,
+              "symbol": "D_80149780"
+            },
+            {
+              "offset": 52,
+              "type": 6,
+              "symbol": "D_80149780"
+            },
+            {
+              "offset": 84,
+              "type": 4,
+              "symbol": "audio_frame_sync"
+            },
+            {
+              "offset": 96,
+              "type": 4,
+              "symbol": "display_list_alloc"
+            },
+            {
+              "offset": 112,
+              "type": 4,
+              "symbol": "func_80097694"
+            },
+            {
+              "offset": 120,
+              "type": 5,
+              "symbol": "D_801497A4"
+            },
+            {
+              "offset": 124,
+              "type": 6,
+              "symbol": "D_801497A4"
+            },
+            {
+              "offset": 136,
+              "type": 5,
+              "symbol": "D_80114740"
+            },
+            {
+              "offset": 140,
+              "type": 6,
+              "symbol": "D_80114740"
+            },
+            {
+              "offset": 164,
+              "type": 4,
+              "symbol": "audio_frame_sync"
+            },
+            {
+              "offset": 176,
+              "type": 4,
+              "symbol": "display_list_alloc"
+            },
+            {
+              "offset": 188,
+              "type": 4,
+              "symbol": "sound_update_channel"
+            },
+            {
+              "offset": 204,
+              "type": 4,
+              "symbol": "sound_update_channel"
+            },
+            {
+              "offset": 212,
+              "type": 5,
+              "symbol": "D_801497F0"
+            },
+            {
+              "offset": 216,
+              "type": 6,
+              "symbol": "D_801497F0"
+            }
+          ]
+        },
+        "func_80096288": {
+          "symbol_bytes": 16,
+          "native_bytes": 16,
+          "complete_differing_words": 3,
+          "differing_offsets": [
+            0,
+            4,
+            12
+          ],
+          "body_sha256": "f9e77de3221db6174e0d87d3101de46b81de1684d1061988be35c3c3951e8a9b",
+          "gnu_equals_project_relocation": true,
+          "canonical": {
+            "differing": 3,
+            "total": 4,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "relocations": []
+        },
+        "sound_update_channel": {
+          "symbol_bytes": 468,
+          "native_bytes": 488,
+          "complete_differing_words": 120,
+          "differing_offsets": [
+            0,
+            4,
+            8,
+            12,
+            16,
+            20,
+            24,
+            28,
+            32,
+            36,
+            40,
+            44,
+            48,
+            52,
+            56,
+            60,
+            64,
+            68,
+            72,
+            76,
+            80,
+            84,
+            88,
+            92,
+            96,
+            100,
+            104,
+            108,
+            112,
+            116,
+            120,
+            124,
+            128,
+            132,
+            136,
+            140,
+            144,
+            148,
+            152,
+            156,
+            160,
+            164,
+            168,
+            172,
+            176,
+            180,
+            184,
+            188,
+            192,
+            196,
+            200,
+            204,
+            208,
+            212,
+            216,
+            220,
+            224,
+            228,
+            232,
+            236,
+            240,
+            244,
+            248,
+            252,
+            256,
+            260,
+            264,
+            268,
+            272,
+            276,
+            280,
+            284,
+            288,
+            292,
+            296,
+            300,
+            304,
+            308,
+            312,
+            316,
+            320,
+            324,
+            328,
+            332,
+            336,
+            340,
+            344,
+            348,
+            352,
+            356,
+            360,
+            364,
+            368,
+            372,
+            376,
+            384,
+            388,
+            392,
+            396,
+            400,
+            404,
+            408,
+            412,
+            416,
+            420,
+            424,
+            428,
+            432,
+            436,
+            440,
+            448,
+            452,
+            456,
+            460,
+            464,
+            468,
+            472,
+            476,
+            480,
+            484
+          ],
+          "body_sha256": "dc4c42e42761aeab87e144434f6f14264789e5a7cfa44e82ece86b71ad42ec50",
+          "gnu_equals_project_relocation": true,
+          "canonical": {
+            "differing": 120,
+            "total": 122,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "relocations": [
+            {
+              "offset": 0,
+              "type": 5,
+              "symbol": "D_80149780"
+            },
+            {
+              "offset": 4,
+              "type": 6,
+              "symbol": "D_80149780"
+            },
+            {
+              "offset": 8,
+              "type": 5,
+              "symbol": "D_80156D44"
+            },
+            {
+              "offset": 32,
+              "type": 6,
+              "symbol": "D_80156D44"
+            },
+            {
+              "offset": 12,
+              "type": 5,
+              "symbol": "D_801497F0"
+            },
+            {
+              "offset": 36,
+              "type": 6,
+              "symbol": "D_801497F0"
+            },
+            {
+              "offset": 60,
+              "type": 5,
+              "symbol": "D_801497F0"
+            },
+            {
+              "offset": 72,
+              "type": 6,
+              "symbol": "D_801497F0"
+            },
+            {
+              "offset": 64,
+              "type": 5,
+              "symbol": "D_80149800"
+            },
+            {
+              "offset": 68,
+              "type": 6,
+              "symbol": "D_80149800"
+            },
+            {
+              "offset": 172,
+              "type": 5,
+              "symbol": "D_80149878"
+            },
+            {
+              "offset": 176,
+              "type": 6,
+              "symbol": "D_80149878"
+            },
+            {
+              "offset": 180,
+              "type": 5,
+              "symbol": "D_80149878"
+            },
+            {
+              "offset": 184,
+              "type": 6,
+              "symbol": "D_80149878"
+            },
+            {
+              "offset": 220,
+              "type": 5,
+              "symbol": "D_80149800"
+            },
+            {
+              "offset": 236,
+              "type": 6,
+              "symbol": "D_80149800"
+            },
+            {
+              "offset": 284,
+              "type": 5,
+              "symbol": "D_801497A4"
+            },
+            {
+              "offset": 288,
+              "type": 6,
+              "symbol": "D_801497A4"
+            },
+            {
+              "offset": 296,
+              "type": 5,
+              "symbol": "D_80151AE8"
+            },
+            {
+              "offset": 312,
+              "type": 6,
+              "symbol": "D_80151AE8"
+            },
+            {
+              "offset": 308,
+              "type": 5,
+              "symbol": "D_80149820"
+            },
+            {
+              "offset": 316,
+              "type": 6,
+              "symbol": "D_80149820"
+            },
+            {
+              "offset": 368,
+              "type": 5,
+              "symbol": "D_80149B60"
+            },
+            {
+              "offset": 372,
+              "type": 6,
+              "symbol": "D_80149B60"
+            },
+            {
+              "offset": 380,
+              "type": 5,
+              "symbol": "D_80149B70"
+            },
+            {
+              "offset": 384,
+              "type": 6,
+              "symbol": "D_80149B70"
+            },
+            {
+              "offset": 412,
+              "type": 5,
+              "symbol": "D_80149B08"
+            },
+            {
+              "offset": 420,
+              "type": 6,
+              "symbol": "D_80149B08"
+            },
+            {
+              "offset": 404,
+              "type": 5,
+              "symbol": "D_80149B08"
+            },
+            {
+              "offset": 424,
+              "type": 6,
+              "symbol": "D_80149B08"
+            },
+            {
+              "offset": 444,
+              "type": 5,
+              "symbol": "D_80149B28"
+            },
+            {
+              "offset": 452,
+              "type": 6,
+              "symbol": "D_80149B28"
+            },
+            {
+              "offset": 432,
+              "type": 5,
+              "symbol": "D_80149B28"
+            },
+            {
+              "offset": 456,
+              "type": 6,
+              "symbol": "D_80149B28"
+            }
+          ]
+        },
+        "object_byte9_set": {
+          "symbol_bytes": 64,
+          "native_bytes": 64,
+          "complete_differing_words": 6,
+          "differing_offsets": [
+            4,
+            8,
+            16,
+            20,
+            28,
+            44
+          ],
+          "body_sha256": "7921bec0652308580cb0017f096cb858cbe490f76f9cd9909a2bfc030c48bb58",
+          "gnu_equals_project_relocation": true,
+          "canonical": {
+            "differing": 6,
+            "total": 16,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "relocations": [
+            {
+              "offset": 24,
+              "type": 4,
+              "symbol": "sound_update_channel"
+            },
+            {
+              "offset": 32,
+              "type": 5,
+              "symbol": "D_801497F0"
+            },
+            {
+              "offset": 36,
+              "type": 6,
+              "symbol": "D_801497F0"
+            }
+          ]
+        },
+        "object_create": {
+          "symbol_bytes": 112,
+          "native_bytes": 112,
+          "complete_differing_words": 1,
+          "differing_offsets": [
+            52
+          ],
+          "body_sha256": "d1870a5850a03ea4720c279279d025a3540783fc16ec1fba131b34972c628491",
+          "gnu_equals_project_relocation": true,
+          "canonical": {
+            "differing": 1,
+            "total": 28,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 0
+          },
+          "relocations": [
+            {
+              "offset": 12,
+              "type": 5,
+              "symbol": "D_801461D0"
+            },
+            {
+              "offset": 32,
+              "type": 6,
+              "symbol": "D_801461D0"
+            },
+            {
+              "offset": 40,
+              "type": 4,
+              "symbol": "osRecvMesg"
+            },
+            {
+              "offset": 48,
+              "type": 4,
+              "symbol": "slot_state_setup"
+            },
+            {
+              "offset": 56,
+              "type": 5,
+              "symbol": "D_801461D0"
+            },
+            {
+              "offset": 64,
+              "type": 6,
+              "symbol": "D_801461D0"
+            },
+            {
+              "offset": 72,
+              "type": 4,
+              "symbol": "osJamMesg"
+            }
+          ]
+        },
+        "world_trigger_check": {
+          "symbol_bytes": 228,
+          "native_bytes": 216,
+          "complete_differing_words": 42,
+          "differing_offsets": [
+            44,
+            48,
+            52,
+            56,
+            60,
+            64,
+            68,
+            72,
+            76,
+            80,
+            100,
+            104,
+            108,
+            112,
+            116,
+            120,
+            124,
+            128,
+            132,
+            136,
+            140,
+            144,
+            148,
+            152,
+            156,
+            160,
+            164,
+            168,
+            172,
+            176,
+            180,
+            184,
+            188,
+            192,
+            196,
+            200,
+            204,
+            208,
+            212,
+            216,
+            220,
+            224
+          ],
+          "body_sha256": "1a39ecba223831933ac665cad218fef7f8153cd948f31589292c95c660af44b4",
+          "gnu_equals_project_relocation": true,
+          "canonical": {
+            "differing": 39,
+            "total": 54,
+            "unresolved": [],
+            "unverified": [],
+            "errors": [],
+            "extra_words": 3
+          },
+          "relocations": [
+            {
+              "offset": 8,
+              "type": 5,
+              "symbol": "D_801461D0"
+            },
+            {
+              "offset": 28,
+              "type": 6,
+              "symbol": "D_801461D0"
+            },
+            {
+              "offset": 36,
+              "type": 4,
+              "symbol": "osRecvMesg"
+            },
+            {
+              "offset": 68,
+              "type": 5,
+              "symbol": "D_80149B48"
+            },
+            {
+              "offset": 96,
+              "type": 6,
+              "symbol": "D_80149B48"
+            },
+            {
+              "offset": 72,
+              "type": 5,
+              "symbol": "D_80114748"
+            },
+            {
+              "offset": 92,
+              "type": 6,
+              "symbol": "D_80114748"
+            },
+            {
+              "offset": 76,
+              "type": 5,
+              "symbol": "D_80149D92"
+            },
+            {
+              "offset": 88,
+              "type": 6,
+              "symbol": "D_80149D92"
+            },
+            {
+              "offset": 80,
+              "type": 5,
+              "symbol": "D_80149D9E"
+            },
+            {
+              "offset": 84,
+              "type": 6,
+              "symbol": "D_80149D9E"
+            },
+            {
+              "offset": 44,
+              "type": 5,
+              "symbol": "D_80149DA0"
+            },
+            {
+              "offset": 64,
+              "type": 6,
+              "symbol": "D_80149DA0"
+            },
+            {
+              "offset": 48,
+              "type": 5,
+              "symbol": "D_80149B60"
+            },
+            {
+              "offset": 60,
+              "type": 6,
+              "symbol": "D_80149B60"
+            },
+            {
+              "offset": 52,
+              "type": 5,
+              "symbol": "D_80149B70"
+            },
+            {
+              "offset": 56,
+              "type": 6,
+              "symbol": "D_80149B70"
+            },
+            {
+              "offset": 108,
+              "type": 4,
+              "symbol": "func_800B6748"
+            },
+            {
+              "offset": 116,
+              "type": 5,
+              "symbol": "D_80149DA0"
+            },
+            {
+              "offset": 124,
+              "type": 6,
+              "symbol": "D_80149DA0"
+            },
+            {
+              "offset": 120,
+              "type": 4,
+              "symbol": "slot_state_setup"
+            },
+            {
+              "offset": 128,
+              "type": 5,
+              "symbol": "D_80149B88"
+            },
+            {
+              "offset": 132,
+              "type": 6,
+              "symbol": "D_80149B88"
+            },
+            {
+              "offset": 140,
+              "type": 5,
+              "symbol": "D_8002AFC4"
+            },
+            {
+              "offset": 144,
+              "type": 6,
+              "symbol": "D_8002AFC4"
+            },
+            {
+              "offset": 176,
+              "type": 5,
+              "symbol": "D_8011474C"
+            },
+            {
+              "offset": 180,
+              "type": 6,
+              "symbol": "D_8011474C"
+            },
+            {
+              "offset": 184,
+              "type": 5,
+              "symbol": "D_8011473C"
+            },
+            {
+              "offset": 188,
+              "type": 6,
+              "symbol": "D_8011473C"
+            },
+            {
+              "offset": 148,
+              "type": 5,
+              "symbol": "D_801461D0"
+            },
+            {
+              "offset": 152,
+              "type": 6,
+              "symbol": "D_801461D0"
+            },
+            {
+              "offset": 192,
+              "type": 4,
+              "symbol": "osJamMesg"
+            }
+          ]
+        }
+      },
+      "owned_data_bytes": 0,
+      "excluded_zero_text_padding_bytes": 4,
+      "gnu_unmodified_object_text_address": "0x80000000",
+      "native_comparison_uses_explicit_original_entry_map": true
+    }
+  },
+  "behavior": {
+    "source_native_and_compiled_cases": 4756,
+    "sanitized_source_cases": 40000,
+    "additional_native_signed_index_cases": 5,
+    "selector_argument_registers": {
+      "native": "s2",
+      "standalone": "a0",
+      "clean_context": "s1"
+    },
+    "hooks_are_abi_specific_not_full_callee_execution": true,
+    "coverage": {
+      "native": {
+        "visited_words": 77,
+        "symbol_words": 82,
+        "unvisited_offsets": [
+          184,
+          188,
+          212,
+          216,
+          240
+        ],
+        "branch_outcomes": {
+          "100": [
+            false,
+            true
+          ],
+          "148": [
+            false,
+            true
+          ],
+          "164": [
+            false,
+            true
+          ],
+          "176": [
+            true
+          ],
+          "192": [
+            false
+          ],
+          "204": [
+            true
+          ],
+          "220": [
+            false
+          ],
+          "232": [
+            true
+          ],
+          "244": [
+            false
+          ],
+          "256": [
+            false,
+            true
+          ],
+          "276": [
+            false,
+            true
+          ],
+          "300": [
+            false,
+            true
+          ]
+        }
+      },
+      "standalone": {
+        "visited_words": 79,
+        "symbol_words": 84,
+        "unvisited_offsets": [
+          192,
+          196,
+          220,
+          224,
+          248
+        ],
+        "branch_outcomes": {
+          "108": [
+            false,
+            true
+          ],
+          "156": [
+            false,
+            true
+          ],
+          "172": [
+            false,
+            true
+          ],
+          "184": [
+            true
+          ],
+          "200": [
+            false
+          ],
+          "212": [
+            true
+          ],
+          "228": [
+            false
+          ],
+          "240": [
+            true
+          ],
+          "252": [
+            false
+          ],
+          "264": [
+            false,
+            true
+          ],
+          "284": [
+            false,
+            true
+          ],
+          "308": [
+            false,
+            true
+          ]
+        }
+      },
+      "clean_context": {
+        "visited_words": 86,
+        "symbol_words": 91,
+        "unvisited_offsets": [
+          208,
+          212,
+          236,
+          240,
+          264
+        ],
+        "branch_outcomes": {
+          "124": [
+            false,
+            true
+          ],
+          "172": [
+            false,
+            true
+          ],
+          "188": [
+            false,
+            true
+          ],
+          "200": [
+            true
+          ],
+          "216": [
+            false
+          ],
+          "228": [
+            true
+          ],
+          "244": [
+            false
+          ],
+          "256": [
+            true
+          ],
+          "268": [
+            false
+          ],
+          "280": [
+            false,
+            true
+          ],
+          "300": [
+            false,
+            true
+          ],
+          "324": [
+            false,
+            true
+          ]
+        }
+      }
+    }
+  },
+  "negative_elf_drills": [
+    "bad_extent",
+    "bad_relocation"
+  ],
+  "literal_ownership": "No candidate/group owned data sections or literal references",
+  "source_originality": "Behavior reconstruction; original declarations and sufficient private-ABI closure unresolved",
+  "runtime_image_or_rom_verified": false
+}
