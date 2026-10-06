@@ -123,3 +123,21 @@ def test_native_mode_upper_bits_are_narrowed():
         expected,_=proof.native.oracle(case,a)
         got,_,_,_=proof.native.execute(words,a[proof.NAME],case,a)
         assert got==expected
+
+
+def test_linker_identity_is_provenance_without_weakening_native_evidence():
+    receipt=saved();different_linker=copy.deepcopy(receipt)
+    different_linker['gnu_ld_sha256']='different GNU linker build'
+    assert proof.portable(receipt)==proof.portable(different_linker)
+    assert receipt==saved()  # Normalizing a receipt must not discard its provenance.
+    assert 'gnu_ld_sha256' in different_linker
+    for field in ['linked_sha256','elf_function_bytes','full_target_bytes',
+                  'complete_differing_offsets','relocation_count','owned_data_bytes',
+                  'gnu_and_project_equal','gnu_readelf_size_verified']:
+        altered=copy.deepcopy(different_linker)
+        altered['complete_gnu_proof'][proof.NAME][field]='changed'
+        assert proof.portable(receipt)!=proof.portable(altered),field
+    for field in ['compiler_sha256','compiler_stage_sha256','flags','behavior',
+                  'controls','ordinary_clock_complete_gnu','o32_layout_assertions']:
+        altered=copy.deepcopy(different_linker);altered[field]='changed'
+        assert proof.portable(receipt)!=proof.portable(altered),field

@@ -98,12 +98,16 @@ update. Unknown opcode, redirected stack save, wrong callback target and
 truncated native body controls fail. Tests also reject an unmapped clock read
 and a changed witness clock address.
 
-The final local checks pass **787 selected tests**: 13 packet tests and 774
+The original local checks passed **787 selected tests**: 13 packet tests and 774
 scorer, integrity, guard, submission and owned-data tests. All 402 static source
 locks remain intact. The submission scanner schedules zero matching
 submissions for this research-only directory. Early sparse-checkout test
 failures were missing baseline source inputs, resolved by materializing those
 unchanged inputs and rerunning; they are not candidate regressions.
+
+The linker-provenance follow-up passes **14 focused packet tests** and repeats
+the full native/host proof. A broader local attempt encountered scratch inode
+exhaustion and was interrupted; no broader pass or hosted-CI rerun is claimed.
 
 ## Reproduction and limits
 
@@ -113,7 +117,12 @@ With the pinned IDO and GNU MIPS tools configured, from repository root:
     python3 -m pytest -q tests/conveyor/test_animation_setter_contract.py
 
 `verify.py --write` refreshes the local receipt after a deliberate source change;
-normal replay requires equality. Current native manifests are always verified.
+normal replay requires equality of portable evidence. The GNU linker binary hash
+is retained as run provenance rather than a cross-host equality requirement;
+complete GNU-linked bytes and extent checks, all relocations, IDO stage hashes,
+source/native bindings and behavioral results remain equal. A regression accepts
+a changed linker identity while rejecting changes to each verification result.
+Current native manifests are always verified.
 The whole-manifest digest is historical provenance for receipt portability;
 selected caller/setter/witness body hashes, all consumed relocation symbol
 addresses, source/recipe hashes and all behavioral evidence remain bound.

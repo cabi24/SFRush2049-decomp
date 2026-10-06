@@ -148,7 +148,7 @@
     "cloud/work/frontier/dot_animation_setter_contract_20261006/host.c": "d4e4cd8bf5ca1171487ba7a3a81ba7d6a389338c72c86390b33d4f65c1c9ea5f",
     "cloud/work/frontier/dot_animation_setter_contract_20261006/native.py": "ebfc763db5c0caf8517296bd8288b2bcdf5abe5a598d05f8c7fc9d0486ccae27",
     "cloud/work/frontier/dot_animation_setter_contract_20261006/provenance.json": "d4d72a362842d805672535f116211b7f51834c9f47b8abbfd4ead75594b14037",
-    "cloud/work/frontier/dot_animation_setter_contract_20261006/verify.py": "39295fdc6c1cb919255c3b83967ff73da8679203bb18c50a04311dfae51c95da"
+    "cloud/work/frontier/dot_animation_setter_contract_20261006/verify.py": "4c1cd10620c80813429c31a80933016e5c1e15f8e23350bf2d41aaee49b0ca78"
   },
   "interval": [
     "0x80094888",

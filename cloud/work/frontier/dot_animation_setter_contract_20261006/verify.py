@@ -266,7 +266,10 @@ def verify():
 
 
 def portable(receipt):
-    receipt=json.loads(json.dumps(receipt));receipt.pop('target_manifest_provenance',None)
+    # Tool identity is retained as run provenance. Portable replay compares the
+    # complete GNU-linked bytes, relocations, native bindings and behavior instead.
+    receipt=json.loads(json.dumps(receipt))
+    for field in ['target_manifest_provenance','gnu_ld_sha256']:receipt.pop(field,None)
     return receipt
 
 
