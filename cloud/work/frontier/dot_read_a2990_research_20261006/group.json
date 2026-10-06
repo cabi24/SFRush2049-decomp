@@ -1,0 +1,36 @@
+{
+  "files": [
+    "heap.c",
+    "candidate.c"
+  ],
+  "keep": [
+    "audio_effect_process",
+    "synced_model_render",
+    "MP_TargetSpeed",
+    "assign_default_paths",
+    "stat_race_end",
+    "audio_buffer_sync",
+    "object_counter_decrement",
+    "object_counter_increment",
+    "drone_set_catchup"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "members": [
+    "drone_set_catchup"
+  ],
+  "claims": [],
+  "context": [
+    "audio_reverb_update",
+    "func_80095F8C",
+    "func_80095EF4",
+    "audio_effect_process",
+    "synced_model_render",
+    "MP_TargetSpeed",
+    "assign_default_paths",
+    "stat_race_end",
+    "audio_buffer_sync",
+    "object_counter_decrement",
+    "object_counter_increment"
+  ],
+  "provenance": "Observed local Pak-read research candidate. Genuine heap callers and reconstructed queue helper structure; no accepted coverage claim."
+}
