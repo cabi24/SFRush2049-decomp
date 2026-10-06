@@ -48,7 +48,14 @@ accepted context. The latter earns no duplicate matching credit. The current
 production group reader independently resolves and reproduces both full bodies.
 This is a real local source unit, not proof of the original complete translation
 unit or of every inlined caller. No direct native `jal` caller for B2E4 was found
-by the protected-target census.
+by the **main-game protected-target census**, which did not cover runtime images.
+[PR #147](https://github.com/cabi24/SFRush2049-decomp/pull/147) establishes four
+direct calls in runtime image **B**: `0x803913D8`, `0x803913F4`, `0x80391410`
+and `0x8039142C`, all targeting `0x8008B2E4` from `func_8039133C`.
+The [pinned caller evidence](https://github.com/cabi24/SFRush2049-decomp/blob/8636cabec85efc040f79c19108adb30d023aa88b/cloud/work/runtime_b_object_phases_20261006/README.md#complete-contract)
+belongs to image B, ROM stream `0xB6FEC4`, image SHA-256
+`b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd`.
+Runtime image A overlaps this address space and is not interchangeable with B.
 
 The accepted rand uses signed arithmetic whose overflow is undefined in portable
 ISO C. IDO's observed MIPS code wraps modulo 2^32. Host tests compile the
