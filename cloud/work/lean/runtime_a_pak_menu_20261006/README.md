@@ -4,8 +4,8 @@ Frozen base: `f2e8380d3b368d00efc9cac3e37cdc7059b1f6e2`.
 
 The genuine four-body group covers 3,116 native bytes:
 
-- `A:func_803A6F2C`, 596 bytes: **7/149 words differ**.
-- `A:func_803A7180`, 1,184 bytes: **6/296 words differ**.
+- `A:func_803A6F2C`, 596 bytes: **2/149 words differ**.
+- `A:func_803A7180`, 1,184 bytes: **2/296 words differ**.
 - `A:func_803A7620`, 760 bytes: **4/190 words differ**.
 - `A:func_803A7918`, 576 bytes: **7/144 words differ**.
 
@@ -16,6 +16,13 @@ children were 137/149 (+10 extra words), 296/296 (+17), and 186/190 (+14).
 Their real caller restores the native interprocedural register-save context.
 The first group attempt also exposed a mistaken final formatter call in the
 file list; correcting it to the actual libc `sprintf` removed one difference.
+
+Follow-on to [draft #232](https://github.com/cabi24/SFRush2049-decomp/pull/232).
+Reordering only existing local declarations improves A6F2C from 7/149 to 2/149
+and A7180 from 6/296 to 2/296. All their real text-buffer offsets now agree.
+Only allocation/deallocation frame sizes remain: A6F2C allocates 312 rather
+than 320 bytes; A7180 allocates 184 rather than 168. No array capacity,
+statement, interface or other function changed. The two sibling scores retain.
 
 ## Reproduce
 
