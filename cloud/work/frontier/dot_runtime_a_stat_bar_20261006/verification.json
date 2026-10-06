@@ -1,0 +1,522 @@
+{
+  "status": "MATCH",
+  "image": "A",
+  "address": "0x803a4134",
+  "end": "0x803a4340",
+  "bytes": 524,
+  "words": 131,
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source_sha256": "0acf2c36368f0172f0b7426c41d87b539050f5ebfbfa419f7eac3b09c71fcbea",
+  "native_sha256": "c79fb81fa3af695c6fa11fb403e7ddba62771bdd022442c8cc4410715c21f9eb",
+  "gnu_linked_body_sha256": "c79fb81fa3af695c6fa11fb403e7ddba62771bdd022442c8cc4410715c21f9eb",
+  "comparison": {
+    "differing": 0,
+    "total": 131,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "notes": []
+  },
+  "function_bytes": 524,
+  "alignment_bytes": 4,
+  "owned_data_bytes": 0,
+  "relocations": 16,
+  "anchors": {
+    "D_8014A108": "0x8014a108",
+    "D_8014A110": "0x8014a110",
+    "D_803B85D8": "0x803b85d8",
+    "D_803BA028": "0x803ba028",
+    "D_803BA190": "0x803ba190",
+    "func_800EF5B0": "0x800ef5b0",
+    "input_new_data_wrapper": "0x80094f88",
+    "Input_ApplyPadConfig": "0x80094ec8"
+  },
+  "behavior": {
+    "cases": 5105,
+    "native_executions": 10224,
+    "coverage": 130,
+    "unreachable_offsets": [
+      "0x1e4"
+    ],
+    "branches": [
+      [
+        44,
+        false
+      ],
+      [
+        44,
+        true
+      ],
+      [
+        60,
+        false
+      ],
+      [
+        60,
+        true
+      ],
+      [
+        68,
+        false
+      ],
+      [
+        68,
+        true
+      ],
+      [
+        152,
+        false
+      ],
+      [
+        152,
+        true
+      ],
+      [
+        160,
+        false
+      ],
+      [
+        160,
+        true
+      ],
+      [
+        180,
+        false
+      ],
+      [
+        180,
+        true
+      ],
+      [
+        200,
+        false
+      ],
+      [
+        200,
+        true
+      ],
+      [
+        236,
+        true
+      ],
+      [
+        260,
+        true
+      ],
+      [
+        352,
+        false
+      ],
+      [
+        352,
+        true
+      ],
+      [
+        360,
+        true
+      ],
+      [
+        372,
+        false
+      ],
+      [
+        372,
+        true
+      ],
+      [
+        460,
+        false
+      ],
+      [
+        460,
+        true
+      ],
+      [
+        468,
+        true
+      ],
+      [
+        476,
+        true
+      ]
+    ],
+    "trace_sha256": "4444d09057a599e8fb33073949453c131c3570cc927a0b6bc505cfa0a5331e5f",
+    "native_only_narrowing": [
+      {
+        "input_f32": 32769.0,
+        "right": 2
+      },
+      {
+        "input_f32": 65536.0,
+        "right": 2
+      },
+      {
+        "input_f32": 65537.0,
+        "right": 2
+      },
+      {
+        "input_f32": -32768.0,
+        "right": 32767
+      },
+      {
+        "input_f32": -65535.0,
+        "right": 2
+      },
+      {
+        "input_f32": -65536.0,
+        "right": 2
+      },
+      {
+        "input_f32": 1048576.0,
+        "right": 2
+      }
+    ]
+  },
+  "layout_checks": {
+    "X": 14,
+    "Y": 16,
+    "Width": 20,
+    "Height": 22,
+    "Hide": 26,
+    "Top": 28,
+    "Bot": 30,
+    "Left": 32,
+    "Right": 34,
+    "AnimFunc": 40,
+    "AnimID": 44
+  },
+  "negative_controls": {
+    "wrong_division": {
+      "case": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        -128,
+        -128,
+        123,
+        -55,
+        1056964608,
+        0,
+        305418240
+      ],
+      "host_rejected": true,
+      "strict_match": false,
+      "comparison": {
+        "differing": 87,
+        "total": 131,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      }
+    },
+    "wrong_player": {
+      "case": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        -128,
+        -128,
+        123,
+        -55,
+        1056964608,
+        0,
+        305418240
+      ],
+      "host_rejected": true,
+      "strict_match": false,
+      "comparison": {
+        "differing": 1,
+        "total": 131,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      }
+    },
+    "wrong_visibility": {
+      "case": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        -128,
+        -128,
+        123,
+        -55,
+        1056964608,
+        0,
+        305418240
+      ],
+      "host_rejected": true,
+      "strict_match": false,
+      "comparison": {
+        "differing": 2,
+        "total": 131,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      }
+    },
+    "wrong_minimum": {
+      "case": [
+        1,
+        1,
+        0,
+        1,
+        -32768,
+        0,
+        0,
+        -128,
+        123,
+        -55,
+        1056964608,
+        0,
+        305418240
+      ],
+      "host_rejected": true,
+      "strict_match": false,
+      "comparison": {
+        "differing": 2,
+        "total": 131,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      }
+    },
+    "missing_disable": {
+      "case": [
+        0,
+        0,
+        0,
+        0,
+        -32768,
+        0,
+        -128,
+        -128,
+        123,
+        -55,
+        1056964608,
+        0,
+        305418240
+      ],
+      "host_rejected": true,
+      "strict_match": false,
+      "comparison": {
+        "differing": 96,
+        "total": 131,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      }
+    },
+    "missing_update": {
+      "case": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        -128,
+        -128,
+        123,
+        -55,
+        1056964608,
+        0,
+        305418240
+      ],
+      "host_rejected": true,
+      "strict_match": false,
+      "comparison": {
+        "differing": 106,
+        "total": 131,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      }
+    },
+    "wrong_bar_index": {
+      "case": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        -1,
+        123,
+        -55,
+        1056964608,
+        1,
+        305418240
+      ],
+      "host_rejected": true,
+      "strict_match": false,
+      "comparison": {
+        "differing": 38,
+        "total": 131,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      }
+    },
+    "wrong_stat_player": {
+      "case": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        -1,
+        123,
+        -55,
+        1056964608,
+        1,
+        305418240
+      ],
+      "host_rejected": true,
+      "strict_match": false,
+      "comparison": {
+        "differing": 38,
+        "total": 131,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      }
+    },
+    "wrong_hide_player": {
+      "case": [
+        0,
+        0,
+        0,
+        2,
+        1,
+        0,
+        1,
+        0,
+        123,
+        -55,
+        1056964608,
+        2,
+        305418240
+      ],
+      "host_rejected": true,
+      "strict_match": false,
+      "comparison": {
+        "differing": 57,
+        "total": 131,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      }
+    }
+  },
+  "protected_targets": {
+    "extents.json": "0d97935254a6f2c724dfe68b08087e0a451e56d0aedb2121748abe7b6cc0798b",
+    "ovl_a_8038a400.s": "94f5fdb45838b6d21fb761209bf2cb60602f90ea8725b16cae2c3cebe0aa7685",
+    "symbols.json": "d5a6c8dccb0380f54f080d45d82a5e71f917be86f9568bf4b7fbe10a89f2a769"
+  },
+  "helper_native_bindings": {
+    "func_800EF5B0": [
+      2148464048,
+      124,
+      "b9b278845d966d684513a894e9b728164b3291016e67967a1a51fb395c30eadd"
+    ],
+    "input_new_data_wrapper": [
+      2148093832,
+      60,
+      "51bff8e44879d93b2c44f11fea4c78e7a725283b496a06d94290f1793f4763b3"
+    ],
+    "Input_ApplyPadConfig": [
+      2148093640,
+      192,
+      "3282399bd7919e39047f452faa4070df2ef7b4b91d82318591c2592e7bfda590"
+    ],
+    "sound_control": [
+      2148218856,
+      468,
+      "56fb7406e5ae20cf6e85f574d6bc988e5e5d6dd694cfee5e7ef20c1ed73daad9"
+    ],
+    "state_update_global": [
+      2148578656,
+      112,
+      "f6c6d560d9fec4655cd774bd5da62442f4893bbb0cfc07505a37372d6fd7c689"
+    ]
+  },
+  "helper_protected_targets": {
+    "blob_80086a50.s": "ba721352e95376f6ce8ec05f8e5219f8fcbd92b0df977b0761e606f535c7a63d",
+    "blob_8008d0c0.s": "9f6bda37e56d1373f4579652878d66da03c105cfb778d66cd8d2e25b9e00c302",
+    "blob_800947f0.s": "2b51286c2e542c851a9ca93fb115d63f999563babe6790993b5fc5ee5fc750ef",
+    "blob_800966d8.s": "352cac208346e290f2d37a50d64e10b8bfcb0ac41a45462d32fa47bd6a4415ef",
+    "blob_8009dd18.s": "f9d2236d8ac4e1cafabdcfeb45085faeffdd12ebfd7759a7f0ee689abdcfc97e",
+    "blob_800a4508.s": "ef05d9829d5c65fa671c77f39aba4b7993c17883e6f2e0f80f49a10876e1ef57",
+    "blob_800a7df0.s": "a085c918680b1ce58cf773001bbfc4b6dc4fafc81a83628c490c74b98a9c3307",
+    "blob_800aeb54.s": "9fb26c1a7748fb810f814310dae38b41c08ae3c5a363f5b5b3603944b177f612",
+    "blob_800b3b4c.s": "f853ecc521a4302a0b27adcb0a031be43dbbe5c60120c854d126a0d03136b460",
+    "blob_800b7360.s": "bd72c4f5c591295a0a6f5c350f350fa1d54d41f05433377f42e6d0215e556f19",
+    "blob_800bdd90.s": "bf8a235711aeb9c151e8f0c4cf7f5f94764c63532d16871de2eab6f5befb59b5",
+    "blob_800c46d0.s": "66904e25e8dd171bf5ff9f937c78c7a09325f737fc49c15056bfafae29fbcd61",
+    "blob_800cbe08.s": "3bfcd465371fdf9fbbc2bca6f795766c47637d063a62090897c48ef124a58011",
+    "blob_800d1004.s": "c044a570528af864dce8ea70ce9e7a33e588c4755830cf82a95c95961831e9d3",
+    "blob_800d6690.s": "af2b96cbe7ec9ab12eb31fe3f60503ad58e4e5972580f6ab12c7c7f242f0f01e",
+    "blob_800de454.s": "bb7940421befc5ad9780372e21ab0ddd806ef63032c4eb385a318d08af3ef14f",
+    "blob_800e7030.s": "3a9737632b9e09f3723d7601414cdc8c2224688d0828269a10a7ae6e878c5ca7",
+    "blob_800ef5b0.s": "1c075597840ba0d4ce607b0025df300f147a94f231f2503aea2f21be9a4a7cef",
+    "blob_800f8d9c.s": "54011762c87c8b7b13c522f781e674be72156d6313e653ee89147a635bad0e2f",
+    "blob_80100d24.s": "117d428475270098f48317f43dc5b404023bc365cf4460b9d93a68951b2fb99d",
+    "blob_8010e0fc.s": "c0c9ba877349c3aed66e35a51b1afdb5c5d147d196b54ba1e2fafb45b77f574c",
+    "blob_8010fd7c.s": "ad3456595bad8f1e62ac4d8ce1710c2c6d6851dd05c509de0904b22538a4df13",
+    "symbols.json": "ea80bea2d751ca4f4e8ac636d2a9a5278e10267dd1f0a138a9fea5118a1b7c7d"
+  },
+  "producer_native_sha256": "e0bf3d0731f618da18552bced27d621bec55be5f5cc274d1554c3a9656b046bc",
+  "support_sha256": {
+    "host.c": "195013b8f73d3123a7bb43c1ff84702ec4b81224726ca31fde11094909e75a40",
+    "semantics.py": "c6cd775aa95365ee4040bc0e07a00410ed328ec4e3fb1255f43a1afad9da871c",
+    "elf_support.py": "2f3ab96521aa807cb2b29523fea5bff964aea395fbf73649c4d4ff663523e1d9"
+  },
+  "scorer_sha256": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+  "tools": {
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+  },
+  "limits": [
+    "Table-read player/bar 0..3; rejected uninitialized players through15 tested",
+    "Finite signed32-convertible arithmetic only; host float-to-s16 tests restrict truncated result to signed16",
+    "Wider signed16 wrapping is native-only evidence, not portable C behavior",
+    "Helpers are side-effecting O32 contract hooks; real renderer and texture data do not execute",
+    "Actual descriptor table and asset float ranges not available; no reachability or full resource-range proof",
+    "No full image/compression/ROM/hardware gate, no coverage acceptance or original-source claim"
+  ]
+}
