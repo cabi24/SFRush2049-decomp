@@ -525,7 +525,7 @@
     "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
   },
   "packet_sha256": {
-    "verify.py": "660f1e484e62a2321cb2fac6ba041ddb3a6a23c9a77978cef30bed18c94219fc",
+    "verify.py": "e75d363b35799581aa297410eab34c0983eae147c1625673fb520a0dcf56e603",
     "semantics.py": "7ecc737bdd760c54e963f19d44ea9bf9fc4c3d8d15fbfe2cef063b5460b18b77",
     "native.py": "2020e0cbbcb33cb88ab19422c3be6d0971ff90042fcb8669dc0c72d16accf645",
     "host.c": "68d85b497334f01581273d8a09293ba8f7cdf8b82f443086d063ffa2b622ec82"

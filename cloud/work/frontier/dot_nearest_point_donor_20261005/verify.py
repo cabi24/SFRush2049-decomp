@@ -72,7 +72,9 @@ def audit(obj, directory):
 
 def verify():
     targets = score.targets(); syms = score.image_symbols()
-    assert NAME not in json.loads((ROOT/'blob_matched.lock.json').read_text())
+    # Research predates the match; once promoted, only from its own spliced source.
+    locks = json.loads((ROOT/'blob_matched.lock.json').read_text())
+    assert NAME not in locks or locks[NAME]['source'] == 'src/blob/%s.c' % NAME
     old = ROOT/'cloud/work/near_miss_B6/func_800D2C10_best.c'
     signed_old = ROOT/'cloud/work/near-miss/func_800D2C10/base.c'
     macro = (HERE/'vector_macro.c').read_text()

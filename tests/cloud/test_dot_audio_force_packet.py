@@ -21,7 +21,7 @@ def receipt():
 
 def test_source_receipt_binding():
     for name,digest in receipt()['source_bindings'].items():
-        assert hashlib.sha256(verify.src(name).read_bytes()).hexdigest() == digest
+        assert hashlib.sha256(verify.context_path(name).read_bytes()).hexdigest() == digest
 
 
 def test_full_match_is_not_coverage():

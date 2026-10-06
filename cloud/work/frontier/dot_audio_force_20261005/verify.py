@@ -20,7 +20,7 @@ ROOT = HERE.parents[3]
 # Context groups superseded after this packet was frozen are kept byte-identical
 # under cloud/work/frontier/superseded/; receipts keep the original paths.
 SUPERSEDED={'src/blob/groups/frontier_list_alloc_sound':'cloud/work/frontier/superseded/frontier_list_alloc_sound'}
-def src(p):
+def context_path(p):
     p=str(p)
     for old,new in SUPERSEDED.items():
         if p.startswith(old) and not (ROOT/old).exists():return ROOT/(new+p[len(old):])
@@ -37,7 +37,7 @@ NAME = 'func_800DED78'
 FLAGS = '-g0 -O3 -mips2 -G 0 -non_shared'
 OLD = ROOT/'cloud/work/module_campaign_20261002/ai/model_audio'
 ACCEPTED_KEY = 'src/blob/groups/frontier_list_alloc_sound'
-ACCEPTED = src(ACCEPTED_KEY)
+ACCEPTED = context_path(ACCEPTED_KEY)
 CONTEXT = ['func_80092278','entity_flags_apply','high_scores_display','func_8009211C','func_80091FBC']
 
 
