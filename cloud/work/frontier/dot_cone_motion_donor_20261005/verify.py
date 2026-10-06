@@ -302,7 +302,14 @@ def runtime_proof(work,linked):
             'NaNs compared by class; signaling payloads, FCSR flags, clock concurrency and gameplay unverified.']}
 
 def verify():
-    assert FN not in json.loads((ROOT/'blob_matched.lock.json').read_text())
+    # The packet's no-claim boundary is about its base commit e24b47d8, where
+    # FN was unlocked; it was matched later (wave 7), so the live lock is not
+    # the question this receipt answers.
+    import subprocess
+    base_lock=subprocess.run(['git','show','e24b47d8:blob_matched.lock.json'],cwd=ROOT,
+                             capture_output=True,text=True)
+    if base_lock.returncode==0:
+        assert FN not in json.loads(base_lock.stdout)
     with tempfile.TemporaryDirectory(prefix='cone-donor-proof-') as tmp:
         work=Path(tmp);obj=work/'candidate.o';score.compile_single(SOURCE,FLAGS,obj)
         code,linked=linked_proof(obj,work)

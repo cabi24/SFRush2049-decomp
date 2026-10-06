@@ -1,0 +1,29 @@
+{
+ "members": [
+  "render_display_list",
+  "func_80099B30",
+  "func_8009C3F8",
+  "camera_update_c",
+  "select_screen_update",
+  "particle_system",
+  "track_collision_wall",
+  "Input_ProcessGameplayPad",
+  "func_800BFD8C"
+ ],
+ "context": [
+  "func_8009F058"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "camera_update_c",
+  "select_screen_update",
+  "Input_ProcessGameplayPad",
+  "func_800BFD8C"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "Particle-system knot (waves 5-7, w5b/w6a/w7a), no stand-ins. Owner decision 2026-10-05: the eight members are claimed with func_8009F058 compiled in as real but unclaimed context; its only residual is one spill-slot offset (sw/lw t0 at 68(sp) vs retail 72(sp)), which does not change any register or code the members depend on. Input_ProcessGameplayPad is the chain's only external caller; func_80087110 stays an ABI call. Wave 8 (w8a): func_800BFD8C (arcade InterpQuats, slerp) appended to group.c as a kept member; it inlines select_screen_update and calls func_8009C3F8 with x in $f16.",
+ "provenance": "frontier wave 8 (w8a), 2026-10-05; cloud/work/frontier/w8a/RESULTS.md"
+}

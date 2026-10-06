@@ -2190,6 +2190,7 @@ func_800BFBE8:
 .section .text.select_screen_update, "ax", @progbits
 .globl select_screen_update
 select_screen_update:
+    /* compiled from src/blob/select_screen_update.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x46006406
@@ -2203,6 +2204,7 @@ select_screen_update:
 .section .text.func_800BFD8C, "ax", @progbits
 .globl func_800BFD8C
 func_800BFD8C:
+    /* compiled from src/blob/func_800BFD8C.c */
     .word 0x3C018012
     .word 0xC4243E78
     .word 0x27BDFFC8

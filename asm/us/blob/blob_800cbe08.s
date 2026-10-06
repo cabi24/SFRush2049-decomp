@@ -5049,6 +5049,7 @@ func_800D0894:
 .section .text.track_preview_handler, "ax", @progbits
 .globl track_preview_handler
 track_preview_handler:
+    /* compiled from src/blob/track_preview_handler.c */
     .word 0x27BDFFE0
     .word 0xF7B40008
     .word 0x44866000

@@ -4338,6 +4338,7 @@ object_type1_create:
 .section .text.func_800C885C, "ax", @progbits
 .globl func_800C885C
 func_800C885C:
+    /* compiled from src/blob/func_800C885C.c */
     .word 0x3C028011
     .word 0x8C42025C
     .word 0x27BDFFC0
@@ -5610,6 +5611,7 @@ process_inputs:
 .section .text.game_mode_handler, "ax", @progbits
 .globl game_mode_handler
 game_mode_handler:
+    /* compiled from src/blob/game_mode_handler.c */
     .word 0x27BDFFB0
     .word 0x3C0F8003
     .word 0xAFBF0024

@@ -1,0 +1,9 @@
+{
+ "members": ["func_800D8078"],
+ "files": ["group.c"],
+ "keep": ["zz_caller", "zz_caller2"],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "note": "PROVISIONAL (w8a): func_800D8078 is internal (its real caller func_800D91A0, 3860 bytes, unmatched, keeps t0-t5 live across the call); proven with two stand-in callers zz_caller/zz_caller2. Not a match, not spliceable."
+}

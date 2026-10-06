@@ -173,7 +173,9 @@ def test_seeded_provisional_file_names_the_wave0_standins():
     seeded = frontier.load_provisional()
     # func_800D1AB0 was a wave-0 stand-in proof; it closed for real in wave 3
     # (frontier_car_checkpoints) and left the file.
-    assert {"func_800B66B0", "func_80099B30"} <= set(seeded)
+    # func_80099B30 closed for real in the particle-knot claim (2026-10-05).
+    assert {"func_800B66B0"} <= set(seeded)
+    assert "func_80099B30" not in seeded
     assert "func_800D1AB0" not in seeded
     assert "func_80091B00" not in seeded
     for entry in seeded.values():

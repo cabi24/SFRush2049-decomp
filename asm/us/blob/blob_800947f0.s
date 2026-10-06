@@ -2192,6 +2192,7 @@ display_list_traverse:
 .section .text.entity_render_mode, "ax", @progbits
 .globl entity_render_mode
 entity_render_mode:
+    /* compiled from src/blob/entity_render_mode.c */
     .word 0x27BDFFA8
     .word 0xAFBF003C
     .word 0xAFB60038

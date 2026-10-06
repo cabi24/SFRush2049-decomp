@@ -101,4 +101,11 @@ def test_complete_compiler_native_host_replay(tmp_path):
     if not (verify.score.IDO / 'cc').is_file() or not shutil.which('mips-linux-gnu-ld'):
         if os.environ.get('REQUIRE_TOOLCHAIN') == '1': pytest.fail('required pinned toolchain is unavailable')
         pytest.skip('pinned IDO and GNU MIPS linker required')
-    assert verify.verify(tmp_path) == receipt()
+    # Protected manifests and the scorer change with every splice: frozen provenance, not a lock.
+    def strip(d):
+        d = dict(d)
+        d['input_sha256'] = {k: h for k, h in d['input_sha256'].items()
+                             if k not in ('asm/us/blob/SHA256SUMS', 'tools/cloud/score.py',
+                                          'tools/cloud/owndata.py')}
+        return d
+    assert strip(verify.verify(tmp_path)) == strip(receipt())

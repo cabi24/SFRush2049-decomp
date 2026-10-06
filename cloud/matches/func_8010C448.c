@@ -1,68 +1,52 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
 /*
- * func_8010C448: N64 OverlapTarget (arcade game/targets.c OverlapTarget(slot, pos, radius, *dist)),
- * reached through a function pointer (no direct callers). Sibling of
- * func_8010C448/func_8010C588 (identical bodies except the upper height limit: 18.0f / 4.0f).
- *   returns 0 unless model[slot].collidable (D_8014A250, 0x808-byte MODELDAT, +0x7EA);
- *   copies pos into a local array (veccopy), vec = game_car[slot].RWR - pos (vecsub);
- *   N64 change: the distance test is horizontal only (x, z); radius += CAR_RADIUS (3.5f);
- *   gap = dsq - radius^2, stored through dist when non-null; returns 0 when gap > 0;
- *   N64 addition: then requires -2.0f < vec[1] < 18.0f.
- * slot and radius arrive by pointer (first s16 of the record / f32 *).
- * Shaping quirks: `gc = player_array; gc += slot;` (not &player_array[slot]) -- the typed
- *   &array[i] form gives ugen a .noalias for the car pointer and as1 then hoists the RWR loads
- *   above the local-array stores; vec is declared before p (p at sp+0, vec at sp+12); the dot is
- *   written x*x + z*z.  Also MATCH at -O2.  Whole-program unit: EQUAL.
+ * N64 target-overlap callback, derived from arcade targets.c OverlapTarget
+ * and vecmath.h mveccopy/mvecsub at rushtherock 845329d7b36f5a384c5625ed9a0aef584ab46139.
+ * The native callback takes pointers to the signed selector and radius,
+ * snapshots the origin, uses X/Z distance with radius + 3.5, and accepts
+ * vertical delta strictly between -2 and 18. Optional radial error
+ * is written even when the overlap test fails. Disabled models return zero.
+ *
+ * Preserve the donor's dsq/gap-before-vector declaration order and its
+ * distance-then-radius operation order: both affect stock IDO code generation.
+ * All locals are used. No dummy storage, reads, volatile, or helper stand-ins.
+ * Types below are observed offset views, not full recovered record layouts.
+ * See cloud/work/frontier/dot_target_overlap_20261005/README.md.
  */
-typedef signed char s8; typedef unsigned char u8; typedef short s16; typedef unsigned short u16;
-typedef int s32; typedef unsigned int u32; typedef float f32;
+#define mvecsub(a,b,r) {r[0]=a[0]-b[0]; r[1]=a[1]-b[1]; r[2]=a[2]-b[2];}
+#define mveccopy(a,r) {r[0]=a[0]; r[1]=a[1]; r[2]=a[2];}
+typedef struct ProximityEnabled {
+    signed char enabled;
+    unsigned char unknown[0x807];
+} ProximityEnabled;
+typedef struct ProximityPlayer {
+    unsigned char unknown0[8];
+    float position[3];
+    unsigned char unknown14[0x3B8 - 0x14];
+} ProximityPlayer;
+extern ProximityEnabled D_8014AA3A[];
+extern ProximityPlayer player_array[];
 
-typedef struct GameCar {
-    u8 pad0[8];
-    f32 RWR[3];             /* 0x08 */
-    u8 pad14[932];
-} GameCar;                  /* 0x3B8 */
-
-typedef struct ModelDat {
-    u8 pad0[0x7EA];
-    s8 collidable;          /* 0x7EA */
-    u8 pad7EB[0x808 - 0x7EB];
-} ModelDat;                 /* 0x808 */
-
-extern GameCar player_array[];
-extern ModelDat D_8014A250[];
-
-s32 func_8010C448(s16 *slotp, f32 *pos, f32 *radiusp, f32 *dist)
+int func_8010C448(short *player_index, float *point, float *radius_in,
+                  float *radial_error)
 {
-    f32 dsq, gap;
-    f32 vec[3];
-    f32 p[3];
-    s16 slot = *slotp;
-    f32 radius = *radiusp;
-    GameCar *gc;
+    float distance_squared, gap;
+    float delta[3], position[3];
+    ProximityPlayer *player;
+    short index;
+    float radius;
 
-    if (D_8014A250[slot].collidable == 0) {
-        return 0;
-    }
-    p[0] = pos[0];
-    p[1] = pos[1];
-    p[2] = pos[2];
-    gc = player_array;
-    gc += slot;
-    vec[0] = gc->RWR[0] - p[0];
-    vec[1] = gc->RWR[1] - p[1];
-    vec[2] = gc->RWR[2] - p[2];
-    dsq = vec[0] * vec[0] + vec[2] * vec[2];
+    index = *player_index;
+    player = &player_array[index];
+    radius = *radius_in;
+    if (!D_8014AA3A[index].enabled) return 0;
+    mveccopy(point,position);
+    mvecsub(player->position,position,delta);
+    distance_squared = delta[0] * delta[0] + delta[2] * delta[2];
     radius += 3.5f;
-    gap = dsq - radius * radius;
-    if (dist) {
-        *dist = gap;
-    }
-    if (gap > 0.0f) {
-        return 0;
-    }
-    if (vec[1] > -2.0f && vec[1] < 18.0f) {
-        return 1;
-    }
+    gap = distance_squared - radius * radius;
+    if (radial_error) *radial_error = gap;
+    if (gap > 0.0f) return 0;
+    if (delta[1] > -2.0f && delta[1] < 18.0f) return 1;
     return 0;
 }

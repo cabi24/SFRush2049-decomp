@@ -1,0 +1,16 @@
+{
+ "members": [
+  "func_800E79F0",
+  "func_800E79F8"
+ ],
+ "files": [
+  "heap_max.c"
+ ],
+ "keep": [
+  "func_800E79F8"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "context": [],
+ "note": "New wrapper body and existing adjacent stub; source boundary inferred from the accepted free-total sibling. No production keep list changes.",
+ "provenance": "PR #112, 2026-10-05"
+}

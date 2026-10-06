@@ -2,6 +2,7 @@
 import importlib.util
 import json
 from pathlib import Path
+import shutil
 import struct
 import pytest
 
@@ -55,6 +56,8 @@ def test_semantic_edges_and_fail_closed_execution():
 
 
 def test_fresh_compiler_and_complete_behavior(tmp_path):
+    if not (proof.score.IDO/'cc').is_file() or not shutil.which('mips-linux-gnu-ld'):
+        pytest.skip('pinned IDO and MIPS GNU linker required')
     rows,groups,words,_=proof.compiler_proofs(tmp_path)
     expected=receipt()
     assert rows==expected['controls']

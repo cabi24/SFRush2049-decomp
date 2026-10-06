@@ -1,0 +1,47 @@
+|                                         sll t6,a1,0x10
+|                                         sra t7,t6,0x10
+   +000  addiu sp,sp,-80                  addiu sp,sp,-80
+|                                         sw ra,20(sp)
+|                                         bnez t7,0x28
+   +004  sw a1,84(sp)                     sw a1,84(sp)
+|  +008  sll t6,a1,0x10                   
+|  +00c  sra a1,t6,0x10                   
+|  +010  bnez a1,0x28                     
+|  +014  sw ra,20(sp)                     
+   +018  jal 0x9079c                      jal 0x9079c
+   +038  lw a3,12(a0)                     lw a3,12(a0)
+|                                         lui v1,0x8003
+   +03c  lbu t9,4(a3)                     lbu t9,4(a3)
+   +040  andi t1,t9,0x2                   andi t1,t9,0x2
+|  +044  beqzl t1,0xa0                    beqzl t1,0xa0
+   +048  lw t0,12(a3)                     lw t0,12(a3)
+   +04c  lw v0,108(a3)                    lw v0,108(a3)
+|  +050  lui v1,0x8003                    
+   +054  addiu v1,v1,-5228                addiu v1,v1,-5228
+   +0a0  lui v0,0x8013                    lui v0,0x8013
+|                                         move a1,zero
+   +0a4  sll v1,t0,0x10                   sll v1,t0,0x10
+   +0bc  lw v0,-6400(v0)                  lw v0,-6400(v0)
+|                                         move a0,t0
+   +0c0  sll t4,v0,0x0                    sll t4,v0,0x0
+|  +0c4  bgezl t4,0x1c0                   bgez t4,0x1c4
+|  +0c8  move a0,t0                       nop
+   +0cc  lh t5,80(a3)                     lh t5,80(a3)
+   +0dc  sll t6,t6,0x2                    sll t6,t6,0x2
+|  +0e0  lui at,0x8012                    lui at,0x0
+   +0e4  addu at,at,t6                    addu at,at,t6
+|  +0e8  lw t6,18832(at)                  lw t6,0(at)
+   +0ec  jr t6                            jr t6
+   +138  li at,-1                         li at,-1
+|  +13c  beq a0,at,0x1cc                  beq a0,at,0x1cc
+   +140  lui a2,0x8015                    lui a2,0x8015
+   +18c  lb t9,900(v0)                    lb t9,900(v0)
+|  +190  beqz a1,0x1cc                    beqz a1,0x1cc
+   +194  move a0,t0                       move a0,t0
+   +1b0  ori t2,t1,0x2                    ori t2,t1,0x2
+|  +1b4  b 0x1cc                          b 0x1cc
+   +1b8  sb t2,4(a3)                      sb t2,4(a3)
+|  +1bc  move a0,t0                       
+|  +1c0  move a1,zero                     
+   +1c4  jal 0x8ae8c                      jal 0x8ae8c
+want 119 words, got 119; differing rows 22; unverified 2 unresolved 0

@@ -466,6 +466,7 @@ func_800E762C:
 .section .text.func_800E7710, "ax", @progbits
 .globl func_800E7710
 func_800E7710:
+    /* compiled from src/blob/func_800E7710.c */
     .word 0x27BDFFD0
     .word 0xAFBF0014
     .word 0x3C048003
@@ -675,6 +676,7 @@ func_800E79F0:
 .section .text.func_800E79F8, "ax", @progbits
 .globl func_800E79F8
 func_800E79F8:
+    /* compiled from src/blob/func_800E79F8.c */
     .word 0x27BDFFE0
     .word 0xAFA40020
     .word 0xAFBF0014
@@ -2530,6 +2532,7 @@ func_800E92C8:
 .section .text.func_800E95DC, "ax", @progbits
 .globl func_800E95DC
 func_800E95DC:
+    /* compiled from src/blob/func_800E95DC.c */
     .word 0x27BDFF18
     .word 0x00047400
     .word 0x000E7C03

@@ -2578,6 +2578,7 @@ func_800B601C:
 .section .text.audio_occlusion, "ax", @progbits
 .globl audio_occlusion
 audio_occlusion:
+    /* compiled from src/blob/audio_occlusion.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x3C048015

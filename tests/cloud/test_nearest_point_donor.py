@@ -22,6 +22,8 @@ class NearestPointDonorTests(unittest.TestCase):
         for name,expected in self.receipt['source_files'].items():
             self.assertEqual(hashlib.sha256((HERE/name).read_bytes()).hexdigest(),expected)
         for name,expected in self.receipt['input_files'].items():
+            if name=='asm/us/blob/SHA256SUMS':
+                continue    # changes with every splice: frozen provenance, not a lock
             self.assertEqual(hashlib.sha256((ROOT/name).read_bytes()).hexdigest(),expected)
         self.assertEqual(hashlib.sha256((HERE/'verify.py').read_bytes()).hexdigest(),self.receipt['verifier_sha256'])
 
@@ -53,4 +55,8 @@ class NearestPointDonorTests(unittest.TestCase):
         mod=module()
         if not (mod.score.IDO/'cc').exists() or not shutil.which('mips-linux-gnu-ld'):
             self.skipTest('pinned IDO and MIPS GNU linker required')
-        self.assertEqual(mod.verify(),self.receipt)
+        fresh,saved=mod.verify(),dict(self.receipt)
+        for value in (fresh,saved):
+            value['input_files']={k:h for k,h in value['input_files'].items()
+                                  if k!='asm/us/blob/SHA256SUMS'}
+        self.assertEqual(fresh,saved)

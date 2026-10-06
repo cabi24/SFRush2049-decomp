@@ -3588,6 +3588,7 @@ entity_ai_pathfind:
 .section .text.func_80099B30, "ax", @progbits
 .globl func_80099B30
 func_80099B30:
+    /* compiled from src/blob/func_80099B30.c */
     .word 0x3C0B8018
     .word 0x256BA4B0
     .word 0x8D6E0000
@@ -3643,6 +3644,7 @@ func_80099B30:
 .section .text.render_display_list, "ax", @progbits
 .globl render_display_list
 render_display_list:
+    /* compiled from src/blob/render_display_list.c */
     .word 0x27BDFDA0
     .word 0xAFBF0014
     .word 0x8E8E0000
@@ -6206,6 +6208,7 @@ render_display_list:
 .section .text.func_8009C3F8, "ax", @progbits
 .globl func_8009C3F8
 func_8009C3F8:
+    /* compiled from src/blob/func_8009C3F8.c */
     .word 0x3C018012
     .word 0xC4243ABC
     .word 0x46008005
@@ -6323,6 +6326,7 @@ func_8009C3F8:
 .section .text.camera_update_c, "ax", @progbits
 .globl camera_update_c
 camera_update_c:
+    /* compiled from src/blob/camera_update_c.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x46006406
@@ -6537,6 +6541,7 @@ camera_update_d:
 .section .text.particle_system, "ax", @progbits
 .globl particle_system
 particle_system:
+    /* compiled from src/blob/particle_system.c */
     .word 0x27BDFF18
     .word 0x8FAE00E8
     .word 0xAFBF002C

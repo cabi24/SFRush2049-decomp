@@ -627,7 +627,7 @@ extern SoundState *sound_control(s16 arg0, s16 arg1, SoundClearRecord *arg2, s16
 extern void game_loop(void);
 extern void game_mode_handler(void);
 extern void attract_or_transition(void);
-extern void process_inputs(void);
+
 extern void playgame_state_change(void);
 extern void RaceStateMachine_Update(void);
 extern void countdown(void);
@@ -643,7 +643,7 @@ extern void viUpdateTime(void);
 extern void sound_init(void);
 extern s32 wheel_render_full(s32, s32, s32, s32);
 extern void world_trigger_check(void);
-extern void controller_poll(void);
+
 extern void Input_ApplyPadConfig(void *);
 extern void InitMaxPath(void);
 extern s32 audio_frame_sync(s32, s32, s32, s32, s32);
@@ -659,8 +659,8 @@ extern void init_state_begin(void);
 extern s32 object_create(s32);
 extern s32 object_render_cleanup(void **);
 extern void player_cleanup_slots(void);
-extern void player_mode_set(s32, s32);
-extern void player_state_set(s32, s32);
+
+
 extern void resource_slots_clear_multiple(void);
 extern void scene_cleanup_slots(void);
 extern void speed_set(void);
@@ -2390,13 +2390,13 @@ extern s8 D_80149B4B;
 extern s32 D_80149B50;
 extern s32 D_80149B58;
 extern s8 D_80149B60;
-extern s8 D_80149B64;
+s8 D_80149B64[4];
 extern s8 D_80149B65;
 extern s8 D_80149B66;
 extern s8 D_80149B67;
 extern s32 D_80149B68;
 extern s8 D_80149B70;
-extern s8 D_80149B74;
+s8 D_80149B74[4];
 extern s8 D_80149B75;
 extern s8 D_80149B76;
 extern s8 D_80149B77;
@@ -3209,7 +3209,7 @@ s32 func_800C8738(s32 arg0);
 void func_800C885C(void);
 void func_800C8918(void);
 void func_800C9480(void);
-f32 func_800C9590(f32 arg1, s32 arg0);
+
 void func_800CB748(void *arg0, void *arg1);
 void func_800CB9D0(u32 arg0);
 s32 func_800CBF2C(void);
@@ -3323,8 +3323,8 @@ void func_800E627C(void *arg0, void *arg1);
 void func_800E6460(void *arg0, void *arg1);
 void func_800E681C(void);
 void func_800E6AF8(void);
-void func_800E7038(void);
-void func_800E7134(void);
+
+
 s32 func_800E73D8(void);
 void func_800E762C(s32 arg0);
 void func_800E7710(void);
@@ -3696,6 +3696,101 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-void func_800E79F0(void) {
 
+/* group members */
+void controller_poll(void);
+f32 func_800C9590(f32 range, f32 calib, s32 raw);
+void func_800E7038(void);
+void func_800E7134(void);
+void player_mode_set(s32 player, s32 value);
+void player_state_set(s32 player, s32 value);
+void process_inputs(void);
+
+/* typed views of prelude globals (the prelude's widths are wrong for these) */
+#define gResetTick    (*(s8 *) &D_8011195C)
+#define gSkipFrames   (*(u8 *) &D_80111960)
+#define gHeld         ((s32 *) &D_80149B30)
+#define gPrevPressed  ((s32 *) &D_80149B10)
+#define gConnected    D_80149B64
+#define gStickRaw     ((s8 (*)[2]) &D_80149B50)
+#define gStickCal     ((s8 (*)[2]) &D_80149AF8)
+#define gRepeatTime   ((u32 (*)[32]) &D_80149B90)
+#define gStick        D_80156958
+
+typedef struct { u8 pad[636]; volatile s32 tick; } SysBlk;
+#define gTick (((SysBlk *) &D_8002E8E8)->tick)
+
+/* read the pads: sticks, held/pressed masks and auto-repeat per button */
+void controller_poll(void)
+{
+    s32 i;
+    s32 b;
+    u32 held;
+    u32 mask;
+    s32 connected;
+    f32 x;
+    f32 y;
+    f32 repeat;
+
+    osRecvMesg((OSMesgQueue *) &D_801497A8, NULL, 1);
+    if (gResetTick != 0) {
+        gResetTick = 0;
+        D_80111958 = gTick;
+    }
+    D_80156944 = 0;
+    D_80149784 = 0;
+    D_8015694C = 0;
+    if (gSkipFrames != 0) {
+        gSkipFrames--;
+        for (i = 0; i < 4; i++) {
+            gPrevPressed[i] = 0;
+            gStick[i].unk4 = 0.0f;
+            gStick[i].unk0 = 0.0f;
+            D_80143A00[i] = 0;
+            D_80156978[i] = 0;
+            D_80156998[i] = 0;
+        }
+        osJamMesg((OSMesgQueue *) &D_801497A8, NULL, 0);
+        return;
+    }
+    repeat = D_80123F94;
+    for (i = 0; i < 4; i++) {
+        x = func_800C9590(1.0f, gStickCal[i][0], gStickRaw[i][0]);
+        y = func_800C9590(1.0f, gStickCal[i][1], gStickRaw[i][1]);
+        gStick[i].unk0 = x;
+        D_80156978[i] = gHeld[i];
+        held = ((u32 *) D_80156978)[i];
+        gStick[i].unk4 = y;
+        D_80156998[i] = gPrevPressed[i];
+        gPrevPressed[i] = 0;
+        D_80143A00[i] = 0;
+        if (held != 0) {
+            D_80111958 = gTick;
+        }
+        connected = gConnected[i];
+        if (connected) {
+            D_8015694C |= D_80156998[i];
+            D_80156944 |= held;
+        }
+        for (b = 0; b < 32; b++) {
+            if (b != 0) {
+                mask = 1 << b;
+                if (held & mask) {
+                    if (gRepeatTime[i][b] == 0 ||
+                        (u32) (s32) (repeat * D_8002AFB4) < gTick - gRepeatTime[i][b]) {
+                        D_80143A00[i] |= mask;
+                        gRepeatTime[i][b] = gTick;
+                    }
+                } else {
+                    gRepeatTime[i][b] = 0;
+                }
+            }
+        }
+        if (connected) {
+            D_80149784 |= D_80143A00[i];
+        }
+    }
+    osJamMesg((OSMesgQueue *) &D_801497A8, NULL, 0);
 }
+
+/* scale a raw stick value to [-range, range] */

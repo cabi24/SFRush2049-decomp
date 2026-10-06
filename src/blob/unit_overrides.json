@@ -60,6 +60,18 @@
   {
    "name": "func_80092278",
    "reason": "internal list allocator shared with camera_target_track (unmatched); retail passes its arguments through IPA, so it must stay out of keep in the shadow unit as in frontier_list_alloc_sound"
+  },
+  {
+   "name": "func_80095CF4",
+   "reason": "deleted heap lock helper; inlined into its callers, only the retail stub remains"
+  },
+  {
+   "name": "func_80095CFC",
+   "reason": "deleted heap unlock helper; inlined into its callers, only the retail stub remains"
+  },
+  {
+   "name": "func_800960CC",
+   "reason": "deleted heap free helper; inlined into its callers, only the retail stub remains"
   }
  ],
  "prefer_definition": [
@@ -97,6 +109,21 @@
    "name": "func_80091B00",
    "file": "src/blob/groups/frontier_slot18_alloc/func_80091B00.c",
    "reason": "matched in wave 4 with its 24-byte slot table volatile; codex_entity_helpers_a10, codex_transform_b109 and entity_lookup carry older non-volatile context copies that must not supply the one definition"
+  },
+  {
+   "name": "func_80095CF4",
+   "file": "src/blob/groups/codex_heap_release_a25/wheel_params_set.c",
+   "reason": "locked as an empty stub, but it is the retail remains of the inlined heap lock helper; defined for real beside wheel_params_set (wave 8, w8c) and must stay internal (plan decision D3)"
+  },
+  {
+   "name": "func_80095CFC",
+   "file": "src/blob/groups/codex_heap_release_a25/wheel_params_set.c",
+   "reason": "locked as an empty stub, but it is the retail remains of the inlined heap unlock helper; defined for real beside wheel_params_set (wave 8, w8c) and must stay internal (plan decision D3)"
+  },
+  {
+   "name": "func_800960CC",
+   "file": "src/blob/groups/codex_heap_release_a25/wheel_params_set.c",
+   "reason": "locked as an empty stub, but it is the retail remains of the inlined heap free helper; defined for real beside wheel_params_set (wave 8, w8c) and must stay internal (plan decision D3)"
   }
  ],
  "align": [

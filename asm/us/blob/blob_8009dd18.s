@@ -38,6 +38,7 @@ track_collision_edge:
 .section .text.track_collision_wall, "ax", @progbits
 .globl track_collision_wall
 track_collision_wall:
+    /* compiled from src/blob/track_collision_wall.c */
     .word 0x27BDFEE8
     .word 0xAFBF0054
     .word 0xAFBE0050
@@ -2591,6 +2592,7 @@ func_8009F058:
 .section .text.Input_ProcessGameplayPad, "ax", @progbits
 .globl Input_ProcessGameplayPad
 Input_ProcessGameplayPad:
+    /* compiled from src/blob/Input_ProcessGameplayPad.c */
     .word 0x27BDFF00
     .word 0x3C018018
     .word 0xAC20A4B0
@@ -3604,6 +3606,7 @@ func_800A13C4:
 .section .text.check_mpath_save, "ax", @progbits
 .globl check_mpath_save
 check_mpath_save:
+    /* compiled from src/blob/check_mpath_save.c */
     .word 0x27BDFFA8
     .word 0x3C028011
     .word 0x3C018012
@@ -3686,6 +3689,7 @@ func_800A14FC:
 .section .text.func_800A150C, "ax", @progbits
 .globl func_800A150C
 func_800A150C:
+    /* compiled from src/blob/func_800A150C.c */
     .word 0xAFA60008
     .word 0x90A80000
     .word 0x240100FF
@@ -5775,6 +5779,7 @@ track_process_main:
 .section .text.func_800A3424, "ax", @progbits
 .globl func_800A3424
 func_800A3424:
+    /* compiled from src/blob/func_800A3424.c */
     .word 0x10800036
     .word 0x00000000
     .word 0x8C830000
@@ -6850,6 +6855,7 @@ track_render_process:
 .section .text.func_800A43FC, "ax", @progbits
 .globl func_800A43FC
 func_800A43FC:
+    /* compiled from src/blob/func_800A43FC.c */
     .word 0x3C0E8012
     .word 0x81CEEAE0
     .word 0x3C038015

@@ -2037,6 +2037,7 @@ func_800B912C:
 .section .text.physics_collision_test, "ax", @progbits
 .globl physics_collision_test
 physics_collision_test:
+    /* compiled from src/blob/physics_collision_test.c */
     .word 0x27BDFFD0
     .word 0x3C048014
     .word 0x2484F1E0
@@ -4104,6 +4105,7 @@ audio_output_setup:
 .section .text.func_800BB02C, "ax", @progbits
 .globl func_800BB02C
 func_800BB02C:
+    /* compiled from src/blob/func_800BB02C.c */
     .word 0x00047080
     .word 0x01C47023
     .word 0x3C0F8014

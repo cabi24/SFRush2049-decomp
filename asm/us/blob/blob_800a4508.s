@@ -472,6 +472,7 @@ resource_update_global:
 .section .text.wheel_params_set, "ax", @progbits
 .globl wheel_params_set
 wheel_params_set:
+    /* compiled from src/blob/wheel_params_set.c */
     .word 0x27BDFFC0
     .word 0xAFBF001C
     .word 0xAFB10018
@@ -1954,6 +1955,7 @@ func_800A6078:
 .section .text.car_lights_render, "ax", @progbits
 .globl car_lights_render
 car_lights_render:
+    /* compiled from src/blob/car_lights_render.c */
     .word 0x27BDFFC8
     .word 0xAFBF0014
     .word 0x84B80000
@@ -3791,6 +3793,7 @@ car_mass_set:
 .section .text.func_800A7BF8, "ax", @progbits
 .globl func_800A7BF8
 func_800A7BF8:
+    /* compiled from src/blob/func_800A7BF8.c */
     .word 0x3C028015
     .word 0x8C426990
     .word 0xAFA40000

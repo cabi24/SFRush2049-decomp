@@ -1,8 +1,4 @@
 {
- "func_80099B30": {
-  "evidence": "cloud/work/frontier/w6a/groups/particle_knot",
-  "note": "wave 6 particle knot: strict MATCH in the real -O3 group and EQUAL in the shadow unit (204 bytes); blocked by the chain - func_8009F058 is 22/1307 (one spill-slot offset), its only caller Input_ProcessGameplayPad is unmatched, and func_8009C3F8's other callers are absent (stand-in callers zz_caller/zz_caller2)"
- },
  "func_800B66B0": {
   "evidence": "cloud/work/frontier/agentA/func_800B66B0/group_standin",
   "note": "wave 0: strict MATCH only in an -O3 group with stand-in callers zz_a/zz_b; closes in a real group with its only caller menu_input_process"
@@ -59,24 +55,16 @@
   "evidence": "cloud/work/frontier/w6d/drone_throttle_calc/best_group",
   "note": "wave 6: pause-menu setup; code identical with stand-in callers (strings and floats at two retail addresses, checked by hand); real caller func_800D91A0 (3,860 bytes) unmatched"
  },
- "render_display_list": {
-  "evidence": "cloud/work/frontier/w6a/groups/particle_knot",
-  "note": "wave 6 particle knot: strict MATCH in the real -O3 group and EQUAL in the shadow unit (10236 bytes); blocked by the chain - func_8009F058 is 22/1307 (one spill-slot offset), its only caller Input_ProcessGameplayPad is unmatched, and func_8009C3F8's other callers are absent (stand-in callers zz_caller/zz_caller2)"
- },
- "particle_system": {
-  "evidence": "cloud/work/frontier/w6a/groups/particle_knot",
-  "note": "wave 6 particle knot: strict MATCH in the real -O3 group and EQUAL in the shadow unit (2900 bytes); blocked by the chain - func_8009F058 is 22/1307 (one spill-slot offset), its only caller Input_ProcessGameplayPad is unmatched, and func_8009C3F8's other callers are absent (stand-in callers zz_caller/zz_caller2)"
- },
- "track_collision_wall": {
-  "evidence": "cloud/work/frontier/w6a/groups/particle_knot",
-  "note": "wave 6 particle knot: strict MATCH in the real -O3 group and EQUAL in the shadow unit (2712 bytes); blocked by the chain - func_8009F058 is 22/1307 (one spill-slot offset), its only caller Input_ProcessGameplayPad is unmatched, and func_8009C3F8's other callers are absent (stand-in callers zz_caller/zz_caller2)"
- },
- "func_8009C3F8": {
-  "evidence": "cloud/work/frontier/w6a/groups/particle_knot",
-  "note": "wave 6 particle knot: strict MATCH in the real -O3 group and EQUAL in the shadow unit (452 bytes); blocked by the chain - func_8009F058 is 22/1307 (one spill-slot offset), its only caller Input_ProcessGameplayPad is unmatched, and func_8009C3F8's other callers are absent (stand-in callers zz_caller/zz_caller2)"
- },
  "func_800DED78": {
   "evidence": "cloud/work/frontier/dot_audio_force_20261005",
   "note": "PR #107: collision force/peak helper (arcade carsnd.c get_force_and_peak), strict 0/122 in a genuine caller group; it takes f18 as a register parameter and its caller is unmatched, so it stays unclaimed"
+ },
+ "func_800D8078": {
+  "evidence": "cloud/work/frontier/w8a/func_800D8078/group",
+  "note": "wave 8: strict MATCH only with stand-in callers; its only caller func_800D91A0 (3,860 bytes, unmatched) keeps t0-t5 live across the call"
+ },
+ "func_800A3640": {
+  "evidence": "cloud/work/frontier/w8b/func_800A3640",
+  "note": "wave 8: EQUAL in the shadow unit only with a stand-in caller; its only caller track_render_process is unmatched"
  }
 }

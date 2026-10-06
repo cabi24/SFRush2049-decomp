@@ -555,6 +555,7 @@ main_menu_input:
 .section .text.main_menu_render, "ax", @progbits
 .globl main_menu_render
 main_menu_render:
+    /* compiled from src/blob/main_menu_render.c */
     .word 0x27BDFFC0
     .word 0x3C028015
     .word 0x8442A108

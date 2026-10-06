@@ -655,6 +655,7 @@ func_800D18D8:
 .section .text.car_stats_display, "ax", @progbits
 .globl car_stats_display
 car_stats_display:
+    /* compiled from src/blob/car_stats_display.c */
     .word 0x27BDFFD8
     .word 0xAFA40028
     .word 0xAFBF0014
@@ -1107,6 +1108,7 @@ car_setup_confirm:
 .section .text.func_800D2054, "ax", @progbits
 .globl func_800D2054
 func_800D2054:
+    /* compiled from src/blob/func_800D2054.c */
     .word 0x3C0E8011
     .word 0x8DCE74B4
     .word 0x44856000

@@ -753,7 +753,7 @@
     "src/blob/groups/codex_transform_b109/group.c": "98c6a7ce0d7d4b5edfe60b51228dc6eb60687aab5af263246f2f1195e03c881a",
     "src/blob/groups/codex_transform_b109/group.json": "f3c9ddecd6d6249fd3c15f34f179ef08fdeefc694f91b42fcefa3674507b16bd",
     "src/blob/groups/frontier_slot18_alloc/func_80091B00.c": "8a8d5f4fd590ef4146995662170609ce7f0a6e959bf8879fd65bc53435ce766e",
-    "tests/cloud/test_layer_update_packet.py": "aae81db06650b3b47eef8ac4d1e9f25aa60e012404484ba0c78d14f61d32600a"
+    "tests/cloud/test_layer_update_packet.py": "5bfc722b848132ce30a30f29320064ea05e8181f6b8e0f4ac5119523aeaef270"
   },
   "source_origin": "Exact archived A169 helper and genuine callers; old allocator replaced with unchanged accepted source.",
   "status": "MATCHING_CANDIDATE",

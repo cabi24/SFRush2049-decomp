@@ -8280,6 +8280,7 @@ audio_update_b:
 .section .text.func_800F7448, "ax", @progbits
 .globl func_800F7448
 func_800F7448:
+    /* compiled from src/blob/func_800F7448.c */
     .word 0x3C058015
     .word 0x24A597C8
     .word 0x8CA30000

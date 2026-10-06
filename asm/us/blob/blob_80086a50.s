@@ -4607,6 +4607,7 @@ model_data_load:
 .section .text.func_8008B000, "ax", @progbits
 .globl func_8008B000
 func_8008B000:
+    /* compiled from src/blob/func_8008B000.c */
     .word 0x308EFFFF
     .word 0x31CB03FF
     .word 0x000B6080
@@ -4811,6 +4812,7 @@ func_8008B2B4:
 .section .text.func_8008B2E4, "ax", @progbits
 .globl func_8008B2E4
 func_8008B2E4:
+    /* compiled from src/blob/func_8008B2E4.c */
     .word 0x3C038011
     .word 0x2463735C
     .word 0x8C6E0000

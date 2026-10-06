@@ -2,6 +2,7 @@
 import importlib.util
 import json
 from pathlib import Path
+import shutil
 import struct
 
 import pytest
@@ -11,8 +12,13 @@ PACKET=ROOT/'cloud/work/frontier/dot_cone_motion_donor_20261005'
 spec=importlib.util.spec_from_file_location('cone_donor_verify',PACKET/'verify.py')
 v=importlib.util.module_from_spec(spec);spec.loader.exec_module(v)
 
+def _require_toolchain():
+    if not (v.score.IDO/'cc').is_file() or not shutil.which('mips-linux-gnu-ld'):
+        pytest.skip('pinned IDO and MIPS GNU linker required')
+
 @pytest.fixture(scope='module')
 def replay():
+    _require_toolchain()
     return v.verify()
 
 def test_fresh_source_bound_receipt(replay):
@@ -51,12 +57,14 @@ def test_fixed_source_hypotheses(replay):
     assert len(p['o2']['unverified'])==2
 
 def test_wrong_owned_literal_rejected(tmp_path):
+    _require_toolchain()
     source=tmp_path/'wrong.c';obj=tmp_path/'wrong.o'
     source.write_text(v.SOURCE.read_text().replace('0.15f','0.2f'))
     v.score.compile_single(source,v.FLAGS,obj)
     with pytest.raises(AssertionError):v.linked_proof(obj,tmp_path)
 
 def test_truncated_elf_symbol_rejected(tmp_path):
+    _require_toolchain()
     obj=tmp_path/'candidate.o';v.score.compile_single(v.SOURCE,v.FLAGS,obj)
     data,secs=v.score._elf(obj);data=bytearray(data)
     for i,sec in enumerate(secs):

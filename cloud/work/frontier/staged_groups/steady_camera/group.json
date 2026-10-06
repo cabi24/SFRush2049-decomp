@@ -1,0 +1,22 @@
+{
+ "members": [
+  "func_800E95DC"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "func_800E95DC",
+  "func_800EA108",
+  "func_800EA2DC"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [
+  "func_800E92C8",
+  "func_800EA108",
+  "func_800EA2DC"
+ ],
+ "provenance": "Authentic steady-camera vector phases, 2026-10-05; cloud/work/frontier/dot_steady_camera_20261005/README.md. Existing accepted camera context and compiler/keep recipe preserved unchanged.",
+ "note": "PR #115: func_800E95DC (arcade camera.c steady_move_cam) with the locked func_800E92C8 group members as unchanged context."
+}

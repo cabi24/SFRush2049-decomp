@@ -1780,6 +1780,7 @@ struct_fields_init:
 .section .text.func_800B0580, "ax", @progbits
 .globl func_800B0580
 func_800B0580:
+    /* compiled from src/blob/func_800B0580.c */
     .word 0x27BDFFE0
     .word 0xAFB10018
     .word 0x3C118015
@@ -3818,6 +3819,7 @@ music_tempo_set:
 .section .text.func_800B23E0, "ax", @progbits
 .globl func_800B23E0
 func_800B23E0:
+    /* compiled from src/blob/func_800B23E0.c */
     .word 0x3C014700
     .word 0x308E00FF
     .word 0x44816000
@@ -4368,6 +4370,7 @@ sfx_position_3d:
 .section .text.func_800B2BDC, "ax", @progbits
 .globl func_800B2BDC
 func_800B2BDC:
+    /* compiled from src/blob/func_800B2BDC.c */
     .word 0x3C0E8014
     .word 0x25CE8880
     .word 0x3C018014

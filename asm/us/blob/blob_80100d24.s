@@ -11882,6 +11882,7 @@ func_8010C588:
 .section .text.steering_apply, "ax", @progbits
 .globl steering_apply
 steering_apply:
+    /* compiled from src/blob/steering_apply.c */
     .word 0x84820000
     .word 0x3C0F8015
     .word 0x27BDFFE0
