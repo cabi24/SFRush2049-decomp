@@ -1,0 +1,416 @@
+{
+  "status": "NONMATCH",
+  "source_sha256": "194c86d784441d782e0f57b59738b8c27fc127912383d820c31389ce6bcee7a0",
+  "native_sha256": "1e306c7d79a18c4d7a008d658cf6abe17a5188817857ea3d4348ed8fe078ace7",
+  "gnu_linked_body_sha256": "ea8eba9f54a222e6a7e78b9da062c04a3294efd2f2b620a28914cce671b78570",
+  "manifest": {
+    "extents.json": "0d97935254a6f2c724dfe68b08087e0a451e56d0aedb2121748abe7b6cc0798b",
+    "ovl_a_8038a400.s": "94f5fdb45838b6d21fb761209bf2cb60602f90ea8725b16cae2c3cebe0aa7685",
+    "symbols.json": "d5a6c8dccb0380f54f080d45d82a5e71f917be86f9568bf4b7fbe10a89f2a769"
+  },
+  "full_extent_bytes": 428,
+  "whole_text_bytes": 432,
+  "zero_padding_bytes": 4,
+  "all_relocations": [
+    {
+      "offset": 48,
+      "type": 4,
+      "symbol": "render_helper",
+      "target_section": 4
+    },
+    {
+      "offset": 56,
+      "type": 4,
+      "symbol": "object_create",
+      "target_section": 4
+    },
+    {
+      "offset": 64,
+      "type": 4,
+      "symbol": "dispatch_handler",
+      "target_section": 4
+    },
+    {
+      "offset": 72,
+      "type": 5,
+      "symbol": "D_8014A108",
+      "target_section": 4
+    },
+    {
+      "offset": 76,
+      "type": 6,
+      "symbol": "D_8014A108",
+      "target_section": 4
+    },
+    {
+      "offset": 80,
+      "type": 5,
+      "symbol": "D_803BA028",
+      "target_section": 4
+    },
+    {
+      "offset": 84,
+      "type": 6,
+      "symbol": "D_803BA028",
+      "target_section": 4
+    },
+    {
+      "offset": 96,
+      "type": 5,
+      "symbol": "D_8014A110",
+      "target_section": 4
+    },
+    {
+      "offset": 108,
+      "type": 6,
+      "symbol": "D_8014A110",
+      "target_section": 4
+    },
+    {
+      "offset": 100,
+      "type": 5,
+      "symbol": "D_8017A4E0",
+      "target_section": 4
+    },
+    {
+      "offset": 104,
+      "type": 6,
+      "symbol": "D_8017A4E0",
+      "target_section": 4
+    },
+    {
+      "offset": 164,
+      "type": 5,
+      "symbol": "D_803B85E8",
+      "target_section": 4
+    },
+    {
+      "offset": 168,
+      "type": 6,
+      "symbol": "D_803B85E8",
+      "target_section": 4
+    },
+    {
+      "offset": 180,
+      "type": 5,
+      "symbol": "D_80140BDC",
+      "target_section": 4
+    },
+    {
+      "offset": 184,
+      "type": 6,
+      "symbol": "D_80140BDC",
+      "target_section": 4
+    },
+    {
+      "offset": 216,
+      "type": 4,
+      "symbol": "func_800B24EC",
+      "target_section": 4
+    },
+    {
+      "offset": 256,
+      "type": 4,
+      "symbol": "object_bytes_sum_global",
+      "target_section": 4
+    },
+    {
+      "offset": 304,
+      "type": 4,
+      "symbol": "state_utility",
+      "target_section": 4
+    },
+    {
+      "offset": 312,
+      "type": 5,
+      "symbol": "D_8014A108",
+      "target_section": 4
+    },
+    {
+      "offset": 316,
+      "type": 6,
+      "symbol": "D_8014A108",
+      "target_section": 4
+    },
+    {
+      "offset": 368,
+      "type": 4,
+      "symbol": "render_helper",
+      "target_section": 4
+    }
+  ],
+  "bindings": {
+    "render_helper": "0x800b65b4",
+    "object_create": "0x800b42f0",
+    "dispatch_handler": "0x800b74a0",
+    "D_8014A108": "0x8014a108",
+    "D_803BA028": "0x803ba028",
+    "D_8014A110": "0x8014a110",
+    "D_8017A4E0": "0x8017a4e0",
+    "D_803B85E8": "0x803b85e8",
+    "D_80140BDC": "0x80140bdc",
+    "func_800B24EC": "0x800b24ec",
+    "object_bytes_sum_global": "0x800b3f50",
+    "state_utility": "0x800b71d4"
+  },
+  "distinct_image": true,
+  "owned_data_bytes": 0,
+  "whole_linked_elf_match": false,
+  "residual": [
+    {
+      "offset": 112,
+      "native_stack_operand": 76,
+      "candidate_stack_operand": 80
+    },
+    {
+      "offset": 124,
+      "native_stack_operand": 76,
+      "candidate_stack_operand": 80
+    },
+    {
+      "offset": 336,
+      "native_stack_operand": 76,
+      "candidate_stack_operand": 80
+    },
+    {
+      "offset": 356,
+      "native_stack_operand": 76,
+      "candidate_stack_operand": 80
+    }
+  ],
+  "helper_native_body_bindings": {
+    "render_helper": {
+      "address": "0x800B65B4",
+      "bytes": 232,
+      "sha256": "4dc690156b257d875500ce8913cdeb9906660b2fee02b08495dee63ca91a8410"
+    },
+    "object_create": {
+      "address": "0x800B42F0",
+      "bytes": 112,
+      "sha256": "faee709c3df1e073e647c2851a4c4ce19db047599daaa796882845fa345f6858"
+    },
+    "dispatch_handler": {
+      "address": "0x800B74A0",
+      "bytes": 1028,
+      "sha256": "21a02928c539b8245d8f31d68e81a52c43a252f127da03437e864f108309bdd6"
+    },
+    "func_800B24EC": {
+      "address": "0x800B24EC",
+      "bytes": 364,
+      "sha256": "22ccee42826816c61c8ad198ddb3767a6b5523f51d1c3b676284968d0661a517"
+    },
+    "object_bytes_sum_global": {
+      "address": "0x800B3F50",
+      "bytes": 84,
+      "sha256": "1f195feade67d0cbc0e3608addd9d498dce8ad0f3acd3e16431a453ecfbfe82f"
+    },
+    "state_utility": {
+      "address": "0x800B71D4",
+      "bytes": 396,
+      "sha256": "636951ffa0efe5e074676c7f3f0456d1149fa0bb76caf89dcdf5331c916bf6e6"
+    },
+    "sound_update_channel": {
+      "address": "0x800B3D18",
+      "bytes": 488,
+      "sha256": "843f08a4e541babf1af03e56b8e6b066d220408edf658e142f404844369e515c"
+    },
+    "func_80096288": {
+      "address": "0x80096288",
+      "bytes": 16,
+      "sha256": "64e6fe82a9a8105fd73c45eff39203a632b71731116ae93b43be76782c6c8422"
+    }
+  },
+  "helper_protected_manifest": {
+    "blob_80086a50.s": "bc9b1ba955e13588fe9f9427fcac170e911c0cb5c36d90ffa9ffb23b329ea1b9",
+    "blob_8008d0c0.s": "6efaa450a0c0ab1af70291584748cae05e102a5131479835908ef19723b36eba",
+    "blob_800947f0.s": "d5b2166820f70cbb7081a5fed6ab96a018981d0b3907d20259ec75473d44c9f4",
+    "blob_800966d8.s": "d4426812f19121b370f915a4fa288352292fcc3038e316f4d258b26f11ce183c",
+    "blob_8009dd18.s": "d2f6fe0e922b647b94239bfd7ec7ad38e322a78728c4b920a1dafe4555f24513",
+    "blob_800a4508.s": "967bcb879ad94d5095f7bf806315466961f9186075830c21cf1b65bba67004ad",
+    "blob_800a7df0.s": "c91125193f4f390fcbc9566a7c23383fe1c1c906741ff48f337920f25d8668ca",
+    "blob_800aeb54.s": "9936e09c9a4e7a7ee9c6748202926ec3b2e5f2d585f67b63a681eedc150238ce",
+    "blob_800b3b4c.s": "4f3231e74265ae77a87b404efbf5f893422678aa2ba903f8ce93aa8e12e6c89d",
+    "blob_800b7360.s": "0c6720af654286074579bbf5d9aa9b85c0a778744e1375b3981e2d2589e782ec",
+    "blob_800bdd90.s": "da4c5653d2ce807f0eeb43e3eb5f87c2049fc5c2cffe2604d6d3c4456ef11415",
+    "blob_800c46d0.s": "391475bce994968b633a3fa5f30524eb27f1196622cf384420a85a6b816d2602",
+    "blob_800cbe08.s": "e8ba9a307d0015dfa78b9d200d3800eedcb669d20a2fdb2fb4b32ce278376565",
+    "blob_800d1004.s": "f5c2a3f7829fa2d543a90441620c9e99c9eb2f33d8ec047908d6ee557c8df10e",
+    "blob_800d6690.s": "6e1403b3d570599474df1ade4333a5b974f6b8b0ba8803f17af939365ff48315",
+    "blob_800de454.s": "caf6e4512105823f8e779a2f9d54eba64b406ebedd4c43ab95d350739cba3119",
+    "blob_800e7030.s": "d35ab9afa4111825842d6b40dffe2940d805533e425fb8d6c61dbf176fd0a66b",
+    "blob_800ef5b0.s": "655f5cb90f85c7844f5b48b17ce30981c0844200e91f84b8415a20ed8f369582",
+    "blob_800f8d9c.s": "d15ea66f688306133ae61cecc9f17949cbf4ef7bed169151373340a1f71c3e93",
+    "blob_80100d24.s": "69a18c6a52f3add504de47e73c891a7ac1b9df799d8587a9f5ddb81000f091ae",
+    "blob_8010e0fc.s": "f73370264acbcd402606b0340e2b88c208ba4f0df07d953c870d7be5076e7fc6",
+    "blob_8010fd7c.s": "ad3456595bad8f1e62ac4d8ce1710c2c6d6851dd05c509de0904b22538a4df13",
+    "symbols.json": "91760c85ae47cd8445013beeb1e987048830b0a35ea319b7cc681a61d89af8b1"
+  },
+  "layout": "32-bit pointers; 36-byte Texture; offsets Texture.height=18, MenuIndices.first=26, MenuData.indices=12, MenuData.text=16",
+  "elf32_big_endian_mips2": true,
+  "behavior": {
+    "native_vs_host_cases": 4049,
+    "native_vs_gnu_linked_ido_candidate_cases": 4049,
+    "exhaustive_unsigned_height_host_oracle_cases": 65536,
+    "all_tablecount_values": 256,
+    "all_skip_byte_values": 256,
+    "all_attainable_font_values": 766,
+    "scheduled_hook_positions": 16,
+    "nonmutating_font_event_positions": [
+      5,
+      8,
+      11,
+      14
+    ],
+    "effective_external_mutation_positions": 12,
+    "mutation_variants": 14,
+    "covered_words": 105,
+    "unreachable_word_offsets": [
+      236,
+      240
+    ],
+    "unreachable_reason": "Unsigned halfword height cannot take signed divide correction arm.",
+    "branch_outcomes": 15,
+    "trace_sha256": "44e6f74d0f59b6e10e6072d05e0a8143d4ed8170b27b19c0350e7350bce7e55f",
+    "randomized_volatile_gprs_and_fprs": true,
+    "frame_and_saved_registers": true,
+    "maximum_count_tested": 32767
+  },
+  "negative_full_elf_views": {
+    "shifted_entry": "rejected",
+    "shifted_text_section": "rejected",
+    "shifted_function_symbol": "rejected",
+    "wrong_function_extent": "rejected",
+    "nonzero_alignment": "rejected",
+    "trailing_nonzero_text": "rejected",
+    "wrong_external_binding": "rejected",
+    "extra_allocated_storage": "rejected",
+    "unresolved_relocation": "rejected",
+    "body_corruption": "rejected"
+  },
+  "wrong_source_controls": {
+    "three_rows": {
+      "strict_native_equality": false,
+      "behavior_rejected": true,
+      "witness": [
+        1,
+        0,
+        0,
+        129,
+        65535,
+        -128,
+        32768,
+        0,
+        0
+      ],
+      "source_sha256": "21049808e94834e786c3e7b2087a84e6d684e1432f8644f68f8768c1a53db138"
+    },
+    "wrong_skip_value": {
+      "strict_native_equality": false,
+      "behavior_rejected": true,
+      "witness": [
+        1,
+        0,
+        0,
+        129,
+        65535,
+        -128,
+        32768,
+        0,
+        0
+      ],
+      "source_sha256": "bae1ed43dac599dbedd4f8eb1da7739cf978df4ae84fa66a1cbee6014259388b"
+    },
+    "wrong_mode_value": {
+      "strict_native_equality": false,
+      "behavior_rejected": true,
+      "witness": [
+        1,
+        2,
+        0,
+        1,
+        128,
+        0,
+        1,
+        0,
+        0
+      ],
+      "source_sha256": "c831e5b7ca419bd18f2e54c7f9b0fa7bd88e2d00c22805a6cb3352a2b09d7ba1"
+    },
+    "signed_texture_height": {
+      "strict_native_equality": false,
+      "behavior_rejected": true,
+      "witness": [
+        1,
+        0,
+        0,
+        129,
+        65535,
+        -128,
+        32768,
+        0,
+        0
+      ],
+      "source_sha256": "99944f582b38268b965e30710c7d950ebed55df6edb121f1f03595592f1083dc"
+    },
+    "wrong_height_divisor": {
+      "strict_native_equality": false,
+      "behavior_rejected": true,
+      "witness": [
+        1,
+        0,
+        0,
+        129,
+        65535,
+        -128,
+        32768,
+        0,
+        0
+      ],
+      "source_sha256": "8c23fbb5d190c81689555c71f731dda30bc63fdb0ed12e5b5c55f99e45602d1a"
+    },
+    "wrong_first_index": {
+      "strict_native_equality": false,
+      "behavior_rejected": true,
+      "witness": [
+        1,
+        0,
+        0,
+        129,
+        65535,
+        -128,
+        32768,
+        0,
+        0
+      ],
+      "source_sha256": "5fc87e25fcc54ea42d48b57c29c44a827ec48a25a89b947f8fe40e36a148025f"
+    },
+    "cached_count": {
+      "strict_native_equality": false,
+      "behavior_rejected": true,
+      "witness": [
+        1,
+        0,
+        0,
+        1,
+        128,
+        0,
+        1,
+        6,
+        0
+      ],
+      "source_sha256": "69dd39bf6f758148216da64ecf8660f522b43977f2ac8f60b1e46f77012e20cf"
+    }
+  },
+  "domain_and_limits": [
+    "Research NONMATCH: complete 428-byte body differs at four private compiler-temporary stack slot operands; no match/promotion/coverage credit.",
+    "O32 ABI and partial field views verified, not original source or complete game structs.",
+    "Lookup succeeds and returns valid 36-byte nonaliasing texture; flags capacity covers all visited outer indices; valid text pointer table extends through first+3, including first=65535.",
+    "All 65536 unsigned texture heights tested against separate oracle. Signed-halfword coordinate conversion uses verified IDO/GCC low-16/sign-extension implementation, not universal ISO C conversion behavior.",
+    "Font helper returns within [-128,637]; it performs font synchronization/cache writes through native sound_update_channel. Its transitive graph must not alias menu/count/texture objects; font hook does not arbitrarily mutate those globals.",
+    "Other external helper hooks allow bounded menu/count/texture mutations; actual rendering, texture search, font synchronization and gameplay are not executed.",
+    "Complete native caller execution uses an independent bounded instruction interpreter with randomized caller-save registers and FPRs; no linked native callee integration or hardware claim.",
+    "No protected-input modification, publication, CI watch, image/compression/full-ROM gate or acceptance claim."
+  ],
+  "reviewer_script_sha256": "c56e4405e54697f945a8ea837d63beb16fc03a3de24fc933f8b6e431d7cd9c5b",
+  "reviewer_host_sha256": "d61ceee185a85e34433bada3f7ef149ccb281cc0a3e5286b68fc066b1579613d"
+}
