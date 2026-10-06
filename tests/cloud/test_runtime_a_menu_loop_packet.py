@@ -16,9 +16,13 @@ def protected_repo():
  if not (path/'asm/us/ovl_a/extents.json').exists():
   if os.environ.get('REQUIRE_TOOLCHAIN')=='1':pytest.fail('protected image-A inputs unavailable')
   pytest.skip('protected image-A inputs unavailable')
- if not os.environ.get('IDO_DIR'):
-  if os.environ.get('REQUIRE_TOOLCHAIN')=='1':pytest.fail('IDO_DIR must identify configured IDO')
-  pytest.skip('IDO toolchain unavailable')
+ # Match score.py: an explicit IDO_DIR overrides the tool checkout default.
+ ido=Path(os.environ.get('IDO_DIR',ROOT/'tools/cloud/ido'))
+ missing=[name for name in ('cc','cfe','uopt','ugen','as1') if not (ido/name).is_file()]
+ if missing:
+  reason='IDO toolchain unavailable at %s: missing %s'%(ido, ', '.join(missing))
+  if os.environ.get('REQUIRE_TOOLCHAIN')=='1':pytest.fail(reason)
+  pytest.skip(reason)
  return path
 
 def test_scoped_no_draw_paths():
@@ -54,3 +58,31 @@ def test_frozen_producer_and_controls_from_other_cwd(tmp_path):
 def test_optimized_python_fails_closed():
  result=subprocess.run([sys.executable,'-O',str(PACKET/'verify.py'),'--check'],capture_output=True,text=True)
  assert result.returncode!=0 and 'verification requires assertions' in result.stderr
+
+@pytest.mark.parametrize('explicit',[False,True])
+def test_configured_ido_discovery(tmp_path,monkeypatch,explicit):
+ monkeypatch.setattr(sys.modules[__name__],'ROOT',tmp_path)
+ monkeypatch.delenv('RUSH_PROTECTED_REPO',raising=False)
+ monkeypatch.delenv('IDO_DIR',raising=False)
+ monkeypatch.setenv('REQUIRE_TOOLCHAIN','1')
+ (tmp_path/'asm/us/ovl_a').mkdir(parents=True)
+ (tmp_path/'asm/us/ovl_a/extents.json').write_text('{}')
+ ido=tmp_path/('explicit ido' if explicit else 'tools/cloud/ido')
+ ido.mkdir(parents=True)
+ if explicit:monkeypatch.setenv('IDO_DIR',str(ido))
+ for name in ('cc','cfe','uopt','ugen','as1'):(ido/name).touch()
+ assert protected_repo()==tmp_path
+ (ido/'ugen').unlink()
+ with pytest.raises(pytest.fail.Exception,match='missing ugen'):protected_repo()
+
+
+def test_explicit_missing_ido_does_not_use_default(tmp_path,monkeypatch):
+ monkeypatch.setattr(sys.modules[__name__],'ROOT',tmp_path)
+ monkeypatch.delenv('RUSH_PROTECTED_REPO',raising=False)
+ monkeypatch.setenv('REQUIRE_TOOLCHAIN','1')
+ (tmp_path/'asm/us/ovl_a').mkdir(parents=True)
+ (tmp_path/'asm/us/ovl_a/extents.json').write_text('{}')
+ default=tmp_path/'tools/cloud/ido';default.mkdir(parents=True)
+ for name in ('cc','cfe','uopt','ugen','as1'):(default/name).touch()
+ monkeypatch.setenv('IDO_DIR',str(tmp_path/'missing-explicit'))
+ with pytest.raises(pytest.fail.Exception,match='missing-explicit'):protected_repo()

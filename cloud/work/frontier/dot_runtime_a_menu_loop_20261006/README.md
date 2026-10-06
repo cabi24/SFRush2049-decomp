@@ -123,7 +123,7 @@ IDO 5.3 flags: `-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul`.
 - Five compiled wrong-source mutants are rejected by host behavior and native
   scoring: inverted skip, inverted mode, wrong spacing, signed texture height,
   wrong text index. These are negative controls, not candidate variants.
-- Six focused tests pass with `REQUIRE_TOOLCHAIN=1`, including exact frozen
+- Nine focused tests pass with `REQUIRE_TOOLCHAIN=1`, including exact frozen
   receipt/control replay from an unrelated working directory and fail-closed
   Python optimization checks. No broad repository suite was run.
 
@@ -162,3 +162,21 @@ entries, safe text arrays and a successful lookup. They do not prove all game
 caller bounds. Hardware, unrestricted pointers, malformed data, asynchronous
 writers, concurrency, gameplay, runtime-image construction, compression and
 full-ROM identity remain unverified. This packet earns zero new coverage.
+
+## Exact-checkout replay repair
+
+Focused tests discover IDO exactly as the scorer does: explicit `IDO_DIR`
+takes precedence, otherwise use this tool checkout's `tools/cloud/ido`.
+All five required compiler executables must be present; `REQUIRE_TOOLCHAIN=1`
+still fails rather than skipping when any are missing. Tests cover the
+configured default, explicit configuration and invalid explicit override.
+
+The original receipt's helper manifest came from an older protected checkout
+(`496a72b0`), whereas the published branch inherits `cd22879d`. The refreshed
+receipt records the actual published checkout's 21 changed blob-region
+fingerprints and symbol manifest. Every region's complete native word sequence
+is unchanged; all seven selected helper bodies, their sizes and addresses,
+all target/proof fields, and the complete controls ledger remain unchanged.
+The verifier still checks full manifests, selected native hashes and address
+bindings. This is an exact-checkout refresh, not permission to ignore future
+protected-input or tool drift.
