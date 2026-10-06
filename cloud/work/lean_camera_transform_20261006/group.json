@@ -1,0 +1,17 @@
+{
+  "files": [
+    "candidate.c"
+  ],
+  "members": [
+    "camera_transform"
+  ],
+  "context": [
+    "MP_TargetSteerPos"
+  ],
+  "keep": [
+    "camera_transform",
+    "MP_TargetSteerPos"
+  ],
+  "claims": [],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}
