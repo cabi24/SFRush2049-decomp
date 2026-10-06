@@ -232,8 +232,22 @@ def extract_target(region, name):
         score.ASM_DIR = old
 
 
+@contextlib.contextmanager
+def target_image(path):
+    old = score.ASM_DIR
+    score.ASM_DIR = path
+    try:
+        yield
+    finally:
+        score.ASM_DIR = old
+
+
 def elf_proof(tmp):
-    score.ASM_DIR = ROOT / 'asm/us/ovl_b'
+    with target_image(ROOT / 'asm/us/ovl_b'):
+        return _elf_proof(tmp)
+
+
+def _elf_proof(tmp):
     native = score.targets()[NAME]
     extents = json.loads((score.ASM_DIR / 'extents.json').read_text())
     record = next(r for r in extents['functions'] if r['name'] == NAME)
@@ -270,7 +284,7 @@ def elf_proof(tmp):
     check(not any([masks, unresolved, unverified, errors]), 'incomplete relocation')
     relocated = relocated[:95]
     script = tmp / 'native.ld'
-    script.write_text('SECTIONS { . = 0x8039244C; .text : SUBALIGN(4) { *(.text) } /DISCARD/ : { *(.reginfo) *(.options) *(.MIPS.abiflags) } }\n' + '\n'.join('%s = 0x%x;' % pair for pair in SYMBOLS.items()))
+    script.write_text('SECTIONS { .text 0x8039244C : SUBALIGN(4) { *(.text) } /DISCARD/ : { *(.reginfo) *(.options) *(.MIPS.abiflags) } }\n' + '\n'.join('%s = 0x%x;' % pair for pair in SYMBOLS.items()))
     linked, raw = tmp / 'linked.elf', tmp / 'linked.bin'
     run(['mips-linux-gnu-ld', '-EB', '-T', script, '-o', linked, obj])
     run(['mips-linux-gnu-objcopy', '-O', 'binary', '-j', '.text', linked, raw])
@@ -279,13 +293,19 @@ def elf_proof(tmp):
     gnu = list(struct.unpack('>95I', linked_data[:SIZE]))
     check(gnu == relocated, 'GNU disagrees with project relocation')
     nm = run(['mips-linux-gnu-nm', '-S', linked]).stdout
-    check(any(line.split()[:2] == ['8039244c', '0000017c'] and line.split()[-1] == NAME for line in nm.splitlines()), 'GNU placement/extent')
+    placement = [line.split() for line in nm.splitlines() if line.split()[-1] == NAME]
+    check(len(placement) == 1 and placement[0][:3] == ['8039244c', '0000017c', 'T'], ('GNU placement/extent', placement))
     residual = [i * 4 for i, (a, b) in enumerate(zip(native, gnu)) if a != b]
     check(len(residual) == 34, ('residual changed', residual))
     return native, relocated, gnu, {'function_bytes': SIZE, 'text_bytes': 384, 'separate_zero_alignment_bytes': 4, 'owned_data_bytes': 0, 'relocations': relocs, 'differing_words': len(residual), 'difference_offsets': residual, 'native_sha256': hashlib.sha256(struct.pack('>95I', *native)).hexdigest(), 'gnu_body_sha256': hashlib.sha256(linked_data[:SIZE]).hexdigest(), 'gnu_equals_project_relocation': True}
 
 
 def prove():
+    with target_image(ROOT / 'asm/us/ovl_b'):
+        return _prove()
+
+
+def _prove():
     with tempfile.TemporaryDirectory(prefix='rush-b-teardown-') as directory:
         tmp = Path(directory)
         native, project, gnu, elf = elf_proof(tmp)
@@ -358,10 +378,8 @@ def prove():
         # is retained separately. The existing source is compiled unchanged.
         helper_obj = tmp / 'helper.o'
         score.compile_single(helper_source, lock['flagset'], helper_obj)
-        old = score.ASM_DIR
-        score.ASM_DIR = ROOT / 'asm/us/blob'
-        symbols = score.image_symbols()
-        score.ASM_DIR = old
+        with target_image(ROOT / 'asm/us/blob'):
+            symbols = score.image_symbols()
         raw_words = score.text_words(helper_obj)
         rw, masks, unresolved, unverified, errors = score.relocate(helper_obj, raw_words, 0, 48, symbols)
         check(not any([masks, unresolved, unverified, errors]) and rw[:12] == helper and all(w == 0 for w in rw[12:]), 'accepted helper reproduction')

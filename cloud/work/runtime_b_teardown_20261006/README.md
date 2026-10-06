@@ -102,7 +102,7 @@ hashes can be emitted separately with `--tool-provenance`.
 - Four compiled wrong-source mutations fail: wrong first state, omitted last
   effect, wrong handle clear, missing resource clear. Three native execution
   controls reject unknown instructions, a changed state and an unmapped base.
-- Six focused tests include portable receipt replay from an unrelated working
+- Eight focused tests include portable receipt replay from an unrelated working
   directory with spaces, normal and optimized Python, and fail-closed invalid
   access/helper contract checks.
 
@@ -129,3 +129,15 @@ python3 tools/cloud/score.py fn cloud/work/runtime_b_teardown_20261006/candidate
 The final command intentionally returns NONMATCH. Only source, tests, and
 metadata/notes belong to the packet. No ROM bytes, raw assembly dumps,
 objects, credentials, unrelated private data or production inputs are added.
+
+## Replay portability repair
+
+The original GNU script set the location counter before an implicitly placed
+`.text`. GNU 2.42 aligned that section and the function to `0x80392450`, four
+bytes past the required entry; GNU 2.44 happened to preserve `0x8039244C`.
+The section now has an explicit output address. Both versions preserve the
+380-byte function, 384-byte complete text, all relocations and the same native
+residual. The placement gate now reports the actual symbol tuple and a
+misplaced-link negative control verifies rejection. Target selection is
+restored in `finally` scopes, including nested helper failures. The receipt
+changes only the verifier source hash; no proof result is normalized away.

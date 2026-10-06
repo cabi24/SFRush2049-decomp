@@ -68,3 +68,46 @@ def test_packet_is_research_only():
     assert data['accepted_bytes'] == 0
     assert data['elf']['differing_words'] == 34
     assert not (ROOT / 'cloud/matches/ovl_b/func_8039244C.c').exists()
+
+
+def test_gnu_explicit_entry_and_misplacement_rejection(tmp_path, monkeypatch):
+    toolchain_or_skip()
+    original_run = PROOF.run
+    scripts = []
+
+    def inspect_link(args, **kwargs):
+        if args[0] == 'mips-linux-gnu-ld':
+            script = Path(args[args.index('-T') + 1])
+            text = script.read_text()
+            assert '.text 0x8039244C : SUBALIGN(4)' in text
+            scripts.append(text)
+        return original_run(args, **kwargs)
+
+    monkeypatch.setattr(PROOF, 'run', inspect_link)
+    previous = PROOF.score.ASM_DIR
+    PROOF.elf_proof(tmp_path)
+    assert scripts and PROOF.score.ASM_DIR == previous
+
+    def misplaced_link(args, **kwargs):
+        if args[0] == 'mips-linux-gnu-ld':
+            script = Path(args[args.index('-T') + 1])
+            script.write_text(script.read_text().replace('.text 0x8039244C', '.text 0x80392450'))
+        return original_run(args, **kwargs)
+
+    monkeypatch.setattr(PROOF, 'run', misplaced_link)
+    with pytest.raises(AssertionError, match='GNU placement/extent.*80392450'):
+        PROOF.elf_proof(tmp_path)
+    assert PROOF.score.ASM_DIR == previous
+
+
+def test_target_context_restores_after_nested_exception(monkeypatch):
+    previous = PROOF.score.ASM_DIR
+
+    def fail():
+        with PROOF.target_image(ROOT / 'asm/us/blob'):
+            raise RuntimeError('forced helper failure')
+
+    monkeypatch.setattr(PROOF, '_prove', fail)
+    with pytest.raises(RuntimeError, match='forced helper failure'):
+        PROOF.prove()
+    assert PROOF.score.ASM_DIR == previous
