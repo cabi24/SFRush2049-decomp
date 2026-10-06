@@ -15,15 +15,14 @@ includes `as1 -r4300_mul`.
 
 Observed output:
 
-    archived baseline: 528/567 words differ; emitted=533 words; frame=216; extra_nonzero=0; unresolved=0; unverified=0; errors=0
-    donor candidate NONMATCH: 524/567 words differ; emitted=538 words; frame=304; extra_nonzero=0; unresolved=0; unverified=20; errors=0
+    current baseline: 521/567 words differ; emitted=534 words; frame=216; extra_nonzero=0; unresolved=0; unverified=0; errors=0
+    donor candidate NONMATCH: 519/567 words differ; emitted=539 words; frame=304; extra_nonzero=0; unresolved=0; unverified=20; errors=0
 
 The candidate now has the native 304-byte frame, and emits five more instructions,
-reducing the length deficit from 34 words to 29 words.
-Aligned opcode-missing rows improve 79 to 65, and relocated word-missing rows
-371 to 342 (SequenceMatcher diagnostics, never a matching gate). Twenty own-data
+reducing the length deficit from 33 words to 28 words.
+Twenty own-data
 relocation words remain unverified because the body is still broadly misaligned.
-The four-word canonical improvement is not a relocated-byte equality claim.
+The two-word canonical improvement is not a relocated-byte equality claim.
 
 ## What changed
 
@@ -51,7 +50,7 @@ Own float literals replace this parent's historical extern-literal placeholders.
 
 ## Context and open work
 
-`repro.py` uses the existing `codex_path_search_a7/group.c` as the genuine
+`repro.py` uses the existing `dot_nearest_path_context_20261005/group.c` as the genuine
 E398C/E451C/E4300 context, replacing only E4B58 with the complete candidate and
 its helper definitions. E4B58 is the kept ABI root; the other three functions
 remain internal. Existing field/prototype hypotheses and the parent's external
@@ -67,3 +66,13 @@ spelling were inert. The parent is not ready for a register-only sweep.
 
 This is a source/compile research handoff. No independent review, behavior
 harness, full tests, CI wait, production edits, or ROM acceptance was performed.
+
+## Baseline reconciliation
+
+The initial draft compared with the older A7 result of 528/567. The stronger
+current real-context packet is 521/567. This revision adopts its donor-backed
+E451C `(model, navigation, change_flag)` order and genuine array declarations:
+the candidate now scores 519/567, with the same native-sized frame. Thus the
+current best-available comparison is a two-word improvement, not the previously
+reported four-word A7 comparison. E4300 remains canonical MATCH in the group,
+with no duplicate matching credit.

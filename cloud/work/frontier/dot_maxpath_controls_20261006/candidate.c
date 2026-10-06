@@ -8,20 +8,20 @@
  * Other unused arcade declarations were omitted; N64 source-history details
  * remain hypotheses. Helpers are internal and called by the actual parent.
  * No stand-ins, added ABI arguments, inline assembly, or invented padding.
- * Requires archived A7 real caller/callee declarations, supplied by repro.py.
- * Observed NONMATCH: 524/567 differing words, 538 emitted words, 304-byte frame,
+ * Requires current nearest-path caller/callee declarations, supplied by repro.py.
+ * Observed NONMATCH: 519/567 differing words, 539 emitted words, 304-byte frame,
  * 20 unverified own-rodata words. Neither context nor helper stubs are claimed.
  */
 void mp_find_interval_n64(D_8014A250_Record *car, Nav *nav) {
     s16 flag;
-    func_800E451C(1, car, nav);
+    func_800E451C(car, nav, 1);
     if (nav->d <= nav->a) {
         nav->pt = func_800B9338(nav->pt, nav->sel);
         nav->tm = D_801543CC;
-        func_800E451C(0, car, nav);
+        func_800E451C(car, nav, 0);
     } else if (nav->a < 0.0f) {
         nav->pt = func_800DC080(nav->pt, nav->sel);
-        func_800E451C(0, car, nav);
+        func_800E451C(car, nav, 0);
     }
 }
 
@@ -104,15 +104,15 @@ void mp_adjust_speed_n64(D_8014A250_Record *car, f32 tspd) {
     node = car->unk7C6;
     dif = D_801543C8;
     if (car->vy < 0.0f) {
-        tspd *= (&D_801161D4)[dif];
-    } else if (tspd < (&D_801161E4)[dif]) {
-        tspd = (&D_801161E4)[dif];
+        tspd *= D_801161D4[dif];
+    } else if (tspd < D_801161E4[dif]) {
+        tspd = D_801161E4[dif];
     }
     tspd *= car->f7EC;
     tspd *= 1.04999995f;
     if ((dif < 2) && ((car->b488 == 40) || (car->b4E4 == 40))) {
-        (&D_80153F48)[node] = 0.0f;
-        (&D_80153F68)[node] = 0.0f;
+        D_80153F48[node] = 0.0f;
+        D_80153F68[node] = 0.0f;
     } else {
         x = car->vx;
         y = car->vy;
@@ -122,25 +122,25 @@ void mp_adjust_speed_n64(D_8014A250_Record *car, f32 tspd) {
         if (delta_speed < 0.0f) {
             delta_speed *= 0.5f;
         }
-        (&D_80153F68)[node] += delta_speed * 0.183f;
-        if ((&D_80153F68)[node] < -0.75f) {
-            (&D_80153F48)[node] -= ((&D_80153F68)[node] + 0.75f) / 4.0f;
+        D_80153F68[node] += delta_speed * 0.183f;
+        if (D_80153F68[node] < -0.75f) {
+            D_80153F48[node] -= (D_80153F68[node] + 0.75f) / 4.0f;
         } else {
-            (&D_80153F48)[node] = 0.0f;
+            D_80153F48[node] = 0.0f;
         }
     }
-    if ((&D_80153F68)[node] < 0.0f) {
-        (&D_80153F68)[node] = 0.0f;
-    } else if ((&D_80153F68)[node] > 1.0f) {
-        (&D_80153F68)[node] = 1.0f;
+    if (D_80153F68[node] < 0.0f) {
+        D_80153F68[node] = 0.0f;
+    } else if (D_80153F68[node] > 1.0f) {
+        D_80153F68[node] = 1.0f;
     }
-    if ((&D_80153F48)[node] < 0.0f) {
-        (&D_80153F48)[node] = 0.0f;
-    } else if ((&D_80153F48)[node] > 1.0f) {
-        (&D_80153F48)[node] = 1.0f;
+    if (D_80153F48[node] < 0.0f) {
+        D_80153F48[node] = 0.0f;
+    } else if (D_80153F48[node] > 1.0f) {
+        D_80153F48[node] = 1.0f;
     }
-    car->f72C = (&D_80153F68)[node];
-    car->f728 = (&D_80153F48)[node];
+    car->f72C = D_80153F68[node];
+    car->f728 = D_80153F48[node];
 }
 
 void mp_adjust_steer_n64(D_8014A250_Record *car, f32 *pos) {
@@ -158,7 +158,7 @@ void mp_adjust_steer_n64(D_8014A250_Record *car, f32 *pos) {
         }
     }
     f0 = 1.0f - (f1 * 0.636619747f);
-    (&D_80153F28)[n] = f0;
+    D_80153F28[n] = f0;
     car->f720 = f0;
 }
 
