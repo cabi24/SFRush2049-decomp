@@ -1,0 +1,27 @@
+{
+  "packet": "runtime_b_teardown_20261006",
+  "owner": "dot runtime-image B reconstruction worker",
+  "status": "SOURCE-FROZEN, COMPLETE-NONMATCH, independent review pending",
+  "branch": "dot/runtime-b-teardown-9244c",
+  "base": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "target": {
+    "image": "B",
+    "name": "func_8039244C",
+    "start": "0x8039244C",
+    "end_exclusive": "0x803925C8",
+    "native_bytes": 380
+  },
+  "edited_context_members": [],
+  "accepted_context_recompiled_unchanged": [
+    "src/blob/sound_call_minimal.c"
+  ],
+  "matching_claims": [],
+  "accepted_byte_gain": 0,
+  "compiler_result": {
+    "optimization": "O2",
+    "different_words": 34,
+    "total_words": 95,
+    "complete_elf_bytes": 380
+  },
+  "reopen_condition": "Authentic record/alias or caller/TU evidence explaining remaining source topology; no declaration-order or register-pressure search."
+}

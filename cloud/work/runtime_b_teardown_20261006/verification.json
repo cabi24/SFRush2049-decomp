@@ -1,0 +1,229 @@
+{
+  "accepted_bytes": 0,
+  "address": "0x8039244c",
+  "behavior": {
+    "branch_outcomes_covered": [
+      16,
+      16,
+      16
+    ],
+    "compiled_host_mutants_rejected": [
+      "last_slot_omitted",
+      "resource_not_cleared",
+      "sentinel_not_cleared",
+      "wrong_state"
+    ],
+    "fixtures": 1344,
+    "full_memory_and_helper_entry_snapshots": true,
+    "host_fixtures": 1344,
+    "instruction_offsets_covered": [
+      95,
+      95,
+      95
+    ],
+    "native_negative_controls": {
+      "bad_memory_base": true,
+      "unknown_instruction": true,
+      "wrong_state": true
+    },
+    "native_project_gnu_executions": 4032,
+    "o32_caller_clobbers_and_saved_registers": true
+  },
+  "boundaries": {
+    "helper_bodies_execute_in_behavior_tests": false,
+    "sound_call_minimal_native_bytes": 48,
+    "sound_call_minimal_source_recompiled_equal": true,
+    "sound_stop_has_no_accepted_source": true,
+    "sound_stop_native_bytes": 160
+  },
+  "bytes": 380,
+  "elf": {
+    "difference_offsets": [
+      80,
+      84,
+      92,
+      104,
+      112,
+      128,
+      136,
+      148,
+      152,
+      156,
+      160,
+      168,
+      180,
+      184,
+      188,
+      196,
+      212,
+      216,
+      260,
+      264,
+      268,
+      272,
+      276,
+      280,
+      284,
+      288,
+      292,
+      296,
+      300,
+      304,
+      308,
+      312,
+      316,
+      320
+    ],
+    "differing_words": 34,
+    "function_bytes": 380,
+    "gnu_body_sha256": "437c269187383999fce86ae050b40fdd8b8c9626f905176b4886b2c55882740a",
+    "gnu_equals_project_relocation": true,
+    "native_sha256": "669b9c7401ddec9bf8a96ed492ddcacfefef83de4412bfc1fc3108e4aeb45c4f",
+    "owned_data_bytes": 0,
+    "relocations": [
+      [
+        8,
+        5,
+        "D_80395ED4"
+      ],
+      [
+        12,
+        6,
+        "D_80395ED4"
+      ],
+      [
+        60,
+        4,
+        "sound_stop"
+      ],
+      [
+        80,
+        5,
+        "D_80395C00"
+      ],
+      [
+        84,
+        6,
+        "D_80395C00"
+      ],
+      [
+        72,
+        5,
+        "D_80151AD0"
+      ],
+      [
+        76,
+        6,
+        "D_80151AD0"
+      ],
+      [
+        92,
+        5,
+        "D_80395CD0"
+      ],
+      [
+        104,
+        6,
+        "D_80395CD0"
+      ],
+      [
+        96,
+        5,
+        "D_80395DA0"
+      ],
+      [
+        108,
+        6,
+        "D_80395DA0"
+      ],
+      [
+        100,
+        5,
+        "D_803950C0"
+      ],
+      [
+        112,
+        6,
+        "D_803950C0"
+      ],
+      [
+        140,
+        4,
+        "sound_call_minimal"
+      ],
+      [
+        172,
+        4,
+        "sound_call_minimal"
+      ],
+      [
+        200,
+        4,
+        "sound_call_minimal"
+      ],
+      [
+        232,
+        4,
+        "sound_call_minimal"
+      ],
+      [
+        260,
+        5,
+        "D_80151AD0"
+      ],
+      [
+        264,
+        6,
+        "D_80151AD0"
+      ],
+      [
+        268,
+        5,
+        "D_803950C0"
+      ],
+      [
+        272,
+        6,
+        "D_803950C0"
+      ]
+    ],
+    "separate_zero_alignment_bytes": 4,
+    "text_bytes": 384
+  },
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "image": "B",
+  "inputs_sha256": {
+    "asm/us/blob/SHA256SUMS": "dade78464a022fedd2c5ba651ee1bca5ffd4ec99bfa4d2413d27256540bed02c",
+    "asm/us/blob/blob_8008d0c0.s": "9f6bda37e56d1373f4579652878d66da03c105cfb778d66cd8d2e25b9e00c302",
+    "asm/us/blob/blob_800aeb54.s": "9fb26c1a7748fb810f814310dae38b41c08ae3c5a363f5b5b3603944b177f612",
+    "asm/us/blob/symbols.json": "ea80bea2d751ca4f4e8ac636d2a9a5278e10267dd1f0a138a9fea5118a1b7c7d",
+    "asm/us/ovl_b/SHA256SUMS": "3b7ccbab80467e2538f107543f612db239c380a44000730c5f78f6dbb062bd98",
+    "asm/us/ovl_b/extents.json": "e10f77db903d5a6d82a04d006cdaf5c3871ed57ce2bff738d45f500914c8202b",
+    "asm/us/ovl_b/ovl_b_8038a400.s": "5e84a0c03a155cbb13ee19a694bd3aeb1321e9b48144a9d8029f7691a7f916db",
+    "asm/us/ovl_b/symbols.json": "0f9633fc7cb724c2acb129064716906d92c9ef6867359893e7130b2e8e1b897d",
+    "blob_matched.lock.json": "f4a273a755252a33adbc7bf0fa6ef1f7c8d053802883a7c582d19c67fd2328bb",
+    "cloud/work/runtime_b_teardown_20261006/candidate.c": "e5451b5f3017ace51e7543a06fb4e22a64b6654db1b551b9b2bd3a01a6cbb71e",
+    "cloud/work/runtime_b_teardown_20261006/host_test.c": "7d4b61f575cbc57504e18b733d38657f54e262d22d77e771d8af1352cfafba21",
+    "cloud/work/runtime_b_teardown_20261006/verify.py": "76b574b30fdacc5d064720e114d7fc998ff25817f757cb53a3c71a97f8547bd4",
+    "src/blob/sound_call_minimal.c": "09eed1f931085a903df870536e8477ded691384bac05972bbaa40e209fa4a05e",
+    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
+  },
+  "optimization_controls": {
+    "O1": {
+      "body_sha256": "2f5457b73100e844d019616f074a3910e74c11dee35efcb118856c04e46fcbcd",
+      "differing_native_words": 94,
+      "elf_bytes": 460,
+      "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "nonzero_excess_words": 19
+    },
+    "O3": {
+      "body_sha256": "437c269187383999fce86ae050b40fdd8b8c9626f905176b4886b2c55882740a",
+      "differing_native_words": 34,
+      "elf_bytes": 380,
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "nonzero_excess_words": 0
+    }
+  },
+  "status": "NONMATCH"
+}
