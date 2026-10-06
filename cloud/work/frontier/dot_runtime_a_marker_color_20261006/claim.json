@@ -1,0 +1,15 @@
+{
+  "status": "candidate_match",
+  "image": "A",
+  "function": "func_803A3A6C",
+  "address": "0x803A3A6C",
+  "end": "0x803A3D9C",
+  "bytes": 816,
+  "words": 204,
+  "source": "cloud/matches/ovl_a/func_803A3A6C.c",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "scope": "complete object, all relocations, explicit GNU placement, bounded native and sanitized source behavior",
+  "accepted_bytes": 0,
+  "merge_authority": "independent checker",
+  "rom_gate": "not run"
+}
