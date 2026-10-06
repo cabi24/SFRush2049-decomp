@@ -1,0 +1,333 @@
+{
+  "status": "MATCH",
+  "kind": "standalone",
+  "base": "7e62ed7b3c3e6f1e788bf013419b89e132b4c65d",
+  "image": "A",
+  "address": "0x803ae940",
+  "end": "0x803aecc4",
+  "bytes": 900,
+  "words": 225,
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source_sha256": "4f1a98fd247bba5dc0c0f923c83e8ac12dae4872c27f7709d6ea5526b4c8eb15",
+  "native_sha256": "06cf3b3f92db2312ea382822691b45d872794700b16d06c31cfd6da3f7d7aef1",
+  "gnu_linked_body_sha256": "06cf3b3f92db2312ea382822691b45d872794700b16d06c31cfd6da3f7d7aef1",
+  "comparison": {
+    "differing": 0,
+    "total": 225,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "notes": []
+  },
+  "function_bytes": 900,
+  "alignment_bytes": 12,
+  "owned_data_bytes": 0,
+  "relocations": 35,
+  "anchors": {
+    "D_803B7714": "0x803b7714",
+    "D_803BA878": "0x803ba878",
+    "D_803BA898": "0x803ba898",
+    "D_803BA908": "0x803ba908",
+    "D_803B8294": "0x803b8294",
+    "D_803B9224": "0x803b9224",
+    "D_803BA85A": "0x803ba85a",
+    "D_803BA8B0": "0x803ba8b0",
+    "D_8017A4E0": "0x8017a4e0",
+    "D_80140BF0": "0x80140bf0",
+    "input_new_data_wrapper": "0x80094f88",
+    "func_800EF5B0": "0x800ef5b0",
+    "func_800BEA30": "0x800bea30",
+    "func_800B42F0": "0x800b42f0",
+    "func_800B3FA4": "0x800b3fa4",
+    "Input_ApplyPadConfig": "0x80094ec8"
+  },
+  "behavior": {
+    "host_cases": 5824,
+    "oracle_trace_sha256": "840eb76301c350559692928ef1e2eb5ce8325d4d2e24fdcf528b600cfd4ac7c1",
+    "sanitizers": [
+      "undefined",
+      "bounds",
+      "float-cast-overflow"
+    ],
+    "hooks": [
+      "Hidden update",
+      "texture selection",
+      "fade read",
+      "font selection",
+      "string width"
+    ],
+    "table_domain": "group/texture 0..15, item 0..3, selected 0..31; synthetic data only"
+  },
+  "layout_checks": {
+    "X": 14,
+    "Y": 16,
+    "Width": 20,
+    "Height": 22,
+    "Alpha": 24,
+    "Flip": 25,
+    "Hide": 26,
+    "AnimFunc": 40,
+    "AnimID": 44,
+    "Texture": 52
+  },
+  "negative_controls": {
+    "wrong_mode_gate": {
+      "case": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        7,
+        12,
+        -128,
+        3,
+        101,
+        -55,
+        1056964608,
+        0,
+        -1
+      ],
+      "host_rejected": true,
+      "strict_match": false,
+      "comparison": {
+        "differing": 2,
+        "total": 225,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      }
+    },
+    "wrong_scroll_boundary": {
+      "case": [
+        0,
+        3,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        3,
+        101,
+        -55,
+        1056964608,
+        0,
+        -1
+      ],
+      "host_rejected": true,
+      "strict_match": false,
+      "comparison": {
+        "differing": 1,
+        "total": 225,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      }
+    },
+    "wrong_alpha_scale": {
+      "case": [
+        1,
+        0,
+        0,
+        3,
+        0,
+        1,
+        12,
+        0,
+        3,
+        -32768,
+        -32768,
+        1065353215,
+        0,
+        0
+      ],
+      "host_rejected": true,
+      "strict_match": false,
+      "comparison": {
+        "differing": 1,
+        "total": 225,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      }
+    },
+    "wrong_signed_half": {
+      "case": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        3,
+        101,
+        -55,
+        1056964608,
+        0,
+        -1
+      ],
+      "host_rejected": true,
+      "strict_match": false,
+      "comparison": {
+        "differing": 80,
+        "total": 225,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      }
+    },
+    "wrong_row_spacing": {
+      "case": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        3,
+        101,
+        -55,
+        1056964608,
+        0,
+        -1
+      ],
+      "host_rejected": true,
+      "strict_match": false,
+      "comparison": {
+        "differing": 33,
+        "total": 225,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      }
+    },
+    "wrong_texture_flag": {
+      "case": [
+        0,
+        3,
+        0,
+        0,
+        0,
+        1,
+        6,
+        -1,
+        3,
+        101,
+        -55,
+        1056964608,
+        0,
+        -1
+      ],
+      "host_rejected": true,
+      "strict_match": false,
+      "comparison": {
+        "differing": 1,
+        "total": 225,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      }
+    },
+    "missing_final_update": {
+      "case": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        3,
+        101,
+        -55,
+        1056964608,
+        0,
+        -1
+      ],
+      "host_rejected": true,
+      "strict_match": false,
+      "comparison": {
+        "differing": 14,
+        "total": 225,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      }
+    },
+    "wrong_return": {
+      "case": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        3,
+        101,
+        -55,
+        1056964608,
+        0,
+        -1
+      ],
+      "host_rejected": true,
+      "strict_match": false,
+      "comparison": {
+        "differing": 1,
+        "total": 225,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      }
+    }
+  },
+  "protected_targets": {
+    "extents.json": "0d97935254a6f2c724dfe68b08087e0a451e56d0aedb2121748abe7b6cc0798b",
+    "ovl_a_8038a400.s": "94f5fdb45838b6d21fb761209bf2cb60602f90ea8725b16cae2c3cebe0aa7685",
+    "symbols.json": "d5a6c8dccb0380f54f080d45d82a5e71f917be86f9568bf4b7fbe10a89f2a769"
+  },
+  "support_sha256": {
+    "host.c": "6857b1f910d1c432cb4e760e5f074ad8f04a1dc6e2c71077e4125c289ebcfc2f",
+    "semantics.py": "9a6f3a932503d3111da9cc99514f640a097abc95b5669944b54178b2dbb00f2e",
+    "elf_support.py": "2f3ab96521aa807cb2b29523fea5bff964aea395fbf73649c4d4ff663523e1d9"
+  },
+  "scorer_sha256": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+  "tools": {
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+  },
+  "limits": [
+    "Synthetic fixture backing; actual resource values/ranges and reachability not proved",
+    "Finite nonnegative representable float-to-u32 test domain; FCSR invalid conversion not modeled by host proof",
+    "Signed-halfword narrowing checked for target/GNU behavior, not portable C beyond signed16 range",
+    "Helpers are side-effecting O32 contract hooks in host proof, not full renderer execution",
+    "No image/compression/ROM/hardware gates or coverage acceptance"
+  ]
+}

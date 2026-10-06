@@ -1,0 +1,542 @@
+{
+  "status": "MATCH",
+  "base_commit": "7e62ed7b3c3e6f1e788bf013419b89e132b4c65d",
+  "source_sha256": "4f1a98fd247bba5dc0c0f923c83e8ac12dae4872c27f7709d6ea5526b4c8eb15",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "extent": {
+    "name": "func_803AE940",
+    "address": "0x803AE940",
+    "size": 900,
+    "evidence": [
+      "data_ref",
+      "prologue"
+    ]
+  },
+  "population": {
+    "image": "A",
+    "base": "0x8038A400",
+    "size": 194128,
+    "image_sha256": "0d6702c320df84cc6cbc3c5967dde08d44b6e476e110667fe2a43dc2dd536667"
+  },
+  "comparison": {
+    "differing": 0,
+    "total": 225,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "notes": []
+  },
+  "text_bytes": 912,
+  "function_bytes": 900,
+  "zero_alignment_bytes": 12,
+  "owned_data_bytes": 0,
+  "relocations": 35,
+  "anchors": {
+    "D_803B7714": "0x803b7714",
+    "input_new_data_wrapper": "0x80094f88",
+    "D_803BA878": "0x803ba878",
+    "D_803BA898": "0x803ba898",
+    "D_803BA908": "0x803ba908",
+    "D_803B8294": "0x803b8294",
+    "func_800EF5B0": "0x800ef5b0",
+    "func_800BEA30": "0x800bea30",
+    "D_803B9224": "0x803b9224",
+    "func_800B42F0": "0x800b42f0",
+    "D_8017A4E0": "0x8017a4e0",
+    "D_803BA85A": "0x803ba85a",
+    "D_803BA8B0": "0x803ba8b0",
+    "func_800B3FA4": "0x800b3fa4",
+    "D_80140BF0": "0x80140bf0",
+    "Input_ApplyPadConfig": "0x80094ec8"
+  },
+  "native_sha256": "06cf3b3f92db2312ea382822691b45d872794700b16d06c31cfd6da3f7d7aef1",
+  "gnu_body_sha256": "06cf3b3f92db2312ea382822691b45d872794700b16d06c31cfd6da3f7d7aef1",
+  "helper_bindings": {
+    "input_new_data_wrapper": {
+      "address": "0x80094f88",
+      "bytes": 60,
+      "sha256": "51bff8e44879d93b2c44f11fea4c78e7a725283b496a06d94290f1793f4763b3"
+    },
+    "Input_ApplyPadConfig": {
+      "address": "0x80094ec8",
+      "bytes": 192,
+      "sha256": "3282399bd7919e39047f452faa4070df2ef7b4b91d82318591c2592e7bfda590"
+    },
+    "func_800EF5B0": {
+      "address": "0x800ef5b0",
+      "bytes": 124,
+      "sha256": "b9b278845d966d684513a894e9b728164b3291016e67967a1a51fb395c30eadd"
+    },
+    "func_800BEA30": {
+      "address": "0x800bea30",
+      "bytes": 12,
+      "sha256": "2a31d1d930e9db7ce2a065f81af2e53cf22a3d2c57ab0b71f0b05435ec66dae2"
+    },
+    "object_create": {
+      "address": "0x800b42f0",
+      "bytes": 112,
+      "sha256": "faee709c3df1e073e647c2851a4c4ce19db047599daaa796882845fa345f6858"
+    },
+    "object_manager_update": {
+      "address": "0x800b3fa4",
+      "bytes": 532,
+      "sha256": "a515631a895e84ae58c25c34a7ee3f91dca40939f027356c4b417140d846ffb1"
+    },
+    "sound_control": {
+      "address": "0x800b37e8",
+      "bytes": 468,
+      "sha256": "56fb7406e5ae20cf6e85f574d6bc988e5e5d6dd694cfee5e7ef20c1ed73daad9"
+    },
+    "UpdateActiveObjects": {
+      "address": "0x800f733c",
+      "bytes": 192,
+      "sha256": "78cbec305eef657e1e3ba22c53b0206319133fd2a99821b5f4b46b3b90e04691"
+    }
+  },
+  "dispatcher_api": {
+    "UpdateActiveObjects": {
+      "call_offset": "0x48",
+      "argument": "a0 points to Blit",
+      "result": "v0 nonzero retains Blit; zero enters removal path",
+      "execution": "callsite inspected; complete dispatcher not executed"
+    },
+    "sound_control": {
+      "call_offset": "0x160",
+      "argument": "a0 points to Blit",
+      "result": "v0 nonzero retains Blit; zero enters removal path",
+      "execution": "callsite inspected; complete dispatcher not executed"
+    }
+  },
+  "behavior": {
+    "cases": 5840,
+    "author_cases_replayed": 5824,
+    "additional_unsigned_conversion_selection_cases": 16,
+    "native_executions": 11680,
+    "target_instructions_executed": 222,
+    "unexecuted_offsets": [
+      "0x1e4",
+      "0x1e8",
+      "0x1ec"
+    ],
+    "hidden_instructions_executed": 15,
+    "branch_outcomes": [
+      [
+        "0x80094f94",
+        false
+      ],
+      [
+        "0x80094f94",
+        true
+      ],
+      [
+        "0x803ae994",
+        false
+      ],
+      [
+        "0x803ae994",
+        true
+      ],
+      [
+        "0x803ae99c",
+        true
+      ],
+      [
+        "0x803ae9a8",
+        false
+      ],
+      [
+        "0x803ae9a8",
+        true
+      ],
+      [
+        "0x803ae9c0",
+        false
+      ],
+      [
+        "0x803ae9c0",
+        true
+      ],
+      [
+        "0x803ae9c8",
+        true
+      ],
+      [
+        "0x803ae9dc",
+        false
+      ],
+      [
+        "0x803ae9dc",
+        true
+      ],
+      [
+        "0x803ae9e4",
+        false
+      ],
+      [
+        "0x803ae9e4",
+        true
+      ],
+      [
+        "0x803aea00",
+        false
+      ],
+      [
+        "0x803aea00",
+        true
+      ],
+      [
+        "0x803aea08",
+        true
+      ],
+      [
+        "0x803aea14",
+        false
+      ],
+      [
+        "0x803aea14",
+        true
+      ],
+      [
+        "0x803aea3c",
+        false
+      ],
+      [
+        "0x803aea3c",
+        true
+      ],
+      [
+        "0x803aea44",
+        true
+      ],
+      [
+        "0x803aea60",
+        false
+      ],
+      [
+        "0x803aea60",
+        true
+      ],
+      [
+        "0x803aeaa0",
+        false
+      ],
+      [
+        "0x803aeaa0",
+        true
+      ],
+      [
+        "0x803aeae0",
+        false
+      ],
+      [
+        "0x803aeae0",
+        true
+      ],
+      [
+        "0x803aeb0c",
+        false
+      ],
+      [
+        "0x803aeb1c",
+        true
+      ],
+      [
+        "0x803aeb34",
+        false
+      ],
+      [
+        "0x803aeb74",
+        false
+      ],
+      [
+        "0x803aeb74",
+        true
+      ],
+      [
+        "0x803aeb94",
+        false
+      ],
+      [
+        "0x803aeb94",
+        true
+      ],
+      [
+        "0x803aebb4",
+        false
+      ],
+      [
+        "0x803aebb4",
+        true
+      ],
+      [
+        "0x803aebd0",
+        false
+      ],
+      [
+        "0x803aebd0",
+        true
+      ],
+      [
+        "0x803aec28",
+        false
+      ],
+      [
+        "0x803aec28",
+        true
+      ],
+      [
+        "0x803aec30",
+        false
+      ],
+      [
+        "0x803aec30",
+        true
+      ],
+      [
+        "0x803aec68",
+        false
+      ],
+      [
+        "0x803aec68",
+        true
+      ],
+      [
+        "0x803aec70",
+        true
+      ],
+      [
+        "0x803aec7c",
+        false
+      ],
+      [
+        "0x803aec7c",
+        true
+      ]
+    ],
+    "trace_sha256": "135acb6ab5268379e76452801e42036685b462e4928dd2589488943915656856",
+    "abi": "Integer caller-save and f0-f19 registers poisoned at each hook. Preserved s0-s7, gp, sp, s8, ra and f20-f31 are checked; memory writes are confined. Exact native Hidden body executes.",
+    "routes": [
+      "protected native",
+      "GNU-linked fresh IDO",
+      "unchanged C89 with UBSan/bounds/float-cast-overflow",
+      "state oracle"
+    ]
+  },
+  "negative_controls": {
+    "row_spacing": {
+      "comparison": {
+        "differing": 33,
+        "total": 225,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      },
+      "native_counterexample": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        3,
+        101,
+        -55,
+        1056964608,
+        0,
+        -1
+      ],
+      "rejected_by": "native semantic trace differs",
+      "source_change": {
+        "old": "* 13",
+        "new": "* 12"
+      }
+    },
+    "texture_flag": {
+      "comparison": {
+        "differing": 1,
+        "total": 225,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      },
+      "native_counterexample": [
+        0,
+        3,
+        0,
+        0,
+        0,
+        1,
+        6,
+        -1,
+        3,
+        101,
+        -55,
+        1056964608,
+        0,
+        -1
+      ],
+      "rejected_by": "native semantic trace differs",
+      "source_change": {
+        "old": "flags |= 8",
+        "new": "flags |= 4"
+      }
+    },
+    "signed_half": {
+      "comparison": {
+        "differing": 80,
+        "total": 225,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      },
+      "native_counterexample": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        3,
+        101,
+        -55,
+        1056964608,
+        0,
+        -1
+      ],
+      "rejected_by": "native semantic trace differs",
+      "source_change": {
+        "old": "blt->Height / 2",
+        "new": "(blt->Height >> 1)"
+      }
+    },
+    "pulse_selector": {
+      "comparison": {
+        "differing": 1,
+        "total": 225,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      },
+      "native_counterexample": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        3,
+        101,
+        -55,
+        1056964608,
+        0,
+        -1
+      ],
+      "rejected_by": "native semantic trace differs",
+      "source_change": {
+        "old": "blt->AnimID & 15",
+        "new": "blt->AnimID & 14"
+      }
+    },
+    "return_value": {
+      "comparison": {
+        "differing": 1,
+        "total": 225,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0,
+        "notes": []
+      },
+      "native_counterexample": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        3,
+        101,
+        -55,
+        1056964608,
+        0,
+        -1
+      ],
+      "rejected_by": "native semantic trace differs",
+      "source_change": {
+        "old": "    return 1;\n}",
+        "new": "    return 0;\n}"
+      }
+    }
+  },
+  "protected_targets": {
+    "extents.json": "0d97935254a6f2c724dfe68b08087e0a451e56d0aedb2121748abe7b6cc0798b",
+    "ovl_a_8038a400.s": "94f5fdb45838b6d21fb761209bf2cb60602f90ea8725b16cae2c3cebe0aa7685",
+    "symbols.json": "d5a6c8dccb0380f54f080d45d82a5e71f917be86f9568bf4b7fbe10a89f2a769"
+  },
+  "protected_helpers": {
+    "blob_80086a50.s": "6a5a215551ef8d386fdbd6942e5eedfc60f92236f20040bea66736052fbb49be",
+    "blob_8008d0c0.s": "5ef63b81ebe8c2102f0602a21d32c9c8f9ffd11d6a09ec8357e1f33acade2a2a",
+    "blob_800947f0.s": "7f4eced726e055ab9f83b6bffc13f04207a21df2609e403e8b4c2c138a25dcb8",
+    "blob_800966d8.s": "ff1589a26f5d03d3c3d5f16a8c6edc6e92a2ec6c9523485b7dbd279d0aad3049",
+    "blob_8009dd18.s": "43ed49060d7bfaca2c9e20ebf3f08f81d719b019d44aef7627d65c91e14182af",
+    "blob_800a4508.s": "758ddc1207ca83822d50e63ea2702d95af521d3bcd7c7f96aeb32ea021850a72",
+    "blob_800a7df0.s": "4ea7496edb1fa47f20d6926170129b66b6a03216b85c2f6845391927156948fe",
+    "blob_800aeb54.s": "108cdef889ae826f4b07634b76c20d881f38dedb01891fd3267834d7fd4d4ca5",
+    "blob_800b3b4c.s": "dadd2906bd05f9a724da394247ee270427d70f48fbce2051d6dff277d93e7f1d",
+    "blob_800b7360.s": "db89b1078eadebc220c5f3edfab961e099cc5714aa039e65fb2faeba317f60ec",
+    "blob_800bdd90.s": "8b7344c4e9348813caa49bb25532c086b829fb156a64e56bda3c70b8860c15c4",
+    "blob_800c46d0.s": "c1403db49b640663cfe2a18182dd5f6397c3c6f4e0eca15782cd3120652712ae",
+    "blob_800cbe08.s": "93265ef0ae044bd9de2e19f494207d8a878cf4f5138f959d3bde6da31a1679a0",
+    "blob_800d1004.s": "a4dbbf9bfdd6585b63b35113c4c523b5ba6a0145038663148e2a8449340b69a3",
+    "blob_800d6690.s": "f4ac78c84232e09798b51fd081bfd486c45a7ff7c10b497720fe25d41b1e5408",
+    "blob_800de454.s": "836b244e17ae63fee2cfa841a178a51a91d1af19bbb34b9a396a0b8be05e7427",
+    "blob_800e7030.s": "27f083e57b4c182beb664e6099e4c9357d12086399b8a28d32424caacefcc105",
+    "blob_800ef5b0.s": "9b86b451c60b86cd53ea986b39598c8be50a293f42fb09db855f7a320af00dfd",
+    "blob_800f8d9c.s": "3675d9558954f5e895825b14d4d14259fc6ff7634cfcdde993e5b5e6b1af7d00",
+    "blob_80100d24.s": "a1db782bb5adbcefaf9aee77b46318b3b8e01e7678f15daf82d1b4fc7c63f7fe",
+    "blob_8010e0fc.s": "c0c9ba877349c3aed66e35a51b1afdb5c5d147d196b54ba1e2fafb45b77f574c",
+    "blob_8010fd7c.s": "ad3456595bad8f1e62ac4d8ce1710c2c6d6851dd05c509de0904b22538a4df13",
+    "symbols.json": "ea80bea2d751ca4f4e8ac636d2a9a5278e10267dd1f0a138a9fea5118a1b7c7d"
+  },
+  "compiler_sha256": {
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+  },
+  "scorer_sha256": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+  "support_sha256": {
+    "native.py": "a944f23adc71b88ad706a68927e337c8849494ef4f331c229db5e8b11c794e79",
+    "review.py": "af2fc33f02dc7a8b2b2515310731c2fe7c5ae172b87bd9716e0b168a0db63053",
+    "host.c": "6857b1f910d1c432cb4e760e5f074ad8f04a1dc6e2c71077e4125c289ebcfc2f",
+    "semantics.py": "9a6f3a932503d3111da9cc99514f640a097abc95b5669944b54178b2dbb00f2e",
+    "elf_support.py": "2f3ab96521aa807cb2b29523fea5bff964aea395fbf73649c4d4ff663523e1d9"
+  },
+  "accepted_bytes": 0,
+  "limits": [
+    "Finite nonnegative float products below 2**32; trap-disabled round-to-nearest multiply and toward-zero conversion only. No NaN/Inf/general FCSR/trap proof.",
+    "Offsets +0x1e4/+0x1e8 are excluded invalid-conversion fallback; +0x1ec is structurally bypassed.",
+    "Synthetic disjoint tables: item 0..3, group/texture 0..15, selected 0..31. Actual retail data, bounds and reachability are unproved.",
+    "Signed-short narrowing follows target and tested GCC behavior, not portable out-of-range signed conversion.",
+    "External renderer/font/fade calls use effectful O32 hooks. Only Hidden executes its complete native helper body.",
+    "No exact arcade donor/original source-unit claim. No full image, compression, ROM, hardware or accepted coverage claim."
+  ]
+}

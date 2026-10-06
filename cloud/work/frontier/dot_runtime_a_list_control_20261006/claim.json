@@ -1,0 +1,15 @@
+{
+  "base": "7e62ed7b3c3e6f1e788bf013419b89e132b4c65d",
+  "population": "runtime_image_A",
+  "target": "func_803AE940",
+  "start": "0x803AE940",
+  "end": "0x803AECC4",
+  "bytes": 900,
+  "owner": "match_runtime_function_1944",
+  "state": "INDEPENDENTLY VERIFIED-BODY; production/image/compression/ROM gates pending",
+  "context_members": [],
+  "source": "cloud/matches/ovl_a/func_803AE940.c",
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "coverage_gain_claimed": 0,
+  "independent_review": "verify_ae940_match: source and complete matching proof accepted 2026-10-06"
+}
