@@ -1,0 +1,104 @@
+{
+  "address": "0x8038ca24",
+  "behavior": {
+    "callee_saved_registers_checked": true,
+    "complete_global_write_map_and_argument_home_checked": true,
+    "host_complete_state_cases": 16384,
+    "host_domain": "four accessible, nonoverlapping player/table elements, indices 0..3; arbitrary prior object bytes",
+    "instruction_offsets_covered": 59,
+    "native_address_characterization_cases": 131072,
+    "native_address_domain": "all 65536 signed-low-halfword indices, two raw upper-halfword patterns; sparse mapped stores, no C validity or gameplay reachability claim outside 0..3",
+    "native_project_gnu_three_way_cases": 1024,
+    "source_mutants_rejected": [
+      "mode_changed",
+      "selection_not_cleared",
+      "last_slot_omitted",
+      "group_timer_nonzero",
+      "extra_byte_clear"
+    ],
+    "three_way_executions": 3072,
+    "unknown_opcode_rejected": true
+  },
+  "bytes": 236,
+  "elf": {
+    "function_size": 236,
+    "independent_gnu_differing_words": 0,
+    "linked_body_sha256": "dca68f3488638137802f7df43e1d19698c650ea22758e9ca6eefd37a4d6b22f2",
+    "owned_data_bytes": 0,
+    "relocations": [
+      {
+        "offset": 140,
+        "symbol": "D_80399120",
+        "type": 5
+      },
+      {
+        "offset": 152,
+        "symbol": "D_80399120",
+        "type": 6
+      },
+      {
+        "offset": 24,
+        "symbol": "D_80152818",
+        "type": 5
+      },
+      {
+        "offset": 28,
+        "symbol": "D_80152818",
+        "type": 6
+      },
+      {
+        "offset": 60,
+        "symbol": "D_80399118",
+        "type": 5
+      },
+      {
+        "offset": 124,
+        "symbol": "D_80399118",
+        "type": 6
+      },
+      {
+        "offset": 68,
+        "symbol": "D_80399550",
+        "type": 5
+      },
+      {
+        "offset": 104,
+        "symbol": "D_80399550",
+        "type": 6
+      }
+    ],
+    "strict_differing_words": 0,
+    "text_size": 240,
+    "zero_alignment_bytes_outside_function": 4
+  },
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "game_direct_callers": [
+    {
+      "caller": "func_800C54F0",
+      "site": "0x800c554c"
+    },
+    {
+      "caller": "func_800D348C",
+      "site": "0x800d34bc"
+    },
+    {
+      "caller": "display_list_flush",
+      "site": "0x800fba8c"
+    }
+  ],
+  "image": "B",
+  "image_sha256": "b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd",
+  "inputs_sha256": {
+    "asm/us/blob/SHA256SUMS": "dade78464a022fedd2c5ba651ee1bca5ffd4ec99bfa4d2413d27256540bed02c",
+    "asm/us/ovl_b/SHA256SUMS": "3b7ccbab80467e2538f107543f612db239c380a44000730c5f78f6dbb062bd98",
+    "asm/us/ovl_b/extents.json": "e10f77db903d5a6d82a04d006cdaf5c3871ed57ce2bff738d45f500914c8202b",
+    "asm/us/ovl_b/ovl_b_8038a400.s": "5e84a0c03a155cbb13ee19a694bd3aeb1321e9b48144a9d8029f7691a7f916db",
+    "asm/us/ovl_b/symbols.json": "0f9633fc7cb724c2acb129064716906d92c9ef6867359893e7130b2e8e1b897d",
+    "cloud/work/runtime_b_reset_20261006/host_test.c": "0c9043627eb3fb13fa694400f765476fd416f2eb333718ac16df22dfdadbe9dd",
+    "cloud/work/runtime_b_reset_20261006/verify.py": "874b940b6a0e83d32deadc6169672044d3a68adad898770eb5f0c759168de6e8",
+    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
+  },
+  "source_sha256": "c4b083be9f7f28cb7aed1346ca7ff18ad9e2710565dc5d232ed756f83cb4a272",
+  "status": "MATCH"
+}

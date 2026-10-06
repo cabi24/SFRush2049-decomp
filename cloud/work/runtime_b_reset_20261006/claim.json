@@ -1,0 +1,14 @@
+{
+  "owner": "runtime B reset worker",
+  "base_commit": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "branch": "work/runtime-b-reset-20261006",
+  "image": "B",
+  "target": "func_8038CA24",
+  "start": "0x8038CA24",
+  "end_exclusive": "0x8038CB10",
+  "native_bytes": 236,
+  "status": "matching candidate; independent review pending",
+  "accepted_bytes": 0,
+  "edited_context_members": [],
+  "preflight": "Current master matches, research source paths, claims and open PRs #110..#138 were inspected; no matching-source/active B:8038CA24 claim was found. Runtime A's overlapping address is a different body. Parent reserved this B target before reconstruction."
+}
