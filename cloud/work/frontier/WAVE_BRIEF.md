@@ -68,6 +68,9 @@ writing variants: if forcing reaches 0 rows the residual is colour-only.
 - A group that gives a locked stub a real body must list that stub in "members" (and say which
   prefer_definition/force_internal overrides it needs). Superseding groups keep the SAME name and every
   old member.
+- `cloud/matches/NAME.c` is ONLY for functions that `score.py fn` matches standalone (CI rescores every changed
+  file there standalone). A function that is EQUAL only in the whole-program unit or in a group goes in your
+  lane's `groups/<name>/` dir with the context files it needs (see w12l), never in cloud/matches.
 - Prove a residual is colour-only with `tools/trace/force.sh` before writing variants. For a colour tie,
   try the compiled-out `if (x) {}` priority lever (w11a) and `t = a; t -= b;` splits (w11c) first.
 
