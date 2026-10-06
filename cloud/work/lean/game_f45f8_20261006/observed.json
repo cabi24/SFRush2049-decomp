@@ -1,0 +1,39 @@
+{
+  "base": "f2e8380d3b368d00efc9cac3e37cdc7059b1f6e2",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "automatic_backend_flag": "-Wab,-r4300_mul",
+  "function": "func_800F45F8",
+  "target_bytes": 900,
+  "rows": [
+    {
+      "source": "baseline",
+      "source_sha256": "d2d99748b7e44d11600678aec2d5747464a283d1c700cb1203d2f963eff65c04",
+      "result": {
+        "differing": 113,
+        "total": 225,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [
+          "unpaired R_MIPS_HI16 for input_rec0 at .text+0x36c"
+        ],
+        "extra_words": 6
+      },
+      "function_bytes": 928
+    },
+    {
+      "source": "candidate",
+      "source_sha256": "f6436c8e1cc9117c57f3592b2f3fd93844fe302a93ff8bdc086fd668fd52ed5c",
+      "result": {
+        "differing": 85,
+        "total": 225,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [
+          "unpaired R_MIPS_HI16 for input_rec0 at .text+0x36c"
+        ],
+        "extra_words": 6
+      },
+      "function_bytes": 928
+    }
+  ]
+}
