@@ -1,0 +1,12 @@
+{
+  "owner": "selector-caller-contract",
+  "function": "func_800D9058",
+  "start": "0x800D9058",
+  "end_exclusive": "0x800D91A0",
+  "native_bytes": 328,
+  "base": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "status": "bounded source and ABI negative",
+  "claims": [],
+  "new_verified_matching_bytes": 0,
+  "production_changes": false
+}

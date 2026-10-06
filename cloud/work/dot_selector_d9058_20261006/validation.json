@@ -1,0 +1,25 @@
+{
+  "focused_tests": 7,
+  "aggregate_tests": {
+    "passed": 739,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 20.5
+  },
+  "command": "ASAN_OPTIONS=detect_leaks=0 REQUIRE_TOOLCHAIN=1 python3 -m pytest -o addopts='' -q tests/cloud/test_selector_d9058_contract.py tests/conveyor/test_cloud_score.py tests/conveyor/test_cloud_submissions.py tests/conveyor/test_cloud_guard.py tests/conveyor/test_cloud_integrity.py",
+  "frozen_receipt_reproduced": true,
+  "protected_files_unchanged_sha256": {
+    "blob_matched.lock.json": "f4a273a755252a33adbc7bf0fa6ef1f7c8d053802883a7c582d19c67fd2328bb",
+    "matched.lock.json": "e1f894d33c2c30320add9a62b2d20823dd37392c778ee6ef9e4bfd9ebcd6b12b",
+    "asm/us/blob/SHA256SUMS": "dade78464a022fedd2c5ba651ee1bca5ffd4ec99bfa4d2413d27256540bed02c",
+    "asm/us/blob/symbols.json": "ea80bea2d751ca4f4e8ac636d2a9a5278e10267dd1f0a138a9fea5118a1b7c7d",
+    "src/blob/groups/slot_sound/group.c": "5ab15c1c3fc65c78e1d416dbb6c6067f638345906caacf202ec18e6c3a8dcbf4",
+    "src/blob/groups/slot_sound/group.json": "1a942b85b1649aab6667660285db29d9de1409dcf3cc0e23eeb6483d40f4bbde",
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad"
+  },
+  "initial_sparse_checkout_failures": "Recovered: materialized tracked test dependencies and locked source files; final aggregate is 739 passed. No source was changed to recover those infrastructure-only failures.",
+  "full_repository_test_suite_run": false,
+  "image_or_rom_gate_run": false,
+  "new_verified_matching_bytes": 0
+}
