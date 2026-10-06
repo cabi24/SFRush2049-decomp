@@ -1,0 +1,170 @@
+{
+  "address": "0x8039133c",
+  "base": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "behavior": {
+    "branch_outcomes": [
+      [
+        8,
+        false
+      ],
+      [
+        8,
+        true
+      ],
+      [
+        64,
+        false
+      ],
+      [
+        64,
+        true
+      ],
+      [
+        84,
+        false
+      ],
+      [
+        84,
+        true
+      ],
+      [
+        140,
+        false
+      ],
+      [
+        140,
+        true
+      ],
+      [
+        268,
+        false
+      ],
+      [
+        268,
+        true
+      ],
+      [
+        292,
+        true
+      ]
+    ],
+    "cases": 18432,
+    "full_callback_snapshots_and_final_memory": true,
+    "native_instruction_offsets": 84,
+    "native_project_gnu_executions": 55296,
+    "rng_instruction_offsets": 18,
+    "saved_gpr_fpr_stack_canaries": true,
+    "scope": "Acyclic lists of 0..8 nodes, all raw count bytes, four reuse modes, successful allocator boundary returning sufficient mapped slots, finite RNG results and exact fourth-call threshold. Actual native RNG executes; allocator remains a contract hook. LP64 host layout is not native ABI.",
+    "source_mutants_rejected": [
+      "inverted_filter",
+      "wrong_allocation_count",
+      "tie_selects_wrong_phase",
+      "wrong_entry_tag",
+      "wrong_rng_range"
+    ],
+    "unchanged_host_c89_ubsan_cases": 18432,
+    "unknown_opcode_rejected": true,
+    "unreachable_duplicate_load_offset": "0x12c"
+  },
+  "bytes": 340,
+  "contexts": {
+    "allocator_native_execution": false,
+    "allocator_sha256": "21357517675e9bfefe1695b7cb97d3425fb6fbb7d680d18cf8b1272f8b86b041",
+    "allocator_source": "src/blob/groups/audio_heap/group.c",
+    "direct_caller": {
+      "bytes": 1428,
+      "name": "engine_sound_update",
+      "offset": "0x558",
+      "sha256": "402ad65c96cac51c7f266a20a11ee088f864a749c255fe1d5a62ea92b7d9ca92"
+    },
+    "list_witness": "src/blob/func_800BEA6C.c",
+    "list_witness_sha256": "b3a1b390659d4c47692c9c48d186de87cb23a432422fe72c4ef24e9fef1f3e84",
+    "rng_accepted": false,
+    "rng_native_executed": true,
+    "rng_native_sha256": "ba9c8043ae09ad367b6cfc05f8cecf7258c9f6b4ba74f877755617abfd558095"
+  },
+  "elf": {
+    "alignment_bytes_outside_function": 12,
+    "body_sha256": "ceac660c0c05ee9b36f9cd73863e36b4ac8b621f74ba44d9f6db7e868284879f",
+    "function_size": 340,
+    "gnu_differing_words": 0,
+    "native_layout_assertions": 10,
+    "owned_data_bytes": 0,
+    "relocations": [
+      {
+        "offset": 16,
+        "symbol": "D_80399AE0",
+        "type": 5
+      },
+      {
+        "offset": 20,
+        "symbol": "D_80399AE0",
+        "type": 6
+      },
+      {
+        "offset": 36,
+        "symbol": "audio_dma_sync",
+        "type": 4
+      },
+      {
+        "offset": 56,
+        "symbol": "D_80399AE0",
+        "type": 5
+      },
+      {
+        "offset": 60,
+        "symbol": "D_80399AE0",
+        "type": 6
+      },
+      {
+        "offset": 48,
+        "symbol": "D_80143FD8",
+        "type": 5
+      },
+      {
+        "offset": 52,
+        "symbol": "D_80143FD8",
+        "type": 6
+      },
+      {
+        "offset": 156,
+        "symbol": "func_8008B2E4",
+        "type": 4
+      },
+      {
+        "offset": 184,
+        "symbol": "func_8008B2E4",
+        "type": 4
+      },
+      {
+        "offset": 212,
+        "symbol": "func_8008B2E4",
+        "type": 4
+      },
+      {
+        "offset": 240,
+        "symbol": "func_8008B2E4",
+        "type": 4
+      }
+    ],
+    "strict_differing_words": 0,
+    "text_size": 352
+  },
+  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "image": "B",
+  "image_sha256": "b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd",
+  "inputs_sha256": {
+    "asm/us/ovl_b/SHA256SUMS": "3b7ccbab80467e2538f107543f612db239c380a44000730c5f78f6dbb062bd98",
+    "asm/us/ovl_b/extents.json": "e10f77db903d5a6d82a04d006cdaf5c3871ed57ce2bff738d45f500914c8202b",
+    "asm/us/ovl_b/ovl_b_8038a400.s": "5e84a0c03a155cbb13ee19a694bd3aeb1321e9b48144a9d8029f7691a7f916db",
+    "asm/us/ovl_b/symbols.json": "0f9633fc7cb724c2acb129064716906d92c9ef6867359893e7130b2e8e1b897d",
+    "tools/cloud/score.py": "9de8385b28938c012ba679ea1f899cd7e5fe351d2c51129c5319442c84b679c4"
+  },
+  "packet_sha256": {
+    "host_test.c": "32c61aa9fabb756998fae9bb8d0c0fe02371e04aa90e03b8e4f52008c0dcd659",
+    "test_packet.py": "00991fe513d38c927662101503afcb2681a13d6db26281110e7a5ed48b4d1538",
+    "verify.py": "b4471a55b6147eb9ed878100f079b500b8cd85af8fa9c6221a6b71f19def37e3"
+  },
+  "source_sha256": "1b28ab2b50eab8051109a550151cc862e26f9a0724c94a0ab202c7850a6310ef",
+  "status": "MATCH"
+}
