@@ -1,0 +1,33 @@
+{
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "files": [
+    "group.c"
+  ],
+  "members": [
+    "car_lod_select"
+  ],
+  "context": [
+    "audio_reverb_update",
+    "func_80095EC0",
+    "func_80095EF4",
+    "func_80095F8C",
+    "func_800A1E94",
+    "func_800A3640",
+    "func_800A43FC",
+    "no_catchup",
+    "track_process_main",
+    "track_render_process",
+    "func_800A3724"
+  ],
+  "keep": [
+    "func_800A1E94",
+    "func_80095F8C",
+    "func_80095EF4",
+    "audio_reverb_update",
+    "func_800A43FC",
+    "car_lod_select",
+    "track_process_main",
+    "track_render_process"
+  ],
+  "claims": []
+}
