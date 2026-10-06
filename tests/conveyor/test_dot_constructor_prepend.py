@@ -57,7 +57,10 @@ def test_fresh_frozen_replay():
     required=['mips-linux-gnu-ld','cc']
     if not all(shutil.which(x) for x in required):pytest.skip('Needs native/host compiler tools')
     if not Path(v.score.ido('cc')).exists():pytest.skip('Needs pinned IDO')
-    assert v.portable(v.verify())==v.portable(json.loads((PACKET/'verification.json').read_text()))
+    fresh=v.portable(v.verify());saved=v.portable(json.loads((PACKET/'verification.json').read_text()))
+    # The whole blob manifest changes with every splice; selected bodies stay bound.
+    fresh.pop('protected_manifest_sha256',None);saved.pop('protected_manifest_sha256',None)
+    assert fresh==saved
 
 
 def synthetic_elf(payloads=None,debug_path=b'/first/source.c\0',debug_flags=0):

@@ -112,4 +112,7 @@ def test_fresh_full_elf_gnu_native_host_replay(monkeypatch, tmp_path, fail_blob_
     receipt = verify.prove()
     assert verify.score.ASM_DIR == previous
     saved = json.loads((PACKET / 'verification.json').read_text())
+    # The blob manifest changes with every splice; image-B inputs stay bound.
+    for proof in (receipt, saved):
+        proof['inputs_sha256'].pop('asm/us/blob/SHA256SUMS', None)
     assert receipt == saved

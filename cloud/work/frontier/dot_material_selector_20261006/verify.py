@@ -22,7 +22,9 @@ native=importlib.util.module_from_spec(spec)
 spec.loader.exec_module(native)
 FN='func_8008B000'
 CONSUMER='car_gear_shift'
-SOURCE=ROOT/'cloud/matches/func_8008B000.c'
+# The packet's own source: cloud/matches/func_8008B000.c holds a separately
+# matched spelling with a different type layout (both reach score 0).
+SOURCE=HERE/'source.c'
 OLD=ROOT/'cloud/work/near-miss/func_8008B000/base.c'
 FLAGS='-g0 -O2 -mips2 -G 0 -non_shared'
 BASE='cd22879d40b3de443cfde047b86e75e159b6cec6'
