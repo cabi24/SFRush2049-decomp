@@ -90,3 +90,35 @@ python3 -m pytest -q tests/conveyor/test_runtime_b_reset_match.py
 Raw native instructions, generated objects and linked binaries remain temporary
 local inputs/outputs and are not published. The packet contains source, tests,
 portable proof metadata and research notes only. No CI watcher is installed.
+
+## GNU linker portability and failure isolation
+
+The original [PR #142 verification run](https://github.com/cabi24/SFRush2049-decomp/actions/runs/37397230526)
+failed the independent linked-address assertion. Reproduction with Ubuntu's
+`binutils-mips-linux-gnu 2.42-2ubuntu1cross5` confirms that the original implicit
+location-counter script placed this object's `.text` and function at
+`0x8038CA30`, twelve bytes above the required `0x8038CA24`. The input section has
+16-byte alignment; `SUBALIGN(4)` did not prevent this output-section rounding.
+Debian GNU ld 2.44 preserved the intended address with the original script.
+
+The output `.text` section now has an explicit `0x8038CA24` address. Both versions
+place the complete 236-byte function correctly. The native address assertion is
+retained, with expected/actual diagnostics; the symbol address/extent, exact
+relocations, zero-only alignment tail and complete native-word checks remain.
+The fresh GNU 2.42 receipt differs from the original only in the verifier's own
+SHA-256 binding. Source, host harness, flags, native inputs, linked-body hash and
+all behavior results are unchanged.
+
+The original assertion failure also left the shared scorer targeting image B,
+causing the later game-image `func_8010C02C` lookup to raise `KeyError`. `prove()`
+now restores the caller's exact prior target directory in `finally`, including
+early overlay failures, late game-census failures and successful completion.
+Regression tests cover each path from an arbitrary prior directory and inject
+a twelve-byte linked-address shift that must still fail closed. They also verify
+the game-image seed target is available after a failed link check.
+
+All seven reset tests and five unchanged seed-vector tests pass together with
+Ubuntu GNU 2.42. With Debian GNU 2.44, those tests plus the selected scorer,
+protected-path guard and submission tests pass: **80 passed, 648 unrelated
+locked-source cases deselected** in the sparse checkout. No full-suite or new CI
+result is claimed, and no CI rerun or watcher was requested.

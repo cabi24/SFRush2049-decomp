@@ -2,6 +2,7 @@
 import importlib.util
 import json
 import shutil
+import struct
 from pathlib import Path
 
 import pytest
@@ -44,10 +45,69 @@ def test_write_footprint_and_unknown_decoder_rejection():
         verify.execute([0xffffffff], 0)
 
 
-def test_fresh_full_elf_gnu_native_host_replay():
+def require_toolchain():
     missing = [name for name in ['mips-linux-gnu-ld', 'mips-linux-gnu-objcopy', 'mips-linux-gnu-nm', 'gcc'] if not shutil.which(name)]
     if missing or not (verify.score.IDO / 'cc').exists():
         pytest.skip('requires IDO and MIPS GNU/host compiler tools: ' + ', '.join(missing))
+
+
+def test_target_read_failure_restores_callers_target_directory(monkeypatch, tmp_path):
+    previous = tmp_path / 'another-image'
+    monkeypatch.setattr(verify.score, 'ASM_DIR', previous)
+
+    def reject_targets():
+        assert verify.score.ASM_DIR == ROOT / 'asm/us/ovl_b'
+        raise AssertionError('injected target read failure')
+
+    monkeypatch.setattr(verify.score, 'targets', reject_targets)
+    with pytest.raises(AssertionError, match='injected target read failure'):
+        verify.prove()
+    assert verify.score.ASM_DIR == previous
+
+
+def test_shifted_linked_address_fails_and_restores_blob_targets(monkeypatch):
+    require_toolchain()
+    previous = ROOT / 'asm/us/blob'
+    monkeypatch.setattr(verify.score, 'ASM_DIR', previous)
+    original_elf = verify.score._elf
+
+    def shifted_linked_elf(path):
+        data, sections = original_elf(path)
+        if Path(path).name == 'linked.elf':
+            data = bytearray(data)
+            shoff = struct.unpack_from('>I', data, 0x20)[0]
+            shentsize = struct.unpack_from('>H', data, 0x2e)[0]
+            index = verify.score._text_index(sections)
+            struct.pack_into('>I', data, shoff + index * shentsize + 12, verify.ADDRESS + 12)
+        return data, sections
+
+    monkeypatch.setattr(verify.score, '_elf', shifted_linked_elf)
+    with pytest.raises(AssertionError, match='expected 0x8038ca24, got 0x8038ca30'):
+        verify.prove()
+    assert verify.score.ASM_DIR == previous
+    # The original failure leaked ovl_b and made later seed-vector tests KeyError.
+    assert 'func_8010C02C' in verify.score.targets()
+
+
+@pytest.mark.parametrize('fail_blob_census', [False, True], ids=['success', 'blob_census_failure'])
+def test_fresh_full_elf_gnu_native_host_replay(monkeypatch, tmp_path, fail_blob_census):
+    require_toolchain()
+    previous = tmp_path / 'another-image'
+    monkeypatch.setattr(verify.score, 'ASM_DIR', previous)
+    original_targets = verify.score.targets
+
+    def census_targets():
+        if fail_blob_census and verify.score.ASM_DIR == ROOT / 'asm/us/blob':
+            raise AssertionError('injected blob census failure')
+        return original_targets()
+
+    monkeypatch.setattr(verify.score, 'targets', census_targets)
+    if fail_blob_census:
+        with pytest.raises(AssertionError, match='injected blob census failure'):
+            verify.prove()
+        assert verify.score.ASM_DIR == previous
+        return
     receipt = verify.prove()
+    assert verify.score.ASM_DIR == previous
     saved = json.loads((PACKET / 'verification.json').read_text())
     assert receipt == saved

@@ -95,7 +95,7 @@
     "asm/us/ovl_b/ovl_b_8038a400.s": "5e84a0c03a155cbb13ee19a694bd3aeb1321e9b48144a9d8029f7691a7f916db",
     "asm/us/ovl_b/symbols.json": "0f9633fc7cb724c2acb129064716906d92c9ef6867359893e7130b2e8e1b897d",
     "cloud/work/runtime_b_reset_20261006/host_test.c": "0c9043627eb3fb13fa694400f765476fd416f2eb333718ac16df22dfdadbe9dd",
-    "cloud/work/runtime_b_reset_20261006/verify.py": "874b940b6a0e83d32deadc6169672044d3a68adad898770eb5f0c759168de6e8",
+    "cloud/work/runtime_b_reset_20261006/verify.py": "3c93c49790aed56a38d5db040a6b4178267e7f1f73531de2ef7121ff52f79f2a",
     "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
     "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
   },

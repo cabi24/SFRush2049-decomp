@@ -118,6 +118,14 @@ def execute(words, raw, seed=0):
 
 
 def prove():
+    previous_asm_dir = score.ASM_DIR
+    try:
+        return _prove()
+    finally:
+        score.ASM_DIR = previous_asm_dir
+
+
+def _prove():
     score.ASM_DIR = ROOT / 'asm/us/ovl_b'
     native = score.targets()[NAME]
     extent_path = score.ASM_DIR / 'extents.json'
@@ -173,7 +181,9 @@ def prove():
         relocated = relocated[:59]
         assert relocated == native
         script = tmp / 'native.ld'
-        script.write_text('SECTIONS { . = 0x8038CA24; .text : SUBALIGN(4) { *(.text) } /DISCARD/ : { *(.reginfo) *(.options) *(.MIPS.abiflags) } }\n' +
+        # GNU ld 2.42 rounds implicit output placement to the input section's
+        # 16-byte alignment despite SUBALIGN(4). Pin the native output address.
+        script.write_text('SECTIONS { .text 0x8038CA24 : SUBALIGN(4) { *(.text) } /DISCARD/ : { *(.reginfo) *(.options) *(.MIPS.abiflags) } }\n' +
                           '\n'.join('%s = 0x%08x;' % (k, v) for k, v in GLOBALS.items()))
         linked = tmp / 'linked.elf'
         run(['mips-linux-gnu-ld', '-EB', '-T', script, '-o', linked, obj])
@@ -182,7 +192,8 @@ def prove():
         linked_shentsize = struct.unpack_from('>H', linked_data, 0x2e)[0]
         linked_text_index = score._text_index(linked_sections)
         linked_address = struct.unpack_from('>I', linked_data, linked_shoff + linked_text_index * linked_shentsize + 12)[0]
-        assert linked_address == ADDRESS
+        assert linked_address == ADDRESS, (
+            'linked .text address: expected 0x%08x, got 0x%08x' % (ADDRESS, linked_address))
         raw = tmp / 'linked.bin'
         run(['mips-linux-gnu-objcopy', '-O', 'binary', '-j', '.text', linked, raw])
         linked_bytes = raw.read_bytes()
