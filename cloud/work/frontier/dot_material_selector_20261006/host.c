@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #ifndef CANDIDATE
-#define CANDIDATE "../../../matches/func_8008B000.c"
+#define CANDIDATE "source.c"
 #endif
 #include CANDIDATE
 ModelBank D_801161F4[64];

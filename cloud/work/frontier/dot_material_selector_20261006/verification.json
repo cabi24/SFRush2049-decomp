@@ -408,7 +408,7 @@
   "packet_sha256": {
     "verify.py": "3779d35ef9a21b7c28e4394758f4a65a86d4f8d62049dec4c24f643d08a97131",
     "native.py": "4e3ea3e5b623cf0d913a7ce33ae24c4ee8589ff50de90f0f77cf8958cd5c39ff",
-    "host.c": "3516fc4cbede7a1d3fcf78778d0a9fedb431856aeb8075df51d020e4cda91981",
+    "host.c": "808dd3486d820c0b69bcc01a5dde56d6e13b270c1888446b46c757eb190305e6",
     "claim.json": "86481e8c55b2bd702e5e5df75d902a23d719ecc5ee5df35d7656029600de613d"
   },
   "limitations": [
