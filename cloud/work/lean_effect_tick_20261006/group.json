@@ -1,0 +1,53 @@
+{
+  "files": [
+    "candidate.c",
+    "route.c",
+    "lookup.c",
+    "effect.c",
+    "allocate.c",
+    "mark.c",
+    "music.c"
+  ],
+  "keep": [
+    "entity_ai_pathfind",
+    "func_80091FBC",
+    "func_8009211C",
+    "func_800956BC",
+    "audio_state_save",
+    "func_800958B8",
+    "music_track_control",
+    "audio_bus_route",
+    "sound_priority_set",
+    "audio_stream_control",
+    "audio_buffer_manage",
+    "audio_timing_sync",
+    "gfx_setup_e700"
+  ],
+  "members": [
+    "func_80098FB8"
+  ],
+  "context": [
+    "func_80091FBC",
+    "func_8009211C",
+    "func_800956BC",
+    "audio_state_save",
+    "func_800958B8",
+    "music_track_control",
+    "audio_bus_route",
+    "sound_priority_set",
+    "audio_stream_control",
+    "audio_buffer_manage",
+    "audio_timing_sync",
+    "gfx_setup_e700",
+    "audio_fade_control",
+    "audio_effect_setup",
+    "audio_pitch_adjust",
+    "func_800988D8",
+    "entity_flag_check",
+    "entity_ai_pathfind",
+    "func_80095198"
+  ],
+  "claims": [],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "note": "Only func_80098FB8 is the research target. The actual entity_ai_pathfind root and all other bodies are unclaimed real context."
+}
