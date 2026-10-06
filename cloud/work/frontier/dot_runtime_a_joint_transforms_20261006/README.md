@@ -52,8 +52,8 @@ respective native image context; none is passed off as function-owned constants.
 With stock IDO and GNU MIPS tools configured:
 
 ```
-python tools/cloud/score.py --targets asm/us/ovl_a group \
-  cloud/work/frontier/dot_runtime_a_joint_transforms_20261006 --claims
+python tools/cloud/score.py group \
+  cloud/work/frontier/dot_runtime_a_joint_transforms_20261006 --claims --targets asm/us/ovl_a
 ```
 
 Only matching compilation/scoring and residual diagnosis were performed. No
