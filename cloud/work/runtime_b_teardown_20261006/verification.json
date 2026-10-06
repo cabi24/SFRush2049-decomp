@@ -204,7 +204,7 @@
     "blob_matched.lock.json": "f4a273a755252a33adbc7bf0fa6ef1f7c8d053802883a7c582d19c67fd2328bb",
     "cloud/work/runtime_b_teardown_20261006/candidate.c": "e5451b5f3017ace51e7543a06fb4e22a64b6654db1b551b9b2bd3a01a6cbb71e",
     "cloud/work/runtime_b_teardown_20261006/host_test.c": "7d4b61f575cbc57504e18b733d38657f54e262d22d77e771d8af1352cfafba21",
-    "cloud/work/runtime_b_teardown_20261006/verify.py": "76b574b30fdacc5d064720e114d7fc998ff25817f757cb53a3c71a97f8547bd4",
+    "cloud/work/runtime_b_teardown_20261006/verify.py": "fb9d24987ce25756729bff2a1eb244301b41e8261c3929dc54da7e1e3dafc67c",
     "src/blob/sound_call_minimal.c": "09eed1f931085a903df870536e8477ded691384bac05972bbaa40e209fa4a05e",
     "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
     "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
