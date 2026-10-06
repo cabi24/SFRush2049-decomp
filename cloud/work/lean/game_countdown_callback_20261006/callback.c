@@ -32,14 +32,14 @@ extern s32 D_801146AC[];
 extern PlayerInput input_rec0[];
 extern CarState D_80144030[];
 extern Point D_80115FA8[];
-extern char **countdown_object;
+extern u8 **countdown_object;
 void Input_ApplyPadConfig(Blit *);
 s32 osRecvMesg(OSMesgQueue *, void **, s32);
 s32 osJamMesg(OSMesgQueue *, void *, s32);
 s32 slot_state_setup(s32);
-u32 object_manager_update(char *, s32);
+s32 object_manager_update(u8 *, s16);
 void dispatch_handler(s32);
-void state_utility(s16, s16, char *);
+void state_utility(s16, s16, void *);
 static void gfx_lock(void) { osRecvMesg(&D_801461D0, 0, 1); }
 static void gfx_unlock(void) { osJamMesg(&D_801461D0, 0, 0); }
 static s32 font_set(s32 font)
