@@ -1,0 +1,272 @@
+{
+  "schema": 1,
+  "status": "MATCH; bounded behavioral proof",
+  "image": {
+    "name": "A",
+    "base": "0x8038A400",
+    "rom_offset": "0xB5C534",
+    "size": 194128,
+    "sha256": "0d6702c320df84cc6cbc3c5967dde08d44b6e476e110667fe2a43dc2dd536667"
+  },
+  "function": {
+    "name": "func_80393004",
+    "address": "0x80393004",
+    "size": 180,
+    "target_sha256": "cb2befb3f8529390170b44ff360ec85aec72bc16d5643b889eee7f4fe2bde02c",
+    "gnu_linked_sha256": "cb2befb3f8529390170b44ff360ec85aec72bc16d5643b889eee7f4fe2bde02c",
+    "elf_function_size": 180,
+    "section_size": 192,
+    "alignment_zero_bytes": 12,
+    "relocations": [
+      {
+        "offset": 0,
+        "type": 5,
+        "symbol_index": 3
+      },
+      {
+        "offset": 8,
+        "type": 6,
+        "symbol_index": 3
+      },
+      {
+        "offset": 12,
+        "type": 5,
+        "symbol_index": 4
+      },
+      {
+        "offset": 16,
+        "type": 6,
+        "symbol_index": 4
+      },
+      {
+        "offset": 40,
+        "type": 5,
+        "symbol_index": 6
+      },
+      {
+        "offset": 44,
+        "type": 6,
+        "symbol_index": 6
+      },
+      {
+        "offset": 48,
+        "type": 5,
+        "symbol_index": 5
+      },
+      {
+        "offset": 64,
+        "type": 6,
+        "symbol_index": 5
+      },
+      {
+        "offset": 52,
+        "type": 5,
+        "symbol_index": 3
+      },
+      {
+        "offset": 84,
+        "type": 6,
+        "symbol_index": 3
+      },
+      {
+        "offset": 68,
+        "type": 5,
+        "symbol_index": 4
+      },
+      {
+        "offset": 72,
+        "type": 6,
+        "symbol_index": 4
+      }
+    ],
+    "owned_data_bytes": 0
+  },
+  "source_sha256": "75df23079bc65631431207d506531f016aab8018d8ace9919d755b2a3f2f05d1",
+  "recipe": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "assembler_addition": "-Wab,-r4300_mul",
+  "score": "MATCH",
+  "controls": {
+    "archived_signed_induction": "45/45 words differ (6 extra words (nonzero beyond target length))",
+    "unsigned_value_comparison": "24/45 words differ"
+  },
+  "behavior": {
+    "cases": 8952,
+    "native_executions": 17910,
+    "host_cases": 8955,
+    "count_values": 1119,
+    "tested_count_min": -2147483645,
+    "tested_count_max": 2147483647,
+    "real_slots": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "covered_instruction_offsets": [
+      0,
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      28,
+      32,
+      36,
+      40,
+      44,
+      48,
+      52,
+      56,
+      60,
+      64,
+      68,
+      72,
+      76,
+      80,
+      84,
+      88,
+      92,
+      96,
+      100,
+      104,
+      108,
+      112,
+      116,
+      120,
+      124,
+      128,
+      132,
+      136,
+      140,
+      144,
+      148,
+      152,
+      156,
+      160,
+      164,
+      168,
+      172,
+      176
+    ],
+    "branch_outcomes": [
+      [
+        164,
+        false
+      ],
+      [
+        164,
+        true
+      ]
+    ],
+    "trace_sha256": "64e9ac681d1bd69d22f914eb2234621d1c6ec771fdfeeb0f9e97e04aaa7f8fd0",
+    "underflow_outside_producer_contract": [
+      {
+        "count": -2147483648,
+        "differing_indices_in_each_row": [
+          4,
+          5,
+          6,
+          8,
+          9,
+          10
+        ],
+        "native_value": 1,
+        "host_oracle_value": 0
+      },
+      {
+        "count": -2147483647,
+        "differing_indices_in_each_row": [
+          5,
+          6,
+          9,
+          10
+        ],
+        "native_value": 1,
+        "host_oracle_value": 0
+      },
+      {
+        "count": -2147483646,
+        "differing_indices_in_each_row": [
+          6,
+          10
+        ],
+        "native_value": 1,
+        "host_oracle_value": 0
+      }
+    ]
+  },
+  "rejected_semantic_mutants": [
+    "unsigned_comparison",
+    "omit_last_item",
+    "inclusive_comparison",
+    "empty_threshold",
+    "wrong_first_row"
+  ],
+  "rejected_native_controls": [
+    "truncated",
+    "extra_extent",
+    "unknown_opcode",
+    "bad_byte_load",
+    "bad_count_load",
+    "bad_store",
+    "bad_return"
+  ],
+  "rejected_elf_controls": [
+    "function_address",
+    "function_extent"
+  ],
+  "direct_callers": [
+    {
+      "function": "func_803931C0",
+      "site": "0x803931F4"
+    },
+    {
+      "function": "func_8039338C",
+      "site": "0x8039358C"
+    },
+    {
+      "function": "func_80394058",
+      "site": "0x803940B8"
+    }
+  ],
+  "producer": {
+    "name": "func_803930B8",
+    "address": "0x803930B8",
+    "size": 264,
+    "target_sha256": "a7874784c1c41a0e740bac6750801217d2de75f68f288e391de98cbbdf1f476b",
+    "observed_slots": 4,
+    "observed_values": "-4, -3, -2, -1, or nonnegative linked-list count under terminating/nonoverflowing traversal",
+    "method": "read-only native inspection; producer not executed"
+  },
+  "input_sha256": {
+    "cloud/matches/ovl_a/func_80393004.c": "75df23079bc65631431207d506531f016aab8018d8ace9919d755b2a3f2f05d1",
+    "cloud/work/r16_runtime_images/near_miss/func_80393004.c": "1f164e4bc8ac1cc56d4d3b57150bad9531a8f712d888f180aa49be951d2da920",
+    "cloud/work/frontier/dot_runtime_a_flags_20261006/native.py": "5d62c16c17ce53efaffe14e35b8b8ca76383ba5471cecfbc7dcbf7b791b61c95",
+    "cloud/work/frontier/dot_runtime_a_flags_20261006/host.c": "44dffe397d3be80c985965c2eec68735916eb88c7425e4465f4580757870ff24",
+    "cloud/work/frontier/dot_runtime_a_flags_20261006/verify.py": "05d5a06edebce425b60b3c99f3f7ccac2098749ad73d51efb90a3d2714df7dc7",
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+    "asm/us/ovl_a/SHA256SUMS": "27f81bfaba058e89167168e3eb724d530de3b5fa8df12617138df25f149af82d",
+    "asm/us/ovl_a/extents.json": "0d97935254a6f2c724dfe68b08087e0a451e56d0aedb2121748abe7b6cc0798b",
+    "asm/us/ovl_a/symbols.json": "d5a6c8dccb0380f54f080d45d82a5e71f917be86f9568bf4b7fbe10a89f2a769",
+    "asm/us/ovl_a/ovl_a_8038a400.s": "94f5fdb45838b6d21fb761209bf2cb60602f90ea8725b16cae2c3cebe0aa7685"
+  },
+  "tool_sha256": {
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+  },
+  "gnu_ld": "GNU ld (GNU Binutils for Debian) 2.44",
+  "host_cc": "gcc (Debian 14.2.0-19) 14.2.0",
+  "limits": [
+    "No runtime-image composition, compression or full-ROM gate.",
+    "No original-source spelling or whole-translation-unit claim.",
+    "Valid initialized selector slots 0..3, disjoint nonvolatile storage; no concurrency.",
+    "Observed producer domain assumes a terminating, nonoverflowing list; no exhaustive writer census.",
+    "The three INT_MIN-near values differ from host C; outside observed producer contract.",
+    "Finite counts and seeds do not prove unrestricted behavior or hardware execution."
+  ]
+}
