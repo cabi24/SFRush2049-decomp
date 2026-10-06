@@ -1,0 +1,10 @@
+exec(open('ins.py').read().split("j=L.index")[0])
+j=L.index('$2546:')
+b=L.index('\tb\t$2549',200)
+V={}
+V['b_to_B']=L[:b]+['\tb\t$2546']+L[b+1:]
+V['beq00']=L[:b]+['\tbeq\t$0, $0, $2549']+L[b+1:]
+V['unreach_nop']=L[:j]+['$9999:','\tnop']+L[j:]
+V['unreach_li']=L[:j]+['$9999:','\tli\t$4, 5']+L[j:]
+V['j_epi']=L[:b]+['\tj\t$2549']+L[b+1:]
+for k,v in V.items(): print(k,run(v,k),flush=True)

@@ -1,0 +1,9 @@
+W='weighted=D_8011F060[i]*model->power[i];'
+V={
+ 'ptr':[(W,'weighted=*(D_8011F060+i)*model->power[i];')],
+ 'pw_field':[(W,'weighted=D_8011F060[i]*FIELD(model,f32,2040+i*4);')],
+ 'pw_ptr':[(W,'weighted=D_8011F060[i]**(model->power+i);')],
+ 'cast':[(W,'weighted=(f32)D_8011F060[i]*model->power[i];')],
+ 'paren':[(W,'weighted=(D_8011F060[i])*(model->power[i]);')],
+ 'neg':[(W,'weighted=-(-D_8011F060[i]*model->power[i]);')],
+}

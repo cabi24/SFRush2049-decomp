@@ -1,0 +1,1160 @@
+LOOP:  0 1 2 3 4 5 6 7 8 9 10 11 12 13
+ 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28
+ 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43
+ 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58
+ 59 60 61 62 63 64
+	bb: 0	weight: 1
+	bb: 1	weight: 1
+	bb: 2	weight: 1
+	bb: 3	weight: 1
+	bb: 4	weight: 4
+	bb: 5	weight: 4
+	bb: 6	weight: 1
+	bb: 7	weight: 4
+	bb: 8	weight: 7
+	bb: 9	weight: 10
+	bb: 10	weight: 13
+	bb: 11	weight: 1
+	bb: 12	weight: 4
+	bb: 13	weight: 7
+	bb: 14	weight: 1
+	bb: 15	weight: 4
+	bb: 16	weight: 7
+	bb: 17	weight: 10
+	bb: 18	weight: 10
+	bb: 19	weight: 4
+	bb: 20	weight: 7
+	bb: 21	weight: 4
+	bb: 22	weight: 1
+	bb: 23	weight: 4
+	bb: 24	weight: 4
+	bb: 25	weight: 7
+	bb: 26	weight: 10
+	bb: 27	weight: 10
+	bb: 28	weight: 4
+	bb: 29	weight: 7
+	bb: 30	weight: 10
+	bb: 31	weight: 10
+	bb: 32	weight: 13
+	bb: 33	weight: 13
+	bb: 34	weight: 10
+	bb: 35	weight: 13
+	bb: 36	weight: 65534
+	bb: 37	weight: 1
+	bb: 38	weight: 4
+	bb: 39	weight: 4
+	bb: 40	weight: 7
+	bb: 41	weight: 7
+	bb: 42	weight: 7
+	bb: 43	weight: 16
+	bb: 44	weight: 19
+	bb: 45	weight: 22
+	bb: 46	weight: 22
+	bb: 47	weight: 22
+	bb: 48	weight: 19
+	bb: 49	weight: 22
+	bb: 50	weight: 25
+	bb: 51	weight: 25
+	bb: 52	weight: 25
+	bb: 53	weight: 22
+	bb: 54	weight: 25
+	bb: 55	weight: 28
+	bb: 56	weight: 28
+	bb: 57	weight: 28
+	bb: 58	weight: 25
+	bb: 59	weight: 25
+	bb: 60	weight: 28
+	bb: 61	weight: 28
+	bb: 62	weight: 28
+	bb: 63	weight: 16
+	bb: 64	weight: 65534
+BB 0 dominated by:  0
+BB 1 dominated by:  1
+BB 2 dominated by:  2
+BB 3 dominated by:  2 3
+BB 4 dominated by:  2 3 4
+BB 5 dominated by:  2 3 5
+BB 6 dominated by:  2 3 6
+BB 7 dominated by:  2 3 6 7
+BB 8 dominated by:  2 3 6 7 8
+BB 9 dominated by:  2 3 6 7 8 9
+BB 10 dominated by:  2 3 6 7 8 9 10
+BB 11 dominated by:  2 3 6 11
+BB 12 dominated by:  2 3 6 11 12
+BB 13 dominated by:  2 3 6 11 12 13
+BB 14 dominated by:  2 3 6 11 14
+BB 15 dominated by:  2 3 6 11 14 15
+BB 16 dominated by:  2 3 6 11 14 15 16
+BB 17 dominated by:  2 3 6 11 14 15 16 17
+BB 18 dominated by:  2 3 6 11 14 15 16 17 18
+BB 19 dominated by:  2 3 6 11 14 15 19
+BB 20 dominated by:  2 3 6 11 14 15 19 20
+BB 21 dominated by:  2 3 6 11 14 15 19 21
+BB 22 dominated by:  2 3 6 11 14 22
+BB 23 dominated by:  2 3 6 11 14 22 23
+BB 24 dominated by:  2 3 6 11 14 22 23 24
+BB 25 dominated by:  2 3 6 11 14 22 23 24 25
+BB 26 dominated by:  2 3 6 11 14 22 23 24 25 26
+BB 27 dominated by:  2 3 6 11 14 22 23 24 25 26 27
+BB 28 dominated by:  2 3 6 11 14 22 23 24 28
+BB 29 dominated by:  2 3 6 11 14 22 23 24 28 29
+BB 30 dominated by:  2 3 6 11 14 22 23 24 28 29 30
+BB 31 dominated by:  2 3 6 11 14 22 23 24 28 29 31
+BB 32 dominated by:  2 3 6 11 14 22 23 24 28 29 31 32
+BB 33 dominated by:  2 3 6 11 14 22 23 24 28 29 31 33
+BB 34 dominated by:  2 3 6 11 14 22 23 24 28 29 31 34
+BB 35 dominated by:  2 3 6 11 14 22 23 24 28 29 31 34 35
+BB 36 dominated by:  36
+BB 37 dominated by:  36 37
+BB 38 dominated by:  36 37 38
+BB 39 dominated by:  36 37 39
+BB 40 dominated by:  36 37 39 40
+BB 41 dominated by:  36 37 39 40 41
+BB 42 dominated by:  36 37 39 42
+BB 43 dominated by:  2 3 6 11 14 22 23 24 28 29 31 34 35 43
+BB 44 dominated by:  2 3 6 11 14 22 23 24 28 29 31 34 35 43
+ 44
+BB 45 dominated by:  2 3 6 11 14 22 23 24 28 29 31 34 35 43
+ 44 45
+BB 46 dominated by:  2 3 6 11 14 22 23 24 28 29 31 34 35 43
+ 44 45 46
+BB 47 dominated by:  2 3 6 11 14 22 23 24 28 29 31 34 35 43
+ 44 47
+BB 48 dominated by:  2 3 6 11 14 22 23 24 28 29 31 34 35 43
+ 48
+BB 49 dominated by:  2 3 6 11 14 22 23 24 28 29 31 34 35 43
+ 48 49
+BB 50 dominated by:  2 3 6 11 14 22 23 24 28 29 31 34 35 43
+ 48 49 50
+BB 51 dominated by:  2 3 6 11 14 22 23 24 28 29 31 34 35 43
+ 48 49 50 51
+BB 52 dominated by:  2 3 6 11 14 22 23 24 28 29 31 34 35 43
+ 48 49 52
+BB 53 dominated by:  2 3 6 11 14 22 23 24 28 29 31 34 35 43
+ 48 53
+BB 54 dominated by:  2 3 6 11 14 22 23 24 28 29 31 34 35 43
+ 48 53 54
+BB 55 dominated by:  2 3 6 11 14 22 23 24 28 29 31 34 35 43
+ 48 53 54 55
+BB 56 dominated by:  2 3 6 11 14 22 23 24 28 29 31 34 35 43
+ 48 53 54 55 56
+BB 57 dominated by:  2 3 6 11 14 22 23 24 28 29 31 34 35 43
+ 48 53 54 57
+BB 58 dominated by:  2 3 6 11 14 22 23 24 28 29 31 34 35 43
+ 48 53 58
+BB 59 dominated by:  2 3 6 11 14 22 23 24 28 29 31 34 35 43
+ 48 53 58 59
+BB 60 dominated by:  2 3 6 11 14 22 23 24 28 29 31 34 35 43
+ 48 53 58 59 60
+BB 61 dominated by:  2 3 6 11 14 22 23 24 28 29 31 34 35 43
+ 48 53 58 59 60 61
+BB 62 dominated by:  2 3 6 11 14 22 23 24 28 29 31 34 35 43
+ 48 53 58 59 62
+BB 63 dominated by:  2 3 6 11 14 22 23 24 28 29 31 34 35 43
+ 63
+BB 64 dominated by:  64
+BB 0 postdominated by:  0
+BB 1 postdominated by:  1 36 64
+BB 2 postdominated by:  2 3 6 11 14 22 64
+BB 3 postdominated by:  3 6 11 14 22 64
+BB 4 postdominated by:  4 6 11 14 22 64
+BB 5 postdominated by:  5 6 11 14 22 64
+BB 6 postdominated by:  6 11 14 22 64
+BB 7 postdominated by:  7 11 14 22 64
+BB 8 postdominated by:  8 11 14 22 64
+BB 9 postdominated by:  9 11 14 22 64
+BB 10 postdominated by:  10 11 14 22 64
+BB 11 postdominated by:  11 14 22 64
+BB 12 postdominated by:  12 14 22 64
+BB 13 postdominated by:  13 14 22 64
+BB 14 postdominated by:  14 22 64
+BB 15 postdominated by:  15 19 21 22 64
+BB 16 postdominated by:  16 19 21 22 64
+BB 17 postdominated by:  17 18 19 21 22 64
+BB 18 postdominated by:  18 19 21 22 64
+BB 19 postdominated by:  19 21 22 64
+BB 20 postdominated by:  20 21 22 64
+BB 21 postdominated by:  21 22 64
+BB 22 postdominated by:  22 64
+BB 23 postdominated by:  23 24 28 64
+BB 24 postdominated by:  24 28 64
+BB 25 postdominated by:  25 28 64
+BB 26 postdominated by:  26 27 28 64
+BB 27 postdominated by:  27 28 64
+BB 28 postdominated by:  28 64
+BB 29 postdominated by:  29 64
+BB 30 postdominated by:  30 64
+BB 31 postdominated by:  31 34 64
+BB 32 postdominated by:  32 34 64
+BB 33 postdominated by:  33 34 64
+BB 34 postdominated by:  34 64
+BB 35 postdominated by:  35 64
+BB 36 postdominated by:  36 64
+BB 37 postdominated by:  37 64
+BB 38 postdominated by:  38 64
+BB 39 postdominated by:  39 64
+BB 40 postdominated by:  40 41 64
+BB 41 postdominated by:  41 64
+BB 42 postdominated by:  42 64
+BB 43 postdominated by:  43 63 64
+BB 44 postdominated by:  44 63 64
+BB 45 postdominated by:  45 46 63 64
+BB 46 postdominated by:  46 63 64
+BB 47 postdominated by:  47 63 64
+BB 48 postdominated by:  48 63 64
+BB 49 postdominated by:  49 63 64
+BB 50 postdominated by:  50 51 63 64
+BB 51 postdominated by:  51 63 64
+BB 52 postdominated by:  52 63 64
+BB 53 postdominated by:  53 63 64
+BB 54 postdominated by:  54 63 64
+BB 55 postdominated by:  55 56 63 64
+BB 56 postdominated by:  56 63 64
+BB 57 postdominated by:  57 63 64
+BB 58 postdominated by:  58 59 63 64
+BB 59 postdominated by:  59 63 64
+BB 60 postdominated by:  60 61 63 64
+BB 61 postdominated by:  61 63 64
+BB 62 postdominated by:  62 63 64
+BB 63 postdominated by:  63 64
+BB 64 postdominated by:  64
+current bb 6, weight = 1, stalls = 3
+current bb 11, weight = 1, stalls = 3
+MOVETO bb 11 inst 3  time: old 5, new 5
+MOVEFROM bb 14, inst 2  time: old 10, new 9
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 112:  INST 3: Line 116:  INST 4: Line 112:  INST 5: Line 112: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 116:  INST 3: Line 116:  INST 4: Line 116:  INST 5: Line 116:  INST 6: Line 116:  INST 7: Line 116:  INST 8: Line 116:  INST 9: Line 116:  INST 10: Line 116: MOVETO bb 11 inst 4  time: old 5, new 5
+MOVEFROM bb 14, inst 3  time: old 9, new 8
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 112:  INST 3: Line 116:  INST 4: Line 116:  INST 5: Line 112:  INST 6: Line 112: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 116:  INST 3: Line 116:  INST 4: Line 116:  INST 5: Line 116:  INST 6: Line 116:  INST 7: Line 116:  INST 8: Line 116:  INST 9: Line 116:  INST 10: Line 116: MOVETO bb 11 inst 5  time: old 5, new 5
+MOVEFROM bb 14, inst 4  time: old 8, new 7
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 112:  INST 3: Line 116:  INST 4: Line 116:  INST 5: Line 116:  INST 6: Line 112:  INST 7: Line 112: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 116:  INST 3: Line 116:  INST 4: Line 116:  INST 5: Line 116:  INST 6: Line 116:  INST 7: Line 116:  INST 8: Line 116:  INST 9: Line 116:  INST 10: Line 116: current bb 14, weight = 1, stalls = 2
+current bb 22, weight = 1, stalls = 1
+MOVETO bb 22 inst 2  time: old 2, new 2
+MOVEFROM bb 23, inst 2  time: old 5, new 4
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 124:  INST 3: Line 123:  INST 4: Line 123: ----- basic block instruction moved from -----
+ INST 1: Line 124:  INST 2: Line 124:  INST 3: Line 124:  INST 4: Line 124:  INST 5: Line 124:  INST 6: Line 124:  INST 7: # 29
+current bb 37, weight = 1, stalls = 1
+MOVETO bb 37 inst 3  time: old 3, new 3
+MOVEFROM bb 38, inst 2  time: old 11, new 10
+----- basic block instruction moved to -----
+ INST 1: # 27
+ INST 2: Line 158:  INST 3: Line 161:  INST 4: Line 158:  INST 5: Line 158: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 161:  INST 3: Line 161:  INST 4: Line 161:  INST 5: Line 161:  INST 6: Line 161:  INST 7: Line 161:  INST 8: Line 161:  INST 9: Line 161:  INST 10: Line 161:  INST 11: Line 161:  INST 12: Line 161:  INST 13: Line 161:  INST 14: # 29
+current bb 7, weight = 4, stalls = 3
+MOVETO bb 7 inst 2  time: old 5, new 5
+MOVEFROM bb 8, inst 1  time: old 6, new 5
+----- basic block instruction moved to -----
+ INST 1: Line 107:  INST 2: Line 107:  INST 3: Line 107:  INST 4: Line 107: ----- basic block instruction moved from -----
+ INST 1: Line 107:  INST 2: Line 107:  INST 3: Line 107:  INST 4: Line 107:  INST 5: Line 107: current bb 12, weight = 4, stalls = 3
+MOVETO bb 12 inst 3  time: old 6, new 6
+MOVEFROM bb 13, inst 1  time: old 2, new 1
+----- basic block instruction moved to -----
+ INST 1: Line 112:  INST 2: Line 112:  INST 3: Line 113:  INST 4: Line 112:  INST 5: Line 112: ----- basic block instruction moved from -----
+ INST 1: Line 113:  INST 2: Line 113: current bb 15, weight = 4, stalls = 3
+MOVETO bb 15 inst 3  time: old 6, new 6
+MOVEFROM bb 16, inst 2  time: old 7, new 6
+----- basic block instruction moved to -----
+ INST 1: Line 117:  INST 2: Line 117:  INST 3: Line 117:  INST 4: Line 117:  INST 5: Line 117: ----- basic block instruction moved from -----
+ INST 1: # 27
+ INST 2: Line 117:  INST 3: Line 117:  INST 4: Line 117:  INST 5: Line 117:  INST 6: Line 117: current bb 19, weight = 4, stalls = 3
+MOVETO bb 19 inst 5  time: old 7, new 7
+MOVEFROM bb 21, inst 2  time: old 2, new 1
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 120:  INST 3: Line 120:  INST 4: Line 120:  INST 5: Line 120:  INST 6: Line 120:  INST 7: Line 120: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 120:  INST 3: Line 120: MOVETO bb 19 inst 6  time: old 7, new 7
+MOVEFROM bb 20, inst 1  time: old 7, new 6
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 120:  INST 3: Line 120:  INST 4: Line 120:  INST 5: Line 120:  INST 6: Line 120:  INST 7: Line 120:  INST 8: Line 120: ----- basic block instruction moved from -----
+ INST 1: Line 120:  INST 2: Line 120:  INST 3: Line 120:  INST 4: Line 120:  INST 5: Line 120:  INST 6: Line 120: current bb 24, weight = 4, stalls = 2
+MOVETO bb 24 inst 6  time: old 8, new 8
+MOVEFROM bb 25, inst 1  time: old 12, new 11
+----- basic block instruction moved to -----
+ INST 1: Line 124:  INST 2: Line 124:  INST 3: Line 125:  INST 4: Line 125:  INST 5: Line 125:  INST 6: Line 125:  INST 7: Line 125:  INST 8: Line 125: ----- basic block instruction moved from -----
+ INST 1: Line 125:  INST 2: Line 125:  INST 3: Line 125:  INST 4: Line 125:  INST 5: Line 125:  INST 6: Line 125:  INST 7: Line 125:  INST 8: Line 125:  INST 9: Line 125:  INST 10: Line 125: MOVETO bb 24 inst 8  time: old 8, new 8
+MOVEFROM bb 25, inst 6  time: old 11, new 10
+----- basic block instruction moved to -----
+ INST 1: Line 124:  INST 2: Line 124:  INST 3: Line 125:  INST 4: Line 125:  INST 5: Line 125:  INST 6: Line 125:  INST 7: Line 125:  INST 8: Line 125:  INST 9: Line 125:  INST 10: Line 125: ----- basic block instruction moved from -----
+ INST 1: Line 125:  INST 2: Line 125:  INST 3: Line 125:  INST 4: Line 125:  INST 5: Line 125:  INST 6: Line 125:  INST 7: Line 125:  INST 8: Line 125:  INST 9: Line 125:  INST 10: Line 125: current bb 28, weight = 4, stalls = 4
+MOVETO bb 28 inst 6  time: old 8, new 8
+MOVEFROM bb 29, inst 2  time: old 6, new 5
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 128:  INST 3: Line 128:  INST 4: Line 128:  INST 5: Line 128:  INST 6: Line 128:  INST 7: Line 128:  INST 8: Line 128: ----- basic block instruction moved from -----
+ INST 1: Line 128:  INST 2: Line 128:  INST 3: Line 128:  INST 4: Line 128:  INST 5: Line 128: current bb 39, weight = 4, stalls = 3
+MOVETO bb 39 inst 3  time: old 6, new 6
+MOVEFROM bb 40, inst 2  time: old 5, new 4
+----- basic block instruction moved to -----
+ INST 1: Line 159:  INST 2: Line 159:  INST 3: Line 159:  INST 4: Line 159:  INST 5: Line 159: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 159:  INST 3: Line 159:  INST 4: Line 159:  INST 5: Line 159:  INST 6: Line 159:  INST 7: Line 159:  INST 8: # 29
+MOVETO bb 39 inst 4  time: old 6, new 6
+MOVEFROM bb 40, inst 3  time: old 4, new 3
+----- basic block instruction moved to -----
+ INST 1: Line 159:  INST 2: Line 159:  INST 3: Line 159:  INST 4: Line 159:  INST 5: Line 159:  INST 6: Line 159: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 159:  INST 3: Line 159:  INST 4: Line 159:  INST 5: Line 159:  INST 6: Line 159:  INST 7: Line 159:  INST 8: # 29
+MOVETO bb 39 inst 5  time: old 6, new 6
+MOVEFROM bb 40, inst 4  time: old 3, new 2
+----- basic block instruction moved to -----
+ INST 1: Line 159:  INST 2: Line 159:  INST 3: Line 159:  INST 4: Line 159:  INST 5: Line 159:  INST 6: Line 159:  INST 7: Line 159: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 159:  INST 3: Line 159:  INST 4: Line 159:  INST 5: Line 159:  INST 6: Line 159:  INST 7: Line 159:  INST 8: # 29
+current bb 8, weight = 7, stalls = 2
+MOVETO bb 8 inst 4  time: old 5, new 5
+MOVEFROM bb 9, inst 1  time: old 7, new 6
+----- basic block instruction moved to -----
+ INST 1: Line 107:  INST 2: Line 107:  INST 3: Line 107:  INST 4: Line 107:  INST 5: Line 107:  INST 6: Line 107: ----- basic block instruction moved from -----
+ INST 1: Line 107:  INST 2: Line 107:  INST 3: Line 107:  INST 4: Line 107:  INST 5: Line 107: current bb 16, weight = 7, stalls = 3
+MOVETO bb 16 inst 5  time: old 6, new 6
+MOVEFROM bb 17, inst 1  time: old 6, new 5
+----- basic block instruction moved to -----
+ INST 1: # 27
+ INST 2: Line 117:  INST 3: Line 117:  INST 4: Line 117:  INST 5: Line 118:  INST 6: Line 117:  INST 7: Line 117: ----- basic block instruction moved from -----
+ INST 1: Line 118:  INST 2: Line 118:  INST 3: Line 118:  INST 4: Line 118:  INST 5: Line 118:  INST 6: Line 118:  INST 7: Line 118:  INST 8: # 29
+MOVETO bb 16 inst 6  time: old 6, new 6
+MOVEFROM bb 17, inst 2  time: old 5, new 4
+----- basic block instruction moved to -----
+ INST 1: # 27
+ INST 2: Line 117:  INST 3: Line 117:  INST 4: Line 117:  INST 5: Line 118:  INST 6: Line 118:  INST 7: Line 117:  INST 8: Line 117: ----- basic block instruction moved from -----
+ INST 1: Line 118:  INST 2: Line 118:  INST 3: Line 118:  INST 4: Line 118:  INST 5: Line 118:  INST 6: Line 118:  INST 7: Line 118:  INST 8: # 29
+current bb 20, weight = 7, stalls = 1
+current bb 25, weight = 7, stalls = 3
+MOVETO bb 25 inst 9  time: old 10, new 10
+MOVEFROM bb 26, inst 2  time: old 5, new 4
+----- basic block instruction moved to -----
+ INST 1: Line 125:  INST 2: Line 125:  INST 3: Line 125:  INST 4: Line 125:  INST 5: Line 125:  INST 6: Line 125:  INST 7: Line 125:  INST 8: Line 125:  INST 9: Line 126:  INST 10: Line 125:  INST 11: Line 125: ----- basic block instruction moved from -----
+ INST 1: Line 126:  INST 2: Line 126:  INST 3: Line 126:  INST 4: Line 126:  INST 5: Line 126:  INST 6: Line 126:  INST 7: # 29
+current bb 29, weight = 7, stalls = 2
+MOVETO bb 29 inst 4  time: old 5, new 5
+MOVEFROM bb 31, inst 2  time: old 11, new 10
+----- basic block instruction moved to -----
+ INST 1: Line 128:  INST 2: Line 128:  INST 3: Line 128:  INST 4: Line 128:  INST 5: Line 128:  INST 6: Line 128: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 128:  INST 3: Line 128:  INST 4: # 28
+ INST 5: Line 129:  INST 6: Line 129:  INST 7: Line 130:  INST 8: Line 130:  INST 9: Line 130:  INST 10: Line 130:  INST 11: Line 130:  INST 12: Line 130:  INST 13: Line 130: MOVETO bb 29 inst 5  time: old 5, new 5
+MOVEFROM bb 31, inst 3  time: old 10, new 9
+----- basic block instruction moved to -----
+ INST 1: Line 128:  INST 2: Line 128:  INST 3: Line 128:  INST 4: Line 128:  INST 5: Line 128:  INST 6: Line 128:  INST 7: Line 128: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 128:  INST 3: Line 128:  INST 4: # 28
+ INST 5: Line 129:  INST 6: Line 129:  INST 7: Line 130:  INST 8: Line 130:  INST 9: Line 130:  INST 10: Line 130:  INST 11: Line 130:  INST 12: Line 130:  INST 13: Line 130: current bb 41, weight = 7, stalls = 1
+current bb 42, weight = 7, stalls = 1
+current bb 9, weight = 10, stalls = 3
+current bb 30, weight = 10, stalls = 1
+current bb 31, weight = 10, stalls = 1
+MOVETO bb 31 inst 12  time: old 9, new 9
+MOVEFROM bb 35, inst 3  time: old 13, new 12
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 128:  INST 3: Line 128:  INST 4: # 28
+ INST 5: Line 129:  INST 6: Line 129:  INST 7: Line 130:  INST 8: Line 130:  INST 9: Line 130:  INST 10: Line 130:  INST 11: Line 130:  INST 12: Line 132:  INST 13: Line 130:  INST 14: Line 130: ----- basic block instruction moved from -----
+ INST 1: # 28
+ INST 2: # 28
+ INST 3: Line 132:  INST 4: Line 132:  INST 5: Line 132:  INST 6: Line 132:  INST 7: Line 132:  INST 8: Line 132:  INST 9: Line 132:  INST 10: Line 132:  INST 11: Line 132:  INST 12: Line 132:  INST 13: Line 132:  INST 14: Line 132: current bb 34, weight = 10, stalls = 3
+MOVETO bb 34 inst 3  time: old 5, new 5
+MOVEFROM bb 35, inst 4  time: old 12, new 11
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 132:  INST 3: Line 132:  INST 4: Line 132:  INST 5: Line 132: ----- basic block instruction moved from -----
+ INST 1: # 28
+ INST 2: # 28
+ INST 3: Line 132:  INST 4: Line 132:  INST 5: Line 132:  INST 6: Line 132:  INST 7: Line 132:  INST 8: Line 132:  INST 9: Line 132:  INST 10: Line 132:  INST 11: Line 132:  INST 12: Line 132:  INST 13: Line 132:  INST 14: Line 132: MOVETO bb 34 inst 4  time: old 5, new 5
+MOVEFROM bb 35, inst 5  time: old 11, new 10
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 132:  INST 3: Line 132:  INST 4: Line 132:  INST 5: Line 132:  INST 6: Line 132: ----- basic block instruction moved from -----
+ INST 1: # 28
+ INST 2: # 28
+ INST 3: Line 132:  INST 4: Line 132:  INST 5: Line 132:  INST 6: Line 132:  INST 7: Line 132:  INST 8: Line 132:  INST 9: Line 132:  INST 10: Line 132:  INST 11: Line 132:  INST 12: Line 132:  INST 13: Line 132:  INST 14: Line 132: MOVETO bb 34 inst 5  time: old 5, new 5
+MOVEFROM bb 35, inst 6  time: old 10, new 9
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 132:  INST 3: Line 132:  INST 4: Line 132:  INST 5: Line 132:  INST 6: Line 132:  INST 7: Line 132: ----- basic block instruction moved from -----
+ INST 1: # 28
+ INST 2: # 28
+ INST 3: Line 132:  INST 4: Line 132:  INST 5: Line 132:  INST 6: Line 132:  INST 7: Line 132:  INST 8: Line 132:  INST 9: Line 132:  INST 10: Line 132:  INST 11: Line 132:  INST 12: Line 132:  INST 13: Line 132:  INST 14: Line 132: current bb 10, weight = 13, stalls = 1
+current bb 35, weight = 13, stalls = 2
+MOVETO bb 35 inst 13  time: old 9, new 9
+MOVEFROM bb 43, inst 3  time: old 16, new 15
+----- basic block instruction moved to -----
+ INST 1: # 28
+ INST 2: # 28
+ INST 3: Line 132:  INST 4: Line 132:  INST 5: Line 132:  INST 6: Line 132:  INST 7: Line 132:  INST 8: Line 132:  INST 9: Line 132:  INST 10: Line 132:  INST 11: Line 132:  INST 12: Line 132:  INST 13: Line 132:  INST 14: Line 132:  INST 15: Line 132: ----- basic block instruction moved from -----
+ INST 1: # 27
+ INST 2: # 27
+ INST 3: Line 132:  INST 4: Line 134:  INST 5: Line 134:  INST 6: Line 134:  INST 7: Line 135:  INST 8: Line 135:  INST 9: Line 135:  INST 10: Line 135:  INST 11: Line 135:  INST 12: Line 135:  INST 13: Line 135:  INST 14: Line 136:  INST 15: Line 136:  INST 16: Line 136: MOVETO bb 35 inst 14  time: old 9, new 9
+MOVEFROM bb 43, inst 7  time: old 15, new 14
+----- basic block instruction moved to -----
+ INST 1: # 28
+ INST 2: # 28
+ INST 3: Line 132:  INST 4: Line 132:  INST 5: Line 132:  INST 6: Line 132:  INST 7: Line 132:  INST 8: Line 132:  INST 9: Line 132:  INST 10: Line 132:  INST 11: Line 132:  INST 12: Line 132:  INST 13: Line 132:  INST 14: Line 135:  INST 15: Line 132:  INST 16: Line 132: ----- basic block instruction moved from -----
+ INST 1: # 27
+ INST 2: # 27
+ INST 3: Line 132:  INST 4: Line 134:  INST 5: Line 134:  INST 6: Line 134:  INST 7: Line 135:  INST 8: Line 135:  INST 9: Line 135:  INST 10: Line 135:  INST 11: Line 135:  INST 12: Line 135:  INST 13: Line 135:  INST 14: Line 136:  INST 15: Line 136:  INST 16: Line 136: current bb 43, weight = 16, stalls = 3
+MOVETO bb 43 inst 15  time: old 14, new 14
+MOVEFROM bb 44, inst 2  time: old 6, new 5
+----- basic block instruction moved to -----
+ INST 1: # 27
+ INST 2: # 27
+ INST 3: Line 132:  INST 4: Line 134:  INST 5: Line 134:  INST 6: Line 134:  INST 7: Line 135:  INST 8: Line 135:  INST 9: Line 135:  INST 10: Line 135:  INST 11: Line 135:  INST 12: Line 135:  INST 13: Line 135:  INST 14: Line 136:  INST 15: Line 138:  INST 16: Line 136:  INST 17: Line 136: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 138:  INST 3: Line 138:  INST 4: Line 138:  INST 5: Line 138: current bb 44, weight = 19, stalls = 3
+MOVETO bb 44 inst 4  time: old 5, new 5
+MOVEFROM bb 45, inst 2  time: old 7, new 6
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 138:  INST 3: Line 138:  INST 4: Line 138:  INST 5: Line 138:  INST 6: Line 138: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 138:  INST 3: Line 138:  INST 4: Line 138:  INST 5: Line 138:  INST 6: Line 138:  INST 7: Line 138:  INST 8: Line 138:  INST 9: Line 138:  INST 10: # 29
+MOVETO bb 44 inst 5  time: old 5, new 5
+MOVEFROM bb 45, inst 3  time: old 6, new 5
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 138:  INST 3: Line 138:  INST 4: Line 138:  INST 5: Line 138:  INST 6: Line 138:  INST 7: Line 138: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 138:  INST 3: Line 138:  INST 4: Line 138:  INST 5: Line 138:  INST 6: Line 138:  INST 7: Line 138:  INST 8: Line 138:  INST 9: Line 138:  INST 10: # 29
+MOVETO bb 44 inst 6  time: old 5, new 5
+MOVEFROM bb 45, inst 4  time: old 5, new 4
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 138:  INST 3: Line 138:  INST 4: Line 138:  INST 5: Line 138:  INST 6: Line 138:  INST 7: Line 138:  INST 8: Line 138: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 138:  INST 3: Line 138:  INST 4: Line 138:  INST 5: Line 138:  INST 6: Line 138:  INST 7: Line 138:  INST 8: Line 138:  INST 9: Line 138:  INST 10: # 29
+current bb 48, weight = 19, stalls = 1
+MOVETO bb 48 inst 1  time: old 2, new 2
+MOVEFROM bb 49, inst 2  time: old 6, new 5
+----- basic block instruction moved to -----
+ INST 1: Line 141:  INST 2: Line 136:  INST 3: Line 136: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 141:  INST 3: Line 141:  INST 4: Line 141:  INST 5: Line 141: current bb 47, weight = 22, stalls = 1
+current bb 49, weight = 22, stalls = 3
+MOVETO bb 49 inst 4  time: old 5, new 5
+MOVEFROM bb 50, inst 2  time: old 7, new 6
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 141:  INST 3: Line 141:  INST 4: Line 141:  INST 5: Line 141:  INST 6: Line 141: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 141:  INST 3: Line 141:  INST 4: Line 141:  INST 5: Line 141:  INST 6: Line 141:  INST 7: Line 141:  INST 8: Line 141:  INST 9: Line 141:  INST 10: # 29
+MOVETO bb 49 inst 5  time: old 5, new 5
+MOVEFROM bb 50, inst 3  time: old 6, new 5
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 141:  INST 3: Line 141:  INST 4: Line 141:  INST 5: Line 141:  INST 6: Line 141:  INST 7: Line 141: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 141:  INST 3: Line 141:  INST 4: Line 141:  INST 5: Line 141:  INST 6: Line 141:  INST 7: Line 141:  INST 8: Line 141:  INST 9: Line 141:  INST 10: # 29
+MOVETO bb 49 inst 6  time: old 5, new 5
+MOVEFROM bb 50, inst 4  time: old 5, new 4
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 141:  INST 3: Line 141:  INST 4: Line 141:  INST 5: Line 141:  INST 6: Line 141:  INST 7: Line 141:  INST 8: Line 141: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 141:  INST 3: Line 141:  INST 4: Line 141:  INST 5: Line 141:  INST 6: Line 141:  INST 7: Line 141:  INST 8: Line 141:  INST 9: Line 141:  INST 10: # 29
+current bb 53, weight = 22, stalls = 1
+MOVETO bb 53 inst 1  time: old 2, new 2
+MOVEFROM bb 54, inst 2  time: old 6, new 5
+----- basic block instruction moved to -----
+ INST 1: Line 144:  INST 2: Line 136:  INST 3: Line 136: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 144:  INST 3: Line 144:  INST 4: Line 144:  INST 5: Line 144: current bb 52, weight = 25, stalls = 1
+current bb 54, weight = 25, stalls = 3
+MOVETO bb 54 inst 4  time: old 5, new 5
+MOVEFROM bb 55, inst 2  time: old 7, new 6
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 144:  INST 3: Line 144:  INST 4: Line 144:  INST 5: Line 144:  INST 6: Line 144: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 144:  INST 3: Line 144:  INST 4: Line 144:  INST 5: Line 144:  INST 6: Line 144:  INST 7: Line 144:  INST 8: Line 144:  INST 9: Line 144:  INST 10: # 29
+MOVETO bb 54 inst 5  time: old 5, new 5
+MOVEFROM bb 55, inst 3  time: old 6, new 5
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 144:  INST 3: Line 144:  INST 4: Line 144:  INST 5: Line 144:  INST 6: Line 144:  INST 7: Line 144: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 144:  INST 3: Line 144:  INST 4: Line 144:  INST 5: Line 144:  INST 6: Line 144:  INST 7: Line 144:  INST 8: Line 144:  INST 9: Line 144:  INST 10: # 29
+MOVETO bb 54 inst 6  time: old 5, new 5
+MOVEFROM bb 55, inst 4  time: old 5, new 4
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 144:  INST 3: Line 144:  INST 4: Line 144:  INST 5: Line 144:  INST 6: Line 144:  INST 7: Line 144:  INST 8: Line 144: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 144:  INST 3: Line 144:  INST 4: Line 144:  INST 5: Line 144:  INST 6: Line 144:  INST 7: Line 144:  INST 8: Line 144:  INST 9: Line 144:  INST 10: # 29
+current bb 58, weight = 25, stalls = 1
+MOVETO bb 58 inst 1  time: old 2, new 2
+MOVEFROM bb 59, inst 2  time: old 6, new 5
+----- basic block instruction moved to -----
+ INST 1: Line 147:  INST 2: Line 136:  INST 3: Line 136: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 147:  INST 3: Line 147:  INST 4: Line 147:  INST 5: Line 147: current bb 59, weight = 25, stalls = 3
+MOVETO bb 59 inst 4  time: old 5, new 5
+MOVEFROM bb 60, inst 2  time: old 7, new 6
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 147:  INST 3: Line 147:  INST 4: Line 147:  INST 5: Line 147:  INST 6: Line 147: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 147:  INST 3: Line 147:  INST 4: Line 147:  INST 5: Line 147:  INST 6: Line 147:  INST 7: Line 147:  INST 8: Line 147:  INST 9: Line 147:  INST 10: # 29
+MOVETO bb 59 inst 5  time: old 5, new 5
+MOVEFROM bb 60, inst 3  time: old 6, new 5
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 147:  INST 3: Line 147:  INST 4: Line 147:  INST 5: Line 147:  INST 6: Line 147:  INST 7: Line 147: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 147:  INST 3: Line 147:  INST 4: Line 147:  INST 5: Line 147:  INST 6: Line 147:  INST 7: Line 147:  INST 8: Line 147:  INST 9: Line 147:  INST 10: # 29
+MOVETO bb 59 inst 6  time: old 5, new 5
+MOVEFROM bb 60, inst 4  time: old 5, new 4
+----- basic block instruction moved to -----
+ INST 1: # 26
+ INST 2: Line 147:  INST 3: Line 147:  INST 4: Line 147:  INST 5: Line 147:  INST 6: Line 147:  INST 7: Line 147:  INST 8: Line 147: ----- basic block instruction moved from -----
+ INST 1: # 26
+ INST 2: Line 147:  INST 3: Line 147:  INST 4: Line 147:  INST 5: Line 147:  INST 6: Line 147:  INST 7: Line 147:  INST 8: Line 147:  INST 9: Line 147:  INST 10: # 29
+current bb 57, weight = 28, stalls = 1
+current bb 62, weight = 28, stalls = 1
+current bb 36, weight = 65534, stalls = 3
+LOOP:  0
+	bb: 0	weight: 1
+BB 0 dominated by:  0
+BB 0 postdominated by:  0
+		0x811907dc	lb	$25,2012($8)
+		0x970c0	sll	$14,$9,3
+		0x17200000	bne	$25,$0,0
+		0	nop
+		0	nop
+		0x3c0f0000	lui	$15,0
+		0x25ef0000	addiu	$15,$15,0
+		0x1cfc021	addu	$24,$14,$15
+		0xafb80028	sw	$24,40($sp)
+		0x93190007	lbu	$25,7($24)
+		0x24010006	li	$at,6
+		0x17210000	bne	$25,$at,0
+		0	nop
+		0x811907dc	lb	$25,2012($8)
+		0x970c0	sll	$14,$9,3
+		0x3c0f0000	lui	$15,0
+		0x17200000	bne	$25,$0,0
+		0	nop
+		0	nop
+		0	nop
+		0x25ef0000	addiu	$15,$15,0
+		0x1cfc021	addu	$24,$14,$15
+		0xafb80028	sw	$24,40($sp)
+		0x93190007	lbu	$25,7($24)
+		0x24010006	li	$at,6
+		0x17210000	bne	$25,$at,0
+		0	nop
+		0x811907dc	lb	$25,2012($8)
+		0x970c0	sll	$14,$9,3
+		0x3c0f0000	lui	$15,0
+		0x25ef0000	addiu	$15,$15,0
+		0x17200000	bne	$25,$0,0
+		0	nop
+		0	nop
+		0	nop
+		0	nop
+		0x1cfc021	addu	$24,$14,$15
+		0xafb80028	sw	$24,40($sp)
+		0x93190007	lbu	$25,7($24)
+		0x24010006	li	$at,6
+		0x17210000	bne	$25,$at,0
+		0	nop
+		0x8fa500a4	lw	$5,164($sp)
+		0x10e00000	beq	$7,$0,0
+		0	nop
+		0x850407c6	lh	$4,1990($8)
+		0	nop
+		0xafa800a0	sw	$8,160($sp)
+		0xafa90098	sw	$9,152($sp)
+		0xc000000	jal	0
+		0	nop
+		0x24010001	li	$at,1
+		0x2025	move	$4,$0
+		0x14410000	bne	$2,$at,0
+		0	nop
+		0	nop
+		0x3c054000	lui	$5,0x4000
+		0x24060001	li	$6,1
+		0x3825	move	$7,$0
+		0x240d0002	li	$13,2
+		0xafad0010	sw	$13,16($sp)
+		0x244e004f	addiu	$14,$2,79
+		0xafae0014	sw	$14,20($sp)
+		0x24180050	li	$24,80
+		0xafb80018	sw	$24,24($sp)
+		0xc000000	jal	0
+		0	nop
+		0x810b07dc	lb	$11,2012($8)
+		0x3c0c0000	lui	$12,0
+		0x11600000	beq	$11,$0,0
+		0	nop
+		0	nop
+		0x8d8c0000	lw	$12,0($12)
+		0x24010001	li	$at,1
+		0x11810000	beq	$12,$at,0
+		0	nop
+		0x84cb0006	lh	$11,6($6)
+		0x850c07e2	lh	$12,2018($8)
+		0x240d0001	li	$13,1
+		0x156c0000	bne	$11,$12,0
+		0	nop
+		0	nop
+		0xa10d07dc	sb	$13,2012($8)
+		0x84c30004	lh	$3,4($6)
+		0x850b07e2	lh	$11,2018($8)
+		0x3c0c0000	lui	$12,0
+		0x146b0000	bne	$3,$11,0
+		0	nop
+		0	nop
+		0x8d8c0000	lw	$12,0($12)
+		0x318d0008	andi	$13,$12,0x8
+		0x15a00000	bne	$13,$0,0
+		0	nop
+		0x850e07e4	lh	$14,2020($8)
+		0x6e1026	xor	$2,$3,$14
+		0x2c420001	sltiu	$2,$2,1
+		0x3c010000	lui	$at,0
+		0x10400000	beq	$2,$0,0
+		0	nop
+		0	nop
+		0xa0220000	sb	$2,0($at)
+		0x850e07e4	lh	$14,2020($8)
+		0x6e1026	xor	$2,$3,$14
+		0x2c420001	sltiu	$2,$2,1
+		0x3c010000	lui	$at,0
+		0x3c0f0000	lui	$15,0
+		0x10400000	beq	$2,$0,0
+		0	nop
+		0	nop
+		0x85ef0000	lh	$15,0($15)
+		0x811807e8	lb	$24,2024($8)
+		0x27190001	addiu	$25,$24,1
+		0x1f91026	xor	$2,$15,$25
+		0x2c420001	sltiu	$2,$2,1
+		0x8fa800a0	lw	$8,160($sp)
+		0x8fa90098	lw	$9,152($sp)
+		0x3c0b0000	lui	$11,0
+		0x856b0000	lh	$11,0($11)
+		0x810c07e8	lb	$12,2024($8)
+		0x96900	sll	$13,$9,4
+		0x156c0000	bne	$11,$12,0
+		0	nop
+		0	nop
+		0x1a96823	subu	$13,$13,$9
+		0xd68c0	sll	$13,$13,3
+		0x1a96823	subu	$13,$13,$9
+		0xd68c0	sll	$13,$13,3
+		0x3c0e0000	lui	$14,0
+		0x1cd7021	addu	$14,$14,$13
+		0x81ce00ef	lb	$14,239($14)
+		0x15c00000	bne	$14,$0,0
+		0	nop
+		0x8fa800a0	lw	$8,160($sp)
+		0x8fa90098	lw	$9,152($sp)
+		0x3c0b0000	lui	$11,0
+		0x856b0000	lh	$11,0($11)
+		0x810c07e8	lb	$12,2024($8)
+		0x96900	sll	$13,$9,4
+		0	nop
+		0x3c0e0000	lui	$14,0
+		0x156c0000	bne	$11,$12,0
+		0	nop
+		0	nop
+		0x1a96823	subu	$13,$13,$9
+		0xd68c0	sll	$13,$13,3
+		0x1a96823	subu	$13,$13,$9
+		0xd68c0	sll	$13,$13,3
+		0	nop
+		0x1cd7021	addu	$14,$14,$13
+		0x81ce00ef	lb	$14,239($14)
+		0x15c00000	bne	$14,$0,0
+		0	nop
+		0x8fb80028	lw	$24,40($sp)
+		0x930f0007	lbu	$15,7($24)
+		0x24010006	li	$at,6
+		0	nop
+		0x3c190000	lui	$25,0
+		0x15e10000	bne	$15,$at,0
+		0	nop
+		0x24070002	li	$7,2
+		0	nop
+		0x8f390000	lw	$25,0($25)
+		0x14f90000	bne	$7,$25,0
+		0	nop
+		0x3c0c0000	lui	$12,0
+		0x818c0000	lb	$12,0($12)
+		0x2404004a	li	$4,74
+		0x15800000	bne	$12,$0,0
+		0	nop
+		0	nop
+		0x1202825	move	$5,$9
+		0x24060001	li	$6,1
+		0x24070001	li	$7,1
+		0xc000000	jal	0
+		0	nop
+		0x3c0c0000	lui	$12,0
+		0x818c0000	lb	$12,0($12)
+		0x2404004a	li	$4,74
+		0x1202825	move	$5,$9
+		0x15800000	bne	$12,$0,0
+		0	nop
+		0	nop
+		0	nop
+		0x24060001	li	$6,1
+		0x24070001	li	$7,1
+		0xc000000	jal	0
+		0	nop
+		0x3c0c0000	lui	$12,0
+		0x818c0000	lb	$12,0($12)
+		0x2404004a	li	$4,74
+		0x1202825	move	$5,$9
+		0x24060001	li	$6,1
+		0x15800000	bne	$12,$0,0
+		0	nop
+		0	nop
+		0	nop
+		0	nop
+		0x24070001	li	$7,1
+		0xc000000	jal	0
+		0	nop
+		0	nop
+		0x8d8c0000	lw	$12,0($12)
+		0x24010001	li	$at,1
+		0x3c0d0000	lui	$13,0
+		0x11810000	beq	$12,$at,0
+		0	nop
+		0	nop
+		0x8dad0000	lw	$13,0($13)
+		0x31ae0008	andi	$14,$13,0x8
+		0x15c00000	bne	$14,$0,0
+		0	nop
+		0	nop
+		0x8d8c0000	lw	$12,0($12)
+		0x318d0008	andi	$13,$12,0x8
+		0x1202025	move	$4,$9
+		0x15a00000	bne	$13,$0,0
+		0	nop
+		0	nop
+		0x8fa500a4	lw	$5,164($sp)
+		0xafa7008c	sw	$7,140($sp)
+		0xafa800a0	sw	$8,160($sp)
+		0xafa90098	sw	$9,152($sp)
+		0xc000000	jal	0
+		0	nop
+		0	nop
+		0x8d8c0000	lw	$12,0($12)
+		0x318d0008	andi	$13,$12,0x8
+		0x1202025	move	$4,$9
+		0x8fa500a4	lw	$5,164($sp)
+		0x15a00000	bne	$13,$0,0
+		0	nop
+		0	nop
+		0	nop
+		0xafa7008c	sw	$7,140($sp)
+		0xafa800a0	sw	$8,160($sp)
+		0xafa90098	sw	$9,152($sp)
+		0xc000000	jal	0
+		0	nop
+		0	nop
+		0x1a96823	subu	$13,$13,$9
+		0xd68c0	sll	$13,$13,3
+		0x1a96823	subu	$13,$13,$9
+		0xd68c0	sll	$13,$13,3
+		0	nop
+		0x1cd7021	addu	$14,$14,$13
+		0x81ce00ef	lb	$14,239($14)
+		0x8fa500a4	lw	$5,164($sp)
+		0x15c00000	bne	$14,$0,0
+		0	nop
+		0x850407c6	lh	$4,1990($8)
+		0	nop
+		0xafa800a0	sw	$8,160($sp)
+		0xafa90098	sw	$9,152($sp)
+		0xc000000	jal	0
+		0	nop
+		0x24070002	li	$7,2
+		0	nop
+		0x8f390000	lw	$25,0($25)
+		0x3c050000	lui	$5,0
+		0x14f90000	bne	$7,$25,0
+		0	nop
+		0	nop
+		0x24a50000	addiu	$5,$5,0
+		0x80a20000	lb	$2,0($5)
+		0x403025	move	$6,$2
+		0x3c030000	lui	$3,0
+		0x84630000	lh	$3,0($3)
+		0x810b07e8	lb	$11,2024($8)
+		0x6b2023	subu	$4,$3,$11
+		0x44082a	slt	$at,$2,$4
+		0x10200000	beq	$at,$0,0
+		0	nop
+		0x24070002	li	$7,2
+		0	nop
+		0x8f390000	lw	$25,0($25)
+		0x3c050000	lui	$5,0
+		0x24a50000	addiu	$5,$5,0
+		0x14f90000	bne	$7,$25,0
+		0	nop
+		0	nop
+		0	nop
+		0x80a20000	lb	$2,0($5)
+		0x403025	move	$6,$2
+		0x3c030000	lui	$3,0
+		0x84630000	lh	$3,0($3)
+		0x810b07e8	lb	$11,2024($8)
+		0x6b2023	subu	$4,$3,$11
+		0x44082a	slt	$at,$2,$4
+		0x10200000	beq	$at,$0,0
+		0	nop
+		0	nop
+		0	nop
+		0x80a20000	lb	$2,0($5)
+		0x403025	move	$6,$2
+		0x3c030000	lui	$3,0
+		0x84630000	lh	$3,0($3)
+		0x810b07e8	lb	$11,2024($8)
+		0x6b2023	subu	$4,$3,$11
+		0x44082a	slt	$at,$2,$4
+		0x96900	sll	$13,$9,4
+		0x10200000	beq	$at,$0,0
+		0	nop
+		0	nop
+		0x1a96823	subu	$13,$13,$9
+		0xd68c0	sll	$13,$13,3
+		0x1a96823	subu	$13,$13,$9
+		0xd68c0	sll	$13,$13,3
+		0x3c0e0000	lui	$14,0
+		0x25ce0000	addiu	$14,$14,0
+		0x1ae1821	addu	$3,$13,$14
+		0x807800ef	lb	$24,239($3)
+		0x2401ffff	li	$at,-1
+		0x13010000	beq	$24,$at,0
+		0	nop
+		0x810c07e8	lb	$12,2024($8)
+		0x1a96823	subu	$13,$13,$9
+		0x146c0000	bne	$3,$12,0
+		0	nop
+		0	nop
+		0	nop
+		0xd68c0	sll	$13,$13,3
+		0x1a96823	subu	$13,$13,$9
+		0xd68c0	sll	$13,$13,3
+		0x3c0e0000	lui	$14,0
+		0x25ce0000	addiu	$14,$14,0
+		0x1ae1821	addu	$3,$13,$14
+		0x807800ef	lb	$24,239($3)
+		0x2401ffff	li	$at,-1
+		0x13010000	beq	$24,$at,0
+		0	nop
+		0x810c07e8	lb	$12,2024($8)
+		0x1a96823	subu	$13,$13,$9
+		0xd68c0	sll	$13,$13,3
+		0x146c0000	bne	$3,$12,0
+		0	nop
+		0	nop
+		0	nop
+		0	nop
+		0x1a96823	subu	$13,$13,$9
+		0xd68c0	sll	$13,$13,3
+		0x3c0e0000	lui	$14,0
+		0x25ce0000	addiu	$14,$14,0
+		0x1ae1821	addu	$3,$13,$14
+		0x807800ef	lb	$24,239($3)
+		0x2401ffff	li	$at,-1
+		0x13010000	beq	$24,$at,0
+		0	nop
+		0x810c07e8	lb	$12,2024($8)
+		0x1a96823	subu	$13,$13,$9
+		0xd68c0	sll	$13,$13,3
+		0x1a96823	subu	$13,$13,$9
+		0x146c0000	bne	$3,$12,0
+		0	nop
+		0	nop
+		0	nop
+		0	nop
+		0	nop
+		0xd68c0	sll	$13,$13,3
+		0x3c0e0000	lui	$14,0
+		0x25ce0000	addiu	$14,$14,0
+		0x1ae1821	addu	$3,$13,$14
+		0x807800ef	lb	$24,239($3)
+		0x2401ffff	li	$at,-1
+		0x13010000	beq	$24,$at,0
+		0	nop
+		0	nop
+		0	nop
+		0	nop
+		0	nop
+		0xd68c0	sll	$13,$13,3
+		0x3c0e0000	lui	$14,0
+		0x25ce0000	addiu	$14,$14,0
+		0x1ae1821	addu	$3,$13,$14
+		0x807800ef	lb	$24,239($3)
+		0x2401ffff	li	$at,-1
+		0x240a0001	li	$10,1
+		0x13010000	beq	$24,$at,0
+		0	nop
+		0	nop
+		0x3c010000	lui	$at,0
+		0x290821	addu	$at,$at,$9
+		0xa02a0000	sb	$10,0($at)
+		0x3c0f0000	lui	$15,0
+		0x25ef0000	addiu	$15,$15,0
+		0xc5e40000	lwc1	$f4,0($15)
+		0x9c880	sll	$25,$9,2
+		0x3c010000	lui	$at,0
+		0x390821	addu	$at,$at,$25
+		0xe4240000	swc1	$f4,0($at)
+		0x806200ee	lb	$2,238($3)
+		0x10400000	beq	$2,$0,0
+		0	nop
+		0	nop
+		0	nop
+		0	nop
+		0	nop
+		0xd68c0	sll	$13,$13,3
+		0x3c0e0000	lui	$14,0
+		0x25ce0000	addiu	$14,$14,0
+		0x1ae1821	addu	$3,$13,$14
+		0x807800ef	lb	$24,239($3)
+		0x2401ffff	li	$at,-1
+		0x240a0001	li	$10,1
+		0x3c0f0000	lui	$15,0
+		0x13010000	beq	$24,$at,0
+		0	nop
+		0	nop
+		0x3c010000	lui	$at,0
+		0x290821	addu	$at,$at,$9
+		0xa02a0000	sb	$10,0($at)
+		0	nop
+		0x25ef0000	addiu	$15,$15,0
+		0xc5e40000	lwc1	$f4,0($15)
+		0x9c880	sll	$25,$9,2
+		0x3c010000	lui	$at,0
+		0x390821	addu	$at,$at,$25
+		0xe4240000	swc1	$f4,0($at)
+		0x806200ee	lb	$2,238($3)
+		0x10400000	beq	$2,$0,0
+		0	nop
+		0	nop
+		0x3c010000	lui	$at,0
+		0x290821	addu	$at,$at,$9
+		0xa02a0000	sb	$10,0($at)
+		0	nop
+		0x25ef0000	addiu	$15,$15,0
+		0xc5e40000	lwc1	$f4,0($15)
+		0x9c880	sll	$25,$9,2
+		0x3c010000	lui	$at,0
+		0x390821	addu	$at,$at,$25
+		0xe4240000	swc1	$f4,0($at)
+		0x806200ee	lb	$2,238($3)
+		0x3c0b0000	lui	$11,0
+		0x10400000	beq	$2,$0,0
+		0	nop
+		0	nop
+		0x816b0000	lb	$11,0($11)
+		0x15600000	bne	$11,$0,0
+		0	nop
+		0	nop
+		0x816b0000	lb	$11,0($11)
+		0x24040040	li	$4,64
+		0x15600000	bne	$11,$0,0
+		0	nop
+		0	nop
+		0x1202825	move	$5,$9
+		0x1403025	move	$6,$10
+		0x24070001	li	$7,1
+		0xafa3002c	sw	$3,44($sp)
+		0xafa800a0	sw	$8,160($sp)
+		0xc000000	jal	0
+		0	nop
+		0	nop
+		0x816b0000	lb	$11,0($11)
+		0x24040040	li	$4,64
+		0x1202825	move	$5,$9
+		0x15600000	bne	$11,$0,0
+		0	nop
+		0	nop
+		0	nop
+		0x1403025	move	$6,$10
+		0x24070001	li	$7,1
+		0xafa3002c	sw	$3,44($sp)
+		0xafa800a0	sw	$8,160($sp)
+		0xc000000	jal	0
+		0	nop
+		0	nop
+		0x816b0000	lb	$11,0($11)
+		0x24040040	li	$4,64
+		0x1202825	move	$5,$9
+		0x1403025	move	$6,$10
+		0x15600000	bne	$11,$0,0
+		0	nop
+		0	nop
+		0	nop
+		0	nop
+		0x24070001	li	$7,1
+		0xafa3002c	sw	$3,44($sp)
+		0xafa800a0	sw	$8,160($sp)
+		0xc000000	jal	0
+		0	nop
+		0x3c0c0000	lui	$12,0
+		0x104a0000	beq	$2,$10,0
+		0	nop
+		0	nop
+		0x818c0000	lb	$12,0($12)
+		0x15800000	bne	$12,$0,0
+		0	nop
+		0	nop
+		0x818c0000	lb	$12,0($12)
+		0x24040044	li	$4,68
+		0x15800000	bne	$12,$0,0
+		0	nop
+		0	nop
+		0x1202825	move	$5,$9
+		0x1403025	move	$6,$10
+		0x24070001	li	$7,1
+		0xafa3002c	sw	$3,44($sp)
+		0xafa800a0	sw	$8,160($sp)
+		0xc000000	jal	0
+		0	nop
+		0	nop
+		0x818c0000	lb	$12,0($12)
+		0x24040044	li	$4,68
+		0x1202825	move	$5,$9
+		0x15800000	bne	$12,$0,0
+		0	nop
+		0	nop
+		0	nop
+		0x1403025	move	$6,$10
+		0x24070001	li	$7,1
+		0xafa3002c	sw	$3,44($sp)
+		0xafa800a0	sw	$8,160($sp)
+		0xc000000	jal	0
+		0	nop
+		0	nop
+		0x818c0000	lb	$12,0($12)
+		0x24040044	li	$4,68
+		0x1202825	move	$5,$9
+		0x1403025	move	$6,$10
+		0x15800000	bne	$12,$0,0
+		0	nop
+		0	nop
+		0	nop
+		0	nop
+		0x24070001	li	$7,1
+		0xafa3002c	sw	$3,44($sp)
+		0xafa800a0	sw	$8,160($sp)
+		0xc000000	jal	0
+		0	nop
+		0x3c0d0000	lui	$13,0
+		0x10470000	beq	$2,$7,0
+		0	nop
+		0	nop
+		0x81ad0000	lb	$13,0($13)
+		0x15a00000	bne	$13,$0,0
+		0	nop
+		0	nop
+		0x81ad0000	lb	$13,0($13)
+		0x24040043	li	$4,67
+		0x15a00000	bne	$13,$0,0
+		0	nop
+		0	nop
+		0x1202825	move	$5,$9
+		0x1403025	move	$6,$10
+		0x24070001	li	$7,1
+		0xafa3002c	sw	$3,44($sp)
+		0xafa800a0	sw	$8,160($sp)
+		0xc000000	jal	0
+		0	nop
+		0	nop
+		0x81ad0000	lb	$13,0($13)
+		0x24040043	li	$4,67
+		0x1202825	move	$5,$9
+		0x15a00000	bne	$13,$0,0
+		0	nop
+		0	nop
+		0	nop
+		0x1403025	move	$6,$10
+		0x24070001	li	$7,1
+		0xafa3002c	sw	$3,44($sp)
+		0xafa800a0	sw	$8,160($sp)
+		0xc000000	jal	0
+		0	nop
+		0	nop
+		0x81ad0000	lb	$13,0($13)
+		0x24040043	li	$4,67
+		0x1202825	move	$5,$9
+		0x1403025	move	$6,$10
+		0x15a00000	bne	$13,$0,0
+		0	nop
+		0	nop
+		0	nop
+		0	nop
+		0x24070001	li	$7,1
+		0xafa3002c	sw	$3,44($sp)
+		0xafa800a0	sw	$8,160($sp)
+		0xc000000	jal	0
+		0	nop
+		0x3c0e0000	lui	$14,0
+		0x10000000	b	0
+		0	nop
+		0	nop
+		0x81ce0000	lb	$14,0($14)
+		0x15c00000	bne	$14,$0,0
+		0	nop
+		0	nop
+		0x81ce0000	lb	$14,0($14)
+		0x24040041	li	$4,65
+		0x15c00000	bne	$14,$0,0
+		0	nop
+		0	nop
+		0x1202825	move	$5,$9
+		0x1403025	move	$6,$10
+		0x24070001	li	$7,1
+		0xafa3002c	sw	$3,44($sp)
+		0xafa800a0	sw	$8,160($sp)
+		0xc000000	jal	0
+		0	nop
+		0	nop
+		0x81ce0000	lb	$14,0($14)
+		0x24040041	li	$4,65
+		0x1202825	move	$5,$9
+		0x15c00000	bne	$14,$0,0
+		0	nop
+		0	nop
+		0	nop
+		0x1403025	move	$6,$10
+		0x24070001	li	$7,1
+		0xafa3002c	sw	$3,44($sp)
+		0xafa800a0	sw	$8,160($sp)
+		0xc000000	jal	0
+		0	nop
+		0	nop
+		0x81ce0000	lb	$14,0($14)
+		0x24040041	li	$4,65
+		0x1202825	move	$5,$9
+		0x1403025	move	$6,$10
+		0x15c00000	bne	$14,$0,0
+		0	nop
+		0	nop
+		0	nop
+		0	nop
+		0x24070001	li	$7,1
+		0xafa3002c	sw	$3,44($sp)
+		0xafa800a0	sw	$8,160($sp)
+		0xc000000	jal	0
+		0	nop

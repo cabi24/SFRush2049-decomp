@@ -3788,9 +3788,13 @@ void world_object_destroy(void *arg0);
 void world_physics_tick(void);
 void world_trigger_activate(void);
 s32 world_velocity_integrate();
+/* func_800B61A8: sound-cue wrapper (returns -1 when sound is off or the cue is -1, else
+ * entity_flags_apply). Direct-return spelling (wave 12, w12g), replacing the permuter's `new_var`
+ * local. Same 21 words standalone (-O2 and -O3) and EQUAL in the whole-program unit with 0 locked bodies
+ * differing; the only locked inliner (func_800F8EC8, group frontier_car_checkpoints) stays EQUAL.
+ * Inlined copies of this form cost less frame, which audio_doppler_full and race_countdown_display need. */
 s32 func_800B61A8(s32 arg0, s32 arg1, s32 arg2, unsigned char arg3)
 {
-  unsigned int new_var;
   if (D_8010FFC0 == 0)
   {
     return -1;
@@ -3799,6 +3803,5 @@ s32 func_800B61A8(s32 arg0, s32 arg1, s32 arg2, unsigned char arg3)
   {
     return -1;
   }
-  new_var = entity_flags_apply(arg0, arg1, arg2, arg3);
-  return new_var;
+  return entity_flags_apply(arg0, arg1, arg2, arg3);
 }

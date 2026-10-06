@@ -1,0 +1,17 @@
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul */
+typedef unsigned char u8;typedef signed char s8;typedef signed short s16;typedef unsigned int u32;typedef float f32;
+typedef struct Node104 {
+    u8 name[16];
+    f32 transform[12];
+    u32 flags;
+    s16 sibling,child;
+    u8 opaque72[8];
+    f32 minimum[3],maximum[3];
+} Node104;
+extern Node104 *D_80149B80,*D_80149D94;
+extern s16 D_80149D90;
+extern volatile u8 D_80140BDC;
+extern u32 state_word_a;
+extern int transmission_ratio_get(Node104 *,s16,int,int,int,int,int);
+extern int string_copy_format(void *,s8,s8,int),func_8008E26C(int,f32 *,s16,u32);
+extern void func_800A7E10(f32 *,f32 *,s16);

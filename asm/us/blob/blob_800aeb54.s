@@ -4884,6 +4884,7 @@ engine_sound_update:
 .section .text.tire_sound_update, "ax", @progbits
 .globl tire_sound_update
 tire_sound_update:
+    /* compiled from src/blob/tire_sound_update.c */
     .word 0x27BDFFD0
     .word 0xAFB40028
     .word 0xAFB30024
@@ -5021,6 +5022,7 @@ func_800B3584:
 .section .text.sound_stop, "ax", @progbits
 .globl sound_stop
 sound_stop:
+    /* compiled from src/blob/sound_stop.c */
     .word 0x10800025
     .word 0x3C038015
     .word 0x3C0A8015

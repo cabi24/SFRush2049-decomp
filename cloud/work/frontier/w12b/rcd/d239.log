@@ -1,0 +1,120 @@
+current bb 5, weight = 1, stalls = 3
+current bb 10, weight = 1, stalls = 3
+MOVETO bb 10 inst 3  time: old 5, new 5
+MOVEFROM bb 13, inst 2  time: old 10, new 9
+MOVETO bb 10 inst 4  time: old 5, new 5
+MOVEFROM bb 13, inst 3  time: old 9, new 8
+MOVETO bb 10 inst 5  time: old 5, new 5
+MOVEFROM bb 13, inst 4  time: old 8, new 7
+current bb 13, weight = 1, stalls = 2
+current bb 21, weight = 1, stalls = 1
+MOVETO bb 21 inst 2  time: old 2, new 2
+MOVEFROM bb 22, inst 2  time: old 5, new 4
+current bb 6, weight = 4, stalls = 3
+MOVETO bb 6 inst 2  time: old 5, new 5
+MOVEFROM bb 7, inst 1  time: old 6, new 5
+current bb 11, weight = 4, stalls = 3
+MOVETO bb 11 inst 3  time: old 6, new 6
+MOVEFROM bb 12, inst 1  time: old 2, new 1
+current bb 14, weight = 4, stalls = 3
+MOVETO bb 14 inst 3  time: old 6, new 6
+MOVEFROM bb 15, inst 2  time: old 7, new 6
+current bb 18, weight = 4, stalls = 3
+MOVETO bb 18 inst 5  time: old 7, new 7
+MOVEFROM bb 20, inst 2  time: old 2, new 1
+MOVETO bb 18 inst 6  time: old 7, new 7
+MOVEFROM bb 19, inst 1  time: old 7, new 6
+current bb 23, weight = 4, stalls = 2
+MOVETO bb 23 inst 6  time: old 8, new 8
+MOVEFROM bb 24, inst 1  time: old 12, new 11
+MOVETO bb 23 inst 8  time: old 8, new 8
+MOVEFROM bb 24, inst 6  time: old 11, new 10
+current bb 27, weight = 4, stalls = 4
+MOVETO bb 27 inst 6  time: old 8, new 8
+MOVEFROM bb 28, inst 2  time: old 6, new 5
+current bb 7, weight = 7, stalls = 2
+MOVETO bb 7 inst 4  time: old 5, new 5
+MOVEFROM bb 8, inst 1  time: old 7, new 6
+current bb 15, weight = 7, stalls = 3
+MOVETO bb 15 inst 5  time: old 6, new 6
+MOVEFROM bb 16, inst 1  time: old 6, new 5
+MOVETO bb 15 inst 6  time: old 6, new 6
+MOVEFROM bb 16, inst 2  time: old 5, new 4
+current bb 19, weight = 7, stalls = 1
+current bb 24, weight = 7, stalls = 3
+MOVETO bb 24 inst 9  time: old 10, new 10
+MOVEFROM bb 25, inst 2  time: old 5, new 4
+current bb 28, weight = 7, stalls = 2
+MOVETO bb 28 inst 4  time: old 5, new 5
+MOVEFROM bb 30, inst 2  time: old 11, new 10
+MOVETO bb 28 inst 5  time: old 5, new 5
+MOVEFROM bb 30, inst 3  time: old 10, new 9
+current bb 8, weight = 10, stalls = 3
+current bb 29, weight = 10, stalls = 1
+current bb 30, weight = 10, stalls = 1
+MOVETO bb 30 inst 12  time: old 9, new 9
+MOVEFROM bb 34, inst 3  time: old 13, new 12
+current bb 33, weight = 10, stalls = 3
+MOVETO bb 33 inst 3  time: old 5, new 5
+MOVEFROM bb 34, inst 4  time: old 12, new 11
+MOVETO bb 33 inst 4  time: old 5, new 5
+MOVEFROM bb 34, inst 5  time: old 11, new 10
+MOVETO bb 33 inst 5  time: old 5, new 5
+MOVEFROM bb 34, inst 6  time: old 10, new 9
+current bb 56, weight = 10, stalls = 3
+MOVETO bb 56 inst 4  time: old 5, new 5
+MOVEFROM bb 57, inst 2  time: old 3, new 2
+current bb 9, weight = 13, stalls = 1
+current bb 34, weight = 13, stalls = 2
+MOVETO bb 34 inst 13  time: old 9, new 9
+MOVEFROM bb 35, inst 3  time: old 16, new 15
+MOVETO bb 34 inst 14  time: old 9, new 9
+MOVEFROM bb 35, inst 7  time: old 15, new 14
+current bb 57, weight = 13, stalls = 1
+MOVETO bb 57 inst 3  time: old 2, new 2
+MOVEFROM bb 58, inst 2  time: old 11, new 10
+current bb 35, weight = 16, stalls = 3
+MOVETO bb 35 inst 15  time: old 14, new 14
+MOVEFROM bb 36, inst 2  time: old 6, new 5
+current bb 59, weight = 16, stalls = 3
+MOVETO bb 59 inst 3  time: old 6, new 6
+MOVEFROM bb 60, inst 2  time: old 5, new 4
+MOVETO bb 59 inst 4  time: old 6, new 6
+MOVEFROM bb 60, inst 3  time: old 4, new 3
+MOVETO bb 59 inst 5  time: old 6, new 6
+MOVEFROM bb 60, inst 4  time: old 3, new 2
+current bb 36, weight = 19, stalls = 3
+MOVETO bb 36 inst 4  time: old 5, new 5
+MOVEFROM bb 37, inst 2  time: old 7, new 6
+MOVETO bb 36 inst 5  time: old 5, new 5
+MOVEFROM bb 37, inst 5  time: old 6, new 5
+current bb 40, weight = 19, stalls = 1
+MOVETO bb 40 inst 1  time: old 2, new 2
+MOVEFROM bb 41, inst 2  time: old 6, new 5
+current bb 61, weight = 19, stalls = 1
+current bb 62, weight = 19, stalls = 1
+current bb 39, weight = 22, stalls = 1
+current bb 41, weight = 22, stalls = 3
+MOVETO bb 41 inst 4  time: old 5, new 5
+MOVEFROM bb 42, inst 2  time: old 7, new 6
+MOVETO bb 41 inst 5  time: old 5, new 5
+MOVEFROM bb 42, inst 5  time: old 6, new 5
+current bb 45, weight = 22, stalls = 1
+MOVETO bb 45 inst 1  time: old 2, new 2
+MOVEFROM bb 46, inst 2  time: old 6, new 5
+current bb 44, weight = 25, stalls = 1
+current bb 46, weight = 25, stalls = 3
+MOVETO bb 46 inst 4  time: old 5, new 5
+MOVEFROM bb 47, inst 2  time: old 7, new 6
+MOVETO bb 46 inst 5  time: old 5, new 5
+MOVEFROM bb 47, inst 5  time: old 6, new 5
+current bb 50, weight = 25, stalls = 1
+MOVETO bb 50 inst 1  time: old 2, new 2
+MOVEFROM bb 51, inst 2  time: old 6, new 5
+current bb 51, weight = 25, stalls = 3
+MOVETO bb 51 inst 4  time: old 5, new 5
+MOVEFROM bb 52, inst 2  time: old 7, new 6
+MOVETO bb 51 inst 5  time: old 5, new 5
+MOVEFROM bb 52, inst 5  time: old 6, new 5
+current bb 49, weight = 28, stalls = 1
+current bb 54, weight = 28, stalls = 1

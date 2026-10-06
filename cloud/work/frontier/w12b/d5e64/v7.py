@@ -1,0 +1,11 @@
+import re
+src=open('/home/cburnes/projects/rush2049-decomp/cloud/work/frontier/w12b/comp/d5e64.c').read()
+m=re.search(r'^static s8 \*rdy.*?^\}\n', src, re.S|re.M)
+b0=src[m.start():m.end()]
+H2='static s8 *rdy(s32 p) { s8 *r; if(1) r = &D_8010FFC4[p]; return r; }\n'
+HS='static Player84 *pst(s32 p) { Player84 *r; if(1) r = &D_80140420[p]; return r; }\n'
+def R(s,a,b):
+    assert a in s, a
+    return s.replace(a,b)
+V={}
+V['pst']=HS+R(b0,'state=&D_80140420[player]','state=pst(player)')

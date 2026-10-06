@@ -61,6 +61,16 @@ callee-saved cost), `force.sh` (forced colouring oracle), `spill.sh`/`spcensus.s
 `ugt.sh` (ugen order), `as1t.sh` (scheduler). Set `TAG=<lane>`. Run `force.sh` with the suspected webs before
 writing variants: if forcing reaches 0 rows the residual is colour-only.
 
+## Wave 12 rules
+- Unused local declarations are acceptable ONLY when they are the exact frame residual (every
+  function-level named local takes a slot, used or not) and are disclosed in the header. Pad arrays that
+  stand in for unknown structure elsewhere are not.
+- A group that gives a locked stub a real body must list that stub in "members" (and say which
+  prefer_definition/force_internal overrides it needs). Superseding groups keep the SAME name and every
+  old member.
+- Prove a residual is colour-only with `tools/trace/force.sh` before writing variants. For a colour tie,
+  try the compiled-out `if (x) {}` priority lever (w11a) and `t = a; t -= b;` splits (w11c) first.
+
 ## Permission denials
 If any tool call is denied by a permission/safety check, do NOT retry it in another form (different paths,
 globs, quoting, tools or hosts). Record it in RESULTS.md and continue without it.

@@ -697,10 +697,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_car_checkpoints",
     "source": "src/blob/groups/frontier_car_checkpoints/group.json",
-    "source_sha256": "1a586f00dbe700f75cfa9c59ddc69637ef995cff9460ea43d60dda5832de1eec",
+    "source_sha256": "2207839fb84dd583d46e3d9cc65f6ae2bf9d4378d9fd9a08c331cb2329af6e11",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-05"
+    "verified_at": "2026-10-06"
   },
   "car_spawn_at_checkpoint": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -3322,10 +3322,10 @@
   "func_800B61A8": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800B61A8.c",
-    "source_sha256": "4506e63947d0a4d100fde2ccdd181b16cace373b1e94bc9ee413ffb406e924eb",
+    "source_sha256": "206339eb5aa834cdac15ece5a017ab6fc0b82be04646931b1ef1acf1796b9195",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-28"
+    "verified_at": "2026-10-06"
   },
   "func_800B669C": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -4296,10 +4296,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_car_checkpoints",
     "source": "src/blob/groups/frontier_car_checkpoints/group.json",
-    "source_sha256": "1a586f00dbe700f75cfa9c59ddc69637ef995cff9460ea43d60dda5832de1eec",
+    "source_sha256": "2207839fb84dd583d46e3d9cc65f6ae2bf9d4378d9fd9a08c331cb2329af6e11",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-05"
+    "verified_at": "2026-10-06"
   },
   "func_800D2054": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -5535,10 +5535,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_car_checkpoints",
     "source": "src/blob/groups/frontier_car_checkpoints/group.json",
-    "source_sha256": "1a586f00dbe700f75cfa9c59ddc69637ef995cff9460ea43d60dda5832de1eec",
+    "source_sha256": "2207839fb84dd583d46e3d9cc65f6ae2bf9d4378d9fd9a08c331cb2329af6e11",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-05"
+    "verified_at": "2026-10-06"
   },
   "func_800F92C8": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -7219,6 +7219,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-23"
   },
+  "sound_stop": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/sound_stop.c",
+    "source_sha256": "4c95264a49ad49344c60a3c2ec5e157cf07b7410b0025dbb62009fdb6aa35b2c",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-06"
+  },
   "sound_update_channel": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "slot_sound",
@@ -7438,6 +7446,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "tire_sound_update": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/tire_sound_update.c",
+    "source_sha256": "cff94f0f3b0b46df15b818da510e1808ad7efb3a4fd0f77951016462176afc6b",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-06"
   },
   "tournament_trophy_award": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
