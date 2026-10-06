@@ -233,8 +233,10 @@ void func_803A7B58(s32 player)
 }
 void func_803A87D4(s32 player)
 {
-    s16 point[2],top,width;
-    s32 x,y,i,count,other;
+    s16 top,width;
+    s32 x,y;
+    s16 point[2];
+    s32 i,count,other;
     u8 *text;
     if(D_8014A108>=2)object_create(11);else object_create(13);
     if(D_8014A118[player].owner)text=(*D_8014A118[player].owner)->name;
@@ -267,7 +269,7 @@ void func_803A87D4(s32 player)
     state_utility(sound_pitch_diff_halved(text,x),y,text);
     if((u32)width<(u32)object_manager_update(text,-1))width=object_manager_update(text,-1);
     x=D_803B5D50[D_8014A108-1][player].x;
-    crowd_cheer_play(D_803BAC08[player],x-width/2-4,top,x+width/2+4,top+object_bytes_sum_global()*2+8);
+    crowd_cheer_play(D_803BAC08[player],x-width/2-4,top,(x+4)+width/2,top+object_bytes_sum_global()*2+8);
 }
 void func_803A8B74(s32 player)
 {

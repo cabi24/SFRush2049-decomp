@@ -1,4 +1,4 @@
-# Image A profile-menu rendering family: lean research
+# Image A waiting screen: matching candidate
 
 Frozen base: `f2e8380d3b368d00efc9cac3e37cdc7059b1f6e2`.
 
@@ -7,20 +7,25 @@ Five complete new bodies cover 10,344 native bytes:
 | Function | Native bytes | Differing words | Extra words | Unverified references | Data errors |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | A:803A7B58 | 3,196 | 710/799 | 36 | 8 | 3 |
-| A:803A87D4 | 920 | **4/230** | 0 | 0 | 0 |
+| A:803A87D4 | 920 | **0/230** | 0 | 0 | 0 |
 | A:803A8B74 | 1,300 | **56/325** | 0 | 0 | 0 |
 | A:803A9088 | 3,668 | 562/917 | 0 | 8 | 2 |
 | A:803A9EEC | 1,260 | 281/315 | 0 | 2 | 1 |
 
-All have zero unresolved symbols. The waiting-screen child A87D4 has only three
-projection-buffer offsets and one commuted integer add remaining. Its standalone
+A87D4 is a **920-byte matching candidate, 230/230 words exact**, with zero
+uncertainty, unresolved symbols, extra words or errors. Follow-on to
+[draft #241](https://github.com/cabi24/SFRush2049-decomp/pull/241): reordering
+its existing two-short projection local fixes the three stack offsets;
+regrouping the genuine right edge as `(x+4)+width/2` fixes the commuted add.
+No capacities, formals or statement order change. Other bodies remain context.
+All members have zero unresolved symbols. Its standalone
 O3 baseline was 227/230 differences plus four extra words. The keyboard child's
 standalone baseline was 307/325 plus five extra words; moving its genuine row
 and character limits next to their loop reduced the first group attempt from
 296/325 (+1) to 56/325. Replacing an out-of-line `abs` declaration with the
 observed integer absolute-value expression also removed four unresolved calls
 across the two large renderers. Those bodies still have substantial control,
-allocation, local-frame and own-data-layout differences. No matching claims.
+allocation, local-frame and own-data-layout differences. Only A87D4 is claimed.
 
 ## Reproduce
 
