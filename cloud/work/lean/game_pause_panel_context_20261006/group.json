@@ -1,0 +1,22 @@
+{
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "files": [
+    "callback.c",
+    "panel_helper.c",
+    "slot_context.c",
+    "pause_caller.c"
+  ],
+  "keep": [
+    "func_8010E8B4",
+    "physics_sym"
+  ],
+  "members": [
+    "func_8010E8B4"
+  ],
+  "context": [
+    "sound_loop_set",
+    "slot_state_setup",
+    "physics_sym"
+  ],
+  "claims": []
+}
