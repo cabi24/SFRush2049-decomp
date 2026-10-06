@@ -1,0 +1,13 @@
+{
+  "image": "A",
+  "name": "func_803AF744",
+  "address": "0x803AF744",
+  "end": "0x803AF978",
+  "bytes": 564,
+  "base": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "status": "strict_match_pending_independent_review",
+  "source": "cloud/matches/ovl_a/func_803AF744.c",
+  "source_sha256": "f0702d35fea4778434273b65384ad853716a8fcf34821868d2bc64731c6b76cb",
+  "newly_accepted_bytes": 0,
+  "scope": "Six additive source/proof/research files only; no production or protected edits."
+}
