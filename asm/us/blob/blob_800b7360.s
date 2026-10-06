@@ -6120,6 +6120,7 @@ camera_follow_target:
 .section .text.camera_collision_avoid, "ax", @progbits
 .globl camera_collision_avoid
 camera_collision_avoid:
+    /* compiled from src/blob/camera_collision_avoid.c */
     .word 0x27BDFF88
     .word 0xAFBF0034
     .word 0xAFB00030

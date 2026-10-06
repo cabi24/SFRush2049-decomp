@@ -1,0 +1,388 @@
+  FAIL sound_bank_unload: 277 of 312 words differ; compiled body is 319 words, target 312
+	.ent	sound_bank_unload 2
+sound_bank_unload:
+	.option	O3
+	subu	$sp, 200
+	sw	$31, 44($sp)
+	sw	$18, 40($sp)
+	sw	$17, 36($sp)
+	sw	$16, 32($sp)
+	.mask	0x80070000, -156
+	.frame	$sp, 200, $31
+	.loc	4344 64
+	sw	$4, 200($sp)
+	sw	$5, 204($sp)
+	sll	$16, $5, 16
+	sra	$14, $16, 16
+	move	$16, $14
+	sw	$6, 208($sp)
+	sw	$7, 212($sp)
+	.loc	4344 64
+	.loc	4344 73
+	li	$15, 1
+	lh	$24, 202($sp)
+	sb	$15, D_8013FE90($24)
+	.loc	4344 74
+	move	$4, $0
+	li	$5, 512
+	.livereg	0x0C00000E,0x00000000
+	jal	audio_dma_sync
+	addu	$17, $sp, 168
+	move	$18, $2
+	.loc	4344 75
+	move	$4, $17
+	la	$5, D_80123498
+	addu	$6, $16, 1
+	.livereg	0x0E00000E,0x00000000
+	jal	sprintf
+	.loc	4344 76
+	move	$4, $17
+	addu	$5, $sp, 162
+	move	$6, $0
+	la	$25, D_80140BDC
+	.set	 volatile
+	lbu	$7, 0($25)
+	.set	 novolatile
+	addu	$7, $7, -1
+	sll	$14, $7, 24
+	move	$7, $14
+	sra	$15, $7, 24
+	move	$7, $15
+	li	$24, 1
+	sw	$24, 16($sp)
+	.livereg	0x0F00000E,0x00000000
+	jal	sound_bank_load
+	move	$4, $18
+	lw	$5, 20($2)
+	li	$6, 512
+	.livereg	0x0E00000E,0x00000000
+	jal	memcpy
+	lbu	$6, 211($sp)
+	.loc	4344 77
+	bne	$6, 0, $2120
+	.loc	4344 77
+	.loc	4344 78
+	li.s	$f0, 1.25
+	addu	$5, $18, 2
+	lhu	$25, 0($5)
+	sra	$14, $25, 11
+	and	$15, $14, 127
+	sll	$24, $15, 3
+	mtc1	$24, $f4
+	cvt.s.w	$f6, $f4
+	mul.s	$f8, $f6, $f0
+	trunc.w.s	$f10, $f8, $25
+	mfc1	$2, $f10
+	blt	$2, 256, $2116
+	li	$2, 255
+$2116:
+	sll	$14, $2, 8
+	and	$15, $14, 63488
+	sll	$24, $2, 3
+	and	$25, $24, 1984
+	or	$14, $15, $25
+	sra	$24, $2, 2
+	and	$15, $24, 62
+	or	$25, $14, $15
+	or	$24, $25, 1
+	sh	$24, 0($5)
+	li	$4, 2
+	addu	$3, $18, 4
+	li	$5, 32
+$2117:
+	.loc	4344 78
+	.loc	4344 79
+	.loc	4344 80
+	lhu	$14, 0($3)
+	sra	$15, $14, 11
+	and	$25, $15, 127
+	sll	$24, $25, 3
+	mtc1	$24, $f4
+	cvt.s.w	$f6, $f4
+	mul.s	$f8, $f6, $f0
+	trunc.w.s	$f10, $f8, $14
+	mfc1	$2, $f10
+	.loc	4344 81
+	blt	$2, 256, $2118
+	.loc	4344 81
+	li	$2, 255
+$2118:
+	.loc	4344 82
+	sll	$15, $2, 8
+	and	$25, $15, 63488
+	sll	$24, $2, 3
+	and	$14, $24, 1984
+	or	$15, $25, $14
+	sra	$24, $2, 2
+	and	$25, $24, 62
+	or	$14, $15, $25
+	or	$24, $14, 1
+	sh	$24, 0($3)
+	.loc	4344 78
+	lhu	$15, 2($3)
+	sra	$25, $15, 11
+	and	$14, $25, 127
+	sll	$24, $14, 3
+	mtc1	$24, $f4
+	cvt.s.w	$f6, $f4
+	mul.s	$f8, $f6, $f0
+	trunc.w.s	$f10, $f8, $15
+	mfc1	$2, $f10
+	blt	$2, 256, $2119
+	li	$2, 255
+$2119:
+	sll	$25, $2, 8
+	and	$14, $25, 63488
+	sll	$24, $2, 3
+	and	$15, $24, 1984
+	or	$25, $14, $15
+	sra	$24, $2, 2
+	and	$14, $24, 62
+	or	$15, $25, $14
+	or	$24, $15, 1
+	sh	$24, 2($3)
+	addu	$4, $4, 2
+	addu	$3, $3, 4
+	bne	$4, $5, $2117
+	b	$2125
+$2120:
+	.loc	4344 84
+	lbu	$25, 215($sp)
+	bne	$25, 0, $2125
+	.loc	4344 84
+	.loc	4344 85
+	li.s	$f0, 1.25
+	addu	$5, $18, 66
+	lhu	$14, 0($5)
+	sra	$15, $14, 11
+	and	$24, $15, 127
+	sll	$25, $24, 3
+	mtc1	$25, $f4
+	cvt.s.w	$f6, $f4
+	mul.s	$f8, $f6, $f0
+	trunc.w.s	$f10, $f8, $14
+	mfc1	$2, $f10
+	blt	$2, 256, $2121
+	li	$2, 255
+$2121:
+	sll	$15, $2, 8
+	and	$24, $15, 63488
+	sll	$25, $2, 3
+	and	$14, $25, 1984
+	or	$15, $24, $14
+	sra	$25, $2, 2
+	and	$24, $25, 62
+	or	$14, $15, $24
+	or	$25, $14, 1
+	sh	$25, 0($5)
+	li	$4, 34
+	addu	$3, $18, 68
+	li	$5, 64
+$2122:
+	.loc	4344 85
+	.loc	4344 86
+	.loc	4344 87
+	lhu	$15, 0($3)
+	sra	$24, $15, 11
+	and	$14, $24, 127
+	sll	$25, $14, 3
+	mtc1	$25, $f4
+	cvt.s.w	$f6, $f4
+	mul.s	$f8, $f6, $f0
+	trunc.w.s	$f10, $f8, $15
+	mfc1	$2, $f10
+	.loc	4344 88
+	blt	$2, 256, $2123
+	.loc	4344 88
+	li	$2, 255
+$2123:
+	.loc	4344 89
+	sll	$24, $2, 8
+	and	$14, $24, 63488
+	sll	$25, $2, 3
+	and	$15, $25, 1984
+	or	$24, $14, $15
+	sra	$25, $2, 2
+	and	$14, $25, 62
+	or	$15, $24, $14
+	or	$25, $15, 1
+	sh	$25, 0($3)
+	.loc	4344 85
+	lhu	$24, 2($3)
+	sra	$14, $24, 11
+	and	$15, $14, 127
+	sll	$25, $15, 3
+	mtc1	$25, $f4
+	cvt.s.w	$f6, $f4
+	mul.s	$f8, $f6, $f0
+	trunc.w.s	$f10, $f8, $24
+	mfc1	$2, $f10
+	blt	$2, 256, $2124
+	li	$2, 255
+$2124:
+	sll	$14, $2, 8
+	and	$15, $14, 63488
+	sll	$25, $2, 3
+	and	$24, $25, 1984
+	or	$14, $15, $24
+	sra	$25, $2, 2
+	and	$15, $25, 62
+	or	$24, $14, $15
+	or	$25, $24, 1
+	sh	$25, 2($3)
+	addu	$4, $4, 2
+	addu	$3, $3, 4
+	bne	$4, $5, $2122
+$2125:
+	la	$2, D_8013F300
+	.loc	4344 92
+	.noalias	$2,$sp
+	mul	$14, $6, 4
+	addu	$15, $2, $14
+	.noalias	$15,$sp
+	lw	$5, 0($15)
+	.alias	$15,$sp
+	.loc	4344 93
+	lbu	$24, 215($sp)
+	mul	$25, $24, 4
+	addu	$14, $2, $25
+	.noalias	$14,$sp
+	lw	$15, 0($14)
+	.alias	$14,$sp
+	sw	$15, 96($sp)
+	.loc	4344 94
+	lbu	$24, 219($sp)
+	mul	$25, $24, 4
+	addu	$14, $2, $25
+	.noalias	$14,$sp
+	lw	$15, 0($14)
+	.alias	$14,$sp
+	sw	$15, 92($sp)
+	.loc	4344 95
+	sh	$5, 64($18)
+	.loc	4344 96
+	move	$16, $0
+	addu	$17, $18, 66
+	sw	$5, 100($sp)
+	.alias	$2,$sp
+$2126:
+	lw	$5, 100($sp)
+	.loc	4344 96
+	move	$4, $16
+	li	$6, 1
+	.livereg	0x0E00000E,0x00000000
+	jal	func_800B0EA0
+	sh	$2, 0($17)
+	addu	$17, $17, 2
+	.loc	4344 96
+	addu	$16, $16, 8
+	blt	$16, 248, $2126
+	lw	$5, 96($sp)
+	.loc	4344 97
+	sh	$5, 128($18)
+	.loc	4344 98
+	move	$16, $0
+	addu	$17, $18, 130
+$2127:
+	lw	$5, 96($sp)
+	.loc	4344 98
+	move	$4, $16
+	li	$6, 1
+	.livereg	0x0E00000E,0x00000000
+	jal	func_800B0EA0
+	sh	$2, 0($17)
+	addu	$17, $17, 2
+	.loc	4344 98
+	addu	$16, $16, 8
+	blt	$16, 248, $2127
+	lw	$5, 92($sp)
+	.loc	4344 99
+	sh	$5, 192($18)
+	.loc	4344 100
+	move	$16, $0
+	addu	$17, $18, 194
+$2128:
+	lw	$5, 92($sp)
+	.loc	4344 100
+	move	$4, $16
+	li	$6, 1
+	.livereg	0x0E00000E,0x00000000
+	jal	func_800B0EA0
+	sh	$2, 0($17)
+	addu	$17, $17, 2
+	.loc	4344 100
+	addu	$16, $16, 8
+	bne	$16, 240, $2128
+	.loc	4344 101
+	.loc	4344 102
+	.noalias	$16,$sp
+	lh	$24, 202($sp)
+	mul	$25, $24, 24
+	la	$14, D_8013FEE0
+	addu	$16, $25, $14
+	lw	$4, 20($16)
+	move	$5, $18
+	li	$6, 512
+	.livereg	0x0E00800E,0x00000000
+	jal	memcpy
+	.loc	4344 103
+	la	$4, D_80152770
+	move	$5, $0
+	li	$6, 1
+	.livereg	0x0E00000E,0x00000000
+	jal	osRecvMesg
+	.loc	4344 104
+	move	$5, $18
+	move	$6, $0
+	sw	$16, 52($sp)
+	.livereg	0x0600000E,0x00000000
+	jal	audio_reverb_update
+	lw	$16, 52($sp)
+	.loc	4344 105
+	la	$4, D_80152770
+	move	$5, $0
+	move	$6, $0
+	.livereg	0x0E00000E,0x00000000
+	jal	osJamMesg
+	la	$6, D_8012E700
+	li	$7, 68
+	.loc	4344 106
+	.noalias	$3,$16
+	.noalias	$3,$sp
+	lh	$15, 202($sp)
+	mul	$24, $15, 64
+	la	$25, D_80139320
+	addu	$3, $24, $25
+	lh	$4, 2($3)
+	.noalias	$6,$3
+	.noalias	$6,$16
+	.noalias	$6,$sp
+	mul	$14, $4, $7
+	addu	$15, $6, $14
+	.noalias	$15,$3
+	.noalias	$15,$16
+	.noalias	$15,$sp
+	sw	$16, 56($15)
+	.alias	$15,$3
+	.alias	$15,$16
+	.alias	$15,$sp
+	.loc	4344 107
+	lh	$5, 18($3)
+	mul	$24, $5, $7
+	addu	$25, $6, $24
+	.noalias	$25,$3
+	.noalias	$25,$16
+	.noalias	$25,$sp
+	sw	$16, 56($25)
+	.alias	$25,$3
+	.alias	$25,$16
+	.alias	$25,$sp
+	.loc	4344 108
+	.livereg	0x0000FF0E,0x00000FFF
+	lw	$16, 32($sp)
+	lw	$17, 36($sp)
+	lw	$18, 40($sp)
+	lw	$31, 44($sp)
+	addu	$sp, 200
+	j	$31
+	.end	sound_bank_unload

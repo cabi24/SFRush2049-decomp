@@ -6720,6 +6720,7 @@ func_800C4180:
 .section .text.camera_trigger_check, "ax", @progbits
 .globl camera_trigger_check
 camera_trigger_check:
+    /* compiled from src/blob/camera_trigger_check.c */
     .word 0x27BDFEC0
     .word 0xF7BE0050
     .word 0x3C013F80

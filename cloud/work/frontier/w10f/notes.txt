@@ -1,0 +1,12 @@
+camera_update_a: best.c 12 rows. Trace proc 226 (unit at time): w0 (n, a1) save 25.5 -> s0; w7 (count, a2) save 20 -> s1.
+ force p1:w7=c14,p1:w0=c15 -> 2 rows left (entry beqz reads a1 before sw ra; retail reads s1 after). Tried for/while/do-while/
+ K&R order/p-copy/c-copy/(*count)++ forms/child-null test: none move it.
+sound_stop: one try, stub func_800B3584 as inlined remove-one helper (unit, --internal) -> 26 rows; prior best 12/40 (w5a) stands.
+func_8008AD6C: 34 rows (b.c=best.c). Retail keeps hi/lo/op in v1/a1 and w in v0 (uopt webs), ours all t-temps. 14 shapes (helper, loop, u8/u16, split assigns) no movement.
+func_800A1BB4: 26 rows standalone / 24 rows in unit (best.c). Retail: early jr ra after active test, inner test 'beqz; b exit' (unfilled), t6-t9 ring in loop vs our t1-t5; next/data regs a1/a2 swapped. 11 shapes (continue/goto/nested if/byte index/O2) no movement.
+audio_channel_priority: stub func_80094A4C as inlined shift-down helper (--internal) reproduces the same 11-row residual (b.c); helper taking (outer, off, slot) or param-as-id 25 rows.
+world_effect_update: 49 rows in unit (h.c=best.c; from game_C48 o3 draft 51). Gains: chained 'buffer = D = align(D)' stores, volatile D_801497C8 (reload before D_801497F4 store). Open: prologue scheduled below first stores in ours; three aligned loads before stores in retail; D_8015B250 stored via lui/at. Stub func_800EE8AC as inlined wait helper: no gain.
+func_800A4CB8: w3d's 'Next' tested: stub func_800A4E50 as inlined helper (3 splits, --internal) 53/53/79 rows vs a.c (w3d best) 52 rows in unit. Trace (proc 300): count web w17 (param home) is split (save .75); forcing it to a2 is ignored. Residual = retail colours count in a2 and spills it to its home before the first jal.
+func_800E7A98: 20 -> 13 rows in unit (k.c=best.c). Moves: list head read into 'next' in both arms of the heap select (while loop p=next; next=p->next), compiled-out 'if (heap == NULL) {}' before the lock puts heap in a3 spilled to its home exactly like retail. Open: h coalesces with the internal callee's a1 (retail keeps h in v0 and copies at the join), so next takes v0 instead of a0.
+func_8010D680: K&R 'short on' definition (narrow-in-place hypothesis) -> unchanged 22 rows in unit (w8d best).
+UPDATE: func_800A4CB8 MATCH with compiled-out 'if (count == 0) {}' after the first list_init (l.c -> cloud/matches/func_800A4CB8.c).

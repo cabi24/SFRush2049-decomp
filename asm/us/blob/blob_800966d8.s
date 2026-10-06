@@ -2309,6 +2309,7 @@ func_80098710:
 .section .text.entity_state_check, "ax", @progbits
 .globl entity_state_check
 entity_state_check:
+    /* compiled from src/blob/entity_state_check.c */
     .word 0x27BDFFE8
     .word 0x2401FFFF
     .word 0x10810016

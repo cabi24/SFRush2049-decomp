@@ -891,6 +891,6 @@
   "target": "func_800AC9BC",
   "verifier_sha256": {
     "native.py": "da37e76615fb3ce6d9d2a1701ca8a22929950c2fa8e4f74f056428dc2be840fd",
-    "verify.py": "1ca88eb2a7e7634ce4ba8dff88fe067e3daa562e8e4795daf67be885f996ce10"
+    "verify.py": "43540d56efd03986af80bb809a3e44260e19d75e98f53f5ee732003a6925990e"
   }
 }

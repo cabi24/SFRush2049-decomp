@@ -38,6 +38,26 @@ IDO 5.3 / C89 source. Names are historical labels, not semantics.
 - Literal types matter (`1` vs `1.0f`), declaration order sets stack slots, each named local costs a slot,
   use SDK GBI macros for display-list words.
 
+## Wave 9 techniques (try these first; each closed a large function)
+- **Inlined locked helpers:** big leaf functions often inline already-locked kept functions (rand
+  `func_8008B2B4`/`func_8008B2E4`, LCG `func_800D50E4`, `func_800B930C` get_next_checkpoint). Paste the
+  locked definition verbatim into the candidate; their inlined locals also explain "frame filler" words.
+- **Caller-less `jr ra; nop` stubs right before a function are deleted inlined statics.** Define them (static,
+  or non-static with `--internal NAME`) and size the frame: each inlined call reserves ~8 bytes in call order.
+- **Index global arrays directly** (`D_80152038[i].f`) instead of through a pointer local: a store through a
+  pointer local aliases every global and kills PRE webs. Conversely launder a pointer via `(T *)(u32)p` when
+  retail keeps loads behind stores.
+- **Retry `extern f32 D_8012xxxx` near-misses with natural literals** — the scorer now verifies own rodata.
+- **`single` near-misses: try `blob_unit score NAME --internal NAME`** — the label can be wrong when callers
+  are locked.
+- **Constant sharing follows signedness:** a `1` stored to a signed byte shares the s32 `1` web; `u8` does not.
+- **Tied colouring priorities resolve by first appearance in source**; splitting `x = a; x += b;` moves it.
+- Check older drafts' global addresses against the retail disassembly before tuning (w9e found a wrong one).
+
+## Permission denials
+If any tool call is denied by a permission/safety check, do NOT retry it in another form (different paths,
+globs, quoting, tools or hosts). Record it in RESULTS.md and continue without it.
+
 ## Builder (IDO runs only there)
 ```
 ssh watchman2 'cp -r ~/rush2049/scratch/frontier/base ~/rush2049/scratch/frontier/<you>'      # once

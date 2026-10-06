@@ -6283,6 +6283,7 @@ func_800DC57C:
 .section .text.func_800DC628, "ax", @progbits
 .globl func_800DC628
 func_800DC628:
+    /* compiled from src/blob/func_800DC628.c */
     .word 0x3C0E8011
     .word 0x8DCE70F8
     .word 0x3C018011

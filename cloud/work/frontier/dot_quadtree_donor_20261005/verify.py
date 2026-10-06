@@ -26,7 +26,9 @@ FN = 'func_800AC9BC'
 WRAPPER = 'handbrake_apply'
 FLAGS = '-g0 -O3 -mips2 -G 0 -non_shared'
 SOURCE = HERE / 'candidate.c'
-ACCEPTED = ROOT / 'src/blob/groups/func_800AD4C8/group.c'
+# The accepted context this packet was frozen against; kept byte-identical under
+# cloud/work/frontier/superseded/ since wave 10 extended the group with camera_trigger_check.
+ACCEPTED = ROOT / 'cloud/work/frontier/superseded/func_800AD4C8/group.c'
 DONOR_COMMIT = '845329d7b36f5a384c5625ed9a0aef584ab46139'
 
 

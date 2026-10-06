@@ -1,0 +1,33 @@
+{
+ "members": [
+  "func_800AD650",
+  "handbrake_apply",
+  "func_800C36A0"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "__standin_func_800AD4C8",
+  "__standin_func_800C3AD0_a",
+  "__standin_func_800C3AD0_b",
+  "__standin_input_process_controller_a",
+  "__standin_input_process_controller_b",
+  "func_800AD5D0",
+  "handbrake_apply",
+  "func_800AC9BC",
+  "__standin_c36a0_a",
+  "__standin_c36a0_b"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "generated": "blob_group seed from build/ipa_groups.json",
+ "unprototyped": [],
+ "context": [
+  "func_800AD4C8",
+  "func_800C3AD0",
+  "input_process_controller",
+  "func_800AD5D0",
+  "func_800AC9BC"
+ ],
+ "provenance": "cloud rounds 4-5 (PR #6), cloud/work/ipa-groups/func_800AD4C8"
+}

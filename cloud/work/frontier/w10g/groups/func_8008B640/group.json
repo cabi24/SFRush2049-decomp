@@ -1,0 +1,31 @@
+{
+  "members": [
+    "model_bounds_calc",
+    "physics_velocity_integrate_b",
+    "physics_velocity_integrate_c",
+    "physics_velocity_integrate_d",
+    "physics_velocity_integrate_e",
+    "physics_velocity_integrate_f",
+    "func_8008B640",
+    "physics_velocity_integrate_a"
+  ],
+  "claims": [
+    "func_8008B640",
+    "physics_velocity_integrate_a"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "__standin_model_bounds_calc",
+    "physics_velocity_integrate_b",
+    "physics_velocity_integrate_c",
+    "physics_velocity_integrate_d",
+    "physics_velocity_integrate_e",
+    "physics_velocity_integrate_f"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "context": [],
+  "unprototyped": [],
+  "provenance": "frontier wave 10 (w10g), 2026-10-06; supersedes src/blob/groups/func_8008B640 (cloud Lanes A, PRs #1-#4); cloud/work/frontier/w10g/RESULTS.md"
+}

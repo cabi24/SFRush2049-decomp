@@ -1,0 +1,108 @@
+p1 w17  save=1253.500000 nocs=2   tot=2507.000000 numintf=35  color -> v1   type=3 raw10=0xffffffd4 bb=1
+p1 w181 save=760.000000 nocs=2   tot=1520.000000 numintf=37  color -> v0   type=4 raw10=0x41000002 bb=-1
+p1 w175 save=460.000000 nocs=2   tot=920.000000 numintf=37  color -> a0   type=4 raw10=0x41000000 bb=-1
+p1 w22  save=170.000000 nocs=3   tot=510.000000 numintf=37  color -> a1   type=4 raw10=0x36000020 bb=1
+p1 w271 save=136.666672 nocs=3   tot=410.000000 numintf=29  color -> v0   type=4 raw10=0x410000c0 bb=-1
+p1 w168 save=120.000000 nocs=3   tot=360.000000 numintf=37  color -> a2   type=3 raw10=0xfffffe44 bb=20
+p1 w263 save=70.000000 nocs=5   tot=350.000000 numintf=30  color -> v1   type=3 raw10=0xfffffea8 bb=33
+p1 w419 save=70.000000 nocs=1   tot=70.000000 numintf=27  color -> v0   type=4 raw10=0x410000a8 bb=-1
+p1 w495 save=65.000000 nocs=2   tot=130.000000 numintf=37  color -> a3   type=3 raw10=0xfffffe20 bb=106
+p1 w67  save=40.000000 nocs=1   tot=40.000000 numintf=11  color -> v0   type=4 raw10=0x41000000 bb=-1
+p1 w356 save=40.000000 nocs=1   tot=40.000000 numintf=29  color -> a0   type=4 raw10=0x19000628 bb=-1
+p1 w171 save=25.000000 nocs=2   tot=50.000000 numintf=36  color -> v1   type=4 raw10=0x18000618 bb=-1
+p1 w336 save=21.000000 nocs=3   tot=63.000000 numintf=29  color -> v0   type=3 raw10=0xfffffe40 bb=49
+p1 w82  save=20.500000 nocs=2   tot=41.000000 numintf=12  color -> a1   type=4 raw10=0x41000028 bb=-1
+p1 w64  save=15.500000 nocs=2   tot=31.000000 numintf=12  color -> v1   type=4 raw10=0x41000000 bb=-1
+p1 w351 save=15.000000 nocs=2   tot=30.000000 numintf=29  color -> v0   type=4 raw10=0x36000620 bb=52
+p1 w575 save=15.000000 nocs=2   tot=30.000000 numintf=36  color -> t0   type=4 raw10=0x5e000600 bb=-1
+p1 w87  save=14.333333 nocs=3   tot=43.000000 numintf=28  color -> v0   type=3 raw10=0xfffffff8 bb=6
+p1 w338 save=12.600000 nocs=5   tot=63.000000 numintf=31  color -> t0   type=4 raw10=0x36000610 bb=49
+p1 w153 save=10.000000 nocs=4   tot=40.000000 numintf=37  color -> t1   type=4 raw10=0x41000018 bb=-1
+p1 w158 save=10.000000 nocs=4   tot=40.000000 numintf=37  color -> t2   type=4 raw10=0x41000018 bb=-1
+p1 w665 save=5.882353  nocs=17  tot=100.000000 numintf=45  color -> s0   type=1 raw10=0xfffffedc bb=-1
+p1 w3   save=5.545455  nocs=22  tot=122.000000 numintf=50  color -> s1   type=3 raw10=0xfffffffc bb=0
+p1 w659 save=5.000000  nocs=2   tot=10.000000 numintf=11  color -> s0   type=1 raw10=0xffffff8c bb=-1
+p1 w62  save=3.680000  nocs=25  tot=92.000000 numintf=51  color -> s3   type=3 raw10=0x00000000 bb=3
+p1 w138 save=2.277778  nocs=18  tot=41.000000 numintf=45  color -> s2   type=3 raw10=0xfffffea4 bb=17
+p1 w143 save=2.277778  nocs=18  tot=41.000000 numintf=45  color -> s4   type=4 raw10=0x41000001 bb=-1
+p1 w657 save=1.904762  nocs=21  tot=40.000000 numintf=49  color -> s5   type=2 raw10=0x0000000c bb=-1
+p1 w141 save=1.875000  nocs=16  tot=30.000000 numintf=44  color -> t3   type=3 raw10=0xfffffeb0 bb=18
+p1 w146 save=1.875000  nocs=16  tot=30.000000 numintf=44  color -> t4   type=3 raw10=0xfffffeac bb=18
+p1 w445 save=1.500000  nocs=2   tot=3.000000 numintf=6   color -> s0   type=3 raw10=0xfffffe5c bb=90
+p1 w664 save=10.000000 nocs=1   tot=10.000000 numintf=29  color -> v0   type=1 raw10=0xffffff5c bb=-1
+p1 w664 save=10.000000 nocs=1   tot=10.000000 numintf=29  color -> v0   type=1 raw10=0xffffff5c bb=-1
+p1 w667 save=1.176471  nocs=17  tot=20.000000 numintf=45  split ->      type=2 raw10=0x00000004 bb=-1
+p1 w668 save=1.166667  nocs=18  tot=21.000000 numintf=44  split ->      type=1 raw10=0x00000000 bb=-1
+p1 w669 save=1.166667  nocs=18  tot=21.000000 numintf=43  split ->      type=2 raw10=0x000003b8 bb=-1
+p1 w670 save=1.166667  nocs=18  tot=21.000000 numintf=42  split ->      type=2 raw10=0xffffffff bb=-1
+p1 w672 save=1.166667  nocs=18  tot=21.000000 numintf=41  split ->      type=2 raw10=0x00000001 bb=-1
+p1 w57  save=1.000000  nocs=1   tot=1.000000 numintf=8   color -> v0   type=3 raw10=0xfffffe48 bb=2
+p1 w656 save=1.000000  nocs=23  tot=23.000000 numintf=46  split ->      type=1 raw10=0xfffffeb8 bb=-1
+p1 w658 save=1.000000  nocs=21  tot=21.000000 numintf=44  split ->      type=1 raw10=0xffffffbc bb=-1
+p1 w689 save=0.956522  nocs=23  tot=22.000000 numintf=46  split ->      type=1 raw10=0xfffffeb8 bb=-1
+p1 w0   save=0.954545  nocs=22  tot=21.000000 numintf=45  split ->      type=3 raw10=0xfffffeb4 bb=0
+p1 w692 save=0.863636  nocs=22  tot=19.000000 numintf=45  split ->      type=3 raw10=0xfffffeb4 bb=0
+p1 w447 save=0.720000  nocs=25  tot=18.000000 numintf=45  split ->      type=3 raw10=0x00000008 bb=90
+p1 w5   save=1.000000  nocs=1   tot=1.000000 numintf=2   color -> a3   type=3 raw10=0x00000004 bb=0
+p1 w5   save=1.000000  nocs=1   tot=1.000000 numintf=2   color -> a3   type=3 raw10=0x00000004 bb=0
+p1 w694 save=3.000000  nocs=2   tot=6.000000 numintf=6   color -> s2   type=3 raw10=0x00000008 bb=90
+p1 w694 save=3.000000  nocs=2   tot=6.000000 numintf=6   color -> s2   type=3 raw10=0x00000008 bb=90
+p1 w135 save=0.700000  nocs=20  tot=14.000000 numintf=41  split ->      type=3 raw10=0xfffffe7c bb=17
+p1 w666 save=0.588235  nocs=17  tot=10.000000 numintf=39  split ->      type=2 raw10=0x00000008 bb=-1
+p1 w671 save=0.588235  nocs=17  tot=10.000000 numintf=38  split ->      type=1 raw10=0x00000000 bb=-1
+p1 w674 save=0.588235  nocs=17  tot=10.000000 numintf=37  split ->      type=1 raw10=0x00000000 bb=-1
+p1 w675 save=0.588235  nocs=17  tot=10.000000 numintf=36  split ->      type=1 raw10=0xffffffc8 bb=-1
+p1 w676 save=0.588235  nocs=17  tot=10.000000 numintf=35  split ->      type=2 raw10=0x00000007 bb=-1
+p1 w677 save=0.588235  nocs=17  tot=10.000000 numintf=34  split ->      type=2 raw10=0x00000003 bb=-1
+p1 w695 save=0.583333  nocs=24  tot=14.000000 numintf=40  split ->      type=3 raw10=0x00000004 bb=0
+p1 w704 save=0.565217  nocs=23  tot=13.000000 numintf=40  split ->      type=3 raw10=0x00000004 bb=0
+p1 w705 save=0.523810  nocs=21  tot=11.000001 numintf=40  split ->      type=3 raw10=0x00000004 bb=0
+p1 w661 save=0.476190  nocs=21  tot=10.000000 numintf=33  split ->      type=2 raw10=0x00000006 bb=-1
+p1 w707 save=0.500000  nocs=20  tot=10.000000 numintf=33  split ->      type=2 raw10=0x00000006 bb=-1
+p1 w706 save=0.476190  nocs=21  tot=10.000000 numintf=39  split ->      type=3 raw10=0x00000004 bb=0
+p1 w709 save=0.428571  nocs=21  tot=9.000000 numintf=39  split ->      type=3 raw10=0x00000004 bb=0
+p1 w710 save=0.380952  nocs=21  tot=8.000000 numintf=39  split ->      type=3 raw10=0x00000004 bb=0
+p1 w696 save=2.000000  nocs=1   tot=2.000000 numintf=2   color -> v0   type=3 raw10=0x00000008 bb=90
+p1 w696 save=2.000000  nocs=1   tot=2.000000 numintf=2   color -> v0   type=3 raw10=0x00000008 bb=90
+p1 w712 save=1.000000  nocs=1   tot=1.000000 numintf=1   color -> a2   type=3 raw10=0x00000008 bb=90
+p1 w712 save=1.000000  nocs=1   tot=1.000000 numintf=1   color -> a2   type=3 raw10=0x00000008 bb=90
+p1 w713 save=3.000000  nocs=1   tot=3.000000 numintf=4   color -> s2   type=3 raw10=0x00000008 bb=90
+p1 w713 save=3.000000  nocs=1   tot=3.000000 numintf=4   color -> s2   type=3 raw10=0x00000008 bb=90
+p1 w697 save=0.157895  nocs=19  tot=3.000000 numintf=34  split ->      type=3 raw10=0xfffffe7c bb=17
+p1 w435 save=0.105263  nocs=19  tot=2.000000 numintf=33  split ->      type=3 raw10=0xfffffe78 bb=85
+p1 w691 save=0.086957  nocs=23  tot=2.000000 numintf=34  split ->      type=1 raw10=0xfffffeb8 bb=-1
+p1 w690 save=0.047619  nocs=21  tot=1.000000 numintf=30  split ->      type=1 raw10=0xffffffbc bb=-1
+p1 w288 save=300.000000 nocs=1   tot=300.000000 numintf=20  color -> ?    type=4 raw10=0x5b000d18 bb=-1
+p1 w541 save=200.000000 nocs=2   tot=400.000000 numintf=18  color -> ?    type=4 raw10=0x1d000d40 bb=-1
+p1 w268 save=150.000000 nocs=2   tot=300.000000 numintf=22  color -> ?    type=3 raw10=0xfffffe70 bb=35
+p1 w272 save=150.000000 nocs=2   tot=300.000000 numintf=22  color -> ?    type=4 raw10=0x36000d20 bb=35
+p1 w275 save=150.000000 nocs=2   tot=300.000000 numintf=22  color -> ?    type=3 raw10=0xfffffe64 bb=35
+p1 w283 save=150.000000 nocs=2   tot=300.000000 numintf=23  color -> ?    type=4 raw10=0x5b000d56 bb=-1
+p1 w293 save=150.000000 nocs=2   tot=300.000000 numintf=21  color -> ?    type=4 raw10=0x5b000d5f bb=-1
+p1 w297 save=150.000000 nocs=2   tot=300.000000 numintf=21  color -> ?    type=4 raw10=0x5b000d30 bb=-1
+p1 w277 save=100.000000 nocs=3   tot=300.000000 numintf=23  color -> ?    type=4 raw10=0x36000d20 bb=35
+p1 w285 save=100.000000 nocs=2   tot=200.000000 numintf=23  color -> ?    type=3 raw10=0xfffffe58 bb=35
+p1 w247 save=66.000000 nocs=5   tot=330.000000 numintf=29  color -> ?    type=3 raw10=0xfffffe74 bb=28
+p1 w242 save=56.666668 nocs=6   tot=340.000000 numintf=32  color -> ?    type=3 raw10=0xfffffe80 bb=28
+p1 w120 save=50.000000 nocs=1   tot=50.000000 numintf=4   color -> ?    type=4 raw10=0x5b000d00 bb=-1
+p1 w124 save=50.000000 nocs=1   tot=50.000000 numintf=4   color -> ?    type=4 raw10=0x5b000d00 bb=-1
+p1 w128 save=50.000000 nocs=1   tot=50.000000 numintf=4   color -> ?    type=4 raw10=0x5b000d18 bb=-1
+p1 w655 save=45.545456 nocs=22  tot=1002.000000 numintf=36  color -> ?    type=2 raw10=0x00000007 bb=-1
+p1 w233 save=25.384615 nocs=13  tot=330.000000 numintf=29  color -> ?    type=3 raw10=0xfffffe88 bb=26
+p1 w203 save=20.000000 nocs=1   tot=20.000000 numintf=9   color -> ?    type=3 raw10=0xfffffe94 bb=25
+p1 w257 save=20.000000 nocs=2   tot=40.000000 numintf=6   color -> ?    type=4 raw10=0x1d000d00 bb=-1
+p1 w534 save=20.000000 nocs=2   tot=40.000000 numintf=7   color -> ?    type=4 raw10=0x1d000dff bb=-1
+p1 w317 save=15.000000 nocs=2   tot=30.000000 numintf=11  color -> ?    type=4 raw10=0x5b000d28 bb=-1
+p1 w319 save=15.000000 nocs=2   tot=30.000000 numintf=11  color -> ?    type=4 raw10=0x5b000d00 bb=-1
+p1 w322 save=15.000000 nocs=2   tot=30.000000 numintf=9   color -> ?    type=4 raw10=0x5b000dc8 bb=-1
+p1 w324 save=15.000000 nocs=2   tot=30.000000 numintf=9   color -> ?    type=4 raw10=0x5b000d00 bb=-1
+p1 w558 save=15.000000 nocs=2   tot=30.000000 numintf=9   color -> ?    type=4 raw10=0x36000d20 bb=25
+p1 w561 save=15.000000 nocs=2   tot=30.000000 numintf=9   color -> ?    type=4 raw10=0x36000d20 bb=25
+p1 w97  save=14.500000 nocs=2   tot=29.000000 numintf=4   color -> ?    type=3 raw10=0xfffffe8c bb=9
+p1 w161 save=12.000000 nocs=5   tot=60.000000 numintf=9   color -> ?    type=4 raw10=0x36000d20 bb=18
+p1 w160 save=10.000000 nocs=5   tot=50.000000 numintf=9   color -> ?    type=4 raw10=0x36000d20 bb=18
+p1 w188 save=5.000000  nocs=2   tot=10.000000 numintf=9   color -> ?    type=3 raw10=0xfffffe90 bb=24
+p1 w744 save=5.000000  nocs=2   tot=10.000000 numintf=9   color -> ?    type=3 raw10=0xfffffe8c bb=9
+p1 w721 save=3.333333  nocs=3   tot=10.000000 numintf=8   color -> ?    type=2 raw10=0x00630003 bb=-1
+p1 w725 save=3.333333  nocs=3   tot=10.000000 numintf=8   color -> ?    type=3 raw10=0xfffffe68 bb=25
+p1 w723 save=1.111111  nocs=9   tot=10.000000 numintf=7   color -> ?    type=2 raw10=0x00630003 bb=-1

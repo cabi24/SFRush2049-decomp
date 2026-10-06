@@ -1097,6 +1097,7 @@ music_track_control:
 .section .text.func_800956BC, "ax", @progbits
 .globl func_800956BC
 func_800956BC:
+    /* compiled from src/blob/func_800956BC.c */
     .word 0x3C0E8014
     .word 0x25CE6160
     .word 0x8DC3000C

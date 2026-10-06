@@ -2920,6 +2920,7 @@ object_render_cleanup:
 .section .text.draw_text, "ax", @progbits
 .globl draw_text
 draw_text:
+    /* compiled from src/blob/draw_text.c */
     .word 0x27BDFFD8
     .word 0xAFBE0024
     .word 0xAFB70020

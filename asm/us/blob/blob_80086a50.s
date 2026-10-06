@@ -5068,6 +5068,7 @@ vector_normalize_length:
 .section .text.func_8008B640, "ax", @progbits
 .globl func_8008B640
 func_8008B640:
+    /* compiled from src/blob/func_8008B640.c */
     .word 0x00047400
     .word 0x000E7C03
     .word 0x000FC100
@@ -5095,6 +5096,7 @@ func_8008B640:
 .section .text.physics_velocity_integrate_a, "ax", @progbits
 .globl physics_velocity_integrate_a
 physics_velocity_integrate_a:
+    /* compiled from src/blob/physics_velocity_integrate_a.c */
     .word 0x27BDFFD8
     .word 0xAFBF0024
     .word 0xAFA40040
