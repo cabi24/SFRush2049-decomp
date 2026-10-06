@@ -1,10 +1,8 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
-/*
- * Runtime-A BE48 local code/relocation candidate: 190/190 words.
- * Data boundary remains open: D_803B95B4 is read as actual native external
- * float storage, with its value/original ownership unresolved. No acceptance
- * claim is declared. Existing B120/B214/A448 matches are context, not new credit.
- * The genuine main-blob wrapper stays external, with a separate source sidecar.
+/* Runtime-A BE48 local candidate: 190/190 words, 760 bytes.
+ * Native scale literal 1.01f and owned .rodata are now authenticated.
+ * Existing B120/B214/A448 matches are context, not new credit.
+ * The genuine main-blob wrapper stays external in a separate sidecar.
  */
 typedef signed char s8; typedef unsigned char u8; typedef short s16; typedef int s32; typedef unsigned int u32; typedef float f32;
 typedef struct { u8 pad0[4]; u8 u4; u8 pad5[3]; s8 b8; s8 b9; } Cfg;
@@ -149,7 +147,6 @@ extern char *D_803B3430[], *D_803B343C[];
 extern f32 D_803B9A50[12], D_8011418C[12];
 extern s32 D_803B3448, D_803B344C;
 extern char D_803B8750[];
-extern f32 D_803B95B4;
 extern Object D_8012E6F0[];
 extern s32 D_803B3450[];
 extern s32 D_803BACF8;
@@ -198,7 +195,7 @@ void func_8039BE48(void)
                 D_803B344C = sign_extend_call(model, (u32)D_8011418C, D_803B3448, 0x2C6084);
                 func_8008D870((s16)D_803B344C,
                     (s32)func_800B24EC(D_803B8750, &texture_index, 0, D_80140BDC - 1, 1), -1);
-                D_8012E6F0[D_803B344C].scale = D_803B95B4;
+                D_8012E6F0[D_803B344C].scale = 1.01f;
                 func_8008E06C((s16)D_803B344C, D_803B3450);
                 func_80092BC8((s16)D_803B344C, D_803B3450);
                 model_transform_setup(D_803B3448, 0, 15);
