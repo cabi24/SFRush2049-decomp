@@ -1,0 +1,1 @@
+{"flags":"-g0 -O3 -mips2 -G 0 -non_shared","files":["callback.c","slot_context.c","countdown_caller.c"],"keep":["func_80108AB0","func_80106B3C"],"members":["func_80108AB0"],"context":["slot_state_setup","func_80106B3C"],"claims":[]}
