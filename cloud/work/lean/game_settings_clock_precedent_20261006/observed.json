@@ -1,0 +1,112 @@
+{
+  "base": "f2e8380d3b368d00efc9cac3e37cdc7059b1f6e2",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "automatic_backend_flag": "-Wab,-r4300_mul",
+  "caller_path": "src/blob/groups/credits_scroll_grp/gr3_e.c",
+  "caller_sha256": "2cbf4ef8a30c539e1f10c185049d6b5dc2bb59d86f341221f8d07cf7074e1e29",
+  "source_sha256": {
+    "ordinary.c": "769251c4071f728abf9943cf3922b2d784f6069017aa450348c958ef5f3e64c0",
+    "qualified_hypothesis.c": "ff77b001ac245585774d7d1666247b45767bd0e4b7eccbf29bd473eefa363b18"
+  },
+  "rows": [
+    {
+      "mode": "ordinary",
+      "function": "func_800D6914",
+      "result": {
+        "differing": 264,
+        "total": 315,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x18 at +0x24",
+          ".rodata+0x18 at +0x28",
+          ".rodata+0x1c at +0x2c",
+          ".rodata+0x1c at +0x30",
+          ".rodata+0x20 at +0x34",
+          ".rodata+0x20 at +0x6c",
+          ".rodata+0x0 at +0x218",
+          ".rodata+0x0 at +0x21c",
+          ".rodata+0x10 at +0x1ec",
+          ".rodata+0x10 at +0x200",
+          ".rodata+0x24 at +0x2dc",
+          ".rodata+0x24 at +0x2e0"
+        ],
+        "errors": [
+          "own .rodata+0x18 referenced at +0x28 differs from retail 0x801241B4 (+0x0: retail [redacted], got [redacted]; 4 bytes compared)",
+          "own .rodata+0x1c referenced at +0x30 differs from retail 0x801241B8 (+0x0: retail [redacted], got [redacted]; 4 bytes compared)"
+        ],
+        "extra_words": 0
+      },
+      "function_bytes": 1216,
+      "target_bytes": 1260,
+      "frame_bytes": [
+        128
+      ]
+    },
+    {
+      "mode": "ordinary",
+      "function": "func_800D7634",
+      "result": {
+        "differing": 424,
+        "total": 451,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "function_bytes": 1784,
+      "target_bytes": 1804,
+      "frame_bytes": [
+        176
+      ]
+    },
+    {
+      "mode": "qualified_hypothesis",
+      "function": "func_800D6914",
+      "result": {
+        "differing": 108,
+        "total": 315,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x18 at +0x1c",
+          ".rodata+0x18 at +0x20",
+          ".rodata+0x1c at +0x24",
+          ".rodata+0x1c at +0x28",
+          ".rodata+0x20 at +0x34",
+          ".rodata+0x20 at +0x6c",
+          ".rodata+0x0 at +0x238",
+          ".rodata+0x0 at +0x23c",
+          ".rodata+0x10 at +0x20c",
+          ".rodata+0x10 at +0x220",
+          ".rodata+0x24 at +0x2fc",
+          ".rodata+0x24 at +0x300"
+        ],
+        "errors": [
+          "own .rodata: this function's references disagree on the section's image address (0x8011F70C for +0x0/+0x10, 0x80124198 for +0x18/+0x1c/+0x24): the literals are not laid out as in retail"
+        ],
+        "extra_words": 0
+      },
+      "function_bytes": 1256,
+      "target_bytes": 1260,
+      "frame_bytes": [
+        120
+      ]
+    },
+    {
+      "mode": "qualified_hypothesis",
+      "function": "func_800D7634",
+      "result": {
+        "differing": 424,
+        "total": 451,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "function_bytes": 1784,
+      "target_bytes": 1804,
+      "frame_bytes": [
+        176
+      ]
+    }
+  ]
+}
