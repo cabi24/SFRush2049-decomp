@@ -1,0 +1,24 @@
+{
+  "members": [
+    "track_data_decompress"
+  ],
+  "context": [
+    "func_800A1BB4",
+    "func_800A1C6C",
+    "func_800A1DD4",
+    "track_collision_setup",
+    "MaxPathZeroControls",
+    "slot_state_lookup"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "track_collision_setup",
+    "MaxPathZeroControls",
+    "slot_state_lookup"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "provenance": "Research-only file Pak write/retry refinement: capture native slot/allocation values, defer channel formation, preserve separate error arms and actual queue unlock. Still short and nonmatching.",
+  "claims": []
+}
