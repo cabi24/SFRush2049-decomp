@@ -1,0 +1,54 @@
+{
+  "base": "f2e8380d3b368d00efc9cac3e37cdc7059b1f6e2",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "automatic_backend_flag": "-Wab,-r4300_mul",
+  "function": "replay_save_prompt",
+  "target_bytes": 1540,
+  "rows": [
+    {
+      "source": "prototype_repaired_seed",
+      "source_sha256": "802455e7527ef6a09977ed092bb9785915a336ea56c71e78e8712e08a26e94a4",
+      "result": {
+        "differing": 377,
+        "total": 385,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 12
+      },
+      "function_bytes": 1588
+    },
+    {
+      "source": "candidate",
+      "source_sha256": "65c0e9a01bfecfaee66abcc11886a13b910e0b8f12155731e480943cf80a79b3",
+      "result": {
+        "differing": 365,
+        "total": 385,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x37c",
+          ".rodata+0x0 at +0x380",
+          ".rodata+0x4 at +0x38c",
+          ".rodata+0x4 at +0x390",
+          ".rodata+0x8 at +0x39c",
+          ".rodata+0x8 at +0x3a8",
+          ".rodata+0xc at +0x3dc",
+          ".rodata+0xc at +0x3e0",
+          ".rodata+0x10 at +0x3ec",
+          ".rodata+0x10 at +0x3f0",
+          ".rodata+0x14 at +0x408",
+          ".rodata+0x14 at +0x414",
+          ".rodata+0x18 at +0x470",
+          ".rodata+0x18 at +0x474"
+        ],
+        "errors": [
+          "unpaired R_MIPS_HI16 for D_80116D94 at .text+0x60c",
+          "own .rodata+0x4 referenced at +0x390 differs from retail 0x8011418C (+0x0: retail [redacted], got [redacted]; 4 bytes compared)",
+          "own .rodata+0x18 referenced at +0x474 differs from retail 0x8011418C (+0x0: retail [redacted], got [redacted]; 4 bytes compared)"
+        ],
+        "extra_words": 3
+      },
+      "function_bytes": 1552
+    }
+  ]
+}
