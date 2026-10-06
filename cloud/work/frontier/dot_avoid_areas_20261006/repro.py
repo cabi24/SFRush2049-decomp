@@ -15,7 +15,7 @@ from tools.cloud import score
 from tools.conveyor.pipeline.blob_unit import scan_defs
 
 NAME = "func_800E398C"
-ARCHIVE = ROOT / "cloud/work/ipa-groups/codex_path_search_a7/group.c"
+ARCHIVE = ROOT / "cloud/work/ipa-groups/dot_nearest_path_context_20261005/group.c"
 BUILD = ROOT / "build/dot_avoid_areas_20261006"
 FLAGS = "-g0 -O3 -mips2 -G 0 -non_shared"
 
@@ -60,7 +60,7 @@ def main():
     (group / "group.c").write_text(original)
     (group / "group.json").write_text(json.dumps(spec, indent=2) + "\n")
     score.compile_group(group, BUILD / "baseline.o")
-    report(BUILD / "baseline.o", "archived baseline")
+    report(BUILD / "baseline.o", "current baseline")
 
     # Preserve the accepted definitions, but exclude unrelated historical bodies
     # and stand-ins that happen to share the large archived source files.

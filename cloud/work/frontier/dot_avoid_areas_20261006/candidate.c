@@ -1,7 +1,7 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
 /* NONMATCH research: N64 adaptation of rushtherock game/maxpath.c:avoid_areas,
  * historicalsource/rushtherock commit 845329d7b36f5a384c5625ed9a0aef584ab46139.
- * repro.py supplies the archived real E4B58/E451C/E4300 caller context and
+ * repro.py supplies the current real E4B58/E451C/E4300 caller context and
  * current accepted vector/obstacle helper bodies. This file is not standalone.
  *
  * The unused tmp2 scalar and temp, dir_list, dir_weight, cur_rate arrays are donor
@@ -44,7 +44,7 @@ void func_800E398C(s16 drone_index) {
         cp->tgt[1] = rpos[1];
         cp->tgt[2] = rpos[2];
         do {
-            VEC3_AT(D_80153F88, drone_index)[i] = 0.0f;
+            D_80153F88[drone_index][i] = 0.0f;
             i++;
         } while (i < 3);
         return;
@@ -57,7 +57,7 @@ void func_800E398C(s16 drone_index) {
         cp->tgt[2] = rpos[2];
         i = 0;
         do {
-            VEC3_AT(D_80153F88, drone_index)[i] = 0.0f;
+            D_80153F88[drone_index][i] = 0.0f;
             i++;
         } while (i < 3);
         D_8014A250[drone_index].b7DE = 0;
@@ -69,7 +69,7 @@ void func_800E398C(s16 drone_index) {
         cp->tgt[2] = rpos[2];
         i = 0;
         do {
-            VEC3_AT(D_80153F88, drone_index)[i] = 0.0f;
+            D_80153F88[drone_index][i] = 0.0f;
             i++;
         } while (i < 3);
         D_8014A250[drone_index].b7DE = 0;
@@ -139,44 +139,44 @@ void func_800E398C(s16 drone_index) {
         }
     }
     hint = ((s8 *) &D_8012E5E8[cp->sel].points[cp->pt])[7];
-    if ((VEC3_AT(D_80153F88, drone_index)[0] == 0.0f) && (VEC3_AT(D_80153F88, drone_index)[2] == 0.0f)) {
+    if ((D_80153F88[drone_index][0] == 0.0f) && (D_80153F88[drone_index][2] == 0.0f)) {
         dir[0] = 0.0f;
         cp->spd = cp->spd * (1.0f - ((1.0f - scale1) * 0.300000012f));
     } else if ((hint == 5) || (D_8014A250[drone_index].s6C4 >= 0)) {
         dir[0] = dir[0] * 0.400000006f;
-    } else if ((hint == 2) || ((VEC3_AT(D_80153F88, drone_index)[0] == 0.0f) && (VEC3_AT(D_80153F88, drone_index)[2] == 0.0f))) {
+    } else if ((hint == 2) || ((D_80153F88[drone_index][0] == 0.0f) && (D_80153F88[drone_index][2] == 0.0f))) {
         dir[0] = save_dir[0];
         dir[1] = save_dir[1];
         dir[2] = save_dir[2];
         cp->spd = cp->spd * (1.0f - ((1.0f - scale1) * 0.300000012f));
     } else if (hint == 1) {
-        if ((VEC3_AT(D_80153F88, drone_index)[0] == 0.0f) && (VEC3_AT(D_80153F88, drone_index)[2] == 0.0f)) {
+        if ((D_80153F88[drone_index][0] == 0.0f) && (D_80153F88[drone_index][2] == 0.0f)) {
             dir[0] = save_dir[0];
             dir[1] = save_dir[1];
             dir[2] = save_dir[2];
         } else {
-            dir[0] = (save_dir[0] * 0.150000006f) + (VEC3_AT(D_80153F88, drone_index)[0] * 0.850000024f);
+            dir[0] = (save_dir[0] * 0.150000006f) + (D_80153F88[drone_index][0] * 0.850000024f);
         }
         cp->spd = cp->spd * (1.0f - ((1.0f - scale1) * 0.100000001f));
     } else if (hint == 3) {
-        dir[0] = save_dir[0] - VEC3_AT(D_80154138, drone_index)[0];
-        save_dir[0] = VEC3_AT(D_80154138, drone_index)[0];
-        save_dir[1] = VEC3_AT(D_80154138, drone_index)[1];
-        save_dir[2] = VEC3_AT(D_80154138, drone_index)[2];
+        dir[0] = save_dir[0] - D_80154138[drone_index][0];
+        save_dir[0] = D_80154138[drone_index][0];
+        save_dir[1] = D_80154138[drone_index][1];
+        save_dir[2] = D_80154138[drone_index][2];
     } else if (hint == 4) {
-        dir[0] = save_dir[0] - VEC3_AT(D_80154138, drone_index)[0];
+        dir[0] = save_dir[0] - D_80154138[drone_index][0];
     } else {
-        dir[0] = (VEC3_AT(D_80153F88, drone_index)[0] * 0.5f) + (dir[0] * 0.5f);
+        dir[0] = (D_80153F88[drone_index][0] * 0.5f) + (dir[0] * 0.5f);
     }
     D_8014A250[drone_index].b7DE = can_we_cheat;
     cp->tgt[0] = dir[0];
     cp->tgt[1] = dir[1];
     cp->tgt[2] = dir[2];
-    VEC3_AT(D_80153F88, drone_index)[1] = dir[1];
-    VEC3_AT(D_80153F88, drone_index)[0] = dir[0];
-    VEC3_AT(D_80153F88, drone_index)[2] = dir[2];
-    VEC3_AT(D_80154138, drone_index)[1] = save_dir[1];
-    VEC3_AT(D_80154138, drone_index)[2] = save_dir[2];
-    VEC3_AT(D_80154138, drone_index)[0] = save_dir[0];
+    D_80153F88[drone_index][1] = dir[1];
+    D_80153F88[drone_index][0] = dir[0];
+    D_80153F88[drone_index][2] = dir[2];
+    D_80154138[drone_index][1] = save_dir[1];
+    D_80154138[drone_index][2] = save_dir[2];
+    D_80154138[drone_index][0] = save_dir[0];
 }
 

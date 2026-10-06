@@ -16,7 +16,7 @@ including the scorer's `as1 -r4300_mul` setting.
 
 Observed output:
 
-    archived baseline: 592/599 words differ; emitted=567 words; frame=200; extra_nonzero=0; unresolved=0; unverified=0; errors=0
+    current baseline: 592/599 words differ; emitted=567 words; frame=200; extra_nonzero=0; unresolved=0; unverified=0; errors=0
     donor candidate NONMATCH: 583/599 words differ; emitted=561 words; frame=288; extra_nonzero=0; unresolved=0; unverified=26; errors=1
 
 The candidate has the native 288-byte frame. The three vector homes at sp+224,
@@ -58,7 +58,7 @@ volatile carrier, false prototype, fake caller, or assembly was added.
 ## Required real context and remaining assumptions
 
 `repro.py` replaces only E398C in the existing
-`cloud/work/ipa-groups/codex_path_search_a7/group.c`. That archive supplies its real
+`cloud/work/ipa-groups/dot_nearest_path_context_20261005/group.c`. That newer packet supplies its real
 parent E4B58 and real sibling E451C/E4300 source and field declarations. It extracts
 only the actual accepted transform/magnitude definitions from their canonical
 source files, excluding unrelated historical bodies, and includes the accepted
@@ -66,7 +66,7 @@ source files, excluding unrelated historical bodies, and includes the accepted
 an internal function. Source definitions and compiler settings are visible in the
 reproduction script; temporary objects stay under ignored `build/`.
 
-The old A7 packet's complete parent arithmetic and struct hypotheses are inherited,
+The current nearest-path packet's parent arithmetic and struct hypotheses are inherited,
 not re-certified. E4B58's external `state_utility` dependency remains open. Current
 residuals include input register allocation, float-constant hoisting, statement
 scheduling, and missing instruction structure. Native uses s7 for the narrow
@@ -74,3 +74,13 @@ input and s6 for the transformed vector; this candidate uses s8 and s7. The next
 useful step is source reconstruction of the genuine parent/remaining control
 structure, not a blind register sweep. No independent-review, behavior-harness,
 full-test, or CI gate was added to this research publication.
+
+## Baseline reconciliation
+
+The initial draft used the older A7 archive. This revision uses the newer
+`dot_nearest_path_context_20261005` packet, including its correct donor-backed
+E451C parameter order and signed count/real array declarations. Its E398C baseline
+is also 592/599, so the nine-word improvement is still new against that packet.
+The previously proven E4300 helper remains canonical MATCH in this context; it
+earns no new credit here. The historical wave-1 E451C stand-in result is not an
+accepted real-context result.
