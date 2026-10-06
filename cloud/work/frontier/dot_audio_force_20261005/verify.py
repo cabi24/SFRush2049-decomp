@@ -16,6 +16,15 @@ import tempfile
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[3]
+
+# Context groups superseded after this packet was frozen are kept byte-identical
+# under cloud/work/frontier/superseded/; receipts keep the original paths.
+SUPERSEDED={'src/blob/groups/frontier_list_alloc_sound':'cloud/work/frontier/superseded/frontier_list_alloc_sound'}
+def src(p):
+    p=str(p)
+    for old,new in SUPERSEDED.items():
+        if p.startswith(old) and not (ROOT/old).exists():return ROOT/(new+p[len(old):])
+    return ROOT/p
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(HERE))
 from tools.cloud import score
@@ -27,7 +36,8 @@ bits,value,execute = _native.bits,_native.value,_native.execute
 NAME = 'func_800DED78'
 FLAGS = '-g0 -O3 -mips2 -G 0 -non_shared'
 OLD = ROOT/'cloud/work/module_campaign_20261002/ai/model_audio'
-ACCEPTED = ROOT/'src/blob/groups/frontier_list_alloc_sound'
+ACCEPTED_KEY = 'src/blob/groups/frontier_list_alloc_sound'
+ACCEPTED = src(ACCEPTED_KEY)
 CONTEXT = ['func_80092278','entity_flags_apply','high_scores_display','func_8009211C','func_80091FBC']
 
 
@@ -129,8 +139,11 @@ def gnu_proof(obj, work):
 def source_bindings():
     paths = [HERE/'candidate.c',HERE/'native_machine.py',HERE/'verify.py',
              OLD/'audio_core.c',OLD/'ROOT_DEF68/mode_select_handler.c',OLD/'ROOT_DEF68/impact_sound.h',
-             ACCEPTED/'group.c',ACCEPTED/'group.json']
-    return {str(p.relative_to(ROOT)):sha(p.read_bytes()) for p in paths}
+             ]
+    bindings = {str(p.relative_to(ROOT)):sha(p.read_bytes()) for p in paths}
+    for name in ('group.c','group.json'):
+        bindings[ACCEPTED_KEY+'/'+name] = sha((ACCEPTED/name).read_bytes())
+    return bindings
 
 
 def oracle(record, vector, threshold, clocks):

@@ -14,6 +14,15 @@ import sys
 import tempfile
 HERE=Path(__file__).resolve().parent
 ROOT=HERE.parents[3]
+
+# Context groups superseded after this packet was frozen are kept byte-identical
+# under cloud/work/frontier/superseded/; receipts keep the original paths.
+SUPERSEDED={'src/blob/groups/frontier_list_alloc_sound':'cloud/work/frontier/superseded/frontier_list_alloc_sound'}
+def src(p):
+    p=str(p)
+    for old,new in SUPERSEDED.items():
+        if p.startswith(old) and not (ROOT/old).exists():return ROOT/(new+p[len(old):])
+    return ROOT/p
 sys.path.insert(0,str(ROOT))
 from tools.cloud import score
 spec=importlib.util.spec_from_file_location('object_semantics',HERE/'semantics.py')
@@ -102,15 +111,15 @@ def verify(work,behavior=True):
     assert controls['archived_b10']['differing']==14
     result['source_controls']=controls
     group=work/'context';group.mkdir();files=CONTEXT+['cloud/work/ipa-groups/dot_object_sound_20261005/candidate.c']
-    for i,p in enumerate(files):shutil.copyfile(ROOT/p,group/('c%d.c'%i))
-    old=json.loads((ROOT/'src/blob/groups/frontier_list_alloc_sound/group.json').read_text())
+    for i,p in enumerate(files):shutil.copyfile(src(p),group/('c%d.c'%i))
+    old=json.loads(src('src/blob/groups/frontier_list_alloc_sound/group.json').read_text())
     keep=[FN,'func_80090284','func_80090E9C','stat_lap_split','func_800A61B0']+old['keep']
     (group/'group.json').write_text(json.dumps({'files':['c%d.c'%i for i in range(len(files))],
         'members':[FN],'context':NAMES,'keep':keep,'flags':FLAGS}))
     out=group/'group.o';score.compile_group(group,out)
     result['genuine_context']={n:inspect(out,n) for n in [FN]+NAMES}
     assert all(complete(r) for r in result['genuine_context'].values())
-    result['context_sources']={p:sha((ROOT/p).read_bytes()) for p in CONTEXT}
+    result['context_sources']={p:sha(src(p).read_bytes()) for p in CONTEXT}
     abi=work/'abi.c';abi.write_text('#include "'+str(SOURCE)+'"\n#define OFF(T,M) ((unsigned int)&((T*)0)->M)\n'+
         '\n'.join('typedef char check%d[(%s)?1:-1];'%(i,c) for i,c in enumerate([
         'sizeof(void*)==4','sizeof(Node)==24','OFF(Node,fieldC)==12','OFF(Node,field10)==16','OFF(Node,field14)==20',

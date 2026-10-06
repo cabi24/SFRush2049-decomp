@@ -29,7 +29,7 @@ def machine(words=None):
 def test_receipt_binds_all_sources(receipt):
     assert receipt['candidate_bytes']==324 and receipt['accepted_byte_gain']==0
     for name,digest in receipt['packet_sha256'].items():assert verify.sha((HERE/name).read_bytes())==digest
-    for name,digest in receipt['context_sources'].items():assert verify.sha((ROOT/name).read_bytes())==digest
+    for name,digest in receipt['context_sources'].items():assert verify.sha(verify.src(name).read_bytes())==digest
     assert receipt['gnu_link']['claimed_body_sha256']==verify.sha(struct.pack('>81I',*score.targets()[verify.FN]))
     assert verify.complete(receipt['object'])
     assert len(receipt['genuine_context'])==10 and all(verify.complete(r) for r in receipt['genuine_context'].values())

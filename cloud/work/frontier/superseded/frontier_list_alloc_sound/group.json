@@ -1,0 +1,22 @@
+{
+ "members": [
+  "func_80092278",
+  "entity_flags_apply",
+  "high_scores_display"
+ ],
+ "context": [
+  "func_8009211C",
+  "func_80091FBC"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "entity_flags_apply",
+  "high_scores_display",
+  "func_8009211C",
+  "func_80091FBC"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "provenance": "frontier wave 5 (w5a), 2026-10-05; cloud/work/frontier/w5a/RESULTS.md"
+}

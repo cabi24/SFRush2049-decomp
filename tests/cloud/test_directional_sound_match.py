@@ -23,7 +23,7 @@ def test_receipt_source_bindings():
     for name,digest in stored['packet_sha256'].items():
         assert hashlib.sha256((HERE/name).read_bytes()).hexdigest()==digest
     for name,digest in stored['context_sources'].items():
-        assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest()==digest
+        assert hashlib.sha256(verify.src(name).read_bytes()).hexdigest()==digest
     assert stored['accepted_byte_gain']==0
     assert stored['range']==['0x800FEA00','0x800FEC60']
     assert stored['object']['symbol_bytes']==608

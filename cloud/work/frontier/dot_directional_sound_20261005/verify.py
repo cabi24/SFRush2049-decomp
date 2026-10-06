@@ -13,6 +13,15 @@ import tempfile
 
 HERE=Path(__file__).resolve().parent
 ROOT=HERE.parents[3]
+
+# Context groups superseded after this packet was frozen are kept byte-identical
+# under cloud/work/frontier/superseded/; receipts keep the original paths.
+SUPERSEDED={'src/blob/groups/frontier_list_alloc_sound':'cloud/work/frontier/superseded/frontier_list_alloc_sound'}
+def src(p):
+    p=str(p)
+    for old,new in SUPERSEDED.items():
+        if p.startswith(old) and not (ROOT/old).exists():return ROOT/(new+p[len(old):])
+    return ROOT/p
 sys.path.insert(0,str(ROOT))
 from tools.cloud import score
 spec=importlib.util.spec_from_file_location('direction_semantics',HERE/'semantics.py')
@@ -137,16 +146,16 @@ def verify(work,behavior=True):
     assert controls['archived_b8']['differing']==6
     result['controls']=controls
     # Existing accepted exported roots are unchanged; no keep/root experiment.
-    old=json.loads((ROOT/'src/blob/groups/frontier_list_alloc_sound/group.json').read_text())
+    old=json.loads(src('src/blob/groups/frontier_list_alloc_sound/group.json').read_text())
     group=work/'context';group.mkdir()
-    files=[SOURCE]+[ROOT/p for p in CONTEXT]
+    files=[SOURCE]+[src(p) for p in CONTEXT]
     for i,src in enumerate(files): shutil.copyfile(src,group/('c%d.c'%i))
     (group/'group.json').write_text(json.dumps({'files':['c%d.c'%i for i in range(len(files))],
         'members':[FN],'context':CONTEXT_NAMES,'keep':[FN,'func_800A61B0']+old['keep']+CALLERS,'flags':FLAGS}))
     out=group/'group.o';score.compile_group(group,out)
     result['genuine_context']={n:inspect(out,n) for n in [FN]+CONTEXT_NAMES}
     assert all(complete(r) for r in result['genuine_context'].values())
-    result['context_sources']={p:sha((ROOT/p).read_bytes()) for p in CONTEXT}
+    result['context_sources']={p:sha(src(p).read_bytes()) for p in CONTEXT}
     if behavior: result['behavior']=semantics.verify(work,words,SOURCE)
     result['target_manifest_sha256']=sha((score.ASM_DIR/'SHA256SUMS').read_bytes())
     result['compiler_sha256']={n:sha(Path(score.ido(n)).read_bytes()) for n in
