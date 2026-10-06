@@ -17,7 +17,7 @@ empty calls or padding. The helper split alone remains175/196; the byte-address
 change accounts for the two-word score reduction. Original helper organization
 remains a hypothesis, not recovered donor source.
 
-The candidate ELF body is **764 bytes**, twenty bytes short. Register allocation,
+The candidate ELF body is **768 bytes**, sixteen bytes short. Register allocation,
 frame and control/scheduling geometry remain nonmatching. There are no extra
 nonzero words, unresolved/unverified references or relocation errors for the
 target. No companion body is claimed matched.
