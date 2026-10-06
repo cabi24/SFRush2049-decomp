@@ -158,11 +158,11 @@
     "asm/us/ovl_b/extents.json": "e10f77db903d5a6d82a04d006cdaf5c3871ed57ce2bff738d45f500914c8202b",
     "asm/us/ovl_b/ovl_b_8038a400.s": "5e84a0c03a155cbb13ee19a694bd3aeb1321e9b48144a9d8029f7691a7f916db",
     "asm/us/ovl_b/symbols.json": "0f9633fc7cb724c2acb129064716906d92c9ef6867359893e7130b2e8e1b897d",
-    "tools/cloud/score.py": "9de8385b28938c012ba679ea1f899cd7e5fe351d2c51129c5319442c84b679c4"
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
   },
   "packet_sha256": {
     "host_test.c": "32c61aa9fabb756998fae9bb8d0c0fe02371e04aa90e03b8e4f52008c0dcd659",
-    "test_packet.py": "00991fe513d38c927662101503afcb2681a13d6db26281110e7a5ed48b4d1538",
+    "test_packet.py": "08c3fc3bd95c46caf409772a17604d321357d57056cb84f8a8d99575ca188909",
     "verify.py": "b4471a55b6147eb9ed878100f079b500b8cd85af8fa9c6221a6b71f19def37e3"
   },
   "source_sha256": "1b28ab2b50eab8051109a550151cc862e26f9a0724c94a0ab202c7850a6310ef",
