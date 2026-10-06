@@ -1,0 +1,19 @@
+{
+  "tool": "tools/workbench.py diagnose",
+  "final_verdict": "structure-mismatch",
+  "target_frame_bytes": 152,
+  "candidate_frame_bytes": 120,
+  "native_function_bytes": 1160,
+  "candidate_function_bytes": 1160,
+  "strict_differing_words": 206,
+  "positional_words": 290,
+  "aligned_geometry_edit_distance": 59,
+  "aligned_opcode_distance": 26,
+  "initial": {
+    "strict_differing_words": 260,
+    "candidate_bytes": 1144,
+    "candidate_frame_bytes": 120,
+    "verdict": "structure-mismatch"
+  },
+  "scope": "Heuristic summary only; native object has resolved instructions and no symbol relocations. Use evidence.json strict scorer rows for authoritative counts. No raw instructions or objects retained."
+}
