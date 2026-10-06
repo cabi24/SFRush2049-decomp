@@ -184,6 +184,14 @@ def inspect(obj):
     assert len(raw)==SIZE
     return data,sections,fn,raw
 
+def native_link_script():
+    # Both output placement and input subalignment are explicit: ADDRESS is
+    # word-aligned but GNU 2.42 otherwise rounds this section up to 16 bytes.
+    return ('SECTIONS { .text 0x%08X : SUBALIGN(4) { *(.text) } '
+            '/DISCARD/ : { *(.reginfo) *(.options) *(.MIPS.abiflags) } }\n' % ADDRESS +
+            '\n'.join('%s = 0x%08x;' % (k, v) for k, v in GLOBALS.items()))
+
+
 def prove():
     score.ASM_DIR=ROOT/'asm/us/ovl_b'
     native=score.targets()[NAME]
@@ -231,7 +239,7 @@ def prove():
             (92,6,'D_80399A70'),(96,6,'D_80399A70'),(100,6,'D_80399A70')]
         assert all(0<=r['offset']<SIZE and r['type'] in [4,5,6] for r in relocs)
         script=tmp/'native.ld'
-        script.write_text('SECTIONS { . = 0x8038A8CC; .text : SUBALIGN(4) { *(.text) } /DISCARD/ : { *(.reginfo) *(.options) *(.MIPS.abiflags) } }\n'+'\n'.join('%s = 0x%08x;'%(k,v) for k,v in GLOBALS.items()))
+        script.write_text(native_link_script())
         linked=tmp/'linked.elf';run(['mips-linux-gnu-ld','-EB','-T',script,'-o',linked,obj])
         linkeddata,linkedsecs,linkedfn,linkedraw=inspect(linked)
         shoff=struct.unpack_from('>I',linkeddata,0x20)[0];entsize=struct.unpack_from('>H',linkeddata,0x2e)[0]

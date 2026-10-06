@@ -123,7 +123,7 @@
   "image_sha256": "b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd",
   "packet_sha256": {
     "host_test.c": "1593a35963cc43c0986179f5a220f57a17277a8144715c2735264ad1af7b81d8",
-    "verify.py": "205ba6c2db96353e120b6394f5dd3027e46abfa6a2abc56d222d0b3e8166d4d1"
+    "verify.py": "43b9769b0dea2d2f65daad698bc33a470b023db33017fb8ee91d9a3093bfa10f"
   },
   "source_sha256": "2f3af2206b9b0882808fbb9da32e26857ba132239495049222044eeb7cfb3d75",
   "status": "MATCH"

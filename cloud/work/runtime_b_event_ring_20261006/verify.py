@@ -338,6 +338,15 @@ def inspect(obj, linked=False):
     return data, sections, raw
 
 
+def native_link_script(bindings):
+    # ADDRESS is word-aligned, not 16-byte aligned. An explicit output-section
+    # address prevents GNU versions from aligning the section after assigning
+    # the location counter; SUBALIGN keeps the unmodified input at that address.
+    return ('SECTIONS { .text 0x%08X : SUBALIGN(4) { *(.text) } '
+            '/DISCARD/ : { *(.reginfo) *(.options) *(.MIPS.abiflags) } }\n' % ADDRESS +
+            '\n'.join('%s = 0x%08x;' % (k, v) for k, v in bindings.items()))
+
+
 def comparable(receipt):
     """Exclude enumerated historical integration provenance, never proof inputs."""
     result = json.loads(json.dumps(receipt))
@@ -418,8 +427,7 @@ def prove():
                             'D_80115F28': 0x80115F28, 'D_803940D0': 0x803940D0}
         assert len(relocations) == 15
         script = tmp/'native.ld'
-        script.write_text('SECTIONS { . = 0x803914B4; .text : SUBALIGN(4) { *(.text) } /DISCARD/ : { *(.reginfo) *(.options) *(.MIPS.abiflags) } }\n'+
-                          '\n'.join('%s = 0x%08x;' % (k, v) for k, v in bindings.items()))
+        script.write_text(native_link_script(bindings))
         linked = tmp/'linked.elf'
         run(['mips-linux-gnu-ld', '-EB', '-T', script, '-o', linked, obj])
         _, _, linked_raw = inspect(linked, True)

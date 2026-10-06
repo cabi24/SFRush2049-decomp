@@ -180,3 +180,34 @@ ROM; the existing source-only, nonmatching scope is unchanged. Regression links 
 `--hash-size=1` and `-z max-page-size=0x1000` change the raw file hash while retaining
 this semantic fingerprint; hostile byte, extent, symbol, section and ABI changes
 remain rejected. Pinned IDO and every source/behavior claim stay unchanged.
+
+### Explicit GNU hash style and mismatch diagnostics (2026-10-06)
+
+PR #163 head `4beaa7b78e692c02eb5e3ab41de1e5b9826eb337`, hosted job
+`112352521460`, reached the final frozen-receipt comparison but provided no
+field-level mismatch or uploaded receipt. A local replay using the exact hosted
+Ubuntu `binutils-mips-linux-gnu` package `2.42-2ubuntu1cross5` reproduced a single
+normalized proof difference against Debian `2.44-3cross1+nmu1+b1`:
+`independent_link.portable_elf.ident_sha256`. ELF identity byte 8
+(`EI_ABIVERSION`) was 0 for Ubuntu's default and 5 for Debian's default. Every
+other normalized receipt fact, including object proof, allocated linked bytes,
+extents, symbol ABI, native behavior, and host fixture result, was identical.
+These runs used the same local host GCC 14.2 and Python 3.12; they reproduce the
+linker difference, not the complete Ubuntu runner environment.
+
+The [upstream MIPS GNU-hash implementation](https://sourceware.org/pipermail/gdb-testers/2019q3/144520.html)
+sets ABI version 5 when GNU hash is selected without SysV hash. Actual links
+with both installed GNU versions confirm that `--hash-style=gnu` produces 5,
+while `--hash-style=sysv` and `--hash-style=both` produce 0 for this fixture.
+The packet now explicitly selects `--hash-style=sysv` and records `link_flags`.
+This fixes an unpinned linker configuration. It does not mask any ELF identity
+or ABI byte, change C source, or weaken receipt normalization. The existing
+allocated-section allowlist continues to exclude dynamic/hash sections.
+
+Regression tests exercise each real linker mode and prove that SysV selection
+overrides a GNU-only default. A GNU-only artifact still differs from the frozen
+proof; mutations of all 16 ELF identity bytes, link flags, symbols, sections,
+relocations and native/source evidence remain rejected. Failed replay now lists
+the exact changed, missing, unexpected or type-mismatched proof paths instead
+of a generic assertion. Diagnostics do not drop unknown fields or mutate input
+receipts. No target bytes, raw assembly or generated binaries are published.

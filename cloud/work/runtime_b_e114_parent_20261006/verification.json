@@ -4,6 +4,9 @@
   "image_sha256": "b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd",
   "source_sha256": "2dc2612d12962195b09ef7726a7479c150ece5d6acc6fec3244fe1572e758009",
   "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "link_flags": [
+    "--hash-style=sysv"
+  ],
   "compiler": {
     "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
     "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
@@ -15,10 +18,10 @@
     "children.c": "2dc2612d12962195b09ef7726a7479c150ece5d6acc6fec3244fe1572e758009",
     "native.py": "e50cf13732584303f311bd249f600b522a7935ada324a5220237970fe628d0f3",
     "host_test.c": "a878afc6d750a6a8967eb445d81cb0ab880d2f853350c9a2f127c53e59621c1e",
-    "verify.py": "99114d941623b6dbe6cb9b2940b6c2c5c9c7a775242faa4a75b0c032747b2316",
+    "verify.py": "25027946d2fd5571ed752b0958efa798aaf9940d36df13d928c2705afe5d993e",
     "parent_regions.md": "905b14f05a968e350fac8401e764aabc3d5cf3befb2ea2dda89c4f8a1db54797",
     "contract_audit.json": "5975ba31b3a1ec9c09663d00d42436155964dd7c36519b59aa39da33ca089157",
-    "README.md": "ef3701793571fadf2f4ad852ac7b287dd2938ef51b78a2eab30d5bff4f6dc8a4"
+    "README.md": "54c5735c25812bb8c6a980098ad31843d9ba471bb0a8d5f2bf954946acec73ac"
   },
   "intervals": {
     "func_8038D200": {
@@ -635,7 +638,7 @@
     }
   },
   "object": {
-    "sha256": "ade73b26d93a1d058f4105ce96e9d0a66538aa773ff932ce7961fd8fbf3097dc",
+    "sha256": "a84043fb9ad993f1f1366b60743850dc4078875b03093ca26ef5e78be62d94de",
     "portable_elf": {
       "ident_sha256": "09c0a2e371bc7075dab213f9a61fa9eb0652b8ded2a072900494ba7d1bcd2e9d",
       "header": [
@@ -847,7 +850,7 @@
     }
   },
   "independent_link": {
-    "sha256": "aeba77b7d62e95b29343b5d713a6e495040b49d279dfd1aab3c5877a78c7b02f",
+    "sha256": "29f342e2bed3815b841e6bb3db05e1e4ad78b410539a688acb0bd71970e0e748",
     "allocated_sections": [
       {
         "name": ".text",
@@ -878,7 +881,7 @@
     },
     "undefined_symbols": [],
     "portable_elf": {
-      "ident_sha256": "a20f9eb0242ad00bd5aad4bd635f21864f875d44dc62ba9332c7f37ad6f6a60f",
+      "ident_sha256": "09c0a2e371bc7075dab213f9a61fa9eb0652b8ded2a072900494ba7d1bcd2e9d",
       "abi": {
         "type": 2,
         "machine": 8,

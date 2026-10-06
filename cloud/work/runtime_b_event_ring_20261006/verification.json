@@ -189,8 +189,8 @@
     "gcc": "a23ecab8ff08f09ad8c80602c2c5df7f49e09c25905cb8975902e101bf72635f"
   },
   "packet_sha256": {
-    "verify.py": "52a2a5897f32d2ee1b65ee7fb777563f192e4130d06b9a9d333d4f6ca1ed3e7a",
+    "verify.py": "68b6382de0acf82bc493ab16649f61178fece4af48f14d5b10b2e0f898574252",
     "host_test.c": "5a15d0632673e496c6fad04cd7471b529e772c4a3c5df35ae0b76d35fb91803a",
-    "README.md": "d05d897fe84fa8d8a48a5702458f27bf3481e69fe10aad7d73d209f86ccf6873"
+    "README.md": "dd719cb4e0c7d19e0c34a790e5eef47f931c461be61a3a544310bd3728b4ce92"
   }
 }

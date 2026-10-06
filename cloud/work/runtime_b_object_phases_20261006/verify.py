@@ -238,6 +238,14 @@ def host_expected(count,var,seed,reuse):
         a=SLOTS+8*i;out += [get(mem,a,4),get(mem,a+4,2),get(mem,a+6,2)]
     return out+[v for s in snaps for v in s]
 
+def native_link_script():
+    # Both output placement and input subalignment are explicit: ADDRESS is
+    # word-aligned but GNU 2.42 otherwise rounds this section up to 16 bytes.
+    return ('SECTIONS { .text 0x%08X : SUBALIGN(4) { *(.text) } '
+            '/DISCARD/ : { *(.reginfo) *(.options) *(.MIPS.abiflags) } }\n' % ADDRESS +
+            '\n'.join('%s = 0x%08x;' % (k, v) for k, v in GLOBALS.items()))
+
+
 def prove():
     score.ASM_DIR=ROOT/'asm/us/blob';rng_words=score.targets()['func_8008B2E4']
     list_words=score.targets()['func_800BEA6C']
@@ -287,7 +295,7 @@ def prove():
             (0x38,5,'D_80399AE0'),(0x3c,6,'D_80399AE0'),(0x30,5,'D_80143FD8'),(0x34,6,'D_80143FD8'),
             (0x9c,4,'func_8008B2E4'),(0xb8,4,'func_8008B2E4'),(0xd4,4,'func_8008B2E4'),(0xf0,4,'func_8008B2E4')])
         assert all(0<=r['offset']<SIZE and r['type'] in [4,5,6] for r in relocs)
-        script=tmp/'native.ld';script.write_text('SECTIONS { . = 0x8039133C; .text : SUBALIGN(4) { *(.text) } /DISCARD/ : { *(.reginfo) *(.options) *(.MIPS.abiflags) } }\n'+'\n'.join('%s = 0x%08x;'%(k,v) for k,v in GLOBALS.items()))
+        script=tmp/'native.ld';script.write_text(native_link_script())
         linked=tmp/'linked.elf';run(['mips-linux-gnu-ld','-EB','-T',script,'-o',linked,obj])
         ld,ls,lf,lr=inspect(linked);assert lf['value']==ADDRESS
         linked_syms={s['name']:s for i,t in enumerate(ls) if t['type']==2 for s in score._symbol_table(ld,ls,i)}

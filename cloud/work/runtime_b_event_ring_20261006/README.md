@@ -133,3 +133,22 @@ The receipt records host GCC and GNU linker binary hashes as provenance, not
 frozen proof inputs. Pinned IDO hashes, packet/source hashes, native words, ELF
 extents and relocations, GNU-linked text bytes, and all behavior/mutation checks
 remain binding. A host tool change must pass those same checks.
+
+
+### Exact GNU placement
+
+The GNU linker script gives `.text` the explicit address `0x803914B4` and
+uses `SUBALIGN(4)`. Assigning the location counter before an unaddressed
+`.text` section lets GNU 2.42 advance the section to its input alignment;
+this function begins four bytes past a 16-byte boundary. The linked function
+and section address checks remain exact, as do all 99 native words, the
+396-byte function extent, 400-byte complete text, one zero padding word,
+relocations, external bindings, and absence of owned data.
+
+Packet regressions exercise different GNU file/header layouts and scratch
+input-section alignment metadata without changing the candidate source or
+native target. They require identical complete linked words and reject a
+rounded-up entry address, changed function/section extents, and nonzero
+trailing padding. The static script regression runs without IDO; native
+link tests require pinned IDO and GNU MIPS binutils and fail rather than skip
+when `REQUIRE_TOOLCHAIN=1` is set.

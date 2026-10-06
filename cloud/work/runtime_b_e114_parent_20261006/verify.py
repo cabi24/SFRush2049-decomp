@@ -19,6 +19,9 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 BASE = 'dea99f09ab19b1d3b324ed7097162f7b378e7096'
 FLAGS = '-g0 -O2 -mips2 -G 0 -non_shared'
+# GNU-only hash defaults mark EI_ABIVERSION=5 even for this static fixture.
+# Pin SysV rather than discarding that ABI byte from the linked ELF proof.
+LINK_FLAGS = ('--hash-style=sysv',)
 IMAGE_HASH = 'b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd'
 CHILDREN = ['func_8038D200','func_8038D328','func_8038E088']
 BINDINGS = {'math_utility':0x8008D6B0,'func_80090F44':0x80090F44,
@@ -153,6 +156,40 @@ def comparable(receipt):
     return result
 
 
+def receipt_differences(expected, actual, path='$'):
+    """Describe every differing proof leaf without weakening its comparison."""
+    if type(expected) is not type(actual):
+        return ['%s: type %s != %s' % (path, type(expected).__name__,
+                                      type(actual).__name__)]
+    if isinstance(expected, dict):
+        differences = []
+        for key in sorted(set(expected) | set(actual)):
+            child = path + '[' + json.dumps(key) + ']'
+            if key not in expected:
+                differences.append(child + ': unexpected field')
+            elif key not in actual:
+                differences.append(child + ': missing field')
+            else:
+                differences.extend(receipt_differences(expected[key], actual[key], child))
+        return differences
+    if isinstance(expected, list):
+        differences = []
+        if len(expected) != len(actual):
+            differences.append('%s: length %d != %d' % (path, len(expected), len(actual)))
+        for index, (left, right) in enumerate(zip(expected, actual)):
+            differences.extend(receipt_differences(left, right, '%s[%d]' % (path, index)))
+        return differences
+    if expected != actual:
+        return ['%s: expected %s; actual %s' %
+                (path, json.dumps(expected), json.dumps(actual))]
+    return []
+
+
+def check_receipt(expected, actual):
+    differences = receipt_differences(comparable(expected), comparable(actual))
+    assert not differences, 'source-bound replay changed:\n' + '\n'.join(differences)
+
+
 def inspect_elf(score,path,linked):
     data,sections=score._elf(path)
     header=struct.unpack_from('>16sHHIIIIIHHHHHH',data)
@@ -240,7 +277,7 @@ def main():
           '\nSECTIONS { .text 0x81000000 : { *(.text) } .rodata 0x81010000 : { *(.rodata) } '
           '/DISCARD/ : { *(.reginfo) *(.options) *(.mdebug) *(.comment) } }\n')
         linked=temp/'children.elf'
-        run(['mips-linux-gnu-ld','-T',script,'-o',linked,obj])
+        run(['mips-linux-gnu-ld',*LINK_FLAGS,'-T',script,'-o',linked,obj])
         linked_meta,code,starts,rodata=inspect_elf(score,linked,True)
         native=verify(targets,native_data,code,starts,rodata)
         for name, count in native['candidate_instruction_coverage'].items():
@@ -282,6 +319,7 @@ def main():
     result={'status':'COMPLETE-NONMATCH children; PARTIAL-SOURCE parent; NOT READY-MATCH',
       'base':BASE,'image_sha256':IMAGE_HASH,
       'source_sha256':sha((HERE/'children.c').read_bytes()),'flags':FLAGS+' '+score.R4300_CC,
+      'link_flags':list(LINK_FLAGS),
 
       'compiler':{n:sha((score.IDO/n).read_bytes()) for n in ('cc','cfe','uopt','ugen','as1')},
       'artifact_hashes':{n:sha((HERE/n).read_bytes()) for n in
@@ -295,7 +333,7 @@ def main():
       'not_run':['complete E114/FCE0 reconstruction','O3 private closure compile','image/stream/full-ROM gates']}
     if args.check:
         expected=json.loads(args.output.read_text())
-        assert comparable(expected)==comparable(result), 'source-bound replay changed'
+        check_receipt(expected, result)
     else:
         args.output.write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps({'status':result['status'],'native_behavior':native,'host_result':host_result},indent=2))
