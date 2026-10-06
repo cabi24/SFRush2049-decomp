@@ -1,0 +1,34 @@
+{
+  "files": [
+    "target.c",
+    "caller.c",
+    "helpers.c",
+    "rows.c",
+    "predicate.c"
+  ],
+  "members": [
+    "func_800D8078"
+  ],
+  "context": [
+    "render_replay_ui",
+    "render_results_screen",
+    "func_800D816C",
+    "func_800D91A0",
+    "func_8008B32C",
+    "func_800B5898",
+    "func_800B5940",
+    "func_800D8154"
+  ],
+  "keep": [
+    "func_800D91A0",
+    "func_8008B32C",
+    "func_800B5898",
+    "func_800B5940",
+    "func_800D8154",
+    "render_results_screen"
+  ],
+  "claims": [
+    "func_800D8078"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}
