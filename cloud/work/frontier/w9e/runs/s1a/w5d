@@ -1,0 +1,548 @@
+[W5D] bit at=cm proc=engine_torque_calc bit=0 kind=3 dtype=A ref=38|0 text=varM(4597-4)r
+[W5D] bit at=cm proc=engine_torque_calc bit=1 kind=3 dtype=A ref=38|0 text=varM(4597-4)r
+[W5D] bit at=cm proc=engine_torque_calc bit=2 kind=3 dtype=A ref=1126|0 text=varP(4597+0)r
+[W5D] bit at=cm proc=engine_torque_calc bit=3 kind=3 dtype=A ref=1126|0 text=varP(4597+0)r
+[W5D] bit at=cm proc=engine_torque_calc bit=4 kind=4 dtype=J ref=1065|0 text=ilod.J@16(varP(4597+0)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=5 kind=4 dtype=J ref=440|0 text=mpy.J(ilod.J@16(varP(4597+0)r),48)
+[W5D] bit at=cm proc=engine_torque_calc bit=6 kind=4 dtype=J ref=1162|0 text=ixa.J(ldaS(295+0),mpy.J(ilod.J@16(varP(4597+0)r),48))
+[W5D] bit at=cm proc=engine_torque_calc bit=7 kind=4 dtype=A ref=1358|0 text=str.A(varM(4597-4)r,ixa.J(ldaS(295+0),mpy.J(ilod.J@16(varP(4597+0)r),48)))
+[W5D] bit at=cm proc=engine_torque_calc bit=8 kind=3 dtype=J ref=1593|0 text=varM(4597-8)r
+[W5D] bit at=cm proc=engine_torque_calc bit=9 kind=3 dtype=J ref=1593|0 text=varM(4597-8)r
+[W5D] bit at=cm proc=engine_torque_calc bit=10 kind=4 dtype=J ref=508|0 text=ilod.J@22(varM(4597-4)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=11 kind=4 dtype=J ref=844|0 text=str.J(varM(4597-8)r,ilod.J@22(varM(4597-4)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=12 kind=3 dtype=A ref=953|0 text=varM(4597-48)r
+[W5D] bit at=cm proc=engine_torque_calc bit=13 kind=3 dtype=A ref=953|0 text=varM(4597-48)r
+[W5D] bit at=cm proc=engine_torque_calc bit=14 kind=4 dtype=A ref=214|0 text=str.A(varM(4597-48)r,varP(4597+0)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=15 kind=3 dtype=A ref=1017|0 text=varM(4597-44)r
+[W5D] bit at=cm proc=engine_torque_calc bit=16 kind=3 dtype=A ref=1017|0 text=varM(4597-44)r
+[W5D] bit at=cm proc=engine_torque_calc bit=17 kind=4 dtype=A ref=1304|0 text=str.A(varM(4597-44)r,varM(4597-4)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=18 kind=3 dtype=J ref=1081|0 text=varM(4597-40)r
+[W5D] bit at=cm proc=engine_torque_calc bit=19 kind=3 dtype=J ref=1081|0 text=varM(4597-40)r
+[W5D] bit at=cm proc=engine_torque_calc bit=20 kind=4 dtype=J ref=812|0 text=str.J(varM(4597-40)r,varM(4597-8)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=21 kind=4 dtype=L ref=366|0 text=ilod.L@0(ldaS(855+0))
+[W5D] bit at=cm proc=engine_torque_calc bit=22 kind=4 dtype=L ref=86|0 text=shl.L(ilod.L@0(ldaS(855+0)),9)
+[W5D] bit at=cm proc=engine_torque_calc bit=23 kind=4 dtype=J ref=402|0 text=cvt.J(shl.L(ilod.L@0(ldaS(855+0)),9))
+[W5D] bit at=cm proc=engine_torque_calc bit=24 kind=4 dtype=J ref=2|0 text=geq.J(cvt.J(shl.L(ilod.L@0(ldaS(855+0)),9)),0)
+[W5D] bit at=cm proc=engine_torque_calc bit=25 kind=4 dtype=J ref=884|0 text=cg1.J(cvt.J(shl.L(ilod.L@0(ldaS(855+0)),9)))
+[W5D] bit at=cm proc=engine_torque_calc bit=26 kind=4 dtype=L ref=847|0 text=ilod.L@18(varM(4597-44)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=27 kind=4 dtype=J ref=1051|0 text=cvt.J(ilod.L@18(varM(4597-44)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=28 kind=4 dtype=J ref=252|0 text=and.J(cvt.J(ilod.L@18(varM(4597-44)r)),8)
+[W5D] bit at=cm proc=engine_torque_calc bit=29 kind=4 dtype=J ref=371|0 text=mpy.J(varM(4597-40)r,4)
+[W5D] bit at=cm proc=engine_torque_calc bit=30 kind=4 dtype=J ref=1499|0 text=ixa.J(ldaS(4590+0),mpy.J(varM(4597-40)r,4))
+[W5D] bit at=cm proc=engine_torque_calc bit=31 kind=4 dtype=A ref=192|0 text=ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-40)r,4)))
+[W5D] bit at=cm proc=engine_torque_calc bit=32 kind=4 dtype=A ref=513|0 text=istr.A@108(varM(4597-48)r,ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-40)r,4))))
+[W5D] bit at=cm proc=engine_torque_calc bit=33 kind=4 dtype=L ref=719|0 text=ilod.L@4(varM(4597-48)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=34 kind=4 dtype=J ref=110|0 text=cvt.J(ilod.L@4(varM(4597-48)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=35 kind=4 dtype=J ref=151|0 text=and.J(cvt.J(ilod.L@4(varM(4597-48)r)),16)
+[W5D] bit at=cm proc=engine_torque_calc bit=36 kind=4 dtype=J ref=748|0 text=equ.J(varM(4597-40)r,4)
+[W5D] bit at=cm proc=engine_torque_calc bit=37 kind=4 dtype=J ref=629|0 text=cg1.J(varM(4597-40)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=38 kind=3 dtype=A ref=697|0 text=varM(4597-64)r
+[W5D] bit at=cm proc=engine_torque_calc bit=39 kind=3 dtype=A ref=697|0 text=varM(4597-64)r
+[W5D] bit at=cm proc=engine_torque_calc bit=40 kind=4 dtype=J ref=719|1 text=ilod.J@101(varM(4597-48)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=41 kind=4 dtype=J ref=664|0 text=mpy.J(ilod.J@101(varM(4597-48)r),36)
+[W5D] bit at=cm proc=engine_torque_calc bit=42 kind=4 dtype=A ref=112|0 text=ilod.A@0(ldaS(4591+0))
+[W5D] bit at=cm proc=engine_torque_calc bit=43 kind=4 dtype=A ref=679|0 text=add.A(mpy.J(ilod.J@101(varM(4597-48)r),36),ilod.A@0(ldaS(4591+0)))
+[W5D] bit at=cm proc=engine_torque_calc bit=44 kind=4 dtype=A ref=459|0 text=str.A(varM(4597-64)r,add.A(mpy.J(ilod.J@101(varM(4597-48)r),36),ilod.A@0(ldaS(4591+0))))
+[W5D] bit at=cm proc=engine_torque_calc bit=45 kind=4 dtype=A ref=719|2 text=ilod.A@108(varM(4597-48)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=46 kind=4 dtype=A ref=888|0 text=istr.A@0(ilod.A@108(varM(4597-48)r),varM(4597-64)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=47 kind=4 dtype=A ref=70|0 text=ilod.A@0(ilod.A@108(varM(4597-48)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=48 kind=4 dtype=L ref=572|0 text=ilod.L@16(ilod.A@0(ilod.A@108(varM(4597-48)r)))
+[W5D] bit at=cm proc=engine_torque_calc bit=49 kind=4 dtype=L ref=1236|0 text=and.L(ilod.L@16(ilod.A@0(ilod.A@108(varM(4597-48)r))),16)
+[W5D] bit at=cm proc=engine_torque_calc bit=50 kind=4 dtype=J ref=174|0 text=and.J(cvt.J(ilod.L@4(varM(4597-48)r)),-9)
+[W5D] bit at=cm proc=engine_torque_calc bit=51 kind=4 dtype=L ref=543|0 text=cvt.L(and.J(cvt.J(ilod.L@4(varM(4597-48)r)),-9))
+[W5D] bit at=cm proc=engine_torque_calc bit=52 kind=4 dtype=L ref=689|0 text=istr.L@4(varM(4597-48)r,cvt.L(and.J(cvt.J(ilod.L@4(varM(4597-48)r)),-9)))
+[W5D] bit at=cm proc=engine_torque_calc bit=53 kind=4 dtype=J ref=1221|0 text=ixa.J(ldaS(4592+0),varM(4597-40)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=54 kind=4 dtype=L ref=1255|0 text=ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-40)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=55 kind=4 dtype=L ref=648|0 text=add.L(ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-40)r,4))),ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-40)r)))
+[W5D] bit at=cm proc=engine_torque_calc bit=56 kind=4 dtype=A ref=309|0 text=cvt.A(add.L(ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-40)r,4))),ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-40)r))))
+[W5D] bit at=cm proc=engine_torque_calc bit=57 kind=4 dtype=A ref=174|1 text=istr.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-40)r,4)),cvt.A(add.L(ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-40)r,4))),ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-40)r)))))
+[W5D] bit at=cm proc=engine_torque_calc bit=58 kind=4 dtype=J ref=741|0 text=neq.J(varM(4597-40)r,7)
+[W5D] bit at=cm proc=engine_torque_calc bit=59 kind=4 dtype=J ref=637|0 text=cg1.J(varM(4597-40)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=60 kind=4 dtype=J ref=1116|0 text=cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-40)r)))
+[W5D] bit at=cm proc=engine_torque_calc bit=61 kind=4 dtype=J ref=847|1 text=ilod.J@23(varM(4597-44)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=62 kind=4 dtype=J ref=43|0 text=mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-40)r))),ilod.J@23(varM(4597-44)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=63 kind=4 dtype=J ref=1489|0 text=ixa.J(ldaS(4593+0),mpy.J(varM(4597-40)r,4))
+[W5D] bit at=cm proc=engine_torque_calc bit=64 kind=4 dtype=A ref=172|0 text=ilod.A@0(ixa.J(ldaS(4593+0),mpy.J(varM(4597-40)r,4)))
+[W5D] bit at=cm proc=engine_torque_calc bit=65 kind=4 dtype=A ref=1225|0 text=add.A(mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-40)r))),ilod.J@23(varM(4597-44)r)),ilod.A@0(ixa.J(ldaS(4593+0),mpy.J(varM(4597-40)r,4))))
+[W5D] bit at=cm proc=engine_torque_calc bit=66 kind=4 dtype=A ref=1483|0 text=istr.A@108(varM(4597-48)r,add.A(mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-40)r))),ilod.J@23(varM(4597-44)r)),ilod.A@0(ixa.J(ldaS(4593+0),mpy.J(varM(4597-40)r,4)))))
+[W5D] bit at=cm proc=engine_torque_calc bit=67 kind=4 dtype=J ref=847|2 text=ilod.J@16(varM(4597-44)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=68 kind=4 dtype=J ref=1142|0 text=equ.J(4,ilod.J@16(varM(4597-44)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=69 kind=4 dtype=J ref=266|0 text=cg1.J(ilod.J@16(varM(4597-44)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=70 kind=4 dtype=J ref=1579|0 text=ilod.J@0(ldaS(3372+0))
+[W5D] bit at=cm proc=engine_torque_calc bit=71 kind=4 dtype=J ref=1107|0 text=istr.J@101(varM(4597-48)r,ilod.J@0(ldaS(3372+0)))
+[W5D] bit at=cm proc=engine_torque_calc bit=72 kind=4 dtype=J ref=1339|0 text=add.J(ilod.J@0(ldaS(3372+0)),1)
+[W5D] bit at=cm proc=engine_torque_calc bit=73 kind=4 dtype=J ref=471|0 text=istr.J@0(ldaS(3372+0),add.J(ilod.J@0(ldaS(3372+0)),1))
+[W5D] bit at=cm proc=engine_torque_calc bit=74 kind=3 dtype=A ref=761|0 text=varM(4597-60)r
+[W5D] bit at=cm proc=engine_torque_calc bit=75 kind=3 dtype=A ref=761|0 text=varM(4597-60)r
+[W5D] bit at=cm proc=engine_torque_calc bit=76 kind=4 dtype=J ref=592|0 text=shl.J(ilod.J@101(varM(4597-48)r),6)
+[W5D] bit at=cm proc=engine_torque_calc bit=77 kind=4 dtype=A ref=1337|0 text=ilod.A@0(ldaS(430+0))
+[W5D] bit at=cm proc=engine_torque_calc bit=78 kind=4 dtype=A ref=1488|0 text=add.A(shl.J(ilod.J@101(varM(4597-48)r),6),ilod.A@0(ldaS(430+0)))
+[W5D] bit at=cm proc=engine_torque_calc bit=79 kind=4 dtype=A ref=560|0 text=str.A(varM(4597-60)r,add.A(shl.J(ilod.J@101(varM(4597-48)r),6),ilod.A@0(ldaS(430+0))))
+[W5D] bit at=cm proc=engine_torque_calc bit=80 kind=4 dtype=A ref=1438|0 text=add.A(varM(4597-60)r,4)
+[W5D] bit at=cm proc=engine_torque_calc bit=81 kind=3 dtype=J ref=825|0 text=varM(4597-56)r
+[W5D] bit at=cm proc=engine_torque_calc bit=82 kind=3 dtype=J ref=825|0 text=varM(4597-56)r
+[W5D] bit at=cm proc=engine_torque_calc bit=83 kind=4 dtype=J ref=166|0 text=str.J(varM(4597-56)r,0)
+[W5D] bit at=cm proc=engine_torque_calc bit=84 kind=4 dtype=J ref=1464|0 text=mpy.J(varM(4597-56)r,4)
+[W5D] bit at=cm proc=engine_torque_calc bit=85 kind=4 dtype=J ref=1084|0 text=ixa.J(varM(4597-60)r,mpy.J(varM(4597-56)r,4))
+[W5D] bit at=cm proc=engine_torque_calc bit=86 kind=4 dtype=R ref=243|0 text=istr.R@52(ixa.J(varM(4597-60)r,mpy.J(varM(4597-56)r,4)),3)
+[W5D] bit at=cm proc=engine_torque_calc bit=87 kind=4 dtype=R ref=243|1 text=istr.R@40(ixa.J(varM(4597-60)r,mpy.J(varM(4597-56)r,4)),3)
+[W5D] bit at=cm proc=engine_torque_calc bit=88 kind=4 dtype=J ref=275|0 text=add.J(varM(4597-56)r,1)
+[W5D] bit at=cm proc=engine_torque_calc bit=89 kind=4 dtype=J ref=697|1 text=str.J(varM(4597-56)r,add.J(varM(4597-56)r,1))
+[W5D] bit at=cm proc=engine_torque_calc bit=90 kind=4 dtype=J ref=269|0 text=les.J(varM(4597-56)r,3)
+[W5D] bit at=cm proc=engine_torque_calc bit=91 kind=4 dtype=J ref=135|0 text=cg1.J(varM(4597-56)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=92 kind=3 dtype=J ref=889|0 text=varM(4597-52)r
+[W5D] bit at=cm proc=engine_torque_calc bit=93 kind=3 dtype=J ref=889|0 text=varM(4597-52)r
+[W5D] bit at=cm proc=engine_torque_calc bit=94 kind=4 dtype=J ref=719|3 text=ilod.J@16(varM(4597-48)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=95 kind=4 dtype=J ref=1177|0 text=mpy.J(ilod.J@16(varM(4597-48)r),48)
+[W5D] bit at=cm proc=engine_torque_calc bit=96 kind=4 dtype=J ref=1374|0 text=ixa.J(ldaS(295+0),mpy.J(ilod.J@16(varM(4597-48)r),48))
+[W5D] bit at=cm proc=engine_torque_calc bit=97 kind=4 dtype=R ref=1561|0 text=ilod.R@24(ixa.J(ldaS(295+0),mpy.J(ilod.J@16(varM(4597-48)r),48)))
+[W5D] bit at=cm proc=engine_torque_calc bit=98 kind=4 dtype=J ref=760|0 text=cvt.J(ilod.R@24(ixa.J(ldaS(295+0),mpy.J(ilod.J@16(varM(4597-48)r),48))))
+[W5D] bit at=cm proc=engine_torque_calc bit=99 kind=4 dtype=J ref=479|0 text=str.J(varM(4597-52)r,cvt.J(ilod.R@24(ixa.J(ldaS(295+0),mpy.J(ilod.J@16(varM(4597-48)r),48)))))
+[W5D] bit at=cm proc=engine_torque_calc bit=100 kind=4 dtype=J ref=380|0 text=mpy.J(varM(4597-52)r,32)
+[W5D] bit at=cm proc=engine_torque_calc bit=101 kind=4 dtype=A ref=317|0 text=add.A(ldaS(4594+0),mpy.J(varM(4597-52)r,32))
+[W5D] bit at=cm proc=engine_torque_calc bit=102 kind=4 dtype=A ref=283|0 text=istr.A@0(varM(4597-60)r,add.A(ldaS(4594+0),mpy.J(varM(4597-52)r,32)))
+[W5D] bit at=cm proc=engine_torque_calc bit=103 kind=4 dtype=J ref=225|0 text=equ.J(varM(4597-40)r,5)
+[W5D] bit at=cm proc=engine_torque_calc bit=104 kind=4 dtype=J ref=657|0 text=cg1.J(varM(4597-40)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=105 kind=3 dtype=A ref=633|0 text=varM(4597-68)r
+[W5D] bit at=cm proc=engine_torque_calc bit=106 kind=3 dtype=A ref=633|0 text=varM(4597-68)r
+[W5D] bit at=cm proc=engine_torque_calc bit=107 kind=4 dtype=A ref=240|0 text=ilod.A@20(ldaS(4595+0))
+[W5D] bit at=cm proc=engine_torque_calc bit=108 kind=4 dtype=A ref=744|0 text=str.A(varM(4597-68)r,ilod.A@20(ldaS(4595+0)))
+[W5D] bit at=cm proc=engine_torque_calc bit=109 kind=4 dtype=J ref=166|1 text=str.J(varM(4597-52)r,0)
+[W5D] bit at=cm proc=engine_torque_calc bit=110 kind=4 dtype=J ref=79|0 text=ilod.J@134(varM(4597-68)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=111 kind=4 dtype=J ref=79|1 text=ilod.J@0(varM(4597-68)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=112 kind=4 dtype=J ref=451|0 text=equ.J(-1,ilod.J@0(varM(4597-68)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=113 kind=4 dtype=J ref=377|0 text=cg1.J(ilod.J@0(varM(4597-68)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=114 kind=4 dtype=J ref=79|2 text=ilod.J@4(varM(4597-68)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=115 kind=4 dtype=J ref=471|1 text=equ.J(-1,ilod.J@4(varM(4597-68)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=116 kind=4 dtype=J ref=480|0 text=cg1.J(ilod.J@4(varM(4597-68)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=117 kind=4 dtype=J ref=79|3 text=ilod.J@8(varM(4597-68)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=118 kind=4 dtype=J ref=491|0 text=equ.J(-1,ilod.J@8(varM(4597-68)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=119 kind=4 dtype=J ref=585|0 text=cg1.J(ilod.J@8(varM(4597-68)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=120 kind=4 dtype=J ref=915|0 text=add.J(varM(4597-52)r,1)
+[W5D] bit at=cm proc=engine_torque_calc bit=121 kind=4 dtype=J ref=660|0 text=str.J(varM(4597-52)r,add.J(varM(4597-52)r,1))
+[W5D] bit at=cm proc=engine_torque_calc bit=122 kind=4 dtype=A ref=1311|0 text=add.A(varM(4597-68)r,136)
+[W5D] bit at=cm proc=engine_torque_calc bit=123 kind=4 dtype=A ref=1421|0 text=str.A(varM(4597-68)r,add.A(varM(4597-68)r,136))
+[W5D] bit at=cm proc=engine_torque_calc bit=124 kind=4 dtype=J ref=1191|0 text=les.J(varM(4597-52)r,16)
+[W5D] bit at=cm proc=engine_torque_calc bit=125 kind=4 dtype=J ref=287|0 text=cg1.J(varM(4597-52)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=126 kind=4 dtype=J ref=77|0 text=istr.J@134(varM(4597-68)r,1)
+[W5D] bit at=cm proc=engine_torque_calc bit=127 kind=4 dtype=J ref=852|0 text=mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-40)r))),varM(4597-52)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=128 kind=4 dtype=A ref=770|0 text=add.A(mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-40)r))),varM(4597-52)r),ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-40)r,4))))
+[W5D] bit at=cm proc=engine_torque_calc bit=129 kind=4 dtype=A ref=1015|0 text=istr.A@108(varM(4597-48)r,add.A(mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-40)r))),varM(4597-52)r),ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-40)r,4)))))
+[W5D] bit at=cm proc=engine_torque_calc bit=130 kind=4 dtype=J ref=1065|1 text=ilod.J@88(varP(4597+0)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=131 kind=4 dtype=J ref=248|0 text=neq.J(-1,ilod.J@88(varP(4597+0)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=132 kind=4 dtype=J ref=118|0 text=cg1.J(ilod.J@88(varP(4597+0)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=133 kind=4 dtype=J ref=1065|2 text=ilod.J@14(varP(4597+0)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=134 kind=4 dtype=J ref=1391|0 text=mpy.J(ilod.J@14(varP(4597+0)r),68)
+[W5D] bit at=cm proc=engine_torque_calc bit=135 kind=4 dtype=J ref=801|0 text=ixa.J(ldaS(29+0),mpy.J(ilod.J@14(varP(4597+0)r),68))
+[W5D] bit at=cm proc=engine_torque_calc bit=136 kind=4 dtype=J ref=1147|0 text=mpy.J(ilod.J@88(varP(4597+0)r),2)
+[W5D] bit at=cm proc=engine_torque_calc bit=137 kind=4 dtype=J ref=1323|0 text=ixa.J(ldaS(3334+0),mpy.J(ilod.J@88(varP(4597+0)r),2))
+[W5D] bit at=cm proc=engine_torque_calc bit=138 kind=4 dtype=L ref=1459|1 text=ilod.L@0(ixa.J(ldaS(3334+0),mpy.J(ilod.J@88(varP(4597+0)r),2)))
+[W5D] bit at=cm proc=engine_torque_calc bit=139 kind=4 dtype=L ref=891|0 text=istr.L@20(ixa.J(ldaS(29+0),mpy.J(ilod.J@14(varP(4597+0)r),68)),ilod.L@0(ixa.J(ldaS(3334+0),mpy.J(ilod.J@88(varP(4597+0)r),2))))
+[W5D] bit at=cm proc=engine_torque_calc bit=140 kind=4 dtype=L ref=508|1 text=ilod.L@18(varM(4597-4)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=141 kind=4 dtype=J ref=970|0 text=cvt.J(ilod.L@18(varM(4597-4)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=142 kind=4 dtype=J ref=352|0 text=and.J(cvt.J(ilod.L@18(varM(4597-4)r)),2)
+[W5D] bit at=cm proc=engine_torque_calc bit=143 kind=3 dtype=A ref=1401|0 text=varM(4597-20)r
+[W5D] bit at=cm proc=engine_torque_calc bit=144 kind=3 dtype=A ref=1401|0 text=varM(4597-20)r
+[W5D] bit at=cm proc=engine_torque_calc bit=145 kind=3 dtype=A ref=1485|0 text=varR(0+2)r
+[W5D] bit at=cm proc=engine_torque_calc bit=146 kind=3 dtype=A ref=1485|0 text=varR(0+2)r
+[W5D] bit at=cm proc=engine_torque_calc bit=147 kind=4 dtype=A ref=866|0 text=str.A(varM(4597-20)r,varR(0+2)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=148 kind=4 dtype=A ref=1204|0 text=neq.A(varR(0+2)r,0)
+[W5D] bit at=cm proc=engine_torque_calc bit=149 kind=4 dtype=A ref=1493|0 text=cg1.A(varR(0+2)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=150 kind=4 dtype=J ref=223|0 text=istr.J@4(varM(4597-20)r,0)
+[W5D] bit at=cm proc=engine_torque_calc bit=151 kind=4 dtype=A ref=1566|0 text=istr.A@12(varM(4597-20)r,varP(4597+0)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=152 kind=4 dtype=R ref=243|2 text=istr.R@16(varM(4597-20)r,3)
+[W5D] bit at=cm proc=engine_torque_calc bit=153 kind=4 dtype=A ref=508|2 text=ilod.A@12(varM(4597-4)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=154 kind=4 dtype=A ref=219|0 text=istr.A@20(varM(4597-20)r,ilod.A@12(varM(4597-4)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=155 kind=4 dtype=A ref=287|1 text=ilod.A@0(ldaS(296+0))
+[W5D] bit at=cm proc=engine_torque_calc bit=156 kind=4 dtype=A ref=1136|0 text=istr.A@0(varM(4597-20)r,ilod.A@0(ldaS(296+0)))
+[W5D] bit at=cm proc=engine_torque_calc bit=157 kind=4 dtype=A ref=1230|0 text=istr.A@0(ldaS(296+0),varM(4597-20)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=158 kind=4 dtype=J ref=304|0 text=and.J(cvt.J(ilod.L@18(varM(4597-4)r)),4)
+[W5D] bit at=cm proc=engine_torque_calc bit=159 kind=4 dtype=A ref=508|3 text=ilod.A@8(varM(4597-4)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=160 kind=4 dtype=J ref=882|0 text=and.J(cvt.J(ilod.L@18(varM(4597-4)r)),16384)
+[W5D] bit at=cm proc=engine_torque_calc bit=161 kind=4 dtype=L ref=1065|3 text=ilod.L@4(varP(4597+0)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=162 kind=4 dtype=J ref=124|0 text=cvt.J(ilod.L@4(varP(4597+0)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=163 kind=4 dtype=J ref=772|0 text=and.J(cvt.J(ilod.L@4(varP(4597+0)r)),16)
+[W5D] bit at=cm proc=engine_torque_calc bit=164 kind=4 dtype=? ref=1505|0 text=mov.?(ldaM(4597-32),ldaS(4598+0))
+[W5D] bit at=cm proc=engine_torque_calc bit=165 kind=4 dtype=J ref=1065|4 text=ilod.J@101(varP(4597+0)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=166 kind=4 dtype=A ref=33|0 text=add.A(varP(4597+0)r,68)
+[W5D] bit at=cm proc=engine_torque_calc bit=167 kind=4 dtype=A ref=279|0 text=add.A(varP(4597+0)r,20)
+[W5D] bit at=cm proc=engine_torque_calc bit=168 kind=4 dtype=J ref=10|0 text=neq.J(varM(4597-56)r,3)
+[W5D] bit at=cm proc=engine_torque_calc bit=169 kind=4 dtype=J ref=932|0 text=neq.J(varM(4597-52)r,16)
+[W5D] bit at=cm proc=engine_torque_calc bit=170 kind=4 dtype=J ref=586|0 text=ixa.J(ldaS(4592+0),varM(4597-8)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=171 kind=4 dtype=L ref=1604|0 text=ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-8)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=172 kind=4 dtype=J ref=1|1 text=cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-8)r)))
+[W5D] bit at=cm proc=engine_torque_calc bit=173 kind=4 dtype=J ref=40|0 text=mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-8)r))),varM(4597-52)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=174 kind=4 dtype=J ref=1423|0 text=mpy.J(varM(4597-8)r,4)
+[W5D] bit at=cm proc=engine_torque_calc bit=175 kind=4 dtype=J ref=496|0 text=ixa.J(ldaS(4590+0),mpy.J(varM(4597-8)r,4))
+[W5D] bit at=cm proc=engine_torque_calc bit=176 kind=4 dtype=A ref=1424|0 text=ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-8)r,4)))
+[W5D] bit at=cm proc=engine_torque_calc bit=177 kind=4 dtype=A ref=1451|0 text=add.A(mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-8)r))),varM(4597-52)r),ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-8)r,4))))
+[W5D] bit at=cm proc=engine_torque_calc bit=178 kind=4 dtype=A ref=1154|0 text=istr.A@108(varP(4597+0)r,add.A(mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-8)r))),varM(4597-52)r),ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-8)r,4)))))
+[W5D] bit at=cm proc=engine_torque_calc bit=179 kind=4 dtype=J ref=1540|0 text=equ.J(varM(4597-8)r,5)
+[W5D] bit at=cm proc=engine_torque_calc bit=180 kind=4 dtype=J ref=62|0 text=cg1.J(varM(4597-8)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=181 kind=4 dtype=J ref=248|1 text=and.J(cvt.J(ilod.L@18(varM(4597-4)r)),8)
+[W5D] bit at=cm proc=engine_torque_calc bit=182 kind=4 dtype=J ref=508|4 text=ilod.J@23(varM(4597-4)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=183 kind=4 dtype=J ref=1207|0 text=mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-8)r))),ilod.J@23(varM(4597-4)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=184 kind=4 dtype=J ref=318|0 text=ixa.J(ldaS(4593+0),mpy.J(varM(4597-8)r,4))
+[W5D] bit at=cm proc=engine_torque_calc bit=185 kind=4 dtype=A ref=1068|0 text=ilod.A@0(ixa.J(ldaS(4593+0),mpy.J(varM(4597-8)r,4)))
+[W5D] bit at=cm proc=engine_torque_calc bit=186 kind=4 dtype=A ref=402|1 text=add.A(mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-8)r))),ilod.J@23(varM(4597-4)r)),ilod.A@0(ixa.J(ldaS(4593+0),mpy.J(varM(4597-8)r,4))))
+[W5D] bit at=cm proc=engine_torque_calc bit=187 kind=4 dtype=A ref=39|0 text=istr.A@108(varP(4597+0)r,add.A(mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-8)r))),ilod.J@23(varM(4597-4)r)),ilod.A@0(ixa.J(ldaS(4593+0),mpy.J(varM(4597-8)r,4)))))
+[W5D] bit at=cm proc=engine_torque_calc bit=188 kind=4 dtype=J ref=963|0 text=neq.J(varM(4597-8)r,7)
+[W5D] bit at=cm proc=engine_torque_calc bit=189 kind=4 dtype=J ref=42|0 text=cg1.J(varM(4597-8)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=190 kind=4 dtype=J ref=223|1 text=istr.J@4(varR(0+2)r,0)
+[W5D] bit at=cm proc=engine_torque_calc bit=191 kind=4 dtype=A ref=291|0 text=istr.A@12(varR(0+2)r,varP(4597+0)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=192 kind=4 dtype=R ref=243|3 text=istr.R@16(varR(0+2)r,3)
+[W5D] bit at=cm proc=engine_torque_calc bit=193 kind=4 dtype=A ref=1142|1 text=istr.A@20(varR(0+2)r,ilod.A@12(varM(4597-4)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=194 kind=4 dtype=A ref=985|0 text=istr.A@0(varR(0+2)r,ilod.A@0(ldaS(296+0)))
+[W5D] bit at=cm proc=engine_torque_calc bit=195 kind=3 dtype=A ref=737|1 text=varS(296+0)
+[W5D] bit at=cm proc=engine_torque_calc bit=196 kind=3 dtype=A ref=737|1 text=varS(296+0)
+[W5D] bit at=cm proc=engine_torque_calc bit=197 kind=4 dtype=? ref=196|0 text=str.?(varS(296+0),varR(0+2)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=198 kind=4 dtype=R ref=1137|0 text=ilod.R@24(ixa.J(ldaS(295+0),mpy.J(ilod.J@16(varP(4597+0)r),48)))
+[W5D] bit at=cm proc=engine_torque_calc bit=199 kind=4 dtype=J ref=375|0 text=cvt.J(ilod.R@24(ixa.J(ldaS(295+0),mpy.J(ilod.J@16(varP(4597+0)r),48))))
+[W5D] bit at=cm proc=engine_torque_calc bit=200 kind=4 dtype=? ref=395|0 text=str.?(varM(4597-52)r,cvt.J(ilod.R@24(ixa.J(ldaS(295+0),mpy.J(ilod.J@16(varP(4597+0)r),48)))))
+[W5D] bit at=cm proc=engine_torque_calc bit=201 kind=4 dtype=J ref=1524|0 text=istr.J@101(varP(4597+0)r,ilod.J@0(ldaS(3372+0)))
+[W5D] bit at=cm proc=engine_torque_calc bit=202 kind=4 dtype=J ref=365|0 text=shl.J(ilod.J@101(varP(4597+0)r),6)
+[W5D] bit at=cm proc=engine_torque_calc bit=203 kind=4 dtype=A ref=504|0 text=add.A(shl.J(ilod.J@101(varP(4597+0)r),6),ilod.A@0(ldaS(430+0)))
+[W5D] bit at=cm proc=engine_torque_calc bit=204 kind=4 dtype=? ref=195|0 text=str.?(varM(4597-60)r,add.A(shl.J(ilod.J@101(varP(4597+0)r),6),ilod.A@0(ldaS(430+0))))
+[W5D] bit at=cm proc=engine_torque_calc bit=205 kind=4 dtype=J ref=508|5 text=ilod.J@16(varM(4597-4)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=206 kind=4 dtype=J ref=594|0 text=equ.J(4,ilod.J@16(varM(4597-4)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=207 kind=4 dtype=J ref=461|0 text=cg1.J(ilod.J@16(varM(4597-4)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=208 kind=4 dtype=L ref=228|0 text=add.L(ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-8)r,4))),ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-8)r)))
+[W5D] bit at=cm proc=engine_torque_calc bit=209 kind=4 dtype=A ref=4|2 text=cvt.A(add.L(ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-8)r,4))),ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-8)r))))
+[W5D] bit at=cm proc=engine_torque_calc bit=210 kind=4 dtype=A ref=675|0 text=istr.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-8)r,4)),cvt.A(add.L(ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-8)r,4))),ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-8)r)))))
+[W5D] bit at=cm proc=engine_torque_calc bit=211 kind=4 dtype=J ref=533|0 text=and.J(cvt.J(ilod.L@4(varP(4597+0)r)),-9)
+[W5D] bit at=cm proc=engine_torque_calc bit=212 kind=4 dtype=L ref=1247|0 text=cvt.L(and.J(cvt.J(ilod.L@4(varP(4597+0)r)),-9))
+[W5D] bit at=cm proc=engine_torque_calc bit=213 kind=4 dtype=L ref=1475|1 text=istr.L@4(varP(4597+0)r,cvt.L(and.J(cvt.J(ilod.L@4(varP(4597+0)r)),-9)))
+[W5D] bit at=cm proc=engine_torque_calc bit=214 kind=4 dtype=J ref=621|0 text=mpy.J(ilod.J@101(varP(4597+0)r),36)
+[W5D] bit at=cm proc=engine_torque_calc bit=215 kind=4 dtype=A ref=1089|0 text=add.A(mpy.J(ilod.J@101(varP(4597+0)r),36),ilod.A@0(ldaS(4591+0)))
+[W5D] bit at=cm proc=engine_torque_calc bit=216 kind=4 dtype=R ref=624|0 text=str.R(varM(4597-64)r,add.A(mpy.J(ilod.J@101(varP(4597+0)r),36),ilod.A@0(ldaS(4591+0))))
+[W5D] bit at=cm proc=engine_torque_calc bit=217 kind=4 dtype=A ref=1065|5 text=ilod.A@108(varP(4597+0)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=218 kind=4 dtype=A ref=258|0 text=istr.A@0(ilod.A@108(varP(4597+0)r),varM(4597-64)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=219 kind=4 dtype=A ref=1411|0 text=ilod.A@0(ilod.A@108(varP(4597+0)r))
+[W5D] bit at=cm proc=engine_torque_calc bit=220 kind=4 dtype=L ref=16|2 text=ilod.L@16(ilod.A@0(ilod.A@108(varP(4597+0)r)))
+[W5D] bit at=cm proc=engine_torque_calc bit=221 kind=4 dtype=L ref=1381|0 text=and.L(ilod.L@16(ilod.A@0(ilod.A@108(varP(4597+0)r))),16)
+[W5D] bit at=cm proc=engine_torque_calc bit=222 kind=4 dtype=J ref=181|0 text=equ.J(varM(4597-8)r,4)
+[W5D] bit at=cm proc=engine_torque_calc bit=223 kind=4 dtype=J ref=34|0 text=cg1.J(varM(4597-8)r)
+[W5D] bit at=cm proc=engine_torque_calc bit=224 kind=4 dtype=A ref=1506|0 text=istr.A@108(varP(4597+0)r,ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-8)r,4))))
+[W5D] regcand proc=engine_torque_calc what=lda bb=0 ctx=0 decision=1 text=ldaS(295+0)
+[W5D] regcand proc=engine_torque_calc what=const bb=0 ctx=5 decision=1 text=48
+[W5D] regcand proc=engine_torque_calc what=lda bb=0 ctx=3 decision=1 text=ldaS(855+0)
+[W5D] regcand proc=engine_torque_calc what=const bb=0 ctx=0 decision=0 text=9
+[W5D] regcand proc=engine_torque_calc what=const bb=0 ctx=1 decision=0 text=0
+[W5D] regcand proc=engine_torque_calc what=const bb=1 ctx=2 decision=0 text=8
+[W5D] regcand proc=engine_torque_calc what=lda bb=2 ctx=0 decision=1 text=ldaS(4590+0)
+[W5D] regcand proc=engine_torque_calc what=const bb=2 ctx=5 decision=0 text=4
+[W5D] regcand proc=engine_torque_calc what=const bb=2 ctx=2 decision=0 text=16
+[W5D] regcand proc=engine_torque_calc what=const bb=3 ctx=3 decision=1 text=4
+[W5D] regcand proc=engine_torque_calc what=const bb=4 ctx=5 decision=1 text=36
+[W5D] regcand proc=engine_torque_calc what=lda bb=4 ctx=3 decision=1 text=ldaS(4591+0)
+[W5D] regcand proc=engine_torque_calc what=const bb=4 ctx=2 decision=0 text=16
+[W5D] regcand proc=engine_torque_calc what=const bb=5 ctx=2 decision=1 text=-9
+[W5D] regcand proc=engine_torque_calc what=lda bb=6 ctx=0 decision=1 text=ldaS(4592+0)
+[W5D] regcand proc=engine_torque_calc what=const bb=9 ctx=3 decision=1 text=4
+[W5D] regcand proc=engine_torque_calc what=lda bb=10 ctx=3 decision=1 text=ldaS(3372+0)
+[W5D] regcand proc=engine_torque_calc what=lda bb=10 ctx=1 decision=1 text=ldaS(3372+0)
+[W5D] regcand proc=engine_torque_calc what=lda bb=10 ctx=3 decision=1 text=ldaS(3372+0)
+[W5D] regcand proc=engine_torque_calc what=const bb=10 ctx=1 decision=0 text=1
+[W5D] regcand proc=engine_torque_calc what=const bb=10 ctx=0 decision=0 text=6
+[W5D] regcand proc=engine_torque_calc what=lda bb=10 ctx=3 decision=1 text=ldaS(430+0)
+[W5D] regcand proc=engine_torque_calc what=lda bb=10 ctx=0 decision=1 text=ldaS(38+0)
+[W5D] regcand proc=engine_torque_calc what=const bb=10 ctx=1 decision=0 text=4
+[W5D] regcand proc=engine_torque_calc what=const bb=11 ctx=0 decision=0 text=0
+[W5D] regcand proc=engine_torque_calc what=const bb=12 ctx=3 decision=1 text=3
+[W5D] regcand proc=engine_torque_calc what=const bb=12 ctx=3 decision=1 text=3
+[W5D] regcand proc=engine_torque_calc what=const bb=12 ctx=1 decision=0 text=1
+[W5D] regcand proc=engine_torque_calc what=const bb=12 ctx=3 decision=1 text=3
+[W5D] regcand proc=engine_torque_calc what=lda bb=14 ctx=0 decision=1 text=ldaS(295+0)
+[W5D] regcand proc=engine_torque_calc what=const bb=14 ctx=5 decision=1 text=48
+[W5D] regcand proc=engine_torque_calc what=lda bb=14 ctx=1 decision=1 text=ldaS(4594+0)
+[W5D] regcand proc=engine_torque_calc what=const bb=14 ctx=5 decision=0 text=32
+[W5D] regcand proc=engine_torque_calc what=const bb=27 ctx=3 decision=1 text=-1
+[W5D] regcand proc=engine_torque_calc what=lda bb=28 ctx=0 decision=1 text=ldaS(29+0)
+[W5D] regcand proc=engine_torque_calc what=const bb=28 ctx=5 decision=1 text=68
+[W5D] regcand proc=engine_torque_calc what=lda bb=28 ctx=0 decision=1 text=ldaS(3334+0)
+[W5D] regcand proc=engine_torque_calc what=const bb=28 ctx=5 decision=0 text=2
+[W5D] regcand proc=engine_torque_calc what=const bb=29 ctx=2 decision=0 text=2
+[W5D] regcand proc=engine_torque_calc what=const bb=31 ctx=3 decision=0 text=0
+[W5D] regcand proc=engine_torque_calc what=const bb=32 ctx=3 decision=0 text=0
+[W5D] regcand proc=engine_torque_calc what=const bb=32 ctx=3 decision=1 text=3
+[W5D] regcand proc=engine_torque_calc what=lda bb=32 ctx=3 decision=1 text=ldaS(296+0)
+[W5D] regcand proc=engine_torque_calc what=const bb=32 ctx=2 decision=0 text=4
+[W5D] regcand proc=engine_torque_calc what=const bb=35 ctx=2 decision=0 text=16384
+[W5D] regcand proc=engine_torque_calc what=const bb=36 ctx=2 decision=0 text=16
+[W5D] regcand proc=engine_torque_calc what=lda bb=39 ctx=3 decision=1 text=ldaM(4597-32)
+[W5D] regcand proc=engine_torque_calc what=lda bb=39 ctx=3 decision=1 text=ldaS(4598+0)
+[W5D] regcand proc=engine_torque_calc what=lda bb=39 ctx=0 decision=1 text=ldaM(4597-32)
+[W5D] regcand proc=engine_torque_calc what=const bb=39 ctx=1 decision=0 text=68
+[W5D] regcand proc=engine_torque_calc what=const bb=39 ctx=1 decision=0 text=20
+[W5D] regcand proc=engine_torque_calc what=const bb=7 ctx=3 decision=1 text=7
+[W5D] regcand proc=engine_torque_calc what=lda bb=8 ctx=0 decision=1 text=ldaS(4592+0)
+[W5D] regcand proc=engine_torque_calc what=lda bb=8 ctx=0 decision=1 text=ldaS(4593+0)
+[W5D] regcand proc=engine_torque_calc what=const bb=8 ctx=5 decision=0 text=4
+[W5D] regcand proc=engine_torque_calc what=const bb=16 ctx=2 decision=0 text=8
+[W5D] regcand proc=engine_torque_calc what=const bb=17 ctx=3 decision=1 text=5
+[W5D] regcand proc=engine_torque_calc what=lda bb=18 ctx=3 decision=1 text=ldaS(4595+0)
+[W5D] regcand proc=engine_torque_calc what=const bb=18 ctx=0 decision=0 text=0
+[W5D] regcand proc=engine_torque_calc what=const bb=20 ctx=3 decision=1 text=-1
+[W5D] regcand proc=engine_torque_calc what=const bb=21 ctx=3 decision=1 text=-1
+[W5D] regcand proc=engine_torque_calc what=const bb=22 ctx=3 decision=1 text=-1
+[W5D] regcand proc=engine_torque_calc what=const bb=26 ctx=3 decision=1 text=1
+[W5D] regcand proc=engine_torque_calc what=lda bb=26 ctx=0 decision=1 text=ldaS(4592+0)
+[W5D] regcand proc=engine_torque_calc what=lda bb=26 ctx=0 decision=1 text=ldaS(4590+0)
+[W5D] regcand proc=engine_torque_calc what=const bb=26 ctx=5 decision=0 text=4
+[W5D] regcand proc=engine_torque_calc what=const bb=24 ctx=1 decision=0 text=1
+[W5D] regcand proc=engine_torque_calc what=const bb=24 ctx=1 decision=0 text=136
+[W5D] regcand proc=engine_torque_calc what=const bb=24 ctx=3 decision=1 text=16
+[W5D] ordinal proc=engine_torque_calc cdx_proc=385
+[W5D] bit at=gc proc=engine_torque_calc bit=0 kind=3 dtype=A ref=38|0 text=varM(4597-4)r
+[W5D] bit at=gc proc=engine_torque_calc bit=1 kind=3 dtype=A ref=38|0 text=varM(4597-4)r
+[W5D] bit at=gc proc=engine_torque_calc bit=2 kind=3 dtype=A ref=1126|0 text=varP(4597+0)r
+[W5D] bit at=gc proc=engine_torque_calc bit=3 kind=3 dtype=A ref=1126|0 text=varP(4597+0)r
+[W5D] bit at=gc proc=engine_torque_calc bit=4 kind=4 dtype=J ref=1065|0 text=ilod.J@16(varP(4597+0)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=5 kind=4 dtype=J ref=440|0 text=mpy.J(ilod.J@16(varP(4597+0)r),48)
+[W5D] bit at=gc proc=engine_torque_calc bit=6 kind=4 dtype=J ref=1162|0 text=ixa.J(ldaS(295+0),mpy.J(ilod.J@16(varP(4597+0)r),48))
+[W5D] bit at=gc proc=engine_torque_calc bit=7 kind=4 dtype=A ref=1358|0 text=str.A(varM(4597-4)r,ixa.J(ldaS(295+0),mpy.J(ilod.J@16(varP(4597+0)r),48)))
+[W5D] bit at=gc proc=engine_torque_calc bit=8 kind=3 dtype=J ref=1593|0 text=varM(4597-8)r
+[W5D] bit at=gc proc=engine_torque_calc bit=9 kind=3 dtype=J ref=1593|0 text=varM(4597-8)r
+[W5D] bit at=gc proc=engine_torque_calc bit=10 kind=4 dtype=J ref=508|0 text=ilod.J@22(varM(4597-4)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=11 kind=4 dtype=J ref=844|0 text=str.J(varM(4597-8)r,ilod.J@22(varM(4597-4)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=12 kind=3 dtype=A ref=953|0 text=varM(4597-48)r
+[W5D] bit at=gc proc=engine_torque_calc bit=13 kind=3 dtype=A ref=953|0 text=varM(4597-48)r
+[W5D] bit at=gc proc=engine_torque_calc bit=14 kind=4 dtype=A ref=214|0 text=str.A(varM(4597-48)r,varP(4597+0)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=15 kind=3 dtype=A ref=1017|0 text=varM(4597-44)r
+[W5D] bit at=gc proc=engine_torque_calc bit=16 kind=3 dtype=A ref=1017|0 text=varM(4597-44)r
+[W5D] bit at=gc proc=engine_torque_calc bit=17 kind=4 dtype=A ref=1304|0 text=str.A(varM(4597-44)r,varM(4597-4)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=18 kind=3 dtype=J ref=1081|0 text=varM(4597-40)r
+[W5D] bit at=gc proc=engine_torque_calc bit=19 kind=3 dtype=J ref=1081|0 text=varM(4597-40)r
+[W5D] bit at=gc proc=engine_torque_calc bit=20 kind=4 dtype=J ref=812|0 text=str.J(varM(4597-40)r,varM(4597-8)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=21 kind=4 dtype=L ref=366|0 text=ilod.L@0(ldaS(855+0))
+[W5D] bit at=gc proc=engine_torque_calc bit=22 kind=4 dtype=L ref=86|0 text=shl.L(ilod.L@0(ldaS(855+0)),9)
+[W5D] bit at=gc proc=engine_torque_calc bit=23 kind=4 dtype=J ref=402|0 text=cvt.J(shl.L(ilod.L@0(ldaS(855+0)),9))
+[W5D] bit at=gc proc=engine_torque_calc bit=24 kind=4 dtype=J ref=2|0 text=geq.J(cvt.J(shl.L(ilod.L@0(ldaS(855+0)),9)),0)
+[W5D] bit at=gc proc=engine_torque_calc bit=25 kind=4 dtype=J ref=884|0 text=cg1.J(cvt.J(shl.L(ilod.L@0(ldaS(855+0)),9)))
+[W5D] bit at=gc proc=engine_torque_calc bit=26 kind=4 dtype=L ref=847|0 text=ilod.L@18(varM(4597-44)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=27 kind=4 dtype=J ref=1051|0 text=cvt.J(ilod.L@18(varM(4597-44)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=28 kind=4 dtype=J ref=252|0 text=and.J(cvt.J(ilod.L@18(varM(4597-44)r)),8)
+[W5D] bit at=gc proc=engine_torque_calc bit=29 kind=4 dtype=J ref=371|0 text=mpy.J(varM(4597-40)r,4)
+[W5D] bit at=gc proc=engine_torque_calc bit=30 kind=4 dtype=J ref=1499|0 text=ixa.J(ldaS(4590+0),mpy.J(varM(4597-40)r,4))
+[W5D] bit at=gc proc=engine_torque_calc bit=31 kind=4 dtype=A ref=192|0 text=ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-40)r,4)))
+[W5D] bit at=gc proc=engine_torque_calc bit=32 kind=4 dtype=A ref=513|0 text=istr.A@108(varM(4597-48)r,ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-40)r,4))))
+[W5D] bit at=gc proc=engine_torque_calc bit=33 kind=4 dtype=L ref=719|0 text=ilod.L@4(varM(4597-48)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=34 kind=4 dtype=J ref=110|0 text=cvt.J(ilod.L@4(varM(4597-48)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=35 kind=4 dtype=J ref=151|0 text=and.J(cvt.J(ilod.L@4(varM(4597-48)r)),16)
+[W5D] bit at=gc proc=engine_torque_calc bit=36 kind=4 dtype=J ref=748|0 text=equ.J(varM(4597-40)r,4)
+[W5D] bit at=gc proc=engine_torque_calc bit=37 kind=4 dtype=J ref=629|0 text=cg1.J(varM(4597-40)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=38 kind=3 dtype=A ref=697|0 text=varM(4597-64)r
+[W5D] bit at=gc proc=engine_torque_calc bit=39 kind=3 dtype=A ref=697|0 text=varM(4597-64)r
+[W5D] bit at=gc proc=engine_torque_calc bit=40 kind=4 dtype=J ref=719|1 text=ilod.J@101(varM(4597-48)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=41 kind=4 dtype=J ref=664|0 text=mpy.J(ilod.J@101(varM(4597-48)r),36)
+[W5D] bit at=gc proc=engine_torque_calc bit=42 kind=4 dtype=A ref=112|0 text=ilod.A@0(ldaS(4591+0))
+[W5D] bit at=gc proc=engine_torque_calc bit=43 kind=4 dtype=A ref=679|0 text=add.A(mpy.J(ilod.J@101(varM(4597-48)r),36),ilod.A@0(ldaS(4591+0)))
+[W5D] bit at=gc proc=engine_torque_calc bit=44 kind=4 dtype=A ref=459|0 text=str.A(varM(4597-64)r,add.A(mpy.J(ilod.J@101(varM(4597-48)r),36),ilod.A@0(ldaS(4591+0))))
+[W5D] bit at=gc proc=engine_torque_calc bit=45 kind=4 dtype=A ref=719|2 text=ilod.A@108(varM(4597-48)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=46 kind=4 dtype=A ref=888|0 text=istr.A@0(ilod.A@108(varM(4597-48)r),varM(4597-64)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=47 kind=4 dtype=A ref=70|0 text=ilod.A@0(ilod.A@108(varM(4597-48)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=48 kind=4 dtype=L ref=572|0 text=ilod.L@16(ilod.A@0(ilod.A@108(varM(4597-48)r)))
+[W5D] bit at=gc proc=engine_torque_calc bit=49 kind=4 dtype=L ref=1236|0 text=and.L(ilod.L@16(ilod.A@0(ilod.A@108(varM(4597-48)r))),16)
+[W5D] bit at=gc proc=engine_torque_calc bit=50 kind=4 dtype=J ref=174|0 text=and.J(cvt.J(ilod.L@4(varM(4597-48)r)),-9)
+[W5D] bit at=gc proc=engine_torque_calc bit=51 kind=4 dtype=L ref=543|0 text=cvt.L(and.J(cvt.J(ilod.L@4(varM(4597-48)r)),-9))
+[W5D] bit at=gc proc=engine_torque_calc bit=52 kind=4 dtype=L ref=689|0 text=istr.L@4(varM(4597-48)r,cvt.L(and.J(cvt.J(ilod.L@4(varM(4597-48)r)),-9)))
+[W5D] bit at=gc proc=engine_torque_calc bit=53 kind=4 dtype=J ref=1221|0 text=ixa.J(ldaS(4592+0),varM(4597-40)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=54 kind=4 dtype=L ref=1255|0 text=ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-40)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=55 kind=4 dtype=L ref=648|0 text=add.L(ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-40)r,4))),ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-40)r)))
+[W5D] bit at=gc proc=engine_torque_calc bit=56 kind=4 dtype=A ref=309|0 text=cvt.A(add.L(ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-40)r,4))),ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-40)r))))
+[W5D] bit at=gc proc=engine_torque_calc bit=57 kind=4 dtype=A ref=174|1 text=istr.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-40)r,4)),cvt.A(add.L(ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-40)r,4))),ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-40)r)))))
+[W5D] bit at=gc proc=engine_torque_calc bit=58 kind=4 dtype=J ref=741|0 text=neq.J(varM(4597-40)r,7)
+[W5D] bit at=gc proc=engine_torque_calc bit=59 kind=4 dtype=J ref=637|0 text=cg1.J(varM(4597-40)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=60 kind=4 dtype=J ref=1116|0 text=cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-40)r)))
+[W5D] bit at=gc proc=engine_torque_calc bit=61 kind=4 dtype=J ref=847|1 text=ilod.J@23(varM(4597-44)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=62 kind=4 dtype=J ref=43|0 text=mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-40)r))),ilod.J@23(varM(4597-44)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=63 kind=4 dtype=J ref=1489|0 text=ixa.J(ldaS(4593+0),mpy.J(varM(4597-40)r,4))
+[W5D] bit at=gc proc=engine_torque_calc bit=64 kind=4 dtype=A ref=172|0 text=ilod.A@0(ixa.J(ldaS(4593+0),mpy.J(varM(4597-40)r,4)))
+[W5D] bit at=gc proc=engine_torque_calc bit=65 kind=4 dtype=A ref=1225|0 text=add.A(mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-40)r))),ilod.J@23(varM(4597-44)r)),ilod.A@0(ixa.J(ldaS(4593+0),mpy.J(varM(4597-40)r,4))))
+[W5D] bit at=gc proc=engine_torque_calc bit=66 kind=4 dtype=A ref=1483|0 text=istr.A@108(varM(4597-48)r,add.A(mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-40)r))),ilod.J@23(varM(4597-44)r)),ilod.A@0(ixa.J(ldaS(4593+0),mpy.J(varM(4597-40)r,4)))))
+[W5D] bit at=gc proc=engine_torque_calc bit=67 kind=4 dtype=J ref=847|2 text=ilod.J@16(varM(4597-44)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=68 kind=4 dtype=J ref=1142|0 text=equ.J(4,ilod.J@16(varM(4597-44)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=69 kind=4 dtype=J ref=266|0 text=cg1.J(ilod.J@16(varM(4597-44)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=70 kind=4 dtype=J ref=1579|0 text=ilod.J@0(ldaS(3372+0))
+[W5D] bit at=gc proc=engine_torque_calc bit=71 kind=4 dtype=J ref=1107|0 text=istr.J@101(varM(4597-48)r,ilod.J@0(ldaS(3372+0)))
+[W5D] bit at=gc proc=engine_torque_calc bit=72 kind=4 dtype=J ref=1339|0 text=add.J(ilod.J@0(ldaS(3372+0)),1)
+[W5D] bit at=gc proc=engine_torque_calc bit=73 kind=4 dtype=J ref=471|0 text=istr.J@0(ldaS(3372+0),add.J(ilod.J@0(ldaS(3372+0)),1))
+[W5D] bit at=gc proc=engine_torque_calc bit=74 kind=3 dtype=A ref=761|0 text=varM(4597-60)r
+[W5D] bit at=gc proc=engine_torque_calc bit=75 kind=3 dtype=A ref=761|0 text=varM(4597-60)r
+[W5D] bit at=gc proc=engine_torque_calc bit=76 kind=4 dtype=J ref=592|0 text=shl.J(ilod.J@101(varM(4597-48)r),6)
+[W5D] bit at=gc proc=engine_torque_calc bit=77 kind=4 dtype=A ref=1337|0 text=ilod.A@0(ldaS(430+0))
+[W5D] bit at=gc proc=engine_torque_calc bit=78 kind=4 dtype=A ref=1488|0 text=add.A(shl.J(ilod.J@101(varM(4597-48)r),6),ilod.A@0(ldaS(430+0)))
+[W5D] bit at=gc proc=engine_torque_calc bit=79 kind=4 dtype=A ref=560|0 text=str.A(varM(4597-60)r,add.A(shl.J(ilod.J@101(varM(4597-48)r),6),ilod.A@0(ldaS(430+0))))
+[W5D] bit at=gc proc=engine_torque_calc bit=80 kind=4 dtype=A ref=1438|0 text=add.A(varM(4597-60)r,4)
+[W5D] bit at=gc proc=engine_torque_calc bit=81 kind=3 dtype=J ref=825|0 text=varM(4597-56)r
+[W5D] bit at=gc proc=engine_torque_calc bit=82 kind=3 dtype=J ref=825|0 text=varM(4597-56)r
+[W5D] bit at=gc proc=engine_torque_calc bit=83 kind=4 dtype=J ref=166|0 text=str.J(varM(4597-56)r,0)
+[W5D] bit at=gc proc=engine_torque_calc bit=84 kind=4 dtype=J ref=1464|0 text=mpy.J(varM(4597-56)r,4)
+[W5D] bit at=gc proc=engine_torque_calc bit=85 kind=4 dtype=J ref=1084|0 text=ixa.J(varM(4597-60)r,mpy.J(varM(4597-56)r,4))
+[W5D] bit at=gc proc=engine_torque_calc bit=86 kind=4 dtype=R ref=243|0 text=istr.R@52(ixa.J(varM(4597-60)r,mpy.J(varM(4597-56)r,4)),3)
+[W5D] bit at=gc proc=engine_torque_calc bit=87 kind=4 dtype=R ref=243|1 text=istr.R@40(ixa.J(varM(4597-60)r,mpy.J(varM(4597-56)r,4)),3)
+[W5D] bit at=gc proc=engine_torque_calc bit=88 kind=4 dtype=J ref=275|0 text=add.J(varM(4597-56)r,1)
+[W5D] bit at=gc proc=engine_torque_calc bit=89 kind=4 dtype=J ref=697|1 text=str.J(varM(4597-56)r,add.J(varM(4597-56)r,1))
+[W5D] bit at=gc proc=engine_torque_calc bit=90 kind=4 dtype=J ref=269|0 text=les.J(varM(4597-56)r,3)
+[W5D] bit at=gc proc=engine_torque_calc bit=91 kind=4 dtype=J ref=135|0 text=cg1.J(varM(4597-56)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=92 kind=3 dtype=J ref=889|0 text=varM(4597-52)r
+[W5D] bit at=gc proc=engine_torque_calc bit=93 kind=3 dtype=J ref=889|0 text=varM(4597-52)r
+[W5D] bit at=gc proc=engine_torque_calc bit=94 kind=4 dtype=J ref=719|3 text=ilod.J@16(varM(4597-48)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=95 kind=4 dtype=J ref=1177|0 text=mpy.J(ilod.J@16(varM(4597-48)r),48)
+[W5D] bit at=gc proc=engine_torque_calc bit=96 kind=4 dtype=J ref=1374|0 text=ixa.J(ldaS(295+0),mpy.J(ilod.J@16(varM(4597-48)r),48))
+[W5D] bit at=gc proc=engine_torque_calc bit=97 kind=4 dtype=R ref=1561|0 text=ilod.R@24(ixa.J(ldaS(295+0),mpy.J(ilod.J@16(varM(4597-48)r),48)))
+[W5D] bit at=gc proc=engine_torque_calc bit=98 kind=4 dtype=J ref=760|0 text=cvt.J(ilod.R@24(ixa.J(ldaS(295+0),mpy.J(ilod.J@16(varM(4597-48)r),48))))
+[W5D] bit at=gc proc=engine_torque_calc bit=99 kind=4 dtype=J ref=479|0 text=str.J(varM(4597-52)r,cvt.J(ilod.R@24(ixa.J(ldaS(295+0),mpy.J(ilod.J@16(varM(4597-48)r),48)))))
+[W5D] bit at=gc proc=engine_torque_calc bit=100 kind=4 dtype=J ref=380|0 text=mpy.J(varM(4597-52)r,32)
+[W5D] bit at=gc proc=engine_torque_calc bit=101 kind=4 dtype=A ref=317|0 text=add.A(ldaS(4594+0),mpy.J(varM(4597-52)r,32))
+[W5D] bit at=gc proc=engine_torque_calc bit=102 kind=4 dtype=A ref=283|0 text=istr.A@0(varM(4597-60)r,add.A(ldaS(4594+0),mpy.J(varM(4597-52)r,32)))
+[W5D] bit at=gc proc=engine_torque_calc bit=103 kind=4 dtype=J ref=225|0 text=equ.J(varM(4597-40)r,5)
+[W5D] bit at=gc proc=engine_torque_calc bit=104 kind=4 dtype=J ref=657|0 text=cg1.J(varM(4597-40)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=105 kind=3 dtype=A ref=633|0 text=varM(4597-68)r
+[W5D] bit at=gc proc=engine_torque_calc bit=106 kind=3 dtype=A ref=633|0 text=varM(4597-68)r
+[W5D] bit at=gc proc=engine_torque_calc bit=107 kind=4 dtype=A ref=240|0 text=ilod.A@20(ldaS(4595+0))
+[W5D] bit at=gc proc=engine_torque_calc bit=108 kind=4 dtype=A ref=744|0 text=str.A(varM(4597-68)r,ilod.A@20(ldaS(4595+0)))
+[W5D] bit at=gc proc=engine_torque_calc bit=109 kind=4 dtype=J ref=166|1 text=str.J(varM(4597-52)r,0)
+[W5D] bit at=gc proc=engine_torque_calc bit=110 kind=4 dtype=J ref=79|0 text=ilod.J@134(varM(4597-68)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=111 kind=4 dtype=J ref=79|1 text=ilod.J@0(varM(4597-68)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=112 kind=4 dtype=J ref=451|0 text=equ.J(-1,ilod.J@0(varM(4597-68)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=113 kind=4 dtype=J ref=377|0 text=cg1.J(ilod.J@0(varM(4597-68)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=114 kind=4 dtype=J ref=79|2 text=ilod.J@4(varM(4597-68)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=115 kind=4 dtype=J ref=471|1 text=equ.J(-1,ilod.J@4(varM(4597-68)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=116 kind=4 dtype=J ref=480|0 text=cg1.J(ilod.J@4(varM(4597-68)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=117 kind=4 dtype=J ref=79|3 text=ilod.J@8(varM(4597-68)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=118 kind=4 dtype=J ref=491|0 text=equ.J(-1,ilod.J@8(varM(4597-68)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=119 kind=4 dtype=J ref=585|0 text=cg1.J(ilod.J@8(varM(4597-68)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=120 kind=4 dtype=J ref=915|0 text=add.J(varM(4597-52)r,1)
+[W5D] bit at=gc proc=engine_torque_calc bit=121 kind=4 dtype=J ref=660|0 text=str.J(varM(4597-52)r,add.J(varM(4597-52)r,1))
+[W5D] bit at=gc proc=engine_torque_calc bit=122 kind=4 dtype=A ref=1311|0 text=add.A(varM(4597-68)r,136)
+[W5D] bit at=gc proc=engine_torque_calc bit=123 kind=4 dtype=A ref=1421|0 text=str.A(varM(4597-68)r,add.A(varM(4597-68)r,136))
+[W5D] bit at=gc proc=engine_torque_calc bit=124 kind=4 dtype=J ref=1191|0 text=les.J(varM(4597-52)r,16)
+[W5D] bit at=gc proc=engine_torque_calc bit=125 kind=4 dtype=J ref=287|0 text=cg1.J(varM(4597-52)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=126 kind=4 dtype=J ref=77|0 text=istr.J@134(varM(4597-68)r,1)
+[W5D] bit at=gc proc=engine_torque_calc bit=127 kind=4 dtype=J ref=852|0 text=mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-40)r))),varM(4597-52)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=128 kind=4 dtype=A ref=770|0 text=add.A(mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-40)r))),varM(4597-52)r),ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-40)r,4))))
+[W5D] bit at=gc proc=engine_torque_calc bit=129 kind=4 dtype=A ref=1015|0 text=istr.A@108(varM(4597-48)r,add.A(mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-40)r))),varM(4597-52)r),ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-40)r,4)))))
+[W5D] bit at=gc proc=engine_torque_calc bit=130 kind=4 dtype=J ref=1065|1 text=ilod.J@88(varP(4597+0)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=131 kind=4 dtype=J ref=248|0 text=neq.J(-1,ilod.J@88(varP(4597+0)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=132 kind=4 dtype=J ref=118|0 text=cg1.J(ilod.J@88(varP(4597+0)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=133 kind=4 dtype=J ref=1065|2 text=ilod.J@14(varP(4597+0)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=134 kind=4 dtype=J ref=1391|0 text=mpy.J(ilod.J@14(varP(4597+0)r),68)
+[W5D] bit at=gc proc=engine_torque_calc bit=135 kind=4 dtype=J ref=801|0 text=ixa.J(ldaS(29+0),mpy.J(ilod.J@14(varP(4597+0)r),68))
+[W5D] bit at=gc proc=engine_torque_calc bit=136 kind=4 dtype=J ref=1147|0 text=mpy.J(ilod.J@88(varP(4597+0)r),2)
+[W5D] bit at=gc proc=engine_torque_calc bit=137 kind=4 dtype=J ref=1323|0 text=ixa.J(ldaS(3334+0),mpy.J(ilod.J@88(varP(4597+0)r),2))
+[W5D] bit at=gc proc=engine_torque_calc bit=138 kind=4 dtype=L ref=1459|1 text=ilod.L@0(ixa.J(ldaS(3334+0),mpy.J(ilod.J@88(varP(4597+0)r),2)))
+[W5D] bit at=gc proc=engine_torque_calc bit=139 kind=4 dtype=L ref=891|0 text=istr.L@20(ixa.J(ldaS(29+0),mpy.J(ilod.J@14(varP(4597+0)r),68)),ilod.L@0(ixa.J(ldaS(3334+0),mpy.J(ilod.J@88(varP(4597+0)r),2))))
+[W5D] bit at=gc proc=engine_torque_calc bit=140 kind=4 dtype=L ref=508|1 text=ilod.L@18(varM(4597-4)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=141 kind=4 dtype=J ref=970|0 text=cvt.J(ilod.L@18(varM(4597-4)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=142 kind=4 dtype=J ref=352|0 text=and.J(cvt.J(ilod.L@18(varM(4597-4)r)),2)
+[W5D] bit at=gc proc=engine_torque_calc bit=143 kind=3 dtype=A ref=1401|0 text=varM(4597-20)r
+[W5D] bit at=gc proc=engine_torque_calc bit=144 kind=3 dtype=A ref=1401|0 text=varM(4597-20)r
+[W5D] bit at=gc proc=engine_torque_calc bit=145 kind=3 dtype=A ref=1485|0 text=varR(0+2)r
+[W5D] bit at=gc proc=engine_torque_calc bit=146 kind=3 dtype=A ref=1485|0 text=varR(0+2)r
+[W5D] bit at=gc proc=engine_torque_calc bit=147 kind=4 dtype=A ref=866|0 text=str.A(varM(4597-20)r,varR(0+2)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=148 kind=4 dtype=A ref=1204|0 text=neq.A(varR(0+2)r,0)
+[W5D] bit at=gc proc=engine_torque_calc bit=149 kind=4 dtype=A ref=1493|0 text=cg1.A(varR(0+2)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=150 kind=4 dtype=J ref=223|0 text=istr.J@4(varM(4597-20)r,0)
+[W5D] bit at=gc proc=engine_torque_calc bit=151 kind=4 dtype=A ref=1566|0 text=istr.A@12(varM(4597-20)r,varP(4597+0)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=152 kind=4 dtype=R ref=243|2 text=istr.R@16(varM(4597-20)r,3)
+[W5D] bit at=gc proc=engine_torque_calc bit=153 kind=4 dtype=A ref=508|2 text=ilod.A@12(varM(4597-4)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=154 kind=4 dtype=A ref=219|0 text=istr.A@20(varM(4597-20)r,ilod.A@12(varM(4597-4)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=155 kind=4 dtype=A ref=287|1 text=ilod.A@0(ldaS(296+0))
+[W5D] bit at=gc proc=engine_torque_calc bit=156 kind=4 dtype=A ref=1136|0 text=istr.A@0(varM(4597-20)r,ilod.A@0(ldaS(296+0)))
+[W5D] bit at=gc proc=engine_torque_calc bit=157 kind=4 dtype=A ref=1230|0 text=istr.A@0(ldaS(296+0),varM(4597-20)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=158 kind=4 dtype=J ref=304|0 text=and.J(cvt.J(ilod.L@18(varM(4597-4)r)),4)
+[W5D] bit at=gc proc=engine_torque_calc bit=159 kind=4 dtype=A ref=508|3 text=ilod.A@8(varM(4597-4)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=160 kind=4 dtype=J ref=882|0 text=and.J(cvt.J(ilod.L@18(varM(4597-4)r)),16384)
+[W5D] bit at=gc proc=engine_torque_calc bit=161 kind=4 dtype=L ref=1065|3 text=ilod.L@4(varP(4597+0)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=162 kind=4 dtype=J ref=124|0 text=cvt.J(ilod.L@4(varP(4597+0)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=163 kind=4 dtype=J ref=772|0 text=and.J(cvt.J(ilod.L@4(varP(4597+0)r)),16)
+[W5D] bit at=gc proc=engine_torque_calc bit=164 kind=4 dtype=? ref=1505|0 text=mov.?(ldaM(4597-32),ldaS(4598+0))
+[W5D] bit at=gc proc=engine_torque_calc bit=165 kind=4 dtype=J ref=1065|4 text=ilod.J@101(varP(4597+0)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=166 kind=4 dtype=A ref=33|0 text=add.A(varP(4597+0)r,68)
+[W5D] bit at=gc proc=engine_torque_calc bit=167 kind=4 dtype=A ref=279|0 text=add.A(varP(4597+0)r,20)
+[W5D] bit at=gc proc=engine_torque_calc bit=168 kind=4 dtype=J ref=10|0 text=neq.J(varM(4597-56)r,3)
+[W5D] bit at=gc proc=engine_torque_calc bit=169 kind=4 dtype=J ref=932|0 text=neq.J(varM(4597-52)r,16)
+[W5D] bit at=gc proc=engine_torque_calc bit=170 kind=4 dtype=J ref=586|0 text=ixa.J(ldaS(4592+0),varM(4597-8)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=171 kind=4 dtype=L ref=1604|0 text=ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-8)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=172 kind=4 dtype=J ref=1|1 text=cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-8)r)))
+[W5D] bit at=gc proc=engine_torque_calc bit=173 kind=4 dtype=J ref=40|0 text=mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-8)r))),varM(4597-52)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=174 kind=4 dtype=J ref=1423|0 text=mpy.J(varM(4597-8)r,4)
+[W5D] bit at=gc proc=engine_torque_calc bit=175 kind=4 dtype=J ref=496|0 text=ixa.J(ldaS(4590+0),mpy.J(varM(4597-8)r,4))
+[W5D] bit at=gc proc=engine_torque_calc bit=176 kind=4 dtype=A ref=1424|0 text=ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-8)r,4)))
+[W5D] bit at=gc proc=engine_torque_calc bit=177 kind=4 dtype=A ref=1451|0 text=add.A(mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-8)r))),varM(4597-52)r),ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-8)r,4))))
+[W5D] bit at=gc proc=engine_torque_calc bit=178 kind=4 dtype=A ref=1154|0 text=istr.A@108(varP(4597+0)r,add.A(mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-8)r))),varM(4597-52)r),ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-8)r,4)))))
+[W5D] bit at=gc proc=engine_torque_calc bit=179 kind=4 dtype=J ref=1540|0 text=equ.J(varM(4597-8)r,5)
+[W5D] bit at=gc proc=engine_torque_calc bit=180 kind=4 dtype=J ref=62|0 text=cg1.J(varM(4597-8)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=181 kind=4 dtype=J ref=248|1 text=and.J(cvt.J(ilod.L@18(varM(4597-4)r)),8)
+[W5D] bit at=gc proc=engine_torque_calc bit=182 kind=4 dtype=J ref=508|4 text=ilod.J@23(varM(4597-4)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=183 kind=4 dtype=J ref=1207|0 text=mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-8)r))),ilod.J@23(varM(4597-4)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=184 kind=4 dtype=J ref=318|0 text=ixa.J(ldaS(4593+0),mpy.J(varM(4597-8)r,4))
+[W5D] bit at=gc proc=engine_torque_calc bit=185 kind=4 dtype=A ref=1068|0 text=ilod.A@0(ixa.J(ldaS(4593+0),mpy.J(varM(4597-8)r,4)))
+[W5D] bit at=gc proc=engine_torque_calc bit=186 kind=4 dtype=A ref=402|1 text=add.A(mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-8)r))),ilod.J@23(varM(4597-4)r)),ilod.A@0(ixa.J(ldaS(4593+0),mpy.J(varM(4597-8)r,4))))
+[W5D] bit at=gc proc=engine_torque_calc bit=187 kind=4 dtype=A ref=39|0 text=istr.A@108(varP(4597+0)r,add.A(mpy.J(cvt.J(ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-8)r))),ilod.J@23(varM(4597-4)r)),ilod.A@0(ixa.J(ldaS(4593+0),mpy.J(varM(4597-8)r,4)))))
+[W5D] bit at=gc proc=engine_torque_calc bit=188 kind=4 dtype=J ref=963|0 text=neq.J(varM(4597-8)r,7)
+[W5D] bit at=gc proc=engine_torque_calc bit=189 kind=4 dtype=J ref=42|0 text=cg1.J(varM(4597-8)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=190 kind=4 dtype=J ref=223|1 text=istr.J@4(varR(0+2)r,0)
+[W5D] bit at=gc proc=engine_torque_calc bit=191 kind=4 dtype=A ref=291|0 text=istr.A@12(varR(0+2)r,varP(4597+0)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=192 kind=4 dtype=R ref=243|3 text=istr.R@16(varR(0+2)r,3)
+[W5D] bit at=gc proc=engine_torque_calc bit=193 kind=4 dtype=A ref=1142|1 text=istr.A@20(varR(0+2)r,ilod.A@12(varM(4597-4)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=194 kind=4 dtype=A ref=985|0 text=istr.A@0(varR(0+2)r,ilod.A@0(ldaS(296+0)))
+[W5D] bit at=gc proc=engine_torque_calc bit=195 kind=3 dtype=A ref=737|1 text=varS(296+0)
+[W5D] bit at=gc proc=engine_torque_calc bit=196 kind=3 dtype=A ref=737|1 text=varS(296+0)
+[W5D] bit at=gc proc=engine_torque_calc bit=197 kind=4 dtype=? ref=196|0 text=str.?(varS(296+0),varR(0+2)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=198 kind=4 dtype=R ref=1137|0 text=ilod.R@24(ixa.J(ldaS(295+0),mpy.J(ilod.J@16(varP(4597+0)r),48)))
+[W5D] bit at=gc proc=engine_torque_calc bit=199 kind=4 dtype=J ref=375|0 text=cvt.J(ilod.R@24(ixa.J(ldaS(295+0),mpy.J(ilod.J@16(varP(4597+0)r),48))))
+[W5D] bit at=gc proc=engine_torque_calc bit=200 kind=4 dtype=? ref=395|0 text=str.?(varM(4597-52)r,cvt.J(ilod.R@24(ixa.J(ldaS(295+0),mpy.J(ilod.J@16(varP(4597+0)r),48)))))
+[W5D] bit at=gc proc=engine_torque_calc bit=201 kind=4 dtype=J ref=1524|0 text=istr.J@101(varP(4597+0)r,ilod.J@0(ldaS(3372+0)))
+[W5D] bit at=gc proc=engine_torque_calc bit=202 kind=4 dtype=J ref=365|0 text=shl.J(ilod.J@101(varP(4597+0)r),6)
+[W5D] bit at=gc proc=engine_torque_calc bit=203 kind=4 dtype=A ref=504|0 text=add.A(shl.J(ilod.J@101(varP(4597+0)r),6),ilod.A@0(ldaS(430+0)))
+[W5D] bit at=gc proc=engine_torque_calc bit=204 kind=4 dtype=? ref=195|0 text=str.?(varM(4597-60)r,add.A(shl.J(ilod.J@101(varP(4597+0)r),6),ilod.A@0(ldaS(430+0))))
+[W5D] bit at=gc proc=engine_torque_calc bit=205 kind=4 dtype=J ref=508|5 text=ilod.J@16(varM(4597-4)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=206 kind=4 dtype=J ref=594|0 text=equ.J(4,ilod.J@16(varM(4597-4)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=207 kind=4 dtype=J ref=461|0 text=cg1.J(ilod.J@16(varM(4597-4)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=208 kind=4 dtype=L ref=228|0 text=add.L(ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-8)r,4))),ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-8)r)))
+[W5D] bit at=gc proc=engine_torque_calc bit=209 kind=4 dtype=A ref=4|2 text=cvt.A(add.L(ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-8)r,4))),ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-8)r))))
+[W5D] bit at=gc proc=engine_torque_calc bit=210 kind=4 dtype=A ref=675|0 text=istr.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-8)r,4)),cvt.A(add.L(ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-8)r,4))),ilod.L@0(ixa.J(ldaS(4592+0),varM(4597-8)r)))))
+[W5D] bit at=gc proc=engine_torque_calc bit=211 kind=4 dtype=J ref=533|0 text=and.J(cvt.J(ilod.L@4(varP(4597+0)r)),-9)
+[W5D] bit at=gc proc=engine_torque_calc bit=212 kind=4 dtype=L ref=1247|0 text=cvt.L(and.J(cvt.J(ilod.L@4(varP(4597+0)r)),-9))
+[W5D] bit at=gc proc=engine_torque_calc bit=213 kind=4 dtype=L ref=1475|1 text=istr.L@4(varP(4597+0)r,cvt.L(and.J(cvt.J(ilod.L@4(varP(4597+0)r)),-9)))
+[W5D] bit at=gc proc=engine_torque_calc bit=214 kind=4 dtype=J ref=621|0 text=mpy.J(ilod.J@101(varP(4597+0)r),36)
+[W5D] bit at=gc proc=engine_torque_calc bit=215 kind=4 dtype=A ref=1089|0 text=add.A(mpy.J(ilod.J@101(varP(4597+0)r),36),ilod.A@0(ldaS(4591+0)))
+[W5D] bit at=gc proc=engine_torque_calc bit=216 kind=4 dtype=R ref=624|0 text=str.R(varM(4597-64)r,add.A(mpy.J(ilod.J@101(varP(4597+0)r),36),ilod.A@0(ldaS(4591+0))))
+[W5D] bit at=gc proc=engine_torque_calc bit=217 kind=4 dtype=A ref=1065|5 text=ilod.A@108(varP(4597+0)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=218 kind=4 dtype=A ref=258|0 text=istr.A@0(ilod.A@108(varP(4597+0)r),varM(4597-64)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=219 kind=4 dtype=A ref=1411|0 text=ilod.A@0(ilod.A@108(varP(4597+0)r))
+[W5D] bit at=gc proc=engine_torque_calc bit=220 kind=4 dtype=L ref=16|2 text=ilod.L@16(ilod.A@0(ilod.A@108(varP(4597+0)r)))
+[W5D] bit at=gc proc=engine_torque_calc bit=221 kind=4 dtype=L ref=1381|0 text=and.L(ilod.L@16(ilod.A@0(ilod.A@108(varP(4597+0)r))),16)
+[W5D] bit at=gc proc=engine_torque_calc bit=222 kind=4 dtype=J ref=181|0 text=equ.J(varM(4597-8)r,4)
+[W5D] bit at=gc proc=engine_torque_calc bit=223 kind=4 dtype=J ref=34|0 text=cg1.J(varM(4597-8)r)
+[W5D] bit at=gc proc=engine_torque_calc bit=224 kind=4 dtype=A ref=1506|0 text=istr.A@108(varP(4597+0)r,ilod.A@0(ixa.J(ldaS(4590+0),mpy.J(varM(4597-8)r,4))))
+[W5D] bit at=gc proc=engine_torque_calc bit=225 kind=1 dtype=A ref=721|0 text=ldaS(295+0)
+[W5D] bit at=gc proc=engine_torque_calc bit=226 kind=2 dtype=J ref=48|0 text=48
+[W5D] bit at=gc proc=engine_torque_calc bit=227 kind=1 dtype=A ref=1586|0 text=ldaS(855+0)
+[W5D] bit at=gc proc=engine_torque_calc bit=228 kind=1 dtype=A ref=1443|0 text=ldaS(4590+0)
+[W5D] bit at=gc proc=engine_torque_calc bit=229 kind=2 dtype=J ref=4|0 text=4
+[W5D] bit at=gc proc=engine_torque_calc bit=230 kind=2 dtype=J ref=36|0 text=36
+[W5D] bit at=gc proc=engine_torque_calc bit=231 kind=1 dtype=A ref=1459|0 text=ldaS(4591+0)
+[W5D] bit at=gc proc=engine_torque_calc bit=232 kind=2 dtype=J ref=1610|0 text=-9
+[W5D] bit at=gc proc=engine_torque_calc bit=233 kind=1 dtype=A ref=1475|0 text=ldaS(4592+0)
+[W5D] bit at=gc proc=engine_torque_calc bit=234 kind=1 dtype=A ref=1383|0 text=ldaS(3372+0)
+[W5D] bit at=gc proc=engine_torque_calc bit=235 kind=1 dtype=A ref=1262|0 text=ldaS(430+0)
+[W5D] bit at=gc proc=engine_torque_calc bit=236 kind=1 dtype=A ref=1466|0 text=ldaS(38+0)
+[W5D] bit at=gc proc=engine_torque_calc bit=237 kind=2 dtype=R ref=0|1 text=3
+[W5D] bit at=gc proc=engine_torque_calc bit=238 kind=2 dtype=J ref=3|0 text=3
+[W5D] bit at=gc proc=engine_torque_calc bit=239 kind=1 dtype=A ref=1507|0 text=ldaS(4594+0)
+[W5D] bit at=gc proc=engine_torque_calc bit=240 kind=2 dtype=J ref=1618|0 text=-1
+[W5D] bit at=gc proc=engine_torque_calc bit=241 kind=1 dtype=A ref=1322|0 text=ldaS(29+0)
+[W5D] bit at=gc proc=engine_torque_calc bit=242 kind=2 dtype=J ref=68|0 text=68
+[W5D] bit at=gc proc=engine_torque_calc bit=243 kind=1 dtype=A ref=775|0 text=ldaS(3334+0)
+[W5D] bit at=gc proc=engine_torque_calc bit=244 kind=1 dtype=A ref=737|0 text=ldaS(296+0)
+[W5D] bit at=gc proc=engine_torque_calc bit=245 kind=1 dtype=A ref=1209|0 text=ldaM(4597-32)
+[W5D] bit at=gc proc=engine_torque_calc bit=246 kind=1 dtype=A ref=1571|0 text=ldaS(4598+0)
+[W5D] bit at=gc proc=engine_torque_calc bit=247 kind=2 dtype=J ref=7|0 text=7
+[W5D] bit at=gc proc=engine_torque_calc bit=248 kind=1 dtype=A ref=1491|0 text=ldaS(4593+0)
+[W5D] bit at=gc proc=engine_torque_calc bit=249 kind=2 dtype=J ref=5|0 text=5
+[W5D] bit at=gc proc=engine_torque_calc bit=250 kind=1 dtype=A ref=1523|0 text=ldaS(4595+0)
+[W5D] bit at=gc proc=engine_torque_calc bit=251 kind=2 dtype=J ref=1|0 text=1
+[W5D] bit at=gc proc=engine_torque_calc bit=252 kind=2 dtype=J ref=16|0 text=16

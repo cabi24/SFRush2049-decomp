@@ -1,0 +1,770 @@
+[CDX] globalcolor proc=0
+[CDX] p1cand phase=p1 proc=385 web=0 sym=0 save=1.181818 nocs=11 best=-3333.000000
+[CDX] p1cand phase=p1 proc=385 web=2 sym=2 save=2.000000 nocs=11 best=1.181818
+[CDX] p1cand phase=p1 proc=385 web=8 sym=8 save=1.666667 nocs=6 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=10 sym=10 save=1.500000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=38 sym=38 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=74 sym=74 save=2.000000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=81 sym=81 save=15.500000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=85 sym=85 save=20.500000 nocs=2 best=15.500000
+[CDX] p1cand phase=p1 proc=385 web=92 sym=92 save=8.500000 nocs=4 best=20.500000
+[CDX] p1cand phase=p1 proc=385 web=106 sym=106 save=20.666666 nocs=3 best=20.500000
+[CDX] p1cand phase=p1 proc=385 web=131 sym=131 save=1.500000 nocs=2 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=134 sym=134 save=2.000000 nocs=1 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=138 sym=138 save=2.000000 nocs=1 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=166 sym=166 save=1.500000 nocs=2 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=182 sym=182 save=2.000000 nocs=2 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=232 sym=232 save=0.200000 nocs=5 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=233 sym=233 save=0.200000 nocs=5 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=234 sym=234 save=0.000000 nocs=1 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=235 sym=235 save=0.000000 nocs=2 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=236 sym=236 save=-0.500000 nocs=2 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=237 sym=237 save=0.000000 nocs=1 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=238 sym=238 save=0.000000 nocs=1 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=239 sym=239 save=0.000000 nocs=1 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=240 sym=240 save=0.000000 nocs=2 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=241 sym=241 save=2.000000 nocs=1 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=242 sym=242 save=0.000000 nocs=1 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=243 sym=243 save=0.000000 nocs=1 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=245 sym=245 save=10.000000 nocs=1 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=246 sym=246 save=0.000000 nocs=1 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=247 sym=247 save=10.000000 nocs=3 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=248 sym=248 save=0.000000 nocs=1 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=249 sym=249 save=0.000000 nocs=1 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=250 sym=250 save=0.000000 nocs=1 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=251 sym=251 save=0.000000 nocs=1 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=252 sym=252 save=1.000000 nocs=1 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=253 sym=253 save=0.000000 nocs=1 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=254 sym=254 save=0.000000 nocs=1 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=255 sym=255 save=0.000000 nocs=1 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=256 sym=256 save=0.000000 nocs=1 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=257 sym=257 save=0.000000 nocs=1 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=258 sym=258 save=0.000000 nocs=1 best=20.666666
+[CDX] p1cand phase=p1 proc=385 web=259 sym=259 save=5.000000 nocs=2 best=20.666666
+[CDX] p1cost phase=p1 proc=385 web=106 color=1 reg=v0 kind=caller cost=0.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=106 color=2 reg=v1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=106 color=3 reg=a0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=106 color=4 reg=a1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=106 color=5 reg=a2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=106 color=6 reg=a3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=106 color=7 reg=t0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=106 color=8 reg=t1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=106 color=9 reg=t2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=106 color=10 reg=t3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=106 color=11 reg=t4 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=106 color=12 reg=t5 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=106 color=13 reg=? kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=106 color=14 reg=s0 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=106 color=15 reg=s1 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=106 color=16 reg=s2 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=106 color=17 reg=s3 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=106 color=18 reg=s4 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=106 color=19 reg=s5 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=106 color=20 reg=s6 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=106 color=21 reg=s7 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=106 color=22 reg=s8 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1dec phase=p1 proc=385 web=106 sym=106 class=1 save=20.666666 nocs=3 totalsave=62.000000 bestcost=0.000000 bestcolor=1 bestreg=v0 forbidden0=0x00000000 forbidden1=0x00000000 regsleft=22 numintf=6 available0=0x7ffffe00 available1=0x00000000 allcallersave=1 taken1=1 taken2=1 decision=color forced=-2
+[CDX] webdetail phase=p1 proc=385 role=target web=106 sym=106 type=3 dtype=0 table=633 chain=0 exprtable=584 exprchain=1 bb=18 line=3 raw10=0xffffffbc raw14=0x11f50102 raw18=0x04010028 raw20=0x00000000
+[CDX] p1color phase=p1 proc=385 web=106 sym=106 color=1 reg=v0 forced=-2
+[CDX] p1cand phase=p1 proc=385 web=0 sym=0 save=1.181818 nocs=11 best=-3333.000000
+[CDX] p1cand phase=p1 proc=385 web=2 sym=2 save=2.000000 nocs=11 best=1.181818
+[CDX] p1cand phase=p1 proc=385 web=8 sym=8 save=1.666667 nocs=6 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=10 sym=10 save=1.500000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=38 sym=38 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=74 sym=74 save=2.000000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=81 sym=81 save=15.500000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=85 sym=85 save=20.500000 nocs=2 best=15.500000
+[CDX] p1cand phase=p1 proc=385 web=92 sym=92 save=8.500000 nocs=4 best=20.500000
+[CDX] p1cand phase=p1 proc=385 web=131 sym=131 save=1.500000 nocs=2 best=20.500000
+[CDX] p1cand phase=p1 proc=385 web=134 sym=134 save=2.000000 nocs=1 best=20.500000
+[CDX] p1cand phase=p1 proc=385 web=138 sym=138 save=2.000000 nocs=1 best=20.500000
+[CDX] p1cand phase=p1 proc=385 web=166 sym=166 save=1.500000 nocs=2 best=20.500000
+[CDX] p1cand phase=p1 proc=385 web=182 sym=182 save=2.000000 nocs=2 best=20.500000
+[CDX] p1cand phase=p1 proc=385 web=232 sym=232 save=0.200000 nocs=5 best=20.500000
+[CDX] p1cand phase=p1 proc=385 web=233 sym=233 save=0.200000 nocs=5 best=20.500000
+[CDX] p1cand phase=p1 proc=385 web=241 sym=241 save=2.000000 nocs=1 best=20.500000
+[CDX] p1cand phase=p1 proc=385 web=245 sym=245 save=10.000000 nocs=1 best=20.500000
+[CDX] p1cand phase=p1 proc=385 web=247 sym=247 save=10.000000 nocs=3 best=20.500000
+[CDX] p1cand phase=p1 proc=385 web=252 sym=252 save=1.000000 nocs=1 best=20.500000
+[CDX] p1cand phase=p1 proc=385 web=259 sym=259 save=5.000000 nocs=2 best=20.500000
+[CDX] p1cost phase=p1 proc=385 web=85 color=1 reg=v0 kind=caller cost=0.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=85 color=2 reg=v1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=85 color=3 reg=a0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=85 color=4 reg=a1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=85 color=5 reg=a2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=85 color=6 reg=a3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=85 color=7 reg=t0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=85 color=8 reg=t1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=85 color=9 reg=t2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=85 color=10 reg=t3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=85 color=11 reg=t4 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=85 color=12 reg=t5 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=85 color=13 reg=? kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=85 color=14 reg=s0 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=85 color=15 reg=s1 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=85 color=16 reg=s2 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=85 color=17 reg=s3 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=85 color=18 reg=s4 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=85 color=19 reg=s5 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=85 color=20 reg=s6 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=85 color=21 reg=s7 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=85 color=22 reg=s8 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1dec phase=p1 proc=385 web=85 sym=85 class=1 save=20.500000 nocs=2 totalsave=41.000000 bestcost=0.000000 bestcolor=1 bestreg=v0 forbidden0=0x00000000 forbidden1=0x00000000 regsleft=22 numintf=7 available0=0x7ffffe00 available1=0x00000000 allcallersave=1 taken1=1 taken2=1 decision=color forced=-2
+[CDX] webdetail phase=p1 proc=385 role=target web=85 sym=85 type=4 dtype=6 table=1084 chain=0 exprtable=-1 exprchain=-1 bb=-1 line=-1 raw10=0x41000000 raw14=0x1025a458 raw18=0x10259488 raw20=0x1026f430
+[CDX] p1color phase=p1 proc=385 web=85 sym=85 color=1 reg=v0 forced=-2
+[CDX] p1cand phase=p1 proc=385 web=0 sym=0 save=1.181818 nocs=11 best=-3333.000000
+[CDX] p1cand phase=p1 proc=385 web=2 sym=2 save=2.000000 nocs=11 best=1.181818
+[CDX] p1cand phase=p1 proc=385 web=8 sym=8 save=1.666667 nocs=6 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=10 sym=10 save=1.500000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=38 sym=38 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=74 sym=74 save=2.000000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=81 sym=81 save=15.500000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=92 sym=92 save=8.500000 nocs=4 best=15.500000
+[CDX] p1cand phase=p1 proc=385 web=131 sym=131 save=1.500000 nocs=2 best=15.500000
+[CDX] p1cand phase=p1 proc=385 web=134 sym=134 save=2.000000 nocs=1 best=15.500000
+[CDX] p1cand phase=p1 proc=385 web=138 sym=138 save=2.000000 nocs=1 best=15.500000
+[CDX] p1cand phase=p1 proc=385 web=166 sym=166 save=1.500000 nocs=2 best=15.500000
+[CDX] p1cand phase=p1 proc=385 web=182 sym=182 save=2.000000 nocs=2 best=15.500000
+[CDX] p1cand phase=p1 proc=385 web=232 sym=232 save=0.200000 nocs=5 best=15.500000
+[CDX] p1cand phase=p1 proc=385 web=233 sym=233 save=0.200000 nocs=5 best=15.500000
+[CDX] p1cand phase=p1 proc=385 web=241 sym=241 save=2.000000 nocs=1 best=15.500000
+[CDX] p1cand phase=p1 proc=385 web=245 sym=245 save=10.000000 nocs=1 best=15.500000
+[CDX] p1cand phase=p1 proc=385 web=247 sym=247 save=10.000000 nocs=3 best=15.500000
+[CDX] p1cand phase=p1 proc=385 web=252 sym=252 save=1.000000 nocs=1 best=15.500000
+[CDX] p1cand phase=p1 proc=385 web=259 sym=259 save=5.000000 nocs=2 best=15.500000
+[CDX] p1cost phase=p1 proc=385 web=81 color=2 reg=v1 kind=caller cost=0.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=81 color=3 reg=a0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=81 color=4 reg=a1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=81 color=5 reg=a2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=81 color=6 reg=a3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=81 color=7 reg=t0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=81 color=8 reg=t1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=81 color=9 reg=t2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=81 color=10 reg=t3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=81 color=11 reg=t4 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=81 color=12 reg=t5 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=81 color=13 reg=? kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=81 color=14 reg=s0 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=81 color=15 reg=s1 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=81 color=16 reg=s2 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=81 color=17 reg=s3 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=81 color=18 reg=s4 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=81 color=19 reg=s5 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=81 color=20 reg=s6 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=81 color=21 reg=s7 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=81 color=22 reg=s8 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1dec phase=p1 proc=385 web=81 sym=81 class=1 save=15.500000 nocs=2 totalsave=31.000000 bestcost=0.000000 bestcolor=2 bestreg=v1 forbidden0=0x40000000 forbidden1=0x00000000 regsleft=21 numintf=7 available0=0x3ffffe00 available1=0x00000000 allcallersave=1 taken1=1 taken2=1 decision=color forced=-2
+[CDX] webdetail phase=p1 proc=385 role=target web=81 sym=81 type=3 dtype=6 table=825 chain=0 exprtable=776 exprchain=1 bb=11 line=3 raw10=0xffffffc8 raw14=0x11f50102 raw18=0x04010018 raw20=0x00000000
+[CDX] p1color phase=p1 proc=385 web=81 sym=81 color=2 reg=v1 forced=-2
+[CDX] p1cand phase=p1 proc=385 web=0 sym=0 save=1.181818 nocs=11 best=-3333.000000
+[CDX] p1cand phase=p1 proc=385 web=2 sym=2 save=2.000000 nocs=11 best=1.181818
+[CDX] p1cand phase=p1 proc=385 web=8 sym=8 save=1.666667 nocs=6 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=10 sym=10 save=1.500000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=38 sym=38 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=74 sym=74 save=2.000000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=92 sym=92 save=8.500000 nocs=4 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=131 sym=131 save=1.500000 nocs=2 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=134 sym=134 save=2.000000 nocs=1 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=138 sym=138 save=2.000000 nocs=1 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=166 sym=166 save=1.500000 nocs=2 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=182 sym=182 save=2.000000 nocs=2 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=232 sym=232 save=0.200000 nocs=5 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=233 sym=233 save=0.200000 nocs=5 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=241 sym=241 save=2.000000 nocs=1 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=245 sym=245 save=10.000000 nocs=1 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=247 sym=247 save=10.000000 nocs=3 best=10.000000
+[CDX] p1cand phase=p1 proc=385 web=252 sym=252 save=1.000000 nocs=1 best=10.000000
+[CDX] p1cand phase=p1 proc=385 web=259 sym=259 save=5.000000 nocs=2 best=10.000000
+[CDX] p1cost phase=p1 proc=385 web=245 color=3 reg=a0 kind=caller cost=0.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=245 color=4 reg=a1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=245 color=5 reg=a2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=245 color=6 reg=a3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=245 color=7 reg=t0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=245 color=8 reg=t1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=245 color=9 reg=t2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=245 color=10 reg=t3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=245 color=11 reg=t4 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=245 color=12 reg=t5 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=245 color=13 reg=? kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=245 color=14 reg=s0 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=245 color=15 reg=s1 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=245 color=16 reg=s2 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=245 color=17 reg=s3 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=245 color=18 reg=s4 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=245 color=19 reg=s5 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=245 color=20 reg=s6 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=245 color=21 reg=s7 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=245 color=22 reg=s8 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1dec phase=p1 proc=385 web=245 sym=245 class=1 save=10.000000 nocs=1 totalsave=10.000000 bestcost=0.000000 bestcolor=3 bestreg=a0 forbidden0=0x60000000 forbidden1=0x00000000 regsleft=20 numintf=7 available0=0x1ffffe00 available1=0x00000000 allcallersave=1 taken1=1 taken2=1 decision=color forced=-2
+[CDX] webdetail phase=p1 proc=385 role=target web=245 sym=245 type=2 dtype=6 table=3 chain=0 exprtable=-1 exprchain=-1 bb=-1 line=-1 raw10=0x00000003 raw14=0x00000000 raw18=0x00000004 raw20=0x00000000
+[CDX] p1color phase=p1 proc=385 web=245 sym=245 color=3 reg=a0 forced=-2
+[CDX] p1cand phase=p1 proc=385 web=0 sym=0 save=1.181818 nocs=11 best=-3333.000000
+[CDX] p1cand phase=p1 proc=385 web=2 sym=2 save=2.000000 nocs=11 best=1.181818
+[CDX] p1cand phase=p1 proc=385 web=8 sym=8 save=1.666667 nocs=6 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=10 sym=10 save=1.500000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=38 sym=38 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=74 sym=74 save=2.000000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=92 sym=92 save=8.500000 nocs=4 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=131 sym=131 save=1.500000 nocs=2 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=134 sym=134 save=2.000000 nocs=1 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=138 sym=138 save=2.000000 nocs=1 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=166 sym=166 save=1.500000 nocs=2 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=182 sym=182 save=2.000000 nocs=2 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=232 sym=232 save=0.200000 nocs=5 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=233 sym=233 save=0.200000 nocs=5 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=241 sym=241 save=2.000000 nocs=1 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=247 sym=247 save=10.000000 nocs=3 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=252 sym=252 save=1.000000 nocs=1 best=10.000000
+[CDX] p1cand phase=p1 proc=385 web=259 sym=259 save=5.000000 nocs=2 best=10.000000
+[CDX] p1cost phase=p1 proc=385 web=247 color=2 reg=v1 kind=caller cost=0.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=247 color=3 reg=a0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=247 color=4 reg=a1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=247 color=5 reg=a2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=247 color=6 reg=a3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=247 color=7 reg=t0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=247 color=8 reg=t1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=247 color=9 reg=t2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=247 color=10 reg=t3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=247 color=11 reg=t4 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=247 color=12 reg=t5 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=247 color=13 reg=? kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=247 color=14 reg=s0 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=247 color=15 reg=s1 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=247 color=16 reg=s2 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=247 color=17 reg=s3 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=247 color=18 reg=s4 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=247 color=19 reg=s5 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=247 color=20 reg=s6 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=247 color=21 reg=s7 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=247 color=22 reg=s8 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1dec phase=p1 proc=385 web=247 sym=247 class=1 save=10.000000 nocs=3 totalsave=30.000000 bestcost=0.000000 bestcolor=2 bestreg=v1 forbidden0=0x40000000 forbidden1=0x00000000 regsleft=21 numintf=7 available0=0x3ffffe00 available1=0x00000000 allcallersave=1 taken1=1 taken2=1 decision=color forced=-2
+[CDX] webdetail phase=p1 proc=385 role=target web=247 sym=247 type=2 dtype=6 table=1618 chain=0 exprtable=-1 exprchain=-1 bb=-1 line=-1 raw10=0xffffffff raw14=0x00000001 raw18=0x00000004 raw20=0x00000000
+[CDX] p1color phase=p1 proc=385 web=247 sym=247 color=2 reg=v1 forced=-2
+[CDX] p1cand phase=p1 proc=385 web=0 sym=0 save=1.181818 nocs=11 best=-3333.000000
+[CDX] p1cand phase=p1 proc=385 web=2 sym=2 save=2.000000 nocs=11 best=1.181818
+[CDX] p1cand phase=p1 proc=385 web=8 sym=8 save=1.666667 nocs=6 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=10 sym=10 save=1.500000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=38 sym=38 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=74 sym=74 save=2.000000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=92 sym=92 save=8.500000 nocs=4 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=131 sym=131 save=1.500000 nocs=2 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=134 sym=134 save=2.000000 nocs=1 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=138 sym=138 save=2.000000 nocs=1 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=166 sym=166 save=1.500000 nocs=2 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=182 sym=182 save=2.000000 nocs=2 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=232 sym=232 save=0.200000 nocs=5 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=233 sym=233 save=0.200000 nocs=5 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=241 sym=241 save=2.000000 nocs=1 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=252 sym=252 save=1.000000 nocs=1 best=8.500000
+[CDX] p1cand phase=p1 proc=385 web=259 sym=259 save=5.000000 nocs=2 best=8.500000
+[CDX] p1cost phase=p1 proc=385 web=92 color=3 reg=a0 kind=caller cost=0.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=92 color=4 reg=a1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=92 color=5 reg=a2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=92 color=6 reg=a3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=92 color=7 reg=t0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=92 color=8 reg=t1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=92 color=9 reg=t2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=92 color=10 reg=t3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=92 color=11 reg=t4 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=92 color=12 reg=t5 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=92 color=13 reg=? kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=92 color=14 reg=s0 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=92 color=15 reg=s1 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=92 color=16 reg=s2 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=92 color=17 reg=s3 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=92 color=18 reg=s4 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=92 color=19 reg=s5 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=92 color=20 reg=s6 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=92 color=21 reg=s7 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=92 color=22 reg=s8 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1dec phase=p1 proc=385 web=92 sym=92 class=1 save=8.500000 nocs=4 totalsave=34.000000 bestcost=0.000000 bestcolor=3 bestreg=a0 forbidden0=0x60000000 forbidden1=0x00000000 regsleft=20 numintf=9 available0=0x1ffffe00 available1=0x00000000 allcallersave=1 taken1=1 taken2=1 decision=color forced=-2
+[CDX] webdetail phase=p1 proc=385 role=target web=92 sym=92 type=3 dtype=6 table=889 chain=0 exprtable=840 exprchain=1 bb=14 line=3 raw10=0xffffffcc raw14=0x11f50102 raw18=0x040100ff raw20=0x00000000
+[CDX] p1color phase=p1 proc=385 web=92 sym=92 color=3 reg=a0 forced=-2
+[CDX] p1cand phase=p1 proc=385 web=0 sym=0 save=1.181818 nocs=11 best=-3333.000000
+[CDX] p1cand phase=p1 proc=385 web=2 sym=2 save=2.000000 nocs=11 best=1.181818
+[CDX] p1cand phase=p1 proc=385 web=8 sym=8 save=1.666667 nocs=6 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=10 sym=10 save=1.500000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=38 sym=38 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=74 sym=74 save=2.000000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=131 sym=131 save=1.500000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=134 sym=134 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=138 sym=138 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=166 sym=166 save=1.500000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=182 sym=182 save=2.000000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=232 sym=232 save=0.200000 nocs=5 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=233 sym=233 save=0.200000 nocs=5 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=241 sym=241 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=252 sym=252 save=1.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=259 sym=259 save=5.000000 nocs=2 best=2.000000
+[CDX] p1cost phase=p1 proc=385 web=259 color=4 reg=a1 kind=caller cost=0.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=259 color=5 reg=a2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=259 color=6 reg=a3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=259 color=7 reg=t0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=259 color=8 reg=t1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=259 color=9 reg=t2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=259 color=10 reg=t3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=259 color=11 reg=t4 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=259 color=12 reg=t5 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=259 color=13 reg=? kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=259 color=14 reg=s0 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=259 color=15 reg=s1 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=259 color=16 reg=s2 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=259 color=17 reg=s3 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=259 color=18 reg=s4 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=259 color=19 reg=s5 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=259 color=20 reg=s6 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=259 color=21 reg=s7 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=259 color=22 reg=s8 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1dec phase=p1 proc=385 web=259 sym=259 class=1 save=5.000000 nocs=2 totalsave=10.000000 bestcost=0.000000 bestcolor=4 bestreg=a1 forbidden0=0x70000000 forbidden1=0x00000000 regsleft=19 numintf=6 available0=0x0ffffe00 available1=0x00000000 allcallersave=1 taken1=1 taken2=1 decision=color forced=-2
+[CDX] webdetail phase=p1 proc=385 role=target web=259 sym=259 type=2 dtype=6 table=16 chain=0 exprtable=-1 exprchain=-1 bb=-1 line=-1 raw10=0x00000010 raw14=0x00000000 raw18=0x00000004 raw20=0x00000000
+[CDX] p1color phase=p1 proc=385 web=259 sym=259 color=4 reg=a1 forced=-2
+[CDX] p1cand phase=p1 proc=385 web=0 sym=0 save=1.181818 nocs=11 best=-3333.000000
+[CDX] p1cand phase=p1 proc=385 web=2 sym=2 save=2.000000 nocs=11 best=1.181818
+[CDX] p1cand phase=p1 proc=385 web=8 sym=8 save=1.666667 nocs=6 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=10 sym=10 save=1.500000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=38 sym=38 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=74 sym=74 save=2.000000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=131 sym=131 save=1.500000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=134 sym=134 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=138 sym=138 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=166 sym=166 save=1.500000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=182 sym=182 save=2.000000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=232 sym=232 save=0.200000 nocs=5 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=233 sym=233 save=0.200000 nocs=5 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=241 sym=241 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=252 sym=252 save=1.000000 nocs=1 best=2.000000
+[CDX] p1cost phase=p1 proc=385 web=2 color=7 reg=t0 kind=caller cost=5.200000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=2 color=8 reg=t1 kind=caller cost=5.200000 best_before=5.200000
+[CDX] p1cost phase=p1 proc=385 web=2 color=9 reg=t2 kind=caller cost=5.200000 best_before=5.200000
+[CDX] p1cost phase=p1 proc=385 web=2 color=10 reg=t3 kind=caller cost=5.200000 best_before=5.200000
+[CDX] p1cost phase=p1 proc=385 web=2 color=11 reg=t4 kind=caller cost=5.200000 best_before=5.200000
+[CDX] p1cost phase=p1 proc=385 web=2 color=12 reg=t5 kind=caller cost=5.200000 best_before=5.200000
+[CDX] p1cost phase=p1 proc=385 web=2 color=13 reg=? kind=caller cost=100000002004087734272.000000 best_before=5.200000
+[CDX] p1cost phase=p1 proc=385 web=2 color=14 reg=s0 kind=callee cost=0.200000 best_before=5.200000
+[CDX] p1cost phase=p1 proc=385 web=2 color=15 reg=s1 kind=callee cost=0.200000 best_before=0.200000
+[CDX] p1cost phase=p1 proc=385 web=2 color=16 reg=s2 kind=callee cost=0.200000 best_before=0.200000
+[CDX] p1cost phase=p1 proc=385 web=2 color=17 reg=s3 kind=callee cost=0.200000 best_before=0.200000
+[CDX] p1cost phase=p1 proc=385 web=2 color=18 reg=s4 kind=callee cost=0.200000 best_before=0.200000
+[CDX] p1cost phase=p1 proc=385 web=2 color=19 reg=s5 kind=callee cost=0.200000 best_before=0.200000
+[CDX] p1cost phase=p1 proc=385 web=2 color=20 reg=s6 kind=callee cost=0.200000 best_before=0.200000
+[CDX] p1cost phase=p1 proc=385 web=2 color=21 reg=s7 kind=callee cost=0.200000 best_before=0.200000
+[CDX] p1cost phase=p1 proc=385 web=2 color=22 reg=s8 kind=callee cost=0.200000 best_before=0.200000
+[CDX] p1dec phase=p1 proc=385 web=2 sym=2 class=1 save=2.000000 nocs=11 totalsave=22.000000 bestcost=0.200000 bestcolor=14 bestreg=s0 forbidden0=0x7e000000 forbidden1=0x00000000 regsleft=16 numintf=21 available0=0x0003fe00 available1=0x00000000 allcallersave=1 taken1=1 taken2=1 decision=color forced=-2
+[CDX] webdetail phase=p1 proc=385 role=target web=2 sym=2 type=3 dtype=0 table=1126 chain=0 exprtable=2696 exprchain=1 bb=0 line=3 raw10=0x00000000 raw14=0x11f50202 raw18=0x04010078 raw20=0x00000000
+[CDX] p1color phase=p1 proc=385 web=2 sym=2 color=14 reg=s0 forced=-2
+[CDX] p1cand phase=p1 proc=385 web=0 sym=0 save=1.181818 nocs=11 best=-3333.000000
+[CDX] p1cand phase=p1 proc=385 web=8 sym=8 save=1.666667 nocs=6 best=1.181818
+[CDX] p1cand phase=p1 proc=385 web=10 sym=10 save=1.500000 nocs=2 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=38 sym=38 save=2.000000 nocs=1 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=74 sym=74 save=2.000000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=131 sym=131 save=1.500000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=134 sym=134 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=138 sym=138 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=166 sym=166 save=1.500000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=182 sym=182 save=2.000000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=232 sym=232 save=0.200000 nocs=5 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=233 sym=233 save=0.200000 nocs=5 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=241 sym=241 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=252 sym=252 save=1.000000 nocs=1 best=2.000000
+[CDX] p1cost phase=p1 proc=385 web=38 color=1 reg=v0 kind=caller cost=0.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=38 color=2 reg=v1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=38 color=3 reg=a0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=38 color=4 reg=a1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=38 color=5 reg=a2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=38 color=6 reg=a3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=38 color=7 reg=t0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=38 color=8 reg=t1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=38 color=9 reg=t2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=38 color=10 reg=t3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=38 color=11 reg=t4 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=38 color=12 reg=t5 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=38 color=13 reg=? kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=38 color=15 reg=s1 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=38 color=16 reg=s2 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=38 color=17 reg=s3 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=38 color=18 reg=s4 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=38 color=19 reg=s5 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=38 color=20 reg=s6 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=38 color=21 reg=s7 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=38 color=22 reg=s8 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1dec phase=p1 proc=385 web=38 sym=38 class=1 save=2.000000 nocs=1 totalsave=2.000000 bestcost=0.000000 bestcolor=1 bestreg=v0 forbidden0=0x00020000 forbidden1=0x00000000 regsleft=21 numintf=6 available0=0x7ffdfe00 available1=0x00000000 allcallersave=1 taken1=1 taken2=1 decision=color forced=-2
+[CDX] webdetail phase=p1 proc=385 role=target web=38 sym=38 type=3 dtype=0 table=697 chain=0 exprtable=648 exprchain=1 bb=4 line=3 raw10=0xffffffc0 raw14=0x11f50102 raw18=0x04010018 raw20=0x00000000
+[CDX] p1color phase=p1 proc=385 web=38 sym=38 color=1 reg=v0 forced=-2
+[CDX] p1cand phase=p1 proc=385 web=0 sym=0 save=1.181818 nocs=11 best=-3333.000000
+[CDX] p1cand phase=p1 proc=385 web=8 sym=8 save=1.666667 nocs=6 best=1.181818
+[CDX] p1cand phase=p1 proc=385 web=10 sym=10 save=1.500000 nocs=2 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=74 sym=74 save=2.000000 nocs=2 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=131 sym=131 save=1.500000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=134 sym=134 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=138 sym=138 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=166 sym=166 save=1.500000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=182 sym=182 save=2.000000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=232 sym=232 save=0.200000 nocs=5 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=233 sym=233 save=0.200000 nocs=5 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=241 sym=241 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=252 sym=252 save=1.000000 nocs=1 best=2.000000
+[CDX] p1cost phase=p1 proc=385 web=74 color=5 reg=a2 kind=caller cost=2.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=74 color=6 reg=a3 kind=caller cost=2.000000 best_before=2.000000
+[CDX] p1cost phase=p1 proc=385 web=74 color=7 reg=t0 kind=caller cost=2.000000 best_before=2.000000
+[CDX] p1cost phase=p1 proc=385 web=74 color=8 reg=t1 kind=caller cost=2.000000 best_before=2.000000
+[CDX] p1cost phase=p1 proc=385 web=74 color=9 reg=t2 kind=caller cost=2.000000 best_before=2.000000
+[CDX] p1cost phase=p1 proc=385 web=74 color=10 reg=t3 kind=caller cost=2.000000 best_before=2.000000
+[CDX] p1cost phase=p1 proc=385 web=74 color=11 reg=t4 kind=caller cost=2.000000 best_before=2.000000
+[CDX] p1cost phase=p1 proc=385 web=74 color=12 reg=t5 kind=caller cost=2.000000 best_before=2.000000
+[CDX] p1cost phase=p1 proc=385 web=74 color=13 reg=? kind=caller cost=2.000000 best_before=2.000000
+[CDX] p1cost phase=p1 proc=385 web=74 color=15 reg=s1 kind=callee cost=0.000000 best_before=2.000000
+[CDX] p1cost phase=p1 proc=385 web=74 color=16 reg=s2 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=74 color=17 reg=s3 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=74 color=18 reg=s4 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=74 color=19 reg=s5 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=74 color=20 reg=s6 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=74 color=21 reg=s7 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=74 color=22 reg=s8 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1dec phase=p1 proc=385 web=74 sym=74 class=1 save=2.000000 nocs=2 totalsave=4.000000 bestcost=0.000000 bestcolor=15 bestreg=s1 forbidden0=0x78020000 forbidden1=0x00000000 regsleft=17 numintf=9 available0=0x0001fe00 available1=0x00000000 allcallersave=1 taken1=1 taken2=1 decision=color forced=-2
+[CDX] webdetail phase=p1 proc=385 role=target web=74 sym=74 type=3 dtype=0 table=761 chain=0 exprtable=712 exprchain=1 bb=10 line=3 raw10=0xffffffc4 raw14=0x11f50102 raw18=0x04010018 raw20=0x00000000
+[CDX] p1color phase=p1 proc=385 web=74 sym=74 color=15 reg=s1 forced=-2
+[CDX] p1cand phase=p1 proc=385 web=0 sym=0 save=1.181818 nocs=11 best=-3333.000000
+[CDX] p1cand phase=p1 proc=385 web=8 sym=8 save=1.666667 nocs=6 best=1.181818
+[CDX] p1cand phase=p1 proc=385 web=10 sym=10 save=1.500000 nocs=2 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=131 sym=131 save=1.500000 nocs=2 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=134 sym=134 save=2.000000 nocs=1 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=138 sym=138 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=166 sym=166 save=1.500000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=182 sym=182 save=2.000000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=232 sym=232 save=0.200000 nocs=5 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=233 sym=233 save=0.200000 nocs=5 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=241 sym=241 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=252 sym=252 save=1.000000 nocs=1 best=2.000000
+[CDX] p1cost phase=p1 proc=385 web=134 color=1 reg=v0 kind=caller cost=0.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=134 color=2 reg=v1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=134 color=3 reg=a0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=134 color=4 reg=a1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=134 color=5 reg=a2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=134 color=6 reg=a3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=134 color=7 reg=t0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=134 color=8 reg=t1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=134 color=9 reg=t2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=134 color=10 reg=t3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=134 color=11 reg=t4 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=134 color=12 reg=t5 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=134 color=13 reg=? kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=134 color=15 reg=s1 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=134 color=16 reg=s2 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=134 color=17 reg=s3 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=134 color=18 reg=s4 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=134 color=19 reg=s5 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=134 color=20 reg=s6 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=134 color=21 reg=s7 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=134 color=22 reg=s8 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1dec phase=p1 proc=385 web=134 sym=134 class=1 save=2.000000 nocs=1 totalsave=2.000000 bestcost=0.000000 bestcolor=1 bestreg=v0 forbidden0=0x00020000 forbidden1=0x00000000 regsleft=21 numintf=4 available0=0x7ffdfe00 available1=0x00000000 allcallersave=1 taken1=1 taken2=1 decision=color forced=-2
+[CDX] webdetail phase=p1 proc=385 role=target web=134 sym=134 type=3 dtype=6 table=1529 chain=0 exprtable=1480 exprchain=1 bb=28 line=3 raw10=0xfffffff4 raw14=0x11f50102 raw18=0x040100f0 raw20=0x00000000
+[CDX] p1color phase=p1 proc=385 web=134 sym=134 color=1 reg=v0 forced=-2
+[CDX] p1cand phase=p1 proc=385 web=0 sym=0 save=1.181818 nocs=11 best=-3333.000000
+[CDX] p1cand phase=p1 proc=385 web=8 sym=8 save=1.666667 nocs=6 best=1.181818
+[CDX] p1cand phase=p1 proc=385 web=10 sym=10 save=1.500000 nocs=2 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=131 sym=131 save=1.500000 nocs=2 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=138 sym=138 save=2.000000 nocs=1 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=166 sym=166 save=1.500000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=182 sym=182 save=2.000000 nocs=2 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=232 sym=232 save=0.200000 nocs=5 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=233 sym=233 save=0.200000 nocs=5 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=241 sym=241 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=252 sym=252 save=1.000000 nocs=1 best=2.000000
+[CDX] p1cost phase=p1 proc=385 web=138 color=2 reg=v1 kind=caller cost=0.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=138 color=3 reg=a0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=138 color=4 reg=a1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=138 color=5 reg=a2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=138 color=6 reg=a3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=138 color=7 reg=t0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=138 color=8 reg=t1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=138 color=9 reg=t2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=138 color=10 reg=t3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=138 color=11 reg=t4 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=138 color=12 reg=t5 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=138 color=13 reg=? kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=138 color=15 reg=s1 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=138 color=16 reg=s2 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=138 color=17 reg=s3 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=138 color=18 reg=s4 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=138 color=19 reg=s5 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=138 color=20 reg=s6 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=138 color=21 reg=s7 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=138 color=22 reg=s8 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1dec phase=p1 proc=385 web=138 sym=138 class=1 save=2.000000 nocs=1 totalsave=2.000000 bestcost=0.000000 bestcolor=2 bestreg=v1 forbidden0=0x40020000 forbidden1=0x00000000 regsleft=20 numintf=4 available0=0x3ffdfe00 available1=0x00000000 allcallersave=1 taken1=1 taken2=1 decision=color forced=-2
+[CDX] webdetail phase=p1 proc=385 role=target web=138 sym=138 type=3 dtype=8 table=1497 chain=0 exprtable=1448 exprchain=1 bb=28 line=3 raw10=0xfffffff2 raw14=0x11f50102 raw18=0x020100b0 raw20=0x00000000
+[CDX] p1color phase=p1 proc=385 web=138 sym=138 color=2 reg=v1 forced=-2
+[CDX] p1cand phase=p1 proc=385 web=0 sym=0 save=1.181818 nocs=11 best=-3333.000000
+[CDX] p1cand phase=p1 proc=385 web=8 sym=8 save=1.666667 nocs=6 best=1.181818
+[CDX] p1cand phase=p1 proc=385 web=10 sym=10 save=1.500000 nocs=2 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=131 sym=131 save=1.500000 nocs=2 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=166 sym=166 save=1.500000 nocs=2 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=182 sym=182 save=2.000000 nocs=2 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=232 sym=232 save=0.200000 nocs=5 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=233 sym=233 save=0.200000 nocs=5 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=241 sym=241 save=2.000000 nocs=1 best=2.000000
+[CDX] p1cand phase=p1 proc=385 web=252 sym=252 save=1.000000 nocs=1 best=2.000000
+[CDX] p1cost phase=p1 proc=385 web=182 color=2 reg=v1 kind=caller cost=0.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=182 color=3 reg=a0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=182 color=4 reg=a1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=182 color=5 reg=a2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=182 color=6 reg=a3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=182 color=7 reg=t0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=182 color=8 reg=t1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=182 color=9 reg=t2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=182 color=10 reg=t3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=182 color=11 reg=t4 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=182 color=12 reg=t5 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=182 color=13 reg=? kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=182 color=15 reg=s1 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=182 color=16 reg=s2 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=182 color=17 reg=s3 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=182 color=18 reg=s4 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=182 color=19 reg=s5 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=182 color=20 reg=s6 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=182 color=21 reg=s7 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=182 color=22 reg=s8 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1dec phase=p1 proc=385 web=182 sym=182 class=1 save=2.000000 nocs=2 totalsave=4.000000 bestcost=0.000000 bestcolor=2 bestreg=v1 forbidden0=0x40020000 forbidden1=0x00000000 regsleft=20 numintf=6 available0=0x3ffdfe00 available1=0x00000000 allcallersave=1 taken1=1 taken2=1 decision=color forced=-2
+[CDX] webdetail phase=p1 proc=385 role=target web=182 sym=182 type=4 dtype=6 table=496 chain=0 exprtable=-1 exprchain=-1 bb=-1 line=-1 raw10=0x410000e8 raw14=0x1025e238 raw18=0x1023d070 raw20=0x1026f430
+[CDX] p1color phase=p1 proc=385 web=182 sym=182 color=2 reg=v1 forced=-2
+[CDX] p1cand phase=p1 proc=385 web=0 sym=0 save=1.181818 nocs=11 best=-3333.000000
+[CDX] p1cand phase=p1 proc=385 web=8 sym=8 save=1.666667 nocs=6 best=1.181818
+[CDX] p1cand phase=p1 proc=385 web=10 sym=10 save=1.500000 nocs=2 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=131 sym=131 save=1.500000 nocs=2 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=166 sym=166 save=1.500000 nocs=2 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=232 sym=232 save=0.200000 nocs=5 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=233 sym=233 save=0.200000 nocs=5 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=241 sym=241 save=2.000000 nocs=1 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=252 sym=252 save=1.000000 nocs=1 best=2.000000
+[CDX] p1cost phase=p1 proc=385 web=241 color=1 reg=v0 kind=caller cost=0.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=241 color=2 reg=v1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=241 color=5 reg=a2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=241 color=6 reg=a3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=241 color=7 reg=t0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=241 color=8 reg=t1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=241 color=9 reg=t2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=241 color=10 reg=t3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=241 color=11 reg=t4 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=241 color=12 reg=t5 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=241 color=13 reg=? kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=241 color=16 reg=s2 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=241 color=17 reg=s3 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=241 color=18 reg=s4 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=241 color=19 reg=s5 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=241 color=20 reg=s6 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=241 color=21 reg=s7 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=241 color=22 reg=s8 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1dec phase=p1 proc=385 web=241 sym=241 class=1 save=2.000000 nocs=1 totalsave=2.000000 bestcost=0.000000 bestcolor=1 bestreg=v0 forbidden0=0x18030000 forbidden1=0x00000000 regsleft=18 numintf=5 available0=0x67fcfe00 available1=0x00000000 allcallersave=1 taken1=1 taken2=1 decision=color forced=-2
+[CDX] webdetail phase=p1 proc=385 role=target web=241 sym=241 type=1 dtype=0 table=1383 chain=0 exprtable=-1 exprchain=-1 bb=-1 line=-1 raw10=0x00000000 raw14=0x00000004 raw18=0x00000000 raw20=0x00000000
+[CDX] p1color phase=p1 proc=385 web=241 sym=241 color=1 reg=v0 forced=-2
+[CDX] p1cand phase=p1 proc=385 web=0 sym=0 save=1.181818 nocs=11 best=-3333.000000
+[CDX] p1cand phase=p1 proc=385 web=8 sym=8 save=1.666667 nocs=6 best=1.181818
+[CDX] p1cand phase=p1 proc=385 web=10 sym=10 save=1.500000 nocs=2 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=131 sym=131 save=1.500000 nocs=2 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=166 sym=166 save=1.500000 nocs=2 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=232 sym=232 save=0.200000 nocs=5 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=233 sym=233 save=0.200000 nocs=5 best=1.666667
+[CDX] p1cand phase=p1 proc=385 web=252 sym=252 save=1.000000 nocs=1 best=1.666667
+[CDX] p1cost phase=p1 proc=385 web=8 color=5 reg=a2 kind=caller cost=0.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=8 color=6 reg=a3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=8 color=7 reg=t0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=8 color=8 reg=t1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=8 color=9 reg=t2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=8 color=10 reg=t3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=8 color=11 reg=t4 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=8 color=12 reg=t5 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=8 color=13 reg=? kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=8 color=15 reg=s1 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=8 color=16 reg=s2 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=8 color=17 reg=s3 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=8 color=18 reg=s4 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=8 color=19 reg=s5 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=8 color=20 reg=s6 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=8 color=21 reg=s7 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=8 color=22 reg=s8 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1dec phase=p1 proc=385 web=8 sym=8 class=1 save=1.666667 nocs=6 totalsave=10.000000 bestcost=0.000000 bestcolor=5 bestreg=a2 forbidden0=0x78020000 forbidden1=0x00000000 regsleft=17 numintf=11 available0=0x07fdfe00 available1=0x00000000 allcallersave=1 taken1=1 taken2=1 decision=color forced=-2
+[CDX] webdetail phase=p1 proc=385 role=target web=8 sym=8 type=3 dtype=6 table=1593 chain=0 exprtable=1544 exprchain=1 bb=0 line=3 raw10=0xfffffff8 raw14=0x11f50102 raw18=0x04010000 raw20=0x00000000
+[CDX] p1color phase=p1 proc=385 web=8 sym=8 color=5 reg=a2 forced=-2
+[CDX] p1cand phase=p1 proc=385 web=0 sym=0 save=1.181818 nocs=11 best=-3333.000000
+[CDX] p1cand phase=p1 proc=385 web=10 sym=10 save=1.500000 nocs=2 best=1.181818
+[CDX] p1cand phase=p1 proc=385 web=131 sym=131 save=1.500000 nocs=2 best=1.500000
+[CDX] p1cand phase=p1 proc=385 web=166 sym=166 save=1.500000 nocs=2 best=1.500000
+[CDX] p1cand phase=p1 proc=385 web=232 sym=232 save=0.200000 nocs=5 best=1.500000
+[CDX] p1cand phase=p1 proc=385 web=233 sym=233 save=0.200000 nocs=5 best=1.500000
+[CDX] p1cand phase=p1 proc=385 web=252 sym=252 save=1.000000 nocs=1 best=1.500000
+[CDX] p1cost phase=p1 proc=385 web=10 color=1 reg=v0 kind=caller cost=0.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=10 color=2 reg=v1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=10 color=3 reg=a0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=10 color=4 reg=a1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=10 color=6 reg=a3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=10 color=7 reg=t0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=10 color=8 reg=t1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=10 color=9 reg=t2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=10 color=10 reg=t3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=10 color=11 reg=t4 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=10 color=12 reg=t5 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=10 color=13 reg=? kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=10 color=15 reg=s1 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=10 color=16 reg=s2 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=10 color=17 reg=s3 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=10 color=18 reg=s4 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=10 color=19 reg=s5 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=10 color=20 reg=s6 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=10 color=21 reg=s7 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=10 color=22 reg=s8 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1dec phase=p1 proc=385 web=10 sym=10 class=1 save=1.500000 nocs=2 totalsave=3.000000 bestcost=0.000000 bestcolor=1 bestreg=v0 forbidden0=0x04020000 forbidden1=0x00000000 regsleft=20 numintf=5 available0=0x7bfdfe00 available1=0x00000000 allcallersave=1 taken1=1 taken2=1 decision=color forced=-2
+[CDX] webdetail phase=p1 proc=385 role=target web=10 sym=10 type=4 dtype=6 table=508 chain=0 exprtable=5322 exprchain=0 bb=0 line=3 raw10=0x36000608 raw14=0x1025fce8 raw18=0x00000000 raw20=0x1026f430
+[CDX] p1color phase=p1 proc=385 web=10 sym=10 color=1 reg=v0 forced=-2
+[CDX] p1cand phase=p1 proc=385 web=0 sym=0 save=1.181818 nocs=11 best=-3333.000000
+[CDX] p1cand phase=p1 proc=385 web=131 sym=131 save=1.500000 nocs=2 best=1.181818
+[CDX] p1cand phase=p1 proc=385 web=166 sym=166 save=1.500000 nocs=2 best=1.500000
+[CDX] p1cand phase=p1 proc=385 web=232 sym=232 save=0.200000 nocs=5 best=1.500000
+[CDX] p1cand phase=p1 proc=385 web=233 sym=233 save=0.200000 nocs=5 best=1.500000
+[CDX] p1cand phase=p1 proc=385 web=252 sym=252 save=1.000000 nocs=1 best=1.500000
+[CDX] p1cost phase=p1 proc=385 web=131 color=3 reg=a0 kind=caller cost=0.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=131 color=4 reg=a1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=131 color=5 reg=a2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=131 color=6 reg=a3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=131 color=7 reg=t0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=131 color=8 reg=t1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=131 color=9 reg=t2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=131 color=10 reg=t3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=131 color=11 reg=t4 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=131 color=12 reg=t5 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=131 color=13 reg=? kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=131 color=15 reg=s1 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=131 color=16 reg=s2 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=131 color=17 reg=s3 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=131 color=18 reg=s4 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=131 color=19 reg=s5 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=131 color=20 reg=s6 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=131 color=21 reg=s7 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=131 color=22 reg=s8 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1dec phase=p1 proc=385 web=131 sym=131 class=1 save=1.500000 nocs=2 totalsave=3.000000 bestcost=0.000000 bestcolor=3 bestreg=a0 forbidden0=0x60020000 forbidden1=0x00000000 regsleft=19 numintf=5 available0=0x1ffdfe00 available1=0x00000000 allcallersave=1 taken1=1 taken2=1 decision=color forced=-2
+[CDX] webdetail phase=p1 proc=385 role=target web=131 sym=131 type=4 dtype=6 table=1065 chain=1 exprtable=2455 exprchain=0 bb=27 line=3 raw10=0x36000610 raw14=0x1025f790 raw18=0x00000000 raw20=0x1026f430
+[CDX] p1color phase=p1 proc=385 web=131 sym=131 color=3 reg=a0 forced=-2
+[CDX] p1cand phase=p1 proc=385 web=0 sym=0 save=1.181818 nocs=11 best=-3333.000000
+[CDX] p1cand phase=p1 proc=385 web=166 sym=166 save=1.500000 nocs=2 best=1.181818
+[CDX] p1cand phase=p1 proc=385 web=232 sym=232 save=0.200000 nocs=5 best=1.500000
+[CDX] p1cand phase=p1 proc=385 web=233 sym=233 save=0.200000 nocs=5 best=1.500000
+[CDX] p1cand phase=p1 proc=385 web=252 sym=252 save=1.000000 nocs=1 best=1.500000
+[CDX] p1cost phase=p1 proc=385 web=166 color=1 reg=v0 kind=caller cost=0.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=166 color=2 reg=v1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=166 color=4 reg=a1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=166 color=5 reg=a2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=166 color=6 reg=a3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=166 color=7 reg=t0 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=166 color=8 reg=t1 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=166 color=9 reg=t2 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=166 color=10 reg=t3 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=166 color=11 reg=t4 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=166 color=12 reg=t5 kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=166 color=13 reg=? kind=caller cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=166 color=15 reg=s1 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=166 color=16 reg=s2 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=166 color=17 reg=s3 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=166 color=18 reg=s4 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=166 color=19 reg=s5 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=166 color=20 reg=s6 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=166 color=21 reg=s7 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=166 color=22 reg=s8 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1dec phase=p1 proc=385 web=166 sym=166 class=1 save=1.500000 nocs=2 totalsave=3.000000 bestcost=0.000000 bestcolor=1 bestreg=v0 forbidden0=0x10020000 forbidden1=0x00000000 regsleft=20 numintf=2 available0=0x6ffdfe00 available1=0x00000000 allcallersave=1 taken1=1 taken2=1 decision=color forced=-2
+[CDX] webdetail phase=p1 proc=385 role=target web=166 sym=166 type=4 dtype=0 table=508 chain=3 exprtable=1015 exprchain=0 bb=33 line=3 raw10=0x36000020 raw14=0x1025fce8 raw18=0x00000000 raw20=0x1026f430
+[CDX] p1color phase=p1 proc=385 web=166 sym=166 color=1 reg=v0 forced=-2
+[CDX] p1cand phase=p1 proc=385 web=0 sym=0 save=1.181818 nocs=11 best=-3333.000000
+[CDX] p1cand phase=p1 proc=385 web=232 sym=232 save=0.200000 nocs=5 best=1.181818
+[CDX] p1cand phase=p1 proc=385 web=233 sym=233 save=0.200000 nocs=5 best=1.181818
+[CDX] p1cand phase=p1 proc=385 web=252 sym=252 save=1.000000 nocs=1 best=1.181818
+[CDX] p1cost phase=p1 proc=385 web=0 color=6 reg=a3 kind=caller cost=3.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=0 color=7 reg=t0 kind=caller cost=3.000000 best_before=3.000000
+[CDX] p1cost phase=p1 proc=385 web=0 color=8 reg=t1 kind=caller cost=3.000000 best_before=3.000000
+[CDX] p1cost phase=p1 proc=385 web=0 color=9 reg=t2 kind=caller cost=3.000000 best_before=3.000000
+[CDX] p1cost phase=p1 proc=385 web=0 color=10 reg=t3 kind=caller cost=3.000000 best_before=3.000000
+[CDX] p1cost phase=p1 proc=385 web=0 color=11 reg=t4 kind=caller cost=3.000000 best_before=3.000000
+[CDX] p1cost phase=p1 proc=385 web=0 color=12 reg=t5 kind=caller cost=3.000000 best_before=3.000000
+[CDX] p1cost phase=p1 proc=385 web=0 color=13 reg=? kind=caller cost=3.000000 best_before=3.000000
+[CDX] p1cost phase=p1 proc=385 web=0 color=16 reg=s2 kind=callee cost=0.000000 best_before=3.000000
+[CDX] p1cost phase=p1 proc=385 web=0 color=17 reg=s3 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=0 color=18 reg=s4 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=0 color=19 reg=s5 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=0 color=20 reg=s6 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=0 color=21 reg=s7 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=0 color=22 reg=s8 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1dec phase=p1 proc=385 web=0 sym=0 class=1 save=1.181818 nocs=11 totalsave=12.999999 bestcost=0.000000 bestcolor=16 bestreg=s2 forbidden0=0x7c030000 forbidden1=0x00000000 regsleft=15 numintf=20 available0=0x0000fe00 available1=0x00000000 allcallersave=1 taken1=1 taken2=1 decision=color forced=-2
+[CDX] webdetail phase=p1 proc=385 role=target web=0 sym=0 type=3 dtype=0 table=38 chain=0 exprtable=1608 exprchain=1 bb=0 line=3 raw10=0xfffffffc raw14=0x11f50102 raw18=0x04010000 raw20=0x00000000
+[CDX] p1color phase=p1 proc=385 web=0 sym=0 color=16 reg=s2 forced=-2
+[CDX] p1cand phase=p1 proc=385 web=232 sym=232 save=0.200000 nocs=5 best=-3333.000000
+[CDX] p1cand phase=p1 proc=385 web=233 sym=233 save=0.200000 nocs=5 best=0.200000
+[CDX] p1cand phase=p1 proc=385 web=252 sym=252 save=1.000000 nocs=1 best=0.200000
+[CDX] p1cost phase=p1 proc=385 web=252 color=1 reg=v0 kind=caller cost=100000002004087734272.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=252 color=2 reg=v1 kind=caller cost=100000002004087734272.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=252 color=4 reg=a1 kind=caller cost=0.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=252 color=7 reg=t0 kind=caller cost=0.100000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=252 color=8 reg=t1 kind=caller cost=0.100000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=252 color=9 reg=t2 kind=caller cost=0.100000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=252 color=10 reg=t3 kind=caller cost=0.100000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=252 color=11 reg=t4 kind=caller cost=0.100000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=252 color=12 reg=t5 kind=caller cost=0.100000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=252 color=13 reg=? kind=caller cost=100000002004087734272.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=252 color=15 reg=s1 kind=callee cost=0.100000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=252 color=16 reg=s2 kind=callee cost=0.100000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=252 color=17 reg=s3 kind=callee cost=0.100000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=252 color=18 reg=s4 kind=callee cost=0.100000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=252 color=19 reg=s5 kind=callee cost=0.100000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=252 color=20 reg=s6 kind=callee cost=0.100000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=252 color=21 reg=s7 kind=callee cost=0.100000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=252 color=22 reg=s8 kind=callee cost=0.100000 best_before=0.000000
+[CDX] p1dec phase=p1 proc=385 web=252 sym=252 class=1 save=1.000000 nocs=1 totalsave=1.000000 bestcost=0.000000 bestcolor=4 bestreg=a1 forbidden0=0x16020000 forbidden1=0x00000000 regsleft=18 numintf=1 available0=0x08000000 available1=0x00000000 allcallersave=1 taken1=1 taken2=1 decision=color forced=-2
+[CDX] webdetail phase=p1 proc=385 role=target web=252 sym=252 type=1 dtype=0 table=1209 chain=0 exprtable=-1 exprchain=-1 bb=-1 line=-1 raw10=0xffffffe0 raw14=0x0000000c raw18=0xffffffe0 raw20=0x00000000
+[CDX] p1color phase=p1 proc=385 web=252 sym=252 color=4 reg=a1 forced=-2
+[CDX] p1cand phase=p1 proc=385 web=232 sym=232 save=0.200000 nocs=5 best=-3333.000000
+[CDX] p1cand phase=p1 proc=385 web=233 sym=233 save=0.200000 nocs=5 best=0.200000
+[CDX] p1cost phase=p1 proc=385 web=232 color=6 reg=a3 kind=caller cost=1.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=232 color=7 reg=t0 kind=caller cost=1.000000 best_before=1.000000
+[CDX] p1cost phase=p1 proc=385 web=232 color=8 reg=t1 kind=caller cost=1.000000 best_before=1.000000
+[CDX] p1cost phase=p1 proc=385 web=232 color=9 reg=t2 kind=caller cost=1.000000 best_before=1.000000
+[CDX] p1cost phase=p1 proc=385 web=232 color=10 reg=t3 kind=caller cost=1.000000 best_before=1.000000
+[CDX] p1cost phase=p1 proc=385 web=232 color=11 reg=t4 kind=caller cost=1.000000 best_before=1.000000
+[CDX] p1cost phase=p1 proc=385 web=232 color=12 reg=t5 kind=caller cost=1.000000 best_before=1.000000
+[CDX] p1cost phase=p1 proc=385 web=232 color=13 reg=? kind=caller cost=1.000000 best_before=1.000000
+[CDX] p1cost phase=p1 proc=385 web=232 color=17 reg=s3 kind=callee cost=0.000000 best_before=1.000000
+[CDX] p1cost phase=p1 proc=385 web=232 color=18 reg=s4 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=232 color=19 reg=s5 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=232 color=20 reg=s6 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=232 color=21 reg=s7 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=232 color=22 reg=s8 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1dec phase=p1 proc=385 web=232 sym=232 class=1 save=0.200000 nocs=5 totalsave=1.000000 bestcost=0.000000 bestcolor=17 bestreg=s3 forbidden0=0x7c038000 forbidden1=0x00000000 regsleft=14 numintf=13 available0=0x00007e00 available1=0x00000000 allcallersave=1 taken1=1 taken2=1 decision=color forced=-2
+[CDX] webdetail phase=p1 proc=385 role=target web=232 sym=232 type=1 dtype=0 table=721 chain=0 exprtable=-1 exprchain=-1 bb=-1 line=-1 raw10=0x00000000 raw14=0x7fffffff raw18=0x00000000 raw20=0x00000000
+[CDX] p1color phase=p1 proc=385 web=232 sym=232 color=17 reg=s3 forced=-2
+[CDX] p1cand phase=p1 proc=385 web=233 sym=233 save=0.200000 nocs=5 best=-3333.000000
+[CDX] p1cost phase=p1 proc=385 web=233 color=6 reg=a3 kind=caller cost=1.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=233 color=7 reg=t0 kind=caller cost=1.000000 best_before=1.000000
+[CDX] p1cost phase=p1 proc=385 web=233 color=8 reg=t1 kind=caller cost=1.000000 best_before=1.000000
+[CDX] p1cost phase=p1 proc=385 web=233 color=9 reg=t2 kind=caller cost=1.000000 best_before=1.000000
+[CDX] p1cost phase=p1 proc=385 web=233 color=10 reg=t3 kind=caller cost=1.000000 best_before=1.000000
+[CDX] p1cost phase=p1 proc=385 web=233 color=11 reg=t4 kind=caller cost=1.000000 best_before=1.000000
+[CDX] p1cost phase=p1 proc=385 web=233 color=12 reg=t5 kind=caller cost=1.000000 best_before=1.000000
+[CDX] p1cost phase=p1 proc=385 web=233 color=13 reg=? kind=caller cost=1.000000 best_before=1.000000
+[CDX] p1cost phase=p1 proc=385 web=233 color=18 reg=s4 kind=callee cost=0.000000 best_before=1.000000
+[CDX] p1cost phase=p1 proc=385 web=233 color=19 reg=s5 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=233 color=20 reg=s6 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=233 color=21 reg=s7 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=233 color=22 reg=s8 kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1dec phase=p1 proc=385 web=233 sym=233 class=1 save=0.200000 nocs=5 totalsave=1.000000 bestcost=0.000000 bestcolor=18 bestreg=s4 forbidden0=0x7c03c000 forbidden1=0x00000000 regsleft=13 numintf=13 available0=0x00003e00 available1=0x00000000 allcallersave=1 taken1=1 taken2=1 decision=color forced=-2
+[CDX] webdetail phase=p1 proc=385 role=target web=233 sym=233 type=2 dtype=6 table=48 chain=0 exprtable=-1 exprchain=-1 bb=-1 line=-1 raw10=0x00000030 raw14=0x0d080202 raw18=0x00000004 raw20=0x00000000
+[CDX] p1color phase=p1 proc=385 web=233 sym=233 color=18 reg=s4 forced=-2
+[CDX] p1cand phase=p1 proc=385 web=244 sym=244 save=4.750000 nocs=4 best=-3333.000000
+[CDX] p1cost phase=p1 proc=385 web=244 color=24 reg=? kind=caller cost=1.000000 best_before=100000002004087734272.000000
+[CDX] p1cost phase=p1 proc=385 web=244 color=25 reg=? kind=caller cost=1.000000 best_before=1.000000
+[CDX] p1cost phase=p1 proc=385 web=244 color=26 reg=? kind=caller cost=1.000000 best_before=1.000000
+[CDX] p1cost phase=p1 proc=385 web=244 color=27 reg=? kind=caller cost=1.000000 best_before=1.000000
+[CDX] p1cost phase=p1 proc=385 web=244 color=28 reg=? kind=caller cost=1.000000 best_before=1.000000
+[CDX] p1cost phase=p1 proc=385 web=244 color=29 reg=? kind=caller cost=1.000000 best_before=1.000000
+[CDX] p1cost phase=p1 proc=385 web=244 color=30 reg=? kind=callee cost=0.000000 best_before=1.000000
+[CDX] p1cost phase=p1 proc=385 web=244 color=31 reg=? kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=244 color=32 reg=? kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=244 color=33 reg=? kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=244 color=34 reg=? kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1cost phase=p1 proc=385 web=244 color=35 reg=? kind=callee cost=0.000000 best_before=0.000000
+[CDX] p1dec phase=p1 proc=385 web=244 sym=244 class=2 save=4.750000 nocs=4 totalsave=19.000000 bestcost=0.000000 bestcolor=30 bestreg=? forbidden0=0x00000000 forbidden1=0x00000000 regsleft=12 numintf=0 available0=0x00000003 available1=0xf0000000 allcallersave=1 taken1=1 taken2=1 decision=color forced=-2
+[CDX] webdetail phase=p1 proc=385 role=target web=244 sym=244 type=2 dtype=13 table=0 chain=1 exprtable=-1 exprchain=-1 bb=-1 line=-1 raw10=0x00000003 raw14=0x00000043 raw18=0x00000004 raw20=0x00000000
+[CDX] p1color phase=p1 proc=385 web=244 sym=244 color=30 reg=? forced=-2

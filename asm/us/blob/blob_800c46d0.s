@@ -6836,6 +6836,7 @@ playgame_state_change:
 .section .text.hud_render, "ax", @progbits
 .globl hud_render
 hud_render:
+    /* compiled from src/blob/hud_render.c */
     .word 0x27BDFEC0
     .word 0xAFB1003C
     .word 0x3C118014

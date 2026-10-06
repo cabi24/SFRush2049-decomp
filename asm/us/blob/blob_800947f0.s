@@ -588,6 +588,7 @@ func_80094FC4:
 .section .text.audio_channel_reset, "ax", @progbits
 .globl audio_channel_reset
 audio_channel_reset:
+    /* compiled from src/blob/audio_channel_reset.c */
     .word 0x3C028015
     .word 0x8442A108
     .word 0x27BDFFE8

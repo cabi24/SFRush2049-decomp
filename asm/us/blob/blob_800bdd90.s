@@ -5260,6 +5260,7 @@ func_800C2944:
 .section .text.camera_scene_manager, "ax", @progbits
 .globl camera_scene_manager
 camera_scene_manager:
+    /* compiled from src/blob/camera_scene_manager.c */
     .word 0x27BDFF90
     .word 0x3C0E8014
     .word 0x81CEFECB

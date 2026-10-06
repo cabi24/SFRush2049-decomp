@@ -151,6 +151,7 @@ func_800AED20:
 .section .text.camera_target_track, "ax", @progbits
 .globl camera_target_track
 camera_target_track:
+    /* compiled from src/blob/camera_target_track.c */
     .word 0x27BDFFC8
     .word 0x3C0E8011
     .word 0x8DCE0260
@@ -717,6 +718,7 @@ camera_smooth_lerp:
 .section .text.save_slot_valid, "ax", @progbits
 .globl save_slot_valid
 save_slot_valid:
+    /* compiled from src/blob/save_slot_valid.c */
     .word 0x27BDFFE8
     .word 0x8FAE0030
     .word 0xAFBF0014

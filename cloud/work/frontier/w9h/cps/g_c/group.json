@@ -1,0 +1,23 @@
+{
+ "members": [
+  "camera_play_script",
+  "func_800C36A0"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "__standin_func_800AD4C8",
+  "__standin_func_800C3AD0_a",
+  "__standin_func_800C3AD0_b",
+  "__standin_input_process_controller_a",
+  "__standin_input_process_controller_b",
+  "func_800AD5D0",
+  "handbrake_apply",
+  "func_800AC9BC",
+  "__standin_c36a0_a",
+  "__standin_c36a0_b",
+  "camera_play_script"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

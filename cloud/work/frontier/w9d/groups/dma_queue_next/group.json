@@ -1,0 +1,27 @@
+{
+ "members": [
+  "func_8008ABE4"
+ ],
+ "files": [
+  "func_8008ABE4.c",
+  "struct_init_and_call.c",
+  "task_complete_signal.c"
+ ],
+ "keep": [
+  "struct_init_and_call",
+  "task_complete_signal",
+  "func_8008AD04"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [
+  "struct_init_and_call",
+  "task_complete_signal",
+  "func_8008AD04"
+ ],
+ "claims": [
+  "func_8008ABE4"
+ ],
+ "note": "Real group, no stand-ins: func_8008ABE4 is internal (four-wide t6-t9 temp ring); its only callers struct_init_and_call (src/blob/struct_init_and_call.c) and task_complete_signal (src/blob/groups/codex_task_complete_signal/group.c, with its context func_8008AD04) are locked sources copied unchanged.",
+ "provenance": "frontier wave 9 (w9d), 2026-10-06"
+}

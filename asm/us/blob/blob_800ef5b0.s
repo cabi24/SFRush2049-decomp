@@ -3445,6 +3445,7 @@ func_800F2888:
 .section .text.net_state_validate, "ax", @progbits
 .globl net_state_validate
 net_state_validate:
+    /* compiled from src/blob/net_state_validate.c */
     .word 0x27BDFFC0
     .word 0x3C0E8011
     .word 0x85CE64C0
@@ -4138,6 +4139,7 @@ func_800F34D0:
 .section .text.net_session_update, "ax", @progbits
 .globl net_session_update
 net_session_update:
+    /* compiled from src/blob/net_session_update.c */
     .word 0x27BDFEC8
     .word 0x3C0E8015
     .word 0x91CE43D4
@@ -9011,6 +9013,7 @@ audio_update_c:
 .section .text.func_800F7EB0, "ax", @progbits
 .globl func_800F7EB0
 func_800F7EB0:
+    /* compiled from src/blob/func_800F7EB0.c */
     .word 0x3C038015
     .word 0x8463A108
     .word 0x3C078015

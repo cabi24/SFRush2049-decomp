@@ -1,0 +1,76 @@
+%%% uT
+    done = 0;
+    for (k = 0; k < D_80151CE8[0].count; k++) {
+        if (k + 1U == D_80151CE8[0].count) {
+            next = D_80151CE8[0].first;
+        } else {
+            next = k + 1;
+        }
+        LEN(k) = audio_channel_alloc(D_80151CE8[k].idx[0], D_80151CE8[next].idx[0]);
+        if (k > 0 && k == D_80151CE8[0].last) {
+            done = 1;
+        }
+        if (!done) {
+            D_80152800 += LEN(k);
+        }
+        if (k >= D_80151CE8[0].first) {
+            D_801543AC += LEN(k);
+        }
+    }
+%%% uArm
+    done = 0;
+    for (k = 0; k < D_80151CE8[0].count; k++) {
+        if (k + 1 == D_80151CE8[0].count) {
+            next = D_80151CE8[0].first;
+        } else {
+            next = (u32)k + 1;
+        }
+        LEN(k) = audio_channel_alloc(D_80151CE8[k].idx[0], D_80151CE8[next].idx[0]);
+        if (k > 0 && k == D_80151CE8[0].last) {
+            done = 1;
+        }
+        if (!done) {
+            D_80152800 += LEN(k);
+        }
+        if (k >= D_80151CE8[0].first) {
+            D_801543AC += LEN(k);
+        }
+    }
+%%% incU
+    done = 0;
+    for (k = 0; k < D_80151CE8[0].count; k = (u32)k + 1) {
+        if (k + 1 == D_80151CE8[0].count) {
+            next = D_80151CE8[0].first;
+        } else {
+            next = k + 1;
+        }
+        LEN(k) = audio_channel_alloc(D_80151CE8[k].idx[0], D_80151CE8[next].idx[0]);
+        if (k > 0 && k == D_80151CE8[0].last) {
+            done = 1;
+        }
+        if (!done) {
+            D_80152800 += LEN(k);
+        }
+        if (k >= D_80151CE8[0].first) {
+            D_801543AC += LEN(k);
+        }
+    }
+%%% ptrdiff
+    done = 0;
+    for (k = 0; k < D_80151CE8[0].count; k++) {
+        if (&D_80151CE8[k + 1] == &D_80151CE8[D_80151CE8[0].count]) {
+            next = D_80151CE8[0].first;
+        } else {
+            next = k + 1;
+        }
+        LEN(k) = audio_channel_alloc(D_80151CE8[k].idx[0], D_80151CE8[next].idx[0]);
+        if (k > 0 && k == D_80151CE8[0].last) {
+            done = 1;
+        }
+        if (!done) {
+            D_80152800 += LEN(k);
+        }
+        if (k >= D_80151CE8[0].first) {
+            D_801543AC += LEN(k);
+        }
+    }

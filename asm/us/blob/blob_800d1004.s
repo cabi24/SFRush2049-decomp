@@ -1888,6 +1888,7 @@ difficulty_select:
 .section .text.func_800D2C10, "ax", @progbits
 .globl func_800D2C10
 func_800D2C10:
+    /* compiled from src/blob/func_800D2C10.c */
     .word 0x00057400
     .word 0x000E7C03
     .word 0x3C198013

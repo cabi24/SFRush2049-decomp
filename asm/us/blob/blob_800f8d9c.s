@@ -5993,6 +5993,7 @@ func_800FE79C:
 .section .text.game_timer_pause, "ax", @progbits
 .globl game_timer_pause
 game_timer_pause:
+    /* compiled from src/blob/game_timer_pause.c */
     .word 0x27BDFFE8
     .word 0x00803825
     .word 0xAFBF0014

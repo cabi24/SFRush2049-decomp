@@ -1,0 +1,27 @@
+{
+ "members": [
+  "func_800C2944",
+  "func_800C26C4",
+  "func_800C2430",
+  "func_800C1B60",
+  "func_800C2004",
+  "func_800C220C",
+  "func_800C3578",
+  "camera_scene_manager"
+ ],
+ "context": [],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "camera_scene_manager",
+  "func_800C3578"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "Real -O3 unit without stand-ins: camera_scene_manager is now a member (strict MATCH). It inlines func_800C2418/2420/2428 (defined here, not kept; they leave the retail stubs). Supersedes src/blob/groups/camera_scene_manager (identical members plus camera_scene_manager). Integration: the three stubs are locked as empty singles (src/blob/func_800C24{18,20,28}.c); blob_unit needs a prefer_definition (and internal) entry for them pointing at this group file.",
+ "provenance": "frontier wave 1 (w1g) members; camera_scene_manager by wave 9 (w9h), 2026-10-06; cloud/work/frontier/w9h/RESULTS.md",
+ "claims": [
+  "camera_scene_manager"
+ ]
+}

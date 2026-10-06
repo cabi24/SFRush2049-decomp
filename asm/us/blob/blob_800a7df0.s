@@ -5589,6 +5589,7 @@ func_800AD090:
 .section .text.steering_sensitivity, "ax", @progbits
 .globl steering_sensitivity
 steering_sensitivity:
+    /* compiled from src/blob/steering_sensitivity.c */
     .word 0x27BDFF98
     .word 0x3C188015
     .word 0x8F1826F0

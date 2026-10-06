@@ -1,0 +1,38 @@
+%%% d_k2
+    done = 0;
+    for (k = 0; k < D_80151CE8[0].count; k++) {
+        if (k + 2 == D_80151CE8[0].count) {
+            next = D_80151CE8[0].first;
+        } else {
+            next = k + 2;
+        }
+        LEN(k) = audio_channel_alloc(D_80151CE8[k].idx[0], D_80151CE8[next].idx[0]);
+        if (k > 0 && k == D_80151CE8[0].last) {
+            done = 1;
+        }
+        if (!done) {
+            D_80152800 += LEN(k);
+        }
+        if (k >= D_80151CE8[0].first) {
+            D_801543AC += LEN(k);
+        }
+    }
+%%% d_notest
+    done = 0;
+    for (k = 0; k < D_80151CE8[0].count; k++) {
+        if (k == D_80151CE8[0].count) {
+            next = D_80151CE8[0].first;
+        } else {
+            next = k + 1;
+        }
+        LEN(k) = audio_channel_alloc(D_80151CE8[k].idx[0], D_80151CE8[next].idx[0]);
+        if (k > 0 && k == D_80151CE8[0].last) {
+            done = 1;
+        }
+        if (!done) {
+            D_80152800 += LEN(k);
+        }
+        if (k >= D_80151CE8[0].first) {
+            D_801543AC += LEN(k);
+        }
+    }

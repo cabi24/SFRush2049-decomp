@@ -72,6 +72,18 @@
   {
    "name": "func_800960CC",
    "reason": "deleted heap free helper; inlined into its callers, only the retail stub remains"
+  },
+  {
+   "name": "func_800C2418",
+   "reason": "deleted tracker helper inlined into camera_scene_manager; only the retail stub remains"
+  },
+  {
+   "name": "func_800C2420",
+   "reason": "deleted tracker helper inlined into camera_scene_manager; only the retail stub remains"
+  },
+  {
+   "name": "func_800C2428",
+   "reason": "deleted tracker helper inlined into camera_scene_manager; only the retail stub remains"
   }
  ],
  "prefer_definition": [
@@ -124,6 +136,21 @@
    "name": "func_800960CC",
    "file": "src/blob/groups/codex_heap_release_a25/wheel_params_set.c",
    "reason": "locked as an empty stub, but it is the retail remains of the inlined heap free helper; defined for real beside wheel_params_set (wave 8, w8c) and must stay internal (plan decision D3)"
+  },
+  {
+   "name": "func_800C2418",
+   "file": "src/blob/groups/frontier_camera_scene_manager/group.c",
+   "reason": "locked as an empty stub; the retail remains of a stunt tracker inlined into camera_scene_manager (wave 9, w9h): the real definition in the group is what reproduces the inlined body"
+  },
+  {
+   "name": "func_800C2420",
+   "file": "src/blob/groups/frontier_camera_scene_manager/group.c",
+   "reason": "locked as an empty stub; the retail remains of a stunt tracker inlined into camera_scene_manager (wave 9, w9h): the real definition in the group is what reproduces the inlined body"
+  },
+  {
+   "name": "func_800C2428",
+   "file": "src/blob/groups/frontier_camera_scene_manager/group.c",
+   "reason": "locked as an empty stub; the retail remains of a stunt tracker inlined into camera_scene_manager (wave 9, w9h): the real definition in the group is what reproduces the inlined body"
   }
  ],
  "align": [

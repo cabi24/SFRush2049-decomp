@@ -1,0 +1,52 @@
+void *sound_play_menu(Heap *heap, u32 size)
+{
+    Block *n;
+    Block *b;
+    u32 total;
+    u32 largest;
+    u32 bs;
+
+    osRecvMesg(&D_80152770, 0, 1);
+    total = 0;
+    largest = 0;
+    heap = heap_or_default(heap);
+    size = (size + 31) & ~31;
+    for (b = heap->last; b != 0; b = b->prev) {
+        if (b->used == 0) {
+            bs = b->size;
+            total += bs;
+            if (largest < bs) {
+                largest = bs;
+            }
+            if (bs >= size) {
+                break;
+            }
+        }
+    }
+    bs = b->size;
+    if (bs - size >= 64) {
+        n = (Block *)((u8 *)b + bs - size);
+        n->next = b->next; n->prev = b;
+        if (n->next != 0) {
+            n->next->prev = n;
+        } else {
+            heap->last = n;
+        }
+
+        n->size = size;
+        n->owner = 0;
+        n->used = 1;
+        n->tag = 0;
+        n->pad16[0] = 0;
+        n->magic = 0xFEDCBA98;
+        b->next = n;
+        b->size = b->size - size - 32;
+        b = n;
+    } else {
+        b->owner = 0;
+        b->used = 1;
+        b->tag = 0;
+    }
+    osJamMesg(&D_80152770, 0, 0);
+    return (u8 *)b + 32;
+}

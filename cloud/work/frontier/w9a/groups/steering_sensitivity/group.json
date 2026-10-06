@@ -1,0 +1,26 @@
+{
+ "members": [
+  "vector_diff_process",
+  "traction_control",
+  "steering_sensitivity"
+ ],
+ "context": [
+  "func_800A61B0",
+  "math_utility"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "keep": [
+  "steering_sensitivity",
+  "traction_control",
+  "func_800A61B0",
+  "math_utility"
+ ],
+ "claims": [
+  "steering_sensitivity"
+ ],
+ "provenance": "frontier wave 9 (w9a), 2026-10-06; cloud/work/frontier/w9a/RESULTS.md",
+ "note": "Real group, no stand-ins. Same files/keep as src/blob/groups/frontier_traction_control with steering_sensitivity's body replaced; it supersedes that group (revert it first, or land steering by replacing its body there). Context bodies unchanged and still MATCH."
+}

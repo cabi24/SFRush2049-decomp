@@ -5480,6 +5480,7 @@ func_800EC270:
 .section .text.world_physics_tick, "ax", @progbits
 .globl world_physics_tick
 world_physics_tick:
+    /* compiled from src/blob/world_physics_tick.c */
     .word 0x27BDFFB8
     .word 0xAFBE0040
     .word 0x3C1E8015

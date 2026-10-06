@@ -4296,6 +4296,7 @@ dma_wait_complete:
 .section .text.func_8008ABE4, "ax", @progbits
 .globl func_8008ABE4
 func_8008ABE4:
+    /* compiled from src/blob/func_8008ABE4.c */
     .word 0x3C038015
     .word 0x24633F10
     .word 0x94680004

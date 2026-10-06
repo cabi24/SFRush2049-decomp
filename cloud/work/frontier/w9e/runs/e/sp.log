@@ -1,0 +1,256 @@
+AREA f_procinit:75907 proc=engine_sound_update area=0
+AREA f_procinit:75910 proc=engine_sound_update area=0
+AREA f_procinit:75913 proc=engine_sound_update area=0
+AREA f_procinit:75916 proc=engine_sound_update area=0
+AREA f_procinit:75929 proc=engine_sound_update area=0
+AREA f_procinit:75931 proc=engine_sound_update area=0
+AREA f_procinit:75907 proc=func_800AB7D0 area=0
+AREA f_procinit:75910 proc=func_800AB7D0 area=0
+AREA f_procinit:75913 proc=func_800AB7D0 area=0
+AREA f_procinit:75916 proc=func_800AB7D0 area=0
+AREA f_procinit:75929 proc=func_800AB7D0 area=0
+AREA f_procinit:75931 proc=func_800AB7D0 area=0
+AREA f_readnxtinst:93387 proc=engine_torque_calc area=68
+SPILLTEMP proc=engine_torque_calc class=1 bit=0
+SPILLTEMP proc=engine_torque_calc class=1 bit=2
+SPILLTEMP proc=engine_torque_calc class=1 bit=8
+SPILLTEMP proc=engine_torque_calc class=1 bit=21
+SPILLTEMP proc=engine_torque_calc class=1 bit=29
+SPILLTEMP proc=engine_torque_calc class=1 bit=65
+SPILLTEMP proc=engine_torque_calc class=1 bit=72
+SPILLTEMP proc=engine_torque_calc class=1 bit=76
+SPILLTEMP proc=engine_torque_calc class=1 bit=83
+SPILLTEMP proc=engine_torque_calc class=1 bit=93
+SPILLTEMP proc=engine_torque_calc class=1 bit=118
+SPILLTEMP proc=engine_torque_calc class=1 bit=145
+SPILLTEMP proc=engine_torque_calc class=1 bit=170
+SPILLTEMP proc=engine_torque_calc class=1 bit=171
+SPILLTEMP proc=engine_torque_calc class=1 bit=172
+SPILLTEMP proc=engine_torque_calc class=1 bit=173
+SPILLTEMP proc=engine_torque_calc class=1 bit=174
+SPILLTEMP proc=engine_torque_calc class=1 bit=175
+SPILLTEMP proc=engine_torque_calc class=1 bit=176
+SPILLTEMP proc=engine_torque_calc class=1 bit=177
+SPILLTEMP proc=engine_torque_calc class=1 bit=178
+SPILLTEMP proc=engine_torque_calc class=1 bit=179
+SPILLTEMP proc=engine_torque_calc class=1 bit=180
+SPILLTEMP proc=engine_torque_calc class=1 bit=181
+SPILLTEMP proc=engine_torque_calc class=1 bit=183
+SPILLTEMP proc=engine_torque_calc class=1 bit=184
+SPILLTEMP proc=engine_torque_calc class=1 bit=185
+SPILLTEMP proc=engine_torque_calc class=1 bit=186
+SPILLTEMP proc=engine_torque_calc class=1 bit=187
+SPILLTEMP proc=engine_torque_calc class=1 bit=188
+SPILLTEMP proc=engine_torque_calc class=1 bit=189
+SPILLTEMP proc=engine_torque_calc class=1 bit=190
+SPILLTEMP proc=engine_torque_calc class=1 bit=191
+SPILLTEMP proc=engine_torque_calc class=1 bit=192
+SPILLTEMP proc=engine_torque_calc class=1 bit=193
+SPILLTEMP proc=engine_torque_calc class=1 bit=194
+SPILLTEMP proc=engine_torque_calc class=1 bit=195
+SPILLTEMP proc=engine_torque_calc class=1 bit=196
+SPILLTEMP proc=engine_torque_calc class=1 bit=197
+SPILLTEMP proc=engine_torque_calc class=2 bit=182
+HOME proc=engine_torque_calc bit=21 home=0 reused=0 size=4
+AREA f_spilltemps:152195 proc=engine_torque_calc area=72
+HOME proc=engine_torque_calc bit=76 home=0 reused=1 size=4
+HOME proc=engine_torque_calc bit=118 home=0 reused=1 size=4
+HOME proc=engine_torque_calc bit=145 home=0 reused=1 size=4
+AREA f_procinit:75907 proc=engine_torque_calc area=0
+AREA f_procinit:75910 proc=engine_torque_calc area=0
+AREA f_procinit:75913 proc=engine_torque_calc area=0
+AREA f_procinit:75916 proc=engine_torque_calc area=0
+AREA f_procinit:75929 proc=engine_torque_calc area=0
+AREA f_procinit:75931 proc=engine_torque_calc area=0
+AREA f_readnxtinst:93387 proc=transmission_ratio_get area=4
+SPILLTEMP proc=transmission_ratio_get class=1 bit=0
+SPILLTEMP proc=transmission_ratio_get class=1 bit=8
+SPILLTEMP proc=transmission_ratio_get class=1 bit=11
+AREA f_procinit:75907 proc=transmission_ratio_get area=0
+AREA f_procinit:75910 proc=transmission_ratio_get area=0
+AREA f_procinit:75913 proc=transmission_ratio_get area=0
+AREA f_procinit:75916 proc=transmission_ratio_get area=0
+AREA f_procinit:75929 proc=transmission_ratio_get area=0
+AREA f_procinit:75931 proc=transmission_ratio_get area=0
+AREA f_readnxtinst:93387 proc=engine_sound_update area=92
+SPILLTEMP proc=engine_sound_update class=1 bit=3
+SPILLTEMP proc=engine_sound_update class=1 bit=13
+SPILLTEMP proc=engine_sound_update class=1 bit=16
+SPILLTEMP proc=engine_sound_update class=1 bit=21
+SPILLTEMP proc=engine_sound_update class=1 bit=29
+SPILLTEMP proc=engine_sound_update class=1 bit=32
+SPILLTEMP proc=engine_sound_update class=1 bit=35
+SPILLTEMP proc=engine_sound_update class=1 bit=39
+SPILLTEMP proc=engine_sound_update class=1 bit=42
+SPILLTEMP proc=engine_sound_update class=1 bit=58
+SPILLTEMP proc=engine_sound_update class=1 bit=59
+SPILLTEMP proc=engine_sound_update class=1 bit=61
+SPILLTEMP proc=engine_sound_update class=1 bit=73
+SPILLTEMP proc=engine_sound_update class=1 bit=74
+SPILLTEMP proc=engine_sound_update class=1 bit=75
+SPILLTEMP proc=engine_sound_update class=1 bit=101
+SPILLTEMP proc=engine_sound_update class=1 bit=121
+SPILLTEMP proc=engine_sound_update class=1 bit=122
+SPILLTEMP proc=engine_sound_update class=1 bit=128
+SPILLTEMP proc=engine_sound_update class=1 bit=129
+SPILLTEMP proc=engine_sound_update class=1 bit=133
+SPILLTEMP proc=engine_sound_update class=1 bit=140
+SPILLTEMP proc=engine_sound_update class=1 bit=143
+SPILLTEMP proc=engine_sound_update class=1 bit=144
+SPILLTEMP proc=engine_sound_update class=1 bit=146
+SPILLTEMP proc=engine_sound_update class=1 bit=333
+SPILLTEMP proc=engine_sound_update class=1 bit=334
+SPILLTEMP proc=engine_sound_update class=1 bit=335
+SPILLTEMP proc=engine_sound_update class=1 bit=337
+SPILLTEMP proc=engine_sound_update class=1 bit=338
+SPILLTEMP proc=engine_sound_update class=1 bit=339
+SPILLTEMP proc=engine_sound_update class=1 bit=340
+SPILLTEMP proc=engine_sound_update class=1 bit=341
+SPILLTEMP proc=engine_sound_update class=1 bit=342
+SPILLTEMP proc=engine_sound_update class=1 bit=343
+SPILLTEMP proc=engine_sound_update class=1 bit=344
+SPILLTEMP proc=engine_sound_update class=1 bit=345
+SPILLTEMP proc=engine_sound_update class=1 bit=346
+SPILLTEMP proc=engine_sound_update class=1 bit=347
+SPILLTEMP proc=engine_sound_update class=1 bit=348
+SPILLTEMP proc=engine_sound_update class=1 bit=349
+SPILLTEMP proc=engine_sound_update class=1 bit=350
+SPILLTEMP proc=engine_sound_update class=1 bit=351
+SPILLTEMP proc=engine_sound_update class=1 bit=352
+SPILLTEMP proc=engine_sound_update class=1 bit=353
+SPILLTEMP proc=engine_sound_update class=1 bit=354
+SPILLTEMP proc=engine_sound_update class=1 bit=355
+SPILLTEMP proc=engine_sound_update class=2 bit=4
+SPILLTEMP proc=engine_sound_update class=2 bit=7
+SPILLTEMP proc=engine_sound_update class=2 bit=10
+SPILLTEMP proc=engine_sound_update class=2 bit=336
+HOME proc=engine_sound_update bit=3 home=0 reused=0 size=4
+AREA f_spilltemps:152195 proc=engine_sound_update area=96
+CONFL proc=engine_sound_update bit=29 other=3 blk=1009d988
+CONFL proc=engine_sound_update bit=29 other=3 blk=1009d458
+CONFL proc=engine_sound_update bit=29 other=3 blk=1009c898
+CONFL proc=engine_sound_update bit=29 other=3 blk=1009c678
+CONFL proc=engine_sound_update bit=29 other=3 blk=1009bfb0
+CONFL proc=engine_sound_update bit=29 other=3 blk=1009cda0
+CONFL proc=engine_sound_update bit=29 other=3 blk=1009ae28
+CONFL proc=engine_sound_update bit=29 other=3 blk=1009c2c0
+CONFL proc=engine_sound_update bit=29 other=3 blk=1009b360
+HOME proc=engine_sound_update bit=29 home=1 reused=0 size=4
+AREA f_spilltemps:152195 proc=engine_sound_update area=100
+CONFL proc=engine_sound_update bit=42 other=3 blk=1009d458
+CONFL proc=engine_sound_update bit=42 other=29 blk=1009d458
+CONFL proc=engine_sound_update bit=42 other=3 blk=1009c898
+CONFL proc=engine_sound_update bit=42 other=29 blk=1009c898
+CONFL proc=engine_sound_update bit=42 other=3 blk=1009c678
+CONFL proc=engine_sound_update bit=42 other=29 blk=1009c678
+CONFL proc=engine_sound_update bit=42 other=3 blk=1009c2c0
+CONFL proc=engine_sound_update bit=42 other=29 blk=1009c2c0
+HOME proc=engine_sound_update bit=42 home=2 reused=0 size=4
+AREA f_spilltemps:152195 proc=engine_sound_update area=104
+CONFL proc=engine_sound_update bit=58 other=3 blk=1009de90
+CONFL proc=engine_sound_update bit=58 other=3 blk=10099b60
+CONFL proc=engine_sound_update bit=58 other=3 blk=100995c8
+CONFL proc=engine_sound_update bit=58 other=3 blk=10099e70
+CONFL proc=engine_sound_update bit=58 other=3 blk=10098ff8
+CONFL proc=engine_sound_update bit=58 other=3 blk=10098c10
+CONFL proc=engine_sound_update bit=58 other=3 blk=100992a0
+CONFL proc=engine_sound_update bit=58 other=3 blk=100986e8
+CONFL proc=engine_sound_update bit=58 other=42 blk=10099878
+CONFL proc=engine_sound_update bit=58 other=42 blk=10097bd0
+CONFL proc=engine_sound_update bit=58 other=42 blk=10097950
+CONFL proc=engine_sound_update bit=58 other=42 blk=10097eb0
+CONFL proc=engine_sound_update bit=58 other=3 blk=10098930
+HOME proc=engine_sound_update bit=58 home=1 reused=1 size=4
+CONFL proc=engine_sound_update bit=59 other=3 blk=1009de90
+CONFL proc=engine_sound_update bit=59 other=58 blk=1009de90
+CONFL proc=engine_sound_update bit=59 other=3 blk=10099b60
+CONFL proc=engine_sound_update bit=59 other=58 blk=10099b60
+CONFL proc=engine_sound_update bit=59 other=3 blk=100995c8
+CONFL proc=engine_sound_update bit=59 other=58 blk=100995c8
+CONFL proc=engine_sound_update bit=59 other=3 blk=10099e70
+CONFL proc=engine_sound_update bit=59 other=58 blk=10099e70
+CONFL proc=engine_sound_update bit=59 other=3 blk=10098ff8
+CONFL proc=engine_sound_update bit=59 other=58 blk=10098ff8
+CONFL proc=engine_sound_update bit=59 other=3 blk=10098c10
+CONFL proc=engine_sound_update bit=59 other=58 blk=10098c10
+CONFL proc=engine_sound_update bit=59 other=3 blk=100992a0
+CONFL proc=engine_sound_update bit=59 other=58 blk=100992a0
+CONFL proc=engine_sound_update bit=59 other=3 blk=100986e8
+CONFL proc=engine_sound_update bit=59 other=58 blk=100986e8
+HOME proc=engine_sound_update bit=59 home=2 reused=1 size=4
+CONFL proc=engine_sound_update bit=61 other=3 blk=10099e70
+CONFL proc=engine_sound_update bit=61 other=58 blk=10099e70
+CONFL proc=engine_sound_update bit=61 other=59 blk=10099e70
+CONFL proc=engine_sound_update bit=61 other=3 blk=10098ff8
+CONFL proc=engine_sound_update bit=61 other=58 blk=10098ff8
+CONFL proc=engine_sound_update bit=61 other=59 blk=10098ff8
+CONFL proc=engine_sound_update bit=61 other=3 blk=10098c10
+CONFL proc=engine_sound_update bit=61 other=58 blk=10098c10
+CONFL proc=engine_sound_update bit=61 other=59 blk=10098c10
+CONFL proc=engine_sound_update bit=61 other=3 blk=100992a0
+CONFL proc=engine_sound_update bit=61 other=58 blk=100992a0
+CONFL proc=engine_sound_update bit=61 other=59 blk=100992a0
+HOME proc=engine_sound_update bit=61 home=3 reused=0 size=4
+AREA f_spilltemps:152195 proc=engine_sound_update area=108
+CONFL proc=engine_sound_update bit=73 other=42 blk=10099878
+CONFL proc=engine_sound_update bit=73 other=58 blk=10099878
+CONFL proc=engine_sound_update bit=73 other=42 blk=10097bd0
+CONFL proc=engine_sound_update bit=73 other=58 blk=10097bd0
+CONFL proc=engine_sound_update bit=73 other=42 blk=10097950
+CONFL proc=engine_sound_update bit=73 other=58 blk=10097950
+CONFL proc=engine_sound_update bit=73 other=42 blk=10096f70
+CONFL proc=engine_sound_update bit=73 other=42 blk=10096cf0
+CONFL proc=engine_sound_update bit=73 other=42 blk=10097250
+CONFL proc=engine_sound_update bit=73 other=42 blk=10097eb0
+CONFL proc=engine_sound_update bit=73 other=58 blk=10097eb0
+HOME proc=engine_sound_update bit=73 home=0 reused=1 size=4
+CONFL proc=engine_sound_update bit=74 other=73 blk=10096240
+CONFL proc=engine_sound_update bit=74 other=73 blk=10096020
+CONFL proc=engine_sound_update bit=74 other=73 blk=10094d38
+HOME proc=engine_sound_update bit=74 home=1 reused=1 size=4
+CONFL proc=engine_sound_update bit=75 other=73 blk=10096020
+CONFL proc=engine_sound_update bit=75 other=74 blk=10096020
+CONFL proc=engine_sound_update bit=75 other=74 blk=10095a70
+CONFL proc=engine_sound_update bit=75 other=74 blk=10095d18
+HOME proc=engine_sound_update bit=75 home=2 reused=1 size=4
+HOME proc=engine_sound_update bit=121 home=0 reused=1 size=4
+CONFL proc=engine_sound_update bit=122 other=121 blk=1005f2f8
+CONFL proc=engine_sound_update bit=122 other=121 blk=1005ec78
+HOME proc=engine_sound_update bit=122 home=1 reused=1 size=4
+HOME proc=engine_sound_update bit=128 home=0 reused=1 size=4
+CONFL proc=engine_sound_update bit=129 other=121 blk=1005ec78
+CONFL proc=engine_sound_update bit=129 other=122 blk=1005ec78
+CONFL proc=engine_sound_update bit=129 other=121 blk=1005e4b0
+HOME proc=engine_sound_update bit=129 home=2 reused=1 size=4
+HOME proc=engine_sound_update bit=133 home=0 reused=1 size=4
+CONFL proc=engine_sound_update bit=143 other=128 blk=1005bbe0
+CONFL proc=engine_sound_update bit=143 other=128 blk=1005af10
+CONFL proc=engine_sound_update bit=143 other=128 blk=1005acf0
+CONFL proc=engine_sound_update bit=143 other=128 blk=1005a630
+CONFL proc=engine_sound_update bit=143 other=128 blk=1005a0b8
+CONFL proc=engine_sound_update bit=143 other=128 blk=1005b4c0
+CONFL proc=engine_sound_update bit=143 other=128 blk=10058d58
+CONFL proc=engine_sound_update bit=143 other=128 blk=1005a940
+CONFL proc=engine_sound_update bit=143 other=128 blk=100595f0
+HOME proc=engine_sound_update bit=143 home=1 reused=1 size=4
+CONFL proc=engine_sound_update bit=144 other=128 blk=1005bbe0
+CONFL proc=engine_sound_update bit=144 other=143 blk=1005bbe0
+CONFL proc=engine_sound_update bit=144 other=128 blk=1005af10
+CONFL proc=engine_sound_update bit=144 other=143 blk=1005af10
+CONFL proc=engine_sound_update bit=144 other=128 blk=1005acf0
+CONFL proc=engine_sound_update bit=144 other=143 blk=1005acf0
+CONFL proc=engine_sound_update bit=144 other=128 blk=1005a630
+CONFL proc=engine_sound_update bit=144 other=143 blk=1005a630
+CONFL proc=engine_sound_update bit=144 other=128 blk=1005a0b8
+CONFL proc=engine_sound_update bit=144 other=143 blk=1005a0b8
+CONFL proc=engine_sound_update bit=144 other=128 blk=1005b4c0
+CONFL proc=engine_sound_update bit=144 other=143 blk=1005b4c0
+CONFL proc=engine_sound_update bit=144 other=128 blk=1005a940
+CONFL proc=engine_sound_update bit=144 other=143 blk=1005a940
+CONFL proc=engine_sound_update bit=144 other=128 blk=100595f0
+CONFL proc=engine_sound_update bit=144 other=143 blk=100595f0
+HOME proc=engine_sound_update bit=144 home=2 reused=1 size=4
+GETTEMP proc=engine_sound_update size=4 found=1 area=108 idx=1 flags=bFFF
+GETTEMP proc=engine_sound_update size=4 found=1 area=108 idx=1 flags=bFFF
+GETTEMP proc=engine_sound_update size=4 found=1 area=108 idx=1 flags=bFFF
+GETTEMP proc=engine_sound_update size=4 found=1 area=108 idx=1 flags=bFFF
