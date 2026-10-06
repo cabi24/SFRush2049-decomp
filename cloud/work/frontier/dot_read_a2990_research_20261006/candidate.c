@@ -1,3 +1,4 @@
+/* Error predicate contract: src/blob/func_8008A6A4.c returns s32 and consumes s32 port. */
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul */
 typedef unsigned char u8;
 typedef signed char s8;
@@ -23,8 +24,8 @@ extern ResourceNode *D_80144D68[];
 extern s8 D_8011194C, D_8011EAE8;
 extern OSMesgQueue D_801497D0, D_80152770;
 extern OSMesg D_801527E4;
-extern void func_8008A6A4(void);
-extern void (*D_80144008)(s32, s32, s32, s32, s8 *, s8 *, void (*)(void));
+extern s32 func_8008A6A4(s32);
+extern void (*D_80144008)(s32, s32, s32, s32, s8 *, s8 *, s32 (*)(s32));
 extern BufferHandle *audio_task_complete(s32, s32);
 extern void *memset(void *, s32, u32);
 extern void osInvalDCache(void *, s32);
