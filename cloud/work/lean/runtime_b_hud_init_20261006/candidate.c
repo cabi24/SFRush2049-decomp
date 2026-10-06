@@ -33,7 +33,7 @@ extern HudHandle D_80395DA0[4];
 extern Blit *sound_control(s16, s16, const MultiBlit *, s16);
 extern s32 object_create(s32);
 extern s32 object_manager_update(u8 *, s16);
-extern s32 object_bytes_sum_global(void);
+extern s16 object_bytes_sum_global(void);
 extern FiveParts *ambient_sound_set(s32, s32, s32, s32, s32, s32, s32, s32);
 extern void tournament_unlock_check(FiveParts *, const u8 *, const u8 *);
 
