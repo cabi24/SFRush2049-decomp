@@ -1,0 +1,1 @@
+{"flags":"-g0 -O3 -mips2 -G 0 -non_shared","files":["helper.c","slot_context.c","countdown_caller.c","controller_caller.c"],"keep":["control_settings","func_80106B3C"],"members":["attract_demo_handler"],"context":["slot_state_setup","func_80106B3C","control_settings","func_800DCD58","func_800DCCE0"],"claims":[]}
