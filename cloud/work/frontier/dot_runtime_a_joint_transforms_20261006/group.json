@@ -1,0 +1,18 @@
+{
+  "members": [
+    "func_80390A28",
+    "func_80390DCC"
+  ],
+  "claims": [
+    "func_80390A28"
+  ],
+  "context": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_80390DCC"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "Complete real nine-argument 90DCC caller supplies private s3 parameter/save context for the two-natural-argument 90A28 helper. 400-byte helper has strict zero; caller stays research."
+}
