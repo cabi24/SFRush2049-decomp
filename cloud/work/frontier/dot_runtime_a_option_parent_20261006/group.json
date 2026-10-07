@@ -1,0 +1,27 @@
+{
+  "members": [
+    "func_8038ACB0",
+    "func_8038B834",
+    "func_8038C93C",
+    "func_8038DFEC",
+    "func_8038AE50",
+    "func_8038B388",
+    "func_8038B940",
+    "func_8038E5DC",
+    "func_8038AEB0",
+    "func_8038B3EC"
+  ],
+  "claims": [],
+  "context": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_8038E5DC"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "external_sources": [
+    "wrapper_return.c"
+  ],
+  "provenance": "Complete authentic-table E5DC root and four real AE50 callers; all NONMATCH research. DFEC improves267/380 with genuine outer caller; no artificial retention workaround."
+}
