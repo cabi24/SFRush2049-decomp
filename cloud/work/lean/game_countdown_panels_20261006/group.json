@@ -1,0 +1,1 @@
+{"flags":"-g0 -O3 -mips2 -G 0 -non_shared","files":["callback.c","slot_context.c","replay_caller.c"],"keep":["func_80106874","replay_save_prompt"],"members":["func_80106874"],"context":["slot_state_setup","replay_save_prompt"],"claims":[]}
