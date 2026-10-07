@@ -1,0 +1,24 @@
+{
+  "members": [
+    "func_8039B120",
+    "func_8039B214",
+    "func_8039BE48",
+    "func_8039A448",
+    "func_8039C140"
+  ],
+  "claims": [
+    "func_8039BE48"
+  ],
+  "context": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_8039C140"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "BE48 local 190/190 code match with authenticated owned scale literal1.01f at native803B95B4. Genuine C140 parent and external main-blob wrapper. Existing helper matches are context only.",
+  "external_sources": [
+    "wrapper_return.c"
+  ]
+}
