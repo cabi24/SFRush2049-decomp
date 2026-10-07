@@ -1,0 +1,22 @@
+{
+  "members": [
+    "func_80394564",
+    "func_80397FFC",
+    "func_80394B00",
+    "func_80394834",
+    "func_803949CC",
+    "func_8039842C"
+  ],
+  "claims": [
+    "func_803949CC"
+  ],
+  "context": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_8039842C"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "New complete cleanup with full genuine 9842C menu caller. Availability/setup/state-change/refresh context reused from #290; 94834 remains existing exact context and is not claimed again. Other group members are NONMATCH."
+}
