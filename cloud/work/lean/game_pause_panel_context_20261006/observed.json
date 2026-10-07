@@ -1,0 +1,116 @@
+{
+  "base": "f2e8380d3b368d00efc9cac3e37cdc7059b1f6e2",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "automatic_backend_flag": "-Wab,-r4300_mul",
+  "source_sha256": {
+    "callback.c": "451a48f6eda4f03b30e9e767510f266df39aa72c4b2ba710a0cf4984d74bd681",
+    "panel_helper.c": "d41ce6e4b83e3b7166c597da5dfe59b9862087f05bf56effe8d8f7494ee7f9d2",
+    "slot_context.c": "1d19ad3000273569000654ca8f8d93d4e040eb476738998cf5e87847c18c2e8b",
+    "pause_caller.c": "fbeec6ecac55e5fcd28c3f6dd415a004b6bd8719a0e9f554d3cb256cdc1110f8",
+    "group.json": "abf92698711270cfa3de1b13c52d8464ae2429f654a955e5aefb1d9a64d30fa6"
+  },
+  "rows": [
+    {
+      "mode": "baseline_single",
+      "function": "func_8010E8B4",
+      "result": {
+        "differing": 85,
+        "total": 85,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "function_bytes": 300,
+      "target_bytes": 340,
+      "frame_bytes": [
+        40
+      ]
+    },
+    {
+      "mode": "candidate_single",
+      "function": "func_8010E8B4",
+      "result": {
+        "differing": 85,
+        "total": 85,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "function_bytes": 304,
+      "target_bytes": 340,
+      "frame_bytes": [
+        56
+      ]
+    },
+    {
+      "mode": "genuine_context_control",
+      "function": "func_8010E8B4",
+      "result": {
+        "differing": 24,
+        "total": 85,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "function_bytes": 340,
+      "target_bytes": 340,
+      "frame_bytes": [
+        80
+      ]
+    },
+    {
+      "mode": "genuine_context_control",
+      "function": "sound_loop_set",
+      "result": {
+        "differing": 4,
+        "total": 83,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "function_bytes": 332,
+      "target_bytes": 332,
+      "frame_bytes": [
+        144
+      ]
+    },
+    {
+      "mode": "genuine_context_control",
+      "function": "physics_sym",
+      "result": {
+        "differing": 303,
+        "total": 313,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "function_bytes": 1172,
+      "target_bytes": 1252,
+      "frame_bytes": [
+        80
+      ]
+    },
+    {
+      "mode": "genuine_context_control",
+      "function": "slot_state_setup",
+      "result": {
+        "differing": 18,
+        "total": 58,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 2
+      },
+      "function_bytes": 232,
+      "target_bytes": 232,
+      "frame_bytes": [
+        32
+      ]
+    }
+  ]
+}
