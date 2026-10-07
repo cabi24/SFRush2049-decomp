@@ -1,0 +1,23 @@
+{
+  "files": [
+    "hash.c",
+    "candidate.c",
+    "caller_small.c",
+    "caller_large.c"
+  ],
+  "keep": [
+    "func_800CBF2C",
+    "func_800C813C"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "members": [
+    "draw_ui_element"
+  ],
+  "context": [
+    "format_string_parse",
+    "func_800CBF2C",
+    "func_800C813C"
+  ],
+  "claims": [],
+  "provenance": "Observed local research candidate. Genuine caller and hash bodies only; partial compiler visibility remains a hypothesis. No accepted coverage claim."
+}
