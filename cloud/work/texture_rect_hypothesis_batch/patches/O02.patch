@@ -1,0 +1,21 @@
+--- baseline.c
++++ candidates/O02.c
+@@ -47,12 +47,15 @@
+             gSPTextureRectangle(D_80149438++,x<<2,y<<2,right<<2,bottom<<2,0,s<<5,t<<5,4096,1024);
+         }
+     } else {
+-        height=bottom-y;
+-        if(D_8012E608&0x8000) {bottom+=height+1;step=512;offset=16;}
+-        else {step=1024;offset=0;}
++        if(D_8012E608&0x8000) {step=512;offset=16;} else {step=1024;offset=0;}
++        do {height=bottom-y;
++        if(D_8012E608&0x8000) {bottom+=height+1;}
++        } while(0);
+         if((D_8012E608&4)&&(D_8012E608&8)) {
++            do {
+             texture_edge=s+right;s=texture_edge-x;t+=height;
+             gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,(t<<5)+offset,-1024,-step);
++            } while(0);
+         } else if(D_8012E608&4) {
+             texture_edge=s+right;s=texture_edge-x;
+             gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,t<<5,-1024,step);

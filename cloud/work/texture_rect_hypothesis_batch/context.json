@@ -1,0 +1,10 @@
+{
+  "schema": "rush-hypothesis-context-v1",
+  "source": "cloud/work/frontier/w4a/func_80087110/best.c",
+  "files": [
+    {
+      "path": "cloud/work/frontier/w4a/func_80087110/best.c",
+      "sha256": "f8355db6884b85c77a25b21c7aae746be236ed10a3dc8fee93264259cf4c6f8f"
+    }
+  ]
+}

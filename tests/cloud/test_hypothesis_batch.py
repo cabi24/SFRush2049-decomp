@@ -109,11 +109,29 @@ class ManifestTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "compiler missing"):
                 batch.freeze(self.path, self.root / "run", 2)
 
+    def test_experiment_o3_is_explicit_and_calibration_stays_exact_o2(self):
+        self.change(lambda value: value.update(flags=batch.O3_FLAGS))
+        with self.assertRaisesRegex(ValueError, "recipe"):
+            batch.validate(self.path)
+        self.change(lambda value: value.update(purpose="experiment", baseline_expectation={"differing": 4, "total": 445, "extra_words": 0}))
+        plan, _, _ = batch.validate(self.path)
+        self.assertEqual(plan["flags"], batch.O3_FLAGS)
+        for replacement in ({"differing": 0, "total": 445, "extra_words": 0},
+                            {"differing": True, "total": 445, "extra_words": 0},
+                            {"differing": 446, "total": 445, "extra_words": 0}):
+            self.change(lambda value: value.update(baseline_expectation=replacement))
+            with self.assertRaisesRegex(ValueError, "baseline expectation"):
+                batch.validate(self.path)
+        self.change(lambda value: value.update(purpose="calibration", flags=batch.FLAGS))
+        with self.assertRaisesRegex(ValueError, "cannot override"):
+            batch.validate(self.path)
+
 
 class ArtifactTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.root = Path(self.tmp.name)
+        batch.write_json(self.root / "run-identity.json", {"run_id": "test"})
         self.file = self.root / "input"
         self.file.write_bytes(b"input")
         envelope = {"files": {"input": batch.file_hash(self.file)},
@@ -221,6 +239,114 @@ class ProcessTests(unittest.TestCase):
             time.sleep(1.5)
             self.assertFalse(marker.exists())
             self.assertTrue(pid.exists())
+
+
+class ExperimentModeTests(unittest.TestCase):
+    def controls(self, differing=4, total=445, extra=0):
+        strict = {"accepted": differing == 0 and extra == 0, "differing": differing,
+                  "total": total, "extra_words": extra, "errors": [], "unresolved": [], "unverified": [], "notes": []}
+        row = {"status": "strict_exact_candidate" if strict["accepted"] else "scored_mismatch",
+               "strict": strict, "object_sha256": "a" * 64}
+        return [copy.deepcopy(row), copy.deepcopy(row)]
+
+    def test_repeatable_explicit_nonmatch_is_not_match(self):
+        plan = {"purpose": "experiment", "baseline_expectation": {"differing": 4, "total": 445, "extra_words": 0}}
+        controls = self.controls()
+        batch.validate_baseline_evidence(plan, controls)
+        self.assertFalse(controls[0]["strict"]["accepted"])
+        self.assertEqual(controls[0]["status"], "scored_mismatch")
+        for field, value in (("differing", 5), ("total", 444), ("extra_words", 1)):
+            changed = copy.deepcopy(plan)
+            changed["baseline_expectation"][field] = value
+            with self.assertRaisesRegex(ValueError, "explicit nonmatch"):
+                batch.validate_baseline_evidence(changed, controls)
+
+    def test_repeatable_nonmatch_cannot_relax_calibration(self):
+        with self.assertRaisesRegex(ValueError, "declared mode"):
+            batch.validate_baseline_evidence({"purpose": "calibration"}, self.controls())
+        batch.validate_baseline_evidence({"purpose": "calibration"}, self.controls(0))
+
+    def test_repeatability_checks_whole_elf_and_strict_evidence(self):
+        plan = {"purpose": "experiment", "baseline_expectation": {"differing": 4, "total": 445, "extra_words": 0}}
+        controls = self.controls()
+        controls[1]["object_sha256"] = "b" * 64
+        with self.assertRaisesRegex(ValueError, "whole ELF"):
+            batch.validate_baseline_evidence(plan, controls)
+        for field in ("errors", "unresolved", "unverified"):
+            controls = self.controls()
+            for row in controls:
+                row["strict"][field] = ["blocked"]
+            with self.assertRaisesRegex(ValueError, "blocked"):
+                batch.validate_baseline_evidence(plan, controls)
+        with self.assertRaisesRegex(ValueError, "declared mode"):
+            batch.validate_baseline_evidence(plan, self.controls(0))
+
+    def test_frozen_macro_definitions_not_include_closure(self):
+        allowed = '#define STEP(x) ((x) + 1)\nvoid f(void) { int i = STEP(1); }\n'
+        self.assertTrue(batch.frozen_prefix_macros_only(allowed, "f"))
+        for prefix in ('#include "a.h"\n', '/* comment */ # include "a.h"\n', '#inc\\\nlude "a.h"\n', '%:include "a.h"\n', '#pragma optimize\n'):
+            self.assertFalse(batch.frozen_prefix_macros_only(prefix + allowed, "f"))
+        self.assertFalse(batch.frozen_prefix_macros_only(allowed + '#define OTHER 1\n', "f"))
+        self.assertFalse(batch.frozen_prefix_macros_only('void f(void) {\n#define OTHER 1\n}', "f"))
+
+
+class TimingTests(unittest.TestCase):
+    def test_append_only_spans_preserve_utc_monotonic_failure_and_correlation(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            batch.write_json(root / "run-identity.json", {"run_id": "timing-test"})
+            with batch.phase(root, "compile", "A01"):
+                pass
+            before = (root / "events.jsonl").read_bytes()
+            with self.assertRaises(ValueError):
+                with batch.phase(root, "score", "A01"):
+                    raise ValueError("private content must not enter event log")
+            self.assertTrue((root / "events.jsonl").read_bytes().startswith(before))
+            records = [json.loads(line) for line in (root / "events.jsonl").read_text().splitlines()]
+            self.assertEqual(len(records), 4)
+            self.assertTrue(all(row["run_id"] == "timing-test" and row["variant"] == "A01" for row in records))
+            self.assertTrue(all(row["utc"].endswith("+00:00") for row in records))
+            self.assertEqual(records[-1]["status"], "failed")
+            self.assertNotIn("private content", (root / "events.jsonl").read_text())
+            result = batch.timing_summary(root)
+            self.assertEqual(result["open_spans"], [])
+            self.assertGreaterEqual(result["stages"]["compile"]["summed_elapsed_seconds"], 0)
+            self.assertIsNone(result["cpu_seconds"])
+            self.assertIsNone(result["llm_tokens"])
+
+    def test_run_failure_and_cancellation_write_terminal_summary(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            with mock.patch.object(batch, "validate", side_effect=ValueError("invalid plan")):
+                result = batch.run(root / "missing-plan", root / "validation-failure")
+            self.assertEqual(result["status"], "blocked")
+            self.assertTrue((root / "validation-failure/summary.json").exists())
+            self.assertEqual(result["timings"]["open_spans"], [])
+            plan = {"limits": {"jobs": 2}, "base_commit": "a" * 40, "purpose": "experiment"}
+            state = {"plan_sha256": "b" * 64, "envelope_sha256": "c" * 64,
+                     "envelope": {"effective_flags": batch.O3_FLAGS}}
+            with mock.patch.object(batch, "validate", return_value=(plan, None, None)), mock.patch.object(batch, "_freeze", side_effect=ValueError("missing compiler")):
+                result = batch.run(root / "mock-plan", root / "freeze-failure")
+            self.assertEqual(result["status"], "blocked")
+            self.assertEqual(result["timings"]["open_spans"], [])
+            self.assertTrue((root / "freeze-failure/summary.json").exists())
+            with mock.patch.object(batch, "validate", return_value=(plan, None, None)), mock.patch.object(batch, "_freeze", return_value=state), mock.patch.object(batch, "baseline_controls", side_effect=KeyboardInterrupt()):
+                result = batch.run(root / "mock-plan", root / "cancelled")
+            self.assertEqual(result["status"], "cancelled")
+            self.assertTrue((root / "cancelled/summary.json").exists())
+            self.assertEqual(result["timings"]["open_spans"], [])
+
+    def test_cancel_and_incomplete_child_spans_are_visible(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            batch.write_json(root / "run-identity.json", {"run_id": "timing-test"})
+            with self.assertRaises(KeyboardInterrupt):
+                with batch.phase(root, "compile", "A01"):
+                    raise KeyboardInterrupt()
+            batch.event(root, "compiler_process", "start", variant="A02", span_id="interrupted")
+            result = batch.timing_summary(root)
+            self.assertEqual(result["per_variant"][0]["status"], "cancelled")
+            self.assertEqual(result["open_spans"], [{"stage": "compiler_process", "variant": "A02"}])
 
 
 if __name__ == "__main__":

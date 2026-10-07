@@ -10,6 +10,9 @@ from __future__ import annotations
 
 import argparse
 import concurrent.futures
+import contextlib
+from datetime import datetime, timezone
+import uuid
 from dataclasses import asdict
 import hashlib
 import importlib.util
@@ -31,11 +34,117 @@ import time
 REPO = Path(__file__).resolve().parents[2]
 SCHEMA = "rush-hypothesis-batch-v1"
 FLAGS = ["-g0", "-O2", "-mips2", "-G", "0", "-non_shared"]
+O3_FLAGS = ["-g0", "-O3", "-mips2", "-G", "0", "-non_shared"]
 NAME = re.compile(r"[A-Za-z_][A-Za-z_0-9]*\Z")
 HEX = re.compile(r"[0-9a-f]{64}\Z")
 _ACTIVE = set()
 _ACTIVE_LOCK = threading.RLock()
 _CANCELLED = threading.Event()
+
+
+
+def utc_now():
+    return datetime.now(timezone.utc).isoformat(timespec="microseconds")
+
+
+def event(output, stage, action, *, variant=None, span_id=None, **details):
+    """One O_APPEND write per event; safe for this machine's worker processes.
+
+    Event payloads contain identities, times and scalar statuses, never streams.
+    UTC is for observation boundaries; durations use the monotonic clock.
+    """
+    output = Path(output)
+    run_id = read_json(output / "run-identity.json")["run_id"]
+    value = {"schema": "rush-hypothesis-timing-v1", "run_id": run_id,
+             "utc": utc_now(), "monotonic_seconds": time.monotonic(),
+             "pid": os.getpid(), "stage": stage, "event": action,
+             "variant": variant, "span_id": span_id, **details}
+    data = (json.dumps(value, sort_keys=True) + "\n").encode()
+    fd = os.open(output / "events.jsonl", os.O_WRONLY | os.O_CREAT | os.O_APPEND, 0o600)
+    try:
+        if os.write(fd, data) != len(data):
+            raise OSError("incomplete timing event")
+    finally:
+        os.close(fd)
+    return value
+
+
+@contextlib.contextmanager
+def phase(output, name, variant=None, **details):
+    span = uuid.uuid4().hex
+    start = event(output, name, "start", variant=variant, span_id=span, **details)
+    result = {"status": "ok"}
+    try:
+        yield result
+    except BaseException as exc:
+        result["status"] = "cancelled" if isinstance(exc, (KeyboardInterrupt, SystemExit)) else "failed"
+        result["exception_type"] = type(exc).__name__
+        raise
+    finally:
+        event(output, name, "end", variant=variant, span_id=span,
+              elapsed_seconds=time.monotonic() - start["monotonic_seconds"], **result)
+
+
+def timing_summary(output):
+    events = [json.loads(line) for line in (output / "events.jsonl").read_text().splitlines()]
+    stages = {}
+    starts, ends = {}, set()
+    for item in events:
+        if item["event"] == "start":
+            starts[item["span_id"]] = item
+        if item["event"] != "end":
+            continue
+        ends.add(item["span_id"])
+        stage = stages.setdefault(item["stage"], {"completed_spans": 0, "summed_elapsed_seconds": 0.0,
+                                                  "first_start_utc": None, "last_end_utc": item["utc"]})
+        stage["completed_spans"] += 1
+        stage["summed_elapsed_seconds"] += item["elapsed_seconds"]
+        start = starts.get(item["span_id"])
+        if start:
+            stage["first_start_utc"] = min(filter(None, (stage["first_start_utc"], start["utc"])))
+        stage["last_end_utc"] = max(stage["last_end_utc"], item["utc"])
+    return {"clock": "UTC boundaries; monotonic elapsed durations", "stages": stages,
+            "events_file": "events.jsonl",
+            "observation_cutoff": "Batch end is after initial report generation; final summary/timing serialization follows that measured boundary.",
+            "per_variant": [item for item in events if item.get("variant") and item["event"] in ("end", "dequeued")],
+            "open_spans": [{"stage": item["stage"], "variant": item["variant"]} for key, item in starts.items() if key not in ends],
+            "aggregation": "Summed elapsed durations are process/span wall time, not CPU time. Parallel and nested spans overlap; do not sum stages into total wall time.",
+            "cpu_seconds": None, "llm_active_seconds": None, "llm_tokens": None}
+
+
+def validate_baseline_evidence(plan, controls):
+    if len(controls) != 2:
+        raise ValueError("two baseline controls required")
+    wanted = "strict_exact_candidate" if plan["purpose"] == "calibration" else "scored_mismatch"
+    if any(row.get("status") != wanted for row in controls):
+        raise ValueError("baseline status does not satisfy declared mode; batch not started")
+    if controls[0].get("strict") != controls[1].get("strict") or not controls[0].get("object_sha256") or controls[0].get("object_sha256") != controls[1].get("object_sha256"):
+        raise ValueError("baseline strict evidence and whole ELF must repeat; batch not started")
+    strict = controls[0]["strict"]
+    if strict.get("errors") or strict.get("unresolved") or strict.get("unverified"):
+        raise ValueError("baseline evidence is blocked; batch not started")
+    if plan["purpose"] == "experiment":
+        if strict.get("accepted") is not False or any(strict.get(key) != value for key, value in plan["baseline_expectation"].items()):
+            raise ValueError("baseline differs from explicit nonmatch expectation; batch not started")
+    elif strict.get("accepted") is not True:
+        raise ValueError("calibration baseline must be canonical exact; batch not started")
+
+
+def frozen_prefix_macros_only(source, function):
+    """Permit immutable authentic macro definitions, never include closure.
+
+    Preprocessor directives in the selected body/suffix are still forbidden.
+    Continuations are joined before checking; alternate directive tokens fail.
+    """
+    prefix, body, suffix = split_function(source, function)
+    if has_preprocessor(body) or has_preprocessor(suffix):
+        return False
+    prefix = re.sub(r'/\*.*?\*/|//[^\n]*', "", prefix, flags=re.S)
+    prefix = prefix.replace("\\\r\n", "").replace("\\\n", "")
+    if "??=" in prefix or "%:" in prefix:
+        return False
+    return all(not has_preprocessor(line) or re.fullmatch(r"\s*#\s*define\s+[A-Za-z_][A-Za-z_0-9]*(?:[^#]*)", line)
+               for line in prefix.splitlines())
 
 
 def digest(data):
@@ -132,13 +241,20 @@ def validate(plan_path, repo=REPO):
     plan_path = Path(plan_path).resolve()
     root, plan = plan_path.parent, read_json(plan_path)
     fields(plan, ("schema", "base_commit", "function", "recipe", "purpose", "experiment", "baseline",
-                  "baseline_sha256", "flags", "targets", "context_manifest", "hypothesis", "limits", "predictions"))
-    if plan["schema"] != SCHEMA or plan["recipe"] != "single" or plan["purpose"] != "calibration":
-        raise ValueError("v1 supports only single-function calibration")
+                  "baseline_sha256", "flags", "targets", "context_manifest", "hypothesis", "limits", "predictions"), ("baseline_expectation",))
+    if plan["schema"] != SCHEMA or plan["recipe"] != "single" or plan["purpose"] not in ("calibration", "experiment"):
+        raise ValueError("v1 supports only single-function calibration or experiment")
     if not re.fullmatch(r"[0-9a-f]{40}", str(plan["base_commit"])) or not NAME.fullmatch(str(plan["function"])):
         raise ValueError("invalid pinned commit or function")
-    if plan["flags"] != FLAGS:
-        raise ValueError("v1 requires the explicit standalone O2 recipe; no IPA or injected include flags")
+    if plan["flags"] not in ([FLAGS] if plan["purpose"] == "calibration" else [FLAGS, O3_FLAGS]):
+        raise ValueError("v1 requires an explicit standalone O2/O3 recipe; calibration stays O2; no injected flags")
+    if plan["purpose"] == "experiment":
+        expected = plan.get("baseline_expectation")
+        fields(expected, ("differing", "total", "extra_words"))
+        if any(type(expected[key]) is not int or expected[key] < 0 for key in expected) or expected["total"] < 1 or expected["differing"] > expected["total"] or expected["differing"] + expected["extra_words"] == 0:
+            raise ValueError("experiment needs an explicit nonzero baseline expectation")
+    elif "baseline_expectation" in plan:
+        raise ValueError("calibration cannot override its exact baseline")
     if plan["targets"] not in ("asm/us/blob", "asm/us/ovl_a", "asm/us/ovl_b"):
         raise ValueError("unsupported target directory")
     limits = plan["limits"]
@@ -165,12 +281,12 @@ def validate(plan_path, repo=REPO):
             raise ValueError("context differs from pinned commit: " + entry["path"])
         context_files[entry["path"]] = entry["sha256"]
     if context_files.get(context["source"]) != plan["baseline_sha256"]:
-        raise ValueError("baseline is not the actual pinned production TU")
+        raise ValueError("baseline is not the actual pinned source TU")
     prefix, _, suffix = split_function(baseline.read_text(), plan["function"])
     # Self-contained TUs are deliberately the MVP boundary. Includes need a
     # dependency-closure verifier before this can accept a general TU.
-    if has_preprocessor(baseline.read_text()):
-        raise ValueError("v1 requires a self-contained production TU (include closure unsupported)")
+    if not frozen_prefix_macros_only(baseline.read_text(), plan["function"]):
+        raise ValueError("v1 requires a self-contained TU; only frozen prefix macros allowed (include closure unsupported)")
     experiment_path = inside(root, plan["experiment"])
     raw_experiment = read_json(experiment_path)
     fields(raw_experiment, ("schema", "family", "baseline", "parameters", "candidates"),
@@ -282,9 +398,15 @@ def tool_copy(source, destination):
 
 
 def freeze(plan_path, output, jobs):
-    plan, context, experiment = validate(plan_path)
     output.mkdir(parents=True, exist_ok=False)
     output.chmod(0o700)
+    write_json(output / "run-identity.json", {"run_id": uuid.uuid4().hex})
+    with phase(output, "freeze"):
+        return _freeze(plan_path, output, jobs)
+
+
+def _freeze(plan_path, output, jobs):
+    plan, context, experiment = validate(plan_path)
     root = Path(plan_path).resolve().parent
     snapshot = output / "snapshot"
     snapshot.mkdir()
@@ -408,7 +530,10 @@ def bridge(output, source, destination, slot):
     def logged(command, **kwargs):
         stdout, stderr = work / "compiler.stdout", work / "compiler.stderr"
         with stdout.open("wb") as out, stderr.open("wb") as err:
-            result = subprocess.run(command, stdout=out, stderr=err, **kwargs)
+            with phase(output, "compiler_process", slot) as timed:
+                result = subprocess.run(command, stdout=out, stderr=err, **kwargs)
+                timed["status"] = "ok" if result.returncode == 0 else "failed"
+                timed["returncode"] = result.returncode
         return subprocess.CompletedProcess(command, result.returncode,
             stdout.read_text(errors="replace"), stderr.read_text(errors="replace"))
     scorer._run = logged
@@ -445,8 +570,13 @@ def strict_score(output, obj, destination):
 
 def stage(output, mode, arguments, seconds, log):
     state = read_json(output / "frozen.json")
-    return process([sys.executable, str(output / "snapshot/tools/cloud/hypothesis_batch.py"), mode,
-                    str(output), *map(str, arguments)], output, state["envelope"]["environment"], seconds, output / log)
+    names = {"_compile": "baseline_compile", "_score": "strict_score", "_target": "target_preparation", "_campaign": "campaign"}
+    variant = arguments[-1] if mode == "_compile" else Path(arguments[-1]).stem if mode == "_score" else None
+    with phase(output, names[mode], variant) as timed:
+        result = process([sys.executable, str(output / "snapshot/tools/cloud/hypothesis_batch.py"), mode,
+                          str(output), *map(str, arguments)], output, state["envelope"]["environment"], seconds, output / log)
+        timed.update(result)
+    return result
 
 
 def score_object(output, slot, obj):
@@ -502,8 +632,9 @@ def baseline_controls(output):
             row["status"] = "compile_timeout" if compiled["status"] == "timeout" else "compile_failure"
         controls.append(row)
         write_json(output / "controls.json", controls)
-    if any(row.get("status") != "strict_exact_candidate" for row in controls) or controls[0].get("strict") != controls[1].get("strict"):
-        raise ValueError("baseline must be repeatable canonical exact; batch not started")
+    validate_baseline_evidence(plan, controls)
+    if (output / "baseline-1.o").read_bytes() != (output / "baseline-2.o").read_bytes():
+        raise ValueError("baseline whole ELF bytes differ; batch not started")
     # A deliberately nonmatching tool canary is never an experimental variant.
     # Patch one private baseline ELF instruction, keeping valid relocation and
     # object structure, to prove the canonical score distinguishes a mismatch.
@@ -518,7 +649,7 @@ def baseline_controls(output):
     canary.write_bytes(altered)
     negative = score_object(output, "negative-canary", canary)
     write_json(output / "negative-canary.json", negative)
-    if not negative.get("strict") or negative["strict"]["accepted"] or negative["strict"]["differing"] == 0:
+    if not negative.get("strict") or negative["strict"]["accepted"] or negative["strict"]["differing"] <= controls[0]["strict"]["differing"] or negative["strict"]["errors"] or negative["strict"]["unresolved"] or negative["strict"]["unverified"]:
         raise ValueError("negative canary did not produce an observed strict mismatch")
     return controls, negative
 
@@ -547,6 +678,20 @@ def campaign(output):
     sources = [output / "inputs" / plan["predictions"][key]["source"] for key in representatives]
     template = shlex.join([sys.executable, str(output / "snapshot/tools/cloud/hypothesis_batch.py"),
                            "_campaign_compile", str(output), "{source}", "{output}"])
+    queued = time.monotonic()
+    for key in representatives:
+        event(output, "compile_queue", "enqueued", variant=key)
+    original_compile = campaign_module._compile_candidate
+    def observed_compile(candidate, **kwargs):
+        key = next(key for key in representatives if sources[representatives.index(key)] == candidate.source)
+        event(output, "compile_queue", "dequeued", variant=key,
+              elapsed_seconds=time.monotonic() - queued,
+              meaning="queue submission to Workbench worker entry; includes campaign setup")
+        with phase(output, "variant_compile_and_workbench", key) as timed:
+            value = original_compile(candidate, **kwargs)
+            timed.update(status="ok" if value.returncode == 0 else "timeout" if value.returncode == 124 else "failed", returncode=value.returncode)
+        return value
+    campaign_module._compile_candidate = observed_compile
     results, _ = run_campaign(sources, target=output / "target.o", template=template,
         cache_dir=output / "cache", jobs=state["jobs"], objdump=str(output / "toolchain/bin/mips-linux-gnu-objdump"),
         symbol=plan["function"], environment=state["envelope"]["environment"], compile_cwd=output,
@@ -578,7 +723,7 @@ def collect_results(output):
         obj = output / "compiles" / key / "candidate.o"
         workbench = result_by_source.get((output / "inputs" / plan["predictions"][key]["source"]).resolve(), {})
         row = {"id": key, "source_sha256": plan["predictions"][key]["sha256"], "source_duplicate_ids": ids,
-               "measured_signals": workbench.get("signals", [])}
+               "measured_signals": workbench.get("signals", []), "compile_and_workbench_seconds": workbench.get("duration_seconds")}
         if valid_receipt(output, output / "compiles" / key / "compile.receipt.json"):
             row.update(score_object(output, key, obj), object_sha256=file_hash(obj), object=str(obj.relative_to(output)))
         else:
@@ -593,6 +738,7 @@ def collect_results(output):
                              "id": candidate_id, "source_sha256": plan["predictions"][candidate_id]["sha256"],
                              "effect_checks": effect_checks(plan["predictions"][candidate_id], row["measured_signals"])})
     # Confirm byte equality after hashing: never deduplicate by .text or score.
+    dedup_start = event(output, "elf_dedup", "start", span_id=uuid.uuid4().hex)
     elf_groups = []
     for row in sorted(rows, key=lambda item: item["id"]):
         if "object" not in row:
@@ -608,6 +754,8 @@ def collect_results(output):
         for row in group:
             row["elf_group"] = index
             row["elf_duplicate_ids"] = [item["id"] for item in group]
+    event(output, "elf_dedup", "end", span_id=dedup_start["span_id"], status="ok",
+          elapsed_seconds=time.monotonic() - dedup_start["monotonic_seconds"])
     return sorted(rows, key=lambda item: item["id"])
 
 
@@ -647,9 +795,11 @@ def diagnose_rows(output, rows):
             continue
         seen.add(sha)
         prefix = output / "diagnosis" / row["id"]
-        result = process([sys.executable, str(output / "snapshot/tools/workbench.py"), "diagnose", str(output / "target.o"),
-                          str(obj), "--function", state["plan"]["function"], "--objdump", str(output / "toolchain/bin/mips-linux-gnu-objdump"), "--json"],
-                         output, state["envelope"]["environment"], state["plan"]["limits"]["diagnose_seconds"], prefix)
+        with phase(output, "diagnose", row["id"]) as timed:
+            result = process([sys.executable, str(output / "snapshot/tools/workbench.py"), "diagnose", str(output / "target.o"),
+                              str(obj), "--function", state["plan"]["function"], "--objdump", str(output / "toolchain/bin/mips-linux-gnu-objdump"), "--json"],
+                             output, state["envelope"]["environment"], state["plan"]["limits"]["diagnose_seconds"], prefix)
+            timed.update(result)
         diagnosis = {"status": "timeout" if result["status"] == "timeout" else "invalid_json", "seconds": result["seconds"]}
         try:
             doc = read_json(prefix.with_suffix(".stdout"))
@@ -669,17 +819,26 @@ def diagnose_rows(output, rows):
 def report(output, summary=None):
     summary = summary or read_json(output / "summary.json")
     rows = summary.get("variants", [])
-    public = {key: summary[key] for key in ("schema", "status", "base_commit", "plan_sha256", "envelope_sha256", "jobs", "counts", "timings") if key in summary}
+    public = {key: summary[key] for key in ("schema", "status", "run_id", "base_commit", "plan_sha256", "envelope_sha256", "jobs", "counts", "timings", "purpose", "flags") if key in summary}
     public["baseline"] = [{"status": row["status"], "object_sha256": row.get("object_sha256"),
-                           "differing": row.get("strict", {}).get("differing"), "extra_words": row.get("strict", {}).get("extra_words")} for row in summary.get("baseline", [])]
+                           "differing": row.get("strict", {}).get("differing"), "extra_words": row.get("strict", {}).get("extra_words"),
+                           "total": row.get("strict", {}).get("total"), "accepted": row.get("strict", {}).get("accepted"),
+                           "compile_seconds": row.get("compile", {}).get("seconds"), "score_seconds": row.get("score_seconds")} for row in summary.get("baseline", [])]
+    negative = summary.get("negative_canary", {})
+    public["negative_canary"] = {"status": negative.get("status"), "differing": negative.get("strict", {}).get("differing"), "accepted": negative.get("strict", {}).get("accepted") }
     public["variants"] = [{"id": row["id"], "status": row["status"], "source_sha256": row["source_sha256"],
                             "object_sha256": row.get("object_sha256"), "elf_group": row.get("elf_group"),
                             "differing": row.get("strict", {}).get("differing"), "extra_words": row.get("strict", {}).get("extra_words"),
                             "unresolved_count": len(row.get("strict", {}).get("unresolved", [])),
                             "unverified_count": len(row.get("strict", {}).get("unverified", [])),
-                            "errors_count": len(row.get("strict", {}).get("errors", []))} for row in rows]
+                            "errors_count": len(row.get("strict", {}).get("errors", [])),
+                            "total": row.get("strict", {}).get("total"), "accepted": row.get("strict", {}).get("accepted"),
+                            "compile_and_workbench_seconds": row.get("compile_and_workbench_seconds"),
+                            "score_seconds": row.get("score_seconds"),
+                            "diagnosis_status": (row["diagnosis"].get("status") if isinstance(row.get("diagnosis"), dict) else None),
+                            "diagnosis_seconds": (row["diagnosis"].get("seconds") if isinstance(row.get("diagnosis"), dict) else None)} for row in rows]
     write_json(output / "public-summary.json", public)
-    text = ["# Rush hypothesis calibration", "", f"Status: {summary['status']}. {len(rows)} variants recorded. No source was adopted; strict exact candidates require independent checker and image/ROM gates.", "",
+    text = ["# Rush hypothesis batch", "", f"Status: {summary['status']}. {len(rows)} variants recorded. No source was adopted; strict exact candidates require independent checker and image/ROM gates.", "",
             "Ranking uses differing + extra words, with unresolved/unverified/error results blocked. Equal scores do not establish identical programs.", "",
             "| Candidate | Status | Differing | Extra | ELF group |", "|---|---|---:|---:|---|"]
     baseline = summary.get("baseline", [])
@@ -690,23 +849,41 @@ def report(output, summary=None):
         strict = row.get("strict", {})
         text.append(f"| {row['id']} | {row['status']} | {strict.get('differing', '?')} | {strict.get('extra_words', '?')} | {row.get('elf_group', '?')} |")
     text += ["", "Expected-effect observations are diagnostic only. Missing measurements remain UNKNOWN. LLM token/active-time accounting and useful-finding counts require human review; no speedup claim."]
+    timings = summary.get("timings", {})
+    text += ["", "## Timing", "", "UTC boundaries and monotonic durations are in events.jsonl. Durations below are summed span/process wall time, not CPU time; nested and concurrent stages overlap and must not be added together."]
+    if "wall_seconds" in timings:
+        text.append(f"Total run wall time: {timings['wall_seconds']:.3f} seconds; {timings['started_utc']} to {timings['ended_utc']}.")
+    for name, values in timings.get("stages", {}).items():
+        text.append(f"- {name}: {values['summed_elapsed_seconds']:.3f} s across {values['completed_spans']} completed span(s)")
     (output / "summary.md").write_text("\n".join(text) + "\n")
     return public
 
 
 def run(plan_path, output, jobs=2, prepare_only=False):
     output = Path(output).resolve()
-    plan, _, _ = validate(plan_path)
-    if type(jobs) is not int or not 1 <= jobs <= plan["limits"]["jobs"]:
-        raise ValueError("jobs exceeds declared limit")
-    started = time.monotonic()
-    state = freeze(plan_path, output, jobs)
-    summary = {"schema": SCHEMA, "status": "preparing", "base_commit": plan["base_commit"],
-               "plan_sha256": state["plan_sha256"], "envelope_sha256": state["envelope_sha256"], "jobs": jobs,
-               "flags": state["envelope"]["effective_flags"], "baseline": [], "variants": [], "counts": {}, "timings": {"llm_active_seconds": None, "llm_tokens": None},
+    started, started_utc = time.monotonic(), utc_now()
+    output.mkdir(parents=True, exist_ok=False)
+    output.chmod(0o700)
+    write_json(output / "run-identity.json", {"run_id": uuid.uuid4().hex})
+    event(output, "batch", "start", span_id="batch", utc=started_utc, monotonic_seconds=started)
+    event(output, "observation", "note", detail="Planning before run and LLM active time/token usage are unmeasured; separate external review boundaries may be recorded.")
+    summary = {"schema": SCHEMA, "status": "preparing", "jobs": jobs,
+               "run_id": read_json(output / "run-identity.json")["run_id"],
+               "baseline": [], "variants": [], "counts": {},
+               "timings": {"llm_active_seconds": None, "llm_tokens": None},
                "useful_findings": None, "useful_finding_definition": "Reproducible predicted-effect result, falsified hypothesis, or justified distinct code-generation outcome changing the next decision; duplicates count once."}
     try:
-        controls, negative = baseline_controls(output)
+        with phase(output, "preflight_validation"):
+            plan, _, _ = validate(plan_path)
+            if type(jobs) is not int or not 1 <= jobs <= plan["limits"]["jobs"]:
+                raise ValueError("jobs exceeds declared limit")
+        with phase(output, "freeze"):
+            state = _freeze(plan_path, output, jobs)
+        summary.update(base_commit=plan["base_commit"], plan_sha256=state["plan_sha256"],
+                       envelope_sha256=state["envelope_sha256"], purpose=plan["purpose"],
+                       flags=state["envelope"]["effective_flags"])
+        with phase(output, "baseline_controls"):
+            controls, negative = baseline_controls(output)
         summary.update(baseline=controls, negative_canary=negative)
         if prepare_only:
             summary["status"] = "ready_controls_only"
@@ -717,17 +894,25 @@ def run(plan_path, output, jobs=2, prepare_only=False):
             rows = collect_results(output)
             diagnose_rows(output, rows)
             summary.update(variants=rows, status="completed" if result["status"] == "ok" else "campaign_failed")
-        verify_frozen(output)
+        with phase(output, "final_integrity_verification"):
+            verify_frozen(output)
+    except KeyboardInterrupt:
+        summary["status"] = "cancelled"
+        event(output, "cancellation", "observed", detail="Active process groups terminated; open child spans are interrupted.")
     except (ValueError, OSError, subprocess.SubprocessError, SystemExit) as exc:
         summary["status"] = "blocked"
         summary["blocker"] = str(exc)
-        if (output / "controls.json").is_file():
-            summary["baseline"] = read_json(output / "controls.json")
+    if not summary["baseline"] and (output / "controls.json").is_file():
+        summary["baseline"] = read_json(output / "controls.json")
     summary["counts"] = {"variants": len(summary["variants"]), "strict_exact": sum(row["status"] == "strict_exact_candidate" for row in summary["variants"]),
                          "unique_elf_groups": len({row["elf_group"] for row in summary["variants"] if "elf_group" in row})}
-    summary["timings"]["wall_seconds"] = time.monotonic() - started
+    with phase(output, "report"):
+        report(output, summary)
+    event(output, "batch", "end", span_id="batch", status=summary["status"], elapsed_seconds=time.monotonic() - started)
+    summary["timings"].update(timing_summary(output), wall_seconds=time.monotonic() - started,
+                              started_utc=started_utc, ended_utc=utc_now())
     write_json(output / "summary.json", summary)
-    report(output, summary)
+    report(output, summary)  # final serialization includes the measured initial report phase
     return summary
 
 
@@ -772,6 +957,8 @@ def main():
         elif args.command == "_campaign":
             campaign(args.path)
     except KeyboardInterrupt:
+        if args.out and (args.out / "run-identity.json").is_file():
+            event(args.out, "batch", "cancelled", detail="Active process groups terminated; any open child spans are interrupted.")
         print("hypothesis batch: cancelled; active process groups terminated", file=sys.stderr)
         return 130
     except (ValueError, OSError, subprocess.SubprocessError) as exc:

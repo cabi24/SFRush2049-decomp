@@ -1,0 +1,163 @@
+{
+  "schema": "rush-texture-rect-review-v1",
+  "base_commit": "c35728addbae1626aabc89b7d837e28774f333a0",
+  "source": "cloud/work/frontier/w4a/func_80087110/best.c",
+  "baseline_sha256": "f8355db6884b85c77a25b21c7aae746be236ed10a3dc8fee93264259cf4c6f8f",
+  "prefix_sha256": "16ad7e89c578eb4fa64c581e3f1877f67a092abe657de1dbc62f62f5752ab41b",
+  "status": "source_reviewed_uncompiled",
+  "claims": [],
+  "semantic_scope": "Equivalent to the pinned C on its defined domain; no native equivalence, matching or cartridge claim.",
+  "historical_controls": {
+    "C01": {
+      "name": "both_body_do",
+      "sha256": "98a0adc8027464275b43845a6e223269c96a7cef2e1ec00395d264e0754b9c35",
+      "differing": 8
+    },
+    "C02": {
+      "name": "setup_do",
+      "sha256": "3fb16b926eb91443d08b7836685658c76fb683df3143d021f78984aacebd2ea1",
+      "differing": 29
+    }
+  },
+  "excluded_families": [
+    "guarded exits",
+    "SDK macro replacement",
+    "shared tails",
+    "fake callers",
+    "dummy or dead operations",
+    "score-only volatile",
+    "inline assembly"
+  ],
+  "candidates": {
+    "C01": {
+      "source": "candidates/C01.c",
+      "sha256": "98a0adc8027464275b43845a6e223269c96a7cef2e1ec00395d264e0754b9c35",
+      "edit": "Historical source control: exact both_body_do, wrapping only the stretched both-flags drawing body.",
+      "semantic_justification": "Clipping, rejection, mode-zero behavior, global declarations, the ABI and all eight SDK packet emissions retain their command order. Arithmetic operations retain their signed types and grouping. All moved computations precede the first display-list store, and touch only by-value parameters or existing ordinary locals. No extra caller, dummy use, qualifier, inline assembly, or instruction padding is introduced. Equivalence is claimed only within the pinned C's defined behavior. The retained do-while-zero blocks execute their genuine statements exactly once, with no break, continue, or declaration-scope change. No existing expression, statement, or evaluation order is changed.",
+      "native_effect": "Historical 8/445: alias close moves before the unconditional exit and original schedule residual disappears, but height/offset exchange remains. Reproduction is a control, not a new hypothesis or accepted match.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "patch": "patches/C01.patch",
+      "kind": "historical_source_control"
+    },
+    "C02": {
+      "source": "candidates/C02.c",
+      "sha256": "3fb16b926eb91443d08b7836685658c76fb683df3143d021f78984aacebd2ea1",
+      "edit": "Historical source control: exact setup_do, additionally wrapping complete height/stretch initialization.",
+      "semantic_justification": "Clipping, rejection, mode-zero behavior, global declarations, the ABI and all eight SDK packet emissions retain their command order. Arithmetic operations retain their signed types and grouping. All moved computations precede the first display-list store, and touch only by-value parameters or existing ordinary locals. No extra caller, dummy use, qualifier, inline assembly, or instruction padding is introduced. Equivalence is claimed only within the pinned C's defined behavior. The retained do-while-zero blocks execute their genuine statements exactly once, with no break, continue, or declaration-scope change. No existing expression, statement, or evaluation order is changed.",
+      "native_effect": "Historical 29/445: successful alias closure and desired height/offset pair, but s/step exchange. Reproduction is a control; the cited history used the same O3 recipe plus the multiply-workaround flag.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "patch": "patches/C02.patch",
+      "kind": "historical_source_control"
+    },
+    "S01": {
+      "source": "candidates/S01.c",
+      "sha256": "15562fb1bd2e9708dbacdc2f56d9ed1f90663d81c40f10d4bdc0aabdf4fe375a",
+      "edit": "From C01, select the genuinely used vertical step before height/stretch setup, outside any setup wrapper.",
+      "semantic_justification": "Clipping, rejection, mode-zero behavior, global declarations, the ABI and all eight SDK packet emissions retain their command order. Arithmetic operations retain their signed types and grouping. All moved computations precede the first display-list store, and touch only by-value parameters or existing ordinary locals. No extra caller, dummy use, qualifier, inline assembly, or instruction padding is introduced. Equivalence is claimed only within the pinned C's defined behavior. The retained do-while-zero blocks execute their genuine statements exactly once, with no break, continue, or declaration-scope change. The same scale-bit predicate selects the same initialized values on every nonzero-mode path. Splitting its selection can repeat an ordinary non-volatile flag read, but no call or global store intervenes, so its value is stable under the source's defined single-threaded behavior. Each initialized value is subsequently consumed by a real packet or geometry computation; there is no new default overwritten before use. ",
+      "native_effect": "Lengthens step's genuine initialized live range across height/geometry and, for S02, the setup entry. Tests whether its occurrence/live-IN normalized divisor rises enough to put s ahead again while keeping the body alias boundary. S01/S02 isolate interaction with the extra setup block; C01 may retain height/offset exchange.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "patch": "patches/S01.patch",
+      "kind": "new_source_hypothesis"
+    },
+    "S02": {
+      "source": "candidates/S02.c",
+      "sha256": "d1248a32d3c34a60e13573df695b7933e9ab9c34f19444fedaff0bf8ce7d89ab",
+      "edit": "From C02, select the genuinely used vertical step before height/stretch setup, outside any setup wrapper.",
+      "semantic_justification": "Clipping, rejection, mode-zero behavior, global declarations, the ABI and all eight SDK packet emissions retain their command order. Arithmetic operations retain their signed types and grouping. All moved computations precede the first display-list store, and touch only by-value parameters or existing ordinary locals. No extra caller, dummy use, qualifier, inline assembly, or instruction padding is introduced. Equivalence is claimed only within the pinned C's defined behavior. The retained do-while-zero blocks execute their genuine statements exactly once, with no break, continue, or declaration-scope change. The same scale-bit predicate selects the same initialized values on every nonzero-mode path. Splitting its selection can repeat an ordinary non-volatile flag read, but no call or global store intervenes, so its value is stable under the source's defined single-threaded behavior. Each initialized value is subsequently consumed by a real packet or geometry computation; there is no new default overwritten before use. ",
+      "native_effect": "Lengthens step's genuine initialized live range across height/geometry and, for S02, the setup entry. Tests whether its occurrence/live-IN normalized divisor rises enough to put s ahead again while keeping the body alias boundary. S01/S02 isolate interaction with the extra setup block; C01 may retain height/offset exchange.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "patch": "patches/S02.patch",
+      "kind": "new_source_hypothesis"
+    },
+    "S03": {
+      "source": "candidates/S03.c",
+      "sha256": "729f834c6984b9d3b434964411a60d63d722dc92137589351f55a7f5fcd49c96",
+      "edit": "From C02, select step first inside the setup wrapper, then compute height/stretch; compare S02 outside entry.",
+      "semantic_justification": "Clipping, rejection, mode-zero behavior, global declarations, the ABI and all eight SDK packet emissions retain their command order. Arithmetic operations retain their signed types and grouping. All moved computations precede the first display-list store, and touch only by-value parameters or existing ordinary locals. No extra caller, dummy use, qualifier, inline assembly, or instruction padding is introduced. Equivalence is claimed only within the pinned C's defined behavior. The retained do-while-zero blocks execute their genuine statements exactly once, with no break, continue, or declaration-scope change. The same scale-bit predicate selects the same initialized values on every nonzero-mode path. Splitting its selection can repeat an ordinary non-volatile flag read, but no call or global store intervenes, so its value is stable under the source's defined single-threaded behavior. Each initialized value is subsequently consumed by a real packet or geometry computation; there is no new default overwritten before use. ",
+      "native_effect": "Distinguishes true step-definition order from crossing the setup entry. Step remains uninitialized at wrapper entry; if S02 alone changes its divisor, entry live-IN membership rather than spelling is implicated. Alias fix should remain.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "patch": "patches/S03.patch",
+      "kind": "new_source_hypothesis"
+    },
+    "O01": {
+      "source": "candidates/O01.c",
+      "sha256": "ef8c0d6adb07eace3448c3a9f86ba18855779e72ef6f0db6155a9d22ff5ad40f",
+      "edit": "From C01, select the genuine vertical texture offset before height/stretch geometry; retain step assignment in scale arms.",
+      "semantic_justification": "Clipping, rejection, mode-zero behavior, global declarations, the ABI and all eight SDK packet emissions retain their command order. Arithmetic operations retain their signed types and grouping. All moved computations precede the first display-list store, and touch only by-value parameters or existing ordinary locals. No extra caller, dummy use, qualifier, inline assembly, or instruction padding is introduced. Equivalence is claimed only within the pinned C's defined behavior. The retained do-while-zero blocks execute their genuine statements exactly once, with no break, continue, or declaration-scope change. The same scale-bit predicate selects the same initialized values on every nonzero-mode path. Splitting its selection can repeat an ordinary non-volatile flag read, but no call or global store intervenes, so its value is stable under the source's defined single-threaded behavior. Each initialized value is subsequently consumed by a real packet or geometry computation; there is no new default overwritten before use. ",
+      "native_effect": "Targets the height/offset mismatch directly by extending offset's initialized range instead of shortening height. A divisor change may restore their priority tie without the setup wrapper that caused s/step exchange; interference may also change.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "patch": "patches/O01.patch",
+      "kind": "new_source_hypothesis"
+    },
+    "O02": {
+      "source": "candidates/O02.c",
+      "sha256": "b4b8a372a6141070d77675719a71041437f905f2f7294e89f08f52e077c3c3df",
+      "edit": "From C02, select genuine step and offset together before the setup wrapper, leaving only height/stretch geometry inside.",
+      "semantic_justification": "Clipping, rejection, mode-zero behavior, global declarations, the ABI and all eight SDK packet emissions retain their command order. Arithmetic operations retain their signed types and grouping. All moved computations precede the first display-list store, and touch only by-value parameters or existing ordinary locals. No extra caller, dummy use, qualifier, inline assembly, or instruction padding is introduced. Equivalence is claimed only within the pinned C's defined behavior. The retained do-while-zero blocks execute their genuine statements exactly once, with no break, continue, or declaration-scope change. The same scale-bit predicate selects the same initialized values on every nonzero-mode path. Splitting its selection can repeat an ordinary non-volatile flag read, but no call or global store intervenes, so its value is stable under the source's defined single-threaded behavior. Each initialized value is subsequently consumed by a real packet or geometry computation; there is no new default overwritten before use. ",
+      "native_effect": "Extends step and offset across wrapper entry together. Tests a settings-before-geometry structure for both allocation ties while preserving the drawing wrapper's alias boundary. It may collapse, change instruction population, or harm interference.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "patch": "patches/O02.patch",
+      "kind": "new_source_hypothesis"
+    },
+    "L01": {
+      "source": "candidates/L01.c",
+      "sha256": "201b2a84ac9c5c35992fa453247ace87502b25fcf9f9a9a8d380b2e57da0b5e1",
+      "edit": "From C01, keep the final flipped horizontal coordinate in existing texture_edge instead of redefining s in stretched arms.",
+      "semantic_justification": "Clipping, rejection, mode-zero behavior, global declarations, the ABI and all eight SDK packet emissions retain their command order. Arithmetic operations retain their signed types and grouping. All moved computations precede the first display-list store, and touch only by-value parameters or existing ordinary locals. No extra caller, dummy use, qualifier, inline assembly, or instruction padding is introduced. Equivalence is claimed only within the pinned C's defined behavior. The retained do-while-zero blocks execute their genuine statements exactly once, with no break, continue, or declaration-scope change. In either horizontally flipped stretched terminal arm, the existing texture_edge local holds the same two-step sum then subtraction that previously overwrote s. Its identical final value is passed to the identical macro argument. Neither local is observed after this terminal arm, and no storage or arithmetic operation is added. ",
+      "native_effect": "Separates the original s input web from the final flipped-coordinate web without adding a local or copy. Tests whether s's occurrence/live-IN membership and priority relative to step change; may canonicalize back. L01/L02 distinguish the coordinate representation from the setup-wrapper interaction.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "patch": "patches/L01.patch",
+      "kind": "new_source_hypothesis"
+    },
+    "L02": {
+      "source": "candidates/L02.c",
+      "sha256": "3f86d7a8288251f659558e0cbd176e7d641a8a9a1c3f5cd2b804ce7c1f0eabf8",
+      "edit": "From C02, keep the final flipped horizontal coordinate in existing texture_edge instead of redefining s in stretched arms.",
+      "semantic_justification": "Clipping, rejection, mode-zero behavior, global declarations, the ABI and all eight SDK packet emissions retain their command order. Arithmetic operations retain their signed types and grouping. All moved computations precede the first display-list store, and touch only by-value parameters or existing ordinary locals. No extra caller, dummy use, qualifier, inline assembly, or instruction padding is introduced. Equivalence is claimed only within the pinned C's defined behavior. The retained do-while-zero blocks execute their genuine statements exactly once, with no break, continue, or declaration-scope change. In either horizontally flipped stretched terminal arm, the existing texture_edge local holds the same two-step sum then subtraction that previously overwrote s. Its identical final value is passed to the identical macro argument. Neither local is observed after this terminal arm, and no storage or arithmetic operation is added. ",
+      "native_effect": "Separates the original s input web from the final flipped-coordinate web without adding a local or copy. Tests whether s's occurrence/live-IN membership and priority relative to step change; may canonicalize back. L01/L02 distinguish the coordinate representation from the setup-wrapper interaction.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "patch": "patches/L02.patch",
+      "kind": "new_source_hypothesis"
+    },
+    "L03": {
+      "source": "candidates/L03.c",
+      "sha256": "6b8dec56192e57e0a08932900ba65dfaef26eddb985f1d2a5825606fbfe31487",
+      "edit": "From C02, compute the shared genuine horizontal flip before setup and remove its duplicate arithmetic in the two flipped drawing arms.",
+      "semantic_justification": "Clipping, rejection, mode-zero behavior, global declarations, the ABI and all eight SDK packet emissions retain their command order. Arithmetic operations retain their signed types and grouping. All moved computations precede the first display-list store, and touch only by-value parameters or existing ordinary locals. No extra caller, dummy use, qualifier, inline assembly, or instruction padding is introduced. Equivalence is claimed only within the pinned C's defined behavior. The retained do-while-zero blocks execute their genuine statements exactly once, with no break, continue, or declaration-scope change. The horizontal bit is stable before any packet store. Exactly the same sum and subtraction execute once on horizontal-flip paths and never on other paths. The moved expressions do not use or modify bottom, height, step, offset or t, and no global write or call is crossed. The same scale-bit predicate selects the same initialized values on every nonzero-mode path. Splitting its selection can repeat an ordinary non-volatile flag read, but no call or global store intervenes, so its value is stable under the source's defined single-threaded behavior. Each initialized value is subsequently consumed by a real packet or geometry computation; there is no new default overwritten before use. ",
+      "native_effect": "Moves s's final horizontal definition before setup, reducing later branch-specific s occurrences and separating coordinate preparation from geometry setup. Tests a changed s web against step while retaining the successful body alias boundary; differing branch structure may change instruction population and is not presumed beneficial.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "patch": "patches/L03.patch",
+      "kind": "new_source_hypothesis"
+    }
+  }
+}

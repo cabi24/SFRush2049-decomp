@@ -38,8 +38,11 @@ This already-integrated function cannot yield new matched-byte coverage.
 - The Rush sidecar references an ordinary Workbench experiment-v2 manifest.
   Unknown sidecar keys, duplicate JSON keys, changed inputs, outside-root paths,
   symlinks, unknown signals and excessive budgets fail closed.
-- Version 1 supports self-contained, standalone O2 production TUs only. Include
-  directives, altered signatures/TU context, other flags, IPA/group builds and
+- Version 1 supports self-contained standalone TUs. Calibration remains O2 and
+  requires an exact baseline. Explicit `purpose: "experiment"` permits the fixed
+  O2 or O3 recipe and requires a nonzero `baseline_expectation` with differing,
+  total and extra_words. Only unchanged prefix `#define` macros are permitted;
+  include closure, changed signatures/context, other flags, IPA/group builds and
   custom Workbench controls are rejected. Semantic equivalence still requires
   source review; the adapter is not a C equivalence prover.
 - The private snapshot comes from the declared Git commit, not working-tree
@@ -48,8 +51,12 @@ This already-integrated function cannot yield new matched-byte coverage.
   runtime libraries are hashed. The compiler uses copied tools and sealed
   environment; the Python executable/version is recorded. System libc/kernel
   behavior is not a hermetic virtual machine.
-- Baseline builds must both be strict exact with repeatable strict fields before
-  any variants start. Each source is compiled at its production-relative filename
+- Baseline builds must have identical complete ELF bytes and strict fields
+  before any variants start. Calibration requires exactness; experiment requires
+  an unblocked mismatch equal to the predeclared expectation. Neither mode
+  changes canonical acceptance. The negative ELF canary must increase the
+  differing-word count and remain unaccepted without unresolved/error evidence.
+  Each source is compiled at its pinned repository-relative filename
   in a private directory/TMPDIR. Workbench's `stop_on_exact` is false.
 - Canonical scoring occurs in fresh processes with declared deadlines. A private
   target ELF is assembled only from verified target words and checked for padding.
@@ -120,3 +127,31 @@ Python 3.12.14 and the existing IDO/GNU MIPS tools were executed successfully.
 Control preparation took 3.07 seconds and the separate bridge smoke took 5.06
 seconds in this environment. These are setup/smoke measurements, not pilot costs
 or a speedup claim.
+
+## Explicit nonmatching experiment and timing
+
+`prepare_texture_rect_batch.py` freezes ten `func_80087110` variants at the
+same pinned base: two exact historical source controls and eight new hypotheses.
+The baseline is expected to reproduce 4/445 differing words under standalone O3.
+These controls do not satisfy acceptance and are never relabeled exact.
+
+```sh
+python3 tools/cloud/prepare_texture_rect_batch.py --out build/hypothesis/texture-plan
+python3 tools/cloud/hypothesis_batch.py prepare build/hypothesis/texture-plan/batch.json --out build/hypothesis/texture-controls
+python3 tools/cloud/hypothesis_batch.py run build/hypothesis/texture-plan/batch.json --jobs 2 --out build/hypothesis/texture-run
+```
+
+A run-local append-only `events.jsonl` records UTC observation boundaries and
+monotonic durations, correlated by run, stage, span and candidate. It includes
+snapshot/preflight, baseline controls, compiler processes, Workbench wrapper
+execution, queue dispatch, strict scoring, ELF deduplication, selected diagnosis
+and initial report generation. Failures and cancellations have terminal statuses;
+child spans interrupted by process-group termination remain visibly open. Queue
+latency is submission-to-worker-entry and explicitly includes campaign setup.
+Materialization has a separate correlated event log. The final report serialization
+that incorporates its own timings lies just beyond the measured run boundary.
+
+Summed compiler or stage durations are elapsed process/span wall time, not CPU
+usage. Parallel and nested spans overlap and must not be added to derive total
+wall time. Unobserved earlier preparation, active LLM time and token accounting
+remain unknown. Phase timings do not establish an LLM-efficiency speedup.
