@@ -1,0 +1,19 @@
+{
+  "members": [
+    "func_8039BE48",
+    "func_8039B560"
+  ],
+  "claims": [],
+  "context": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_8039BE48"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "external_sources": [
+    "wrapper_return.c"
+  ],
+  "provenance": "Complete real BE48 caller and B560 initializer; unknown float anchors and NONMATCH text remain unclaimed."
+}
