@@ -1,17 +1,14 @@
 /* flags: -g0 -O2 -mips2 -G 0 -non_shared */
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned int u32;
-typedef struct EmitObject { u8 unknown00[56]; u32 group38; } EmitObject;
+typedef struct EmitObject { unsigned char unknown00[56]; unsigned int group38; } EmitObject;
 typedef struct SmallNode { struct SmallNode *next; float distance; EmitObject *object; } SmallNode;
 typedef struct LargeNode { struct LargeNode *next; float distance, first, second, third, fourth; EmitObject *object; } LargeNode;
-typedef struct EmitGroup { u32 identifier; LargeNode *large; SmallNode *small; } EmitGroup;
+typedef struct EmitGroup { unsigned int identifier; LargeNode *large; SmallNode *small; } EmitGroup;
 extern EmitGroup D_8004FDA0[32];
-extern u8 D_8004FF20;
+extern unsigned char D_8004FF20;
 extern LargeNode D_8004FF28[32];
-extern u8 D_800502A8;
+extern unsigned char D_800502A8;
 extern SmallNode D_800502B0[32];
-extern u8 D_80050430;
+extern unsigned char D_80050430;
 void func_8001D944(EmitObject *object, float distance)
 {
     long i;
