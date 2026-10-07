@@ -1,0 +1,25 @@
+{
+  "members": [
+    "func_8039B120",
+    "func_8039B214",
+    "func_8039BE48",
+    "func_8039A448",
+    "func_8039C140"
+  ],
+  "claims": [
+    "func_8039B214",
+    "func_8039A448"
+  ],
+  "context": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_8039C140"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "Extends PR #190 with complete actual outer caller C140 and actual A448 helper. New local claims B214/A448 only; B120 is existing matching context. BE48/C140 are unclaimed nonmatches.",
+  "external_sources": [
+    "wrapper_return.c"
+  ]
+}
