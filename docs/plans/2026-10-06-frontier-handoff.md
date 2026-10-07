@@ -173,6 +173,15 @@ Astra's verification packets bind receipts to hashes. Integration breaks them wh
 
 Newly unblocked and untouched: **entity_spawn_init**, after func_8008E408 matched.
 
+## 6a. PR integration #164–#304 (2026-10-06 evening, master `69966534`)
+
+- All 141 PRs merged (research packets plus runtime-image A/B candidates as evidence). The 7 stacked PRs were closed with a comment because GitHub can't mark them merged automatically. **#163 is still held** (§6 item 5; not rebased).
+- #164's `records_screen` clashed with the w13f splice. The spliced source stays in `cloud/matches/`; Astra's copy moved to its packet dir, and its verify.py/test now point there.
+- **Spliced (game, +1,020 B):** `func_800C7578`, `func_800CD8EC`, `func_800CCE5C` and `func_800CD798` as groups `dot_setting_c7578`, `dot_records_cd8ec`, `dot_filename_cce5c` and `dot_range_cd798`. Each takes the accepted hash as internal context, Astra's disclosed visibility hypothesis.
+- **Promoted (static, +304 B):** `func_8001D944` (#177). The candidate was -O3, but it is also 0/76 at the segment's -O2. The production copy is `cloud/work/boot_tail_promotion/sources/func_8001D944.c` (shared `StateNode` contract), with context row `context_pr177.jsonl`, landed via `promote_batch.py`.
+- **Provisional (strict MATCH, real context not yet matched):** audio_effect_setup, MaxPathZeroControls, audio_update_d, finish_state_alt, func_800F857C, render_results_screen, render_replay_ui. The func_800E451C and func_800D8078 entries were refreshed. The F857C/audio_update_d/finish_state_alt trio plus the D91A0/D816C results cluster are the next landings once those callers close.
+- **Worktree gotchas:** `promote_batch.py` rsyncs the repo to `~/rush2049/repo` without excluding `.git` (a file in a worktree), and it copies symlinks verbatim. A symlinked `baserom.us.z64` overwrote the builder's ROM (restored; SHA-1 checked). In a worktree, copy the baserom and exclude `.git`.
+
 ## 7. Techniques that close functions (cumulative, highest yield first)
 
 1. **Inlined locked helpers.** Big functions inline already-locked kept functions: rand `func_8008B2B4`/`func_8008B2E4`, LCG `func_800D50E4`, `func_800B930C`, `func_800B61A8`. Paste the definitions into the candidate, or put the locked file in the group as context.
