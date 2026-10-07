@@ -1,0 +1,25 @@
+{
+  "members": [
+    "audio_effect_setup"
+  ],
+  "context": [
+    "func_80091FBC",
+    "func_8009211C",
+    "audio_pitch_adjust",
+    "entity_flag_check",
+    "func_800988D8",
+    "func_80098FB8"
+  ],
+  "claims": [
+    "audio_effect_setup"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_80098FB8",
+    "func_80091FBC",
+    "func_8009211C"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}
