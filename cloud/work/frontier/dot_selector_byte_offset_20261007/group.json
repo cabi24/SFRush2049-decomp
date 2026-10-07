@@ -1,0 +1,45 @@
+{
+  "files": [
+    "target.c",
+    "caller.c",
+    "helpers.c",
+    "rows.c",
+    "predicate.c",
+    "selector.c",
+    "font.c"
+  ],
+  "members": [
+    "func_800D9058"
+  ],
+  "context": [
+    "func_800D8078",
+    "render_replay_ui",
+    "render_results_screen",
+    "func_800D816C",
+    "func_800D91A0",
+    "func_8008B32C",
+    "func_800B5898",
+    "func_800B5940",
+    "func_800D8154",
+    "slot_state_setup",
+    "sound_update_channel",
+    "object_create",
+    "world_trigger_check",
+    "object_byte9_set",
+    "func_80096288"
+  ],
+  "keep": [
+    "func_800D91A0",
+    "func_8008B32C",
+    "func_800B5898",
+    "func_800B5940",
+    "func_800D8154",
+    "render_results_screen",
+    "object_create",
+    "world_trigger_check",
+    "object_byte9_set",
+    "func_80096288"
+  ],
+  "claims": [],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}
