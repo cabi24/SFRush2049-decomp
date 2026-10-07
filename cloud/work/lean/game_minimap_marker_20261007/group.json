@@ -1,0 +1,20 @@
+{
+  "files": [
+    "callback.c",
+    "slot_context.c",
+    "countdown_caller.c"
+  ],
+  "members": [
+    "func_80109F54"
+  ],
+  "context": [
+    "slot_state_setup",
+    "func_80106B3C"
+  ],
+  "keep": [
+    "func_80109F54",
+    "func_80106B3C"
+  ],
+  "claims": [],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}
