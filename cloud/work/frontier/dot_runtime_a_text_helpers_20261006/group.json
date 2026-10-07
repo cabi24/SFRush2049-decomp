@@ -1,0 +1,37 @@
+{
+  "members": [
+    "func_8039B120",
+    "func_8039B214",
+    "func_8039BE48",
+    "func_8039A448",
+    "func_8039B00C",
+    "func_8039C140",
+    "func_8039A4D4",
+    "func_8039B908",
+    "func_8039B988",
+    "func_8039BA28",
+    "func_8039BAE0",
+    "func_8039BB80",
+    "func_803A5658",
+    "func_803A5948"
+  ],
+  "claims": [
+    "func_8039B908",
+    "func_8039B988",
+    "func_8039BA28",
+    "func_8039BAE0"
+  ],
+  "context": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_8039C140",
+    "func_803A5948"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "external_sources": [
+    "wrapper_return.c"
+  ],
+  "provenance": "Joint low-A text-helper reconstruction and complete high-A renderer context. Only four new helpers are claims; all other complete bodies are real context with recorded gaps. No synthetic retention barriers or cross-image inlining."
+}
