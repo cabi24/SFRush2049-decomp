@@ -7,7 +7,7 @@ actual `-g0 -O3 -mips2 -G 0 -non_shared` group compilation.
 
 - New `func_80399394`: **22/22 strict**, **88 candidate bytes**, no unresolved
   relocation, unverified data, error or extra word. Only claimed body.
-- Complete real renderer `func_803993EC`: **250/307 words differ**, 8 unverified
+- Complete real renderer `func_803993EC`: **249/307 words differ**, 8 unverified
   own-data sites and 1 owned-data error from shifted native/candidate geometry;
   no unresolved symbol or extra word. Research context only.
 - Complete real root `func_80399D10`: **293/335 differ**, 2 unverified own-data
@@ -17,6 +17,10 @@ The helper takes one real index, reads a signed byte in the native seven-byte
 rows indexed by player count, and conditionally checks option 18 for index 5.
 Its s0 private clobber is naturally reproduced with the actual callers.
 No fake formal, call, retention barrier, padding, forced register or assembly.
+
+A follow-on native reread corrected the renderer's external byte symbol from
+`D_80130BDC` to the actual `D_80140BDC`; the helper remains strict and the
+renderer improves from 250 to 249 differing words.
 
 Both callers are complete. The renderer has seven animated option slots and
 the eighth rotating marker; the root has the actual repeated cleanup paths

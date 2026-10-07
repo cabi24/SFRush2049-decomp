@@ -23,7 +23,7 @@ extern f32 D_803B463C,D_803B4640,D_803B4644,D_803B4648,D_803B464C,D_803B4650;
 extern f32 D_803BAC18,D_8011418C[3][3];
 extern f32 D_8002EB94;
 extern Slot64 D_803B42F4[13];
-extern u8 D_80130BDC;
+extern u8 D_80140BDC;
 extern char D_803B8884[],D_803B8894[];
 extern Player76 D_8014A118[];
 extern Blit *D_803B467C;
@@ -81,8 +81,8 @@ void func_803993EC(void)
             }
             func_800B5898(slot->angle-1.5707963705062866f,slot->matrix);
             if(slot->angle>1.5707963705062866f)
-                func_8008D870((s16)slot->id,(s32)func_800B24EC(D_803B8884,&texture,0,D_80130BDC-1,1),-1);
-            else func_8008D870((s16)slot->id,(s32)func_800B24EC(D_803B8894,&texture,0,D_80130BDC-1,1),-1);
+                func_8008D870((s16)slot->id,(s32)func_800B24EC(D_803B8884,&texture,0,D_80140BDC-1,1),-1);
+            else func_8008D870((s16)slot->id,(s32)func_800B24EC(D_803B8894,&texture,0,D_80140BDC-1,1),-1);
             if(!func_80399394(i))model_data_load(slot->id,0,15);
             else {
                 model_transform_setup(slot->id,0,15);
