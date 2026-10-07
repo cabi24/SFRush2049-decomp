@@ -1,0 +1,24 @@
+{
+  "members": [
+    "func_8039B120",
+    "func_8039B214",
+    "func_8039BE48",
+    "func_8039A448",
+    "func_8039B00C",
+    "func_8039C140",
+    "func_8039A4D4"
+  ],
+  "claims": [],
+  "context": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_8039C140"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "Complete genuine runtime-A configuration family including A4D4 renderer. C140 differs at 7/496 words with the accepted-source volatile-clock hypothesis, 129/496 with ordinary clock. Claims empty; earlier helper matches are context only.",
+  "external_sources": [
+    "wrapper_return.c"
+  ]
+}
