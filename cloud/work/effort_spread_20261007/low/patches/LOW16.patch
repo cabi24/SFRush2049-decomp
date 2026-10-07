@@ -1,0 +1,12 @@
+--- baseline.c
++++ candidates/LOW16.c
+@@ -32,7 +32,8 @@
+         if(D_8012E608&8)t=t-D_8012E674+bottom;
+         bottom=D_8012E674;
+     }
+-    if(right<x || bottom<y)return;
++    if(right<x)return;
++    if(bottom<y)return;
+     if(!D_8014A248) {
+         if((D_8012E608&4)&&(D_8012E608&8)) {
+             texture_edge=s+right;s=texture_edge-x;t+=bottom-y;

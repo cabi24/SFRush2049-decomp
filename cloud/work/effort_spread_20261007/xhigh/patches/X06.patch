@@ -1,0 +1,27 @@
+--- baseline.c
++++ candidates/X06.c
+@@ -15,7 +15,7 @@
+  gImmp1(pkt,0xF1,(_SHIFTL(dsdx,16,16)|_SHIFTL(dtdy,0,16))); }
+ void func_80087110(int x,int y,int right,int bottom,int s,int t)
+ {
+-    int height,step,offset,texture_edge;
++    int texture_edge;
+     if(x<D_8012E60C) {
+         if(!(D_8012E608&4))s+=D_8012E60C-x;
+         x=D_8012E60C;
+@@ -47,12 +47,15 @@
+             gSPTextureRectangle(D_80149438++,x<<2,y<<2,right<<2,bottom<<2,0,s<<5,t<<5,4096,1024);
+         }
+     } else {
++        int height,step,offset;
+         height=bottom-y;
+         if(D_8012E608&0x8000) {bottom+=height+1;step=512;offset=16;}
+         else {step=1024;offset=0;}
+         if((D_8012E608&4)&&(D_8012E608&8)) {
++            do {
+             texture_edge=s+right;s=texture_edge-x;t+=height;
+             gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,(t<<5)+offset,-1024,-step);
++            } while(0);
+         } else if(D_8012E608&4) {
+             texture_edge=s+right;s=texture_edge-x;
+             gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,t<<5,-1024,step);

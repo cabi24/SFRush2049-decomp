@@ -1,0 +1,54 @@
+--- baseline.c
++++ candidates/LOW09.c
+@@ -34,33 +34,43 @@
+     }
+     if(right<x || bottom<y)return;
+     if(!D_8014A248) {
+-        if((D_8012E608&4)&&(D_8012E608&8)) {
++        switch(D_8012E608&12) {
++        case 12:
+             texture_edge=s+right;s=texture_edge-x;t+=bottom-y;
+             gSPTextureRectangle(D_80149438++,x<<2,y<<2,right<<2,bottom<<2,0,s<<5,t<<5,-4096,-1024);
+-        } else if(D_8012E608&4) {
++            break;
++        case 4:
+             texture_edge=s+right;s=texture_edge-x;
+             gSPTextureRectangle(D_80149438++,x<<2,y<<2,right<<2,bottom<<2,0,s<<5,t<<5,-4096,1024);
+-        } else if(D_8012E608&8) {
++            break;
++        case 8:
+             t+=bottom-y;
+             gSPTextureRectangle(D_80149438++,x<<2,y<<2,right<<2,bottom<<2,0,s<<5,t<<5,4096,-1024);
+-        } else {
++            break;
++        case 0:
+             gSPTextureRectangle(D_80149438++,x<<2,y<<2,right<<2,bottom<<2,0,s<<5,t<<5,4096,1024);
++            break;
+         }
+     } else {
+         height=bottom-y;
+         if(D_8012E608&0x8000) {bottom+=height+1;step=512;offset=16;}
+         else {step=1024;offset=0;}
+-        if((D_8012E608&4)&&(D_8012E608&8)) {
++        switch(D_8012E608&12) {
++        case 12:
+             texture_edge=s+right;s=texture_edge-x;t+=height;
+             gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,(t<<5)+offset,-1024,-step);
+-        } else if(D_8012E608&4) {
++            break;
++        case 4:
+             texture_edge=s+right;s=texture_edge-x;
+             gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,t<<5,-1024,step);
+-        } else if(D_8012E608&8) {
++            break;
++        case 8:
+             t+=height;
+             gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,(t<<5)+offset,1024,-step);
+-        } else {
++            break;
++        case 0:
+             gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,t<<5,1024,step);
++            break;
+         }
+     }
+ }

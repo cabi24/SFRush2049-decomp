@@ -1,0 +1,271 @@
+{
+  "schema": "rush-effort-results-review-v1",
+  "lane": "xhigh",
+  "proposed": 10,
+  "unique_sources": 10,
+  "unique_complete_elfs": 10,
+  "unique_relocated_bodies": 10,
+  "relocated_body_uniqueness_evidence": "All ten strict (differing, extra_words) results against the same target differ, which proves different resolved comparison bodies; no relocated-body hash was independently computed by this lane.",
+  "historical_duplicates": "X06 equals historical C01 at 8/445; equality of score alone does not establish identical bodies.",
+  "compile_failures": 0,
+  "scoring_failures": 0,
+  "improvements_over_baseline": 0,
+  "strict_exact": 0,
+  "best": "X06",
+  "best_differing": 8,
+  "best_extra_words": 0,
+  "baseline_differing": 4,
+  "baseline_total": 445,
+  "rows": [
+    {
+      "id": "X01",
+      "differing": 90,
+      "total": 445,
+      "extra_words": 0,
+      "status": "scored_mismatch",
+      "source_sha256": "0c24bb9a0f7afd8f2b6035dde38e8b70f190d02e6495c3b05fcdad9bcc7bf63b",
+      "object_sha256": "f3570e3c6736b3f826b7ac5b1db4285c363e89d4f822f67e95701bc1842db2d8",
+      "errors_count": 0,
+      "unresolved_count": 0,
+      "unverified_count": 0
+    },
+    {
+      "id": "X02",
+      "differing": 21,
+      "total": 445,
+      "extra_words": 0,
+      "status": "scored_mismatch",
+      "source_sha256": "4370def93ee0dbc375e83c5b980b8dc18c32d845dd3efe44bf08942d792f9fbb",
+      "object_sha256": "e4eb143607111f52789fd61a98380a92aeb9f3199e6b7412fb2f78aeeb77f29d",
+      "errors_count": 0,
+      "unresolved_count": 0,
+      "unverified_count": 0
+    },
+    {
+      "id": "X03",
+      "differing": 171,
+      "total": 445,
+      "extra_words": 0,
+      "status": "scored_mismatch",
+      "source_sha256": "475b5db15b5e0b783842138ffd92e58e000cdf0c254ac41186ed0758c35e2292",
+      "object_sha256": "fc7369310c7c9dda8851e4e55ffccf805b82f24a8472c44ba49617b4fcd90587",
+      "errors_count": 0,
+      "unresolved_count": 0,
+      "unverified_count": 0
+    },
+    {
+      "id": "X04",
+      "differing": 147,
+      "total": 445,
+      "extra_words": 0,
+      "status": "scored_mismatch",
+      "source_sha256": "a466ac1e3df85d4acee522830d681605ecd16b75329c8b084dd6054a3f2c044a",
+      "object_sha256": "8a339a1ac28f10182af380996ca659f085261c4642b1d627ebce12a50ae80eca",
+      "errors_count": 0,
+      "unresolved_count": 0,
+      "unverified_count": 0
+    },
+    {
+      "id": "X05",
+      "differing": 395,
+      "total": 445,
+      "extra_words": 1,
+      "status": "scored_mismatch",
+      "source_sha256": "767ce641413d9cb25c2287e3e39d9889610ae42f93996bc03397feef7a168553",
+      "object_sha256": "dfa15d2e1683738bf95e8c05713019a858e1bd99b055d3755c6f77bd462bb303",
+      "errors_count": 0,
+      "unresolved_count": 0,
+      "unverified_count": 0
+    },
+    {
+      "id": "X06",
+      "differing": 8,
+      "total": 445,
+      "extra_words": 0,
+      "status": "scored_mismatch",
+      "source_sha256": "3fd275186fff53800fb8e0094edde7f03af85d058fea5dd980741b38924ee265",
+      "object_sha256": "30c84d7440acfdb631579831a247ed28cbcfdea0bb8523e4f27717910d1a6ede",
+      "errors_count": 0,
+      "unresolved_count": 0,
+      "unverified_count": 0
+    },
+    {
+      "id": "X07",
+      "differing": 18,
+      "total": 445,
+      "extra_words": 0,
+      "status": "scored_mismatch",
+      "source_sha256": "a5925e4bd0738920279492084669644e6b5efcf005d68bcc3730ddd87a713cd2",
+      "object_sha256": "c33d29fb4946cf1b4bb9b3389b497f7ce31ae17c5f9bea77a75307d563980fa7",
+      "errors_count": 0,
+      "unresolved_count": 0,
+      "unverified_count": 0
+    },
+    {
+      "id": "X08",
+      "differing": 380,
+      "total": 445,
+      "extra_words": 0,
+      "status": "scored_mismatch",
+      "source_sha256": "f87d67f591a74c69165e12a89d2b700de13461a966125222a4ebea74dbf2b33f",
+      "object_sha256": "0fc7af1ae74a8bdde7cbc1a623faef33244ca0e6989dc8c75b40fc04c1451827",
+      "errors_count": 0,
+      "unresolved_count": 0,
+      "unverified_count": 0
+    },
+    {
+      "id": "X09",
+      "differing": 388,
+      "total": 445,
+      "extra_words": 0,
+      "status": "scored_mismatch",
+      "source_sha256": "884f24d09833b5b510360ea663efb38e94b4409217c09d287f418d73ecee94c4",
+      "object_sha256": "7099e84df6f46691a880596fc51569000712df29ec9e5f2360dcd6046f738f86",
+      "errors_count": 0,
+      "unresolved_count": 0,
+      "unverified_count": 0
+    },
+    {
+      "id": "X10",
+      "differing": 200,
+      "total": 445,
+      "extra_words": 2,
+      "status": "scored_mismatch",
+      "source_sha256": "b074ed7b2000953f6188ffdea86c585fa5a7985dd1c66206db045444dc62386e",
+      "object_sha256": "fbafc0cbeea91c1df4a4d24e72d8763f46746a0e0a913cffa9549d881d5721ae",
+      "errors_count": 0,
+      "unresolved_count": 0,
+      "unverified_count": 0
+    }
+  ],
+  "interpretation": [
+    "X06 narrowing the genuine setup-local scopes failed to improve the known wrapper result. A byte-level comparison would be needed to establish historical C01 identity.",
+    "X07 branch-local horizontal temporary ownership produced 18 differences, showing that this scope/symbol change was not fully native-neutral, but it did not solve the target.",
+    "X02 consistent vertical carriers (21 differences) beat X01 single-arm carriage (90) and X03 explicit packed carriage (171) within that family. All remain rejected; the score alone does not verify the predicted allocator mechanism.",
+    "X04 negative step representation (147) and X05 shared signed-step selection (395 plus one extra) failed. The latter also changed function population.",
+    "X08/X09 factored horizontal/vertical dispatch (380/388) and X10 exhaustive switch (200 plus two extras) did not provide a useful near-match. Their positional scores are not semantic distances.",
+    "All ten clean strict results and source checks support a completed negative experiment, not new match coverage or proof of original source."
+  ],
+  "source_admissibility": {
+    "result": "Reviewed ordinary-C source transformations; pinned context and signatures retained; no artificial pressure, dead padding, fake callers, inline assembly or score-only volatile.",
+    "bounded_cases_per_candidate": 6120,
+    "mutants_detected": 4,
+    "limitations": "The source interpreter and manual defined-domain argument are not a whole-C/native equivalence proof. No allocator/alias trace was rerun by this lane, so mechanism-level predictions remain unconfirmed."
+  },
+  "next_decision": "Keep the original 4/445 source. Close this frozen batch; no adoption, promotion, candidate edits, second batch or new matching run.",
+  "machine": {
+    "start_utc": "2026-10-07T19:48:05.200980+00:00",
+    "end_utc": "2026-10-07T19:48:18.444480+00:00",
+    "wall_seconds": 13.2435057040002,
+    "jobs": 2,
+    "stages": {
+      "baseline_compile": {
+        "completed_spans": 2,
+        "first_start_utc": "2026-10-07T19:48:06.143500+00:00",
+        "last_end_utc": "2026-10-07T19:48:07.155749+00:00",
+        "summed_elapsed_seconds": 0.41210495100040134
+      },
+      "baseline_controls": {
+        "completed_spans": 1,
+        "first_start_utc": "2026-10-07T19:48:05.661675+00:00",
+        "last_end_utc": "2026-10-07T19:48:08.182213+00:00",
+        "summed_elapsed_seconds": 2.5204890079994584
+      },
+      "batch": {
+        "completed_spans": 1,
+        "first_start_utc": "2026-10-07T19:48:05.200980+00:00",
+        "last_end_utc": "2026-10-07T19:48:18.443976+00:00",
+        "summed_elapsed_seconds": 13.24297608300003
+      },
+      "campaign": {
+        "completed_spans": 1,
+        "first_start_utc": "2026-10-07T19:48:08.182600+00:00",
+        "last_end_utc": "2026-10-07T19:48:10.049617+00:00",
+        "summed_elapsed_seconds": 1.8668597020005109
+      },
+      "compiler_process": {
+        "completed_spans": 12,
+        "first_start_utc": "2026-10-07T19:48:06.321855+00:00",
+        "last_end_utc": "2026-10-07T19:48:09.850635+00:00",
+        "summed_elapsed_seconds": 0.18331172799844353
+      },
+      "diagnose": {
+        "completed_spans": 5,
+        "first_start_utc": "2026-10-07T19:48:14.788841+00:00",
+        "last_end_utc": "2026-10-07T19:48:18.332501+00:00",
+        "summed_elapsed_seconds": 3.535421821001364
+      },
+      "elf_dedup": {
+        "completed_spans": 1,
+        "first_start_utc": "2026-10-07T19:48:14.786783+00:00",
+        "last_end_utc": "2026-10-07T19:48:14.786940+00:00",
+        "summed_elapsed_seconds": 0.00010561899944150355
+      },
+      "final_integrity_verification": {
+        "completed_spans": 1,
+        "first_start_utc": "2026-10-07T19:48:18.334744+00:00",
+        "last_end_utc": "2026-10-07T19:48:18.443233+00:00",
+        "summed_elapsed_seconds": 0.10829202600052668
+      },
+      "freeze": {
+        "completed_spans": 1,
+        "first_start_utc": "2026-10-07T19:48:05.245063+00:00",
+        "last_end_utc": "2026-10-07T19:48:05.660570+00:00",
+        "summed_elapsed_seconds": 0.4153243790005945
+      },
+      "preflight_validation": {
+        "completed_spans": 1,
+        "first_start_utc": "2026-10-07T19:48:05.201588+00:00",
+        "last_end_utc": "2026-10-07T19:48:05.244960+00:00",
+        "summed_elapsed_seconds": 0.04331778100004158
+      },
+      "report": {
+        "completed_spans": 1,
+        "first_start_utc": "2026-10-07T19:48:18.443382+00:00",
+        "last_end_utc": "2026-10-07T19:48:18.443917+00:00",
+        "summed_elapsed_seconds": 0.0004974329995093285
+      },
+      "strict_score": {
+        "completed_spans": 13,
+        "first_start_utc": "2026-10-07T19:48:06.469027+00:00",
+        "last_end_utc": "2026-10-07T19:48:14.467304+00:00",
+        "summed_elapsed_seconds": 4.56561957500071
+      },
+      "target_preparation": {
+        "completed_spans": 1,
+        "first_start_utc": "2026-10-07T19:48:05.662478+00:00",
+        "last_end_utc": "2026-10-07T19:48:06.027469+00:00",
+        "summed_elapsed_seconds": 0.3648371049994239
+      },
+      "variant_compile_and_workbench": {
+        "completed_spans": 10,
+        "first_start_utc": "2026-10-07T19:48:08.627829+00:00",
+        "last_end_utc": "2026-10-07T19:48:09.913270+00:00",
+        "summed_elapsed_seconds": 2.52361202999964
+      }
+    },
+    "summed_candidate_compiler_process_seconds": 0.152539019998585
+  },
+  "planning": {
+    "lane": "xhigh",
+    "assignment_first_clock_observation_utc": "2026-10-07T19:40:27Z",
+    "instrumented_planning_including_evidence_start_utc": "2026-10-07T19:40:41.780123+00:00",
+    "planning_materialization_start_utc": "2026-10-07T19:41:44.459681+00:00",
+    "planning_end_utc": "2026-10-07T19:47:30.054367+00:00",
+    "evidence_reading_elapsed_seconds": 62.679544151999835,
+    "planning_materialization_validation_elapsed_seconds": 345.5946879969997,
+    "instrumented_total_before_queue_seconds": 408.27423214899954,
+    "unobserved_monotonic_interval": "From task delivery until evidence_reading start; first clock observation is wall time only.",
+    "active_llm_time_available": false,
+    "token_telemetry_available": false,
+    "native_compiles": 0,
+    "native_scores": 0
+  },
+  "frozen_to_machine_start_seconds": 35.146613,
+  "queue_note": "Frozen-to-machine-start includes communication/copying/prelaunch delay and is not a pure queue-wait measurement. Coordinator owns the true queue record.",
+  "timing_caveat": "Summed nested/parallel process spans are not CPU or active LLM time and must not be added to batch wall time.",
+  "run_manifest_note": "Coordinator reported a rejected unnecessary formatting write against its read-only copied manifest, then ran the unchanged valid X01-X10 manifest. All ten runtime source hashes match this lane frozen manifest. No native compile retries or candidate changes.",
+  "review_start_utc": "2026-10-07T19:49:19.176184+00:00",
+  "review_end_utc": "2026-10-07T19:50:42.399848+00:00",
+  "review_elapsed_seconds": 83.22365077499944
+}

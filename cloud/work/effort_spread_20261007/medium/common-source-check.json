@@ -1,0 +1,130 @@
+{
+  "lane": "medium",
+  "start_utc": "2026-10-07T19:53:09.873882+00:00",
+  "end_utc": "2026-10-07T19:53:10.608825+00:00",
+  "elapsed_seconds": 0.734969662000367,
+  "cases_per_source": 1120,
+  "rows": [
+    {
+      "id": "M01",
+      "source_sha256": "be10288c80677cca2624c888a7445315d69ae50e559fdd7dcf8b5267e5e7ea01",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "M02",
+      "source_sha256": "0e39e1ef3cfcb2c6fc88f0585eeac253d79be0b80e4551980632f5a2e4bd25e0",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "M03",
+      "source_sha256": "b074ed7b2000953f6188ffdea86c585fa5a7985dd1c66206db045444dc62386e",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "M04",
+      "source_sha256": "32bed78195b1542ec756008302242076b3cb4e07c3e1a8e2e4a82b03a9d4f276",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "M05",
+      "source_sha256": "287a43d34f843ac6f33d7ea4295e74a651dcb96c73d0184909cb15f086bd14a0",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "M06",
+      "source_sha256": "e555dffd37901f7201674783d3e61e6e95fffbb53d1ed0a7f2c441cd58be6cfd",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "M07",
+      "source_sha256": "64181c1823761e06d59ebfcc38391a531b6be93c44dbc9946731774899a417a0",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "M08",
+      "source_sha256": "dad099bef39d79c3c1848ec5b272421d83dbe46e4e23d1572520b52f9b5e4a7e",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "M09",
+      "source_sha256": "98637df2bae613fe6809c351632c9b64364dedf7bf4d6647dbde48c0416bf4f4",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "M10",
+      "source_sha256": "9c9d9ebc896e4a7b494064a7a1d5b8953749b2d5213bb56eb99de87266b9b001",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "M11",
+      "source_sha256": "b7c904758ee99883b47ee8f88da4a64b4211d857132936215cfef0a5eb627514",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "M12",
+      "source_sha256": "e8ebd89878b01f1c1cccc38d45460a8ebc17af52464a2d5dc004c28e290ff9a9",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "M13",
+      "source_sha256": "34195909ae2da3e4bae5db01becd898d9fdcf11fea48d9a9d292df29a237b5d1",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "M14",
+      "source_sha256": "c61137cddac1624c3b02ee08e969b2adc0245e075ddcf7556e4c252219e91ae3",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "M15",
+      "source_sha256": "6d4fdb86e1cc148fd64de4f5e1800410f4e30a3107e18f6ec42e804451b470de",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "M16",
+      "source_sha256": "ec8c6d34136b7a4d4f2a56c778b9acd7dbd9080072ad189cdaaa98978afa331f",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "M17",
+      "source_sha256": "3f4a6ccb98e29bf76d02fcaab15631d937cbe0c98b87e8c32dddd30b60939340",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "M18",
+      "source_sha256": "fd550dfcb627a4c59a8883c2be41847682bf98ec4032b064ca8a26c1e8fb373b",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "M19",
+      "source_sha256": "08c5a924300b367821c5e4b46dbac6a9a43ef106dab1e5c73734716d3b061417",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "M20",
+      "source_sha256": "103d3136bd35a9e1d0266643a7d441f8dc9b84988739bd5d489584f360a8cf02",
+      "status": "bounded_pass",
+      "cases": 1120
+    }
+  ],
+  "limitations": "Actual source control skeleton and SDK argument tuples, ordinary local/global state, bounded arithmetic. No native compiler, full-C equivalence, alias-overlap/storage-lifetime proof, or hardware validation. Unsupported syntax is not evidence of a semantic defect."
+}

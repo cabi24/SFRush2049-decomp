@@ -1,0 +1,70 @@
+{
+  "lane": "xhigh",
+  "start_utc": "2026-10-07T19:53:11.215198+00:00",
+  "end_utc": "2026-10-07T19:53:11.572153+00:00",
+  "elapsed_seconds": 0.35697855899979913,
+  "cases_per_source": 1120,
+  "rows": [
+    {
+      "id": "X01",
+      "source_sha256": "0c24bb9a0f7afd8f2b6035dde38e8b70f190d02e6495c3b05fcdad9bcc7bf63b",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "X02",
+      "source_sha256": "4370def93ee0dbc375e83c5b980b8dc18c32d845dd3efe44bf08942d792f9fbb",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "X03",
+      "source_sha256": "475b5db15b5e0b783842138ffd92e58e000cdf0c254ac41186ed0758c35e2292",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "X04",
+      "source_sha256": "a466ac1e3df85d4acee522830d681605ecd16b75329c8b084dd6054a3f2c044a",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "X05",
+      "source_sha256": "767ce641413d9cb25c2287e3e39d9889610ae42f93996bc03397feef7a168553",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "X06",
+      "source_sha256": "3fd275186fff53800fb8e0094edde7f03af85d058fea5dd980741b38924ee265",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "X07",
+      "source_sha256": "a5925e4bd0738920279492084669644e6b5efcf005d68bcc3730ddd87a713cd2",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "X08",
+      "source_sha256": "f87d67f591a74c69165e12a89d2b700de13461a966125222a4ebea74dbf2b33f",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "X09",
+      "source_sha256": "884f24d09833b5b510360ea663efb38e94b4409217c09d287f418d73ecee94c4",
+      "status": "bounded_pass",
+      "cases": 1120
+    },
+    {
+      "id": "X10",
+      "source_sha256": "b074ed7b2000953f6188ffdea86c585fa5a7985dd1c66206db045444dc62386e",
+      "status": "bounded_pass",
+      "cases": 1120
+    }
+  ],
+  "limitations": "Actual source control skeleton and SDK argument tuples, ordinary local/global state, bounded arithmetic. No native compiler, full-C equivalence, alias-overlap/storage-lifetime proof, or hardware validation. Unsupported syntax is not evidence of a semantic defect."
+}

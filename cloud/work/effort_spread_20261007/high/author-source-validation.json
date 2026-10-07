@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "variant_count": 15,
+  "unique_source_count": 15,
+  "cases_per_variant": 9600,
+  "total_variant_cases": 144000,
+  "checks": [
+    "Python C parser accepts every candidate",
+    "pinned context and source hashes unchanged",
+    "no exact-source duplicate among the supplied ten prior variants",
+    "actual generated AST interpreted against baseline over bounded clipping/mode/flip/scale cases",
+    "unchanged SDK macro arguments packed into the same command words and cursor increments"
+  ],
+  "limitations": [
+    "No native compilation or machine scoring performed.",
+    "Bounded interpretation is not whole-C equivalence or full runtime validation.",
+    "Macro execution is abstracted using its unchanged definition; aliasing/pathological storage and asynchronous changes are outside these cases.",
+    "No interpretation mutation controls were added for this one batch."
+  ]
+}

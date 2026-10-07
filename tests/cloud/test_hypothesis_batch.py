@@ -57,6 +57,33 @@ class ManifestTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "recipe"):
             batch.validate(self.path)
 
+    def test_twenty_five_variants_supported_with_other_limits_unchanged(self):
+        plan = batch.read_json(self.path)
+        experiment = batch.read_json(self.plan / "experiment.json")
+        template = copy.deepcopy(plan["predictions"]["C01"])
+        for number in range(21, 26):
+            candidate_id = "X" + str(number)
+            prediction = copy.deepcopy(template)
+            prediction["source"] = f"candidates/{candidate_id}.c"
+            (self.plan / prediction["source"]).write_bytes((self.plan / template["source"]).read_bytes())
+            plan["predictions"][candidate_id] = prediction
+            experiment["parameters"]["variant"].append(candidate_id)
+            experiment["candidates"].append({"source": prediction["source"], "parameters": {"variant": candidate_id}})
+        plan["limits"]["variants"] = 25
+        batch.write_json(self.path, plan)
+        batch.write_json(self.plan / "experiment.json", experiment)
+        validated, _, parsed = batch.validate(self.path)
+        self.assertEqual(len(validated["predictions"]), 25)
+        self.assertEqual(len(parsed.candidates), 25)
+        for key, invalid in (("variants", 26), ("jobs", 3), ("compile_seconds", 121),
+                             ("score_seconds", 31), ("diagnose_seconds", 31)):
+            with self.subTest(limit=key):
+                invalid_plan = copy.deepcopy(plan)
+                invalid_plan["limits"][key] = invalid
+                batch.write_json(self.path, invalid_plan)
+                with self.assertRaisesRegex(ValueError, "budget: " + key):
+                    batch.validate(self.path)
+
     def test_changed_candidate_and_context_rejected(self):
         candidate = self.plan / "candidates/C01.c"
         candidate.chmod(0o644)

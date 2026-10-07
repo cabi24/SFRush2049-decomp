@@ -1,0 +1,11 @@
+--- baseline.c
++++ candidates/H01.c
+@@ -50,7 +50,7 @@
+         height=bottom-y;
+         if(D_8012E608&0x8000) {bottom+=height+1;step=512;offset=16;}
+         else {step=1024;offset=0;}
+-        if((D_8012E608&4)&&(D_8012E608&8)) {
++        if((D_8012E608&12)==12) {
+             texture_edge=s+right;s=texture_edge-x;t+=height;
+             gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,(t<<5)+offset,-1024,-step);
+         } else if(D_8012E608&4) {

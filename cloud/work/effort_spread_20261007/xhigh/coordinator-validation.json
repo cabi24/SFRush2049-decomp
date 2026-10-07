@@ -1,0 +1,49 @@
+{
+  "lane": "xhigh",
+  "utc": "2026-10-07T19:48:58.210558+00:00",
+  "freeze_integrity": true,
+  "id_normalization_only": {},
+  "syntax": [
+    {
+      "id": "X01",
+      "syntax_pass": true
+    },
+    {
+      "id": "X02",
+      "syntax_pass": true
+    },
+    {
+      "id": "X03",
+      "syntax_pass": true
+    },
+    {
+      "id": "X04",
+      "syntax_pass": true
+    },
+    {
+      "id": "X05",
+      "syntax_pass": true
+    },
+    {
+      "id": "X06",
+      "syntax_pass": true
+    },
+    {
+      "id": "X07",
+      "syntax_pass": true
+    },
+    {
+      "id": "X08",
+      "syntax_pass": true
+    },
+    {
+      "id": "X09",
+      "syntax_pass": true
+    },
+    {
+      "id": "X10",
+      "syntax_pass": true
+    }
+  ],
+  "notes": "Copied read-only manifest prevented an unnecessary normalization write. Runner used the unchanged valid X01-X10 manifest; its own preflight validated all hashes/context before compiling. No source changed or compiler reran."
+}

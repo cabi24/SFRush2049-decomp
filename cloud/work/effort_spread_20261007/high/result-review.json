@@ -1,0 +1,115 @@
+{
+  "lane": "high",
+  "source": "Coordinator compact result message received 2026-10-07T19:51:51Z",
+  "proposed": 15,
+  "unique_sources": 15,
+  "compile_failures": 0,
+  "score_failures": 0,
+  "unique_complete_elfs_within_lane": 15,
+  "unique_relocated_bodies_within_lane": 15,
+  "baseline_body_duplicates": [
+    "H05"
+  ],
+  "best": {
+    "id": "H05",
+    "differing": 4,
+    "total": 445,
+    "extra_words": 0
+  },
+  "improving_baseline": 0,
+  "exact": 0,
+  "batch_wall_seconds": 16.05,
+  "scores": {
+    "H01": {
+      "differing": 355,
+      "total": 445,
+      "extra_words": 1
+    },
+    "H02": {
+      "differing": 391,
+      "total": 445,
+      "extra_words": 1
+    },
+    "H03": {
+      "differing": 380,
+      "total": 445,
+      "extra_words": 0
+    },
+    "H04": {
+      "differing": 388,
+      "total": 445,
+      "extra_words": 0
+    },
+    "H05": {
+      "differing": 4,
+      "total": 445,
+      "extra_words": 0
+    },
+    "H06": {
+      "differing": 377,
+      "total": 445,
+      "extra_words": 0
+    },
+    "H07": {
+      "differing": 69,
+      "total": 445,
+      "extra_words": 0
+    },
+    "H08": {
+      "differing": 282,
+      "total": 445,
+      "extra_words": 0
+    },
+    "H09": {
+      "differing": 274,
+      "total": 445,
+      "extra_words": 0
+    },
+    "H10": {
+      "differing": 283,
+      "total": 445,
+      "extra_words": 0
+    },
+    "H11": {
+      "differing": 290,
+      "total": 445,
+      "extra_words": 0
+    },
+    "H12": {
+      "differing": 440,
+      "total": 445,
+      "extra_words": 0
+    },
+    "H13": {
+      "differing": 278,
+      "total": 445,
+      "extra_words": 0
+    },
+    "H14": {
+      "differing": 272,
+      "total": 445,
+      "extra_words": 0
+    },
+    "H15": {
+      "differing": 406,
+      "total": 445,
+      "extra_words": 0
+    }
+  },
+  "decision": "Keep baseline. No second batch, adoption, or additional matching.",
+  "interpretation": [
+    "H05 produces the baseline relocated body despite explicit terminal returns. This source spelling does not change the known scheduling residual.",
+    "H07 is the best changed-body candidate at 69 differing words, zero extras; rearranging the both-flags exit is insufficient.",
+    "H01 masked equality causes a broad regression (355 differences and one extra). The presumed simpler predicate does not preserve the near-match shape.",
+    "H03/H04 nested trees and H08/H09 factored coordinate trees all regress. Lower positional counts for H08/H09 versus their unfactored parents are not semantic distance or proof of a specific allocation mechanism.",
+    "Every genuine packet-operand join H10-H14 regresses; replacing several emission sites with a real shared tail does not meet both constraints in this finite set.",
+    "H15 changes only mode-zero dispatch but strongly perturbs output. Whole-function graph simplification is not a successful substitute for a local alias solution.",
+    "All 15 candidate bodies are distinct within this lane, so none of the planned alternative dispatch representations collapsed to another candidate. H05 alone duplicates the baseline body."
+  ],
+  "causal_limits": "No native alias or allocator traces were rerun. Word counts identify success/failure, not the exact cause of each changed body. Source admissibility is distinct from native score.",
+  "verification": "All 15 pass the coordinator common AST check over 1,120 cases/source. Lane-specific check additionally passed 9,600/source. Default/goto support was added to the common interpreter without candidate edits or native rerun.",
+  "common_source_check_seconds": 0.503,
+  "queue_wait_seconds": 45.856,
+  "machine_start_utc": "2026-10-07T19:51:02.743514Z",
+  "machine_end_utc": "2026-10-07T19:51:18.793353Z"
+}

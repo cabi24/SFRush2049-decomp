@@ -1,0 +1,7 @@
+{"lane": "low", "stage": "evidence_reading", "status": "start", "utc": "2026-10-07T19:39:47.997427+00:00", "monotonic": 4459.303741626, "actual_start_utc": "2026-10-07T19:39:38Z", "note": "Initial start observed from first shell date; monotonic unavailable for that earlier instant."}
+{"lane": "low", "utc": "2026-10-07T19:40:19.245047+00:00", "monotonic": 4490.551319178, "stage": "evidence_reading", "status": "end", "elapsed_seconds": 31.24757755199971}
+{"lane": "low", "utc": "2026-10-07T19:40:19.245080+00:00", "monotonic": 4490.551319178, "stage": "planning_materialization", "status": "start"}
+{"lane": "low", "stage": "planning_materialization", "status": "end", "utc": "2026-10-07T19:41:30.560971+00:00", "monotonic": 4561.867237623, "elapsed_seconds": 71.31591844499962, "candidate_count": 25, "compiled": false}
+{"lane": "low", "stage": "shared_brief_review", "status": "observed", "utc": "2026-10-07T19:42:13.963913+00:00", "monotonic": 4605.270229025, "note": "Read after freeze; no variant edits. Tool-observed completion only; no fabricated start."}
+{"lane": "low", "stage": "results_review", "status": "start", "utc": "2026-10-07T19:45:16.782749+00:00", "monotonic": 4788.089066421}
+{"lane": "low", "stage": "results_review", "status": "end", "utc": "2026-10-07T19:45:45.341347+00:00", "monotonic": 4816.64747338, "elapsed_seconds": 28.558406958999512}

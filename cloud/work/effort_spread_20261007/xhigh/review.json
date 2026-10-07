@@ -1,0 +1,99 @@
+{
+  "schema": "rush-effort-lane-review-v1",
+  "lane": "xhigh",
+  "status": "source_reviewed_uncompiled",
+  "source_admissibility": "All ten use only genuine computations, scope or dispatch; no forbidden pressure or context changes.",
+  "semantic_scope": "Baseline defined C behavior; bounded interpreter checks are not a whole-C or native equivalence proof.",
+  "historical_controls": [],
+  "candidate_count": 10,
+  "shortfall": 0,
+  "candidates": {
+    "X01": {
+      "sha256": "0c24bb9a0f7afd8f2b6035dde38e8b70f190d02e6495c3b05fcdad9bcc7bf63b",
+      "hypothesis": "A genuine packet-consuming height web can recover the height/offset register ordering without early initialization.",
+      "risk": "Height can change allocation phase or disturb t allocation; no narrow score improvement is assumed.",
+      "patch": "patches/X01.patch",
+      "kind": "new_source_hypothesis"
+    },
+    "X02": {
+      "sha256": "4370def93ee0dbc375e83c5b980b8dc18c32d845dd3efe44bf08942d792f9fbb",
+      "hypothesis": "Consistent vertical-carrier ownership changes the allocation tie more predictably than a single-arm carrier split.",
+      "risk": "Could compile identically to X01 or exchange additional registers; equality would be a useful canonicalization result.",
+      "patch": "patches/X02.patch",
+      "kind": "new_source_hypothesis"
+    },
+    "X03": {
+      "sha256": "475b5db15b5e0b783842138ffd92e58e000cdf0c254ac41186ed0758c35e2292",
+      "hypothesis": "Representing the finalized packet coordinate explicitly can retain the desired alias closure with a different live-set boundary.",
+      "risk": "Earlier height-before-wrapper evidence warns that changing interference may worsen instruction population.",
+      "patch": "patches/X03.patch",
+      "kind": "new_source_hypothesis"
+    },
+    "X04": {
+      "sha256": "a466ac1e3df85d4acee522830d681605ecd16b75329c8b084dd6054a3f2c044a",
+      "hypothesis": "The equivalent signed-step representation can change allocation cost while retaining setup topology and alias closure.",
+      "risk": "IDO may normalize this exactly or introduce structural regressions; this is not evidence for a different SDK convention.",
+      "patch": "patches/X04.patch",
+      "kind": "new_source_hypothesis"
+    },
+    "X05": {
+      "sha256": "767ce641413d9cb25c2287e3e39d9889610ae42f93996bc03397feef7a168553",
+      "hypothesis": "A shared final-step definition may remove packet-local uses that compete with the alias-boundary schedule.",
+      "risk": "The extra source predicate may survive natively or disrupt branch order; a large positional score is possible.",
+      "patch": "patches/X05.patch",
+      "kind": "new_source_hypothesis"
+    },
+    "X06": {
+      "sha256": "3fd275186fff53800fb8e0094edde7f03af85d058fea5dd980741b38924ee265",
+      "hypothesis": "Natural lexical ownership can preserve baseline allocation while the known body wrapper fixes scheduling.",
+      "risk": "This may be native-identical to the historical wrapper; the scope distinction is a predeclared canonicalization hypothesis.",
+      "patch": "patches/X06.patch",
+      "kind": "new_source_hypothesis"
+    },
+    "X07": {
+      "sha256": "a5925e4bd0738920279492084669644e6b5efcf005d68bcc3730ddd87a713cd2",
+      "hypothesis": "Branch-local horizontal intermediates may avoid a cross-arm allocator ordering effect without changing genuine arithmetic.",
+      "risk": "The optimizer may already split these webs and produce the old wrapper body exactly.",
+      "patch": "patches/X07.patch",
+      "kind": "new_source_hypothesis"
+    },
+    "X08": {
+      "sha256": "f87d67f591a74c69165e12a89d2b700de13461a966125222a4ebea74dbf2b33f",
+      "hypothesis": "A factored horizontal dispatch can eliminate the metadata predecessor while retaining the original live-range threshold.",
+      "risk": "The native CFG may canonicalize to the baseline or change population broadly. This is not another guarded one-shot exit.",
+      "patch": "patches/X08.patch",
+      "kind": "new_source_hypothesis"
+    },
+    "X09": {
+      "sha256": "884f24d09833b5b510360ea663efb38e94b4409217c09d287f418d73ecee94c4",
+      "hypothesis": "Grouping vertical consumers can resolve alias topology and allocation together without synthetic wrapper entries.",
+      "risk": "Arm layout and branch polarity can differ substantially from the target; positional score need not reflect semantic closeness.",
+      "patch": "patches/X09.patch",
+      "kind": "new_source_hypothesis"
+    },
+    "X10": {
+      "sha256": "b074ed7b2000953f6188ffdea86c585fa5a7985dd1c66206db045444dc62386e",
+      "hypothesis": "Exhaustive real dispatch can produce a favorable alias-boundary graph that binary guard rewrites did not.",
+      "risk": "Switch lowering may change comparisons, arm layout or data requirements; source admissibility does not imply a near score.",
+      "patch": "patches/X10.patch",
+      "kind": "new_source_hypothesis"
+    }
+  },
+  "source_validation": "source-validation.json",
+  "manual_review": {
+    "status": "passed",
+    "observed_at_utc": "2026-10-07T19:47:30.051872+00:00",
+    "checks": [
+      "Baseline-relative patches reviewed for all ten candidates.",
+      "Signature and complete SDK prefix fixed; clipping and packet stores unchanged.",
+      "C89 declaration placement checked, including four branch-local texture_edge declarations.",
+      "Vertical carrier arithmetic preserves original operation grouping and signed definedness.",
+      "Switch exhaustively covers the four values of flags & 12 without fallthrough."
+    ],
+    "limitations": [
+      "Bounded source interpretation does not prove whole-C equivalence or native behavior.",
+      "Natural lexical-scope variants X06/X07 may canonicalize to existing controls.",
+      "No source hypothesis has native matching evidence before coordinator execution."
+    ]
+  }
+}

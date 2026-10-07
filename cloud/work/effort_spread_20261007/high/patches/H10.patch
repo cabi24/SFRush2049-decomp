@@ -1,0 +1,33 @@
+--- baseline.c
++++ candidates/H10.c
+@@ -16,6 +16,7 @@
+ void func_80087110(int x,int y,int right,int bottom,int s,int t)
+ {
+     int height,step,offset,texture_edge;
++    int horizontal_step;
+     if(x<D_8012E60C) {
+         if(!(D_8012E608&4))s+=D_8012E60C-x;
+         x=D_8012E60C;
+@@ -50,17 +51,13 @@
+         height=bottom-y;
+         if(D_8012E608&0x8000) {bottom+=height+1;step=512;offset=16;}
+         else {step=1024;offset=0;}
+-        if((D_8012E608&4)&&(D_8012E608&8)) {
+-            texture_edge=s+right;s=texture_edge-x;t+=height;
+-            gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,(t<<5)+offset,-1024,-step);
+-        } else if(D_8012E608&4) {
+-            texture_edge=s+right;s=texture_edge-x;
+-            gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,t<<5,-1024,step);
+-        } else if(D_8012E608&8) {
++        if(D_8012E608&4) {texture_edge=s+right;s=texture_edge-x;horizontal_step=-1024;}
++        else {horizontal_step=1024;}
++        if(D_8012E608&8) {
+             t+=height;
+-            gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,(t<<5)+offset,1024,-step);
++            gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,(t<<5)+offset,horizontal_step,-step);
+         } else {
+-            gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,t<<5,1024,step);
++            gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,t<<5,horizontal_step,step);
+         }
+     }
+ }
