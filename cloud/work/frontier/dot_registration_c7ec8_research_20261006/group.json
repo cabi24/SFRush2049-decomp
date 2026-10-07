@@ -1,0 +1,18 @@
+{
+  "files": [
+    "candidate.c",
+    "caller.c"
+  ],
+  "keep": [
+    "func_800C813C"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "members": [
+    "func_800C7EC8"
+  ],
+  "context": [
+    "func_800C813C"
+  ],
+  "claims": [],
+  "provenance": "First complete native handle reconstruction with genuine caller context. Research only, no accepted coverage claim."
+}
