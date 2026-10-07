@@ -1,0 +1,22 @@
+{
+  "files": [
+    "display.c",
+    "slot_context.c",
+    "replay_caller.c",
+    "options_caller.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "replay_save_prompt",
+    "func_800DB1E0"
+  ],
+  "members": [
+    "time_result_display"
+  ],
+  "context": [
+    "replay_save_prompt",
+    "func_800DB1E0",
+    "slot_state_setup"
+  ],
+  "claims": []
+}
