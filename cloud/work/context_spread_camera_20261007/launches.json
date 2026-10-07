@@ -1,0 +1,12 @@
+{
+  "scope": "Observed tool-dispatch UTC boundaries; not active inference measurements",
+  "model": "gpt-6.1-sol",
+  "lanes": {
+    "low": {"budget":25,"requested_effort":"low","dispatch_utc":"2026-10-07T21:37:38Z"},
+    "medium": {"budget":20,"requested_effort":"medium","dispatch_utc":"2026-10-07T21:37:47Z"},
+    "high": {"budget":15,"requested_effort":"high","dispatch_utc":"2026-10-07T21:37:55Z"},
+    "xhigh": {"budget":10,"requested_effort":"xhigh","first_attempt_utc":"2026-10-07T21:38:02Z","attempt_result":"live agent capacity limit","dispatch_utc":"2026-10-07T21:38:58Z"}
+  },
+  "context": "ASSIGNMENT.md frozen before first dispatch, identical clean baseline; no cross-lane feedback during design",
+  "not_measured": ["active LLM inference time","LLM token counts","service queue duration separately from orchestration"]
+}

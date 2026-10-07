@@ -1,0 +1,128 @@
+{
+  "lane": "xhigh",
+  "review_start": {
+    "event": "review_start",
+    "utc": "2026-10-07T21:46:00.334786+00:00",
+    "monotonic_s": 12031.641101043
+  },
+  "review_end": {
+    "utc": "2026-10-07T21:46:54.619107+00:00",
+    "monotonic_s": 12085.92542025
+  },
+  "elapsed_review_wall_s": 54.2843192069995,
+  "timing_kind": "Observed result-reading/review/tool wall window; not active inference or CPU time.",
+  "baseline_controls": {
+    "differing": 533,
+    "total": 557,
+    "extra_words": 0,
+    "repeats": 2,
+    "identical_control_objects": true
+  },
+  "best_ids": [
+    "X02",
+    "X10"
+  ],
+  "best_differing": 533,
+  "total": 557,
+  "improved_ids": [],
+  "scores": {
+    "X01": {
+      "differing": 540,
+      "extra_words": 0,
+      "status": "scored_mismatch",
+      "errors_count": 0,
+      "unresolved_count": 0,
+      "unverified_count": 0
+    },
+    "X02": {
+      "differing": 533,
+      "extra_words": 0,
+      "status": "scored_mismatch",
+      "errors_count": 0,
+      "unresolved_count": 0,
+      "unverified_count": 0
+    },
+    "X03": {
+      "differing": 538,
+      "extra_words": 0,
+      "status": "scored_mismatch",
+      "errors_count": 0,
+      "unresolved_count": 0,
+      "unverified_count": 0
+    },
+    "X04": {
+      "differing": 538,
+      "extra_words": 0,
+      "status": "scored_mismatch",
+      "errors_count": 0,
+      "unresolved_count": 0,
+      "unverified_count": 0
+    },
+    "X05": {
+      "differing": 535,
+      "extra_words": 0,
+      "status": "scored_mismatch",
+      "errors_count": 0,
+      "unresolved_count": 0,
+      "unverified_count": 0
+    },
+    "X06": {
+      "differing": 538,
+      "extra_words": 0,
+      "status": "scored_mismatch",
+      "errors_count": 0,
+      "unresolved_count": 0,
+      "unverified_count": 0
+    },
+    "X07": {
+      "differing": 543,
+      "extra_words": 0,
+      "status": "scored_mismatch",
+      "errors_count": 0,
+      "unresolved_count": 0,
+      "unverified_count": 0
+    },
+    "X08": {
+      "differing": 538,
+      "extra_words": 0,
+      "status": "scored_mismatch",
+      "errors_count": 0,
+      "unresolved_count": 0,
+      "unverified_count": 0
+    },
+    "X09": {
+      "differing": 540,
+      "extra_words": 0,
+      "status": "scored_mismatch",
+      "errors_count": 0,
+      "unresolved_count": 0,
+      "unverified_count": 0
+    },
+    "X10": {
+      "differing": 533,
+      "extra_words": 0,
+      "status": "scored_mismatch",
+      "errors_count": 0,
+      "unresolved_count": 0,
+      "unverified_count": 0
+    }
+  },
+  "findings": [
+    "X02 and X10 tie the clean baseline at 533/557; all other candidates regress. No exact match and no source-adoption recommendation.",
+    "All ten compile and score cleanly: zero extras, errors, unresolved or unverified references. Public machine results report ten distinct complete ELFs; selected-body deduplication is not established by this receipt.",
+    "Isolated four-setter failure diamonds X01 score 540. The conditional post-subtraction integer rate join in otherwise aligned X05 scores 535; this improves that diamond-only positional result but remains two words worse than the baseline and is finite-domain qualified.",
+    "The native-informed full-recycling/staged arithmetic or integer operand variants X03/X04/X06/X08 all score 538. Equal scores are not an identical-body or causal-equivalence claim.",
+    "The single-exit success/result-local hypothesis X07 is worst at 543. The positive live-voice/success-first shape X02 and its integrated lifetime variant X10 both tie 533, so the additional lifetime/control changes demonstrate no score gain in this lane.",
+    "Every proposal passes the common 2048-case bounded host-C differential check, totaling 20480 candidate-case comparisons. This does not establish arbitrary input, O32/native runtime, aliasing, exceptional float or FCSR equivalence.",
+    "The exported genuine helper retains the unresolved private-ABI/context limitation. These source-structure results do not recover or explain authentic out-of-line helper context."
+  ],
+  "semantic_limits": {
+    "X05": "Finite, defined float-to-unsigned-conversion domain qualification only. Negative post-subtraction rate selects unsigned zero directly. NaN/infinity, out-of-range casts and exceptional/FCSR behavior are unresolved; bounded pass does not remove this qualification.",
+    "X09": "Ordinary finite, defined-conversion-domain hypothesis only. Explicit positive-rate guard sends unordered NaN to integer zero rather than baseline's nonportable NaN-to-u32 conversion; exceptional-input equivalence is not claimed. Its 540 score is also worse than baseline.",
+    "staged_float_variants": "Original operation order is preserved, but excess-precision and exceptional/FCSR evaluation are not established.",
+    "common_check": "Host-C differential traces/state against frozen clean C, 2048 deterministic scenarios; standard 32-bit int/float but host pointers/layout, not O32 or whole-C/native equivalence. Covers real commands, list mutations, flags, retries, history and bounded callback-sensitive reloads."
+  },
+  "source_integrity_after_review": "Exact freeze hashes verified; no candidate edits, compilers, scoring reruns or further experiments performed by lane.",
+  "strict_exact": 0,
+  "claims": []
+}

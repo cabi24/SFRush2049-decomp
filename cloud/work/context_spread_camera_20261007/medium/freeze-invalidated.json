@@ -1,0 +1,47 @@
+{
+  "lane": "medium",
+  "candidate_count": 20,
+  "baseline_sha256": "1bac499d4feded2f749f32b3493e28beba8667bd493d385e1ca1332d5c0160b2",
+  "source_hashes": {
+    "M01": "33af48d5cd37d4a4c7d6eea37dabbbf24f72a31f2e14dd83e8ffcace649695ce",
+    "M02": "5cf84dc68b40a12760a8e40481cc400f9b83347cf9934c6eb1be73ac199ea7c9",
+    "M03": "bff6fb04f63491f0ec5ee5ff2229a6d4b8d6f1fbb8a79851f6298c661b25adcf",
+    "M04": "6e0feef03bc4e4380c2dc0d19bbf295c5b894badf0314b1ed90afa9d669b3e63",
+    "M05": "99ec09ba5ed9c0d6791e17f82e3390a4333f9c6fa50c2d3c511c15c041927651",
+    "M06": "5b7f2fec3983d5be6906f7ee9e8d60f7aca336fcb0ebb072dbbae51803718a62",
+    "M07": "08e834dd9b54badd4605b4aa542ee32b3dd94488081ec2a86ea8bcc75b9b7950",
+    "M08": "5249e8c6c78749acdc5b05dbfcc78af0ca2a236464c2bd010bf1b98e4a97bb36",
+    "M09": "dd8324aba68662649179dccbd965406ae313ce283d91a18b743ace8a0de62bab",
+    "M10": "f847d28ef86eba2c51d1b321ccfae7d80ba431b34733adc204d59e5d05c58875",
+    "M11": "9ed2b4743b02a991859797961783dabf6e1f32f02a20f249c0f9ae60c8875377",
+    "M12": "aa488964af6e0e431197c46c1915086ab9860cc23cc74eba7fb9dab9aa829f0b",
+    "M13": "4aa3807e6573d12ba4f3c466469c4a5c16f906365811c66a8b4049daad413b24",
+    "M14": "69b35be6b32c0c710751f5c2cfe8fa2014f632d1bdbaf0a7a1c689114ae31fdf",
+    "M15": "089d960d52a95ecfc05742137c9e5a7e4b2d4357f7bb31b37730e8a5ba11027a",
+    "M16": "3e4ff99ae733f275da69fc400f13f8ccdd19b53137c31b78e8892b029ee0ff59",
+    "M17": "01bc6b74508a2e51e21bb30c5c14bab289fb148b9b454bf4e5beec34912e757f",
+    "M18": "b48ced8d9c3a4e98b524070438c9b924a52a13b996ea643841deda32d4ff8d50",
+    "M19": "85287eae5cbb3300b91922848a2c232eaab2f2245869638489f74926376bcd1b",
+    "M20": "2c0969c1c64029dc4053976574ce7deaddd6cc265959c562e83e9e0540caf1bb"
+  },
+  "start": {
+    "event": "planning_start",
+    "utc": "2026-10-07T21:38:28.944745+00:00",
+    "monotonic": 11580.25105725,
+    "startup_note": "Required assignment/context/seed reads preceded this marker by approximately 30 seconds; the observed planning window is not backdated."
+  },
+  "freeze": {
+    "event": "freeze",
+    "utc": "2026-10-07T21:40:03.359038+00:00",
+    "monotonic": 11674.665357853
+  },
+  "elapsed_planning_wall_seconds": 94.41430060300081,
+  "timing_note": "Observed read/reasoning/materialization/parser/integrity tool window, not active inference time; no compilation/scoring occurred. Initial required reading before marker disclosed separately.",
+  "validation": {
+    "pycparser_count": 20,
+    "complete_source_unique_count": 20,
+    "previous_source_hash_repeats": 0,
+    "protected_original_exported_start_and_stop_helper": true,
+    "path_local_recycle_pair_sites": 4
+  }
+}

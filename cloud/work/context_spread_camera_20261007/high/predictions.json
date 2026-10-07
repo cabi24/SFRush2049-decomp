@@ -1,0 +1,167 @@
+{
+  "H01": {
+    "source": "candidates/H01.c",
+    "sha256": "5eee05ef8d277b941504d162b1a68beea9aea39641737283f51501922b3a5c7e",
+    "edit": "Explicit volume/pan callback diamonds only.",
+    "semantic_justification": "The callback sequence, sentinels, byte retry wrapping, kind-zero retry exemption, list remove-before-insert order, and post-callback pointer/field reload boundaries are retained. Assumes valid distinct globals/table/list objects, valid entries for required commands, representable integer arithmetic and float-to-integer conversions within the baseline source-defined domain. Stable address carriers retain addresses only; callback-mutable contents are still reloaded. No asynchronous mutation or helper ABI repair is assumed. ",
+    "native_effect": "Separate the first half of native setter-result branches from recycling and the other setters; isolates whether earlier inlined result joins alter later FP allocation.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "H02": {
+    "source": "candidates/H02.c",
+    "sha256": "2633740f32d788e9ff7a23cd49c8327b1532b02a4dd8afbd1c87a5d1721f7021",
+    "edit": "Explicit depth/rate callback diamonds only.",
+    "semantic_justification": "The callback sequence, sentinels, byte retry wrapping, kind-zero retry exemption, list remove-before-insert order, and post-callback pointer/field reload boundaries are retained. Assumes valid distinct globals/table/list objects, valid entries for required commands, representable integer arithmetic and float-to-integer conversions within the baseline source-defined domain. Stable address carriers retain addresses only; callback-mutable contents are still reloaded. No asynchronous mutation or helper ABI repair is assumed. ",
+    "native_effect": "Complementary native-result reconstruction isolates later setter joins and the rate clamp without changing early parameter regions.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "H03": {
+    "source": "candidates/H03.c",
+    "sha256": "79a0ab98b552fa42870a339aca190f402237976f7b1aeb71dc27fc8bed2e0ab9",
+    "edit": "All four callback diamonds plus only early-cancellation local recycling.",
+    "semantic_justification": "The callback sequence, sentinels, byte retry wrapping, kind-zero retry exemption, list remove-before-insert order, and post-callback pointer/field reload boundaries are retained. Assumes valid distinct globals/table/list objects, valid entries for required commands, representable integer arithmetic and float-to-integer conversions within the baseline source-defined domain. Stable address carriers retain addresses only; callback-mutable contents are still reloaded. No asynchronous mutation or helper ABI repair is assumed. ",
+    "native_effect": "Separates native early cancellation from shared normal/exhaustion cleanup; tests its forward branch geometry independently of full cleanup duplication.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "H04": {
+    "source": "candidates/H04.c",
+    "sha256": "b106ae7e2f8c7e171769ae2f4b3de4a9af30f2efc4aa0032e01225f85dd615c3",
+    "edit": "All four callback diamonds plus only retry-exhaustion local recycling.",
+    "semantic_justification": "The callback sequence, sentinels, byte retry wrapping, kind-zero retry exemption, list remove-before-insert order, and post-callback pointer/field reload boundaries are retained. Assumes valid distinct globals/table/list objects, valid entries for required commands, representable integer arithmetic and float-to-integer conversions within the baseline source-defined domain. Stable address carriers retain addresses only; callback-mutable contents are still reloaded. No asynchronous mutation or helper ABI repair is assumed. ",
+    "native_effect": "Separates native exhaustion cleanup from early/normal cleanup; tests the bottom-loop recycling and retry join independently.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "H05": {
+    "source": "candidates/H05.c",
+    "sha256": "df45b2d23387deb5a3aca631302411bff4157d870c331a966134d3cdf4a4bf83",
+    "edit": "Three recycling regions, four diamonds, staged pan/depth normalization and rate subtraction.",
+    "semantic_justification": "Arithmetic carriers retain the original left-associated FP operation order. Explicit f32 assignment can differ under excess-precision evaluation, exceptional FP/FCSR behavior or nonstandard evaluation modes; this requires coordinator semantic review and does not claim full FP equivalence. The callback sequence, sentinels, byte retry wrapping, kind-zero retry exemption, list remove-before-insert order, and post-callback pointer/field reload boundaries are retained. Assumes valid distinct globals/table/list objects, valid entries for required commands, representable integer arithmetic and float-to-integer conversions within the baseline source-defined domain. Stable address carriers retain addresses only; callback-mutable contents are still reloaded. No asynchronous mutation or helper ABI repair is assumed. ",
+    "native_effect": "A real single FP arithmetic carrier exposes sequential add/multiply lifetimes in pan/depth and product/subtraction in rate without reassociating operations.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "H06": {
+    "source": "candidates/H06.c",
+    "sha256": "2714fa9070152ab5f42c81102a6988568f39d4cf22eb0ac4a012715e2207f12e",
+    "edit": "Three recycling regions, four diamonds, explicit unsigned conversion carriers.",
+    "semantic_justification": "The u32 conversions and subsequent narrowing are unchanged, with no intervening callbacks. Argument loads and nonvolatile conversion evaluation have no observable difference on the defined conversion domain. The callback sequence, sentinels, byte retry wrapping, kind-zero retry exemption, list remove-before-insert order, and post-callback pointer/field reload boundaries are retained. Assumes valid distinct globals/table/list objects, valid entries for required commands, representable integer arithmetic and float-to-integer conversions within the baseline source-defined domain. Stable address carriers retain addresses only; callback-mutable contents are still reloaded. No asynchronous mutation or helper ABI repair is assumed. ",
+    "native_effect": "Makes each float-to-u32 result a real value before byte/halfword truncation and callback evaluation; may reshape conversion/result register webs around diamonds.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "H07": {
+    "source": "candidates/H07.c",
+    "sha256": "16faed6ebba723b77cb5883e7f593a4753cd950f79af5105cf0514e4d1cc1e71",
+    "edit": "Three recycling regions and explicit callback-result-to-success joins in all setters.",
+    "semantic_justification": "A callback result is tested once and mapped to exactly zero or one; the no-voice path returns one without calling or evaluating conversion arithmetic. The callback sequence, sentinels, byte retry wrapping, kind-zero retry exemption, list remove-before-insert order, and post-callback pointer/field reload boundaries are retained. Assumes valid distinct globals/table/list objects, valid entries for required commands, representable integer arithmetic and float-to-integer conversions within the baseline source-defined domain. Stable address carriers retain addresses only; callback-mutable contents are still reloaded. No asynchronous mutation or helper ABI repair is assumed. ",
+    "native_effect": "Models native materialized boolean branches with an actual callback result and common success return, rather than helper early-return diamonds.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "H08": {
+    "source": "candidates/H08.c",
+    "sha256": "b090af1724376b6eacf4b76902091456eae065c1be7c1cf16cb92931e6353d2d",
+    "edit": "Three recycling regions and validity-guarded setter success regions.",
+    "semantic_justification": "The no-voice path skips all conversion arithmetic and returns success; each live-voice callback executes once and returns success iff its result is zero. The callback sequence, sentinels, byte retry wrapping, kind-zero retry exemption, list remove-before-insert order, and post-callback pointer/field reload boundaries are retained. Assumes valid distinct globals/table/list objects, valid entries for required commands, representable integer arithmetic and float-to-integer conversions within the baseline source-defined domain. Stable address carriers retain addresses only; callback-mutable contents are still reloaded. No asynchronous mutation or helper ABI repair is assumed. ",
+    "native_effect": "Models a success-default helper whose callback region exists only for a live voice; tests native no-voice/result branch joins and helper lifetime boundaries.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "H09": {
+    "source": "candidates/H09.c",
+    "sha256": "432ebcb163bad5d26e67ca21375d4b5e7c0f671f4703cdd6a4474da219f52aa5",
+    "edit": "Three recycling regions with volume/rate result diamonds.",
+    "semantic_justification": "The callback sequence, sentinels, byte retry wrapping, kind-zero retry exemption, list remove-before-insert order, and post-callback pointer/field reload boundaries are retained. Assumes valid distinct globals/table/list objects, valid entries for required commands, representable integer arithmetic and float-to-integer conversions within the baseline source-defined domain. Stable address carriers retain addresses only; callback-mutable contents are still reloaded. No asynchronous mutation or helper ABI repair is assumed. ",
+    "native_effect": "Reconstructs endpoint setters while retaining middle branchless forms; isolates interaction between native recycle sites and volume/rate result materialization.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "H10": {
+    "source": "candidates/H10.c",
+    "sha256": "b73bc3a1001cbf0ad24e6ebd65d9858aa596430e9eb16174294755e86fef9fd8",
+    "edit": "Three recycling regions with pan/depth result diamonds.",
+    "semantic_justification": "The callback sequence, sentinels, byte retry wrapping, kind-zero retry exemption, list remove-before-insert order, and post-callback pointer/field reload boundaries are retained. Assumes valid distinct globals/table/list objects, valid entries for required commands, representable integer arithmetic and float-to-integer conversions within the baseline source-defined domain. Stable address carriers retain addresses only; callback-mutable contents are still reloaded. No asynchronous mutation or helper ABI repair is assumed. ",
+    "native_effect": "Reconstructs the shared pan/depth conversion pair while retaining endpoint branchless forms; isolates symmetric normalized-parameter result regions.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "H11": {
+    "source": "candidates/H11.c",
+    "sha256": "a5c669b2597d0f81ae1407f7397e294fbad7bc4970e4aa5e099980d5ba6c0abc",
+    "edit": "Three recycling regions, four diamonds, short-lived queue parameter carrier.",
+    "semantic_justification": "The current field is loaded before its sentinel test and used for its helper with no intervening callback; later fields and node->entry are refreshed after each prior callback. The callback sequence, sentinels, byte retry wrapping, kind-zero retry exemption, list remove-before-insert order, and post-callback pointer/field reload boundaries are retained. Assumes valid distinct globals/table/list objects, valid entries for required commands, representable integer arithmetic and float-to-integer conversions within the baseline source-defined domain. Stable address carriers retain addresses only; callback-mutable contents are still reloaded. No asynchronous mutation or helper ABI repair is assumed. ",
+    "native_effect": "Combines native result diamonds with one FP value refreshed only at each real parameter stage; may change sentinel and conversion allocation without caching future fields across callbacks.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "H12": {
+    "source": "candidates/H12.c",
+    "sha256": "c008f593d394eaf945f3e48704cedcb09756345fdc2803b85e20b4414f092aea",
+    "edit": "Three recycling regions, four diamonds, real list/history address carriers.",
+    "semantic_justification": "The callback sequence, sentinels, byte retry wrapping, kind-zero retry exemption, list remove-before-insert order, and post-callback pointer/field reload boundaries are retained. Assumes valid distinct globals/table/list objects, valid entries for required commands, representable integer arithmetic and float-to-integer conversions within the baseline source-defined domain. Stable address carriers retain addresses only; callback-mutable contents are still reloaded. No asynchronous mutation or helper ABI repair is assumed. ",
+    "native_effect": "Combines the independently observed native structures with genuine stable list and completion-counter address lifetimes, possibly changing saved-register assignment across cleanup regions.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "H13": {
+    "source": "candidates/H13.c",
+    "sha256": "e7f417ce92882098fc47383d2fad26e9df76b5098bcc7aaa0ac5fd2e8b8717b9",
+    "edit": "Three recycling regions, four diamonds, table offset and final retirement-entry lifetimes.",
+    "semantic_justification": "The byte offset equals i*sizeof(Entry) on each entered iteration, with dynamic bound and table-base reloads retained. Final id/active stores share a pointer obtained after callbacks and history increment, with no callback between stores. The callback sequence, sentinels, byte retry wrapping, kind-zero retry exemption, list remove-before-insert order, and post-callback pointer/field reload boundaries are retained. Assumes valid distinct globals/table/list objects, valid entries for required commands, representable integer arithmetic and float-to-integer conversions within the baseline source-defined domain. Stable address carriers retain addresses only; callback-mutable contents are still reloaded. No asynchronous mutation or helper ABI repair is assumed. ",
+    "native_effect": "Combines independent index/byte-offset induction and one post-callback retirement address with native setter/recycler geometry; may align table-address webs and eliminate redundant final reload.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "H14": {
+    "source": "candidates/H14.c",
+    "sha256": "a1d4174354192092da7dc7a44f3720b80f4a702047420e528ac91019e1b15a09",
+    "edit": "Three recycling regions, four diamonds, rate clamp split into real negative/nonnegative callback paths.",
+    "semantic_justification": "The rate<0 predicate is unchanged; the negative path supplies exactly unsigned zero instead of converting a clamped +0. The nonnegative path converts the original computed rate. Exceptional FP/FCSR handling and invalid conversions remain unverified. The callback sequence, sentinels, byte retry wrapping, kind-zero retry exemption, list remove-before-insert order, and post-callback pointer/field reload boundaries are retained. Assumes valid distinct globals/table/list objects, valid entries for required commands, representable integer arithmetic and float-to-integer conversions within the baseline source-defined domain. Stable address carriers retain addresses only; callback-mutable contents are still reloaded. No asynchronous mutation or helper ABI repair is assumed. ",
+    "native_effect": "Uses the computed subtract-before-zero value to select callback arguments directly, avoiding a merged zero/rate FP carrier; tests the native rate clamp lifetime hypothesis.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "H15": {
+    "source": "candidates/H15.c",
+    "sha256": "65d59984c64891c981a04aed21016ea399a48e20a91d3c3b9530d840048f648b",
+    "edit": "Three recycling regions, explicit results, staged normalized arithmetic, refreshed queue FP carrier, nonnegative rate callback region.",
+    "semantic_justification": "On ordinary finite inputs, rate>=0 chooses the original nonnegative rate and the complementary path supplies zero. NaN, infinities, signed-zero/FCSR and excess-precision behavior are not claimed equivalent; NaN guard polarity differs and integer conversion of nonfinite values is outside the bounded source-defined domain. Arithmetic operation order is retained. Current queue fields are refreshed after earlier callbacks. The callback sequence, sentinels, byte retry wrapping, kind-zero retry exemption, list remove-before-insert order, and post-callback pointer/field reload boundaries are retained. Assumes valid distinct globals/table/list objects, valid entries for required commands, representable integer arithmetic and float-to-integer conversions within the baseline source-defined domain. Stable address carriers retain addresses only; callback-mutable contents are still reloaded. No asynchronous mutation or helper ABI repair is assumed. ",
+    "native_effect": "Tests a coherent control/lifetime reconstruction: stage-local queue values, helper-local normalized values and subtract-before-zero rate callback branches. The nonnegative guard carries ordinary-finite-input uncertainty for FP exceptional behavior.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  }
+}

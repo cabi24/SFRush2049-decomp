@@ -26,6 +26,7 @@ import shlex
 import shutil
 import signal
 import subprocess
+import struct
 import sys
 import tarfile
 import threading
@@ -230,6 +231,16 @@ def split_function(source, function):
     return source[:start], source[start:end - 1], source[end - 1:]
 
 
+def source_context(source, editable):
+    """Remove only explicitly named function bodies; retain signatures and all context."""
+    for name in editable:
+        head, body, tail = split_function(source, name)
+        if has_preprocessor(body):
+            raise ValueError("candidate changes signature or genuine TU context: preprocessor in editable body")
+        source = head + tail
+    return source
+
+
 def has_preprocessor(text):
     # Deliberately conservative for preprocessed TUs, even inside comments or
     # strings. Reject alternate directive tokens and line-spliced spellings.
@@ -241,7 +252,7 @@ def validate(plan_path, repo=REPO):
     plan_path = Path(plan_path).resolve()
     root, plan = plan_path.parent, read_json(plan_path)
     fields(plan, ("schema", "base_commit", "function", "recipe", "purpose", "experiment", "baseline",
-                  "baseline_sha256", "flags", "targets", "context_manifest", "hypothesis", "limits", "predictions"), ("baseline_expectation",))
+                  "baseline_sha256", "flags", "targets", "context_manifest", "hypothesis", "limits", "predictions"), ("baseline_expectation", "editable_helpers"))
     if plan["schema"] != SCHEMA or plan["recipe"] != "single" or plan["purpose"] not in ("calibration", "experiment"):
         raise ValueError("v1 supports only single-function calibration or experiment")
     if not re.fullmatch(r"[0-9a-f]{40}", str(plan["base_commit"])) or not NAME.fullmatch(str(plan["function"])):
@@ -282,7 +293,16 @@ def validate(plan_path, repo=REPO):
         context_files[entry["path"]] = entry["sha256"]
     if context_files.get(context["source"]) != plan["baseline_sha256"]:
         raise ValueError("baseline is not the actual pinned source TU")
-    prefix, _, suffix = split_function(baseline.read_text(), plan["function"])
+    helpers = plan.get("editable_helpers", [])
+    if (not isinstance(helpers, list) or len(helpers) > 4
+            or any(not isinstance(name, str) or not NAME.fullmatch(name) or name == plan["function"] for name in helpers)
+            or len(set(helpers)) != len(helpers) or (helpers and plan["purpose"] != "experiment")):
+        raise ValueError("invalid editable helper body allowlist")
+    for name in helpers:
+        if not re.search(r"\bstatic\s+[^;{}]+\b" + re.escape(name) + r"\s*\([^;{}]*\)\s*\{", baseline.read_text()):
+            raise ValueError("editable helper must be an existing static function")
+    editable = [plan["function"], *helpers]
+    frozen_context = source_context(baseline.read_text(), editable)
     # Self-contained TUs are deliberately the MVP boundary. Includes need a
     # dependency-closure verifier before this can accept a general TU.
     if not frozen_prefix_macros_only(baseline.read_text(), plan["function"]):
@@ -322,8 +342,7 @@ def validate(plan_path, repo=REPO):
         for key in ("edit", "semantic_justification", "native_effect"):
             if not isinstance(prediction[key], str) or not prediction[key].strip():
                 raise ValueError("missing candidate justification")
-        head, body, tail = split_function(source.read_text(), plan["function"])
-        if (head, tail) != (prefix, suffix) or has_preprocessor(body):
+        if source_context(source.read_text(), editable) != frozen_context:
             raise ValueError("candidate changes signature or genuine TU context")
         fields(prediction["check"], ("kind", "signal_ids"))
         check = prediction["check"]
@@ -615,6 +634,35 @@ def target_object(output):
     receipt(output, output / "target.receipt.json", obj, {"words": len(words), "padding_words": len(emitted) - len(words)})
 
 
+def negative_canary_offset(scorer, obj, function):
+    """Select a matched, relocation-free word inside the selected function.
+
+    A genuine TU can emit other helpers first, and a nonmatching prologue may
+    already differ. Mutating either would not establish target-score sensitivity.
+    """
+    data, sections = scorer._elf(obj)
+    text_index = scorer._text_index(sections)
+    section = sections[text_index]
+    symbols = scorer.symbols(obj)
+    start = symbols[function]
+    words = scorer.text_words(obj)
+    target = scorer.targets()[function]
+    end = min((offset for offset in symbols.values() if offset > start),
+              default=len(words) * 4)
+    relocated = set()
+    for rel in sections:
+        if rel["type"] == 9 and rel["info"] == text_index:
+            relocated.update(struct.unpack_from(">II", data, rel["off"] + k)[0]
+                             for k in range(0, rel["size"], 8))
+    for index, wanted in enumerate(target):
+        offset = start + index * 4
+        if offset >= end:
+            break
+        if offset not in relocated and words[offset // 4] == wanted:
+            return section["off"] + offset
+    raise ValueError("no matched relocation-free target word for negative canary")
+
+
 def baseline_controls(output):
     state = read_json(output / "frozen.json")
     plan = state["plan"]
@@ -643,7 +691,7 @@ def baseline_controls(output):
     data, sections = scorer._elf(original)
     section = sections[scorer._text_index(sections)]
     altered = bytearray(data)
-    offset = section["off"]
+    offset = negative_canary_offset(scorer, original, plan["function"])
     altered[offset:offset + 4] = b"\x00\x00\x00\x00" if altered[offset:offset + 4] != b"\x00\x00\x00\x00" else b"\x24\x02\x00\x01"
     canary = output / "negative-canary.o"
     canary.write_bytes(altered)

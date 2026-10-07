@@ -1,0 +1,6 @@
+{
+  "start_utc": "2026-10-07T21:44:54.736336+00:00",
+  "end_utc": "2026-10-07T21:45:13.648055+00:00",
+  "elapsed_seconds": 18.911224643999958,
+  "scope": "Serialized lane manifest preparation, frozen compiler/scoring/diagnostics batch. Includes orchestration, excludes separate semantics."
+}

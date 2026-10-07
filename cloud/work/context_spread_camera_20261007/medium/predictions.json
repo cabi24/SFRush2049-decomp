@@ -1,0 +1,222 @@
+{
+  "M01": {
+    "source": "candidates/M01.c",
+    "sha256": "d6d41b39f65dc75d9190a50d5e071d419b076d87b0d23acccbe8aed469637da2",
+    "edit": "Callback result locals and path-local recycling",
+    "semantic_justification": "Same callback sequence and failure/success truth values; no caching of entry, global-list first pointer or table across callbacks. Sequential command snapshots, when present, are loaded immediately before that field guard. Three actual recycle paths retain independent callback pairs. Common domain: valid layouts/lists, no asynchronous mutation, defined signed arithmetic and baseline float-to-integer conversion domains. FP arithmetic expression order is unchanged; native FP/FCSR equivalence remains unverified.",
+    "native_effect": "Expose native-observed separate early-stop, completion and exhausted-retry recycle sites, with setter callback-result branch diamonds. A genuine result local may alter callback return live ranges and branch scheduling. Hypothesis only; uncompiled and unscored at freeze. Exported helper ABI limitation remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "M02": {
+    "source": "candidates/M02.c",
+    "sha256": "1e8b836d16c3bdac6ca841fa00de6f3da99d2b91a6a6a75cdba2db3c70e8e5b9",
+    "edit": "Live-voice nested setter diamonds with recycling",
+    "semantic_justification": "Same callback sequence and failure/success truth values; no caching of entry, global-list first pointer or table across callbacks. Sequential command snapshots, when present, are loaded immediately before that field guard. Three actual recycle paths retain independent callback pairs. Common domain: valid layouts/lists, no asynchronous mutation, defined signed arithmetic and baseline float-to-integer conversion domains. FP arithmetic expression order is unchanged; native FP/FCSR equivalence remains unverified.",
+    "native_effect": "Expose native-observed separate early-stop, completion and exhausted-retry recycle sites, with setter callback-result branch diamonds. The valid-voice region bounds arithmetic and callback result lifetime. Hypothesis only; uncompiled and unscored at freeze. Exported helper ABI limitation remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "M03": {
+    "source": "candidates/M03.c",
+    "sha256": "cbc6d6342184d1609ddb662e4278b8ae3f69847396c9032522d652d8df959bc8",
+    "edit": "Callback result locals with success-first diamonds",
+    "semantic_justification": "Same callback sequence and failure/success truth values; no caching of entry, global-list first pointer or table across callbacks. Sequential command snapshots, when present, are loaded immediately before that field guard. Three actual recycle paths retain independent callback pairs. Common domain: valid layouts/lists, no asynchronous mutation, defined signed arithmetic and baseline float-to-integer conversion domains. FP arithmetic expression order is unchanged; native FP/FCSR equivalence remains unverified.",
+    "native_effect": "Expose native-observed separate early-stop, completion and exhausted-retry recycle sites, with setter callback-result branch diamonds. Success fallthrough polarity tests native callback-result scheduling. Hypothesis only; uncompiled and unscored at freeze. Exported helper ABI limitation remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "M04": {
+    "source": "candidates/M04.c",
+    "sha256": "f32584068497f8912105e3a9035684631b0f4848bf68e6d1809d266b1e8ec3b6",
+    "edit": "Callback result local assigned explicit boolean in each branch",
+    "semantic_justification": "Same callback sequence and failure/success truth values; no caching of entry, global-list first pointer or table across callbacks. Sequential command snapshots, when present, are loaded immediately before that field guard. Three actual recycle paths retain independent callback pairs. Common domain: valid layouts/lists, no asynchronous mutation, defined signed arithmetic and baseline float-to-integer conversion domains. FP arithmetic expression order is unchanged; native FP/FCSR equivalence remains unverified.",
+    "native_effect": "Expose native-observed separate early-stop, completion and exhausted-retry recycle sites, with setter callback-result branch diamonds. The result-to-boolean diamond retains one real callback result rather than branchless equality. Hypothesis only; uncompiled and unscored at freeze. Exported helper ABI limitation remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "M05": {
+    "source": "candidates/M05.c",
+    "sha256": "b05ae367cf1d2ff636be652036d0686dae7a3e0f9ee0eed3e625b61a080fdbb1",
+    "edit": "Volume scaling lifetime plus result diamonds",
+    "semantic_justification": "Same callback sequence and failure/success truth values; no caching of entry, global-list first pointer or table across callbacks. Sequential command snapshots, when present, are loaded immediately before that field guard. Three actual recycle paths retain independent callback pairs. Common domain: valid layouts/lists, no asynchronous mutation, defined signed arithmetic and baseline float-to-integer conversion domains. Staged f32 arithmetic keeps operation ordering; ordinary finite-input intent is preserved. Exceptional FP/FCSR and excess-precision effects are unverified and must not be treated as whole-function equivalence.",
+    "native_effect": "Expose native-observed separate early-stop, completion and exhausted-retry recycle sites, with setter callback-result branch diamonds. A genuine result local may alter callback return live ranges and branch scheduling. Arithmetic staging/guard regions test subtract-before-zero and short-lived scaled temporaries rather than artificial pressure. Hypothesis only; uncompiled and unscored at freeze. Exported helper ABI limitation remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "M06": {
+    "source": "candidates/M06.c",
+    "sha256": "b8b9108bb61d2efedeb370a60987b89be8a6d46a4bd10fc458f503457ff2beb3",
+    "edit": "Pan and depth centered-scaling lifetimes plus result diamonds",
+    "semantic_justification": "Same callback sequence and failure/success truth values; no caching of entry, global-list first pointer or table across callbacks. Sequential command snapshots, when present, are loaded immediately before that field guard. Three actual recycle paths retain independent callback pairs. Common domain: valid layouts/lists, no asynchronous mutation, defined signed arithmetic and baseline float-to-integer conversion domains. Staged f32 arithmetic keeps operation ordering; ordinary finite-input intent is preserved. Exceptional FP/FCSR and excess-precision effects are unverified and must not be treated as whole-function equivalence.",
+    "native_effect": "Expose native-observed separate early-stop, completion and exhausted-retry recycle sites, with setter callback-result branch diamonds. A genuine result local may alter callback return live ranges and branch scheduling. Arithmetic staging/guard regions test subtract-before-zero and short-lived scaled temporaries rather than artificial pressure. Hypothesis only; uncompiled and unscored at freeze. Exported helper ABI limitation remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "M07": {
+    "source": "candidates/M07.c",
+    "sha256": "a03a5bada3dfdfd40a0be9531bd7f4d859305b054daa06693d505f444a83785b",
+    "edit": "All byte setter scaling lifetimes plus result diamonds",
+    "semantic_justification": "Same callback sequence and failure/success truth values; no caching of entry, global-list first pointer or table across callbacks. Sequential command snapshots, when present, are loaded immediately before that field guard. Three actual recycle paths retain independent callback pairs. Common domain: valid layouts/lists, no asynchronous mutation, defined signed arithmetic and baseline float-to-integer conversion domains. Staged f32 arithmetic keeps operation ordering; ordinary finite-input intent is preserved. Exceptional FP/FCSR and excess-precision effects are unverified and must not be treated as whole-function equivalence.",
+    "native_effect": "Expose native-observed separate early-stop, completion and exhausted-retry recycle sites, with setter callback-result branch diamonds. A genuine result local may alter callback return live ranges and branch scheduling. Arithmetic staging/guard regions test subtract-before-zero and short-lived scaled temporaries rather than artificial pressure. Hypothesis only; uncompiled and unscored at freeze. Exported helper ABI limitation remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "M08": {
+    "source": "candidates/M08.c",
+    "sha256": "2c672192d3899ee1cc1618ed9b0f3f3a39800db5c386f5210ff8c55020230afa",
+    "edit": "Rate multiply then subtraction before clamp plus result diamonds",
+    "semantic_justification": "Same callback sequence and failure/success truth values; no caching of entry, global-list first pointer or table across callbacks. Sequential command snapshots, when present, are loaded immediately before that field guard. Three actual recycle paths retain independent callback pairs. Common domain: valid layouts/lists, no asynchronous mutation, defined signed arithmetic and baseline float-to-integer conversion domains. Staged f32 arithmetic keeps operation ordering; ordinary finite-input intent is preserved. Exceptional FP/FCSR and excess-precision effects are unverified and must not be treated as whole-function equivalence.",
+    "native_effect": "Expose native-observed separate early-stop, completion and exhausted-retry recycle sites, with setter callback-result branch diamonds. A genuine result local may alter callback return live ranges and branch scheduling. Arithmetic staging/guard regions test subtract-before-zero and short-lived scaled temporaries rather than artificial pressure. Hypothesis only; uncompiled and unscored at freeze. Exported helper ABI limitation remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "M09": {
+    "source": "candidates/M09.c",
+    "sha256": "eb97fc1cfd7e97f8c37fa01efb57b1d11ee9824bb7f67247631d348907a74a10",
+    "edit": "Rate clamp-path callback diamonds with result-local byte setters",
+    "semantic_justification": "Same callback sequence and failure/success truth values; no caching of entry, global-list first pointer or table across callbacks. Sequential command snapshots, when present, are loaded immediately before that field guard. Three actual recycle paths retain independent callback pairs. Common domain: valid layouts/lists, no asynchronous mutation, defined signed arithmetic and baseline float-to-integer conversion domains. FP arithmetic expression order is unchanged; native FP/FCSR equivalence remains unverified.",
+    "native_effect": "Expose native-observed separate early-stop, completion and exhausted-retry recycle sites, with setter callback-result branch diamonds. A genuine result local may alter callback return live ranges and branch scheduling. Arithmetic staging/guard regions test subtract-before-zero and short-lived scaled temporaries rather than artificial pressure. Hypothesis only; uncompiled and unscored at freeze. Exported helper ABI limitation remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "M10": {
+    "source": "candidates/M10.c",
+    "sha256": "84ae6f2583776c23f0ee91aa015160f0920171227b6e783aaaec1e54b26a746e",
+    "edit": "Per-command float snapshots with callback failure diamonds",
+    "semantic_justification": "Same callback sequence and failure/success truth values; no caching of entry, global-list first pointer or table across callbacks. Sequential command snapshots, when present, are loaded immediately before that field guard. Three actual recycle paths retain independent callback pairs. Common domain: valid layouts/lists, no asynchronous mutation, defined signed arithmetic and baseline float-to-integer conversion domains. FP arithmetic expression order is unchanged; native FP/FCSR equivalence remains unverified.",
+    "native_effect": "Expose native-observed separate early-stop, completion and exhausted-retry recycle sites, with setter callback-result branch diamonds. Explicit failure returns expose the observed diamond shape. Real sentinel guard regions and immediate per-field values test command-path float liveness. Hypothesis only; uncompiled and unscored at freeze. Exported helper ABI limitation remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "M11": {
+    "source": "candidates/M11.c",
+    "sha256": "5e9ebc0e48211c0e0b1c6cd064515a8cbcf3d5146ed68e101a9f9b2e0ba62e48",
+    "edit": "Explicit sentinel guards with callback failure diamonds",
+    "semantic_justification": "Same callback sequence and failure/success truth values; no caching of entry, global-list first pointer or table across callbacks. Sequential command snapshots, when present, are loaded immediately before that field guard. Three actual recycle paths retain independent callback pairs. Common domain: valid layouts/lists, no asynchronous mutation, defined signed arithmetic and baseline float-to-integer conversion domains. FP arithmetic expression order is unchanged; native FP/FCSR equivalence remains unverified.",
+    "native_effect": "Expose native-observed separate early-stop, completion and exhausted-retry recycle sites, with setter callback-result branch diamonds. Explicit failure returns expose the observed diamond shape. Real sentinel guard regions and immediate per-field values test command-path float liveness. Hypothesis only; uncompiled and unscored at freeze. Exported helper ABI limitation remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "M12": {
+    "source": "candidates/M12.c",
+    "sha256": "7df95d59159a9dfbf328163d78c76477b7d6d4d5690005f5cdf19a5a6645838a",
+    "edit": "Sequential command snapshots and sentinel guard blocks",
+    "semantic_justification": "Same callback sequence and failure/success truth values; no caching of entry, global-list first pointer or table across callbacks. Sequential command snapshots, when present, are loaded immediately before that field guard. Three actual recycle paths retain independent callback pairs. Common domain: valid layouts/lists, no asynchronous mutation, defined signed arithmetic and baseline float-to-integer conversion domains. FP arithmetic expression order is unchanged; native FP/FCSR equivalence remains unverified.",
+    "native_effect": "Expose native-observed separate early-stop, completion and exhausted-retry recycle sites, with setter callback-result branch diamonds. A genuine result local may alter callback return live ranges and branch scheduling. Real sentinel guard regions and immediate per-field values test command-path float liveness. Hypothesis only; uncompiled and unscored at freeze. Exported helper ABI limitation remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "M13": {
+    "source": "candidates/M13.c",
+    "sha256": "2431db4dc54d8a8a0fe210927ee9675a7dc5b4a1c4249f090cc31109a9248d61",
+    "edit": "Nested live-voice setter guards and explicit sentinel guards",
+    "semantic_justification": "Same callback sequence and failure/success truth values; no caching of entry, global-list first pointer or table across callbacks. Sequential command snapshots, when present, are loaded immediately before that field guard. Three actual recycle paths retain independent callback pairs. Common domain: valid layouts/lists, no asynchronous mutation, defined signed arithmetic and baseline float-to-integer conversion domains. FP arithmetic expression order is unchanged; native FP/FCSR equivalence remains unverified.",
+    "native_effect": "Expose native-observed separate early-stop, completion and exhausted-retry recycle sites, with setter callback-result branch diamonds. The valid-voice region bounds arithmetic and callback result lifetime. Real sentinel guard regions and immediate per-field values test command-path float liveness. Hypothesis only; uncompiled and unscored at freeze. Exported helper ABI limitation remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "M14": {
+    "source": "candidates/M14.c",
+    "sha256": "c3cd2205124b6f7d9c6784412c3b5aea3423a15cbf3320bfe7568e571a5027ac",
+    "edit": "Nested retry exhaustion and kind exemption with callback locals",
+    "semantic_justification": "Same callback sequence and failure/success truth values; no caching of entry, global-list first pointer or table across callbacks. Sequential command snapshots, when present, are loaded immediately before that field guard. Three actual recycle paths retain independent callback pairs. Common domain: valid layouts/lists, no asynchronous mutation, defined signed arithmetic and baseline float-to-integer conversion domains. FP arithmetic expression order is unchanged; native FP/FCSR equivalence remains unverified.",
+    "native_effect": "Expose native-observed separate early-stop, completion and exhausted-retry recycle sites, with setter callback-result branch diamonds. A genuine result local may alter callback return live ranges and branch scheduling. Path-local dispatch guards test block arrangement without shared recycle convergence. Hypothesis only; uncompiled and unscored at freeze. Exported helper ABI limitation remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "M15": {
+    "source": "candidates/M15.c",
+    "sha256": "73ce74210e2ae8f07ca2c964bfe3e5e071954c1e41f7f36ac83a591f9878a12f",
+    "edit": "Entry-scoped early-stop and blocked guards with callback locals",
+    "semantic_justification": "Same callback sequence and failure/success truth values; no caching of entry, global-list first pointer or table across callbacks. Sequential command snapshots, when present, are loaded immediately before that field guard. Three actual recycle paths retain independent callback pairs. Common domain: valid layouts/lists, no asynchronous mutation, defined signed arithmetic and baseline float-to-integer conversion domains. FP arithmetic expression order is unchanged; native FP/FCSR equivalence remains unverified.",
+    "native_effect": "Expose native-observed separate early-stop, completion and exhausted-retry recycle sites, with setter callback-result branch diamonds. A genuine result local may alter callback return live ranges and branch scheduling. Path-local dispatch guards test block arrangement without shared recycle convergence. Hypothesis only; uncompiled and unscored at freeze. Exported helper ABI limitation remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "M16": {
+    "source": "candidates/M16.c",
+    "sha256": "e2c635ad3d66022abbfa233a60fbe7241c162237ee873bde2d032478852c8740",
+    "edit": "Staged arithmetic lifetimes plus sentinel and callback diamonds",
+    "semantic_justification": "Same callback sequence and failure/success truth values; no caching of entry, global-list first pointer or table across callbacks. Sequential command snapshots, when present, are loaded immediately before that field guard. Three actual recycle paths retain independent callback pairs. Common domain: valid layouts/lists, no asynchronous mutation, defined signed arithmetic and baseline float-to-integer conversion domains. Staged f32 arithmetic keeps operation ordering; ordinary finite-input intent is preserved. Exceptional FP/FCSR and excess-precision effects are unverified and must not be treated as whole-function equivalence.",
+    "native_effect": "Expose native-observed separate early-stop, completion and exhausted-retry recycle sites, with setter callback-result branch diamonds. Explicit failure returns expose the observed diamond shape. Arithmetic staging/guard regions test subtract-before-zero and short-lived scaled temporaries rather than artificial pressure. Real sentinel guard regions and immediate per-field values test command-path float liveness. Hypothesis only; uncompiled and unscored at freeze. Exported helper ABI limitation remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "M17": {
+    "source": "candidates/M17.c",
+    "sha256": "8e5d7502b83270a841d60efd86bc92830ea1e5aa9eb27cb47463febb62e6e9ff",
+    "edit": "Negative-rate early callback exit and common nonnegative result",
+    "semantic_justification": "Same callback sequence and failure/success truth values; no caching of entry, global-list first pointer or table across callbacks. Sequential command snapshots, when present, are loaded immediately before that field guard. Three actual recycle paths retain independent callback pairs. Common domain: valid layouts/lists, no asynchronous mutation, defined signed arithmetic and baseline float-to-integer conversion domains. FP arithmetic expression order is unchanged; native FP/FCSR equivalence remains unverified.",
+    "native_effect": "Expose native-observed separate early-stop, completion and exhausted-retry recycle sites, with setter callback-result branch diamonds. A genuine result local may alter callback return live ranges and branch scheduling. Arithmetic staging/guard regions test subtract-before-zero and short-lived scaled temporaries rather than artificial pressure. Hypothesis only; uncompiled and unscored at freeze. Exported helper ABI limitation remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "M18": {
+    "source": "candidates/M18.c",
+    "sha256": "68d38f11cbff1bb321119edf234c4eeb778338a789857e536bda62908b770692",
+    "edit": "Scaling locals, command snapshots and success-first result diamonds",
+    "semantic_justification": "Same callback sequence and failure/success truth values; no caching of entry, global-list first pointer or table across callbacks. Sequential command snapshots, when present, are loaded immediately before that field guard. Three actual recycle paths retain independent callback pairs. Common domain: valid layouts/lists, no asynchronous mutation, defined signed arithmetic and baseline float-to-integer conversion domains. Staged f32 arithmetic keeps operation ordering; ordinary finite-input intent is preserved. Exceptional FP/FCSR and excess-precision effects are unverified and must not be treated as whole-function equivalence.",
+    "native_effect": "Expose native-observed separate early-stop, completion and exhausted-retry recycle sites, with setter callback-result branch diamonds. Success fallthrough polarity tests native callback-result scheduling. Arithmetic staging/guard regions test subtract-before-zero and short-lived scaled temporaries rather than artificial pressure. Real sentinel guard regions and immediate per-field values test command-path float liveness. Hypothesis only; uncompiled and unscored at freeze. Exported helper ABI limitation remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "M19": {
+    "source": "candidates/M19.c",
+    "sha256": "c00a401495809f32414f67a95bc5a40c7882d9eec8b9b3b93aa20e9b762dc9fa",
+    "edit": "Arithmetic lives inside live-voice success region",
+    "semantic_justification": "Same callback sequence and failure/success truth values; no caching of entry, global-list first pointer or table across callbacks. Sequential command snapshots, when present, are loaded immediately before that field guard. Three actual recycle paths retain independent callback pairs. Common domain: valid layouts/lists, no asynchronous mutation, defined signed arithmetic and baseline float-to-integer conversion domains. Staged f32 arithmetic keeps operation ordering; ordinary finite-input intent is preserved. Exceptional FP/FCSR and excess-precision effects are unverified and must not be treated as whole-function equivalence.",
+    "native_effect": "Expose native-observed separate early-stop, completion and exhausted-retry recycle sites, with setter callback-result branch diamonds. The valid-voice region bounds arithmetic and callback result lifetime. Arithmetic staging/guard regions test subtract-before-zero and short-lived scaled temporaries rather than artificial pressure. Hypothesis only; uncompiled and unscored at freeze. Exported helper ABI limitation remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "M20": {
+    "source": "candidates/M20.c",
+    "sha256": "49b8f4ae48977bbeac1699003993ab3424b71c4a2019e235019c786c76e90cc4",
+    "edit": "Stop success-first dispatch and explicit setter sentinel diamonds",
+    "semantic_justification": "Same callback sequence and failure/success truth values; no caching of entry, global-list first pointer or table across callbacks. Sequential command snapshots, when present, are loaded immediately before that field guard. Three actual recycle paths retain independent callback pairs. Common domain: valid layouts/lists, no asynchronous mutation, defined signed arithmetic and baseline float-to-integer conversion domains. FP arithmetic expression order is unchanged; native FP/FCSR equivalence remains unverified.",
+    "native_effect": "Expose native-observed separate early-stop, completion and exhausted-retry recycle sites, with setter callback-result branch diamonds. A genuine result local may alter callback return live ranges and branch scheduling. Real sentinel guard regions and immediate per-field values test command-path float liveness. Path-local dispatch guards test block arrangement without shared recycle convergence. Hypothesis only; uncompiled and unscored at freeze. Exported helper ABI limitation remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  }
+}

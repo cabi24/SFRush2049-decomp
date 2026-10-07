@@ -1,0 +1,14 @@
+{
+  "candidate_count": 10,
+  "pycparser_pass": true,
+  "declarations_types_helper_prefix_preserved": true,
+  "stop_entry_unchanged": true,
+  "MP_TargetSteerPos_unchanged_exported": true,
+  "distinct_complete_sources": 10,
+  "distinct_normalized_complete_sources": 10,
+  "old_complete_sources_checked": 72,
+  "no_old_complete_source_duplicates": true,
+  "compilers_run": false,
+  "scorers_run": false,
+  "semantic_suite_run": false
+}

@@ -1,0 +1,4 @@
+{"event": "planning_start", "utc": "2026-10-07T21:38:18.381657+00:00", "monotonic_ns": 11569687971046, "note": "First assignment and required-document reads precede this measured window; no active inference estimate."}
+{"event": "freeze", "utc": "2026-10-07T21:41:04.652264+00:00", "monotonic_ns": 11735958582693}
+{"event": "result_review_start", "utc": "2026-10-07T21:45:37.072572+00:00", "monotonic_ns": 12008378886767}
+{"event": "result_review_end", "utc": "2026-10-07T21:46:34.603747+00:00", "monotonic_ns": 12065910062724}

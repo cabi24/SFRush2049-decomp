@@ -1,0 +1,161 @@
+{
+  "lane": "high",
+  "start": {
+    "event": "result_review_start",
+    "utc": "2026-10-07T21:45:37.072572+00:00",
+    "monotonic_ns": 12008378886767
+  },
+  "end": {
+    "event": "result_review_end",
+    "utc": "2026-10-07T21:46:34.603747+00:00",
+    "monotonic_ns": 12065910062724
+  },
+  "observed_review_wall_seconds": 57.531175957,
+  "timing_scope": "Observed own-result/source review and tool window, not active inference time.",
+  "frozen_sources_unchanged": true,
+  "baseline": {
+    "differing": 533,
+    "total": 557,
+    "extra_words": 0,
+    "controls_identical": true
+  },
+  "best_ids": [
+    "H08"
+  ],
+  "best": {
+    "differing": 511,
+    "total": 557,
+    "extra_words": 0,
+    "baseline_improvement_words": 22
+  },
+  "improving_ids": [
+    "H08",
+    "H12"
+  ],
+  "baseline_tie_ids": [
+    "H13"
+  ],
+  "regressing_count": 12,
+  "scoring_clean_count": 15,
+  "bounded_semantic_pass_count": 15,
+  "cases_per_candidate": 2048,
+  "strict_exact_count": 0,
+  "source_adoption": false,
+  "findings": [
+    "H08 success-default setters with a callback region guarded by voice validity, together with separate recycling regions, improve the canonical positional score by 22 words. This supports retaining that source-control hypothesis for later native structural diagnosis; the score alone does not identify the native register or lifetime correspondence.",
+    "H12 real stable list/completion-counter addresses combined with native diamonds/recycling score 531, a 2-word improvement. H13 explicit byte-offset/final-entry lifetimes ties 533.",
+    "Partial diamond/recycling probes, staged arithmetic/conversions, result merges and the one-FP queue carrier all regress. Equal 538 scores for several distinct proposals do not establish equal selected-function bodies.",
+    "The direct rate callback split H14 has 538 differing plus 2 extra words; H15 has 539 differing and no extras. Neither is an improved lead.",
+    "All 15 have zero unresolved/unverified/error diagnostics. Fifteen distinct whole ELF groups do not prove 15 distinct relocated selected-function bodies."
+  ],
+  "interpretation": "H08 is the strongest high-lane research lead. No exact match, production adoption, private helper ABI repair, accepted coverage, image integration or ROM claim. The genuine exported MP_TargetSteerPos and stop_entry remain unchanged.",
+  "semantic_limits": "All proposals passed the coordinator's same 2048 deterministic host-C trace/state scenarios against the frozen clean C. This is bounded comparison with host pointers/layouts, not native/O32, arbitrary aliasing, concurrency, complete C equivalence or FP/FCSR proof. H14/H15 exceptional rate behavior and H05/H15 excess-precision caveats remain as documented before scoring.",
+  "rows": [
+    {
+      "id": "H01",
+      "differing": 539,
+      "total": 557,
+      "extra_words": 0,
+      "source_sha256": "5eee05ef8d277b941504d162b1a68beea9aea39641737283f51501922b3a5c7e"
+    },
+    {
+      "id": "H02",
+      "differing": 534,
+      "total": 557,
+      "extra_words": 0,
+      "source_sha256": "2633740f32d788e9ff7a23cd49c8327b1532b02a4dd8afbd1c87a5d1721f7021"
+    },
+    {
+      "id": "H03",
+      "differing": 538,
+      "total": 557,
+      "extra_words": 0,
+      "source_sha256": "79a0ab98b552fa42870a339aca190f402237976f7b1aeb71dc27fc8bed2e0ab9"
+    },
+    {
+      "id": "H04",
+      "differing": 540,
+      "total": 557,
+      "extra_words": 0,
+      "source_sha256": "b106ae7e2f8c7e171769ae2f4b3de4a9af30f2efc4aa0032e01225f85dd615c3"
+    },
+    {
+      "id": "H05",
+      "differing": 538,
+      "total": 557,
+      "extra_words": 0,
+      "source_sha256": "df45b2d23387deb5a3aca631302411bff4157d870c331a966134d3cdf4a4bf83"
+    },
+    {
+      "id": "H06",
+      "differing": 538,
+      "total": 557,
+      "extra_words": 0,
+      "source_sha256": "2714fa9070152ab5f42c81102a6988568f39d4cf22eb0ac4a012715e2207f12e"
+    },
+    {
+      "id": "H07",
+      "differing": 538,
+      "total": 557,
+      "extra_words": 0,
+      "source_sha256": "16faed6ebba723b77cb5883e7f593a4753cd950f79af5105cf0514e4d1cc1e71"
+    },
+    {
+      "id": "H08",
+      "differing": 511,
+      "total": 557,
+      "extra_words": 0,
+      "source_sha256": "b090af1724376b6eacf4b76902091456eae065c1be7c1cf16cb92931e6353d2d"
+    },
+    {
+      "id": "H09",
+      "differing": 541,
+      "total": 557,
+      "extra_words": 0,
+      "source_sha256": "432ebcb163bad5d26e67ca21375d4b5e7c0f671f4703cdd6a4474da219f52aa5"
+    },
+    {
+      "id": "H10",
+      "differing": 538,
+      "total": 557,
+      "extra_words": 0,
+      "source_sha256": "b73bc3a1001cbf0ad24e6ebd65d9858aa596430e9eb16174294755e86fef9fd8"
+    },
+    {
+      "id": "H11",
+      "differing": 538,
+      "total": 557,
+      "extra_words": 0,
+      "source_sha256": "a5c669b2597d0f81ae1407f7397e294fbad7bc4970e4aa5e099980d5ba6c0abc"
+    },
+    {
+      "id": "H12",
+      "differing": 531,
+      "total": 557,
+      "extra_words": 0,
+      "source_sha256": "c008f593d394eaf945f3e48704cedcb09756345fdc2803b85e20b4414f092aea"
+    },
+    {
+      "id": "H13",
+      "differing": 533,
+      "total": 557,
+      "extra_words": 0,
+      "source_sha256": "e7f417ce92882098fc47383d2fad26e9df76b5098bcc7aaa0ac5fd2e8b8717b9"
+    },
+    {
+      "id": "H14",
+      "differing": 538,
+      "total": 557,
+      "extra_words": 2,
+      "source_sha256": "a1d4174354192092da7dc7a44f3720b80f4a702047420e528ac91019e1b15a09"
+    },
+    {
+      "id": "H15",
+      "differing": 539,
+      "total": 557,
+      "extra_words": 0,
+      "source_sha256": "65d59984c64891c981a04aed21016ea399a48e20a91d3c3b9530d840048f648b"
+    }
+  ],
+  "additional_experiments": false
+}

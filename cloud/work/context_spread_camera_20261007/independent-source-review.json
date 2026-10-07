@@ -1,0 +1,39 @@
+{
+  "review_scope": "Independent frozen H08/H12 source review and canonical recompilation; no sources changed or candidates added.",
+  "validation": [
+    {
+      "id": "H08",
+      "whole_text_matches_canonical": true,
+      "selected_function_bytes_match_canonical": true,
+      "selected_function_sha256": "97b1b45ba8d71bffd00f3984ad1a80abdcb2253ab2a76a8d50e93dc9aa54d8c6",
+      "semantic": {
+        "status": "bounded_pass",
+        "cases": 2048
+      }
+    },
+    {
+      "id": "H12",
+      "whole_text_matches_canonical": true,
+      "selected_function_bytes_match_canonical": true,
+      "selected_function_sha256": "8d541b62d19dc65ad2dd5c699fe5bb3b1a8d1c55cbfb99b1eec8fac6a2f28839",
+      "semantic": {
+        "status": "bounded_pass",
+        "cases": 2048
+      }
+    }
+  ],
+  "source_findings": [
+    "No concrete behavior-changing defect found relative to the clean C under its documented source-defined domain.",
+    "H08 real success-default setter results preserve no-voice skip, callback count and arguments, FP expression order, clamp and narrowing. H12 explicit callback diamonds likewise map any nonzero callback result to failure.",
+    "Early-cancel, normal-success and retry-exhaustion recycling preserve remove-before-insert calls; next was captured before callbacks, free-list first is read after removal, and reaching the loop update after retry-local recycling replaces the original continue without intervening work.",
+    "Both retain command order, sentinel short-circuiting, later node entry and parameter reloads, table-base and table-size reloads across callbacks, retry byte increment, and kind-zero exhaustion exemption.",
+    "H12 retains only stable addresses of actual globals: pending and free lists plus completed-history slot; callback-mutable contents remain read at their original sites.",
+    "Declarations, layouts, exported MP_TargetSteerPos and stop_entry are unchanged. No fake callers, keepers, volatile pressure, padding, register binding or ABI alteration."
+  ],
+  "limits": [
+    "2048 unchanged host-C scenarios are baseline-relative, not target/native/O32 or complete-equivalence proof.",
+    "The harness initializes retries only in 0..11 and does not exercise 255-to-0 wrap; wrapping is preserved by unchanged source increment, not demonstrated by the test.",
+    "Callback mutations are bounded to table-base and node-entry reassignment; mutable value/stream/priority/route, dynamic count changes, arbitrary aliasing, concurrency and FP/FCSR exceptions are not exhaustively tested.",
+    "No exact match or authentic out-of-line helper ABI recovery is established."
+  ]
+}

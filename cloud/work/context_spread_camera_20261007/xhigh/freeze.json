@@ -1,0 +1,35 @@
+{
+  "lane": "xhigh",
+  "requested_model": "gpt-6.1-sol",
+  "requested_effort": "xhigh",
+  "baseline_source": "baseline.c",
+  "baseline_sha256": "1bac499d4feded2f749f32b3493e28beba8667bd493d385e1ca1332d5c0160b2",
+  "candidate_count": 10,
+  "source_hashes": {
+    "X01": "49e4d04dfe2a0b4794017c6cab5df692e2f762802fc901cca747e5506fdcddc7",
+    "X02": "bbcc28620b5e03eae3cfa68a66b644d2d75fa6f4bc49f698f3b921be21b36ec0",
+    "X03": "adc5ff94a6d693f7189c9bcaf4361b8a5e62a6e0e2617847c138c2086a3cb84c",
+    "X04": "be15034660431e5a207b57a3140d13f89ed506edce8efad4c5e1505bf4418ce9",
+    "X05": "98533af951495d513383e335ecc742b2c976578e912f67ed8d94f948fed42f12",
+    "X06": "54cb4d0979537c05fdec4176d6beedbeb98f1eb12f1b613877dbbaa04c92b4bf",
+    "X07": "245fdcb596d1364bd8e09e01b9a3db7038a880a30e992bf404fb742623884cf1",
+    "X08": "859767f874c6d8abfed0d6064ce2a253d5f60860c3b746b515869675f14f61bc",
+    "X09": "a486df34ceb9ebd9b6482155c8f763ee8cc43a95969c2f36e25acda7773b8827",
+    "X10": "493300c3bbda23fef0ffd652e48991bc89a574bf885b52d0e29789d31f76a1c1"
+  },
+  "planning_start": {
+    "event": "planning_start",
+    "utc": "2026-10-07T21:39:33.386386+00:00",
+    "monotonic_s": 11644.692698408,
+    "disclosure": "Initial assignment and shared context reads preceded this marker; elapsed timing covers the observed marked planning/tool window, not active inference."
+  },
+  "freeze": {
+    "event": "freeze",
+    "utc": "2026-10-07T21:43:19.536581+00:00",
+    "monotonic_s": 11870.842899212,
+    "elapsed_planning_wall_s": 226.15020080400063
+  },
+  "elapsed_planning_wall_s": 226.15020080400063,
+  "timing_kind": "observed marked elapsed wall window, not active inference",
+  "claims": []
+}

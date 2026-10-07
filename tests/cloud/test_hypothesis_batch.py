@@ -17,6 +17,25 @@ from tools.cloud import hypothesis_batch as batch
 from tools.cloud import prepare_car_select_batch as prepare
 
 
+class EditableBodyContextTests(unittest.TestCase):
+    BASE = "typedef int T; static T h(T x) { return x; } T f(T x) { return h(x); }"
+
+    def test_named_helper_body_allowed_only_when_declared(self):
+        changed = self.BASE.replace("return x;", "return x + 0;")
+        self.assertEqual(batch.source_context(self.BASE, ["f", "h"]), batch.source_context(changed, ["f", "h"]))
+        self.assertNotEqual(batch.source_context(self.BASE, ["f"]), batch.source_context(changed, ["f"]))
+
+    def test_signature_context_and_other_bodies_remain_frozen(self):
+        for changed in (self.BASE.replace("T h(T x)", "T h(T y)"), self.BASE.replace("typedef int", "typedef long"), self.BASE + " T g(void) {return 0;}"):
+            self.assertNotEqual(batch.source_context(self.BASE, ["f", "h"]), batch.source_context(changed, ["f", "h"]))
+
+    def test_directives_and_missing_helpers_rejected(self):
+        with self.assertRaises(ValueError):
+            batch.source_context(self.BASE.replace("return x;", "#define X 0\nreturn x;"), ["f", "h"])
+        with self.assertRaises(ValueError):
+            batch.source_context(self.BASE, ["f", "missing"])
+
+
 class ManifestTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
@@ -39,6 +58,12 @@ class ManifestTests(unittest.TestCase):
         self.assertEqual(len(plan["predictions"]), 20)
         self.assertEqual(len(experiment.candidates), 20)
         self.assertEqual(context["source"], prepare.SOURCE_PATH)
+
+    def test_invalid_editable_helpers_fail_closed(self):
+        for helpers in (["missing"], ["car_select_handler"], ["x", "x"], ["a", "b", "c", "d", "e"], [{}], "x"):
+            self.change(lambda value: value.update(editable_helpers=helpers))
+            with self.assertRaisesRegex(ValueError, "editable helper"):
+                batch.validate(self.path)
 
     def test_unknown_and_duplicate_json_keys(self):
         self.change(lambda value: value.update(extra=True))
@@ -378,3 +403,32 @@ class TimingTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SelectedFunctionCanaryTests(unittest.TestCase):
+    def scorer(self):
+        scorer = mock.Mock()
+        scorer._elf.return_value = (b"", [{"off": 100, "type": 1, "info": 0}])
+        scorer._text_index.return_value = 0
+        scorer.symbols.return_value = {"helper": 0, "selected": 8, "after": 20}
+        scorer.text_words.return_value = [1, 2, 33, 4, 5, 6]
+        scorer.targets.return_value = {"selected": [3, 4, 5, 6]}
+        return scorer
+
+    def test_skips_other_helper_and_already_mismatching_prologue(self):
+        scorer = self.scorer()
+        self.assertEqual(batch.negative_canary_offset(scorer, "dummy", "selected"), 112)
+
+    def test_skips_relocation_words(self):
+        import struct
+        scorer = self.scorer()
+        scorer._elf.return_value = (struct.pack(">II", 12, 4), [
+            {"off": 100, "type": 1, "info": 0},
+            {"off": 0, "type": 9, "info": 0, "size": 8}])
+        self.assertEqual(batch.negative_canary_offset(scorer, "dummy", "selected"), 116)
+
+    def test_does_not_use_matching_next_function(self):
+        scorer = self.scorer()
+        scorer.text_words.return_value = [1, 2, 33, 44, 55, 6]
+        with self.assertRaisesRegex(ValueError, "no matched relocation-free"):
+            batch.negative_canary_offset(scorer, "dummy", "selected")
