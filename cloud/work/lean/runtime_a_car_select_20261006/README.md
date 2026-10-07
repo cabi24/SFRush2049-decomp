@@ -1,23 +1,31 @@
-# Image A availability: genuine caller-context match candidate
+# Image A menu color helper: genuine caller-context match candidate
 
 Frozen input base: `f2e8380d3b368d00efc9cac3e37cdc7059b1f6e2`.
-Follow-on to [draft #266](https://github.com/cabi24/SFRush2049-decomp/pull/266).
+Follow-on to [draft #288](https://github.com/cabi24/SFRush2049-decomp/pull/288), extending #266.
 
-**A:8039D494, 528 bytes, 132/132 exact words**, with zero uncertainty,
-errors, unresolved symbols or extra words. Only this predicate is claimed.
+**New A:8039ED20, 480 bytes, 120/120 exact words**, with zero uncertainty,
+errors, unresolved symbols or extra words. The complete actual EF08 caller
+provides its private save/clobber context. Both real four-byte addressed color
+objects and all fourteen branch-specific color calls are retained.
+
+**A:8039D494 retains its prior 528-byte, 132/132 exact candidate.**
+There is no duplicate credit for that previous claim.
 Its complete natural `(item, player)` source already existed at
 `cloud/work/frontier/dot_runtime_a_availability_boundary_20261006/candidate.c`.
 The new E3BC list builder and D6A4 renderer are genuine callers. Together they
 prevent inappropriate single-caller inlining and recover the native private
 register reservations. No dummy parameters, retention barriers or fake callers.
 
-Five newly reconstructed complete low bodies provide 5,592 bytes of context:
+Seven newly reconstructed complete low bodies now provide 10,164 bytes:
 D05C cleanup (676), D6A4 option animation (2,908), E200 record navigation (444),
-E3BC available-item list (136), and FF04 slot creation (1,428). The three prior
+E3BC available-item list (136), FF04 slot creation (1,428), ED20 color update
+(480), and EF08 car animation (4,092). Relative to #288, ED20 and EF08 are new. The three prior
 high bodies and old D300 product remain context, without duplicate credit.
 
 | Body | Differing words | Extra | Unverified | Errors |
 |---|---:|---:|---:|---:|
+| ED20 | 0/120 | 0 | 0 | 0 |
+| EF08 | 991/1023 | 0 | 50 | 0 |
 | D494 | 0/132 | 0 | 0 | 0 |
 | E3BC | 5/34 | 0 | 0 | 0 |
 | E200 | 99/111 | 1 | 0 | 0 |
@@ -32,8 +40,10 @@ high bodies and old D300 product remain context, without duplicate credit.
 Every body has zero unresolved symbols. Own-data differences in the large
 renderers remain explicit; they are not accepted instruction matches. The
 high root's score is worse than #266, so this packet does not supersede its
-best high-source baseline as matching evidence. The new claim is D494 only.
-EF08 remains a real external service whose private context is still missing.
+best high-source baseline as matching evidence. The new claim is ED20 only.
+E444 and 90DCC remain real external services; the complete private context is
+still incomplete. The latter's nine natural source inputs follow the prior
+complete #263 definition rather than invented argument slots.
 
 ## Reproduce
 
@@ -57,8 +67,12 @@ The two new four-byte color locals are real copied/addressed objects; their
 alpha byte is changed and passed to the existing color helper. No padding,
 artificial volatile, unused pressure local or fabricated formal is added.
 
-D6A4/FF04 constants are decoded values from authenticated image A, including
-its angle/position tables at 0x803B9610..0x803B9624 and 0x803B96F8..0x803B971C.
+D6A4/FF04/EF08 constants are decoded values from authenticated image A,
+including tables 0x803B9610..0x803B9624 and 0x803B9674..0x803B971C.
+EF08 supplies actual type evidence for the car slot's float selection weight
+at +0 and signed car ID at +9, plus the record's +40 associated-car handle.
+It preserves the main and secondary previews, ghost-record setting reloads,
+angle wrapping, selection fades and one-player color/overlay calls.
 No native bytes or raw assembly are published. Record field +36 is retained
 separately from the prior +40 active field. E200's source uses two real inputs,
 a record handle and signed-byte direction, rather than invented private-ABI
