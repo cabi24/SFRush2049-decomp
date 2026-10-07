@@ -1,0 +1,23 @@
+{
+  "members": [
+    "entity_anim_texture"
+  ],
+  "context": [
+    "anim_state_update",
+    "model_bounds_calc",
+    "matrix_scale_apply",
+    "func_8008B2B4"
+  ],
+  "claims": [],
+  "files": [
+    "entity_anim_texture.c",
+    "anim_tire_donor.c",
+    "rand.c",
+    "visibility_wrappers.c"
+  ],
+  "keep": [
+    "anim_state_update",
+    "entity_anim_texture"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}
