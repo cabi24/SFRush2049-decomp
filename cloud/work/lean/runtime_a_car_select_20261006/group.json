@@ -10,7 +10,15 @@
     "func_8039D300",
     "func_803A0498",
     "func_803A0FD8",
-    "func_803A1EAC"
+    "func_803A1EAC",
+    "func_8039D494",
+    "func_8039E3BC",
+    "func_8039E200",
+    "func_8039D05C",
+    "func_8039FF04",
+    "func_8039D6A4"
   ],
-  "claims": []
+  "claims": [
+    "func_8039D494"
+  ]
 }

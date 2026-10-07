@@ -1,20 +1,39 @@
-# Image A car-selection caller family: lean research
+# Image A availability: genuine caller-context match candidate
 
-Frozen base: `f2e8380d3b368d00efc9cac3e37cdc7059b1f6e2`.
+Frozen input base: `f2e8380d3b368d00efc9cac3e37cdc7059b1f6e2`.
+Follow-on to [draft #266](https://github.com/cabi24/SFRush2049-decomp/pull/266).
 
-Three complete new source bodies cover 13,780 native bytes:
+**A:8039D494, 528 bytes, 132/132 exact words**, with zero uncertainty,
+errors, unresolved symbols or extra words. Only this predicate is claimed.
+Its complete natural `(item, player)` source already existed at
+`cloud/work/frontier/dot_runtime_a_availability_boundary_20261006/candidate.c`.
+The new E3BC list builder and D6A4 renderer are genuine callers. Together they
+prevent inappropriate single-caller inlining and recover the native private
+register reservations. No dummy parameters, retention barriers or fake callers.
 
-| Function | Native bytes | Differing words | Unverified references |
-| --- | ---: | ---: | ---: |
-| A:803A0498 | 2,880 | **154/720** | 0 |
-| A:803A0FD8 | 3,796 | 874/949 | 14 |
-| A:803A1EAC | 7,104 | 1642/1776 | 12 |
+Five newly reconstructed complete low bodies provide 5,592 bytes of context:
+D05C cleanup (676), D6A4 option animation (2,908), E200 record navigation (444),
+E3BC available-item list (136), and FF04 slot creation (1,428). The three prior
+high bodies and old D300 product remain context, without duplicate credit.
 
-All three have zero unresolved symbols, data errors and extra words. A0498's
-standalone O3 baseline was 705/720 differences plus thirteen extra words. Its
-two genuine callers restore the native interprocedural register-save context.
-The other two bodies retain broad scheduling/control and own-data-layout gaps.
-Empty claims: observed improvement is not accepted coverage.
+| Body | Differing words | Extra | Unverified | Errors |
+|---|---:|---:|---:|---:|
+| D494 | 0/132 | 0 | 0 | 0 |
+| E3BC | 5/34 | 0 | 0 | 0 |
+| E200 | 99/111 | 1 | 0 | 0 |
+| D05C | 121/169 | 0 | 0 | 0 |
+| FF04 | 331/357 | 0 | 20 | 0 |
+| D6A4 | 696/727 | 0 | 10 | 1 |
+| D300 | 101/101 | 0 | 0 | 0 |
+| A0498 | 154/720 | 0 | 0 | 0 |
+| A0FD8 | 875/949 | 0 | 14 | 0 |
+| A1EAC | 1710/1776 | 0 | 12 | 0 |
+
+Every body has zero unresolved symbols. Own-data differences in the large
+renderers remain explicit; they are not accepted instruction matches. The
+high root's score is worse than #266, so this packet does not supersede its
+best high-source baseline as matching evidence. The new claim is D494 only.
+EF08 remains a real external service whose private context is still missing.
 
 ## Reproduce
 
@@ -22,50 +41,33 @@ Empty claims: observed improvement is not accepted coverage.
 python3 cloud/work/lean/runtime_a_car_select_20261006/reproduce.py
 ```
 
-Actual IDO 5.3 recipe: `-g0 -O3 -mips2 -G 0 -non_shared`, canonical
-`uld`/`usplit`/`umerge`/`uopt`/`ugen`/`as1`, with `as1 -r4300_mul`.
-Only the real A1EAC entry is kept. The helper authenticates the frozen asset and
-full image A in memory before using the unchanged canonical scorer. Six setup
-literals, the native 19-way option mapping and adjustment literals were decoded
-from that image; the nonzero unverified results above are retained. No bytes,
-dumps or objects are included. Only compilation/scoring was performed.
+Actual IDO 5.3 recipe: `-g0 -O3 -mips2 -G 0 -non_shared`, canonical group
+pipeline and `as1 -r4300_mul`. Only the real A1EAC root is kept. `fabsf` uses
+the stock IDO intrinsic pragma, as in existing matching source. The small
+helper authenticates the frozen asset and image A in memory and binds the
+unchanged scorer's owned-data checks. Only compile/scoring was performed.
 
-The existing `cloud/work/runtime_a_float_product/candidate.c` supplies D300 as
-an explicitly pre-existing semantic context body, compiled here at actual O3.
-Its known two genuine callers are now present. Its comparison remains 101/101
-differing words in this context; no new reconstruction or matching claim is
-made for that 404-byte body. The older standalone preservation warning remains
-in force. No context body is proposed as an unverified native replacement.
+## Required context and assumptions
 
-## Source and remaining context
+The complete source preserves the real 64-byte animated slots, 44 slots per
+player, 52-byte cleanup records, record handle lists, distinct persistent and
+cached record chains, availability gates, projected selection animation,
+alpha/color updates, model creation, resource teardown and repeated calls.
+The two new four-byte color locals are real copied/addressed objects; their
+alpha byte is changed and passed to the existing color helper. No padding,
+artificial volatile, unused pressure local or fabricated formal is added.
 
-A0498 rebuilds selected ghost-record handles from linked and fixed arrays. It
-preserves matching-track/mode/profile filtering, the real eligibility calls,
-three-entry ordered insertion, the five-entry neighborhood around the owner's
-best record, list compaction and limited-mode resource release. The five local
-handles are real stored selection data, not register-pressure filler.
+D6A4/FF04 constants are decoded values from authenticated image A, including
+its angle/position tables at 0x803B9610..0x803B9624 and 0x803B96F8..0x803B971C.
+No native bytes or raw assembly are published. Record field +36 is retained
+separately from the prior +40 active field. E200's source uses two real inputs,
+a record handle and signed-byte direction, rather than invented private-ABI
+argument slots. Source names, full object types and whole-TU visibility remain
+hypotheses. Valid player/selector ranges, acyclic handles, valid model/string
+assets, finite arithmetic and nonzero animation scales are required. Color
+alpha conversion requires a representable nonnegative value; inherited high
+buffer-capacity assumptions remain unproven. No group here is a drop-in ABI
+replacement until the checker resolves its complete native context.
 
-A0FD8 initializes the selection scene, per-player car/part choices, projected
-models, viewport settings and display state. A1EAC refreshes record validity,
-handles controller/cancel/ready paths, wraps the nineteen real option cases,
-writes selected save values, lays out ready/ghost frames and performs the
-observed final transition. The repeated native compaction pass and asymmetric
-scale thresholds are retained rather than normalized away.
-
-Low-image D05C, D6A4, E200, E3BC, EF08 and FF04 remain external services. Natural
-arguments are inferred from their native consumed inputs (including D6A4/FF04
-signed-byte player and E200 record-handle/direction); their complete private
-callee visibility is still missing. They are not replaced by invented bodies
-or padded formal lists. This missing context is a concrete blocker to treating
-the broad caller objects as ABI-correct native replacements.
-
-The source uses observed 76-byte player, 44-byte record-prefix, 64-byte animated
-slot, 152-byte camera and 12-byte car-position views. Record names start at +10;
-profile names at +20. The original complete types and names are unknown. Valid
-acyclic lists, live handles, bounded player/selector indices, stable backing
-for the product vectors, terminated names and finite representable conversion
-inputs are required. Availability loops assume a reachable eligible choice.
-Local buffers store actual projections and vectors; no assembly, volatile,
-unused pressure expressions or artificial retention barriers are present.
-
-Independent checker owns further validation, acceptance and ROM integration.
+Observed match candidate is not accepted coverage. Independent checker owns
+acceptance and ROM integration; no additional review, test suite or CI wait.

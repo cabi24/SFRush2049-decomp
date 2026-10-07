@@ -74,7 +74,7 @@ extern Blit *sound_control(s16,s16,MultiBlit *,s16);
 extern void particle_velocity_set(void);
 extern void effects_update_emitters(void);
 extern void set_race_state(void);
-/* Real low-image services; their complete native private context is not yet inferred. */
+/* Genuine low-image services; definitions below recover part of their shared context. */
 extern void func_8039FF04(s8);
 extern void func_8039E3BC(s32);
 typedef struct Vec3 {f32 v[3];} Vec3;
@@ -751,4 +751,305 @@ changed_selection:
         }
         pause_resume(0);
     }
+}
+
+extern s8 D_803B3020[];
+s32 func_8039D494(s32 item, s32 player)
+{
+    s32 available = 1;
+    if ((item == 13 || item == 14) && !D_801407D0) available = 0;
+    if (!D_80156994) {
+        if (item == 11 && D_8014978C >= 0 && D_8014978C < 6) available = 0;
+        if (item == 17 || item == 18) available = 0;
+    }
+    if (!D_803AF980 && (item == 16 || item == 17 || item == 18)) available = 0;
+    if (item == 6 && (D_8014A110 == 2 || D_8014A110 == 6)) available = 0;
+    if ((item == 7 || item == 8 || item == 9) && D_8014A110 == 6 && !D_801164BE) available = 0;
+    if (item == 7 && !(D_803B3020[D_803B9FD0[player]] & 1)) available = 0;
+    if (item == 8 && !(D_803B3020[D_803B9FD0[player]] & 2)) available = 0;
+    if (item == 9 && !(D_803B3020[D_803B9FD0[player]] & 4)) available = 0;
+    if (item == 10 && D_8014A110 != 6) available = 0;
+    if ((item == 16 || item == 17 || item == 18) && D_8014A110 != 2) available = 0;
+    if (item == 12 || item == 15) available = 0;
+    return available;
+}
+
+void func_8039E3BC(s32 player)
+{
+    s32 item;
+    D_803BA050[player]=0;
+    for(item=0;item<19;item++) {
+        if(func_8039D494(item,player))D_803BA060[player][D_803BA050[player]++]=item;
+    }
+}
+
+extern Record **D_8015202C;
+Record **func_8039E200(Record **node,s8 direction)
+{
+    Record **next;
+    Record *record;
+    if(!node) {
+        if(direction>0)node=D_80152028;
+        else node=D_803BA010+2;
+    }
+    while(node) {
+        record=*node;
+        if(direction>0)next=record->next;
+        else if(node==D_80152028)next=0;
+        else {
+            for(next=D_80152028;next && (*next)->next!=node;next=(*next)->next) {}
+        }
+        if(record->track==D_8014978C && record->mode==D_80152570 &&
+           node!=D_80152698[1] && node!=D_80152698[2] && node!=D_80152698[3] &&
+           (!record->file || menu_item_value_get(node)) && (*node)->unknown24)break;
+        if(!next) {
+            if(node==D_803BA010) {
+                if(direction>0)next=D_803BA010+1;
+                else next=D_8015202C;
+            } else if(node==D_803BA010+1) {
+                if(direction>0)next=D_803BA010+2;
+                else next=D_803BA010;
+            } else if(node==D_803BA010+2) {
+                if(direction<0)next=D_803BA010+1;
+            } else if(direction>0)next=D_803BA010;
+        }
+        node=next;
+    }
+    return node;
+}
+
+typedef struct PanelPart {s16 handle,auxiliary;u8 unknown04[48];} PanelPart;
+extern PanelPart D_803B2618[][11];
+extern s32 D_803B25C8,D_803B9B90[];
+extern void wheel_setup_initial(s32);
+extern void sound_handles_array_clear(FiveParts *);
+extern void sound_call_minimal(s16);
+extern void sound_stop(Blit *);
+extern void ambient_sounds_clear(void);
+extern void func_800A5B3C(void);
+void func_8039D05C(void)
+{
+    s32 player,i;
+    FiveParts **box;
+    Slot *slot;
+    PanelPart *part;
+    wheel_setup_initial(62);
+    if(D_80156994) {
+        wheel_setup_initial(80);
+        wheel_setup_initial(61);
+    } else if(D_8014978C>=6)wheel_setup_initial(80);
+    else wheel_setup_initial(81);
+    for(box=D_803B9FC0;box<D_803B9FC0+4;box++) {
+        if(*box) {sound_handles_array_clear(*box);*box=0;}
+    }
+    for(player=0;player<D_8014A108;player++) {
+        for(i=0;i<44;i++) {
+            slot=&D_803AF9A8[(s8)player][i];
+            if(slot->handle!=-1) {sound_call_minimal(slot->handle);slot->handle=-1;}
+        }
+        D_803B9B90[(s8)player]=0;
+        if(D_803B25CC[player][0]!=-1) {sound_call_minimal(D_803B25CC[player][0]);D_803B25CC[player][0]=-1;}
+        if(D_803B25CC[player][1]!=-1) {sound_call_minimal(D_803B25CC[player][1]);D_803B25CC[player][1]=-1;}
+        if(player<=0) {
+            for(i=0,part=D_803B2618[player];i<11;i++,part++) {
+                if(part->handle!=-1) {sound_call_minimal(part->handle);part->handle=part->auxiliary=-1;}
+            }
+            if(D_803B25C8!=-1) {sound_call_minimal(D_803B25C8);D_803B25C8=-1;}
+        }
+    }
+    if(D_803B28AC) {sound_stop(D_803B28AC);D_803B28AC=0;}
+    ambient_sounds_clear();
+    D_80154188=90.0f;D_80151AD0=1;
+    func_800A5A40();func_800A5B3C();
+    for(player=0;player<D_8014A108;player++)scheduler_recv(D_803BA1D0[player]);
+    D_803B28A8=0;
+}
+
+typedef struct Color4 {u32 word;} Color4;
+extern Color4 D_803B305C;
+extern f32 D_803B3060;
+extern char *D_803AF984[];
+extern char D_803B8630[],D_803B8640[],D_803B8648[],D_803B864C[];
+extern void *memcpy(void *,const void *,u32);
+extern void func_8008E06C(s16,Color4 *);
+extern void *func_800B24EC(char *,s16 *,s32,s8,s32);
+extern void func_8008D870(s16,void *,s16);
+extern void func_800B5898(f32,void *);
+extern void func_800B5940(f32,void *);
+extern void func_8008B32C(void *,void *,f32);
+void func_8039FF04(s8 player)
+{
+    Color4 color=D_803B305C;
+    s16 count;
+    s32 i,mask;
+    Slot *slot,*row;
+    f32 scale;
+    if(D_80151AD0==1)D_803B3060=1.0f;
+    for(i=0,slot=D_803AF9A8[player];i<44;i++,slot++) {
+        if(slot->handle==-1) {
+            memcpy(slot->matrix,D_8011418C,36);
+            mask=1<<player;
+            slot->handle=sign_extend_call(string_copy_format(D_803AF984[slot->kind],0,(s8)(D_80140BDC-1),1),
+                                          slot->matrix,-1,(slot->kind==0 || slot->kind==1 || slot->kind==2) ? 0x42000 : 0);
+            func_8008E06C(slot->handle,&color);
+            model_data_load(slot->handle,1,15);
+            model_transform_setup(slot->handle,0,mask);
+        }
+    }
+    row=D_803AF9A8[player];
+    func_8008D870(row[38].handle,func_800B24EC(D_803B8630,&count,0,(s8)(D_80140BDC-1),1),-1);
+    memcpy(row[38].matrix,D_8011418C,36);
+    func_800B5898(-1.5707963705062866f,row[38].matrix);
+    row[38].position[0]=0.0f;
+    if(D_80151AD0>=2)row[38].position[1]=105.0f;
+    else row[38].position[1]=115.0f;
+    scale=1.0f/D_803B3060;
+    row[38].position[0]*=scale;row[38].position[1]*=scale;row[38].position[2]=200.0f*scale;
+    if(D_8014A110==2)model_transform_setup(row[38].handle,0,15);
+    func_8008D870(row[39].handle,func_800B24EC(D_803B8640,&count,0,(s8)(D_80140BDC-1),1),-1);
+    func_8008D870(row[40].handle,func_800B24EC(D_803B8648,&count,0,(s8)(D_80140BDC-1),1),-1);
+    memcpy(row[40].matrix,D_8011418C,36);
+    func_800B5898(-1.5707963705062866f,row[40].matrix);
+    row[40].position[0]=75.0999984741211f;
+    if(D_80151AD0>=2)row[40].position[1]=50.20000076293945f;
+    else row[40].position[1]=55.20000076293945f;
+    row[40].position[2]=100.0f;
+    func_8008B32C(row[40].matrix,row[40].matrix,0.5f);
+    memcpy(row[41].matrix,D_8011418C,36);
+    func_800B5898(-1.5707963705062866f,row[41].matrix);
+    func_800B5940(3.1415927410125732f,row[41].matrix);
+    row[41].position[0]=87.0999984741211f;
+    if(D_80151AD0>=2)row[41].position[1]=50.20000076293945f;
+    else row[41].position[1]=55.20000076293945f;
+    row[41].position[2]=100.0f;
+    func_8008D870(row[42].handle,func_800B24EC(D_803B864C,&count,0,(s8)(D_80140BDC-1),1),-1);
+    memcpy(row[42].matrix,D_8011418C,36);
+    func_800B5898(-1.5707963705062866f,row[42].matrix);
+    row[42].position[0]=-75.0999984741211f;
+    if(D_80151AD0>=2)row[42].position[1]=50.20000076293945f;
+    else row[42].position[1]=55.20000076293945f;
+    scale=1.0f/D_803B3060;
+    row[42].position[0]*=scale;row[42].position[1]*=scale;row[42].position[2]=100.0f*scale;
+    func_8008B32C(row[42].matrix,row[42].matrix,0.5f);
+    memcpy(row[43].matrix,D_8011418C,36);
+    func_800B5898(-1.5707963705062866f,row[43].matrix);
+    row[43].position[0]=-87.0999984741211f;
+    if(D_80151AD0>=2)row[43].position[1]=50.20000076293945f;
+    else row[43].position[1]=55.20000076293945f;
+    scale=1.0f/D_803B3060;
+    row[43].position[0]*=scale;row[43].position[1]*=scale;row[43].position[2]=100.0f*scale;
+    D_803B9B90[player]=1;D_803B9BA0[player]=1;
+    particle_velocity_set();
+}
+
+extern f32 fabsf(f32);
+#pragma intrinsic(fabsf)
+extern f32 D_8002EB94,D_803BA200[],D_803BA210[];
+extern Color4 D_803B3064;
+extern char D_803B8650[],D_803B8660[];
+void func_8039D6A4(s8 player)
+{
+    f32 previous[3],anchor,y,delta;
+    Color4 color=D_803B3064;
+    s16 count;
+    s8 settled=1;
+    s32 item,mask;
+    void *texture;
+    Slot *row,*slot;
+    if(!D_803B9B90[player])return;
+    if((D_803BA050[player]-1)*D_803B25B0*D_803B25AC>D_803B25B8-D_803B25BC)
+        anchor=D_803B25B8-(D_803B28B8[player]*(D_803B25B8-D_803B25BC))/(D_803BA050[player]-1);
+    else anchor=D_803B25B8-D_803B28B8[player]*D_803B25B0*D_803B25AC;
+    row=D_803AF9A8[player];
+    memcpy(previous,row[39].position,12);
+    row[39].angle+=6.2831854820251465f*D_8002EB94;
+    if(row[39].angle>6.2831854820251465f)row[39].angle-=6.2831854820251465f;
+    row[39].position[0]=D_803B25B4*D_803B25C4/D_803B25C0-170.0f*D_803B25AC;
+    row[39].position[1]=anchor*D_803B25C4/D_803B25C0;
+    row[39].position[2]=D_803B25C4;
+    if(!D_803B9BA0[player]) {
+        delta=fabsf(row[39].position[1]-previous[1]);
+        if(D_803BA200[player]<delta*60.0f*D_803B25AC/10.0f) {
+            D_803BA200[player]=delta*60.0f*D_803B25AC/10.0f;
+            D_803BA200[player]=D_803BA200[player]<540.0f*D_803B25AC ? D_803BA200[player] : 540.0f*D_803B25AC;
+            D_803BA200[player]=D_803BA200[player]>180.0f*D_803B25AC ? D_803BA200[player] : 180.0f*D_803B25AC;
+        }
+        if(previous[1]+D_803BA200[player]*D_8002EB94<row[39].position[1])
+            row[39].position[1]=previous[1]+D_803BA200[player]*D_8002EB94;
+        else if(row[39].position[1]<previous[1]-D_803BA200[player]*D_8002EB94)
+            row[39].position[1]=previous[1]-D_803BA200[player]*D_8002EB94;
+        else D_803BA200[player]=180.0f*D_803B25AC;
+    }
+    func_8008B32C(D_8011418C,row[39].matrix,D_803B25AC*0.4000000059604645f);
+    func_800B5940(row[39].angle,row[39].matrix);
+    func_800B5898(1.5707963705062866f,row[39].matrix);
+    y=D_803B28B8[player]*D_803B25B0*D_803B25AC+anchor;
+    for(item=0,slot=row;item<19;item++,slot++) {
+        if(item==D_803BA060[player][D_803B28B8[player]]) {
+            if(slot->angle<3.1415927410125732f)slot->angle+=12.566370964050293f*D_8002EB94;
+            if(slot->angle>3.1415927410125732f)slot->angle=3.1415927410125732f;
+            if(D_803B9BA0[player])slot->angle=3.1415927410125732f;
+        } else {
+            if(slot->angle>0.0f)slot->angle-=12.566370964050293f*D_8002EB94;
+            if(slot->angle<0.0f)slot->angle=0.0f;
+            if(D_803B9BA0[player])slot->angle=0.0f;
+        }
+        memcpy(previous,slot->position,12);
+        slot->position[0]=-120.0f*D_803B25AC+D_803B25B4;
+        slot->position[1]=y;
+        slot->position[2]=D_803B25C0;
+        if(!D_803B9BA0[player]) {
+            delta=fabsf(slot->position[1]-previous[1]);
+            if(D_803BA210[player]<delta*60.0f/10.0f) {
+                D_803BA210[player]=delta*60.0f/10.0f;
+                D_803BA210[player]=D_803BA210[player]<540.0f*D_803B25AC ? D_803BA210[player] : 540.0f*D_803B25AC;
+                D_803BA210[player]=D_803BA210[player]>180.0f*D_803B25AC ? D_803BA210[player] : 180.0f*D_803B25AC;
+            }
+            if(previous[1]+D_803BA210[player]*D_8002EB94<slot->position[1]) {
+                slot->position[1]=previous[1]+D_803BA210[player]*D_8002EB94;settled=0;
+            } else if(slot->position[1]<previous[1]-D_803BA210[player]*D_8002EB94) {
+                slot->position[1]=previous[1]-D_803BA210[player]*D_8002EB94;settled=0;
+            }
+        }
+        slot[19].position[0]=120.0f*D_803B25AC+D_803B25B4;
+        slot[19].position[1]=slot->position[1];slot[19].position[2]=slot->position[2];
+        slot[19].angle=slot->angle;
+        func_8008B32C(D_8011418C,slot->matrix,D_803B25AC);
+        func_8008B32C(D_8011418C,slot[19].matrix,D_803B25AC);
+        func_800B5898(slot->angle-1.5707963705062866f,slot->matrix);
+        func_800B5898(slot[19].angle-1.5707963705062866f,slot[19].matrix);
+        if(slot->angle>1.5707963705062866f)texture=func_800B24EC(D_803B8650,&count,0,(s8)(D_80140BDC-1),1);
+        else texture=func_800B24EC(D_803B8660,&count,0,(s8)(D_80140BDC-1),1);
+        func_8008D870(slot->handle,texture,-1);func_8008D870(slot[19].handle,texture,-1);
+        if(slot->position[1]>D_803B25B8+D_803B25B0*D_803B25AC || slot->position[1]<D_803B25BC-D_803B25B0*D_803B25AC)slot->alpha=0;
+        else if(slot->position[1]>D_803B25B8)slot->alpha=255.0f-(slot->position[1]-D_803B25B8)*255.0f/(D_803B25B0*D_803B25AC);
+        else if(slot->position[1]<D_803B25BC)slot->alpha=255.0f-(D_803B25BC-slot->position[1])*255.0f/(D_803B25B0*D_803B25AC);
+        else slot->alpha=255;
+        if(!func_8039D494(item,player))slot->alpha=0;
+        ((u8 *)&color)[3]=slot[19].alpha=slot->alpha;
+        func_8008E06C(slot->handle,&color);func_8008E06C(slot[19].handle,&color);
+        if(!func_8039D494(item,player)) {
+            model_data_load(slot->handle,1,15);model_data_load(slot[19].handle,1,15);
+        } else {
+            if(!slot->alpha || D_803BA028[player]==1) {
+                model_data_load(slot->handle,1,15);model_data_load(slot[19].handle,1,15);
+            } else {
+                mask=1<<player;
+                model_transform_setup(slot->handle,0,mask);model_transform_setup(slot[19].handle,0,mask);
+            }
+            y-=D_803B25B0*D_803B25AC;
+        }
+    }
+    if(D_803BA028[player]==1) {
+        model_data_load(row[40].handle,1,15);model_data_load(row[41].handle,1,15);row[39].position[2]=2000.0f;
+    } else {
+        mask=1<<player;model_transform_setup(row[40].handle,0,mask);model_transform_setup(row[41].handle,0,mask);
+    }
+    if(D_803BA02C==1) {
+        model_data_load(row[42].handle,1,15);model_data_load(row[43].handle,1,15);
+    } else {
+        mask=1<<player;model_transform_setup(row[42].handle,0,mask);model_transform_setup(row[43].handle,0,mask);
+    }
+    if(settled==1)D_803BA210[player]=0.0f;
+    D_803B9BA0[player]=0;
 }
