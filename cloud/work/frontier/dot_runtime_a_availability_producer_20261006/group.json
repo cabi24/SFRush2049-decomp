@@ -1,0 +1,17 @@
+{
+  "members": [
+    "func_80394564",
+    "func_80397FFC",
+    "func_80394B00"
+  ],
+  "claims": [],
+  "context": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_80397FFC"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "Complete real 97FFC and 94B00 caller context for 94564. Producer has three entry-argument-register differences; one natural formal retained rather than inventing an unused slot. Claims empty."
+}
