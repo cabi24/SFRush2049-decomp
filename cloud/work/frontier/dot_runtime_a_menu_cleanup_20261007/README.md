@@ -27,7 +27,7 @@ external declarations; no fictitious parameters or register shims are used to
 imitate their private calling conventions.
 
 The group reuses the availability/setup/state-change/refresh family from #290.
-Existing `func_80394834` remains strict 102/102 words and earns no new credit.
+Existing `func_80394834` remains strict 100/100 words and earns no new credit.
 The availability producer still differs at 3/180 entry-argument-register words.
 The setup and state-change callers remain NONMATCH: setup 176/268 words differ
 with four unverified own-data sites; state-change 162/182 words differ.
