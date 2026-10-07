@@ -1,0 +1,99 @@
+{
+  "base": "f2e8380d3b368d00efc9cac3e37cdc7059b1f6e2",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "automatic_backend_flag": "-Wab,-r4300_mul",
+  "source_sha256": {
+    "direct_baseline.c": "fe97fa82ee14ea092ed085df15db870e58d8055fe90e12fdf3495a7f815e8548",
+    "callback.c": "a90225af60948047db023ba6b2b7917d0f956412155d1c692de4faec0ade7b9c",
+    "slot_context.c": "1d19ad3000273569000654ca8f8d93d4e040eb476738998cf5e87847c18c2e8b",
+    "countdown_caller.c": "d41ecea76cddbccd58af80410a26666fa283e45beb5bd0a6d21cd712b1b43837",
+    "group.json": "fd3e9b2d2bcfc7250961b618525fa0ad87aad1309a0e8c203fee9f48ae7c0d77"
+  },
+  "rows": [
+    {
+      "mode": "baseline_single",
+      "function": "race_finish",
+      "result": {
+        "differing": 221,
+        "total": 250,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "function_bytes": 964,
+      "target_bytes": 1000,
+      "frame_bytes": [
+        200
+      ]
+    },
+    {
+      "mode": "candidate_single",
+      "function": "race_finish",
+      "result": {
+        "differing": 221,
+        "total": 250,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "function_bytes": 996,
+      "target_bytes": 1000,
+      "frame_bytes": [
+        248
+      ]
+    },
+    {
+      "mode": "genuine_context_control",
+      "function": "race_finish",
+      "result": {
+        "differing": 214,
+        "total": 250,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 2
+      },
+      "function_bytes": 1008,
+      "target_bytes": 1000,
+      "frame_bytes": [
+        248
+      ]
+    },
+    {
+      "mode": "genuine_context_control",
+      "function": "func_80106B3C",
+      "result": {
+        "differing": 105,
+        "total": 150,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 4
+      },
+      "function_bytes": 604,
+      "target_bytes": 600,
+      "frame_bytes": [
+        64
+      ]
+    },
+    {
+      "mode": "genuine_context_control",
+      "function": "slot_state_setup",
+      "result": {
+        "differing": 18,
+        "total": 58,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 2
+      },
+      "function_bytes": 232,
+      "target_bytes": 232,
+      "frame_bytes": [
+        32
+      ]
+    }
+  ]
+}
