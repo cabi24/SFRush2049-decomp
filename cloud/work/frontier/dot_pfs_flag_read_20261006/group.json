@@ -1,0 +1,24 @@
+{
+  "members": [
+    "slot_state_lookup",
+    "func_800A1DD4"
+  ],
+  "context": [
+    "func_800A1BB4",
+    "func_800A1C6C",
+    "track_data_decompress",
+    "track_collision_setup",
+    "MaxPathZeroControls"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "track_collision_setup",
+    "MaxPathZeroControls",
+    "slot_state_lookup"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "provenance": "Research only. Complete C96 real-caller closure with observed slot flag load restored and bounds-preserving spelling refined. No substitute caller or coverage claim.",
+  "claims": []
+}
