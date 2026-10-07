@@ -1,0 +1,24 @@
+{
+  "members": [
+    "track_collision_setup"
+  ],
+  "context": [
+    "func_800A1BB4",
+    "func_800A1C6C",
+    "func_800A1DD4",
+    "track_data_decompress",
+    "MaxPathZeroControls",
+    "slot_state_lookup"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "track_collision_setup",
+    "MaxPathZeroControls",
+    "slot_state_lookup"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "provenance": "Research-only whole-channel Pak flush refinement. Actual shared queue helpers and direct indexed slot access, without padding or invented callers.",
+  "claims": []
+}
