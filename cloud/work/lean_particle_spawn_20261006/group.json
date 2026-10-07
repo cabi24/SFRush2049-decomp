@@ -1,0 +1,23 @@
+{
+  "members": [
+    "func_80090308"
+  ],
+  "context": [
+    "func_80090284",
+    "save_write_data",
+    "entity_physics_update"
+  ],
+  "files": [
+    "effects.c",
+    "allocator.c",
+    "service.c",
+    "random.c"
+  ],
+  "keep": [
+    "entity_physics_update",
+    "func_80090284",
+    "save_write_data"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}
