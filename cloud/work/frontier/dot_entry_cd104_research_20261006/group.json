@@ -1,0 +1,32 @@
+{
+  "name": "frontier_menu_save_options",
+  "members": [
+    "func_800CD104"
+  ],
+  "context": [
+    "func_800CD058",
+    "func_800CCEFC",
+    "func_800CCCCC",
+    "menu_save_options",
+    "func_800A44E8",
+    "func_800A370C",
+    "draw_number",
+    "draw_speedometer"
+  ],
+  "files": [
+    "group.c",
+    "save.c"
+  ],
+  "keep": [
+    "func_800CD104",
+    "func_800CD058",
+    "func_800CCEFC",
+    "menu_save_options",
+    "func_800A44E8",
+    "func_800A370C"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "note": "Supersedes src/blob/groups/menu_cc_20261004 (group.c is that group's file, unchanged) and the single locks of func_800A44E8 / func_800A370C. Real group, no stand-ins: menu_save_options is the third real caller of internal func_800CCCCC. func_800A44E8 now calls func_800A370C (nested inline) instead of repeating its three stores; both still reproduce their locked bodies.",
+  "provenance": "Research-only native digit-cursor correction to the existing save-entry constructor. Remove unused aliases and use unsigned pointer tagging; no frame filler.",
+  "claims": []
+}
