@@ -1,0 +1,23 @@
+{
+  "files": [
+    "first.c",
+    "second.c",
+    "root.c",
+    "slot.c",
+    "rect.c"
+  ],
+  "members": [
+    "func_80101904",
+    "func_80101D84"
+  ],
+  "context": [
+    "func_8010221C",
+    "slot_state_setup",
+    "func_80100D5C"
+  ],
+  "keep": [
+    "func_8010221C"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": []
+}
