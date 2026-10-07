@@ -1,0 +1,200 @@
+{
+  "schema": "rush-hypothesis-batch-v1",
+  "base_commit": "c35728addbae1626aabc89b7d837e28774f333a0",
+  "function": "func_80087110",
+  "recipe": "single",
+  "purpose": "experiment",
+  "experiment": "experiment.json",
+  "baseline": "baseline.c",
+  "baseline_sha256": "f8355db6884b85c77a25b21c7aae746be236ed10a3dc8fee93264259cf4c6f8f",
+  "baseline_expectation": {
+    "differing": 4,
+    "total": 445,
+    "extra_words": 0
+  },
+  "flags": [
+    "-g0",
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared"
+  ],
+  "targets": "asm/us/blob",
+  "context_manifest": "context.json",
+  "hypothesis": "Real flip-dispatch topology and genuine packet-operand joins can change alias-boundary ownership or preserve compatible allocation without the prior initialization/lifetime wrapper controls.",
+  "limits": {
+    "variants": 15,
+    "jobs": 2,
+    "compile_seconds": 120,
+    "score_seconds": 30,
+    "diagnose_seconds": 30
+  },
+  "predictions": {
+    "H01": {
+      "source": "candidates/H01.c",
+      "sha256": "32bed78195b1542ec756008302242076b3cb4e07c3e1a8e2e4a82b03a9d4f276",
+      "edit": "Replace only the stretched both-flags short-circuit predicate with one masked equality.",
+      "semantic_justification": "The ABI, declarations, SDK macro definitions, clipping, rejection, and scale setup are unchanged unless explicitly stated. Every accepted rectangle still emits exactly one original SDK macro, which writes the same three packets in the same order and increments D_80149438 three times. No calls, qualifiers, fake uses, padding or artificial pressure are introduced. Equivalence is on the baseline C defined domain, with ordinary nonvolatile globals and single-threaded execution. No new signed-overflow or invalid-shift assumptions are made. Flag tests are side-effect-free, use the same bits, and all occur before the first packet store. Their truth table is exhaustive and disjoint for masked values 0,4,8,12. Every selected terminal body retains its exact arithmetic and SDK invocation. ",
+      "native_effect": "Coalesces the two-test entry into one mask/equality graph if IDO retains the distinction. This may change the alias predecessor weight without adding wrapper live-IN blocks; a baseline-identical result would show canonicalization.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H02": {
+      "source": "candidates/H02.c",
+      "sha256": "1e25f02608d73fbe59eec187f72196aea5bd44b1772d57a498e7e6f58fea6104",
+      "edit": "Replace the stretched conditional chain by a four-case switch on the actual flip bits.",
+      "semantic_justification": "The ABI, declarations, SDK macro definitions, clipping, rejection, and scale setup are unchanged unless explicitly stated. Every accepted rectangle still emits exactly one original SDK macro, which writes the same three packets in the same order and increments D_80149438 three times. No calls, qualifiers, fake uses, padding or artificial pressure are introduced. Equivalence is on the baseline C defined domain, with ordinary nonvolatile globals and single-threaded execution. No new signed-overflow or invalid-shift assumptions are made. Flag tests are side-effect-free, use the same bits, and all occur before the first packet store. Their truth table is exhaustive and disjoint for masked values 0,4,8,12. Every selected terminal body retains its exact arithmetic and SDK invocation. ",
+      "native_effect": "Exposes one selector and four exits to switch lowering. Unlike the rejected guarded-exit spelling this changes dispatch ownership of every terminal block, potentially avoiding the metadata-only predecessor; instruction population may grow.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H03": {
+      "source": "candidates/H03.c",
+      "sha256": "f2b0e619069c0420a5d165c5c02aa8f2de44bde20003563089750f0396cf2230",
+      "edit": "Use a horizontal-major binary dispatch tree for stretched rectangles.",
+      "semantic_justification": "The ABI, declarations, SDK macro definitions, clipping, rejection, and scale setup are unchanged unless explicitly stated. Every accepted rectangle still emits exactly one original SDK macro, which writes the same three packets in the same order and increments D_80149438 three times. No calls, qualifiers, fake uses, padding or artificial pressure are introduced. Equivalence is on the baseline C defined domain, with ordinary nonvolatile globals and single-threaded execution. No new signed-overflow or invalid-shift assumptions are made. Flag tests are side-effect-free, use the same bits, and all occur before the first packet store. Their truth table is exhaustive and disjoint for masked values 0,4,8,12. Every selected terminal body retains its exact arithmetic and SDK invocation. ",
+      "native_effect": "Removes repeated horizontal fallback testing and puts both-flip and horizontal-only bodies under the same owner. Tests alias-close placement with fewer shared fallback predecessors, without a dummy one-shot entry.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H04": {
+      "source": "candidates/H04.c",
+      "sha256": "d8cf2828899bd4d61c7ba91fbfcd4c6285b381c7375b7197aec35f8e070ce8e3",
+      "edit": "Use a vertical-major binary dispatch tree for stretched rectangles.",
+      "semantic_justification": "The ABI, declarations, SDK macro definitions, clipping, rejection, and scale setup are unchanged unless explicitly stated. Every accepted rectangle still emits exactly one original SDK macro, which writes the same three packets in the same order and increments D_80149438 three times. No calls, qualifiers, fake uses, padding or artificial pressure are introduced. Equivalence is on the baseline C defined domain, with ordinary nonvolatile globals and single-threaded execution. No new signed-overflow or invalid-shift assumptions are made. Flag tests are side-effect-free, use the same bits, and all occur before the first packet store. Their truth table is exhaustive and disjoint for masked values 0,4,8,12. Every selected terminal body retains its exact arithmetic and SDK invocation. ",
+      "native_effect": "Changes successor order and keeps vertical users of height/offset in one subtree. Tests whether their occurrence/default-live blocks can change together while alias closure belongs to a different join.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H05": {
+      "source": "candidates/H05.c",
+      "sha256": "9d5ba34b41dd84cf4c3b2ce8d08f614faabf65c831a130179cd658b13ee1c52f",
+      "edit": "Use three independent stretched tests with explicit return after each emitted rectangle, followed by the no-flip body.",
+      "semantic_justification": "The ABI, declarations, SDK macro definitions, clipping, rejection, and scale setup are unchanged unless explicitly stated. Every accepted rectangle still emits exactly one original SDK macro, which writes the same three packets in the same order and increments D_80149438 three times. No calls, qualifiers, fake uses, padding or artificial pressure are introduced. Equivalence is on the baseline C defined domain, with ordinary nonvolatile globals and single-threaded execution. No new signed-overflow or invalid-shift assumptions are made. Flag tests are side-effect-free, use the same bits, and all occur before the first packet store. Their truth table is exhaustive and disjoint for masked values 0,4,8,12. Every selected terminal body retains its exact arithmetic and SDK invocation. Each return is after the original final observable action; failure of earlier predicates makes the remaining tests mutually exclusive. ",
+      "native_effect": "Removes the common source-level join of the terminal else-if chain instead of adding a guarded loop. IDO may still merge exits; distinct code would test return-owned alias cleanup rather than loop-owned cleanup.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H06": {
+      "source": "candidates/H06.c",
+      "sha256": "8b95169a4d6efb260acdfe90d1623f3cfcacf204454dd122739a84161a5c70dc",
+      "edit": "Invert the outer mode test and place the complete stretched arm before the unchanged mode-zero arm.",
+      "semantic_justification": "The ABI, declarations, SDK macro definitions, clipping, rejection, and scale setup are unchanged unless explicitly stated. Every accepted rectangle still emits exactly one original SDK macro, which writes the same three packets in the same order and increments D_80149438 three times. No calls, qualifiers, fake uses, padding or artificial pressure are introduced. Equivalence is on the baseline C defined domain, with ordinary nonvolatile globals and single-threaded execution. No new signed-overflow or invalid-shift assumptions are made. The mode predicate is read once at the original point. The complete original arms are exchanged, with no computation moved across clipping or the predicate. Each mode executes its same source statements. ",
+      "native_effect": "Changes global block ordering and fallthrough ownership without any local stretched-body wrapper or operand change. Tests whether the alias close and assembler predecessor are sensitive to placement at function end.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H07": {
+      "source": "candidates/H07.c",
+      "sha256": "fa77d7c2f21281c75d5b6291c2ba7b8a8299a03f399fba162d39e57d2746edc9",
+      "edit": "Test the horizontal-only case first, then both-flags, vertical-only, and no-flip.",
+      "semantic_justification": "The ABI, declarations, SDK macro definitions, clipping, rejection, and scale setup are unchanged unless explicitly stated. Every accepted rectangle still emits exactly one original SDK macro, which writes the same three packets in the same order and increments D_80149438 three times. No calls, qualifiers, fake uses, padding or artificial pressure are introduced. Equivalence is on the baseline C defined domain, with ordinary nonvolatile globals and single-threaded execution. No new signed-overflow or invalid-shift assumptions are made. Flag tests are side-effect-free, use the same bits, and all occur before the first packet store. Their truth table is exhaustive and disjoint for masked values 0,4,8,12. Every selected terminal body retains its exact arithmetic and SDK invocation. ",
+      "native_effect": "The problematic both-flags exit now precedes the vertical-only test rather than horizontal-only. Tests whether the scheduling defect follows metadata position or the specific original x-only successor; likely changes block layout substantially.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H08": {
+      "source": "candidates/H08.c",
+      "sha256": "4684c3733a2f41ffaefa5beff2d3d76a15526b722272dd9f9b00099f4b53a885",
+      "edit": "In horizontal-major dispatch, compute the real horizontal flipped coordinate once before the vertical subtest.",
+      "semantic_justification": "The ABI, declarations, SDK macro definitions, clipping, rejection, and scale setup are unchanged unless explicitly stated. Every accepted rectangle still emits exactly one original SDK macro, which writes the same three packets in the same order and increments D_80149438 three times. No calls, qualifiers, fake uses, padding or artificial pressure are introduced. Equivalence is on the baseline C defined domain, with ordinary nonvolatile globals and single-threaded execution. No new signed-overflow or invalid-shift assumptions are made. Horizontal sum/subtraction retain their grouping and run exactly once iff bit 4 is set. Both definitions remain after scale setup and before any packet write. Vertical adjustment remains conditional on bit 8. ",
+      "native_effect": "Compared with H03, removes one duplicate source definition of the horizontal coordinate while keeping four actual callsites. Tests a merged s web in the new dispatch topology, not the earlier before-setup initialization family.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H09": {
+      "source": "candidates/H09.c",
+      "sha256": "e0ec1e4f57292299b29fd75d038604dc794e7d5004a3ef576d18c0ba5aa7efea",
+      "edit": "In vertical-major dispatch, compute the real vertical flip once before the horizontal subtest.",
+      "semantic_justification": "The ABI, declarations, SDK macro definitions, clipping, rejection, and scale setup are unchanged unless explicitly stated. Every accepted rectangle still emits exactly one original SDK macro, which writes the same three packets in the same order and increments D_80149438 three times. No calls, qualifiers, fake uses, padding or artificial pressure are introduced. Equivalence is on the baseline C defined domain, with ordinary nonvolatile globals and single-threaded execution. No new signed-overflow or invalid-shift assumptions are made. The original t+=height executes exactly once iff bit 8 is set. In the both-flags path it commutes with the independent s+right-x operations; arithmetic grouping and types are retained. No store or call is crossed. ",
+      "native_effect": "Compared with H04, merges the height-use occurrence before a shared subtree without adding a wrapper. This directly tests height default-live versus occurrence membership under a different branch ownership, while retaining all four macro callsites.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H10": {
+      "source": "candidates/H10.c",
+      "sha256": "ea772b74d05551d70e21a3406625ceb58b675c4943b907e67dc6cf961a97f822",
+      "edit": "Factor the horizontal flipped coordinate and signed derivative, retaining separate vertical-flip/no-vertical packet sites.",
+      "semantic_justification": "The ABI, declarations, SDK macro definitions, clipping, rejection, and scale setup are unchanged unless explicitly stated. Every accepted rectangle still emits exactly one original SDK macro, which writes the same three packets in the same order and increments D_80149438 three times. No calls, qualifiers, fake uses, padding or artificial pressure are introduced. Equivalence is on the baseline C defined domain, with ordinary nonvolatile globals and single-threaded execution. No new signed-overflow or invalid-shift assumptions are made. New locals contain genuine packet operands, are assigned on every reaching path, and are consumed by the unchanged macro. Constants and negations select exactly the original derivative arguments. Horizontal and vertical coordinate preparation remains conditional on its corresponding bit; only independent local operations move, before any packet write. ",
+      "native_effect": "Reduces stretched callsites from four to two by making horizontal direction a real operand. Tests whether removing the both-flags terminal macro boundary eliminates the offending no-alias close; may increase live operands and change allocation.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H11": {
+      "source": "candidates/H11.c",
+      "sha256": "27b5654a47381497ea98f28519faf4c57f90ac010fbe6e8414faeb42dc198f25",
+      "edit": "Factor the vertical flipped coordinate, packed t, and signed derivative, retaining separate horizontal-flip/no-horizontal packet sites.",
+      "semantic_justification": "The ABI, declarations, SDK macro definitions, clipping, rejection, and scale setup are unchanged unless explicitly stated. Every accepted rectangle still emits exactly one original SDK macro, which writes the same three packets in the same order and increments D_80149438 three times. No calls, qualifiers, fake uses, padding or artificial pressure are introduced. Equivalence is on the baseline C defined domain, with ordinary nonvolatile globals and single-threaded execution. No new signed-overflow or invalid-shift assumptions are made. New locals contain genuine packet operands, are assigned on every reaching path, and are consumed by the unchanged macro. Constants and negations select exactly the original derivative arguments. Horizontal and vertical coordinate preparation remains conditional on its corresponding bit; only independent local operations move, before any packet write. texture_t stores exactly the original signed shift/add expression; it does not shift a newly adjusted or unsigned representation. ",
+      "native_effect": "Reduces stretched callsites along the opposite axis from H10. Removes duplicate height/offset packet uses and places the alias-owning packet block after vertical selection, testing whether that structure better preserves the baseline s/step priorities.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H12": {
+      "source": "candidates/H12.c",
+      "sha256": "0906e4b8436c6ca64126190398f2a8b48bf5bc1fe815d885c076413f638d19c0",
+      "edit": "Select horizontal and vertical packet operands independently, then emit one common stretched macro.",
+      "semantic_justification": "The ABI, declarations, SDK macro definitions, clipping, rejection, and scale setup are unchanged unless explicitly stated. Every accepted rectangle still emits exactly one original SDK macro, which writes the same three packets in the same order and increments D_80149438 three times. No calls, qualifiers, fake uses, padding or artificial pressure are introduced. Equivalence is on the baseline C defined domain, with ordinary nonvolatile globals and single-threaded execution. No new signed-overflow or invalid-shift assumptions are made. New locals contain genuine packet operands, are assigned on every reaching path, and are consumed by the unchanged macro. Constants and negations select exactly the original derivative arguments. Horizontal and vertical coordinate preparation remains conditional on its corresponding bit; only independent local operations move, before any packet write. Each axis uses its original arithmetic only on the paths that originally required it; packed t retains the original signed operation order. ",
+      "native_effect": "Eliminates all inter-arm packet alias boundaries in stretched dispatch. Trades duplicated packets for true operand joins; IDO may tail-duplicate back to baseline or expose a structurally different instruction population.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H13": {
+      "source": "candidates/H13.c",
+      "sha256": "8a92211ac7ccde90dcbc45fa7e4f114218ff56e82e6a27d71f744cdac0899adc",
+      "edit": "Use four masked switch cases to select actual operands for a single stretched packet macro.",
+      "semantic_justification": "The ABI, declarations, SDK macro definitions, clipping, rejection, and scale setup are unchanged unless explicitly stated. Every accepted rectangle still emits exactly one original SDK macro, which writes the same three packets in the same order and increments D_80149438 three times. No calls, qualifiers, fake uses, padding or artificial pressure are introduced. Equivalence is on the baseline C defined domain, with ordinary nonvolatile globals and single-threaded execution. No new signed-overflow or invalid-shift assumptions are made. New locals contain genuine packet operands, are assigned on every reaching path, and are consumed by the unchanged macro. Constants and negations select exactly the original derivative arguments. Horizontal and vertical coordinate preparation remains conditional on its corresponding bit; only independent local operations move, before any packet write. Switch labels partition all masked values; each case reproduces the corresponding original branch arithmetic before joining the emission site. ",
+      "native_effect": "Compared with H12, presents one four-way join instead of successive binary operand joins. Tests whether jump lowering and register-web coalescing lead to different alias/allocation behavior despite equal packet values.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H14": {
+      "source": "candidates/H14.c",
+      "sha256": "ed3d304d2b075a2812f43cfbff28f9ddeed75e0b4f4ce72b989944bb15996c8a",
+      "edit": "Retain original ordered flip predicates but use explicit gotos to one real stretched packet-emission tail.",
+      "semantic_justification": "The ABI, declarations, SDK macro definitions, clipping, rejection, and scale setup are unchanged unless explicitly stated. Every accepted rectangle still emits exactly one original SDK macro, which writes the same three packets in the same order and increments D_80149438 three times. No calls, qualifiers, fake uses, padding or artificial pressure are introduced. Equivalence is on the baseline C defined domain, with ordinary nonvolatile globals and single-threaded execution. No new signed-overflow or invalid-shift assumptions are made. New locals contain genuine packet operands, are assigned on every reaching path, and are consumed by the unchanged macro. Constants and negations select exactly the original derivative arguments. Horizontal and vertical coordinate preparation remains conditional on its corresponding bit; only independent local operations move, before any packet write. The label is forward-only, after all selections, and is reached once with every emitted operand initialized. No loop, extra packet, or skipped required arithmetic is introduced. ",
+      "native_effect": "Isolates explicit shared-tail ownership from H12 binary factoring and H13 switch lowering. Tests whether IDO retains a genuine join with alias cleanup at function exit, or canonicalizes/duplicates back to one of those shapes.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H15": {
+      "source": "candidates/H15.c",
+      "sha256": "9312860c066fcbbe47db44bffef0cb387d170205d6f235f4a3248f88e173ba7b",
+      "edit": "Factor only the mode-zero four-way packet dispatch into two coordinate/derivative selections and one macro; leave stretched setup and dispatch unchanged.",
+      "semantic_justification": "The ABI, declarations, SDK macro definitions, clipping, rejection, and scale setup are unchanged unless explicitly stated. Every accepted rectangle still emits exactly one original SDK macro, which writes the same three packets in the same order and increments D_80149438 three times. No calls, qualifiers, fake uses, padding or artificial pressure are introduced. Equivalence is on the baseline C defined domain, with ordinary nonvolatile globals and single-threaded execution. No new signed-overflow or invalid-shift assumptions are made. New locals contain genuine packet operands, are assigned on every reaching path, and are consumed by the unchanged macro. Constants and negations select exactly the original derivative arguments. Horizontal and vertical coordinate preparation remains conditional on its corresponding bit; only independent local operations move, before any packet write. The mode-zero vertical update retains t+=(bottom-y), never stretched height. Stretched source statements are byte-for-byte retained. ",
+      "native_effect": "Tests a whole-function allocator/block-order influence outside the problematic stretched arm. Genuine mode-zero graph simplification may change s and step allocation without inserting artificial live blocks into stretched code; it may instead cause broad regression.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{"lane": "medium", "stage": "evidence_reading", "status": "start", "utc": "2026-10-07T19:39:53Z", "boundary": "initial tool observed UTC; monotonic begins recording now", "monotonic": 4470.011624461}
+{"lane": "medium", "stage": "evidence_reading", "status": "end", "utc": "2026-10-07T19:41:11.200787+00:00", "monotonic": 4542.507058854}
+{"lane": "medium", "stage": "planning_materialization", "status": "start", "utc": "2026-10-07T19:41:11.200842+00:00", "monotonic": 4542.507058854}
+{"lane": "medium", "stage": "source_validation", "status": "start", "utc": "2026-10-07T19:43:48.887750+00:00", "monotonic": 4700.194063809}
+{"lane": "medium", "stage": "source_validation", "status": "end", "utc": "2026-10-07T19:43:49.547470+00:00", "monotonic": 4700.853788361}
+{"lane": "medium", "stage": "planning_materialization", "status": "end_frozen", "utc": "2026-10-07T19:44:15.821748+00:00", "monotonic": 4727.128073378, "note": "Includes static syntax and bounded source review; first UTC observation 19:39:53, first recorded monotonic approximately 19:39:59. No active inference telemetry."}
+{"lane": "medium", "stage": "results_review", "status": "start", "utc": "2026-10-07T19:47:32.588920+00:00", "monotonic": 4923.895233996}
+{"lane": "medium", "stage": "results_review", "status": "end", "utc": "2026-10-07T19:48:09.720292+00:00", "monotonic": 4961.026604004, "elapsed_seconds": 37.131370007999976}

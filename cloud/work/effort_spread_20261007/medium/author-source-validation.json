@@ -1,0 +1,10 @@
+{
+  "source_count": 20,
+  "unique_sources": 20,
+  "prior_exact_duplicates": 0,
+  "syntax_parsed": 20,
+  "bounded_cases_per_source": 1120,
+  "mutants_detected": 2,
+  "no_compiler_invoked": true,
+  "limits": "Interprets actual control skeleton and SDK argument tuples; frozen macro prefix proves same expansion. Not full C equivalence or native execution."
+}

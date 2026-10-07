@@ -1,0 +1,145 @@
+{
+  "schema": "rush-hypothesis-batch-v1",
+  "base_commit": "c35728addbae1626aabc89b7d837e28774f333a0",
+  "function": "func_80087110",
+  "recipe": "single",
+  "purpose": "experiment",
+  "experiment": "experiment.json",
+  "baseline": "baseline.c",
+  "baseline_sha256": "f8355db6884b85c77a25b21c7aae746be236ed10a3dc8fee93264259cf4c6f8f",
+  "baseline_expectation": {
+    "differing": 4,
+    "total": 445,
+    "extra_words": 0
+  },
+  "flags": [
+    "-g0",
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared"
+  ],
+  "targets": "asm/us/blob",
+  "context_manifest": "context.json",
+  "hypothesis": "Genuine vertical-coordinate carriers, signed-step representation, lexical ownership or exhaustive/factored flag dispatch can change the alias-boundary and allocator interaction without repeating the prior early-initialization/horizontal-carrier batch.",
+  "limits": {
+    "variants": 10,
+    "jobs": 2,
+    "compile_seconds": 120,
+    "score_seconds": 30,
+    "diagnose_seconds": 30
+  },
+  "predictions": {
+    "X01": {
+      "source": "candidates/X01.c",
+      "sha256": "0c24bb9a0f7afd8f2b6035dde38e8b70f190d02e6495c3b05fcdad9bcc7bf63b",
+      "edit": "Wrap the stretched both-flags body; in that arm only, replace t+=height with height=t+height and use (height<<5)+offset.",
+      "semantic_justification": "The ABI, pinned global declarations and SDK macros, clipping, rejection, mode-zero behavior, and display-list store order are unchanged. No added caller, fake pressure, qualifier, inline assembly, padding or extra parameter exists. Equivalence is restricted to the baseline C's defined domain. The selected SDK macro still evaluates D_80149438++ three times in its original order. The both-flags body contains its real drawing operations in a one-shot do-while-zero block, with no break/continue. This is the known alias-boundary lever, not a new control claim. After bottom expansion, the old height is needed only to form the selected vertical texture coordinate. Reusing height for t+height executes the same signed addition and passes the same shifted value. Its old value and the original t are not observed after the terminal arm. The operands are ordinary, non-address-taken locals; no extra computation or overflow domain is introduced. ",
+      "native_effect": "Keeps the actual height web alive through the both-flags packet argument instead of killing it at the coordinate update. This can change its real occurrence/saving numerator and interference, rather than only its live-IN divisor. The known wrapper should fix the alias predecessor, but native coalescing may erase or regress the carrier change.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "X02": {
+      "source": "candidates/X02.c",
+      "sha256": "4370def93ee0dbc375e83c5b980b8dc18c32d845dd3efe44bf08942d792f9fbb",
+      "edit": "Apply X01's height coordinate carrier consistently to both vertically flipped stretched arms, with the both-flags wrapper retained.",
+      "semantic_justification": "The ABI, pinned global declarations and SDK macros, clipping, rejection, mode-zero behavior, and display-list store order are unchanged. No added caller, fake pressure, qualifier, inline assembly, padding or extra parameter exists. Equivalence is restricted to the baseline C's defined domain. The selected SDK macro still evaluates D_80149438++ three times in its original order. The both-flags body contains its real drawing operations in a one-shot do-while-zero block, with no break/continue. This is the known alias-boundary lever, not a new control claim. After bottom expansion, the old height is needed only to form the selected vertical texture coordinate. Reusing height for t+height executes the same signed addition and passes the same shifted value. Its old value and the original t are not observed after the terminal arm. The operands are ordinary, non-address-taken locals; no extra computation or overflow domain is introduced. ",
+      "native_effect": "Unlike X01, both vertical terminal consumers belong to the height carrier. This tests whether consistent web ownership raises height's actual saving across both uses or makes uopt coalesce back to the original t web.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "X03": {
+      "source": "candidates/X03.c",
+      "sha256": "475b5db15b5e0b783842138ffd92e58e000cdf0c254ac41186ed0758c35e2292",
+      "edit": "From X02, finish the genuine 10.5 vertical coordinate in height before each flipped packet, passing height directly as the t argument.",
+      "semantic_justification": "The ABI, pinned global declarations and SDK macros, clipping, rejection, mode-zero behavior, and display-list store order are unchanged. No added caller, fake pressure, qualifier, inline assembly, padding or extra parameter exists. Equivalence is restricted to the baseline C's defined domain. The selected SDK macro still evaluates D_80149438++ three times in its original order. The both-flags body contains its real drawing operations in a one-shot do-while-zero block, with no break/continue. This is the known alias-boundary lever, not a new control claim. After bottom expansion, the old height is needed only to form the selected vertical texture coordinate. Reusing height for t+height executes the same signed addition and passes the same shifted value. Its old value and the original t are not observed after the terminal arm. The operands are ordinary, non-address-taken locals; no extra computation or overflow domain is introduced. The left shift and offset addition keep their exact signed types and grouping; they move before the first packet store but read only ordinary non-address-taken locals. Macro argument evaluation remains single-use.",
+      "native_effect": "Terminates offset's live range before the packet and makes height the sole packed-coordinate consumer. This isolates packet-level liveness from X02's unscaled carrier and may alter the height/offset interference edge.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "X04": {
+      "source": "candidates/X04.c",
+      "sha256": "a466ac1e3df85d4acee522830d681605ecd16b75329c8b084dd6054a3f2c044a",
+      "edit": "Retain the both-flags wrapper; represent step as -512/-1024 at its original definitions, using step for vertical flips and -step for unflipped packets.",
+      "semantic_justification": "The ABI, pinned global declarations and SDK macros, clipping, rejection, mode-zero behavior, and display-list store order are unchanged. No added caller, fake pressure, qualifier, inline assembly, padding or extra parameter exists. Equivalence is restricted to the baseline C's defined domain. The selected SDK macro still evaluates D_80149438++ three times in its original order. The both-flags body contains its real drawing operations in a one-shot do-while-zero block, with no break/continue. This is the known alias-boundary lever, not a new control claim. Step has only the values 512/1024 in the baseline. Its new values are their representable negatives, so every packet receives the identical signed delta and _SHIFTL bit pattern. All definitions stay in the original setup branches.",
+      "native_effect": "Moves the real sign conversions to the opposite pair of terminal arms without moving initializations or adding values. Tests whether step's occurrence/copy savings and temporary uses change its competition with coordinate webs.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "X05": {
+      "source": "candidates/X05.c",
+      "sha256": "767ce641413d9cb25c2287e3e39d9889610ae42f93996bc03397feef7a168553",
+      "edit": "Retain the both-flags wrapper; after original setup, select step's final vertical sign once under bit 8 and pass step to all stretched packets.",
+      "semantic_justification": "The ABI, pinned global declarations and SDK macros, clipping, rejection, mode-zero behavior, and display-list store order are unchanged. No added caller, fake pressure, qualifier, inline assembly, padding or extra parameter exists. Equivalence is restricted to the baseline C's defined domain. The selected SDK macro still evaluates D_80149438++ three times in its original order. The both-flags body contains its real drawing operations in a one-shot do-while-zero block, with no break/continue. This is the known alias-boundary lever, not a new control claim. The flag has no intervening write or call before dispatch. Exactly the vertically flipped paths negate the same bounded step value once; unflipped paths do not. Only a local computation moves before the display-list stores.",
+      "native_effect": "Creates one genuine signed-delta definition feeding all four packets and removes branch-specific negations. Unlike X04, it changes definition topology and may let the existing vertical tests absorb the sign branch.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "X06": {
+      "source": "candidates/X06.c",
+      "sha256": "3fd275186fff53800fb8e0094edde7f03af85d058fea5dd980741b38924ee265",
+      "edit": "Retain the both-flags wrapper; declare height, step and offset at the beginning of the stretched-mode block, leaving texture_edge at function scope.",
+      "semantic_justification": "The ABI, pinned global declarations and SDK macros, clipping, rejection, mode-zero behavior, and display-list store order are unchanged. No added caller, fake pressure, qualifier, inline assembly, padding or extra parameter exists. Equivalence is restricted to the baseline C's defined domain. The selected SDK macro still evaluates D_80149438++ three times in its original order. The both-flags body contains its real drawing operations in a one-shot do-while-zero block, with no break/continue. This is the known alias-boundary lever, not a new control claim. The three uninitialized automatic locals are used only in the stretched block and are assigned before every use. Narrowing their declaration scope changes no operation, address, storage exposure, or observable value; declarations remain C89-compatible.",
+      "native_effect": "Tests genuine source ownership of setup temporaries independently of reordered definitions. IDO may assign different symbol/web ordering or scope endpoints before allocation, or discard the lexical distinction entirely.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "X07": {
+      "source": "candidates/X07.c",
+      "sha256": "a5925e4bd0738920279492084669644e6b5efcf005d68bcc3730ddd87a713cd2",
+      "edit": "Retain the both-flags wrapper; replace the function-scoped texture_edge temporary with one C89 local at each of the four horizontal-flip computation blocks.",
+      "semantic_justification": "The ABI, pinned global declarations and SDK macros, clipping, rejection, mode-zero behavior, and display-list store order are unchanged. No added caller, fake pressure, qualifier, inline assembly, padding or extra parameter exists. Equivalence is restricted to the baseline C's defined domain. The selected SDK macro still evaluates D_80149438++ three times in its original order. The both-flags body contains its real drawing operations in a one-shot do-while-zero block, with no break/continue. This is the known alias-boundary lever, not a new control claim. Each texture_edge value is defined and consumed only within its own horizontal-flip arm. The four same-named lexical locals do not overlap or escape. Their sum/subtraction expressions and all packet inputs are unchanged.",
+      "native_effect": "Splits the front-end temporary symbols for four independent sums without changing s's representation or introducing copies. Tests whether a shared source temporary's web numbering/interference influences the wrapper's allocation residual.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "X08": {
+      "source": "candidates/X08.c",
+      "sha256": "f87d67f591a74c69165e12a89d2b700de13461a966125222a4ebea74dbf2b33f",
+      "edit": "Replace only stretched flag dispatch with a horizontal-bit outer conditional and vertical-bit inner conditional; retain all four unwrapped drawing bodies.",
+      "semantic_justification": "The ABI, pinned global declarations and SDK macros, clipping, rejection, mode-zero behavior, and display-list store order are unchanged. No added caller, fake pressure, qualifier, inline assembly, padding or extra parameter exists. Equivalence is restricted to the baseline C's defined domain. The selected SDK macro still evaluates D_80149438++ three times in its original order. Bits 4 and 8 select exactly the same four arm bodies. All predicate reads precede packet stores, and no call or global write intervenes, so their ordinary single-threaded values are stable. The selected arithmetic, operation grouping and complete SDK expansion are unchanged. ",
+      "native_effect": "Removes the source's repeated horizontal discrimination and gives the both-flags exit a different genuine conditional parent. Tests alias-boundary graph formation without importing the body wrapper's extra default-live entry.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "X09": {
+      "source": "candidates/X09.c",
+      "sha256": "884f24d09833b5b510360ea663efb38e94b4409217c09d287f418d73ecee94c4",
+      "edit": "Replace only stretched flag dispatch with a vertical-bit outer conditional and horizontal-bit inner conditional, preserving every selected arm body.",
+      "semantic_justification": "The ABI, pinned global declarations and SDK macros, clipping, rejection, mode-zero behavior, and display-list store order are unchanged. No added caller, fake pressure, qualifier, inline assembly, padding or extra parameter exists. Equivalence is restricted to the baseline C's defined domain. The selected SDK macro still evaluates D_80149438++ three times in its original order. Bits 4 and 8 select exactly the same four arm bodies. All predicate reads precede packet stores, and no call or global write intervenes, so their ordinary single-threaded values are stable. The selected arithmetic, operation grouping and complete SDK expansion are unchanged. ",
+      "native_effect": "Groups the two actual height/offset consumers under one real vertical branch. This changes both their live-IN membership and which metadata-only exit can precede the horizontal-only test; it differs causally from X08's horizontal grouping.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "X10": {
+      "source": "candidates/X10.c",
+      "sha256": "b074ed7b2000953f6188ffdea86c585fa5a7985dd1c66206db045444dc62386e",
+      "edit": "Replace only stretched flag dispatch with an exhaustive switch on bits 4|8, retaining the four original drawing bodies in cases 12,4,8,0 with break exits.",
+      "semantic_justification": "The ABI, pinned global declarations and SDK macros, clipping, rejection, mode-zero behavior, and display-list store order are unchanged. No added caller, fake pressure, qualifier, inline assembly, padding or extra parameter exists. Equivalence is restricted to the baseline C's defined domain. The selected SDK macro still evaluates D_80149438++ three times in its original order. Bits 4 and 8 select exactly the same four arm bodies. All predicate reads precede packet stores, and no call or global write intervenes, so their ordinary single-threaded values are stable. The selected arithmetic, operation grouping and complete SDK expansion are unchanged. An int masked with 12 has exactly the four represented values; there is no fallthrough. Each break exits only the switch, after which the function reaches its original end.",
+      "native_effect": "Gives uopt an exhaustive four-way dispatch rather than overlapping short-circuit predicates. Tests whether switch exit/provenance handling removes the metadata predecessor without a live-through drawing wrapper.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    }
+  }
+}

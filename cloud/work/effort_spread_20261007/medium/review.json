@@ -1,0 +1,252 @@
+{
+  "schema": "rush-texture-rect-review-v1",
+  "status": "frozen_source_reviewed_uncompiled",
+  "semantic_scope": "Pinned C defined domain only; static mapping review, no native equivalence claim.",
+  "candidates": {
+    "M01": {
+      "source": "candidates/M01.c",
+      "sha256": "be10288c80677cca2624c888a7445315d69ae50e559fdd7dcf8b5267e5e7ea01",
+      "edit": "Replace stretched four-arm ladder with nested bit-4-first dispatch; retain each exact leaf body.",
+      "semantic_justification": "Pinned signature, global declarations, SDK macro definitions, clipping, rejection, and scalar arithmetic grouping are retained. Equivalent on the pinned C defined domain; no native equivalence claim. Every executed draw still invokes the real macro once with the same field values, preserving its three pointer increments and six packet stores in order. The four disjoint flag cases map to the same unchanged leaf; only ordinary pre-store flag reads are reordered.",
+      "native_effect": "Reorders stretched predicate graph and branch joins so alias closure may attach to a different predecessor; bit-4 priority changes genuine live-IN sets rather than adding one-shot wrapper blocks.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M02": {
+      "source": "candidates/M02.c",
+      "sha256": "0e39e1ef3cfcb2c6fc88f0585eeac253d79be0b80e4551980632f5a2e4bd25e0",
+      "edit": "Replace stretched four-arm ladder with nested bit-8-first dispatch; retain each exact leaf body.",
+      "semantic_justification": "Pinned signature, global declarations, SDK macro definitions, clipping, rejection, and scalar arithmetic grouping are retained. Equivalent on the pinned C defined domain; no native equivalence claim. Every executed draw still invokes the real macro once with the same field values, preserving its three pointer increments and six packet stores in order. The four disjoint flag cases map to the same unchanged leaf; only ordinary pre-store flag reads are reordered.",
+      "native_effect": "Reorders stretched predicate graph and branch joins so alias closure may attach to a different predecessor; bit-8 priority changes genuine live-IN sets rather than adding one-shot wrapper blocks.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M03": {
+      "source": "candidates/M03.c",
+      "sha256": "b074ed7b2000953f6188ffdea86c585fa5a7985dd1c66206db045444dc62386e",
+      "edit": "Use a four-case masked switch for stretched dispatch, preserving all leaf bodies.",
+      "semantic_justification": "Pinned signature, global declarations, SDK macro definitions, clipping, rejection, and scalar arithmetic grouping are retained. Equivalent on the pinned C defined domain; no native equivalence claim. Every executed draw still invokes the real macro once with the same field values, preserving its three pointer increments and six packet stores in order. Mask 12 yields only 0,4,8,12, each mapped to its original arm; break exits only the new switch.",
+      "native_effect": "Switch lowering creates a multiway join/exit shape rather than short-circuit ladder, potentially relocating alias closure or changing instruction population.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M04": {
+      "source": "candidates/M04.c",
+      "sha256": "32bed78195b1542ec756008302242076b3cb4e07c3e1a8e2e4a82b03a9d4f276",
+      "edit": "Use a single combined-bit equality for the stretched both-flags test.",
+      "semantic_justification": "Pinned signature, global declarations, SDK macro definitions, clipping, rejection, and scalar arithmetic grouping are retained. Equivalent on the pinned C defined domain; no native equivalence claim. Every executed draw still invokes the real macro once with the same field values, preserving its three pointer increments and six packet stores in order. Both bits set is exactly masked equality to 12; flags are nonvolatile and no store lies between original reads.",
+      "native_effect": "Tests whether eliminating the short-circuit predicate block removes the metadata predecessor without an extra live-through body block.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M05": {
+      "source": "candidates/M05.c",
+      "sha256": "287a43d34f843ac6f33d7ea4295e74a651dcb96c73d0184909cb15f086bd14a0",
+      "edit": "Snapshot genuinely reused stretched setup/dispatch flags into a branch-local int.",
+      "semantic_justification": "Pinned signature, global declarations, SDK macro definitions, clipping, rejection, and scalar arithmetic grouping are retained. Equivalent on the pinned C defined domain; no native equivalence claim. Every executed draw still invokes the real macro once with the same field values, preserving its three pointer increments and six packet stores in order. The snapshot follows clipping and precedes all stretched flag reads and packet stores; no intervening write can change flags.",
+      "native_effect": "Tests whether one explicit flag value web changes predicate CSE and graph membership independently of pointer-alias scope; may canonicalize.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M06": {
+      "source": "candidates/M06.c",
+      "sha256": "e555dffd37901f7201674783d3e61e6e95fffbb53d1ed0a7f2c441cd58be6cfd",
+      "edit": "Use one stretched-region Gfx** holder for all four genuine macro emission sites.",
+      "semantic_justification": "Pinned signature, global declarations, SDK macro definitions, clipping, rejection, and scalar arithmetic grouping are retained. Equivalent on the pinned C defined domain; no native equivalence claim. Every executed draw still invokes the real macro once with the same field values, preserving its three pointer increments and six packet stores in order. Dereferencing &D_80149438 designates the identical global object on each of the three macro evaluations; increments/stores remain ordered identically.",
+      "native_effect": "Changes the lvalue provenance representation at every stretched packet, testing alias lifetime beyond the prior first-two-macro control.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M07": {
+      "source": "candidates/M07.c",
+      "sha256": "64181c1823761e06d59ebfcc38391a531b6be93c44dbc9946731774899a417a0",
+      "edit": "Use a scoped Gfx** holder only in the stretched both-flags emission leaf.",
+      "semantic_justification": "Pinned signature, global declarations, SDK macro definitions, clipping, rejection, and scalar arithmetic grouping are retained. Equivalent on the pinned C defined domain; no native equivalence claim. Every executed draw still invokes the real macro once with the same field values, preserving its three pointer increments and six packet stores in order. The holder is initialized once from the same global address and used by all real packet increments; no cursor value is cached or increment deferred.",
+      "native_effect": "Narrows the actual pointer holder lifetime at the causally relevant alias boundary, rather than wrapping an otherwise identical body.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M08": {
+      "source": "candidates/M08.c",
+      "sha256": "dad099bef39d79c3c1848ec5b272421d83dbe46e4e23d1572520b52f9b5e4a7e",
+      "edit": "Use nested bit-4-clear-first stretched dispatch.",
+      "semantic_justification": "Pinned signature, global declarations, SDK macro definitions, clipping, rejection, and scalar arithmetic grouping are retained. Equivalent on the pinned C defined domain; no native equivalence claim. Every executed draw still invokes the real macro once with the same field values, preserving its three pointer increments and six packet stores in order. The complemented outer predicate merely swaps its two child groups; all four original leaf computations remain unchanged.",
+      "native_effect": "Contrasts taken/fallthrough ordering against bit-4-set-first without changing any leaf operation; changes which alias-bearing exit precedes the next leaf.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M09": {
+      "source": "candidates/M09.c",
+      "sha256": "98637df2bae613fe6809c351632c9b64364dedf7bf4d6647dbde48c0416bf4f4",
+      "edit": "Use nested bit-8-clear-first stretched dispatch.",
+      "semantic_justification": "Pinned signature, global declarations, SDK macro definitions, clipping, rejection, and scalar arithmetic grouping are retained. Equivalent on the pinned C defined domain; no native equivalence claim. Every executed draw still invokes the real macro once with the same field values, preserving its three pointer increments and six packet stores in order. The complemented outer predicate merely swaps its two child groups; all four original leaf computations remain unchanged.",
+      "native_effect": "Contrasts taken/fallthrough ordering against bit-8-set-first without changing any leaf operation; changes which alias-bearing exit precedes the next leaf.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M10": {
+      "source": "candidates/M10.c",
+      "sha256": "9c9d9ebc896e4a7b494064a7a1d5b8953749b2d5213bb56eb99de87266b9b001",
+      "edit": "Consolidate stretched drawing into two SDK emission site(s), grouped by x flip decision.",
+      "semantic_justification": "Pinned signature, global declarations, SDK macro definitions, clipping, rejection, and scalar arithmetic grouping are retained. Equivalent on the pinned C defined domain; no native equivalence claim. Every executed draw still invokes the real macro once with the same field values, preserving its three pointer increments and six packet stores in order. Flip arithmetic runs on exactly the same flag cases. Command temporaries are initialized on every path and consumed by the unchanged macro. Vertical offset is included only on vertical-flip stretched paths. No global reads cross packet stores; independent x/y arithmetic may swap order but keeps the same operations and grouping.",
+      "native_effect": "Reduces duplicated packet-base alias regions in stretched; genuine command-field temporaries replace repeated immediate operands. Horizontal grouping retains two distinct horizontal packet bases and joins vertical fields.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M11": {
+      "source": "candidates/M11.c",
+      "sha256": "b7c904758ee99883b47ee8f88da4a64b4211d857132936215cfef0a5eb627514",
+      "edit": "Consolidate stretched drawing into two SDK emission site(s), grouped by y flip decision.",
+      "semantic_justification": "Pinned signature, global declarations, SDK macro definitions, clipping, rejection, and scalar arithmetic grouping are retained. Equivalent on the pinned C defined domain; no native equivalence claim. Every executed draw still invokes the real macro once with the same field values, preserving its three pointer increments and six packet stores in order. Flip arithmetic runs on exactly the same flag cases. Command temporaries are initialized on every path and consumed by the unchanged macro. Vertical offset is included only on vertical-flip stretched paths. No global reads cross packet stores; independent x/y arithmetic may swap order but keeps the same operations and grouping.",
+      "native_effect": "Reduces duplicated packet-base alias regions in stretched; genuine command-field temporaries replace repeated immediate operands. Vertical grouping retains two distinct vertical packet bases and joins horizontal stride.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M12": {
+      "source": "candidates/M12.c",
+      "sha256": "e8ebd89878b01f1c1cccc38d45460a8ebc17af52464a2d5dc004c28e290ff9a9",
+      "edit": "Consolidate stretched drawing into one SDK emission site(s), grouped by all flip decision.",
+      "semantic_justification": "Pinned signature, global declarations, SDK macro definitions, clipping, rejection, and scalar arithmetic grouping are retained. Equivalent on the pinned C defined domain; no native equivalence claim. Every executed draw still invokes the real macro once with the same field values, preserving its three pointer increments and six packet stores in order. Flip arithmetic runs on exactly the same flag cases. Command temporaries are initialized on every path and consumed by the unchanged macro. Vertical offset is included only on vertical-flip stretched paths. No global reads cross packet stores; independent x/y arithmetic may swap order but keeps the same operations and grouping.",
+      "native_effect": "Reduces duplicated packet-base alias regions in stretched; genuine command-field temporaries replace repeated immediate operands. A single packet-base region removes inter-leaf metadata exits entirely, testing a structurally different alias solution.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M13": {
+      "source": "candidates/M13.c",
+      "sha256": "34195909ae2da3e4bae5db01becd898d9fdcf11fea48d9a9d292df29a237b5d1",
+      "edit": "Consolidate mode_zero drawing into two SDK emission site(s), grouped by x flip decision.",
+      "semantic_justification": "Pinned signature, global declarations, SDK macro definitions, clipping, rejection, and scalar arithmetic grouping are retained. Equivalent on the pinned C defined domain; no native equivalence claim. Every executed draw still invokes the real macro once with the same field values, preserving its three pointer increments and six packet stores in order. Flip arithmetic runs on exactly the same flag cases. Command temporaries are initialized on every path and consumed by the unchanged macro. Vertical offset is included only on vertical-flip stretched paths. No global reads cross packet stores; independent x/y arithmetic may swap order but keeps the same operations and grouping.",
+      "native_effect": "Reduces duplicated packet-base alias regions in mode_zero; genuine command-field temporaries replace repeated immediate operands. Horizontal grouping retains two distinct horizontal packet bases and joins vertical fields.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M14": {
+      "source": "candidates/M14.c",
+      "sha256": "c61137cddac1624c3b02ee08e969b2adc0245e075ddcf7556e4c252219e91ae3",
+      "edit": "Consolidate mode_zero drawing into two SDK emission site(s), grouped by y flip decision.",
+      "semantic_justification": "Pinned signature, global declarations, SDK macro definitions, clipping, rejection, and scalar arithmetic grouping are retained. Equivalent on the pinned C defined domain; no native equivalence claim. Every executed draw still invokes the real macro once with the same field values, preserving its three pointer increments and six packet stores in order. Flip arithmetic runs on exactly the same flag cases. Command temporaries are initialized on every path and consumed by the unchanged macro. Vertical offset is included only on vertical-flip stretched paths. No global reads cross packet stores; independent x/y arithmetic may swap order but keeps the same operations and grouping.",
+      "native_effect": "Reduces duplicated packet-base alias regions in mode_zero; genuine command-field temporaries replace repeated immediate operands. Vertical grouping retains two distinct vertical packet bases and joins horizontal stride.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M15": {
+      "source": "candidates/M15.c",
+      "sha256": "6d4fdb86e1cc148fd64de4f5e1800410f4e30a3107e18f6ec42e804451b470de",
+      "edit": "Consolidate mode_zero drawing into one SDK emission site(s), grouped by all flip decision.",
+      "semantic_justification": "Pinned signature, global declarations, SDK macro definitions, clipping, rejection, and scalar arithmetic grouping are retained. Equivalent on the pinned C defined domain; no native equivalence claim. Every executed draw still invokes the real macro once with the same field values, preserving its three pointer increments and six packet stores in order. Flip arithmetic runs on exactly the same flag cases. Command temporaries are initialized on every path and consumed by the unchanged macro. Vertical offset is included only on vertical-flip stretched paths. No global reads cross packet stores; independent x/y arithmetic may swap order but keeps the same operations and grouping.",
+      "native_effect": "Reduces duplicated packet-base alias regions in mode_zero; genuine command-field temporaries replace repeated immediate operands. A single packet-base region removes inter-leaf metadata exits entirely, testing a structurally different alias solution.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M16": {
+      "source": "candidates/M16.c",
+      "sha256": "ec8c6d34136b7a4d4f2a56c778b9acd7dbd9080072ad189cdaaa98978afa331f",
+      "edit": "Consolidate both drawing into two SDK emission site(s), grouped by x flip decision.",
+      "semantic_justification": "Pinned signature, global declarations, SDK macro definitions, clipping, rejection, and scalar arithmetic grouping are retained. Equivalent on the pinned C defined domain; no native equivalence claim. Every executed draw still invokes the real macro once with the same field values, preserving its three pointer increments and six packet stores in order. Flip arithmetic runs on exactly the same flag cases. Command temporaries are initialized on every path and consumed by the unchanged macro. Vertical offset is included only on vertical-flip stretched paths. No global reads cross packet stores; independent x/y arithmetic may swap order but keeps the same operations and grouping.",
+      "native_effect": "Reduces duplicated packet-base alias regions in both; genuine command-field temporaries replace repeated immediate operands. Horizontal grouping retains two distinct horizontal packet bases and joins vertical fields.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M17": {
+      "source": "candidates/M17.c",
+      "sha256": "3f4a6ccb98e29bf76d02fcaab15631d937cbe0c98b87e8c32dddd30b60939340",
+      "edit": "Consolidate both drawing into two SDK emission site(s), grouped by y flip decision.",
+      "semantic_justification": "Pinned signature, global declarations, SDK macro definitions, clipping, rejection, and scalar arithmetic grouping are retained. Equivalent on the pinned C defined domain; no native equivalence claim. Every executed draw still invokes the real macro once with the same field values, preserving its three pointer increments and six packet stores in order. Flip arithmetic runs on exactly the same flag cases. Command temporaries are initialized on every path and consumed by the unchanged macro. Vertical offset is included only on vertical-flip stretched paths. No global reads cross packet stores; independent x/y arithmetic may swap order but keeps the same operations and grouping.",
+      "native_effect": "Reduces duplicated packet-base alias regions in both; genuine command-field temporaries replace repeated immediate operands. Vertical grouping retains two distinct vertical packet bases and joins horizontal stride.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M18": {
+      "source": "candidates/M18.c",
+      "sha256": "fd550dfcb627a4c59a8883c2be41847682bf98ec4032b064ca8a26c1e8fb373b",
+      "edit": "Consolidate both drawing into one SDK emission site(s), grouped by all flip decision.",
+      "semantic_justification": "Pinned signature, global declarations, SDK macro definitions, clipping, rejection, and scalar arithmetic grouping are retained. Equivalent on the pinned C defined domain; no native equivalence claim. Every executed draw still invokes the real macro once with the same field values, preserving its three pointer increments and six packet stores in order. Flip arithmetic runs on exactly the same flag cases. Command temporaries are initialized on every path and consumed by the unchanged macro. Vertical offset is included only on vertical-flip stretched paths. No global reads cross packet stores; independent x/y arithmetic may swap order but keeps the same operations and grouping.",
+      "native_effect": "Reduces duplicated packet-base alias regions in both; genuine command-field temporaries replace repeated immediate operands. A single packet-base region removes inter-leaf metadata exits entirely, testing a structurally different alias solution.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M19": {
+      "source": "candidates/M19.c",
+      "sha256": "08c5a924300b367821c5e4b46dbac6a9a43ef106dab1e5c73734716d3b061417",
+      "edit": "Use masked four-case switches in both mode regions.",
+      "semantic_justification": "Pinned signature, global declarations, SDK macro definitions, clipping, rejection, and scalar arithmetic grouping are retained. Equivalent on the pinned C defined domain; no native equivalence claim. Every executed draw still invokes the real macro once with the same field values, preserving its three pointer increments and six packet stores in order. Each switch covers precisely the four possible masked values and retains its original leaf operations and mode selection.",
+      "native_effect": "Extends M03 to the mode-zero region, testing whether its predecessor graph and genuine parameter live-IN counts change stretched allocation.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M20": {
+      "source": "candidates/M20.c",
+      "sha256": "103d3136bd35a9e1d0266643a7d441f8dc9b84988739bd5d489584f360a8cf02",
+      "edit": "Use nested vertical-first flag dispatch in both mode regions.",
+      "semantic_justification": "Pinned signature, global declarations, SDK macro definitions, clipping, rejection, and scalar arithmetic grouping are retained. Equivalent on the pinned C defined domain; no native equivalence claim. Every executed draw still invokes the real macro once with the same field values, preserving its three pointer increments and six packet stores in order. Each nested dispatch preserves all four exact leaf bodies; ordinary flag reads precede every packet store.",
+      "native_effect": "Extends M02 to both modes: changed mode-zero graph may alter shared parameter allocation while the stretched alias boundary uses the same nested shape.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    }
+  },
+  "known_risks": [
+    "Factored variants can legitimately worsen instruction count and allocation.",
+    "Ordinary flag reads may be combined only because no store intervenes.",
+    "No no-alias or restrict assumptions are added."
+  ],
+  "excluded": [
+    "guarded exits",
+    "one-shot initialization/lifetime repeats",
+    "macro replacement",
+    "fake callers",
+    "dead pressure",
+    "inline asm",
+    "volatile"
+  ],
+  "static_validation": {
+    "source_count": 20,
+    "unique_sources": 20,
+    "prior_exact_duplicates": 0,
+    "syntax_parsed": 20,
+    "bounded_cases_per_source": 1120,
+    "mutants_detected": 2,
+    "no_compiler_invoked": true,
+    "limits": "Interprets actual control skeleton and SDK argument tuples; frozen macro prefix proves same expansion. Not full C equivalence or native execution."
+  },
+  "no_compilation_or_scoring_performed": true
+}

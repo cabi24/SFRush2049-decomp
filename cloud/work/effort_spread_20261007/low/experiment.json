@@ -1,0 +1,189 @@
+{
+  "schema": "decomp-workbench-experiment-v2",
+  "family": "texture-rectangle-low-effort-frozen",
+  "baseline": "baseline.c",
+  "parameters": {
+    "variant": [
+      "L01",
+      "L02",
+      "L03",
+      "L04",
+      "L05",
+      "L06",
+      "L07",
+      "L08",
+      "L09",
+      "L10",
+      "L11",
+      "L12",
+      "L13",
+      "L14",
+      "L15",
+      "L16",
+      "L17",
+      "L18",
+      "L19",
+      "L20",
+      "L21",
+      "L22",
+      "L23",
+      "L24",
+      "L25"
+    ]
+  },
+  "candidates": [
+    {
+      "source": "candidates/LOW01.c",
+      "parameters": {
+        "variant": "L01"
+      }
+    },
+    {
+      "source": "candidates/LOW02.c",
+      "parameters": {
+        "variant": "L02"
+      }
+    },
+    {
+      "source": "candidates/LOW03.c",
+      "parameters": {
+        "variant": "L03"
+      }
+    },
+    {
+      "source": "candidates/LOW04.c",
+      "parameters": {
+        "variant": "L04"
+      }
+    },
+    {
+      "source": "candidates/LOW05.c",
+      "parameters": {
+        "variant": "L05"
+      }
+    },
+    {
+      "source": "candidates/LOW06.c",
+      "parameters": {
+        "variant": "L06"
+      }
+    },
+    {
+      "source": "candidates/LOW07.c",
+      "parameters": {
+        "variant": "L07"
+      }
+    },
+    {
+      "source": "candidates/LOW08.c",
+      "parameters": {
+        "variant": "L08"
+      }
+    },
+    {
+      "source": "candidates/LOW09.c",
+      "parameters": {
+        "variant": "L09"
+      }
+    },
+    {
+      "source": "candidates/LOW10.c",
+      "parameters": {
+        "variant": "L10"
+      }
+    },
+    {
+      "source": "candidates/LOW11.c",
+      "parameters": {
+        "variant": "L11"
+      }
+    },
+    {
+      "source": "candidates/LOW12.c",
+      "parameters": {
+        "variant": "L12"
+      }
+    },
+    {
+      "source": "candidates/LOW13.c",
+      "parameters": {
+        "variant": "L13"
+      }
+    },
+    {
+      "source": "candidates/LOW14.c",
+      "parameters": {
+        "variant": "L14"
+      }
+    },
+    {
+      "source": "candidates/LOW15.c",
+      "parameters": {
+        "variant": "L15"
+      }
+    },
+    {
+      "source": "candidates/LOW16.c",
+      "parameters": {
+        "variant": "L16"
+      }
+    },
+    {
+      "source": "candidates/LOW17.c",
+      "parameters": {
+        "variant": "L17"
+      }
+    },
+    {
+      "source": "candidates/LOW18.c",
+      "parameters": {
+        "variant": "L18"
+      }
+    },
+    {
+      "source": "candidates/LOW19.c",
+      "parameters": {
+        "variant": "L19"
+      }
+    },
+    {
+      "source": "candidates/LOW20.c",
+      "parameters": {
+        "variant": "L20"
+      }
+    },
+    {
+      "source": "candidates/LOW21.c",
+      "parameters": {
+        "variant": "L21"
+      }
+    },
+    {
+      "source": "candidates/LOW22.c",
+      "parameters": {
+        "variant": "L22"
+      }
+    },
+    {
+      "source": "candidates/LOW23.c",
+      "parameters": {
+        "variant": "L23"
+      }
+    },
+    {
+      "source": "candidates/LOW24.c",
+      "parameters": {
+        "variant": "L24"
+      }
+    },
+    {
+      "source": "candidates/LOW25.c",
+      "parameters": {
+        "variant": "L25"
+      }
+    }
+  ],
+  "signals": [],
+  "controls": [],
+  "coverage": {}
+}

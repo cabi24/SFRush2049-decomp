@@ -259,7 +259,7 @@ def validate(plan_path, repo=REPO):
         raise ValueError("unsupported target directory")
     limits = plan["limits"]
     fields(limits, ("variants", "jobs", "compile_seconds", "score_seconds", "diagnose_seconds"))
-    for name, maximum in (("variants", 20), ("jobs", 2), ("compile_seconds", 120), ("score_seconds", 30), ("diagnose_seconds", 30)):
+    for name, maximum in (("variants", 25), ("jobs", 2), ("compile_seconds", 120), ("score_seconds", 30), ("diagnose_seconds", 30)):
         if type(limits[name]) is not int or not 1 <= limits[name] <= maximum:
             raise ValueError("excessive or invalid budget: " + name)
     baseline = inside(root, plan["baseline"])

@@ -1,0 +1,310 @@
+{
+  "schema": "rush-hypothesis-batch-v1",
+  "base_commit": "c35728addbae1626aabc89b7d837e28774f333a0",
+  "function": "func_80087110",
+  "recipe": "single",
+  "purpose": "experiment",
+  "experiment": "experiment.json",
+  "baseline": "baseline.c",
+  "baseline_sha256": "f8355db6884b85c77a25b21c7aae746be236ed10a3dc8fee93264259cf4c6f8f",
+  "baseline_expectation": {
+    "differing": 4,
+    "total": 445,
+    "extra_words": 0
+  },
+  "flags": [
+    "-g0",
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared"
+  ],
+  "targets": "asm/us/blob",
+  "context_manifest": "context.json",
+  "hypothesis": "Independent low-effort batch: genuine dispatch topology, mode exits, expression ordering and packet geometry webs may alter alias closure without the rejected initialization/wrapper controls.",
+  "limits": {
+    "variants": 25,
+    "jobs": 2,
+    "compile_seconds": 120,
+    "score_seconds": 30,
+    "diagnose_seconds": 30
+  },
+  "predictions": {
+    "L01": {
+      "source": "candidates/LOW01.c",
+      "sha256": "a761c12501628ad4c6ab247bddc54df177b03f4fec3be55baff9d84dd74210b0",
+      "edit": "Replace stretched flip dispatch with nested horizontal-first tests.",
+      "native_effect": "Changes stretched real dispatch topology and predecessor order. Tests whether alias closure and allocation can change together without the historical one-shot wrapper. Nested tests eliminate one redundant logical decision on some paths; native register/live-block effects are uncertain.",
+      "semantic_justification": "All original arm payloads and SDK calls remain intact. The ordinary flag is stable until the selected arm stores its packet; every mask value selects the same original payload. No new loop, artificial pressure, qualifier, call, or macro change is introduced. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L02": {
+      "source": "candidates/LOW02.c",
+      "sha256": "da56e3e947cd847bc121ffd8960f1e4e120c29f578a9f0ee9609619fb075d2aa",
+      "edit": "Replace stretched flip dispatch with nested vertical-first tests.",
+      "native_effect": "Changes stretched real dispatch topology and predecessor order. Tests whether alias closure and allocation can change together without the historical one-shot wrapper. Nested tests eliminate one redundant logical decision on some paths; native register/live-block effects are uncertain.",
+      "semantic_justification": "All original arm payloads and SDK calls remain intact. The ordinary flag is stable until the selected arm stores its packet; every mask value selects the same original payload. No new loop, artificial pressure, qualifier, call, or macro change is introduced. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L03": {
+      "source": "candidates/LOW03.c",
+      "sha256": "8b36bbbdd9ce0cccb0319cc8a66cd71640ec78c8f9dc8e92fbdff38ae5c2b84e",
+      "edit": "Replace stretched flip dispatch with a four-case masked switch.",
+      "native_effect": "Changes stretched real dispatch topology and predecessor order. Tests whether alias closure and allocation can change together without the historical one-shot wrapper. Switch lowering may reconstruct the original graph or use a materially different decision tree.",
+      "semantic_justification": "All original arm payloads and SDK calls remain intact. The ordinary flag is stable until the selected arm stores its packet; every mask value selects the same original payload. No new loop, artificial pressure, qualifier, call, or macro change is introduced. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L04": {
+      "source": "candidates/LOW04.c",
+      "sha256": "cba4b81c95e2b0d1f789a53aae222e60f7a36615ff1f6701c4b7911264c57f24",
+      "edit": "Replace mode-zero flip dispatch with nested horizontal-first tests.",
+      "native_effect": "Changes mode-zero real dispatch topology and predecessor order. Tests whether alias closure and allocation can change together without the historical one-shot wrapper. Nested tests eliminate one redundant logical decision on some paths; native register/live-block effects are uncertain.",
+      "semantic_justification": "All original arm payloads and SDK calls remain intact. The ordinary flag is stable until the selected arm stores its packet; every mask value selects the same original payload. No new loop, artificial pressure, qualifier, call, or macro change is introduced. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L05": {
+      "source": "candidates/LOW05.c",
+      "sha256": "dd727360f44f11c55fb035caddd712575593f574e436b3fa316897e9c313a2d4",
+      "edit": "Replace mode-zero flip dispatch with nested vertical-first tests.",
+      "native_effect": "Changes mode-zero real dispatch topology and predecessor order. Tests whether alias closure and allocation can change together without the historical one-shot wrapper. Nested tests eliminate one redundant logical decision on some paths; native register/live-block effects are uncertain.",
+      "semantic_justification": "All original arm payloads and SDK calls remain intact. The ordinary flag is stable until the selected arm stores its packet; every mask value selects the same original payload. No new loop, artificial pressure, qualifier, call, or macro change is introduced. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L06": {
+      "source": "candidates/LOW06.c",
+      "sha256": "40c49fdfe9cd8915cb756216945bf19ae2829d803cbd48f09c43435bad776ee5",
+      "edit": "Replace mode-zero flip dispatch with a four-case masked switch.",
+      "native_effect": "Changes mode-zero real dispatch topology and predecessor order. Tests whether alias closure and allocation can change together without the historical one-shot wrapper. Switch lowering may reconstruct the original graph or use a materially different decision tree.",
+      "semantic_justification": "All original arm payloads and SDK calls remain intact. The ordinary flag is stable until the selected arm stores its packet; every mask value selects the same original payload. No new loop, artificial pressure, qualifier, call, or macro change is introduced. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L07": {
+      "source": "candidates/LOW07.c",
+      "sha256": "df6cfbc07ec0fa717dc58f960f9d1981f4583ccd4ebe59d380a184d2ea640e10",
+      "edit": "Replace both modes flip dispatch with nested horizontal-first tests.",
+      "native_effect": "Changes both modes real dispatch topology and predecessor order. Tests whether alias closure and allocation can change together without the historical one-shot wrapper. Nested tests eliminate one redundant logical decision on some paths; native register/live-block effects are uncertain.",
+      "semantic_justification": "All original arm payloads and SDK calls remain intact. The ordinary flag is stable until the selected arm stores its packet; every mask value selects the same original payload. No new loop, artificial pressure, qualifier, call, or macro change is introduced. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L08": {
+      "source": "candidates/LOW08.c",
+      "sha256": "2c10c21bf99300067be2367ef644a77a49f67f9412963ff1db03ff749c3bc631",
+      "edit": "Replace both modes flip dispatch with nested vertical-first tests.",
+      "native_effect": "Changes both modes real dispatch topology and predecessor order. Tests whether alias closure and allocation can change together without the historical one-shot wrapper. Nested tests eliminate one redundant logical decision on some paths; native register/live-block effects are uncertain.",
+      "semantic_justification": "All original arm payloads and SDK calls remain intact. The ordinary flag is stable until the selected arm stores its packet; every mask value selects the same original payload. No new loop, artificial pressure, qualifier, call, or macro change is introduced. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L09": {
+      "source": "candidates/LOW09.c",
+      "sha256": "29cf091f82de9bf1a7f7df1cee2f79bfeae49cfdd1bd9206d57a49b0e1d9fa76",
+      "edit": "Replace both modes flip dispatch with a four-case masked switch.",
+      "native_effect": "Changes both modes real dispatch topology and predecessor order. Tests whether alias closure and allocation can change together without the historical one-shot wrapper. Switch lowering may reconstruct the original graph or use a materially different decision tree.",
+      "semantic_justification": "All original arm payloads and SDK calls remain intact. The ordinary flag is stable until the selected arm stores its packet; every mask value selects the same original payload. No new loop, artificial pressure, qualifier, call, or macro change is introduced. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L10": {
+      "source": "candidates/LOW10.c",
+      "sha256": "07818a1d4e25872aa22bc82241ca198b4859c0f1c731282f141e8a4692f2edcc",
+      "edit": "Reorder stretched four-way dispatch using exact masked states: reverse.",
+      "native_effect": "Changes which genuine drawing arm terminates immediately before the next test, directly probing sensitivity of post-exit alias metadata and assembler predecessor weights. Large layout changes are possible.",
+      "semantic_justification": "All original arm payloads and SDK calls remain intact. The ordinary flag is stable until the selected arm stores its packet; every mask value selects the same original payload. No new loop, artificial pressure, qualifier, call, or macro change is introduced. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L11": {
+      "source": "candidates/LOW11.c",
+      "sha256": "46ea37c96f1f751d2017975a5dc44fdb4b876ba17a99a6c3d85090f78c6f7a4b",
+      "edit": "Reorder stretched four-way dispatch using exact masked states: yfirst.",
+      "native_effect": "Changes which genuine drawing arm terminates immediately before the next test, directly probing sensitivity of post-exit alias metadata and assembler predecessor weights. Large layout changes are possible.",
+      "semantic_justification": "All original arm payloads and SDK calls remain intact. The ordinary flag is stable until the selected arm stores its packet; every mask value selects the same original payload. No new loop, artificial pressure, qualifier, call, or macro change is introduced. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L12": {
+      "source": "candidates/LOW12.c",
+      "sha256": "02e6ab2393fc034beb580a591cf2b29d7d32f31324f0f979cc58b03f5990488e",
+      "edit": "Reorder stretched four-way dispatch using exact masked states: xfirst.",
+      "native_effect": "Changes which genuine drawing arm terminates immediately before the next test, directly probing sensitivity of post-exit alias metadata and assembler predecessor weights. Large layout changes are possible.",
+      "semantic_justification": "All original arm payloads and SDK calls remain intact. The ordinary flag is stable until the selected arm stores its packet; every mask value selects the same original payload. No new loop, artificial pressure, qualifier, call, or macro change is introduced. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L13": {
+      "source": "candidates/LOW13.c",
+      "sha256": "32bed78195b1542ec756008302242076b3cb4e07c3e1a8e2e4a82b03a9d4f276",
+      "edit": "Use single masked equality for both-flags predicate in stretched.",
+      "native_effect": "Collapses the two short-circuit flag tests into one mask/equality source decision, potentially reducing graph nodes and changing the alias predecessor. May canonicalize to baseline; mode scope separates local from allocator-global effects.",
+      "semantic_justification": "All original arm payloads and SDK calls remain intact. The ordinary flag is stable until the selected arm stores its packet; every mask value selects the same original payload. No new loop, artificial pressure, qualifier, call, or macro change is introduced. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L14": {
+      "source": "candidates/LOW14.c",
+      "sha256": "078c58a89146f3f0927e135b458179eedcbfb7131d2307189aaf9fa440072276",
+      "edit": "Use single masked equality for both-flags predicate in mode-zero.",
+      "native_effect": "Collapses the two short-circuit flag tests into one mask/equality source decision, potentially reducing graph nodes and changing the alias predecessor. May canonicalize to baseline; mode scope separates local from allocator-global effects.",
+      "semantic_justification": "All original arm payloads and SDK calls remain intact. The ordinary flag is stable until the selected arm stores its packet; every mask value selects the same original payload. No new loop, artificial pressure, qualifier, call, or macro change is introduced. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L15": {
+      "source": "candidates/LOW15.c",
+      "sha256": "a1b8fcfc78f08b18488c745f48dd44c574ea69f30fbb142a06a0f639c070b84f",
+      "edit": "Use single masked equality for both-flags predicate in both modes.",
+      "native_effect": "Collapses the two short-circuit flag tests into one mask/equality source decision, potentially reducing graph nodes and changing the alias predecessor. May canonicalize to baseline; mode scope separates local from allocator-global effects.",
+      "semantic_justification": "All original arm payloads and SDK calls remain intact. The ordinary flag is stable until the selected arm stores its packet; every mask value selects the same original payload. No new loop, artificial pressure, qualifier, call, or macro change is introduced. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L16": {
+      "source": "candidates/LOW16.c",
+      "sha256": "0430e9535a8771b491e84a982e06a133b0f9468a48510af284aa75f307893045",
+      "edit": "Split out-of-bounds rejection into two sequential returns.",
+      "native_effect": "Changes rejection graph entry structure without changing drawing statements; tests whether a genuine early-CFG change influences global lifetime numbering/priority or canonicalizes away.",
+      "semantic_justification": "The same short-circuit comparisons execute in the same order, with no side effects between them. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L17": {
+      "source": "candidates/LOW17.c",
+      "sha256": "8b95169a4d6efb260acdfe90d1623f3cfcacf204454dd122739a84161a5c70dc",
+      "edit": "Invert top-level mode branch and exchange its payload order.",
+      "native_effect": "Changes mode layout and which block exits the function; tests layout-dependent alias closure with unchanged drawing selection.",
+      "semantic_justification": "Exactly the original mode predicate is complemented; all original statements within each mode stay in order. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L18": {
+      "source": "candidates/LOW18.c",
+      "sha256": "6041ab51d2972103cd5d820e02e9c914ffad1b0f395ebb79acd5750dcd5e1bac",
+      "edit": "Make mode-zero completion return, followed by stretched mode as the function tail.",
+      "native_effect": "Removes the top-level else region, potentially changing exit metadata placement and allocation scopes without a one-shot drawing wrapper.",
+      "semantic_justification": "The original mode-zero path performs its complete draw then exits. Only the original nonzero path reaches unchanged stretched setup and dispatch. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L19": {
+      "source": "candidates/LOW19.c",
+      "sha256": "c7cc765a7b556bc9c66cbfc3fa1f5d4df3a05436083f11b9f446cfcf8d05d3ec",
+      "edit": "Commute the genuine horizontal edge sum in every flipped arm.",
+      "native_effect": "Tests operand-tree ordering for the edge-add native scheduling candidate without changing expression grouping or live values. Expected to canonicalize, but any native difference isolates expression-order handling.",
+      "semantic_justification": "Signed addition has identical value and overflow domain under operand commutation; operands are ordinary locals without side effects. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L20": {
+      "source": "candidates/LOW20.c",
+      "sha256": "9421714740848030566399d0e0c6c4972a9db3994534c3e195d02227fa52fff3",
+      "edit": "Place genuine vertical texture update before horizontal edge calculation in stretched both-flags arm.",
+      "native_effect": "Changes source definition order at the problematic arm without adding blocks or changing lifetimes through setup. Tests native scheduler input ordering and allocator web creation order.",
+      "semantic_justification": "The moved vertical update depends only on t and height; horizontal arithmetic depends only on s/right/x. Both complete before the same packet stores. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L21": {
+      "source": "candidates/LOW21.c",
+      "sha256": "8d7b829921b64611c708cabb789591aa3abdbfae8bc275a367b21069db4432bf",
+      "edit": "Name genuinely consumed stretched packet geometry before dispatch: packet_right, packet_bottom.",
+      "native_effect": "Factors repeated packet geometry expressions into actual shared inputs. Tests whether common expression definitions outside macro-local alias scopes alter allocation and metadata closure; single-axis versus paired coordinates isolates expression-web interactions.",
+      "semantic_justification": "Assignments occur after clipping and stretch adjustment, on precisely the paths that would evaluate these expressions in one of four packets. Each local feeds actual macro arguments. Arithmetic types/grouping are unchanged and expressions depend only on local integers. No dummy value is created. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L22": {
+      "source": "candidates/LOW22.c",
+      "sha256": "81a07e5106127479415b521b9a149746296f5647c6e3804cb99b8c460543ee89",
+      "edit": "Name genuinely consumed stretched packet geometry before dispatch: packet_right.",
+      "native_effect": "Factors repeated packet geometry expressions into actual shared inputs. Tests whether common expression definitions outside macro-local alias scopes alter allocation and metadata closure; single-axis versus paired coordinates isolates expression-web interactions.",
+      "semantic_justification": "Assignments occur after clipping and stretch adjustment, on precisely the paths that would evaluate these expressions in one of four packets. Each local feeds actual macro arguments. Arithmetic types/grouping are unchanged and expressions depend only on local integers. No dummy value is created. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L23": {
+      "source": "candidates/LOW23.c",
+      "sha256": "cfaa00a6c47f0cb92fa3e80698c4ad79d971617ace5daf45cf930a535d216e3f",
+      "edit": "Name genuinely consumed stretched packet geometry before dispatch: packet_bottom.",
+      "native_effect": "Factors repeated packet geometry expressions into actual shared inputs. Tests whether common expression definitions outside macro-local alias scopes alter allocation and metadata closure; single-axis versus paired coordinates isolates expression-web interactions.",
+      "semantic_justification": "Assignments occur after clipping and stretch adjustment, on precisely the paths that would evaluate these expressions in one of four packets. Each local feeds actual macro arguments. Arithmetic types/grouping are unchanged and expressions depend only on local integers. No dummy value is created. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L24": {
+      "source": "candidates/LOW24.c",
+      "sha256": "7d4b9f837fd1f33477ed02afcf039f16afaf9ffce137c2e91e17ddfab9b35836",
+      "edit": "Name genuinely consumed stretched packet geometry before dispatch: packet_x, packet_y.",
+      "native_effect": "Factors repeated packet geometry expressions into actual shared inputs. Tests whether common expression definitions outside macro-local alias scopes alter allocation and metadata closure; single-axis versus paired coordinates isolates expression-web interactions.",
+      "semantic_justification": "Assignments occur after clipping and stretch adjustment, on precisely the paths that would evaluate these expressions in one of four packets. Each local feeds actual macro arguments. Arithmetic types/grouping are unchanged and expressions depend only on local integers. No dummy value is created. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L25": {
+      "source": "candidates/LOW25.c",
+      "sha256": "8668c364a050d70a9220da3acd5b5167f4960b5e72081737537a586fa33ba4f4",
+      "edit": "Name genuinely consumed stretched packet geometry before dispatch: packet_right, packet_bottom, packet_x, packet_y.",
+      "native_effect": "Factors repeated packet geometry expressions into actual shared inputs. Tests whether common expression definitions outside macro-local alias scopes alter allocation and metadata closure; single-axis versus paired coordinates isolates expression-web interactions.",
+      "semantic_justification": "Assignments occur after clipping and stretch adjustment, on precisely the paths that would evaluate these expressions in one of four packets. Each local feeds actual macro arguments. Arithmetic types/grouping are unchanged and expressions depend only on local integers. No dummy value is created. Equivalence is limited to the pinned C defined domain; no native equivalence or match is claimed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    }
+  }
+}

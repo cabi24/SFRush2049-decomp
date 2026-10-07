@@ -1,0 +1,34 @@
+--- baseline.c
++++ candidates/M10.c
+@@ -50,17 +50,22 @@
+         height=bottom-y;
+         if(D_8012E608&0x8000) {bottom+=height+1;step=512;offset=16;}
+         else {step=1024;offset=0;}
+-        if((D_8012E608&4)&&(D_8012E608&8)) {
+-            texture_edge=s+right;s=texture_edge-x;t+=height;
+-            gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,(t<<5)+offset,-1024,-step);
+-        } else if(D_8012E608&4) {
++        {
++            int command_t,command_dy;
++            if(D_8012E608&4) {
+             texture_edge=s+right;s=texture_edge-x;
+-            gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,t<<5,-1024,step);
+-        } else if(D_8012E608&8) {
++            if(D_8012E608&8) {
+             t+=height;
+-            gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,(t<<5)+offset,1024,-step);
+-        } else {
+-            gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,t<<5,1024,step);
++                command_t=(t<<5)+offset;command_dy=-step;
++            } else {command_t=t<<5;command_dy=step;}
++            gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,command_t,-1024,command_dy);
++            } else {
++            if(D_8012E608&8) {
++            t+=height;
++                command_t=(t<<5)+offset;command_dy=-step;
++            } else {command_t=t<<5;command_dy=step;}
++            gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,command_t,1024,command_dy);
++            }
+         }
+     }
+ }

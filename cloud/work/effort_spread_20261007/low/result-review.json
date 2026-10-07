@@ -1,0 +1,41 @@
+{
+  "lane": "low",
+  "proposed": 25,
+  "unique_sources": 25,
+  "compiled_scored": 25,
+  "failures": 0,
+  "unique_complete_elfs": 25,
+  "unique_relocated_bodies": null,
+  "relocated_body_note": "Not exposed in sanitized summary; complete ELF uniqueness does not establish function-body uniqueness.",
+  "improving_baseline": 0,
+  "exact": 0,
+  "best": {
+    "ids": [
+      "LOW16",
+      "LOW18",
+      "LOW20"
+    ],
+    "differing": 4,
+    "total": 445,
+    "extra_words": 0
+  },
+  "interpretation": "Sequential clipping rejection, mode-zero early return, and vertical-before-horizontal definition order tie baseline. Dispatch topology and shared packet geometry do not improve this finite batch. These results reject the tested source changes as improvements, but do not isolate their exact alias/allocation mechanisms. LOW19 operand commutation gives 7, LOW24 shared x/y packet coordinates gives 12; those small counts are still regressions.",
+  "source_admissibility": "Unchanged ABI, declarations, SDK macros, flags and target. Genuine dispatch changes preserve arm selection; shared geometry locals are consumed by real packet arguments. Equivalence reasoning covers defined baseline C behavior and stable ordinary globals prior to packet stores. No native runtime semantic equivalence proof was run by this lane. LOW19 intentionally probes potential operand-order canonicalization; it is a narrow experiment rather than a strong source-origin claim.",
+  "next_decision": "Stop this frozen lane. Retain baseline; no adoption, extra matching, or second batch. Independent production/image validation would remain required for any future match.",
+  "timing_note": "Planning/evidence wall time includes tools and model latency, excludes subsequent queue wait. Active inference and tokens unavailable. Coordinator owns machine/queue timing.",
+  "machine_timings": {
+    "aggregation": "Summed elapsed durations are process/span wall time, not CPU time. Parallel and nested spans overlap; do not sum stages into total wall time.",
+    "campaign_seconds": 4.575560192000012,
+    "clock": "UTC boundaries; monotonic elapsed durations",
+    "cpu_seconds": null,
+    "ended_utc": "2026-10-07T19:44:34.606169+00:00",
+    "events_file": "events.jsonl",
+    "llm_active_seconds": null,
+    "llm_tokens": null,
+    "observation_cutoff": "Batch end is after initial report generation; final summary/timing serialization follows that measured boundary.",
+    "open_spans": [],
+    "started_utc": "2026-10-07T19:44:13.809764+00:00",
+    "wall_seconds": 20.796409713000685
+  },
+  "review_elapsed_seconds": 28.558406958999512
+}

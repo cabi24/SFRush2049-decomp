@@ -1,0 +1,24 @@
+--- baseline.c
++++ candidates/M05.c
+@@ -47,16 +47,17 @@
+             gSPTextureRectangle(D_80149438++,x<<2,y<<2,right<<2,bottom<<2,0,s<<5,t<<5,4096,1024);
+         }
+     } else {
++        int draw_flags=D_8012E608;
+         height=bottom-y;
+-        if(D_8012E608&0x8000) {bottom+=height+1;step=512;offset=16;}
++        if(draw_flags&0x8000) {bottom+=height+1;step=512;offset=16;}
+         else {step=1024;offset=0;}
+-        if((D_8012E608&4)&&(D_8012E608&8)) {
++        if((draw_flags&4)&&(draw_flags&8)) {
+             texture_edge=s+right;s=texture_edge-x;t+=height;
+             gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,(t<<5)+offset,-1024,-step);
+-        } else if(D_8012E608&4) {
++        } else if(draw_flags&4) {
+             texture_edge=s+right;s=texture_edge-x;
+             gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,t<<5,-1024,step);
+-        } else if(D_8012E608&8) {
++        } else if(draw_flags&8) {
+             t+=height;
+             gSPTextureRectangle(D_80149438++,x<<2,y<<2,(right+1)<<2,(bottom+1)<<2,0,s<<5,(t<<5)+offset,1024,-step);
+         } else {

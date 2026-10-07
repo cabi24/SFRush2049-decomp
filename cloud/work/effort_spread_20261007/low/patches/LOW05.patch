@@ -1,0 +1,30 @@
+--- baseline.c
++++ candidates/LOW05.c
+@@ -34,17 +34,21 @@
+     }
+     if(right<x || bottom<y)return;
+     if(!D_8014A248) {
+-        if((D_8012E608&4)&&(D_8012E608&8)) {
++        if(D_8012E608&8) {
++            if(D_8012E608&4) {
+             texture_edge=s+right;s=texture_edge-x;t+=bottom-y;
+             gSPTextureRectangle(D_80149438++,x<<2,y<<2,right<<2,bottom<<2,0,s<<5,t<<5,-4096,-1024);
+-        } else if(D_8012E608&4) {
++            } else {
++            t+=bottom-y;
++            gSPTextureRectangle(D_80149438++,x<<2,y<<2,right<<2,bottom<<2,0,s<<5,t<<5,4096,-1024);
++            }
++        } else {
++            if(D_8012E608&4) {
+             texture_edge=s+right;s=texture_edge-x;
+             gSPTextureRectangle(D_80149438++,x<<2,y<<2,right<<2,bottom<<2,0,s<<5,t<<5,-4096,1024);
+-        } else if(D_8012E608&8) {
+-            t+=bottom-y;
+-            gSPTextureRectangle(D_80149438++,x<<2,y<<2,right<<2,bottom<<2,0,s<<5,t<<5,4096,-1024);
+-        } else {
++            } else {
+             gSPTextureRectangle(D_80149438++,x<<2,y<<2,right<<2,bottom<<2,0,s<<5,t<<5,4096,1024);
++            }
+         }
+     } else {
+         height=bottom-y;

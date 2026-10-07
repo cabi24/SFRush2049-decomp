@@ -1,0 +1,119 @@
+{
+  "schema": "decomp-workbench-experiment-v2",
+  "family": "texture-rectangle-real-dispatch-and-packet-joins",
+  "baseline": "baseline.c",
+  "parameters": {
+    "variant": [
+      "H01",
+      "H02",
+      "H03",
+      "H04",
+      "H05",
+      "H06",
+      "H07",
+      "H08",
+      "H09",
+      "H10",
+      "H11",
+      "H12",
+      "H13",
+      "H14",
+      "H15"
+    ]
+  },
+  "candidates": [
+    {
+      "source": "candidates/H01.c",
+      "parameters": {
+        "variant": "H01"
+      }
+    },
+    {
+      "source": "candidates/H02.c",
+      "parameters": {
+        "variant": "H02"
+      }
+    },
+    {
+      "source": "candidates/H03.c",
+      "parameters": {
+        "variant": "H03"
+      }
+    },
+    {
+      "source": "candidates/H04.c",
+      "parameters": {
+        "variant": "H04"
+      }
+    },
+    {
+      "source": "candidates/H05.c",
+      "parameters": {
+        "variant": "H05"
+      }
+    },
+    {
+      "source": "candidates/H06.c",
+      "parameters": {
+        "variant": "H06"
+      }
+    },
+    {
+      "source": "candidates/H07.c",
+      "parameters": {
+        "variant": "H07"
+      }
+    },
+    {
+      "source": "candidates/H08.c",
+      "parameters": {
+        "variant": "H08"
+      }
+    },
+    {
+      "source": "candidates/H09.c",
+      "parameters": {
+        "variant": "H09"
+      }
+    },
+    {
+      "source": "candidates/H10.c",
+      "parameters": {
+        "variant": "H10"
+      }
+    },
+    {
+      "source": "candidates/H11.c",
+      "parameters": {
+        "variant": "H11"
+      }
+    },
+    {
+      "source": "candidates/H12.c",
+      "parameters": {
+        "variant": "H12"
+      }
+    },
+    {
+      "source": "candidates/H13.c",
+      "parameters": {
+        "variant": "H13"
+      }
+    },
+    {
+      "source": "candidates/H14.c",
+      "parameters": {
+        "variant": "H14"
+      }
+    },
+    {
+      "source": "candidates/H15.c",
+      "parameters": {
+        "variant": "H15"
+      }
+    }
+  ],
+  "signals": [],
+  "controls": [],
+  "coverage": {}
+}

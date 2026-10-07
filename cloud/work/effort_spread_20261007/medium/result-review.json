@@ -1,0 +1,40 @@
+{
+  "outcome": "No improvement; retain baseline; finite batch complete.",
+  "counts": {
+    "strict_exact": 0,
+    "unique_elf_groups": 20,
+    "variants": 20
+  },
+  "source_count": 20,
+  "unique_source_count": 20,
+  "compile_or_score_failures": 0,
+  "unresolved_unverified_errors": 0,
+  "best": {
+    "id": "M07",
+    "differing": 8,
+    "total": 445,
+    "extra_words": 0
+  },
+  "improving_baseline": 0,
+  "unique_relocated_bodies": null,
+  "duplicate_limit": "20 unique complete ELFs do not prove 20 unique relocated bodies. M10 and M11 both score 289, which does not establish body equivalence. No relocated-body count supplied in inspected summary.",
+  "interpretation": [
+    "M07 restricted holder lifetime is much less disruptive than M06 whole-stretched holder (441 differences plus 6 extras), confirming placement matters at native-output level without proving a specific alias mechanism.",
+    "M07 score 8 alone must not be equated with historical body-wrapper 8 or prior holder 8; these historical cases had different residual causes. No new compiler metadata trace was performed.",
+    "Predicate rewriting including one combined-mask comparison substantially perturbs output; none satisfies scheduling/allocation constraints together.",
+    "All nine command-field factoring variants regress; reducing real packet emission sites did not produce a closer source in this finite batch.",
+    "Broadening mode-zero graph changes affects the score but gives no improvement. Positional scores are not semantic distance."
+  ],
+  "admissibility": "All preserve genuine macro prefix and ABI; actual-source bounded checks pass 1,120 cases. Command-field temporaries carry real values consumed by packet writes; holder aliases exact global lvalue without caching its cursor. Bounded tests are not full-C equivalence or native runtime proof.",
+  "timing": {
+    "machine_start_utc": "2026-10-07T19:45:57.221066+00:00",
+    "machine_end_utc": "2026-10-07T19:46:16.137972+00:00",
+    "machine_wall_seconds": 18.916909085999578,
+    "freeze_to_runner_start_seconds": 101.399318,
+    "freeze_to_runner_note": "Includes notification, coordinator validation and serial-lane queue, not solely machine scheduling wait.",
+    "planning_monotonic_seconds": 257.1164489170005,
+    "active_llm_seconds": null,
+    "llm_tokens": null
+  },
+  "decision": "Stop. Do not adopt M07, infer original source, or run adaptive follow-up variants."
+}

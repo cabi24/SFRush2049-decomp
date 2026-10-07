@@ -1,0 +1,84 @@
+{
+  "schema": "decomp-workbench-experiment-v2",
+  "family": "texture-rectangle-xhigh-effort-comparison",
+  "baseline": "baseline.c",
+  "parameters": {
+    "variant": [
+      "X01",
+      "X02",
+      "X03",
+      "X04",
+      "X05",
+      "X06",
+      "X07",
+      "X08",
+      "X09",
+      "X10"
+    ]
+  },
+  "candidates": [
+    {
+      "source": "candidates/X01.c",
+      "parameters": {
+        "variant": "X01"
+      }
+    },
+    {
+      "source": "candidates/X02.c",
+      "parameters": {
+        "variant": "X02"
+      }
+    },
+    {
+      "source": "candidates/X03.c",
+      "parameters": {
+        "variant": "X03"
+      }
+    },
+    {
+      "source": "candidates/X04.c",
+      "parameters": {
+        "variant": "X04"
+      }
+    },
+    {
+      "source": "candidates/X05.c",
+      "parameters": {
+        "variant": "X05"
+      }
+    },
+    {
+      "source": "candidates/X06.c",
+      "parameters": {
+        "variant": "X06"
+      }
+    },
+    {
+      "source": "candidates/X07.c",
+      "parameters": {
+        "variant": "X07"
+      }
+    },
+    {
+      "source": "candidates/X08.c",
+      "parameters": {
+        "variant": "X08"
+      }
+    },
+    {
+      "source": "candidates/X09.c",
+      "parameters": {
+        "variant": "X09"
+      }
+    },
+    {
+      "source": "candidates/X10.c",
+      "parameters": {
+        "variant": "X10"
+      }
+    }
+  ],
+  "signals": [],
+  "controls": [],
+  "coverage": {}
+}

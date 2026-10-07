@@ -1,0 +1,154 @@
+{
+  "schema": "decomp-workbench-experiment-v2",
+  "family": "texture-rectangle-medium-effort-dispatch-and-alias-provenance",
+  "baseline": "baseline.c",
+  "parameters": {
+    "variant": [
+      "M01",
+      "M02",
+      "M03",
+      "M04",
+      "M05",
+      "M06",
+      "M07",
+      "M08",
+      "M09",
+      "M10",
+      "M11",
+      "M12",
+      "M13",
+      "M14",
+      "M15",
+      "M16",
+      "M17",
+      "M18",
+      "M19",
+      "M20"
+    ]
+  },
+  "candidates": [
+    {
+      "source": "candidates/M01.c",
+      "parameters": {
+        "variant": "M01"
+      }
+    },
+    {
+      "source": "candidates/M02.c",
+      "parameters": {
+        "variant": "M02"
+      }
+    },
+    {
+      "source": "candidates/M03.c",
+      "parameters": {
+        "variant": "M03"
+      }
+    },
+    {
+      "source": "candidates/M04.c",
+      "parameters": {
+        "variant": "M04"
+      }
+    },
+    {
+      "source": "candidates/M05.c",
+      "parameters": {
+        "variant": "M05"
+      }
+    },
+    {
+      "source": "candidates/M06.c",
+      "parameters": {
+        "variant": "M06"
+      }
+    },
+    {
+      "source": "candidates/M07.c",
+      "parameters": {
+        "variant": "M07"
+      }
+    },
+    {
+      "source": "candidates/M08.c",
+      "parameters": {
+        "variant": "M08"
+      }
+    },
+    {
+      "source": "candidates/M09.c",
+      "parameters": {
+        "variant": "M09"
+      }
+    },
+    {
+      "source": "candidates/M10.c",
+      "parameters": {
+        "variant": "M10"
+      }
+    },
+    {
+      "source": "candidates/M11.c",
+      "parameters": {
+        "variant": "M11"
+      }
+    },
+    {
+      "source": "candidates/M12.c",
+      "parameters": {
+        "variant": "M12"
+      }
+    },
+    {
+      "source": "candidates/M13.c",
+      "parameters": {
+        "variant": "M13"
+      }
+    },
+    {
+      "source": "candidates/M14.c",
+      "parameters": {
+        "variant": "M14"
+      }
+    },
+    {
+      "source": "candidates/M15.c",
+      "parameters": {
+        "variant": "M15"
+      }
+    },
+    {
+      "source": "candidates/M16.c",
+      "parameters": {
+        "variant": "M16"
+      }
+    },
+    {
+      "source": "candidates/M17.c",
+      "parameters": {
+        "variant": "M17"
+      }
+    },
+    {
+      "source": "candidates/M18.c",
+      "parameters": {
+        "variant": "M18"
+      }
+    },
+    {
+      "source": "candidates/M19.c",
+      "parameters": {
+        "variant": "M19"
+      }
+    },
+    {
+      "source": "candidates/M20.c",
+      "parameters": {
+        "variant": "M20"
+      }
+    }
+  ],
+  "signals": [],
+  "controls": [],
+  "coverage": {}
+}

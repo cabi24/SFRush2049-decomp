@@ -1,0 +1,21 @@
+{
+  "schema": "rush-effort-source-validation-v1",
+  "lane": "xhigh",
+  "status": "passed",
+  "variants": 10,
+  "unique_complete_sources": 10,
+  "historical_source_duplicates": 0,
+  "bounded_cases_per_candidate": 6120,
+  "candidate_case_comparisons": 61200,
+  "rejected_cases": 4806,
+  "emitted_cases": 1314,
+  "semantic_mutants_detected": [
+    "step_magnitude",
+    "packed_offset",
+    "vertical_carrier",
+    "dispatch_selector"
+  ],
+  "native_compile_performed": false,
+  "native_score_performed": false,
+  "scope": "Actual source control skeleton and exact macro argument tuples; pinned SDK prefix verified separately. Bounded Python interpretation is not a whole-C, native runtime or ROM equivalence proof."
+}
