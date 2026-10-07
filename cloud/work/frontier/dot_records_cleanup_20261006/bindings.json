@@ -1,0 +1,116 @@
+{
+  "base_commit": "7e62ed7b3c3e6f1e788bf013419b89e132b4c65d",
+  "native_body_sha256": "8bc788ec8d193185d9285d90d41bcf883934f5677ed2dbb59c50a665a4beb397",
+  "packet_files": {
+    "source": "45517ba0aad0cbd4aaa314878f56af5becf8e133b641718a314270949077ce75",
+    "verifier": "522d1c3d1ede778a3a9c4768dca1efbc1d65ff22b6cdfee84cef7de29eda4a8d",
+    "host_contract": "c68f2d56f169e79381517db043be95582caff01741b57312f8a4d9f46ba21385"
+  },
+  "frozen_contexts": {
+    "src/blob/sound_stop.c": "4c95264a49ad49344c60a3c2ec5e157cf07b7410b0025dbb62009fdb6aa35b2c",
+    "src/blob/sound_handles_clear.c": "eaa5f3041623eeaaca22eb198ab012cd53122318bb7f1e4f3370e330d2e53520",
+    "src/blob/entity_spawn_callback.c": "105e5ff96910b0f5cfa2ff246ca5eb77e608899b39a8e88a6db98189e9849c47"
+  },
+  "relocations": [
+    {
+      "site": "0x8",
+      "type": "R_MIPS_HI16",
+      "symbol": "D_80154198"
+    },
+    {
+      "site": "0xc",
+      "type": "R_MIPS_LO16",
+      "symbol": "D_80154198"
+    },
+    {
+      "site": "0x2c",
+      "type": "R_MIPS_26",
+      "symbol": "sound_handles_clear"
+    },
+    {
+      "site": "0x34",
+      "type": "R_MIPS_26",
+      "symbol": "sound_stop"
+    },
+    {
+      "site": "0x3c",
+      "type": "R_MIPS_HI16",
+      "symbol": "D_80151AD0"
+    },
+    {
+      "site": "0x40",
+      "type": "R_MIPS_LO16",
+      "symbol": "D_80151AD0"
+    },
+    {
+      "site": "0x54",
+      "type": "R_MIPS_HI16",
+      "symbol": "D_80154350"
+    },
+    {
+      "site": "0x60",
+      "type": "R_MIPS_LO16",
+      "symbol": "D_80154350"
+    },
+    {
+      "site": "0x58",
+      "type": "R_MIPS_HI16",
+      "symbol": "D_801541A8"
+    },
+    {
+      "site": "0x5c",
+      "type": "R_MIPS_LO16",
+      "symbol": "D_801541A8"
+    },
+    {
+      "site": "0x84",
+      "type": "R_MIPS_26",
+      "symbol": "entity_spawn_callback"
+    },
+    {
+      "site": "0xa8",
+      "type": "R_MIPS_26",
+      "symbol": "entity_spawn_callback"
+    },
+    {
+      "site": "0xcc",
+      "type": "R_MIPS_HI16",
+      "symbol": "D_80154360"
+    },
+    {
+      "site": "0xd0",
+      "type": "R_MIPS_LO16",
+      "symbol": "D_80154360"
+    },
+    {
+      "site": "0xd4",
+      "type": "R_MIPS_HI16",
+      "symbol": "D_801541A0"
+    },
+    {
+      "site": "0xd8",
+      "type": "R_MIPS_LO16",
+      "symbol": "D_801541A0"
+    },
+    {
+      "site": "0xe8",
+      "type": "R_MIPS_26",
+      "symbol": "sound_stop"
+    },
+    {
+      "site": "0xf4",
+      "type": "R_MIPS_HI16",
+      "symbol": "D_8014A110"
+    },
+    {
+      "site": "0xf8",
+      "type": "R_MIPS_LO16",
+      "symbol": "D_8014A110"
+    },
+    {
+      "site": "0x110",
+      "type": "R_MIPS_26",
+      "symbol": "func_8039244C"
+    }
+  ]
+}
