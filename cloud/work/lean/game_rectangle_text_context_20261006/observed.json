@@ -1,0 +1,137 @@
+{
+  "base": "f2e8380d3b368d00efc9cac3e37cdc7059b1f6e2",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "automatic_backend_flag": "-Wab,-r4300_mul",
+  "source_sha256": {
+    "helper.c": "d9441be2794a50712e06b63f74b39215f0c550d3cddb7d0909bdcded0f139fe0",
+    "slot_context.c": "1d19ad3000273569000654ca8f8d93d4e040eb476738998cf5e87847c18c2e8b",
+    "countdown_caller.c": "d41ecea76cddbccd58af80410a26666fa283e45beb5bd0a6d21cd712b1b43837",
+    "group.json": "76aea664ee08b97aa58a4707a614ba0b366103cfa382748121f23a603b88d113"
+  },
+  "rows": [
+    {
+      "mode": "baseline_single",
+      "function": "attract_mode_handler",
+      "result": {
+        "differing": 65,
+        "total": 66,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 8
+      },
+      "function_bytes": 296,
+      "target_bytes": 264,
+      "frame_bytes": [
+        56
+      ]
+    },
+    {
+      "mode": "genuine_context_control",
+      "function": "attract_mode_handler",
+      "result": {
+        "differing": 10,
+        "total": 66,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "function_bytes": 264,
+      "target_bytes": 264,
+      "frame_bytes": [
+        40
+      ]
+    },
+    {
+      "mode": "genuine_context_control",
+      "function": "control_settings",
+      "result": {
+        "differing": 627,
+        "total": 638,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x1e4",
+          ".rodata+0x0 at +0x1ec"
+        ],
+        "errors": [],
+        "extra_words": 0
+      },
+      "function_bytes": 2444,
+      "target_bytes": 2552,
+      "frame_bytes": [
+        1920
+      ]
+    },
+    {
+      "mode": "genuine_context_control",
+      "function": "func_800DCD58",
+      "result": {
+        "differing": 0,
+        "total": 39,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "function_bytes": 156,
+      "target_bytes": 156,
+      "frame_bytes": [
+        24
+      ]
+    },
+    {
+      "mode": "genuine_context_control",
+      "function": "func_800DCCE0",
+      "result": {
+        "differing": 0,
+        "total": 28,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "function_bytes": 112,
+      "target_bytes": 112,
+      "frame_bytes": [
+        24
+      ]
+    },
+    {
+      "mode": "genuine_context_control",
+      "function": "func_80106B3C",
+      "result": {
+        "differing": 105,
+        "total": 150,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 1
+      },
+      "function_bytes": 604,
+      "target_bytes": 600,
+      "frame_bytes": [
+        64
+      ]
+    },
+    {
+      "mode": "genuine_context_control",
+      "function": "slot_state_setup",
+      "result": {
+        "differing": 18,
+        "total": 58,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 2
+      },
+      "function_bytes": 232,
+      "target_bytes": 232,
+      "frame_bytes": [
+        32
+      ]
+    }
+  ],
+  "caller_path": "cloud/work/ipa-groups/codex_control_settings_a4/group.c",
+  "caller_sha256": "3ac20723417350924392b858b9ae60d3d204fc084fcb294ca039ddfe8d11e7c5"
+}
