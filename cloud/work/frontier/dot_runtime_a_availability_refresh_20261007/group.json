@@ -1,0 +1,20 @@
+{
+  "members": [
+    "func_80394564",
+    "func_80397FFC",
+    "func_80394B00",
+    "func_80394834"
+  ],
+  "claims": [
+    "func_80394834"
+  ],
+  "context": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_80397FFC"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "Genuine new refresh body with existing #268 real callers, no invented ABI slots."
+}
