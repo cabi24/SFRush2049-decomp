@@ -16,9 +16,12 @@
     "func_8039E200",
     "func_8039D05C",
     "func_8039FF04",
-    "func_8039D6A4"
+    "func_8039D6A4",
+    "func_8039ED20",
+    "func_8039EF08"
   ],
   "claims": [
-    "func_8039D494"
+    "func_8039D494",
+    "func_8039ED20"
   ]
 }

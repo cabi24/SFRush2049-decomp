@@ -38,7 +38,7 @@ def main():
     with tempfile.TemporaryDirectory() as temp:
         obj = Path(temp) / 'candidate.o'
         score.compile_group(here, obj)
-        for name in ('func_8039D300', 'func_803A0498', 'func_803A0FD8', 'func_803A1EAC', 'func_8039D494', 'func_8039E3BC', 'func_8039E200', 'func_8039D05C', 'func_8039FF04', 'func_8039D6A4'):
+        for name in ('func_8039D300', 'func_803A0498', 'func_803A0FD8', 'func_803A1EAC', 'func_8039D494', 'func_8039E3BC', 'func_8039E200', 'func_8039D05C', 'func_8039FF04', 'func_8039D6A4', 'func_8039ED20', 'func_8039EF08'):
             result = score.compare(obj, name, show=0)
             print(name, str(result.differing) + '/' + str(result.total), 'words differ')
             print('unresolved:',len(result.unresolved),'unverified:',len(result.unverified),
