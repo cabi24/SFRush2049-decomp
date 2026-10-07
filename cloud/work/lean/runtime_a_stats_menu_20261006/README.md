@@ -1,14 +1,15 @@
-# Image A statistics family: two matching candidates
+# Image A statistics family: three matching candidates
 
 Frozen base: `f2e8380d3b368d00efc9cac3e37cdc7059b1f6e2`.
 
 **A:803AC330, 540 bytes, 135/135 words MATCH.**
 **A:803AAF0C, 1,776 bytes, 444/444 words MATCH.**
+**A:803ACF5C, 376 bytes, 94/94 words MATCH.**
 
-Both have zero differing/extra words, unresolved symbols, unverified references
+All three have zero differing/extra words, unresolved symbols, unverified references
 or errors. These are observed candidates, not accepted coverage. The group
 contains thirteen complete genuine bodies (14,784 native bytes); only those
-two are claimed. Remaining observations:
+three are claimed. Remaining observations:
 
 | Function | Differing words | Extra | Unverified | Data errors |
 | --- | ---: | ---: | ---: | ---: |
@@ -20,12 +21,18 @@ two are claimed. Remaining observations:
 | AC7F4 | 7/166 | 0 | 0 | 0 |
 | ACA94 | 166/178 | 5 | 2 | 0 |
 | ACD5C | 6/128 | 0 | 0 | 0 |
-| ACF5C | 1/94 | 0 | 0 | 0 |
 | AD0D4 | 145/296 | 3 | 2 | 1 |
 | AD57C | 348/523 | 0 | 8 | 0 |
 
 No member has unresolved symbols. The near panels retain frame/local-address
 residuals. Larger bodies retain scheduling, control and own-data-layout gaps.
+
+Follow-on to [draft #253](https://github.com/cabi24/SFRush2049-decomp/pull/253).
+The new candidate is ACF5C only: moving its existing 48-byte text-buffer
+declaration after the scalar/pointer locals changes its sole differing address
+from sp+64 to native sp+48, retaining the same 112-byte frame. No buffer size,
+statement, parameter or other function changes. AC330 and AAF0C retain their
+previous exact scores; they are not new candidate credit in this follow-on.
 
 ## Reproduce
 
