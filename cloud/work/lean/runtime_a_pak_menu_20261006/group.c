@@ -51,8 +51,9 @@ extern void sprintf(char *,char *,...);
 
 void func_803A6F2C(void)
 {
+    s32 height;
     u8 title[128], filename[128], extension[16];
-    s32 height, y;
+    s32 y;
     title[0]=0;
     func_800BE6A4(filename,((FileData *)*D_803B9BC0)->name);
     func_800BE6A4(extension,((FileData *)*D_803B9BC0)->extension);
@@ -81,9 +82,9 @@ void func_803A6F2C(void)
 }
 void func_803A7180(void)
 {
-    u8 text[96], small[16];
     s32 title_y=45, row_y, i, id;
     void **node;
+    u8 text[96], small[16];
     object_create(11);
     dispatch_handler(1);
     if(D_803B9BC0) {
