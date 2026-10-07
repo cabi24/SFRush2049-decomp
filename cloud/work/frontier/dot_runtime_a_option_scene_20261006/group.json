@@ -1,0 +1,21 @@
+{
+  "members": [
+    "func_8038ACB0",
+    "func_8038B834",
+    "func_8038C93C",
+    "func_8038DFEC"
+  ],
+  "claims": [],
+  "context": [],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_8038DFEC"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "external_sources": [
+    "wrapper_return.c"
+  ],
+  "provenance": "Complete real low-A DFEC option-scene caller with ACB0/B834 predicates and C93C initializer. C93C differs at 14/234 words; all bodies remain NONMATCH research with claims empty."
+}
