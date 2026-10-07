@@ -1,0 +1,34 @@
+{
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "files": [
+    "group.c"
+  ],
+  "members": [
+    "track_render_process"
+  ],
+  "context": [
+    "audio_reverb_update",
+    "car_lod_select",
+    "func_80095EC0",
+    "func_80095EF4",
+    "func_80095F8C",
+    "func_800A1E94",
+    "func_800A3640",
+    "func_800A43FC",
+    "no_catchup",
+    "track_process_main",
+    "func_800A3724"
+  ],
+  "keep": [
+    "func_800A1E94",
+    "func_80095F8C",
+    "func_80095EF4",
+    "audio_reverb_update",
+    "func_800A43FC",
+    "car_lod_select",
+    "track_process_main",
+    "track_render_process"
+  ],
+  "claims": [],
+  "provenance": "PR163 complete Pak context, with new native changed-byte loop and consumed bitmap-predicate structure. Observed local research only."
+}
