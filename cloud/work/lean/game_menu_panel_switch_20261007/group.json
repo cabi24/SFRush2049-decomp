@@ -1,0 +1,33 @@
+{
+  "files": [
+    "candidate.c",
+    "caller.c",
+    "filter.c",
+    "clear.c",
+    "stop.c",
+    "countdown.c"
+  ],
+  "members": [
+    "func_800F857C"
+  ],
+  "context": [
+    "func_800F84B0",
+    "slot_state_setup",
+    "sound_handles_clear",
+    "sound_stop",
+    "audio_update_d",
+    "finish_state_alt",
+    "func_800F87A0",
+    "func_80106B3C"
+  ],
+  "keep": [
+    "sound_handles_clear",
+    "sound_stop",
+    "finish_state_alt",
+    "func_80106B3C"
+  ],
+  "claims": [
+    "func_800F857C"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}
