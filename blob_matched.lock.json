@@ -804,6 +804,15 @@
     "verified": "image_gate",
     "verified_at": "2026-10-02"
   },
+  "differential_output": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_level_objects",
+    "source": "src/blob/groups/frontier_level_objects/group.json",
+    "source_sha256": "f23e1ad7f780e3137ceac9fc1d3c70c145566a3d104009a5eded892c12d040e7",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-06"
+  },
   "difficulty_select": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "source": "src/blob/difficulty_select.c",
@@ -922,7 +931,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_level_objects",
     "source": "src/blob/groups/frontier_level_objects/group.json",
-    "source_sha256": "817469ecbcf6b9edd8e84cfa8c18246fdcbec671547e6570871b929d1a460b0d",
+    "source_sha256": "f23e1ad7f780e3137ceac9fc1d3c70c145566a3d104009a5eded892c12d040e7",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-06"
@@ -931,7 +940,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_level_objects",
     "source": "src/blob/groups/frontier_level_objects/group.json",
-    "source_sha256": "817469ecbcf6b9edd8e84cfa8c18246fdcbec671547e6570871b929d1a460b0d",
+    "source_sha256": "f23e1ad7f780e3137ceac9fc1d3c70c145566a3d104009a5eded892c12d040e7",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-06"
@@ -2865,7 +2874,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_level_objects",
     "source": "src/blob/groups/frontier_level_objects/group.json",
-    "source_sha256": "817469ecbcf6b9edd8e84cfa8c18246fdcbec671547e6570871b929d1a460b0d",
+    "source_sha256": "f23e1ad7f780e3137ceac9fc1d3c70c145566a3d104009a5eded892c12d040e7",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-06"
@@ -2882,7 +2891,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_level_objects",
     "source": "src/blob/groups/frontier_level_objects/group.json",
-    "source_sha256": "817469ecbcf6b9edd8e84cfa8c18246fdcbec671547e6570871b929d1a460b0d",
+    "source_sha256": "f23e1ad7f780e3137ceac9fc1d3c70c145566a3d104009a5eded892c12d040e7",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-06"
@@ -5060,6 +5069,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_800E762C": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_800E762C.c",
+    "source_sha256": "01d6f7d83065e1d24e88d097982f33810b33c1ff158843ad2bc45c4fd9d32ac4",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-06"
+  },
   "func_800E7710": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800E7710.c",
@@ -6905,6 +6922,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-01"
   },
+  "records_screen": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/records_screen.c",
+    "source_sha256": "767cfe0089bf01325766c73c2d0ce709a423fab8980ad0407ade65ec626c30c6",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-06"
+  },
   "render_display_list": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_particle_knot",
@@ -7571,7 +7596,7 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "frontier_level_objects",
     "source": "src/blob/groups/frontier_level_objects/group.json",
-    "source_sha256": "817469ecbcf6b9edd8e84cfa8c18246fdcbec671547e6570871b929d1a460b0d",
+    "source_sha256": "f23e1ad7f780e3137ceac9fc1d3c70c145566a3d104009a5eded892c12d040e7",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-06"

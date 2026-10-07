@@ -4,18 +4,26 @@
   "engine_torque_calc",
   "transmission_ratio_get",
   "func_800AB7D0",
-  "func_800AC660"
+  "func_800AC660",
+  "differential_output"
  ],
- "context": [],
+ "context": [
+  "func_8008AE64"
+ ],
  "files": [
-  "group.c"
+  "group.c",
+  "differential_output.c",
+  "func_8008AE64.c"
  ],
  "keep": [
   "engine_sound_update",
-  "transmission_ratio_get"
+  "transmission_ratio_get",
+  "differential_output",
+  "func_8008AE64"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
  "unprototyped": [],
- "note": "Closed real unit, no stand-ins: engine_torque_calc (internal, node in s1 by IPA) with both of its real callers. func_800AB7D0 and func_800AC660 are caller-less retail stubs locked as empty singles; here they are the inlined state-assignment helper and entity-flags getter, so the shadow unit needs prefer_definition entries pointing at this file (as func_800AFD54) and both must stay internal. transmission_ratio_get owns the string literals \"_BW\", \"_FW\", \"GOLD\" at 0x80121D40..0x80121D4C. Supersedes no locked group.",
- "provenance": "frontier wave 11 (w11e), 2026-10-06; cloud/work/frontier/w11e/RESULTS.md"
+ "note": "Supersedes the locked frontier_level_objects (same name, all five old members kept). New claim: differential_output (differential_output.c, kept). func_800AC660 is re-attributed: it is differential_output's inlined node-flags getter, defined after it in differential_output.c (internal), not transmission_ratio_get's entity getter. transmission_ratio_get now calls the kept entity getter func_8008AE64 (0x8008AE64, `return D_8012E700[id].flags`, locked single), which umerge inlines; its bytes are unchanged. Old-group facts that still hold: engine_torque_calc is internal (node in s1 by IPA) with both of its real callers; func_800AB7D0 is the inlined state-assignment helper (caller-less stub, internal, prefer_definition -> group.c); transmission_ratio_get owns the string literals \"_BW\", \"_FW\", \"GOLD\" at 0x80121D40..0x80121D4C. unit_overrides change needed: the func_800AC660 prefer_definition entry must point at <group dir>/differential_output.c instead of group.c (still internal).",
+ "provenance": "frontier wave 13 (w13d), 2026-10-06",
+ "supersedes": "frontier_level_objects (locked; same name, every old member kept)"
 }

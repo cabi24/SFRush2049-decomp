@@ -189,8 +189,8 @@
   },
   {
    "name": "func_800AC660",
-   "file": "src/blob/groups/frontier_level_objects/group.c",
-   "reason": "locked as an empty stub; inlined getter of transmission_ratio_get; named after this caller-less stub (naming hypothesis, w11e)"
+   "file": "src/blob/groups/frontier_level_objects/differential_output.c",
+   "reason": "locked as an empty stub; differential_output's inlined node-flags getter, defined after it (stub sits at differential_output's end, w13d); was attributed to transmission_ratio_get (w11e)"
   },
   {
    "name": "func_800C15FC",

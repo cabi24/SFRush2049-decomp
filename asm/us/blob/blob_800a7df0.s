@@ -4664,6 +4664,7 @@ transmission_ratio_get:
 .section .text.differential_output, "ax", @progbits
 .globl differential_output
 differential_output:
+    /* compiled from src/blob/differential_output.c */
     .word 0x27BDFFB0
     .word 0xAFB40038
     .word 0x0005A400

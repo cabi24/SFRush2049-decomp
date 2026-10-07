@@ -4889,6 +4889,7 @@ func_800D58C4:
 .section .text.records_screen, "ax", @progbits
 .globl records_screen
 records_screen:
+    /* compiled from src/blob/records_screen.c */
     .word 0x27BDFFD0
     .word 0xAFB00018
     .word 0x3C108015
