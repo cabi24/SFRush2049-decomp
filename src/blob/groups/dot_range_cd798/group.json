@@ -1,0 +1,28 @@
+{
+ "members": [
+  "func_800CD798"
+ ],
+ "context": [
+  "format_string_parse",
+  "func_800C7578",
+  "func_800CCE5C",
+  "object_data_allocate",
+  "menu_dialog_close"
+ ],
+ "files": [
+  "hash.c",
+  "candidate.c",
+  "other_callers.c",
+  "filename.c",
+  "range_update.c"
+ ],
+ "keep": [
+  "func_800C7578",
+  "object_data_allocate",
+  "menu_dialog_close",
+  "func_800CCE5C",
+  "func_800CD798"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "provenance": "Astra PR #200 (cloud/work/frontier/dot_range_cd798_match_20261006): checksum/range updater with accepted hash and the locked C7578/CCE5C bodies plus real callers as context; hash-internal visibility is a source hypothesis."
+}

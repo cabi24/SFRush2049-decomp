@@ -3065,6 +3065,7 @@ draw_text:
 .section .text.func_800C7578, "ax", @progbits
 .globl func_800C7578
 func_800C7578:
+    /* compiled from src/blob/func_800C7578.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0xAFA5001C

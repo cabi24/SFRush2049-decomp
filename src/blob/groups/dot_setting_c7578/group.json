@@ -1,0 +1,22 @@
+{
+ "members": [
+  "func_800C7578"
+ ],
+ "context": [
+  "format_string_parse",
+  "object_data_allocate",
+  "menu_dialog_close"
+ ],
+ "files": [
+  "hash.c",
+  "candidate.c",
+  "other_callers.c"
+ ],
+ "keep": [
+  "func_800C7578",
+  "object_data_allocate",
+  "menu_dialog_close"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "provenance": "Astra PR #193 (cloud/work/frontier/dot_setting_c7578_match_20261006): typed 2064-byte save-block setting writer with accepted codex_hash_a80 hash and real callers object_data_allocate/menu_dialog_close as context; hash-internal visibility is a source hypothesis."
+}

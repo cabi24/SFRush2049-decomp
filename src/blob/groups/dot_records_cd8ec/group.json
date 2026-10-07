@@ -1,0 +1,17 @@
+{
+ "members": [
+  "func_800CD8EC"
+ ],
+ "context": [
+  "format_string_parse"
+ ],
+ "files": [
+  "hash.c",
+  "candidate.c"
+ ],
+ "keep": [
+  "func_800CD8EC"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "provenance": "Astra PR #203 (cloud/work/frontier/dot_records_cd8ec_match_20261006): record checksum updater with accepted codex_hash_a80 hash as context; hash-internal visibility is a source hypothesis."
+}

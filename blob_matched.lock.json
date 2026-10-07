@@ -3907,6 +3907,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_800C7578": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "dot_setting_c7578",
+    "source": "src/blob/groups/dot_setting_c7578/group.json",
+    "source_sha256": "a838ec1408dd74ed3785c4b5e809f6e7d2603502a92431edcf5b61074a9b7e95",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-06"
+  },
   "func_800C77C4": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800C77C4.c",
@@ -4058,6 +4067,15 @@
     "verified": "image_gate",
     "verified_at": "2026-10-05"
   },
+  "func_800CCE5C": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "dot_filename_cce5c",
+    "source": "src/blob/groups/dot_filename_cce5c/group.json",
+    "source_sha256": "c97dd14b95383e2f2cded3c6ff2f1c525e3a70ff7bd898ecc445e7e07d434fa8",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-06"
+  },
   "func_800CCEFC": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "group": "menu_save_options",
@@ -4091,6 +4109,24 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "func_800CD798": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "dot_range_cd798",
+    "source": "src/blob/groups/dot_range_cd798/group.json",
+    "source_sha256": "f709a920227b80ce1f48c7fdc60c304f32d788a2f8363f901c8ce2ad2debfe3a",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-06"
+  },
+  "func_800CD8EC": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "dot_records_cd8ec",
+    "source": "src/blob/groups/dot_records_cd8ec/group.json",
+    "source_sha256": "e2d013ad2275c6c241e9de0199a784fa6ca0de8d490a64047d2273e4ce050a12",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-06"
   },
   "func_800CDA60": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

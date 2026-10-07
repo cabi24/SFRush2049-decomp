@@ -1106,6 +1106,7 @@ func_800CCCCC:
 .section .text.func_800CCE5C, "ax", @progbits
 .globl func_800CCE5C
 func_800CCE5C:
+    /* compiled from src/blob/func_800CCE5C.c */
     .word 0x27BDFFD8
     .word 0xAFBF0014
     .word 0xAFA40028
@@ -1740,6 +1741,7 @@ object_data_allocate:
 .section .text.func_800CD798, "ax", @progbits
 .globl func_800CD798
 func_800CD798:
+    /* compiled from src/blob/func_800CD798.c */
     .word 0x27BDFFC8
     .word 0xAFBF001C
     .word 0xAFB00018
@@ -1829,6 +1831,7 @@ func_800CD798:
 .section .text.func_800CD8EC, "ax", @progbits
 .globl func_800CD8EC
 func_800CD8EC:
+    /* compiled from src/blob/func_800CD8EC.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0xAFA5001C

@@ -20,8 +20,8 @@
   "note": "PR #128 re-verified it with its complete real callers (E451C, E4B58, E398C), all still NONMATCH, so it stays provisional"
  },
  "func_800E451C": {
-  "evidence": "cloud/work/frontier/w1g/groups/func_800E4300",
-  "note": "wave 1: code identical (arcade MP_IntervalPos with mp_interval_pos inlined), own float literals unverified by the scorer; its only caller func_800E4B58 is a stand-in"
+  "evidence": "cloud/work/frontier/dot_interval_position_20261006",
+  "note": "PR #198: full strict MATCH (397 words, rodata verified) with real callers; context func_800E4300 and func_800E4B58 provisional, func_800E398C unmatched"
  },
  "audio_priority_find": {
   "evidence": "cloud/work/frontier/w2b/groups/frontier_route_cross",
@@ -60,11 +60,39 @@
   "note": "PR #107: collision force/peak helper (arcade carsnd.c get_force_and_peak), strict 0/122 in a genuine caller group; it takes f18 as a register parameter and its caller is unmatched, so it stays unclaimed"
  },
  "func_800D8078": {
-  "evidence": "cloud/work/frontier/w8a/func_800D8078/group",
-  "note": "wave 8: strict MATCH only with stand-in callers; its only caller func_800D91A0 (3,860 bytes, unmatched) keeps t0-t5 live across the call"
+  "evidence": "cloud/work/frontier/dot_option_predicate_20261006",
+  "note": "PR #285: strict MATCH with real caller func_800D91A0 (provisional) plus render_replay_ui/render_results_screen (provisional) and func_800D816C (unmatched)"
  },
  "func_800A3640": {
   "evidence": "cloud/work/frontier/w8b/func_800A3640",
   "note": "wave 8: EQUAL in the shadow unit only with a stand-in caller; its only caller track_render_process is unmatched"
+ },
+ "audio_effect_setup": {
+  "evidence": "cloud/work/lean_audio_effect_setup_20261006",
+  "note": "PR #187: strict MATCH in a group whose context func_800988D8 and func_80098FB8 are still NONMATCH (PRs #240, #248)"
+ },
+ "MaxPathZeroControls": {
+  "evidence": "cloud/work/frontier/dot_pak_flush_match_20261006",
+  "note": "PR #210: strict MATCH with context func_800A1BB4/A1C6C/A1DD4, track_data_decompress, track_collision_setup and slot_state_lookup, all unmatched"
+ },
+ "audio_update_d": {
+  "evidence": "cloud/work/lean_audio_update_d_20261006",
+  "note": "PR #214: strict MATCH; context func_800F87A0, slot_state_setup, func_800F857C and finish_state_alt are unlocked (the last two are provisional too)"
+ },
+ "finish_state_alt": {
+  "evidence": "cloud/work/lean_finish_state_alt_20261006",
+  "note": "PR #222: strict MATCH; context func_800F87A0 and slot_state_setup are NONMATCH, func_800F857C and audio_update_d provisional"
+ },
+ "func_800F857C": {
+  "evidence": "cloud/work/lean/game_menu_panel_switch_20261007",
+  "note": "PR #292: strict MATCH; context slot_state_setup, func_800F87A0 and func_80106B3C unmatched, audio_update_d and finish_state_alt provisional"
+ },
+ "render_results_screen": {
+  "evidence": "cloud/work/frontier/dot_results_cleanup_20261006",
+  "note": "PR #281: strict MATCH with the real caller func_800D91A0 (provisional) and func_800D816C (unmatched)"
+ },
+ "render_replay_ui": {
+  "evidence": "cloud/work/frontier/dot_replay_row_match_20261007",
+  "note": "PR #298: strict MATCH in the same D91A0/D816C context as render_results_screen; still 1 word off in PR #281's group"
  }
 }
