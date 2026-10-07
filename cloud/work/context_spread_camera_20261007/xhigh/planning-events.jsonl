@@ -1,0 +1,2 @@
+{"event": "planning_start", "utc": "2026-10-07T21:39:33.386386+00:00", "monotonic_s": 11644.692698408, "disclosure": "Initial assignment and shared context reads preceded this marker; elapsed timing covers the observed marked planning/tool window, not active inference."}
+{"event": "freeze", "utc": "2026-10-07T21:43:19.536581+00:00", "monotonic_s": 11870.842899212, "elapsed_planning_wall_s": 226.15020080400063}

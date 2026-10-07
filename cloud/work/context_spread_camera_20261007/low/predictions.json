@@ -1,0 +1,277 @@
+{
+  "L01": {
+    "source": "candidates/L01.c",
+    "sha256": "5ae9c79e16731bd0568d79b329b82451e2565aaeca7e4ddb92260d61779c062f",
+    "edit": "Explicit failure-first diamonds for volume",
+    "semantic_justification": "Callbacks and absent-voice fast returns retain their order and truth values. Only selected callback-result expressions become explicit success/failure branches. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Isolate which native setter diamonds alter inline block layout and boolean live ranges; subset selection tests interactions without adding the already-tested recycling split. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L02": {
+    "source": "candidates/L02.c",
+    "sha256": "bfc5143a8abc39300eec941e7ae4f9b282aadc5607342b9752b81b2211870089",
+    "edit": "Explicit failure-first diamonds for pan",
+    "semantic_justification": "Callbacks and absent-voice fast returns retain their order and truth values. Only selected callback-result expressions become explicit success/failure branches. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Isolate which native setter diamonds alter inline block layout and boolean live ranges; subset selection tests interactions without adding the already-tested recycling split. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L03": {
+    "source": "candidates/L03.c",
+    "sha256": "5eee05ef8d277b941504d162b1a68beea9aea39641737283f51501922b3a5c7e",
+    "edit": "Explicit failure-first diamonds for volume, pan",
+    "semantic_justification": "Callbacks and absent-voice fast returns retain their order and truth values. Only selected callback-result expressions become explicit success/failure branches. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Isolate which native setter diamonds alter inline block layout and boolean live ranges; subset selection tests interactions without adding the already-tested recycling split. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L04": {
+    "source": "candidates/L04.c",
+    "sha256": "76430ecf14e3082928fc9b8151b05c56ae7454d699d2573743102e7274c6b4d7",
+    "edit": "Explicit failure-first diamonds for depth",
+    "semantic_justification": "Callbacks and absent-voice fast returns retain their order and truth values. Only selected callback-result expressions become explicit success/failure branches. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Isolate which native setter diamonds alter inline block layout and boolean live ranges; subset selection tests interactions without adding the already-tested recycling split. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L05": {
+    "source": "candidates/L05.c",
+    "sha256": "865db606f69b73d5a5f2a486f1bafa14a5ea6a99c762f80a99c84e445f4c91bc",
+    "edit": "Explicit failure-first diamonds for volume, depth",
+    "semantic_justification": "Callbacks and absent-voice fast returns retain their order and truth values. Only selected callback-result expressions become explicit success/failure branches. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Isolate which native setter diamonds alter inline block layout and boolean live ranges; subset selection tests interactions without adding the already-tested recycling split. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L06": {
+    "source": "candidates/L06.c",
+    "sha256": "7abcb6cd9ca87e8477f474ca81e54749b4662b4d1b5f7d76d13324db59845ef0",
+    "edit": "Explicit failure-first diamonds for pan, depth",
+    "semantic_justification": "Callbacks and absent-voice fast returns retain their order and truth values. Only selected callback-result expressions become explicit success/failure branches. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Isolate which native setter diamonds alter inline block layout and boolean live ranges; subset selection tests interactions without adding the already-tested recycling split. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L07": {
+    "source": "candidates/L07.c",
+    "sha256": "0f40727285c65bfe996bc3a30176ba893e6356a731a8d8a7cfa7a069f47ec898",
+    "edit": "Explicit failure-first diamonds for volume, pan, depth",
+    "semantic_justification": "Callbacks and absent-voice fast returns retain their order and truth values. Only selected callback-result expressions become explicit success/failure branches. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Isolate which native setter diamonds alter inline block layout and boolean live ranges; subset selection tests interactions without adding the already-tested recycling split. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L08": {
+    "source": "candidates/L08.c",
+    "sha256": "48bd53680dadecdfc0314585e90137b07318e71c6bc2c319a87deeb086c09464",
+    "edit": "Explicit failure-first diamonds for rate",
+    "semantic_justification": "Callbacks and absent-voice fast returns retain their order and truth values. Only selected callback-result expressions become explicit success/failure branches. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Isolate which native setter diamonds alter inline block layout and boolean live ranges; subset selection tests interactions without adding the already-tested recycling split. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L09": {
+    "source": "candidates/L09.c",
+    "sha256": "8b52e3a03c46edacde9b0f041aeb8d8fefb5ec91631a3494b33b7e350bea2f0d",
+    "edit": "Explicit failure-first diamonds for volume, rate",
+    "semantic_justification": "Callbacks and absent-voice fast returns retain their order and truth values. Only selected callback-result expressions become explicit success/failure branches. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Isolate which native setter diamonds alter inline block layout and boolean live ranges; subset selection tests interactions without adding the already-tested recycling split. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L10": {
+    "source": "candidates/L10.c",
+    "sha256": "20a968f6cf06588b03894dfbf48e37e0b54580adfa5c7d314c1a415ed5ce5b62",
+    "edit": "Explicit failure-first diamonds for pan, rate",
+    "semantic_justification": "Callbacks and absent-voice fast returns retain their order and truth values. Only selected callback-result expressions become explicit success/failure branches. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Isolate which native setter diamonds alter inline block layout and boolean live ranges; subset selection tests interactions without adding the already-tested recycling split. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L11": {
+    "source": "candidates/L11.c",
+    "sha256": "7417634227a62217f8809fac7c203150b79a60a88ad054bdd5d2f173bffabb7c",
+    "edit": "Explicit failure-first diamonds for volume, pan, rate",
+    "semantic_justification": "Callbacks and absent-voice fast returns retain their order and truth values. Only selected callback-result expressions become explicit success/failure branches. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Isolate which native setter diamonds alter inline block layout and boolean live ranges; subset selection tests interactions without adding the already-tested recycling split. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L12": {
+    "source": "candidates/L12.c",
+    "sha256": "2633740f32d788e9ff7a23cd49c8327b1532b02a4dd8afbd1c87a5d1721f7021",
+    "edit": "Explicit failure-first diamonds for depth, rate",
+    "semantic_justification": "Callbacks and absent-voice fast returns retain their order and truth values. Only selected callback-result expressions become explicit success/failure branches. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Isolate which native setter diamonds alter inline block layout and boolean live ranges; subset selection tests interactions without adding the already-tested recycling split. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L13": {
+    "source": "candidates/L13.c",
+    "sha256": "be3fd0852b7248cffb519624c7b42fbcc0aed4e8f554294e0b46bd1600ea821d",
+    "edit": "Explicit failure-first diamonds for volume, depth, rate",
+    "semantic_justification": "Callbacks and absent-voice fast returns retain their order and truth values. Only selected callback-result expressions become explicit success/failure branches. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Isolate which native setter diamonds alter inline block layout and boolean live ranges; subset selection tests interactions without adding the already-tested recycling split. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L14": {
+    "source": "candidates/L14.c",
+    "sha256": "b7e3fe7cf4c6e6da37bfe3036b39925dc50f7541b42a6947954321b0dafccd58",
+    "edit": "Explicit failure-first diamonds for pan, depth, rate",
+    "semantic_justification": "Callbacks and absent-voice fast returns retain their order and truth values. Only selected callback-result expressions become explicit success/failure branches. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Isolate which native setter diamonds alter inline block layout and boolean live ranges; subset selection tests interactions without adding the already-tested recycling split. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L15": {
+    "source": "candidates/L15.c",
+    "sha256": "fd6d60e96f20b363d101897969870f541f80e7bff19f82f76ea4c81202b98f31",
+    "edit": "Explicit failure-first diamonds for volume, pan, depth, rate",
+    "semantic_justification": "Callbacks and absent-voice fast returns retain their order and truth values. Only selected callback-result expressions become explicit success/failure branches. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Isolate which native setter diamonds alter inline block layout and boolean live ranges; subset selection tests interactions without adding the already-tested recycling split. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L16": {
+    "source": "candidates/L16.c",
+    "sha256": "949cdf52a9480bb4669366a6ece2633fd95cef345874fb9c2051f2e7b7ca5c98",
+    "edit": "Guard-local arithmetic staging and result diamond: volume",
+    "semantic_justification": "Arithmetic is computed after the same absent-voice guard, with the same expression grouping and conversion. Float local is f32, as the original expression. Exceptional/FCSR behavior is not established. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Expose an actual setter arithmetic lifetime before callback and branch diamond, testing conversion/result register reuse. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L17": {
+    "source": "candidates/L17.c",
+    "sha256": "980b760d90128fd89263dc6de61c4fe32286b78a4df6a63654667bb9f8abac08",
+    "edit": "Guard-local arithmetic staging and result diamond: pan",
+    "semantic_justification": "Arithmetic is computed after the same absent-voice guard, with the same expression grouping and conversion. Float local is f32, as the original expression. Exceptional/FCSR behavior is not established. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Expose an actual setter arithmetic lifetime before callback and branch diamond, testing conversion/result register reuse. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L18": {
+    "source": "candidates/L18.c",
+    "sha256": "78235e0c2d3209023ef2bf5a6f6ba9d4fac89b37a1324dd91d855a369fcfc6f4",
+    "edit": "Guard-local arithmetic staging and result diamond: depth",
+    "semantic_justification": "Arithmetic is computed after the same absent-voice guard, with the same expression grouping and conversion. Float local is f32, as the original expression. Exceptional/FCSR behavior is not established. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Expose an actual setter arithmetic lifetime before callback and branch diamond, testing conversion/result register reuse. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L19": {
+    "source": "candidates/L19.c",
+    "sha256": "bfbf72bed4421595e0707c6240745e9c4cc1f188b1b0987ddc66d652cd9fbf73",
+    "edit": "Guard-local arithmetic staging and result diamond: rate",
+    "semantic_justification": "Arithmetic is computed after the same absent-voice guard, with the same expression grouping and conversion. Float local is f32, as the original expression. Exceptional/FCSR behavior is not established. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Expose an actual setter arithmetic lifetime before callback and branch diamond, testing conversion/result register reuse. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L20": {
+    "source": "candidates/L20.c",
+    "sha256": "91dd93361de368a2704544d63e09e930c0ad964adf6870a6cc84512529bddaa8",
+    "edit": "Caller success diamond plus volume result diamond",
+    "semantic_justification": "The sentinel still suppresses exactly the same helper call. A successful call falls through; failure takes retry. Entry and node fields are evaluated at the same points relative to callbacks. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Pair native callback-result structure with explicit caller guard control flow for one field; seek shorter boolean temporary lifetimes. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L21": {
+    "source": "candidates/L21.c",
+    "sha256": "5fa63f3e0c44b435a9df414975e3107bad1c292e2c3ef9357ee60a3452820bfc",
+    "edit": "Caller success diamond plus pan result diamond",
+    "semantic_justification": "The sentinel still suppresses exactly the same helper call. A successful call falls through; failure takes retry. Entry and node fields are evaluated at the same points relative to callbacks. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Pair native callback-result structure with explicit caller guard control flow for one field; seek shorter boolean temporary lifetimes. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L22": {
+    "source": "candidates/L22.c",
+    "sha256": "2fd4ae3adfc851d3fb173358cf9c61079bbb548dfc050e786192f54d6c688d72",
+    "edit": "Caller success diamond plus depth result diamond",
+    "semantic_justification": "The sentinel still suppresses exactly the same helper call. A successful call falls through; failure takes retry. Entry and node fields are evaluated at the same points relative to callbacks. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Pair native callback-result structure with explicit caller guard control flow for one field; seek shorter boolean temporary lifetimes. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L23": {
+    "source": "candidates/L23.c",
+    "sha256": "838de470530d0afc02387fabf3af77a73dee1e50c146fbcdd392306af2fa29b0",
+    "edit": "Caller success diamond plus rate result diamond",
+    "semantic_justification": "The sentinel still suppresses exactly the same helper call. A successful call falls through; failure takes retry. Entry and node fields are evaluated at the same points relative to callbacks. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Pair native callback-result structure with explicit caller guard control flow for one field; seek shorter boolean temporary lifetimes. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L24": {
+    "source": "candidates/L24.c",
+    "sha256": "dde1019f68452df806afde2e27708038a3a68ed251a209e37db717f48236fc00",
+    "edit": "Path-local recycling plus volume staging and pan/depth diamonds",
+    "semantic_justification": "Early-stop, successful completion and retry-exhaustion each run the identical remove/insert pair. Retry byte wrapping and kind-zero exemption are unchanged. Setter arithmetic and callbacks preserve order. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Combine authentic recycling call-site shape with three setter diamonds and a guard-local volume arithmetic lifetime, leaving rate branchless as a control. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  },
+  "L25": {
+    "source": "candidates/L25.c",
+    "sha256": "9965db6ed5d521904ebf6c00ca7acdd7afb4858842750c400d41ade716f0098d",
+    "edit": "Path-local recycling plus all diamonds and staged rate argument",
+    "semantic_justification": "Recycling paths retain callback order and state updates. Rate subtraction then negative clamp is unchanged, and the final conversion is materialized after clamp. Exceptional/FCSR behavior remains unverified. Assumes valid baseline objects, defined integer operations, valid float-to-integer conversion domain and no asynchronous mutation. Bounded semantic checking remains coordinator-owned.",
+    "native_effect": "Extend the known 551-word structural reconstruction with a real rate conversion lifetime to test allocation around the final callback, without helper ABI claims. Diagnostic hypothesis only; authentic out-of-line private helper context remains unresolved.",
+    "check": {
+      "kind": "diagnostic",
+      "signal_ids": []
+    }
+  }
+}

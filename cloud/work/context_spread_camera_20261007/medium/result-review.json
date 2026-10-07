@@ -1,0 +1,63 @@
+{
+  "lane": "medium",
+  "start": {
+    "utc": "2026-10-07T21:45:10.350599+00:00",
+    "monotonic": 11981.656914583
+  },
+  "end": {
+    "utc": "2026-10-07T21:45:45.802987+00:00",
+    "monotonic": 12017.109300948
+  },
+  "elapsed_review_wall_seconds": 35.452386364999256,
+  "timing_scope": "Observed result-reading, source-integrity review, interpretation and receipt construction window; not active inference time. No new compiler runs, score experiments or source edits.",
+  "baseline": {
+    "differing": 533,
+    "total": 557,
+    "extras": 0,
+    "both_controls_equal": true
+  },
+  "best_ids": [
+    "M02",
+    "M13",
+    "M15",
+    "M19"
+  ],
+  "best_score": {
+    "differing": 534,
+    "total": 557,
+    "extras": 0
+  },
+  "candidate_count": 20,
+  "compile_and_score_status": "all clean scored_mismatch; no unresolved/unverified/error counts",
+  "strict_exact_count": 0,
+  "bounded_semantics": {
+    "status": "all_passed",
+    "cases_per_candidate": 2048,
+    "candidate_case_comparisons": 40960
+  },
+  "findings": [
+    "No medium candidate ties or improves the clean 533 baseline.",
+    "M02/M13/M19 nested live-voice setter regions, and M15 entry-scoped prefilter guards, are least-regressive at 534; relative to baseline this is still one word worse.",
+    "Most result-local/staged-arithmetic/sentinel-guard forms remain 538, the known structural positional outcome.",
+    "M09 duplicates rate callback diamonds across clamp branches and grows by34 extra words; M17 negative-rate callback exit grows by2. Neither supports adoption.",
+    "Twenty unique complete ELF groups in this machine summary do not establish twenty unique selected-function bodies.",
+    "Private exported-helper ABI/source context remains unresolved; native static recycle call counts and callback-result diamond motivation do not establish scheduling or register correctness."
+  ],
+  "interpretation": "A bounded nonmatching source-structure diagnostic spread. No candidate adoption, match, image/ROM integration or coverage improvement.",
+  "semantic_limits": "Bounded host-C differential traces/state against clean C; host pointer/layouts differ from O32. Does not execute native target, prove arbitrary aliasing/concurrency behavior, or establish FP exceptional/FCSR/excess-precision equivalence. Staged finite arithmetic intent is checked only within supplied scenarios.",
+  "planning_timing": {
+    "original_marked_planning_seconds": 94.41430060300081,
+    "original_freeze_utc": "2026-10-07T21:40:03.359038+00:00",
+    "corrected_freeze_utc": "2026-10-07T21:40:57.709424+00:00",
+    "original_start_to_corrected_freeze_seconds": 148.76468616800048,
+    "measured_correction_tool_seconds": 0.23649356699934287,
+    "qualification": "Initial freeze invalidated before evaluation for cast-parenthesization transcription defect, repaired with coordinator approval and no score feedback; all initial hashes and receipts retained. Startup reads approximately30 seconds before marker. Extended interval includes parent reporting/approval wait, not additional inference."
+  },
+  "sources": [
+    "machine-public-summary.json",
+    "common-semantic-check.json",
+    "freeze.json",
+    "freeze-invalidated.json",
+    "planning-events.jsonl"
+  ]
+}

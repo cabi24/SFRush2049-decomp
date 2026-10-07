@@ -1,0 +1,82 @@
+{
+  "utc": "2026-10-07T21:47:36.682144+00:00",
+  "function": "camera_transform",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "compiler_added_flag": "-Wab,-r4300_mul",
+  "output_directory": "build/context-spread/review/independent-h08-h12-_wh2na_4",
+  "rows": [
+    {
+      "id": "baseline",
+      "source_sha256": "1bac499d4feded2f749f32b3493e28beba8667bd493d385e1ca1332d5c0160b2",
+      "source_unchanged": true,
+      "object_sha256": "13aff372a420c3dffc939ebb463a2477ce254a904055ddba000ac224afc7f18b",
+      "object_bytes": 6564,
+      "elapsed_seconds": 0.16895067500081495,
+      "differing": 533,
+      "total": 557,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "strict_exact": false
+    },
+    {
+      "id": "H08",
+      "source_sha256": "b090af1724376b6eacf4b76902091456eae065c1be7c1cf16cb92931e6353d2d",
+      "source_unchanged": true,
+      "object_sha256": "12091d548f76ecfe5ee7ce1fba4cbc336ff04a17c7d9be22ec30356c37837ef9",
+      "object_bytes": 6620,
+      "elapsed_seconds": 0.020917073999953573,
+      "differing": 511,
+      "total": 557,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "strict_exact": false,
+      "prediction_hash_matches": true,
+      "canonical_score": {
+        "status": "scored_mismatch",
+        "strict": {
+          "accepted": false,
+          "differing": 511,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "total": 557,
+          "unresolved": [],
+          "unverified": []
+        }
+      }
+    },
+    {
+      "id": "H12",
+      "source_sha256": "c008f593d394eaf945f3e48704cedcb09756345fdc2803b85e20b4414f092aea",
+      "source_unchanged": true,
+      "object_sha256": "587fc4e8aa7210b8f190ee0384ddc7ed5285c805a1e5f3d7289ec5bb29cfbbb4",
+      "object_bytes": 6832,
+      "elapsed_seconds": 0.020222893999743974,
+      "differing": 531,
+      "total": 557,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "strict_exact": false,
+      "prediction_hash_matches": true,
+      "canonical_score": {
+        "status": "scored_mismatch",
+        "strict": {
+          "accepted": false,
+          "differing": 531,
+          "errors": [],
+          "extra_words": 0,
+          "notes": [],
+          "total": 557,
+          "unresolved": [],
+          "unverified": []
+        }
+      }
+    }
+  ]
+}

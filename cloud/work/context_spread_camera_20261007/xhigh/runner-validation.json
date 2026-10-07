@@ -1,0 +1,5 @@
+{
+  "candidate_count": 10,
+  "context_scope": "Only camera_transform and four explicitly named static setter bodies editable; all signatures, declarations, other helpers frozen.",
+  "status": "passed"
+}

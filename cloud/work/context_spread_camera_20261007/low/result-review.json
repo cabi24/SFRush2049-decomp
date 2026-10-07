@@ -1,0 +1,47 @@
+{
+  "lane": "low",
+  "start": {
+    "utc": "2026-10-07T21:44:58.279570+00:00",
+    "monotonic": 11969.585881909
+  },
+  "end": {
+    "utc": "2026-10-07T21:45:22.777545+00:00",
+    "monotonic": 11994.083856958
+  },
+  "observed_review_wall_seconds": 24.49797504899834,
+  "timing_scope": "Observed result-reading, assessment and tool window; not active inference time.",
+  "best_ids": [
+    "L10",
+    "L12"
+  ],
+  "best_differing": 534,
+  "total_words": 557,
+  "baseline_differing": 533,
+  "improved_count": 0,
+  "baseline_tie_count": 0,
+  "regressed_count": 25,
+  "score_histogram": {
+    "539": 9,
+    "535": 11,
+    "538": 2,
+    "534": 2,
+    "540": 1
+  },
+  "strict_exact_count": 0,
+  "compile_errors": 0,
+  "unresolved_count": 0,
+  "unverified_count": 0,
+  "semantic_status": "passed",
+  "cases_per_candidate": 2048,
+  "total_candidate_case_comparisons": 51200,
+  "findings": [
+    "Best L10 (pan/rate diamonds) and L12 (depth/rate diamonds) score534, one worse than clean533. All proposals regress.",
+    "Guarded staging and caller-success diamonds do not improve their corresponding single-setter score in this lane. Matching positional scores do not establish identical selected-function bodies.",
+    "All four diamonds without recycling (L15) score540; three-setter/staged-volume recycling (L24) scores539; all-diamond/staged-rate recycling (L25) scores538. This supports source-shape sensitivity, not exact-match progress.",
+    "25 complete ELFs are distinct according to runner metadata; selected-function byte equivalence is coordinator-owned.",
+    "Frozen candidate integrity reconfirmed; no sources changed after scores."
+  ],
+  "interpretation": "Finite low lane complete with no match or source adoption recommendation. Authentic out-of-line private helper context remains unresolved.",
+  "semantic_limits": "2048 deterministic host-C differential trace/state scenarios per candidate against clean C, not native execution, O32 layout/ABI, arbitrary aliasing/concurrency, exceptional FP/FCSR or whole-C equivalence proof. Valid float conversion domains assumed.",
+  "no_additional_experiments": true
+}

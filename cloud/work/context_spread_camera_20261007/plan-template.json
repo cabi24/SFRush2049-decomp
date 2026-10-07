@@ -1,0 +1,33 @@
+{
+  "schema": "rush-hypothesis-batch-v1",
+  "base_commit": "c35728addbae1626aabc89b7d837e28774f333a0",
+  "function": "camera_transform",
+  "recipe": "single",
+  "purpose": "experiment",
+  "experiment": "experiment.json",
+  "baseline": "baseline.c",
+  "baseline_sha256": "1bac499d4feded2f749f32b3493e28beba8667bd493d385e1ca1332d5c0160b2",
+  "baseline_expectation": {
+    "differing": 533,
+    "total": 557,
+    "extra_words": 0
+  },
+  "flags": [
+    "-g0",
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared"
+  ],
+  "targets": "asm/us/blob",
+  "context_manifest": "context.json",
+  "hypothesis": "Overwritten with lane hypothesis",
+  "limits": {
+    "variants": 25,
+    "jobs": 2,
+    "compile_seconds": 120,
+    "score_seconds": 30,
+    "diagnose_seconds": 30
+  }
+}

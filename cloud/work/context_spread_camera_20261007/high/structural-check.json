@@ -1,0 +1,11 @@
+{
+  "count": 15,
+  "baseline_sha256": "1bac499d4feded2f749f32b3493e28beba8667bd493d385e1ca1332d5c0160b2",
+  "pycparser_parse_passed": 15,
+  "same_seed": true,
+  "exported_start_helper_and_stop_helper_exact": true,
+  "all_high_sources_distinct": true,
+  "no_old_whole_source_repeated": true,
+  "compilation_or_scoring_performed": false,
+  "limits": "Parser and integrity checks only. No runtime or native-equivalence proof."
+}

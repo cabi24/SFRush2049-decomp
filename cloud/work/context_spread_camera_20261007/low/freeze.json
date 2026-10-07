@@ -1,0 +1,51 @@
+{
+  "lane": "low",
+  "count": 25,
+  "baseline_sha256": "1bac499d4feded2f749f32b3493e28beba8667bd493d385e1ca1332d5c0160b2",
+  "start": {
+    "event": "initial",
+    "utc": "2026-10-07T21:38:02.514311+00:00",
+    "monotonic": 11553.82062523
+  },
+  "freeze": {
+    "event": "freeze",
+    "utc": "2026-10-07T21:38:55.183223+00:00",
+    "monotonic": 11606.489541939
+  },
+  "elapsed_planning_wall_seconds": 52.66891670899895,
+  "timing_scope": "Observed marked planning/tool/materialization window; first instruction reads preceded initial marker. Not active inference time.",
+  "source_hashes": {
+    "L01": "5ae9c79e16731bd0568d79b329b82451e2565aaeca7e4ddb92260d61779c062f",
+    "L02": "bfc5143a8abc39300eec941e7ae4f9b282aadc5607342b9752b81b2211870089",
+    "L03": "5eee05ef8d277b941504d162b1a68beea9aea39641737283f51501922b3a5c7e",
+    "L04": "76430ecf14e3082928fc9b8151b05c56ae7454d699d2573743102e7274c6b4d7",
+    "L05": "865db606f69b73d5a5f2a486f1bafa14a5ea6a99c762f80a99c84e445f4c91bc",
+    "L06": "7abcb6cd9ca87e8477f474ca81e54749b4662b4d1b5f7d76d13324db59845ef0",
+    "L07": "0f40727285c65bfe996bc3a30176ba893e6356a731a8d8a7cfa7a069f47ec898",
+    "L08": "48bd53680dadecdfc0314585e90137b07318e71c6bc2c319a87deeb086c09464",
+    "L09": "8b52e3a03c46edacde9b0f041aeb8d8fefb5ec91631a3494b33b7e350bea2f0d",
+    "L10": "20a968f6cf06588b03894dfbf48e37e0b54580adfa5c7d314c1a415ed5ce5b62",
+    "L11": "7417634227a62217f8809fac7c203150b79a60a88ad054bdd5d2f173bffabb7c",
+    "L12": "2633740f32d788e9ff7a23cd49c8327b1532b02a4dd8afbd1c87a5d1721f7021",
+    "L13": "be3fd0852b7248cffb519624c7b42fbcc0aed4e8f554294e0b46bd1600ea821d",
+    "L14": "b7e3fe7cf4c6e6da37bfe3036b39925dc50f7541b42a6947954321b0dafccd58",
+    "L15": "fd6d60e96f20b363d101897969870f541f80e7bff19f82f76ea4c81202b98f31",
+    "L16": "949cdf52a9480bb4669366a6ece2633fd95cef345874fb9c2051f2e7b7ca5c98",
+    "L17": "980b760d90128fd89263dc6de61c4fe32286b78a4df6a63654667bb9f8abac08",
+    "L18": "78235e0c2d3209023ef2bf5a6f6ba9d4fac89b37a1324dd91d855a369fcfc6f4",
+    "L19": "bfbf72bed4421595e0707c6240745e9c4cc1f188b1b0987ddc66d652cd9fbf73",
+    "L20": "91dd93361de368a2704544d63e09e930c0ad964adf6870a6cc84512529bddaa8",
+    "L21": "5fa63f3e0c44b435a9df414975e3107bad1c292e2c3ef9357ee60a3452820bfc",
+    "L22": "2fd4ae3adfc851d3fb173358cf9c61079bbb548dfc050e786192f54d6c688d72",
+    "L23": "838de470530d0afc02387fabf3af77a73dee1e50c146fbcdd392306af2fa29b0",
+    "L24": "dde1019f68452df806afde2e27708038a3a68ed251a209e37db717f48236fc00",
+    "L25": "9965db6ed5d521904ebf6c00ca7acdd7afb4858842750c400d41ade716f0098d"
+  },
+  "checks": [
+    "25 unique complete sources",
+    "No identical prior whole source in old effort candidates or structural context candidate",
+    "pycparser parsed every candidate",
+    "Exact clean533 baseline hash"
+  ],
+  "no_compilation_or_scoring": true
+}

@@ -1,0 +1,151 @@
+{
+  "base_commit": "c35728addbae1626aabc89b7d837e28774f333a0",
+  "baseline": "baseline.c",
+  "baseline_expectation": {
+    "differing": 533,
+    "extra_words": 0,
+    "total": 557
+  },
+  "baseline_sha256": "1bac499d4feded2f749f32b3493e28beba8667bd493d385e1ca1332d5c0160b2",
+  "context_manifest": "context.json",
+  "editable_helpers": [
+    "set_volume",
+    "set_pan",
+    "set_depth",
+    "set_rate"
+  ],
+  "experiment": "experiment.json",
+  "flags": [
+    "-g0",
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared"
+  ],
+  "function": "camera_transform",
+  "hypothesis": "Source-structure-informed xhigh effort: real setter diamonds, lifetime/control flow and path-local recycling; authentic helper context unresolved.",
+  "limits": {
+    "compile_seconds": 120,
+    "diagnose_seconds": 30,
+    "jobs": 2,
+    "score_seconds": 30,
+    "variants": 10
+  },
+  "predictions": {
+    "X01": {
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "edit": "Isolate explicit failure-first callback-result diamonds in all four setters without splitting recycling.",
+      "native_effect": "Separates the independently observed native setter diamonds from the previously regressing combined diamond/recycling reconstruction. Predicts extra setter branch blocks while retaining baseline list-call-site layout.",
+      "semantic_justification": "The invalid-voice path still returns success without arithmetic or callbacks. Each real callback uses the same live voice, arithmetic order, casts and return-zero success contract. MP_TargetSteerPos and stop_entry remain exact seed bodies; declarations and types are unchanged.",
+      "sha256": "49e4d04dfe2a0b4794017c6cab5df692e2f762802fc901cca747e5506fdcddc7",
+      "source": "candidates/X01.c"
+    },
+    "X02": {
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "edit": "Use positive live-voice guards and success-first callback diamonds with three path-local recycling blocks.",
+      "native_effect": "Unlike the known polarity-only control, moves invalid-voice success to the trailing helper return. Tests whether native guard orientation and shared success joins alter conversion-block placement and register webs.",
+      "semantic_justification": "The invalid-voice path still returns success without arithmetic or callbacks. Each real callback uses the same live voice, arithmetic order, casts and return-zero success contract. MP_TargetSteerPos and stop_entry remain exact seed bodies; declarations and types are unchanged. Cancellation, normal completion and exhausted-retry paths each preserve one ordered removal/insertion pair, reload the free-list head between calls, and advance using the successor captured before callbacks. Retry byte wrapping, blocked marking and the live kind-zero exemption are preserved.",
+      "sha256": "bbcc28620b5e03eae3cfa68a66b644d2d75fa6f4bc49f698f3b921be21b36ec0",
+      "source": "candidates/X02.c"
+    },
+    "X03": {
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "edit": "Materialize genuine u32 quantized operands before narrow setter calls, retaining failure diamonds and path-local recycling.",
+      "native_effect": "Tests integer conversion-result lifetime independently of float expression grouping. Native conversion machinery feeds byte/halfword API arguments; a real quantized operand can alter conversion/argument allocation without pressure-only storage.",
+      "semantic_justification": "The invalid-voice path still returns success without arithmetic or callbacks. Each real callback uses the same live voice, arithmetic order, casts and return-zero success contract. MP_TargetSteerPos and stop_entry remain exact seed bodies; declarations and types are unchanged. Each u32 amount is precisely the existing inner cast, consumed by the unchanged outer u8/u16 cast; no conversion is hoisted before the invalid-voice guard. Cancellation, normal completion and exhausted-retry paths each preserve one ordered removal/insertion pair, reload the free-list head between calls, and advance using the successor captured before callbacks. Retry byte wrapping, blocked marking and the live kind-zero exemption are preserved.",
+      "sha256": "adc5ff94a6d693f7189c9bcaf4361b8a5e62a6e0e2617847c138c2086a3cb84c",
+      "source": "candidates/X03.c"
+    },
+    "X04": {
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "edit": "Expose the real float arithmetic stages in setter-local f32 values, with native-shaped diamonds and recycling.",
+      "native_effect": "Tests the lifetimes of shifted, half-scaled and final-scaled pan/depth values and a separate rate product/subtraction. Native FP temporaries and rate subtraction order motivate these actual value webs; the missing private helper ABI is not repaired.",
+      "semantic_justification": "The invalid-voice path still returns success without arithmetic or callbacks. Each real callback uses the same live voice, arithmetic order, casts and return-zero success contract. MP_TargetSteerPos and stop_entry remain exact seed bodies; declarations and types are unchanged. The staged f32 assignments preserve the original operation order and single-precision value flow on the target; no algebraic reassociation is introduced. Excess-precision evaluation, exceptional values and FCSR effects are not established by this source argument. Cancellation, normal completion and exhausted-retry paths each preserve one ordered removal/insertion pair, reload the free-list head between calls, and advance using the successor captured before callbacks. Retry byte wrapping, blocked marking and the live kind-zero exemption are preserved.",
+      "sha256": "be15034660431e5a207b57a3140d13f89ed506edce8efad4c5e1505bf4418ce9",
+      "source": "candidates/X04.c"
+    },
+    "X05": {
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "edit": "Form the rate result with a subtraction-tested u32 quantization join while isolating setter diamonds from recycling.",
+      "native_effect": "The conditional integer join makes the rate value feed the comparison and conversion separately. It may retain native subtraction-before-zero testing rather than the baseline compiler's product-versus-one rewrite; no instruction-shape claim is assumed.",
+      "semantic_justification": "The invalid-voice path still returns success without arithmetic or callbacks. Each real callback uses the same live voice, arithmetic order, casts and return-zero success contract. MP_TargetSteerPos and stop_entry remain exact seed bodies; declarations and types are unchanged. Rate computes value*8192-1 before its sign test. A negative result directly selects unsigned zero; other results use the same u32 conversion as baseline. For ordinary finite conversion-domain inputs this equals clamping the float to zero first. NaN/infinity, out-of-range casts and FCSR behavior remain uncertain. Semantic scope: ordinary finite conversion-domain inputs; FP exceptional/FCSR behavior not verified",
+      "sha256": "98533af951495d513383e335ecc742b2c976578e912f67ed8d94f948fed42f12",
+      "source": "candidates/X05.c"
+    },
+    "X06": {
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "edit": "Combine per-stage command f32 operands with setter failure diamonds and three local recycle sites.",
+      "native_effect": "Tests genuine call-argument lifetimes together with the recovered native branch/call-site structure. The earlier operand-only experiment lacked these helper diamonds; this is a bounded interaction hypothesis rather than a resubmitted source.",
+      "semantic_justification": "The invalid-voice path still returns success without arithmetic or callbacks. Each real callback uses the same live voice, arithmetic order, casts and return-zero success contract. MP_TargetSteerPos and stop_entry remain exact seed bodies; declarations and types are unchanged. Each operand is loaded only after earlier setter callbacks and used for its sentinel test and call. Later entry pointers remain live node reloads; the first volume stage retains the original pre-dispatch entry. Cancellation, normal completion and exhausted-retry paths each preserve one ordered removal/insertion pair, reload the free-list head between calls, and advance using the successor captured before callbacks. Retry byte wrapping, blocked marking and the live kind-zero exemption are preserved.",
+      "sha256": "54cb4d0979537c05fdec4176d6beedbeb98f1eb12f1b613877dbbaa04c92b4bf",
+      "source": "candidates/X06.c"
+    },
+    "X07": {
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "edit": "Give each setter a single-exit success join and real callback-result/quantized-operand locals.",
+      "native_effect": "Tests the original-source possibility of a result variable and shared helper success join. These are actual semantic results, not artificial preserved state. IDO may eliminate the locals or choose branchless lowering; that negative outcome would be diagnostic.",
+      "semantic_justification": "The invalid-voice path still returns success without arithmetic or callbacks. Each real callback uses the same live voice, arithmetic order, casts and return-zero success contract. MP_TargetSteerPos and stop_entry remain exact seed bodies; declarations and types are unchanged. Success begins at one for the absent-voice path. The live-voice callback result alone selects zero or one at the shared return, with no added callback or memory effect.",
+      "sha256": "245fdcb596d1364bd8e09e01b9a3db7038a880a30e992bf404fb742623884cf1",
+      "source": "candidates/X07.c"
+    },
+    "X08": {
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "edit": "Combine explicit per-parameter sentinel scopes, setter diamonds and two retry-exhaustion skip edges.",
+      "native_effect": "Tests whether the native independent per-stage diamonds and retry skip edges survive as separate CFG joins once genuine recycling sites are present. It differs from the known all-diamond/full-split candidate in both command-stage and exhaustion structure.",
+      "semantic_justification": "The invalid-voice path still returns success without arithmetic or callbacks. Each real callback uses the same live voice, arithmetic order, casts and return-zero success contract. MP_TargetSteerPos and stop_entry remain exact seed bodies; declarations and types are unchanged. Nested stage guards preserve sentinel short-circuit order and all post-callback field/entry reloads. The retry tail first skips sub-threshold retries, then exempts kind zero, reading both after blocked marking. Cancellation, normal completion and exhausted-retry paths each preserve one ordered removal/insertion pair, reload the free-list head between calls, and advance using the successor captured before callbacks. Retry byte wrapping, blocked marking and the live kind-zero exemption are preserved.",
+      "sha256": "859767f874c6d8abfed0d6064ce2a253d5f60860c3b746b515869675f14f61bc",
+      "source": "candidates/X08.c"
+    },
+    "X09": {
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "edit": "Use a positive post-subtraction rate quantization guard with staged f32 arithmetic and native-shaped control flow.",
+      "native_effect": "A bounded ordinary-finite hypothesis for the native subtraction-before-zero guard. Positive-rate conversion versus a zero integer arm may change compare polarity, rate lifetime and conversion placement; it is not a general exceptional-input equivalence claim.",
+      "semantic_justification": "The invalid-voice path still returns success without arithmetic or callbacks. Each real callback uses the same live voice, arithmetic order, casts and return-zero success contract. MP_TargetSteerPos and stop_entry remain exact seed bodies; declarations and types are unchanged. The staged f32 assignments preserve the original operation order and single-precision value flow on the target; no algebraic reassociation is introduced. Excess-precision evaluation, exceptional values and FCSR effects are not established by this source argument. For finite values in the defined conversion domain, positive rate casts identically; zero or negative rate converts to unsigned zero. This version intentionally routes unordered NaN to zero instead of attempting baseline's nonportable float-to-u32 conversion. FP exceptional/FCSR equivalence is explicitly unresolved. Cancellation, normal completion and exhausted-retry paths each preserve one ordered removal/insertion pair, reload the free-list head between calls, and advance using the successor captured before callbacks. Retry byte wrapping, blocked marking and the live kind-zero exemption are preserved. Semantic scope: ordinary finite conversion-domain inputs only; NaN behavior intentionally differs at source level and FP/FCSR equivalence is unresolved",
+      "sha256": "a486df34ceb9ebd9b6482155c8f763ee8cc43a95969c2f36e25acda7773b8827",
+      "source": "candidates/X09.c"
+    },
+    "X10": {
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "edit": "Integrate live-voice success joins, staged setter arithmetic, stage-local command operands and path-local recycling.",
+      "native_effect": "A combined source-reconstruction hypothesis using only independently justified real lifetimes and native control-flow features. Tests their interaction without a keeper, invented caller, pressure-only local, compiler change, or claim to recover the still-unresolved private helper context.",
+      "semantic_justification": "The invalid-voice path still returns success without arithmetic or callbacks. Each real callback uses the same live voice, arithmetic order, casts and return-zero success contract. MP_TargetSteerPos and stop_entry remain exact seed bodies; declarations and types are unchanged. The staged f32 assignments preserve the original operation order and single-precision value flow on the target; no algebraic reassociation is introduced. Excess-precision evaluation, exceptional values and FCSR effects are not established by this source argument. Operand locals are refreshed after each earlier callback; only the initial volume stage uses the pre-dispatch entry, matching baseline. Retry skip guards preserve byte wraparound and evaluate the kind exemption only after blocked marking. Cancellation, normal completion and exhausted-retry paths each preserve one ordered removal/insertion pair, reload the free-list head between calls, and advance using the successor captured before callbacks. Retry byte wrapping, blocked marking and the live kind-zero exemption are preserved.",
+      "sha256": "493300c3bbda23fef0ffd652e48991bc89a574bf885b52d0e29789d31f76a1c1",
+      "source": "candidates/X10.c"
+    }
+  },
+  "purpose": "experiment",
+  "recipe": "single",
+  "schema": "rush-hypothesis-batch-v1",
+  "targets": "asm/us/blob"
+}
