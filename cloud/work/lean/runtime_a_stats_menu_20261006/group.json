@@ -1,0 +1,28 @@
+{
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "func_803AD57C"
+  ],
+  "members": [
+    "func_803AA3D8",
+    "func_803AAF0C",
+    "func_803AB5FC",
+    "func_803AB848",
+    "func_803ABEC8",
+    "func_803AC330",
+    "func_803AC54C",
+    "func_803AC7F4",
+    "func_803ACA94",
+    "func_803ACD5C",
+    "func_803ACF5C",
+    "func_803AD0D4",
+    "func_803AD57C"
+  ],
+  "claims": [
+    "func_803AC330",
+    "func_803AAF0C"
+  ]
+}
