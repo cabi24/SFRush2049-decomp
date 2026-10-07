@@ -1,0 +1,14 @@
+{
+  "files": [
+    "group.c"
+  ],
+  "members": [
+    "func_800E543C"
+  ],
+  "context": [],
+  "keep": [
+    "func_800E543C"
+  ],
+  "claims": [],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}
