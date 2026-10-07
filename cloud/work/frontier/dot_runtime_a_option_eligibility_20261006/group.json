@@ -1,0 +1,18 @@
+{
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "func_803AE1C0"
+  ],
+  "members": [
+    "func_803ADDA8",
+    "func_803AE1C0",
+    "func_8038F744"
+  ],
+  "claims": [
+    "func_8038F744"
+  ],
+  "provenance": "F744 natural index input and signed-byte return, word accumulator. Actual DDA8/E1C0 callers from PR225 recover native temporary reservations; no fake pressure or extra formals."
+}
