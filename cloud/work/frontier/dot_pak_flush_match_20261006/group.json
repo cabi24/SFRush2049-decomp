@@ -1,0 +1,24 @@
+{
+  "members": [
+    "MaxPathZeroControls"
+  ],
+  "context": [
+    "func_800A1BB4",
+    "func_800A1C6C",
+    "func_800A1DD4",
+    "track_data_decompress",
+    "track_collision_setup",
+    "slot_state_lookup"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "track_collision_setup",
+    "MaxPathZeroControls",
+    "slot_state_lookup"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "provenance": "Observed local MaxPathZeroControls match candidate. Genuine repeated Pak queue operations factored into init/lock/unlock helpers, as in prior Pak research; source-line schedule sensitivity disclosed.",
+  "claims": []
+}
