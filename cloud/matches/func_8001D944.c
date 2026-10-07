@@ -1,4 +1,4 @@
-/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
 typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned int u32;
