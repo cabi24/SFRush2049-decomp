@@ -1,0 +1,34 @@
+--- baseline.c
++++ candidates/H08.c
+@@ -113,11 +113,12 @@
+             D_80144C48[i].active=0;
+         }
+     }
+-    for (node=D_80146160.last;node;node=next) {
++    node=D_80146160.last;
++    if (node) do {
+         next=node->next;
+         entry=node->entry;
+         if (entry && entry->stopRequested && node->kind!=2) goto recycle;
+-        if (entry && entry->blocked) continue;
++        if (entry && entry->blocked) goto command_next;
+         switch (node->kind) {
+         case 0:
+             if (D_80144DB8<=0) goto retry;
+@@ -141,12 +142,14 @@
+ recycle:
+         func_8009211C(&D_80146160,node);
+         func_80091FBC(&D_80146138,node,D_80146138.first);
+-        continue;
++        goto command_next;
+ retry:
+         node->retries++;
+         if (node->entry) node->entry->blocked=1;
+         if (node->retries>=10 && node->kind!=0) goto recycle;
+-    }
++command_next:
++        node=next;
++    } while (node);
+     for (node=D_80146160.last;node;node=node->next) {
+         if (node->entry) node->entry->blocked=0;
+     }

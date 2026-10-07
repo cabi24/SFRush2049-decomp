@@ -1,0 +1,14 @@
+--- baseline.c
++++ candidates/H05.c
+@@ -109,8 +109,9 @@
+                 node=next;
+             }
+             D_801460C8[0]++;
+-            D_80144C48[i].id=0;
+-            D_80144C48[i].active=0;
++            entry=&D_80144C48[i];
++            entry->id=0;
++            entry->active=0;
+         }
+     }
+     for (node=D_80146160.last;node;node=next) {

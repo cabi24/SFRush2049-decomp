@@ -1,0 +1,103 @@
+--- baseline.c
++++ candidates/H15.c
+@@ -73,22 +73,24 @@
+     return func_8001FFA0(entry->voice,(u16)(u32)rate)==0;
+ }
+ void camera_transform(void) {
+-    s32 *history;
++    s32 *history,*completed;
+     s32 i,selected;
++    u32 offset;
+     Node *node,*next;
+     Entry *entry;
+     if (!D_80110284) return;
+-    D_80144DB8+=D_801460C8[4];
+-    history=&D_801460C8[4];
++    completed=D_801460C8;
++    D_80144DB8=completed[4]+D_80144DB8;
++    history=&completed[4];
+     do {
+         history[0]=history[-1];
+         --history;
+-    } while (history>=&D_801460C8[1]);
+-    D_801460C8[0]=0;
++    } while (history>=&completed[1]);
++    completed[0]=0;
+     if (D_8011028C) {
+         selected=0;
+-        for (i=0;i<D_801460F4;i++) {
+-            entry=&D_80144C48[i];
++        for (i=0,offset=0;i<D_801460F4;i++,offset+=sizeof(Entry)) {
++            entry=(Entry *)((u8 *)D_80144C48+offset);
+             if (entry->active && entry->flag4 && !entry->stopRequested) {
+                 if (++selected==D_801460F4/4) break;
+                 audio_timing_sync(entry->id);
+@@ -96,27 +98,32 @@
+         }
+         if (i==D_801460F4) D_8011028C=0;
+     }
+-    for (i=0;i<D_801460F4;i++) {
+-        if (D_80144C48[i].active && D_80144C48[i].started &&
+-            func_800201D0(D_80144C48[i].voice)==(u32)-1) {
++    for (i=0,offset=0;i<D_801460F4;i++,offset+=sizeof(Entry)) {
++        if (((Entry *)((u8 *)D_80144C48+offset))->active && ((Entry *)((u8 *)D_80144C48+offset))->started &&
++            func_800201D0(((Entry *)((u8 *)D_80144C48+offset))->voice)==(u32)-1) {
+             node=D_80146160.last;
+             while (node) {
+                 next=node->next;
+-                if (node->entry==&D_80144C48[i]) {
++                if (node->entry==(Entry *)((u8 *)D_80144C48+offset)) {
+                     func_8009211C(&D_80146160,node);
+                     func_80091FBC(&D_80146138,node,D_80146138.first);
+                 }
+                 node=next;
+             }
+-            D_801460C8[0]++;
+-            D_80144C48[i].id=0;
+-            D_80144C48[i].active=0;
++            completed[0]++;
++            entry=(Entry *)((u8 *)D_80144C48+offset);
++            entry->id=0;
++            entry->active=0;
+         }
+     }
+     for (node=D_80146160.last;node;node=next) {
+         next=node->next;
+         entry=node->entry;
+-        if (entry && entry->stopRequested && node->kind!=2) goto recycle;
++        if (entry && entry->stopRequested && node->kind!=2) {
++        func_8009211C(&D_80146160,node);
++        func_80091FBC(&D_80146138,node,D_80146138.first);
++            continue;
++        }
+         if (entry && entry->blocked) continue;
+         switch (node->kind) {
+         case 0:
+@@ -126,7 +133,7 @@
+             break;
+         case 2:
+             if (!stop_entry(entry)) goto retry;
+-            D_801460C8[0]++;
++            completed[0]++;
+             break;
+         case 3:
+             if (node->value!=-2.0f && !set_volume(entry,node->value)) goto retry;
+@@ -138,14 +145,16 @@
+             func_80020518((u8)(s32)node->value);
+             break;
+         }
+-recycle:
+         func_8009211C(&D_80146160,node);
+         func_80091FBC(&D_80146138,node,D_80146138.first);
+         continue;
+ retry:
+         node->retries++;
+         if (node->entry) node->entry->blocked=1;
+-        if (node->retries>=10 && node->kind!=0) goto recycle;
++        if (node->retries>=10 && node->kind!=0) {
++        func_8009211C(&D_80146160,node);
++        func_80091FBC(&D_80146138,node,D_80146138.first);
++        }
+     }
+     for (node=D_80146160.last;node;node=node->next) {
+         if (node->entry) node->entry->blocked=0;

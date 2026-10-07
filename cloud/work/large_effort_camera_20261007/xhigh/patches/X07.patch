@@ -1,0 +1,19 @@
+--- baseline.c
++++ candidates/X07.c
+@@ -129,11 +129,11 @@
+             D_801460C8[0]++;
+             break;
+         case 3:
+-            if (node->value!=-2.0f && !set_volume(entry,node->value)) goto retry;
+-            if (node->stream!=-2.0f && !set_pan(node->entry,node->stream)) goto retry;
+-            if (node->priority!=-2.0f && !set_depth(node->entry,node->priority)) goto retry;
+-            if (node->route!=-2.0f && !set_rate(node->entry,node->route)) goto retry;
+-            break;
++            if ((node->value==-2.0f || set_volume(entry,node->value)) &&
++                (node->stream==-2.0f || set_pan(node->entry,node->stream)) &&
++                (node->priority==-2.0f || set_depth(node->entry,node->priority)) &&
++                (node->route==-2.0f || set_rate(node->entry,node->route))) break;
++            goto retry;
+         case 4:
+             func_80020518((u8)(s32)node->value);
+             break;

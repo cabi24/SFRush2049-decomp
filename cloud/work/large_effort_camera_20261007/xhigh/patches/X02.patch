@@ -1,0 +1,14 @@
+--- baseline.c
++++ candidates/X02.c
+@@ -145,7 +145,10 @@
+ retry:
+         node->retries++;
+         if (node->entry) node->entry->blocked=1;
+-        if (node->retries>=10 && node->kind!=0) goto recycle;
++        if (node->retries>=10 && node->kind!=0) {
++            func_8009211C(&D_80146160,node);
++            func_80091FBC(&D_80146138,node,D_80146138.first);
++        }
+     }
+     for (node=D_80146160.last;node;node=node->next) {
+         if (node->entry) node->entry->blocked=0;

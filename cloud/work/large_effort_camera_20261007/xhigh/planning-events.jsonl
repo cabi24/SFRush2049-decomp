@@ -1,0 +1,15 @@
+{"event": "start", "monotonic_seconds": 8007.53845899, "stage": "preparation", "utc": "2026-10-07T20:38:56.232143+00:00"}
+{"event": "start", "monotonic_seconds": 8007.558704385, "stage": "evidence", "utc": "2026-10-07T20:38:56.252392+00:00"}
+{"event": "end", "monotonic_seconds": 8070.112621436, "stage": "evidence", "utc": "2026-10-07T20:39:58.806308+00:00"}
+{"event": "start", "monotonic_seconds": 8070.134162759, "stage": "generation", "utc": "2026-10-07T20:39:58.827849+00:00"}
+{"event": "start", "monotonic_seconds": 9433.363706375, "stage": "preparation", "utc": "2026-10-07T21:02:42.057393+00:00"}
+{"event": "start", "monotonic_seconds": 9433.391708997, "stage": "evidence", "utc": "2026-10-07T21:02:42.085391+00:00"}
+{"event": "end", "monotonic_seconds": 9489.843540487, "note": "Resumed evidence pass; original completed evidence pass preserved separately", "stage": "evidence", "utc": "2026-10-07T21:03:38.537228+00:00"}
+{"event": "start", "monotonic_seconds": 9489.866390043, "note": "Resumed materialization; no preexisting candidate sources", "stage": "generation", "utc": "2026-10-07T21:03:38.560076+00:00"}
+{"event": "end", "monotonic_seconds": 9622.495787961, "stage": "generation", "utc": "2026-10-07T21:05:51.189475+00:00"}
+{"event": "start", "monotonic_seconds": 9622.517325193, "stage": "validation", "utc": "2026-10-07T21:05:51.211013+00:00"}
+{"event": "end", "monotonic_seconds": 9639.5055248, "note": "Common structural/context/parser check passed 10 of 10; no retry", "stage": "validation", "utc": "2026-10-07T21:06:08.199211+00:00"}
+{"event": "end", "monotonic_seconds": 9639.527844303, "stage": "preparation", "utc": "2026-10-07T21:06:08.221530+00:00"}
+{"event": "instant", "monotonic_seconds": 9639.548709166, "stage": "freeze", "utc": "2026-10-07T21:06:08.242394+00:00"}
+{"event": "start", "monotonic_seconds": 9705.225069561, "stage": "result_review", "utc": "2026-10-07T21:07:13.918756+00:00"}
+{"event": "end", "monotonic_seconds": 9759.981522358, "stage": "result_review", "utc": "2026-10-07T21:08:08.675208+00:00"}

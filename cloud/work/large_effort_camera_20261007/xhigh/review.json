@@ -1,0 +1,22 @@
+{
+  "lane": "xhigh",
+  "budget": 10,
+  "source_baseline_sha256": "1bac499d4feded2f749f32b3493e28beba8667bd493d385e1ca1332d5c0160b2",
+  "design_overview": "One nonadaptive batch spanning native-shaped recycle-site placement, persistent history-address dataflow, retirement skip edges, dispatch lowering, callback-safe parameter stages, selection-loop layout and structured command outcomes. Each source is a full independent TU derived from the frozen baseline. X03 explicitly combines the two separately motivated recycle-layout hypotheses.",
+  "domain_assumptions": [
+    "Native O32 object layouts, valid table indices and list links, and Entry-array storage distinct from global pointer/control objects.",
+    "No asynchronous or volatile mutation beyond the same explicit callback boundaries represented by the baseline.",
+    "Original signed-counter arithmetic is source-defined; float-to-integer conversions stay in the baseline-defined domains.",
+    "No callback-sensitive table, node entry, list-head or later-parameter reload is intentionally cached across callbacks."
+  ],
+  "limitations": [
+    "The exported real MP_TargetSteerPos ordinary ABI remains fixed and differs from the native private-register call convention.",
+    "No new helper contract, float conversion domain or arithmetic sequence is introduced.",
+    "Only the common structural/context/parser check is run by this lane. Coordinator owns uniform C89 and bounded differential validation plus the single machine batch.",
+    "Structural checking and bounded tests cannot prove native gameplay equivalence.",
+    "Some authentic spelling/dataflow variants may compile identically; unique source hashes do not imply unique ELFs.",
+    "Timing includes an interrupted prior session and resumed evidence read; see timing-notes.json and the unaltered event records. Active inference time is unknown.",
+    "No sibling sources or scores were inspected, no candidates were compiled locally, and no post-score replacement is permitted."
+  ],
+  "status": "frozen_structural_check_pass_10_of_10"
+}

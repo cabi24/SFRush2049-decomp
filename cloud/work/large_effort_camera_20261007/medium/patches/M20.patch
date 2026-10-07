@@ -1,0 +1,22 @@
+--- baseline.c
++++ candidates/M20.c
+@@ -138,14 +138,15 @@
+             func_80020518((u8)(s32)node->value);
+             break;
+         }
++        goto recycle;
++retry:
++        node->retries++;
++        if (node->entry) node->entry->blocked=1;
++        if (node->retries<10 || node->kind==0) continue;
+ recycle:
+         func_8009211C(&D_80146160,node);
+         func_80091FBC(&D_80146138,node,D_80146138.first);
+         continue;
+-retry:
+-        node->retries++;
+-        if (node->entry) node->entry->blocked=1;
+-        if (node->retries>=10 && node->kind!=0) goto recycle;
+     }
+     for (node=D_80146160.last;node;node=node->next) {
+         if (node->entry) node->entry->blocked=0;

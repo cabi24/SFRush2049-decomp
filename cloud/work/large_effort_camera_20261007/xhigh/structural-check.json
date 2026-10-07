@@ -1,0 +1,56 @@
+{
+  "rows": [
+    {
+      "source": "candidates/X01.c",
+      "sha256": "6a4461dd58c5f28936635dfb465a2efeeb277643c50b7d9630be8fd41f69b4a2",
+      "status": "context_and_parse_pass"
+    },
+    {
+      "source": "candidates/X02.c",
+      "sha256": "c5477f3c6c6db26b12c019053fe4bb13fddcc59c69eec4945f30af4ff03f2cb4",
+      "status": "context_and_parse_pass"
+    },
+    {
+      "source": "candidates/X03.c",
+      "sha256": "a7cab8a6a6b1d2a85d69fabce59b44056c66df393a13fff1ccff20bbc69e175e",
+      "status": "context_and_parse_pass"
+    },
+    {
+      "source": "candidates/X04.c",
+      "sha256": "8ffb9197d2ad180e1aaf00dc9eec50cdfc2c7399b1ed089afea1c42ed60842dc",
+      "status": "context_and_parse_pass"
+    },
+    {
+      "source": "candidates/X05.c",
+      "sha256": "44fc968372fbc20d8296e29c74f3527c0428f646336db8f15f2416df31545a13",
+      "status": "context_and_parse_pass"
+    },
+    {
+      "source": "candidates/X06.c",
+      "sha256": "88413c7902055ea85b9bed638ea567c143022dc6da63ec0a4281ec39fb7ddaad",
+      "status": "context_and_parse_pass"
+    },
+    {
+      "source": "candidates/X07.c",
+      "sha256": "c5ea01018e7c31ece8d8040789cc8fbab3a480286575f08ab3f33175b44363eb",
+      "status": "context_and_parse_pass"
+    },
+    {
+      "source": "candidates/X08.c",
+      "sha256": "1b15a82c1a84ceabf213fc6d5ab2b6afaf5959c43186997f93f6b7071c5e5db0",
+      "status": "context_and_parse_pass"
+    },
+    {
+      "source": "candidates/X09.c",
+      "sha256": "674f62b440c3a1f52f990b49da6007320ba2afadc767f180df3ff1684160b326",
+      "status": "context_and_parse_pass"
+    },
+    {
+      "source": "candidates/X10.c",
+      "sha256": "9c371f788a2fd9d1d60701d75cd7d5b3a1c23eedf9ad03574559455b4bf32eef",
+      "status": "context_and_parse_pass"
+    }
+  ],
+  "count": 10,
+  "scope": "Exact context and syntax only; coordinator runs equal semantic checks."
+}

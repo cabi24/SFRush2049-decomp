@@ -1,0 +1,15 @@
+--- baseline.c
++++ candidates/L10.c
+@@ -116,7 +116,11 @@
+     for (node=D_80146160.last;node;node=next) {
+         next=node->next;
+         entry=node->entry;
+-        if (entry && entry->stopRequested && node->kind!=2) goto recycle;
++        if (entry && entry->stopRequested && node->kind!=2) {
++        func_8009211C(&D_80146160,node);
++        func_80091FBC(&D_80146138,node,D_80146138.first);
++            continue;
++        }
+         if (entry && entry->blocked) continue;
+         switch (node->kind) {
+         case 0:

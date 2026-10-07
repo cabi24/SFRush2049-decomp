@@ -378,3 +378,32 @@ class TimingTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SelectedFunctionCanaryTests(unittest.TestCase):
+    def scorer(self):
+        scorer = mock.Mock()
+        scorer._elf.return_value = (b"", [{"off": 100, "type": 1, "info": 0}])
+        scorer._text_index.return_value = 0
+        scorer.symbols.return_value = {"helper": 0, "selected": 8, "after": 20}
+        scorer.text_words.return_value = [1, 2, 33, 4, 5, 6]
+        scorer.targets.return_value = {"selected": [3, 4, 5, 6]}
+        return scorer
+
+    def test_skips_other_helper_and_already_mismatching_prologue(self):
+        scorer = self.scorer()
+        self.assertEqual(batch.negative_canary_offset(scorer, "dummy", "selected"), 112)
+
+    def test_skips_relocation_words(self):
+        import struct
+        scorer = self.scorer()
+        scorer._elf.return_value = (struct.pack(">II", 12, 4), [
+            {"off": 100, "type": 1, "info": 0},
+            {"off": 0, "type": 9, "info": 0, "size": 8}])
+        self.assertEqual(batch.negative_canary_offset(scorer, "dummy", "selected"), 116)
+
+    def test_does_not_use_matching_next_function(self):
+        scorer = self.scorer()
+        scorer.text_words.return_value = [1, 2, 33, 44, 55, 6]
+        with self.assertRaisesRegex(ValueError, "no matched relocation-free"):
+            batch.negative_canary_offset(scorer, "dummy", "selected")

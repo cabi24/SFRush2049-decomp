@@ -1,0 +1,27 @@
+--- baseline.c
++++ candidates/X03.c
+@@ -116,7 +116,11 @@
+     for (node=D_80146160.last;node;node=next) {
+         next=node->next;
+         entry=node->entry;
+-        if (entry && entry->stopRequested && node->kind!=2) goto recycle;
++        if (entry && entry->stopRequested && node->kind!=2) {
++            func_8009211C(&D_80146160,node);
++            func_80091FBC(&D_80146138,node,D_80146138.first);
++            continue;
++        }
+         if (entry && entry->blocked) continue;
+         switch (node->kind) {
+         case 0:
+@@ -145,7 +149,10 @@
+ retry:
+         node->retries++;
+         if (node->entry) node->entry->blocked=1;
+-        if (node->retries>=10 && node->kind!=0) goto recycle;
++        if (node->retries>=10 && node->kind!=0) {
++            func_8009211C(&D_80146160,node);
++            func_80091FBC(&D_80146138,node,D_80146138.first);
++        }
+     }
+     for (node=D_80146160.last;node;node=node->next) {
+         if (node->entry) node->entry->blocked=0;

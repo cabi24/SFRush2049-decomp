@@ -1,0 +1,12 @@
+{
+  "lane": "medium",
+  "budget": 20,
+  "design_overview": "Independent history, entry traversal, list-address lifetime, command dispatch, parameter sequencing, and recycle/retry control-flow hypotheses. Every candidate starts from the frozen baseline; no adaptive combinations or compile feedback.",
+  "limitations": [
+    "Ordinary ABI of exported MP_TargetSteerPos remains fixed.",
+    "Helpers, types, declarations and all non-target context remain byte-identical.",
+    "Source hypotheses may optimize identically; no native equivalence or matching claim.",
+    "Common brief was read at first tool call before timing markers could be understood. preparation start marker is about 11 seconds after task receipt, rather than first tool call. Marker file initially used relative medium path and was moved intact to lane directory."
+  ],
+  "validation": "Prescribed structural/context parser only; coordinator owns equal semantic and machine gates."
+}

@@ -1,0 +1,12 @@
+--- baseline.c
++++ candidates/L14.c
+@@ -144,7 +144,8 @@
+         continue;
+ retry:
+         node->retries++;
+-        if (node->entry) node->entry->blocked=1;
++        entry=node->entry;
++        if (entry) entry->blocked=1;
+         if (node->retries>=10 && node->kind!=0) goto recycle;
+     }
+     for (node=D_80146160.last;node;node=node->next) {

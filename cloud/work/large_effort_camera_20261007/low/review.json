@@ -1,0 +1,10 @@
+{
+  "design_overview": "25 independent baseline edits spanning history traversal, natural address/scalar carriers, selection/retirement guard structure, dispatch and native separate recycle paths. No helper changes or float algebra transformations.",
+  "limitations": [
+    "Exported MP_TargetSteerPos ABI mismatch remains fixed.",
+    "Some front-end equivalent forms may compile identically; no machine results consulted.",
+    "Only common structural check is run here; coordinator owns bounded validation and scores.",
+    "Timing markers began after reading COMMON_TASK because marker invocation was not known beforehand; first evidence command is measured, initial brief read is not."
+  ],
+  "candidate_count": 25
+}

@@ -1,0 +1,52 @@
+{
+  "lane": "low",
+  "review_start": {
+    "event": "start",
+    "monotonic_seconds": 9426.499505851,
+    "stage": "result_review",
+    "utc": "2026-10-07T21:02:35.193192+00:00"
+  },
+  "review_end": {
+    "event": "end",
+    "monotonic_seconds": 9453.930911034,
+    "stage": "result_review",
+    "utc": "2026-10-07T21:03:02.624596+00:00"
+  },
+  "review_elapsed_seconds": 27.431405183000606,
+  "best_candidates": [
+    {
+      "id": "L17",
+      "edit": "Explicit completion array alias only",
+      "differing": 532,
+      "total": 557,
+      "extra_words": 0,
+      "function_bytes": 2092,
+      "interpretation": "One-word positional improvement from stable completion-counter address carrier. Broad mismatch remains; extent unchanged from baseline and 136 bytes shorter than native."
+    }
+  ],
+  "baseline_equivalent_body_ids": [
+    "L06",
+    "L13",
+    "L16",
+    "L19",
+    "L20",
+    "L23"
+  ],
+  "unique_variant_bodies": 20,
+  "unique_whole_elf_hashes": 25,
+  "findings": [
+    "All 25 candidates compile and score with zero errors, unresolved, unverified or excess words.",
+    "All 25 pass the uniform 2048-case host-C differential check.",
+    "Only L17 improves the 533-word baseline; equivalent-looking control-flow rewrites often collapse to identical relocated bodies.",
+    "Separate recycling sites do not improve strict positional score: L10 538, L11 533, L12 538.",
+    "Broader persistent history base L03 worsens score to 546; a narrow count alias L17 performs better in this batch."
+  ],
+  "limitations": [
+    "No exact match, adoption, native gameplay equivalence or causal reasoning-effort ranking established.",
+    "Bounded host-C checks do not establish O32 or exhaustive semantic equivalence.",
+    "Fixed exported MP_TargetSteerPos ABI and authentic helper bodies remain limiting context.",
+    "Whole-ELF uniqueness differs from relocated-function-body uniqueness.",
+    "Preparation marker excludes roughly ten seconds spent initially reading common protocol."
+  ],
+  "candidate_changes_after_freeze": false
+}

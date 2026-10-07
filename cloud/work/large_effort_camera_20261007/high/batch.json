@@ -1,0 +1,200 @@
+{
+  "schema": "rush-hypothesis-batch-v1",
+  "base_commit": "c35728addbae1626aabc89b7d837e28774f333a0",
+  "function": "camera_transform",
+  "recipe": "single",
+  "purpose": "experiment",
+  "experiment": "experiment.json",
+  "baseline": "baseline.c",
+  "baseline_sha256": "1bac499d4feded2f749f32b3493e28beba8667bd493d385e1ca1332d5c0160b2",
+  "baseline_expectation": {
+    "differing": 533,
+    "total": 557,
+    "extra_words": 0
+  },
+  "flags": [
+    "-g0",
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared"
+  ],
+  "targets": "asm/us/blob",
+  "context_manifest": "context.json",
+  "hypothesis": "Frozen high effort target-only authentic source transformations.",
+  "limits": {
+    "variants": 15,
+    "jobs": 2,
+    "compile_seconds": 120,
+    "score_seconds": 30,
+    "diagnose_seconds": 30
+  },
+  "predictions": {
+    "H01": {
+      "source": "candidates/H01.c",
+      "sha256": "faf7262685d6bae91a03f51762768900cf8d248754909fdc985ccaa5fccd6949",
+      "edit": "Use one stable completion-history base plus a descending cursor throughout the function.",
+      "semantic_justification": "Only the address of a fixed global array is cached; history values are loaded at their original sequence points. The cursor still copies elements 3,2,1,0 into 4,3,2,1 before clearing element zero. Assumes the baseline source-defined domain: valid distinct globals/table/list objects, O32 layouts, valid entries for commands that require them, bounded integer arithmetic, and float inputs within the original unsigned/signed conversion domains. No asynchronous mutation is introduced; external callbacks may change globals, list fields, entry fields, and command parameters exactly where the baseline reloads them.",
+      "native_effect": "The native body keeps the history base in a saved register from its opening through stop completion. This may create the missing long-lived address web without a pressure-only local.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H02": {
+      "source": "candidates/H02.c",
+      "sha256": "2b77fa1b77c70829b429255fb19f46774cd0b8cfc0c60d88a44b74eaf8742349",
+      "edit": "Commute the initial credit-plus-history expression.",
+      "semantic_justification": "Both reads are nonvolatile, occur before the same store, and have no intervening calls. Addition has the same value wherever the original signed addition is defined. Assumes the baseline source-defined domain: valid distinct globals/table/list objects, O32 layouts, valid entries for commands that require them, bounded integer arithmetic, and float inputs within the original unsigned/signed conversion domains. No asynchronous mutation is introduced; external callbacks may change globals, list fields, entry fields, and command parameters exactly where the baseline reloads them.",
+      "native_effect": "The common diagnosis identifies crossed operand loads in the opening addition. Source operand order may restore their native temporary order without other structural edits.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H03": {
+      "source": "candidates/H03.c",
+      "sha256": "f3f793b5d640bbd1603d5f4f2c0a92e26acae2c765c72d081cdbdd4e6191b090",
+      "edit": "Express both entry-table traversals with a byte-offset induction variable alongside the logical index.",
+      "semantic_justification": "Offset equals i*sizeof(Entry) on each entered iteration; the table base remains an expression reloaded at every original use, including after callbacks. Valid table extents keep offset arithmetic representable. The dynamic bound is not cached. Assumes the baseline source-defined domain: valid distinct globals/table/list objects, O32 layouts, valid entries for commands that require them, bounded integer arithmetic, and float inputs within the original unsigned/signed conversion domains. No asynchronous mutation is introduced; external callbacks may change globals, list fields, entry fields, and command parameters exactly where the baseline reloads them.",
+      "native_effect": "The native maintains independent index and 24-byte offset webs, with specific base-plus-offset operand order. Explicit induction may change their allocation and scheduling.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H04": {
+      "source": "candidates/H04.c",
+      "sha256": "2a3e6a9bfa39ef10a11c0988a52cb7d1ab07956d8f944fb2340a1d670ca46993",
+      "edit": "Flatten selected-entry filtering into an explicit while loop with one increment join.",
+      "semantic_justification": "Flag tests retain their original order and short-circuiting. The selected counter increments before the quarter-limit comparison; a threshold hit preserves i and avoids the callback. Loop bounds and the final equality reload the global after callbacks. Assumes the baseline source-defined domain: valid distinct globals/table/list objects, O32 layouts, valid entries for commands that require them, bounded integer arithmetic, and float inputs within the original unsigned/signed conversion domains. No asynchronous mutation is introduced; external callbacks may change globals, list fields, entry fields, and command parameters exactly where the baseline reloads them.",
+      "native_effect": "Native selection uses three exits joining at one index increment, then tests a dynamic bound. Explicit joins may match this branch geometry and shorten the entry pointer lifetime.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H05": {
+      "source": "candidates/H05.c",
+      "sha256": "92a3a7b3bf167c3a2d998b2701c410c0361d229ad76dc88bea153f8b8d18f98b",
+      "edit": "Resolve the current retirement entry once after history increment for its two final stores.",
+      "semantic_justification": "The table address is reloaded after all queue callbacks and after the history update, never retained across a callback. For valid distinct table/global objects, storing id cannot alter the global table pointer, so both stores target the same entry as baseline. Assumes the baseline source-defined domain: valid distinct globals/table/list objects, O32 layouts, valid entries for commands that require them, bounded integer arithmetic, and float inputs within the original unsigned/signed conversion domains. No asynchronous mutation is introduced; external callbacks may change globals, list fields, entry fields, and command parameters exactly where the baseline reloads them.",
+      "native_effect": "The native uses one address for consecutive id/active clearing; baseline assembly reloads the table between stores. A real local carrier may remove that repeated address computation.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H06": {
+      "source": "candidates/H06.c",
+      "sha256": "4fe004abccd9245a6a42aea38738db3026b6d92bbe71396c21b2630c258afb81",
+      "edit": "Give pre-dispatch cancellation, ordinary completion, and retry exhaustion their own recycle call sites.",
+      "semantic_justification": "Each path executes the same remove-then-insert calls exactly once and reads the free-list head after removal. The saved next pointer is unchanged. Early cancellation still bypasses blocked checks and retry bookkeeping; wrapped u8 retries remain unchanged. Assumes the baseline source-defined domain: valid distinct globals/table/list objects, O32 layouts, valid entries for commands that require them, bounded integer arithmetic, and float inputs within the original unsigned/signed conversion domains. No asynchronous mutation is introduced; external callbacks may change globals, list fields, entry fields, and command parameters exactly where the baseline reloads them.",
+      "native_effect": "Native has three recycling blocks, whereas baseline shares one through backward branches. Authentic path-local cleanup may recover those missing blocks and branch distances.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H07": {
+      "source": "candidates/H07.c",
+      "sha256": "88413c7902055ea85b9bed638ea567c143022dc6da63ec0a4281ec39fb7ddaad",
+      "edit": "Replace switch dispatch with an ordered if/else chain for command kinds 0,2,3,4.",
+      "semantic_justification": "Dispatch comparisons have no side effects or intervening callbacks, so repeated kind reads see the original selector. Each selected branch retains identical callbacks and stores; all other kinds recycle as before. Assumes the baseline source-defined domain: valid distinct globals/table/list objects, O32 layouts, valid entries for commands that require them, bounded integer arithmetic, and float inputs within the original unsigned/signed conversion domains. No asynchronous mutation is introduced; external callbacks may change globals, list fields, entry fields, and command parameters exactly where the baseline reloads them.",
+      "native_effect": "Native dispatch is a sparse comparison chain. Explicit source branches may avoid switch-specific value webs or change case-entry moves despite likely optimizer convergence.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H08": {
+      "source": "candidates/H08.c",
+      "sha256": "36d5be743d583736c64a7569cef4a3d5ac94438cbd338e5b5b52f1bb0bc0cf6c",
+      "edit": "Use an entry-guarded do/while command walk and explicit saved-successor join.",
+      "semantic_justification": "Both ordinary completion and blocked skips reach command_next, exactly substituting the for-loop increment. next is captured before any callback and never reloaded after list mutation. Retry exhaustion still jumps to the original recycle block. Assumes the baseline source-defined domain: valid distinct globals/table/list objects, O32 layouts, valid entries for commands that require them, bounded integer arithmetic, and float inputs within the original unsigned/signed conversion domains. No asynchronous mutation is introduced; external callbacks may change globals, list fields, entry fields, and command parameters exactly where the baseline reloads them.",
+      "native_effect": "Native uses a guarded loop with a bottom saved-next test and move. This form may alter latch scheduling and eliminate an entry/exit join that the for form retained.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H09": {
+      "source": "candidates/H09.c",
+      "sha256": "be5da33ee886fb41a2f05a9eef44c25a4c413d65aeead0d80100085ab8888d6b",
+      "edit": "Express retirement eligibility as three sequential early-continue guards.",
+      "semantic_justification": "The active and started reads and completion callback occur in their original short-circuit order. All successful cleanup and all dynamic table/count reloads stay untouched; each failed guard reaches the same for increment. Assumes the baseline source-defined domain: valid distinct globals/table/list objects, O32 layouts, valid entries for commands that require them, bounded integer arithmetic, and float inputs within the original unsigned/signed conversion domains. No asynchronous mutation is introduced; external callbacks may change globals, list fields, entry fields, and command parameters exactly where the baseline reloads them.",
+      "native_effect": "Native retirement has explicit forward exits from each guard. Flattening the compound conditional may alter loop branch-likely placement and common-block construction.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H10": {
+      "source": "candidates/H10.c",
+      "sha256": "7e072979847f6d318fdff1df1908fe0f20dcb84902d0b165b12285325dd50ce0",
+      "edit": "Separate sentinel filtering and helper-success tests into nested parameter blocks.",
+      "semantic_justification": "A sentinel still suppresses its helper entirely. Each subsequent parameter and entry pointer is loaded only after prior callbacks, retaining callback-sensitive replacements. Float comparisons and helper conversion arithmetic are unchanged. Assumes the baseline source-defined domain: valid distinct globals/table/list objects, O32 layouts, valid entries for commands that require them, bounded integer arithmetic, and float inputs within the original unsigned/signed conversion domains. No asynchronous mutation is introduced; external callbacks may change globals, list fields, entry fields, and command parameters exactly where the baseline reloads them.",
+      "native_effect": "Native parameter blocks each have a sentinel branch followed by a separate helper-result branch. Lexical nesting may change inline-result boolean lowering or block joins; convergence is possible.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H11": {
+      "source": "candidates/H11.c",
+      "sha256": "3f2659c2e52e69b587aa362c3d86d8a97c02f1a6625c57beb050ebc5e7595d7f",
+      "edit": "Carry the currently processed float parameter in a single local refreshed immediately before each sentinel test.",
+      "semantic_justification": "A field is cached only between its sentinel test and corresponding helper call, with no callback between those two original reads. The carrier is refreshed after every prior helper, so callbacks modifying later parameters remain visible. No arithmetic or narrowing changes. Assumes the baseline source-defined domain: valid distinct globals/table/list objects, O32 layouts, valid entries for commands that require them, bounded integer arithmetic, and float inputs within the original unsigned/signed conversion domains. No asynchronous mutation is introduced; external callbacks may change globals, list fields, entry fields, and command parameters exactly where the baseline reloads them.",
+      "native_effect": "The native sentinel tests and inline helpers transfer each parameter through explicit FP value webs. A source carrier may influence FP allocation without keeping unrelated future parameters live.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H12": {
+      "source": "candidates/H12.c",
+      "sha256": "5e70d3aea9eb52607dae460014d8abf0ce8d322d16288e8745cf4cae35af49a6",
+      "edit": "Use a single command-success local for real start, stop, and parameter helper results.",
+      "semantic_justification": "The helper is called once on exactly the original path, and its returned scalar is tested before further action. No result is reused between calls; sentinel-skipped helpers do not read an uninitialized result. Callback order and data reloads remain identical. Assumes the baseline source-defined domain: valid distinct globals/table/list objects, O32 layouts, valid entries for commands that require them, bounded integer arithmetic, and float inputs within the original unsigned/signed conversion domains. No asynchronous mutation is introduced; external callbacks may change globals, list fields, entry fields, and command parameters exactly where the baseline reloads them.",
+      "native_effect": "Native materializes boolean helper returns before testing, whereas some baseline inline helper exits use sltiu/move. A genuine result carrier may influence that merge without changing frozen helper bodies.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H13": {
+      "source": "candidates/H13.c",
+      "sha256": "769e908f371ff8d3db73120b8661e9f1f2d86b8e7a0ee7345e1d96cdc4355fc3",
+      "edit": "Use stable pending/free list addresses shared by retirement, command processing, and blocked cleanup.",
+      "semantic_justification": "Only addresses of fixed global list objects are retained. Each head/tail field load remains in place, especially the free-list head after removal and pending tail before final cleanup. Callback list mutations therefore remain observable. Assumes the baseline source-defined domain: valid distinct globals/table/list objects, O32 layouts, valid entries for commands that require them, bounded integer arithmetic, and float inputs within the original unsigned/signed conversion domains. No asynchronous mutation is introduced; external callbacks may change globals, list fields, entry fields, and command parameters exactly where the baseline reloads them.",
+      "native_effect": "Native retains both list addresses in saved registers across phases. Explicit address carriers may reduce repeated symbol materialization and reshape register allocation.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H14": {
+      "source": "candidates/H14.c",
+      "sha256": "d499a6ce3f6aebaab3f04b590db9a6868924230c171ff55fe0b09a8333aac7db",
+      "edit": "Reload the retry entry into the existing entry local and express exhaustion as two early-continue guards.",
+      "semantic_justification": "The pointer is reloaded after the failed callback and after retries increments, retaining callback replacement semantics. No calls intervene between the original repeated pointer reads. Byte overflow happens in the same field store before the threshold check; zero-kind commands still never expire. Assumes the baseline source-defined domain: valid distinct globals/table/list objects, O32 layouts, valid entries for commands that require them, bounded integer arithmetic, and float inputs within the original unsigned/signed conversion domains. No asynchronous mutation is introduced; external callbacks may change globals, list fields, entry fields, and command parameters exactly where the baseline reloads them.",
+      "native_effect": "Native retry uses a reloaded entry carrier followed by separate threshold and kind branches. This may simplify v1/a0 webs and align the exhaustion join.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "H15": {
+      "source": "candidates/H15.c",
+      "sha256": "25724d801209770800be547452bd842e3baeb8b795fad2fecc3b8ca08e720d8c",
+      "edit": "Combine the history-base carrier, commuted opening sum, explicit table offset, post-cleanup entry carrier, and three path-local recycle blocks.",
+      "semantic_justification": "This composition preserves each component invariant: fixed address caching only; current table reloads after callbacks; identical defined addition and table indexing; two final writes with no intervening callback; and exactly one remove/insert pair on each recycling path. Parameter helper contracts and all conversion expressions remain untouched. Assumes the baseline source-defined domain: valid distinct globals/table/list objects, O32 layouts, valid entries for commands that require them, bounded integer arithmetic, and float inputs within the original unsigned/signed conversion domains. No asynchronous mutation is introduced; external callbacks may change globals, list fields, entry fields, and command parameters exactly where the baseline reloads them.",
+      "native_effect": "Tests a coherent native-layout hypothesis rather than an adaptive combination: saved history base, separate index/offset webs, one final clearing address, and three recycling sites. It could improve structure together, but interactions can also worsen allocation and positional score.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    }
+  }
+}

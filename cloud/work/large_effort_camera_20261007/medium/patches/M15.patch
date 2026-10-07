@@ -1,0 +1,19 @@
+--- baseline.c
++++ candidates/M15.c
+@@ -100,14 +100,14 @@
+         if (D_80144C48[i].active && D_80144C48[i].started &&
+             func_800201D0(D_80144C48[i].voice)==(u32)-1) {
+             node=D_80146160.last;
+-            while (node) {
++            if (node) do {
+                 next=node->next;
+                 if (node->entry==&D_80144C48[i]) {
+                     func_8009211C(&D_80146160,node);
+                     func_80091FBC(&D_80146138,node,D_80146138.first);
+                 }
+                 node=next;
+-            }
++            } while (node);
+             D_801460C8[0]++;
+             D_80144C48[i].id=0;
+             D_80144C48[i].active=0;

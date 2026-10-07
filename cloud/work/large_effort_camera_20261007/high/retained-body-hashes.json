@@ -1,0 +1,90 @@
+{
+  "lane": "high",
+  "start_utc": "2026-10-07T21:03:25.417135+00:00",
+  "end_utc": "2026-10-07T21:03:25.451887+00:00",
+  "elapsed_seconds": 0.034772234999763896,
+  "rows": [
+    {
+      "id": "baseline",
+      "function_bytes": 2092,
+      "relocated_function_sha256": "df9ef217590c2be8a919fb59688fd8d1807e95979214a12c74136395fdfaaf39"
+    },
+    {
+      "id": "H01",
+      "function_bytes": 2096,
+      "relocated_function_sha256": "9a7e306f44a565728df919636a3dfd5ada3ee9c806eb45488934cff2c191e548"
+    },
+    {
+      "id": "H02",
+      "function_bytes": 2092,
+      "relocated_function_sha256": "74bf48b6ff481072f2f051948cc0624ecf690575eb407a20285c1828e2fee64f"
+    },
+    {
+      "id": "H03",
+      "function_bytes": 2092,
+      "relocated_function_sha256": "dc5a3c17c86a6f77e090fe62fd070836d439245b68fa1eeea69c5fad8c312a21"
+    },
+    {
+      "id": "H04",
+      "function_bytes": 2092,
+      "relocated_function_sha256": "ca6f16abec72b80f5f7aa7d2b8b570b334dc012db90ce10628d5c01c23c97741"
+    },
+    {
+      "id": "H05",
+      "function_bytes": 2084,
+      "relocated_function_sha256": "294011b7792403c62c79c428e2f91f155ed6733dd931747d3327c00eca197a7e"
+    },
+    {
+      "id": "H06",
+      "function_bytes": 2156,
+      "relocated_function_sha256": "3aada687c02ba6c128cf0121aaa6960902ac1e77314fa19cf719e18cec94ab23"
+    },
+    {
+      "id": "H07",
+      "function_bytes": 2084,
+      "relocated_function_sha256": "a0c0ff4968c5f778d7e9061815c54e98878c2f8e4caca059d953bb82f327a3d6"
+    },
+    {
+      "id": "H08",
+      "function_bytes": 2092,
+      "relocated_function_sha256": "df9ef217590c2be8a919fb59688fd8d1807e95979214a12c74136395fdfaaf39"
+    },
+    {
+      "id": "H09",
+      "function_bytes": 2132,
+      "relocated_function_sha256": "d9834bc5ac66f9c128eba78e7f8fe5be0e964f1bf5863277f746453bc436b543"
+    },
+    {
+      "id": "H10",
+      "function_bytes": 2092,
+      "relocated_function_sha256": "df9ef217590c2be8a919fb59688fd8d1807e95979214a12c74136395fdfaaf39"
+    },
+    {
+      "id": "H11",
+      "function_bytes": 2076,
+      "relocated_function_sha256": "d0f009d85195709401406762f74ee6e5e3252e05f09d1ece6bf9ca0b40335bd3"
+    },
+    {
+      "id": "H12",
+      "function_bytes": 2092,
+      "relocated_function_sha256": "df9ef217590c2be8a919fb59688fd8d1807e95979214a12c74136395fdfaaf39"
+    },
+    {
+      "id": "H13",
+      "function_bytes": 2104,
+      "relocated_function_sha256": "72c525c1de5c7396ab9ac9871c6bfaf658bcfbd7054664227fe4ef5bc92649f6"
+    },
+    {
+      "id": "H14",
+      "function_bytes": 2092,
+      "relocated_function_sha256": "c48872cf0b94120fafa2494ce9fef65bb740943d4574c716f9d07002d4244232"
+    },
+    {
+      "id": "H15",
+      "function_bytes": 2152,
+      "relocated_function_sha256": "8cb9bd7ddce5612aaa2453c285b3ef89a8206269c63da6c6b73a5e092e740d98"
+    }
+  ],
+  "unique_variant_bodies": 13,
+  "scope": "Full symbol extent after canonical named relocation; body equality checked on retained bytes, not inferred from scores."
+}

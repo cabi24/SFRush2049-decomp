@@ -1,0 +1,21 @@
+{
+  "lane": "high",
+  "candidate_count": 15,
+  "baseline_sha256": "1bac499d4feded2f749f32b3493e28beba8667bd493d385e1ca1332d5c0160b2",
+  "design_overview": "Fifteen frozen, independently executable full-TU proposals. H01\u2013H05 target opening/table dataflow, H06\u2013H10 target authentic loop/dispatch/block structure, H11\u2013H14 target actual value/result/address carriers and retry joins, and H15 is a preplanned coherent composition. All helper bodies, declarations, signatures, and suffix remain frozen.",
+  "primary_hypotheses": [
+    "Persistent history-base address explains a native saved-register web.",
+    "Native uses three path-local recycling sequences rather than one shared block.",
+    "Separate entry index/byte-offset induction and one post-callback clearing address better express native table traversal."
+  ],
+  "limitations": [
+    "No compiling, machine scoring, semantic harness, sibling inspection, or adaptive round performed in this lane.",
+    "Some lexical control-flow variants may optimize identically; source uniqueness does not imply code uniqueness.",
+    "The exported MP_TargetSteerPos ordinary ABI limitation remains fixed.",
+    "Source-defined semantic arguments are conditional on valid objects, table/list bounds, conversion domains, and absence of undefined arithmetic; common bounded tests cannot establish gameplay equivalence.",
+    "Result review has not started."
+  ],
+  "timing_disclosure": "COMMON_TASK.md was read in the initial tool call before its timing instructions were known. Preparation/evidence markers began immediately in the next tool call at 20:38:39.878295 UTC; initial brief-read interval is excluded. The relative event file was moved unchanged into this lane. All evidence interpretation and generation after that point is measured.",
+  "self_validation": "Only the prescribed structural/context/parser checker will be run; no custom semantic checking.",
+  "retry_count": 0
+}

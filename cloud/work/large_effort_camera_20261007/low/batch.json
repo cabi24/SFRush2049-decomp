@@ -1,0 +1,310 @@
+{
+  "schema": "rush-hypothesis-batch-v1",
+  "base_commit": "c35728addbae1626aabc89b7d837e28774f333a0",
+  "function": "camera_transform",
+  "recipe": "single",
+  "purpose": "experiment",
+  "experiment": "experiment.json",
+  "baseline": "baseline.c",
+  "baseline_sha256": "1bac499d4feded2f749f32b3493e28beba8667bd493d385e1ca1332d5c0160b2",
+  "baseline_expectation": {
+    "differing": 533,
+    "total": 557,
+    "extra_words": 0
+  },
+  "flags": [
+    "-g0",
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared"
+  ],
+  "targets": "asm/us/blob",
+  "context_manifest": "context.json",
+  "hypothesis": "Frozen low effort target-only authentic source transformations.",
+  "limits": {
+    "variants": 25,
+    "jobs": 2,
+    "compile_seconds": 120,
+    "score_seconds": 30,
+    "diagnose_seconds": 30
+  },
+  "predictions": {
+    "L01": {
+      "source": "candidates/L01.c",
+      "sha256": "2fc9a805dd2d7696eeeb26bbf850389019d808f8b05ac3e2ecf46b46ca6ede58",
+      "edit": "Index-based history shift",
+      "semantic_justification": "Copies the same four elements in descending order without calls. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Change pointer induction to integer induction and eliminate history pointer live range. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L02": {
+      "source": "candidates/L02.c",
+      "sha256": "911ad76e5b56ad60a13e81fc5ce6e0bb3f966e487d0acca914121c2ad0f8c5e8",
+      "edit": "Unrolled four-element history shift",
+      "semantic_justification": "Exactly four writes in the original descending order. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Remove loop branch and expose four constant-offset loads/stores. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L03": {
+      "source": "candidates/L03.c",
+      "sha256": "29f831543e663bfa824981727f8c8c511340d5db365fca2bf74facbc1964e0df",
+      "edit": "History base carried throughout",
+      "semantic_justification": "The global array object address is invariant, while its values remain reloaded at original points. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Encourage persistent completion-history base as in native s7. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L04": {
+      "source": "candidates/L04.c",
+      "sha256": "83e292bfc748c755e5a00ad3c0d422fa8a3486ac34b38d67b4766f5094859216",
+      "edit": "History predecrement traversal",
+      "semantic_justification": "One-past pointer starts valid and reaches indices four through one. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Change induction entry and loop termination scheduling. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L05": {
+      "source": "candidates/L05.c",
+      "sha256": "561026622c3e23cd95fe8b19fa6f65b2dda4ee19376770704273837fa04de319",
+      "edit": "Selection guard exits",
+      "semantic_justification": "Identical ordered guards, count update, break and callback. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Flatten selection loop and expose common latch. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L06": {
+      "source": "candidates/L06.c",
+      "sha256": "d1833a432d076317cb0cec0ea8fa47addd01df7608d3bd2aeffbfb93edc826cf",
+      "edit": "Selection nested eligibility",
+      "semantic_justification": "Same short-circuit eligibility and callback order. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Offer structured nested eligibility blocks to front end. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L07": {
+      "source": "candidates/L07.c",
+      "sha256": "be5da33ee886fb41a2f05a9eef44c25a4c413d65aeead0d80100085ab8888d6b",
+      "edit": "Retirement early skip",
+      "semantic_justification": "Calls only after same eligibility; post-call table reloads stay unchanged. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Flatten retirement guards, change branch polarity and latches. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L08": {
+      "source": "candidates/L08.c",
+      "sha256": "d84b047791c1014a8e984f4492f216b70da863c192ed3c12837fc1b2c1b95fe4",
+      "edit": "Retirement entry snapshot before poll",
+      "semantic_justification": "Pointer cached only before poll, never across callback for subsequent table accesses. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Give poll eligibility one explicit address web. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L09": {
+      "source": "candidates/L09.c",
+      "sha256": "92a3a7b3bf167c3a2d998b2701c410c0361d229ad76dc88bea153f8b8d18f98b",
+      "edit": "Retirement final entry reload carrier",
+      "semantic_justification": "Reload occurs after all callbacks; no call between the two original stores. Typed entry fields cannot alias table pointer global. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Share final retirement address as native does. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L10": {
+      "source": "candidates/L10.c",
+      "sha256": "deda28147cdb263ac04f571ce2ac9eb08e81023d1628867218a0d483b964b6d1",
+      "edit": "Explicit cancelled-command recycling",
+      "semantic_justification": "Duplicates real list operations solely on the original early recycle path, preserving saved next and order. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Recover native separate cancelled-command recycle block. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L11": {
+      "source": "candidates/L11.c",
+      "sha256": "fc33e903df99b0a6ba69c622f337d858b38ca5d9ebc02fbee758cf49308bf596",
+      "edit": "Explicit exhausted-command recycling",
+      "semantic_justification": "Same retry byte update and blocked store precede same recycle operations. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Recover native separate exhausted-command recycle block. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L12": {
+      "source": "candidates/L12.c",
+      "sha256": "b494f8fa4661167f7d177412f66c8e22a76c3124b2566a1acaec3623a7118333",
+      "edit": "Both exceptional recycle blocks",
+      "semantic_justification": "Both real exceptional paths preserve callback order and saved next. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Expose three native recycle sites instead of one shared tail. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L13": {
+      "source": "candidates/L13.c",
+      "sha256": "210fbe4bc14c76266c18a40a88529b21f8ebcf738d11de197bae3fda7460ab17",
+      "edit": "Retry threshold guard continuation",
+      "semantic_justification": "Unsigned byte wrap remains in original increment; comparisons occur after blocked marking. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Make retry retention the fallthrough/continue path. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L14": {
+      "source": "candidates/L14.c",
+      "sha256": "4c81bdee3ab18ba9779d56c65eb943e78d38678a24b39eae052e8d4ded90e079",
+      "edit": "Retry entry reloaded into carrier",
+      "semantic_justification": "Fresh pointer loaded after all command callbacks and retry increment. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Explicit retry pointer web may align native argument carrier. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L15": {
+      "source": "candidates/L15.c",
+      "sha256": "4ff9456df008b261fb3ee6efc3d24fca61ae703d5cd94be82c22219dab707de7",
+      "edit": "Cleanup explicit entry carrier",
+      "semantic_justification": "No callbacks in cleanup; same entry and same blocked write. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Unify cleanup pointer carrier with command entry local. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L16": {
+      "source": "candidates/L16.c",
+      "sha256": "f9a3fd4cf735baf9403892760e4b956c70442dcc952df835e60ee22495fe78f6",
+      "edit": "Cleanup while traversal",
+      "semantic_justification": "Same zero-trip behavior and next load after blocked write. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Change cleanup loop representation and latch placement. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L17": {
+      "source": "candidates/L17.c",
+      "sha256": "38c8533c5b56273ef2941bab80f7c5a3a240719f1f33a2e5b94b7cd8d50df788",
+      "edit": "Explicit completion array alias only",
+      "semantic_justification": "Address of global completion counter is stable; values still read after callbacks. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Encourage persistent completed-count address without changing history traversal. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L18": {
+      "source": "candidates/L18.c",
+      "sha256": "88413c7902055ea85b9bed638ea567c143022dc6da63ec0a4281ec39fb7ddaad",
+      "edit": "Command dispatch if chain",
+      "semantic_justification": "Only one kind is selected before any command callback; no additional tests after chosen arm. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Replace switch lowering with explicit branch chain. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L19": {
+      "source": "candidates/L19.c",
+      "sha256": "7e072979847f6d318fdff1df1908fe0f20dcb84902d0b165b12285325dd50ce0",
+      "edit": "Parameter sentinel nested guards",
+      "semantic_justification": "Same float sentinel comparisons, helper contracts, short circuit and per-callback reloads. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Separate sentinel skip blocks from helper success blocks. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L20": {
+      "source": "candidates/L20.c",
+      "sha256": "efe7acbb7194b43eca3e2f681de8d861599ac741fb7b603f70d8c1481a6efdff",
+      "edit": "Parameter success disjunctions",
+      "semantic_justification": "Equality negation matches inequality including NaN comparison outcome; float-conversion domain remains baseline. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Present success-oriented logical form to front end. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L21": {
+      "source": "candidates/L21.c",
+      "sha256": "d7c57141f31fb54aae0edd0db347d4e13ac13039f63e81d177c8f6d461b6aa48",
+      "edit": "Parameter scalar carrier per step",
+      "semantic_justification": "Each value loaded immediately before its own helper, never hoisted across preceding callbacks. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Expose shared float carrier for four parameter operations. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L22": {
+      "source": "candidates/L22.c",
+      "sha256": "2a067638d3bd2518f70a951073ab9a317e6d953f2dc7b3cc2611722a05ad4a87",
+      "edit": "Start arguments explicit carriers",
+      "semantic_justification": "Arguments loaded after availability guard and before start callback, no intervening mutation. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Expose real start-argument float locals while preserving exported ABI. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L23": {
+      "source": "candidates/L23.c",
+      "sha256": "b13ebc3b80b2c7d2e2448c41c4bf6fdcb5aae76b04edf164a9090e8596d99968",
+      "edit": "Command outcome scalar carrier",
+      "semantic_justification": "Results are consumed immediately; no callback or global-load reordering. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Give start/stop success an explicit shared scalar web. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L24": {
+      "source": "candidates/L24.c",
+      "sha256": "bc8b78e4f4a25b5b9a4220f9cd537508e04ada0a3c2980eed4d429bc27d8a791",
+      "edit": "Active-list address carrier",
+      "semantic_justification": "Global list address stable, list fields reloaded at every original point. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Encourage native persistent active-list pointer register. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "L25": {
+      "source": "candidates/L25.c",
+      "sha256": "dd809dcf66d43cd465bdae9d01c8659c6f1df6dbd3e7f852d08b481c5a6f1130",
+      "edit": "Separate selection entry carrier",
+      "semantic_justification": "Selection pointer has no use outside that loop; later entry values remain separately loaded. Assumes baseline valid O32 objects/lists, defined integer operations, and original valid float conversion domain. No asynchronous mutation beyond modeled callbacks.",
+      "native_effect": "Split selection and command entry webs to alter natural liveness allocation. Diagnostic hypothesis, not a predicted matching claim.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    }
+  }
+}

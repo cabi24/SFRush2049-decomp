@@ -1,0 +1,4 @@
+{"stage": "common_validation", "event": "start", "utc": "2026-10-07T20:41:45.877737+00:00", "monotonic_seconds": 8177.184051547}
+{"stage": "common_validation", "event": "end", "utc": "2026-10-07T20:41:48.257366+00:00", "monotonic_seconds": 8179.563680809, "semantic_status": "passed", "semantic_elapsed_seconds": 2.045711710999967}
+{"stage": "machine", "event": "start", "utc": "2026-10-07T20:41:48.257448+00:00", "monotonic_seconds": 8179.56375384, "run": "/workspace/scratch/e1dc04a487a3/rush-large-effort/build/hypothesis/large-camera-medium"}
+{"stage": "machine", "event": "end", "utc": "2026-10-07T20:42:07.359090+00:00", "monotonic_seconds": 8198.665412408, "returncode": 0}

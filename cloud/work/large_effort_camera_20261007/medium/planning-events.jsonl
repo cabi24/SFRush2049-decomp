@@ -1,0 +1,11 @@
+{"event": "start", "monotonic_seconds": 7978.943844663, "stage": "preparation", "utc": "2026-10-07T20:38:27.637531+00:00"}
+{"event": "start", "monotonic_seconds": 7978.964454682, "stage": "evidence", "utc": "2026-10-07T20:38:27.658144+00:00"}
+{"event": "end", "monotonic_seconds": 8012.151304294, "stage": "evidence", "utc": "2026-10-07T20:39:00.844991+00:00"}
+{"event": "start", "monotonic_seconds": 8012.177177499, "stage": "generation", "utc": "2026-10-07T20:39:00.870861+00:00"}
+{"event": "end", "monotonic_seconds": 8129.710282621, "stage": "generation", "utc": "2026-10-07T20:40:58.403968+00:00"}
+{"event": "start", "monotonic_seconds": 8129.731876572, "stage": "validation", "utc": "2026-10-07T20:40:58.425563+00:00"}
+{"event": "end", "monotonic_seconds": 8130.002529211, "stage": "validation", "utc": "2026-10-07T20:40:58.696214+00:00"}
+{"event": "end", "monotonic_seconds": 8130.02546688, "stage": "preparation", "utc": "2026-10-07T20:40:58.719152+00:00"}
+{"event": "instant", "monotonic_seconds": 8137.415773244, "stage": "freeze", "utc": "2026-10-07T20:41:06.109458+00:00"}
+{"event": "start", "monotonic_seconds": 9437.145615011, "stage": "result_review", "utc": "2026-10-07T21:02:45.839302+00:00"}
+{"event": "end", "monotonic_seconds": 9476.709357654, "stage": "result_review", "utc": "2026-10-07T21:03:25.403041+00:00"}

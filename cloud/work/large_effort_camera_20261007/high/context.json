@@ -1,0 +1,10 @@
+{
+  "schema": "rush-hypothesis-context-v1",
+  "source": "cloud/work/lean_camera_transform_20261006/candidate.c",
+  "files": [
+    {
+      "path": "cloud/work/lean_camera_transform_20261006/candidate.c",
+      "sha256": "1bac499d4feded2f749f32b3493e28beba8667bd493d385e1ca1332d5c0160b2"
+    }
+  ]
+}

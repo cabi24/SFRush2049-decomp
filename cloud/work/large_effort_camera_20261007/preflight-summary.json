@@ -1,0 +1,232 @@
+{
+  "base_commit": "c35728addbae1626aabc89b7d837e28774f333a0",
+  "baseline": [
+    {
+      "accepted": false,
+      "compile_seconds": 0.2162660390004021,
+      "differing": 533,
+      "extra_words": 0,
+      "object_sha256": "fa1bb1eb82c0768508fffb7278f836d49ee88c7f3f00e2e98b0a72fd50d300ae",
+      "score_seconds": 0.36463357400043606,
+      "status": "scored_mismatch",
+      "total": 557
+    },
+    {
+      "accepted": false,
+      "compile_seconds": 0.21634871900005237,
+      "differing": 533,
+      "extra_words": 0,
+      "object_sha256": "fa1bb1eb82c0768508fffb7278f836d49ee88c7f3f00e2e98b0a72fd50d300ae",
+      "score_seconds": 0.40120466600001237,
+      "status": "scored_mismatch",
+      "total": 557
+    }
+  ],
+  "counts": {
+    "strict_exact": 0,
+    "unique_elf_groups": 0,
+    "variants": 0
+  },
+  "envelope_sha256": "47cc4731ce797718a8ab89093f660b612c7a8513cdd4867a02b391a59be7310c",
+  "flags": [
+    "-g0",
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Wab,-r4300_mul"
+  ],
+  "jobs": 2,
+  "negative_canary": {
+    "accepted": false,
+    "differing": 534,
+    "status": "scored_mismatch"
+  },
+  "plan_sha256": "1d93fef73437436e84e5cb65ef2778b268497f1c937e92704e0b65065c509329",
+  "purpose": "experiment",
+  "run_id": "2d407b5c7d294d1caa7b8ee423b361a6",
+  "schema": "rush-hypothesis-batch-v1",
+  "status": "ready_controls_only",
+  "timings": {
+    "aggregation": "Summed elapsed durations are process/span wall time, not CPU time. Parallel and nested spans overlap; do not sum stages into total wall time.",
+    "clock": "UTC boundaries; monotonic elapsed durations",
+    "cpu_seconds": null,
+    "ended_utc": "2026-10-07T20:36:16.609020+00:00",
+    "events_file": "events.jsonl",
+    "llm_active_seconds": null,
+    "llm_tokens": null,
+    "observation_cutoff": "Batch end is after initial report generation; final summary/timing serialization follows that measured boundary.",
+    "open_spans": [],
+    "per_variant": [
+      {
+        "elapsed_seconds": 0.018348640999647614,
+        "event": "end",
+        "monotonic_seconds": 7845.662252478,
+        "pid": 27,
+        "returncode": 0,
+        "run_id": "2d407b5c7d294d1caa7b8ee423b361a6",
+        "schema": "rush-hypothesis-timing-v1",
+        "span_id": "e0b746c171d04bebb1a4adb9a2eba383",
+        "stage": "compiler_process",
+        "status": "ok",
+        "utc": "2026-10-07T20:36:14.355936+00:00",
+        "variant": "baseline-1"
+      },
+      {
+        "elapsed_seconds": 0.21637087700037227,
+        "event": "end",
+        "monotonic_seconds": 7845.675499959,
+        "pid": 2,
+        "returncode": 0,
+        "run_id": "2d407b5c7d294d1caa7b8ee423b361a6",
+        "schema": "rush-hypothesis-timing-v1",
+        "seconds": 0.2162660390004021,
+        "span_id": "e2e322a7799c4ff081b767d2b9beb2cc",
+        "stage": "baseline_compile",
+        "status": "ok",
+        "utc": "2026-10-07T20:36:14.369181+00:00",
+        "variant": "baseline-1"
+      },
+      {
+        "elapsed_seconds": 0.364727856999707,
+        "event": "end",
+        "monotonic_seconds": 7846.168478556,
+        "pid": 2,
+        "returncode": 0,
+        "run_id": "2d407b5c7d294d1caa7b8ee423b361a6",
+        "schema": "rush-hypothesis-timing-v1",
+        "seconds": 0.36463357400043606,
+        "span_id": "fc681466dba148a59f246417cbaa0b8e",
+        "stage": "strict_score",
+        "status": "ok",
+        "utc": "2026-10-07T20:36:14.862160+00:00",
+        "variant": "baseline-1"
+      },
+      {
+        "elapsed_seconds": 0.016436636999969778,
+        "event": "end",
+        "monotonic_seconds": 7846.493539546,
+        "pid": 38,
+        "returncode": 0,
+        "run_id": "2d407b5c7d294d1caa7b8ee423b361a6",
+        "schema": "rush-hypothesis-timing-v1",
+        "span_id": "13ef2cbd3127488591496b55c8dc85f4",
+        "stage": "compiler_process",
+        "status": "ok",
+        "utc": "2026-10-07T20:36:15.187224+00:00",
+        "variant": "baseline-2"
+      },
+      {
+        "elapsed_seconds": 0.21645526900010736,
+        "event": "end",
+        "monotonic_seconds": 7846.507788551,
+        "pid": 2,
+        "returncode": 0,
+        "run_id": "2d407b5c7d294d1caa7b8ee423b361a6",
+        "schema": "rush-hypothesis-timing-v1",
+        "seconds": 0.21634871900005237,
+        "span_id": "40bc611a45f14947b1938db64df84576",
+        "stage": "baseline_compile",
+        "status": "ok",
+        "utc": "2026-10-07T20:36:15.201471+00:00",
+        "variant": "baseline-2"
+      },
+      {
+        "elapsed_seconds": 0.4012973859998965,
+        "event": "end",
+        "monotonic_seconds": 7847.03646278,
+        "pid": 2,
+        "returncode": 0,
+        "run_id": "2d407b5c7d294d1caa7b8ee423b361a6",
+        "schema": "rush-hypothesis-timing-v1",
+        "seconds": 0.40120466600001237,
+        "span_id": "7feed93074a247c78f2025738ca73ad3",
+        "stage": "strict_score",
+        "status": "ok",
+        "utc": "2026-10-07T20:36:15.730143+00:00",
+        "variant": "baseline-2"
+      },
+      {
+        "elapsed_seconds": 0.36494935600057943,
+        "event": "end",
+        "monotonic_seconds": 7847.688782442,
+        "pid": 2,
+        "returncode": 0,
+        "run_id": "2d407b5c7d294d1caa7b8ee423b361a6",
+        "schema": "rush-hypothesis-timing-v1",
+        "seconds": 0.3647906249998414,
+        "span_id": "155935e8b8574200b7723a550419fe7b",
+        "stage": "strict_score",
+        "status": "ok",
+        "utc": "2026-10-07T20:36:16.382464+00:00",
+        "variant": "negative-canary"
+      }
+    ],
+    "stages": {
+      "baseline_compile": {
+        "completed_spans": 2,
+        "first_start_utc": "2026-10-07T20:36:14.152635+00:00",
+        "last_end_utc": "2026-10-07T20:36:15.201471+00:00",
+        "summed_elapsed_seconds": 0.43282614600047964
+      },
+      "baseline_controls": {
+        "completed_spans": 1,
+        "first_start_utc": "2026-10-07T20:36:13.505941+00:00",
+        "last_end_utc": "2026-10-07T20:36:16.494726+00:00",
+        "summed_elapsed_seconds": 2.9887383820005198
+      },
+      "batch": {
+        "completed_spans": 1,
+        "first_start_utc": "2026-10-07T20:36:13.063899+00:00",
+        "last_end_utc": "2026-10-07T20:36:16.608783+00:00",
+        "summed_elapsed_seconds": 3.5448612189993582
+      },
+      "compiler_process": {
+        "completed_spans": 2,
+        "first_start_utc": "2026-10-07T20:36:14.337407+00:00",
+        "last_end_utc": "2026-10-07T20:36:15.187224+00:00",
+        "summed_elapsed_seconds": 0.03478527799961739
+      },
+      "final_integrity_verification": {
+        "completed_spans": 1,
+        "first_start_utc": "2026-10-07T20:36:16.494889+00:00",
+        "last_end_utc": "2026-10-07T20:36:16.607969+00:00",
+        "summed_elapsed_seconds": 0.11278393500015227
+      },
+      "freeze": {
+        "completed_spans": 1,
+        "first_start_utc": "2026-10-07T20:36:13.099774+00:00",
+        "last_end_utc": "2026-10-07T20:36:13.505672+00:00",
+        "summed_elapsed_seconds": 0.405623378999735
+      },
+      "preflight_validation": {
+        "completed_spans": 1,
+        "first_start_utc": "2026-10-07T20:36:13.064517+00:00",
+        "last_end_utc": "2026-10-07T20:36:13.099644+00:00",
+        "summed_elapsed_seconds": 0.03507511899988458
+      },
+      "report": {
+        "completed_spans": 1,
+        "first_start_utc": "2026-10-07T20:36:16.608131+00:00",
+        "last_end_utc": "2026-10-07T20:36:16.608720+00:00",
+        "summed_elapsed_seconds": 0.0005427610003607697
+      },
+      "strict_score": {
+        "completed_spans": 3,
+        "first_start_utc": "2026-10-07T20:36:14.497252+00:00",
+        "last_end_utc": "2026-10-07T20:36:16.382464+00:00",
+        "summed_elapsed_seconds": 1.130974599000183
+      },
+      "target_preparation": {
+        "completed_spans": 1,
+        "first_start_utc": "2026-10-07T20:36:13.506447+00:00",
+        "last_end_utc": "2026-10-07T20:36:14.023886+00:00",
+        "summed_elapsed_seconds": 0.5172350180000649
+      }
+    },
+    "started_utc": "2026-10-07T20:36:13.063899+00:00",
+    "wall_seconds": 3.5451250279993474
+  },
+  "variants": []
+}

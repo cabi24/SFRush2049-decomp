@@ -1,0 +1,25 @@
+--- baseline.c
++++ candidates/X09.c
+@@ -87,12 +87,17 @@
+     D_801460C8[0]=0;
+     if (D_8011028C) {
+         selected=0;
+-        for (i=0;i<D_801460F4;i++) {
++        i=0;
++        while (i<D_801460F4) {
+             entry=&D_80144C48[i];
+-            if (entry->active && entry->flag4 && !entry->stopRequested) {
+-                if (++selected==D_801460F4/4) break;
+-                audio_timing_sync(entry->id);
+-            }
++            if (!entry->active) goto next_selected_entry;
++            if (!entry->flag4) goto next_selected_entry;
++            if (entry->stopRequested) goto next_selected_entry;
++            ++selected;
++            if (selected==D_801460F4/4) break;
++            audio_timing_sync(entry->id);
++next_selected_entry:
++            ++i;
+         }
+         if (i==D_801460F4) D_8011028C=0;
+     }

@@ -1,0 +1,16 @@
+--- baseline.c
++++ candidates/L04.c
+@@ -79,11 +79,8 @@
+     Entry *entry;
+     if (!D_80110284) return;
+     D_80144DB8+=D_801460C8[4];
+-    history=&D_801460C8[4];
+-    do {
+-        history[0]=history[-1];
+-        --history;
+-    } while (history>=&D_801460C8[1]);
++    history=&D_801460C8[5];
++    while (--history>&D_801460C8[0]) history[0]=history[-1];
+     D_801460C8[0]=0;
+     if (D_8011028C) {
+         selected=0;

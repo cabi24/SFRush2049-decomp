@@ -1,0 +1,80 @@
+{
+  "status": "passed",
+  "cases_per_candidate": 2048,
+  "start_utc": "2026-10-07T21:06:23.612309+00:00",
+  "end_utc": "2026-10-07T21:06:24.637228+00:00",
+  "elapsed_seconds": 1.0249402110002848,
+  "rows": [
+    {
+      "id": "X01",
+      "sha256": "6a4461dd58c5f28936635dfb465a2efeeb277643c50b7d9630be8fd41f69b4a2",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.10250927000015508
+    },
+    {
+      "id": "X02",
+      "sha256": "c5477f3c6c6db26b12c019053fe4bb13fddcc59c69eec4945f30af4ff03f2cb4",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.10198065000076895
+    },
+    {
+      "id": "X03",
+      "sha256": "a7cab8a6a6b1d2a85d69fabce59b44056c66df393a13fff1ccff20bbc69e175e",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.10349612699974386
+    },
+    {
+      "id": "X04",
+      "sha256": "8ffb9197d2ad180e1aaf00dc9eec50cdfc2c7399b1ed089afea1c42ed60842dc",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.10535921500013501
+    },
+    {
+      "id": "X05",
+      "sha256": "44fc968372fbc20d8296e29c74f3527c0428f646336db8f15f2416df31545a13",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.10041413599901716
+    },
+    {
+      "id": "X06",
+      "sha256": "88413c7902055ea85b9bed638ea567c143022dc6da63ec0a4281ec39fb7ddaad",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.10181461899992428
+    },
+    {
+      "id": "X07",
+      "sha256": "c5ea01018e7c31ece8d8040789cc8fbab3a480286575f08ab3f33175b44363eb",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.10134317099982582
+    },
+    {
+      "id": "X08",
+      "sha256": "1b15a82c1a84ceabf213fc6d5ab2b6afaf5959c43186997f93f6b7071c5e5db0",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.09935906099963177
+    },
+    {
+      "id": "X09",
+      "sha256": "674f62b440c3a1f52f990b49da6007320ba2afadc767f180df3ff1684160b326",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.10367422099989199
+    },
+    {
+      "id": "X10",
+      "sha256": "9c371f788a2fd9d1d60701d75cd7d5b3a1c23eedf9ad03574559455b4bf32eef",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.10394234700106608
+    }
+  ],
+  "scope": "Host-C differential traces/state against frozen clean C, 2048 deterministic scenarios; standard 32-bit int/float but host pointers/layout, not O32 or whole-C/native equivalence. Covers real commands, list mutations, flags, retries, history and bounded callback-sensitive reloads."
+}

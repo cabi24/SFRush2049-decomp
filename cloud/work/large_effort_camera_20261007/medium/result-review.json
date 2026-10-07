@@ -1,0 +1,68 @@
+{
+  "lane": "medium",
+  "scope": "Review of own frozen proposals and own machine result packet only. No source edits, reruns or new candidates.",
+  "result": "No candidate improves baseline strict score; no adoption recommended.",
+  "baseline": {
+    "differing": 533,
+    "total": 557,
+    "extra_words": 0,
+    "function_bytes": 2092,
+    "repeat_whole_elf_identical": true
+  },
+  "variants": 20,
+  "clean_compile_and_score": 20,
+  "bounded_semantic_passes": 20,
+  "cases_per_candidate": 2048,
+  "best_differing": 533,
+  "best_ids": [
+    "M03",
+    "M05",
+    "M08",
+    "M10",
+    "M11",
+    "M13",
+    "M14",
+    "M15",
+    "M16",
+    "M18"
+  ],
+  "worst_differing": 546,
+  "unique_whole_elf_groups": 20,
+  "unique_relocated_function_bodies": 16,
+  "baseline_equivalent_body_ids": [
+    "M11",
+    "M13",
+    "M14",
+    "M15",
+    "M18"
+  ],
+  "own_extent_bytes_range": [
+    2068,
+    2132
+  ],
+  "native_extent_bytes": 2228,
+  "findings": [
+    "Explicit helper-result carrier, narrowed local scopes, guarded do/while cleanup and retirement walks, and nested parameter guards canonicalized to the baseline body (M11/M13/M14/M15/M18).",
+    "M03/M05/M08/M10/M16 tie the score with genuinely different retained function bodies; equal positional score is not body identity.",
+    "History-base alias and unrolling M01/M02 worsen the score to 546; sequential float carrier and combined parameter-failure chain M12/M19 worsen it to 540.",
+    "All own extents remain below native 2228 bytes; the allowed local transformations do not close the broad structural residual.",
+    "Repeated baseline controls agree and negative canary worsens to 534. Canonical diagnostic counts remain zero for all 20 candidates.",
+    "machine-summary.md displays only a partial ranking; complete per-candidate conclusions here use machine-public-summary.json and retained-body-hashes.json."
+  ],
+  "limitations": [
+    "Bounded host-C checks establish neither full source equivalence nor O32/native gameplay equivalence.",
+    "Exported MP_TargetSteerPos ordinary-ABI limitation and frozen helper context remain.",
+    "Single frozen batch with unequal cross-lane budgets cannot establish causal reasoning-effort efficiency. No sibling results were read.",
+    "Whole-ELF hashes and body hashes measure different identities.",
+    "Timings are elapsed wall spans, not active LLM time or CPU cost. Initial preparation-marker delay remains disclosed in review.json."
+  ],
+  "machine_wall_seconds": 19.02582212499965,
+  "common_semantic_seconds": 2.013316372999725,
+  "timing": {
+    "start_utc": "2026-10-07T21:02:45.839302+00:00",
+    "end_utc": "2026-10-07T21:03:25.403041+00:00",
+    "start_monotonic": 9437.145615011,
+    "end_monotonic": 9476.709357654,
+    "elapsed_seconds": 39.56374264299848
+  }
+}

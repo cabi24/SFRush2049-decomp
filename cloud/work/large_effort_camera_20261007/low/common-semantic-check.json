@@ -1,0 +1,185 @@
+{
+  "status": "passed",
+  "cases_per_candidate": 2048,
+  "start_utc": "2026-10-07T20:41:01.506338+00:00",
+  "end_utc": "2026-10-07T20:41:04.267541+00:00",
+  "elapsed_seconds": 2.761221781000131,
+  "rows": [
+    {
+      "id": "L01",
+      "sha256": "2fc9a805dd2d7696eeeb26bbf850389019d808f8b05ac3e2ecf46b46ca6ede58",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.10544199800006027
+    },
+    {
+      "id": "L02",
+      "sha256": "911ad76e5b56ad60a13e81fc5ce6e0bb3f966e487d0acca914121c2ad0f8c5e8",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.10607811099998798
+    },
+    {
+      "id": "L03",
+      "sha256": "29f831543e663bfa824981727f8c8c511340d5db365fca2bf74facbc1964e0df",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.10227782299989485
+    },
+    {
+      "id": "L04",
+      "sha256": "83e292bfc748c755e5a00ad3c0d422fa8a3486ac34b38d67b4766f5094859216",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.12541431200043007
+    },
+    {
+      "id": "L05",
+      "sha256": "561026622c3e23cd95fe8b19fa6f65b2dda4ee19376770704273837fa04de319",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.10338066100030119
+    },
+    {
+      "id": "L06",
+      "sha256": "d1833a432d076317cb0cec0ea8fa47addd01df7608d3bd2aeffbfb93edc826cf",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.10450203700020211
+    },
+    {
+      "id": "L07",
+      "sha256": "be5da33ee886fb41a2f05a9eef44c25a4c413d65aeead0d80100085ab8888d6b",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.09912998300023901
+    },
+    {
+      "id": "L08",
+      "sha256": "d84b047791c1014a8e984f4492f216b70da863c192ed3c12837fc1b2c1b95fe4",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.10723228699953324
+    },
+    {
+      "id": "L09",
+      "sha256": "92a3a7b3bf167c3a2d998b2701c410c0361d229ad76dc88bea153f8b8d18f98b",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.11112327800037747
+    },
+    {
+      "id": "L10",
+      "sha256": "deda28147cdb263ac04f571ce2ac9eb08e81023d1628867218a0d483b964b6d1",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.10893991499960975
+    },
+    {
+      "id": "L11",
+      "sha256": "fc33e903df99b0a6ba69c622f337d858b38ca5d9ebc02fbee758cf49308bf596",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.1049253929995757
+    },
+    {
+      "id": "L12",
+      "sha256": "b494f8fa4661167f7d177412f66c8e22a76c3124b2566a1acaec3623a7118333",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.10354748500049027
+    },
+    {
+      "id": "L13",
+      "sha256": "210fbe4bc14c76266c18a40a88529b21f8ebcf738d11de197bae3fda7460ab17",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.10889921800026059
+    },
+    {
+      "id": "L14",
+      "sha256": "4c81bdee3ab18ba9779d56c65eb943e78d38678a24b39eae052e8d4ded90e079",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.11577080699953513
+    },
+    {
+      "id": "L15",
+      "sha256": "4ff9456df008b261fb3ee6efc3d24fca61ae703d5cd94be82c22219dab707de7",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.12601511899993056
+    },
+    {
+      "id": "L16",
+      "sha256": "f9a3fd4cf735baf9403892760e4b956c70442dcc952df835e60ee22495fe78f6",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.11239741400004277
+    },
+    {
+      "id": "L17",
+      "sha256": "38c8533c5b56273ef2941bab80f7c5a3a240719f1f33a2e5b94b7cd8d50df788",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.1295048609999867
+    },
+    {
+      "id": "L18",
+      "sha256": "88413c7902055ea85b9bed638ea567c143022dc6da63ec0a4281ec39fb7ddaad",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.1094391930000711
+    },
+    {
+      "id": "L19",
+      "sha256": "7e072979847f6d318fdff1df1908fe0f20dcb84902d0b165b12285325dd50ce0",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.12123762500050361
+    },
+    {
+      "id": "L20",
+      "sha256": "efe7acbb7194b43eca3e2f681de8d861599ac741fb7b603f70d8c1481a6efdff",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.11085406199981662
+    },
+    {
+      "id": "L21",
+      "sha256": "d7c57141f31fb54aae0edd0db347d4e13ac13039f63e81d177c8f6d461b6aa48",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.1166263759996582
+    },
+    {
+      "id": "L22",
+      "sha256": "2a067638d3bd2518f70a951073ab9a317e6d953f2dc7b3cc2611722a05ad4a87",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.10533854099958262
+    },
+    {
+      "id": "L23",
+      "sha256": "b13ebc3b80b2c7d2e2448c41c4bf6fdcb5aae76b04edf164a9090e8596d99968",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.10147609900013776
+    },
+    {
+      "id": "L24",
+      "sha256": "bc8b78e4f4a25b5b9a4220f9cd537508e04ada0a3c2980eed4d429bc27d8a791",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.11519673400016472
+    },
+    {
+      "id": "L25",
+      "sha256": "dd809dcf66d43cd465bdae9d01c8659c6f1df6dbd3e7f852d08b481c5a6f1130",
+      "status": "bounded_pass",
+      "cases": 2048,
+      "elapsed_seconds": 0.10355541499939136
+    }
+  ],
+  "scope": "Host-C differential traces/state against frozen clean C, 2048 deterministic scenarios; standard 32-bit int/float but host pointers/layout, not O32 or whole-C/native equivalence. Covers real commands, list mutations, flags, retries, history and bounded callback-sensitive reloads."
+}

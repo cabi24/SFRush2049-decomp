@@ -1,0 +1,75 @@
+{
+  "lane": "high",
+  "status": "reviewed",
+  "candidate_count": 15,
+  "findings": [
+    "No candidate improves the frozen 533/557-word mismatch baseline. Seven tie and eight regress; zero strict-exact candidates.",
+    "All fifteen candidates compile and score with zero extra words, unresolved relocations, unverified relocations, or errors; all pass the coordinator's 2,048-case bounded host-C differential check.",
+    "Fifteen distinct whole ELFs represent thirteen distinct relocated function bodies. H08, H10, and H12 are byte-identical to the baseline function body, so their differing whole ELF hashes are not evidence of target code changes.",
+    "H02, H03, H04, and H14 change target body bytes while tying the baseline score. Operand commutation, explicit table induction, filter joins, and retry carrier restructuring therefore affect output but do not improve strict positional matching.",
+    "H06 path-local recycling produces the largest body (2,156 bytes, 539 words), closer in extent to retail 2,228 bytes than baseline 2,092 bytes, but worsens mismatch to 538/557. Extent alone is not progress.",
+    "H15 preplanned composition scores 537/557; the combined native-layout hypothesis does not rescue the baseline under the frozen standalone ABI."
+  ],
+  "baseline_equivalent_bodies": [
+    "H08",
+    "H10",
+    "H12"
+  ],
+  "baseline_ties": [
+    "H02",
+    "H03",
+    "H04",
+    "H08",
+    "H10",
+    "H12",
+    "H14"
+  ],
+  "best_differing": 533,
+  "total_words": 557,
+  "strict_exact_count": 0,
+  "unique_source_count": 15,
+  "unique_whole_elf_count": 15,
+  "unique_variant_body_count": 13,
+  "own_function_bytes": {
+    "baseline": 2092,
+    "H01": 2096,
+    "H02": 2092,
+    "H03": 2092,
+    "H04": 2092,
+    "H05": 2084,
+    "H06": 2156,
+    "H07": 2084,
+    "H08": 2092,
+    "H09": 2132,
+    "H10": 2092,
+    "H11": 2076,
+    "H12": 2092,
+    "H13": 2104,
+    "H14": 2092,
+    "H15": 2152
+  },
+  "recommendation": "Keep the frozen baseline; retain this batch as negative research. No candidate merits adoption from this evidence.",
+  "limitations": [
+    "Bounded host-C checks compare with the clean C baseline, not retail gameplay or complete source equivalence; host pointers/layout differ from O32.",
+    "The exported MP_TargetSteerPos ordinary-ABI constraint and all authentic helper/context bodies remained fixed.",
+    "Equal mismatch scores alone do not imply equal programs; equality claims above use retained relocated full-symbol-body hashes.",
+    "No sibling sources or results were inspected, and no post-freeze source edits, compilations, reruns, or new candidates were made.",
+    "This single lane cannot establish causal reasoning-effort efficiency; active LLM seconds, token counts, and CPU seconds are unknown."
+  ],
+  "sources": [
+    "machine-public-summary.json",
+    "machine-summary.md",
+    "common-semantic-check.json",
+    "retained-body-hashes.json",
+    "predictions.json",
+    "review.json"
+  ],
+  "timing": {
+    "start_utc": "2026-10-07T21:03:44.437801+00:00",
+    "end_utc": "2026-10-07T21:04:24.583019+00:00",
+    "start_monotonic_seconds": 9495.744131568,
+    "end_monotonic_seconds": 9535.889334297,
+    "elapsed_seconds": 40.14520272899972,
+    "scope": "Own frozen-proposal and own-results interpretation plus initial report serialization; timing-field serialization follows end marker. Relative marker log was appended unchanged into the lane after a path lookup error."
+  }
+}

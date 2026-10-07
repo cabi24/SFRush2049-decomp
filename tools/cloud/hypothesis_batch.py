@@ -26,6 +26,7 @@ import shlex
 import shutil
 import signal
 import subprocess
+import struct
 import sys
 import tarfile
 import threading
@@ -615,6 +616,35 @@ def target_object(output):
     receipt(output, output / "target.receipt.json", obj, {"words": len(words), "padding_words": len(emitted) - len(words)})
 
 
+def negative_canary_offset(scorer, obj, function):
+    """Select a matched, relocation-free word inside the selected function.
+
+    A genuine TU can emit other helpers first, and a nonmatching prologue may
+    already differ. Mutating either would not establish target-score sensitivity.
+    """
+    data, sections = scorer._elf(obj)
+    text_index = scorer._text_index(sections)
+    section = sections[text_index]
+    symbols = scorer.symbols(obj)
+    start = symbols[function]
+    words = scorer.text_words(obj)
+    target = scorer.targets()[function]
+    end = min((offset for offset in symbols.values() if offset > start),
+              default=len(words) * 4)
+    relocated = set()
+    for rel in sections:
+        if rel["type"] == 9 and rel["info"] == text_index:
+            relocated.update(struct.unpack_from(">II", data, rel["off"] + k)[0]
+                             for k in range(0, rel["size"], 8))
+    for index, wanted in enumerate(target):
+        offset = start + index * 4
+        if offset >= end:
+            break
+        if offset not in relocated and words[offset // 4] == wanted:
+            return section["off"] + offset
+    raise ValueError("no matched relocation-free target word for negative canary")
+
+
 def baseline_controls(output):
     state = read_json(output / "frozen.json")
     plan = state["plan"]
@@ -643,7 +673,7 @@ def baseline_controls(output):
     data, sections = scorer._elf(original)
     section = sections[scorer._text_index(sections)]
     altered = bytearray(data)
-    offset = section["off"]
+    offset = negative_canary_offset(scorer, original, plan["function"])
     altered[offset:offset + 4] = b"\x00\x00\x00\x00" if altered[offset:offset + 4] != b"\x00\x00\x00\x00" else b"\x24\x02\x00\x01"
     canary = output / "negative-canary.o"
     canary.write_bytes(altered)

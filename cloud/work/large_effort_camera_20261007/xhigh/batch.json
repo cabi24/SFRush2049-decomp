@@ -1,0 +1,145 @@
+{
+  "schema": "rush-hypothesis-batch-v1",
+  "base_commit": "c35728addbae1626aabc89b7d837e28774f333a0",
+  "function": "camera_transform",
+  "recipe": "single",
+  "purpose": "experiment",
+  "experiment": "experiment.json",
+  "baseline": "baseline.c",
+  "baseline_sha256": "1bac499d4feded2f749f32b3493e28beba8667bd493d385e1ca1332d5c0160b2",
+  "baseline_expectation": {
+    "differing": 533,
+    "total": 557,
+    "extra_words": 0
+  },
+  "flags": [
+    "-g0",
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared"
+  ],
+  "targets": "asm/us/blob",
+  "context_manifest": "context.json",
+  "hypothesis": "Frozen xhigh effort target-only authentic source transformations.",
+  "limits": {
+    "variants": 10,
+    "jobs": 2,
+    "compile_seconds": 120,
+    "score_seconds": 30,
+    "diagnose_seconds": 30
+  },
+  "predictions": {
+    "X01": {
+      "source": "candidates/X01.c",
+      "edit": "Keep stop-request cancellation as a local recycle block before blocked-command filtering.",
+      "semantic_justification": "The two list callbacks retain their order and arguments. The saved next pointer was captured before either callback, and continue still uses that saved pointer. The second callback still reloads the free-list first member after the first callback.",
+      "native_effect": "Native has a separate early recycle site; this can recover that block and shorten cancellation branches without changing helper visibility.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "sha256": "6a4461dd58c5f28936635dfb465a2efeeb277643c50b7d9630be8fd41f69b4a2"
+    },
+    "X02": {
+      "source": "candidates/X02.c",
+      "edit": "Recycle exhausted non-start retries locally at the tail rather than jumping backward to the success site.",
+      "semantic_justification": "The u8 retries increment, blocked-entry store, threshold test, kind reload and ordered callbacks occur in the same order. Fallthrough reaches the same for-loop increment as the original recycle continue. Byte wraparound is unchanged.",
+      "native_effect": "Native has a third, retry-specific recycle site; this exposes it to the compiler rather than forcing source-level merging.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "sha256": "c5477f3c6c6db26b12c019053fe4bb13fddcc59c69eec4945f30af4ff03f2cb4"
+    },
+    "X03": {
+      "source": "candidates/X03.c",
+      "edit": "Use distinct local cancellation, ordinary-completion and retry-exhaustion recycle paths.",
+      "semantic_justification": "Combines two independent control-flow duplications of real list operations. Each execution still invokes exactly one ordered callback pair and advances through the pre-callback saved next pointer. Callback-sensitive list-head reloads stay inside each pair.",
+      "native_effect": "Tests the complete three-site source layout visible in the native control flow; the compiler may still tail-merge sites.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "sha256": "a7cab8a6a6b1d2a85d69fabce59b44056c66df393a13fff1ccff20bbc69e175e"
+    },
+    "X04": {
+      "source": "candidates/X04.c",
+      "edit": "Give the completion-history array a persistent genuine base-pointer local used by every history access.",
+      "semantic_justification": "The address of the external array is stable, but none of its values is cached: every increment and read remains at its original position, including after callbacks. The walker remains separate and visits the same four elements. Array storage and native O32 type assumptions are unchanged.",
+      "native_effect": "Native keeps the history base in a saved register throughout the function. A persistent address dataflow may recover that allocation and remove repeated address materialization.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "sha256": "8ffb9197d2ad180e1aaf00dc9eec50cdfc2c7399b1ed089afea1c42ed60842dc"
+    },
+    "X05": {
+      "source": "candidates/X05.c",
+      "edit": "Flatten the retirement predicate into skip guards and use short-lived entry pointers before probing and after all callbacks.",
+      "semantic_justification": "Active and started reads remain ordered and the voice callback is still conditional. No entry/table pointer is retained for later use across a callback: each node comparison reloads the table and final retirement explicitly reloads it. The final two stores use one pointer with no intervening callback; valid distinct Entry-array/global storage is assumed, as for the typed baseline.",
+      "native_effect": "Exposes native-style skip edges and a shared final retirement address while preserving callback-sensitive table refreshes.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "sha256": "44fc968372fbc20d8296e29c74f3527c0428f646336db8f15f2416df31545a13"
+    },
+    "X06": {
+      "source": "candidates/X06.c",
+      "edit": "Spell command dispatch as an ordered if/else-if chain over the four supported command kinds.",
+      "semantic_justification": "There are no callbacks between dispatch comparisons, and each chosen body is unchanged. Kind is an ordinary byte, not asynchronous or volatile state. Unsupported values still go to ordinary recycle. A callback inside the chosen arm cannot cause another arm to execute.",
+      "native_effect": "The native dispatcher is a comparison chain. This tests explicit chain formation and block layout instead of relying on switch lowering.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "sha256": "88413c7902055ea85b9bed638ea567c143022dc6da63ec0a4281ec39fb7ddaad"
+    },
+    "X07": {
+      "source": "candidates/X07.c",
+      "edit": "Express the four optional parameter updates as a positive short-circuit success pipeline.",
+      "semantic_justification": "C short-circuit sequencing preserves volume, pan, depth and rate order and stops after the first failed update. Each later node field and entry pointer remains loaded after earlier callbacks. Sentinel comparisons are logical complements even for NaN, while conversion-domain restrictions stay identical to baseline.",
+      "native_effect": "Changes success/failure branch polarity and boolean merge structure in the largest block without changing helper arithmetic or result contracts.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "sha256": "c5ea01018e7c31ece8d8040789cc8fbab3a480286575f08ab3f33175b44363eb"
+    },
+    "X08": {
+      "source": "candidates/X08.c",
+      "edit": "Use explicit per-stage float operands for the four optional parameter updates.",
+      "semantic_justification": "Every local carries a real command operand and is used for both its sentinel comparison and helper call. Each operand is captured only after all preceding callbacks, never hoisted across them. Loading an f32 into an f32 local preserves the source value and helpers retain the exact original float operations and casts.",
+      "native_effect": "Tests operand webs and front-end scheduling for four genuinely separate parameter stages. Locals may be optimized away; no frame-size or matching claim is assumed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "sha256": "1b15a82c1a84ceabf213fc6d5ab2b6afaf5959c43186997f93f6b7071c5e5db0"
+    },
+    "X09": {
+      "source": "candidates/X09.c",
+      "edit": "Use an explicit selected-entry scan with ordered skip guards and a single increment edge.",
+      "semantic_justification": "The same three flag reads short-circuit in the same order. Selected increments before the threshold comparison; the threshold remains recomputed from the live global, and i does not advance on break. The loop bound is still read after audio_timing_sync, preserving changes by callbacks.",
+      "native_effect": "Exposes the native scan skip edges and separates selected count from index control. Tests loop lowering rather than introducing a cached bound or stride-only state.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "sha256": "674f62b440c3a1f52f990b49da6007320ba2afadc767f180df3ff1684160b326"
+    },
+    "X10": {
+      "source": "candidates/X10.c",
+      "edit": "Represent command completion as a genuine result value, then handle retry or recycling in a structured tail.",
+      "semantic_justification": "The result controls exactly the original success/failure paths. Start decrements capacity only after a nonzero return; stop increments history only after success; parameter updates short-circuit in original order with live reloads. Failure increments the u8 counter and marks the current node entry before testing the updated threshold and live kind. Unknown kinds succeed and recycle. Early cancellation still bypasses blocked checks via the existing recycle label.",
+      "native_effect": "Tests a command-result dataflow and forward retry tail instead of many distant retry branches. It may change register lifetime and code extent materially; all state exists for actual queue-processing semantics.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      },
+      "sha256": "9c371f788a2fd9d1d60701d75cd7d5b3a1c23eedf9ad03574559455b4bf32eef"
+    }
+  }
+}

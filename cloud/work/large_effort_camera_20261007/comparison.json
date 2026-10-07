@@ -1,0 +1,368 @@
+{
+  "generated_utc": "2026-10-07T21:10:00.275767+00:00",
+  "function": "camera_transform",
+  "base_commit": "c35728addbae1626aabc89b7d837e28774f333a0",
+  "baseline_differing": 533,
+  "total_words": 557,
+  "native_bytes": 2228,
+  "baseline_bytes": 2092,
+  "variants": 70,
+  "all_compiled_clean": true,
+  "all_common_bounded_pass": true,
+  "cases_per_candidate": 2048,
+  "unique_sources": 56,
+  "unique_elf": 45,
+  "unique_bodies": 31,
+  "shared_body_groups": [
+    [
+      "L01",
+      "M03"
+    ],
+    [
+      "L02",
+      "M02"
+    ],
+    [
+      "L03",
+      "M01",
+      "H01",
+      "X04"
+    ],
+    [
+      "L05",
+      "M05",
+      "H04",
+      "X09"
+    ],
+    [
+      "L06",
+      "L13",
+      "L16",
+      "L19",
+      "L20",
+      "L23",
+      "M11",
+      "M13",
+      "M14",
+      "M15",
+      "M18",
+      "H08",
+      "H10",
+      "H12"
+    ],
+    [
+      "L07",
+      "M06",
+      "H09"
+    ],
+    [
+      "L09",
+      "H05"
+    ],
+    [
+      "L10",
+      "M09",
+      "X01"
+    ],
+    [
+      "L11",
+      "M10",
+      "X02"
+    ],
+    [
+      "L12",
+      "H06",
+      "X03"
+    ],
+    [
+      "L14",
+      "H14"
+    ],
+    [
+      "L18",
+      "M07",
+      "H07",
+      "X06"
+    ],
+    [
+      "L21",
+      "M12",
+      "H11"
+    ],
+    [
+      "M16",
+      "H03"
+    ],
+    [
+      "M17",
+      "H13"
+    ],
+    [
+      "M19",
+      "X07"
+    ]
+  ],
+  "lanes": [
+    {
+      "lane": "low",
+      "variants": 25,
+      "preparation_last_completed_window": {
+        "start_utc": "2026-10-07T20:38:11.770786+00:00",
+        "end_utc": "2026-10-07T20:39:58.545963+00:00",
+        "elapsed_seconds": 106.77517520899983,
+        "start_monotonic": 7963.077099725,
+        "end_monotonic": 8069.852274934,
+        "earlier_start_count": 0
+      },
+      "review_last_completed_window": {
+        "start_utc": "2026-10-07T21:02:35.193192+00:00",
+        "end_utc": "2026-10-07T21:03:02.624596+00:00",
+        "elapsed_seconds": 27.431405183000606,
+        "start_monotonic": 9426.499505851,
+        "end_monotonic": 9453.930911034,
+        "earlier_start_count": 1
+      },
+      "preparation_first_start_to_freeze_seconds": 106.7957682819997,
+      "freeze_utc": "2026-10-07T20:39:58.566555+00:00",
+      "machine": {
+        "start_utc": "2026-10-07T20:41:04.274260+00:00",
+        "end_utc": "2026-10-07T20:41:26.053079+00:00",
+        "elapsed_seconds": 21.778836014999797,
+        "start_monotonic": 8135.580565796,
+        "end_monotonic": 8157.359401811,
+        "earlier_start_count": 0
+      },
+      "common_validation": {
+        "start_utc": "2026-10-07T20:41:01.087901+00:00",
+        "end_utc": "2026-10-07T20:41:04.274168+00:00",
+        "elapsed_seconds": 3.1862724850007,
+        "start_monotonic": 8132.394215783,
+        "end_monotonic": 8135.580488268,
+        "earlier_start_count": 0
+      },
+      "freeze_to_machine_start_seconds": 65.70769778900012,
+      "batch_measured_seconds": 21.709648220999952,
+      "best_differing": 532,
+      "best_ids": [
+        "L17"
+      ],
+      "strict_exact": 0,
+      "improvements": 1,
+      "unique_sources": 25,
+      "unique_elf": 25,
+      "unique_bodies": 20,
+      "baseline_equal_bodies": [
+        "L06",
+        "L13",
+        "L16",
+        "L19",
+        "L20",
+        "L23"
+      ],
+      "function_bytes_min": 2076,
+      "function_bytes_max": 2156,
+      "variant_compiler_process_summed_seconds": 0.41607019499770104,
+      "variant_compile_workbench_summed_seconds": 7.384738007999658,
+      "variant_strict_score_summed_seconds": 9.076094689002275,
+      "common_semantic": "passed"
+    },
+    {
+      "lane": "medium",
+      "variants": 20,
+      "preparation_last_completed_window": {
+        "start_utc": "2026-10-07T20:38:27.637531+00:00",
+        "end_utc": "2026-10-07T20:40:58.719152+00:00",
+        "elapsed_seconds": 151.08162221699968,
+        "start_monotonic": 7978.943844663,
+        "end_monotonic": 8130.02546688,
+        "earlier_start_count": 0
+      },
+      "review_last_completed_window": {
+        "start_utc": "2026-10-07T21:02:45.839302+00:00",
+        "end_utc": "2026-10-07T21:03:25.403041+00:00",
+        "elapsed_seconds": 39.56374264299848,
+        "start_monotonic": 9437.145615011,
+        "end_monotonic": 9476.709357654,
+        "earlier_start_count": 0
+      },
+      "preparation_first_start_to_freeze_seconds": 158.4719285809997,
+      "freeze_utc": "2026-10-07T20:41:06.109458+00:00",
+      "machine": {
+        "start_utc": "2026-10-07T20:41:48.257448+00:00",
+        "end_utc": "2026-10-07T20:42:07.359090+00:00",
+        "elapsed_seconds": 19.101658567999948,
+        "start_monotonic": 8179.56375384,
+        "end_monotonic": 8198.665412408,
+        "earlier_start_count": 0
+      },
+      "common_validation": {
+        "start_utc": "2026-10-07T20:41:45.877737+00:00",
+        "end_utc": "2026-10-07T20:41:48.257366+00:00",
+        "elapsed_seconds": 2.3796292619999804,
+        "start_monotonic": 8177.184051547,
+        "end_monotonic": 8179.563680809,
+        "earlier_start_count": 0
+      },
+      "freeze_to_machine_start_seconds": 42.1479805959998,
+      "batch_measured_seconds": 19.0249367360002,
+      "best_differing": 533,
+      "best_ids": [
+        "M03",
+        "M05",
+        "M08",
+        "M10",
+        "M11",
+        "M13",
+        "M14",
+        "M15",
+        "M16",
+        "M18"
+      ],
+      "strict_exact": 0,
+      "improvements": 0,
+      "unique_sources": 20,
+      "unique_elf": 20,
+      "unique_bodies": 16,
+      "baseline_equal_bodies": [
+        "M11",
+        "M13",
+        "M14",
+        "M15",
+        "M18"
+      ],
+      "function_bytes_min": 2068,
+      "function_bytes_max": 2132,
+      "variant_compiler_process_summed_seconds": 0.31506085300134146,
+      "variant_compile_workbench_summed_seconds": 5.232935782999448,
+      "variant_strict_score_summed_seconds": 7.155807433000518,
+      "common_semantic": "passed"
+    },
+    {
+      "lane": "high",
+      "variants": 15,
+      "preparation_last_completed_window": {
+        "start_utc": "2026-10-07T20:38:39.878295+00:00",
+        "end_utc": "2026-10-07T20:41:44.980608+00:00",
+        "elapsed_seconds": 185.10231025999929,
+        "start_monotonic": 7991.184610686,
+        "end_monotonic": 8176.286920946,
+        "earlier_start_count": 0
+      },
+      "review_last_completed_window": {
+        "start_utc": "2026-10-07T21:03:44.437801+00:00",
+        "end_utc": "2026-10-07T21:04:24.583019+00:00",
+        "elapsed_seconds": 40.14520272899972,
+        "start_monotonic": 9495.744131568,
+        "end_monotonic": 9535.889334297,
+        "earlier_start_count": 0
+      },
+      "preparation_first_start_to_freeze_seconds": 185.1233006349994,
+      "freeze_utc": "2026-10-07T20:41:45.001600+00:00",
+      "machine": {
+        "start_utc": "2026-10-07T21:02:31.071359+00:00",
+        "end_utc": "2026-10-07T21:02:47.248243+00:00",
+        "elapsed_seconds": 16.176900970000133,
+        "start_monotonic": 9422.377665451,
+        "end_monotonic": 9438.554566421,
+        "earlier_start_count": 0
+      },
+      "common_validation": {
+        "start_utc": "2026-10-07T21:02:29.055008+00:00",
+        "end_utc": "2026-10-07T21:02:31.071278+00:00",
+        "elapsed_seconds": 2.0162690759989346,
+        "start_monotonic": 9420.361323445,
+        "end_monotonic": 9422.377592521,
+        "earlier_start_count": 0
+      },
+      "freeze_to_machine_start_seconds": 1246.0697541300005,
+      "batch_measured_seconds": 16.102409299999636,
+      "best_differing": 533,
+      "best_ids": [
+        "H02",
+        "H03",
+        "H04",
+        "H08",
+        "H10",
+        "H12",
+        "H14"
+      ],
+      "strict_exact": 0,
+      "improvements": 0,
+      "unique_sources": 15,
+      "unique_elf": 15,
+      "unique_bodies": 13,
+      "baseline_equal_bodies": [
+        "H08",
+        "H10",
+        "H12"
+      ],
+      "function_bytes_min": 2076,
+      "function_bytes_max": 2156,
+      "variant_compiler_process_summed_seconds": 0.2651087110025401,
+      "variant_compile_workbench_summed_seconds": 4.315449572002763,
+      "variant_strict_score_summed_seconds": 5.695058519999293,
+      "common_semantic": "passed"
+    },
+    {
+      "lane": "xhigh",
+      "variants": 10,
+      "preparation_last_completed_window": {
+        "start_utc": "2026-10-07T21:02:42.057393+00:00",
+        "end_utc": "2026-10-07T21:06:08.221530+00:00",
+        "elapsed_seconds": 206.16413792800086,
+        "start_monotonic": 9433.363706375,
+        "end_monotonic": 9639.527844303,
+        "earlier_start_count": 1
+      },
+      "review_last_completed_window": {
+        "start_utc": "2026-10-07T21:07:13.918756+00:00",
+        "end_utc": "2026-10-07T21:08:08.675208+00:00",
+        "elapsed_seconds": 54.75645279700075,
+        "start_monotonic": 9705.225069561,
+        "end_monotonic": 9759.981522358,
+        "earlier_start_count": 0
+      },
+      "preparation_first_start_to_freeze_seconds": 1632.0102501759993,
+      "freeze_utc": "2026-10-07T21:06:08.242394+00:00",
+      "machine": {
+        "start_utc": "2026-10-07T21:06:24.644142+00:00",
+        "end_utc": "2026-10-07T21:06:38.958987+00:00",
+        "elapsed_seconds": 14.31486143499933,
+        "start_monotonic": 9655.950448867,
+        "end_monotonic": 9670.265310302,
+        "earlier_start_count": 0
+      },
+      "common_validation": {
+        "start_utc": "2026-10-07T21:06:23.347880+00:00",
+        "end_utc": "2026-10-07T21:06:24.644063+00:00",
+        "elapsed_seconds": 1.2961783640002977,
+        "start_monotonic": 9654.654198184,
+        "end_monotonic": 9655.950376548,
+        "earlier_start_count": 0
+      },
+      "freeze_to_machine_start_seconds": 16.401739701001134,
+      "batch_measured_seconds": 14.243378793000375,
+      "best_differing": 533,
+      "best_ids": [
+        "X02",
+        "X09",
+        "X10"
+      ],
+      "strict_exact": 0,
+      "improvements": 0,
+      "unique_sources": 10,
+      "unique_elf": 10,
+      "unique_bodies": 10,
+      "baseline_equal_bodies": [],
+      "function_bytes_min": 2068,
+      "function_bytes_max": 2156,
+      "variant_compiler_process_summed_seconds": 0.1765135139994527,
+      "variant_compile_workbench_summed_seconds": 2.9746555859983346,
+      "variant_strict_score_summed_seconds": 3.656699392997325,
+      "common_semantic": "passed"
+    }
+  ],
+  "llm_active_seconds": null,
+  "llm_tokens": null,
+  "cpu_seconds": null
+}

@@ -1,0 +1,186 @@
+{
+  "schema": "decomp-workbench-experiment-v2",
+  "family": "camera-transform-low-effort-frozen",
+  "baseline": "baseline.c",
+  "parameters": {
+    "variant": [
+      "L01",
+      "L02",
+      "L03",
+      "L04",
+      "L05",
+      "L06",
+      "L07",
+      "L08",
+      "L09",
+      "L10",
+      "L11",
+      "L12",
+      "L13",
+      "L14",
+      "L15",
+      "L16",
+      "L17",
+      "L18",
+      "L19",
+      "L20",
+      "L21",
+      "L22",
+      "L23",
+      "L24",
+      "L25"
+    ]
+  },
+  "candidates": [
+    {
+      "source": "candidates/L01.c",
+      "parameters": {
+        "variant": "L01"
+      }
+    },
+    {
+      "source": "candidates/L02.c",
+      "parameters": {
+        "variant": "L02"
+      }
+    },
+    {
+      "source": "candidates/L03.c",
+      "parameters": {
+        "variant": "L03"
+      }
+    },
+    {
+      "source": "candidates/L04.c",
+      "parameters": {
+        "variant": "L04"
+      }
+    },
+    {
+      "source": "candidates/L05.c",
+      "parameters": {
+        "variant": "L05"
+      }
+    },
+    {
+      "source": "candidates/L06.c",
+      "parameters": {
+        "variant": "L06"
+      }
+    },
+    {
+      "source": "candidates/L07.c",
+      "parameters": {
+        "variant": "L07"
+      }
+    },
+    {
+      "source": "candidates/L08.c",
+      "parameters": {
+        "variant": "L08"
+      }
+    },
+    {
+      "source": "candidates/L09.c",
+      "parameters": {
+        "variant": "L09"
+      }
+    },
+    {
+      "source": "candidates/L10.c",
+      "parameters": {
+        "variant": "L10"
+      }
+    },
+    {
+      "source": "candidates/L11.c",
+      "parameters": {
+        "variant": "L11"
+      }
+    },
+    {
+      "source": "candidates/L12.c",
+      "parameters": {
+        "variant": "L12"
+      }
+    },
+    {
+      "source": "candidates/L13.c",
+      "parameters": {
+        "variant": "L13"
+      }
+    },
+    {
+      "source": "candidates/L14.c",
+      "parameters": {
+        "variant": "L14"
+      }
+    },
+    {
+      "source": "candidates/L15.c",
+      "parameters": {
+        "variant": "L15"
+      }
+    },
+    {
+      "source": "candidates/L16.c",
+      "parameters": {
+        "variant": "L16"
+      }
+    },
+    {
+      "source": "candidates/L17.c",
+      "parameters": {
+        "variant": "L17"
+      }
+    },
+    {
+      "source": "candidates/L18.c",
+      "parameters": {
+        "variant": "L18"
+      }
+    },
+    {
+      "source": "candidates/L19.c",
+      "parameters": {
+        "variant": "L19"
+      }
+    },
+    {
+      "source": "candidates/L20.c",
+      "parameters": {
+        "variant": "L20"
+      }
+    },
+    {
+      "source": "candidates/L21.c",
+      "parameters": {
+        "variant": "L21"
+      }
+    },
+    {
+      "source": "candidates/L22.c",
+      "parameters": {
+        "variant": "L22"
+      }
+    },
+    {
+      "source": "candidates/L23.c",
+      "parameters": {
+        "variant": "L23"
+      }
+    },
+    {
+      "source": "candidates/L24.c",
+      "parameters": {
+        "variant": "L24"
+      }
+    },
+    {
+      "source": "candidates/L25.c",
+      "parameters": {
+        "variant": "L25"
+      }
+    }
+  ]
+}

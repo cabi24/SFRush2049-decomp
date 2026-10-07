@@ -1,0 +1,15 @@
+--- baseline.c
++++ candidates/L07.c
+@@ -97,8 +97,10 @@
+         if (i==D_801460F4) D_8011028C=0;
+     }
+     for (i=0;i<D_801460F4;i++) {
+-        if (D_80144C48[i].active && D_80144C48[i].started &&
+-            func_800201D0(D_80144C48[i].voice)==(u32)-1) {
++        if (!D_80144C48[i].active) continue;
++        if (!D_80144C48[i].started) continue;
++        if (func_800201D0(D_80144C48[i].voice)!=(u32)-1) continue;
++        {
+             node=D_80146160.last;
+             while (node) {
+                 next=node->next;

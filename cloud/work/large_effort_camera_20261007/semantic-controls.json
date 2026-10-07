@@ -1,0 +1,7 @@
+{
+  "baseline_cases": 2048,
+  "baseline_status": "bounded_pass",
+  "negative_mutants": 3,
+  "all_detected": true,
+  "scope": "Host-C bounded differential only."
+}

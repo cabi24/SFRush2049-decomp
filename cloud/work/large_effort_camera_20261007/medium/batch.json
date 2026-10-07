@@ -1,0 +1,255 @@
+{
+  "schema": "rush-hypothesis-batch-v1",
+  "base_commit": "c35728addbae1626aabc89b7d837e28774f333a0",
+  "function": "camera_transform",
+  "recipe": "single",
+  "purpose": "experiment",
+  "experiment": "experiment.json",
+  "baseline": "baseline.c",
+  "baseline_sha256": "1bac499d4feded2f749f32b3493e28beba8667bd493d385e1ca1332d5c0160b2",
+  "baseline_expectation": {
+    "differing": 533,
+    "total": 557,
+    "extra_words": 0
+  },
+  "flags": [
+    "-g0",
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared"
+  ],
+  "targets": "asm/us/blob",
+  "context_manifest": "context.json",
+  "hypothesis": "Frozen medium effort target-only authentic source transformations.",
+  "limits": {
+    "variants": 20,
+    "jobs": 2,
+    "compile_seconds": 120,
+    "score_seconds": 30,
+    "diagnose_seconds": 30
+  },
+  "predictions": {
+    "M01": {
+      "source": "candidates/M01.c",
+      "sha256": "faf7262685d6bae91a03f51762768900cf8d248754909fdc985ccaa5fccd6949",
+      "edit": "Persistent completion-history base pointer",
+      "semantic_justification": "The array has a fixed address; the pointer carries only this genuine shared history object across phases. Every read and write remains in its original order. Common domain: valid lists and entry bounds, nonoverlapping globals/entries, no asynchronous mutation, defined signed arithmetic, and baseline float-conversion domains.",
+      "native_effect": "Encourage the native persistent history base register instead of repeated address materialization. Hypothesis only; no score observed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M02": {
+      "source": "candidates/M02.c",
+      "sha256": "911ad76e5b56ad60a13e81fc5ce6e0bb3f966e487d0acca914121c2ad0f8c5e8",
+      "edit": "Unroll the four-word history shift",
+      "semantic_justification": "Four descending copies exactly implement the original four iterations; no intervening callbacks exist. Common domain: valid lists and entry bounds, nonoverlapping globals/entries, no asynchronous mutation, defined signed arithmetic, and baseline float-conversion domains.",
+      "native_effect": "Trade loop control for fixed stores and test the prefix instruction schedule. Hypothesis only; no score observed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M03": {
+      "source": "candidates/M03.c",
+      "sha256": "2fc9a805dd2d7696eeeb26bbf850389019d808f8b05ac3e2ecf46b46ca6ede58",
+      "edit": "Indexed descending history shift",
+      "semantic_justification": "The same four copies occur in descending index order. The later loops reinitialize i. Common domain: valid lists and entry bounds, nonoverlapping globals/entries, no asynchronous mutation, defined signed arithmetic, and baseline float-conversion domains.",
+      "native_effect": "Expose an integer induction variable instead of pointer comparison. Hypothesis only; no score observed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M04": {
+      "source": "candidates/M04.c",
+      "sha256": "4034739fc88f5e52b3565e739d836cae7a9e877aab623aef292afe4200447993",
+      "edit": "Name retirement entry only within callback-free regions",
+      "semantic_justification": "The initial entry alias is used only before the status callback; the queue comparison still reloads the table each iteration, and the final alias is reloaded after all callbacks. id and active writes cannot change the external table pointer in the valid nonoverlapping layout. Common domain: valid lists and entry bounds, nonoverlapping globals/entries, no asynchronous mutation, defined signed arithmetic, and baseline float-conversion domains.",
+      "native_effect": "Reduce duplicate table/address loads at the final retirement stores without stale callback aliases. Hypothesis only; no score observed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M05": {
+      "source": "candidates/M05.c",
+      "sha256": "ae4bdf8eabecc06a5642cea8c73f4104967d8bd8b0ed1cfc8e6a7b1798812d4d",
+      "edit": "Selection scan with early continuation guards",
+      "semantic_justification": "Guard order and selected increment are unchanged; for-loop increments still happen on every continue. Common domain: valid lists and entry bounds, nonoverlapping globals/entries, no asynchronous mutation, defined signed arithmetic, and baseline float-conversion domains.",
+      "native_effect": "Test branch polarity and fallthrough selection-loop layout. Hypothesis only; no score observed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M06": {
+      "source": "candidates/M06.c",
+      "sha256": "be5da33ee886fb41a2f05a9eef44c25a4c413d65aeead0d80100085ab8888d6b",
+      "edit": "Retirement scan with early continuation guards",
+      "semantic_justification": "All three tests retain their short-circuit order and callback placement; the remainder is entered exactly for completed active entries. Common domain: valid lists and entry bounds, nonoverlapping globals/entries, no asynchronous mutation, defined signed arithmetic, and baseline float-conversion domains.",
+      "native_effect": "Expose hot loop continuation and cold retirement body as separate control-flow regions. Hypothesis only; no score observed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M07": {
+      "source": "candidates/M07.c",
+      "sha256": "88413c7902055ea85b9bed638ea567c143022dc6da63ec0a4281ec39fb7ddaad",
+      "edit": "Explicit ascending if/else command dispatch",
+      "semantic_justification": "kind is read only before any dispatched callback; one and only one command branch is selected, and unmatched kinds recycle as before. Common domain: valid lists and entry bounds, nonoverlapping globals/entries, no asynchronous mutation, defined signed arithmetic, and baseline float-conversion domains.",
+      "native_effect": "Test direct compare-chain lowering against switch lowering. Hypothesis only; no score observed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M08": {
+      "source": "candidates/M08.c",
+      "sha256": "df7b37de874f8a918cdb75d4801c0fd5b31ef249bfaade6ac43cab56be9d3483",
+      "edit": "Reverse physical order of switch command bodies",
+      "semantic_justification": "Case labels preserve the full dispatch mapping, and each branch terminates exactly as before. This is physical control-flow layout, not a semantic reorder of callbacks. Common domain: valid lists and entry bounds, nonoverlapping globals/entries, no asynchronous mutation, defined signed arithmetic, and baseline float-conversion domains.",
+      "native_effect": "Test source-order-sensitive block layout for the large parameter branch. Hypothesis only; no score observed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M09": {
+      "source": "candidates/M09.c",
+      "sha256": "deda28147cdb263ac04f571ce2ac9eb08e81023d1628867218a0d483b964b6d1",
+      "edit": "Keep cancellation recycling at its own source site",
+      "semantic_justification": "Duplicate the real recycling operation only at the cancellation exit. Calls, arguments, callback-sensitive first-list reload, and saved next pointer retain original ordering. Common domain: valid lists and entry bounds, nonoverlapping globals/entries, no asynchronous mutation, defined signed arithmetic, and baseline float-conversion domains.",
+      "native_effect": "Mirror the native separate early cancellation recycling block. Hypothesis only; no score observed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M10": {
+      "source": "candidates/M10.c",
+      "sha256": "fc33e903df99b0a6ba69c622f337d858b38ca5d9ebc02fbee758cf49308bf596",
+      "edit": "Keep exhausted-retry recycling at its own source site",
+      "semantic_justification": "The duplicated genuine recycling pair executes only after the same post-increment threshold and kind tests. Loop advancement still uses saved next. Common domain: valid lists and entry bounds, nonoverlapping globals/entries, no asynchronous mutation, defined signed arithmetic, and baseline float-conversion domains.",
+      "native_effect": "Mirror the native separate retry recycling block instead of shared backward jump. Hypothesis only; no score observed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M11": {
+      "source": "candidates/M11.c",
+      "sha256": "41c4dc4f14b30a02bbf0c4cb85dae09d242992807957434a866c863b24c656d1",
+      "edit": "Explicit command-result carrier",
+      "semantic_justification": "result stores only real helper results and is tested immediately. Each parameter is fetched at its original stage after any earlier callback. Common domain: valid lists and entry bounds, nonoverlapping globals/entries, no asynchronous mutation, defined signed arithmetic, and baseline float-conversion domains.",
+      "native_effect": "Test helper inlining result webs and branch materialization with a named success value. Hypothesis only; no score observed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M12": {
+      "source": "candidates/M12.c",
+      "sha256": "3f2659c2e52e69b587aa362c3d86d8a97c02f1a6625c57beb050ebc5e7595d7f",
+      "edit": "Sequential parameter float carrier",
+      "semantic_justification": "One float value is loaded at each original stage; it is never retained across an earlier callback. Nonvolatile callback-free duplicate reads may be coalesced. Arithmetic and conversions stay inside frozen helpers. Common domain: valid lists and entry bounds, nonoverlapping globals/entries, no asynchronous mutation, defined signed arithmetic, and baseline float-conversion domains.",
+      "native_effect": "Make parameter lifetime and shared float web explicit without caching the whole command. Hypothesis only; no score observed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M13": {
+      "source": "candidates/M13.c",
+      "sha256": "a175c21abbc3d5d663febd83e9aec103074057260350e465ef6582cb7e77e318",
+      "edit": "Restrict history and selection locals to their actual phases",
+      "semantic_justification": "Only lexical scope changes; variables retain the same definitions and uses, and no storage escapes. Common domain: valid lists and entry bounds, nonoverlapping globals/entries, no asynchronous mutation, defined signed arithmetic, and baseline float-conversion domains.",
+      "native_effect": "Test legitimate lexical lifetime boundaries and local home/color allocation. Hypothesis only; no score observed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M14": {
+      "source": "candidates/M14.c",
+      "sha256": "4e49d1e0f5c80af3daaaccb2c2fa719bcd0fddb332810fdbba8cf817d3b8f0dd",
+      "edit": "Guarded do/while blocked-marker cleanup",
+      "semantic_justification": "The explicit entry guard preserves empty-list behavior; traversal reads next after each marker write exactly as before. Common domain: valid lists and entry bounds, nonoverlapping globals/entries, no asynchronous mutation, defined signed arithmetic, and baseline float-conversion domains.",
+      "native_effect": "Expose the native bottom-tested final traversal explicitly. Hypothesis only; no score observed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M15": {
+      "source": "candidates/M15.c",
+      "sha256": "9bcb2912e0c99bd403530f1d462a50ce08d38f5c7a151a43c2230243d54a8665",
+      "edit": "Guarded do/while retirement queue walk",
+      "semantic_justification": "The guard handles an empty queue and saved next retains callback-safe traversal. The entry-table address is still freshly evaluated on every iteration. Common domain: valid lists and entry bounds, nonoverlapping globals/entries, no asynchronous mutation, defined signed arithmetic, and baseline float-conversion domains.",
+      "native_effect": "Test native bottom-tested retirement queue loop representation. Hypothesis only; no score observed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M16": {
+      "source": "candidates/M16.c",
+      "sha256": "73eb49e544a446e846ce13a65d378ae1dbe5c754335ea94e48c47bf42e1f5b36",
+      "edit": "Explicit entry-byte-offset induction",
+      "semantic_justification": "offset tracks i*sizeof(Entry) in both scans while each table base remains freshly loaded. Valid native table bounds imply no pointer or offset wrap. sizeof(Entry) respects host/native struct size rather than assuming host O32 pointers. Common domain: valid lists and entry bounds, nonoverlapping globals/entries, no asynchronous mutation, defined signed arithmetic, and baseline float-conversion domains.",
+      "native_effect": "Expose the native index plus 24-byte-offset induction pair without caching a callback-sensitive table base. Hypothesis only; no score observed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M17": {
+      "source": "candidates/M17.c",
+      "sha256": "202e797f02f39e5b64d7a707d266d20c4c0589755f0e0e955945442a12d6ae82",
+      "edit": "Name the two fixed list objects",
+      "semantic_justification": "The list object addresses never change; list contents remain reread in exactly the original callback-sensitive places. These pointers carry real arguments, not synthetic pressure. Common domain: valid lists and entry bounds, nonoverlapping globals/entries, no asynchronous mutation, defined signed arithmetic, and baseline float-conversion domains.",
+      "native_effect": "Encourage the native long-lived pending/free list base registers. Hypothesis only; no score observed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M18": {
+      "source": "candidates/M18.c",
+      "sha256": "7e072979847f6d318fdff1df1908fe0f20dcb84902d0b165b12285325dd50ce0",
+      "edit": "Nested sentinel guards around each parameter operation",
+      "semantic_justification": "Identical short-circuit conditions and evaluation order, with node->entry reloaded for later helpers after callbacks. Common domain: valid lists and entry bounds, nonoverlapping globals/entries, no asynchronous mutation, defined signed arithmetic, and baseline float-conversion domains.",
+      "native_effect": "Test front-end control-flow formation and inliner continuation blocks for the four parameters. Hypothesis only; no score observed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M19": {
+      "source": "candidates/M19.c",
+      "sha256": "eaea117f43bf97fa417b0279a3d432ab905264cb66771f7b370ed9cb06ebb3de",
+      "edit": "Single short-circuit parameter-failure chain",
+      "semantic_justification": "C guarantees left-to-right short-circuit evaluation for || and &&, matching the original immediate exit on the first failed operation. No future parameter is loaded early. Common domain: valid lists and entry bounds, nonoverlapping globals/entries, no asynchronous mutation, defined signed arithmetic, and baseline float-conversion domains.",
+      "native_effect": "Test a common failure continuation built from one boolean expression. Hypothesis only; no score observed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    },
+    "M20": {
+      "source": "candidates/M20.c",
+      "sha256": "4d3115f98bcde9bad41d8ee9c964da1958ae6fa9fc57a826d39b9f8e7b0df45f",
+      "edit": "Forward exhausted-retry fallthrough to recycling",
+      "semantic_justification": "The inverted continue condition is the exact De Morgan complement after retries has been stored and narrowed to u8. Successful commands jump over retry bookkeeping; cancellation still targets recycling directly. Common domain: valid lists and entry bounds, nonoverlapping globals/entries, no asynchronous mutation, defined signed arithmetic, and baseline float-conversion domains.",
+      "native_effect": "Make exhausted retry flow forward into recycling and test reduced backward-edge sharing. Hypothesis only; no score observed.",
+      "check": {
+        "kind": "diagnostic",
+        "signal_ids": []
+      }
+    }
+  }
+}

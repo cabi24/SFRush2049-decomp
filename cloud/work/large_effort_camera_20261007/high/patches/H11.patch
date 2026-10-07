@@ -1,0 +1,29 @@
+--- baseline.c
++++ candidates/H11.c
+@@ -77,6 +77,7 @@
+     s32 i,selected;
+     Node *node,*next;
+     Entry *entry;
++    f32 value;
+     if (!D_80110284) return;
+     D_80144DB8+=D_801460C8[4];
+     history=&D_801460C8[4];
+@@ -129,10 +130,14 @@
+             D_801460C8[0]++;
+             break;
+         case 3:
+-            if (node->value!=-2.0f && !set_volume(entry,node->value)) goto retry;
+-            if (node->stream!=-2.0f && !set_pan(node->entry,node->stream)) goto retry;
+-            if (node->priority!=-2.0f && !set_depth(node->entry,node->priority)) goto retry;
+-            if (node->route!=-2.0f && !set_rate(node->entry,node->route)) goto retry;
++            value=node->value;
++            if (value!=-2.0f && !set_volume(entry,value)) goto retry;
++            value=node->stream;
++            if (value!=-2.0f && !set_pan(node->entry,value)) goto retry;
++            value=node->priority;
++            if (value!=-2.0f && !set_depth(node->entry,value)) goto retry;
++            value=node->route;
++            if (value!=-2.0f && !set_rate(node->entry,value)) goto retry;
+             break;
+         case 4:
+             func_80020518((u8)(s32)node->value);

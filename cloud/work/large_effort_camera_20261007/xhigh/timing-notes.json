@@ -1,0 +1,11 @@
+{
+  "resumed_context_utc": "2026-10-07T21:02:22+00:00",
+  "resumed_first_tool_completion_utc": "2026-10-07T21:02:28+00:00",
+  "original_preparation_start_utc": "2026-10-07T20:38:56.232143+00:00",
+  "original_evidence_end_utc": "2026-10-07T20:39:58.806308+00:00",
+  "original_generation_start_utc": "2026-10-07T20:39:58.827849+00:00",
+  "interruption": "Parent reports pending_init interruption and coordinator reports approximately twenty-minute orchestration gap. The exact start of interruption is unavailable. No candidate sources or materialized plans survived at resume. Do not label the entire interval after original generation start as active reasoning.",
+  "timing_deviation": "The resumed first tool read the brief before marking. Marks began at 21:02:42.057393 UTC and monotonic 9433.363706375; include the approximately twenty seconds of resumed pre-mark activity rather than treating it as unmeasured free preparation. Mark.py initially wrote to cwd/xhigh; those two exact records were appended unchanged to this lane log.",
+  "active_inference_time": "unknown",
+  "original_measured_evidence_seconds": 62.5539170510001
+}

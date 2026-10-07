@@ -1,0 +1,33 @@
+--- baseline.c
++++ candidates/L17.c
+@@ -74,10 +74,12 @@
+ }
+ void camera_transform(void) {
+     s32 *history;
++    s32 *completed;
+     s32 i,selected;
+     Node *node,*next;
+     Entry *entry;
+     if (!D_80110284) return;
++    completed=&D_801460C8[0];
+     D_80144DB8+=D_801460C8[4];
+     history=&D_801460C8[4];
+     do {
+@@ -108,7 +110,7 @@
+                 }
+                 node=next;
+             }
+-            D_801460C8[0]++;
++            (*completed)++;
+             D_80144C48[i].id=0;
+             D_80144C48[i].active=0;
+         }
+@@ -126,7 +128,7 @@
+             break;
+         case 2:
+             if (!stop_entry(entry)) goto retry;
+-            D_801460C8[0]++;
++            (*completed)++;
+             break;
+         case 3:
+             if (node->value!=-2.0f && !set_volume(entry,node->value)) goto retry;

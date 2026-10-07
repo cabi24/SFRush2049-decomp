@@ -1,0 +1,57 @@
+--- baseline.c
++++ candidates/M17.c
+@@ -77,7 +77,10 @@
+     s32 i,selected;
+     Node *node,*next;
+     Entry *entry;
++    List *pending,*freeNodes;
+     if (!D_80110284) return;
++    pending=&D_80146160;
++    freeNodes=&D_80146138;
+     D_80144DB8+=D_801460C8[4];
+     history=&D_801460C8[4];
+     do {
+@@ -99,12 +102,12 @@
+     for (i=0;i<D_801460F4;i++) {
+         if (D_80144C48[i].active && D_80144C48[i].started &&
+             func_800201D0(D_80144C48[i].voice)==(u32)-1) {
+-            node=D_80146160.last;
++            node=pending->last;
+             while (node) {
+                 next=node->next;
+                 if (node->entry==&D_80144C48[i]) {
+-                    func_8009211C(&D_80146160,node);
+-                    func_80091FBC(&D_80146138,node,D_80146138.first);
++                    func_8009211C(pending,node);
++                    func_80091FBC(freeNodes,node,freeNodes->first);
+                 }
+                 node=next;
+             }
+@@ -113,7 +116,7 @@
+             D_80144C48[i].active=0;
+         }
+     }
+-    for (node=D_80146160.last;node;node=next) {
++    for (node=pending->last;node;node=next) {
+         next=node->next;
+         entry=node->entry;
+         if (entry && entry->stopRequested && node->kind!=2) goto recycle;
+@@ -139,15 +142,15 @@
+             break;
+         }
+ recycle:
+-        func_8009211C(&D_80146160,node);
+-        func_80091FBC(&D_80146138,node,D_80146138.first);
++        func_8009211C(pending,node);
++        func_80091FBC(freeNodes,node,freeNodes->first);
+         continue;
+ retry:
+         node->retries++;
+         if (node->entry) node->entry->blocked=1;
+         if (node->retries>=10 && node->kind!=0) goto recycle;
+     }
+-    for (node=D_80146160.last;node;node=node->next) {
++    for (node=pending->last;node;node=node->next) {
+         if (node->entry) node->entry->blocked=0;
+     }
+ }

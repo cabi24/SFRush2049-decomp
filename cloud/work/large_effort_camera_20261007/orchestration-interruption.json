@@ -1,0 +1,12 @@
+{
+  "last_active_coordinator_utc": "2026-10-07T20:41:47Z",
+  "resumed_utc": "2026-10-07T21:01:59Z",
+  "resumed_marker_utc": "2026-10-07T21:02:54.250159+00:00",
+  "resumed_monotonic_seconds": 9445.556470719,
+  "observation": "Parent reported interruption returned prior status pending_init; incoming followups delivered at resume. Exact active inference during gap unavailable.",
+  "classification": "Orchestration interruption/wait; not lane inference or machine execution.",
+  "completed_machine_runs_not_repeated": [
+    "low",
+    "medium"
+  ]
+}
