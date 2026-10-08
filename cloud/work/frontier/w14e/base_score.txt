@@ -1,0 +1,15 @@
+  FAIL entity_spawn_init: 1356 of 1386 words differ; compiled body is 1391 words, target 1386; +0x384: .rodata+0x98: retail words encode 0x00050040, outside the image; +0x3c8: .rodata+0x9c: retail words encode 0x801392d8, outside the image (+9 more)
+       defined by c_candidate.c (kept)
+       +0x000  image 27bdfd28  unit 27bdfdf8
+       +0x030  image 954b061c  unit 9542061c
+       +0x038  image 3c0a8014  unit 3c198014
+       +0x03c  image 814a3f14  unit 83393f14
+       +0x040  image 3c0c8011  unit 3c0b8011
+       +0x044  image 3c0d8011  unit 3c0c8011
+       umerge inlined into it: func_8008B2E4
+  locked bodies that differ in this unit: 0
+blob_unit score: 0/1 equal; object build/blob_unit/w14e/unit.o (5.5s)
+
+real	0m5.690s
+user	0m1.584s
+sys	0m0.346s

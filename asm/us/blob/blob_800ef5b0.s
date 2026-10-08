@@ -5479,6 +5479,7 @@ func_800F45F8:
 .section .text.graphics_chunk, "ax", @progbits
 .globl graphics_chunk
 graphics_chunk:
+    /* compiled from src/blob/graphics_chunk.c */
     .word 0x27BDFFB8
     .word 0xAFB20020
     .word 0x3C128015

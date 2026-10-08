@@ -1,0 +1,22 @@
+A_noempty: A_noempty.c: FAIL entity_lod_select: 177 of 179 words differ; compiled body is 177 words, target 179; +0x15c: .rodata+0xac: | 84 ops 5 norm 5 | frame 232/224
+B_emptyafter: B_emptyafter.c: FAIL entity_lod_select: 36 of 179 words differ | 37 ops 0 norm 0 | frame 232/232
+C_wasint: C_wasint.c: FAIL entity_lod_select: 38 of 179 words differ | 39 ops 1 norm 1 | frame 232/232
+E_segflip: E_segflip.c: cfe: Error: 16f2d345f5d3fea91d764e1f4dbc22ce4a1a02e0.c, line 43: Syntax Error | 39 ops 1 norm 1 | frame 232/232
+F_dec64: F_dec64.c: FAIL entity_lod_select: 36 of 179 words differ | 37 ops 0 norm 0 | frame 232/232
+G_s32op: G_s32op.c: FAIL entity_lod_select: 153 of 179 words differ; compiled body is 178 words, target 179; +0x160: .rodata+0xac: | 87 ops 1 norm 1 | frame 232/232
+I_cmdfirst: I_cmdfirst.c: FAIL entity_lod_select: 41 of 179 words differ | 42 ops 0 norm 0 | frame 232/232
+K_wasdrop: K_wasdrop.c: FAIL entity_lod_select: 38 of 179 words differ | 39 ops 1 norm 1 | frame 232/232
+L_typeorder: L_typeorder.c: FAIL entity_lod_select: 105 of 179 words differ; compiled body is 180 words, target 179; +0x164: own .rodata+0 | 52 ops 5 norm 5 | frame 232/232
+M_u16idx: M_u16idx.c: FAIL entity_lod_select: 36 of 179 words differ | 37 ops 0 norm 0 | frame 232/232
+N_idxu32: N_idxu32.c: FAIL entity_lod_select: 36 of 179 words differ | 37 ops 0 norm 0 | frame 232/232
+O_condswap: O_condswap.c: FAIL entity_lod_select: 40 of 179 words differ | 41 ops 2 norm 2 | frame 232/232
+P_gotoorder: P_gotoorder.c: FAIL entity_lod_select: 40 of 179 words differ | 41 ops 0 norm 0 | frame 232/232
+Q_valflip: Q_valflip.c: FAIL entity_lod_select: 36 of 179 words differ | 37 ops 0 norm 0 | frame 232/232
+S_savedfirst: S_savedfirst.c: FAIL entity_lod_select: 176 of 179 words differ; compiled body is 185 words, target 179; +0x16c: .rodata+0xac: | 93 ops 12 norm 12 | frame 232/232
+T_opdecl: T_opdecl.c: FAIL entity_lod_select: 36 of 179 words differ | 37 ops 0 norm 0 | frame 232/232
+U_w1decl: U_w1decl.c: FAIL entity_lod_select: 36 of 179 words differ | 37 ops 0 norm 0 | frame 232/232
+V_typeu8: V_typeu8.c: FAIL entity_lod_select: 103 of 179 words differ; compiled body is 180 words, target 179; +0x164: own .rodata+0 | 62 ops 3 norm 3 | frame 232/232
+W_nextdep: W_nextdep.c: FAIL entity_lod_select: 36 of 179 words differ | 37 ops 0 norm 0 | frame 232/232
+X_firstzero: X_firstzero.c: FAIL entity_lod_select: 36 of 179 words differ | 37 ops 0 norm 0 | frame 232/232
+Y_valinit: Y_valinit.c: FAIL entity_lod_select: 36 of 179 words differ | 37 ops 0 norm 0 | frame 232/232
+Z_unsigned_depth: Z_unsigned_depth.c: FAIL entity_lod_select: 36 of 179 words differ | 37 ops 0 norm 0 | frame 232/232

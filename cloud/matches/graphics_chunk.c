@@ -1,0 +1,87 @@
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* graphics_chunk (0x800F497C): per-player pass over active players. For each player i it adds the
+ * pairwise signed deltas of D_80149428[4][4] into the player's 12-byte record (w8 from row i, wA from |column i|),
+ * bumps w4 and, for the leader/flagged players, w6, twice (second pass uses D_80151578 instead of the
+ * D_8014A118[i].tgt block). Ends with func_800CD8EC(tgt, D_8014978C). Source reconstructed from the retail asm,
+ * not from an arcade ancestor. Standalone MATCH; whole-program unit EQUAL (0 locked bodies differ). */
+typedef signed char s8;
+typedef unsigned char u8;
+typedef signed short s16;
+typedef unsigned short u16;
+typedef signed int s32;
+typedef unsigned int u32;
+typedef struct Tgt { u8 pad[0x2C]; u8 **blk; } Tgt;
+typedef struct Rec { u8 pad0; u8 idx; u8 pad2[0x46]; Tgt **tgt; } Rec;
+typedef struct Acc { u16 w0; u16 w2; u16 w4; u16 w6; u16 w8; u16 wA; } Acc;
+extern s16 active_player_count;
+extern s8 D_8014978C;
+extern Rec D_8014A118[];
+extern void *D_80146150[];
+extern s8 D_80143F54;
+extern s8 D_8012E67C[];
+extern s8 D_80150B68[];
+extern s8 D_80149428[];
+extern Acc D_80151578[];
+void func_800CD8EC(void **arg0, u8 arg1);
+
+void graphics_chunk(void)
+{
+    s32 t2;
+    s32 i;
+
+    t2 = D_8014978C - 6;
+    for (i = 0; i < active_player_count; i++)
+    {
+        if (D_8014A118[i].tgt == 0)
+        {
+            D_8014A118[i].tgt = (Tgt **) &D_80146150[D_8014A118[i].idx];
+        }
+        if ((*D_8014A118[i].tgt)->blk == 0)
+        {
+            return;
+        }
+        {
+          s32 pass;
+          Acc *a2;
+          for (pass = 0; pass < 2; pass++)
+          {
+            s32 k;
+            if (pass == 0)
+            {
+                a2 = (Acc *) ((u8 *) (*((*D_8014A118[i].tgt)->blk)) + 12 * t2 + 0x60C);
+            }
+            else
+            {
+                a2 = (Acc *) ((u8 *) D_80151578 + 12 * t2);
+            }
+            for (k = 0; k < active_player_count; k++)
+            {
+                if (k != i)
+                {
+                    a2->w8 += D_80149428[i * 4 + k];
+                }
+                {
+                    s32 v1;
+                    s8 v0;
+                    v0 = D_80149428[k * 4 + i];
+                    if (v0 >= 0)
+                    {
+                        v1 = v0;
+                    }
+                    else
+                    {
+                        v1 = -v0;
+                    }
+                    a2->wA = (u16) (a2->wA + v1);
+                }
+            }
+            a2->w4 = (u16) (a2->w4 + 1);
+            if (i == D_80143F54 || D_8012E67C[i] == D_8012E67C[D_80143F54] || D_80150B68[i] == 1)
+            {
+                a2->w6 = (u16) (a2->w6 + 1);
+            }
+          }
+        }
+        func_800CD8EC((void **) D_8014A118[i].tgt, D_8014978C);
+    }
+}

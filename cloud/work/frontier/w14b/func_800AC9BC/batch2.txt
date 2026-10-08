@@ -1,0 +1,8 @@
+a2: a2.c: FAIL func_800AC9BC: 50 of 56 words differ; compiled body is 50 words, target 56 | words 45 ops 24 norm 24 | frame 0/0
+a3: a3.c: FAIL func_800AC9BC: 49 of 56 words differ; compiled body is 54 words, target 56 | words 47 ops 20 norm 20 | frame 0/0
+a4: a4.c: FAIL func_800AC9BC: 32 of 56 words differ | words 36 ops 18 norm 18 | frame 0/0
+a5: a5.c: FAIL func_800AC9BC: 50 of 56 words differ; compiled body is 53 words, target 56 | words 47 ops 24 norm 24 | frame 0/0
+a6: a6.c: FAIL func_800AC9BC: 40 of 56 words differ | words 44 ops 26 norm 26 | frame 0/0
+a7: a7.c: FAIL func_800AC9BC: 52 of 56 words differ; compiled body is 55 words, target 56 | words 40 ops 17 norm 17 | frame 0/0
+a8: a8.c: FAIL func_800AC9BC: 32 of 56 words differ | words 36 ops 18 norm 18 | frame 0/0
+a9: a9.c: FAIL func_800AC9BC: 32 of 56 words differ | words 36 ops 18 norm 18 | frame 0/0

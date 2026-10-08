@@ -6085,6 +6085,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-05"
   },
+  "graphics_chunk": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/graphics_chunk.c",
+    "source_sha256": "132e76475a3e618198c53ea1afb9ccda2597574bea9795ba587950fe776951b7",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-07"
+  },
   "graphics_chunk_b": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "source": "src/blob/graphics_chunk_b.c",
