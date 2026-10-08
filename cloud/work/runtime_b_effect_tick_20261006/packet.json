@@ -1,0 +1,15 @@
+{
+  "status": "research-only; nonmatch; no publication",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "source_sha256": {
+    "effect_tick.c": "b88b940c637c5831be3714b6dbe47f9bd3821bdb8e6501d775f46fe552274bd0",
+    "host.c": "a2731a9205a4ea41d27144fbf865569c540fbe885ff2f97bee24ee811137fac1",
+    "native.py": "9769c5d8aca3de0b8a4cbbd3aca2db6e3be9742dd140a5c9c6232f6f5bbc87c2",
+    "semantic.py": "950be7278148bd53971d89b31510d36f2c690e02b1400867b2b9adfc9bb9fe04",
+    "contracts.py": "b8cbe4b592b4033bf5193834a287ef282548c57257d08cf2a12c1a4e34c96340",
+    "controls.py": "3f7761ef598a1524d4b0cfe861bf65707b7b480ae580e6a028fff3239618596a",
+    "elf.py": "07c453b53cd2cd159d76bc1b039b1a500b6b3824fd90350d02c78d181716300f",
+    "baseline.py": "4c2b5733d991171b57ca394c039b7371b0233b26dfbea8b9cc40c66b7206d12d",
+    "group.json": "51f63ac531c29292931edfaf21ebd254a660c798ff16c8e3b34268fd01aecc2f"
+  }
+}

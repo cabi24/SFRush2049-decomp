@@ -1,5 +1,17 @@
 # Image-A formatted menu callback
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
 Strict standalone MATCH for **A:func_803AF744**, `[0x803AF744, 0x803AF978)`,
 **564 bytes / 141 words**. Base: `cd22879d40b3de443cfde047b86e75e159b6cec6`.
 This is a source/evidence submission awaiting the independent checker; it earns
@@ -74,7 +86,7 @@ order does not prove recovery of the original C declaration order.
 ## Producer verification
 
 `verify.py` uses current-master scorer/own-data tooling with unchanged protected
-inputs. IDO 5.3 recipe: `-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul`.
+inputs. IDO 5.3 recipe: `-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul`.
 
 - Exact ELF function extent: **564 bytes**, followed by **12 separately checked
   zero alignment bytes**. No extra function, owned data or storage.
@@ -124,3 +136,18 @@ No original-source recovery, actual renderer execution, concurrency, gameplay,
 image/recompression/full-ROM or hardware claim is made. Merging, production
 integration and final acceptance remain with the independent checker. No CI
 watcher or merge automation is requested.
+
+## Integration-portable replay (2026-10-06)
+
+`portable_receipt()` compares both saved and fresh evidence after excluding only
+explicit historical whole-tree/tool/source-context digests. Packet source and
+verifier bindings, selected native bodies and addresses, ELF extents, relocations,
+owned data, behavior, and compiler executable identities remain authoritative.
+Accepted production context is read from the recorded base commit rather than
+the live integrated tree. Tests are deliberately not hashed into receipts.
+
+The unchanged candidate body was freshly strict-matched through the canonical
+scorer with the bare source recipe `-g0 -O3 -mips2 -G 0 -non_shared`; the scorer
+still injects its mandatory `-Wab,-r4300_mul` backend flag. Full packet proof was
+replayed under O3. No same-unit callers, inline helpers, or deleted-static stubs
+are required. Historical O2 results remain available in Git history.

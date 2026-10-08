@@ -1,5 +1,6 @@
 {
   "accepted_byte_gain": 0,
+  "base_commit": "cd22879d40b3de443cfde047b86e75e159b6cec6",
   "claims": [],
   "direct_native_callers": {
     "func_8008E06C": [],
@@ -405,10 +406,7 @@
   },
   "host_source_sha256": "7c43d04c6b2d8ac4c3cdabf8d26b2791a5985077f9517a754cccbc35625d7e17",
   "input_hashes": {
-    "cloud/work/tiny_A44/func_80092BF4.c": "4115a8475f74a13776c4c0cd9fa9029a3928741b976006fdb0047f05332b4227",
-    "src/blob/func_8008E06C.c": "4d6e0ee3bed4b4d7a13da0704d171902da13812f8c1e1128f58f6ec53ad3e62b",
-    "src/blob/func_80092BC8.c": "af20aea41060cdf0f7e166672f16cf44306b1cad71dcfefd6c93ef4fdb2206e5",
-    "src/blob/sfx_stop.c": "97076af0d7a7f1e6be6c2fdde2b76992fb0bb97c64f9acc0b130a8cf3910cbe9"
+    "cloud/work/tiny_A44/func_80092BF4.c": "4115a8475f74a13776c4c0cd9fa9029a3928741b976006fdb0047f05332b4227"
   },
   "native": {
     "caller_alias_fixtures": 2880,
@@ -457,5 +455,5 @@
     "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
     "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5"
   },
-  "verifier_sha256": "11e7264438c1fe4f5373db736496b1b2bbaf09286206b698209a63802bf88881"
+  "verifier_sha256": "a617ad9bda7cc7ba6f3be8ce3689c6d043df03beec2cf46532c481f7d2ea2a5f"
 }

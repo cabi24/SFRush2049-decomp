@@ -338,6 +338,29 @@ def inspect(obj, linked=False):
     return data, sections, raw
 
 
+def native_link_script(bindings):
+    # ADDRESS is word-aligned, not 16-byte aligned. An explicit output-section
+    # address prevents GNU versions from aligning the section after assigning
+    # the location counter; SUBALIGN keeps the unmodified input at that address.
+    return ('SECTIONS { .text 0x%08X : SUBALIGN(4) { *(.text) } '
+            '/DISCARD/ : { *(.reginfo) *(.options) *(.MIPS.abiflags) } }\n' % ADDRESS +
+            '\n'.join('%s = 0x%08x;' % (k, v) for k, v in bindings.items()))
+
+
+def comparable(receipt):
+    """Exclude enumerated historical integration provenance, never proof inputs."""
+    result = json.loads(json.dumps(receipt))
+    for key in ('inputs_sha256',):
+        result.pop(key, None)
+    for helper in result["helpers"].values():
+        helper.pop("source_sha256", None)
+    # Host compiler/linker identities are recorded provenance. Their complete
+    # output bytes and behavior are proved below; the pinned IDO stays bound.
+    for tool in ('gcc', 'mips-linux-gnu-ld'):
+        result.get('tool_sha256', {}).pop(tool, None)
+    return result
+
+
 def prove():
     score.ASM_DIR = ROOT / 'asm/us/ovl_b'
     native = score.targets()[NAME]
@@ -356,7 +379,7 @@ def prove():
     for name in ['func_800F7E30', 'effect_cleanup']:
         source = pinned('src/blob/'+name+'.c')
         assert lock[name]['source_sha256'] == sha_bytes(source) and lock[name]['verified'] == 'image_gate'
-        helpers[name] = {'address': hex(addresses[name]), 'source_sha256': sha_bytes(source),
+        helpers[name] = {'address': hex(addresses[name]),
                          'native_bytes': len(blob[name])*4,
                          'native_sha256': sha_bytes(struct.pack('>%dI'%len(blob[name]), *blob[name]))}
     assert addresses['func_800F7E30'] == HELPER and addresses['effect_cleanup'] == 0x800C55E4
@@ -404,8 +427,7 @@ def prove():
                             'D_80115F28': 0x80115F28, 'D_803940D0': 0x803940D0}
         assert len(relocations) == 15
         script = tmp/'native.ld'
-        script.write_text('SECTIONS { . = 0x803914B4; .text : SUBALIGN(4) { *(.text) } /DISCARD/ : { *(.reginfo) *(.options) *(.MIPS.abiflags) } }\n'+
-                          '\n'.join('%s = 0x%08x;' % (k, v) for k, v in bindings.items()))
+        script.write_text(native_link_script(bindings))
         linked = tmp/'linked.elf'
         run(['mips-linux-gnu-ld', '-EB', '-T', script, '-o', linked, obj])
         _, _, linked_raw = inspect(linked, True)
@@ -482,9 +504,8 @@ def prove():
                              'domain': 'row/column/ring 0..3; selector 1..4 backed coordinate rows; all signed-byte deltas and counter values; round-to-nearest binary32 signed32 conversions; nonaliasing valid storage; stable image B residency; no concurrency or FCSR equality claim'},
                 'controls': controls,
                 'tool_sha256': {k: sha(v) for k, v in [(n, score.ido(n)) for n in ['cc','cfe','uopt','ugen','as1']]+[(n, shutil.which(n)) for n in ['mips-linux-gnu-ld','gcc']]},
-                'inputs_sha256': {str(p.relative_to(ROOT)): sha(p) for p in [ROOT/'tools/cloud/score.py', ROOT/'tools/cloud/owndata.py',
-                    bdir/'SHA256SUMS', bdir/'ovl_b_8038a400.s', bdir/'symbols.json', bdir/'extents.json', ROOT/'asm/us/blob/SHA256SUMS']},
-                'packet_sha256': {p.name: sha(p) for p in [PACKET/'verify.py', PACKET/'host_test.c', PACKET/'test_packet.py', PACKET/'README.md']}}
+
+                'packet_sha256': {p.name: sha(p) for p in [PACKET/'verify.py', PACKET/'host_test.c', PACKET/'README.md']}}
 
 
 if __name__ == '__main__':
@@ -494,7 +515,7 @@ if __name__ == '__main__':
     result = prove()
     path = PACKET/'verification.json'
     if args.check:
-        assert result == json.loads(path.read_text()), 'frozen receipt differs'
+        assert comparable(result) == comparable(json.loads(path.read_text())), 'frozen receipt differs'
         print('396-byte event-ring MATCH: frozen receipt, complete ELF/GNU and 2560 native/C fixtures passed')
     else:
         path.write_text(json.dumps(result, indent=2)+'\n')

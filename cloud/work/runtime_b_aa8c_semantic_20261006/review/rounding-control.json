@@ -1,0 +1,33 @@
+{
+  "status": "DOUBLE_PRODUCT_INTERMEDIATE_REJECTED",
+  "base_commit": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "native_targets": {
+    "func_8038A95C": [
+      2151197020,
+      184,
+      "f6f3b782e02e565f5bf723f54839b9c7f80483f410028f6a9db7e595b580664e"
+    ],
+    "func_8038AA14": [
+      2151197204,
+      120,
+      "9f23d5a9e52f138ede5552e5f931250ec7df73aa654150fd157966e6ca83808d"
+    ],
+    "func_8038AA8C": [
+      2151197324,
+      7812,
+      "c8842f0b25b7c17e36345611643e4b67a7c0c17929f7be6ba93785b530b67b39"
+    ]
+  },
+  "semantic_source_sha256": "6846a52f128d00e2fbd640e38256ffcbeb1d242b02bcc0a512a5ec5132abd722",
+  "host_bus_sha256": "14db8c8262fc8731679be84322003b52e482c934713109a3f1b1239ec07019af",
+  "host_header_sha256": "100dfd86fbcd6ea51e7ab4ed431d5741f9aecf06ee9a35802ac814351107827d",
+  "verifier_sha256": "5ac1a50790aa0454b9e2b6df4981028c307e0f6c56d406585f3e057bcec0741d",
+  "independent_verifier_sha256": "f0b259c2285328e4484409e98f28970e9530b17cff7940e326612034ec068ad0",
+  "mutant_source_sha256": "2f88f505405209be51cae6d88eed097d413b7ccd2a390b9958ccbd566759ddbe",
+  "fixture": {
+    "mode": 0,
+    "cached": 9,
+    "seed": 0
+  },
+  "result": "First created transform differs: retaining f64 products removes required single-precision rounding."
+}

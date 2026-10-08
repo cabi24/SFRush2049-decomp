@@ -1,7 +1,34 @@
 {
+  "native_target_bindings": {
+    "func_8001F954": {
+      "address": "0x8001f954",
+      "bytes": 124,
+      "sha256": "13abd5451f04320560902bea5b4b3ad7ad236f5bbc5757504ebe8a15b8eae4fc"
+    },
+    "func_80014AF0": {
+      "address": "0x80014af0",
+      "bytes": 76,
+      "sha256": "a73a1150b9ee51ca62257d2c15768acaa3523d9cd73cf21e39c6b05122199a36"
+    },
+    "func_8001C7F4": {
+      "address": "0x8001c7f4",
+      "bytes": 108,
+      "sha256": "2bf4ec94a067823efdfba48cf52f020673a29be51937496f6332276e6b3e8e41"
+    },
+    "func_8001467C": {
+      "address": "0x8001467c",
+      "bytes": 48,
+      "sha256": "7622e346038d320d232f0aacb7a78abf9d98c44f0cb200fd4a60d5653d382a8d"
+    },
+    "func_8001F6EC": {
+      "address": "0x8001f6ec",
+      "bytes": 256,
+      "sha256": "755a34ee559b47aac46b787b7f59e71a83e1c82d90b93ba425dec3d6fc6d88f4"
+    }
+  },
   "status": "PASS",
   "base": "cd22879d40b3de443cfde047b86e75e159b6cec6",
-  "recipe": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "recipe": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
   "sole_new_match": "func_8001F954",
   "new_matching_bytes": 124,
   "accepted_byte_gain": 0,
@@ -9,7 +36,7 @@
     {
       "function": "func_8001F954",
       "source_path": "cloud/matches/boot_tail/func_8001F954.c",
-      "source_sha256": "9681a183355a574946d7b680d39f0801bf0eb5e99a04fe81fb4e587933a80333",
+      "source_sha256": "73636bac5043a5c15cfa8d5e89956bbc4ec904d6792d79f6c145f778a92dcf8f",
       "exact_current_lock_body": false,
       "elf_size": 124,
       "text_size": 128,
@@ -76,7 +103,6 @@
     {
       "function": "func_80014AF0",
       "source_path": "cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014AF0.c",
-      "source_sha256": "5302fb6b574c5412814c5dd97da8fcc437b1f87e62977d48569ca7737e725afb",
       "exact_current_lock_body": true,
       "elf_size": 76,
       "text_size": 80,
@@ -97,7 +123,6 @@
     {
       "function": "func_8001C7F4",
       "source_path": "cloud/work/boot_tail_promotion/sources/func_8001C7F4.c",
-      "source_sha256": "163159a629228d42d34e0ee8e21471743ea952c3e627b92b6b254ee97ccf474b",
       "exact_current_lock_body": true,
       "elf_size": 108,
       "text_size": 112,
@@ -141,7 +166,7 @@
     },
     {
       "source": "signed_boundary",
-      "source_sha256": "e683322727d8d1f8f014968b5a65de400a239ef806ed62a4b4af6a55812a0878",
+      "source_sha256": "e649cdab092aa807477270890e6ff6eccd10a4d3e0cda163b6041cd1c360bbde",
       "elf_size": 124,
       "complete_body_diff_offsets": [],
       "zero_alignment_bytes": 4,
@@ -156,7 +181,7 @@
     },
     {
       "source": "named_pointer_restored",
-      "source_sha256": "fc4000e3de2c6057973ee323ecb7b0b7131d1f4bc287f3da91d645d3f9f1699b",
+      "source_sha256": "a889773225c3bb73061fe81bfcc4460f71ca1242b746e2bd34a65ea78874b56d",
       "elf_size": 124,
       "complete_body_diff_offsets": [
         96,
@@ -174,7 +199,7 @@
     },
     {
       "source": "nested_guard",
-      "source_sha256": "5897368781b8af3e273629eb82f671ed22a416d87130d577b91cf942138c9c40",
+      "source_sha256": "858477b824c67ba1bfadfaf99ff9a7831bb35c8901be7b1b47b855d2404d14cf",
       "elf_size": 124,
       "complete_body_diff_offsets": [],
       "zero_alignment_bytes": 4,
@@ -189,7 +214,7 @@
     },
     {
       "source": "final_O1",
-      "source_sha256": "9681a183355a574946d7b680d39f0801bf0eb5e99a04fe81fb4e587933a80333",
+      "source_sha256": "73636bac5043a5c15cfa8d5e89956bbc4ec904d6792d79f6c145f778a92dcf8f",
       "elf_size": 188,
       "complete_body_diff_offsets": [
         0,
@@ -258,30 +283,9 @@
     "wrong_sentinel"
   ],
   "input_sha256": {
-    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
-    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
-    "tools/conveyor/seeds/extract_candidates.py": "0f0c753a0f279f2b93f636995d1008f5fbda863491af451120b9e4afb29b0f53",
-    "include/boot_tail_audio_record.h": "128e9566a872e604ccfbf8352120a40cfc546c4d49b32321dd440cbf088348a7",
-    "include/boot_tail_sample_contract.h": "47f15953b674de3262411e79f4fd46873b8ca79c067790a087876c16da965f77",
-    "asm/us/boot_tail/SHA256SUMS": "6bd3e6ef05e6123e4ea4dd0d814c0abb16f202a91d8d0a381eca14322c8a36d5",
-    "asm/us/boot_tail/boot_tail_8000f3a4.s": "0dc55ce51ebe828207816f4f0b878b8928da64694f7f247bf8749f68cf91b224",
-    "asm/us/boot_tail/extents.json": "0d69358c528171a2c53e7468dd5b48afe7611006ab3800dbfbb10e079b008fcf",
-    "asm/us/boot_tail/symbols.json": "bd200aeb947e5da64c9e810dc6fbe15ef5c3f2f26633071cf7363cdb1b1fcba9",
-    "tools/conveyor/pipeline/lock.py": "f8dc9290990fab8748c84fa8949522c8dcc3ff828285d7ea90fc99f9dffa4ca0",
-    "matched.lock.json": "e1f894d33c2c30320add9a62b2d20823dd37392c778ee6ef9e4bfd9ebcd6b12b",
-    "asm/us/nonmatchings/rom/lib_1f5b0/func_8001F954.s": "82085297a4536846cb21540a885c0921b48adf9c640ccabecc104d987fe6abcb",
-    "asm/us/nonmatchings/rom/lib_11640/func_80014AF0.s": "9e5ec93bc68ecdd063f91cf0a15b4e86d92403c0ef605b9e6112a4d9a556cda8",
-    "asm/us/nonmatchings/rom/lib_1cf90/func_8001C7F4.s": "1b1a9d76ccd237b6a434e263add782ae778ada1ab4a5bb0b15a97b60f3f62177",
-    "asm/us/nonmatchings/rom/lib_11640/func_8001467C.s": "7049d11ed4e540351a02da3d04d4edf0d563b29d5ca54e54864c89cc7b7f0125",
-    "asm/us/nonmatchings/rom/lib_1f5b0/func_8001F6EC.s": "beb437797a092c77a4cbefadde2b96997e3a33fce849bbe0224fef17027cec4a",
-    "cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014AF0.c": "5302fb6b574c5412814c5dd97da8fcc437b1f87e62977d48569ca7737e725afb",
-    "src/rom/lib_11640.c": "9fd99f3d69bf1f06b4a0d223e024404440f03bfef8449360ef0d7361a87e9b10",
-    "cloud/work/boot_tail_promotion/sources/func_8001C7F4.c": "163159a629228d42d34e0ee8e21471743ea952c3e627b92b6b254ee97ccf474b",
-    "src/rom/lib_1cf90.c": "5352226208ce15459639ca17c65b55fc9b7c078da838a62ecd8faa7067255a48",
-    "cloud/work/boot_tail/BT03-high-init/nonmatch/func_8001F954.c": "6eb20d3d26f50b4f34ed83fc6a9bd463270ce5dae706144bc6ae25dbb616b030",
     "packet:native_behavior.py": "b6dafc6d0a3b215078e7705c8c2d625b39a96aa6ce9a53345d05095ddfb46a21",
     "packet:test_host.c": "dc1d50468ae4c4cbd05a828fba74a5858632eeac696b82edc3ccbf3eacae4bd0",
-    "packet:verify.py": "f716cc9e6c1816540d05df9c8b9d54aed69c6003d415ae278c93c15339cac6ca"
+    "packet:verify.py": "d713cc700178c2325f88bfbfe2c5cad478e91f86e5b76376bbcc00c0d36283ee"
   },
   "ido_sha256": {
     "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",

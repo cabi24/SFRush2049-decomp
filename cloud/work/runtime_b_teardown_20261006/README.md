@@ -1,5 +1,17 @@
 # Image B HUD teardown: complete, behavior-tested NONMATCH
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
 ## Result
 
 Runtime image **B**, `func_8039244C`, `[0x8039244C, 0x803925C8)`,
@@ -102,7 +114,7 @@ hashes can be emitted separately with `--tool-provenance`.
 - Four compiled wrong-source mutations fail: wrong first state, omitted last
   effect, wrong handle clear, missing resource clear. Three native execution
   controls reject unknown instructions, a changed state and an unmapped base.
-- Eight focused tests include portable receipt replay from an unrelated working
+- Six focused tests include portable receipt replay from an unrelated working
   directory with spaces, normal and optimized Python, and fail-closed invalid
   access/helper contract checks.
 
@@ -130,14 +142,26 @@ The final command intentionally returns NONMATCH. Only source, tests, and
 metadata/notes belong to the packet. No ROM bytes, raw assembly dumps,
 objects, credentials, unrelated private data or production inputs are added.
 
-## Replay portability repair
+## Integration-portable replay (2026-10-06)
 
-The original GNU script set the location counter before an implicitly placed
-`.text`. GNU 2.42 aligned that section and the function to `0x80392450`, four
-bytes past the required entry; GNU 2.44 happened to preserve `0x8039244C`.
-The section now has an explicit output address. Both versions preserve the
-380-byte function, 384-byte complete text, all relocations and the same native
-residual. The placement gate now reports the actual symbol tuple and a
-misplaced-link negative control verifies rejection. Target selection is
-restored in `finally` scopes, including nested helper failures. The receipt
-changes only the verifier source hash; no proof result is normalized away.
+`portable_receipt()` compares both saved and fresh evidence after excluding only
+explicit historical whole-tree/tool/source-context digests. Packet source and
+verifier bindings, selected native bodies and addresses, ELF extents, relocations,
+owned data, behavior, and compiler executable identities remain authoritative.
+Accepted production context is read from the recorded base commit rather than
+the live integrated tree. Tests are deliberately not hashed into receipts.
+
+The accepted sound helper source and lock recipe come from `CONTEXT_BASE`. Both
+selected sound helper bodies retain explicit native address/extent/SHA-256 pins.
+
+## Rebase follow-up: GNU placement and target-state restoration
+
+The master repair merged at `83f4ae311dfd662565530dbd748941fdad6a47ba`
+places `.text` explicitly at `0x8039244C`. The earlier location-counter form could
+align it four bytes higher under GNU 2.42. The complete 380-byte function,
+384-byte text, relocations and native residual are preserved. The placement gate
+checks the actual GNU symbol tuple, and a deliberate four-byte misplacement is
+rejected. `finally` scopes restore target selection through nested helper failures.
+Both new regression tests are retained. Historical BASE helper-source/lock reads,
+selected helper-native bindings and complete portable proof comparison remain;
+no mutable manifest, lock-list or scorer digests are reintroduced into receipts.

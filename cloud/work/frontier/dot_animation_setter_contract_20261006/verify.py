@@ -32,6 +32,10 @@ def file_sha(path):return sha(Path(path).read_bytes())
 def run(command,**kw):return subprocess.run(command,check=True,capture_output=True,**kw)
 
 
+def base_bytes(path):
+    return run(['git','show',BASE+':'+path],cwd=ROOT).stdout
+
+
 def elf(obj):
     data,sections=score._elf(obj)
     symbols=[s for i,section in enumerate(sections) if section['type']==2 for s in score._symbol_table(data,sections,i)]
@@ -202,10 +206,10 @@ def verify():
     assert entries==ENTRY_ADDRESSES,'selected entry address drift'
     assert len(targets[NAME])==83 and len(targets[CONTEXT])==11
     witness=clock_witness(targets,addresses)
-    locks=json.loads((ROOT/'blob_matched.lock.json').read_text())
+    locks=json.loads(base_bytes('blob_matched.lock.json'))
     assert NAME not in locks
     assert file_sha(HERE/'group/setter.c')==locks[CONTEXT]['source_sha256']
-    assert (HERE/'group/setter.c').read_bytes()==(ROOT/locks[CONTEXT]['source']).read_bytes()
+    assert (HERE/'group/setter.c').read_bytes()==base_bytes(locks[CONTEXT]['source'])
     assert (HERE/'controls/archive.c').read_bytes()==run(['git','show',BASE+':cloud/work/frontier/w7b/audio_channel_setup/best.c'],cwd=ROOT).stdout
     recipe=json.loads((HERE/'group/group.json').read_text());assert recipe['claims']==[]
     assert recipe['keep']==[NAME,CONTEXT] and recipe['files']==['caller.c','setter.c'] and recipe['flags']==FLAGS
@@ -253,7 +257,7 @@ def verify():
     return {'status':'NONMATCH','claims':[],'accepted_byte_gain':0,'base_commit':BASE,
             'target':NAME,'entry_addresses':entries,
             'interval':['0x%08X'%entries[NAME],'0x%08X'%(entries[NAME]+len(targets[NAME])*4)],'flags':FLAGS,
-            'input_sha256':inputs,'target_manifest_provenance':file_sha(score.ASM_DIR/'SHA256SUMS'),
+            'input_sha256':inputs,
             'compile':compile_report,'complete_gnu_proof':{NAME:proof,CONTEXT:helper_proof},
             'controls':controls,'ordinary_clock_complete_gnu':ordinary_proof,'behavior':result,
             'clock_witness':witness,'o32_layout_assertions':14,'compiler_sha256':file_sha(score.IDO/'cc'),

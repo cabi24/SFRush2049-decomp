@@ -21,12 +21,32 @@ SOURCE = PROJECT / 'cloud/matches/ovl_b/func_8038A8CC.c'
 NAME, ADDRESS, SIZE = 'func_8038A8CC', 0x8038A8CC, 144
 BASE = 'cd22879d40b3de443cfde047b86e75e159b6cec6'
 IMAGE_SHA = 'b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd'
-FLAGS = '-g0 -O2 -mips2 -G 0 -non_shared'
+FLAGS = '-g0 -O3 -mips2 -G 0 -non_shared'
 GLOBALS = {'D_80399A70':0x80399A70, 'D_80394D14':0x80394D14,
            'D_80399AD8':0x80399AD8, 'D_80140BDC':0x80140BDC,
            'func_800B24EC':0x800B24EC}
 RING, TEXTURE, COUNT = 0x80399A70, 0x80399AD8, 0x80140BDC
 U32, STACK, RETURN = 0xffffffff, 0x70000000, 0x60000000
+
+
+def portable_receipt(receipt):
+    """Compare packet proof; base-context and whole-tree digests are provenance."""
+    result = json.loads(json.dumps(receipt))
+    for path in (
+        'asm/us/ovl_b/SHA256SUMS',
+        'asm/us/ovl_b/extents.json',
+        'asm/us/ovl_b/ovl_b_8038a400.s',
+        'asm/us/ovl_b/symbols.json',
+        'tools/cloud/owndata.py',
+        'tools/cloud/score.py',
+    ):
+        result.get('inputs_sha256', {}).pop(path, None)
+    result.get('accepted_helper', {}).pop('sha256', None)
+    result.get('packet_sha256', {}).pop('test_packet.py', None)
+    if not result.get('inputs_sha256'):
+        result.pop('inputs_sha256', None)
+    return result
+
 
 def sha_bytes(b): return hashlib.sha256(b).hexdigest()
 def sha(p): return sha_bytes(Path(p).read_bytes())
@@ -164,6 +184,14 @@ def inspect(obj):
     assert len(raw)==SIZE
     return data,sections,fn,raw
 
+def native_link_script():
+    # Both output placement and input subalignment are explicit: ADDRESS is
+    # word-aligned but GNU 2.42 otherwise rounds this section up to 16 bytes.
+    return ('SECTIONS { .text 0x%08X : SUBALIGN(4) { *(.text) } '
+            '/DISCARD/ : { *(.reginfo) *(.options) *(.MIPS.abiflags) } }\n' % ADDRESS +
+            '\n'.join('%s = 0x%08x;' % (k, v) for k, v in GLOBALS.items()))
+
+
 def prove():
     score.ASM_DIR=ROOT/'asm/us/ovl_b'
     native=score.targets()[NAME]
@@ -182,9 +210,9 @@ def prove():
     assert b'NameEntry *func_800B24EC(char *name, s16 *out, s8 lo, s8 hi, s32 err)' in accepted
     receipt={'status':'MATCH','base':BASE,'image':'B','image_sha256':IMAGE_SHA,'address':hex(ADDRESS),'bytes':SIZE,
              'source_sha256':sha(SOURCE),'flags':FLAGS+' -Wab,-r4300_mul',
-             'inputs_sha256':{str(p.relative_to(ROOT)):sha(p) for p in [score.ASM_DIR/'SHA256SUMS',score.ASM_DIR/'ovl_b_8038a400.s',score.ASM_DIR/'extents.json',score.ASM_DIR/'symbols.json',ROOT/'tools/cloud/score.py',ROOT/'tools/cloud/owndata.py']},
-             'packet_sha256':{p.name:sha(p) for p in [PACKET/'verify.py',PACKET/'host_test.c',PACKET/'test_packet.py']},
-             'accepted_helper':{'path':'src/blob/func_800B24EC.c','commit':BASE,'sha256':sha_bytes(accepted),'compiled_or_executed_here':False},
+
+             'packet_sha256':{p.name:sha(p) for p in [PACKET/'verify.py',PACKET/'host_test.c']},
+             'accepted_helper':{'path':'src/blob/func_800B24EC.c','commit':BASE,'compiled_or_executed_here':False},
              'consumer':{'name':'func_8038A408','address':'0x8038A408','bytes':1220,'sha256':sha_bytes(struct.pack('>305I',*score.targets()['func_8038A408']))}}
     with tempfile.TemporaryDirectory(prefix='b-a8cc-') as name:
         tmp=Path(name);obj=tmp/'candidate.o'
@@ -211,7 +239,7 @@ def prove():
             (92,6,'D_80399A70'),(96,6,'D_80399A70'),(100,6,'D_80399A70')]
         assert all(0<=r['offset']<SIZE and r['type'] in [4,5,6] for r in relocs)
         script=tmp/'native.ld'
-        script.write_text('SECTIONS { . = 0x8038A8CC; .text : SUBALIGN(4) { *(.text) } /DISCARD/ : { *(.reginfo) *(.options) *(.MIPS.abiflags) } }\n'+'\n'.join('%s = 0x%08x;'%(k,v) for k,v in GLOBALS.items()))
+        script.write_text(native_link_script())
         linked=tmp/'linked.elf';run(['mips-linux-gnu-ld','-EB','-T',script,'-o',linked,obj])
         linkeddata,linkedsecs,linkedfn,linkedraw=inspect(linked)
         shoff=struct.unpack_from('>I',linkeddata,0x20)[0];entsize=struct.unpack_from('>H',linkeddata,0x2e)[0]
@@ -274,6 +302,6 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('output',nargs='?');parser.add_argument('--check',action='store_true');parser.add_argument('--tool-provenance',type=Path)
     args=parser.parse_args();receipt=prove();text=json.dumps(receipt,indent=2,sort_keys=True)+'\n'
     if args.tool_provenance:args.tool_provenance.write_text(json.dumps(tool_provenance(),indent=2,sort_keys=True)+'\n')
-    if args.check:assert receipt==json.loads((PACKET/'verification.json').read_text());print('Frozen source-bound proof reproduced')
+    if args.check:assert portable_receipt(receipt)==portable_receipt(json.loads((PACKET/'verification.json').read_text()));print('Frozen source-bound proof reproduced')
     elif args.output:Path(args.output).write_text(text)
     else:print(text,end='')

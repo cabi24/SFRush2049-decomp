@@ -81,8 +81,10 @@
     ],
     "owned_data_bytes": 0
   },
-  "source_sha256": "75df23079bc65631431207d506531f016aab8018d8ace9919d755b2a3f2f05d1",
-  "recipe": "-g0 -O2 -mips2 -G 0 -non_shared",
+  "source_sha256": "91537ef4b0e2fc0804bf46c27f518c97cc2200cccfbb56bec4eba15ffd86faae",
+  "recipe": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "base_commit": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "historical_control_recipe": "-g0 -O2 -mips2 -G 0 -non_shared",
   "assembler_addition": "-Wab,-r4300_mul",
   "score": "MATCH",
   "controls": {
@@ -240,17 +242,11 @@
     "method": "read-only native inspection; producer not executed"
   },
   "input_sha256": {
-    "cloud/matches/ovl_a/func_80393004.c": "75df23079bc65631431207d506531f016aab8018d8ace9919d755b2a3f2f05d1",
+    "cloud/matches/ovl_a/func_80393004.c": "91537ef4b0e2fc0804bf46c27f518c97cc2200cccfbb56bec4eba15ffd86faae",
     "cloud/work/r16_runtime_images/near_miss/func_80393004.c": "1f164e4bc8ac1cc56d4d3b57150bad9531a8f712d888f180aa49be951d2da920",
     "cloud/work/frontier/dot_runtime_a_flags_20261006/native.py": "5d62c16c17ce53efaffe14e35b8b8ca76383ba5471cecfbc7dcbf7b791b61c95",
     "cloud/work/frontier/dot_runtime_a_flags_20261006/host.c": "44dffe397d3be80c985965c2eec68735916eb88c7425e4465f4580757870ff24",
-    "cloud/work/frontier/dot_runtime_a_flags_20261006/verify.py": "05d5a06edebce425b60b3c99f3f7ccac2098749ad73d51efb90a3d2714df7dc7",
-    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
-    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
-    "asm/us/ovl_a/SHA256SUMS": "27f81bfaba058e89167168e3eb724d530de3b5fa8df12617138df25f149af82d",
-    "asm/us/ovl_a/extents.json": "0d97935254a6f2c724dfe68b08087e0a451e56d0aedb2121748abe7b6cc0798b",
-    "asm/us/ovl_a/symbols.json": "d5a6c8dccb0380f54f080d45d82a5e71f917be86f9568bf4b7fbe10a89f2a769",
-    "asm/us/ovl_a/ovl_a_8038a400.s": "94f5fdb45838b6d21fb761209bf2cb60602f90ea8725b16cae2c3cebe0aa7685"
+    "cloud/work/frontier/dot_runtime_a_flags_20261006/verify.py": "6273c177baf69077f692614eac9f0f366affe031c904e3a8a282ff2f21f563c8"
   },
   "tool_sha256": {
     "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",

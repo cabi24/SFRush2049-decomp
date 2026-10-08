@@ -22,11 +22,10 @@ native=importlib.util.module_from_spec(spec)
 spec.loader.exec_module(native)
 FN='func_8008B000'
 CONSUMER='car_gear_shift'
-# The packet's own source: cloud/matches/func_8008B000.c holds a separately
-# matched spelling with a different type layout (both reach score 0).
-SOURCE=HERE/'source.c'
+SOURCE=HERE/'candidate.c'
 OLD=ROOT/'cloud/work/near-miss/func_8008B000/base.c'
-FLAGS='-g0 -O2 -mips2 -G 0 -non_shared'
+FLAGS='-g0 -O3 -mips2 -G 0 -non_shared'
+HISTORICAL_FLAGS='-g0 -O2 -mips2 -G 0 -non_shared'
 BASE='cd22879d40b3de443cfde047b86e75e159b6cec6'
 
 
@@ -34,6 +33,19 @@ def digest(data): return hashlib.sha256(data).hexdigest()
 def sha(path): return digest(Path(path).read_bytes())
 def packed(words): return struct.pack('>%dI'%len(words),*words)
 def run(args,**kw): return subprocess.run(args,check=True,capture_output=True,**kw)
+
+def base_bytes(path):
+    return run(['git','show',BASE+':'+path],cwd=ROOT).stdout
+
+def portable(receipt):
+    result=json.loads(json.dumps(receipt))
+    for field in ('target_manifest_sha256','accepted_consumer_source_sha256'):
+        result.pop(field,None)
+    for path in ('tools/cloud/score.py','tools/cloud/owndata.py','tools/conveyor/pipeline/blob_group.py'):
+        result.get('tools_sha256', {}).pop(path,None)
+    if not result.get('tools_sha256'):
+        result.pop('tools_sha256', None)
+    return result
 
 def elf(path):
     data,sections=score._elf(path)
@@ -200,12 +212,12 @@ def audit_native():
 def verify(work):
     work.mkdir(parents=True,exist_ok=True)
     targets=score.targets();addresses=score.image_symbols()
-    result=dict(base_revision=BASE,status='MATCH_PENDING_INDEPENDENT_REVIEW',claims=[FN],
+    result=dict(base_revision=BASE,status='STRICT_MATCH_RESEARCH_ALREADY_ACCEPTED_TARGET',claims=[],
         native_range=['0x8008B000','0x8008B0D8'],candidate_bytes=216,accepted_byte_gain=0,
         source_sha256=sha(SOURCE),flags=FLAGS,assembler_erratum_flag=score.R4300_CC)
     for opt in ('O2','O3'):
         directory=work/opt;directory.mkdir()
-        obj=directory/'candidate.o';score.compile_single(SOURCE,FLAGS.replace('O2',opt),obj)
+        obj=directory/'candidate.o';score.compile_single(SOURCE,HISTORICAL_FLAGS.replace('O2',opt),obj)
         result[opt],body=inspect(obj,FN,directory)
         assert result[opt]['relocations']==[dict(offset=0x18,type=5,symbol='D_801161F4'),dict(offset=0x24,type=6,symbol='D_801161F4')]
         data,sections,syms=elf(obj);text=sections[score._text_index(sections)]
@@ -214,8 +226,8 @@ def verify(work):
     # Only fixed, authentic shared-data consumer context. No invented caller.
     context=work/'context';context.mkdir()
     (context/'candidate.c').write_bytes(SOURCE.read_bytes())
-    accepted=ROOT/'src/blob/car_gear_shift.c'
-    (context/'consumer.c').write_bytes(accepted.read_bytes())
+    accepted=base_bytes('src/blob/car_gear_shift.c')
+    (context/'consumer.c').write_bytes(accepted)
     (context/'group.json').write_text(json.dumps(dict(files=['candidate.c','consumer.c'],
        members=[FN],context=[CONSUMER],keep=[FN,CONSUMER],flags=FLAGS.replace('O2','O3'),claims=[FN])))
     obj=context/'group.o';score.compile_group(context,obj)
@@ -237,19 +249,18 @@ def verify(work):
     score.compile_single(assertions,FLAGS,work/'layout.o')
     result['o32_layout_assertions']=checks
     baseline=work/'baseline';baseline.mkdir()
-    score.compile_single(OLD,FLAGS,baseline/'old.o')
+    archived=baseline/'old.c';archived.write_bytes(base_bytes(str(OLD.relative_to(ROOT))))
+    score.compile_single(archived,HISTORICAL_FLAGS,baseline/'old.o')
     result['archived_seed'],_=inspect(baseline/'old.o',FN,baseline,False)
-    result['archived_source_sha256']=sha(OLD)
+    result['archived_source_sha256']=digest(archived.read_bytes())
+    result['archived_control_flags']=HISTORICAL_FLAGS
     result['behavior']=semantics(work,body)
     sites=audit_native()
     result['native_direct_call_sites']=[dict(function=n,offset=hex(off),selector=0) for n,off in sites]
     result['input_native_sha256']={n:digest(packed(targets[n])) for n in (FN,CONSUMER,'entity_render_mode','physics_velocity_integrate_a','string_copy_format','validate_and_call')}
     used={FN,CONSUMER,'func_80092DCC'}|{r['symbol'] for key in ('O2','accepted_consumer') for r in result[key]['relocations']}
     result['consumed_symbols']={n:hex(addresses.get(n,score.address_named(n))) for n in sorted(used)}
-    result['target_manifest_sha256']=sha(score.ASM_DIR/'SHA256SUMS')
-    result['accepted_consumer_source_sha256']=sha(accepted)
     result['compiler_sha256']={n:sha(score.ido(n)) for n in ('cc','cfe','uld','usplit','umerge','uopt','ugen','as1')}
-    result['tools_sha256']={str(p):sha(ROOT/p) for p in ('tools/cloud/score.py','tools/cloud/owndata.py','tools/conveyor/pipeline/blob_group.py')}
     result['packet_sha256']={n:sha(HERE/n) for n in ('verify.py','native.py','host.c','claim.json')}
     result['limitations']=['No original typedef, donor ancestry, or original TU membership claim.',
       'Direct caller is read-only: its full private-ABI closure is not recompiled or executed.',

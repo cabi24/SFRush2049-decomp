@@ -148,6 +148,14 @@ def behavioral(words, compiled, lib):
     assert coverage == set(range(0,404,4)) and branch == {(388,True),(388,False)}
     return dict(cases=count, compiled_caller_contract_failures=contract_failures, trace_sha256=digest.hexdigest(), native_instructions_covered=len(coverage), branch_outcomes=len(branch))
 
+def comparable(receipt):
+    """Exclude enumerated historical integration provenance, never proof inputs."""
+    result = json.loads(json.dumps(receipt))
+    for key in ('scorer_sha256', 'protected_manifest_sha256'):
+        result.pop(key, None)
+    return result
+
+
 def main():
     if not __debug__:
         raise RuntimeError('Verification assertions must remain enabled')
@@ -220,15 +228,15 @@ def main():
         source_sha256=sha(SOURCE.read_bytes()),harness_sha256=sha((HERE/'host.c').read_bytes()),model_sha256=sha((HERE/'native.py').read_bytes()), verifier_sha256=sha(Path(__file__).read_bytes()),
         proofs=proofs,behavior=behavior,exceptional_inputs_refused=refusal,negative_controls=controls,
         anchors={n:hex(v) for n,v in ANCHORS.items()},native_bindings=BINDINGS,direct_call_sites=sites,
-        tools={p:sha((score.IDO/p).read_bytes()) for p in ('cc','cfe','uopt','ugen','as1')},scorer_sha256=sha((repo/'tools/cloud/score.py').read_bytes()),
-        protected_manifest_sha256=sha((score.ASM_DIR/'SHA256SUMS').read_bytes()),
+        tools={p:sha((score.IDO/p).read_bytes()) for p in ('cc','cfe','uopt','ugen','as1')},
+
         limits=['Stable, disjoint, synthetic valid backing: player0..3, selector0..12, five rows0..2, four floats each; not a proof of every game reachable index',
         'Binary32 normal/zero inputs and normal/zero intermediate products under round-to-nearest ties-even only; no hardware FCSR, trap, subnormal or NaN payload equivalence',
         'NaN/infinity/subnormal probes are explicit domain refusals, not arithmetic compatibility claims',
         'No genuine caller group compiled; native preserves t3/t4/t5 and f16/f18, candidate clobbers them',
         'No image/compression/ROM gates; no coverage credit; no broad suite'])
     receipt = json.loads(json.dumps(receipt))
-    if a.check: assert receipt == json.loads(a.out.read_text()), 'portable receipt differs'
+    if a.check: assert comparable(receipt) == comparable(json.loads(a.out.read_text())), 'portable receipt differs'
     else: a.out.write_text(json.dumps(receipt,indent=2)+'\n')
     print(json.dumps({k:receipt[k] for k in ('status','behavior','negative_controls')},indent=2))
 if __name__ == '__main__': main()

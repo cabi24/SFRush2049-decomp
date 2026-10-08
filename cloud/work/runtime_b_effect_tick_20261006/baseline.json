@@ -1,0 +1,669 @@
+{
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "source_sha256": "b88b940c637c5831be3714b6dbe47f9bd3821bdb8e6501d775f46fe552274bd0",
+  "recipe": {
+    "files": [
+      "effect_tick.c"
+    ],
+    "keep": [
+      "func_80390F60"
+    ],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+  },
+  "layout": {
+    "status": "PASS",
+    "facts": [
+      {
+        "expression": "sizeof(void*)",
+        "value": 4
+      },
+      {
+        "expression": "sizeof(s8)",
+        "value": 1
+      },
+      {
+        "expression": "sizeof(s16)",
+        "value": 2
+      },
+      {
+        "expression": "sizeof(s32)",
+        "value": 4
+      },
+      {
+        "expression": "sizeof(f32)",
+        "value": 4
+      },
+      {
+        "expression": "sizeof(EffectObject)",
+        "value": 84
+      },
+      {
+        "expression": "sizeof(EffectEntry)",
+        "value": 8
+      },
+      {
+        "expression": "sizeof(EffectControl)",
+        "value": 20
+      },
+      {
+        "expression": "sizeof(EffectPlayer)",
+        "value": 952
+      },
+      {
+        "expression": "OFF(EffectObject,flags)",
+        "value": 4
+      },
+      {
+        "expression": "OFF(EffectObject,scene)",
+        "value": 12
+      },
+      {
+        "expression": "OFF(EffectObject,animation)",
+        "value": 80
+      },
+      {
+        "expression": "OFF(EffectEntry,object)",
+        "value": 0
+      },
+      {
+        "expression": "OFF(EffectEntry,state)",
+        "value": 4
+      },
+      {
+        "expression": "OFF(EffectEntry,eligibility)",
+        "value": 6
+      },
+      {
+        "expression": "OFF(EffectControl,count)",
+        "value": 0
+      },
+      {
+        "expression": "OFF(EffectControl,selected_fast)",
+        "value": 1
+      },
+      {
+        "expression": "OFF(EffectControl,selected_second)",
+        "value": 2
+      },
+      {
+        "expression": "OFF(EffectControl,selected_first)",
+        "value": 3
+      },
+      {
+        "expression": "OFF(EffectControl,timer_fast)",
+        "value": 4
+      },
+      {
+        "expression": "OFF(EffectControl,timer_first)",
+        "value": 8
+      },
+      {
+        "expression": "OFF(EffectControl,timer_second)",
+        "value": 12
+      },
+      {
+        "expression": "OFF(EffectControl,entries)",
+        "value": 16
+      },
+      {
+        "expression": "OFF(EffectPlayer,status)",
+        "value": 908
+      },
+      {
+        "expression": "OFF(EffectPlayer,countdown)",
+        "value": 928
+      },
+      {
+        "expression": "OFF(EffectPlayer,alpha)",
+        "value": 929
+      },
+      {
+        "expression": "OFF(EffectPlayer,phase)",
+        "value": 930
+      },
+      {
+        "expression": "OFF(EffectPlayer,timer)",
+        "value": 936
+      }
+    ]
+  },
+  "status": "COMPLETE SEMANTIC C / ONE CANONICAL O3 BASELINE; NOT A STRICT MATCH",
+  "actual_backend": "unchanged score.compile_group; mandatory as1 -r4300_mul",
+  "group_compiler_invocations": 1,
+  "compiler_sha256": {
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+  },
+  "object_sha256": "fdf44d4032eeb64da1c9d85e29e5fc452993c3638bb0b16a2e306604ee472fef",
+  "linked_sha256": "1edee2fd8f8c9ccdfe1e91bacd316c4a5e246544886d4fd98848c0b465aa0243",
+  "procedures": {
+    "func_80390B10": {
+      "offset": 0,
+      "size": 8,
+      "kind": "stStaticProc",
+      "frame_bytes": 0,
+      "integer_save_mask": "0x0",
+      "float_save_mask": "0x0",
+      "frame_register": 29,
+      "return_register": 31,
+      "source_line_start": 57,
+      "source_line_end": 57,
+      "evidence": "ECOFF procedure + matching stEnd length + PDR address/frame cross-check",
+      "native_size": 552,
+      "native_sha256": "656cfd510c2a08aa09c0dbba417f7e6bf84781681746380fddabce66c455fef8",
+      "unmasked_research_placement_residual": {
+        "differing_words": 138,
+        "native_words": 138,
+        "missing_words": 136,
+        "extra_words": 0,
+        "first_differing_offsets": [
+          "0x0",
+          "0x4",
+          "0x8",
+          "0xc",
+          "0x10",
+          "0x14",
+          "0x18",
+          "0x1c",
+          "0x20",
+          "0x24",
+          "0x28",
+          "0x2c"
+        ],
+        "limits": "Whole linked member at research placement; internal calls and owned-data addresses are not normalized. This is not a native-placement acceptance score."
+      }
+    },
+    "func_80390D38": {
+      "offset": 8,
+      "size": 548,
+      "kind": "stStaticProc",
+      "frame_bytes": 24,
+      "integer_save_mask": "0x80000000",
+      "float_save_mask": "0x0",
+      "frame_register": 29,
+      "return_register": 31,
+      "source_line_start": 91,
+      "source_line_end": 122,
+      "evidence": "ECOFF procedure + matching stEnd length + PDR address/frame cross-check",
+      "native_size": 552,
+      "native_sha256": "e90f5ca0395a6429e0137efb62e2a8077600aff474bf298d5e47d98aec520355",
+      "unmasked_research_placement_residual": {
+        "differing_words": 131,
+        "native_words": 138,
+        "missing_words": 1,
+        "extra_words": 0,
+        "first_differing_offsets": [
+          "0x18",
+          "0x20",
+          "0x24",
+          "0x28",
+          "0x2c",
+          "0x30",
+          "0x34",
+          "0x38",
+          "0x3c",
+          "0x40",
+          "0x44",
+          "0x48"
+        ],
+        "limits": "Whole linked member at research placement; internal calls and owned-data addresses are not normalized. This is not a native-placement acceptance score."
+      }
+    },
+    "func_80390F60": {
+      "offset": 556,
+      "size": 1560,
+      "kind": "stProc",
+      "frame_bytes": 80,
+      "integer_save_mask": "0x80030000",
+      "float_save_mask": "0x300000",
+      "frame_register": 29,
+      "return_register": 31,
+      "source_line_start": 125,
+      "source_line_end": 193,
+      "evidence": "ECOFF procedure + matching stEnd length + PDR address/frame cross-check",
+      "native_size": 988,
+      "native_sha256": "6d91e9692637c1d96f48b3a1afcc63d3348212a42baf882e7e71034426a30bb3",
+      "unmasked_research_placement_residual": {
+        "differing_words": 245,
+        "native_words": 247,
+        "missing_words": 0,
+        "extra_words": 143,
+        "first_differing_offsets": [
+          "0x0",
+          "0x4",
+          "0x8",
+          "0xc",
+          "0x10",
+          "0x18",
+          "0x1c",
+          "0x20",
+          "0x24",
+          "0x28",
+          "0x2c",
+          "0x30"
+        ],
+        "limits": "Whole linked member at research placement; internal calls and owned-data addresses are not normalized. This is not a native-placement acceptance score."
+      }
+    }
+  },
+  "text_accounting": {
+    "text_size": 2128,
+    "procedure_bytes": 2116,
+    "zero_alignment_bytes": 12,
+    "zero_alignment_offsets": [
+      "0x844",
+      "0x845",
+      "0x846",
+      "0x847",
+      "0x848",
+      "0x849",
+      "0x84a",
+      "0x84b",
+      "0x84c",
+      "0x84d",
+      "0x84e",
+      "0x84f"
+    ]
+  },
+  "allocated_sections": [
+    {
+      "name": ".text",
+      "size": 2128,
+      "address": "0x81000000",
+      "sha256": "694399c3d8dd46aa7b059fe710fe2091746ca5c9e6699a090ab784fd8a4a2339"
+    },
+    {
+      "name": ".data",
+      "size": 16,
+      "address": "0x81020000",
+      "sha256": "4966a8a78e16f6e2b34a3ee664ad975fe0baf30e03ac0e1f4a767430a1f14ab0"
+    }
+  ],
+  "owned_data": {
+    "status": "initializer content verified; native code-reference placement remains unproved",
+    "section": ".data",
+    "section_bytes": 16,
+    "payload_bytes": 8,
+    "zero_alignment_bytes": 8,
+    "native_address": "0x803942b8",
+    "payload_sha256": "c9558fc14145d534b7600e42a7424ba087e2b8b43ca1239638b7ea48ad09c7e3"
+  },
+  "canonical_root_comparison": {
+    "differing": 245,
+    "total": 247,
+    "unresolved": [
+      ".text+0x8 at +0x2c"
+    ],
+    "unverified": [
+      ".data+0x0 at +0x4",
+      ".data+0x0 at +0x18"
+    ],
+    "errors": [],
+    "extra_words": 141
+  },
+  "canonical_root_summary": "245/247 words differ (141 extra words (nonzero beyond target length); unresolved symbols: .text+0x8 at +0x2c; 2 section-relative relocations unverified: .data+0x0 at +0x4, .data+0x0 at +0x18)",
+  "canonical_notes": [
+    "not verified: .data+0x0 at +0x18: no retail data available"
+  ],
+  "external_bindings": {
+    "D_8002EB94": "0x8002eb94",
+    "D_80142A82": "0x80142a82",
+    "D_80142A84": "0x80142a84",
+    "D_80142A8E": "0x80142a8e",
+    "D_8014A108": "0x8014a108",
+    "D_80152818": "0x80152818",
+    "D_80399AE0": "0x80399ae0",
+    "func_8008B0D8": "0x8008b0d8",
+    "func_8008B2E4": "0x8008b2e4",
+    "func_80090770": "0x80090770"
+  },
+  "relocation_validation": {
+    "status": "PASS: every object relocation reproduces GNU-linked words; other text/rodata bytes unchanged",
+    "relocation_count": 53,
+    "unrelocated_bytes_checked": 1932,
+    "relocations": [
+      {
+        "section": ".text",
+        "offset": "0x8",
+        "type": 5,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0xc",
+        "type": 6,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x60",
+        "type": 4,
+        "symbol": "func_8008B2E4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x28",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0xf0",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x11c",
+        "type": 4,
+        "symbol": "func_8008B2E4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1ac",
+        "type": 5,
+        "symbol": "D_80142A82"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1e8",
+        "type": 6,
+        "symbol": "D_80142A82"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1f4",
+        "type": 4,
+        "symbol": "func_80090770"
+      },
+      {
+        "section": ".text",
+        "offset": "0x210",
+        "type": 4,
+        "symbol": "func_8008B0D8"
+      },
+      {
+        "section": ".text",
+        "offset": "0x230",
+        "type": 5,
+        "symbol": ".data"
+      },
+      {
+        "section": ".text",
+        "offset": "0x244",
+        "type": 6,
+        "symbol": ".data"
+      },
+      {
+        "section": ".text",
+        "offset": "0x258",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0x260",
+        "type": 5,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x268",
+        "type": 6,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2b8",
+        "type": 4,
+        "symbol": "func_8008B2E4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2c8",
+        "type": 5,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2cc",
+        "type": 6,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x354",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x35c",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x274",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x278",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x38c",
+        "type": 4,
+        "symbol": "func_8008B2E4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x398",
+        "type": 5,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x39c",
+        "type": 6,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x420",
+        "type": 5,
+        "symbol": "D_80142A8E"
+      },
+      {
+        "section": ".text",
+        "offset": "0x45c",
+        "type": 6,
+        "symbol": "D_80142A8E"
+      },
+      {
+        "section": ".text",
+        "offset": "0x46c",
+        "type": 4,
+        "symbol": "func_80090770"
+      },
+      {
+        "section": ".text",
+        "offset": "0x474",
+        "type": 5,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x478",
+        "type": 6,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x494",
+        "type": 4,
+        "symbol": "func_8008B0D8"
+      },
+      {
+        "section": ".text",
+        "offset": "0x4a4",
+        "type": 5,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x4a8",
+        "type": 6,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x4ac",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x4b4",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x4c0",
+        "type": 5,
+        "symbol": "D_8014A108"
+      },
+      {
+        "section": ".text",
+        "offset": "0x4c4",
+        "type": 6,
+        "symbol": "D_8014A108"
+      },
+      {
+        "section": ".text",
+        "offset": "0x4cc",
+        "type": 5,
+        "symbol": "D_80152818"
+      },
+      {
+        "section": ".text",
+        "offset": "0x4d8",
+        "type": 6,
+        "symbol": "D_80152818"
+      },
+      {
+        "section": ".text",
+        "offset": "0x64c",
+        "type": 4,
+        "symbol": "func_8008B2E4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x65c",
+        "type": 5,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x660",
+        "type": 6,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x708",
+        "type": 4,
+        "symbol": "func_8008B2E4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x714",
+        "type": 5,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x718",
+        "type": 6,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x79c",
+        "type": 5,
+        "symbol": "D_80142A84"
+      },
+      {
+        "section": ".text",
+        "offset": "0x7d8",
+        "type": 6,
+        "symbol": "D_80142A84"
+      },
+      {
+        "section": ".text",
+        "offset": "0x7e8",
+        "type": 4,
+        "symbol": "func_80090770"
+      },
+      {
+        "section": ".text",
+        "offset": "0x7f0",
+        "type": 5,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x7f4",
+        "type": 6,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x810",
+        "type": 4,
+        "symbol": "func_8008B0D8"
+      },
+      {
+        "section": ".text",
+        "offset": "0x820",
+        "type": 5,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x824",
+        "type": 6,
+        "symbol": "D_80399AE0"
+      }
+    ]
+  },
+  "behavior": {
+    "fixtures": 1784,
+    "root_runs": 1989,
+    "candidate_instructions": 522,
+    "candidate_branches": 94,
+    "candidate_unexecuted": [
+      "-0x22c",
+      "-0x228",
+      "0x134",
+      "0x350",
+      "0x384",
+      "0x39c",
+      "0x4b4",
+      "0x618",
+      "0x61c",
+      "0x620"
+    ]
+  }
+}

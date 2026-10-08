@@ -1,0 +1,134 @@
+{
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "entry": {
+    "address": "0x8038D498",
+    "end": "0x8038D798",
+    "bytes": 768,
+    "native_sha256": "fc6f18de1f301b86d8a9708aa066babbedc370b22067858a2248578597aa2d6e",
+    "frame_bytes": 104,
+    "semantic_inputs": {
+      "s2": "BRecord*"
+    },
+    "saved_registers": [
+      "ra"
+    ],
+    "preserved_private_record_register": "s2",
+    "unsaved_writes": [
+      "s0",
+      "s1",
+      "s3",
+      "s4",
+      "s5",
+      "s6",
+      "s7",
+      "s8",
+      "f20",
+      "f22",
+      "f24",
+      "f26",
+      "f28",
+      "f30"
+    ],
+    "ordinary_abi_claim": false
+  },
+  "callers": [
+    {
+      "name": "func_8038E114",
+      "address": "0x8038F230",
+      "offset": "0x111C"
+    }
+  ],
+  "helpers": [
+    {
+      "name": "func_800A61B0",
+      "address": "0x800a61b0",
+      "size": 148,
+      "native_sha256": "d4a8abe8e545bf66990622a473a82b4b0af3d35d4a951c60c185a9884093ce4e",
+      "historical_source": "src/blob/func_800A61B0.c"
+    }
+  ],
+  "caller_preservation": "E114 sole B-image direct caller spills s5/s6/f22, reconstructs f24/f26/f28/f30 constants after D498; s2 input remains unchanged. Full-image direct-jal census excludes no indirect or other-image callers.",
+  "damage_helper": {
+    "name": "func_8038D3A4",
+    "address": "0x8038D3A4",
+    "end": "0x8038D498",
+    "bytes": 244,
+    "native_sha256": "bca5c5c0678b994919e5495be737f3c3bdcc6f00f021f93e3238634d0bda3b3e",
+    "signature": "void (BPlayer *owner, BPlayer *target, s32 damage)",
+    "abi": "Conventional O32 a0/a1/a2; ra-only frame24, no unsaved callee-save writes; calls 800C55E4 after health reaches zero. Return ignored."
+  },
+  "layout": {
+    "BRecord": 104,
+    "BObject": 60,
+    "BPlayer": 952,
+    "BVehicle": 2056,
+    "BScene": 68,
+    "record": {
+      "owner_signed": 4,
+      "hit_mask_signed": 5,
+      "primary": 96
+    },
+    "object": {
+      "scene_index_word": 4,
+      "position": 44
+    },
+    "player": {
+      "position": 8,
+      "uv": 44,
+      "active_signed": 776,
+      "owner_signed": 859
+    },
+    "vehicle": {
+      "impulse": 292,
+      "horizontal_impulse": 316,
+      "state_signed16": 1732
+    },
+    "scene": {
+      "scale": 12
+    }
+  },
+  "data": {
+    "players": "0x80152818",
+    "vehicles": "0x8014A250",
+    "scenes": "0x8012E700",
+    "player_count_signed16": "0x801543CA",
+    "native_constants": [
+      {
+        "address": "0x80394DC8",
+        "bits": "0x3F19999A",
+        "value": 0.6000000238418579
+      },
+      {
+        "address": "0x80394DCC",
+        "bits": "0x4780E800",
+        "value": 66000.0
+      },
+      {
+        "address": "0x80394DD0",
+        "bits": "0x48A12200",
+        "value": 330000.0
+      }
+    ]
+  },
+  "semantics": [
+    "Capture source player pointer from signed record.owner, scene scale using full primary.scene_index word, and primary.position before the loop.",
+    "Scale<=8 chooses damage800 strength1; else scale<=20 chooses damage400 strength0.6; else damage200 strength0.5.",
+    "Loop count is signed16 and reloaded. Eligibility rejects same signed owner, loop-indexed vehicle.state!=-1, inactive player, or signed hit_mask containing the player-owner bit. Variable shifts use the low five owner bits; source makes the native masking explicit.",
+    "Compute delta=player.position-captured_center; squared distance is z*z+(x*x+y*y); hit iff distance_squared<=(scale*4)^2, with original rounding order.",
+    "OR the hit bit into byte+5 before damage(source_player,current_player,damage). Damage call cannot change captured scale/center/distance or original source pointer, but reloads after helpers are retained.",
+    "Compute normalized radial impulse times330000 and tier strength, adding66000 to y before strength; transform by the current player.uv. Select output vehicle from player.owner reloaded after transform.",
+    "Add transformed xyz into vehicle+0x124/128/12C. Replace transformed y with positive zero and add xyz into vehicle+0x13C/140/144; even y is written via +0.0, not skipped. Continue scanning; duplicate owners are normally prevented by byte mask."
+  ],
+  "helper_contracts": {
+    "func_8038D3A4": "Native boundary signature/ABI authenticated. Replay uses deterministic damage/health writes and separate widened mutation probes, not the real team/shield/scoring implementation. Widened probes mutate record owner/mask/primary, captured scene/position, player owner/matrix/position, and count; no claim these are actual damage side effects.",
+    "func_800A61B0": "Three sequential binary32 row-dot products from base-commit accepted source. Source/destination/matrix disjoint. Widened transform mutation probes alter player.owner and count afterward; real transform does not write these globals."
+  },
+  "proof_limits": [
+    "Complete semantic source adapter, not native private ABI, source-level visibility, original parameter declarations, matching or ROM/compression proof.",
+    "All mapped objects/tables aligned initialized live disjoint and single-threaded. Loop count is nonpositive or1..4. Initial source owner0..3; hit output owners0..31 mapped as used. Signed out-of-range owners are tested only on rejected routes with no invalid indexed dereference. Scene slots are individually mapped, including signed/full-word examples; no actual scene-table size inferred.",
+    "Accepted hits require positive finite squared distance and divisor. Native has no zero-distance guard and reaches0/0; replay rejects this domain in both bodies. Zero-distance/NaN/infinity/FCSR equivalence is not claimed.",
+    "Finite normal or zero binary32 operands/results, default rounding; no overflow/underflow, subnormal, exception, signaling NaN, payload or nondefault-FCSR proof.",
+    "No null-primary guard added: initialized live nonnull primary required even for count<=0 because entry dereferences it. Invalid source-owner pointers, arbitrary aliases and real-game assets/lifetimes not proved.",
+    "External damage body and scoring dependencies are not executed. Ordered helper calls plus full mapped nonstack state are compared under the same explicit bounded contracts."
+  ]
+}

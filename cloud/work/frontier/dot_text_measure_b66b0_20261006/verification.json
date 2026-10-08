@@ -1,0 +1,68 @@
+{
+  "accepted_byte_gain": 0,
+  "behavior": {
+    "compiled_wrong_source_mutants_rejected": 4,
+    "conditional_branches_both_outcomes": 8,
+    "fixtures": 199234,
+    "host_c89_ubsan_bounds_cases": 199234,
+    "native_and_linked_executions": 398468,
+    "native_instruction_offsets": 38,
+    "native_negative_controls_rejected": 4
+  },
+  "caller_context": {
+    "comparison_base_commit": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+    "differing_words": 319,
+    "errors": [],
+    "extra_words": 0,
+    "native_words": 320,
+    "result": "NONMATCH",
+    "unresolved": [],
+    "unverified": []
+  },
+  "compiled_sha256": "b1160e27fc4aeb496aaf3b5c10277f8bc43eb411e133c4be5ed85ccfec29b0b0",
+  "context": {
+    "base_commit": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+    "caller_body_unchanged": true,
+    "caller_source": "src/blob/groups/codex_defaults_a16/group.c",
+    "helper_body_unchanged": true,
+    "helper_source": "cloud/work/frontier/agentA/func_800B66B0/best.c"
+  },
+  "elf_function_bytes": {
+    "func_800B66B0": 152,
+    "menu_input_process": 1104
+  },
+  "external_bindings": 27,
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "gnu_full_target_equal": true,
+  "gnu_whole_object_relocations_equal": true,
+  "mandatory_backend_flag": "-r4300_mul",
+  "native_bytes": 152,
+  "native_direct_calls": [
+    {
+      "address": "0x800b6c34",
+      "caller": "menu_input_process"
+    },
+    {
+      "address": "0x800b6dd4",
+      "caller": "menu_input_process"
+    }
+  ],
+  "native_end": "0x800b6748",
+  "native_sha256": "b1160e27fc4aeb496aaf3b5c10277f8bc43eb411e133c4be5ed85ccfec29b0b0",
+  "native_start": "0x800b66b0",
+  "own_files": {
+    "cloud/matches/dot_text_measure_b66b0_20261006/group.c": "8005a99d7245a5dc7c5dee6cd239629b496f951a60d7669510a05c377628cda1",
+    "cloud/matches/dot_text_measure_b66b0_20261006/group.json": "5b7a958dd6a15b4abf04f2cc5f9753f63570d2010b589f504463ea2fad67f2bf",
+    "cloud/work/frontier/dot_text_measure_b66b0_20261006/host.c": "5e9224bd4d63f88cf24311d088fb13362eff19df4869283105c79b63256baaaf",
+    "cloud/work/frontier/dot_text_measure_b66b0_20261006/verify.py": "145181bb33014a85806d28edcb511bd1f148a6aba1685c131ddda01ca6385c43"
+  },
+  "owned_data_bytes": 0,
+  "result": "MATCH",
+  "rom_coverage_gain": 0,
+  "schema": 1,
+  "target": "func_800B66B0",
+  "target_relocations": 0,
+  "text_bytes": 1264,
+  "whole_object_relocations": 113,
+  "zero_alignment_bytes": 8
+}

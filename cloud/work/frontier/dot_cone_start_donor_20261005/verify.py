@@ -23,7 +23,10 @@ native=importlib.util.module_from_spec(spec);spec.loader.exec_module(native)
 FN='func_8010DCFC'; START=0x8010DCFC
 FLAGS='-g0 -O3 -mips2 -G 0 -non_shared'
 CONTEXT=['func_80090284','vector_normalize_length','math_utility']
-SYMS={k:int(v,16) for k,v in json.loads((ROOT/'asm/us/blob/symbols.json').read_text())['symbols'].items()}
+BASE='e24b47d89a0c8ffade1e4c75ad76b9d390a1c232'
+def base_bytes(path):
+ return subprocess.run(['git','show',BASE+':'+path],cwd=ROOT,check=True,capture_output=True).stdout
+SYMS=score.image_symbols()
 T=0x100000; M=0x200000; REPLACEMENT=0x200100; V=0x300000; OLD=0x310000; CHANGED=0x310100
 CAR=0x80152818; MODEL=0x8014A250; DESC=0x80117530; HEAD=0x801391F0; FLAGS_ADDR=0x8013FECC
 MUTANTS={
@@ -89,13 +92,14 @@ def compiler_proof(work):
   'o2':(source.read_text(),FLAGS.replace('-O3','-O2')),
   'authentic_scale_macro':(source.read_text().replace('void func_8010DCFC(Target *t)', '#define ScaleVector(v1,s,r) (r[0] = v1[0]*(s), r[1] = v1[1]*(s), r[2] = v1[2]*(s))\nvoid func_8010DCFC(Target *t)').replace('    velocity[0] = car->velocity[0] * 0.125f;\n    velocity[1] = car->velocity[1] * 0.125f;\n    velocity[2] = car->velocity[2] * 0.125f;', '    ScaleVector((car->velocity),0.125f,velocity);'),FLAGS),
   'genuine_basis_36':(source.read_text().replace('    MATRIX tmat;','    struct { f32 uvs[3][3]; } tmat;').replace('tmat.mat3.uvs','tmat.uvs'),FLAGS),
-  'archived_singleformal':((ROOT/'cloud/work/heads_B14/func_8010DCFC_singleformal.c').read_text(),FLAGS.replace('-O3','-O2')),
+  'archived_singleformal':(base_bytes('cloud/work/heads_B14/func_8010DCFC_singleformal.c').decode(),FLAGS.replace('-O3','-O2')),
  }
  for label,(s,flags) in sources.items():
   p=work/(label+'.c');p.write_text(s);o=work/(label+'.o');score.compile_single(p,flags,o)
   result,_=link(work,o,FN,label);result['source_sha256']=sha(s.encode());result['flags']=flags;controls[label]=result
- context=work/'context';context.mkdir();paths=[source]+[ROOT/'src/blob'/(n+'.c') for n in CONTEXT]
- for i,p in enumerate(paths):shutil.copyfile(p,context/('c%d.c'%i))
+ context=work/'context';context.mkdir();paths=['src/blob/'+n+'.c' for n in CONTEXT]
+ shutil.copyfile(source,context/'c0.c')
+ for i,path in enumerate(paths,1):(context/('c%d.c'%i)).write_bytes(base_bytes(path))
  (context/'group.json').write_text(json.dumps({'files':['c%d.c'%i for i in range(4)],'members':[FN],'context':CONTEXT,'keep':[FN]+CONTEXT,'flags':FLAGS}))
  context_obj=context/'group.o';score.compile_group(context,context_obj)
  ctx={}
@@ -104,7 +108,7 @@ def compiler_proof(work):
   if n==FN:assert linked==words
   else:assert result['verdict']=='MATCH' and result['complete_differing_positions']==0
   ctx[n]=result
- return {'candidate':row,'controls':controls,'context':ctx,'source_sha256':sha(source.read_bytes()),'context_source_sha256':{str(p.relative_to(ROOT)):sha(p.read_bytes()) for p in paths[1:]}},words
+ return {'candidate':row,'controls':controls,'context':ctx,'source_sha256':sha(source.read_bytes())},words
 
 def memory(regions):
  def access(a,width,v=None):
@@ -221,6 +225,7 @@ def behavior(work,words):
 
 def buffer_contract(work):
     # Execute the unchanged accepted 36-byte basis writer against both capacities.
+    accepted=work/'vector_normalize_length.c';accepted.write_bytes(base_bytes('src/blob/vector_normalize_length.c'))
     harness = r"""
 #include <assert.h>
 #include <math.h>
@@ -246,7 +251,7 @@ int main(void) {
 #endif
     return 0;
 }
-""".replace('ACCEPTED_SOURCE',str(ROOT/'src/blob/vector_normalize_length.c'))
+""".replace('ACCEPTED_SOURCE',str(accepted))
     path=work/'bounds.c';path.write_text(harness)
     commands=['cc','-std=c89','-O1','-g','-fno-omit-frame-pointer','-fsanitize=address,undefined','-fno-sanitize-recover=all']
     results={}
@@ -257,7 +262,6 @@ int main(void) {
         if label=='matrix48':assert r.returncode==0,r.stderr
         else:assert r.returncode!=0 and 'AddressSanitizer: stack-buffer-overflow' in r.stderr,r.stderr
         results[label]={'exit_code':r.returncode,'stack_buffer_overflow_rejected':label=='legacy_array12'}
-    results['accepted_writer_source_sha256']=sha((ROOT/'src/blob/vector_normalize_length.c').read_bytes())
     return results
 
 def caller_audit():
@@ -273,10 +277,16 @@ def caller_audit():
     assert not calls
     return {'direct_calls':calls,'aligned_protected_data_references':pointers,'limit':'Data pointers support callback registration, not runtime dispatcher execution or an original C signature.'}
 
+def portable(result):
+ result=json.loads(json.dumps(result))
+ result['compiler'].pop('context_source_sha256', None)
+ result['buffer_contract'].pop('accepted_writer_source_sha256', None)
+ return result
+
 def main(output=None):
  with tempfile.TemporaryDirectory(prefix='cone-start-proof-') as tmp:
   work=Path(tmp);compiler,words=compiler_proof(work);runtime=behavior(work,words)
-  result={'status':'NONMATCH','claims':[],'accepted_byte_gain':0,'compiler':compiler,'behavior':runtime,'buffer_contract':buffer_contract(work),'caller_audit':caller_audit(),'source_hashes':{p.name:sha(p.read_bytes()) for p in (HERE/'candidate.c',HERE/'host.c',HERE/'native.py',HERE/'verify.py')},'toolchain_sha256':{n:sha(Path(score.ido(n)).read_bytes()) for n in ('cc','cfe','uopt','ugen','as1')},'flags':FLAGS,'native_target_sha256':sha(struct.pack('>165I',*score.targets()[FN]))}
+  result={'base_commit':BASE,'status':'NONMATCH','claims':[],'accepted_byte_gain':0,'compiler':compiler,'behavior':runtime,'buffer_contract':buffer_contract(work),'caller_audit':caller_audit(),'source_hashes':{p.name:sha(p.read_bytes()) for p in (HERE/'candidate.c',HERE/'host.c',HERE/'native.py',HERE/'verify.py')},'toolchain_sha256':{n:sha(Path(score.ido(n)).read_bytes()) for n in ('cc','cfe','uopt','ugen','as1')},'flags':FLAGS,'native_target_sha256':sha(struct.pack('>165I',*score.targets()[FN]))}
   if output:Path(output).write_text(json.dumps(result,indent=2)+'\n')
   return result
 if __name__=='__main__':

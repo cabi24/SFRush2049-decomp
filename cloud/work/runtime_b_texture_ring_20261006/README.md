@@ -1,12 +1,24 @@
 # Runtime image B: texture and 25-object ring initialization
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
 **Strict MATCH: B:func_8038A8CC, [0x8038A8CC, 0x8038A95C), 144 bytes / 36 words.**
 New matching-candidate evidence only. Accepted-byte and ROM-coverage gain: zero.
 Merging, source admission, image composition, recompression and ROM verification
 remain with the independent checker.
 
 The first natural typed reconstruction matches ordinary IDO 5.3
-`-g0 -O2 -mips2 -G 0 -non_shared`, with the existing mandatory
+`-g0 -O3 -mips2 -G 0 -non_shared`, with the existing mandatory
 `-Wab,-r4300_mul`. There was no source-variant search, inline assembly,
 artificial local, pressure keeper, fake formal, modified helper or changed flag.
 
@@ -123,3 +135,35 @@ uses the pinned master's current scorer and independent GNU linking.
 Only C, tests and proof metadata belong in this packet. Native words, assembly
 dumps, objects, linked binaries, ROM contents, credentials and unrelated private
 data are not published. No merging or CI watching is started.
+
+## Integration-portable replay (2026-10-06)
+
+`portable_receipt()` compares both saved and fresh evidence after excluding only
+explicit historical whole-tree/tool/source-context digests. Packet source and
+verifier bindings, selected native bodies and addresses, ELF extents, relocations,
+owned data, behavior, and compiler executable identities remain authoritative.
+Accepted production context is read from the recorded base commit rather than
+the live integrated tree. Tests are deliberately not hashed into receipts.
+
+The unchanged candidate body was freshly strict-matched through the canonical
+scorer with the bare source recipe `-g0 -O3 -mips2 -G 0 -non_shared`; the scorer
+still injects its mandatory `-Wab,-r4300_mul` backend flag. Full packet proof was
+replayed under O3. No same-unit callers, inline helpers, or deleted-static stubs
+are required. Historical O2 results remain available in Git history.
+
+
+### Exact GNU placement
+
+The linker script assigns `.text` its explicit native address and retains
+`SUBALIGN(4)`. GNU 2.42 rounds an unaddressed output section up to its input
+alignment after a location-counter assignment; this function starts 12 bytes
+past a 16-byte boundary. The original exact function/section-address checks,
+complete native words, function/text extents, external symbol bindings,
+relocations, owned-data exclusions, and behavioral evidence remain unchanged.
+
+`tests/cloud/test_runtime_b_init_gnu_placement.py` exercises both initializer
+packets across GNU file/header layouts and input-section alignments. It also
+checks that the actual proof rejects rounded placement, changed symbol or
+section addresses, altered native words, and changed text extents. Static
+script and receipt-binding checks run without IDO; native tests require IDO
+and MIPS GNU binutils and fail closed when `REQUIRE_TOOLCHAIN=1` is set.

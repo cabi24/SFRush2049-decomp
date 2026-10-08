@@ -25,10 +25,27 @@ SOURCE = ROOT / 'cloud/matches/ovl_b/func_8038CA24.c'
 NAME = 'func_8038CA24'
 ADDRESS = 0x8038CA24
 SIZE = 236
-FLAGS = '-g0 -O2 -mips2 -G 0 -non_shared'
+FLAGS = '-g0 -O3 -mips2 -G 0 -non_shared'
 GLOBALS = {'D_80152818': 0x80152818, 'D_80399118': 0x80399118,
            'D_80399550': 0x80399550, 'D_80399120': 0x80399120}
 U32 = 0xffffffff
+
+
+
+def portable_receipt(receipt):
+    """Compare packet proof; base-context and whole-tree digests are provenance."""
+    result = json.loads(json.dumps(receipt))
+    for path in (
+        'asm/us/blob/SHA256SUMS',
+        'asm/us/ovl_b/SHA256SUMS',
+        'asm/us/ovl_b/extents.json',
+        'asm/us/ovl_b/ovl_b_8038a400.s',
+        'asm/us/ovl_b/symbols.json',
+        'tools/cloud/owndata.py',
+        'tools/cloud/score.py',
+    ):
+        result.get('inputs_sha256', {}).pop(path, None)
+    return result
 
 
 def sha(path):
@@ -142,9 +159,7 @@ def _prove():
                'image_sha256': extents['image_sha256'], 'source_sha256': sha(SOURCE),
                'flags': FLAGS + ' -Wab,-r4300_mul',
                'inputs_sha256': {str(p.relative_to(ROOT)): sha(p) for p in
-                    [score.ASM_DIR / 'SHA256SUMS', score.ASM_DIR / 'ovl_b_8038a400.s',
-                     score.ASM_DIR / 'symbols.json', extent_path, ROOT / 'tools/cloud/score.py',
-                     ROOT / 'tools/cloud/owndata.py', PACKET / 'host_test.c', PACKET / 'verify.py']}}
+                    [PACKET / 'host_test.c', PACKET / 'verify.py']}}
     with tempfile.TemporaryDirectory(prefix='runtime-b-reset-') as tmp:
         tmp = Path(tmp)
         obj = tmp / 'candidate.o'
@@ -276,7 +291,6 @@ def _prove():
                 callsites.append({'caller': name, 'site': hex(base + index * 4)})
     assert sorted(x['site'] for x in callsites) == ['0x800c554c','0x800d34bc','0x800fba8c']
     receipt['game_direct_callers'] = callsites
-    receipt['inputs_sha256']['asm/us/blob/SHA256SUMS'] = sha(score.ASM_DIR / 'SHA256SUMS')
     return receipt
 
 

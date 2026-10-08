@@ -1,0 +1,279 @@
+{
+  "status": "READ-ONLY MAP; no compile, merge, publication or matching claim",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "minimum_native_function_bytes": 11376,
+  "targets": {
+    "func_8038FCE0": {
+      "address": "0x8038fce0",
+      "end": "0x803908d0",
+      "size": 3056,
+      "sha256": "3574383f8241f87f1aa201bc4a7265e49cd818b8b6f7e6564ecca4131b6682e2"
+    },
+    "func_8038E114": {
+      "address": "0x8038e114",
+      "end": "0x8038f560",
+      "size": 5196,
+      "sha256": "d1dc2c70973b1780b81b37730a974fc4921b14ab4d368437d899a6fe9f7ef8e0"
+    },
+    "func_8038F938": {
+      "address": "0x8038f938",
+      "end": "0x8038fcd8",
+      "size": 928,
+      "sha256": "1b5eb1e66549eb1cc0fba50a3dc3e432e295fde04bf1777be2a5bcdfccd9e106"
+    },
+    "func_8038DA78": {
+      "address": "0x8038da78",
+      "end": "0x8038dddc",
+      "size": 868,
+      "sha256": "7c7128167920d9661e579931d669aa4821c940234e8d7ed09ee89235bc7b2dcf"
+    },
+    "func_8038D498": {
+      "address": "0x8038d498",
+      "end": "0x8038d798",
+      "size": 768,
+      "sha256": "fc6f18de1f301b86d8a9708aa066babbedc370b22067858a2248578597aa2d6e"
+    },
+    "func_8038D200": {
+      "address": "0x8038d200",
+      "end": "0x8038d328",
+      "size": 296,
+      "sha256": "474ecb6290207ace7925c37d398ae36bc2e33b6a4041ee62d3d4202fb3f16772"
+    },
+    "func_8038D328": {
+      "address": "0x8038d328",
+      "end": "0x8038d3a4",
+      "size": 124,
+      "sha256": "5d8fc0875c56105d63e0eaee161b6ec6900d742563b85d047035984fb0fa904a"
+    },
+    "func_8038E088": {
+      "address": "0x8038e088",
+      "end": "0x8038e114",
+      "size": 140,
+      "sha256": "434d8ec74a3bebf916add5908bede08ac3395d67e028441b9e30d20e2073af9a"
+    }
+  },
+  "sources": [
+    {
+      "path": "/workspace/scratch/e1dc04a487a3/runtime-b-fce0-root/cloud/work/runtime_b_fce0_root_20261006/root.c",
+      "members": [
+        "FCE0"
+      ],
+      "sha256": "271319e2a99f2789edbaccdd72d77ce8f1a98bafd340d240f4e516677b68f2eb",
+      "freeze_status": "source SHA-256 matches author frozen manifest; review status is separate"
+    },
+    {
+      "path": "/workspace/scratch/e1dc04a487a3/runtime-b-e114-update/cloud/work/runtime_b_e114_update_20261006/update.c",
+      "members": [
+        "E114"
+      ],
+      "sha256": "008bee13f32c4fa2cad7814a989c0a288852bfa80a0df3b349fb509b4c41636e",
+      "freeze_status": "source SHA-256 matches author frozen manifest; review status is separate"
+    },
+    {
+      "path": "/workspace/scratch/e1dc04a487a3/runtime-b-f938-setup/cloud/work/runtime_b_f938_setup_20261006/setup.c",
+      "members": [
+        "F938"
+      ],
+      "sha256": "6adc81a630a1f81adf65ecdb55f97926c9c6d46599d43d3c4c0c519e837b78dc",
+      "freeze_status": "source SHA-256 matches author frozen manifest; review status is separate"
+    },
+    {
+      "path": "/workspace/scratch/e1dc04a487a3/runtime-b-da78-position/cloud/work/runtime_b_da78_position_20261006/position.c",
+      "members": [
+        "DA78"
+      ],
+      "sha256": "70dd8342bd122f25709bb6aac7918ca7c7761e7075c76b6796e8740807e307f2",
+      "freeze_status": "source SHA-256 matches author frozen manifest; review status is separate"
+    },
+    {
+      "path": "/workspace/scratch/e1dc04a487a3/runtime-b-d498-visual/cloud/work/runtime_b_d498_visual_20261006/visual.c",
+      "members": [
+        "D498"
+      ],
+      "sha256": "f97e37fdbb701210bda355121ce988bd146eb274475645c827c3431e64a2bcea",
+      "freeze_status": "source SHA-256 matches author frozen manifest; review status is separate"
+    },
+    {
+      "path": "/workspace/scratch/e1dc04a487a3/runtime-b-e114-parent/cloud/work/runtime_b_e114_parent_20261006/children.c",
+      "members": [
+        "D200",
+        "D328",
+        "E088"
+      ],
+      "sha256": "2dc2612d12962195b09ef7726a7479c150ece5d6acc6fec3244fe1572e758009",
+      "freeze_status": "no frozen_manifest.json checked by this inventory"
+    }
+  ],
+  "census": {
+    "ovl_b": {
+      "direct_edges": {
+        "func_8038FCE0": [],
+        "func_8038E114": [
+          {
+            "caller": "func_8038FCE0",
+            "site": "0x80390878",
+            "kind": "jal"
+          }
+        ],
+        "func_8038F938": [
+          {
+            "caller": "func_8038FCE0",
+            "site": "0x8038fe8c",
+            "kind": "jal"
+          }
+        ],
+        "func_8038DA78": [
+          {
+            "caller": "func_8038E114",
+            "site": "0x8038eac4",
+            "kind": "jal"
+          },
+          {
+            "caller": "func_8038E114",
+            "site": "0x8038eb1c",
+            "kind": "jal"
+          }
+        ],
+        "func_8038D498": [
+          {
+            "caller": "func_8038E114",
+            "site": "0x8038f230",
+            "kind": "jal"
+          }
+        ],
+        "func_8038D200": [
+          {
+            "caller": "func_8038E114",
+            "site": "0x8038f3b0",
+            "kind": "jal"
+          },
+          {
+            "caller": "func_8038E114",
+            "site": "0x8038f3e8",
+            "kind": "jal"
+          },
+          {
+            "caller": "func_8038E114",
+            "site": "0x8038f3fc",
+            "kind": "jal"
+          },
+          {
+            "caller": "func_8038E114",
+            "site": "0x8038f434",
+            "kind": "jal"
+          },
+          {
+            "caller": "func_8038E114",
+            "site": "0x8038f46c",
+            "kind": "jal"
+          },
+          {
+            "caller": "func_8038E114",
+            "site": "0x8038f4a4",
+            "kind": "jal"
+          },
+          {
+            "caller": "func_8038E114",
+            "site": "0x8038f4dc",
+            "kind": "jal"
+          }
+        ],
+        "func_8038D328": [
+          {
+            "caller": "func_8038E114",
+            "site": "0x8038e3f4",
+            "kind": "jal"
+          },
+          {
+            "caller": "func_8038E114",
+            "site": "0x8038e41c",
+            "kind": "jal"
+          },
+          {
+            "caller": "func_8038E114",
+            "site": "0x8038f3a0",
+            "kind": "jal"
+          },
+          {
+            "caller": "func_8038E114",
+            "site": "0x8038f3d8",
+            "kind": "jal"
+          },
+          {
+            "caller": "func_8038E114",
+            "site": "0x8038f424",
+            "kind": "jal"
+          },
+          {
+            "caller": "func_8038E114",
+            "site": "0x8038f45c",
+            "kind": "jal"
+          },
+          {
+            "caller": "func_8038E114",
+            "site": "0x8038f494",
+            "kind": "jal"
+          },
+          {
+            "caller": "func_8038E114",
+            "site": "0x8038f4cc",
+            "kind": "jal"
+          }
+        ],
+        "func_8038E088": [
+          {
+            "caller": "func_8038E114",
+            "site": "0x8038e4e0",
+            "kind": "jal"
+          },
+          {
+            "caller": "func_8038E114",
+            "site": "0x8038e6b0",
+            "kind": "jal"
+          }
+        ]
+      },
+      "literal_pointer_words_in_code": {
+        "func_8038FCE0": [],
+        "func_8038E114": [],
+        "func_8038F938": [],
+        "func_8038DA78": [],
+        "func_8038D498": [],
+        "func_8038D200": [],
+        "func_8038D328": [],
+        "func_8038E088": []
+      }
+    },
+    "blob": {
+      "direct_edges": {
+        "func_8038FCE0": [
+          {
+            "caller": "render_viewport_init",
+            "site": "0x800faa14",
+            "kind": "jal"
+          }
+        ],
+        "func_8038E114": [],
+        "func_8038F938": [],
+        "func_8038DA78": [],
+        "func_8038D498": [],
+        "func_8038D200": [],
+        "func_8038D328": [],
+        "func_8038E088": []
+      },
+      "literal_pointer_words_in_code": {
+        "func_8038FCE0": [],
+        "func_8038E114": [],
+        "func_8038F938": [],
+        "func_8038DA78": [],
+        "func_8038D498": [],
+        "func_8038D200": [],
+        "func_8038D328": [],
+        "func_8038E088": []
+      }
+    }
+  },
+  "census_limits": "Direct J/JAL census in authenticated main-game/B function targets only. Literal code-word scan is weak negative evidence; data pointers, HI/LO-built addresses, indirect calls and other runtime contexts are not excluded.",
+  "schema_sha256": "cea0a07408c834c1a602fef3f62aad1735728e9691340fa8659e86e2d10adb4c",
+  "compiler_invocations": 0
+}

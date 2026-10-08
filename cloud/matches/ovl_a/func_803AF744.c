@@ -1,4 +1,5 @@
-/* flags: -g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* Standalone match: no callers, inlined helpers, or deleted-static stubs required in this unit. */
 /* Image A formatted menu callback, [0x803AF744, 0x803AF978).
  * N64-specific renderer; witnessed sibling: A:803AE51C.
  * The callback argument is unused but homed by the original O32 body.

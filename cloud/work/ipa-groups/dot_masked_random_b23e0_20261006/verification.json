@@ -146,8 +146,6 @@
     "nonzero_rows": 32,
     "scope": "observed 128-byte protected window; not a recovered complete table capacity"
   },
-  "target_manifest_historical_sha256": "dade78464a022fedd2c5ba651ee1bca5ffd4ec99bfa4d2413d27256540bed02c",
-  "data_manifest_historical_sha256": "a11be55c29c9aedd10e2ff0439c48c1171a14d2dc0d975e66f29e3667c738594",
   "causal_controls": {
     "pre_cached_table": {
       "func_8008B2B4": {
@@ -379,17 +377,12 @@
   "source_sha256": {
     "rand.c": "4d7d62f78adb32386a21ce11790ee88054be058b7f08bfc6214ff68011a3628b",
     "range.c": "7d85a0dfb9be865a8e0d6f56579a0666aada1934488327a26beabb2d3d774148",
-    "selector.c": "cac49ec6414eb420e48aec501f093118a66e52e0a85a2234eca4a34ad34671f8",
+    "selector.c": "9cae7dcaddbdf87e2c77342223d6a24ac3999dad642bb36edc72cdce5e46ae6f",
     "group.json": "593c6d9bcc46fdeb95a95db0d4f7efb958d058b8d5fc5dafb1b11f8f84d9b3cd",
     "claim.json": "b15c8a0fa36706c95f55149da56e689b3802ffe18a32d6d09b8b910eedb5e138",
     "semantic_test.c": "f60891ac7335c89f8552fe08ee903dfc62f976906b9fee1be45a84db9c79ee61",
-    "verify.py": "deedae1915e5136e5a181d8e8bd83f98d8e4f040e3b257bcd8788e7e97e1e6ab",
+    "verify.py": "166a8a5fed2abf243ed7fc54433b879317b749456c4b21ebf880eb6af2dbdb97",
     "verify_semantics.py": "8abdde7c0e328aa2abd00b82727910534b7a978ab5bbc0470497d10575cc3935"
-  },
-  "tools_sha256": {
-    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
-    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
-    "tools/conveyor/pipeline/blob_group.py": "340e24d21c67e1c0c8ab3711614492e9ac0b98d81d3d13221996d234b4a39e1a"
   },
   "limitations": [
     "Matching candidate only; no source-image, shadow, compression, ROM or gameplay gates.",

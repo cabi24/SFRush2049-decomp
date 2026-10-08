@@ -15,7 +15,7 @@ spec.loader.exec_module(proof)
 
 @pytest.fixture(scope='module')
 def replay(tmp_path_factory):
-    if not (proof.score.IDO/'cc').exists() or not shutil.which('mips-linux-gnu-ld') or not shutil.which('cc'):
+    if not (proof.score.IDO/'cc').is_file() or not shutil.which('mips-linux-gnu-ld') or not shutil.which('cc'):
         pytest.skip('IDO, GNU MIPS tools and host C compiler required')
     return proof.verify(tmp_path_factory.mktemp('random-range'))
 
@@ -27,7 +27,7 @@ def test_frozen_bindings_and_claim():
     assert spec['claims']==spec['members']==['func_8008B2E4']
     assert spec['context']==['func_8008B2B4']
     assert saved['new_candidate_bytes']==72 and saved['accepted_byte_gain']==0
-    assert (PACKET/'rand.c').read_bytes()==(ROOT/'src/blob/func_8008B2B4.c').read_bytes()
+    assert (PACKET/'rand.c').read_bytes()==proof.base_bytes('src/blob/func_8008B2B4.c')
 
 def test_whole_elf_and_independent_link(replay):
     assert replay['object']['symbol_bytes']==72
@@ -69,3 +69,27 @@ def test_negative_zero_preserved():
     expected=proof.semantics.oracle(1,scale)
     assert expected[1]==0x80000000
     assert proof.semantics.Native(proof.score.targets()[proof.FN]).run(1,scale)==expected
+
+
+def test_complete_portable_receipt(replay):
+    assert proof.portable(replay)==proof.portable(json.loads((PACKET/'verification.json').read_text()))
+
+
+def test_live_source_and_lock_churn_does_not_change_base_context(monkeypatch):
+    old_read=Path.read_bytes
+    def changed(path):
+        if path==ROOT/'src/blob/func_8008B2B4.c':return b'changed integration source'
+        return old_read(path)
+    monkeypatch.setattr(Path,'read_bytes',changed)
+    assert (PACKET/'rand.c').read_bytes()==proof.base_bytes('src/blob/func_8008B2B4.c')
+
+
+def test_portable_receipt_keeps_packet_and_native_proof():
+    import copy
+    saved=json.loads((PACKET/'verification.json').read_text())
+    changed=copy.deepcopy(saved)
+    changed['target_manifest_sha256']='0'*64
+    changed['tools_sha256']={}
+    assert proof.portable(changed)==proof.portable(saved)
+    changed['selected_native_body_sha256'][proof.FN]='0'*64
+    assert proof.portable(changed)!=proof.portable(saved)

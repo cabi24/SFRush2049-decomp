@@ -21,8 +21,8 @@ BASE = 'cd22879d40b3de443cfde047b86e75e159b6cec6'
 PACKET = Path(__file__).resolve().parent
 DEFAULT_ROOT = PACKET.parents[3]
 CANDIDATE = 'cloud/matches/boot_tail/func_8001F954.c'
-FLAGS = '-g0 -O2 -mips2 -G 0 -non_shared'
-FINAL_SOURCE_SHA = '9681a183355a574946d7b680d39f0801bf0eb5e99a04fe81fb4e587933a80333'
+FLAGS = '-g0 -O3 -mips2 -G 0 -non_shared'
+FINAL_SOURCE_SHA = '73636bac5043a5c15cfa8d5e89956bbc4ec904d6792d79f6c145f778a92dcf8f'
 SELECTED = {
     'func_8001F954': (CANDIDATE, None),
     'func_80014AF0': ('cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014AF0.c', 'src/rom/lib_11640.c'),
@@ -36,6 +36,40 @@ NATIVE_PATHS = {
     'func_8001467C': 'asm/us/nonmatchings/rom/lib_11640/func_8001467C.s',
     'func_8001F6EC': 'asm/us/nonmatchings/rom/lib_1f5b0/func_8001F6EC.s',
 }
+
+
+
+def portable_receipt(receipt):
+    """Compare packet proof; base-context and whole-tree digests are provenance."""
+    result = json.loads(json.dumps(receipt))
+    for path in (
+        'tools/cloud/score.py',
+        'tools/cloud/owndata.py',
+        'tools/conveyor/seeds/extract_candidates.py',
+        'include/boot_tail_audio_record.h',
+        'include/boot_tail_sample_contract.h',
+        'asm/us/boot_tail/SHA256SUMS',
+        'asm/us/boot_tail/boot_tail_8000f3a4.s',
+        'asm/us/boot_tail/extents.json',
+        'asm/us/boot_tail/symbols.json',
+        'tools/conveyor/pipeline/lock.py',
+        'matched.lock.json',
+        'asm/us/nonmatchings/rom/lib_1f5b0/func_8001F954.s',
+        'asm/us/nonmatchings/rom/lib_11640/func_80014AF0.s',
+        'asm/us/nonmatchings/rom/lib_1cf90/func_8001C7F4.s',
+        'asm/us/nonmatchings/rom/lib_11640/func_8001467C.s',
+        'asm/us/nonmatchings/rom/lib_1f5b0/func_8001F6EC.s',
+        'cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014AF0.c',
+        'src/rom/lib_11640.c',
+        'cloud/work/boot_tail_promotion/sources/func_8001C7F4.c',
+        'src/rom/lib_1cf90.c',
+        'cloud/work/boot_tail/BT03-high-init/nonmatch/func_8001F954.c',
+    ):
+        result.get('input_sha256', {}).pop(path, None)
+    for row in result.get('rows', []):
+        if row['function'] != 'func_8001F954':
+            row.pop('source_sha256', None)
+    return result
 
 
 def sha(data):
@@ -60,7 +94,6 @@ def verify(root, scratch):
 
     def git(path):
         data = subprocess.check_output(['git', 'show', BASE + ':' + path], cwd=root)
-        pins[path] = sha(data)
         return data
 
     def materialize(path):
@@ -162,12 +195,13 @@ def verify(root, scratch):
         assert linked == b''.join(struct.pack('>I', word) for word in resolved)
         assert linked[:extent] == b''.join(struct.pack('>I', word) for word in targets[name])
         assert not any(linked[extent:])
-        row = dict(function=name, source_path=path, source_sha256=sha(source.read_bytes()),
+        row = dict(function=name, source_path=path,
                    exact_current_lock_body=(tu_path is not None), elf_size=extent,
                    text_size=len(linked), alignment_zero_bytes=len(linked) - extent,
                    complete_native_body_sha256=sha(linked[:extent]), bindings=bindings,
                    comparison=asdict(comparison))
         if name == 'func_8001F954':
+            row['source_sha256'] = sha(source.read_bytes())
             row['behavior'] = behavior.verify(native[name], list(struct.unpack('>31I', linked[:extent])))
         rows.append(row)
 
@@ -187,7 +221,7 @@ def verify(root, scratch):
                                           ('signed_boundary', signed, FLAGS, 0),
                                           ('named_pointer_restored', named_pointer, FLAGS, 2),
                                           ('nested_guard', nested_guard, FLAGS, 0),
-                                          ('final_O1', final, FLAGS.replace('-O2', '-O1'), None)]:
+                                          ('final_O1', final, FLAGS.replace('-O3', '-O1'), None)]:
         source, obj = scratch / 'control.c', scratch / 'control.o'
         source.write_text(text)
         score.compile_single(source, flags, obj)
@@ -236,7 +270,10 @@ def verify(root, scratch):
     for name in ['native_behavior.py', 'test_host.c', 'verify.py']:
         pins['packet:' + name] = sha((PACKET / name).read_bytes())
     tools = {p.name: sha(p.read_bytes()) for p in score.IDO.iterdir() if p.is_file()}
-    return dict(status='PASS', base=BASE, recipe=FLAGS + ' -Wab,-r4300_mul',
+    native_target_bindings = {name: {'address': hex(addresses[name]), 'bytes': len(body) * 4,
+                                      'sha256': sha(b''.join(struct.pack('>I', word) for word in body))}
+                              for name, body in native.items()}
+    return dict(native_target_bindings=native_target_bindings, status='PASS', base=BASE, recipe=FLAGS + ' -Wab,-r4300_mul',
                 sole_new_match='func_8001F954', new_matching_bytes=124, accepted_byte_gain=0,
                 rows=rows, controls=controls, host=host, actual_c_negative_controls_rejected=negative,
                 input_sha256=pins, ido_sha256=tools,
@@ -256,7 +293,7 @@ def main():
         result = verify(options.repo.resolve(), Path(name))
     encoded = json.dumps(result, indent=2) + '\n'
     if options.check:
-        assert result == json.loads((PACKET / 'evidence.json').read_text()), 'frozen receipt drift'
+        assert portable_receipt(result) == portable_receipt(json.loads((PACKET / 'evidence.json').read_text())), 'frozen receipt drift'
     if options.output:
         options.output.write_text(encoded)
     print(encoded, end='')

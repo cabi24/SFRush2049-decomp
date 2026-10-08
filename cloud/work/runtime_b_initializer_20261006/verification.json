@@ -412,58 +412,43 @@
       "native_address": "0x800b24ec",
       "native_bytes": 364,
       "native_sha256": "22ccee42826816c61c8ad198ddb3767a6b5523f51d1c3b676284968d0661a517",
-      "path": "src/blob/func_800B24EC.c",
-      "source_sha256": "405f7b1f5c31e4e4c19b82d745a778e85c2046903cea6d439d5d0564e925712b"
+      "path": "src/blob/func_800B24EC.c"
     },
     "func_8038D1A8": {
       "execution": "abstract O32 boundary; implementation not executed",
       "native_address": "0x8038d1a8",
       "native_bytes": 88,
       "native_sha256": "4cd7d1c4cbb93391caedcfbc01a0854d8c77613651a827596adf77409327bb1e",
-      "path": "cloud/matches/ovl_b/func_8038D1A8.c",
-      "source_sha256": "0e5e4937aef4315a7695966227a6b5d571b04822b47150708f886d6d25cc178e"
+      "path": "cloud/matches/ovl_b/func_8038D1A8.c"
     },
     "pool_linked_list_init": {
       "execution": "abstract O32 boundary; implementation not executed",
       "native_address": "0x800b04d0",
       "native_bytes": 128,
       "native_sha256": "3f2592576b29a309dae8689a708bad14871706d58e200e9debc1a62c6e6b6760",
-      "path": "src/blob/pool_linked_list_init.c",
-      "source_sha256": "381ea8fccdd114ee943d33f1ed180785cec9c9a816612a02d4b384457f79b8aa"
+      "path": "src/blob/pool_linked_list_init.c"
     },
     "string_copy_format": {
       "execution": "abstract O32 boundary; implementation not executed",
       "native_address": "0x80092e2c",
       "native_bytes": 436,
       "native_sha256": "f9db451d5a599be631df70f07d838fb7010fb72bb3a80108938fe9119979c00b",
-      "path": "src/blob/string_copy_format.c",
-      "source_sha256": "39da5493aa21715ffaf036d8479f446fce60f24f2042dd1501a7b101cbed1e16"
+      "path": "src/blob/string_copy_format.c"
     },
     "struct_fields_init": {
       "execution": "abstract O32 boundary; implementation not executed",
       "native_address": "0x800b0550",
       "native_bytes": 48,
       "native_sha256": "36e96c76281479e9fe6ebf53f44a3dac299848a351c532e1cbe9fb324102b66b",
-      "path": "src/blob/struct_fields_init.c",
-      "source_sha256": "09dd58a9a18fd13530f82786f423b9945516df1b4fb8e5af29122159beac946b"
+      "path": "src/blob/struct_fields_init.c"
     }
   },
   "image": "B",
   "image_sha256": "b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd",
-  "inputs_sha256": {
-    "asm/us/blob/SHA256SUMS": "dade78464a022fedd2c5ba651ee1bca5ffd4ec99bfa4d2413d27256540bed02c",
-    "asm/us/ovl_b/SHA256SUMS": "3b7ccbab80467e2538f107543f612db239c380a44000730c5f78f6dbb062bd98",
-    "asm/us/ovl_b/extents.json": "e10f77db903d5a6d82a04d006cdaf5c3871ed57ce2bff738d45f500914c8202b",
-    "asm/us/ovl_b/ovl_b_8038a400.s": "5e84a0c03a155cbb13ee19a694bd3aeb1321e9b48144a9d8029f7691a7f916db",
-    "asm/us/ovl_b/symbols.json": "0f9633fc7cb724c2acb129064716906d92c9ef6867359893e7130b2e8e1b897d",
-    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
-    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
-  },
   "packet_sha256": {
     "controls/initial.c": "4c1f68378a38eb0b4cfce1b84163155f62c02fe37e3a952d00ff310f5937f8a5",
     "host_test.c": "59383efe0313c3519a09666cf29461099508e5f28d3ef0226fc6e1b1b09ea809",
-    "test_packet.py": "1d1fe239069c4a6a6c85d6c9811a46ecd6a187ca6844b99f884c214b68fa80d1",
-    "verify.py": "2fcd0d216e07ac007deb1b115dc6caabf572c0a90c6cf4631600b6f729ceabf3"
+    "verify.py": "f930bfadc2a97a7cb00207deba880a7ecca126a290424f9cffa0edd1e557a55e"
   },
   "source_sha256": "3e52567b1b463df1d2b377225f4c8c8e10d2e408a8e99b71957d1643d1d5e9c4",
   "status": "NONMATCH",

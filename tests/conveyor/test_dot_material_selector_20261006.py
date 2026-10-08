@@ -14,8 +14,13 @@ HERE=ROOT/'cloud/work/frontier/dot_material_selector_20261006'
 spec=importlib.util.spec_from_file_location('material_verify',HERE/'verify.py')
 v=importlib.util.module_from_spec(spec);spec.loader.exec_module(v)
 
+def require_toolchain():
+    if not (v.score.IDO/'cc').is_file() or not shutil.which('mips-linux-gnu-ld'):
+        pytest.skip('pinned IDO and MIPS GNU linker required')
+
 @pytest.fixture(scope='module')
 def fresh(tmp_path_factory):
+    require_toolchain()
     for program in ('cc','mips-linux-gnu-readelf','mips-linux-gnu-ld'):
         assert shutil.which(program), program+' required for this proof'
     return v.verify(tmp_path_factory.mktemp('material-selector'))
@@ -23,11 +28,7 @@ def fresh(tmp_path_factory):
 
 def test_fresh_source_bound_receipt(fresh):
     saved=json.loads((HERE/'verification.json').read_text())
-    # Whole manifests are historical provenance; current integrity is mandatory.
-    # Selected native bodies, consumed symbols, source, and tools remain bound.
-    a,b=copy.deepcopy(fresh),copy.deepcopy(saved)
-    a.pop('target_manifest_sha256');b.pop('target_manifest_sha256')
-    assert a==b
+    assert v.portable(fresh)==v.portable(saved)
 
 
 def test_whole_bodies_and_context(fresh):
@@ -81,6 +82,7 @@ def test_larger_positive_selector_returns_before_access():
 
 
 def test_wrong_elf_extent_is_rejected(tmp_path):
+    require_toolchain()
     obj=tmp_path/'candidate.o';v.score.compile_single(v.SOURCE,v.FLAGS,obj)
     data,sections,symbols=v.elf(obj)
     altered=bytearray(data)
@@ -92,3 +94,28 @@ def test_wrong_elf_extent_is_rejected(tmp_path):
                 struct.pack_into('>I',altered,sec['off']+i*16+8,224)
     obj.write_bytes(altered)
     with pytest.raises(AssertionError):v.inspect(obj,v.FN,tmp_path)
+
+
+def test_portability_keeps_packet_and_native_proof_strict():
+    import copy
+    import json
+    saved = json.loads((HERE / 'verification.json').read_text())
+    changed = copy.deepcopy(saved)
+    for field in ('target_manifest_sha256','accepted_consumer_source_sha256'):
+        changed[field] = 'unrelated integration provenance'
+    for name in ('tools/cloud/score.py','tools/cloud/owndata.py','tools/conveyor/pipeline/blob_group.py'):
+        changed.setdefault('tools_sha256', {})[name] = 'different integration tool revision'
+    assert v.portable(changed) == v.portable(saved)
+    assert saved == json.loads((HERE / 'verification.json').read_text())
+    for field in ['source_sha256', 'flags', 'compiler_sha256', 'O2', 'O3', 'shared_data_context', 'accepted_consumer', 'input_native_sha256', 'consumed_symbols', 'behavior', 'packet_sha256']:
+        mutant = copy.deepcopy(changed)
+        mutant[field] = 'proof drift'
+        assert v.portable(mutant) != v.portable(saved), field
+
+
+def test_research_source_has_verified_o3_recipe_and_no_duplicate_claim():
+    assert v.SOURCE.read_text().splitlines()[0] == '/* flags: -g0 -O3 -mips2 -G 0 -non_shared */'
+    claim = json.loads((HERE / 'claim.json').read_text())
+    assert claim['claims'] == []
+    assert claim['source'] == str(v.SOURCE.relative_to(ROOT))
+    assert v.SOURCE.parent == HERE

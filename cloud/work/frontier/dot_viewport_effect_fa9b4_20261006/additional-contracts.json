@@ -1,0 +1,478 @@
+{
+  "status": "ADDITIONAL NATIVE BOUNDARY AUDIT",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "compiler_invocations": 0,
+  "verifier_sha256": "15ff354efc9d41acde81183d51ca6c93bac5152824506efb9df1281488aec4fd",
+  "targets": {
+    "race_init_helper": {
+      "address": "0x800EC0DC",
+      "bytes": 180,
+      "sha256": "ea8591cf4745b0273963764a4a4ec4a9b29e20e8b094b6cb04430fee23cb43fe",
+      "explicit_nonvolatile_gpr_writes": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "explicit_nonvolatile_fpr_writes": [],
+      "paired_gpr_stack_saves": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        31
+      ],
+      "paired_fpr_stack_saves": []
+    },
+    "camera_scene_manager": {
+      "address": "0x800C2BE0",
+      "bytes": 2456,
+      "sha256": "af9393277f546ff5b8c127422cf426ea29dd2882a28610ee11ad02b9b32a9011",
+      "explicit_nonvolatile_gpr_writes": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        30
+      ],
+      "explicit_nonvolatile_fpr_writes": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "paired_gpr_stack_saves": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        30,
+        31
+      ],
+      "paired_fpr_stack_saves": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ]
+    },
+    "func_800D169C": {
+      "address": "0x800D169C",
+      "bytes": 556,
+      "sha256": "d5e14d9c9a66046776b118a9356c63143ca4984c90f6b216bf2b4d29cfb186d6",
+      "explicit_nonvolatile_gpr_writes": [],
+      "explicit_nonvolatile_fpr_writes": [
+        20,
+        21,
+        22,
+        23
+      ],
+      "paired_gpr_stack_saves": [],
+      "paired_fpr_stack_saves": [
+        20,
+        21,
+        22,
+        23
+      ]
+    },
+    "render_large_objects": {
+      "address": "0x800F93A0",
+      "bytes": 5652,
+      "sha256": "04ff94b2dfea00abe7f297e4ba22eeaa0bbd5ac9f1238af653dae3d3ca4299ff",
+      "explicit_nonvolatile_gpr_writes": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        30
+      ],
+      "explicit_nonvolatile_fpr_writes": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "paired_gpr_stack_saves": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        30,
+        31
+      ],
+      "paired_fpr_stack_saves": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ]
+    },
+    "func_800F8EC8": {
+      "address": "0x800F8EC8",
+      "bytes": 1024,
+      "sha256": "704a856de34cd61f04accb71b0a04e032ca11754cab89505fd0ec5757e69780f",
+      "explicit_nonvolatile_gpr_writes": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "explicit_nonvolatile_fpr_writes": [
+        20,
+        21,
+        22,
+        23
+      ],
+      "paired_gpr_stack_saves": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        31
+      ],
+      "paired_fpr_stack_saves": [
+        20,
+        21,
+        22,
+        23
+      ]
+    },
+    "hud_render": {
+      "address": "0x800CADA4",
+      "bytes": 2420,
+      "sha256": "fa9a2dac5b163a1d500d44081cdc4f32c67147641485c7ade7c475f6bc683f84",
+      "explicit_nonvolatile_gpr_writes": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        30
+      ],
+      "explicit_nonvolatile_fpr_writes": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "paired_gpr_stack_saves": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        30,
+        31
+      ],
+      "paired_fpr_stack_saves": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ]
+    },
+    "camera_position_update": {
+      "address": "0x800AEB54",
+      "bytes": 452,
+      "sha256": "f530a1b7824f07c1d5417b559532abc6cc7d13db432373826a6a9b499a33b4db",
+      "explicit_nonvolatile_gpr_writes": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        30
+      ],
+      "explicit_nonvolatile_fpr_writes": [
+        20,
+        21,
+        22,
+        23
+      ],
+      "paired_gpr_stack_saves": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        30,
+        31
+      ],
+      "paired_fpr_stack_saves": [
+        20,
+        21,
+        22,
+        23
+      ]
+    },
+    "func_800D5524": {
+      "address": "0x800D5524",
+      "bytes": 628,
+      "sha256": "c8f07ad20e578b17abbd7f562fe7ef3e57317056dca1f13a1b2884d241f26755",
+      "explicit_nonvolatile_gpr_writes": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "explicit_nonvolatile_fpr_writes": [],
+      "paired_gpr_stack_saves": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        31
+      ],
+      "paired_fpr_stack_saves": []
+    },
+    "entity_flags_apply": {
+      "address": "0x80092360",
+      "bytes": 292,
+      "sha256": "5efca54fa178493c1e74e67a1283bdc58e23307e0db4c5fc35fe3f81ce54e53e",
+      "explicit_nonvolatile_gpr_writes": [
+        16,
+        17
+      ],
+      "explicit_nonvolatile_fpr_writes": [],
+      "paired_gpr_stack_saves": [
+        16,
+        17,
+        31
+      ],
+      "paired_fpr_stack_saves": []
+    },
+    "camera_target_track": {
+      "address": "0x800AED64",
+      "bytes": 636,
+      "sha256": "a057021cac52f5037d124838784fd62d4b2bf90a961c66b6a6b83344cb7da032",
+      "explicit_nonvolatile_gpr_writes": [
+        16,
+        17
+      ],
+      "explicit_nonvolatile_fpr_writes": [],
+      "paired_gpr_stack_saves": [
+        16,
+        17,
+        31
+      ],
+      "paired_fpr_stack_saves": []
+    },
+    "func_800C3578": {
+      "address": "0x800C3578",
+      "bytes": 148,
+      "sha256": "c118989c64831a918f7439b9890f54f3cc51dfddb00ce99c8b26ee4ce4f0cd61",
+      "explicit_nonvolatile_gpr_writes": [
+        16
+      ],
+      "explicit_nonvolatile_fpr_writes": [],
+      "paired_gpr_stack_saves": [
+        16,
+        31
+      ],
+      "paired_fpr_stack_saves": []
+    },
+    "func_800F8E90": {
+      "address": "0x800F8E90",
+      "bytes": 56,
+      "sha256": "efc5523efe6cdf7d5ac61d7d404a87d5f2f25a8a9578d6a0bfd4bf3d169b4bd6",
+      "explicit_nonvolatile_gpr_writes": [],
+      "explicit_nonvolatile_fpr_writes": [],
+      "paired_gpr_stack_saves": [],
+      "paired_fpr_stack_saves": []
+    },
+    "cpak_read": {
+      "address": "0x800B0180",
+      "bytes": 848,
+      "sha256": "e32341a2af38077f94963b65812b7e61edfeb015f793b351988250ce88606009",
+      "explicit_nonvolatile_gpr_writes": [
+        16,
+        17
+      ],
+      "explicit_nonvolatile_fpr_writes": [],
+      "paired_gpr_stack_saves": [
+        16,
+        17,
+        31
+      ],
+      "paired_fpr_stack_saves": []
+    },
+    "race_setup_1": {
+      "address": "0x800BD2C8",
+      "bytes": 1884,
+      "sha256": "e9e77f4573da1407216092a0c4338a5b5c35595b31f9ebc3e2de215953dbb80e",
+      "explicit_nonvolatile_gpr_writes": [],
+      "explicit_nonvolatile_fpr_writes": [],
+      "paired_gpr_stack_saves": [
+        31
+      ],
+      "paired_fpr_stack_saves": []
+    },
+    "race_setup_2": {
+      "address": "0x800BEAA0",
+      "bytes": 908,
+      "sha256": "c227031a3bc7e07175593ff7f1ee39798647f1b6cdad8f240b9ce115e8927d25",
+      "explicit_nonvolatile_gpr_writes": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "explicit_nonvolatile_fpr_writes": [],
+      "paired_gpr_stack_saves": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        31
+      ],
+      "paired_fpr_stack_saves": []
+    },
+    "menu_controller_remap": {
+      "address": "0x800CF69C",
+      "bytes": 1548,
+      "sha256": "25dc7e4b84c59a20856690cc14327f8fcc37865eb546e89acfe5433cc8a36109",
+      "explicit_nonvolatile_gpr_writes": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        30
+      ],
+      "explicit_nonvolatile_fpr_writes": [
+        20,
+        21
+      ],
+      "paired_gpr_stack_saves": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        30,
+        31
+      ],
+      "paired_fpr_stack_saves": [
+        20,
+        21
+      ]
+    },
+    "skid_mark_render": {
+      "address": "0x800F0100",
+      "bytes": 1396,
+      "sha256": "21a6a43dd40e7319680d611f31439c44612bee87855aae4427128e75c1da5382",
+      "explicit_nonvolatile_gpr_writes": [
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "explicit_nonvolatile_fpr_writes": [],
+      "paired_gpr_stack_saves": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        31
+      ],
+      "paired_fpr_stack_saves": []
+    }
+  },
+  "limits": "Explicit-write preservation scan and identity check only. Consumed signatures and source field types are manual native review recorded in README; private descendants and callback bodies are not executed by this audit."
+}

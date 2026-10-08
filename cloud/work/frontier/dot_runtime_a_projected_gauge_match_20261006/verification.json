@@ -1,0 +1,359 @@
+{
+  "status": "MATCH",
+  "base_commit": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "image": "A",
+  "function": "func_803A3DA4",
+  "extent": [
+    2151300516,
+    2151301428
+  ],
+  "function_bytes": 912,
+  "alignment_bytes": 0,
+  "owned_data_bytes": 0,
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "mandatory_backend_flag": "-Wab,-r4300_mul",
+  "native_sha256": "e0b68bf004e8b9e88d2faf1fddabd1f9e48029b6438bb18557601a6158f5a407",
+  "compiled_sha256": "e0b68bf004e8b9e88d2faf1fddabd1f9e48029b6438bb18557601a6158f5a407",
+  "relocations": 31,
+  "relocation_records": [
+    [
+      12,
+      5,
+      "D_8014A108",
+      4
+    ],
+    [
+      16,
+      6,
+      "D_8014A108",
+      4
+    ],
+    [
+      60,
+      4,
+      "input_new_data_wrapper",
+      4
+    ],
+    [
+      84,
+      5,
+      "D_803BA028",
+      4
+    ],
+    [
+      92,
+      6,
+      "D_803BA028",
+      4
+    ],
+    [
+      116,
+      4,
+      "input_new_data_wrapper",
+      4
+    ],
+    [
+      144,
+      5,
+      "D_803AF9A8",
+      4
+    ],
+    [
+      148,
+      6,
+      "D_803AF9A8",
+      4
+    ],
+    [
+      160,
+      5,
+      "D_803B97A8",
+      4
+    ],
+    [
+      164,
+      6,
+      "D_803B97A8",
+      4
+    ],
+    [
+      172,
+      5,
+      "D_803B97AC",
+      4
+    ],
+    [
+      208,
+      6,
+      "D_803B97AC",
+      4
+    ],
+    [
+      268,
+      4,
+      "input_new_data_wrapper",
+      4
+    ],
+    [
+      320,
+      5,
+      "D_80150B70",
+      4
+    ],
+    [
+      324,
+      6,
+      "D_80150B70",
+      4
+    ],
+    [
+      368,
+      4,
+      "brake_light_update",
+      4
+    ],
+    [
+      500,
+      5,
+      "D_803B97B0",
+      4
+    ],
+    [
+      508,
+      6,
+      "D_803B97B0",
+      4
+    ],
+    [
+      640,
+      5,
+      "D_803B9FD0",
+      4
+    ],
+    [
+      652,
+      6,
+      "D_803B9FD0",
+      4
+    ],
+    [
+      680,
+      5,
+      "D_80111310",
+      4
+    ],
+    [
+      688,
+      6,
+      "D_80111310",
+      4
+    ],
+    [
+      700,
+      5,
+      "D_803B97B4",
+      4
+    ],
+    [
+      704,
+      6,
+      "D_803B97B4",
+      4
+    ],
+    [
+      764,
+      5,
+      "D_803B9FD0",
+      4
+    ],
+    [
+      772,
+      6,
+      "D_803B9FD0",
+      4
+    ],
+    [
+      800,
+      5,
+      "D_80111414",
+      4
+    ],
+    [
+      808,
+      6,
+      "D_80111414",
+      4
+    ],
+    [
+      820,
+      5,
+      "D_803B97B8",
+      4
+    ],
+    [
+      824,
+      6,
+      "D_803B97B8",
+      4
+    ],
+    [
+      884,
+      4,
+      "Input_ApplyPadConfig",
+      4
+    ]
+  ],
+  "anchors": {
+    "D_8014A108": 2148835592,
+    "D_803BA028": 2151391272,
+    "D_803B9FD0": 2151391184,
+    "D_803AF9A8": 2151348648,
+    "D_803B97A8": 2151389096,
+    "D_803B97AC": 2151389100,
+    "D_803B97B0": 2151389104,
+    "D_803B97B4": 2151389108,
+    "D_803B97B8": 2151389112,
+    "D_80111310": 2148602640,
+    "D_80111414": 2148602900,
+    "D_80150B70": 2148862832,
+    "input_new_data_wrapper": 2148093832,
+    "brake_light_update": 2148164164,
+    "Input_ApplyPadConfig": 2148093640
+  },
+  "comparison": {
+    "differing": 0,
+    "total": 228,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0,
+    "notes": []
+  },
+  "gnu_full_relocation_equals_native": true,
+  "controls": {
+    "direct_slot_only.c": {
+      "differing": 4,
+      "total": 228,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "inline_quarter_only.c": {
+      "differing": 27,
+      "total": 228,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "named_slot_and_height.c": {
+      "differing": 23,
+      "total": 228,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    }
+  },
+  "behavior": {
+    "host_cases": 68306,
+    "all_signed_halfword_heights": 65536,
+    "trace_sha256": "06c4959a2650e90c54b2b5ce05440a9d2ad50e03914a5a7cef3daf9d3141c036",
+    "native_execution": false,
+    "helper_implementation": "bounded side-effecting hooks"
+  },
+  "mutants": {
+    "wrong_height_division": {
+      "rejected": true,
+      "counterexample": [
+        0,
+        12,
+        0,
+        4,
+        0,
+        -1,
+        123,
+        63,
+        1077936128,
+        255,
+        0,
+        100,
+        -100,
+        0
+      ]
+    },
+    "wrong_marker_case": {
+      "rejected": true,
+      "counterexample": [
+        0,
+        12,
+        1,
+        4,
+        0,
+        -1,
+        123,
+        63,
+        1077936128,
+        255,
+        0,
+        100,
+        -100,
+        0
+      ]
+    },
+    "missing_disable": {
+      "rejected": true,
+      "counterexample": [
+        0,
+        13,
+        1,
+        -32768,
+        0,
+        0,
+        123,
+        63,
+        1077936128,
+        255,
+        0,
+        100,
+        -100,
+        0
+      ]
+    }
+  },
+  "layout": {
+    "X": 14,
+    "Y": 16,
+    "Width": 20,
+    "Height": 22,
+    "Alpha": 24,
+    "Hide": 26,
+    "Top": 28,
+    "Bot": 30,
+    "Left": 32,
+    "Right": 34,
+    "AnimFunc": 40,
+    "AnimID": 44
+  },
+  "packet_sha256": {
+    "cloud/matches/ovl_a/func_803A3DA4.c": "3ee11ee05831a5680fc61c117072775aab8a8330bc3cc079444cbb3b4eefff5c",
+    "cloud/work/frontier/dot_runtime_a_projected_gauge_match_20261006/verify.py": "84075f628faa028a918966d2757e4e1c1e6f9a560140997f3f4b159f3faa6546",
+    "cloud/work/frontier/dot_runtime_a_projected_gauge_match_20261006/host.c": "830b2868fc5a1e451b25985f627f0c07fb950af3acc37352f56b5f962e5b4bfe",
+    "cloud/work/frontier/dot_runtime_a_projected_gauge_match_20261006/behavior.py": "b9a61f9b152405506218c55b9e1deb36a32aa74cce716810fb5d27835a88cafb",
+    "cloud/work/frontier/dot_runtime_a_projected_gauge_match_20261006/elf_support.py": "2f3ab96521aa807cb2b29523fea5bff964aea395fbf73649c4d4ff663523e1d9",
+    "cloud/work/frontier/dot_runtime_a_projected_gauge_match_20261006/controls/direct_slot_only.c": "4d85a0228da01fcb8f4f27b7b09d779dd85d3e5b6fb2193e947c39af9ef1b3e4",
+    "cloud/work/frontier/dot_runtime_a_projected_gauge_match_20261006/controls/inline_quarter_only.c": "2ec518ff3bba5d0aa9c3ae099a4fb55c17a47eac208c94509abf35b864b84eae",
+    "cloud/work/frontier/dot_runtime_a_projected_gauge_match_20261006/controls/named_slot_and_height.c": "3d42919f77f0aea2381a77dd75bee034514ca68a7333c40b2dc4ed1d1c433f97"
+  },
+  "limits": [
+    "Strict standalone matching evidence; no lock, splice, or ROM-coverage action",
+    "No native instruction emulator or callback helper implementation executed",
+    "Host behavior uses finite representable float results and side-effecting hooks",
+    "Readonly external float constants remain symbolic; actual image data values are unproved",
+    "No original source spelling, translation-unit identity, unrestricted aliases, concurrency, renderer, gameplay, image, compression, or ROM gate"
+  ]
+}

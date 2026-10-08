@@ -1,0 +1,15 @@
+{
+  "status": "Temporary compiler directory removed after independent D328 audit and full semantic replay",
+  "temporary_directory": "/workspace/scratch/e1dc04a487a3/closure-diagnostic-tmp-ZNENOp",
+  "removed_files": [
+    "combined_compile_started",
+    "closure.ld",
+    "layout_probe.c",
+    "layout_probe.o",
+    "closure.o",
+    "closure.elf"
+  ],
+  "retained_native_bytes": false,
+  "retained_compiled_objects": false,
+  "source_tuning_after_baseline": false
+}

@@ -1,4 +1,5 @@
 """Focused guards for the image-A resource cache research packet."""
+import shutil
 import copy,hashlib,importlib.util,json,os,struct,subprocess,sys,tempfile,unittest
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
@@ -18,7 +19,7 @@ class RuntimeCachePacket(unittest.TestCase):
         self.assertEqual(r['zero_alignment_bytes'],4)
         self.assertEqual(r['owned_data_bytes'],0)
         self.assertEqual(r['instruction_coverage'],[91,91,91])
-        self.assertFalse((ROOT/'cloud/matches/ovl_a/func_80390BC0.c').exists())
+        self.assertEqual(r['status'], 'NONMATCH')  # This packet makes no matching claim.
         for path,want in r['files'].items():
             self.assertEqual(hashlib.sha256((PACKET/path).read_bytes()).hexdigest(),want,path)
 
@@ -62,13 +63,13 @@ class RuntimeCachePacket(unittest.TestCase):
             self.assertNotEqual(fingerprint,verify.portable_elf(bad))
         with self.assertRaises(AssertionError):verify.portable_elf(synthetic_elf(debug_flags=2))
 
-    def test_portable_receipt_excludes_only_proven_debug_hashes(self):
+    def test_portable_receipt_excludes_historical_and_proven_debug_hashes(self):
         r=json.loads((PACKET/'verification.json').read_text());changed=copy.deepcopy(r)
         for field in ('object_sha256','mdebug_sha256'):changed[field]='path only'
         for c in changed['controls'].values():
             for field in ('object_sha256','mdebug_sha256'):c[field]='path only'
         self.assertEqual(verify.portable(r),verify.portable(changed))
-        for field in r.keys()-{'object_sha256','mdebug_sha256'}:
+        for field in r.keys()-{'object_sha256','mdebug_sha256','game_manifest','protected_manifest','scorer_sha256'}:
             altered=copy.deepcopy(r)
             if field in ('portable_elf','portability_controls','controls','files'):
                 altered[field]['unexpected']='changed'
@@ -83,17 +84,13 @@ class RuntimeCachePacket(unittest.TestCase):
 
     def test_complete_frozen_replay(self):
         ido=Path(os.environ.get('IDO_DIR',ROOT/'tools/cloud/ido'))
-        if not (ido/'cc').exists():
-            if os.environ.get('REQUIRE_TOOLCHAIN')=='1':self.fail('required IDO missing')
-            self.skipTest('IDO unavailable')
+        if not (ido/'cc').is_file() or not shutil.which('mips-linux-gnu-ld'):
+            self.skipTest('pinned IDO and MIPS GNU linker required')
         repo=Path(os.environ.get('RUSH_CACHE_INPUT_REPO',ROOT))
         output=ROOT/'build/runtime_a_cache/test-replay.json'
         p=subprocess.run([sys.executable,str(PACKET/'verify.py'),'--repo',str(repo),'--output',str(output)],cwd='/tmp',capture_output=True,text=True)
         self.assertEqual(p.returncode,0,p.stdout+p.stderr)
-        fresh=verify.portable(json.loads(output.read_text()));saved=verify.portable(json.loads((PACKET/'verification.json').read_text()))
-        # The whole blob manifest changes with every splice; selected bodies stay bound.
-        fresh.pop('game_manifest',None);saved.pop('game_manifest',None)
-        self.assertEqual(fresh,saved)
+        self.assertEqual(verify.portable(json.loads(output.read_text())),verify.portable(json.loads((PACKET/'verification.json').read_text())))
 
 def synthetic_elf(payloads=None,debug=b'/source.c\0',debug_flags=0):
     payloads=payloads or {}

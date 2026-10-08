@@ -1,15 +1,17 @@
 {
   "status": "MATCH",
-  "base": "cd22879d40b3de443cfde047b86e75e159b6cec6",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
   "image": "A",
   "address": "0x803a6a28",
   "end": "0x803a6b50",
   "bytes": 296,
   "words": 74,
-  "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
-  "source_sha256": "2e0d477303aa7f886ab6b397955b6ace0cd29f64be8cb3344635705847734b85",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+  "source_sha256": "a662e6cee57fb1bc3da678826d98b13dc73e5b6fa39f38a407899d161a82e9fa",
+  "verifier_sha256": "899dd638295321a4fc770973b1da4b9bf5af18dfeb15c5e4f31d45da96efb2e2",
+  "host_source_sha256": "5c83728835af68b36f1bdea1eb7e005898c01cae199ce5bc532d85df4708445a",
   "native_sha256": "8ae1fb8d99e88873a762aa8ebd26f86cd745f8b22344cd10ac454280ef772bef",
-  "object_sha256": "4d3435ea5690fc70fb75525db3a9935cb5f67311ea9922ef1b09e83ac239a97d",
+  "object_sha256": "1f35b25bd1d75ce3444eb32dc6418355bf0541a5ef8d6e93eeb20e6b608b2c26",
   "gnu_linked_body_sha256": "8ae1fb8d99e88873a762aa8ebd26f86cd745f8b22344cd10ac454280ef772bef",
   "comparison": {
     "differing": 0,
@@ -55,12 +57,6 @@
     "extra_words": 0,
     "notes": []
   },
-  "protected_targets": {
-    "extents.json": "0d97935254a6f2c724dfe68b08087e0a451e56d0aedb2121748abe7b6cc0798b",
-    "ovl_a_8038a400.s": "94f5fdb45838b6d21fb761209bf2cb60602f90ea8725b16cae2c3cebe0aa7685",
-    "symbols.json": "d5a6c8dccb0380f54f080d45d82a5e71f917be86f9568bf4b7fbe10a89f2a769"
-  },
-  "scorer_sha256": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
   "tools": {
     "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
     "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",

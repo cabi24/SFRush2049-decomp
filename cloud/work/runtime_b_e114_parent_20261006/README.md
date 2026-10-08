@@ -1,5 +1,17 @@
 # Image B: E114 parent-context reconstruction, first milestone
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
 **Research only. Three complete semantic child sources, one partial genuine
 parent region, and a corrected minimum closure. No matching-byte claim.**
 
@@ -138,3 +150,64 @@ ordering, source-image composition, recompression and full-ROM gates were not
 run. The next useful work is complete real DA78/D498/E114/FCE0 source and
 contract closure, followed by one justified whole-context baseline. Until
 then, this packet remains PARTIAL-SOURCE parent / COMPLETE-NONMATCH children.
+
+## Integration and source-path portability (2026-10-06)
+
+Whole-manifest and scorer/own-data tool digests remain historical provenance.
+The raw object digest also depends on nonallocated ECOFF source-path metadata.
+It is excluded from receipt comparison only after `object.portable_elf` binds
+all ELF header/section/ABI attributes, symbols, relocation tables, executable
+and data bytes, and storage extents. Nonallocated `.mdebug` payload and physical
+file offsets are the only unbound object details. Every replay compiles the
+same children source in another directory and rejects mutations to text, owned
+rodata, relocation and symbol tables, register metadata and ELF ABI flags.
+
+Source, verifier, compiler identity, actual flags, selected native intervals,
+complete linked ELF, owned data, behavior, layout and rejection controls remain
+binding. No source body or claim changed. This packet remains bounded research;
+its partial parent/private-ABI children are not matching submissions.
+
+### Linked-ELF portability
+
+The raw GNU-linked file hash is historical provenance. Frozen replay instead
+binds every allocated section byte and virtual extent, section attributes, ELF
+ABI identity/flags/entry point, and sorted symbol name/value/extent/type/binding/
+visibility/section facts. Unknown sections and retained relocations are refused.
+Physical file offsets, string-table packing, symbol order, load-segment grouping,
+segment permissions and physical addresses are not this section-based native
+interpreter's inputs. This does not claim OS-loader equivalence or a runnable
+ROM; the existing source-only, nonmatching scope is unchanged. Regression links using GNU
+`--hash-size=1` and `-z max-page-size=0x1000` change the raw file hash while retaining
+this semantic fingerprint; hostile byte, extent, symbol, section and ABI changes
+remain rejected. Pinned IDO and every source/behavior claim stay unchanged.
+
+### Explicit GNU hash style and mismatch diagnostics (2026-10-06)
+
+PR #163 head `4beaa7b78e692c02eb5e3ab41de1e5b9826eb337`, hosted job
+`112352521460`, reached the final frozen-receipt comparison but provided no
+field-level mismatch or uploaded receipt. A local replay using the exact hosted
+Ubuntu `binutils-mips-linux-gnu` package `2.42-2ubuntu1cross5` reproduced a single
+normalized proof difference against Debian `2.44-3cross1+nmu1+b1`:
+`independent_link.portable_elf.ident_sha256`. ELF identity byte 8
+(`EI_ABIVERSION`) was 0 for Ubuntu's default and 5 for Debian's default. Every
+other normalized receipt fact, including object proof, allocated linked bytes,
+extents, symbol ABI, native behavior, and host fixture result, was identical.
+These runs used the same local host GCC 14.2 and Python 3.12; they reproduce the
+linker difference, not the complete Ubuntu runner environment.
+
+The [upstream MIPS GNU-hash implementation](https://sourceware.org/pipermail/gdb-testers/2019q3/144520.html)
+sets ABI version 5 when GNU hash is selected without SysV hash. Actual links
+with both installed GNU versions confirm that `--hash-style=gnu` produces 5,
+while `--hash-style=sysv` and `--hash-style=both` produce 0 for this fixture.
+The packet now explicitly selects `--hash-style=sysv` and records `link_flags`.
+This fixes an unpinned linker configuration. It does not mask any ELF identity
+or ABI byte, change C source, or weaken receipt normalization. The existing
+allocated-section allowlist continues to exclude dynamic/hash sections.
+
+Regression tests exercise each real linker mode and prove that SysV selection
+overrides a GNU-only default. A GNU-only artifact still differs from the frozen
+proof; mutations of all 16 ELF identity bytes, link flags, symbols, sections,
+relocations and native/source evidence remain rejected. Failed replay now lists
+the exact changed, missing, unexpected or type-mismatched proof paths instead
+of a generic assertion. Diagnostics do not drop unknown fields or mutate input
+receipts. No target bytes, raw assembly or generated binaries are published.

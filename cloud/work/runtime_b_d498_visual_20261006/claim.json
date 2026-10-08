@@ -1,0 +1,8 @@
+{
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "packet": "runtime_b_d498_visual_20261006",
+  "scope": "complete D498 semantic source and bounded verification only",
+  "native_interval": ["0x8038D498", "0x8038D798"],
+  "exclusions": ["DA78 packet", "protected files", "publication", "CI monitoring", "matching experimentation"],
+  "parent_overlap_acknowledged": true
+}

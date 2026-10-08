@@ -22,6 +22,7 @@ native = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(native)
 FN = 'func_800D9058'
 SOURCE = HERE / 'candidate.c'
+BASE = 'cd22879d40b3de443cfde047b86e75e159b6cec6'
 
 
 def sha(data):
@@ -225,7 +226,7 @@ def behavior(bodies, work):
 
 def verify():
     origin = ROOT / 'cloud/work/game_C104/group_complete_callers.c'
-    original_context = origin.read_text()
+    original_context = subprocess.run(['git','show',BASE+':'+str(origin.relative_to(ROOT))],cwd=ROOT,check=True,capture_output=True,text=True).stdout
     expected_context = original_context.replace(
         'typedef struct {u32 opaque[6];} Queue24;\nextern Queue24 D_801461D0;',
         'extern u8 D_801461D0[];').replace(
@@ -275,12 +276,19 @@ def verify():
                               if p.suffix in ['.py', '.c'] or p.name == 'group.json'},
             'real_parent': incoming, 'parent_reconstructed': False,
             'context_origin': str(origin.relative_to(ROOT)),
-            'context_origin_sha256': sha(origin.read_bytes()),
-            'protected_target_manifest_sha256': sha((score.ASM_DIR / 'SHA256SUMS').read_bytes()),
+
+
             'compile': reports, 'behavior': behavioral, 'negative_elf_drills': negatives,
             'literal_ownership': 'No candidate/group owned data sections or literal references',
             'source_originality': 'Behavior reconstruction; original declarations and sufficient private-ABI closure unresolved',
             'runtime_image_or_rom_verified': False}
+
+
+def portable(receipt):
+    result = json.loads(json.dumps(receipt))
+    for field in ('protected_target_manifest_sha256', 'context_origin_sha256'):
+        result.pop(field, None)
+    return result
 
 
 if __name__ == '__main__':
@@ -292,6 +300,6 @@ if __name__ == '__main__':
     if args.write:
         (HERE / 'verification.json').write_text(text)
     else:
-        assert result == json.loads((HERE / 'verification.json').read_text()), 'Receipt changed'
+        assert portable(result) == portable(json.loads((HERE / 'verification.json').read_text())), 'Receipt changed'
     print(json.dumps({'status': result['status'], 'cases': result['behavior']['source_native_and_compiled_cases'],
                       'new_verified_matching_bytes': 0}))

@@ -1,5 +1,17 @@
 # Selector call-site correction and bounded dependency census
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
 **Read-only research. No C candidate, compiler variants, match or coverage gain.**
 Native basis: `cd22879d40b3de443cfde047b86e75e159b6cec6`.
 
@@ -127,3 +139,15 @@ and submission tests (754 total)** passed. The ordinary commit lock check
 preserved all **402 static source locks**. Initial sparse-checkout missing-file
 failures were resolved by materializing the existing required inputs; no test,
 source or gate was weakened. This is selected-suite validation, not a full suite.
+
+
+## Integration-portable census (2026-10-06)
+
+All acceptance labels and acceptance-dependent counts are explicitly as of
+`cd22879d40b3de443cfde047b86e75e159b6cec6`, not current master. The production lock
+and historical source context are read through `git show BASE:path`. Their
+digests are historical provenance, excluded from proof equality by an explicit
+source-path list. The packet audit itself, native caller/helper words, call
+sites, return-copy classifications and historical-base counts remain bound.
+No compiler is used. Tests permit live source and acceptance changes while
+rejecting packet, selected-native and base-acceptance mutations.

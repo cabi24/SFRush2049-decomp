@@ -1,0 +1,43 @@
+{
+  "status": "Actual toolchain provenance for the completed unchanged canonical route; no compiler invocation by this collection",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "source_header_flags_exact": true,
+  "group_added_backend": "as1 -r4300_mul",
+  "layout_added_backend": "cc -Wab,-r4300_mul",
+  "compiler_directory": "/workspace/scratch/e1dc04a487a3/rush-recovery/tools/cloud/ido",
+  "tools": {
+    "cc": {
+      "path": "/workspace/scratch/e1dc04a487a3/rush-recovery/tools/cloud/ido/cc",
+      "sha256": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0"
+    },
+    "uld": {
+      "path": "/workspace/scratch/e1dc04a487a3/rush-recovery/tools/cloud/ido/uld",
+      "sha256": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744"
+    },
+    "usplit": {
+      "path": "/workspace/scratch/e1dc04a487a3/rush-recovery/tools/cloud/ido/usplit",
+      "sha256": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b"
+    },
+    "umerge": {
+      "path": "/workspace/scratch/e1dc04a487a3/rush-recovery/tools/cloud/ido/umerge",
+      "sha256": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913"
+    },
+    "uopt": {
+      "path": "/workspace/scratch/e1dc04a487a3/rush-recovery/tools/cloud/ido/uopt",
+      "sha256": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5"
+    },
+    "ugen": {
+      "path": "/workspace/scratch/e1dc04a487a3/rush-recovery/tools/cloud/ido/ugen",
+      "sha256": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72"
+    },
+    "as1": {
+      "path": "/workspace/scratch/e1dc04a487a3/rush-recovery/tools/cloud/ido/as1",
+      "sha256": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+    }
+  },
+  "gnu_linker": {
+    "path": "/workspace/scratch/e1dc04a487a3/rush-recovery-toolchain/usr/bin/mips-linux-gnu-ld",
+    "sha256": "4c398a15e38dbb71a8420628aa1da5c80a089818440666f4ca7eb40d2fc37878"
+  },
+  "limits": "Collected after completed compile, using the identical environment script that selected its binaries. No integration-sensitive scorer/source/manifest/lock fingerprints are pinned."
+}

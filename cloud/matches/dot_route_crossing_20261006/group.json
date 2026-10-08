@@ -1,0 +1,19 @@
+{
+  "members": [
+    "audio_priority_find"
+  ],
+  "context": [
+    "audio_mixer_main"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "audio_mixer_main"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [
+    "audio_priority_find"
+  ],
+  "note": "Only the 432-byte helper is claimed. Complete real caller audio_mixer_main is unchanged from repaired historical source and remains unclaimed NONMATCH. No stand-in context."
+}

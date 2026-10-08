@@ -1,0 +1,293 @@
+{
+  "status": "ALL MUTANTS REJECTED",
+  "mutants": [
+    {
+      "name": "signed-transition",
+      "rejected_by": "entry--2147483648-1",
+      "fixture_number": 3,
+      "difference": [
+        "trace-length",
+        14,
+        11
+      ]
+    },
+    {
+      "name": "effect-zero",
+      "rejected_by": "transition-effect-wrap",
+      "fixture_number": 61,
+      "difference": [
+        "state",
+        4,
+        0,
+        [
+          [
+            861,
+            4,
+            239
+          ],
+          [
+            862,
+            239,
+            112
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "cached-sound-slot",
+      "rejected_by": "multicall-slot-5-4",
+      "fixture_number": 425,
+      "difference": [
+        "event",
+        6,
+        [
+          13,
+          0,
+          2148614576,
+          1137180672,
+          0,
+          1065353216,
+          0,
+          45,
+          3,
+          0,
+          128
+        ],
+        [
+          13,
+          0,
+          2148614576,
+          1137180672,
+          0,
+          1065353216,
+          0,
+          45,
+          0,
+          0,
+          128
+        ]
+      ]
+    },
+    {
+      "name": "lost-captured-slot",
+      "rejected_by": "multicall-slot-5-4",
+      "fixture_number": 425,
+      "difference": [
+        "trace-length",
+        12,
+        11
+      ]
+    },
+    {
+      "name": "cached-loop-count",
+      "rejected_by": "multicall-slot-4-4",
+      "fixture_number": 420,
+      "difference": [
+        "trace-length",
+        11,
+        26
+      ]
+    },
+    {
+      "name": "threshold-inclusive",
+      "rejected_by": "independent-random-35",
+      "fixture_number": 583,
+      "difference": [
+        "state",
+        5,
+        2,
+        [
+          [
+            293,
+            1,
+            2
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "saturating-counter",
+      "rejected_by": "entry--2147483648-1",
+      "fixture_number": 3,
+      "difference": [
+        "state",
+        5,
+        2,
+        [
+          [
+            64,
+            0,
+            255
+          ],
+          [
+            65,
+            0,
+            255
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "third-coordinate-omitted",
+      "rejected_by": "transition-effect-wrap",
+      "fixture_number": 61,
+      "difference": [
+        "state",
+        4,
+        3,
+        [
+          [
+            140,
+            128,
+            64
+          ],
+          [
+            141,
+            0,
+            72
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "wrong-effect-restore",
+      "rejected_by": "transition-effect-wrap",
+      "fixture_number": 97,
+      "difference": [
+        "state",
+        4,
+        0,
+        [
+          [
+            861,
+            112,
+            4
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "positive-only-sound",
+      "rejected_by": "sound-contract",
+      "fixture_number": 115,
+      "difference": [
+        "trace-length",
+        14,
+        13
+      ]
+    },
+    {
+      "name": "object-sign-reversed",
+      "rejected_by": "entry-2-1",
+      "fixture_number": 23,
+      "difference": [
+        "trace-length",
+        14,
+        13
+      ]
+    },
+    {
+      "name": "wrong-flag-mask",
+      "rejected_by": "transition-effect-wrap",
+      "fixture_number": 91,
+      "difference": [
+        "state",
+        4,
+        5,
+        [
+          [
+            3,
+            223,
+            239
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "missing-slot-gate",
+      "rejected_by": "independent-random-12",
+      "fixture_number": 560,
+      "difference": [
+        "trace-length",
+        13,
+        14
+      ]
+    },
+    {
+      "name": "effect-call-order",
+      "rejected_by": "entry-6--128",
+      "fixture_number": 40,
+      "difference": [
+        "event",
+        1,
+        [
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "wrong-scale",
+      "rejected_by": "entry--2147483648-1",
+      "fixture_number": 3,
+      "difference": [
+        "event",
+        5,
+        [
+          10,
+          0,
+          1,
+          1065353216,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          10,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "model-stride",
+      "rejected_by": "layout assertions"
+    }
+  ],
+  "target_compilations": 0,
+  "frozen_source_unchanged": true
+}

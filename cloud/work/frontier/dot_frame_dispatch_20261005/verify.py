@@ -21,10 +21,16 @@ native=importlib.util.module_from_spec(spec);spec.loader.exec_module(native)
 FN='func_800B7FF8'
 SOURCE=ROOT/'cloud/matches/func_800B7FF8.c'
 CALLER='Effects_UpdateEmitters'
-CALLER_SOURCE=ROOT/'src/blob/Effects_UpdateEmitters.c'
+CALLER_PATH='src/blob/Effects_UpdateEmitters.c'
 FLAGS='-g0 -O3 -mips2 -G 0 -non_shared'
-BASELINE=ROOT/'cloud/work/game_C31/func_800B7FF8.bits.c'
+BASELINE_PATH='cloud/work/game_C31/func_800B7FF8.bits.c'
 WRITERS=['asm/us/nonmatchings/rom/lib_1050/viTickStart.s','asm/us/nonmatchings/rom/lib_1050/viUpdateTime.s']
+
+BASE='e24b47d89a0c8ffade1e4c75ad76b9d390a1c232'
+HISTORICAL_SOURCES=[CALLER_PATH,BASELINE_PATH,'tools/cloud/score.py']+WRITERS
+
+def base_bytes(path):
+    return subprocess.run(['git','show',BASE+':'+path],cwd=ROOT,check=True,capture_output=True).stdout
 
 def sha(x):return hashlib.sha256(x).hexdigest()
 def symbols(obj):
@@ -75,7 +81,7 @@ def gnu(obj,name,work,expected_match=True):
 def clock_witness():
     results=[]
     for path,address in zip(WRITERS,(0x80001390,0x800014dc)):
-        content=(ROOT/path).read_text()
+        content=base_bytes(path).decode()
         pairs={int(a,16):int(w,16) for a,w in re.findall(r'/\*\s+[0-9A-F]+\s+([0-9A-F]{8})\s+([0-9A-F]{8})\s+\*/',content)}
         store=pairs[address]
         assert store>>26==57 and (store>>21&31)==1 and native.signed(store&65535,16)==-5228
@@ -92,7 +98,7 @@ def clock_witness():
         assert op not in (2,3,40,41,42,43,46,57),('intervening side effect',off)
         if op==49 and (ins>>21&31)==6 and ins&65535==0:reads.append(off)
     assert reads==[0x4c,0x50,0x64]
-    static=(ROOT/'symbol_addrs.us.txt').read_text()
+    static=base_bytes('symbol_addrs.us.txt').decode()
     assert re.search(r'__osScDeltaTime\s*=\s*0x8002EB94',static)
     return {'clock':'__osScDeltaTime','address':hex(native.DELTA),'distinct_from_elapsed_time':'0x8002eb90',
             'writers':results,'writer_callers':writer_callers(),'consumer':'func_8010E694','repeated_read_offsets':reads,
@@ -127,7 +133,7 @@ def native_bindings():
     resolved={name:addresses[name] if name in addresses else score.address_named(name)
               for name in sorted(selected)}
     assert all(address is not None for address in resolved.values())
-    static=(ROOT/'symbol_addrs.us.txt').read_text()
+    static=base_bytes('symbol_addrs.us.txt').decode()
     clocks={name:int(re.search(r'\b%s\s*=\s*(0x[0-9A-Fa-f]+)'%name,static)[1],16)
             for name in ('__osScDeltaTime','__osScElapsedTime')}
     data=score.owndata.ImageData.from_artifact(score.owndata.artifact_dir(score.ASM_DIR))
@@ -141,7 +147,10 @@ def assert_native_bindings(expected):
 
 def comparable_receipt(result):
     """Ignore only historical global-file digests; all live bindings remain."""
-    return {key:value for key,value in result.items() if key!='historical_native_provenance'}
+    result=json.loads(json.dumps(result))
+    result.pop('historical_native_provenance', None)
+    for name in HISTORICAL_SOURCES:result['source_bindings'].pop(name, None)
+    return result
 
 def strict(obj,name):
     row=inspect(obj,name)
@@ -215,14 +224,15 @@ def verify(work):
         row.update(gnu=proof,zero_text_alignment_bytes=len(tail),owned_data_bytes=0)
         result[level]=row
         if level=='O3':linked=words
-    old=work/'baseline.o';score.compile_single(BASELINE,FLAGS,old)
+    baseline=work/'baseline.c';baseline.write_bytes(base_bytes(BASELINE_PATH))
+    old=work/'baseline.o';score.compile_single(baseline,FLAGS,old)
     result['ordinary_clock_baseline']=inspect(old,FN)
     assert result['ordinary_clock_baseline']['differing']==6
     oldproof,_=gnu(old,FN,work,expected_match=False)
     assert len(oldproof['differing_offsets'])==6
     result['ordinary_clock_baseline']['gnu']=oldproof
     group=work/'context';group.mkdir()
-    shutil.copyfile(SOURCE,group/'candidate.c');shutil.copyfile(CALLER_SOURCE,group/'caller.c')
+    shutil.copyfile(SOURCE,group/'candidate.c');(group/'caller.c').write_bytes(base_bytes(CALLER_PATH))
     (group/'group.json').write_text(json.dumps({'files':['candidate.c','caller.c'],'members':[FN],'context':[CALLER],
         'keep':[FN,CALLER],'flags':FLAGS}))
     obj=group/'group.o';score.compile_group(group,obj)
@@ -240,10 +250,8 @@ def verify(work):
                                     'value':struct.unpack('>f',score.own_data().read(native.PI,4))[0]}
     assert score.own_data().read(native.PI,4)==struct.pack('>I',0x40490fdb)
     result['behavior']=behavior(work,linked)
-    paths=[SOURCE,CALLER_SOURCE,BASELINE,HERE/'verify.py',HERE/'native.py',HERE/'host.c',ROOT/'tools/cloud/score.py']+[ROOT/p for p in WRITERS]
+    paths=[SOURCE,HERE/'verify.py',HERE/'native.py',HERE/'host.c']
     result['source_bindings']={str(p.relative_to(ROOT)):sha(p.read_bytes()) for p in paths}
-    result['historical_native_provenance']={path:sha((ROOT/path).read_bytes()) for path in
-        ('asm/us/blob/SHA256SUMS','asm/us/blob/symbols.json','symbol_addrs.us.txt')}
     result['compiler_sha256']={n:sha(Path(score.ido(n)).read_bytes()) for n in ('cc','cfe','uld','usplit','umerge','uopt','ugen','as1')}
     result['limitations']=['No original N64 source/header recovery or arcade donor claim.',
                           'GNU context linking is per complete body, not original contiguous TU placement.',

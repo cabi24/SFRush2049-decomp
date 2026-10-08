@@ -1,4 +1,5 @@
-/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* Standalone match: no callers, inlined helpers, or deleted-static stubs required in this unit. */
 /*
  * Runtime image B only: 0x8038CA24..0x8038CB10, 236 bytes.
  * Reset per-player battle/HUD state, group handle/timer, and five slot handles.

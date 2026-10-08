@@ -1,0 +1,122 @@
+[
+  {
+    "candidate": "controls/01_complete.c",
+    "comparison": {
+      "differing": 171,
+      "errors": [],
+      "extra_words": 0,
+      "total": 280,
+      "unresolved": [],
+      "unverified": []
+    },
+    "control": 1,
+    "frame_bytes": 72,
+    "function_bytes": 1012,
+    "wrapper": "controls/01_original_wrapper.c"
+  },
+  {
+    "candidate": "controls/02_donor_increment_helper.c",
+    "comparison": {
+      "differing": 269,
+      "errors": [],
+      "extra_words": 0,
+      "total": 280,
+      "unresolved": [],
+      "unverified": []
+    },
+    "control": 2,
+    "frame_bytes": 80,
+    "function_bytes": 1000,
+    "wrapper": "controls/01_original_wrapper.c"
+  },
+  {
+    "candidate": "controls/03_conditional_helper.c",
+    "comparison": {
+      "differing": 273,
+      "errors": [],
+      "extra_words": 0,
+      "total": 280,
+      "unresolved": [],
+      "unverified": []
+    },
+    "control": 3,
+    "frame_bytes": 88,
+    "function_bytes": 1008,
+    "wrapper": "controls/01_original_wrapper.c"
+  },
+  {
+    "candidate": "controls/04_explicit_sound_inline.c",
+    "comparison": {
+      "differing": 114,
+      "errors": [],
+      "extra_words": 0,
+      "total": 280,
+      "unresolved": [],
+      "unverified": []
+    },
+    "control": 4,
+    "frame_bytes": 192,
+    "function_bytes": 1116,
+    "wrapper": "controls/04_inline_variable_wrapper.c"
+  },
+  {
+    "candidate": "controls/05_direct_return_sound.c",
+    "comparison": {
+      "differing": 105,
+      "errors": [],
+      "extra_words": 0,
+      "total": 280,
+      "unresolved": [],
+      "unverified": []
+    },
+    "control": 5,
+    "frame_bytes": 152,
+    "function_bytes": 1116,
+    "wrapper": "group/sound_wrapper.c"
+  },
+  {
+    "candidate": "controls/06_genuine_helpers.c",
+    "comparison": {
+      "differing": 62,
+      "errors": [],
+      "extra_words": 0,
+      "total": 280,
+      "unresolved": [],
+      "unverified": []
+    },
+    "control": 6,
+    "frame_bytes": 160,
+    "function_bytes": 1116,
+    "wrapper": "group/sound_wrapper.c"
+  },
+  {
+    "candidate": "controls/07_equal_early_guard.c",
+    "comparison": {
+      "differing": 62,
+      "errors": [],
+      "extra_words": 0,
+      "total": 280,
+      "unresolved": [],
+      "unverified": []
+    },
+    "control": 7,
+    "frame_bytes": 160,
+    "function_bytes": 1116,
+    "wrapper": "group/sound_wrapper.c"
+  },
+  {
+    "candidate": "group/candidate.c",
+    "comparison": {
+      "differing": 60,
+      "errors": [],
+      "extra_words": 0,
+      "total": 280,
+      "unresolved": [],
+      "unverified": []
+    },
+    "control": 8,
+    "frame_bytes": 160,
+    "function_bytes": 1116,
+    "wrapper": "group/sound_wrapper.c"
+  }
+]

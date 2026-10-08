@@ -1,0 +1,264 @@
+{
+  "status": "PASS: source-only local additive preparation; both closures remain NONMATCH",
+  "base_commit": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "prepared_utc": "2026-10-06T08:49:10.534912+00:00",
+  "original_files_byte_identical": 46,
+  "c_source_sha256": {
+    "cloud/work/af06c_tagged_effect_service_20261006/host.c": "4fc04717bea1a348719592e80c4985297091d82b62523b9430d488c75c892d9e",
+    "cloud/work/af06c_tagged_effect_service_20261006/check_layout.c": "887dbf2661470b996244e9b16324bc0b98f803e439e301ffd8d140f6c6c942e6",
+    "cloud/work/af06c_tagged_effect_service_20261006/candidate.c": "65593ef2a077ce151f6ef43a5843593c302b8d5588c3cb47bb4f2ae51c440ee6",
+    "cloud/work/runtime_b_effect_tick_20261006/host.c": "a2731a9205a4ea41d27144fbf865569c540fbe885ff2f97bee24ee811137fac1",
+    "cloud/work/runtime_b_effect_tick_20261006/effect_tick.c": "b88b940c637c5831be3714b6dbe47f9bd3821bdb8e6501d775f46fe552274bd0"
+  },
+  "packet_sources_verifiers_loaders_modified": false,
+  "new_target_compiler_invocations": 0,
+  "historical_baselines_preserved": true,
+  "independent_review_receipts_preserved": true,
+  "fresh_replay_proof_comparisons": [
+    {
+      "replay": "af06c-semantic",
+      "historical_receipt": "cloud/work/af06c_tagged_effect_service_20261006/semantics.json",
+      "all_actual_proof_fields_equal": true,
+      "provenance_only_differences": [
+        {
+          "field": "host_command[9]",
+          "kind": "diagnostic invocation path"
+        }
+      ]
+    },
+    {
+      "replay": "af06c-contracts",
+      "historical_receipt": "cloud/work/af06c_tagged_effect_service_20261006/independent/contract-receipt.json",
+      "all_actual_proof_fields_equal": true,
+      "provenance_only_differences": []
+    },
+    {
+      "replay": "af06c-independent",
+      "historical_receipt": "cloud/work/af06c_tagged_effect_service_20261006/independent/independent-challenge.json",
+      "all_actual_proof_fields_equal": true,
+      "provenance_only_differences": []
+    },
+    {
+      "replay": "af06c-linked",
+      "historical_receipt": "cloud/work/af06c_tagged_effect_service_20261006/linked-semantics.json",
+      "all_actual_proof_fields_equal": true,
+      "provenance_only_differences": []
+    },
+    {
+      "replay": "af06c-independent-linked",
+      "historical_receipt": "cloud/work/af06c_tagged_effect_service_20261006/independent-linked-review.json",
+      "all_actual_proof_fields_equal": true,
+      "provenance_only_differences": []
+    },
+    {
+      "replay": "effect-tick-independent",
+      "historical_receipt": "cloud/work/runtime_b_effect_tick_20261006/independent/receipt.json",
+      "all_actual_proof_fields_equal": true,
+      "provenance_only_differences": [
+        {
+          "field": "packet_inputs_sha256.native.py",
+          "kind": "fresh independent replay binds final owner interpreter",
+          "historical": "410db5233187685fa3ce6188b8d4ba9c15f6dc80b3a4e3b9281511dc21a9b2d7",
+          "current": "9769c5d8aca3de0b8a4cbbd3aca2db6e3be9742dd140a5c9c6232f6f5bbc87c2"
+        }
+      ]
+    },
+    {
+      "replay": "effect-tick-independent-object",
+      "historical_receipt": "cloud/work/runtime_b_effect_tick_20261006/independent/object-receipt.json",
+      "all_actual_proof_fields_equal": true,
+      "provenance_only_differences": []
+    }
+  ],
+  "focused_test_matrix": [
+    {
+      "mode": "with-tools",
+      "suite": "af06c",
+      "returncode": 0,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "skip_reasons": [],
+      "seconds": 1.99
+    },
+    {
+      "mode": "with-tools",
+      "suite": "effect-tick",
+      "returncode": 0,
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0,
+      "skip_reasons": [],
+      "seconds": 53.0
+    },
+    {
+      "mode": "with-tools",
+      "suite": "registered",
+      "returncode": 0,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "skip_reasons": [],
+      "seconds": 40.52
+    },
+    {
+      "mode": "without-ido",
+      "suite": "af06c",
+      "returncode": 0,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "skip_reasons": [],
+      "seconds": 1.56
+    },
+    {
+      "mode": "without-ido",
+      "suite": "effect-tick",
+      "returncode": 0,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 1,
+      "skip_reasons": [
+        "pinned IDO and MIPS GNU linker required"
+      ],
+      "seconds": 13.6
+    },
+    {
+      "mode": "without-ido",
+      "suite": "registered",
+      "returncode": 0,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "skip_reasons": [],
+      "seconds": 19.67
+    },
+    {
+      "mode": "without-ido",
+      "suite": "af06c-entry-guard",
+      "returncode": 0,
+      "status": "clean SKIP before target compilation",
+      "target_compiler_invocations": 0
+    },
+    {
+      "mode": "without-ido",
+      "suite": "effect-tick-entry-guard",
+      "returncode": 0,
+      "status": "clean SKIP before target compilation",
+      "target_compiler_invocations": 0
+    },
+    {
+      "mode": "without-linker",
+      "suite": "af06c",
+      "returncode": 0,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "skip_reasons": [],
+      "seconds": 1.55
+    },
+    {
+      "mode": "without-linker",
+      "suite": "effect-tick",
+      "returncode": 0,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 1,
+      "skip_reasons": [
+        "pinned IDO and MIPS GNU linker required"
+      ],
+      "seconds": 17.36
+    },
+    {
+      "mode": "without-linker",
+      "suite": "registered",
+      "returncode": 0,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "skip_reasons": [],
+      "seconds": 20.45
+    },
+    {
+      "mode": "without-linker",
+      "suite": "af06c-entry-guard",
+      "returncode": 0,
+      "status": "clean SKIP before target compilation",
+      "target_compiler_invocations": 0
+    },
+    {
+      "mode": "without-linker",
+      "suite": "effect-tick-entry-guard",
+      "returncode": 0,
+      "status": "clean SKIP before target compilation",
+      "target_compiler_invocations": 0
+    },
+    {
+      "mode": "without-host",
+      "suite": "af06c",
+      "returncode": 0,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 1,
+      "skip_reasons": [
+        "host C compiler required"
+      ],
+      "seconds": 1.29
+    },
+    {
+      "mode": "without-host",
+      "suite": "effect-tick",
+      "returncode": 0,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 2,
+      "skip_reasons": [
+        "host C compiler required",
+        "host C compiler required"
+      ],
+      "seconds": 37.76
+    },
+    {
+      "mode": "without-host",
+      "suite": "registered",
+      "returncode": 0,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "skip_reasons": [],
+      "seconds": 22.42
+    }
+  ],
+  "af06c_layout": "PASS: 28 host ILP32 syntax-only facts",
+  "effect_tick_layout": "28 original target-O32 facts retained from the original one-shot build; no new target layout compilation",
+  "artifact_policy": {
+    "allowed_extensions": [
+      ".c",
+      ".py",
+      ".json",
+      ".md"
+    ],
+    "native_or_compiled_artifacts_included": false,
+    "raw_logs_caches_archives_included": false,
+    "raw_native_bytes_emitted": false
+  },
+  "scope": {
+    "publication": "paused pending explicit confirmation",
+    "external_writes": false,
+    "protected_edits": false,
+    "active_integration_tree_touched": false,
+    "full_checkout": false,
+    "ci_watching": false,
+    "repository_aggregate_suite": "not run; focused isolated tests only"
+  },
+  "limits": [
+    "Both results are NONMATCH; no strict-match, accepted lock, production replacement, ROM/image coverage or merge-readiness claim.",
+    "Original private visibility and translation-unit identity remain unproved.",
+    "Original packet and independent-review domains and limitations are preserved without widening.",
+    "Existing binary artifacts were read locally to reproduce bounded proofs and are excluded from the source-only package.",
+    "Independent audits reuse reviewed packet interpreters and adapters, not second independently implemented MIPS engines.",
+    "Historical machine-local paths and compiler metadata are provenance, not portable proof equality predicates.",
+    "Historical independent effect-tick receipt remains intact; the added current receipt differs only in the final interpreter binding.",
+    "The registered test wrapper is additive; no test source is hashed into a packet receipt."
+  ]
+}

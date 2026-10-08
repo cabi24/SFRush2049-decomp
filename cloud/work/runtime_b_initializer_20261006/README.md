@@ -1,5 +1,17 @@
 # Image-B setup initializer: complete six-word NONMATCH
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
 B:func_803908D0, `[0x803908D0,0x80390B00)`, **560 bytes / 140 words**.
 The final full ELF function differs at six words. This is research, with **zero
 matching, accepted or cartridge-coverage gain**. It is deliberately absent from
@@ -112,3 +124,19 @@ installation; the frozen replay intentionally reports such provenance drift.
 
 Source-only draft research handoff. Independent review precedes publication;
 merging and any integration remain with the independent checker. No CI watcher.
+
+## Integration-portable replay (2026-10-06)
+
+`portable_receipt()` compares both saved and fresh evidence after excluding only
+explicit historical whole-tree/tool/source-context digests. Packet source and
+verifier bindings, selected native bodies and addresses, ELF extents, relocations,
+owned data, behavior, and compiler executable identities remain authoritative.
+Accepted production context is read from the recorded base commit rather than
+the live integrated tree. Tests are deliberately not hashed into receipts.
+
+### Host-tool portability
+
+Host GCC, GNU linker and readelf binary hashes remain recorded provenance;
+frozen replay binds pinned IDO, packet/source hashes, native and linked words,
+extents, relocation bindings, and all behavior and negative controls instead.
+Only those three named host-tool hashes are omitted from equality comparison.

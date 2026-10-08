@@ -19,13 +19,11 @@ def receipt():
 
 
 def test_fresh_source_bound_census():
-    # verify() compares every bound key with the saved evidence and raises on
-    # any difference; only live acceptance state (which callers are matched
-    # yet) is allowed to move.
-    audit.verify(receipt())
+    assert audit.portable(audit.verify()) == audit.portable(receipt())
 
 
 def test_counts_are_bounded_dependency_surface_not_matches():
+    assert receipt()['acceptance_as_of_commit'] == audit.BASE
     result = receipt()['summary']
     assert (result['callers'], result['sites'], result['adjacent_call_label_pairs']) == (65, 170, 167)
     assert sum(result['captures'].values()) == 161
@@ -81,17 +79,21 @@ def test_wrong_saved_site_fails_replay():
         audit.verify(saved)
 
 
-def test_actual_source_edit_fails_digest_binding(tmp_path, monkeypatch):
-    for name in audit.SOURCES:
-        target = tmp_path / name
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_bytes((ROOT / name).read_bytes())
-    changed = tmp_path / 'cloud/work/s20261004/D/notes.md'
-    changed.write_bytes(changed.read_bytes() + b'\nChanged historical claim.\n')
+def test_own_audit_edit_fails_digest_binding(tmp_path, monkeypatch):
+    target = tmp_path / PACKET.relative_to(ROOT) / 'audit.py'
+    target.parent.mkdir(parents=True)
+    target.write_bytes((PACKET / 'audit.py').read_bytes() + b'\n# Changed packet verifier.\n')
     original = audit.source_hashes
     monkeypatch.setattr(audit, 'source_hashes', lambda: original(tmp_path))
     with pytest.raises(audit.AuditError, match='source_sha256'):
         audit.verify()
+
+
+def test_historical_source_provenance_is_not_proof_equality():
+    saved = receipt()
+    for name in audit.SOURCES:
+        saved['source_sha256'][name] = '0' * 64
+    assert audit.portable(audit.verify(saved)) == audit.portable(receipt())
 
 
 def test_selected_native_change_fails_body_binding(monkeypatch):
@@ -112,7 +114,7 @@ def test_selected_helper_change_fails_body_binding(monkeypatch):
         audit.verify()
 
 
-def test_changed_acceptance_status_changes_bound(monkeypatch):
+def test_live_acceptance_changes_do_not_change_base_census(monkeypatch):
     old_read = Path.read_text
     def changed(path, *args, **kwargs):
         text = old_read(path, *args, **kwargs)
@@ -122,8 +124,7 @@ def test_changed_acceptance_status_changes_bound(monkeypatch):
             return json.dumps(locks)
         return text
     monkeypatch.setattr(Path, 'read_text', changed)
-    with pytest.raises(audit.AuditError, match='summary'):
-        audit.verify()
+    assert audit.portable(audit.verify()) == audit.portable(receipt())
 
 
 def test_reader_rechecks_manifest_after_warm_cache(tmp_path, monkeypatch):
@@ -146,3 +147,27 @@ def test_scanner_stops_after_v0_is_redefined():
     # Synthetic lui v0 followed by move s0,v0 must not count as a selector result.
     words = [0, 0, (15 << 26) | (2 << 16), (2 << 21) | (16 << 11) | 37, 3 << 26, 0]
     assert audit.return_capture(words, 0, 4) is None
+
+
+def test_live_context_and_scorer_edits_do_not_change_base_census(monkeypatch):
+    old_read = Path.read_bytes
+    def changed(path):
+        if path.is_relative_to(ROOT) and str(path.relative_to(ROOT)) in audit.SOURCES:
+            return b'changed integration context'
+        return old_read(path)
+    monkeypatch.setattr(Path, 'read_bytes', changed)
+    assert audit.portable(audit.verify()) == audit.portable(receipt())
+
+
+def test_base_acceptance_change_is_detected(monkeypatch):
+    original = audit.base_bytes
+    def changed(name):
+        raw = original(name)
+        if name == 'blob_matched.lock.json':
+            locks = json.loads(raw)
+            locks['func_800D9058'] = {'synthetic_test_only': True}
+            return json.dumps(locks).encode()
+        return raw
+    monkeypatch.setattr(audit, 'base_bytes', changed)
+    with pytest.raises(audit.AuditError, match='summary'):
+        audit.verify()

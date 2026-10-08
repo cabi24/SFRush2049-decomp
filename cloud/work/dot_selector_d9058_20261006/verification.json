@@ -14,7 +14,7 @@
     "group.json": "19bd59bf9d0b0eb1a93f4b867cebb5a8fa244ad10c191eab04f36c36f95f5d58",
     "host.c": "2350c45f0367b46ca7a72d82d741a84211e972af3783ed1516ef21940bbb3286",
     "native.py": "3aa0861a688a7e0fe7e52893c1f6779b4a4e4d6e952baed809316993ecdaaf68",
-    "verify.py": "9ab5a7dbfe6df6bc6903da589cc961a11d90e6d7fd1e6dac421cbb90409e6aae"
+    "verify.py": "123179925280e2cd3bb57011d01964b809ebe72ff2263199b8e638a0da607e8b"
   },
   "real_parent": [
     {
@@ -24,8 +24,6 @@
   ],
   "parent_reconstructed": false,
   "context_origin": "cloud/work/game_C104/group_complete_callers.c",
-  "context_origin_sha256": "4c44290bb0e0b4f2133ccf1ef7867dd8586a4f1094ec3f23cbf21c4313834490",
-  "protected_target_manifest_sha256": "dade78464a022fedd2c5ba651ee1bca5ffd4ec99bfa4d2413d27256540bed02c",
   "compile": {
     "standalone": {
       "functions": {

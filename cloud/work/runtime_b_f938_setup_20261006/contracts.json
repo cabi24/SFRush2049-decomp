@@ -1,0 +1,167 @@
+{
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "entry": {
+    "address": "0x8038F938",
+    "end": "0x8038FCD8",
+    "bytes": 928,
+    "native_sha256": "1b5eb1e66549eb1cc0fba50a3dc3e432e295fde04bf1777be2a5bcdfccd9e106",
+    "frame_bytes": 56,
+    "saved_registers": [
+      "ra"
+    ],
+    "semantic_inputs": {
+      "s0": "BStatus*",
+      "s2": "BPlayer*",
+      "s3": "BVehicle*",
+      "s5": "signed owner index"
+    },
+    "unsaved_writes": [
+      "s1",
+      "s3",
+      "s4",
+      "s6",
+      "f20"
+    ],
+    "ordinary_abi_claim": false
+  },
+  "caller": {
+    "name": "func_8038FCE0",
+    "site": "0x8038FE8C",
+    "offset": "0x1AC",
+    "guard": "player.status.flags != 0",
+    "status_alias": "status == &player->status",
+    "vehicle": "D_8014A250[signed player.owner]",
+    "owner_domain": "0..3, supported by the four records initialized by 803908D0",
+    "original_tu_visibility": "unproven"
+  },
+  "layout": {
+    "BStatus_bytes": 20,
+    "BPlayer_bytes": 952,
+    "BVehicle_bytes": 2056,
+    "BEffect_bytes": 52,
+    "BColor_bytes": 4,
+    "status_offsets": {
+      "flags": 0,
+      "transition_timer": 4,
+      "scale_timer": 8,
+      "scale": 12,
+      "pitch": 16
+    },
+    "player_offsets": {
+      "position": 8,
+      "uv": 44,
+      "status": 908,
+      "alpha_unsigned_byte": 929,
+      "transition_signed_byte": 930,
+      "transition_time": 936
+    },
+    "vehicle_offsets": {
+      "model_unsigned_byte": 8,
+      "blocked_signed_byte": 1600
+    },
+    "effect_offsets": {
+      "scene_index_signed_word": 0,
+      "uv": 4,
+      "position": 40
+    },
+    "scene_record_bytes": 68,
+    "scene_color_base": "0x8012E73C"
+  },
+  "data": {
+    "scale_limits": {
+      "address": "0x80394358",
+      "count": 13,
+      "index": "unsigned vehicle.model, valid0..12"
+    },
+    "entry_color": {
+      "address": "0x8039438C",
+      "value": "0xFFFFFFFF",
+      "copy": "one aligned four-byte local snapshot; final alpha occupies big-endian byte3"
+    },
+    "effects": {
+      "address": "0x80394F90",
+      "count": 4,
+      "stride": 52
+    },
+    "resource": "0x80399B54"
+  },
+  "helpers": [
+    {
+      "name": "math_utility",
+      "address": "0x8008d6b0",
+      "size": 76,
+      "native_sha256": "e2b566e9e8acf312ddb9d228ba6cfb6fdbc517c14b00cbd5386e37ec51fc8159",
+      "locked_at_base": true,
+      "historical_source": "src/blob/math_utility.c"
+    },
+    {
+      "name": "func_80090F44",
+      "address": "0x80090f44",
+      "size": 168,
+      "native_sha256": "ff8a0e76b7954c1ad075e4b3442c34a1d534e28f4bcfef1a738d55d7f58c386b",
+      "locked_at_base": true,
+      "historical_source": "src/blob/func_80090F44.c"
+    },
+    {
+      "name": "sound_call_minimal",
+      "address": "0x80090254",
+      "size": 48,
+      "native_sha256": "d60649ae7c407e455923d680fc3603abf94e6efd24dc6285c6ba6d38249d9aec",
+      "locked_at_base": true,
+      "historical_source": "src/blob/sound_call_minimal.c"
+    },
+    {
+      "name": "sign_extend_call",
+      "address": "0x8008e398",
+      "size": 40,
+      "native_sha256": "7fd128bef40a72ad661e6bd2ac8b83a32a5921f63ff3a11b6fae562a62182f51",
+      "locked_at_base": true,
+      "historical_source": "src/blob/groups/dot_sign_extend/group.json"
+    },
+    {
+      "name": "func_8008E06C",
+      "address": "0x8008e06c",
+      "size": 44,
+      "native_sha256": "cfc0187f19608ade0130a6b43c7f01b66fb9f7b7f6fd85540cf346e335328635",
+      "locked_at_base": true,
+      "historical_source": "src/blob/func_8008E06C.c"
+    },
+    {
+      "name": "func_8008E26C",
+      "address": "0x8008e26c",
+      "size": 300,
+      "native_sha256": "54c0fe9d2ad5160f5dca1268f7819ecec5ab1c447f7cf0f0a14ab0a57c78fc90",
+      "locked_at_base": true,
+      "historical_source": "src/blob/func_8008E26C.c"
+    },
+    {
+      "name": "entity_spawn_callback",
+      "address": "0x80090088",
+      "size": 416,
+      "native_sha256": "0a341263df072121b6344998cef815065803fdd5ba4974c9520a3ecb60c8cdbe",
+      "locked_at_base": true,
+      "historical_source": "src/blob/entity_spawn_callback.c"
+    }
+  ],
+  "helper_contracts": {
+    "math_utility": "8008D6B0: a0 source/a1 destination; nine sequential aligned f32 load/store copies, no source mutation under disjoint storage.",
+    "PitchUV": "80090F44: f12 angle/a1 matrix. If angle outside +/-0.0001f, row1[i]=oldrow1[i]*cos-angle minus oldrow2[i]*sin-angle; row2[i]=oldrow2[i]*cos-angle plus oldrow1[i]*sin-angle. Exact source expression order retained; libm outputs not proved here.",
+    "delete": "80090254: a0 signed16 index; wrapper calls80090088(index,0,0). Underlying routine unlinks and marks scene record free. Bounded proof observes request and required post-call effect slot overwrite; does not execute the real graph mutation.",
+    "create": "8008E398: a0 resource/a1 matrix pointer/a2 parent/a3 flags; wrapper narrows parent to s16 and delegates8008E26C. Real implementation allocates scene record, retains transform pointer and returns sign-extended16 scene index in v0. F938 stores full returned32 bits before narrowing at color. Accepted wrapper declares void; research source corrects its local declaration only.",
+    "color": "8008E06C: a0 signed16 index/a1 aligned four-byte color pointer. Writes complete word to8012E73C+68*index. Proof executes this exact bounded effect for mapped selected indices."
+  },
+  "narrowing": {
+    "scene_sentinel": "full32 compare to0xFFFFFFFF before delete/create",
+    "delete_argument": "signed low16",
+    "color_argument": "signed low16",
+    "create_parent": "-1, narrowed internally by real wrapper",
+    "alpha": "unsigned byte clamp max(alpha,48); original255 remains255",
+    "transition": "signed byte equality2; sign otherwise irrelevant to this comparison"
+  },
+  "proof_limits": [
+    "Standalone ordinary-ABI adapter only; full native private entry not reproduced.",
+    "No source identity, TU root/export visibility, closure match, whole game, image composition, compressed stream or ROM claim.",
+    "External service hooks are bounded contracts; real scene allocation/deletion and exact N64 trigonometric outputs are not executed.",
+    "Adversarial service-mutation probes intentionally broaden known helper effects to test source reloads/snapshots; they are not claims about actual helper writes."
+  ]
+}

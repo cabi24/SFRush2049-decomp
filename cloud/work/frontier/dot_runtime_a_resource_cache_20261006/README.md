@@ -1,5 +1,17 @@
 # Runtime image A resource-cache lookup
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
 **Complete NONMATCH research:** `A:func_80390BC0`,
 `[0x80390BC0,0x80390D2C)`, 364 bytes / 91 words.
 The final standalone IDO O3 candidate differs at **five words**.
@@ -184,3 +196,13 @@ that optional input override; independent scripts use `RUSH_REVIEW_REPO`.
 Generated binaries, native words and raw listings stay in ignored `build/`.
 Published files contain source, tests, hashes and non-byte research evidence.
 Merging and any future production acceptance belong to the independent checker.
+
+## Integration-portable replay (2026-10-06)
+
+Scorer, whole-manifest and accepted-context digests are historical provenance,
+not live-tree requirements. The verifier normalizes only enumerated provenance
+fields on both receipt sides. Packet source and verifier bindings, compiler
+identity/actual flags, selected native bodies and addresses, complete emitted
+extents, relocations, owned data and behavioral checks remain binding.
+Production context is read with `git show BASE:path` at the recorded base,
+never from the current production tree.

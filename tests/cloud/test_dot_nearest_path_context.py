@@ -3,6 +3,7 @@ import importlib.util
 import json
 from pathlib import Path
 import struct
+import shutil
 import tempfile
 import pytest
 ROOT=Path(__file__).resolve().parents[2]
@@ -12,6 +13,8 @@ proof=importlib.util.module_from_spec(SPEC);SPEC.loader.exec_module(proof)
 
 @pytest.fixture(scope='module')
 def checked(tmp_path_factory):
+    if not (proof.score.IDO/'cc').is_file() or not shutil.which('mips-linux-gnu-ld'):
+        pytest.skip('pinned IDO and MIPS GNU linker required')
     return proof.verification(tmp_path_factory.mktemp('nearest-path-test'))
 
 def test_complete_replay(checked):
@@ -36,6 +39,8 @@ def test_compiled_wrong_contracts(checked):
 
 @pytest.fixture(scope='module')
 def object_file(tmp_path_factory):
+    if not (proof.score.IDO/'cc').is_file() or not shutil.which('mips-linux-gnu-ld'):
+        pytest.skip('pinned IDO and MIPS GNU linker required')
     directory=tmp_path_factory.mktemp('nearest-path-object');obj=directory/'original.o'
     proof.score.compile_group(PACKET,obj)
     return obj
@@ -97,8 +102,9 @@ def test_protected_native_call_interface(checked):
 def test_historical_manifest_drift_is_portable(checked):
     import copy
     current=copy.deepcopy(checked)
-    for key in ('asm/us/blob/SHA256SUMS','asm/us/blob/symbols.json','asm/us/blob_data/SHA256SUMS'):
-        current['protected_inputs_sha256'][key]='0'*64
+    for key in ('asm/us/blob/SHA256SUMS','asm/us/blob/symbols.json','asm/us/blob_data/SHA256SUMS',
+                'tools/cloud/score.py','tools/cloud/owndata.py'):
+        current.setdefault('protected_inputs_sha256', {})[key]='0'*64
     assert proof.portable_receipt(current)==proof.portable_receipt(checked)
 
 @pytest.mark.parametrize('field', ['native_bodies','data_windows','symbol_addresses_sha256'])
@@ -128,13 +134,15 @@ def test_actual_unrelated_manifest_refresh_is_portable(copied_artifacts,checked)
     file=target/'blob_800947f0.s'
     file.write_bytes(file.read_bytes()+b'\n# Unrelated authenticated source annotation.\n')
     manifest=target/'SHA256SUMS'
+    before_manifest=hashlib.sha256(manifest.read_bytes()).hexdigest()
     lines=manifest.read_text().splitlines()
     manifest.write_text('\n'.join(hashlib.sha256(file.read_bytes()).hexdigest()+'  '+file.name
                                   if line.split()[-1]==file.name else line for line in lines)+'\n')
     names=checked['object_metadata']['referenced_symbols']
     actual=proof.selected_inputs(set(names)|{'func_800E56F8'})
     assert actual==checked['selected_inputs_sha256']
-    assert proof.protected_provenance()['asm/us/blob/SHA256SUMS']!=checked['protected_inputs_sha256']['asm/us/blob/SHA256SUMS']
+    assert hashlib.sha256(manifest.read_bytes()).hexdigest()!=before_manifest
+    assert 'protected_inputs_sha256' not in checked
 
 def test_current_target_manifest_still_validated(copied_artifacts,checked):
     file=copied_artifacts/'blob_800de454.s'
@@ -151,6 +159,7 @@ def test_current_data_manifest_still_validated(copied_artifacts,checked):
 def authenticate_fixture(file):
     import hashlib
     manifest=file.parent/'SHA256SUMS'
+    before_manifest=hashlib.sha256(manifest.read_bytes()).hexdigest()
     lines=manifest.read_text().splitlines()
     manifest.write_text('\n'.join(hashlib.sha256(file.read_bytes()).hexdigest()+'  '+file.name
                                   if line.split()[-1]==file.name else line for line in lines)+'\n')
@@ -182,3 +191,14 @@ def test_authenticated_selected_data_change_rejected(copied_artifacts,checked):
             data[0x8012443c-base]^=1;lines[i]=address+' '+data.hex();count+=1
     assert count==1;file.write_text('\n'.join(lines)+'\n');authenticate_fixture(file)
     assert proof.selected_inputs(selected_names(checked))!=checked['selected_inputs_sha256']
+
+
+def test_portable_receipt_keeps_packet_and_native_proof():
+    import copy
+    saved=json.loads((PACKET/'verification.json').read_text())
+    changed=copy.deepcopy(saved)
+    for key in ('asm/us/blob/SHA256SUMS','asm/us/blob/symbols.json','asm/us/blob_data/SHA256SUMS','tools/cloud/score.py','tools/cloud/owndata.py'):
+        changed.setdefault('protected_inputs_sha256', {})[key]='0'*64
+    assert proof.portable_receipt(changed)==proof.portable_receipt(saved)
+    changed['objects'][proof.NAME]['body_sha256']='0'*64
+    assert proof.portable_receipt(changed)!=proof.portable_receipt(saved)

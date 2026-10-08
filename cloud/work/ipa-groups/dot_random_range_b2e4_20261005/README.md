@@ -1,5 +1,17 @@
 # Source-backed range RNG: strict match
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
 New candidate: `func_8008B2E4`, **[0x8008B2E4, 0x8008B32C), 72 bytes / 18 words**.
 The complete function is a strict MATCH in a genuine two-body O3 unit. Its
 unchanged accepted `func_8008B2B4` rand implementation also remains exact.
@@ -111,3 +123,21 @@ packet checks plus scorer, submission, protected-path, target-integrity and setu
 tests. Both documented scorer sanity examples pass. Independent review, full-game
 shadow, image, compression, ROM gates and merging remain with the independent
 checker.
+
+
+## Integration-portable replay (2026-10-06)
+
+Production context and lock facts are historical evidence at the receipt's stated
+base commit, read through `git show BASE:path` when used. Later source splices or
+lock additions do not change those historical facts. Whole manifests and tool or
+accepted-context digests are provenance, excluded by explicit field/path lists
+from portable proof equality. Packet source/verifier bindings, selected native
+words, complete extents, relocations, owned data and bounded behavior remain
+binding. Tests are not hashed into the receipt. Compiler-dependent tests skip
+when pinned IDO or the MIPS GNU linker is absent; source/native-only checks run.
+
+The claimed source's bare O3 header and `group.json` use
+`-g0 -O3 -mips2 -G 0 -non_shared`. The copied unclaimed `rand.c` keeps its inherited
+O2 comment for ancestry fidelity; the group O3 recipe is authoritative for this
+packet's actual compilation. Real rand/range context is required in the same
+unit. No deleted-static stand-in is added or claimed.

@@ -24,6 +24,7 @@ from tools.cloud import score
 PACKET = Path(__file__).resolve().parent
 SOURCE = PACKET / 'candidate.c'
 NAME, ADDRESS, SIZE = 'func_8039244C', 0x8039244C, 380
+CONTEXT_BASE = 'cd22879d40b3de443cfde047b86e75e159b6cec6'
 FLAGS = '-g0 -O2 -mips2 -G 0 -non_shared'
 SYMBOLS = {'D_80395ED4': 0x80395ED4, 'D_80151AD0': 0x80151AD0,
            'D_803950C0': 0x803950C0, 'D_80395C00': 0x80395C00,
@@ -43,6 +44,28 @@ RELOCS = [(8, 5, 'D_80395ED4'), (12, 6, 'D_80395ED4'),
 BASE, END, COUNT, SP, RETURN = 0x803950C0, 0x80395ED8, 0x80151AD0, 0x70001000, 0x60000000
 U32 = 0xffffffff
 COUNTS = [-32768, -1, 0, 1, 2, 3, 4]
+
+
+
+def portable_receipt(receipt):
+    """Compare packet proof; base-context and whole-tree digests are provenance."""
+    result = json.loads(json.dumps(receipt))
+    for path in (
+        'asm/us/blob/SHA256SUMS',
+        'asm/us/blob/blob_8008d0c0.s',
+        'asm/us/blob/blob_800aeb54.s',
+        'asm/us/blob/symbols.json',
+        'asm/us/ovl_b/SHA256SUMS',
+        'asm/us/ovl_b/extents.json',
+        'asm/us/ovl_b/ovl_b_8038a400.s',
+        'asm/us/ovl_b/symbols.json',
+        'blob_matched.lock.json',
+        'src/blob/sound_call_minimal.c',
+        'tools/cloud/owndata.py',
+        'tools/cloud/score.py',
+    ):
+        result.get('inputs_sha256', {}).pop(path, None)
+    return result
 
 
 def check(condition, message='verification failed'):
@@ -371,8 +394,10 @@ def _prove():
         helper = extract_target('blob_8008d0c0.s', 'sound_call_minimal')
         release = extract_target('blob_800aeb54.s', 'sound_stop')
         check(len(helper) * 4 == 48 and len(release) * 4 == 160, 'helper extent')
-        helper_source = ROOT / 'src/blob/sound_call_minimal.c'
-        locks = json.loads((ROOT / 'blob_matched.lock.json').read_text())
+        helper_path = 'src/blob/sound_call_minimal.c'
+        helper_source = tmp / 'sound_call_minimal.c'
+        helper_source.write_bytes(subprocess.check_output(['git', '-C', str(ROOT), 'show', CONTEXT_BASE + ':' + helper_path]))
+        locks = json.loads(subprocess.check_output(['git', '-C', str(ROOT), 'show', CONTEXT_BASE + ':blob_matched.lock.json']))
         lock = locks['sound_call_minimal']
         # Lock hashes are normalized by the production system, so raw file hash
         # is retained separately. The existing source is compiled unchanged.
@@ -383,8 +408,19 @@ def _prove():
         raw_words = score.text_words(helper_obj)
         rw, masks, unresolved, unverified, errors = score.relocate(helper_obj, raw_words, 0, 48, symbols)
         check(not any([masks, unresolved, unverified, errors]) and rw[:12] == helper and all(w == 0 for w in rw[12:]), 'accepted helper reproduction')
-        inputs = [SOURCE, PACKET / 'verify.py', PACKET / 'host_test.c', ROOT / 'tools/cloud/score.py', ROOT / 'tools/cloud/owndata.py', ROOT / 'asm/us/ovl_b/SHA256SUMS', ROOT / 'asm/us/ovl_b/extents.json', ROOT / 'asm/us/ovl_b/symbols.json', ROOT / 'asm/us/ovl_b/ovl_b_8038a400.s', ROOT / 'asm/us/blob/SHA256SUMS', ROOT / 'asm/us/blob/symbols.json', ROOT / 'asm/us/blob/blob_8008d0c0.s', ROOT / 'asm/us/blob/blob_800aeb54.s', helper_source, ROOT / 'blob_matched.lock.json']
-        return {'status': 'NONMATCH', 'image': 'B', 'address': hex(ADDRESS), 'bytes': SIZE, 'flags': FLAGS + ' -Wab,-r4300_mul', 'accepted_bytes': 0, 'elf': elf, 'optimization_controls': controls, 'behavior': {'fixtures': total, 'native_project_gnu_executions': total * 3, 'host_fixtures': total, 'instruction_offsets_covered': [len(x) for x in covered], 'branch_outcomes_covered': [len(x) for x in branches], 'full_memory_and_helper_entry_snapshots': True, 'o32_caller_clobbers_and_saved_registers': True, 'native_negative_controls': negatives, 'compiled_host_mutants_rejected': sorted(mutants)}, 'boundaries': {'sound_call_minimal_native_bytes': 48, 'sound_call_minimal_source_recompiled_equal': True, 'sound_stop_native_bytes': 160, 'sound_stop_has_no_accepted_source': True, 'helper_bodies_execute_in_behavior_tests': False}, 'inputs_sha256': {str(p.relative_to(ROOT)): sha(p) for p in inputs}}
+        helper_native = {}
+        previous_asm = score.ASM_DIR
+        try:
+            score.ASM_DIR = ROOT / 'asm/us/blob'
+            targets = score.targets()
+            for name, body in [('sound_call_minimal', helper), ('sound_stop', release)]:
+                check(targets[name] == body and symbols[name] == SYMBOLS[name], 'helper native binding')
+                helper_native[name] = {'address': hex(symbols[name]), 'bytes': len(body) * 4,
+                    'sha256': hashlib.sha256(struct.pack('>%dI' % len(body), *body)).hexdigest()}
+        finally:
+            score.ASM_DIR = previous_asm
+        inputs = [SOURCE, PACKET / 'verify.py', PACKET / 'host_test.c']
+        return {'base': CONTEXT_BASE, 'helper_native_bindings': helper_native, 'status': 'NONMATCH', 'image': 'B', 'address': hex(ADDRESS), 'bytes': SIZE, 'flags': FLAGS + ' -Wab,-r4300_mul', 'accepted_bytes': 0, 'elf': elf, 'optimization_controls': controls, 'behavior': {'fixtures': total, 'native_project_gnu_executions': total * 3, 'host_fixtures': total, 'instruction_offsets_covered': [len(x) for x in covered], 'branch_outcomes_covered': [len(x) for x in branches], 'full_memory_and_helper_entry_snapshots': True, 'o32_caller_clobbers_and_saved_registers': True, 'native_negative_controls': negatives, 'compiled_host_mutants_rejected': sorted(mutants)}, 'boundaries': {'sound_call_minimal_native_bytes': 48, 'sound_call_minimal_source_recompiled_equal': True, 'sound_stop_native_bytes': 160, 'sound_stop_has_no_accepted_source': True, 'helper_bodies_execute_in_behavior_tests': False}, 'inputs_sha256': {str(p.relative_to(ROOT)): sha(p) for p in inputs}}
 
 
 def tool_provenance():

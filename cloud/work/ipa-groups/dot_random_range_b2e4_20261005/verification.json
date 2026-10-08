@@ -18,7 +18,6 @@
     "rand.c": "4d7d62f78adb32386a21ce11790ee88054be058b7f08bfc6214ff68011a3628b",
     "group.json": "8f44bcb11023e54aa2d67998243dfb06624951524c25d5c94f07ed59cc76bbe1"
   },
-  "target_manifest_sha256": "dade78464a022fedd2c5ba651ee1bca5ffd4ec99bfa4d2413d27256540bed02c",
   "object": {
     "differing": 0,
     "total": 18,
@@ -48,6 +47,10 @@
     "full_extent_equal": true,
     "all_relocations_resolved": true,
     "relocated_body_sha256": "fed3efb3a551d286be3bcf5cb50bd0b46fb94f874f1773499a50d4094da77e67"
+  },
+  "selected_native_body_sha256": {
+    "func_8008B2E4": "ba9c8043ae09ad367b6cfc05f8cecf7258c9f6b4ba74f877755617abfd558095",
+    "func_8008B2B4": "fed3efb3a551d286be3bcf5cb50bd0b46fb94f874f1773499a50d4094da77e67"
   },
   "relocations": [
     {
@@ -188,13 +191,8 @@
     "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
     "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
   },
-  "tools_sha256": {
-    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
-    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
-    "tools/conveyor/pipeline/blob_group.py": "340e24d21c67e1c0c8ab3711614492e9ac0b98d81d3d13221996d234b4a39e1a"
-  },
   "packet_sha256": {
-    "verify.py": "df949adca71d3f08010bca539d1561d236fb29c84a7ef90a68c1b1d11b37a5e7",
+    "verify.py": "3df8a1a6455dfceb16e833998b9d8acfdbbd0c448b066ab8bb8ac10d1c9793f0",
     "verify_semantics.py": "da983e763f345edc580c19e053af9e3f50a3ede864a27d60b591bdecf031d71c",
     "semantic_test.c": "e8b9bc325d18b78c5e96ed04fd96d64b622c87f30d144de927e03fc9cb9d401b",
     "claim.json": "d1528696d249492b6ce415f6882e6ac23211a963bd2953d326a988cd65881d18"

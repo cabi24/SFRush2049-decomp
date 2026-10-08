@@ -1,4 +1,5 @@
 {
+  "base_commit": "e24b47d89a0c8ffade1e4c75ad76b9d390a1c232",
   "status": "NONMATCH",
   "claims": [],
   "accepted_byte_gain": 0,
@@ -1775,12 +1776,7 @@
         "context_literal_sha256": "fdccad0b4acccd3e8dcf06db120dd6b23f4573dd96b434af2fb919836a3615d4"
       }
     },
-    "source_sha256": "bd2b6a5911f017b13f46985f7f5446b25c20c6c5ec8eeb0122bc12a0e63b6340",
-    "context_source_sha256": {
-      "src/blob/func_80090284.c": "fd914a7ab60a0bfd4bde8b3cc8765482cc01529a454437f6406ce428aeb76e91",
-      "src/blob/vector_normalize_length.c": "deb2f02cbc046c7f9be0b30a058cec7af8109c4d73d579902455b9b372dca264",
-      "src/blob/math_utility.c": "ae72a0b474c5cadfdd021f84e2298e42650d093fe915164a06dba350a5a7732a"
-    }
+    "source_sha256": "bd2b6a5911f017b13f46985f7f5446b25c20c6c5ec8eeb0122bc12a0e63b6340"
   },
   "behavior": {
     "conditional_branch_outcomes": 16,
@@ -2047,8 +2043,7 @@
     "legacy_array12": {
       "exit_code": 1,
       "stack_buffer_overflow_rejected": true
-    },
-    "accepted_writer_source_sha256": "deb2f02cbc046c7f9be0b30a058cec7af8109c4d73d579902455b9b372dca264"
+    }
   },
   "caller_audit": {
     "direct_calls": [],
@@ -2064,7 +2059,7 @@
     "candidate.c": "bd2b6a5911f017b13f46985f7f5446b25c20c6c5ec8eeb0122bc12a0e63b6340",
     "host.c": "f71f9574ccb7a5ea5ea56c5d3f5231db62a9b4f066a39f92375e29e58a16c74c",
     "native.py": "dccfac67477c9c9fb9365562e2d725a8089e2e2c2d47a143b15cff2eb4624936",
-    "verify.py": "50ae33a2701b413aee36742300edb388995f1e1ca61ca80d11fef6da4059ee25"
+    "verify.py": "6b43af2b3b73b9946e3af2275fbe865ccebd0f2348b0f853301223a6ab76ffd4"
   },
   "toolchain_sha256": {
     "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",

@@ -11,6 +11,14 @@ ENTRY,END=0x803A4340,0x803A44EC
 COUNT,MODE,FLAGS,TABLES,NAME,MENU=0x8014A108,0x8014A110,0x803BA028,0x80140BDC,0x803B85E8,0x8017A4E0
 TEX,IDX,TEXT,TOK=0x80400000,0x80401000,0x80420000,0x80500000
 CALLS={0x800B65B4:(1,1),0x800B42F0:(2,1),0x800B74A0:(3,1),0x800B24EC:(4,5),0x800B3F50:(5,0),0x800B71D4:(6,3)}
+
+def portable_receipt(receipt):
+    result = json.loads(json.dumps(receipt))
+    for key in ('manifest', 'helper_protected_manifest'):
+        result.pop(key, None)
+    return result
+
+
 def sha(b): return hashlib.sha256(b).hexdigest()
 def shell(*args): return subprocess.check_output([str(x) for x in args],stderr=subprocess.STDOUT).decode()
 def verify_manifest(folder):
@@ -229,14 +237,13 @@ def main():
         assert all(linked['symbols'][n]['value']==v and linked['symbols'][n]['section']==0xfff1 for n,v in bindings.items())
         assert not any(s[5] for n,s in linked['sections'].items() if s[2]&2 and n not in ('.text','.reginfo'))
     expected_linked_text=linked['text'];validate_linked(linked)
-    result=dict(status='NONMATCH',source_sha256=source_sha,native_sha256=sha(native),gnu_linked_body_sha256=sha(linked['text'][:428]),manifest=manifest,full_extent_bytes=428,whole_text_bytes=432,zero_padding_bytes=4,all_relocations=obj['relocs'],bindings={n:hex(v) for n,v in bindings.items()},distinct_image=True,owned_data_bytes=0,whole_linked_elf_match=False,residual=diffs)
+    result=dict(status='NONMATCH',source_sha256=source_sha,native_sha256=sha(native),gnu_linked_body_sha256=sha(linked['text'][:428]),full_extent_bytes=428,whole_text_bytes=432,zero_padding_bytes=4,all_relocations=obj['relocs'],bindings={n:hex(v) for n,v in bindings.items()},distinct_image=True,owned_data_bytes=0,whole_linked_elf_match=False,residual=diffs)
     helpers={}
     for name in ('render_helper','object_create','dispatch_handler','func_800B24EC','object_bytes_sum_global','state_utility','sound_update_channel','func_80096288'):
         body=target(repo/'asm/us/blob',name)
         helper_symbols=json.loads((repo/'asm/us/blob/symbols.json').read_text())['symbols']
         helpers[name]={'address':helper_symbols[name],'bytes':len(body),'sha256':sha(body)}
     result['helper_native_body_bindings']=helpers
-    result['helper_protected_manifest']=game_manifest
     result['layout']='32-bit pointers; 36-byte Texture; offsets Texture.height=18, MenuIndices.first=26, MenuData.indices=12, MenuData.text=16'
     result['elf32_big_endian_mips2']=True
     layout='#include "'+str(SOURCE)+'"\n'+'typedef char ptr32[sizeof(void*)==4?1:-1];\n'
@@ -315,7 +322,7 @@ def main():
     assert sha(SOURCE.read_bytes())==source_sha
     result['reviewer_script_sha256']=sha((HERE/'verify.py').read_bytes());result['reviewer_host_sha256']=sha((HERE/'host.c').read_bytes())
     result=json.loads(json.dumps(result))
-    if options.check: assert result==json.loads(options.out.read_text()),'Independent frozen receipt differs'
+    if options.check: assert portable_receipt(result)==portable_receipt(json.loads(options.out.read_text())),'Independent frozen receipt differs'
     else: options.out.write_text(json.dumps(result,indent=2)+'\n')
     (OUT/'local_provenance.json').write_text(json.dumps({'object_sha256':sha((OUT/'candidate.o').read_bytes()),'elf_sha256':sha((OUT/'whole.elf').read_bytes()),'gcc':shell('gcc','--version').splitlines()[0],'gnu_ld':shell('mips-linux-gnu-ld','--version').splitlines()[0]},indent=2)+'\n')
     print(json.dumps({k:result[k] for k in ('status','source_sha256','native_sha256','residual','behavior','wrong_source_controls')},indent=2))

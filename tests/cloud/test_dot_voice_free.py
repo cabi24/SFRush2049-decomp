@@ -3,6 +3,7 @@ import hashlib
 import importlib.util
 import json
 import os
+import shutil
 from pathlib import Path
 import subprocess
 import sys
@@ -59,7 +60,8 @@ def test_current_accepted_context_and_census():
         'func_8001EE9C': 240, 'func_8001F9D0': 72, 'func_80021BC0': 48}
     for row in record['accepted_context']:
         assert row['comparison']['differing'] == 0
-        assert len(row['current_normalized_lock_body_sha256']) == 64
+        assert 'current_normalized_lock_body_sha256' not in row
+        assert 'source_sha256' not in row
         assert row['gnu_linked_body_sha256'] == row['native_sha256']
     assert record['direct_boot_tail_callers'] == {'func_8001F954': [92], 'func_8001F9D0': [48],
                                                 'func_80021BC0': [20], 'func_80023E9C': [512]}
@@ -137,10 +139,10 @@ def test_stale_source_rejected_before_compilation():
 
 def test_complete_portable_replay(tmp_path):
     ido = Path(os.environ.get('IDO_DIR', ROOT / 'tools/cloud/ido'))
-    if not (ido / 'cc').is_file():
+    if not (ido / 'cc').is_file() or not shutil.which('mips-linux-gnu-ld'):
         if os.environ.get('REQUIRE_TOOLCHAIN'):
             pytest.fail('REQUIRE_TOOLCHAIN set but IDO is unavailable')
-        pytest.skip('IDO toolchain unavailable')
+        pytest.skip('pinned IDO and MIPS GNU linker required')
     unrelated = tmp_path / 'unrelated directory with spaces'
     unrelated.mkdir()
     subprocess.run([sys.executable, str(PACKET / 'verify.py'), '--check'], cwd=unrelated,

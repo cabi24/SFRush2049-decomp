@@ -1,0 +1,77 @@
+{
+  "accepted_byte_gain": 0,
+  "behavior": {
+    "conditional_branches_both_outcomes": 9,
+    "fixtures": 4159,
+    "host_c89_ubsan_bounds_cases": 4159,
+    "legacy_caller_cases": 395264,
+    "legacy_helper_cases": 23094,
+    "native_and_gnu_executions": 8318,
+    "native_negative_controls_rejected": 3,
+    "native_offsets_executed": 108,
+    "uncovered_offsets": [],
+    "wrong_source_mutants_rejected": 5
+  },
+  "caller_context": {
+    "comparison_base_commit": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+    "differing_words": 64,
+    "errors": [],
+    "extra_words": 1,
+    "native_words": 183,
+    "result": "NONMATCH",
+    "unresolved": [],
+    "unverified": []
+  },
+  "compiled_sha256": "227875473ba637eb83a188e4864731897968035c9e00d6a0366ef2202cee9e4c",
+  "context": {
+    "base_commit": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+    "complete_source_unchanged_except_header_comment": true,
+    "source": "cloud/work/frontier/dot_route_tracker/group.c"
+  },
+  "elf_function_bytes": {
+    "audio_mixer_main": 736,
+    "audio_priority_find": 432
+  },
+  "external_bindings": 7,
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "gnu_full_target_equal": true,
+  "gnu_whole_object_relocations_equal": true,
+  "mandatory_backend_flag": "-r4300_mul",
+  "native_bytes": 432,
+  "native_direct_calls": [
+    {
+      "address": "0x800ba8a8",
+      "caller": "audio_mixer_main"
+    },
+    {
+      "address": "0x800ba944",
+      "caller": "audio_mixer_main"
+    }
+  ],
+  "native_end": "0x800ba61c",
+  "native_sha256": "227875473ba637eb83a188e4864731897968035c9e00d6a0366ef2202cee9e4c",
+  "native_start": "0x800ba46c",
+  "own_files": {
+    "cloud/matches/dot_route_crossing_20261006/group.c": "6cf995f0fbd25fc72c1ab749d7223f758a1699e791464e310ff14f85d3329167",
+    "cloud/matches/dot_route_crossing_20261006/group.json": "6b11bbbc1481f2c8f2e20d8e578a38ffa57b648897354e6d1af5bdaaf6ca86fd",
+    "cloud/work/frontier/dot_route_crossing_20261006/host.c": "2a2743a6329505f15243c05a83af35d467163866f12c99b211f255191aff54ef",
+    "cloud/work/frontier/dot_route_crossing_20261006/legacy_host.c": "4ae1e2a85b499e37fce8a1fe71ec53c91816583f2ca41421958a9c333a00b431",
+    "cloud/work/frontier/dot_route_crossing_20261006/verify.py": "96b673ddbd4d0f66dd72991c8f4354eae5e0a785134acf3a5979c4dd655334d7"
+  },
+  "owned_data_bytes": 0,
+  "result": "MATCH",
+  "rom_coverage_gain": 0,
+  "schema": 1,
+  "status": "revived verified submission; no new discovery",
+  "target": "audio_priority_find",
+  "target_relocation_offsets": [
+    "0xc",
+    "0x10",
+    "0x78",
+    "0x7c"
+  ],
+  "target_relocations": 4,
+  "text_bytes": 1168,
+  "whole_object_relocations": 23,
+  "zero_alignment_bytes": 0
+}

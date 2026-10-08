@@ -1,0 +1,815 @@
+{
+  "status": "INDEPENDENT PRIVATE-BODY EQUALITY VERIFIED; RESEARCH ONLY; ZERO ACCEPTED COVERAGE",
+  "timestamp_utc": "2026-10-06T05:44:41.749925+00:00",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "scope": "Read-only existing-artifact audit. No compiler, linker, scorer edits, source edits, object edits, active packet/matrix edits, or publication.",
+  "hashes": {
+    "source": "fc80a9075c6357b1833bc53b7810f8a4ee2c2f874e1bc8ba03f47fcb10e32d95",
+    "schema": "cea0a07408c834c1a602fef3f62aad1735728e9691340fa8659e86e2d10adb4c",
+    "group": "eba5faebf8d8e3748f5840b593ede2986e496e528f6aa53ecfb76ee11506b94b",
+    "object": "a298c26fab7559c4f51030dfb613bcc0729dd8c8889f599640cc9d67dd924f13",
+    "linked": "f96391a78a196c39b0829020365eb39f668cb28653a51a31715959001c70c665",
+    "assembly_receipt": "10021c9c82055f12993080a3a3a7673915e21b0e28e62d4883779b34bced8e60",
+    "build_receipt": "e67868b3bbd957a1214782d987865043d53a40772d52ef0dccf581ce2faec4f4",
+    "boundaries_receipt": "4b49489910e43c707139a85b05e07992a9a637a0f2816382bfbf43494e55a28f"
+  },
+  "independent_metadata": {
+    "format": "ELF32 big-endian MIPS; direct struct decoding; independent of receipt parser and scorer ELF parser",
+    "mdebug_magic": "0x7009",
+    "file_descriptors": 1,
+    "symbols": 22,
+    "procedures": 8,
+    "d328": {
+      "offset": 264,
+      "size": 124,
+      "kind": "stStaticProc",
+      "symbol_index": 3,
+      "end_symbol_index": 4,
+      "aux_end_exclusive": 5,
+      "pdr_index": 1,
+      "frame_bytes": 24,
+      "integer_save_mask": "0x80000000",
+      "float_save_mask": "0x0",
+      "frame_register": 29,
+      "return_register": 31,
+      "source_lines": [
+        269,
+        279
+      ]
+    },
+    "all_procedures": {
+      "func_8038D200": {
+        "offset": 0,
+        "size": 264,
+        "kind": "stStaticProc",
+        "symbol_index": 1,
+        "end_symbol_index": 2,
+        "aux_end_exclusive": 3,
+        "pdr_index": 0,
+        "frame_bytes": 24,
+        "integer_save_mask": "0x80000000",
+        "float_save_mask": "0x0",
+        "frame_register": 29,
+        "return_register": 31,
+        "source_lines": [
+          232,
+          264
+        ]
+      },
+      "func_8038D328": {
+        "offset": 264,
+        "size": 124,
+        "kind": "stStaticProc",
+        "symbol_index": 3,
+        "end_symbol_index": 4,
+        "aux_end_exclusive": 5,
+        "pdr_index": 1,
+        "frame_bytes": 24,
+        "integer_save_mask": "0x80000000",
+        "float_save_mask": "0x0",
+        "frame_register": 29,
+        "return_register": 31,
+        "source_lines": [
+          269,
+          279
+        ]
+      },
+      "func_8038D498": {
+        "offset": 1284,
+        "size": 804,
+        "kind": "stStaticProc",
+        "symbol_index": 5,
+        "end_symbol_index": 6,
+        "aux_end_exclusive": 7,
+        "pdr_index": 2,
+        "frame_bytes": 128,
+        "integer_save_mask": "0x80000000",
+        "float_save_mask": "0x0",
+        "frame_register": 29,
+        "return_register": 31,
+        "source_lines": [
+          284,
+          337
+        ]
+      },
+      "func_8038DA78": {
+        "offset": 388,
+        "size": 896,
+        "kind": "stStaticProc",
+        "symbol_index": 7,
+        "end_symbol_index": 8,
+        "aux_end_exclusive": 9,
+        "pdr_index": 3,
+        "frame_bytes": 152,
+        "integer_save_mask": "0x80000000",
+        "float_save_mask": "0x0",
+        "frame_register": 29,
+        "return_register": 31,
+        "source_lines": [
+          341,
+          392
+        ]
+      },
+      "func_8038E088": {
+        "offset": 2088,
+        "size": 120,
+        "kind": "stStaticProc",
+        "symbol_index": 9,
+        "end_symbol_index": 10,
+        "aux_end_exclusive": 11,
+        "pdr_index": 4,
+        "frame_bytes": 24,
+        "integer_save_mask": "0x80000000",
+        "float_save_mask": "0x0",
+        "frame_register": 29,
+        "return_register": 31,
+        "source_lines": [
+          397,
+          417
+        ]
+      },
+      "func_8038E114": {
+        "offset": 2208,
+        "size": 5356,
+        "kind": "stStaticProc",
+        "symbol_index": 11,
+        "end_symbol_index": 16,
+        "aux_end_exclusive": 17,
+        "pdr_index": 5,
+        "frame_bytes": 272,
+        "integer_save_mask": "0x80000000",
+        "float_save_mask": "0x0",
+        "frame_register": 29,
+        "return_register": 31,
+        "source_lines": [
+          421,
+          741
+        ]
+      },
+      "func_8038F938": {
+        "offset": 7564,
+        "size": 964,
+        "kind": "stStaticProc",
+        "symbol_index": 17,
+        "end_symbol_index": 18,
+        "aux_end_exclusive": 19,
+        "pdr_index": 6,
+        "frame_bytes": 56,
+        "integer_save_mask": "0x80000000",
+        "float_save_mask": "0x0",
+        "frame_register": 29,
+        "return_register": 31,
+        "source_lines": [
+          746,
+          829
+        ]
+      },
+      "func_8038FCE0": {
+        "offset": 8528,
+        "size": 3060,
+        "kind": "stProc",
+        "symbol_index": 19,
+        "end_symbol_index": 20,
+        "aux_end_exclusive": 21,
+        "pdr_index": 7,
+        "frame_bytes": 208,
+        "integer_save_mask": "0xc0ff0000",
+        "float_save_mask": "0xfff00000",
+        "frame_register": 29,
+        "return_register": 31,
+        "source_lines": [
+          833,
+          1066
+        ]
+      }
+    },
+    "text_bytes": 11600,
+    "procedure_bytes": 11588,
+    "unclaimed_alignment_bytes": 12,
+    "unclaimed_bytes_all_zero": true,
+    "references": [
+      "https://gnu.googlesource.com/binutils-gdb/+/refs/heads/master/include/coff/mips.h",
+      "https://gnu.googlesource.com/binutils-gdb/+/37f7f684de0e53c8add5ff43d73082bf98985321/include/coff/symconst.h"
+    ]
+  },
+  "source_audit": {
+    "group": {
+      "files": [
+        "closure.c"
+      ],
+      "keep": [
+        "func_8038FCE0"
+      ],
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+    },
+    "schema_embedded_exactly": true,
+    "complete_definitions": 8,
+    "sole_nonstatic": "func_8038FCE0",
+    "source_order": [
+      "func_8038D200",
+      "func_8038D328",
+      "func_8038D498",
+      "func_8038DA78",
+      "func_8038E088",
+      "func_8038E114",
+      "func_8038F938",
+      "func_8038FCE0"
+    ],
+    "all_complete_body_transformations": [
+      {
+        "member": "func_8038D200",
+        "full_body_verified": true,
+        "original_sha256": "1b2b688121c11d09d05a54fcd39d703a5612d7bee09c3b7bb7d96e21a55d1c01",
+        "combined_body_sha256": "ff264dd88f3ebb3d6232156bfabeee75696c597475ea088d046e6981c4358390",
+        "static": true,
+        "documented_replacements": []
+      },
+      {
+        "member": "func_8038D328",
+        "full_body_verified": true,
+        "original_sha256": "03a46d35fe9d77a934b183a23f126a2274760cdf93f68062634a45434ed94493",
+        "combined_body_sha256": "289e68529eb0aa8e534bcaea5b50fcdb335d8a4863ed279d9ae69c80487d358d",
+        "static": true,
+        "documented_replacements": []
+      },
+      {
+        "member": "func_8038D498",
+        "full_body_verified": true,
+        "original_sha256": "31b2b8c4823891867804ba63c9ba771cbc8064bc2761aa678df01f06655619f2",
+        "combined_body_sha256": "620dac61b66107ebf9fcfb8f7e599c778ef0d05301b19c30be4e78a4c6d7350f",
+        "static": true,
+        "documented_replacements": []
+      },
+      {
+        "member": "func_8038DA78",
+        "full_body_verified": true,
+        "original_sha256": "f2f4c7423398fba86bb8aa017c127b78abb8cb4cda82eed7e1fb7c10a29b58bb",
+        "combined_body_sha256": "c71725f49ee4d39d8dabc30487523cfd881cd5b6e98d0be7abb1b2ddaecbf7b7",
+        "static": true,
+        "documented_replacements": [
+          {
+            "before": "record->radius",
+            "after": "record->collision_extent",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "member": "func_8038E088",
+        "full_body_verified": true,
+        "original_sha256": "498396ad1781d950c0cdc6696b110e5ce68d028932ba591a452d4ddc59621781",
+        "combined_body_sha256": "2860c67c32780e5c9301cb93ffec7278ac1f22638547e95878c08c4a12d5c7ef",
+        "static": true,
+        "documented_replacements": [
+          {
+            "before": "sound_call_minimal",
+            "after": "func_80090254",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "member": "func_8038E114",
+        "full_body_verified": true,
+        "original_sha256": "66ffa789b9d023c23fe089f9873a22f4bb6b17e2c5900d5e68da94038d12b267",
+        "combined_body_sha256": "26eafbf7a30bbf13852325f5c20f9876259f9ec64c8ddd53c57443703782e52b",
+        "static": true,
+        "documented_replacements": [
+          {
+            "before": "func_800B24EC(D_80394D08, &D_80394F88,",
+            "after": "func_800B24EC((char *)D_80394D08, (s16 *)&D_80394F88,",
+            "count": 1
+          },
+          {
+            "before": "private_D200",
+            "after": "func_8038D200",
+            "count": 7
+          },
+          {
+            "before": "private_D328",
+            "after": "func_8038D328",
+            "count": 8
+          },
+          {
+            "before": "private_D498",
+            "after": "func_8038D498",
+            "count": 1
+          },
+          {
+            "before": "private_DA78",
+            "after": "func_8038DA78",
+            "count": 2
+          },
+          {
+            "before": "private_E088",
+            "after": "func_8038E088",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "member": "func_8038F938",
+        "full_body_verified": true,
+        "original_sha256": "12db9f98b00cab1f9a7dbf6df6e1141f88b1c5a93ebdfb933f0244321a03ce0d",
+        "combined_body_sha256": "0e49a44d5680cefc9472dbb4daf5d7d17bbf4d48997121be18626203b0f3d07e",
+        "static": true,
+        "documented_replacements": [
+          {
+            "before": "BEffect *effect;",
+            "after": "BStatusEffect *effect;",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "member": "func_8038FCE0",
+        "full_body_verified": true,
+        "original_sha256": "6b583bf765e54e8d2c3671855c581b99aded993336ada075efb67ffbee2ba30e",
+        "combined_body_sha256": "fb15fa76b2fd07b342ed1d8ab2b301ae48e49ed4b61c3e03e164b091856c3159",
+        "static": false,
+        "documented_replacements": [
+          {
+            "before": "record->unknown05",
+            "after": "record->hit_mask",
+            "count": 1
+          },
+          {
+            "before": "record->elapsed",
+            "after": "record->collision_extent",
+            "count": 7
+          },
+          {
+            "before": "release->handle",
+            "after": "(s16 *)release->quad",
+            "count": 1
+          },
+          {
+            "before": "private_E114",
+            "after": "func_8038E114",
+            "count": 1
+          },
+          {
+            "before": "private_F938",
+            "after": "func_8038F938",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "d328_unchanged_except_static": true,
+    "unrequested_asm_register_noinline_attributes": false,
+    "one_compile_claim": "Existing receipt reports one group invocation; this auditor performed zero compiles and did not independently witness that invocation.",
+    "full_original_source_snapshot_hashes": [
+      {
+        "path": "/workspace/scratch/e1dc04a487a3/runtime-b-fce0-root/cloud/work/runtime_b_fce0_root_20261006/root.c",
+        "sha256": "271319e2a99f2789edbaccdd72d77ce8f1a98bafd340d240f4e516677b68f2eb",
+        "members": [
+          "FCE0"
+        ],
+        "matches_inventory": true
+      },
+      {
+        "path": "/workspace/scratch/e1dc04a487a3/runtime-b-e114-update/cloud/work/runtime_b_e114_update_20261006/update.c",
+        "sha256": "008bee13f32c4fa2cad7814a989c0a288852bfa80a0df3b349fb509b4c41636e",
+        "members": [
+          "E114"
+        ],
+        "matches_inventory": true
+      },
+      {
+        "path": "/workspace/scratch/e1dc04a487a3/runtime-b-f938-setup/cloud/work/runtime_b_f938_setup_20261006/setup.c",
+        "sha256": "6adc81a630a1f81adf65ecdb55f97926c9c6d46599d43d3c4c0c519e837b78dc",
+        "members": [
+          "F938"
+        ],
+        "matches_inventory": true
+      },
+      {
+        "path": "/workspace/scratch/e1dc04a487a3/runtime-b-da78-position/cloud/work/runtime_b_da78_position_20261006/position.c",
+        "sha256": "70dd8342bd122f25709bb6aac7918ca7c7761e7075c76b6796e8740807e307f2",
+        "members": [
+          "DA78"
+        ],
+        "matches_inventory": true
+      },
+      {
+        "path": "/workspace/scratch/e1dc04a487a3/runtime-b-d498-visual/cloud/work/runtime_b_d498_visual_20261006/visual.c",
+        "sha256": "f97e37fdbb701210bda355121ce988bd146eb274475645c827c3431e64a2bcea",
+        "members": [
+          "D498"
+        ],
+        "matches_inventory": true
+      },
+      {
+        "path": "/workspace/scratch/e1dc04a487a3/runtime-b-e114-parent/cloud/work/runtime_b_e114_parent_20261006/children.c",
+        "sha256": "2dc2612d12962195b09ef7726a7479c150ece5d6acc6fec3244fe1572e758009",
+        "members": [
+          "D200",
+          "D328",
+          "E088"
+        ],
+        "matches_inventory": true
+      }
+    ],
+    "canonical_compile_group_route_verified_by_reading": "Copies genuine input; cc -j with group flags; uld -kp sole FCE0; usplit/umerge/uopt/ugen -O3 pipeline; as1 -r4300_mul. Historical compile was not rerun."
+  },
+  "native_authentication": {
+    "asset_path": "assets/us/data.bin",
+    "asset_sha256": "f06d4ad0bb7dc7aff494acddc736f1b56bc271a2292c0286879cc9189bec31c8",
+    "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+    "image_address": "0x8038a400",
+    "image_bytes": 43888,
+    "image_sha256": "b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd",
+    "current_score_py_equals_pinned": true,
+    "current_protected_targets_equals_pinned_asset_for_whole_d328": true,
+    "native_start": "0x8038d328",
+    "native_end": "0x8038d3a4",
+    "next_named_boundary": "func_8038D3A4",
+    "next_boundary_address": "0x8038d3a4"
+  },
+  "comparison": {
+    "bytes": 124,
+    "words": 31,
+    "native_sha256": "5d8fc0875c56105d63e0eaee161b6ec6900d742563b85d047035984fb0fa904a",
+    "linked_sha256": "5d8fc0875c56105d63e0eaee161b6ec6900d742563b85d047035984fb0fa904a",
+    "object_member_sha256": "fdb36cf3871625127249c8bb630469fda35e23d2c18f098a9e1a44155e392f26",
+    "linked_start": "0x81000108",
+    "linked_end": "0x81000184",
+    "compared_every_byte": true,
+    "differing_bytes": 0,
+    "differing_words": 0,
+    "missing_bytes": 0,
+    "extra_bytes": 0,
+    "masks_used": 0,
+    "neighbor_borrowing": false
+  },
+  "relocations": {
+    "d328_count": 9,
+    "d328_sites": [
+      {
+        "object_text_offset": "0x110",
+        "body_offset": "0x8",
+        "type": "R_MIPS_HI16",
+        "symbol": "D_80394F70",
+        "symbol_binding_address": "0x80394f70",
+        "symbol_undefined_in_object": true,
+        "linked_symbol_is_absolute": true,
+        "field_and_unchanged_bits_verified": true
+      },
+      {
+        "object_text_offset": "0x114",
+        "body_offset": "0xc",
+        "type": "R_MIPS_26",
+        "symbol": "func_8008E3C0",
+        "symbol_binding_address": "0x8008e3c0",
+        "symbol_undefined_in_object": true,
+        "linked_symbol_is_absolute": true,
+        "field_and_unchanged_bits_verified": true
+      },
+      {
+        "object_text_offset": "0x118",
+        "body_offset": "0x10",
+        "type": "R_MIPS_LO16",
+        "symbol": "D_80394F70",
+        "symbol_binding_address": "0x80394f70",
+        "symbol_undefined_in_object": true,
+        "linked_symbol_is_absolute": true,
+        "field_and_unchanged_bits_verified": true
+      },
+      {
+        "object_text_offset": "0x128",
+        "body_offset": "0x20",
+        "type": "R_MIPS_HI16",
+        "symbol": "D_80399B18",
+        "symbol_binding_address": "0x80399b18",
+        "symbol_undefined_in_object": true,
+        "linked_symbol_is_absolute": true,
+        "field_and_unchanged_bits_verified": true
+      },
+      {
+        "object_text_offset": "0x130",
+        "body_offset": "0x28",
+        "type": "R_MIPS_LO16",
+        "symbol": "D_80399B18",
+        "symbol_binding_address": "0x80399b18",
+        "symbol_undefined_in_object": true,
+        "linked_symbol_is_absolute": true,
+        "field_and_unchanged_bits_verified": true
+      },
+      {
+        "object_text_offset": "0x13c",
+        "body_offset": "0x34",
+        "type": "R_MIPS_26",
+        "symbol": "func_8008E398",
+        "symbol_binding_address": "0x8008e398",
+        "symbol_undefined_in_object": true,
+        "linked_symbol_is_absolute": true,
+        "field_and_unchanged_bits_verified": true
+      },
+      {
+        "object_text_offset": "0x150",
+        "body_offset": "0x48",
+        "type": "R_MIPS_HI16",
+        "symbol": "D_80399B18",
+        "symbol_binding_address": "0x80399b18",
+        "symbol_undefined_in_object": true,
+        "linked_symbol_is_absolute": true,
+        "field_and_unchanged_bits_verified": true
+      },
+      {
+        "object_text_offset": "0x158",
+        "body_offset": "0x50",
+        "type": "R_MIPS_LO16",
+        "symbol": "D_80399B18",
+        "symbol_binding_address": "0x80399b18",
+        "symbol_undefined_in_object": true,
+        "linked_symbol_is_absolute": true,
+        "field_and_unchanged_bits_verified": true
+      },
+      {
+        "object_text_offset": "0x164",
+        "body_offset": "0x5c",
+        "type": "R_MIPS_26",
+        "symbol": "func_8008E398",
+        "symbol_binding_address": "0x8008e398",
+        "symbol_undefined_in_object": true,
+        "linked_symbol_is_absolute": true,
+        "field_and_unchanged_bits_verified": true
+      }
+    ],
+    "d328_own_data_references": 0,
+    "remaining_linked_relocations": 0,
+    "entire_section_reconstruction_passed": [
+      ".text",
+      ".rodata"
+    ],
+    "whole_object_relocations_checked": 414,
+    "whole_object_relocation_type_counts": {
+      "5": 137,
+      "6": 137,
+      "4": 105,
+      "2": 35
+    },
+    "method": "Independent in-memory ELF REL application with external addresses authenticated by symbol spelling, signed LO16/HI16 pairing, and same-region R_MIPS_26 checks. Reconstructed entire .text/.rodata exactly equals existing linked image; all non-relocated bytes unchanged."
+  },
+  "no_executable_neighbor_borrowing": {
+    "previous_body": "func_8038D200",
+    "previous_end": "0x108",
+    "next_body": "func_8038DA78",
+    "next_start": "0x184",
+    "no_overlap_or_padding_in_comparison": true,
+    "all_branches_remain_in_body": [
+      {
+        "body_offset": "0x14",
+        "destination_body_offset": "0x44"
+      },
+      {
+        "body_offset": "0x3c",
+        "destination_body_offset": "0x68"
+      }
+    ],
+    "external_calls": [
+      {
+        "body_offset": "0xc",
+        "target": "0x8008e3c0"
+      },
+      {
+        "body_offset": "0x34",
+        "target": "0x8008e398"
+      },
+      {
+        "body_offset": "0x5c",
+        "target": "0x8008e398"
+      }
+    ],
+    "returns": [
+      "0x74"
+    ],
+    "emitted_real_caller_sites": [
+      {
+        "caller": "func_8038E114",
+        "object_text_offset": "0xb40",
+        "caller_relative_offset": "0x2a0"
+      },
+      {
+        "caller": "func_8038E114",
+        "object_text_offset": "0xb68",
+        "caller_relative_offset": "0x2c8"
+      },
+      {
+        "caller": "func_8038E114",
+        "object_text_offset": "0x1bd4",
+        "caller_relative_offset": "0x1334"
+      },
+      {
+        "caller": "func_8038E114",
+        "object_text_offset": "0x1c0c",
+        "caller_relative_offset": "0x136c"
+      },
+      {
+        "caller": "func_8038E114",
+        "object_text_offset": "0x1c58",
+        "caller_relative_offset": "0x13b8"
+      },
+      {
+        "caller": "func_8038E114",
+        "object_text_offset": "0x1c90",
+        "caller_relative_offset": "0x13f0"
+      },
+      {
+        "caller": "func_8038E114",
+        "object_text_offset": "0x1cc8",
+        "caller_relative_offset": "0x1428"
+      },
+      {
+        "caller": "func_8038E114",
+        "object_text_offset": "0x1d00",
+        "caller_relative_offset": "0x1460"
+      }
+    ],
+    "private_body_undefined_symbols": [],
+    "all_eight_procedures_emitted": true,
+    "authenticated_native_b_direct_callers": [
+      {
+        "caller": "func_8038E114",
+        "site": "0x8038e3f4",
+        "kind": "jal"
+      },
+      {
+        "caller": "func_8038E114",
+        "site": "0x8038e41c",
+        "kind": "jal"
+      },
+      {
+        "caller": "func_8038E114",
+        "site": "0x8038f3a0",
+        "kind": "jal"
+      },
+      {
+        "caller": "func_8038E114",
+        "site": "0x8038f3d8",
+        "kind": "jal"
+      },
+      {
+        "caller": "func_8038E114",
+        "site": "0x8038f424",
+        "kind": "jal"
+      },
+      {
+        "caller": "func_8038E114",
+        "site": "0x8038f45c",
+        "kind": "jal"
+      },
+      {
+        "caller": "func_8038E114",
+        "site": "0x8038f494",
+        "kind": "jal"
+      },
+      {
+        "caller": "func_8038E114",
+        "site": "0x8038f4cc",
+        "kind": "jal"
+      }
+    ]
+  },
+  "canonical_scorer": {
+    "defined_elf_stt_func": [
+      "func_8038FCE0"
+    ],
+    "d328_by_name_failure": "func_8038D328 is not a defined function in the compiled object",
+    "canonical_admission": false,
+    "accepted_coverage_bytes": 0,
+    "reason": "D328 exists as private ECOFF procedure metadata only; no added ELF function symbol or keeper was manufactured. Supplemental equality does not establish canonical acceptance."
+  },
+  "semantics_review": {
+    "d328": "Complete unchanged C body allocates from object pool, selects resource by full s32 index, chooses null or object+8 transform pointer, passes full parent and flags to E398, stores full return at object+4, returns allocator pointer.",
+    "real_callers": "Eight E114 source callsites consume the returned pointer in primary/secondary record fields. Source indices 1,2,3,4,5,7,8,9. The secondary call consumes primary scene index, flags 0x2080, omit=1; remaining calls omit=0. No result discard or fake pressure caller.",
+    "abi": "ECOFF PDR and full-byte equality establish native-shaped 24-byte ra-only D328. Source formal spelling/order and private visibility remain hypotheses, not recovered original declarations.",
+    "successful_allocation_domain": true,
+    "closure_behavioral_proof": "Separate ongoing semantic audit; not rerun or certified by this metadata/equality audit.",
+    "accepted_e398_void_declaration_verified": {
+      "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+      "path": "src/blob/groups/dot_sign_extend/group.c",
+      "accepted_symbol": "sign_extend_call",
+      "address": "0x8008e398",
+      "alias_source": "symbol_addrs.us.txt",
+      "research_consumes_v0": true
+    }
+  },
+  "limitations": [
+    "Original translation-unit composition, original export list, original source order and exact original signature/formal order remain unproven.",
+    "The seven other emitted bodies remain NONMATCH; this audit makes no combined match or accepted coverage claim.",
+    "Accepted E398 wrapper is declared void, whereas D328 consumes v0 using a return-bearing research declaration. This remains an integration blocker; accepted source/header unchanged.",
+    "Exact research-placement equality for D328 is possible because all its relocations refer to external native-address services/data and all control-flow branches are local. Other members contain internal and owned-data relocations whose placement affects equality.",
+    "D328 dereferences allocation without a null check, so valid semantic domain requires successful object allocation and valid resource/parent inputs.",
+    "Full runtime-B closure semantics and external-service hidden effects are not proved by this static audit.",
+    "Compiler invocation provenance is the existing hash-locked recipe/build receipt; auditor did not rerun compiler or independently observe historical invocation."
+  ],
+  "independent_all_body_comparison": {
+    "method": "Whole metadata-bounded procedure versus full current target, all native target bytes authenticated against pinned asset. No masks or placement normalization.",
+    "bodies": {
+      "func_8038D200": {
+        "native_bytes": 296,
+        "candidate_bytes": 264,
+        "differing_common_words": 44,
+        "missing_bytes": 32,
+        "extra_bytes": 0,
+        "status": "NONMATCH"
+      },
+      "func_8038D328": {
+        "native_bytes": 124,
+        "candidate_bytes": 124,
+        "differing_common_words": 0,
+        "missing_bytes": 0,
+        "extra_bytes": 0,
+        "status": "EXACT PRIVATE BODY; NOT ACCEPTED"
+      },
+      "func_8038D498": {
+        "native_bytes": 768,
+        "candidate_bytes": 804,
+        "differing_common_words": 182,
+        "missing_bytes": 0,
+        "extra_bytes": 36,
+        "status": "NONMATCH"
+      },
+      "func_8038DA78": {
+        "native_bytes": 868,
+        "candidate_bytes": 896,
+        "differing_common_words": 215,
+        "missing_bytes": 0,
+        "extra_bytes": 28,
+        "status": "NONMATCH"
+      },
+      "func_8038E088": {
+        "native_bytes": 140,
+        "candidate_bytes": 120,
+        "differing_common_words": 28,
+        "missing_bytes": 20,
+        "extra_bytes": 0,
+        "status": "NONMATCH"
+      },
+      "func_8038E114": {
+        "native_bytes": 5196,
+        "candidate_bytes": 5356,
+        "differing_common_words": 1281,
+        "missing_bytes": 0,
+        "extra_bytes": 160,
+        "status": "NONMATCH"
+      },
+      "func_8038F938": {
+        "native_bytes": 928,
+        "candidate_bytes": 964,
+        "differing_common_words": 215,
+        "missing_bytes": 0,
+        "extra_bytes": 36,
+        "status": "NONMATCH"
+      },
+      "func_8038FCE0": {
+        "native_bytes": 3056,
+        "candidate_bytes": 3060,
+        "differing_common_words": 740,
+        "missing_bytes": 0,
+        "extra_bytes": 4,
+        "status": "NONMATCH"
+      }
+    }
+  },
+  "machine_frame_crosscheck": {
+    "sp_adjustments": [
+      {
+        "offset": "0x0",
+        "delta": -24
+      },
+      {
+        "offset": "0x6c",
+        "delta": 24
+      }
+    ],
+    "sp_word_stores": [
+      {
+        "offset": "0x4",
+        "register": 31,
+        "sp_offset": 20
+      }
+    ],
+    "sp_word_loads": [
+      {
+        "offset": "0x68",
+        "register": 31,
+        "sp_offset": 20
+      }
+    ],
+    "modified_s_registers": [
+      "s0"
+    ],
+    "ra_only_save_restore": true,
+    "method": "Direct MIPS instruction-field checks; no instruction bytes retained."
+  },
+  "artifact_integrity_after_review": {
+    "object_sha256": "a298c26fab7559c4f51030dfb613bcc0729dd8c8889f599640cc9d67dd924f13",
+    "linked_sha256": "f96391a78a196c39b0829020365eb39f668cb28653a51a31715959001c70c665",
+    "source_sha256": "fc80a9075c6357b1833bc53b7810f8a4ee2c2f874e1bc8ba03f47fcb10e32d95",
+    "unchanged": true
+  },
+  "portability": "No receipt fingerprint of integration-sensitive tools/cloud/score.py, owndata.py, accepted production sources, manifests or live locks. Current canonical tool read/use and pinned base are observations, not downstream equality gates."
+}

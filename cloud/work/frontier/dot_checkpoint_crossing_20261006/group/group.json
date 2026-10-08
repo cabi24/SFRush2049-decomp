@@ -1,0 +1,19 @@
+{
+  "members": [
+    "race_countdown_display"
+  ],
+  "context": [
+    "func_800B61A8"
+  ],
+  "files": [
+    "candidate.c",
+    "sound_wrapper.c"
+  ],
+  "keep": [
+    "race_countdown_display",
+    "func_800B61A8"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "Complete checkpoint-crossing reconstruction; research only until full proof. Genuine kept sound wrapper context; no accepted/protected edits.",
+  "claims": []
+}

@@ -1,0 +1,36 @@
+{
+  "status": "PASS_FRESH_IDENTICAL_REPLAY",
+  "verified_at_utc": "2026-10-06T07:50:02.531262+00:00",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "source_experiments": 1,
+  "identical_verification_compilations": 1,
+  "source_config_verifier_identities_unchanged": true,
+  "packet_tests": {
+    "passed": 7,
+    "failed": 0,
+    "deselected": 0,
+    "command": "python3 -m pytest tests/cloud/test_pak_reset_a3724_group.py -q -p no:cacheprovider"
+  },
+  "fresh_proof_matches_receipt": true,
+  "compared_functions": 12,
+  "compared_relocation_records": 306,
+  "reset_behavior_executions": 2048,
+  "compared_fields": [
+    "Every complete ELF STT_FUNC extent and binding",
+    "Every relocation-applied compiled body digest and canonical score",
+    "All relocation records",
+    "Own-data section sizes, hashes and canonical content verification",
+    "All three native and all three compiled reset call-site roles",
+    "Complete signed-byte preservation and memset contract evidence",
+    "Exact five base-accepted context regressions"
+  ],
+  "toolchain_guard_tests": [
+    "Missing IDO skips before compile",
+    "Missing MIPS linker skips before compile"
+  ],
+  "temporary_files": "Runner-owned workspace TMPDIR; no shared temporary-directory cleanup",
+  "limits": [
+    "Full repository aggregate suites have not run for this packet.",
+    "No source variants, protected production edits, CI work or publication."
+  ]
+}

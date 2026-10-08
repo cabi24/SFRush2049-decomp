@@ -1,0 +1,44 @@
+{
+  "status": "BOUNDED_NATIVE_ADDRESS_RESEARCH_ONLY",
+  "base_commit": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "verifier_sha256": "5fc4c79e8e24f408afb7e034c462820c40606656b1454561c5139980dc5d81a0",
+  "native_target": {
+    "name": "func_8038AA8C",
+    "size": 7812,
+    "sha256": "c8842f0b25b7c17e36345611643e4b67a7c0c17929f7be6ba93785b530b67b39"
+  },
+  "selector_slice_fixtures": 936,
+  "selector_slice_instruction_coverage": 170,
+  "fixture_domain": {
+    "owner": [
+      0,
+      3
+    ],
+    "mode": [
+      0,
+      8
+    ],
+    "model": [
+      0,
+      12
+    ],
+    "changed_cache": 9,
+    "same_cache": "equal to mode"
+  },
+  "mode8_read_envelope": [
+    "0x80394884",
+    "0x80394920"
+  ],
+  "mode8_source_color_alias": "0x80394884",
+  "negative_controls": [
+    "mode 9 reaches unset resource default",
+    "unmapped model rejected",
+    "unknown opcode rejected"
+  ],
+  "scope_limits": [
+    "not a complete-function execution",
+    "no source-object extent or general caller-bound proof",
+    "no cleanup/create/animation helper effects",
+    "no compiled candidate or matching claim"
+  ]
+}

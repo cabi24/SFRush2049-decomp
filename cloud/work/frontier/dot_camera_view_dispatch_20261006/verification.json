@@ -1,0 +1,1198 @@
+{
+  "schema": "rush-eb028-donor-v1",
+  "status": "COMPLETE-NONMATCH",
+  "base_commit": "dea99f09ab19b1d3b324ed7097162f7b378e7096",
+  "target": {
+    "name": "func_800EB028",
+    "start": "0x800eb028",
+    "end": "0x800eb690",
+    "native_bytes": 1640,
+    "native_sha256": "c5d1ce1c14b6cd94b810c356e0c4908add438221380db07d39b2aa3cf748f59c"
+  },
+  "packet_files": {
+    "candidate.c": "c79de2375ec2d16601dafe4d8a6abf51380fa45e01cca412d3e8758c87463117",
+    "host.c": "5a27b111de06a3ffe6efed0f90e46d16315f8f3f16dc0387d8e8c7f30f5a68c7",
+    "native.py": "fd5855290aceab42996403bd754e1fd97e7817b18f5ec03c17cfac488e409bc7",
+    "verify.py": "c5845db2756612e9f02e12dac5f052ecd7ea2494b0b110a44859456a9f1eb68f"
+  },
+  "builds": {
+    "exact_o3": {
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "elf_function_bytes": 1636,
+      "native_bytes": 1640,
+      "complete_differing_positions": 285,
+      "common_differing_words": 284,
+      "missing_words": 1,
+      "excess_words": 0,
+      "linked_body_sha256": "6fb2e715fd382b2419487d7399d33d285eb7aac69a911c5954b558f0748ab8da",
+      "frame_bytes": 96,
+      "relocations": [
+        {
+          "section": ".text",
+          "offset": 16,
+          "kind": 5,
+          "symbol": "D_8014A250"
+        },
+        {
+          "section": ".text",
+          "offset": 20,
+          "kind": 6,
+          "symbol": "D_8014A250"
+        },
+        {
+          "section": ".text",
+          "offset": 52,
+          "kind": 5,
+          "symbol": "D_80150B70"
+        },
+        {
+          "section": ".text",
+          "offset": 76,
+          "kind": 6,
+          "symbol": "D_80150B70"
+        },
+        {
+          "section": ".text",
+          "offset": 144,
+          "kind": 5,
+          "symbol": ".rodata"
+        },
+        {
+          "section": ".text",
+          "offset": 152,
+          "kind": 6,
+          "symbol": ".rodata"
+        },
+        {
+          "section": ".text",
+          "offset": 176,
+          "kind": 4,
+          "symbol": "func_800E8CB8"
+        },
+        {
+          "section": ".text",
+          "offset": 192,
+          "kind": 4,
+          "symbol": "func_800EAFDC"
+        },
+        {
+          "section": ".text",
+          "offset": 200,
+          "kind": 5,
+          "symbol": "D_80110688"
+        },
+        {
+          "section": ".text",
+          "offset": 204,
+          "kind": 6,
+          "symbol": "D_80110688"
+        },
+        {
+          "section": ".text",
+          "offset": 208,
+          "kind": 5,
+          "symbol": "D_8011068C"
+        },
+        {
+          "section": ".text",
+          "offset": 220,
+          "kind": 6,
+          "symbol": "D_8011068C"
+        },
+        {
+          "section": ".text",
+          "offset": 236,
+          "kind": 4,
+          "symbol": "math_utility"
+        },
+        {
+          "section": ".text",
+          "offset": 252,
+          "kind": 4,
+          "symbol": "func_8009E820"
+        },
+        {
+          "section": ".text",
+          "offset": 312,
+          "kind": 5,
+          "symbol": "D_80034840"
+        },
+        {
+          "section": ".text",
+          "offset": 316,
+          "kind": 6,
+          "symbol": "D_80034840"
+        },
+        {
+          "section": ".text",
+          "offset": 324,
+          "kind": 4,
+          "symbol": "osPfsChecker_full"
+        },
+        {
+          "section": ".text",
+          "offset": 332,
+          "kind": 5,
+          "symbol": ".rodata"
+        },
+        {
+          "section": ".text",
+          "offset": 336,
+          "kind": 6,
+          "symbol": ".rodata"
+        },
+        {
+          "section": ".text",
+          "offset": 340,
+          "kind": 5,
+          "symbol": ".rodata"
+        },
+        {
+          "section": ".text",
+          "offset": 344,
+          "kind": 6,
+          "symbol": ".rodata"
+        },
+        {
+          "section": ".text",
+          "offset": 348,
+          "kind": 5,
+          "symbol": ".rodata"
+        },
+        {
+          "section": ".text",
+          "offset": 364,
+          "kind": 6,
+          "symbol": ".rodata"
+        },
+        {
+          "section": ".text",
+          "offset": 576,
+          "kind": 5,
+          "symbol": "D_80034840"
+        },
+        {
+          "section": ".text",
+          "offset": 580,
+          "kind": 6,
+          "symbol": "D_80034840"
+        },
+        {
+          "section": ".text",
+          "offset": 588,
+          "kind": 4,
+          "symbol": "osStartThread"
+        },
+        {
+          "section": ".text",
+          "offset": 620,
+          "kind": 5,
+          "symbol": "D_801526A8"
+        },
+        {
+          "section": ".text",
+          "offset": 632,
+          "kind": 6,
+          "symbol": "D_801526A8"
+        },
+        {
+          "section": ".text",
+          "offset": 600,
+          "kind": 5,
+          "symbol": "D_8011069C"
+        },
+        {
+          "section": ".text",
+          "offset": 604,
+          "kind": 6,
+          "symbol": "D_8011069C"
+        },
+        {
+          "section": ".text",
+          "offset": 736,
+          "kind": 5,
+          "symbol": "D_801526A8"
+        },
+        {
+          "section": ".text",
+          "offset": 740,
+          "kind": 6,
+          "symbol": "D_801526A8"
+        },
+        {
+          "section": ".text",
+          "offset": 752,
+          "kind": 5,
+          "symbol": "D_801106A0"
+        },
+        {
+          "section": ".text",
+          "offset": 756,
+          "kind": 6,
+          "symbol": "D_801106A0"
+        },
+        {
+          "section": ".text",
+          "offset": 768,
+          "kind": 5,
+          "symbol": "D_80110690"
+        },
+        {
+          "section": ".text",
+          "offset": 800,
+          "kind": 6,
+          "symbol": "D_80110690"
+        },
+        {
+          "section": ".text",
+          "offset": 804,
+          "kind": 5,
+          "symbol": "D_80110694"
+        },
+        {
+          "section": ".text",
+          "offset": 808,
+          "kind": 6,
+          "symbol": "D_80110694"
+        },
+        {
+          "section": ".text",
+          "offset": 816,
+          "kind": 5,
+          "symbol": "D_80110698"
+        },
+        {
+          "section": ".text",
+          "offset": 824,
+          "kind": 6,
+          "symbol": "D_80110698"
+        },
+        {
+          "section": ".text",
+          "offset": 848,
+          "kind": 4,
+          "symbol": "math_utility"
+        },
+        {
+          "section": ".text",
+          "offset": 864,
+          "kind": 4,
+          "symbol": "func_8009E820"
+        },
+        {
+          "section": ".text",
+          "offset": 884,
+          "kind": 5,
+          "symbol": ".rodata"
+        },
+        {
+          "section": ".text",
+          "offset": 908,
+          "kind": 6,
+          "symbol": ".rodata"
+        },
+        {
+          "section": ".text",
+          "offset": 928,
+          "kind": 4,
+          "symbol": "func_800E8CB8"
+        },
+        {
+          "section": ".text",
+          "offset": 1020,
+          "kind": 4,
+          "symbol": "func_800EA3F4"
+        },
+        {
+          "section": ".text",
+          "offset": 1032,
+          "kind": 4,
+          "symbol": "math_utility"
+        },
+        {
+          "section": ".text",
+          "offset": 1084,
+          "kind": 4,
+          "symbol": "entity_iterate"
+        },
+        {
+          "section": ".text",
+          "offset": 1140,
+          "kind": 4,
+          "symbol": "func_800EA2DC"
+        },
+        {
+          "section": ".text",
+          "offset": 1152,
+          "kind": 4,
+          "symbol": "math_utility"
+        },
+        {
+          "section": ".text",
+          "offset": 1188,
+          "kind": 4,
+          "symbol": "entity_iterate"
+        },
+        {
+          "section": ".text",
+          "offset": 1240,
+          "kind": 4,
+          "symbol": "func_800EA2DC"
+        },
+        {
+          "section": ".text",
+          "offset": 1252,
+          "kind": 4,
+          "symbol": "math_utility"
+        },
+        {
+          "section": ".text",
+          "offset": 1304,
+          "kind": 4,
+          "symbol": "func_800EA108"
+        },
+        {
+          "section": ".text",
+          "offset": 1340,
+          "kind": 4,
+          "symbol": "math_utility"
+        },
+        {
+          "section": ".text",
+          "offset": 1356,
+          "kind": 4,
+          "symbol": "entity_iterate"
+        },
+        {
+          "section": ".text",
+          "offset": 1380,
+          "kind": 4,
+          "symbol": "func_800E9E2C"
+        },
+        {
+          "section": ".text",
+          "offset": 1416,
+          "kind": 4,
+          "symbol": "math_utility"
+        },
+        {
+          "section": ".text",
+          "offset": 1444,
+          "kind": 4,
+          "symbol": "func_800E9C70"
+        },
+        {
+          "section": ".text",
+          "offset": 1480,
+          "kind": 4,
+          "symbol": "math_utility"
+        },
+        {
+          "section": ".text",
+          "offset": 1508,
+          "kind": 4,
+          "symbol": "func_800E95DC"
+        },
+        {
+          "section": ".text",
+          "offset": 1544,
+          "kind": 4,
+          "symbol": "math_utility"
+        },
+        {
+          "section": ".text",
+          "offset": 1572,
+          "kind": 4,
+          "symbol": "func_800E8F10"
+        },
+        {
+          "section": ".text",
+          "offset": 1608,
+          "kind": 4,
+          "symbol": "math_utility"
+        },
+        {
+          "section": ".rodata",
+          "offset": 0,
+          "kind": 2,
+          "symbol": ".text"
+        },
+        {
+          "section": ".rodata",
+          "offset": 4,
+          "kind": 2,
+          "symbol": ".text"
+        },
+        {
+          "section": ".rodata",
+          "offset": 8,
+          "kind": 2,
+          "symbol": ".text"
+        },
+        {
+          "section": ".rodata",
+          "offset": 12,
+          "kind": 2,
+          "symbol": ".text"
+        },
+        {
+          "section": ".rodata",
+          "offset": 16,
+          "kind": 2,
+          "symbol": ".text"
+        },
+        {
+          "section": ".rodata",
+          "offset": 20,
+          "kind": 2,
+          "symbol": ".text"
+        },
+        {
+          "section": ".rodata",
+          "offset": 24,
+          "kind": 2,
+          "symbol": ".text"
+        },
+        {
+          "section": ".rodata",
+          "offset": 28,
+          "kind": 2,
+          "symbol": ".text"
+        },
+        {
+          "section": ".rodata",
+          "offset": 32,
+          "kind": 2,
+          "symbol": ".text"
+        },
+        {
+          "section": ".rodata",
+          "offset": 36,
+          "kind": 2,
+          "symbol": ".text"
+        },
+        {
+          "section": ".rodata",
+          "offset": 40,
+          "kind": 2,
+          "symbol": ".text"
+        }
+      ],
+      "rodata_meaningful_bytes": 60,
+      "rodata_zero_padding_bytes": 4,
+      "rodata_sha256": "eb85ef133a7e6c811aecf099dcb9b54e0f78869e796d89542c71219136df3057",
+      "native_rodata_equal": false,
+      "canonical_diagnostic": {
+        "differing": 284,
+        "total": 410,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x90",
+          ".rodata+0x0 at +0x98",
+          ".rodata+0x2c at +0x14c",
+          ".rodata+0x2c at +0x150",
+          ".rodata+0x30 at +0x154",
+          ".rodata+0x30 at +0x158",
+          ".rodata+0x34 at +0x15c",
+          ".rodata+0x34 at +0x16c",
+          ".rodata+0x38 at +0x374",
+          ".rodata+0x38 at +0x38c"
+        ],
+        "errors": [
+          "own .rodata+0x0 referenced at +0x98 differs from retail 0x8012451C (jump table entry 2: retail 800eb408, got 800eb404; 44 bytes compared)"
+        ],
+        "extra_words": 0
+      }
+    },
+    "canonical_r4300_control": {
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+      "elf_function_bytes": 1640,
+      "native_bytes": 1640,
+      "complete_differing_positions": 156,
+      "common_differing_words": 156,
+      "missing_words": 0,
+      "excess_words": 0,
+      "linked_body_sha256": "27def99fe1ecafedfc92e1ca82f61634023cd372432a6410d4ef8c9dd02d1255",
+      "frame_bytes": 96,
+      "relocations": [
+        {
+          "section": ".text",
+          "offset": 16,
+          "kind": 5,
+          "symbol": "D_8014A250"
+        },
+        {
+          "section": ".text",
+          "offset": 20,
+          "kind": 6,
+          "symbol": "D_8014A250"
+        },
+        {
+          "section": ".text",
+          "offset": 52,
+          "kind": 5,
+          "symbol": "D_80150B70"
+        },
+        {
+          "section": ".text",
+          "offset": 76,
+          "kind": 6,
+          "symbol": "D_80150B70"
+        },
+        {
+          "section": ".text",
+          "offset": 144,
+          "kind": 5,
+          "symbol": ".rodata"
+        },
+        {
+          "section": ".text",
+          "offset": 152,
+          "kind": 6,
+          "symbol": ".rodata"
+        },
+        {
+          "section": ".text",
+          "offset": 176,
+          "kind": 4,
+          "symbol": "func_800E8CB8"
+        },
+        {
+          "section": ".text",
+          "offset": 192,
+          "kind": 4,
+          "symbol": "func_800EAFDC"
+        },
+        {
+          "section": ".text",
+          "offset": 200,
+          "kind": 5,
+          "symbol": "D_80110688"
+        },
+        {
+          "section": ".text",
+          "offset": 204,
+          "kind": 6,
+          "symbol": "D_80110688"
+        },
+        {
+          "section": ".text",
+          "offset": 208,
+          "kind": 5,
+          "symbol": "D_8011068C"
+        },
+        {
+          "section": ".text",
+          "offset": 220,
+          "kind": 6,
+          "symbol": "D_8011068C"
+        },
+        {
+          "section": ".text",
+          "offset": 236,
+          "kind": 4,
+          "symbol": "math_utility"
+        },
+        {
+          "section": ".text",
+          "offset": 252,
+          "kind": 4,
+          "symbol": "func_8009E820"
+        },
+        {
+          "section": ".text",
+          "offset": 312,
+          "kind": 5,
+          "symbol": "D_80034840"
+        },
+        {
+          "section": ".text",
+          "offset": 316,
+          "kind": 6,
+          "symbol": "D_80034840"
+        },
+        {
+          "section": ".text",
+          "offset": 324,
+          "kind": 4,
+          "symbol": "osPfsChecker_full"
+        },
+        {
+          "section": ".text",
+          "offset": 332,
+          "kind": 5,
+          "symbol": ".rodata"
+        },
+        {
+          "section": ".text",
+          "offset": 336,
+          "kind": 6,
+          "symbol": ".rodata"
+        },
+        {
+          "section": ".text",
+          "offset": 340,
+          "kind": 5,
+          "symbol": ".rodata"
+        },
+        {
+          "section": ".text",
+          "offset": 344,
+          "kind": 6,
+          "symbol": ".rodata"
+        },
+        {
+          "section": ".text",
+          "offset": 348,
+          "kind": 5,
+          "symbol": ".rodata"
+        },
+        {
+          "section": ".text",
+          "offset": 364,
+          "kind": 6,
+          "symbol": ".rodata"
+        },
+        {
+          "section": ".text",
+          "offset": 576,
+          "kind": 5,
+          "symbol": "D_80034840"
+        },
+        {
+          "section": ".text",
+          "offset": 580,
+          "kind": 6,
+          "symbol": "D_80034840"
+        },
+        {
+          "section": ".text",
+          "offset": 588,
+          "kind": 4,
+          "symbol": "osStartThread"
+        },
+        {
+          "section": ".text",
+          "offset": 620,
+          "kind": 5,
+          "symbol": "D_801526A8"
+        },
+        {
+          "section": ".text",
+          "offset": 632,
+          "kind": 6,
+          "symbol": "D_801526A8"
+        },
+        {
+          "section": ".text",
+          "offset": 600,
+          "kind": 5,
+          "symbol": "D_8011069C"
+        },
+        {
+          "section": ".text",
+          "offset": 604,
+          "kind": 6,
+          "symbol": "D_8011069C"
+        },
+        {
+          "section": ".text",
+          "offset": 740,
+          "kind": 5,
+          "symbol": "D_801526A8"
+        },
+        {
+          "section": ".text",
+          "offset": 744,
+          "kind": 6,
+          "symbol": "D_801526A8"
+        },
+        {
+          "section": ".text",
+          "offset": 756,
+          "kind": 5,
+          "symbol": "D_801106A0"
+        },
+        {
+          "section": ".text",
+          "offset": 760,
+          "kind": 6,
+          "symbol": "D_801106A0"
+        },
+        {
+          "section": ".text",
+          "offset": 772,
+          "kind": 5,
+          "symbol": "D_80110690"
+        },
+        {
+          "section": ".text",
+          "offset": 804,
+          "kind": 6,
+          "symbol": "D_80110690"
+        },
+        {
+          "section": ".text",
+          "offset": 808,
+          "kind": 5,
+          "symbol": "D_80110694"
+        },
+        {
+          "section": ".text",
+          "offset": 812,
+          "kind": 6,
+          "symbol": "D_80110694"
+        },
+        {
+          "section": ".text",
+          "offset": 820,
+          "kind": 5,
+          "symbol": "D_80110698"
+        },
+        {
+          "section": ".text",
+          "offset": 828,
+          "kind": 6,
+          "symbol": "D_80110698"
+        },
+        {
+          "section": ".text",
+          "offset": 852,
+          "kind": 4,
+          "symbol": "math_utility"
+        },
+        {
+          "section": ".text",
+          "offset": 868,
+          "kind": 4,
+          "symbol": "func_8009E820"
+        },
+        {
+          "section": ".text",
+          "offset": 888,
+          "kind": 5,
+          "symbol": ".rodata"
+        },
+        {
+          "section": ".text",
+          "offset": 912,
+          "kind": 6,
+          "symbol": ".rodata"
+        },
+        {
+          "section": ".text",
+          "offset": 932,
+          "kind": 4,
+          "symbol": "func_800E8CB8"
+        },
+        {
+          "section": ".text",
+          "offset": 1024,
+          "kind": 4,
+          "symbol": "func_800EA3F4"
+        },
+        {
+          "section": ".text",
+          "offset": 1036,
+          "kind": 4,
+          "symbol": "math_utility"
+        },
+        {
+          "section": ".text",
+          "offset": 1088,
+          "kind": 4,
+          "symbol": "entity_iterate"
+        },
+        {
+          "section": ".text",
+          "offset": 1144,
+          "kind": 4,
+          "symbol": "func_800EA2DC"
+        },
+        {
+          "section": ".text",
+          "offset": 1156,
+          "kind": 4,
+          "symbol": "math_utility"
+        },
+        {
+          "section": ".text",
+          "offset": 1192,
+          "kind": 4,
+          "symbol": "entity_iterate"
+        },
+        {
+          "section": ".text",
+          "offset": 1244,
+          "kind": 4,
+          "symbol": "func_800EA2DC"
+        },
+        {
+          "section": ".text",
+          "offset": 1256,
+          "kind": 4,
+          "symbol": "math_utility"
+        },
+        {
+          "section": ".text",
+          "offset": 1308,
+          "kind": 4,
+          "symbol": "func_800EA108"
+        },
+        {
+          "section": ".text",
+          "offset": 1344,
+          "kind": 4,
+          "symbol": "math_utility"
+        },
+        {
+          "section": ".text",
+          "offset": 1360,
+          "kind": 4,
+          "symbol": "entity_iterate"
+        },
+        {
+          "section": ".text",
+          "offset": 1384,
+          "kind": 4,
+          "symbol": "func_800E9E2C"
+        },
+        {
+          "section": ".text",
+          "offset": 1420,
+          "kind": 4,
+          "symbol": "math_utility"
+        },
+        {
+          "section": ".text",
+          "offset": 1448,
+          "kind": 4,
+          "symbol": "func_800E9C70"
+        },
+        {
+          "section": ".text",
+          "offset": 1484,
+          "kind": 4,
+          "symbol": "math_utility"
+        },
+        {
+          "section": ".text",
+          "offset": 1512,
+          "kind": 4,
+          "symbol": "func_800E95DC"
+        },
+        {
+          "section": ".text",
+          "offset": 1548,
+          "kind": 4,
+          "symbol": "math_utility"
+        },
+        {
+          "section": ".text",
+          "offset": 1576,
+          "kind": 4,
+          "symbol": "func_800E8F10"
+        },
+        {
+          "section": ".text",
+          "offset": 1612,
+          "kind": 4,
+          "symbol": "math_utility"
+        },
+        {
+          "section": ".rodata",
+          "offset": 0,
+          "kind": 2,
+          "symbol": ".text"
+        },
+        {
+          "section": ".rodata",
+          "offset": 4,
+          "kind": 2,
+          "symbol": ".text"
+        },
+        {
+          "section": ".rodata",
+          "offset": 8,
+          "kind": 2,
+          "symbol": ".text"
+        },
+        {
+          "section": ".rodata",
+          "offset": 12,
+          "kind": 2,
+          "symbol": ".text"
+        },
+        {
+          "section": ".rodata",
+          "offset": 16,
+          "kind": 2,
+          "symbol": ".text"
+        },
+        {
+          "section": ".rodata",
+          "offset": 20,
+          "kind": 2,
+          "symbol": ".text"
+        },
+        {
+          "section": ".rodata",
+          "offset": 24,
+          "kind": 2,
+          "symbol": ".text"
+        },
+        {
+          "section": ".rodata",
+          "offset": 28,
+          "kind": 2,
+          "symbol": ".text"
+        },
+        {
+          "section": ".rodata",
+          "offset": 32,
+          "kind": 2,
+          "symbol": ".text"
+        },
+        {
+          "section": ".rodata",
+          "offset": 36,
+          "kind": 2,
+          "symbol": ".text"
+        },
+        {
+          "section": ".rodata",
+          "offset": 40,
+          "kind": 2,
+          "symbol": ".text"
+        }
+      ],
+      "rodata_meaningful_bytes": 60,
+      "rodata_zero_padding_bytes": 4,
+      "rodata_sha256": "0bd694005adfae6fb7c1e7a59c5256b9a0ee29b0e498dfc250d449d014a0eb2b",
+      "native_rodata_equal": true,
+      "canonical_diagnostic": {
+        "differing": 156,
+        "total": 410,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  },
+  "behavior": {
+    "model_slot_pairs_per_view": {
+      "0": 24,
+      "1": 24,
+      "2": 24,
+      "3": 24,
+      "4": 24,
+      "5": 24,
+      "6": 24,
+      "7": 24,
+      "8": 24,
+      "9": 24,
+      "10": 24
+    },
+    "mutations_per_view": {
+      "0": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "1": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "2": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "3": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "4": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "5": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "6": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "7": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "8": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "9": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "10": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "source_mutants_rejected": [
+      "wrong_base_lift",
+      "wrong_force_axes",
+      "reversed_collision_predicate",
+      "lost_endpoint_snapshot"
+    ],
+    "cases": 768,
+    "native_executions": 768,
+    "compiled_executions": 1536,
+    "host_c89_ubsan_cases": 768,
+    "native_instruction_coverage": 410,
+    "native_instructions": 410,
+    "native_branch_outcomes": [
+      [
+        136,
+        false
+      ],
+      [
+        136,
+        true
+      ],
+      [
+        304,
+        true
+      ],
+      [
+        392,
+        false
+      ],
+      [
+        392,
+        true
+      ],
+      [
+        416,
+        false
+      ],
+      [
+        416,
+        true
+      ],
+      [
+        440,
+        false
+      ],
+      [
+        440,
+        true
+      ],
+      [
+        464,
+        false
+      ],
+      [
+        464,
+        true
+      ],
+      [
+        568,
+        false
+      ],
+      [
+        568,
+        true
+      ],
+      [
+        672,
+        false
+      ],
+      [
+        708,
+        false
+      ],
+      [
+        904,
+        false
+      ],
+      [
+        904,
+        true
+      ],
+      [
+        984,
+        true
+      ],
+      [
+        1080,
+        false
+      ],
+      [
+        1080,
+        true
+      ],
+      [
+        1096,
+        true
+      ],
+      [
+        1200,
+        true
+      ],
+      [
+        1284,
+        true
+      ],
+      [
+        1368,
+        true
+      ],
+      [
+        1428,
+        true
+      ],
+      [
+        1492,
+        true
+      ],
+      [
+        1556,
+        true
+      ]
+    ],
+    "candidate_instruction_coverage": {
+      "exact_o3": 409,
+      "canonical_r4300_control": 410
+    },
+    "call_trace_sha256": "7ecaffa4da649cfdf4a6b9047a91891a9ef6b5b0bae99fed86f1373dec44599f",
+    "negative_controls": [
+      "unknown-opcode",
+      "wrong-call",
+      "redirected-save"
+    ]
+  }
+}

@@ -1,12 +1,24 @@
 # Runtime image B player-state reset
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
 **Strict MATCH: B:func_8038CA24, 0x8038CA24–0x8038CB10, 236 bytes / 59 words.**
 This is a matching candidate, with **zero accepted-byte or ROM-coverage gain**.
 No runtime-image splice, image/recompression gate, ROM gate or gameplay test was run.
 Merging and production integration remain with the independent checker.
 
 The first natural typed reconstruction matches ordinary IDO 5.3
-`-g0 -O2 -mips2 -G 0 -non_shared`, plus the existing mandatory
+`-g0 -O3 -mips2 -G 0 -non_shared`, plus the existing mandatory
 `-Wab,-r4300_mul`. No source-variant search or compiler-setting change was needed.
 
 ## Identity and source admission
@@ -83,7 +95,7 @@ From the repository root with IDO 5.3, MIPS GNU binutils, GCC and pytest availab
 ```sh
 python3 tools/cloud/score.py fn cloud/matches/ovl_b/func_8038CA24.c func_8038CA24 --targets asm/us/ovl_b
 python3 cloud/work/runtime_b_reset_20261006/verify.py /tmp/runtime-b-reset-replay.json --tool-provenance /tmp/runtime-b-reset-tools.json
-cmp /tmp/runtime-b-reset-replay.json cloud/work/runtime_b_reset_20261006/verification.json
+# Compare both receipts through verify.portable_receipt(), as the focused tests do.
 python3 -m pytest -q tests/conveyor/test_runtime_b_reset_match.py
 ```
 
@@ -122,3 +134,18 @@ Ubuntu GNU 2.42. With Debian GNU 2.44, those tests plus the selected scorer,
 protected-path guard and submission tests pass: **80 passed, 648 unrelated
 locked-source cases deselected** in the sparse checkout. No full-suite or new CI
 result is claimed, and no CI rerun or watcher was requested.
+
+## Integration-portable replay (2026-10-06)
+
+`portable_receipt()` compares both saved and fresh evidence after excluding only
+explicit historical whole-tree/tool/source-context digests. Packet source and
+verifier bindings, selected native bodies and addresses, ELF extents, relocations,
+owned data, behavior, and compiler executable identities remain authoritative.
+Accepted production context is read from the recorded base commit rather than
+the live integrated tree. Tests are deliberately not hashed into receipts.
+
+The unchanged candidate body was freshly strict-matched through the canonical
+scorer with the bare source recipe `-g0 -O3 -mips2 -G 0 -non_shared`; the scorer
+still injects its mandatory `-Wab,-r4300_mul` backend flag. Full packet proof was
+replayed under O3. No same-unit callers, inline helpers, or deleted-static stubs
+are required. Historical O2 results remain available in Git history.

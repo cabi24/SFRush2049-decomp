@@ -1,0 +1,41 @@
+{
+  "status": "PASS bounded independent fixtures and repeated-callback mutation review",
+  "cases": 2548,
+  "multi_boundary_schedules": 2145,
+  "applied_mutations": 22729,
+  "outgoing_argument_home_poison": true,
+  "native_executions": 5096,
+  "external_calls_covered": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "native_words_covered": 229,
+  "branch_outcomes": 54,
+  "source_sha256": "e843f3500c6a952dd067949a7d5f894febfb8d635d77baa480778360dc95f4ee",
+  "producer_verifier_sha256": "c4efbb435e05a7f45a87de6ea4295f42fc8969a5cbf70cfc2844d6bea219da5c",
+  "object_sha256": "03cd24df3ce24448c2f8dc2e91e2f0553565b8dff60113b0da27c72ec361e9b5",
+  "observations": "Ordered call arguments and complete nonstack data regions checked at every external boundary and after return, against literal source host and reused O3 object.",
+  "limitations": [
+    "Reuses producer MIPS interpreter; independent fixtures/schedules and host inspection, not an independent CPU implementation.",
+    "Synthetic ordinary-ABI boundaries; helper bodies not executed; nonnegative valid slots 0..3, B residency assumed.",
+    "No native target compilation, source shaping, production changes, publication, or CI watching."
+  ]
+}

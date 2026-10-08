@@ -1,4 +1,5 @@
-/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* Standalone match: no callers, inlined helpers, or deleted-static stubs required in this unit. */
 /* Runtime image B: 0x8038A8CC..0x8038A95C, 144 bytes.
  * Initialize the 25-slot surface-object ring and resolve its texture index.
  * N64-specific body, no whole-function arcade donor or original type claim.

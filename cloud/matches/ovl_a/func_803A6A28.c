@@ -1,4 +1,5 @@
-/* flags: -g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* Standalone match: no callers, inlined helpers, or deleted-static stubs required in this unit. */
 /* Image A menu text callback. N64-specific rendering; no arcade donor found.
  * Complete native extent: [0x803A6A28, 0x803A6B50), 296 bytes.
  * Typed callback and draw-state sequence follow the witnessed A:803AE51C

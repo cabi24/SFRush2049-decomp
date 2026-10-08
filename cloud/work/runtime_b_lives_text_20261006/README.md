@@ -1,5 +1,17 @@
 # Image B: lives-text callback at 80393518
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
 Status: complete source, strict 100/100-word MATCH. No accepted-byte, image,
 recompression, cartridge, or full-ROM claim. Base: master
 `cd22879d40b3de443cfde047b86e75e159b6cec6`. Independent review is required before
@@ -66,7 +78,9 @@ implementations remain external and unmodified.
 
 ## Build and bounded hypothesis
 
-IDO 5.3: `-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul`.
+Current IDO 5.3 recipe: `-g0 -O3 -mips2 -G 0 -non_shared`, with the
+canonical scorer adding `-Wab,-r4300_mul`. The original build below used O2;
+fresh O3 evidence and the immutable historical receipt are identified below.
 The source contains one complete function and no optimizer-visible helper body.
 The initial complete source used a 16-byte decimal buffer: 96/100 native words
 already agreed, with only four frame/home/buffer offsets different. Workbench
@@ -83,7 +97,7 @@ permutations were attempted. The current candidate is frozen for review.
 
 From a checkout with the pinned compiler and MIPS binutils:
 
-    python3 tools/cloud/score.py fn cloud/matches/ovl_b/func_80393518.c func_80393518 --targets asm/us/ovl_b
+    python3 tools/cloud/score.py fn cloud/matches/ovl_b/func_80393518.c func_80393518 --targets asm/us/ovl_b --flags "-g0 -O3 -mips2 -G 0 -non_shared"
     python3 cloud/work/runtime_b_lives_text_20261006/verify.py --check
 
 For a source-only local packet, `verify.py --reference-root /path/to/repository`
@@ -129,3 +143,34 @@ do not supply complete parent source or matching admission. No tiny dummy
 caller, false ordinary ABI, or extra unused arguments can replace that work.
 Next useful action is independent review of the ordinary-ABI callback above;
 private groups remain bounded dependency findings, not another permutation run.
+
+## Integration-portable replay (2026-10-06)
+
+Scorer, whole-manifest and accepted-context digests are historical provenance,
+not live-tree requirements. The verifier normalizes only enumerated provenance
+fields on both receipt sides. Packet source and verifier bindings, compiler
+identity/actual flags, selected native bodies and addresses, complete emitted
+extents, relocations, owned data and behavioral checks remain binding.
+
+The submission now uses the bare header
+`/* flags: -g0 -O3 -mips2 -G 0 -non_shared */`. Fresh O3 strict replay
+uses the unchanged canonical scorer, which adds `-Wab,-r4300_mul`; the receipt
+records those actual compiler flags. The complete standalone function needs
+no callers, inlined helpers or deleted-static stubs in its translation unit.
+Historical O2 source/receipt evidence remains available at integration commit
+`6b2e9e506fe3d2267a710e41c85af5364ccd00c7`; it is not relabeled as O3.
+
+O3 retains path-dependent nonallocated ECOFF debug metadata. Raw object SHA-256
+is historical provenance only after `portable_object_elf` binds the full ELF
+header, section identity/attributes, symbols, all relocations, executable/data
+bytes and storage sizes. Only nonallocated `.mdebug` bytes and physical file
+offsets are excluded. Each replay recompiles identical source in another path
+and rejects mutations to text, relocation/symbol tables, register metadata and
+ELF ABI flags. Native/body/extent/data/behavior checks are unchanged.
+
+### Host-tool portability
+
+The receipt records host GCC and GNU linker binary hashes as provenance, not
+frozen proof inputs. Pinned IDO hashes, packet/source hashes, native words, ELF
+extents and relocations, GNU-linked text bytes, and all behavior/mutation checks
+remain binding. A host tool change must pass those same checks.

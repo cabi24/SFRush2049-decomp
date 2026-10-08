@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "controls": [
+    {
+      "name": "missing_genuine_internal_child",
+      "result": "rejected",
+      "reason": "('private child hook forbidden', '0x8038e114')"
+    },
+    {
+      "name": "unsupported_instruction",
+      "result": "rejected",
+      "reason": "('unsupported opcode', '0x8038fce0', 63)"
+    },
+    {
+      "name": "root_preserved_register_corruption",
+      "result": "rejected",
+      "reason": "root nonvolatile GPR preservation"
+    },
+    {
+      "name": "readonly_memory_write",
+      "result": "rejected",
+      "reason": "('unmapped/readonly write', '0x80394358', 4)"
+    },
+    {
+      "name": "unmapped_memory_read",
+      "result": "rejected",
+      "reason": "('unmapped read', '0x60000000', 4)"
+    },
+    {
+      "name": "F938_owner_outside_intersection",
+      "result": "rejected",
+      "reason": "F938 owner intersection is 0..3"
+    },
+    {
+      "name": "D498_zero_distance_domain",
+      "result": "rejected",
+      "reason": "float division by zero"
+    },
+    {
+      "name": "invalid_quad_pointer_lifecycle",
+      "result": "rejected",
+      "reason": "('not a live quad pointer', '0x12340000')"
+    },
+    {
+      "name": "full_nonstack_sentinel_mutation",
+      "result": "detected"
+    },
+    {
+      "name": "ordered_external_trace_mutation",
+      "result": "detected"
+    }
+  ],
+  "compiler_invocations": 0,
+  "persistent_native_bytes": false
+}

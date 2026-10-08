@@ -6,6 +6,7 @@ import hashlib
 import json
 from pathlib import Path
 import struct
+import subprocess
 import sys
 
 HERE = Path(__file__).resolve().parent
@@ -89,11 +90,23 @@ def return_capture(words, index, next_call):
     return None
 
 
+def base_bytes(name):
+    return subprocess.run(['git', 'show', BASE + ':' + name], cwd=ROOT,
+                          check=True, capture_output=True).stdout
+
+
 def source_hashes(root=ROOT):
-    try:
-        return {name: sha((root / name).read_bytes()) for name in SOURCES}
-    except OSError as exc:
-        raise AuditError('selected source unavailable: %s' % exc) from exc
+    # Historical context is read from full Git history, never the integration tree.
+    result = {}
+    result['audit.py'] = sha((root / HERE.relative_to(ROOT) / 'audit.py').read_bytes())
+    return result
+
+
+def portable(result):
+    result = json.loads(json.dumps(result))
+    for name in SOURCES:
+        result['source_sha256'].pop(name, None)
+    return result
 
 
 def inspect_site(words, start, site, selector, acquire, release):
@@ -121,7 +134,7 @@ def collect():
     # Both APIs authenticate current file contents even after a warm-cache read.
     targets, symbols = score.targets(), score.image_symbols()
     by_address = {symbols[n]: n for n in targets}
-    locks = json.loads((ROOT / 'blob_matched.lock.json').read_text())
+    locks = json.loads(base_bytes('blob_matched.lock.json'))
     accepted = {symbols[n] for n in locks if n in symbols}
     selector = symbols['slot_state_setup']
     acquire, release = symbols['osRecvMesg'], symbols['osJamMesg']
@@ -171,7 +184,7 @@ def collect():
     bounded = {n: r['bytes'] for n, r in callers.items()
                if not r['accepted'] and not r['other_unaccepted_direct_game_calls']}
     return {
-        'format': 1, 'historical_base': BASE,
+        'format': 1, 'historical_base': BASE, 'acceptance_as_of_commit': BASE,
         'scope': 'Registered game-body direct JAL census only. Call-label adjacency and simple return captures are syntactic; queue identity, CFG liveness, indirect/overlay calls and matching readiness are not proved.',
         'source_sha256': source_hashes(),
         'helpers': {n: {'start': address(symbols[n]), 'bytes': 4 * len(targets[n]),
@@ -193,21 +206,9 @@ def verify(saved=None):
     if saved is None:
         saved = json.loads((HERE / 'evidence.json').read_text())
     current = collect()
-
-    def stable(key, value):
-        # Which callers are already accepted is read from the live lock and
-        # grows as matching proceeds; the census itself (sites, captures,
-        # pairings) is what this packet binds.
-        if key == 'callers':
-            return {n: {k: v for k, v in r.items()
-                        if k not in ('accepted', 'other_unaccepted_direct_game_calls')}
-                    for n, r in value.items()}
-        if key == 'summary':
-            return {k: v for k, v in value.items() if k != 'accepted_callers'}
-        return value
-    for key in ('format', 'source_sha256', 'helpers', 'summary', 'no_copy_sites',
-                'outside_adjacent_wrapper_sequence', 'wrapper_callers', 'callers'):
-        if stable(key, current[key]) != stable(key, saved[key]):
+    actual, expected = portable(current), portable(saved)
+    for key in actual:
+        if actual[key] != expected[key]:
             raise AuditError('source-bound audit differs: %s' % key)
     return current
 

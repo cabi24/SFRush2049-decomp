@@ -1,4 +1,5 @@
 """Packet-only verification; never substitutes for image/compression/ROM gates."""
+import shutil
 import hashlib,importlib.util,json,os,struct,subprocess,sys,unittest,tempfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
@@ -40,16 +41,16 @@ class MarkerColorContract(unittest.TestCase):
   self.assertNotEqual(s.ASM_DIR,b.ASM_DIR)
   self.assertNotEqual(s.targets(),b.targets())
  def test_submission_registration(self):
-  if not (Path(os.environ.get('IDO_DIR', ROOT/'tools/cloud/ido'))/'cc').is_file():
-   self.skipTest('pinned IDO required')
+  if not (Path(os.environ.get('IDO_DIR', ROOT/'tools/cloud/ido'))/'cc').is_file() or not shutil.which('mips-linux-gnu-ld'):
+   self.skipTest('pinned IDO and MIPS GNU linker required')
   spec=importlib.util.spec_from_file_location('packet_submission',ROOT/'tools/cloud/check_submissions.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
   jobs=list(m.commands(ROOT,['cloud/matches/ovl_a/func_803A3A6C.c']))
   self.assertEqual(len(jobs),1)
   p=subprocess.run(jobs[0],cwd=ROOT,capture_output=True,text=True)
   self.assertEqual(p.returncode,0,p.stdout+p.stderr);self.assertIn('MATCH',p.stdout)
  def test_frozen_replay_from_unrelated_directory(self):
-  if not (Path(os.environ.get('IDO_DIR', ROOT/'tools/cloud/ido'))/'cc').is_file():
-   self.skipTest('pinned IDO required')
+  if not (Path(os.environ.get('IDO_DIR', ROOT/'tools/cloud/ido'))/'cc').is_file() or not shutil.which('mips-linux-gnu-ld'):
+   self.skipTest('pinned IDO and MIPS GNU linker required')
   r=json.loads((HERE/'verification.json').read_text());r['host_gcc_version']='different host GCC provenance';r['gnu_ld_version']='different GNU linker provenance'
   with tempfile.TemporaryDirectory(prefix='marker-version-check-') as d:
    path=Path(d)/'verification.json';path.write_text(json.dumps(r))

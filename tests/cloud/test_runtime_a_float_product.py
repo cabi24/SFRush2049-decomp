@@ -5,6 +5,7 @@ import json
 import os
 from pathlib import Path
 import random
+import shutil
 import struct
 import subprocess
 import sys
@@ -50,12 +51,14 @@ def test_optimized_python_refuses_verification():
 def test_full_source_bound_replay():
     repo = Path(os.environ.get('RUSH_RECOVERY_ROOT',ROOT))
     ido = Path(os.environ.get('IDO_DIR',repo/'tools/cloud/ido'))
-    if not (ido/'cc').is_file(): pytest.skip('IDO toolchain is not installed')
+    if not (ido/'cc').is_file() or not shutil.which('mips-linux-gnu-ld'):
+        pytest.skip('pinned IDO and MIPS GNU linker required')
     env = dict(os.environ, PYTHONDONTWRITEBYTECODE='1')
     p = subprocess.run([sys.executable,str(PACKET/'verify.py'),'--repo',str(repo),'--check'],env=env,capture_output=True,text=True)
     assert p.returncode == 0, p.stdout+p.stderr
 
 
-def test_receipt_binds_published_scorer():
+def test_receipt_binds_packet_verifier_and_native_words():
     receipt = json.loads((PACKET/'verification.json').read_text())
-    assert receipt['scorer_sha256'] == hashlib.sha256((ROOT/'tools/cloud/score.py').read_bytes()).hexdigest()
+    assert receipt['verifier_sha256'] == hashlib.sha256((PACKET/'verify.py').read_bytes()).hexdigest()
+    assert receipt['native_sha256'] == 'e0bf3d0731f618da18552bced27d621bec55be5f5cc274d1554c3a9656b046bc'

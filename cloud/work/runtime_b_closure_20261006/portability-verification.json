@@ -1,0 +1,23 @@
+{
+  "status": "PORTABLE RESEARCH REPLAY PASS; ZERO ACCEPTED COVERAGE",
+  "base_commit": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "source_sha256": "fc80a9075c6357b1833bc53b7810f8a4ee2c2f874e1bc8ba03f47fcb10e32d95",
+  "target_layout_facts": 89,
+  "relocations": 414,
+  "paired_cases": 552,
+  "root_invocations_per_image": 856,
+  "behavior_sha256": "40c4164d5ffa3766c3a906adaf05f3e67a06f7002a55f13293504ce50b40d921",
+  "negative_controls": 10,
+  "private_D328": {
+    "differing_words": 0,
+    "native_words": 31,
+    "missing_words": 0,
+    "extra_words": 0,
+    "extra_nonzero_words": 0,
+    "first_different_offsets": [],
+    "status": "BYTE-EXACT PRIVATE BODY; NOT ACCEPTED",
+    "limits": "Full unchanged GNU-linked member, including research-placed internal calls and own-data addresses; no relocation masks; not a native-placement normalized score."
+  },
+  "accepted_coverage_bytes": 0,
+  "compiler_work_directory_removed": true
+}

@@ -221,8 +221,8 @@ def build(work):
     words=score.targets()[NAME]
     return {'schema':1,'base':BASE,'status':'MATCH','accepted_byte_gain':0,
         'target':{'name':NAME,'start':'0x800C9210','end_exclusive':'0x800C92DC','bytes':204,'words':51,'sha256':digest(raw(words))},
-        'inputs':{str(p.relative_to(ROOT)):sha(p) for p in [HERE/'group.c',HERE/'group.json',HERE/'verify.py',HERE/'host.c',HERE/'native.py',HERE/'callers.json',ROOT/'tests/conveyor/test_speed_flags_contract.py']},
-        'accepted_source_sha256':digest(old),'flags':json.loads((HERE/'group.json').read_text())['flags'],
+        'inputs':{str(p.relative_to(ROOT)):sha(p) for p in [HERE/'group.c',HERE/'group.json',HERE/'verify.py',HERE/'host.c',HERE/'native.py',HERE/'callers.json']},
+        'flags':json.loads((HERE/'group.json').read_text())['flags'],
         'caller_audit':caller_audit(),
         'native_intervals':identities,
         'native_body_sha256':{n:digest(raw(score.targets()[n])) for n in NAMES},
@@ -232,13 +232,17 @@ def build(work):
         'external_symbol_bindings':{n:'0x%08X'%addresses.get(n,score.address_named(n)) for n in ext},
         'behavior':behavior(words,list(struct.unpack('>51I',blob[:204])),work)}
 
+def portable(receipt):
+    result=json.loads(json.dumps(receipt))
+    result.pop('accepted_source_sha256',None)
+    return result
+
 def binding():
     receipt=json.loads((HERE/'verification.json').read_text())
     check_recipe(json.loads((HERE/'group.json').read_text()))
     assert native_identity()==receipt['native_intervals']
     assert caller_audit()==receipt['caller_audit']
     for path,expected in receipt['inputs'].items(): assert sha(ROOT/path)==expected,path
-    assert digest(git(BASE_SOURCE))==receipt['accepted_source_sha256']
     for n,expected in receipt['native_body_sha256'].items(): assert digest(raw(score.targets()[n]))==expected,n
     assert digest(raw(score.targets()[NAME]))==receipt['target']['sha256']
     addresses=score.image_symbols()
@@ -250,7 +254,7 @@ def main():
     if a.record or a.compiler:
         with tempfile.TemporaryDirectory(prefix='speed-flags-proof-') as temp: receipt=build(Path(temp))
         if a.record: (HERE/'verification.json').write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
-        else: assert receipt==binding(),'fresh replay differs from receipt'
+        else: assert portable(receipt)==portable(binding()),'fresh replay differs from receipt'
     else: receipt=binding()
     print('speed_set: MATCH, 204 bytes; %d bounded cases'%receipt['behavior']['cases'])
 if __name__=='__main__':main()

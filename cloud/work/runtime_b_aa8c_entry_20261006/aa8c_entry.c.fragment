@@ -1,0 +1,32 @@
+/* PARTIAL-SOURCE: genuine root prefix only. Deliberately not a translation unit.
+ * Reconstruct AB8C..C8E4 before any root or private-closure compiler experiment.
+ * No invented suffix, keeper, pressure local, ordinary-ABI private leaf or wrapper.
+ */
+void func_8038AA8C(BattleDescriptor *descriptor, s16 update)
+{
+    BattlePlayer *state;
+    u32 source_color;
+    s16 player;
+    s8 cached_kind;
+
+    state = &D_80152818[descriptor->owner];
+    source_color = D_80394884;
+    if (update == 0 || D_8014A250[descriptor->owner].inhibit != 0) {
+        player = descriptor->owner;
+        cached_kind = D_80399118[player];
+        if (cached_kind == 1) {
+            func_8038AA14(player);
+        } else if (cached_kind == 0) {
+            func_8038A95C(player);
+        }
+        state->mode = 8;
+        state->selection = -1;
+        model_data_load(descriptor->handle, 0, 15);
+        return;
+    }
+
+    /* MISSING: real color/visibility handling, kind-change creation/switch,
+     * transforms and animation; native AB8C..C8E4. source_color is live there.
+     * The complete native epilogue is C8E4..C910. No placeholder return or
+     * closing function brace is supplied for this deliberately incomplete root.
+     */

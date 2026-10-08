@@ -1,0 +1,14 @@
+{
+  "fixtures": 1784,
+  "root_runs": 1989,
+  "native_instructions": 517,
+  "native_branches": 94,
+  "native_unexecuted": [
+    "0x80390bfc",
+    "0x80390e24",
+    "0x80391064",
+    "0x80391098",
+    "0x803910b0",
+    "0x803911d4"
+  ]
+}

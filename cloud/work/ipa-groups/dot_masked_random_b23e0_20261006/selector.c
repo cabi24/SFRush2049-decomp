@@ -1,3 +1,4 @@
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
 typedef unsigned int u32;
 typedef unsigned char u8;
 extern u32 D_80123418[];

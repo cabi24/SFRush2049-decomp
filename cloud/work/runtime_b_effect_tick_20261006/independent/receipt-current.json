@@ -1,0 +1,71 @@
+{
+  "status": "PASS: bounded semantic audit only",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "source_sha256": "b88b940c637c5831be3714b6dbe47f9bd3821bdb8e6501d775f46fe552274bd0",
+  "packet_inputs_sha256": {
+    "effect_tick.c": "b88b940c637c5831be3714b6dbe47f9bd3821bdb8e6501d775f46fe552274bd0",
+    "host.c": "a2731a9205a4ea41d27144fbf865569c540fbe885ff2f97bee24ee811137fac1",
+    "native.py": "9769c5d8aca3de0b8a4cbbd3aca2db6e3be9742dd140a5c9c6232f6f5bbc87c2",
+    "semantic.py": "950be7278148bd53971d89b31510d36f2c690e02b1400867b2b9adfc9bb9fe04"
+  },
+  "native_targets": {
+    "func_80390B10": {
+      "address": "0x80390b10",
+      "bytes": 552,
+      "sha256": "656cfd510c2a08aa09c0dbba417f7e6bf84781681746380fddabce66c455fef8"
+    },
+    "func_80390D38": {
+      "address": "0x80390d38",
+      "bytes": 552,
+      "sha256": "e90f5ca0395a6429e0137efb62e2a8077600aff474bf298d5e47d98aec520355"
+    },
+    "func_80390F60": {
+      "address": "0x80390f60",
+      "bytes": 988,
+      "sha256": "6d91e9692637c1d96f48b3a1afcc63d3348212a42baf882e7e71034426a30bb3"
+    }
+  },
+  "paired_root_fixtures": 2498,
+  "paired_root_executions": 2528,
+  "paired_private_executions": 120,
+  "oracle_player_cases": 1800,
+  "fixture_groups": {
+    "alpha-byte-domain": 1536,
+    "signed-countdown": 256,
+    "phase-three-table": 8,
+    "signed-phase": 256,
+    "signed-player-count": 8,
+    "binary32-boundaries": 84,
+    "cyclic-eligibility": 192,
+    "external-memory-reload": 12,
+    "sentinel-state-reset": 144,
+    "multi-frame-lifecycle": 1,
+    "multi-frame-rearm": 1
+  },
+  "native_instructions_covered": 517,
+  "native_instructions_total": 523,
+  "static_cfg_reachable_instructions": 517,
+  "static_cfg_reachable_all_executed": true,
+  "native_branch_outcomes": 94,
+  "native_unexecuted": [
+    "0x80390bfc",
+    "0x80390e24",
+    "0x80391064",
+    "0x80391098",
+    "0x803910b0",
+    "0x803911d4"
+  ],
+  "invalid_search_control": "step-limit rejection as expected",
+  "target_compiler_invocations": 0,
+  "host_compiler_flags": [
+    "-std=c89",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-fPIC",
+    "-shared",
+    "-ffp-contract=off"
+  ],
+  "limits": "The independent fixture/oracle suite uses the manually reviewed packet interpreter and address adapter; it is not a second MIPS engine. Binary32 nearest-even, finite normal-or-zero, valid aligned initialized nonaliasing storage, bounded player/entry counts, valid selected/object indices, terminating eligibility searches. Semantic agreement is distinct from exact object match, original translation-unit identity and whole-image acceptance."
+}

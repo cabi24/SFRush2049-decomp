@@ -1,0 +1,159 @@
+{
+  "status": "one approved source assembly; not a match",
+  "source_order": [
+    "D200",
+    "D328",
+    "D498",
+    "DA78",
+    "E088",
+    "E114",
+    "F938",
+    "FCE0"
+  ],
+  "keep": [
+    "func_8038FCE0"
+  ],
+  "combined_sha256": "fc80a9075c6357b1833bc53b7810f8a4ee2c2f874e1bc8ba03f47fcb10e32d95",
+  "schema_sha256": "cea0a07408c834c1a602fef3f62aad1735728e9691340fa8659e86e2d10adb4c",
+  "changes": [
+    {
+      "member": "D200",
+      "source": "/workspace/scratch/e1dc04a487a3/runtime-b-e114-parent/cloud/work/runtime_b_e114_parent_20261006/children.c",
+      "original_body_sha256": "1b2b688121c11d09d05a54fcd39d703a5612d7bee09c3b7bb7d96e21a55d1c01",
+      "reconciled_body_sha256": "ff264dd88f3ebb3d6232156bfabeee75696c597475ea088d046e6981c4358390",
+      "made_static": true,
+      "replacements": []
+    },
+    {
+      "member": "D328",
+      "source": "/workspace/scratch/e1dc04a487a3/runtime-b-e114-parent/cloud/work/runtime_b_e114_parent_20261006/children.c",
+      "original_body_sha256": "03a46d35fe9d77a934b183a23f126a2274760cdf93f68062634a45434ed94493",
+      "reconciled_body_sha256": "289e68529eb0aa8e534bcaea5b50fcdb335d8a4863ed279d9ae69c80487d358d",
+      "made_static": true,
+      "replacements": []
+    },
+    {
+      "member": "D498",
+      "source": "/workspace/scratch/e1dc04a487a3/runtime-b-d498-visual/cloud/work/runtime_b_d498_visual_20261006/visual.c",
+      "original_body_sha256": "31b2b8c4823891867804ba63c9ba771cbc8064bc2761aa678df01f06655619f2",
+      "reconciled_body_sha256": "620dac61b66107ebf9fcfb8f7e599c778ef0d05301b19c30be4e78a4c6d7350f",
+      "made_static": true,
+      "replacements": []
+    },
+    {
+      "member": "DA78",
+      "source": "/workspace/scratch/e1dc04a487a3/runtime-b-da78-position/cloud/work/runtime_b_da78_position_20261006/position.c",
+      "original_body_sha256": "f2f4c7423398fba86bb8aa017c127b78abb8cb4cda82eed7e1fb7c10a29b58bb",
+      "reconciled_body_sha256": "c71725f49ee4d39d8dabc30487523cfd881cd5b6e98d0be7abb1b2ddaecbf7b7",
+      "made_static": true,
+      "replacements": [
+        {
+          "before": "record->radius",
+          "after": "record->collision_extent",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "member": "E088",
+      "source": "/workspace/scratch/e1dc04a487a3/runtime-b-e114-parent/cloud/work/runtime_b_e114_parent_20261006/children.c",
+      "original_body_sha256": "498396ad1781d950c0cdc6696b110e5ce68d028932ba591a452d4ddc59621781",
+      "reconciled_body_sha256": "2860c67c32780e5c9301cb93ffec7278ac1f22638547e95878c08c4a12d5c7ef",
+      "made_static": true,
+      "replacements": [
+        {
+          "before": "sound_call_minimal",
+          "after": "func_80090254",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "member": "E114",
+      "source": "/workspace/scratch/e1dc04a487a3/runtime-b-e114-update/cloud/work/runtime_b_e114_update_20261006/update.c",
+      "original_body_sha256": "66ffa789b9d023c23fe089f9873a22f4bb6b17e2c5900d5e68da94038d12b267",
+      "reconciled_body_sha256": "26eafbf7a30bbf13852325f5c20f9876259f9ec64c8ddd53c57443703782e52b",
+      "made_static": true,
+      "replacements": [
+        {
+          "before": "func_800B24EC(D_80394D08, &D_80394F88,",
+          "after": "func_800B24EC((char *)D_80394D08, (s16 *)&D_80394F88,",
+          "count": 1
+        },
+        {
+          "before": "private_D200",
+          "after": "func_8038D200",
+          "count": 7
+        },
+        {
+          "before": "private_D328",
+          "after": "func_8038D328",
+          "count": 8
+        },
+        {
+          "before": "private_D498",
+          "after": "func_8038D498",
+          "count": 1
+        },
+        {
+          "before": "private_DA78",
+          "after": "func_8038DA78",
+          "count": 2
+        },
+        {
+          "before": "private_E088",
+          "after": "func_8038E088",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "member": "F938",
+      "source": "/workspace/scratch/e1dc04a487a3/runtime-b-f938-setup/cloud/work/runtime_b_f938_setup_20261006/setup.c",
+      "original_body_sha256": "12db9f98b00cab1f9a7dbf6df6e1141f88b1c5a93ebdfb933f0244321a03ce0d",
+      "reconciled_body_sha256": "0e49a44d5680cefc9472dbb4daf5d7d17bbf4d48997121be18626203b0f3d07e",
+      "made_static": true,
+      "replacements": [
+        {
+          "before": "BEffect *effect;",
+          "after": "BStatusEffect *effect;",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "member": "FCE0",
+      "source": "/workspace/scratch/e1dc04a487a3/runtime-b-fce0-root/cloud/work/runtime_b_fce0_root_20261006/root.c",
+      "original_body_sha256": "6b583bf765e54e8d2c3671855c581b99aded993336ada075efb67ffbee2ba30e",
+      "reconciled_body_sha256": "fb15fa76b2fd07b342ed1d8ab2b301ae48e49ed4b61c3e03e164b091856c3159",
+      "made_static": false,
+      "replacements": [
+        {
+          "before": "record->unknown05",
+          "after": "record->hit_mask",
+          "count": 1
+        },
+        {
+          "before": "record->elapsed",
+          "after": "record->collision_extent",
+          "count": 7
+        },
+        {
+          "before": "release->handle",
+          "after": "(s16 *)release->quad",
+          "count": 1
+        },
+        {
+          "before": "private_E114",
+          "after": "func_8038E114",
+          "count": 1
+        },
+        {
+          "before": "private_F938",
+          "after": "func_8038F938",
+          "count": 1
+        }
+      ]
+    }
+  ]
+}

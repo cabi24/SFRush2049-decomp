@@ -1,0 +1,25 @@
+{
+  "packet": "runtime_b_fce0_root_20261006",
+  "owner": "FCE0 reconstruction worker, coordinator acknowledged",
+  "state": "source frozen; independent final review pending",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "fresh_master_checked_utc": "2026-10-06T04:52:38Z",
+  "target": [
+    "0x8038FCE0",
+    "0x803908D0"
+  ],
+  "claimed_bytes": 3056,
+  "claim_kind": "research source only, zero matching/accepted credit",
+  "edit_paths": [
+    "cloud/work/runtime_b_fce0_root_20261006/",
+    "tests/cloud/test_runtime_b_fce0_root.py"
+  ],
+  "read_only": [
+    "all production source",
+    "all accepted/protected metadata and tools",
+    "reviewed runtime_b_e114_parent_20261006 packet",
+    "F938/D054/F568/CB20 native dependencies"
+  ],
+  "open_PR_preflight": "Exact FCE0 open search empty; existing runtime PRs returned disjoint addresses. PR160 prior child work is read-only.",
+  "handoff": "Read current-base CLAUDE, CloudHandoff, PROJECT_PLAN sections5/6, dot_handoff and dot_response; no FCE0 pause or existing complete source found."
+}

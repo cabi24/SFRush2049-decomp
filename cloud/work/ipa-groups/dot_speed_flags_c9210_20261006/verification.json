@@ -1,6 +1,5 @@
 {
   "accepted_byte_gain": 0,
-  "accepted_source_sha256": "67e4e1edba4cd2f4d750f66c926635c9258c99c61e294d8a3f3ebae24250087f",
   "base": "cd22879d40b3de443cfde047b86e75e159b6cec6",
   "behavior": {
     "cases": 8000,
@@ -180,8 +179,7 @@
     "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/group.json": "15e33843ad08fa394ce6b50753c534a5d4711977ae1b3e35e9b7f61b5d47fe6c",
     "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/host.c": "8c73379a210e409c56778c2f000e217cfaca53d33c80d0127cf1fb9fcbba8a8e",
     "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/native.py": "1e78747580716e9e9d4ccca42fd0f0dc30ca5fdb165e4ac781d78e8a039b4976",
-    "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/verify.py": "76ca7a05c5f5978c50014e0937a982f3590ba586038b13273572aa15ddbbf7a3",
-    "tests/conveyor/test_speed_flags_contract.py": "fdf6dd05df3124dcfadff3c5f86361586a9611e2366d6c72544f2b92d5ab6d64"
+    "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/verify.py": "5e457ae1179d1e4fd4123832fffb558c3dcee703cdf466cd989661e39111c943"
   },
   "native_body_sha256": {
     "continue_prompt": "69da50505a3618a4384e2ac42143b2926d51c2c198bff6ca6850e824b8a75b9d",

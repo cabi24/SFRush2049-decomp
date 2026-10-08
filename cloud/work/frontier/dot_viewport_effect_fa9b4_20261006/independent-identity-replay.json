@@ -1,0 +1,1207 @@
+{
+  "status": "READ-ONLY CONTRACT AUDIT; ready for scoped ordinary-boundary reconstruction; no matching claim",
+  "base": "6b2e9e506fe3d2267a710e41c85af5364ccd00c7",
+  "source_sha256": "4e186c4f050009c84131e41ed8b0ed358f7327792f007e8598a534a25e264b83",
+  "compiler_invocations": 0,
+  "images": {
+    "blob": {
+      "rom": "0xb0cb10",
+      "base": "0x80086a50",
+      "bytes": 647072,
+      "sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d"
+    },
+    "ovl_a": {
+      "rom": "0xb5c534",
+      "base": "0x8038a400",
+      "bytes": 194128,
+      "sha256": "0d6702c320df84cc6cbc3c5967dde08d44b6e476e110667fe2a43dc2dd536667"
+    },
+    "ovl_b": {
+      "rom": "0xb6fec4",
+      "base": "0x8038a400",
+      "bytes": 43888,
+      "sha256": "b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd"
+    }
+  },
+  "targets": {
+    "render_viewport_init": {
+      "population": "blob",
+      "address": "0x800fa9b4",
+      "end": "0x800fad50",
+      "bytes": 924,
+      "sha256": "654bb1ced64803ad473a7bb8d1238cdd95fba6868c75e49697192678c14fb9d9",
+      "historical_target_file": "asm/us/blob/blob_800f8d9c.s",
+      "direct_calls": [
+        {
+          "site": "0x800fa9d8",
+          "target": "0x800ec0dc",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800fa9fc",
+          "target": "0x800c2be0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800faa14",
+          "target": "0x8038fce0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800faa1c",
+          "target": "0x80390f60",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800faa38",
+          "target": "0x800d169c",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800faa48",
+          "target": "0x800f93a0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800faa50",
+          "target": "0x800f8ec8",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800faa58",
+          "target": "0x800cada4",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800faa60",
+          "target": "0x800aeb54",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800fab50",
+          "target": "0x800af06c",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800fab58",
+          "target": "0x800d5524",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800fabc8",
+          "target": "0x80092360",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800fac24",
+          "target": "0x800aed64",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800fac38",
+          "target": "0x800c3578",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800fac80",
+          "target": "0x800f8e90",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800fac8c",
+          "target": "0x800b0180",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800facd8",
+          "target": "0x800beaa0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800facfc",
+          "target": "0x800bd2c8",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800fad04",
+          "target": "0x800cf69c",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800fad1c",
+          "target": "0x800f0100",
+          "kind": "jal"
+        }
+      ],
+      "paired_stack_gpr_saves": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        31
+      ],
+      "paired_stack_fpr_pair_saves": [
+        20
+      ]
+    },
+    "save_write_data": {
+      "population": "blob",
+      "address": "0x800af06c",
+      "end": "0x800af51c",
+      "bytes": 1200,
+      "sha256": "3d7f79a62ea3664248e76b8cd9fc06dbd8142ab8d31e6167e8c1ca246323fca1",
+      "historical_target_file": "asm/us/blob/blob_800aeb54.s",
+      "direct_calls": [
+        {
+          "site": "0x800af0e8",
+          "target": "0x80090308",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800af12c",
+          "target": "0x80090284",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800af188",
+          "target": "0x8008d6b0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800af1f8",
+          "target": "0x80090088",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800af224",
+          "target": "0x8008e26c",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800af280",
+          "target": "0x80090284",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800af2b4",
+          "target": "0x8008d6b0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800af3ac",
+          "target": "0x8008e26c",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800af4cc",
+          "target": "0x800aed64",
+          "kind": "jal"
+        }
+      ],
+      "paired_stack_gpr_saves": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        30,
+        31
+      ],
+      "paired_stack_fpr_pair_saves": [
+        20,
+        22,
+        24,
+        26,
+        28,
+        30
+      ]
+    },
+    "func_80090308": {
+      "population": "blob",
+      "address": "0x80090308",
+      "end": "0x80090770",
+      "bytes": 1128,
+      "sha256": "dd5fb2b4ba651dfc726d27571fc810534f081935e00ed42fdeb70f5456d87169",
+      "historical_target_file": "asm/us/blob/blob_8008d0c0.s",
+      "direct_calls": [
+        {
+          "site": "0x80090318",
+          "target": "0x80090284",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80090418",
+          "target": "0x80090088",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80090428",
+          "target": "0x8008d6b0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80090458",
+          "target": "0x8008e26c",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80090614",
+          "target": "0x8008d6b0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80090650",
+          "target": "0x80090088",
+          "kind": "jal"
+        },
+        {
+          "site": "0x8009066c",
+          "target": "0x8008e26c",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80090758",
+          "target": "0x8008ea10",
+          "kind": "jal"
+        }
+      ],
+      "paired_stack_gpr_saves": [
+        31
+      ],
+      "paired_stack_fpr_pair_saves": []
+    },
+    "func_80090284": {
+      "population": "blob",
+      "address": "0x80090284",
+      "end": "0x80090308",
+      "bytes": 132,
+      "sha256": "30a84341f5dadb3b164c8e49d76c350693b8369e33e6f62663cf9d2c8fe807eb",
+      "historical_target_file": "asm/us/blob/blob_8008d0c0.s",
+      "direct_calls": [],
+      "paired_stack_gpr_saves": [],
+      "paired_stack_fpr_pair_saves": []
+    },
+    "InitMaxPath": {
+      "population": "blob",
+      "address": "0x800a1244",
+      "end": "0x800a12cc",
+      "bytes": 136,
+      "sha256": "39fb255a22f38bd9e8485207ac94a5c2db4ed68dbcc53658b7998f32d14daefa",
+      "historical_target_file": "asm/us/blob/blob_8009dd18.s",
+      "direct_calls": [
+        {
+          "site": "0x800a12a4",
+          "target": "0x800a11e4",
+          "kind": "jal"
+        }
+      ],
+      "paired_stack_gpr_saves": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        31
+      ],
+      "paired_stack_fpr_pair_saves": []
+    },
+    "PrevMaxPath": {
+      "population": "blob",
+      "address": "0x800a11e4",
+      "end": "0x800a1244",
+      "bytes": 96,
+      "sha256": "36b09bc3ca7abf5fc154625c926df393b276b7ad505117aa2f332fc85daec711",
+      "historical_target_file": "asm/us/blob/blob_8009dd18.s",
+      "direct_calls": [
+        {
+          "site": "0x800a11fc",
+          "target": "0x800a0fdc",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800a1208",
+          "target": "0x800962d4",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800a1218",
+          "target": "0x800026c0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800a1224",
+          "target": "0x80008590",
+          "kind": "jal"
+        }
+      ],
+      "paired_stack_gpr_saves": [
+        31
+      ],
+      "paired_stack_fpr_pair_saves": []
+    },
+    "display_enable": {
+      "population": "blob",
+      "address": "0x800c8fa4",
+      "end": "0x800c90e0",
+      "bytes": 316,
+      "sha256": "68c5a299aa4fb32e5122fbb59b9fe0834882f1ef92e84e5bc3fecbb2809d0dab",
+      "historical_target_file": "asm/us/blob/blob_800c46d0.s",
+      "direct_calls": [
+        {
+          "site": "0x800c8fdc",
+          "target": "0x80007270",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800c8fec",
+          "target": "0x80095fd8",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800c8ffc",
+          "target": "0x800075e0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800c9050",
+          "target": "0x800a11e4",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800c9098",
+          "target": "0x80007270",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800c90a8",
+          "target": "0x80095fd8",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800c90b8",
+          "target": "0x800075e0",
+          "kind": "jal"
+        }
+      ],
+      "paired_stack_gpr_saves": [
+        31
+      ],
+      "paired_stack_fpr_pair_saves": []
+    },
+    "playgame_state_change": {
+      "population": "blob",
+      "address": "0x800ca3b4",
+      "end": "0x800cada4",
+      "bytes": 2544,
+      "sha256": "b36a6e6d7ff8a517f1091d31090f2018fa037e40dab8407b278bdea90a284084",
+      "historical_target_file": "asm/us/blob/blob_800c46d0.s",
+      "direct_calls": [
+        {
+          "site": "0x800ca3f0",
+          "target": "0x800ca300",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca438",
+          "target": "0x800a5bb8",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca47c",
+          "target": "0x800c8b8c",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca484",
+          "target": "0x800c885c",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca48c",
+          "target": "0x800c8fa4",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca4a4",
+          "target": "0x800c9be0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca4b4",
+          "target": "0x800014f0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca4bc",
+          "target": "0x800c9ae0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca4c4",
+          "target": "0x800c9ae0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca4cc",
+          "target": "0x800c9ae0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca4d4",
+          "target": "0x800c9480",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca500",
+          "target": "0x800c90e0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca508",
+          "target": "0x800a5bb8",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca54c",
+          "target": "0x800c8b8c",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca554",
+          "target": "0x800c885c",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca584",
+          "target": "0x800c9210",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca58c",
+          "target": "0x800c8fa4",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca594",
+          "target": "0x800c937c",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca5a0",
+          "target": "0x800c9158",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca5ac",
+          "target": "0x800c9158",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca5b8",
+          "target": "0x800c84c0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca5e0",
+          "target": "0x800c90e0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca5e8",
+          "target": "0x800a5bb8",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca62c",
+          "target": "0x800c8b8c",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca634",
+          "target": "0x800c885c",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca664",
+          "target": "0x800c9210",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca66c",
+          "target": "0x800c8fa4",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca674",
+          "target": "0x800c937c",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca6c4",
+          "target": "0x800a3424",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca6ec",
+          "target": "0x800c9158",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca6f8",
+          "target": "0x800c9158",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca704",
+          "target": "0x800c84c0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca76c",
+          "target": "0x800c9210",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca778",
+          "target": "0x800c9194",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca7ac",
+          "target": "0x800c7308",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca7c4",
+          "target": "0x800c70bc",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca7cc",
+          "target": "0x800c90e0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca7d4",
+          "target": "0x800a5bb8",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca814",
+          "target": "0x800c8b8c",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca81c",
+          "target": "0x800c8fa4",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca834",
+          "target": "0x800a1244",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca858",
+          "target": "0x800c9158",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca864",
+          "target": "0x800c9158",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca870",
+          "target": "0x800c84c0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca8a0",
+          "target": "0x800c9158",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca8ac",
+          "target": "0x800c84c0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca8d8",
+          "target": "0x800c9158",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca908",
+          "target": "0x800c9158",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca914",
+          "target": "0x800c9158",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca970",
+          "target": "0x80097798",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca99c",
+          "target": "0x80097798",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca9b8",
+          "target": "0x800c9158",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca9c4",
+          "target": "0x800c84c0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800ca9f0",
+          "target": "0x800c9158",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800caa2c",
+          "target": "0x80097798",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800caa38",
+          "target": "0x800c9158",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800caa44",
+          "target": "0x800c9158",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800caa74",
+          "target": "0x800c70bc",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800caa7c",
+          "target": "0x800c90e0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800caa84",
+          "target": "0x800a5bb8",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800caa8c",
+          "target": "0x800c8fa4",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cab04",
+          "target": "0x800c8b8c",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cab38",
+          "target": "0x800c84fc",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cab40",
+          "target": "0x800b55fc",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cab78",
+          "target": "0x800a1244",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cab8c",
+          "target": "0x800b42f0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cab94",
+          "target": "0x800b42f0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cab9c",
+          "target": "0x800b42f0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800caba4",
+          "target": "0x800b42f0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cabac",
+          "target": "0x800b42f0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cabb4",
+          "target": "0x800b42f0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cabbc",
+          "target": "0x800b42f0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cabc4",
+          "target": "0x800b42f0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cabcc",
+          "target": "0x800b42f0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cabd4",
+          "target": "0x800b42f0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cabe8",
+          "target": "0x80007270",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cabf0",
+          "target": "0x800b4200",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cac0c",
+          "target": "0x800075e0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cac1c",
+          "target": "0x80007270",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cac24",
+          "target": "0x800b4200",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cac40",
+          "target": "0x800075e0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cac50",
+          "target": "0x80007270",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cac58",
+          "target": "0x800b4200",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cac70",
+          "target": "0x800075e0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cac7c",
+          "target": "0x800c84c0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cac9c",
+          "target": "0x800c84c0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cacbc",
+          "target": "0x800c813c",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cacc4",
+          "target": "0x800b55fc",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cace0",
+          "target": "0x800c70bc",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cace8",
+          "target": "0x800a5bb8",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cad00",
+          "target": "0x80097798",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cad48",
+          "target": "0x800a7480",
+          "kind": "jal"
+        },
+        {
+          "site": "0x800cad74",
+          "target": "0x800a7480",
+          "kind": "jal"
+        }
+      ],
+      "paired_stack_gpr_saves": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        31
+      ],
+      "paired_stack_fpr_pair_saves": [
+        20,
+        22
+      ]
+    },
+    "func_8038FCE0": {
+      "population": "ovl_b",
+      "address": "0x8038fce0",
+      "end": "0x803908d0",
+      "bytes": 3056,
+      "sha256": "3574383f8241f87f1aa201bc4a7265e49cd818b8b6f7e6564ecca4131b6682e2",
+      "historical_target_file": "asm/us/ovl_b/ovl_b_8038a400.s",
+      "direct_calls": [
+        {
+          "site": "0x8038fd78",
+          "target": "0x80090254",
+          "kind": "jal"
+        },
+        {
+          "site": "0x8038fd88",
+          "target": "0x800afa84",
+          "kind": "jal"
+        },
+        {
+          "site": "0x8038fe8c",
+          "target": "0x8038f938",
+          "kind": "jal"
+        },
+        {
+          "site": "0x8038fec8",
+          "target": "0x8038f568",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80390068",
+          "target": "0x8008e3c0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x803900f0",
+          "target": "0x8008d6b0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80390120",
+          "target": "0x800b61a8",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80390160",
+          "target": "0x80090f44",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80390254",
+          "target": "0x80090f44",
+          "kind": "jal"
+        },
+        {
+          "site": "0x803902c0",
+          "target": "0x80090e9c",
+          "kind": "jal"
+        },
+        {
+          "site": "0x803902cc",
+          "target": "0x80090f44",
+          "kind": "jal"
+        },
+        {
+          "site": "0x803902f4",
+          "target": "0x80090f44",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80390324",
+          "target": "0x8008b2e4",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80390340",
+          "target": "0x80090e9c",
+          "kind": "jal"
+        },
+        {
+          "site": "0x8039034c",
+          "target": "0x8008b2e4",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80390368",
+          "target": "0x80090f44",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80390374",
+          "target": "0x8008e3c0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x803904d8",
+          "target": "0x8008d6b0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x803904e4",
+          "target": "0x8008b2e4",
+          "kind": "jal"
+        },
+        {
+          "site": "0x803904f8",
+          "target": "0x8009ea68",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80390510",
+          "target": "0x8008e398",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80390520",
+          "target": "0x8008b2e4",
+          "kind": "jal"
+        },
+        {
+          "site": "0x803907e0",
+          "target": "0x8038d054",
+          "kind": "jal"
+        },
+        {
+          "site": "0x8039085c",
+          "target": "0x8008d0c0",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80390868",
+          "target": "0x800afa84",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80390878",
+          "target": "0x8038e114",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80390880",
+          "target": "0x8038cb20",
+          "kind": "jal"
+        }
+      ],
+      "paired_stack_gpr_saves": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        30,
+        31
+      ],
+      "paired_stack_fpr_pair_saves": [
+        20,
+        22,
+        24,
+        26,
+        28,
+        30
+      ]
+    },
+    "func_80390F60": {
+      "population": "ovl_b",
+      "address": "0x80390f60",
+      "end": "0x8039133c",
+      "bytes": 988,
+      "sha256": "6d91e9692637c1d96f48b3a1afcc63d3348212a42baf882e7e71034426a30bb3",
+      "historical_target_file": "asm/us/ovl_b/ovl_b_8038a400.s",
+      "direct_calls": [
+        {
+          "site": "0x80390f70",
+          "target": "0x80390d38",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80390f78",
+          "target": "0x80390b10",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80391140",
+          "target": "0x8008b2e4",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80391200",
+          "target": "0x8008b2e4",
+          "kind": "jal"
+        },
+        {
+          "site": "0x803912e0",
+          "target": "0x80090770",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80391308",
+          "target": "0x8008b0d8",
+          "kind": "jal"
+        }
+      ],
+      "paired_stack_gpr_saves": [
+        16,
+        17,
+        31
+      ],
+      "paired_stack_fpr_pair_saves": [
+        20
+      ]
+    },
+    "func_80390B10": {
+      "population": "ovl_b",
+      "address": "0x80390b10",
+      "end": "0x80390d38",
+      "bytes": 552,
+      "sha256": "656cfd510c2a08aa09c0dbba417f7e6bf84781681746380fddabce66c455fef8",
+      "historical_target_file": "asm/us/ovl_b/ovl_b_8038a400.s",
+      "direct_calls": [
+        {
+          "site": "0x80390b6c",
+          "target": "0x8008b2e4",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80390c28",
+          "target": "0x8008b2e4",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80390d00",
+          "target": "0x80090770",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80390d1c",
+          "target": "0x8008b0d8",
+          "kind": "jal"
+        }
+      ],
+      "paired_stack_gpr_saves": [
+        31
+      ],
+      "paired_stack_fpr_pair_saves": []
+    },
+    "func_80390D38": {
+      "population": "ovl_b",
+      "address": "0x80390d38",
+      "end": "0x80390f60",
+      "bytes": 552,
+      "sha256": "e90f5ca0395a6429e0137efb62e2a8077600aff474bf298d5e47d98aec520355",
+      "historical_target_file": "asm/us/ovl_b/ovl_b_8038a400.s",
+      "direct_calls": [
+        {
+          "site": "0x80390d94",
+          "target": "0x8008b2e4",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80390e50",
+          "target": "0x8008b2e4",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80390f28",
+          "target": "0x80090770",
+          "kind": "jal"
+        },
+        {
+          "site": "0x80390f44",
+          "target": "0x8008b0d8",
+          "kind": "jal"
+        }
+      ],
+      "paired_stack_gpr_saves": [
+        31
+      ],
+      "paired_stack_fpr_pair_saves": []
+    }
+  },
+  "main_direct_call_census": [
+    {
+      "caller": "playgame_state_change",
+      "caller_start": "0x800ca3b4",
+      "site": "0x800ca834",
+      "target": "0x800a1244"
+    },
+    {
+      "caller": "playgame_state_change",
+      "caller_start": "0x800ca3b4",
+      "site": "0x800cab78",
+      "target": "0x800a1244"
+    },
+    {
+      "caller": "render_viewport_init",
+      "caller_start": "0x800fa9b4",
+      "site": "0x800faa14",
+      "target": "0x8038fce0"
+    },
+    {
+      "caller": "render_viewport_init",
+      "caller_start": "0x800fa9b4",
+      "site": "0x800faa1c",
+      "target": "0x80390f60"
+    }
+  ],
+  "wrong_image_controls": {
+    "0x8038fce0": {
+      "containing_function": "func_8038F79C",
+      "start": "0x8038F79C",
+      "bytes": 2036,
+      "result": "REJECTED: interior of different A-image body; B native target hash fails"
+    },
+    "0x80390f60": {
+      "containing_function": "func_80390DCC",
+      "start": "0x80390DCC",
+      "bytes": 1700,
+      "result": "REJECTED: interior of different A-image body; B native target hash fails"
+    }
+  },
+  "limits": "Save/restore and complete target identity checks are mechanized. Semantic, pointer-lifetime, loader-state and read-before-definition findings are the accompanying manual native audit. No executable replay or whole-game load-state proof is claimed."
+}

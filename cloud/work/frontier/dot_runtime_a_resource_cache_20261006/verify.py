@@ -5,6 +5,7 @@ from pathlib import Path
 import native
 HERE=Path(__file__).resolve().parent
 ROOT=HERE.parents[3]
+BASE="cd22879d40b3de443cfde047b86e75e159b6cec6"
 NAME='func_80390BC0'
 FLAGS='-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul'
 ANCHORS={'D_803BA230':0x803BA230,'D_80142B08':0x80142B08,'audio_frame_sync':0x80097798,'func_800BB02C':0x800BB02C}
@@ -16,6 +17,9 @@ def require(ok,message):
 def sh(args):
     p=subprocess.run([str(x) for x in args],capture_output=True,text=True)
     require(p.returncode==0,(args,p.stdout,p.stderr));return p.stdout
+
+def pinned(repo, path):
+    return subprocess.check_output(["git", "-C", str(repo), "show", BASE + ":" + path])
 
 def elf(path):
     b=path.read_bytes();require(b[:6]==b'\x7fELF\x01\x02','ELF class/endianness')
@@ -69,13 +73,20 @@ def portable_elf(data):
 
 
 def portable(receipt):
-    """Exclude only path-dependent raw-object/ECOFF provenance, after ELF binding."""
+    """Exclude historical integration and proven path-only debug provenance."""
     r=json.loads(json.dumps(receipt))
     require("portable_elf" in r and "portability_controls" in r,"missing portable proof")
     for field in ("object_sha256","mdebug_sha256"):r.pop(field)
     for label,control in r["controls"].items():
         require("portable_elf" in control,("missing control fingerprint",label))
         for field in ("object_sha256","mdebug_sha256"):control.pop(field)
+    for field in ("game_manifest", "protected_manifest", "scorer_sha256"):
+        r.pop(field, None)
+    for section in ("matched_siblings", "helper_contracts"):
+        require(isinstance(r[section], dict), ("invalid context proof", section))
+        for record in r[section].values():
+            require(isinstance(record, dict), ("invalid context record", section))
+            record.pop("source_sha256", None)
     return r
 
 def inspect(path,linked=False):
@@ -185,7 +196,7 @@ def main():
         else:raise AssertionError('invalid instruction/extent accepted')
     contexts={}
     for n in ('func_8039156C','func_80390D2C'):
-        p=repo/'cloud/matches/ovl_a'/(n+'.c');o=build/(n+'.o');score.compile_single(p,score.DEFAULT_FLAGS,o);c=score.compare(o,n,show=0);require(c.accepted(),('sibling regression',n));contexts[n]={'source_sha256':sha(p.read_bytes()),'native_sha256':sha(struct.pack('>%dI'%len(score.targets()[n]),*score.targets()[n])),'comparison':c.__dict__}
+        p=build/(n+'.c');p.write_bytes(pinned(repo,'cloud/matches/ovl_a/'+n+'.c'));o=build/(n+'.o');score.compile_single(p,score.DEFAULT_FLAGS,o);c=score.compare(o,n,show=0);require(c.accepted(),('sibling regression',n));contexts[n]={'native_sha256':sha(struct.pack('>%dI'%len(score.targets()[n]),*score.targets()[n])),'comparison':c.__dict__}
     # Bind both actual helper bodies and their independently documented source
     # contracts without presenting those helper reconstructions as new matches.
     score.ASM_DIR=repo/'asm/us/blob';game_manifest=score.target_manifest();game_words=score.targets();game_symbols=score.image_symbols()
@@ -193,7 +204,8 @@ def main():
     helpers={}
     for n,rel in helper_sources.items():
         require(game_symbols[n]==ANCHORS[n],('helper entry drift',n));body=game_words[n]
-        helpers[n]={'address':hex(ANCHORS[n]),'bytes':len(body)*4,'native_sha256':sha(struct.pack('>%dI'%len(body),*body)),'source':rel,'source_sha256':sha((repo/rel).read_bytes()),'scope':'read-only source/native contract witness; not compiled or executed as helper internals'}
+        pinned(repo, rel)  # Retain the frozen source witness without serializing its digest.
+        helpers[n]={'address':hex(ANCHORS[n]),'bytes':len(body)*4,'native_sha256':sha(struct.pack('>%dI'%len(body),*body)),'source':rel,'scope':'read-only source/native contract witness; not compiled or executed as helper internals'}
     callers=[]
     for n,body in game_words.items():
         for i,w in enumerate(body):
@@ -234,7 +246,7 @@ def main():
         altered=bytearray(raw_object);altered[section[4]]^=1
         require(portable_elf(altered)!=reference,('semantic mutation accepted',name));semantic_mutations[name]='rejected'
     altered=bytearray(raw_object);altered[39]^=1;require(portable_elf(altered)!=reference,'ABI mutation accepted');semantic_mutations['ELF_ABI_flags']='rejected'
-    receipt={'status':'NONMATCH','image':'A','base':'cd22879d40b3de443cfde047b86e75e159b6cec6','address':hex(native.ENTRY),'end':hex(native.ENTRY+364),'native_bytes':364,'function_bytes':364,'text_bytes':368,'zero_alignment_bytes':4,'owned_data_bytes':0,'flags':FLAGS,'differing_offsets':[hex(x) for x in DIFFS],'comparison':comparison.__dict__,'source_sha256':sha(source.read_bytes()),'native_sha256':sha(target),'object_sha256':sha(obj.read_bytes()),'mdebug_sha256':sha(sections['.mdebug'][2]),'portable_elf':reference,'portability_controls':{'source_paths':path_controls,'semantic_mutations':semantic_mutations},'gnu_text_sha256':sha(linkedraw),'relocations':len(relocs),'anchors':{n:hex(v) for n,v in ANCHORS.items()},'cases':cases,'native_executions':cases*3,'routes':counts,'instruction_coverage':[len(x) for x in coverage],'branch_outcomes':[sorted(x) for x in branches],'host_trace_sha256':digest.hexdigest(),'mutants':negatives,'matched_siblings':contexts,'helper_contracts':helpers,'direct_callers':callers,'controls':controls,'game_manifest':game_manifest,'files':{p.name:sha(p.read_bytes()) for p in (source,HERE/'host.c',HERE/'native.py',Path(__file__))},'protected_manifest':manifest,'scorer_sha256':sha((repo/'tools/cloud/score.py').read_bytes()),'tools':{n:sha((score.IDO/n).read_bytes()) for n in ('cc','cfe','uopt','ugen','as1')},'limits':['ID 0..12 and valid disjoint output/table/cache storage','Signed16 kind and arbitrary32 returned handle are O32 boundary stress; actual resource validity and helper success are not proved','Helpers are side-effecting hooks; helper internals and whole-game callers do not execute','No concurrency, gameplay, image, compression, ROM, CI, accepted-byte or original-source claim']}
+    receipt={'status':'NONMATCH','image':'A','base':'cd22879d40b3de443cfde047b86e75e159b6cec6','address':hex(native.ENTRY),'end':hex(native.ENTRY+364),'native_bytes':364,'function_bytes':364,'text_bytes':368,'zero_alignment_bytes':4,'owned_data_bytes':0,'flags':FLAGS,'differing_offsets':[hex(x) for x in DIFFS],'comparison':comparison.__dict__,'source_sha256':sha(source.read_bytes()),'native_sha256':sha(target),'object_sha256':sha(obj.read_bytes()),'mdebug_sha256':sha(sections['.mdebug'][2]),'portable_elf':reference,'portability_controls':{'source_paths':path_controls,'semantic_mutations':semantic_mutations},'gnu_text_sha256':sha(linkedraw),'relocations':len(relocs),'anchors':{n:hex(v) for n,v in ANCHORS.items()},'cases':cases,'native_executions':cases*3,'routes':counts,'instruction_coverage':[len(x) for x in coverage],'branch_outcomes':[sorted(x) for x in branches],'host_trace_sha256':digest.hexdigest(),'mutants':negatives,'matched_siblings':contexts,'helper_contracts':helpers,'direct_callers':callers,'controls':controls,'files':{p.name:sha(p.read_bytes()) for p in (source,HERE/'host.c',HERE/'native.py',Path(__file__))},'tools':{n:sha((score.IDO/n).read_bytes()) for n in ('cc','cfe','uopt','ugen','as1')},'limits':['ID 0..12 and valid disjoint output/table/cache storage','Signed16 kind and arbitrary32 returned handle are O32 boundary stress; actual resource validity and helper success are not proved','Helpers are side-effecting hooks; helper internals and whole-game callers do not execute','No concurrency, gameplay, image, compression, ROM, CI, accepted-byte or original-source claim']}
     a.output.write_text(json.dumps(receipt,indent=2)+'\n');print(json.dumps({k:receipt[k] for k in ('status','comparison','cases','native_executions','routes','instruction_coverage','relocations')},indent=2))
 if __name__=='__main__':
     require(__debug__,'Python optimization is unsupported: invariant checks must be enabled')

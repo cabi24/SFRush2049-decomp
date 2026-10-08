@@ -2,13 +2,11 @@
   "status": "COMPLETE-NONMATCH children; PARTIAL-SOURCE parent; NOT READY-MATCH",
   "base": "dea99f09ab19b1d3b324ed7097162f7b378e7096",
   "image_sha256": "b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd",
-  "target_manifest_sha256": "3b7ccbab80467e2538f107543f612db239c380a44000730c5f78f6dbb062bd98",
   "source_sha256": "2dc2612d12962195b09ef7726a7479c150ece5d6acc6fec3244fe1572e758009",
   "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
-  "tools": {
-    "score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
-    "owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad"
-  },
+  "link_flags": [
+    "--hash-style=sysv"
+  ],
   "compiler": {
     "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
     "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
@@ -20,10 +18,10 @@
     "children.c": "2dc2612d12962195b09ef7726a7479c150ece5d6acc6fec3244fe1572e758009",
     "native.py": "e50cf13732584303f311bd249f600b522a7935ada324a5220237970fe628d0f3",
     "host_test.c": "a878afc6d750a6a8967eb445d81cb0ab880d2f853350c9a2f127c53e59621c1e",
-    "verify.py": "9af65c78863dcb3232e6c564284f0772d180b86c5f28a8521e1c5f921c5b3d58",
+    "verify.py": "25027946d2fd5571ed752b0958efa798aaf9940d36df13d928c2705afe5d993e",
     "parent_regions.md": "905b14f05a968e350fac8401e764aabc3d5cf3befb2ea2dda89c4f8a1db54797",
     "contract_audit.json": "5975ba31b3a1ec9c09663d00d42436155964dd7c36519b59aa39da33ca089157",
-    "README.md": "e9c85c2e69ba8ab8af09599fce3684d89ca8d1cb1b7a33226b4d7b30d1438e2c"
+    "README.md": "54c5735c25812bb8c6a980098ad31843d9ba471bb0a8d5f2bf954946acec73ac"
   },
   "intervals": {
     "func_8038D200": {
@@ -640,7 +638,157 @@
     }
   },
   "object": {
-    "sha256": "9a16e0fb5d6b2d52dd55b86f143951ed266551e75764cd808712c59a232532d1",
+    "sha256": "a84043fb9ad993f1f1366b60743850dc4078875b03093ca26ef5e78be62d94de",
+    "portable_elf": {
+      "ident_sha256": "09c0a2e371bc7075dab213f9a61fa9eb0652b8ded2a072900494ba7d1bcd2e9d",
+      "header": [
+        1,
+        8,
+        1,
+        0,
+        0,
+        268435456,
+        52,
+        0,
+        0,
+        40,
+        11,
+        2
+      ],
+      "sections": [
+        {
+          "name": "",
+          "type": 0,
+          "flags": 0,
+          "address": 0,
+          "link": 0,
+          "info": 0,
+          "alignment": 0,
+          "entry_size": 0,
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": ".symtab",
+          "type": 2,
+          "flags": 0,
+          "address": 0,
+          "link": 3,
+          "info": 3,
+          "alignment": 4,
+          "entry_size": 16,
+          "size": 240,
+          "sha256": "26b814acb884eb863fe492d26e99c1abaa3c7ce4380eb17c8b10dc58a78d1027"
+        },
+        {
+          "name": ".shstrtab",
+          "type": 3,
+          "flags": 0,
+          "address": 0,
+          "link": 0,
+          "info": 0,
+          "alignment": 1,
+          "entry_size": 1,
+          "size": 89,
+          "sha256": "8f9ef4da8f13a941a83e6812d294cb09f4a5b80e48a8e1326c61b5008916f1cb"
+        },
+        {
+          "name": ".strtab",
+          "type": 3,
+          "flags": 0,
+          "address": 0,
+          "link": 0,
+          "info": 0,
+          "alignment": 1,
+          "entry_size": 1,
+          "size": 178,
+          "sha256": "5d09528cf5fd353f6f253103210552d954cb52fca811b8065ea6079ed48ec3d4"
+        },
+        {
+          "name": ".text",
+          "type": 1,
+          "flags": 6,
+          "address": 0,
+          "link": 0,
+          "info": 0,
+          "alignment": 16,
+          "entry_size": 1,
+          "size": 608,
+          "sha256": "a9ce7c7d295fd1a0e8db7186218a174b9c50bc7cc3e843b4e54e99402989f0cf"
+        },
+        {
+          "name": ".rodata",
+          "type": 1,
+          "flags": 2,
+          "address": 0,
+          "link": 0,
+          "info": 0,
+          "alignment": 16,
+          "entry_size": 1,
+          "size": 48,
+          "sha256": "cc350a4d62770e5390c36c8323e6c977c72aed6077b9a0ea1711613ec807f46b"
+        },
+        {
+          "name": ".options",
+          "type": 1879048205,
+          "flags": 0,
+          "address": 0,
+          "link": 0,
+          "info": 0,
+          "alignment": 8,
+          "entry_size": 1,
+          "size": 32,
+          "sha256": "7f1475dc7b66599964b0dc6c94ddd762cc5b146b9d242d16eff8dbae9b2567ac"
+        },
+        {
+          "name": ".reginfo",
+          "type": 1879048198,
+          "flags": 2,
+          "address": 0,
+          "link": 0,
+          "info": 0,
+          "alignment": 4,
+          "entry_size": 1,
+          "size": 24,
+          "sha256": "c5fc4b734009db073f567af5cb8954e256772db42ed08efd632ea41642adb4c5"
+        },
+        {
+          "name": ".rel.text",
+          "type": 9,
+          "flags": 0,
+          "address": 0,
+          "link": 1,
+          "info": 4,
+          "alignment": 4,
+          "entry_size": 8,
+          "size": 240,
+          "sha256": "928c1356ec2f6a6e5cdca6a1f34a2acb2a0dd6131227259de80be81153737ea3"
+        },
+        {
+          "name": ".rel.rodata",
+          "type": 9,
+          "flags": 0,
+          "address": 0,
+          "link": 1,
+          "info": 5,
+          "alignment": 4,
+          "entry_size": 8,
+          "size": 72,
+          "sha256": "9007e52c52e06c09e00ea86b4e4d2db2940de4cb959ba65ed66e312bf84b2235"
+        },
+        {
+          "name": ".mdebug",
+          "type": 1879048197,
+          "flags": 0,
+          "address": 0,
+          "link": 0,
+          "info": 0,
+          "alignment": 4,
+          "entry_size": 1,
+          "scope": "nonallocated ECOFF debug metadata; fingerprinted separately"
+        }
+      ]
+    },
     "allocated_sections": [
       {
         "name": ".text",
@@ -685,10 +833,24 @@
       "func_800AFA84",
       "math_utility",
       "sound_call_minimal"
-    ]
+    ],
+    "portability_controls": {
+      "different_source_path_same_complete_elf": true,
+      "semantic_mutations": {
+        ".symtab": "rejected",
+        ".strtab": "rejected",
+        ".text": "rejected",
+        ".rodata": "rejected",
+        ".options": "rejected",
+        ".reginfo": "rejected",
+        ".rel.text": "rejected",
+        ".rel.rodata": "rejected",
+        "ELF_ABI_flags": "rejected"
+      }
+    }
   },
   "independent_link": {
-    "sha256": "aeba77b7d62e95b29343b5d713a6e495040b49d279dfd1aab3c5877a78c7b02f",
+    "sha256": "29f342e2bed3815b841e6bb3db05e1e4ad78b410539a688acb0bd71970e0e748",
     "allocated_sections": [
       {
         "name": ".text",
@@ -717,7 +879,174 @@
         "size": 304
       }
     },
-    "undefined_symbols": []
+    "undefined_symbols": [],
+    "portable_elf": {
+      "ident_sha256": "09c0a2e371bc7075dab213f9a61fa9eb0652b8ded2a072900494ba7d1bcd2e9d",
+      "abi": {
+        "type": 2,
+        "machine": 8,
+        "version": 1,
+        "entry": 2164260864,
+        "flags": 268435456
+      },
+      "allocated_sections": [
+        {
+          "name": ".rodata",
+          "type": 1,
+          "flags": 2,
+          "address": 2164326400,
+          "size": 48,
+          "alignment": 16,
+          "sha256": "44bf20e373d5e85ad31f526d09e294d5f6c622747ebf70babe7ecde8ce6f9f10"
+        },
+        {
+          "name": ".text",
+          "type": 1,
+          "flags": 6,
+          "address": 2164260864,
+          "size": 608,
+          "alignment": 16,
+          "sha256": "f6c6ccaa54c8fbb07d00e0a40c0c76065b4ed54f1790c0ecbf89ac5fd4495fc7"
+        }
+      ],
+      "symbols": [
+        {
+          "name": "",
+          "value": 2164326400,
+          "size": 0,
+          "binding": 0,
+          "type": 3,
+          "other": 0,
+          "section": ".rodata"
+        },
+        {
+          "name": "",
+          "value": 2164260864,
+          "size": 0,
+          "binding": 0,
+          "type": 3,
+          "other": 0,
+          "section": ".text"
+        },
+        {
+          "name": "",
+          "value": 0,
+          "size": 0,
+          "binding": 0,
+          "type": 0,
+          "other": 0,
+          "section": 0
+        },
+        {
+          "name": "D_8011418C",
+          "value": 2148614540,
+          "size": 0,
+          "binding": 1,
+          "type": 1,
+          "other": 0,
+          "section": 65521
+        },
+        {
+          "name": "D_80394F70",
+          "value": 2151239536,
+          "size": 0,
+          "binding": 1,
+          "type": 1,
+          "other": 0,
+          "section": 65521
+        },
+        {
+          "name": "D_80399B18",
+          "value": 2151258904,
+          "size": 0,
+          "binding": 1,
+          "type": 1,
+          "other": 0,
+          "section": 65521
+        },
+        {
+          "name": "func_8008E398",
+          "value": 2148066200,
+          "size": 0,
+          "binding": 1,
+          "type": 2,
+          "other": 0,
+          "section": 65521
+        },
+        {
+          "name": "func_8008E3C0",
+          "value": 2148066240,
+          "size": 0,
+          "binding": 1,
+          "type": 2,
+          "other": 0,
+          "section": 65521
+        },
+        {
+          "name": "func_80090F44",
+          "value": 2148077380,
+          "size": 0,
+          "binding": 1,
+          "type": 2,
+          "other": 0,
+          "section": 65521
+        },
+        {
+          "name": "func_800AFA84",
+          "value": 2148203140,
+          "size": 0,
+          "binding": 1,
+          "type": 2,
+          "other": 0,
+          "section": 65521
+        },
+        {
+          "name": "func_8038D200",
+          "value": 2164260864,
+          "size": 304,
+          "binding": 1,
+          "type": 2,
+          "other": 0,
+          "section": ".text"
+        },
+        {
+          "name": "func_8038D328",
+          "value": 2164261168,
+          "size": 156,
+          "binding": 1,
+          "type": 2,
+          "other": 0,
+          "section": ".text"
+        },
+        {
+          "name": "func_8038E088",
+          "value": 2164261324,
+          "size": 140,
+          "binding": 1,
+          "type": 2,
+          "other": 0,
+          "section": ".text"
+        },
+        {
+          "name": "math_utility",
+          "value": 2148062896,
+          "size": 0,
+          "binding": 1,
+          "type": 2,
+          "other": 0,
+          "section": 65521
+        },
+        {
+          "name": "sound_call_minimal",
+          "value": 2148074068,
+          "size": 0,
+          "binding": 1,
+          "type": 2,
+          "other": 0,
+          "section": 65521
+        }
+      ]
+    }
   },
   "native_behavior": {
     "paired_fixtures": 33024,

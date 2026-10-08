@@ -1,0 +1,399 @@
+{
+  "status": "PASS: existing object bounded semantics; NOT a strict match",
+  "source_sha256": "b88b940c637c5831be3714b6dbe47f9bd3821bdb8e6501d775f46fe552274bd0",
+  "object_sha256": "fdf44d4032eeb64da1c9d85e29e5fc452993c3638bb0b16a2e306604ee472fef",
+  "linked_sha256": "1edee2fd8f8c9ccdfe1e91bacd316c4a5e246544886d4fd98848c0b465aa0243",
+  "paired_fixtures": 2498,
+  "paired_root_executions": 2528,
+  "independent_player_oracles": 1800,
+  "all_nonvolatile_state_preserved": true,
+  "compiled_data_only_for_candidate": true,
+  "compiled_instructions_covered": 522,
+  "procedures": {
+    "func_80390B10": {
+      "offset": 0,
+      "size": 8,
+      "kind": "stStaticProc",
+      "frame_bytes": 0,
+      "integer_save_mask": "0x0",
+      "float_save_mask": "0x0",
+      "frame_register": 29,
+      "return_register": 31,
+      "source_line_start": 57,
+      "source_line_end": 57,
+      "evidence": "ECOFF procedure + matching stEnd length + PDR address/frame cross-check"
+    },
+    "func_80390D38": {
+      "offset": 8,
+      "size": 548,
+      "kind": "stStaticProc",
+      "frame_bytes": 24,
+      "integer_save_mask": "0x80000000",
+      "float_save_mask": "0x0",
+      "frame_register": 29,
+      "return_register": 31,
+      "source_line_start": 91,
+      "source_line_end": 122,
+      "evidence": "ECOFF procedure + matching stEnd length + PDR address/frame cross-check"
+    },
+    "func_80390F60": {
+      "offset": 556,
+      "size": 1560,
+      "kind": "stProc",
+      "frame_bytes": 80,
+      "integer_save_mask": "0x80030000",
+      "float_save_mask": "0x300000",
+      "frame_register": 29,
+      "return_register": 31,
+      "source_line_start": 125,
+      "source_line_end": 193,
+      "evidence": "ECOFF procedure + matching stEnd length + PDR address/frame cross-check"
+    }
+  },
+  "text_accounting": {
+    "text_size": 2128,
+    "procedure_bytes": 2116,
+    "zero_alignment_bytes": 12,
+    "zero_alignment_offsets": [
+      "0x844",
+      "0x845",
+      "0x846",
+      "0x847",
+      "0x848",
+      "0x849",
+      "0x84a",
+      "0x84b",
+      "0x84c",
+      "0x84d",
+      "0x84e",
+      "0x84f"
+    ]
+  },
+  "relocation_validation": {
+    "status": "PASS: every object relocation reproduces GNU-linked words; other text/rodata bytes unchanged",
+    "relocation_count": 53,
+    "unrelocated_bytes_checked": 1932,
+    "relocations": [
+      {
+        "section": ".text",
+        "offset": "0x8",
+        "type": 5,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0xc",
+        "type": 6,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x60",
+        "type": 4,
+        "symbol": "func_8008B2E4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x28",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0xf0",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x11c",
+        "type": 4,
+        "symbol": "func_8008B2E4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1ac",
+        "type": 5,
+        "symbol": "D_80142A82"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1e8",
+        "type": 6,
+        "symbol": "D_80142A82"
+      },
+      {
+        "section": ".text",
+        "offset": "0x1f4",
+        "type": 4,
+        "symbol": "func_80090770"
+      },
+      {
+        "section": ".text",
+        "offset": "0x210",
+        "type": 4,
+        "symbol": "func_8008B0D8"
+      },
+      {
+        "section": ".text",
+        "offset": "0x230",
+        "type": 5,
+        "symbol": ".data"
+      },
+      {
+        "section": ".text",
+        "offset": "0x244",
+        "type": 6,
+        "symbol": ".data"
+      },
+      {
+        "section": ".text",
+        "offset": "0x258",
+        "type": 4,
+        "symbol": ".text"
+      },
+      {
+        "section": ".text",
+        "offset": "0x260",
+        "type": 5,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x268",
+        "type": 6,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2b8",
+        "type": 4,
+        "symbol": "func_8008B2E4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2c8",
+        "type": 5,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x2cc",
+        "type": 6,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x354",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x35c",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x274",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x278",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x38c",
+        "type": 4,
+        "symbol": "func_8008B2E4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x398",
+        "type": 5,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x39c",
+        "type": 6,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x420",
+        "type": 5,
+        "symbol": "D_80142A8E"
+      },
+      {
+        "section": ".text",
+        "offset": "0x45c",
+        "type": 6,
+        "symbol": "D_80142A8E"
+      },
+      {
+        "section": ".text",
+        "offset": "0x46c",
+        "type": 4,
+        "symbol": "func_80090770"
+      },
+      {
+        "section": ".text",
+        "offset": "0x474",
+        "type": 5,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x478",
+        "type": 6,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x494",
+        "type": 4,
+        "symbol": "func_8008B0D8"
+      },
+      {
+        "section": ".text",
+        "offset": "0x4a4",
+        "type": 5,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x4a8",
+        "type": 6,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x4ac",
+        "type": 5,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x4b4",
+        "type": 6,
+        "symbol": "D_8002EB94"
+      },
+      {
+        "section": ".text",
+        "offset": "0x4c0",
+        "type": 5,
+        "symbol": "D_8014A108"
+      },
+      {
+        "section": ".text",
+        "offset": "0x4c4",
+        "type": 6,
+        "symbol": "D_8014A108"
+      },
+      {
+        "section": ".text",
+        "offset": "0x4cc",
+        "type": 5,
+        "symbol": "D_80152818"
+      },
+      {
+        "section": ".text",
+        "offset": "0x4d8",
+        "type": 6,
+        "symbol": "D_80152818"
+      },
+      {
+        "section": ".text",
+        "offset": "0x64c",
+        "type": 4,
+        "symbol": "func_8008B2E4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x65c",
+        "type": 5,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x660",
+        "type": 6,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x708",
+        "type": 4,
+        "symbol": "func_8008B2E4"
+      },
+      {
+        "section": ".text",
+        "offset": "0x714",
+        "type": 5,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x718",
+        "type": 6,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x79c",
+        "type": 5,
+        "symbol": "D_80142A84"
+      },
+      {
+        "section": ".text",
+        "offset": "0x7d8",
+        "type": 6,
+        "symbol": "D_80142A84"
+      },
+      {
+        "section": ".text",
+        "offset": "0x7e8",
+        "type": 4,
+        "symbol": "func_80090770"
+      },
+      {
+        "section": ".text",
+        "offset": "0x7f0",
+        "type": 5,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x7f4",
+        "type": 6,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x810",
+        "type": 4,
+        "symbol": "func_8008B0D8"
+      },
+      {
+        "section": ".text",
+        "offset": "0x820",
+        "type": 5,
+        "symbol": "D_80399AE0"
+      },
+      {
+        "section": ".text",
+        "offset": "0x824",
+        "type": 6,
+        "symbol": "D_80399AE0"
+      }
+    ]
+  },
+  "compiler_invocations": 0,
+  "limits": "Reuses the reviewed packet MIPS interpreter, ELF helpers, and boundary/address model. Exact body extents fail: compiler inlines complete source B10 into F60, emits an 8-byte deleted-static stub, and changes D38/F60 sizes. No original translation-unit or whole-image acceptance claim."
+}

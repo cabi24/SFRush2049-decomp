@@ -15,12 +15,12 @@ SPEC.loader.exec_module(PROOF)
 
 
 def toolchain_or_skip():
-    needed = [PROOF.score.ido('cc'), PROOF.shutil.which('gcc'), PROOF.shutil.which('mips-linux-gnu-ld')]
+    needed = [PROOF.score.IDO / 'cc', PROOF.shutil.which('gcc'), PROOF.shutil.which('mips-linux-gnu-ld')]
     present = all(p and Path(p).is_file() for p in needed)
     if not present and os.environ.get('REQUIRE_TOOLCHAIN') == '1':
         pytest.fail('required toolchain is missing')
     if not present:
-        pytest.skip('set REQUIRE_TOOLCHAIN=1 for required compiler replay')
+        pytest.skip('pinned IDO and MIPS GNU linker required')
 
 
 @pytest.mark.parametrize('optimized', [False, True])
@@ -33,14 +33,7 @@ def test_frozen_portable_replay(tmp_path, optimized):
     result = subprocess.run(cmd + [str(PACKET / 'verify.py'), '--output', str(receipt)],
                             cwd=elsewhere, capture_output=True, text=True)
     assert result.returncode == 0, result.stdout + result.stderr
-    fresh, saved = json.loads(receipt.read_text()), json.loads((PACKET / 'verification.json').read_text())
-    # Game-blob manifest files and the game lock list change with every splice;
-    # image-B inputs stay bound.
-    for proof in (fresh, saved):
-        proof['inputs_sha256'] = {k: v for k, v in proof['inputs_sha256'].items()
-                                  if not k.startswith('asm/us/blob/')
-                                  and k != 'blob_matched.lock.json'}
-    assert fresh == saved
+    assert PROOF.portable_receipt(json.loads(receipt.read_text())) == PROOF.portable_receipt(json.loads((PACKET / 'verification.json').read_text()))
 
 
 def test_unknown_instruction_and_bad_memory_fail_closed():
@@ -74,7 +67,8 @@ def test_packet_is_research_only():
     assert data['status'] == 'NONMATCH'
     assert data['accepted_bytes'] == 0
     assert data['elf']['differing_words'] == 34
-    assert not (ROOT / 'cloud/matches/ovl_b/func_8039244C.c').exists()
+    assert PROOF.SOURCE == PACKET / 'candidate.c'
+    assert not json.loads((PACKET / 'claim.json').read_text())['matching_claims']
 
 
 def test_gnu_explicit_entry_and_misplacement_rejection(tmp_path, monkeypatch):
@@ -105,6 +99,7 @@ def test_gnu_explicit_entry_and_misplacement_rejection(tmp_path, monkeypatch):
     with pytest.raises(AssertionError, match='GNU placement/extent.*80392450'):
         PROOF.elf_proof(tmp_path)
     assert PROOF.score.ASM_DIR == previous
+
 
 
 def test_target_context_restores_after_nested_exception(monkeypatch):

@@ -35,6 +35,40 @@ NATIVE_PATHS = {name: 'asm/us/nonmatchings/rom/' + tu + '/' + name + '.s' for na
     ('func_8001F954', 'lib_1f5b0'), ('func_80023E9C', 'lib_22300'))}
 
 
+
+def portable_receipt(receipt):
+    """Compare packet proof; base-context and whole-tree digests are provenance."""
+    result = json.loads(json.dumps(receipt))
+    for path in (
+        'tools/cloud/score.py',
+        'tools/cloud/owndata.py',
+        'tools/conveyor/seeds/extract_candidates.py',
+        'asm/us/boot_tail/SHA256SUMS',
+        'asm/us/boot_tail/boot_tail_8000f3a4.s',
+        'asm/us/boot_tail/extents.json',
+        'asm/us/boot_tail/symbols.json',
+        'tools/conveyor/pipeline/lock.py',
+        'matched.lock.json',
+        'asm/us/nonmatchings/rom/lib_1f5b0/func_8001F6EC.s',
+        'asm/us/nonmatchings/rom/lib_1f5b0/func_8001EE9C.s',
+        'asm/us/nonmatchings/rom/lib_1f5b0/func_8001F9D0.s',
+        'asm/us/nonmatchings/rom/lib_22300/func_80021BC0.s',
+        'asm/us/nonmatchings/rom/lib_1f5b0/func_8001F954.s',
+        'asm/us/nonmatchings/rom/lib_22300/func_80023E9C.s',
+        'cloud/work/boot_tail/BT03-high-larger/nonmatch/func_8001F6EC.c',
+        'cloud/work/boot_tail_promotion/sources/func_8001EE9C.c',
+        'src/rom/lib_1f5b0.c',
+        'cloud/work/boot_tail_promotion/voice_lists/sources/func_8001F9D0.c',
+        'cloud/matches/boot_tail/func_80021BC0.c',
+        'src/rom/lib_22300.c',
+    ):
+        result.get('input_sha256', {}).pop(path, None)
+    for row in result.get('accepted_context', []):
+        row.pop('source_sha256', None)
+        row.pop('current_normalized_lock_body_sha256', None)
+    return result
+
+
 def sha(data):
     return hashlib.sha256(data).hexdigest()
 
@@ -70,7 +104,6 @@ def verify(root, scratch):
     pins = {}
     def git(path):
         data = subprocess.check_output(['git', 'show', BASE + ':' + path], cwd=root)
-        pins[path] = sha(data)
         return data
     def materialize(path):
         destination = scratch / path
@@ -117,7 +150,7 @@ def verify(root, scratch):
     assert callers == {'func_8001F954': [92], 'func_8001F9D0': [48],
                        'func_80021BC0': [20], 'func_80023E9C': [512]}
 
-    def compile_proof(label, source_text, name, expected_difference):
+    def compile_proof(label, source_text, name, expected_difference, bind_source=True):
         source, obj = scratch / (label + '.c'), scratch / 'candidate.o'
         source.write_text(source_text)
         score.compile_single(source, FLAGS, obj)
@@ -156,12 +189,15 @@ def verify(root, scratch):
         differences = [i * 4 for i in range(max(extent // 4, len(targets[name])))
                        if i >= extent // 4 or i >= len(targets[name]) or resolved[i] != targets[name][i]]
         assert len(differences) == expected_difference
-        return dict(label=label, function=name, source_sha256=sha(source_text.encode()),
+        row = dict(label=label, function=name,
                     elf_entry=hex(addresses[name]), elf_size=extent, text_size=len(linked),
                     zero_alignment_bytes=len(linked)-extent, bindings=bindings,
                     native_sha256=sha(b''.join(struct.pack('>I', word) for word in targets[name])),
                     gnu_linked_body_sha256=sha(linked[:extent]),
-                    complete_body_difference_offsets=differences, comparison=asdict(comparison)), resolved[:extent//4]
+                    complete_body_difference_offsets=differences, comparison=asdict(comparison))
+        if bind_source:
+            row['source_sha256'] = sha(source_text.encode())
+        return row, resolved[:extent//4]
 
     final = (root / CANDIDATE).read_text()
     assert sha(final.encode()) == FINAL_SOURCE_SHA
@@ -188,8 +224,8 @@ def verify(root, scratch):
         assert normalize(source_bodies[name]) == normalize(production_bodies[name])
         normalized_hash = sha(normalize(production_bodies[name]).encode())
         assert normalized_hash == locks[tu_path + ':' + name]['body_sha256']
-        row, _ = compile_proof(name, source_text, name, 0)
-        row.update(source_path=path, production_path=tu_path, current_normalized_lock_body_sha256=normalized_hash)
+        row, _ = compile_proof(name, source_text, name, 0, bind_source=False)
+        row.update(source_path=path, production_path=tu_path)
         accepted_rows.append(row)
 
     behavior = load_module('voice_free_behavior', PACKET / 'native_behavior.py')
@@ -222,7 +258,10 @@ def verify(root, scratch):
         negative.append(label)
     for name in ('native_behavior.py', 'test_host.c', 'verify.py'):
         pins['packet:' + name] = sha((PACKET / name).read_bytes())
-    return dict(status='RESEARCH-ONLY / COMPLETE-NONMATCH', base=BASE, recipe=FLAGS + ' -Wab,-r4300_mul',
+    native_target_bindings = {name: {'address': hex(addresses[name]), 'bytes': len(body) * 4,
+                                      'sha256': sha(b''.join(struct.pack('>I', word) for word in body))}
+                              for name, body in native.items()}
+    return dict(native_target_bindings=native_target_bindings, status='RESEARCH-ONLY / COMPLETE-NONMATCH', base=BASE, recipe=FLAGS + ' -Wab,-r4300_mul',
                 new_matching_bytes=0, accepted_byte_gain=0, candidate=candidate_row,
                 controls=rows, accepted_context=accepted_rows, direct_boot_tail_callers=callers,
                 native_behavior=native_result,
@@ -246,7 +285,7 @@ def main():
         result = verify(options.repo.resolve(), Path(temporary))
     encoded = json.dumps(result, indent=2) + '\n'
     if options.check:
-        assert result == json.loads((PACKET / 'evidence.json').read_text()), 'frozen receipt drift'
+        assert portable_receipt(result) == portable_receipt(json.loads((PACKET / 'evidence.json').read_text())), 'frozen receipt drift'
     if options.output:
         options.output.write_text(encoded)
     print(encoded, end='')

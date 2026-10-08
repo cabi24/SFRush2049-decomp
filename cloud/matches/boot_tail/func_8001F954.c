@@ -1,4 +1,5 @@
-/* flags: -g0 -O2 -mips2 -G 0 -non_shared */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* Standalone match: no callers, inlined helpers, or deleted-static stubs required in this unit. */
 /* Release/free the selected voice and clear its blocked byte.
  * MusyX family: synthvoice.c:voiceUnblock, AxioDL/musyx 78d2e16 (CC0).
  * N64 runtime reconstruction; no arcade equivalent. Native ABI/layout and

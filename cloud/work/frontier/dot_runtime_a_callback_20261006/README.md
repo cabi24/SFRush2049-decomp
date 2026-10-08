@@ -1,5 +1,17 @@
 # Image-A menu text callback: complete matching candidate
 
+## Current receipt schema (2026-10-06)
+
+Current receipts omit whole-file manifest, scorer/own-data tool, lock and redundant
+production-context digests. The recorded BASE and `git show BASE:path` source reads
+remain, as do native target authentication, own packet/verifier/C-harness bindings,
+compiler executable identities, complete compiled extents, relocations, owned data
+and behavioral evidence. Historical compatibility normalizers accept only their
+explicitly listed legacy fields; unknown proof fields and changed invariants still
+fail comparison. Descriptions of the earlier receipt schema below are historical.
+This schema correction adds no matching or accepted bytes; fresh replay and the
+aggregate test matrix are separate required checks.
+
 Target **A:func_803A6A28**, `[0x803A6A28, 0x803A6B50)`, **296 bytes / 74 words**.
 Base: `cd22879d40b3de443cfde047b86e75e159b6cec6`.
 Status: strict standalone **MATCH**, awaiting independent review and maintainer integration.
@@ -46,7 +58,7 @@ struct definition and complete storage bounds are not asserted recovered.
 
 ## Verification and bounded history
 
-`verify.py` freshly compiles IDO 5.3 with `-g0 -O2 -mips2 -G 0 -non_shared
+`verify.py` freshly compiles IDO 5.3 with `-g0 -O3 -mips2 -G 0 -non_shared
 -Wab,-r4300_mul`. It checks the protected manifest and exact image-qualified
 extent, pins target bytes and 15 relocation anchor addresses, checks the full
 ELF symbol extent, then independently links through GNU `ld`.
@@ -91,3 +103,21 @@ No broad repository suite, image/recompression/full-ROM gate, hardware run,
 original-source recovery, or cartridge coverage is claimed. Publication is a
 draft for the independent checker; merging and production integration remain
 theirs.
+
+## Integration-portable replay (2026-10-06)
+
+`portable_receipt()` compares both saved and fresh evidence after excluding only
+explicit historical whole-tree/tool/source-context digests. Packet source and
+verifier bindings, selected native bodies and addresses, ELF extents, relocations,
+owned data, behavior, and compiler executable identities remain authoritative.
+Accepted production context is read from the recorded base commit rather than
+the live integrated tree. Tests are deliberately not hashed into receipts.
+
+The unchanged candidate body was freshly strict-matched through the canonical
+scorer with the bare source recipe `-g0 -O3 -mips2 -G 0 -non_shared`; the scorer
+still injects its mandatory `-Wab,-r4300_mul` backend flag. Full packet proof was
+replayed under O3. No same-unit callers, inline helpers, or deleted-static stubs
+are required. Historical O2 results remain available in Git history.
+
+The raw-object digest and checkout HEAD are local provenance; resolved body,
+complete extent, GNU equality and allocation/relocation checks bind the proof.

@@ -1,0 +1,5 @@
+{
+  "files": ["effect_tick.c"],
+  "keep": ["func_80390F60"],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}
