@@ -1,0 +1,448 @@
+{
+  "scope": "Syntactic code-shape metadata; no retail equivalence claim. Extent can include linker padding.",
+  "native": {
+    "camera_transform": {
+      "extent_words": 557,
+      "stack_frame_bytes": 88,
+      "prologue_saves": [
+        {
+          "register": "ra",
+          "bytes": 4,
+          "stack_offset": 84
+        },
+        {
+          "register": "s7",
+          "bytes": 4,
+          "stack_offset": 80
+        },
+        {
+          "register": "s6",
+          "bytes": 4,
+          "stack_offset": 76
+        },
+        {
+          "register": "s5",
+          "bytes": 4,
+          "stack_offset": 72
+        },
+        {
+          "register": "s4",
+          "bytes": 4,
+          "stack_offset": 68
+        },
+        {
+          "register": "s3",
+          "bytes": 4,
+          "stack_offset": 64
+        },
+        {
+          "register": "s2",
+          "bytes": 4,
+          "stack_offset": 60
+        },
+        {
+          "register": "s1",
+          "bytes": 4,
+          "stack_offset": 56
+        },
+        {
+          "register": "s0",
+          "bytes": 4,
+          "stack_offset": 52
+        },
+        {
+          "register": "f26/f27",
+          "bytes": 8,
+          "stack_offset": 40
+        },
+        {
+          "register": "f24/f25",
+          "bytes": 8,
+          "stack_offset": 32
+        },
+        {
+          "register": "f22/f23",
+          "bytes": 8,
+          "stack_offset": 24
+        },
+        {
+          "register": "f20/f21",
+          "bytes": 8,
+          "stack_offset": 16
+        }
+      ],
+      "direct_calls": [
+        {
+          "offset": "0x104",
+          "callee": "audio_timing_sync"
+        },
+        {
+          "offset": "0x180",
+          "callee": "func_800201D0"
+        },
+        {
+          "offset": "0x1b8",
+          "callee": "func_8009211C"
+        },
+        {
+          "offset": "0x1c8",
+          "callee": "func_80091FBC"
+        },
+        {
+          "offset": "0x268",
+          "callee": "func_8009211C"
+        },
+        {
+          "offset": "0x278",
+          "callee": "func_80091FBC"
+        },
+        {
+          "offset": "0x2e4",
+          "callee": "MP_TargetSteerPos"
+        },
+        {
+          "offset": "0x338",
+          "callee": "func_8001FE58"
+        },
+        {
+          "offset": "0x358",
+          "callee": "func_800201D0"
+        },
+        {
+          "offset": "0x464",
+          "callee": "func_8001FEA4"
+        },
+        {
+          "offset": "0x56c",
+          "callee": "func_8001FFF4"
+        },
+        {
+          "offset": "0x674",
+          "callee": "func_8001FF4C"
+        },
+        {
+          "offset": "0x790",
+          "callee": "func_8001FFA0"
+        },
+        {
+          "offset": "0x7cc",
+          "callee": "func_80020518"
+        },
+        {
+          "offset": "0x7d8",
+          "callee": "func_8009211C"
+        },
+        {
+          "offset": "0x7e8",
+          "callee": "func_80091FBC"
+        },
+        {
+          "offset": "0x830",
+          "callee": "func_8009211C"
+        },
+        {
+          "offset": "0x840",
+          "callee": "func_80091FBC"
+        }
+      ],
+      "call_counts": {
+        "audio_timing_sync": 1,
+        "func_800201D0": 2,
+        "func_8009211C": 4,
+        "func_80091FBC": 4,
+        "MP_TargetSteerPos": 1,
+        "func_8001FE58": 1,
+        "func_8001FEA4": 1,
+        "func_8001FFF4": 1,
+        "func_8001FF4C": 1,
+        "func_8001FFA0": 1,
+        "func_80020518": 1
+      },
+      "syntactic_fp_destinations": [
+        "f0",
+        "f2",
+        "f4",
+        "f6",
+        "f8",
+        "f10",
+        "f12",
+        "f20",
+        "f22",
+        "f24",
+        "f26"
+      ]
+    },
+    "MP_TargetSteerPos": {
+      "extent_words": 103,
+      "stack_frame_bytes": 24,
+      "prologue_saves": [
+        {
+          "register": "ra",
+          "bytes": 4,
+          "stack_offset": 20
+        }
+      ],
+      "direct_calls": [
+        {
+          "offset": "0x10",
+          "callee": "func_80020174"
+        },
+        {
+          "offset": "0xc4",
+          "callee": "func_8001FEA4"
+        },
+        {
+          "offset": "0x178",
+          "callee": "func_8001FFF4"
+        }
+      ],
+      "call_counts": {
+        "func_80020174": 1,
+        "func_8001FEA4": 1,
+        "func_8001FFF4": 1
+      },
+      "syntactic_fp_destinations": [
+        "f4",
+        "f6",
+        "f8",
+        "f10",
+        "f24"
+      ]
+    }
+  },
+  "compiled": {
+    "camera_transform": {
+      "extent_words": 551,
+      "stack_frame_bytes": 80,
+      "prologue_saves": [
+        {
+          "register": "ra",
+          "bytes": 4,
+          "stack_offset": 76
+        },
+        {
+          "register": "s8",
+          "bytes": 4,
+          "stack_offset": 72
+        },
+        {
+          "register": "s7",
+          "bytes": 4,
+          "stack_offset": 68
+        },
+        {
+          "register": "s6",
+          "bytes": 4,
+          "stack_offset": 64
+        },
+        {
+          "register": "s5",
+          "bytes": 4,
+          "stack_offset": 60
+        },
+        {
+          "register": "s4",
+          "bytes": 4,
+          "stack_offset": 56
+        },
+        {
+          "register": "s3",
+          "bytes": 4,
+          "stack_offset": 52
+        },
+        {
+          "register": "s2",
+          "bytes": 4,
+          "stack_offset": 48
+        },
+        {
+          "register": "s1",
+          "bytes": 4,
+          "stack_offset": 44
+        },
+        {
+          "register": "s0",
+          "bytes": 4,
+          "stack_offset": 40
+        },
+        {
+          "register": "f22/f23",
+          "bytes": 8,
+          "stack_offset": 32
+        },
+        {
+          "register": "f20/f21",
+          "bytes": 8,
+          "stack_offset": 24
+        }
+      ],
+      "direct_calls": [
+        {
+          "offset": "0x104",
+          "callee": "audio_timing_sync"
+        },
+        {
+          "offset": "0x180",
+          "callee": "func_800201D0"
+        },
+        {
+          "offset": "0x1b4",
+          "callee": "func_8009211C"
+        },
+        {
+          "offset": "0x1c4",
+          "callee": "func_80091FBC"
+        },
+        {
+          "offset": "0x280",
+          "callee": "func_8009211C"
+        },
+        {
+          "offset": "0x290",
+          "callee": "func_80091FBC"
+        },
+        {
+          "offset": "0x2f8",
+          "callee": "MP_TargetSteerPos"
+        },
+        {
+          "offset": "0x34c",
+          "callee": "func_8001FE58"
+        },
+        {
+          "offset": "0x368",
+          "callee": "func_800201D0"
+        },
+        {
+          "offset": "0x470",
+          "callee": "func_8001FEA4"
+        },
+        {
+          "offset": "0x570",
+          "callee": "func_8001FFF4"
+        },
+        {
+          "offset": "0x670",
+          "callee": "func_8001FF4C"
+        },
+        {
+          "offset": "0x778",
+          "callee": "func_8001FFA0"
+        },
+        {
+          "offset": "0x7b8",
+          "callee": "func_80020518"
+        },
+        {
+          "offset": "0x7c4",
+          "callee": "func_8009211C"
+        },
+        {
+          "offset": "0x7d4",
+          "callee": "func_80091FBC"
+        },
+        {
+          "offset": "0x818",
+          "callee": "func_8009211C"
+        },
+        {
+          "offset": "0x828",
+          "callee": "func_80091FBC"
+        }
+      ],
+      "call_counts": {
+        "audio_timing_sync": 1,
+        "func_800201D0": 2,
+        "func_8009211C": 4,
+        "func_80091FBC": 4,
+        "MP_TargetSteerPos": 1,
+        "func_8001FE58": 1,
+        "func_8001FEA4": 1,
+        "func_8001FFF4": 1,
+        "func_8001FF4C": 1,
+        "func_8001FFA0": 1,
+        "func_80020518": 1
+      },
+      "syntactic_fp_destinations": [
+        "f0",
+        "f2",
+        "f4",
+        "f6",
+        "f8",
+        "f10",
+        "f12",
+        "f16",
+        "f18",
+        "f20",
+        "f22"
+      ],
+      "relocation_diagnostics": {
+        "unresolved": [],
+        "section_relative": [],
+        "errors": []
+      }
+    },
+    "MP_TargetSteerPos": {
+      "extent_words": 111,
+      "stack_frame_bytes": 32,
+      "prologue_saves": [
+        {
+          "register": "s0",
+          "bytes": 4,
+          "stack_offset": 24
+        },
+        {
+          "register": "ra",
+          "bytes": 4,
+          "stack_offset": 28
+        }
+      ],
+      "direct_calls": [
+        {
+          "offset": "0x20",
+          "callee": "func_80020174"
+        },
+        {
+          "offset": "0xd8",
+          "callee": "func_8001FEA4"
+        },
+        {
+          "offset": "0x194",
+          "callee": "func_8001FFF4"
+        }
+      ],
+      "call_counts": {
+        "func_80020174": 1,
+        "func_8001FEA4": 1,
+        "func_8001FFF4": 1
+      },
+      "syntactic_fp_destinations": [
+        "f4",
+        "f6",
+        "f8",
+        "f10",
+        "f16",
+        "f18"
+      ],
+      "relocation_diagnostics": {
+        "unresolved": [],
+        "section_relative": [],
+        "errors": []
+      }
+    }
+  },
+  "native_direct_helper_callers": [
+    {
+      "function": "camera_transform",
+      "offset": "0x2e4"
+    }
+  ],
+  "canonical_camera_comparison": {
+    "differing": 538,
+    "total": 557,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  }
+}

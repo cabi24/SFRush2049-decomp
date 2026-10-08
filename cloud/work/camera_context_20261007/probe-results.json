@@ -1,0 +1,144 @@
+{
+  "timing_scope": "Per-probe compile+canonical-score machine elapsed time and child CPU; excludes human/agent analysis and publication.",
+  "rows": [
+    {
+      "id": "exported_baseline",
+      "start_utc": "2026-10-07T21:30:36.049062+00:00",
+      "wall_seconds": 0.1583725170003163,
+      "child_cpu_seconds": 0.013739,
+      "source_sha256": {
+        "candidate.c": "1bac499d4feded2f749f32b3493e28beba8667bd493d385e1ca1332d5c0160b2"
+      },
+      "comparison": {
+        "differing": 533,
+        "total": 557,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "camera_extent_words": 523
+    },
+    {
+      "id": "internal_same",
+      "start_utc": "2026-10-07T21:30:36.224560+00:00",
+      "wall_seconds": 0.021842411999386968,
+      "child_cpu_seconds": 0.014730999999999998,
+      "source_sha256": {
+        "candidate.c": "1bac499d4feded2f749f32b3493e28beba8667bd493d385e1ca1332d5c0160b2"
+      },
+      "comparison": {
+        "differing": 537,
+        "total": 557,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 56
+      },
+      "camera_extent_words": 616
+    },
+    {
+      "id": "internal_split",
+      "start_utc": "2026-10-07T21:30:36.263441+00:00",
+      "wall_seconds": 0.02401036999981443,
+      "child_cpu_seconds": 0.015950000000000002,
+      "source_sha256": {
+        "helper.c": "07361ac1878be54ac75f17ff2727a40acaf693a3e8cb7c7961d73603e4f19ec5",
+        "caller.c": "62a16632097033b075f31fe5760238bdd995abdb814380e806a56634f3e6bf78"
+      },
+      "comparison": {
+        "differing": 537,
+        "total": 557,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 56
+      },
+      "camera_extent_words": 616
+    },
+    {
+      "id": "internal_after",
+      "start_utc": "2026-10-07T21:30:36.305031+00:00",
+      "wall_seconds": 0.023386816999845905,
+      "child_cpu_seconds": 0.015528000000000002,
+      "source_sha256": {
+        "candidate.c": "148310be210d201e4841df581f38293beea84ced4ced52782f09be29259a0d99"
+      },
+      "comparison": {
+        "differing": 537,
+        "total": 557,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 56
+      },
+      "camera_extent_words": 616
+    },
+    {
+      "id": "genuine_outer",
+      "start_utc": "2026-10-07T21:30:36.345673+00:00",
+      "wall_seconds": 0.04878381900016393,
+      "child_cpu_seconds": 0.040504999999999985,
+      "source_sha256": {
+        "candidate.c": "587fdfad3a5867d6d8de5c4faa96391dd6c93f3f079c3689a527707a15ef1549",
+        "route.c": "5afd376290696b4de7734baab48dd64cc87573fe7a712badf478886f2b0f2107",
+        "lookup.c": "b78d6a4fc181fd059549cacf337a8d8527a2f7d46daa7fbc712f8b57bcb6bc11",
+        "effect.c": "90af557378538a0f3926b075ea7ca99d96fa03ca418b8bc0cd94c9e6699c93e1",
+        "allocate.c": "7f34a57f1409d1c35c1bd198c81a48d30c0a1ed22c87d57fa0312b22910f747b",
+        "mark.c": "ffd896d5020c3a2fc4a17cc4a3cdff571b0044311863b536116dae3563688fe6",
+        "music.c": "3349968fe5e759e259f4bb53abac117b84130d8638f4b376c78b7754b8758769",
+        "camera.c": "1bac499d4feded2f749f32b3493e28beba8667bd493d385e1ca1332d5c0160b2"
+      },
+      "comparison": {
+        "differing": 550,
+        "total": 557,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 26
+      },
+      "camera_extent_words": 585
+    },
+    {
+      "id": "shared_setters",
+      "start_utc": "2026-10-07T21:30:36.411261+00:00",
+      "wall_seconds": 0.021794439000586863,
+      "child_cpu_seconds": 0.014255,
+      "source_sha256": {
+        "candidate.c": "5cabb975bfa3eb27960c6fddd913f5e85842ccf72e469a7447e5b27d67882073"
+      },
+      "comparison": {
+        "differing": 537,
+        "total": 557,
+        "unresolved": [
+          ".text+0xfc at +0x300",
+          ".text+0x10 at +0x30c",
+          ".text+0xfc at +0x3e0",
+          ".text+0x10 at +0x40c"
+        ],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "camera_extent_words": 444
+    },
+    {
+      "id": "structural_probe",
+      "start_utc": "2026-10-07T21:30:36.449959+00:00",
+      "wall_seconds": 0.021256615998936468,
+      "child_cpu_seconds": 0.014304999999999995,
+      "source_sha256": {
+        "candidate.c": "a252468c45a9569b7ace2c59079e8367f49f14f677edef7c0e3b0deb972947db"
+      },
+      "comparison": {
+        "differing": 538,
+        "total": 557,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "camera_extent_words": 551
+    }
+  ]
+}

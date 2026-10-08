@@ -1,0 +1,7 @@
+{
+  "status": "bounded_pass",
+  "cases": 2048,
+  "start_utc": "2026-10-07T21:30:36.525923+00:00",
+  "wall_seconds": 0.10980415499943774,
+  "scope": "2048 host scenarios against reconstructed baseline, not native execution or complete O32/FCSR equivalence."
+}
