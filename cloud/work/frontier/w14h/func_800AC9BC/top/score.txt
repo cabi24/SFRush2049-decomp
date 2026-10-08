@@ -1,0 +1,6 @@
+strict  25  mnem-missing  11  aligned-missing  22  size +0  b4_v0471.c
+strict  25  mnem-missing  11  aligned-missing  22  size +0  b4_v0592.c
+strict  25  mnem-missing  11  aligned-missing  22  size +0  b4_v0980.c
+strict  26  mnem-missing  12  aligned-missing  23  size +0  b4_v10202.c
+strict  27  mnem-missing  12  aligned-missing  25  size +0  b4_v0382.c
+40 files

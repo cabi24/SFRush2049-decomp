@@ -1,0 +1,21 @@
+file	generator	edit
+v0000.c	control	base unedited
+v0001.c	commute	best.C.L18-p0
+v0002.c	commute	best.C.L20-p0
+v0003.c	commute	best.C.L20-p1
+v0004.c	hoist	best.A.L17-a0.hdr
+v0005.c	hoist	best.A.L17-a1.hdr
+v0006.c	hoist	best.A.L18-a0.hdr
+v0007.c	hoist	best.A.L18-a1.hdr
+v0008.c	hoist	best.A.L19-a0.hdr
+v0009.c	hoist	best.A.L19-a1.hdr
+v0010.c	hoist	best.A.L20-a0.hdr
+v0011.c	hoist	best.A.L20-a1.hdr
+v0012.c	hoist	best.A.L20-a2.hdr
+v0013.c	hoist	best.A.L20-a3.hdr
+v0014.c	hoist	best.A.L20-a4.hdr
+v0015.c	hoist	best.A.L23-a0.hdr
+v0016.c	hoist	best.A.L23-a1.hdr
+v0017.c	hoist	best.A.L26-a0.hdr
+v0018.c	hoist	best.A.L27-a0.hdr
+v0019.c	hoist	best.A.L28-a0.hdr

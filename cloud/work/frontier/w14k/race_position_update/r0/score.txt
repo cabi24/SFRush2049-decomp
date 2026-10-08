@@ -1,0 +1,4 @@
+mnem-missing  17  aligned-missing  68  strict 116  size -9  best.c unverified=4
+mnem-missing  24  aligned-missing  71  strict 115  size -13  a.c unverified=4
+mnem-missing  24  aligned-missing  71  strict 115  size -13  b.c unverified=4
+3 files

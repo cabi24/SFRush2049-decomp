@@ -6219,6 +6219,7 @@ assign_drones:
 .section .text.place_cars_in_order, "ax", @progbits
 .globl place_cars_in_order
 place_cars_in_order:
+    /* compiled from src/blob/place_cars_in_order.c */
     .word 0x27BDFFB8
     .word 0x3C028015
     .word 0x3C0E8015

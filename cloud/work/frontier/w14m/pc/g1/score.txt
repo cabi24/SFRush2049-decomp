@@ -1,0 +1,6 @@
+strict   8  mnem-missing   0  aligned-missing   8  size +0  v0000.c
+strict   8  mnem-missing   0  aligned-missing   8  size +0  v0001.c
+strict   8  mnem-missing   0  aligned-missing   8  size +0  v0002.c
+strict   8  mnem-missing   0  aligned-missing   8  size +0  v0004.c
+strict   8  mnem-missing   0  aligned-missing   8  size +0  v0007.c
+99 files

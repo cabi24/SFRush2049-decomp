@@ -1,0 +1,13 @@
+strict   5  mnem-missing   0  aligned-missing   7  size +0  v0000.c unverified=2
+strict   5  mnem-missing   0  aligned-missing   7  size +0  v0003.c unverified=2
+strict   5  mnem-missing   0  aligned-missing   7  size +0  v0004.c unverified=2
+strict   5  mnem-missing   0  aligned-missing   7  size +0  v0027.c unverified=2
+strict   5  mnem-missing   0  aligned-missing   7  size +0  v0028.c unverified=2
+strict   5  mnem-missing   0  aligned-missing   7  size +0  v0029.c unverified=2
+strict   5  mnem-missing   0  aligned-missing   7  size +0  v0030.c unverified=2
+strict   5  mnem-missing   0  aligned-missing   7  size +0  v0032.c unverified=2
+strict   5  mnem-missing   0  aligned-missing   7  size +0  v0035.c unverified=2
+strict   5  mnem-missing   0  aligned-missing   7  size +0  v0081.c unverified=2
+strict   5  mnem-missing   0  aligned-missing   7  size +0  v0082.c unverified=2
+strict   5  mnem-missing   0  aligned-missing   7  size +0  v0083.c unverified=2
+605 files

@@ -6786,6 +6786,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-06"
   },
+  "place_cars_in_order": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/place_cars_in_order.c",
+    "source_sha256": "e687caf0a0c3692b88f576b4625ad0c3ab9b99a8f31c7f52c5715fd8e741a63a",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-07"
+  },
   "player_cleanup_slots": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/player_cleanup_slots.c",

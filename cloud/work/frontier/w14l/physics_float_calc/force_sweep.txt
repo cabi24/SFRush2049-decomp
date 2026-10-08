@@ -1,0 +1,10 @@
+w158=c1: want 294 words, got 288; differing rows 214 (words); frame 136/136; unverified 2 unresolved 0 
+w158=c2: want 294 words, got 288; differing rows 213 (words); frame 136/136; unverified 2 unresolved 0 
+w167=c1: force_declined phase=p1 site=dec proc=260 web=167 color=1 reg=v0 forbidden=0x5002000000000000 force_declined phase=p1 site=color proc=260 web=167 color=1 reg=v0 forbidden=0x5002000000000000 want 294 words, got 288; diffe
+w167=c2: want 294 words, got 288; differing rows 214 (words); frame 136/136; unverified 2 unresolved 0 
+w32=c1: want 294 words, got 288; differing rows 214 (words); frame 136/136; unverified 2 unresolved 0 
+w32=c2: want 294 words, got 288; differing rows 225 (words); frame 136/136; unverified 2 unresolved 0 
+w233=c1: force_declined phase=p1 site=dec proc=260 web=233 color=1 reg=v0 forbidden=0x4c00000000000000 force_declined phase=p1 site=color proc=260 web=233 color=1 reg=v0 forbidden=0x4c00000000000000 want 294 words, got 288; diffe
+w233=c2: want 294 words, got 288; differing rows 214 (words); frame 136/136; unverified 2 unresolved 0 
+w17=c1: force_declined phase=p1 site=dec proc=260 web=17 color=1 reg=v0 forbidden=0x4400000000000000 force_declined phase=p1 site=color proc=260 web=17 color=1 reg=v0 forbidden=0x4400000000000000 want 294 words, got 288; differi
+w17=c2: want 294 words, got 289; differing rows 231 (words); frame 136/136; unverified 2 unresolved 0 

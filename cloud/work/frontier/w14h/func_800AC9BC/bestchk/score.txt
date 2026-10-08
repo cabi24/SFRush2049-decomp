@@ -1,0 +1,2 @@
+strict  25  mnem-missing  11  aligned-missing  22  size +0  best.c
+1 files

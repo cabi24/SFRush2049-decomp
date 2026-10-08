@@ -1,0 +1,11 @@
+strict  61  mnem-missing   4  aligned-missing  23  size +0  v0000.c unverified=8
+strict  61  mnem-missing   4  aligned-missing  23  size +0  v0047.c unverified=8
+strict  61  mnem-missing   4  aligned-missing  23  size +0  v0061.c unverified=8
+strict  61  mnem-missing   4  aligned-missing  23  size +0  v0068.c unverified=8
+strict  61  mnem-missing   4  aligned-missing  23  size +0  v0075.c unverified=8
+strict  61  mnem-missing   4  aligned-missing  23  size +0  v0076.c unverified=8
+strict  61  mnem-missing   4  aligned-missing  23  size +0  v0082.c unverified=8
+strict  61  mnem-missing   4  aligned-missing  23  size +0  v0083.c unverified=8
+strict  61  mnem-missing   4  aligned-missing  23  size +0  v0114.c unverified=8
+strict  61  mnem-missing   4  aligned-missing  23  size +0  v0119.c unverified=8
+348 files

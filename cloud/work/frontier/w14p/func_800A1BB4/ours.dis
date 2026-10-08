@@ -1,0 +1,52 @@
+00000000 <func_800A1BB4>:
+   0:	00047080 	sll	t6,a0,0x2
+   4:	01c47023 	subu	t6,t6,a0
+   8:	000e7180 	sll	t6,t6,0x6
+   c:	3c070000 	lui	a3,0x0
+			c: R_MIPS_HI16	D_80144030
+  10:	01c47021 	addu	t6,t6,a0
+  14:	24e70000 	addiu	a3,a3,0
+			14: R_MIPS_LO16	D_80144030
+  18:	000e7080 	sll	t6,t6,0x2
+  1c:	00ee1021 	addu	v0,a3,t6
+  20:	804f000b 	lb	t7,11(v0)
+  24:	0004c100 	sll	t8,a0,0x4
+  28:	3c030000 	lui	v1,0x0
+			28: R_MIPS_HI16	D_80144D68
+  2c:	11e00020 	beqz	t7,b0 <func_800A1BB4+0xb0>
+  30:	00781821 	addu	v1,v1,t8
+  34:	8c630000 	lw	v1,0(v1)
+			34: R_MIPS_LO16	D_80144D68
+  38:	24080028 	li	t0,40
+  3c:	14600003 	bnez	v1,4c <func_800A1BB4+0x4c>
+  40:	00000000 	nop
+  44:	03e00008 	jr	ra
+  48:	a040000b 	sb	zero,11(v0)
+  4c:	10600015 	beqz	v1,a4 <func_800A1BB4+0xa4>
+  50:	00000000 	nop
+  54:	8c650000 	lw	a1,0(v1)
+  58:	8cb90048 	lw	t9,72(a1)
+  5c:	8ca60000 	lw	a2,0(a1)
+  60:	1320000e 	beqz	t9,9c <func_800A1BB4+0x9c>
+  64:	00000000 	nop
+  68:	90ab0011 	lbu	t3,17(a1)
+  6c:	00044880 	sll	t1,a0,0x2
+  70:	01244823 	subu	t1,t1,a0
+  74:	01680019 	multu	t3,t0
+  78:	00094980 	sll	t1,t1,0x6
+  7c:	01244821 	addu	t1,t1,a0
+  80:	00094880 	sll	t1,t1,0x2
+  84:	00e95021 	addu	t2,a3,t1
+  88:	00006012 	mflo	t4
+  8c:	014c6821 	addu	t5,t2,t4
+  90:	81ae0085 	lb	t6,133(t5)
+  94:	15c00003 	bnez	t6,a4 <func_800A1BB4+0xa4>
+  98:	00000000 	nop
+  9c:	14c0ffed 	bnez	a2,54 <func_800A1BB4+0x54>
+  a0:	00c01825 	move	v1,a2
+  a4:	14600002 	bnez	v1,b0 <func_800A1BB4+0xb0>
+  a8:	00000000 	nop
+  ac:	a040000b 	sb	zero,11(v0)
+  b0:	03e00008 	jr	ra
+  b4:	00000000 	nop
+	...

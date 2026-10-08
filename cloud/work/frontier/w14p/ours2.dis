@@ -1,0 +1,213 @@
+   0: addiu
+   4: sw
+   8: lbu
+   c: lui
+ 
+  10: move
+  14: andi
+  18: beqz
+  1c: addiu
+ 
+  20: lb
+  24: li
+  28: and
+  2c: sll
+  30: subu
+  34: sll
+  38: subu
+  3c: sll
+  40: addu
+  44: sb
+  48: lw
+  4c: sll
+  50: lui
+ 
+  54: addu
+  58: sll
+  5c: addiu
+ 
+  60: andi
+  64: beqz
+  68: addu
+  6c: ori
+  70: b
+  74: sb
+  78: lh
+  7c: lui
+ 
+  80: sw
+  84: sll
+  88: subu
+  8c: sll
+  90: addu
+  94: lw
+ 
+  98: sw
+  9c: sw
+  a0: addiu
+  a4: jal
+ 
+  a8: li
+  ac: lw
+  b0: lw
+  b4: lw
+  b8: lh
+  bc: li
+  c0: lui
+ 
+  c4: addiu
+  c8: sltiu
+  cc: beqz
+  d0: sll
+  d4: lui
+ 
+  d8: addu
+  dc: lw
+ 
+  e0: jr
+  e4: nop
+  e8: b
+  ec: lw
+ 
+  f0: lui
+ 
+  f4: move
+  f8: b
+  fc: lw
+ 
+ 100: lui
+ 
+ 104: li
+ 108: b
+ 10c: lw
+ 
+ 110: lui
+ 
+ 114: li
+ 118: b
+ 11c: lw
+ 
+ 120: li
+ 124: b
+ 128: sh
+ 12c: lw
+ 130: lui
+ 134: mtc1
+ 138: li
+ 13c: ori
+ 140: sw
+ 144: sb
+ 148: lui
+ 
+ 14c: swc1
+ 150: lwc1
+ 
+ 154: li
+ 158: sb
+ 15c: b
+ 160: swc1
+ 164: lui
+ 
+ 168: li
+ 16c: b
+ 170: lw
+ 
+ 174: lui
+ 
+ 178: li
+ 17c: b
+ 180: lw
+ 
+ 184: lui
+ 
+ 188: li
+ 18c: b
+ 190: lw
+ 
+ 194: lui
+ 
+ 198: li
+ 19c: b
+ 1a0: lw
+ 
+ 1a4: lw
+ 1a8: lui
+ 
+ 1ac: mtc1
+ 1b0: ori
+ 1b4: sw
+ 1b8: lwc1
+ 
+ 1bc: lui
+ 
+ 1c0: swc1
+ 1c4: lwc1
+ 
+ 1c8: swc1
+ 1cc: b
+ 1d0: swc1
+ 1d4: lui
+ 
+ 1d8: li
+ 1dc: lw
+ 
+ 1e0: lb
+ 1e4: lui
+ 
+ 1e8: li
+ 1ec: bne
+ 1f0: addiu
+ 
+ 1f4: lb
+ 1f8: addu
+ 1fc: b
+ 200: sb
+ 204: sb
+ 208: sb
+ 20c: bnel
+ 210: lw
+ 214: lbu
+ 218: lui
+ 21c: mtc1
+ 220: sll
+ 224: addu
+ 228: lwc1
+ 22c: add.s
+ 230: swc1
+ 234: swc1
+ 238: lwc1
+ 23c: c.lt.s
+ 240: nop
+ 244: bc1fl
+ 248: mov.s
+ 24c: b
+ 250: lwc1
+ 254: mov.s
+ 258: mul.s
+ 25c: lwc1
+ 260: lwc1
+ 264: mul.s
+ 268: add.s
+ 26c: mul.s
+ 270: add.s
+ 274: sqrt.s
+ 278: b
+ 27c: swc1
+ 280: jal
+ 
+ 284: sw
+ 288: lw
+ 28c: move
+ 290: li
+ 294: lbu
+ 298: lw
+ 29c: andi
+ 2a0: ori
+ 2a4: sb
+ 2a8: jal
+ 
+ 2ac: sb
+ 2b0: lw
+ 2b4: addiu
+ 2b8: jr
+ 2bc: nop

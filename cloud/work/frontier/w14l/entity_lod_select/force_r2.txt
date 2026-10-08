@@ -1,0 +1,36 @@
+w27 c1: want 179 words, got 179; differing rows 7 (words); frame 232/232; unverified 2 unresolved 0 
+w27 c2: want 179 words, got 179; differing rows 11 (words); frame 232/232; unverified 2 unresolved 0 
+w27 c3: want 179 words, got 179; differing rows 15 (words); frame 232/232; unverified 2 unresolved 0 
+w74 c1: want 179 words, got 179; differing rows 7 (words); frame 232/232; unverified 2 unresolved 0 
+w74 c2: want 179 words, got 179; differing rows 10 (words); frame 232/232; unverified 2 unresolved 0 
+w74 c3: want 179 words, got 179; differing rows 10 (words); frame 232/232; unverified 2 unresolved 0 
+w25 c1: want 179 words, got 179; differing rows 7 (words); frame 232/232; unverified 2 unresolved 0 
+w25 c2: want 179 words, got 179; differing rows 5 (words); frame 232/232; unverified 2 unresolved 0 
+w25 c3: want 179 words, got 179; differing rows 7 (words); frame 232/232; unverified 2 unresolved 0 
+w97 c1: [CDX] force_declined phase=p1 site=dec proc=187 web=97 color=1 reg=v0 forbidden=0x4000000000000000 [CDX] force_declined phase=p1 site=color proc=187 web=97 colo
+w97 c2: want 179 words, got 179; differing rows 7 (words); frame 232/232; unverified 2 unresolved 0 
+w97 c3: want 179 words, got 179; differing rows 13 (words); frame 232/232; unverified 2 unresolved 0 
+w103 c1: [CDX] force_declined phase=p1 site=dec proc=187 web=103 color=1 reg=v0 forbidden=0x6000000000000000 [CDX] force_declined phase=p1 site=color proc=187 web=103 co
+w103 c2: [CDX] force_declined phase=p1 site=dec proc=187 web=103 color=2 reg=v1 forbidden=0x6000000000000000 [CDX] force_declined phase=p1 site=color proc=187 web=103 co
+w103 c3: want 179 words, got 179; differing rows 7 (words); frame 232/232; unverified 2 unresolved 0 
+w133 c1: want 179 words, got 179; differing rows 7 (words); frame 232/232; unverified 2 unresolved 0 
+w133 c2: want 179 words, got 179; differing rows 9 (words); frame 232/232; unverified 2 unresolved 0 
+w133 c3: want 179 words, got 179; differing rows 9 (words); frame 232/232; unverified 2 unresolved 0 
+w32 c1: [CDX] force_declined phase=p1 site=dec proc=187 web=32 color=1 reg=v0 forbidden=0x4000000000000000 [CDX] force_declined phase=p1 site=color proc=187 web=32 colo
+w32 c2: want 179 words, got 179; differing rows 7 (words); frame 232/232; unverified 2 unresolved 0 
+w32 c3: want 179 words, got 179; differing rows 4 (words); frame 232/232; unverified 2 unresolved 0 
+w61 c1: want 179 words, got 179; differing rows 7 (words); frame 232/232; unverified 2 unresolved 0 
+w61 c2: want 179 words, got 179; differing rows 9 (words); frame 232/232; unverified 2 unresolved 0 
+w61 c3: want 179 words, got 179; differing rows 9 (words); frame 232/232; unverified 2 unresolved 0 
+w19 c1: [CDX] force_declined phase=p1 site=dec proc=187 web=19 color=1 reg=v0 forbidden=0x7000000000000000 [CDX] force_declined phase=p1 site=color proc=187 web=19 colo
+w19 c2: [CDX] force_declined phase=p1 site=dec proc=187 web=19 color=2 reg=v1 forbidden=0x7000000000000000 [CDX] force_declined phase=p1 site=color proc=187 web=19 colo
+w19 c3: [CDX] force_declined phase=p1 site=dec proc=187 web=19 color=3 reg=a0 forbidden=0x7000000000000000 [CDX] force_declined phase=p1 site=color proc=187 web=19 colo
+w11 c1: [CDX] force_declined phase=p1 site=dec proc=187 web=11 color=1 reg=v0 forbidden=0x5f00000000000000 [CDX] force_declined phase=p1 site=color proc=187 web=11 colo
+w11 c2: want 179 words, got 179; differing rows 7 (words); frame 232/232; unverified 2 unresolved 0 
+w11 c3: [CDX] force_declined phase=p1 site=dec proc=187 web=11 color=3 reg=a0 forbidden=0x5f00000000000000 [CDX] force_declined phase=p1 site=color proc=187 web=11 colo
+w3 c1: want 179 words, got 179; differing rows 7 (words); frame 232/232; unverified 2 unresolved 0 
+w3 c2: [CDX] force_declined phase=p1 site=dec proc=187 web=3 color=2 reg=v1 forbidden=0x3f60200000000000 [CDX] force_declined phase=p1 site=color proc=187 web=3 color=
+w3 c3: [CDX] force_declined phase=p1 site=dec proc=187 web=3 color=3 reg=a0 forbidden=0x3f60200000000000 [CDX] force_declined phase=p1 site=color proc=187 web=3 color=
+w8 c1: [CDX] force_declined phase=p1 site=dec proc=187 web=8 color=1 reg=v0 forbidden=0x6e60200000000000 [CDX] force_declined phase=p1 site=color proc=187 web=8 color=
+w8 c2: [CDX] force_declined phase=p1 site=dec proc=187 web=8 color=2 reg=v1 forbidden=0x6e60200000000000 [CDX] force_declined phase=p1 site=color proc=187 web=8 color=
+w8 c3: want 179 words, got 179; differing rows 7 (words); frame 232/232; unverified 2 unresolved 0 

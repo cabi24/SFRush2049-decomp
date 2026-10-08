@@ -74,6 +74,21 @@ writing variants: if forcing reaches 0 rows the residual is colour-only.
 - Prove a residual is colour-only with `tools/trace/force.sh` before writing variants. For a colour tie,
   try the compiled-out `if (x) {}` priority lever (w11a) and `t = a; t -= b;` splits (w11c) first.
 
+## Wave 14: mass variant testing (vbatch + workbench generators)
+- `cloud/work/frontier/tools/vbatch/` (README.md): `vgen.py` expands a template with choice points
+  (`/*@{*/a/*@| b @}*/`) into hundreds of variants, and `wbgen.py` writes every mechanical one-edit neighbour
+  (commutative swaps, copy removal, operand hoists) using the vendored workbench's sweep generators.
+  `vbatch.sh` scores a whole directory on the builder in seconds and ranks by strict count.
+- Diagnose first: `python3 -m tools.conveyor.pipeline.diagnose one NAME --source BEST.c`, then
+  `python3 tools/workbench.py guide`. Hundreds of variants are cheap. Plan at least 3 rounds and 300
+  variants per function, and stop after 3 rounds with no strict improvement.
+- **Named float locals change the FP registers.** place_cars_in_order's last 8 words: a named `f32 f`
+  for a sum later converted to u32 is a coloured web (it got $f0). Written as one expression, the sum and
+  the conversion stay in ugen's temp ring ($f18/$f4, as in retail). If retail's FP registers are all ring
+  temps ($f4–$f18) but yours puts one in $f0/$f2 or a callee-saved $f20+, inline the named local.
+- Pad arrays (`u8 pad[20]`) to fix a frame are still not acceptable (Wave 12 rules), even when a sweep finds
+  them load-bearing. Report the frame residual instead.
+
 ## Permission denials
 If any tool call is denied by a permission/safety check, do NOT retry it in another form (different paths,
 globs, quoting, tools or hosts). Record it in RESULTS.md and continue without it.
@@ -91,8 +106,8 @@ are running. Helper scripts (aligned diffs, batch scoring) are in `cloud/work/fr
 
 ## Discipline
 - Run `python3 tools/workbench.py diagnose` (docs/external/README.md) on a near-miss before searching.
-- Stop a function after ~50 variants with no movement on the same residual: write it up and move on.
-  Breadth beats depth in this wave.
+- Stop a function only after 3 batch rounds (300+ variants) with no strict improvement (Wave 14); then
+  write it up and move on.
 - Only what the scorer printed counts. Quote it exactly.
 
 ## Deliverables (local repo only)
