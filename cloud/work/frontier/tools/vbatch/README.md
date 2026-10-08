@@ -31,6 +31,12 @@ hundreds of variants a two-command job.
    differ). For unit-shaped functions, the standalone ranking is still a guide, but re-score the top 3–5 in
    the unit. Unit runs on the Pi are slow and shared, so only run the top few.
 
+**wbgen winners must be reviewed by hand.** Its hoists reuse locals that the workbench judges dead at the
+site, but that judgement is textual. Wave-14 lanes found "winners" that wrote into a local a later call still
+reads, overwrote a loop variable, or passed an f32 as an s32. Before adopting any wbgen winner, read the
+one-edit diff and confirm that every local it writes is not read again before its next write. Run
+`experiment review-mutation` too, but do not rely on it alone. A score gain from a semantics change is not a lead.
+
 **What to put in choice points** (handoff §7 items 5–7):
 - declaration order and which variables are declared;
 - operand order of `==`, `+`, `*`, `&` and `|`;

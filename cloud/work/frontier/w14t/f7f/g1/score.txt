@@ -1,0 +1,11 @@
+strict 117  mnem-missing   0  aligned-missing 117  size +0  v0000.c
+strict 9999  mnem-missing 9999  aligned-missing 9999  size +0  v0001.c COMPILE FAIL
+strict 9999  mnem-missing 9999  aligned-missing 9999  size +0  v0002.c COMPILE FAIL
+strict 9999  mnem-missing 9999  aligned-missing 9999  size +0  v0003.c COMPILE FAIL
+strict 9999  mnem-missing 9999  aligned-missing 9999  size +0  v0004.c COMPILE FAIL
+strict 9999  mnem-missing 9999  aligned-missing 9999  size +0  v0005.c COMPILE FAIL
+strict 9999  mnem-missing 9999  aligned-missing 9999  size +0  v0006.c COMPILE FAIL
+strict 9999  mnem-missing 9999  aligned-missing 9999  size +0  v0007.c COMPILE FAIL
+strict 9999  mnem-missing 9999  aligned-missing 9999  size +0  v0008.c COMPILE FAIL
+strict 9999  mnem-missing 9999  aligned-missing 9999  size +0  v0009.c COMPILE FAIL
+13 files

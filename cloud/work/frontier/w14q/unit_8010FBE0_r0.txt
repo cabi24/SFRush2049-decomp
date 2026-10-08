@@ -1,0 +1,11 @@
+b_def.c:   FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32
+b_ptr.c:   FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32
+b_vol.c:   FAIL func_8010FBE0: 27 of 32 words differ; compiled body is 31 words, target 32
+c_sep.c:   FAIL func_8010FBE0: 30 of 32 words differ
+c_tvar.c:   FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32
+c_tvar_u32.c:   FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 30 words, target 32
+d_arr.c:   FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32
+d_jamnext.c:   FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32
+d_memcpy_last.c:   FAIL func_8010FBE0: 28 of 32 words differ; compiled body is 29 words, target 32
+w9d.c:   FAIL func_8010FBE0: 30 of 32 words differ
+w9d_a.c:   FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32

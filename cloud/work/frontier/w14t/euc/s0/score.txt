@@ -1,0 +1,4 @@
+strict 424  mnem-missing   2  aligned-missing 327  size +0  v0000.c unverified=8
+strict 424  mnem-missing   2  aligned-missing 327  size +0  v0001.c unverified=8
+strict 424  mnem-missing   2  aligned-missing 327  size +0  v0002.c unverified=8
+3 files

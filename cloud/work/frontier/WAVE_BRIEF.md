@@ -79,7 +79,8 @@ writing variants: if forcing reaches 0 rows the residual is colour-only.
   (`/*@{*/a/*@| b @}*/`) into hundreds of variants, and `wbgen.py` writes every mechanical one-edit neighbour
   (commutative swaps, copy removal, operand hoists) using the vendored workbench's sweep generators.
   `vbatch.sh` scores a whole directory on the builder in seconds and ranks by strict count.
-- Diagnose first: `python3 -m tools.conveyor.pipeline.diagnose one NAME --source BEST.c`, then
+- Diagnose first: `python3 -m tools.conveyor.pipeline.diagnose one NAME --source BEST.c --flags "-g0 -O3 -mips2
+  -G 0 -non_shared"` (without --flags or a `/* flags: */` header it compiles at -O2), then
   `python3 tools/workbench.py guide`. Hundreds of variants are cheap. Plan at least 3 rounds and 300
   variants per function, and stop after 3 rounds with no strict improvement.
 - **Named float locals change the FP registers.** place_cars_in_order's last 8 words: a named `f32 f`

@@ -1,0 +1,6 @@
+strict  94  mnem-missing  22  aligned-missing  70  size +3  v0018.c
+strict  94  mnem-missing  22  aligned-missing  70  size +3  v0069.c
+strict  94  mnem-missing  22  aligned-missing  70  size +3  v0080.c
+strict  94  mnem-missing  22  aligned-missing  70  size +3  v0096.c
+strict  94  mnem-missing  22  aligned-missing  70  size +3  v0101.c
+300 files

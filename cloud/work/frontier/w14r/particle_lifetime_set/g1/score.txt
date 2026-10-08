@@ -1,0 +1,9 @@
+strict  59  mnem-missing   0  aligned-missing  58  size +0  v0000.c
+strict  59  mnem-missing   0  aligned-missing  58  size +0  v0130.c
+strict  59  mnem-missing   0  aligned-missing  58  size +0  v0144.c
+strict  59  mnem-missing   0  aligned-missing  58  size +0  v0172.c
+strict  59  mnem-missing   0  aligned-missing  58  size +0  v0214.c
+strict  59  mnem-missing   0  aligned-missing  58  size +0  v0314.c
+strict  59  mnem-missing   0  aligned-missing  58  size +0  v0320.c
+strict  59  mnem-missing   0  aligned-missing  58  size +0  v0322.c
+980 files

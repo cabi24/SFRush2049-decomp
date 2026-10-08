@@ -1,0 +1,334 @@
+.set noreorder
+.set noat
+.globl engine_sound_sync
+engine_sound_sync:
+    addiu sp,sp,-376
+    sw ra,116(sp)
+    lui a0,0x8014
+    sw s8,112(sp)
+    sw s7,108(sp)
+    sw s6,104(sp)
+    sw s5,100(sp)
+    sw s4,96(sp)
+    sw s3,92(sp)
+    sw s2,88(sp)
+    sw s1,84(sp)
+    sw s0,80(sp)
+    sdc1 $f30,72(sp)
+    sdc1 $f28,64(sp)
+    sdc1 $f26,56(sp)
+    sdc1 $f24,48(sp)
+    sdc1 $f22,40(sp)
+    sdc1 $f20,32(sp)
+    addiu a0,a0,10024
+    move a1,zero
+    jal 0x80007270
+    li a2,1
+    lui s4,0x8014
+    lw s4,25072(s4)
+    lui at,0x3f80
+    addiu s6,sp,304
+    beqz s4,L80098f5c
+    lui s5,0x8014
+    mtc1 zero,$f30
+    mtc1 at,$f26
+    li s8,1
+    addiu s5,s5,24968
+    lw t9,0(s4)
+L80098b68:
+    sw t9,368(sp)
+    jal 0x80091ba8
+    lw a0,40(s4)
+    lw v1,16(v0)
+    li at,2
+    move s0,v0
+    bnel v1,at,L80098bc4
+    lb t8,24(s0)
+    lbu t6,26(v0)
+    bnezl t6,L80098bc4
+    lb t8,24(s0)
+    lb t7,25(v0)
+    bnezl t7,L80098bc4
+    lb t8,24(s0)
+    jal 0x800987e8
+    lw a0,60(v0)
+    bnezl v0,L80098bc4
+    lb t8,24(s0)
+    jal 0x80095800
+    nop
+    b L80098f54
+    lw s4,368(sp)
+    lb t8,24(s0)
+L80098bc4:
+    move v1,zero
+    bnezl t8,L80098f54
+    lw s4,368(sp)
+    lw s0,8(s5)
+    lwc1 $f8,36(s4)
+    mov.s $f20,$f30
+    mov.s $f22,$f30
+    mov.s $f24,$f30
+    beqz s0,L80098e08
+    swc1 $f8,348(sp)
+    addiu s2,sp,232
+    addiu s3,sp,212
+    addiu s1,sp,192
+    lwc1 $f10,12(s4)
+L80098bfc:
+    lwc1 $f4,12(s0)
+    move a0,s6
+    sub.s $f6,$f10,$f4
+    swc1 $f6,304(sp)
+    lwc1 $f10,16(s0)
+    lwc1 $f8,16(s4)
+    sub.s $f4,$f8,$f10
+    swc1 $f4,308(sp)
+    lwc1 $f8,20(s0)
+    lwc1 $f6,20(s4)
+    sub.s $f10,$f6,$f8
+    jal 0x80098a54
+    swc1 $f10,312(sp)
+    lwc1 $f4,36(s0)
+    swc1 $f4,280(sp)
+    lwc1 $f6,40(s0)
+    swc1 $f6,284(sp)
+    lwc1 $f8,44(s0)
+    swc1 $f8,288(sp)
+    lwc1 $f10,48(s0)
+    swc1 $f10,268(sp)
+    lwc1 $f4,52(s0)
+    lwc1 $f10,288(sp)
+    swc1 $f4,272(sp)
+    lwc1 $f6,56(s0)
+    lwc1 $f8,272(sp)
+    swc1 $f10,124(sp)
+    swc1 $f6,276(sp)
+    mul.s $f4,$f8,$f10
+    swc1 $f8,120(sp)
+    lwc1 $f8,276(sp)
+    lwc1 $f6,284(sp)
+    mul.s $f10,$f6,$f8
+    swc1 $f6,128(sp)
+    sub.s $f4,$f4,$f10
+    lwc1 $f10,280(sp)
+    swc1 $f4,256(sp)
+    swc1 $f4,132(sp)
+    lwc1 $f4,124(sp)
+    mul.s $f6,$f8,$f10
+    swc1 $f8,124(sp)
+    lwc1 $f8,268(sp)
+    swc1 $f10,136(sp)
+    mul.s $f10,$f4,$f8
+    sub.s $f6,$f6,$f10
+    lwc1 $f10,128(sp)
+    swc1 $f4,128(sp)
+    swc1 $f6,260(sp)
+    swc1 $f6,140(sp)
+    lwc1 $f6,136(sp)
+    mul.s $f4,$f8,$f10
+    swc1 $f8,136(sp)
+    lwc1 $f8,120(sp)
+    swc1 $f10,120(sp)
+    mul.s $f10,$f6,$f8
+    sub.s $f4,$f4,$f10
+    lwc1 $f10,132(sp)
+    swc1 $f6,132(sp)
+    lwc1 $f6,304(sp)
+    swc1 $f4,264(sp)
+    mul.s $f10,$f10,$f6
+    lwc1 $f6,140(sp)
+    swc1 $f8,140(sp)
+    lwc1 $f8,308(sp)
+    mul.s $f6,$f6,$f8
+    add.s $f8,$f10,$f6
+    lwc1 $f10,312(sp)
+    mul.s $f6,$f10,$f4
+    add.s $f4,$f6,$f8
+    lwc1 $f8,304(sp)
+    lwc1 $f6,136(sp)
+    swc1 $f4,292(sp)
+    mul.s $f4,$f6,$f8
+    lwc1 $f8,308(sp)
+    lwc1 $f6,140(sp)
+    mul.s $f6,$f6,$f8
+    add.s $f8,$f4,$f6
+    lwc1 $f4,124(sp)
+    mul.s $f6,$f10,$f4
+    add.s $f4,$f6,$f8
+    lwc1 $f8,304(sp)
+    lwc1 $f6,132(sp)
+    swc1 $f4,296(sp)
+    mul.s $f4,$f6,$f8
+    lwc1 $f8,308(sp)
+    lwc1 $f6,120(sp)
+    mul.s $f6,$f6,$f8
+    add.s $f8,$f4,$f6
+    lwc1 $f4,128(sp)
+    mul.s $f6,$f10,$f4
+    lwc1 $f4,292(sp)
+    add.s $f10,$f6,$f8
+    swc1 $f10,300(sp)
+    swc1 $f4,0(s2)
+    lwc1 $f6,300(sp)
+    swc1 $f6,0(s3)
+    lwc1 $f14,24(s4)
+    c.lt.s $f30,$f14
+    nop
+    bc1fl L80098dd0
+    lwc1 $f10,28(s4)
+    div.s $f4,$f0,$f14
+    lwc1 $f12,28(s4)
+    lwc1 $f8,32(s4)
+    sub.s $f10,$f12,$f8
+    mul.s $f6,$f10,$f4
+    sub.s $f8,$f12,$f6
+    swc1 $f8,0(s1)
+    lwc1 $f2,0(s1)
+    c.lt.s $f2,$f30
+    nop
+    bc1fl L80098ddc
+    lwc1 $f0,0(s2)
+    swc1 $f30,0(s1)
+    b L80098dd8
+    lwc1 $f2,0(s1)
+    lwc1 $f10,28(s4)
+L80098dd0:
+    swc1 $f10,0(s1)
+    lwc1 $f2,0(s1)
+L80098dd8:
+    lwc1 $f0,0(s2)
+L80098ddc:
+    addiu s2,s2,4
+    addiu s3,s3,4
+    mul.s $f4,$f0,$f2
+    addiu s1,s1,4
+    add.s $f20,$f20,$f2
+    sub.s $f6,$f0,$f4
+    swc1 $f6,-4(s2)
+    lw s0,0(s0)
+    bnezl s0,L80098bfc
+    lwc1 $f10,12(s4)
+    move v1,zero
+L80098e08:
+    c.lt.s $f20,$f30
+    addiu a3,sp,212
+    addiu a2,sp,192
+    addiu a1,sp,232
+    bc1fl L80098e2c
+    c.lt.s $f26,$f20
+    b L80098e48
+    swc1 $f30,360(sp)
+    c.lt.s $f26,$f20
+L80098e2c:
+    nop
+    bc1fl L80098e44
+    mov.s $f0,$f20
+    b L80098e44
+    mov.s $f0,$f26
+    mov.s $f0,$f20
+L80098e44:
+    swc1 $f0,360(sp)
+L80098e48:
+    lw a0,4(s5)
+    blezl a0,L80098ea8
+    lui at,0xbf80
+    c.eq.s $f20,$f30
+L80098e58:
+    sll v0,v1,0x2
+    addu t9,a2,v0
+    bc1tl L80098e98
+    addiu v1,v1,1
+    lwc1 $f8,0(t9)
+    addu t6,a1,v0
+    lwc1 $f10,0(t6)
+    div.s $f0,$f8,$f20
+    addu t7,a3,v0
+    lwc1 $f6,0(t7)
+    mul.s $f4,$f10,$f0
+    nop
+    mul.s $f8,$f6,$f0
+    add.s $f22,$f22,$f4
+    add.s $f24,$f24,$f8
+    addiu v1,v1,1
+L80098e98:
+    slt at,v1,a0
+    bnezl at,L80098e58
+    c.eq.s $f20,$f30
+    lui at,0xbf80
+L80098ea8:
+    mtc1 at,$f2
+    lui at,0x3f80
+    c.lt.s $f22,$f2
+    nop
+    bc1fl L80098ecc
+    c.lt.s $f26,$f22
+    b L80098ee8
+    swc1 $f2,356(sp)
+    c.lt.s $f26,$f22
+L80098ecc:
+    nop
+    bc1fl L80098ee4
+    mov.s $f0,$f22
+    b L80098ee4
+    mov.s $f0,$f26
+    mov.s $f0,$f22
+L80098ee4:
+    swc1 $f0,356(sp)
+L80098ee8:
+    c.lt.s $f24,$f2
+    nop
+    bc1fl L80098f04
+    mtc1 at,$f10
+    b L80098f2c
+    swc1 $f2,352(sp)
+    mtc1 at,$f10
+L80098f04:
+    lui at,0x3f80
+    c.lt.s $f10,$f24
+    nop
+    bc1fl L80098f28
+    mov.s $f0,$f24
+    mtc1 at,$f0
+    b L80098f2c
+    swc1 $f0,352(sp)
+    mov.s $f0,$f24
+L80098f28:
+    swc1 $f0,352(sp)
+L80098f2c:
+    lw a0,40(s4)
+    lwc1 $f22,360(sp)
+    lwc1 $f24,356(sp)
+    lwc1 $f26,352(sp)
+    jal 0x80091ca4
+    lwc1 $f28,348(sp)
+    lui at,0x3f80
+    mtc1 at,$f26
+    nop
+    lw s4,368(sp)
+L80098f54:
+    bnezl s4,L80098b68
+    lw t9,0(s4)
+L80098f5c:
+    lui a0,0x8014
+    addiu a0,a0,10024
+    move a1,zero
+    jal 0x800075e0
+    move a2,zero
+    lw ra,116(sp)
+    ldc1 $f20,32(sp)
+    ldc1 $f22,40(sp)
+    ldc1 $f24,48(sp)
+    ldc1 $f26,56(sp)
+    ldc1 $f28,64(sp)
+    ldc1 $f30,72(sp)
+    lw s0,80(sp)
+    lw s1,84(sp)
+    lw s2,88(sp)
+    lw s3,92(sp)
+    lw s4,96(sp)
+    lw s5,100(sp)
+    lw s6,104(sp)
+    lw s7,108(sp)
+    lw s8,112(sp)
+    jr ra
+    addiu sp,sp,376

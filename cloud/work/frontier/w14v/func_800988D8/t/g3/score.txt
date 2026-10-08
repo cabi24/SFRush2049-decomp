@@ -1,0 +1,6 @@
+strict  85  mnem-missing  21  aligned-missing  51  size +3  v0018.c
+strict  85  mnem-missing  21  aligned-missing  51  size +3  v0069.c
+strict  85  mnem-missing  21  aligned-missing  51  size +3  v0080.c
+strict  85  mnem-missing  21  aligned-missing  51  size +3  v0096.c
+strict  85  mnem-missing  21  aligned-missing  51  size +3  v0101.c
+300 files

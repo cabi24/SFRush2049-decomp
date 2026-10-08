@@ -1,0 +1,13 @@
+strict  66  mnem-missing  21  aligned-missing  56  size -10  v0000.c
+strict  66  mnem-missing  21  aligned-missing  56  size -10  v0001.c
+strict  66  mnem-missing  21  aligned-missing  56  size -10  v0008.c
+strict  66  mnem-missing  21  aligned-missing  56  size -10  v0009.c
+strict  66  mnem-missing  21  aligned-missing  56  size -10  v0032.c
+strict  66  mnem-missing  21  aligned-missing  56  size -10  v0033.c
+strict  66  mnem-missing  21  aligned-missing  56  size -10  v0040.c
+strict  66  mnem-missing  21  aligned-missing  56  size -10  v0041.c
+strict  66  mnem-missing  21  aligned-missing  56  size -10  v0064.c
+strict  66  mnem-missing  21  aligned-missing  56  size -10  v0065.c
+strict  66  mnem-missing  21  aligned-missing  56  size -10  v0072.c
+strict  66  mnem-missing  21  aligned-missing  56  size -10  v0073.c
+128 files

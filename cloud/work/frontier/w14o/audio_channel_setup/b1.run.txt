@@ -1,0 +1,13 @@
+strict   3  mnem-missing   0  aligned-missing   3  size +0  v0000.c
+strict   3  mnem-missing   0  aligned-missing   3  size +0  v0002.c
+strict   3  mnem-missing   0  aligned-missing   3  size +0  v0003.c
+strict   3  mnem-missing   0  aligned-missing   3  size +0  v0008.c
+strict   3  mnem-missing   0  aligned-missing   3  size +0  v0010.c
+strict   3  mnem-missing   0  aligned-missing   3  size +0  v0011.c
+strict   3  mnem-missing   0  aligned-missing   3  size +0  v0016.c
+strict   3  mnem-missing   0  aligned-missing   3  size +0  v0018.c
+strict   3  mnem-missing   0  aligned-missing   3  size +0  v0019.c
+strict   3  mnem-missing   0  aligned-missing   3  size +0  v0024.c
+strict   3  mnem-missing   0  aligned-missing   3  size +0  v0026.c
+strict   3  mnem-missing   0  aligned-missing   3  size +0  v0027.c
+128 files

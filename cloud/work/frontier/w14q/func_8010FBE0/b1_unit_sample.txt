@@ -1,0 +1,51 @@
+v0000.c: FAIL func_8010FBE0: 27 of 32 words differ; compiled body is 31 words, target 32 | words 11 ops 5 norm 5 | frame 24/24
+v0007.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 15 ops 11 norm 11 | frame 24/24
+Traceback (most recent call last):
+  File "/home/cburnes/projects/rush2049-decomp/cloud/work/frontier/tools/trace/udiff.py", line 97, in <module>
+    main()
+  File "/home/cburnes/projects/rush2049-decomp/cloud/work/frontier/tools/trace/udiff.py", line 65, in main
+    start = fns[a.fn]
+            ~~~^^^^^^
+KeyError: 'func_8010FBE0'
+v0014.c: FAIL func_8010FBE0: 31 of 32 words differ; compiled body is 31 words, target 32 | words 16 ops 13 norm  | frame 24/24
+v0021.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 16 ops 11 norm 11 | frame 24/24
+v0028.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 16 ops 14 norm 14 | frame 24/24
+v0035.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 13 ops 8 norm 8 | frame 24/24
+v0042.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 17 ops 14 norm 14 | frame 24/24
+v0049.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 17 ops 13 norm 13 | frame 24/24
+v0056.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 17 ops 11 norm 11 | frame 24/24
+v0063.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 18 ops 13 norm 13 | frame 24/24
+v0070.c: FAIL func_8010FBE0: 28 of 32 words differ; compiled body is 29 words, target 32 | words 19 ops 17 norm 17 | frame 24/24
+v0077.c: FAIL func_8010FBE0: 29 of 32 words differ; compiled body is 29 words, target 32 | words 19 ops 17 norm 17 | frame 24/24
+v0084.c: FAIL func_8010FBE0: 27 of 32 words differ; compiled body is 31 words, target 32 | words 11 ops 5 norm 5 | frame 24/24
+v0091.c: FAIL func_8010FBE0: 31 of 32 words differ; compiled body is 31 words, target 32 | words 18 ops 15 norm 15 | frame 24/24
+v0098.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 19 ops 15 norm 15 | frame 24/24
+v0105.c: FAIL func_8010FBE0: 31 of 32 words differ; compiled body is 31 words, target 32 | words 18 ops 15 norm 15 | frame 24/24
+v0112.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 13 ops 8 norm 8 | frame 24/24
+v0119.c: FAIL func_8010FBE0: 29 of 32 words differ; compiled body is 31 words, target 32 | words 18 ops 14 norm 14 | frame 24/24
+v0126.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 17 ops 14 norm 14 | frame 24/24
+v0133.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 15 ops 11 norm 11 | frame 24/24
+v0140.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 12 ops 8 norm 8 | frame 24/24
+v0147.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 17 ops 11 norm 11 | frame 24/24
+v0154.c: FAIL func_8010FBE0: 29 of 32 words differ; compiled body is 29 words, target 32 | words 19 ops 17 norm 17 | frame 24/24
+v0161.c: FAIL func_8010FBE0: 28 of 32 words differ; compiled body is 29 words, target 32 | words 19 ops 17 norm 17 | frame 24/24
+v0168.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 16 ops 11 norm 11 | frame 24/24
+v0175.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 17 ops 11 norm 11 | frame 24/24
+v0182.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 16 ops 11 norm 11 | frame 24/24
+v0189.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 19 ops 15 norm 15 | frame 24/24
+v0196.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 17 ops 14 norm 14 | frame 24/24
+v0203.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 16 ops 11 norm 11 | frame 24/24
+v0210.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 16 ops 7 norm 7 | frame 24/24
+v0217.c: FAIL func_8010FBE0: 31 of 32 words differ; compiled body is 31 words, target 32 | words 17 ops 13 norm 13 | frame 24/24
+v0224.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 15 ops 11 norm 11 | frame 24/24
+v0231.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 16 ops 14 norm 14 | frame 24/24
+v0238.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 16 ops 11 norm 11 | frame 24/24
+v0245.c: FAIL func_8010FBE0: 31 of 32 words differ; compiled body is 31 words, target 32 | words 18 ops 15 norm 15 | frame 24/24
+v0252.c: FAIL func_8010FBE0: 31 of 32 words differ; compiled body is 31 words, target 32 | words 17 ops 13 norm 13 | frame 24/24
+v0259.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 17 ops 14 norm 14 | frame 24/24
+v0266.c: FAIL func_8010FBE0: 29 of 32 words differ; compiled body is 29 words, target 32 | words 20 ops 17 norm 17 | frame 24/24
+v0273.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 12 ops 6 norm 6 | frame 24/24
+v0280.c: FAIL func_8010FBE0: 31 of 32 words differ; compiled body is 31 words, target 32 | words 18 ops 21 norm 21 | frame 24/24
+v0287.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 12 ops 8 norm 8 | frame 24/24
+v0294.c: FAIL func_8010FBE0: 28 of 32 words differ; compiled body is 29 words, target 32 | words 19 ops 17 norm 17 | frame 24/24
+DONE

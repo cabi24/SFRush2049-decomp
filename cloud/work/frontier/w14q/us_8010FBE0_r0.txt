@@ -1,0 +1,11 @@
+b_def.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 15 ops 11 norm 11 | frame 24/24
+b_ptr.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 15 ops 11 norm 11 | frame 24/24
+b_vol.c: FAIL func_8010FBE0: 27 of 32 words differ; compiled body is 31 words, target 32 | words 11 ops 5 norm 5 | frame 24/24
+c_sep.c: FAIL func_8010FBE0: 30 of 32 words differ | words 6 ops 6 norm 6 | frame 24/24
+c_tvar.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 15 ops 11 norm 11 | frame 24/24
+c_tvar_u32.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 30 words, target 32 | words 16 ops 8 norm 8 | frame 24/32
+d_arr.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 15 ops 11 norm 11 | frame 24/24
+d_jamnext.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 15 ops 11 norm 11 | frame 24/24
+d_memcpy_last.c: FAIL func_8010FBE0: 28 of 32 words differ; compiled body is 29 words, target 32 | words 19 ops 17 norm 17 | frame 24/24
+w9d.c: FAIL func_8010FBE0: 30 of 32 words differ | words 6 ops 6 norm 6 | frame 24/24
+w9d_a.c: FAIL func_8010FBE0: 30 of 32 words differ; compiled body is 31 words, target 32 | words 15 ops 11 norm 11 | frame 24/24

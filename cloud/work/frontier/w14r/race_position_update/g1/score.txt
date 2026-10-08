@@ -1,0 +1,4 @@
+strict 114  mnem-missing  24  aligned-missing  58  size -13  v0159.c unverified=4
+strict 114  mnem-missing  24  aligned-missing  58  size -13  v0160.c unverified=4
+strict 114  mnem-missing  24  aligned-missing  58  size -13  v0161.c unverified=4
+190 files

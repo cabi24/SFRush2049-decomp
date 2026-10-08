@@ -1,0 +1,4 @@
+strict 117  mnem-missing   0  aligned-missing 117  size +0  v0000.c
+strict 117  mnem-missing   0  aligned-missing 117  size +0  v0001.c
+strict 117  mnem-missing   0  aligned-missing 117  size +0  v0002.c
+3 files

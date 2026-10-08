@@ -1,0 +1,2 @@
+strict  95  mnem-missing  93  aligned-missing  93  size -93  d1g.c
+1 files

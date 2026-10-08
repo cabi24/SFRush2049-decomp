@@ -1,0 +1,14 @@
+file	generator	edit
+v0000.c	control	base unedited
+v0001.c	hoist	v0000.O.L101-k0.a
+v0002.c	hoist	v0000.O.L101-k0.b
+v0003.c	hoist	v0000.O.L101-k0.j
+v0004.c	hoist	v0000.O.L101-k1.a
+v0005.c	hoist	v0000.O.L101-k1.b
+v0006.c	hoist	v0000.O.L101-k1.j
+v0007.c	hoist	v0000.O.L102-k0.a
+v0008.c	hoist	v0000.O.L102-k0.b
+v0009.c	hoist	v0000.O.L102-k0.j
+v0010.c	hoist	v0000.O.L102-k1.a
+v0011.c	hoist	v0000.O.L102-k1.b
+v0012.c	hoist	v0000.O.L102-k1.j

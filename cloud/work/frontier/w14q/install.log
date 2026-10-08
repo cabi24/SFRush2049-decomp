@@ -1,0 +1,46 @@
+instrumented -> /tmp/wtk-install.1692627/uopt.w5d.c
+patch_spill -> /tmp/wtk-install.1692627/uopt.trace.c
+instrumented 429 functions and 7 free-list hooks; procedure hooks=1; emit hooks=67 -> /tmp/wtk-install.1692627/ugen.trace.c
+libc_impl.c: In function ‘wrapper_sigset’:
+libc_impl.c:2526:5: warning: ‘sigset’ is deprecated: Use the signal and sigprocmask functions instead [-Wdeprecated-declarations]
+ 2526 |     return (uint32_t)(uintptr_t)sigset(signum, handler); // for now only support SIG_DFL etc. as return value
+      |     ^~~~~~
+In file included from /usr/include/x86_64-linux-gnu/sys/wait.h:36,
+                 from libc_impl.c:30:
+/usr/include/signal.h:367:23: note: declared here
+  367 | extern __sighandler_t sigset (int __sig, __sighandler_t __disp) __THROW
+      |                       ^~~~~~
+/usr/bin/x86_64-linux-gnu-ld.bfd: libc_impl.o: in function `wrapper_tempnam':
+libc_impl.c:(.text+0x474a): warning: the use of `tempnam' is dangerous, better use `mkstemp'
+/usr/bin/x86_64-linux-gnu-ld.bfd: libc_impl.o: in function `wrapper_tmpnam':
+libc_impl.c:(.text+0x4817): warning: the use of `tmpnam' is dangerous, better use `mkstemp'
+/usr/bin/x86_64-linux-gnu-ld.bfd: libc_impl.o: in function `wrapper_mktemp':
+libc_impl.c:(.text+0x48eb): warning: the use of `mktemp' is dangerous, better use `mkstemp' or `mkdtemp'
+/usr/bin/x86_64-linux-gnu-ld.bfd: libc_impl.o: in function `wrapper_tempnam':
+libc_impl.c:(.text+0x474a): warning: the use of `tempnam' is dangerous, better use `mkstemp'
+/usr/bin/x86_64-linux-gnu-ld.bfd: libc_impl.o: in function `wrapper_tmpnam':
+libc_impl.c:(.text+0x4817): warning: the use of `tmpnam' is dangerous, better use `mkstemp'
+/usr/bin/x86_64-linux-gnu-ld.bfd: libc_impl.o: in function `wrapper_mktemp':
+libc_impl.c:(.text+0x48eb): warning: the use of `mktemp' is dangerous, better use `mkstemp' or `mkdtemp'
+/usr/bin/x86_64-linux-gnu-ld.bfd: libc_impl.o: in function `wrapper_tempnam':
+libc_impl.c:(.text+0x474a): warning: the use of `tempnam' is dangerous, better use `mkstemp'
+/usr/bin/x86_64-linux-gnu-ld.bfd: libc_impl.o: in function `wrapper_tmpnam':
+libc_impl.c:(.text+0x4817): warning: the use of `tmpnam' is dangerous, better use `mkstemp'
+/usr/bin/x86_64-linux-gnu-ld.bfd: libc_impl.o: in function `wrapper_mktemp':
+libc_impl.c:(.text+0x48eb): warning: the use of `mktemp' is dangerous, better use `mkstemp' or `mkdtemp'
+# traced IDO 5.3 passes, built 2026-10-08T04:32:27Z by cloud/work/frontier/tools/trace/install.sh
+# uopt = uopt.c + instrument_w5d.py (globalcolor profile + w5d hooks) + patch_spill.py
+# ugen = ugen.c + workbench instrument-ugen --emit-provenance;  as1 = as1.c (unchanged)
+# libc = libc_impl.c + ecvt.patch.py + as1_printf.patch.py
+recomp uopt.c 627eff8f854eb0a9d3f0a080e9dabbcd23335acb768f88e916d7ffbcbbc69e89
+recomp ugen.c 4079660f9ebb068a791c6f54abb67cf7c3bb792207c89a6eb9ac2d9e146341ec
+recomp as1.c 4d7a97147e75fcf480130aaf64376f7ee66bc0139e65790e38877bdceb4d8006
+recomp libc_impl.c 7dd4bac08657994c340ac22f7618dc2d68f99eab6dad8eb9857ab4b510c1a074
+src uopt.trace.c 6b0e11ccc6a616cc6b62106216e0bf19a2e83421ce85725c45c683371b44e046
+src ugen.trace.c 042cb5ce63c1f6d66f1014081074a1df3b5aedfbc84085d7519bf198b8c1fb2a
+src libc_impl.c 8f180f058715199708dcadd3571ef54ca2130538a3a672b570e5de5bba3ee0e9
+bin uopt 835893a1994953000f85a8e61cb21721a3dbaa9803cb94b7d259f585d0d9b045
+bin ugen f82b95101d1f16dfcc9fb8bd9f7b85966abf50d5601a3aa2b150c213b96c3266
+bin as1 98398910948921a84815be6811db8e5cc622c13a4228f936edd6c1b81af497fb
+installed into watchman2:~/rush2049/scratch/frontier/w14q/bin; now: TAG=<tag> SCR=rush2049/scratch/frontier/w14q /home/cburnes/projects/rush2049-decomp/cloud/work/frontier/tools/trace/fidelity.sh NAME CAND.c
+done

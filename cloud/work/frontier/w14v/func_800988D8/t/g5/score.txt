@@ -1,0 +1,4 @@
+strict  91  mnem-missing  23  aligned-missing  57  size +9  v0000.c
+strict  91  mnem-missing  23  aligned-missing  57  size +9  v0001.c
+strict  91  mnem-missing  23  aligned-missing  57  size +9  v0002.c
+256 files

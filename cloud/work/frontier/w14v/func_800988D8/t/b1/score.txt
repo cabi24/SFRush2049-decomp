@@ -1,0 +1,7 @@
+strict  97  mnem-missing  23  aligned-missing  72  size +7  v0002.c
+strict  97  mnem-missing  23  aligned-missing  72  size +7  v0009.c
+strict  97  mnem-missing  23  aligned-missing  72  size +7  v0010.c
+strict  97  mnem-missing  23  aligned-missing  72  size +7  v0014.c
+strict  97  mnem-missing  23  aligned-missing  72  size +7  v0015.c
+strict  97  mnem-missing  23  aligned-missing  72  size +7  v0021.c
+300 files
