@@ -357,11 +357,54 @@ int func_80016E40(const PackedKey *left, const PackedKey *right)
     return left->key - right->key;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016E68.s")
-/* ROM_OWNED_RODATA_BEGIN func_80016E68 */
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016E68.bss.s")
-/* ROM_OWNED_RODATA_END func_80016E68 */
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016EE0.s")
+/* PROMOTED 2026-10-11 — func_80016E68
+ * Source:   cloud/work/frontier/w20b/ownbss/func_80016E68.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w20b/ownbss/func_80016E68.c:func_80016E68 (score0); rom_tu.h context: cloud/work/frontier/w21d/ctx71_ownbss.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack()
+#pragma pack(1)
+#pragma pack()
+int func_80016E40(const PackedKey *left, const PackedKey *right);
+void *func_8001E864(const void *key, const void *base, int count, int size, int (*compare)(const void *, const void *));
+void *func_80016E68(u16 id)
+{
+    static RecordFields_80038610 key_80038610;
+    static RecordFields_80038610 *result_80038610;
+
+    key_80038610.id = id;
+    if ((result_80038610 = func_8001E864(&key_80038610, D_80038610, D_80038608, sizeof(RecordFields_80038610),
+                                (int (*)(const void *, const void *))func_80016E40)) != 0) {
+        return (void *)result_80038610->payload;
+    }
+    return 0;
+}
+
+/* PROMOTED 2026-10-11 — func_80016EE0
+ * Source:   cloud/work/frontier/w20b/ownbss/func_80016EE0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w20b/ownbss/func_80016EE0.c:func_80016EE0 (score0); rom_tu.h context: cloud/work/frontier/w21d/ctx71_ownbss.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack()
+#pragma pack(1)
+#pragma pack()
+void *func_80016EE0(u16 id)
+{
+    static RecordFields_8003C618 key_8003C618;
+    static RecordFields_8003C618 *result_8003C618;
+
+    key_8003C618.id = id;
+    if ((result_8003C618 = func_8001E864(&key_8003C618, D_8003C618, D_8003C610, sizeof(RecordFields_8003C618),
+                                (int (*)(const void *, const void *))func_80016E40)) != 0) {
+        return result_8003C618->payload;
+    }
+    return 0;
+}
+
 /* PROMOTED 2026-10-04 — func_80016F58
  * Source:   cloud/matches/boot_tail/func_80016F58.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -375,7 +418,31 @@ int func_80016F58(const PackedKey *left, const PackedKey *right)
     return left->key - right->key;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016F80.s")
+/* PROMOTED 2026-10-11 — func_80016F80
+ * Source:   cloud/work/frontier/w20b/ownbss/func_80016F80.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w20b/ownbss/func_80016F80.c:func_80016F80 (score0); rom_tu.h context: cloud/work/frontier/w21d/ctx71_ownbss.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack()
+#pragma pack(1)
+#pragma pack()
+int func_80016F58(const PackedKey *left, const PackedKey *right);
+void *func_80016F80(u16 id, u16 *type)
+{
+    static RecordFields_8003CE20 key_8003CE20;
+    static RecordFields_8003CE20 *result_8003CE20;
+
+    key_8003CE20.id = id;
+    if ((result_8003CE20 = func_8001E864(&key_8003CE20, D_8003CE20, D_8003CE18, sizeof(RecordFields_8003CE20),
+                                (int (*)(const void *, const void *))func_80016F58)) != 0) {
+        *type = result_8003CE20->type;
+        return (void *)result_8003CE20->payload;
+    }
+    return 0;
+}
+
 /* PROMOTED 2026-10-04 — func_80017018
  * Source:   cloud/matches/boot_tail/func_80017018.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
