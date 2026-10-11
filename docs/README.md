@@ -9,6 +9,7 @@ Paths inside command examples are relative to the repository root.
 | Need | Read |
 |---|---|
 | Pick the next game functions to match (call-graph order) and follow the large-function plan | [Frontier plan](plans/2026-10-04-frontier-plan.md) · `python3 -m tools.conveyor.pipeline.frontier next` |
+| Coordinate the cloud contributor (Astra): what lands, packet protocol, runtime-image landing path | [Astra cloud plan](plans/2026-10-11-astra-cloud-plan.md) |
 | Plan whole-project work and find detailed prerequisite/acceptance packages | [Full project plan](../PROJECT_PLAN.md) |
 | Assign helpers and replenish the current work queue | [dot_handoff](../dot_handoff.md) |
 | Find incorporated nonmatching sources, evidence and current blockers | [Research progress index](../cloud/RESEARCH_INDEX.md) |

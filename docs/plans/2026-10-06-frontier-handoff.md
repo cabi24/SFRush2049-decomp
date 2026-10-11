@@ -177,6 +177,8 @@ question, and the remaining ~115 boot-tail `func_*` near-misses now that the rig
 `w17c/tools/uproc.py`; w17i's RESULTS decodes how uopt ranks register candidates (blocks counted in groups of
 four, so exact ties are common).
 
+**Astra / cloud:** see [2026-10-11-astra-cloud-plan.md](2026-10-11-astra-cloud-plan.md): runtime images A/B (191 KB, targets in `asm/us/ovl_*`) have no landing path yet and hold ~14 KB of Astra's verified matches; the plan's workstream A builds it, B rewrites `CloudHandoff.md`, C is the packet protocol that stops the receipt rebinds.
+
 **For the next coordinating session.** This covers where the frontier matching effort stands, how a wave is run end to end, what the owner has decided, and every open item. Read it with `CLAUDE.md`, `cloud/work/frontier/WAVE_BRIEF.md` (the brief every lane agent reads) and `docs/plans/2026-10-04-frontier-plan.md` (the original method).
 
 ## 1. Where things stand (master `4d81f8dd`, CI green)
