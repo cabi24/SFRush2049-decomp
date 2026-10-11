@@ -1,0 +1,11 @@
+file	generator	edit
+v0000.c	control	base unedited
+v0001.c	copies	best.K.L23.next
+v0002.c	hoist	best.A.L14-a0.p
+v0003.c	hoist	best.O.L15-k0.p
+v0004.c	hoist	best.O.L15-k1.p
+v0005.c	hoist	best.A.L20-a0.p
+v0006.c	hoist	best.A.L21-a0.p
+v0007.c	hoist	best.O.L21-k0.p
+v0008.c	hoist	best.A.L25-a0.data
+v0009.c	hoist	best.A.L25-a0.next

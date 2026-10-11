@@ -94,5 +94,9 @@
  "render_replay_ui": {
   "evidence": "cloud/work/frontier/dot_replay_row_match_20261007",
   "note": "PR #298: strict MATCH in the same D91A0/D816C context as render_results_screen; still 1 word off in PR #281's group"
+ },
+ "func_800DA0BC": {
+  "evidence": "cloud/work/frontier/w14ob/func_800DA0BC",
+  "note": "w14ob: EQUAL (46 words) in the whole-program unit with --internal and the stand-in caller standin_caller_a; real caller func_800DB1E0 (1400 B group) is unlocked. Re-verified by the coordinator 2026-10-10 (blob_unit --tag w15int)."
  }
 }

@@ -1,0 +1,5 @@
+strict 146  mnem-missing  18  aligned-missing 111  size +0  v0641.c
+strict 146  mnem-missing  23  aligned-missing 112  size +0  v0000.c
+strict 146  mnem-missing  23  aligned-missing 112  size +0  v0002.c
+strict 146  mnem-missing  23  aligned-missing 112  size +0  v0020.c
+1061 files

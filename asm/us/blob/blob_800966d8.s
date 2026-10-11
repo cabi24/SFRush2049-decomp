@@ -33,6 +33,7 @@ func_800966D8:
 .section .text.entity_lod_select, "ax", @progbits
 .globl entity_lod_select
 entity_lod_select:
+    /* compiled from src/blob/entity_lod_select.c */
     .word 0x27BDFF18
     .word 0xAFBF002C
     .word 0xAFB40028

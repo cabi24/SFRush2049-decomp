@@ -996,6 +996,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-02"
   },
+  "entity_lod_select": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/entity_lod_select.c",
+    "source_sha256": "1e80b12cf878811b49d10cfefb57b3dc9b891a036fbe4d02d0aa2b4358f8bc9f",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-10"
+  },
   "entity_name_copy": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/entity_name_copy.c",
@@ -7727,6 +7735,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-05"
+  },
+  "wheel_torque_apply": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/wheel_torque_apply.c",
+    "source_sha256": "1a8104f28926f04b1026471e0f5c8166ceae1db92ad149cf572da2f635b16dfc",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-10"
   },
   "world_bounds_check": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

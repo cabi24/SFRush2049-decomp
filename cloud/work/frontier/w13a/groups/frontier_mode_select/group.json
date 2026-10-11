@@ -1,0 +1,8 @@
+{
+ "members": ["func_800D5E64","func_800E05F0","best_times_display","mode_select_handler","func_800DED78","func_800DEF60","mode_select_input","func_800DFBA0","func_800E0050","func_800E0048"],
+ "files": ["d5e64.c","mode.c","msh.c","ded78.c"],
+ "keep": ["func_800D5E64","func_800E05F0"],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "claims": ["func_800D5E64","func_800E05F0","best_times_display","mode_select_handler","func_800DED78","func_800DEF60","mode_select_input","func_800DFBA0","func_800E0050","func_800E0048"],
+ "note": "w13a (wave 13): mode-select cluster, all 10 EQUAL in the whole-program unit (comp/run.sh). Needs unit_overrides: force_internal func_800DEF60 (deleted check_forces_on_car), force_internal func_800E0048 (inlined camera wrapper, identity hypothesis), prefer_definition entity_hierarchy_update -> mode.c. Gives locked stubs func_800DEF60 and func_800E0048 bodies. Supersedes no locked group. Disclosures in file headers and RESULTS.md."
+}

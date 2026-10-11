@@ -1,0 +1,64 @@
+v0000.c   FAIL func_800C8918: 21 of 157 words differ
+v0001.c   FAIL func_800C8918: 71 of 157 words differ; compiled body is 155 words, target 157
+v0002.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 159 words, target 157
+v0003.c   FAIL func_800C8918: 23 of 157 words differ
+v0004.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 165 words, target 157
+v0005.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 163 words, target 157
+v0006.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 158 words, target 157
+v0007.c   FAIL func_800C8918: 72 of 157 words differ; compiled body is 156 words, target 157
+v0008.c   FAIL func_800C8918: 21 of 157 words differ
+v0009.c   FAIL func_800C8918: 71 of 157 words differ; compiled body is 155 words, target 157
+v0010.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 159 words, target 157
+v0011.c   FAIL func_800C8918: 23 of 157 words differ
+v0012.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 165 words, target 157
+v0013.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 163 words, target 157
+v0014.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 158 words, target 157
+v0015.c   FAIL func_800C8918: 72 of 157 words differ; compiled body is 156 words, target 157
+v0016.c   FAIL func_800C8918: 21 of 157 words differ
+v0017.c   FAIL func_800C8918: 71 of 157 words differ; compiled body is 155 words, target 157
+v0018.c   FAIL func_800C8918: 21 of 157 words differ
+v0019.c   FAIL func_800C8918: 71 of 157 words differ; compiled body is 155 words, target 157
+v0020.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 161 words, target 157
+v0021.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 159 words, target 157
+v0022.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 158 words, target 157
+v0023.c   FAIL func_800C8918: 72 of 157 words differ; compiled body is 156 words, target 157
+v0024.c   FAIL func_800C8918: 21 of 157 words differ
+v0025.c   FAIL func_800C8918: 71 of 157 words differ; compiled body is 155 words, target 157
+v0026.c   FAIL func_800C8918: 21 of 157 words differ
+v0027.c   FAIL func_800C8918: 71 of 157 words differ; compiled body is 155 words, target 157
+v0028.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 161 words, target 157
+v0029.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 159 words, target 157
+v0030.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 158 words, target 157
+v0031.c   FAIL func_800C8918: 72 of 157 words differ; compiled body is 156 words, target 157
+v0032.c   FAIL func_800C8918: 21 of 157 words differ
+v0033.c   FAIL func_800C8918: 71 of 157 words differ; compiled body is 155 words, target 157
+v0034.c   FAIL func_800C8918: 21 of 157 words differ
+v0035.c   FAIL func_800C8918: 71 of 157 words differ; compiled body is 155 words, target 157
+v0036.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 161 words, target 157
+v0037.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 159 words, target 157
+v0038.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 158 words, target 157
+v0039.c   FAIL func_800C8918: 72 of 157 words differ; compiled body is 156 words, target 157
+v0040.c   FAIL func_800C8918: 21 of 157 words differ
+v0041.c   FAIL func_800C8918: 71 of 157 words differ; compiled body is 155 words, target 157
+v0042.c   FAIL func_800C8918: 21 of 157 words differ
+v0043.c   FAIL func_800C8918: 71 of 157 words differ; compiled body is 155 words, target 157
+v0044.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 161 words, target 157
+v0045.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 159 words, target 157
+v0046.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 158 words, target 157
+v0047.c   FAIL func_800C8918: 72 of 157 words differ; compiled body is 156 words, target 157
+v0048.c   FAIL func_800C8918: 21 of 157 words differ
+v0049.c   FAIL func_800C8918: 71 of 157 words differ; compiled body is 155 words, target 157
+v0050.c   FAIL func_800C8918: 21 of 157 words differ
+v0051.c   FAIL func_800C8918: 71 of 157 words differ; compiled body is 155 words, target 157
+v0052.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 161 words, target 157
+v0053.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 159 words, target 157
+v0054.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 158 words, target 157
+v0055.c   FAIL func_800C8918: 72 of 157 words differ; compiled body is 156 words, target 157
+v0056.c   FAIL func_800C8918: 21 of 157 words differ
+v0057.c   FAIL func_800C8918: 71 of 157 words differ; compiled body is 155 words, target 157
+v0058.c   FAIL func_800C8918: 21 of 157 words differ
+v0059.c   FAIL func_800C8918: 71 of 157 words differ; compiled body is 155 words, target 157
+v0060.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 161 words, target 157
+v0061.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 159 words, target 157
+v0062.c   FAIL func_800C8918: 73 of 157 words differ; compiled body is 158 words, target 157
+v0063.c   FAIL func_800C8918: 72 of 157 words differ; compiled body is 156 words, target 157

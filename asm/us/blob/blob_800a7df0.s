@@ -4838,6 +4838,7 @@ func_800AC660:
 .section .text.wheel_torque_apply, "ax", @progbits
 .globl wheel_torque_apply
 wheel_torque_apply:
+    /* compiled from src/blob/wheel_torque_apply.c */
     .word 0x27BDFFC0
     .word 0xAFA50044
     .word 0x00802825

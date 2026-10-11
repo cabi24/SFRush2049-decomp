@@ -1,0 +1,7 @@
+strict  16  mnem-missing   3  aligned-missing   4  size +0  v00912.c
+strict  16  mnem-missing   3  aligned-missing   4  size +0  v00913.c
+strict  16  mnem-missing   3  aligned-missing   4  size +0  v00914.c
+strict  16  mnem-missing   3  aligned-missing   4  size +0  v00915.c
+strict  16  mnem-missing   3  aligned-missing   4  size +0  v00916.c
+strict  16  mnem-missing   3  aligned-missing   4  size +0  v00917.c
+1920 files

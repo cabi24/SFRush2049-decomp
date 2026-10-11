@@ -1,0 +1,2 @@
+strict  96  mnem-missing  16  aligned-missing  40  size +0  v0000.c
+1 files
