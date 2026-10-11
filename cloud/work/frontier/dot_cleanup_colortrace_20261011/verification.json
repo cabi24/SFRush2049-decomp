@@ -1,0 +1,110 @@
+{
+  "population": "ovl_a",
+  "claims": [
+    "func_8039D05C"
+  ],
+  "inputs_sha256": {
+    "group/group.c": "43785b00afcb24e292d8d62a0ef284da6f5971a061e7986125558f44e0eaf5fc",
+    "group/group.json": "5790fa4478fe45d8ad69947b4a64a5f2f57d8c04100f46ad45dcdfc5e2afb23a",
+    "verify.py": "4f6d10e920ddf25c87ae3b329aaf6e4af9aa17717dc863a9d4f3ef3ec596ce8a",
+    "elf_support.py": "2f3ab96521aa807cb2b29523fea5bff964aea395fbf73649c4d4ff663523e1d9",
+    "semantics.py": "ec8ad33bb0f5109ce26daa1cec3f85cb3bd64b68ec90db2166cf7c229e377d58",
+    "research.py": "2fb1a8740c2a65748c5c7a128239213b7d506710047fbe53e8645442201376b9"
+  },
+  "preservation_members": [
+    "func_8039D494",
+    "func_8039ED20"
+  ],
+  "targets": {
+    "func_8039D05C": {
+      "start": "0x8039d05c",
+      "end": "0x8039d300",
+      "bytes": 676,
+      "words_sha256": "b91b9e30bcdc1311626f398a54e1ba5e29864aac04122d348e44cb1d44c23c40"
+    },
+    "func_8039D494": {
+      "start": "0x8039d494",
+      "end": "0x8039d6a4",
+      "bytes": 528,
+      "words_sha256": "613dae3c390ee99c67793f916883023f1ab829aaf20b077272c80cc36a2a93fa"
+    },
+    "func_8039ED20": {
+      "start": "0x8039ed20",
+      "end": "0x8039ef00",
+      "bytes": 480,
+      "words_sha256": "77651083f55b2b89d080b80775f81324be47a6c9c35158a89eaf71d4eadda2e8"
+    }
+  },
+  "relevant_manifest_rows": {
+    "extents.json": "0d97935254a6f2c724dfe68b08087e0a451e56d0aedb2121748abe7b6cc0798b",
+    "symbols.json": "d5a6c8dccb0380f54f080d45d82a5e71f917be86f9568bf4b7fbe10a89f2a769"
+  },
+  "status": "MATCH",
+  "compiler": "ido5.3",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "scores": {
+    "func_8039D05C": {
+      "differing": 0,
+      "total": 169,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_8039D494": {
+      "differing": 0,
+      "total": 132,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_8039ED20": {
+      "differing": 0,
+      "total": 120,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "ELF_STT_FUNC_bytes": {
+    "func_8039D05C": 676,
+    "func_8039D494": 528,
+    "func_8039ED20": 480
+  },
+  "next_boundary_checked": true,
+  "GNU_relocations": {
+    "func_8039D05C": 56,
+    "func_8039D494": 22,
+    "func_8039ED20": 26
+  },
+  "linked_words_sha256": {
+    "func_8039D05C": "b91b9e30bcdc1311626f398a54e1ba5e29864aac04122d348e44cb1d44c23c40",
+    "func_8039D494": "613dae3c390ee99c67793f916883023f1ab829aaf20b077272c80cc36a2a93fa",
+    "func_8039ED20": "77651083f55b2b89d080b80775f81324be47a6c9c35158a89eaf71d4eadda2e8"
+  },
+  "caller_ABI": {
+    "caller": "func_803A1EAC",
+    "native_offsets": [
+      "0x220",
+      "0x274",
+      "0x31c",
+      "0x1a7c"
+    ],
+    "compiled_offsets": [
+      "0x228",
+      "0x27c",
+      "0x328",
+      "0x1a74"
+    ],
+    "caller_prologue_epilogue_saves": "s0 through s8",
+    "no_arguments": true,
+    "limit": "caller remains nonmatching and is not executed end-to-end"
+  },
+  "new_code_match_bytes": 676,
+  "accepted_image_bytes": 0,
+  "cartridge_bytes": 0,
+  "owned_data": "No owned literal or storage references in this complete body",
+  "private_ABI": "No arguments; clobbers s0-s8; not a standalone O32 replacement"
+}
