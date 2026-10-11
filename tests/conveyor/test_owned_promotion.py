@@ -158,6 +158,23 @@ def _promote_batch(monkeypatch, repo):
     return mod, refusals
 
 
+def test_context_check_section_dump_ignores_object_names(monkeypatch):
+    cc = _context_check(monkeypatch, REPO)
+
+    class Done:
+        def __init__(self, out):
+            self.stdout = out
+
+    def fake(cmd, **kw):
+        head = f"\n{cmd[-1]}:     file format elf32-tradbigmips\n\n"
+        if "-s" in cmd:
+            return Done(head + "Contents of section .rodata:\n 0000 80000000 00000000  ........\n")
+        return Done(head)
+    monkeypatch.setattr(cc.subprocess, "run", fake)
+    assert cc.section_dump("a/orig.o", ".rodata") == cc.section_dump("b/ctx.o", ".rodata") == [
+        "Contents of section .rodata:", " 0000 80000000 00000000  ........"]
+
+
 def _ctx(fn, owned=True):
     row = {"status": "ok", "preamble": [], "flagset": FLAGS}
     if owned:

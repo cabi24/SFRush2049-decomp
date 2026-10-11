@@ -138,7 +138,8 @@ def section_dump(obj, name):
                               capture_output=True, text=True, check=True).stdout
     relocs = subprocess.run(["mips-linux-gnu-objdump", "-r", "-j", name, str(obj)],
                             capture_output=True, text=True, check=True).stdout
-    return [l for l in (contents + relocs).splitlines()[2:] if l.strip()]
+    # Drop the "<file>: file format ..." headers: the two objects' names differ.
+    return [l for l in (contents + relocs).splitlines() if l.strip() and "file format" not in l]
 
 
 def owned_sections(fn, data):
