@@ -103,30 +103,6 @@
     "verified": "score0",
     "verified_at": "2026-10-11"
   },
-  "cloud/work/frontier/w16g/sources/__osContDataCrc.c:__osContDataCrc": {
-    "body_sha256": "ceecfd397219fe5a754363f3f03d94779ec60fc1c7e895bf9f300448aeb0879f",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "__osContDataCrc",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-11"
-  },
-  "cloud/work/frontier/w16g/sources/__osEPiRawReadIo.c:__osEPiRawReadIo": {
-    "body_sha256": "d42e21df8b521c699521ec8c058d88ad7439a486a72c42898297e43fc7226b46",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "__osEPiRawReadIo",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-11"
-  },
-  "cloud/work/frontier/w16g/sources/__osEPiRawWriteIo.c:__osEPiRawWriteIo": {
-    "body_sha256": "e0c3e47a1b23579178d32945aafdf0c0a9e7bcb261b0bbaaa5ac3aaaf7d0b51a",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "__osEPiRawWriteIo",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-11"
-  },
   "cloud/work/frontier/w16g/sources/__osResetGlobalIntMask.c:__osResetGlobalIntMask": {
     "body_sha256": "3afbce0f82884b5155d3436daf96c794755464225a794dfc17f8afb7bb791acb",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
@@ -139,14 +115,6 @@
     "body_sha256": "0458a89d74b1acb41611984e77451e0ef272268fe274c798886608d087768008",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
     "target_id": "__osSetGlobalIntMask",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-11"
-  },
-  "cloud/work/frontier/w16g/sources/__osSiDeviceBusy.c:__osSiDeviceBusy": {
-    "body_sha256": "45bebb7455504f579c6bd5fa842853e7c685b33205ae84addef00144b4a5313e",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "__osSiDeviceBusy",
     "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
     "verified": "score0",
     "verified_at": "2026-10-11"
@@ -299,6 +267,38 @@
     "body_sha256": "01477e960fe0384fd59b0584bdbf2a6868c2470bd8160bc41823daaec0cf71e3",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "__osContAddressCrc",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_105f0.c:__osContDataCrc": {
+    "body_sha256": "ceecfd397219fe5a754363f3f03d94779ec60fc1c7e895bf9f300448aeb0879f",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osContDataCrc",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_10970.c:__osSiDeviceBusy": {
+    "body_sha256": "45bebb7455504f579c6bd5fa842853e7c685b33205ae84addef00144b4a5313e",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osSiDeviceBusy",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_10a00.c:__osEPiRawWriteIo": {
+    "body_sha256": "e0c3e47a1b23579178d32945aafdf0c0a9e7bcb261b0bbaaa5ac3aaaf7d0b51a",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osEPiRawWriteIo",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_10b60.c:__osEPiRawReadIo": {
+    "body_sha256": "d42e21df8b521c699521ec8c058d88ad7439a486a72c42898297e43fc7226b46",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osEPiRawReadIo",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-11"
