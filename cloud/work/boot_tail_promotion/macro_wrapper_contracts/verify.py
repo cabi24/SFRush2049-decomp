@@ -22,6 +22,8 @@ from tools.cloud import score
 from tools.conveyor import compilers as compilersmod
 from tools.conveyor.seeds.extract_candidates import extract_functions
 from tools.conveyor.pipeline.lock import normalize_body
+sys.path.insert(0, str(HERE.parent))
+import owned_slots
 
 BASE = 'abc0f256e8c6b5e2004662af09aca7c5bf915204'
 TU = ROOT / 'src/rom/lib_22300.c'
@@ -98,8 +100,11 @@ def extent(words, functions, name, expected, exact=False):
     return start, end
 
 
-def checked_bytes(obj, name, exact=False):
-    """Compare all relocated bytes without masks and prove the owned extent."""
+def checked_bytes(obj, name, exact=False, tu=None):
+    """Compare all relocated bytes without masks and prove the owned extent.
+
+    tu: the object is that ROM TU; only its registered owned .rodata slots
+    (rom_owned_data.json) may satisfy section-relative references."""
     want = score.targets()[name]
     words, functions = score.text_words(obj), score.symbols(obj)
     start, end = extent(words, functions, name, len(want) * 4, exact)
@@ -117,9 +122,15 @@ def checked_bytes(obj, name, exact=False):
                 and all(w == 0 for w in words[(start + len(want) * 4) // 4:(start + sizes[0]) // 4]),
                 name + ': STT_FUNC size differs from target')
     verdict = score.compare(obj, name, show=0)
-    require(verdict.accepted(), name + ': ' + verdict.summary())
-    relocated, masks, unresolved, unverified, errors = score.relocate(
-        obj, words, start, start + len(want) * 4, score.image_symbols())
+    require(verdict.accepted() if tu is None else owned_slots.accepted(verdict, obj, tu, name, start),
+            name + ': ' + verdict.summary())
+    if tu is None:
+        relocated, masks, unresolved, unverified, errors = score.relocate(
+            obj, words, start, start + len(want) * 4, score.image_symbols())
+        owned = []
+    else:
+        relocated, masks, unresolved, unverified, errors, owned = owned_slots.relocate(
+            obj, tu, words, start, start + len(want) * 4)
     require(not (masks or unresolved or unverified or errors),
             name + ': relocation uncertainty is forbidden')
     actual = relocated[start // 4:(start // 4) + len(want)]
@@ -130,17 +141,22 @@ def checked_bytes(obj, name, exact=False):
         'differing_words': verdict.differing, 'extra_words': verdict.extra_words,
         'unresolved': unresolved, 'unverified': unverified, 'errors': errors,
         'masked_relocations': len(masks), 'strict_match': True,
+        **({'owned_slot_references': owned} if owned else {}),
     }
 
 
-def allocated_sections(obj):
+def allocated_sections(obj, tu=None):
+    """Allocated non-text sections. With tu, the TU's registered owned-slot
+    sections are proven by owned_slots (fit, zero padding, relocated bytes =
+    registry hash) and left out: a promotion moves a slot's table into the TU."""
+    owned = set(owned_slots.allocated_sections(obj, tu)) if tu else set()
     data, sections = score._elf(obj)
     shoff, = struct.unpack_from('>I', data, 0x20)
     shentsize, = struct.unpack_from('>H', data, 0x2E)
     result = {}
     for i, section in enumerate(sections):
         flags, = struct.unpack_from('>I', data, shoff + i * shentsize + 8)
-        if flags & 2 and section['name'] != '.text':
+        if flags & 2 and section['name'] != '.text' and section['name'] not in owned:
             result[section['name']] = (
                 section['size'], b'' if section['type'] == 8 else
                 data[section['off']:section['off'] + section['size']])
@@ -312,6 +328,8 @@ def _verify(current_tu_text=None, current_lock_entries=None):
               TU, ROOT / 'matched.lock.json', ROOT / 'src/rom/rom_tu.h',
               ROOT / 'include/rom_auto.h', ROOT / 'symbol_addrs.us.txt',
               HERE.parent / 'context_check.py', HERE.parent / 'promote_batch.py',
+              HERE.parent / 'owned_slots.py', ROOT / 'rom_owned_data.json',
+              ROOT / 'tools/conveyor/pipeline/owned_data.py',
               ROOT / 'tools/cloud/score.py', ROOT / 'Makefile',
               *sources.values(), *accepted_sources.values(),
               *(HERE.parent / 'sources' / (name + '.c') for name in PAIRS),
@@ -358,13 +376,14 @@ def _verify(current_tu_text=None, current_lock_entries=None):
         require(build.returncode == 0, 'combined TU compile failed: ' + build.stderr)
         require(score.symbols(baseline) == score.symbols(current) == score.symbols(combined),
                 'TU function offsets changed')
-        require(allocated_sections(baseline) == allocated_sections(current) == allocated_sections(combined),
+        require(allocated_sections(baseline, TU.stem) == allocated_sections(current, TU.stem)
+                == allocated_sections(combined, TU.stem),
                 'allocated non-text sections changed')
         for row in results:
             name = row['function']
-            old, row['baseline_tu'] = checked_bytes(baseline, name, exact=True)
-            present, row['current_tu'] = checked_bytes(current, name, exact=True)
-            new, row['combined_tu'] = checked_bytes(combined, name, exact=True)
+            old, row['baseline_tu'] = checked_bytes(baseline, name, exact=True, tu=TU.stem)
+            present, row['current_tu'] = checked_bytes(current, name, exact=True, tu=TU.stem)
+            new, row['combined_tu'] = checked_bytes(combined, name, exact=True, tu=TU.stem)
             require(old == present == new == standalone_bytes[name], name + ': combined bytes changed')
             row['all_full_relocated_bytes_equal'] = True
         additional = []
@@ -372,9 +391,9 @@ def _verify(current_tu_text=None, current_lock_entries=None):
             # Later-accepted neighbours: the scorer's rule (full relocated bytes equal,
             # only zero padding past the target up to the next symbol). A slot can end in
             # alignment nops that belong to no function (func_80024988, promoted 2026-10-12).
-            old, baseline_report = checked_bytes(baseline, name)
-            present, current_report = checked_bytes(current, name)
-            new, combined_report = checked_bytes(combined, name)
+            old, baseline_report = checked_bytes(baseline, name, tu=TU.stem)
+            present, current_report = checked_bytes(current, name, tu=TU.stem)
+            new, combined_report = checked_bytes(combined, name, tu=TU.stem)
             require(old == present == new, name + ': later accepted body bytes changed')
             additional.append({'function': name, 'baseline_tu': baseline_report,
                                'current_tu': current_report, 'combined_tu': combined_report,
@@ -406,7 +425,8 @@ def _verify(current_tu_text=None, current_lock_entries=None):
         semantics = host_semantics(tmp, sources)
         text_bytes = len(score.text_words(combined)) * 4
         function_count = len(score.symbols(combined))
-        non_text = {name: size for name, (size, _) in allocated_sections(combined).items()}
+        non_text = {name: size for name, (size, _) in allocated_sections(combined, TU.stem).items()}
+        owned_sections = owned_slots.allocated_sections(combined, TU.stem)
     require(all(path.read_bytes() == original for path, original in originals.items()), 'input mutated during replay')
     return {
         'schema_version': 2, 'result': 'PASS', 'base_commit': BASE,
@@ -427,6 +447,7 @@ def _verify(current_tu_text=None, current_lock_entries=None):
         'unverified_passthrough_and_padding_bytes_unchanged': True,
         'allocated_non_text_sections': non_text,
         'allocated_non_text_bytes_unchanged': True,
+        'owned_slot_sections': owned_sections,
         'negative_controls': {'legacy_full_tu_redeclaration_reproduced': True,
                               'wrong_offset_differing_words': negative.differing,
                               'wrong_combined_tu_offset_differing_words': negative_tu.differing},

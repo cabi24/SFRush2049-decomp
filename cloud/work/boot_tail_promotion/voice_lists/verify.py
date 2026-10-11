@@ -25,6 +25,8 @@ from tools.cloud import score
 from tools.conveyor import compilers as compilersmod
 from tools.conveyor.pipeline.lock import load_lock, normalize_body
 from tools.conveyor.seeds.extract_candidates import extract_functions, extract_named_function
+sys.path.insert(0, str(ROOT / 'cloud/work/boot_tail_promotion'))
+import owned_slots
 
 BASE = 'cf10b3392d7f00ae42d75c008b79fdc2541aab6b'
 SOURCES = Path('cloud/work/boot_tail_promotion/voice_lists/sources')
@@ -152,7 +154,10 @@ def build(text, work, label, expected_error=None):
     return obj
 
 
-def compare_all(obj, names, extents, c_names):
+def compare_all(obj, names, extents, c_names, tu=None):
+    """tu: the object is that ROM TU; its registered owned .rodata slots
+    (rom_owned_data.json) are its only allowed data and the only targets of
+    section-relative references (owned_slots)."""
     symbols = score.symbols(obj)
     if set(symbols) != set(names):
         raise AssertionError('compiled TU membership differs from actual source')
@@ -161,31 +166,36 @@ def compare_all(obj, names, extents, c_names):
     sizes = {s['name']: s['size'] for i, section in enumerate(sections)
              if section['type'] == 2 for s in score._symbol_table(data, sections, i)
              if s['section'] == text_index and s['type'] == 2}
-    if any(s['size'] for s in sections if s['name'] in DATA):
+    owned = owned_slots.allocated_sections(obj, tu) if tu else {}
+    if any(s['size'] for s in sections if s['name'] in DATA and s['name'] not in owned):
         raise AssertionError('unexpected allocated data')
     results = {}
     for fn in sorted(names):
         result = score.compare(obj, fn, show=0)
-        if fn in c_names and not result.accepted(False):
+        strict = result.accepted(False) if tu is None else owned_slots.accepted(result, obj, tu, fn)
+        if fn in c_names and not strict:
             raise AssertionError(fn + ': ' + result.summary())
         if result.total * 4 != extents[fn]['size']:
             raise AssertionError(fn + ': target extent mismatch')
         if fn in c_names and sizes[fn] != extents[fn]['size']:
             raise AssertionError(fn + ': ELF function extent mismatch')
         hashes = {}
-        if result.accepted(False):
+        if strict:
             start = symbols[fn]
             want = score.targets()[fn]
-            got, masks, unresolved, unverified, errors = score.relocate(
-                obj, score.text_words(obj), start, start + len(want) * 4,
-                score.image_symbols())
+            got, masks, unresolved, unverified, errors, references = owned_slots.relocate(
+                obj, tu, score.text_words(obj), start, start + len(want) * 4) if tu else (
+                score.relocate(obj, score.text_words(obj), start, start + len(want) * 4,
+                               score.image_symbols()) + ([],))
             got = got[start // 4:start // 4 + len(want)]
             if masks or unresolved or unverified or errors or got != want:
                 raise AssertionError(fn + ': exact unmasked full-body proof failed')
             hashes = {'target_sha256': sha(struct.pack('>' + str(len(want)) + 'I', *want)),
                       'relocated_body_sha256': sha(struct.pack('>' + str(len(got)) + 'I', *got))}
+            if references:
+                hashes['owned_slot_references'] = references
         results[fn] = dict(asdict(result), function_symbol_bytes=sizes[fn],
-                           target_bytes=extents[fn]['size'], strict_match=result.accepted(False),
+                           target_bytes=extents[fn]['size'], strict_match=strict,
                            **hashes)
     return results
 
@@ -274,7 +284,7 @@ def verify(work, source_overrides=None, entries=None):
                                     ('combined', combined_text)]}
             results = {label: compare_all(obj, names, extents,
                 base_c if label == 'baseline' else current_c if label == 'current'
-                else set(current_c) | set(residual)) for label, obj in objects.items()}
+                else set(current_c) | set(residual), tu) for label, obj in objects.items()}
             if len({len(score.text_words(obj)) for obj in objects.values()}) != 1:
                 raise AssertionError(tu + ': whole-TU extent changed')
             if any(score.symbols(obj) != score.symbols(objects['baseline'])
@@ -327,7 +337,12 @@ def verify(work, source_overrides=None, entries=None):
                 current_c=current_c, all_tu_functions=len(names),
                 all_tu_function_bytes=sum(extents[f]['size'] for f in names),
                 all_tu_text_bytes=len(score.text_words(objects['combined'])) * 4,
-                all_function_offsets_unchanged=True, allocated_data_bytes=0,
+                all_function_offsets_unchanged=True,
+                # Allocated data outside the TU's registered owned slots (compare_all
+                # refuses any); the slots themselves are proven by owned_slots.
+                allocated_data_bytes=0,
+                owned_slot_sections={label: owned_slots.allocated_sections(obj, tu)
+                                     for label, obj in objects.items()},
                 old_declaration_refusal=old_control, negative_controls=controls,
                 unchanged_assembly_words_and_relocations=unchanged_asm,
                 opaque_assembly_without_full_relocation_proof=[fn for fn, row in results['combined'].items() if not row['strict_match']])
@@ -338,7 +353,9 @@ def verify(work, source_overrides=None, entries=None):
             'include/rom_auto.h', 'include/types.h', 'include/m2c_types.h',
             'tools/cloud/score.py', 'tools/asm-processor/build.py',
             'tools/asm-processor/asm_processor.py',
-            'cloud/work/boot_tail_promotion/context_check.py']]
+            'cloud/work/boot_tail_promotion/context_check.py',
+            'cloud/work/boot_tail_promotion/owned_slots.py', 'rom_owned_data.json',
+            'tools/conveyor/pipeline/owned_data.py']]
         files += [Path(__file__).relative_to(ROOT),
             Path('cloud/work/boot_tail_promotion/voice_lists/semantics.py'),
             Path('tests/conveyor/test_voice_list_promotion.py')]

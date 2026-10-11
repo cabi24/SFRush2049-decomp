@@ -22,6 +22,8 @@ from tools.cloud import score
 from tools.conveyor import compilers as compilersmod
 from tools.conveyor.pipeline.lock import normalize_body
 from tools.conveyor.seeds.extract_candidates import extract_functions
+sys.path.insert(0, str(HERE.parent))
+import owned_slots
 
 BASE = 'cf10b3392d7f00ae42d75c008b79fdc2541aab6b'
 FLAGS = '-g0 -O2 -mips2 -G 0 -non_shared'
@@ -116,7 +118,9 @@ def build(text, tmp, label, context, failure=None):
     return obj
 
 
-def exact_bytes(obj, fn, standalone=False):
+def exact_bytes(obj, fn, standalone=False, tu=None):
+    # tu: the ROM TU the object was built from; only its registered owned
+    # .rodata slots (rom_owned_data.json) may satisfy section-relative references.
     target = score.targets()[fn]
     words, symbols = score.text_words(obj), score.symbols(obj)
     require(fn in symbols, 'missing compiled function: ' + fn)
@@ -139,9 +143,15 @@ def exact_bytes(obj, fn, standalone=False):
              if symbol['section'] == score._text_index(sections) and symbol['type'] == 2 and symbol['name'] == fn]
     require(sizes == [len(target)*4], 'ELF function size mismatch: ' + fn)
     result = score.compare(obj, fn, show=0)
-    require(result.accepted(False), fn + ': ' + result.summary())
-    relocated, masks, unresolved, unverified, errors = score.relocate(
-        obj, words, start, start + len(target)*4, score.image_symbols())
+    require(result.accepted(False) if tu is None else owned_slots.accepted(result, obj, tu, fn, start),
+            fn + ': ' + result.summary())
+    if tu is None:
+        relocated, masks, unresolved, unverified, errors = score.relocate(
+            obj, words, start, start + len(target)*4, score.image_symbols())
+        owned = []
+    else:
+        relocated, masks, unresolved, unverified, errors, owned = owned_slots.relocate(
+            obj, tu, words, start, start + len(target)*4)
     require(not (masks or unresolved or unverified or errors), 'relocation uncertainty: ' + fn)
     actual = relocated[start//4:(start//4)+len(target)]
     require(actual == target, 'full relocated words differ: ' + fn)
@@ -149,26 +159,32 @@ def exact_bytes(obj, fn, standalone=False):
             'span': end-start, 'full_relocated_bytes_equal': True,
             'differing_words': result.differing, 'extra_words': result.extra_words,
             'masked_relocations': len(masks), 'unresolved': unresolved,
-            'unverified': unverified, 'errors': errors}
+            'unverified': unverified, 'errors': errors,
+            **({'owned_slot_references': owned} if owned else {})}
 
 
-def allocated(obj, include_reginfo=False):
+def allocated(obj, include_reginfo=False, tu=None):
     # .reginfo is compiler/assembler register-use metadata, not a C data payload.
     # asm-processor ORs masks for generated placeholders with real assembly.
     # Report its hashes separately; require its size and GP value unchanged.
     data, sections = score._elf(obj)
     shoff, = struct.unpack_from('>I', data, 0x20)
     stride, = struct.unpack_from('>H', data, 0x2E)
+    # With tu, registered owned-slot sections are proven by owned_slots and
+    # left out here (a later promotion moves a slot's table into the TU).
+    owned = set(owned_slots.allocated_sections(obj, tu)) if tu else set()
     out = {}
     for i, section in enumerate(sections):
         flags, = struct.unpack_from('>I', data, shoff+i*stride+8)
+        if section['name'] in owned:
+            continue
         if flags & 2 and section['name'] != '.text' and (include_reginfo or section['name'] != '.reginfo'):
             out[section['name']] = (section['size'], '' if section['type'] == 8 else
                                     sha(data[section['off']:section['off']+section['size']]))
     return out
 
 
-def untouched(baseline, obj, verified):
+def untouched(baseline, obj, verified, tu):
     before, after = score.text_words(baseline), score.text_words(obj)
     require(len(before) == len(after), 'TU text size changed')
     require(score.symbols(baseline) == score.symbols(obj), 'TU function offsets changed')
@@ -179,7 +195,7 @@ def untouched(baseline, obj, verified):
         section = matches[0]
         return data[section['off']:section['off']+24]
     require(reginfo(baseline)[20:] == reginfo(obj)[20:], 'reginfo GP changed')
-    require(allocated(baseline) == allocated(obj), 'allocated non-text bytes changed: ' + str(obj) + ': ' + str(allocated(baseline)) + ' vs ' + str(allocated(obj)))
+    require(allocated(baseline, tu=tu) == allocated(obj, tu=tu), 'allocated non-text bytes changed: ' + str(obj) + ': ' + str(allocated(baseline, tu=tu)) + ' vs ' + str(allocated(obj, tu=tu)))
     allowed = set()
     for fn in verified:
         start = score.symbols(baseline)[fn]//4
@@ -244,7 +260,8 @@ def _run(fixtures=None):
     reports, candidates = [], []
     inputs = {ROOT/'src/rom/rom_tu.h', ROOT/'include/rom_auto.h', ROOT/'matched.lock.json',
               ROOT/'symbol_addrs.us.txt', ROOT/'Makefile', ROOT/'tools/cloud/score.py',
-              HERE.parent/'context_check.py', HERE.parent/'promote_batch.py', Path(__file__).resolve(), HERE/'host_macro.c', HERE/'host_stream.c'}
+              HERE.parent/'context_check.py', HERE.parent/'promote_batch.py',
+              HERE.parent/'owned_slots.py', ROOT/'rom_owned_data.json', ROOT/'tools/conveyor/pipeline/owned_data.py', Path(__file__).resolve(), HERE/'host_macro.c', HERE/'host_stream.c'}
     inputs.update(HERE.glob('sources/*.c'))
     inputs.update((ROOT/'asm/us/boot_tail'/name) for name in score.target_manifest())
     inputs.add(ROOT/'asm/us/boot_tail/SHA256SUMS')
@@ -295,11 +312,11 @@ def _run(fixtures=None):
                 later = fn not in names and fn not in EXISTING[group]
                 checks.append({'function':fn, 'role':'candidate' if fn in names else
                                'promoted_after_base' if later else 'existing_lock',
-                               'baseline':None if later else exact_bytes(baseline,fn),
-                               'current':exact_bytes(current,fn),
-                               'combined':exact_bytes(combined,fn)})
-            same_current = untouched(baseline,current,set(locked)|set(names))
-            same_combined = untouched(baseline,combined,set(locked)|set(names))
+                               'baseline':None if later else exact_bytes(baseline,fn,tu=group),
+                               'current':exact_bytes(current,fn,tu=group),
+                               'combined':exact_bytes(combined,fn,tu=group)})
+            same_current = untouched(baseline,current,set(locked)|set(names),group)
+            same_combined = untouched(baseline,combined,set(locked)|set(names),group)
             # Reproduce at least one original same-TU failure in each family.
             original_fn = names[0]
             original_path = HERE.parent/'sources'/(original_fn+'.c')
@@ -326,7 +343,8 @@ def _run(fixtures=None):
                             'all_function_offsets_unchanged':True,
                             'unverified_passthrough_and_padding_unchanged':True,
                             'all_raw_text_equal':same_current and same_combined,
-                            'allocated_payload_sections_unchanged':True,'allocated_sections':allocated(combined),
+                            'allocated_payload_sections_unchanged':True,'allocated_sections':allocated(combined,tu=group),
+                            'owned_slot_sections':owned_slots.allocated_sections(combined,group),
                             'reginfo_baseline':allocated(baseline,True).get('.reginfo'),
                             'reginfo_combined':allocated(combined,True).get('.reginfo'),
                             'legacy_conflict_reproduced':True,'negative_differing_words':verdict.differing,
