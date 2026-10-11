@@ -7,6 +7,30 @@
     "verified": "score0",
     "verified_at": "2026-10-05"
   },
+  "cloud/work/frontier/w16g/sources/__fixunsdfdi.c:__fixunsdfdi": {
+    "body_sha256": "63e5460ecadee54e24c7fe86447f6ccd921c75de38084d48d5ee7a9f2b976d56",
+    "flagset": "-g0 -O1 -mips3 -32 -G 0 -non_shared",
+    "target_id": "__fixunsdfdi",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-11"
+  },
+  "cloud/work/frontier/w16g/sources/__fixunssfdi.c:__fixunssfdi": {
+    "body_sha256": "6b68f57f32f29974f54d582697ca48061abeb3e0f842ef7be770a61539c55ea4",
+    "flagset": "-g0 -O1 -mips3 -32 -G 0 -non_shared",
+    "target_id": "__fixunssfdi",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-11"
+  },
+  "cloud/work/frontier/w16g/sources/osAiSetNextBuffer.c:osAiSetNextBuffer": {
+    "body_sha256": "c03833b367f36a5ac29e1d62bfedc766e3ffc9881182ff4bb9e41134a30565e1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osAiSetNextBuffer",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-11"
+  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
