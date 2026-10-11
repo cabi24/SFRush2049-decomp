@@ -355,7 +355,53 @@ void func_80011A3C(AudioState *audio)
     audio->count = audio->release_count;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80011A64.s")
+/* PROMOTED 2026-10-11 — func_80011A64
+ * Source:   cloud/work/frontier/w21a/sources/func_80011A64.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w21a/sources/func_80011A64.c:func_80011A64 (score0); rom_tu.h context: /tmp/claude-1000/-home-cburnes-projects-rush2049-decomp/e6d4d7af-aa0e-4f5a-98a8-2e25f3b6dd6b/scratchpad/ctx_w21ac.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_80011A64(AudioState *audio, unsigned short samples, unsigned char *active)
+{
+    unsigned int increment;
+    float ratio;
+    increment = ((samples * 32000U) / D_8003828C) << 11;
+    if (audio->pending == 0 && audio->state != 3) {
+        audio->state = 3;
+        audio->step = 0;
+        audio->saved_value = audio->value;
+        audio->scale = 0.0f;
+        audio->count = audio->release_count;
+    } else if ((audio->step >> 16) >= audio->count) {
+        switch (audio->state) {
+        case 0:
+            audio->state = 1;
+            audio->step = 0;
+            audio->saved_value = 1.0f;
+            audio->scale = audio->value24;
+            audio->count = audio->value22;
+            break;
+        case 1:
+            audio->state = 2;
+            audio->saved_value = audio->value24;
+            audio->scale = audio->value24;
+            audio->value = audio->value24;
+            return;
+        case 3:
+            *active = 0;
+            audio->value = 0.0f;
+            return;
+        }
+    }
+    if (audio->count != 0) {
+        ratio = audio->step / (audio->count * 65536.0f);
+    } else {
+        ratio = 1.0f;
+    }
+    audio->value = (audio->scale - audio->saved_value) * ratio + audio->saved_value;
+    audio->step += increment;
+}
+
 /* PROMOTED 2026-10-11 — func_80011C1C
  * Source:   cloud/work/frontier/w17g/sources/func_80011C1C.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -427,7 +473,37 @@ void func_80011D24(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80011D74.s")
+/* PROMOTED 2026-10-11 — func_80011D74
+ * Source:   cloud/work/frontier/w21a/sources/func_80011D74.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w21a/sources/func_80011D74.c:func_80011D74 (score0); rom_tu.h context: /tmp/claude-1000/-home-cburnes-projects-rush2049-decomp/e6d4d7af-aa0e-4f5a-98a8-2e25f3b6dd6b/scratchpad/ctx_w21ac.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern double func_8001E688(double);
+void func_80011D74(AudioState *audio, unsigned short samples)
+{
+    double increment;
+    double loop_end;
+    increment = (audio->rate * samples) * 0.000244140625;
+    if (audio->loop_length != 0 && (audio->pending != 0 || audio->tail == 0)
+        && func_8001E688(audio->sample_position) <= audio->loop_start + audio->loop_length) {
+        loop_end = audio->loop_start + audio->loop_length;
+        if (audio->sample_position + increment < loop_end) {
+            audio->sample_position += increment;
+        } else {
+            increment -= loop_end - audio->sample_position;
+            increment -= func_8001E688(increment / audio->loop_length) * audio->loop_length;
+            audio->sample_position = audio->loop_start + increment;
+        }
+    } else {
+        if (audio->sample_position + increment >= audio->length) {
+            audio->sample_position = audio->length - 1;
+        } else {
+            audio->sample_position += increment;
+        }
+    }
+}
+
 typedef struct AudioNode { struct AudioNode *next; struct AudioNode *previous; unsigned char *buffer; unsigned int unknown0C; unsigned short countdown; unsigned short unknown12; } AudioNode;
 extern AudioNode *D_80038344;
 /* PROMOTED 2026-10-11 — func_80011F60
@@ -576,7 +652,144 @@ AudioCacheNode *func_80012660(unsigned int tag)
     return node;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80012730.s")
+/* PROMOTED 2026-10-11 — func_80012730
+ * Source:   cloud/work/frontier/w21c/sources/func_80012730.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w21c/sources/func_80012730.c:func_80012730 (score0); rom_tu.h context: /tmp/claude-1000/-home-cburnes-projects-rush2049-decomp/e6d4d7af-aa0e-4f5a-98a8-2e25f3b6dd6b/scratchpad/ctx_w21ac.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "types.h"
+typedef struct DmaEntry_80012730 { int length; unsigned int source; unsigned char *destination; } DmaEntry_80012730;
+typedef struct Fetch_80012730 { unsigned char *first; unsigned char *second; short first_length; short second_length; } Fetch_80012730;
+extern AudioCacheNode *func_80012660(unsigned int tag);
+extern unsigned int func_8002C5E0(unsigned int, unsigned int);
+void func_80012730(Fetch_80012730 *fetch, unsigned int addr, unsigned int length, unsigned int tag)
+{
+    unsigned int size;
+    AudioCacheNode *previous;
+    AudioCacheNode *node;
+    unsigned char *pointers[2];
+    unsigned int lengths[2];
+    unsigned int starts[2];
+    unsigned short count;
+    unsigned int offset;
+    unsigned int end;
+    unsigned int low;
+
+    end = addr + length;
+    low = addr - 0x600;
+    count = 0;
+    for (node = D_80038358; node != NULL; node = previous) {
+        previous = node->previous;
+        if (tag != node->unknown0C || node->unknown08 >= end || low >= node->unknown08) {
+            continue;
+        }
+        if (node->unknown10 != 0x600 && node->unknown08 + node->unknown10 < addr + length) {
+            if (addr + length >= node->unknown08 + 0x600) {
+                size = 0x600 - node->unknown10;
+            } else {
+                size = (addr + length - node->unknown08 - node->unknown10 + 0xFF) & ~0xFF;
+            }
+            D_80038038 += 12;
+            D_8003803C = func_8002C5E0(D_8003803C, D_80038038);
+            ((DmaEntry_80012730 *)D_8003802C)[D_80038028].source = node->unknown08 + node->unknown10;
+            ((DmaEntry_80012730 *)D_8003802C)[D_80038028].length = size;
+            ((DmaEntry_80012730 *)D_8003802C)[D_80038028].destination = node->buffer + node->unknown10;
+            D_80038028++;
+            node->unknown10 += size;
+        }
+        if (node != D_80038358) {
+            if (node->next != NULL) {
+                node->next->previous = node->previous;
+            }
+            if (node->previous != NULL) {
+                node->previous->next = node->next;
+            } else {
+                D_80038354 = node->next;
+            }
+            D_80038358->next = node;
+            node->previous = D_80038358;
+            node->next = NULL;
+            D_80038358 = node;
+        }
+        if (addr < node->unknown08) {
+            pointers[count] = node->buffer;
+            starts[count] = node->unknown08;
+            lengths[count] = length - node->unknown08 + addr;
+            length -= lengths[count];
+            count++;
+        } else if (node->unknown08 + node->unknown10 < addr + length) {
+            pointers[count] = node->buffer + addr - node->unknown08;
+            starts[count] = addr;
+            lengths[count] = node->unknown08 + node->unknown10 - addr;
+            length -= lengths[count];
+            count++;
+            addr = node->unknown08 + node->unknown10;
+        } else {
+            pointers[count] = node->buffer + addr - node->unknown08;
+            starts[count] = addr;
+            lengths[count] = length;
+            length = 0;
+            count++;
+            break;
+        }
+    }
+    if (length != 0) {
+        offset = (addr - tag) % 1536;
+        do {
+            node = func_80012660(tag);
+            node->unknown0C = tag;
+            node->unknown08 = addr - offset;
+            if (length + offset > 0x600) {
+                node->unknown10 = 0x600;
+                D_80038038 += 12;
+            D_8003803C = func_8002C5E0(D_8003803C, D_80038038);
+                addr = addr - offset + 0x600;
+                ((DmaEntry_80012730 *)D_8003802C)[D_80038028].source = node->unknown08;
+                ((DmaEntry_80012730 *)D_8003802C)[D_80038028].length = 0x600;
+                ((DmaEntry_80012730 *)D_8003802C)[D_80038028].destination = node->buffer;
+                D_80038028++;
+                pointers[count] = node->buffer + offset;
+                starts[count] = node->unknown08 + offset;
+                lengths[count] = 0x600 - offset;
+                length -= 0x600 - offset;
+                count++;
+            } else {
+                node->unknown10 = (length + offset + 0xFF) & ~0xFF;
+                D_80038038 += 12;
+            D_8003803C = func_8002C5E0(D_8003803C, D_80038038);
+                ((DmaEntry_80012730 *)D_8003802C)[D_80038028].source = node->unknown08;
+                ((DmaEntry_80012730 *)D_8003802C)[D_80038028].length = node->unknown10;
+                ((DmaEntry_80012730 *)D_8003802C)[D_80038028].destination = node->buffer;
+                D_80038028++;
+                pointers[count] = node->buffer + offset;
+                starts[count] = node->unknown08 + offset;
+                lengths[count] = length;
+                length = 0;
+                count++;
+            }
+            offset = 0;
+        } while (length != 0);
+    }
+    if (count == 1) {
+        fetch->first = pointers[0];
+        fetch->first_length = lengths[0];
+        fetch->second_length = 0;
+        return;
+    }
+    if (starts[0] < starts[1]) {
+        fetch->first = pointers[0];
+        fetch->second = pointers[1];
+        fetch->first_length = lengths[0];
+        fetch->second_length = lengths[1];
+        return;
+    }
+    fetch->first = pointers[1];
+    fetch->second = pointers[0];
+    fetch->first_length = lengths[1];
+    fetch->second_length = lengths[0];
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80012D18.s")
 /* PROMOTED 2026-10-05 — func_80013964
  * Source:   cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80013964.c (in-repo, locked)
