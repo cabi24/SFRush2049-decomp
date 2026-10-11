@@ -522,7 +522,60 @@ void func_80013964(void)
     *D_800382D0 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_800139D4.s")
+/* PROMOTED 2026-10-11 — func_800139D4
+ * Source:   cloud/work/frontier/w19a/sources/func_800139D4.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19a/sources/func_800139D4.c:func_800139D4 (score0); rom_tu.h context: cloud/work/frontier/w19a/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+typedef struct AudioLoop { unsigned int unknown00; unsigned int length; } AudioLoop;
+typedef struct AudioCommand { unsigned char unknown00[44]; unsigned short status; unsigned char unknown2E[22]; void *output; unsigned char unknown48[8]; } AudioCommand;
+typedef struct AudioBlock { unsigned short count; unsigned short sample; unsigned int changed; void *work; AudioLoop *loop; AudioCommand commands[32]; } AudioBlock;
+extern unsigned short D_8003829C;
+extern unsigned short D_800382CE;
+extern int D_800382EC;
+extern void func_80012D18(AudioState *, unsigned short, unsigned char);
+void func_800139D4(void *output, unsigned short samples)
+{
+    unsigned short i;
+    unsigned char active;
+    unsigned int changed;
+    active = 0;
+    changed = 0;
+    for (i = 0; i < D_8003829C; i++) {
+        if (D_80038294[i].release_pending != 0) {
+            D_80038294[i].release_pending = 0;
+            changed |= 1U << D_80038294[i].unknown60;
+        }
+        if (D_80038294[i].active != 0) {
+            func_80012D18(&D_80038294[i], samples, active);
+            active++;
+        }
+    }
+    if (((AudioBlock *)D_800382D0)[*D_800382D4].count == 0) {
+        ((AudioBlock *)D_800382D0)[*D_800382D4].commands[0].status = 0;
+        ((AudioBlock *)D_800382D0)[*D_800382D4].commands[0].output = output;
+    } else {
+        ((AudioBlock *)D_800382D0)[*D_800382D4].commands[((AudioBlock *)D_800382D0)[*D_800382D4].count - 1].output = output;
+    }
+    ((AudioBlock *)D_800382D0)[*D_800382D4].work = D_800382E4;
+    ((AudioBlock *)D_800382D0)[*D_800382D4].changed = changed;
+    ((AudioBlock *)D_800382D0)[*D_800382D4].loop = D_800382E8;
+    if (((AudioBlock *)D_800382D0)[*D_800382D4].loop != 0) {
+        ((AudioBlock *)D_800382D0)[*D_800382D4].sample = D_800382EC / 192;
+        D_800382EC += 192;
+        if (D_800382EC == ((AudioLoop *)D_800382E8)->length) {
+            D_800382EC = 0;
+        }
+    }
+    (*D_800382D4)++;
+    if (*D_800382D4 < D_800382CE) {
+        D_80038034 = (unsigned int)((AudioBlock *)D_800382D0)[*D_800382D4].commands & ~15U;
+        D_80038030 = (unsigned int)((AudioBlock *)D_800382D0)[*D_800382D4].commands;
+        ((AudioBlock *)D_800382D0)[*D_800382D4].count = 0;
+    }
+}
+
 /* PROMOTED 2026-10-05 — func_80013C84
  * Source:   cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80013C84.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

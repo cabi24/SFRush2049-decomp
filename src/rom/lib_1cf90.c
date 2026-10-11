@@ -290,7 +290,62 @@ unsigned char func_8001D1C0(unsigned int *state)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001D1F4.s")
+/* PROMOTED 2026-10-11 — func_8001D1F4
+ * Source:   cloud/work/frontier/w19a/sources/func_8001D1F4.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19a/sources/func_8001D1F4.c:func_8001D1F4 (score0); rom_tu.h context: cloud/work/frontier/w19a/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "types.h"
+typedef struct Emitter_8001D1F4 { StateNode *next, *previous; u32 flags; Vector position, velocity; float range, gain, minimum, curve; u32 handle, context; u16 identifier, counter; float fade; } Emitter_8001D1F4;
+extern Emitter_8001D1F4 D_8004FD58;
+extern void func_8001C860(StateNode *, float *, float *, float *, float *, float *);
+extern void func_8001CCDC(StateNode *em, float vol, float xPan, float yPan, float zPan, float doppler);
+extern u32 func_80020174(u16, u8, u8);
+int func_8001D1F4(void *state, const void *position, const void *velocity, float range, float curve,
+                  u32 flags, u16 identifier, u32 context, u8 gain, u8 minimum)
+{
+    Emitter_8001D1F4 *target;
+    float pan, span, send, volume, pitch;
+    u32 handle;
+    func_80014594();
+    if (state == 0) target = &D_8004FD58;
+    else target = state;
+    target->flags = flags;
+    target->position = *(const Vector *)position;
+    target->velocity = *(const Vector *)velocity;
+    target->range = range;
+    target->identifier = identifier;
+    target->gain = (float)gain / 127.0f;
+    target->minimum = (float)minimum / 127.0f;
+    target->curve = curve;
+    target->context = context;
+    if (state == 0) {
+        func_8001C860((StateNode *)target, &volume, &pitch, &pan, &span, &send);
+        if (volume == 0.0f) {
+            func_800145DC();
+            return -1;
+        }
+        handle = func_80020174(target->identifier, 127, 64);
+        target->handle = handle;
+        if (handle == 0xFFFFFFFF) {
+            func_800145DC();
+            return -1;
+        }
+        func_8001CCDC((StateNode *)target, volume, pan, span, send, pitch);
+        func_800145DC();
+        return target->handle;
+    }
+    if ((target->next = D_8004FD50) != 0) D_8004FD50->previous = (StateNode *)target;
+    target->previous = 0;
+    D_8004FD50 = (StateNode *)target;
+    target->handle = 0xFFFFFFFF;
+    target->counter = 0;
+    target->flags |= 0x30000;
+    func_800145DC();
+    return -1;
+}
+
 /* PROMOTED 2026-10-04 — func_8001D3F0
  * Source:   cloud/matches/boot_tail/func_8001D3F0.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
