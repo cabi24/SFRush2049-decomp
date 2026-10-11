@@ -410,7 +410,45 @@ skip:
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80022160.s")
+/* PROMOTED 2026-10-11 — func_80022160
+ * Source:   cloud/work/frontier/w20b/sources/func_80022160.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w20b/sources/func_80022160.c:func_80022160 (score0); rom_tu.h context: cloud/work/frontier/w20b/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+#pragma pack(1)
+typedef struct MacroState_80022160 { u8 unknown00[0x10]; u32 child10; u32 parent14; u8 unknown18[0x17]; u8 section2F; u32 volume30; u8 unknown34[4]; u32 panning38; u8 unknown3C[0xE]; u8 channel4A; u8 set4B; u8 external4C; u8 unknown4D; u16 originalNote4E; u8 unknown50[0x10]; u32 identifier60; u8 unknown64[0x56]; u16 allocationBA; u8 unknownBC; u8 activeBD; u8 groupBE; u8 unknownBF[0xE1]; } MacroState_80022160;
+#pragma pack()
+extern u32 func_80024988(u32 packed, u16 allocation, u8 key, u8 volume, u8 panning, u8 channel, u8 set, u16 offset, u16 section, u8 start, u8 group);
+extern void func_8001B744(MacroState_80022160 *, MacroState_80022160 *);
+u8 func_80022160(MacroState_80022160 *state, MacroCommand *command)
+{
+    s32 key;
+    u32 macro;
+    u32 child;
+    macro = (u16)(command->word[0] >> 16) << 16 | ((command->word[1] >> 16) & 0xFF) << 8 | ((command->word[1] >> 24) & 0xFF);
+    key = state->originalNote4E + (s8)(u8)(command->word[0] >> 8);
+    key = key < 0 ? 0 : key > 127 ? 127 : key;
+    if (state->external4C) key |= 128;
+    state->activeBD = 1;
+    child = func_80024988(macro, state->allocationBA, key,
+        state->volume30 >> 16, state->panning38 >> 16, state->channel4A,
+        state->set4B, command->word[1], state->section2F, 0, state->groupBE);
+    state->activeBD = 0;
+    if (child != 0xFFFFFFFFU) {
+        ((MacroState_80022160 *)&D_8004BEB8[child & 255])->parent14 = state->identifier60;
+        if (state->child10 != 0xFFFFFFFFU) {
+            ((MacroState_80022160 *)&D_8004BEB8[child & 255])->child10 = state->child10;
+            ((MacroState_80022160 *)&D_8004BEB8[state->child10 & 255])->parent14 = child;
+        }
+        state->child10 = child;
+        if (state->external4C) func_8001B744((MacroState_80022160 *)&D_8004BEB8[child & 255], state);
+    }
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80022324.s")
 /* PROMOTED 2026-10-11 — func_800223D0
  * Source:   cloud/work/frontier/w18c/sources/func_800223D0.c (in-repo, locked)
@@ -814,7 +852,35 @@ u8 func_8002300C(MacroState_8002300C *state, MacroCommand *command, int index)
     return func_8002193C((MacroState *)state, command);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800230B0.s")
+/* PROMOTED 2026-10-11 — func_800230B0
+ * Source:   cloud/work/frontier/w20b/sources/func_800230B0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w20b/sources/func_800230B0.c:func_800230B0 (score0); rom_tu.h context: cloud/work/frontier/w20b/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct VoiceState_800230B0 { u8 unknown00[0x24]; u32 flags24; u8 unknown28[0x10]; u32 pan38; u32 panDelta3C; u8 unknown40[0x68]; u32 panTimeA8; u32 panTargetAC; } VoiceState_800230B0;
+#pragma pack(0)
+u8 func_800230B0(VoiceState_800230B0 *voice, MacroCommand *command)
+{
+    u32 unused0, unused1;
+    u32 time;
+    s8 offset;
+    voice->flags24 |= 0x10000;
+    time = (command->word[0] >> 16) & 65535;
+    voice->panTimeA8 = time;
+    func_8001E930(&voice->panTimeA8);
+    offset = command->word[1] & 0xFF;
+    voice->pan38 = ((command->word[0] >> 8) & 255) << 16;
+    voice->panTargetAC = ((u32)offset << 16) + voice->pan38;
+    if (voice->panTimeA8 != 0) {
+        voice->panDelta3C = ((u32)offset << 16) / time;
+    } else {
+        voice->panDelta3C = (u32)offset << 16;
+    }
+    return 0;
+}
+
 /* PROMOTED 2026-10-11 — func_80023190
  * Source:   cloud/work/frontier/w19b/sources/func_80023190.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

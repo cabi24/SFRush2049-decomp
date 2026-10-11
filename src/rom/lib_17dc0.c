@@ -263,8 +263,30 @@ u32 func_80017644(u32 identifier)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80017720.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_800177EC.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80017824.s")
+/* PROMOTED 2026-10-11 — func_800177EC
+ * Source:   cloud/work/frontier/w20b/sources/func_800177EC.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w20b/sources/func_800177EC.c:func_800177EC (score0); rom_tu.h context: cloud/work/frontier/w20b/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern u8 D_8004BE7B;
+extern void func_80020610(u8 controller, u8 channel, u8 set, u8 value);
+void func_800177EC(u8 value, u8 channel)
+{
+    func_80020610(130, channel, D_8004BE7B, value);
+}
+
+/* PROMOTED 2026-10-11 — func_80017824
+ * Source:   cloud/work/frontier/w20b/sources/func_80017824.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w20b/sources/func_80017824.c:func_80017824 (score0); rom_tu.h context: cloud/work/frontier/w20b/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_80017824(u8 value, u8 channel)
+{
+    func_80020610(7, channel, D_8004BE7B, value);
+}
+
 /* PROMOTED 2026-10-11 — func_8001785C
  * Source:   cloud/work/frontier/w17g/sources/func_8001785C.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

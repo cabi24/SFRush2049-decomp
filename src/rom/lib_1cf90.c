@@ -604,8 +604,95 @@ void func_8001D944(StateNode *object, float distance)
     D_800502B0[D_80050430++].distance = distance;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001DA74.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001DC08.s")
+/* PROMOTED 2026-10-11 — func_8001DA74
+ * Source:   cloud/work/frontier/w20b/sources/func_8001DA74.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w20b/sources/func_8001DA74.c:func_8001DA74 (score0); rom_tu.h context: cloud/work/frontier/w20b/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+int func_8001DA74(StateNode *object, float distance, float first, float second, float third, float fourth)
+{
+    long i;
+    LargeNode *current;
+    LargeNode *next;
+    for (i = 0; i < D_8004FF20; ++i) {
+        if (object->group == D_8004FDA0[i].identifier) break;
+    }
+    if (i == D_8004FF20) {
+        if (D_8004FF20 == 32) return 0;
+        D_8004FDA0[i].large = 0;
+        D_8004FDA0[i].small = 0;
+        D_8004FDA0[i].identifier = object->group;
+        ++D_8004FF20;
+    }
+    if (D_800502A8 == 32) return 0;
+    current = D_8004FDA0[i].large;
+    if (D_8004FDA0[i].large != 0) {
+        next = current->next;
+        while (next != 0) {
+            if (current->distance < distance) break;
+            current = next;
+            next = next->next;
+        }
+        D_8004FF28[D_800502A8].next = next;
+        current->next = &D_8004FF28[D_800502A8];
+    } else {
+        D_8004FF28[D_800502A8].next = D_8004FDA0[i].large;
+        D_8004FDA0[i].large = &D_8004FF28[D_800502A8];
+    }
+    D_8004FF28[D_800502A8].object = object; D_8004FF28[D_800502A8].first = first;
+    D_8004FF28[D_800502A8].distance = distance; D_8004FF28[D_800502A8].fourth = fourth; D_8004FF28[D_800502A8].second = second; D_8004FF28[D_800502A8++].third = third;
+    return 1;
+}
+
+/* PROMOTED 2026-10-11 — func_8001DC08
+ * Source:   cloud/work/frontier/w20b/sources/func_8001DC08.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w20b/sources/func_8001DC08.c:func_8001DC08 (score0); rom_tu.h context: cloud/work/frontier/w20b/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern float D_8002D904, D_8002D908;
+extern unsigned int func_8001B1D0(unsigned short, unsigned char, unsigned char);
+void func_8001DC08(void)
+{
+    int i;
+    EmitGroup *group;
+    LargeNode *entry;
+    StateNode *state;
+    float difference, upper, lower;
+    i = 0;
+    if (D_8004FF20 > 0) {
+        upper = D_8002D904;
+        group = D_8004FDA0; lower = D_8002D908; if (lower) {} do {
+            for (entry = group->large; entry != 0; entry = entry->next) {
+                if (group->small != 0) {
+                    difference = entry->distance - group->small->distance;
+                    if (difference <= lower) continue;
+                    if (difference <= upper) {
+                        entry->object->counter++;
+                        if (entry->object->counter < 20) continue;
+                    } else entry->object->counter = 0;
+                }
+                state = entry->object;
+                state->identifier34 = func_8001B1D0(state->sound_id, 127, 64);
+                if (state->identifier34 == 0xFFFFFFFFU) {
+                    if (!(state->flags08 & 2)) {
+                        state->flags08 |= 0x40000;
+                        state->flags08 &= ~0x20000U;
+                    }
+                } else {
+                    state->fade = 0.0f;
+                    state->flags08 |= 0x100000;
+                    func_8001CCDC(state, entry->distance, entry->first, entry->second, entry->third, entry->fourth);
+                    state->flags08 &= ~0x20000U;
+                    if (group->small != 0) group->small = group->small->next;
+                }
+            }
+            i++; group++;
+        } while (i < D_8004FF20);
+    }
+}
+
 /* PROMOTED 2026-10-05 — func_8001DDE0
  * Source:   cloud/work/boot_tail_promotion/sources/func_8001DDE0.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

@@ -308,8 +308,76 @@ void func_80015348(unsigned short id)
     func_8001661C(id);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_15a10/func_8001536C.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_15a10/func_800154A4.s")
+/* PROMOTED 2026-10-11 — func_8001536C
+ * Source:   cloud/work/frontier/w20b/sources/func_8001536C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w20b/sources/func_8001536C.c:func_8001536C (score0); rom_tu.h context: cloud/work/frontier/w20b/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+typedef struct ResourceGroup { int size; u16 id; u16 type; u32 offsets[6]; } ResourceGroup;
+extern u8 D_8002C630;
+extern ResourceGroup *D_80038398[];
+extern void func_80014F14(u16 *ids, ResourceOffsets *resources);
+extern void func_80015228(u16 *ids, void *address, SampleRecord *records);
+extern void func_80014F80(u16 *ids, ResourceOffsets *resources);
+extern void func_80014FEC(u16 *ids, ResourceOffsets *resources);
+extern void func_80015058(u16 *ids, ResourceOffsets *resources);
+extern void func_80015318(unsigned short id, unsigned short *data);
+int func_8001536C(u8 *groups, u16 id, void *address, SampleRecord *records, ResourceOffsets *resources)
+{
+    u8 *group;
+    if (D_8002C630 != 0 && D_80038390 < 128) {
+        group = groups;
+        while (*(u32 *)group != 0xFFFFFFFF) {
+            if (((ResourceGroup *)group)->id == id) {
+                D_80038398[D_80038390] = (ResourceGroup *)group;
+                { u8 *p = group; p += ((ResourceGroup *)group)->offsets[0]; p += 8; func_80014F14((u16 *)p, resources); }
+                { u8 *p = group; p += ((ResourceGroup *)group)->offsets[1]; p += 8; func_80015228((u16 *)p, address, records); }
+                { u8 *p = group; p += ((ResourceGroup *)group)->offsets[2]; p += 8; func_80014F80((u16 *)p, resources); }
+                { u8 *p = group; p += ((ResourceGroup *)group)->offsets[3]; p += 8; func_80014FEC((u16 *)p, resources); }
+                { u8 *p = group; p += ((ResourceGroup *)group)->offsets[4]; p += 8; func_80015058((u16 *)p, resources); }
+                if (((ResourceGroup *)group)->type == 1) {
+                    u8 *p = group; p += ((ResourceGroup *)group)->offsets[5]; p += 8; func_80015318(id, (u16 *)p);
+                }
+                D_80038390++;
+                return 1;
+            }
+            group += ((ResourceGroup *)group)->size;
+        }
+    }
+    return 0;
+}
+
+/* PROMOTED 2026-10-11 — func_800154A4
+ * Source:   cloud/work/frontier/w20b/sources/func_800154A4.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w20b/sources/func_800154A4.c:func_800154A4 (score0); rom_tu.h context: cloud/work/frontier/w20b/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern void func_800150C8(u16 *ids);
+extern void func_800152A8(u16 *ids);
+extern void func_80015120(u16 *ids);
+extern void func_80015178(u16 *ids);
+extern void func_800151D0(u16 *ids);
+extern void func_80015348(unsigned short id);
+int func_800154A4(void)
+{
+    ResourceGroup *group;
+    if (D_8002C630 != 0 && D_80038390 != 0) {
+        group = D_80038398[--D_80038390];
+        { u8 *p = (u8 *)group; p += group->offsets[0]; p += 8; func_800150C8((u16 *)p); }
+        { u8 *p = (u8 *)group; p += group->offsets[1]; p += 8; func_800152A8((u16 *)p); }
+        { u8 *p = (u8 *)group; p += group->offsets[2]; p += 8; func_80015120((u16 *)p); }
+        { u8 *p = (u8 *)group; p += group->offsets[3]; p += 8; func_80015178((u16 *)p); }
+        { u8 *p = (u8 *)group; p += group->offsets[4]; p += 8; func_800151D0((u16 *)p); }
+        if (group->type == 1) {
+            func_80015348(group->id);
+        }
+        return 1;
+    }
+    return 0;
+}
+
 /* PROMOTED 2026-10-04 — func_80015574
  * Source:   cloud/matches/boot_tail/func_80015574.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
