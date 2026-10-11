@@ -29,6 +29,17 @@ Usage (repo root, Pi):
 
 `--only` (wave 3) restricts the plan to the named slots; every other slot in
 the segments is skipped without a refusal row. All gates are unchanged.
+
+Compiler (w17k): a segment pinned to IDO 7.1 in rom_compilers.json builds its
+TU with 7.1 (opt_overrides.mk `CC :=`). A candidate is refused unless its lock
+was proven with the segment's compiler (`lock add --toolkit <7.1 toolkit>`
+records `compiler`) and its context row was computed with it
+(`context_check.py --compiler ido7.1`). Migrated locks keep the compiler.
+
+`--dry-run` plans only: it prints every candidate and refusal (refusals are not
+appended to refusals.jsonl) and touches nothing. `--splice-out DIR` (implies
+--dry-run) also writes the spliced TUs to DIR/<tu>.c instead of src/rom, for a
+scratch build. `--lockfile PATH` plans against another lockfile (dry runs only).
 """
 import hashlib
 import json
@@ -39,6 +50,7 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path.cwd()))
+from tools.conveyor import compilers as compilersmod  # noqa: E402
 from tools.conveyor.client import DEFAULT_DATA  # noqa: E402
 from tools.conveyor.coordinator import db as dbmod  # noqa: E402
 from tools.conveyor.pipeline import layout as layoutmod  # noqa: E402
@@ -58,6 +70,9 @@ def run(cmd, timeout=3600):
 
 
 def refuse(fn, reason):
+    if DRY_RUN:
+        print(f"  REFUSED {fn}: {reason}")
+        return
     with REFUSALS.open("a") as f:
         f.write(json.dumps({"function": fn, "reason": reason,
                             "at": time.strftime("%Y-%m-%dT%H:%M:%S")}) + "\n")
@@ -83,11 +98,13 @@ def source_for(fn, entries):
 ONLY = None
 PREFIX_DEDUP = set()
 CONTEXT_PATH = HERE / "context.jsonl"
+DRY_RUN = False
+LOCKFILE = None  # None = matched.lock.json
 
 
 def plan(segments, context):
     mapping = layoutmod.derive()
-    entries = lockmod.load_lock()
+    entries = lockmod.load_lock(LOCKFILE) if LOCKFILE else lockmod.load_lock()
     out = []
     for name in segments:
         seg = layoutmod._segment_by_name(mapping, name)
@@ -109,15 +126,24 @@ def plan(segments, context):
             if not seg["flagset"] or seg["flagset"] != e["flagset"]:
                 refuse(fn, f"segment flagset {seg['flagset']!r} != lock {e['flagset']!r}")
                 continue
+            why = layoutmod.compiler_refusal(seg, e)
+            if why:
+                refuse(fn, why)
+                continue
             row = context.get(fn)
             if row is None or row["status"] != "ok":
                 refuse(fn, "context: " + (row["reason"] if row else "no context_check row"))
+                continue
+            row_compiler = row.get("compiler") or compilersmod.DEFAULT
+            if row_compiler != seg["compiler"]:
+                refuse(fn, f"context row computed with {row_compiler}, segment builds with "
+                           f"{seg['compiler']} (context_check.py --compiler {seg['compiler']})")
                 continue
             out.append(dict(fn=fn, seg=seg, src=src, row=row))
     return out
 
 
-def splice(cands):
+def splice(cands, out_dir=None):
     texts = {}
     for c in cands:
         tu = REPO / "src" / (c["seg"]["rom_tu"] + ".c")
@@ -147,7 +173,7 @@ def splice(cands):
         block = header + "\n" + "".join(d + "\n" for d in decls) + body.rstrip() + "\n"
         texts[tu] = text.replace(pragma, block, 1)
     for tu, text in texts.items():
-        tu.write_text(text)
+        (Path(out_dir) / tu.name if out_dir else tu).write_text(text)
     return sorted(texts)
 
 
@@ -208,6 +234,8 @@ def publish(passed, label):
             "body_sha256": lockmod.body_sha(tu, c["fn"]), "target_id": c["fn"],
             "flagset": c["seg"]["flagset"], "verified": "rom-sha1",
             "toolkit_sha": None, "verified_at": day}
+        if c["seg"]["compiler"] != compilersmod.DEFAULT:
+            entries[f"{rel}:{c['fn']}"]["compiler"] = c["seg"]["compiler"]
         entries.pop(f"{c['src']}:{c['fn']}", None)
         body = extract_named_function(REPO / c["src"], c["fn"])
         with dbmod.tx(conn):
@@ -238,8 +266,23 @@ def publish(passed, label):
 
 
 def main():
-    global ONLY, CONTEXT_PATH, PREFIX_DEDUP
+    global ONLY, CONTEXT_PATH, PREFIX_DEDUP, DRY_RUN, LOCKFILE
     argv = sys.argv[1:]
+    splice_out = None
+    if "--dry-run" in argv:
+        DRY_RUN = True
+        argv.remove("--dry-run")
+    if "--splice-out" in argv:
+        i = argv.index("--splice-out")
+        splice_out = Path(argv[i + 1])
+        DRY_RUN = True
+        del argv[i:i + 2]
+    if "--lockfile" in argv:
+        i = argv.index("--lockfile")
+        LOCKFILE = Path(argv[i + 1])
+        del argv[i:i + 2]
+        if not DRY_RUN:
+            sys.exit("--lockfile is for dry runs only (the real batch migrates matched.lock.json)")
     if "--prefix-dedup" in argv:
         i = argv.index("--prefix-dedup")
         PREFIX_DEDUP = set(argv[i + 1].split(","))
@@ -252,10 +295,20 @@ def main():
     context = {json.loads(l)["function"]: json.loads(l) for l in CONTEXT_PATH.read_text().splitlines()}
     segments = argv[1:]
     dirty = run(["git", "status", "--porcelain", "--", "src/rom", "matched.lock.json"]).stdout.strip()
-    if dirty:
+    if dirty and not DRY_RUN:
         sys.exit("refusing: dirty src/rom or lockfile\n" + dirty)
     cands = plan(segments, context)
     print(f"batch {segments[0]}..{segments[-1]}: {len(cands)} candidates")
+    if DRY_RUN:
+        for c in cands:
+            size = next(f["size"] for f in c["seg"]["functions"] if f["name"] == c["fn"])
+            print(f"  PLAN {c['fn']} -> {c['seg']['rom_tu']} ({size} B, {c['seg']['compiler']}, "
+                  f"{c['seg']['flagset']})")
+        if splice_out:
+            splice_out.mkdir(parents=True, exist_ok=True)
+            for tu in splice(cands, splice_out):
+                print(f"  spliced {splice_out / tu.name}")
+        return
     passed = attempt(cands)
     if not passed:
         return

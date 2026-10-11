@@ -59,6 +59,7 @@ def fixture_repo(tmp_path, monkeypatch):
     monkeypatch.setattr(L, "LOCKFILE", lock)
     monkeypatch.setattr(L, "NONMATCHINGS", tmp_path / "nonmatchings")  # absent
     monkeypatch.setattr(L, "CENSUS_EXTENTS", (tmp_path / "extents.json",))  # absent
+    monkeypatch.setattr(L, "COMPILER_PINS", tmp_path / "rom_compilers.json")  # absent
 
     # Regions: f_a=8 instrs, f_b=10, func@c68=... (segment 0x8868 -> 0x8900 =
     # 0x98 bytes = 38 words; give it 38 so it tiles exactly).
