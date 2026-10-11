@@ -13,11 +13,13 @@ Layout: `~/rush2049/recomp/{src,build,rom,repo}` (repo = rsync of the w20r workt
   21.1.8; binary `N64Recomp` sha1 `318355606528931e1d23459a17e61df2a4c8378e` (RecompModTool and
   OfflineModRecomp built alongside, unused)
 
-## N64ModernRuntime (headers only in Phase 0)
+## N64ModernRuntime (built in Phase 1)
 
 - `https://github.com/N64Recomp/N64ModernRuntime` at `cdf5abbd5026fef5c364c676e4667c45e42b6863`
   (2026-08-30, "Add CLI options to select games and game modes. (#153)"), cloned recursively at
-  `~/rush2049/recomp/src/N64ModernRuntime`; not built yet (Phase 1)
+  `~/rush2049/recomp/src/N64ModernRuntime`; built in Phase 1 (lane w21r) as a subproject of
+  `tools/recomp/runtime` (librecomp + ultramodern static libraries, its own N64Recomp
+  submodule for LiveRecomp), CMake 3.31.8 + Ninja, clang 21.1.8, RelWithDebInfo
 - Submodules: N64Recomp `81213c18` (mod-tool-release-20; an ancestor of ffb39cda, 2 commits
   behind), miniz `8573fd7c` (3.0.2-41), o1heap `a124b850`, xxHash `ac3a25da` (v0.7.4-748)
 - Phase 0 compile check uses `N64ModernRuntime/N64Recomp/include/recomp.h` (librecomp and
@@ -33,3 +35,21 @@ ROM `~/rush2049/recomp/rom/baserom.us.z64`, SHA-1 `3f99351d7bb61656614bdb2aa1a90
 (`us.sha1`), copied by hand. Generated config hashes (identical on the Pi and rocky):
 `rush2049.syms.toml` sha256 `1df64b46...`, `rush2049.recomp.toml` `f432fe6d...`,
 `manifest.json` `75cac2ea...` (final run of branch w20r).
+
+## Pin decision (Phase 1, 2026-10-11)
+
+The runtime's submodule pins N64Recomp `81213c18`; we generate with `ffb39cda`. `git log
+81213c18..ffb39cda` is two commits: `70a894a` (adds CONTRIBUTING.md) and `ffb39cd` ("dump
+symbols in deterministic order"), whose only code change is `src/main.cpp` `dump_context`
+(sorting relocs/functions/data symbols in the `--dump-context` output). Neither touches the
+code generator, `recomp.h`, the section table or `funcs.h`, so the emitted C contract is the
+same: we keep generating with `ffb39cda` and link against the runtime at `cdf5abbd` with its
+pinned `81213c18` headers (the build compiles the emitted C against
+`N64ModernRuntime/N64Recomp/include/recomp.h`).
+
+## Zelda64Recomp (studied, not built)
+
+`https://github.com/Zelda64Recomp/Zelda64Recomp` dev branch, shallow clone at
+`~/rush2049/recomp/src/Zelda64Recomp` (reference for main.cpp wiring, register_overlays.cpp,
+the RecompiledFuncs CMake target and us.rev1.toml). RT64 not built: rocky is headless (Intel
+UHD 770 + Mesa Vulkan present, no SDL2); Phase 1 uses a null renderer.
