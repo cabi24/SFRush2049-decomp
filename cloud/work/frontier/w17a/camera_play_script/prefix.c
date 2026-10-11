@@ -925,10 +925,9 @@ extern f32 D_8011416C;
 extern f32 D_80114178;
 extern f32 D_80114184;
 extern f32 D_80114188;
-extern s32 D_8011418C;
+extern f32 D_8011418C[][3];
 extern s32 D_80114198;
 extern s32 D_801141A4;
-extern s32 D_801141B0;
 extern s32 D_801141BC;
 extern s32 D_801141C8;
 extern s32 D_8011421C;
@@ -1086,8 +1085,7 @@ extern s32 D_801174A8;
 extern s32 D_801174AC;
 extern s32 D_801174B0;
 extern s32 D_801174C0;
-extern s8 D_801174C4;
-extern s32 D_801174CC;
+extern s8 D_801174CC[16];
 extern s32 D_801174DC;
 extern s32 D_8011750C;
 extern u8 D_80117510;
@@ -2015,7 +2013,6 @@ extern s32 D_80124DF0;
 extern s32 D_80124E50;
 extern s32 D_80124E70;
 extern f32 D_80124EE8;
-extern s32 D_80124EEC;
 extern s32 D_80124EF0;
 extern s32 D_80124F20;
 extern s32 D_80124F30;
@@ -2522,7 +2519,13 @@ extern s32 D_80151D38;
 extern s8 D_80152014;
 extern s8 D_80152015;
 extern f32 D_80152018;
-extern s32 D_8015201C;
+typedef struct PV {
+    s16 x;
+    s16 y;
+    s16 z;
+    u16 w;
+} PV;
+extern PV *D_8015201C;
 extern s32 D_80152020;
 extern s32 D_80152028;
 extern s8 D_80152030;
@@ -2604,7 +2607,7 @@ extern s8 D_80152CBE;
 extern s32 D_80153E68;
 extern s32 D_80153E80;
 extern s32 D_80153E84;
-extern s32 D_80153E88;
+
 extern u8 D_80153E89;
 extern u8 D_80153E8F;
 extern u8 D_80153E97;
@@ -2880,7 +2883,6 @@ void camera_fov_control(void);
 void camera_free_look(void);
 void camera_lerp_position(s32 arg0);
 void camera_look_at_point(void);
-void camera_play_script(void *arg0, void *arg1, void *arg2);
 void camera_position_update(void);
 void camera_process_input(void *arg0);
 void camera_reset(void);
@@ -3118,11 +3120,10 @@ void func_800AB638(void);
 void func_800AB750(s32 arg0, void *arg1, void *arg2, void *arg3);
 f32 func_800ABB58(s32 arg0);
 void func_800AC8D4(s16 arg0);
-void *func_800AC9BC(void *arg0, s16 arg1, s16 arg2, s16 *arg3);
 void func_800ACBC4(f32 *arg0, f32 *arg1, f32 arg2, void *arg3);
 void func_800ACFF8(f32 arg0, f32 arg1, void *arg2);
 void func_800AD090(f32 arg0, f32 arg1, void *arg2);
-s32 func_800AD4C8(void *arg0, void *arg1, void *arg2);
+
 s32 func_800AD5D0(u8 *arg0, s32 arg1, s16 *arg2);
 void func_800AD650(void *arg0, void *arg1);
 void func_800ADCE0(void *arg0, s32 arg1, s16 *arg2, s32 arg3);
@@ -3148,7 +3149,7 @@ void func_800B5688(void);
 void func_800B5898(f32 arg0, void *arg1);
 void func_800B5940(f32 arg0, void *arg1);
 void func_800B59F0(void);
-s32 func_800B61A8(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+s32 func_800B61A8(s32 arg0, s32 arg1, s32 arg2, unsigned char arg3);
 s32 func_800B66B0(u8 *arg0, s16 arg1);
 void func_800B6748(void *arg0, f32 *arg1, s16 *arg2, s16 *arg3);
 void func_800B7360(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
@@ -3191,8 +3192,7 @@ void func_800C2430(void);
 void func_800C26C4(void);
 void func_800C2944(void);
 void func_800C3578(s32 arg0);
-void func_800C36A0(void);
-s16 func_800C3AD0(void);
+
 void func_800C4078(s16 arg0);
 void func_800C40E8(f32 arg0, f32 arg1, void *arg2);
 void func_800C4180(void *arg0, f32 *arg1);
@@ -3404,14 +3404,13 @@ void gfx_setup_e700(s32 arg0);
 void gfx_setup_fc(f32 arg0, void *arg1);
 void graphics_chunk(void);
 void graphics_chunk_b(void);
-void *handbrake_apply(s32 arg0, s16 arg1, s16 arg2, s16 *arg3);
 s32 high_scores_display(s32 arg0, s32 arg1, s32 arg2, u8 arg3, f32 arg4, f32 arg5, f32 arg6);
 void highscore_entry_anim(s32 arg0, s32 arg5, s16 *arg6);
 void hud_render(void);
 void init_wait_completion(void);
 u16 *input_deadzone_apply(void *arg0, void *arg1, f32 *arg2, f32 arg3, s32 arg4, s32 arg5);
 s8 input_new_data_wrapper(void *arg0, s8 arg1);
-s16 input_process_controller(s32 arg3);
+
 void input_status_update(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 s32 lap_complete(s32 arg0);
 void lap_count_select(s32 arg0, s32 arg1, u16 arg2, s32 arg3, s32 *arg4, s32 *arg5);
@@ -3696,6 +3695,54 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-void func_80091AF0(void) {
 
-}
+float fabsf(float);
+#pragma intrinsic (fabsf)
+extern s8 D_801174C4[];
+typedef struct Poly {
+    u16 type;
+    u16 cnt;
+    u8 body[0x12];
+    u16 off;
+} Poly;
+typedef struct CCol {
+    Poly *poly;
+    f32 m[9];
+    s16 idx;
+    s16 edge;
+    f32 k;
+} CCol;
+typedef struct CCar {
+    u8 p0[628];
+    f32 B628[4][3];
+    f32 C676[4][3];
+    u8 p724[24];
+    f32 mat[9];
+    u8 p784[816];
+    s8 b1600;
+    u8 p1601[131];
+    s16 f6C4;
+    u8 p1734[7];
+    s8 b1741;
+    u8 p1742[248];
+    s16 pidx;
+} CCar;
+typedef struct PCar {
+    u8 p0[0x358];
+    s8 f358;
+    s8 f359;
+    u8 p35A[0x3B8 - 0x35A];
+} PCar;
+typedef struct Link {
+    u8 p0[7];
+    u8 kind;
+} Link;
+extern Link D_80153E88[];
+void func_800C36A0(CCar *car, CCol *col);
+void camera_play_script(CCar *car, Poly *poly, CCol *col);
+
+#define DECODE(v, e) \
+    (v)[0] = (f32) (((e)->x << 5) + (((e)->w & 0x7C00) >> 10)) * 0.03125f; \
+    (v)[1] = (f32) (((e)->y << 5) + (((e)->w & 0x3E0) >> 5)) * 0.03125f; \
+    (v)[2] = (f32) (((e)->z << 5) + ((e)->w & 0x1F)) * 0.03125f
+

@@ -349,3 +349,8 @@ cloud/work/frontier/w8d/func_8010D680/s4/
 cloud/work/frontier/w8d/func_8010D680/s5/
 cloud/work/frontier/w8d/func_8010D680/s6/
 cloud/work/frontier/w8d/func_8010D680/s7/
+
+# frontier lane variant dirs (mass probes; results live in RESULTS.md/best.c)
+cloud/work/frontier/w*/*/v/
+cloud/work/frontier/w*/*/e9/
+cloud/work/frontier/w*/*/b[0-9]*/

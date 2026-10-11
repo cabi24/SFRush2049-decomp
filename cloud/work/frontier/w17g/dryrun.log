@@ -1,0 +1,49 @@
+func_80014CF4 ok 
+func_80014D14 ok 
+func_8001E0D4 ok 
+func_80014CFC ok 
+func_80014D08 ok 
+func_80014BD8 ok 
+func_80014BF8 ok 
+== func_80014CF4 (target func_80014CF4) src=lane/sources/func_80014CF4.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (1 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_11640.c additions=lane/ctx/ctx_O2.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (1 rows)
+RESULT PASS
+== func_80014D14 (target func_80014D14) src=lane/sources/func_80014D14.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (1 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_11640.c additions=lane/ctx/ctx_O2.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (1 rows)
+RESULT PASS
+== func_8001E0D4 (target func_8001E0D4) src=lane/sources/func_8001E0D4.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (1 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_1cf90.c additions=lane/ctx/ctx_O2.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (1 rows)
+RESULT PASS
+== func_80014CFC (target func_80014CFC) src=lane/sources/func_80014CFC.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (3 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_11640.c additions=lane/ctx/ctx_O2.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (3 rows)
+RESULT PASS
+== func_80014D08 (target func_80014D08) src=lane/sources/func_80014D08.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (3 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_11640.c additions=lane/ctx/ctx_O2.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (3 rows)
+RESULT PASS
+== func_80014BD8 (target func_80014BD8) src=lane/sources/func_80014BD8.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (8 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_11640.c additions=lane/ctx/ctx_O2.jsonl preamble (1 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (8 rows)
+RESULT PASS
+== func_80014BF8 (target func_80014BF8) src=lane/sources/func_80014BF8.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (8 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_11640.c additions=lane/ctx/ctx_O2.jsonl preamble (1 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (8 rows)
+RESULT PASS
