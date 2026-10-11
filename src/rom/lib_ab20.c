@@ -145,4 +145,29 @@ s32 osMotorStart(OSMesgQueue* mq, OSPfs* pfs, int channel) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_ab20/osMotorStop.s")
+/* PROMOTED 2026-10-11 — osMotorStop
+ * Source:   cloud/work/frontier/w16g/sources/osMotorStop.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w16g/sources/osMotorStop.c:osMotorStop (score0); rom_tu.h context: cloud/work/frontier/w16g/ctx/ctx_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#define PFS_INITIALIZED 0x1
+#define PFS_ID_BROKEN 0x4
+#define PFS_ERR_INVALID 5
+extern s32 __osGetId(OSPfs *);
+s32 osMotorStop(OSPfs* pfs) {
+    s32 ret = 0;
+
+    if ((pfs->status & (PFS_INITIALIZED | PFS_ID_BROKEN))) {
+        ret = __osGetId(pfs);
+
+        if (ret == 0) {
+            pfs->status &= ~(PFS_ID_BROKEN);
+        }
+    } else {
+        ret = PFS_ERR_INVALID;
+    }
+
+    return ret;
+}
+

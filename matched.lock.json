@@ -7,38 +7,6 @@
     "verified": "score0",
     "verified_at": "2026-10-05"
   },
-  "cloud/work/frontier/w16g/sources/__osPfsRWInode.c:__osPfsRWInode": {
-    "body_sha256": "e805a2c0b354d125d18fca7b0871150916f958c8ae859666e701f1d0b841c36c",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "__osPfsRWInode",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-11"
-  },
-  "cloud/work/frontier/w16g/sources/func_80014650.c:func_80014650": {
-    "body_sha256": "ed2f695dbbed3453a740695ce236a819c1cdfc5b7586b276a94e5bf21ed424b3",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80014650",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-11"
-  },
-  "cloud/work/frontier/w16g/sources/func_8002517C.c:func_8002517C": {
-    "body_sha256": "9b49350be495352df2b199526b8de7c184666b05891581200551d077385bacbd",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_8002517C",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-11"
-  },
-  "cloud/work/frontier/w16g/sources/osMotorStop.c:osMotorStop": {
-    "body_sha256": "c3266584a26fb2b017a784151a2c3952338dd5ab8b0f641a65146dab1d92a25a",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osMotorStop",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-11"
-  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -486,6 +454,14 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_11640.c:func_80014650": {
+    "body_sha256": "ed2f695dbbed3453a740695ce236a819c1cdfc5b7586b276a94e5bf21ed424b3",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80014650",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
   },
   "src/rom/lib_11640.c:func_800146AC": {
     "body_sha256": "495ff5ca7b4e3cc74f4044e5f451a14b3cd423119f8811893ff9bf863986bd3f",
@@ -2023,6 +1999,14 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-05"
   },
+  "src/rom/lib_25bb0.c:func_8002517C": {
+    "body_sha256": "9b49350be495352df2b199526b8de7c184666b05891581200551d077385bacbd",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8002517C",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
   "src/rom/lib_25bb0.c:func_800251A8": {
     "body_sha256": "9378217f035a787fbed86fa3efc8d342cfc963b56eb9fb1a2407bf681325bf16",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -2801,6 +2785,14 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
   },
+  "src/rom/lib_ab20.c:osMotorStop": {
+    "body_sha256": "c3266584a26fb2b017a784151a2c3952338dd5ab8b0f641a65146dab1d92a25a",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "osMotorStop",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
   "src/rom/lib_af50.c:osPfsAllocate": {
     "body_sha256": "c5b40957083ab1bf76c09743deb492acdd1978734ab5a48d7b3925416277973a",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -3244,6 +3236,14 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-07-11"
+  },
+  "src/rom/lib_f700.c:__osPfsRWInode": {
+    "body_sha256": "e805a2c0b354d125d18fca7b0871150916f958c8ae859666e701f1d0b841c36c",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osPfsRWInode",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
   },
   "src/rom/lib_f700.c:__osRepairId": {
     "body_sha256": "9ef3340fea1540bc6e0dbdf38e104d36258844ba2c35fc8717d3227222dba909",

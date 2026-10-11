@@ -92,7 +92,19 @@ void func_80025150(void)
     osRecvMesg(&D_800586A8, 0, 1);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_25bb0/func_8002517C.s")
+/* PROMOTED 2026-10-11 — func_8002517C
+ * Source:   cloud/work/frontier/w16g/sources/func_8002517C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w16g/sources/func_8002517C.c:func_8002517C (score0); rom_tu.h context: cloud/work/frontier/w16g/ctx/ctx_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#define NULL ((void *)0)
+#define OS_MESG_NOBLOCK 0
+extern s32 osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
+void func_8002517C(void) {
+    osJamMesg(&D_800586A8, NULL, OS_MESG_NOBLOCK);
+}
+
 /* PROMOTED 2026-10-05 — func_800251A8
  * Source:   cloud/work/boot_tail_promotion/wave4_sources/func_800251A8.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
