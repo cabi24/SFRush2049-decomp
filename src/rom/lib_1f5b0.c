@@ -229,7 +229,62 @@ void func_8001EE9C(VoicePrefix_8001EE9C *state)
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1f5b0/func_8001EF8C.s")
+/* PROMOTED 2026-10-11 — func_8001EF8C
+ * Source:   cloud/work/frontier/w21b/sources/func_8001EF8C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w21b/sources/func_8001EF8C.c:func_8001EF8C (score0); rom_tu.h context: cloud/work/frontier/w21b/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+#pragma pack(1)
+#pragma pack(0)
+#pragma pack(1)
+#pragma pack(0)
+extern void func_8001EE9C(VoicePrefix_8001EE9C *);
+void func_8001EF8C(VoiceState *state, u8 channel)
+{
+    u16 current;
+    u16 previous;
+    ChannelLink_8001EE9C *link;
+    u8 index;
+    index = state->identifier60 & 255;
+    link = &D_800504C8[index];
+    if (link->active == 1) {
+        if (state->channel2E == channel) return;
+        func_8001EE9C((VoicePrefix_8001EE9C *)state);
+    }
+    link->active = 1;
+    link->previous = 255;
+    if ((link->next = D_80050548[channel]) != 255) {
+        D_800504C8[D_80050548[channel]].previous = index;
+    } else {
+        if (D_80050A48 != 65535) {
+            if (channel >= D_80050A48) {
+                for (current = D_80050A48; current != 65535; current = D_80050648[current].next) {
+                    if (channel < current) break;
+                    previous = current;
+                }
+                D_80050648[previous].next = channel;
+                D_80050648[channel].previous = previous;
+                D_80050648[channel].next = current;
+                if (D_80050648[channel].next != 65535) D_80050648[current].previous = channel;
+            } else {
+                D_80050648[channel].next = D_80050A48;
+                D_80050648[channel].previous = 65535;
+                D_80050648[D_80050A48].previous = channel;
+                D_80050A48 = channel;
+            }
+        } else {
+            D_80050648[channel].next = 65535;
+            D_80050648[channel].previous = 65535;
+            D_80050A48 = channel;
+        }
+    }
+    D_80050548[channel] = index;
+    state->channel2E = channel;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1f5b0/func_8001F13C.s")
 typedef struct ChannelLink { u8 previous; u8 next; u16 flags; } ChannelLink;
 extern ChannelLink D_80050440[32];
