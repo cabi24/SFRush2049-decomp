@@ -179,7 +179,12 @@ def generate(document, spliced=None, asm=None, script=None):
     image = document["image"]["name"]
     base = int(document["image"]["base"], 16)
     path = Path(document["image"]["path"])
-    data = (path if path.is_absolute() else REPO / path).read_bytes()
+    full = path if path.is_absolute() else REPO / path
+    data = full.read_bytes()
+    try:        # .incbin resolves against the assembler's -I (blob_build.REPO)
+        path = full.resolve().relative_to(blob_build.REPO.resolve())
+    except ValueError:
+        path = full.resolve()
     asm = Path(asm or asm_dir(image))
     asm.mkdir(parents=True, exist_ok=True)
     for stale in asm.glob("*.s"):
