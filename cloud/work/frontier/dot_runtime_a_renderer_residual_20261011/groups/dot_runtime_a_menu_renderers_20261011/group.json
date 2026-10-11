@@ -1,0 +1,23 @@
+{
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "members": [
+    "func_803A6F2C",
+    "func_803A7620",
+    "func_803A7918"
+  ],
+  "claims": [
+    "func_803A6F2C",
+    "func_803A7620",
+    "func_803A7918"
+  ],
+  "context": [
+    "func_803A7180"
+  ],
+  "keep": [
+    "func_803A7918"
+  ],
+  "provenance": "Supersedes dot_runtime_a_menu_renderers_20261011 with all old members preserved; authentic current-tree image-A data closes the genuine kept root. 576 newly verified candidate bytes; no new executable source shaping."
+}
