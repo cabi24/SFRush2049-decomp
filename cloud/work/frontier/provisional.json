@@ -31,10 +31,6 @@
   "evidence": "cloud/work/frontier/w2e/func_800E7FA0/grp",
   "note": "wave 2: 40/311 words with a stand-in caller; only caller func_800E847C (2,100 bytes) is unmatched. NOT a match - recorded so the next agent starts here"
  },
- "camera_track_spline": {
-  "evidence": "cloud/work/frontier/w2c/camera_track_spline",
-  "note": "wave 2: strict MATCH with a stand-in caller; only caller camera_update is unmatched"
- },
  "func_800B0EA0": {
   "evidence": "cloud/work/ipa-groups/dot_palette_generation_20261005",
   "note": "PR #87: strict MATCH as an internal callee with its real caller sound_bank_unload, which is 262/312 words off; closes when the caller matches"
@@ -44,8 +40,8 @@
   "note": "PR #88: strict MATCH (own literal verified) as a register-parameter callee with its real caller func_8010A8D0, which is 367/375 words off"
  },
  "drone_throttle_calc": {
-  "evidence": "cloud/work/frontier/w6d/drone_throttle_calc/best_group",
-  "note": "wave 6: pause-menu setup; code identical with stand-in callers (strings and floats at two retail addresses, checked by hand); real caller func_800D91A0 (3,860 bytes) unmatched"
+  "evidence": "cloud/work/frontier/w16f/groups/frontier_pause_quit",
+  "note": "wave 6 (w6d) body, wave 16 (w16f) repackaged: code-identical and passes the w15j own-data gate (strings 0x80120254.., floats 0x801241FC..), but its only caller func_800D91A0 is unmatched so the body needs a stand-in caller; closes when func_800D91A0 matches. pause_quit = drone_throttle_calc. Unused locals k,u0,u1,u2 are the exact frame residual (112 vs 96), disclosed."
  },
  "func_800D8078": {
   "evidence": "cloud/work/frontier/dot_option_predicate_20261006",
@@ -86,5 +82,9 @@
  "func_800DA0BC": {
   "evidence": "cloud/work/frontier/w14ob/func_800DA0BC",
   "note": "w14ob: EQUAL (46 words) in the whole-program unit with --internal and the stand-in caller standin_caller_a; real caller func_800DB1E0 (1400 B group) is unlocked. Re-verified by the coordinator 2026-10-10 (blob_unit --tag w15int)."
+ },
+ "init_state_continue": {
+  "evidence": "cloud/work/frontier/w16f/groups/frontier_init_state_continue",
+  "note": "wave 16 (w16f): code-identical in an -O3 group with the locked func_8008B2E4 as context; callers display_list_flush and countdown are unmatched (asm), so it needs a stand-in caller; shaping: extern volatile s16 D_801543CA (already used by locked files), disclosed"
  }
 }

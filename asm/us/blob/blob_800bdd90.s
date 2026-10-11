@@ -2422,6 +2422,7 @@ func_800BFD8C:
 .section .text.camera_free_look, "ax", @progbits
 .globl camera_free_look
 camera_free_look:
+    /* compiled from src/blob/camera_free_look.c */
     .word 0x27BDFFA0
     .word 0xAFBF0014
     .word 0x8E22006C
@@ -2682,6 +2683,7 @@ func_800C0294:
 .section .text.camera_track_spline, "ax", @progbits
 .globl camera_track_spline
 camera_track_spline:
+    /* compiled from src/blob/camera_track_spline.c */
     .word 0x27BDFF80
     .word 0xAFBF0014
     .word 0x8CE5006C
@@ -3077,6 +3079,7 @@ camera_build_view_matrix:
 .section .text.camera_update, "ax", @progbits
 .globl camera_update
 camera_update:
+    /* compiled from src/blob/camera_update.c */
     .word 0x27BDFF08
     .word 0x00057400
     .word 0x000E7C03

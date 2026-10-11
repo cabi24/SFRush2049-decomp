@@ -1,0 +1,11 @@
+{
+ "members": ["drone_throttle_calc"],
+ "context": [],
+ "files": ["group.c"],
+ "keep": ["zz_caller", "zz_caller2"],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "claims": [],
+ "note": "PROVISIONAL: drone_throttle_calc (alias pause_quit) is code-identical only with the stand-in callers zz_caller/zz_caller2; its real caller func_800D91A0 is unmatched. Do not install. The w15j own-data gate (blob_group._independent_regions) passes for it in a scratch dry run: strings at 0x80120254..0x80120270, floats at 0x801241FC..0x80124218, 0 word diffs.",
+ "provenance": "frontier wave 16 (w16f), 2026-10-11; body from w6d (cloud/work/frontier/w6d/drone_throttle_calc/best_group), pad array replaced by disclosed unused locals and prototypes aligned with the locked definitions by w16f; cloud/work/frontier/w16f/RESULTS.md"
+}

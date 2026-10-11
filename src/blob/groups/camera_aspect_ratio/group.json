@@ -4,7 +4,10 @@
   "camera_fov_control",
   "camera_build_view_matrix",
   "func_800C15FC",
-  "camera_process_input"
+  "camera_process_input",
+  "camera_update",
+  "camera_free_look",
+  "camera_track_spline"
  ],
  "files": [
   "group.c"
@@ -21,10 +24,7 @@
  "generated": "blob_group seed from build/ipa_groups.json",
  "unprototyped": [],
  "context": [
-  "camera_free_look",
-  "camera_look_at_point",
-  "camera_update",
-  "camera_track_spline"
+  "camera_look_at_point"
  ],
- "provenance": "frontier wave 11 (w11c), 2026-10-06; supersedes the locked camera_aspect_ratio group (cloud Lanes A); cloud/work/frontier/w11c/RESULTS.md"
+ "provenance": "frontier wave 16 (w16a), 2026-10-11; supersedes the locked camera_aspect_ratio group (same name, all five old members byte-identical) and the w15a/w12f work bases; adds camera_update (EQUAL 719/719 in the whole-program unit), camera_free_look and camera_track_spline (EQUAL, internal; their only caller is camera_update); camera_look_at_point (38/199) stays context; cloud/work/frontier/w16a/RESULTS.md"
 }

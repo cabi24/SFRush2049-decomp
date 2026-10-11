@@ -392,10 +392,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "camera_aspect_ratio",
     "source": "src/blob/groups/camera_aspect_ratio/group.json",
-    "source_sha256": "d0e03edb0730fe504e9ae76a5b022c0dd9676f95635665eef359f2d13a3b09e5",
+    "source_sha256": "43327d1f4882a698868037c2d53feeadb0297901b0ff5a6d1cb45845c3400ba6",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-06"
+    "verified_at": "2026-10-11"
   },
   "camera_blend_between": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -409,10 +409,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "camera_aspect_ratio",
     "source": "src/blob/groups/camera_aspect_ratio/group.json",
-    "source_sha256": "d0e03edb0730fe504e9ae76a5b022c0dd9676f95635665eef359f2d13a3b09e5",
+    "source_sha256": "43327d1f4882a698868037c2d53feeadb0297901b0ff5a6d1cb45845c3400ba6",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-06"
+    "verified_at": "2026-10-11"
   },
   "camera_cinematic_mode": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -476,10 +476,19 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "camera_aspect_ratio",
     "source": "src/blob/groups/camera_aspect_ratio/group.json",
-    "source_sha256": "d0e03edb0730fe504e9ae76a5b022c0dd9676f95635665eef359f2d13a3b09e5",
+    "source_sha256": "43327d1f4882a698868037c2d53feeadb0297901b0ff5a6d1cb45845c3400ba6",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-06"
+    "verified_at": "2026-10-11"
+  },
+  "camera_free_look": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "camera_aspect_ratio",
+    "source": "src/blob/groups/camera_aspect_ratio/group.json",
+    "source_sha256": "43327d1f4882a698868037c2d53feeadb0297901b0ff5a6d1cb45845c3400ba6",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-11"
   },
   "camera_lerp_position": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -493,10 +502,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "camera_aspect_ratio",
     "source": "src/blob/groups/camera_aspect_ratio/group.json",
-    "source_sha256": "d0e03edb0730fe504e9ae76a5b022c0dd9676f95635665eef359f2d13a3b09e5",
+    "source_sha256": "43327d1f4882a698868037c2d53feeadb0297901b0ff5a6d1cb45845c3400ba6",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-06"
+    "verified_at": "2026-10-11"
   },
   "camera_race_setup": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -565,6 +574,15 @@
     "verified": "image_gate",
     "verified_at": "2026-10-06"
   },
+  "camera_track_spline": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "camera_aspect_ratio",
+    "source": "src/blob/groups/camera_aspect_ratio/group.json",
+    "source_sha256": "43327d1f4882a698868037c2d53feeadb0297901b0ff5a6d1cb45845c3400ba6",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-11"
+  },
   "camera_trigger_check": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "func_800AD4C8",
@@ -573,6 +591,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-06"
+  },
+  "camera_update": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "camera_aspect_ratio",
+    "source": "src/blob/groups/camera_aspect_ratio/group.json",
+    "source_sha256": "43327d1f4882a698868037c2d53feeadb0297901b0ff5a6d1cb45845c3400ba6",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-11"
   },
   "camera_update_a": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -3795,10 +3822,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "camera_aspect_ratio",
     "source": "src/blob/groups/camera_aspect_ratio/group.json",
-    "source_sha256": "d0e03edb0730fe504e9ae76a5b022c0dd9676f95635665eef359f2d13a3b09e5",
+    "source_sha256": "43327d1f4882a698868037c2d53feeadb0297901b0ff5a6d1cb45845c3400ba6",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-06"
+    "verified_at": "2026-10-11"
   },
   "func_800C1A00": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
