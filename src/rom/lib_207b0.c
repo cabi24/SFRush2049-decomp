@@ -4,13 +4,6 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_8001FBB0.s")
-/* PROMOTED 2026-10-04 — func_8001FD2C
- * Source:   cloud/matches/boot_tail/func_8001FD2C.c (in-repo, locked)
- * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
- * Evidence: lock:cloud/matches/boot_tail/func_8001FD2C.c:func_8001FD2C (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
- * Gate:     full-ROM SHA-1 (promotion transaction)
- */
 #pragma pack(1)
 typedef struct VoiceState { u32 command00; u8 unknown04[12]; u32 next10; u8 unknown14[16]; u32 flags24; u8 unknown28[3]; u8 channel2B; u8 unknown2C[2]; u8 channel2E; u8 unknown2F[28]; u8 channel4B; u8 external4C; u8 unknown4D[8]; u8 channel55; u8 unknown56[10]; u32 identifier60; u8 unknown64[316]; } VoiceState;
 #pragma pack(0)
@@ -20,6 +13,13 @@ extern void func_800145DC(void);
 extern VoiceState D_8004BEB8[];
 extern int func_8001EDF4(u32);
 extern void func_80020610(u8, u8, u8, u8);
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_8001FBB0.s")
+/* PROMOTED 2026-10-04 — func_8001FD2C
+ * Source:   cloud/matches/boot_tail/func_8001FD2C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/matches/boot_tail/func_8001FD2C.c:func_8001FD2C (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
 int func_8001FD2C(u32 identifier, u8 value)
 {
     int result;

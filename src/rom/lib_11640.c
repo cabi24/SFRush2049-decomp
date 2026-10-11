@@ -350,6 +350,8 @@ void func_80011D24(void)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80011D74.s")
+typedef struct AudioNode { struct AudioNode *next; struct AudioNode *previous; unsigned char *buffer; unsigned int unknown0C; unsigned short countdown; unsigned short unknown12; } AudioNode;
+extern AudioNode *D_80038344;
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80011F60.s")
 /* PROMOTED 2026-10-04 — func_800121BC
  * Source:   cloud/matches/boot_tail/func_800121BC.c (in-repo, locked)
@@ -357,8 +359,8 @@ void func_80011D24(void)
  * Evidence: lock:cloud/matches/boot_tail/func_800121BC.c:func_800121BC (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-extern void *D_8003833C;
-extern void *D_80038338;
+extern unsigned char *D_8003833C;
+extern AudioNode *D_80038338;
 void func_800121BC(void)
 {
     D_8003801C(D_8003833C);
@@ -371,8 +373,6 @@ void func_800121BC(void)
  * Evidence: lock:cloud/matches/boot_tail/func_80012200.c:func_80012200 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-typedef struct AudioNode { struct AudioNode *next; unsigned char unknown04[12]; unsigned short countdown; } AudioNode;
-extern AudioNode *D_80038344;
 void func_80012200(void)
 {
     AudioNode *node;
@@ -384,6 +384,10 @@ void func_80012200(void)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80012234.s")
+typedef struct AudioCacheNode { struct AudioCacheNode *next; struct AudioCacheNode *previous; unsigned int unknown08; unsigned int unknown0C; unsigned int unknown10; unsigned char *buffer; } AudioCacheNode;
+extern AudioCacheNode *D_80038354;
+extern AudioCacheNode *D_80038358;
+extern AudioCacheNode *D_8003835C;
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_800123A8.s")
 /* PROMOTED 2026-10-04 — func_8001261C
  * Source:   cloud/matches/boot_tail/func_8001261C.c (in-repo, locked)
@@ -391,8 +395,8 @@ void func_80012200(void)
  * Evidence: lock:cloud/matches/boot_tail/func_8001261C.c:func_8001261C (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-extern void *D_80038350;
-extern void *D_8003834C;
+extern AudioCacheNode *D_80038350;
+extern unsigned char *D_8003834C;
 void func_8001261C(void)
 {
     D_8003801C(D_80038350);
@@ -405,10 +409,6 @@ void func_8001261C(void)
  * Evidence: lock:cloud/matches/boot_tail/func_80012660.c:func_80012660 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-typedef struct AudioCacheNode { struct AudioCacheNode *next; struct AudioCacheNode *previous; } AudioCacheNode;
-extern AudioCacheNode *D_80038354;
-extern AudioCacheNode *D_80038358;
-extern AudioCacheNode *D_8003835C;
 AudioCacheNode *func_80012660(unsigned int tag)
 {
     AudioCacheNode *node;

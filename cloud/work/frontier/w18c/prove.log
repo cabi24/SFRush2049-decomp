@@ -1,0 +1,96 @@
+func_80011F60 ok 
+func_800123A8 ok 
+func_80014C60 ok 
+func_80014E1C ok 
+func_80014E64 ok 
+func_80014E90 ok 
+func_80014EBC ok 
+func_80014EE8 ok 
+func_80015318 ok 
+func_800180A0 ok 
+func_80018184 ok 
+func_8001897C ok 
+func_80018AEC ok 
+func_80019420 ok 
+func_80019A60 ok 
+func_80019ED0 ok 
+func_8001A5D8 ok 
+func_8001B4A4 ok 
+func_8001B5F4 ok 
+func_8001BDB8 ok 
+func_8001C19C ok 
+func_8001C390 ok 
+func_8001C580 ok 
+func_8001D0F0 ok 
+func_8001D764 ok 
+func_8001E7BC ok 
+func_8001F6EC ok 
+func_8001FBB0 ok 
+func_800202C4 ok 
+func_800205E4 ok 
+func_800223D0 ok 
+func_800232A4 ok 
+func_80023754 ok 
+func_80023AD4 ok 
+func_80023B50 ok 
+func_80023D70 ok 
+func_80023DB8 ok 
+func_80024FD4 ok 
+func_800255F0 ok 
+== func_80011F60 (target func_80011F60) src=lane/sources/func_80011F60.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (170 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (170 rows) RESULT PASS 
+== func_800123A8 (target func_800123A8) src=lane/sources/func_800123A8.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (173 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (173 rows) RESULT PASS 
+== func_80014C60 (target func_80014C60) src=lane/sources/func_80014C60.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (19 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (19 rows) RESULT PASS 
+== func_80014E1C (target func_80014E1C) src=lane/sources/func_80014E1C.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (17 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (17 rows) RESULT PASS 
+== func_80014E64 (target func_80014E64) src=lane/sources/func_80014E64.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows) RESULT PASS 
+== func_80014E90 (target func_80014E90) src=lane/sources/func_80014E90.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows) RESULT PASS 
+== func_80014EBC (target func_80014EBC) src=lane/sources/func_80014EBC.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows) RESULT PASS 
+== func_80014EE8 (target func_80014EE8) src=lane/sources/func_80014EE8.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows) RESULT PASS 
+== func_80015318 (target func_80015318) src=lane/sources/func_80015318.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (12 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (12 rows) RESULT PASS 
+== func_800180A0 (target func_800180A0) src=lane/sources/func_800180A0.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (58 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (58 rows) RESULT PASS 
+== func_80018184 (target func_80018184) src=lane/sources/func_80018184.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (54 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (54 rows) RESULT PASS 
+== func_8001897C (target func_8001897C) src=lane/sources/func_8001897C.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (51 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (51 rows) RESULT PASS 
+== func_80018AEC (target func_80018AEC) src=lane/sources/func_80018AEC.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (21 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (21 rows) RESULT PASS 
+== func_80019420 (target func_80019420) src=lane/sources/func_80019420.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (33 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (33 rows) RESULT PASS 
+== func_80019A60 (target func_80019A60) src=lane/sources/func_80019A60.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (19 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (19 rows) RESULT PASS 
+== func_80019ED0 (target func_80019ED0) src=lane/sources/func_80019ED0.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (31 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (31 rows) RESULT PASS 
+== func_8001A5D8 (target func_8001A5D8) src=lane/sources/func_8001A5D8.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (33 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (33 rows) RESULT PASS 
+== func_8001B4A4 (target func_8001B4A4) src=lane/sources/func_8001B4A4.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (91 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmpf1j5x__x/tu.c, line 110: redeclaration of 'VoiceState_80019C8C'; previous declaration at line 51 in file '/tmp/tmpf1j5x__x/tu.c' | cfe: Error: /tmp/tmpf1j5x__x/tu.c, line 110: Duplicate member 'command00' | cfe: Error: /tmp/tmpf1j5x__x/tu.c, line 110: Duplicate member 'unknown04' | cfe: Error: /tmp/tmpf1j5x__x/tu.c, line 110: Duplicate member 'child' | cfe: Error: /tmp/tmpf1j5x RESULT FAIL 
+== func_8001B5F4 (target func_8001B5F4) src=lane/sources/func_8001B5F4.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (91 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmpi8xu_cb0/tu.c, line 110: redeclaration of 'VoiceState_80019C8C'; previous declaration at line 51 in file '/tmp/tmpi8xu_cb0/tu.c' | cfe: Error: /tmp/tmpi8xu_cb0/tu.c, line 110: Duplicate member 'command00' | cfe: Error: /tmp/tmpi8xu_cb0/tu.c, line 110: Duplicate member 'unknown04' | cfe: Error: /tmp/tmpi8xu_cb0/tu.c, line 110: Duplicate member 'child' | cfe: Error: /tmp/tmpi8xu_ RESULT FAIL 
+== func_8001BDB8 (target func_8001BDB8) src=lane/sources/func_8001BDB8.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (24 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (24 rows) RESULT PASS 
+== func_8001C19C (target func_8001C19C) src=lane/sources/func_8001C19C.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (18 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (18 rows) RESULT PASS 
+== func_8001C390 (target func_8001C390) src=lane/sources/func_8001C390.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (18 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (18 rows) RESULT PASS 
+== func_8001C580 (target func_8001C580) src=lane/sources/func_8001C580.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (136 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (136 rows) RESULT PASS 
+== func_8001D0F0 (target func_8001D0F0) src=lane/sources/func_8001D0F0.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (55 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (55 rows) RESULT PASS 
+== func_8001D764 (target func_8001D764) src=lane/sources/func_8001D764.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (89 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmpa9qa_hq6/tu.c, line 187: redeclaration of 'Vector'; previous declaration at line 169 in file '/tmp/tmpa9qa_hq6/tu.c' | cfe: Error: /tmp/tmpa9qa_hq6/tu.c, line 187: Duplicate member 'x' | cfe: Error: /tmp/tmpa9qa_hq6/tu.c, line 187: Duplicate member 'y' | cfe: Error: /tmp/tmpa9qa_hq6/tu.c, line 187: Duplicate member 'z' | cfe: Error: /tmp/tmpa9qa_hq6/tu.c, line 187: redeclaratio RESULT FAIL 
+== func_8001E7BC (target func_8001E7BC) src=lane/sources/func_8001E7BC.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (49 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (49 rows) RESULT PASS 
+== func_8001F6EC (target func_8001F6EC) src=lane/sources/func_8001F6EC.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (76 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmpqdzqsrcf/tu.c, line 114: redeclaration of 'SequenceNode'; previous declaration at line 10 in file '/tmp/tmpqdzqsrcf/tu.c' | cfe: Error: /tmp/tmpqdzqsrcf/tu.c, line 114: Duplicate member 'next' | cfe: Error: /tmp/tmpqdzqsrcf/tu.c, line 114: Duplicate member 'previous' | cfe: Error: /tmp/tmpqdzqsrcf/tu.c, line 114: Duplicate member 'key' | cfe: Error: /tmp/tmpqdzqsrcf/tu.c, line  RESULT FAIL 
+== func_8001FBB0 (target func_8001FBB0) src=lane/sources/func_8001FBB0.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (107 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (107 rows) RESULT PASS 
+== func_800202C4 (target func_800202C4) src=lane/sources/func_800202C4.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (53 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (53 rows) RESULT PASS 
+== func_800205E4 (target func_800205E4) src=lane/sources/func_800205E4.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (8 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (8 rows) RESULT PASS 
+== func_800223D0 (target func_800223D0) src=lane/sources/func_800223D0.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (27 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (27 rows) RESULT PASS 
+== func_800232A4 (target func_800232A4) src=lane/sources/func_800232A4.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (67 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmpv73a_jl1/tu.c, line 347: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmpv73a_jl1/tu.c' | cfe: Error: /tmp/tmpv73a_jl1/tu.c, line 347: Duplicate member 'word' | cfe: Error: /tmp/tmpv73a_jl1/tu.c, line 347: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmpv73a_jl1/tu.c' RESULT FAIL 
+== func_80023754 (target func_80023754) src=lane/sources/func_80023754.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (49 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (49 rows) RESULT PASS 
+== func_80023AD4 (target func_80023AD4) src=lane/sources/func_80023AD4.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (33 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmpfva57ba4/tu.c, line 481: redeclaration of 'VoiceState'; previous declaration at line 14 in file '/tmp/tmpfva57ba4/tu.c' | cfe: Error: /tmp/tmpfva57ba4/tu.c, line 481: Duplicate member 'unknown00' | cfe: Error: /tmp/tmpfva57ba4/tu.c, line 481: Duplicate member 'flags24' | cfe: Error: /tmp/tmpfva57ba4/tu.c, line 481: Duplicate member 'unknown28' | cfe: Error: /tmp/tmpfva57ba4/tu. RESULT FAIL 
+== func_80023B50 (target func_80023B50) src=lane/sources/func_80023B50.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (37 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmpp1n0onrn/tu.c, line 481: redeclaration of 'VoiceState'; previous declaration at line 14 in file '/tmp/tmpp1n0onrn/tu.c' | cfe: Error: /tmp/tmpp1n0onrn/tu.c, line 481: Duplicate member 'unknown00' | cfe: Error: /tmp/tmpp1n0onrn/tu.c, line 481: Duplicate member 'flags24' | cfe: Error: /tmp/tmpp1n0onrn/tu.c, line 481: Duplicate member 'unknown28' | cfe: Error: /tmp/tmpp1n0onrn/tu. RESULT FAIL 
+== func_80023D70 (target func_80023D70) src=lane/sources/func_80023D70.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (18 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmpa6izmk1n/tu.c, line 480: redeclaration of 'MacroState'; previous declaration at line 35 in file '/tmp/tmpa6izmk1n/tu.c' | cfe: Error: /tmp/tmpa6izmk1n/tu.c, line 480: Duplicate member 'unknown00' | cfe: Error: /tmp/tmpa6izmk1n/tu.c, line 480: Duplicate member 'field30' | cfe: Error: /tmp/tmpa6izmk1n/tu.c, line 480: Duplicate member 'unknown34' | cfe: Error: /tmp/tmpa6izmk1n/tu. RESULT FAIL 
+== func_80023DB8 (target func_80023DB8) src=lane/sources/func_80023DB8.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (58 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmp5rzeezz3/tu.c, line 480: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmp5rzeezz3/tu.c' | cfe: Error: /tmp/tmp5rzeezz3/tu.c, line 480: Duplicate member 'word' | cfe: Error: /tmp/tmp5rzeezz3/tu.c, line 480: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmp5rzeezz3/tu.c' RESULT FAIL 
+== func_80024FD4 (target func_80024FD4) src=lane/sources/func_80024FD4.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (42 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmpni1nvop6/tu.c, line 23: redeclaration of 'StreamState_80025264'; previous declaration at line 11 in file '/tmp/tmpni1nvop6/tu.c' | cfe: Error: /tmp/tmpni1nvop6/tu.c, line 23: Duplicate member 'unknown_0000' | cfe: Error: /tmp/tmpni1nvop6/tu.c, line 23: Duplicate member 'block_count' | cfe: Error: /tmp/tmpni1nvop6/tu.c, line 23: Duplicate member 'unknown_0168' | cfe: Error: /tmp RESULT FAIL 
+== func_800255F0 (target func_800255F0) src=lane/sources/func_800255F0.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (36 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmpmdm3wtal/tu.c, line 125: redeclaration of 'StreamState_80025264'; previous declaration at line 11 in file '/tmp/tmpmdm3wtal/tu.c' | cfe: Error: /tmp/tmpmdm3wtal/tu.c, line 125: Duplicate member 'unknown_0000' | cfe: Error: /tmp/tmpmdm3wtal/tu.c, line 125: Duplicate member 'block_count' | cfe: Error: /tmp/tmpmdm3wtal/tu.c, line 125: Duplicate member 'unknown_0168' | cfe: Error:  RESULT FAIL 
+== TU edits alone
+lib_11640: IDENTICAL (4276 lines: .text words+relocs, data sections)
+lib_1a660: IDENTICAL (2626 lines: .text words+relocs, data sections)
+lib_1cf90: IDENTICAL (1876 lines: .text words+relocs, data sections)
+lib_1f5b0: IDENTICAL (1152 lines: .text words+relocs, data sections)
+lib_207b0: IDENTICAL (661 lines: .text words+relocs, data sections)
+lib_22300: IDENTICAL (3382 lines: .text words+relocs, data sections)
+== all sources spliced (into the edited TUs)
+lib_11640: IDENTICAL (4276 lines: .text words+relocs, data sections)
+lib_15a10: IDENTICAL (578 lines: .text words+relocs, data sections)
+lib_17dc0: IDENTICAL (2598 lines: .text words+relocs, data sections)
+lib_1a660: IDENTICAL (2626 lines: .text words+relocs, data sections)
+lib_1cf90: IDENTICAL (1876 lines: .text words+relocs, data sections)
+lib_1f340: IDENTICAL (154 lines: .text words+relocs, data sections)
+lib_1f5b0: IDENTICAL (1152 lines: .text words+relocs, data sections)
+lib_207b0: IDENTICAL (661 lines: .text words+relocs, data sections)
+lib_22300: IDENTICAL (3382 lines: .text words+relocs, data sections)
+lib_25bb0: IDENTICAL (960 lines: .text words+relocs, data sections)

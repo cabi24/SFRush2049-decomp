@@ -348,6 +348,8 @@ u16 func_8001B968(u32 key)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001B9F8.s")
+typedef struct ChannelState {u32 word00,word04,flags08,pending0C,unknown10;u8 kind14;u8 unknown15[3];u32 value18;u8 unknown1C[12];} ChannelState;
+extern ChannelState D_8004F300[32];
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001BDB8.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001BE14.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001C19C.s")
@@ -359,8 +361,6 @@ u16 func_8001B968(u32 key)
  */
 #pragma pack(1)
 #pragma pack(0)
-typedef struct ChannelState {u32 word00,word04,flags08,pending0C,unknown10;u8 kind14;u8 unknown15[3];u32 value18;u8 unknown1C[12];} ChannelState;
-extern ChannelState D_8004F300[32];
 extern short D_8004BE98[16];
 extern u32 D_8004F804;
 extern u8 D_8004F2F8;

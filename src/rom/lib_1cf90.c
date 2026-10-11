@@ -186,6 +186,7 @@ void func_8001D084(StateNode *state)
     if (state->identifier34 != 0xFFFFFFFF) func_8001B8C4(state->identifier34);
 }
 
+typedef struct Vector { float x, y, z; } Vector;
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001D0F0.s")
 /* PROMOTED 2026-10-11 — func_8001D1C0
  * Source:   cloud/work/frontier/w17g/sources/func_8001D1C0.c (in-repo, locked)
@@ -299,7 +300,6 @@ void func_8001D578(void)
  * Evidence: lock:cloud/matches/boot_tail/func_8001D5C0.c:func_8001D5C0 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-typedef struct Vector { float x, y, z; } Vector;
 typedef struct SpatialState { unsigned char unknown00[12]; Vector position; unsigned char unknown18[12]; Vector forward; Vector side; Vector up; float inverse[12]; } SpatialState;
 extern void func_80024D04(Vector *, const Vector *, const Vector *);
 extern void func_80024D74(float *, const float *);

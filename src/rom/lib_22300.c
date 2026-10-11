@@ -725,6 +725,10 @@ u8 func_80023734(MacroState_80023734 *state, MacroCommand_80023734 *command)
     return 0;
 }
 
+typedef struct MacroState_80023818 MacroState_80023818;
+typedef struct MacroControl_80023818 MacroControl_80023818;
+typedef struct MacroCommand_80023818 { u32 word[2]; } MacroCommand_80023818;
+extern void func_80023754(MacroState_80023818 *state, MacroControl_80023818 *control, MacroCommand_80023818 *command, u32 flag);
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023754.s")
 /* PROMOTED 2026-10-04 — func_80023818
  * Source:   cloud/work/boot_tail_promotion/sources/func_80023818.c (in-repo, locked)
@@ -732,10 +736,6 @@ u8 func_80023734(MacroState_80023734 *state, MacroCommand_80023734 *command)
  * Evidence: lock:cloud/work/boot_tail_promotion/sources/func_80023818.c:func_80023818 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-typedef struct MacroState_80023818 MacroState_80023818;
-typedef struct MacroControl_80023818 MacroControl_80023818;
-typedef struct MacroCommand_80023818 { u32 word[2]; } MacroCommand_80023818;
-extern void func_80023754(MacroState_80023818 *state, MacroControl_80023818 *control, MacroCommand_80023818 *command, u32 flag);
 u8 func_80023818(MacroState_80023818 *state, MacroCommand_80023818 *command)
 {
     func_80023754(state, (MacroControl_80023818 *)((u8 *)state + 0xC4),

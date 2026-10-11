@@ -50,7 +50,7 @@ void func_8001E9B0(void)
  * previously opaque fields at +0x14, +0x18 and +0x28 respectively.
  * Keep these declarations before any future early list-helper promotion. */
 #pragma pack(1)
-typedef struct VoiceState { u32 command00; u8 unknown04[12]; u32 next_identifier; u32 parent_identifier; SequenceNode *entry18; u8 unknown1C[8]; u32 flags24; u32 value28; u8 unknown2C[32]; u8 external4C; u8 unknown4D[19]; u32 identifier60; u8 unknown64[89]; u8 activeBD; u8 unknownBE[226]; } VoiceState;
+typedef struct VoiceState { u32 command00; u8 unknown04[12]; u32 next_identifier; u32 parent_identifier; SequenceNode *entry18; u8 unknown1C[8]; u32 flags24; u32 value28; u8 unknown2C[2]; u8 channel2E; u8 unknown2F[29]; u8 external4C; u8 unknown4D[19]; u32 identifier60; u8 unknown64[89]; u8 activeBD; u8 unknownBE[226]; } VoiceState;
 #pragma pack(0)
 extern SequenceNode *D_80050C50;
 extern VoiceState D_8004BEB8[];
@@ -231,6 +231,8 @@ void func_8001EE9C(VoicePrefix_8001EE9C *state)
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1f5b0/func_8001EF8C.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1f5b0/func_8001F13C.s")
+typedef struct ChannelLink { u8 previous; u8 next; u16 flags; } ChannelLink;
+extern ChannelLink D_80050440[32];
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1f5b0/func_8001F6EC.s")
 /* PROMOTED 2026-10-04 — func_8001F7EC
  * Source:   cloud/matches/boot_tail/func_8001F7EC.c (in-repo, locked)
@@ -238,9 +240,7 @@ void func_8001EE9C(VoicePrefix_8001EE9C *state)
  * Evidence: lock:cloud/matches/boot_tail/func_8001F7EC.c:func_8001F7EC (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-typedef struct ChannelLink { u8 previous; u8 next; u16 flags; } ChannelLink;
 extern u8 D_8004FA18;
-extern ChannelLink D_80050440[32];
 extern u8 D_800504C0;
 extern u8 D_800504C1;
 void func_8001F7EC(void)
