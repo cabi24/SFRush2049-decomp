@@ -1,0 +1,18 @@
+BIN assets/us/data.bin + game-code blob and runtime images A/B built from sources
+BIN assets/us/ipl3.bin
+cc: Warning: -mips3 should not be used for ucode 32-bit compiles
+cc: Warning: -mips3 should not be used for ucode 32-bit compiles
+LD build/us/rush2049.us.elf
+/usr/bin/mips-linux-gnu-ld.bfd: warning: dot moved backwards before `.sdk_initialize_bss'
+/usr/bin/mips-linux-gnu-ld.bfd: warning: dot moved backwards before `.sdk_initialize_bss'
+/usr/bin/mips-linux-gnu-ld.bfd: warning: dot moved backwards before `.sdk_initialize_bss'
+/usr/bin/mips-linux-gnu-ld.bfd: warning: build/us/rush2049.us.elf has a LOAD segment with RWX permissions
+OBJCOPY build/us/rush2049.us.z64
+Build complete: build/us/rush2049.us.z64
+Verifying built ROM hash...
+build/us/rush2049.us.z64: OK
+ROM matches!
+Verifying built ROM hash...
+build/us/rush2049.us.z64: OK
+ROM matches!
+EXIT 0

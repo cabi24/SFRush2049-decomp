@@ -1,0 +1,4 @@
+batch 0x16320..0x16320: 3 candidates
+  PLAN func_80016E68 -> rom/lib_16320 (120 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared, owned .bss slot of func_80016E68)
+  PLAN func_80016EE0 -> rom/lib_16320 (120 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared, owned .bss slot of func_80016E68)
+  PLAN func_80016F80 -> rom/lib_16320 (152 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared, owned .bss slot of func_80016E68)
