@@ -1,6 +1,6 @@
 # Frontier handoff: 2026-10-06 (after wave 12), updated 2026-10-11 (after wave 15)
 
-## 0. Wave 13–17 update (2026-10-11, after wave 17; w17k IDO 7.1 tooling running)
+## 0. Wave 13–17 update (2026-10-11, after wave 17 and the IDO 7.1 boot-tail promotion)
 
 Read this section first; §1–§10 below are the wave-12 text and still describe the method. Section-by-section
 deltas are noted inline where they matter.
@@ -8,7 +8,7 @@ deltas are noted inline where they matter.
 | | Functions | Bytes | % |
 |---|---|---|---|
 | Game code (compressed image) | 972 / 1216 | 310,380 / 647,072 | 47.97 |
-| Static code (boot/library) | 431 / 668 | 77,844 / 160,720 | 48.43 |
+| Static code (boot/library) | 489 / 668 | 87,756 / 160,720 | 54.60 |
 
 Frontier: 244 unmatched game functions (251 KB) after wave 17. Provisional: 20 functions (`provisional.json`).
 
@@ -137,14 +137,24 @@ instrumented uopt with skip/reject oracles proves the lever before searching for
   by the gap. One receipt (dot_billboard_helpers_20261005) rebound.
 - **Provisional:** physics_response joined (MATCH in its group; caller audio_effect_apply unmatched).
 
-**Static (w17g survey, nothing promoted yet):** the Rush-specific boot tail (lib_11050 … lib_26ab0) was compiled
-with **IDO 7.1**; libultra and all 435 locks are 5.3 and unaffected (397/435 locks re-score exact under 7.1, the 38
-that differ are libultra; all 18 boot-tail TUs build byte-identical under both). 58 functions / 9,912 B are exact
-under 7.1 with no source change (`w17g/sources/`, `score_table.md`); 7 small ones (116 B) also match under 5.3.
-Lane w17k is building the tooling (7.1 toolkit + lock binding, per-TU compiler override, docs). Also prepared:
-`rom_owned_data.json` entries for osAiSetNextBuffer (.data 0x10 @0x4bf0) and the `__fixuns*` 2^63 literal
-(.rodata 0x10 @0x6030), both proven at the real addresses; the `__fixuns*` targets need `.set gp=64` in the target
-assembler setup to be reloc-aware.
+**Static: the Rush boot tail is IDO 7.1 (w17g finding, w17k tooling, landed 2026-10-11 evening, +9,912 B / 58
+functions).** The Rush-specific boot-tail segments (lib_11050 … lib_26ab0, 18 ROM TUs) were compiled with IDO 7.1;
+libultra and the 435 earlier locks are 5.3 and unaffected (397/435 re-score exact under 7.1, the 38 that differ are
+libultra; all 18 TUs build byte-identical under both, proven by the switch-only ROM gate before any promotion).
+Tooling now on master: `tools/conveyor/compilers.py` (pinned 5.3/7.1 builds with fingerprints; `install ido7.1`),
+`build_toolkit --swap-ido-from`, `publish-toolkit --no-pin` (7.1 toolkit `4586d230…`, uploaded unpinned),
+`lock add --toolkit SHA` (records `compiler: ido7.1`; `lock verify` re-proves with it), `rom_compilers.json`
+(segment → compiler; `write_opt_overrides` emits `CC := $(IDO71_CC)`; the Makefile stops if 7.1 is missing, never
+falls back), `promote_batch --dry-run/--splice-out/--lockfile` and compiler-mismatch refusals, docs in BUILDING.md
+and COMPILER_SETTINGS.md. The builder has 7.1 at `~/rush2049/repo/tools/ido-static-recomp/build71/out` (CI builds
+no ROM and needs nothing). **Gotcha fixed:** `blob_rom rom` synced only the Makefile and blob to the builder, so a
+stale `rom_compilers.json`/`opt_overrides.mk` there built every TU with 5.3 and still matched; it now syncs both.
+Still open on the static side: osAiSetNextBuffer (owned `.data` slot prepared in `w17g/`), `__fixunsdfdi`/
+`__fixunssfdi` (owned `.rodata` + `.set gp=64` for reloc-aware targets), two stale inventory rows (`osCauseGet`,
+`__osContAddressCrc`), 9 w17g sources exact under 7.1 but conflicting with TU declarations (`w17g/lockonly/`,
+2,532 B), the sched (`__sc*`) older-build family, inflate/lzss (~8.2 KB, no vendored source), the hand-asm policy
+question, and the remaining ~115 boot-tail `func_*` near-misses now that the right compiler is known
+(`w17g/inv_table.md`: many at true=10–40 were never examined under 7.1).
 
 **Open near-misses after wave 17** (replaces the wave-16 table where names overlap):
 
