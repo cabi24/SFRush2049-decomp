@@ -1,0 +1,243 @@
+__osPfsRWInode ok 
+__osContRamWrite ok 
+__osEPiRawWriteIo ok 
+__osEPiRawReadIo ok 
+__osContAddressCrc ok 
+__osContDataCrc ok 
+osMotorStop ok 
+__osSiDeviceBusy ok 
+func_800103A0 ok 
+func_80014650 ok 
+func_8002517C ok 
+osAiSetNextBuffer refused object has data/rodata (.data:16)
+context_check CFLAGS: -G 0 -mips2 -O1 -non_shared -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm
+__osResetGlobalIntMask ok 
+__osSetGlobalIntMask ok 
+osYieldThread ok 
+osDestroyThread ok 
+context_check CFLAGS: -G 0 -mips3 -32 -O1 -non_shared -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm
+__lshrdi3 ok 
+__umoddi3 ok 
+__udivdi3 ok 
+__ashldi3 ok 
+__umoddi3_alt ok 
+__divdi3 ok 
+__muldi3 ok 
+__qdivrem ok 
+__moddi3 ok 
+__ashrdi3 ok 
+__fixdfdi ok 
+__fixsfdi ok 
+__fixunsdfdi refused object has data/rodata (.rodata:16)
+__fixunssfdi refused object has data/rodata (.rodata:16)
+__floatdidf ok 
+__floatdisf ok 
+__floatundidf ok 
+__floatundisf ok 
+== __osPfsRWInode (target __osPfsRWInode) src=lane/sources/__osPfsRWInode.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (204 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_f700.c additions=lane/ctx/ctx_O2.jsonl preamble (17 stmts, 9 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (204 rows)
+RESULT PASS
+== __osContRamWrite (target __osContRamWrite) src=lane/sources/__osContRamWrite.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (163 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_O2.jsonl preamble (29 stmts, 8 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (163 rows)
+RESULT PASS
+== __osEPiRawWriteIo (target osEPiRawStartDma) src=lane/sources/__osEPiRawWriteIo.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (88 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_O2.jsonl preamble (19 stmts, 5 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (88 rows)
+RESULT PASS
+== __osEPiRawReadIo (target osEPiRawReadIo) src=lane/sources/__osEPiRawReadIo.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (89 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_O2.jsonl preamble (19 stmts, 5 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (89 rows)
+RESULT PASS
+== __osContAddressCrc (target __osContAddressCrc) src=lane/sources/__osContAddressCrc.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (52 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_O2.jsonl preamble (0 stmts, 4 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (52 rows)
+RESULT PASS
+== __osContDataCrc (target __osPfsDataChecksum) src=lane/sources/__osContDataCrc.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (37 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_O2.jsonl preamble (0 stmts, 4 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (37 rows)
+RESULT PASS
+== osMotorStop (target osMotorStop) src=lane/sources/osMotorStop.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (22 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_ab20.c additions=lane/ctx/ctx_O2.jsonl preamble (4 stmts, 5 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (22 rows)
+RESULT PASS
+== __osSiDeviceBusy (target __osPiDeviceBusy) src=lane/sources/__osSiDeviceBusy.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (8 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_O2.jsonl preamble (6 stmts, 4 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (8 rows)
+RESULT PASS
+== func_800103A0 (target func_800103A0) src=lane/sources/func_800103A0.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (47 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_O2.jsonl preamble (3 stmts, 6 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (47 rows)
+RESULT PASS
+== func_80014650 (target func_80014650) src=lane/sources/func_80014650.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (13 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_11640.c additions=lane/ctx/ctx_O2.jsonl preamble (3 stmts, 6 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (13 rows)
+RESULT PASS
+== func_8002517C (target func_8002517C) src=lane/sources/func_8002517C.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (13 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_25bb0.c additions=lane/ctx/ctx_O2.jsonl preamble (4 stmts, 6 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (13 rows)
+RESULT PASS
+== osAiSetNextBuffer (target osAiSetNextBuffer) src=lane/sources/osAiSetNextBuffer.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(6 rows) (43 rows)
+CTX: context_check refused: object has data/rodata (.data:16)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_ca70.c additions=lane/ctx/osAiSetNextBuffer.h
+TU: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(6 rows) (43 rows)
+RESULT FAIL
+== __osResetGlobalIntMask (target osEPiRawWriteIo) src=lane/sources/__osResetGlobalIntMask.c
+LOCK flags=[-g0 -O1 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (27 rows)
+TU   flags=[-G 0 -mips2 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_O1.jsonl preamble (5 stmts, 4 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (27 rows)
+RESULT PASS
+== __osSetGlobalIntMask (target __osPiGetCmdQueue) src=lane/sources/__osSetGlobalIntMask.c
+LOCK flags=[-g0 -O1 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (24 rows)
+TU   flags=[-G 0 -mips2 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_O1.jsonl preamble (4 stmts, 4 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (24 rows)
+RESULT PASS
+== osYieldThread (target osYieldThread) src=lane/sources/osYieldThread.c
+LOCK flags=[-g0 -O1 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (25 rows)
+TU   flags=[-G 0 -mips2 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_O1.jsonl preamble (6 stmts, 5 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (25 rows)
+RESULT PASS
+== osDestroyThread (target __osEnqueueAndYield) src=lane/sources/osDestroyThread.c
+LOCK flags=[-g0 -O1 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (79 rows)
+TU   flags=[-G 0 -mips2 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_O1.jsonl preamble (8 stmts, 5 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (79 rows)
+RESULT PASS
+== __lshrdi3 (target __lshrdi3) src=lane/sources/__lshrdi3.c
+LOCK flags=[-g0 -O1 -mips3 -32 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows)
+TU   flags=[-G 0 -mips3 -32 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_ll.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows)
+RESULT PASS
+== __umoddi3 (target __umoddi3) src=lane/sources/__umoddi3.c
+LOCK flags=[-g0 -O1 -mips3 -32 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (15 rows)
+TU   flags=[-G 0 -mips3 -32 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_ll.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (15 rows)
+RESULT PASS
+== __udivdi3 (target __udivdi3) src=lane/sources/__udivdi3.c
+LOCK flags=[-g0 -O1 -mips3 -32 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (15 rows)
+TU   flags=[-G 0 -mips3 -32 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_ll.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (15 rows)
+RESULT PASS
+== __ashldi3 (target __ashldi3) src=lane/sources/__ashldi3.c
+LOCK flags=[-g0 -O1 -mips3 -32 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows)
+TU   flags=[-G 0 -mips3 -32 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_ll.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows)
+RESULT PASS
+== __umoddi3_alt (target __umoddi3_alt) src=lane/sources/__umoddi3_alt.c
+LOCK flags=[-g0 -O1 -mips3 -32 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (15 rows)
+TU   flags=[-G 0 -mips3 -32 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_ll.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (15 rows)
+RESULT PASS
+== __divdi3 (target __divdi3) src=lane/sources/__divdi3.c
+LOCK flags=[-g0 -O1 -mips3 -32 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (23 rows)
+TU   flags=[-G 0 -mips3 -32 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_ll.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (23 rows)
+RESULT PASS
+== __muldi3 (target __muldi3) src=lane/sources/__muldi3.c
+LOCK flags=[-g0 -O1 -mips3 -32 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (12 rows)
+TU   flags=[-G 0 -mips3 -32 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_ll.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (12 rows)
+RESULT PASS
+== __qdivrem (target __qdivrem) src=lane/sources/__qdivrem.c
+LOCK flags=[-g0 -O1 -mips3 -32 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (23 rows)
+TU   flags=[-G 0 -mips3 -32 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_ll.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (23 rows)
+RESULT PASS
+== __moddi3 (target __moddi3) src=lane/sources/__moddi3.c
+LOCK flags=[-g0 -O1 -mips3 -32 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (39 rows)
+TU   flags=[-G 0 -mips3 -32 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_ll.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (39 rows)
+RESULT PASS
+== __ashrdi3 (target __ashrdi3) src=lane/sources/__ashrdi3.c
+LOCK flags=[-g0 -O1 -mips3 -32 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows)
+TU   flags=[-G 0 -mips3 -32 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_ll.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows)
+RESULT PASS
+== __fixdfdi (target __fixdfdi) src=lane/sources/__fixdfdi.c
+LOCK flags=[-g0 -O1 -mips3 -32 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (7 rows)
+TU   flags=[-G 0 -mips3 -32 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_ll.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (7 rows)
+RESULT PASS
+== __fixsfdi (target __fixsfdi) src=lane/sources/__fixsfdi.c
+LOCK flags=[-g0 -O1 -mips3 -32 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (7 rows)
+TU   flags=[-G 0 -mips3 -32 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_ll.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (7 rows)
+RESULT PASS
+== __fixunsdfdi (target __fixunsdfdi) src=lane/sources/__fixunsdfdi.c
+LOCK flags=[-g0 -O1 -mips3 -32 -G 0 -non_shared]
+LOCK: true=10 strict=10 reloc_blind=0 objdump-dr DIFFERS(15 rows) (40 rows)
+CTX: context_check refused: object has data/rodata (.rodata:16)
+TU   flags=[-G 0 -mips3 -32 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=None
+TU: true=10 strict=10 reloc_blind=0 objdump-dr DIFFERS(15 rows) (40 rows)
+RESULT FAIL
+== __fixunssfdi (target __fixunssfdi) src=lane/sources/__fixunssfdi.c
+LOCK flags=[-g0 -O1 -mips3 -32 -G 0 -non_shared]
+LOCK: true=10 strict=10 reloc_blind=0 objdump-dr DIFFERS(15 rows) (39 rows)
+CTX: context_check refused: object has data/rodata (.rodata:16)
+TU   flags=[-G 0 -mips3 -32 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=None
+TU: true=10 strict=10 reloc_blind=0 objdump-dr DIFFERS(15 rows) (39 rows)
+RESULT FAIL
+== __floatdidf (target __floatdidf) src=lane/sources/__floatdidf.c
+LOCK flags=[-g0 -O1 -mips3 -32 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (6 rows)
+TU   flags=[-G 0 -mips3 -32 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_ll.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (6 rows)
+RESULT PASS
+== __floatdisf (target __floatdisf) src=lane/sources/__floatdisf.c
+LOCK flags=[-g0 -O1 -mips3 -32 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (6 rows)
+TU   flags=[-G 0 -mips3 -32 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_ll.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (6 rows)
+RESULT PASS
+== __floatundidf (target __floatundidf) src=lane/sources/__floatundidf.c
+LOCK flags=[-g0 -O1 -mips3 -32 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (12 rows)
+TU   flags=[-G 0 -mips3 -32 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_ll.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (12 rows)
+RESULT PASS
+== __floatundisf (target __floatundisf) src=lane/sources/__floatundisf.c
+LOCK flags=[-g0 -O1 -mips3 -32 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows)
+TU   flags=[-G 0 -mips3 -32 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=rom_tu.h only additions=lane/ctx/ctx_ll.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows)
+RESULT PASS

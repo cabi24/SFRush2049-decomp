@@ -1,0 +1,18 @@
+{"status": "ok", "preamble": [], "dropped": [], "words": 11, "function": "__lshrdi3", "source": "cloud/work/frontier/w16g/sources/__lshrdi3.c"}
+{"status": "ok", "preamble": [], "dropped": [], "words": 15, "function": "__umoddi3", "source": "cloud/work/frontier/w16g/sources/__umoddi3.c"}
+{"status": "ok", "preamble": [], "dropped": [], "words": 15, "function": "__udivdi3", "source": "cloud/work/frontier/w16g/sources/__udivdi3.c"}
+{"status": "ok", "preamble": [], "dropped": [], "words": 11, "function": "__ashldi3", "source": "cloud/work/frontier/w16g/sources/__ashldi3.c"}
+{"status": "ok", "preamble": [], "dropped": [], "words": 15, "function": "__umoddi3_alt", "source": "cloud/work/frontier/w16g/sources/__umoddi3_alt.c"}
+{"status": "ok", "preamble": [], "dropped": [], "words": 23, "function": "__divdi3", "source": "cloud/work/frontier/w16g/sources/__divdi3.c"}
+{"status": "ok", "preamble": [], "dropped": [], "words": 12, "function": "__muldi3", "source": "cloud/work/frontier/w16g/sources/__muldi3.c"}
+{"status": "ok", "preamble": [], "dropped": [], "words": 24, "function": "__qdivrem", "source": "cloud/work/frontier/w16g/sources/__qdivrem.c"}
+{"status": "ok", "preamble": [], "dropped": [], "words": 39, "function": "__moddi3", "source": "cloud/work/frontier/w16g/sources/__moddi3.c"}
+{"status": "ok", "preamble": [], "dropped": [], "words": 11, "function": "__ashrdi3", "source": "cloud/work/frontier/w16g/sources/__ashrdi3.c"}
+{"status": "ok", "preamble": [], "dropped": [], "words": 7, "function": "__fixdfdi", "source": "cloud/work/frontier/w16g/sources/__fixdfdi.c"}
+{"status": "ok", "preamble": [], "dropped": [], "words": 7, "function": "__fixsfdi", "source": "cloud/work/frontier/w16g/sources/__fixsfdi.c"}
+{"status": "refused", "reason": "object has data/rodata (.rodata:16)", "function": "__fixunsdfdi", "source": "cloud/work/frontier/w16g/sources/__fixunsdfdi.c"}
+{"status": "refused", "reason": "object has data/rodata (.rodata:16)", "function": "__fixunssfdi", "source": "cloud/work/frontier/w16g/sources/__fixunssfdi.c"}
+{"status": "ok", "preamble": [], "dropped": [], "words": 6, "function": "__floatdidf", "source": "cloud/work/frontier/w16g/sources/__floatdidf.c"}
+{"status": "ok", "preamble": [], "dropped": [], "words": 6, "function": "__floatdisf", "source": "cloud/work/frontier/w16g/sources/__floatdisf.c"}
+{"status": "ok", "preamble": [], "dropped": [], "words": 13, "function": "__floatundidf", "source": "cloud/work/frontier/w16g/sources/__floatundidf.c"}
+{"status": "ok", "preamble": [], "dropped": [], "words": 12, "function": "__floatundisf", "source": "cloud/work/frontier/w16g/sources/__floatundisf.c"}

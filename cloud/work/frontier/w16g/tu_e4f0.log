@@ -1,0 +1,6 @@
+cc: Warning: -mips3 should not be used for ucode 32-bit compiles
+segment 0xe4f0 words 180 object 180 IDENTICAL
+  Flags:                             0x20000001, noreorder, mips3
+/usr/bin/mips-linux-gnu-ld.bfd: lib_e4f0.o: linking 32-bit code with 64-bit code
+/usr/bin/mips-linux-gnu-ld.bfd: failed to merge target specific data of file lib_e4f0.o
+ld -r with a -mips2 object: FAILS
