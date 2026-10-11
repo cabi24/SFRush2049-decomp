@@ -278,7 +278,30 @@ void func_80011A3C(AudioState *audio)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80011A64.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80011C1C.s")
+/* PROMOTED 2026-10-11 — func_80011C1C
+ * Source:   cloud/work/frontier/w17g/sources/func_80011C1C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80011C1C.c:func_80011C1C (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_80011C1C(unsigned short index, unsigned short flags)
+{
+    AudioState *audio;
+    audio = &D_80038294[index];
+    audio->active = 0;
+    audio->flags = flags;
+    audio->rate = 4096;
+    audio->pending = 1;
+    audio->unknown18[0] = 0;
+    audio->unknown18[1] = 0;
+    audio->unknown18[2] = 0;
+    audio->unknown18[3] = 0;
+    audio->value40 = 0;
+    audio->value42 = 0;
+    audio->value44 = 0;
+    audio->value46 = 0;
+}
+
 /* PROMOTED 2026-10-05 — func_80011C84
  * Source:   cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80011C84.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -527,7 +550,47 @@ void func_80014140(void)
     D_8003800C(func_80013DEC);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80014198.s")
+/* PROMOTED 2026-10-11 — func_80014198
+ * Source:   cloud/work/frontier/w17g/sources/func_80014198.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80014198.c:func_80014198 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+typedef struct AudioConfiguration { unsigned int frequency; unsigned char mode; unsigned char sample_bits; unsigned char unknown06[256]; signed char text[256]; } AudioConfiguration;
+extern unsigned int D_8004F808;
+extern AudioConfiguration D_8004F810;
+extern signed char D_8002D890[];
+extern signed char D_8002D8A4[];
+extern void func_80011104(unsigned short, unsigned int);
+extern void func_800114C0(unsigned short, unsigned int, unsigned char);
+extern void func_80010DD8(unsigned int, unsigned short);
+extern void func_800140F8(void);
+void func_80014198(unsigned int *frequency, unsigned short count,
+                   unsigned short size, unsigned char mode)
+{
+    unsigned char i;
+    float frame_samples;
+    if (count > 32) {
+        count = 32;
+    }
+    D_800382CD = 0;
+    func_80011104(count, *frequency);
+    func_800114C0(count, *frequency, mode);
+    func_80010DD8(*frequency, size);
+    func_800140F8();
+    frame_samples = (float)*frequency / 60.0f;
+    D_800382A4 = (unsigned int)(frame_samples / 192.0f + 0.5f);
+    D_800382A0 = D_800382A4;
+    D_8004F808 = D_800382A4 * 192;
+    D_8004F810.frequency = *frequency;
+    D_8004F810.sample_bits = 16;
+    D_8004F810.mode = 1;
+    for (i = 0; D_8002D890[i] != 0; i++) {
+        D_8004F810.text[i] = D_8002D8A4[i];
+    }
+    D_8004F810.text[i] = 0;
+}
+
 /* PROMOTED 2026-10-04 — func_80014374
  * Source:   cloud/matches/boot_tail/func_80014374.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -703,7 +766,17 @@ void func_80014650(void) {
     osJamMesg(&D_80038368, NULL, OS_MESG_NOBLOCK);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_8001467C.s")
+/* PROMOTED 2026-10-11 — func_8001467C
+ * Source:   cloud/work/frontier/w17g/sources/func_8001467C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_8001467C.c:func_8001467C (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+unsigned char func_8001467C(int index)
+{
+    return D_80038294[index].active != 0;
+}
+
 /* PROMOTED 2026-10-04 — func_800146AC
  * Source:   cloud/matches/boot_tail/func_800146AC.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -754,7 +827,20 @@ void func_800146B4(unsigned int index, SampleInfo_800146B4 *sample, unsigned cha
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_8001489C.s")
+/* PROMOTED 2026-10-11 — func_8001489C
+ * Source:   cloud/work/frontier/w17g/sources/func_8001489C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_8001489C.c:func_8001489C (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_8001489C(int index, unsigned char release)
+{
+    D_80038294[index].release_count = 20;
+    if (release) {
+        func_80011A3C(&D_80038294[index]);
+    }
+}
+
 /* PROMOTED 2026-10-04 — func_800148F8
  * Source:   cloud/matches/boot_tail/func_800148F8.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -803,7 +889,21 @@ void func_80014A04(int unused)
 {
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80014A0C.s")
+/* PROMOTED 2026-10-11 — func_80014A0C
+ * Source:   cloud/work/frontier/w17g/sources/func_80014A0C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80014A0C.c:func_80014A0C (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_80014A0C(int index, unsigned short rate)
+{
+    if (rate <= 8192) {
+        D_80038294[index].rate = rate;
+    } else {
+        D_80038294[index].rate = 8192;
+    }
+}
+
 /* PROMOTED 2026-10-05 — func_80014A74
  * Source:   cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014A74.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -866,8 +966,29 @@ void func_80014BB0(int index)
     D_80038294[index].active = 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80014BD8.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80014BF8.s")
+/* PROMOTED 2026-10-11 — func_80014BD8
+ * Source:   cloud/work/frontier/w17g/sources/func_80014BD8.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80014BD8.c:func_80014BD8 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern void func_80010E80(void *state);
+void func_80014BD8(void *state)
+{
+    func_80010E80(state);
+}
+
+/* PROMOTED 2026-10-11 — func_80014BF8
+ * Source:   cloud/work/frontier/w17g/sources/func_80014BF8.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80014BF8.c:func_80014BF8 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_80014BF8(void)
+{
+    func_80011074();
+}
+
 /* PROMOTED 2026-10-05 — func_80014C18
  * Source:   cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80014C18.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -910,10 +1031,46 @@ void *func_80014CAC(void *address)
     return address;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80014CF4.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80014CFC.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80014D08.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80014D14.s")
+/* PROMOTED 2026-10-11 — func_80014CF4
+ * Source:   cloud/work/frontier/w17g/sources/func_80014CF4.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80014CF4.c:func_80014CF4 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_80014CF4(void)
+{
+}
+
+/* PROMOTED 2026-10-11 — func_80014CFC
+ * Source:   cloud/work/frontier/w17g/sources/func_80014CFC.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80014CFC.c:func_80014CFC (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_80014CFC(void **descriptor, void **data)
+{
+}
+
+/* PROMOTED 2026-10-11 — func_80014D08
+ * Source:   cloud/work/frontier/w17g/sources/func_80014D08.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80014D08.c:func_80014D08 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_80014D08(void **descriptor, void *data)
+{
+}
+
+/* PROMOTED 2026-10-11 — func_80014D14
+ * Source:   cloud/work/frontier/w17g/sources/func_80014D14.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80014D14.c:func_80014D14 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_80014D14(void)
+{
+}
+
 /* PROMOTED 2026-10-04 — func_80014D1C
  * Source:   cloud/matches/boot_tail/func_80014D1C.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

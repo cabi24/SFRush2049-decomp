@@ -5,7 +5,18 @@
 #include "rom_tu.h"
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1ece0/func_8001E0E0.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1ece0/func_8001E440.s")
+/* PROMOTED 2026-10-11 — func_8001E440
+ * Source:   cloud/work/frontier/w17g/sources/func_8001E440.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_8001E440.c:func_8001E440 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern const float D_8002D924;
+u16 func_8001E440(u16 value)
+{
+    return (u16)(u32)((float)value * D_8002D924);
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1ece0/func_8001E50C.s")
 /* PROMOTED 2026-10-04 — func_8001E688
  * Source:   cloud/matches/boot_tail/func_8001E688.c (in-repo, locked)

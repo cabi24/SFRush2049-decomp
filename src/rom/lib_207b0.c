@@ -231,8 +231,36 @@ unsigned int func_800201D0(unsigned int value)
     return 0xFFFFFFFF;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_80020200.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_8002021C.s")
+/* PROMOTED 2026-10-11 — func_80020200
+ * Source:   cloud/work/frontier/w17g/sources/func_80020200.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80020200.c:func_80020200 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern short D_8004BE98[];
+short func_80020200(unsigned char value)
+{
+    return D_8004BE98[value & 15];
+}
+
+/* PROMOTED 2026-10-11 — func_8002021C
+ * Source:   cloud/work/frontier/w17g/sources/func_8002021C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_8002021C.c:func_8002021C (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern s16 D_8004BE98[16];
+s16 func_8002021C(u8 channel, s16 value)
+{
+    s16 previous;
+    channel &= 15;
+    func_80014594();
+    previous = D_8004BE98[channel];
+    D_8004BE98[channel] = value;
+    func_800145DC();
+    return previous;
+}
+
 /* PROMOTED 2026-10-04 — func_80020274
  * Source:   cloud/matches/boot_tail/func_80020274.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -367,5 +395,17 @@ void func_80020558(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_80020598.s")
+/* PROMOTED 2026-10-11 — func_80020598
+ * Source:   cloud/work/frontier/w17g/sources/func_80020598.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80020598.c:func_80020598 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+typedef struct CallbackWords { unsigned int words[8]; } CallbackWords;
+extern CallbackWords D_80038000;
+void func_80020598(const CallbackWords *callbacks)
+{
+    D_80038000 = *callbacks;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_207b0/func_800205E4.s")

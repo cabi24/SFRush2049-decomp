@@ -4,8 +4,47 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_21210/func_80020610.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_21210/func_800206AC.s")
+/* PROMOTED 2026-10-11 — func_80020610
+ * Source:   cloud/work/frontier/w17g/sources/func_80020610.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80020610.c:func_80020610 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern unsigned char D_80050D00[][16][134];
+extern unsigned char D_80055000[][134];
+void func_80020610(unsigned char controller, unsigned char channel,
+                   unsigned char set, unsigned char value)
+{
+    if (set != 255) {
+        D_80050D00[set][channel][controller] = value & 127;
+    } else {
+        D_80055000[channel][controller] = value & 127;
+    }
+}
+
+/* PROMOTED 2026-10-11 — func_800206AC
+ * Source:   cloud/work/frontier/w17g/sources/func_800206AC.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_800206AC.c:func_800206AC (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern void func_80020610(u8 controller, u8 channel, u8 set, u8 value);
+void func_800206AC(u8 controller, u8 channel, u8 set, u16 value)
+{
+    if (controller < 64) {
+        func_80020610(controller & 31, channel, set, value >> 7);
+        func_80020610((controller & 31) + 32, channel, set, value & 127);
+    } else if (controller == 128 || controller == 129) {
+        func_80020610(controller & 254, channel, set, value >> 7);
+        func_80020610((controller & 254) + 1, channel, set, value & 127);
+    } else if (controller == 132 || controller == 133) {
+        func_80020610(controller & 254, channel, set, value >> 7);
+        func_80020610((controller & 254) + 1, channel, set, value & 127);
+    } else {
+        func_80020610(controller, channel, set, value >> 7);
+    }
+}
+
 /* PROMOTED 2026-10-04 — func_80020820
  * Source:   cloud/matches/boot_tail/func_80020820.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -43,12 +82,159 @@ void func_80020820(u8 channel, u8 set)
     func_80020FDC(channel, set, 0);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_21210/func_80020A04.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_21210/func_80020DA8.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_21210/func_80020F4C.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_21210/func_80020F98.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_21210/func_80020FDC.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_21210/func_80021028.s")
+/* PROMOTED 2026-10-11 — func_80020A04
+ * Source:   cloud/work/frontier/w17g/sources/func_80020A04.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80020A04.c:func_80020A04 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+u16 func_80020A04(u8 controller, u8 channel, u8 set)
+{
+    u8 *pair;
+    if (set != 255) {
+        if (controller < 64) {
+            pair = &D_80050D00[set][channel][controller & 31];
+            return (pair[0] << 7) | pair[32];
+        } else if (controller == 128 || controller == 129) {
+            pair = &D_80050D00[set][channel][controller & 254];
+            return (pair[0] << 7) | pair[1];
+        } else if (controller == 132 || controller == 133) {
+            pair = &D_80050D00[set][channel][controller & 254];
+            return (pair[0] << 7) | pair[1];
+        } else if (controller < 70) {
+            return D_80050D00[set][channel][controller] < 64 ? 0 : 16383;
+        } else if (controller >= 96 && controller <= 101) {
+            return 0;
+        } else {
+            return D_80050D00[set][channel][controller] << 7;
+        }
+    } else {
+        if (controller < 64) {
+            pair = &D_80055000[channel][controller & 31];
+            return (pair[0] << 7) | pair[32];
+        } else if (controller == 128 || controller == 129) {
+            pair = &D_80055000[channel][controller & 254];
+            return (pair[0] << 7) | pair[1];
+        } else if (controller == 132 || controller == 133) {
+            pair = &D_80055000[channel][controller & 254];
+            return (pair[0] << 7) | pair[1];
+        } else if (controller < 70) {
+            return D_80055000[channel][controller] < 64 ? 0 : 16383;
+        } else if (controller >= 96 && controller <= 101) {
+            return 0;
+        } else {
+            return D_80055000[channel][controller] << 7;
+        }
+    }
+}
+
+/* PROMOTED 2026-10-11 — func_80020DA8
+ * Source:   cloud/work/frontier/w17g/sources/func_80020DA8.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80020DA8.c:func_80020DA8 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct VoicePrefix { u8 unknown00[96]; u32 identifier60; } VoicePrefix;
+#pragma pack()
+void func_80020DA8(u8 controller, VoicePrefix *destination, VoicePrefix *source)
+{
+    u32 dst;
+    u32 src;
+    u32 index;
+    u8 *dstdata;
+    u8 *srcdata;
+    dst = destination->identifier60 & 255;
+    src = source->identifier60 & 255;
+    if (controller < 64) {
+        index = controller & 31;
+        dstdata = &D_80055000[dst][index];
+        srcdata = &D_80055000[src][index];
+        dstdata[0] = srcdata[0];
+        dstdata[32] = srcdata[32];
+    } else if (controller == 128 || controller == 129) {
+        index = controller & 254;
+        dstdata = &D_80055000[dst][index];
+        srcdata = &D_80055000[src][index];
+        dstdata[0] = srcdata[0];
+        dstdata[1] = srcdata[1];
+    } else if (controller == 132 || controller == 133) {
+        index = controller & 254;
+        dstdata = &D_80055000[dst][index];
+        srcdata = &D_80055000[src][index];
+        dstdata[0] = srcdata[0];
+        dstdata[1] = srcdata[1];
+    } else {
+        D_80055000[dst][controller] = D_80055000[src][controller];
+    }
+}
+
+/* PROMOTED 2026-10-11 — func_80020F4C
+ * Source:   cloud/work/frontier/w17g/sources/func_80020F4C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80020F4C.c:func_80020F4C (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern unsigned char D_80050C60[][16];
+extern unsigned char D_80050CE0[];
+void func_80020F4C(unsigned char channel, unsigned char set,
+                   unsigned char value)
+{
+    if (set != 255) {
+        D_80050C60[set][channel] = value;
+    } else {
+        D_80050CE0[channel] = value;
+    }
+}
+
+/* PROMOTED 2026-10-11 — func_80020F98
+ * Source:   cloud/work/frontier/w17g/sources/func_80020F98.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80020F98.c:func_80020F98 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+unsigned char func_80020F98(unsigned char channel, unsigned char set)
+{
+    if (set != 255) {
+        return D_80050C60[set][channel];
+    } else {
+        return D_80050CE0[channel];
+    }
+}
+
+/* PROMOTED 2026-10-11 — func_80020FDC
+ * Source:   cloud/work/frontier/w17g/sources/func_80020FDC.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80020FDC.c:func_80020FDC (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern unsigned char D_800560C0[][16];
+extern unsigned char D_80056140[];
+void func_80020FDC(unsigned char channel, unsigned char set,
+                   unsigned char value)
+{
+    if (set != 255) {
+        D_800560C0[set][channel] = value;
+    } else {
+        D_80056140[channel] = value;
+    }
+}
+
+/* PROMOTED 2026-10-11 — func_80021028
+ * Source:   cloud/work/frontier/w17g/sources/func_80021028.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80021028.c:func_80021028 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+unsigned char func_80021028(unsigned char channel, unsigned char set)
+{
+    if (set != 255) {
+        return D_800560C0[set][channel];
+    } else {
+        return D_80056140[channel];
+    }
+}
+
 /* PROMOTED 2026-10-04 — func_8002106C
  * Source:   cloud/matches/boot_tail/func_8002106C.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -202,5 +388,56 @@ unsigned short func_80021528(void *voice)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_21210/func_80021548.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_21210/func_800215A8.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_21210/func_8002165C.s")
+/* PROMOTED 2026-10-11 — func_800215A8
+ * Source:   cloud/work/frontier/w17g/sources/func_800215A8.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_800215A8.c:func_800215A8 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct VoiceState { u8 unknown00[36]; u32 flags24; u8 unknown28[34]; u8 channel4A; u8 set4B; u8 unknown4C[20]; u32 id60; u8 unknown64[268]; s16 lfo170; u8 unknown172[10]; s16 lfo17C; u8 unknown17E[34]; } VoiceState;
+#pragma pack(0)
+extern u8 func_80021548(u8 controller);
+extern u16 func_80020A04(u8 controller, u8 channel, u8 set);
+u16 func_800215A8(VoiceState *voice, u8 controller)
+{
+    u16 value;
+    switch (func_80021548(controller)) {
+    case 160:
+        value = voice->lfo170 * 2 + 8192;
+        break;
+    case 161:
+        value = voice->lfo17C * 2 + 8192;
+        break;
+    default:
+        value = voice->channel4A != 255
+            ? func_80020A04(controller, voice->channel4A, voice->set4B) : 0;
+        break;
+    }
+    return value;
+}
+
+/* PROMOTED 2026-10-11 — func_8002165C
+ * Source:   cloud/work/frontier/w17g/sources/func_8002165C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_8002165C.c:func_8002165C (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+extern void func_800206AC(u8 controller, u8 channel, u8 set, u16 value);
+void func_8002165C(VoiceState *voice, u8 controller, s16 value)
+{
+    value = value < 0 ? 0 : value > 16383 ? 16383 : value;
+    switch (func_80021548(controller)) {
+    case 160:
+    case 161:
+        break;
+    default:
+        if (voice->channel4A != 255) {
+            func_800206AC(controller, voice->channel4A, voice->set4B, value);
+        }
+        break;
+    }
+}
+
