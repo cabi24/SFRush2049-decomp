@@ -72,12 +72,56 @@
       "verified": "image_gate",
       "verified_at": "2026-10-11"
     },
+    "func_80392F28": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "group": "dot_runtime_a_callers_deep_20261011",
+      "image": "A",
+      "origin": "/tmp/claude-1000/-home-cburnes-projects-rush2049-decomp/e6d4d7af-aa0e-4f5a-98a8-2e25f3b6dd6b/scratchpad/pr310/cloud/work/frontier/dot_runtime_a_callers_deep_20261011",
+      "source": "src/ovl_a/groups/dot_runtime_a_callers_deep_20261011/group.json",
+      "source_sha256": "b14e5475e5542fcbacbbf29a383e570ee433483e050415cfbbb878671ce471e9",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-11"
+    },
     "func_80393004": {
       "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
       "image": "A",
       "origin": "cloud/matches/ovl_a/func_80393004.c",
       "source": "src/ovl_a/func_80393004.c",
       "source_sha256": "75df23079bc65631431207d506531f016aab8018d8ace9919d755b2a3f2f05d1",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-11"
+    },
+    "func_803930B8": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "group": "dot_runtime_a_callers_deep_20261011",
+      "image": "A",
+      "origin": "/tmp/claude-1000/-home-cburnes-projects-rush2049-decomp/e6d4d7af-aa0e-4f5a-98a8-2e25f3b6dd6b/scratchpad/pr310/cloud/work/frontier/dot_runtime_a_callers_deep_20261011",
+      "source": "src/ovl_a/groups/dot_runtime_a_callers_deep_20261011/group.json",
+      "source_sha256": "b14e5475e5542fcbacbbf29a383e570ee433483e050415cfbbb878671ce471e9",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-11"
+    },
+    "func_803931C0": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "group": "dot_runtime_a_callers_deep_20261011",
+      "image": "A",
+      "origin": "/tmp/claude-1000/-home-cburnes-projects-rush2049-decomp/e6d4d7af-aa0e-4f5a-98a8-2e25f3b6dd6b/scratchpad/pr310/cloud/work/frontier/dot_runtime_a_callers_deep_20261011",
+      "source": "src/ovl_a/groups/dot_runtime_a_callers_deep_20261011/group.json",
+      "source_sha256": "b14e5475e5542fcbacbbf29a383e570ee433483e050415cfbbb878671ce471e9",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-11"
+    },
+    "func_803932E4": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "group": "dot_runtime_a_callers_deep_20261011",
+      "image": "A",
+      "origin": "/tmp/claude-1000/-home-cburnes-projects-rush2049-decomp/e6d4d7af-aa0e-4f5a-98a8-2e25f3b6dd6b/scratchpad/pr310/cloud/work/frontier/dot_runtime_a_callers_deep_20261011",
+      "source": "src/ovl_a/groups/dot_runtime_a_callers_deep_20261011/group.json",
+      "source_sha256": "b14e5475e5542fcbacbbf29a383e570ee433483e050415cfbbb878671ce471e9",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
       "verified_at": "2026-10-11"
@@ -304,6 +348,28 @@
       "origin": "cloud/work/frontier/dot_runtime_a_scene_init_group_20261006",
       "source": "src/ovl_a/groups/dot_runtime_a_scene_init_group_20261006/group.json",
       "source_sha256": "08889299bb440cbfe4c198e1951b74a5ce57ae528051628d9e9ee63f1bf8f15d",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-11"
+    },
+    "func_8039E200": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "group": "dot_runtime_a_record_context_20261011",
+      "image": "A",
+      "origin": "/tmp/claude-1000/-home-cburnes-projects-rush2049-decomp/e6d4d7af-aa0e-4f5a-98a8-2e25f3b6dd6b/scratchpad/pr310/cloud/work/frontier/dot_runtime_a_record_context_20261011",
+      "source": "src/ovl_a/groups/dot_runtime_a_record_context_20261011/group.json",
+      "source_sha256": "5d7a16da78dc6331b77e9c023b749e77bf4433520bb7166deb0ea9e5862659a7",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-11"
+    },
+    "func_8039E3BC": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "group": "dot_runtime_a_available_list_20261011",
+      "image": "A",
+      "origin": "/tmp/claude-1000/-home-cburnes-projects-rush2049-decomp/e6d4d7af-aa0e-4f5a-98a8-2e25f3b6dd6b/scratchpad/pr310/cloud/work/frontier/dot_runtime_a_available_list_20261011",
+      "source": "src/ovl_a/groups/dot_runtime_a_available_list_20261011/group.json",
+      "source_sha256": "9e4ea19ecf4890cf6c89cda9c1fd27c24a577d7bcd50631b819c998473e6238a",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
       "verified_at": "2026-10-11"
