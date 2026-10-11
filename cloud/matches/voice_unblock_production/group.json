@@ -1,0 +1,9 @@
+{
+  "files": ["func_8001F954.c"],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": ["func_8001F954"],
+  "members": ["func_8001F954"],
+  "claims": ["func_8001F954"],
+  "context": [],
+  "allow_unverified": false
+}
