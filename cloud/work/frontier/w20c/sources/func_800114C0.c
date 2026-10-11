@@ -1,6 +1,8 @@
 /* flags: -g0 -O2 -mips2 -G 0 -non_shared */
-typedef struct OSMesgQueue OSMesgQueue;
-typedef void *OSMesg;
+/* func_800114C0 - lib_11640 (IDO 7.1): audio frame-size setup. w19a D10 source, w20c: declarations
+ * aligned with the TU (D_800382B0 is the TU's `unsigned char []` message-queue storage, passed with
+ * the TU's cast; osCreateMesgQueue by its symbol_addrs name and the TU's prototype). Type views only. */
+#include "PR/os_message.h"
 extern void *(*D_80038018)(unsigned int, unsigned int);
 extern unsigned char D_80038290;
 extern float D_8002D8C0;
@@ -9,11 +11,11 @@ extern float D_8002D8C8;
 extern unsigned short D_800382A8;
 extern unsigned int D_800382AC;
 extern void *D_8003802C;
-extern OSMesgQueue D_800382B0;
+extern unsigned char D_800382B0[];
 extern OSMesg D_800382C8;
 extern volatile unsigned char D_800382CC;
 extern unsigned short D_8002C5D0[];
-extern void osCreateMesgQueue(OSMesgQueue *, OSMesg *, int);
+extern void osCreateMesgQueue(OSMesgQueue *, void **, int);
 extern void func_80011F60(int);
 extern void func_800123A8(unsigned short);
 void func_800114C0(unsigned short count, unsigned int frequency, unsigned char mode)
@@ -30,7 +32,7 @@ void func_800114C0(unsigned short count, unsigned int frequency, unsigned char m
     D_800382AC = (unsigned int) ((float)(D_800382A8 * D_800382AC) * D_8002D8C8);
     D_800382AC = ((((D_800382AC + 63) >> 6) * 40) + 15) & 0xFFF0;
     D_8003802C = D_80038018(D_800382A8 * 2 * 12U, 0);
-    osCreateMesgQueue(&D_800382B0, &D_800382C8, 1);
+    osCreateMesgQueue((OSMesgQueue *)D_800382B0, &D_800382C8, 1);
     D_800382CC = 0;
     func_80011F60(D_800382A8);
     func_800123A8((unsigned short)(D_8002C5D0[mode] * count));
