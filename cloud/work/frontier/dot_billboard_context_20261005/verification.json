@@ -26,7 +26,7 @@
   "tools_sha256": {
     "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
     "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
-    "tools/conveyor/pipeline/blob_group.py": "340e24d21c67e1c0c8ab3711614492e9ac0b98d81d3d13221996d234b4a39e1a",
+    "tools/conveyor/pipeline/blob_group.py": "0bcaaa6cb97d09a1022957a3ea9485af7e758c29c5f63b4bbb7d0747a739bd40",
     "cloud/work/frontier/dot_billboard_helpers_20261005/verify.py": "34ce850eb69dae16af853c5f3114d1dead9c0251e3c3530f3494de9bcb391a6c"
   },
   "compiler_sha256": {
