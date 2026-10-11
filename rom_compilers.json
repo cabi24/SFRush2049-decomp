@@ -1,0 +1,24 @@
+{
+  "default": "ido5.3",
+  "evidence": "docs/COMPILER_SETTINGS.md#ido-71-boot-tail-segments: w17g tu71.log (all 18 TUs byte-identical under 5.3 and 7.1), locked71.log (every lock in 0x11050-0x26ab0 exact under 7.1), 84 unmatched functions need 7.1's in-place narrowing; w17k full-ROM gate with these pins (ROM matches!)",
+  "segments": {
+    "0x11050": "ido7.1",
+    "0x113e0": "ido7.1",
+    "0x11640": "ido7.1",
+    "0x15930": "ido7.1",
+    "0x15a10": "ido7.1",
+    "0x16320": "ido7.1",
+    "0x17dc0": "ido7.1",
+    "0x1a660": "ido7.1",
+    "0x1cf90": "ido7.1",
+    "0x1ece0": "ido7.1",
+    "0x1f340": "ido7.1",
+    "0x1f5b0": "ido7.1",
+    "0x207b0": "ido7.1",
+    "0x21210": "ido7.1",
+    "0x22300": "ido7.1",
+    "0x257f0": "ido7.1",
+    "0x25bb0": "ido7.1",
+    "0x26ab0": "ido7.1"
+  }
+}
