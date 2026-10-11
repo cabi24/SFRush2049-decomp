@@ -6,11 +6,47 @@ See [builder operations](BUILDING.md#watchman2-builder) for the current
 host and toolchain paths, and the [matching skill](../.claude/skills/match-function/SKILL.md)
 for the workflow.
 
-## Confirmed Compiler
+## Confirmed Compilers
 
-**IDO 5.3** (IRIX Development Option / SGI C Compiler)
+**IDO 5.3** (IRIX Development Option / SGI C Compiler) for libultra, libc and
+the compressed game code; **IDO 7.1** for the Rush-specific boot-tail static
+code (below). Pins: `rom_compilers.json` (per converted segment) and
+`tools/conveyor/compilers.py` (archives, fingerprints, install). A lock entry
+records `"compiler": "ido7.1"` when it was proven with the 7.1 toolkit; entries
+without it are 5.3.
 
-The game was compiled using SGI's IDO compiler. Both IDO 5.3 and 7.1 have been tested and produce similar output for most functions.
+## IDO 7.1 boot-tail segments
+
+| Segments (ROM TU) | Compiler |
+|---|---|
+| `0x11050` `0x113e0` `0x11640` `0x15930` `0x15a10` `0x16320` `0x17dc0` `0x1a660` `0x1cf90` `0x1ece0` `0x1f340` `0x1f5b0` `0x207b0` `0x21210` `0x22300` `0x257f0` `0x25bb0` `0x26ab0` (`src/rom/lib_<seg>.c`) | IDO 7.1 |
+| `0x26f60` (still `asm`, 4 functions) | 7.1 expected; not pinned until converted and proven |
+| every other static segment (libultra `0x1050`-`0x10d60`, libc, libgcc) | IDO 5.3 |
+
+Evidence (2026-10-11):
+
+- **Codegen marker.** A narrow (`u8`/`u16`) parameter homed with `sw a0` and
+  narrowed in place (`andi a0,a0,0xffff`) is IDO 7.1; IDO 5.3 narrows into a
+  temporary (`andi t6,a0,0xffff ... move a0,t6`). The in-place form occurs in 84
+  unmatched boot-tail functions. Example `func_80015348`
+  (`void f(unsigned short id){ func_8001661C(id); }`, `-g0 -O2 -mips2`): 5.3
+  true=165, 7.1 = ROM (cloud/work/frontier/w17g).
+- **The switch is byte-neutral.** All 18 boot-tail TUs build byte-identical
+  (`.text` + relocations + data) under 5.3 and 7.1; libultra controls
+  (`lib_10d60`, `lib_105f0`, `lib_f700`) differ (w17g `tu71.log`). Every static lock
+  in `0x11050`-`0x26ab0` re-scores exact under 7.1; the 38 locks that differ are
+  all libultra (w17g `locked71.log`).
+- **Full ROM.** With the 18 pins, a clean `make COMPILER=ido && make test` on
+  watchman2 gives `ROM matches!` (18 of 102 ROM TUs compiled by 7.1). Pinning
+  libultra `lib_10d60` as well gives `ROM does NOT match` (cloud/work/frontier/w17k).
+- **Matches.** 58 w17g sources are lock-exact with the 7.1 toolkit (51 of them
+  only under 7.1), and the full ROM with all 58 spliced by `promote_batch`
+  builds `ROM matches!` (w17k `score71.log`, `fullsplice.log`).
+
+Both releases are decompals ido-static-recomp v1.2. Flagsets are unchanged
+(`-g0 -O2 -mips2 -G 0 -non_shared`): the compiler is not a flag, so
+`promote_batch`'s flagset comparison is unaffected and the compiler check is
+separate.
 
 ## Base Flags
 

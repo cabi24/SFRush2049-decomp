@@ -96,6 +96,53 @@ tar xzf <blob> -C ~/rush2049/repo/tools/ido-static-recomp/build/out \
     --strip-components=1 ido
 ```
 
+### IDO 7.1 (second compiler, boot-tail ROM TUs)
+
+The 18 Rush boot-tail ROM TUs (`lib_11050` ... `lib_26ab0`) build with IDO 7.1;
+everything else (libultra, libc, all other TUs) stays on IDO 5.3. The pins live in
+`rom_compilers.json`; `pipeline.layout` turns them into `CC := $(IDO71_CC)` lines
+in `src/rom/opt_overrides.mk`. Evidence and segment list:
+[compiler settings](COMPILER_SETTINGS.md#ido-71-boot-tail-segments).
+
+Vendoring follows the 5.3 pattern: the binaries are **not committed**
+(`tools/ido-static-recomp/` and `tools/cloud/ido*/` are ignored). The
+decompals ido-static-recomp v1.2 release archive is pinned by sha256 in
+`tools/conveyor/compilers.py` (`ido-7.1-recomp-linux.tar.gz`,
+`0d411696e178fcca34c31c3bf02011b928d7fd9c1fa7f8bf45070e0781b58e15`), and the
+installer verifies the archive before extracting and checks the unpacked
+binaries' fingerprints:
+
+```bash
+# builder, once (into tools/ido-static-recomp/build71/out = the Makefile's IDO71_ROOT)
+ssh watchman2 'cd ~/rush2049/repo && python3 -m tools.conveyor.compilers install ido7.1'
+python3 -m tools.conveyor.compilers identify tools/ido-static-recomp/build71/out   # -> ido7.1
+```
+
+The repo sync above excludes `tools/ido-static-recomp/`, so the builder's 7.1
+survives syncs like its 5.3. The binaries are x86-64 recompilations that need
+4 KB pages: they run on watchman2 and CI, not on the Pi (the Pi may download and
+fingerprint them, which is how the 7.1 toolkit is built, but never runs them). A
+build whose selected compiler is missing stops with
+`error: compiler ... is not installed`; it never falls back to 5.3.
+
+CI builds no ROM (no baserom) and its tests need no IDO 7.1. A cloud box that
+wants to score boot-tail functions installs it beside the 5.3 copy:
+`python3 -m tools.conveyor.compilers install ido7.1 --dest tools/cloud/ido71`.
+
+**Toolkit.** The pool scores with toolkit bundles. The 7.1 toolkit is the pinned
+5.3 toolkit with `ido/` swapped, built deterministically from the same blob
+(reproduced on the Pi and watchman2: `4586d230749de1bc8a64add52ae53db0ffde18a1eee76c8a73f3791fd98e2557`
+from `d4c39cbc…`). It is uploaded, **not pinned**: jobs keep the 5.3 default, and
+`lock add --toolkit <sha>` selects 7.1 for one proof and records
+`"compiler": "ido7.1"` in the lock entry.
+
+```bash
+python3 -m tools.conveyor.compilers install ido7.1 --dest /tmp/ido71
+python3 -m tools.conveyor.bundles.build_toolkit --swap-ido-from ~/.conveyor/blobs/<pinned-5.3-sha> \
+    --ido /tmp/ido71 --out /tmp/tk71.tar.gz        # prints sha256 + "compiler: ido7.1"
+python3 -m tools.conveyor.cli publish-toolkit /tmp/tk71.tar.gz --no-pin
+```
+
 ### Replacing the builder again
 
 For `pipeline/promote.py` and `pipeline/romtruth.py`, set `CONVEYOR_BUILDER`
