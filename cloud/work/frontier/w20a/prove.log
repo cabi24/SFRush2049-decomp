@@ -1,0 +1,7 @@
+func_80017D38 ok 
+func_8001824C ok 
+== func_80017D38 (target func_80017D38) src=lane/sources/func_80017D38.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (235 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (235 rows) RESULT PASS 
+== func_8001824C (target func_8001824C) src=lane/sources/func_8001824C.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (133 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (133 rows) RESULT PASS 
+wrote spl/src/rom/lib_17dc0.c
+== all sources spliced
+lib_17dc0: IDENTICAL (2598 lines: .text words+relocs, data sections)
