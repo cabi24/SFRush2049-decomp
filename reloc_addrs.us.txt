@@ -142,3 +142,33 @@ rom:0x16E4C reloc:MIPS_LO16 symbol:D_800385A8 addend:-0xC // was D_8003859C
 rom:0x172C0 reloc:MIPS_HI16 symbol:D_80042230 addend:-0x8 // was D_80042228
 rom:0x172C4 reloc:MIPS_LO16 symbol:D_80042230 addend:-0x8 // was D_80042228
 
+
+// func_80013DEC (w20c, reloc_split derive vs cloud/work/frontier/w20c/sources/func_80013DEC.c)
+rom:0x14A3C reloc:MIPS_HI16 symbol:D_80038292 addend:0x0 // was an unpaired raw immediate
+rom:0x14A48 reloc:MIPS_LO16 symbol:D_80038292 addend:0x0 // was an unpaired raw immediate
+
+// func_800114C0 (w20c, reloc_split derive vs cloud/work/frontier/w20c/sources/func_800114C0.c)
+rom:0x1236C reloc:CUSTOM_CONSTANT_HI symbol:0x80000000 // was D_8000003F
+rom:0x12390 reloc:CUSTOM_CONSTANT_LO symbol:0x3F // was D_8000003F
+
+// func_80011104 (w20c, reloc_split derive vs cloud/work/frontier/w20c/sources/func_80011104.c)
+rom:0x11E7C reloc:CUSTOM_CONSTANT_HI symbol:0x80000000 // was g_tlb_exception_vector
+rom:0x11EA4 reloc:CUSTOM_CONSTANT_LO symbol:0x1 // was g_tlb_exception_vector + 0x1
+rom:0x11F50 reloc:CUSTOM_CONSTANT_HI symbol:0x80000000 // was g_tlb_exception_vector
+rom:0x11F78 reloc:CUSTOM_CONSTANT_LO symbol:0x1 // was g_tlb_exception_vector + 0x1
+
+// func_8001B9F8 (w20c, reloc_split derive vs cloud/work/frontier/w20c/sources/func_8001B9F8.c)
+rom:0x1C678 reloc:MIPS_HI16 symbol:D_8004F300 addend:0x500 // was D_8004F800
+rom:0x1C67C reloc:MIPS_LO16 symbol:D_8004F300 addend:0x500 // was D_8004F800
+rom:0x1C760 reloc:MIPS_HI16 symbol:D_8004F300 addend:0x500 // was D_8004F800
+rom:0x1C764 reloc:MIPS_LO16 symbol:D_8004F300 addend:0x500 // was D_8004F800
+rom:0x1C868 reloc:MIPS_HI16 symbol:D_8004F300 addend:0x500 // was D_8004F800
+rom:0x1C86C reloc:MIPS_LO16 symbol:D_8004F300 addend:0x500 // was D_8004F800
+
+// func_8001BE14 (w20c, reloc_split derive vs cloud/work/frontier/w20c/sources/func_8001BE14.c)
+rom:0x1CA90 reloc:MIPS_HI16 symbol:D_8004F300 addend:0x500 // was D_8004F800
+rom:0x1CA94 reloc:MIPS_LO16 symbol:D_8004F300 addend:0x500 // was D_8004F800
+rom:0x1CB6C reloc:MIPS_HI16 symbol:D_8004F300 addend:0x500 // was D_8004F800
+rom:0x1CB70 reloc:MIPS_LO16 symbol:D_8004F300 addend:0x500 // was D_8004F800
+rom:0x1CC68 reloc:MIPS_HI16 symbol:D_8004F300 addend:0x500 // was D_8004F800
+rom:0x1CC6C reloc:MIPS_LO16 symbol:D_8004F300 addend:0x500 // was D_8004F800

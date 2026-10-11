@@ -33,8 +33,8 @@ glabel func_8001BE14
     /* 1CA84 8001BE84 01C00008 */  jr         $t6
     /* 1CA88 8001BE88 00000000 */   nop
     /* 1CA8C 8001BE8C 3C038005 */  lui        $v1, %hi(D_8004F300)
-    /* 1CA90 8001BE90 3C068005 */  lui        $a2, %hi(D_8004F800)
-    /* 1CA94 8001BE94 24C6F800 */  addiu      $a2, $a2, %lo(D_8004F800)
+    /* 1CA90 8001BE90 3C068005 */  lui        $a2, %hi(D_8004F300 + 0x500)
+    /* 1CA94 8001BE94 24C6F800 */  addiu      $a2, $a2, %lo(D_8004F300 + 0x500)
     /* 1CA98 8001BE98 2463F300 */  addiu      $v1, $v1, %lo(D_8004F300)
     /* 1CA9C 8001BE9C 8FA80028 */  lw         $t0, 0x28($sp)
     /* 1CAA0 8001BEA0 24040001 */  addiu      $a0, $zero, 0x1
@@ -97,8 +97,8 @@ glabel func_8001BE14
     /* 1CB60 8001BF60 1000008A */  b          .L8001C18C
     /* 1CB64 8001BF64 AFA80028 */   sw        $t0, 0x28($sp)
     /* 1CB68 8001BF68 3C038005 */  lui        $v1, %hi(D_8004F300)
-    /* 1CB6C 8001BF6C 3C098005 */  lui        $t1, %hi(D_8004F800)
-    /* 1CB70 8001BF70 2529F800 */  addiu      $t1, $t1, %lo(D_8004F800)
+    /* 1CB6C 8001BF6C 3C098005 */  lui        $t1, %hi(D_8004F300 + 0x500)
+    /* 1CB70 8001BF70 2529F800 */  addiu      $t1, $t1, %lo(D_8004F300 + 0x500)
     /* 1CB74 8001BF74 2463F300 */  addiu      $v1, $v1, %lo(D_8004F300)
     /* 1CB78 8001BF78 8FA80028 */  lw         $t0, 0x28($sp)
     /* 1CB7C 8001BF7C 24060003 */  addiu      $a2, $zero, 0x3
@@ -170,8 +170,8 @@ glabel func_8001BE14
     /* 1CC60 8001C060 24020001 */  addiu      $v0, $zero, 0x1
   .L8001C064:
     /* 1CC64 8001C064 3C038005 */  lui        $v1, %hi(D_8004F300)
-    /* 1CC68 8001C068 3C068005 */  lui        $a2, %hi(D_8004F800)
-    /* 1CC6C 8001C06C 24C6F800 */  addiu      $a2, $a2, %lo(D_8004F800)
+    /* 1CC68 8001C068 3C068005 */  lui        $a2, %hi(D_8004F300 + 0x500)
+    /* 1CC6C 8001C06C 24C6F800 */  addiu      $a2, $a2, %lo(D_8004F300 + 0x500)
     /* 1CC70 8001C070 2463F300 */  addiu      $v1, $v1, %lo(D_8004F300)
     /* 1CC74 8001C074 00402025 */  or         $a0, $v0, $zero
     /* 1CC78 8001C078 8FA80028 */  lw         $t0, 0x28($sp)

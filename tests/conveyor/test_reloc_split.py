@@ -105,3 +105,81 @@ def test_check_rejects_entries_that_do_not_encode_the_rom_word(tmp_path):
 def test_checked_in_entries_encode_their_rom_words():
     assert reloc_split.parse(), "reloc_addrs.us.txt has no entries"
     assert reloc_split.check() == []
+
+
+# w20c: relocation present on one side only, and own-section sites.
+
+@needs_as
+def test_constant_paired_as_an_address_becomes_a_custom_constant(tmp_path):
+    # func_800114C0: splat paired the float->u32 `lui at,0x8000` with an unrelated
+    # `addiu ...,63` as D_8000003F; IDO emits no relocation at either site.
+    body = ("    lui   $at, %hi(D_8000003F)\n    or    $t1, $t1, $at\n"
+            "    addiu $t3, $t1, %lo(D_8000003F)\n")
+    cand = body.replace("%hi(D_8000003F)", "0x8000").replace("%lo(D_8000003F)", "63")
+    lines = reloc_split.derive(0x8001176C, assemble(tmp_path, "t", body),
+                               assemble(tmp_path, "c", cand), resolve=lambda s: 0x8000003F)
+    assert lines == [
+        "rom:0x1236C reloc:CUSTOM_CONSTANT_HI symbol:0x80000000 // was D_8000003F",
+        "rom:0x12374 reloc:CUSTOM_CONSTANT_LO symbol:0x3F // was D_8000003F",
+    ]
+    rom = bytearray(0x12378)
+    rom[0x1236C:0x12370] = (0x3C018000).to_bytes(4, "big")
+    rom[0x12374:0x12378] = (0x252B003F).to_bytes(4, "big")
+    f = tmp_path / "reloc_addrs.txt"
+    f.write_text("\n".join(lines) + "\n")
+    assert reloc_split.check(f, rom=bytes(rom), resolve=lambda s: None) == []
+    # The HI constant is rendered `(value >> 16)`: no %hi carry, so 0x7FFF8000 != 0x8000.
+    f.write_text("rom:0x1236C reloc:CUSTOM_CONSTANT_HI symbol:0x7FFF8000\n"
+                 "rom:0x12374 reloc:CUSTOM_CONSTANT_LO symbol:D_8000003F\n")
+    assert [n for n, _ in reloc_split.check(f, rom=bytes(rom), resolve=lambda s: None)] == [1, 2]
+
+
+@needs_as
+def test_target_addend_on_a_constant_site_is_read_from_its_field(tmp_path):
+    # func_80011104: the same artifact named g_tlb_exception_vector + 0x1.
+    body = ("    lui   $at, %hi(g_tlb_exception_vector + 0x1)\n"
+            "    addiu $t4, $t2, %lo(g_tlb_exception_vector + 0x1)\n")
+    cand = "    lui   $at, 0x8000\n    addiu $t4, $t2, 1\n"
+    lines = reloc_split.derive(0x8001127C, assemble(tmp_path, "t", body),
+                               assemble(tmp_path, "c", cand), resolve=lambda s: 0x80000000)
+    assert [l.split(" //")[0] for l in lines] == [
+        "rom:0x11E7C reloc:CUSTOM_CONSTANT_HI symbol:0x80000000",
+        "rom:0x11E80 reloc:CUSTOM_CONSTANT_LO symbol:0x1",
+    ]
+
+
+@needs_as
+def test_a_constant_that_is_not_the_target_half_is_refused(tmp_path):
+    body = "    lui   $at, %hi(D_8000003F)\n"
+    with pytest.raises(reloc_split.SplitError):
+        reloc_split.derive(0x8001176C, assemble(tmp_path, "t", body),
+                           assemble(tmp_path, "c", "    lui   $at, 0x8001\n"),
+                           resolve=lambda s: 0x8000003F)
+
+
+@needs_as
+def test_unpaired_raw_immediate_is_named_by_the_candidate_symbol(tmp_path):
+    # func_80013DEC: splat left `lui s0,0x8004; lhu s0,-0x7D6E(s0)` unpaired.
+    raw = "    lui   $s0, 0x8004\n    nop\n    lhu   $s0, -0x7D6E($s0)\n"
+    cand = "    lui   $s0, %hi(D_80038292)\n    nop\n    lhu   $s0, %lo(D_80038292)($s0)\n"
+    lines = reloc_split.derive(0x80013E3C, assemble(tmp_path, "t", raw),
+                               assemble(tmp_path, "c", cand))
+    assert [l.split(" //")[0] for l in lines] == [
+        "rom:0x14A3C reloc:MIPS_HI16 symbol:D_80038292 addend:0x0",
+        "rom:0x14A44 reloc:MIPS_LO16 symbol:D_80038292 addend:0x0",
+    ]
+    # A symbol whose halves the raw words do not encode is refused.
+    with pytest.raises(reloc_split.SplitError):
+        reloc_split.derive(0x80013E3C, assemble(tmp_path, "t2", raw),
+                           assemble(tmp_path, "c2", cand.replace("D_80038292", "D_80038294")))
+
+
+@needs_as
+def test_own_section_sites_are_listed_not_proposed(tmp_path):
+    # A jump table the candidate holds in its own .rodata: an owned data slot, not a name.
+    body = "    lui   $at, %hi(jtbl_8002D930_main)\n    lw    $t6, %lo(jtbl_8002D930_main)($at)\n"
+    cand = (".section .rodata\ntbl:\n.word 0\n.text\n"
+            "    lui   $at, %hi(tbl)\n    lw    $t6, %lo(tbl)($at)\n")
+    lines = reloc_split.derive(0x80021560, assemble(tmp_path, "t", body),
+                               assemble(tmp_path, "c", cand))
+    assert len(lines) == 2 and all(l.startswith("// rom:") and "owned data slot" in l for l in lines)
