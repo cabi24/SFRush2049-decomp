@@ -81,10 +81,18 @@ def cmd_publish_toolkit(args):
     if status != 201:
         sys.exit(f"blob upload failed: {status} {out}")
     assert out["sha256"] == local_sha
+    from .compilers import identify_toolkit
+
+    compiler = identify_toolkit(args.toolkit) or "unknown compiler"
+    if args.no_pin:
+        # A second-compiler toolkit (IDO 7.1): stored and fetchable by sha
+        # (`lock add --toolkit SHA`), never the default for new jobs.
+        print(f"toolkit sha256 {local_sha} uploaded ({compiler}), NOT pinned")
+        return
     status, _ = client.call("PUT", f"{API}/meta/toolkit_sha", body={"value": local_sha})
     if status != 200:
         sys.exit(f"failed to pin toolkit: {status}")
-    print(f"toolkit sha256 {local_sha} pinned as current")
+    print(f"toolkit sha256 {local_sha} pinned as current ({compiler})")
 
 
 def cmd_nodes(args):
@@ -531,6 +539,8 @@ def main():
 
     p = sub.add_parser("publish-toolkit")
     p.add_argument("toolkit")
+    p.add_argument("--no-pin", action="store_true",
+                   help="upload only; keep the current pinned toolkit (second compiler)")
     p.set_defaults(func=cmd_publish_toolkit)
 
     p = sub.add_parser("nodes")
