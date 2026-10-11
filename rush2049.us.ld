@@ -130,7 +130,7 @@ SECTIONS
         build/us/src/rom/lib_a050.o(.text);
         build/us/src/rom/lib_a330.o(.text);
         build/us/src/rom/lib_a5b0.o(.text);
-        build/us/asm/us/A5F0.o(.text);
+        build/us/src/rom/lib_a5f0.o(.text);
         build/us/src/rom/lib_a800.o(.text);
         build/us/src/rom/lib_a810.o(.text);
         build/us/src/rom/lib_ab20.o(.text);
@@ -162,7 +162,7 @@ SECTIONS
         build/us/src/rom/lib_e3f0.o(.text);
         build/us/asm/us/E440.o(.text);
         build/us/asm/us/E490.o(.text);
-        build/us/asm/us/E4F0.o(.text);
+        build/us/src/rom/lib_e4f0.o(.text);
         build/us/src/rom/lib_e7c0.o(.text);
         build/us/src/rom/lib_e8d0.o(.text);
         build/us/src/rom/lib_e9a0.o(.text);
@@ -256,7 +256,7 @@ SECTIONS
         build/us/src/rom/lib_a050.o(.data);
         build/us/src/rom/lib_a330.o(.data);
         build/us/src/rom/lib_a5b0.o(.data);
-        build/us/asm/us/A5F0.o(.data);
+        build/us/src/rom/lib_a5f0.o(.data);
         build/us/src/rom/lib_a800.o(.data);
         build/us/src/rom/lib_a810.o(.data);
         build/us/src/rom/lib_ab20.o(.data);
@@ -288,7 +288,7 @@ SECTIONS
         build/us/src/rom/lib_e3f0.o(.data);
         build/us/asm/us/E440.o(.data);
         build/us/asm/us/E490.o(.data);
-        build/us/asm/us/E4F0.o(.data);
+        build/us/src/rom/lib_e4f0.o(.data);
         build/us/src/rom/lib_e7c0.o(.data);
         build/us/src/rom/lib_e8d0.o(.data);
         build/us/src/rom/lib_e9a0.o(.data);
@@ -382,7 +382,7 @@ SECTIONS
         build/us/src/rom/lib_a050.o(.rodata);
         build/us/src/rom/lib_a330.o(.rodata);
         build/us/src/rom/lib_a5b0.o(.rodata);
-        build/us/asm/us/A5F0.o(.rodata);
+        build/us/src/rom/lib_a5f0.o(.rodata);
         build/us/src/rom/lib_a800.o(.rodata);
         build/us/src/rom/lib_a810.o(.rodata);
         build/us/src/rom/lib_ab20.o(.rodata);
@@ -414,7 +414,7 @@ SECTIONS
         build/us/src/rom/lib_e3f0.o(.rodata);
         build/us/asm/us/E440.o(.rodata);
         build/us/asm/us/E490.o(.rodata);
-        build/us/asm/us/E4F0.o(.rodata);
+        build/us/src/rom/lib_e4f0.o(.rodata);
         build/us/src/rom/lib_e7c0.o(.rodata);
         build/us/src/rom/lib_e8d0.o(.rodata);
         /* ROM_OWNED_SECTION_MOVED build/us/src/rom/lib_e9a0.o(.rodata) */
@@ -513,7 +513,7 @@ SECTIONS
         build/us/src/rom/lib_a050.o(.bss);
         build/us/src/rom/lib_a330.o(.bss);
         build/us/src/rom/lib_a5b0.o(.bss);
-        build/us/asm/us/A5F0.o(.bss);
+        build/us/src/rom/lib_a5f0.o(.bss);
         build/us/src/rom/lib_a800.o(.bss);
         build/us/src/rom/lib_a810.o(.bss);
         build/us/src/rom/lib_ab20.o(.bss);
@@ -545,7 +545,7 @@ SECTIONS
         build/us/src/rom/lib_e3f0.o(.bss);
         build/us/asm/us/E440.o(.bss);
         build/us/asm/us/E490.o(.bss);
-        build/us/asm/us/E4F0.o(.bss);
+        build/us/src/rom/lib_e4f0.o(.bss);
         build/us/src/rom/lib_e7c0.o(.bss);
         build/us/src/rom/lib_e8d0.o(.bss);
         build/us/src/rom/lib_e9a0.o(.bss);
