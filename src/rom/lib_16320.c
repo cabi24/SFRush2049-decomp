@@ -4,14 +4,184 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80015720.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_800158D8.s")
+/* PROMOTED 2026-10-11 — func_80015720
+ * Source:   cloud/work/frontier/w19b/relocname/func_80015720.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19b/relocname/func_80015720.c:func_80015720 (score0); rom_tu.h context: cloud/work/frontier/w19b/ctx71_relocname.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct { void *payload; u16 id; u16 references; } RecordFields_8003C618;
+#pragma pack()
+typedef union { RecordFields_8003C618 fields; unsigned int words[2]; } RecordStorage_8003C618;
+extern int D_8003C610;
+extern RecordStorage_8003C618 D_8003C618[];
+extern void func_80014594(void);
+extern void func_800145DC(void);
+int func_80015720(u16 id, void *payload)
+{
+    int i;
+    int j;
+    func_80014594();
+    for (i = 0; i < D_8003C610 && ((RecordFields_8003C618 *)&D_8003C618[i])->id < id; i++) {
+    }
+    if (i < D_8003C610) {
+        if (((RecordFields_8003C618 *)&D_8003C618[i])->id != id) {
+            if (D_8003C610 < 2048) {
+                for (j = D_8003C610 - 1; j >= i; j--) {
+                    D_8003C618[j + 1] = D_8003C618[j];
+                }
+                D_8003C610++;
+            } else {
+                func_800145DC();
+                return 0;
+            }
+        } else {
+            ((RecordFields_8003C618 *)&D_8003C618[i])->references++;
+            func_800145DC();
+            return 0;
+        }
+    } else {
+        if (D_8003C610 < 2048) {
+            D_8003C610++;
+        } else {
+            func_800145DC();
+            return 0;
+        }
+    }
+    ((RecordFields_8003C618 *)&D_8003C618[i])->payload = payload;
+    ((RecordFields_8003C618 *)&D_8003C618[i])->id = id;
+    ((RecordFields_8003C618 *)&D_8003C618[i])->references = 1;
+    func_800145DC();
+    return 1;
+}
+
+/* PROMOTED 2026-10-11 — func_800158D8
+ * Source:   cloud/work/frontier/w19b/relocname/func_800158D8.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19b/relocname/func_800158D8.c:func_800158D8 (score0); rom_tu.h context: cloud/work/frontier/w19b/ctx71_relocname.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack()
+int func_800158D8(u16 id)
+{
+    int i;
+    int j;
+    func_80014594();
+    for (i = 0; i < D_8003C610 && ((RecordFields_8003C618 *)&D_8003C618[i])->id != id; i++) {
+    }
+    if (i != D_8003C610) {
+        if (--((RecordFields_8003C618 *)&D_8003C618[i])->references == 0) {
+            for (j = i + 1; j < D_8003C610; j++) {
+                D_8003C618[j - 1] = D_8003C618[j];
+            }
+            D_8003C610--;
+            func_800145DC();
+            return 1;
+        }
+    }
+    func_800145DC();
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80015A0C.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80015C0C.s")
+/* PROMOTED 2026-10-11 — func_80015C0C
+ * Source:   cloud/work/frontier/w19b/relocname/func_80015C0C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19b/relocname/func_80015C0C.c:func_80015C0C (score0); rom_tu.h context: cloud/work/frontier/w19b/ctx71_relocname.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct { unsigned int payload; u16 id; u16 type; u16 references; u16 metadata; } RecordFields_8003CE20;
+#pragma pack()
+extern int D_8003CE18;
+typedef union { RecordFields_8003CE20 fields; unsigned int words[3]; } RecordStorage_8003CE20;
+extern RecordStorage_8003CE20 D_8003CE20[];
+int func_80015C0C(u16 id)
+{
+    int i;
+    int j;
+    func_80014594();
+    for (i = 0; i < D_8003CE18 && ((RecordFields_8003CE20 *)&D_8003CE20[i])->id != id; i++) {
+    }
+    if (i != D_8003CE18) {
+        if (--((RecordFields_8003CE20 *)&D_8003CE20[i])->references == 0) {
+            for (j = i + 1; j < D_8003CE18; j++) {
+                D_8003CE20[j - 1] = D_8003CE20[j];
+            }
+            D_8003CE18--;
+            func_800145DC();
+            return 1;
+        }
+    }
+    func_800145DC();
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80015D68.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80015F28.s")
+/* PROMOTED 2026-10-11 — func_80015F28
+ * Source:   cloud/work/frontier/w19b/relocname/func_80015F28.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19b/relocname/func_80015F28.c:func_80015F28 (score0); rom_tu.h context: cloud/work/frontier/w19b/ctx71_relocname.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct { unsigned int payload; u16 id; u16 references; } RecordFields_80038610;
+#pragma pack()
+extern int D_80038608;
+typedef union { RecordFields_80038610 fields; unsigned int words[2]; } RecordStorage_80038610;
+extern RecordStorage_80038610 D_80038610[];
+int func_80015F28(u16 id)
+{
+    int i;
+    int j;
+    func_80014594();
+    for (i = 0; i < D_80038608 && ((RecordFields_80038610 *)&D_80038610[i])->id != id; i++) {
+    }
+    if (i != D_80038608) {
+        if (--((RecordFields_80038610 *)&D_80038610[i])->references == 0) {
+            for (j = i + 1; j < D_80038608; j++) {
+                D_80038610[j - 1] = D_80038610[j];
+            }
+            D_80038608--;
+            func_800145DC();
+            return 1;
+        }
+    }
+    func_800145DC();
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_8001605C.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_800161A0.s")
+/* PROMOTED 2026-10-11 — func_800161A0
+ * Source:   cloud/work/frontier/w19b/relocname/func_800161A0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19b/relocname/func_800161A0.c:func_800161A0 (score0); rom_tu.h context: cloud/work/frontier/w19b/ctx71_relocname.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "boot_tail_sample_contract.h"
+extern int D_800385A0;
+extern RegisteredSamples D_800385A8[];
+int func_800161A0(SampleRecord *records)
+{
+    int index;
+    int following;
+    for (index = 0; index < D_800385A0 &&
+         D_800385A8[index].records != records; ++index) {
+    }
+    if (index != D_800385A0) {
+        func_80014594();
+        for (following = index + 1; following < D_800385A0; ++following) {
+            D_800385A8[following - 1] = D_800385A8[following];
+        }
+        --D_800385A0;
+        func_800145DC();
+        return 1;
+    }
+    return 0;
+}
+
 /* PROMOTED 2026-10-04 — func_800162AC
  * Source:   cloud/matches/boot_tail/func_800162AC.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -119,7 +289,32 @@ int func_800164D0(u16 id, Descriptor *descriptors, u16 count)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_8001661C.s")
+/* PROMOTED 2026-10-11 — func_8001661C
+ * Source:   cloud/work/frontier/w19b/relocname/func_8001661C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19b/relocname/func_8001661C.c:func_8001661C (score0); rom_tu.h context: cloud/work/frontier/w19b/ctx71_relocname.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack()
+int func_8001661C(u16 id)
+{
+    int i;
+    int j;
+    for (i = 0; i < D_80042228 && ((RecordFields *)&D_80042230[i])->id != id; i++) {
+    }
+    if (i != D_80042228) {
+        func_80014594();
+        for (j = i + 1; j < D_80042228; j++) {
+            D_80042230[j - 1] = D_80042230[j];
+        }
+        D_80042228--;
+        func_800145DC();
+        return 1;
+    }
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_8001671C.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016998.s")
 /* PROMOTED 2026-10-04 — func_80016BF8
