@@ -158,7 +158,47 @@ void func_800110C4(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80011104.s")
+/* PROMOTED 2026-10-11 — func_80011104
+ * Source:   cloud/work/frontier/w20c/sources/func_80011104.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w20c/sources/func_80011104.c:func_80011104 (score0); rom_tu.h context: cloud/work/frontier/w20c/ctx71_w20c.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern void *D_80038298;
+extern unsigned short D_8003829C;
+extern unsigned char D_8003829E;
+extern float D_8002D8B8;
+extern float D_8002D8BC;
+extern unsigned short D_800382CE;
+extern unsigned short *D_800382D8[2];
+extern unsigned short D_800382E0[2];
+extern void *D_800382E4;
+void func_80011104(unsigned short count, unsigned int frequency)
+{
+    unsigned short i;
+    D_8003829C = count;
+    D_80038298 = D_80038018(D_8003829C * sizeof(AudioState), 0);
+    D_80038294 = D_80038298;
+    D_8003829E = 0;
+    for (i = 0; i < D_8003829C; i++) {
+        ((AudioState *)D_80038298)[i].active = 0;
+        ((AudioState *)D_80038298)[i].release_pending = 0;
+        ((AudioState *)D_80038298)[i].unknown60 = 255;
+    }
+    if (D_80038290 == 0) {
+        D_800382CE = (unsigned short) (((float)frequency / 50.0f / 192.0f) * D_8002D8B8) + 1;
+    } else {
+        D_800382CE = (unsigned short) (((float)frequency / 25.0f / 192.0f) * D_8002D8BC) + 1;
+    }
+    D_800382D8[0] = D_80038018(D_800382CE * 2576U, 0);
+    D_800382D8[1] = D_80038018(D_800382CE * 2576U, 0);
+    D_800382E0[1] = 0;
+    D_800382E0[0] = 0;
+    D_800382E4 = D_80038018(664, 0);
+    bzero(D_800382E4, 664);
+    osWritebackDCache(D_800382E4, 664);
+}
+
 /* PROMOTED 2026-10-04 — func_8001144C
  * Source:   cloud/matches/boot_tail/func_8001144C.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -179,7 +219,45 @@ void func_8001144C(void)
     D_8003801C(D_800382E4);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_800114C0.s")
+/* PROMOTED 2026-10-11 — func_800114C0
+ * Source:   cloud/work/frontier/w20c/sources/func_800114C0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w20c/sources/func_800114C0.c:func_800114C0 (score0); rom_tu.h context: cloud/work/frontier/w20c/ctx71_w20c.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "PR/os_message.h"
+extern float D_8002D8C0;
+extern float D_8002D8C4;
+extern float D_8002D8C8;
+extern unsigned short D_800382A8;
+extern unsigned int D_800382AC;
+extern void *D_8003802C;
+extern unsigned char D_800382B0[];
+extern OSMesg D_800382C8;
+extern volatile unsigned char D_800382CC;
+extern unsigned short D_8002C5D0[];
+extern void func_80011F60(int);
+extern void func_800123A8(unsigned short);
+void func_800114C0(unsigned short count, unsigned int frequency, unsigned char mode)
+{
+    if (D_80038290 == 0) {
+        D_800382A8 = count * ((unsigned short) (((float)frequency / 50.0f * D_8002D8C0) / 192.0f) + 1);
+    } else {
+        D_800382A8 = count * ((unsigned short) (((float)frequency / 25.0f * D_8002D8C4) / 192.0f) + 1);
+    }
+    D_800382AC = 784;
+    if (D_800382AC < 192) {
+        D_800382AC = 192;
+    }
+    D_800382AC = (unsigned int) ((float)(D_800382A8 * D_800382AC) * D_8002D8C8);
+    D_800382AC = ((((D_800382AC + 63) >> 6) * 40) + 15) & 0xFFF0;
+    D_8003802C = D_80038018(D_800382A8 * 2 * 12U, 0);
+    osCreateMesgQueue((OSMesgQueue *)D_800382B0, &D_800382C8, 1);
+    D_800382CC = 0;
+    func_80011F60(D_800382A8);
+    func_800123A8((unsigned short)(D_8002C5D0[mode] * count));
+}
+
 /* PROMOTED 2026-10-04 — func_80011848
  * Source:   cloud/matches/boot_tail/func_80011848.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -621,7 +699,96 @@ int func_80013D70(unsigned short index, unsigned short count)
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80013DEC.s")
+/* PROMOTED 2026-10-11 — func_80013DEC
+ * Source:   cloud/work/frontier/w20c/sources/func_80013DEC.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w20c/sources/func_80013DEC.c:func_80013DEC (score0); rom_tu.h context: cloud/work/frontier/w20c/ctx71_w20c.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern void (*D_80038020)(void);
+extern void (*D_80038024)(void);
+extern unsigned short *D_800382D8[];
+extern unsigned short D_80038360;
+extern volatile short D_80038362;
+extern unsigned int __osDisableInt(void);
+extern void __osRestoreInt(unsigned int);
+extern void func_80014624(void);
+extern void func_80014650(void);
+extern void func_8001DDE0(void);
+extern void func_80011CD8(void);
+extern void func_80011894(void);
+extern void func_80012200(void);
+extern void func_80013964(void);
+extern void func_80013C84(void);
+extern int func_80013D70(unsigned short, unsigned short);
+extern void func_80011D24(void);
+extern void func_8001C508(void);
+extern void func_800119E0(void);
+extern void func_8001C3CC(void);
+void func_80013DEC(void)
+{
+    unsigned short index;
+    unsigned short offset;
+    unsigned short count;
+    unsigned short target;
+    unsigned int mask;
+    if (D_80038024 != 0) {
+        D_80038024();
+    }
+    func_80014624();
+    mask = __osDisableInt();
+    if (D_80038288 == 0) {
+        target = D_80038292 - 1;
+    } else {
+        target = D_80038288 - 1;
+    }
+    __osRestoreInt(mask);
+    if (D_8002C630 != 0) {
+        func_8001DDE0();
+    }
+    if (D_80038360 != 0xFFFF) {
+        func_80011CD8();
+        func_80011894();
+        if (D_80038020 != 0) {
+            D_80038020();
+        }
+        func_80012200();
+        func_80013964();
+        if (D_80038360 != target) {
+            func_80013C84();
+            offset = 0;
+            count = 0;
+            if (D_80038360 < target) {
+                for (index = D_80038360; index < target && count < D_800382CE; offset += 192, count++) {
+                    func_80013D70(index++, offset);
+                }
+            } else {
+                for (index = D_80038360; index < D_80038292 && count < D_800382CE; offset += 192, count++) {
+                    func_80013D70(index++, offset);
+                }
+                for (index = 0; index < target && count < D_800382CE; offset += 192, count++) {
+                    func_80013D70(index++, offset);
+                }
+            }
+            func_80011D24();
+            D_80038362 -= count;
+            D_80038360 = index;
+        }
+        func_8001C508();
+        D_800382D4 = &D_800382E0[D_8003829E ^ 1];
+        D_800382D0 = D_800382D8[D_8003829E ^ 1];
+        func_800118C0();
+        func_800119E0();
+        D_8003829E ^= 1;
+        if (D_8002C630 != 0) {
+            func_8001C3CC();
+        }
+    } else {
+        D_80038360 = target;
+    }
+    func_80014650();
+}
+
 /* PROMOTED 2026-10-04 — func_800140F8
  * Source:   cloud/matches/boot_tail/func_800140F8.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

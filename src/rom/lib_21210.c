@@ -459,10 +459,25 @@ unsigned short func_80021528(void *voice)
     return func_80021150(voice, (unsigned char *)voice + 340);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_21210/func_80021548.s")
-/* ROM_OWNED_RODATA_BEGIN func_80021548 */
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_21210/func_80021548.rodata.s")
-/* ROM_OWNED_RODATA_END func_80021548 */
+/* PROMOTED 2026-10-11 — func_80021548
+ * Source:   cloud/work/frontier/w20c/sources/func_80021548.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w20c/sources/func_80021548.c:func_80021548 (score0); rom_tu.h context: cloud/work/frontier/w20c/ctx71_w20c.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+u8 func_80021548(u8 controller)
+{
+    switch (controller) {
+    case 0x80: controller = 0x80; break;
+    case 0x81: controller = 0x82; break;
+    case 0x82: controller = 0xA0; break;
+    case 0x83: controller = 0xA1; break;
+    case 0x84: controller = 0x83; break;
+    case 0x85: controller = 0x84; break;
+    }
+    return controller;
+}
+
 /* PROMOTED 2026-10-11 — func_800215A8
  * Source:   cloud/work/frontier/w17g/sources/func_800215A8.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

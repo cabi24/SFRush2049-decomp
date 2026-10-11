@@ -1228,10 +1228,40 @@ void func_80023B50(VoiceVariables_80023AD4 *voice, u8 isController, u8 index, s1
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023BDC.s")
-/* ROM_OWNED_RODATA_BEGIN func_80023BDC */
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023BDC.rodata.s")
-/* ROM_OWNED_RODATA_END func_80023BDC */
+/* PROMOTED 2026-10-11 — func_80023BDC
+ * Source:   cloud/work/frontier/w20c/sources/func_80023BDC.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w20c/sources/func_80023BDC.c:func_80023BDC (score0); rom_tu.h context: cloud/work/frontier/w20c/ctx71_w20c.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+extern s16 func_80023AD4(VoiceVariables_80023AD4 *voice, u8 isController, u8 index);
+extern void func_80023B50(VoiceVariables_80023AD4 *voice, u8 isController, u8 index, s16 value);
+u8 func_80023BDC(VoiceVariables_80023AD4 *voice, MacroCommand *command, u8 operation)
+{
+    s16 left;
+    s16 right;
+    s32 result;
+
+    left = func_80023AD4(voice, (command->word[0] >> 24) & 255, command->word[1] & 255);
+    if (operation == 4) {
+        right = (s16)(command->word[1] >> 8);
+    } else {
+        right = func_80023AD4(voice, (command->word[1] >> 8) & 255, (command->word[1] >> 16) & 255);
+    }
+    switch (operation) {
+    case 4:
+    case 0: result = left + right; break;
+    case 1: result = left - right; break;
+    case 2: result = left * right; break;
+    case 3: result = right != 0 ? left / right : 0; break;
+    }
+    func_80023B50(voice, (command->word[0] >> 8) & 255, (command->word[0] >> 16) & 255,
+                 result < -32768 ? -32768 : result > 32767 ? 32767 : result);
+    return 0;
+}
+
 /* PROMOTED 2026-10-11 — func_80023D70
  * Source:   cloud/work/frontier/w18c/sources/func_80023D70.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
