@@ -1911,6 +1911,7 @@ visual_objects_update:
 .section .text.func_800B5688, "ax", @progbits
 .globl func_800B5688
 func_800B5688:
+    /* compiled from src/blob/func_800B5688.c */
     .word 0x3C138012
     .word 0x2673AD30
     .word 0x826E0000
@@ -2152,6 +2153,7 @@ func_800B59E8:
 .section .text.func_800B59F0, "ax", @progbits
 .globl func_800B59F0
 func_800B59F0:
+    /* compiled from src/blob/func_800B59F0.c */
     .word 0x3C0E8012
     .word 0x8DCEAC94
     .word 0x27BDFF90

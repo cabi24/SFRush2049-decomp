@@ -1,0 +1,11 @@
+source_sha 28a9bea6157034351fa8367a554e2dbcec3051f91627a02866af2212ab863c6d
+members relocated: ['func_800B55F4', 'func_800B5688', 'func_800B59E8', 'func_800B59F0', 'physics_sym']
+image mismatches: none
+word diffs: {'func_800B55F4': 0, 'func_800B5688': 0, 'func_800B59E8': 0, 'func_800B59F0': 0, 'physics_sym': 0}
+owndata only ok= False failures= ["own .rodata: this function's references disagree on the section's image address (0x801226A8 for +0x0/+0x10, 0x80123DAC for +0x18/+0x1c/+0x20/+0x24): the literals are not laid out as in retail"] unverified= []
+  placements= {}
+  notes= []
+data_runs ok= True failures= [] unverified= []
+  placements= {'.rodata': [('0x0', '0x10', '0x801226a8', 'rodata'), ('0x10', '0x18', '0x801226b8', 'rodata'), ('0x18', '0x1c', '0x80123dc4', 'rodata'), ('0x1c', '0x20', '0x80123dc8', 'rodata'), ('0x20', '0x24', '0x80123dcc', 'rodata'), ('0x24', '0x28', '0x80123dd0', 'rodata')]}
+  notes= ['own .rodata verified at 0x801226A8..0x801226C0', 'own .rodata verified at 0x80123DC4..0x80123DD4']
+REFUSED: func_800B59F0: own .rodata: this function's references disagree on the section's image address (0x801226A8 for +0x0/+0x10, 0x80123DAC for +0x18/+0x1c/+0x20/+0x24): the literals are not laid out as in retail [per-reference placement tried because the whole-section placement was refused: .rodata: multiple placements need complete jump table evidence]

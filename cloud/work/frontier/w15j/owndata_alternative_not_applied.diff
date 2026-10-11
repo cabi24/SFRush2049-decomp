@@ -1,0 +1,156 @@
+diff --git a/tools/cloud/owndata.py b/tools/cloud/owndata.py
+index 03f2d62b..3fd24013 100644
+--- a/tools/cloud/owndata.py
++++ b/tools/cloud/owndata.py
+@@ -28,6 +28,9 @@ Rules (see cloud/work/frontier/rodata/README.md):
+   becomes the function's image address plus that offset.
+ * `.rodata` is laid out per function in the image, so all of one function's
+   references into one read-only section must agree on a single section base.
++  Only a caller that passes `regions` (the group splice) may accept a
++  read-only section whose windows sit in more than one retail region, and
++  only with complete evidence (see `_independent_regions`).
+   `.data` is laid out per translation unit; its windows are checked
+   independently and reported with their addresses as a distinct class.
+ * Uninitialised sections (.bss, .sbss) have no bytes in the image, so they
+@@ -366,7 +369,8 @@ def own_references(obj, name, start=None, limit=1 << 32):
+                and sym["section"] != text)
+ 
+ 
+-def verify(obj, name, want, address=None, image=None, start=None, addresses=None):
++def verify(obj, name, want, address=None, image=None, start=None, addresses=None,
++           regions=None):
+     """Check the function's own-data references against retail bytes.
+ 
+     obj        compiled object (the function may sit in `.text` or any section)
+@@ -376,6 +380,12 @@ def verify(obj, name, want, address=None, image=None, start=None, addresses=None
+     image      ImageData holding retail bytes, or None (nothing verifies)
+     start      section offset of the function, when not its symbol value
+     addresses  name -> image address for other functions a table may enter
++    regions    None: one base per read-only section (the rule above). Else
++               `regions(address, size)` -> None when [address, address + size)
++               may hold own read-only data (e.g. it lies in one non-function
++               run of the image) or a reason why not; a read-only section whose
++               verified windows disagree on the base is then accepted window by
++               window under `_independent_regions`.
+     """
+     result = Result()
+     try:
+@@ -441,6 +451,7 @@ def verify(obj, name, want, address=None, image=None, start=None, addresses=None
+         return None, f"table entry .text+0x{offset:x} is outside the function"
+ 
+     deltas = {}                     # read-only section -> {delta: where}
++    extents = {}                    # read-only section -> [verified window extents]
+     uninitialised = []              # .bss windows, verified by address below
+     for (section, offset), uses in sorted(windows.items()):
+         sec = obj.sections[section]
+@@ -502,6 +513,7 @@ def verify(obj, name, want, address=None, image=None, start=None, addresses=None
+         minimum = max(8 if ref.opcode in DOUBLEWORD_OPCODES else 4 for _a, ref, _w in uses)
+         length = max(minimum, (len(bytes(got).rstrip(b"\0")) + 3) & ~3)
+         length = min(length, len(got))
++        full = bytes(got)                   # [offset, stop), table entries applied
+         got = bytes(got[:length])
+         if image is None:
+             result.unverified.extend(f"{w}: no retail data available" for _a, _r, w in uses)
+@@ -528,6 +540,8 @@ def verify(obj, name, want, address=None, image=None, start=None, addresses=None
+         if cls == "rodata":
+             deltas.setdefault(section, {}).setdefault(
+                 (retail_address - offset) & 0xFFFFFFFF, []).append((offset, sites))
++            extents.setdefault(section, []).append(
++                (offset, stop, retail_address, full, minimum, uses, length))
+         result.placements.setdefault(sec["name"], []).append(
+             (offset, offset + length, retail_address, cls))
+         if not any(got):
+@@ -538,12 +552,21 @@ def verify(obj, name, want, address=None, image=None, start=None, addresses=None
+     for section, found in deltas.items():
+         if len(found) > 1:
+             name_ = obj.sections[section]["name"]
++            refused = None
++            if regions is not None:
++                opened = sum(1 for (sec_, _o) in windows if sec_ == section)
++                refused, placed = _independent_regions(
++                    name_, extents[section], opened, len(obj.raw(section)), image, regions)
++                if refused is None:
++                    result.placements[name_] = placed
++                    continue
+             result.failures.append(
+                 f"own {name_}: this function's references disagree on the section's image "
+                 "address (" + ", ".join(
+                     f"0x{base:08X} for " + "/".join(f"+0x{o:x}" for o, _s in sorted(uses))
+                     for base, uses in sorted(found.items()))
+-                + "): the literals are not laid out as in retail")
++                + "): the literals are not laid out as in retail"
++                + (f" [independent regions refused: {refused}]" if refused else ""))
+             for uses in found.values():
+                 for _offset, sites in uses:
+                     blocked.update(sites)
+@@ -556,6 +579,70 @@ def verify(obj, name, want, address=None, image=None, start=None, addresses=None
+     return result
+ 
+ 
++SECTION_PADDING = 16    # IDO aligns (and pads) its data sections to 16 bytes
++
++
++def _independent_regions(name, windows, opened, section_size, image, regions):
++    """(None, placements) when one function's verified windows into a
++    read-only section may sit at independent retail addresses, else
++    (reason, None). The fallback after the one-base rule refused.
++
++    windows  [(object offset, stop, retail address, object bytes of
++             [offset, stop) with table entries applied, widest access, uses,
++             compared length)] for every window of the section that verified
++    opened   how many windows the function's references open in the section
++
++    Complete evidence, or a refusal:
++      * every window the function opens in the section verified (none failed
++        or stayed unverified);
++      * each window is compared over its WHOLE extent [offset, stop), up to
++        the next referenced object, trailing zeros included: no object byte a
++        reference reaches rides along unchecked once the windows no longer
++        sit side by side as in the object. The one exception is the window
++        that ends the section: its trailing zeros past the compared length
++        are IDO's section padding (another owner's data in the image, as for
++        the one-base rule) and are not compared, but only when they are fewer
++        than SECTION_PADDING bytes;
++      * the extent is at least as wide as every access made through it;
++      * `regions` accepts each extent (in the image, outside function code);
++      * no two windows occupy the same image bytes.
++    The placements are those whole extents."""
++    if len(windows) != opened:
++        return (f"{opened - len(windows)} of the {opened} references into {name} "
++                "did not verify"), None
++    placed = []
++    for offset, stop, address, data, widest, uses, length in sorted(windows):
++        at = "/".join(f"+0x{ref.lo_site:x}" for _a, ref, _w in uses)
++        size = stop - offset
++        if size < widest:
++            return (f"{name}+0x{offset:x} (read at {at}): {widest}-byte access, but the "
++                    f"next referenced object starts {size} bytes later"), None
++        if stop >= section_size:
++            if size - length >= SECTION_PADDING or any(data[length:]):
++                return (f"{name}+0x{offset:x}: {size - length} uncompared bytes at the "
++                        "section end are more than its padding"), None
++            size, data, stop = length, data[:length], offset + length
++        expected = image.read(address, size)
++        if expected is None:
++            return (f"{name}+0x{offset:x}: retail bytes 0x{address:08X}+{size} "
++                    "are not available"), None
++        if expected != data:
++            first = next(i for i in range(size) if expected[i] != data[i])
++            return (f"{name}+0x{offset:x}..+0x{stop:x} differs from retail 0x{address:08X} "
++                    f"at +0x{first:x} (retail {expected[first:first + 4].hex()}, got "
++                    f"{data[first:first + 4].hex()}; whole extent compared)"), None
++        why = regions(address, size)
++        if why is not None:
++            return f"{name}+0x{offset:x} at 0x{address:08X}+{size}: {why}", None
++        placed.append((offset, stop, address, "rodata"))
++    ordered = sorted(placed, key=lambda p: p[2])
++    for first, second in zip(ordered, ordered[1:]):
++        if second[2] < first[2] + first[1] - first[0]:
++            return (f"{name}+0x{first[0]:x} and {name}+0x{second[0]:x} occupy the same "
++                    f"image bytes at 0x{second[2]:08X}"), None
++    return None, placed
++
++
+ def _verify_uninitialised(obj, windows, starts, image, result, blocked):
+     """Address-only verification of own .bss references (no bytes exist).
+ 

@@ -314,6 +314,129 @@ def test_own_data_objects_may_sit_at_independent_addresses(tmp_path):
         result.bases()
 
 
+
+
+# --- own .rodata in several retail regions: the group splice's fallback ------
+# (tools/conveyor/pipeline/blob_group.verify_own_data; owndata itself keeps the
+# one-base rule for score.py and the single-function splice)
+
+ANYWHERE = [(0, 1 << 32)]                     # every extent is in a data run
+
+
+def regions_verify(obj, want, img, data_runs=ANYWHERE):
+    from tools.conveyor.pipeline import blob_group
+    return blob_group.verify_own_data(obj, "f", want, F, img, data_runs=data_runs)
+
+
+def test_rodata_in_two_retail_regions_is_accepted_only_by_the_group_fallback(tmp_path):
+    """func_800B59F0: retail keeps its strings and its floats apart. owndata
+    refuses; the group splice proves each whole window where retail reads it
+    and places it there."""
+    obj = literal_object(tmp_path)
+    img = image((RODATA, FLOATS[:4]), (RODATA + 0x100, FLOATS[4:]))
+    want = literal_want(second=RODATA + 0x100)
+    refused = verify(obj, want, img)
+    assert not refused.ok and "disagree on the section's image address" in refused.failures[0]
+    assert not regions_verify(obj, want, img, data_runs=None).ok
+    result = regions_verify(obj, want, img)
+    assert result.ok and result.sites == {0, 4, 8, 12}
+    # the last window's section padding (8 zero bytes) is not placed
+    assert result.placements[".rodata"] == [(0, 4, RODATA, "rodata"),
+                                            (4, 8, RODATA + 0x100, "rodata")]
+    assert result.notes == ["own .rodata verified at 0x80124000..0x80124004",
+                            "own .rodata verified at 0x80124100..0x80124104"]
+    with pytest.raises(ValueError, match="independent image addresses"):
+        result.bases()              # the single-function link still cannot place it
+
+
+def test_rodata_regions_compare_each_whole_window(tmp_path):
+    # +0's window runs to +8: its zero word rides along unless compared. The
+    # one-base rule trims it (the next window sits right after it); apart, it
+    # must equal retail too.
+    obj = build(tmp_path, [LUI_AT, LWC1_F4, LUI_AT, LWC1_F6 | 8, JR_RA, 0],
+                [(0, ".rodata", 5), (4, ".rodata", 6), (8, ".rodata", 5), (12, ".rodata", 6)],
+                rodata=w(0x3B23D70A, 0, 0x44BB8000, 0))
+    want = literal_want(second=RODATA + 0x100)
+    good = image((RODATA, w(0x3B23D70A, 0)), (RODATA + 0x100, w(0x44BB8000)))
+    assert regions_verify(obj, want, good).ok
+    bad = image((RODATA, w(0x3B23D70A, 0xDEADBEEF)), (RODATA + 0x100, w(0x44BB8000)))
+    result = regions_verify(obj, want, bad)
+    assert not result.ok and not result.sites and ".rodata" not in result.placements
+    assert ("independent regions refused: .rodata+0x0..+0x8 differs from retail 0x80124000 "
+            "at +0x4 (retail deadbeef, got 00000000; whole extent compared)") in result.failures
+
+
+def test_rodata_regions_refused_when_a_window_is_unverified(tmp_path):
+    words = [LUI_AT, LWC1_F4, LUI_AT, LWC1_F6 | 4, LUI_AT, LWC1_F4 | 8, JR_RA, 0]
+    rels = [(4 * i, ".rodata", 5 + i % 2) for i in range(6)]
+    floats = w(0x3B23D70A, 0x44BB8000, 0x3F800000)
+    obj = build(tmp_path, words, rels, rodata=floats + bytes(4))
+    third = 0x80200000                          # no retail bytes known there
+    want = literal_want(second=RODATA + 0x100)[:4] + [LUI_AT | hi(third),
+                                                      LWC1_F4 | lo(third), JR_RA, 0]
+    img = image((RODATA, floats[:4]), (RODATA + 0x100, floats[4:8]))
+    result = regions_verify(obj, want, img)
+    assert not result.ok and not result.sites and ".rodata" not in result.placements
+    assert len(result.unverified) == 1
+    assert "disagree on the section's image address" in result.failures[0]
+    # with a third window that verifies but differs, the fallback refuses too
+    img = image((RODATA, floats[:4]), (RODATA + 0x100, floats[4:8]), (third, w(0x3F800001)))
+    result = regions_verify(obj, want, img)
+    assert not result.ok and not result.sites
+    assert "independent regions refused: not only the one-base refusal" in result.failures[-1]
+
+
+def test_rodata_regions_refused_when_windows_overlap(tmp_path):
+    # +0 (8 bytes up to the next reference) and +8 both verify, at 0x80124000
+    # and 0x80124004: the second sits inside the first.
+    obj = build(tmp_path, [LUI_AT, LWC1_F4, LUI_AT, LWC1_F6 | 8, JR_RA, 0],
+                [(0, ".rodata", 5), (4, ".rodata", 6), (8, ".rodata", 5), (12, ".rodata", 6)],
+                rodata=w(0x3B23D70A, 0x44BB8000, 0x44BB8000, 0))
+    img = image((RODATA, w(0x3B23D70A, 0x44BB8000)))
+    result = regions_verify(obj, literal_want(second=RODATA + 4), img)
+    assert not result.ok and not result.sites
+    assert ("independent regions refused: .rodata+0x0 and .rodata+0x8 occupy the same "
+            "image bytes at 0x80124004") in result.failures
+
+
+def test_rodata_regions_refused_outside_the_data_runs(tmp_path):
+    obj = literal_object(tmp_path)
+    img = image((RODATA, FLOATS[:4]), (RODATA + 0x100, FLOATS[4:]))
+    result = regions_verify(obj, literal_want(second=RODATA + 0x100), img,
+                            data_runs=[(RODATA, RODATA + 0x100)])
+    assert not result.ok and not result.sites
+    assert ("independent regions refused: .rodata+0x4 at 0x80124100+4: not inside one "
+            "non-function run of the image") in result.failures
+
+
+def test_rodata_regions_refused_for_an_access_wider_than_its_window(tmp_path):
+    # ldc1 at +0, the next object at +4: apart, its second word is unproven
+    obj = build(tmp_path, [LUI_AT, LDC1_F4, LUI_AT, LWC1_F6 | 4, JR_RA, 0], LITERAL_RELS,
+                rodata=FLOATS + bytes(8))
+    want = [LUI_AT | hi(RODATA), LDC1_F4 | lo(RODATA), LUI_AT | hi(RODATA + 0x100),
+            LWC1_F6 | lo(RODATA + 0x100), JR_RA, 0]
+    img = image((RODATA, FLOATS[:4] + bytes(4)), (RODATA + 0x100, FLOATS[4:]))
+    result = regions_verify(obj, want, img)
+    assert not result.ok and "8-byte access" in result.failures[-1]
+
+
+def test_rodata_regions_section_padding_is_bounded(tmp_path):
+    # the last window's uncompared zero tail must be shorter than IDO's
+    # 16-byte section alignment
+    obj = build(tmp_path, LITERAL_WORDS, LITERAL_RELS, rodata=FLOATS + bytes(16))
+    img = image((RODATA, FLOATS[:4]), (RODATA + 0x100, FLOATS[4:]))
+    result = regions_verify(obj, literal_want(second=RODATA + 0x100), img)
+    assert not result.ok and "more than its padding" in result.failures[-1]
+
+
+def test_rodata_regions_refuse_jump_tables(tmp_path):
+    # a relocated word in the section keeps the one-base / table proofs
+    obj = build(tmp_path, LITERAL_WORDS, LITERAL_RELS, rodata=FLOATS + bytes(8),
+                rodata_rels=[(8, ".text", 2)])
+    img = image((RODATA, FLOATS[:4]), (RODATA + 0x100, FLOATS[4:] + w(F)))
+    result = regions_verify(obj, literal_want(second=RODATA + 0x100), img)
+    assert not result.ok and "relocated words" in result.failures[-1]
+
 # --- zero-initialised own data (.bss): verified by address only ----------------
 
 BSS = 0x80156940                    # inside owndata.GAME_BSS

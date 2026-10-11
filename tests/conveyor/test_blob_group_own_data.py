@@ -75,10 +75,10 @@ def _literal_image(f=A, g=B, ctx=C, g_at=G_LIT):
                   {F_LIT: [f], G_LIT: [g], CTX_LIT: [ctx]})
 
 
-def _relocate(obj, image, members, extents=EXTENTS, names=None):
+def _relocate(obj, image, members, extents=EXTENTS, names=None, data_runs=None):
     slices, ndx = blob_group.member_slices(obj, names or list(extents), extents)
     return blob_group.relocate(obj, slices, ndx, {}, members=members,
-                               image=(bytes(image), BASE))
+                               image=(bytes(image), BASE), data_runs=data_runs)
 
 
 def _body(image, name, extents=EXTENTS):
@@ -337,3 +337,63 @@ def test_the_two_elf_readers_must_see_the_same_object(tmp_path, monkeypatch):
     monkeypatch.setattr(blob_group, "_text_relocations", lambda o: (rels[:-2], others))
     with pytest.raises(blob_group.GroupError, match="differ between the two ELF readers"):
         _relocate(obj, image, ["f", "g"])
+
+
+# --- one member's .rodata in two retail regions ---------------------------------
+
+TWO = ("    .set noreorder\n    .set noat\n    .text\n"
+       + _function("f", "    lui $at, %hi(lit_a)\n    lwc1 $f4, %lo(lit_a)($at)\n"
+                        "    lui $at, %hi(lit_b)\n    lwc1 $f6, %lo(lit_b)($at)\n"
+                        "    jr $ra\n    nop\n    nop\n    nop\n")
+       + f"    .section .rodata\nlit_a: .word {A}\nlit_b: .word {B}\n")
+TWO_EXTENTS = {"f": {"vaddr": BASE, "size": 32}}
+DATA_RUNS = [(BASE + 0x100, BASE + 0x400)]          # the image after the code
+LWC1_F6 = 0xC4260000
+
+
+def _two_region_image(a_at=F_LIT, b_at=G_LIT, b=B):
+    return _image({0x00: _pair(a_at) + _pair(b_at, lo_op=LWC1_F6) + [JR_RA, 0, 0, 0]},
+                  {a_at: [A], b_at: [b]})
+
+
+def test_one_member_with_rodata_in_two_retail_regions(tmp_path):
+    # func_800B59F0 (strings and floats apart in retail): placed per window
+    # only with the image's data runs, never by the one-base rule alone
+    obj, image = _assemble(tmp_path, TWO), _two_region_image()
+    bodies = _relocate(obj, image, ["f"], TWO_EXTENTS, data_runs=DATA_RUNS)
+    assert bodies["f"] == _body(image, "f", TWO_EXTENTS)
+    with pytest.raises(blob_group.GroupError,
+                       match="^f: own .rodata: this function's references disagree"):
+        _relocate(obj, image, ["f"], TWO_EXTENTS)
+
+
+def test_two_region_rodata_with_a_wrong_literal_is_refused(tmp_path):
+    obj = _assemble(tmp_path, TWO)
+    with pytest.raises(blob_group.GroupError, match=r"^f: own \.rodata\+0x4 .*0x80100180"):
+        _relocate(obj, _two_region_image(b=0x3F4CCCCE), ["f"], TWO_EXTENTS,
+                  data_runs=DATA_RUNS)
+
+
+def test_two_region_rodata_inside_function_code_is_refused(tmp_path):
+    # retail's second word pair points into the code: no data run holds it
+    obj, image = _assemble(tmp_path, TWO), _two_region_image(b_at=BASE + 0x40)
+    with pytest.raises(blob_group.GroupError,
+                       match="not inside one non-function run of the image"):
+        _relocate(obj, image, ["f"], TWO_EXTENTS, data_runs=DATA_RUNS)
+
+
+def test_two_region_rodata_windows_must_not_overlap(tmp_path):
+    obj = _assemble(tmp_path, TWO.replace(f"lit_b: .word {B}", f"lit_b: .word {A}"))
+    image = _image({0x00: _pair(F_LIT) + _pair(F_LIT + 4, lo_op=LWC1_F6) + [JR_RA, 0, 0, 0]},
+                   {F_LIT: [A, A]})
+    # adjacent and equal: the one-base rule holds, nothing to refuse
+    assert _relocate(obj, image, ["f"], TWO_EXTENTS, data_runs=DATA_RUNS)["f"] == \
+        _body(image, "f", TWO_EXTENTS)
+    image = _image({0x00: _pair(F_LIT + 4) + _pair(F_LIT, lo_op=LWC1_F6) + [JR_RA, 0, 0, 0]},
+                   {F_LIT: [A, A]})
+    bodies = _relocate(obj, image, ["f"], TWO_EXTENTS, data_runs=DATA_RUNS)
+    assert bodies["f"] == _body(image, "f", TWO_EXTENTS)        # swapped, disjoint: fine
+    image = _image({0x00: _pair(F_LIT) + _pair(F_LIT, lo_op=LWC1_F6) + [JR_RA, 0, 0, 0]},
+                   {F_LIT: [A]})
+    with pytest.raises(blob_group.GroupError, match="occupy the same image bytes"):
+        _relocate(obj, image, ["f"], TWO_EXTENTS, data_runs=DATA_RUNS)

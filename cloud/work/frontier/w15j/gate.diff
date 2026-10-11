@@ -1,0 +1,457 @@
+diff --git a/tests/conveyor/test_blob_group_own_data.py b/tests/conveyor/test_blob_group_own_data.py
+index 2421718c..feb7ca26 100644
+--- a/tests/conveyor/test_blob_group_own_data.py
++++ b/tests/conveyor/test_blob_group_own_data.py
+@@ -75,10 +75,10 @@ def _literal_image(f=A, g=B, ctx=C, g_at=G_LIT):
+                   {F_LIT: [f], G_LIT: [g], CTX_LIT: [ctx]})
+ 
+ 
+-def _relocate(obj, image, members, extents=EXTENTS, names=None):
++def _relocate(obj, image, members, extents=EXTENTS, names=None, data_runs=None):
+     slices, ndx = blob_group.member_slices(obj, names or list(extents), extents)
+     return blob_group.relocate(obj, slices, ndx, {}, members=members,
+-                               image=(bytes(image), BASE))
++                               image=(bytes(image), BASE), data_runs=data_runs)
+ 
+ 
+ def _body(image, name, extents=EXTENTS):
+@@ -337,3 +337,63 @@ def test_the_two_elf_readers_must_see_the_same_object(tmp_path, monkeypatch):
+     monkeypatch.setattr(blob_group, "_text_relocations", lambda o: (rels[:-2], others))
+     with pytest.raises(blob_group.GroupError, match="differ between the two ELF readers"):
+         _relocate(obj, image, ["f", "g"])
++
++
++# --- one member's .rodata in two retail regions ---------------------------------
++
++TWO = ("    .set noreorder\n    .set noat\n    .text\n"
++       + _function("f", "    lui $at, %hi(lit_a)\n    lwc1 $f4, %lo(lit_a)($at)\n"
++                        "    lui $at, %hi(lit_b)\n    lwc1 $f6, %lo(lit_b)($at)\n"
++                        "    jr $ra\n    nop\n    nop\n    nop\n")
++       + f"    .section .rodata\nlit_a: .word {A}\nlit_b: .word {B}\n")
++TWO_EXTENTS = {"f": {"vaddr": BASE, "size": 32}}
++DATA_RUNS = [(BASE + 0x100, BASE + 0x400)]          # the image after the code
++LWC1_F6 = 0xC4260000
++
++
++def _two_region_image(a_at=F_LIT, b_at=G_LIT, b=B):
++    return _image({0x00: _pair(a_at) + _pair(b_at, lo_op=LWC1_F6) + [JR_RA, 0, 0, 0]},
++                  {a_at: [A], b_at: [b]})
++
++
++def test_one_member_with_rodata_in_two_retail_regions(tmp_path):
++    # func_800B59F0 (strings and floats apart in retail): placed per window
++    # only with the image's data runs, never by the one-base rule alone
++    obj, image = _assemble(tmp_path, TWO), _two_region_image()
++    bodies = _relocate(obj, image, ["f"], TWO_EXTENTS, data_runs=DATA_RUNS)
++    assert bodies["f"] == _body(image, "f", TWO_EXTENTS)
++    with pytest.raises(blob_group.GroupError,
++                       match="^f: own .rodata: this function's references disagree"):
++        _relocate(obj, image, ["f"], TWO_EXTENTS)
++
++
++def test_two_region_rodata_with_a_wrong_literal_is_refused(tmp_path):
++    obj = _assemble(tmp_path, TWO)
++    with pytest.raises(blob_group.GroupError, match=r"^f: own \.rodata\+0x4 .*0x80100180"):
++        _relocate(obj, _two_region_image(b=0x3F4CCCCE), ["f"], TWO_EXTENTS,
++                  data_runs=DATA_RUNS)
++
++
++def test_two_region_rodata_inside_function_code_is_refused(tmp_path):
++    # retail's second word pair points into the code: no data run holds it
++    obj, image = _assemble(tmp_path, TWO), _two_region_image(b_at=BASE + 0x40)
++    with pytest.raises(blob_group.GroupError,
++                       match="not inside one non-function run of the image"):
++        _relocate(obj, image, ["f"], TWO_EXTENTS, data_runs=DATA_RUNS)
++
++
++def test_two_region_rodata_windows_must_not_overlap(tmp_path):
++    obj = _assemble(tmp_path, TWO.replace(f"lit_b: .word {B}", f"lit_b: .word {A}"))
++    image = _image({0x00: _pair(F_LIT) + _pair(F_LIT + 4, lo_op=LWC1_F6) + [JR_RA, 0, 0, 0]},
++                   {F_LIT: [A, A]})
++    # adjacent and equal: the one-base rule holds, nothing to refuse
++    assert _relocate(obj, image, ["f"], TWO_EXTENTS, data_runs=DATA_RUNS)["f"] == \
++        _body(image, "f", TWO_EXTENTS)
++    image = _image({0x00: _pair(F_LIT + 4) + _pair(F_LIT, lo_op=LWC1_F6) + [JR_RA, 0, 0, 0]},
++                   {F_LIT: [A, A]})
++    bodies = _relocate(obj, image, ["f"], TWO_EXTENTS, data_runs=DATA_RUNS)
++    assert bodies["f"] == _body(image, "f", TWO_EXTENTS)        # swapped, disjoint: fine
++    image = _image({0x00: _pair(F_LIT) + _pair(F_LIT, lo_op=LWC1_F6) + [JR_RA, 0, 0, 0]},
++                   {F_LIT: [A]})
++    with pytest.raises(blob_group.GroupError, match="occupy the same image bytes"):
++        _relocate(obj, image, ["f"], TWO_EXTENTS, data_runs=DATA_RUNS)
+diff --git a/tests/conveyor/test_owndata.py b/tests/conveyor/test_owndata.py
+index 34c2ced4..00420f40 100644
+--- a/tests/conveyor/test_owndata.py
++++ b/tests/conveyor/test_owndata.py
+@@ -314,6 +314,129 @@ def test_own_data_objects_may_sit_at_independent_addresses(tmp_path):
+         result.bases()
+ 
+ 
++
++
++# --- own .rodata in several retail regions: the group splice's fallback ------
++# (tools/conveyor/pipeline/blob_group.verify_own_data; owndata itself keeps the
++# one-base rule for score.py and the single-function splice)
++
++ANYWHERE = [(0, 1 << 32)]                     # every extent is in a data run
++
++
++def regions_verify(obj, want, img, data_runs=ANYWHERE):
++    from tools.conveyor.pipeline import blob_group
++    return blob_group.verify_own_data(obj, "f", want, F, img, data_runs=data_runs)
++
++
++def test_rodata_in_two_retail_regions_is_accepted_only_by_the_group_fallback(tmp_path):
++    """func_800B59F0: retail keeps its strings and its floats apart. owndata
++    refuses; the group splice proves each whole window where retail reads it
++    and places it there."""
++    obj = literal_object(tmp_path)
++    img = image((RODATA, FLOATS[:4]), (RODATA + 0x100, FLOATS[4:]))
++    want = literal_want(second=RODATA + 0x100)
++    refused = verify(obj, want, img)
++    assert not refused.ok and "disagree on the section's image address" in refused.failures[0]
++    assert not regions_verify(obj, want, img, data_runs=None).ok
++    result = regions_verify(obj, want, img)
++    assert result.ok and result.sites == {0, 4, 8, 12}
++    # the last window's section padding (8 zero bytes) is not placed
++    assert result.placements[".rodata"] == [(0, 4, RODATA, "rodata"),
++                                            (4, 8, RODATA + 0x100, "rodata")]
++    assert result.notes == ["own .rodata verified at 0x80124000..0x80124004",
++                            "own .rodata verified at 0x80124100..0x80124104"]
++    with pytest.raises(ValueError, match="independent image addresses"):
++        result.bases()              # the single-function link still cannot place it
++
++
++def test_rodata_regions_compare_each_whole_window(tmp_path):
++    # +0's window runs to +8: its zero word rides along unless compared. The
++    # one-base rule trims it (the next window sits right after it); apart, it
++    # must equal retail too.
++    obj = build(tmp_path, [LUI_AT, LWC1_F4, LUI_AT, LWC1_F6 | 8, JR_RA, 0],
++                [(0, ".rodata", 5), (4, ".rodata", 6), (8, ".rodata", 5), (12, ".rodata", 6)],
++                rodata=w(0x3B23D70A, 0, 0x44BB8000, 0))
++    want = literal_want(second=RODATA + 0x100)
++    good = image((RODATA, w(0x3B23D70A, 0)), (RODATA + 0x100, w(0x44BB8000)))
++    assert regions_verify(obj, want, good).ok
++    bad = image((RODATA, w(0x3B23D70A, 0xDEADBEEF)), (RODATA + 0x100, w(0x44BB8000)))
++    result = regions_verify(obj, want, bad)
++    assert not result.ok and not result.sites and ".rodata" not in result.placements
++    assert ("independent regions refused: .rodata+0x0..+0x8 differs from retail 0x80124000 "
++            "at +0x4 (retail deadbeef, got 00000000; whole extent compared)") in result.failures
++
++
++def test_rodata_regions_refused_when_a_window_is_unverified(tmp_path):
++    words = [LUI_AT, LWC1_F4, LUI_AT, LWC1_F6 | 4, LUI_AT, LWC1_F4 | 8, JR_RA, 0]
++    rels = [(4 * i, ".rodata", 5 + i % 2) for i in range(6)]
++    floats = w(0x3B23D70A, 0x44BB8000, 0x3F800000)
++    obj = build(tmp_path, words, rels, rodata=floats + bytes(4))
++    third = 0x80200000                          # no retail bytes known there
++    want = literal_want(second=RODATA + 0x100)[:4] + [LUI_AT | hi(third),
++                                                      LWC1_F4 | lo(third), JR_RA, 0]
++    img = image((RODATA, floats[:4]), (RODATA + 0x100, floats[4:8]))
++    result = regions_verify(obj, want, img)
++    assert not result.ok and not result.sites and ".rodata" not in result.placements
++    assert len(result.unverified) == 1
++    assert "disagree on the section's image address" in result.failures[0]
++    # with a third window that verifies but differs, the fallback refuses too
++    img = image((RODATA, floats[:4]), (RODATA + 0x100, floats[4:8]), (third, w(0x3F800001)))
++    result = regions_verify(obj, want, img)
++    assert not result.ok and not result.sites
++    assert "independent regions refused: not only the one-base refusal" in result.failures[-1]
++
++
++def test_rodata_regions_refused_when_windows_overlap(tmp_path):
++    # +0 (8 bytes up to the next reference) and +8 both verify, at 0x80124000
++    # and 0x80124004: the second sits inside the first.
++    obj = build(tmp_path, [LUI_AT, LWC1_F4, LUI_AT, LWC1_F6 | 8, JR_RA, 0],
++                [(0, ".rodata", 5), (4, ".rodata", 6), (8, ".rodata", 5), (12, ".rodata", 6)],
++                rodata=w(0x3B23D70A, 0x44BB8000, 0x44BB8000, 0))
++    img = image((RODATA, w(0x3B23D70A, 0x44BB8000)))
++    result = regions_verify(obj, literal_want(second=RODATA + 4), img)
++    assert not result.ok and not result.sites
++    assert ("independent regions refused: .rodata+0x0 and .rodata+0x8 occupy the same "
++            "image bytes at 0x80124004") in result.failures
++
++
++def test_rodata_regions_refused_outside_the_data_runs(tmp_path):
++    obj = literal_object(tmp_path)
++    img = image((RODATA, FLOATS[:4]), (RODATA + 0x100, FLOATS[4:]))
++    result = regions_verify(obj, literal_want(second=RODATA + 0x100), img,
++                            data_runs=[(RODATA, RODATA + 0x100)])
++    assert not result.ok and not result.sites
++    assert ("independent regions refused: .rodata+0x4 at 0x80124100+4: not inside one "
++            "non-function run of the image") in result.failures
++
++
++def test_rodata_regions_refused_for_an_access_wider_than_its_window(tmp_path):
++    # ldc1 at +0, the next object at +4: apart, its second word is unproven
++    obj = build(tmp_path, [LUI_AT, LDC1_F4, LUI_AT, LWC1_F6 | 4, JR_RA, 0], LITERAL_RELS,
++                rodata=FLOATS + bytes(8))
++    want = [LUI_AT | hi(RODATA), LDC1_F4 | lo(RODATA), LUI_AT | hi(RODATA + 0x100),
++            LWC1_F6 | lo(RODATA + 0x100), JR_RA, 0]
++    img = image((RODATA, FLOATS[:4] + bytes(4)), (RODATA + 0x100, FLOATS[4:]))
++    result = regions_verify(obj, want, img)
++    assert not result.ok and "8-byte access" in result.failures[-1]
++
++
++def test_rodata_regions_section_padding_is_bounded(tmp_path):
++    # the last window's uncompared zero tail must be shorter than IDO's
++    # 16-byte section alignment
++    obj = build(tmp_path, LITERAL_WORDS, LITERAL_RELS, rodata=FLOATS + bytes(16))
++    img = image((RODATA, FLOATS[:4]), (RODATA + 0x100, FLOATS[4:]))
++    result = regions_verify(obj, literal_want(second=RODATA + 0x100), img)
++    assert not result.ok and "more than its padding" in result.failures[-1]
++
++
++def test_rodata_regions_refuse_jump_tables(tmp_path):
++    # a relocated word in the section keeps the one-base / table proofs
++    obj = build(tmp_path, LITERAL_WORDS, LITERAL_RELS, rodata=FLOATS + bytes(8),
++                rodata_rels=[(8, ".text", 2)])
++    img = image((RODATA, FLOATS[:4]), (RODATA + 0x100, FLOATS[4:] + w(F)))
++    result = regions_verify(obj, literal_want(second=RODATA + 0x100), img)
++    assert not result.ok and "relocated words" in result.failures[-1]
++
+ # --- zero-initialised own data (.bss): verified by address only ----------------
+ 
+ BSS = 0x80156940                    # inside owndata.GAME_BSS
+diff --git a/tools/conveyor/pipeline/blob_group.py b/tools/conveyor/pipeline/blob_group.py
+index 913b6903..a8e598d2 100644
+--- a/tools/conveyor/pipeline/blob_group.py
++++ b/tools/conveyor/pipeline/blob_group.py
+@@ -229,7 +229,174 @@ def _same_records(ours, elf_records):
+         for (offset, kind, name), (r_offset, r_type, sym) in zip(ours, theirs))
+ 
+ 
+-def _member_own_data(obj, members, slices, text, rels, image, addresses):
++# One function's own .rodata in more than one retail region ---------------------
++#
++# owndata (tools/cloud/owndata.py, hash-pinned by verification receipts, used
++# unchanged by score.py and the single-function splice) requires one image base
++# per read-only section of a function. Retail sometimes keeps one function's
++# strings and its float literals apart (func_800B59F0, pause_quit). The group
++# splice can place such a section window by window (`_ReferenceWindows`), so
++# here, and only here, that one refusal may be replaced by complete evidence.
++
++ONE_BASE_REFUSAL = ": this function's references disagree on the section's image address"
++SECTION_PADDING = 16        # IDO aligns (and pads) its data sections to 16 bytes
++
++
++def _independent_regions(obj, name, want, start, image, failures, data_runs):
++    """{section name: [(object lo, hi, image address, "rodata")]} proving that
++    `name`'s own read-only sections whose windows owndata refused for lack of
++    one common base sit, window by window, at the retail addresses; else
++    GroupError with the reason. `failures` are owndata's failures for the
++    function (nothing may be unverified).
++
++    Complete evidence, re-derived here from the object and the retail words:
++      * owndata's only failures are that one-base refusal (every window it
++        opened in the section verified by content);
++      * each window is compared over its WHOLE extent [offset, stop), up to
++        the next object any function of the object references, trailing
++        zeros included, so no object byte a reference reaches rides along
++        unchecked once the windows no longer sit side by side. Only the window
++        that ends the section may leave trailing zeros uncompared: fewer than
++        SECTION_PADDING bytes of IDO section padding (another owner's data in
++        the image, exactly as owndata treats it);
++      * every access through a window fits in it (8 bytes for ldc1/sdc1/ld/sd);
++      * a window holds no relocated word (jump tables keep the one-base or
++        table proofs);
++      * each window lies inside one non-function run of the image (`data_runs`,
++        the layout's opaque entries), and no two windows share image bytes.
++    """
++    sections = set()
++    for failure in failures:
++        head, sep, _rest = failure.partition(ONE_BASE_REFUSAL)
++        if not sep or not head.startswith("own ") or head[4:] not in owndata.READ_ONLY:
++            raise GroupError(f"not only the one-base refusal: {failure}")
++        sections.add(head[4:])
++    try:
++        elf = owndata._Object(obj)
++        text, lo, hi = owndata._locate(elf, name, start, len(want) * 4)
++        refs, stray = owndata._references(elf, text)
++    except (ValueError, struct.error, IndexError) as exc:
++        raise GroupError(f"own data: {exc}") from exc
++    if any(lo <= site < hi for site, _sym, _why in stray):
++        raise GroupError("a stray own-section relocation in the function")
++    runs = sorted(data_runs)
++    out = {}
++    for section_name in sorted(sections):
++        index = [i for i, sec in enumerate(elf.sections) if sec["name"] == section_name]
++        if len(index) != 1:
++            raise GroupError(f"{section_name}: not exactly one such section")
++        index = index[0]
++        raw = elf.raw(index)
++        if raw is None:
++            raise GroupError(f"{section_name}: no bytes")
++        if elf.relocations(index):
++            raise GroupError(f"{section_name}: relocated words (a jump table) need the "
++                             "one-base or jump-table proof")
++        starts = sorted({ref.offset for _sym, ref in refs if ref.section == index})
++        windows = {}
++        for _sym, ref in refs:
++            if ref.section != index or not lo <= ref.lo_site < hi:
++                continue
++            if not all(lo <= site < hi for site in ref.hi_sites):
++                raise GroupError(f"{section_name}+0x{ref.offset:x}: HI16 outside the function")
++            retail = {((want[(site - lo) // 4] & 0xFFFF) << 16)
++                      + owndata._sext16(want[(ref.lo_site - lo) // 4] & 0xFFFF)
++                      for site in ref.hi_sites}
++            if len(retail) != 1:
++                raise GroupError(f"{section_name}+0x{ref.offset:x}: retail HI16 words disagree")
++            address = retail.pop() & 0xFFFFFFFF
++            seen = windows.setdefault(ref.offset, [address, 4])
++            if seen[0] != address:
++                raise GroupError(f"{section_name}+0x{ref.offset:x}: read at two retail "
++                                 "addresses")
++            if ref.opcode in owndata.DOUBLEWORD_OPCODES:
++                seen[1] = 8
++        placed = []
++        for offset, (address, widest) in sorted(windows.items()):
++            if not 0 <= offset < len(raw):
++                raise GroupError(f"{section_name}+0x{offset:x}: outside the section")
++            stop = min([s for s in starts if s > offset] + [len(raw)])
++            data = raw[offset:stop]
++            if len(data) < widest:
++                raise GroupError(f"{section_name}+0x{offset:x}: {widest}-byte access, but the "
++                                 f"next referenced object starts {len(data)} bytes later")
++            if stop == len(raw):
++                length = max(widest, (len(data.rstrip(b"\0")) + 3) & ~3)
++                if len(data) - length >= SECTION_PADDING:
++                    raise GroupError(f"{section_name}+0x{offset:x}: {len(data) - length} "
++                                     "uncompared bytes at the section end are more than "
++                                     "its padding")
++                data = data[:min(length, len(data))]
++            expected = image.read(address, len(data))
++            if expected is None:
++                raise GroupError(f"{section_name}+0x{offset:x}: retail bytes "
++                                 f"0x{address:08X}+{len(data)} are not available")
++            if expected != data:
++                first = next(i for i in range(len(data)) if expected[i] != data[i])
++                raise GroupError(
++                    f"{section_name}+0x{offset:x}..+0x{offset + len(data):x} differs from "
++                    f"retail 0x{address:08X} at +0x{first:x} (retail "
++                    f"{expected[first:first + 4].hex()}, got {data[first:first + 4].hex()}; "
++                    "whole extent compared)")
++            if not any(r_lo <= address and address + len(data) <= r_hi for r_lo, r_hi in runs):
++                raise GroupError(f"{section_name}+0x{offset:x} at 0x{address:08X}+{len(data)}: "
++                                 "not inside one non-function run of the image")
++            placed.append((offset, offset + len(data), address, "rodata"))
++        ordered = sorted(placed, key=lambda p: p[2])
++        for a, b in zip(ordered, ordered[1:]):
++            if b[2] < a[2] + a[1] - a[0]:
++                raise GroupError(f"{section_name}+0x{a[0]:x} and {section_name}+0x{b[0]:x} "
++                                 f"occupy the same image bytes at 0x{b[2]:08X}")
++        out[section_name] = placed
++    return out
++
++
++def verify_own_data(obj, name, want, address, image, start=None, addresses=None,
++                    data_runs=None):
++    """owndata.verify for a group member, then, with `data_runs`, the
++    `_independent_regions` fallback for its one-base refusal. A fallback that
++    is refused adds its reason to the failures; the result is never better
++    than owndata's except for exactly those sections."""
++    result = owndata.verify(obj, name, want, address=address, image=image, start=start,
++                            addresses=addresses)
++    if data_runs is None or not result.failures or result.unverified:
++        return result
++    try:
++        placed = _independent_regions(obj, name, want, start, image, result.failures,
++                                      data_runs)
++    except GroupError as exc:
++        result.failures.append(f"independent regions refused: {exc}")
++        return result
++    result.failures = []
++    result.placements.update(placed)
++    try:
++        elf = owndata._Object(obj)
++        text, lo, hi = owndata._locate(elf, name, start, len(want) * 4)
++        refs, _stray = owndata._references(elf, text)
++    except (ValueError, struct.error, IndexError) as exc:
++        raise GroupError(f"own data: {exc}") from exc
++    indices = {i for i, sec in enumerate(elf.sections) if sec["name"] in placed}
++    for _sym, ref in refs:
++        if ref.section in indices and lo <= ref.lo_site < hi:
++            result.sites.update(ref.hi_sites + (ref.lo_site,))
++    result.notes = owndata._notes(result.placements, result.zero)
++    return result
++
++
++def opaque_runs(document):
++    """[(start, end)] of the layout's non-function (opaque) entries."""
++    out = []
++    for region in document["regions"]:
++        for entry in region["entries"]:
++            if entry["kind"] == "opaque":
++                vaddr, size = entry["vaddr"], entry["size"]
++                vaddr = int(vaddr, 16) if isinstance(vaddr, str) else vaddr
++                size = int(size, 16) if isinstance(size, str) else size
++                out.append((vaddr, vaddr + size))
++    return out
++
++
++def _member_own_data(obj, members, slices, text, rels, image, addresses, data_runs=None):
+     """{member: owndata.Result}: every own-data reference of every output
+     member, checked by content against the image (tools/cloud/owndata.py).
+ 
+@@ -237,6 +404,11 @@ def _member_own_data(obj, members, slices, text, rels, image, addresses):
+     message names the member, the site, the retail address and both values.
+     Functions that are not output (context, stand-ins) are not verified: their
+     references only bound the members' windows.
++
++    data_runs  [(start, end)] non-function image runs, or None. With them, a
++               member whose own .rodata windows sit in more than one retail
++               region is accepted when each whole window is proven there
++               (`_independent_regions`); without them that is refused.
+     """
+     if image is None:
+         raise GroupError("relocations against the unit's own data need the image")
+@@ -260,8 +432,8 @@ def _member_own_data(obj, members, slices, text, rels, image, addresses):
+             raise GroupError(f"{member}: extent is outside the image")
+         body = data[vaddr - base:vaddr - base + size]
+         want = list(struct.unpack(f">{size // 4}I", body))
+-        result = owndata.verify(obj, member, want, address=vaddr, image=retail,
+-                                start=off, addresses=addresses)
++        result = verify_own_data(obj, member, want, vaddr, retail, start=off,
++                                 addresses=addresses, data_runs=data_runs)
+         problems = result.failures + result.unverified
+         if problems:
+             raise GroupError(f"{member}: " + "; ".join(problems))
+@@ -602,7 +774,7 @@ def member_slices(obj, members, extents):
+     return slices, text_ndx
+ 
+ 
+-def relocate(obj, slices, text_ndx, extern, members=None, image=None):
++def relocate(obj, slices, text_ndx, extern, members=None, image=None, data_runs=None):
+     """Bytes of each member slice with its .text relocations applied at the
+     member's image address. Supports R_MIPS_26 and REL HI16/LO16 pairs;
+     anything else (and any relocation outside .text) is refused. HI16/LO16
+@@ -614,7 +786,10 @@ def relocate(obj, slices, text_ndx, extern, members=None, image=None):
+     every output member is verified by content at the address the retail
+     words encode at its site (tools/cloud/owndata.py) and relocated to exactly
+     that address. Functions that are not output (context, stand-ins) are not
+-    verified then; their references cannot refuse the members.
++    verified then; their references cannot refuse the members. One member's
++    own .rodata in several retail regions additionally needs `data_runs`
++    (the image's non-function runs, see `opaque_runs`); see
++    `_member_own_data`.
+ 
+     Check body lengths for members being spliced. Other slices supply context
+     addresses only; those functions need not match their retail bodies.
+@@ -697,7 +872,7 @@ def relocate(obj, slices, text_ndx, extern, members=None, image=None):
+         try:
+             if not verified:
+                 verified.append(_member_own_data(obj, output, slices, text, rels, image,
+-                                                 function_address))
++                                                 function_address, data_runs))
+             return _reference_windows(obj, section, offsets, verified[0],
+                                       relocated.get(section, []), syms, in_member)
+         except GroupError as exc:
+@@ -783,7 +958,7 @@ def group_bodies(group, document=None, extern=None, obj_dir=OBJ_DIR, root=GROUP_
+         image = (path.read_bytes(), int(document["image"]["base"], 16))
+     bodies = relocate(obj, slices, text_ndx, extern,
+                       members=None if include_context else spec["members"],
+-                      image=image)
++                      image=image, data_runs=opaque_runs(document))
+     if not include_context:
+         bodies = {m: b for m, b in bodies.items() if m in spec["members"]}
+     return bodies

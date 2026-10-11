@@ -1,0 +1,20 @@
+{
+ "members": [
+  "func_800B55F4",
+  "func_800B5688",
+  "func_800B59E8",
+  "func_800B59F0",
+  "physics_sym"
+ ],
+ "context": [],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "physics_sym"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "Real callers, no stand-ins, no implicit int. All five EQUAL in the whole-program unit (blob_unit score ... --internal func_800B5688 --internal func_800B59F0 --internal func_800B59E8 --internal func_800B55F4). func_800B55F4 and func_800B59E8 are locked caller-less stubs given bodies (inlined helpers; their 2-word remains are unchanged). physics_sym is reached through a pointer table, so it is the only kept name. func_800B59F0's own .rodata (1.5707964f, 12.566371f, 3.1415927f, 6.2831855f at 0x80123DC4; \"BUTTON_SELECT\"/\"BUTTON\" at 0x801226A8/0x801226B8) checked against the image by hand. Shaping disclosed in group.c's header.",
+ "provenance": "frontier wave 15 (w15b): physics_sym + func_800B5688 + func_800B59F0 with inlined helpers at the locked stubs func_800B55F4/func_800B59E8, no implicit int; own .rodata in two retail regions accepted by the w15j independent-regions proof; cloud/work/frontier/w15b/RESULTS.md, w15j/RESULTS.md"
+}

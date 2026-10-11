@@ -1672,6 +1672,7 @@ particle_collision:
 .section .text.physics_sym, "ax", @progbits
 .globl physics_sym
 physics_sym:
+    /* compiled from src/blob/physics_sym.c */
     .word 0x27BDFF68
     .word 0x3C0E8011
     .word 0x8DCE74B4

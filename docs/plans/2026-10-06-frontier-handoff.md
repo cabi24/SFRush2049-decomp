@@ -7,13 +7,13 @@ deltas are noted inline where they matter.
 
 | | Functions | Bytes | % |
 |---|---|---|---|
-| Game code (compressed image) | 955 / 1216 | 288,728 / 647,072 | 44.62 |
+| Game code (compressed image) | 958 / 1216 | 291,548 / 647,072 | 45.06 |
 | Static code (boot/library) | 400 / 668 | 73,596 / 160,720 | 45.79 |
 
-Frontier: 261 unmatched game functions (272 KB). Ready now: 25 singles (24 KB), 32 group (31 KB), 5 unit (4.6 KB).
+Frontier: 258 unmatched game functions (269 KB). Ready now: 25 singles (24 KB), 32 group (31 KB), 5 unit (4.6 KB).
 Provisional: 22 functions, 12.1 KB (`provisional.json`).
 
-**What landed since wave 12 (+17.1 KB game):**
+**What landed since wave 12 (+19.9 KB game):**
 - Wave 13: records_screen, func_800E762C, differential_output (+1.2 KB); wave 14: graphics_chunk,
   place_cars_in_order (+1.1 KB).
 - Wave 14 tail (lanes whose sessions ended before reporting; recovered 2026-10-10): entity_lod_select (716),
@@ -24,18 +24,18 @@ Provisional: 22 functions, 12.1 KB (`provisional.json`).
   "Group packaging". No unit_overrides were needed.
 - Wave 15: frontier_billboard_render (billboard_render + provisional func_800F207C/func_800F1930, 3,640 B;
   prefer_definition func_800F1210), audio_channel_setup (332), func_800A79F4 (240), func_800AC9BC (224),
-  func_800E7A98 group (172).
+  func_800E7A98 group (172), physics_sym group (2,836).
 
 **Method change (wave 15): trace, don't sweep.** Seven of eight matching lanes closed something after wave 14's
 28 mass-variant lanes closed two. The lane rules file now says so; the lessons are in WAVE_BRIEF "Wave 15".
 
-**Ready to land, blocked on tooling:** `cloud/work/frontier/w15b/groups/physics_sym/` — physics_sym (1,252),
-func_800B5688 (196), func_800B59F0 (1,372) and the stubs func_800B55F4/func_800B59E8; all five EQUAL in the unit
-with real callers, **no implicit int** (the §6 item 2 decision is moot for this function). `install_group.py`
-refuses: func_800B59F0's own .rodata has strings at 0x801226A8 and floats at 0x80123DAC, and the own-data gate
-wants one base per section (`owndata.py` ~l.540; same refusal as w6d's pause_quit). Lane w15j is extending the
-gate to accept multi-region placements with complete byte evidence (`cloud/work/frontier/w15j/RESULTS.md`).
-Install afterwards with `--revert-single func_800B55F4 --revert-single func_800B59E8`.
+**physics_sym group (landed 2026-10-11, +2,836 B):** physics_sym (1,252), func_800B5688 (196), func_800B59F0 (1,372)
+and the stubs func_800B55F4/func_800B59E8, all with real callers, **no implicit int** (§6 item 2 is moot for it).
+func_800B59F0's own .rodata lies in two retail regions (strings 0x801226A8, floats 0x80123DC4); w15j added a
+fail-closed `_independent_regions` proof to `blob_group.py` (whole-window byte evidence inside non-function image
+runs, no overlaps) that only replaces owndata's one-base refusal. `owndata.py`/`score.py` are unchanged because
+two receipts pin owndata's hash, so `score.py` still prints NOT VERIFIED for it; the alternative diff is in
+`w15j/owndata_alternative_not_applied.diff`. w6d's pause_quit is probably the same case (untested).
 
 **Open near-misses after wave 15** (replaces the §6 table where names overlap):
 
