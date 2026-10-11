@@ -41,7 +41,29 @@ unsigned short func_8001E790(void)
     return D_8002CC50 >> 6;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1f340/func_8001E7BC.s")
+/* PROMOTED 2026-10-11 — func_8001E7BC
+ * Source:   cloud/work/frontier/w18c/sources/func_8001E7BC.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_8001E7BC.c:func_8001E7BC (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern const short D_8002CC54[1024];
+extern const short D_8002D452[];
+short func_8001E7BC(u16 phase)
+{
+    phase &= 4095;
+    if (phase < 1024) {
+        return D_8002CC54[phase];
+    }
+    if (phase < 2048) {
+        return (&D_8002D452[-1023])[1023 - (phase & 1023)];
+    }
+    if (phase < 3072) {
+        return -D_8002CC54[phase & 1023];
+    }
+    return -(&D_8002D452[-1023])[1023 - (phase & 1023)];
+}
+
 /* PROMOTED 2026-10-11 — func_8001E864
  * Source:   cloud/work/frontier/w17g/sources/func_8001E864.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

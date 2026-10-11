@@ -352,7 +352,36 @@ void func_80011D24(void)
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80011D74.s")
 typedef struct AudioNode { struct AudioNode *next; struct AudioNode *previous; unsigned char *buffer; unsigned int unknown0C; unsigned short countdown; unsigned short unknown12; } AudioNode;
 extern AudioNode *D_80038344;
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80011F60.s")
+/* PROMOTED 2026-10-11 — func_80011F60
+ * Source:   cloud/work/frontier/w18c/sources/func_80011F60.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80011F60.c:func_80011F60 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern void osInvalDCache(void *, int);
+extern AudioNode *D_80038338;
+extern unsigned char *D_8003833C;
+extern unsigned int D_80038340;
+extern AudioNode *D_80038348;
+void func_80011F60(int count)
+{
+    int i;
+    D_80038338 = D_80038018(count * sizeof(AudioNode), 0);
+    D_8003833C = D_80038018(count * 256, 0);
+    osInvalDCache(D_8003833C, count * 256);
+    D_80038344 = 0;
+    D_80038348 = D_80038338;
+    D_80038338[0].buffer = D_8003833C;
+    D_80038338[0].previous = 0;
+    for (i = 1; i < count; i++) {
+        D_80038338[i].previous = &D_80038338[i - 1];
+        D_80038338[i - 1].next = &D_80038338[i];
+        D_80038338[i].buffer = &D_8003833C[i * 256];
+    }
+    D_80038338[i - 1].next = 0;
+    D_80038340 = 0;
+}
+
 /* PROMOTED 2026-10-04 — func_800121BC
  * Source:   cloud/matches/boot_tail/func_800121BC.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -388,7 +417,33 @@ typedef struct AudioCacheNode { struct AudioCacheNode *next; struct AudioCacheNo
 extern AudioCacheNode *D_80038354;
 extern AudioCacheNode *D_80038358;
 extern AudioCacheNode *D_8003835C;
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_800123A8.s")
+/* PROMOTED 2026-10-11 — func_800123A8
+ * Source:   cloud/work/frontier/w18c/sources/func_800123A8.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_800123A8.c:func_800123A8 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern AudioCacheNode *D_80038350;
+extern unsigned char *D_8003834C;
+void func_800123A8(unsigned short count)
+{
+    int i;
+    D_8003834C = D_80038018(count * 1536, 0);
+    osInvalDCache(D_8003834C, count * 1536);
+    D_80038350 = D_80038018(count * sizeof(AudioCacheNode), 0);
+    D_80038354 = 0;
+    D_80038358 = 0;
+    D_8003835C = D_80038350;
+    D_80038350[0].previous = 0;
+    D_80038350[0].buffer = D_8003834C;
+    for (i = 1; i < count; i++) {
+        D_80038350[i - 1].next = &D_80038350[i];
+        D_80038350[i].previous = &D_80038350[i - 1];
+        D_80038350[i].buffer = &D_8003834C[i * 1536];
+    }
+    D_80038350[i - 1].next = 0;
+}
+
 /* PROMOTED 2026-10-04 — func_8001261C
  * Source:   cloud/matches/boot_tail/func_8001261C.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -1013,7 +1068,21 @@ void func_80014C40(void *buffer, unsigned int samples)
     osWritebackDCache(buffer, samples * 2);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80014C60.s")
+/* PROMOTED 2026-10-11 — func_80014C60
+ * Source:   cloud/work/frontier/w18c/sources/func_80014C60.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80014C60.c:func_80014C60 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_80014C60(short *buffer, unsigned int samples)
+{
+    buffer[samples + 0] = buffer[0];
+    buffer[samples + 1] = buffer[1];
+    buffer[samples + 2] = buffer[2];
+    buffer[samples + 3] = buffer[3];
+    osWritebackDCache(&buffer[samples], 8);
+}
+
 /* PROMOTED 2026-10-04 — func_80014CAC
  * Source:   cloud/matches/boot_tail/func_80014CAC.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

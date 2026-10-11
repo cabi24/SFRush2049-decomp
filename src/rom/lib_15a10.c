@@ -16,11 +16,79 @@ void func_80014E10(void)
     D_80038390 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_15a10/func_80014E1C.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_15a10/func_80014E64.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_15a10/func_80014E90.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_15a10/func_80014EBC.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_15a10/func_80014EE8.s")
+/* PROMOTED 2026-10-11 — func_80014E1C
+ * Source:   cloud/work/frontier/w18c/sources/func_80014E1C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80014E1C.c:func_80014E1C (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+typedef struct RelativeEntry { unsigned int next_offset; unsigned short id; } RelativeEntry;
+void *func_80014E1C(unsigned short id, RelativeEntry *entry)
+{
+    while (entry->next_offset != 0xFFFFFFFFU) {
+        if (entry->id == id) {
+            return entry;
+        }
+        entry = (RelativeEntry *)((unsigned char *)entry + entry->next_offset);
+    }
+    return 0;
+}
+
+/* PROMOTED 2026-10-11 — func_80014E64
+ * Source:   cloud/work/frontier/w18c/sources/func_80014E64.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80014E64.c:func_80014E64 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+struct ResourceOffsets;
+struct RelativeEntry;
+extern void *func_80014E1C(unsigned short, struct RelativeEntry *);
+void *func_80014E64(unsigned short id, struct ResourceOffsets *resource)
+{
+    unsigned char *p = (unsigned char *)resource;
+    p += ((unsigned int *)resource)[0];
+    return func_80014E1C(id, (struct RelativeEntry *)p);
+}
+
+/* PROMOTED 2026-10-11 — func_80014E90
+ * Source:   cloud/work/frontier/w18c/sources/func_80014E90.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80014E90.c:func_80014E90 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void *func_80014E90(unsigned short id, struct ResourceOffsets *resource)
+{
+    unsigned char *p = (unsigned char *)resource;
+    p += ((unsigned int *)resource)[1];
+    return func_80014E1C(id, (struct RelativeEntry *)p);
+}
+
+/* PROMOTED 2026-10-11 — func_80014EBC
+ * Source:   cloud/work/frontier/w18c/sources/func_80014EBC.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80014EBC.c:func_80014EBC (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void *func_80014EBC(unsigned short id, struct ResourceOffsets *resource)
+{
+    unsigned char *p = (unsigned char *)resource;
+    p += ((unsigned int *)resource)[2];
+    return func_80014E1C(id, (struct RelativeEntry *)p);
+}
+
+/* PROMOTED 2026-10-11 — func_80014EE8
+ * Source:   cloud/work/frontier/w18c/sources/func_80014EE8.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80014EE8.c:func_80014EE8 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void *func_80014EE8(unsigned short id, struct ResourceOffsets *resource)
+{
+    unsigned char *p = (unsigned char *)resource;
+    p += ((unsigned int *)resource)[3];
+    return func_80014E1C(id, (struct RelativeEntry *)p);
+}
+
 /* PROMOTED 2026-10-04 — func_80014F14
  * Source:   cloud/matches/boot_tail/func_80014F14.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -216,7 +284,18 @@ void func_800152A8(u16 *ids)
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_15a10/func_80015318.s")
+/* PROMOTED 2026-10-11 — func_80015318
+ * Source:   cloud/work/frontier/w18c/sources/func_80015318.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80015318.c:func_80015318 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern int func_800164D0(unsigned short, void *, unsigned short);
+void func_80015318(unsigned short id, unsigned short *data)
+{
+    func_800164D0(id, data + 2, data[0]);
+}
+
 /* PROMOTED 2026-10-11 — func_80015348
  * Source:   cloud/work/frontier/w17g/sources/func_80015348.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

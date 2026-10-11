@@ -257,7 +257,32 @@ u8 func_80021F68(MacroState_80021F68 *state, MacroCommand_80021F68 *command)
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80021F84.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80022160.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80022324.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800223D0.s")
+/* PROMOTED 2026-10-11 — func_800223D0
+ * Source:   cloud/work/frontier/w18c/sources/func_800223D0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_800223D0.c:func_800223D0 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroState_800223D0 { u8 unknown00[0x28]; u32 field28; u16 field2C; u8 unknown2E[2]; u32 field30; u8 unknown34[4]; s32 field38; u8 unknown3C[0x14]; u16 field50; } MacroState_800223D0;
+#pragma pack(0)
+typedef struct MacroCommand_800223D0 { u32 word[2]; } MacroCommand_800223D0;
+u8 func_800223D0(MacroState_800223D0 *state, MacroCommand_800223D0 *command)
+{
+    s16 delta;
+    s32 value;
+    delta = command->word[0] >> 16;
+    value = (state->field28 >> 15) + delta;
+    if (value < 0) {
+        state->field28 = 0;
+    } else if (value > 65535) {
+        state->field28 = 0x7FFF8000;
+    } else {
+        state->field28 = (u32)value << 15;
+    }
+    return 0;
+}
+
 /* PROMOTED 2026-10-04 — func_8002243C
  * Source:   cloud/work/boot_tail_promotion/sources/func_8002243C.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -663,7 +688,34 @@ u32 func_8002321C(u32 volume, u16 curve)
     return volume;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800232A4.s")
+/* PROMOTED 2026-10-11 — func_800232A4
+ * Source:   cloud/work/frontier/w18c/sources/func_800232A4.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_800232A4.c:func_800232A4 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroState_800232A4 { u8 unknown00[0x30]; u32 volume30; u32 originalVolume34; } MacroState_800232A4;
+#pragma pack()
+extern u32 func_8002321C(u32, u16);
+u8 func_800232A4(MacroState_800232A4 *state, MacroCommand *command)
+{
+    u16 curve;
+    if ((u8)(command->word[1] >> 8) == 0) {
+        state->volume30 = ((u8)(command->word[0] >> 8) * state->volume30) >> 7;
+    } else {
+        state->volume30 = ((u8)(command->word[0] >> 8) * state->originalVolume34) >> 7;
+    }
+    state->volume30 += (u8)(command->word[0] >> 16) << 16;
+    if (state->volume30 > 0x7F0000) {
+        state->volume30 = 0x7F0000;
+    }
+    curve = (u8)command->word[1];
+    curve |= (u8)(command->word[0] >> 24) << 8;
+    state->volume30 = func_8002321C(state->volume30, curve);
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800233B0.s")
 extern u8 func_800233B0(MacroState *, MacroCommand *, u32);
 /* PROMOTED 2026-10-05 — func_80023520
@@ -729,7 +781,38 @@ typedef struct MacroState_80023818 MacroState_80023818;
 typedef struct MacroControl_80023818 MacroControl_80023818;
 typedef struct MacroCommand_80023818 { u32 word[2]; } MacroCommand_80023818;
 extern void func_80023754(MacroState_80023818 *state, MacroControl_80023818 *control, MacroCommand_80023818 *command, u32 flag);
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023754.s")
+/* PROMOTED 2026-10-11 — func_80023754
+ * Source:   cloud/work/frontier/w18c/sources/func_80023754.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80023754.c:func_80023754 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+struct MacroState_80023818 { u8 unknown00[0x24]; u32 flags24; };
+typedef struct ControlEntry_80023754 { u8 controller; u8 combination; s16 scale; } ControlEntry_80023754;
+struct MacroControl_80023818 { ControlEntry_80023754 entries[4]; u8 count; };
+#pragma pack()
+extern u8 func_80021548(u8);
+void func_80023754(MacroState_80023818 *state, MacroControl_80023818 *control,
+                  MacroCommand_80023818 *command, u32 flag)
+{
+    u8 index;
+    u8 controller;
+    u8 combination;
+    combination = command->word[1] & 0xFF;
+    if (!(state->flags24 & flag) || combination == 0) {
+        state->flags24 |= flag;
+        control->count = 0;
+    }
+    if (control->count < 4) {
+        index = control->count++;
+        controller = func_80021548(command->word[0] >> 8);
+        control->entries[index].controller = controller;
+        control->entries[index].combination = combination;
+        control->entries[index].scale = ((s32)(s16)(command->word[0] >> 16) * 256) / 100;
+    }
+}
+
 /* PROMOTED 2026-10-04 — func_80023818
  * Source:   cloud/work/boot_tail_promotion/sources/func_80023818.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -883,10 +966,97 @@ u8 func_800239A4(MacroState_800239A4 *state, MacroCommand *command)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023AD4.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023B50.s")
+/* PROMOTED 2026-10-11 — func_80023AD4
+ * Source:   cloud/work/frontier/w18c/sources/func_80023AD4.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80023AD4.c:func_80023AD4 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct VoiceVariables_80023AD4 { u8 unknown000[0x180]; s16 variables180[16]; } VoiceVariables_80023AD4;
+#pragma pack(0)
+extern s16 D_8004BE78[];
+extern u16 func_800215A8(VoiceState *voice, u8 controller);
+s16 func_80023AD4(VoiceVariables_80023AD4 *voice, u8 isController, u8 index)
+{
+    s32 value;
+    if (isController) {
+        return func_800215A8((VoiceState *)voice, index);
+    }
+    index &= 31;
+    value = index < 16 ? voice->variables180[index] : (&D_8004BE78[16])[index - 16];
+    return value;
+}
+
+/* PROMOTED 2026-10-11 — func_80023B50
+ * Source:   cloud/work/frontier/w18c/sources/func_80023B50.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80023B50.c:func_80023B50 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+extern void func_8002165C(VoiceState *voice, u8 controller, s16 value);
+void func_80023B50(VoiceVariables_80023AD4 *voice, u8 isController, u8 index, s16 value)
+{
+    if (isController) {
+        func_8002165C((VoiceState *)voice, index, value);
+    } else {
+        index &= 31;
+        if (index < 16) {
+            voice->variables180[index] = value;
+        } else {
+            (&D_8004BE78[16])[index - 16] = value;
+        }
+    }
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023BDC.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023D70.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023DB8.s")
+/* PROMOTED 2026-10-11 — func_80023D70
+ * Source:   cloud/work/frontier/w18c/sources/func_80023D70.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80023D70.c:func_80023D70 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+extern void func_80023B50(VoiceVariables_80023AD4 *voice, u8 isController, u8 index, s16 value);
+u8 func_80023D70(MacroState *state, MacroCommand *command)
+{
+    func_80023B50((VoiceVariables_80023AD4 *)state, command->word[0] >> 8, command->word[0] >> 16,
+                  (s16)(command->word[1] & 0xFFFF));
+    return 0;
+}
+
+/* PROMOTED 2026-10-11 — func_80023DB8
+ * Source:   cloud/work/frontier/w18c/sources/func_80023DB8.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80023DB8.c:func_80023DB8 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroVoice_80023DB8 { MacroCommand *program; MacroCommand *current; } MacroVoice_80023DB8;
+#pragma pack(0)
+extern s16 func_80023AD4(VoiceVariables_80023AD4 *voice, u8 isController, u8 index);
+u8 func_80023DB8(MacroVoice_80023DB8 *voice, MacroCommand *command, u8 comparison)
+{
+    s16 left;
+    s16 right;
+    u8 condition;
+    left = func_80023AD4((VoiceVariables_80023AD4 *)voice, command->word[0] >> 8, command->word[0] >> 16);
+    right = func_80023AD4((VoiceVariables_80023AD4 *)voice, command->word[0] >> 24, command->word[1] & 0xFF);
+    switch (comparison) {
+    case 0: condition = left == right; break;
+    case 1: condition = left < right; break;
+    }
+    if ((command->word[1] >> 8) & 255) {
+        condition = !condition;
+    }
+    if (condition) {
+        voice->current = ((command->word[1] >> 16) & 65535) + voice->program;
+    }
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023E9C.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80024988.s")
