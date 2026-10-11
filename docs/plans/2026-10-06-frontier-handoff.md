@@ -7,7 +7,7 @@ deltas are noted inline where they matter.
 
 | | Functions | Bytes | % |
 |---|---|---|---|
-| Game code (compressed image) | 972 / 1216 | 310,380 / 647,072 | 47.97 |
+| Game code (compressed image) | 973 / 1216 | 310,928 / 647,072 | 48.05 |
 | Static code (boot/library) | 550 / 668 | 103,172 / 160,720 | 64.19 |
 
 Frontier: 244 unmatched game functions (251 KB) after wave 17. Provisional: 20 functions (`provisional.json`).
@@ -193,7 +193,11 @@ larger boot-tail functions (5,448 B; lever: pass `x & 255` to a u8 parameter for
 variable instead of per-path returns, typed globals); w19c landed osAiSetNextBuffer and `__fixunsdfdi`/`__fixunssfdi`
 through owned `.data`/`.rodata` slots (`owned_data prepare`, co-owners, `promote_batch` slot promotion) and made
 static targets assemble with `.set gp=64` (18 more reloc-aware). Overlay A: Astra's #309/#310 merged, six bodies
-spliced (42/193, 14,364 B). Overlays are IDO 5.3 (0 in-place narrowings vs 147 in the boot tail). Open static
+spliced (42/193, 14,364 B). Game: w19e matched func_800CF06C (548 B, arcade road(); two unused locals = exact frame
+residual 192 vs 168, disclosed) and left three traced near-misses (world_effect_update 12 words = two missing block
+boundaries proven by relabelling our own listing; assign_drones 29 words; race_position_update needs two extra
+register values); it also corrected three names: world_effect_update is the graphics/heap init, assign_drones the
+end-of-race records update, race_position_update a text-width helper. Overlays are IDO 5.3 (0 in-place narrowings vs 147 in the boot tail). Open static
 items: func_80021548 and func_80023BDC need owned jump-table slots (entries drafted in w19b §C / w19a); six w19a
 relocation/target cases (`w19a/relocname/`, `ownrodata/`); the near-misses in w19a/w19b RESULTS (scheduling-only
 residuals under 7.1 remain unexplained).

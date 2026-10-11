@@ -16,7 +16,7 @@ four code populations, reported separately and never merged:
 | Population | Targets in this repo | Compiler | 2026-10-11 |
 |---|---|---|---|
 | Static boot/library code | `asm/us/boot_tail/` (the unmatched Rush boot tail) | IDO 5.3 (libultra), **IDO 7.1** (Rush boot tail, `rom_compilers.json`) | 550/668 functions, 103,172 / 160,720 B (64.19%) |
-| Game code (zlib stream at ROM `0xB0CB10`, inflates to `0x80086A50`) | `asm/us/blob/` | IDO 5.3, `-O2`/`-O3 -mips2` | 972/1216, 310,380 / 647,072 B (47.97%) |
+| Game code (zlib stream at ROM `0xB0CB10`, inflates to `0x80086A50`) | `asm/us/blob/` | IDO 5.3, `-O2`/`-O3 -mips2` | 973/1216, 310,928 / 647,072 B (48.05%) |
 | Runtime image A (stream `0xB5C534`, loads at `0x8038A400`) | `asm/us/ovl_a/` | IDO 5.3 | 42/193 functions, 14,364 / 152,952 B; lands via `ovl_splice` + `ovl_rom` (2026-10-11) |
 | Runtime image B (stream `0xB6FEC4`, loads at `0x8038A400`) | `asm/us/ovl_b/` | IDO 5.3 | 8/49 functions, 1,640 / 38,708 B; same |
 
