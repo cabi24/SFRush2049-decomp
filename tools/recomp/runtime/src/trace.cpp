@@ -186,7 +186,8 @@ void rush::trace_overlay(const char* name, uint32_t stream_rom, uint32_t dst) {
 void rush::trace_shim(const char* name, uint32_t ra) {
     std::lock_guard<std::mutex> lock(mu);
     if (seen_shims.insert(name).second) {
-        fprintf(stderr, "[rush] t=%.2fs shim %s first called (ra 0x%08X)\n", now_s(), name, ra);
+        (void)ra;  // N64Recomp does not materialise $ra for direct calls
+        fprintf(stderr, "[rush] t=%.2fs shim %s first called\n", now_s(), name);
     }
 }
 
