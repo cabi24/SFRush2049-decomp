@@ -1,6 +1,6 @@
 # Frontier handoff: 2026-10-06 (after wave 12), updated 2026-10-11 (after wave 15)
 
-## 0. Wave 13–16 update (2026-10-11, after wave 16)
+## 0. Wave 13–16 update (2026-10-11, after wave 16; wave 17 running)
 
 Read this section first; §1–§10 below are the wave-12 text and still describe the method. Section-by-section
 deltas are noted inline where they matter.
@@ -119,6 +119,12 @@ Table in `cloud/work/frontier/w15g/RESULTS.md`.
 Provisional unblockers: func_800E4B58 (above), func_800D91A0 (closes 1,572 B + pause_quit 1,024, 603 rows), audio_mixer_main.
 Wave 16 lesson (w16d, w16b): uopt's live-range split start block follows source-visible block order; a private
 instrumented uopt with skip/reject oracles proves the lever before searching for the source form.
+
+**Wave 17 (launched 2026-10-11 afternoon, nine Opus lanes):** w17a camera_play_script, w17b func_800E4B58 (+
+func_800E398C), w17c anim_state_update, w17d entity_render_setup, w17e func_800D91A0 (closes pause_quit and three
+provisional results-screen bodies), w17f entity_spawn_init, w17g static Rush-specific `func_*` code + data-bound
+items, w17h fresh physics_response / func_800D6914 / engine_sound_sync / func_800C8918, w17i func_80096130 /
+audio_frame_update with the instrumented-uopt method.
 
 **For the next coordinating session.** This covers where the frontier matching effort stands, how a wave is run end to end, what the owner has decided, and every open item. Read it with `CLAUDE.md`, `cloud/work/frontier/WAVE_BRIEF.md` (the brief every lane agent reads) and `docs/plans/2026-10-04-frontier-plan.md` (the original method).
 
