@@ -1,0 +1,6 @@
+register  osCauseGet               @0x8000DBB0    3 insns seg 0xe4f0   reloc_aware o=54eac4d7b131  (new row)
+refresh   __osContAddressCrc       @0x8000F9F0   52 insns seg 0x105f0  reloc_aware o=0cdbca3b4ac5  (was 23 insns; object unchanged)
+refresh   __fixunsdfdi             @0x80009A28   40 insns seg 0xa5f0   reloc_aware o=b9227be98966  (was 40 insns; object changes, supersedes 360 matrix_entry rows)
+refresh   __fixunssfdi             @0x80009AC8   39 insns seg 0xa5f0   reloc_aware o=b81b16683e14  (was 39 insns; object changes, supersedes 360 matrix_entry rows)
+retire    __osGetCause             @0x8000DBB0  renamed to osCauseGet @0x8000DBB0; deletes n64_target 1, matrix_entry 0, function_status 1
+dry run: nothing written (5 actions; 2274 other n64_target rows untouched)

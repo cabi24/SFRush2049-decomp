@@ -1,0 +1,18 @@
+ASMPROC src/rom/lib_a5f0.c
+ASMPROC src/rom/lib_ca70.c
+cc: Warning: -mips3 should not be used for ucode 32-bit compiles
+LD build/us/rush2049.us.elf
+/usr/bin/mips-linux-gnu-ld.bfd: warning: dot moved backwards before `.sdk_initialize_bss'
+/usr/bin/mips-linux-gnu-ld.bfd: warning: dot moved backwards before `.sdk_initialize_bss'
+/usr/bin/mips-linux-gnu-ld.bfd: warning: dot moved backwards before `.sdk_initialize_bss'
+/usr/bin/mips-linux-gnu-ld.bfd: warning: build/us/rush2049.us.elf has a LOAD segment with RWX permissions
+OBJCOPY build/us/rush2049.us.z64
+Build complete: build/us/rush2049.us.z64
+Verifying built ROM hash...
+build/us/rush2049.us.z64: OK
+ROM matches!
+make exit 0
+Verifying built ROM hash...
+build/us/rush2049.us.z64: OK
+ROM matches!
+test exit 0

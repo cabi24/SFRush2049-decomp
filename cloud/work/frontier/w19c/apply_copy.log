@@ -1,0 +1,7 @@
+register  osCauseGet               @0x8000DBB0    3 insns seg 0xe4f0   reloc_aware o=54eac4d7b131  (new row)
+refresh   __osContAddressCrc       @0x8000F9F0   52 insns seg 0x105f0  reloc_aware o=0cdbca3b4ac5  (was 23 insns; object unchanged)
+refresh   __fixunsdfdi             @0x80009A28   40 insns seg 0xa5f0   reloc_aware o=b9227be98966  (was 40 insns; object changes, supersedes 360 matrix_entry rows)
+refresh   __fixunssfdi             @0x80009AC8   39 insns seg 0xa5f0   reloc_aware o=b81b16683e14  (was 39 insns; object changes, supersedes 360 matrix_entry rows)
+retire    __osGetCause             @0x8000DBB0  renamed to osCauseGet @0x8000DBB0; deletes n64_target 1, matrix_entry 0, function_status 1
+applied 5 actions to /tmp/claude-1000/-home-cburnes-projects-rush2049-decomp/e6d4d7af-aa0e-4f5a-98a8-2e25f3b6dd6b/scratchpad/w19c/db/conveyor.db: n64_target 2279 -> 2279, 720 matrix_entry rows purged
+audit exit 0
