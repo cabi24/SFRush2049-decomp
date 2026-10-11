@@ -1906,6 +1906,7 @@ camera_play_script:
 .section .text.camera_victory, "ax", @progbits
 .globl camera_victory
 camera_victory:
+    /* compiled from src/blob/camera_victory.c */
     .word 0x27BDFDB8
     .word 0x3C0F8011
     .word 0xAFB60068
@@ -4393,6 +4394,7 @@ func_800C885C:
 .section .text.func_800C8918, "ax", @progbits
 .globl func_800C8918
 func_800C8918:
+    /* compiled from src/blob/func_800C8918.c */
     .word 0x3C0E8011
     .word 0x81CE023C
     .word 0x27BDFF30

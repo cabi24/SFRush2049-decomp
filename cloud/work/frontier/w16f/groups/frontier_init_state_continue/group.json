@@ -1,0 +1,21 @@
+{
+ "members": [
+  "init_state_continue"
+ ],
+ "context": [
+  "func_8008B2E4"
+ ],
+ "files": [
+  "group.c",
+  "func_8008B2E4.c"
+ ],
+ "keep": [
+  "standin_caller",
+  "func_8008B2E4"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "claims": [],
+ "note": "PROVISIONAL: init_state_continue is code-identical (score.py group MATCH) only with the stand-in caller standin_caller; its real callers display_list_flush and countdown are unmatched. Do not install. func_8008B2E4.c is a byte-identical copy of the locked single (context, kept).",
+ "provenance": "frontier wave 16 (w16f), 2026-10-11; builds on w2e (cloud/work/frontier/w2e/init_state_continue); cloud/work/frontier/w16f/RESULTS.md"
+}

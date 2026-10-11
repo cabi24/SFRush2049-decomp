@@ -217,7 +217,18 @@ void func_800152A8(u16 *ids)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_15a10/func_80015318.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_15a10/func_80015348.s")
+/* PROMOTED 2026-10-11 — func_80015348
+ * Source:   cloud/work/frontier/w17g/sources/func_80015348.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80015348.c:func_80015348 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern int func_8001661C(unsigned short);
+void func_80015348(unsigned short id)
+{
+    func_8001661C(id);
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_15a10/func_8001536C.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_15a10/func_800154A4.s")
 /* PROMOTED 2026-10-04 — func_80015574
@@ -232,4 +243,15 @@ int func_80015574(unsigned int a, unsigned int b, unsigned int c, unsigned int d
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_15a10/func_8001558C.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_15a10/func_800156E8.s")
+/* PROMOTED 2026-10-11 — func_800156E8
+ * Source:   cloud/work/frontier/w17g/sources/func_800156E8.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_800156E8.c:func_800156E8 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern int func_8001558C(unsigned short, unsigned short, unsigned int, unsigned int, unsigned char);
+int func_800156E8(unsigned short group, unsigned short item, unsigned int context, unsigned int option)
+{
+    return func_8001558C(group, item, context, option, 0);
+}
+

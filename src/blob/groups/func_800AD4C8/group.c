@@ -4043,19 +4043,10 @@ void __standin_func_800AD4C8(void)
     func_800AD4C8(0, 0, 0, 0);
 }
 
-/* stand-in callers for the two roots whose real callers are outside the unit
- * (camera_trigger_check/camera_victory/entity_update and input_deadzone_apply): two call sites
- * keep them out of line without `keep`, so they get IPA registers like the ROM's */
-void __standin_func_800C3AD0_a(void)
-{
-    func_800C3AD0(0, 0, 0, 0, 0, 0, 0, 0);
-}
-
-void __standin_func_800C3AD0_b(void)
-{
-    func_800C3AD0(0, 0, 0, 0, 0, 0, 0, 1);
-}
-
+/* stand-in callers for input_process_controller, whose real caller (input_deadzone_apply) is outside
+ * the unit: two call sites keep it out of line without `keep`, so it gets IPA registers like the ROM's.
+ * (w16d: the former func_800C3AD0 stand-ins are removed -- its real callers camera_trigger_check and
+ * camera_victory are members of this group, and entity_update is locked in frontier_entity_update.) */
 void __standin_input_process_controller_a(void)
 {
     input_process_controller(0, 0, 0, 0, 0, 0, 0, 0, 0);

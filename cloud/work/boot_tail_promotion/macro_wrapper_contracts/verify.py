@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[4]
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 from tools.cloud import score
+from tools.conveyor import compilers as compilersmod
 from tools.conveyor.seeds.extract_candidates import extract_functions
 from tools.conveyor.pipeline.lock import normalize_body
 
@@ -78,7 +79,7 @@ def splice(text, sources, contexts):
 
 def compile_tu(source, obj, context):
     command = [sys.executable, str(ROOT / 'tools/asm-processor/build.py'),
-               score.ido('cc'), '--', 'mips-linux-gnu-as', '-march=vr4300',
+               str(compilersmod.tu_cc(TU.stem, score.ido('cc'))), '--', 'mips-linux-gnu-as', '-march=vr4300',
                '-mabi=32', '-I' + str(ROOT / 'include'), '--', '-c',
                *context.CFLAGS, '-o', str(obj), str(source)]
     return subprocess.run(command, cwd=ROOT, capture_output=True, text=True)

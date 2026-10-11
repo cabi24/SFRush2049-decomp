@@ -1,0 +1,22 @@
+== build3.log
+123:ASMPROC src/rom/lib_a5f0.c
+151:ASMPROC src/rom/lib_e4f0.c
+196:build/us/rush2049.us.z64: OK
+197:ROM matches!
+198:make exit 0
+200:build/us/rush2049.us.z64: OK
+201:ROM matches!
+202:test exit 0
+== build4.log
+1:ASMPROC src/rom/lib_a5f0.c
+2:ASMPROC src/rom/lib_e4f0.c
+13:build/us/rush2049.us.z64: OK
+14:ROM matches!
+15:make exit 0
+17:build/us/rush2049.us.z64: OK
+18:ROM matches!
+19:test exit 0
+== build5_noo32.log
+1:ASMPROC src/rom/lib_e4f0.c
+4:/usr/bin/mips-linux-gnu-ld.bfd: build/us/src/rom/lib_e4f0.o: linking 32-bit code with 64-bit code
+10:make: *** [Makefile.noo32:289: build/us/rush2049.us.elf] Error 1

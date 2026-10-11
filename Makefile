@@ -12,7 +12,8 @@ COMPARE      ?= 1
 VERBOSE      ?= 0
 
 # Compiler selection: ido (matching) or gcc (non-matching)
-# ido - Uses SGI IDO 5.3 compiler (required for matching builds)
+# ido - Uses SGI IDO 5.3 compiler (required for matching builds); ROM TUs
+#       pinned in rom_compilers.json build with IDO 7.1 (IDO71_CC)
 # gcc - Uses mips-linux-gnu-gcc (faster iteration, non-matching)
 COMPILER     ?= ido
 $(if $(filter $(COMPILER),ido gcc),,$(error Invalid COMPILER: $(COMPILER). Valid: ido gcc))
@@ -46,6 +47,11 @@ ifeq ($(COMPILER),ido)
   CC           := $(IDO_ROOT)/cc
   ACPP         := $(IDO_ROOT)/acpp
   COPT         := $(IDO_ROOT)/copt
+  # IDO 7.1 (decompals ido-static-recomp v1.2 release), used only for ROM TUs
+  # pinned to it in rom_compilers.json (opt_overrides.mk `CC := $(IDO71_CC)`).
+  # Install: python3 -m tools.conveyor.compilers install ido7.1
+  IDO71_ROOT   := $(TOOLS_DIR)/ido-static-recomp/build71/out
+  IDO71_CC     := $(IDO71_ROOT)/cc
   MIPSISET     := -mips2
   OPT_FLAGS    := -O2
 else
@@ -226,11 +232,17 @@ $(BUILD_DIR)/$(SRC_DIR)/%.o: $(SRC_DIR)/%.c
 # ROM-aligned TUs: asm-processor injects the GLOBAL_ASM passthroughs into the
 # IDO object post-compile (byte-exact function content from asm/us/nonmatchings).
 # More specific pattern than the generic C rule, so it wins for src/rom/.
+# A TU built at IDO `-mips3 -32` (opt_overrides.mk) gets EF_MIPS_32BITMODE set
+# so GNU ld links it beside the -mips2 objects (pipeline.o32abi).
+# opt_overrides.mk may select another compiler (CC := $(IDO71_CC)) for a TU;
+# a missing compiler fails loudly, never falls back to the default.
 $(BUILD_DIR)/$(SRC_DIR)/rom/%.o: $(SRC_DIR)/rom/%.c
 	@mkdir -p $(dir $@)
-	@echo "ASMPROC $<"
+	@echo "ASMPROC $<$(if $(filter $(IDO71_CC),$(CC)), (IDO 7.1),)"
+	@test -x $(CC) || { echo "error: compiler $(CC) for $< is not installed (python3 -m tools.conveyor.compilers install ido7.1)"; exit 1; }
 	$(V)$(PYTHON) $(TOOLS_DIR)/asm-processor/build.py \
 	    $(CC) -- $(AS) $(ASFLAGS) -- -c $(CFLAGS) -o $@ $<
+	$(if $(filter -mips3,$(CFLAGS)),$(V)$(PYTHON) -m tools.conveyor.pipeline.o32abi $@ --cflags '$(CFLAGS)')
 	$(V)$(PYTHON) -m tools.conveyor.pipeline.owned_data object $< $@
 
 # os_sync.c matches with debug-style codegen; disable optimization for this file.
@@ -245,6 +257,9 @@ endif
 # committed so it reaches the builder via git — promotion rsyncs only the TU.
 -include $(SRC_DIR)/rom/opt_overrides.mk
 -include $(SRC_DIR)/rom/storage_overrides.mk
+# A changed override (flags or compiler) must rebuild the ROM TUs; a stale
+# object would make the SHA-1 gate vacuous for the change.
+$(SRC_ROM_O): $(wildcard $(SRC_DIR)/rom/opt_overrides.mk)
 $(SRC_ROM_O): include/PR/os_thread.h
 $(SRC_DIR)/rom/storage_overrides.mk rom_owned_storage.ld: rom_owned_data.json tools/conveyor/pipeline/owned_storage.py tools/conveyor/pipeline/owned_data.py
 	$(V)$(PYTHON) -m tools.conveyor.pipeline.owned_storage generate

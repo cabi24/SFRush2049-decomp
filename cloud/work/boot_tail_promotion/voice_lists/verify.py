@@ -22,6 +22,7 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT))
 from tools.cloud import score
+from tools.conveyor import compilers as compilersmod
 from tools.conveyor.pipeline.lock import load_lock, normalize_body
 from tools.conveyor.seeds.extract_candidates import extract_functions, extract_named_function
 
@@ -128,10 +129,17 @@ def splice(tu, text, paths, rows):
     return text
 
 
+def tu_cc(tu):
+    """The compiler the layout pins for this ROM TU (rom_compilers.json): the
+    boot-tail TUs are IDO 7.1 since 2026-10-11, libultra stays 5.3. A pinned
+    compiler that is not installed is a toolchain gap (tests/conftest.py)."""
+    return compilersmod.tu_cc(tu, score.IDO / 'cc')
+
+
 def build(text, work, label, expected_error=None):
     source, obj = work / (label + '.c'), work / (label + '.o')
     source.write_text(text)
-    command = [sys.executable, 'tools/asm-processor/build.py', str(score.IDO / 'cc'),
+    command = [sys.executable, 'tools/asm-processor/build.py', str(tu_cc(label.split('.')[0])),
                '--', 'mips-linux-gnu-as', '-march=vr4300', '-mabi=32', '-Iinclude',
                '--', '-c', *TU_FLAGS, '-o', str(obj), str(source)]
     proc = subprocess.run(command, cwd=ROOT, capture_output=True, text=True)

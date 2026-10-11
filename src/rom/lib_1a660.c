@@ -17,7 +17,41 @@ unsigned int func_80019AA8(unsigned char *state)
     return D_8004FA20[state[75] == 255 ? 8 : state[75]];
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_80019AD4.s")
+/* PROMOTED 2026-10-11 — func_80019AD4
+ * Source:   cloud/work/frontier/w17g/sources/func_80019AD4.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80019AD4.c:func_80019AD4 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct RampState { u8 unknown00[36]; u32 flags24; u8 unknown28[100]; u32 start8C; u32 end90; u32 current94; } RampState;
+#pragma pack(0)
+extern u32 D_8004BE90;
+u32 func_80019AD4(RampState *state, u32 target)
+{
+    s32 duration;
+    u32 previous;
+    u32 start;
+    u32 end;
+    if (state->flags24 & 0x800) {
+        end = state->end90;
+        start = state->start8C;
+        duration = (end - start) >> 8;
+        if (duration > 0) {
+            previous = state->current94;
+            state->current94 += (s32)(D_8004BE90 * (u32)((s32)(target - state->current94) >> 8)) / duration;
+            if ((previous < target && state->current94 < target) ||
+                (previous > target && state->current94 > target)) {
+                target = state->current94;
+                state->start8C = start + D_8004BE90;
+            } else {
+                state->start8C = end;
+            }
+        }
+    }
+    return target;
+}
+
 /* PROMOTED 2026-10-04 — func_80019BE4
  * Source:   cloud/matches/boot_tail/func_80019BE4.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -122,7 +156,34 @@ void func_8001B154(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001B1D0.s")
+/* PROMOTED 2026-10-11 — func_8001B1D0
+ * Source:   cloud/work/frontier/w17g/sources/func_8001B1D0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_8001B1D0.c:func_8001B1D0 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct Preset { u16 identifier; u16 high; u8 low; u8 middle; u8 default_first; u8 default_second; u8 flags; u8 parameter; u8 unknown0A[2]; } Preset;
+#pragma pack(0)
+extern Preset *func_80017040(u16);
+extern u32 func_8001A270(u32, u8, u8, u8, u8, u8, u16, u16, u8, s16);
+u32 func_8001B1D0(u16 identifier, u8 first, u8 second)
+{
+    Preset *preset;
+    u32 result;
+    result = 0xFFFFFFFFU;
+    preset = func_80017040(identifier);
+    if (preset != 0) {
+        if (first == 255) first = preset->default_first;
+        if (second == 255) second = preset->default_second;
+        result = func_8001A270(((u32)preset->high << 16) |
+            ((u32)preset->middle << 8) | preset->low,
+            preset->flags | 128, first, second, 255, 255, 0, 255,
+            preset->parameter, 0);
+    }
+    return result;
+}
+
 /* PROMOTED 2026-10-05 — func_8001B29C
  * Source:   cloud/work/boot_tail_promotion/voice_lists/sources/func_8001B29C.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

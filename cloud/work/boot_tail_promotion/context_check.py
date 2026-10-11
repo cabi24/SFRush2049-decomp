@@ -18,9 +18,13 @@ For each function this script, with the Makefile's ROM-TU compiler and flags:
 3. requires the function's disassembly with relocations (`objdump -dr`) to be
    identical in both objects, so the rom_tu.h context cannot change codegen.
 
-Output: JSON lines {function, status, reason, preamble[], dropped[]}.
+Output: JSON lines {function, status, reason, preamble[], dropped[], compiler}.
 Usage (repo root on the builder):
-    python3 cloud/work/boot_tail_promotion/context_check.py OUT.jsonl fn[=source.c]...
+    python3 cloud/work/boot_tail_promotion/context_check.py [--compiler ido7.1] OUT.jsonl fn[=source.c]...
+
+`--compiler` (default ido5.3) selects the pinned compiler the ROM TU builds
+with (rom_compilers.json; tools/conveyor/compilers.py `builder_dir`). Each row
+records it; promote_batch refuses a row whose compiler is not its segment's.
 """
 import json
 import re
@@ -30,10 +34,12 @@ import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path.cwd()))
+from tools.conveyor import compilers as compilersmod  # noqa: E402
 from tools.conveyor.seeds.extract_candidates import extract_functions  # noqa: E402
 
 ROOT = Path.cwd()
-CC = ROOT / "tools/ido-static-recomp/build/out/cc"
+COMPILER = compilersmod.DEFAULT
+CC = ROOT / compilersmod.COMPILERS[COMPILER]["builder_dir"] / "cc"
 # Makefile CFLAGS for src/rom/*.c at the -O2 default (no opt override).
 CFLAGS = ["-G", "0", "-mips2", "-O2", "-non_shared", "-I" + str(ROOT / "include"),
           "-I" + str(ROOT / "include/PR"), "-D_LANGUAGE_C", "-Wab,-r4300_mul",
@@ -151,9 +157,18 @@ def check(fn, tmp, source=None):
 
 
 def main():
-    out = Path(sys.argv[1])
+    global COMPILER, CC
+    argv = sys.argv[1:]
+    if argv[:1] == ["--compiler"]:
+        COMPILER = compilersmod.require_known(argv[1])
+        CC = ROOT / compilersmod.COMPILERS[COMPILER]["builder_dir"] / "cc"
+        argv = argv[2:]
+    if compilersmod.identify_dir(CC.parent) != COMPILER:
+        sys.exit(f"{CC.parent} is not a known {COMPILER} build "
+                 f"(python3 -m tools.conveyor.compilers install {COMPILER})")
+    out = Path(argv[0])
     with tempfile.TemporaryDirectory() as t, out.open("w") as f:
-        for arg in sys.argv[2:]:
+        for arg in argv[1:]:
             fn, _, source = arg.partition("=")
             try:
                 row = check(fn, Path(t), source or None)
@@ -161,6 +176,7 @@ def main():
                 row = dict(status="refused", reason=f"checker error: {exc}")
             row["function"] = fn
             row["source"] = source or f"cloud/matches/boot_tail/{fn}.c"
+            row["compiler"] = COMPILER
             f.write(json.dumps(row) + "\n")
             print(fn, row["status"], row.get("reason", ""))
 

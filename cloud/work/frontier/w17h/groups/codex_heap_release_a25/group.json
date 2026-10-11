@@ -1,0 +1,69 @@
+{
+ "members": [
+  "audio_reverb_update",
+  "audio_effect_process",
+  "synced_model_render",
+  "MP_TargetSpeed",
+  "assign_default_paths",
+  "stat_race_end",
+  "NextMaxPath",
+  "menu_item_select",
+  "car_damage_visual",
+  "func_800CB9D0",
+  "car_angular_velocity_clamp",
+  "PrevMaxPath",
+  "InitMaxPath",
+  "sync_maxpath_to_checkpoint",
+  "func_800C885C",
+  "wheel_params_set",
+  "func_800C8918",
+  "func_80091AF0",
+  "func_80091AF8"
+ ],
+ "context": [
+  "func_80095F8C",
+  "func_80095EF4",
+  "audio_buffer_sync",
+  "object_counter_decrement",
+  "object_counter_increment",
+  "func_800A51D8"
+ ],
+ "files": [
+  "group.c",
+  "alloc_at.c",
+  "car_damage_visual.c",
+  "func_800CB9D0.c",
+  "deflate_mem.c",
+  "overlay_loader.c",
+  "wheel_params_set.c",
+  "func_80091AF0.c",
+  "func_80091AF8.c",
+  "func_800C8918.c"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "keep": [
+  "audio_effect_process",
+  "synced_model_render",
+  "MP_TargetSpeed",
+  "assign_default_paths",
+  "stat_race_end",
+  "audio_buffer_sync",
+  "object_counter_decrement",
+  "object_counter_increment",
+  "NextMaxPath",
+  "menu_item_select",
+  "car_damage_visual",
+  "func_800CB9D0",
+  "car_angular_velocity_clamp",
+  "InitMaxPath",
+  "sync_maxpath_to_checkpoint",
+  "func_800C885C",
+  "wheel_params_set",
+  "func_800C8918"
+ ],
+ "provenance": "frontier waves 2-8 (heap family; wheel_params_set from w8c), 2026-10-05; func_800C8918 + stub bodies func_80091AF0/func_80091AF8: frontier wave 17 (w17h), cloud/work/frontier/w17h/RESULTS.md",
+ "note": "Extends the locked group src/blob/groups/codex_heap_release_a25 (all its files unchanged copies) with overlay_loader.c. New claims: PrevMaxPath (internal, register parameters), InitMaxPath, sync_maxpath_to_checkpoint. All three EQUAL in the whole-program unit (blob_unit score --with overlay_loader.c --internal PrevMaxPath, 0 neighbours broken). display_enable (also calls PrevMaxPath) is not included: its real caller playgame_state_change is unmatched. Wave 8 (w8a): func_800C885C appended to group.c; audio_effect_process made __inline with four unused locals (w6c rule) so umerge inlines it into func_800C885C; its kept body is unchanged. Wave 17 (w17h): func_800C8918.c appended (claims func_800C8918; EQUAL in the whole-program unit, 0 locked bodies broken); func_80091AF0.c/func_80091AF8.c give the locked caller-less stubs func_80091AF0/func_80091AF8 (slot-queue lock/unlock) their bodies; they need forced_internal + prefer_definition entries like func_80095CF4/func_80095CFC. score.py reports func_80091AF0 '2 extra words' only because the two deleted static stubs of func_800C8918.c follow it in the group object; its own 2-word slice is the retail stub.",
+ "claims": [
+  "func_800C8918"
+ ]
+}

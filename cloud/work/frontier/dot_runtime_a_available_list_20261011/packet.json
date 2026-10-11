@@ -1,0 +1,60 @@
+{
+  "protocol_version": 2,
+  "image": "A",
+  "compiler": "ido5.3",
+  "members": [
+    "func_8039D494",
+    "func_8039E3BC",
+    "func_8039ED20"
+  ],
+  "claims": [
+    "func_8039E3BC"
+  ],
+  "context": [
+    "func_8039D300",
+    "func_803A0498",
+    "func_803A0FD8",
+    "func_803A1EAC",
+    "func_8039E200",
+    "func_8039D05C",
+    "func_8039FF04",
+    "func_8039D6A4",
+    "func_8039EF08"
+  ],
+  "keep": [
+    "func_803A1EAC"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "assembler_workaround": "-Wab,-r4300_mul (canonical score.py group backend)",
+  "input_sha256": {
+    "group.c": "efaa8bccf45789b3376db8b924b8f71fe3fec855138757fd5e908b360fff7852",
+    "group.json": "8fc264c19a4527a17cd0be8a61b328ccc605f5448ad5fedb9a931f1fc3b8f421",
+    "verify.py": "a9feccddf4942016e2cd08ac466c71af0a68e8276d7918e97f07ac9bcd056a1a",
+    "quick_verify.py": "67c9049d5924b792591710dbcfcf50f62ba46d5f9ecb840e56af49dfc68d24f4"
+  },
+  "target_manifest_rows": {
+    "extents.json": "0d97935254a6f2c724dfe68b08087e0a451e56d0aedb2121748abe7b6cc0798b",
+    "symbols.json": "d5a6c8dccb0380f54f080d45d82a5e71f917be86f9568bf4b7fbe10a89f2a769"
+  },
+  "target_words_sha256": {
+    "func_8039D494": "613dae3c390ee99c67793f916883023f1ab829aaf20b077272c80cc36a2a93fa",
+    "func_8039E3BC": "c56db54a7f5e9b363c23161f3f2049a5593a0343d19b6edaf1926e2e6abebb85",
+    "func_8039ED20": "77651083f55b2b89d080b80775f81324be47a6c9c35158a89eaf71d4eadda2e8"
+  },
+  "member_bytes": {
+    "func_8039D494": 528,
+    "func_8039E3BC": 136,
+    "func_8039ED20": 480
+  },
+  "new_candidate_bytes": 136,
+  "accepted_image_bytes": 0,
+  "cartridge_bytes": 0,
+  "score_command": "python3 tools/cloud/score.py group cloud/work/frontier/dot_runtime_a_available_list_20261011 --targets asm/us/ovl_a",
+  "research_replay": "python3 -m pytest cloud/work/frontier/dot_runtime_a_available_list_20261011/research_tests.py -q",
+  "limits": [
+    "Authentic nonmatching callers are context only; no whole-caller or whole-TU equivalence.",
+    "Private helper ABI requires integration caller checks; not standalone O32 replacements.",
+    "No original placement, overlay splice/stream round-trip/full-ROM/hardware/gameplay claim.",
+    "Historical verification.json receipts predate metadata-only packaging; their tool hashes are observations, not current replay gates."
+  ]
+}

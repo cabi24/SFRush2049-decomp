@@ -1,0 +1,14 @@
+Verifying built ROM hash...
+build/us/rush2049.us.z64: OK
+ROM matches!
+test exit 0
+===
+18
+Verifying built ROM hash...
+build/us/rush2049.us.z64: OK
+ROM matches!
+test exit 0
+===
+ROM does NOT match
+make: *** [Makefile:319: verify] Error 1
+test exit 2

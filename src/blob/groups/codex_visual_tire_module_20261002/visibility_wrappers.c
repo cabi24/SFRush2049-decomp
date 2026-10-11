@@ -79,7 +79,7 @@ extern f32 D_8012393C,D_80123940,D_80123944,D_80123948;
 extern s32 func_8008B2B4(void);
 extern void model_data_load(s16,s32,s32);
 extern void model_transform_setup(s16,s32,s32);
-extern s32 model_bounds_calc(s32,Visual *);
+extern s32 model_bounds_calc(Visual *,s32);
 extern s32 matrix_scale_apply(Visual *,s32,s32);
 extern void func_8008D870(s16,s32,s32);
 extern void euler_to_matrix(Matrix3,Vec3);
@@ -87,7 +87,7 @@ extern void func_8008B32C(Matrix3,Matrix3,f32);
 extern void func_8008D6FC(s16,Vec3,Matrix3);
 #endif
 
-s32 model_bounds_calc(s32 show,Visual *v)
+s32 model_bounds_calc(Visual *v,s32 show)
 {
     if(show) model_transform_setup(v->object,0,15);
     else model_data_load(v->object,1,15);
@@ -95,7 +95,7 @@ s32 model_bounds_calc(s32 show,Visual *v)
 }
 s32 matrix_scale_apply(Visual *v,s32 show,s32 part)
 {
-    if(part<0) return model_bounds_calc(show,v);
+    if(part<0) return model_bounds_calc(v,show);
     if(show) model_transform_setup(v->object,0,1<<part);
     else model_data_load(v->object,1,1<<part);
     return show;

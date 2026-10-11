@@ -1,0 +1,25 @@
+{
+ "members": [
+  "func_800E397C",
+  "func_800E3984",
+  "func_800E398C",
+  "func_800E42E8",
+  "func_800E42F0",
+  "func_800E42F8",
+  "func_800E4300",
+  "func_800E451C",
+  "func_800E4B50",
+  "func_800E4B58"
+ ],
+ "context": [],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "func_800E4B58"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "note": "Real callers, no stand-ins, no implicit int. All ten EQUAL in the whole-program unit with --internal for every member except func_800E4B58 (blob_unit score ... --neighbours, 0 locked bodies differ). The six 2-word stubs are locked empty singles (src/blob/func_800E397C.c, func_800E3984.c, func_800E42E8.c, func_800E42F0.c, func_800E42F8.c, func_800E4B50.c); this group defines them for real (the inlined arcade helpers), so the shadow unit needs prefer_definition (this file) and force_internal entries for them, as for frontier_camera_scene_manager. func_800E5434 (the stub after func_800E4B58) is not part of this file. Shaping disclosed in group.c's header.",
+ "provenance": "frontier wave 17 (w17b): func_800E4B58 from w16d best + traced levers; func_800E398C reconstructed from arcade avoid_areas (dot_avoid_areas_20261006 as start); func_800E451C/func_800E4300 from dot_interval_position_20261006 unchanged; cloud/work/frontier/w17b/RESULTS.md"
+}

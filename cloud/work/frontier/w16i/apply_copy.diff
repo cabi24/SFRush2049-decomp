@@ -1,0 +1,37 @@
+< n64_target ('__osContDataCrc', 2147547724, 'static', 29, '2b0c625de2886889cecfd1384a2a4507048bd81852a630f78631e031f17d1486', '2b5147a812a9e50011424bcc40aaefe9
+> n64_target ('__osContDataCrc', 2147547840, 'static', 37, '85064b2f26ee0edcdbd83654c7d323543b0d4a40f275681db110dadc8cc95330', '1f84e0bc636dfa7b4388ff36bca10b03
+< n64_target ('__osEnqueueAndYield', 2147548064, 'static', 68, '3d03e19fef96a0fd78ba97fe6cc77203a9a0f7f879470f5c3616ac4228222fa3', '8abbf45dca4d952addb06d741ad4
+> n64_target ('__osEPiRawReadIo', 2147549024, 'static', 87, '708f81a0d78838589302abe9ccae9ffebe03820e980f420b94d20bf3fe64ef03', '91f86507182ffbaaeeae7173032b047
+> n64_target ('__osEPiRawWriteIo', 2147548672, 'static', 86, 'd1be7f7aa11b0e268d16d27bf66348d1c058602dba9949feffb1634b674dbbed', '1ae5d9382c22d3092505f1223f8aa4
+< n64_target ('__osPfsDataChecksum', 2147547840, 'static', 8, '9c9263b74ed04ad2d1523d06975d657fdff828d8c429c08868613cc2246c0687', '12334719940041e97d0b19d040f4a
+< n64_target ('__osPiDeviceBusy', 2147548528, 'static', 12, '951650ac07de038ad4efff105f3da6064f81734c29dc8e26c3b8d7567ddb0f65', '8798852a2dfa74def005e9677673164
+< n64_target ('__osPiGetCmdQueue', 2147549376, 'static', 20, '40458cb21c727354d5f80d5235aecced0b834e1fc112310cd591c8b9d634cd2b', '9a681dedb888d77542ca17a5333abd
+> n64_target ('__osProbeTLB', 2147548336, 'static', 46, '4692ec59c0f4ab4cbf7a5d7167a636c8fb6e4be52daf065b9b8ecdbb0230afde', '54f7ff23a076df60d89d0d654d1f835892b
+> n64_target ('__osResetGlobalIntMask', 2147548576, 'static', 22, '2098984288a705ab3796635a97ce74f36798afd1f7bb6f0b0abd59ab0a324a29', '7db75dbaae90be3593b2c8606
+> n64_target ('__osSetGlobalIntMask', 2147549376, 'static', 19, 'd06aca5ba08deb6bddd80e642f1260c383eae94c0d4b043394182cb7c7b1efaa', '14e30f60dc0337fc9c3b63abdaa
+> n64_target ('__osSiDeviceBusy', 2147548528, 'static', 9, 'd69a58f10fcc1f452b6353ff2b029429b9ac744f6fec4843c424159632d8f83f', '4a08f95b2828a8b20e11b57d25119068
+< n64_target ('__osTLBLookup', 2147548336, 'static', 48, 'b00f71d15210a6b2e35d355db8e2adb09112a9efa4b59c29935eee5d2484c9dc', '02db3afa4e9202f5161e872e853a80b3ea
+> n64_target ('osDestroyThread', 2147548064, 'static', 65, '6427c2b81ddca1c413ac691d21facd7b04182b2d27b8e3a5db25fadd0ca8d566', 'ad150e66d834f8701a10a211b6d4c7d8
+< n64_target ('osEPiRawReadIo', 2147549024, 'static', 88, 'aaa60c39b9c1960b94a4f4bf38a01bf4dc126efef942f9f89e6df05fc15783f5', 'f3342b97b07ea539024da02d6c0fd5ff3
+< n64_target ('osEPiRawStartDma', 2147548672, 'static', 88, 'a3e237344647d89621716063a02c31c9d97034345c23ef5b6e7d8fa57ea9ef3b', '739081952ac09a27bea95f1fe1384be
+< n64_target ('osEPiRawWriteIo', 2147548576, 'static', 24, '65cbdb60672c4dcaab6a05fde8cb98faf8e17644eb1318d70222728e4e4105b3', '42587d0cf9e73d5acd539848e1835a27
+< n64_target ('osYieldThread', 2147549456, 'static', 4072, '19e492b0e9d035f66abaec8368e32f6d85be755fd0212877a90767c0f2ced5be', 'e6c91198258fd38a3b8711281035b655
+> n64_target ('osYieldThread', 2147549456, 'static', 19, 'a7b46d7900e5df6c4e2c9446e68148b6419ffe4e36935c033bc0768d8fe546ac', 'e6c91198258fd38a3b8711281035b65592
+< n64_target ('read_controllers', 2147565744, 'static', 117742, '7c6b92615ad09624c1f4ea89a72b200ae4d061a30721d7c7d88ac2ff1d33fff7', '4d2eb82da786094ee5ae9f76afe
+< function_status ('__osEnqueueAndYield', 'unmatched', 5865, None, None, None, None, 'no_ancestry', None, '2026-07-08T02:16:34.201Z')
+> function_status ('__osEPiRawReadIo', 'unmatched', None, None, None, None, None, None, None, '2026-10-11T12:51:45.156Z')
+> function_status ('__osEPiRawWriteIo', 'unmatched', None, None, None, None, None, None, None, '2026-10-11T12:51:45.156Z')
+< function_status ('__osPfsDataChecksum', 'unmatched', 900, None, None, None, None, 'no_ancestry', None, '2026-07-08T02:16:34.197Z')
+< function_status ('__osPiDeviceBusy', 'candidate_identified', 10, 'ultralib:src/io/pi.c:__osPiDeviceBusy', None, None, None, 'candidate_body_missing', None, '2
+< function_status ('__osPiGetCmdQueue', 'unmatched', 840, None, None, None, None, 'no_ancestry', None, '2026-07-08T02:16:34.209Z')
+> function_status ('__osProbeTLB', 'unmatched', None, None, None, None, None, None, None, '2026-10-11T12:51:45.197Z')
+> function_status ('__osResetGlobalIntMask', 'unmatched', None, None, None, None, None, None, None, '2026-10-11T12:51:45.156Z')
+> function_status ('__osSetGlobalIntMask', 'unmatched', None, None, None, None, None, None, None, '2026-10-11T12:51:45.156Z')
+> function_status ('__osSiDeviceBusy', 'unmatched', None, None, None, None, None, None, None, '2026-10-11T12:51:45.156Z')
+< function_status ('__osTLBLookup', 'unmatched', 4400, None, None, None, None, 'no_ancestry', None, '2026-07-08T02:16:34.202Z')
+> function_status ('osDestroyThread', 'unmatched', None, None, None, None, None, None, None, '2026-10-11T12:51:45.156Z')
+< function_status ('osEPiRawReadIo', 'unmatched', 8345, None, None, None, None, 'no_ancestry', None, '2026-07-08T02:16:34.207Z')
+< function_status ('osEPiRawStartDma', 'unmatched', 8240, None, None, None, None, 'no_ancestry', None, '2026-07-08T02:16:34.207Z')
+< function_status ('osEPiRawWriteIo', 'unmatched', 1150, None, None, None, None, 'no_ancestry', None, '2026-07-08T02:16:34.206Z')
+< function_status ('read_controllers', 'unmatched', None, None, None, None, None, None, None, '2026-07-08T01:53:07.493Z')
+< matrix ('__osContDataCrc', 578)

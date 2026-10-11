@@ -76,7 +76,25 @@ unsigned int func_8001C770(unsigned int count)
     return count * 2 + 8;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001C77C.s")
+/* PROMOTED 2026-10-11 — func_8001C77C
+ * Source:   cloud/work/frontier/w17g/sources/func_8001C77C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_8001C77C.c:func_8001C77C (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern unsigned char D_8002C630;
+extern void func_80014594(void);
+extern void func_800145DC(void);
+extern void func_80014A74(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
+void func_8001C77C(unsigned int channel, unsigned char first, unsigned char second, unsigned char third, unsigned char fourth)
+{
+    if (D_8002C630 && channel != 0xFFFFFFFF) {
+        func_80014594();
+        func_80014A74(channel, first << 16, second << 16, third << 16, fourth << 16);
+        func_800145DC();
+    }
+}
+
 /* PROMOTED 2026-10-05 — func_8001C7F4
  * Source:   cloud/work/boot_tail_promotion/sources/func_8001C7F4.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -101,7 +119,15 @@ void func_8001C7F4(unsigned int channel)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001C860.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001CC9C.s")
+/* PROMOTED 2026-10-11 — func_8001CC9C
+ * Source:   cloud/work/frontier/w17g/sources/func_8001CC9C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_8001CC9C.c:func_8001CC9C (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+unsigned char func_8001CC9C(unsigned char value)
+{ if (value > 127) return 127; return value; }
+
 /* PROMOTED 2026-10-04 — func_8001CCC0
  * Source:   cloud/matches/boot_tail/func_8001CCC0.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -116,7 +142,33 @@ unsigned short func_8001CCC0(unsigned int value)
     return value;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001CCDC.s")
+/* PROMOTED 2026-10-11 — func_8001CCDC
+ * Source:   cloud/work/frontier/w17g/sources/func_8001CCDC.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_8001CCDC.c:func_8001CCDC (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern u8 func_8001CC9C(u8);
+extern u16 func_8001CCC0(u32);
+extern int func_8001B7C0(u32, u8);
+extern int func_8001B29C(u32, u8);
+extern int func_8001B3A0(u32, u8);
+extern int func_8001B4A4(u32, u16);
+void func_8001CCDC(StateNode *em, float vol, float xPan, float yPan,
+                   float zPan, float doppler)
+{
+    u32 identifier;
+    identifier = em->identifier34;
+    if (em->flags08 & 0x100000) {
+        func_8001B7C0(identifier, func_8001CC9C((u32)((em->fade * vol) * 127.0f)));
+    } else {
+        func_8001B7C0(identifier, func_8001CC9C((u32)(vol * 127.0f)));
+    }
+    func_8001B29C(identifier, func_8001CC9C((u32)((1.0f + xPan) * 64.0f)));
+    func_8001B3A0(identifier, func_8001CC9C((u32)((1.0f - zPan) * 64.0f)));
+    func_8001B4A4(identifier, func_8001CCC0(doppler * 8192.0f));
+}
+
 /* PROMOTED 2026-10-04 — func_8001D084
  * Source:   cloud/matches/boot_tail/func_8001D084.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -135,7 +187,18 @@ void func_8001D084(StateNode *state)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001D0F0.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001D1C0.s")
+/* PROMOTED 2026-10-11 — func_8001D1C0
+ * Source:   cloud/work/frontier/w17g/sources/func_8001D1C0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_8001D1C0.c:func_8001D1C0 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+unsigned char func_8001D1C0(unsigned int *state)
+{
+    if (D_8002C630) return (state[2] & 0x10000) != 0;
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001D1F4.s")
 /* PROMOTED 2026-10-04 — func_8001D3F0
  * Source:   cloud/matches/boot_tail/func_8001D3F0.c (in-repo, locked)
@@ -259,7 +322,33 @@ void func_8001D5C0(SpatialState *state)
     func_80024D74(state->inverse, matrix);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001D660.s")
+/* PROMOTED 2026-10-11 — func_8001D660
+ * Source:   cloud/work/frontier/w17g/sources/func_8001D660.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_8001D660.c:func_8001D660 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+typedef struct SpatialState_8001D660 { u8 unknown00[12]; Vector position; Vector velocity; Vector forward; Vector side; Vector up; float inverse[12]; u8 unknown78[12]; float gain84; } SpatialState_8001D660;
+extern void func_8001D5C0(SpatialState *);
+int func_8001D660(SpatialState_8001D660 *state, const Vector *position, const Vector *velocity,
+                  const Vector *forward, const Vector *up, u8 level)
+{
+    if (D_8002C630) {
+        func_80014594();
+        state->position = *position;
+        state->velocity = *velocity;
+        state->forward = *forward;
+        state->up.x = -up->x;
+        state->up.y = -up->y;
+        state->up.z = -up->z;
+        func_8001D5C0((SpatialState *)state);
+        state->gain84 = (float)level / 127.0f;
+        func_800145DC();
+        return 1;
+    }
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001D764.s")
 /* PROMOTED 2026-10-04 — func_8001D8B0
  * Source:   cloud/matches/boot_tail/func_8001D8B0.c (in-repo, locked)
@@ -448,4 +537,13 @@ void func_8001E0C0(void)
     D_8004FD54 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001E0D4.s")
+/* PROMOTED 2026-10-11 — func_8001E0D4
+ * Source:   cloud/work/frontier/w17g/sources/func_8001E0D4.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_8001E0D4.c:func_8001E0D4 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_8001E0D4(void)
+{
+}
+

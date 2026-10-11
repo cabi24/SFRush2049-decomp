@@ -735,7 +735,15 @@ def compare_unit(obj, names, extents, extern, image, base, show=6):
         if ndx is None or obj.sections[ndx]["type"] == SHT_NOBITS:
             refs = referenced.get(section, [])
             k = bisect.bisect_right(refs, ours)
-            size = refs[k] - ours if k < len(refs) else width
+            # The whole-program unit interleaves every file's statics, and the
+            # linker's alignment padding between them depends on link order, so
+            # the gap to the next referenced offset is not this object's extent
+            # (func_800F0674's `sp` was 12 bytes "long" when a 2-byte region
+            # happened to start 8-aligned after it). The extent is the access
+            # width, capped by the gap when the function packs its own objects
+            # closer than that; one function's own object file keeps the gap
+            # rule in owndata.
+            size = min(refs[k] - ours, width) if k < len(refs) else width
             if owndata.bss_range(retail, size) is None:
                 return (f"{section}+0x{ours:x}: retail words encode 0x{retail:08x} "
                         f"(+{size} bytes), outside every known game .bss range")

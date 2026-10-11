@@ -1,0 +1,135 @@
+0
+wrote cloud/work/frontier/w17k/sim71.lock.json: 58 simulated entries (ido7.1)
+wrote cloud/work/frontier/w17k/sim53.lock.json: 58 simulated entries (legacy)
+== legacy (5.3-proven) locks: every candidate must be refused
+  REFUSED func_80010840: lock was proven with ido5.3 but segment 0x113e0 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_800108E0: lock was proven with ido5.3 but segment 0x113e0 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80011C1C: lock was proven with ido5.3 but segment 0x11640 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80014198: lock was proven with ido5.3 but segment 0x11640 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_8001467C: lock was proven with ido5.3 but segment 0x11640 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_8001489C: lock was proven with ido5.3 but segment 0x11640 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80014A0C: lock was proven with ido5.3 but segment 0x11640 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80014BD8: lock was proven with ido5.3 but segment 0x11640 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80014BF8: lock was proven with ido5.3 but segment 0x11640 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80014CF4: lock was proven with ido5.3 but segment 0x11640 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80014CFC: lock was proven with ido5.3 but segment 0x11640 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80014D08: lock was proven with ido5.3 but segment 0x11640 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80014D14: lock was proven with ido5.3 but segment 0x11640 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80015348: lock was proven with ido5.3 but segment 0x15a10 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_800156E8: lock was proven with ido5.3 but segment 0x15a10 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_8001785C: lock was proven with ido5.3 but segment 0x17dc0 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80018BEC: lock was proven with ido5.3 but segment 0x17dc0 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_8001989C: lock was proven with ido5.3 but segment 0x17dc0 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80019AD4: lock was proven with ido5.3 but segment 0x1a660 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_8001B1D0: lock was proven with ido5.3 but segment 0x1a660 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_8001C77C: lock was proven with ido5.3 but segment 0x1cf90 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_8001CC9C: lock was proven with ido5.3 but segment 0x1cf90 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_8001CCDC: lock was proven with ido5.3 but segment 0x1cf90 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_8001D1C0: lock was proven with ido5.3 but segment 0x1cf90 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_8001D660: lock was proven with ido5.3 but segment 0x1cf90 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_8001E0D4: lock was proven with ido5.3 but segment 0x1cf90 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_8001E440: lock was proven with ido5.3 but segment 0x1ece0 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_8001E790: lock was proven with ido5.3 but segment 0x1f340 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_8001E864: lock was proven with ido5.3 but segment 0x1f340 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80020200: lock was proven with ido5.3 but segment 0x207b0 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_8002021C: lock was proven with ido5.3 but segment 0x207b0 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80020598: lock was proven with ido5.3 but segment 0x207b0 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80020610: lock was proven with ido5.3 but segment 0x21210 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_800206AC: lock was proven with ido5.3 but segment 0x21210 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80020A04: lock was proven with ido5.3 but segment 0x21210 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80020DA8: lock was proven with ido5.3 but segment 0x21210 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80020F4C: lock was proven with ido5.3 but segment 0x21210 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80020F98: lock was proven with ido5.3 but segment 0x21210 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80020FDC: lock was proven with ido5.3 but segment 0x21210 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80021028: lock was proven with ido5.3 but segment 0x21210 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_800215A8: lock was proven with ido5.3 but segment 0x21210 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_8002165C: lock was proven with ido5.3 but segment 0x21210 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80021C58: lock was proven with ido5.3 but segment 0x22300 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80021CDC: lock was proven with ido5.3 but segment 0x22300 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80021D5C: lock was proven with ido5.3 but segment 0x22300 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80021DF8: lock was proven with ido5.3 but segment 0x22300 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80021E74: lock was proven with ido5.3 but segment 0x22300 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80021F08: lock was proven with ido5.3 but segment 0x22300 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80022514: lock was proven with ido5.3 but segment 0x22300 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80022580: lock was proven with ido5.3 but segment 0x22300 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_8002279C: lock was proven with ido5.3 but segment 0x22300 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80022A40: lock was proven with ido5.3 but segment 0x22300 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80022A98: lock was proven with ido5.3 but segment 0x22300 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80022F24: lock was proven with ido5.3 but segment 0x22300 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_8002300C: lock was proven with ido5.3 but segment 0x22300 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_8002321C: lock was proven with ido5.3 but segment 0x22300 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_800239A4: lock was proven with ido5.3 but segment 0x22300 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+  REFUSED func_80025F74: lock was proven with ido5.3 but segment 0x26ab0 builds with ido7.1 (rom_compilers.json); re-lock with the ido7.1 toolkit
+batch 0x113e0..0x26ab0: 0 candidates
+== 7.1-bound locks, 7.1 context rows
+batch 0x113e0..0x26ab0: 58 candidates
+  PLAN func_80010840 -> rom/lib_113e0 (160 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_800108E0 -> rom/lib_113e0 (160 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80011C1C -> rom/lib_11640 (104 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80014198 -> rom/lib_11640 (476 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_8001467C -> rom/lib_11640 (48 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_8001489C -> rom/lib_11640 (92 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80014A0C -> rom/lib_11640 (104 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80014BD8 -> rom/lib_11640 (32 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80014BF8 -> rom/lib_11640 (32 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80014CF4 -> rom/lib_11640 (8 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80014CFC -> rom/lib_11640 (12 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80014D08 -> rom/lib_11640 (12 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80014D14 -> rom/lib_11640 (8 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80015348 -> rom/lib_15a10 (36 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_800156E8 -> rom/lib_15a10 (56 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_8001785C -> rom/lib_17dc0 (84 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80018BEC -> rom/lib_17dc0 (64 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_8001989C -> rom/lib_17dc0 (44 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80019AD4 -> rom/lib_1a660 (272 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_8001B1D0 -> rom/lib_1a660 (204 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_8001C77C -> rom/lib_1cf90 (120 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_8001CC9C -> rom/lib_1cf90 (36 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_8001CCDC -> rom/lib_1cf90 (936 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_8001D1C0 -> rom/lib_1cf90 (52 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_8001D660 -> rom/lib_1cf90 (260 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_8001E0D4 -> rom/lib_1cf90 (12 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_8001E440 -> rom/lib_1ece0 (204 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_8001E790 -> rom/lib_1f340 (44 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_8001E864 -> rom/lib_1f340 (204 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80020200 -> rom/lib_207b0 (28 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_8002021C -> rom/lib_207b0 (88 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80020598 -> rom/lib_207b0 (76 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80020610 -> rom/lib_21210 (156 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_800206AC -> rom/lib_21210 (372 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80020A04 -> rom/lib_21210 (932 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80020DA8 -> rom/lib_21210 (420 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80020F4C -> rom/lib_21210 (76 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80020F98 -> rom/lib_21210 (68 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80020FDC -> rom/lib_21210 (76 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80021028 -> rom/lib_21210 (68 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_800215A8 -> rom/lib_21210 (180 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_8002165C -> rom/lib_21210 (164 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80021C58 -> rom/lib_22300 (132 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80021CDC -> rom/lib_22300 (128 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80021D5C -> rom/lib_22300 (156 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80021DF8 -> rom/lib_22300 (124 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80021E74 -> rom/lib_22300 (148 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80021F08 -> rom/lib_22300 (96 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80022514 -> rom/lib_22300 (108 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80022580 -> rom/lib_22300 (44 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_8002279C -> rom/lib_22300 (216 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80022A40 -> rom/lib_22300 (56 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80022A98 -> rom/lib_22300 (448 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80022F24 -> rom/lib_22300 (232 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_8002300C -> rom/lib_22300 (164 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_8002321C -> rom/lib_22300 (136 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_800239A4 -> rom/lib_22300 (304 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  PLAN func_80025F74 -> rom/lib_26ab0 (840 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
+  spliced cloud/work/frontier/w17k/spl/lib_113e0.c
+  spliced cloud/work/frontier/w17k/spl/lib_11640.c
+  spliced cloud/work/frontier/w17k/spl/lib_15a10.c
+  spliced cloud/work/frontier/w17k/spl/lib_17dc0.c
+  spliced cloud/work/frontier/w17k/spl/lib_1a660.c
+  spliced cloud/work/frontier/w17k/spl/lib_1cf90.c
+  spliced cloud/work/frontier/w17k/spl/lib_1ece0.c
+  spliced cloud/work/frontier/w17k/spl/lib_1f340.c
+  spliced cloud/work/frontier/w17k/spl/lib_207b0.c
+  spliced cloud/work/frontier/w17k/spl/lib_21210.c
+  spliced cloud/work/frontier/w17k/spl/lib_22300.c
+  spliced cloud/work/frontier/w17k/spl/lib_26ab0.c

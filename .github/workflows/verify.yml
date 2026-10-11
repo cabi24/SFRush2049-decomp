@@ -60,8 +60,10 @@ jobs:
       - name: Cache pinned IDO
         uses: actions/cache@v4
         with:
-          path: tools/cloud/ido
-          key: ido-5.3-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('tools/cloud/setup.sh') }}
+          path: |
+            tools/cloud/ido
+            tools/cloud/ido71
+          key: ido-5.3-7.1-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('tools/cloud/setup.sh', 'tools/conveyor/compilers.py') }}
 
       - name: Set up IDO
         run: bash tools/cloud/setup.sh
