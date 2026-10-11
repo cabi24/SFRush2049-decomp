@@ -305,6 +305,8 @@ Run on the Pi from the repo root, on a branch such as `git checkout -b wave13`.
         `git checkout -q . && git clean -qfd cloud tests && git fetch -q ../X.bundle HEAD "refs/remotes/origin/*:refs/remotes/origin/*" && git checkout -q FETCH_HEAD`
      4. Run `REQUIRE_TOOLCHAIN=1 ~/rush2049/scratch/civenv/bin/python -m pytest tests/conveyor` and the same for `tests/cloud`, both with `-m "not node_required"`.
 
+     Steps 2-4 in one command (also on the second host `rocky`; `CI_FAST=N` for the parallel split): `tools/ci_equiv.sh watchman2 X.bundle` ([BUILDING.md](../BUILDING.md#ci-equivalent-test-hosts)).
+
      Remote branches are needed because some research packets `git show` pre-purge commits that exist only on old unmerged branches such as `origin/dot/palette-steering-20261005`. **Never delete unmerged remote branches.**
 7. **Push** with `git push origin HEAD:master`, then `git branch -f master HEAD`. Watch GitHub CI with `gh run watch <id>` until it passes.
    - CI's "Rescore changed cloud submissions" step rescores every changed `cloud/matches/*.c` standalone.
