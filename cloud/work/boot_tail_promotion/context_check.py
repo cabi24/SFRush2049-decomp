@@ -11,7 +11,10 @@ For each function this script, with the Makefile's ROM-TU compiler and flags:
 1. compiles the body file exactly as verified (standalone) -> orig.o, and
    refuses it if the object carries any allocated data (.data/.rodata/.bss/
    .sdata/.sbss/.rdata): a promoted TU's data would shift the ROM and needs
-   owned-slot work instead;
+   owned-slot work instead. Exception (w19c): data in the section of an owned
+   slot (rom_owned_data.json) that the function owns or co-owns, no larger
+   than the slot; the row lists it under "owned" and step 3 also requires the
+   section's bytes and relocations to be identical in both objects;
 2. compiles `#include "rom_tu.h"` + the body's file-scope declarations + the
    body, dropping ONLY a declaration statement that IDO reports as a
    redeclaration of a name rom_tu.h already provides; any other error refuses;
@@ -20,11 +23,17 @@ For each function this script, with the Makefile's ROM-TU compiler and flags:
 
 Output: JSON lines {function, status, reason, preamble[], dropped[], compiler}.
 Usage (repo root on the builder):
-    python3 cloud/work/boot_tail_promotion/context_check.py [--compiler ido7.1] OUT.jsonl fn[=source.c]...
+    python3 cloud/work/boot_tail_promotion/context_check.py [--compiler ido7.1] [--flags FLAGSET] OUT.jsonl fn[=source.c]...
 
 `--compiler` (default ido5.3) selects the pinned compiler the ROM TU builds
 with (rom_compilers.json; tools/conveyor/compilers.py `builder_dir`). Each row
 records it; promote_batch refuses a row whose compiler is not its segment's.
+
+`--flags` (w19c) compiles at a segment flagset's optimisation level and ISA
+instead of the default -O2 -mips2 (opt_overrides.mk -O1 TUs, the `-mips3 -32`
+libgcc TUs), e.g. --flags "-g0 -O1 -mips3 -32 -G 0 -non_shared". Each row
+records its flagset; promote_batch refuses a row whose flagset is not its
+segment's (rows without one are the default -O2 -mips2 flagset).
 """
 import json
 import re
@@ -35,6 +44,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path.cwd()))
 from tools.conveyor import compilers as compilersmod  # noqa: E402
+from tools.conveyor.pipeline import owned_data  # noqa: E402
 from tools.conveyor.seeds.extract_candidates import extract_functions  # noqa: E402
 
 ROOT = Path.cwd()
@@ -45,6 +55,8 @@ CFLAGS = ["-G", "0", "-mips2", "-O2", "-non_shared", "-I" + str(ROOT / "include"
           "-I" + str(ROOT / "include/PR"), "-D_LANGUAGE_C", "-Wab,-r4300_mul",
           "-Xcpluscomm", "-I" + str(ROOT / "src/rom")]
 DATA_SECTIONS = (".data", ".rodata", ".bss", ".sdata", ".sbss", ".rdata", ".lit4", ".lit8")
+DEFAULT_FLAGSET = "-g0 -O2 -mips2 -G 0 -non_shared"
+FLAGSET = DEFAULT_FLAGSET
 REDECL = re.compile(r"line (\d+): redeclaration of '([A-Za-z_]\w*)'")
 
 
@@ -85,10 +97,26 @@ def split_statements(text):
     return out
 
 
+def cflags_for(flagset):
+    """The Makefile ROM-TU CFLAGS at `flagset`'s -O level and ISA
+    (opt_overrides.mk substitutes exactly these two)."""
+    tokens = flagset.split()
+    opts = [t for t in tokens if re.fullmatch(r"-O\d", t)]
+    isas = [t for t in tokens if re.fullmatch(r"-mips\d", t)]
+    if len(opts) != 1 or len(isas) != 1 or (isas[0] == "-mips3") != ("-32" in tokens) \
+            or isas[0] not in ("-mips2", "-mips3"):
+        raise SystemExit(f"unsupported ROM-TU flagset {flagset!r}")
+    flags = list(CFLAGS)
+    flags[flags.index("-O2")] = opts[0]
+    i = flags.index("-mips2")
+    flags[i:i + 1] = ["-mips3", "-32"] if isas[0] == "-mips3" else ["-mips2"]
+    return flags
+
+
 def compile_c(src_text, obj):
     src = obj.with_suffix(".c")
     src.write_text(src_text)
-    p = subprocess.run([str(CC), "-c"] + CFLAGS + ["-o", str(obj), str(src)],
+    p = subprocess.run([str(CC), "-c"] + cflags_for(FLAGSET) + ["-o", str(obj), str(src)],
                        capture_output=True, text=True)
     return p.returncode == 0, (p.stderr + p.stdout)
 
@@ -102,6 +130,31 @@ def data_sections(obj):
         if m and m.group(1) in DATA_SECTIONS and int(m.group(2), 16):
             found.append(f"{m.group(1)}:{int(m.group(2), 16)}")
     return found
+
+
+def section_dump(obj, name):
+    """Bytes and relocations of one section, for an owned-data comparison."""
+    contents = subprocess.run(["mips-linux-gnu-objdump", "-s", "-j", name, str(obj)],
+                              capture_output=True, text=True, check=True).stdout
+    relocs = subprocess.run(["mips-linux-gnu-objdump", "-r", "-j", name, str(obj)],
+                            capture_output=True, text=True, check=True).stdout
+    return [l for l in (contents + relocs).splitlines()[2:] if l.strip()]
+
+
+def owned_sections(fn, data):
+    """Map each data section to the owned slot it fills, or return a refusal."""
+    slots = owned_data.slots_for_function(ROOT, fn)
+    out = []
+    for item in data:
+        name, size = item.split(":")
+        rows = [r for r in slots if r["owner_section"] == name]
+        if len(rows) != 1:
+            return None, f"object has data/rodata ({', '.join(data)}) outside an owned slot of {fn}"
+        if int(size) > rows[0]["size"]:
+            return None, f"{name}:{size} exceeds the owned slot of {rows[0]['owner']} ({rows[0]['size']})"
+        out.append({"slot": rows[0]["owner"], "section": name, "size": int(size),
+                    "members": owned_data.slot_members(rows[0]), "tu": rows[0]["tu"]})
+    return out, None
 
 
 def disasm(obj, fn):
@@ -121,8 +174,11 @@ def check(fn, tmp, source=None):
     if not ok:
         return dict(status="refused", reason="standalone compile failed: " + err.strip()[:200])
     data = data_sections(orig)
+    owned = []
     if data:
-        return dict(status="refused", reason="object has data/rodata (" + ", ".join(data) + ")")
+        owned, why = owned_sections(fn, data)
+        if why:
+            return dict(status="refused", reason=why)
     stmts = [s for s in split_statements(preamble)]
     kept, dropped = [s[2] for s in stmts], []
     for _ in range(64):
@@ -153,15 +209,27 @@ def check(fn, tmp, source=None):
     a, b = disasm(orig, fn), disasm(ctx, fn)
     if a != b:
         return dict(status="refused", reason="rom_tu.h context changes codegen", dropped=dropped)
-    return dict(status="ok", preamble=kept, dropped=dropped, words=sum(1 for l in a if "\t" in l and not l.startswith("R_")))
+    if sorted(data_sections(ctx)) != sorted(data):
+        return dict(status="refused", reason="rom_tu.h context changes the data sections")
+    for o in owned:
+        if section_dump(orig, o["section"]) != section_dump(ctx, o["section"]):
+            return dict(status="refused", reason=f"rom_tu.h context changes owned {o['section']}")
+    row = dict(status="ok", preamble=kept, dropped=dropped, words=sum(1 for l in a if "\t" in l and not l.startswith("R_")))
+    if owned:
+        row["owned"] = owned
+    return row
 
 
 def main():
-    global COMPILER, CC
+    global COMPILER, CC, FLAGSET
     argv = sys.argv[1:]
-    if argv[:1] == ["--compiler"]:
-        COMPILER = compilersmod.require_known(argv[1])
-        CC = ROOT / compilersmod.COMPILERS[COMPILER]["builder_dir"] / "cc"
+    while argv[:1] in (["--compiler"], ["--flags"]):
+        if argv[0] == "--compiler":
+            COMPILER = compilersmod.require_known(argv[1])
+            CC = ROOT / compilersmod.COMPILERS[COMPILER]["builder_dir"] / "cc"
+        else:
+            FLAGSET = " ".join(argv[1].split())
+            cflags_for(FLAGSET)
         argv = argv[2:]
     if compilersmod.identify_dir(CC.parent) != COMPILER:
         sys.exit(f"{CC.parent} is not a known {COMPILER} build "
@@ -177,6 +245,8 @@ def main():
             row["function"] = fn
             row["source"] = source or f"cloud/matches/boot_tail/{fn}.c"
             row["compiler"] = COMPILER
+            if FLAGSET != DEFAULT_FLAGSET:
+                row["flagset"] = FLAGSET
             f.write(json.dumps(row) + "\n")
             print(fn, row["status"], row.get("reason", ""))
 

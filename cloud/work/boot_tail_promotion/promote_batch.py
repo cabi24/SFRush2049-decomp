@@ -36,6 +36,15 @@ was proven with the segment's compiler (`lock add --toolkit <7.1 toolkit>`
 records `compiler`) and its context row was computed with it
 (`context_check.py --compiler ido7.1`). Migrated locks keep the compiler.
 
+Owned data (w19c): a body whose object carries data is promotable only into
+an owned slot (rom_owned_data.json) that it owns or co-owns, with a context row
+listing it under "owned" (context_check.py). All members of the slot (owner +
+co_owners) must be candidates of the same batch; the splice removes the slot's
+passthrough companion, and the members are gated, accepted or refused as one
+unit. The registry row and companion must already be committed (`owned_data
+prepare`, its own ROM gate). A context row carrying "flagset" (context_check.py
+--flags) must equal the segment's.
+
 `--dry-run` plans only: it prints every candidate and refusal (refusals are not
 appended to refusals.jsonl) and touches nothing. `--splice-out DIR` (implies
 --dry-run) also writes the spliced TUs to DIR/<tu>.c instead of src/rom, for a
@@ -55,6 +64,7 @@ from tools.conveyor.client import DEFAULT_DATA  # noqa: E402
 from tools.conveyor.coordinator import db as dbmod  # noqa: E402
 from tools.conveyor.pipeline import layout as layoutmod  # noqa: E402
 from tools.conveyor.pipeline import lock as lockmod  # noqa: E402
+from tools.conveyor.pipeline import owned_data  # noqa: E402
 from tools.conveyor.pipeline import promote as promotemod  # noqa: E402
 from tools.conveyor.seeds.extract_candidates import REPO, extract_named_function  # noqa: E402
 
@@ -139,8 +149,57 @@ def plan(segments, context):
                 refuse(fn, f"context row computed with {row_compiler}, segment builds with "
                            f"{seg['compiler']} (context_check.py --compiler {seg['compiler']})")
                 continue
-            out.append(dict(fn=fn, seg=seg, src=src, row=row))
-    return out
+            if row.get("flagset") and row["flagset"] != seg["flagset"]:
+                refuse(fn, f"context row computed at {row['flagset']!r}, segment builds at "
+                           f"{seg['flagset']!r} (context_check.py --flags)")
+                continue
+            why, slot = owned_slot(fn, seg, row)
+            if why:
+                refuse(fn, why)
+                continue
+            out.append(dict(fn=fn, seg=seg, src=src, row=row, slot=slot))
+    return slot_closure(out)
+
+
+def slot_closure(cands):
+    """An owned slot changes hands only with all of its members: drop (and
+    refuse) every member of a slot whose other members are not candidates."""
+    while True:
+        names = {c["fn"] for c in cands}
+        kept = []
+        for c in cands:
+            missing = [m for m in (c["slot"]["members"] if c.get("slot") else []) if m not in names]
+            if missing:
+                refuse(c["fn"], f"owned slot of {c['slot']['owner']} needs {', '.join(missing)} "
+                                "promoted in the same batch")
+            else:
+                kept.append(c)
+        if len(kept) == len(cands):
+            return kept
+        cands = kept
+
+
+def owned_slot(fn, seg, row):
+    """(refusal, slot) for a candidate: the passthrough-companion slot it is a
+    member of in its TU (None if none), checked against its context row."""
+    tu = "src/" + seg["rom_tu"] + ".c"
+    slots = owned_data.slots_for_function(REPO, fn, tu)
+    if slots:
+        text = (REPO / tu).read_text()
+        slots = [r for r in slots if owned_data.companion_block(r) in text]
+    owned = row.get("owned") or []
+    if len(slots) > 1:
+        return f"member of {len(slots)} owned slots", None
+    if not slots:
+        if owned:
+            return "context row has owned data but the TU holds no companion for it", None
+        return None, None
+    r = slots[0]
+    for o in owned:
+        if o.get("slot") != r["owner"] or o.get("section") != r["owner_section"] or o.get("tu") != tu:
+            return f"context row's owned data {o} is not the slot of {r['owner']}", None
+    return None, {"owner": r["owner"], "members": owned_data.slot_members(r), "tu": tu,
+                  "section": r["owner_section"]}
 
 
 def splice(cands, out_dir=None):
@@ -172,6 +231,12 @@ def splice(cands, out_dir=None):
             f"{CONTEXT_PATH}")
         block = header + "\n" + "".join(d + "\n" for d in decls) + body.rstrip() + "\n"
         texts[tu] = text.replace(pragma, block, 1)
+    # Remove each fully promoted owned slot's passthrough companion.
+    for c in cands:
+        slot = c.get("slot")
+        if slot and c["fn"] == slot["owner"]:
+            tu = REPO / slot["tu"]
+            texts[tu] = owned_data.strip_companion(texts[tu], slot["owner"], REPO, slot["tu"])
     for tu, text in texts.items():
         (Path(out_dir) / tu.name if out_dir else tu).write_text(text)
     return sorted(texts)
@@ -210,17 +275,34 @@ def attempt(cands):
     restore(tus)
     if ok:
         return cands
-    print(f"  gate failed for all {len(cands)}; accepting one at a time")
+    print(f"  gate failed for all {len(cands)}; accepting one unit at a time")
     accepted = []
-    for c in cands:
-        tus = splice(accepted + [c])
+    for unit in units(cands):
+        tus = splice(accepted + unit)
         ok, detail = gate(tus)
         restore(tus)
         if ok:
-            accepted.append(c)
+            accepted += unit
         else:
-            refuse(c["fn"], "full-ROM SHA-1 gate failed in TU context: " + detail[-200:])
+            for c in unit:
+                refuse(c["fn"], "full-ROM SHA-1 gate failed in TU context: " + detail[-200:])
     return accepted
+
+
+def units(cands):
+    """Candidates in order; the members of one owned slot form one unit,
+    placed at its first member's position."""
+    out, by_slot = [], {}
+    for c in cands:
+        key = c["slot"]["owner"] if c.get("slot") else None
+        if key is None:
+            out.append([c])
+        elif key in by_slot:
+            by_slot[key].append(c)
+        else:
+            by_slot[key] = [c]
+            out.append(by_slot[key])
+    return out
 
 
 def publish(passed, label):
@@ -248,7 +330,8 @@ def publish(passed, label):
                 " created_at=excluded.created_at, source=excluded.source,"
                 " flags=excluded.flags, evidence=excluded.evidence, rom_tu=excluded.rom_tu",
                 (c["fn"], hashlib.sha256(body.encode()).hexdigest(), c["src"], c["seg"]["flagset"],
-                 json.dumps({"evidence": f"lock:{c['src']}:{c['fn']} (score0)", "batch": label}),
+                 json.dumps(dict({"evidence": f"lock:{c['src']}:{c['fn']} (score0)", "batch": label},
+                                 **({"owned_slot": c["slot"]["owner"]} if c.get("slot") else {}))),
                  c["seg"]["rom_tu"]))
     lockmod.save_lock(entries)
     tus = sorted({"src/" + c["seg"]["rom_tu"] + ".c" for c in passed})
@@ -302,8 +385,9 @@ def main():
     if DRY_RUN:
         for c in cands:
             size = next(f["size"] for f in c["seg"]["functions"] if f["name"] == c["fn"])
+            owned = f", owned {c['slot']['section']} slot of {c['slot']['owner']}" if c.get("slot") else ""
             print(f"  PLAN {c['fn']} -> {c['seg']['rom_tu']} ({size} B, {c['seg']['compiler']}, "
-                  f"{c['seg']['flagset']})")
+                  f"{c['seg']['flagset']}{owned})")
         if splice_out:
             splice_out.mkdir(parents=True, exist_ok=True)
             for tu in splice(cands, splice_out):
