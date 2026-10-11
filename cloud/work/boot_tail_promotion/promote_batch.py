@@ -133,7 +133,7 @@ def plan(segments, context):
             if e.get("verified") != "score0":
                 refuse(fn, f"lock evidence is {e.get('verified')}, not score0")
                 continue
-            if not seg["flagset"] or seg["flagset"] != e["flagset"]:
+            if not seg["flagset"] or layoutmod.normalise_flagset(seg["flagset"]) != layoutmod.normalise_flagset(e["flagset"]):
                 refuse(fn, f"segment flagset {seg['flagset']!r} != lock {e['flagset']!r}")
                 continue
             why = layoutmod.compiler_refusal(seg, e)
@@ -149,7 +149,7 @@ def plan(segments, context):
                 refuse(fn, f"context row computed with {row_compiler}, segment builds with "
                            f"{seg['compiler']} (context_check.py --compiler {seg['compiler']})")
                 continue
-            if row.get("flagset") and row["flagset"] != seg["flagset"]:
+            if row.get("flagset") and layoutmod.normalise_flagset(row["flagset"]) != layoutmod.normalise_flagset(seg["flagset"]):
                 refuse(fn, f"context row computed at {row['flagset']!r}, segment builds at "
                            f"{seg['flagset']!r} (context_check.py --flags)")
                 continue

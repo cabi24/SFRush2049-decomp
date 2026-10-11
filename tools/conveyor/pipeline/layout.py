@@ -199,12 +199,22 @@ def _segment_flagset(func_names, flag_by_fn):
     """The single flagset shared by the segment's functions that carry
     evidence, or None (no evidence, or a conflict — FR-005 remedy is a sweep)."""
     # -Xcpluscomm permits C++ comments; it does not change code generation.
-    # Preserve a shared recipe when only that parser option differs between
-    # locked members. Every other compiler option must still agree.
-    seen = {" ".join(token for token in flag_by_fn[n].split()
-                     if token != "-Xcpluscomm")
-            for n in func_names if n in flag_by_fn}
+    # -Wab,-r4300_mul is the Makefile's assembler option for every ROM TU (no
+    # multiply in a branch delay slot); a lock may record it or not (w21a).
+    # Preserve a shared recipe when only those options differ between locked
+    # members. Every other compiler option must still agree.
+    seen = {normalise_flagset(flag_by_fn[n]) for n in func_names if n in flag_by_fn}
     return seen.pop() if len(seen) == 1 else None
+
+
+NEUTRAL_FLAGS = ("-Xcpluscomm", "-Wab,-r4300_mul")
+
+
+def normalise_flagset(flagset):
+    """A flagset without the options that never change a ROM TU's code
+    (see _segment_flagset); use it to compare lock, segment and context-row
+    flagsets."""
+    return " ".join(token for token in (flagset or "").split() if token not in NEUTRAL_FLAGS)
 
 
 def derive(splat_path=None, compiler_pins=None):

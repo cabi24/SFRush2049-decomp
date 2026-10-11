@@ -170,6 +170,10 @@ def test_flag_conflict_yields_null_flagset(fixture_repo, monkeypatch):
     assert L._segment_flagset(["f_a", "f_b"], {"f_a": "-O2", "f_b": "-O1"}) is None
     assert L._segment_flagset(["f_a", "f_b"], {"f_a": "-O2", "f_b": "-O2"}) == "-O2"
     assert L._segment_flagset(["f_a"], {}) is None
+    # the Makefile's assembler option is neutral, like -Xcpluscomm (w21a)
+    assert L._segment_flagset(["f_a", "f_b"], {"f_a": "-O2 -Wab,-r4300_mul", "f_b": "-O2"}) == "-O2"
+    assert L.normalise_flagset("-g0 -O2 -Xcpluscomm -Wab,-r4300_mul") == "-g0 -O2"
+    assert L.normalise_flagset(None) == ""
 
 
 def test_determinism(fixture_repo):
