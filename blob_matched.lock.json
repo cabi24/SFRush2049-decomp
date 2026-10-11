@@ -5138,52 +5138,94 @@
     "verified_at": "2026-10-04"
   },
   "func_800E397C": {
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "source": "src/blob/func_800E397C.c",
-    "source_sha256": "609d5fc8c0ac31a27df29faaba94e1bd9449bd5753da1ebc4f01d3d3f515f713",
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_maxpath_controls",
+    "source": "src/blob/groups/frontier_maxpath_controls/group.json",
+    "source_sha256": "bebdc8c25875701a1947178e10763e094a1519cbafe33a92f0c7c6fa9a1a168b",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-11"
   },
   "func_800E3984": {
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "source": "src/blob/func_800E3984.c",
-    "source_sha256": "886bdd7fb974320d596c74f5410c6c5a633191adf478c6a13f9ed75a2a8a8c22",
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_maxpath_controls",
+    "source": "src/blob/groups/frontier_maxpath_controls/group.json",
+    "source_sha256": "bebdc8c25875701a1947178e10763e094a1519cbafe33a92f0c7c6fa9a1a168b",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-11"
+  },
+  "func_800E398C": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_maxpath_controls",
+    "source": "src/blob/groups/frontier_maxpath_controls/group.json",
+    "source_sha256": "bebdc8c25875701a1947178e10763e094a1519cbafe33a92f0c7c6fa9a1a168b",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-11"
   },
   "func_800E42E8": {
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "source": "src/blob/func_800E42E8.c",
-    "source_sha256": "3742ef342edf7884c16804ca08f12350351ff5399939bb3bde53a957f24f2c4e",
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_maxpath_controls",
+    "source": "src/blob/groups/frontier_maxpath_controls/group.json",
+    "source_sha256": "bebdc8c25875701a1947178e10763e094a1519cbafe33a92f0c7c6fa9a1a168b",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-11"
   },
   "func_800E42F0": {
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "source": "src/blob/func_800E42F0.c",
-    "source_sha256": "a4816e111cf8a945cecea93a2a5c68019513bdc63da332d868507a94b0f41e43",
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_maxpath_controls",
+    "source": "src/blob/groups/frontier_maxpath_controls/group.json",
+    "source_sha256": "bebdc8c25875701a1947178e10763e094a1519cbafe33a92f0c7c6fa9a1a168b",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-11"
   },
   "func_800E42F8": {
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "source": "src/blob/func_800E42F8.c",
-    "source_sha256": "d6858ece4c9ca6f7581e3f2570f12b708f4a46724e3a5aba1b8031ac0708fa7d",
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_maxpath_controls",
+    "source": "src/blob/groups/frontier_maxpath_controls/group.json",
+    "source_sha256": "bebdc8c25875701a1947178e10763e094a1519cbafe33a92f0c7c6fa9a1a168b",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-11"
+  },
+  "func_800E4300": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_maxpath_controls",
+    "source": "src/blob/groups/frontier_maxpath_controls/group.json",
+    "source_sha256": "bebdc8c25875701a1947178e10763e094a1519cbafe33a92f0c7c6fa9a1a168b",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-11"
+  },
+  "func_800E451C": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_maxpath_controls",
+    "source": "src/blob/groups/frontier_maxpath_controls/group.json",
+    "source_sha256": "bebdc8c25875701a1947178e10763e094a1519cbafe33a92f0c7c6fa9a1a168b",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-11"
   },
   "func_800E4B50": {
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "source": "src/blob/func_800E4B50.c",
-    "source_sha256": "ec5c635c963dbfbf2c1f93de23be1f96ba16a0c5875ea9171f1583e130d5ffed",
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_maxpath_controls",
+    "source": "src/blob/groups/frontier_maxpath_controls/group.json",
+    "source_sha256": "bebdc8c25875701a1947178e10763e094a1519cbafe33a92f0c7c6fa9a1a168b",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-11"
+  },
+  "func_800E4B58": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_maxpath_controls",
+    "source": "src/blob/groups/frontier_maxpath_controls/group.json",
+    "source_sha256": "bebdc8c25875701a1947178e10763e094a1519cbafe33a92f0c7c6fa9a1a168b",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-11"
   },
   "func_800E5434": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
