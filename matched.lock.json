@@ -1,12 +1,4 @@
 {
-  "cloud/matches/boot_tail/func_8001F954.c:func_8001F954": {
-    "body_sha256": "c2939aeff43fa8057aa5238c791e605a1f7c4ce9e41ddef2d34a2e93f880721c",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_8001F954",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-05"
-  },
   "cloud/matches/voice_unblock_production/func_8001F954.c:func_8001F954": {
     "body_sha256": "ee2f8f2a7f21f77b63cacb320b2c470bfab36b6b13321d14619510a7b0c322da",
     "compiler": "ido7.1",
