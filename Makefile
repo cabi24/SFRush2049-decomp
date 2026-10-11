@@ -226,11 +226,14 @@ $(BUILD_DIR)/$(SRC_DIR)/%.o: $(SRC_DIR)/%.c
 # ROM-aligned TUs: asm-processor injects the GLOBAL_ASM passthroughs into the
 # IDO object post-compile (byte-exact function content from asm/us/nonmatchings).
 # More specific pattern than the generic C rule, so it wins for src/rom/.
+# A TU built at IDO `-mips3 -32` (opt_overrides.mk) gets EF_MIPS_32BITMODE set
+# so GNU ld links it beside the -mips2 objects (pipeline.o32abi).
 $(BUILD_DIR)/$(SRC_DIR)/rom/%.o: $(SRC_DIR)/rom/%.c
 	@mkdir -p $(dir $@)
 	@echo "ASMPROC $<"
 	$(V)$(PYTHON) $(TOOLS_DIR)/asm-processor/build.py \
 	    $(CC) -- $(AS) $(ASFLAGS) -- -c $(CFLAGS) -o $@ $<
+	$(if $(filter -mips3,$(CFLAGS)),$(V)$(PYTHON) -m tools.conveyor.pipeline.o32abi $@ --cflags '$(CFLAGS)')
 	$(V)$(PYTHON) -m tools.conveyor.pipeline.owned_data object $< $@
 
 # os_sync.c matches with debug-style codegen; disable optimization for this file.

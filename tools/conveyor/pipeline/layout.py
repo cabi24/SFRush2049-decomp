@@ -564,6 +564,20 @@ def _opt_of(flagset):
     return m.group(0) if m else None
 
 
+def _isa_of(flagset, segment="?"):
+    """'-mips3 -32' when the segment flagset selects IDO's 32-bit-mode MIPS III,
+    None for the default -mips2. Any other ISA selection refuses: the ROM-TU
+    rule can only substitute what it knows how to link."""
+    tokens = (flagset or "").split()
+    isas = [t for t in tokens if t.startswith("-mips")]
+    if not isas or isas == ["-mips2"]:
+        return None
+    if isas == ["-mips3"] and "-32" in tokens:
+        return "-mips3 -32"
+    raise SystemExit(f"segment {segment}: flagset {flagset!r} selects an ISA the ROM-TU "
+                     "rule cannot build (only -mips2 or -mips3 -32)")
+
+
 def write_opt_overrides(mapping=None):
     """Emit committed per-ROM-TU CFLAGS overrides for converted segments whose
     match was verified at a non-default optimization or debug level.
@@ -588,12 +602,17 @@ def write_opt_overrides(mapping=None):
         opt = _opt_of(seg["flagset"])
         debug = next((token for token in reversed((seg["flagset"] or "").split())
                       if token in ("-g0", "-g1", "-g2", "-g3")), None)
-        if opt in (None, "-O2") and debug in (None, "-g0"):
+        isa = _isa_of(seg["flagset"], seg.get("yaml_name", seg["rom_tu"]))
+        if opt in (None, "-O2") and debug in (None, "-g0") and isa is None:
             continue
         obj = f"$(BUILD_DIR)/src/{seg['rom_tu']}.o"
         value = "$(CFLAGS)"
         if opt not in (None, "-O2"):
             value = f"$(subst -O2,{opt},{value})"
+        if isa is not None:
+            # IDO `-mips3 -32` (ultralib libc/ll.c, llcvt.c); the Makefile's
+            # ROM-TU rule then marks the object EF_MIPS_32BITMODE (o32abi).
+            value = f"$(subst -mips2,{isa},{value})"
         if debug not in (None, "-g0"):
             value = f"$(filter-out -g -g0 -g1 -g2 -g3,{value}) {debug}"
         lines.append(f"{obj}: CFLAGS := {value}")
