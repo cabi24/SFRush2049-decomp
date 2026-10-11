@@ -143,6 +143,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-28"
   },
+  "anim_state_update": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+    "group": "codex_visual_tire_module_20261002",
+    "source": "src/blob/groups/codex_visual_tire_module_20261002/group.json",
+    "source_sha256": "070f7267badbbd769e6e420de4ffc7159e46178c091db5254a1d5a6265f8fe53",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-11"
+  },
   "assign_default_paths": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_heap_release_a25",
@@ -1385,10 +1394,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "func_8008B640",
     "source": "src/blob/groups/func_8008B640/group.json",
-    "source_sha256": "3a8929980bb8377cd38147c8d144517fc6203dd1835ed874217fb5a45a5c8d7f",
+    "source_sha256": "1877a8c8a3245beb883652960057d14078dbd760e73d9cf3e1b97b3f51d5bf3f",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-06"
+    "verified_at": "2026-10-11"
   },
   "func_8008BEA4": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -6460,10 +6469,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
     "group": "codex_visual_tire_module_20261002",
     "source": "src/blob/groups/codex_visual_tire_module_20261002/group.json",
-    "source_sha256": "9e8d638d1b81da88f04150f8254ffa9d7ce9de4951ae83343007bf1b1faa0dcf",
+    "source_sha256": "070f7267badbbd769e6e420de4ffc7159e46178c091db5254a1d5a6265f8fe53",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-02"
+    "verified_at": "2026-10-11"
   },
   "menu_audio_settings": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
@@ -6649,10 +6658,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "func_8008B640",
     "source": "src/blob/groups/func_8008B640/group.json",
-    "source_sha256": "3a8929980bb8377cd38147c8d144517fc6203dd1835ed874217fb5a45a5c8d7f",
+    "source_sha256": "1877a8c8a3245beb883652960057d14078dbd760e73d9cf3e1b97b3f51d5bf3f",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-06"
+    "verified_at": "2026-10-11"
   },
   "model_data_load": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -6968,55 +6977,55 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "func_8008B640",
     "source": "src/blob/groups/func_8008B640/group.json",
-    "source_sha256": "3a8929980bb8377cd38147c8d144517fc6203dd1835ed874217fb5a45a5c8d7f",
+    "source_sha256": "1877a8c8a3245beb883652960057d14078dbd760e73d9cf3e1b97b3f51d5bf3f",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-06"
+    "verified_at": "2026-10-11"
   },
   "physics_velocity_integrate_b": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "func_8008B640",
     "source": "src/blob/groups/func_8008B640/group.json",
-    "source_sha256": "3a8929980bb8377cd38147c8d144517fc6203dd1835ed874217fb5a45a5c8d7f",
+    "source_sha256": "1877a8c8a3245beb883652960057d14078dbd760e73d9cf3e1b97b3f51d5bf3f",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-06"
+    "verified_at": "2026-10-11"
   },
   "physics_velocity_integrate_c": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "func_8008B640",
     "source": "src/blob/groups/func_8008B640/group.json",
-    "source_sha256": "3a8929980bb8377cd38147c8d144517fc6203dd1835ed874217fb5a45a5c8d7f",
+    "source_sha256": "1877a8c8a3245beb883652960057d14078dbd760e73d9cf3e1b97b3f51d5bf3f",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-06"
+    "verified_at": "2026-10-11"
   },
   "physics_velocity_integrate_d": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "func_8008B640",
     "source": "src/blob/groups/func_8008B640/group.json",
-    "source_sha256": "3a8929980bb8377cd38147c8d144517fc6203dd1835ed874217fb5a45a5c8d7f",
+    "source_sha256": "1877a8c8a3245beb883652960057d14078dbd760e73d9cf3e1b97b3f51d5bf3f",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-06"
+    "verified_at": "2026-10-11"
   },
   "physics_velocity_integrate_e": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "func_8008B640",
     "source": "src/blob/groups/func_8008B640/group.json",
-    "source_sha256": "3a8929980bb8377cd38147c8d144517fc6203dd1835ed874217fb5a45a5c8d7f",
+    "source_sha256": "1877a8c8a3245beb883652960057d14078dbd760e73d9cf3e1b97b3f51d5bf3f",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-06"
+    "verified_at": "2026-10-11"
   },
   "physics_velocity_integrate_f": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "func_8008B640",
     "source": "src/blob/groups/func_8008B640/group.json",
-    "source_sha256": "3a8929980bb8377cd38147c8d144517fc6203dd1835ed874217fb5a45a5c8d7f",
+    "source_sha256": "1877a8c8a3245beb883652960057d14078dbd760e73d9cf3e1b97b3f51d5bf3f",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-06"
+    "verified_at": "2026-10-11"
   },
   "place_cars_in_order": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",

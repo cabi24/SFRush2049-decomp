@@ -1,24 +1,27 @@
 {
-  "members": [
-    "matrix_scale_apply"
-  ],
-  "context": [
-    "model_bounds_calc",
-    "anim_state_update",
-    "entity_anim_texture",
-    "func_8008B2B4"
-  ],
-  "files": [
-    "anim_tire_donor.c",
-    "rand.c",
-    "visibility_wrappers.c",
-    "entity_anim_texture.c"
-  ],
-  "keep": [
-    "anim_state_update",
-    "entity_anim_texture"
-  ],
-  "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
-  "provenance": "Complete genuine donor/native callback context; no stand-ins or fabricated keepers.",
-  "name": "codex_visual_tire_module_20261002"
+ "members": [
+  "matrix_scale_apply",
+  "anim_state_update"
+ ],
+ "context": [
+  "model_bounds_calc",
+  "entity_anim_texture",
+  "func_8008B2B4",
+  "func_8008B2E4"
+ ],
+ "files": [
+  "anim_tire_donor.c",
+  "rand.c",
+  "visibility_wrappers.c",
+  "entity_anim_texture.c",
+  "func_8008B2E4.c"
+ ],
+ "keep": [
+  "anim_state_update",
+  "entity_anim_texture",
+  "func_8008B2E4"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
+ "provenance": "Complete genuine donor/native callback context; no stand-ins or fabricated keepers. Wave 17 (w17c): anim_state_update body replaced (anim_tire_donor.c = cloud/work/frontier/w17c/anim_state_update/best.c) and moved from context to members; model_bounds_calc takes the arcade CheckVisible order (Visual *v, s32 on) in every file; func_8008B2E4.c is an unchanged copy of the locked single (Random, inlined by umerge). See cloud/work/frontier/w17c/RESULTS.md.",
+ "name": "codex_visual_tire_module_20261002"
 }

@@ -564,6 +564,25 @@ def test_own_bss_objects_sit_anywhere_in_game_bss_without_overlap():
     assert "0x8017a63e (+4 bytes), outside" in res["f"]["error"]
 
 
+def test_own_bss_extent_is_the_access_width_not_the_unit_gap():
+    """The unit's link order decides how much alignment padding follows a
+    static; the padding is not the object. f stores to .bss+0x10 and loads
+    .bss+0x1c (12 apart in the unit) where retail keeps them 8 apart."""
+    relocs = [(0, bu.R_MIPS_HI16, 7), (4, bu.R_MIPS_LO16, 7),
+              (8, bu.R_MIPS_HI16, 7), (12, bu.R_MIPS_LO16, 7)]
+    f = [0x3C010000, 0xAC280010, 0x3C010000, 0x8C28001C, JR_RA, NOP, JR_RA, NOP]
+    first, second = 0x80156940, 0x80156948
+    image = [0x3C010000 | _hi(first), 0xAC280000 | (first & 0xFFFF),
+             0x3C010000 | _hi(second), 0x8C280000 | (second & 0xFFFF), JR_RA, NOP, JR_RA, NOP]
+    res = _compare(_unit(f, G_UNIT, relocs), image)
+    assert res["f"]["status"] == "ok" and res["f"]["notes"] == [bu.NOTE_BSS]
+    # A real overlap of two 4-byte objects is still refused.
+    second = 0x80156942
+    image[2:4] = [0x3C010000 | _hi(second), 0x8C280000 | (second & 0xFFFF)]
+    res = _compare(_unit(f, G_UNIT, relocs), image)
+    assert res["f"]["status"] == "fail" and "overlap in the image" in res["f"]["error"]
+
+
 def test_emission_summary():
     obj = _unit(F_UNIT, G_UNIT, F_RELOCS)
     info = bu.emission(obj, {"f": (F_ADDR, 32), "g": (F_ADDR + 32, 8)})

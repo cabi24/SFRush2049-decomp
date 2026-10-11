@@ -13,7 +13,7 @@ extern s8 D_80140418;
 void model_data_load(s16,s32,s32);
 void model_transform_setup(s16,s32,s32);
 void math_utility(void *,void *);
-s32 model_bounds_calc(s32,ModelObj *);
+s32 model_bounds_calc(ModelObj *,s32);
 s32 matrix_scale_apply(ModelObj *,s32,s32);
 void entity_anim_texture(ModelObj *record,s16 mode) {
     Player952 *player;
@@ -41,7 +41,7 @@ void entity_anim_texture(ModelObj *record,s16 mode) {
     } else model_data_load(record->model,1,15);
     view=(D_80140418!=0)||((player->flags&8)!=0);
     enabled=((player->flags&0x10)==0)&&(player->disabled==0);
-    if(model_bounds_calc(enabled,record)) {
+    if(model_bounds_calc(record,enabled)) {
         matrix_scale_apply(record,player->quality>=2,player->shift);
         if(view) D_8012E700[record->model].flags^=0x80000000U;
         else D_8012E700[record->model].flags&=0x7FFFFFFFU;
