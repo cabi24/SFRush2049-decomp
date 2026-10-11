@@ -1,0 +1,19 @@
+{
+ "members": [
+  "entity_spawn_init"
+ ],
+ "context": [
+  "func_8008B2E4"
+ ],
+ "files": [
+  "entity_spawn_init.c",
+  "func_8008B2E4.c"
+ ],
+ "keep": [
+  "entity_spawn_init",
+  "func_8008B2E4"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "note": "w21f (wave 21): entity_spawn_init, EQUAL in the whole-program unit. umerge inlines the locked single func_8008B2E4 (byte-identical copy) 19x plus the file statics get_car and get_mph (one call site each, identity unknown, see header). Supersedes nothing; no unit_overrides expected.",
+ "provenance": "frontier wave 21 (w21f), cloud/work/frontier/w21f/RESULTS.md"
+}

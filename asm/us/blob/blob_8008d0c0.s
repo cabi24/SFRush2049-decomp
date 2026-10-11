@@ -1709,6 +1709,7 @@ func_8008E408:
 .section .text.entity_spawn_init, "ax", @progbits
 .globl entity_spawn_init
 entity_spawn_init:
+    /* compiled from src/blob/entity_spawn_init.c */
     .word 0x27BDFD28
     .word 0xAFB70044
     .word 0x0004BC00

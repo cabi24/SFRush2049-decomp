@@ -1108,6 +1108,15 @@
     "verified": "image_gate",
     "verified_at": "2026-10-05"
   },
+  "entity_spawn_init": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_entity_spawn_init",
+    "source": "src/blob/groups/frontier_entity_spawn_init/group.json",
+    "source_sha256": "64ace8e7c71c73742cce88bba86f0aa26015cec46c864922e40454fb8b8448f2",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-11"
+  },
   "entity_state_check": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "source": "src/blob/entity_state_check.c",
