@@ -23,4 +23,5 @@ $(BUILD_DIR)/src/rom/lib_c990.o: CFLAGS := $(subst -O2,-O1,$(CFLAGS))
 $(BUILD_DIR)/src/rom/lib_e1c0.o: CFLAGS := $(subst -O2,-O1,$(CFLAGS))
 $(BUILD_DIR)/src/rom/lib_e240.o: CFLAGS := $(subst -O2,-O1,$(CFLAGS))
 $(BUILD_DIR)/src/rom/lib_efd0.o: CFLAGS := $(subst -O2,-O1,$(CFLAGS))
+$(BUILD_DIR)/src/rom/lib_10d10.o: CFLAGS := $(subst -O2,-O1,$(CFLAGS))
 endif
