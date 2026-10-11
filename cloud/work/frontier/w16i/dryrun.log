@@ -1,0 +1,20 @@
+register  __osEPiRawWriteIo        @0x8000FE00   86 insns seg 0x10a00  reloc_aware o=1ae5d9382c22  (new row)
+register  __osEPiRawReadIo         @0x8000FF60   87 insns seg 0x10b60  reloc_aware o=91f86507182f  (new row)
+register  __osResetGlobalIntMask   @0x8000FDA0   22 insns seg 0x109a0  reloc_aware o=7db75dbaae90  (new row)
+register  __osSetGlobalIntMask     @0x800100C0   19 insns seg 0x10cc0  reloc_aware o=14e30f60dc03  (new row)
+register  __osSiDeviceBusy         @0x8000FD70    9 insns seg 0x10970  reloc_aware o=4a08f95b2828  (new row)
+register  osDestroyThread          @0x8000FBA0   65 insns seg 0x107a0  reloc_aware o=ad150e66d834  (new row)
+readdress __osContDataCrc          @0x8000FAC0   37 insns seg 0x105f0  reloc_aware o=1f84e0bc636d  (was 0x8000FA4C (29 insns); object changes, supersedes 578 matrix_entry rows)
+register  __osProbeTLB             @0x8000FCB0   46 insns seg 0x108b0  reloc_aware o=54f7ff23a076  (new row)
+refresh   osYieldThread            @0x80010110   19 insns seg 0x10d10  reloc_aware o=e6c91198258f  (was 4072 insns; object unchanged)
+retire    __osEnqueueAndYield      @0x8000FBA0  renamed to osDestroyThread @0x8000FBA0; deletes n64_target 1, matrix_entry 0, function_status 1
+retire    __osPfsDataChecksum      @0x8000FAC0  renamed to __osContDataCrc @0x8000FAC0; deletes n64_target 1, matrix_entry 0, function_status 1
+retire    __osPiDeviceBusy         @0x8000FD70  renamed to __osSiDeviceBusy @0x8000FD70; deletes n64_target 1, matrix_entry 0, function_status 1
+retire    __osPiGetCmdQueue        @0x800100C0  renamed to __osSetGlobalIntMask @0x800100C0; deletes n64_target 1, matrix_entry 0, function_status 1
+retire    __osTLBLookup            @0x8000FCB0  renamed to __osProbeTLB @0x8000FCB0; deletes n64_target 1, matrix_entry 0, function_status 1
+retire    osEPiRawReadIo           @0x8000FF60  renamed to __osEPiRawReadIo @0x8000FF60; deletes n64_target 1, matrix_entry 0, function_status 1
+retire    osEPiRawStartDma         @0x8000FE00  renamed to __osEPiRawWriteIo @0x8000FE00; deletes n64_target 1, matrix_entry 0, function_status 1
+retire    osEPiRawWriteIo          @0x8000FDA0  renamed to __osResetGlobalIntMask @0x8000FDA0; deletes n64_target 1, matrix_entry 0, function_status 1
+retire    read_controllers         @0x800140B0  mid-function: inside func_80013DEC @0x80013DEC; deletes n64_target 1, matrix_entry 0, function_status 1
+dry run: nothing written (18 actions; 2263 other n64_target rows untouched)
+applied 18 actions to <scratch copy>/conveyor.db: n64_target 2281 -> 2279, 578 matrix_entry rows purged

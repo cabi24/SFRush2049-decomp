@@ -1,0 +1,99 @@
+RESULT PASS count: 24 of 24
+### renamed boot functions: lock add --target <current name> (new inventory rows)
+== __osEPiRawWriteIo (target __osEPiRawWriteIo) src=cloud/work/frontier/w16g/sources/__osEPiRawWriteIo.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (88 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (88 rows)
+RESULT PASS
+== __osEPiRawReadIo (target __osEPiRawReadIo) src=cloud/work/frontier/w16g/sources/__osEPiRawReadIo.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (89 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (89 rows)
+RESULT PASS
+== __osContDataCrc (target __osContDataCrc) src=cloud/work/frontier/w16g/sources/__osContDataCrc.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (37 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (37 rows)
+RESULT PASS
+== __osSiDeviceBusy (target __osSiDeviceBusy) src=cloud/work/frontier/w16g/sources/__osSiDeviceBusy.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (8 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (8 rows)
+RESULT PASS
+== __osResetGlobalIntMask (target __osResetGlobalIntMask) src=cloud/work/frontier/w16g/sources/__osResetGlobalIntMask.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (27 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (27 rows)
+RESULT PASS
+== __osSetGlobalIntMask (target __osSetGlobalIntMask) src=cloud/work/frontier/w16g/sources/__osSetGlobalIntMask.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (24 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (24 rows)
+RESULT PASS
+== osDestroyThread (target osDestroyThread) src=cloud/work/frontier/w16g/sources/osDestroyThread.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (79 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (79 rows)
+RESULT PASS
+== osYieldThread (target osYieldThread) src=cloud/work/frontier/w16g/sources/osYieldThread.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (25 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (25 rows)
+RESULT PASS
+### libgcc (ll.c / llcvt.c) at -g0 -O1 -mips3 -32
+== __lshrdi3 (target __lshrdi3) src=cloud/work/frontier/w16g/sources/__lshrdi3.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows)
+RESULT PASS
+== __umoddi3 (target __umoddi3) src=cloud/work/frontier/w16g/sources/__umoddi3.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (15 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (15 rows)
+RESULT PASS
+== __udivdi3 (target __udivdi3) src=cloud/work/frontier/w16g/sources/__udivdi3.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (15 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (15 rows)
+RESULT PASS
+== __ashldi3 (target __ashldi3) src=cloud/work/frontier/w16g/sources/__ashldi3.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows)
+RESULT PASS
+== __umoddi3_alt (target __umoddi3_alt) src=cloud/work/frontier/w16g/sources/__umoddi3_alt.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (15 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (15 rows)
+RESULT PASS
+== __divdi3 (target __divdi3) src=cloud/work/frontier/w16g/sources/__divdi3.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (23 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (23 rows)
+RESULT PASS
+== __muldi3 (target __muldi3) src=cloud/work/frontier/w16g/sources/__muldi3.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (12 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (12 rows)
+RESULT PASS
+== __qdivrem (target __qdivrem) src=cloud/work/frontier/w16g/sources/__qdivrem.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (23 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (23 rows)
+RESULT PASS
+== __moddi3 (target __moddi3) src=cloud/work/frontier/w16g/sources/__moddi3.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (39 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (39 rows)
+RESULT PASS
+== __ashrdi3 (target __ashrdi3) src=cloud/work/frontier/w16g/sources/__ashrdi3.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows)
+RESULT PASS
+== __fixdfdi (target __fixdfdi) src=cloud/work/frontier/w16g/sources/__fixdfdi.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (7 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (7 rows)
+RESULT PASS
+== __fixsfdi (target __fixsfdi) src=cloud/work/frontier/w16g/sources/__fixsfdi.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (7 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (7 rows)
+RESULT PASS
+== __floatdidf (target __floatdidf) src=cloud/work/frontier/w16g/sources/__floatdidf.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (6 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (6 rows)
+RESULT PASS
+== __floatdisf (target __floatdisf) src=cloud/work/frontier/w16g/sources/__floatdisf.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (6 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (6 rows)
+RESULT PASS
+== __floatundidf (target __floatundidf) src=cloud/work/frontier/w16g/sources/__floatundidf.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (12 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (12 rows)
+RESULT PASS
+== __floatundisf (target __floatundisf) src=cloud/work/frontier/w16g/sources/__floatundisf.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows)
+RESULT PASS
