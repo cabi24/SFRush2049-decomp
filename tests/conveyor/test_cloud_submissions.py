@@ -135,4 +135,4 @@ def test_boot_tail_submission_uses_the_pinned_compiler(tmp_path, monkeypatch):
 def test_boot_tail_compiler_reads_the_layout():
     from tools.cloud import check_submissions as live
     assert live.boot_tail_compiler(live.REPO, "func_80014CF4") == "ido7.1"
-    assert live.boot_tail_compiler(live.REPO, "osYieldThread") == "ido5.3"
+    assert live.boot_tail_compiler(live.REPO, "func_8000F3A4") == "ido5.3"  # 0xf700, libultra

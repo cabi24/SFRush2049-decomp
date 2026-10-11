@@ -6,6 +6,7 @@ push callers pass the previous commit. An all-zero base checks every file.
 No ROM, coordinator state, or third-party Python packages are needed.
 """
 import argparse
+import json
 from pathlib import Path, PurePosixPath
 import re
 import subprocess
@@ -19,14 +20,25 @@ CLOUD_IDO71 = Path("tools/cloud/ido71")            # tools/cloud/setup.sh instal
 
 def boot_tail_compiler(repo, function):
     """The compiler rom_compilers.json pins for the static segment holding
-    `function` (ido5.3 or ido7.1), from the derived layout. Fails closed: a
-    boot-tail submission whose segment cannot be found is refused."""
+    `function` (ido5.3 or ido7.1), from committed inputs only (no ROM, so it
+    works in CI and in the cloud): the function's address in
+    asm/us/boot_tail/extents.json, the code subsegment of splat.us.yaml that
+    contains its ROM offset, and the pin for that segment. Fails closed."""
     sys.path.insert(0, str(repo))
-    from tools.conveyor.pipeline import layout  # noqa: E402
-    for segment in layout.derive()["segments"]:
-        if any(f.get("name") == function for f in segment.get("functions", [])):
-            return segment.get("compiler") or "ido5.3"
-    raise ValueError(f"{function}: not in any static segment of the layout")
+    from tools.conveyor import compilers  # noqa: E402
+    from tools.conveyor.pipeline import layout, targets  # noqa: E402
+    extents = json.loads((repo / "asm/us/boot_tail/extents.json").read_text())
+    entry = next((f for f in extents["functions"] if f.get("name") == function), None)
+    if entry is None:
+        raise ValueError(f"{function}: not a boot-tail target (asm/us/boot_tail/extents.json)")
+    rom_off = int(entry["address"], 16) - targets.STATIC_ROM_DELTA
+    subsegs, _code_end = layout.parse_subsegments(repo / "splat.us.yaml")
+    holder = max((seg for seg in subsegs if seg["off"] <= rom_off), key=lambda seg: seg["off"],
+                 default=None)
+    if holder is None:
+        raise ValueError(f"{function}: ROM offset {rom_off:#x} precedes every code subsegment")
+    return compilers.segment_compiler(hex(holder["off"]),
+                                      compilers.load_segment_pins(repo / "rom_compilers.json"))
 
 
 def git(repo, *args):
