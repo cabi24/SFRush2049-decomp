@@ -47,6 +47,21 @@ def test_split_name_becomes_base_plus_addend(tmp_path):
 
 
 @needs_as
+def test_negative_addend_is_written_so_check_and_splat_can_parse_it(tmp_path):
+    # func_8001661C: IDO reaches the split label D_80042228 as D_80042230-8 (a loop end pointer).
+    body = "    lui   $t3, %hi(D_80042228)\n    addiu $t3, $t3, %lo(D_80042228)\n"
+    lines = reloc_split.derive(0x800166C0, assemble(tmp_path, "t", body),
+                               assemble(tmp_path, "c", body.replace("D_80042228", "D_80042230-8")))
+    assert lines == [
+        "rom:0x172C0 reloc:MIPS_HI16 symbol:D_80042230 addend:-0x8 // was D_80042228",
+        "rom:0x172C4 reloc:MIPS_LO16 symbol:D_80042230 addend:-0x8 // was D_80042228",
+    ]
+    f = tmp_path / "reloc_addrs.txt"
+    f.write_text("\n".join(lines) + "\n")
+    assert [int(a["addend"], 0) for _, a in reloc_split.parse(f)] == [-8, -8]  # splat: int(attr_val, 0)
+
+
+@needs_as
 @pytest.mark.parametrize("end", ["D_80043EB8+0x7FC4",   # wrong addend
                                  "D_80043EB0+0x7FC0",   # wrong global
                                  "D_80043EB0"])         # wrong global, no addend

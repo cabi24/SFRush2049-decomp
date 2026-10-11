@@ -109,3 +109,36 @@ rom:0x26A70 reloc:MIPS_LO16 symbol:D_80058698 addend:0x8 // was D_800586A0
 // func_8001144C
 rom:0x12070 reloc:MIPS_HI16 symbol:D_800382D8 addend:0x4 // was D_800382DC
 rom:0x12074 reloc:MIPS_LO16 symbol:D_800382D8 addend:0x4 // was D_800382DC
+// w19b proposed reloc_addrs.us.txt additions (reloc_split derive; negative addends written -0xN)
+// func_80015720 (w19b, reloc_split derive vs cloud/work/frontier/w19b/relocname/func_80015720.c)
+rom:0x1634C reloc:MIPS_HI16 symbol:D_8003C618 addend:0x4 // was D_8003C61C
+rom:0x16350 reloc:MIPS_LO16 symbol:D_8003C618 addend:0x4 // was D_8003C61C
+rom:0x163E8 reloc:MIPS_HI16 symbol:D_8003C618 addend:0x8 // was D_8003C620
+rom:0x163EC reloc:MIPS_LO16 symbol:D_8003C618 addend:0x8 // was D_8003C620
+
+// func_800158D8 (w19b, reloc_split derive vs cloud/work/frontier/w19b/relocname/func_800158D8.c)
+rom:0x16500 reloc:MIPS_HI16 symbol:D_8003C618 addend:0x4 // was D_8003C61C
+rom:0x16504 reloc:MIPS_LO16 symbol:D_8003C618 addend:0x4 // was D_8003C61C
+rom:0x165A8 reloc:MIPS_HI16 symbol:D_8003C618 addend:-0x8 // was D_8003C610
+rom:0x165AC reloc:MIPS_LO16 symbol:D_8003C618 addend:-0x8 // was D_8003C610
+
+// func_80015C0C (w19b, reloc_split derive vs cloud/work/frontier/w19b/relocname/func_80015C0C.c)
+rom:0x16834 reloc:MIPS_HI16 symbol:D_8003CE20 addend:0x4 // was D_8003CE24
+rom:0x16838 reloc:MIPS_LO16 symbol:D_8003CE20 addend:0x4 // was D_8003CE24
+rom:0x168FC reloc:MIPS_HI16 symbol:D_8003CE20 addend:-0xC // was D_8003CE14
+rom:0x16900 reloc:MIPS_LO16 symbol:D_8003CE20 addend:-0xC // was D_8003CE14
+
+// func_80015F28 (w19b, reloc_split derive vs cloud/work/frontier/w19b/relocname/func_80015F28.c)
+rom:0x16B50 reloc:MIPS_HI16 symbol:D_80038610 addend:0x4 // was D_80038614
+rom:0x16B54 reloc:MIPS_LO16 symbol:D_80038610 addend:0x4 // was D_80038614
+rom:0x16BF8 reloc:MIPS_HI16 symbol:D_80038610 addend:-0x8 // was D_80038608
+rom:0x16BFC reloc:MIPS_LO16 symbol:D_80038610 addend:-0x8 // was D_80038608
+
+// func_800161A0 (w19b, reloc_split derive vs cloud/work/frontier/w19b/relocname/func_800161A0.c)
+rom:0x16E48 reloc:MIPS_HI16 symbol:D_800385A8 addend:-0xC // was D_8003859C
+rom:0x16E4C reloc:MIPS_LO16 symbol:D_800385A8 addend:-0xC // was D_8003859C
+
+// func_8001661C (w19b, reloc_split derive vs cloud/work/frontier/w19b/relocname/func_8001661C.c)
+rom:0x172C0 reloc:MIPS_HI16 symbol:D_80042230 addend:-0x8 // was D_80042228
+rom:0x172C4 reloc:MIPS_LO16 symbol:D_80042230 addend:-0x8 // was D_80042228
+
