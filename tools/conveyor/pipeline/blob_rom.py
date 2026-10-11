@@ -185,9 +185,14 @@ def cartridge_coverage():
     populations and summing them would hide how thin each still is."""
     from . import layout as layoutmod
 
+    from . import ovl_splice
+
     static = layoutmod.coverage()
     game = blob_splice.coverage()
     return {
+        # Runtime images A/B (pipeline.ovl_splice): their own rows and
+        # denominators, never summed into static or game.
+        "overlays": ovl_splice.coverage(),
         "static_functions": static["promoted_functions"],
         "static_total": static["static_functions"],
         "static_bytes": static["promoted_bytes"],
@@ -209,7 +214,10 @@ def print_coverage(cov):
           f"{cov['game_bytes']}/{cov['game_total_bytes']} bytes "
           f"({100 * cov['game_bytes'] / cov['game_total_bytes']:.2f}%) "
           f"— compressed into the ROM at 0x{ROM_OFFSET:X}")
-    print(f"  linked from C: {total_fn} functions, {total_b} bytes")
+    if cov.get("overlays"):
+        from . import ovl_splice
+        ovl_splice.print_coverage(cov["overlays"])
+    print(f"  linked from C: {total_fn} functions, {total_b} bytes (static + game)")
 
 
 def main():

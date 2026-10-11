@@ -120,9 +120,15 @@ def builder_script(spec, toolkit=TOOLKIT, workdir=BUILDER_TMP):
         f"echo DONE")
 
 
-def compile_group(spec, builder=BUILDER, obj_dir=OBJ_DIR):
-    """Build the group on the builder; returns the fetched object's path."""
-    staging = Path(blob_build.BUILD_DIR) / "group-staging" / spec["name"]
+def compile_group(spec, builder=BUILDER, obj_dir=OBJ_DIR, workdir=BUILDER_TMP,
+                  staging_root=None):
+    """Build the group on the builder; returns the fetched object's path.
+
+    `workdir` (builder) and `staging_root` (local) let another image's group
+    splice (pipeline.ovl_splice) build without sharing the game's directories."""
+    BUILDER_TMP = workdir
+    staging = (Path(staging_root) if staging_root
+               else Path(blob_build.BUILD_DIR) / "group-staging") / spec["name"]
     if staging.exists():
         shutil.rmtree(staging)
     staging.mkdir(parents=True)
@@ -133,7 +139,7 @@ def compile_group(spec, builder=BUILDER, obj_dir=OBJ_DIR):
                    check=True, capture_output=True)
     subprocess.run(["scp", "-q", *[str(p) for p in staging.iterdir()],
                     f"{builder}:{BUILDER_TMP}/"], check=True, capture_output=True)
-    proc = subprocess.run(["ssh", builder, builder_script(spec)],
+    proc = subprocess.run(["ssh", builder, builder_script(spec, workdir=workdir)],
                           capture_output=True, text=True)
     if "DONE" not in proc.stdout:
         log = subprocess.run(["ssh", builder, f"cat {BUILDER_TMP}/cc.log"],

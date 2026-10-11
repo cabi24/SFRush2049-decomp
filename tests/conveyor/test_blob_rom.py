@@ -97,6 +97,13 @@ def test_cartridge_coverage_keeps_the_two_populations_separate(monkeypatch, caps
         "functions": 56, "total_functions": 912,
         "bytes": 4168, "image_size": 647072})
 
+    from tools.conveyor.pipeline import ovl_splice
+    monkeypatch.setattr(ovl_splice, "coverage", lambda: {
+        "a": {"functions": 17, "total_functions": 193, "bytes": 5396, "function_bytes": 152952,
+              "image_size": 194128, "rom_offset": "0xB5C534"},
+        "b": {"functions": 8, "total_functions": 49, "bytes": 1640, "function_bytes": 38708,
+              "image_size": 43888, "rom_offset": "0xB6FEC4"}})
+
     cov = blob_rom.cartridge_coverage()
     blob_rom.print_coverage(cov)
     out = capsys.readouterr().out
@@ -104,3 +111,6 @@ def test_cartridge_coverage_keeps_the_two_populations_separate(monkeypatch, caps
     assert "23/230" in out and "56/912" in out
     assert "linked from C: 79 functions, 5616 bytes" in out
     assert "/1142" not in out                     # no merged denominator
+    assert "overlay A:" in out and "17/193" in out and "5396/194128" in out
+    assert "overlay B:" in out and "8/49" in out and "1640/43888" in out
+    assert "/1335" not in out and "/1191" not in out    # overlays never merged in

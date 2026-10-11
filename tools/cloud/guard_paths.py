@@ -23,21 +23,30 @@ def locked_paths(repo, revision):
 
     protected = set()
     manifests = set()
-    for entry in document("blob_matched.lock.json").values():
+    entries = [("src/blob/", entry) for entry in document("blob_matched.lock.json").values()]
+    # Runtime images A/B (pipeline.ovl_splice), once the base branch has their lock:
+    # {"a": {name: entry}, "b": {...}}, sources under src/ovl_<x>/.
+    if git(repo, "ls-tree", "--name-only", revision, "--", OVL_LOCK).strip():
+        for image, image_entries in document(OVL_LOCK).items():
+            entries += [(f"src/ovl_{image}/", entry) for entry in image_entries.values()]
+    for root, entry in entries:
         source = entry["source"]
-        if not source.startswith("src/blob/"):
+        if not source.startswith(root):
             continue
         protected.add(source)
         if entry.get("group"):
-            manifests.add(source)
-    for source in sorted(manifests):
+            manifests.add((root, source))
+    for root, source in sorted(manifests):
         directory = str(PurePosixPath(source).parent)
         for name in document(source)["files"]:
             path = posixpath.normpath(posixpath.join(directory, name))
-            if not path.startswith("src/blob/"):
-                raise ValueError(f"locked group source outside src/blob: {path}")
+            if not path.startswith(root):
+                raise ValueError(f"locked group source outside {root.rstrip('/')}: {path}")
             protected.add(path)
     return protected
+
+
+OVL_LOCK = "ovl_matched.lock.json"
 
 
 # Generated scoring targets: the game image, the two runtime images at

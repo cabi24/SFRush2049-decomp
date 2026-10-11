@@ -82,17 +82,20 @@ def verified_flagsets(conn, target_ids):
 
 
 def compile_on_builder(sources, flagset, builder=BUILDER, toolkit=TOOLKIT,
-                       obj_dir=OBJ_DIR):
+                       obj_dir=OBJ_DIR, workdir=BUILDER_TMP, staging=None):
     """Compile {target_id: Path} with IDO on the builder, rename each object's
     .text to its placed section, and return {target_id: object path}.
 
     Batched into one round trip: per-function ssh would dominate the runtime
-    of a 76-function splice."""
+    of a 76-function splice. `workdir` (builder) and `staging` (local) let
+    another image's splice (pipeline.ovl_splice) compile without sharing the
+    game splice's directories."""
     obj_dir = Path(obj_dir)
     obj_dir.mkdir(parents=True, exist_ok=True)
     if not sources:
         return {}, {}
-    staging = Path(blob_build.BUILD_DIR) / "staging"
+    BUILDER_TMP = workdir
+    staging = Path(staging) if staging else Path(blob_build.BUILD_DIR) / "staging"
     if staging.exists():
         shutil.rmtree(staging)
     staging.mkdir(parents=True)

@@ -340,9 +340,11 @@ verify: $(TARGET)
 test: verify
 
 # Fast local check that no verified-matched function has drifted from its
-# pinned form (matched.lock.json). No IDO or network needed.
+# pinned form (matched.lock.json), and that no runtime-image (overlay A/B)
+# body has drifted from ovl_matched.lock.json. No IDO or network needed.
 check-matched:
 	$(V)$(PYTHON) -m tools.conveyor.pipeline.lock check
+	$(V)$(PYTHON) -m tools.conveyor.pipeline.ovl_splice check
 
 # ============================================================
 # Extraction
