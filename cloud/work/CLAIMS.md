@@ -25,3 +25,4 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 | static | func_80012D18, func_8001A658, func_80023E9C, func_80012730, func_8001F13C, func_800178B0, func_8001C860 | coordinator w21c | 2026-10-12 | wave 21 (identify + match) |
 | static | other remaining boot tail `func_*` (func_800268D0, func_80012D18, func_8001A658, func_80023E9C, func_80012730, func_8001F13C, func_800178B0, func_8001C860 and the rest) | open | | Astra welcome; say so here |
 | tooling | static recompilation Phase 1 (runtime, shims, overlay hook) | coordinator w21r | 2026-10-12 | on rocky |
+| static | func_80022324 | Astra cloud boot-neighbor lane | 2026-10-11 | IDO 7.1 packed key-group/register residual; draft packet in dot_boot_neighbors_20261011 |
