@@ -84,9 +84,13 @@ def extract_image(elf, out_bin):
     return Path(out_bin).read_bytes()
 
 
+def _base(document):
+    return int(document["image"]["base"], 16)
+
+
 def locate(document, offset):
     """(region, entry) owning an image offset — for naming a gate failure."""
-    vaddr = blob_layout.BASE + offset
+    vaddr = _base(document) + offset
     for region in document["regions"]:
         if region["vaddr_start"] <= vaddr < region["vaddr_end"]:
             for entry in region["entries"]:
@@ -115,7 +119,7 @@ def describe_difference(document, expected, actual):
                  else f"opaque@0x{entry['vaddr']:08X}")
     lines = [
         f"first difference at image offset {offset} "
-        f"(vram 0x{blob_layout.BASE + offset:08X})",
+        f"(vram 0x{_base(document) + offset:08X})",
         f"  region:   {region['name'] if region else '?'}",
         f"  owner:    {owner}",
         f"  expected: {expected[word:word + 4].hex()}",
