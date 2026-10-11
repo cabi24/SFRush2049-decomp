@@ -1,0 +1,13 @@
+{
+  "owner": "func_80021548",
+  "tu": "src/rom/lib_21210.c",
+  "source": "assets/us/data.bin",
+  "container_section": ".data",
+  "owner_section": ".rodata",
+  "offset": "0x6160",
+  "size": "0x20",
+  "container_vram": "0x800277d0",
+  "sha256": "626e96a8b7ad0e519ca7a368ddf278d6fd0e693412113f6e7e61eb1c7fe845de",
+  "passthrough_asm": "asm/us/nonmatchings/rom/lib_21210/func_80021548.rodata.s",
+  "composed_source": "build/us/assets/us/data.composed.bin"
+}

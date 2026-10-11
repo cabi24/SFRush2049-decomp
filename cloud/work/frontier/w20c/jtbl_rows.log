@@ -1,0 +1,20 @@
+== func_80021548
+< 			18: R_MIPS_HI16	jtbl_8002D930_main
+< 			20: R_MIPS_LO16	jtbl_8002D930_main
+> 			18: R_MIPS_HI16	.rodata
+> 			20: R_MIPS_LO16	.rodata
+== func_80023BDC
+< 			a0: R_MIPS_HI16	jtbl_8002D950_main
+< 			a8: R_MIPS_LO16	jtbl_8002D950_main
+> 			a0: R_MIPS_HI16	.rodata
+> 			a8: R_MIPS_LO16	.rodata
+== func_8001B9F8
+< 			68: R_MIPS_HI16	jtbl_8002D8D0_main
+< 			70: R_MIPS_LO16	jtbl_8002D8D0_main
+> 			68: R_MIPS_HI16	.rodata
+> 			70: R_MIPS_LO16	.rodata
+== func_8001BE14
+< 			64: R_MIPS_HI16	jtbl_8002D8E8_main
+< 			6c: R_MIPS_LO16	jtbl_8002D8E8_main
+> 			64: R_MIPS_HI16	.rodata
+> 			6c: R_MIPS_LO16	.rodata

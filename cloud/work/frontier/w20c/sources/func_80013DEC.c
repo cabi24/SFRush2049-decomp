@@ -1,4 +1,7 @@
 /* flags: -g0 -O2 -mips2 -G 0 -non_shared */
+/* func_80013DEC - lib_11640 (IDO 7.1): audio frame service. w19a D10 source; w20c: D_80038362 declared
+ * volatile as lib_11640 declares it (func_80014140; same code). The first D_80038292 read is named by
+ * reloc_addrs (splat left it an unpaired lui/lhu). */
 extern void (*D_80038020)(void);
 extern void (*D_80038024)(void);
 extern unsigned char D_8002C630;
@@ -11,7 +14,7 @@ extern unsigned short *D_800382D4;
 extern unsigned short *D_800382D8[];
 extern unsigned short D_800382E0[];
 extern unsigned short D_80038360;
-extern short D_80038362;
+extern volatile short D_80038362;
 extern unsigned int __osDisableInt(void);
 extern void __osRestoreInt(unsigned int);
 extern void func_80014624(void);

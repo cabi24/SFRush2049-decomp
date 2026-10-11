@@ -1,0 +1,204 @@
+AS asm/us/1000.s
+AS asm/us/104D0.s
+AS asm/us/10760.s
+AS asm/us/10790.s
+AS asm/us/108B0.s
+AS asm/us/26F60.s
+AS asm/us/55F0.s
+AS asm/us/8410.s
+AS asm/us/88A0.s
+AS asm/us/90E0.s
+AS asm/us/9190.s
+AS asm/us/D0B0.s
+AS asm/us/D570.s
+AS asm/us/DEB0.s
+AS asm/us/E370.s
+AS asm/us/E440.s
+AS asm/us/E490.s
+AS asm/us/EFC0.s
+AS asm/us/header.s
+BIN assets/us/data.bin + game-code blob and runtime images A/B built from sources
+BIN assets/us/ipl3.bin
+ASMPROC src/rom/lib_10280.c
+cfe: Warning 581: src/rom/lib_10280.c:13: Macro NULL redefined.
+ASMPROC src/rom/lib_1050.c
+ASMPROC src/rom/lib_105f0.c
+ASMPROC src/rom/lib_1050_sdk.c
+ASMPROC src/rom/lib_107a0.c
+ASMPROC src/rom/lib_10970.c
+cfe: Warning 581: src/rom/lib_107a0.c:13: Macro NULL redefined.
+ASMPROC src/rom/lib_109a0.c
+ASMPROC src/rom/lib_10a00.c
+ASMPROC src/rom/lib_10b60.c
+ASMPROC src/rom/lib_10cc0.c
+ASMPROC src/rom/lib_10d10.c
+ASMPROC src/rom/lib_10d60.c
+ASMPROC src/rom/lib_11050.c (IDO 7.1)
+ASMPROC src/rom/lib_113e0.c (IDO 7.1)
+ASMPROC src/rom/lib_15930.c (IDO 7.1)
+ASMPROC src/rom/lib_11640.c (IDO 7.1)
+cfe: Warning 581: src/rom/lib_11640.c:870: Macro NULL redefined.
+cfe: Warning 838: include/boot_tail_audio_record.h, line 19: Microsoft extension
+     union {
+ ----^
+cfe: Warning 649: include/boot_tail_audio_record.h, line 22: Missing member name in structure / union
+     };
+ -----^
+cfe: Warning 709: src/rom/lib_11640.c, line 819: Incompatible pointer type assignment
+     osCreateMesgQueue(&D_80038368, &D_80038380, 1);
+ ----------------------^
+cfe: Warning 709: src/rom/lib_11640.c, line 820: Incompatible pointer type assignment
+     osJamMesg(&D_80038368, 0, 0);
+ --------------^
+cfe: Warning 709: src/rom/lib_11640.c, line 833: Incompatible pointer type assignment
+         osRecvMesg(&D_80038368, 0, 1);
+ -------------------^
+cfe: Warning 709: src/rom/lib_11640.c, line 848: Incompatible pointer type assignment
+             osJamMesg(&D_80038368, 0, 0);
+ ----------------------^
+cfe: Warning 709: src/rom/lib_11640.c, line 861: Incompatible pointer type assignment
+     osRecvMesg(&D_80038368, 0, 1);
+ ---------------^
+cfe: Warning 709: src/rom/lib_11640.c, line 874: Incompatible pointer type assignment
+     osJamMesg(&D_80038368, ((void *)0) , 0 );
+ --------------^
+ASMPROC src/rom/lib_15a10.c (IDO 7.1)
+ASMPROC src/rom/lib_16320.c (IDO 7.1)
+ASMPROC src/rom/lib_17dc0.c (IDO 7.1)
+ASMPROC src/rom/lib_1a660.c (IDO 7.1)
+ASMPROC src/rom/lib_1cf90.c (IDO 7.1)
+ASMPROC src/rom/lib_1ece0.c (IDO 7.1)
+ASMPROC src/rom/lib_1f340.c (IDO 7.1)
+ASMPROC src/rom/lib_1f5b0.c (IDO 7.1)
+ASMPROC src/rom/lib_207b0.c (IDO 7.1)
+ASMPROC src/rom/lib_21210.c (IDO 7.1)
+ASMPROC src/rom/lib_21f0.c
+ASMPROC src/rom/lib_22300.c (IDO 7.1)
+ASMPROC src/rom/lib_257f0.c (IDO 7.1)
+ASMPROC src/rom/lib_25bb0.c (IDO 7.1)
+ASMPROC src/rom/lib_26ab0.c (IDO 7.1)
+cfe: Warning 581: src/rom/lib_25bb0.c:119: Macro NULL redefined.
+ASMPROC src/rom/lib_2cf0.c
+ASMPROC src/rom/lib_3140.c
+ASMPROC src/rom/lib_3330.c
+ASMPROC src/rom/lib_3390.c
+ASMPROC src/rom/lib_34a0.c
+ASMPROC src/rom/lib_5610.c
+ASMPROC src/rom/lib_7600.c
+CC src/rom/lib_7630.c (complete owned storage)
+ASMPROC src/rom/lib_7940.c
+ASMPROC src/rom/lib_79a0.c
+ASMPROC src/rom/lib_7a10.c
+ASMPROC src/rom/lib_7ad0.c
+ASMPROC src/rom/lib_7b30.c
+ASMPROC src/rom/lib_7c80.c
+ASMPROC src/rom/lib_7fb0.c
+ASMPROC src/rom/lib_8040.c
+ASMPROC src/rom/lib_8040_msg.c
+ASMPROC src/rom/lib_81e0.c
+ASMPROC src/rom/lib_8330.c
+ASMPROC src/rom/lib_83d0.c
+ASMPROC src/rom/lib_8440.c
+ASMPROC src/rom/lib_8700.c
+ASMPROC src/rom/lib_8800.c
+ASMPROC src/rom/lib_8920.c
+CC src/rom/lib_8a80.c (existing complete owned storage)
+ASMPROC src/rom/lib_8dd0.c
+ASMPROC src/rom/lib_8e10.c
+cfe: Warning 712: src/rom/lib_8dd0.c, line 18: illegal combination of pointer and integer
+     temp_v0 = osPiReadWord(arg0, arg1);
+ ---------------------------------^
+ASMPROC src/rom/lib_8e10_pi.c
+ASMPROC src/rom/lib_9230.c
+ASMPROC src/rom/lib_92f0.c
+ASMPROC src/rom/lib_9330.c
+ASMPROC src/rom/lib_9660.c
+ASMPROC src/rom/lib_9820.c
+ASMPROC src/rom/lib_9de0.c
+ASMPROC src/rom/lib_9ab0.c
+cfe: Warning 709: src/rom/lib_9de0.c, line 92: Incompatible pointer type assignment
+     guMtxF2L(temp, mtx);
+ -------------------^
+ASMPROC src/rom/lib_a050.c
+ASMPROC src/rom/lib_a330.c
+ASMPROC src/rom/lib_a5b0.c
+ASMPROC src/rom/lib_a5f0.c
+cc: Warning: -mips3 should not be used for ucode 32-bit compiles
+ASMPROC src/rom/lib_a800.c
+ASMPROC src/rom/lib_a810.c
+ASMPROC src/rom/lib_ab20.c
+ASMPROC src/rom/lib_af50.c
+cfe: Warning 581: src/rom/lib_ab20.c:154: Macro PFS_INITIALIZED redefined.
+cfe: Warning 581: src/rom/lib_ab20.c:155: Macro PFS_ID_BROKEN redefined.
+ASMPROC src/rom/lib_b120.c
+ASMPROC src/rom/lib_b300.c
+ASMPROC src/rom/lib_b570.c
+ASMPROC src/rom/lib_b9f0.c
+ASMPROC src/rom/lib_be40.c
+ASMPROC src/rom/lib_bfe0.c
+ASMPROC src/rom/lib_c990.c
+ASMPROC src/rom/lib_ca70.c
+CC src/rom/lib_cc50.c (existing complete owned storage)
+ASMPROC src/rom/lib_d140.c
+ASMPROC src/rom/lib_d260.c
+ASMPROC src/rom/lib_d270.c
+ASMPROC src/rom/lib_d580.c
+ASMPROC src/rom/lib_e1c0.c
+ASMPROC src/rom/lib_e240.c
+ASMPROC src/rom/lib_e250.c
+ASMPROC src/rom/lib_e280.c
+ASMPROC src/rom/lib_e310.c
+ASMPROC src/rom/lib_e340.c
+ASMPROC src/rom/lib_e390.c
+ASMPROC src/rom/lib_e3f0.c
+ASMPROC src/rom/lib_e4f0.c
+ASMPROC src/rom/lib_e7c0.c
+cc: Warning: -mips3 should not be used for ucode 32-bit compiles
+ASMPROC src/rom/lib_e8d0.c
+ASMPROC src/rom/lib_e9a0.c
+cfe: Warning 581: src/rom/lib_e9a0.c:63: Macro OS_MESG_TYPE_LOOPBACK redefined.
+cfe: Warning 581: src/rom/lib_e9a0.c:64: Macro OS_MESG_TYPE_DMAREAD redefined.
+cfe: Warning 581: src/rom/lib_e9a0.c:65: Macro OS_MESG_TYPE_DMAWRITE redefined.
+cfe: Warning 581: src/rom/lib_e9a0.c:70: Macro IO_WRITE redefined.
+cfe: Warning 581: src/rom/lib_e9a0.c:82: Macro K1_TO_PHYS redefined.
+cfe: Warning 709: src/rom/lib_e9a0.c, line 207: Incompatible pointer type assignment
+             osEPiRawStartDma(mb->piHandle, 0x05000510 , (info->bmCtlShadow | 0x80000000));
+ -------------------------------^
+cfe: Warning 709: src/rom/lib_e9a0.c, line 216: Incompatible pointer type assignment
+                 osEPiRawStartDma(mb->piHandle, 0x05000510 , info->bmCtlShadow | 0x10000000 );
+ -----------------------------------^
+cfe: Warning 709: src/rom/lib_e9a0.c, line 217: Incompatible pointer type assignment
+                 osEPiRawStartDma(mb->piHandle, 0x05000510 , info->bmCtlShadow);
+ -----------------------------------^
+cfe: Warning 709: src/rom/lib_e9a0.c, line 218: Incompatible pointer type assignment
+                 osEPiRawReadIo(mb->piHandle, 0x05000508 , &stat);
+ ---------------------------------^
+cfe: Warning 709: src/rom/lib_e9a0.c, line 221: Incompatible pointer type assignment
+                     osEPiRawStartDma(mb->piHandle, 0x05000510 , info->bmCtlShadow | 0x01000000 );
+ ---------------------------------------^
+cfe: Warning 709: src/rom/lib_e9a0.c, line 252: Incompatible pointer type assignment
+                     ret = dm->edma(mb->piHandle, 0 , mb->devAddr, mb->dramAddr, mb->size);
+ -------------------------------------^
+cfe: Warning 709: src/rom/lib_e9a0.c, line 256: Incompatible pointer type assignment
+                     ret = dm->edma(mb->piHandle, 1 , mb->devAddr, mb->dramAddr, mb->size);
+ -------------------------------------^
+ASMPROC src/rom/lib_efd0.c
+ASMPROC src/rom/lib_f0b0.c
+ASMPROC src/rom/lib_f160.c
+ASMPROC src/rom/lib_f450.c
+ASMPROC src/rom/lib_f4d0.c
+ASMPROC src/rom/lib_f700.c
+GEN build/us/syms.ld
+LD build/us/rush2049.us.elf
+/usr/bin/mips-linux-gnu-ld.bfd: warning: dot moved backwards before `.sdk_initialize_bss'
+/usr/bin/mips-linux-gnu-ld.bfd: warning: dot moved backwards before `.sdk_initialize_bss'
+/usr/bin/mips-linux-gnu-ld.bfd: warning: dot moved backwards before `.sdk_initialize_bss'
+/usr/bin/mips-linux-gnu-ld.bfd: warning: build/us/rush2049.us.elf has a LOAD segment with RWX permissions
+OBJCOPY build/us/rush2049.us.z64
+Build complete: build/us/rush2049.us.z64
+Verifying built ROM hash...
+build/us/rush2049.us.z64: OK
+ROM matches!
+Verifying built ROM hash...
+build/us/rush2049.us.z64: OK
+ROM matches!

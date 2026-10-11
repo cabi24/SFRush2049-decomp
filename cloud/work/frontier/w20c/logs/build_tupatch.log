@@ -1,0 +1,14 @@
+ASMPROC src/rom/lib_1a660.c (IDO 7.1)
+LD build/us/rush2049.us.elf
+/usr/bin/mips-linux-gnu-ld.bfd: warning: dot moved backwards before `.sdk_initialize_bss'
+/usr/bin/mips-linux-gnu-ld.bfd: warning: dot moved backwards before `.sdk_initialize_bss'
+/usr/bin/mips-linux-gnu-ld.bfd: warning: dot moved backwards before `.sdk_initialize_bss'
+/usr/bin/mips-linux-gnu-ld.bfd: warning: build/us/rush2049.us.elf has a LOAD segment with RWX permissions
+OBJCOPY build/us/rush2049.us.z64
+Build complete: build/us/rush2049.us.z64
+Verifying built ROM hash...
+build/us/rush2049.us.z64: OK
+ROM matches!
+Verifying built ROM hash...
+build/us/rush2049.us.z64: OK
+ROM matches!

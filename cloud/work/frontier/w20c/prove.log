@@ -1,0 +1,35 @@
+func_80011104 ok 
+func_800114C0 ok 
+func_80013DEC ok 
+func_8001B9F8 ok 
+func_8001BE14 ok 
+func_80021548 ok 
+func_80023BDC ok 
+== func_80011104 (target func_80011104) src=cloud/work/frontier/w20c/sources/func_80011104.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (253 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (253 rows)
+RESULT PASS
+== func_800114C0 (target func_800114C0) src=cloud/work/frontier/w20c/sources/func_800114C0.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (258 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (258 rows)
+RESULT PASS
+== func_80013DEC (target func_80013DEC) src=cloud/work/frontier/w20c/sources/func_80013DEC.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (255 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (255 rows)
+RESULT PASS
+== func_8001B9F8 (target func_8001B9F8) src=cloud/work/frontier/w20c/sources/func_8001B9F8.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(2 rows) (256 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(2 rows) (256 rows)
+RESULT FAIL
+== func_8001BE14 (target func_8001BE14) src=cloud/work/frontier/w20c/sources/func_8001BE14.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(2 rows) (242 rows)
+TU: COMPILE FAIL cfe: Error: /tmp/tmplqyvtbab/tu.c, line 214: redeclaration of 'ChannelState'; previous declaration at line 204 in file '/tmp/tmplqyvtbab/tu.c' | cfe: Error: /tmp/tmplqyvtbab/tu.c, line 214: Duplicate member 'word00' | cfe: Error: /tmp/tmplqyvtbab/tu.c, line 214: Duplicate member 'word04' | cfe: Error: /tmp/tmplqyvtbab/tu.c, line 214: Duplicate member 'flags08' | cfe: Error: /tmp/tmplqyvtbab/tu.c, 
+RESULT FAIL
+== func_80021548 (target func_80021548) src=cloud/work/frontier/w20c/sources/func_80021548.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(2 rows) (26 rows)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(2 rows) (26 rows)
+RESULT FAIL
+== func_80023BDC (target func_80023BDC) src=cloud/work/frontier/w20c/sources/func_80023BDC.c
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(2 rows) (105 rows)
+TU: COMPILE FAIL cfe: Error: /tmp/tmpv5nhhupw/tu.c, line 625: redeclaration of 'VoiceVariables_80023AD4'; previous declaration at line 607 in file '/tmp/tmpv5nhhupw/tu.c' | cfe: Error: /tmp/tmpv5nhhupw/tu.c, line 625: Duplicate member 'unknown000' | cfe: Error: /tmp/tmpv5nhhupw/tu.c, line 625: Duplicate member 'variables180' | cfe: Error: /tmp/tmpv5nhhupw/tu.c, line 625: redeclaration of 'VoiceVariables_80023AD4';
+RESULT FAIL

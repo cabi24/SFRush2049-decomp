@@ -1,0 +1,42 @@
+ASMPROC src/rom/lib_11640.c (IDO 7.1)
+ASMPROC src/rom/lib_1a660.c (IDO 7.1)
+cfe: Warning 581: src/rom/lib_11640.c:1037: Macro NULL redefined.
+cfe: Warning 838: include/boot_tail_audio_record.h, line 19: Microsoft extension
+     union {
+ ----^
+cfe: Warning 649: include/boot_tail_audio_record.h, line 22: Missing member name in structure / union
+     };
+ -----^
+cfe: Warning 709: src/rom/lib_11640.c, line 986: Incompatible pointer type assignment
+     osCreateMesgQueue(&D_80038368, &D_80038380, 1);
+ ----------------------^
+cfe: Warning 709: src/rom/lib_11640.c, line 987: Incompatible pointer type assignment
+     osJamMesg(&D_80038368, 0, 0);
+ --------------^
+cfe: Warning 709: src/rom/lib_11640.c, line 1000: Incompatible pointer type assignment
+         osRecvMesg(&D_80038368, 0, 1);
+ -------------------^
+cfe: Warning 709: src/rom/lib_11640.c, line 1015: Incompatible pointer type assignment
+             osJamMesg(&D_80038368, 0, 0);
+ ----------------------^
+cfe: Warning 709: src/rom/lib_11640.c, line 1028: Incompatible pointer type assignment
+     osRecvMesg(&D_80038368, 0, 1);
+ ---------------^
+cfe: Warning 709: src/rom/lib_11640.c, line 1041: Incompatible pointer type assignment
+     osJamMesg(&D_80038368, ((void *)0) , 0 );
+ --------------^
+ASMPROC src/rom/lib_21210.c (IDO 7.1)
+ASMPROC src/rom/lib_22300.c (IDO 7.1)
+LD build/us/rush2049.us.elf
+/usr/bin/mips-linux-gnu-ld.bfd: warning: dot moved backwards before `.sdk_initialize_bss'
+/usr/bin/mips-linux-gnu-ld.bfd: warning: dot moved backwards before `.sdk_initialize_bss'
+/usr/bin/mips-linux-gnu-ld.bfd: warning: dot moved backwards before `.sdk_initialize_bss'
+/usr/bin/mips-linux-gnu-ld.bfd: warning: build/us/rush2049.us.elf has a LOAD segment with RWX permissions
+OBJCOPY build/us/rush2049.us.z64
+Build complete: build/us/rush2049.us.z64
+Verifying built ROM hash...
+build/us/rush2049.us.z64: OK
+ROM matches!
+Verifying built ROM hash...
+build/us/rush2049.us.z64: OK
+ROM matches!

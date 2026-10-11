@@ -1,0 +1,11 @@
+--- a/cloud/work/boot_tail_promotion/context_check.py
++++ b/cloud/work/boot_tail_promotion/context_check.py
+@@ -151,7 +151,7 @@
+         rows = [r for r in slots if r["owner_section"] == name]
+         if len(rows) != 1:
+             return None, f"object has data/rodata ({', '.join(data)}) outside an owned slot of {fn}"
+-        if int(size) > rows[0]["size"]:
++        if not owned_data.section_fits(rows[0], int(size)):
+             return None, f"{name}:{size} exceeds the owned slot of {rows[0]['owner']} ({rows[0]['size']})"
+         out.append({"slot": rows[0]["owner"], "section": name, "size": int(size),
+                     "members": owned_data.slot_members(rows[0]), "tu": rows[0]["tu"]})
