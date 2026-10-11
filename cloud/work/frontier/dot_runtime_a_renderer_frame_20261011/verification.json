@@ -1,0 +1,102 @@
+{
+  "inputs": {
+    "sources_sha256": {
+      "groups/menu_renderers/group.c": "7f1a6acbd82b4e44b69884d057be553b1d571accb612f1cb4986ff685ae018dd",
+      "groups/menu_renderers/group.json": "8cb2e9f53cbf848ceb2813c0bb47db4c471f80239a05188652f2f14640fa35bb",
+      "verify.py": "13ed6709f2b644e25819d2f3f72e72677361f9bca81abfdec86da5d6a39e369d",
+      "trace_frame.py": "e02a9d4f19991e5392e0b8c8996c7478697df337c00af0d09584deff1653f0d0"
+    },
+    "target_metadata_sha256": {
+      "extents.json": "0d97935254a6f2c724dfe68b08087e0a451e56d0aedb2121748abe7b6cc0798b",
+      "symbols.json": "d5a6c8dccb0380f54f080d45d82a5e71f917be86f9568bf4b7fbe10a89f2a769"
+    },
+    "targets": {
+      "func_803A6F2C": {
+        "image": "A",
+        "address": "0x803A6F2C",
+        "size": 596,
+        "words_sha256": "4c14e82af4aacc8799096ca7e27dd442f750ba50afab434f155b8b546aa1bfa2"
+      },
+      "func_803A7620": {
+        "image": "A",
+        "address": "0x803A7620",
+        "size": 760,
+        "words_sha256": "9e52141c5fdf509049afe8758e2995959c872a5bd129ef764996b0b40f740c86"
+      },
+      "func_803A7180": {
+        "image": "A",
+        "address": "0x803A7180",
+        "size": 1184,
+        "words_sha256": "228e65af0d16775b66e700c49789955451c7f91bf394d5231584dec845c52d17"
+      },
+      "func_803A7918": {
+        "image": "A",
+        "address": "0x803A7918",
+        "size": 576,
+        "words_sha256": "3f28331e80a503d24bcc9803abfff147dee7bfc06541628f388ab2c6444b3f79"
+      }
+    },
+    "claims": [
+      "func_803A6F2C",
+      "func_803A7620"
+    ],
+    "context": [
+      "func_803A7180",
+      "func_803A7918"
+    ],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+  },
+  "results": {
+    "func_803A6F2C": {
+      "differing": 0,
+      "total": 149,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_803A7620": {
+      "differing": 0,
+      "total": 190,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "frame_controls": {
+    "func_803A6F2C": {
+      "byte_offsets": [
+        12,
+        584
+      ],
+      "native_frame": 320,
+      "without_slots_frame": 312
+    },
+    "func_803A7620": {
+      "byte_offsets": [
+        0,
+        44,
+        48,
+        748
+      ],
+      "native_frame": 144,
+      "without_slots_frame": 128
+    }
+  },
+  "new_claim_bytes": 1356,
+  "accepted_image_bytes": 0,
+  "compiler": {
+    "name": "stock IDO 5.3",
+    "binary_sha256": {
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+      "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b",
+      "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+    }
+  }
+}

@@ -305,12 +305,18 @@ def splice(image, files, lockfile=LOCKFILE, compile_fn=compile_singles):
             "locked": len(lock[image]), "image_ok": ok, "image_sha": sha, "message": message}
 
 
-def packet_spec(packet):
+def packet_spec(packet, claims=None):
     """blob_group's group.json from a packet's: claims -> members, the other
-    members -> context. Without claims every member is spliced."""
+    members -> context. Without claims every member is spliced. `claims`
+    overrides the packet's list (the coordinator widening a packet whose
+    author claimed fewer members than match); "all" means every member."""
     packet = Path(packet)
     spec = json.loads((packet / "group.json").read_text())
-    claims = spec.pop("claims", None)
+    packet_claims = spec.pop("claims", None)
+    if claims is not None:
+        claims = list(spec["members"]) if claims == "all" else list(claims)
+    else:
+        claims = packet_claims
     if claims is not None:
         unknown = set(claims) - set(spec["members"])
         if unknown:
@@ -325,17 +331,26 @@ def packet_spec(packet):
     return spec
 
 
-def splice_group(image, packet, name=None, lockfile=LOCKFILE, compile_fn=None):
-    """Install a group packet as src/ovl_<x>/groups/<name> and splice it."""
+def splice_group(image, packet, name=None, lockfile=LOCKFILE, compile_fn=None,
+                 claims=None, drop_members=False):
+    """Install a group packet as src/ovl_<x>/groups/<name> and splice it.
+    Superseding a locked group of the same name must keep every member it
+    locked (a narrower claim set would silently turn them back into
+    passthrough); `drop_members` is the explicit override."""
     packet = Path(packet)
     name = name or packet.name
-    spec_json = packet_spec(packet)
+    spec_json = packet_spec(packet, claims)
     document = ovl_layout.derive(image)
     lock = load_lock(lockfile)
     clash = [m for m in spec_json["members"]
              if m in lock[image] and lock[image][m].get("group") != name]
     if clash:
         raise SpliceError(f"already spliced outside group {name}: {clash}; revert them first")
+    dropped = sorted(m for m, e in lock[image].items()
+                     if e.get("group") == name and m not in spec_json["members"])
+    if dropped and not drop_members:
+        raise SpliceError(f"superseding group {name} would unlock {dropped}: widen --claims "
+                          f"(or pass --drop-members to accept the loss)")
     missing = [m for m in spec_json["members"] + spec_json.get("context", [])
                if m not in extents_of(document)]
     if missing:
@@ -520,6 +535,10 @@ def main(argv=None):
     p = selector(sub.add_parser("group"))
     p.add_argument("packet")
     p.add_argument("--name")
+    p.add_argument("--claims", help="comma-separated members to splice, or 'all' "
+                   "(overrides the packet's claims)")
+    p.add_argument("--drop-members", action="store_true",
+                   help="allow a superseding group to unlock members of the old one")
     p = selector(sub.add_parser("revert"))
     p.add_argument("names", nargs="+")
     p = selector(sub.add_parser("revert-group"))
@@ -587,7 +606,11 @@ def main(argv=None):
                 elif r["refused"]:
                     status = status or 2
         elif args.command == "group":
-            r = splice_group(images[0], args.packet, args.name)
+            claims = None
+            if args.claims:
+                claims = "all" if args.claims == "all" else [c for c in args.claims.split(",") if c]
+            r = splice_group(images[0], args.packet, args.name, claims=claims,
+                             drop_members=args.drop_members)
             print(f"image {images[0].upper()}: group spliced {r['spliced']}; image gate "
                   f"byte-identical, sha256 {r['image_sha']}")
         elif args.command == "rebuild":

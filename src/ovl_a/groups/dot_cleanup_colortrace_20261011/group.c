@@ -1,4 +1,14 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* Overlay A cleanup (8039D05C), complete 676-byte body.
+ * Source ancestry: PR #311, record-context group at d725fbe089ba81b36386b849f492035261af4883.
+ * Authentic reconstructed callers/callees are preserved as nonclaiming context.
+ * Arcade ancestry is unknown. This is a private-ABI no-argument helper that
+ * clobbers s0-s8; its real caller func_803A1EAC saves/restores that set.
+ * Shaping quirk: the code-free read of initialized player in the panel loop
+ * adds one weight-100 use in IDO's allocation analysis (92/11 -> 192/11),
+ * giving the retail register order. It has no memory access or side effects.
+ * This is explicit source shaping, not a claim about original source spelling.
+ */
 typedef signed char s8;
 typedef unsigned char u8;
 typedef signed short s16;
@@ -14,7 +24,9 @@ typedef struct RecordedCar {u8 unknown00[8],car,unknown09[3];s8 component;u8 unk
 typedef struct Record Record;
 struct Record {Record **next;FileInfo **file;s8 track;u8 mode,name[14];u32 id0,id1;f32 time;u32 unknown24;RecordedCar **active;};
 extern Player D_8014A118[];
-extern Record **D_80152028,**D_803BA010,**D_80152698[4];
+typedef struct RecordList {u8 indirect,doubly,unknown02[2];s32 count;Record **first, **last;} RecordList;
+extern RecordList D_80152020;
+extern Record **D_803BA010,**D_80152698[4];
 extern s16 D_803BA01A[3];
 extern s32 D_8014A110;
 extern s8 D_801426EC,D_8014978C,D_80152570,D_80156994;
@@ -160,7 +172,7 @@ void func_803A0498(void)
     for(i=0;i<3;i++)D_803BA01A[i]=-1;
     if(D_8014A110!=2)return;
     if(!D_801426EC) {
-        node=D_80152028;
+        node=D_80152020.first;
         while(node) {
             record=*node;next=record->next;
             if(record->track==D_8014978C && record->mode==D_80152570 &&
@@ -179,7 +191,7 @@ void func_803A0498(void)
             }
         }
         if(!best) {
-            node=D_80152028;
+            node=D_80152020.first;
             while(node) {
                 record=*node;next=record->next;
                 if(record->track==D_8014978C && record->mode==D_80152570) {
@@ -214,7 +226,7 @@ void func_803A0498(void)
             }
         } else {
             nearby[2]=best;
-            node=D_80152028;
+            node=D_80152020.first;
             while(node) {
                 record=*node;next=record->next;
                 if(record->track==D_8014978C && record->mode==D_80152570 && node!=best) {
@@ -256,7 +268,7 @@ void func_803A0498(void)
             for(i=0;i<5;i++)if(nearby[i] && count<4)D_80152698[count++]=nearby[i];
         }
     } else {
-        node=D_80152028;
+        node=D_80152020.first;
         while(node) {
             record=*node;next=record->next;
             if(record->track==D_8014978C && record->mode==D_80152570) {
@@ -452,7 +464,7 @@ void func_803A1EAC(void)
         else {func_803A0498();func_800B5570(0x40000);return;}
     }
     for(i=1;i<4;i++) {
-        record=D_80152028;
+        record=D_80152020.first;
         while(record) {
             next=(*record)->next;
             if((!(*record)->file || func_800A1A3C((*(*record)->file)->controller)) && record==D_80152698[i])break;
@@ -745,7 +757,7 @@ changed_selection:
         speed_mode0_wrapper(0.0f,3.0f);func_800B5570(0x40000);func_8039D05C();
         if(D_8014A110==3)net_session_update();
         if(D_8014A110==2) {
-            record=D_80152028;
+            record=D_80152020.first;
             while(record) {menu_transition((void **)record);record=(*record)->next;}
             for(i=1;i<D_803BA00C;i++)if(!D_80152698[i]) {D_80152698[i]=D_80152698[i+1];D_80152698[i+1]=0;}
             for(i=1;i<D_803BA00C;i++)if(!D_80152698[i]) {D_80152698[i]=D_80152698[i+1];D_80152698[i+1]=0;}
@@ -783,29 +795,28 @@ void func_8039E3BC(s32 player)
     }
 }
 
-extern Record **D_8015202C;
 Record **func_8039E200(Record **node,s8 direction)
 {
     Record **next;
     Record *record;
     if(!node) {
-        if(direction>0)node=D_80152028;
+        if(direction>0)node=D_80152020.first;
         else node=D_803BA010+2;
     }
     while(node) {
         record=*node;
         if(direction>0)next=record->next;
-        else if(node==D_80152028)next=0;
+        else if(node==D_80152020.first)next=0;
         else {
-            for(next=D_80152028;next && (*next)->next!=node;next=(*next)->next) {}
+            for(next=D_80152020.first;next && (*next)->next!=node;next=(*next)->next) {}
         }
         if(record->track==D_8014978C && record->mode==D_80152570 &&
            node!=D_80152698[1] && node!=D_80152698[2] && node!=D_80152698[3] &&
-           (!record->file || menu_item_value_get(node)) && (*node)->unknown24)break;
+           (!(*node)->file || menu_item_value_get(node)) && (*node)->unknown24)break;
         if(!next) {
             if(node==D_803BA010) {
                 if(direction>0)next=D_803BA010+1;
-                else next=D_8015202C;
+                else next=D_80152020.last;
             } else if(node==D_803BA010+1) {
                 if(direction>0)next=D_803BA010+2;
                 else next=D_803BA010;
@@ -829,7 +840,7 @@ extern void ambient_sounds_clear(void);
 extern void func_800A5B3C(void);
 void func_8039D05C(void)
 {
-    s32 player,i;
+    s32 player,i,count;
     FiveParts **box;
     Slot *slot;
     PanelPart *part;
@@ -842,17 +853,20 @@ void func_8039D05C(void)
     for(box=D_803B9FC0;box<D_803B9FC0+4;box++) {
         if(*box) {sound_handles_array_clear(*box);*box=0;}
     }
-    for(player=0;player<D_8014A108;player++) {
-        for(i=0;i<44;i++) {
+    for(player=0;player<(count=D_8014A108);player++) {
+        for(i=0;i!=44;i++) {
             slot=&D_803AF9A8[(s8)player][i];
             if(slot->handle!=-1) {sound_call_minimal(slot->handle);slot->handle=-1;}
         }
         D_803B9B90[(s8)player]=0;
         if(D_803B25CC[player][0]!=-1) {sound_call_minimal(D_803B25CC[player][0]);D_803B25CC[player][0]=-1;}
         if(D_803B25CC[player][1]!=-1) {sound_call_minimal(D_803B25CC[player][1]);D_803B25CC[player][1]=-1;}
-        if(player<=0) {
-            for(i=0,part=D_803B2618[player];i<11;i++,part++) {
-                if(part->handle!=-1) {sound_call_minimal(part->handle);part->handle=part->auxiliary=-1;}
+        if(player>0)continue;
+        {
+            for(i=0;i!=11;i++) {
+                if (player) {} /* Code-free allocation-priority read; see header. */
+                part=&D_803B2618[player][i];
+                if(part->handle!=-1) {sound_call_minimal(part->handle);part->handle=-1;part->auxiliary=-1;}
             }
             if(D_803B25C8!=-1) {sound_call_minimal(D_803B25C8);D_803B25C8=-1;}
         }

@@ -1,0 +1,18 @@
+{
+  "source_sha256": "43785b00afcb24e292d8d62a0ef284da6f5971a061e7986125558f44e0eaf5fc",
+  "semantics": {
+    "cases_per_native_GNU_and_model": 512,
+    "instructions_covered": 169,
+    "branch_outcomes": 37,
+    "dynamic_player_count_mutations": 209,
+    "full_memory_call_read_write_trace_equality": true,
+    "player_domain": "selected counts -32768,-1,0,1,2,3,4; all signed-byte mode selectors",
+    "helper_boundary": "eight external O32 hooks, arbitrary integer/FPU volatile clobbers; optional count mutation",
+    "preserved_private_registers": [
+      "gp",
+      "sp",
+      "ra"
+    ],
+    "standalone_O32_replacement": false
+  }
+}

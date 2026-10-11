@@ -179,6 +179,31 @@ def test_packet_claims_become_members_and_the_rest_context(tmp_path):
         ovl_splice.packet_spec(tmp_path)
 
 
+def test_claims_override_widens_a_packet(tmp_path):
+    (tmp_path / "group.json").write_text(json.dumps({
+        "members": ["a1", "a2", "a3"], "claims": ["a2"], "files": ["group.c"],
+        "keep": ["a1"], "flags": "-O3"}))
+    assert ovl_splice.packet_spec(tmp_path, "all")["members"] == ["a1", "a2", "a3"]
+    spec = ovl_splice.packet_spec(tmp_path, ["a1", "a3"])
+    assert spec["members"] == ["a1", "a3"] and spec["context"] == ["a2"]
+    with pytest.raises(ovl_splice.SpliceError, match="not members"):
+        ovl_splice.packet_spec(tmp_path, ["zz"])
+
+
+def test_a_superseding_group_may_not_silently_unlock_members(repo, tmp_path, monkeypatch):
+    lockfile = repo / "ovl_matched.lock.json"
+    lockfile.write_text(json.dumps({"a": {
+        "f0": {"group": "g", "source": "src/ovl_a/groups/g/group.c", "flags": "-O3"},
+        "f1": {"group": "g", "source": "src/ovl_a/groups/g/group.c", "flags": "-O3"}}, "b": {}}))
+    (tmp_path / "group.json").write_text(json.dumps({
+        "members": ["f0", "f1"], "claims": ["f0"], "files": ["group.c"], "keep": [], "flags": "-O3"}))
+    (tmp_path / "group.c").write_text("")
+    monkeypatch.setattr(ovl_splice.ovl_layout, "derive", lambda image: None)
+    with pytest.raises(ovl_splice.SpliceError, match="would unlock \\['f1'\\]"):
+        ovl_splice.splice_group("a", tmp_path, "g", lockfile)
+    assert set(json.loads(lockfile.read_text())["a"]) == {"f0", "f1"}
+
+
 def test_flags_and_image_selection():
     assert ovl_splice.flags_of("/* flags: -g0 -O3 -mips2 */\nint x;") == "-g0 -O3 -mips2"
     assert ovl_splice.flags_of("int x;") == blob_layout.DEFAULT_FLAGSET

@@ -1,0 +1,46 @@
+{
+  "with_slots": {
+    "inline_log": [
+      "func_803923B0",
+      "  func_80392F28",
+      "  func_80393004",
+      "  func_803930B8",
+      "  func_803931C0",
+      "  func_803932E4",
+      "  func_8039338C",
+      "  func_80393B3C",
+      "  func_80394058"
+    ],
+    "root": {
+      "external": 1,
+      "memory_areas": {
+        "T": 16,
+        "P": 4,
+        "M": 10
+      }
+    },
+    "whole_object_diagnostic_identical": true
+  },
+  "without_slots": {
+    "inline_log": [
+      "func_803923B0",
+      "  func_80392F28",
+      "  func_80393004",
+      "  func_803930B8",
+      "  func_803931C0",
+      "  func_803932E4",
+      "  func_8039338C",
+      "  func_80393B3C",
+      "  func_80394058"
+    ],
+    "root": {
+      "external": 1,
+      "memory_areas": {
+        "T": 16,
+        "P": 4,
+        "M": 2
+      }
+    },
+    "whole_object_diagnostic_identical": true
+  }
+}

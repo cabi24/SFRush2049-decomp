@@ -1,4 +1,14 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* Overlay A cleanup (8039D05C), complete 676-byte body.
+ * Source ancestry: PR #311, record-context group at d725fbe089ba81b36386b849f492035261af4883.
+ * Authentic reconstructed callers/callees are preserved as nonclaiming context.
+ * Arcade ancestry is unknown. This is a private-ABI no-argument helper that
+ * clobbers s0-s8; its real caller func_803A1EAC saves/restores that set.
+ * Shaping quirk: the code-free read of initialized player in the panel loop
+ * adds one weight-100 use in IDO's allocation analysis (92/11 -> 192/11),
+ * giving the retail register order. It has no memory access or side effects.
+ * This is explicit source shaping, not a claim about original source spelling.
+ */
 typedef signed char s8;
 typedef unsigned char u8;
 typedef signed short s16;
@@ -854,6 +864,7 @@ void func_8039D05C(void)
         if(player>0)continue;
         {
             for(i=0;i!=11;i++) {
+                if (player) {} /* Code-free allocation-priority read; see header. */
                 part=&D_803B2618[player][i];
                 if(part->handle!=-1) {sound_call_minimal(part->handle);part->handle=-1;part->auxiliary=-1;}
             }
