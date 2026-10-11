@@ -27,9 +27,73 @@ int func_80021700(u32 id)
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80021764.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800217E4.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80021844.s")
+/* PROMOTED 2026-10-11 — func_80021764
+ * Source:   cloud/work/frontier/w19b/sources/func_80021764.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19b/sources/func_80021764.c:func_80021764 (score0); rom_tu.h context: cloud/work/frontier/w19b/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+extern u8 D_80056160[][16];
+extern u8 D_800561E0[];
+struct MacroState;
+int func_80021764(struct MacroState *state)
+{
+    u8 index;
+    if (((VoiceState *)state)->id60 != 0xFFFFFFFFU && ((VoiceState *)state)->channel4A != 255) {
+        index = ((VoiceState *)state)->id60 & 0xFF;
+        if (((VoiceState *)state)->set4B == 255) {
+            if (D_800561E0[index] == index) return 1;
+        } else {
+            if (D_80056160[((VoiceState *)state)->set4B][((VoiceState *)state)->channel4A] == index) return 1;
+        }
+    }
+    return 0;
+}
+
+/* PROMOTED 2026-10-11 — func_800217E4
+ * Source:   cloud/work/frontier/w19b/sources/func_800217E4.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19b/sources/func_800217E4.c:func_800217E4 (score0); rom_tu.h context: cloud/work/frontier/w19b/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+void func_800217E4(VoiceState *voice)
+{
+    u8 index;
+    if (voice->id60 != 0xFFFFFFFFU && voice->channel4A != 255) {
+        index = voice->id60 & 0xFF;
+        if (voice->set4B == 255) {
+            D_800561E0[index] = index;
+        } else {
+            D_80056160[voice->set4B][voice->channel4A] = index;
+        }
+    }
+}
+
+/* PROMOTED 2026-10-11 — func_80021844
+ * Source:   cloud/work/frontier/w19b/sources/func_80021844.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19b/sources/func_80021844.c:func_80021844 (score0); rom_tu.h context: cloud/work/frontier/w19b/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+void func_80021844(VoiceState *voice)
+{
+    u8 index;
+    if (voice->id60 != 0xFFFFFFFFU && voice->channel4A != 255) {
+        index = voice->id60 & 0xFF;
+        if (voice->set4B == 255) {
+            if (D_800561E0[index] == index) D_800561E0[index] = 255;
+        } else {
+            if (D_80056160[voice->set4B][voice->channel4A] == index) D_80056160[voice->set4B][voice->channel4A] = 255;
+        }
+    }
+}
+
 /* PROMOTED 2026-10-05 — func_800218CC
  * Source:   cloud/matches/boot_tail/func_800218CC.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -660,7 +724,28 @@ u8 func_8002300C(MacroState_8002300C *state, MacroCommand *command, int index)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800230B0.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023190.s")
+/* PROMOTED 2026-10-11 — func_80023190
+ * Source:   cloud/work/frontier/w19b/sources/func_80023190.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19b/sources/func_80023190.c:func_80023190 (score0); rom_tu.h context: cloud/work/frontier/w19b/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+u8 func_80023190(MacroState_800223D0 *state, MacroCommand *command)
+{
+    s32 value;
+    s8 gain;
+    value = ((u32)state->field50 << 16) - (((command->word[0] >> 16) & 0xFF) << 16);
+    gain = command->word[0] >> 8;
+    value = (s32)((u32)value * gain);
+    value >>= 7;
+    value += (u8)(command->word[0] >> 24) << 16;
+    value = value < 0 ? 0 : (value > 0x7F0000 ? 0x7F0000 : value);
+    state->field38 = value;
+    return 0;
+}
+
 /* PROMOTED 2026-10-11 — func_8002321C
  * Source:   cloud/work/frontier/w17g/sources/func_8002321C.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
