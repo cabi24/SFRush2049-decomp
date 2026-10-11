@@ -10,7 +10,7 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 | game | func_80087110 (texture rectangle) | Astra | 2026-10 | long-running; coordinator lanes keep off |
 | game | stat_race_update, func_800FE5B0 | Astra | 2026-10 | |
 | game | camera_transform | Astra | 2026-10-07 | PRs #307/#308 |
-| game | func_800D816C (+ func_800D91A0 cluster) | Astra | 2026-10-11 | Astra's draft is the base; coordinator's w17e notes in `cloud/work/frontier/w17e/RESULTS.md` |
+| game | func_800D816C (+ func_800D91A0 cluster) | Astra | 2026-10-11 | Astra lane 1: `dot_d816c_stock_delay_20261011` closes D816C to stock strict MATCH (699 words); D91A0 improved to166/965 at exact extent but still blocks cluster install, empty claims |
 | ovl_a | 8038F648, 803A7180, 803A7918 | Astra | 2026-10-11 | PR #311 near-misses (frame-only residuals); 80394058 (#315), 803A6F2C/803A7620 (#316) and 8039D05C/8039D494/8039ED20 (#318) landed in image A 2026-10-12 |
 | ovl_a / ovl_b | everything else in `asm/us/ovl_*` | Astra (default) | 2026-10-11 | coordinator lanes do not take overlay functions unless listed here |
 | game | world_effect_update (12 words, needs a block boundary), audio_frame_update (22 words), race_position_update (50 words, s4 register variable) | open | | w20d RESULTS 2026-10-12; assign_drones landed |
