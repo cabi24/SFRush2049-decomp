@@ -18,22 +18,30 @@ image it:
 5. recompresses it with deflate104 (zlib 1.0.4, level 9, raw) and requires
    the stream to equal the cartridge's stream at the image's ROM offset.
 
-Composing into the cartridge (w18b):
+Composing into the cartridge (the landing path):
 
-    python3 -m tools.conveyor.pipeline.ovl_rom produce [--image-file a=PATH ...]
+    python3 -m tools.conveyor.pipeline.ovl_layout build          # publishes build/ovl/<x>/rebuilt.bin
+    python3 -m tools.conveyor.pipeline.ovl_rom produce           # -> build/ovl/ovl_{a,b}.deflate
     python3 -m tools.conveyor.pipeline.ovl_rom rom [--drill] [--builder-repo DIR] [--jobs N]
 
 `produce` compresses each image with deflate104 (ovl_image.deflate), refuses
 a stream that does not fill its fixed slot exactly, and writes
-build/ovl/ovl_<x>.deflate. The image comes from `--image-file` (the layout/
-splice lane's rebuilt image); without one, the retail image inflated from the
-ROM is used as a labelled stand-in, which proves the round trip but not that
-anything was rebuilt. `rom` additionally refuses unless both streams equal
-the ROM's (the pre-flight), syncs what the builder's ROM build needs
-(blob_rom.SYNC_FILES, the game blob and both streams), and runs the full ROM
-build with OVL_COMPOSE=1 plus `make test`. `--drill` then changes one byte
-of each image (keeping the stream length, so compose accepts it) and requires
-the ROM hash -- not the build -- to fail, then restores and rebuilds.
+build/ovl/ovl_<x>.deflate. The image is the one `ovl_layout build` linked
+from the locked C and gated byte-identical (build/ovl/<x>/rebuilt.bin); a
+missing one, one whose rebuilt.json does not match it, one linked from a
+lock that has since changed, or drifted locked sources (ovl_splice check)
+are refused -- never replaced by the retail bytes. `--image-file x=PATH`
+names another image explicitly; `--retail-stand-in` uses the retail image
+inflated from the ROM, labelled, to prove the round trip only.
+
+The Makefile composes both streams into every ROM build, as it does the game
+blob (no rule makes them, no fallback to the extracted bytes). `rom` refuses
+unless both streams equal the ROM's (the pre-flight) and the game blob is
+present, syncs what the builder's ROM build needs (blob_rom.SYNC_FILES, the
+game blob and both streams), and runs the full ROM build plus `make test`.
+`--drill` then changes one byte of each image (keeping the stream length, so
+compose accepts it) and requires the ROM hash -- not the build -- to fail,
+then restores and rebuilds.
 """
 import argparse
 import hashlib
@@ -191,26 +199,61 @@ def verify(image, sources_root=SOURCES):
 # --- composing the streams into the cartridge -----------------------------------
 
 def stream_path(image):
-    """Where the Makefile's OVL_COMPOSE=1 build reads image `image`'s stream."""
-    return WORK / f"ovl_{image}.deflate"
+    """Where the Makefile's ROM build reads image `image`'s stream."""
+    return blob_rom.OVL_STREAMS[ovl_image.stream(image).image.lower()]
 
 
-def produce(image_files=None, out=None):
+def rebuilt_image(key):
+    """(bytes, label) of the gated rebuilt image `ovl_layout build` published.
+    Refuses a missing, unrecorded, altered or stale (lock changed) image."""
+    from . import ovl_splice
+
+    s = ovl_image.stream(key)
+    path, record_path = ovl_image.rebuilt_path(key), ovl_image.rebuilt_record(key)
+    if not path.is_file() or not record_path.is_file():
+        raise OvlRomError(f"image {s.image}: no rebuilt image ({path}); run "
+                          "`ovl_layout build` (after `ovl_splice rebuild` on a fresh checkout)")
+    record = json.loads(record_path.read_text())
+    data = path.read_bytes()
+    sha = hashlib.sha256(data).hexdigest()
+    if record.get("sha256") != sha:
+        raise OvlRomError(f"image {s.image}: {path} is not the image ovl_layout build "
+                          "recorded; re-run `ovl_layout build`")
+    entries = ovl_splice.load_lock()[key]
+    if record.get("lock_sha256") != ovl_image.lock_digest(entries):
+        raise OvlRomError(f"image {s.image}: rebuilt image was linked from another lock "
+                          f"({record.get('locked_functions')} entries; the lock now has "
+                          f"{len(entries)}); re-run `ovl_layout build`")
+    return data, f"rebuilt image ({record.get('locked_functions', 0)} locked functions)"
+
+
+def produce(image_files=None, out=None, stand_in=False):
     """{image: report}. Compresses each image and writes its stream.
 
-    `image_files` maps 'a'/'b' to a rebuilt image; a missing entry uses the
-    retail image (inflated from the ROM) as a stand-in and says so."""
+    Default: the rebuilt images (rebuilt_image). `image_files` maps 'a'/'b'
+    to an explicit image; `stand_in` uses the retail images, labelled."""
     image_files = image_files or {}
     unknown = set(image_files) - set(ovl_image.STREAMS)
     if unknown:
         raise OvlRomError(f"unknown image(s): {', '.join(sorted(unknown))}")
+    if not stand_in and set(image_files) != set(ovl_image.STREAMS):
+        from . import ovl_splice
+        drift = ovl_splice.check()
+        if drift:
+            raise OvlRomError("locked runtime-image sources drifted — refusing to compose\n"
+                              + "\n".join(f"  {t}: {why}" for t, why in drift))
+    sources = {}
+    for key in sorted(ovl_image.STREAMS):          # every refusal before any write
+        if key in image_files:
+            sources[key] = Path(image_files[key]).read_bytes(), str(image_files[key])
+        elif stand_in:
+            sources[key] = ovl_image.inflate(key), "retail image (stand-in)"
+        else:
+            sources[key] = rebuilt_image(key)
     reports = {}
     for key in sorted(ovl_image.STREAMS):
         s = ovl_image.stream(key)
-        if key in image_files:
-            image, source = Path(image_files[key]).read_bytes(), str(image_files[key])
-        else:
-            image, source = ovl_image.inflate(key), "retail image (stand-in)"
+        image, source = sources[key]
         stream = ovl_image.deflate(image)
         if len(stream) != s.length:
             raise OvlRomError(f"image {s.image}: stream is {len(stream)} bytes; the slot at "
@@ -219,7 +262,7 @@ def produce(image_files=None, out=None):
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(stream)
         reports[key] = {
-            "image": s.image, "source": source, "path": path,
+            "image": s.image, "source": source, "path": path, "data": image,
             "image_sha256": hashlib.sha256(image).hexdigest(),
             "image_is_retail": hashlib.sha256(image).hexdigest() == s.image_sha256,
             "stream_bytes": len(stream),
@@ -233,12 +276,10 @@ def sync_streams(repo, streams=None):
     """Sync the shared ROM-build inputs, the game blob and both streams."""
     if not blob_rom.BLOB_OUT.is_file():
         raise OvlRomError(f"{blob_rom.BLOB_OUT} is absent: run blob_rom produce first")
-    blob_rom.sync_to_builder(repo=repo)
-    blob_rom._ssh(f"mkdir -p {repo}/build/ovl")
-    for key in sorted(ovl_image.STREAMS):
-        src = (streams or {}).get(key, stream_path(key))
-        subprocess.run(["rsync", "-az", str(src),
-                        f"{BUILDER}:{repo}/build/ovl/ovl_{key}.deflate"], check=True)
+    try:
+        blob_rom.sync_to_builder(repo=repo, streams=streams)
+    except blob_rom.BlobRomError as exc:
+        raise OvlRomError(str(exc)) from exc
 
 
 def length_preserving_change(key, image):
@@ -254,22 +295,22 @@ def length_preserving_change(key, image):
     raise OvlRomError(f"image {s.image}: no length-preserving one-byte change found")
 
 
-def rom(image_files=None, drill=False, repo=blob_rom.BUILDER_REPO, jobs=16):
-    produced = produce(image_files)
+def rom(image_files=None, drill=False, repo=blob_rom.BUILDER_REPO, jobs=16, stand_in=False):
+    if not blob_rom.BLOB_OUT.is_file():
+        raise OvlRomError(f"{blob_rom.BLOB_OUT} is absent: run blob_rom produce first")
+    produced = produce(image_files, stand_in=stand_in)
     differing = [r["image"] for r in produced.values() if not r["stream_matches_rom"]]
     if differing:
         raise OvlRomError(f"pre-flight: stream(s) for image {', '.join(differing)} differ from "
                           "the ROM's; the ROM SHA-1 cannot pass — refusing to spend a build")
-    make_args, log = f"-j{jobs} OVL_COMPOSE=1", f"{repo}/build/ovlrom"
+    make_args, log = f"-j{jobs}", f"{repo}/build/ovlrom"
     sync_streams(repo)
     ok, tail = blob_rom.builder_rom_build(repo, make_args, log)
     report = {"produce": produced, "rom_ok": ok, "rom_tail": tail, "drills": {}}
     if drill:
         with tempfile.TemporaryDirectory(prefix="ovlrom-drill-") as work:
             for key in sorted(ovl_image.STREAMS):
-                image = (Path(image_files[key]).read_bytes() if image_files and key in image_files
-                         else ovl_image.inflate(key))
-                offset, bad = length_preserving_change(key, image)
+                offset, bad = length_preserving_change(key, produced[key]["data"])
                 bad_path = Path(work) / f"ovl_{key}.deflate"
                 bad_path.write_bytes(bad)
                 sync_streams(repo, {key: bad_path})
@@ -293,7 +334,9 @@ def main():
     for name in ("produce", "rom"):
         p = sub.add_parser(name)
         p.add_argument("--image-file", action="append", default=[], metavar="X=PATH",
-                       help="rebuilt image for x (a or b); default: retail stand-in")
+                       help="explicit image for x (a or b); default: build/ovl/<x>/rebuilt.bin")
+        p.add_argument("--retail-stand-in", action="store_true",
+                       help="compress the retail images (round-trip proof only)")
         if name == "rom":
             p.add_argument("--drill", action="store_true")
             p.add_argument("--builder-repo", default=blob_rom.BUILDER_REPO)
@@ -325,9 +368,9 @@ def compose_main(args):
         sys.exit("ovl_rom: --image-file takes X=PATH")
     try:
         if args.command == "produce":
-            produced, r = produce(files), None
+            produced, r = produce(files, stand_in=args.retail_stand_in), None
         else:
-            r = rom(files, args.drill, args.builder_repo, args.jobs)
+            r = rom(files, args.drill, args.builder_repo, args.jobs, args.retail_stand_in)
             produced = r["produce"]
     except (OvlRomError, ovl_image.OvlImageError) as exc:
         sys.exit(f"ovl_rom FAILED: {exc}")
@@ -337,7 +380,7 @@ def compose_main(args):
               f"{'== ROM' if p['stream_matches_rom'] else 'DIFFERS from ROM'} -> {p['path']}")
     if r is None:
         return 0 if all(p["stream_matches_rom"] for p in produced.values()) else 1
-    print("ROM build with both runtime-image streams composed: "
+    print("ROM build (game blob + both runtime-image streams composed): "
           + ("SHA-1 EXACT" if r["rom_ok"] else "FAILED"))
     print("  " + r["rom_tail"].replace("\n", "\n  "))
     ok = r["rom_ok"]

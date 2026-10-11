@@ -33,6 +33,13 @@ byte for byte, else the first differing offset, its vram, region and owner
 are reported and the command fails. `--passthrough` gates the all-passthrough
 link (no C at all); the default gates the image with every body locked in
 ovl_matched.lock.json (pipeline.ovl_splice).
+
+**Publishing.** Only a locked-C build that passes the gate publishes its
+linked image as build/ovl/<x>/rebuilt.bin, with rebuilt.json recording its
+sha256 and the digest of the image's lock entries. That is the image
+`ovl_rom produce|rom` compresses into the cartridge; a failed locked build
+removes both, and ovl_rom refuses a missing or stale (lock changed) one.
+`--passthrough` never publishes.
 """
 import argparse
 import hashlib
@@ -212,6 +219,28 @@ def build(document, spliced=None, work=None):
                             work_dir=work or work_dir(image) / "link")
 
 
+def publish_rebuilt(image, built, sha, entries, bodies, build_dir=None):
+    """Copy the gated locked-C image to rebuilt.bin and record what it is."""
+    path = ovl_image.rebuilt_path(image, build_dir)
+    data = Path(built).read_bytes()
+    if hashlib.sha256(data).hexdigest() != sha:
+        raise LayoutError(f"{built}: linked image changed after the gate")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(data)
+    ovl_image.rebuilt_record(image, build_dir).write_text(json.dumps({
+        "image": image, "sha256": sha, "bytes": len(data),
+        "lock_sha256": ovl_image.lock_digest(entries),
+        "locked_functions": len(entries), "bodies": sorted(bodies),
+    }, indent=2, sort_keys=True) + "\n")
+    return path
+
+
+def withdraw_rebuilt(image, build_dir=None):
+    for path in (ovl_image.rebuilt_path(image, build_dir),
+                 ovl_image.rebuilt_record(image, build_dir)):
+        path.unlink(missing_ok=True)
+
+
 def coverage(image, lock=None, target_dir=None):
     """Locked functions of one image against its own denominators."""
     from . import ovl_splice
@@ -260,18 +289,26 @@ def main(argv=None):
         if args.command == "derive":
             continue
         label = "all-passthrough" if args.passthrough else "locked C"
+        published = None
         try:
             if args.passthrough:
                 spliced = {}
             else:
                 from . import ovl_splice
-                spliced = ovl_splice.spliced_bodies(image, document=document)
+                withdraw_rebuilt(image)          # fail closed: only a passing gate publishes
+                entries = ovl_splice.load_lock()[image]
+                spliced = ovl_splice.spliced_bodies(image, entries, document=document)
                 label = f"{len(spliced)} locked C bodies"
             good, sha, message = build(document, spliced)
+            if good and not args.passthrough:
+                published = publish_rebuilt(image, work_dir(image) / "link" / "image.bin",
+                                            sha, entries, spliced)
         except Exception as exc:     # noqa: BLE001 - every failure is a FAILED gate
             good, sha, message = False, "", f"{type(exc).__name__}: {exc}"
         print(f"  image gate ({label}): "
               f"{'byte-identical, sha256 ' + sha if good else 'FAILED'}")
+        if published:
+            print(f"  rebuilt image published -> {published}")
         if not good:
             print("  " + message.replace("\n", "\n  "))
         ok &= good

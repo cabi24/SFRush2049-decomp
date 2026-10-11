@@ -30,6 +30,10 @@ ZLIB_DIR = REPO / "tools" / "zlib-1.0.4"
 CLI_SOURCE = REPO / "tools" / "deflate104" / "deflate104.c"
 CLI = REPO / "build" / "blob" / "deflate104"
 BLOB_OUT = REPO / "build" / "blob" / "game_code.deflate"
+# The runtime-image streams (pipeline.ovl_rom produce): the Makefile composes
+# them unconditionally, so every ROM build needs them as it needs the blob.
+OVL_STREAMS = {"a": REPO / "build" / "ovl" / "ovl_a.deflate",
+               "b": REPO / "build" / "ovl" / "ovl_b.deflate"}
 BASEROM = REPO / "baserom.us.z64"
 
 ROM_OFFSET = 0xB0CB10
@@ -122,15 +126,34 @@ SYNC_FILES = (("Makefile", "Makefile"),
               ("src/rom/opt_overrides.mk", "src/rom/opt_overrides.mk"))
 
 
-def sync_to_builder(blob=BLOB_OUT, repo=BUILDER_REPO):
-    """What the builder's ROM build needs beyond its checkout."""
+def missing_rom_inputs(blob=BLOB_OUT, streams=None):
+    """The build products a ROM build needs that are absent locally."""
+    streams = {**OVL_STREAMS, **(streams or {})}
+    return [str(p) for p in [Path(blob)] + [Path(streams[k]) for k in sorted(streams)]
+            if not p.is_file()]
+
+
+def sync_to_builder(blob=BLOB_OUT, repo=BUILDER_REPO, streams=None):
+    """What the builder's ROM build needs beyond its checkout: SYNC_FILES, the
+    game blob and both runtime-image streams. Refuses (before syncing
+    anything) when any of the three build products is absent: the Makefile
+    has no rule for them and no fallback to the extracted bytes."""
+    missing = missing_rom_inputs(blob, streams)
+    if missing:
+        raise BlobRomError("ROM inputs absent: " + ", ".join(missing) +
+                           " (blob: blob_rom produce; streams: ovl_layout build, "
+                           "then ovl_rom produce)")
+    streams = {**OVL_STREAMS, **(streams or {})}
     for local, remote in SYNC_FILES:
         subprocess.run(["rsync", "-az", str(REPO / local),
                         f"{BUILDER}:{repo}/{remote}"], check=True)
-    _ssh(f"mkdir -p {repo}/build/blob")
+    _ssh(f"mkdir -p {repo}/build/blob {repo}/build/ovl")
     subprocess.run(["rsync", "-az", str(blob),
                     f"{BUILDER}:{repo}/build/blob/game_code.deflate"],
                    check=True)
+    for key in sorted(streams):
+        subprocess.run(["rsync", "-az", str(streams[key]),
+                        f"{BUILDER}:{repo}/build/ovl/ovl_{key}.deflate"], check=True)
 
 
 def builder_rom_build(repo=BUILDER_REPO, make_args="-j16", log="/tmp/blobrom"):
@@ -152,6 +175,11 @@ def builder_rom_build(repo=BUILDER_REPO, make_args="-j16", log="/tmp/blobrom"):
 
 
 def rom(drill=False):
+    absent = [str(p) for _, p in sorted(OVL_STREAMS.items()) if not p.is_file()]
+    if absent:
+        raise BlobRomError("runtime-image streams absent: " + ", ".join(absent) +
+                           " — run ovl_layout build and ovl_rom produce first "
+                           "(the ROM build composes them; there is no fallback)")
     result = produce()
     if not result["stream_matches_rom"]:
         raise BlobRomError("pre-flight: compressed blob differs from the ROM's stream; "

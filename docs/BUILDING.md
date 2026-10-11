@@ -63,7 +63,10 @@ with ping or a port check.
 For the complete image → compressed blob → cartridge workflow, run
 `python3 -m tools.conveyor.pipeline.blob_rom rom` on the Pi. It produces and
 syncs the required `build/blob/game_code.deflate` before the builder runs Make.
-The direct command below assumes that blob is already present and current:
+Every ROM build also composes the runtime-image streams `build/ovl/ovl_{a,b}.deflate`
+(`ovl_layout build` then `ovl_rom produce`; `ovl_rom rom` does both sync and build);
+`blob_rom rom` and `ovl_rom rom` refuse when any of the three is absent.
+The direct command below assumes those files are already present and current:
 
 ```bash
 ssh watchman2

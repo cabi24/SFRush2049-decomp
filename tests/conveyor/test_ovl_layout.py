@@ -147,3 +147,19 @@ def test_base_reads_from_the_document():
     doc = {"image": {"base": "8038A400"}, "regions": []}
     assert blob_build.locate(doc, 0) == (None, None)
     assert "vram 0x8038A404" in blob_build.describe_difference(doc, b"\0" * 8, b"\0" * 4 + b"\1" * 4)
+
+
+def test_publish_records_the_gated_image_and_withdraw_removes_it(tmp_path):
+    built = tmp_path / "link.bin"
+    built.write_bytes(b"gated image")
+    sha = hashlib.sha256(b"gated image").hexdigest()
+    entries = {"func_1": {"source_sha256": "x"}}
+    path = ovl_layout.publish_rebuilt("a", built, sha, entries, {"func_1": b""}, tmp_path)
+    assert path == ovl_image.rebuilt_path("a", tmp_path) and path.read_bytes() == b"gated image"
+    record = json.loads(ovl_image.rebuilt_record("a", tmp_path).read_text())
+    assert record["sha256"] == sha and record["bodies"] == ["func_1"]
+    assert record["lock_sha256"] == ovl_image.lock_digest(entries) != ovl_image.lock_digest({})
+    with pytest.raises(ovl_layout.LayoutError, match="changed after the gate"):
+        ovl_layout.publish_rebuilt("a", built, "0" * 64, entries, {}, tmp_path)
+    ovl_layout.withdraw_rebuilt("a", tmp_path)
+    assert not path.exists() and not ovl_image.rebuilt_record("a", tmp_path).exists()

@@ -19,7 +19,7 @@ Builder access and current host paths are maintained in [the build environment g
 - [Extracted context](#game-code-context-bootstrap-005) and [histograms](#prototype-layer-and-extracted-flywheel-006)
 - [Population closure and data symbols](#population-closure-and-generated-data-symbols-007)
 - [Game-image splicing](#game-code-image-rebuild-008-stage-1) and [cartridge composition](#game-code-blob-into-the-cartridge-009-stage-2)
-- [Runtime-image streams A/B](#runtime-image-streams-into-the-cartridge-r16-stream-half)
+- [Runtime images A/B (layout, splice, cartridge)](#runtime-images-ab-layout-splice-lock-cartridge-r16)
 
 Static `lock`/`promote` commands retain their extracted-target firewall. Features
 008/009 provide a separate game-image path into the cartridge, gated by image
@@ -573,12 +573,13 @@ python3 -m tools.conveyor.pipeline.blob_rom coverage     # what `make progress` 
   passes again. The drill checks for that message specifically, because a
   broken build also "fails" and would prove nothing.
 
-## Runtime-image streams into the cartridge (R16, stream half)
+## Runtime images A/B: layout, splice, lock, cartridge (R16)
 
-The two runtime images loaded at `0x8038A400` (targets in `asm/us/ovl_{a,b}`)
-are raw-deflate streams directly after the game blob. `pipeline.ovl_image`
-holds the facts and the round trip; `pipeline.ovl_rom produce|rom` composes
-them, the same way `blob_rom` does the game blob.
+The two raw-deflate code images loaded at `0x8038A400` (targets in
+`asm/us/ovl_{a,b}`) get the 008 + 009 path, parametrised rather than copied.
+`pipeline.ovl_image` is the one module with their facts (stream table, gated
+inflate, exact recompression, paths); `ovl_layout`, `ovl_splice` and `ovl_rom`
+all import it.
 
 | image | pointer | ROM stream | stream | image | followed by |
 |---|---|---|---|---|---|
@@ -586,42 +587,17 @@ them, the same way `blob_rom` does the game blob.
 | B | `D_8002B024` | `0xB6FEC4`–`0xB75B1B` | 23,639 B | 43,888 B | zero fill to `0xC00000` |
 
 ```bash
-python3 -m tools.conveyor.pipeline.ovl_image check     # constants + exact recompression vs the ROM
-python3 -m tools.conveyor.pipeline.ovl_rom produce [--image-file a=PATH]   # -> build/ovl/ovl_{a,b}.deflate
-python3 -m tools.conveyor.pipeline.ovl_rom rom --drill [--builder-repo DIR --jobs N]
-```
-
-- **Exact recompression:** deflate104 (zlib 1.0.4, level 9, raw, memLevel 8,
-  default strategy) reproduces both streams byte for byte; a sweep of ~1,790
-  parameter sets per image matched only that one. `ovl_image.inflate(image)`
-  checks the stream ends exactly at its slot end and the image SHA-256.
-- **Fixed slots:** game blob, A and B are contiguous and the boot segment
-  stores only start addresses, so each stream must fill its slot exactly;
-  `produce` and `compose_data.py` refuse anything else.
-- **Opt-in compose:** the Makefile composes the streams only with
-  `OVL_COMPOSE=1` (`compose_data.py --extra STREAM:SLOT:LEN`); without it the
-  slots keep `data.bin`'s bytes. No rule makes `build/ovl/*.deflate`.
-- **Images:** `--image-file` takes the rebuilt image from the layout/splice
-  path. Without it the retail image is inflated from the ROM and labelled a
-  stand-in: that proves the round trip, not a rebuild.
-- **Builder:** `rom` syncs `blob_rom.SYNC_FILES` (Makefile, compose_data,
-  `rom_compilers.json`, `opt_overrides.mk`), the local game blob and both
-  streams, then runs the full build + `make test` with `OVL_COMPOSE=1`.
-  Drilled 2026-10-11 (identity case): SHA-1 exact; one image byte flipped per
-  image (stream length kept) fails with `ROM does NOT match`; restored exact.
-
-## Runtime images A/B: layout, splice, lock (R16)
-
-The two raw-deflate code images loaded at `0x8038A400` (A: stream `0xB5C534`,
-B: stream `0xB6FEC4`) get the 008 path, parametrised rather than copied:
-
-```bash
+python3 -m tools.conveyor.pipeline.ovl_image check                 # constants + exact recompression vs the ROM
 python3 -m tools.conveyor.pipeline.ovl_image extract               # build/ovl/<x>/image.bin (hash-checked)
 python3 -m tools.conveyor.pipeline.ovl_layout build [--passthrough] # tile + link + image gate, both images
 python3 -m tools.conveyor.pipeline.ovl_splice splice --all-matches  # cloud/matches/ovl_{a,b}/*.c
 python3 -m tools.conveyor.pipeline.ovl_splice group --targets asm/us/ovl_a PACKET_DIR
 python3 -m tools.conveyor.pipeline.ovl_splice rebuild|check|coverage|revert|revert-group
+python3 -m tools.conveyor.pipeline.ovl_rom produce                 # rebuilt images -> build/ovl/ovl_{a,b}.deflate
+python3 -m tools.conveyor.pipeline.ovl_rom rom [--drill] [--builder-repo DIR --jobs N]
 ```
+
+**Image half** (layout, splice, lock):
 
 - Tiling comes from `asm/us/ovl_<x>/extents.json` (pipeline.ovl_targets); the
   data tail is one opaque run and every switch table is proven to lie in it.
@@ -634,9 +610,48 @@ python3 -m tools.conveyor.pipeline.ovl_splice rebuild|check|coverage|revert|reve
 - `make check-matched` and the pre-commit hook run `ovl_splice check`.
 - Objects are build products: a fresh checkout runs `ovl_splice rebuild`
   (IDO on the builder, `$OVL_BUILDER_DIR`, default `/tmp/ovlsplice`) before
-  `ovl_layout build` can gate the locked bodies.
-- Image coverage only, reported as two separate rows in `make progress`. The
-  stream round trip and ROM compose (`ovl_rom`) are a separate step.
+  `ovl_layout build` can gate the locked bodies (fail-closed otherwise).
+- `ovl_layout build` (not `--passthrough`) publishes the gated image as
+  `build/ovl/<x>/rebuilt.bin` with `rebuilt.json` (sha256, digest of the
+  image's lock entries). A failed locked build withdraws both.
+
+**Cartridge half** (streams, ROM):
+
+- **Exact recompression:** deflate104 (zlib 1.0.4, level 9, raw, memLevel 8,
+  default strategy) reproduces both streams byte for byte; a sweep of ~1,790
+  parameter sets per image matched only that one. `ovl_image.inflate(image)`
+  checks the stream ends exactly at its slot end and the image SHA-256.
+- **Fixed slots:** game blob, A and B are contiguous and the boot segment
+  stores only start addresses, so each stream must fill its slot exactly;
+  `produce` and `compose_data.py` refuse anything else.
+- **Always composed:** like the game blob, the Makefile composes both streams
+  into every ROM build (`compose_data.py --extra STREAM:SLOT:LEN`); no rule
+  makes `build/ovl/ovl_{a,b}.deflate` and there is no fallback to `data.bin`'s
+  bytes, so a missing stream stops the build (`No rule to make target`).
+- **Source image:** `produce` compresses `rebuilt.bin` and refuses when it is
+  missing, does not match its record, was linked from a lock that has since
+  changed, or when `ovl_splice check` reports drift. `--image-file x=PATH`
+  names another image; `--retail-stand-in` compresses the retail image,
+  labelled (round-trip proof only).
+- **Builder:** `ovl_rom rom` and `blob_rom rom` both sync the same set:
+  `blob_rom.SYNC_FILES` (Makefile, compose_data, `rom_compilers.json`,
+  `opt_overrides.mk`), the game blob and both streams, refusing before any
+  sync when one is absent; then the full build + `make test`. Drilled
+  2026-10-11 (w18e, rebuilt images with 36 + 8 locked bodies): SHA-1 exact;
+  one rebuilt-image byte flipped per image (stream length kept) fails with
+  `ROM does NOT match`; restored exact; a missing stream fails the build.
+
+**Landing a new single or group** (Pi, repo root):
+
+```bash
+python3 -m tools.conveyor.pipeline.ovl_splice revert --targets asm/us/ovl_a NAME        # only when superseding
+python3 -m tools.conveyor.pipeline.ovl_splice revert-group --targets asm/us/ovl_a GROUP # only when superseding
+python3 -m tools.conveyor.pipeline.ovl_splice splice --targets asm/us/ovl_a path/func_X.c  # or: group ... PACKET_DIR
+python3 -m tools.conveyor.pipeline.ovl_layout build                                   # image gate; publishes rebuilt.bin
+python3 -m tools.conveyor.pipeline.ovl_splice check
+python3 -m tools.conveyor.pipeline.ovl_rom rom                                        # streams + ROM SHA-1
+make progress
+```
 
 ## Call-graph frontier (work order for game code)
 

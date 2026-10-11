@@ -45,6 +45,7 @@ Interface:
 """
 import argparse
 import hashlib
+import json
 import struct
 import subprocess
 import sys
@@ -132,6 +133,12 @@ def rebuilt_path(image, build=None):
 
 def rebuilt_record(image, build=None):
     return rebuilt_path(image, build).with_suffix(".json")
+
+
+def lock_digest(entries):
+    """SHA-256 of one image's lock entries (ovl_matched.lock.json[x]): binds a
+    published rebuilt image to the lock it was linked from."""
+    return hashlib.sha256(json.dumps(entries, sort_keys=True).encode()).hexdigest()
 
 
 # --- the ROM -------------------------------------------------------------------
