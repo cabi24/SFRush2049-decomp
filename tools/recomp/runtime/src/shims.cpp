@@ -3,9 +3,9 @@
 // set in build/recomp/manifest.json "runtime_contract.shims";
 // check_contract.py (run by CMake) fails the build if one is missing here.
 //
-// Three kinds:
-//   FORWARD  the callee is a libultra function the runtime implements under
-//            its canonical name; the shim calls the runtime's version.
+// Libultra functions the inventory names wrongly are renamed for the
+// recompiler (tools/recomp/identity.json), so the runtime's own versions are
+// used directly; no forwarding shims are needed. Two kinds remain:
 //   HOST     faithful host C (64-bit conversions, cop0 reads).
 //   INERT    hardware/interrupt internals whose only callers are libultra
 //            paths the runtime replaces (dead under the runtime) or that
@@ -14,18 +14,15 @@
 #include <cmath>
 #include <cstdint>
 #include <cstdio>
+#include <vector>
 
 #include "recomp.h"
 #include "librecomp/game.hpp"
+#include "ultramodern/ultramodern.hpp"
 #include "rush_runtime.h"
 
 #define SHIM(name) extern "C" void name(uint8_t* rdram, recomp_context* ctx)
 #define FIRST_CALL(name) rush::trace_shim(#name, (uint32_t)ctx->r31)
-
-// Runtime (librecomp/ultramodern) implementations the forwards call.
-extern "C" {
-void osPiStartDma_recomp(uint8_t* rdram, recomp_context* ctx);
-}
 
 // ---------------------------------------------------------------- HOST
 
@@ -53,12 +50,52 @@ SHIM(osCauseGet) {
     ctx->r2 = 0;
 }
 
-// ---------------------------------------------------------------- FORWARD
-
-// Inventory name __osPiRawStartDma (0x80008630); body is osPiStartDma(mb, pri,
-// dir, devAddr, dram, size, mq) (src/rom/lib_9230.c): same arguments.
-SHIM(__osPiRawStartDma_recomp) {
-    osPiStartDma_recomp(rdram, ctx);
+// void osStopThread(OSThread* t) (static 0x8000BD90, identity.json osStopThread_rx).
+// N64ModernRuntime stops only the calling thread. Stopping another thread:
+// unlink it from whatever queue it waits in (run queue or a message queue's
+// blocked list) and mark it STOPPED, so a later osStartThread queues it once.
+// A thread stopped while blocked in osRecvMesg/osSendMesg re-checks its queue
+// when restarted (ultramodern's loops), as libultra does.
+extern "C" void osStopThread_recomp(uint8_t* rdram, recomp_context* ctx);
+static void unlink_thread(uint8_t* rdram, PTR(PTR(OSThread)) queue, PTR(OSThread) t) {
+    PTR(OSThread) prev = NULLPTR;
+    PTR(OSThread) cur;
+    if (queue == ultramodern::running_queue) {
+        // The run queue head lives inside ultramodern; pop/peek/insert are its API.
+        std::vector<PTR(OSThread)> keep;
+        while (!ultramodern::thread_queue_empty(rdram, queue)) {
+            PTR(OSThread) x = ultramodern::thread_queue_pop(rdram, queue);
+            if (x != t) keep.push_back(x);
+        }
+        for (PTR(OSThread) x : keep) ultramodern::thread_queue_insert(rdram, queue, x);
+        return;
+    }
+    cur = *TO_PTR(PTR(OSThread), queue);
+    while (cur != NULLPTR) {
+        OSThread* c = TO_PTR(OSThread, cur);
+        if (cur == t) {
+            if (prev == NULLPTR) *TO_PTR(PTR(OSThread), queue) = c->next;
+            else TO_PTR(OSThread, prev)->next = c->next;
+            return;
+        }
+        prev = cur;
+        cur = c->next;
+    }
+}
+SHIM(osStopThread_rx) {
+    PTR(OSThread) t = (int32_t)ctx->r4;
+    if (t == NULLPTR || t == ultramodern::this_thread()) {
+        osStopThread_recomp(rdram, ctx);
+        return;
+    }
+    FIRST_CALL(osStopThread_rx);
+    OSThread* th = TO_PTR(OSThread, t);
+    if (th->state != STOPPED && th->queue != NULLPTR) {
+        unlink_thread(rdram, th->queue, t);
+    }
+    th->queue = NULLPTR;
+    th->next = NULLPTR;
+    th->state = STOPPED;
 }
 
 // ---------------------------------------------------------------- INERT
@@ -88,6 +125,8 @@ INERT(__osSiGetAccess_recomp)
 INERT(__osSiRelAccess_recomp)
 INERT(__osSiRawStartDma_recomp)
 INERT(__osPackReadData_recomp)
+// Only caller __osMakeMotorData_rx, whose caller __osMotorAccess the runtime replaces.
+INERT(__osContAddressCrc_recomp)
 // Controller pak: no pak is reported connected; fail with PFS_ERR_NOPACK (1).
 #define NOPACK(name)       \
     SHIM(name) {           \

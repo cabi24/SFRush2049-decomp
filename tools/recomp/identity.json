@@ -1,0 +1,306 @@
+{
+ "note": "Recompiler-only names for static (boot segment) libultra functions whose inventory name is not their identity. N64Recomp replaces libultra functions BY NAME with N64ModernRuntime implementations (reimplemented list) or drops them (ignored list), so a wrong inventory name either swaps the wrong function for a host one (e.g. the inventory's osViSetMode is osViSwapBuffer) or leaves a real libultra function recompiled, poking hardware state the host never services (e.g. the inventory's osSetTimerIntr is osViSetEvent). gen_config.py renames these functions in the recompiler's symbol file only; the inventory, layout and coverage are unchanged. 'recomp' is the canonical libultra name when the function is one N64Recomp/N64ModernRuntime knows; a displaced function whose canonical name is not on N64Recomp's lists, or is uncertain, gets a descriptive name with suffix _rx so it stays emitted. Evidence is the body (src/rom/*.c or asm/us/nonmatchings/rom/**.s). Audit: lane w21r compared every static function 0x80006A00-0x80010400 and every os*/__os* name with ultralib (VERSION_J) and scanned every jal in the static ROM and the game image; names ending in _rx are non-canonical on purpose (true identity in the evidence).",
+ "static": [
+  {
+   "vram": "0x80006A30",
+   "inventory": "osSetEventMesg",
+   "recomp": "osCreateViManager",
+   "confidence": "high",
+   "evidence": "osSetEventMesg(OSPri pri) in src/rom/lib_7630.c: returns if the VI manager is active, creates the VI manager queue, registers OS_EVENT_VI/OS_EVENT_COUNTER, starts vi_manager_main: libultra osCreateViManager"
+  },
+  {
+   "vram": "0x80006D40",
+   "inventory": "osSetThreadPri",
+   "recomp": "osViSetMode",
+   "confidence": "high",
+   "evidence": "one argument; __osViNext->modep = mode, state = 1, control = mode->comRegs.ctrl (asm lib_7940/osSetThreadPri.s); apply_display_mode calls it with the VI mode: libultra osViSetMode"
+  },
+  {
+   "vram": "0x80006DA0",
+   "inventory": "osSetIntMask",
+   "recomp": "osViBlack",
+   "confidence": "high",
+   "evidence": "__osViNext->state |= / &= 0x20 (VI_STATE_BLACK) by the u8 argument (src/rom/lib_7940.c area): libultra osViBlack"
+  },
+  {
+   "vram": "0x80006E10",
+   "inventory": "osSetEventMesgAlt",
+   "recomp": "osSetEventMesg",
+   "confidence": "high",
+   "evidence": "(OSEvent, OSMesgQueue*, OSMesg) writes __osEventStateTab[event] {mq,msg}, PRENMI special case (src/rom/lib_7a10.c): libultra osSetEventMesg"
+  },
+  {
+   "vram": "0x80006ED0",
+   "inventory": "osSetTimerIntr",
+   "recomp": "osViSetEvent",
+   "confidence": "high",
+   "evidence": "(mq, msg, retraceCount) sets __osViNext->msgq/msg/retraceCount under __osDisableInt (src/rom/lib_7ad0.c): libultra osViSetEvent"
+  },
+  {
+   "vram": "0x800071D0",
+   "inventory": "osSetGlobalIntMask",
+   "recomp": "osSetIntMask",
+   "confidence": "high",
+   "evidence": "asm: Status & __OSGlobalIntMask, MI_INTR_MASK (0xA430000C) through __osRcpImTable; osScAddClient calls it as mask = osSetIntMask(OS_IM_NONE): libultra osSetIntMask"
+  },
+  {
+   "vram": "0x80007440",
+   "inventory": "osSendMesg",
+   "recomp": "osJamMesg",
+   "confidence": "high",
+   "evidence": "first = (first + count - 1) % count; msg[first] = m (inserts at the head): libultra osJamMesg (swapped pair with 0x800075E0)"
+  },
+  {
+   "vram": "0x80007590",
+   "inventory": "osViSetMode",
+   "recomp": "osViSwapBuffer",
+   "confidence": "high",
+   "evidence": "(void* frameBufPtr) sets __osViNext->framep, state |= 0x10 (VI_STATE_BUFFER_SET) (src/rom/lib_8040.c): libultra osViSwapBuffer"
+  },
+  {
+   "vram": "0x800075E0",
+   "inventory": "osJamMesg",
+   "recomp": "osSendMesg",
+   "confidence": "high",
+   "evidence": "msg[(first + validCount) % count] = m (appends at the tail); 27 static + 383 game callers: libultra osSendMesg (swapped pair with 0x80007440)"
+  },
+  {
+   "vram": "0x800077D0",
+   "inventory": "osViGetFramebuffer",
+   "recomp": "osViGetNextFramebuffer",
+   "confidence": "high",
+   "evidence": "returns __osViNext->framep (src/rom/lib_83d0.c): libultra osViGetNextFramebuffer"
+  },
+  {
+   "vram": "0x80007810",
+   "inventory": "osInvalICache",
+   "recomp": "osWritebackDCacheAll",
+   "confidence": "high",
+   "evidence": "cache 0x01 (Index_Writeback_Inv_D) over 0x2000 bytes from K0: libultra osWritebackDCacheAll"
+  },
+  {
+   "vram": "0x8000794C",
+   "inventory": "osViModeNtscLan1",
+   "recomp": "osSpTaskLoad",
+   "confidence": "high",
+   "evidence": "called by __scExec with the task; _VirtualToPhysicalTask copy (osViModeTableGet), osWritebackDCache, __osSpSetStatus, __osSpSetPc, __osSpRawStartDma x2: libultra osSpTaskLoad"
+  },
+  {
+   "vram": "0x80007AB4",
+   "inventory": "osViModeNtscLpn1",
+   "recomp": "osSpTaskStartGo",
+   "confidence": "high",
+   "evidence": "called by __scExec after osSpTaskLoad; waits !__osSpDeviceBusy then __osSpSetStatus(0x125) (clear halt/broke, set intr-on-break): libultra osSpTaskStartGo"
+  },
+  {
+   "vram": "0x80007B80",
+   "inventory": "osDpWait",
+   "recomp": "osSpTaskYield",
+   "confidence": "high",
+   "evidence": "__osSpSetStatus(SP_SET_YIELD 0x400) only; called by the scheduler's __scHandlePreNMI/yield path: libultra osSpTaskYield"
+  },
+  {
+   "vram": "0x800081D0",
+   "inventory": "osPiRawReadWord",
+   "recomp": "osPiReadIo",
+   "confidence": "high",
+   "evidence": "(devAddr, data): osPiGetAccess(); osPiReadWord(devAddr, data); osPiReleaseAccess(): libultra osPiReadIo (main reads the ROM header with it)"
+  },
+  {
+   "vram": "0x80008380",
+   "inventory": "osCreateViManager",
+   "recomp": "osSetThreadPri",
+   "confidence": "high",
+   "evidence": "(OSThread* t, OSPri pri): NULL -> __osRunningThread, sets priority, requeues, yields if outranked (src/rom/lib_8330.c area): libultra osSetThreadPri"
+  },
+  {
+   "vram": "0x80008460",
+   "inventory": "osInvalICache_full",
+   "recomp": "osInvalICache",
+   "confidence": "high",
+   "evidence": "cache 0x10 (Hit_Invalidate_I), 0x4000 bytes, 0x20 line: libultra osInvalICache (replaces the Phase 0 'cache' stub)"
+  },
+  {
+   "vram": "0x80008630",
+   "inventory": "__osPiRawStartDma",
+   "recomp": "osPiStartDma",
+   "confidence": "high",
+   "evidence": "(OSIoMesg* mb, pri, dir, devAddr, dram, size, mq) fills mb and sends it to the PI manager's command queue (src/rom/lib_9230.c): libultra osPiStartDma"
+  },
+  {
+   "vram": "0x8000870C",
+   "inventory": "osWritebackDCacheAll",
+   "recomp": "rmonPrintf_rx",
+   "confidence": "medium",
+   "evidence": "empty varargs body (spills a0-a3, returns) after osSyncPrintf, as in syncprintf.c (FINALROM); no jal callers: rmonPrintf"
+  },
+  {
+   "vram": "0x80009450",
+   "inventory": "__osContBuildPacket",
+   "recomp": "osContInit",
+   "confidence": "high",
+   "evidence": "(mq, bitpattern, status): osGetTime/osSetTimer wait, __osContRamReset, two __osSiRawStartDma + osRecvMesg, __osContGetStatus, osSiInit: libultra osContInit"
+  },
+  {
+   "vram": "0x800097D0",
+   "inventory": "osContStartReadData2",
+   "recomp": "osContStartReadData",
+   "confidence": "high",
+   "evidence": "(mq): __osSiGetAccess; if last command != read: __osPackReadData + __osSiRawStartDma(OS_WRITE) + osRecvMesg; __osSiRawStartDma(OS_READ); __osSiRelAccess; called by the game's controller poll: libultra osContStartReadData"
+  },
+  {
+   "vram": "0x80009F20",
+   "inventory": "osMotorInit",
+   "recomp": "__osMotorAccess",
+   "confidence": "high",
+   "evidence": "(pfs, flag): returns 8 unless pfs status has the motor bit, fills __MotorDataBuf[channel] with flag, CRC check 0/0xEB: libultra (J) __osMotorAccess"
+  },
+  {
+   "vram": "0x8000A088",
+   "inventory": "__osMotorAccess",
+   "recomp": "__osMakeMotorData_rx",
+   "confidence": "high",
+   "evidence": "(channel, mdata): 0xFF,0x23,1,3, address CRC of 0x600 | 0xC000: libultra __osMakeMotorData"
+  },
+  {
+   "vram": "0x8000A194",
+   "inventory": "osMotorStart",
+   "recomp": "osMotorInit",
+   "confidence": "high",
+   "evidence": "(mq, pfs, channel): bank 0xFE/0x80 probes at 0x400, __osMakeMotorData, status = 8: libultra (J) osMotorInit"
+  },
+  {
+   "vram": "0x8000A2F0",
+   "inventory": "osMotorStop",
+   "recomp": "osPfsRepairId",
+   "confidence": "high",
+   "evidence": "status & (INIT | ID_BROKEN) ? __osGetId, clear 4 : 5: libultra (J) osPfsRepairId"
+  },
+  {
+   "vram": "0x8000A350",
+   "inventory": "osPfsAllocate",
+   "recomp": "osPfsFindFile",
+   "confidence": "high",
+   "evidence": "(pfs, company, game, name, ext, *file_no): __osCheckId, __osContRamRead dir scan: libultra osPfsFindFile"
+  },
+  {
+   "vram": "0x8000A520",
+   "inventory": "osPfsDeleteFile",
+   "recomp": "osPfsFileState",
+   "confidence": "high",
+   "evidence": "__osPfsRWInode; bcopy 16 (name) + 4 (ext) into the state: libultra osPfsFileState"
+  },
+  {
+   "vram": "0x8000A700",
+   "inventory": "osPfsRename",
+   "recomp": "osPfsDeleteFile",
+   "confidence": "high",
+   "evidence": "osPfsFindFile, __osPfsRWInode, __osPfsReleasePages, bzero 0x20, __osContRamWrite: libultra osPfsDeleteFile"
+  },
+  {
+   "vram": "0x8000A8D8",
+   "inventory": "osPfsFindFile",
+   "recomp": "__osPfsReleasePages_rx",
+   "confidence": "high",
+   "evidence": "leaf called by osPfsDeleteFile: libultra __osPfsReleasePages"
+  },
+  {
+   "vram": "0x8000A970",
+   "inventory": "osPfsReadWriteFile",
+   "recomp": "osPfsAllocateFile",
+   "confidence": "high",
+   "evidence": "osPfsFindFile x2, osPfsFreeBlocks, __osPfsDeclearPage, bcopy 16/4, __osContRamWrite: libultra osPfsAllocateFile"
+  },
+  {
+   "vram": "0x8000ADF0",
+   "inventory": "osPfsGetFileStat",
+   "recomp": "__osPfsGetNextPage_rx",
+   "confidence": "high",
+   "evidence": "__osPfsRWInode only; called by osPfsReadWriteFile: libultra __osPfsGetNextPage"
+  },
+  {
+   "vram": "0x8000AEC4",
+   "inventory": "osPfsGetFileSize",
+   "recomp": "osPfsReadWriteFile",
+   "confidence": "high",
+   "evidence": "__osCheckId, __osPfsGetNextPage x2, __osContRamRead/Write, __osPfsGetStatus: libultra osPfsReadWriteFile"
+  },
+  {
+   "vram": "0x8000BD90",
+   "inventory": "osPfsChecker_full",
+   "recomp": "osStopThread_rx",
+   "confidence": "high",
+   "evidence": "switch on state 2/4/8 -> OS_STATE_STOPPED, __osDequeueThread / __osEnqueueAndYield(NULL): libultra osStopThread (named _rx and ignored in patches.json: the host shim implements stopping ANOTHER thread, which N64ModernRuntime's osStopThread does not)"
+  },
+  {
+   "vram": "0x8000BE50",
+   "inventory": "osPfsReAllocate",
+   "recomp": "osGetThreadId",
+   "confidence": "high",
+   "evidence": "NULL -> __osRunningThread; returns t->id: libultra osGetThreadId"
+  },
+  {
+   "vram": "0x8000C490",
+   "inventory": "dll_get_priority",
+   "recomp": "osGetThreadPri",
+   "confidence": "high",
+   "evidence": "NULL -> __osRunningThread; returns t->priority: libultra osGetThreadPri"
+  },
+  {
+   "vram": "0x8000D7A0",
+   "inventory": "osPiReadIo",
+   "recomp": "__osSiRawReadIo_rx",
+   "confidence": "high",
+   "evidence": "__osSiDeviceBusy, then lw K1|devAddr (PIF RAM); only caller osInitialize: libultra __osSiRawReadIo"
+  },
+  {
+   "vram": "0x8000D7F0",
+   "inventory": "osPiWriteWord",
+   "recomp": "__osSiRawWriteIo_rx",
+   "confidence": "high",
+   "evidence": "__osSiDeviceBusy, then sw to K1|devAddr: libultra __osSiRawWriteIo"
+  },
+  {
+   "vram": "0x8000DC10",
+   "inventory": "osPiGetAccess",
+   "recomp": "__osPiGetAccess",
+   "confidence": "high",
+   "evidence": "creates the access queue on first use, then osRecvMesg(&__osPiAccessQueue, BLOCK): libultra __osPiGetAccess"
+  },
+  {
+   "vram": "0x8000DC54",
+   "inventory": "osPiReleaseAccess",
+   "recomp": "__osPiRelAccess",
+   "confidence": "high",
+   "evidence": "osSendMesg(&__osPiAccessQueue, 0, NOBLOCK): libultra __osPiRelAccess"
+  },
+  {
+   "vram": "0x8000DC80",
+   "inventory": "osPiReadWord",
+   "recomp": "osPiRawReadIo_rx",
+   "confidence": "high",
+   "evidence": "waits PI_STATUS & 3, *data = *(osRomBase | devAddr | K1): libultra osPiRawReadIo"
+  },
+  {
+   "vram": "0x8000DCD0",
+   "inventory": "osPiStartDma",
+   "recomp": "osPiRawStartDma",
+   "confidence": "high",
+   "evidence": "(dir, devAddr, dram, size): waits PI_STATUS, writes PI_DRAM_ADDR/PI_CART_ADDR/PI_RD_LEN|PI_WR_LEN directly: libultra osPiRawStartDma"
+  },
+  {
+   "vram": "0x8000DDA0",
+   "inventory": "osPiSetDeviceTiming",
+   "recomp": "osEPiRawStartDma",
+   "confidence": "high",
+   "evidence": "(handle, dir, cartAddr, dram, size): compares __osCurrentHandle, programs PI_BSD_DOM regs, then the PI DMA registers: libultra osEPiRawStartDma (reached through the PI manager table)"
+  },
+  {
+   "vram": "0x8000E620",
+   "inventory": "osContStartReadData",
+   "recomp": "__osPfsGetStatus_rx",
+   "confidence": "high",
+   "evidence": "(mq, channel): __osPfsRequestOneChannel, SI DMA write+read, __osPfsGetOneChannelData, status bits; called only by PFS/ContRam code: libultra __osPfsGetStatus"
+  }
+ ]
+}

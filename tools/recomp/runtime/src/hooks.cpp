@@ -39,3 +39,16 @@ extern "C" void rush_hook_inflate(uint8_t* rdram, recomp_context* ctx) {
     }
     rush::trace_event("inflate src 0x%06X -> 0x%08X (data, no code image)", src, dst);
 }
+
+// rush_hook_park_idle: replaces idle_thread_entry's final `for (;;) {}`
+// (0x80002218) with ultramodern's pause_self: the idle thread stays the
+// current thread but waits for external events (VI, SP, SI, timers) and
+// swaps to whichever higher-priority thread they wake, instead of spinning
+// (ultramodern switches threads only inside libultra calls).
+extern "C" void pause_self(uint8_t* rdram);
+
+extern "C" void rush_hook_park_idle(uint8_t* rdram, recomp_context* ctx) {
+    (void)ctx;
+    rush::trace_event("idle thread parked (pause_self)");
+    pause_self(rdram);
+}

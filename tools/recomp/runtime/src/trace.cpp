@@ -24,7 +24,7 @@ clock_type::time_point t0 = clock_type::now();
 
 std::atomic<uint64_t> n_vi{0}, n_gfx{0}, n_audio_task{0}, n_other_task{0}, n_swap{0},
     n_audio_samples{0}, n_overlay{0};
-std::atomic<uint32_t> last_origin{0}, last_dl{0}, last_dl_size{0};
+std::atomic<uint32_t> last_origin{0}, last_dl{0}, last_dl_size{0}, max_dl_size{0};
 std::atomic<uint64_t> fb_nonzero{0}, fb_hash{0};
 std::atomic<uint64_t> fb_distinct{0};
 std::mutex mu;
@@ -117,6 +117,11 @@ void rush::trace_rsp_task(uint32_t type) {
 void rush::trace_gfx_task(const OSTask* task) {
     last_dl = (uint32_t)task->t.data_ptr;
     last_dl_size = task->t.data_size;
+    if (task->t.data_size > max_dl_size) {
+        max_dl_size = task->t.data_size;
+        trace_event("largest display list so far: %u B at 0x%08X (gfx task %llu)", task->t.data_size,
+                    (uint32_t)task->t.data_ptr, (unsigned long long)n_gfx.load());
+    }
     if (n_gfx++ == 0) {
         trace_event("first gfx task: ucode 0x%08X data_ptr 0x%08X size %u", (uint32_t)task->t.ucode,
                     (uint32_t)task->t.data_ptr, task->t.data_size);
