@@ -165,6 +165,35 @@ def lock_compiler(entry):
     return require_known(entry.get("compiler") or DEFAULT)
 
 
+def installed_dir(name, repo=None):
+    """Where `name` is installed on this box: the builder dir, else the cloud
+    dir (tools/cloud/setup.sh), else None. Callers that compile a pinned TU
+    use `installed_dir(segment_compiler(...)) / "cc"` instead of the 5.3 path."""
+    spec = COMPILERS[require_known(name)]
+    root = REPO if repo is None else Path(repo)
+    for key in ("builder_dir", "cloud_dir"):
+        where = root / spec[key]
+        if (where / "cc").is_file():
+            return where
+    return None
+
+
+def tu_cc(tu, default_cc, pins=None, repo=None):
+    """The `cc` a research packet or test must use to rebuild ROM TU `tu`
+    (`lib_1a660` or `0x1a660`): `default_cc` (the 5.3 scorer compiler) unless
+    rom_compilers.json pins the segment to another compiler, which must then be
+    installed on this box. Raises AssertionError with the conftest toolchain
+    marker when it is not, so the test skips (or fails under REQUIRE_TOOLCHAIN)."""
+    yaml_name = tu if tu.startswith("0x") else "0x" + tu[len("lib_"):]
+    name = segment_compiler(yaml_name, load_segment_pins() if pins is None else pins)
+    if name == DEFAULT:
+        return Path(default_cc)
+    where = installed_dir(name, repo)
+    if where is None:
+        raise AssertionError(f"{tu}: {name} compiler absent; run tools/cloud/setup.sh")
+    return where / "cc"
+
+
 # --- installation ---------------------------------------------------------------
 
 def install(name, dest=None, archive=None):

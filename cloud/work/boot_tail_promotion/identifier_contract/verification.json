@@ -674,7 +674,7 @@
     }
   },
   "rom_gate": "not run; maintainer transaction required",
-  "verification_script_sha256": "c074473da351184037a8a149baec211368fd4b61df85afcd2ad183f3082c442a",
+  "verification_script_sha256": "42346b36600728201b58a15e54bac80ab7dfaf0899c03db8bd91721129e282bc",
   "baseline_source_sha256": "86db0c35b68e864bae33b3574096df198805a2998fcd856ee268cacc8d78f38c",
   "source_sha256": {
     "src/rom/lib_207b0.c": "acbc261c45342c17eb3e5fc5f5690ac8fa87ca9955f6a216a9a708454a259ca7",

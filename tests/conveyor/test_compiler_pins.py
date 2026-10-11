@@ -254,3 +254,30 @@ def test_toolkit_compiler_refuses_unknown_toolkit(tmp_path, monkeypatch):
     sha = store.put_bytes(buf.getvalue())
     with pytest.raises(SystemExit, match="not a known build"):
         lockmod.toolkit_compiler(sha, argparse.Namespace(data=str(tmp_path)))
+
+
+def test_installed_dir_prefers_builder_then_cloud_then_none(tmp_path):
+    from tools.conveyor import compilers
+    assert compilers.installed_dir("ido7.1", repo=tmp_path) is None
+    cloud = tmp_path / compilers.COMPILERS["ido7.1"]["cloud_dir"]
+    cloud.mkdir(parents=True)
+    (cloud / "cc").write_bytes(b"x")
+    assert compilers.installed_dir("ido7.1", repo=tmp_path) == cloud
+    builder = tmp_path / compilers.COMPILERS["ido7.1"]["builder_dir"]
+    builder.mkdir(parents=True)
+    (builder / "cc").write_bytes(b"x")
+    assert compilers.installed_dir("ido7.1", repo=tmp_path) == builder
+    with pytest.raises(SystemExit):
+        compilers.installed_dir("ido9.9", repo=tmp_path)
+
+
+def test_tu_cc_follows_the_segment_pin(tmp_path):
+    from tools.conveyor import compilers
+    pins = {"0x1a660": "ido7.1"}
+    assert compilers.tu_cc("lib_10d60", "/ido53/cc", pins, tmp_path) == Path("/ido53/cc")
+    with pytest.raises(AssertionError, match="run tools/cloud/setup.sh"):
+        compilers.tu_cc("lib_1a660", "/ido53/cc", pins, tmp_path)
+    cloud = tmp_path / compilers.COMPILERS["ido7.1"]["cloud_dir"]
+    cloud.mkdir(parents=True)
+    (cloud / "cc").write_bytes(b"x")
+    assert compilers.tu_cc("0x1a660", "/ido53/cc", pins, tmp_path) == cloud / "cc"
