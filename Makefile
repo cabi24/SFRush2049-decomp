@@ -276,10 +276,27 @@ GAME_BLOB      := build/blob/game_code.deflate
 GAME_BLOB_SLOT := 0xAE4740
 GAME_BLOB_LEN  := 326180
 
-$(BUILD_DIR)/$(ASSETS_DIR)/data.o: $(ASSETS_DIR)/data.bin $(GAME_BLOB) tools/compose_data.py rom_owned_data.json tools/conveyor/pipeline/owned_data.py $(OWNED_ROM_COMPANIONS) | $(BUILD_DIR)/$(ASSETS_DIR)
+# R16: the runtime images A/B follow the game blob in the data segment
+# (pipeline.ovl_image has the facts). `pipeline.ovl_rom rom` builds with
+# OVL_COMPOSE=1, composing build/ovl/ovl_{a,b}.deflate -- compressed from a
+# rebuilt image, never the extracted stream -- into their fixed-length slots.
+# Without OVL_COMPOSE the slots keep data.bin's bytes, as before.
+OVL_A_STREAM := build/ovl/ovl_a.deflate
+OVL_A_SLOT   := 0xB34164
+OVL_A_LEN    := 80272
+OVL_B_STREAM := build/ovl/ovl_b.deflate
+OVL_B_SLOT   := 0xB47AF4
+OVL_B_LEN    := 23639
+ifeq ($(OVL_COMPOSE),1)
+  OVL_STREAMS      := $(OVL_A_STREAM) $(OVL_B_STREAM)
+  OVL_COMPOSE_ARGS := --extra $(OVL_A_STREAM):$(OVL_A_SLOT):$(OVL_A_LEN) \
+                      --extra $(OVL_B_STREAM):$(OVL_B_SLOT):$(OVL_B_LEN)
+endif
+
+$(BUILD_DIR)/$(ASSETS_DIR)/data.o: $(ASSETS_DIR)/data.bin $(GAME_BLOB) tools/compose_data.py rom_owned_data.json tools/conveyor/pipeline/owned_data.py $(OWNED_ROM_COMPANIONS) $(OVL_STREAMS) | $(BUILD_DIR)/$(ASSETS_DIR)
 	@echo "BIN $< + game-code blob built from sources"
 	$(V)$(PYTHON) tools/compose_data.py $< $(GAME_BLOB) $(BUILD_DIR)/$(ASSETS_DIR)/data.composed.bin \
-	    --slot $(GAME_BLOB_SLOT) --length $(GAME_BLOB_LEN)
+	    --slot $(GAME_BLOB_SLOT) --length $(GAME_BLOB_LEN) $(OVL_COMPOSE_ARGS)
 	$(V)$(PYTHON) -m tools.conveyor.pipeline.owned_data split $< $(BUILD_DIR)/$(ASSETS_DIR)/data.composed.bin $@ --objcopy $(OBJCOPY)
 
 # Convert binary files to objects (using MIPS big-endian ELF format)

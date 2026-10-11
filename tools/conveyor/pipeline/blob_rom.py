@@ -112,34 +112,38 @@ def _ssh(command, timeout=3600):
                           capture_output=True, text=True, timeout=timeout)
 
 
-def sync_to_builder(blob=BLOB_OUT):
+# What the builder's ROM build needs beyond its checkout (local, remote).
+# rom_compilers.json and opt_overrides.mk select the per-TU compiler and
+# flags; a stale copy on the builder would build the ROM with the wrong
+# compiler and still match (passthrough TUs are compiler-neutral).
+SYNC_FILES = (("Makefile", "Makefile"),
+              ("tools/compose_data.py", "tools/compose_data.py"),
+              ("rom_compilers.json", "rom_compilers.json"),
+              ("src/rom/opt_overrides.mk", "src/rom/opt_overrides.mk"))
+
+
+def sync_to_builder(blob=BLOB_OUT, repo=BUILDER_REPO):
     """What the builder's ROM build needs beyond its checkout."""
-    # rom_compilers.json and opt_overrides.mk select the per-TU compiler and
-    # flags; a stale copy on the builder would build the ROM with the wrong
-    # compiler and still match (passthrough TUs are compiler-neutral).
-    for local, remote in (("Makefile", "Makefile"),
-                          ("tools/compose_data.py", "tools/compose_data.py"),
-                          ("rom_compilers.json", "rom_compilers.json"),
-                          ("src/rom/opt_overrides.mk", "src/rom/opt_overrides.mk")):
+    for local, remote in SYNC_FILES:
         subprocess.run(["rsync", "-az", str(REPO / local),
-                        f"{BUILDER}:{BUILDER_REPO}/{remote}"], check=True)
-    _ssh(f"mkdir -p {BUILDER_REPO}/build/blob")
+                        f"{BUILDER}:{repo}/{remote}"], check=True)
+    _ssh(f"mkdir -p {repo}/build/blob")
     subprocess.run(["rsync", "-az", str(blob),
-                    f"{BUILDER}:{BUILDER_REPO}/build/blob/game_code.deflate"],
+                    f"{BUILDER}:{repo}/build/blob/game_code.deflate"],
                    check=True)
 
 
-def builder_rom_build():
+def builder_rom_build(repo=BUILDER_REPO, make_args="-j16", log="/tmp/blobrom"):
     """Full ROM build + `make test` on the builder. Returns (ok, tail)."""
     # Exit codes are captured BEFORE anything is piped: `make test | tail`
     # followed by `$?` reports tail's status — always 0 — which would make
     # this gate pass no matter what the ROM hashed to (the 004 lesson, nearly
     # repeated). Success also requires the positive "ROM matches!" line.
-    proc = _ssh(f"cd {BUILDER_REPO} && rm -f build/us/assets/us/data.o "
+    proc = _ssh(f"cd {repo} && rm -f build/us/assets/us/data.o "
                 f"build/us/assets/us/data.composed.bin build/us/*.z64 && "
-                f"make COMPILER=ido -j16 >/tmp/blobrom-make.log 2>&1; M=$?; "
-                f"make test >/tmp/blobrom-test.log 2>&1; T=$?; "
-                f"tail -3 /tmp/blobrom-make.log; tail -2 /tmp/blobrom-test.log; "
+                f"make COMPILER=ido {make_args} >{log}-make.log 2>&1; M=$?; "
+                f"make test {make_args} >{log}-test.log 2>&1; T=$?; "
+                f"tail -3 {log}-make.log; tail -2 {log}-test.log; "
                 f"echo MAKE=$M TEST=$T")
     out = proc.stdout
     ok = ("MAKE=0 TEST=0" in out and "ROM matches!" in out

@@ -18,8 +18,22 @@ image it:
 5. recompresses it with deflate104 (zlib 1.0.4, level 9, raw) and requires
    the stream to equal the cartridge's stream at the image's ROM offset.
 
-No production asset changes. The cartridge build does not consume these
-streams yet; composing them into the ROM is the remaining production step.
+Composing into the cartridge (w18b):
+
+    python3 -m tools.conveyor.pipeline.ovl_rom produce [--image-file a=PATH ...]
+    python3 -m tools.conveyor.pipeline.ovl_rom rom [--drill] [--builder-repo DIR] [--jobs N]
+
+`produce` compresses each image with deflate104 (ovl_image.deflate), refuses
+a stream that does not fill its fixed slot exactly, and writes
+build/ovl/ovl_<x>.deflate. The image comes from `--image-file` (the layout/
+splice lane's rebuilt image); without one, the retail image inflated from the
+ROM is used as a labelled stand-in, which proves the round trip but not that
+anything was rebuilt. `rom` additionally refuses unless both streams equal
+the ROM's (the pre-flight), syncs what the builder's ROM build needs
+(blob_rom.SYNC_FILES, the game blob and both streams), and runs the full ROM
+build with OVL_COMPOSE=1 plus `make test`. `--drill` then changes one byte
+of each image (keeping the stream length, so compose accepts it) and requires
+the ROM hash -- not the build -- to fail, then restores and rebuilds.
 """
 import argparse
 import hashlib
@@ -32,7 +46,7 @@ import tempfile
 import zlib
 from pathlib import Path
 
-from . import blob_build, blob_rom, blob_splice, ovl_targets
+from . import blob_build, blob_rom, blob_splice, ovl_image, ovl_targets
 
 REPO = ovl_targets.REPO
 SOURCES = REPO / "cloud" / "matches"
@@ -181,6 +195,101 @@ def verify(image, sources_root=SOURCES):
     }
 
 
+# --- composing the streams into the cartridge -----------------------------------
+
+def stream_path(image):
+    """Where the Makefile's OVL_COMPOSE=1 build reads image `image`'s stream."""
+    return WORK / f"ovl_{image}.deflate"
+
+
+def produce(image_files=None, out=None):
+    """{image: report}. Compresses each image and writes its stream.
+
+    `image_files` maps 'a'/'b' to a rebuilt image; a missing entry uses the
+    retail image (inflated from the ROM) as a stand-in and says so."""
+    image_files = image_files or {}
+    unknown = set(image_files) - set(ovl_image.STREAMS)
+    if unknown:
+        raise OvlRomError(f"unknown image(s): {', '.join(sorted(unknown))}")
+    reports = {}
+    for key in sorted(ovl_image.STREAMS):
+        s = ovl_image.stream(key)
+        if key in image_files:
+            image, source = Path(image_files[key]).read_bytes(), str(image_files[key])
+        else:
+            image, source = ovl_image.inflate(key), "retail image (stand-in)"
+        stream = ovl_image.deflate(image)
+        if len(stream) != s.length:
+            raise OvlRomError(f"image {s.image}: stream is {len(stream)} bytes; the slot at "
+                              f"0x{s.rom_offset:X} holds exactly {s.length} — refusing")
+        path = Path(out) / f"ovl_{key}.deflate" if out else stream_path(key)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(stream)
+        reports[key] = {
+            "image": s.image, "source": source, "path": path,
+            "image_sha256": hashlib.sha256(image).hexdigest(),
+            "image_is_retail": hashlib.sha256(image).hexdigest() == s.image_sha256,
+            "stream_bytes": len(stream),
+            "stream_sha256": hashlib.sha256(stream).hexdigest(),
+            "stream_matches_rom": stream == ovl_image.rom_stream(key),
+        }
+    return reports
+
+
+def sync_streams(repo, streams=None):
+    """Sync the shared ROM-build inputs, the game blob and both streams."""
+    if not blob_rom.BLOB_OUT.is_file():
+        raise OvlRomError(f"{blob_rom.BLOB_OUT} is absent: run blob_rom produce first")
+    blob_rom.sync_to_builder(repo=repo)
+    blob_rom._ssh(f"mkdir -p {repo}/build/ovl")
+    for key in sorted(ovl_image.STREAMS):
+        src = (streams or {}).get(key, stream_path(key))
+        subprocess.run(["rsync", "-az", str(src),
+                        f"{BUILDER}:{repo}/build/ovl/ovl_{key}.deflate"], check=True)
+
+
+def length_preserving_change(key, image):
+    """(offset, stream): a one-byte change to `image` whose stream still fills
+    the slot, so compose accepts it and only the ROM hash can catch it."""
+    s = ovl_image.stream(key)
+    for offset in range(len(image) // 2, len(image), 4):
+        changed = bytearray(image)
+        changed[offset] ^= 0x01
+        stream = ovl_image.deflate(bytes(changed))
+        if len(stream) == s.length:
+            return offset, stream
+    raise OvlRomError(f"image {s.image}: no length-preserving one-byte change found")
+
+
+def rom(image_files=None, drill=False, repo=blob_rom.BUILDER_REPO, jobs=16):
+    produced = produce(image_files)
+    differing = [r["image"] for r in produced.values() if not r["stream_matches_rom"]]
+    if differing:
+        raise OvlRomError(f"pre-flight: stream(s) for image {', '.join(differing)} differ from "
+                          "the ROM's; the ROM SHA-1 cannot pass — refusing to spend a build")
+    make_args, log = f"-j{jobs} OVL_COMPOSE=1", f"{repo}/build/ovlrom"
+    sync_streams(repo)
+    ok, tail = blob_rom.builder_rom_build(repo, make_args, log)
+    report = {"produce": produced, "rom_ok": ok, "rom_tail": tail, "drills": {}}
+    if drill:
+        with tempfile.TemporaryDirectory(prefix="ovlrom-drill-") as work:
+            for key in sorted(ovl_image.STREAMS):
+                image = (Path(image_files[key]).read_bytes() if image_files and key in image_files
+                         else ovl_image.inflate(key))
+                offset, bad = length_preserving_change(key, image)
+                bad_path = Path(work) / f"ovl_{key}.deflate"
+                bad_path.write_bytes(bad)
+                sync_streams(repo, {key: bad_path})
+                passed, drill_tail = blob_rom.builder_rom_build(repo, make_args, log)
+                # A drill that failed for the wrong reason proves nothing.
+                vacuous = passed or "does NOT match" not in drill_tail
+                report["drills"][key] = {"image_offset": offset, "rom_passed": vacuous,
+                                         "tail": drill_tail}
+        sync_streams(repo)                    # restore the real streams
+        report["restored_ok"], _ = blob_rom.builder_rom_build(repo, make_args, log)
+    return report
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -188,7 +297,17 @@ def main():
     v = sub.add_parser("verify")
     v.add_argument("--image", action="append", choices=sorted(ovl_targets.POINTERS))
     v.add_argument("--sources", default=str(SOURCES))
+    for name in ("produce", "rom"):
+        p = sub.add_parser(name)
+        p.add_argument("--image-file", action="append", default=[], metavar="X=PATH",
+                       help="rebuilt image for x (a or b); default: retail stand-in")
+        if name == "rom":
+            p.add_argument("--drill", action="store_true")
+            p.add_argument("--builder-repo", default=blob_rom.BUILDER_REPO)
+            p.add_argument("--jobs", type=int, default=16)
     args = parser.parse_args()
+    if args.command in ("produce", "rom"):
+        return compose_main(args)
     ok = True
     for image in args.image or sorted(ovl_targets.POINTERS):
         try:
@@ -203,6 +322,41 @@ def main():
         if r["differing_bodies"]:
             print("  differing bodies: " + ", ".join(r["differing_bodies"]))
         ok &= r["image_ok"] and r["stream_matches_rom"]
+    return 0 if ok else 1
+
+
+def compose_main(args):
+    try:
+        files = dict(item.split("=", 1) for item in args.image_file)
+    except ValueError:
+        sys.exit("ovl_rom: --image-file takes X=PATH")
+    try:
+        if args.command == "produce":
+            produced, r = produce(files), None
+        else:
+            r = rom(files, args.drill, args.builder_repo, args.jobs)
+            produced = r["produce"]
+    except (OvlRomError, ovl_image.OvlImageError) as exc:
+        sys.exit(f"ovl_rom FAILED: {exc}")
+    for p in produced.values():
+        print(f"image {p['image']}: {p['source']} -> {p['stream_bytes']} B stream "
+              f"{p['stream_sha256'][:16]}… "
+              f"{'== ROM' if p['stream_matches_rom'] else 'DIFFERS from ROM'} -> {p['path']}")
+    if r is None:
+        return 0 if all(p["stream_matches_rom"] for p in produced.values()) else 1
+    print("ROM build with both runtime-image streams composed: "
+          + ("SHA-1 EXACT" if r["rom_ok"] else "FAILED"))
+    print("  " + r["rom_tail"].replace("\n", "\n  "))
+    ok = r["rom_ok"]
+    for key, d in sorted(r["drills"].items()):
+        print(f"drill image {key.upper()} (image byte +0x{d['image_offset']:X} flipped): ROM "
+              + ("PASSED — THE GATE IS VACUOUS" if d["rom_passed"] else "failed, as it must"))
+        # Show HOW it failed: a broken build also "fails".
+        print("  " + d["tail"].replace("\n", "\n  "))
+        ok &= not d["rom_passed"]
+    if args.drill:
+        print("restored: " + ("SHA-1 EXACT" if r["restored_ok"] else "FAILED"))
+        ok &= r["restored_ok"]
     return 0 if ok else 1
 
 
