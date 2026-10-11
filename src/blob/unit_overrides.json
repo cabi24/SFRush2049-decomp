@@ -223,5 +223,11 @@
    "file": "src/blob/groups/gfx_modes/object_render.c",
    "reason": "gfx_modes compiles the locked single object_render.c as context because sound_init stores this s64 cache with one shared lui, which needs a definition in the group's program; in the shadow unit the locked src/blob/object_render.c is the one definition"
   }
+ ],
+ "data_align": [
+  {
+   "name": "D_8011AD90",
+   "reason": "position dependent data (w20h cause 1): as1 shares one `lui at` across loads of a symbol defined in the unit only inside one 16-byte-aligned chunk of .data; retail's grouping of entity_render_setup's eight D_8011AD90 (Vec3[4]) loads proves the table sat at a .data offset = 0 mod 16 (= its image address 0x8011AD90 mod 16). Earlier files' .data put it at 72 in the shadow unit, so a .data pad is linked before the file that defines it. Also read by music_control (unmatched)"
+  }
  ]
 }

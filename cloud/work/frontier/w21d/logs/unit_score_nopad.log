@@ -1,0 +1,10 @@
+  FAIL entity_render_setup: 417 of 512 words differ; compiled body is 514 words, target 512; +0x354: .rodata+0xd0: retail words encode 0x39041821, outside the image; +0x3b4: .rodata+0xd4: retail words encode 0x3908004c, outside the image (+20 more); .data+0x48 is placed at different image addresses: 0x00b40383 (entity_render_setup), 0xad900001 (entity_render_setup); .data+0x48 is placed at different image addresses: 0x00b40383 (entity_render_setup), 0xad900001 (entity_render_setup)
+       defined by c_best.c (kept)
+       +0x0e0  image 100001c2  unit 100001c4
+       +0x174  image 3c038012  unit 15610044
+       +0x178  image 15610044  unit 00000000
+       +0x17c  image 2463b558  unit 5526001c
+       +0x180  image 5526001c  unit 84b807c6
+       +0x184  image 84b807c6  unit 84ac07c6
+  locked bodies that differ in this unit: 0
+blob_unit score: 0/1 equal; object build/blob_unit/w21d/unit.o (5.2s)

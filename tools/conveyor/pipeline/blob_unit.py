@@ -74,8 +74,9 @@ DEAD = ("\n  if (0) {\n"
 
 
 OVERRIDE_KEYS = ("inline_blockers", "force_keep", "force_internal", "prefer_definition",
-                 "align", "extern_data")
+                 "align", "extern_data", "data_align")
 ALIGN = 32          # as1 pads some code to 32 bytes, counted from the start of .text
+DATA_ALIGN = 16     # as1 shares one `lui at` only inside a 16-byte chunk of .data (w20h)
 
 
 class UnitError(Exception):
@@ -211,6 +212,8 @@ def validate_overrides(doc, where="overrides"):
                 raise UnitError(f"{where}: {key} {entry['name']} has no reason")
             if key in ("prefer_definition", "extern_data") and not entry.get("file"):
                 raise UnitError(f"{where}: {key} {entry['name']} needs a file")
+            if key == "data_align":
+                data_align_target(entry, where)
             if entry["name"] in seen:
                 raise UnitError(f"{where}: {key} lists {entry['name']} twice")
             seen.add(entry["name"])
@@ -223,6 +226,97 @@ def validate_overrides(doc, where="overrides"):
     if both:
         raise UnitError(f"{where}: {sorted(both)} both force_keep and force_internal")
     return out
+
+
+def data_align_target(entry, where="overrides"):
+    """The .data offset residue modulo DATA_ALIGN that a `data_align` symbol
+    must have: its image address (the `address` field, else the D_XXXXXXXX
+    name) modulo DATA_ALIGN. The unit's .data is 16-aligned like retail's."""
+    name = entry["name"]
+    if not re.fullmatch(r"[A-Za-z_]\w*", name):
+        raise UnitError(f"{where}: data_align {name!r} is not a symbol name")
+    address = entry.get("address")
+    if address is None:
+        m = re.fullmatch(r"D_([0-9A-Fa-f]{8})", name)
+        if not m:
+            raise UnitError(f"{where}: data_align {name} needs an address")
+        address = m.group(1)
+    try:
+        value = int(str(address), 16)
+    except ValueError:
+        raise UnitError(f"{where}: data_align {name} address {address!r} is not hex")
+    return value % DATA_ALIGN
+
+
+def scan_data_defs(text, names):
+    """The names in `names` that preprocessed C defines WITH an initialiser at
+    file scope (`T name[..] = {...};`): such data lands in the unit's .data in
+    the defining file's place. Extern declarations, typedefs, tentative
+    definitions and anything inside a function body do not count."""
+    names = set(names)
+    if not names:
+        return set()
+    pattern = re.compile(r"\b(%s)\b(?:\s*\[[^\]]*\])*\s*=(?!=)"
+                         % "|".join(map(re.escape, sorted(names))))
+    found, depth, pdepth, stmt, body = set(), 0, 0, 0, None
+    for tok in _TOKEN.finditer(text):
+        c, i = tok.group()[0], tok.start()
+        if c == "#":
+            if depth == 0:
+                stmt = tok.end()
+        elif c == "(":
+            pdepth += 1
+        elif c == ")":
+            pdepth -= 1
+        elif c == "{":
+            if depth == 0 and pdepth == 0:
+                # a function or tag body ends its statement at its `}`; an
+                # initialiser (`=` before the brace) ends at the next `;`
+                body = "=" not in _COMMENT.sub(" ", text[stmt:i])
+            depth += 1
+        elif c == "}":
+            depth -= 1
+            if depth == 0 and body:
+                head = _COMMENT.sub(" ", text[stmt:i])
+                if "(" in head:          # function definition: no `;` follows
+                    stmt = i + 1
+                body = None
+        elif c == ";" and depth == 0 and pdepth == 0:
+            head = _COMMENT.sub(" ", text[stmt:i])
+            if not re.match(r"\s*(extern|typedef)\b", head):
+                for m in pattern.finditer(head):
+                    before = head[:m.start()]
+                    if before.count("{") == before.count("}"):     # not inside braces
+                        found.add(m.group(1))
+            stmt = i + 1
+    return found
+
+
+def data_pad_source(name, nbytes):
+    """(C text, [symbol]) of a kept, initialised .data pad of `nbytes` bytes."""
+    symbol = "__unit_dpad_" + re.sub(r"\W", "_", name)
+    return f"char {symbol}[{nbytes}] = {{0}};\n", [symbol]
+
+
+def data_alignment_pads(obj, entries, pads):
+    """New {symbol: pad bytes} so every `data_align` symbol the unit defines in
+    .data sits at its target offset modulo DATA_ALIGN, given an object built
+    with `pads`. Symbols are handled in .data order (a pad moves the later
+    ones). Equal to `pads` when everything is aligned."""
+    out, shift = dict(pads), 0
+    if ".data" not in obj.index:
+        return {n: b for n, b in out.items() if b}
+    data = obj.index[".data"]
+    offsets = {s["name"]: s["value"] for s in obj.symbols
+               if s["shndx"] == data and s["type"] != STT_SECTION}
+    targets = {e["name"]: data_align_target(e) for e in entries}
+    for name in sorted((n for n in targets if n in offsets), key=lambda n: offsets[n]):
+        old = pads.get(name, 0) % DATA_ALIGN
+        delta = (targets[name] - (offsets[name] + shift)) % DATA_ALIGN
+        new = (old + delta) % DATA_ALIGN
+        shift += new - old
+        out[name] = new
+    return {n: b for n, b in out.items() if b}
 
 
 def unit_files(lock, group_specs, extras=()):
@@ -280,7 +374,7 @@ def pad_source(name, words):
 
 
 def derive(lock, group_specs, files, defs, addresses, overrides=None,
-           internal=(), keep=(), block=(), pads=None):
+           internal=(), keep=(), block=(), pads=None, data_defs=None, data_pads=None):
     """The manifest for a lock snapshot. Pure: no file or network access.
 
     lock         {name: lock entry}
@@ -293,6 +387,10 @@ def derive(lock, group_specs, files, defs, addresses, overrides=None,
     internal / keep / block   ad-hoc additions (`score` options)
     pads         {function: instruction words} of padding to emit before the
                  file that defines it (see `align` in the overrides)
+    data_defs    {file id: names of `data_align` symbols it defines with an
+                 initialiser} (`scan_data_defs`)
+    data_pads    {data symbol: bytes} of initialised .data to link immediately
+                 BEFORE the file that defines it (see `data_align`)
     """
     overrides = overrides or validate_overrides({})
     by_id = {f["id"]: f for f in files}
@@ -402,6 +500,28 @@ def derive(lock, group_specs, files, defs, addresses, overrides=None,
         keep_set |= set(pad_names)
         for pad_name in pad_names:
             canon[pad_name] = out_files[at + 1]["id"]
+    # .data is emitted in link order (unlike .text): a data pad is linked
+    # immediately before the file that defines the aligned symbol
+    data_align, data_problems = [], {}
+    for entry in overrides["data_align"]:
+        name = entry["name"]
+        definers = [rec["id"] for rec in out_files if name in (data_defs or {}).get(rec["id"], ())]
+        if len(definers) > 1:
+            data_problems[name] = "data_align symbol defined with an initialiser by " + ", ".join(definers)
+            continue
+        if not definers:
+            continue
+        data_align.append(name)
+        nbytes = (data_pads or {}).get(name, 0) % DATA_ALIGN
+        if not nbytes:
+            continue
+        at = next(i for i, rec in enumerate(out_files) if rec["id"] == definers[0])
+        _, pad_names = data_pad_source(name, nbytes)
+        out_files.insert(at, dict(
+            id="q_" + re.sub(r"\W", "_", name) + ".c", source=None, kind="data_pad", owner=name,
+            xcpluscomm=False, address=out_files[at]["address"], defines=[],
+            stripped=[], renames={}, blocked=[], pad_bytes=nbytes, pad_symbols=pad_names))
+        keep_set |= set(pad_names)
     defined = set(canon)
     duplicates = {name: dict(chosen=canon[name], reason=why[name],
                              stripped_from=[f for f in fids if f != canon[name]])
@@ -415,12 +535,13 @@ def derive(lock, group_specs, files, defs, addresses, overrides=None,
         keep=sorted(keep_set), internal=sorted(defined - keep_set),
         blockers=sorted(blockers),
         align=sorted(e["name"] for e in overrides["align"] if e["name"] in canon),
+        data_align=sorted(data_align),
         extern_data=[dict(name=e["name"], file=e["file"]) for e in overrides["extern_data"]],
         forced_keep=sorted(forced_keep & defined),
         forced_internal=sorted(forced_internal & defined),
         functions={n: canon[n] for n in sorted(canon)},
         members=sorted(n for n in lock if n in canon),
-        duplicates=duplicates, problems=missing,
+        duplicates=duplicates, problems={**missing, **data_problems},
         counts=dict(files=len(out_files), locked=len(lock), defined=len(defined),
                     keep=len(keep_set), internal=len(defined - keep_set),
                     blockers=len(blockers), duplicates=len(duplicates),
@@ -441,6 +562,9 @@ def stage(manifest, texts, out_dir, defs=None):
     for rec in manifest["files"]:
         if rec["kind"] == "pad":
             wanted[rec["id"]] = pad_source(rec["owner"], rec["pad_words"])[0]
+            continue
+        if rec["kind"] == "data_pad":
+            wanted[rec["id"]] = data_pad_source(rec["owner"], rec["pad_bytes"])[0]
             continue
         text, kept = transform(texts[rec["id"]], set(rec["defines"]), blockers,
                                rec["renames"], (defs or {}).get(rec["id"]))
@@ -1080,11 +1204,14 @@ class Inputs:
         self.extents = image_extents(self.document)
         self.addresses = {n: v for n, (v, _) in self.extents.items()}
         self.overrides = load_overrides()
+        aligned = {e["name"] for e in self.overrides["data_align"]}
+        self.data_defs = {fid: sorted(scan_data_defs(text, aligned))
+                          for fid, text in self.texts.items()}
 
-    def manifest(self, internal=(), keep=(), block=(), pads=None):
+    def manifest(self, internal=(), keep=(), block=(), pads=None, data_pads=None):
         manifest = derive(self.lock, self.specs, self.files, self.defs, self.addresses,
                           self.overrides, internal=internal, keep=keep, block=block,
-                          pads=pads)
+                          pads=pads, data_defs=self.data_defs, data_pads=data_pads)
         manifest["problems"] = {**manifest["problems"], **self.problems}
         manifest["lock_sha256"] = hashlib.sha256(
             json.dumps(self.lock, sort_keys=True).encode()).hexdigest()
@@ -1172,10 +1299,17 @@ class Run:
             self.document, self.lock = inputs.document, inputs.lock
             base = int(self.document["image"]["base"], 16)
             pads_path = self.dir / "pads.json"
-            pads = {}
+            data_pads_path = self.dir / "data_pads.json"
+            pads, data_pads = {}, {}
             for seed in (pads_path, WORK / DEFAULT_TAG / "pads.json"):
                 try:
                     pads = json.loads(seed.read_text())
+                    break
+                except (OSError, ValueError):
+                    continue
+            for seed in (data_pads_path, WORK / DEFAULT_TAG / "data_pads.json"):
+                try:
+                    data_pads = json.loads(seed.read_text())
                     break
                 except (OSError, ValueError):
                     continue
@@ -1183,8 +1317,10 @@ class Run:
             self.object = self.dir / "unit.o"
             self.builds = 0
             while True:
-                self.manifest = inputs.manifest(internal, keep, block, pads)
+                self.manifest = inputs.manifest(internal, keep, block, pads, data_pads)
                 pads = {n: w for n, w in pads.items() if n in self.manifest["align"]}
+                data_pads = {n: b for n, b in data_pads.items()
+                             if n in self.manifest["data_align"]}
                 if not rebuild:
                     if not self.object.is_file():
                         raise UnitError(f"no unit object at {self.object}; "
@@ -1211,12 +1347,21 @@ class Run:
                 # starts at its image offset modulo ALIGN, then remember the pads.
                 wanted = alignment_pads(self.obj.functions(), inputs.extents, base,
                                         self.manifest["align"], pads)
-                if wanted == pads or self.builds >= 4:
+                # `data_align` symbols: pad .data until each sits at its image
+                # address modulo DATA_ALIGN (w20h: as1's `lui at` sharing).
+                wanted_data = data_alignment_pads(
+                    self.obj, [e for e in inputs.overrides["data_align"]
+                               if e["name"] in self.manifest["data_align"]], data_pads)
+                if (wanted == pads and wanted_data == data_pads) or self.builds >= 4:
                     self.unaligned = sorted(set(wanted) ^ set(pads)
-                                            | {n for n in wanted if wanted[n] != pads.get(n)})
+                                            | {n for n in wanted if wanted[n] != pads.get(n)}
+                                            | set(wanted_data) ^ set(data_pads)
+                                            | {n for n in wanted_data
+                                               if wanted_data[n] != data_pads.get(n)})
                     break
-                pads = wanted
+                pads, data_pads = wanted, wanted_data
             pads_path.write_text(json.dumps(pads, indent=1, sort_keys=True) + "\n")
+            data_pads_path.write_text(json.dumps(data_pads, indent=1, sort_keys=True) + "\n")
             path = MANIFEST if self.tag == DEFAULT_TAG else self.dir / "manifest.json"
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(json.dumps(self.manifest, indent=1) + "\n")
@@ -1268,13 +1413,22 @@ def _summary(results):
                            own_sites=sum(r["own_data"] for r in ok))
 
 
+def _report_unaligned(run):
+    if getattr(run, "unaligned", None):
+        print("  still unaligned after %d builds (align / data_align): %s"
+              % (run.builds, ", ".join(run.unaligned)))
+
+
 def cmd_manifest(args):
     remote = f"{args.remote_dir.rstrip('/')}/{args.tag}"
-    try:
-        pads = json.loads((WORK / args.tag / "pads.json").read_text())
-    except (OSError, ValueError):
-        pads = {}
-    manifest = Inputs(builder=args.builder, remote=remote).manifest(pads=pads)
+    pads = {}
+    for name in ("pads.json", "data_pads.json"):
+        try:
+            pads[name] = json.loads((WORK / args.tag / name).read_text())
+        except (OSError, ValueError):
+            pads[name] = {}
+    manifest = Inputs(builder=args.builder, remote=remote).manifest(
+        pads=pads["pads.json"], data_pads=pads["data_pads.json"])
     MANIFEST.parent.mkdir(parents=True, exist_ok=True)
     MANIFEST.write_text(json.dumps(manifest, indent=1) + "\n")
     c = manifest["counts"]
@@ -1295,6 +1449,7 @@ def cmd_check(args):
     run = Run(args.tag, args.builder, args.remote_dir).build(jobs=args.jobs,
                                                              rebuild=not args.no_build)
     results = run.compare(sorted(run.lock))
+    _report_unaligned(run)
     failed = {n: r for n, r in results.items() if r["status"] != "ok"}
     for name in sorted(failed):
         print("\n".join(_describe(name, failed[name], run)))
@@ -1324,6 +1479,7 @@ def cmd_score(args):
         extras=args.sources, internal=args.internal, keep=args.keep, block=args.block,
         jobs=args.jobs)
     results = run.compare(args.names)
+    _report_unaligned(run)
     bad = 0
     for name in args.names:
         res = results[name]
