@@ -285,7 +285,89 @@ void func_8001785C(u8 *map, MapRecord *record)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_800178B0.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80017D38.s")
+/* PROMOTED 2026-10-11 — func_80017D38
+ * Source:   cloud/work/frontier/w20a/sources/func_80017D38.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w20a/sources/func_80017D38.c:func_80017D38 (score0); rom_tu.h context: cloud/work/frontier/w20a/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+typedef struct SequenceTrackEvents { unsigned int fraction; int whole; unsigned int event_time; unsigned char *events, *pitch, *modulation; unsigned short pitch_value, modulation_value; unsigned int pitch_time, modulation_time; unsigned char channel; signed char velocity_offset, transpose; unsigned char number; } SequenceTrackEvents;
+typedef struct SequenceContextEvents { unsigned char unknown000[0x110]; unsigned int enabled[2]; unsigned char unknown118[8]; unsigned int lookahead; unsigned char unknown124[0x404]; unsigned char groups[64]; SequenceTrackEvents tracks[64]; unsigned char unknownF68[0x18]; unsigned int programs[16]; unsigned char unknownFC0[8]; unsigned char request[0x28]; unsigned int *result; unsigned char pending; unsigned char unknownFF5[3]; } SequenceContextEvents;
+typedef struct SequenceTime_17D38 { unsigned int fraction, whole; } SequenceTime_17D38;
+#define CTX ((SequenceContextEvents *)D_8004BE80)
+extern unsigned char D_8004BE7B;
+extern SequenceNode *func_800173B4(void);
+extern void func_80017410(SequenceNode *);
+extern void func_80017720(SequenceContext *, unsigned char, unsigned char);
+extern void func_800177EC(unsigned char, unsigned char);
+extern void func_80019490(void *, unsigned int *, unsigned char);
+extern void func_80020610(unsigned char, unsigned char, unsigned char, unsigned char);
+extern unsigned int func_8001A270(unsigned int, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned short, unsigned short, unsigned char, short);
+unsigned char func_80017D38(void)
+{
+    int unused0, unused1, unused2, unused3; /* frame residual, see header */
+    unsigned char channel,active;
+    int unused4;                            /* frame residual, see header */
+    int i,advance,key,velocity,number;
+    unsigned int due,program,identifier;
+    SequenceNode *note;
+    active=0;
+    for (i=0;i<64;i++) {
+        if (CTX->tracks[i].events!=0) active=1;
+        while (CTX->tracks[i].events!=0) {
+            due=*(unsigned short *)CTX->tracks[i].events+CTX->tracks[i].event_time;
+            if (CTX->tracks[i].whole+CTX->lookahead<due) break;
+            CTX->tracks[i].event_time=due;
+            channel=CTX->tracks[i].channel;
+            key=CTX->tracks[i].events[2];velocity=CTX->tracks[i].events[3];
+            if (key==255 && velocity==255) {
+                CTX->tracks[i].events=0;
+            } else {
+                advance=4;
+                if ((key&128)==128 && velocity==0) {
+                    func_80017720(D_8004BE80,key&127,channel);
+                } else if ((key&128)==128 && velocity==1) {
+                    func_800177EC(key&127,channel);
+                } else if ((key&128)==128 && (velocity&128)==128) {
+                    if ((velocity&127)==104) {
+                        if (CTX->pending) {
+                            func_80019490(CTX->request,CTX->result,1);
+                            CTX->pending=0;
+                        }
+                    } else {
+                        func_80020610(velocity&127,channel,D_8004BE7B,key&127);
+                    }
+                } else if (key!=0 || velocity!=0) {
+                    advance=6;
+                    number=CTX->tracks[i].number;
+                    if (CTX->enabled[number/32] & (1U<<(number&31))) {
+                        program=CTX->programs[channel];
+                        if (program!=0xFFFFFFFFU) {
+                            key+=CTX->tracks[i].transpose;
+                            key=key>127 ? 127 : key<0 ? 0 : key;
+                            velocity+=CTX->tracks[i].velocity_offset;
+                            velocity=velocity>127 ? 127 : velocity<0 ? 0 : velocity;
+                            note=func_800173B4();
+                            if (note!=0) {
+                                identifier=func_8001A270(program,key,velocity,64,channel,
+                                    D_8004BE78,0,number & 255,CTX->groups[number],
+                                    D_8004BE7C ? -1 : 0);
+                                if (identifier!=0xFFFFFFFFU) {
+                                    note->identifier=identifier;
+                                    note->deadline0C=*(unsigned short *)(CTX->tracks[i].events+4)+due;
+                                    *(SequenceTime_17D38 *)&note->fraction10=*(SequenceTime_17D38 *)&CTX->tracks[i].fraction;
+                                } else func_80017410(note);
+                            }
+                        }
+                    }
+                }
+                CTX->tracks[i].events+=advance;
+            }
+        }
+    }
+    return active;
+}
+
 /* PROMOTED 2026-10-11 — func_800180A0
  * Source:   cloud/work/frontier/w18c/sources/func_800180A0.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -340,7 +422,70 @@ int func_80018184(void)
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_8001824C.s")
+/* PROMOTED 2026-10-11 — func_8001824C
+ * Source:   cloud/work/frontier/w20a/sources/func_8001824C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w20a/sources/func_8001824C.c:func_8001824C (score0); rom_tu.h context: cloud/work/frontier/w20a/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+typedef struct SequenceTrackNotes { unsigned int fraction; int whole; unsigned int unknown08; unsigned char *notes0C, *first10, *second14; unsigned short first18, second1A; unsigned int firstTime1C, secondTime20; unsigned char channel24, unknown25[3]; } SequenceTrackNotes;
+#define TRACK(i) (((SequenceTrackNotes *)D_8004BE80->tracks568)[i])
+void func_8001824C(void)
+{
+    int i;
+    unsigned char done;
+    unsigned char first,second;
+    unsigned short increment;
+    short change;
+    unsigned int now,deadline;
+    int width;
+    for (i=0;i<64;i++) {
+        done=0;
+        if (TRACK(i).first10 != 0) {
+            do {
+                first=TRACK(i).first10[0];
+                second=TRACK(i).first10[1];
+                if (first==128 && second==0) {
+                    TRACK(i).first10=0;
+                    done=1;
+                } else {
+                    if (first & 128) {
+                        increment=((first & 127) << 8) | second;
+                        width=2;
+                    } else {
+                        increment=first;
+                        width=1;
+                    }
+                    deadline=TRACK(i).firstTime1C+increment;
+                    now=TRACK(i).whole+D_8004BE80->half120;
+                    if (now >= deadline) {
+                        TRACK(i).first10 += width;
+                        TRACK(i).firstTime1C=deadline;
+                        first=TRACK(i).first10[0];
+                        second=TRACK(i).first10[1];
+                        if (first & 128) {
+                            change=((first & 255) << 8) | second;
+                            change <<= 1;
+                            change >>= 1;
+                            TRACK(i).first10 += 2;
+                        } else {
+                            change=first;
+                            change <<= 9;
+                            change >>= 9;
+                            ++TRACK(i).first10;
+                        }
+                        TRACK(i).first18 += change;
+                        func_80020610(128,TRACK(i).channel24,(unsigned char)D_8004BE78,TRACK(i).first18 >> 7);
+                        func_80020610(129,TRACK(i).channel24,(unsigned char)D_8004BE78,TRACK(i).first18 & 127);
+                    } else {
+                        done=1;
+                    }
+                }
+            } while (!done);
+        }
+    }
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80018448.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80018634.s")
 /* PROMOTED 2026-10-11 — func_8001897C

@@ -1,22 +1,4 @@
 {
-  "cloud/work/frontier/w20a/sources/func_80017D38.c:func_80017D38": {
-    "body_sha256": "1ed49f4a44a5076968338ef64c1814ebb58e31c90becdd9cdbffdbe42f30497d",
-    "compiler": "ido7.1",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_80017D38",
-    "toolkit_sha": "4586d230749de1bc8a64add52ae53db0ffde18a1eee76c8a73f3791fd98e2557",
-    "verified": "score0",
-    "verified_at": "2026-10-11"
-  },
-  "cloud/work/frontier/w20a/sources/func_8001824C.c:func_8001824C": {
-    "body_sha256": "96b13a079aa4484583645dbfa046739da26bf980efee4935cd3131a9eea3f922",
-    "compiler": "ido7.1",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "func_8001824C",
-    "toolkit_sha": "4586d230749de1bc8a64add52ae53db0ffde18a1eee76c8a73f3791fd98e2557",
-    "verified": "score0",
-    "verified_at": "2026-10-11"
-  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -1233,6 +1215,15 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-11"
   },
+  "src/rom/lib_17dc0.c:func_80017D38": {
+    "body_sha256": "1ed49f4a44a5076968338ef64c1814ebb58e31c90becdd9cdbffdbe42f30497d",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80017D38",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
   "src/rom/lib_17dc0.c:func_800180A0": {
     "body_sha256": "b68b9e5c16897146e18ed8ba8c7fed681958fbc24020fd77436a00d974ff7d2b",
     "compiler": "ido7.1",
@@ -1247,6 +1238,15 @@
     "compiler": "ido7.1",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "func_80018184",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_17dc0.c:func_8001824C": {
+    "body_sha256": "96b13a079aa4484583645dbfa046739da26bf980efee4935cd3131a9eea3f922",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001824C",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-11"
