@@ -1,6 +1,6 @@
 # Frontier handoff: 2026-10-06 (after wave 12), updated 2026-10-11 (after wave 15)
 
-## 0. Wave 13–18 update (2026-10-11/12, after wave 18: overlay landing path, boot tail at 59%)
+## 0. Wave 13–19 update (2026-10-12, after wave 19: boot tail at 64%, overlays landing)
 
 Read this section first; §1–§10 below are the wave-12 text and still describe the method. Section-by-section
 deltas are noted inline where they matter.
@@ -8,7 +8,7 @@ deltas are noted inline where they matter.
 | | Functions | Bytes | % |
 |---|---|---|---|
 | Game code (compressed image) | 972 / 1216 | 310,380 / 647,072 | 47.97 |
-| Static code (boot/library) | 528 / 668 | 94,836 / 160,720 | 59.01 |
+| Static code (boot/library) | 550 / 668 | 103,172 / 160,720 | 64.19 |
 
 Frontier: 244 unmatched game functions (251 KB) after wave 17. Provisional: 20 functions (`provisional.json`).
 
@@ -184,6 +184,19 @@ first); six use relocation-label views (`docs/reloc_reconciliation.md`, func_800
 (u8 parameters reloaded from the stack, copy-then-narrow, six that differ only in relocation names the compiler
 synthesises). w18d: camera_play_script stays 27 rows; the corner pointer is not a bare argument copy and `pts[ka]`
 is weighted about twice `pts[kb]` (w18d/RESULTS.md). The overlay path (w18a/w18b/w18e) is described below.
+
+**Wave 19 (2026-10-12):** static 528 → 550/668 (64.19%): w19b closed four IDO 7.1 idiom cases (copy-then-narrow,
+s8 in a coloured register, nested-ternary clamp, switch with a shared tail) and showed six lib_16320 functions were
+code-identical and blocked only by relocation names on compiler-made addresses → `reloc_addrs.us.txt` entries (20)
+plus a `reloc_split` negative-addend fix, `make extract`, target refresh, promoted (1,928 B); w19a matched nine
+larger boot-tail functions (5,448 B; lever: pass `x & 255` to a u8 parameter for 7.1's copy-then-narrow, one result
+variable instead of per-path returns, typed globals); w19c landed osAiSetNextBuffer and `__fixunsdfdi`/`__fixunssfdi`
+through owned `.data`/`.rodata` slots (`owned_data prepare`, co-owners, `promote_batch` slot promotion) and made
+static targets assemble with `.set gp=64` (18 more reloc-aware). Overlay A: Astra's #309/#310 merged, six bodies
+spliced (42/193, 14,364 B). Overlays are IDO 5.3 (0 in-place narrowings vs 147 in the boot tail). Open static
+items: func_80021548 and func_80023BDC need owned jump-table slots (entries drafted in w19b §C / w19a); six w19a
+relocation/target cases (`w19a/relocname/`, `ownrodata/`); the near-misses in w19a/w19b RESULTS (scheduling-only
+residuals under 7.1 remain unexplained).
 
 **Astra / cloud:** see [2026-10-11-astra-cloud-plan.md](2026-10-11-astra-cloud-plan.md). Workstream A landed the
 same night (w18a layout/splice/lock, w18b exact stream round-trip + compose, w18e merge): runtime images A/B are a
