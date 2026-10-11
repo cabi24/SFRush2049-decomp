@@ -15,6 +15,7 @@ import sys
 REPO = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(REPO))
 from tools.cloud import score
+from tools.conveyor import compilers as compilersmod
 from tools.conveyor.pipeline.lock import body_sha
 from tools.conveyor.seeds.extract_candidates import extract_functions
 BASE = "cf10b3392d7f00ae42d75c008b79fdc2541aab6b"
@@ -56,10 +57,10 @@ def checked(args):
     return result.stdout
 
 
-def compile_tu(text, out, name, expect_error=None):
+def compile_tu(text, out, name, expect_error=None, tu=None):
     source, obj = out / (name + ".c"), out / (name + ".o")
     source.write_text(text)
-    command = [sys.executable, REPO / "tools/asm-processor/build.py", score.ido("cc"),
+    command = [sys.executable, REPO / "tools/asm-processor/build.py", str(compilersmod.tu_cc(Path(tu).stem, score.ido("cc"))),
                "--", "mips-linux-gnu-as", "-march=vr4300", "-mabi=32", "-Iinclude",
                "--", "-c", *CFLAGS, "-o", obj, source]
     result = run(command)
@@ -238,7 +239,7 @@ def _verify(out):
             old = checked(['git', 'show', BASE + ':' + row['source']])
             (_, start, end), = list(extract_functions(old))
             legacy = '\n'.join(row['preamble']) + '\n' + old[start:end]
-            negative.append(compile_tu(overlay(original, tu, name, legacy), out, name + '_refusal', expect_error="redeclaration of '" + ERRORS[name] + "'"))
+            negative.append(compile_tu(overlay(original, tu, name, legacy), out, name + '_refusal', expect_error="redeclaration of '" + ERRORS[name] + "'", tu=tu))
             source = (REPO / SOURCES / (name + '.c')).read_text()
             combined = overlay(combined, tu, name, source)
             obj = out / (name + '_standalone.o')
@@ -248,7 +249,7 @@ def _verify(out):
             standalone.append({'function': name, 'bytes': len(want), 'exact': True})
         group = {}
         for label, text, required in [('baseline', original, baseline), ('repaired', current, accepted), ('combined', combined, sorted(set(accepted) | set(candidates)))]:
-            obj = compile_tu(text, out, Path(tu).stem + '_' + label)
+            obj = compile_tu(text, out, Path(tu).stem + '_' + label, tu=tu)
             group[label] = check_object(obj, required, out, targets, addresses)
         require(len({stage['linked_text_sha256'] for stage in group.values()}) == 1, tu + ': linked TU changed')
         stages[tu] = group

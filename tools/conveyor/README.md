@@ -68,6 +68,13 @@ the chronology and use reports for current status.
   the function through the pool (a reduced TU: real repo headers, all other
   functions stripped) and refuses to lock without score 0. `lock verify`
   re-proves existing entries end to end.
+- **Second compiler (IDO 7.1)**: boot-tail ROM TUs pinned in
+  `rom_compilers.json` build with IDO 7.1. Lock their bodies with
+  `lock add <file>:<fn> --flags "..." --toolkit <7.1 toolkit sha>` (uploaded with
+  `publish-toolkit --no-pin`; the entry records `"compiler": "ido7.1"`), compute
+  context rows with `context_check.py --compiler ido7.1`, and promote as usual;
+  promotion refuses a lock or context row whose compiler is not the segment's.
+  See [BUILDING](../../docs/BUILDING.md#ido-71-second-compiler-boot-tail-rom-tus).
 - **Shim iteration loop**: after every `matrix ingest`, run
   `python3 -m tools.conveyor.pipeline.matrix failures` — it clusters candidate
   compile failures by signature (`undefined: gstate`, `unknown type? BLIT`)

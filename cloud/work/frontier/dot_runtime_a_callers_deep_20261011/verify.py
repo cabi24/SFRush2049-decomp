@@ -49,9 +49,9 @@ def function(source, name):
 
 
 def source_contract(source, config):
-    require(config['members'] == list(SIZES) + ['func_8039338C', 'func_80394058'], 'member drift')
+    require(config['members'] == list(SIZES), 'member drift')
     require(config['claims'] == CLAIMS, 'claim drift')
-    require(config['context'] == ['func_80393004'], 'duplicate-credit guard')
+    require(config['context'] == ['func_8039338C', 'func_80394058'], 'duplicate-credit guard')
     require(config['keep'] == ['func_80394058'], 'root/ABI drift')
     require(config['flags'] == '-g0 -O3 -mips2 -G 0 -non_shared', 'flag drift')
     require(config['files'] == ['group.c'], 'source set drift')
@@ -115,7 +115,7 @@ def verify(repo=ROOT):
         functions = {s['name']: s for s in symbols if s['type'] == 2 and s['section'] == ti}
         words = score.text_words(obj)
         scores, bindings, generated_calls, caller_audit = {}, {}, [], {}
-        for name in config['members']:
+        for name in config['members'] + config.get('context', []):
             result = score.compare(obj, name, show=0)
             scores[name] = dataclasses.asdict(result)
             sym = functions[name]
@@ -194,8 +194,7 @@ def verify(repo=ROOT):
         p = subprocess.run(['gcc', '-std=c89', '-pedantic-errors', '-fsyntax-only', str(HERE/'group.c')], capture_output=True, text=True)
         require(p.returncode == 0, 'C89 validation failed: ' + p.stderr)
     hashes = {str(p.relative_to(repo)): sha(p.read_bytes()) for p in (
-        HERE/'group.c', HERE/'group.json', HERE/'verify.py', repo/'tools/cloud/score.py', repo/'tools/cloud/owndata.py',
-        score.ASM_DIR/'SHA256SUMS', *[score.ASM_DIR/n for n in manifest])}
+        HERE/'group.c', HERE/'group.json', HERE/'verify.py')}
     toolchain = {name: sha(Path(score.ido(name)).read_bytes()) for name in ('cc','cfe','uld','usplit','umerge','uopt','ugen','as1')}
     return {'image': 'A', 'image_sha256': IMAGE_HASH, 'baseline_commit': '4296906ea06f551540a29a2547ffdffe92e92104',
             'claims': CLAIMS, 'new_candidate_bytes': sum(SIZES[n] for n in CLAIMS), 'accepted_bytes': 0,

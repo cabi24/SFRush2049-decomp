@@ -931,7 +931,7 @@
     "cloud/work/boot_tail_promotion/sources/func_8001DDE0.c": "784ac40a0fc05fe8801904495880f55d7cf1fef379502a2c9e5db956d5616af3",
     "cloud/work/boot_tail_promotion/sources/func_8001E0C0.c": "b4021efb848895bec6fc0bbf8c0fcec3cc4668ea1ae2110226b95328b4cfcb70"
   },
-  "verification_script_sha256": "35e4c78bbb5d48de646c6808096cb7ae6d2b812fc288d490531435d8f8dc6d33",
+  "verification_script_sha256": "54dae90de1548f78fffa7f5118ed0e0acd42f1c85bbdf40de3dd699cba3581ae",
   "semantic_test_sha256": {
     "tests/cloud/test_sample_buffer_contract.py": "6fcae891eb1be8c4f8b83251114ec4af474366dc2560922471d7145c0a867378",
     "cloud/work/boot_tail_promotion/sample_buffer_contract/replay_emitter.py": "523dafce54ebf72f171c585388661dc3318cebb58c22e81eceda4aec36aca8b3",

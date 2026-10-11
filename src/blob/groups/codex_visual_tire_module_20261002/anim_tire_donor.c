@@ -1,7 +1,18 @@
-/* flags: -g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul */
-/* Direct ancestor: rushtherock/game/visuals.c:AnimateTire.
- * The N64 wheel geometry, bounce ownership, model selection, scale tables,
- * object flags and real helper interfaces follow the native body. */
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* anim_state_update: direct ancestor rushtherock/game/visuals.c:AnimateTire (suscomp spring, DIRT bounce with
+ * Random, spring_save, wheel object swap at vel 64, rpy, CheckXlu). model_bounds_calc is arcade
+ * CheckVisible(Visual *v, BOOL on) and matrix_scale_apply its N64 per-part variant; func_8008B2E4 is Random()
+ * (inlined by umerge).
+ * Shaping and disclosures:
+ * - `s16 i, j` (arcade AnimateTire's declaration list `S16 tire, i,j, slot, ...`) are unused. They are the exact
+ *   home-layout residual: retail homes tire@138 slot@132 row@130 mph@128 lucent@124 controller@120 config@116;
+ *   without them every s16/word home above the spill area moves up by 4 (frame stays 224 by 8-byte rounding,
+ *   30 differing rows in the unit); with only `i`, 20 rows. Two 2-byte slots.
+ * - The translucency flag is computed in `show` and copied to `lucent` (`show` is reused for the visibility test):
+ *   retail keeps the flag in a0 only up to the row test and stores lucent there (uopt cannot copy-propagate
+ *   `lucent = show` because show is redefined). Traced with the w16d split-instrumented uopt (w17c RESULTS.md).
+ * - No compiled-out reads, no stand-ins, no implicit int.
+ */
 #ifndef VISUAL_TIRE_TYPES_H
 #define VISUAL_TIRE_TYPES_H
 typedef signed char s8;
@@ -71,7 +82,7 @@ extern Car952 player_array[];
 extern CarConfig *D_80110D08[];
 extern Control152 D_80150B70[];
 extern Object68 D_8012E700[];
-extern s8 D_80140418,D_80156994,D_8015978C;
+extern s8 D_80140418,D_80156994,D_8014978C;
 extern u8 D_80123264[];
 extern s32 D_80143F68[];
 extern f32 D_801112DC[][13],D_801113E0[][13];
@@ -80,7 +91,7 @@ extern f32 D_8012393C,D_80123940,D_80123944,D_80123948;
 extern s32 func_8008B2B4(void);
 extern void model_data_load(s16,s32,s32);
 extern void model_transform_setup(s16,s32,s32);
-extern s32 model_bounds_calc(s32,Visual *);
+extern s32 model_bounds_calc(Visual *,s32);
 extern s32 matrix_scale_apply(Visual *,s32,s32);
 extern void func_8008D870(s16,s32,s32);
 extern void euler_to_matrix(Matrix3,Vec3);
@@ -88,82 +99,84 @@ extern void func_8008B32C(Matrix3,Matrix3,f32);
 extern void func_8008D6FC(s16,Vec3,Matrix3);
 #endif
 
-#define Random(range) ((f32)func_8008B2B4() * (range) / 32768.0f)
-void anim_state_update(Visual *v,s16 op)
+extern f32 func_8008B2E4(f32);
+#define Random(range) func_8008B2E4(range)
+void anim_state_update(Visual *v, s16 op)
 {
-    f32 pos[3],mat[3][3],rpy[3],spring,spring2,t,vel,lastpos,scale;
+    f32 pos[3], mat[3][3], rpy[3], spring, spring2, t, vel, lastpos;
     Car952 *car;
-    Model2056 *m;
+    s16 tire, i, j, slot, row, mph;
+    s32 lucent;
+    s32 controller;
     CarConfig *config;
-    s16 tire,slot,mph,row,index;
-    s8 controller;
-    s32 lucent,show,appearance;
-    if(op==0) {
-        model_data_load(v->object,1,15);
-        v->callback=0;
-        v->object=-1;
+    Model2056 *m;
+    s32 show, index;
+
+    if (op == 0) {
+        model_data_load(v->object, 1, 15);
+        v->callback = 0;
+        v->object = -1;
         return;
     }
-    slot=v->slot;
-    tire=v->tire;
-    m=&D_8014A250[slot];
-    car=&player_array[slot];
-    spring=m->suspension[tire];
-    lucent=D_80140418!=0;
-    if(!lucent) lucent=(car->appearance&8)!=0;
-    mph=car->mph>>2;
-    controller=car->controller;
-    appearance=car->appearance;
-    if(m->mode==2) row=m->player+1;
-    else row=0;
-    config=D_80110D08[m->car_type];
-    show=(appearance&16)==0;
-    if(show) show=car->hidden==0;
-    if(!model_bounds_calc(show,v)) return;
-    matrix_scale_apply(v,car->render_state>=2,controller);
-    if(m->visual_code[tire]==1) {
-        t=(mph>>2)*D_80123940;
-        if(t>D_8012393C) t=D_8012393C;
-        spring+=Random(t);
+    slot = v->slot;
+    car = &player_array[slot];
+    tire = v->tire;
+    m = &D_8014A250[slot];
+    spring = m->suspension[tire];
+    show = D_80140418 != 0;
+    if (!show) show = (car->appearance & 8) != 0;
+    lucent = show;
+    mph = car->mph >> 2;
+    controller = car->controller;
+    if (m->mode == 2) row = m->player + 1;
+    else row = 0;
+    config = D_80110D08[m->car_type];
+    show = (car->appearance & 16) == 0;
+    if (show) show = car->hidden == 0;
+    if (!model_bounds_calc(v, show)) return;
+    matrix_scale_apply(v, car->render_state >= 2, controller);
+    if (D_8014A250[slot].visual_code[tire] == 1) {
+        t = (mph >> 2) * 0.05f;
+        if (t > 0.6f) t = 0.6f;
+        spring += Random(t);
     }
-    if(spring<0) spring=0;
-    else if(spring>0.5f) spring=0.5f;
-    pos[0]=config->tire_position[tire][0];
-    pos[1]=*config->radius[tire]+config->tire_position[tire][1]+spring;
-    pos[2]=config->tire_position[tire][2];
-    if(controller>=0 && car->render_state==1 && tire==0) {
-        t=(mph>>2)*D_80123944;
-        if(m->visual_code[tire]==1) spring2=(Random(2.0f)-1.0f)*t;
-        else if(m->visual_code[tire]==8) spring2=0;
-        else spring2=(Random(2.0f)-1.0f)*t*0.25f;
-        D_80150B70[controller].spring_save=
-            D_80150B70[controller].spring_save*0.75f+spring2;
+    if (spring < 0) spring = 0;
+    else if (spring > 0.5f) spring = 0.5f;
+    pos[0] = config->tire_position[tire][0];
+    pos[1] = config->tire_position[tire][1] + *config->radius[tire] + spring;
+    pos[2] = config->tire_position[tire][2];
+    if (controller >= 0 && car->render_state == 1 && tire == 0) {
+        t = (mph >> 2) * 0.002f;
+        if (D_8014A250[slot].visual_code[tire] == 1) spring2 = (Random(2.0f) - 1.0f) * t;
+        else if (D_8014A250[slot].visual_code[tire] == 8) spring2 = 0;
+        else spring2 = (Random(2.0f) - 1.0f) * t * 0.25f;
+        D_80150B70[controller].spring_save = D_80150B70[controller].spring_save * 0.75f + spring2;
     }
-    vel=m->tires[tire].angular_velocity;
-    lastpos=v->angle;
-    if(vel>64.0f) lastpos+=D_80123948;
-    else lastpos+=vel*(D_801543CC-v->time);
-    v->angle=lastpos;
-    v->time=D_801543CC;
-    rpy[0]=-lastpos;
-    rpy[1]=(tire<2)?-m->steering:0;
-    rpy[2]=0;
-    if(tire==0) {
-        index=m->body_type;
-        if(vel>64.0f) {
-            if(!D_80156994 && D_8015978C>=0 && D_8015978C<6) index=0;
-            else index=D_80123264[index];
+    vel = m->tires[tire].angular_velocity;
+    lastpos = v->angle;
+    if (vel > 64.0f) lastpos += 3.7f;
+    else lastpos += vel * (D_801543CC - v->time);
+    v->angle = lastpos;
+    v->time = D_801543CC;
+    rpy[0] = -lastpos;
+    rpy[1] = (tire < 2) ? -m->steering : 0;
+    rpy[2] = 0;
+    if (tire == 0) {
+        index = m->body_type;
+        if (m->tires[tire].angular_velocity > 64.0f) {
+            index = (!D_80156994 && D_8014978C >= 0 && D_8014978C < 6) ? 0 : D_80123264[index];
         } else {
-            index+=3;
-            if(!D_80156994 && D_8015978C>=0 && D_8015978C<6) index=16;
+            index = (!D_80156994 && D_8014978C >= 0 && D_8014978C < 6) ? 16 : index + 3;
         }
-        func_8008D870(v->object,D_80143F68[index],-1);
+        func_8008D870(v->object, D_80143F68[index], -1);
     }
-    euler_to_matrix(mat,rpy);
-    if(tire>=2) scale=D_801113E0[row][m->car_type];
-    else scale=D_801112DC[row][m->car_type];
-    if(scale!=1.0f) func_8008B32C(mat,mat,scale);
-    func_8008D6FC(v->object,pos,mat);
-    if(lucent) D_8012E700[v->object].flags^=0x80000000U;
-    else D_8012E700[v->object].flags&=0x7FFFFFFFU;
+    euler_to_matrix(mat, rpy);
+    if (tire >= 2) {
+        if (D_801113E0[row][m->car_type] != 1.0f) func_8008B32C(mat, mat, D_801113E0[row][m->car_type]);
+    } else {
+        if (D_801112DC[row][m->car_type] != 1.0f) func_8008B32C(mat, mat, D_801112DC[row][m->car_type]);
+    }
+    func_8008D6FC(v->object, pos, mat);
+    if (lucent) D_8012E700[v->object].flags ^= 0x80000000U;
+    else D_8012E700[v->object].flags &= 0x7FFFFFFFU;
 }

@@ -1,0 +1,62 @@
+{
+  "protocol_version": 2,
+  "image": "A",
+  "compiler": "ido5.3",
+  "members": [
+    "func_80392F28",
+    "func_80393004",
+    "func_803930B8",
+    "func_803931C0",
+    "func_803932E4"
+  ],
+  "claims": [
+    "func_80392F28",
+    "func_803930B8",
+    "func_803931C0",
+    "func_803932E4"
+  ],
+  "context": [
+    "func_8039338C",
+    "func_80394058"
+  ],
+  "keep": [
+    "func_80394058"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "assembler_workaround": "-Wab,-r4300_mul (canonical score.py group backend)",
+  "input_sha256": {
+    "group.c": "ab75c2190e76898e7f677e815d230398aac8f6feceaf8910add12a378996019f",
+    "group.json": "eec7b8c6339535a6d82806839af734d52ecd0cfc153f4b6afdcf61817fccfb62",
+    "verify.py": "4acde183fac3f733b2fee1a681f9d51e612ce32f8abcaf7f5d3714f475b8aaa0",
+    "quick_verify.py": "67c9049d5924b792591710dbcfcf50f62ba46d5f9ecb840e56af49dfc68d24f4"
+  },
+  "target_manifest_rows": {
+    "extents.json": "0d97935254a6f2c724dfe68b08087e0a451e56d0aedb2121748abe7b6cc0798b",
+    "symbols.json": "d5a6c8dccb0380f54f080d45d82a5e71f917be86f9568bf4b7fbe10a89f2a769"
+  },
+  "target_words_sha256": {
+    "func_80392F28": "74f185428546e075aa2c03b342b059648b4d1c9c6165efccb1b0e31badb02aba",
+    "func_80393004": "cb2befb3f8529390170b44ff360ec85aec72bc16d5643b889eee7f4fe2bde02c",
+    "func_803930B8": "a7874784c1c41a0e740bac6750801217d2de75f68f288e391de98cbbdf1f476b",
+    "func_803931C0": "96a4bf205924f3fe7fea15d281dee92913a5020f64d2cbc910a6ce2aa132173b",
+    "func_803932E4": "9d443d50178d133452926cffa0ad63a801e97abab2d79eeec957464bb25b141a"
+  },
+  "member_bytes": {
+    "func_80392F28": 220,
+    "func_80393004": 180,
+    "func_803930B8": 264,
+    "func_803931C0": 276,
+    "func_803932E4": 168
+  },
+  "new_candidate_bytes": 928,
+  "accepted_image_bytes": 0,
+  "cartridge_bytes": 0,
+  "score_command": "python3 tools/cloud/score.py group cloud/work/frontier/dot_runtime_a_callers_deep_20261011 --targets asm/us/ovl_a",
+  "research_replay": "python3 -m pytest cloud/work/frontier/dot_runtime_a_callers_deep_20261011/research_tests.py -q",
+  "limits": [
+    "Authentic nonmatching callers are context only; no whole-caller or whole-TU equivalence.",
+    "Private helper ABI requires integration caller checks; not standalone O32 replacements.",
+    "No original placement, overlay splice/stream round-trip/full-ROM/hardware/gameplay claim.",
+    "Historical verification.json receipts predate metadata-only packaging; their tool hashes are observations, not current replay gates."
+  ]
+}

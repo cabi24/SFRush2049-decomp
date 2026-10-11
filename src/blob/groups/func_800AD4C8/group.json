@@ -3,16 +3,17 @@
   "func_800AD650",
   "handbrake_apply",
   "func_800C36A0",
-  "camera_trigger_check"
+  "camera_trigger_check",
+  "camera_victory",
+  "func_800C3AD0"
  ],
  "files": [
   "group.c",
+  "camera_victory.c",
   "camera_trigger_check.c"
  ],
  "keep": [
   "__standin_func_800AD4C8",
-  "__standin_func_800C3AD0_a",
-  "__standin_func_800C3AD0_b",
   "__standin_input_process_controller_a",
   "__standin_input_process_controller_b",
   "func_800AD5D0",
@@ -20,17 +21,17 @@
   "func_800AC9BC",
   "__standin_c36a0_a",
   "__standin_c36a0_b",
-  "camera_trigger_check"
+  "camera_trigger_check",
+  "camera_victory"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
  "unprototyped": [],
  "context": [
   "func_800AD4C8",
-  "func_800C3AD0",
   "input_process_controller",
   "func_800AD5D0",
   "func_800AC9BC"
  ],
- "provenance": "frontier wave 10 (w10c), 2026-10-06; cloud/work/frontier/w10c/RESULTS.md",
- "note": "Supersedes src/blob/groups/func_800AD4C8 (same members kept, same keep list plus camera_trigger_check). group.c = the locked group.c with the context bodies func_800AD4C8/func_800C3AD0/input_process_controller replaced by the w1g sources (cloud/work/frontier/w1g/groups/func_800AD4C8), func_800C3AD0 with its real parameter order (poly, wp, q, pt, bound, outIdx, mat, zmin) proven by camera_trigger_check's argument set-up order. The func_800C3AD0/input_process_controller stand-ins stay: they stand for the still-unmatched real callers entity_update/camera_victory and input_deadzone_apply; camera_trigger_check itself has no stand-in."
+ "provenance": "frontier wave 16 (w16d), 2026-10-11; cloud/work/frontier/w16d/RESULTS.md",
+ "note": "Supersedes src/blob/groups/func_800AD4C8 (same name, every old member kept). Adds camera_victory (w15f draft, matched by w16d) and claims func_800C3AD0, which leaves provisional.json: its real callers camera_trigger_check and camera_victory are members here and entity_update is locked in frontier_entity_update. group.c = the locked group.c minus the two __standin_func_800C3AD0_* stand-ins (and their keep entries); camera_trigger_check.c unchanged. func_800AD4C8 stays context (still provisional: its other real caller input_deadzone_apply is unmatched, so the input_process_controller stand-ins stay). File order group.c, camera_victory.c, camera_trigger_check.c: with camera_victory.c last the group object places a deleted-procedure stub after func_800C36A0 (score.py group: '1 extra words'); this order gives every member MATCH."
 }

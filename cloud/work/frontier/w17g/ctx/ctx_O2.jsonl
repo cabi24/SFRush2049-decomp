@@ -1,0 +1,7 @@
+{"status": "ok", "preamble": [], "dropped": [], "words": 2, "function": "func_80014CF4", "source": "lane/sources/func_80014CF4.c"}
+{"status": "ok", "preamble": [], "dropped": [], "words": 2, "function": "func_80014D14", "source": "lane/sources/func_80014D14.c"}
+{"status": "ok", "preamble": [], "dropped": [], "words": 2, "function": "func_8001E0D4", "source": "lane/sources/func_8001E0D4.c"}
+{"status": "ok", "preamble": [], "dropped": [], "words": 3, "function": "func_80014CFC", "source": "lane/sources/func_80014CFC.c"}
+{"status": "ok", "preamble": [], "dropped": [], "words": 3, "function": "func_80014D08", "source": "lane/sources/func_80014D08.c"}
+{"status": "ok", "preamble": ["extern void func_80010E80(void *state);"], "dropped": [], "words": 8, "function": "func_80014BD8", "source": "lane/sources/func_80014BD8.c"}
+{"status": "ok", "preamble": ["extern void func_80011074(void);"], "dropped": [], "words": 8, "function": "func_80014BF8", "source": "lane/sources/func_80014BF8.c"}

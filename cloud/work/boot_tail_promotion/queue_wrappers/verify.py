@@ -21,6 +21,7 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT))
 from tools.cloud import score  # noqa: E402
+from tools.conveyor import compilers as compilersmod  # noqa: E402
 from tools.conveyor.pipeline.lock import body_sha, load_lock, normalize_body  # noqa: E402
 from tools.conveyor.seeds.extract_candidates import extract_functions, extract_named_function  # noqa: E402
 
@@ -129,7 +130,7 @@ def splice(text, paths, rows):
 def build(text, work, label, expect_failure=False):
     source, obj = work / (label + ".c"), work / (label + ".o")
     source.write_text(text)
-    command = [sys.executable, "tools/asm-processor/build.py", str(score.IDO / "cc"),
+    command = [sys.executable, "tools/asm-processor/build.py", str(compilersmod.tu_cc(TU.stem, score.IDO / "cc")),
                "--", "mips-linux-gnu-as", "-march=vr4300", "-mabi=32", "-Iinclude",
                "--", "-c", *TU_FLAGS, "-o", str(obj), str(source)]
     proc = subprocess.run(command, cwd=ROOT, capture_output=True, text=True)

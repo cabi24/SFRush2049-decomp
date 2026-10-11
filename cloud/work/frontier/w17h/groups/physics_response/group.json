@@ -1,0 +1,21 @@
+{
+ "members": [
+  "physics_response"
+ ],
+ "files": [
+  "ctx.c",
+  "physics_response.c"
+ ],
+ "keep": [
+  "audio_effect_apply",
+  "func_800B9338"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [
+  "audio_effect_apply",
+  "func_800B9338"
+ ],
+ "claims": [],
+ "note": "PROVISIONAL (w17h): physics_response MATCHes in this group, but its only caller audio_effect_apply is context (a non-matching reconstruction from codex_physics_a13 / w2a, unlocked) so nothing is claimed. physics_response.c defines func_800B930C verbatim (umerge inlines it; blob_unit --neighbours: 0 locked bodies differ). Disclosed devices: two compiled-out do {} while (0) block ends."
+}

@@ -99,11 +99,17 @@ def build_toolkit(ido_dir, objdump_path, permuter_dir, shim_dir, jobs_dir, out_p
     for path, name in _iter_files(shim_dir, "shim"):
         entries.append((name, path, 0o644))
 
+    payloads = [(name, src.read_bytes(), mode) for name, src, mode in entries]
+    return _write_bundle(payloads, out_path)
+
+
+def _write_bundle(payloads, out_path):
+    """Deterministic toolkit tar.gz from [(archive_name, bytes, mode)]."""
     manifest = {
         "kind": "conveyor-toolkit",
         "arch": "x86_64-linux",
         "entry": "jobs/runner.py",
-        "contents": sorted(name for name, _, _ in entries),
+        "contents": sorted(name for name, _, _ in payloads),
     }
 
     buf = io.BytesIO()
@@ -112,9 +118,8 @@ def build_toolkit(ido_dir, objdump_path, permuter_dir, shim_dir, jobs_dir, out_p
         data = json.dumps(manifest, sort_keys=True, separators=(",", ":")).encode()
         info.size, info.mtime, info.uid, info.gid, info.mode = len(data), 0, 0, 0, 0o644
         tar.addfile(info, io.BytesIO(data))
-        for name, src, mode in sorted(entries):
+        for name, payload, mode in sorted(payloads):
             info = tarfile.TarInfo(name)
-            payload = src.read_bytes()
             info.size, info.mtime, info.uid, info.gid, info.mode = (
                 len(payload), 0, 0, 0, mode,
             )
@@ -129,6 +134,24 @@ def build_toolkit(ido_dir, objdump_path, permuter_dir, shim_dir, jobs_dir, out_p
     return out_path
 
 
+def swap_ido(base_toolkit, ido_dir, out_path):
+    """A toolkit identical to `base_toolkit` (a toolkit .tar.gz) except that
+    its `ido/` directory is replaced by the files of `ido_dir`. This is how a
+    second-compiler toolkit is made (IDO 7.1 for the boot-tail TUs): same job
+    code, shim, permuter and objdump as the pinned 5.3 toolkit, so a score
+    difference can only come from the compiler."""
+    payloads = []
+    with tarfile.open(base_toolkit) as tar:
+        for member in tar.getmembers():
+            if not member.isfile() or member.name == "manifest.json" \
+                    or member.name.startswith("ido/"):
+                continue
+            payloads.append((member.name, tar.extractfile(member).read(), member.mode))
+    for path, name in _iter_files(ido_dir, "ido"):
+        payloads.append((name, path.read_bytes(), 0o755))
+    return _write_bundle(payloads, out_path)
+
+
 def main():
     repo = Path(__file__).resolve().parents[2]  # tools/
     parser = argparse.ArgumentParser(description=__doc__)
@@ -138,12 +161,21 @@ def main():
     parser.add_argument("--shim", default=str(repo / "conveyor/seeds/shim"))
     parser.add_argument("--jobs", default=str(repo / "conveyor/jobs"))
     parser.add_argument("--out", required=True)
+    parser.add_argument("--swap-ido-from", default=None, metavar="TOOLKIT_TAR_GZ",
+                        help="copy every non-ido/ file from this toolkit and take ido/ "
+                             "from --ido (a second-compiler toolkit)")
     args = parser.parse_args()
-    out = build_toolkit(args.ido, args.objdump, args.permuter, args.shim, args.jobs, args.out)
+    if args.swap_ido_from:
+        out = swap_ido(args.swap_ido_from, args.ido, args.out)
+    else:
+        out = build_toolkit(args.ido, args.objdump, args.permuter, args.shim, args.jobs, args.out)
     import hashlib
 
     sha = hashlib.sha256(Path(out).read_bytes()).hexdigest()
     print(f"toolkit: {out}\nsha256:  {sha}")
+    from ..compilers import identify_toolkit
+
+    print(f"compiler: {identify_toolkit(out) or 'unknown'}")
 
 
 if __name__ == "__main__":

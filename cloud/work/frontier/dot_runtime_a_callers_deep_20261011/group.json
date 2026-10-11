@@ -4,9 +4,7 @@
     "func_80393004",
     "func_803930B8",
     "func_803931C0",
-    "func_803932E4",
-    "func_8039338C",
-    "func_80394058"
+    "func_803932E4"
   ],
   "claims": [
     "func_80392F28",
@@ -15,7 +13,8 @@
     "func_803932E4"
   ],
   "context": [
-    "func_80393004"
+    "func_8039338C",
+    "func_80394058"
   ],
   "files": [
     "group.c"

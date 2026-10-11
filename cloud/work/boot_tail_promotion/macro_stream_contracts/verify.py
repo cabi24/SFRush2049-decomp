@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[4]
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 from tools.cloud import score
+from tools.conveyor import compilers as compilersmod
 from tools.conveyor.pipeline.lock import normalize_body
 from tools.conveyor.seeds.extract_candidates import extract_functions
 
@@ -103,7 +104,7 @@ def splice(group, text, paths, rows):
 def build(text, tmp, label, context, failure=None):
     source, obj = tmp / (label + '.c'), tmp / (label + '.o')
     source.write_text(text)
-    command = [sys.executable, str(ROOT / 'tools/asm-processor/build.py'), score.ido('cc'),
+    command = [sys.executable, str(ROOT / 'tools/asm-processor/build.py'), str(compilersmod.tu_cc('lib_25bb0', score.ido('cc'))),
                '--', 'mips-linux-gnu-as', '-march=vr4300', '-mabi=32', '-I' + str(ROOT / 'include'),
                '--', '-c', *context.CFLAGS, '-o', str(obj), str(source)]
     proc = subprocess.run(command, cwd=ROOT, capture_output=True, text=True)

@@ -124,7 +124,10 @@ def verify():
     source=(HERE/'group.c').read_text();prior=(BASELINE/'group.c').read_text()
     require(source==expected_source(prior),'unexpected source delta')
     config=json.loads((HERE/'group.json').read_text());oldconfig=json.loads((BASELINE/'group.json').read_text())
-    require(config==dict(oldconfig,claims=[CLAIM]),'unexpected group recipe')
+    expected_config=dict(oldconfig,claims=[CLAIM],
+        members=['func_8039D494','func_8039E3BC',CLAIM,'func_8039ED20'],
+        context=[n for n in oldconfig['context'] if n != CLAIM])
+    require(config==expected_config,'unexpected group recipe')
     asset=(ROOT/'assets/us/data.bin').read_bytes()
     require(sha(asset)=='f06d4ad0bb7dc7aff494acddc736f1b56bc271a2292c0286879cc9189bec31c8','asset identity')
     require(int.from_bytes(asset[0x3850:0x3854],'big')==0xB5C534,'loader pointer')
@@ -133,7 +136,7 @@ def verify():
     score._own_data[owndata.artifact_dir(score.ASM_DIR)]=owndata.ImageData.from_image(image,0x8038A400)
     with tempfile.TemporaryDirectory(prefix='record-context-') as td:
         temp=Path(td);obj=temp/'candidate.o';score.compile_group(HERE,obj)
-        scores={name:dataclasses.asdict(score.compare(obj,name,show=0)) for name in config['members']}
+        scores={name:dataclasses.asdict(score.compare(obj,name,show=0)) for name in config['members'] + config.get('context', [])}
         for result in scores.values():result['errors']=['owned-data comparison mismatch' if 'retail' in e else e for e in result['errors']]
         linked,relocs=gnu_resolve(obj,temp);bindings={}
         for name,size in NAMES.items():

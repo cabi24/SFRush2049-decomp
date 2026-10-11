@@ -1,5 +1,14 @@
 # Cloud handoff: contributing to the Rush 2049 N64 decompilation
 
+> **Status banner (2026-10-11).** The numbers and work-item indexes below are from 2026-10-01 and are stale:
+> on 2026-10-11 the game code is at 972/1216 functions (310,380 B, 47.97%) and the static code at 489/668
+> (87,756 B, 54.60%); the Rush boot tail is IDO 7.1 (`tools/cloud/setup.sh` now installs it as
+> `tools/cloud/ido71`); the runtime images A/B have targets at `asm/us/ovl_{a,b}` (`score.py --targets`) but no
+> landing path yet. Read [docs/plans/2026-10-11-astra-cloud-plan.md](docs/plans/2026-10-11-astra-cloud-plan.md)
+> first: it says what lands, what does not, and the packet rules that keep integration cheap. The live frontier is
+> [docs/plans/2026-10-06-frontier-handoff.md](docs/plans/2026-10-06-frontier-handoff.md) §0; the method is
+> [cloud/work/frontier/WAVE_BRIEF.md](cloud/work/frontier/WAVE_BRIEF.md). This file is rewritten next.
+
 This file is for an agent joining with no other context, working only from
 this GitHub repository (no ROM, no LAN build farm). It says what the project
 is, what you can verify from here, and where your work helps most.

@@ -1,17 +1,16 @@
 # Frontier handoff: 2026-10-06 (after wave 12), updated 2026-10-11 (after wave 15)
 
-## 0. Wave 13–15 update (2026-10-11, master `0fdd8d9e`; wave 16 running)
+## 0. Wave 13–17 update (2026-10-11, after wave 17 and the IDO 7.1 boot-tail promotion)
 
 Read this section first; §1–§10 below are the wave-12 text and still describe the method. Section-by-section
 deltas are noted inline where they matter.
 
 | | Functions | Bytes | % |
 |---|---|---|---|
-| Game code (compressed image) | 958 / 1216 | 291,548 / 647,072 | 45.06 |
-| Static code (boot/library) | 400 / 668 | 73,596 / 160,720 | 45.79 |
+| Game code (compressed image) | 972 / 1216 | 310,380 / 647,072 | 47.97 |
+| Static code (boot/library) | 489 / 668 | 87,756 / 160,720 | 54.60 |
 
-Frontier: 258 unmatched game functions (269 KB). Ready now: 25 singles (24 KB), 32 group (31 KB), 5 unit (4.6 KB).
-Provisional: 22 functions, 12.1 KB (`provisional.json`).
+Frontier: 244 unmatched game functions (251 KB) after wave 17. Provisional: 20 functions (`provisional.json`).
 
 **What landed since wave 12 (+19.9 KB game):**
 - Wave 13: records_screen, func_800E762C, differential_output (+1.2 KB); wave 14: graphics_chunk,
@@ -76,11 +75,109 @@ Table in `cloud/work/frontier/w15g/RESULTS.md`.
   **camera_transform is added to the keep-off list** (§4).
 - Implicit int: still open; no landed function needs it.
 
-**Wave 16 (launched 2026-10-11, eight Opus lanes, trace-first):** w16a camera_update (+camera_aspect_ratio group),
-w16b entity_spawn_init, w16c camera_play_script, w16d camera_victory then func_800E4B58, w16e func_80096130 /
-func_8010FBE0 / entity_process_main, w16f pause_quit retry through the w15j gate then audio_frame_update /
-init_state_continue, w16g static ultralib/libgcc promotion prep (w15g rows), w16h fresh func_80108F40 /
-entity_render_setup / anim_state_update / func_800F45F8. Rules file: WAVE_BRIEF "Wave 16".
+**Wave 16 (2026-10-11, eight Opus matching/tooling lanes plus w16i tooling, trace-first). Landed:**
+- **Game +9,308 B:** camera_victory (1,468) with provisional func_800C3AD0 (1,448) in the superseding `func_800AD4C8`
+  group (w16d; levers: loop-2 inner test as `continue` so uopt's split start block skips the call block and `car` keeps
+  s4; one `j` across three loops; sibling idiom `cnt = *q++` from camera_trigger_check; no shaping devices);
+  camera_update (2,876) with camera_free_look (436) and camera_track_spline (860) in the
+  superseding `camera_aspect_ratio` group (w16a; lever: uopt orders `==` operands by kind, so `idx * 1 + 1 ==
+  sc->count` puts count first; disclosed, plus w15a's two compiled-out reads; `D_80123E8C` is the literal 0.0425f);
+  singles func_80108F40 (1,320; three unused locals = exact frame residual, disclosed) and func_800F45F8 (900) (w16h).
+- **Static +4,248 B, 31 functions (w15g survey → w16g sources → w16i tooling):** `__osPfsRWInode`, `__osContRamWrite`,
+  `__osEPiRawWriteIo`, `__osEPiRawReadIo`, `__osContAddressCrc`, `__osContDataCrc`, `osMotorStop` (= osPfsRepairId),
+  `__osSiDeviceBusy`, `func_800103A0`, `func_80014650`, `func_8002517C`, `__osResetGlobalIntMask`,
+  `__osSetGlobalIntMask`, `osYieldThread`, `osDestroyThread`, and the 16 libgcc-named functions, which are ultralib
+  `libc/ll.c` + `llcvt.c` verbatim at `-g0 -O1 -mips3 -32`. Ten segments converted. New tooling:
+  `tools/conveyor/pipeline/targets_rename.py` (inventory rows re-registered under current layout names; applied to
+  the live DB, 18 actions, backup in the coordinator's scratchpad), `write_opt_overrides` `-mips3 -32` rule and
+  `tools/conveyor/pipeline/o32abi.py` (EF_MIPS_32BITMODE in the ROM-TU Makefile rule). Static promotion is run with
+  `cloud/work/boot_tail_promotion/promote_batch.py CTX.jsonl SEG… --only fn,…` after `lock add` + `layout convert`
+  (lock first: the segment flagset derives from the lock). Still open on the static side: `osAiSetNextBuffer` (needs a
+  16-byte owned `.data` slot), `__fixunsdfdi`/`__fixunssfdi` (owned `.rodata` + reloc-aware targets), two stale
+  inventory rows (`__osGetCause` → osCauseGet, `__osContAddressCrc` insn_count), the hand-asm policy question
+  (`w16g/RESULTS.md`), and the wrong labels listed there (notably `__osActiveQueue`/`__osRunQueue` swapped).
+- **Provisional:** pause_quit (= drone_throttle_calc) passes the w15j own-data gate (w16f dry run) but its only caller
+  func_800D91A0 is unmatched; init_state_continue is code-identical with asm-only callers (w16f).
+
+**Open near-misses after wave 16** (replaces the wave-15 table where names overlap):
+
+| Target | Bytes | Gap | Cause and best source | Lands with it |
+|---|---:|---|---|---|
+| camera_play_script | 3520 | 6 normalised rows (was 48), frame 600 vs 608 | -1 constant tie broken by block count (18 → 19 blocks flips float rounding of benefit = cost); zero spelled two ways; `old` after `n`. Left: corner-loop register (a1 blocked by an unknown web), k-loop denominator in $f22 without merging `u`, two spill slots. `w16c/camera_play_script/best.c`. | |
+| entity_spawn_init | 5544 | 61 words, frame ok | decision order: the model address ties a constant web at priority 0.6667 and is decided too early, so its top piece is never coloured; `surface` memory-only; a missing early expression value (two spill slots 4 B off). Split logger `w16b/tools/splitpatch.py`. | 3 / 3.6 KB |
+| anim_state_update | 1840 | 39/460 words (21 rows), frame ok | `lucent` start in a0 (retail) vs ra; context copy inside locked `codex_visual_tire_module_20261002` (replace under the same name). `w16h/anim_state_update/best.c`. | |
+| entity_render_setup | 2048 | 394/512, frame 184 vs 200 | camera pointer substituted away; palette base and loop pointer timing. `w16h/entity_render_setup/best.c`. | |
+| func_800E4B58 | 2268 | 503/567 words (106 → 70 rows) | arcade MaxPathControls with five helpers inlined; blocked by func_800E398C's convention (parameter in s7, clobbers s0–s8/$f20–$f30 unsaved). `w16d/func_800E4B58/best.c`. | func_800E451C, func_800E4300 (2,128 B) |
+| audio_frame_update | 600 | 21 words | unknown web holds v1 over the final loop; `D_801543CC` hoisting. `w16f/audio_frame_update/best.c`. | |
+| func_80096130 | 264 | 3 words (needs one disclosed `if (slot) {}`) | retail's `slot` tail is a register piece after osJamMesg; any extra use crosses the split threshold. Needs uopt `f_split` reading or a "split once" force mode. `w16e`. | |
+| func_8010FBE0 | 128 | 6 rows | defining `OSScTask D_80155238;` in the unit is supported (func_800B2BDC precedent) but the symbol address then lives in a3/v0. `w16e`. | |
+| entity_process_main | 1424 | 2 words | ugen shift/load/NOT order; no expression tree reaches it. | |
+| input_deadzone_apply | 3580 | 122 words | ugen double compile, w12a. Untouched. | input_process_controller |
+| func_800E847C + func_800E7FA0 | 2100 + 1244 | far | w11g | |
+
+Provisional unblockers: func_800E4B58 (above), func_800D91A0 (closes 1,572 B + pause_quit 1,024, 603 rows), audio_mixer_main.
+Wave 16 lesson (w16d, w16b): uopt's live-range split start block follows source-visible block order; a private
+instrumented uopt with skip/reject oracles proves the lever before searching for the source form.
+
+**Wave 17 (2026-10-11 afternoon/evening, nine Opus lanes + w17j packaging + w17k tooling). Landed, game +9,524 B:**
+- **frontier_maxpath_controls** (w17b, 6,792 B): func_800E4B58 MaxPathControls, func_800E398C avoid_areas, the
+  former provisionals func_800E451C and func_800E4300, six inlined arcade helpers (locked stubs reverted, now
+  members). Levers: float-literal spelling is a constant-web key (`0`, `0.0f`, `0.f` are three constants), arcade
+  integer literals, one-line vector macros for store order, definition order for as1 ties. The blamed callee
+  convention was not the blocker (a correct-convention stand-in changed nothing).
+- **anim_state_update** (w17c, 1,840 B) in the superseding codex_visual_tire_module_20261002 group: `lucent` is a
+  memory variable fed from a reused `show` local; model_bounds_calc's real parameter order is the arcade
+  `CheckVisible(v, on)` (the func_8008B640 group superseded under the same name, prototype/definition/call only).
+- **codex_heap_release_a25** extended (w17h + w17i, merged by w17j, 892 B): func_800C8918 (slot-queue lock/unlock
+  stubs func_80091AF0/AF8 given bodies) and func_80096130 (early return ends uopt's not-the-stack marker). Packaging
+  lesson: an inlined `static` helper's deleted-procedure stub has no symbol and lands after a member → "extra words";
+  make the helper a non-static internal function (not on `keep`) so its stub carries a symbol.
+- **blob_unit fix:** the unit-wide own-.bss extent rule was link-order dependent (locking anim_state_update moved a
+  file in the link and func_800F0674's statics then reported an overlap); the extent is now the access width capped
+  by the gap. One receipt (dot_billboard_helpers_20261005) rebound.
+- **Provisional:** physics_response joined (MATCH in its group; caller audio_effect_apply unmatched).
+
+**Static: the Rush boot tail is IDO 7.1 (w17g finding, w17k tooling, landed 2026-10-11 evening, +9,912 B / 58
+functions).** The Rush-specific boot-tail segments (lib_11050 … lib_26ab0, 18 ROM TUs) were compiled with IDO 7.1;
+libultra and the 435 earlier locks are 5.3 and unaffected (397/435 re-score exact under 7.1, the 38 that differ are
+libultra; all 18 TUs build byte-identical under both, proven by the switch-only ROM gate before any promotion).
+Tooling now on master: `tools/conveyor/compilers.py` (pinned 5.3/7.1 builds with fingerprints; `install ido7.1`),
+`build_toolkit --swap-ido-from`, `publish-toolkit --no-pin` (7.1 toolkit `4586d230…`, uploaded unpinned),
+`lock add --toolkit SHA` (records `compiler: ido7.1`; `lock verify` re-proves with it), `rom_compilers.json`
+(segment → compiler; `write_opt_overrides` emits `CC := $(IDO71_CC)`; the Makefile stops if 7.1 is missing, never
+falls back), `promote_batch --dry-run/--splice-out/--lockfile` and compiler-mismatch refusals, docs in BUILDING.md
+and COMPILER_SETTINGS.md. The builder has 7.1 at `~/rush2049/repo/tools/ido-static-recomp/build71/out` (CI builds
+no ROM and needs nothing). **Packets:** eight boot-tail research packets rebuild their ROM TU; they now take the compiler from the pin via `compilers.tu_cc` (receipts rebound), and `tools/cloud/setup.sh` installs 7.1 beside 5.3 for CI. **Gotcha fixed:** `blob_rom rom` synced only the Makefile and blob to the builder, so a
+stale `rom_compilers.json`/`opt_overrides.mk` there built every TU with 5.3 and still matched; it now syncs both.
+Still open on the static side: osAiSetNextBuffer (owned `.data` slot prepared in `w17g/`), `__fixunsdfdi`/
+`__fixunssfdi` (owned `.rodata` + `.set gp=64` for reloc-aware targets), two stale inventory rows (`osCauseGet`,
+`__osContAddressCrc`), 9 w17g sources exact under 7.1 but conflicting with TU declarations (`w17g/lockonly/`,
+2,532 B), the sched (`__sc*`) older-build family, inflate/lzss (~8.2 KB, no vendored source), the hand-asm policy
+question, and the remaining ~115 boot-tail `func_*` near-misses now that the right compiler is known
+(`w17g/inv_table.md`: many at true=10–40 were never examined under 7.1).
+
+**Open near-misses after wave 17** (replaces the wave-16 table where names overlap):
+
+| Target | Bytes | Gap | Cause and best source | Lands with it |
+|---|---:|---|---|---|
+| func_800D91A0 | 3860 | 8 mnemonic rows, 212 word rows, frame 240 exact (w17e, from 603 rows) | fresh reconstruction (N64-only name-entry screen); needs func_800D816C (2,796 B, Astra draft 627/699) in the same group (IPA partner: parameter in t2, clobbers s0–s8); func_800D8154 is `(s8 player, s32 item)` with the player in the stack slot; caller-less func_800DA0B4 is an inlined getter. Remaining: constants 21/1 coloured in the other order (s5/s6). `w17e/d91a0/best.c`, `w17e/base/`. | drone_throttle_calc (pause_quit), func_800D8078, render_results_screen, render_replay_ui (1,572 B) |
+| camera_play_script | 3520 | 27 rows, frame 608 exact (w17a, from 48) | `i = idx[0]` through an int variable in an existing slot; `c1` was a fake local; zero spellings; `u` assigned before the compare. Left: corner-loop pointer a1 vs t0 (register only), t0/t1 priority swap, one spill slot 144 vs 148, one mul operand order. `w17a/camera_play_script/best.c`, `w17a/tools/patch_lbb.py` (uopt block dump). | |
+| entity_render_setup | 2048 | 68 rows (from 171), frame 184 exact (w17d) | `op;` reproduces the entry `sw a1`; `angle` reused as the world scale; laundered `view` pointer. Left: palette base load placement, `&delta`/`&quad` before the mode branch, draw-loop as1 schedule, world-loop FP temps. `w17d/entity_render_setup/best.c`. | |
+| entity_spawn_init | 5544 | 61 words (w16b/w17f: oracle proves 45 of them are two decisions) | the model address ties the constant 5 at priority 0.6667 and wins by number; `surface` must be address-taken (`*(s16 *)&surface` form in `w17f/entity_spawn_init/base_alias.c` costs no statement); the inlining budget is exactly one statement. Needs a code-neutral form removing 2–4 blocks where both are live. `w17f/tools/prio_patch.py`. | 3 / 3.6 KB |
+| audio_frame_update | 600 | 22 words (w17i) | shared base via `(player_array + slot)->…` and `cb` before `handle` fixed the loop; retail holds one more value in v1 across the loop (an eliminated second counter?). `w17i/audio_frame_update/best.c`. Supersede group audio_frame_update, keep func_800B0A88. | |
+| engine_sound_sync | 1236 | 286/309, frame 376 vs 368 (w17h) | takes the same slot-queue lock as func_800C8918: a frame 8 short likely means a missing nested inline level (caller-less stubs next to func_80091B00). `w17h/engine_sound_sync/best.c`. | |
+| func_800D6914 | 1260 | 283/315, stand-in callers (w17h) | provisional lane; `w17h/func_800D6914/best.c`. | |
+| func_8010FBE0 | 128 | 6 rows | defining `OSScTask D_80155238;` in the unit is supported; symbol address then held in a3/v0. `w16e`. | |
+| entity_process_main | 1424 | 2 words | ugen shift/load/NOT order. | |
+| input_deadzone_apply | 3580 | 122 words | ugen double compile, w12a. Untouched. | input_process_controller |
+| func_800E847C + func_800E7FA0 | 2100 + 1244 | far | w11g | |
+
+**New diagnostic tools (wave 17):** `w17f/tools/prio_patch.py` (priority oracle: decide one candidate earlier/later),
+`w17i/boostpatch.py` (force a value to be considered earlier), `w17a/tools/patch_lbb.py` (uopt block dump),
+`w17c/tools/uproc.py`; w17i's RESULTS decodes how uopt ranks register candidates (blocks counted in groups of
+four, so exact ties are common).
+
+**Astra / cloud:** see [2026-10-11-astra-cloud-plan.md](2026-10-11-astra-cloud-plan.md): runtime images A/B (191 KB, targets in `asm/us/ovl_*`) have no landing path yet and hold ~14 KB of Astra's verified matches; the plan's workstream A builds it, B rewrites `CloudHandoff.md`, C is the packet protocol that stops the receipt rebinds.
 
 **For the next coordinating session.** This covers where the frontier matching effort stands, how a wave is run end to end, what the owner has decided, and every open item. Read it with `CLAUDE.md`, `cloud/work/frontier/WAVE_BRIEF.md` (the brief every lane agent reads) and `docs/plans/2026-10-04-frontier-plan.md` (the original method).
 

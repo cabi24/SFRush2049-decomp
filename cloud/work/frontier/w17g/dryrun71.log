@@ -1,0 +1,421 @@
+context_check CC: /home/cburnes/rush2049/scratch/frontier/w17g/tk71/ido/cc
+func_80010840 ok 
+func_800108E0 ok 
+func_80011C1C ok 
+func_80011F60 ok 
+func_800123A8 ok 
+func_80014198 ok 
+func_8001467C ok 
+func_8001489C ok 
+func_80014A0C ok 
+func_80014BD8 ok 
+func_80014BF8 ok 
+func_80014CF4 ok 
+func_80014CFC ok 
+func_80014D08 ok 
+func_80014D14 ok 
+func_80015348 ok 
+func_800156E8 ok 
+func_8001785C ok 
+func_80018BEC ok 
+func_8001989C ok 
+func_80019AD4 ok 
+func_8001B1D0 ok 
+func_8001C77C ok 
+func_8001CC9C ok 
+func_8001CCDC ok 
+func_8001D1C0 ok 
+func_8001D660 ok 
+func_8001E0D4 ok 
+func_8001E440 ok 
+func_8001E790 ok 
+func_8001E864 ok 
+func_80020200 ok 
+func_8002021C ok 
+func_80020598 ok 
+func_80020610 ok 
+func_800206AC ok 
+func_80020A04 ok 
+func_80020DA8 ok 
+func_80020F4C ok 
+func_80020F98 ok 
+func_80020FDC ok 
+func_80021028 ok 
+func_800215A8 ok 
+func_8002165C ok 
+func_80021C58 ok 
+func_80021CDC ok 
+func_80021D5C ok 
+func_80021DF8 ok 
+func_80021E74 ok 
+func_80021F08 ok 
+func_80022514 ok 
+func_80022580 ok 
+func_8002279C ok 
+func_80022A40 ok 
+func_80022A98 ok 
+func_80022F24 ok 
+func_8002300C ok 
+func_8002321C ok 
+func_800239A4 ok 
+func_80025F74 ok 
+== func_80010840 (target func_80010840) src=lane/sources/func_80010840.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (51 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_113e0.c additions=lane/ctx/ctx71_O2.jsonl preamble (6 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (51 rows)
+RESULT PASS
+== func_800108E0 (target func_800108E0) src=lane/sources/func_800108E0.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (51 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_113e0.c additions=lane/ctx/ctx71_O2.jsonl preamble (6 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (51 rows)
+RESULT PASS
+== func_80011C1C (target func_80011C1C) src=lane/sources/func_80011C1C.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (28 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_11640.c additions=lane/ctx/ctx71_O2.jsonl preamble (1 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (28 rows)
+RESULT PASS
+== func_80011F60 (target func_80011F60) src=lane/sources/func_80011F60.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (170 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_11640.c additions=lane/ctx/ctx71_O2.jsonl preamble (8 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (170 rows)
+RESULT PASS
+== func_800123A8 (target func_800123A8) src=lane/sources/func_800123A8.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (173 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_11640.c additions=lane/ctx/ctx71_O2.jsonl preamble (8 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (173 rows)
+RESULT PASS
+== func_80014198 (target func_80014198) src=lane/sources/func_80014198.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (136 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_11640.c additions=lane/ctx/ctx71_O2.jsonl preamble (12 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (136 rows)
+RESULT PASS
+== func_8001467C (target func_8001467C) src=lane/sources/func_8001467C.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (14 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_11640.c additions=lane/ctx/ctx71_O2.jsonl preamble (1 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (14 rows)
+RESULT PASS
+== func_8001489C (target func_8001489C) src=lane/sources/func_8001489C.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (25 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_11640.c additions=lane/ctx/ctx71_O2.jsonl preamble (1 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (25 rows)
+RESULT PASS
+== func_80014A0C (target func_80014A0C) src=lane/sources/func_80014A0C.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (29 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_11640.c additions=lane/ctx/ctx71_O2.jsonl preamble (1 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (29 rows)
+RESULT PASS
+== func_80014BD8 (target func_80014BD8) src=lane/sources/func_80014BD8.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (8 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_11640.c additions=lane/ctx/ctx71_O2.jsonl preamble (1 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (8 rows)
+RESULT PASS
+== func_80014BF8 (target func_80014BF8) src=lane/sources/func_80014BF8.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (8 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_11640.c additions=lane/ctx/ctx71_O2.jsonl preamble (1 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (8 rows)
+RESULT PASS
+== func_80014CF4 (target func_80014CF4) src=lane/sources/func_80014CF4.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (1 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_11640.c additions=lane/ctx/ctx71_O2.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (1 rows)
+RESULT PASS
+== func_80014CFC (target func_80014CFC) src=lane/sources/func_80014CFC.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (3 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_11640.c additions=lane/ctx/ctx71_O2.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (3 rows)
+RESULT PASS
+== func_80014D08 (target func_80014D08) src=lane/sources/func_80014D08.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (3 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_11640.c additions=lane/ctx/ctx71_O2.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (3 rows)
+RESULT PASS
+== func_80014D14 (target func_80014D14) src=lane/sources/func_80014D14.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (1 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_11640.c additions=lane/ctx/ctx71_O2.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (1 rows)
+RESULT PASS
+== func_80015348 (target func_80015348) src=lane/sources/func_80015348.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (9 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_15a10.c additions=lane/ctx/ctx71_O2.jsonl preamble (1 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (9 rows)
+RESULT PASS
+== func_800156E8 (target func_800156E8) src=lane/sources/func_800156E8.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (12 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_15a10.c additions=lane/ctx/ctx71_O2.jsonl preamble (1 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (12 rows)
+RESULT PASS
+== func_8001785C (target func_8001785C) src=lane/sources/func_8001785C.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (20 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_17dc0.c additions=lane/ctx/ctx71_O2.jsonl preamble (1 stmts, 1 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (20 rows)
+RESULT PASS
+== func_80018BEC (target func_80018BEC) src=lane/sources/func_80018BEC.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (18 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_17dc0.c additions=lane/ctx/ctx71_O2.jsonl preamble (2 stmts, 3 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (18 rows)
+RESULT PASS
+== func_8001989C (target func_8001989C) src=lane/sources/func_8001989C.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (10 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_17dc0.c additions=lane/ctx/ctx71_O2.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (10 rows)
+RESULT PASS
+== func_80019AD4 (target func_80019AD4) src=lane/sources/func_80019AD4.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (68 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_1a660.c additions=lane/ctx/ctx71_O2.jsonl preamble (4 stmts, 4 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (68 rows)
+RESULT PASS
+== func_8001B1D0 (target func_8001B1D0) src=lane/sources/func_8001B1D0.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (52 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_1a660.c additions=lane/ctx/ctx71_O2.jsonl preamble (5 stmts, 4 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (52 rows)
+RESULT PASS
+== func_8001C77C (target func_8001C77C) src=lane/sources/func_8001C77C.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (34 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_1cf90.c additions=lane/ctx/ctx71_O2.jsonl preamble (4 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (34 rows)
+RESULT PASS
+== func_8001CC9C (target func_8001CC9C) src=lane/sources/func_8001CC9C.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (8 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_1cf90.c additions=lane/ctx/ctx71_O2.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (8 rows)
+RESULT PASS
+== func_8001CCDC (target func_8001CCDC) src=lane/sources/func_8001CCDC.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (243 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_1cf90.c additions=lane/ctx/ctx71_O2.jsonl preamble (7 stmts, 3 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (243 rows)
+RESULT PASS
+== func_8001D1C0 (target func_8001D1C0) src=lane/sources/func_8001D1C0.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (14 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_1cf90.c additions=lane/ctx/ctx71_O2.jsonl preamble (1 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (14 rows)
+RESULT PASS
+== func_8001D660 (target func_8001D660) src=lane/sources/func_8001D660.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (69 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_1cf90.c additions=lane/ctx/ctx71_O2.jsonl preamble (7 stmts, 1 dropped)
+TU: COMPILE FAIL cfe: Error: /tmp/tmp1jqrz2vq/tu.c, line 132: redeclaration of 'Vector'; previous declaration at line 126 in file '/tmp/tmp1jqrz2vq/tu.c' | cfe: Error: /tmp/tmp1jqrz2vq/tu.c, line 132: Duplicate member 'x' | cfe: Error: /tmp/tmp1jqrz2vq/tu.c, line 132: Duplicate member 'y' | cfe: Error: /tmp/tmp1jqrz2vq/tu.c, line 132: Duplicate member 'z' | cfe: Error: /tmp/tmp1jqrz2vq/tu.c, line 132: redeclaratio
+RESULT FAIL
+== func_8001E0D4 (target func_8001E0D4) src=lane/sources/func_8001E0D4.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (1 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_1cf90.c additions=lane/ctx/ctx71_O2.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (1 rows)
+RESULT PASS
+== func_8001E440 (target func_8001E440) src=lane/sources/func_8001E440.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (53 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_1ece0.c additions=lane/ctx/ctx71_O2.jsonl preamble (1 stmts, 2 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (53 rows)
+RESULT PASS
+== func_8001E790 (target func_8001E790) src=lane/sources/func_8001E790.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (13 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_1f340.c additions=lane/ctx/ctx71_O2.jsonl preamble (1 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (13 rows)
+RESULT PASS
+== func_8001E864 (target func_8001E864) src=lane/sources/func_8001E864.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (51 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_1f340.c additions=lane/ctx/ctx71_O2.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (51 rows)
+RESULT PASS
+== func_80020200 (target func_80020200) src=lane/sources/func_80020200.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (9 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_207b0.c additions=lane/ctx/ctx71_O2.jsonl preamble (1 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (9 rows)
+RESULT PASS
+== func_8002021C (target func_8002021C) src=lane/sources/func_8002021C.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (25 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_207b0.c additions=lane/ctx/ctx71_O2.jsonl preamble (3 stmts, 2 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (25 rows)
+RESULT PASS
+== func_80020598 (target func_80020598) src=lane/sources/func_80020598.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (21 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_207b0.c additions=lane/ctx/ctx71_O2.jsonl preamble (2 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (21 rows)
+RESULT PASS
+== func_80020610 (target func_80020610) src=lane/sources/func_80020610.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (42 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_21210.c additions=lane/ctx/ctx71_O2.jsonl preamble (2 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (42 rows)
+RESULT PASS
+== func_800206AC (target func_800206AC) src=lane/sources/func_800206AC.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (100 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_21210.c additions=lane/ctx/ctx71_O2.jsonl preamble (1 stmts, 3 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (100 rows)
+RESULT PASS
+== func_80020A04 (target func_80020A04) src=lane/sources/func_80020A04.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (252 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_21210.c additions=lane/ctx/ctx71_O2.jsonl preamble (2 stmts, 2 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (252 rows)
+RESULT PASS
+== func_80020DA8 (target func_80020DA8) src=lane/sources/func_80020DA8.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (112 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_21210.c additions=lane/ctx/ctx71_O2.jsonl preamble (4 stmts, 2 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (112 rows)
+RESULT PASS
+== func_80020F4C (target func_80020F4C) src=lane/sources/func_80020F4C.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (22 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_21210.c additions=lane/ctx/ctx71_O2.jsonl preamble (2 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (22 rows)
+RESULT PASS
+== func_80020F98 (target func_80020F98) src=lane/sources/func_80020F98.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (20 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_21210.c additions=lane/ctx/ctx71_O2.jsonl preamble (2 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (20 rows)
+RESULT PASS
+== func_80020FDC (target func_80020FDC) src=lane/sources/func_80020FDC.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (22 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_21210.c additions=lane/ctx/ctx71_O2.jsonl preamble (2 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (22 rows)
+RESULT PASS
+== func_80021028 (target func_80021028) src=lane/sources/func_80021028.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (20 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_21210.c additions=lane/ctx/ctx71_O2.jsonl preamble (2 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (20 rows)
+RESULT PASS
+== func_800215A8 (target func_800215A8) src=lane/sources/func_800215A8.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (46 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_21210.c additions=lane/ctx/ctx71_O2.jsonl preamble (5 stmts, 4 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (46 rows)
+RESULT PASS
+== func_8002165C (target func_8002165C) src=lane/sources/func_8002165C.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (39 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_21210.c additions=lane/ctx/ctx71_O2.jsonl preamble (5 stmts, 4 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (39 rows)
+RESULT PASS
+== func_80021C58 (target func_80021C58) src=lane/sources/func_80021C58.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (33 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_22300.c additions=lane/ctx/ctx71_O2.jsonl preamble (5 stmts, 3 dropped)
+TU: COMPILE FAIL cfe: Error: /tmp/tmpm0e28fw0/tu.c, line 63: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmpm0e28fw0/tu.c' | cfe: Error: /tmp/tmpm0e28fw0/tu.c, line 63: Duplicate member 'word' | cfe: Error: /tmp/tmpm0e28fw0/tu.c, line 63: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmpm0e28fw0/tu.c'
+RESULT FAIL
+== func_80021CDC (target func_80021CDC) src=lane/sources/func_80021CDC.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (32 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_22300.c additions=lane/ctx/ctx71_O2.jsonl preamble (5 stmts, 3 dropped)
+TU: COMPILE FAIL cfe: Error: /tmp/tmpwlr0b0_9/tu.c, line 63: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmpwlr0b0_9/tu.c' | cfe: Error: /tmp/tmpwlr0b0_9/tu.c, line 63: Duplicate member 'word' | cfe: Error: /tmp/tmpwlr0b0_9/tu.c, line 63: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmpwlr0b0_9/tu.c'
+RESULT FAIL
+== func_80021D5C (target func_80021D5C) src=lane/sources/func_80021D5C.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (40 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_22300.c additions=lane/ctx/ctx71_O2.jsonl preamble (6 stmts, 3 dropped)
+TU: COMPILE FAIL cfe: Error: /tmp/tmpkrqsblsg/tu.c, line 63: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmpkrqsblsg/tu.c' | cfe: Error: /tmp/tmpkrqsblsg/tu.c, line 63: Duplicate member 'word' | cfe: Error: /tmp/tmpkrqsblsg/tu.c, line 63: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmpkrqsblsg/tu.c'
+RESULT FAIL
+== func_80021DF8 (target func_80021DF8) src=lane/sources/func_80021DF8.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (32 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_22300.c additions=lane/ctx/ctx71_O2.jsonl preamble (6 stmts, 3 dropped)
+TU: COMPILE FAIL cfe: Error: /tmp/tmptnar32h5/tu.c, line 63: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmptnar32h5/tu.c' | cfe: Error: /tmp/tmptnar32h5/tu.c, line 63: Duplicate member 'word' | cfe: Error: /tmp/tmptnar32h5/tu.c, line 63: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmptnar32h5/tu.c'
+RESULT FAIL
+== func_80021E74 (target func_80021E74) src=lane/sources/func_80021E74.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (38 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_22300.c additions=lane/ctx/ctx71_O2.jsonl preamble (7 stmts, 3 dropped)
+TU: COMPILE FAIL cfe: Error: /tmp/tmpk976gq5_/tu.c, line 63: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmpk976gq5_/tu.c' | cfe: Error: /tmp/tmpk976gq5_/tu.c, line 63: Duplicate member 'word' | cfe: Error: /tmp/tmpk976gq5_/tu.c, line 63: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmpk976gq5_/tu.c' | cfe: Error: /tmp/tmpk976gq5_/tu.c, line 68: 
+RESULT FAIL
+== func_80021F08 (target func_80021F08) src=lane/sources/func_80021F08.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (24 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_22300.c additions=lane/ctx/ctx71_O2.jsonl preamble (6 stmts, 5 dropped)
+TU: COMPILE FAIL cfe: Error: /tmp/tmpk0io69gh/tu.c, line 63: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmpk0io69gh/tu.c' | cfe: Error: /tmp/tmpk0io69gh/tu.c, line 63: Duplicate member 'word' | cfe: Error: /tmp/tmpk0io69gh/tu.c, line 63: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmpk0io69gh/tu.c'
+RESULT FAIL
+== func_80022514 (target func_80022514) src=lane/sources/func_80022514.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (27 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_22300.c additions=lane/ctx/ctx71_O2.jsonl preamble (7 stmts, 5 dropped)
+TU: COMPILE FAIL cfe: Error: /tmp/tmpve7sit0r/tu.c, line 111: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmpve7sit0r/tu.c' | cfe: Error: /tmp/tmpve7sit0r/tu.c, line 111: Duplicate member 'word' | cfe: Error: /tmp/tmpve7sit0r/tu.c, line 111: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmpve7sit0r/tu.c' | cfe: Error: /tmp/tmpve7sit0r/tu.c, line 1
+RESULT FAIL
+== func_80022580 (target func_80022580) src=lane/sources/func_80022580.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (11 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_22300.c additions=lane/ctx/ctx71_O2.jsonl preamble (5 stmts, 2 dropped)
+TU: COMPILE FAIL cfe: Error: /tmp/tmpokf2czar/tu.c, line 112: redeclaration of 'MacroState'; previous declaration at line 35 in file '/tmp/tmpokf2czar/tu.c' | cfe: Error: /tmp/tmpokf2czar/tu.c, line 112: Duplicate member 'unknown00' | cfe: Error: /tmp/tmpokf2czar/tu.c, line 112: Duplicate member 'field30' | cfe: Error: /tmp/tmpokf2czar/tu.c, line 112: Duplicate member 'unknown34' | cfe: Error: /tmp/tmpokf2czar/tu.
+RESULT FAIL
+== func_8002279C (target func_8002279C) src=lane/sources/func_8002279C.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (55 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_22300.c additions=lane/ctx/ctx71_O2.jsonl preamble (7 stmts, 6 dropped)
+TU: COMPILE FAIL cfe: Error: /tmp/tmp9b6ksul0/tu.c, line 160: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmp9b6ksul0/tu.c' | cfe: Error: /tmp/tmp9b6ksul0/tu.c, line 160: Duplicate member 'word' | cfe: Error: /tmp/tmp9b6ksul0/tu.c, line 160: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmp9b6ksul0/tu.c' | cfe: Error: /tmp/tmp9b6ksul0/tu.c, line 1
+RESULT FAIL
+== func_80022A40 (target func_80022A40) src=lane/sources/func_80022A40.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (14 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_22300.c additions=lane/ctx/ctx71_O2.jsonl preamble (5 stmts, 2 dropped)
+TU: COMPILE FAIL cfe: Error: /tmp/tmpvn5u6kvs/tu.c, line 163: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmpvn5u6kvs/tu.c' | cfe: Error: /tmp/tmpvn5u6kvs/tu.c, line 163: Duplicate member 'word' | cfe: Error: /tmp/tmpvn5u6kvs/tu.c, line 163: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmpvn5u6kvs/tu.c'
+RESULT FAIL
+== func_80022A98 (target func_80022A98) src=lane/sources/func_80022A98.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (113 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_22300.c additions=lane/ctx/ctx71_O2.jsonl preamble (7 stmts, 4 dropped)
+TU: COMPILE FAIL cfe: Error: /tmp/tmps5xttz2y/tu.c, line 172: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmps5xttz2y/tu.c' | cfe: Error: /tmp/tmps5xttz2y/tu.c, line 172: Duplicate member 'word' | cfe: Error: /tmp/tmps5xttz2y/tu.c, line 172: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmps5xttz2y/tu.c' | cfe: Error: /tmp/tmps5xttz2y/tu.c, line 1
+RESULT FAIL
+== func_80022F24 (target func_80022F24) src=lane/sources/func_80022F24.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (59 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_22300.c additions=lane/ctx/ctx71_O2.jsonl preamble (8 stmts, 6 dropped)
+TU: COMPILE FAIL cfe: Error: /tmp/tmpzzoo2a5v/tu.c, line 186: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmpzzoo2a5v/tu.c' | cfe: Error: /tmp/tmpzzoo2a5v/tu.c, line 186: Duplicate member 'word' | cfe: Error: /tmp/tmpzzoo2a5v/tu.c, line 186: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmpzzoo2a5v/tu.c'
+RESULT FAIL
+== func_8002300C (target func_8002300C) src=lane/sources/func_8002300C.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (43 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_22300.c additions=lane/ctx/ctx71_O2.jsonl preamble (5 stmts, 6 dropped)
+TU: COMPILE FAIL cfe: Error: /tmp/tmp183o0z2z/tu.c, line 186: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmp183o0z2z/tu.c' | cfe: Error: /tmp/tmp183o0z2z/tu.c, line 186: Duplicate member 'word' | cfe: Error: /tmp/tmp183o0z2z/tu.c, line 186: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmp183o0z2z/tu.c' | cfe: Error: /tmp/tmp183o0z2z/tu.c, line 1
+RESULT FAIL
+== func_8002321C (target func_8002321C) src=lane/sources/func_8002321C.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (34 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_22300.c additions=lane/ctx/ctx71_O2.jsonl preamble (2 stmts, 6 dropped)
+TU: COMPILE FAIL cfe: Error: /tmp/tmpw9qyf1b7/tu.c, line 186: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmpw9qyf1b7/tu.c' | cfe: Error: /tmp/tmpw9qyf1b7/tu.c, line 186: Duplicate member 'word' | cfe: Error: /tmp/tmpw9qyf1b7/tu.c, line 186: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmpw9qyf1b7/tu.c'
+RESULT FAIL
+== func_800239A4 (target func_800239A4) src=lane/sources/func_800239A4.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (80 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_22300.c additions=lane/ctx/ctx71_O2.jsonl preamble (9 stmts, 6 dropped)
+TU: COMPILE FAIL cfe: Error: /tmp/tmp1ml5u1t8/tu.c, line 306: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmp1ml5u1t8/tu.c' | cfe: Error: /tmp/tmp1ml5u1t8/tu.c, line 306: Duplicate member 'word' | cfe: Error: /tmp/tmp1ml5u1t8/tu.c, line 306: redeclaration of 'MacroCommand'; previous declaration at line 36 in file '/tmp/tmp1ml5u1t8/tu.c' | cfe: Error: /tmp/tmp1ml5u1t8/tu.c, line 3
+RESULT FAIL
+== func_80025F74 (target func_80025F74) src=lane/sources/func_80025F74.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (213 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_26ab0.c additions=lane/ctx/ctx71_O2.jsonl preamble (4 stmts, 2 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (213 rows)
+RESULT PASS

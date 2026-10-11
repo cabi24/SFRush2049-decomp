@@ -3704,11 +3704,11 @@ typedef struct {
 } Rec808;
 
 extern Rec808 D_8014A640[];
-s32 model_bounds_calc(s32 flag, ModelObj *obj);
+s32 model_bounds_calc(ModelObj *obj, s32 flag);
 void func_8008B640(s32 idx, f32 x, f32 y, f32 z, f32 nx, f32 ny, f32 nz);
 void physics_velocity_integrate_a(ModelObj *ipa_s1, s32 arg1, s32 ipa_s2, f32 ipa_f20, f32 ipa_f22, f32 ipa_f24, s16 arg0);
 
-s32 model_bounds_calc(s32 flag, ModelObj *obj) {
+s32 model_bounds_calc(ModelObj *obj, s32 flag) {
     if (flag) {
         model_transform_setup(obj->model, 0, 15);
     } else {
@@ -3789,7 +3789,7 @@ void physics_velocity_integrate_a(ModelObj *ipa_s1, s32 arg1, s32 ipa_s2, f32 ip
         if (ipa_s1->state >= 6) {
             ipa_s1->state = 5;
         }
-        if (model_bounds_calc(ipa_s1->state >= 0, ipa_s1) != 0) {
+        if (model_bounds_calc(ipa_s1, ipa_s1->state >= 0) != 0) {
             func_8008B000(D_801427C0[ipa_s2], 0, D_80161368[ipa_s1->state]);
             return;
         }

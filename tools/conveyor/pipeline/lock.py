@@ -3,6 +3,8 @@
     python3 -m tools.conveyor.pipeline.lock check              # fast, local
     python3 -m tools.conveyor.pipeline.lock add src/libc/string.c:strlen \
         --flags "-g0 -O2 -mips2 -G 0 -non_shared"              # needs pool
+    python3 -m tools.conveyor.pipeline.lock add FILE:fn --flags "..." \
+        --toolkit SHA                                          # second compiler
     python3 -m tools.conveyor.pipeline.lock verify [spec]      # re-prove
     python3 -m tools.conveyor.pipeline.lock list | remove <spec>
 
@@ -20,6 +22,14 @@ other function definition stripped, plus its repo headers resolved
 transitively — same types and declarations as the real build, and no
 dependence on the toolkit shim.
 
+`--toolkit SHA` proves the entry with that (uploaded, not necessarily pinned)
+toolkit instead of the pinned one. The toolkit's `ido/` must identify as a
+pinned compiler (tools/conveyor/compilers.py) and the entry records it as
+`compiler` (e.g. "ido7.1"); an entry without `compiler` was proven with the
+default IDO 5.3. `verify` re-proves a `compiler` entry with its own toolkit.
+The ROM build selects a TU's compiler from rom_compilers.json, and layout
+refuses a lock whose compiler disagrees with its segment's pin.
+
 Hash normalization strips comments and collapses whitespace (string and
 char literals preserved verbatim), so reflowing or re-commenting a
 matched function does not trip the lock — changing its code does.
@@ -34,6 +44,7 @@ import tempfile
 import time
 from pathlib import Path
 
+from .. import compilers as compilersmod
 from ..client import DEFAULT_DATA, Http, load_token
 from ..coordinator import db as dbmod
 from ..coordinator.store import BlobStore
@@ -163,9 +174,29 @@ def resolve_headers(tu_path, repo=REPO):
     return contextmod.resolve_headers(tu_path, repo, INCLUDE_DIRS)
 
 
-def verify_entry(spec, flagset, target_id, args):
+def toolkit_compiler(toolkit_sha, args):
+    """The pinned compiler inside toolkit `toolkit_sha` (read from the local
+    blob store when this host is the coordinator, else downloaded). Refuses a
+    toolkit whose ido/ is not a known build of a pinned compiler."""
+    local = BlobStore(Path(args.data) / "blobs").get(toolkit_sha)
+    if local is not None:
+        name = compilersmod.identify_toolkit(local)
+    else:
+        http = Http(args.coordinator, load_token(args.token, args.data))
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "toolkit.tar.gz"
+            http.download(toolkit_sha, path)
+            name = compilersmod.identify_toolkit(path)
+    if name is None:
+        raise SystemExit(f"toolkit {toolkit_sha[:12]}: its ido/ is not a known build of "
+                         "any pinned compiler (tools/conveyor/compilers.py)")
+    return name
+
+
+def verify_entry(spec, flagset, target_id, args, toolkit_sha=None):
     """Compile spec's function through the pool and score it against the
-    inventory target .o. Returns (score, toolkit_sha); raises on failure."""
+    inventory target .o (with `toolkit_sha`, else the pinned toolkit).
+    Returns (score, toolkit_sha); raises on failure."""
     from ..bundles.build_job import build_job_bundle
 
     rel, _, name = spec.partition(":")
@@ -195,7 +226,7 @@ def verify_entry(spec, flagset, target_id, args):
     files["target.o"] = target_o
 
     http = Http(args.coordinator, load_token(args.token, args.data))
-    toolkit_sha = http.pinned_toolkit()
+    toolkit_sha = toolkit_sha or http.pinned_toolkit()
     manifest = {
         "job_type": "compile_score",
         "toolkit_sha": toolkit_sha,
@@ -270,8 +301,9 @@ def cmd_check(args):
 
 def cmd_list(args):
     for spec, e in sorted(load_lock(args.lockfile).items()):
-        print(f"  {spec}  target={e['target_id']}  {e['verified']}"
-              f"  ({e['verified_at']})")
+        compiler = f"  {e['compiler']}" if e.get("compiler") else ""
+        print(f"  {spec}  target={e['target_id']}  {e['verified']}{compiler}"
+              f"  ({e.get('verified_at')})")
 
 
 def cmd_remove(args):
@@ -292,13 +324,23 @@ def cmd_add(args):
     if sha is None:
         sys.exit(f"cannot extract {name!r} from {rel}")
 
+    compiler = None
+    if args.toolkit:
+        if args.skip_verify:
+            sys.exit("--toolkit binds the compiler that PROVED the lock; "
+                     "it cannot be combined with --skip-verify")
+        compiler = toolkit_compiler(args.toolkit, args)
+        print(f"toolkit {args.toolkit[:12]}: {compiler}")
+
     if args.skip_verify:
         verified, toolkit_sha = "unverified", None
         print(f"WARNING: pinning {args.spec} without verification — "
               "the lock now asserts a match nobody has proven")
     else:
-        score, toolkit_sha = verify_entry(args.spec, args.flags, target_id, args)
-        print(f"{args.spec} @ {args.flags}: score={score}")
+        score, toolkit_sha = verify_entry(args.spec, args.flags, target_id, args,
+                                          toolkit_sha=args.toolkit)
+        print(f"{args.spec} @ {args.flags}"
+              f"{' (' + compiler + ')' if compiler else ''}: score={score}")
         if score != 0:
             sys.exit("refusing to lock: score is nonzero (not byte-identical)")
         verified = "score0"
@@ -312,6 +354,8 @@ def cmd_add(args):
         "toolkit_sha": toolkit_sha,
         "verified_at": time.strftime("%Y-%m-%d"),
     }
+    if compiler is not None:
+        entries[args.spec]["compiler"] = compiler
     save_lock(entries, args.lockfile)
     print(f"locked {args.spec} ({verified})")
 
@@ -324,7 +368,12 @@ def cmd_verify(args):
         e = entries.get(spec)
         if e is None:
             sys.exit(f"{spec} is not locked")
-        score, _ = verify_entry(spec, e["flagset"], e["target_id"], args)
+        # An entry bound to a compiler re-proves with the toolkit that proved
+        # it; legacy (5.3) entries use the pinned toolkit, as before.
+        own = e.get("toolkit_sha") if e.get("compiler") else None
+        if e.get("compiler") and not own:
+            sys.exit(f"{spec}: compiler {e['compiler']} entry has no toolkit_sha")
+        score, _ = verify_entry(spec, e["flagset"], e["target_id"], args, toolkit_sha=own)
         print(f"  {spec}: score={score}")
         if score != 0:
             failures += 1
@@ -354,6 +403,9 @@ def main():
     p.add_argument("--target", default=None,
                    help="n64_target id (default: the function name)")
     p.add_argument("--skip-verify", action="store_true")
+    p.add_argument("--toolkit", default=None, metavar="SHA",
+                   help="prove with this toolkit (not the pinned one) and record its "
+                        "compiler, e.g. the IDO 7.1 toolkit for boot-tail TUs")
     p.add_argument("--wait", type=int, default=600)
     p.set_defaults(func=cmd_add)
 

@@ -7,21 +7,9 @@
   "evidence": "cloud/work/frontier/w1g/groups/func_800AD4C8",
   "note": "wave 1: strict MATCH with both real callers in the unit, but those callers (func_800C3AD0, input_process_controller) are themselves kept alive by stand-ins, so the group is not spliceable yet"
  },
- "func_800C3AD0": {
-  "evidence": "cloud/work/frontier/w1g/groups/func_800AD4C8",
-  "note": "wave 1: byte-identical in the unit; its own callers (camera_trigger_check, camera_victory, entity_update) are stand-ins"
- },
  "input_process_controller": {
   "evidence": "cloud/work/frontier/w1g/groups/func_800AD4C8",
   "note": "wave 1: byte-identical in the unit; its own caller input_deadzone_apply is a stand-in"
- },
- "func_800E4300": {
-  "evidence": "cloud/work/ipa-groups/dot_nearest_path_context_20261005",
-  "note": "PR #128 re-verified it with its complete real callers (E451C, E4B58, E398C), all still NONMATCH, so it stays provisional"
- },
- "func_800E451C": {
-  "evidence": "cloud/work/frontier/dot_interval_position_20261006",
-  "note": "PR #198: full strict MATCH (397 words, rodata verified) with real callers; context func_800E4300 and func_800E4B58 provisional, func_800E398C unmatched"
  },
  "audio_priority_find": {
   "evidence": "cloud/work/frontier/w2b/groups/frontier_route_cross",
@@ -86,5 +74,9 @@
  "init_state_continue": {
   "evidence": "cloud/work/frontier/w16f/groups/frontier_init_state_continue",
   "note": "wave 16 (w16f): code-identical in an -O3 group with the locked func_8008B2E4 as context; callers display_list_flush and countdown are unmatched (asm), so it needs a stand-in caller; shaping: extern volatile s16 D_801543CA (already used by locked files), disclosed"
+ },
+ "physics_response": {
+  "evidence": "cloud/work/frontier/w17h/groups/physics_response",
+  "note": "wave 17 (w17h): MATCH in its real group (next-section helper func_800B930C defined above it, D_80151CE8 typed as a struct) but its only caller audio_effect_apply is unmatched, so the unit needs a stand-in caller; two compiled-out `do {} while (0);` (colour-only, proven with force.sh), disclosed"
  }
 }

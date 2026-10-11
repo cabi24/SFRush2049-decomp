@@ -265,7 +265,25 @@ u32 func_80017644(u32 identifier)
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80017720.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_800177EC.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80017824.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_8001785C.s")
+/* PROMOTED 2026-10-11 — func_8001785C
+ * Source:   cloud/work/frontier/w17g/sources/func_8001785C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_8001785C.c:func_8001785C (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+typedef struct MapRecord { u8 unknown00[5]; u8 key; u8 unknown06[2]; } MapRecord;
+void func_8001785C(u8 *map, MapRecord *record)
+{
+    u8 index;
+    for (index = 0; index < 128; index++) map[index] = 255;
+    index = 0;
+    while (record->key != 255) {
+        map[record->key] = index;
+        index++;
+        record++;
+    }
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_800178B0.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80017D38.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_800180A0.s")
@@ -328,7 +346,20 @@ unsigned short func_80018B8C(unsigned int identifier)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80018BEC.s")
+/* PROMOTED 2026-10-11 — func_80018BEC
+ * Source:   cloud/work/frontier/w17g/sources/func_80018BEC.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80018BEC.c:func_80018BEC (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern u8 D_8002C630;
+extern u32 func_80017644(u32);
+u8 func_80018BEC(u32 identifier)
+{
+    if (D_8002C630) return func_80017644(identifier) != 0xFFFFFFFF;
+    return 0;
+}
+
 /* PROMOTED 2026-10-05 — func_80018C2C
  * Source:   cloud/work/boot_tail_promotion/wave3_sequence_sources/func_80018C2C.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -649,7 +680,14 @@ void func_80019850(void *state, unsigned int *result)
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_8001989C.s")
+/* PROMOTED 2026-10-11 — func_8001989C
+ * Source:   cloud/work/frontier/w17g/sources/func_8001989C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_8001989C.c:func_8001989C (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+unsigned char func_8001989C(unsigned int *state) { if (*state != 0xFFFFFFFF) return (*state & 0x80000000) == 0; return 1; }
+
 /* PROMOTED 2026-10-05 — func_800198C8
  * Source:   cloud/work/boot_tail_promotion/wave3_sequence_sources/func_800198C8.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

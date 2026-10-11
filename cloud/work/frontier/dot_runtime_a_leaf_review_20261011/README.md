@@ -150,3 +150,10 @@ Run `python3 cloud/work/frontier/dot_runtime_a_leaf_review_20261011/review_recor
 It accepts `--group PATH` and `--output PATH`; the regression accepts a separate
 record checkout through `RUNTIME_A_RECORD_GROUP`. The peer receipt records
 the exact source, helper-script hashes, callsites and remaining limits.
+
+## Optional protocol-v2 research replay
+
+The independent review remains available with
+`python3 -m pytest cloud/work/frontier/dot_runtime_a_leaf_review_20261011/research_tests.py -q`.
+It is intentionally outside routine test collection; the source packets each
+carry one fast all-member gate. Existing review receipts remain historical.

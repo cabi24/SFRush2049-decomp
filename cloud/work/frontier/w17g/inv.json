@@ -1,0 +1,6650 @@
+[
+{
+"name": "__osExceptionPanic",
+"addr": "0x8000d298",
+"size": 8,
+"tier": "reloc_aware",
+"seg": "0xd580",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"osDestroyThread"
+],
+"callers": [],
+"locked_callees": [
+"osDestroyThread"
+],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": []
+},
+{
+"name": "func_80014CF4",
+"addr": "0x80014cf4",
+"size": 8,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_80017108"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_80017108"
+],
+"boot_tail": null,
+"prior_md": []
+},
+{
+"name": "func_80014D14",
+"addr": "0x80014d14",
+"size": 8,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_8001A658"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": []
+},
+{
+"name": "func_80014CFC",
+"addr": "0x80014cfc",
+"size": 12,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_800162AC"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_800162AC"
+],
+"boot_tail": null,
+"prior_md": []
+},
+{
+"name": "func_80014D08",
+"addr": "0x80014d08",
+"size": 12,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_800163A8"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_800163A8"
+],
+"boot_tail": null,
+"prior_md": []
+},
+{
+"name": "func_8001E0D4",
+"addr": "0x8001e0d4",
+"size": 12,
+"tier": "reloc_aware",
+"seg": "0x1cf90",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_80010980",
+"func_800109C0"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_80010980",
+"func_800109C0"
+],
+"boot_tail": null,
+"prior_md": []
+},
+{
+"name": "osGetCount",
+"addr": "0x8000c970",
+"size": 16,
+"tier": "reloc_aware",
+"seg": "0xd570",
+"converted": false,
+"flagset": null,
+"state": "passthrough",
+"callees": [],
+"callers": [
+"__osRepairId",
+"dll_reschedule",
+"dll_update",
+"osGetTime",
+"vi_manager_main"
+],
+"locked_callees": [],
+"locked_callers": [
+"__osRepairId",
+"dll_reschedule",
+"dll_update",
+"osGetTime",
+"vi_manager_main"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "__osException",
+"addr": "0x8000c980",
+"size": 16,
+"tier": "reloc_aware",
+"seg": "0xd580",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md",
+"cloud/work/frontier/w16g/RESULTS.md"
+]
+},
+{
+"name": "__osSetSR",
+"addr": "0x8000d770",
+"size": 16,
+"tier": "reloc_aware",
+"seg": "0xe370",
+"converted": false,
+"flagset": null,
+"state": "passthrough",
+"callees": [],
+"callers": [
+"__osInitialize_common"
+],
+"locked_callees": [],
+"locked_callers": [
+"__osInitialize_common"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "__osGetSR",
+"addr": "0x8000d780",
+"size": 16,
+"tier": "reloc_aware",
+"seg": "0xe370",
+"converted": false,
+"flagset": null,
+"state": "passthrough",
+"callees": [],
+"callers": [
+"__osInitialize_common"
+],
+"locked_callees": [],
+"locked_callers": [
+"__osInitialize_common"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "__osSetFpcCsr",
+"addr": "0x8000d790",
+"size": 16,
+"tier": "reloc_aware",
+"seg": "0xe390",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"__osInitialize_common"
+],
+"locked_callees": [],
+"locked_callers": [
+"__osInitialize_common"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "__osGetCause",
+"addr": "0x8000dbb0",
+"size": 16,
+"tier": "reloc_aware",
+"seg": null,
+"converted": null,
+"flagset": null,
+"state": null,
+"callees": [],
+"callers": [],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md",
+"cloud/work/frontier/w16i/RESULTS.md"
+]
+},
+{
+"name": "sqrtf",
+"addr": "0x8000e3c0",
+"size": 16,
+"tier": "reloc_aware",
+"seg": "0xefc0",
+"converted": false,
+"flagset": null,
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_8001C860",
+"func_80024C9C",
+"guLookAtF"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_80024C9C",
+"guLookAtF"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/boot_tail/BT06-math-trio/README.md",
+"cloud/work/boot_tail/README.md",
+"cloud/work/frontier/w15g/RESULTS.md",
+"cloud/work/frontier/w16g/RESULTS.md",
+"cloud/work/frontier/w1f/RESULTS.md",
+"cloud/work/frontier/w5b/RESULTS.md"
+]
+},
+{
+"name": "__osSetCompare",
+"addr": "0x8000fb90",
+"size": 16,
+"tier": "reloc_aware",
+"seg": "0x10790",
+"converted": false,
+"flagset": null,
+"state": "passthrough",
+"callees": [],
+"callers": [
+"dll_reschedule",
+"dll_update"
+],
+"locked_callees": [],
+"locked_callers": [
+"dll_reschedule",
+"dll_update"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "viDisableAccum",
+"addr": "0x800013dc",
+"size": 24,
+"tier": "reloc_aware",
+"seg": "0x1f50",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": []
+},
+{
+"name": "viEnableAccum",
+"addr": "0x800013c0",
+"size": 28,
+"tier": "reloc_aware",
+"seg": "0x1f50",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": []
+},
+{
+"name": "func_80020200",
+"addr": "0x80020200",
+"size": 28,
+"tier": "reloc_aware",
+"seg": "0x207b0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "3",
+"source": "cloud/work/boot_tail/BT03-high-next/nonmatch/func_80020200.c",
+"hypothesis": "audio_sequence_api_80020200"
+},
+"prior_md": []
+},
+{
+"name": "__setfpcsr",
+"addr": "0x800049f0",
+"size": 32,
+"tier": "reloc_aware",
+"seg": "0x55f0",
+"converted": false,
+"flagset": null,
+"state": "passthrough",
+"callees": [],
+"callers": [
+"audio_thread_entry",
+"game_init"
+],
+"locked_callees": [],
+"locked_callers": [
+"audio_thread_entry"
+],
+"boot_tail": null,
+"prior_md": []
+},
+{
+"name": "__osRestoreInt",
+"addr": "0x8000c520",
+"size": 32,
+"tier": "reloc_aware",
+"seg": "0xd0b0",
+"converted": false,
+"flagset": null,
+"state": "passthrough",
+"callees": [],
+"callers": [
+"__osResetGlobalIntMask",
+"__osSetGlobalIntMask",
+"dll_insert",
+"dll_reschedule",
+"func_80013DEC",
+"osCreatePiManager",
+"osCreateThread",
+"osCreateViManager",
+"osDestroyThread",
+"osGetTime",
+"osJamMesg",
+"osPfsChecker_full",
+"osRecvMesg",
+"osSendMesg",
+"osSetEventMesg",
+"osSetEventMesgAlt",
+"osSetIntMask",
+"osSetThreadPri",
+"osSetTimerIntr",
+"osStartThread",
+"osViGetCurrentFramebuffer",
+"osViGetFramebuffer",
+"osViSetMode",
+"osViSetSpecialFeatures",
+"osYieldThread"
+],
+"locked_callees": [],
+"locked_callers": [
+"__osResetGlobalIntMask",
+"__osSetGlobalIntMask",
+"dll_insert",
+"dll_reschedule",
+"osCreatePiManager",
+"osCreateThread",
+"osCreateViManager",
+"osDestroyThread",
+"osGetTime",
+"osJamMesg",
+"osPfsChecker_full",
+"osRecvMesg",
+"osSendMesg",
+"osSetEventMesg",
+"osSetEventMesgAlt",
+"osSetIntMask",
+"osSetThreadPri",
+"osSetTimerIntr",
+"osStartThread",
+"osViGetCurrentFramebuffer",
+"osViGetFramebuffer",
+"osViSetMode",
+"osViSetSpecialFeatures",
+"osYieldThread"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/boot_tail/BT02-audio-remaining/README.md",
+"cloud/work/frontier/w15g/RESULTS.md",
+"cloud/work/frontier/w16g/RESULTS.md"
+]
+},
+{
+"name": "func_80014BD8",
+"addr": "0x80014bd8",
+"size": 32,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80010E80"
+],
+"callers": [
+"func_80020528"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_80020528"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/boot_tail/BT03-high-next/README.md"
+]
+},
+{
+"name": "func_80014BF8",
+"addr": "0x80014bf8",
+"size": 32,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80011074"
+],
+"callers": [
+"func_80020558"
+],
+"locked_callees": [
+"func_80011074"
+],
+"locked_callers": [
+"func_80020558"
+],
+"boot_tail": null,
+"prior_md": []
+},
+{
+"name": "osWritebackDCacheAll",
+"addr": "0x8000870c",
+"size": 36,
+"tier": "reloc_aware",
+"seg": "0x92f0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md",
+"cloud/work/frontier/w16g/RESULTS.md"
+]
+},
+{
+"name": "func_80015348",
+"addr": "0x80015348",
+"size": 36,
+"tier": "reloc_aware",
+"seg": "0x15a10",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001661C"
+],
+"callers": [
+"func_800154A4"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "1",
+"source": "cloud/work/boot_tail/BT03-low-B/func_80015348.c",
+"hypothesis": "audio_pool_state_80015348"
+},
+"prior_md": []
+},
+{
+"name": "func_8001CC9C",
+"addr": "0x8001cc9c",
+"size": 36,
+"tier": "reloc_aware",
+"seg": "0x1cf90",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_8001CCDC"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "6",
+"source": "cloud/work/boot_tail/BT03-high/nonmatch/func_8001CC9C.c",
+"hypothesis": "audio_sequence_state_8001CC9C"
+},
+"prior_md": []
+},
+{
+"name": "func_80014E64",
+"addr": "0x80014e64",
+"size": 44,
+"tier": "reloc_aware",
+"seg": "0x15a10",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014E1C"
+],
+"callers": [
+"func_80014F14"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_80014F14"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "8",
+"source": "cloud/work/boot_tail/BT03-low-B/func_80014E64.c",
+"hypothesis": "audio_pool_state_80014E64"
+},
+"prior_md": []
+},
+{
+"name": "func_80014E90",
+"addr": "0x80014e90",
+"size": 44,
+"tier": "reloc_aware",
+"seg": "0x15a10",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014E1C"
+],
+"callers": [
+"func_80014F80"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_80014F80"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "8",
+"source": "cloud/work/boot_tail/BT03-low-B/func_80014E90.c",
+"hypothesis": "audio_pool_state_80014E90"
+},
+"prior_md": []
+},
+{
+"name": "func_80014EBC",
+"addr": "0x80014ebc",
+"size": 44,
+"tier": "reloc_aware",
+"seg": "0x15a10",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014E1C"
+],
+"callers": [
+"func_80014FEC"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_80014FEC"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "8",
+"source": "cloud/work/boot_tail/BT03-low-B/func_80014EBC.c",
+"hypothesis": "audio_pool_state_80014EBC"
+},
+"prior_md": []
+},
+{
+"name": "func_80014EE8",
+"addr": "0x80014ee8",
+"size": 44,
+"tier": "reloc_aware",
+"seg": "0x15a10",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014E1C"
+],
+"callers": [
+"func_80015058"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_80015058"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "8",
+"source": "cloud/work/boot_tail/BT03-low-B/func_80014EE8.c",
+"hypothesis": "audio_pool_state_80014EE8"
+},
+"prior_md": []
+},
+{
+"name": "func_8001989C",
+"addr": "0x8001989c",
+"size": 44,
+"tier": "reloc_aware",
+"seg": "0x17dc0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "2",
+"source": "cloud/work/boot_tail/BT03-high/nonmatch/func_8001989C.c",
+"hypothesis": "audio_channel_control_8001989C"
+},
+"prior_md": []
+},
+{
+"name": "func_8001E790",
+"addr": "0x8001e790",
+"size": 44,
+"tier": "reloc_aware",
+"seg": "0x1f340",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_8002193C",
+"func_80021DF8",
+"func_80021F84",
+"func_80023564"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "2",
+"source": "cloud/work/boot_tail/C11-small/func_8001E790_NONMATCH.c",
+"hypothesis": "MusyX sndRand source lead"
+},
+"prior_md": [
+"cloud/work/boot_tail/C11-small/README.md"
+]
+},
+{
+"name": "func_800205E4",
+"addr": "0x800205e4",
+"size": 44,
+"tier": "reloc_aware",
+"seg": "0x207b0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014D1C"
+],
+"callers": [],
+"locked_callees": [
+"func_80014D1C"
+],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w2g/RESULTS.md"
+]
+},
+{
+"name": "func_80022580",
+"addr": "0x80022580",
+"size": 44,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001EF8C"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "2",
+"source": "cloud/work/boot_tail/BT05-wrappers/nonmatch/func_80022580.c",
+"hypothesis": "audio_command_handler_80022580"
+},
+"prior_md": []
+},
+{
+"name": "osInvalICache",
+"addr": "0x80007810",
+"size": 48,
+"tier": "reloc_aware",
+"seg": "0x8410",
+"converted": false,
+"flagset": null,
+"state": "passthrough",
+"callees": [],
+"callers": [
+"__scExec"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md",
+"cloud/work/frontier/w16g/RESULTS.md"
+]
+},
+{
+"name": "func_8001467C",
+"addr": "0x8001467c",
+"size": 48,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_80019C8C",
+"func_8001A658",
+"func_8001F898",
+"func_8001F954",
+"func_800202C4",
+"func_8002193C",
+"func_80021F84",
+"func_80023E9C",
+"func_80024988"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_80019C8C",
+"func_8001F898",
+"func_8001F954"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "2",
+"source": "cloud/work/boot_tail/BT03-low/func_8001467C.c",
+"hypothesis": "audio_buffer_utility_8001467C"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT03-low/README.md"
+]
+},
+{
+"name": "func_80015318",
+"addr": "0x80015318",
+"size": 48,
+"tier": "reloc_aware",
+"seg": "0x15a10",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_800164D0"
+],
+"callers": [
+"func_8001536C"
+],
+"locked_callees": [
+"func_800164D0"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "3",
+"source": "cloud/work/boot_tail/BT03-low-B/func_80015318.c",
+"hypothesis": "audio_pool_state_80015318"
+},
+"prior_md": []
+},
+{
+"name": "func_8001D1C0",
+"addr": "0x8001d1c0",
+"size": 52,
+"tier": "reloc_aware",
+"seg": "0x1cf90",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "3",
+"source": "cloud/work/boot_tail/BT03-high-next/nonmatch/func_8001D1C0.c",
+"hypothesis": "audio_sequence_state_8001D1C0"
+},
+"prior_md": []
+},
+{
+"name": "func_800156E8",
+"addr": "0x800156e8",
+"size": 56,
+"tier": "reloc_aware",
+"seg": "0x15a10",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001558C"
+],
+"callers": [
+"func_80019490"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "8",
+"source": "cloud/work/boot_tail/BT03-low-C/func_800156E8.c",
+"hypothesis": "audio_pool_state_800156E8"
+},
+"prior_md": []
+},
+{
+"name": "func_800177EC",
+"addr": "0x800177ec",
+"size": 56,
+"tier": "reloc_aware",
+"seg": "0x17dc0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80020610"
+],
+"callers": [
+"func_80017D38"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "4",
+"source": "cloud/work/boot_tail/BT03-high/nonmatch/func_800177EC.c",
+"hypothesis": "audio_channel_control_800177EC"
+},
+"prior_md": []
+},
+{
+"name": "func_80017824",
+"addr": "0x80017824",
+"size": 56,
+"tier": "reloc_aware",
+"seg": "0x17dc0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80020610"
+],
+"callers": [
+"func_80018634"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "4",
+"source": "cloud/work/boot_tail/BT03-high/nonmatch/func_80017824.c",
+"hypothesis": "audio_channel_control_80017824"
+},
+"prior_md": []
+},
+{
+"name": "func_80022A40",
+"addr": "0x80022a40",
+"size": 56,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001489C"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "7",
+"source": "cloud/work/boot_tail/BT05-wrappers/nonmatch/func_80022A40.c",
+"hypothesis": "audio_command_handler_80022A40"
+},
+"prior_md": []
+},
+{
+"name": "viAddTicks",
+"addr": "0x8000153c",
+"size": 60,
+"tier": "reloc_aware",
+"seg": "0x1f50",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": []
+},
+{
+"name": "func_8001C19C",
+"addr": "0x8001c19c",
+"size": 60,
+"tier": "reloc_aware",
+"seg": "0x1a660",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_800178B0",
+"func_80019420",
+"func_80020370"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_80020370"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "11",
+"source": "cloud/work/boot_tail/BT03-high/nonmatch/func_8001C19C.c",
+"hypothesis": "audio_command_prepare_8001C19C"
+},
+"prior_md": []
+},
+{
+"name": "func_8001C390",
+"addr": "0x8001c390",
+"size": 60,
+"tier": "reloc_aware",
+"seg": "0x1cf90",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_800107E0"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_800107E0"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "12",
+"source": "cloud/work/boot_tail/BT03-high/nonmatch/func_8001C390.c",
+"hypothesis": "audio_sequence_state_8001C390"
+},
+"prior_md": []
+},
+{
+"name": "func_80018BEC",
+"addr": "0x80018bec",
+"size": 64,
+"tier": "reloc_aware",
+"seg": "0x17dc0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80017644"
+],
+"callers": [],
+"locked_callees": [
+"func_80017644"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "3",
+"source": "cloud/work/boot_tail/BT03-high-control/nonmatch/func_80018BEC.c",
+"hypothesis": "audio_channel_control_80018BEC"
+},
+"prior_md": []
+},
+{
+"name": "viGetTimeToDeadline",
+"addr": "0x80001578",
+"size": 68,
+"tier": "reloc_aware",
+"seg": "0x1f50",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": []
+},
+{
+"name": "func_80020F98",
+"addr": "0x80020f98",
+"size": 68,
+"tier": "reloc_aware",
+"seg": "0x21210",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "16",
+"source": "cloud/work/boot_tail/C13-medium/nonmatch/func_80020F98.c",
+"hypothesis": "audio_data_dispatch_80020F98"
+},
+"prior_md": []
+},
+{
+"name": "func_80021028",
+"addr": "0x80021028",
+"size": 68,
+"tier": "reloc_aware",
+"seg": "0x21210",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_80019ED0"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "16",
+"source": "cloud/work/boot_tail/C13-medium/nonmatch/func_80021028.c",
+"hypothesis": "audio_data_dispatch_80021028"
+},
+"prior_md": []
+},
+{
+"name": "__osEnqueueThread",
+"addr": "0x8000d0c4",
+"size": 72,
+"tier": "reloc_aware",
+"seg": "0xd580",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"__osCleanupThread",
+"__osExceptionPreamble",
+"__osSendInterrupt",
+"osCreateViManager",
+"osStartThread"
+],
+"locked_callees": [],
+"locked_callers": [
+"osCreateViManager",
+"osStartThread"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md",
+"cloud/work/frontier/w16g/RESULTS.md"
+]
+},
+{
+"name": "func_80014E1C",
+"addr": "0x80014e1c",
+"size": 72,
+"tier": "reloc_aware",
+"seg": "0x15a10",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_80014E64",
+"func_80014E90",
+"func_80014EBC",
+"func_80014EE8"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "7",
+"source": "cloud/work/boot_tail/BT03-low-followon/func_80014E1C_NONMATCH.c",
+"hypothesis": "audio_pool_state_80014E1C"
+},
+"prior_md": []
+},
+{
+"name": "func_80019A60",
+"addr": "0x80019a60",
+"size": 72,
+"tier": "reloc_aware",
+"seg": "0x1a660",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_800178B0",
+"func_80018A30",
+"func_8001C1D8"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_80018A30",
+"func_8001C1D8"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "6",
+"source": "cloud/work/boot_tail/BT03-high-medium/nonmatch/func_80019A60.c",
+"hypothesis": "audio_command_prepare_80019A60"
+},
+"prior_md": []
+},
+{
+"name": "func_80023D70",
+"addr": "0x80023d70",
+"size": 72,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80023B50"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "5",
+"source": "cloud/work/boot_tail/BT05-medium-next/nonmatch/func_80023D70.c",
+"hypothesis": "audio_command_handler_80023D70"
+},
+"prior_md": []
+},
+{
+"name": "viScheduleTick",
+"addr": "0x800014f0",
+"size": 76,
+"tier": "reloc_aware",
+"seg": "0x1f50",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": []
+},
+{
+"name": "func_80014C60",
+"addr": "0x80014c60",
+"size": 76,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"osWritebackDCache"
+],
+"callers": [
+"func_8001C508"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_8001C508"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "12",
+"source": "cloud/work/boot_tail/BT03-low-followon/func_80014C60_NONMATCH.c",
+"hypothesis": "audio_buffer_utility_80014C60"
+},
+"prior_md": []
+},
+{
+"name": "func_80020598",
+"addr": "0x80020598",
+"size": 76,
+"tier": "reloc_aware",
+"seg": "0x207b0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "16",
+"source": "cloud/work/boot_tail/BT03-high-init/nonmatch/func_80020598.c",
+"hypothesis": "audio_initialization_80020598"
+},
+"prior_md": []
+},
+{
+"name": "func_80020F4C",
+"addr": "0x80020f4c",
+"size": 76,
+"tier": "reloc_aware",
+"seg": "0x21210",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_80019C8C",
+"func_80020820",
+"func_800225FC",
+"func_80022678",
+"func_8002279C",
+"func_80023E9C"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_80019C8C",
+"func_80020820",
+"func_800225FC",
+"func_80022678"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "18",
+"source": "cloud/work/boot_tail/C13-medium/nonmatch/func_80020F4C.c",
+"hypothesis": "audio_data_dispatch_80020F4C"
+},
+"prior_md": []
+},
+{
+"name": "func_80020FDC",
+"addr": "0x80020fdc",
+"size": 76,
+"tier": "reloc_aware",
+"seg": "0x21210",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_80019BE4",
+"func_8001A658",
+"func_80020820",
+"func_800239A4"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_80019BE4",
+"func_80020820"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "18",
+"source": "cloud/work/boot_tail/C13-medium/nonmatch/func_80020FDC.c",
+"hypothesis": "audio_data_dispatch_80020FDC"
+},
+"prior_md": []
+},
+{
+"name": "entrypoint",
+"addr": "0x80000400",
+"size": 80,
+"tier": "reloc_aware",
+"seg": "0x1000",
+"converted": false,
+"flagset": null,
+"state": "passthrough",
+"callees": [],
+"callers": [],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": []
+},
+{
+"name": "__osTlbFlush",
+"addr": "0x8000d840",
+"size": 80,
+"tier": "reloc_aware",
+"seg": "0xe440",
+"converted": false,
+"flagset": null,
+"state": "passthrough",
+"callees": [],
+"callers": [
+"__osInitialize_common"
+],
+"locked_callees": [],
+"locked_callers": [
+"__osInitialize_common"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "func_80018AEC",
+"addr": "0x80018aec",
+"size": 80,
+"tier": "reloc_aware",
+"seg": "0x17dc0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_800198C8"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_800198C8"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "6",
+"source": "cloud/work/boot_tail/BT03-high-medium/nonmatch/func_80018AEC.c",
+"hypothesis": "audio_channel_control_80018AEC"
+},
+"prior_md": []
+},
+{
+"name": "func_8001785C",
+"addr": "0x8001785c",
+"size": 84,
+"tier": "reloc_aware",
+"seg": "0x17dc0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_800178B0"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "17",
+"source": "cloud/work/boot_tail/BT03-high-medium/nonmatch/func_8001785C.c",
+"hypothesis": "audio_channel_control_8001785C"
+},
+"prior_md": []
+},
+{
+"name": "func_8002021C",
+"addr": "0x8002021c",
+"size": 88,
+"tier": "reloc_aware",
+"seg": "0x207b0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014594",
+"func_800145DC"
+],
+"callers": [],
+"locked_callees": [
+"func_80014594",
+"func_800145DC"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "12",
+"source": "cloud/work/boot_tail/BT03-high-params/nonmatch/func_8002021C.c",
+"hypothesis": "audio_parameter_8002021C"
+},
+"prior_md": []
+},
+{
+"name": "inflate_loop",
+"addr": "0x80006678",
+"size": 92,
+"tier": "reloc_aware",
+"seg": "0x5610",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"inflate_block"
+],
+"callers": [
+"inflate_entry",
+"inflate_entry_alt"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "func_8001489C",
+"addr": "0x8001489c",
+"size": 92,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80011A3C"
+],
+"callers": [
+"func_80022A40"
+],
+"locked_callees": [
+"func_80011A3C"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "11",
+"source": "cloud/work/boot_tail/BT03-low-medium/func_8001489C.c",
+"hypothesis": "set slot release count to twenty and conditionally initiate release"
+},
+"prior_md": []
+},
+{
+"name": "func_8001BDB8",
+"addr": "0x8001bdb8",
+"size": 92,
+"tier": "reloc_aware",
+"seg": "0x1a660",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_800198C8"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_800198C8"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "15",
+"source": "cloud/work/boot_tail/BT03-high-medium/nonmatch/func_8001BDB8.c",
+"hypothesis": "audio_command_prepare_8001BDB8"
+},
+"prior_md": []
+},
+{
+"name": "__osTlbInit",
+"addr": "0x8000d890",
+"size": 96,
+"tier": "reloc_aware",
+"seg": "0xe490",
+"converted": false,
+"flagset": null,
+"state": "passthrough",
+"callees": [],
+"callers": [
+"__osInitialize_common"
+],
+"locked_callees": [],
+"locked_callers": [
+"__osInitialize_common"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "func_80021548",
+"addr": "0x80021548",
+"size": 96,
+"tier": "reloc_aware",
+"seg": "0x21210",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_800215A8",
+"func_8002165C",
+"func_80023754"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "15",
+"source": "cloud/work/boot_tail/C13-tail/nonmatch/func_80021548.c",
+"hypothesis": "audio_data_dispatch_80021548"
+},
+"prior_md": [
+"cloud/work/boot_tail_promotion/macro_wrapper_contracts/README.md"
+]
+},
+{
+"name": "func_800217E4",
+"addr": "0x800217e4",
+"size": 96,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_80019C8C",
+"func_80023E9C"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_80019C8C"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "7",
+"source": "cloud/work/boot_tail/C13-tail/nonmatch/func_800217E4.c",
+"hypothesis": "audio_data_dispatch_800217E4"
+},
+"prior_md": []
+},
+{
+"name": "func_80021F08",
+"addr": "0x80021f08",
+"size": 96,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80016C20"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "9",
+"source": "cloud/work/boot_tail/BT05-medium-next/nonmatch/func_80021F08.c",
+"hypothesis": "audio_command_handler_80021F08"
+},
+"prior_md": []
+},
+{
+"name": "func_80011C1C",
+"addr": "0x80011c1c",
+"size": 104,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_800146B4"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_800146B4"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "14",
+"source": "cloud/work/boot_tail/BT02-medium/nonmatch/func_80011C1C.c",
+"hypothesis": "initialize_audio_record"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT02-medium/README.md",
+"cloud/work/boot_tail_promotion/audio_record_contracts/README.md"
+]
+},
+{
+"name": "func_80014A0C",
+"addr": "0x80014a0c",
+"size": 104,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_8001A658",
+"func_8001C580"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "24",
+"source": "cloud/work/boot_tail/BT03-low-followon/func_80014A0C_NONMATCH.c",
+"hypothesis": "audio_buffer_utility_80014A0C"
+},
+"prior_md": []
+},
+{
+"name": "func_800223D0",
+"addr": "0x800223d0",
+"size": 108,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "11",
+"source": "cloud/work/boot_tail/BT05-medium/nonmatch/func_800223D0.c",
+"hypothesis": "audio_command_handler_800223D0"
+},
+"prior_md": []
+},
+{
+"name": "func_80022514",
+"addr": "0x80022514",
+"size": 108,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001EF8C"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "23",
+"source": "cloud/work/boot_tail/BT05-medium-next/nonmatch/func_80022514.c",
+"hypothesis": "audio_command_handler_80022514"
+},
+"prior_md": []
+},
+{
+"name": "viTickStart",
+"addr": "0x80001350",
+"size": 112,
+"tier": "reloc_aware",
+"seg": "0x1f50",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"osSetGlobalIntMask"
+],
+"callers": [],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": []
+},
+{
+"name": "__osDisableInt",
+"addr": "0x8000c4b0",
+"size": 112,
+"tier": "reloc_aware",
+"seg": "0xd0b0",
+"converted": false,
+"flagset": null,
+"state": "passthrough",
+"callees": [],
+"callers": [
+"__osResetGlobalIntMask",
+"__osSetGlobalIntMask",
+"dll_insert",
+"dll_reschedule",
+"func_80013DEC",
+"osCreatePiManager",
+"osCreateThread",
+"osCreateViManager",
+"osDestroyThread",
+"osGetTime",
+"osJamMesg",
+"osPfsChecker_full",
+"osRecvMesg",
+"osSendMesg",
+"osSetEventMesg",
+"osSetEventMesgAlt",
+"osSetIntMask",
+"osSetThreadPri",
+"osSetTimerIntr",
+"osStartThread",
+"osViGetCurrentFramebuffer",
+"osViGetFramebuffer",
+"osViSetMode",
+"osViSetSpecialFeatures",
+"osYieldThread"
+],
+"locked_callees": [],
+"locked_callers": [
+"__osResetGlobalIntMask",
+"__osSetGlobalIntMask",
+"dll_insert",
+"dll_reschedule",
+"osCreatePiManager",
+"osCreateThread",
+"osCreateViManager",
+"osDestroyThread",
+"osGetTime",
+"osJamMesg",
+"osPfsChecker_full",
+"osRecvMesg",
+"osSendMesg",
+"osSetEventMesg",
+"osSetEventMesgAlt",
+"osSetIntMask",
+"osSetThreadPri",
+"osSetTimerIntr",
+"osStartThread",
+"osViGetCurrentFramebuffer",
+"osViGetFramebuffer",
+"osViSetMode",
+"osViSetSpecialFeatures",
+"osYieldThread"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/boot_tail/BT02-audio-remaining/README.md",
+"cloud/work/frontier/w15g/RESULTS.md",
+"cloud/work/frontier/w16g/RESULTS.md"
+]
+},
+{
+"name": "func_80019420",
+"addr": "0x80019420",
+"size": 112,
+"tier": "reloc_aware",
+"seg": "0x17dc0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80017644",
+"func_8001C19C"
+],
+"callers": [],
+"locked_callees": [
+"func_80017644"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "14",
+"source": "cloud/work/boot_tail/BT03-high-control/nonmatch/func_80019420.c",
+"hypothesis": "audio_channel_control_80019420"
+},
+"prior_md": []
+},
+{
+"name": "func_80016E68",
+"addr": "0x80016e68",
+"size": 120,
+"tier": "reloc_aware",
+"seg": "0x16320",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001E864"
+],
+"callers": [
+"func_80022F24",
+"func_8002321C"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "7",
+"source": "cloud/work/boot_tail/BT03-low-lookups/nonmatch/func_80016E68.c",
+"hypothesis": "audio_pool_state_80016E68"
+},
+"prior_md": []
+},
+{
+"name": "func_80016EE0",
+"addr": "0x80016ee0",
+"size": 120,
+"tier": "reloc_aware",
+"seg": "0x16320",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001E864"
+],
+"callers": [
+"func_8001A270"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "7",
+"source": "cloud/work/boot_tail/BT03-low-lookups/nonmatch/func_80016EE0.c",
+"hypothesis": "audio_pool_state_80016EE0"
+},
+"prior_md": []
+},
+{
+"name": "func_80019ED0",
+"addr": "0x80019ed0",
+"size": 120,
+"tier": "reloc_aware",
+"seg": "0x1a660",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80019C8C",
+"func_80021028"
+],
+"callers": [
+"func_80019F48",
+"func_8001A270"
+],
+"locked_callees": [
+"func_80019C8C"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "7",
+"source": "cloud/work/boot_tail/BT03-high-params/nonmatch/func_80019ED0.c",
+"hypothesis": "audio_parameter_80019ED0"
+},
+"prior_md": []
+},
+{
+"name": "func_8001C77C",
+"addr": "0x8001c77c",
+"size": 120,
+"tier": "reloc_aware",
+"seg": "0x1cf90",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014594",
+"func_800145DC",
+"func_80014A74"
+],
+"callers": [
+"func_80025670"
+],
+"locked_callees": [
+"func_80014594",
+"func_800145DC",
+"func_80014A74"
+],
+"locked_callers": [
+"func_80025670"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "19",
+"source": "cloud/work/boot_tail/BT03-high-service/nonmatch/func_8001C77C.c",
+"hypothesis": "audio_sequence_state_8001C77C"
+},
+"prior_md": []
+},
+{
+"name": "func_80021DF8",
+"addr": "0x80021df8",
+"size": 124,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80016C20",
+"func_8001E790"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "19",
+"source": "cloud/work/boot_tail/BT05-conditions/nonmatch/func_80021DF8.c",
+"hypothesis": "audio_command_handler_80021DF8"
+},
+"prior_md": []
+},
+{
+"name": "func_80023AD4",
+"addr": "0x80023ad4",
+"size": 124,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_800215A8"
+],
+"callers": [
+"func_80023BDC",
+"func_80023DB8"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "25",
+"source": "cloud/work/boot_tail/BT05-macro-five/nonmatch/func_80023AD4.c",
+"hypothesis": "audio_command_handler_80023AD4"
+},
+"prior_md": []
+},
+{
+"name": "osWritebackDCache",
+"addr": "0x80007ca0",
+"size": 128,
+"tier": "reloc_aware",
+"seg": "0x88a0",
+"converted": false,
+"flagset": null,
+"state": "passthrough",
+"callees": [],
+"callers": [
+"__osInitialize_common",
+"__osSiRawStartDma",
+"display_update",
+"func_80010A40",
+"func_80010E80",
+"func_80011104",
+"func_80011910",
+"func_80014C40",
+"func_80014C60",
+"osViModeNtscLan1"
+],
+"locked_callees": [],
+"locked_callers": [
+"__osInitialize_common",
+"__osSiRawStartDma",
+"display_update",
+"func_80010A40",
+"func_80014C40",
+"osViModeNtscLan1"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/boot_tail/BT02-context-pair/README.md",
+"cloud/work/boot_tail/BT03-low-followon/README.md",
+"cloud/work/boot_tail/BT03-low/README.md",
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "osInvalICache_full",
+"addr": "0x80008460",
+"size": 128,
+"tier": "reloc_aware",
+"seg": "0x8f80",
+"converted": true,
+"flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"__osInitialize_common",
+"game_init",
+"inflate_entry"
+],
+"locked_callees": [],
+"locked_callers": [
+"__osInitialize_common"
+],
+"boot_tail": null,
+"prior_md": []
+},
+{
+"name": "func_8001A5D8",
+"addr": "0x8001a5d8",
+"size": 128,
+"tier": "reloc_aware",
+"seg": "0x1a660",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001E440",
+"func_8001E50C"
+],
+"callers": [
+"func_8001A658"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "19",
+"source": "cloud/work/boot_tail/BT03-high-routing/nonmatch/func_8001A5D8.c",
+"hypothesis": "audio_routing_8001A5D8"
+},
+"prior_md": []
+},
+{
+"name": "func_80021764",
+"addr": "0x80021764",
+"size": 128,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_800225FC",
+"func_80022678"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_800225FC",
+"func_80022678"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "14",
+"source": "cloud/work/boot_tail/C13-tail/nonmatch/func_80021764.c",
+"hypothesis": "audio_data_dispatch_80021764"
+},
+"prior_md": [
+"cloud/work/boot_tail_promotion/macro_stream_contracts/README.md"
+]
+},
+{
+"name": "func_80021CDC",
+"addr": "0x80021cdc",
+"size": 128,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80016C20"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "21",
+"source": "cloud/work/boot_tail/BT05-conditions/nonmatch/func_80021CDC.c",
+"hypothesis": "audio_command_handler_80021CDC"
+},
+"prior_md": []
+},
+{
+"name": "func_800255F0",
+"addr": "0x800255f0",
+"size": 128,
+"tier": "reloc_aware",
+"seg": "0x25bb0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80025264"
+],
+"callers": [],
+"locked_callees": [
+"func_80025264"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "2",
+"source": "cloud/work/boot_tail/BT07-followon/func_800255F0_NONMATCH.c",
+"hypothesis": "query_stream_busy"
+},
+"prior_md": []
+},
+{
+"name": "inflate_entry_alt",
+"addr": "0x8000697c",
+"size": 132,
+"tier": "reloc_aware",
+"seg": "0x5610",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"dma_queue_sync",
+"inflate_flush_window",
+"inflate_loop",
+"sound_play_menu"
+],
+"callers": [],
+"locked_callees": [
+"inflate_flush_window"
+],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w10g/RESULTS.md",
+"cloud/work/frontier/w11a/RESULTS.md",
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "func_80021C58",
+"addr": "0x80021c58",
+"size": 132,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80016C20"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "21",
+"source": "cloud/work/boot_tail/BT05-conditions/nonmatch/func_80021C58.c",
+"hypothesis": "audio_command_handler_80021C58"
+},
+"prior_md": []
+},
+{
+"name": "func_80021844",
+"addr": "0x80021844",
+"size": 136,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_8001EB10"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_8001EB10"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "14",
+"source": "cloud/work/boot_tail/C13-tail/nonmatch/func_80021844.c",
+"hypothesis": "audio_data_dispatch_80021844"
+},
+"prior_md": []
+},
+{
+"name": "func_8002321C",
+"addr": "0x8002321c",
+"size": 136,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80016E68"
+],
+"callers": [
+"func_800232A4",
+"func_800233B0"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "20",
+"source": "cloud/work/boot_tail/BT05-variables/nonmatch/func_8002321C.c",
+"hypothesis": "audio_command_handler_8002321C"
+},
+"prior_md": []
+},
+{
+"name": "func_80023190",
+"addr": "0x80023190",
+"size": 140,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "18",
+"source": "cloud/work/boot_tail/BT05-medium/nonmatch/func_80023190.c",
+"hypothesis": "audio_command_handler_80023190"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT05-source-led/README.md"
+]
+},
+{
+"name": "func_80023B50",
+"addr": "0x80023b50",
+"size": 140,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8002165C"
+],
+"callers": [
+"func_80023BDC",
+"func_80023D70"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "33",
+"source": "cloud/work/boot_tail/BT05-macro-five/nonmatch/func_80023B50.c",
+"hypothesis": "audio_command_handler_80023B50"
+},
+"prior_md": []
+},
+{
+"name": "osAiSetNextBuffer",
+"addr": "0x8000be70",
+"size": 144,
+"tier": "reloc_aware",
+"seg": "0xca70",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"__osAiDeviceBusy",
+"osVirtualToPhysical"
+],
+"callers": [
+"func_80010A40"
+],
+"locked_callees": [
+"__osAiDeviceBusy",
+"osVirtualToPhysical"
+],
+"locked_callers": [
+"func_80010A40"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/boot_tail/BT02-context-pair/README.md",
+"cloud/work/frontier/w15g/RESULTS.md",
+"cloud/work/frontier/w16g/RESULTS.md"
+]
+},
+{
+"name": "func_80021E74",
+"addr": "0x80021e74",
+"size": 148,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80016C20",
+"func_80021BC0"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [
+"func_80021BC0"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "16",
+"source": "cloud/work/boot_tail/BT05-conditions/nonmatch/func_80021E74.c",
+"hypothesis": "audio_command_handler_80021E74"
+},
+"prior_md": []
+},
+{
+"name": "func_80016F80",
+"addr": "0x80016f80",
+"size": 152,
+"tier": "reloc_aware",
+"seg": "0x16320",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001E864"
+],
+"callers": [
+"func_80019F48"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "13",
+"source": "cloud/work/boot_tail/BT03-low-lookups/nonmatch/func_80016F80.c",
+"hypothesis": "audio_pool_state_80016F80"
+},
+"prior_md": []
+},
+{
+"name": "func_80024FD4",
+"addr": "0x80024fd4",
+"size": 152,
+"tier": "reloc_aware",
+"seg": "0x25bb0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_800262BC"
+],
+"callers": [],
+"locked_callees": [
+"func_800262BC"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "2",
+"source": "cloud/work/boot_tail/BT07-medium/func_80024FD4_NONMATCH.c",
+"hypothesis": "buffered_stream_service_80024FD4"
+},
+"prior_md": []
+},
+{
+"name": "__fixunssfdi",
+"addr": "0x80009ac8",
+"size": 156,
+"tier": "raw_word",
+"seg": "0xa5f0",
+"converted": true,
+"flagset": "-g0 -O1 -mips3 -32 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md",
+"cloud/work/frontier/w16g/RESULTS.md",
+"cloud/work/frontier/w16i/RESULTS.md"
+]
+},
+{
+"name": "func_80020610",
+"addr": "0x80020610",
+"size": 156,
+"tier": "reloc_aware",
+"seg": "0x21210",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_800177EC",
+"func_80017824",
+"func_800178B0",
+"func_80017D38",
+"func_8001824C",
+"func_80018448",
+"func_8001B29C",
+"func_8001B3A0",
+"func_8001B4A4",
+"func_8001B5F4",
+"func_8001B7C0",
+"func_8001FBB0",
+"func_8001FD2C",
+"func_80020048",
+"func_800206AC",
+"func_80020820"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_8001B29C",
+"func_8001B3A0",
+"func_8001B7C0",
+"func_8001FD2C",
+"func_80020048",
+"func_80020820"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "39",
+"source": "cloud/work/boot_tail/C13-medium/nonmatch/func_80020610.c",
+"hypothesis": "audio_data_dispatch_80020610"
+},
+"prior_md": []
+},
+{
+"name": "func_80021D5C",
+"addr": "0x80021d5c",
+"size": 156,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80016C20",
+"func_800214C8"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [
+"func_800214C8"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "21",
+"source": "cloud/work/boot_tail/BT05-conditions/nonmatch/func_80021D5C.c",
+"hypothesis": "audio_command_handler_80021D5C"
+},
+"prior_md": []
+},
+{
+"name": "osSetGlobalIntMask",
+"addr": "0x800071d0",
+"size": 160,
+"tier": "reloc_aware",
+"seg": "0x7c80",
+"converted": true,
+"flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"display_update",
+"osScAddClient",
+"viTickStart"
+],
+"locked_callees": [],
+"locked_callers": [
+"display_update",
+"osScAddClient"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md",
+"cloud/work/frontier/w16g/RESULTS.md"
+]
+},
+{
+"name": "bzero",
+"addr": "0x80008590",
+"size": 160,
+"tier": "reloc_aware",
+"seg": "0x9190",
+"converted": false,
+"flagset": null,
+"state": "passthrough",
+"callees": [],
+"callers": [
+"__osInitialize_common",
+"func_80010A40",
+"func_80010E80",
+"func_80011104",
+"func_80025EB0",
+"func_80025F74",
+"func_800268D0",
+"game_init",
+"osPfsChecker",
+"osPfsRename",
+"osViInit"
+],
+"locked_callees": [],
+"locked_callers": [
+"__osInitialize_common",
+"func_80010A40",
+"func_80025EB0",
+"osPfsChecker",
+"osPfsRename",
+"osViInit"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/boot_tail/BT02-context-pair/README.md",
+"cloud/work/boot_tail/BT07-medium/README.md",
+"cloud/work/frontier/w15g/RESULTS.md",
+"cloud/work/frontier/w16g/RESULTS.md",
+"cloud/work/frontier/w2g/RESULTS.md",
+"cloud/work/frontier/w3c/RESULTS.md"
+]
+},
+{
+"name": "__fixunsdfdi",
+"addr": "0x80009a28",
+"size": 160,
+"tier": "raw_word",
+"seg": "0xa5f0",
+"converted": true,
+"flagset": "-g0 -O1 -mips3 -32 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md",
+"cloud/work/frontier/w16g/RESULTS.md",
+"cloud/work/frontier/w16i/RESULTS.md"
+]
+},
+{
+"name": "func_80010840",
+"addr": "0x80010840",
+"size": 160,
+"tier": "reloc_aware",
+"seg": "0x113e0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_800107E0",
+"func_800143C0"
+],
+"callers": [],
+"locked_callees": [
+"func_800107E0",
+"func_800143C0"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "14",
+"source": "cloud/work/boot_tail/BT02-final-small/nonmatch/func_80010840.c",
+"hypothesis": "audio_runtime_gateway_80010840"
+},
+"prior_md": []
+},
+{
+"name": "func_800108E0",
+"addr": "0x800108e0",
+"size": 160,
+"tier": "reloc_aware",
+"seg": "0x113e0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_800107E0",
+"func_80014434"
+],
+"callers": [],
+"locked_callees": [
+"func_800107E0",
+"func_80014434"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "14",
+"source": "cloud/work/boot_tail/BT02-final-small/nonmatch/func_800108E0.c",
+"hypothesis": "audio_runtime_gateway_800108E0"
+},
+"prior_md": []
+},
+{
+"name": "func_8002165C",
+"addr": "0x8002165c",
+"size": 164,
+"tier": "reloc_aware",
+"seg": "0x21210",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_800206AC",
+"func_80021548"
+],
+"callers": [
+"func_80023B50"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "35",
+"source": "cloud/work/boot_tail/C13-tail/nonmatch/func_8002165C.c",
+"hypothesis": "audio_data_dispatch_8002165C"
+},
+"prior_md": []
+},
+{
+"name": "func_8002300C",
+"addr": "0x8002300c",
+"size": 164,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014D30",
+"func_8002193C"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [
+"func_80014D30"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "22",
+"source": "cloud/work/boot_tail/BT05-variables/nonmatch/func_8002300C.c",
+"hypothesis": "audio_command_handler_8002300C"
+},
+"prior_md": []
+},
+{
+"name": "func_80010DD8",
+"addr": "0x80010dd8",
+"size": 168,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_80014198"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "40",
+"source": "cloud/work/boot_tail/BT02-medium/nonmatch/func_80010DD8.c",
+"hypothesis": "allocate_duration_buffer"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT02-medium/README.md"
+]
+},
+{
+"name": "func_8001E7BC",
+"addr": "0x8001e7bc",
+"size": 168,
+"tier": "reloc_aware",
+"seg": "0x1f340",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_8001A658"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "41",
+"source": "cloud/work/boot_tail/C11-numeric/func_8001E7BC_NONMATCH.c",
+"hypothesis": "numeric_memory_utility_8001E7BC"
+},
+"prior_md": []
+},
+{
+"name": "func_800202C4",
+"addr": "0x800202c4",
+"size": 172,
+"tier": "reloc_aware",
+"seg": "0x207b0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001467C",
+"func_800146AC"
+],
+"callers": [],
+"locked_callees": [
+"func_800146AC"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "26",
+"source": "cloud/work/boot_tail/BT03-high-runtime/nonmatch/func_800202C4.c",
+"hypothesis": "audio_runtime_800202C4"
+},
+"prior_md": []
+},
+{
+"name": "func_80022324",
+"addr": "0x80022324",
+"size": 172,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80021700"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [
+"func_80021700"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "2",
+"source": "cloud/work/boot_tail/BT05-macro-five/nonmatch/func_80022324.c",
+"hypothesis": "audio_command_handler_80022324"
+},
+"prior_md": []
+},
+{
+"name": "osInvalDCache",
+"addr": "0x800084e0",
+"size": 176,
+"tier": "reloc_aware",
+"seg": "0x90e0",
+"converted": false,
+"flagset": null,
+"state": "passthrough",
+"callees": [],
+"callers": [
+"__osSiRawStartDma",
+"func_80010628",
+"func_80010714",
+"func_80011F60",
+"func_800123A8",
+"func_800252AC",
+"func_80025C68",
+"game_init",
+"inflate_entry",
+"inflate_io_wait",
+"inflate_read_bits",
+"lzss_decode"
+],
+"locked_callees": [],
+"locked_callers": [
+"__osSiRawStartDma",
+"func_80010628",
+"func_80010714",
+"func_80025C68"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/boot_tail/BT07-larger/README.md",
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "__scAppendList",
+"addr": "0x80000d6c",
+"size": 180,
+"tier": "reloc_aware",
+"seg": "0x1050",
+"converted": true,
+"flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"__scSchedule"
+],
+"locked_callees": [],
+"locked_callers": [
+"__scSchedule"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "func_8001897C",
+"addr": "0x8001897c",
+"size": 180,
+"tier": "reloc_aware",
+"seg": "0x17dc0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_80018B3C",
+"func_800198C8"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_80018B3C",
+"func_800198C8"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "14",
+"source": "cloud/work/boot_tail/BT03-high-runtime/nonmatch/func_8001897C.c",
+"hypothesis": "audio_runtime_8001897C"
+},
+"prior_md": []
+},
+{
+"name": "func_800215A8",
+"addr": "0x800215a8",
+"size": 180,
+"tier": "reloc_aware",
+"seg": "0x21210",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80020A04",
+"func_80021548"
+],
+"callers": [
+"func_80023AD4"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "28",
+"source": "cloud/work/boot_tail/C13-tail/nonmatch/func_800215A8.c",
+"hypothesis": "audio_data_dispatch_800215A8"
+},
+"prior_md": []
+},
+{
+"name": "func_80016C20",
+"addr": "0x80016c20",
+"size": 192,
+"tier": "reloc_aware",
+"seg": "0x16320",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001E864"
+],
+"callers": [
+"func_80021C58",
+"func_80021CDC",
+"func_80021D5C",
+"func_80021DF8",
+"func_80021E74",
+"func_80021F08",
+"func_80024988"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "22",
+"source": "cloud/work/boot_tail/BT03-low-lookups/nonmatch/func_80016C20.c",
+"hypothesis": "audio_pool_state_80016C20"
+},
+"prior_md": []
+},
+{
+"name": "__osProbeTLB",
+"addr": "0x8000fcb0",
+"size": 192,
+"tier": "reloc_aware",
+"seg": "0x108b0",
+"converted": false,
+"flagset": null,
+"state": "passthrough",
+"callees": [],
+"callers": [],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w16g/RESULTS.md",
+"cloud/work/frontier/w16i/RESULTS.md"
+]
+},
+{
+"name": "func_80023754",
+"addr": "0x80023754",
+"size": 196,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80021548"
+],
+"callers": [
+"func_80023818",
+"func_80023844",
+"func_80023870",
+"func_8002389C",
+"func_800238C8",
+"func_800238F4",
+"func_80023920",
+"func_8002394C",
+"func_80023978"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_80023818",
+"func_80023844",
+"func_80023870",
+"func_8002389C",
+"func_800238C8",
+"func_800238F4",
+"func_80023920",
+"func_8002394C",
+"func_80023978"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "22",
+"source": "cloud/work/boot_tail/BT05-control-dispatch/nonmatch/func_80023754.c",
+"hypothesis": "audio_command_handler_80023754"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT05-controls/README.md",
+"cloud/work/boot_tail_promotion/macro_stream_contracts/README.md",
+"cloud/work/boot_tail_promotion/macro_wrapper_contracts/README.md"
+]
+},
+{
+"name": "func_80017040",
+"addr": "0x80017040",
+"size": 200,
+"tier": "reloc_aware",
+"seg": "0x16320",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001E864"
+],
+"callers": [
+"func_8001B1D0",
+"func_80020370"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_80020370"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "46",
+"source": "cloud/work/boot_tail/BT03-low-lookups/nonmatch/func_80017040.c",
+"hypothesis": "audio_pool_state_80017040"
+},
+"prior_md": []
+},
+{
+"name": "func_80018184",
+"addr": "0x80018184",
+"size": 200,
+"tier": "reloc_aware",
+"seg": "0x17dc0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_800174D0",
+"func_8001B8C4"
+],
+"callers": [
+"func_800198C8"
+],
+"locked_callees": [
+"func_800174D0",
+"func_8001B8C4"
+],
+"locked_callers": [
+"func_800198C8"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "6",
+"source": "cloud/work/boot_tail/BT03-high-transitions/nonmatch/func_80018184.c",
+"hypothesis": "audio_transition_80018184"
+},
+"prior_md": []
+},
+{
+"name": "func_80017720",
+"addr": "0x80017720",
+"size": 204,
+"tier": "reloc_aware",
+"seg": "0x17dc0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_800178B0",
+"func_80017D38",
+"func_80018634"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "51",
+"source": "cloud/work/boot_tail/BT03-high-transitions/nonmatch/func_80017720.c",
+"hypothesis": "audio_transition_80017720"
+},
+"prior_md": []
+},
+{
+"name": "func_8001B1D0",
+"addr": "0x8001b1d0",
+"size": 204,
+"tier": "reloc_aware",
+"seg": "0x1a660",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80017040",
+"func_8001A270"
+],
+"callers": [
+"func_8001DC08",
+"func_8001DDE0",
+"func_80020174"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_8001DDE0",
+"func_80020174"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "48",
+"source": "cloud/work/boot_tail/BT03-high-transitions/nonmatch/func_8001B1D0.c",
+"hypothesis": "audio_transition_8001B1D0"
+},
+"prior_md": []
+},
+{
+"name": "func_8001E440",
+"addr": "0x8001e440",
+"size": 204,
+"tier": "reloc_aware",
+"seg": "0x1ece0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_8001A5D8"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "23",
+"source": "cloud/work/boot_tail/C11-numeric/func_8001E440_NONMATCH.c",
+"hypothesis": "numeric_memory_utility_8001E440"
+},
+"prior_md": []
+},
+{
+"name": "func_8001E864",
+"addr": "0x8001e864",
+"size": 204,
+"tier": "reloc_aware",
+"seg": "0x1f340",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_80016C20",
+"func_80016CF0",
+"func_80016E68",
+"func_80016EE0",
+"func_80016F80",
+"func_80017040"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "34",
+"source": "cloud/work/boot_tail/C11-numeric/func_8001E864_NONMATCH.c",
+"hypothesis": "numeric_memory_utility_8001E864"
+},
+"prior_md": []
+},
+{
+"name": "__scHandleRetrace",
+"addr": "0x80000880",
+"size": 208,
+"tier": "reloc_aware",
+"seg": "0x1050",
+"converted": true,
+"flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+"state": "passthrough",
+"callees": [
+"display_mode_tick",
+"osJamMesg",
+"osViSetMode"
+],
+"callers": [
+"__scMain"
+],
+"locked_callees": [
+"display_mode_tick",
+"osJamMesg",
+"osViSetMode"
+],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "func_80011910",
+"addr": "0x80011910",
+"size": 208,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"osWritebackDCache"
+],
+"callers": [
+"func_800119E0"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_800119E0"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "47",
+"source": "cloud/work/boot_tail/BT02-larger/nonmatch/func_80011910.c",
+"hypothesis": "audio_task_scheduler_80011910"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT02-larger/README.md"
+]
+},
+{
+"name": "func_800154A4",
+"addr": "0x800154a4",
+"size": 208,
+"tier": "reloc_aware",
+"seg": "0x15a10",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_800150C8",
+"func_80015120",
+"func_80015178",
+"func_800151D0",
+"func_800152A8",
+"func_80015348"
+],
+"callers": [],
+"locked_callees": [
+"func_800150C8",
+"func_80015120",
+"func_80015178",
+"func_800151D0",
+"func_800152A8"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "17",
+"source": "cloud/work/boot_tail/BT03-low-resource/func_800154A4_NONMATCH.c",
+"hypothesis": "audio_pool_state_800154A4"
+},
+"prior_md": []
+},
+{
+"name": "func_8001D0F0",
+"addr": "0x8001d0f0",
+"size": 208,
+"tier": "reloc_aware",
+"seg": "0x1cf90",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014594",
+"func_800145DC"
+],
+"callers": [],
+"locked_callees": [
+"func_80014594",
+"func_800145DC"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "17",
+"source": "cloud/work/boot_tail/BT03-high-medium-tail/nonmatch/func_8001D0F0.c",
+"hypothesis": "audio_medium_tail_8001D0F0"
+},
+"prior_md": []
+},
+{
+"name": "func_8002279C",
+"addr": "0x8002279c",
+"size": 216,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80020F4C",
+"func_8002193C"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "7",
+"source": "cloud/work/boot_tail/BT05-variables/nonmatch/func_8002279C.c",
+"hypothesis": "audio_command_handler_8002279C"
+},
+"prior_md": []
+},
+{
+"name": "func_800230B0",
+"addr": "0x800230b0",
+"size": 224,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001E930"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [
+"func_8001E930"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "43",
+"source": "cloud/work/boot_tail/BT05-macro-five/nonmatch/func_800230B0.c",
+"hypothesis": "audio_command_handler_800230B0"
+},
+"prior_md": []
+},
+{
+"name": "func_800180A0",
+"addr": "0x800180a0",
+"size": 228,
+"tier": "reloc_aware",
+"seg": "0x17dc0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_800198C8"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_800198C8"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "26",
+"source": "cloud/work/boot_tail/BT03-high-medium-tail/nonmatch/func_800180A0.c",
+"hypothesis": "audio_medium_tail_800180A0"
+},
+"prior_md": []
+},
+{
+"name": "func_80023DB8",
+"addr": "0x80023db8",
+"size": 228,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80023AD4"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "49",
+"source": "cloud/work/boot_tail/BT05-macro-five/nonmatch/func_80023DB8.c",
+"hypothesis": "audio_command_handler_80023DB8"
+},
+"prior_md": []
+},
+{
+"name": "__osSendInterrupt",
+"addr": "0x8000cedc",
+"size": 232,
+"tier": "raw_word",
+"seg": "0xd580",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"__osEnqueueThread",
+"__osPopThread"
+],
+"callers": [
+"__osExceptionPreamble"
+],
+"locked_callees": [
+"__osPopThread"
+],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "func_80022F24",
+"addr": "0x80022f24",
+"size": 232,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_800148F8",
+"func_80016E68"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [
+"func_800148F8"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "35",
+"source": "cloud/work/boot_tail/BT05-variables/nonmatch/func_80022F24.c",
+"hypothesis": "audio_command_handler_80022F24"
+},
+"prior_md": []
+},
+{
+"name": "func_80026558",
+"addr": "0x80026558",
+"size": 232,
+"tier": "reloc_aware",
+"seg": "0x26f60",
+"converted": false,
+"flagset": null,
+"state": "passthrough",
+"callees": [
+"func_80026360",
+"func_800277D0",
+"func_800278C4"
+],
+"callers": [
+"func_80026640",
+"func_800268D0"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "open",
+"diff_words": "",
+"source": "",
+"hypothesis": "packed_stream_decoder_80026558"
+},
+"prior_md": []
+},
+{
+"name": "inflate_io_wait",
+"addr": "0x80004a10",
+"size": 236,
+"tier": "reloc_aware",
+"seg": "0x5610",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"__osPiRawStartDma",
+"osInvalDCache",
+"osRecvMesg"
+],
+"callers": [
+"lzss_decode"
+],
+"locked_callees": [
+"__osPiRawStartDma",
+"osRecvMesg"
+],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "viUpdateTime",
+"addr": "0x800013f4",
+"size": 252,
+"tier": "reloc_aware",
+"seg": "0x1f50",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w8a/RESULTS.md"
+]
+},
+{
+"name": "__osCleanupThread",
+"addr": "0x8000cfc4",
+"size": 256,
+"tier": "raw_word",
+"seg": "0xd580",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"__osEnqueueThread"
+],
+"callers": [
+"osCreateViManager",
+"osJamMesg",
+"osPfsChecker_full",
+"osRecvMesg",
+"osSendMesg",
+"osStartThread",
+"osYieldThread"
+],
+"locked_callees": [],
+"locked_callers": [
+"osCreateViManager",
+"osJamMesg",
+"osPfsChecker_full",
+"osRecvMesg",
+"osSendMesg",
+"osStartThread",
+"osYieldThread"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md",
+"cloud/work/frontier/w16g/RESULTS.md"
+]
+},
+{
+"name": "func_8001661C",
+"addr": "0x8001661c",
+"size": 256,
+"tier": "reloc_aware",
+"seg": "0x16320",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014594",
+"func_800145DC"
+],
+"callers": [
+"func_80015348"
+],
+"locked_callees": [
+"func_80014594",
+"func_800145DC"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "31",
+"source": "cloud/work/boot_tail/BT03-low-removal/func_8001661C_NONMATCH.c",
+"hypothesis": "remove matching record after guarded live-count reload"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT03-low-removal/README.md"
+]
+},
+{
+"name": "func_8001F6EC",
+"addr": "0x8001f6ec",
+"size": 256,
+"tier": "reloc_aware",
+"seg": "0x1f5b0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001EE9C"
+],
+"callers": [
+"func_8001F954",
+"func_8001F9D0",
+"func_80021BC0",
+"func_80023E9C"
+],
+"locked_callees": [
+"func_8001EE9C"
+],
+"locked_callers": [
+"func_8001F954",
+"func_8001F9D0",
+"func_80021BC0"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "30",
+"source": "cloud/work/boot_tail/BT03-high-larger/nonmatch/func_8001F6EC.c",
+"hypothesis": "audio_larger_8001F6EC"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT03-voice-free-donor/README.md"
+]
+},
+{
+"name": "func_8001D660",
+"addr": "0x8001d660",
+"size": 260,
+"tier": "reloc_aware",
+"seg": "0x1cf90",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014594",
+"func_800145DC",
+"func_8001D5C0"
+],
+"callers": [],
+"locked_callees": [
+"func_80014594",
+"func_800145DC",
+"func_8001D5C0"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "23",
+"source": "cloud/work/boot_tail/BT03-high-larger/nonmatch/func_8001D660.c",
+"hypothesis": "audio_larger_8001D660"
+},
+"prior_md": []
+},
+{
+"name": "func_800161A0",
+"addr": "0x800161a0",
+"size": 268,
+"tier": "reloc_aware",
+"seg": "0x16320",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014594",
+"func_800145DC"
+],
+"callers": [
+"func_800163A8"
+],
+"locked_callees": [
+"func_80014594",
+"func_800145DC"
+],
+"locked_callers": [
+"func_800163A8"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "20",
+"source": "cloud/work/boot_tail/BT03-low-registry/func_800161A0_NONMATCH.c",
+"hypothesis": "audio_pool_state_800161A0"
+},
+"prior_md": []
+},
+{
+"name": "func_800232A4",
+"addr": "0x800232a4",
+"size": 268,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8002321C"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "7",
+"source": "cloud/work/boot_tail/BT05-larger-pair/nonmatch/func_800232A4.c",
+"hypothesis": "audio_command_handler_800232A4"
+},
+"prior_md": []
+},
+{
+"name": "func_80019AD4",
+"addr": "0x80019ad4",
+"size": 272,
+"tier": "reloc_aware",
+"seg": "0x1a660",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_8001A658"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "18",
+"source": "cloud/work/boot_tail/BT03-high-larger/nonmatch/func_80019AD4.c",
+"hypothesis": "audio_larger_80019AD4"
+},
+"prior_md": []
+},
+{
+"name": "bcmp",
+"addr": "0x8000f8d0",
+"size": 288,
+"tier": "reloc_aware",
+"seg": "0x104d0",
+"converted": false,
+"flagset": null,
+"state": "passthrough",
+"callees": [],
+"callers": [
+"__osTimerInterrupt",
+"osPfsReadWriteFile_pages"
+],
+"locked_callees": [],
+"locked_callers": [
+"__osTimerInterrupt",
+"osPfsReadWriteFile_pages"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/boot_tail/README.md",
+"cloud/work/boot_tail/remaining_inputs/README.md",
+"cloud/work/frontier/w15g/RESULTS.md",
+"cloud/work/frontier/w16g/RESULTS.md"
+]
+},
+{
+"name": "func_800239A4",
+"addr": "0x800239a4",
+"size": 304,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80019BE4",
+"func_8001E930",
+"func_8001E940",
+"func_80020FDC"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [
+"func_80019BE4",
+"func_8001E930",
+"func_8001E940"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "21",
+"source": "cloud/work/boot_tail/BT05-larger-trio/nonmatch/func_800239A4.c",
+"hypothesis": "audio_command_handler_800239A4"
+},
+"prior_md": []
+},
+{
+"name": "func_800158D8",
+"addr": "0x800158d8",
+"size": 308,
+"tier": "reloc_aware",
+"seg": "0x16320",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014594",
+"func_800145DC"
+],
+"callers": [
+"func_80015178"
+],
+"locked_callees": [
+"func_80014594",
+"func_800145DC"
+],
+"locked_callers": [
+"func_80015178"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "8",
+"source": "cloud/work/boot_tail/BT03-low-removal/func_800158D8_NONMATCH.c",
+"hypothesis": "release referenced record and compact table on zero"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT03-low-removal/README.md"
+]
+},
+{
+"name": "func_80015F28",
+"addr": "0x80015f28",
+"size": 308,
+"tier": "reloc_aware",
+"seg": "0x16320",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014594",
+"func_800145DC"
+],
+"callers": [
+"func_80015120"
+],
+"locked_callees": [
+"func_80014594",
+"func_800145DC"
+],
+"locked_callers": [
+"func_80015120"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "8",
+"source": "cloud/work/boot_tail/BT03-low-removal/func_80015F28_NONMATCH.c",
+"hypothesis": "release referenced record in second table and compact on zero"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT03-low-removal/README.md"
+]
+},
+{
+"name": "func_8001536C",
+"addr": "0x8001536c",
+"size": 312,
+"tier": "reloc_aware",
+"seg": "0x15a10",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014F14",
+"func_80014F80",
+"func_80014FEC",
+"func_80015058",
+"func_80015228",
+"func_80015318"
+],
+"callers": [],
+"locked_callees": [
+"func_80014F14",
+"func_80014F80",
+"func_80014FEC",
+"func_80015058",
+"func_80015228"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "6",
+"source": "cloud/work/boot_tail/BT03-low-registry/func_8001536C_NONMATCH.c",
+"hypothesis": "audio_pool_state_8001536C"
+},
+"prior_md": []
+},
+{
+"name": "inflate_read_bits",
+"addr": "0x800066d4",
+"size": 320,
+"tier": "reloc_aware",
+"seg": "0x5610",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"__osPiRawStartDma",
+"osInvalDCache",
+"osRecvMesg"
+],
+"callers": [
+"inflate_block",
+"inflate_dynamic",
+"inflate_free_window",
+"inflate_stored"
+],
+"locked_callees": [
+"__osPiRawStartDma",
+"osRecvMesg"
+],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "__scMain",
+"addr": "0x8000063c",
+"size": 324,
+"tier": "reloc_aware",
+"seg": "0x1050",
+"converted": true,
+"flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+"state": "passthrough",
+"callees": [
+"__scHandleRDP",
+"__scHandleRSP",
+"__scHandleRetrace",
+"__scSchedule",
+"osGetTime",
+"osRecvMesg",
+"osSendMesg"
+],
+"callers": [],
+"locked_callees": [
+"__scHandleRDP",
+"__scHandleRSP",
+"__scSchedule",
+"osGetTime",
+"osRecvMesg",
+"osSendMesg"
+],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "func_8001605C",
+"addr": "0x8001605c",
+"size": 324,
+"tier": "reloc_aware",
+"seg": "0x16320",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014594",
+"func_800145DC"
+],
+"callers": [
+"func_80015228"
+],
+"locked_callees": [
+"func_80014594",
+"func_800145DC"
+],
+"locked_callers": [
+"func_80015228"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "48",
+"source": "cloud/work/boot_tail/BT03-low-registry/func_8001605C_NONMATCH.c",
+"hypothesis": "audio_pool_state_8001605C"
+},
+"prior_md": []
+},
+{
+"name": "func_8001D764",
+"addr": "0x8001d764",
+"size": 332,
+"tier": "reloc_aware",
+"seg": "0x1cf90",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014594",
+"func_800145DC",
+"func_8001D5C0"
+],
+"callers": [],
+"locked_callees": [
+"func_80014594",
+"func_800145DC",
+"func_8001D5C0"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "21",
+"source": "cloud/work/boot_tail/BT03-high-runtime-followon/nonmatch/func_8001D764.c",
+"hypothesis": "audio_runtime_followon_8001D764"
+},
+"prior_md": []
+},
+{
+"name": "func_80016CF0",
+"addr": "0x80016cf0",
+"size": 336,
+"tier": "reloc_aware",
+"seg": "0x16320",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001E864"
+],
+"callers": [
+"func_80022874"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "80",
+"source": "cloud/work/boot_tail/BT03-low-sample-pair/nonmatch/func_80016CF0.c",
+"hypothesis": "audio_pool_state_80016CF0"
+},
+"prior_md": []
+},
+{
+"name": "func_8001B4A4",
+"addr": "0x8001b4a4",
+"size": 336,
+"tier": "reloc_aware",
+"seg": "0x1a660",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001EDF4",
+"func_80020610"
+],
+"callers": [
+"func_8001CCDC",
+"func_8001FFA0"
+],
+"locked_callees": [
+"func_8001EDF4"
+],
+"locked_callers": [
+"func_8001FFA0"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "61",
+"source": "cloud/work/boot_tail/BT03-high-chains/nonmatch/func_8001B4A4.c",
+"hypothesis": "audio_chains_8001B4A4"
+},
+"prior_md": []
+},
+{
+"name": "func_8001B5F4",
+"addr": "0x8001b5f4",
+"size": 336,
+"tier": "reloc_aware",
+"seg": "0x1a660",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001EDF4",
+"func_80020610"
+],
+"callers": [
+"func_8001FEF8"
+],
+"locked_callees": [
+"func_8001EDF4"
+],
+"locked_callers": [
+"func_8001FEF8"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "61",
+"source": "cloud/work/boot_tail/BT03-high-chains/nonmatch/func_8001B5F4.c",
+"hypothesis": "audio_chains_8001B5F4"
+},
+"prior_md": []
+},
+{
+"name": "func_8001558C",
+"addr": "0x8001558c",
+"size": 348,
+"tier": "reloc_aware",
+"seg": "0x15a10",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014594",
+"func_800145DC",
+"func_800178B0"
+],
+"callers": [
+"func_800156E8",
+"func_80019490"
+],
+"locked_callees": [
+"func_80014594",
+"func_800145DC"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "33",
+"source": "cloud/work/boot_tail/BT03-low-registers/func_8001558C_NONMATCH.c",
+"hypothesis": "locate bank and program and dispatch under optional guard"
+},
+"prior_md": []
+},
+{
+"name": "func_80015C0C",
+"addr": "0x80015c0c",
+"size": 348,
+"tier": "reloc_aware",
+"seg": "0x16320",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014594",
+"func_800145DC"
+],
+"callers": [
+"func_800151D0"
+],
+"locked_callees": [
+"func_80014594",
+"func_800145DC"
+],
+"locked_callers": [
+"func_800151D0"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "23",
+"source": "cloud/work/boot_tail/BT03-low-registers/func_80015C0C_NONMATCH.c",
+"hypothesis": "release packed twelve-byte record and compact table on zero"
+},
+"prior_md": []
+},
+{
+"name": "__scExec",
+"addr": "0x80000e20",
+"size": 360,
+"tier": "reloc_aware",
+"seg": "0x1050",
+"converted": true,
+"flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+"state": "passthrough",
+"callees": [
+"osDpSetNextBuffer",
+"osGetTime",
+"osInvalICache",
+"osViModeNtscLan1",
+"osViModeNtscLpn1"
+],
+"callers": [
+"__scHandleRDP",
+"__scHandleRSP",
+"__scSchedule"
+],
+"locked_callees": [
+"osDpSetNextBuffer",
+"osGetTime",
+"osViModeNtscLan1",
+"osViModeNtscLpn1"
+],
+"locked_callers": [
+"__scHandleRDP",
+"__scHandleRSP",
+"__scSchedule"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "inflate_entry",
+"addr": "0x80006814",
+"size": 360,
+"tier": "reloc_aware",
+"seg": "0x5610",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"__osPiRawStartDma",
+"dma_queue_sync",
+"inflate_flush_window",
+"inflate_loop",
+"osInvalDCache",
+"osInvalICache_full",
+"osRecvMesg",
+"sound_play_menu"
+],
+"callers": [
+"game_init",
+"inflate_decompress"
+],
+"locked_callees": [
+"__osPiRawStartDma",
+"inflate_flush_window",
+"osRecvMesg"
+],
+"locked_callers": [
+"inflate_decompress"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "func_800233B0",
+"addr": "0x800233b0",
+"size": 368,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001E930",
+"func_8001E940",
+"func_8001E9A0",
+"func_8002321C"
+],
+"callers": [
+"func_80023520",
+"func_80023544"
+],
+"locked_callees": [
+"func_8001E930",
+"func_8001E940",
+"func_8001E9A0"
+],
+"locked_callers": [
+"func_80023520",
+"func_80023544"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "27",
+"source": "cloud/work/boot_tail/BT05-larger-trio/nonmatch/func_800233B0.c",
+"hypothesis": "audio_command_handler_800233B0"
+},
+"prior_md": [
+"cloud/work/boot_tail_promotion/macro_stream_contracts/README.md"
+]
+},
+{
+"name": "func_80010450",
+"addr": "0x80010450",
+"size": 372,
+"tier": "reloc_aware",
+"seg": "0x11050",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8002C5E0",
+"osJamMesg"
+],
+"callers": [],
+"locked_callees": [
+"osJamMesg"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "open",
+"diff_words": "",
+"source": "",
+"hypothesis": "resident_queue_service_80010450"
+},
+"prior_md": []
+},
+{
+"name": "func_80012234",
+"addr": "0x80012234",
+"size": 372,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8002C5E0"
+],
+"callers": [
+"func_80012D18"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "open",
+"diff_words": "",
+"source": "",
+"hypothesis": "audio_task_scheduler_80012234"
+},
+"prior_md": []
+},
+{
+"name": "func_800206AC",
+"addr": "0x800206ac",
+"size": 372,
+"tier": "reloc_aware",
+"seg": "0x21210",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80020610"
+],
+"callers": [
+"func_8002165C"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "91",
+"source": "cloud/work/boot_tail/C13-controller-remainder/nonmatch/func_800206AC.c",
+"hypothesis": "audio_data_dispatch_800206AC"
+},
+"prior_md": []
+},
+{
+"name": "__osDispatchThread",
+"addr": "0x8000d11c",
+"size": 380,
+"tier": "raw_word",
+"seg": "0xd580",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"__osPopThread"
+],
+"callers": [
+"osDestroyThread",
+"osStartThread"
+],
+"locked_callees": [
+"__osPopThread"
+],
+"locked_callers": [
+"osDestroyThread",
+"osStartThread"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md",
+"cloud/work/frontier/w16g/RESULTS.md"
+]
+},
+{
+"name": "func_8001E50C",
+"addr": "0x8001e50c",
+"size": 380,
+"tier": "reloc_aware",
+"seg": "0x1ece0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_8001A5D8"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "94",
+"source": "cloud/work/boot_tail/C11-rate-convert/func_8001E50C_NONMATCH.c",
+"hypothesis": "numeric_memory_utility_8001E50C"
+},
+"prior_md": []
+},
+{
+"name": "func_8001FBB0",
+"addr": "0x8001fbb0",
+"size": 380,
+"tier": "reloc_aware",
+"seg": "0x207b0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014594",
+"func_800145DC",
+"func_8001EDF4",
+"func_80020610"
+],
+"callers": [],
+"locked_callees": [
+"func_80014594",
+"func_800145DC",
+"func_8001EDF4"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "66",
+"source": "cloud/work/boot_tail/BT03-high-runtime-lists/nonmatch/func_8001FBB0.c",
+"hypothesis": "audio_runtime_lists_8001FBB0"
+},
+"prior_md": []
+},
+{
+"name": "func_8001DA74",
+"addr": "0x8001da74",
+"size": 404,
+"tier": "reloc_aware",
+"seg": "0x1cf90",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_8001DDE0"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_8001DDE0"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "58",
+"source": "cloud/work/boot_tail/BT03-high-runtime-lists/nonmatch/func_8001DA74.c",
+"hypothesis": "audio_runtime_lists_8001DA74"
+},
+"prior_md": []
+},
+{
+"name": "func_80023BDC",
+"addr": "0x80023bdc",
+"size": 404,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80023AD4",
+"func_80023B50"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "82",
+"source": "cloud/work/boot_tail/BT05-mapped-macro-dispatch/nonmatch/func_80023BDC.c",
+"hypothesis": "macro_variable_calculation"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT05-mapped-macro-dispatch/README.md"
+]
+},
+{
+"name": "inflate_block",
+"addr": "0x800064d4",
+"size": 420,
+"tier": "reloc_aware",
+"seg": "0x5610",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"inflate_dynamic",
+"inflate_fixed",
+"inflate_read_bits",
+"inflate_stored"
+],
+"callers": [
+"inflate_loop"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "func_80020DA8",
+"addr": "0x80020da8",
+"size": 420,
+"tier": "reloc_aware",
+"seg": "0x21210",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_8001B744"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_8001B744"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "100",
+"source": "cloud/work/boot_tail/C13-controller-pair/nonmatch/func_80020DA8.c",
+"hypothesis": "audio_data_dispatch_80020DA8"
+},
+"prior_md": []
+},
+{
+"name": "func_80023564",
+"addr": "0x80023564",
+"size": 428,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001E790",
+"func_800225FC"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [
+"func_800225FC"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "66",
+"source": "cloud/work/boot_tail/BT05-larger-pair/nonmatch/func_80023564.c",
+"hypothesis": "audio_command_handler_80023564"
+},
+"prior_md": []
+},
+{
+"name": "func_8001EF8C",
+"addr": "0x8001ef8c",
+"size": 432,
+"tier": "reloc_aware",
+"seg": "0x1f5b0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001EE9C"
+],
+"callers": [
+"func_8001F898",
+"func_80022514",
+"func_80022580",
+"func_80024988"
+],
+"locked_callees": [
+"func_8001EE9C"
+],
+"locked_callers": [
+"func_8001F898"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "88",
+"source": "cloud/work/boot_tail/BT03-high-runtime-lists/nonmatch/func_8001EF8C.c",
+"hypothesis": "audio_runtime_lists_8001EF8C"
+},
+"prior_md": []
+},
+{
+"name": "func_80025AB4",
+"addr": "0x80025ab4",
+"size": 436,
+"tier": "reloc_aware",
+"seg": "0x25bb0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80010628"
+],
+"callers": [],
+"locked_callees": [
+"func_80010628"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "45",
+"source": "cloud/work/boot_tail/BT07-stream-pair/func_80025AB4.c",
+"hypothesis": "bind_or_load_stream_table"
+},
+"prior_md": []
+},
+{
+"name": "func_80011A64",
+"addr": "0x80011a64",
+"size": 440,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_80012D18"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "107",
+"source": "cloud/work/boot_tail/BT02-next-pair/nonmatch/func_80011A64.c",
+"hypothesis": "audio_task_scheduler_80011A64"
+},
+"prior_md": []
+},
+{
+"name": "func_80015720",
+"addr": "0x80015720",
+"size": 440,
+"tier": "reloc_aware",
+"seg": "0x16320",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014594",
+"func_800145DC"
+],
+"callers": [
+"func_80014FEC"
+],
+"locked_callees": [
+"func_80014594",
+"func_800145DC"
+],
+"locked_callers": [
+"func_80014FEC"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "6",
+"source": "cloud/work/boot_tail/BT03-low-larger/func_80015720_NONMATCH.c",
+"hypothesis": "sorted record insertion or reference increment"
+},
+"prior_md": []
+},
+{
+"name": "func_80015D68",
+"addr": "0x80015d68",
+"size": 448,
+"tier": "reloc_aware",
+"seg": "0x16320",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014594",
+"func_800145DC"
+],
+"callers": [
+"func_80014F80"
+],
+"locked_callees": [
+"func_80014594",
+"func_800145DC"
+],
+"locked_callers": [
+"func_80014F80"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "62",
+"source": "cloud/work/boot_tail/BT03-low-insert-pair/func_80015D68_NONMATCH.c",
+"hypothesis": "audio_pool_state_80015D68"
+},
+"prior_md": []
+},
+{
+"name": "func_80022A98",
+"addr": "0x80022a98",
+"size": 448,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001E930",
+"func_8001E940"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [
+"func_8001E930",
+"func_8001E940"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "57",
+"source": "cloud/work/boot_tail/BT05-timed-pair/nonmatch/func_80022A98.c",
+"hypothesis": "audio_command_handler_80022A98"
+},
+"prior_md": []
+},
+{
+"name": "func_80022160",
+"addr": "0x80022160",
+"size": 452,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001B744",
+"func_80024988"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [
+"func_8001B744"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "95",
+"source": "cloud/work/boot_tail/BT05-resource-pair/nonmatch/func_80022160.c",
+"hypothesis": "audio_command_handler_80022160"
+},
+"prior_md": []
+},
+{
+"name": "inflate_fixed",
+"addr": "0x80005b7c",
+"size": 456,
+"tier": "reloc_aware",
+"seg": "0x5610",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"huft_alloc",
+"huft_build",
+"inflate_free_window"
+],
+"callers": [
+"inflate_block"
+],
+"locked_callees": [
+"huft_alloc"
+],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "func_80022874",
+"addr": "0x80022874",
+"size": 460,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_800146B4",
+"func_80016CF0"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [
+"func_800146B4"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "103",
+"source": "cloud/work/boot_tail/BT05-resource-pair/nonmatch/func_80022874.c",
+"hypothesis": "audio_command_handler_80022874"
+},
+"prior_md": []
+},
+{
+"name": "func_8001DC08",
+"addr": "0x8001dc08",
+"size": 472,
+"tier": "reloc_aware",
+"seg": "0x1cf90",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001B1D0",
+"func_8001CCDC"
+],
+"callers": [
+"func_8001DDE0"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_8001DDE0"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "3",
+"source": "cloud/work/boot_tail/BT03-high-spatial-control/nonmatch/func_8001DC08.c",
+"hypothesis": "audio_sequence_state_8001DC08"
+},
+"prior_md": []
+},
+{
+"name": "func_80014198",
+"addr": "0x80014198",
+"size": 476,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80010DD8",
+"func_80011104",
+"func_800114C0",
+"func_800140F8"
+],
+"callers": [
+"func_800143C0",
+"func_80014434"
+],
+"locked_callees": [
+"func_800140F8"
+],
+"locked_callers": [
+"func_800143C0",
+"func_80014434"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "13",
+"source": "cloud/work/boot_tail/BT02-audio-remaining/nonmatch/func_80014198.c",
+"hypothesis": "audio_task_scheduler_80014198"
+},
+"prior_md": []
+},
+{
+"name": "func_80021F84",
+"addr": "0x80021f84",
+"size": 476,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001467C",
+"func_8001E790"
+],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "35",
+"source": "cloud/work/boot_tail/BT05-timed-pair/nonmatch/func_80021F84.c",
+"hypothesis": "audio_command_handler_80021F84"
+},
+"prior_md": []
+},
+{
+"name": "func_80011D74",
+"addr": "0x80011d74",
+"size": 492,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001E688"
+],
+"callers": [
+"func_80012D18"
+],
+"locked_callees": [
+"func_8001E688"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "24",
+"source": "cloud/work/boot_tail/BT02-next-pair/nonmatch/func_80011D74.c",
+"hypothesis": "audio_task_scheduler_80011D74"
+},
+"prior_md": []
+},
+{
+"name": "func_80018448",
+"addr": "0x80018448",
+"size": 492,
+"tier": "reloc_aware",
+"seg": "0x17dc0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80020610"
+],
+"callers": [
+"func_800198C8"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_800198C8"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "87",
+"source": "cloud/work/boot_tail/BT03-high-runtime-followon/nonmatch/func_80018448.c",
+"hypothesis": "audio_runtime_followon_80018448"
+},
+"prior_md": []
+},
+{
+"name": "func_8001C580",
+"addr": "0x8001c580",
+"size": 496,
+"tier": "reloc_aware",
+"seg": "0x1cf90",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014594",
+"func_800145DC",
+"func_800146B4",
+"func_800149BC",
+"func_80014A0C",
+"func_80014A74",
+"func_8001F898"
+],
+"callers": [
+"func_8002574C"
+],
+"locked_callees": [
+"func_80014594",
+"func_800145DC",
+"func_800146B4",
+"func_800149BC",
+"func_80014A74",
+"func_8001F898"
+],
+"locked_callers": [
+"func_8002574C"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "33",
+"source": "cloud/work/boot_tail/BT03-high-runtime-followon/nonmatch/func_8001C580.c",
+"hypothesis": "audio_runtime_followon_8001C580"
+},
+"prior_md": []
+},
+{
+"name": "func_80010E80",
+"addr": "0x80010e80",
+"size": 500,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"bzero",
+"func_80014594",
+"func_800145DC",
+"osWritebackDCache"
+],
+"callers": [
+"func_80014BD8"
+],
+"locked_callees": [
+"func_80014594",
+"func_800145DC"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "53",
+"source": "cloud/work/boot_tail/BT02-context-pair/nonmatch/func_80010E80.c",
+"hypothesis": "audio_delay_state_configuration"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT02-context-pair/README.md"
+]
+},
+{
+"name": "func_80026360",
+"addr": "0x80026360",
+"size": 504,
+"tier": "reloc_aware",
+"seg": "0x26f60",
+"converted": false,
+"flagset": null,
+"state": "passthrough",
+"callees": [
+"func_80027B44"
+],
+"callers": [
+"func_80026558"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "open",
+"diff_words": "",
+"source": "",
+"hypothesis": "packed_stream_decoder_80026360"
+},
+"prior_md": []
+},
+{
+"name": "func_8001824C",
+"addr": "0x8001824c",
+"size": 508,
+"tier": "reloc_aware",
+"seg": "0x17dc0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80020610"
+],
+"callers": [
+"func_800198C8"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_800198C8"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "89",
+"source": "cloud/work/boot_tail/BT03-high-runtime-followon/nonmatch/func_8001824C.c",
+"hypothesis": "audio_runtime_followon_8001824C"
+},
+"prior_md": []
+},
+{
+"name": "func_8001D1F4",
+"addr": "0x8001d1f4",
+"size": 508,
+"tier": "reloc_aware",
+"seg": "0x1cf90",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014594",
+"func_800145DC",
+"func_8001C860",
+"func_8001CCDC",
+"func_80020174"
+],
+"callers": [
+"func_8001D3F0",
+"func_8001D460"
+],
+"locked_callees": [
+"func_80014594",
+"func_800145DC",
+"func_80020174"
+],
+"locked_callers": [
+"func_8001D3F0",
+"func_8001D460"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "46",
+"source": "cloud/work/boot_tail/BT03-high-spatial-control/nonmatch/func_8001D1F4.c",
+"hypothesis": "audio_sequence_state_8001D1F4"
+},
+"prior_md": []
+},
+{
+"name": "func_80015A0C",
+"addr": "0x80015a0c",
+"size": 512,
+"tier": "reloc_aware",
+"seg": "0x16320",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014594",
+"func_800145DC"
+],
+"callers": [
+"func_80015058"
+],
+"locked_callees": [
+"func_80014594",
+"func_800145DC"
+],
+"locked_callers": [
+"func_80015058"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "66",
+"source": "cloud/work/boot_tail/BT03-low-final-resource/func_80015A0C_NONMATCH.c",
+"hypothesis": "audio_pool_state_80015A0C"
+},
+"prior_md": []
+},
+{
+"name": "inflate_stored",
+"addr": "0x8000595c",
+"size": 544,
+"tier": "reloc_aware",
+"seg": "0x5610",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"inflate_read_bits"
+],
+"callers": [
+"inflate_block"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "func_800252AC",
+"addr": "0x800252ac",
+"size": 552,
+"tier": "reloc_aware",
+"seg": "0x25bb0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001C770",
+"func_80024FB0",
+"func_800250F0",
+"func_80025120",
+"func_800251A8",
+"func_80025EB0",
+"osCreateMesgQueue",
+"osInvalDCache"
+],
+"callers": [],
+"locked_callees": [
+"func_8001C770",
+"func_80024FB0",
+"func_800250F0",
+"func_80025120",
+"func_800251A8",
+"func_80025EB0",
+"osCreateMesgQueue"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "44",
+"source": "cloud/work/boot_tail/BT07-stream-pair/func_800252AC.c",
+"hypothesis": "start_stream_from_table"
+},
+"prior_md": []
+},
+{
+"name": "func_80022CD4",
+"addr": "0x80022cd4",
+"size": 592,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_80023E9C"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "125",
+"source": "cloud/work/boot_tail/BT05-conditional-pitch/func_80022CD4_CONDITIONAL.c",
+"hypothesis": "audio_command_handler_80022CD4"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT05-conditional-pitch/README.md"
+]
+},
+{
+"name": "lzss_decode",
+"addr": "0x80004afc",
+"size": 596,
+"tier": "reloc_aware",
+"seg": "0x5610",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"__osPiRawStartDma",
+"inflate_io_wait",
+"osInvalDCache",
+"osRecvMesg"
+],
+"callers": [
+"lzss_decompress"
+],
+"locked_callees": [
+"__osPiRawStartDma",
+"osRecvMesg"
+],
+"locked_callers": [
+"lzss_decompress"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "func_80011F60",
+"addr": "0x80011f60",
+"size": 604,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"osInvalDCache"
+],
+"callers": [
+"func_800114C0"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "74",
+"source": "cloud/work/boot_tail/BT02-audio-pair/nonmatch/func_80011F60.c",
+"hypothesis": "audio_task_scheduler_80011F60"
+},
+"prior_md": []
+},
+{
+"name": "func_80016998",
+"addr": "0x80016998",
+"size": 608,
+"tier": "reloc_aware",
+"seg": "0x16320",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014594",
+"func_800145DC"
+],
+"callers": [
+"func_800150C8"
+],
+"locked_callees": [
+"func_80014594",
+"func_800145DC"
+],
+"locked_callers": [
+"func_800150C8"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "106",
+"source": "cloud/work/boot_tail/BT03-low-final-resource/func_80016998_NONMATCH.c",
+"hypothesis": "audio_pool_state_80016998"
+},
+"prior_md": []
+},
+{
+"name": "func_8002193C",
+"addr": "0x8002193c",
+"size": 608,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001467C",
+"func_8001E790",
+"func_8001E930",
+"func_8001E940"
+],
+"callers": [
+"func_80021B9C",
+"func_800225FC",
+"func_80022678",
+"func_8002279C",
+"func_8002300C",
+"func_80023E9C"
+],
+"locked_callees": [
+"func_8001E930",
+"func_8001E940"
+],
+"locked_callers": [
+"func_80021B9C",
+"func_800225FC",
+"func_80022678"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "103",
+"source": "cloud/work/boot_tail/BT05-core-pair/nonmatch/func_8002193C.c",
+"hypothesis": "audio_command_handler_8002193C"
+},
+"prior_md": [
+"cloud/work/boot_tail_promotion/macro_stream_contracts/README.md"
+]
+},
+{
+"name": "func_80024988",
+"addr": "0x80024988",
+"size": 616,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001467C",
+"func_80016C20",
+"func_8001EB10",
+"func_8001ECE0",
+"func_8001EF8C",
+"func_8001F13C",
+"func_80020820"
+],
+"callers": [
+"func_80019F48",
+"func_8001A270",
+"func_80022160"
+],
+"locked_callees": [
+"func_8001EB10",
+"func_8001ECE0",
+"func_80020820"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "93",
+"source": "cloud/work/boot_tail/BT05-core-pair/nonmatch/func_80024988.c",
+"hypothesis": "audio_command_handler_80024988"
+},
+"prior_md": []
+},
+{
+"name": "func_800123A8",
+"addr": "0x800123a8",
+"size": 628,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"osInvalDCache"
+],
+"callers": [
+"func_800114C0"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "74",
+"source": "cloud/work/boot_tail/BT02-audio-pair/nonmatch/func_800123A8.c",
+"hypothesis": "audio_task_scheduler_800123A8"
+},
+"prior_md": []
+},
+{
+"name": "func_8001671C",
+"addr": "0x8001671c",
+"size": 636,
+"tier": "reloc_aware",
+"seg": "0x16320",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80014594",
+"func_800145DC"
+],
+"callers": [
+"func_80014F14"
+],
+"locked_callees": [
+"func_80014594",
+"func_800145DC"
+],
+"locked_callers": [
+"func_80014F14"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "133",
+"source": "cloud/work/boot_tail/BT03-low-insert-pair/func_8001671C_NONMATCH.c",
+"hypothesis": "audio_pool_state_8001671C"
+},
+"prior_md": []
+},
+{
+"name": "func_80026640",
+"addr": "0x80026640",
+"size": 656,
+"tier": "reloc_aware",
+"seg": "0x26f60",
+"converted": false,
+"flagset": null,
+"state": "passthrough",
+"callees": [
+"func_80026558"
+],
+"callers": [],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "open",
+"diff_words": "",
+"source": "",
+"hypothesis": "packed_stream_decoder_80026640"
+},
+"prior_md": []
+},
+{
+"name": "func_800139D4",
+"addr": "0x800139d4",
+"size": 688,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80012D18"
+],
+"callers": [
+"func_80013D70"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_80013D70"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "131",
+"source": "cloud/work/boot_tail/BT02-audio-final/nonmatch/func_800139D4.c",
+"hypothesis": "audio initialization or command submission (native structural hypothesis)"
+},
+"prior_md": []
+},
+{
+"name": "game_init",
+"addr": "0x80002238",
+"size": 708,
+"tier": "reloc_aware",
+"seg": "0x2cf0",
+"converted": true,
+"flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+"state": "passthrough",
+"callees": [
+"__setfpcsr",
+"audio_start",
+"bzero",
+"game_late_init",
+"get_tv_offset",
+"inflate_entry",
+"osCreateMesgQueue",
+"osCreateScheduler",
+"osCreateThread",
+"osInvalDCache",
+"osInvalICache_full",
+"osJamMesg",
+"osRecvMesg",
+"osScAddClient",
+"osStartThread",
+"sound_init",
+"world_trigger_activate"
+],
+"callers": [],
+"locked_callees": [
+"get_tv_offset",
+"osCreateMesgQueue",
+"osCreateScheduler",
+"osCreateThread",
+"osJamMesg",
+"osRecvMesg",
+"osScAddClient",
+"osStartThread"
+],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "func_80021150",
+"addr": "0x80021150",
+"size": 728,
+"tier": "reloc_aware",
+"seg": "0x21210",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80020A04"
+],
+"callers": [
+"func_80021428",
+"func_80021448",
+"func_80021468",
+"func_80021488",
+"func_800214A8",
+"func_800214C8",
+"func_800214E8",
+"func_80021508",
+"func_80021528"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_80021428",
+"func_80021448",
+"func_80021468",
+"func_80021488",
+"func_800214A8",
+"func_800214C8",
+"func_800214E8",
+"func_80021508",
+"func_80021528"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "24",
+"source": "cloud/work/boot_tail/C13-input-value/func_80021150_NONMATCH.c",
+"hypothesis": "audio_data_dispatch_80021150"
+},
+"prior_md": [
+"cloud/work/boot_tail/C13-input-value/README.md",
+"cloud/work/boot_tail/C13-small/README.md"
+]
+},
+{
+"name": "func_80013DEC",
+"addr": "0x80013dec",
+"size": 780,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"__osDisableInt",
+"__osRestoreInt",
+"func_80011894",
+"func_800118C0",
+"func_800119E0",
+"func_80011CD8",
+"func_80011D24",
+"func_80012200",
+"func_80013964",
+"func_80013C84",
+"func_80013D70",
+"func_80014624",
+"func_80014650",
+"func_8001C3CC",
+"func_8001C508",
+"func_8001DDE0"
+],
+"callers": [],
+"locked_callees": [
+"func_80011894",
+"func_800118C0",
+"func_800119E0",
+"func_80011CD8",
+"func_80011D24",
+"func_80012200",
+"func_80013964",
+"func_80013C84",
+"func_80013D70",
+"func_80014624",
+"func_80014650",
+"func_8001C3CC",
+"func_8001C508",
+"func_8001DDE0"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "164",
+"source": "cloud/work/boot_tail/BT02-audio-remaining/nonmatch/func_80013DEC.c",
+"hypothesis": "audio_task_scheduler_80013DEC"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT02-medium/README.md",
+"cloud/work/boot_tail_promotion/audio_record_contracts/README.md",
+"cloud/work/frontier/w16g/RESULTS.md",
+"cloud/work/frontier/w16i/RESULTS.md"
+]
+},
+{
+"name": "bcopy",
+"addr": "0x8000d2b0",
+"size": 784,
+"tier": "reloc_aware",
+"seg": "0xdeb0",
+"converted": false,
+"flagset": null,
+"state": "passthrough",
+"callees": [],
+"callers": [
+"__osContRamRead",
+"__osContRamWrite",
+"__osGetId",
+"__osPfsRWInode",
+"osPfsDeleteFile",
+"osPfsInitPak",
+"osPfsReadWriteFile",
+"osViModeTableGet"
+],
+"locked_callees": [],
+"locked_callers": [
+"__osContRamRead",
+"__osContRamWrite",
+"__osGetId",
+"__osPfsRWInode",
+"osPfsDeleteFile",
+"osPfsInitPak",
+"osPfsReadWriteFile",
+"osViModeTableGet"
+],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md",
+"cloud/work/frontier/w16g/RESULTS.md"
+]
+},
+{
+"name": "func_80019F48",
+"addr": "0x80019f48",
+"size": 808,
+"tier": "reloc_aware",
+"seg": "0x1a660",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80016F80",
+"func_80019ED0",
+"func_8001ECE0",
+"func_80024988"
+],
+"callers": [
+"func_8001A270"
+],
+"locked_callees": [
+"func_8001ECE0"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "170",
+"source": "cloud/work/boot_tail/BT03-constructor-pair/nonmatch/func_80019F48.c",
+"hypothesis": "audio_command_prepare_80019F48"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT03-constructor-pair/README.md"
+]
+},
+{
+"name": "func_80011104",
+"addr": "0x80011104",
+"size": 840,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"bzero",
+"osWritebackDCache"
+],
+"callers": [
+"func_80014198"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "62",
+"source": "cloud/work/boot_tail/BT02-audio-final/nonmatch/func_80011104.c",
+"hypothesis": "audio initialization or command submission (native structural hypothesis)"
+},
+"prior_md": [
+"cloud/work/boot_tail_promotion/audio_record_contracts/README.md"
+]
+},
+{
+"name": "func_80018634",
+"addr": "0x80018634",
+"size": 840,
+"tier": "reloc_aware",
+"seg": "0x17dc0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80017720",
+"func_80017824",
+"func_80018B3C"
+],
+"callers": [
+"func_800198C8"
+],
+"locked_callees": [
+"func_80018B3C"
+],
+"locked_callers": [
+"func_800198C8"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "117",
+"source": "cloud/work/boot_tail/BT03-runtime-singleton/nonmatch/func_80018634.c",
+"hypothesis": "sequence_track_event_dispatch"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT03-runtime-singleton/README.md"
+]
+},
+{
+"name": "func_80025F74",
+"addr": "0x80025f74",
+"size": 840,
+"tier": "reloc_aware",
+"seg": "0x26ab0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"bzero",
+"func_800268D0",
+"osRecvMesg"
+],
+"callers": [
+"func_8002574C"
+],
+"locked_callees": [
+"osRecvMesg"
+],
+"locked_callers": [
+"func_8002574C"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "2",
+"source": "cloud/work/boot_tail/BT07-decoder-facing-callers/func_80025F74.c",
+"hypothesis": "buffered_stream_service_80025F74"
+},
+"prior_md": []
+},
+{
+"name": "func_8001E0E0",
+"addr": "0x8001e0e0",
+"size": 864,
+"tier": "reloc_aware",
+"seg": "0x1ece0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_80014A74"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_80014A74"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "207",
+"source": "cloud/work/boot_tail/C11-mix-output/func_8001E0E0_NONMATCH.c",
+"hypothesis": "numeric_memory_utility_8001E0E0"
+},
+"prior_md": []
+},
+{
+"name": "func_80017D38",
+"addr": "0x80017d38",
+"size": 872,
+"tier": "reloc_aware",
+"seg": "0x17dc0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_800173B4",
+"func_80017410",
+"func_80017720",
+"func_800177EC",
+"func_80019490",
+"func_8001A270",
+"func_80020610"
+],
+"callers": [
+"func_800198C8"
+],
+"locked_callees": [
+"func_800173B4",
+"func_80017410"
+],
+"locked_callers": [
+"func_800198C8"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "173",
+"source": "cloud/work/boot_tail/BT03-high-sequence-events/nonmatch/func_80017D38.c",
+"hypothesis": "audio_channel_control_80017D38"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT03-high-sequence-events/README.md",
+"cloud/work/boot_tail/BT03-sequence-dispatch/README.md"
+]
+},
+{
+"name": "func_8001A270",
+"addr": "0x8001a270",
+"size": 872,
+"tier": "reloc_aware",
+"seg": "0x1a660",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80016EE0",
+"func_80019ED0",
+"func_80019F48",
+"func_80024988"
+],
+"callers": [
+"func_80017D38",
+"func_8001B1D0"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "195",
+"source": "cloud/work/boot_tail/BT03-constructor-pair/nonmatch/func_8001A270.c",
+"hypothesis": "audio_command_prepare_8001A270"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT03-constructor-pair/README.md"
+]
+},
+{
+"name": "func_800114C0",
+"addr": "0x800114c0",
+"size": 904,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80011F60",
+"func_800123A8",
+"osCreateMesgQueue"
+],
+"callers": [
+"func_80014198"
+],
+"locked_callees": [
+"osCreateMesgQueue"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "199",
+"source": "cloud/work/boot_tail/BT02-audio-final/nonmatch/func_800114C0.c",
+"hypothesis": "audio initialization or command submission (native structural hypothesis)"
+},
+"prior_md": []
+},
+{
+"name": "func_8001BE14",
+"addr": "0x8001be14",
+"size": 904,
+"tier": "reloc_aware",
+"seg": "0x1a660",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001E930"
+],
+"callers": [
+"func_800203EC"
+],
+"locked_callees": [
+"func_8001E930"
+],
+"locked_callers": [
+"func_800203EC"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "76",
+"source": "cloud/work/boot_tail/BT03-mapped-parameter-dispatch/func_8001BE14_NONMATCH.c",
+"hypothesis": "synthPauseVolume_fixed_point"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT03-mapped-parameter-dispatch/README.md"
+]
+},
+{
+"name": "func_80020A04",
+"addr": "0x80020a04",
+"size": 932,
+"tier": "reloc_aware",
+"seg": "0x21210",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_80021150",
+"func_800215A8"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "233",
+"source": "cloud/work/boot_tail/C13-controller-remainder/nonmatch/func_80020A04.c",
+"hypothesis": "audio_data_dispatch_80020A04"
+},
+"prior_md": [
+"cloud/work/boot_tail/C13-input-value/README.md"
+]
+},
+{
+"name": "func_8001CCDC",
+"addr": "0x8001ccdc",
+"size": 936,
+"tier": "reloc_aware",
+"seg": "0x1cf90",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001B29C",
+"func_8001B3A0",
+"func_8001B4A4",
+"func_8001B7C0",
+"func_8001CC9C",
+"func_8001CCC0"
+],
+"callers": [
+"func_8001D1F4",
+"func_8001DC08",
+"func_8001DDE0"
+],
+"locked_callees": [
+"func_8001B29C",
+"func_8001B3A0",
+"func_8001B7C0",
+"func_8001CCC0"
+],
+"locked_callers": [
+"func_8001DDE0"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "181",
+"source": "cloud/work/boot_tail/BT03-chain-dispatch/func_8001CCDC_NONMATCH.c",
+"hypothesis": "SetFXParameters"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT03-chain-dispatch/README.md"
+]
+},
+{
+"name": "func_80019490",
+"addr": "0x80019490",
+"size": 960,
+"tier": "reloc_aware",
+"seg": "0x17dc0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001558C",
+"func_800156E8",
+"func_80017644",
+"func_80018F20",
+"func_80018FA4",
+"func_80018FEC",
+"func_8001906C",
+"func_800190AC",
+"func_80019144",
+"func_80019194",
+"func_80019370"
+],
+"callers": [
+"func_80017D38",
+"func_80019850"
+],
+"locked_callees": [
+"func_80017644",
+"func_80018F20",
+"func_80018FA4",
+"func_80018FEC",
+"func_8001906C",
+"func_800190AC",
+"func_80019144",
+"func_80019194",
+"func_80019370"
+],
+"locked_callers": [
+"func_80019850"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "109",
+"source": "cloud/work/boot_tail/BT03-sequence-dispatch/nonmatch/func_80019490.c",
+"hypothesis": "audio_channel_control_80019490"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT03-sequence-dispatch/README.md"
+]
+},
+{
+"name": "func_8001B9F8",
+"addr": "0x8001b9f8",
+"size": 960,
+"tier": "reloc_aware",
+"seg": "0x1a660",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001E930"
+],
+"callers": [
+"func_800178B0",
+"func_80019194",
+"func_8002043C",
+"func_80020494"
+],
+"locked_callees": [
+"func_8001E930"
+],
+"locked_callers": [
+"func_80019194",
+"func_8002043C",
+"func_80020494"
+],
+"boot_tail": {
+"status": "nonmatch",
+"diff_words": "83",
+"source": "cloud/work/boot_tail/BT03-mapped-voice-dispatch/nonmatch/func_8001B9F8.c",
+"hypothesis": "synthVolume_fixed_point"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT03-mapped-voice-dispatch/README.md"
+]
+},
+{
+"name": "func_8001C860",
+"addr": "0x8001c860",
+"size": 1084,
+"tier": "reloc_aware",
+"seg": "0x1cf90",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80024BF0",
+"func_80024C9C",
+"sqrtf"
+],
+"callers": [
+"func_8001D1F4",
+"func_8001DDE0"
+],
+"locked_callees": [
+"func_80024BF0",
+"func_80024C9C"
+],
+"locked_callers": [
+"func_8001DDE0"
+],
+"boot_tail": {
+"status": "open",
+"diff_words": "",
+"source": "",
+"hypothesis": "audio_sequence_state_8001C860"
+},
+"prior_md": []
+},
+{
+"name": "func_800178B0",
+"addr": "0x800178b0",
+"size": 1160,
+"tier": "reloc_aware",
+"seg": "0x17dc0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_800175B4",
+"func_80017720",
+"func_8001785C",
+"func_80019A60",
+"func_8001B9F8",
+"func_8001C19C",
+"func_80020610",
+"func_80020820"
+],
+"callers": [
+"func_8001558C"
+],
+"locked_callees": [
+"func_800175B4",
+"func_80020820"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "open",
+"diff_words": "",
+"source": "",
+"hypothesis": "audio_channel_control_800178B0"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT03-sequence-constructor/README.md"
+]
+},
+{
+"name": "inflate_free_window",
+"addr": "0x80005464",
+"size": 1272,
+"tier": "reloc_aware",
+"seg": "0x5610",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"inflate_read_bits",
+"memcpy"
+],
+"callers": [
+"inflate_dynamic",
+"inflate_fixed"
+],
+"locked_callees": [
+"memcpy"
+],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "__osExceptionPreamble",
+"addr": "0x8000c990",
+"size": 1356,
+"tier": "raw_word",
+"seg": "0xd580",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"__osEnqueueThread",
+"__osSendInterrupt"
+],
+"callers": [],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md",
+"cloud/work/frontier/w16g/RESULTS.md"
+]
+},
+{
+"name": "func_8001F13C",
+"addr": "0x8001f13c",
+"size": 1456,
+"tier": "reloc_aware",
+"seg": "0x1f5b0",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [],
+"callers": [
+"func_8001F898",
+"func_80024988"
+],
+"locked_callees": [],
+"locked_callers": [
+"func_8001F898"
+],
+"boot_tail": {
+"status": "open",
+"diff_words": "",
+"source": "",
+"hypothesis": "audio_sequence_api_8001F13C"
+},
+"prior_md": []
+},
+{
+"name": "func_80012730",
+"addr": "0x80012730",
+"size": 1512,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80012660",
+"func_8002C5E0"
+],
+"callers": [
+"func_80012D18"
+],
+"locked_callees": [
+"func_80012660"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "open",
+"diff_words": "",
+"source": "",
+"hypothesis": "audio_task_scheduler_80012730"
+},
+"prior_md": []
+},
+{
+"name": "huft_build",
+"addr": "0x80004d98",
+"size": 1740,
+"tier": "reloc_aware",
+"seg": "0x5610",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"huft_alloc",
+"memset"
+],
+"callers": [
+"inflate_dynamic",
+"inflate_fixed"
+],
+"locked_callees": [
+"huft_alloc",
+"memset"
+],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "inflate_dynamic",
+"addr": "0x80005d44",
+"size": 1936,
+"tier": "reloc_aware",
+"seg": "0x5610",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"huft_alloc",
+"huft_build",
+"inflate_free_window",
+"inflate_read_bits"
+],
+"callers": [
+"inflate_block"
+],
+"locked_callees": [
+"huft_alloc"
+],
+"locked_callers": [],
+"boot_tail": null,
+"prior_md": [
+"cloud/work/frontier/w15g/RESULTS.md"
+]
+},
+{
+"name": "func_80023E9C",
+"addr": "0x80023e9c",
+"size": 2796,
+"tier": "reloc_aware",
+"seg": "0x22300",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001467C",
+"func_80014AF0",
+"func_8001F6EC",
+"func_80020F4C",
+"func_80020F98",
+"func_8002106C",
+"func_800217E4",
+"func_8002193C",
+"func_80021B9C",
+"func_80021BC0",
+"func_80021BF0",
+"func_80021C58",
+"func_80021CDC",
+"func_80021D5C",
+"func_80021DF8",
+"func_80021E74",
+"func_80021F08",
+"func_80021F68",
+"func_80021F84",
+"func_80022160",
+"func_80022324",
+"func_800223D0",
+"func_8002243C",
+"func_8002245C",
+"func_800224B0",
+"func_80022514",
+"func_80022580",
+"func_800225AC",
+"func_800225DC",
+"func_800225FC",
+"func_80022678",
+"func_8002279C",
+"func_80022874",
+"func_80022A40",
+"func_80022A78",
+"func_80022A98",
+"func_80022C58",
+"func_80022CD4",
+"func_80022F24",
+"func_8002300C",
+"func_800230B0",
+"func_80023190",
+"func_800232A4",
+"func_80023520",
+"func_80023544",
+"func_80023564",
+"func_80023710",
+"func_80023734",
+"func_80023818",
+"func_80023844",
+"func_80023870",
+"func_8002389C",
+"func_800238C8",
+"func_800238F4",
+"func_80023920",
+"func_8002394C",
+"func_80023978",
+"func_800239A4",
+"func_80023BDC",
+"func_80023D70",
+"func_80023DB8"
+],
+"callers": [
+"func_8001A658"
+],
+"locked_callees": [
+"func_80014AF0",
+"func_8002106C",
+"func_80021B9C",
+"func_80021BC0",
+"func_80021BF0",
+"func_80021F68",
+"func_8002243C",
+"func_8002245C",
+"func_800224B0",
+"func_800225AC",
+"func_800225DC",
+"func_800225FC",
+"func_80022678",
+"func_80022A78",
+"func_80022C58",
+"func_80023520",
+"func_80023544",
+"func_80023710",
+"func_80023734",
+"func_80023818",
+"func_80023844",
+"func_80023870",
+"func_8002389C",
+"func_800238C8",
+"func_800238F4",
+"func_80023920",
+"func_8002394C",
+"func_80023978"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "open",
+"diff_words": "",
+"source": "",
+"hypothesis": "MusyX macHandleActive source lead; N64 layout/version unproved"
+},
+"prior_md": [
+"cloud/work/boot_tail/BT05-controls/README.md",
+"cloud/work/boot_tail/BT05-leaves/README.md",
+"cloud/work/boot_tail/BT05-wrappers/README.md",
+"cloud/work/boot_tail_promotion/macro_wrapper_contracts/README.md"
+]
+},
+{
+"name": "func_8001A658",
+"addr": "0x8001a658",
+"size": 2812,
+"tier": "reloc_aware",
+"seg": "0x1a660",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_8001467C",
+"func_800149BC",
+"func_800149DC",
+"func_80014A0C",
+"func_80014A74",
+"func_80014D14",
+"func_80018C2C",
+"func_80018D40",
+"func_800190AC",
+"func_80019AD4",
+"func_80019BE4",
+"func_8001A5D8",
+"func_8001E7BC",
+"func_80020FDC",
+"func_80021428",
+"func_80021448",
+"func_80021468",
+"func_80021488",
+"func_800214A8",
+"func_800214C8",
+"func_800214E8",
+"func_80021508",
+"func_80021528",
+"func_80023E9C"
+],
+"callers": [
+"func_8001B154"
+],
+"locked_callees": [
+"func_800149BC",
+"func_800149DC",
+"func_80014A74",
+"func_80018C2C",
+"func_80018D40",
+"func_800190AC",
+"func_80019BE4",
+"func_80021428",
+"func_80021448",
+"func_80021468",
+"func_80021488",
+"func_800214A8",
+"func_800214C8",
+"func_800214E8",
+"func_80021508",
+"func_80021528"
+],
+"locked_callers": [
+"func_8001B154"
+],
+"boot_tail": {
+"status": "open",
+"diff_words": "",
+"source": "",
+"hypothesis": "audio_command_prepare_8001A658"
+},
+"prior_md": []
+},
+{
+"name": "func_80012D18",
+"addr": "0x80012d18",
+"size": 3148,
+"tier": "reloc_aware",
+"seg": "0x11640",
+"converted": true,
+"flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+"state": "passthrough",
+"callees": [
+"func_80011A64",
+"func_80011D74",
+"func_80012234",
+"func_80012730",
+"func_8001E688",
+"func_8002C5E0"
+],
+"callers": [
+"func_800139D4"
+],
+"locked_callees": [
+"func_8001E688"
+],
+"locked_callers": [],
+"boot_tail": {
+"status": "open",
+"diff_words": "",
+"source": "",
+"hypothesis": "audio_task_scheduler_80012D18"
+},
+"prior_md": []
+},
+{
+"name": "func_800268D0",
+"addr": "0x800268d0",
+"size": 3840,
+"tier": "reloc_aware",
+"seg": "0x26f60",
+"converted": false,
+"flagset": null,
+"state": "passthrough",
+"callees": [
+"bzero",
+"func_80026558"
+],
+"callers": [
+"func_80025F74"
+],
+"locked_callees": [],
+"locked_callers": [],
+"boot_tail": {
+"status": "open",
+"diff_words": "",
+"source": "",
+"hypothesis": "packed_stream_decoder_800268D0"
+},
+"prior_md": []
+}
+]

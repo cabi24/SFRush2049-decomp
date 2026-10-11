@@ -22,6 +22,7 @@ from pathlib import Path
 
 from . import targets as targetsmod
 from . import owned_data
+from .. import compilers as compilersmod
 
 REPO = targetsmod.REPO
 SPLAT_YAML = REPO / "splat.us.yaml"
@@ -31,6 +32,8 @@ LOCKFILE = REPO / "matched.lock.json"
 ROM_SRC_DIR = REPO / "src" / "rom"
 NONMATCHINGS = REPO / "asm" / "us" / "nonmatchings"
 OPT_OVERRIDES_MK = ROM_SRC_DIR / "opt_overrides.mk"
+# Per-segment compiler pins (IDO 7.1 for the boot tail); see tools/conveyor/compilers.py.
+COMPILER_PINS = REPO / "rom_compilers.json"
 # Census function extents (scan_extent tiling, S12) for the boot-segment tail.
 # They are the documented evidence that lets a declared address-spelled name
 # (func_XXXXXXXX) stand as a canonical name; see _canonical_name.
@@ -204,13 +207,16 @@ def _segment_flagset(func_names, flag_by_fn):
     return seen.pop() if len(seen) == 1 else None
 
 
-def derive(splat_path=None):
-    """Build the layout map dict (deterministic)."""
+def derive(splat_path=None, compiler_pins=None):
+    """Build the layout map dict (deterministic). Each segment carries the
+    compiler its TU builds with (rom_compilers.json pin, default IDO 5.3)."""
     subsegs, code_end = parse_subsegments(splat_path)
     symbols = parse_symbol_addrs()
     regions = collect_regions()
     flag_by_fn = load_flagsets()
     census = load_census_extents()
+    pins = (compilersmod.load_segment_pins(COMPILER_PINS) if compiler_pins is None
+            else compiler_pins)
 
     segments = []
     for idx, sub in enumerate(subsegs):
@@ -224,13 +230,22 @@ def derive(splat_path=None):
 
         seg = _derive_segment(sub, rom_start, vram_start, vram_end,
                               converted, symbols, regions, flag_by_fn, census)
+        seg["compiler"] = compilersmod.segment_compiler(seg["yaml_name"], pins)
         segments.append(seg)
+
+    # A pin must name a converted code segment: a typo or a reverted segment
+    # would otherwise silently build with the default compiler.
+    converted_names = {s["yaml_name"] for s in segments if s["converted"]}
+    stray = sorted(set(pins) - converted_names, key=lambda n: int(n, 16))
+    if stray:
+        raise SystemExit("rom_compilers.json pins segment(s) that are not converted "
+                         "code segments: " + ", ".join(stray))
 
     # Synthetic dynamic-population entry (FR-011): unpromotable in V1.
     segments.append({
         "yaml_name": "dynamic", "rom_tu": None,
         "vram_start": hex(DYNAMIC_VRAM), "size": None, "converted": False,
-        "flagset": None, "functions": [],
+        "flagset": None, "functions": [], "compiler": None,
         "refusal": "dynamic-population (blob rebuild feature)",
     })
     return {"segments": segments}
@@ -578,6 +593,39 @@ def _isa_of(flagset, segment="?"):
                      "rule cannot build (only -mips2 or -mips3 -32)")
 
 
+def compiler_refusal(seg, entry):
+    """Why a lock entry cannot be promoted into `seg`, or None: the compiler
+    that proved the body must be the compiler that builds the segment's TU."""
+    have = compilersmod.lock_compiler(entry)
+    want = seg.get("compiler") or compilersmod.DEFAULT
+    if have != want:
+        return (f"lock was proven with {have} but segment {seg['yaml_name']} builds "
+                f"with {want} (rom_compilers.json); re-lock with the {want} toolkit")
+    return None
+
+
+def compiler_conflicts(mapping, entries):
+    """[(spec, reason)] for lock entries bound to a non-default compiler whose
+    function sits in a segment pinned to a different one. Legacy entries
+    (no `compiler`, IDO 5.3) are not conflicts: a segment is pinned to 7.1 only
+    after its TU is proven byte-identical under both (the full-ROM gate)."""
+    seg_of = {}
+    for seg in mapping["segments"]:
+        for f in seg["functions"]:
+            seg_of[f["name"]] = seg
+    out = []
+    for spec, e in sorted(entries.items()):
+        if not e.get("compiler") or compilersmod.lock_compiler(e) == compilersmod.DEFAULT:
+            continue
+        seg = seg_of.get(e.get("target_id") or spec.rpartition(":")[2])
+        if seg is None:
+            continue
+        why = compiler_refusal(seg, e)
+        if why:
+            out.append((spec, why))
+    return out
+
+
 def write_opt_overrides(mapping=None):
     """Emit committed per-ROM-TU CFLAGS overrides for converted segments whose
     match was verified at a non-default optimization or debug level.
@@ -587,9 +635,20 @@ def write_opt_overrides(mapping=None):
     promotion SHA-1 gate (osCreateMesgQueue, 0x7600). This fragment overrides
     CFLAGS for those TUs, including verified debug-level code generation;
     it is committed so it reaches the builder via git —
-    promotion only rsyncs the TU, not the Makefile."""
+    promotion only rsyncs the TU, not the Makefile.
+
+    A converted segment pinned to a non-default compiler (rom_compilers.json,
+    IDO 7.1 for the boot tail) also gets `CC := <that compiler>`. Fail closed:
+    an unpinned TU gets no CC line and builds with the default IDO 5.3; an
+    unknown compiler name refuses; a lock proven with a compiler other than
+    its segment's pin refuses."""
     if mapping is None:
         mapping = derive()
+        conflicts = compiler_conflicts(mapping, json.loads(LOCKFILE.read_text())
+                                       if LOCKFILE.is_file() else {})
+        if conflicts:
+            raise SystemExit("lock/segment compiler conflict:\n" + "\n".join(
+                f"  {spec}: {why}" for spec, why in conflicts))
     lines = [
         "# Generated by pipeline.layout (write_opt_overrides) — DO NOT EDIT.",
         "# Converted ROM TUs use their verified optimization and debug levels;",
@@ -603,9 +662,13 @@ def write_opt_overrides(mapping=None):
         debug = next((token for token in reversed((seg["flagset"] or "").split())
                       if token in ("-g0", "-g1", "-g2", "-g3")), None)
         isa = _isa_of(seg["flagset"], seg.get("yaml_name", seg["rom_tu"]))
+        obj = f"$(BUILD_DIR)/src/{seg['rom_tu']}.o"
+        compiler = compilersmod.require_known(seg.get("compiler") or compilersmod.DEFAULT)
+        make_cc = compilersmod.COMPILERS[compiler]["make_cc"]
+        if make_cc is not None:
+            lines.append(f"{obj}: CC := {make_cc}")
         if opt in (None, "-O2") and debug in (None, "-g0") and isa is None:
             continue
-        obj = f"$(BUILD_DIR)/src/{seg['rom_tu']}.o"
         value = "$(CFLAGS)"
         if opt not in (None, "-O2"):
             value = f"$(subst -O2,{opt},{value})"

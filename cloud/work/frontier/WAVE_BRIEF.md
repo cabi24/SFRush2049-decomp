@@ -133,6 +133,50 @@ writing variants: if forcing reaches 0 rows the residual is colour-only.
 - Implicit int stays an open decision (deliver to the lane dir, say so, give the best form without it). Look
   first for the wave-15 lever: a caller-less `jr ra; nop` stub next to the function is probably its inlined getter.
 - Keep off Astra's functions: func_80087110, stat_race_update, func_800FE5B0, camera_transform.
+- **Wave 16 lessons** (5 of 8 lanes landed something; game +9.3 KB, static +4.2 KB):
+  - uopt orders `==`/`!=` operands by kind: a plain variable goes second, an expression first. A no-code identity
+    (`x * 1`, `x ^ 0`, `x >> 0`) on the variable side flips the order; source order then decides (w16a camera_update).
+  - A store through a pointer kills every pointer load in uopt: a value retail keeps across such a store is a
+    variable or register expression, never a pointer load (w16a).
+  - uopt's live-range split start block follows source-visible block order: which arm falls through (`if (c) {call}`
+    vs `if (!c) continue;`) decides which call block is split off first and whether a long-lived pointer is ever
+    coloured (w16d camera_victory, `car` in s4). A private instrumented uopt with skip/reject oracles
+    (`w16d/tools/patch_spl.py`, `w16b/tools/splitpatch.py`) proves the lever before you search for the source form.
+  - An exact benefit = cost tie in `ctrace` is broken by single-precision rounding of `total/blocks * blocks`:
+    1-4 more live blocks in the loop (a `conv = 1;` after it) flip it with no new uses (w16c).
+  - `0.f` and `0.0f` are different constants to uopt: a second spelling stops zero keeping two register pieces (w16c).
+  - A one-line xor swap (macro) gives as1 a different byte-store order than the same swap on three lines (w16h).
+  - Matched siblings supply idioms: camera_trigger_check's `cnt = *q++` closed camera_victory's last 3 words (w16d).
+  - Re-measure old drafts in the current unit and check they compile (w16e: w15c's variants had a duplicated line).
+  - Static side: the libgcc-named boot functions are ultralib `libc/ll.c`/`llcvt.c` verbatim at `-O1 -mips3 -32`;
+    `score.py fn` cannot score static targets, use `lock add` (pool) and `promote_batch.py` (w16g/w16i).
+- **Wave 17 lessons** (5 of 9 matching lanes landed something; game +9.5 KB):
+  - Float-literal spelling is a constant-web key: `0`, `0.0f` and `0.f` are three constants; the spelling decides
+    which uses share a register, what is hoisted into $f20–$f30 and what is rematerialised. Follow the arcade's mix
+    (w17b, from 503/567 to EQUAL). Loop-constant hoisting ties go to the lowest web number.
+  - Measure a blamed callee convention with a correct-convention stand-in before rebuilding the callee (w17b).
+  - A value in a register that ends before a call while the variable stays live is a temporary copied into a
+    memory variable; a reused local assigned again later stops uopt substituting it (w17c `lucent`).
+  - Two register-argument copies emitted swapped → the callee's locked prototype has the parameters in the wrong
+    order; check the arcade signature (w17c model_bounds_calc = CheckVisible(v, on)).
+  - If retail keeps a one-use load in an argument register it is a variable; find its slot by checking which declared
+    local the retail frame proves fake (w17a `i = idx[0]`, `c1`). One "variable" in two retail registers is two
+    variables or an expression.
+  - A bare entry store of a parameter with no sign extension is a `s16` parameter read once by a statement that
+    compiles to nothing (`op;`) (w17d). Two paths sharing an unexplained register share a stack slot: one reused
+    variable. `(T *)(u32)ptr` laundering removes the no-alias hint and restores load-after-store order.
+  - A branch where a pointer is dead (early `return`) ends uopt's not-the-stack marker for its register and changes
+    later reordering (w17i func_80096130). `&a[i]`, `a + i` and `a[i].f` are three different expressions.
+  - A frame 16 B short per inlined call site means two missing nested inline levels: look for caller-less stubs next
+    to the callee (w17h slot-queue lock/unlock). Check `umerge.log` before adding dummy locals.
+  - Packaging: an inlined `static` helper's deleted-procedure stub has no symbol and may land right after a stub
+    member, failing the splice with "extra words". Make the helper a non-static function that is not on `keep`
+    (w17j). `score.py group` WITHOUT `--claims` must show MATCH for every member before claiming a group installs.
+  - Priority ties: uopt scores register candidates with blocks counted in groups of four, so exact ties are common
+    and go to the lower web number; 2–4 live blocks or one weighted use flips them (w17f, w16c). Oracles:
+    `w17f/tools/prio_patch.py`, `w17i/boostpatch.py`, `w16d/tools/patch_spl.py`.
+  - Static side: the Rush boot tail is IDO 7.1 (w17g); the telltale is a `u8`/`u16` argument narrowed in its own
+    register (`andi a0,a0,0xFFFF` after `sw a0`), which 5.3 never does.
 - Write RESULTS.md within the first 20 minutes and keep variants under `<lane>/<fn>/v/`.
 
 ## Permission denials

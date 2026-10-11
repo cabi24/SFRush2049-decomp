@@ -582,6 +582,7 @@ matrix_scale_apply:
 .section .text.anim_state_update, "ax", @progbits
 .globl anim_state_update
 anim_state_update:
+    /* compiled from src/blob/anim_state_update.c */
     .word 0x27BDFF20
     .word 0x00057400
     .word 0x000E7C03

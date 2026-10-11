@@ -104,12 +104,140 @@ u8 func_80021BF0(MacroState_80021BF0 *state, MacroCommand *command)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80021C58.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80021CDC.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80021D5C.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80021DF8.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80021E74.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80021F08.s")
+/* PROMOTED 2026-10-11 — func_80021C58
+ * Source:   cloud/work/frontier/w17g/sources/func_80021C58.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80021C58.c:func_80021C58 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroState_80021C58 { MacroCommand *field00; MacroCommand *field04; MacroCommand *field08; MacroCommand *field0C; u8 unknown10[0x20]; u32 field30; u8 unknown34[0x16]; u8 field4A; u8 unknown4B[5]; u16 field50; } MacroState_80021C58;
+#pragma pack(0)
+extern MacroCommand *func_80016C20(u16);
+u8 func_80021C58(MacroState_80021C58 *state, MacroCommand *command)
+{
+    MacroCommand *address;
+    if (state->field50 >= (u8)(command->word[0] >> 8)) {
+        if ((address = func_80016C20((u16)(command->word[0] >> 16))) != 0) {
+            state->field00 = address;
+            state->field04 = address + (command->word[1] & 0xFFFF);
+        }
+    }
+    return 0;
+}
+
+/* PROMOTED 2026-10-11 — func_80021CDC
+ * Source:   cloud/work/frontier/w17g/sources/func_80021CDC.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80021CDC.c:func_80021CDC (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroState_80021CDC { MacroCommand *field00; MacroCommand *field04; MacroCommand *field08; MacroCommand *field0C; u8 unknown10[0x20]; u32 field30; u8 unknown34[0x16]; u8 field4A; u8 unknown4B[5]; u16 field50; } MacroState_80021CDC;
+#pragma pack(0)
+u8 func_80021CDC(MacroState_80021CDC *state, MacroCommand *command)
+{
+    MacroCommand *address;
+    if ((state->field30 >> 16) >= (u8)(command->word[0] >> 8)) {
+        if ((address = func_80016C20((u16)(command->word[0] >> 16))) != 0) {
+            state->field00 = address;
+            state->field04 = address + (command->word[1] & 0xFFFF);
+        }
+    }
+    return 0;
+}
+
+/* PROMOTED 2026-10-11 — func_80021D5C
+ * Source:   cloud/work/frontier/w17g/sources/func_80021D5C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80021D5C.c:func_80021D5C (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroState_80021D5C { MacroCommand *field00; MacroCommand *field04; MacroCommand *field08; MacroCommand *field0C; u8 unknown10[0x20]; u32 field30; u8 unknown34[0x16]; u8 field4A; u8 unknown4B[5]; u16 field50; } MacroState_80021D5C;
+#pragma pack(0)
+extern u16 func_800214C8(MacroState_80021D5C *);
+u8 func_80021D5C(MacroState_80021D5C *state, MacroCommand *command)
+{
+    MacroCommand *address;
+    u8 modulation;
+    if (state->field4A != 255) {
+        modulation = func_800214C8(state) >> 7;
+        if (modulation >= (u8)(command->word[0] >> 8)) {
+            if ((address = func_80016C20((u16)(command->word[0] >> 16))) != 0) {
+                state->field00 = address;
+                state->field04 = address + (command->word[1] & 0xFFFF);
+            }
+        }
+    }
+    return 0;
+}
+
+/* PROMOTED 2026-10-11 — func_80021DF8
+ * Source:   cloud/work/frontier/w17g/sources/func_80021DF8.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80021DF8.c:func_80021DF8 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroState_80021DF8 { MacroCommand *field00; MacroCommand *field04; MacroCommand *field08; MacroCommand *field0C; u8 unknown10[0x20]; u32 field30; u8 unknown34[0x16]; u8 field4A; u8 unknown4B[5]; u16 field50; } MacroState_80021DF8;
+#pragma pack(0)
+extern u16 func_8001E790(void);
+u8 func_80021DF8(MacroState_80021DF8 *state, MacroCommand *command)
+{
+    MacroCommand *address;
+    if ((u8)func_8001E790() >= (u8)(command->word[0] >> 8)) {
+        if ((address = func_80016C20((u16)(command->word[0] >> 16))) != 0) {
+            state->field00 = address;
+            state->field04 = address + (command->word[1] & 0xFFFF);
+        }
+    }
+    return 0;
+}
+
+/* PROMOTED 2026-10-11 — func_80021E74
+ * Source:   cloud/work/frontier/w17g/sources/func_80021E74.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80021E74.c:func_80021E74 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroState_80021E74 { MacroCommand *field00; MacroCommand *field04; MacroCommand *field08; MacroCommand *field0C; u8 unknown10[0x20]; u32 field30; u8 unknown34[0x16]; u8 field4A; u8 unknown4B[5]; u16 field50; } MacroState_80021E74;
+#pragma pack(0)
+u8 func_80021E74(MacroState_80021E74 *state, MacroCommand *command)
+{
+    MacroCommand *address;
+    if ((address = func_80016C20(command->word[0] >> 16)) != 0) {
+        state->field08 = state->field00;
+        state->field0C = state->field04;
+        state->field00 = address;
+        state->field04 = address + (command->word[1] & 0xFFFF);
+        return 0;
+    }
+    return func_80021BC0((MacroState *)state, command);
+}
+
+/* PROMOTED 2026-10-11 — func_80021F08
+ * Source:   cloud/work/frontier/w17g/sources/func_80021F08.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80021F08.c:func_80021F08 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroState_80021F08 { u32 field00; u32 field04; u32 field08; u32 field0C; u8 unknown10[0xC]; MacroCommand *field1C; MacroCommand *field20; u8 unknown24[0xA]; u8 field2E; } MacroState_80021F08;
+typedef struct MacroControl { u32 field0; u32 field4; u32 field8; } MacroControl;
+#pragma pack(0)
+u8 func_80021F08(MacroState_80021F08 *state, MacroCommand *command)
+{
+    MacroCommand *start;
+    start = func_80016C20((command->word[0] >> 16) & 0xFFFF);
+    if (start != 0) {
+        state->field1C = start;
+        state->field20 = start + (command->word[1] & 0xFFFF);
+    }
+    return 0;
+}
+
 /* PROMOTED 2026-10-04 — func_80021F68
  * Source:   cloud/work/boot_tail_promotion/sources/func_80021F68.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -191,8 +319,45 @@ u8 func_800224B0(MacroState_800224B0 *state, MacroCommand_800224B0 *command)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80022514.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80022580.s")
+/* PROMOTED 2026-10-11 — func_80022514
+ * Source:   cloud/work/frontier/w17g/sources/func_80022514.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80022514.c:func_80022514 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroState_80022514 { u32 field00; u32 field04; u32 field08; u32 field0C; u8 unknown10[0xC]; MacroCommand *field1C; MacroCommand *field20; u8 unknown24[0xA]; u8 field2E; } MacroState_80022514;
+#pragma pack(0)
+extern void func_8001EF8C(MacroState *, u8);
+u8 func_80022514(MacroState_80022514 *state, MacroCommand *command)
+{
+    s32 delta;
+    s32 value;
+    delta = (s16)(command->word[0] >> 16);
+    value = (s16)(state->field2E + delta);
+    if (value < 0) {
+        value = 0;
+    } else {
+        value = (s16)(value > 255 ? 255 : value);
+    }
+    func_8001EF8C((MacroState *)state, (u8)value);
+    return 0;
+}
+
+/* PROMOTED 2026-10-11 — func_80022580
+ * Source:   cloud/work/frontier/w17g/sources/func_80022580.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80022580.c:func_80022580 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+u8 func_80022580(MacroState *state, MacroCommand *command)
+{
+    func_8001EF8C(state, (u8)(command->word[0] >> 8));
+    return 0;
+}
+
 /* PROMOTED 2026-10-04 — func_800225AC
  * Source:   cloud/work/boot_tail_promotion/sources/func_800225AC.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -274,9 +439,44 @@ u8 func_80022678(MacroState_80022678 *state, MacroCommand *command)
     return func_8002193C((MacroState *)state, command);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_8002279C.s")
+/* PROMOTED 2026-10-11 — func_8002279C
+ * Source:   cloud/work/frontier/w17g/sources/func_8002279C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_8002279C.c:func_8002279C (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroState_8002279C { u8 unknown00[0x4A]; u8 channel4A; u8 set4B; u8 unknown4C[4]; u16 note50; u8 unknown52[0x6E]; s8 detuneC0; u8 lastNoteC1; } MacroState_8002279C;
+#pragma pack()
+u8 func_8002279C(MacroState_8002279C *state, MacroCommand *command)
+{
+    state->note50 = state->lastNoteC1 + (s8)(u8)(command->word[0] >> 8);
+    state->note50 = (s16)state->note50 < 0 ? 0 : state->note50 > 127 ? 127 : state->note50;
+    state->detuneC0 = command->word[0] >> 16;
+    if (state->channel4A != 255) {
+        func_80020F4C(state->channel4A, state->set4B, state->note50);
+    }
+    command->word[0] = 4;
+    return func_8002193C((MacroState *)state, command);
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80022874.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80022A40.s")
+/* PROMOTED 2026-10-11 — func_80022A40
+ * Source:   cloud/work/frontier/w17g/sources/func_80022A40.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80022A40.c:func_80022A40 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroState_80022A40 { u8 unknown00[0x30]; u32 field30; u8 unknown34[0x2C]; u32 field60; } MacroState_80022A40;
+#pragma pack(0)
+extern void func_8001489C(u32, u8);
+u8 func_80022A40(MacroState_80022A40 *state, MacroCommand *command)
+{
+    func_8001489C(state->field60 & 0xFF, 1);
+    return 0;
+}
+
 /* PROMOTED 2026-10-04 — func_80022A78
  * Source:   cloud/work/boot_tail_promotion/sources/func_80022A78.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -293,7 +493,65 @@ u8 func_80022A78(MacroState_80022A78 *state, MacroCommand_80022A78 *command)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80022A98.s")
+/* PROMOTED 2026-10-11 — func_80022A98
+ * Source:   cloud/work/frontier/w17g/sources/func_80022A98.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80022A98.c:func_80022A98 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroState_80022A98 { u8 unknown00[0x24]; u32 flags24; u8 unknown28[0x44]; u32 currentTime6C; u32 period70; u8 unknown74[4]; u8 keyRange78; u8 centRange79; } MacroState_80022A98;
+#pragma pack()
+extern void func_8001E930(u32 *);
+extern void func_8001E940(u32 *, MacroState *);
+u8 func_80022A98(MacroState_80022A98 *state, MacroCommand *command)
+{
+    u32 time;
+    s8 keyRange;
+    s8 centRange;
+    if ((u8)(command->word[0] >> 24) & 3) {
+        state->flags24 |= 0x8000;
+    } else {
+        state->flags24 &= ~0x8000;
+    }
+    time = (u16)(command->word[1] >> 16);
+    if ((u8)(command->word[1] >> 8) & 1) {
+        func_8001E930(&time);
+    } else {
+        func_8001E940(&time, (MacroState *)state);
+    }
+    if (time) {
+        state->flags24 |= 0x4000;
+        state->period70 = time;
+        keyRange = command->word[0] >> 8;
+        centRange = command->word[0] >> 16;
+        if (keyRange < 0) {
+            if (centRange < 0) state->centRange79 = -centRange;
+            else state->centRange79 = centRange;
+            state->keyRange78 = -keyRange;
+            state->currentTime6C = state->period70 / 2;
+        } else {
+            if (centRange < 0) {
+                if (keyRange == 0) {
+                    state->centRange79 = -centRange;
+                    state->currentTime6C = state->period70 / 2;
+                } else {
+                    --keyRange;
+                    state->centRange79 = 100 - centRange;
+                    state->currentTime6C = 0;
+                }
+            } else {
+                state->centRange79 = centRange;
+                state->currentTime6C = 0;
+            }
+            state->keyRange78 = keyRange;
+        }
+    } else {
+        state->flags24 &= ~0x4000;
+    }
+    return 0;
+}
+
 /* PROMOTED 2026-10-04 — func_80022C58
  * Source:   cloud/work/boot_tail_promotion/sources/func_80022C58.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -323,11 +581,88 @@ u8 func_80022C58(MacroState_80022C58 *state, MacroCommand_80022C58 *command)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80022CD4.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80022F24.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_8002300C.s")
+/* PROMOTED 2026-10-11 — func_80022F24
+ * Source:   cloud/work/frontier/w17g/sources/func_80022F24.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_80022F24.c:func_80022F24 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroState_80022F24 { u8 unknown00[0x24]; u32 flags24; u8 unknown28[0x38]; u32 identifier60; } MacroState_80022F24;
+typedef struct PackedEnvelope { u16 attack, decay, sustain, release; } PackedEnvelope;
+#pragma pack()
+typedef struct Envelope { u16 attack, decay, sustain, release; } Envelope;
+extern void *func_80016E68(u16);
+extern void func_800148F8(u32, const Envelope *);
+u8 func_80022F24(MacroState_80022F24 *state, MacroCommand *command)
+{
+    Envelope envelope;
+    PackedEnvelope *table;
+    if ((table = func_80016E68(command->word[0] >> 8)) != 0) {
+        envelope.attack = (table->attack >> 8) | (table->attack << 8);
+        envelope.decay = (table->decay >> 8) | (table->decay << 8);
+        envelope.sustain = (table->sustain >> 8) | (table->sustain << 8);
+        envelope.release = (table->release >> 8) | (table->release << 8);
+        func_800148F8(state->identifier60 & 0xFF, &envelope);
+        state->flags24 |= 0x200;
+    }
+    return 0;
+}
+
+/* PROMOTED 2026-10-11 — func_8002300C
+ * Source:   cloud/work/frontier/w17g/sources/func_8002300C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_8002300C.c:func_8002300C (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+typedef struct MacroState_8002300C { u8 unknown00[0x40]; u32 sweepOffset40[2]; u8 sweepNumber48[2]; u8 unknown4A[0x32]; u32 sweepAddition7C[2]; u8 unknown84[0x2C]; u8 sweepCountB0[2]; } MacroState_8002300C;
+extern u32 func_80014D30(u32);
+u8 func_8002300C(MacroState_8002300C *state, MacroCommand *command, int index)
+{
+    s32 delta;
+    state->sweepOffset40[index] = 0;
+    state->sweepNumber48[index] = (u8)(command->word[0] >> 8);
+    state->sweepCountB0[index] = state->sweepNumber48[index];
+    delta = (s16)(command->word[0] >> 16);
+    if (delta >= 0) {
+        delta = (s32)func_80014D30(delta);
+    } else {
+        delta = (s32)(0U - func_80014D30(-delta));
+    }
+    state->sweepAddition7C[index] = (u32)delta << 16;
+    command->word[0] = 0;
+    return func_8002193C((MacroState *)state, command);
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800230B0.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023190.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_8002321C.s")
+/* PROMOTED 2026-10-11 — func_8002321C
+ * Source:   cloud/work/frontier/w17g/sources/func_8002321C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_8002321C.c:func_8002321C (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+u32 func_8002321C(u32 volume, u16 curve)
+{
+    u8 *table;
+    u32 high;
+    u32 low;
+    u32 difference;
+    if (curve != 0) {
+        if ((table = func_80016E68(curve)) != 0) {
+            high = volume >> 16;
+            low = volume & 0xFFFF;
+            if (high < 127) {
+                difference = low * (table[high + 1] - table[high]);
+                volume = difference + (table[high] << 16);
+            } else {
+                volume = table[high] << 16;
+            }
+        }
+    }
+    return volume;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800232A4.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800233B0.s")
 extern u8 func_800233B0(MacroState *, MacroCommand *, u32);
@@ -512,7 +847,42 @@ u8 func_80023978(MacroState_80023818 *state, MacroCommand_80023818 *command)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800239A4.s")
+/* PROMOTED 2026-10-11 — func_800239A4
+ * Source:   cloud/work/frontier/w17g/sources/func_800239A4.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_800239A4.c:func_800239A4 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroState_800239A4 { u8 unknown00[0x24]; u32 flags24; u8 unknown28[0x22]; u8 channel4A; u8 set4B; u8 unknown4C[0x44]; u32 time90; u8 unknown94[4]; u8 mode98; } MacroState_800239A4;
+#pragma pack()
+extern void func_80020FDC(u8, u8, u8);
+extern void func_80019BE4(MacroState_800239A4 *);
+u8 func_800239A4(MacroState_800239A4 *state, MacroCommand *command)
+{
+    u32 time;
+    state->mode98 = command->word[0] >> 16;
+    time = (u16)(command->word[1] >> 16);
+    if ((u8)(command->word[1] >> 8) & 1) {
+        func_8001E930(&time);
+    } else {
+        func_8001E940(&time, (MacroState *)state);
+    }
+    state->time90 = time;
+    switch ((u8)(command->word[0] >> 8)) {
+    case 0:
+        state->flags24 &= ~0x800;
+        state->flags24 |= 0x1000;
+        if (state->channel4A != 255) func_80020FDC(state->channel4A, state->set4B, 0);
+        break;
+    case 1:
+        if (!(state->flags24 & 0x800)) func_80019BE4(state);
+        state->flags24 |= 0x1800;
+        break;
+    }
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023AD4.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023B50.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023BDC.s")

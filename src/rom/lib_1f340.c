@@ -28,9 +28,54 @@ void func_8001E768(void *allocation)
     D_8003801C(allocation);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1f340/func_8001E790.s")
+/* PROMOTED 2026-10-11 — func_8001E790
+ * Source:   cloud/work/frontier/w17g/sources/func_8001E790.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_8001E790.c:func_8001E790 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern unsigned int D_8002CC50;
+unsigned short func_8001E790(void)
+{
+    D_8002CC50 *= 2822053219U;
+    return D_8002CC50 >> 6;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1f340/func_8001E7BC.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1f340/func_8001E864.s")
+/* PROMOTED 2026-10-11 — func_8001E864
+ * Source:   cloud/work/frontier/w17g/sources/func_8001E864.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w17g/sources/func_8001E864.c:func_8001E864 (score0); rom_tu.h context: cloud/work/frontier/w17k/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void *func_8001E864(const void *key, const void *base, int count, int size,
+                  int (*compare)(const void *, const void *))
+{
+    int low;
+    int high;
+    int middle;
+    int result;
+    void *element;
+    if (count != 0) {
+        low = 1;
+        high = count;
+        do {
+            middle = (low + high) >> 1;
+            element = (void *)((const unsigned char *)base + size * (middle - 1));
+            result = compare(key, element);
+            if (result == 0) {
+                return element;
+            }
+            if (result < 0) {
+                high = middle - 1;
+            } else {
+                low = middle + 1;
+            }
+        } while (high >= low);
+    }
+    return 0;
+}
+
 /* PROMOTED 2026-10-04 — func_8001E930
  * Source:   cloud/matches/boot_tail/func_8001E930.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

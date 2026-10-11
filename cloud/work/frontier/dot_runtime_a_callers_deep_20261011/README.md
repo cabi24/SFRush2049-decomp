@@ -1,5 +1,48 @@
 # Authentic overlay-A callers recover four complete helper bodies
 
+## Protocol v2 delivery (2026-10-11)
+
+`group.c` is byte-for-byte unchanged from the previously reviewed source.
+`group.json` now lists only complete strict-match bodies as `members`; all
+other genuine bodies remain in `context` and in the same compiler unit.
+`claims` is the new-credit subset. Existing exact bodies are preservation
+members, earn no new credit, and are still required to pass. The keep root,
+compile flags, all source formals/calls and source ordering are unchanged.
+
+`packet.json` is the current input-bound receipt: source, group recipe and
+verifier hashes; relevant metadata manifest rows; image-qualified member
+word hashes; exact member lengths; IDO 5.3 identity. It does not freeze
+mutable tools, locks, Makefiles or assembly text. This packet compiles an
+overlay IPA group; it does not compile a static ROM TU.
+
+Routine gate: `python3 cloud/work/frontier/dot_runtime_a_callers_deep_20261011/quick_verify.py`.
+It recompiles once and checks every member with the canonical strict
+comparison plus the full ELF symbol extent. Missing IDO follows the shared
+pytest skip policy and fails when `REQUIRE_TOOLCHAIN=1`.
+`--inputs-only` checks input bindings without claiming a compiler pass.
+
+Direct integration check (no `--claims`, no `--allow-unverified`):
+
+```sh
+python3 tools/cloud/score.py group cloud/work/frontier/dot_runtime_a_callers_deep_20261011 --targets asm/us/ovl_a
+```
+
+There is one cheap collected regression for this packet. Full semantic,
+GNU-link, negative-control and compiler-research tests are retained as
+opt-in research, without adding them to routine CI:
+
+```sh
+python3 -m pytest cloud/work/frontier/dot_runtime_a_callers_deep_20261011/research_tests.py -q
+```
+
+Earlier `verification.json` and independent-review receipts below remain
+historical evidence for the unchanged C. Current routine evidence is
+`packet.json` and fresh gate output; old hashes are not compatibility locks.
+Only the named member bodies are ready for the coordinator's overlay
+integration gates. Context is not certified or credited. No accepted
+overlay or cartridge bytes are claimed before those gates pass.
+
+
 **928 distinct new candidate bytes**, all complete, relocation-resolved stock
 IDO 5.3 matches. This is source evidence, **zero accepted-image or cartridge
 coverage gain**. Independent checking and merging remain separate.
@@ -125,7 +168,7 @@ From the repository root with IDO_DIR and GNU MIPS tools configured:
 ```
 python3 cloud/work/frontier/dot_runtime_a_callers_deep_20261011/verify.py
 python3 -O cloud/work/frontier/dot_runtime_a_callers_deep_20261011/verify.py
-python3 tools/cloud/score.py group cloud/work/frontier/dot_runtime_a_callers_deep_20261011 --claims --targets asm/us/ovl_a
+python3 tools/cloud/score.py group cloud/work/frontier/dot_runtime_a_callers_deep_20261011 --targets asm/us/ovl_a
 REQUIRE_TOOLCHAIN=1 python3 -m pytest tests/conveyor/test_runtime_a_callers_deep.py -q
 ```
 
@@ -164,3 +207,23 @@ were added. The caller audit and offset diagnostic do not upgrade its score.
 No whole-caller execution, original-TU layout, full-image splice, deflate,
 full-ROM SHA-1, hardware or gameplay proof is claimed. Independent review of
 complete helper bodies and bounded semantics is provided separately.
+
+### Fresh protocol-v2 verification
+
+- All members print `MATCH` in the direct strict command above, without
+  `--claims` or `--allow-unverified`. Context diagnostics remain nonmatching
+  and informational; they are neither hidden nor installation claims.
+- The single routine pytest check passes in 0.09 s with the stock IDO 5.3
+  release compiler. Input checks take 0.04–0.05 s with no IDO; the shared
+  conftest reports a toolchain skip, and `REQUIRE_TOOLCHAIN=1` converts that
+  missing-tool case to failure as required.
+- All 20 opt-in author/independent research checks across the three source
+  packets and independent review pass after this metadata-only packaging.
+  For a combined invocation, use pytest `--import-mode=importlib` because
+  each directory uses the local filename `research_tests.py`.
+- The 493 current static locks remain intact; protected-path guard passes.
+  No source-image, compressed-stream, cartridge or gameplay gate was run.
+- This existing review preserves its published research history. The two
+  new groups in PR310 are a legacy size exception; future deliverables use
+  one compact group per PR. Integrate only the needed source/recipe and
+  routine gate; deep replay remains optional.

@@ -231,6 +231,24 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
   },
+  "src/rom/lib_113e0.c:func_80010840": {
+    "body_sha256": "c2de036db7bee95fbc09faf51bc8cfbfc0292d01a8ae6700f906d32581003b71",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80010840",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_113e0.c:func_800108E0": {
+    "body_sha256": "4f588d16dad2ff9e78c73dceddaf53ecd9f75188f44e9fd70fe80db66bcf479b",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_800108E0",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
   "src/rom/lib_113e0.c:func_80010980": {
     "body_sha256": "ce114f5ed59787bc5b93de83705aff2bee2f4b85699a8210a3009d7dd6e70f94",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -375,6 +393,15 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
   },
+  "src/rom/lib_11640.c:func_80011C1C": {
+    "body_sha256": "bd1f13a75fa1ba81fbafac13efec2fbf20f06fb30398b3f31e790f1b306fc595",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80011C1C",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
   "src/rom/lib_11640.c:func_80011C84": {
     "body_sha256": "cbb7a9c3abd2cc4a665b63cac25341c3a535e6031023dc4a8eee0b834d34b6d7",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -471,6 +498,15 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
   },
+  "src/rom/lib_11640.c:func_80014198": {
+    "body_sha256": "4b1fccae96cba67b26b5d81ac0cb92b4e295640d69e241a028bf1263532ad1de",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80014198",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
   "src/rom/lib_11640.c:func_80014374": {
     "body_sha256": "8a1b2956ca070cb28cfecba0a54fd0664cab747eca3c35011e496d21d9fa6677",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -551,6 +587,15 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-11"
   },
+  "src/rom/lib_11640.c:func_8001467C": {
+    "body_sha256": "b8e5c4ac8ec88ad0abb778f37aba81ca4ea70881a70c91ed5890085e52c8d3d6",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001467C",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
   "src/rom/lib_11640.c:func_800146AC": {
     "body_sha256": "495ff5ca7b4e3cc74f4044e5f451a14b3cd423119f8811893ff9bf863986bd3f",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -566,6 +611,15 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-05"
+  },
+  "src/rom/lib_11640.c:func_8001489C": {
+    "body_sha256": "3b90bc8d036f9ec8f200475110f54791c8672a7b4beed05ba5d0fea939f2c8cd",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001489C",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
   },
   "src/rom/lib_11640.c:func_800148F8": {
     "body_sha256": "2afdbe0ac4357f17c9f21f12f9f3ff6ce13a6ed1a7b8e6b49d33086de8c20ced",
@@ -599,6 +653,15 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
   },
+  "src/rom/lib_11640.c:func_80014A0C": {
+    "body_sha256": "c0307c2b686edbade1f7fc4e5b3ef5b3dc97b573ed8bb6c5cf385ec6419419a7",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80014A0C",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
   "src/rom/lib_11640.c:func_80014A74": {
     "body_sha256": "a687ba5151e6020ffe7fd11e7fff0a85606aa3cfa162283a21410b106e1eadc6",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -631,6 +694,24 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-05"
   },
+  "src/rom/lib_11640.c:func_80014BD8": {
+    "body_sha256": "b28f870ba480ebc89b100bbaca82d2af71572484b4a801e66b0c93c2222ea4b5",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80014BD8",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_11640.c:func_80014BF8": {
+    "body_sha256": "f53ed178af9f99e81d44fa7d97a1cb3d5c824b938cf88a4a4b1573d67e8b96a0",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80014BF8",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
   "src/rom/lib_11640.c:func_80014C18": {
     "body_sha256": "bbd212ea5e11fb99cc472fa23eb209eb4bd3dd72dce7fd8839dc0879fbf842bf",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -654,6 +735,42 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_11640.c:func_80014CF4": {
+    "body_sha256": "73df4c4026b97f3b2ba3a55e8585060f8c2aedcaea7c01297cdad71009e91ea1",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80014CF4",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_11640.c:func_80014CFC": {
+    "body_sha256": "f0f30fa7f096d2e8aab9ce43ee78a3668eccf29fe3eac58641a5442d81e25889",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80014CFC",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_11640.c:func_80014D08": {
+    "body_sha256": "4d5159c37fce62485089f32d875ca630197d2de1d1e2a3905553a33c4350292d",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80014D08",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_11640.c:func_80014D14": {
+    "body_sha256": "6291b28f1ac0e2bbc6487db414c8ed970c3a47130b4e2626abfd34153e71eaab",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80014D14",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
   },
   "src/rom/lib_11640.c:func_80014D1C": {
     "body_sha256": "9b8553d21bb9a17685d2b82be81d2d1e1c9085e974923e74a3a6de33cb462566",
@@ -767,6 +884,15 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
   },
+  "src/rom/lib_15a10.c:func_80015348": {
+    "body_sha256": "1f6e993af1a59276a199813740e6c6faa65f7d42478fbac5bb55e7abf861dc1b",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80015348",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
   "src/rom/lib_15a10.c:func_80015574": {
     "body_sha256": "3ed2c577f25af9f80070b4cf7b78032ead9eb6c11bf40a3b02b402639f78856e",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -774,6 +900,15 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_15a10.c:func_800156E8": {
+    "body_sha256": "fd86f9aa7da94ac310e9b890f55679902942c273841f2ee467264eaf2bb264e7",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_800156E8",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
   },
   "src/rom/lib_16320.c:func_800162AC": {
     "body_sha256": "da37d28cbf42f29e08d9340f0e56169d710f654587bc818c241b4596b0950ff6",
@@ -935,6 +1070,15 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
   },
+  "src/rom/lib_17dc0.c:func_8001785C": {
+    "body_sha256": "d34dc2cfbcf46cbe458e3b6522a2cfe19e1c66f4e1a36d8e5154691246626ce3",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001785C",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
   "src/rom/lib_17dc0.c:func_80018A30": {
     "body_sha256": "0641b38c387d4d241502bf20f02b51d43cf8e83583152a25b1b8138595be2cc9",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -958,6 +1102,15 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-05"
+  },
+  "src/rom/lib_17dc0.c:func_80018BEC": {
+    "body_sha256": "f1081b3df70452ddd0b32ea3f2f3806bd149774d9e62e65bcb98caf7f2cbcad8",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80018BEC",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
   },
   "src/rom/lib_17dc0.c:func_80018C2C": {
     "body_sha256": "72a5a8c749a7d97e71d8fa410f837c5d02820b7fdb1b42718a386164ed65f36e",
@@ -1087,6 +1240,15 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
   },
+  "src/rom/lib_17dc0.c:func_8001989C": {
+    "body_sha256": "855c7ed65b24372bafad0aad8939e1bde79e2f04aa9fef96cf4952f7558de127",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001989C",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
   "src/rom/lib_17dc0.c:func_800198C8": {
     "body_sha256": "3bb4031146237625fae1ad14a325d4d2f18754788e9e2563132cc3ddd8bec857",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -1111,6 +1273,15 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
   },
+  "src/rom/lib_1a660.c:func_80019AD4": {
+    "body_sha256": "2e9b5c66ccad25cf628184405ca01df56c77430282d535d297e2ef085b58b062",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80019AD4",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
   "src/rom/lib_1a660.c:func_80019BE4": {
     "body_sha256": "8ab4a66dd27ccfae0fcbec8781dc356d75b3deca64a4e57f8b96bb3a4bb51e82",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -1134,6 +1305,15 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_1a660.c:func_8001B1D0": {
+    "body_sha256": "1634d6ae02fa4ab697635a1316159d9b7c3dcee3a18954475cd44195641e1d6f",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001B1D0",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
   },
   "src/rom/lib_1a660.c:func_8001B29C": {
     "body_sha256": "8faedff1fe6290afbb0b9f85cc6f7e88c706bc22a6608cf510579da3671708a6",
@@ -1215,6 +1395,15 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
   },
+  "src/rom/lib_1cf90.c:func_8001C77C": {
+    "body_sha256": "73503ce6654a38d3b3acbb623455e2e71ef903c824764fa51e9d0ed9daf32ad8",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001C77C",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
   "src/rom/lib_1cf90.c:func_8001C7F4": {
     "body_sha256": "7ac874eedf982c808792b5c419d3e56f32abc3fb777cc61ec2a2ff598fee7457",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -1222,6 +1411,15 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-05"
+  },
+  "src/rom/lib_1cf90.c:func_8001CC9C": {
+    "body_sha256": "7548a85dc7ae17a4e18da7cede3c38514f510e4379fd9fe322765b0553a45cd8",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001CC9C",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
   },
   "src/rom/lib_1cf90.c:func_8001CCC0": {
     "body_sha256": "93137da642d133528d6498b444a2f0b5f1b3babe16f7d44781dd4f979faa4015",
@@ -1231,6 +1429,15 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
   },
+  "src/rom/lib_1cf90.c:func_8001CCDC": {
+    "body_sha256": "bf028da552e49af5cafce9f3466b66ada91fa444c8f47f889a7bab633790b00b",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001CCDC",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
   "src/rom/lib_1cf90.c:func_8001D084": {
     "body_sha256": "cd1b690b33f297bf6759788fed80925d9c1a6dca87d16e72ccaa892d2aea31e2",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -1238,6 +1445,15 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_1cf90.c:func_8001D1C0": {
+    "body_sha256": "3dfd1328f17079f26c5f0779c90f5d77e61deeed52f7ad359ec6bf1559066233",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001D1C0",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
   },
   "src/rom/lib_1cf90.c:func_8001D3F0": {
     "body_sha256": "2203b3f8ba3af789f9034c8313343edc4ceb332b360f3333db7cf400bfeb0c23",
@@ -1287,6 +1503,15 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
   },
+  "src/rom/lib_1cf90.c:func_8001D660": {
+    "body_sha256": "293d39338683e7bc42525b19587b3911a8696eaf2dbf433e3cbb8a1cf4ce6dc4",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001D660",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
   "src/rom/lib_1cf90.c:func_8001D8B0": {
     "body_sha256": "8762fd4dfcf97dd0a68183996002ce2dbca4428a2152277c640a74a16b41439a",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -1327,6 +1552,24 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-05"
   },
+  "src/rom/lib_1cf90.c:func_8001E0D4": {
+    "body_sha256": "328c2b45dcef7791c782f3aa95cc86c822165913e28c3fb0ebe85697c30701c3",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001E0D4",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_1ece0.c:func_8001E440": {
+    "body_sha256": "4d39172fcee16fb8c8545ff8a6fe532bc55b109a41c471511f4a8dd86e09e1d8",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001E440",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
   "src/rom/lib_1ece0.c:func_8001E688": {
     "body_sha256": "dee8466be389e04cd0d3f13c042e4b879e54d335fbdccf35276acab70cbae4b2",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -1350,6 +1593,24 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_1f340.c:func_8001E790": {
+    "body_sha256": "534c876d70741b6166492f06b92a19fa673a89e2a056a05f0f1c10dd382cb8b0",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001E790",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_1f340.c:func_8001E864": {
+    "body_sha256": "cda492ee3d728cf3af21dfa357cd6d7f4f21a19eba1e5febcb4910943935de29",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001E864",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
   },
   "src/rom/lib_1f340.c:func_8001E930": {
     "body_sha256": "d88535de9342c0eadd808045aecb1bf51e7b73b4025113364eb9e2c7a4e1a7d1",
@@ -1567,6 +1828,24 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-05"
   },
+  "src/rom/lib_207b0.c:func_80020200": {
+    "body_sha256": "6a92c2472147be6cc1da62437f51c6916bf57e9ae8583002d7e4b92f951ca177",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80020200",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_207b0.c:func_8002021C": {
+    "body_sha256": "52448c188305f4c9b1fb5713b2e7d262da9906455ac17953b72d6acf1a54576a",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8002021C",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
   "src/rom/lib_207b0.c:func_80020274": {
     "body_sha256": "9e3cedcd7e0ab5d3bb0dac1858238f0e1e86f129f7d0d30e31e33cddb007de1c",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -1631,6 +1910,33 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
   },
+  "src/rom/lib_207b0.c:func_80020598": {
+    "body_sha256": "cf2fcdedcee46db94e7b2b170fcb332088f7d7910d1400f45fcded4427b59d70",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80020598",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_21210.c:func_80020610": {
+    "body_sha256": "1eed90d7996783d7aac915fb4458a4fd37b72a0a67de629fa1aedba56ec9e5ad",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80020610",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_21210.c:func_800206AC": {
+    "body_sha256": "940c61e13f8e224c35a70d4c7cb710e900ac73d30c29977ec870847cedc651bf",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_800206AC",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
   "src/rom/lib_21210.c:func_80020820": {
     "body_sha256": "7b83077d78b60e0147e5f804f686534b3130fc869be4a8a0bfd56fd8de39918e",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -1638,6 +1944,60 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_21210.c:func_80020A04": {
+    "body_sha256": "df44240b3b655e831efe56560acdccb5fcb9aefa8681613c4c3ce3a97948f62a",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80020A04",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_21210.c:func_80020DA8": {
+    "body_sha256": "95c2a8a2e7850f212ad9dd8999f1a367abfbf670d905af1f2847556512cf622d",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80020DA8",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_21210.c:func_80020F4C": {
+    "body_sha256": "1742993082d4aabd9d0d8278656a569a6d00ab5acf6cdbbf04e6069e18bf95bd",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80020F4C",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_21210.c:func_80020F98": {
+    "body_sha256": "4899e4b82e24c95cd5660b40896b8a53951cfd20d74f050083c1c6886c71e93f",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80020F98",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_21210.c:func_80020FDC": {
+    "body_sha256": "94993ae98ba668e148d23f3787914608791d56babac9e4ccca2e159b7c60422f",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80020FDC",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_21210.c:func_80021028": {
+    "body_sha256": "38da1a416563f17a48e875a8840c40b297345816f59aa7ee53744f5b0ad6a9bc",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80021028",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
   },
   "src/rom/lib_21210.c:func_8002106C": {
     "body_sha256": "b321d9582b5e3f1e58f7bdb69cf407f7fd3e31250296a5a43d4e984850c6ca73",
@@ -1718,6 +2078,24 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_21210.c:func_800215A8": {
+    "body_sha256": "bf2901dcf9854a397984904ce472e46d833e67709e1600c37f36b8cfb24dcbb9",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_800215A8",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_21210.c:func_8002165C": {
+    "body_sha256": "b13f4d876634f95898269465126fa6cd37dc97606f2ecd9d860b5ca13f6f2584",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8002165C",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
   },
   "src/rom/lib_21f0.c:apply_display_mode": {
     "body_sha256": "5785344f372b84c76cfe70b763143eb53af34aab44b695e06bdd4a8fc1c5b412",
@@ -1823,6 +2201,60 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-05"
   },
+  "src/rom/lib_22300.c:func_80021C58": {
+    "body_sha256": "f8b20f1325887e29cce58868dcedce1c0a35a6ef8b5dbf6050bef1edd87cb1ad",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80021C58",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_22300.c:func_80021CDC": {
+    "body_sha256": "5aba141be59503392c95b8706f71801bd802e685168f03117a0cb739c5619a51",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80021CDC",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_22300.c:func_80021D5C": {
+    "body_sha256": "5801d5bb1c1e77784889e00d51223c9b5eaa6407468e08c5ab39bf58308c2272",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80021D5C",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_22300.c:func_80021DF8": {
+    "body_sha256": "199f6de1bbaf31eb1c2cd117061728591258dda666aecedcb7e99a9a6d6a512e",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80021DF8",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_22300.c:func_80021E74": {
+    "body_sha256": "2bf0df34666f3f153238f913b3903f2ec31f2a2e3e3d242fc29f440b0983ab7f",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80021E74",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_22300.c:func_80021F08": {
+    "body_sha256": "cec6700f9ebfca84800fe720ca757d8b2494f782a7121c05dc5afb489f53e933",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80021F08",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
   "src/rom/lib_22300.c:func_80021F68": {
     "body_sha256": "bbb843f4b7a9b3e32e3a1973c5bcb1310917eaf764d5350b4b054b1c9e5be4c1",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -1854,6 +2286,24 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_22300.c:func_80022514": {
+    "body_sha256": "da8a72731cec32948a9420ab042052377b2e1c26de6ef57eb4ddb313b2e93390",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80022514",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_22300.c:func_80022580": {
+    "body_sha256": "0f2c850cbf6d25c570d62107846652e9810f3f09561a2401dd6bbde5786b5f5a",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80022580",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
   },
   "src/rom/lib_22300.c:func_800225AC": {
     "body_sha256": "0584c97305677be1d4ddb59224fd6b84329ba786bed22930b1a8813fb6599f75",
@@ -1887,6 +2337,24 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-05"
   },
+  "src/rom/lib_22300.c:func_8002279C": {
+    "body_sha256": "bdb057fe60b7dc0b7b774a884338014f6ea3dbfe20b5cbced5a7845e3549ecc1",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8002279C",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_22300.c:func_80022A40": {
+    "body_sha256": "01a00dc30dce0e12cd1b405d7d6d8c3e423338204b92170bacdcfed7ac4eff0f",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80022A40",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
   "src/rom/lib_22300.c:func_80022A78": {
     "body_sha256": "5e6e8241bf4c1472020969f23a6874f3e321e75baab43e2d31667f9381106dfc",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -1895,6 +2363,15 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
   },
+  "src/rom/lib_22300.c:func_80022A98": {
+    "body_sha256": "bb12415d68d0fd37de50c6856b9aaf65d7983e8d50e1be2cc448659577344cfa",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80022A98",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
   "src/rom/lib_22300.c:func_80022C58": {
     "body_sha256": "474ef81b9e39e0b50ac1f4f876da0d422303435e7de9bcbc77c8a546b72f5093",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -1902,6 +2379,33 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_22300.c:func_80022F24": {
+    "body_sha256": "a6e3f2a0f9b1c02d7968048a1cdbc8d86db3c6b3aa14cfc8c76404cbad4d72f0",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80022F24",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_22300.c:func_8002300C": {
+    "body_sha256": "c79e459c0feee59a040e0e6a945551a93c7824a27b0be4ff1a69eaef48c05f9e",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8002300C",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
+  },
+  "src/rom/lib_22300.c:func_8002321C": {
+    "body_sha256": "7763939ab3755574c8a9cda850b3568658d70996247cb855ec1ac3f0d87dc6b4",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8002321C",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
   },
   "src/rom/lib_22300.c:func_80023520": {
     "body_sha256": "77b1351fa7ab3478213ce4242a030aad2e4555d87077f38320ce16dcdf5ed5b9",
@@ -2006,6 +2510,15 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-05"
+  },
+  "src/rom/lib_22300.c:func_800239A4": {
+    "body_sha256": "e41c33a72ef4b4773974c6acc9877f6d37e0374151c07c950769c6f5062533a8",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_800239A4",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
   },
   "src/rom/lib_257f0.c:func_80024BF0": {
     "body_sha256": "cfee313c53c30af27a4c0a55afa2e9f09fcc979abb94ac06b9e18bb2457a4a82",
@@ -2182,6 +2695,15 @@
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-04"
+  },
+  "src/rom/lib_26ab0.c:func_80025F74": {
+    "body_sha256": "d2b3be6a47206a142a2da016c4abddf559d428c9ad1bdfcea53caee8ea0b8940",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80025F74",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-11"
   },
   "src/rom/lib_26ab0.c:func_800262BC": {
     "body_sha256": "095b3e5e05db71617a1af563644818e96807ecfe2cfd78ba4488c59e7a35f5f0",

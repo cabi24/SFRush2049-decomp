@@ -17,6 +17,7 @@ REPO = Path(__file__).resolve().parents[4]
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(REPO))
 from tools.cloud import score
+from tools.conveyor import compilers as compilersmod
 from tools.conveyor.pipeline.lock import body_sha, normalize_body
 from tools.conveyor.seeds.extract_candidates import extract_functions
 
@@ -60,7 +61,7 @@ def checked(args):
 def compile_tu(text, out, name, expect_error=False):
     source, obj = out / (name + ".c"), out / (name + ".o")
     source.write_text(text)
-    command = [sys.executable, REPO / "tools/asm-processor/build.py", score.ido("cc"),
+    command = [sys.executable, REPO / "tools/asm-processor/build.py", str(compilersmod.tu_cc(Path(TU).stem, score.ido("cc"))),
                "--", "mips-linux-gnu-as", "-march=vr4300", "-mabi=32", "-Iinclude",
                "--", "-c", *CFLAGS, "-o", obj, source]
     result = run(command)

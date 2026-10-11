@@ -54,7 +54,10 @@ def verify(repo=ROOT):
     require(source == expected_source(original), 'unexpected source change')
     original_config = json.loads((repo/BASELINE/'group.json').read_text())
     config = json.loads((HERE/'group.json').read_text())
-    require(config == dict(original_config, claims=[NAME]), 'unexpected group recipe')
+    expected_config = dict(original_config, claims=[NAME],
+        members=['func_8039D494', NAME, 'func_8039ED20'],
+        context=[n for n in original_config['members'] if n not in ('func_8039D494', NAME, 'func_8039ED20')])
+    require(config == expected_config, 'unexpected group recipe')
     asset = (repo/'assets/us/data.bin').read_bytes()
     require(sha(asset) == 'f06d4ad0bb7dc7aff494acddc736f1b56bc271a2292c0286879cc9189bec31c8', 'asset drift')
     require(int.from_bytes(asset[0x3850:0x3854], 'big') == 0xB5C534, 'loader pointer drift')
@@ -65,7 +68,7 @@ def verify(repo=ROOT):
         build = Path(temp)
         obj = build/'candidate.o'
         score.compile_group(HERE,obj)
-        scores = {fn:dataclasses.asdict(score.compare(obj,fn,show=0)) for fn in config['members']}
+        scores = {fn:dataclasses.asdict(score.compare(obj,fn,show=0)) for fn in config['members'] + config.get('context', [])}
         # Keep counts and diagnostics without publishing extracted target bytes.
         for result in scores.values():
             result['errors'] = ['owned-data comparison mismatch' if 'retail' in e else e for e in result['errors']]

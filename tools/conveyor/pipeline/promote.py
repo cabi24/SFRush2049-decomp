@@ -21,6 +21,7 @@ import time
 from pathlib import Path
 
 from . import owned_data
+from .. import compilers as compilersmod
 
 from ..coordinator import db as dbmod
 from ..client import DEFAULT_DATA
@@ -156,6 +157,10 @@ def run_promotion(spec, source, via_builder=False, override_reason=None,
     if not flagset:
         raise Refusal(f"refusing: segment {seg_name} has no pinned flagset — "
                       "run the per-TU flag sweep first [FR-005]")
+    if lock_spec in entries:
+        why = layoutmod.compiler_refusal(seg, entries[lock_spec])
+        if why:
+            raise Refusal(f"refusing: {why}")
 
     tu_rel = Path("src") / f"{seg['rom_tu']}.c"
     tu_path = REPO / tu_rel
@@ -202,6 +207,10 @@ def run_promotion(spec, source, via_builder=False, override_reason=None,
         "toolkit_sha": None,
         "verified_at": time.strftime("%Y-%m-%d"),
     }
+    # The ROM gate proved the body under the segment's compiler; record it
+    # when it is not the default so layout can check it against the pin.
+    if seg.get("compiler") and seg["compiler"] != compilersmod.DEFAULT:
+        entries[new_spec]["compiler"] = seg["compiler"]
     entries.pop(lock_spec, None)
     lockmod.save_lock(entries)
 

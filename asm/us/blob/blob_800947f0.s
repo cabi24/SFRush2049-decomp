@@ -1870,6 +1870,7 @@ audio_effect_process:
 .section .text.func_80096130, "ax", @progbits
 .globl func_80096130
 func_80096130:
+    /* compiled from src/blob/func_80096130.c */
     .word 0x00047880
     .word 0x01E47821
     .word 0x3C188015
