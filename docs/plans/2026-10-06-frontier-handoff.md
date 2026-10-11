@@ -147,7 +147,7 @@ Tooling now on master: `tools/conveyor/compilers.py` (pinned 5.3/7.1 builds with
 (segment → compiler; `write_opt_overrides` emits `CC := $(IDO71_CC)`; the Makefile stops if 7.1 is missing, never
 falls back), `promote_batch --dry-run/--splice-out/--lockfile` and compiler-mismatch refusals, docs in BUILDING.md
 and COMPILER_SETTINGS.md. The builder has 7.1 at `~/rush2049/repo/tools/ido-static-recomp/build71/out` (CI builds
-no ROM and needs nothing). **Gotcha fixed:** `blob_rom rom` synced only the Makefile and blob to the builder, so a
+no ROM and needs nothing). **Packets:** eight boot-tail research packets rebuild their ROM TU; they now take the compiler from the pin via `compilers.tu_cc` (receipts rebound), and `tools/cloud/setup.sh` installs 7.1 beside 5.3 for CI. **Gotcha fixed:** `blob_rom rom` synced only the Makefile and blob to the builder, so a
 stale `rom_compilers.json`/`opt_overrides.mk` there built every TU with 5.3 and still matched; it now syncs both.
 Still open on the static side: osAiSetNextBuffer (owned `.data` slot prepared in `w17g/`), `__fixunsdfdi`/
 `__fixunssfdi` (owned `.rodata` + `.set gp=64` for reloc-aware targets), two stale inventory rows (`osCauseGet`,
