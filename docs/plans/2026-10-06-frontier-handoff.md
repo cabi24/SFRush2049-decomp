@@ -1,17 +1,17 @@
 # Frontier handoff: 2026-10-06 (after wave 12), updated 2026-10-11 (after wave 15)
 
-## 0. Wave 13–15 update (2026-10-11, master `0fdd8d9e`; wave 16 running)
+## 0. Wave 13–16 update (2026-10-11, after wave 16)
 
 Read this section first; §1–§10 below are the wave-12 text and still describe the method. Section-by-section
 deltas are noted inline where they matter.
 
 | | Functions | Bytes | % |
 |---|---|---|---|
-| Game code (compressed image) | 958 / 1216 | 291,548 / 647,072 | 45.06 |
-| Static code (boot/library) | 400 / 668 | 73,596 / 160,720 | 45.79 |
+| Game code (compressed image) | 965 / 1216 | 300,856 / 647,072 | 46.49 |
+| Static code (boot/library) | 431 / 668 | 77,844 / 160,720 | 48.43 |
 
-Frontier: 258 unmatched game functions (269 KB). Ready now: 25 singles (24 KB), 32 group (31 KB), 5 unit (4.6 KB).
-Provisional: 22 functions, 12.1 KB (`provisional.json`).
+Frontier: 251 unmatched game functions (258 KB) after wave 16. Provisional: 21 functions (`provisional.json`;
+camera_track_spline and func_800C3AD0 left, init_state_continue joined).
 
 **What landed since wave 12 (+19.9 KB game):**
 - Wave 13: records_screen, func_800E762C, differential_output (+1.2 KB); wave 14: graphics_chunk,
@@ -76,11 +76,49 @@ Table in `cloud/work/frontier/w15g/RESULTS.md`.
   **camera_transform is added to the keep-off list** (§4).
 - Implicit int: still open; no landed function needs it.
 
-**Wave 16 (launched 2026-10-11, eight Opus lanes, trace-first):** w16a camera_update (+camera_aspect_ratio group),
-w16b entity_spawn_init, w16c camera_play_script, w16d camera_victory then func_800E4B58, w16e func_80096130 /
-func_8010FBE0 / entity_process_main, w16f pause_quit retry through the w15j gate then audio_frame_update /
-init_state_continue, w16g static ultralib/libgcc promotion prep (w15g rows), w16h fresh func_80108F40 /
-entity_render_setup / anim_state_update / func_800F45F8. Rules file: WAVE_BRIEF "Wave 16".
+**Wave 16 (2026-10-11, eight Opus matching/tooling lanes plus w16i tooling, trace-first). Landed:**
+- **Game +9,308 B:** camera_victory (1,468) with provisional func_800C3AD0 (1,448) in the superseding `func_800AD4C8`
+  group (w16d; levers: loop-2 inner test as `continue` so uopt's split start block skips the call block and `car` keeps
+  s4; one `j` across three loops; sibling idiom `cnt = *q++` from camera_trigger_check; no shaping devices);
+  camera_update (2,876) with camera_free_look (436) and camera_track_spline (860) in the
+  superseding `camera_aspect_ratio` group (w16a; lever: uopt orders `==` operands by kind, so `idx * 1 + 1 ==
+  sc->count` puts count first; disclosed, plus w15a's two compiled-out reads; `D_80123E8C` is the literal 0.0425f);
+  singles func_80108F40 (1,320; three unused locals = exact frame residual, disclosed) and func_800F45F8 (900) (w16h).
+- **Static +4,248 B, 31 functions (w15g survey → w16g sources → w16i tooling):** `__osPfsRWInode`, `__osContRamWrite`,
+  `__osEPiRawWriteIo`, `__osEPiRawReadIo`, `__osContAddressCrc`, `__osContDataCrc`, `osMotorStop` (= osPfsRepairId),
+  `__osSiDeviceBusy`, `func_800103A0`, `func_80014650`, `func_8002517C`, `__osResetGlobalIntMask`,
+  `__osSetGlobalIntMask`, `osYieldThread`, `osDestroyThread`, and the 16 libgcc-named functions, which are ultralib
+  `libc/ll.c` + `llcvt.c` verbatim at `-g0 -O1 -mips3 -32`. Ten segments converted. New tooling:
+  `tools/conveyor/pipeline/targets_rename.py` (inventory rows re-registered under current layout names; applied to
+  the live DB, 18 actions, backup in the coordinator's scratchpad), `write_opt_overrides` `-mips3 -32` rule and
+  `tools/conveyor/pipeline/o32abi.py` (EF_MIPS_32BITMODE in the ROM-TU Makefile rule). Static promotion is run with
+  `cloud/work/boot_tail_promotion/promote_batch.py CTX.jsonl SEG… --only fn,…` after `lock add` + `layout convert`
+  (lock first: the segment flagset derives from the lock). Still open on the static side: `osAiSetNextBuffer` (needs a
+  16-byte owned `.data` slot), `__fixunsdfdi`/`__fixunssfdi` (owned `.rodata` + reloc-aware targets), two stale
+  inventory rows (`__osGetCause` → osCauseGet, `__osContAddressCrc` insn_count), the hand-asm policy question
+  (`w16g/RESULTS.md`), and the wrong labels listed there (notably `__osActiveQueue`/`__osRunQueue` swapped).
+- **Provisional:** pause_quit (= drone_throttle_calc) passes the w15j own-data gate (w16f dry run) but its only caller
+  func_800D91A0 is unmatched; init_state_continue is code-identical with asm-only callers (w16f).
+
+**Open near-misses after wave 16** (replaces the wave-15 table where names overlap):
+
+| Target | Bytes | Gap | Cause and best source | Lands with it |
+|---|---:|---|---|---|
+| camera_play_script | 3520 | 6 normalised rows (was 48), frame 600 vs 608 | -1 constant tie broken by block count (18 → 19 blocks flips float rounding of benefit = cost); zero spelled two ways; `old` after `n`. Left: corner-loop register (a1 blocked by an unknown web), k-loop denominator in $f22 without merging `u`, two spill slots. `w16c/camera_play_script/best.c`. | |
+| entity_spawn_init | 5544 | 61 words, frame ok | decision order: the model address ties a constant web at priority 0.6667 and is decided too early, so its top piece is never coloured; `surface` memory-only; a missing early expression value (two spill slots 4 B off). Split logger `w16b/tools/splitpatch.py`. | 3 / 3.6 KB |
+| anim_state_update | 1840 | 39/460 words (21 rows), frame ok | `lucent` start in a0 (retail) vs ra; context copy inside locked `codex_visual_tire_module_20261002` (replace under the same name). `w16h/anim_state_update/best.c`. | |
+| entity_render_setup | 2048 | 394/512, frame 184 vs 200 | camera pointer substituted away; palette base and loop pointer timing. `w16h/entity_render_setup/best.c`. | |
+| func_800E4B58 | 2268 | 503/567 words (106 → 70 rows) | arcade MaxPathControls with five helpers inlined; blocked by func_800E398C's convention (parameter in s7, clobbers s0–s8/$f20–$f30 unsaved). `w16d/func_800E4B58/best.c`. | func_800E451C, func_800E4300 (2,128 B) |
+| audio_frame_update | 600 | 21 words | unknown web holds v1 over the final loop; `D_801543CC` hoisting. `w16f/audio_frame_update/best.c`. | |
+| func_80096130 | 264 | 3 words (needs one disclosed `if (slot) {}`) | retail's `slot` tail is a register piece after osJamMesg; any extra use crosses the split threshold. Needs uopt `f_split` reading or a "split once" force mode. `w16e`. | |
+| func_8010FBE0 | 128 | 6 rows | defining `OSScTask D_80155238;` in the unit is supported (func_800B2BDC precedent) but the symbol address then lives in a3/v0. `w16e`. | |
+| entity_process_main | 1424 | 2 words | ugen shift/load/NOT order; no expression tree reaches it. | |
+| input_deadzone_apply | 3580 | 122 words | ugen double compile, w12a. Untouched. | input_process_controller |
+| func_800E847C + func_800E7FA0 | 2100 + 1244 | far | w11g | |
+
+Provisional unblockers: func_800E4B58 (above), func_800D91A0 (closes 1,572 B + pause_quit 1,024, 603 rows), audio_mixer_main.
+Wave 16 lesson (w16d, w16b): uopt's live-range split start block follows source-visible block order; a private
+instrumented uopt with skip/reject oracles proves the lever before searching for the source form.
 
 **For the next coordinating session.** This covers where the frontier matching effort stands, how a wave is run end to end, what the owner has decided, and every open item. Read it with `CLAUDE.md`, `cloud/work/frontier/WAVE_BRIEF.md` (the brief every lane agent reads) and `docs/plans/2026-10-04-frontier-plan.md` (the original method).
 

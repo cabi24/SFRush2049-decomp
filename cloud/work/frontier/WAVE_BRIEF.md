@@ -133,6 +133,23 @@ writing variants: if forcing reaches 0 rows the residual is colour-only.
 - Implicit int stays an open decision (deliver to the lane dir, say so, give the best form without it). Look
   first for the wave-15 lever: a caller-less `jr ra; nop` stub next to the function is probably its inlined getter.
 - Keep off Astra's functions: func_80087110, stat_race_update, func_800FE5B0, camera_transform.
+- **Wave 16 lessons** (5 of 8 lanes landed something; game +9.3 KB, static +4.2 KB):
+  - uopt orders `==`/`!=` operands by kind: a plain variable goes second, an expression first. A no-code identity
+    (`x * 1`, `x ^ 0`, `x >> 0`) on the variable side flips the order; source order then decides (w16a camera_update).
+  - A store through a pointer kills every pointer load in uopt: a value retail keeps across such a store is a
+    variable or register expression, never a pointer load (w16a).
+  - uopt's live-range split start block follows source-visible block order: which arm falls through (`if (c) {call}`
+    vs `if (!c) continue;`) decides which call block is split off first and whether a long-lived pointer is ever
+    coloured (w16d camera_victory, `car` in s4). A private instrumented uopt with skip/reject oracles
+    (`w16d/tools/patch_spl.py`, `w16b/tools/splitpatch.py`) proves the lever before you search for the source form.
+  - An exact benefit = cost tie in `ctrace` is broken by single-precision rounding of `total/blocks * blocks`:
+    1-4 more live blocks in the loop (a `conv = 1;` after it) flip it with no new uses (w16c).
+  - `0.f` and `0.0f` are different constants to uopt: a second spelling stops zero keeping two register pieces (w16c).
+  - A one-line xor swap (macro) gives as1 a different byte-store order than the same swap on three lines (w16h).
+  - Matched siblings supply idioms: camera_trigger_check's `cnt = *q++` closed camera_victory's last 3 words (w16d).
+  - Re-measure old drafts in the current unit and check they compile (w16e: w15c's variants had a duplicated line).
+  - Static side: the libgcc-named boot functions are ultralib `libc/ll.c`/`llcvt.c` verbatim at `-O1 -mips3 -32`;
+    `score.py fn` cannot score static targets, use `lock add` (pool) and `promote_batch.py` (w16g/w16i).
 - Write RESULTS.md within the first 20 minutes and keep variants under `<lane>/<fn>/v/`.
 
 ## Permission denials
