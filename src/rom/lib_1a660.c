@@ -472,10 +472,71 @@ u16 func_8001B968(u32 key)
 
 typedef struct ChannelState {u32 word00,word04,flags08,pending0C,unknown10;u8 kind14;u8 unknown15[3];u32 value18;u8 unknown1C[12];} ChannelState;
 extern ChannelState D_8004F300[32];
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001B9F8.s")
-/* ROM_OWNED_RODATA_BEGIN func_8001B9F8 */
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001B9F8.rodata.s")
-/* ROM_OWNED_RODATA_END func_8001B9F8 */
+/* PROMOTED 2026-10-11 — func_8001B9F8
+ * Source:   cloud/work/frontier/w20c/sources/func_8001B9F8.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w20c/sources/func_8001B9F8.c:func_8001B9F8 (score0); rom_tu.h context: cloud/work/frontier/w20c/ctx71_w20c.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+typedef struct MasterFader { u32 volume; u32 target; s32 delta; u32 time; u32 seqId; u8 type; u8 seqMode; u8 unknown16[2]; u32 pauseVolume; u32 pauseTarget; s32 pauseDelta; u32 pauseTime; } MasterFader;
+extern void func_8001E930(u32 *);
+void func_8001B9F8(u8 volume, u16 time, u8 vGroup, u8 seqMode, u32 seqId)
+{
+    u32 ltime;
+    u32 i;
+    u8 type;
+
+    if (time == 0) {
+        ++time;
+    }
+    ltime = time;
+    func_8001E930(&ltime);
+    switch (vGroup) {
+    case 255:
+        for (i = 0; i < 32; ++i) {
+            if (((MasterFader *)D_8004F300)[i].type == 0 || ((MasterFader *)D_8004F300)[i].type == 1) {
+                ((MasterFader *)D_8004F300)[i].target = volume << 16;
+                ((MasterFader *)D_8004F300)[i].time = ltime;
+                ((MasterFader *)D_8004F300)[i].delta = (s32)(((MasterFader *)D_8004F300)[i].target - ((MasterFader *)D_8004F300)[i].volume) / time;
+                ((MasterFader *)D_8004F300)[i].seqId = 0xFFFFFFFFU;
+            }
+        }
+        return;
+    case 252:
+        for (i = 0; i < 32; ++i) {
+            if (((MasterFader *)D_8004F300)[i].type == 2 || ((MasterFader *)D_8004F300)[i].type == 3) {
+                ((MasterFader *)D_8004F300)[i].target = volume << 16;
+                ((MasterFader *)D_8004F300)[i].time = ltime;
+                ((MasterFader *)D_8004F300)[i].delta = (s32)(((MasterFader *)D_8004F300)[i].target - ((MasterFader *)D_8004F300)[i].volume) / time;
+                ((MasterFader *)D_8004F300)[i].seqId = 0xFFFFFFFFU;
+            }
+        }
+        return;
+    case 250: type = 2; goto setup_type;
+    case 251: type = 3; goto setup_type;
+    case 253: type = 0; goto setup_type;
+    case 254: type = 1; goto setup_type;
+    setup_type:
+        for (i = 0; i < 32; ++i) {
+            if (((MasterFader *)D_8004F300)[i].type == type) {
+                ((MasterFader *)D_8004F300)[i].target = volume << 16;
+                ((MasterFader *)D_8004F300)[i].time = ltime;
+                ((MasterFader *)D_8004F300)[i].delta = (s32)(((MasterFader *)D_8004F300)[i].target - ((MasterFader *)D_8004F300)[i].volume) / time;
+                ((MasterFader *)D_8004F300)[i].seqId = 0xFFFFFFFFU;
+            }
+        }
+        return;
+    default:
+        i = vGroup;
+        ((MasterFader *)D_8004F300)[i].target = volume << 16;
+        ((MasterFader *)D_8004F300)[i].time = ltime;
+        ((MasterFader *)D_8004F300)[i].delta = (s32)(((MasterFader *)D_8004F300)[i].target - ((MasterFader *)D_8004F300)[i].volume) / time;
+        ((MasterFader *)D_8004F300)[i].seqMode = seqMode;
+        ((MasterFader *)D_8004F300)[i].seqId = seqId;
+        return;
+    }
+}
+
 /* PROMOTED 2026-10-11 — func_8001BDB8
  * Source:   cloud/work/frontier/w18c/sources/func_8001BDB8.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -490,7 +551,72 @@ int func_8001BDB8(u8 index)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001BE14.s")
+/* PROMOTED 2026-10-11 — func_8001BE14
+ * Source:   cloud/work/frontier/w20c/sources/func_8001BE14.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w20c/sources/func_8001BE14.c:func_8001BE14 (score0); rom_tu.h context: cloud/work/frontier/w20c/ctx71_w20c.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_8001BE14(u8 volume, u16 time, u8 group)
+{
+    u32 i;
+    u32 ltime;
+    u8 type;
+
+    if (time == 0) {
+        ++time;
+    }
+    ltime = time;
+    func_8001E930(&ltime);
+    switch (group) {
+    case 255:
+        for (i = 0; i < 32; ++i) {
+            if (((MasterFader *)D_8004F300)[i].type == 0 || ((MasterFader *)D_8004F300)[i].type == 1) {
+                ((MasterFader *)D_8004F300)[i].pauseTarget = volume << 16;
+                ((MasterFader *)D_8004F300)[i].pauseTime = ltime;
+                ((MasterFader *)D_8004F300)[i].pauseDelta = (s32)(((MasterFader *)D_8004F300)[i].pauseTarget - ((MasterFader *)D_8004F300)[i].pauseVolume) / time;
+            }
+        }
+        return;
+    case 252:
+        for (i = 0; i < 32; ++i) {
+            if (((MasterFader *)D_8004F300)[i].type == 2 || ((MasterFader *)D_8004F300)[i].type == 3) {
+                ((MasterFader *)D_8004F300)[i].pauseTarget = volume << 16;
+                ((MasterFader *)D_8004F300)[i].pauseTime = ltime;
+                ((MasterFader *)D_8004F300)[i].pauseDelta = (s32)(((MasterFader *)D_8004F300)[i].pauseTarget - ((MasterFader *)D_8004F300)[i].pauseVolume) / time;
+            }
+        }
+        return;
+    case 250:
+        type = 2;
+        goto setup_type;
+    case 251:
+        type = 3;
+        goto setup_type;
+    case 253:
+        type = 0;
+        goto setup_type;
+    case 254:
+        type = 1;
+        goto setup_type;
+    setup_type:
+        for (i = 0; i < 32; ++i) {
+            if (((MasterFader *)D_8004F300)[i].type == type) {
+                ((MasterFader *)D_8004F300)[i].pauseTarget = volume << 16;
+                ((MasterFader *)D_8004F300)[i].pauseTime = ltime;
+                ((MasterFader *)D_8004F300)[i].pauseDelta = (s32)(((MasterFader *)D_8004F300)[i].pauseTarget - ((MasterFader *)D_8004F300)[i].pauseVolume) / time;
+            }
+        }
+        return;
+    default:
+        i = group;
+        ((MasterFader *)D_8004F300)[i].pauseTarget = volume << 16;
+        ((MasterFader *)D_8004F300)[i].pauseTime = ltime;
+        ((MasterFader *)D_8004F300)[i].pauseDelta = (s32)(((MasterFader *)D_8004F300)[i].pauseTarget - ((MasterFader *)D_8004F300)[i].pauseVolume) / time;
+        return;
+    }
+}
+
 /* PROMOTED 2026-10-11 — func_8001C19C
  * Source:   cloud/work/frontier/w18c/sources/func_8001C19C.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
