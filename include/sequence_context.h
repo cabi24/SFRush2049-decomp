@@ -11,7 +11,9 @@ typedef struct SequenceNode {
     struct SequenceNode *next;
     struct SequenceNode *previous;
     unsigned int identifier;
-    unsigned char unknown0C[0x0C];
+    int deadline0C;                           /* timed nodes: due time (whole ticks) */
+    unsigned int fraction10;                  /* timed nodes: 16.16 clock, fraction */
+    int whole14;                              /* timed nodes: 16.16 clock, whole */
 } SequenceNode;
 
 typedef struct SequenceTimedValue {
@@ -19,17 +21,28 @@ typedef struct SequenceTimedValue {
     unsigned int value;
 } SequenceTimedValue;
 
+typedef struct SequenceTrack {                /* 0x28; per-track 16.16 clock */
+    unsigned int fraction;
+    int whole;
+    unsigned int unknown08;
+    unsigned int active0C;
+    unsigned int active10;
+    unsigned int active14;
+    unsigned char unknown18[16];
+} SequenceTrack;
+
 typedef struct SequenceContext {
     unsigned int identifier;                  /* 000 */
     unsigned char unknown004[0x10C];
     unsigned int first110;
     unsigned int second114;
-    unsigned char unknown118[8];
+    unsigned int fraction118;                 /* 118: tempo increment, 16-bit fraction */
+    int whole11C;                             /* 11C: tempo increment, whole part */
     unsigned int half120;
     unsigned int rate124;
     unsigned char unknown128[0x400];
     unsigned char channels528[64];
-    unsigned char unknown568[0xA00];
+    SequenceTrack tracks568[64];
     SequenceTimedValue *timingStartF68;
     SequenceTimedValue *currentF6C;
     unsigned int lowF70;

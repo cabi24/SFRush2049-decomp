@@ -75,6 +75,16 @@ def rom_slots(repo=REPO, *, check_source=True):
         r = dict(raw)
         if not isinstance(r['owner'], str) or not IDENT.fullmatch(r['owner']):
             raise OwnershipError('invalid ROM owner name')
+        # Other functions of the same TU whose bodies also emit into the owned
+        # section (__fixunssfdi beside __fixunsdfdi). The slot changes hands
+        # only when the owner and every co-owner are promoted together.
+        co = r.get('co_owners', [])
+        if (not isinstance(co, list) or any(not isinstance(n, str) or not IDENT.fullmatch(n) for n in co)
+                or len(set(co)) != len(co) or r['owner'] in co):
+            raise OwnershipError('co_owners must be distinct function names other than the owner')
+        if co and r.get('storage_owner'):
+            raise OwnershipError('mutable storage slots have no co-owners')
+        r['co_owners'] = list(co)
         for k in ['tu', 'source'] + ([] if r.get('storage_owner') else ['passthrough_asm']):
             r[k] = _relative(r[k])
             if not (repo / r[k]).resolve().is_relative_to(repo.resolve()):
@@ -450,6 +460,74 @@ def strip_companion(text, owner, repo=REPO, tu=None):
     return text.replace(block, '', 1)
 
 
+def slot_members(row):
+    """Functions whose promotion together hands the slot to compiled C."""
+    return [row['owner']] + list(row.get('co_owners', []))
+
+
+def slots_for_function(repo, func, tu=None):
+    """Passthrough-companion slots `func` owns or co-owns (in `tu`, if given)."""
+    return [r for r in rom_slots(repo, check_source=False)
+            if not r.get('storage_owner') and func in slot_members(r)
+            and (tu is None or r['tu'] == _relative(tu))]
+
+
+def companion_source(row):
+    """The passthrough companion: the slot's original bytes in the owner's
+    section. asm-processor accepts `.balign 4`; the section keeps IDO's
+    16-byte alignment, which the slot's 16-aligned offset satisfies."""
+    return ('.section ' + row['owner_section'] + '\n'
+            '.balign 4\n'
+            '.incbin "' + row['source'] + '", ' + hex(row['offset']) + ', ' + hex(row['size']) + '\n')
+
+
+def prepare(repo, raw):
+    """Register a new passthrough slot (hash-neutral; the ROM gate proves it).
+
+    Appends `raw` to the registry, writes its companion assembly and inserts
+    the companion block right after the owner's passthrough slot in the TU.
+    Every member's slot must still be passthrough. Nothing is written unless
+    the resulting registry validates (original bytes, overlap, alignment)."""
+    repo = Path(repo)
+    if not isinstance(raw, dict) or raw.get('storage_owner') or 'passthrough_asm' not in raw:
+        raise OwnershipError('prepare registers passthrough-companion slots only')
+    registry = load_registry(repo)
+    if any(isinstance(r, dict) and r.get('owner') == raw.get('owner') for r in registry['rom_slots']):
+        raise OwnershipError('owner already registered')
+    registry['rom_slots'].append(raw)
+    path = repo / REGISTRY
+    original = path.read_text() if path.exists() else None
+    path.write_text(json.dumps(registry, indent=2) + '\n')
+    try:
+        row = next(r for r in rom_slots(repo) if r['owner'] == raw['owner'])
+        tu_path = repo / row['tu']
+        text = tu_path.read_text()
+        seg = Path(row['tu']).stem
+        for member in slot_members(row):
+            pragma = '#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/' + seg + '/' + member + '.s")'
+            if text.count(pragma) != 1:
+                raise OwnershipError(member + ' has no passthrough slot in ' + row['tu'])
+        owner_pragma = '#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/' + seg + '/' + row['owner'] + '.s")\n'
+        if text.count(owner_pragma) != 1:
+            raise OwnershipError('owner passthrough line is not a complete TU line')
+        block = companion_block(row)
+        if block in text:
+            raise OwnershipError('companion block already present')
+        companion = repo / row['passthrough_asm']
+        if companion.exists() and companion.read_text() != companion_source(row):
+            raise OwnershipError('existing companion differs from the registry row')
+    except BaseException:
+        if original is None:
+            path.unlink()
+        else:
+            path.write_text(original)
+        raise
+    companion.parent.mkdir(parents=True, exist_ok=True)
+    companion.write_text(companion_source(row))
+    tu_path.write_text(text.replace(owner_pragma, owner_pragma + block, 1))
+    return row
+
+
 def promotion_paths(repo, tu):
     """Immutable lifecycle paths checked/synced alongside the single mutable TU."""
     tu = _relative(tu); rows = [r for r in rom_slots(repo) if r['tu'] == tu]
@@ -474,11 +552,21 @@ def main(argv=None):
     ld = sub.add_parser('linker'); ld.add_argument('path')
     obj = sub.add_parser('object'); obj.add_argument('tu'); obj.add_argument('path')
     sub.add_parser('companions')
+    prep = sub.add_parser('prepare', help='register a passthrough slot from a JSON row file')
+    prep.add_argument('row')
+    prep.add_argument('--linker', default='rush2049.us.ld',
+                      help='generated linker script to re-render with the new slot (as the build does)')
     a = p.parse_args(argv)
     if a.command == 'split':
         split_container(a.repo, a.source, a.composed, a.output, objcopy=a.objcopy)
     elif a.command == 'object':
         normalize_object_sections(a.repo, a.tu, a.path)
+    elif a.command == 'prepare':
+        row = prepare(a.repo, json.loads(Path(a.row).read_text()))
+        ld = Path(a.repo) / a.linker
+        ld.write_text(rewrite_linker(ld.read_text(), a.repo))
+        print('prepared ' + row['owner'] + ' ' + row['owner_section'] + ' slot ' + hex(row['container_vram'] + row['offset'])
+              + ' size ' + hex(row['size']) + ' in ' + row['tu'] + ' (companion ' + row['passthrough_asm'] + ')')
     elif a.command == 'companions':
         print(' '.join(sorted({r['passthrough_asm'] for r in rom_slots(a.repo, check_source=False)
                                if not r.get('storage_owner')})))

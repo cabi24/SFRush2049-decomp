@@ -27,9 +27,73 @@ int func_80021700(u32 id)
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80021764.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800217E4.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80021844.s")
+/* PROMOTED 2026-10-11 — func_80021764
+ * Source:   cloud/work/frontier/w19b/sources/func_80021764.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19b/sources/func_80021764.c:func_80021764 (score0); rom_tu.h context: cloud/work/frontier/w19b/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+extern u8 D_80056160[][16];
+extern u8 D_800561E0[];
+struct MacroState;
+int func_80021764(struct MacroState *state)
+{
+    u8 index;
+    if (((VoiceState *)state)->id60 != 0xFFFFFFFFU && ((VoiceState *)state)->channel4A != 255) {
+        index = ((VoiceState *)state)->id60 & 0xFF;
+        if (((VoiceState *)state)->set4B == 255) {
+            if (D_800561E0[index] == index) return 1;
+        } else {
+            if (D_80056160[((VoiceState *)state)->set4B][((VoiceState *)state)->channel4A] == index) return 1;
+        }
+    }
+    return 0;
+}
+
+/* PROMOTED 2026-10-11 — func_800217E4
+ * Source:   cloud/work/frontier/w19b/sources/func_800217E4.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19b/sources/func_800217E4.c:func_800217E4 (score0); rom_tu.h context: cloud/work/frontier/w19b/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+void func_800217E4(VoiceState *voice)
+{
+    u8 index;
+    if (voice->id60 != 0xFFFFFFFFU && voice->channel4A != 255) {
+        index = voice->id60 & 0xFF;
+        if (voice->set4B == 255) {
+            D_800561E0[index] = index;
+        } else {
+            D_80056160[voice->set4B][voice->channel4A] = index;
+        }
+    }
+}
+
+/* PROMOTED 2026-10-11 — func_80021844
+ * Source:   cloud/work/frontier/w19b/sources/func_80021844.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19b/sources/func_80021844.c:func_80021844 (score0); rom_tu.h context: cloud/work/frontier/w19b/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+void func_80021844(VoiceState *voice)
+{
+    u8 index;
+    if (voice->id60 != 0xFFFFFFFFU && voice->channel4A != 255) {
+        index = voice->id60 & 0xFF;
+        if (voice->set4B == 255) {
+            if (D_800561E0[index] == index) D_800561E0[index] = 255;
+        } else {
+            if (D_80056160[voice->set4B][voice->channel4A] == index) D_80056160[voice->set4B][voice->channel4A] = 255;
+        }
+    }
+}
+
 /* PROMOTED 2026-10-05 — func_800218CC
  * Source:   cloud/matches/boot_tail/func_800218CC.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -52,15 +116,68 @@ void func_800218CC(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_8002193C.s")
+typedef struct MacroState { u8 unknown00[0x30]; u32 field30; u8 unknown34[0x2C]; u32 field60; } MacroState;
+typedef struct MacroCommand { u32 word[2]; } MacroCommand;
+/* PROMOTED 2026-10-11 — func_8002193C
+ * Source:   cloud/work/frontier/w19a/sources/func_8002193C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19a/sources/func_8002193C.c:func_8002193C (score0); rom_tu.h context: cloud/work/frontier/w19a/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "types.h"
+#pragma pack(1)
+typedef struct MacroState_8002193C { u8 unknown00[0x24]; u32 flags24; u8 unknown28[0x38]; u32 identifier60; u8 unknown64[0x38]; u32 deadline9C; u32 baseA0; u32 clockA4; } MacroState_8002193C;
+#pragma pack()
+extern u8 func_8001467C(int);
+extern u16 func_8001E790(void);
+extern void func_8001E930(u32 *);
+extern void func_8001E940(u32 *, MacroState *);
+u8 func_8002193C(MacroState *state, MacroCommand *command)
+{
+    u32 time;
+    u8 milliseconds;
+    time = (u16)(command->word[1] >> 16);
+    if (time != 0) {
+        if ((u8)(command->word[0] >> 8) & 1) {
+            if (((MacroState_8002193C *)state)->flags24 & 8) return 0;
+            ((MacroState_8002193C *)state)->flags24 |= 4;
+        } else {
+            ((MacroState_8002193C *)state)->flags24 &= ~4U;
+        }
+        if ((u8)(command->word[0] >> 24) & 1) {
+            if (!(((MacroState_8002193C *)state)->flags24 & 0x20) && !func_8001467C(((MacroState_8002193C *)state)->identifier60 & 255)) return 0;
+            ((MacroState_8002193C *)state)->flags24 |= 0x100000;
+        } else {
+            ((MacroState_8002193C *)state)->flags24 &= ~0x100000U;
+        }
+        if ((u8)(command->word[0] >> 16) & 1) time = func_8001E790() % time;
+        if (time != 0xFFFF) {
+            milliseconds = (u8)(command->word[1] >> 8) & 1;
+            if (milliseconds) func_8001E930(&time);
+            else func_8001E940(&time, state);
+            if (milliseconds) {
+                ((MacroState_8002193C *)state)->deadline9C = ((MacroState_8002193C *)state)->clockA4 + time;
+            } else {
+                ((MacroState_8002193C *)state)->deadline9C = ((MacroState_8002193C *)state)->baseA0 + time;
+                if (((MacroState_8002193C *)state)->deadline9C <= ((MacroState_8002193C *)state)->clockA4) {
+                    ((MacroState_8002193C *)state)->baseA0 = ((MacroState_8002193C *)state)->deadline9C;
+                    ((MacroState_8002193C *)state)->deadline9C = 0;
+                }
+            }
+        } else {
+            ((MacroState_8002193C *)state)->deadline9C = 0xFFFFFFFFU;
+        }
+        return ((MacroState_8002193C *)state)->deadline9C != 0;
+    }
+    return 0;
+}
+
 /* PROMOTED 2026-10-04 — func_80021B9C
  * Source:   cloud/matches/boot_tail/func_80021B9C.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/matches/boot_tail/func_80021B9C.c:func_80021B9C (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-typedef struct MacroState { u8 unknown00[0x30]; u32 field30; u8 unknown34[0x2C]; u32 field60; } MacroState;
-typedef struct MacroCommand { u32 word[2]; } MacroCommand;
 extern u8 func_8002193C(MacroState *, MacroCommand *);
 u8 func_80021B9C(MacroState *state, MacroCommand *command)
 {
@@ -254,10 +371,73 @@ u8 func_80021F68(MacroState_80021F68 *state, MacroCommand_80021F68 *command)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80021F84.s")
+/* PROMOTED 2026-10-11 — func_80021F84
+ * Source:   cloud/work/frontier/w19a/sources/func_80021F84.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19a/sources/func_80021F84.c:func_80021F84 (score0); rom_tu.h context: cloud/work/frontier/w19a/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroState_80021F84 { MacroCommand *start00; MacroCommand *current04; u8 unknown08[0x1C]; u32 flags24; u8 unknown28[0x38]; u32 identifier60; u8 unknown64[4]; u16 loop68; } MacroState_80021F84;
+#pragma pack()
+u8 func_80021F84(MacroState_80021F84 *state, MacroCommand *command)
+{
+    if (state->loop68 == 0) {
+        if ((u8)(command->word[0] >> 16) & 1) {
+            state->loop68 = func_8001E790() % (u16)(command->word[1] >> 16);
+        } else {
+            state->loop68 = command->word[1] >> 16;
+        }
+        if (state->loop68 == 0xFFFF) goto skip;
+        ++state->loop68;
+    } else if (state->loop68 == 0xFFFF) {
+        goto skip;
+    }
+    if (--state->loop68 != 0) {
+skip:
+        if (((u8)(command->word[0] >> 8) & 1) != 0 &&
+            !(state->flags24 & 0x40000000U) && (state->flags24 & 8)) {
+            state->loop68 = 0;
+            return 0;
+        }
+        if (((u8)(command->word[0] >> 24) & 1) &&
+            !(state->flags24 & 0x20) && !func_8001467C(state->identifier60 & 255)) {
+            state->loop68 = 0;
+            return 0;
+        }
+        state->current04 = state->start00 + (command->word[1] & 0xFFFF);
+    }
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80022160.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80022324.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800223D0.s")
+/* PROMOTED 2026-10-11 — func_800223D0
+ * Source:   cloud/work/frontier/w18c/sources/func_800223D0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_800223D0.c:func_800223D0 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroState_800223D0 { u8 unknown00[0x28]; u32 field28; u16 field2C; u8 unknown2E[2]; u32 field30; u8 unknown34[4]; s32 field38; u8 unknown3C[0x14]; u16 field50; } MacroState_800223D0;
+#pragma pack(0)
+typedef struct MacroCommand_800223D0 { u32 word[2]; } MacroCommand_800223D0;
+u8 func_800223D0(MacroState_800223D0 *state, MacroCommand_800223D0 *command)
+{
+    s16 delta;
+    s32 value;
+    delta = command->word[0] >> 16;
+    value = (state->field28 >> 15) + delta;
+    if (value < 0) {
+        state->field28 = 0;
+    } else if (value > 65535) {
+        state->field28 = 0x7FFF8000;
+    } else {
+        state->field28 = (u32)value << 15;
+    }
+    return 0;
+}
+
 /* PROMOTED 2026-10-04 — func_8002243C
  * Source:   cloud/work/boot_tail_promotion/sources/func_8002243C.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -635,7 +815,28 @@ u8 func_8002300C(MacroState_8002300C *state, MacroCommand *command, int index)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800230B0.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023190.s")
+/* PROMOTED 2026-10-11 — func_80023190
+ * Source:   cloud/work/frontier/w19b/sources/func_80023190.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19b/sources/func_80023190.c:func_80023190 (score0); rom_tu.h context: cloud/work/frontier/w19b/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+u8 func_80023190(MacroState_800223D0 *state, MacroCommand *command)
+{
+    s32 value;
+    s8 gain;
+    value = ((u32)state->field50 << 16) - (((command->word[0] >> 16) & 0xFF) << 16);
+    gain = command->word[0] >> 8;
+    value = (s32)((u32)value * gain);
+    value >>= 7;
+    value += (u8)(command->word[0] >> 24) << 16;
+    value = value < 0 ? 0 : (value > 0x7F0000 ? 0x7F0000 : value);
+    state->field38 = value;
+    return 0;
+}
+
 /* PROMOTED 2026-10-11 — func_8002321C
  * Source:   cloud/work/frontier/w17g/sources/func_8002321C.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -663,7 +864,34 @@ u32 func_8002321C(u32 volume, u16 curve)
     return volume;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800232A4.s")
+/* PROMOTED 2026-10-11 — func_800232A4
+ * Source:   cloud/work/frontier/w18c/sources/func_800232A4.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_800232A4.c:func_800232A4 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroState_800232A4 { u8 unknown00[0x30]; u32 volume30; u32 originalVolume34; } MacroState_800232A4;
+#pragma pack()
+extern u32 func_8002321C(u32, u16);
+u8 func_800232A4(MacroState_800232A4 *state, MacroCommand *command)
+{
+    u16 curve;
+    if ((u8)(command->word[1] >> 8) == 0) {
+        state->volume30 = ((u8)(command->word[0] >> 8) * state->volume30) >> 7;
+    } else {
+        state->volume30 = ((u8)(command->word[0] >> 8) * state->originalVolume34) >> 7;
+    }
+    state->volume30 += (u8)(command->word[0] >> 16) << 16;
+    if (state->volume30 > 0x7F0000) {
+        state->volume30 = 0x7F0000;
+    }
+    curve = (u8)command->word[1];
+    curve |= (u8)(command->word[0] >> 24) << 8;
+    state->volume30 = func_8002321C(state->volume30, curve);
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800233B0.s")
 extern u8 func_800233B0(MacroState *, MacroCommand *, u32);
 /* PROMOTED 2026-10-05 — func_80023520
@@ -691,7 +919,48 @@ u8 func_80023544(MacroState *state, MacroCommand *command)
     return func_800233B0(state, command, 0);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023564.s")
+/* PROMOTED 2026-10-11 — func_80023564
+ * Source:   cloud/work/frontier/w19a/sources/func_80023564.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19a/sources/func_80023564.c:func_80023564 (score0); rom_tu.h context: cloud/work/frontier/w19a/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack()
+extern u8 func_800225FC(MacroState_800225FC *state, MacroCommand *command);
+u8 func_80023564(MacroState_800225FC *state, MacroCommand *command)
+{
+    u8 low;
+    u8 high;
+    u8 temporary;
+    s16 lower;
+    s16 upper;
+    u8 detune;
+    if ((u8)(command->word[1] >> 8) == 0) {
+        low = command->word[0] >> 8;
+        high = command->word[0] >> 24;
+        if (low > high) {
+            temporary = low;
+            low = high;
+            high = temporary;
+        }
+    } else {
+        lower = state->note50 - (u8)(command->word[0] >> 8);
+        upper = state->note50 + (u8)(command->word[0] >> 24);
+        low = lower < 0 ? 0 : lower > 127 ? 127 : (u8)lower;
+        high = upper < 0 ? 0 : upper > 127 ? 127 : (u8)upper;
+    }
+    if (command->word[1] & 0xFF) {
+        detune = (func_8001E790() % 201) - 100;
+    } else {
+        detune = command->word[0] >> 16;
+    }
+    command->word[0] = ((low + (func_8001E790() % ((high - low) + 1))) * 256) | 0x19 | (detune << 16);
+    command->word[1] = 0;
+    func_800225FC(state, command);
+    return 0;
+}
+
 /* PROMOTED 2026-10-04 — func_80023710
  * Source:   cloud/work/boot_tail_promotion/sources/func_80023710.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -725,17 +994,48 @@ u8 func_80023734(MacroState_80023734 *state, MacroCommand_80023734 *command)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023754.s")
+typedef struct MacroState_80023818 MacroState_80023818;
+typedef struct MacroControl_80023818 MacroControl_80023818;
+typedef struct MacroCommand_80023818 { u32 word[2]; } MacroCommand_80023818;
+extern void func_80023754(MacroState_80023818 *state, MacroControl_80023818 *control, MacroCommand_80023818 *command, u32 flag);
+/* PROMOTED 2026-10-11 — func_80023754
+ * Source:   cloud/work/frontier/w18c/sources/func_80023754.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80023754.c:func_80023754 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+struct MacroState_80023818 { u8 unknown00[0x24]; u32 flags24; };
+typedef struct ControlEntry_80023754 { u8 controller; u8 combination; s16 scale; } ControlEntry_80023754;
+struct MacroControl_80023818 { ControlEntry_80023754 entries[4]; u8 count; };
+#pragma pack()
+extern u8 func_80021548(u8);
+void func_80023754(MacroState_80023818 *state, MacroControl_80023818 *control,
+                  MacroCommand_80023818 *command, u32 flag)
+{
+    u8 index;
+    u8 controller;
+    u8 combination;
+    combination = command->word[1] & 0xFF;
+    if (!(state->flags24 & flag) || combination == 0) {
+        state->flags24 |= flag;
+        control->count = 0;
+    }
+    if (control->count < 4) {
+        index = control->count++;
+        controller = func_80021548(command->word[0] >> 8);
+        control->entries[index].controller = controller;
+        control->entries[index].combination = combination;
+        control->entries[index].scale = ((s32)(s16)(command->word[0] >> 16) * 256) / 100;
+    }
+}
+
 /* PROMOTED 2026-10-04 — func_80023818
  * Source:   cloud/work/boot_tail_promotion/sources/func_80023818.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/boot_tail_promotion/sources/func_80023818.c:func_80023818 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-typedef struct MacroState_80023818 MacroState_80023818;
-typedef struct MacroControl_80023818 MacroControl_80023818;
-typedef struct MacroCommand_80023818 { u32 word[2]; } MacroCommand_80023818;
-extern void func_80023754(MacroState_80023818 *state, MacroControl_80023818 *control, MacroCommand_80023818 *command, u32 flag);
 u8 func_80023818(MacroState_80023818 *state, MacroCommand_80023818 *command)
 {
     func_80023754(state, (MacroControl_80023818 *)((u8 *)state + 0xC4),
@@ -883,10 +1183,166 @@ u8 func_800239A4(MacroState_800239A4 *state, MacroCommand *command)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023AD4.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023B50.s")
+/* PROMOTED 2026-10-11 — func_80023AD4
+ * Source:   cloud/work/frontier/w18c/sources/func_80023AD4.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80023AD4.c:func_80023AD4 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct VoiceVariables_80023AD4 { u8 unknown000[0x180]; s16 variables180[16]; } VoiceVariables_80023AD4;
+#pragma pack(0)
+extern s16 D_8004BE78[];
+extern u16 func_800215A8(VoiceState *voice, u8 controller);
+s16 func_80023AD4(VoiceVariables_80023AD4 *voice, u8 isController, u8 index)
+{
+    s32 value;
+    if (isController) {
+        return func_800215A8((VoiceState *)voice, index);
+    }
+    index &= 31;
+    value = index < 16 ? voice->variables180[index] : (&D_8004BE78[16])[index - 16];
+    return value;
+}
+
+/* PROMOTED 2026-10-11 — func_80023B50
+ * Source:   cloud/work/frontier/w18c/sources/func_80023B50.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80023B50.c:func_80023B50 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+extern void func_8002165C(VoiceState *voice, u8 controller, s16 value);
+void func_80023B50(VoiceVariables_80023AD4 *voice, u8 isController, u8 index, s16 value)
+{
+    if (isController) {
+        func_8002165C((VoiceState *)voice, index, value);
+    } else {
+        index &= 31;
+        if (index < 16) {
+            voice->variables180[index] = value;
+        } else {
+            (&D_8004BE78[16])[index - 16] = value;
+        }
+    }
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023BDC.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023D70.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023DB8.s")
+/* PROMOTED 2026-10-11 — func_80023D70
+ * Source:   cloud/work/frontier/w18c/sources/func_80023D70.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80023D70.c:func_80023D70 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+extern void func_80023B50(VoiceVariables_80023AD4 *voice, u8 isController, u8 index, s16 value);
+u8 func_80023D70(MacroState *state, MacroCommand *command)
+{
+    func_80023B50((VoiceVariables_80023AD4 *)state, command->word[0] >> 8, command->word[0] >> 16,
+                  (s16)(command->word[1] & 0xFFFF));
+    return 0;
+}
+
+/* PROMOTED 2026-10-11 — func_80023DB8
+ * Source:   cloud/work/frontier/w18c/sources/func_80023DB8.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80023DB8.c:func_80023DB8 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroVoice_80023DB8 { MacroCommand *program; MacroCommand *current; } MacroVoice_80023DB8;
+#pragma pack(0)
+extern s16 func_80023AD4(VoiceVariables_80023AD4 *voice, u8 isController, u8 index);
+u8 func_80023DB8(MacroVoice_80023DB8 *voice, MacroCommand *command, u8 comparison)
+{
+    s16 left;
+    s16 right;
+    u8 condition;
+    left = func_80023AD4((VoiceVariables_80023AD4 *)voice, command->word[0] >> 8, command->word[0] >> 16);
+    right = func_80023AD4((VoiceVariables_80023AD4 *)voice, command->word[0] >> 24, command->word[1] & 0xFF);
+    switch (comparison) {
+    case 0: condition = left == right; break;
+    case 1: condition = left < right; break;
+    }
+    if ((command->word[1] >> 8) & 255) {
+        condition = !condition;
+    }
+    if (condition) {
+        voice->current = ((command->word[1] >> 16) & 65535) + voice->program;
+    }
+    return 0;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023E9C.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80024988.s")
+/* PROMOTED 2026-10-11 — func_80024988
+ * Source:   cloud/work/frontier/w19a/sources/func_80024988.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19a/sources/func_80024988.c:func_80024988 (score0); rom_tu.h context: cloud/work/frontier/w19a/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+#pragma pack(1)
+typedef struct MacroState_80024988 { MacroCommand *start00; MacroCommand *current04; MacroCommand *saved08; u8 unknown0C[4]; u32 child10; u32 parent14; u8 unknown18[12]; u32 flags24; u32 age28; u16 ageSpeed2C; u8 unknown2E[0x1E]; u8 external4C; u8 unknown4D; u16 originalNote4E; u16 note50; u8 volume52; u8 panning53; u8 channel54; u8 set55; u8 section56; u8 unknown57[9]; u32 identifier60; u16 macro64; u8 unknown66[0x36]; u32 deadline9C; u8 unknownA0[0x1A]; u16 allocationBA; u8 unknownBC[3]; u8 groupBF; u8 detuneC0; u8 unknownC1[0xDF]; } MacroState_80024988;
+#pragma pack()
+extern int func_8001F13C(u8, u8, u16, u8);
+extern void func_80020820(u8, u8);
+extern u32 func_8001ECE0(MacroState_80024988 *);
+u32 func_80024988(u32 packed, u16 allocation, u8 key, u8 volume,
+                 u8 panning, u8 channel, u8 set, u16 offset,
+                 u16 section, u8 start, u8 group)
+{
+    MacroState_80024988 *state;
+    u16 macro;
+    u8 priority;
+    MacroCommand *program;
+    int index;
+    macro = packed >> 16;
+    program = func_80016C20(macro);
+    if (program != 0) {
+        priority = packed >> 8;
+        index = func_8001F13C(priority, packed & 255, allocation, (key & 128) ? 1 : 0);
+        if (index != -1) {
+            state = (MacroState_80024988 *)&D_8004BEB8[index];
+            func_8001EB10((MacroState *)state);
+            state->flags24 = (state->flags24 & 0x10) | 2;
+            if (func_8001467C(index)) state->flags24 |= 1;
+            state->deadline9C = 0;
+            if (key & 128) {
+                state->external4C = 1;
+                key &= 127;
+                func_80020820(index, 255);
+                state->channel54 = index;
+                state->set55 = 255;
+            } else {
+                state->external4C = 0;
+                state->channel54 = channel;
+                state->set55 = set;
+            }
+            state->macro64 = macro;
+            state->allocationBA = allocation;
+            state->age28 = 0x75300000U;
+            state->ageSpeed2C = 1024;
+            state->start00 = program;
+            state->current04 = program + offset;
+            state->originalNote4E = key;
+            state->note50 = key;
+            state->detuneC0 = 0;
+            state->volume52 = volume;
+            state->panning53 = panning;
+            state->section56 = section;
+            state->saved08 = 0;
+            state->child10 = 0xFFFFFFFFU;
+            state->parent14 = 0xFFFFFFFFU;
+            state->groupBF = group;
+            state->identifier60 = (macro << 16) | ((u32)key << 8) | (u32)index;
+            func_8001EF8C((MacroState *)state, priority);
+            if (start) return func_8001ECE0(state);
+            return state->identifier60;
+        }
+    }
+    return 0xFFFFFFFFU;
+}
+

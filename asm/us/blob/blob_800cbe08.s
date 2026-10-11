@@ -3410,6 +3410,7 @@ menu_audio_settings:
 .section .text.func_800CF06C, "ax", @progbits
 .globl func_800CF06C
 func_800CF06C:
+    /* compiled from src/blob/func_800CF06C.c */
     .word 0x27BDFF40
     .word 0xAFB20058
     .word 0x44800000

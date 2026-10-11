@@ -350,15 +350,46 @@ void func_80011D24(void)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80011D74.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80011F60.s")
+typedef struct AudioNode { struct AudioNode *next; struct AudioNode *previous; unsigned char *buffer; unsigned int unknown0C; unsigned short countdown; unsigned short unknown12; } AudioNode;
+extern AudioNode *D_80038344;
+/* PROMOTED 2026-10-11 — func_80011F60
+ * Source:   cloud/work/frontier/w18c/sources/func_80011F60.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80011F60.c:func_80011F60 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern void osInvalDCache(void *, int);
+extern AudioNode *D_80038338;
+extern unsigned char *D_8003833C;
+extern unsigned int D_80038340;
+extern AudioNode *D_80038348;
+void func_80011F60(int count)
+{
+    int i;
+    D_80038338 = D_80038018(count * sizeof(AudioNode), 0);
+    D_8003833C = D_80038018(count * 256, 0);
+    osInvalDCache(D_8003833C, count * 256);
+    D_80038344 = 0;
+    D_80038348 = D_80038338;
+    D_80038338[0].buffer = D_8003833C;
+    D_80038338[0].previous = 0;
+    for (i = 1; i < count; i++) {
+        D_80038338[i].previous = &D_80038338[i - 1];
+        D_80038338[i - 1].next = &D_80038338[i];
+        D_80038338[i].buffer = &D_8003833C[i * 256];
+    }
+    D_80038338[i - 1].next = 0;
+    D_80038340 = 0;
+}
+
 /* PROMOTED 2026-10-04 — func_800121BC
  * Source:   cloud/matches/boot_tail/func_800121BC.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/matches/boot_tail/func_800121BC.c:func_800121BC (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-extern void *D_8003833C;
-extern void *D_80038338;
+extern unsigned char *D_8003833C;
+extern AudioNode *D_80038338;
 void func_800121BC(void)
 {
     D_8003801C(D_8003833C);
@@ -371,8 +402,6 @@ void func_800121BC(void)
  * Evidence: lock:cloud/matches/boot_tail/func_80012200.c:func_80012200 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-typedef struct AudioNode { struct AudioNode *next; unsigned char unknown04[12]; unsigned short countdown; } AudioNode;
-extern AudioNode *D_80038344;
 void func_80012200(void)
 {
     AudioNode *node;
@@ -384,15 +413,45 @@ void func_80012200(void)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80012234.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_800123A8.s")
+typedef struct AudioCacheNode { struct AudioCacheNode *next; struct AudioCacheNode *previous; unsigned int unknown08; unsigned int unknown0C; unsigned int unknown10; unsigned char *buffer; } AudioCacheNode;
+extern AudioCacheNode *D_80038354;
+extern AudioCacheNode *D_80038358;
+extern AudioCacheNode *D_8003835C;
+/* PROMOTED 2026-10-11 — func_800123A8
+ * Source:   cloud/work/frontier/w18c/sources/func_800123A8.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_800123A8.c:func_800123A8 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern AudioCacheNode *D_80038350;
+extern unsigned char *D_8003834C;
+void func_800123A8(unsigned short count)
+{
+    int i;
+    D_8003834C = D_80038018(count * 1536, 0);
+    osInvalDCache(D_8003834C, count * 1536);
+    D_80038350 = D_80038018(count * sizeof(AudioCacheNode), 0);
+    D_80038354 = 0;
+    D_80038358 = 0;
+    D_8003835C = D_80038350;
+    D_80038350[0].previous = 0;
+    D_80038350[0].buffer = D_8003834C;
+    for (i = 1; i < count; i++) {
+        D_80038350[i - 1].next = &D_80038350[i];
+        D_80038350[i].previous = &D_80038350[i - 1];
+        D_80038350[i].buffer = &D_8003834C[i * 1536];
+    }
+    D_80038350[i - 1].next = 0;
+}
+
 /* PROMOTED 2026-10-04 — func_8001261C
  * Source:   cloud/matches/boot_tail/func_8001261C.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/matches/boot_tail/func_8001261C.c:func_8001261C (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-extern void *D_80038350;
-extern void *D_8003834C;
+extern AudioCacheNode *D_80038350;
+extern unsigned char *D_8003834C;
 void func_8001261C(void)
 {
     D_8003801C(D_80038350);
@@ -405,10 +464,6 @@ void func_8001261C(void)
  * Evidence: lock:cloud/matches/boot_tail/func_80012660.c:func_80012660 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-typedef struct AudioCacheNode { struct AudioCacheNode *next; struct AudioCacheNode *previous; } AudioCacheNode;
-extern AudioCacheNode *D_80038354;
-extern AudioCacheNode *D_80038358;
-extern AudioCacheNode *D_8003835C;
 AudioCacheNode *func_80012660(unsigned int tag)
 {
     AudioCacheNode *node;
@@ -467,7 +522,60 @@ void func_80013964(void)
     *D_800382D0 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_800139D4.s")
+/* PROMOTED 2026-10-11 — func_800139D4
+ * Source:   cloud/work/frontier/w19a/sources/func_800139D4.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19a/sources/func_800139D4.c:func_800139D4 (score0); rom_tu.h context: cloud/work/frontier/w19a/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+typedef struct AudioLoop { unsigned int unknown00; unsigned int length; } AudioLoop;
+typedef struct AudioCommand { unsigned char unknown00[44]; unsigned short status; unsigned char unknown2E[22]; void *output; unsigned char unknown48[8]; } AudioCommand;
+typedef struct AudioBlock { unsigned short count; unsigned short sample; unsigned int changed; void *work; AudioLoop *loop; AudioCommand commands[32]; } AudioBlock;
+extern unsigned short D_8003829C;
+extern unsigned short D_800382CE;
+extern int D_800382EC;
+extern void func_80012D18(AudioState *, unsigned short, unsigned char);
+void func_800139D4(void *output, unsigned short samples)
+{
+    unsigned short i;
+    unsigned char active;
+    unsigned int changed;
+    active = 0;
+    changed = 0;
+    for (i = 0; i < D_8003829C; i++) {
+        if (D_80038294[i].release_pending != 0) {
+            D_80038294[i].release_pending = 0;
+            changed |= 1U << D_80038294[i].unknown60;
+        }
+        if (D_80038294[i].active != 0) {
+            func_80012D18(&D_80038294[i], samples, active);
+            active++;
+        }
+    }
+    if (((AudioBlock *)D_800382D0)[*D_800382D4].count == 0) {
+        ((AudioBlock *)D_800382D0)[*D_800382D4].commands[0].status = 0;
+        ((AudioBlock *)D_800382D0)[*D_800382D4].commands[0].output = output;
+    } else {
+        ((AudioBlock *)D_800382D0)[*D_800382D4].commands[((AudioBlock *)D_800382D0)[*D_800382D4].count - 1].output = output;
+    }
+    ((AudioBlock *)D_800382D0)[*D_800382D4].work = D_800382E4;
+    ((AudioBlock *)D_800382D0)[*D_800382D4].changed = changed;
+    ((AudioBlock *)D_800382D0)[*D_800382D4].loop = D_800382E8;
+    if (((AudioBlock *)D_800382D0)[*D_800382D4].loop != 0) {
+        ((AudioBlock *)D_800382D0)[*D_800382D4].sample = D_800382EC / 192;
+        D_800382EC += 192;
+        if (D_800382EC == ((AudioLoop *)D_800382E8)->length) {
+            D_800382EC = 0;
+        }
+    }
+    (*D_800382D4)++;
+    if (*D_800382D4 < D_800382CE) {
+        D_80038034 = (unsigned int)((AudioBlock *)D_800382D0)[*D_800382D4].commands & ~15U;
+        D_80038030 = (unsigned int)((AudioBlock *)D_800382D0)[*D_800382D4].commands;
+        ((AudioBlock *)D_800382D0)[*D_800382D4].count = 0;
+    }
+}
+
 /* PROMOTED 2026-10-05 — func_80013C84
  * Source:   cloud/work/boot_tail_promotion/audio_record_contracts/sources/func_80013C84.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -1013,7 +1121,21 @@ void func_80014C40(void *buffer, unsigned int samples)
     osWritebackDCache(buffer, samples * 2);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80014C60.s")
+/* PROMOTED 2026-10-11 — func_80014C60
+ * Source:   cloud/work/frontier/w18c/sources/func_80014C60.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80014C60.c:func_80014C60 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_80014C60(short *buffer, unsigned int samples)
+{
+    buffer[samples + 0] = buffer[0];
+    buffer[samples + 1] = buffer[1];
+    buffer[samples + 2] = buffer[2];
+    buffer[samples + 3] = buffer[3];
+    osWritebackDCache(&buffer[samples], 8);
+}
+
 /* PROMOTED 2026-10-04 — func_80014CAC
  * Source:   cloud/matches/boot_tail/func_80014CAC.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

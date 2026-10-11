@@ -25,7 +25,25 @@ void func_80024FB0(StreamState *stream)
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_25bb0/func_80024FD4.s")
+/* PROMOTED 2026-10-11 — func_80024FD4
+ * Source:   cloud/work/frontier/w18c/sources/func_80024FD4.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80024FD4.c:func_80024FD4 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern StreamState_80025264 D_80056230[2];
+extern volatile unsigned char D_8002D480[];
+extern unsigned int func_800262BC(StreamState_80025264 *, unsigned int);
+int func_80024FD4(short *first, unsigned int first_count,
+                  short *second, unsigned int second_count, unsigned int selected)
+{
+    if (D_8002D480[0]) {
+        func_800262BC(&D_80056230[selected], first_count + second_count);
+        D_80056230[selected].processed += first_count + second_count;
+    }
+    return 0;
+}
+
 /* PROMOTED 2026-10-04 — func_8002506C
  * Source:   cloud/matches/boot_tail/func_8002506C.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -217,7 +235,25 @@ int func_80025594(unsigned int token)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_25bb0/func_800255F0.s")
+/* PROMOTED 2026-10-11 — func_800255F0
+ * Source:   cloud/work/frontier/w18c/sources/func_800255F0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_800255F0.c:func_800255F0 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern volatile unsigned char D_80057430[][sizeof(StreamState_80025264)];
+unsigned char func_800255F0(unsigned int token)
+{
+    if (D_8002D480[0]) {
+        token = func_80025264(token);
+        if (token == -1) {
+            return 0;
+        }
+        return D_80057430[token][0] != 0;
+    }
+    return 0;
+}
+
 /* PROMOTED 2026-10-05 — func_80025670
  * Source:   cloud/work/boot_tail_promotion/macro_stream_contracts/sources/func_80025670.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -341,7 +377,55 @@ float func_800259A8(unsigned int token, float *value)
     return 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_25bb0/func_80025AB4.s")
+/* PROMOTED 2026-10-11 — func_80025AB4
+ * Source:   cloud/work/frontier/w19a/sources/func_80025AB4.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19a/sources/func_80025AB4.c:func_80025AB4 (score0); rom_tu.h context: cloud/work/frontier/w19a/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern unsigned char D_8002D484;
+extern void *(*D_80038014)(void *);
+extern void *(*D_80038018)(unsigned int, unsigned int);
+extern void *D_80058684;
+extern void *D_80058688;
+extern void *D_8005868C;
+extern unsigned int D_80058690;
+extern void func_80010628(void *, void *, unsigned int);
+int func_80025AB4(void *source, void *data)
+{
+    unsigned int *count;
+
+    if (D_8002D480[0]) {
+        if (D_8005868C && D_8002D484) {
+            D_8003801C(D_8005868C);
+        }
+        if (((unsigned int)source & 0xF0000000) != 0x80000000) {
+            D_80058688 = D_80058684 = D_80038014(source);
+            count = D_80038018(4, 0);
+            if (!count) {
+                return 0;
+            }
+            func_80010628(count, D_80058684, 4);
+            D_80058690 = *count;
+            D_8003801C(count);
+            D_8005868C = D_80038018(D_80058690 * 4, 0);
+            if (!D_8005868C) {
+                return 0;
+            }
+            func_80010628(D_8005868C, (unsigned char *)D_80058684 + 4, D_80058690 * 4);
+            D_8002D484 = 1;
+        } else {
+            D_80058684 = source;
+            D_80058688 = D_80038014(data);
+            D_8005868C = (unsigned int *)source + 1;
+            D_80058690 = *(unsigned int *)source;
+            D_8002D484 = 0;
+        }
+        return 1;
+    }
+    return 0;
+}
+
 /* PROMOTED 2026-10-05 — func_80025C68
  * Source:   cloud/work/boot_tail_promotion/wave4_sources/func_80025C68.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

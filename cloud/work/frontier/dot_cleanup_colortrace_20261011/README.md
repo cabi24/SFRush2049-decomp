@@ -3,7 +3,8 @@
 Population/source: `ovl_a`, `group/group.c` and `group/group.json`.
 New claim: `func_8039D05C`, complete `[0x8039D05C, 0x8039D300)`, 169 words / 676 bytes.
 Existing exact preservation members: `func_8039D494` (528 bytes) and
-`func_8039ED20` (480 bytes), both unclaimed with zero new credit. Nine authentic
+`func_8039ED20` (480 bytes), plus newly landed `func_8039E200` (444 bytes)
+and `func_8039E3BC` (136 bytes), all unclaimed with zero new credit. Seven authentic
 reconstructed functions remain context, including the real root `func_803A1EAC`;
 their existing exact/nonmatching status is informational and earns no new credit. This packet is self-contained.
 
@@ -34,6 +35,10 @@ func_8039D05C:
 func_8039D494:
   MATCH
 func_8039ED20:
+  MATCH
+func_8039E200:
+  MATCH
+func_8039E3BC:
   MATCH
 ```
 
@@ -74,8 +79,8 @@ relevant extents/symbols manifest rows are retained; mutable global tools, locks
 and assembly text are not receipt-equality inputs. Current scorer manifest
 validation remains mandatory.
 
-The independent ELF reader checks all three complete STT_FUNC extents
-(676/528/480 bytes) and their exact next symbol boundaries. Independent GNU assembly/linking applies all relocations (56 in D05C) and
+The independent ELF reader checks all five complete STT_FUNC extents
+(676/528/480/444/136 bytes) and their exact next symbol boundaries. Independent GNU assembly/linking applies all relocations (56 in D05C) and
 equals all native target words for every member. This re-sections the complete function;
 it does not prove contiguous original-TU placement.
 
@@ -133,7 +138,11 @@ to the private libc copy. Build libc/version with `gcc -std=c11 -Os
 Host GCC and the diagnostic binary are provenance, not replay-equality pins.
 The replay checks diagnostic fidelity itself before accepting causal evidence.
 
-Base: current master `eae0c6466`; no unmerged runtime dependencies. No ROM bytes,
+Original review base: `eae0c6466`. Publication refresh base: `0b3daa0cb412638cda3bbf53963516fef7924ec3`;
+no unmerged runtime dependencies. The refresh changes preservation metadata only: E200/E3BC
+now appear in members because they have landed, with the same frozen C, keep list,
+and D05C-only claim. The overlay installer selects claims for installation, so
+existing locked E200/E3BC bodies remain with their original groups. No ROM bytes,
 raw assembly dumps, compiler outputs, credentials, accepted-lock changes or
 protected input changes are submitted. Leave image integration and merging to
 the independent checker.

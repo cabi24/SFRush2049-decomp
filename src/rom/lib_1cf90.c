@@ -4,7 +4,23 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001C390.s")
+/* PROMOTED 2026-10-11 — func_8001C390
+ * Source:   cloud/work/frontier/w18c/sources/func_8001C390.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_8001C390.c:func_8001C390 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "boot_tail_sample_contract.h"
+extern unsigned char D_8004FA18;
+extern SampleBuffer D_8004FA50[];
+void func_8001C390(void)
+{
+    int i;
+    for (i = 0; i < D_8004FA18; i++) {
+        D_8004FA50[i].mode = 0;
+    }
+}
+
 /* PROMOTED 2026-10-04 — func_8001C3CC
  * Source:   cloud/matches/boot_tail/func_8001C3CC.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -64,7 +80,60 @@ void func_8001C508(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001C580.s")
+/* PROMOTED 2026-10-11 — func_8001C580
+ * Source:   cloud/work/frontier/w18c/sources/func_8001C580.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_8001C580.c:func_8001C580 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct SampleInfo_800146B4 { unsigned int frequency; void *data; unsigned int offset; unsigned int length; unsigned int loopStart; unsigned int loopLength; unsigned char format; } SampleInfo_800146B4;
+#pragma pack()
+extern unsigned char D_8002C630;
+extern int D_8004F800;
+extern void func_80014594(void);
+extern void func_800145DC(void);
+extern int func_8001F898(unsigned char);
+extern void func_800146B4(unsigned int, SampleInfo_800146B4 *, unsigned char);
+extern void func_80014A0C(int, unsigned short);
+extern void func_80014A74(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int);
+extern void func_800149BC(unsigned int);
+int func_8001C580(unsigned char request, short *buffer, unsigned int samples, unsigned int frequency,
+                  unsigned char volume, unsigned char pan, unsigned char span, unsigned char aux,
+                  SampleCallback callback, unsigned int context)
+{
+    int index;
+    SampleInfo_800146B4 info;
+    float ratio;
+    if (D_8002C630) {
+        func_80014594();
+        index = func_8001F898(request);
+        if (index != -1) {
+            D_8004FA50[index].callback = callback;
+            D_8004FA50[index].mode = 1;
+            D_8004FA50[index].context = context;
+            D_8004FA50[index].position = 0;
+            info.frequency = frequency | 0x400000;
+            info.offset = 0;
+            info.loopStart = 0;
+            info.format = 0;
+            D_8004FA50[index].samples = samples;
+            info.length = samples;
+            info.loopLength = samples;
+            D_8004FA50[index].buffer = buffer;
+            info.data = buffer;
+            func_800146B4(index, &info, 1);
+            ratio = (float)frequency / (float)D_8004F800;
+            func_80014A0C(index, (unsigned int)(ratio * 4096.0f));
+            func_80014A74(index, volume << 16, pan << 16, span << 16, aux << 16);
+            func_800149BC(index);
+        }
+        func_800145DC();
+        return index;
+    }
+    return -1;
+}
+
 /* PROMOTED 2026-10-04 — func_8001C770
  * Source:   cloud/matches/boot_tail/func_8001C770.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -186,7 +255,29 @@ void func_8001D084(StateNode *state)
     if (state->identifier34 != 0xFFFFFFFF) func_8001B8C4(state->identifier34);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001D0F0.s")
+typedef struct Vector { float x, y, z; } Vector;
+/* PROMOTED 2026-10-11 — func_8001D0F0
+ * Source:   cloud/work/frontier/w18c/sources/func_8001D0F0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_8001D0F0.c:func_8001D0F0 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+typedef struct Emitter_8001D0F0 { u8 unknown00[12]; Vector position; Vector velocity; unsigned int unknown24; float gain28; float current2C; } Emitter_8001D0F0;
+extern u8 D_8002C630;
+int func_8001D0F0(Emitter_8001D0F0 *state, const Vector *position, const Vector *velocity, u8 level)
+{
+    if (D_8002C630) {
+        func_80014594();
+        state->position = *position;
+        state->velocity = *velocity;
+        state->gain28 = (float)level / 127.0f;
+        if (state->gain28 < state->current2C) state->current2C = state->gain28;
+        func_800145DC();
+        return 1;
+    }
+    return 0;
+}
+
 /* PROMOTED 2026-10-11 — func_8001D1C0
  * Source:   cloud/work/frontier/w17g/sources/func_8001D1C0.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -199,7 +290,62 @@ unsigned char func_8001D1C0(unsigned int *state)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001D1F4.s")
+/* PROMOTED 2026-10-11 — func_8001D1F4
+ * Source:   cloud/work/frontier/w19a/sources/func_8001D1F4.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19a/sources/func_8001D1F4.c:func_8001D1F4 (score0); rom_tu.h context: cloud/work/frontier/w19a/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "types.h"
+typedef struct Emitter_8001D1F4 { StateNode *next, *previous; u32 flags; Vector position, velocity; float range, gain, minimum, curve; u32 handle, context; u16 identifier, counter; float fade; } Emitter_8001D1F4;
+extern Emitter_8001D1F4 D_8004FD58;
+extern void func_8001C860(StateNode *, float *, float *, float *, float *, float *);
+extern void func_8001CCDC(StateNode *em, float vol, float xPan, float yPan, float zPan, float doppler);
+extern u32 func_80020174(u16, u8, u8);
+int func_8001D1F4(void *state, const void *position, const void *velocity, float range, float curve,
+                  u32 flags, u16 identifier, u32 context, u8 gain, u8 minimum)
+{
+    Emitter_8001D1F4 *target;
+    float pan, span, send, volume, pitch;
+    u32 handle;
+    func_80014594();
+    if (state == 0) target = &D_8004FD58;
+    else target = state;
+    target->flags = flags;
+    target->position = *(const Vector *)position;
+    target->velocity = *(const Vector *)velocity;
+    target->range = range;
+    target->identifier = identifier;
+    target->gain = (float)gain / 127.0f;
+    target->minimum = (float)minimum / 127.0f;
+    target->curve = curve;
+    target->context = context;
+    if (state == 0) {
+        func_8001C860((StateNode *)target, &volume, &pitch, &pan, &span, &send);
+        if (volume == 0.0f) {
+            func_800145DC();
+            return -1;
+        }
+        handle = func_80020174(target->identifier, 127, 64);
+        target->handle = handle;
+        if (handle == 0xFFFFFFFF) {
+            func_800145DC();
+            return -1;
+        }
+        func_8001CCDC((StateNode *)target, volume, pan, span, send, pitch);
+        func_800145DC();
+        return target->handle;
+    }
+    if ((target->next = D_8004FD50) != 0) D_8004FD50->previous = (StateNode *)target;
+    target->previous = 0;
+    D_8004FD50 = (StateNode *)target;
+    target->handle = 0xFFFFFFFF;
+    target->counter = 0;
+    target->flags |= 0x30000;
+    func_800145DC();
+    return -1;
+}
+
 /* PROMOTED 2026-10-04 — func_8001D3F0
  * Source:   cloud/matches/boot_tail/func_8001D3F0.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -299,7 +445,6 @@ void func_8001D578(void)
  * Evidence: lock:cloud/matches/boot_tail/func_8001D5C0.c:func_8001D5C0 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-typedef struct Vector { float x, y, z; } Vector;
 typedef struct SpatialState { unsigned char unknown00[12]; Vector position; unsigned char unknown18[12]; Vector forward; Vector side; Vector up; float inverse[12]; } SpatialState;
 extern void func_80024D04(Vector *, const Vector *, const Vector *);
 extern void func_80024D74(float *, const float *);
@@ -349,7 +494,41 @@ int func_8001D660(SpatialState_8001D660 *state, const Vector *position, const Ve
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001D764.s")
+/* PROMOTED 2026-10-11 — func_8001D764
+ * Source:   cloud/work/frontier/w18c/sources/func_8001D764.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_8001D764.c:func_8001D764 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+typedef struct SpatialState_8001D764 { LinkNode *next, *previous; u32 flags08; Vector position, velocity, forward, side, up; float inverse[12]; float first78, second7C, third80, gain84; } SpatialState_8001D764;
+extern LinkNode *D_8004FD54;
+int func_8001D764(SpatialState_8001D764 *state, const Vector *position, const Vector *velocity,
+                  const Vector *forward, const Vector *up, float first, float second,
+                  float third, u32 flags, u8 level)
+{
+    if (D_8002C630) {
+        func_80014594();
+        if ((state->next = D_8004FD54) != 0) D_8004FD54->previous = (LinkNode *)state;
+        state->previous = 0;
+        D_8004FD54 = (LinkNode *)state;
+        state->position = *position;
+        state->velocity = *velocity;
+        state->forward = *forward;
+        state->up.x = -up->x;
+        state->up.y = -up->y;
+        state->up.z = -up->z;
+        state->first78 = first;
+        state->second7C = second;
+        state->third80 = third;
+        func_8001D5C0((SpatialState *)state);
+        state->flags08 = flags;
+        state->gain84 = (float)level / 127.0f;
+        func_800145DC();
+        return 1;
+    }
+    return 0;
+}
+
 /* PROMOTED 2026-10-04 — func_8001D8B0
  * Source:   cloud/matches/boot_tail/func_8001D8B0.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

@@ -286,12 +286,81 @@ void func_8001785C(u8 *map, MapRecord *record)
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_800178B0.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80017D38.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_800180A0.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80018184.s")
+/* PROMOTED 2026-10-11 — func_800180A0
+ * Source:   cloud/work/frontier/w18c/sources/func_800180A0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_800180A0.c:func_800180A0 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_800180A0(void)
+{
+    int i;
+    int sum;
+    for (i = 0; i < 64; i++) {
+        if (D_8004BE80->tracks568[i].active0C || D_8004BE80->tracks568[i].active10 ||
+            D_8004BE80->tracks568[i].active14) {
+            sum = (int)(D_8004BE80->tracks568[i].fraction + D_8004BE80->fraction118);
+            D_8004BE80->tracks568[i].fraction = (unsigned int)sum & 65535;
+            sum >>= 16;
+            D_8004BE80->tracks568[i].whole = (int)((unsigned int)D_8004BE80->tracks568[i].whole +
+                (unsigned int)sum + (unsigned int)D_8004BE80->whole11C);
+        }
+    }
+}
+
+/* PROMOTED 2026-10-11 — func_80018184
+ * Source:   cloud/work/frontier/w18c/sources/func_80018184.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80018184.c:func_80018184 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern int func_8001B8C4(unsigned int);
+int func_80018184(void)
+{
+    SequenceNode *node;
+    SequenceNode *next;
+    int sum;
+    if (D_8004BE80->active == 0) return 0;
+    node = D_8004BE80->active;
+    while (node != 0) {
+        next = node->next;
+        sum = (int)((unsigned int)node->whole14 + (unsigned int)D_8004BE80->half120);
+        if (sum >= node->deadline0C) {
+            func_8001B8C4(node->identifier);
+            func_800174D0(node);
+        } else {
+            sum = (int)(node->fraction10 + D_8004BE80->fraction118);
+            node->fraction10 = (unsigned int)sum & 65535;
+            sum >>= 16;
+            node->whole14 = (int)((unsigned int)node->whole14 + (unsigned int)sum +
+                (unsigned int)D_8004BE80->whole11C);
+        }
+        node = next;
+    }
+    return 1;
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_8001824C.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80018448.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80018634.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_8001897C.s")
+/* PROMOTED 2026-10-11 — func_8001897C
+ * Source:   cloud/work/frontier/w18c/sources/func_8001897C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_8001897C.c:func_8001897C (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern int D_8004F800;
+void func_8001897C(void)
+{
+    unsigned int value;
+    value = ((D_8004BE80->rate124 * 3072U / 60U) *
+        (unsigned int)((int)((unsigned int)D_8004F808 << 16) / D_8004F800)) >> 3;
+    value = (D_8004BE80->valueFC2 * value) >> 8;
+    D_8004BE80->fraction118 = value & 65535;
+    D_8004BE80->whole11C = value >> 16;
+    D_8004BE80->half120 = D_8004BE80->whole11C >> 1;
+}
+
 /* PROMOTED 2026-10-05 — func_80018A30
  * Source:   cloud/work/boot_tail_promotion/wave3_sequence_sources/func_80018A30.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -311,7 +380,23 @@ void func_80018A30(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80018AEC.s")
+/* PROMOTED 2026-10-11 — func_80018AEC
+ * Source:   cloud/work/frontier/w18c/sources/func_80018AEC.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80018AEC.c:func_80018AEC (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+void func_80018AEC(void)
+{
+    unsigned int value;
+    if (D_8004BE80->timingStartF68) {
+        value = D_8004BE80->lowF70 + D_8004BE80->fraction118;
+        D_8004BE80->lowF70 = value & 0xFFFF;
+        value >>= 16;
+        D_8004BE80->highF74 = D_8004BE80->highF74 + value + D_8004BE80->whole11C;
+    }
+}
+
 /* PROMOTED 2026-10-05 — func_80018B3C
  * Source:   cloud/work/boot_tail_promotion/wave3_sequence_sources/func_80018B3C.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
@@ -662,8 +747,102 @@ unsigned char func_800193C8(unsigned int identifier)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80019420.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80019490.s")
+/* PROMOTED 2026-10-11 — func_80019420
+ * Source:   cloud/work/frontier/w18c/sources/func_80019420.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_80019420.c:func_80019420 (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern unsigned char D_800443E0[][sizeof(SequenceContext)];
+extern void func_8001C19C(unsigned char, unsigned char);
+void func_80019420(unsigned int identifier, unsigned char selector, unsigned char channel)
+{
+    unsigned int index;
+    if (D_8002C630) {
+        index = func_80017644(identifier);
+        if (index != 0xFFFFFFFF) {
+            D_800443E0[index][selector] = channel;
+            func_8001C19C(channel, 2);
+        }
+    }
+}
+
+/* PROMOTED 2026-10-11 — func_80019490
+ * Source:   cloud/work/frontier/w19a/sources/func_80019490.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w19a/sources/func_80019490.c:func_80019490 (score0); rom_tu.h context: cloud/work/frontier/w19a/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+typedef struct SequenceRequest { unsigned int identifier; unsigned short duration; unsigned char unknown006[2]; unsigned int nextIdentifier; unsigned short nextDuration; unsigned char unknown00E[2]; void *stream; unsigned short group, program; unsigned char channel; unsigned char unknown019[3]; unsigned int first, second; unsigned short value; unsigned char flags; unsigned char unknown027; } SequenceRequest;
+typedef struct SequenceOptions { unsigned int flags, first, second; unsigned short value, duration; unsigned char channel; unsigned char unknown011; unsigned char mapCount; unsigned char unknown013; void *map; unsigned char channelCount; unsigned char unknown019[3]; void *channels; } SequenceOptions;
+extern void func_8001906C(unsigned int);
+extern void func_80019144(unsigned int, unsigned int, unsigned int);
+extern void func_80018FA4(unsigned int, unsigned short);
+extern void func_80019370(unsigned char, unsigned short, unsigned int, unsigned char);
+extern int func_8001558C(unsigned short, unsigned short, unsigned int, unsigned int, unsigned char);
+extern int func_800156E8(unsigned short, unsigned short, unsigned int, unsigned int);
+void func_80019490(void *request, unsigned int *result, unsigned char unlocked)
+{
+    SequenceOptions options;
+    unsigned int index;
+    SequenceRequest *state = request;
+    index = func_80017644(state->identifier);
+    if (index != 0xFFFFFFFFU) {
+        if (state->flags & 4) {
+            *(SequenceRequest *)D_80043EB8[index].unknownFC8 = *state;
+            D_80043EB8[index].unknownFF4[0] = 1;
+            D_80043EB8[index].flagsFEE &= ~4;
+            D_80043EB8[index].pendingFF0 = (unsigned int)result;
+            *result = state->identifier | 0x80000000U;
+        } else {
+            if (unlocked) {
+                if (state->flags & 1) func_80019194(0,state->duration,state->identifier,2);
+                else if (state->flags & 0x40) func_80019194(0,state->duration,state->identifier,3);
+                else func_80019194(0,state->duration,state->identifier,1);
+            } else {
+                if (state->flags & 1) func_80019370(0,state->duration,state->identifier,2);
+                else if (state->flags & 0x40) func_80019370(0,state->duration,state->identifier,3);
+                else func_80019370(0,state->duration,state->identifier,1);
+            }
+            if (result != 0) {
+                if (state->flags & 2) {
+                    if (func_80017644(state->nextIdentifier) != 0xFFFFFFFFU) {
+                        if (unlocked) {
+                            func_80018FEC(state->nextIdentifier);
+                            func_80019194(state->channel,state->nextDuration,state->nextIdentifier,0);
+                            if (state->flags & 0x10) func_800190AC(state->nextIdentifier,state->first,state->second);
+                            if (state->flags & 0x20) func_80018F20(state->nextIdentifier,state->value);
+                        } else {
+                            func_8001906C(state->nextIdentifier);
+                            func_80019370(state->channel,state->nextDuration,state->nextIdentifier,0);
+                            if (state->flags & 0x10) func_80019144(state->nextIdentifier,state->first,state->second);
+                            if (state->flags & 0x20) func_80018FA4(state->nextIdentifier,state->value);
+                        }
+                        *result = state->nextIdentifier;
+                    } else *result = 0xFFFFFFFFU;
+                } else {
+                    /* Only fields enabled by flags/counts are consumed by
+                     * the constructor; unused option fields stay untouched. */
+                    options.flags = 4;
+                    if (state->flags & 8) options.flags = 0x14;
+                    if (state->flags & 0x20) { options.flags |= 2; options.value = state->value; }
+                    if (state->flags & 0x10) { options.flags |= 1; options.first = state->first; options.second = state->second; }
+                    options.duration = state->nextDuration;
+                    options.channel = state->channel;
+                    options.channelCount = 0;
+                    if (unlocked) {
+                        *result = func_8001558C(state->group,state->program,(unsigned int)state->stream,(unsigned int)&options,1);
+                        if (*result != 0xFFFFFFFFU && (state->flags & 0x80)) func_800190AC(*result,0,0);
+                    } else {
+                        *result = func_800156E8(state->group,state->program,(unsigned int)state->stream,(unsigned int)&options);
+                        if (*result != 0xFFFFFFFFU && (state->flags & 0x80)) func_80019144(*result,0,0);
+                    }
+                }
+            }
+        }
+    }
+}
+
 /* PROMOTED 2026-10-04 — func_80019850
  * Source:   cloud/matches/boot_tail/func_80019850.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

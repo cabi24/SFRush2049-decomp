@@ -1,0 +1,35 @@
+osAiSetNextBuffer ok 
+__fixunsdfdi ok 
+__fixunssfdi ok 
+== osAiSetNextBuffer (target osAiSetNextBuffer) src=cloud/work/frontier/w16g/sources/osAiSetNextBuffer.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(6 rows) (43 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_ca70.c additions=cloud/work/frontier/w19c/ctx/ctx_w19c.jsonl preamble (7 stmts, 4 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(6 rows) (43 rows)
+RESULT FAIL
+== __fixunsdfdi (target __fixunsdfdi) src=cloud/work/frontier/w16g/sources/__fixunsdfdi.c
+LOCK flags=[-g0 -O1 -mips3 -32 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(2 rows) (42 rows)
+TU   flags=[-G 0 -mips3 -32 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_a5f0.c additions=cloud/work/frontier/w19c/ctx/ctx_w19c.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(2 rows) (42 rows)
+RESULT FAIL
+-- against the current (raw-word) inventory object:
+== __fixunsdfdi (target __fixunsdfdi.old) src=cloud/work/frontier/w16g/sources/__fixunsdfdi.c
+LOCK flags=[-g0 -O1 -mips3 -32 -G 0 -non_shared]
+LOCK: true=10 strict=10 reloc_blind=0 objdump-dr DIFFERS(15 rows) (40 rows)
+TU   flags=[-G 0 -mips3 -32 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_a5f0.c additions=cloud/work/frontier/w19c/ctx/ctx_w19c.jsonl preamble (0 stmts, 0 dropped)
+TU: true=10 strict=10 reloc_blind=0 objdump-dr DIFFERS(15 rows) (40 rows)
+RESULT FAIL
+== __fixunssfdi (target __fixunssfdi) src=cloud/work/frontier/w16g/sources/__fixunssfdi.c
+LOCK flags=[-g0 -O1 -mips3 -32 -G 0 -non_shared]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(2 rows) (41 rows)
+TU   flags=[-G 0 -mips3 -32 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_a5f0.c additions=cloud/work/frontier/w19c/ctx/ctx_w19c.jsonl preamble (0 stmts, 0 dropped)
+TU: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(2 rows) (41 rows)
+RESULT FAIL
+-- against the current (raw-word) inventory object:
+== __fixunssfdi (target __fixunssfdi.old) src=cloud/work/frontier/w16g/sources/__fixunssfdi.c
+LOCK flags=[-g0 -O1 -mips3 -32 -G 0 -non_shared]
+LOCK: true=10 strict=10 reloc_blind=0 objdump-dr DIFFERS(15 rows) (39 rows)
+TU   flags=[-G 0 -mips3 -32 -O1 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_a5f0.c additions=cloud/work/frontier/w19c/ctx/ctx_w19c.jsonl preamble (0 stmts, 0 dropped)
+TU: true=10 strict=10 reloc_blind=0 objdump-dr DIFFERS(15 rows) (39 rows)
+RESULT FAIL

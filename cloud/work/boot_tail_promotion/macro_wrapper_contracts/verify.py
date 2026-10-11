@@ -108,7 +108,14 @@ def checked_bytes(obj, name, exact=False):
              for symbol in score._symbol_table(data, sections, index)
              if symbol['type'] == 2 and symbol['section'] == score._text_index(sections)
              and symbol['name'] == name]
-    require(sizes == [len(want) * 4], name + ': STT_FUNC size differs from target')
+    if exact:
+        require(sizes == [len(want) * 4], name + ': STT_FUNC size differs from target')
+    else:
+        # IDO pads a compiled function to its alignment with nops inside the symbol
+        # (func_80024988: 608 B of code, 616 B symbol); the padding must be zero.
+        require(len(sizes) == 1 and sizes[0] >= len(want) * 4
+                and all(w == 0 for w in words[(start + len(want) * 4) // 4:(start + sizes[0]) // 4]),
+                name + ': STT_FUNC size differs from target')
     verdict = score.compare(obj, name, show=0)
     require(verdict.accepted(), name + ': ' + verdict.summary())
     relocated, masks, unresolved, unverified, errors = score.relocate(
@@ -362,9 +369,12 @@ def _verify(current_tu_text=None, current_lock_entries=None):
             row['all_full_relocated_bytes_equal'] = True
         additional = []
         for name in sorted(set(locked) - set(all_sources)):
-            old, baseline_report = checked_bytes(baseline, name, exact=True)
-            present, current_report = checked_bytes(current, name, exact=True)
-            new, combined_report = checked_bytes(combined, name, exact=True)
+            # Later-accepted neighbours: the scorer's rule (full relocated bytes equal,
+            # only zero padding past the target up to the next symbol). A slot can end in
+            # alignment nops that belong to no function (func_80024988, promoted 2026-10-12).
+            old, baseline_report = checked_bytes(baseline, name)
+            present, current_report = checked_bytes(current, name)
+            new, combined_report = checked_bytes(combined, name)
             require(old == present == new, name + ': later accepted body bytes changed')
             additional.append({'function': name, 'baseline_tu': baseline_report,
                                'current_tu': current_report, 'combined_tu': combined_report,

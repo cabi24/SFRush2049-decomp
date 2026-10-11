@@ -113,6 +113,11 @@ def _splice(tu_path, func, seg, body, header):
     if pragma not in text:
         raise Refusal(f"refusing: {func} has no passthrough slot in "
                       f"{tu_path.name} (already promoted?)")
+    for row in owned_data.slots_for_function(REPO, func, str(tu_path.relative_to(REPO))):
+        if len(owned_data.slot_members(row)) > 1:
+            raise Refusal(f"refusing: {func} shares the owned {row['owner_section']} slot of "
+                          f"{row['owner']} with {', '.join(owned_data.slot_members(row))}; "
+                          "promote them together (promote_batch)")
     text = owned_data.strip_companion(text, func, REPO,
                                      str(tu_path.relative_to(REPO)))
     tu_path.write_text(text.replace(pragma, header + "\n" + body.rstrip() + "\n", 1))

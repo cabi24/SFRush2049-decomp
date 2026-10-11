@@ -15,7 +15,8 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[3]
 GROUP = HERE / "group"
 NAME = "func_8039D05C"
-NAMES = {NAME: 676, "func_8039D494": 528, "func_8039ED20": 480}
+NAMES = {NAME: 676, "func_8039D494": 528, "func_8039ED20": 480,
+         "func_8039E200": 444, "func_8039E3BC": 136}
 FLAGS = "-g0 -O3 -mips2 -G 0 -non_shared"
 def module(name, path):
     spec = importlib.util.spec_from_file_location(name, path)

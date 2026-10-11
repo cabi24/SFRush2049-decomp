@@ -5,15 +5,17 @@
   ],
   "inputs_sha256": {
     "group/group.c": "43785b00afcb24e292d8d62a0ef284da6f5971a061e7986125558f44e0eaf5fc",
-    "group/group.json": "5790fa4478fe45d8ad69947b4a64a5f2f57d8c04100f46ad45dcdfc5e2afb23a",
-    "verify.py": "4f6d10e920ddf25c87ae3b329aaf6e4af9aa17717dc863a9d4f3ef3ec596ce8a",
+    "group/group.json": "1ad735bf7670a10c0a877ea3b341540bb863695abdc2286d395c581e09521e19",
+    "verify.py": "87cff8be7cae099450a28a9470567794dbe82f09f046452c7207e7bca5f31309",
     "elf_support.py": "2f3ab96521aa807cb2b29523fea5bff964aea395fbf73649c4d4ff663523e1d9",
     "semantics.py": "ec8ad33bb0f5109ce26daa1cec3f85cb3bd64b68ec90db2166cf7c229e377d58",
     "research.py": "2fb1a8740c2a65748c5c7a128239213b7d506710047fbe53e8645442201376b9"
   },
   "preservation_members": [
     "func_8039D494",
-    "func_8039ED20"
+    "func_8039ED20",
+    "func_8039E200",
+    "func_8039E3BC"
   ],
   "targets": {
     "func_8039D05C": {
@@ -33,6 +35,18 @@
       "end": "0x8039ef00",
       "bytes": 480,
       "words_sha256": "77651083f55b2b89d080b80775f81324be47a6c9c35158a89eaf71d4eadda2e8"
+    },
+    "func_8039E200": {
+      "start": "0x8039e200",
+      "end": "0x8039e3bc",
+      "bytes": 444,
+      "words_sha256": "8aba47c2a12a9c0bd324e9b01e0622c1633e9b0046995e88a6a56356cdd0fbf2"
+    },
+    "func_8039E3BC": {
+      "start": "0x8039e3bc",
+      "end": "0x8039e444",
+      "bytes": 136,
+      "words_sha256": "c56db54a7f5e9b363c23161f3f2049a5593a0343d19b6edaf1926e2e6abebb85"
     }
   },
   "relevant_manifest_rows": {
@@ -66,23 +80,45 @@
       "unverified": [],
       "errors": [],
       "extra_words": 0
+    },
+    "func_8039E200": {
+      "differing": 0,
+      "total": 111,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_8039E3BC": {
+      "differing": 0,
+      "total": 34,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
     }
   },
   "ELF_STT_FUNC_bytes": {
     "func_8039D05C": 676,
     "func_8039D494": 528,
-    "func_8039ED20": 480
+    "func_8039ED20": 480,
+    "func_8039E200": 444,
+    "func_8039E3BC": 136
   },
   "next_boundary_checked": true,
   "GNU_relocations": {
     "func_8039D05C": 56,
     "func_8039D494": 22,
-    "func_8039ED20": 26
+    "func_8039ED20": 26,
+    "func_8039E200": 15,
+    "func_8039E3BC": 5
   },
   "linked_words_sha256": {
     "func_8039D05C": "b91b9e30bcdc1311626f398a54e1ba5e29864aac04122d348e44cb1d44c23c40",
     "func_8039D494": "613dae3c390ee99c67793f916883023f1ab829aaf20b077272c80cc36a2a93fa",
-    "func_8039ED20": "77651083f55b2b89d080b80775f81324be47a6c9c35158a89eaf71d4eadda2e8"
+    "func_8039ED20": "77651083f55b2b89d080b80775f81324be47a6c9c35158a89eaf71d4eadda2e8",
+    "func_8039E200": "8aba47c2a12a9c0bd324e9b01e0622c1633e9b0046995e88a6a56356cdd0fbf2",
+    "func_8039E3BC": "c56db54a7f5e9b363c23161f3f2049a5593a0343d19b6edaf1926e2e6abebb85"
   },
   "caller_ABI": {
     "caller": "func_803A1EAC",

@@ -1,0 +1,42 @@
+== func_800114C0 cloud/work/boot_tail/BT02-audio-final/nonmatch/func_800114C0.c LOCK: true=15 strict=15 reloc_blind=2 objdump-dr DIFFERS(70 rows) (260 rows)
+== func_80019490 cloud/work/boot_tail/BT03-sequence-dispatch/nonmatch/func_80019490.c LOCK: true=30 strict=30 reloc_blind=5 objdump-dr DIFFERS(5 rows) (261 rows)
+== func_8001D1F4 cloud/work/boot_tail/BT03-high-spatial-control/nonmatch/func_8001D1F4.c LOCK: true=0 strict=207 reloc_blind=27 objdump-dr DIFFERS(27 rows) (138 rows)
+== func_800139D4 cloud/work/boot_tail/BT02-audio-final/nonmatch/func_800139D4.c LOCK: true=60 strict=60 reloc_blind=8 objdump-dr DIFFERS(8 rows) (193 rows)
+== func_80011104 cloud/work/boot_tail/BT02-audio-final/nonmatch/func_80011104.c LOCK: true=160 strict=160 reloc_blind=35 objdump-dr DIFFERS(142 rows) (257 rows)
+== func_8001BE14 cloud/work/boot_tail/BT03-mapped-parameter-dispatch/func_8001BE14_NONMATCH.c LOCK: true=265 strict=337 reloc_blind=14 objdump-dr DIFFERS(234 rows) (242 rows)
+== func_8001824C cloud/work/boot_tail/BT03-high-runtime-followon/nonmatch/func_8001824C.c LOCK: true=305 strict=305 reloc_blind=43 objdump-dr DIFFERS(71 rows) (133 rows)
+== func_80013DEC cloud/work/boot_tail/BT02-audio-remaining/nonmatch/func_80013DEC.c LOCK: true=355 strict=355 reloc_blind=31 objdump-dr DIFFERS(220 rows) (253 rows)
+== func_80025AB4 cloud/work/boot_tail/BT07-stream-pair/func_80025AB4.c LOCK: true=370 strict=370 reloc_blind=14 objdump-dr DIFFERS(39 rows) (158 rows)
+== func_80021150 cloud/work/boot_tail/C13-input-value/func_80021150_NONMATCH.c LOCK: true=410 strict=410 reloc_blind=3 objdump-dr DIFFERS(3 rows) (184 rows)
+== func_80011D74 cloud/work/boot_tail/BT02-next-pair/nonmatch/func_80011D74.c LOCK: true=420 strict=420 reloc_blind=10 objdump-dr DIFFERS(113 rows) (124 rows)
+== func_8001B9F8 cloud/work/boot_tail/BT03-mapped-voice-dispatch/nonmatch/func_8001B9F8.c LOCK: true=470 strict=506 reloc_blind=15 objdump-dr DIFFERS(247 rows) (256 rows)
+== func_80018448 cloud/work/boot_tail/BT03-high-runtime-followon/nonmatch/func_80018448.c LOCK: true=595 strict=595 reloc_blind=48 objdump-dr DIFFERS(81 rows) (129 rows)
+== func_80023564 cloud/work/boot_tail/BT05-larger-pair/nonmatch/func_80023564.c LOCK: true=705 strict=705 reloc_blind=18 objdump-dr DIFFERS(18 rows) (110 rows)
+== func_80017D38 cloud/work/boot_tail/BT03-high-sequence-events/nonmatch/func_80017D38.c LOCK: true=715 strict=833 reloc_blind=57 objdump-dr DIFFERS(86 rows) (235 rows)
+== func_80011A64 cloud/work/boot_tail/BT02-next-pair/nonmatch/func_80011A64.c LOCK: true=775 strict=775 reloc_blind=13 objdump-dr DIFFERS(28 rows) (111 rows)
+== func_80018634 cloud/work/boot_tail/BT03-runtime-singleton/nonmatch/func_80018634.c LOCK: true=805 strict=815 reloc_blind=177 objdump-dr DIFFERS(117 rows) (215 rows)
+== func_80010E80 cloud/work/boot_tail/BT02-context-pair/nonmatch/func_80010E80.c LOCK: true=810 strict=818 reloc_blind=54 objdump-dr DIFFERS(54 rows) (139 rows)
+== func_80024988 cloud/work/boot_tail/BT05-core-pair/nonmatch/func_80024988.c LOCK: true=825 strict=1143 reloc_blind=40 objdump-dr DIFFERS(149 rows) (161 rows)
+== func_800252AC cloud/work/boot_tail/BT07-stream-pair/func_800252AC.c LOCK: true=970 strict=970 reloc_blind=32 objdump-dr DIFFERS(53 rows) (166 rows)
+== func_80022CD4 cloud/work/boot_tail/BT05-conditional-pitch/func_80022CD4_CONDITIONAL.c LOCK: true=980 strict=980 reloc_blind=34 objdump-dr DIFFERS(125 rows) (152 rows)
+== func_80023BDC cloud/work/boot_tail/BT05-mapped-macro-dispatch/nonmatch/func_80023BDC.c LOCK: true=1000 strict=1036 reloc_blind=21 objdump-dr DIFFERS(89 rows) (105 rows)
+== func_8002193C cloud/work/boot_tail/BT05-core-pair/nonmatch/func_8002193C.c LOCK: true=1080 strict=1080 reloc_blind=28 objdump-dr DIFFERS(38 rows) (155 rows)
+== func_80021F84 cloud/work/boot_tail/BT05-timed-pair/nonmatch/func_80021F84.c LOCK: true=1125 strict=1125 reloc_blind=27 objdump-dr DIFFERS(38 rows) (120 rows)
+== func_80022160 cloud/work/boot_tail/BT05-resource-pair/nonmatch/func_80022160.c LOCK: true=1130 strict=1138 reloc_blind=59 objdump-dr DIFFERS(67 rows) (117 rows)
+== func_80015D68 cloud/work/boot_tail/BT03-low-insert-pair/func_80015D68_NONMATCH.c LOCK: true=1310 strict=1360 reloc_blind=25 objdump-dr DIFFERS(74 rows) (130 rows)
+== func_8001EF8C cloud/work/boot_tail/BT03-high-runtime-lists/nonmatch/func_8001EF8C.c LOCK: true=1710 strict=1750 reloc_blind=64 objdump-dr DIFFERS(100 rows) (124 rows)
+== func_80016998 cloud/work/boot_tail/BT03-low-final-resource/func_80016998_NONMATCH.c LOCK: true=1795 strict=1795 reloc_blind=61 objdump-dr DIFFERS(114 rows) (169 rows)
+== func_80019F48 cloud/work/boot_tail/BT03-constructor-pair/nonmatch/func_80019F48.c LOCK: true=2235 strict=2481 reloc_blind=105 objdump-dr DIFFERS(116 rows) (207 rows)
+== func_80015A0C cloud/work/boot_tail/BT03-low-final-resource/func_80015A0C_NONMATCH.c LOCK: true=2600 strict=2600 reloc_blind=34 objdump-dr DIFFERS(77 rows) (146 rows)
+== func_8001E0E0 cloud/work/boot_tail/C11-mix-output/func_8001E0E0_NONMATCH.c LOCK: true=2800 strict=2804 reloc_blind=132 objdump-dr DIFFERS(205 rows) (230 rows)
+== func_80022874 cloud/work/boot_tail/BT05-resource-pair/nonmatch/func_80022874.c LOCK: true=3055 strict=3063 reloc_blind=57 objdump-dr DIFFERS(86 rows) (135 rows)
+== func_8001DA74 cloud/work/boot_tail/BT03-high-runtime-lists/nonmatch/func_8001DA74.c LOCK: true=4290 strict=4710 reloc_blind=62 objdump-dr DIFFERS(59 rows) (116 rows)
+== func_8001A270 cloud/work/boot_tail/BT03-constructor-pair/nonmatch/func_8001A270.c LOCK: true=4745 strict=4913 reloc_blind=136 objdump-dr DIFFERS(176 rows) (224 rows)
+== func_8001671C cloud/work/boot_tail/BT03-low-insert-pair/func_8001671C_NONMATCH.c LOCK: true=6700 strict=6700 reloc_blind=187 objdump-dr DIFFERS(148 rows) (186 rows)
+== func_8001C860 no-d10-source
+== func_800178B0 no-d10-source
+== func_8001F13C no-d10-source
+== func_80012730 no-d10-source
+== func_80023E9C no-d10-source
+== func_8001A658 no-d10-source
+== func_80012D18 no-d10-source

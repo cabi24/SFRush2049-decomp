@@ -1,0 +1,33 @@
+DIFF __fixunsdfdi @0x80009A28 40 words: old assemble_error -> new gate_ok
+DIFF __fixunssfdi @0x80009AC8 39 words: old assemble_error -> new gate_ok
+DIFF __floatdidf @0x80009B64 6 words: old gate_refused:length_mismatch 7 != 6 -> new gate_ok
+DIFF __floatdisf @0x80009B7C 6 words: old gate_refused:length_mismatch 7 != 6 -> new gate_ok
+DIFF __floatundidf @0x80009B94 13 words: old gate_refused:length_mismatch 13 != 12 -> new gate_ok
+DIFF __floatundisf @0x80009BC8 12 words: old gate_refused:length_mismatch 12 != 11 -> new gate_ok
+DIFF __osExceptionPreamble @0x8000C990 339 words: old gate_refused:length_mismatch 379 != 338 -> new gate_refused:word_mismatch@122
+DIFF __osCleanupThread @0x8000CFC4 64 words: old gate_refused:length_mismatch 75 != 63 -> new gate_ok
+DIFF __osDispatchThread @0x8000D11C 95 words: old gate_refused:length_mismatch 126 != 95 -> new gate_ok
+DIFF __lshrdi3 @0x8000D8F0 11 words: old gate_refused:length_mismatch 13 != 11 -> new gate_ok
+DIFF __umoddi3 @0x8000D91C 15 words: old gate_refused:length_mismatch 17 != 15 -> new gate_ok
+DIFF __udivdi3 @0x8000D958 15 words: old gate_refused:length_mismatch 17 != 15 -> new gate_ok
+DIFF __ashldi3 @0x8000D994 11 words: old gate_refused:length_mismatch 13 != 11 -> new gate_ok
+DIFF __umoddi3_alt @0x8000D9C0 15 words: old gate_refused:length_mismatch 17 != 15 -> new gate_ok
+DIFF __divdi3 @0x8000D9FC 23 words: old gate_refused:length_mismatch 25 != 23 -> new gate_ok
+DIFF __muldi3 @0x8000DA58 12 words: old gate_refused:length_mismatch 14 != 12 -> new gate_ok
+DIFF __qdivrem @0x8000DA88 24 words: old gate_refused:length_mismatch 27 != 23 -> new gate_ok
+DIFF __moddi3 @0x8000DAE8 39 words: old gate_refused:length_mismatch 47 != 39 -> new gate_ok
+DIFF __ashrdi3 @0x8000DB84 11 words: old gate_refused:length_mismatch 13 != 11 -> new gate_ok
+regions 668: identical objects 649, different 19
+    2 x  old assemble_error  ->  new gate_ok
+    1 x  old gate_refused:length_mismatch 12 != 11  ->  new gate_ok
+    1 x  old gate_refused:length_mismatch 126 != 95  ->  new gate_ok
+    3 x  old gate_refused:length_mismatch 13 != 11  ->  new gate_ok
+    1 x  old gate_refused:length_mismatch 13 != 12  ->  new gate_ok
+    1 x  old gate_refused:length_mismatch 14 != 12  ->  new gate_ok
+    3 x  old gate_refused:length_mismatch 17 != 15  ->  new gate_ok
+    1 x  old gate_refused:length_mismatch 25 != 23  ->  new gate_ok
+    1 x  old gate_refused:length_mismatch 27 != 23  ->  new gate_ok
+    1 x  old gate_refused:length_mismatch 379 != 338  ->  new gate_refused:word_mismatch@122
+    1 x  old gate_refused:length_mismatch 47 != 39  ->  new gate_ok
+    2 x  old gate_refused:length_mismatch 7 != 6  ->  new gate_ok
+    1 x  old gate_refused:length_mismatch 75 != 63  ->  new gate_ok

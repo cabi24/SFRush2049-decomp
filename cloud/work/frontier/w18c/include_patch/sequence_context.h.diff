@@ -1,0 +1,26 @@
+14c14,16
+<     unsigned char unknown0C[0x0C];
+---
+>     int deadline0C;                           /* timed nodes: due time (whole ticks) */
+>     unsigned int fraction10;                  /* timed nodes: 16.16 clock, fraction */
+>     int whole14;                              /* timed nodes: 16.16 clock, whole */
+21a24,33
+> typedef struct SequenceTrack {                /* 0x28; per-track 16.16 clock */
+>     unsigned int fraction;
+>     int whole;
+>     unsigned int unknown08;
+>     unsigned int active0C;
+>     unsigned int active10;
+>     unsigned int active14;
+>     unsigned char unknown18[16];
+> } SequenceTrack;
+> 
+27c39,40
+<     unsigned char unknown118[8];
+---
+>     unsigned int fraction118;                 /* 118: tempo increment, 16-bit fraction */
+>     int whole11C;                             /* 11C: tempo increment, whole part */
+32c45
+<     unsigned char unknown568[0xA00];
+---
+>     SequenceTrack tracks568[64];

@@ -50,7 +50,7 @@ void func_8001E9B0(void)
  * previously opaque fields at +0x14, +0x18 and +0x28 respectively.
  * Keep these declarations before any future early list-helper promotion. */
 #pragma pack(1)
-typedef struct VoiceState { u32 command00; u8 unknown04[12]; u32 next_identifier; u32 parent_identifier; SequenceNode *entry18; u8 unknown1C[8]; u32 flags24; u32 value28; u8 unknown2C[32]; u8 external4C; u8 unknown4D[19]; u32 identifier60; u8 unknown64[89]; u8 activeBD; u8 unknownBE[226]; } VoiceState;
+typedef struct VoiceState { u32 command00; u8 unknown04[12]; u32 next_identifier; u32 parent_identifier; SequenceNode *entry18; u8 unknown1C[8]; u32 flags24; u32 value28; u8 unknown2C[2]; u8 channel2E; u8 unknown2F[29]; u8 external4C; u8 unknown4D[19]; u32 identifier60; u8 unknown64[89]; u8 activeBD; u8 unknownBE[226]; } VoiceState;
 #pragma pack(0)
 extern SequenceNode *D_80050C50;
 extern VoiceState D_8004BEB8[];
@@ -231,16 +231,59 @@ void func_8001EE9C(VoicePrefix_8001EE9C *state)
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1f5b0/func_8001EF8C.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1f5b0/func_8001F13C.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1f5b0/func_8001F6EC.s")
+typedef struct ChannelLink { u8 previous; u8 next; u16 flags; } ChannelLink;
+extern ChannelLink D_80050440[32];
+/* PROMOTED 2026-10-11 — func_8001F6EC
+ * Source:   cloud/work/frontier/w18c/sources/func_8001F6EC.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w18c/sources/func_8001F6EC.c:func_8001F6EC (score0); rom_tu.h context: cloud/work/frontier/w18c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+#pragma pack(1)
+#pragma pack(0)
+extern u8 D_800504C0;
+extern u8 D_800504C1;
+extern unsigned char D_800504C2, D_800504C3;
+extern void func_8001EE9C(VoicePrefix_8001EE9C *);
+void func_8001F6EC(VoiceState *state)
+{
+    u32 index;
+    ChannelLink *link;
+    func_8001EE9C((VoicePrefix_8001EE9C *)state);
+    index = state->identifier60 & 255;
+    link = &D_80050440[index];
+    state->command00 = 0;
+    state->channel2E = 0;
+    if (link->flags == 0) {
+        link->flags = 1;
+        if (D_800504C0 != 255) {
+            link->previous = D_800504C1;
+            link->next = 255;
+            D_80050440[D_800504C1].next = index;
+        } else {
+            link->next = 255;
+            link->previous = 255;
+            D_800504C0 = index;
+        }
+        D_800504C1 = index;
+        if (state->external4C) {
+            --D_800504C2;
+        } else {
+            --D_800504C3;
+        }
+    }
+    state->identifier60 = 0xFFFFFFFFU;
+}
+
 /* PROMOTED 2026-10-04 — func_8001F7EC
  * Source:   cloud/matches/boot_tail/func_8001F7EC.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/matches/boot_tail/func_8001F7EC.c:func_8001F7EC (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-typedef struct ChannelLink { u8 previous; u8 next; u16 flags; } ChannelLink;
 extern u8 D_8004FA18;
-extern ChannelLink D_80050440[32];
 extern u8 D_800504C0;
 extern u8 D_800504C1;
 void func_8001F7EC(void)

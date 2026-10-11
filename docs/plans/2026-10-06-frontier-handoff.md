@@ -1,14 +1,14 @@
 # Frontier handoff: 2026-10-06 (after wave 12), updated 2026-10-11 (after wave 15)
 
-## 0. Wave 13–17 update (2026-10-11, after wave 17 and the IDO 7.1 boot-tail promotion)
+## 0. Wave 13–19 update (2026-10-12, after wave 19: boot tail at 64%, overlays landing)
 
 Read this section first; §1–§10 below are the wave-12 text and still describe the method. Section-by-section
 deltas are noted inline where they matter.
 
 | | Functions | Bytes | % |
 |---|---|---|---|
-| Game code (compressed image) | 972 / 1216 | 310,380 / 647,072 | 47.97 |
-| Static code (boot/library) | 489 / 668 | 87,756 / 160,720 | 54.60 |
+| Game code (compressed image) | 973 / 1216 | 310,928 / 647,072 | 48.05 |
+| Static code (boot/library) | 550 / 668 | 103,172 / 160,720 | 64.19 |
 
 Frontier: 244 unmatched game functions (251 KB) after wave 17. Provisional: 20 functions (`provisional.json`).
 
@@ -177,6 +177,37 @@ question, and the remaining ~115 boot-tail `func_*` near-misses now that the rig
 `w17c/tools/uproc.py`; w17i's RESULTS decodes how uopt ranks register candidates (blocks counted in groups of
 four, so exact ties are common).
 
+**Wave 18 (2026-10-11 night):** w18c matched **39 more boot-tail functions under IDO 7.1 (7,080 B)**, including the
+nine `w17g/lockonly/` sources, via a `sequence_context.h` naming patch and declaration edits in six TUs (gated alone
+first); six use relocation-label views (`docs/reloc_reconciliation.md`, func_8001C19C precedent) and three a disclosed
+`& 0xFF`/`& 0xFFFF` mask. Static 489 → 528/668 (59.01%). Not matched: ~20 listed in `w18c/RESULTS.md` with causes
+(u8 parameters reloaded from the stack, copy-then-narrow, six that differ only in relocation names the compiler
+synthesises). w18d: camera_play_script stays 27 rows; the corner pointer is not a bare argument copy and `pts[ka]`
+is weighted about twice `pts[kb]` (w18d/RESULTS.md). The overlay path (w18a/w18b/w18e) is described below.
+
+**Wave 19 (2026-10-12):** static 528 → 550/668 (64.19%): w19b closed four IDO 7.1 idiom cases (copy-then-narrow,
+s8 in a coloured register, nested-ternary clamp, switch with a shared tail) and showed six lib_16320 functions were
+code-identical and blocked only by relocation names on compiler-made addresses → `reloc_addrs.us.txt` entries (20)
+plus a `reloc_split` negative-addend fix, `make extract`, target refresh, promoted (1,928 B); w19a matched nine
+larger boot-tail functions (5,448 B; lever: pass `x & 255` to a u8 parameter for 7.1's copy-then-narrow, one result
+variable instead of per-path returns, typed globals); w19c landed osAiSetNextBuffer and `__fixunsdfdi`/`__fixunssfdi`
+through owned `.data`/`.rodata` slots (`owned_data prepare`, co-owners, `promote_batch` slot promotion) and made
+static targets assemble with `.set gp=64` (18 more reloc-aware). Overlay A: Astra's #309/#310 merged, six bodies
+spliced (42/193, 14,364 B). Game: w19e matched func_800CF06C (548 B, arcade road(); two unused locals = exact frame
+residual 192 vs 168, disclosed) and left three traced near-misses (world_effect_update 12 words = two missing block
+boundaries proven by relabelling our own listing; assign_drones 29 words; race_position_update needs two extra
+register values); it also corrected three names: world_effect_update is the graphics/heap init, assign_drones the
+end-of-race records update, race_position_update a text-width helper. Overlays are IDO 5.3 (0 in-place narrowings vs 147 in the boot tail). Open static
+items: func_80021548 and func_80023BDC need owned jump-table slots (entries drafted in w19b §C / w19a); six w19a
+relocation/target cases (`w19a/relocname/`, `ownrodata/`); the near-misses in w19a/w19b RESULTS (scheduling-only
+residuals under 7.1 remain unexplained).
+
+**Test loop (w19d, 2026-10-12):** `make test-fast JOBS=N` runs both suites under pytest-xdist (strace-derived
+concurrency groups in `tests/conftest.py`; the one real hazard is IDO -O3 writing `<source>.u` into the cwd) and
+`tools/ci_equiv.sh HOST BUNDLE` (with `CI_FAST=N`) replaces the hand-typed bundle/fetch/run sequence; rocky is set
+up as a second CI-equivalent host (both suites in ~2 min; watchman2's ciclone6 remains the fallback). Pi: 3 min
+instead of 6–7; rocky: 31 s + 83 s instead of 2:15 + 6:15. GitHub CI is unchanged (xdist there is an owner call).
+
 **Astra / cloud:** see [2026-10-11-astra-cloud-plan.md](2026-10-11-astra-cloud-plan.md). Workstream A landed the
 same night (w18a layout/splice/lock, w18b exact stream round-trip + compose, w18e merge): runtime images A/B are a
 third and fourth population with their own gates (`ovl_layout build` image gate, `ovl_splice check`,
@@ -279,6 +310,8 @@ Run on the Pi from the repo root, on a branch such as `git checkout -b wave13`.
      3. In `~/rush2049/scratch/ciclone6` (a disposable clone; submodules are copied from `~/rush2049/scratch/ci`):
         `git checkout -q . && git clean -qfd cloud tests && git fetch -q ../X.bundle HEAD "refs/remotes/origin/*:refs/remotes/origin/*" && git checkout -q FETCH_HEAD`
      4. Run `REQUIRE_TOOLCHAIN=1 ~/rush2049/scratch/civenv/bin/python -m pytest tests/conveyor` and the same for `tests/cloud`, both with `-m "not node_required"`.
+
+     Steps 2-4 in one command (also on the second host `rocky`; `CI_FAST=N` for the parallel split): `tools/ci_equiv.sh watchman2 X.bundle` ([BUILDING.md](../BUILDING.md#ci-equivalent-test-hosts)).
 
      Remote branches are needed because some research packets `git show` pre-purge commits that exist only on old unmerged branches such as `origin/dot/palette-steering-20261005`. **Never delete unmerged remote branches.**
 7. **Push** with `git push origin HEAD:master`, then `git branch -f master HEAD`. Watch GitHub CI with `gh run watch <id>` until it passes.

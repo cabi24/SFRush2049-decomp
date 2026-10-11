@@ -24,8 +24,26 @@ long long __fixsfdi(float f) {
     return f;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_a5f0/__fixunsdfdi.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_a5f0/__fixunssfdi.s")
+/* PROMOTED 2026-10-11 — __fixunsdfdi
+ * Source:   cloud/work/frontier/w16g/sources/__fixunsdfdi.c (in-repo, locked)
+ * Flags:    -g0 -O1 -mips3 -32 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w16g/sources/__fixunsdfdi.c:__fixunsdfdi (score0); rom_tu.h context: cloud/work/frontier/w19c/ctx/ctx_w19c.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+unsigned long long __fixunsdfdi(double d) {
+    return d;
+}
+
+/* PROMOTED 2026-10-11 — __fixunssfdi
+ * Source:   cloud/work/frontier/w16g/sources/__fixunssfdi.c (in-repo, locked)
+ * Flags:    -g0 -O1 -mips3 -32 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w16g/sources/__fixunssfdi.c:__fixunssfdi (score0); rom_tu.h context: cloud/work/frontier/w19c/ctx/ctx_w19c.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+unsigned long long __fixunssfdi(float f) {
+    return f;
+}
+
 /* PROMOTED 2026-10-11 — __floatdidf
  * Source:   cloud/work/frontier/w16g/sources/__floatdidf.c (in-repo, locked)
  * Flags:    -g0 -O1 -mips3 -32 -G 0 -non_shared

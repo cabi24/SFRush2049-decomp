@@ -1,0 +1,27 @@
+{
+  "members": [
+    "func_80392F28",
+    "func_80393004",
+    "func_803930B8",
+    "func_803931C0",
+    "func_803932E4"
+  ],
+  "claims": [
+    "func_80392F28",
+    "func_803930B8",
+    "func_803931C0",
+    "func_803932E4"
+  ],
+  "context": [
+    "func_8039338C",
+    "func_80394058"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_80394058"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "Complete authentic 94058 root, 9338C caller and availability family. Five exact helper bodies; the two complete callers remain research. Existing 93004 is context, not new claim."
+}

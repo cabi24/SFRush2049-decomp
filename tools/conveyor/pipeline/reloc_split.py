@@ -123,7 +123,7 @@ def derive(vaddr, target_o, cand_o, resolve=targetsmod._resolve_symbol):
     sites = derive_sites(text_relocs(target_o), text_words(target_o),
                          text_relocs(cand_o), text_words(cand_o), resolve)
     return [f"rom:0x{vaddr + off - targetsmod.STATIC_ROM_DELTA:X} reloc:{rtype} "
-            f"symbol:{base} addend:0x{addend:X} // was {split}"
+            f"symbol:{base} addend:{'-' if addend < 0 else ''}0x{abs(addend):X} // was {split}"
             for off, rtype, base, addend, split in sites]
 
 
