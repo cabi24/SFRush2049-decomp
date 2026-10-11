@@ -348,7 +348,28 @@ int func_8001F898(u8 channel)
     return index;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1f5b0/func_8001F954.s")
+/* PROMOTED 2026-10-11 — func_8001F954
+ * Source:   cloud/work/boot_tail_promotion/voice_unblock_v2/sources/func_8001F954.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/boot_tail_promotion/voice_unblock_v2/sources/func_8001F954.c:func_8001F954 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/voice_unblock_v2/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+extern void func_8001F6EC(VoiceState *);
+void func_8001F954(u32 index)
+{
+    if (index == 0xFFFFFFFFU) {
+        return;
+    }
+    if (func_8001467C(index)) {
+        func_80014AF0(index);
+    }
+    D_8004BEB8[index].identifier60 = index;
+    func_8001F6EC(&D_8004BEB8[index]);
+    D_8004BEB8[index].activeBD = 0;
+}
+
 /* PROMOTED 2026-10-05 — func_8001F9D0
  * Source:   cloud/work/boot_tail_promotion/voice_lists/sources/func_8001F9D0.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
