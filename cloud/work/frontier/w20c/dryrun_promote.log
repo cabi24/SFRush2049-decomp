@@ -1,12 +1,6 @@
-batch 0x11640..0x22300: 7 candidates
+batch 0x11640..0x22300: 5 candidates
   PLAN func_80011104 -> rom/lib_11640 (840 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
   PLAN func_800114C0 -> rom/lib_11640 (904 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
   PLAN func_80013DEC -> rom/lib_11640 (780 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared)
-  PLAN func_8001B9F8 -> rom/lib_1a660 (960 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared, owned .rodata slot of func_8001B9F8)
-  PLAN func_8001BE14 -> rom/lib_1a660 (904 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared, owned .rodata slot of func_8001B9F8)
   PLAN func_80021548 -> rom/lib_21210 (96 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared, owned .rodata slot of func_80021548)
   PLAN func_80023BDC -> rom/lib_22300 (404 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared, owned .rodata slot of func_80023BDC)
-  spliced /tmp/claude-1000/-home-cburnes-projects-rush2049-decomp/e6d4d7af-aa0e-4f5a-98a8-2e25f3b6dd6b/scratchpad/w20c/splice/lib_11640.c
-  spliced /tmp/claude-1000/-home-cburnes-projects-rush2049-decomp/e6d4d7af-aa0e-4f5a-98a8-2e25f3b6dd6b/scratchpad/w20c/splice/lib_1a660.c
-  spliced /tmp/claude-1000/-home-cburnes-projects-rush2049-decomp/e6d4d7af-aa0e-4f5a-98a8-2e25f3b6dd6b/scratchpad/w20c/splice/lib_21210.c
-  spliced /tmp/claude-1000/-home-cburnes-projects-rush2049-decomp/e6d4d7af-aa0e-4f5a-98a8-2e25f3b6dd6b/scratchpad/w20c/splice/lib_22300.c
