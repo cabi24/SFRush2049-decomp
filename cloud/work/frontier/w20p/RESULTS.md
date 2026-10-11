@@ -60,4 +60,12 @@ registry hash.
 
 ## Tests
 
-See the final section (filled at the end of the lane).
+- rocky (IDO 5.3 + 7.1, CI binutils/venv, `REQUIRE_TOOLCHAIN=1`): the three packets' tests
+  (`-k "voice_list or macro_stream or macro_wrapper"` over tests/cloud + tests/conveyor/test_voice_list_promotion.py):
+  45 passed (before: 4 tests/cloud failures + 4 voice_lists errors).
+- rocky `make test-fast JOBS=16` (REQUIRE_TOOLCHAIN=1): tests/conveyor 2197 passed, 51 skipped;
+  tests/cloud 912 passed, 1 skipped, 27 subtests passed; rc=0. (A first plain `pytest -n 16` run had 3
+  environment failures in the fresh clone: no `origin/master` ref (fixed by fetching it; both tests then
+  pass) and the strlen smoke test's missing coordinator token; neither touches this change.)
+- Pi `make test-fast JOBS=4` in the worktree: tests/conveyor 1445 passed, 803 skipped; tests/cloud 770 passed,
+  143 skipped; rc=0 (no IDO on the Pi: toolchain tests skip).
