@@ -27,8 +27,8 @@
     }
   },
   "tool_sha256": {
-    "tools/cloud/score.py": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
-    "tools/cloud/setup.sh": "e78fafc84cb5cde638bbcab528b96de3d6837e39b3b1f8f8d6c69e55d8f13e4b"
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+    "tools/cloud/setup.sh": "9e0ed1492be71f85eb0e207468c241229ddc1b290d42bef1f787da67d58ac12f"
   },
   "audit_script_sha256": "9dae2d9cd7d9f3fda47ad752895cef0bfccfe1d7b59a4fef6adf9fc182abab5b",
   "canonical_command": "python3 tools/cloud/score.py group cloud/work/ipa-groups/dot_run_decode",

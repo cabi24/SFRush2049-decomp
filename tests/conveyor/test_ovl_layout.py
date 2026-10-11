@@ -127,8 +127,8 @@ def test_passthrough_gate_passes_and_a_wrong_body_fails_naming_its_owner(tmp_pat
     assert "owner:    f1" in message and f"vram 0x{BASE + 0x17:08X}" in message
 
 
-@pytest.mark.skipif(not (HAS_BINUTILS and ovl_image.BASEROM.is_file()),
-                    reason="needs baserom.us.z64 and mips binutils")
+@pytest.mark.skipif(not ovl_image.BASEROM.is_file(), reason="needs baserom.us.z64 (private input)")
+@pytest.mark.skipif(not HAS_BINUTILS, reason="mips binutils absent")
 @pytest.mark.parametrize("image", sorted(ovl_image.IMAGES))
 def test_retail_all_passthrough_link_is_byte_identical(image, tmp_path, monkeypatch):
     path = ovl_image.ensure(image, tmp_path / "build")

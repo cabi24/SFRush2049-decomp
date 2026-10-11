@@ -27,8 +27,8 @@
     }
   },
   "tool_sha256": {
-    "tools/cloud/score.py": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
-    "tools/cloud/setup.sh": "e78fafc84cb5cde638bbcab528b96de3d6837e39b3b1f8f8d6c69e55d8f13e4b"
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+    "tools/cloud/setup.sh": "9e0ed1492be71f85eb0e207468c241229ddc1b290d42bef1f787da67d58ac12f"
   },
   "audit_script_sha256": "13f9866684537151db5063e50378a0df5c8a4d5ccf576eacc6e179f60ffbe31e",
   "canonical_command": "python3 tools/cloud/score.py group cloud/work/ipa-groups/dot_entry_dispatch",
@@ -144,7 +144,7 @@
     "scope": "Direct review of complete protected target/callee/two direct callers; scan of all protected function words for direct J/JAL transfers. Indirect or opaque-region callers are not established by this scan.",
     "disassembler_sha256": "91e7042c5a2f1752fe81df08d70993af3f4fa77ce27ed5220558fe35b2521c44",
     "disassembler_name": "mips-linux-gnu-objdump",
-    "scorer_sha256": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
+    "scorer_sha256": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
     "full_target_evidence": [
       {
         "name": "func_800D3430",

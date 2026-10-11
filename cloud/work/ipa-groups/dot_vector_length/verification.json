@@ -27,8 +27,8 @@
     }
   },
   "tool_sha256": {
-    "tools/cloud/score.py": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
-    "tools/cloud/setup.sh": "e78fafc84cb5cde638bbcab528b96de3d6837e39b3b1f8f8d6c69e55d8f13e4b"
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+    "tools/cloud/setup.sh": "9e0ed1492be71f85eb0e207468c241229ddc1b290d42bef1f787da67d58ac12f"
   },
   "audit_script_sha256": "c31f5f09f9205bfaa7bbf0a37fb10443761559ccf18d48059d38cfd49007f2d6",
   "canonical_command": "python3 tools/cloud/score.py group cloud/work/ipa-groups/dot_vector_length",
@@ -124,7 +124,7 @@
     "scope": "Review of every instruction of the complete protected native target; direct-transfer scan over all protected function words and all protected region words. No direct caller was found. Indirect callers, opaque-region computed transfers, and callers outside the protected regions are not established by this scan.",
     "disassembler_sha256": "91e7042c5a2f1752fe81df08d70993af3f4fa77ce27ed5220558fe35b2521c44",
     "disassembler_name": "mips-linux-gnu-objdump",
-    "scorer_sha256": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
+    "scorer_sha256": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
     "audit_script_sha256": "33f88e347762f688f741af969d07ccebba942651757c96a1904df49a3351cf8d",
     "full_target_evidence": [
       {

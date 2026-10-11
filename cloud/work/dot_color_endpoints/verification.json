@@ -25,8 +25,8 @@
     }
   },
   "tool_sha256": {
-    "tools/cloud/score.py": "ca0e5fdebb90e13d1e91643357bcda7d402401552e5de326c361ab6411565cc0",
-    "tools/cloud/setup.sh": "e78fafc84cb5cde638bbcab528b96de3d6837e39b3b1f8f8d6c69e55d8f13e4b"
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69",
+    "tools/cloud/setup.sh": "9e0ed1492be71f85eb0e207468c241229ddc1b290d42bef1f787da67d58ac12f"
   },
   "audit_script_sha256": "5a3bd915d6ae3eedafc52a11a7dbfd86357d1fb672eaf4c95b2170c0d56e2d52",
   "canonical_command": "python3 tools/cloud/score.py fn cloud/matches/func_800BEA3C.c func_800BEA3C --flags \"-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul\"",
