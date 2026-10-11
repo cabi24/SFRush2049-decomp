@@ -1,6 +1,6 @@
 # Frontier handoff: 2026-10-06 (after wave 12), updated 2026-10-11 (after wave 15)
 
-## 0. Wave 13–17 update (2026-10-11, after wave 17 and the IDO 7.1 boot-tail promotion)
+## 0. Wave 13–18 update (2026-10-11/12, after wave 18: overlay landing path, boot tail at 59%)
 
 Read this section first; §1–§10 below are the wave-12 text and still describe the method. Section-by-section
 deltas are noted inline where they matter.
@@ -8,7 +8,7 @@ deltas are noted inline where they matter.
 | | Functions | Bytes | % |
 |---|---|---|---|
 | Game code (compressed image) | 972 / 1216 | 310,380 / 647,072 | 47.97 |
-| Static code (boot/library) | 489 / 668 | 87,756 / 160,720 | 54.60 |
+| Static code (boot/library) | 528 / 668 | 94,836 / 160,720 | 59.01 |
 
 Frontier: 244 unmatched game functions (251 KB) after wave 17. Provisional: 20 functions (`provisional.json`).
 
@@ -176,6 +176,14 @@ question, and the remaining ~115 boot-tail `func_*` near-misses now that the rig
 `w17i/boostpatch.py` (force a value to be considered earlier), `w17a/tools/patch_lbb.py` (uopt block dump),
 `w17c/tools/uproc.py`; w17i's RESULTS decodes how uopt ranks register candidates (blocks counted in groups of
 four, so exact ties are common).
+
+**Wave 18 (2026-10-11 night):** w18c matched **39 more boot-tail functions under IDO 7.1 (7,080 B)**, including the
+nine `w17g/lockonly/` sources, via a `sequence_context.h` naming patch and declaration edits in six TUs (gated alone
+first); six use relocation-label views (`docs/reloc_reconciliation.md`, func_8001C19C precedent) and three a disclosed
+`& 0xFF`/`& 0xFFFF` mask. Static 489 → 528/668 (59.01%). Not matched: ~20 listed in `w18c/RESULTS.md` with causes
+(u8 parameters reloaded from the stack, copy-then-narrow, six that differ only in relocation names the compiler
+synthesises). w18d: camera_play_script stays 27 rows; the corner pointer is not a bare argument copy and `pts[ka]`
+is weighted about twice `pts[kb]` (w18d/RESULTS.md). The overlay path (w18a/w18b/w18e) is described below.
 
 **Astra / cloud:** see [2026-10-11-astra-cloud-plan.md](2026-10-11-astra-cloud-plan.md). Workstream A landed the
 same night (w18a layout/splice/lock, w18b exact stream round-trip + compose, w18e merge): runtime images A/B are a

@@ -15,7 +15,7 @@ four code populations, reported separately and never merged:
 
 | Population | Targets in this repo | Compiler | 2026-10-11 |
 |---|---|---|---|
-| Static boot/library code | `asm/us/boot_tail/` (the unmatched Rush boot tail) | IDO 5.3 (libultra), **IDO 7.1** (Rush boot tail, `rom_compilers.json`) | 489/668 functions, 87,756 / 160,720 B (54.60%) |
+| Static boot/library code | `asm/us/boot_tail/` (the unmatched Rush boot tail) | IDO 5.3 (libultra), **IDO 7.1** (Rush boot tail, `rom_compilers.json`) | 528/668 functions, 94,836 / 160,720 B (59.01%) |
 | Game code (zlib stream at ROM `0xB0CB10`, inflates to `0x80086A50`) | `asm/us/blob/` | IDO 5.3, `-O2`/`-O3 -mips2` | 972/1216, 310,380 / 647,072 B (47.97%) |
 | Runtime image A (stream `0xB5C534`, loads at `0x8038A400`) | `asm/us/ovl_a/` | IDO 5.3 | 36/193 functions, 12,856 / 152,952 B; lands via `ovl_splice` + `ovl_rom` (2026-10-11) |
 | Runtime image B (stream `0xB6FEC4`, loads at `0x8038A400`) | `asm/us/ovl_b/` | IDO 5.3 | 8/49 functions, 1,640 / 38,708 B; same |
@@ -99,12 +99,11 @@ in wave 14 and are not wanted.
 
 ### Lane 3: Rush boot tail under IDO 7.1 (static)
 
-`cloud/work/frontier/w17g/inv_table.md` lists the ~115 unmatched boot-tail `func_*` with sizes; they are
+`cloud/work/frontier/w17g/inv_table.md` lists the unmatched boot-tail `func_*` with sizes (w18c took 39 of them on 2026-10-11; its RESULTS.md lists the ~20 it could not close, with causes); they are
 Rush engine code (no public source) compiled with IDO 7.1 (`-g0 -O2 -mips2 -G 0 -non_shared`, flags per
 segment in `docs/COMPILER_SETTINGS.md`). Score with `IDO_DIR=tools/cloud/ido71 … --targets asm/us/boot_tail`.
 Deliver as `cloud/matches/boot_tail/NAME.c`; the coordinator locks (`lock add --toolkit …`) and promotes
-(`promote_batch.py`). Nine w17g sources are exact but conflict with their TU's declarations
-(`w17g/lockonly/`): resolving those against the TU is also good cloud work.
+(`promote_batch.py`). The `w17g/lockonly/` nine landed with w18c.
 
 ### Lane 4: tooling (only with tests)
 
