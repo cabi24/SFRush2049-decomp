@@ -33,7 +33,12 @@ def test_compile_full_body_and_negative_controls():
         if os.environ.get('REQUIRE_TOOLCHAIN')=='1':
             pytest.fail('required IDO toolchain missing')
         pytest.skip('IDO toolchain unavailable')
+    import sys
+    sys.path.insert(0,str(ROOT/"tools/cloud"))
+    import score as shared_score
+    image_before=shared_score.ASM_DIR
     receipt=verify.verify()
+    assert shared_score.ASM_DIR==image_before
     assert receipt['new_candidate_bytes']==136
     assert receipt['accepted_bytes']==0
     assert receipt['scores']['func_8039E3BC']['differing']==0

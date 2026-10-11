@@ -34,7 +34,11 @@ def expected_source(source):
 def verify(repo=ROOT):
     start = time.monotonic()
     sys.path.insert(0, str(repo / 'tools/cloud'))
-    import score
+    # Isolate per-image module state from callers running other image tests.
+    spec = importlib.util.spec_from_file_location('available_list_wave_score', repo/'tools/cloud/score.py')
+    score = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = score
+    spec.loader.exec_module(score)
     import owndata
     score.ASM_DIR = repo / 'asm/us/ovl_a'
     manifest = score.target_manifest()
