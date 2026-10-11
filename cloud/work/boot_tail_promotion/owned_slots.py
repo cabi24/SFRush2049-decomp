@@ -186,6 +186,7 @@ def relocate(obj, tu, words, start, end, addresses=None):
     text = score._text_index(secs)
     masks, unresolved, unverified = dict(masks), list(unresolved), list(unverified)
     resolved = []
+    proven = None
 
     def apply(offset, rtype, sym, addend, value, row):
         detail = '%s%+#x at +0x%x' % (sym['name'] or '<unnamed>', addend, offset - start)
@@ -227,6 +228,10 @@ def relocate(obj, tu, words, start, end, addresses=None):
             value, row = _slot_target(registered, sym, text, addend)
             if value is None:
                 continue
+            if sym['type'] == 3 and proven is None:
+                # The object's own slot section must itself be proven (fit,
+                # zero padding, relocated bytes = registry hash); raises if not.
+                proven = allocated_sections(obj, tu, addresses)
             for hi_offset, _, hi in his:
                 apply(hi_offset, R_MIPS_HI16, sym, (hi << 16) + lo, value, row)
             apply(offset, R_MIPS_LO16, sym, addend, value, row)
