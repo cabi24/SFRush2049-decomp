@@ -1,0 +1,481 @@
+/* Complete genuine A:931C0 -> {930B8,93004,92F28} call family. */
+typedef signed char s8; typedef unsigned char u8; typedef short s16; typedef int s32; typedef float f32;
+extern s8 D_803BA858;
+extern s32 D_803BA880;
+extern s8 D_803BA860;
+extern s8 D_803BA7FC[];
+extern u8 D_803BA7FE[];
+
+void func_80392F28(void)
+{
+    s32 i;
+    s32 flag;
+    s8 level = D_803BA858;
+
+    if (level < 12) {
+        D_803BA880 = 0;
+        flag = 1;
+    } else if (level < 20) {
+        D_803BA880 = 1;
+        flag = 1;
+    } else if (level < 24) {
+        D_803BA880 = 2;
+        flag = 1;
+    } else if (level < 25) {
+        D_803BA880 = 3;
+        flag = 1;
+    } else if (level < 29) {
+        D_803BA880 = 4;
+        flag = 1;
+        D_803BA860 = level - 25;
+    } else {
+        D_803BA880 = 5;
+        flag = 1;
+    }
+    for (i = 0; i < 2; i++) {
+        D_803BA7FC[i] = flag;
+        D_803BA7FE[i] = flag;
+    }
+}
+
+extern s8 D_803BA7E0[];
+extern s8 D_803BA7F0[];
+extern s32 D_803BA830[];
+extern s8 D_803B65A4;
+
+void func_80393004(void)
+{
+    unsigned int i;
+    s32 count;
+
+    D_803BA7E0[0] = 1;
+    D_803BA7F0[0] = 1;
+    D_803BA7E0[1] = 1;
+    D_803BA7F0[1] = 1;
+    D_803BA7E0[2] = 0;
+    count = D_803BA830[D_803B65A4];
+    D_803BA7F0[2] = count < 1;
+    for (i = 0; i < 8; i++) {
+        D_803BA7E0[i + 3] = (s32)i < count;
+        D_803BA7F0[i + 3] = (s32)i < count;
+    }
+}
+
+
+/* Bounded storage views follow only observed offsets; names are descriptive. */
+typedef struct { s8 enabled; unsigned char remaining[15]; } PlayerSlot;
+typedef struct { unsigned char prefix[16]; unsigned char slot; } ListOwner;
+typedef struct { ListOwner *owner; } ListObject;
+typedef struct ListNode ListNode;
+typedef struct { ListNode *next, *prev; ListObject *object; unsigned char unknown0C[8]; char text[24]; s32 flags2C; } ListPayload;
+struct ListNode { ListPayload *payload; };
+typedef struct { s32 prefix[2]; ListNode *head, *tail; } ListRoot;
+extern PlayerSlot D_80156CF0[];
+extern ListRoot D_8012E6D8;
+extern s32 func_800A1A3C(s32);
+extern s32 func_800A35F8(s32);
+extern s32 func_80094FC4(s32);
+void func_803930B8(void) {
+    s32 slot;
+    ListNode *node;
+    for (slot = 0; slot < 4; slot++) {
+        if (!D_80156CF0[slot].enabled) { D_803BA830[slot] = -4; }
+        else if (!func_800A1A3C(slot)) { D_803BA830[slot] = -1; }
+        else if (func_800A35F8(slot)) { D_803BA830[slot] = -2; }
+        else if (func_80094FC4(slot)) { D_803BA830[slot] = -3; }
+        else {
+            node = D_8012E6D8.head;
+            D_803BA830[slot] = 0;
+            while (node != 0) {
+                if (node->payload->object->owner->slot == slot) {
+                    D_803BA830[slot]++;
+                }
+                node = node->payload->next;
+            }
+            if (D_803BA830[slot] == 0) { D_803BA830[slot] = 0; }
+        }
+    }
+}
+
+void func_803930B8(void);
+void func_80393004(void);
+void func_80392F28(void);
+extern s32 D_803BA804;
+extern ListNode *D_803BA800;
+extern s8 D_803BA84D;
+extern s8 D_803BA854;
+extern s8 D_803BA850;
+extern s8 D_803BA80C;
+extern s8 D_803BA858;
+extern s32 D_803BA880;
+extern s32 D_803BA818[];
+extern s8 D_803B6554[][13];
+extern s32 D_803BA7D4;
+
+void func_803931C0(s32 mode)
+{
+    D_803BA804 = mode;
+    switch (D_803BA804) {
+    case 0:
+        func_803930B8();
+        func_80393004();
+        D_803BA84D = 0;
+        D_803BA854 = 0;
+        D_803BA850 = 0;
+        D_803BA80C = 0;
+        break;
+    case 1:
+        if (D_803BA800 == 0 && D_803BA858 >= 29) {
+            D_803BA858 = 0;
+            while (D_803B6554[D_803BA880][D_803BA818[D_803BA880]] == 0) {
+                if (++D_803BA818[D_803BA880] >= 13) {
+                    D_803BA818[D_803BA880] = 0;
+                }
+            }
+        }
+        func_80392F28();
+        break;
+    }
+    D_803BA7D4 = 1;
+}
+
+/* Image A: complete 168-byte cleanup. Native clobbers s0-s2; standalone is research. */
+typedef struct { s32 fields[16]; } MenuRecord;
+extern MenuRecord D_803B5F28[23];
+extern s32 D_803BA7D0;
+extern void *D_803B6530, *D_803B652C;
+extern s8 D_803B6528;
+extern void sound_call_minimal(s16);
+extern void sound_handles_array_clear(void *);
+extern void sound_stop(void *);
+extern void ambient_sounds_clear(void);
+void func_803932E4(void) {
+    s32 i;
+    for (i = 0; i < 23; i++) {
+        if (D_803B5F28[i].fields[1] != -1) {
+            sound_call_minimal((s16)D_803B5F28[i].fields[1]);
+            D_803B5F28[i].fields[1] = -1;
+        }
+    }
+    D_803BA7D0 = 0;
+    if (D_803B6530 != 0) {
+        sound_handles_array_clear(D_803B6530);
+        D_803B6530 = 0;
+    }
+    if (D_803B652C != 0) {
+        sound_stop(D_803B652C);
+        D_803B652C = 0;
+    }
+    ambient_sounds_clear();
+    D_803B6528 = 0;
+}
+
+/* Full image-A entry root. Only witnessed fields and control flow are named. */
+extern s8 D_80157244;
+extern s32 D_80156944, D_8015694C, D_80149784;
+extern s32 D_803BA810;
+extern s8 D_803B6534[];
+extern void func_80393B3C(void);
+extern void func_8039338C(void);
+extern void func_803923B0(void);
+extern void func_800B5570(s32);
+extern void func_800B5F88(s32);
+extern void func_800B5F4C(s32);
+extern void func_800B5FC4(s32);
+extern void func_800A3424(ListObject *, s32);
+extern void func_800C7308(ListNode *);
+
+void func_80394058(void)
+{
+    s8 level_step;
+    s8 item_step;
+    if (D_803B6528 == 0) {
+        func_80393B3C();
+    }
+    func_803930B8();
+    func_80393004();
+    if (D_803BA830[D_803B65A4] <= 0) {
+        if (D_803BA800 != 0) {
+            func_803931C0(0);
+        }
+        D_803BA800 = 0;
+    }
+    if (D_80157244 != 0) {
+        func_803932E4();
+        func_800B5570(16);
+    } else {
+        switch (D_803BA804) {
+        case 0:
+            func_8039338C();
+            break;
+        case 1:
+            if (D_80156944 & 0x3000) {
+                if (D_803BA810 == 0) {
+                    level_step = D_80149784 & 0x1000 ? -1 : (D_80149784 & 0x2000 ? 1 : 0);
+                    if (level_step != 0) {
+                        func_800B5F88(D_80149784);
+                        do {
+                            D_803BA858 += level_step;
+                            if (D_803BA858 < 0) {
+                                D_803BA858 = D_803BA800 != 0 ? 29 : 28;
+                            }
+                            if (D_803BA858 > (D_803BA800 != 0 ? 29 : 28)) {
+                                D_803BA858 = 0;
+                            }
+                        } while (D_803B6534[D_803BA858] == 0);
+                        func_80392F28();
+                    }
+                } else {
+                    item_step = D_80149784 & 0x1000 ? -1 : (D_80149784 & 0x2000 ? 1 : 0);
+                    if (item_step != 0) {
+                        func_800B5F88(D_80149784);
+                        do {
+                            D_803BA818[D_803BA880] += item_step;
+                            if (D_803BA818[D_803BA880] < 0) {
+                                D_803BA818[D_803BA880] = 12;
+                            }
+                            if (D_803BA818[D_803BA880] >= 13) {
+                                D_803BA818[D_803BA880] = 0;
+                            }
+                        } while (D_803B6554[D_803BA880][D_803BA818[D_803BA880]] == 0);
+                        func_80392F28();
+                    }
+                }
+            } else if (D_80149784 & 0x400) {
+                func_800B5F4C(D_80149784);
+                do {
+                    if (--D_803BA810 < 0) {
+                        D_803BA810 = 1;
+                    }
+                } while (D_803BA7FC[D_803BA810] == 0);
+            } else if (D_80149784 & 0x800) {
+                func_800B5F4C(D_80149784);
+                do {
+                    if (++D_803BA810 >= 2) {
+                        D_803BA810 = 0;
+                    }
+                } while (D_803BA7FC[D_803BA810] == 0);
+            }
+            while (D_803B6554[D_803BA880][D_803BA818[D_803BA880]] == 0) {
+                if (++D_803BA818[D_803BA880] >= 13) {
+                    D_803BA818[D_803BA880] = 0;
+                }
+            }
+            while (D_803BA7FC[D_803BA810] == 0) {
+                if (--D_803BA810 < 0) {
+                    D_803BA810 = 1;
+                }
+            }
+            if (D_8015694C & 7) {
+                func_800B5FC4(D_8015694C);
+                func_803931C0(0);
+                if (D_803BA800 != 0) {
+                    func_800A3424(D_803BA800->payload->object, 0);
+                    func_800C7308(D_803BA800);
+                }
+            }
+            break;
+        }
+    }
+    func_803923B0();
+}
+
+extern s32 D_803BA808;
+extern char D_803BA840[];
+extern ListNode D_80146150[4];
+typedef struct { unsigned char prefix[0x2C4]; const char *label; } ResourceNames;
+extern ResourceNames *D_8017A4E4;
+extern s32 func_800CD544(ListNode *);
+extern s32 func_800CCEFC(ListNode *);
+extern void func_800BE6A4(char *, const char *);
+extern void func_800C9404(void);
+extern void func_800F769C(ListNode *);
+extern void func_800C734C(ListNode *);
+
+void func_8039338C(void)
+{
+    ListNode *node;
+    if (D_803BA7E0[D_803BA808] == 0) {
+        D_803BA80C = 0;
+        do {
+            if (--D_803BA808 < 0) {
+                D_803BA808 = 10;
+            }
+            if (D_803BA808 >= 3 && D_803BA808 < 11 && D_803BA7E0[D_803BA808] == 1) {
+                if (D_803BA800 != 0) {
+                    do {
+                        D_803BA800 = D_803BA800->payload->prev;
+                    } while (D_803BA800 != 0 && D_803BA800->payload->object->owner->slot != D_803B65A4);
+                }
+                if (D_803BA800 == 0) {
+                    D_803BA800 = D_8012E6D8.tail;
+                }
+            } else {
+                D_803BA800 = 0;
+            }
+        } while (D_803BA7E0[D_803BA808] == 0);
+    }
+    if (D_803BA854 == 1) {
+        /* This state suppresses navigation but still accepts the action below. */
+    } else if (D_803BA84D == 1) {
+        if (D_80149784 & 0x3000) {
+            func_800B5F88(D_80149784);
+            D_803BA850 = !D_803BA850;
+        }
+    } else if (D_803BA808 == 1 && (D_80156944 & 0x3000)) {
+        if (D_80149784 & 0x1000) {
+            func_800B5F88(D_80149784);
+            if (--D_803B65A4 < 0) {
+                D_803B65A4 = 3;
+            }
+        } else if (D_80149784 & 0x2000) {
+            func_800B5F88(D_80149784);
+            if (++D_803B65A4 >= 4) {
+                D_803B65A4 = 0;
+            }
+        }
+        func_80393004();
+        D_803BA7D4 = 1;
+    } else if (D_803BA808 >= 3 && D_803BA808 < 12 && (D_80156944 & 0x3000)) {
+        if (D_8015694C & 0x3000) {
+            func_800B5F88(D_80149784);
+            D_803BA80C = !D_803BA80C;
+        }
+    } else if (D_80149784 & 0x400) {
+        func_800B5F4C(D_80149784);
+        D_803BA80C = 0;
+        do {
+            if (D_803BA808 == 3 && D_803BA7E0[D_803BA808] == 1) {
+                if (D_803BA800 != 0) {
+                    do {
+                        D_803BA800 = D_803BA800->payload->prev;
+                    } while (D_803BA800 != 0 && D_803BA800->payload->object->owner->slot != D_803B65A4);
+                }
+                if (D_803BA800 != 0) {
+                    break;
+                }
+            }
+            if (--D_803BA808 < 0) {
+                D_803BA808 = 10;
+            }
+            if (D_803BA808 >= 3 && D_803BA808 < 11 && D_803BA7E0[D_803BA808] == 1) {
+                if (D_803BA800 != 0) {
+                    do {
+                        D_803BA800 = D_803BA800->payload->prev;
+                    } while (D_803BA800 != 0 && D_803BA800->payload->object->owner->slot != D_803B65A4);
+                }
+                if (D_803BA800 == 0) {
+                    D_803BA800 = D_8012E6D8.tail;
+                    while (D_803BA800 != 0 && D_803BA800->payload->object->owner->slot != D_803B65A4) {
+                        D_803BA800 = D_803BA800->payload->prev;
+                    }
+                }
+            } else {
+                D_803BA800 = 0;
+            }
+        } while (D_803BA7E0[D_803BA808] == 0);
+    } else if (D_80149784 & 0x800) {
+        func_800B5F4C(D_80149784);
+        D_803BA80C = 0;
+        do {
+            if (D_803BA808 == 10 && D_803BA7E0[D_803BA808] == 1) {
+                if (D_803BA800 != 0) {
+                    do {
+                        D_803BA800 = D_803BA800->payload->next;
+                    } while (D_803BA800 != 0 && D_803BA800->payload->object->owner->slot != D_803B65A4);
+                }
+                if (D_803BA800 != 0) {
+                    break;
+                }
+            }
+            if (++D_803BA808 >= 11) {
+                D_803BA808 = 0;
+            }
+            if (D_803BA808 >= 3 && D_803BA808 < 11 && D_803BA7E0[D_803BA808] == 1) {
+                if (D_803BA800 != 0) {
+                    do {
+                        D_803BA800 = D_803BA800->payload->next;
+                    } while (D_803BA800 != 0 && D_803BA800->payload->object->owner->slot != D_803B65A4);
+                }
+                if (D_803BA800 == 0) {
+                    D_803BA800 = D_8012E6D8.head;
+                    while (D_803BA800 != 0 && D_803BA800->payload->object->owner->slot != D_803B65A4) {
+                        D_803BA800 = D_803BA800->payload->next;
+                    }
+                }
+            } else {
+                D_803BA800 = 0;
+            }
+        } while (D_803BA7E0[D_803BA808] == 0);
+    }
+    if (D_8015694C & 2) {
+        if (D_803BA80C == 1) {
+            func_800B5FC4(D_8015694C);
+            if (D_803BA854 == 1) {
+                D_803BA854 = 0;
+            } else if (D_803BA84D == 1) {
+                if (D_803BA850 == 1) {
+                    if (D_803BA800 != 0) {
+                        if (func_800CD544(D_803BA800)) {
+                            D_803BA854 = 1;
+                        }
+                    } else {
+                        for (node = D_80146150; node != D_80146150 + 4; node++) {
+                            func_800CD544(node);
+                        }
+                        D_803BA854 = 1;
+                    }
+                }
+                D_803BA84D = 0;
+            } else {
+                if (D_803BA800 != 0) {
+                    func_800BE6A4(D_803BA840, D_803BA800->payload->text);
+                } else {
+                    func_800BE6A4(D_803BA840, D_8017A4E4->label);
+                }
+                D_803BA84D = 1;
+                D_803BA850 = 0;
+            }
+        } else if (D_803BA808 == 0 || (D_803BA808 >= 3 && D_803BA808 < 11)) {
+            func_800B5FC4(D_8015694C);
+            if (D_803BA800 != 0) {
+                if (func_800CCEFC(D_803BA800)) {
+                    func_800A3424(D_803BA800->payload->object, 1);
+                    func_803931C0(1);
+                }
+            } else {
+                func_800C9404();
+                for (node = D_80146150; node != D_80146150 + 4; node++) {
+                    func_800F769C(node);
+                    func_800C734C(node);
+                }
+                for (node = D_8012E6D8.head; node != 0; node = node->payload->next) {
+                    if (node->payload->flags2C != 0) {
+                        func_800F769C(node);
+                        func_800C734C(node);
+                    } else {
+                        if (!func_800CCEFC(node)) {
+                            break;
+                        }
+                        func_800F769C(node);
+                        func_800C734C(node);
+                        func_800C7308(node);
+                    }
+                }
+                if (node == 0) {
+                    func_803931C0(1);
+                }
+            }
+        }
+    } else if (D_8015694C & 5) {
+        func_800B5FC4(D_8015694C);
+        if (D_803BA854 == 1) {
+            D_803BA854 = 0;
+        } else if (D_803BA84D == 1) {
+            D_803BA84D = 0;
+        } else {
+            func_803932E4();
+            func_800B5570(16);
+        }
+    }
+}

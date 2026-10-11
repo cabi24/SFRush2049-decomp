@@ -1,0 +1,150 @@
+{
+  "status": "PASS",
+  "claimed_new_match": "func_8039E3BC",
+  "source_sha256": "efaa8bccf45789b3376db8b924b8f71fe3fec855138757fd5e908b360fff7852",
+  "source_diff_exactly_expected": true,
+  "comparisons": {
+    "func_8039D494": {
+      "differing": 0,
+      "total": 132,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "func_8039E3BC": {
+      "differing": 0,
+      "total": 34,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    },
+    "func_8039ED20": {
+      "differing": 0,
+      "total": 120,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0,
+      "notes": []
+    }
+  },
+  "full_extent_bindings": {
+    "func_8039D494": {
+      "address": "0x8039D494",
+      "bytes": 528,
+      "sha256": "613dae3c390ee99c67793f916883023f1ab829aaf20b077272c80cc36a2a93fa",
+      "entry_evidence": [
+        "jal"
+      ],
+      "relocations": 22
+    },
+    "func_8039E3BC": {
+      "address": "0x8039E3BC",
+      "bytes": 136,
+      "sha256": "c56db54a7f5e9b363c23161f3f2049a5593a0343d19b6edaf1926e2e6abebb85",
+      "entry_evidence": [
+        "jal",
+        "prologue"
+      ],
+      "relocations": 5
+    },
+    "func_8039ED20": {
+      "address": "0x8039ED20",
+      "bytes": 480,
+      "sha256": "77651083f55b2b89d080b80775f81324be47a6c9c35158a89eaf71d4eadda2e8",
+      "entry_evidence": [
+        "jal",
+        "prologue"
+      ],
+      "relocations": 26
+    }
+  },
+  "previous_D494_ED20_complete_bytes_unchanged": true,
+  "gnu_route": "fresh complete STT_FUNC bodies re-sectioned from fresh IDO object; original REL records retained; .text R26 addends translated by ELF function ownership; GNU as/ld relocation at native VAs",
+  "source_calls": {
+    "D494_formal_order": [
+      "player",
+      "item"
+    ],
+    "all_three_real_calls_consistent": true,
+    "generated_D494_input_order": {
+      "a0": "item",
+      "a1": "player"
+    },
+    "E3BC_private_input": "t4=player",
+    "E3BC_private_clobber": "s0=19",
+    "all_generated_pair_callsites": [
+      {
+        "caller": "func_8039D6A4",
+        "offset": "0x8b4",
+        "callee": "func_8039D494"
+      },
+      {
+        "caller": "func_8039D6A4",
+        "offset": "0x8f0",
+        "callee": "func_8039D494"
+      },
+      {
+        "caller": "func_8039E3BC",
+        "offset": "0x30",
+        "callee": "func_8039D494"
+      },
+      {
+        "caller": "func_803A0FD8",
+        "offset": "0xbb0",
+        "callee": "func_8039E3BC"
+      },
+      {
+        "caller": "func_803A1EAC",
+        "offset": "0xa04",
+        "callee": "func_8039E3BC"
+      }
+    ],
+    "D494_preserves": [
+      "t2",
+      "t3",
+      "t4",
+      "t5"
+    ]
+  },
+  "semantics": {
+    "leaf_cases_per_route": 8962,
+    "pair_cases_per_route": 2560,
+    "host_C89_UBSan_bounds_pair_cases": 2048,
+    "signed_native_pair_cases": 512,
+    "pair_routes": [
+      "protected native",
+      "fresh GNU linked candidate"
+    ],
+    "complete_memory_register_read_write_trace_equality": true,
+    "guard_sibling_tail_integrity": true,
+    "E3BC_instructions_covered": 34,
+    "D494_instructions_covered": 132,
+    "branch_outcomes": 73,
+    "decoder_negative_checks": [
+      "unknown-opcode",
+      "escaped-code"
+    ]
+  },
+  "protected_manifest": {
+    "extents.json": "0d97935254a6f2c724dfe68b08087e0a451e56d0aedb2121748abe7b6cc0798b",
+    "ovl_a_8038a400.s": "94f5fdb45838b6d21fb761209bf2cb60602f90ea8725b16cae2c3cebe0aa7685",
+    "symbols.json": "d5a6c8dccb0380f54f080d45d82a5e71f917be86f9568bf4b7fbe10a89f2a769"
+  },
+  "support_sha256": {
+    "native.py": "0df21e7d521c35b2bddb0865a0d2adf903c29983ff5d157900c069cd168f96ef",
+    "elf_support.py": "2f3ab96521aa807cb2b29523fea5bff964aea395fbf73649c4d4ff663523e1d9",
+    "score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
+  },
+  "limits": [
+    "No full-ROM, full-image, splice, compressed stream or hardware claim.",
+    "D6A4 and E3BC upstream callers are source-audited, not executed end-to-end.",
+    "E3BC uses a compiler-private t4 input and s0 clobber; it is not a standalone O32 function.",
+    "Host tests use selectors 0..127; signed negative selector checks are mapped native-memory tests only.",
+    "GNU independently links extracted complete function bodies, not the whole group image."
+  ]
+}
