@@ -5660,6 +5660,7 @@ object_action_clear:
 .section .text.func_800D63EC, "ax", @progbits
 .globl func_800D63EC
 func_800D63EC:
+    /* compiled from src/blob/func_800D63EC.c */
     .word 0x3C0E8011
     .word 0x8DCE025C
     .word 0x27BDFFD0
@@ -5745,6 +5746,7 @@ func_800D63EC:
 .section .text.func_800D6530, "ax", @progbits
 .globl func_800D6530
 func_800D6530:
+    /* compiled from src/blob/func_800D6530.c */
     .word 0x27BDFFB8
     .word 0x3C0E8011
     .word 0x8DCE74B4

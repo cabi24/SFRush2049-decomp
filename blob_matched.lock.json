@@ -844,10 +844,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_vsync_a145",
     "source": "src/blob/groups/codex_vsync_a145/group.json",
-    "source_sha256": "a310c8144e80be0dfdc8d3bc90e8e2b654e645696fdd0fc254242cfe4bbd1808",
+    "source_sha256": "e7fe6aea92b1dc39112a641a57ef89effe4a9a5370d0d931b55f0d52433bdfc5",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-06"
+    "verified_at": "2026-10-11"
   },
   "controller_rumble_thunk": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -3304,6 +3304,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_800B3704": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_800B3704.c",
+    "source_sha256": "529ed4eb0a7c5e411368c23caa4fbfafe47d3571dda843473c4668cd449e0721",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-11"
+  },
   "func_800B3D0C": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800B3D0C.c",
@@ -4720,6 +4728,23 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-29"
+  },
+  "func_800D63EC": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_800D63EC.c",
+    "source_sha256": "a91cf8f8136f0e94bcab45a7a0395b1bba55411c867015c2cde2870cce7d4371",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-11"
+  },
+  "func_800D6530": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "codex_vsync_a145",
+    "source": "src/blob/groups/codex_vsync_a145/group.json",
+    "source_sha256": "e7fe6aea92b1dc39112a641a57ef89effe4a9a5370d0d931b55f0d52433bdfc5",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-11"
   },
   "func_800D6690": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -7688,28 +7713,28 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_vsync_a145",
     "source": "src/blob/groups/codex_vsync_a145/group.json",
-    "source_sha256": "a310c8144e80be0dfdc8d3bc90e8e2b654e645696fdd0fc254242cfe4bbd1808",
+    "source_sha256": "e7fe6aea92b1dc39112a641a57ef89effe4a9a5370d0d931b55f0d52433bdfc5",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-06"
+    "verified_at": "2026-10-11"
   },
   "speed_mode1_wrapper": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_vsync_a145",
     "source": "src/blob/groups/codex_vsync_a145/group.json",
-    "source_sha256": "a310c8144e80be0dfdc8d3bc90e8e2b654e645696fdd0fc254242cfe4bbd1808",
+    "source_sha256": "e7fe6aea92b1dc39112a641a57ef89effe4a9a5370d0d931b55f0d52433bdfc5",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-06"
+    "verified_at": "2026-10-11"
   },
   "speed_set": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_vsync_a145",
     "source": "src/blob/groups/codex_vsync_a145/group.json",
-    "source_sha256": "a310c8144e80be0dfdc8d3bc90e8e2b654e645696fdd0fc254242cfe4bbd1808",
+    "source_sha256": "e7fe6aea92b1dc39112a641a57ef89effe4a9a5370d0d931b55f0d52433bdfc5",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-06"
+    "verified_at": "2026-10-11"
   },
   "split_time_display": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
@@ -8050,10 +8075,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_vsync_a145",
     "source": "src/blob/groups/codex_vsync_a145/group.json",
-    "source_sha256": "a310c8144e80be0dfdc8d3bc90e8e2b654e645696fdd0fc254242cfe4bbd1808",
+    "source_sha256": "e7fe6aea92b1dc39112a641a57ef89effe4a9a5370d0d931b55f0d52433bdfc5",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-10-06"
+    "verified_at": "2026-10-11"
   },
   "wheel_params_set": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",

@@ -5126,6 +5126,7 @@ collision_sound_play:
 .section .text.func_800B3704, "ax", @progbits
 .globl func_800B3704
 func_800B3704:
+    /* compiled from src/blob/func_800B3704.c */
     .word 0x3C038015
     .word 0x24639788
     .word 0x8C620000
