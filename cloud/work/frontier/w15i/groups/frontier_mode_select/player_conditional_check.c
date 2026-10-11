@@ -3500,7 +3500,7 @@ void physics_velocity_integrate_e(void *arg0, s16 arg1);
 void physics_velocity_integrate_f(void *arg0, s16 arg1);
 void place_cars_in_order(void);
 void player_conditional_call(void *arg0);
-void player_conditional_check(s32 *arg0, s32 arg1);
+
 void player_flag_clear_process(void);
 void player_state_clear(s32 arg0);
 s8 player_state_get(s32 arg0);
@@ -3696,6 +3696,11 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-void func_800E0048(void) {
-
+void player_conditional_check(s32 *arg0, s32 arg1) {
+    if (arg1 != 0) {
+        results_screen_update(*arg0);
+    } else {
+        scheduler_recv(*arg0);
+    }
+    player_conditional_call(arg0);
 }

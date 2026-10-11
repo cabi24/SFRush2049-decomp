@@ -619,6 +619,7 @@ main_menu_render:
 .section .text.func_800DED78, "ax", @progbits
 .globl func_800DED78
 func_800DED78:
+    /* compiled from src/blob/func_800DED78.c */
     .word 0x00057400
     .word 0x000E7C03
     .word 0x000FC880
@@ -752,6 +753,7 @@ func_800DEF60:
 .section .text.mode_select_handler, "ax", @progbits
 .globl mode_select_handler
 mode_select_handler:
+    /* compiled from src/blob/mode_select_handler.c */
     .word 0x27BDFFD8
     .word 0xAFBF0024
     .word 0x822E0640
@@ -1500,6 +1502,7 @@ mode_select_handler:
 .section .text.mode_select_input, "ax", @progbits
 .globl mode_select_input
 mode_select_input:
+    /* compiled from src/blob/mode_select_input.c */
     .word 0x27BDFFE0
     .word 0xAFBF001C
     .word 0xC6040004
@@ -1542,6 +1545,7 @@ mode_select_input:
 .section .text.func_800DFBA0, "ax", @progbits
 .globl func_800DFBA0
 func_800DFBA0:
+    /* compiled from src/blob/func_800DFBA0.c */
     .word 0x3C0142A0
     .word 0x4481E000
     .word 0x3C014100
@@ -1851,6 +1855,7 @@ func_800E0048:
 .section .text.func_800E0050, "ax", @progbits
 .globl func_800E0050
 func_800E0050:
+    /* compiled from src/blob/func_800E0050.c */
     .word 0x27BDFFB8
     .word 0x8FAE0048
     .word 0x3C188011
@@ -2215,6 +2220,7 @@ func_800E0050:
 .section .text.func_800E05F0, "ax", @progbits
 .globl func_800E05F0
 func_800E05F0:
+    /* compiled from src/blob/func_800E05F0.c */
     .word 0x27BDFF20
     .word 0x3C0E8011
     .word 0x81CEFFC0

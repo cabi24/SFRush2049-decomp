@@ -55,10 +55,6 @@
   "evidence": "cloud/work/frontier/w6d/drone_throttle_calc/best_group",
   "note": "wave 6: pause-menu setup; code identical with stand-in callers (strings and floats at two retail addresses, checked by hand); real caller func_800D91A0 (3,860 bytes) unmatched"
  },
- "func_800DED78": {
-  "evidence": "cloud/work/frontier/dot_audio_force_20261005",
-  "note": "PR #107: collision force/peak helper (arcade carsnd.c get_force_and_peak), strict 0/122 in a genuine caller group; it takes f18 as a register parameter and its caller is unmatched, so it stays unclaimed"
- },
  "func_800D8078": {
   "evidence": "cloud/work/frontier/dot_option_predicate_20261006",
   "note": "PR #285: strict MATCH with real caller func_800D91A0 (provisional) plus render_replay_ui/render_results_screen (provisional) and func_800D816C (unmatched)"

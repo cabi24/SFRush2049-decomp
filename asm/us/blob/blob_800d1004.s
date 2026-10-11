@@ -5083,6 +5083,7 @@ func_800D5A04:
 .section .text.best_times_display, "ax", @progbits
 .globl best_times_display
 best_times_display:
+    /* compiled from src/blob/best_times_display.c */
     .word 0x27BDFFE8
     .word 0xAFB20018
     .word 0x00127400
@@ -5265,6 +5266,7 @@ high_scores_display:
 .section .text.func_800D5E64, "ax", @progbits
 .globl func_800D5E64
 func_800D5E64:
+    /* compiled from src/blob/func_800D5E64.c */
     .word 0x27BDFF78
     .word 0x3C0E8011
     .word 0x81CEFFC0

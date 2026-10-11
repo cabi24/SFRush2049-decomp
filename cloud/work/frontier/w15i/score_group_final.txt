@@ -1,0 +1,59 @@
+Members:
+func_800D5E64:
+  MATCH
+func_800E05F0:
+  MATCH
+    own .rodata verified at 0x8012438C..0x80124394
+best_times_display:
+  MATCH
+mode_select_handler:
+  MATCH
+    own .rodata verified at 0x80124324..0x80124370
+func_800DED78:
+  MATCH
+    own .rodata verified at 0x80124320..0x80124324
+func_800DEF60:
+  MATCH
+mode_select_input:
+  MATCH
+func_800DFBA0:
+  MATCH
+    own .rodata verified at 0x80124370..0x80124378
+func_800E0050:
+  MATCH
+    own .rodata verified at 0x80124378..0x8012438C
+func_800E0048:
+  MATCH
+
+Context (informational; excluded from exit status):
+entity_transform_calc:
+  MATCH
+func_80091BA8:
+  MATCH
+func_80091B00:
+    +0x01c  want a06f0003 sb t7,3(v1)                   got 2418ffff li t8,-1                    
+    +0x020  want 2418ffff li t8,-1                      got a06f0003 sb t7,3(v1)                 
+    +0x03c  want a06e001b sb t6,27(v1)                  got 240fffff li t7,-1                    
+    +0x040  want 240fffff li t7,-1                      got a46f0018 sh t7,24(v1)                
+    +0x044  want a46f0018 sh t7,24(v1)                  got a06e001b sb t6,27(v1)                
+    +0x05c  want a0790033 sb t9,51(v1)                  got 240effff li t6,-1                    
+    +0x060  want 240effff li t6,-1                      got a46e0030 sh t6,48(v1)                
+    +0x064  want a46e0030 sh t6,48(v1)                  got a0790033 sb t9,51(v1)                
+    +0x07c  want a078004b sb t8,75(v1)                  got 2419ffff li t9,-1                    
+    +0x080  want 2419ffff li t9,-1                      got a4790048 sh t9,72(v1)                
+    +0x084  want a4790048 sh t9,72(v1)                  got a078004b sb t8,75(v1)                
+  11/42 words differ
+client_sync:
+  MATCH
+entity_hierarchy_update:
+  MATCH
+scheduler_recv:
+  MATCH
+stat_lap_complete:
+  MATCH
+game_timer_resume:
+  MATCH
+func_8008B2E4:
+  MATCH
+player_conditional_check:
+  MISMATCH (1 extra words (nonzero beyond target length))
