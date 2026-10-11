@@ -8,6 +8,8 @@ scorer leaves a section-relative reference unverified when no retail data
 artifact is tracked (asm/us/boot_tail has none). This module accepts exactly
 the registered slots and nothing else:
 
+- An owned `.bss` slot (w21d, owner_section ".bss") is admitted as NOBITS of
+  at most the slot's size; it has no bytes to hash.
 - `allocated_sections(obj, tu)`: every allocated non-text section other than
   .reginfo must be the owner section of exactly one non-storage slot registered
   for `tu`, fit it (`owned_data.section_fits`: a logical-extent table may carry
@@ -126,12 +128,20 @@ def allocated_sections(obj, tu, addresses=None):
         if not _flags(data, index) & SHF_ALLOC or name in ('.text', '.reginfo') or not section['size']:
             continue
         row = registered.get(name)
-        if row is None or section['type'] == SHT_NOBITS:
+        nobits = section['type'] == SHT_NOBITS
+        if row is None or nobits != owned_data.is_bss(row):
             raise ValueError('unexpected allocated data: %s (%d B) is not a registered owned slot of %s'
                              % (name, section['size'], _tu_path(tu)))
         if not owned_data.section_fits(row, section['size']):
             raise ValueError('%s: %d B exceeds the owned slot of %s (%d B)'
                              % (name, section['size'], row['owner'], row['size']))
+        if nobits:
+            # An owned .bss slot (w21d) has no bytes to hash: its proof is the
+            # fit here plus the linker's fixed address/size ASSERTs.
+            out[name] = {'slot': row['owner'], 'members': owned_data.slot_members(row),
+                         'size': section['size'], 'slot_size': row['size'],
+                         'address': '0x%08X' % (row['container_vram'] + row['offset']), 'nobits': True}
+            continue
         relocated = _slot_bytes(obj, data, secs, index, row, addresses)
         if any(relocated[row['size']:]):
             raise ValueError(name + ': nonzero padding past the slot extent')

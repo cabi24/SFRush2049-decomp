@@ -62,7 +62,17 @@ def load_registry(repo=REPO):
 def rom_slots(repo=REPO, *, check_source=True):
     repo = Path(repo)
     result, owners, sections, containers = [], set(), set(), {}
-    for raw in load_registry(repo)['rom_slots']:
+    registry = load_registry(repo)
+    bss = []
+    for raw in registry['rom_slots']:
+        if isinstance(raw, dict) and raw.get('owner_section') == BSS:
+            r = _bss_slot(repo, raw)
+            section = (r['owner_object'], r['owner_section'])
+            if r['owner'] in owners or section in sections:
+                raise OwnershipError('duplicate owner or input section')
+            owners.add(r['owner']); sections.add(section)
+            bss.append(r); result.append(r)
+            continue
         required = {'owner', 'tu', 'source', 'offset', 'size', 'container_vram', 'sha256'}
         if isinstance(raw, dict) and raw.get('storage_owner'):
             storage_owners = [v for v in load_registry(repo)['storage_blocks'] if isinstance(v, dict) and v.get('owner') == raw['storage_owner']]
@@ -159,12 +169,91 @@ def rom_slots(repo=REPO, *, check_source=True):
                     raise OwnershipError('owned slot exceeds source bounds')
                 if hashlib.sha256(data[r['offset']:r['offset'] + r['size']]).hexdigest() != r['sha256']:
                     raise OwnershipError('owned slot original-byte identity changed')
-    return sorted(result, key=lambda r: (r['source'], r['offset']))
+    _bss_overlaps(bss, registry['storage_blocks'])
+    return sorted(result, key=lambda r: (r['source'] or '', r['container_vram'] + r['offset']))
+
+
+# A .bss slot (w21d) owns a TU's whole zero-initialised .bss at a fixed RAM
+# address. It has no ROM bytes, so no container, original-byte hash or split:
+# the proof is the linked address/size ASSERTs (rewrite_linker) plus the full
+# ROM SHA-1 of the code that addresses it. Row fields: owner, co_owners, tu,
+# owner_section/container_section ".bss", container_vram (the block address),
+# offset 0, size, passthrough_asm (the companion: `.space size` while the
+# members are passthrough, so the block is occupied in both states).
+BSS = '.bss'
+BSS_FIELDS = {'owner', 'co_owners', 'tu', 'owner_section', 'container_section', 'container_vram',
+              'offset', 'size', 'alignment', 'passthrough_asm', 'comment'}
+
+
+def _bss_slot(repo, raw):
+    if not {'owner', 'tu', 'container_vram', 'offset', 'size', 'passthrough_asm'}.issubset(raw):
+        raise OwnershipError('missing required .bss slot metadata')
+    extra = set(raw) - BSS_FIELDS
+    if extra:
+        raise OwnershipError('.bss slot has no ROM container fields: ' + ', '.join(sorted(extra)))
+    r = dict(raw)
+    if not isinstance(r['owner'], str) or not IDENT.fullmatch(r['owner']):
+        raise OwnershipError('invalid ROM owner name')
+    co = r.get('co_owners', [])
+    if (not isinstance(co, list) or any(not isinstance(n, str) or not IDENT.fullmatch(n) for n in co)
+            or len(set(co)) != len(co) or r['owner'] in co):
+        raise OwnershipError('co_owners must be distinct function names other than the owner')
+    r['co_owners'] = list(co)
+    for k in ('tu', 'passthrough_asm'):
+        r[k] = _relative(r[k])
+        if not (Path(repo) / r[k]).resolve().is_relative_to(Path(repo).resolve()):
+            raise OwnershipError('ownership path resolves outside repository')
+    if not r['tu'].startswith('src/rom/') or not r['tu'].endswith('.c'):
+        raise OwnershipError('ROM owner must identify a ROM TU')
+    if r.setdefault('container_section', BSS) != BSS:
+        raise OwnershipError('a .bss slot is its own container')
+    for k in ['offset', 'size', 'container_vram']:
+        if isinstance(r.get(k), str):
+            try:
+                r[k] = int(r[k], 0)
+            except ValueError as exc:
+                raise OwnershipError('invalid ownership integer') from exc
+        if type(r.get(k)) is not int or r[k] < 0:
+            raise OwnershipError('nonnegative integer required for ' + k)
+    if r.setdefault('alignment', 16) != 16:
+        raise OwnershipError('.bss slots own complete 16-byte aligned sections')
+    if r['offset'] != 0:
+        raise OwnershipError('a .bss slot starts at its own address (offset 0)')
+    if not r['size'] or r['size'] % 16 or r['container_vram'] % 16:
+        raise OwnershipError('owned slots must occupy complete aligned sections')
+    if not 0x80000000 <= r['container_vram'] or r['container_vram'] + r['size'] > 0x100000000:
+        raise OwnershipError('.bss slot must lie in KSEG0/KSEG1 RAM')
+    r['source'] = None
+    r['owner_object'] = 'build/us/' + str(Path(r['tu']).with_suffix('.o'))
+    r['container_object'] = None
+    return r
+
+
+def _bss_overlaps(bss, storage_blocks):
+    ranges = [(r['container_vram'], r['container_vram'] + r['size'], r['owner']) for r in bss]
+    for row in storage_blocks:
+        if isinstance(row, dict) and 'vram_start' in row and 'size' in row:
+            start = int(row['vram_start'], 0) if isinstance(row['vram_start'], str) else row['vram_start']
+            size = int(row['size'], 0) if isinstance(row['size'], str) else row['size']
+            ranges.append((start, start + size, row.get('owner')))
+    ranges.sort()
+    for a, b in zip(ranges, ranges[1:]):
+        if a[1] > b[0]:
+            raise OwnershipError('owned .bss slot overlaps another storage block: %s, %s' % (a[2], b[2]))
+    tus = [r['tu'] for r in bss]
+    if len(set(tus)) != len(tus) or any(isinstance(s, dict) and s.get('tu') in tus for s in storage_blocks):
+        raise OwnershipError('a TU has one owned .bss block')
+
+
+def is_bss(row):
+    return row.get('owner_section') == BSS
 
 
 def _groups(repo):
     groups = {}
     for r in rom_slots(repo):
+        if is_bss(r):
+            continue
         groups.setdefault(r['source'], []).append(r)
     return groups
 
@@ -386,6 +475,8 @@ def rewrite_linker(text, repo=REPO):
     pattern = r'/\* ROM_OWNED_DATA_BEGIN ([A-Za-z0-9_./-]+\(\.[A-Za-z0-9_.]+\)) \*/.*?/\* ROM_OWNED_DATA_END \1 \*/'
     text = re.sub(pattern, lambda m: m.group(1) + ';', text, flags=re.S)
     text = re.sub(r'/\* ROM_OWNED_SUBALIGN (SUBALIGN\(16\)) \*/', r'\1', text)
+    text = re.sub(r'\n[ \t]*/\* ROM_OWNED_BSS_BEGIN (\w+) \*/.*?/\* ROM_OWNED_BSS_END \1 \*/', '', text, flags=re.S)
+    text = _rewrite_bss(text, [r for r in rom_slots(repo, check_source=False) if is_bss(r)])
     for source, rows in _groups(repo).items():
         obj = rows[0]['container_object']; section = rows[0]['container_section']
         original = obj + '(' + section + ');'
@@ -432,6 +523,34 @@ def rewrite_linker(text, repo=REPO):
         text = text.replace(original, ('\n' + indent).join(lines))
     from . import owned_text
     return owned_text.rewrite_linker(text, repo)
+
+
+BSS_ANCHOR = 'data_VRAM_END = .;'
+
+
+def _rewrite_bss(text, rows):
+    """Move each .bss slot TU's .bss input out of SPLAT's bss output section
+    into its own fixed-address NOLOAD section, with address/size ASSERTs."""
+    if not rows:
+        return text
+    if text.count(BSS_ANCHOR) != 1:
+        raise OwnershipError('expected exactly one ' + BSS_ANCHOR + ' anchor for owned .bss slots')
+    indent = re.search(r'(?m)^([ \t]*)' + re.escape(BSS_ANCHOR), text).group(1)
+    blocks = []
+    for r in sorted(rows, key=lambda r: r['container_vram']):
+        owned = r['owner_object'] + '(.bss)'
+        if text.count(owned + ';') != 1:
+            raise OwnershipError('expected exactly one original owner .bss linker input')
+        text = text.replace(owned + ';', '/* ROM_OWNED_SECTION_MOVED ' + owned + ' */')
+        start = 'rom_owned_' + r['owner'] + '_START'; end = 'rom_owned_' + r['owner'] + '_END'
+        blocks += ['/* ROM_OWNED_BSS_BEGIN ' + r['owner'] + ' */',
+                   '.rom_owned_bss_' + r['owner'] + ' ' + hex(r['container_vram']) + ' (NOLOAD) : SUBALIGN(16)',
+                   '{', '    ' + start + ' = ABSOLUTE(.);', '    ' + owned + ';',
+                   '    ' + end + ' = ABSOLUTE(.);',
+                   '    ASSERT(' + start + ' == ' + hex(r['container_vram']) + ', "owned BSS slot address changed");',
+                   '    ASSERT(' + end + ' - ' + start + ' == ' + hex(r['size']) + ', "owned BSS slot size changed");',
+                   '}', '/* ROM_OWNED_BSS_END ' + r['owner'] + ' */']
+    return text.replace(BSS_ANCHOR, BSS_ANCHOR + ''.join('\n' + indent + line for line in blocks), 1)
 
 
 def companion_block(row):
@@ -493,6 +612,9 @@ def companion_source(row, repo=REPO):
     companion spells each original word as `.word OWNER + offset` into the
     owner's passthrough body (as fcvt.table.s does); every word must land in
     that body. The linked bytes are the original ones either way."""
+    if is_bss(row):
+        # No ROM bytes: reserve the block so it is occupied in both states.
+        return '.section .bss\n.balign 4\n.space ' + hex(row['size']) + '\n'
     head = '.section ' + row['owner_section'] + '\n.balign 4\n'
     if not row.get('logical_extent'):
         return head + '.incbin "' + row['source'] + '", ' + hex(row['offset']) + ', ' + hex(row['size']) + '\n'

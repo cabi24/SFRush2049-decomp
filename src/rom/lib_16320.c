@@ -358,6 +358,9 @@ int func_80016E40(const PackedKey *left, const PackedKey *right)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016E68.s")
+/* ROM_OWNED_RODATA_BEGIN func_80016E68 */
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016E68.bss.s")
+/* ROM_OWNED_RODATA_END func_80016E68 */
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016EE0.s")
 /* PROMOTED 2026-10-04 — func_80016F58
  * Source:   cloud/matches/boot_tail/func_80016F58.c (in-repo, locked)

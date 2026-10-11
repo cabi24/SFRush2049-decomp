@@ -575,7 +575,7 @@ SECTIONS
         build/us/src/rom/lib_11640.o(.bss);
         build/us/src/rom/lib_15930.o(.bss);
         build/us/src/rom/lib_15a10.o(.bss);
-        build/us/src/rom/lib_16320.o(.bss);
+        /* ROM_OWNED_SECTION_MOVED build/us/src/rom/lib_16320.o(.bss) */
         build/us/src/rom/lib_17dc0.o(.bss);
         build/us/src/rom/lib_1a660.o(.bss);
         build/us/src/rom/lib_1cf90.o(.bss);
@@ -683,6 +683,16 @@ SECTIONS
     __romPos += SIZEOF(.data);
     data_ROM_END = __romPos;
     data_VRAM_END = .;
+    /* ROM_OWNED_BSS_BEGIN func_80016E68 */
+    .rom_owned_bss_func_80016E68 0x80042670 (NOLOAD) : SUBALIGN(16)
+    {
+        rom_owned_func_80016E68_START = ABSOLUTE(.);
+        build/us/src/rom/lib_16320.o(.bss);
+        rom_owned_func_80016E68_END = ABSOLUTE(.);
+        ASSERT(rom_owned_func_80016E68_START == 0x80042670, "owned BSS slot address changed");
+        ASSERT(rom_owned_func_80016E68_END - rom_owned_func_80016E68_START == 0x30, "owned BSS slot size changed");
+    }
+    /* ROM_OWNED_BSS_END func_80016E68 */
 
     /DISCARD/ :
     {

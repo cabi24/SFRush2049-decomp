@@ -142,6 +142,21 @@
       "composed_source": "build/us/assets/us/data.composed.bin",
       "alignment": 4,
       "logical_extent": true
+    },
+    {
+      "owner": "func_80016E68",
+      "co_owners": [
+        "func_80016EE0",
+        "func_80016F80"
+      ],
+      "tu": "src/rom/lib_16320.c",
+      "owner_section": ".bss",
+      "container_section": ".bss",
+      "container_vram": "0x80042670",
+      "offset": "0x0",
+      "size": "0x30",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_16320/func_80016E68.bss.s",
+      "comment": "w20b ownbss trio: the function-local statics of func_80016E68/80016EE0/80016F80 are lib_16320's whole .bss (0x30), retail 0x80042670..0x8004269F (D_80042670..D_8004269C)"
     }
   ],
   "storage_blocks": [

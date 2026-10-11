@@ -18,6 +18,8 @@ from tools.cloud import score
 from tools.conveyor import compilers as compilersmod
 from tools.conveyor.pipeline.lock import body_sha
 from tools.conveyor.seeds.extract_candidates import extract_functions
+sys.path.insert(0, str(REPO / 'cloud/work/boot_tail_promotion'))
+import owned_slots
 BASE = "cf10b3392d7f00ae42d75c008b79fdc2541aab6b"
 WORK = Path(__file__).resolve().parent
 HEADER = "include/boot_tail_sample_contract.h"
@@ -73,13 +75,16 @@ def compile_tu(text, out, name, expect_error=None, tu=None):
     return obj
 
 
-def function_symbols(obj):
+def function_symbols(obj, tu=None):
+    """tu: the object is that ROM TU; its registered owned slots (w21d: lib_16320's
+    .bss) are its only allowed data (owned_slots)."""
+    owned = owned_slots.allocated_sections(obj, tu) if tu else {}
     data, sections = score._elf(obj)
     text = score._text_index(sections)
     all_symbols = [sym for i, section in enumerate(sections) if section["type"] == 2
                    for sym in score._symbol_table(data, sections, i)]
     functions = {s["name"]: s for s in all_symbols if s["section"] == text and s["type"] == 2}
-    require(not any(s["size"] and s["name"] in DATA_SECTIONS for s in sections),
+    require(not any(s["size"] and s["name"] in DATA_SECTIONS and s["name"] not in owned for s in sections),
             "unexpected allocated data section in the actual TU")
     return functions, all_symbols
 
@@ -93,21 +98,22 @@ def exact_extent(symbols, name, expected):
             name + ": function extends into its neighbor")
 
 
-def relocated_bytes(obj, name, expected, addresses):
-    symbols, _ = function_symbols(obj)
+def relocated_bytes(obj, name, expected, addresses, tu=None):
+    symbols, _ = function_symbols(obj, tu)
     exact_extent(symbols, name, expected)
     start = symbols[name]["value"]
     words = score.text_words(obj)
-    resolved, masks, unresolved, unverified, errors = score.relocate(
-        obj, words, start, start + expected, addresses)
+    resolved, masks, unresolved, unverified, errors = (owned_slots.relocate(
+        obj, tu, words, start, start + expected, addresses)[:5] if tu else score.relocate(
+        obj, words, start, start + expected, addresses))
     require(not (masks or unresolved or unverified or errors),
             name + ": incomplete relocation verification")
     return struct.pack(">" + "I" * (expected // 4), *resolved[start // 4:(start + expected) // 4])
 
 
-def link_tu(obj, out, addresses):
+def link_tu(obj, out, addresses, tu=None):
     """Independently resolve the complete real-TU object using GNU ld."""
-    functions, all_symbols = function_symbols(obj)
+    functions, all_symbols = function_symbols(obj, tu)
     names = sorted(n for n in functions if re.fullmatch(r"func_[0-9A-F]{8}", n))
     base = min(addresses[n] for n in names)
     for name in names:
@@ -123,20 +129,23 @@ def link_tu(obj, out, addresses):
                 "unresolved linker symbol: " + name)
         assigns.append(f"{name} = 0x{address:08x};")
     script = out / (obj.stem + ".ld")
-    script.write_text("\n".join(assigns) + "\nSECTIONS { . = 0x%08x; .text : { *(.text) } }\n" % base)
+    # A registered owned .bss slot links at its fixed address, as in the ROM.
+    bss = [r for r in (owned_slots.slots(tu) if tu else {}).values() if r['owner_section'] == '.bss']
+    placed = ''.join(' .bss 0x%08x (NOLOAD) : { *(.bss) }' % (r['container_vram'] + r['offset']) for r in bss)
+    script.write_text("\n".join(assigns) + "\nSECTIONS { . = 0x%08x; .text : { *(.text) }%s }\n" % (base, placed))
     elf, binary = out / (obj.stem + ".elf"), out / (obj.stem + ".bin")
     checked(["mips-linux-gnu-ld", "-EB", "-T", script, "-o", elf, obj])
     checked(["mips-linux-gnu-objcopy", "-O", "binary", "--only-section=.text", elf, binary])
     return base, binary.read_bytes(), names
 
 
-def check_object(obj, required, out, targets, addresses):
-    functions, _ = function_symbols(obj)
-    base, linked, all_names = link_tu(obj, out, addresses)
+def check_object(obj, required, out, targets, addresses, tu=None):
+    functions, _ = function_symbols(obj, tu)
+    base, linked, all_names = link_tu(obj, out, addresses, tu)
     rows = []
     for name in required:
         want = struct.pack(">" + "I" * len(targets[name]), *targets[name])
-        got = relocated_bytes(obj, name, len(want), addresses)
+        got = relocated_bytes(obj, name, len(want), addresses, tu)
         start = functions[name]["value"]
         independent = linked[start:start + len(want)]
         require(got == want, name + ": full relocated bytes differ from target")
@@ -250,7 +259,7 @@ def _verify(out):
         group = {}
         for label, text, required in [('baseline', original, baseline), ('repaired', current, accepted), ('combined', combined, sorted(set(accepted) | set(candidates)))]:
             obj = compile_tu(text, out, Path(tu).stem + '_' + label, tu=tu)
-            group[label] = check_object(obj, required, out, targets, addresses)
+            group[label] = check_object(obj, required, out, targets, addresses, tu)
         require(len({stage['linked_text_sha256'] for stage in group.values()}) == 1, tu + ': linked TU changed')
         stages[tu] = group
     paths = [HEADER, *GROUPS, *[SOURCES + n + '.c' for n in sum(GROUPS.values(), [])]]
