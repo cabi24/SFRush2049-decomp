@@ -1,4 +1,75 @@
-# Frontier handoff: 2026-10-06 (after wave 12)
+# Frontier handoff: 2026-10-06 (after wave 12), updated 2026-10-11 (after wave 15)
+
+## 0. Wave 13–15 update (2026-10-11, master `5d778df1`)
+
+Read this section first; §1–§10 below are the wave-12 text and still describe the method. Section-by-section
+deltas are noted inline where they matter.
+
+| | Functions | Bytes | % |
+|---|---|---|---|
+| Game code (compressed image) | 955 / 1216 | 288,728 / 647,072 | 44.62 |
+| Static code (boot/library) | 400 / 668 | 73,596 / 160,720 | 45.79 |
+
+Frontier: 261 unmatched game functions (272 KB). Ready now: 25 singles (24 KB), 32 group (31 KB), 5 unit (4.6 KB).
+Provisional: 22 functions, 12.1 KB (`provisional.json`).
+
+**What landed since wave 12 (+17.1 KB game):**
+- Wave 13: records_screen, func_800E762C, differential_output (+1.2 KB); wave 14: graphics_chunk,
+  place_cars_in_order (+1.1 KB).
+- Wave 14 tail (lanes whose sessions ended before reporting; recovered 2026-10-10): entity_lod_select (716),
+  wheel_torque_apply (140).
+- **Mode-select cluster** (w13a bodies, w15i packaging): frontier_mode_select, 10 functions, 8,400 B. The group
+  needed the unit's IPA context (codex_transform_b109's group.c with the duplicate `entity_hierarchy_update`
+  reduced to a prototype, plus byte-identical func_8008B2E4.c and player_conditional_check.c) — see WAVE_BRIEF
+  "Group packaging". No unit_overrides were needed.
+- Wave 15: frontier_billboard_render (billboard_render + provisional func_800F207C/func_800F1930, 3,640 B;
+  prefer_definition func_800F1210), audio_channel_setup (332), func_800A79F4 (240), func_800AC9BC (224),
+  func_800E7A98 group (172).
+
+**Method change (wave 15): trace, don't sweep.** Seven of eight matching lanes closed something after wave 14's
+28 mass-variant lanes closed two. The lane rules file now says so; the lessons are in WAVE_BRIEF "Wave 15".
+
+**Ready to land, blocked on tooling:** `cloud/work/frontier/w15b/groups/physics_sym/` — physics_sym (1,252),
+func_800B5688 (196), func_800B59F0 (1,372) and the stubs func_800B55F4/func_800B59E8; all five EQUAL in the unit
+with real callers, **no implicit int** (the §6 item 2 decision is moot for this function). `install_group.py`
+refuses: func_800B59F0's own .rodata has strings at 0x801226A8 and floats at 0x80123DAC, and the own-data gate
+wants one base per section (`owndata.py` ~l.540; same refusal as w6d's pause_quit). Lane w15j is extending the
+gate to accept multi-region placements with complete byte evidence (`cloud/work/frontier/w15j/RESULTS.md`).
+Install afterwards with `--revert-single func_800B55F4 --revert-single func_800B59E8`.
+
+**Open near-misses after wave 15** (replaces the §6 table where names overlap):
+
+| Target | Bytes | Gap | Cause and best source | Lands with it |
+|---|---:|---|---|---|
+| camera_update | 2876 | 5 words (was 17) | two do-loop compares: retail loads `sc->count` before forming `idx+1`; uopt canonicalises by operand kind; retail probably keeps `ctl->idx` in v0. `w15a/RESULTS.md`, `w15a/groups/camera_aspect_ratio/` (work base, claims []). | camera_free_look, camera_track_spline (EQUAL), ≈4.2 KB |
+| entity_spawn_init | 5544 | 61 words (was 1356), frame 728 ok | function top: `surface` only in memory, model address in t1 before the loop; two spill slots 4 B off. `w15e/entity_spawn_init/best.c`. Disclosed ~52 words of unused locals not yet proven exact. | unlocks 3 / 3.6 KB |
+| camera_play_script | 3520 | 48 normalised rows (was 133), frame 600 vs 608 | -1 constant ties at 30.0 benefit vs cost (t5); one temp slot missing; 0.0f reloads. `w15h/camera_play_script/best.c`. | |
+| camera_victory | 1468 | 250/367 words, frame ok | new full draft; `car` needs s4 across func_800C3AD0/func_800C36A0. Would supersede locked func_800AD4C8 group. `w15f/camera_victory/best.c`. | func_800C3AD0 (1,448 B provisional) |
+| entity_process_main | 1424 | 2 words | ugen temp order shift, load, NOT — no C expression reaches ugen in that order. `w15c`, `w14o`, `w12b`. | |
+| func_80096130 | 264 | 3 words | retail splits `slot`'s register lifetime once (explains `.alias $3,$sp` and the 32(sp) slot). Needs a "split once" force mode to prove. `w15c`. | |
+| func_8010FBE0 | 128 | 6 rows | shared `lui at` only when `D_80155238` is defined in the unit; address web must be split. `w15d`. | |
+| input_deadzone_apply | 3580 | 122 words | ugen double compile, w12a. Untouched since. | input_process_controller |
+| func_800E847C + func_800E7FA0 | 2100 + 1244 | far | w11g | |
+| func_800AC9BC | — | **landed** w15d | | |
+| audio_channel_setup, func_800A79F4, func_800E7A98, differential_output | — | **landed** | | |
+
+**Provisional unblockers, ranked by bytes closed** (w15f `prov_callers.py` replays this): func_800E4B58 (2,268 B,
+closes 2,128 but is 488/567 off), func_800D91A0 (3,860 B, closes 1,572, 603 rows off), camera_victory (above),
+audio_mixer_main (31/183 across four waves). The F857C / audio_update_d / finish_state_alt trio does NOT close via
+func_800F87A0 alone; finish_state_alt's real caller is `countdown` (needs game_loop's tree).
+
+**Static side (w15g survey, nothing promoted):** ~4.8 KB recoverable as C from vendored ultralib/libgcc at the right
+flags (libgcc needs `-mips3 -32`; libultra is the "J or later" variant; several static labels sit on the wrong code,
+e.g. `osEPiRawStartDma` is really `__osEPiRawWriteIo`). Another 4.2 KB is byte-identical hand asm (policy needed).
+Table in `cloud/work/frontier/w15g/RESULTS.md`.
+
+**To the owner (still open):** §6 items 1 (merged-branch deletion), 3 (settled: func_800AC660 moved to
+differential_output in w13d), 5 (PR #163 still a draft, not rebased). New: the eight unused locals in
+billboard_render (exact frame residual, disclosed) landed under the standing rule — review if you want a cap.
+
+**Housekeeping:** `.git/gc.log` reports too many unreachable loose objects (`git prune` is the owner's call).
+`tools/mips_to_c` still carries the uncommitted late-September edits (§10).
+
 
 **For the next coordinating session.** This covers where the frontier matching effort stands, how a wave is run end to end, what the owner has decided, and every open item. Read it with `CLAUDE.md`, `cloud/work/frontier/WAVE_BRIEF.md` (the brief every lane agent reads) and `docs/plans/2026-10-04-frontier-plan.md` (the original method).
 

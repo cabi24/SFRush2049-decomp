@@ -55,7 +55,8 @@ IDO 5.3 / C89 source. Names are historical labels, not semantics.
 - Check older drafts' global addresses against the retail disassembly before tuning (w9e found a wrong one).
 
 ## Shared tracing toolkit
-`cloud/work/frontier/tools/trace/` (read its README.md): `install.sh <your builder scratch>` once, then
+`cloud/work/frontier/tools/trace/` (read its README.md): `install.sh <your builder scratch> [--reuse ~/rush2049/scratch/frontier/wtk]`
+(SCRATCH FIRST, then `--reuse`; the other order builds a toolkit into `~/--reuse`, three wave-15 lanes did this) once, then
 `us.sh` (unit score + rows), `udiff.py --ops/--norm`, `ctrace.sh`/`sum.sh` (colouring decisions, numintf,
 callee-saved cost), `force.sh` (forced colouring oracle), `spill.sh`/`spcensus.sh` (spill-temp/frame layout),
 `ugt.sh` (ugen order), `as1t.sh` (scheduler). Set `TAG=<lane>`. Run `force.sh` with the suspected webs before
@@ -89,6 +90,39 @@ writing variants: if forcing reaches 0 rows the residual is colour-only.
   temps ($f4–$f18) but yours puts one in $f0/$f2 or a callee-saved $f20+, inline the named local.
 - Pad arrays (`u8 pad[20]`) to fix a frame are still not acceptable (Wave 12 rules), even when a sweep finds
   them load-bearing. Report the frame residual instead.
+
+## Wave 15: trace, don't sweep (7 of 8 matching lanes closed something)
+- Mass-variant sweeps plateaued on a dozen functions in wave 14. Wave 15's matches came from tracing one cause
+  and writing the one lever: run `diagnose`, then `force.sh` (colour-only?), then `ctrace.sh`/`sum.sh` to see WHY
+  the colouring differs. Use vbatch only to confirm a hypothesis across neighbours.
+- **A caller-less `jr ra; nop` stub next to an unmatched function is probably its inlined helper** (w15b: the getter
+  at func_800B59E8 fixed the "registers one up" residual that w12h could only fix with implicit int; w15d:
+  `heap_or_default` from locked sound_play_menu.c is the real copy retail keeps in func_800E7A98).
+- **An inlined static's return value is a separate register value that is not optimised away** — the lever when
+  retail keeps a copy (`move a1,v0`) that hand-written copies lose (w15d).
+- **A compiled-out read can be a "holder"**: `lk = sc->link; if (lk) {}` right after a load gives an existing variable
+  a code-free extra definition that blocks v1 for the neighbours (w15a, 17 -> 5 words). The FP version needs no
+  variable: `if (sc->keys[idx].dur != 0.0f) {}` next to the block. Placement matters (same block).
+- **A local kept in an argument register is often the reused parameter** (w15a `flag`).
+- **Unexplained callee saves mean missing context**: if a caller saves more s-registers (or $f20/$f22) than its body
+  uses, an unmatched internal callee clobbers them. Put a genuine reconstruction in the group as context (w15f
+  billboard_render; the locked audio_frame_sync group did the same).
+- **Loop weights decide callee-saved registers**: a `return` inside a loop leaves blocks at weight 1, a `goto end`
+  gives weight 10 (w15h). The callee-save threshold is `clamp(blocks/4, 4, 60)` (workbench law L56).
+- **Float literal spelling splits uopt constants**: `0.5f` and `.5f` are different constants (w15e). `x = x + E`
+  and `x += E` compile with opposite commutative operand order; check the word diff, `--norm` hides it.
+- **The compiler splits long straight-line blocks on its own**; a compiled-out block end (`do {} while (0);`,
+  `if (x) {}`) moves the boundary, an unused label does not (w15d func_800A79F4).
+- **Stores to two offsets of one symbol share one `lui at` only when the symbol is defined in the unit** (w15d).
+- **uopt canonicalises compare operand order by operand kind** (plain variable vs memory load), not spelling (w15a).
+- **Group packaging**: a match proven only in the whole-program unit does not install as a bare group — the group
+  compile lacks the unit's IPA context. Add the locked callees whose conventions matter (internal float-arg callees,
+  umerge-inlined helpers) as `context` files, byte-identical copies, and extend `keep` (w15i, mode-select cluster).
+  Test `score.py group <dir>` on the builder before claiming a group lands.
+- **Re-score old drafts in the current unit**: changes since wave 12 made func_80096130's levers unnecessary (w15c).
+- **Write RESULTS.md early**: three wave-13/14 lanes lost their reports (one of them the 8.4 KB mode-select cluster)
+  when their session ended.
+- Concurrent `us.sh`/`blob_unit` runs on one tag share a stage directory and collide; serialise them.
 
 ## Permission denials
 If any tool call is denied by a permission/safety check, do NOT retry it in another form (different paths,
