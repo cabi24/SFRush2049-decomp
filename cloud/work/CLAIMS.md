@@ -25,3 +25,4 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 | static | func_80012D18, func_8001A658, func_80023E9C, func_80012730, func_8001F13C, func_800178B0, func_8001C860 | coordinator w21c | 2026-10-12 | wave 21 (identify + match) |
 | static | other remaining boot tail `func_*` (func_800268D0, func_80012D18, func_8001A658, func_80023E9C, func_80012730, func_8001F13C, func_800178B0, func_8001C860 and the rest) | open | | Astra welcome; say so here |
 | tooling | static recompilation Phase 1 (runtime, shims, overlay hook) | coordinator w21r | 2026-10-12 | on rocky |
+| ovl_b | func_803936A8 | dot lane4 | 2026-10-11 | Event consumer; two-word text-buffer offset residual from lean baseline; separate peer review before draft PR |

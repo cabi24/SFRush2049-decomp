@@ -1,0 +1,366 @@
+{
+  "inputs": {
+    "sources_sha256": {
+      "cloud/matches/ovl_b/func_803936A8.c": "1faa27f3886e9cd93e45109e9cb6c0d296ae2547f1d6efb2a8eea8e803e60ced",
+      "cloud/work/frontier/dot_runtime_b_event_consumer_20261011/verify.py": "a2c99e3716cddc323997e6db68d69af2034118be999dafc388c3925d29bfa577"
+    },
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "image": "B",
+    "target": "func_803936A8",
+    "address": "0x803936a8",
+    "size": 1164,
+    "target_words_sha256": "08cd2c09998b06e877224fa3a5a6183e9712418f83414de07b0e059e10caa28e",
+    "target_metadata_sha256": {
+      "extents.json": "e10f77db903d5a6d82a04d006cdaf5c3871ed57ce2bff738d45f500914c8202b",
+      "symbols.json": "0f9633fc7cb724c2acb129064716906d92c9ef6867359893e7130b2e8e1b897d"
+    },
+    "callback": {
+      "asset_sha256": "f06d4ad0bb7dc7aff494acddc736f1b56bc271a2292c0286879cc9189bec31c8",
+      "image_sha256": "b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd",
+      "descriptor_address": "0x80393f2c",
+      "callback_slot": "0x80393f48",
+      "descriptor_sha256": "9d5cd532aed9198d94bb3a0d471076e6baa63caecdbab054d8655da09e233a3d",
+      "setup_words_sha256": "f0c50678925cd591615c3472e91a597503155cc31aaa7e20a31b4c88822e9f66",
+      "producer_words_sha256": "6ed117381897934108773febf083f53af71131a0242e8ba4a3c9b4ad73560a38"
+    }
+  },
+  "comparison": {
+    "differing": 0,
+    "total": 291,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "compiler": "stock IDO 5.3",
+  "complete_function_bytes": 1164,
+  "text_bytes": 1168,
+  "owned_data_bytes": 0,
+  "gnu_exact_vma": "0x803936a8",
+  "gnu_linked_text_sha256": "08cd2c09998b06e877224fa3a5a6183e9712418f83414de07b0e059e10caa28e",
+  "relocations": [
+    {
+      "offset": 48,
+      "kind": 4,
+      "symbol": "render_helper"
+    },
+    {
+      "offset": 56,
+      "kind": 4,
+      "symbol": "object_create"
+    },
+    {
+      "offset": 68,
+      "kind": 4,
+      "symbol": "func_800B669C"
+    },
+    {
+      "offset": 76,
+      "kind": 5,
+      "symbol": "D_8014A108"
+    },
+    {
+      "offset": 80,
+      "kind": 6,
+      "symbol": "D_8014A108"
+    },
+    {
+      "offset": 100,
+      "kind": 5,
+      "symbol": "D_80152818"
+    },
+    {
+      "offset": 112,
+      "kind": 6,
+      "symbol": "D_80152818"
+    },
+    {
+      "offset": 104,
+      "kind": 5,
+      "symbol": "D_80151AD0"
+    },
+    {
+      "offset": 108,
+      "kind": 6,
+      "symbol": "D_80151AD0"
+    },
+    {
+      "offset": 124,
+      "kind": 5,
+      "symbol": "D_803940D0"
+    },
+    {
+      "offset": 128,
+      "kind": 6,
+      "symbol": "D_803940D0"
+    },
+    {
+      "offset": 144,
+      "kind": 5,
+      "symbol": "D_80394AF0"
+    },
+    {
+      "offset": 156,
+      "kind": 6,
+      "symbol": "D_80394AF0"
+    },
+    {
+      "offset": 164,
+      "kind": 4,
+      "symbol": "sprintf"
+    },
+    {
+      "offset": 172,
+      "kind": 4,
+      "symbol": "dispatch_handler"
+    },
+    {
+      "offset": 204,
+      "kind": 4,
+      "symbol": "state_utility"
+    },
+    {
+      "offset": 212,
+      "kind": 4,
+      "symbol": "dispatch_handler"
+    },
+    {
+      "offset": 244,
+      "kind": 4,
+      "symbol": "state_utility"
+    },
+    {
+      "offset": 280,
+      "kind": 5,
+      "symbol": "D_80151AD0"
+    },
+    {
+      "offset": 300,
+      "kind": 6,
+      "symbol": "D_80151AD0"
+    },
+    {
+      "offset": 284,
+      "kind": 5,
+      "symbol": "D_80395E70"
+    },
+    {
+      "offset": 316,
+      "kind": 6,
+      "symbol": "D_80395E70"
+    },
+    {
+      "offset": 288,
+      "kind": 5,
+      "symbol": "D_80115F28"
+    },
+    {
+      "offset": 312,
+      "kind": 6,
+      "symbol": "D_80115F28"
+    },
+    {
+      "offset": 292,
+      "kind": 5,
+      "symbol": "countdown_state"
+    },
+    {
+      "offset": 308,
+      "kind": 6,
+      "symbol": "countdown_state"
+    },
+    {
+      "offset": 376,
+      "kind": 4,
+      "symbol": "func_800F7E30"
+    },
+    {
+      "offset": 392,
+      "kind": 5,
+      "symbol": "D_80152818"
+    },
+    {
+      "offset": 396,
+      "kind": 6,
+      "symbol": "D_80152818"
+    },
+    {
+      "offset": 528,
+      "kind": 4,
+      "symbol": "dispatch_handler"
+    },
+    {
+      "offset": 552,
+      "kind": 5,
+      "symbol": "D_80394AF4"
+    },
+    {
+      "offset": 556,
+      "kind": 6,
+      "symbol": "D_80394AF4"
+    },
+    {
+      "offset": 564,
+      "kind": 4,
+      "symbol": "state_utility"
+    },
+    {
+      "offset": 616,
+      "kind": 4,
+      "symbol": "object_create"
+    },
+    {
+      "offset": 624,
+      "kind": 4,
+      "symbol": "dispatch_handler"
+    },
+    {
+      "offset": 660,
+      "kind": 4,
+      "symbol": "state_utility"
+    },
+    {
+      "offset": 668,
+      "kind": 4,
+      "symbol": "dispatch_handler"
+    },
+    {
+      "offset": 704,
+      "kind": 4,
+      "symbol": "state_utility"
+    },
+    {
+      "offset": 720,
+      "kind": 4,
+      "symbol": "dispatch_handler"
+    },
+    {
+      "offset": 744,
+      "kind": 5,
+      "symbol": "D_80394AF8"
+    },
+    {
+      "offset": 748,
+      "kind": 6,
+      "symbol": "D_80394AF8"
+    },
+    {
+      "offset": 756,
+      "kind": 4,
+      "symbol": "state_utility"
+    },
+    {
+      "offset": 768,
+      "kind": 5,
+      "symbol": "D_8014A160"
+    },
+    {
+      "offset": 804,
+      "kind": 6,
+      "symbol": "D_8014A160"
+    },
+    {
+      "offset": 848,
+      "kind": 4,
+      "symbol": "fcvt_wrapper"
+    },
+    {
+      "offset": 872,
+      "kind": 4,
+      "symbol": "object_create"
+    },
+    {
+      "offset": 880,
+      "kind": 4,
+      "symbol": "dispatch_handler"
+    },
+    {
+      "offset": 932,
+      "kind": 4,
+      "symbol": "camera_auto_follow"
+    },
+    {
+      "offset": 944,
+      "kind": 5,
+      "symbol": "D_8012E67C"
+    },
+    {
+      "offset": 956,
+      "kind": 6,
+      "symbol": "D_8012E67C"
+    },
+    {
+      "offset": 948,
+      "kind": 5,
+      "symbol": "D_801146AC"
+    },
+    {
+      "offset": 972,
+      "kind": 6,
+      "symbol": "D_801146AC"
+    },
+    {
+      "offset": 968,
+      "kind": 4,
+      "symbol": "dispatch_handler"
+    },
+    {
+      "offset": 1020,
+      "kind": 4,
+      "symbol": "camera_auto_follow"
+    },
+    {
+      "offset": 1028,
+      "kind": 5,
+      "symbol": "D_80142690"
+    },
+    {
+      "offset": 1032,
+      "kind": 6,
+      "symbol": "D_80142690"
+    },
+    {
+      "offset": 1040,
+      "kind": 5,
+      "symbol": "D_801170FC"
+    },
+    {
+      "offset": 1044,
+      "kind": 6,
+      "symbol": "D_801170FC"
+    },
+    {
+      "offset": 1068,
+      "kind": 5,
+      "symbol": "D_80395E70"
+    },
+    {
+      "offset": 1072,
+      "kind": 6,
+      "symbol": "D_80395E70"
+    },
+    {
+      "offset": 1088,
+      "kind": 4,
+      "symbol": "func_800B669C"
+    },
+    {
+      "offset": 1104,
+      "kind": 4,
+      "symbol": "render_helper"
+    }
+  ],
+  "negative_control": {
+    "differing": 2,
+    "byte_offsets": [
+      116,
+      304
+    ],
+    "frame_bytes": 144,
+    "native_buffer_offset": 112,
+    "old_buffer_offset": 96
+  },
+  "new_strict_verified_bytes": 1164,
+  "new_image_landed_bytes": 0,
+  "new_rom_verified_bytes": 0
+}
