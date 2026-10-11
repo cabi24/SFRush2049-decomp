@@ -129,9 +129,12 @@ def link_tu(obj, out, addresses, tu=None):
                 "unresolved linker symbol: " + name)
         assigns.append(f"{name} = 0x{address:08x};")
     script = out / (obj.stem + ".ld")
-    # A registered owned .bss slot links at its fixed address, as in the ROM.
-    bss = [r for r in (owned_slots.slots(tu) if tu else {}).values() if r['owner_section'] == '.bss']
-    placed = ''.join(' .bss 0x%08x (NOLOAD) : { *(.bss) }' % (r['container_vram'] + r['offset']) for r in bss)
+    # A registered owned slot (w21d .bss, w21i lib_1cf90 .rodata) links at its
+    # fixed address, as in the ROM, so section-relative references resolve there.
+    owned = (owned_slots.slots(tu) if tu else {}).values()
+    placed = ''.join(' %s 0x%08x%s : { *(%s) }' % (r['owner_section'], r['container_vram'] + r['offset'],
+                                                   ' (NOLOAD)' if r['owner_section'] == '.bss' else '',
+                                                   r['owner_section']) for r in owned)
     script.write_text("\n".join(assigns) + "\nSECTIONS { . = 0x%08x; .text : { *(.text) }%s }\n" % (base, placed))
     elf, binary = out / (obj.stem + ".elf"), out / (obj.stem + ".bin")
     checked(["mips-linux-gnu-ld", "-EB", "-T", script, "-o", elf, obj])
