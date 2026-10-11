@@ -166,3 +166,53 @@ Detail, formats and commands: `tools/recomp/README.md`; versions: `tools/recomp/
   code still calls (list in the README), or ignoring their Pfs/controller-pak callers; a decision on
   the provisional kernels (they use `jalr` into computed addresses, so their extents must be right
   for lookups to succeed at runtime).
+
+## 9. Phase 1 findings (lane w21r, 2026-10-11)
+
+Detail and commands: `tools/recomp/README.md` "Phase 1", `tools/recomp/BOOT_LOG.md`; versions and
+the N64Recomp pin decision: `tools/recomp/VERSIONS.md`.
+
+- **How far it boots (rocky, headless):** entrypoint -> `main` -> idle/game/scheduler/audio/render
+  threads -> game image inflated and loaded -> image A (front end) loaded -> front-end main loop
+  (30 gfx tasks/s, audio tasks at 60/s, 57 asset inflates, stable for 90 s). With scripted
+  START/A presses, image B (race) is loaded 23 s in and display lists grow to ~14 KB (a 3D scene);
+  stable for 120 s at 30 frames/s. Not shown: pixels. The host uses a null renderer (RT64 not
+  built: no SDL2/window on rocky); "draws" = display lists submitted and buffers swapped. Whether
+  the image-B run is a player race or an attract demo is not confirmed without pixels (no input ->
+  no image B in 90 s, which points to the race).
+- **Runtime:** N64ModernRuntime cdf5abbd (its pinned N64Recomp 81213c18 headers) links unchanged
+  with C emitted by N64Recomp ffb39cda: the two commits between them only reorder
+  `--dump-context` output. Host = `tools/recomp/runtime` (CMake subproject build, ~15 s with 20
+  jobs).
+- **The blocker was naming, not the recompiler.** N64Recomp/N64ModernRuntime replace libultra
+  by name; the static inventory misnames ~40 libultra functions (ultralib VERSION_J: swapped
+  `osSendMesg`/`osJamMesg`, `osViSetMode` = `osViSwapBuffer`, `osSetEventMesg` =
+  `osCreateViManager`, the Pfs/Motor family shifted by one, ...). `tools/recomp/identity.json`
+  renames 43 functions for the recompiler only (no inventory or coverage change); the static
+  inventory names are worth correcting in the project itself (separate decision).
+- **Overlay/game-image loading:** one `[[patches.hook]]` at `inflate_entry` entry calls
+  `load_overlays`/`unload_overlays` by stream ROM offset; the recompiled inflate itself runs
+  (the provisional kernel extents are right: image A and B inflate bit-exact, the game image
+  differs only in 7 data words the game has written by the time it is checked).
+- **Runtime gaps found in N64ModernRuntime:** no `osPiReadIo_recomp` (reimplemented name);
+  `osStopThread` on another thread is an assert/no-op (the game stops and restarts threads; a
+  re-start then corrupts the run queue); `thread_queue_remove` only removes a queue head; an idle
+  `for (;;) {}` needs `pause_self` (cooperative scheduling). All handled in the host, none
+  patched upstream.
+- **Stubbed per function (host side):** `__fixdfdi`, `__fixsfdi`, `osCauseGet`, `osPiReadIo`,
+  `osStopThread` (host C); inert: `__osSendInterrupt`, `__osCleanupThread`, `__osSetCompare`,
+  `__osSet/ResetGlobalIntMask`, `__osViSwapContext`, `__osSpDeviceBusy`, `__osSpSetStatus`,
+  `__osEPiRawReadIo/WriteIo`, `__osSiDeviceBusy`, `__osSiGetAccess/RelAccess`,
+  `__osSiRawStartDma`, `__osPackReadData`, `__osContAddressCrc`; no-pak: `__osContRamRead/Write`,
+  `__osPfsRWInode`, `__osPfsSelectBank`. Audio RSP tasks complete without microcode (silence).
+  No inert shim was reached in 120 s.
+- **Phase 2 (function replacement) needs:** (1) a build mode that compiles matched C for a
+  chosen function set on the host and links it instead of the recompiled function: N64Recomp's
+  `[patches]` `ignored` + a host `extern "C" void NAME(uint8_t*, recomp_context*)` wrapper that
+  unpacks o32 arguments from `ctx` (the `runtime_contract` + `check_contract.py` machinery
+  already enforces "every dropped name is defined"); (2) an rdram view for host-compiled game C
+  (pointers are N64 addresses; the runtime stores rdram word-swapped, so struct field access
+  needs MEM_* accessors or a byte-order-aware translation; this is the main cost); (3) a frame
+  oracle: deterministic input script (`--press`) + per-frame state hashes (rdram regions, display
+  list bytes) to compare recompiled vs replaced runs; the null renderer already sees every
+  display list; (4) optionally RT64 on a machine with a display for visual checks.

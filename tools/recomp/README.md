@@ -1,4 +1,4 @@
-# tools/recomp: static recompilation (Phase 0)
+# tools/recomp: static recompilation (Phase 0 config, Phase 1 host)
 
 Generates an [N64Recomp](https://github.com/N64Recomp/N64Recomp) configuration for Rush 2049 (US)
 from the project's committed inventories and the private ROM. Plan:
@@ -13,6 +13,9 @@ via `build/`). Committed here: the generator, its two curated inputs, the output
 | `extra_functions.json` | PROVISIONAL extents for 10 boot-segment CPU routines past the static inventory (recompiler only) |
 | `patches.json` | functions N64Recomp refuses and what the config does about each (stub / ignored / renamed / instruction patch), with reasons |
 | `check_output.py` | per-section emitted counts, recompiler-invented statics, called-but-undefined names (the shim list) |
+| `identity.json` | Phase 1: recompiler-only names for 43 static libultra functions whose inventory name is not their identity (evidence per entry) |
+| `runtime/` | Phase 1 host: CMake project linking N64Recomp's output with N64ModernRuntime, null renderer, hooks, shims, `check_contract.py` |
+| `BOOT_LOG.md` | Phase 1 commands and what each run reached |
 
 ## Commands (rocky)
 
@@ -157,3 +160,34 @@ provides these or ignores their callers (most are Pfs/controller-pak paths the r
   included); we use 50.
 - N64ModernRuntime pins N64Recomp at 81213c18, two commits behind the generator we ran (ffb39cda);
   Phase 1 should build the runtime against the same N64Recomp or confirm the emitted ABI matches.
+
+## Phase 1: the host (lane w21r, 2026-10-11)
+
+Commands: `BOOT_LOG.md`. Result: boots to the front end and, with scripted input, loads the race
+image (B) and runs at 30 frames/s for 120 s; nothing is rasterised (null renderer).
+
+- **Generator additions** (`gen_config.py`): `patches.json` `"hook"` -> `[[patches.hook]]`
+  (C call inserted at function entry or `before_vram`); `identity.json` renames static functions
+  in the symbol file only; `manifest.json` `runtime_contract` = `shims` (every name the emitted
+  code or the section table references that N64Recomp does not emit: built-in reimplemented
+  names in the run and called built-in ignored names as `NAME_recomp`, our `ignored` by name)
+  + `hooks` + `images`; `rush2049_images.h` = compressed stream -> recompiled section table.
+- **Why identity.json**: N64Recomp replaces libultra by NAME. The static inventory names ~40
+  libultra functions wrongly (ultralib VERSION_J): e.g. `osJamMesg`/`osSendMesg` are swapped,
+  `osViSetMode` is `osViSwapBuffer`, `osSetEventMesg` is `osCreateViManager`, `osSetTimerIntr`
+  is `osViSetEvent`, `osViModeNtscLan1/Lpn1` are `osSpTaskLoad/StartGo`. Without the renames
+  the host replaces the wrong functions and the real ones poke hardware registers (boot
+  segfaults in `osPiRawReadIo` in `main`). Names ending `_rx` are deliberate non-canonical
+  names for functions that must stay emitted (or be shimmed). Inventory/coverage unchanged.
+- **Hooks**: `rush_hook_inflate` at `inflate_entry` entry maps the stream ROM offset to the
+  recompiled section and calls `unload_overlays`/`load_overlays` (game image 0xB0CB10 ->
+  0x80086A50; A 0xB5C534 / B 0xB6FEC4 -> 0x8038A400, unloading whatever is there). The
+  recompiled inflate (hand-asm kernels with the provisional extents) runs and is verified: at
+  the next inflate the image in rdram is compared with the compiled one (A and B exact; game
+  image 7 data words already written). `rush_hook_park_idle` replaces the idle thread's
+  `for (;;) {}` with ultramodern's `pause_self` (cooperative scheduler).
+- **Shims** (`runtime/src/shims.cpp`): HOST `__fixdfdi`, `__fixsfdi`, `osCauseGet`,
+  `osPiReadIo_recomp` (reimplemented name the runtime lacks), `osStopThread_rx` (stopping
+  another thread; the runtime only stops the caller); INERT/NOPACK for 19 libultra internals
+  whose callers the runtime replaces (none reached in 120 s). `check_contract.py` (run by CMake)
+  fails the build if a contract name is defined neither here nor in N64ModernRuntime.
