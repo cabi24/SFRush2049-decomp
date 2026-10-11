@@ -76,7 +76,9 @@ reloc_addrs check: `all 100 reloc_addrs entries encode their ROM words`.
    cloud/work/boot_tail_promotion/context_check.py, which this lane may not edit, and calls the new
    `owned_data.section_fits`. Without it context_check refuses func_80023BDC (`.rodata:32 exceeds the owned slot
    (20)`): IDO pads the section to 16 and the build trims it. `ctx71_w20c.jsonl` was produced with the patch.
-4. lib_1a660 pair: apply `tu_patch/lib_1a660.c.diff` as a layout-neutral prep commit. It moves the ChannelState
+4. Packet verifiers (see Tests): update voice_lists, macro_stream_contracts and macro_wrapper_contracts for the
+   owned slots of lib_1a660/lib_22300 before CI on an IDO host passes.
+5. lib_1a660 pair: apply `tu_patch/lib_1a660.c.diff` as a layout-neutral prep commit. It moves the ChannelState
    typedef and `extern ChannelState D_8004F300[32];` above the func_8001B9F8 slot; alone it gives ROM matches
    (`logs/build_tupatch.log`). Then:
 ```
@@ -89,7 +91,25 @@ python3 cloud/work/boot_tail_promotion/promote_batch.py cloud/work/frontier/w20c
 ## Tests
 - `make test-fast JOBS=4` (Pi, worktree, submodules initialised with `--reference` to the main checkout):
   `1454 passed, 791 skipped` (tests/conveyor), `770 passed, 140 skipped` (tests/cloud), rc=0 (`logs/test_fast.log`).
-- ci_equiv on rocky: see the final section.
+- `CI_FAST=16 bash tools/ci_equiv.sh rocky w20c.bundle` (HEAD b8633282, IDO toolchain present):
+  `tests/conveyor: 2190 passed, 51 skipped, 4 errors` and `tests/cloud: 4 failed, 905 passed, 1 skipped`.
+  **All 8 are research-packet verifiers that assume these TUs have no allocated data.** They skip on the Pi
+  (no IDO there), which is why test-fast passes. They are coordinator-owned (cloud/work/boot_tail_promotion/**,
+  tests/cloud; outside this lane's edit rights). Same class as f873d26d:
+  - `voice_lists/verify.py:165 compare_all` -> `unexpected allocated data` (lib_1a660 now carries the owned
+    slot's passthrough companion `.rodata` 0x30). 4 setup errors in tests/conveyor (test_whole_combined_tus_...,
+    test_future_valid_promotions_keep_the_replay_usable[lib_1a660|lib_1f5b0], test_entire_replay_...; shared
+    fixture).
+  - `macro_stream_contracts/verify.py:142 exact_bytes` -> `func_80023BDC: MATCH (2 section-relative relocations
+    unverified: .rodata+0x0 at +0xa0, .rodata+0x0 at +0xa8)`: the packet scores every lib_22300 function with
+    `accepted(False)`, and the cloud scorer does not verify a function's own .rodata (the brief's NOT VERIFIED
+    case). 3 tests in tests/cloud/test_macro_stream_contracts.py.
+  - `macro_wrapper_contracts/verify.py:361` -> `allocated non-text sections changed` (lib_22300 baseline has no
+    .rodata; current/combined have the 0x14 owned table). tests/cloud/test_macro_wrapper_contracts.py.
+  Fix: admit the registered owned slots of the TU (rom_owned_data.json rows for that tu; for voice_lists, also
+  the companion's) in these three checks, and skip or relax the strict scorer verdict for an owned-slot member.
+  Then rebind the receipts (§5 test-fix class). Before the merge, decide whether to land these packet updates
+  first or to merge f113f0f1 + 4955bb5a with them.
 
 ## What generalises
 - Splat artifacts are fixed by naming in reloc_addrs, never by C. Unpaired raw immediates get a symbol
