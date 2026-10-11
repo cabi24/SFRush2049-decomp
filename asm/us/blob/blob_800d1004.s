@@ -120,6 +120,7 @@ func_800D1004:
 .section .text.func_800D11BC, "ax", @progbits
 .globl func_800D11BC
 func_800D11BC:
+    /* compiled from src/blob/func_800D11BC.c */
     .word 0x27BDFFE0
     .word 0xAFBF001C
     .word 0xAFB00018
