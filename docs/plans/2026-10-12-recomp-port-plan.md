@@ -124,3 +124,45 @@ RT64/renderer settings, input, audio, save paths, packaging. Only after Phase 3 
 2. `tools/recomp/gen_config.py` from `asm/us/*/extents.json` + `symbols.json` + the stream constants.
 3. Boot the static code and the game image; then the overlay hook.
 4. Function replacement with ten matched functions; then the differential harness on world_effect_update.
+
+## 8. Phase 0 findings (lane w20r, 2026-10-11)
+
+Detail, formats and commands: `tools/recomp/README.md`; versions: `tools/recomp/VERSIONS.md`.
+
+- **Acceptance met with committed, reasoned exceptions.** `tools/recomp/gen_config.py` (stdlib,
+  deterministic, refuses a missing/wrong-SHA-1 ROM) writes one N64Recomp symbol-file config for all
+  four populations; N64Recomp (ffb39cda) consumes it with no hand edits and exits 0 in 0.2 s on rocky.
+  Emitted: game **1216/1216**, image A **193/193**, image B **49/49**, static **578/668** + 10
+  provisional. The 90 static functions not emitted are by design: 47 on N64Recomp's
+  reimplemented list and 39 on its ignored list (libultra; matched by our canonical names), and 4
+  we ignore (`__fixdfdi`/`__fixsfdi`: `trunc.l.*` unsupported; `__osSendInterrupt`: branches into
+  another function; `osCauseGet`: mfc0 Cause). 4 more are emitted as stubs (cache / TLB ops).
+  All 41 emitted C files compile with clang 21 against the runtime's `recomp.h`.
+- **Recompiler fit (risk in §6): no adapter beyond a synthetic ROM.** N64Recomp cannot take a raw
+  image at a vram, but its symbol-file mode reads each section from `rom` offsets of one ROM file,
+  so the generator appends the inflated game image and images A/B to an unchanged copy of the ROM
+  (`build/recomp/rom/rush2049.recomp.z64`; the static side keeps ROM 0x1000). No ELF synthesis.
+- **Two images at one vram:** two *non-relocatable* sections at 0x8038A400 in the same run.
+  In-image calls bind statically; the one call from outside into both images
+  (`input_aux_handler` -> 0x8038A400) is emitted as a runtime lookup, i.e. dispatch by whatever
+  librecomp has `load_overlays`-ed. Relocatable sections would make N64Recomp refuse such calls.
+  Overlay functions carry an `ovl_a_`/`ovl_b_` name prefix.
+- **Static side: symbol-file mode, not the ELF** (one run cannot mix modes; the libultra handling is
+  by name either way).
+- **Inventory gaps the recompiler exposed** (no coverage change; recomp-only):
+  (1) hand-written codec kernels past the static `text_end` 0x800277D0 (the open BT08
+  census-boundary targets 0x800277D0, 0x800278C4, 0x80027B44, 0x8002C5E0 and their `bal`/`jalr`
+  helpers): 10 provisional extents in `tools/recomp/extra_functions.json`; they read PC with a
+  never-taken `bltzal $zero`, rewritten to `lui/ori ra` by instruction patches; (2) a game function
+  at 0x80104704 inside an 860-byte opaque run (called from `func_80105480`), which N64Recomp
+  recovered as `static_1_80104704`.
+- **One N64Recomp bug worked around:** a load into `$zero` (`hud_render` 0x800CB408) is emitted as
+  `0 = MEM_W(...)`; the generator nops such loads automatically.
+- **Phase 1 needs:** build N64ModernRuntime (+ RT64) against the same N64Recomp commit (the runtime
+  pins 81213c18); an overlay hook at the routine that inflates the D_8002B020/D_8002B024 streams that
+  calls `load_overlays(0xCA0000 or 0xCD0000, 0x8038A400, size)` (and `unload_overlays`), and the same
+  for the game image (`load_overlays(0xC00000, 0x80086A50, 647072)`) after boot inflates it;
+  host versions of `__fixdfdi`, `__fixsfdi`, `osCauseGet` and the 20 ignored libultra internals our
+  code still calls (list in the README), or ignoring their Pfs/controller-pak callers; a decision on
+  the provisional kernels (they use `jalr` into computed addresses, so their extents must be right
+  for lookups to succeed at runtime).
