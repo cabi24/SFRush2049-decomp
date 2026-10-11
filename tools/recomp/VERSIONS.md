@@ -32,4 +32,4 @@ clang 21.1.8 (RESF 21.1.8-1.el10), gcc 14.3.1 20251022, CMake 3.31.8, Ninja 1.11
 ROM `~/rush2049/recomp/rom/baserom.us.z64`, SHA-1 `3f99351d7bb61656614bdb2aa1a90cfe55d1922c`
 (`us.sha1`), copied by hand. Generated config hashes (identical on the Pi and rocky):
 `rush2049.syms.toml` sha256 `1df64b46...`, `rush2049.recomp.toml` `f432fe6d...`,
-`manifest.json` `75cac2ea...` (before the README/doc commits; regenerate to compare).
+`manifest.json` `75cac2ea...` (final run of branch w20r).
