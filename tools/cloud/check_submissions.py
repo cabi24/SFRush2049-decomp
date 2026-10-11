@@ -14,6 +14,19 @@ import sys
 REPO = Path(__file__).resolve().parents[2]
 FLAGS = re.compile(r"/\* flags: (.+?) \*/")
 RUNTIME_IMAGES = ("ovl_a", "ovl_b", "boot_tail")   # extra target sets under asm/us/
+CLOUD_IDO71 = Path("tools/cloud/ido71")            # tools/cloud/setup.sh installs IDO 7.1 here
+
+
+def boot_tail_compiler(repo, function):
+    """The compiler rom_compilers.json pins for the static segment holding
+    `function` (ido5.3 or ido7.1), from the derived layout. Fails closed: a
+    boot-tail submission whose segment cannot be found is refused."""
+    sys.path.insert(0, str(repo))
+    from tools.conveyor.pipeline import layout  # noqa: E402
+    for segment in layout.derive()["segments"]:
+        if any(f.get("name") == function for f in segment.get("functions", [])):
+            return segment.get("compiler") or "ido5.3"
+    raise ValueError(f"{function}: not in any static segment of the layout")
 
 
 def git(repo, *args):
@@ -68,6 +81,9 @@ def commands(repo, paths):
         image = PurePosixPath(name).parts[2] if len(PurePosixPath(name).parts) == 4 else None
         if image:
             job.append("--targets=" + str(repo / "asm" / "us" / image))
+        if image == "boot_tail" and boot_tail_compiler(repo, source.stem) == "ido7.1":
+            # score.py reads IDO_DIR; the Rush boot tail is IDO 7.1 (rom_compilers.json).
+            job = ["env", "IDO_DIR=" + str(repo / CLOUD_IDO71)] + job
         yield job
     for name in sorted(groups):
         directory = repo / name
@@ -85,7 +101,7 @@ def check(repo, paths):
     jobs = list(commands(repo, paths))
     failed = False
     for job in jobs:
-        print("Scoring " + job[3], flush=True)
+        print("Scoring " + job[job.index("fn") + 1 if "fn" in job else job.index("group") + 1], flush=True)
         failed |= subprocess.run(job, cwd=repo).returncode != 0
     print(f"Checked {len(jobs)} changed cloud submissions", flush=True)
     return 1 if failed else 0

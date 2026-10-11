@@ -1,5 +1,7 @@
 # Single-function near misses
 
+> **Historical (2026-09-30).** Superseded by the frontier tooling (`python3 -m tools.conveyor.pipeline.frontier`), the near-miss table in `docs/plans/2026-10-06-frontier-handoff.md` §0 and `cloud/work/CLAIMS.md`. Kept for its fixtures and scripts; do not pick work from it.
+
 Pipeline score is the historical heuristic (stack offsets ignored), not matching evidence.
 Strict words differing counts score.py's full-word differences plus nonzero words beyond
 the target extent. Unverified relocations and unresolved symbols remain visible in the

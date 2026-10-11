@@ -1,5 +1,7 @@
 # Cloud handoff v2: Lane A (IPA call groups), where it stands
 
+> **Historical (2026-09-29).** The Lane A (IPA call groups) notes from the first cloud pass. The current brief is [CloudHandoff.md](CloudHandoff.md) (rewritten 2026-10-11); the method lives in `cloud/work/frontier/WAVE_BRIEF.md`.
+
 Written 2026-09-29 at the end of the first cloud Lane A pass (branch
 `claude/lane-a-ipa-groups`). Read [CloudHandoff.md](CloudHandoff.md) first:
 it covers the project, setup, rules and how to hand work back. It is the

@@ -50,7 +50,8 @@ def test_selects_singles_and_deduplicates_changed_groups(tmp_path):
     assert jobs[1][2:] == ["group", str(tmp_path / group), "--claims"]
 
 
-def test_runtime_image_submissions_score_against_their_own_targets(tmp_path):
+def test_runtime_image_submissions_score_against_their_own_targets(tmp_path, monkeypatch):
+    monkeypatch.setattr(ci, "boot_tail_compiler", lambda repo, fn: "ido5.3")  # fixture repo has no layout
     header = "/* flags: -g0 -O2 -mips2 -G 0 -non_shared */\n"
     for image in ("ovl_a", "ovl_b", "boot_tail"):
         _write(tmp_path, f"cloud/matches/{image}/func_8038A400.c", header)
@@ -117,3 +118,21 @@ def test_real_submission_match_passes_and_wrong_global_fails(tmp_path, monkeypat
     assert mutated != path.read_text()
     path.write_text(mutated)
     assert ci.check(tmp_path, [name]) == 1
+
+
+def test_boot_tail_submission_uses_the_pinned_compiler(tmp_path, monkeypatch):
+    single = "cloud/matches/boot_tail/func_80014CF4.c"
+    _write(tmp_path, single, "/* flags: -g0 -O2 -mips2 -G 0 -non_shared */\n")
+    monkeypatch.setattr(ci, "boot_tail_compiler", lambda repo, fn: "ido7.1")
+    (job,) = list(ci.commands(tmp_path, [single]))
+    assert job[:2] == ["env", "IDO_DIR=" + str(tmp_path / "tools/cloud/ido71")]
+    assert "--targets=" + str(tmp_path / "asm/us/boot_tail") in job
+    monkeypatch.setattr(ci, "boot_tail_compiler", lambda repo, fn: "ido5.3")
+    (job,) = list(ci.commands(tmp_path, [single]))
+    assert job[0] != "env"
+
+
+def test_boot_tail_compiler_reads_the_layout():
+    from tools.cloud import check_submissions as live
+    assert live.boot_tail_compiler(live.REPO, "func_80014CF4") == "ido7.1"
+    assert live.boot_tail_compiler(live.REPO, "osYieldThread") == "ido5.3"

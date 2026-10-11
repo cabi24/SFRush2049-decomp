@@ -1,245 +1,173 @@
 # Cloud handoff: contributing to the Rush 2049 N64 decompilation
 
-> **Status banner (2026-10-11).** The numbers and work-item indexes below are from 2026-10-01 and are stale:
-> on 2026-10-11 the game code is at 972/1216 functions (310,380 B, 47.97%) and the static code at 489/668
-> (87,756 B, 54.60%); the Rush boot tail is IDO 7.1 (`tools/cloud/setup.sh` now installs it as
-> `tools/cloud/ido71`); the runtime images A/B have targets at `asm/us/ovl_{a,b}` (`score.py --targets`) but no
-> landing path yet. Read [docs/plans/2026-10-11-astra-cloud-plan.md](docs/plans/2026-10-11-astra-cloud-plan.md)
-> first: it says what lands, what does not, and the packet rules that keep integration cheap. The live frontier is
-> [docs/plans/2026-10-06-frontier-handoff.md](docs/plans/2026-10-06-frontier-handoff.md) §0; the method is
-> [cloud/work/frontier/WAVE_BRIEF.md](cloud/work/frontier/WAVE_BRIEF.md). This file is rewritten next.
-
-This file is for an agent joining with no other context, working only from
-this GitHub repository (no ROM, no LAN build farm). It says what the project
-is, what you can verify from here, and where your work helps most.
+This file is for an agent joining with no other context, working only from this GitHub repository
+(no ROM, no LAN build farm). It says what the project is, what you can verify from here, where your
+work lands, and how to hand it back so it lands quickly. Rewritten 2026-10-11; the companion plan is
+[docs/plans/2026-10-11-astra-cloud-plan.md](docs/plans/2026-10-11-astra-cloud-plan.md). Claims live in
+[cloud/work/CLAIMS.md](cloud/work/CLAIMS.md): add a line before you start on a function.
 
 ## 1. The project in one paragraph
 
-We are writing C source that compiles, with SGI's IDO compiler, to the
-byte-identical **San Francisco Rush 2049 (N64, US)** ROM. Game logic comes from
-the arcade source (`reference/repos/rushtherock/` on the maintainer's machine;
-**not** in this repo) and from decompiling the N64 assembly. The ROM has two parts:
-- **static code** (boot, libultra, libc): 23/230 functions from C;
-- the **game code**, a zlib-compressed image that inflates to
-  `0x80086A50` (647,072 bytes): **125/912 functions from C** (11.7 KB).
+We are writing C source that compiles, with SGI's IDO compiler, to the byte-identical **San Francisco
+Rush 2049 (N64, US)** ROM. Game logic comes from the arcade source (`reference/repos/rushtherock/` on the
+maintainer's machine; **not** in this repo) and from decompiling the N64 assembly. The cartridge holds
+four code populations, reported separately and never merged:
 
-Every function we "match" is spliced into the rebuilt image, and the full ROM
-must still hash SHA-1 exact. Read [CLAUDE.md](CLAUDE.md) for the shared rules.
+| Population | Targets in this repo | Compiler | 2026-10-11 |
+|---|---|---|---|
+| Static boot/library code | `asm/us/boot_tail/` (the unmatched Rush boot tail) | IDO 5.3 (libultra), **IDO 7.1** (Rush boot tail, `rom_compilers.json`) | 489/668 functions, 87,756 / 160,720 B (54.60%) |
+| Game code (zlib stream at ROM `0xB0CB10`, inflates to `0x80086A50`) | `asm/us/blob/` | IDO 5.3, `-O2`/`-O3 -mips2` | 972/1216, 310,380 / 647,072 B (47.97%) |
+| Runtime image A (stream `0xB5C534`, loads at `0x8038A400`) | `asm/us/ovl_a/` | IDO 5.3 | 193 functions, 152,952 B; landing path being built (plan workstream A) |
+| Runtime image B (stream `0xB6FEC4`, loads at `0x8038A400`) | `asm/us/ovl_b/` | IDO 5.3 | 49 functions, 38,708 B; same |
+
+Every function we "match" is spliced into its rebuilt image, and the full ROM must still hash SHA-1
+exact. Read [CLAUDE.md](CLAUDE.md) for the shared rules. The live state of the game-code frontier
+(coverage, the near-miss table with traced causes) is
+[docs/plans/2026-10-06-frontier-handoff.md](docs/plans/2026-10-06-frontier-handoff.md) §0; the matching
+method that closed most of the recent functions is
+[cloud/work/frontier/WAVE_BRIEF.md](cloud/work/frontier/WAVE_BRIEF.md) ("Wave 15", "Wave 16", "Wave 17").
 
 ## 2. What you can and cannot do from the cloud
 
-**You can:** compile C with the real compiler (IDO 5.3, static recompilation)
-and compare any game function word for word against its exact retail bytes.
-Those bytes are committed: every game-code function is a `.text.<name>` section
-of `.word`s in [asm/us/blob/](asm/us/blob/). Treat those files as read-only
-ground truth. They are generated, and the words are the ROM's.
-
-**You cannot:** build or hash the ROM (it is not in the repo), run the
-Conveyor pipeline (it needs the coordinator database on the maintainer's
-LAN), or splice into the image. The maintainers do the final
-splice + ROM SHA-1 check from your pull request. So your deliverable is
-**C source plus `tools/cloud/score.py` output showing MATCH.**
-
-### Setup (x86-64 Linux)
+**You can:** compile C with the real compilers and compare any function word for word against its
+exact retail bytes. The target words are committed (`.text.<name>` sections of `.word`s plus
+`extents.json`, `symbols.json`, `SHA256SUMS` in each population directory). Treat them as read-only
+ground truth. Pick the population with `--targets`:
 
 ```bash
-bash tools/cloud/setup.sh                 # downloads IDO 5.3 into tools/cloud/ido/ (git-ignored)
-# optional, for disassembled diffs:  sudo apt-get install -y binutils-mips-linux-gnu
-
-# one function compiled alone (the -O2 pipeline):
-python3 tools/cloud/score.py fn src/blob/sound_handles_clear.c sound_handles_clear     # -> MATCH
-# an IDO -O3 interprocedural call group:
-python3 tools/cloud/score.py group src/blob/groups/resource_slot_clear                   # -> 3x MATCH
+bash tools/cloud/setup.sh      # IDO 5.3 -> tools/cloud/ido, IDO 7.1 -> tools/cloud/ido71 (git-ignored)
+# game code (default targets):
+python3 tools/cloud/score.py fn src/blob/sound_handles_clear.c sound_handles_clear          # -> MATCH
+python3 tools/cloud/score.py group src/blob/groups/resource_slot_clear                        # -> 3x MATCH
+# runtime images:
+python3 tools/cloud/score.py fn cloud/matches/ovl_b/func_8038D1A8.c func_8038D1A8 --targets asm/us/ovl_b
+# Rush boot tail (IDO 7.1 segments 0x11050..0x26ab0; libultra segments stay 5.3):
+IDO_DIR=tools/cloud/ido71 python3 tools/cloud/score.py fn FILE func_80014CF4 --targets asm/us/boot_tail
 ```
 
-Setup also selects `.githooks` as this checkout's Git hooks directory, enabling
-the existing matched-source commit check.
+Run the first two before anything else; if they do not print MATCH, fix the setup first.
 
-Submodules (m2c decompiler, decomp-permuter) are only needed for tooling work:
-`git submodule update --init`. m2c needs our local patches applied, and
-`tools/conveyor/pipeline/autodecomp.ensure_m2c_patched()` applies them.
+**You cannot:** build or hash the ROM (not in the repo), run the Conveyor pipeline (needs the
+coordinator database on the maintainer's LAN), lock static functions (`lock add` goes through the pool),
+or splice. The coordinator does splice, lock, promote and the ROM SHA-1 check from your PR, usually
+within a day of a ready PR with a non-empty claims list, and comments on the PR with what landed or
+which gate refused and why.
 
-Run those two first. If they do not print MATCH, stop and investigate the
-setup and reported differences before trusting any other result. `score.py`
-resolves call targets and `%hi`/`%lo` symbol addresses and addends using the
-committed `asm/us/blob/symbols.json` table (with address-spelled `func_XXXXXXXX`
-and `D_XXXXXXXX` names as a fallback). Calls within a group resolve to the
-callee's target address, including calls encoded as offsets into `.text`.
-Resolved instructions must match in full, **including stack offsets and frame
-sizes**. Unknown symbols, unsupported relocations, and unpaired HI16 records
-fail verification.
+**Scorer rules you will hit.** Resolved instructions must match in full, including stack offsets and
+frame sizes. The compiled function ends at the next function symbol or the end of `.text`; words
+beyond the target length must be zero padding, otherwise `N extra words` fails (also with
+`--allow-unverified`). Local data-section relocations (`.rodata`, `.data`, `.bss`) are verified against
+the image where the words permit (`own .rodata verified at …`); what cannot be verified is listed and
+exits nonzero unless `--allow-unverified`, which never permits differing words or unresolved symbols.
+Target words and symbols are checked against `SHA256SUMS` before use; never regenerate those files.
+A whole-program-unit match (IPA, `-O3`) is proven with `score.py group` on a group directory, not with
+`fn`; a function that is EQUAL only inside a group does **not** go in `cloud/matches/`.
 
-The compiled function ends at the next function symbol or the end of `.text`.
-Words beyond the target length must be zero padding; any nonzero excess
-reports `N extra words` and fails, including with `--allow-unverified`.
-A shorter function cannot borrow instructions from its neighbor. The splice
-paths apply the same length rule to the bodies entering the image.
+**Per-TU compilers.** Static ROM TUs are compiled by the compiler `rom_compilers.json` pins for their
+segment. Anything that rebuilds a ROM TU (a research packet, a test) must take its `cc` from
+`tools.conveyor.compilers.tu_cc(tu, default_cc)`, never from `score.ido("cc")` directly.
 
-Local data-section relocations (`.rodata`, `.data`, and similar sections)
-cannot be fully checked from the repository. Only their relocation fields
-are masked, and the output lists the unverified references, for example
-`MATCH (2 section-relative relocations unverified: ...)`. This is not a plain
-`MATCH` and exits nonzero by default. `--allow-unverified` permits that partial
-comparison in either mode, but never permits unresolved symbols, relocation
-errors, or differing words. The image and ROM hash gates remain required
-before splicing a contribution.
-
-Before using target words or symbol addresses, the scorer verifies their exact
-file bytes against `asm/us/blob/SHA256SUMS`. A changed, missing, or unlisted
-region fails verification; `--allow-unverified` cannot bypass this check.
-The coordinator refreshes the manifest with `blob_tu symbols` and
-`blob_tu generate`. Cloud contributors should restore altered protected files
-from the trusted checkout instead of regenerating their hashes.
-
-The project's `.claude/settings.json` adds a PreToolUse hook that denies direct
-Edit/Write calls on `asm/us/blob/**`, `*.lock.json`, `us.sha1`, `src/blob/blob.ld`,
-and `tools/cloud/score.py`. It leaves the maintainer's generation scripts
-available. This hook covers Claude's Edit/Write tools; the manifest and F4 PR
-checks provide separate verification of the protected data.
+Submodules (m2c, decomp-permuter) are only needed for tooling work: `git submodule update --init`.
 
 ## 3. Where to contribute, in priority order
 
-### Lane A: IDO -O3 interprocedural call groups (highest value, newest)
+### Lane 1: runtime images A and B (primary; 191 KB nobody else is working)
 
-About a third of the game (354 of 912 functions) was shaped by **IDO -O3
-interprocedural register allocation (IPA)**:
-- static callees take parameters in non-ABI registers (`$t0`, `$s0`, `$f16` ...);
-- callers keep values in caller-save registers across calls to callees
-  known not to clobber them;
-- leaf functions get their temporaries squeezed into `$t6`-`$t9`.
+Targets: `asm/us/ovl_a`, `asm/us/ovl_b`; existing matches: `cloud/matches/ovl_{a,b}/` (25 singles) and
+group matches in `cloud/work/frontier/dot_runtime_a_*`. The layout/splice/ROM path for these images is
+being built now (plan workstream A); until it lands your matches are verified and queued, and they
+land as a batch when it does. Deliver exactly as for game code (§4): a single as
+`cloud/matches/ovl_a/NAME.c` or `cloud/matches/ovl_b/NAME.c` with the flags on line 1, a group as a
+group directory with `claims`. Frame-only residuals (a few words, frame off by 8–24 B) are almost always
+declared-local sets, a reused variable or float-literal spelling: see the Wave 16/17 lessons.
 
-These can only be matched by compiling the function **together with its
-callers/callees** as one whole program. We proved the method and put the first
-two groups in the ROM. Background (read in this order):
-1. [specs/010-ipa-call-groups/planning.md](specs/010-ipa-call-groups/planning.md): problem, phases, status;
-2. [research/s1-poc.md](specs/010-ipa-call-groups/research/s1-poc.md) and
-   [research/s2-s5-spikes.md](specs/010-ipa-call-groups/research/s2-s5-spikes.md): how the original was built;
-3. worked examples: [src/blob/groups/resource_slot_clear/](src/blob/groups/resource_slot_clear/)
-   (hand-written, 3 members) and [src/blob/groups/entity_flag_check/](src/blob/groups/entity_flag_check/)
-   (generated; one member plus one `context` function).
+### Lane 2: game-code near-misses with a traced cause
 
-**Work items:** [cloud/work/ipa-groups/](cloud/work/ipa-groups/INDEX.md): 40
-machine-generated groups, each `group.json` + `group.c` + `STATUS.md`. Most
-**do not compile yet** (35/40, mostly IDO type/prototype errors from the
-generated context). Tasks, in order:
-1. Make a group compile under IDO (fix prototypes, casts, `M2C_FIELD`
-   types). `score.py group` reports per-function word diffs once it builds.
-2. Get members to MATCH. Rules of the game:
-   - `group.json`: `members` are spliced when they match; `context` are
-     compiled in the unit but not spliced. Move a stubborn member to
-     `context` so the rest can land. The scorer reports context separately;
-     only members determine its exit status. `keep` is the `uld -kp` list of
-     functions that stay externally visible: roots and the `__standin_*` callers.
-   - Parameters named `ipa_t0`, `ipa_s0`, ... are the IPA register
-     parameters. Write them as ordinary C parameters; `-O3` reassigns the
-     registers itself.
-   - A `__standin_X` function exists only to keep X from being inlined; its
-     body does not matter.
-   - Some single-member groups are suspicious (a callee whose callers were not
-     found). Flag them rather than force them.
+The table in the frontier handoff §0 lists each open near-miss, its gap, the traced cause and the best
+next lever, with the best draft's path under `cloud/work/frontier/w*/`. Take one by adding a line to
+`CLAIMS.md`. func_800D816C (with func_800D91A0 at 8 rows, closing 6.4 KB) is the best-value open item
+and starts from Astra's own draft. `python3 -m tools.conveyor.pipeline.frontier show NAME` output for
+each is committed in the lane dirs when the DB is not available to you.
 
-### Lane B: single-function near misses (steady, parallel)
+Method: **trace, don't sweep.** Run the workbench `diagnose` (`python3 tools/workbench.py diagnose
+TARGET.o CANDIDATE.o --function FN`, see `docs/external/README.md`), then the forced-colour oracle and the
+colouring trace, then write the one source lever. The instrumented compilers used this week
+(`cloud/work/frontier/w16d/tools/patch_spl.py`, `w16b/tools/splitpatch.py`, `w17f/tools/prio_patch.py`,
+`w17i/boostpatch.py`, `w17a/tools/patch_lbb.py`) patch the ido-static-recomp sources, which build on x86;
+each tool's RESULTS.md gives the build steps. Mass-variant sweeps (hundreds of proposals) plateaued here
+in wave 14 and are not wanted.
 
-[cloud/work/near-miss/](cloud/work/near-miss/INDEX.md): 103 candidates ranked by
-strict word differences, retaining their historical pipeline scores (5-500).
-All 104 original candidates were rescored at their recorded `-O2`/`-O1` flags;
-`func_800C54F0` already matches and is reported separately (it is already locked).
-The ranking includes nonzero excess instructions and retains any verification
-warnings. Rebuild it on x86 with `python3 tools/cloud/rank_near_miss.py`. Each has
-`base.c`, a whole translation unit; edit only the target function (and
-prototypes it needs).
-`python3 tools/cloud/score.py fn cloud/work/near-miss/<f>/base.c <f> --flags "<flags from INDEX>"`.
+### Lane 3: Rush boot tail under IDO 7.1 (static)
 
-Also read the Snowboard Kids decomp's [DECOMPILATION_LEARNINGS.md](https://github.com/cdlewis/snowboardkids-decomp/blob/main/DECOMPILATION_LEARNINGS.md): generic IDO 5.3
-behaviour measured with an instrumented `uopt` (how registers are coloured, stack-frame arithmetic,
-which loops get unrolled). It was measured at `-O2 -mips1` and we use `-mips2`/`-O3`, so check a rule
-here before relying on it. It has no licence: link to it, do not copy it into this repo.
+`cloud/work/frontier/w17g/inv_table.md` lists the ~115 unmatched boot-tail `func_*` with sizes; they are
+Rush engine code (no public source) compiled with IDO 7.1 (`-g0 -O2 -mips2 -G 0 -non_shared`, flags per
+segment in `docs/COMPILER_SETTINGS.md`). Score with `IDO_DIR=tools/cloud/ido71 … --targets asm/us/boot_tail`.
+Deliver as `cloud/matches/boot_tail/NAME.c`; the coordinator locks (`lock add --toolkit …`) and promotes
+(`promote_batch.py`). Nine w17g sources are exact but conflict with their TU's declarations
+(`w17g/lockonly/`): resolving those against the TU is also good cloud work.
 
-**Run the workbench `diagnose` before hand-editing a near-miss.** It is vendored (CC0) at
-`third_party/n64-decomp-workbench/`; run it without installing:
-`PYTHONPATH=third_party/n64-decomp-workbench/src python3 -m decomp_workbench diagnose TARGET.o CANDIDATE.o
---function FN --objdump <mips objdump>` (or `python3 tools/workbench.py ...`). It classifies the residual
-(`schedule`, `allocation`, `frame-layout`, `phase-shift`, ...), shows the register lanes (the allocator's coloured pool
-`v0`/`a0`-`a3` versus ugen's temp ring `t6`-`t9`), and prints the next lever; `guide` prints the field guide and the
-IDO 5.3 compiler laws. The `t6`-`t9` "register rotation wall" in `hand_notes_A.md` is the temp ring being out of phase:
-see levers 14-16 (`guide temp-fifo-phase`). Its ownership labels are heuristic and measured on other games.
+### Lane 4: tooling (only with tests)
 
-What worked on the 32 hand matches of 2026-09-28/29 (details in the commit log
-from `2f2f5bc` onward):
-- **Pointer strides:** m2c byte offsets through typed pointers (`s32 *p; p += 4`
-  steps 16 bytes). Use `s8 *` arithmetic or divide by the element size.
-- **m2c spill locals** (`void *sp1C; sp1C = x;`) move the frame. Drop them, or
-  inline the value.
-- **Declaration order** decides stack spill slots; permute the declarations.
-- **Swapped `lui/addiu` pairs** before a loop: wrap the setup as
-  `do { p = &D; do { ... } while (...); } while (0);`.
-- **Unused parameters** the target does not spill: reference them in dead code
-  (`if (arg0) {}`). A `u8`/`s16` parameter shows up as `andi 0xff` / `sll`+`sra`.
-- **Varargs** wrappers: `f(a, b, ...)` with `(s8 *) &b + 4` as the `va_list`.
-- **Two-load float adds** in the wrong order: swap the operands.
-- **Ternaries and plain `for` loops** often beat m2c's `goto` shapes.
-- A function whose diff shows a register it never sets (`$t0`-`$t3`, `$s*`
-  on entry) belongs to Lane A, not here.
+`python3 -m pytest tests/conveyor tests/cloud -m "not node_required"` must pass without the LAN. Good
+items: a `--compiler` option for `score.py` (hook-protected file: patch in a PR, the coordinator applies),
+the group permuter, the stranded tiny-setter finder (`targets.stranded_head`).
 
-### Lane C: tooling (useful, needs care)
+## 4. How to hand work back (packet protocol v2)
 
-Only take these with tests (`python3 -m pytest tests/conveyor/...`; most tests
-run without the LAN):
-- **Group permuter:** mutate one member of a group while scoring the whole
-  group with `score.py`-style comparison.
-- **Unregistered tiny functions:** several 3-4 instruction setters
-  (`lui $at; jr $ra; sw $a0,%lo(D)($at)`) sit in small opaque runs between
-  functions and were never registered (see `targets.stranded_head` and commit
-  89a6a12). A finder + report is welcome.
-- **IDO -O3 emission order:** the rule that orders functions in a whole-program
-  object. Splicing does not need it; faithful source layout will.
+- **Deliverable first.** A match is a source file or a group directory the coordinator can install
+  with the existing tools, plus the exact `score.py` output in the PR description. A README,
+  semantics tests and a `verify.py` are supporting material, not the deliverable.
+  - Single: `cloud/matches/<population>/NAME.c` (`cloud/matches/NAME.c` for game code), first line
+    `/* flags: -g0 -O2 -mips2 -G 0 -non_shared */` (or the -O3 group flags), header with real semantics,
+    arcade ancestor if proven, and every shaping device disclosed (compiled-out reads, unused locals that
+    are the exact frame residual with the frame arithmetic, helper identity hypotheses). No false
+    prototypes (a void callee declared returning s32), no pad arrays, no stand-ins pinned as matches.
+  - Group: `group.json` (`members` = every function the group defines that is or becomes locked,
+    including stubs given bodies; `claims` = the strict matches; `context` = compiled but not spliced;
+    `keep`; `flags`), the `.c` files, `score.py group DIR` output **without** `--claims` showing MATCH for
+    every member and no "extra words". A group superseding a locked one keeps its name and every old
+    member byte-identical.
+- **Receipts pin inputs, not tools.** Pin your sources, the target rows you used, and your own
+  `verify.py`. Do not pin `tools/cloud/score.py`, anything under `tools/conveyor/`, lock files, the
+  `Makefile`, or `asm/**/*.s` text (each splice adds a provenance line to the asm). Tool-hash pins have
+  cost a receipt rebind on nearly every tooling change.
+- **No `git show` of commits that are not ancestors of `master`**; replays must run on current master.
+- **One test per packet, under 5 s without IDO and under 30 s with it**, using the shared conftest
+  skips (`tests/conftest.py`). Larger experiments stay in the packet directory without a test.
+- **PR shape:** one function or one group per PR, under ~30 files. Open it **ready** when `claims` is
+  non-empty; keep research with empty claims as a draft (merged in weekly batches, never blocking).
+  Branch names `dot/*`, `work/*`, `research/*` are fine.
+- Paste the scorer output in the PR; say which population; add the `CLAIMS.md` line in the same PR.
 
-## 4. How to hand work back
-
-- Work on a branch; open a PR against `master`. One PR per group or per
-  batch of single functions is fine.
-- **Single function:** put the matching whole-TU source at
-  `cloud/matches/<function>.c`, with the flags in a first-line comment
-  (`/* flags: -g0 -O2 -mips2 -G 0 -non_shared */`).
-- **Group:** update its directory under `cloud/work/ipa-groups/<id>/`
-  (`group.c`, `group.json` members/context, `STATUS.md`).
-- Paste the `score.py` output (MATCH lines) into the PR description.
-  Maintainers splice it (`blob_splice` / `blob_group`) behind the image gate and
-  the ROM SHA-1, then move it into `src/blob/`.
-
-CI runs on PRs and pushes to `master`. It strictly rescores changed single
-submissions and groups, checks the static locks, and runs repository tests.
-PRs cannot change `asm/us/blob/**` (including `symbols.json`), `*.lock.json`,
-`us.sha1`, `src/blob/blob.ld`, or locked blob sources and group inputs.
-Maintainers regenerate and verify protected files on the coordinator and
-commit them directly to `master`; push CI still runs the verification checks.
-The symbol-table exception is deliberately closed because CI lacks the private
-inputs needed to verify regeneration.
+CI runs on PRs and pushes to `master`: it strictly rescores changed `cloud/matches/**` against their
+population (`--targets`), checks the static locks and runs the repository tests with IDO 5.3 and 7.1
+installed. PRs cannot change `asm/us/**`, `*.lock.json`, `us.sha1`, `src/blob/blob.ld`, or locked
+sources and group inputs; the coordinator regenerates protected files on the LAN.
 
 ## 5. Please do not
 
-- Commit ROM data, extracted images, or compiled objects (`build/` is ignored;
-  keep it that way).
-- Edit generated files: `asm/us/blob/*.s`, `src/blob/blob.ld`,
-  `blob_matched.lock.json`, `matched.lock.json`, anything under `build/`.
-- Edit locked sources in `src/blob/*.c` or `src/blob/groups/*` that already
-  match. A change there breaks the splice lock.
-- Change `tools/m2c_patches/` or the Conveyor pipeline without tests. These run
-  unattended on the maintainer's farm.
-- Claim a match from a pipeline "score 0" alone. Stack offsets are masked
-  there; `score.py` is strict.
-- Merge the static and game-code coverage numbers; report them separately.
+- Commit ROM data, extracted images, or compiled objects (`build/` is ignored; keep it that way).
+- Edit generated or locked files: `asm/us/**`, `src/blob/blob.ld`, `*.lock.json`, `src/blob/*.c` and
+  `src/blob/groups/*` that already match, `build/`.
+- Change `tools/m2c_patches/` or the Conveyor pipeline without tests; they run unattended on the farm.
+- Claim a match from a pipeline "score 0" or a relocation-blind score alone; `score.py` is strict.
+- Merge population coverage numbers; report each separately.
+- Work on a function someone else has claimed in `cloud/work/CLAIMS.md` without saying so there.
 
-## 6. Map of the repo (for orientation)
+## 6. Map of the repo
 
 | Path | What |
 |---|---|
 | [CLAUDE.md](CLAUDE.md) | shared rules and routing |
 | [docs/README.md](docs/README.md) | documentation index |
-| [asm/us/blob/](asm/us/blob/) | game-code image as per-function `.word` sections (ground truth) |
-| [src/blob/](src/blob/) | matched game functions (one TU each) and `groups/` |
-| [tools/conveyor/](tools/conveyor/README.md) | the matching pipeline (runs on the maintainer's LAN) |
-| [tools/m2c_patches/](tools/m2c_patches/) | local fixes to m2c (decompiler), applied automatically |
-| [specs/](specs/) | feature specs 001-010 with research and decisions |
-| [cloud/work/](cloud/work/) | work items prepared for you |
+| [docs/plans/2026-10-06-frontier-handoff.md](docs/plans/2026-10-06-frontier-handoff.md) | live frontier state, near-miss table, owner rules |
+| [cloud/work/frontier/WAVE_BRIEF.md](cloud/work/frontier/WAVE_BRIEF.md) | the matching method and this month's lessons |
+| [cloud/work/CLAIMS.md](cloud/work/CLAIMS.md) | who is working on what |
+| `asm/us/blob/`, `asm/us/ovl_a/`, `asm/us/ovl_b/`, `asm/us/boot_tail/` | target words per population (ground truth) |
+| [src/blob/](src/blob/), `src/rom/` | matched game functions (one TU each, plus `groups/`); static ROM TUs |
+| [cloud/matches/](cloud/matches/) | delivered single-function matches, by population |
+| [cloud/work/frontier/](cloud/work/frontier/) | lane dirs: RESULTS.md per lane, drafts, diagnostic tools |
 | [tools/cloud/](tools/cloud/) | setup + scorer that need only this repo |
+| [tools/conveyor/](tools/conveyor/README.md) | the matching pipeline (LAN); `compilers.py` for the per-segment compiler |
+| [docs/external/README.md](docs/external/README.md) | the vendored n64-decomp-workbench (`diagnose`) and external notes |
+| `cloud/work/ipa-groups/`, `cloud/work/near-miss/` | historical (2026-09-30) work indexes, superseded by the frontier tooling; kept for their fixtures |
