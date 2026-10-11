@@ -170,6 +170,22 @@
       "sha256": "d4e31321fece0572035dbff61da4d641553c99cb09db340ed1999a568d384843",
       "passthrough_asm": "asm/us/nonmatchings/rom/lib_22300/func_80022CD4.data.s",
       "composed_source": "build/us/assets/us/data.composed.bin"
+    },
+    {
+      "owner": "func_8001C860",
+      "tu": "src/rom/lib_1cf90.c",
+      "source": "assets/us/data.bin",
+      "container_section": ".data",
+      "owner_section": ".rodata",
+      "offset": "0x6130",
+      "size": "0x4",
+      "container_vram": "0x800277d0",
+      "sha256": "38a10f59b2149a66a1427a406c1a0724fee6349dbff4df8a24d5286b2c354ecc",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_1cf90/func_8001C860.rodata.s",
+      "composed_source": "build/us/assets/us/data.composed.bin",
+      "alignment": 4,
+      "logical_extent": true,
+      "logical_kind": "constants"
     }
   ],
   "storage_blocks": [

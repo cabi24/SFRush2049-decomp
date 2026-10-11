@@ -188,6 +188,9 @@ void func_8001C7F4(unsigned int channel)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001C860.s")
+/* ROM_OWNED_RODATA_BEGIN func_8001C860 */
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1cf90/func_8001C860.rodata.s")
+/* ROM_OWNED_RODATA_END func_8001C860 */
 /* PROMOTED 2026-10-11 — func_8001CC9C
  * Source:   cloud/work/frontier/w17g/sources/func_8001CC9C.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

@@ -31,6 +31,9 @@ class OwnershipError(ValueError):
     pass
 
 
+LOGICAL_KINDS = ('table', 'constants')
+
+
 def _relative(value):
     if not isinstance(value, (str, Path)) or not re.fullmatch(r'[A-Za-z0-9_./-]+', str(value)):
         raise OwnershipError('unsafe ownership path characters')
@@ -130,6 +133,13 @@ def rom_slots(repo=REPO, *, check_source=True):
             raise OwnershipError('4-byte ownership requires an explicit logical table extent')
         if logical and (alignment != 4 or r['owner_section'] != '.rodata' or r.get('storage_owner')):
             raise OwnershipError('logical extents support only complete 4-byte readonly tables')
+        # A logical extent is either a word-relocated jump table (default) or,
+        # with logical_kind "constants", relocation-free literal words (a
+        # float constant the TU's other readonly words follow, w21i).
+        if 'logical_kind' in r and (not logical or r['logical_kind'] not in LOGICAL_KINDS):
+            raise OwnershipError('logical_kind must be "table" or "constants" on a logical extent')
+        if logical:
+            r['logical_kind'] = r.get('logical_kind', 'table')
         if not r['size'] or r['offset'] % alignment or r['size'] % alignment:
             raise OwnershipError('owned slots must occupy complete aligned sections')
         if logical and (r['container_vram'] + r['offset']) % alignment:
@@ -275,12 +285,15 @@ def _relocation_symbol(obj, relocation):
     return obj.symtab.symbol_entries[relocation.sym_index]
 
 
-def _logical_table(obj, section, size, elf):
+def _logical_table(obj, section, size, elf, kind='table'):
     """Validate a complete word-relocated readonly table before trimming its tail.
 
-    This deliberately supports the proven 4-byte table case, not arbitrary
-    lower-aligned constants. It changes no instruction, table word, relocation,
-    meaningful symbol, section index or symbol index.
+    kind "table" is the proven 4-byte jump-table case: every retained word is a
+    relocated pointer into source-built text. kind "constants" (w21i) is a
+    readonly section of literal words with no relocations at all (IDO pads a
+    lone float literal to 16 bytes; the TU's other readonly words follow it in
+    retail). It changes no instruction, table word, relocation, meaningful
+    symbol, section index or symbol index.
     """
     alignment = section.sh_addralign
     if (section.name != '.rodata' or section.sh_type != elf.SHT_PROGBITS or
@@ -292,6 +305,8 @@ def _logical_table(obj, section, size, elf):
     if any(section.data[size:]):
         raise OwnershipError('excluded section tail contains nonzero bytes')
     table_relocations = []
+    if kind == 'constants' and any(reltab.relocations for reltab in section.relocated_by):
+        raise OwnershipError('logical constants extent must carry no relocations')
     for reltab in section.relocated_by:
         for rel in reltab.relocations:
             if rel.r_offset % 4 or rel.r_offset < 0 or rel.r_offset + 4 > size:
@@ -307,7 +322,7 @@ def _logical_table(obj, section, size, elf):
             if target.name != '.text' or address % 4 or not 0 <= address < len(target.data):
                 raise OwnershipError('logical table entry points outside source-built text')
             table_relocations.append(rel.r_offset)
-    if sorted(table_relocations) != list(range(0, size, 4)):
+    if kind == 'table' and sorted(table_relocations) != list(range(0, size, 4)):
         raise OwnershipError('logical table must retain every complete relocated word once')
     descriptive = []
     for symbol in obj.symtab.symbol_entries:
@@ -391,7 +406,7 @@ def normalize_object_sections(repo, tu, object_path):
         if len(sections) != 1:
             raise OwnershipError('expected exactly one owned logical input section')
         section = sections[0]
-        descriptive = _logical_table(obj, section, row['size'], elf)
+        descriptive = _logical_table(obj, section, row['size'], elf, row['logical_kind'])
         changes.append((row, section, descriptive))
     if all(s.sh_size == r['size'] and s.sh_addralign == r['alignment']
            for r, s, _ in changes):
@@ -611,12 +626,14 @@ def companion_source(row, repo=REPO):
     word-relocated table (`_logical_table`), passthrough included, so its
     companion spells each original word as `.word OWNER + offset` into the
     owner's passthrough body (as fcvt.table.s does); every word must land in
-    that body. The linked bytes are the original ones either way."""
+    that body. A logical extent of kind "constants" has no relocations, so its
+    companion is the plain `.incbin` of the original words. The linked bytes
+    are the original ones either way."""
     if is_bss(row):
         # No ROM bytes: reserve the block so it is occupied in both states.
         return '.section .bss\n.balign 4\n.space ' + hex(row['size']) + '\n'
     head = '.section ' + row['owner_section'] + '\n.balign 4\n'
-    if not row.get('logical_extent'):
+    if not row.get('logical_extent') or row.get('logical_kind', 'table') == 'constants':
         return head + '.incbin "' + row['source'] + '", ' + hex(row['offset']) + ', ' + hex(row['size']) + '\n'
     start, size = _passthrough_extent(repo, row)
     data = (Path(repo) / row['source']).read_bytes()[row['offset']:row['offset'] + row['size']]
