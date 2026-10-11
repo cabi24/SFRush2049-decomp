@@ -156,6 +156,8 @@ rom:0x11E7C reloc:CUSTOM_CONSTANT_HI symbol:0x80000000 // was g_tlb_exception_ve
 rom:0x11EA4 reloc:CUSTOM_CONSTANT_LO symbol:0x1 // was g_tlb_exception_vector + 0x1
 rom:0x11F50 reloc:CUSTOM_CONSTANT_HI symbol:0x80000000 // was g_tlb_exception_vector
 rom:0x11F78 reloc:CUSTOM_CONSTANT_LO symbol:0x1 // was g_tlb_exception_vector + 0x1
+rom:0x11FE8 reloc:MIPS_HI16 symbol:D_800382D8 addend:0x4 // was D_800382DC
+rom:0x11FEC reloc:MIPS_LO16 symbol:D_800382D8 addend:0x4 // was D_800382DC
 
 // func_8001B9F8 (w20c, reloc_split derive vs cloud/work/frontier/w20c/sources/func_8001B9F8.c)
 rom:0x1C678 reloc:MIPS_HI16 symbol:D_8004F300 addend:0x500 // was D_8004F800

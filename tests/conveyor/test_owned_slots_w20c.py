@@ -69,3 +69,12 @@ def test_logical_companion_relocates_every_word_into_the_owner(tmp_path):
 def test_logical_companion_refuses_a_word_outside_the_owner(tmp_path, word):
     with pytest.raises(O.OwnershipError):
         O.companion_source(_repo(tmp_path, [0x80023C90, word]), tmp_path)
+
+
+def test_section_fits_admits_ido_padding_only_for_logical_extents():
+    logical = {"size": 0x14, "logical_extent": True}
+    plain = {"size": 0x20}
+    assert O.section_fits(logical, 0x20) and O.section_fits(logical, 0x14)
+    assert not O.section_fits(logical, 0x30)
+    assert O.section_fits(plain, 0x20) and not O.section_fits(plain, 0x30)
+    assert not O.section_fits({"size": 0x14}, 0x20)

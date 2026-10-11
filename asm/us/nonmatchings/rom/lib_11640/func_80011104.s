@@ -198,8 +198,8 @@ glabel func_80011104
     /* 11FDC 800113DC 0320F809 */  jalr       $t9
     /* 11FE0 800113E0 00002825 */   or        $a1, $zero, $zero
     /* 11FE4 800113E4 3C038004 */  lui        $v1, %hi(D_800382E0)
-    /* 11FE8 800113E8 3C018004 */  lui        $at, %hi(D_800382DC)
-    /* 11FEC 800113EC AC2282DC */  sw         $v0, %lo(D_800382DC)($at)
+    /* 11FE8 800113E8 3C018004 */  lui        $at, %hi(D_800382D8 + 0x4)
+    /* 11FEC 800113EC AC2282DC */  sw         $v0, %lo(D_800382D8 + 0x4)($at)
     /* 11FF0 800113F0 246382E0 */  addiu      $v1, $v1, %lo(D_800382E0)
     /* 11FF4 800113F4 A4600002 */  sh         $zero, 0x2($v1)
     /* 11FF8 800113F8 A4600000 */  sh         $zero, 0x0($v1)

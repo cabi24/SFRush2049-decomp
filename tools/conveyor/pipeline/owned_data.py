@@ -460,6 +460,17 @@ def strip_companion(text, owner, repo=REPO, tu=None):
     return text.replace(block, '', 1)
 
 
+def section_fits(row, size):
+    """True iff a compiled object's owned section of `size` bytes fills `row`'s
+    slot. IDO pads a section to its 16-byte alignment; a logical-extent row
+    (4-byte table) is trimmed back to its size at build time
+    (normalize_object_sections, which also refuses a nonzero tail), so its
+    padded size is admitted too."""
+    if size <= row['size']:
+        return True
+    return bool(row.get('logical_extent')) and size <= (row['size'] + 15) // 16 * 16
+
+
 def slot_members(row):
     """Functions whose promotion together hands the slot to compiled C."""
     return [row['owner']] + list(row.get('co_owners', []))
