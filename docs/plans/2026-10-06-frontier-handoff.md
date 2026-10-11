@@ -202,6 +202,12 @@ items: func_80021548 and func_80023BDC need owned jump-table slots (entries draf
 relocation/target cases (`w19a/relocname/`, `ownrodata/`); the near-misses in w19a/w19b RESULTS (scheduling-only
 residuals under 7.1 remain unexplained).
 
+**Test loop (w19d, 2026-10-12):** `make test-fast JOBS=N` runs both suites under pytest-xdist (strace-derived
+concurrency groups in `tests/conftest.py`; the one real hazard is IDO -O3 writing `<source>.u` into the cwd) and
+`tools/ci_equiv.sh HOST BUNDLE` (with `CI_FAST=N`) replaces the hand-typed bundle/fetch/run sequence; rocky is set
+up as a second CI-equivalent host (both suites in ~2 min; watchman2's ciclone6 remains the fallback). Pi: 3 min
+instead of 6–7; rocky: 31 s + 83 s instead of 2:15 + 6:15. GitHub CI is unchanged (xdist there is an owner call).
+
 **Astra / cloud:** see [2026-10-11-astra-cloud-plan.md](2026-10-11-astra-cloud-plan.md). Workstream A landed the
 same night (w18a layout/splice/lock, w18b exact stream round-trip + compose, w18e merge): runtime images A/B are a
 third and fourth population with their own gates (`ovl_layout build` image gate, `ovl_splice check`,
