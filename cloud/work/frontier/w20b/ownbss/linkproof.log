@@ -1,0 +1,5 @@
+orig: .text 6816 B, sha1 b777c6b207fde39a3d2391534a2d85737343437d; .bss none
+spl: .text 6816 B, sha1 b777c6b207fde39a3d2391534a2d85737343437d; .bss .bss              NOBITS          80042670 012670 000030
+rom:  .text 6816 B, sha1 b777c6b207fde39a3d2391534a2d85737343437d
+linked orig == linked spliced: IDENTICAL
+linked spliced == baserom 0x16320..0x17DC0: IDENTICAL

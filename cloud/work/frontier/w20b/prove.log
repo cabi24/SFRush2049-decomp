@@ -1,0 +1,33 @@
+func_8001536C ok 
+func_800154A4 ok 
+func_800177EC ok 
+func_80017824 ok 
+func_8001DA74 ok 
+func_8001DC08 ok 
+func_80022160 ok 
+func_800230B0 ok 
+== func_8001536C (target func_8001536C) src=lane/sources/func_8001536C.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (91 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmpe7oetiej/tu.c, line 181: redeclaration of 'ResourceOffsets'; previous declaration at line 31 in file '/tmp/tmpe7oetiej/tu.c' | cfe: Error: /tmp/tmpe7oetiej/tu.c, l 
+== func_800154A4 (target func_800154A4) src=lane/sources/func_800154A4.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (63 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (63 rows) 
+== func_800177EC (target func_800177EC) src=lane/sources/func_800177EC.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (16 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (16 rows) 
+== func_80017824 (target func_80017824) src=lane/sources/func_80017824.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (16 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (16 rows) 
+== func_8001DA74 (target func_8001DA74) src=lane/sources/func_8001DA74.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (116 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmplstdinlc/tu.c, line 292: redeclaration of 'SmallNode'; previous declaration at line 280 in file '/tmp/tmplstdinlc/tu.c' | cfe: Error: /tmp/tmplstdinlc/tu.c, line 2 
+== func_8001DC08 (target func_8001DC08) src=lane/sources/func_8001DC08.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (130 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmpv347zcdb/tu.c, line 292: redeclaration of 'SmallNode'; previous declaration at line 280 in file '/tmp/tmpv347zcdb/tu.c' | cfe: Error: /tmp/tmpv347zcdb/tu.c, line 2 
+== func_80022160 (target func_80022160) src=lane/sources/func_80022160.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (117 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmpv6hq5rnr/tu.c, line 206: redeclaration of 'VoiceState'; previous declaration at line 14 in file '/tmp/tmpv6hq5rnr/tu.c' | cfe: Error: /tmp/tmpv6hq5rnr/tu.c, line 2 
+== func_800230B0 (target func_800230B0) src=lane/sources/func_800230B0.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (56 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmpa4bb266v/tu.c, line 411: redeclaration of 'MacroCommand'; previous declaration at line 63 in file '/tmp/tmpa4bb266v/tu.c' | cfe: Error: /tmp/tmpa4bb266v/tu.c, line 
+== TU edits alone
+lib_15a10: IDENTICAL (578 lines: .text words+relocs, data sections)
+== all sources spliced (into the edited TUs)
+lib_15a10: IDENTICAL (578 lines: .text words+relocs, data sections)
+lib_17dc0: IDENTICAL (2598 lines: .text words+relocs, data sections)
+lib_1cf90: IDENTICAL (1876 lines: .text words+relocs, data sections)
+lib_22300: IDENTICAL (3382 lines: .text words+relocs, data sections)
+== ownbss trio (static .bss; context_check refuses .bss, manual splice)
+func_80016E68 LOCK: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(11 rows) (44 rows)
+func_80016EE0 LOCK: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(11 rows) (44 rows)
+func_80016F80 LOCK: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(11 rows) (52 rows)
+lib_16320: DIFFERENT (26 changed lines of 1701)
+orig: .text 6816 B, sha1 b777c6b207fde39a3d2391534a2d85737343437d; .bss none
+spl: .text 6816 B, sha1 b777c6b207fde39a3d2391534a2d85737343437d; .bss .bss              NOBITS          80042670 012670 000030
+rom:  .text 6816 B, sha1 b777c6b207fde39a3d2391534a2d85737343437d
+linked orig == linked spliced: IDENTICAL
+linked spliced == baserom 0x16320..0x17DC0: IDENTICAL

@@ -1,4 +1,76 @@
 {
+  "cloud/work/frontier/w20b/sources/func_8001536C.c:func_8001536C": {
+    "body_sha256": "e94c3a8fc15765ba4518b9bd2effa7501f4c6020aa6981d7ca41e1db7b861017",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001536C",
+    "toolkit_sha": "4586d230749de1bc8a64add52ae53db0ffde18a1eee76c8a73f3791fd98e2557",
+    "verified": "score0",
+    "verified_at": "2026-10-11"
+  },
+  "cloud/work/frontier/w20b/sources/func_800154A4.c:func_800154A4": {
+    "body_sha256": "2a5bb36c117cbe9bdc29e6eb750d3c56d0ebfc8f9e2e3628b813d5f3db38256c",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_800154A4",
+    "toolkit_sha": "4586d230749de1bc8a64add52ae53db0ffde18a1eee76c8a73f3791fd98e2557",
+    "verified": "score0",
+    "verified_at": "2026-10-11"
+  },
+  "cloud/work/frontier/w20b/sources/func_800177EC.c:func_800177EC": {
+    "body_sha256": "7542fa0678aed8c6d896f22ea5b79fab32af6ab43efb078f3a132ab433742f5a",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_800177EC",
+    "toolkit_sha": "4586d230749de1bc8a64add52ae53db0ffde18a1eee76c8a73f3791fd98e2557",
+    "verified": "score0",
+    "verified_at": "2026-10-11"
+  },
+  "cloud/work/frontier/w20b/sources/func_80017824.c:func_80017824": {
+    "body_sha256": "32ab45c0adffaac1f5ca9ebe0aba5d8ad9302612aa2922268041ecc25c635346",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80017824",
+    "toolkit_sha": "4586d230749de1bc8a64add52ae53db0ffde18a1eee76c8a73f3791fd98e2557",
+    "verified": "score0",
+    "verified_at": "2026-10-11"
+  },
+  "cloud/work/frontier/w20b/sources/func_8001DA74.c:func_8001DA74": {
+    "body_sha256": "000421c466b86e9170e74a132af172db36938b33d668172ef673ff0c046c1ddf",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001DA74",
+    "toolkit_sha": "4586d230749de1bc8a64add52ae53db0ffde18a1eee76c8a73f3791fd98e2557",
+    "verified": "score0",
+    "verified_at": "2026-10-11"
+  },
+  "cloud/work/frontier/w20b/sources/func_8001DC08.c:func_8001DC08": {
+    "body_sha256": "e12eae4233f71a3f785cf39b02fe721acd774726a5a9664add45597079998606",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001DC08",
+    "toolkit_sha": "4586d230749de1bc8a64add52ae53db0ffde18a1eee76c8a73f3791fd98e2557",
+    "verified": "score0",
+    "verified_at": "2026-10-11"
+  },
+  "cloud/work/frontier/w20b/sources/func_80022160.c:func_80022160": {
+    "body_sha256": "7346bfea343d64bc69427e37669ff36e4258234218a17673bd392e15739c5c72",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80022160",
+    "toolkit_sha": "4586d230749de1bc8a64add52ae53db0ffde18a1eee76c8a73f3791fd98e2557",
+    "verified": "score0",
+    "verified_at": "2026-10-11"
+  },
+  "cloud/work/frontier/w20b/sources/func_800230B0.c:func_800230B0": {
+    "body_sha256": "ae6a30e7adb1e9f70a062e29acd2b253e0c4b1210ec34e1ad756f1b46a37fe20",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_800230B0",
+    "toolkit_sha": "4586d230749de1bc8a64add52ae53db0ffde18a1eee76c8a73f3791fd98e2557",
+    "verified": "score0",
+    "verified_at": "2026-10-11"
+  },
   "cloud/work/frontier/w20c/sources/func_8001B9F8.c:func_8001B9F8": {
     "body_sha256": "ee8c90ad5d925d74abb4c290cd7843c8754d2e71c5fb895ebec155821e1a98ac",
     "compiler": "ido7.1",

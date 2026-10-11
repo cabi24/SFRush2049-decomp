@@ -10,7 +10,7 @@
  * Evidence: lock:cloud/matches/boot_tail/func_80014E10.c:func_80014E10 (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-extern unsigned short D_80038390;
+extern short D_80038390;
 void func_80014E10(void)
 {
     D_80038390 = 0;
