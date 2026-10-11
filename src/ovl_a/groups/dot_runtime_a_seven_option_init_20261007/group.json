@@ -1,0 +1,18 @@
+{
+ "files": [
+  "group.c"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "keep": [
+  "func_80399D10"
+ ],
+ "members": [
+  "func_803998C0"
+ ],
+ "context": [
+  "func_80399394",
+  "func_803993EC",
+  "func_80399D10"
+ ],
+ "provenance": "installed from cloud/work/frontier/dot_runtime_a_seven_option_init_20261007"
+}
