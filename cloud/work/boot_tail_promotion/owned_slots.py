@@ -13,16 +13,19 @@ the registered slots and nothing else:
   for `tu`, fit it (`owned_data.section_fits`: a logical-extent table may carry
   IDO's 16-byte alignment padding, which must be zero and unrelocated), and,
   relocated to its slot address, hash to the registry's original-byte SHA-256.
-- `relocate(obj, tu, words, start, end)`: score.relocate, then every
-  section-relative HI16/LO16 that the scorer left unverified must resolve
-  inside such a slot (addend within the slot's extent); it is then applied at
-  the slot's address, so callers compare the full relocated words. Anything
-  else stays masked/unverified and the caller fails closed.
+- `relocate(obj, tu, words, start, end)`: score.relocate, then every HI16/LO16
+  the scorer left unverified (section-relative, from compiled C) or unresolved
+  (the slot's split label `jtbl_<ADDR>_main`, from the TU's untouched
+  passthrough assembly) must resolve inside such a slot (addend within the
+  slot's extent); it is then applied at the slot's address, so callers compare
+  the full relocated words. Anything else stays masked/unverified/unresolved
+  and the caller fails closed.
 
 The registry is read with check_source=False (no extracted assets on CI); the
 slot content is proven by the registry hash instead.
 """
 import hashlib
+import re
 import struct
 import sys
 from pathlib import Path
@@ -143,18 +146,63 @@ def allocated_sections(obj, tu, addresses=None):
     return out
 
 
+LABEL = re.compile(r'jtbl_([0-9A-Fa-f]{8})(?:_main)?')
+
+
+def _slot_target(registered, sym, text, addend):
+    """The slot address a .text relocation names, or None.
+
+    Two spellings reach a registered slot: compiled C addresses its own owned
+    section (section symbol + offset); the TU's untouched passthrough assembly
+    still names the slot's split label (undefined `jtbl_<ADDR>_main`, ADDR the
+    slot's start). Either must land inside the slot's extent."""
+    if sym['type'] == 3 and sym['section'] != text:
+        row = registered.get(sym['name'])
+        if row is not None and 0 <= addend < row['size']:
+            return row['container_vram'] + row['offset'] + addend, row
+        return None, None
+    match = LABEL.fullmatch(sym['name'])
+    if sym['section'] != 0 or not match:
+        return None, None
+    for row in registered.values():
+        base = row['container_vram'] + row['offset']
+        if int(match.group(1), 16) == base and 0 <= addend < row['size']:
+            return base + addend, row
+    return None, None
+
+
 def relocate(obj, tu, words, start, end, addresses=None):
-    """score.relocate, with section-relative references into a registered
-    slot of `tu` applied at the slot's address. Returns score.relocate's tuple
-    plus the list of resolved references."""
+    """score.relocate, then every reference the scorer left masked/unverified
+    or unresolved that resolves inside a registered slot of `tu` is applied at
+    the slot's address and dropped from those lists. Anything else stays and
+    the caller fails closed. Returns score.relocate's tuple plus the resolved
+    references."""
     addresses = score.image_symbols() if addresses is None else addresses
     got, masks, unresolved, unverified, errors = score.relocate(obj, words, start, end, addresses)
-    if not unverified:
+    if not (unverified or unresolved):
         return got, masks, unresolved, unverified, errors, []
     registered = slots(tu)
     data, secs = score._elf(obj)
     text = score._text_index(secs)
-    resolved, sites = [], set()
+    masks, unresolved, unverified = dict(masks), list(unresolved), list(unverified)
+    resolved = []
+
+    def apply(offset, rtype, sym, addend, value, row):
+        detail = '%s%+#x at +0x%x' % (sym['name'] or '<unnamed>', addend, offset - start)
+        if detail in unverified:
+            unverified.remove(detail)
+            masks.pop(offset, None)
+        elif detail in unresolved:
+            unresolved.remove(detail)
+        else:
+            return
+        insn = words[offset // 4]
+        if rtype == R_MIPS_HI16:
+            got[offset // 4] = (insn & 0xFFFF0000) | (((value + 0x8000) >> 16) & 0xFFFF)
+        else:
+            got[offset // 4] = (insn & 0xFFFF0000) | (value & 0xFFFF)
+        resolved.append('%s -> 0x%08X (slot %s)' % (detail, value, row['owner']))
+
     for rel in secs:
         if rel['type'] != SHT_REL or rel['info'] != text:
             continue
@@ -163,44 +211,35 @@ def relocate(obj, tu, words, start, end, addresses=None):
         for k in range(rel['size'] // 8):
             offset, info = struct.unpack_from('>II', data, rel['off'] + 8 * k)
             index, rtype = info >> 8, info & 0xFF
-            if not start <= offset < end:
+            if not start <= offset < end or index >= len(symbols):
                 continue
-            sym = symbols[index]
             if rtype == R_MIPS_HI16:
                 pending.append((offset, index, words[offset // 4] & 0xFFFF))
                 continue
             if rtype != R_MIPS_LO16:
                 continue
+            sym = symbols[index]
             lo = words[offset // 4] & 0xFFFF
             lo = lo - 0x10000 if lo & 0x8000 else lo
             his = [h for h in pending if h[1] == index]
             pending = [h for h in pending if h[1] != index]
-            if sym['type'] != 3 or sym['section'] == text:
-                continue
             addend = ((his[0][2] << 16) if his else 0) + lo
-            row = registered.get(sym['name'])
-            if row is None or not 0 <= addend < row['size'] or not his:
-                continue          # stays masked and unverified: caller fails
-            value = row['container_vram'] + row['offset'] + addend
-            for hi_offset, _, _ in his:
-                got[hi_offset // 4] = (words[hi_offset // 4] & 0xFFFF0000) | (((value + 0x8000) >> 16) & 0xFFFF)
-                sites.add(hi_offset)
-            got[offset // 4] = (words[offset // 4] & 0xFFFF0000) | (value & 0xFFFF)
-            sites.add(offset)
-            resolved.append('%s+%#x at +0x%x -> 0x%08X (slot %s)'
-                            % (sym['name'], addend, offset - start, value, row['owner']))
-    if set(masks) == sites:
-        masks, unverified = {}, []
+            value, row = _slot_target(registered, sym, text, addend)
+            if value is None:
+                continue
+            for hi_offset, _, hi in his:
+                apply(hi_offset, R_MIPS_HI16, sym, (hi << 16) + lo, value, row)
+            apply(offset, R_MIPS_LO16, sym, addend, value, row)
     return got, masks, unresolved, unverified, errors, resolved
 
 
 def accepted(result, obj, tu, fn, start=None):
-    """Strict acceptance: the scorer's verdict, except that unverified
-    references are allowed only if every one resolves inside a registered slot
-    and the full relocated words then equal the target."""
+    """Strict acceptance: the scorer's verdict, or, when the only obstacles
+    are references into a registered slot, the full relocated words (those
+    references applied at the slot address, nothing masked) equal the target."""
     if result.accepted(False):
         return True
-    if not result.accepted(True):
+    if result.errors or result.extra_words:
         return False
     want = score.targets()[fn]
     start = score.symbols(obj)[fn] if start is None else start
