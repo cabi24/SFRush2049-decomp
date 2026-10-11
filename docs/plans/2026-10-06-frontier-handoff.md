@@ -254,6 +254,21 @@ C (packet protocol v2) is in the brief for Astra to adopt.
 6. Astra: brief is `CloudHandoff.md` (rewritten 2026-10-11); protocol v2 adopted in #309/#310 (both merged
    2026-10-11); claims in `cloud/work/CLAIMS.md`. Integrate ready PRs within a day; comment the result.
 
+**Wave 20 outcome (2026-10-12, master `9ee4f494`):** static 550 → 568/668 (111,748 B, 69.53%): w20a 2 (func_8001824C,
+func_80017D38), w20b 8 (lib_15a10/17dc0/1cf90/22300; line layout decides 7.1 as1 scheduling; function-local statics
+for lib_16320), w20c 7 (reloc_addrs fixes for splat mis-pairings via `reloc_split derive`; owned jump-table .rodata
+slots incl. a co-owned pair in lib_1a660; `owned_data.section_fits`), PR #314's func_8001F954 promoted from a
+TU-spelled copy. Game +1 (func_800D11BC, w20f). Overlay A 42 → 48 (Astra #315/#316/#318; `ovl_splice group --claims`
+and the supersede guard). Recomp Phase 0 landed (`tools/recomp/`, plan §8): N64Recomp emits C for every game/overlay
+function and 578 static ones from a synthetic ROM with the inflated images appended. Packet verifiers now accept
+registered owned slots through `cloud/work/boot_tail_promotion/owned_slots.py` (w20p). Near-misses moved without
+landing: entity_spawn_init 61 → 7 words (empty-block tie lever, w20g), engine_sound_sync 107 → 14 rows (group with
+audio_effect_setup), func_800D6914 3 rows (provisional), entity_render_setup 20 rows (data-alignment decision: define
+D_8011AD90 at a 16-byte section offset, w20h), audio_fade_control unit 6/8 (w20f). Open static: w20b `ownbss/` trio
+needs an owned .bss block for lib_16320; w20a scheduling-only residuals need a 7.1 trace (`cc -S` is the best proxy).
+Wave 21 candidates: `CLAIMS.md` open rows; recomp Phase 1 on rocky (runtime pinned to N64Recomp 81213c18; overlay
+load hook; ~20 libultra internals to shim).
+
 **For the next coordinating session.** This covers where the frontier matching effort stands, how a wave is run end to end, what the owner has decided, and every open item. Read it with `CLAUDE.md`, `cloud/work/frontier/WAVE_BRIEF.md` (the brief every lane agent reads) and `docs/plans/2026-10-04-frontier-plan.md` (the original method).
 
 ## 1. Where things stand (master `4d81f8dd`, CI green)
