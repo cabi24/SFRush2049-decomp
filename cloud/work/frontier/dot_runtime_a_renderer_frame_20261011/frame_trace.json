@@ -1,0 +1,88 @@
+{
+  "with_slots": {
+    "inline_log": [
+      "func_803A6F2C",
+      "  func_803A7180",
+      "  func_803A7620",
+      "  func_803A7918"
+    ],
+    "procedures": {
+      "func_803A6F2C": {
+        "external": 0,
+        "memory_areas": {
+          "T": 16,
+          "P": 4,
+          "M": 296
+        }
+      },
+      "func_803A7180": {
+        "external": 0,
+        "memory_areas": {
+          "T": 28,
+          "P": 4,
+          "M": 148
+        }
+      },
+      "func_803A7620": {
+        "external": 0,
+        "memory_areas": {
+          "T": 16,
+          "P": 4,
+          "M": 116
+        }
+      },
+      "func_803A7918": {
+        "external": 1,
+        "memory_areas": {
+          "T": 28,
+          "P": 4,
+          "M": 528
+        }
+      }
+    },
+    "whole_object_diagnostic_identical": true
+  },
+  "without_slots": {
+    "inline_log": [
+      "func_803A6F2C",
+      "  func_803A7180",
+      "  func_803A7620",
+      "  func_803A7918"
+    ],
+    "procedures": {
+      "func_803A6F2C": {
+        "external": 0,
+        "memory_areas": {
+          "T": 16,
+          "P": 4,
+          "M": 288
+        }
+      },
+      "func_803A7180": {
+        "external": 0,
+        "memory_areas": {
+          "T": 28,
+          "P": 4,
+          "M": 148
+        }
+      },
+      "func_803A7620": {
+        "external": 0,
+        "memory_areas": {
+          "T": 16,
+          "P": 4,
+          "M": 100
+        }
+      },
+      "func_803A7918": {
+        "external": 1,
+        "memory_areas": {
+          "T": 28,
+          "P": 4,
+          "M": 528
+        }
+      }
+    },
+    "whole_object_diagnostic_identical": true
+  }
+}

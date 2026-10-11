@@ -13,6 +13,7 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 | game | func_800D816C (+ func_800D91A0 cluster) | Astra | 2026-10-11 | Astra's draft is the base; coordinator's w17e notes in `cloud/work/frontier/w17e/RESULTS.md` |
 | ovl_a | 8038F648, 80394058, 8039D05C, 803A6F2C, 803A7180, 803A7620, 803A7918 | Astra | 2026-10-11 | PR #311 near-misses (frame-only residuals) |
 | ovl_a / ovl_b | everything else in `asm/us/ovl_*` | Astra (default) | 2026-10-11 | coordinator lanes do not take overlay functions unless listed here |
+| ovl_a | 803A6F2C, 803A7620 | Astra | 2026-10-11 | PR #316: strict MATCH, 1,356 B; draft. Supersedes these functions’ PR #311 near-miss reservation above; coordinator splicing pending. |
 | game | camera_play_script, entity_spawn_init, entity_render_setup, audio_frame_update, engine_sound_sync, func_800D6914, entity_process_main, func_8010FBE0 | coordinator (next wave) | 2026-10-11 | handoff §0 near-miss table; Astra welcome to take any of these: say so here first |
 | static | boot tail `func_*` >= 400 B from `w17g/inv_table.md` | coordinator lane w19a | 2026-10-12 | |
 | static | w18c not-matched list (`w18c/RESULTS.md`) | coordinator lane w19b | 2026-10-12 | |
