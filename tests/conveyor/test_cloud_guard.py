@@ -115,3 +115,20 @@ def test_missing_base_lock_fails_closed(repository, monkeypatch, capsys):
     monkeypatch.setattr(sys, "argv", ["guard_paths", "--base", base])
     assert guard.main() == 1
     assert "protected-path check failed" in capsys.readouterr().err
+
+
+def test_locked_runtime_image_sources_are_protected(repository):
+    repo, _ = repository
+    _write(repo, "ovl_matched.lock.json", json.dumps({
+        "a": {"func_8038F454": {"source": "src/ovl_a/func_8038F454.c"},
+              "func_8039B00C": {"source": "src/ovl_a/groups/g/group.json", "group": "g"}},
+        "b": {"func_8038A8CC": {"source": "src/ovl_b/func_8038A8CC.c"}}}))
+    _write(repo, "src/ovl_a/groups/g/group.json", json.dumps({"files": ["group.c"]}))
+    for path in ("src/ovl_a/func_8038F454.c", "src/ovl_a/groups/g/group.c",
+                 "src/ovl_b/func_8038A8CC.c", "src/ovl_b/unlocked.c"):
+        _write(repo, path, "/* locked */\n")
+    base = _commit(repo)
+    paths = ["src/ovl_a/func_8038F454.c", "src/ovl_a/groups/g/group.c",
+             "src/ovl_a/groups/g/group.json", "src/ovl_b/func_8038A8CC.c",
+             "ovl_matched.lock.json", "src/ovl_b/unlocked.c", "cloud/matches/ovl_a/new.c"]
+    assert guard.violations(repo, paths, base) == sorted(paths[:5])
