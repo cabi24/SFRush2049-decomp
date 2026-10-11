@@ -17,11 +17,11 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 | game | engine_sound_sync + audio_effect_setup group; func_800D7634 + func_800D6914 | coordinator w21h | 2026-10-12 | wave 21 |
 | game | func_8010FBE0, entity_process_main | open | | w20e RESULTS 2026-10-12 |
 | game | fresh singles/groups from `frontier next` (incl. wheel_setup_initial, ghost_race_setup) | coordinator w21g | 2026-10-12 | wave 21; audio_fade_control unit (6/8) stays open |
-| game | entity_spawn_init | coordinator w21f | 2026-10-12 | wave 21 (7 words) |
-| game | entity_render_setup (blob_unit data pad) | coordinator w21d | 2026-10-12 | wave 21 tooling; camera_play_script (27 rows) stays open |
-| static | func_80018448, func_80010E80, func_800252AC, func_80011A64, func_80011D74, func_80018634, func_80022CD4 | coordinator w21a | 2026-10-12 | wave 21 |
-| static | func_80016E68/80016EE0/80016F80 (owned .bss block for lib_16320) | coordinator w21d | 2026-10-12 | wave 21 tooling |
-| static | func_8001EF8C, func_80022874, func_8001671C, func_80019F48, func_80016998, func_8001E0E0, func_8001A270 | coordinator w21b | 2026-10-12 | wave 21 |
-| static | func_80012D18, func_8001A658, func_80023E9C, func_80012730, func_8001F13C, func_800178B0, func_8001C860 | coordinator w21c | 2026-10-12 | wave 21 (identify + match) |
+| game | entity_render_setup (12 rows with the data_align pad; causes 2 and 3 in w20h RESULTS), camera_play_script (27 rows) | open | | 2026-10-12 |
+| game | func_80090308, buffer_swap, cpak_read (unblocked by entity_spawn_init) | open | | ready since 2026-10-12 |
+| static | func_80022CD4 (owned .data slot), func_8001C860 (owned .rodata slot) | coordinator w21i | 2026-10-12 | wave 21; sources w21a/ownslot, w21c/ownrodata |
+| static | func_80018448 (325), func_80010E80 (460), func_80018634 (780) | open | | w21a RESULTS 2026-10-12: traced causes, need a 7.1 optimiser trace |
+| static | func_80022874 (code identical; its static must sit at 0x80056208 between func_80023E9C's statics), func_8001A270 (225), func_8001E0E0 (2215), func_80019F48 (2235) | open | | w21b RESULTS 2026-10-12 |
+| static | func_800178B0 (seqStartPlay, 205), func_8001F13C (voiceAllocate), func_80012D18 (per-voice command builder), func_80023E9C (macro interpreter; owned jump-table slot 0x8002D964/0x1C8), func_8001A658 | open | | w21c RESULTS 2026-10-12 has identities and best sources |
 | static | other remaining boot tail `func_*` (func_800268D0, func_80012D18, func_8001A658, func_80023E9C, func_80012730, func_8001F13C, func_800178B0, func_8001C860 and the rest) | open | | Astra welcome; say so here |
-| tooling | static recompilation Phase 1 (runtime, shims, overlay hook) | coordinator w21r | 2026-10-12 | on rocky |
+| tooling | static recompilation Phase 2 (function replacement, rdram view, frame oracle) | coordinator | 2026-10-12 | Phase 1 landed: boots to the front end and loads image B under scripted input (plan §9) |
