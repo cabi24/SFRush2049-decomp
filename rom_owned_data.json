@@ -98,6 +98,50 @@
       "sha256": "fa9ad8e381ae4fc97686921369c821ca3444d5deebd56c82faf9df71bb39ba79",
       "passthrough_asm": "asm/us/nonmatchings/rom/lib_a5f0/__fixunsdfdi.rodata.s",
       "composed_source": "build/us/assets/us/data.composed.bin"
+    },
+    {
+      "owner": "func_8001B9F8",
+      "co_owners": [
+        "func_8001BE14"
+      ],
+      "tu": "src/rom/lib_1a660.c",
+      "source": "assets/us/data.bin",
+      "container_section": ".data",
+      "owner_section": ".rodata",
+      "offset": "0x6100",
+      "size": "0x30",
+      "container_vram": "0x800277d0",
+      "sha256": "5717092dbf75146e308b6c056b77cf871b775dc6155600a2a1670013b6979abd",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_1a660/func_8001B9F8.rodata.s",
+      "composed_source": "build/us/assets/us/data.composed.bin"
+    },
+    {
+      "owner": "func_80021548",
+      "tu": "src/rom/lib_21210.c",
+      "source": "assets/us/data.bin",
+      "container_section": ".data",
+      "owner_section": ".rodata",
+      "offset": "0x6160",
+      "size": "0x20",
+      "container_vram": "0x800277d0",
+      "sha256": "626e96a8b7ad0e519ca7a368ddf278d6fd0e693412113f6e7e61eb1c7fe845de",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_21210/func_80021548.rodata.s",
+      "composed_source": "build/us/assets/us/data.composed.bin"
+    },
+    {
+      "owner": "func_80023BDC",
+      "tu": "src/rom/lib_22300.c",
+      "source": "assets/us/data.bin",
+      "container_section": ".data",
+      "owner_section": ".rodata",
+      "offset": "0x6180",
+      "size": "0x14",
+      "container_vram": "0x800277d0",
+      "sha256": "60d6380ebbc6fb7dd406b1d06ec8377611531c68045232315776de5aeb2e3e90",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_22300/func_80023BDC.rodata.s",
+      "composed_source": "build/us/assets/us/data.composed.bin",
+      "alignment": 4,
+      "logical_extent": true
     }
   ],
   "storage_blocks": [

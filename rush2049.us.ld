@@ -446,14 +446,14 @@ SECTIONS
         build/us/src/rom/lib_15a10.o(.rodata);
         build/us/src/rom/lib_16320.o(.rodata);
         build/us/src/rom/lib_17dc0.o(.rodata);
-        build/us/src/rom/lib_1a660.o(.rodata);
+        /* ROM_OWNED_SECTION_MOVED build/us/src/rom/lib_1a660.o(.rodata) */
         build/us/src/rom/lib_1cf90.o(.rodata);
         build/us/src/rom/lib_1ece0.o(.rodata);
         build/us/src/rom/lib_1f340.o(.rodata);
         build/us/src/rom/lib_1f5b0.o(.rodata);
         build/us/src/rom/lib_207b0.o(.rodata);
-        build/us/src/rom/lib_21210.o(.rodata);
-        build/us/src/rom/lib_22300.o(.rodata);
+        /* ROM_OWNED_SECTION_MOVED build/us/src/rom/lib_21210.o(.rodata) */
+        /* ROM_OWNED_SECTION_MOVED build/us/src/rom/lib_22300.o(.rodata) */
         build/us/src/rom/lib_257f0.o(.rodata);
         build/us/src/rom/lib_25bb0.o(.rodata);
         build/us/src/rom/lib_26ab0.o(.rodata);
@@ -653,6 +653,25 @@ SECTIONS
         ASSERT(rom_owned_osSpTaskLoad_full_START == 0x8002d860, "owned ROM slot address changed");
         ASSERT(rom_owned_osSpTaskLoad_full_END - rom_owned_osSpTaskLoad_full_START == 0x20, "owned ROM slot size changed");
         build/us/assets/us/data.o(.data.owned7);
+        rom_owned_func_8001B9F8_START = ABSOLUTE(.);
+        build/us/src/rom/lib_1a660.o(.rodata);
+        rom_owned_func_8001B9F8_END = ABSOLUTE(.);
+        ASSERT(rom_owned_func_8001B9F8_START == 0x8002d8d0, "owned ROM slot address changed");
+        ASSERT(rom_owned_func_8001B9F8_END - rom_owned_func_8001B9F8_START == 0x30, "owned ROM slot size changed");
+        build/us/assets/us/data.o(.data.owned8);
+        rom_owned_func_80021548_START = ABSOLUTE(.);
+        build/us/src/rom/lib_21210.o(.rodata);
+        rom_owned_func_80021548_END = ABSOLUTE(.);
+        ASSERT(rom_owned_func_80021548_START == 0x8002d930, "owned ROM slot address changed");
+        ASSERT(rom_owned_func_80021548_END - rom_owned_func_80021548_START == 0x20, "owned ROM slot size changed");
+        build/us/assets/us/data.o(.data.owned9);
+        rom_owned_func_80023BDC_START = ABSOLUTE(.);
+        build/us/src/rom/lib_22300.o(.rodata);
+        rom_owned_func_80023BDC_END = ABSOLUTE(.);
+        ASSERT(rom_owned_func_80023BDC_START == 0x8002d950, "owned ROM slot address changed");
+        ASSERT(rom_owned_func_80023BDC_END - rom_owned_func_80023BDC_START == 0x14, "owned ROM slot size changed");
+        ASSERT(rom_owned_func_80023BDC_START % 4 == 0, "owned table alignment changed");
+        build/us/assets/us/data.o(.data.owned10);
         _binary_assets_us_data_bin_end = ABSOLUTE(.);
         _binary_assets_us_data_bin_size = ABSOLUTE(_binary_assets_us_data_bin_end - _binary_assets_us_data_bin_start);
         _binary_build_us_assets_us_data_composed_bin_end = ABSOLUTE(.);

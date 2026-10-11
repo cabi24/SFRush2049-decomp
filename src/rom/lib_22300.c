@@ -1229,6 +1229,9 @@ void func_80023B50(VoiceVariables_80023AD4 *voice, u8 isController, u8 index, s1
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023BDC.s")
+/* ROM_OWNED_RODATA_BEGIN func_80023BDC */
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80023BDC.rodata.s")
+/* ROM_OWNED_RODATA_END func_80023BDC */
 /* PROMOTED 2026-10-11 — func_80023D70
  * Source:   cloud/work/frontier/w18c/sources/func_80023D70.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

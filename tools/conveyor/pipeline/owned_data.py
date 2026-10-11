@@ -472,13 +472,45 @@ def slots_for_function(repo, func, tu=None):
             and (tu is None or r['tu'] == _relative(tu))]
 
 
-def companion_source(row):
+def companion_source(row, repo=REPO):
     """The passthrough companion: the slot's original bytes in the owner's
     section. asm-processor accepts `.balign 4`; the section keeps IDO's
-    16-byte alignment, which the slot's 16-aligned offset satisfies."""
-    return ('.section ' + row['owner_section'] + '\n'
-            '.balign 4\n'
-            '.incbin "' + row['source'] + '", ' + hex(row['offset']) + ', ' + hex(row['size']) + '\n')
+    16-byte alignment, which the slot's 16-aligned offset satisfies.
+
+    A logical-extent (4-byte) table is validated on every build as a complete
+    word-relocated table (`_logical_table`), passthrough included, so its
+    companion spells each original word as `.word OWNER + offset` into the
+    owner's passthrough body (as fcvt.table.s does); every word must land in
+    that body. The linked bytes are the original ones either way."""
+    head = '.section ' + row['owner_section'] + '\n.balign 4\n'
+    if not row.get('logical_extent'):
+        return head + '.incbin "' + row['source'] + '", ' + hex(row['offset']) + ', ' + hex(row['size']) + '\n'
+    start, size = _passthrough_extent(repo, row)
+    data = (Path(repo) / row['source']).read_bytes()[row['offset']:row['offset'] + row['size']]
+    if len(data) != row['size']:
+        raise OwnershipError('owned slot exceeds source bounds')
+    lines = []
+    for i in range(0, row['size'], 4):
+        word = int.from_bytes(data[i:i + 4], 'big')
+        if not start <= word < start + size or (word - start) % 4:
+            raise OwnershipError('logical table word %#010x is not an instruction of %s' % (word, row['owner']))
+        lines.append('.word ' + row['owner'] + ' + ' + hex(word - start))
+    return head + '\n'.join(lines) + '\n'
+
+
+def _passthrough_extent(repo, row):
+    """(vram, size) of the owner's passthrough body, from its GLOBAL_ASM file
+    (`nonmatching OWNER, SIZE` and the first instruction's address comment)."""
+    path = Path(repo) / 'asm/us/nonmatchings/rom' / Path(row['tu']).stem / (row['owner'] + '.s')
+    try:
+        text = path.read_text()
+    except OSError as exc:
+        raise OwnershipError('owner has no passthrough body for its logical table') from exc
+    size = re.search(r'(?m)^\s*nonmatching\s+' + re.escape(row['owner']) + r',\s*(0x[0-9A-Fa-f]+|\d+)', text)
+    first = re.search(r'(?m)^\s*glabel\s+' + re.escape(row['owner']) + r'\s*\n\s*/\*\s*[0-9A-Fa-f]+\s+([0-9A-Fa-f]{8})\s', text)
+    if not size or not first:
+        raise OwnershipError('cannot read the owner passthrough extent')
+    return int(first.group(1), 16), int(size.group(1), 0)
 
 
 def prepare(repo, raw):
@@ -514,7 +546,8 @@ def prepare(repo, raw):
         if block in text:
             raise OwnershipError('companion block already present')
         companion = repo / row['passthrough_asm']
-        if companion.exists() and companion.read_text() != companion_source(row):
+        source = companion_source(row, repo)
+        if companion.exists() and companion.read_text() != source:
             raise OwnershipError('existing companion differs from the registry row')
     except BaseException:
         if original is None:
@@ -523,7 +556,7 @@ def prepare(repo, raw):
             path.write_text(original)
         raise
     companion.parent.mkdir(parents=True, exist_ok=True)
-    companion.write_text(companion_source(row))
+    companion.write_text(source)
     tu_path.write_text(text.replace(owner_pragma, owner_pragma + block, 1))
     return row
 

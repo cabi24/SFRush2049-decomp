@@ -471,6 +471,9 @@ u16 func_8001B968(u32 key)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001B9F8.s")
+/* ROM_OWNED_RODATA_BEGIN func_8001B9F8 */
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001B9F8.rodata.s")
+/* ROM_OWNED_RODATA_END func_8001B9F8 */
 typedef struct ChannelState {u32 word00,word04,flags08,pending0C,unknown10;u8 kind14;u8 unknown15[3];u32 value18;u8 unknown1C[12];} ChannelState;
 extern ChannelState D_8004F300[32];
 /* PROMOTED 2026-10-11 — func_8001BDB8
