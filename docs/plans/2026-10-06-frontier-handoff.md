@@ -258,7 +258,7 @@ C (packet protocol v2) is in the brief for Astra to adopt.
 func_80017D38), w20b 8 (lib_15a10/17dc0/1cf90/22300; line layout decides 7.1 as1 scheduling; function-local statics
 for lib_16320), w20c 7 (reloc_addrs fixes for splat mis-pairings via `reloc_split derive`; owned jump-table .rodata
 slots incl. a co-owned pair in lib_1a660; `owned_data.section_fits`), PR #314's func_8001F954 promoted from a
-TU-spelled copy. Game +1 (func_800D11BC, w20f). Overlay A 42 → 48 (Astra #315/#316/#318; `ovl_splice group --claims`
+TU-spelled copy. Game +2 (func_800D11BC w20f, assign_drones w20d; 975/1216, 48.26%). Overlay A 42 → 48 (Astra #315/#316/#318; `ovl_splice group --claims`
 and the supersede guard). Recomp Phase 0 landed (`tools/recomp/`, plan §8): N64Recomp emits C for every game/overlay
 function and 578 static ones from a synthetic ROM with the inflated images appended. Packet verifiers now accept
 registered owned slots through `cloud/work/boot_tail_promotion/owned_slots.py` (w20p). Near-misses moved without

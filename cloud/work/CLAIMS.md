@@ -13,7 +13,7 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 | game | func_800D816C (+ func_800D91A0 cluster) | Astra | 2026-10-11 | Astra's draft is the base; coordinator's w17e notes in `cloud/work/frontier/w17e/RESULTS.md` |
 | ovl_a | 8038F648, 803A7180, 803A7918 | Astra | 2026-10-11 | PR #311 near-misses (frame-only residuals); 80394058 (#315), 803A6F2C/803A7620 (#316) and 8039D05C/8039D494/8039ED20 (#318) landed in image A 2026-10-12 |
 | ovl_a / ovl_b | everything else in `asm/us/ovl_*` | Astra (default) | 2026-10-11 | coordinator lanes do not take overlay functions unless listed here |
-| game | world_effect_update, audio_frame_update, assign_drones, race_position_update | coordinator w20d | 2026-10-12 | wave 20 (running) |
+| game | world_effect_update (12 words, needs a block boundary), audio_frame_update (22 words), race_position_update (50 words, s4 register variable) | open | | w20d RESULTS 2026-10-12; assign_drones landed |
 | game | engine_sound_sync (14 rows, group with audio_effect_setup), func_8010FBE0, func_800D6914 (3 rows, provisional), entity_process_main | open | | w20e RESULTS 2026-10-12 |
 | game | audio_fade_control unit (6/8 EQUAL), wheel_setup_initial, ghost_race_setup | open | | w20f RESULTS 2026-10-12; func_800D11BC landed |
 | game | entity_spawn_init | open | | 7 words left (w20g RESULTS 2026-10-12: two spill slots) |
