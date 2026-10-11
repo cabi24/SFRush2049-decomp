@@ -798,10 +798,70 @@ u8 func_80022C58(MacroState_80022C58 *state, MacroCommand_80022C58 *command)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80022CD4.s")
-/* ROM_OWNED_RODATA_BEGIN func_80022CD4 */
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_80022CD4.data.s")
-/* ROM_OWNED_RODATA_END func_80022CD4 */
+/* PROMOTED 2026-10-11 — func_80022CD4
+ * Source:   cloud/work/frontier/w21a/ownslot/func_80022CD4.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w21a/ownslot/func_80022CD4.c:func_80022CD4 (score0); rom_tu.h context: cloud/work/frontier/w21i/ctx71_w21i.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct PitchState_80022CD4 { u8 unknown00[0x24]; u32 flags24; u8 unknown28[0x28]; u16 note50; u8 unknown52[0xA]; u32 sample5C; u8 unknown60[0x60]; s8 detuneC0; } PitchState_80022CD4;
+#pragma pack(0)
+typedef struct PitchCommand_80022CD4 { u32 word[2]; } PitchCommand_80022CD4;
+u8 func_80022CD4(PitchState_80022CD4 *state, PitchCommand_80022CD4 *command)
+{
+    u32 f;
+    u32 of;
+    u32 i;
+    u32 frq;
+    u32 ofrq;
+    u32 no;
+    static u16 kf[13] = {
+        4096, 4339, 4597, 4871, 5160, 5467, 5792, 6137, 6502, 6888, 7298, 7732, 8192,
+    };
+
+    frq = (command->word[0] >> 8) & 0xFFFF;
+    ofrq = state->sample5C & 0xFFFFFF;
+    if (ofrq == frq) {
+        state->note50 = (u8)(state->sample5C >> 24);
+        state->detuneC0 = 0;
+    } else if (ofrq < frq) {
+        f = (frq << 12) / ofrq;
+        of = f >> 12;
+        for (no = 0; no < 11; no++) {
+            if (of < (1 << (no + 1))) {
+                break;
+            }
+        }
+        f /= 1 << no;
+        for (i = 11; i >= 0; i--) {
+            if (f > kf[i]) {
+                break;
+            }
+        }
+        state->note50 = (u8)(state->sample5C >> 24) + no * 12 + i;
+        state->detuneC0 = ((f - kf[i]) * 100) / (kf[i + 1] - kf[i]);
+    } else {
+        f = (ofrq << 12) / frq;
+        of = f >> 12;
+        for (no = 0; no < 11; no++) {
+            if (of < (1 << (no + 1))) {
+                break;
+            }
+        }
+        f /= 1 << no;
+        for (i = 11; i >= 0; i--) {
+            if (f > kf[i]) {
+                break;
+            }
+        }
+        state->note50 = (u8)(state->sample5C >> 24) - no * 12 - i;
+        state->detuneC0 = -(s8)(((f - kf[i]) * 100) / (kf[i + 1] - kf[i]));
+    }
+    state->flags24 |= 0x100;
+    return 0;
+}
+
 /* PROMOTED 2026-10-11 — func_80022F24
  * Source:   cloud/work/frontier/w17g/sources/func_80022F24.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
