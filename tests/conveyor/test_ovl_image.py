@@ -103,3 +103,27 @@ def test_retail_streams_recompress_byte_for_byte_and_a_changed_byte_does_not(key
     image = bytearray(ovl_image.inflate(key, rom))
     image[len(image) // 3] ^= 0x01
     assert ovl_image.deflate(bytes(image)) != ovl_image.rom_stream(key, rom)
+
+
+# --- the check command ---------------------------------------------------------
+
+def test_check_without_the_rom_fails_loudly(monkeypatch, tmp_path, capsys):
+    monkeypatch.setattr(ovl_image, "BASEROM", tmp_path / "absent.z64")
+    assert ovl_image.main(["check"]) == 1
+    assert "absent" in capsys.readouterr().out
+
+
+@needs_gcc
+@needs_rom
+def test_check_cli_passes_and_catches_a_moved_pointer_and_a_corrupt_stream(tmp_path, capsys):
+    assert ovl_image.main(["check"]) == 0
+    assert "OK (both streams recompressed byte for byte)" in capsys.readouterr().out
+    rom = bytearray(ovl_image.BASEROM.read_bytes())
+    pointer = ovl_image.STREAMS["b"].pointer - ovl_image.ovl_targets.STATIC_DELTA
+    rom[pointer + 3] ^= 0x04                                  # D_8002B024 moved
+    rom[ovl_image.STREAMS["a"].rom_offset + 5000] ^= 0x10     # image A's stream damaged
+    bad = tmp_path / "bad.z64"
+    bad.write_bytes(bytes(rom))
+    assert ovl_image.main(["check", "--rom", str(bad)]) == 1
+    out = capsys.readouterr().out
+    assert "D_8002B024 holds" in out and "image A: stream SHA-256 differs" in out
