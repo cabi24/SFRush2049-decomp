@@ -158,7 +158,7 @@ endif
 # Targets
 # ============================================================
 
-.PHONY: all clean extract test progress setup help verify cc check-matched
+.PHONY: all clean extract test test-fast progress setup help verify cc check-matched
 
 all: $(TARGET)
 ifeq ($(COMPARE),1)
@@ -181,6 +181,7 @@ help:
 	@echo "  clean     - Remove build artifacts"
 	@echo "  extract   - Extract assets from baserom"
 	@echo "  test      - Verify ROM hash"
+	@echo "  test-fast - Python test suites with pytest-xdist (JOBS=N)"
 	@echo "  progress  - Show decompilation progress"
 	@echo "  setup     - Install required tools"
 	@echo "  help      - Show this message"
@@ -338,6 +339,29 @@ verify: $(TARGET)
 	    || { echo "ROM does NOT match"; exit 1; }
 
 test: verify
+
+# Python test suites in parallel (needs pytest-xdist; docs/BUILDING.md "Fast
+# test runs"). Per suite: everything not marked `serial` with -n $(JOBS)
+# (--dist loadgroup: one worker per file or tests/conftest.py concurrency
+# group), then the `serial` tests alone. Same selection and REQUIRE_TOOLCHAIN
+# behaviour as CI's plain `python3 -m pytest tests/<suite> -m 'not node_required'`.
+# pytest exit 5 (nothing selected, e.g. a suite without serial tests) is fine.
+SUITES     ?= tests/conveyor tests/cloud
+JOBS       ?= $(shell nproc 2>/dev/null || echo 4)
+PYTEST     ?= $(PYTHON)
+TEST_MARK  ?= not node_required
+TEST_ARGS  ?= -rs -p no:cacheprovider
+
+test-fast:
+	@rc=0; for suite in $(SUITES); do \
+	  echo "== $$suite: parallel (-n $(JOBS))"; \
+	  $(PYTEST) -m pytest $$suite $(TEST_ARGS) -n $(JOBS) --dist loadgroup \
+	      -m "($(TEST_MARK)) and not serial"; s=$$?; \
+	  [ $$s -eq 0 ] || [ $$s -eq 5 ] || rc=1; \
+	  echo "== $$suite: serial"; \
+	  $(PYTEST) -m pytest $$suite $(TEST_ARGS) -m "($(TEST_MARK)) and serial"; s=$$?; \
+	  [ $$s -eq 0 ] || [ $$s -eq 5 ] || rc=1; \
+	done; exit $$rc
 
 # Fast local check that no verified-matched function has drifted from its
 # pinned form (matched.lock.json), and that no runtime-image (overlay A/B)
