@@ -1,0 +1,289 @@
+/* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* camera_update body (wave 15, w15a; w12f's 17/719 -> 5/719).  Compile inside the camera cluster
+ * ../w12f/base2.c + this body (== groups/camera_aspect_ratio/group.c).  Unit: 5/719 words differ, frame 248/248.
+ * Shaping carried over from w12f (see ../w12f/RESULTS.md): camera_build_view_matrix(cam, idx) parameter order;
+ * m = D_801427C0[..] before the flag test and the empty-then `if (flags & 0x8000) {} else {setter}`; one
+ * variable per register (idx = key flags / tb->s14 / s04 counter / block_99 index; fr = do-loop t and fraction;
+ * f = dur); `cam->m[k][i] *= sv[k]`; `node->f10 -= dt`; D_80123E8C extern (0.0425f gives the same code).
+ * New in w15a (each measured; see ./RESULTS.md):
+ *  - the s50 texture index is the parameter `flag` reused (s16), not a separate local: its formal-parameter copy
+ *    relation gives it a1 as in retail.
+ *  - DISCLOSED compiled-out read: `lk = sc->link; if (lk) {}` after m's load.  No code; it puts a chain of lk
+ *    (v1 in the top region) live in m's block, so m -> a0 and tb -> a2 as in retail.
+ *  - DISCLOSED compiled-out read: `if (sc->keys[idx].dur != 0.0f) {}` after the division; no code; it gives a web
+ *    across the division block, so tt -> f14 as in retail.
+ * Residual (5 words): the two do-loop `idx + 1` / `sc->count` compares; retail loads count before forming idx + 1
+ * at both sites (temp-ring order only).  uopt canonicalises both compares with the idx side first.
+ */
+void camera_update(CamNode *node, s16 flag) {
+    Camera *cam;
+    CamCtl *ctl;
+    CamScene *sc;
+    CamScene *lk;
+    CamCtl *lc;
+    CamTbl *tb;
+    u16 m;
+    s32 idx;
+    s32 i;
+    s32 nx;
+    s8 moved;
+    f32 dv[3];
+    f32 sv[3];
+    f32 f;
+    f32 tt;
+    f32 fr;
+
+    moved = 0;
+    if (flag == 0) {
+        entity_transform_apply(node, 1);
+        return;
+    }
+    if (((state_word_a & 0x7C0000) || (state_word_a & 8)) && D_801170FC == 0) {
+        cam = node->cam;
+        ctl = cam->ctl;
+        sc = ctl->scene;
+        if (sc->flags & 0x40) {
+            if (sc->flags & 0x4000) {
+                if (!(sc->flags & 0x200)) {
+                    if (!(sc->flags & 0x400)) {
+                        if (ctl->mode & 4) {
+                            ctl->mode &= ~4;
+                            ctl->mode |= 8;
+                            ctl->t = sc->keys[ctl->idx].dur - ctl->t;
+                        }
+                        if (sc->flags & 0x100) {
+                            camera_aspect_ratio(cam);
+                        }
+                        sc->flags = sc->flags & ~0x100;
+                    }
+                } else {
+                    if (sc->flags & 0x400) {
+                        sc->flags = sc->flags & ~0x500;
+                        camera_aspect_ratio(cam);
+                    }
+                    sc->flags = sc->flags & ~0x200;
+                }
+            } else {
+                if ((sc->flags & 0x2000) && (sc->flags & 0x100000)) {
+                    if (sc->link->flags & 0x100) {
+                        sc->flags &= ~0x100000;
+                        sc->flags |= 0x200400;
+                        if (!(sc->flags & 0x8000)) {
+                            func_800C15FC(cam->slot, D_80142A7A);
+                        }
+                        camera_fov_control(cam);
+                        return;
+                    }
+                }
+                if ((sc->flags & 0x400) && (sc->flags & 0x200)) {
+                    lk = sc->link;
+                    if (lk->flags & 0x100) {
+                        lk->flags &= ~0x100;
+                    } else if (sc->flags & 0x1000) {
+                        lc = lk->cur;
+                        if (lc->mode & 8) {
+                            lc->mode &= ~8;
+                            lc->mode |= 4;
+                            lc->t = lk->keys[lc->idx].dur - lc->t;
+                        } else {
+                            lc->mode &= ~4;
+                            lc->mode |= 8;
+                            lc->t = lk->keys[lc->idx].dur - lc->t;
+                        }
+                    }
+                    sc->flags = sc->flags & ~0x700;
+                    if (sc->flags & 0x1000) {
+                        if (sc->flags & 0x200000) {
+                            sc->flags &= ~0x200000;
+                            sc->flags |= 0x100000;
+                            if (!(sc->flags & 0x8000)) {
+                                func_800C15FC(cam->slot, D_80142A78);
+                            }
+                            camera_aspect_ratio(cam);
+                        } else {
+                            sc->flags &= ~0x100000;
+                            sc->flags |= 0x200000;
+                            if (!(sc->flags & 0x8000)) {
+                                func_800C15FC(cam->slot, D_80142A7A);
+                            }
+                            camera_fov_control(cam);
+                        }
+                    } else if (sc->flags & 0x200000) {
+                        sc->flags &= ~0x200000;
+                        sc->flags |= 0x100000;
+                        if (!(sc->flags & 0x8000)) {
+                            func_800C15FC(cam->slot, D_80142A78);
+                        }
+                        camera_aspect_ratio(cam);
+                    }
+                }
+            }
+        }
+        if (!(sc->flags & 0x100)) {
+            i = 0;
+            ctl->t += *(f32 *)(u32)&D_8002EB94;
+            idx = ctl->idx;
+            do {
+                fr = ctl->t;
+                f = sc->keys[idx].dur;
+                if (f <= fr) {
+                    ctl->t = fr - f;
+                    if (ctl->mode & 8) {
+                        if (idx == 0) {
+                            if (sc->flags & 0x4000) {
+                                camera_build_view_matrix(cam, 0);
+                                i = 1;
+                                camera_fov_control(cam);
+                            } else {
+                                ctl->mode &= ~8;
+                                ctl->mode |= 4;
+                                if (sc->flags & 0x80) {
+                                    sc->flags |= 0x100;
+                                    i = 1;
+                                    ctl->t = 0.0f;
+                                }
+                            }
+                            if (sc->flags & 0x20) {
+                                listener_position_set(sc->id);
+                            }
+                        } else {
+                            ctl->idx = idx - 1;
+                        }
+                    } else if (idx + 1 == sc->count) {
+                        if (sc->flags & 0x80) {
+                            ctl->mode &= ~4;
+                            ctl->mode |= 8;
+                            ctl->idx = idx - 1;
+                        } else {
+                            ctl->idx = 0;
+                            if (sc->flags & 0x20) {
+                                listener_position_set(sc->id);
+                            }
+                        }
+                    } else {
+                        ctl->idx = idx + 1;
+                        idx = ctl->idx;
+                        if (sc->keys[idx].flags & 0x40) {
+                            i = 1;
+                            sc->flags |= 0x100;
+                            ctl->t = 0.0f;
+                        } else if (sc->count == idx + 1) {
+                            if (sc->flags & 1) {
+                                ctl->mode &= ~4;
+                                ctl->mode |= 8;
+                                ctl->idx = idx - 1;
+                            } else if (sc->flags & 0x4000) {
+                                ctl->mode &= ~4;
+                                ctl->mode |= 8;
+                                ctl->idx = idx - 1;
+                                ctl->t = 0.0f;
+                                sc->flags |= 0x100;
+                            } else if (!(sc->flags & 2)) {
+                                camera_build_view_matrix(cam, 0);
+                                if (sc->flags & 0x20) {
+                                    listener_position_set(sc->id);
+                                }
+                            }
+                        }
+                    }
+                    idx = ctl->idx;
+                } else {
+                    i = 1;
+                }
+            } while (i == 0);
+            idx = sc->keys[idx].flags;
+            if (!(idx & 2)) {
+                camera_track_spline(cam);
+                moved = 1;
+                idx = sc->keys[ctl->idx].flags;
+            }
+            if (!(idx & 0x10) || !(idx & 4)) {
+                moved = 1;
+                camera_free_look(cam);
+            }
+            if (moved != 0) {
+                if (sc->flags & 0x100) {
+                    camera_fov_control(cam);
+                } else {
+                    camera_look_at_point(cam);
+                }
+            } else {
+                camera_fov_control(cam);
+            }
+            tb = &D_80117530[cam->tbl];
+            if (tb->s14 != -1) {
+                node->f10 -= *(f32 *)(s32)&D_8002EB94;
+                if (node->f10 <= 0.0f) {
+                    idx = tb->s14;
+                    if (idx == 0x169) {
+                        node->f10 = 0.25f;
+                    } else if (idx == 0x16D) {
+                        node->f10 = D_80123E8C;
+                    }
+                    idx = ++node->s04;
+                    if (idx >= cam->s5A) {
+                        node->s04 = 0;
+                        idx = 0;
+                    }
+                    flag = cam->s58 + idx;
+                    if (flag != cam->s50) {
+                        m = (&D_801427C0)[flag];
+                        lk = sc->link;
+                        if (lk) {}
+                        if (sc->flags & 0x8000) {
+                        } else {
+                            func_800C15FC(cam->slot, m);
+                        }
+                        cam->s50 = flag;
+                    }
+                    goto block_99;
+                }
+            } else {
+block_99:
+                if (tb->mode == 4) {
+                    if (ctl->mode & 8) {
+                        dv[0] = sc->keys[ctl->idx].dir[0] * -ctl->f10;
+                        dv[1] = sc->keys[ctl->idx].dir[1] * -ctl->f10;
+                        dv[2] = sc->keys[ctl->idx].dir[2] * -ctl->f10;
+                    } else {
+                        dv[0] = sc->keys[ctl->idx].dir[0] * ctl->f10;
+                        dv[1] = sc->keys[ctl->idx].dir[1] * ctl->f10;
+                        dv[2] = sc->keys[ctl->idx].dir[2] * ctl->f10;
+                    }
+                    func_800AB750(cam->s65, dv, cam->pos, cam->m);
+                }
+                idx = ctl->idx;
+                if (!(sc->keys[idx].flags & 0x10)) {
+                    nx = idx + 1;
+                    if (nx >= sc->count) {
+                        nx = 0;
+                    }
+                    if (ctl->mode & 8) {
+                        f = sc->keys[idx].dur;
+                        tt = f - ctl->t;
+                    } else {
+                        tt = ctl->t;
+                        f = sc->keys[idx].dur;
+                    }
+                    fr = tt / f;
+                    if (sc->keys[idx].dur != 0.0f) {}
+                    for (i = 0; i < 3; i++) {
+                        sv[i] = sc->keys[ctl->idx].scale[i] + (sc->keys[nx].scale[i] - sc->keys[ctl->idx].scale[i]) * fr;
+                    }
+                    for (i = 0; i < 3; i++) {
+                        cam->m[0][i] *= sv[0];
+                        cam->m[1][i] *= sv[1];
+                        cam->m[2][i] *= sv[2];
+                    }
+                }
+                if (!(cam->flags & 2)) {
+                    if (!(sc->flags & 0x8000)) {
+                        entity_spawn_callback(cam->slot, 0, 0);
+                    }
+                    func_800AFA84(&D_80143FC8, (s32 *) cam);
+                    entity_transform_apply(node, 1);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,72 @@
+func_800F207C                 1684  unmatched callers: billboard_render[976]
+func_800E451C                 1588  unmatched callers: func_800E4B58[2268]
+input_process_controller      1452  unmatched callers: input_deadzone_apply[3580]
+func_800C3AD0                 1448  unmatched callers: camera_victory[1468]
+func_800E7FA0                 1244  unmatched callers: func_800E847C[2100]
+drone_throttle_calc           1024  unmatched callers: func_800D91A0[3860]
+func_800F1930                  980  unmatched callers: billboard_render[976]
+camera_track_spline            860  unmatched callers: camera_update[2876]
+finish_state_alt               556  unmatched callers: countdown[2672]
+func_800E4300                  540  unmatched callers: func_800E451C(P)[1588]
+func_800DED78                  488  unmatched callers: mode_select_handler[2976]
+func_800F857C                  464  unmatched callers: audio_update_d(P)[76], finish_state_alt(P)[556], func_800F87A0[968]
+audio_priority_find            432  unmatched callers: audio_mixer_main[732]
+MaxPathZeroControls            396  unmatched callers: func_800CC040[896], func_800CD104[1088]
+func_8010A7A4                  300  unmatched callers: func_8010A8D0[1500], func_8010AEAC[1652]
+func_800AD4C8                  264  unmatched callers: func_800C3AD0(P)[1448], input_process_controller(P)[1452]
+func_800D8078                  220  unmatched callers: func_800D91A0[3860]
+func_800A3640                  204  unmatched callers: track_render_process[3200]
+render_results_screen          196  unmatched callers: func_800D91A0[3860]
+func_800B0EA0                  192  unmatched callers: sound_bank_unload[1248]
+audio_effect_setup             184  unmatched callers: engine_sound_sync[1236], entity_ai_pathfind[2180], func_800988D8[380], func_80098FB8[756]
+func_800B66B0                  152  unmatched callers: menu_input_process[1280]
+render_replay_ui               132  unmatched callers: func_800D91A0[3860], render_results_screen(P)[196]
+audio_update_d                  76  unmatched callers: finish_state_alt(P)[556], func_800F87A0[968]
+
+single real caller -> provisional bytes it alone closes:
+  billboard_render             [  976 B] closes  2664 B: func_800F207C, func_800F1930
+  func_800E4B58                [ 2268 B] closes  2128 B: func_800E451C, func_800E4300
+  func_800D91A0                [ 3860 B] closes  1572 B: drone_throttle_calc, func_800D8078, render_replay_ui, render_results_screen
+  input_deadzone_apply         [ 3580 B] closes  1452 B: input_process_controller
+  camera_victory               [ 1468 B] closes  1448 B: func_800C3AD0
+  func_800E847C                [ 2100 B] closes  1244 B: func_800E7FA0
+  camera_update                [ 2876 B] closes   860 B: camera_track_spline
+  countdown                    [ 2672 B] closes   556 B: finish_state_alt
+  mode_select_handler          [ 2976 B] closes   488 B: func_800DED78
+  audio_mixer_main             [  732 B] closes   432 B: audio_priority_find
+  track_render_process         [ 3200 B] closes   204 B: func_800A3640
+  sound_bank_unload            [ 1248 B] closes   192 B: func_800B0EA0
+  menu_input_process           [ 1280 B] closes   152 B: func_800B66B0
+  func_8010AEAC                [ 1652 B] closes     0 B: -
+  func_8010A8D0                [ 1500 B] closes     0 B: -
+  func_800F87A0                [  968 B] closes     0 B: -
+  func_800CD104                [ 1088 B] closes     0 B: -
+  func_800CC040                [  896 B] closes     0 B: -
+  func_80098FB8                [  756 B] closes     0 B: -
+  func_800988D8                [  380 B] closes     0 B: -
+  entity_ai_pathfind           [ 2180 B] closes     0 B: -
+  engine_sound_sync            [ 1236 B] closes     0 B: -
+
+all non-provisional unmatched callers reachable:
+  audio_mixer_main [732] -> prov callees: ['audio_priority_find']; its unmatched callees: []
+  billboard_render [976] -> prov callees: ['func_800F1930', 'func_800F207C']; its unmatched callees: ['func_800C813C', 'func_800CC040', 'func_800CC50C', 'func_800F0914', 'func_800F1210', 'track_texture_load', 'wheel_setup_initial']
+  camera_update [2876] -> prov callees: ['camera_track_spline']; its unmatched callees: ['camera_free_look', 'camera_look_at_point']
+  camera_victory [1468] -> prov callees: ['func_800C3AD0']; its unmatched callees: ['camera_play_script']
+  countdown [2672] -> prov callees: ['finish_state_alt']; its unmatched callees: ['billboard_render', 'cpak_read', 'display_list_flush', 'func_800C813C', 'func_800D6160', 'func_800F7F3C', 'ghost_race_setup', 'init_state_continue', 'render_viewport_init']
+  engine_sound_sync [1236] -> prov callees: ['audio_effect_setup']; its unmatched callees: []
+  entity_ai_pathfind [2180] -> prov callees: ['audio_effect_setup']; its unmatched callees: ['audio_buffer_manage', 'audio_bus_route', 'audio_state_save', 'audio_stream_control', 'audio_timing_sync', 'func_800979A0', 'func_80098FB8', 'gfx_setup_e700', 'sound_priority_set']
+  func_800988D8 [380] -> prov callees: ['audio_effect_setup']; its unmatched callees: []
+  func_80098FB8 [756] -> prov callees: ['audio_effect_setup']; its unmatched callees: ['camera_transform', 'engine_sound_sync', 'func_800988D8']
+  func_800CC040 [896] -> prov callees: ['MaxPathZeroControls']; its unmatched callees: ['AdjustSpeed', 'func_800CBF2C', 'slot_state_lookup', 'track_collision_setup', 'track_process_main']
+  func_800CD104 [1088] -> prov callees: ['MaxPathZeroControls']; its unmatched callees: ['slot_state_lookup', 'track_collision_setup', 'track_process_main']
+  func_800D91A0 [3860] -> prov callees: ['drone_throttle_calc', 'func_800D8078', 'render_replay_ui', 'render_results_screen']; its unmatched callees: ['drone_target_update', 'func_800B4FB0', 'func_800D816C', 'func_800D9058']
+  func_800E4B58 [2268] -> prov callees: ['func_800E451C']; its unmatched callees: ['func_800E398C', 'state_utility']
+  func_800E847C [2100] -> prov callees: ['func_800E7FA0']; its unmatched callees: []
+  func_800F87A0 [968] -> prov callees: ['audio_update_d', 'func_800F857C']; its unmatched callees: ['func_800D5A04', 'wheel_render_full']
+  func_8010A8D0 [1500] -> prov callees: ['func_8010A7A4']; its unmatched callees: ['brake_light_update', 'slot_state_setup', 'state_utility']
+  func_8010AEAC [1652] -> prov callees: ['func_8010A7A4']; its unmatched callees: ['func_8010A8D0', 'object_bytes_sum_global', 'slot_state_setup', 'state_utility']
+  input_deadzone_apply [3580] -> prov callees: ['input_process_controller']; its unmatched callees: []
+  menu_input_process [1280] -> prov callees: ['func_800B66B0']; its unmatched callees: ['audio_doppler_calc']
+  mode_select_handler [2976] -> prov callees: ['func_800DED78']; its unmatched callees: ['best_times_display']
+  sound_bank_unload [1248] -> prov callees: ['func_800B0EA0']; its unmatched callees: []
+  track_render_process [3200] -> prov callees: ['func_800A3640']; its unmatched callees: ['func_800A3724', 'track_collision_setup']

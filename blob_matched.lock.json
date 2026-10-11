@@ -177,6 +177,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-06"
   },
+  "audio_channel_setup": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/audio_channel_setup.c",
+    "source_sha256": "df4428228bfc8154413b0112e38aeec8fc6c994e562c1fee38855a6900194fef",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-10"
+  },
   "audio_distance_atten": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/audio_distance_atten.c",
@@ -359,6 +367,15 @@
     "group": "frontier_mode_select",
     "source": "src/blob/groups/frontier_mode_select/group.json",
     "source_sha256": "198c0d8adeac625c73e7b8a158240e1710307b2eea1377eeb9b935df4a10b5dd",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-10"
+  },
+  "billboard_render": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_billboard_render",
+    "source": "src/blob/groups/frontier_billboard_render/group.json",
+    "source_sha256": "168ac639d185205b942e82ef1eeadfee92d29a9f29422768be4538d1393ba281",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-10"
@@ -2684,6 +2701,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_800A79F4": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_800A79F4.c",
+    "source_sha256": "6977407c69d6c84bbb1df036f5b349c96d95ba36340df4effffeba22fd778cef",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-10"
+  },
   "func_800A7BF8": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800A7BF8.c",
@@ -2920,6 +2945,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-04"
+  },
+  "func_800AC9BC": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_800AC9BC.c",
+    "source_sha256": "c757d1c7524d2d69806f5b94c562d814116988bb7f9d281ab21109a608436783",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-10"
   },
   "func_800ACBC4": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -5203,6 +5236,15 @@
     "verified": "image_gate",
     "verified_at": "2026-10-05"
   },
+  "func_800E7A98": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "func_800E7A98",
+    "source": "src/blob/groups/func_800E7A98/group.json",
+    "source_sha256": "d0d9513dccd8188a0420fa84bd640d04f9a71335930b83f7c3551f17ec99df04",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-10"
+  },
   "func_800E7B44": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "audio_heap",
@@ -5455,6 +5497,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_800F1930": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_billboard_render",
+    "source": "src/blob/groups/frontier_billboard_render/group.json",
+    "source_sha256": "168ac639d185205b942e82ef1eeadfee92d29a9f29422768be4538d1393ba281",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-10"
+  },
   "func_800F1D04": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800F1D04.c",
@@ -5462,6 +5513,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-04"
+  },
+  "func_800F207C": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "frontier_billboard_render",
+    "source": "src/blob/groups/frontier_billboard_render/group.json",
+    "source_sha256": "168ac639d185205b942e82ef1eeadfee92d29a9f29422768be4538d1393ba281",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-10"
   },
   "func_800F2710": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",

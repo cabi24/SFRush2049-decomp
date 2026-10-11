@@ -48,6 +48,7 @@ func_800947F0:
 .section .text.audio_channel_setup, "ax", @progbits
 .globl audio_channel_setup
 audio_channel_setup:
+    /* compiled from src/blob/audio_channel_setup.c */
     .word 0x00057400
     .word 0x000E7C03
     .word 0x27BDFFE8

@@ -1,0 +1,103 @@
+proc camera_play_script ordinal 621
+[CDX] p1color phase=p1 proc=621 web=609 sym=609 color=12 reg=t5 forced=12
+[CDX] force_declined phase=p1 site=dec proc=621 web=266 color=29 reg=? forbidden=0x000000ff00000000
+[CDX] force_declined phase=p1 site=color proc=621 web=266 color=29 reg=? forbidden=0x000000ff00000000
+[CDX] force_declined phase=p1 site=dec proc=621 web=237 color=31 reg=? forbidden=0x000000f980000000
+[CDX] force_declined phase=p1 site=color proc=621 web=237 color=31 reg=? forbidden=0x000000f980000000
+[CDX] force_declined phase=p1 site=dec proc=621 web=232 color=25 reg=? forbidden=0x000000ff80000000
+[CDX] force_declined phase=p1 site=color proc=621 web=232 color=25 reg=? forbidden=0x000000ff80000000
+   +148  multu t6,s6                      multu t7,s6
+|  +14c  move a1,t0                       
+   +150  addiu a2,sp,280                  addiu a2,sp,280
+   +36c  bnez t9,0x7b4                    bnez t6,0x7b0
+|                                         li t7,1
+   +370  addiu v1,s0,-1                   addiu v1,s1,-1
+|  +374  li t6,1                          
+   +378  sw t6,276(sp)                    sw t7,276(sp)
+   +7dc  swc1 $f20,240(sp)                swc1 $f22,240(sp)
+|  +7e0  lwc1 $f2,324(sp)                 swc1 $f16,252(sp)
+   +7e4  div.s $f0,$f16,$f24              div.s $f0,$f16,$f2
+   +7ec  swc1 $f18,248(sp)                swc1 $f2,244(sp)
+|                                         lwc1 $f26,324(sp)
+   +7f0  swc1 $f26,236(sp)                swc1 $f24,236(sp)
+   +834  swc1 $f8,240(sp)                 swc1 $f8,240(sp)
+|  +838  swc1 $f10,236(sp)                
+   +83c  b 0x850                          b 0x84c
+   +844  mtc1 at,$f6                      mtc1 at,$f6
+|  +848  swc1 $f24,148(sp)                nop
+   +84c  sub.s $f30,$f6,$f0               sub.s $f30,$f6,$f0
+   +874  addiu s4,s4,1                    addiu s4,s4,1
+|  +878  mtc1 zero,$f6                    c.eq.s $f10,$f14
+   +87c  li a3,2                          li a3,2
+   +880  addiu v0,sp,332                  addiu v0,sp,332
+|  +884  c.eq.s $f10,$f6                  
+|  +888  nop                              
+   +88c  bc1t 0x8c0                       bc1t 0x8b4
+   +914  mul.s $f0,$f16,$f4               mul.s $f18,$f14,$f8
+|  +918  nop                              mov.s $f26,$f12
+   +91c  mul.s $f2,$f14,$f6               mul.s $f20,$f2,$f4
+   +920  c.eq.s $f2,$f0                   c.eq.s $f18,$f20
+|  +924  sub.s $f22,$f0,$f2               nop
+|  +928  mov.s $f2,$f26                   
+   +92c  bc1t 0x964                       bc1t 0x958
+   +938  mtc1 zero,$f10                   mtc1 zero,$f8
+|                                         sub.s $f10,$f20,$f18
+   +93c  div.s $f12,$f8,$f22              div.s $f0,$f6,$f10
+   +974  lwc1 $f8,236(sp)                 lwc1 $f6,240(sp)
+|                                         lwc1 $f10,236(sp)
+   +978  mul.s $f16,$f22,$f4              mul.s $f2,$f18,$f4
+|  +97c  lwc1 $f10,240(sp)                
+   +980  li at,4                          li at,4
+   +9b0  c.eq.s $f14,$f0                  c.eq.s $f14,$f16
+|  +9b4  sub.s $f20,$f0,$f14              
+|  +9b8  bc1t 0x9f0                       
+   +9bc  nop                              nop
+|                                         bc1tl 0x9ec
+|                                         mtc1 zero,$f20
+   +9c0  sub.s $f4,$f16,$f18              sub.s $f8,$f2,$f12
+   +9c4  mtc1 zero,$f6                    mtc1 zero,$f20
+|                                         sub.s $f4,$f16,$f14
+   +9c8  div.s $f12,$f4,$f20              div.s $f0,$f8,$f4
+   +9d0  nop                              nop
+|  +9d4  bc1f 0x9f0                       bc1fl 0x9ec
+|  +9d8  nop                              mtc1 zero,$f20
+   +9dc  c.lt.s $f12,$f30                 c.lt.s $f0,$f30
+   +9e0  nop                              nop
+|  +9e4  bc1f 0x9f0                       bc1fl 0x9ec
+|  +9e8  nop                              mtc1 zero,$f20
+   +9ec  mov.s $f30,$f12                  mov.s $f30,$f0
+|                                         mtc1 zero,$f20
+   +9f0  bnel v0,at,0xa98                 bnel v0,at,0xa94
+   +b9c  lwc1 $f8,148(sp)                 lwc1 $f6,244(sp)
+|  +ba0  mtc1 zero,$f10                   lwc1 $f10,256(sp)
+   +ba4  lwc1 $f4,256(sp)                 lwc1 $f8,252(sp)
+   +bb4  c.lt.s $f30,$f10                 c.lt.s $f30,$f20
+|  +bb8  lwc1 $f10,248(sp)                nop
+   +bbc  bc1fl 0xbcc                      bc1fl 0xbc8
+   +bf0  nop                              nop
+|  +bf4  bc1f 0xc04                       bc1fl 0xc00
+|  +bf8  nop                              addu t7,t7,a3
+|  +bfc  b 0xc04                          
+   +c00  move a3,t3                       move a3,t3
+   +c5c  lwc1 $f10,544(sp)                lwc1 $f6,544(sp)
+|  +c60  mtc1 zero,$f4                    
+   +c64  lw a3,264(sp)                    lw a3,264(sp)
+   +cc0  move s1,s3                       move s1,s3
+|  +cc4  move s0,v0                       lw t6,612(sp)
+   +cc8  c.lt.s $f6,$f8                   c.lt.s $f10,$f8
+|  +ccc  lw t9,612(sp)                    
+   +cd0  addiu a0,sp,280                  addiu a0,sp,280
+   +cd4  addiu a1,s2,4                    addiu a1,s2,4
+|  +cd8  bc1f 0xd08                       bc1fl 0xcfc
+|  +cdc  nop                              sw t6,0(s2)
+   +ce0  sw s2,616(sp)                    sw s2,616(sp)
+   +d04  lw ra,108(sp)                    lw ra,108(sp)
+|                                         sw t6,0(s2)
+   +d08  jal 0x8d6b0                      jal 0x8d6b0
+   +d28  swc1 $f10,44(s2)                 swc1 $f4,44(s2)
+|  +d2c  sw s3,608(sp)                    
+   +d30  sw s2,616(sp)                    sw s3,608(sp)
+   +dbc  addiu sp,sp,608                  addiu sp,sp,608
+|                                         jr ra
+|                                         nop
+want 880 words, got 878; differing rows 40 (norm); frame 608/608; unverified 2 unresolved 0

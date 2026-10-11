@@ -43,14 +43,6 @@
   "evidence": "cloud/work/ipa-groups/dot_menu_row_caller_20261005",
   "note": "PR #88: strict MATCH (own literal verified) as a register-parameter callee with its real caller func_8010A8D0, which is 367/375 words off"
  },
- "func_800F207C": {
-  "evidence": "cloud/work/frontier/dot_billboard_context_20261005",
-  "note": "PR #93: name-entry helper, strict MATCH (421 words) as an internal register-parameter member only with its real caller billboard_render, which is NONMATCH; EQUAL in the shadow unit with that context and --internal. Closes when billboard_render matches"
- },
- "func_800F1930": {
-  "evidence": "cloud/work/frontier/dot_billboard_context_20261005",
-  "note": "PR #96: save-input helper, strict MATCH (245 words) as an internal member only with billboard_render (NONMATCH) and its unmatched callees func_800F0F44/func_800F1210 as context. Closes when billboard_render matches"
- },
  "drone_throttle_calc": {
   "evidence": "cloud/work/frontier/w6d/drone_throttle_calc/best_group",
   "note": "wave 6: pause-menu setup; code identical with stand-in callers (strings and floats at two retail addresses, checked by hand); real caller func_800D91A0 (3,860 bytes) unmatched"

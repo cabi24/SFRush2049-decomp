@@ -196,6 +196,11 @@
    "name": "func_800C15FC",
    "file": "src/blob/groups/camera_aspect_ratio/group.c",
    "reason": "locked as an empty stub; the camera slot setter inlined into camera_update and camera_process_input (wave 11, w11c)"
+  },
+  {
+   "name": "func_800F1210",
+   "file": "src/blob/groups/frontier_billboard_render/func_800F1210.c",
+   "reason": "the locked func_800F2718_grp also defines a partial func_800F1210; billboard_render and func_800F1930 need this group's reconstruction (178/244 and 62/245 otherwise), w15f"
   }
  ],
  "align": [

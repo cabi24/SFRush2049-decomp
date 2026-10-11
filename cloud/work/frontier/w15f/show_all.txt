@@ -1,0 +1,187 @@
+func_800B66B0                    0x800B66B0    152 L1  group  unlocks= 0/0      deps= 64/82532  ring PROVISIONAL
+  blockers: -
+  unit: func_800B66B0
+  unit_open: func_800B66B0
+  unit_blockers: -
+  provisional: yes -- proven with stand-in callers only, not matched
+    note: wave 0: strict MATCH only in an -O3 group with stand-in callers zz_a/zz_b; closes in a real group with its only caller menu_input_process
+
+func_800AD4C8                    0x800AD4C8    264 L1  unit   unlocks= 0/0      deps= 27/40352  regs=f18 unit=3fn/3164b component=9 src PROVISIONAL
+  blockers: -
+  unit: func_800AD4C8, func_800C3AD0, input_process_controller
+  unit_open: func_800AD4C8, func_800C3AD0, input_process_controller
+  unit_blockers: -
+  provisional: yes -- proven with stand-in callers only, not matched
+    note: wave 1: strict MATCH with both real callers in the unit, but those callers (func_800C3AD0, input_process_controller) are themselves kept alive by stand-ins, so the group is not spliceable yet
+
+func_800C3AD0                    0x800C3AD0   1448 L1  unit   unlocks= 0/0      deps= 19/28920  regs=f20,s0,s2,s4,s5,s6,s7,s8 unit=3fn/3180b component=9 src inline? PROVISIONAL
+  blockers: -
+  unit: camera_trigger_check, camera_victory, entity_update, func_800AD4C8, func_800C3AD0
+  unit_open: camera_victory, func_800AD4C8, func_800C3AD0
+  unit_blockers: camera_play_script
+  provisional: yes -- proven with stand-in callers only, not matched
+    note: wave 1: byte-identical in the unit; its own callers (camera_trigger_check, camera_victory, entity_update) are stand-ins
+
+input_process_controller         0x800AD734   1452 L1  unit   unlocks= 0/0      deps= 11/13896  regs=f24,s1,s2,s3,s5,s6,s7,s8 unit=3fn/5296b component=9 src ring PROVISIONAL
+  blockers: -
+  unit: func_800AD4C8, input_deadzone_apply, input_process_controller
+  unit_open: func_800AD4C8, input_deadzone_apply, input_process_controller
+  unit_blockers: -
+  provisional: yes -- proven with stand-in callers only, not matched
+    note: wave 1: byte-identical in the unit; its own caller input_deadzone_apply is a stand-in
+
+func_800E4300                    0x800E4300    540 L1  unit   unlocks= 0/0      deps=  5/6896   regs=t0,t2,t5 unit=2fn/2128b component=4 src PROVISIONAL
+  blockers: -
+  unit: func_800E4300, func_800E451C
+  unit_open: func_800E4300, func_800E451C
+  unit_blockers: -
+  provisional: yes -- proven with stand-in callers only, not matched
+    note: PR #128 re-verified it with its complete real callers (E451C, E4B58, E398C), all still NONMATCH, so it stays provisional
+
+func_800E451C                    0x800E451C   1588 L1  unit   unlocks= 0/0      deps=  4/5308   regs=s5,s6 unit=3fn/4396b component=4 src PROVISIONAL
+  blockers: -
+  unit: func_800E4300, func_800E451C, func_800E4B58
+  unit_open: func_800E4300, func_800E451C, func_800E4B58
+  unit_blockers: func_800E398C, state_utility
+  provisional: yes -- proven with stand-in callers only, not matched
+    note: PR #198: full strict MATCH (397 words, rodata verified) with real callers; context func_800E4300 and func_800E4B58 provisional, func_800E398C unmatched
+
+audio_priority_find              0x800BA46C    432 L1  group  unlocks= 0/0      deps=  8/10328  ring PROVISIONAL
+  blockers: -
+  unit: audio_priority_find
+  unit_open: audio_priority_find
+  unit_blockers: -
+  provisional: yes -- proven with stand-in callers only, not matched
+    note: wave 2: strict MATCH as an internal member with its real caller audio_mixer_main, which is 31/183 words off (cloud/work/frontier/w2b/audio_mixer_main/best.c); also identical with a stand-in caller. Closes when audio_mixer_main matches
+
+func_800E7FA0                    0x800E7FA0   1244 L1  group  unlocks= 0/0      deps=  6/7464   src PROVISIONAL
+  blockers: -
+  unit: func_800E7FA0
+  unit_open: func_800E7FA0
+  unit_blockers: -
+  provisional: yes -- proven with stand-in callers only, not matched
+    note: wave 2: 40/311 words with a stand-in caller; only caller func_800E847C (2,100 bytes) is unmatched. NOT a match - recorded so the next agent starts here
+
+camera_track_spline              0x800C04CC    860 L1  single unlocks= 0/0      deps=  1/2876   src PROVISIONAL
+  blockers: -
+  unit: camera_track_spline
+  unit_open: camera_track_spline
+  unit_blockers: -
+  provisional: yes -- proven with stand-in callers only, not matched
+    note: wave 2: strict MATCH with a stand-in caller; only caller camera_update is unmatched
+
+func_800B0EA0                    0x800B0EA0    192 L1  group  unlocks= 0/0      deps=  8/10464  src ring PROVISIONAL
+  blockers: -
+  unit: func_800B0EA0
+  unit_open: func_800B0EA0
+  unit_blockers: -
+  provisional: yes -- proven with stand-in callers only, not matched
+    note: PR #87: strict MATCH as an internal callee with its real caller sound_bank_unload, which is 262/312 words off; closes when the caller matches
+
+func_8010A7A4                    0x8010A7A4    300 L5  unit   unlocks= 0/0      deps=  2/3152   regs=s1,s2,s3,s4 unit=3fn/3452b component=104 src PROVISIONAL
+  blockers: state_utility
+  unit: func_8010A7A4, func_8010A8D0, func_8010AEAC
+  unit_open: func_8010A7A4, func_8010A8D0, func_8010AEAC
+  unit_blockers: brake_light_update, object_bytes_sum_global, slot_state_setup, state_utility
+  evidence: cloud/work/ipa-groups/dot_menu_row_caller_20261005, cloud/work/ipa-groups/func_8010A7A4
+  provisional: yes -- proven with stand-in callers only, not matched
+    evidence: cloud/work/ipa-groups/dot_menu_row_caller_20261005
+    note: PR #88: strict MATCH (own literal verified) as a register-parameter callee with its real caller func_8010A8D0, which is 367/375 words off
+
+func_800F207C                    0x800F207C   1684 L1  unit   unlocks= 0/0      deps=  3/4352   regs=s0 unit=2fn/2660b component=104 inline? PROVISIONAL
+  blockers: -
+  unit: billboard_render, func_800F207C
+  unit_open: billboard_render, func_800F207C
+  unit_blockers: func_800C813C, func_800CC040, func_800CC50C, func_800F0914, func_800F1210, track_texture_load, wheel_setup_initial
+  provisional: yes -- proven with stand-in callers only, not matched
+    note: PR #93: name-entry helper, strict MATCH (421 words) as an internal register-parameter member only with its real caller billboard_render, which is NONMATCH; EQUAL in the shadow unit with that context and --internal. Closes when billboard_render matches
+
+func_800F1930                    0x800F1930    980 L8  group  unlocks= 0/0      deps=  3/4352   unit=3fn/3260b component=104 inline? PROVISIONAL
+  blockers: func_800CC040, func_800F0F44, func_800F1210
+  unit: func_800F0F44, func_800F1210, func_800F1930
+  unit_open: func_800F0F44, func_800F1210, func_800F1930
+  unit_blockers: func_800CC040, func_800F0914, object_bytes_sum_global, slot_state_setup
+  provisional: yes -- proven with stand-in callers only, not matched
+
+drone_throttle_calc              0x800D8C58   1024 L1  group  unlocks= 0/0      deps=  3/6712   ring PROVISIONAL
+  blockers: -
+  unit: drone_throttle_calc
+  unit_open: drone_throttle_calc
+  unit_blockers: -
+  provisional: yes -- proven with stand-in callers only, not matched
+    note: wave 6: pause-menu setup; code identical with stand-in callers (strings and floats at two retail addresses, checked by hand); real caller func_800D91A0 (3,860 bytes) unmatched
+
+func_800DED78                    0x800DED78    488 L1  unit   unlocks= 0/0      deps=  5/7344   regs=f18 unit=2fn/3464b component=34 PROVISIONAL
+  blockers: -
+  unit: func_800DED78, mode_select_handler
+  unit_open: func_800DED78, mode_select_handler
+  unit_blockers: best_times_display
+  provisional: yes -- proven with stand-in callers only, not matched
+    note: PR #107: collision force/peak helper (arcade carsnd.c get_force_and_peak), strict 0/122 in a genuine caller group; it takes f18 as a register parameter and its caller is unmatched, so it stays unclaimed
+
+func_800D8078                    0x800D8078    220 L1  group  unlocks= 0/0      deps=  3/6712   src ring PROVISIONAL
+  blockers: -
+  unit: func_800D8078
+  unit_open: func_800D8078
+  unit_blockers: -
+  provisional: yes -- proven with stand-in callers only, not matched
+    note: PR #285: strict MATCH with real caller func_800D91A0 (provisional) plus render_replay_ui/render_results_screen (provisional) and func_800D816C (unmatched)
+
+func_800A3640                    0x800A3640    204 L1  group  unlocks= 0/0      deps= 11/15680  ring PROVISIONAL
+  blockers: -
+  unit: func_800A3640
+  unit_open: func_800A3640
+  unit_blockers: -
+  provisional: yes -- proven with stand-in callers only, not matched
+    note: wave 8: EQUAL in the shadow unit only with a stand-in caller; its only caller track_render_process is unmatched
+
+audio_effect_setup               0x80095800    184 L1  unit   unlocks= 0/0      deps=  4/4552   regs=s0 unit=5fn/4736b component=34 src PROVISIONAL
+  blockers: -
+  unit: audio_effect_setup, engine_sound_sync, entity_ai_pathfind, func_800988D8, func_80098FB8
+  unit_open: audio_effect_setup, engine_sound_sync, entity_ai_pathfind, func_800988D8, func_80098FB8
+  unit_blockers: audio_buffer_manage, audio_bus_route, audio_state_save, audio_stream_control, audio_timing_sync, camera_transform, func_800979A0, gfx_setup_e700, sound_priority_set
+  provisional: yes -- proven with stand-in callers only, not matched
+
+MaxPathZeroControls              0x800A2378    396 L3  group  unlocks= 0/0      deps= 13/15408  inline? PROVISIONAL
+  blockers: track_data_decompress
+  unit: MaxPathZeroControls
+  unit_open: MaxPathZeroControls
+  unit_blockers: track_data_decompress
+  provisional: yes -- proven with stand-in callers only, not matched
+
+audio_update_d                   0x800F8754     76 L1  group  unlocks= 0/0      deps=  4/4900   unit=2fn/540b component=104 PROVISIONAL
+  blockers: -
+  unit: audio_update_d, func_800F857C
+  unit_open: audio_update_d, func_800F857C
+  unit_blockers: object_bytes_sum_global, slot_state_setup
+  provisional: yes -- proven with stand-in callers only, not matched
+
+finish_state_alt                 0x800F8B70    556 L11 group  unlocks= 0/0      deps=  2/3376   unit=2fn/1020b component=104 ring PROVISIONAL
+  blockers: func_800F87A0, wheel_render_full
+  unit: finish_state_alt, func_800F857C
+  unit_open: finish_state_alt, func_800F857C
+  unit_blockers: func_800F87A0, object_bytes_sum_global, slot_state_setup, wheel_render_full
+  provisional: yes -- proven with stand-in callers only, not matched
+
+func_800F857C                    0x800F857C    464 L6  unit   unlocks= 0/0      deps=  5/4976   regs=s0 unit=5fn/2296b component=104 PROVISIONAL
+  blockers: object_bytes_sum_global, slot_state_setup
+  unit: audio_update_d, finish_state_alt, func_800F857C, func_800F87A0, slot_state_setup
+  unit_open: audio_update_d, finish_state_alt, func_800F857C, func_800F87A0, slot_state_setup
+  unit_blockers: audio_frame_sync, func_800D5A04, object_bytes_sum_global, wheel_render_full
+  provisional: yes -- proven with stand-in callers only, not matched
+
+render_results_screen            0x800D7DC4    196 L1  group  unlocks= 0/0      deps=  3/6712   unit=2fn/328b component=4 src PROVISIONAL
+  blockers: -
+  unit: render_replay_ui, render_results_screen
+  unit_open: render_replay_ui, render_results_screen
+  unit_blockers: -
+  provisional: yes -- proven with stand-in callers only, not matched
+    note: PR #281: strict MATCH with the real caller func_800D91A0 (provisional) and func_800D816C (unmatched)
+
+render_replay_ui                 0x800D7D40    132 L1  unit   unlocks= 0/0      deps=  4/6908   regs=s4 unit=3fn/4188b component=4 src PROVISIONAL
+  blockers: -
+  unit: func_800D91A0, render_replay_ui, render_results_screen
+  unit_open: func_800D91A0, render_replay_ui, render_results_screen
+  unit_blockers: drone_target_update, func_800B4FB0, func_800D816C, func_800D9058
+  provisional: yes -- proven with stand-in callers only, not matched
+

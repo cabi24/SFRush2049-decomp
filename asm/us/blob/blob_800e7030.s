@@ -722,6 +722,7 @@ func_800E79F8:
 .section .text.func_800E7A98, "ax", @progbits
 .globl func_800E7A98
 func_800E7A98:
+    /* compiled from src/blob/func_800E7A98.c */
     .word 0x27BDFFE0
     .word 0x00803825
     .word 0xAFBF001C

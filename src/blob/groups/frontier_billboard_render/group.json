@@ -1,0 +1,28 @@
+{
+ "name": "frontier_billboard_render",
+ "members": [
+  "billboard_render",
+  "func_800F207C",
+  "func_800F1930"
+ ],
+ "context": [
+  "func_800F0914",
+  "func_800F1210",
+  "func_800F0F44",
+  "func_800F2718"
+ ],
+ "files": [
+  "func_800F2718.c",
+  "func_800F207C.c",
+  "func_800F0F44.c",
+  "func_800F1210.c",
+  "func_800F0914.c",
+  "func_800F1930.c",
+  "billboard_render.c"
+ ],
+ "keep": [
+  "billboard_render"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "provenance": "frontier wave 15 (w15f): billboard_render with provisional func_800F207C/func_800F1930 as real callees; unmatched context reconstructions func_800F0914/func_800F1210/func_800F0F44; cloud/work/frontier/w15f/RESULTS.md"
+}

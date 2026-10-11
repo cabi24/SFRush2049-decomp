@@ -1,0 +1,40 @@
+{
+ "members": [
+  "func_800E7A98"
+ ],
+ "context": [
+  "func_80095F8C",
+  "func_80095EF4",
+  "audio_reverb_update",
+  "audio_effect_process",
+  "synced_model_render",
+  "MP_TargetSpeed",
+  "assign_default_paths",
+  "stat_race_end",
+  "audio_buffer_sync",
+  "object_counter_decrement",
+  "object_counter_increment",
+  "menu_item_select",
+  "func_800C885C"
+ ],
+ "files": [
+  "heap_release_context.c",
+  "func_800E7A98.c"
+ ],
+ "keep": [
+  "func_800E7A98",
+  "audio_effect_process",
+  "synced_model_render",
+  "MP_TargetSpeed",
+  "assign_default_paths",
+  "stat_race_end",
+  "audio_buffer_sync",
+  "object_counter_decrement",
+  "object_counter_increment",
+  "menu_item_select",
+  "func_800C885C"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "provenance": "frontier wave 15 (w15d): func_800E7A98 with the inlined static heap_or_default (from locked sound_play_menu.c) and codex_heap_release_a25 as unchanged context; cloud/work/frontier/w15d/RESULTS.md",
+ "note": "w15d: func_800E7A98 with the static heap_or_default helper (inlined by umerge). heap_release_context.c is an unchanged copy of the locked src/blob/groups/codex_heap_release_a25/group.c (audio_reverb_update internal, so it takes address in a1 / tag in a2 as in retail; its other callers keep it out of line). Supersedes nothing; no unit_overrides."
+}

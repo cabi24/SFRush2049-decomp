@@ -2331,6 +2331,7 @@ func_800F1928:
 .section .text.func_800F1930, "ax", @progbits
 .globl func_800F1930
 func_800F1930:
+    /* compiled from src/blob/func_800F1930.c */
     .word 0x3C048014
     .word 0x24844DA0
     .word 0x8C830000
@@ -2807,6 +2808,7 @@ func_800F1D04:
 .section .text.func_800F207C, "ax", @progbits
 .globl func_800F207C
 func_800F207C:
+    /* compiled from src/blob/func_800F207C.c */
     .word 0x00107080
     .word 0x01D07021
     .word 0x000E7080
@@ -7267,6 +7269,7 @@ track_texture_load:
 .section .text.billboard_render, "ax", @progbits
 .globl billboard_render
 billboard_render:
+    /* compiled from src/blob/billboard_render.c */
     .word 0x27BDFF70
     .word 0x3C0E8011
     .word 0x81CE48A4
