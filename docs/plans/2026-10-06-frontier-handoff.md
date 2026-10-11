@@ -1,6 +1,6 @@
 # Frontier handoff: 2026-10-06 (after wave 12), updated 2026-10-11 (after wave 15)
 
-## 0. Wave 13–19 update (2026-10-12, after wave 19: boot tail at 64%, overlays landing)
+## 0. Wave 13–19 update (2026-10-12, after wave 19; read the checklist at the end of §0 first)
 
 Read this section first; §1–§10 below are the wave-12 text and still describe the method. Section-by-section
 deltas are noted inline where they matter.
@@ -218,6 +218,41 @@ match: `ovl_splice revert`/`revert-group` if superseding → `ovl_splice single|
 `ovl_splice check` → `ovl_rom rom` (w18e RESULTS has the sequence; a fresh checkout runs `ovl_image extract;
 ovl_splice rebuild; ovl_layout build` first). Workstream B (brief rewrite, `cloud/work/CLAIMS.md`) is done;
 C (packet protocol v2) is in the brief for Astra to adopt.
+
+**Coordinator checklist for wave 20 (written 2026-10-12 before a context compaction):**
+1. State: master `0b3daa0c` (or later), CI green. Static 550/668 (103,172 B, 64.19%); game 973/1216 (310,928 B,
+   48.05%); overlay A 42/193 (14,364 B); overlay B 8/49 (1,640 B). Lockfiles: `matched.lock.json` (554 incl. 112 IDO
+   7.1 entries), `blob_matched.lock.json` (973), `ovl_matched.lock.json` (50). Conveyor DB inventory renamed
+   twice today (targets_rename; backups in the session scratchpad only, which is gone after compaction: take a
+   fresh `cp ~/.conveyor/conveyor.db` before any further `targets_rename apply`).
+2. Session start: `git status` (expect only the `tools/mips_to_c` submodule mod), check untracked
+   `cloud/work/frontier/w*/` for unreported results, `python3 -m tools.conveyor.pipeline.frontier scan && … report`,
+   `make progress`, read `cloud/work/CLAIMS.md`, `gh pr list` (Astra: #311 open, #163/#305–#308 drafts).
+3. Integration recipe (fast loop since w19d): game single → `cloud/work/frontier/tools/splice_singles.py NAME`
+   then `git add src/blob/NAME.c`; game group → `install_group.py DIR NAME [--revert-single STUB…]` (same name
+   supersedes); overlay → `ovl_splice group|splice --targets asm/us/ovl_x DIR` → `ovl_layout build` →
+   `ovl_splice check` → `ovl_rom rom`; static → `lock add FILE:FN --flags … [--toolkit 4586d230…]` (7.1 segments per
+   `rom_compilers.json`) → `promote_batch.py CTX.jsonl SEG… --only … --prefix-dedup rom/lib_…` (rewrite its
+   hard-coded Opus trailer). Gates: `blob_unit check`, `blob_group check`, `blob_splice check`, `lock check`,
+   `ovl_splice check`, `blob_rom rom`. Tests: `make test-fast JOBS=4` (Pi, ~3 min) and
+   `CI_FAST=16 bash tools/ci_equiv.sh rocky <bundle>` (~2 min; `git bundle create B HEAD --remotes=origin`);
+   watchman2 `~/rush2049/scratch/ciclone6` is the fallback. Push only after both pass. Lane dirs: commit
+   RESULTS.md/best.c/groups/tools, never `v/`, `e9/`, `b*/` (ignored). Lanes' commits carry an Opus trailer:
+   rewrite with `git filter-branch --msg-filter` before pushing.
+4. Known traps: a research packet receipt pins tool hashes → rebind (§5) after any tooling change; a packet that
+   rebuilds a ROM TU must use `compilers.tu_cc`; promoted neighbours can break packets that assume exact slot
+   extents (macro_wrapper_contracts fixed 2026-10-12, others may follow); `blob_rom rom` needs
+   `build/ovl/ovl_{a,b}.deflate` present; `splice_singles` leaves `src/blob/NAME.c` untracked; `score.py fn`
+   says NOT VERIFIED for split-rodata own data (install via blob_group).
+5. Wave 20 candidates, by expected bytes per lane: (a) boot tail under 7.1, the w19a/w19b not-matched lists and
+   the untried larger functions (`w17g/inv_table.md`); two owned jump tables (func_80021548 w19b §C,
+   func_80023BDC w19a) via `owned_data prepare`; (b) game: `frontier next` fresh singles (w19e closed 1 of 4;
+   world_effect_update is two block boundaries from done), func_800D816C stays Astra's; (c) overlays: Astra's
+   #311 frame-only residuals once Astra converts them; coordinator lanes keep off overlays unless CLAIMS says
+   otherwise; (d) recomp spike per `2026-10-12-recomp-port-plan.md` Phase 0–1 on rocky (owner/coordinator, needs
+   the ROM). Optional tooling: xdist in GitHub CI (owner call), score.py `--compiler` (hook-protected).
+6. Astra: brief is `CloudHandoff.md` (rewritten 2026-10-11); protocol v2 adopted in #309/#310 (both merged
+   2026-10-11); claims in `cloud/work/CLAIMS.md`. Integrate ready PRs within a day; comment the result.
 
 **For the next coordinating session.** This covers where the frontier matching effort stands, how a wave is run end to end, what the owner has decided, and every open item. Read it with `CLAUDE.md`, `cloud/work/frontier/WAVE_BRIEF.md` (the brief every lane agent reads) and `docs/plans/2026-10-04-frontier-plan.md` (the original method).
 
