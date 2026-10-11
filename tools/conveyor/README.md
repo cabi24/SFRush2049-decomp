@@ -572,6 +572,34 @@ python3 -m tools.conveyor.pipeline.blob_rom coverage     # what `make progress` 
   passes again. The drill checks for that message specifically, because a
   broken build also "fails" and would prove nothing.
 
+## Runtime images A/B: layout, splice, lock (R16)
+
+The two raw-deflate code images loaded at `0x8038A400` (A: stream `0xB5C534`,
+B: stream `0xB6FEC4`) get the 008 path, parametrised rather than copied:
+
+```bash
+python3 -m tools.conveyor.pipeline.ovl_image extract               # build/ovl/<x>/image.bin (hash-checked)
+python3 -m tools.conveyor.pipeline.ovl_layout build [--passthrough] # tile + link + image gate, both images
+python3 -m tools.conveyor.pipeline.ovl_splice splice --all-matches  # cloud/matches/ovl_{a,b}/*.c
+python3 -m tools.conveyor.pipeline.ovl_splice group --targets asm/us/ovl_a PACKET_DIR
+python3 -m tools.conveyor.pipeline.ovl_splice rebuild|check|coverage|revert|revert-group
+```
+
+- Tiling comes from `asm/us/ovl_<x>/extents.json` (pipeline.ovl_targets); the
+  data tail is one opaque run and every switch table is proven to lie in it.
+  Layout, region assembly, linker script and image live under `build/ovl/<x>/`.
+- Gates as for game code (link at the image address, owndata proofs, no short
+  body or nonzero excess, body equals the retail extent, whole image
+  byte-identical). Lock: `ovl_matched.lock.json` keyed by image, sources in
+  `src/ovl_<x>/`, groups in `src/ovl_<x>/groups/` (a packet's `claims` become
+  members; its other members become context).
+- `make check-matched` and the pre-commit hook run `ovl_splice check`.
+- Objects are build products: a fresh checkout runs `ovl_splice rebuild`
+  (IDO on the builder, `$OVL_BUILDER_DIR`, default `/tmp/ovlsplice`) before
+  `ovl_layout build` can gate the locked bodies.
+- Image coverage only, reported as two separate rows in `make progress`. The
+  stream round trip and ROM compose (`ovl_rom`) are a separate step.
+
 ## Call-graph frontier (work order for game code)
 
 The game image is one whole-program `-O3` unit emitted callee-first, so the
