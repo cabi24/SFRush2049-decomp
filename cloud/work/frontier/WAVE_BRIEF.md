@@ -124,6 +124,17 @@ writing variants: if forcing reaches 0 rows the residual is colour-only.
   when their session ended.
 - Concurrent `us.sh`/`blob_unit` runs on one tag share a stage directory and collide; serialise them.
 
+## Wave 16: owner decisions and lane rules (2026-10-11)
+- Unused locals: no numeric cap; the standing rule stands (exact frame residual only, each disclosed in the header
+  with the frame arithmetic: retail frame, frame without them, slot count).
+- `score.py fn` prints NOT VERIFIED for a function whose own `.rodata` sits in two retail regions (owndata's
+  one-base rule). Expected, not a blocker: the group install (`blob_group`) carries the w15j fail-closed proof.
+  Report the code score and the owndata line verbatim; the coordinator installs via blob_group.
+- Implicit int stays an open decision (deliver to the lane dir, say so, give the best form without it). Look
+  first for the wave-15 lever: a caller-less `jr ra; nop` stub next to the function is probably its inlined getter.
+- Keep off Astra's functions: func_80087110, stat_race_update, func_800FE5B0, camera_transform.
+- Write RESULTS.md within the first 20 minutes and keep variants under `<lane>/<fn>/v/`.
+
 ## Permission denials
 If any tool call is denied by a permission/safety check, do NOT retry it in another form (different paths,
 globs, quoting, tools or hosts). Record it in RESULTS.md and continue without it.

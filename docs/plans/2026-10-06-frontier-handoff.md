@@ -1,6 +1,6 @@
 # Frontier handoff: 2026-10-06 (after wave 12), updated 2026-10-11 (after wave 15)
 
-## 0. Wave 13–15 update (2026-10-11, master `5d778df1`)
+## 0. Wave 13–15 update (2026-10-11, master `0fdd8d9e`; wave 16 running)
 
 Read this section first; §1–§10 below are the wave-12 text and still describe the method. Section-by-section
 deltas are noted inline where they matter.
@@ -63,13 +63,24 @@ flags (libgcc needs `-mips3 -32`; libultra is the "J or later" variant; several 
 e.g. `osEPiRawStartDma` is really `__osEPiRawWriteIo`). Another 4.2 KB is byte-identical hand asm (policy needed).
 Table in `cloud/work/frontier/w15g/RESULTS.md`.
 
-**To the owner (still open):** §6 items 1 (merged-branch deletion), 3 (settled: func_800AC660 moved to
-differential_output in w13d), 5 (PR #163 still a draft, not rebased). New: the eight unused locals in
-billboard_render (exact frame residual, disclosed) landed under the standing rule — review if you want a cap.
+**Owner decisions, 2026-10-11 (the owner delegated the open judgment calls to the coordinator):**
+- Merged remote branches: deleted (213 branches, `--merged origin/master`, open PR heads excluded). 172 remain.
+- `.git/gc.log`: cleared; `git prune` + `git gc` run (0 loose objects, 1 pack). Builder scratch for waves 3–12
+  removed (10 GB freed; `~/rush2049/scratch/frontier` keeps base, wtk, unit, wholeprog and w13+).
+- Unused locals: **no numeric cap**. The standing rule stands (exact frame residual, each disclosed with the frame
+  arithmetic). billboard_render's eight stay.
+- `owndata.py` alternative (w15j): **not applied**. The blob_group proof is fail-closed and tested; `score.py fn`
+  printing NOT VERIFIED for split-rodata own data is expected and documented in the wave-16 rules. Revisit only if
+  a single-function splice (not a group) ever needs it.
+- PR #163 and the new drafts #305–#308 (texture rectangle, camera_transform research) are Astra's; untouched.
+  **camera_transform is added to the keep-off list** (§4).
+- Implicit int: still open; no landed function needs it.
 
-**Housekeeping:** `.git/gc.log` reports too many unreachable loose objects (`git prune` is the owner's call).
-`tools/mips_to_c` still carries the uncommitted late-September edits (§10).
-
+**Wave 16 (launched 2026-10-11, eight Opus lanes, trace-first):** w16a camera_update (+camera_aspect_ratio group),
+w16b entity_spawn_init, w16c camera_play_script, w16d camera_victory then func_800E4B58, w16e func_80096130 /
+func_8010FBE0 / entity_process_main, w16f pause_quit retry through the w15j gate then audio_frame_update /
+init_state_continue, w16g static ultralib/libgcc promotion prep (w15g rows), w16h fresh func_80108F40 /
+entity_render_setup / anim_state_update / func_800F45F8. Rules file: WAVE_BRIEF "Wave 16".
 
 **For the next coordinating session.** This covers where the frontier matching effort stands, how a wave is run end to end, what the owner has decided, and every open item. Read it with `CLAUDE.md`, `cloud/work/frontier/WAVE_BRIEF.md` (the brief every lane agent reads) and `docs/plans/2026-10-04-frontier-plan.md` (the original method).
 
@@ -172,7 +183,7 @@ Run on the Pi from the repo root, on a branch such as `git checkout -b wave13`.
 
 ## 4. Owner decisions and standing rules
 
-- **Astra's functions:** do not work on `func_80087110`, `stat_race_update` or `func_800FE5B0`. Astra (GitHub `cabi24`, PRs from `dot/*`, `work/*` and `research/*` branches) owns them.
+- **Astra's functions:** do not work on `func_80087110`, `stat_race_update`, `func_800FE5B0` or `camera_transform` (PRs #305–#308, 2026-10-07). Astra (GitHub `cabi24`, PRs from `dot/*`, `work/*` and `research/*` branches) owns them.
 - **Unused local declarations** are acceptable only when they are the **exact frame residual** and are disclosed in the file header. The owner approved this in wave 11. Measured rule: every function-level named local takes a slot, used or not.
   Pad arrays standing in for unknown structure elsewhere are not acceptable.
 - **Shaping devices** must always be disclosed in the header, and a match needing them is accepted with that disclosure:
