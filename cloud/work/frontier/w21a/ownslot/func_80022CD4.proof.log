@@ -1,0 +1,25 @@
+== func_80022CD4 (target func_80022CD4) src=lane/ownslot/func_80022CD4.c
+LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul]
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(6 rows) (152 rows)
+TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_22300.c additions=lane/ownslot/func_80022CD4.additions.h
+TU: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(6 rows) (152 rows)
+RESULT FAIL
+
+lane/r.o:     file format elf32-tradbigmips
+
+Contents of section .data:
+ 0000 100010f3 11f51307 1428155b 16a017f9  .........(.[....
+ 0010 19661ae8 1c821e34 20000000 00000000  .f.....4 .......
+			9c: R_MIPS_HI16	.data
+--
+			ac: R_MIPS_LO16	.data
+--
+			190: R_MIPS_HI16	.data
+--
+			1a0: R_MIPS_LO16	.data
+== target
+			9c: R_MIPS_HI16	D_8002D476
+			ac: R_MIPS_LO16	D_8002D476
+			190: R_MIPS_HI16	D_8002D476
+			1a0: R_MIPS_LO16	D_8002D476
+ROM 0x8002D460: 100010f311f513071428155b16a017f919661ae81c821e342000000000000000

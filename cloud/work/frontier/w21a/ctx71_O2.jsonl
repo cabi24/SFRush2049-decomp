@@ -1,0 +1,2 @@
+{"status": "ok", "preamble": ["#include \"boot_tail_audio_record.h\"", "extern unsigned int D_8003828C;"], "dropped": [], "words": 110, "function": "func_80011A64", "source": "cloud/work/frontier/w21a/sources/func_80011A64.c", "compiler": "ido7.1"}
+{"status": "ok", "preamble": ["#include \"boot_tail_audio_record.h\"", "extern double func_8001E688(double);"], "dropped": [], "words": 123, "function": "func_80011D74", "source": "cloud/work/frontier/w21a/sources/func_80011D74.c", "compiler": "ido7.1"}

@@ -1,0 +1,11 @@
+func_80011A64 ok 
+func_80011D74 ok 
+func_800252AC ok 
+== func_80011A64 (target func_80011A64) src=cloud/work/frontier/w21a/sources/func_80011A64.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (111 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (111 rows) RESULT PASS 
+== func_80011D74 (target func_80011D74) src=cloud/work/frontier/w21a/sources/func_80011D74.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (124 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (124 rows) RESULT PASS 
+== func_800252AC (target func_800252AC) src=cloud/work/frontier/w21a/sources/func_800252AC.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (166 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmpwmnbrp5h/tu.c, line 115: redeclaration of 'StreamState_80025264'; previous declaration at line 11 in file '/tmp/tmpwmnbrp5h/tu.c' | cfe: Error: /tmp/tmpwmnbrp5h/tu RESULT FAIL 
+wrote spl/src/rom/lib_11640.c
+wrote spl/src/rom/lib_25bb0.c
+== all sources spliced
+lib_11640: IDENTICAL (4276 lines: .text words+relocs, data sections)
+lib_25bb0: IDENTICAL (960 lines: .text words+relocs, data sections)

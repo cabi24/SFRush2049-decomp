@@ -315,6 +315,10 @@ int func_8001661C(u16 id)
     return 0;
 }
 
+/* Macro main table record, hoisted before its first user (w21b; was in the func_80017108 block). */
+#pragma pack(1)
+typedef struct ResourceRange { u16 count; u16 first; } ResourceRange;
+#pragma pack(0)
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_8001671C.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80016998.s")
 /* PROMOTED 2026-10-04 — func_80016BF8
@@ -465,7 +469,6 @@ int func_80017018(const PackedLeadingKey *left, const PackedLeadingKey *right)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
 #pragma pack(1)
-typedef struct ResourceRange { u16 count; u16 first; } ResourceRange;
 #pragma pack(0)
 extern int D_80038608;
 extern int D_8003C610;

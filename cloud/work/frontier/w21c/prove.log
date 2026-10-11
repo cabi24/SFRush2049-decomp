@@ -1,0 +1,5 @@
+func_80012730 ok 
+== func_80012730 (target func_80012730) src=lane/sources/func_80012730.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (410 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmp6dwu7_1b/tu.c, line 302: redeclaration of 'AudioCacheNode'; previous declaration at line 269 in file '/tmp/tmp6dwu7_1b/tu.c' | cfe: Error: /tmp/tmp6dwu7_1b/tu.c, l RESULT FAIL 
+wrote spl/src/rom/lib_11640.c
+== all sources spliced
+lib_11640: IDENTICAL (4276 lines: .text words+relocs, data sections)

@@ -174,3 +174,12 @@ rom:0x1CB6C reloc:MIPS_HI16 symbol:D_8004F300 addend:0x500 // was D_8004F800
 rom:0x1CB70 reloc:MIPS_LO16 symbol:D_8004F300 addend:0x500 // was D_8004F800
 rom:0x1CC68 reloc:MIPS_HI16 symbol:D_8004F300 addend:0x500 // was D_8004F800
 rom:0x1CC6C reloc:MIPS_LO16 symbol:D_8004F300 addend:0x500 // was D_8004F800
+
+rom:0x17478 reloc:MIPS_HI16 symbol:D_8003DA28 addend:0x800 // was D_8003E228
+rom:0x1747C reloc:MIPS_LO16 symbol:D_8003DA28 addend:0x800 // was D_8003E228
+rom:0x174E8 reloc:MIPS_HI16 symbol:D_8003E228 addend:0x8 // was D_8003E230
+rom:0x174EC reloc:MIPS_LO16 symbol:D_8003E228 addend:0x8 // was D_8003E230
+rom:0x176C0 reloc:MIPS_HI16 symbol:D_8003E228 addend:-0x8 // was D_8003E220
+rom:0x176C4 reloc:MIPS_LO16 symbol:D_8003E228 addend:-0x8 // was D_8003E220
+rom:0x176FC reloc:MIPS_HI16 symbol:D_8003DA28 addend:0x800 // was D_8003E228
+rom:0x17700 reloc:MIPS_LO16 symbol:D_8003DA28 addend:0x800 // was D_8003E228

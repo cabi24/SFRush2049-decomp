@@ -1,0 +1,34 @@
+== context rows (non-ok rows only)
+func_8001671C ok 
+func_80016998 ok 
+func_8001EF8C ok 
+== LOCK
+func_8001671C vs current target: LOCK: true=20 strict=20 reloc_blind=0 objdump-dr DIFFERS(6 rows) (186 rows)
+func_8001671C vs re-split target: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (186 rows)
+func_80016998 vs current target: LOCK: true=20 strict=20 reloc_blind=0 objdump-dr DIFFERS(6 rows) (169 rows)
+func_80016998 vs re-split target: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (169 rows)
+func_8001EF8C vs current target: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (124 rows)
+== TU edit alone
+lib_16320: IDENTICAL (1701 lines: .text words+relocs, data sections)
+== all sources spliced into the edited TUs, vs original TUs with re-split GLOBAL_ASM
+asm/us/nonmatchings/rom/lib_16320/func_8001671C.s: 4 operands renamed
+asm/us/nonmatchings/rom/lib_16320/func_80016998.s: 4 operands renamed
+lib_16320: IDENTICAL (1701 lines: .text words+relocs, data sections)
+lib_1f5b0: IDENTICAL (1152 lines: .text words+relocs, data sections)
+== ownbss func_80022874 (function-local static record; context_check refuses .bss, manual splice)
+func_80022874 LOCK: true=0 strict=0 reloc_blind=6 objdump-dr DIFFERS(30 rows) (135 rows)
+lib_22300: DIFFERENT (19 changed lines of 3385)
+orig: .text 13552 B, sha1 72e105bf4429fbbcc73ef9697f8ff0ebbf03a859; .bss none
+spl: .text 13552 B, sha1 72e105bf4429fbbcc73ef9697f8ff0ebbf03a859; .bss .bss              NOBITS          80056208 016208 000020
+rom:  .text 13552 B, sha1 72e105bf4429fbbcc73ef9697f8ff0ebbf03a859
+linked orig == linked spliced: IDENTICAL
+linked spliced == baserom 0x22300..+13552: IDENTICAL
+
+== re-run 2026-10-11 against the working tree's src/rom (in-progress lib_16320 ownbss trio promotion, uncommitted): TU sections
+== TU edit alone
+lib_16320: IDENTICAL (1705 lines: .text words+relocs, data sections)
+== all sources spliced into the edited TUs, vs original TUs with re-split GLOBAL_ASM
+asm/us/nonmatchings/rom/lib_16320/func_8001671C.s: 4 operands renamed
+asm/us/nonmatchings/rom/lib_16320/func_80016998.s: 4 operands renamed
+lib_16320: IDENTICAL (1705 lines: .text words+relocs, data sections)
+lib_1f5b0: IDENTICAL (1152 lines: .text words+relocs, data sections)
