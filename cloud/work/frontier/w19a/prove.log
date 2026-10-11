@@ -1,0 +1,27 @@
+func_800139D4 ok 
+func_80019490 ok 
+func_8001D1F4 ok 
+func_80021150 ok 
+func_8002193C ok 
+func_80021F84 ok 
+func_80023564 ok 
+func_80024988 ok 
+func_80025AB4 ok 
+== func_800139D4 (target func_800139D4) src=lane/sources/func_800139D4.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (193 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (193 rows) 
+== func_80019490 (target func_80019490) src=lane/sources/func_80019490.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (261 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (261 rows) 
+== func_8001D1F4 (target func_8001D1F4) src=lane/sources/func_8001D1F4.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (138 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmp0inqthqg/tu.c, line 159: redeclaration of 'Vector'; previous declaration at line 138 in file '/tmp/tmp0inqthqg/tu.c' | cfe: Error: /tmp/tmp0inqthqg/tu.c, line 159: 
+== func_80021150 (target func_80021150) src=lane/sources/func_80021150.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (184 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmp53km91ej/tu.c, line 112: redeclaration of 'ControlSource'; previous declaration at line 104 in file '/tmp/tmp53km91ej/tu.c' | cfe: Error: /tmp/tmp53km91ej/tu.c, li 
+== func_8002193C (target func_8002193C) src=lane/sources/func_8002193C.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (155 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (155 rows) 
+== func_80021F84 (target func_80021F84) src=lane/sources/func_80021F84.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (120 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmprf5ruhhm/tu.c, line 179: redeclaration of 'MacroCommand'; previous declaration at line 69 in file '/tmp/tmprf5ruhhm/tu.c' | cfe: Error: /tmp/tmprf5ruhhm/tu.c, line 
+== func_80023564 (target func_80023564) src=lane/sources/func_80023564.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (110 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmpgtfgexyj/tu.c, line 435: redeclaration of 'MacroCommand'; previous declaration at line 69 in file '/tmp/tmpgtfgexyj/tu.c' | cfe: Error: /tmp/tmpgtfgexyj/tu.c, line 
+== func_80024988 (target func_80024988) src=lane/sources/func_80024988.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (161 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmpyeeu0l3n/tu.c, line 611: redeclaration of 'VoiceState'; previous declaration at line 14 in file '/tmp/tmpyeeu0l3n/tu.c' | cfe: Error: /tmp/tmpyeeu0l3n/tu.c, line 6 
+== func_80025AB4 (target func_80025AB4) src=lane/sources/func_80025AB4.c LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (158 rows) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (158 rows) 
+== TU edits alone
+lib_22300: IDENTICAL (3382 lines: .text words+relocs, data sections)
+== all sources spliced (into the edited TUs)
+lib_11640: IDENTICAL (4276 lines: .text words+relocs, data sections)
+lib_17dc0: IDENTICAL (2598 lines: .text words+relocs, data sections)
+lib_1cf90: IDENTICAL (1876 lines: .text words+relocs, data sections)
+lib_21210: IDENTICAL (1081 lines: .text words+relocs, data sections)
+lib_22300: IDENTICAL (3382 lines: .text words+relocs, data sections)
+lib_25bb0: IDENTICAL (960 lines: .text words+relocs, data sections)

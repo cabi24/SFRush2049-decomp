@@ -116,6 +116,8 @@ void func_800218CC(void)
     }
 }
 
+typedef struct MacroState { u8 unknown00[0x30]; u32 field30; u8 unknown34[0x2C]; u32 field60; } MacroState;
+typedef struct MacroCommand { u32 word[2]; } MacroCommand;
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_8002193C.s")
 /* PROMOTED 2026-10-04 — func_80021B9C
  * Source:   cloud/matches/boot_tail/func_80021B9C.c (in-repo, locked)
@@ -123,8 +125,6 @@ void func_800218CC(void)
  * Evidence: lock:cloud/matches/boot_tail/func_80021B9C.c:func_80021B9C (score0); rom_tu.h context: cloud/work/boot_tail_promotion/context.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-typedef struct MacroState { u8 unknown00[0x30]; u32 field30; u8 unknown34[0x2C]; u32 field60; } MacroState;
-typedef struct MacroCommand { u32 word[2]; } MacroCommand;
 extern u8 func_8002193C(MacroState *, MacroCommand *);
 u8 func_80021B9C(MacroState *state, MacroCommand *command)
 {
