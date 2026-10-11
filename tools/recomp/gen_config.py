@@ -29,7 +29,9 @@ Outputs (all under --out, git-ignored, PRIVATE: derived from the ROM):
                             (documentation/Phase 1 input; the symbol-file mode
                             does not read data symbols)
   rush2049.recomp.toml      the recompiler configuration
-  manifest.json             counts, hashes, layout, name map, builtin-list hits
+  manifest.json             counts, hashes, layout, name map, builtin-list hits,
+                            runtime_contract (shims, hooks, images)
+  rush2049_images.h         stream -> section table for the runtime inflate hook
 
 The output is a pure function of the inputs (no timestamps, sorted keys).
 See tools/recomp/README.md for the format notes and the design decisions.
@@ -67,9 +69,13 @@ SECTIONS = ("static", "game", "ovl_a", "ovl_b")
 NAME_PREFIX = {"static": "", "game": "", "ovl_a": "ovl_a_", "ovl_b": "ovl_b_"}
 
 EXTRA_FUNCTIONS = REPO / "tools" / "recomp" / "extra_functions.json"
+IDENTITY = REPO / "tools" / "recomp" / "identity.json"
 PATCHES = REPO / "tools" / "recomp" / "patches.json"
 
 EXPECTED_COUNTS = {"static": 668, "game": 1216, "ovl_a": 193, "ovl_b": 49}
+
+
+_C_IDENT = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 
 
 class GenError(RuntimeError):
@@ -132,6 +138,13 @@ def extract_images(rom, repo=REPO):
             raise GenError("pipeline overlay base disagrees with OVL_VRAM")
         images["ovl_" + key] = (OVL_VRAM, data)
     return images
+
+
+def stream_offsets():
+    """{population: ROM offset of its compressed stream} (game, ovl_a, ovl_b)."""
+    from tools.conveyor.pipeline import blob_rom, ovl_image
+    return {"game": blob_rom.ROM_OFFSET, "ovl_a": ovl_image.STREAMS["a"].rom_offset,
+            "ovl_b": ovl_image.STREAMS["b"].rom_offset}
 
 
 # -------------------------------------------------------------------- inventories
@@ -422,9 +435,20 @@ def _toml_list(names):
     return "[\n" + "".join("    %s,\n" % _toml_str(n) for n in names) + "]"
 
 
+def hook_text(call):
+    """The C statement a [[patches.hook]] inserts: a block-scope prototype and
+    the call (the emitted files are C; the runtime defines `call` extern "C")."""
+    return "{ void %s(uint8_t*, recomp_context*); %s(rdram, ctx); }" % (call, call)
+
+
 def render_config_toml(rom_rel, syms_rel, stubs=(), ignored=(), renamed=(), instruction=(),
-                       output_rel="RecompiledFuncs"):
+                       output_rel="RecompiledFuncs", hooks=()):
     patches = []
+    for e in sorted(hooks, key=lambda e: (e["func"], e["before_vram"] or 0)):
+        patches += ["", "[[patches.hook]]", "func = %s" % _toml_str(e["func"])]
+        if e["before_vram"] is not None:
+            patches.append("before_vram = %s" % _hex(e["before_vram"]))
+        patches.append("text = %s" % _toml_str(hook_text(e["call"])))
     for e in sorted(instruction, key=lambda e: e["vram"]):
         patches += ["", "[[patches.instruction]]",
                     "func = %s" % _toml_str(e["func"]),
@@ -467,13 +491,62 @@ def load_extra_functions(path=EXTRA_FUNCTIONS):
     return out
 
 
+def load_identity(path=IDENTITY):
+    """[{vram, inventory, recomp}] from the committed recompiler-name map
+    (static libultra functions whose inventory name is not their identity)."""
+    path = Path(path)
+    if not path.is_file():
+        return []
+    doc = json.loads(path.read_text())
+    return [{"vram": int(e["vram"], 16), "inventory": e["inventory"], "recomp": e["recomp"]}
+            for e in doc.get("static", [])]
+
+
+def apply_identity(functions, identity):
+    """Rename static functions for the recompiler only (N64Recomp replaces
+    libultra functions BY NAME, so a wrong inventory name either replaces the
+    wrong function with a host version or hides a real libultra function from
+    the replacement). Each entry must name the function at its vram exactly;
+    the renamed set must stay unique. Returns (functions, applied)."""
+    if not identity:
+        return functions, []
+    by_vram = {f["vram"]: f for f in functions["static"]}
+    renames = {}
+    for e in identity:
+        f = by_vram.get(e["vram"])
+        if f is None:
+            raise GenError(f"identity.json: no static function at 0x{e['vram']:08X}")
+        if f["name"] != e["inventory"]:
+            raise GenError(f"identity.json: 0x{e['vram']:08X} is {f['name']}, not {e['inventory']}")
+        if not _C_IDENT.match(e["recomp"]):
+            raise GenError(f"identity.json: {e['recomp']!r} is not a C identifier")
+        if e["vram"] in renames:
+            raise GenError(f"identity.json: 0x{e['vram']:08X} listed twice")
+        renames[e["vram"]] = e["recomp"]
+    static = [dict(f, name=renames.get(f["vram"], f["name"])) for f in functions["static"]]
+    seen = {}
+    for f in static:
+        if f["name"] in seen:
+            raise GenError(f"identity.json: {f['name']} would name both 0x{seen[f['name']]:08X} "
+                           f"and 0x{f['vram']:08X} (rename the displaced function too)")
+        seen[f["name"]] = f["vram"]
+    out = dict(functions)
+    out["static"] = static
+    applied = [{"vram": _hex(e["vram"]), "inventory": e["inventory"], "recomp": e["recomp"]}
+               for e in sorted(identity, key=lambda e: e["vram"])]
+    return out, applied
+
+
 def load_patches(path=PATCHES):
     path = Path(path)
     if not path.is_file():
-        return {"stubs": {}, "ignored": {}, "renamed": {}, "instruction": []}
+        return {"stubs": {}, "ignored": {}, "renamed": {}, "instruction": [], "hook": []}
     doc = json.loads(path.read_text())
     return {"stubs": dict(doc.get("stubs", {})), "ignored": dict(doc.get("ignored", {})),
             "renamed": dict(doc.get("renamed", {})),
+            "hook": [{"func": e["func"], "call": e["call"],
+                      "before_vram": int(e["before_vram"], 16) if e.get("before_vram") else None}
+                     for e in doc.get("hook", [])],
             "instruction": [{"func": e["func"], "vram": int(e["vram"], 16),
                              "original": int(e["original"], 16), "value": int(e["value"], 16),
                              "now": e.get("now", "")}
@@ -515,8 +588,116 @@ def merge_extras(functions, extras, expected_counts=None):
     return merged
 
 
+def check_hooks(hooks, funcs_by_name, dropped, renamed_builtin):
+    """Validated [[patches.hook]] entries (patches.json "hook"): the function is
+    emitted, before_vram (optional; default = function entry) is an
+    instruction of it, the call is a C identifier, one hook per point."""
+    out, seen = [], set()
+    for e in hooks:
+        if e["func"] not in funcs_by_name:
+            raise GenError(f"hook for unknown function {e['func']}")
+        if e["func"] in dropped:
+            raise GenError(f"hook for {e['func']}, which is not emitted (stub/ignored/built-in)")
+        if not _C_IDENT.match(e["call"]):
+            raise GenError(f"hook call {e['call']!r} is not a C identifier")
+        f = funcs_by_name[e["func"]][1]
+        bv = e["before_vram"]
+        if bv is not None and (not f["vram"] <= bv < f["vram"] + f["size"] or bv % 4):
+            raise GenError(f"hook before_vram 0x{bv:08X} is not an instruction of {e['func']}")
+        key = (e["func"], bv)
+        if key in seen:
+            raise GenError(f"two hooks at {e['func']} {bv}")
+        seen.add(key)
+        func = e["func"] + "_recomp" if e["func"] in renamed_builtin else e["func"]
+        out.append({"func": func, "call": e["call"], "before_vram": bv})
+    return sorted(out, key=lambda e: (e["func"], e["before_vram"] or 0))
+
+
+def jal_targets(functions, images, skip=()):
+    """{target vram: sorted caller names} for every `jal` in the emitted
+    functions (static and game code; overlay calls are in-image)."""
+    out = {}
+    for pop in SECTIONS:
+        vram, data = images[pop]
+        for f in functions[pop]:
+            name = NAME_PREFIX[pop] + f["name"]
+            if name in skip:
+                continue
+            for addr in range(f["vram"], f["vram"] + f["size"], 4):
+                word = int.from_bytes(data[addr - vram:addr - vram + 4], "big")
+                if word >> 26 == 3:
+                    target = ((addr + 4) & 0xF0000000) | ((word & 0x03FFFFFF) << 2)
+                    out.setdefault(target, set()).add(name)
+    return {t: sorted(c) for t, c in out.items()}
+
+
+def runtime_contract(functions, images, sections, patches, lists, hooks, streams=None):
+    """What the host runtime (tools/recomp/runtime) must provide for this run:
+    shims = every name the emitted code or the section table references
+    but N64Recomp does not emit: built-in reimplemented names in the run and
+    called built-in ignored names (both as NAME_recomp; N64ModernRuntime
+    implements most), and our patches.json "ignored" (called by NAME), each
+    with its callers;
+    hooks = the C functions [[patches.hook]] calls; images = the compressed
+    stream -> recompiled section map the inflate hook loads (streams:
+    {population: ROM offset of its compressed stream})."""
+    # N64Recomp's precedence: a reimplemented name is never "ignored".
+    builtin_ignored = (set(lists["ignored_funcs"]) - set(lists["reimplemented_funcs"])
+                       if lists is not None else set())
+    dropped = set(patches["stubs"]) | set(patches["ignored"])
+    if lists is not None:
+        dropped |= set(lists["reimplemented_funcs"]) | builtin_ignored
+    by_vram = {}
+    for pop in ("static", "game"):
+        for f in functions[pop]:
+            by_vram.setdefault(f["vram"], f["name"])
+    shims = {}
+    # Reimplemented names are not emitted but stay in N64Recomp's section
+    # table (recomp_overlays.inl) as NAME_recomp: the runtime must define each.
+    if lists is not None:
+        reimpl = set(lists["reimplemented_funcs"])
+        for pop in SECTIONS:
+            for f in functions[pop]:
+                if NAME_PREFIX[pop] + f["name"] in reimpl:
+                    shims.setdefault(NAME_PREFIX[pop] + f["name"] + "_recomp", [])
+    for target, callers in jal_targets(functions, images, skip=dropped).items():
+        name = by_vram.get(target)
+        if name in patches["ignored"]:
+            shims[name] = callers
+        elif name in builtin_ignored or (lists is not None and name in lists["reimplemented_funcs"]):
+            shims[name + "_recomp"] = callers
+    imgs = []
+    for sec in sections:
+        if sec["name"] == "static" or not streams or sec["name"] not in streams:
+            continue
+        imgs.append({"name": sec["name"], "stream_rom": _hex(streams[sec["name"]]),
+                     "section_rom": _hex(sec["rom"]), "vram": _hex(sec["vram"]),
+                     "size": sec["size"]})
+    return {"shims": dict(sorted(shims.items())),
+            "hooks": sorted({e["call"] for e in hooks}),
+            "images": imgs}
+
+
+def render_images_header(images):
+    lines = ["/* Generated by tools/recomp/gen_config.py: compressed stream -> recompiled",
+             " * section (synthetic ROM offset) for the runtime's inflate hook. */",
+             "#pragma once",
+             "#include <stdint.h>",
+             "typedef struct { const char* name; uint32_t stream_rom; uint32_t section_rom;",
+             "                 uint32_t vram; uint32_t size; } RushImage;",
+             "static const RushImage rush_images[] = {"]
+    for i in images:
+        lines.append('    { "%s", %s, %s, %s, 0x%X },' % (i["name"], i["stream_rom"], i["section_rom"],
+                                                         i["vram"], i["size"]))
+    if not images:
+        lines.append("    { 0, 0, 0, 0, 0 },")
+    lines += ["};", "#define RUSH_NUM_IMAGES %d" % len(images), ""]
+    return "\n".join(lines)
+
+
 def generate(images, functions, symbols, rom_bytes, out_dir, lists=None,
-             expected_counts=EXPECTED_COUNTS, rom_sha1=None, extras=None, patches=None):
+             expected_counts=EXPECTED_COUNTS, rom_sha1=None, extras=None, patches=None,
+             streams=None, identity=None):
     """Write every output under out_dir. `images` is {pop: (vram, bytes)}.
     Pure function of its arguments; returns the manifest dict."""
     out_dir = Path(out_dir)
@@ -524,9 +705,11 @@ def generate(images, functions, symbols, rom_bytes, out_dir, lists=None,
         if pop not in images:
             raise GenError(f"missing image for {pop}")
     patches = dict(patches or {})
-    for key, empty in (("stubs", {}), ("ignored", {}), ("renamed", {}), ("instruction", [])):
+    for key, empty in (("stubs", {}), ("ignored", {}), ("renamed", {}), ("instruction", []),
+                       ("hook", [])):
         patches.setdefault(key, empty)
     inventory_counts = {pop: len(functions.get(pop, [])) for pop in SECTIONS}
+    functions, identity_applied = apply_identity(functions, identity)
     functions = merge_extras(functions, extras, expected_counts)
     sections, synthetic_size = plan_layout(len(rom_bytes), images)
     names = check_functions(functions, sections)
@@ -567,6 +750,8 @@ def generate(images, functions, symbols, rom_bytes, out_dir, lists=None,
                               else dict(e) for e in patches["instruction"]]
     if set(patches["stubs"]) & set(patches["ignored"]) or set(patches["renamed"]) & set(patches["ignored"]):
         raise GenError("a function is in two of stubs/ignored/renamed in patches.json")
+    hooks = check_hooks(patches["hook"], funcs_by_name, dropped, renamed_builtin)
+    contract = runtime_contract(functions, images, sections, patches, lists, hooks, streams)
     placed, conflicts = data_symbols(functions, symbols, sections)
 
     synthetic = bytearray(rom_bytes)
@@ -591,7 +776,8 @@ def generate(images, functions, symbols, rom_bytes, out_dir, lists=None,
         render_config_toml("rom/" + rom_name, "rush2049.syms.toml",
                            stubs=patches["stubs"], ignored=patches["ignored"],
                            renamed=patches["renamed"],
-                           instruction=patches["instruction"]))
+                           instruction=patches["instruction"], hooks=hooks))
+    (out_dir / "rush2049_images.h").write_text(render_images_header(contract["images"]))
 
     manifest = {
         "generator": "tools/recomp/gen_config.py",
@@ -618,7 +804,12 @@ def generate(images, functions, symbols, rom_bytes, out_dir, lists=None,
                     "renamed": dict(sorted(patches["renamed"].items())),
                     "instruction": [{"func": e["func"], "vram": _hex(e["vram"]),
                                      "original": _hex(e["original"]), "value": _hex(e["value"])}
-                                    for e in sorted(patches["instruction"], key=lambda e: e["vram"])]},
+                                    for e in sorted(patches["instruction"], key=lambda e: e["vram"])],
+                    "hook": [{"func": e["func"], "call": e["call"],
+                              "before_vram": None if e["before_vram"] is None else _hex(e["before_vram"])}
+                             for e in hooks]},
+        "runtime_contract": contract,
+        "identity_renames": identity_applied,
     }
     if lists is not None:
         manifest["n64recomp_builtin_lists"] = {
@@ -647,7 +838,8 @@ def main(argv=None):
         game_path.write_bytes(images["game"][1])          # layout.derive reads it
         functions, symbols = load_inventories(args.rom, game_path)
         manifest = generate(images, functions, symbols, rom, out, lists=lists,
-                            extras=load_extra_functions(), patches=load_patches())
+                            extras=load_extra_functions(), patches=load_patches(),
+                            streams=stream_offsets(), identity=load_identity())
     except GenError as exc:
         print(f"gen_config: {exc}", file=sys.stderr)
         return 2

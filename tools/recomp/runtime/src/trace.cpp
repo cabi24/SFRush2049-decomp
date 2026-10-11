@@ -1,0 +1,219 @@
+// Boot instrumentation for the headless host: counters, a once-per-second
+// status line, first-occurrence events, framebuffer statistics (and optional
+// PPM dumps), scripted controller input, and the run timer.
+#include <atomic>
+#include <chrono>
+#include <cstdarg>
+#include <cstdio>
+#include <cstdlib>
+#include <filesystem>
+#include <mutex>
+#include <set>
+#include <sstream>
+#include <string>
+#include <thread>
+#include <vector>
+
+#include "recomp.h"
+#include "rush_runtime.h"
+
+namespace {
+
+using clock_type = std::chrono::steady_clock;
+clock_type::time_point t0 = clock_type::now();
+
+std::atomic<uint64_t> n_vi{0}, n_gfx{0}, n_audio_task{0}, n_other_task{0}, n_swap{0},
+    n_audio_samples{0}, n_overlay{0};
+std::atomic<uint32_t> last_origin{0}, last_dl{0}, last_dl_size{0};
+std::atomic<uint64_t> fb_nonzero{0}, fb_hash{0};
+std::atomic<uint64_t> fb_distinct{0};
+std::mutex mu;
+std::set<std::string> seen_shims;
+std::set<uint64_t> fb_hashes;
+std::string fb_dump_dir;
+std::string current_image = "none";
+
+struct Press { double t, dur; uint16_t mask; float x, y; };
+std::vector<Press> presses;
+
+double now_s() { return std::chrono::duration<double>(clock_type::now() - t0).count(); }
+
+uint16_t button_mask(const std::string& b, float& x, float& y) {
+    static const struct { const char* n; uint16_t m; } table[] = {
+        {"A", 0x8000}, {"B", 0x4000}, {"Z", 0x2000}, {"START", 0x1000},
+        {"UP", 0x0800}, {"DOWN", 0x0400}, {"LEFT", 0x0200}, {"RIGHT", 0x0100},
+        {"L", 0x0020}, {"R", 0x0010}, {"CU", 0x0008}, {"CD", 0x0004}, {"CL", 0x0002}, {"CR", 0x0001}};
+    for (auto& e : table) if (b == e.n) return e.m;
+    if (b == "STICKUP") { y = 1.0f; return 0; }
+    if (b == "STICKDOWN") { y = -1.0f; return 0; }
+    if (b == "STICKLEFT") { x = -1.0f; return 0; }
+    if (b == "STICKRIGHT") { x = 1.0f; return 0; }
+    fprintf(stderr, "[rush] unknown button %s\n", b.c_str());
+    std::exit(2);
+}
+
+void parse_presses(const std::string& spec) {
+    std::stringstream ss(spec);
+    std::string item;
+    while (std::getline(ss, item, ',')) {
+        if (item.empty()) continue;
+        Press p{0, 0.2, 0, 0, 0};
+        std::stringstream is(item);
+        std::string t, b, d;
+        std::getline(is, t, ':');
+        std::getline(is, b, ':');
+        if (std::getline(is, d, ':')) p.dur = std::stod(d);
+        p.t = std::stod(t);
+        p.mask = button_mask(b, p.x, p.y);
+        presses.push_back(p);
+    }
+}
+
+void status_line(const char* tag) {
+    fprintf(stderr,
+        "[rush] %s t=%.1fs vi=%llu gfx_tasks=%llu audio_tasks=%llu other_tasks=%llu swaps=%llu "
+        "origin=0x%08X fb_nonzero=%llu fb_distinct=%llu last_dl=0x%08X(%u B) audio_samples=%llu image=%s\n",
+        tag, now_s(), (unsigned long long)n_vi, (unsigned long long)n_gfx,
+        (unsigned long long)n_audio_task, (unsigned long long)n_other_task,
+        (unsigned long long)n_swap, last_origin.load(), (unsigned long long)fb_nonzero,
+        (unsigned long long)fb_distinct, last_dl.load(), last_dl_size.load(),
+        (unsigned long long)n_audio_samples, current_image.c_str());
+}
+
+} // namespace
+
+void rush::trace_event(const char* fmt, ...) {
+    char buf[512];
+    va_list ap;
+    va_start(ap, fmt);
+    vsnprintf(buf, sizeof buf, fmt, ap);
+    va_end(ap);
+    fprintf(stderr, "[rush] t=%.2fs %s\n", now_s(), buf);
+}
+
+void rush::trace_start(double seconds, const std::string& press, const std::string& fb_dump) {
+    parse_presses(press);
+    fb_dump_dir = fb_dump;
+    if (!fb_dump_dir.empty()) std::filesystem::create_directories(fb_dump_dir);
+    std::thread([seconds] {
+        while (now_s() < seconds) {
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+            status_line("status");
+        }
+        status_line("final");
+        fflush(stderr);
+        std::_Exit(0);
+    }).detach();
+}
+
+void rush::trace_rsp_task(uint32_t type) {
+    if (type == M_AUDTASK) {
+        if (n_audio_task++ == 0) trace_event("first audio RSP task (completed without ucode)");
+    } else {
+        if (n_other_task++ == 0) trace_event("first non-gfx/non-audio RSP task type %u", type);
+    }
+}
+
+void rush::trace_gfx_task(const OSTask* task) {
+    last_dl = (uint32_t)task->t.data_ptr;
+    last_dl_size = task->t.data_size;
+    if (n_gfx++ == 0) {
+        trace_event("first gfx task: ucode 0x%08X data_ptr 0x%08X size %u", (uint32_t)task->t.ucode,
+                    (uint32_t)task->t.data_ptr, task->t.data_size);
+    }
+}
+
+void rush::trace_screen_update(uint8_t* rdram, uint32_t origin) {
+    uint64_t n = n_swap++;
+    last_origin = origin;
+    if (n == 0) trace_event("first VI screen update, origin 0x%08X", origin);
+    if (origin == 0 || (n % 30) != 0) return;
+    // Framebuffer statistics: 320x240 16-bit assumed (VI width register checked).
+    auto* vi = ultramodern::renderer::get_vi_regs();
+    uint32_t width = vi->VI_WIDTH_REG ? vi->VI_WIDTH_REG : 320;
+    uint32_t bpp = (vi->VI_STATUS_REG & 3) == 3 ? 4 : 2;
+    uint32_t base = 0x80000000u | (origin & 0x00FFFFFFu);
+    uint32_t bytes = width * 240 * bpp;
+    if ((base & 0x00FFFFFFu) + bytes > 0x800000u) return;
+    uint64_t nz = 0, h = 1469598103934665603ull;
+    for (uint32_t i = 0; i < bytes; i += 4) {
+        uint32_t w = MEM_W(i, (gpr)(int32_t)base);
+        nz += w != 0;
+        h = (h ^ w) * 1099511628211ull;
+    }
+    fb_nonzero = nz;
+    fb_hash = h;
+    {
+        std::lock_guard<std::mutex> lock(mu);
+        if (fb_hashes.insert(h).second) {
+            fb_distinct = fb_hashes.size();
+            if (nz && !fb_dump_dir.empty() && bpp == 2) {
+                char path[512];
+                snprintf(path, sizeof path, "%s/fb_%05llu.ppm", fb_dump_dir.c_str(), (unsigned long long)n);
+                if (FILE* f = fopen(path, "wb")) {
+                    fprintf(f, "P6\n%u 240\n255\n", width);
+                    for (uint32_t i = 0; i < width * 240; i++) {
+                        uint16_t p = MEM_HU(i * 2, (gpr)(int32_t)base);
+                        unsigned char rgb[3] = {(unsigned char)(((p >> 11) & 31) << 3),
+                                                (unsigned char)(((p >> 6) & 31) << 3),
+                                                (unsigned char)(((p >> 1) & 31) << 3)};
+                        fwrite(rgb, 1, 3, f);
+                    }
+                    fclose(f);
+                }
+            }
+        }
+    }
+}
+
+void rush::trace_audio_samples(size_t n) { n_audio_samples += n; }
+
+void rush::trace_overlay(const char* name, uint32_t stream_rom, uint32_t dst) {
+    {
+        std::lock_guard<std::mutex> lock(mu);
+        if (std::string(name) != "game") current_image = name;
+    }
+    n_overlay++;
+    trace_event("load %s: stream ROM 0x%06X -> 0x%08X (load #%llu)", name, stream_rom, dst,
+                (unsigned long long)n_overlay.load());
+}
+
+void rush::trace_shim(const char* name, uint32_t ra) {
+    std::lock_guard<std::mutex> lock(mu);
+    if (seen_shims.insert(name).second) {
+        fprintf(stderr, "[rush] t=%.2fs shim %s first called (ra 0x%08X)\n", now_s(), name, ra);
+    }
+}
+
+void rush::on_vi() {
+    if (n_vi++ == 0) trace_event("first VI");
+}
+
+void rush::poll_input() {}
+
+bool rush::get_input(int controller, uint16_t* buttons, float* x, float* y) {
+    if (controller != 0) return false;
+    double t = now_s();
+    uint16_t m = 0;
+    float sx = 0, sy = 0;
+    for (const Press& p : presses) {
+        if (t >= p.t && t < p.t + p.dur) {
+            m |= p.mask;
+            if (p.x) sx = p.x;
+            if (p.y) sy = p.y;
+        }
+    }
+    *buttons = m;
+    *x = sx;
+    *y = sy;
+    return true;
+}
+
+void rush::set_rumble(int, bool) {}
+
+ultramodern::input::connected_device_info_t rush::get_connected_device_info(int controller) {
+    if (controller == 0) {
+        return {ultramodern::input::Device::Controller, ultramodern::input::Pak::None};
+    }
+    return {ultramodern::input::Device::None, ultramodern::input::Pak::None};
+}

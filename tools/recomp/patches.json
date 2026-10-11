@@ -1,5 +1,5 @@
 {
- "note": "Functions N64Recomp refuses (found by running it, see README 'Acceptance'), and what the config does with each. stub: emitted as an empty body (the operation has no host meaning). ignored: not emitted; the runtime must provide a host function of the same name (Phase 1 shim list). Names are inventory names (static population). renamed: emitted as NAME_recomp because NAME collides with a host C/libc declaration (found by compiling the output with clang). instruction: single-word replacements (N64Recomp [[patches.instruction]]); the hand-written codec kernels get their PC with a never-taken `bltzal zero` whose only effect is ra = pc+8, which N64Recomp treats as a call into the inline table; the pair is rewritten to load the same ra value directly (lui/ori), behaviour unchanged.",
+ "note": "Functions N64Recomp refuses (found by running it, see README 'Acceptance'), and what the config does with each. stub: emitted as an empty body (the operation has no host meaning). ignored: not emitted; the runtime must provide a host function of the same name (Phase 1 shim list). Names are inventory names (static population). renamed: emitted as NAME_recomp because NAME collides with a host C/libc declaration (found by compiling the output with clang). instruction: single-word replacements (N64Recomp [[patches.instruction]]); the hand-written codec kernels get their PC with a never-taken `bltzal zero` whose only effect is ra = pc+8, which N64Recomp treats as a call into the inline table; the pair is rewritten to load the same ra value directly (lui/ori), behaviour unchanged. hook: C call inserted by N64Recomp ([[patches.hook]]) at function entry (or before_vram); the runtime (tools/recomp/runtime) defines the callee extern \"C\".",
  "stubs": {
   "osInvalICache_full": "cache instruction (I-cache invalidate; no host meaning)",
   "func_8002C5E0": "cache instruction (D-cache range loop; no host meaning)",
@@ -115,6 +115,13 @@
    "value": "0x37FF7C18",
    "was": "nop (delay slot)",
    "now": "ori ra, ra, 0x7C18"
+  }
+ ],
+ "hook": [
+  {
+   "func": "inflate_entry",
+   "call": "rush_hook_inflate",
+   "why": "every compressed code image (game image at boot from game_init, overlay A/B from PrevMaxPath via inflate_decompress) is inflated by inflate_entry(src ROM offset, dst, n); at entry the runtime maps src to the recompiled section (build/recomp/rush2049_images.h) and calls unload_overlays/load_overlays so lookups dispatch to the image being loaded. The inflate itself still runs recompiled and writes the data into rdram."
   }
  ]
 }
