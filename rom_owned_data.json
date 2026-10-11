@@ -69,6 +69,19 @@
       "composed_source": "build/us/assets/us/data.composed.bin",
       "alignment": 4,
       "logical_extent": true
+    },
+    {
+      "owner": "osAiSetNextBuffer",
+      "tu": "src/rom/lib_ca70.c",
+      "source": "assets/us/data.bin",
+      "container_section": ".data",
+      "owner_section": ".data",
+      "offset": "0x4bf0",
+      "size": "0x10",
+      "container_vram": "0x800277d0",
+      "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_ca70/osAiSetNextBuffer.data.s",
+      "composed_source": "build/us/assets/us/data.composed.bin"
     }
   ],
   "storage_blocks": [

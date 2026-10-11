@@ -5,6 +5,9 @@
 #include "rom_tu.h"
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_ca70/osAiSetNextBuffer.s")
+/* ROM_OWNED_RODATA_BEGIN osAiSetNextBuffer */
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_ca70/osAiSetNextBuffer.data.s")
+/* ROM_OWNED_RODATA_END osAiSetNextBuffer */
 /* PROMOTED 2026-10-01 — osAiSetFrequency
  * Source:   cloud/work/static_C6/osAiSetFrequency.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
