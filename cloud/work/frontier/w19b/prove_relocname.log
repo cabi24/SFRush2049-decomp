@@ -1,0 +1,26 @@
+func_80015720 ok 
+func_800158D8 ok 
+func_80015C0C ok 
+func_80015F28 ok 
+func_800161A0 ok 
+func_8001661C ok 
+== func_80015720 (target func_80015720) src=lane/relocname/func_80015720.c LOCK: true=20 strict=20 reloc_blind=0 objdump-dr DIFFERS(6 rows) (128 rows) TU: true=20 strict=20 reloc_blind=0 objdump-dr DIFFERS(6 rows) (128 rows) RESULT FAIL 
+== func_800158D8 (target func_800158D8) src=lane/relocname/func_800158D8.c LOCK: true=20 strict=20 reloc_blind=0 objdump-dr DIFFERS(6 rows) (91 rows) TU: true=20 strict=20 reloc_blind=0 objdump-dr DIFFERS(6 rows) (91 rows) RESULT FAIL 
+== func_80015C0C (target func_80015C0C) src=lane/relocname/func_80015C0C.c LOCK: true=20 strict=20 reloc_blind=0 objdump-dr DIFFERS(6 rows) (101 rows) TU: true=20 strict=20 reloc_blind=0 objdump-dr DIFFERS(6 rows) (101 rows) RESULT FAIL 
+== func_80015F28 (target func_80015F28) src=lane/relocname/func_80015F28.c LOCK: true=20 strict=20 reloc_blind=0 objdump-dr DIFFERS(6 rows) (91 rows) TU: true=20 strict=20 reloc_blind=0 objdump-dr DIFFERS(6 rows) (91 rows) RESULT FAIL 
+== func_800161A0 (target func_800161A0) src=lane/relocname/func_800161A0.c LOCK: true=10 strict=10 reloc_blind=0 objdump-dr DIFFERS(3 rows) (80 rows) TU: true=10 strict=10 reloc_blind=0 objdump-dr DIFFERS(3 rows) (80 rows) RESULT FAIL 
+== func_8001661C (target func_8001661C) src=lane/relocname/func_8001661C.c LOCK: true=10 strict=10 reloc_blind=0 objdump-dr DIFFERS(3 rows) (77 rows) TU: COMPILE FAIL cfe: Error: /tmp/tmp1uud2crb/tu.c, line 47: redeclaration of 'Descriptor'; previous declaration at line 36 in file '/tmp/tmp1uud2crb/tu.c' | cfe: Error: /tmp/tmp1uud2crb/tu.c, line 49: redeclaration of 'RecordFields'; previous declaration at line 38 in file '/tmp/tmp1uud2crb/tu.c' | cfe: Error: /tmp/tmp1uud2crb/tu.c, line 51: redeclaration of 'RecordStorage'; previous declaration at line 40 in fil RESULT FAIL 
+func_80015720 vs re-split target: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (128 rows)
+func_800158D8 vs re-split target: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (91 rows)
+func_80015C0C vs re-split target: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (101 rows)
+func_80015F28 vs re-split target: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (91 rows)
+func_800161A0 vs re-split target: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (80 rows)
+func_8001661C vs re-split target: LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (77 rows)
+asm/us/nonmatchings/rom/lib_16320/func_80015720.s: 4 operands renamed
+asm/us/nonmatchings/rom/lib_16320/func_800158D8.s: 4 operands renamed
+asm/us/nonmatchings/rom/lib_16320/func_80015C0C.s: 4 operands renamed
+asm/us/nonmatchings/rom/lib_16320/func_80015F28.s: 4 operands renamed
+asm/us/nonmatchings/rom/lib_16320/func_800161A0.s: 2 operands renamed
+asm/us/nonmatchings/rom/lib_16320/func_8001661C.s: 2 operands renamed
+== six spliced vs re-split passthrough TU
+lib_16320: IDENTICAL (1701 lines: .text words+relocs, data sections)

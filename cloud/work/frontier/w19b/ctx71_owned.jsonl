@@ -1,0 +1,1 @@
+{"status": "refused", "reason": "object has data/rodata (.rodata:32)", "function": "func_80021548", "source": "lane/owned/func_80021548.c", "compiler": "ido7.1"}
