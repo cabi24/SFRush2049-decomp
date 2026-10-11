@@ -114,8 +114,13 @@ def _ssh(command, timeout=3600):
 
 def sync_to_builder(blob=BLOB_OUT):
     """What the builder's ROM build needs beyond its checkout."""
+    # rom_compilers.json and opt_overrides.mk select the per-TU compiler and
+    # flags; a stale copy on the builder would build the ROM with the wrong
+    # compiler and still match (passthrough TUs are compiler-neutral).
     for local, remote in (("Makefile", "Makefile"),
-                          ("tools/compose_data.py", "tools/compose_data.py")):
+                          ("tools/compose_data.py", "tools/compose_data.py"),
+                          ("rom_compilers.json", "rom_compilers.json"),
+                          ("src/rom/opt_overrides.mk", "src/rom/opt_overrides.mk")):
         subprocess.run(["rsync", "-az", str(REPO / local),
                         f"{BUILDER}:{BUILDER_REPO}/{remote}"], check=True)
     _ssh(f"mkdir -p {BUILDER_REPO}/build/blob")
