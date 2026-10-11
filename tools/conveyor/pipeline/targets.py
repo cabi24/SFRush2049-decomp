@@ -708,24 +708,40 @@ def _initialization_aliases(lines, target_id):
     return result
 
 
+PRELUDE = REPO / "tools" / "asm-processor" / "prelude.inc"
+_MODE_RE = re.compile(r"^\s*\.set\s+(noat|noreorder|gp=\d+)\s*$")
+_FLOAT_ALIAS_RE = re.compile(r"^\s*\.set\s+\$f\w+,\s*\$f\d+\s*$")
+
+
+def target_prelude(prelude=PRELUDE):
+    """Assembler mode + o32 float aliases for an isolated target, taken from
+    the ROM build's asm-processor prelude so a target assembles the way its
+    passthrough slot does.
+
+    Mode lines are `.set noat`, `.set noreorder` and `.set gp=N`: without the
+    prelude's `.set gp=64`, GNU as (-mabi=32) expands a 64-bit
+    `ld $t7, %lo(sym)($t7)` as a macro and refuses under `.set noat`
+    (__fixunsdfdi/__fixunssfdi, w17g/w19c). The float aliases ($fa0, $ft0f...)
+    are splat's; GNU as does not know them. The prelude's macros (glabel,
+    endlabel, ...) are not used: regions are emitted as plain instructions.
+    """
+    lines = prelude.read_text().splitlines()
+    modes = [line.strip() for line in lines if _MODE_RE.match(line)]
+    for required in (".set noreorder", ".set noat"):
+        if required not in modes:
+            raise AssembleError(f"assembler prelude lacks {required!r}: {prelude}")
+    return modes + [line for line in lines if _FLOAT_ALIAS_RE.match(line)]
+
+
 def assemble_region(region, target_id, out_o):
     """Assemble a region into a relocatable object named `target_id`. Raises
     AssembleError (first stderr line preserved) on assembler failure."""
     asm = [
-        ".set noreorder",
-        ".set noat",
         ".section .text",
         f".globl {target_id}",
         f"{target_id}:",
     ]
-    # Splat uses o32 float aliases such as $fa0/$ft0f. They are defined
-    # by the ROM assembler prelude, not by GNU as itself. Reuse only those
-    # register declarations; the prelude's macros and gp mode are unrelated
-    # to this isolated relocatable target.
-    prelude = REPO / "tools" / "asm-processor" / "prelude.inc"
-    aliases = [line for line in prelude.read_text().splitlines()
-               if re.match(r"^\s*\.set\s+\$f\w+,\s*\$f\d+\s*$", line)]
-    asm[0:0] = aliases
+    asm[0:0] = target_prelude()
     asm += _initialization_aliases(_typed_data_field_aliases(_data_field_aliases(region.lines), target_id), target_id)
     with tempfile.NamedTemporaryFile("w", suffix=".s", delete=False) as f:
         f.write("\n".join(asm) + "\n")
