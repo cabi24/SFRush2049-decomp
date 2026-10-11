@@ -1,17 +1,16 @@
 # Frontier handoff: 2026-10-06 (after wave 12), updated 2026-10-11 (after wave 15)
 
-## 0. Wave 13–16 update (2026-10-11, after wave 16; wave 17 running)
+## 0. Wave 13–17 update (2026-10-11, after wave 17; w17k IDO 7.1 tooling running)
 
 Read this section first; §1–§10 below are the wave-12 text and still describe the method. Section-by-section
 deltas are noted inline where they matter.
 
 | | Functions | Bytes | % |
 |---|---|---|---|
-| Game code (compressed image) | 965 / 1216 | 300,856 / 647,072 | 46.49 |
+| Game code (compressed image) | 972 / 1216 | 310,380 / 647,072 | 47.97 |
 | Static code (boot/library) | 431 / 668 | 77,844 / 160,720 | 48.43 |
 
-Frontier: 251 unmatched game functions (258 KB) after wave 16. Provisional: 21 functions (`provisional.json`;
-camera_track_spline and func_800C3AD0 left, init_state_continue joined).
+Frontier: 244 unmatched game functions (251 KB) after wave 17. Provisional: 20 functions (`provisional.json`).
 
 **What landed since wave 12 (+19.9 KB game):**
 - Wave 13: records_screen, func_800E762C, differential_output (+1.2 KB); wave 14: graphics_chunk,
@@ -120,11 +119,53 @@ Provisional unblockers: func_800E4B58 (above), func_800D91A0 (closes 1,572 B + p
 Wave 16 lesson (w16d, w16b): uopt's live-range split start block follows source-visible block order; a private
 instrumented uopt with skip/reject oracles proves the lever before searching for the source form.
 
-**Wave 17 (launched 2026-10-11 afternoon, nine Opus lanes):** w17a camera_play_script, w17b func_800E4B58 (+
-func_800E398C), w17c anim_state_update, w17d entity_render_setup, w17e func_800D91A0 (closes pause_quit and three
-provisional results-screen bodies), w17f entity_spawn_init, w17g static Rush-specific `func_*` code + data-bound
-items, w17h fresh physics_response / func_800D6914 / engine_sound_sync / func_800C8918, w17i func_80096130 /
-audio_frame_update with the instrumented-uopt method.
+**Wave 17 (2026-10-11 afternoon/evening, nine Opus lanes + w17j packaging + w17k tooling). Landed, game +9,524 B:**
+- **frontier_maxpath_controls** (w17b, 6,792 B): func_800E4B58 MaxPathControls, func_800E398C avoid_areas, the
+  former provisionals func_800E451C and func_800E4300, six inlined arcade helpers (locked stubs reverted, now
+  members). Levers: float-literal spelling is a constant-web key (`0`, `0.0f`, `0.f` are three constants), arcade
+  integer literals, one-line vector macros for store order, definition order for as1 ties. The blamed callee
+  convention was not the blocker (a correct-convention stand-in changed nothing).
+- **anim_state_update** (w17c, 1,840 B) in the superseding codex_visual_tire_module_20261002 group: `lucent` is a
+  memory variable fed from a reused `show` local; model_bounds_calc's real parameter order is the arcade
+  `CheckVisible(v, on)` (the func_8008B640 group superseded under the same name, prototype/definition/call only).
+- **codex_heap_release_a25** extended (w17h + w17i, merged by w17j, 892 B): func_800C8918 (slot-queue lock/unlock
+  stubs func_80091AF0/AF8 given bodies) and func_80096130 (early return ends uopt's not-the-stack marker). Packaging
+  lesson: an inlined `static` helper's deleted-procedure stub has no symbol and lands after a member → "extra words";
+  make the helper a non-static internal function (not on `keep`) so its stub carries a symbol.
+- **blob_unit fix:** the unit-wide own-.bss extent rule was link-order dependent (locking anim_state_update moved a
+  file in the link and func_800F0674's statics then reported an overlap); the extent is now the access width capped
+  by the gap. One receipt (dot_billboard_helpers_20261005) rebound.
+- **Provisional:** physics_response joined (MATCH in its group; caller audio_effect_apply unmatched).
+
+**Static (w17g survey, nothing promoted yet):** the Rush-specific boot tail (lib_11050 … lib_26ab0) was compiled
+with **IDO 7.1**; libultra and all 435 locks are 5.3 and unaffected (397/435 locks re-score exact under 7.1, the 38
+that differ are libultra; all 18 boot-tail TUs build byte-identical under both). 58 functions / 9,912 B are exact
+under 7.1 with no source change (`w17g/sources/`, `score_table.md`); 7 small ones (116 B) also match under 5.3.
+Lane w17k is building the tooling (7.1 toolkit + lock binding, per-TU compiler override, docs). Also prepared:
+`rom_owned_data.json` entries for osAiSetNextBuffer (.data 0x10 @0x4bf0) and the `__fixuns*` 2^63 literal
+(.rodata 0x10 @0x6030), both proven at the real addresses; the `__fixuns*` targets need `.set gp=64` in the target
+assembler setup to be reloc-aware.
+
+**Open near-misses after wave 17** (replaces the wave-16 table where names overlap):
+
+| Target | Bytes | Gap | Cause and best source | Lands with it |
+|---|---:|---|---|---|
+| func_800D91A0 | 3860 | 8 mnemonic rows, 212 word rows, frame 240 exact (w17e, from 603 rows) | fresh reconstruction (N64-only name-entry screen); needs func_800D816C (2,796 B, Astra draft 627/699) in the same group (IPA partner: parameter in t2, clobbers s0–s8); func_800D8154 is `(s8 player, s32 item)` with the player in the stack slot; caller-less func_800DA0B4 is an inlined getter. Remaining: constants 21/1 coloured in the other order (s5/s6). `w17e/d91a0/best.c`, `w17e/base/`. | drone_throttle_calc (pause_quit), func_800D8078, render_results_screen, render_replay_ui (1,572 B) |
+| camera_play_script | 3520 | 27 rows, frame 608 exact (w17a, from 48) | `i = idx[0]` through an int variable in an existing slot; `c1` was a fake local; zero spellings; `u` assigned before the compare. Left: corner-loop pointer a1 vs t0 (register only), t0/t1 priority swap, one spill slot 144 vs 148, one mul operand order. `w17a/camera_play_script/best.c`, `w17a/tools/patch_lbb.py` (uopt block dump). | |
+| entity_render_setup | 2048 | 68 rows (from 171), frame 184 exact (w17d) | `op;` reproduces the entry `sw a1`; `angle` reused as the world scale; laundered `view` pointer. Left: palette base load placement, `&delta`/`&quad` before the mode branch, draw-loop as1 schedule, world-loop FP temps. `w17d/entity_render_setup/best.c`. | |
+| entity_spawn_init | 5544 | 61 words (w16b/w17f: oracle proves 45 of them are two decisions) | the model address ties the constant 5 at priority 0.6667 and wins by number; `surface` must be address-taken (`*(s16 *)&surface` form in `w17f/entity_spawn_init/base_alias.c` costs no statement); the inlining budget is exactly one statement. Needs a code-neutral form removing 2–4 blocks where both are live. `w17f/tools/prio_patch.py`. | 3 / 3.6 KB |
+| audio_frame_update | 600 | 22 words (w17i) | shared base via `(player_array + slot)->…` and `cb` before `handle` fixed the loop; retail holds one more value in v1 across the loop (an eliminated second counter?). `w17i/audio_frame_update/best.c`. Supersede group audio_frame_update, keep func_800B0A88. | |
+| engine_sound_sync | 1236 | 286/309, frame 376 vs 368 (w17h) | takes the same slot-queue lock as func_800C8918: a frame 8 short likely means a missing nested inline level (caller-less stubs next to func_80091B00). `w17h/engine_sound_sync/best.c`. | |
+| func_800D6914 | 1260 | 283/315, stand-in callers (w17h) | provisional lane; `w17h/func_800D6914/best.c`. | |
+| func_8010FBE0 | 128 | 6 rows | defining `OSScTask D_80155238;` in the unit is supported; symbol address then held in a3/v0. `w16e`. | |
+| entity_process_main | 1424 | 2 words | ugen shift/load/NOT order. | |
+| input_deadzone_apply | 3580 | 122 words | ugen double compile, w12a. Untouched. | input_process_controller |
+| func_800E847C + func_800E7FA0 | 2100 + 1244 | far | w11g | |
+
+**New diagnostic tools (wave 17):** `w17f/tools/prio_patch.py` (priority oracle: decide one candidate earlier/later),
+`w17i/boostpatch.py` (force a value to be considered earlier), `w17a/tools/patch_lbb.py` (uopt block dump),
+`w17c/tools/uproc.py`; w17i's RESULTS decodes how uopt ranks register candidates (blocks counted in groups of
+four, so exact ties are common).
 
 **For the next coordinating session.** This covers where the frontier matching effort stands, how a wave is run end to end, what the owner has decided, and every open item. Read it with `CLAUDE.md`, `cloud/work/frontier/WAVE_BRIEF.md` (the brief every lane agent reads) and `docs/plans/2026-10-04-frontier-plan.md` (the original method).
 

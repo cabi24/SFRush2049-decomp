@@ -150,6 +150,33 @@ writing variants: if forcing reaches 0 rows the residual is colour-only.
   - Re-measure old drafts in the current unit and check they compile (w16e: w15c's variants had a duplicated line).
   - Static side: the libgcc-named boot functions are ultralib `libc/ll.c`/`llcvt.c` verbatim at `-O1 -mips3 -32`;
     `score.py fn` cannot score static targets, use `lock add` (pool) and `promote_batch.py` (w16g/w16i).
+- **Wave 17 lessons** (5 of 9 matching lanes landed something; game +9.5 KB):
+  - Float-literal spelling is a constant-web key: `0`, `0.0f` and `0.f` are three constants; the spelling decides
+    which uses share a register, what is hoisted into $f20–$f30 and what is rematerialised. Follow the arcade's mix
+    (w17b, from 503/567 to EQUAL). Loop-constant hoisting ties go to the lowest web number.
+  - Measure a blamed callee convention with a correct-convention stand-in before rebuilding the callee (w17b).
+  - A value in a register that ends before a call while the variable stays live is a temporary copied into a
+    memory variable; a reused local assigned again later stops uopt substituting it (w17c `lucent`).
+  - Two register-argument copies emitted swapped → the callee's locked prototype has the parameters in the wrong
+    order; check the arcade signature (w17c model_bounds_calc = CheckVisible(v, on)).
+  - If retail keeps a one-use load in an argument register it is a variable; find its slot by checking which declared
+    local the retail frame proves fake (w17a `i = idx[0]`, `c1`). One "variable" in two retail registers is two
+    variables or an expression.
+  - A bare entry store of a parameter with no sign extension is a `s16` parameter read once by a statement that
+    compiles to nothing (`op;`) (w17d). Two paths sharing an unexplained register share a stack slot: one reused
+    variable. `(T *)(u32)ptr` laundering removes the no-alias hint and restores load-after-store order.
+  - A branch where a pointer is dead (early `return`) ends uopt's not-the-stack marker for its register and changes
+    later reordering (w17i func_80096130). `&a[i]`, `a + i` and `a[i].f` are three different expressions.
+  - A frame 16 B short per inlined call site means two missing nested inline levels: look for caller-less stubs next
+    to the callee (w17h slot-queue lock/unlock). Check `umerge.log` before adding dummy locals.
+  - Packaging: an inlined `static` helper's deleted-procedure stub has no symbol and may land right after a stub
+    member, failing the splice with "extra words". Make the helper a non-static function that is not on `keep`
+    (w17j). `score.py group` WITHOUT `--claims` must show MATCH for every member before claiming a group installs.
+  - Priority ties: uopt scores register candidates with blocks counted in groups of four, so exact ties are common
+    and go to the lower web number; 2–4 live blocks or one weighted use flips them (w17f, w16c). Oracles:
+    `w17f/tools/prio_patch.py`, `w17i/boostpatch.py`, `w16d/tools/patch_spl.py`.
+  - Static side: the Rush boot tail is IDO 7.1 (w17g); the telltale is a `u8`/`u16` argument narrowed in its own
+    register (`andi a0,a0,0xFFFF` after `sw a0`), which 5.3 never does.
 - Write RESULTS.md within the first 20 minutes and keep variants under `<lane>/<fn>/v/`.
 
 ## Permission denials
