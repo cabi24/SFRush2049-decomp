@@ -1,0 +1,39 @@
+gnment
+                 osEPiRawStartDma(mb->piHandle, 0x05000510 , info->bmCtlShadow | 0x10000000 );
+ -----------------------------------^
+cfe: Warning 709: src/rom/lib_e9a0.c, line 217: Incompatible pointer type assignment
+                 osEPiRawStartDma(mb->piHandle, 0x05000510 , info->bmCtlShadow);
+ -----------------------------------^
+cfe: Warning 709: src/rom/lib_e9a0.c, line 218: Incompatible pointer type assignment
+                 osEPiRawReadIo(mb->piHandle, 0x05000508 , &stat);
+ ---------------------------------^
+cfe: Warning 709: src/rom/lib_e9a0.c, line 221: Incompatible pointer type assignment
+                     osEPiRawStartDma(mb->piHandle, 0x05000510 , info->bmCtlShadow | 0x01000000 );
+ ---------------------------------------^
+cfe: Warning 709: src/rom/lib_e9a0.c, line 252: Incompatible pointer type assignment
+                     ret = dm->edma(mb->piHandle, 0 , mb->devAddr, mb->dramAddr, mb->size);
+ -------------------------------------^
+cfe: Warning 709: src/rom/lib_e9a0.c, line 256: Incompatible pointer type assignment
+                     ret = dm->edma(mb->piHandle, 1 , mb->devAddr, mb->dramAddr, mb->size);
+ -------------------------------------^
+ASMPROC src/rom/lib_efd0.c
+ASMPROC src/rom/lib_f0b0.c
+ASMPROC src/rom/lib_f160.c
+ASMPROC src/rom/lib_f450.c
+ASMPROC src/rom/lib_f4d0.c
+ASMPROC src/rom/lib_f700.c
+GEN build/us/syms.ld
+LD build/us/rush2049.us.elf
+/usr/bin/mips-linux-gnu-ld.bfd: warning: dot moved backwards before `.sdk_initialize_bss'
+/usr/bin/mips-linux-gnu-ld.bfd: warning: dot moved backwards before `.sdk_initialize_bss'
+/usr/bin/mips-linux-gnu-ld.bfd: warning: dot moved backwards before `.sdk_initialize_bss'
+/usr/bin/mips-linux-gnu-ld.bfd: warning: build/us/rush2049.us.elf has a LOAD segment with RWX permissions
+OBJCOPY build/us/rush2049.us.z64
+Build complete: build/us/rush2049.us.z64
+Verifying built ROM hash...
+build/us/rush2049.us.z64: OK
+ROM matches!
+Verifying built ROM hash...
+build/us/rush2049.us.z64: OK
+ROM matches!
+EXIT 0

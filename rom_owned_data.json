@@ -157,6 +157,19 @@
       "size": "0x30",
       "passthrough_asm": "asm/us/nonmatchings/rom/lib_16320/func_80016E68.bss.s",
       "comment": "w20b ownbss trio: the function-local statics of func_80016E68/80016EE0/80016F80 are lib_16320's whole .bss (0x30), retail 0x80042670..0x8004269F (D_80042670..D_8004269C)"
+    },
+    {
+      "owner": "func_80022CD4",
+      "tu": "src/rom/lib_22300.c",
+      "source": "assets/us/data.bin",
+      "container_section": ".data",
+      "owner_section": ".data",
+      "offset": "0x5c90",
+      "size": "0x20",
+      "container_vram": "0x800277d0",
+      "sha256": "d4e31321fece0572035dbff61da4d641553c99cb09db340ed1999a568d384843",
+      "passthrough_asm": "asm/us/nonmatchings/rom/lib_22300/func_80022CD4.data.s",
+      "composed_source": "build/us/assets/us/data.composed.bin"
     }
   ],
   "storage_blocks": [

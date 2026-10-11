@@ -1,0 +1,13 @@
+{
+  "owner": "func_80022CD4",
+  "tu": "src/rom/lib_22300.c",
+  "source": "assets/us/data.bin",
+  "container_section": ".data",
+  "owner_section": ".data",
+  "offset": "0x5c90",
+  "size": "0x20",
+  "container_vram": "0x800277d0",
+  "sha256": "d4e31321fece0572035dbff61da4d641553c99cb09db340ed1999a568d384843",
+  "passthrough_asm": "asm/us/nonmatchings/rom/lib_22300/func_80022CD4.data.s",
+  "composed_source": "build/us/assets/us/data.composed.bin"
+}
