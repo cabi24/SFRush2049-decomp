@@ -1,0 +1,5 @@
+batch 0x1cf90..0x22300: 2 candidates
+  PLAN func_8001C860 -> rom/lib_1cf90 (1084 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared, owned .rodata slot of func_8001C860)
+  PLAN func_80022CD4 -> rom/lib_22300 (592 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared, owned .data slot of func_80022CD4)
+  spliced /tmp/claude-1000/-home-cburnes-projects-rush2049-decomp/e6d4d7af-aa0e-4f5a-98a8-2e25f3b6dd6b/scratchpad/w21i_splice/lib_1cf90.c
+  spliced /tmp/claude-1000/-home-cburnes-projects-rush2049-decomp/e6d4d7af-aa0e-4f5a-98a8-2e25f3b6dd6b/scratchpad/w21i_splice/lib_22300.c

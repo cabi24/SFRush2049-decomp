@@ -371,6 +371,32 @@ def _logical_table(obj, section, size, elf, kind='table'):
     return descriptive
 
 
+# HDRR file-offset fields of an IDO .mdebug symbolic header (bytes 0..0x60,
+# 'HHIIIIIIIIIIIIIIIIIIIIIII'): cbLineOffset .. cbExtOffset, as asm-processor
+# relocates them.
+_MDEBUG_OFFSET_FIELDS = (4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24)
+
+
+def _mdebug_relocator(section, fmt):
+    """asm-processor shifts every HDRR offset when .mdebug moves, including the
+    zero offsets of absent tables (ioptMax/crfd = 0). Trimming a logical extent
+    moves a later .mdebug BACKWARDS (lib_1cf90: .rodata 16 -> 4, .options
+    re-aligns, .mdebug -8), so 0 - 8 overflows the unsigned pack. Shift only the
+    present (nonzero) offsets; an absent table stays 0."""
+    def relocate(original_offset):
+        shift = section.sh_offset - original_offset
+        header = list(fmt.unpack('HHIIIIIIIIIIIIIIIIIIIIIII', section.data[0:0x60]))
+        if header[0] != 0x7009:
+            raise OwnershipError('invalid .mdebug symbolic header')
+        for i in _MDEBUG_OFFSET_FIELDS:
+            if header[i]:
+                header[i] += shift
+                if not 0 < header[i] < 1 << 32:
+                    raise OwnershipError('.mdebug offset relocation out of range')
+        section.data = fmt.pack('HHIIIIIIIIIIIIIIIIIIIIIII', *header) + section.data[0x60:]
+    return relocate
+
+
 def normalize_object_sections(repo, tu, object_path):
     """Apply explicit logical table extents after normal asm post-processing.
 
@@ -420,6 +446,9 @@ def normalize_object_sections(repo, tu, object_path):
         section.sh_size = row['size']
         section.sh_addralign = row['alignment']
     obj.symtab.data = b''.join(symbol.to_bin() for symbol in obj.symtab.symbol_entries)
+    for section in obj.sections:
+        if section.sh_type == elf.SHT_MIPS_DEBUG:
+            section.relocate_mdebug = _mdebug_relocator(section, obj.fmt)
     fd, temporary = tempfile.mkstemp(prefix=path.name + '.extent-', dir=path.parent)
     os.close(fd)
     try:

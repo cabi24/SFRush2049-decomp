@@ -197,3 +197,42 @@ def test_constants_split_link_reproduces_the_container(fixture):
     subprocess.run(['mips-linux-gnu-objcopy', '-O', 'binary', '-j', '.data', str(repo / 'linked.elf'), str(out)],
                    check=True)
     assert out.read_bytes() == original
+
+
+class _Fmt:
+    def unpack(self, fmt, data):
+        return struct.unpack('>' + fmt, data)
+
+    def pack(self, fmt, *args):
+        return struct.pack('>' + fmt, *args)
+
+
+class _Section:
+    def __init__(self, sh_offset, data):
+        self.sh_offset, self.data = sh_offset, data
+
+
+def _hdrr(offsets):
+    fields = [0x7009, 0x70a] + [0] * 23
+    for i, v in zip(O._MDEBUG_OFFSET_FIELDS, offsets):
+        fields[i] = v
+    return struct.pack('>HHIIIIIIIIIIIIIIIIIIIIIII', *fields) + b'tail'
+
+
+def test_mdebug_moved_backwards_keeps_absent_tables_at_zero():
+    """lib_1cf90: trimming .rodata 16 -> 4 moves .mdebug back 8 bytes; its
+    absent optimisation/relative-file tables have offset 0 (asm-processor's own
+    relocation would make them negative and fail)."""
+    offsets = [0x2ce8, 0x465c, 0x2fcc, 0x3618, 0, 0x3954, 0x3b00, 0x3d68, 0x4114, 0, 0x41ec]
+    section = _Section(0x2c80, _hdrr(offsets))
+    O._mdebug_relocator(section, _Fmt())(0x2c88)
+    assert section.data == _hdrr([v - 8 if v else 0 for v in offsets])
+    section = _Section(0x2c90, _hdrr(offsets))
+    O._mdebug_relocator(section, _Fmt())(0x2c88)
+    assert section.data == _hdrr([v + 8 if v else 0 for v in offsets])
+
+
+def test_mdebug_relocator_refuses_a_bad_header():
+    section = _Section(0, b'\0' * 0x64)
+    with pytest.raises(O.OwnershipError, match='mdebug'):
+        O._mdebug_relocator(section, _Fmt())(8)
