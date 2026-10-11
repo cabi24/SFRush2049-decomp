@@ -161,6 +161,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-11"
   },
+  "assign_drones": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/assign_drones.c",
+    "source_sha256": "dba874abda152ec06575655133a1ad99e0ff0373978fb026c137a91d04e2157d",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-11"
+  },
   "audio_buffer_sync": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_pointer_counters_a19",

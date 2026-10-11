@@ -5909,6 +5909,7 @@ audio_update_a:
 .section .text.assign_drones, "ax", @progbits
 .globl assign_drones
 assign_drones:
+    /* compiled from src/blob/assign_drones.c */
     .word 0x27BDFF78
     .word 0x3C028015
     .word 0x3C0E8015
