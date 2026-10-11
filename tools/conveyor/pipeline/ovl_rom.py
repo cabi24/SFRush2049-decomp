@@ -43,14 +43,16 @@ import shutil
 import subprocess
 import sys
 import tempfile
-import zlib
 from pathlib import Path
 
-from . import blob_build, blob_rom, blob_splice, ovl_image, ovl_targets
+from . import blob_build, blob_rom, blob_splice, ovl_image
 
-REPO = ovl_targets.REPO
+REPO = ovl_image.REPO
 SOURCES = REPO / "cloud" / "matches"
-WORK = REPO / "build" / "ovl"
+WORK = ovl_image.OUT
+# verify's own products: never build/ovl/<x>/ (ovl_splice's locked objects
+# and the extracted image live there).
+VERIFY_WORK = WORK / "verify"
 BUILDER = blob_splice.BUILDER
 TOOLKIT = blob_splice.TOOLKIT
 FLAGS = re.compile(r"/\* flags: (.+?) \*/")
@@ -68,7 +70,7 @@ def compile_remote(image, sources, builder=BUILDER, toolkit=TOOLKIT):
     """{function: object path}, failures raise. One round trip per image."""
     if not sources:
         return {}
-    local = WORK / image / "obj"
+    local = VERIFY_WORK / image / "obj"
     if local.exists():
         shutil.rmtree(local)
     local.mkdir(parents=True)
@@ -113,7 +115,7 @@ def compile_remote(image, sources, builder=BUILDER, toolkit=TOOLKIT):
 
 
 def load_targets(image):
-    out = ovl_targets.OUT / f"ovl_{image}"
+    out = ovl_image.target_dir(image)
     extents = json.loads((out / "extents.json").read_text())
     symbols = {name: int(addr, 16) for name, addr in
                json.loads((out / "symbols.json").read_text())["symbols"].items()}
@@ -158,30 +160,21 @@ def compose(image, original, objects):
 
 
 def verify(image, sources_root=SOURCES):
-    rom = ovl_targets.BASEROM.read_bytes()
-    rom_offset = ovl_targets.image_rom_offset(rom, image)
-    window = rom[rom_offset:rom_offset + 0x100000]   # may be cut short by the ROM's end
-    z = zlib.decompressobj(-15)
-    original = z.decompress(window)
-    if not z.eof:
-        raise OvlRomError(f"image {image.upper()}: ROM stream did not end")
-    stream_len = len(window) - len(z.unused_data)
+    rom = ovl_image.BASEROM.read_bytes()
+    rom_offset = ovl_image.stream(image).rom_offset
+    original = ovl_image.inflate(image, rom)        # slot end + sha256 gated
     objects = compile_remote(image, sources_for(image, sources_root))
     built, spliced = compose(image, original, objects)
     differing = [name for name, body in spliced.items()
                  if body != original[int(next(
                      f["address"] for f in load_targets(image)[0]["functions"]
-                     if f["name"] == name), 16) - ovl_targets.BASE:][:len(body)]]
+                     if f["name"] == name), 16) - ovl_image.BASE:][:len(body)]]
     image_ok = built == original
-    cli = blob_rom.build_compressor()
-    work = WORK / image
+    work = VERIFY_WORK / image
     work.mkdir(parents=True, exist_ok=True)
     (work / "image.bin").write_bytes(built)
-    proc = subprocess.run([str(cli), str(work / "image.bin"), str(work / "image.deflate")],
-                          capture_output=True, text=True)
-    if proc.returncode:
-        raise OvlRomError("deflate104 failed: " + proc.stderr[:200])
-    stream = (work / "image.deflate").read_bytes()
+    stream = ovl_image.deflate(built)
+    (work / "image.deflate").write_bytes(stream)
     return {
         "image": image.upper(),
         "rom_offset": f"0x{rom_offset:06X}",
@@ -190,7 +183,7 @@ def verify(image, sources_root=SOURCES):
         "image_ok": image_ok,
         "image_sha256": hashlib.sha256(built).hexdigest(),
         "stream_bytes": len(stream),
-        "stream_matches_rom": stream == rom[rom_offset:rom_offset + stream_len],
+        "stream_matches_rom": stream == ovl_image.rom_stream(image, rom),
         "stream_sha256": hashlib.sha256(stream).hexdigest(),
     }
 
@@ -295,7 +288,7 @@ def main():
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = parser.add_subparsers(dest="command", required=True)
     v = sub.add_parser("verify")
-    v.add_argument("--image", action="append", choices=sorted(ovl_targets.POINTERS))
+    v.add_argument("--image", action="append", choices=sorted(ovl_image.STREAMS))
     v.add_argument("--sources", default=str(SOURCES))
     for name in ("produce", "rom"):
         p = sub.add_parser(name)
@@ -309,10 +302,10 @@ def main():
     if args.command in ("produce", "rom"):
         return compose_main(args)
     ok = True
-    for image in args.image or sorted(ovl_targets.POINTERS):
+    for image in args.image or sorted(ovl_image.STREAMS):
         try:
             r = verify(image, Path(args.sources))
-        except OvlRomError as exc:
+        except (OvlRomError, ovl_image.OvlImageError) as exc:
             print(f"image {image.upper()}: FAILED: {exc}")
             ok = False
             continue

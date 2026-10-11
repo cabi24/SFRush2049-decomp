@@ -87,27 +87,27 @@ def test_a_switch_table_inside_a_function_is_refused(tmp_path):
         _derive(tmp_path, image, target)
 
 
-def test_inflate_checks_pointer_and_hash(tmp_path, monkeypatch):
+def test_inflate_checks_slot_end_and_hash_and_ensure_extracts(tmp_path, monkeypatch):
     payload = _words([JR_RA, NOP, 0x12345678])
     comp = zlib.compressobj(9, zlib.DEFLATED, -15)
     stream = comp.compress(payload) + comp.flush()
     rom = bytearray(0x2000)
     offset = 0x100
     rom[offset:offset + len(stream)] = stream
-    pointer = 0x80000400 + 0x10
-    struct.pack_into(">I", rom, pointer - ovl_image.STATIC_DELTA, offset)
-    monkeypatch.setitem(ovl_image.IMAGES, "a", {"rom_offset": offset, "pointer": pointer,
-                                                "base": BASE, "size": len(payload),
-                                                "text_end": BASE + 8})
-    monkeypatch.setattr(ovl_image, "expected_sha256",
-                        lambda image: hashlib.sha256(payload).hexdigest())
+    good = ovl_image.Stream("A", 0x80000410, offset, len(stream), len(payload),
+                            hashlib.sha256(payload).hexdigest(), "", "test", BASE + 8)
+    monkeypatch.setitem(ovl_image.IMAGES, "a", good)
+    assert ovl_image.inflate_stream(bytes(rom), offset) == (payload, len(stream))
     assert ovl_image.inflate("a", bytes(rom)) == payload
+    path = ovl_image.ensure("a", tmp_path, bytes(rom))
+    assert path == ovl_image.image_path("a", tmp_path) and path.read_bytes() == payload
+    path.write_bytes(b"stale")
     assert ovl_image.ensure("a", tmp_path, bytes(rom)).read_bytes() == payload
-    monkeypatch.setattr(ovl_image, "expected_sha256", lambda image: "0" * 64)
-    with pytest.raises(ovl_image.ImageError, match="sha256"):
+    monkeypatch.setitem(ovl_image.IMAGES, "a", good._replace(image_sha256="0" * 64))
+    with pytest.raises(ovl_image.ImageError, match="not the recorded"):
         ovl_image.inflate("a", bytes(rom))
-    struct.pack_into(">I", rom, pointer - ovl_image.STATIC_DELTA, offset + 4)
-    with pytest.raises(ovl_image.ImageError, match="boot pointer"):
+    monkeypatch.setitem(ovl_image.IMAGES, "a", good._replace(length=len(stream) + 4))
+    with pytest.raises(ovl_image.ImageError, match="does not end"):
         ovl_image.inflate("a", bytes(rom))
 
 
@@ -137,7 +137,7 @@ def test_retail_all_passthrough_link_is_byte_identical(image, tmp_path, monkeypa
     monkeypatch.setattr(ovl_layout, "script_path", lambda i, build=None: tmp_path / i / "x.ld")
     doc = ovl_layout.derive(image, path, output=tmp_path / "layout.json")
     info = ovl_image.IMAGES[image]
-    assert doc["totals"]["function_bytes"] == info["text_end"] - BASE
+    assert doc["totals"]["function_bytes"] == info.text_end - BASE
     ok, sha, message = ovl_layout.build(doc, {})
     assert ok, message
     assert sha == ovl_image.expected_sha256(image)

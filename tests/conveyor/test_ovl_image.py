@@ -40,6 +40,16 @@ def test_constants_agree_with_the_committed_targets(key):
     assert extents["size"] == s.image_size
     assert extents["image_sha256"] == s.image_sha256
     assert int(extents["base"], 16) == ovl_image.BASE
+    assert int(extents["text_end"], 16) == s.text_end
+    assert ovl_image.target_dir(key) == REPO / "asm" / "us" / f"ovl_{key}"
+
+
+def test_one_table_for_both_lanes():
+    assert ovl_image.IMAGES is ovl_image.STREAMS
+    assert ovl_image.ImageError is ovl_image.OvlImageError
+    from tools.conveyor.pipeline import ovl_layout, ovl_rom, ovl_splice
+    for mod in (ovl_layout, ovl_rom, ovl_splice):
+        assert mod.ovl_image is ovl_image
 
 
 def test_the_three_streams_are_contiguous_and_slots_are_data_relative():
