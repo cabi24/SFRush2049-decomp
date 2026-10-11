@@ -1,0 +1,161 @@
+{
+  "source_sha256": "c7ea7c6f1d1b8595882f3b2776579b6226be8d77570c6195c81c67c42128f651",
+  "uopt_sha256": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+  "diagnostic_flags": [
+    "-l",
+    "listing",
+    "-zdbug:6"
+  ],
+  "target_local_optimization_through_reemission_complete": true,
+  "complete_group_diagnostic_succeeded": false,
+  "later_failure": "wrapper_ecvt assertion; diagnostic object is not built",
+  "allocation_order": [
+    {
+      "web": 63,
+      "origin": 63,
+      "color": 14
+    },
+    {
+      "web": 29,
+      "origin": 29,
+      "color": 14
+    },
+    {
+      "web": 62,
+      "origin": 62,
+      "color": 15
+    },
+    {
+      "web": 30,
+      "origin": 30,
+      "color": 15
+    },
+    {
+      "web": 32,
+      "origin": 32,
+      "color": 1
+    },
+    {
+      "web": 65,
+      "origin": 65,
+      "color": 3
+    },
+    {
+      "web": 104,
+      "origin": 104,
+      "color": 16
+    },
+    {
+      "web": 28,
+      "origin": 28,
+      "color": 17
+    },
+    {
+      "web": 4,
+      "origin": 4,
+      "color": 14
+    },
+    {
+      "web": 16,
+      "origin": 16,
+      "color": 1
+    },
+    {
+      "web": 90,
+      "origin": 90,
+      "color": 14
+    },
+    {
+      "web": 7,
+      "origin": 7,
+      "color": 3
+    },
+    {
+      "web": 47,
+      "origin": 47,
+      "color": 1
+    },
+    {
+      "web": 52,
+      "origin": 52,
+      "color": 1
+    },
+    {
+      "web": 73,
+      "origin": 73,
+      "color": 1
+    },
+    {
+      "web": 105,
+      "origin": 105,
+      "color": 18
+    },
+    {
+      "web": 113,
+      "origin": 113,
+      "color": 19
+    },
+    {
+      "web": 22,
+      "origin": 22,
+      "color": 1
+    },
+    {
+      "web": 27,
+      "origin": 27,
+      "color": 20
+    },
+    {
+      "web": 13,
+      "origin": 13,
+      "color": 21
+    },
+    {
+      "web": 46,
+      "origin": 46,
+      "color": 22
+    },
+    {
+      "web": 102,
+      "origin": 102,
+      "color": 15
+    },
+    {
+      "web": 83,
+      "origin": 83,
+      "color": 3
+    },
+    {
+      "web": 107,
+      "origin": 107,
+      "color": 14
+    }
+  ],
+  "residual_roles": [
+    {
+      "web": 105,
+      "role": "slot loop byte bound 2816",
+      "compiled_register": "s4",
+      "native_register": "s5"
+    },
+    {
+      "web": 113,
+      "role": "panel loop byte bound 572",
+      "compiled_register": "s5",
+      "native_register": "s6"
+    },
+    {
+      "web": 27,
+      "role": "signed-byte player copy",
+      "compiled_register": "s6",
+      "native_register": "s7"
+    },
+    {
+      "web": 13,
+      "role": "player loop index",
+      "compiled_register": "s7",
+      "native_register": "s4"
+    }
+  ],
+  "scope": "web numbers are this exact source/stock build; no priority-cost or whole-group fidelity claim"
+}

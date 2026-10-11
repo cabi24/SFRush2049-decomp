@@ -1,0 +1,36 @@
+{
+  "reviewed_local_commit": "8f6572a3c1960dc05a0513bb1343ba67f6d0fc89",
+  "reviewed_source_commit": "07514aa31ba675353cd9bc122e941bcaaa6be650",
+  "owned_file_sha256": {
+    "README.md": "c91cd7f5b35b275914995474ab4dcc7c98d753e7f2e9ed21b34ced7aa7a5c1e5",
+    "diagnose.py": "e2b52c07f1b064b5e98d60ee67d6261437f8fda1568c9cfa28ba1f3245aeae0b",
+    "diagnostic.json": "712d18b819bc8df045ea866eaaed52f6289c4b1d862a3f6a6893da116dd1be51",
+    "reproduce_research.py": "d9a13360372a3f388c64bc28d54f27535d349029a1a9e000b5e6729625d32604",
+    "research.json": "e3338f262bd253f0171cb3732f853216b28e640e7a0cc8f26f9a02ba937a6c90",
+    "semantics.py": "ec8ad33bb0f5109ce26daa1cec3f85cb3bd64b68ec90db2166cf7c229e377d58",
+    "verification.json": "8233ee7bd3b701007ccbc3db303baca5b2bfcef3b6c69e738c6f2f9c9c0e1aef",
+    "verify.py": "74b451dee6b449fb6eef29db89105b142ef345b76b6a82f0ca93ecf45174c0f0"
+  },
+  "verdict": "bounded NONMATCH research verified; no publication blocker",
+  "new_matching_or_accepted_bytes": 0,
+  "strict_residual": [
+    18,
+    169
+  ],
+  "complete_extent_bytes": 676,
+  "GNU_relocations": 56,
+  "native_GNU_independent_model_cases_each": 512,
+  "instructions_covered": 169,
+  "branch_outcomes": 37,
+  "dynamic_callback_count_mutations": 209,
+  "private_caller_sites_native_and_compiled_each": 4,
+  "grounded_forms_reproduced": 31,
+  "whole_diagnostic_object_fidelity_claimed": false,
+  "diagnostic_boundary": "complete D05C stock target listing before later unrelated wrapper_ecvt failure",
+  "limits": [
+    "Actual eight service implementations and lifetime effects are not executed",
+    "Four-player bounded storage domain; no arbitrary-memory safety claim",
+    "Caller remains nonmatching; no end-to-end caller execution",
+    "Optimized Python is explicitly rejected because inherited checks use assertions"
+  ]
+}

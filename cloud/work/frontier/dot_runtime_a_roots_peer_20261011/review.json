@@ -1,0 +1,54 @@
+{
+  "reviewed_commit": "c38827123fb44701991088c5b00e0da8635a8d6b",
+  "source_and_verification_sha256": {
+    "group.c": "638e5861bead5b5cb114a0f35ed134feb176b6468fd9943531a0088910c9b5e5",
+    "group.json": "e9a0964e2152a5d70e0bc92c621b9d33f244a6808b9d752cb0fe16c682ed82ce",
+    "verify.py": "cfc413fc5ebfd7caed3c367432f61144228bd7f76e4e8b684e4e8672dbe41c49",
+    "native.py": "02dff67541121baa43cba6fedfd02f6e81df381b96490696d52daa963546f1c0",
+    "compiler_evidence.py": "2dd114a4b09e8a88359ac80379e3691b2ff07fbd751b37d3cd27098a066549bb",
+    "verification.json": "9e36508b073659f3fd469893619a3e9afebcae630ec8be9162163dc752c97dff",
+    "compiler_evidence.json": "85cc128b8515a7cd8469bd2cefac91d6e1966b0cda32ba77a312143918c691d4"
+  },
+  "verdict": "bounded NONMATCH research verified; no publication blocker",
+  "new_matching_or_accepted_bytes": 0,
+  "root_score": {
+    "differing": 2,
+    "total": 323,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "root_extent_bytes": 1292,
+  "root_GNU_relocations": 84,
+  "inherited_strict_helpers": 5,
+  "native_GNU_boundary_cases": 1024,
+  "root_instructions_covered": 307,
+  "root_instructions_total": 323,
+  "root_branch_outcomes": 75,
+  "helper_targets_reached": 14,
+  "verified_literal_section_bytes": 48,
+  "normal_optimized_and_frozen_receipts_agree": true,
+  "stock_metadata_frozen_receipt_agrees": true,
+  "stock_UGEN_whole_object_fidelity": true,
+  "root_memory_areas": {
+    "T": 16,
+    "P": 4,
+    "M": 2
+  },
+  "root_frame_native_compiled": [
+    128,
+    120
+  ],
+  "focused_tests_passed": 5,
+  "review_repairs": [
+    "whole public call path restoration on success and failure",
+    "exact nine-member and five-context guards"
+  ],
+  "limits": [
+    "two FP dependencies and unchanged9338C remain nonmatching",
+    "native/GNU root fixtures do not execute child implementations",
+    "307of323 root instructions reached; no exhaustive behavior claim",
+    "original missing frame-home ownership remains unknown"
+  ]
+}

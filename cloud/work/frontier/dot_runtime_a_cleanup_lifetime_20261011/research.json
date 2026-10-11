@@ -1,0 +1,350 @@
+{
+  "results": {
+    "base": {
+      "source_sha256": "c7ea7c6f1d1b8595882f3b2776579b6226be8d77570c6195c81c67c42128f651",
+      "score": {
+        "differing": 18,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "guard_le": {
+      "source_sha256": "e57cc2a881197843eb7ee5fbd1197f57ce37c3a305f808de17b802f1a3aa5aa7",
+      "score": {
+        "differing": 87,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "guard_zero": {
+      "source_sha256": "c9efa32968c2e1d62d2150bbc759f7fecf33922672d87fe3976d3bb7259b73a9",
+      "score": {
+        "differing": 87,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "box_index_player": {
+      "source_sha256": "fd841ae002dfdc0a33c924ebe30efb501983f2980f11fe5a4fa028b3bfa1eb0d",
+      "score": {
+        "differing": 18,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "box_index_i": {
+      "source_sha256": "4b03a95483a7d6a52dd910d3b3c77b530d4b76004ea7902694974a7cdd23d82f",
+      "score": {
+        "differing": 133,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "box_direct_player": {
+      "source_sha256": "ff7c1f715d296c01369860490c25550b0bd8930838648230002a68c1ebb3a070",
+      "score": {
+        "differing": 18,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "player_u32": {
+      "source_sha256": "96cb541a3b40a0987eca40da68befd24e9a06bdbd3062277241d21cd5b1c0ca6",
+      "score": {
+        "differing": 20,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "player_s16": {
+      "source_sha256": "f0c6e30cdcd120c58748ece1382f2b6f6e871ced48cef8dba6bec9b0e9d5b004",
+      "score": {
+        "differing": 103,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 8
+      }
+    },
+    "player_s8": {
+      "source_sha256": "6a1d46f77b539cee90ad51f3991537cb6df9ce5e3b4f0c528435dadb773b24ec",
+      "score": {
+        "differing": 121,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 4
+      }
+    },
+    "outer_unsigned_bound": {
+      "source_sha256": "cdc4bbbf24c8398193a05deda7672f2daeafb543814515d0ff8392b0b3545569",
+      "score": {
+        "differing": 19,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "for_condition_reverse": {
+      "source_sha256": "e02956c6abc778459f53787b9d71d51c8e3374462da98a90a9baf88e14616397",
+      "score": {
+        "differing": 18,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "outer_exit_break": {
+      "source_sha256": "5f64d0c9473a08d95ff7d90d741fc067a51b578298b8acbc8d0af504e80b259b",
+      "score": {
+        "differing": 126,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 2
+      }
+    },
+    "outer_exit_goto": {
+      "source_sha256": "f5379149689d9366e32ef5594da7fa5c31ecb1e4708ae1c9a817861a86293dcc",
+      "score": {
+        "differing": 126,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 2
+      }
+    },
+    "guard_else_continue": {
+      "source_sha256": "cea3a31fa4bb4a640cb1cd835c33df13815e5b65bb972a0cfbf6a39d2f3df12c",
+      "score": {
+        "differing": 46,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "register_player": {
+      "source_sha256": "b4057a418206985895cfdfa0502b0bf3f602ecfb9e0fc86298a14562fb5bb465",
+      "score": {
+        "differing": 18,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "outer_for_noinit": {
+      "source_sha256": "d8d7d80ee93e087026e5ae2545fd4b9cf2fd850537a696eb09401396dcd31cd4",
+      "score": {
+        "differing": 18,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "outer_posttest": {
+      "source_sha256": "a3a2f7559da6741725008c313fbcdd2500bcb6c6dd28bd49247f52051e2fd56c",
+      "score": {
+        "differing": 87,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "outer_posttest_index": {
+      "source_sha256": "edb9546c61844ee351c2016faf84872a5e8eb9316f01992f7c1026ee2e960156",
+      "score": {
+        "differing": 18,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "inner_posttest": {
+      "source_sha256": "874a036041e839e7cd43363f74691a9e72016382e6fce9404e20b23a1b716662",
+      "score": {
+        "differing": 18,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "inner_pointer_end": {
+      "source_sha256": "43eb0bd47416cca217cf24ee3bc09145c2b063dbe27616cbb067fb194a7ffc02",
+      "score": {
+        "differing": 126,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "panel_pointer_end": {
+      "source_sha256": "df3256af708594bb7805ce42d6dc044aa75bf4d1fc0156be99a3710db80e1205",
+      "score": {
+        "differing": 127,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 1
+      }
+    },
+    "player_guard_do": {
+      "source_sha256": "fc1c9bc2bdacfddddce8ccfa7db9e9facead5007c2a04bfedaf98802d290cff5",
+      "score": {
+        "differing": 18,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "player_computed_index": {
+      "source_sha256": "fe7fd9ae9fd44a71958933325b837675a4a91829d0c41d9cc1e42947c89cbfa4",
+      "score": {
+        "differing": 43,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "panel_computed_index": {
+      "source_sha256": "7ebb3a9331a7a8fa648f1f28685e12e303ddb5cfc30a366a4551188027a4cc60",
+      "score": {
+        "differing": 86,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 4
+      }
+    },
+    "player_increment_nested": {
+      "source_sha256": "6aeaa00c9c50db5c56847922f5c686c69683b59a4b9c17348a8e9c1157266cbc",
+      "score": {
+        "differing": 91,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [
+          "unpaired R_MIPS_HI16 for D_803B28A8 at .text+0x2a0"
+        ],
+        "extra_words": 3
+      }
+    },
+    "slot_bytes": {
+      "source_sha256": "b9514cace6e921d7075bceccfaf359bfe8f3f732878c2c3baf4423cfcb8f1ffa",
+      "score": {
+        "differing": 94,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 1
+      }
+    },
+    "panel_bytes": {
+      "source_sha256": "a593bfe902f2914d531c5972e3c90128da44f66988c2e390a6acb23b3b91bb03",
+      "score": {
+        "differing": 18,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "both_bytes": {
+      "source_sha256": "5207eda95fe2737bbd351fb11282d03744404010e4f13185a59d4013b876105f",
+      "score": {
+        "differing": 24,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "slot_bytes_signed": {
+      "source_sha256": "86733f7be8b55075bcdf5d9b6750b913feaa951c3aee437583cd2a763c58d3d0",
+      "score": {
+        "differing": 94,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 1
+      }
+    },
+    "panel_bytes_signed": {
+      "source_sha256": "a70ce9b10a952d3244cd35266edcab391436d18256316a7d7aedf1551d378a69",
+      "score": {
+        "differing": 18,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    },
+    "both_bytes_signed": {
+      "source_sha256": "5c2a26be90f75ab7e30ee455043d2174ee73b2ede8182b39a71d5434d19ccb61",
+      "score": {
+        "differing": 24,
+        "total": 169,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      }
+    }
+  },
+  "variant_count": 31,
+  "best_differing": 18,
+  "retained_source_changed": false
+}

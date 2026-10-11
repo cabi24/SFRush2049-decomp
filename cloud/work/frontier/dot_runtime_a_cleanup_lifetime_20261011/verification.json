@@ -1,0 +1,74 @@
+{
+  "status": "VERIFIED NONMATCH",
+  "source_packet": "cloud/work/frontier/dot_runtime_a_record_context_20261011",
+  "source_sha256": "c7ea7c6f1d1b8595882f3b2776579b6226be8d77570c6195c81c67c42128f651",
+  "new_matching_bytes": 0,
+  "accepted_image_bytes": 0,
+  "cartridge_bytes": 0,
+  "score": {
+    "differing": 18,
+    "total": 169,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "compiler_sha256": {
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+  },
+  "verification_code_sha256": {
+    "verify.py": "74b451dee6b449fb6eef29db89105b142ef345b76b6a82f0ca93ecf45174c0f0",
+    "semantics.py": "ec8ad33bb0f5109ce26daa1cec3f85cb3bd64b68ec90db2166cf7c229e377d58"
+  },
+  "extent": {
+    "start": "0x8039d05c",
+    "end": "0x8039d300",
+    "native_bytes": 676,
+    "ELF_STT_FUNC_bytes": 676,
+    "next_boundary_checked": true
+  },
+  "GNU_relocations": 56,
+  "native_sha256": "b91b9e30bcdc1311626f398a54e1ba5e29864aac04122d348e44cb1d44c23c40",
+  "linked_sha256": "e4b205deac17f5848524fd3e755df1c01f3e9e63da05567d74a780af104ee648",
+  "semantics": {
+    "cases_per_native_GNU_and_model": 512,
+    "instructions_covered": 169,
+    "branch_outcomes": 37,
+    "dynamic_player_count_mutations": 209,
+    "full_memory_call_read_write_trace_equality": true,
+    "player_domain": "selected counts -32768,-1,0,1,2,3,4; all signed-byte mode selectors",
+    "helper_boundary": "eight external O32 hooks, arbitrary integer/FPU volatile clobbers; optional count mutation",
+    "preserved_private_registers": [
+      "gp",
+      "sp",
+      "ra"
+    ],
+    "standalone_O32_replacement": false
+  },
+  "caller_ABI": {
+    "caller": "func_803A1EAC",
+    "native_offsets": [
+      "0x220",
+      "0x274",
+      "0x31c",
+      "0x1a7c"
+    ],
+    "compiled_offsets": [
+      "0x228",
+      "0x27c",
+      "0x328",
+      "0x1a74"
+    ],
+    "caller_prologue_epilogue_saves": "s0 through s8",
+    "no_arguments": true,
+    "limit": "caller remains nonmatching and is not executed end-to-end"
+  },
+  "owned_data": "no owned literal or storage relocations",
+  "private_ABI": "no parameters; intentionally clobbers s0 through s8; not a standalone O32 replacement"
+}

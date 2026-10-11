@@ -1,0 +1,132 @@
+{
+  "claims": [],
+  "hashes": {
+    "asm/us/ovl_a/extents.json": "0d97935254a6f2c724dfe68b08087e0a451e56d0aedb2121748abe7b6cc0798b",
+    "asm/us/ovl_a/ovl_a_8038a400.s": "94f5fdb45838b6d21fb761209bf2cb60602f90ea8725b16cae2c3cebe0aa7685",
+    "asm/us/ovl_a/symbols.json": "d5a6c8dccb0380f54f080d45d82a5e71f917be86f9568bf4b7fbe10a89f2a769",
+    "cloud/work/frontier/dot_runtime_a_availability_wave_20261011/cleanup.c": "f551e758bed9324b78108040062c57e58b200620a5dc933b742db53729c2b1a6",
+    "cloud/work/frontier/dot_runtime_a_availability_wave_20261011/group.c": "943620b96b0b2c501a5baa215dceed074d5269243fa78c13f237bca31e6c7ffd",
+    "cloud/work/frontier/dot_runtime_a_availability_wave_20261011/group.json": "0c70001d5b72176b3921c671b723baf7346463542a7fc4365aa80e53d14a740f",
+    "cloud/work/frontier/dot_runtime_a_availability_wave_20261011/mode.c": "9ab8667b697333e3eeafc582ff77c5e36fe59c7b92204e0c8395fea9d95b8ec7",
+    "cloud/work/frontier/dot_runtime_a_availability_wave_20261011/producer.c": "5be92960c93fa8656c732474adafaceddfa2575e1484fbab4af89a2d87d6a91c",
+    "cloud/work/frontier/dot_runtime_a_availability_wave_20261011/reproduce.py": "d7d1065bf19d32e84dfe86d29f364a42800841941cbc0b64fc30d1fc8b59832b",
+    "cloud/work/frontier/dot_runtime_a_availability_wave_20261011/selector.c": "095a265dc596d86b7582a744cafecb57ebff73504fdbbdf9118216948619e13e",
+    "tools/cloud/owndata.py": "f689c3a763390b4a28b3727a27308183c7e4ddf522da4392ba36c2dcfb6ba9ad",
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
+  },
+  "image": "A",
+  "image_sha256": "0d6702c320df84cc6cbc3c5967dde08d44b6e476e110667fe2a43dc2dd536667",
+  "results": {
+    "cleanup_O2": {
+      "differing": 40,
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_803B6528 at .text+0xa4"
+      ],
+      "extra_words": 6,
+      "total": 42,
+      "unresolved": [],
+      "unverified": []
+    },
+    "cleanup_O3": {
+      "differing": 40,
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_803B6528 at .text+0xa4"
+      ],
+      "extra_words": 6,
+      "total": 42,
+      "unresolved": [],
+      "unverified": []
+    },
+    "group_func_80392F28": {
+      "differing": 55,
+      "errors": [],
+      "extra_words": 0,
+      "total": 55,
+      "unresolved": [],
+      "unverified": []
+    },
+    "group_func_80393004": {
+      "differing": 45,
+      "errors": [],
+      "extra_words": 0,
+      "total": 45,
+      "unresolved": [],
+      "unverified": []
+    },
+    "group_func_803930B8": {
+      "differing": 66,
+      "errors": [],
+      "extra_words": 0,
+      "total": 66,
+      "unresolved": [],
+      "unverified": []
+    },
+    "group_func_803931C0": {
+      "differing": 69,
+      "errors": [
+        "unpaired R_MIPS_HI16 for D_803BA800 at .text+0x44"
+      ],
+      "extra_words": 144,
+      "total": 69,
+      "unresolved": [],
+      "unverified": []
+    },
+    "mode_O2": {
+      "differing": 17,
+      "errors": [],
+      "extra_words": 0,
+      "total": 69,
+      "unresolved": [],
+      "unverified": []
+    },
+    "mode_O3": {
+      "differing": 17,
+      "errors": [],
+      "extra_words": 0,
+      "total": 69,
+      "unresolved": [],
+      "unverified": []
+    },
+    "producer_O2": {
+      "differing": 65,
+      "errors": [],
+      "extra_words": 17,
+      "total": 66,
+      "unresolved": [],
+      "unverified": []
+    },
+    "producer_O3": {
+      "differing": 65,
+      "errors": [],
+      "extra_words": 17,
+      "total": 66,
+      "unresolved": [],
+      "unverified": []
+    },
+    "selector_O2": {
+      "differing": 2,
+      "errors": [],
+      "extra_words": 0,
+      "total": 55,
+      "unresolved": [],
+      "unverified": []
+    },
+    "selector_O3": {
+      "differing": 2,
+      "errors": [],
+      "extra_words": 0,
+      "total": 55,
+      "unresolved": [],
+      "unverified": []
+    }
+  },
+  "selector_gnu_link": {
+    "differing_offsets": [
+      132,
+      172
+    ],
+    "linked_sha256": "8b27fd87b3dead0d551f57e50fb2b80778bf7e94d0ff124f50677261289c5672",
+    "symbol_bytes": 220,
+    "text_bytes": 224
+  }
+}

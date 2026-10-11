@@ -1,0 +1,37 @@
+{
+  "reviewed_commit": "69a5a9f7ab7abfd70d4ecef4625ea6b57581fc9e",
+  "source_sha256": "c5348c483799f47d574c62fe1171cfc0a5ba1591bd521007ba395da345aecfd7",
+  "group_sha256": "084cc37dadbefbc005211f564ce3874a15ce4a165fc65e6f9f82ba6413e62ed0",
+  "verification_sha256": "cca017b1600b0a0e9102088a4699d5b6eddf5c157801086fc1bc687a931a2c09",
+  "verdict": "research evidence verified; all four bodies remain NONMATCH",
+  "strict_residuals": {
+    "func_803A6F2C": [
+      2,
+      149
+    ],
+    "func_803A7180": [
+      6,
+      296
+    ],
+    "func_803A7620": [
+      4,
+      190
+    ],
+    "func_803A7918": [
+      7,
+      144
+    ]
+  },
+  "code_bytes": 3116,
+  "contiguous_ELF_function_ownership": true,
+  "only_final_zero_alignment_bytes": 4,
+  "code_relocations": 223,
+  "owned_switch_bytes": 20,
+  "owned_switch_relocations": 5,
+  "canonical_GNU_and_frozen_receipt_agree": true,
+  "stock_UGEN_whole_object_fidelity": true,
+  "focused_tests_passed": 9,
+  "matching_or_accepted_bytes": 0,
+  "capacities": "hypotheses only; no length/termination/buffer-safety proof",
+  "publication_boundary": "no ordered table payload, raw instruction bodies or compiler dumps in peer artifact"
+}

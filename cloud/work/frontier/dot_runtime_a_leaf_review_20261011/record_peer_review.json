@@ -1,0 +1,124 @@
+{
+  "status": "PASS",
+  "source_sha256": "c7ea7c6f1d1b8595882f3b2776579b6226be8d77570c6195c81c67c42128f651",
+  "claim": "func_8039E200",
+  "new_candidate_bytes": 444,
+  "accepted_image_bytes": 0,
+  "independent_scores": {
+    "func_8039E200": {
+      "differing": 0,
+      "total": 111,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_8039E3BC": {
+      "differing": 0,
+      "total": 34,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_8039D494": {
+      "differing": 0,
+      "total": 132,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_8039ED20": {
+      "differing": 0,
+      "total": 120,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "independent_gnu_relocations": {
+    "func_8039E200": 15,
+    "func_8039E3BC": 5,
+    "func_8039D494": 22,
+    "func_8039ED20": 26
+  },
+  "full_444_byte_extent": true,
+  "all_claimed_relocation_fields_resolved": true,
+  "support_sha256": {
+    "semantics.py": "e4165df92f7223e9421c532dda2dd675a6b40d96a0b267ebaf97d051c7143fdb",
+    "verify.py": "5782b1c55b9f670b9975ec6928238bd1065d607d65c0d90d53033476065102f8",
+    "cloud/work/frontier/dot_runtime_a_leaf_review_20261011/review_record.py": "aeb152088ddc938dadcb440d08d67b1fefe46f28497c2f82bfc7027956797e8f",
+    "cloud/work/frontier/dot_runtime_a_leaf_review_20261011/review.py": "094052c3a9b9005723c11e51705355947caf3f809040d577c5276952458f9183",
+    "cloud/work/frontier/dot_runtime_a_leaf_review_20261011/elf_reader.py": "744cf5f48ce9fd692a2024fd9c3654ca9d36aedbd21b7b1595503ed90988add4"
+  },
+  "separately_reexecuted_author_cases": 6546,
+  "independently_constructed_topology_cases": 2250,
+  "linked_six_node_permutations": 720,
+  "topology_instructions_covered": 111,
+  "topology_external_calls": 2080,
+  "topology_handle_rewrites": 1550,
+  "callsites": {
+    "generated": [
+      {
+        "caller": "func_803A1EAC",
+        "offset": "0x1640",
+        "input_record": "s1",
+        "input_direction": "s2",
+        "return": "v0"
+      },
+      {
+        "caller": "func_803A1EAC",
+        "offset": "0x1674",
+        "input_record": "s1",
+        "input_direction": "s2",
+        "return": "v0"
+      },
+      {
+        "caller": "func_803A1EAC",
+        "offset": "0x16a8",
+        "input_record": "s1",
+        "input_direction": "s2",
+        "return": "v0"
+      }
+    ],
+    "native": [
+      {
+        "caller": "func_803A1EAC",
+        "offset": "0x163c"
+      },
+      {
+        "caller": "func_803A1EAC",
+        "offset": "0x1670"
+      },
+      {
+        "caller": "func_803A1EAC",
+        "offset": "0x16a4"
+      }
+    ]
+  },
+  "reviewed_layout_evidence": [
+    "src/blob/audio_volume_pan.c uses the same 16-byte list header at D_80152020 with head/tail offsets8/12.",
+    "Author MIPS-compiled layout probe establishes the actual RecordList,Record,Player,Slot and PanelPart sizes/offsets.",
+    "Changing scalar head/tail declarations to a common owner changes genuine alias/ownership context; it does not fabricate storage locals."
+  ],
+  "abi": [
+    "Inputs s1=node,s2=low signed byte of direction; result v0.",
+    "Callee writes its direction home at incoming sp+4 and clobbers private s0-s6.",
+    "Three native and three generated A1EAC callsites preserve s5/s6 around the call."
+  ],
+  "findings": [
+    "All source deltas are bound to the prior source by the author verifier; D05C remains explicitly unclaimed.",
+    "The post-callback handle reload is exercised by replacement-object cases.",
+    "Direction zero differs from negative at the third synthetic handle; both paths are exercised.",
+    "Unsigned record mode is compared to a signed global mode; negative global modes are not silently zero-extended."
+  ],
+  "limits": [
+    "The topology interpreter is the reviewed author decoder; the topology construction/oracle and ELF/GNU route are separate.",
+    "Additional topology cases execute native/GNU routes; host C89 coverage is the separately rerun 6546-case author set.",
+    "External predicate behavior is fixture-bounded; its implementation is not claimed.",
+    "No full A1EAC execution, full-image layout, compression, cartridge or gameplay claim."
+  ],
+  "elapsed_seconds": 9.418
+}

@@ -1,0 +1,266 @@
+{
+  "status": "PASS",
+  "source_sha256": "ab75c2190e76898e7f677e815d230398aac8f6feceaf8910add12a378996019f",
+  "group_sha256": "3f830f7e4e1be5b9d25494b4e3801988534cf138ad2e4665d9d3d5bbbb893982",
+  "reviewed_functions": [
+    "func_80392F28",
+    "func_80393004",
+    "func_803930B8",
+    "func_803931C0",
+    "func_803932E4"
+  ],
+  "new_candidate_bytes": 928,
+  "accepted_bytes": 0,
+  "scores": {
+    "func_80392F28": {
+      "differing": 0,
+      "total": 55,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80393004": {
+      "differing": 0,
+      "total": 45,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_803930B8": {
+      "differing": 0,
+      "total": 66,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_803931C0": {
+      "differing": 0,
+      "total": 69,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_803932E4": {
+      "differing": 0,
+      "total": 42,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "bindings": {
+    "func_80392F28": {
+      "bytes": 220,
+      "sha256": "74f185428546e075aa2c03b342b059648b4d1c9c6165efccb1b0e31badb02aba",
+      "relocations": 22,
+      "evidence": [
+        "jal"
+      ]
+    },
+    "func_80393004": {
+      "bytes": 180,
+      "sha256": "cb2befb3f8529390170b44ff360ec85aec72bc16d5643b889eee7f4fe2bde02c",
+      "relocations": 12,
+      "evidence": [
+        "jal"
+      ]
+    },
+    "func_803930B8": {
+      "bytes": 264,
+      "sha256": "a7874784c1c41a0e740bac6750801217d2de75f68f288e391de98cbbdf1f476b",
+      "relocations": 9,
+      "evidence": [
+        "jal",
+        "prologue"
+      ]
+    },
+    "func_803931C0": {
+      "bytes": 276,
+      "sha256": "96a4bf205924f3fe7fea15d281dee92913a5020f64d2cbc910a6ce2aa132173b",
+      "relocations": 25,
+      "evidence": [
+        "jal",
+        "prologue"
+      ]
+    },
+    "func_803932E4": {
+      "bytes": 168,
+      "sha256": "9d443d50178d133452926cffa0ad63a801e97abab2d79eeec957464bb25b141a",
+      "relocations": 16,
+      "evidence": [
+        "jal",
+        "prologue"
+      ]
+    }
+  },
+  "callsites": [
+    {
+      "caller": "func_803931C0",
+      "callee": "func_803930B8",
+      "offset": "0x2c"
+    },
+    {
+      "caller": "func_803931C0",
+      "callee": "func_80393004",
+      "offset": "0x34"
+    },
+    {
+      "caller": "func_803931C0",
+      "callee": "func_80392F28",
+      "offset": "0xf4"
+    },
+    {
+      "caller": "func_8039338C",
+      "callee": "func_80393004",
+      "offset": "0x1fc"
+    },
+    {
+      "caller": "func_8039338C",
+      "callee": "func_803931C0",
+      "offset": "0x67c"
+    },
+    {
+      "caller": "func_8039338C",
+      "callee": "func_803931C0",
+      "offset": "0x734"
+    },
+    {
+      "caller": "func_8039338C",
+      "callee": "func_803932E4",
+      "offset": "0x780"
+    },
+    {
+      "caller": "func_80394058",
+      "callee": "func_803930B8",
+      "offset": "0x40"
+    },
+    {
+      "caller": "func_80394058",
+      "callee": "func_80393004",
+      "offset": "0x48"
+    },
+    {
+      "caller": "func_80394058",
+      "callee": "func_803931C0",
+      "offset": "0x80"
+    },
+    {
+      "caller": "func_80394058",
+      "callee": "func_803932E4",
+      "offset": "0xa4"
+    },
+    {
+      "caller": "func_80394058",
+      "callee": "func_80392F28",
+      "offset": "0x1f4"
+    },
+    {
+      "caller": "func_80394058",
+      "callee": "func_80392F28",
+      "offset": "0x2c8"
+    },
+    {
+      "caller": "func_80394058",
+      "callee": "func_803931C0",
+      "offset": "0x470"
+    }
+  ],
+  "source_bodies_unchanged_from_archived": true,
+  "semantics": {
+    "cases_per_route": {
+      "selector": 2048,
+      "producer": 2274,
+      "dispatcher_family": 2781
+    },
+    "host_C89_UBSan_bounds_cases": 7103,
+    "complete_trace_equality": true,
+    "instruction_coverage": {
+      "func_80392F28": 55,
+      "func_80393004": 45,
+      "func_803930B8": 65,
+      "func_803931C0": 69,
+      "func_803932E4": 0
+    },
+    "branch_outcomes": 57,
+    "guards_and_helper_order": true,
+    "negative_decoder_checks": [
+      "unknown_opcode",
+      "escaped_code"
+    ]
+  },
+  "cleanup_semantics": {
+    "cases_per_route": 1364,
+    "host_C89_UBSan_bounds_cases": 1364,
+    "complete_trace_equality": true,
+    "instructions_covered": 42,
+    "branch_outcomes": 8,
+    "signed16_narrowing_and_sentinel_distinguished": true,
+    "all_23_records_and_surrounding_guards": true,
+    "pointer_gates_and_helper_order": true,
+    "private_clobbers": [
+      "s0",
+      "s1",
+      "s2"
+    ],
+    "preserved_saved_registers": [
+      "s3",
+      "s4",
+      "s5",
+      "s6",
+      "s7",
+      "fp",
+      "sp",
+      "ra"
+    ]
+  },
+  "standalone_negative_control": {
+    "differing": 2,
+    "total": 55,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "compiled_negative_controls": {
+    "wrong_level_boundary": {
+      "differing": 1,
+      "total": 55,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "wrong_cleanup_count": {
+      "differing": 1,
+      "total": 42,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "protected_manifest": {
+    "extents.json": "0d97935254a6f2c724dfe68b08087e0a451e56d0aedb2121748abe7b6cc0798b",
+    "ovl_a_8038a400.s": "94f5fdb45838b6d21fb761209bf2cb60602f90ea8725b16cae2c3cebe0aa7685",
+    "symbols.json": "d5a6c8dccb0380f54f080d45d82a5e71f917be86f9568bf4b7fbe10a89f2a769"
+  },
+  "support_sha256": {
+    "cloud/work/frontier/dot_runtime_a_leaf_review_20261011/native.py": "20c52fd907fcc3cb953cee6518ab1824f48bd92e3128c8d7f7b09c07be3d5eb3",
+    "cloud/work/frontier/dot_runtime_a_leaf_review_20261011/elf_reader.py": "744cf5f48ce9fd692a2024fd9c3654ca9d36aedbd21b7b1595503ed90988add4",
+    "tools/cloud/score.py": "08e7c781008d387e3a99738dbaf06a256b2332e16a2a139ee291e0fff95ecc69"
+  },
+  "elapsed_seconds": 13.089,
+  "limits": [
+    "No complete 94058/9338C execution or original translation-unit layout claim.",
+    "External helpers are bounded outcome fixtures; their implementations are not verified here.",
+    "930B8 and mode-zero 931C0 intentionally clobber s0-s7/fp under private whole-group ABI.",
+    "List cases assume finite valid nodes and nonoverflowing counts; menu rows contain a reachable nonzero item.",
+    "GNU route links complete extracted functions, not a contiguous original image.",
+    "No accepted-image, cartridge, compression, hardware or gameplay claim."
+  ]
+}
