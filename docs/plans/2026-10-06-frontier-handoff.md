@@ -177,7 +177,16 @@ question, and the remaining ~115 boot-tail `func_*` near-misses now that the rig
 `w17c/tools/uproc.py`; w17i's RESULTS decodes how uopt ranks register candidates (blocks counted in groups of
 four, so exact ties are common).
 
-**Astra / cloud:** see [2026-10-11-astra-cloud-plan.md](2026-10-11-astra-cloud-plan.md): runtime images A/B (191 KB, targets in `asm/us/ovl_*`) have no landing path yet and hold ~14 KB of Astra's verified matches; the plan's workstream A builds it, B rewrites `CloudHandoff.md`, C is the packet protocol that stops the receipt rebinds.
+**Astra / cloud:** see [2026-10-11-astra-cloud-plan.md](2026-10-11-astra-cloud-plan.md). Workstream A landed the
+same night (w18a layout/splice/lock, w18b exact stream round-trip + compose, w18e merge): runtime images A/B are a
+third and fourth population with their own gates (`ovl_layout build` image gate, `ovl_splice check`,
+`ovl_matched.lock.json`, `src/ovl_{a,b}/`, `ovl_rom rom` composing both streams into every ROM build behind the
+SHA-1). First splice: overlay A 36/193 (12,856 B), overlay B 8/49 (1,640 B) from the 25 `cloud/matches/ovl_*`
+singles and the 12 claimed packet groups. `make progress` reports them as separate rows. Landing an overlay
+match: `ovl_splice revert`/`revert-group` if superseding → `ovl_splice single|group` → `ovl_layout build` +
+`ovl_splice check` → `ovl_rom rom` (w18e RESULTS has the sequence; a fresh checkout runs `ovl_image extract;
+ovl_splice rebuild; ovl_layout build` first). Workstream B (brief rewrite, `cloud/work/CLAIMS.md`) is done;
+C (packet protocol v2) is in the brief for Astra to adopt.
 
 **For the next coordinating session.** This covers where the frontier matching effort stands, how a wave is run end to end, what the owner has decided, and every open item. Read it with `CLAUDE.md`, `cloud/work/frontier/WAVE_BRIEF.md` (the brief every lane agent reads) and `docs/plans/2026-10-04-frontier-plan.md` (the original method).
 

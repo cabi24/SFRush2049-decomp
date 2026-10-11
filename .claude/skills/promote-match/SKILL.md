@@ -37,7 +37,9 @@ Static `lock`/`promote` commands intentionally reject this population.
    IDO object padding. Splice locks live in `blob_matched.lock.json`.
 3. Run `python3 -m tools.conveyor.pipeline.blob_rom rom` on the Pi. It builds and
    compresses the linked image, syncs the required blob to the builder, and runs
-   the ROM build plus `make test`. The required `build/blob/game_code.deflate` uses
+   the ROM build plus `make test`. The builder also needs the runtime-image streams:
+   after an overlay splice run `ovl_layout build` then `ovl_rom rom` (same gate);
+   `blob_rom rom` refuses when `build/ovl/ovl_{a,b}.deflate` are missing. The required `build/blob/game_code.deflate` uses
    vendored zlib 1.0.4 with the documented exact parameters; no extracted-byte fallback.
 
 ## Evidence to report

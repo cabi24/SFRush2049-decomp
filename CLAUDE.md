@@ -25,8 +25,9 @@ when relevant to the task; historical notes are not current status or instructio
   score zero for matching evidence and the built ROM's SHA-1 for cartridge claims.
 - Static `lock`/`promote` commands reject extracted game targets. Game functions
   use `blob_splice` → `blob_rom`, with image byte identity and full-ROM hash gates.
-- The ROM build requires `build/blob/game_code.deflate`, produced from the linked
-  image; do not substitute the extracted original blob or bypass the build gates.
+- The ROM build requires `build/blob/game_code.deflate` and `build/ovl/ovl_{a,b}.deflate`,
+  produced from the linked images (game code; runtime images A/B via `ovl_layout build` +
+  `ovl_rom`); do not substitute the extracted original streams or bypass the build gates.
 - Report static and game coverage separately; never merge their denominators.
   Source files, stubs, identified symbols, and compiled seeds are not ROM coverage.
 - Extracted extents and population come from scanning/closure. `work/**/info.txt`

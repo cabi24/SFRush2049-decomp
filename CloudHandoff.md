@@ -17,8 +17,8 @@ four code populations, reported separately and never merged:
 |---|---|---|---|
 | Static boot/library code | `asm/us/boot_tail/` (the unmatched Rush boot tail) | IDO 5.3 (libultra), **IDO 7.1** (Rush boot tail, `rom_compilers.json`) | 489/668 functions, 87,756 / 160,720 B (54.60%) |
 | Game code (zlib stream at ROM `0xB0CB10`, inflates to `0x80086A50`) | `asm/us/blob/` | IDO 5.3, `-O2`/`-O3 -mips2` | 972/1216, 310,380 / 647,072 B (47.97%) |
-| Runtime image A (stream `0xB5C534`, loads at `0x8038A400`) | `asm/us/ovl_a/` | IDO 5.3 | 193 functions, 152,952 B; landing path being built (plan workstream A) |
-| Runtime image B (stream `0xB6FEC4`, loads at `0x8038A400`) | `asm/us/ovl_b/` | IDO 5.3 | 49 functions, 38,708 B; same |
+| Runtime image A (stream `0xB5C534`, loads at `0x8038A400`) | `asm/us/ovl_a/` | IDO 5.3 | 36/193 functions, 12,856 / 152,952 B; lands via `ovl_splice` + `ovl_rom` (2026-10-11) |
+| Runtime image B (stream `0xB6FEC4`, loads at `0x8038A400`) | `asm/us/ovl_b/` | IDO 5.3 | 8/49 functions, 1,640 / 38,708 B; same |
 
 Every function we "match" is spliced into its rebuilt image, and the full ROM must still hash SHA-1
 exact. Read [CLAUDE.md](CLAUDE.md) for the shared rules. The live state of the game-code frontier
@@ -74,9 +74,9 @@ Submodules (m2c, decomp-permuter) are only needed for tooling work: `git submodu
 ### Lane 1: runtime images A and B (primary; 191 KB nobody else is working)
 
 Targets: `asm/us/ovl_a`, `asm/us/ovl_b`; existing matches: `cloud/matches/ovl_{a,b}/` (25 singles) and
-group matches in `cloud/work/frontier/dot_runtime_a_*`. The layout/splice/ROM path for these images is
-being built now (plan workstream A); until it lands your matches are verified and queued, and they
-land as a batch when it does. Deliver exactly as for game code (§4): a single as
+group matches in `cloud/work/frontier/dot_runtime_a_*`. The layout/splice/ROM path for these images exists
+since 2026-10-11 (`ovl_layout`, `ovl_splice`, `ovl_rom`; lock `ovl_matched.lock.json`, sources `src/ovl_{a,b}/`):
+the coordinator splices a ready PR like any game match and the ROM SHA-1 gate covers it. Deliver exactly as for game code (§4): a single as
 `cloud/matches/ovl_a/NAME.c` or `cloud/matches/ovl_b/NAME.c` with the flags on line 1, a group as a
 group directory with `claims`. Frame-only residuals (a few words, frame off by 8–24 B) are almost always
 declared-local sets, a reused variable or float-literal spelling: see the Wave 16/17 lessons.
