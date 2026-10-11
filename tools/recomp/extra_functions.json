@@ -1,0 +1,65 @@
+{
+ "note": "PROVISIONAL extents for CPU code the committed inventories do not cover, used ONLY by the recompiler configuration (never by matching, layout or coverage). Each entry is called from inventoried code; without an entry N64Recomp invents a static function that runs from the call target to the section end and dies in data (`scd`). The boundary itself is the open BT08 census question (cloud/work/boot_tail/README.md 'census-boundary call targets'). Extents: from the target to the delay slot of the `jr ra` that closes it; the words between entries are inline tables read PC-relatively (bltzal-zero link trick).",
+ "static": [
+  {
+   "name": "func_800277D0",
+   "vram": "0x800277D0",
+   "size": "0xEC",
+   "evidence": "jal from func_80026558+0x60; jr ra at 0x800278B4; 8-byte table at 0x800278BC read via ra+212"
+  },
+  {
+   "name": "func_800278C4",
+   "vram": "0x800278C4",
+   "size": "0xB4",
+   "evidence": "jal from func_80026558+0x74; jr ra at 0x80027970; 8-byte table at 0x80027978"
+  },
+  {
+   "name": "func_80027980",
+   "vram": "0x80027980",
+   "size": "0x1C4",
+   "evidence": "bal target from func_80027B44 (x4); jr ra at 0x80027B3C"
+  },
+  {
+   "name": "func_80027B44",
+   "vram": "0x80027B44",
+   "size": "0x154",
+   "evidence": "jal from func_80026360+0x1CC; frame sp-68; jr ra at 0x80027C90"
+  },
+  {
+   "name": "func_80027C98",
+   "vram": "0x80027C98",
+   "size": "0xA4",
+   "evidence": "bal target from func_80027B44 (x4); jalr t3 dispatch; jr ra at 0x80027D34"
+  },
+  {
+   "name": "func_80027D3C",
+   "vram": "0x80027D3C",
+   "size": "0x18",
+   "evidence": "jalr t3 target (t3 = ra+400 after the bltzal-zero at 0x80027BA4); ends in b 0x80027D7C (shared tail)"
+  },
+  {
+   "name": "func_80027D54",
+   "vram": "0x80027D54",
+   "size": "0x10",
+   "evidence": "jalr t3 target (ra+388 after 0x80027BC8); ends in b 0x80027D7C"
+  },
+  {
+   "name": "func_80027D64",
+   "vram": "0x80027D64",
+   "size": "0x18",
+   "evidence": "jalr t3 target (ra+368 after 0x80027BEC); ends in b 0x80027D7C"
+  },
+  {
+   "name": "func_80027D7C",
+   "vram": "0x80027D7C",
+   "size": "0x54",
+   "evidence": "jalr t3 target (ra+356 after 0x80027C10) and the shared tail of the three above; jr ra at 0x80027DC8; D_80027DD0 data follows"
+  },
+  {
+   "name": "func_8002C5E0",
+   "vram": "0x8002C5E0",
+   "size": "0x1C",
+   "evidence": "called from the boot tail (BT08 notes); 7-word D-cache range loop (cache 0xd), jr ra at 0x8002C5F4"
+  }
+ ]
+}

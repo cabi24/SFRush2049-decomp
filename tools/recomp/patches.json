@@ -1,0 +1,120 @@
+{
+ "note": "Functions N64Recomp refuses (found by running it, see README 'Acceptance'), and what the config does with each. stub: emitted as an empty body (the operation has no host meaning). ignored: not emitted; the runtime must provide a host function of the same name (Phase 1 shim list). Names are inventory names (static population). renamed: emitted as NAME_recomp because NAME collides with a host C/libc declaration (found by compiling the output with clang). instruction: single-word replacements (N64Recomp [[patches.instruction]]); the hand-written codec kernels get their PC with a never-taken `bltzal zero` whose only effect is ra = pc+8, which N64Recomp treats as a call into the inline table; the pair is rewritten to load the same ra value directly (lui/ori), behaviour unchanged.",
+ "stubs": {
+  "osInvalICache_full": "cache instruction (I-cache invalidate; no host meaning)",
+  "func_8002C5E0": "cache instruction (D-cache range loop; no host meaning)",
+  "__osTlbFlush": "mfc0 cop0 register 10 (EntryHi; TLB unused by the recompiled game)",
+  "__osTlbInit": "mfc0 cop0 register 10 (EntryHi; TLB unused by the recompiled game)"
+ },
+ "ignored": {
+  "__fixdfdi": "trunc.l.d unsupported (double -> s64); runtime provides __fixdfdi",
+  "__fixsfdi": "trunc.l.s unsupported (float -> s64); runtime provides __fixsfdi",
+  "__osSendInterrupt": "branches into another function (0x8000CFBC -> 0x8000CE94): exception/interrupt code the runtime replaces",
+  "osCauseGet": "mfc0 cop0 register 13 (Cause); runtime provides osCauseGet"
+ },
+ "renamed": {
+  "main": "host C: main must be int main(int, char**); emitted as main_recomp",
+  "modff": "host libm modff (conflicting types); emitted as modff_recomp",
+  "__isinf": "host glibc __isinf (conflicting types); emitted as __isinf_recomp",
+  "__isnan": "host glibc __isnan (conflicting types); emitted as __isnan_recomp",
+  "memchr": "host libc builtin memchr (incompatible redeclaration); emitted as memchr_recomp"
+ },
+ "instruction": [
+  {
+   "func": "func_800277D0",
+   "vram": "0x800277E0",
+   "original": "0x04100036",
+   "value": "0x3C1F8002",
+   "was": "bltzal zero (never taken; ra = 0x800277E8)",
+   "now": "lui ra, 0x8002"
+  },
+  {
+   "func": "func_800277D0",
+   "vram": "0x800277E4",
+   "original": "0x00000000",
+   "value": "0x37FF77E8",
+   "was": "nop (delay slot)",
+   "now": "ori ra, ra, 0x77E8"
+  },
+  {
+   "func": "func_800278C4",
+   "vram": "0x800278EC",
+   "original": "0x04100022",
+   "value": "0x3C1F8002",
+   "was": "bltzal zero (never taken; ra = 0x800278F4)",
+   "now": "lui ra, 0x8002"
+  },
+  {
+   "func": "func_800278C4",
+   "vram": "0x800278F0",
+   "original": "0x00000000",
+   "value": "0x37FF78F4",
+   "was": "nop (delay slot)",
+   "now": "ori ra, ra, 0x78F4"
+  },
+  {
+   "func": "func_80027B44",
+   "vram": "0x80027BA4",
+   "original": "0x04100065",
+   "value": "0x3C1F8002",
+   "was": "bltzal zero (never taken; ra = 0x80027BAC)",
+   "now": "lui ra, 0x8002"
+  },
+  {
+   "func": "func_80027B44",
+   "vram": "0x80027BA8",
+   "original": "0x00000000",
+   "value": "0x37FF7BAC",
+   "was": "nop (delay slot)",
+   "now": "ori ra, ra, 0x7BAC"
+  },
+  {
+   "func": "func_80027B44",
+   "vram": "0x80027BC8",
+   "original": "0x04100062",
+   "value": "0x3C1F8002",
+   "was": "bltzal zero (never taken; ra = 0x80027BD0)",
+   "now": "lui ra, 0x8002"
+  },
+  {
+   "func": "func_80027B44",
+   "vram": "0x80027BCC",
+   "original": "0x00000000",
+   "value": "0x37FF7BD0",
+   "was": "nop (delay slot)",
+   "now": "ori ra, ra, 0x7BD0"
+  },
+  {
+   "func": "func_80027B44",
+   "vram": "0x80027BEC",
+   "original": "0x0410005D",
+   "value": "0x3C1F8002",
+   "was": "bltzal zero (never taken; ra = 0x80027BF4)",
+   "now": "lui ra, 0x8002"
+  },
+  {
+   "func": "func_80027B44",
+   "vram": "0x80027BF0",
+   "original": "0x00000000",
+   "value": "0x37FF7BF4",
+   "was": "nop (delay slot)",
+   "now": "ori ra, ra, 0x7BF4"
+  },
+  {
+   "func": "func_80027B44",
+   "vram": "0x80027C10",
+   "original": "0x0410005A",
+   "value": "0x3C1F8002",
+   "was": "bltzal zero (never taken; ra = 0x80027C18)",
+   "now": "lui ra, 0x8002"
+  },
+  {
+   "func": "func_80027B44",
+   "vram": "0x80027C14",
+   "original": "0x00000000",
+   "value": "0x37FF7C18",
+   "was": "nop (delay slot)",
+   "now": "ori ra, ra, 0x7C18"
+  }
+ ]
+}
