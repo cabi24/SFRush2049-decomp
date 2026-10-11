@@ -25,6 +25,9 @@ long long __fixsfdi(float f) {
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_a5f0/__fixunsdfdi.s")
+/* ROM_OWNED_RODATA_BEGIN __fixunsdfdi */
+#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_a5f0/__fixunsdfdi.rodata.s")
+/* ROM_OWNED_RODATA_END __fixunsdfdi */
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_a5f0/__fixunssfdi.s")
 /* PROMOTED 2026-10-11 — __floatdidf
  * Source:   cloud/work/frontier/w16g/sources/__floatdidf.c (in-repo, locked)

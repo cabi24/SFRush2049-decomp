@@ -12,6 +12,7 @@ from tools.conveyor.pipeline import owned_data as O
 REPO = Path(__file__).resolve().parents[2]
 SLOTS = [
     ("osAiSetNextBuffer", ["osAiSetNextBuffer"], ".data", 0x8002C3C0),
+    ("__fixunsdfdi", ["__fixunsdfdi", "__fixunssfdi"], ".rodata", 0x8002D800),
 ]
 
 
