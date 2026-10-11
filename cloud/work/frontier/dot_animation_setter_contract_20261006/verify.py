@@ -203,7 +203,7 @@ def verify():
     assert len(targets[NAME])==83 and len(targets[CONTEXT])==11
     witness=clock_witness(targets,addresses)
     locks=json.loads((ROOT/'blob_matched.lock.json').read_text())
-    assert NAME not in locks
+    assert NAME not in locks or locks[NAME]['source']=='src/blob/%s.c'%NAME  # promoted state allowed (w15c splice, 2026-10-10)
     assert file_sha(HERE/'group/setter.c')==locks[CONTEXT]['source_sha256']
     assert (HERE/'group/setter.c').read_bytes()==(ROOT/locks[CONTEXT]['source']).read_bytes()
     assert (HERE/'controls/archive.c').read_bytes()==run(['git','show',BASE+':cloud/work/frontier/w7b/audio_channel_setup/best.c'],cwd=ROOT).stdout
