@@ -1,4 +1,22 @@
 {
+  "cloud/work/frontier/w21a/ownslot/func_80022CD4.c:func_80022CD4": {
+    "body_sha256": "8007c52dab8a830c471c79f2d54c8308b91334c3a442d405ef38b9e54e659942",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80022CD4",
+    "toolkit_sha": "4586d230749de1bc8a64add52ae53db0ffde18a1eee76c8a73f3791fd98e2557",
+    "verified": "score0",
+    "verified_at": "2026-10-11"
+  },
+  "cloud/work/frontier/w21c/ownrodata/func_8001C860.c:func_8001C860": {
+    "body_sha256": "f9ef081f6b7a6da1ca736d59594694f38fdd3cb0aeb4801229365a854930f67e",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "func_8001C860",
+    "toolkit_sha": "4586d230749de1bc8a64add52ae53db0ffde18a1eee76c8a73f3791fd98e2557",
+    "verified": "score0",
+    "verified_at": "2026-10-11"
+  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
