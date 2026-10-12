@@ -314,6 +314,21 @@ versions and the package pins: `tools/recomp/VERSIONS.md`.
   race in 5 minutes of idle front end (`attract.press`).
 - **Gameplay-test package** (owner decision 2026-10-12): `package.py` -> `rush2049-recomp-test-v<N>.tar.gz`;
   every later recomp phase regenerates it, bumps N (`VERSIONS.md` package-pins) and adds a CHANGES section.
+- **Package v1 laptop report (2026-10-12, Windows 11, RTX 3050, clang-cl 19; `tools/recomp/reports/v1/`):** the
+  Windows build works end to end (A5 must target `N64RecompCLI`, not `N64Recomp`). **Under RT64 the game renders
+  correctly in lockstep (`--clock frames`)**: title, every front-end menu, four tracks, 1P and 2P split screen,
+  pause/audio/video menus, 30 gfx tasks/s, 0.36 host cores; the owner raced a lap with an Xbox 360 pad ("the game
+  seems whole, and working"); no crash in any run. **Wall clock + RT64 hangs at boot every time (13/13, D3D12 and
+  Vulkan)**: `game_loop` 0x800FD500 is `if (state_word_a != state_word_b) { while (__osScTaskCount) ; ... }` — the
+  mode-switch drain spins on the scheduler's task count (0x8002EB70, the +0x290 slot w24s found) without a libultra
+  call, and ultramodern switches threads only inside libultra calls, so RT64's asynchronous DP completion never
+  gets to run `__scHandleRSP`. Lockstep completes SP/DP synchronously (lockstep.cpp), the null renderer is
+  effectively synchronous, so neither hangs. Fix = a `before_vram` hook at 0x800FD500 calling `pause_self`
+  (same recipe as `rush_hook_park_idle`). RT64 lockstep self-check: DIFFERENT at frame 2 in 71 pages =
+  0x807DD000–0x807FFFFF (framebuffer write-back, expected) and 0x8017A000–0x8019DFFF (36 pages right after
+  `gBssEnd`, unnamed; name via the task's `output_buff`/z-buffer and mask). Doc/privacy fixes for v2: librecomp's
+  `select_rom` copies the ROM into every `--home` dir (T9 "zip run\" would ship it; the tester excluded it by
+  hand); T6 has rows/values keys swapped; A5 target name; attract and stunt untested.
 - **Phase 5 needs:** the tester's report (does RT64 draw Rush 2049? which GBI/ucode; input mapping; FPS); audio
   (recompile the audio RSP microcode with RSPRecomp, as Zelda64Recomp does for aspMain); a Windows build check on
   real hardware (CI or the laptop) feeding fixes back; Windows per-call capture (VirtualProtect + vectored

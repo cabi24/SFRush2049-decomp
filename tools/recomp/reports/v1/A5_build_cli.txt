@@ -1,0 +1,8 @@
+[1/7] Building CXX object CMakeFiles\N64RecompElf.dir\src\symbol_lists.cpp.obj
+[2/7] Building CXX object CMakeFiles\N64RecompElf.dir\src\mdebug.cpp.obj
+[3/7] Building CXX object CMakeFiles\N64RecompElf.dir\src\elf.cpp.obj
+[4/7] Linking CXX static library N64RecompElf.lib
+[5/7] Building CXX object CMakeFiles\N64RecompCLI.dir\src\main.cpp.obj
+[6/7] Building CXX object CMakeFiles\N64RecompCLI.dir\src\config.cpp.obj
+[7/7] Linking CXX executable N64Recomp.exe
+build exit 0

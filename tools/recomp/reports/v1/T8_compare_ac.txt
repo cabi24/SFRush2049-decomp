@@ -1,0 +1,11 @@
+DIFFERENT at frame 2: 71 rdram page(s)
+  page  378 0x8017A000-0x8017AFFF
+  page  379 0x8017B000-0x8017BFFF
+  page  380 0x8017C000-0x8017CFFF
+  page  381 0x8017D000-0x8017DFFF
+  page  382 0x8017E000-0x8017EFFF
+  page  383 0x8017F000-0x8017FFFF
+  page  384 0x80180000-0x80180FFF
+  page  385 0x80181000-0x80181FFF
+  ... 63 more pages
+  thread-stack contents differ from frame 1 (masked out of the page hashes: dead frames differ whenever the code differs; not judged)

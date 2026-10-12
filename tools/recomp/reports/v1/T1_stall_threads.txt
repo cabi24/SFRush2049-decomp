@@ -1,0 +1,92 @@
+process CPU total: 30s after 28s wall; threads: 85
+
+   Id   State Wait           Prio CpuMs3s TotalCpuMs Start
+   --   ----- ----           ---- ------- ---------- -----
+ 1208 Running                  10    3031      26891 0x0  
+62576    Wait UserRequest      10     188       1422 0x0  
+65888    Wait ExecutionDelay   11      16        469 0x0  
+39316    Wait Unknown           9       0          0 0x0  
+46540    Wait UserRequest      10       0          0 0x0  
+62888    Wait UserRequest      10       0          0 0x0  
+25344    Wait UserRequest      10       0          0 0x0  
+69924    Wait Unknown           9       0          0 0x0  
+20500    Wait Unknown          11       0         16 0x0  
+65200    Wait Unknown          11       0          0 0x0  
+61332    Wait Unknown          11       0          0 0x0  
+59760    Wait Unknown           9       0         16 0x0  
+62516    Wait Unknown          11       0         16 0x0  
+65252    Wait Unknown           4       0          0 0x0  
+66572    Wait Unknown           4       0          0 0x0  
+62036    Wait Unknown           4       0          0 0x0  
+38444    Wait Unknown           4       0          0 0x0  
+50696    Wait Unknown           4       0          0 0x0  
+68244    Wait UserRequest      10       0          0 0x0  
+34524    Wait Unknown           9       0          0 0x0  
+66548    Wait Unknown           9       0          0 0x0  
+50440    Wait Unknown          10       0          0 0x0  
+61220    Wait UserRequest      10       0          0 0x0  
+67940    Wait UserRequest      10       0          0 0x0  
+65800    Wait UserRequest      11       0          0 0x0  
+49696    Wait UserRequest      11       0          0 0x0  
+51712    Wait UserRequest      11       0          0 0x0  
+68996    Wait UserRequest      11       0          0 0x0  
+68648    Wait UserRequest      10       0          0 0x0  
+47764    Wait UserRequest       3       0          0 0x0  
+11024    Wait UserRequest      11       0          0 0x0  
+65788    Wait UserRequest      11       0          0 0x0  
+69636    Wait UserRequest      11       0          0 0x0  
+64900    Wait Unknown          11       0          0 0x0  
+58124    Wait ExecutionDelay   10       0          0 0x0  
+70300    Wait Unknown          11       0         16 0x0  
+15304    Wait Unknown          11       0          0 0x0  
+53420    Wait UserRequest      11       0          0 0x0  
+67100    Wait UserRequest      11       0          0 0x0  
+63616    Wait UserRequest      11       0         16 0x0  
+65420    Wait UserRequest      10       0         31 0x0  
+67736    Wait UserRequest      11       0          0 0x0  
+69392    Wait UserRequest      11       0         16 0x0  
+24180    Wait EventPairLow     10       0          0 0x0  
+49484    Wait UserRequest      10       0          0 0x0  
+64996    Wait EventPairLow     10       0          0 0x0  
+59684    Wait UserRequest      11       0          0 0x0  
+62836    Wait EventPairLow     10       0          0 0x0  
+56260    Wait UserRequest       4       0         47 0x0  
+37368    Wait Unknown           4       0          0 0x0  
+63052    Wait UserRequest      10       0         16 0x0  
+32200    Wait UserRequest      10       0          0 0x0  
+64908    Wait UserRequest      10       0          0 0x0  
+59084    Wait UserRequest      12       0          0 0x0  
+64256    Wait UserRequest      11       0          0 0x0  
+68936    Wait ExecutionDelay   10       0          0 0x0  
+70312    Wait EventPairLow     10       0          0 0x0  
+67344    Wait EventPairLow     10       0         16 0x0  
+55352    Wait EventPairLow     10       0          0 0x0  
+47752    Wait UserRequest      11       0        625 0x0  
+52976    Wait UserRequest      11       0          0 0x0  
+68300    Wait ExecutionDelay   13       0         16 0x0  
+64308    Wait EventPairLow     10       0          0 0x0  
+63704    Wait UserRequest      15       0          0 0x0  
+29484    Wait Unknown          10       0          0 0x0  
+66476    Wait Unknown          10       0          0 0x0  
+70132    Wait UserRequest      10       0          0 0x0  
+67828    Wait UserRequest      10       0          0 0x0  
+67832    Wait UserRequest      10       0          0 0x0  
+58536    Wait Unknown           4       0          0 0x0  
+64588    Wait Unknown           4       0          0 0x0  
+32444    Wait Unknown           4       0          0 0x0  
+41324    Wait Unknown           3       0          0 0x0  
+66524    Wait Unknown           4       0          0 0x0  
+32564    Wait UserRequest      10       0          0 0x0  
+69892    Wait Unknown          11       0          0 0x0  
+67308    Wait Unknown          11       0          0 0x0  
+31408    Wait Unknown           4       0          0 0x0  
+67624    Wait Unknown           4       0          0 0x0  
+69876    Wait Unknown           4       0          0 0x0  
+70296    Wait Unknown          11       0          0 0x0  
+64476    Wait UserRequest      10       0          0 0x0  
+ 7692    Wait Unknown          11       0          0 0x0  
+68992    Wait Unknown          11       0          0 0x0  
+63140    Wait Unknown          11       0          0 0x0  
+
+
+

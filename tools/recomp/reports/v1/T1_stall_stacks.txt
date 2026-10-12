@@ -1,0 +1,11 @@
+=== thread 1208 cpu last 2s: 2031 ms
+RIP samples (in module = symbolized; else raw):
+  x5 game_loop @ C:\rush2049\rush2049-recomp-test-v1\config\RecompiledFuncs\funcs_33.c:15043:0
+  x3 game_loop @ C:\rush2049\rush2049-recomp-test-v1\config\RecompiledFuncs\funcs_33.c:15043:0
+  x2 game_loop @ C:\rush2049\rush2049-recomp-test-v1\config\RecompiledFuncs\funcs_33.c:15043:0
+heuristic stack (code addresses found on the stack, top first, up to 30):
+=== thread 62576 cpu last 2s: 125 ms
+RIP samples (in module = symbolized; else raw):
+  x6 0x7FFA09DE1444 in ntdll.dll+0x161444
+  x4 0x7FFA09DE0E44 in ntdll.dll+0x160E44
+heuristic stack (code addresses found on the stack, top first, up to 30):
