@@ -1,8 +1,25 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
-/* Four new local O3 code/relocation matching candidates: B908, B988,
- * BA28, BAE0 (624 bytes total). Complete real C140/A5948 caller context.
- * Other bodies are unclaimed research or previously reported context.
- * Main-blob wrapper stays external. See README for unresolved context data.
+/* Image-A C140 complete strict match, 1984 new candidate bytes. Research
+ * delivery: installation is blocked by existing cross-group lock ownership.
+ * C140 updates the configuration screen: validates selected modes, handles
+ * input and rotation animation, cleans up transitions, then runs its renderer.
+ * N64-native reconstruction; no proven arcade-source ancestor.
+ * All ten verified bodies are members/claims; the other four genuine bodies
+ * remain context. Nine inherited matches are preserved without new credit.
+ *
+ * C140 SHAPING: meaningful matrix and angle operand carriers add two 4-byte
+ * declared homes. Stock UGEN M12 -> M20; T16/P4 unchanged; frame128 -> native136.
+ * No unused scalar or pad array. C140_ANIMATION_ARM is written readably as a
+ * macro so its invocation and following else-if share one physical source
+ * line. Stock as1's line-number tie then orders the three hoisted LUIs exactly.
+ * Expanding the macro into ordinary lines restores the three schedule words.
+ * This is a source-shaping device, not recovered historical spelling.
+ *
+ * Inherited volatile D_8002EB94 follows same-symbol accepted-source precedent;
+ * historical type/asynchronous-writer behavior remain unproven. No new clock
+ * qualifier, false ABI, compiler patch, assembly, forced register, live-buffer
+ * resizing, protected source or lock changes. External float anchors remain
+ * external native-address loads; no new data ownership is asserted.
  */
 typedef signed char s8; typedef unsigned char u8; typedef short s16; typedef int s32; typedef unsigned int u32; typedef float f32;
 typedef struct { u8 pad0[4]; u8 u4; u8 pad5[3]; s8 b8; s8 b9; } Cfg;
@@ -250,9 +267,32 @@ s32 func_8039A448(s32 mode)
         && (!(mode == 1) || D_803B3428 != 0);
 }
 
+/* Keep invocation and else-if on one line: measured as1 scheduling tie. */
+#define C140_ANIMATION_ARM \
+{ \
+        matrix = (f32 (*)[3])D_803B9A50; \
+        angle = -90.0f * D_8002EB94 * D_803B95B8; \
+        func_80090E9C(angle, matrix); \
+        if (D_8015694C & 7) { \
+            if (D_803B3448 != -1) { \
+                func_80090254((s16)D_803B3448); \
+                D_803B3448 = -1; \
+            } \
+            if (D_803B344C != -1) { \
+                func_80090254((s16)D_803B344C); \
+                D_803B344C = -1; \
+            } \
+            resource_type_select_simple(D_8015694C); \
+            D_803B342C = 0; \
+            D_803B33C4 = 1; \
+        } \
+    }
+
 void func_8039C140(void)
 {
     s32 i;
+    f32 (*matrix)[3];
+    f32 angle;
     D_803BAD90 = (Cfg *)(D_8014A118[D_801543D4].owner->body->resource->bytes + 0x6F4);
     if (D_801174BC != 1) {
         if (D_801174BC != state_word_a) {
@@ -268,22 +308,7 @@ void func_8039C140(void)
         if (D_803BACF8 >= 4)
             D_803BACF8 = 0;
     }
-    if (D_803B342C) {
-        func_80090E9C(-90.0f * D_8002EB94 * D_803B95B8, (f32 (*)[3])D_803B9A50);
-        if (D_8015694C & 7) {
-            if (D_803B3448 != -1) {
-                func_80090254((s16)D_803B3448);
-                D_803B3448 = -1;
-            }
-            if (D_803B344C != -1) {
-                func_80090254((s16)D_803B344C);
-                D_803B344C = -1;
-            }
-            resource_type_select_simple(D_8015694C);
-            D_803B342C = 0;
-            D_803B33C4 = 1;
-        }
-    } else if (D_803B3414) {
+    if (D_803B342C) C140_ANIMATION_ARM else if (D_803B3414) {
         func_8039B214();
     } else if (D_8015694C & 1) {
         entity_flags_apply(0x2E, 0, 1, 0);
@@ -412,6 +437,8 @@ void func_8039C140(void)
     }
     func_8039A4D4();
 }
+
+#undef C140_ANIMATION_ARM
 
 typedef struct MenuObjectSlot {
     s32 other,handle;

@@ -1,0 +1,220 @@
+{
+  "inputs": {
+    "protocol_version": 2,
+    "compiler": "ido5.3",
+    "population": "ovl_a",
+    "recipe": {
+      "members": [
+        "func_8038C93C"
+      ],
+      "claims": [
+        "func_8038C93C"
+      ],
+      "context": [
+        "func_8038ACB0",
+        "func_8038B834",
+        "func_8038DFEC"
+      ],
+      "files": [
+        "group.c"
+      ],
+      "keep": [
+        "func_8038DFEC"
+      ],
+      "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "provenance": "Complete real DFEC caller and predicates retain native private C93C ABI; only C93C is claimed. All owned literals are independently checked against authenticated image A."
+    },
+    "files": {
+      "group.c": "dfd6991c77e1f4dc7db05d4a225663b2eaf477f141ebcbfa92927e5202e5cb67",
+      "group.json": "6092f230b7c13033d2ff833393e0c7c929016426efddfcee5b69899085aafbfa",
+      "verify.py": "e277ac55da50fa1d678ec253811f204b1289b93d98fadca93e909c04883a30a8",
+      "elf.py": "d3523b1887d0822c673cbc4feb43aea68366182b9904f1735b037a370f30f0c5"
+    },
+    "targets": {
+      "func_8038C93C": {
+        "extent": {
+          "name": "func_8038C93C",
+          "address": "0x8038C93C",
+          "size": 936,
+          "evidence": [
+            "jal",
+            "prologue"
+          ]
+        },
+        "words_sha256": "6fdcc8c963a74facba298c8e01d076b779e44c41426ebb210c9b787dea463ec4"
+      },
+      "func_8038ACB0": {
+        "extent": {
+          "name": "func_8038ACB0",
+          "address": "0x8038ACB0",
+          "size": 416,
+          "evidence": [
+            "jal"
+          ]
+        },
+        "words_sha256": "e7d88d776238f17b0791272e8629e70dedfc0e9449471a71f8b7315ce0fdb38a"
+      },
+      "func_8038B834": {
+        "extent": {
+          "name": "func_8038B834",
+          "address": "0x8038B834",
+          "size": 252,
+          "evidence": [
+            "jal"
+          ]
+        },
+        "words_sha256": "b02ed5856ad3331a222103296f9c746818b08f6f82f13ea7aafbbf541f70cdcc"
+      },
+      "func_8038DFEC": {
+        "extent": {
+          "name": "func_8038DFEC",
+          "address": "0x8038DFEC",
+          "size": 1520,
+          "evidence": [
+            "jal"
+          ]
+        },
+        "words_sha256": "5f0cd633f7ec78dbf532ff3a3d530f754f646196ec2247b11cbd182354c1768c"
+      }
+    },
+    "references": {
+      "D_8011418C": 2148614540,
+      "D_80140BDC": 2148797404,
+      "D_80142726": 2148804390,
+      "D_80146108": 2148819208,
+      "D_8014978C": 2148833164,
+      "D_8014A108": 2148835592,
+      "D_8014A110": 2148835600,
+      "D_8014A118": 2148835608,
+      "D_801543D8": 2148877272,
+      "D_80154628": 2148877864,
+      "D_80156994": 2148886932,
+      "D_803AF980": 2151348608,
+      "D_803B6AF0": 2151377648,
+      "D_803B6B14": 2151377684,
+      "D_803B7714": 2151380756,
+      "D_803B7718": 2151380760,
+      "D_803B77D4": 2151380948,
+      "D_803B7A20": 2151381536,
+      "D_803B7A6C": 2151381612,
+      "D_803B7CD0": 2151382224,
+      "D_803B7CD4": 2151382228,
+      "D_803B8314": 2151383828,
+      "D_803B8394": 2151383956,
+      "D_803B9264": 2151387748,
+      "D_803B9274": 2151387764,
+      "D_803B927C": 2151387772,
+      "D_803B9280": 2151387776,
+      "D_803BA220": 2151391776,
+      "D_803BA222": 2151391778,
+      "D_803BA84E": 2151393358,
+      "D_803BA852": 2151393362,
+      "D_803BA856": 2151393366,
+      "D_803BA85A": 2151393370,
+      "D_803BA878": 2151393400,
+      "D_803BA898": 2151393432,
+      "D_803BA8B0": 2151393456,
+      "D_803BA910": 2151393552,
+      "D_803BA918": 2151393560,
+      "D_803BAC78": 2151394424,
+      "D_803BAC90": 2151394448,
+      "D_803BACCC": 2151394508,
+      "D_803BAE10": 2151394832,
+      "Effects_UpdateEmitters": 2148237596,
+      "entity_audio_update": 2148229432,
+      "func_8008B32C": 2148053804,
+      "func_8008D870": 2148063344,
+      "func_8008E06C": 2148065388,
+      "func_800B24EC": 2148213996,
+      "func_800B5898": 2148227224,
+      "func_800B5940": 2148227392,
+      "func_800CDC3C": 2148326460,
+      "func_800F7644": 2148496964,
+      "func_8038A634": 2151196212,
+      "func_8038ACB0": 2151197872,
+      "func_8038B834": 2151200820,
+      "func_8038C93C": 2151205180,
+      "func_8038CD14": 2151206164,
+      "func_8038DFEC": 2151210988,
+      "init_state_begin": 2148309984,
+      "memcpy": 2147515496,
+      "menu_text_input": 2148326112,
+      "particle_lifetime_set": 2148238196,
+      "particle_position_set": 2148237852,
+      "particle_velocity_set": 2148238024,
+      "reverb_setup": 2148223892,
+      "sign_extend_call": 2148066200,
+      "sound_control": 2148218856,
+      "string_copy_format": 2148085292
+    },
+    "asset_sha256": "f06d4ad0bb7dc7aff494acddc736f1b56bc271a2292c0286879cc9189bec31c8",
+    "image_sha256": "0d6702c320df84cc6cbc3c5967dde08d44b6e476e110667fe2a43dc2dd536667",
+    "owned_data": {
+      "address": "0x803b930c",
+      "bytes": 32,
+      "sha256": "9ea1bb66a6378f13f7839dfa616285e1e92ca1d872a58765691d74ebbf2512a8"
+    }
+  },
+  "comparison": {
+    "differing": 0,
+    "total": 234,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "owned_data_notes": [
+    "own .rodata verified at 0x803B930C..0x803B932C"
+  ],
+  "gnu": {
+    "member_relocations": 88,
+    "linked_words_sha256": "6fdcc8c963a74facba298c8e01d076b779e44c41426ebb210c9b787dea463ec4",
+    "full_extent": 936,
+    "owned_rodata_bytes": 32,
+    "rodata_sha256": "9ea1bb66a6378f13f7839dfa616285e1e92ca1d872a58765691d74ebbf2512a8"
+  },
+  "caller_abi": {
+    "native_direct_calls": 1,
+    "compiled_direct_calls": 1,
+    "compiled_root_saved_integer": [
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      30,
+      31
+    ],
+    "compiled_root_saved_fp": [
+      20,
+      22,
+      24,
+      26
+    ],
+    "private_callee_frame": 72,
+    "source_arguments": 0,
+    "context_matches": false
+  },
+  "negative_controls": {
+    "wrong_literal": {
+      "rejected": true,
+      "differing": 0,
+      "unverified_relocations": 16,
+      "owned_data_failures": 2,
+      "extra_words": 0
+    },
+    "merged_literal_web": {
+      "rejected": true,
+      "differing": 48,
+      "unverified_relocations": 14,
+      "owned_data_failures": 1,
+      "extra_words": 0
+    }
+  },
+  "new_candidate_bytes": 936,
+  "preserved_bytes": 0,
+  "accepted_image_bytes": 0
+}

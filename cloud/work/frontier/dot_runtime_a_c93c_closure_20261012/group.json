@@ -1,0 +1,21 @@
+{
+  "members": [
+    "func_8038C93C"
+  ],
+  "claims": [
+    "func_8038C93C"
+  ],
+  "context": [
+    "func_8038ACB0",
+    "func_8038B834",
+    "func_8038DFEC"
+  ],
+  "files": [
+    "group.c"
+  ],
+  "keep": [
+    "func_8038DFEC"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "provenance": "Complete real DFEC caller and predicates retain native private C93C ABI; only C93C is claimed. All owned literals are independently checked against authenticated image A."
+}
