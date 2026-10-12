@@ -689,7 +689,66 @@ void func_8001824C(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80018448.s")
+/* PROMOTED 2026-10-12 — func_80018448
+ * Source:   cloud/work/frontier/w27s/sources/func_80018448.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w27s/sources/func_80018448.c:func_80018448 (score0); rom_tu.h context: cloud/work/frontier/w27s/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#define TRACK(i) (((SequenceTrackNotes *)D_8004BE80->tracks568)[i])
+void func_80018448(void)
+{
+    int i;
+    unsigned char done;
+    unsigned char first,second;
+    short change;
+    unsigned int now,deadline;
+    int width;
+    for (i=0;i<64;i++) {
+        done=0;
+        if (TRACK(i).second14 != 0) {
+            do {
+                first=TRACK(i).second14[0];
+                second=TRACK(i).second14[1];
+                if (first==128 && second==0) {
+                    TRACK(i).second14=0;
+                    done=1;
+                } else {
+                    if (first & 128) {
+                        change=((short)(first & 127) << 8) | (short)second;
+                        width=2;
+                    } else {
+                        change=first;
+                        width=1;
+                    }
+                    deadline=TRACK(i).secondTime20+change;
+                    now=TRACK(i).whole+D_8004BE80->half120;
+                    if (now >= deadline) {
+                        TRACK(i).second14 += width;
+                        TRACK(i).secondTime20=deadline;
+                        first=TRACK(i).second14[0];
+                        second=TRACK(i).second14[1];
+                        if (first & 128) {
+                            change=((short)(first & 255) << 8) | (short)second;
+                            change <<= 1;
+                            change >>= 1;
+                            TRACK(i).second14 += 2;
+                        } else {
+                            change=(signed char)first;
+                            ++TRACK(i).second14;
+                        }
+                        TRACK(i).second1A += change;
+                        func_80020610(1,TRACK(i).channel24,(unsigned char)D_8004BE78,TRACK(i).second1A >> 7);
+                        func_80020610(33,TRACK(i).channel24,(unsigned char)D_8004BE78,TRACK(i).second1A & 127);
+                    } else {
+                        done=1;
+                    }
+                }
+            } while (!done);
+        }
+    }
+}
+
 /* PROMOTED 2026-10-11 — func_80018634
  * Source:   cloud/work/frontier/w23a/sources/func_80018634.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
