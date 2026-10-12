@@ -1,0 +1,4 @@
+// w26b proposed reloc_addrs.us.txt additions (fader-loop end pointer &D_8004F300[32] in func_8001A658, as func_8001C1D8's)
+// func_8001A658
+rom:0x1BC04 reloc:MIPS_HI16 symbol:D_8004F300 addend:0x500 // was D_8004F800
+rom:0x1BC0C reloc:MIPS_LO16 symbol:D_8004F300 addend:0x500 // was D_8004F800
