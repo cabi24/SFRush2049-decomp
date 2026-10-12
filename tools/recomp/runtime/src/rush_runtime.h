@@ -74,7 +74,8 @@ void oracle_finish(const char* why);
 void oracle_note_stack(uint32_t top);
 void oracle_note_thread(uint32_t thread);  // OSThread struct (osCreateThread a0)
 void oracle_dump_at(uint64_t frame, const std::string& path);  // rdram (big-endian) at a frame
-void oracle_virtual_clock(bool on);  // osGetCount/osGetTime from frames
+void oracle_virtual_clock(bool on);
+void oracle_mask_images(bool on);  // --mask-rdp-images: RDP color/depth images out of the page hashes  // osGetCount/osGetTime from frames
 // thread stacks as [lo, hi) offsets into rdram (masked out of page hashes)
 const std::vector<std::pair<uint32_t, uint32_t>>& oracle_stack_ranges();
 // rdram offset of a word the runtime owns (OSThread host pointer): never judged
@@ -90,4 +91,5 @@ void set_lockstep_mirror(bool on);  // also send gfx tasks to the real renderer,
 bool lockstep_enabled();
 uint64_t lockstep_vis();
 void lockstep_idle(uint8_t* rdram);
+void lockstep_mirror_done();  // renderer: a mirrored gfx task's display list has been interpreted
 } // namespace rush

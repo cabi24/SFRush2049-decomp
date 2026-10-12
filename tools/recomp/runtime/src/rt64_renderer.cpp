@@ -151,6 +151,7 @@ public:
         app_->state->rsp->reset();
         app_->interpreter->loadUCodeGBI(task->t.ucode & 0x3FFFFFF, task->t.ucode_data & 0x3FFFFFF, true);
         app_->processDisplayLists(app_->core.RDRAM, task->t.data_ptr & 0x3FFFFFF, 0, true);
+        if (rush::lockstep_enabled()) rush::lockstep_mirror_done();
     }
 
     void send_dummy_workload(uint32_t) override {}

@@ -30,6 +30,7 @@
 #include <cstdlib>
 #include <mutex>
 #include <set>
+#include <tuple>
 #include <string>
 #include <vector>
 
@@ -90,6 +91,13 @@ struct DlWalk {
     std::set<uint32_t> seen;
     uint64_t hash = 0x9E3779B97F4A7C15ull;
     uint32_t lists = 0, bytes = 0, commands = 0;
+    // RDP images the lists render to (G_SETCIMG 0xFF, G_SETZIMG 0xFE; same
+    // opcodes in F3D/F3DEX/F3DEX2) and the largest scissor height
+    // (G_SETSCISSOR 0xED): a real renderer writes these images back into
+    // rdram (RT64 framebuffer write-back), so oracle.py --mask-renderer
+    // leaves their pages unjudged. (kind, address, width, bytes per pixel)
+    std::set<std::tuple<char, uint32_t, uint32_t, uint32_t>> images;
+    uint32_t last_cimg_width = 320, last_cimg_bpp = 2, max_scissor_h = 0;
 
     uint32_t resolve(uint32_t a) const {
         if ((a & 0xE0000000u) == 0x80000000u) return a & 0x1FFFFFFFu;  // KSEG0/1
@@ -125,6 +133,17 @@ struct DlWalk {
                     }
                 } else if (op == g_end) {
                     return;
+                } else if (op == 0xFF || op == 0xFE) {
+                    uint32_t addr = 0x80000000u | resolve(w1);
+                    if (op == 0xFF) {
+                        last_cimg_width = (w0 & 0xFFF) + 1;
+                        last_cimg_bpp = ((w0 >> 19) & 3) == 3 ? 4 : ((w0 >> 19) & 3) == 2 ? 2 : 1;
+                        images.insert({'C', addr, last_cimg_width, last_cimg_bpp});
+                    } else {
+                        images.insert({'Z', addr, last_cimg_width, 2});
+                    }
+                } else if (op == 0xED) {
+                    max_scissor_h = std::max(max_scissor_h, ((w1 & 0xFFF) + 3) >> 2);
                 }
             }
         }
@@ -190,6 +209,16 @@ extern "C" void __wrap_osCreateThread_recomp(uint8_t* rdram, recomp_context* ctx
     __real_osCreateThread_recomp(rdram, ctx);
 }
 
+// --mask-rdp-images: the bytes of every RDP color/depth image seen so far are
+// zeroed in the page hashes (like thread stacks, but not hashed separately), so
+// a run whose renderer writes them back (RT64) compares with a null-renderer
+// run on everything else. Both runs of a comparison must use it (header line).
+namespace {
+bool mask_images = false;
+std::vector<std::pair<uint32_t, uint32_t>> image_ranges;   // [lo, hi) rdram offsets
+}
+void rush::oracle_mask_images(bool on) { mask_images = on; }
+
 void rush::oracle_start(const std::string& path, uint64_t stop_frames) {
     stop_after = stop_frames;
     if (path.empty()) return;
@@ -202,6 +231,7 @@ void rush::oracle_start(const std::string& path, uint64_t stop_frames) {
              RUSH_REPL_COUNT);
     for (int i = 0; i < RUSH_REPL_COUNT; i++) log_line("# replaced %s\n", rush_repl_names[i]);
     log_line("# thread_host_words 0x%X,0x%X\n", kThreadHostWords[0], kThreadHostWords[1]);
+    if (mask_images) log_line("# mask rdp_images\n");
 }
 
 uint64_t rush::oracle_frames() { return frames.load(); }
@@ -312,6 +342,20 @@ extern "C" void rush_hook_frame(uint8_t* rdram, recomp_context* ctx) {
             }
             w.walk(data_ptr, 0);
         }
+        // "# rdp_image F KIND+ADDR/WxH/BPP" the first time a render target
+        // (color or depth image) appears (header line: older oracle.py skips it).
+        static std::set<std::string> seen_images;
+        for (const auto& [kind, addr, width, bpp] : w.images) {
+            char img[64];
+            snprintf(img, sizeof img, "%c%08X/%ux%u/%u", kind, addr, width,
+                     w.max_scissor_h ? w.max_scissor_h : 240u, bpp);
+            if (!seen_images.insert(img).second) continue;
+            log_line("# rdp_image %llu %s\n", (unsigned long long)n, img);
+            uint32_t lo = addr & 0x1FFFFFFFu;
+            uint32_t hi = std::min<uint64_t>(kRamBytes, (uint64_t)lo + (uint64_t)width * bpp *
+                                             (w.max_scissor_h ? w.max_scissor_h : 240u));
+            if (lo < hi) image_ranges.push_back({lo, hi});
+        }
         // RDRAM: word-swapped host storage hashed as stored (a fixed bijection
         // of the N64 bytes, so equal hashes <=> equal memory).
         std::string changed;
@@ -328,6 +372,13 @@ extern "C" void rush_hook_frame(uint8_t* rdram, recomp_context* ctx) {
                 uint32_t a = std::max(r.first, lo), b = std::min(r.second, hi);
                 stk = XXH3_64bits_withSeed(bytes + (a - lo), b - a, stk);
                 std::fill(scratch.begin() + (a - lo), scratch.begin() + (b - lo), 0);
+            }
+            if (mask_images) {
+                for (const auto& r : image_ranges) {
+                    if (r.second <= lo || r.first >= hi) continue;
+                    if (!masked) { std::copy(bytes, bytes + kPage, scratch.begin()); masked = true; }
+                    std::fill(scratch.begin() + (std::max(r.first, lo) - lo), scratch.begin() + (std::min(r.second, hi) - lo), 0);
+                }
             }
             for (auto it = std::lower_bound(masked_words.begin(), masked_words.end(), lo);
                  it != masked_words.end() && *it < hi; ++it) {
@@ -347,6 +398,11 @@ extern "C" void rush_hook_frame(uint8_t* rdram, recomp_context* ctx) {
                  (unsigned long long)w.hash, w.lists, w.bytes, (unsigned long long)all,
                  (unsigned long long)stk);
         if (!changed.empty()) log_line("P%s\n", changed.c_str());
+        if (n == 1) {   // the graphics task's RSP buffers (OSTask fields)
+            auto f = [&](uint32_t off) { return (uint32_t)MEM_W(off, (gpr)(int32_t)task); };
+            log_line("# gfx_task ucode=%08X dram_stack=%08X/%u output_buff=%08X/%08X yield_data=%08X/%u\n",
+                     f(0x10), f(0x20), f(0x24), f(0x28), f(0x2C), f(0x38), f(0x3C));
+        }
     }
     if (dump_at && n == dump_at && !dump_path.empty()) {
         if (FILE* f = fopen(dump_path.c_str(), "wb")) {   // big-endian N64 byte order

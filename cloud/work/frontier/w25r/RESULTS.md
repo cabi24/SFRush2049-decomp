@@ -60,3 +60,37 @@ frames, 1 baseline run(s))`; `draft_engine_sound_sync` (capture build vs replace
 
 Also: wave 24 (w24s) merged viStub into viDeadlinePassed, so the static inventory has 667 functions; gen_config's
 expected count was still 668 (the ROM end-to-end test failed on wave25 before this lane). Function count now 2135.
+
+RT64 itself on rocky (no GPU/display): the RT64 host runs in a fedora:41 container on Xvfb with Mesa lavapipe
+(software Vulkan; `~/rush2049/recomp/w25r/xvfb/{Dockerfile,run.sh}`). Wall clock, 30 s: `busy-wait at 0x800FD500:
+yielding`, 767 gfx tasks (`--no-spin-yield`: **gfx_tasks=2**, the laptop hang reproduced with RT64); race script
+80 s: race loads at 26 s, 1611 gfx tasks (lavapipe is CPU rendering).
+
+## 2. RT64 lockstep self-check: the second range is the z-buffer
+
+The host now logs the render targets the display lists set (`# rdp_image F KIND+ADDR/WxH/BPP`: G_SETCIMG /
+G_SETZIMG, width, G_SETSCISSOR height) and the gfx OSTask buffers (`# gfx_task`). Every frame of race, two_player,
+attract and audio_options uses the same four: color 0x8017AEC0 (the z-buffer's clear), **Z 0x8017AEC0** 320x220x2
+(0x8017AEC0-0x8019D4BF: right after gBssEnd 0x8017A640, ends just before the data inflated at 0x8019D500), color
+0x807BB3C0 and 0x807DDA00 (double-buffered 320x220x2; VI origin 0x007DDC80 = +1 line). The v1 71 pages = 36 pages
+0x8017A000-0x8019DFFF (z-buffer) + 35 pages 0x807DD000-0x807FFFFF (framebuffer 1). gfx task: ucode 0x80028CC0,
+dram_stack 0x8007BA50/1024, output_buff 0x8007CA50..0x80084A50, yield 0x8007BE50/3072. Named in
+`tools/recomp/runtime_buffers.json` -> datasyms `.absolute` (rush_z_buffer, rush_framebuffer_0/1,
+rush_gfx_dram_stack/yield_buffer/output_buffer; recomp-only names, not matching evidence).
+
+Masks: `oracle.py compare --mask-renderer` (page-granular, any logs; drops page 0x8017A000 whole, which also holds
+game .bss) and host `--mask-rdp-images` (precise: image bytes zeroed in the page hashes, header `# mask rdp_images`,
+every compared run must use it). Null-renderer verdicts unchanged (no mask unless asked).
+
+Second RT64 bug found on the way: lockstep + RT64 crashed (SIGSEGV in RT64::Interpreter::processDisplayLists) at the
+race start: lockstep sends SP/DP to the game at once, so the game rebuilt the display list while RT64 still read it
+(slow software GPU widens the window; latent on the laptop). Now the game thread waits (host-side) until the renderer
+has interpreted the mirrored list.
+
+rocky, race script, 1800 frames, lockstep (a, b: null; c: RT64 on lavapipe):
+
+    a vs b:                   EQUIVALENT over 1800 frames (judged: all frames, 1 baseline run(s))
+    a vs c:                   DIFFERENT at frame 2: 71 rdram page(s)   (= the laptop's T8)
+    a vs c --mask-renderer:   EQUIVALENT except renderer-written pages over 1800 frames (judged: all frames, 1 baseline run(s))
+                                renderer mask: 105 page(s) not judged (RDP color/depth images: rush_framebuffer_0, rush_framebuffer_1, rush_z_buffer)
+    am vs cm (--mask-rdp-images on both): EQUIVALENT except renderer-written pages over 1800 frames (judged: all frames, 1 baseline run(s))

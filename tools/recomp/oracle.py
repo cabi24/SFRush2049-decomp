@@ -42,6 +42,22 @@ Verdict:
                     (N64 address ranges; with --datasyms, the data symbols
                     in each page)
 
+Renderer mask (`compare --mask-renderer`, Phase 5). A run with a real renderer
+(`--clock frames --renderer rt64`) mirrors the graphics tasks to RT64, which
+writes the rendered images back into rdram asynchronously: the depth buffer
+and the framebuffer pages then differ from a null-renderer run (v1 laptop T8:
+71 pages, rush_z_buffer and rush_framebuffer_1). --mask-renderer leaves every
+page covered by an RDP color or depth image (the host's `# rdp_image` lines:
+G_SETCIMG / G_SETZIMG address, width, scissor height, bytes per pixel; union
+over all runs compared) unjudged and reports
+"EQUIVALENT except renderer-written pages". That is page-granular: a page
+shared by an image and game data (0x8017A000: the z-buffer starts at
+0x8017AEC0 after gBssEnd) is dropped whole. The precise form is the host's
+`--mask-rdp-images` (every compared run): the image BYTES are zeroed in the page
+hashes, header `# mask rdp_images`; compare then reports the same verdict text
+with the images listed and needs no flag. The verdicts of replacement lanes
+stay defined on the null renderer without either mask.
+
 Stdlib only, Python 3.9+. Logs are private (rdram hashes of the ROM's code
 running); keep them under build/.
 """
@@ -150,6 +166,31 @@ class Run:
             pass
 
 
+_RDP_IMAGE = re.compile(r"^# rdp_image (\d+) ([CZ])([0-9A-Fa-f]{8})/(\d+)x(\d+)/(\d+)\s*$")
+
+
+def rdp_images(path):
+    """[(kind, addr, width, height, bpp)] from a log's `# rdp_image` lines."""
+    out = []
+    with open(path) as f:
+        for line in f:
+            m = _RDP_IMAGE.match(line)
+            if m:
+                out.append((m.group(2), int(m.group(3), 16), int(m.group(4)), int(m.group(5)), int(m.group(6))))
+    return out
+
+
+def renderer_pages(paths):
+    """Pages of the 8 MiB covered by any RDP color/depth image in these logs."""
+    pages = set()
+    for path in paths:
+        for _, addr, width, height, bpp in rdp_images(path):
+            lo = max(addr, RAM_BASE) - RAM_BASE
+            hi = min(addr - RAM_BASE + width * height * bpp, 8 << 20)
+            pages.update(range(lo // PAGE, (hi + PAGE - 1) // PAGE))
+    return pages
+
+
 def page_range(page):
     lo = RAM_BASE + page * PAGE
     return "0x%08X-0x%08X" % (lo, lo + PAGE - 1)
@@ -169,12 +210,14 @@ def load_datasyms(path):
 
 # ------------------------------------------------------------------ comparison
 
-def compare(candidate, baselines, max_report=8):
+def compare(candidate, baselines, max_report=8, mask_pages=None):
     """Compare a candidate Run against one or more baseline Runs (stock).
 
     Returns a dict: verdict, frames, horizon (last frame every baseline agreed
     on the display lists, None = all), first_diff {frame, dl, pages}, unstable
-    page counts, replaced-call counts, event differences."""
+    page counts, replaced-call counts, event differences. mask_pages: pages
+    never judged (renderer_pages: RDP images a real renderer writes back)."""
+    mask_pages = set(mask_pages or ())
     if not baselines:
         raise OracleError("need at least one baseline run")
     first = None
@@ -202,6 +245,8 @@ def compare(candidate, baselines, max_report=8):
         for b in baselines:
             all_pages |= set(b.pages)
         for p in sorted(all_pages):
+            if p in mask_pages:
+                continue
             hs = {b.pages.get(p) for b in baselines}
             if len(hs) != 1:
                 unstable[p] = unstable.get(p, 0) + 1
@@ -238,7 +283,14 @@ def compare(candidate, baselines, max_report=8):
         "events_baseline": ev_b,
         "candidate_end": candidate.end,
         "baseline_end": baselines[0].end,
+        "masked_pages": sorted(mask_pages),
     }
+    host_mask = ["mask rdp_images" in r.header for r in [candidate] + list(baselines)]
+    if any(host_mask) and not all(host_mask):
+        raise OracleError("only some logs were written with --mask-rdp-images; run every compared host with it")
+    result["rdp_images_masked"] = all(host_mask)
+    result["rdp_images"] = sorted({h.split()[2] for r in [candidate] + list(baselines) for h in r.header
+                                   if h.startswith("rdp_image ")})
     if first is not None:
         result["verdict"] = "DIFFERENT"
     elif candidate.repl and any(n == 0 for name, n in candidate.repl.items() if "=capture:" not in name):
@@ -277,8 +329,18 @@ def report(result, datasyms=None, max_pages=8):
     elif v == "DIFFERENT":
         lines.append("DIFFERENT: events differ (overlay loads)")
     else:
-        lines.append("%s over %d frames (judged: %s, %d baseline run(s))" % (
-            v, result["frames"], hz_txt, result["baselines"]))
+        lines.append("%s%s over %d frames (judged: %s, %d baseline run(s))" % (
+            v, " except renderer-written pages" if (result.get("masked_pages") or result.get("rdp_images_masked"))
+            and v == "EQUIVALENT" else "",
+            result["frames"], hz_txt, result["baselines"]))
+    if result.get("rdp_images_masked"):
+        lines.append("  renderer mask (host --mask-rdp-images): RDP color/depth images not judged: %s" % (
+            ", ".join(result.get("rdp_images") or ["none seen"])))
+    if result.get("masked_pages"):
+        mp = result["masked_pages"]
+        names = sorted({n for p in mp for n in (datasyms or {}).get(p, []) if n.startswith("rush_")})
+        lines.append("  renderer mask: %d page(s) not judged (RDP color/depth images%s)" % (
+            len(mp), ": " + ", ".join(names) if names else ""))
     if result.get("stack_diff_frame") is not None:
         lines.append("  thread-stack contents differ from frame %d (masked out of the page hashes: dead "
                      "frames differ whenever the code differs; not judged)" % result["stack_diff_frame"])
@@ -634,6 +696,9 @@ def main(argv=None):
     c.add_argument("candidate")
     c.add_argument("--baseline", dest="more", action="append", default=[],
                    help="more stock runs (pages they disagree on are not judged)")
+    c.add_argument("--mask-renderer", action="store_true",
+                   help="do not judge pages of RDP color/depth images (a run with a real renderer, "
+                   "e.g. --renderer rt64 in lockstep: RT64 writes them back)")
     c.add_argument("--calls", nargs=2, metavar=("STOCK_CALLS", "REPL_CALLS"),
                    help="also compare two --call-log files (first differing call)")
     k = sub.add_parser("calls", help="first differing call of two --call-log files")
@@ -688,7 +753,8 @@ def main(argv=None):
         if args.cmd == "compare":
             baselines = [Run(args.baseline)] + [Run(p) for p in args.more]
             cand = Run(args.candidate)
-            result = compare(cand, baselines)
+            mask = renderer_pages([args.baseline, args.candidate] + args.more) if args.mask_renderer else None
+            result = compare(cand, baselines, mask_pages=mask)
             if args.calls:
                 with open(args.calls[0]) as fa, open(args.calls[1]) as fb:
                     cr = compare_calls(fa, fb)

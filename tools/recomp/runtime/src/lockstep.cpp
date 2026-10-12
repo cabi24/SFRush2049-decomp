@@ -28,13 +28,18 @@
 // queue (the game's SP/DP queues only receive the synchronous messages
 // above), and the idle thread paces virtual VIs to 60 per wall-clock second so
 // the pictures can be watched. The game's state stays deterministic as long as
-// the renderer does not write rdram (RT64 framebuffer write-back would); the
-// oracle's verdicts are defined on the null renderer.
+// the renderer does not write rdram (RT64 framebuffer write-back would: see
+// oracle.py --mask-renderer); the oracle's verdicts are defined on the null
+// renderer. The game thread waits (host-side, invisible to the game) until the
+// renderer has interpreted the mirrored display list before it sees SP/DP:
+// otherwise the game rebuilds the list while RT64 still reads it (Phase 5:
+// segfault in RT64::Interpreter at the race start with a slow software GPU).
 // PI and SI completions are already sent synchronously by the calling game
 // thread (librecomp pi.cpp, ultramodern send_si_message) and delivered at its
 // next osRecvMesg, so they need nothing.
 #include <atomic>
 #include <chrono>
+#include <condition_variable>
 #include <cstdio>
 #include <thread>
 #include <mutex>
@@ -73,6 +78,11 @@ uint32_t fb_next = 0, fb_cur = 0;
 std::atomic<uint64_t> virtual_vis{0};
 std::vector<Event> pending;  // messages a full queue refused; retried by the idle thread
 
+// Mirrored gfx tasks: sent by the game thread, interpreted by the renderer thread.
+std::mutex mirror_mu;
+std::condition_variable mirror_cv;
+uint64_t mirror_sent = 0, mirror_done = 0;
+
 void send(uint8_t* rdram, const Event& e) {
     if (e.mq == 0) return;
     if (osSendMesg(rdram, e.mq, (OSMesg)e.msg, OS_MESG_NOBLOCK) != 0) pending.push_back(e);
@@ -85,6 +95,14 @@ void retry_pending(uint8_t* rdram) {
 }
 
 } // namespace
+
+void rush::lockstep_mirror_done() {
+    {
+        std::lock_guard<std::mutex> lock(mirror_mu);
+        mirror_done++;
+    }
+    mirror_cv.notify_all();
+}
 
 void rush::set_lockstep(bool on) { lockstep = on; }
 void rush::set_lockstep_mirror(bool on) { mirror = on; }
@@ -133,7 +151,20 @@ void __wrap_osSpTaskStartGo_recomp(uint8_t* rdram, recomp_context* ctx) {
     const OSTask* task = TO_PTR(OSTask, (int32_t)ctx->r4);
     if (task->t.type == M_GFXTASK) {
         rush::trace_gfx_task(task);
-        if (mirror) __real_osSpTaskStartGo_recomp(rdram, ctx);   // the renderer draws it
+        if (mirror) {   // the renderer draws it; wait until it has read the display list
+            uint64_t n;
+            {
+                std::lock_guard<std::mutex> lock(mirror_mu);
+                n = ++mirror_sent;
+            }
+            __real_osSpTaskStartGo_recomp(rdram, ctx);
+            std::unique_lock<std::mutex> lock(mirror_mu);
+            if (!mirror_cv.wait_for(lock, std::chrono::seconds(10), [n] { return mirror_done >= n; })) {
+                fprintf(stderr, "[rush] lockstep: renderer did not take gfx task %llu within 10 s\n",
+                        (unsigned long long)n);
+                mirror_done = n;
+            }
+        }
         send(rdram, sp_ev);
         send(rdram, dp_ev);
     } else {

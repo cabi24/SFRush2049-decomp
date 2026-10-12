@@ -289,6 +289,15 @@ def test_committed_patch_inputs_are_well_formed():
         assert e["vram"] % 4 == 0
 
 
+def test_runtime_buffers():
+    """runtime_buffers.json: recomp-only names for the z-buffer, framebuffers and
+    gfx task buffers (datasyms only)."""
+    bufs = gc.load_runtime_buffers()
+    assert bufs["rush_z_buffer"] == 0x8017AEC0
+    assert bufs["rush_framebuffer_1"] + 320 * 220 * 2 == 0x80800000
+    assert all(name.startswith("rush_") for name in bufs)
+
+
 def test_site_arg_hooks(tmp_path):
     """Phase 5: `"site_arg": true` passes before_vram as a third argument; the
     committed busy-wait hooks (rush_hook_spin) all use it, one per site."""

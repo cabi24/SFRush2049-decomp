@@ -352,6 +352,23 @@ def check_functions(functions, sections, expected_counts=None):
     return by_name
 
 
+RUNTIME_BUFFERS = Path(__file__).resolve().parent / "runtime_buffers.json"
+
+
+def load_runtime_buffers(path=RUNTIME_BUFFERS):
+    """{name: vram} of the RAM buffers runtime_buffers.json names (z-buffer,
+    framebuffers, gfx task buffers): datasyms only, for oracle reports."""
+    path = Path(path)
+    if not path.is_file():
+        return {}
+    out = {}
+    for e in json.loads(path.read_text())["buffers"]:
+        if not re.match(r"^[A-Za-z_][A-Za-z0-9_]*$", e["name"]):
+            raise GenError(f"runtime buffer name {e['name']!r} is not a C identifier")
+        out[e["name"]] = int(e["vram"], 16)
+    return out
+
+
 def data_symbols(functions, symbols, sections):
     """Data symbols per section (or absolute), deduplicated by name.
 
@@ -950,6 +967,8 @@ def generate(images, functions, symbols, rom_bytes, out_dir, lists=None,
                         dict(funcs_by_name, **repl_by_name), dropped, renamed_builtin)
     contract = runtime_contract(functions, images, sections, patches, lists, hooks, streams)
     placed, conflicts = data_symbols(functions, symbols, sections)
+    for name, vram in load_runtime_buffers().items():   # recomp-only names (runtime_buffers.json)
+        placed["absolute"].setdefault(name, vram)
 
     synthetic = bytearray(rom_bytes)
     synthetic.extend(b"\0" * (synthetic_size - len(synthetic)))

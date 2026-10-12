@@ -55,6 +55,7 @@ void usage() {
         "  --gfx-api auto|d3d12|vulkan, --fullscreen, --rt64-dev (RT64 developer overlay)\n"
         "  --keyboard-alone: the keyboard is player 1 and game controllers start at player 2\n"
         "  --null-dl-delay MS: (test) the null renderer takes MS ms per display list, like RT64\n"
+        "  --mask-rdp-images: zero RDP color/depth images in the oracle's page hashes (RT64 self-check)\n"
         "  --no-spin-yield: (diagnostic) busy-wait hooks do not yield (the v1 behaviour)\n");
 }
 
@@ -148,6 +149,7 @@ int main(int argc, char** argv) {
         else if (a == "--no-lockstep") no_lockstep = true;
         else if (a == "--call-log") call_log = next();
         else if (a == "--call-detail") call_detail = std::stoull(next());
+        else if (a == "--mask-rdp-images") rush::oracle_mask_images(true);
         else if (a == "--no-spin-yield") rush::set_spin_yield(false);
         else if (a == "--null-dl-delay") rush::set_null_dl_delay_ms(std::stoi(next()));
         else if (a == "--dump-at") {

@@ -160,3 +160,52 @@ def test_end_to_end_stock_is_equivalent_to_itself(tmp_path):
     rc = oracle.main(["run", "--stock-host", HOST, "--repl-host", HOST, "--rom-stock", rom, "--rom-repl", rom,
                       "--out", str(tmp_path), "--frames", "300"])
     assert rc == 0
+
+
+# ------------------------------------------------------------ renderer mask (Phase 5)
+
+def _with_headers(path, headers):
+    text = Path(path).read_text().splitlines()
+    Path(path).write_text("\n".join(text[:1] + headers + text[1:]) + "\n")
+    return oracle.Run(path)
+
+
+def test_renderer_page_mask(tmp_path):
+    """An RT64 lockstep run differs only in the pages of the RDP images it writes
+    back (the v1 laptop T8 a-vs-c: z-buffer after gBssEnd and a framebuffer)."""
+    zpage = (0x8017AEC0 - 0x80000000) // 4096
+    rt = [(d, {**p, zpage: "rt64"}, s) for d, p, s in BASE]
+    img = ["# rdp_image 1 Z8017AEC0/320x220/2", "# rdp_image 1 C807DDA00/320x220/2"]
+    write_log(tmp_path / "a.log", BASE)
+    _with_headers(tmp_path / "a.log", img)
+    write_log(tmp_path / "c.log", rt)
+    _with_headers(tmp_path / "c.log", img)
+    assert oracle.compare(oracle.Run(tmp_path / "c.log"), [oracle.Run(tmp_path / "a.log")])["verdict"] == "DIFFERENT"
+    pages = oracle.renderer_pages([tmp_path / "a.log", tmp_path / "c.log"])
+    assert zpage in pages and (0x8019D4BF - 0x80000000) // 4096 in pages
+    assert (0x8019D500 - 0x80000000) // 4096 + 1 not in pages      # data after the z-buffer
+    assert (0x807FF000 - 0x80000000) // 4096 in pages and len(pages) == 36 + 35
+    r = oracle.compare(oracle.Run(tmp_path / "c.log"), [oracle.Run(tmp_path / "a.log")], mask_pages=pages)
+    assert r["verdict"] == "EQUIVALENT"
+    assert oracle.report(r)[0].startswith("EQUIVALENT except renderer-written pages over 3 frames")
+    # a page outside the images still decides
+    rt[1][1][9] = "y"
+    write_log(tmp_path / "d.log", rt)
+    r = oracle.compare(oracle.Run(tmp_path / "d.log"), [oracle.Run(tmp_path / "a.log")], mask_pages=pages)
+    assert r["verdict"] == "DIFFERENT" and r["first_diff"]["pages"] == [9]
+
+
+def test_host_image_mask_header(tmp_path):
+    a = write_log(tmp_path / "a.log", BASE)
+    _with_headers(tmp_path / "a.log", ["# mask rdp_images", "# rdp_image 1 Z8017AEC0/320x220/2"])
+    write_log(tmp_path / "c.log", BASE)
+    _with_headers(tmp_path / "c.log", ["# mask rdp_images"])
+    r = oracle.compare(oracle.Run(tmp_path / "c.log"), [oracle.Run(tmp_path / "a.log")])
+    assert r["rdp_images_masked"] and r["rdp_images"] == ["Z8017AEC0/320x220/2"]
+    lines = oracle.report(r)
+    assert lines[0].startswith("EQUIVALENT except renderer-written pages") and "Z8017AEC0" in lines[1]
+    with pytest.raises(oracle.OracleError):
+        oracle.compare(oracle.Run(tmp_path / "c.log"), [write_log(tmp_path / "b.log", BASE)])
+    # null-renderer logs without either mask keep the plain verdict
+    r = oracle.compare(write_log(tmp_path / "e.log", BASE), [write_log(tmp_path / "f.log", BASE)])
+    assert oracle.report(r)[0].startswith("EQUIVALENT over 3 frames") and not r["rdp_images_masked"]
