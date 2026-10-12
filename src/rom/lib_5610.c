@@ -19,9 +19,12 @@ void inflate_flush_window(s32 arg0, s32 arg1) {
 }
 
 /* PROMOTED 2026-09-24 — huft_alloc
- * Source:   work/auto/huft_alloc/matched.c (in-repo, locked)
- * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
- * Evidence: lock:work/auto/huft_alloc/matched.c:huft_alloc (score0)
+ * Source:   work/auto/huft_alloc/matched.c (in-repo, locked); re-shaped 2026-10-12
+ *           for the TU's ido5.3s recipe (w26a: cloud/work/frontier/w26a/sources/huft_alloc.c)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared, compiler ido5.3s (cc -S, no .loc, as1 -O1)
+ * Evidence: lock:work/auto/huft_alloc/matched.c:huft_alloc (score0, standard -O2);
+ *           w26a whole-TU IDENTICAL under ido5.3s (as1 -O1 keeps the final copy
+ *           of a returned named local, so the sum is returned directly)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
 s32 huft_alloc(s32 arg0)
@@ -29,11 +32,10 @@ s32 huft_alloc(s32 arg0)
   int new_var;
   gDisplayListSize += arg0;
   new_var = gDisplayListSize;
-  new_var = (new_var - arg0) + gDisplayListHead;
   if (1)
   {
   }
-  return new_var;
+  return (new_var - arg0) + gDisplayListHead;
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_5610/huft_build.s")

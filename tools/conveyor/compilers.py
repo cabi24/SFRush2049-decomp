@@ -15,6 +15,14 @@ docs/COMPILER_SETTINGS.md). A compiler is named here once, with:
   every fingerprinted file matches one known build; anything else is unknown
   and every consumer refuses it (fail closed).
 
+A *driver wrapper* (w26a: `ido5.3s`, tools/ido_sas/cc) is a compiler whose
+`cc` is an in-repo script that runs another pinned compiler with a different
+procedure (IDO 5.3 `cc -S`, `.loc` stripped, as1 -O1 for the inflate TU). It is
+identified by the wrapper file's sha256 AND by the directory it runs, which
+must identify as the wrapped compiler: in a toolkit `ido/cc` is the wrapper and
+`ido/ido53/` the wrapped build; in a repo the wrapper finds the wrapped `cc`
+at the first of `wrapped_dirs` (relative to the wrapper) that exists.
+
 `rom_compilers.json` (repo root) pins converted static segments to a
 non-default compiler. A segment absent from it builds with the default (5.3),
 exactly as before the file existed.
@@ -88,7 +96,27 @@ COMPILERS = {
             },
         },
     },
+    # w26a: the inflate TU (lib_5610) is IDO 5.3 `cc -S -O2` output with the
+    # `.loc` lines removed, assembled at as1 -O1 (docs/COMPILER_SETTINGS.md
+    # "IDO 5.3 -S recipe"). Same binaries as ido5.3, different driver.
+    "ido5.3s": {
+        "release": None,
+        "archive_sha256": None,
+        "builder_dir": "tools/ido_sas",
+        "cloud_dir": "tools/ido_sas",
+        "make_cc": "$(IDO53S_CC)",
+        "wraps": "ido5.3",
+        # sha256 of tools/ido_sas/cc: any edit to the driver is a new compiler
+        # (re-pin here after re-proving every ido5.3s lock).
+        "wrapper_sha256": "72c68bd89508b2aab45d2273e20c4fa1aab89254c13332a95c23ab2e70542bab",
+        "wrapped_dirs": ("ido53", "../ido-static-recomp/build/out", "../cloud/ido"),
+        "builds": {},
+    },
 }
+
+
+def is_wrapper(name):
+    return "wraps" in COMPILERS[require_known(name)]
 
 
 def require_known(name):
@@ -114,24 +142,53 @@ def _sha(data):
 
 
 def identify_dir(path, compilers=None):
-    """Compiler of an unpacked IDO directory (cc, cfe, ... at its top)."""
+    """Compiler of an unpacked IDO directory (cc, cfe, ... at its top), or of
+    a driver-wrapper directory (its `cc` is a known wrapper and the first of
+    its `wrapped_dirs` that holds a `cc` identifies as the wrapped compiler)."""
+    compilers = COMPILERS if compilers is None else compilers
     path = Path(path)
     hashes = {f: _sha((path / f).read_bytes()) for f in FINGERPRINT_FILES
               if (path / f).is_file()}
-    return identify_hashes(hashes, compilers)
+    name = identify_hashes(hashes, compilers)
+    if name is not None or "cc" not in hashes:
+        return name
+    for wname, spec in sorted(compilers.items()):
+        if "wraps" not in spec or hashes["cc"] != spec["wrapper_sha256"]:
+            continue
+        for rel in spec["wrapped_dirs"]:
+            real = path / rel
+            if (real / "cc").is_file():
+                return wname if identify_dir(real, compilers) == spec["wraps"] else None
+        return None
+    return None
 
 
 def identify_toolkit(tar_path, compilers=None):
     """Compiler of a conveyor toolkit bundle (its `ido/` directory)."""
-    hashes = {}
-    with tarfile.open(tar_path) as tar:
+    compilers = COMPILERS if compilers is None else compilers
+
+    def read(tar, prefix):
+        out = {}
         for f in FINGERPRINT_FILES:
             try:
-                member = tar.getmember(f"ido/{f}")
+                member = tar.getmember(f"{prefix}/{f}")
             except KeyError:
                 continue
-            hashes[f] = _sha(tar.extractfile(member).read())
-    return identify_hashes(hashes, compilers)
+            out[f] = _sha(tar.extractfile(member).read())
+        return out
+
+    with tarfile.open(tar_path) as tar:
+        hashes = read(tar, "ido")
+        name = identify_hashes(hashes, compilers)
+        if name is not None or "cc" not in hashes:
+            return name
+        # A driver-wrapper toolkit: ido/cc is the wrapper, the wrapped build
+        # sits in ido/<first wrapped_dir>/ (the wrapper's toolkit layout).
+        for wname, spec in sorted(compilers.items()):
+            if "wraps" in spec and hashes["cc"] == spec["wrapper_sha256"]:
+                inner = read(tar, f"ido/{spec['wrapped_dirs'][0]}")
+                return wname if identify_hashes(inner, compilers) == spec["wraps"] else None
+    return None
 
 
 def identify(path, compilers=None):
@@ -201,6 +258,9 @@ def install(name, dest=None, archive=None):
     extraction, unpack into `dest` (default: the builder dir) and confirm the
     unpacked files identify as `name`. Idempotent."""
     spec = COMPILERS[require_known(name)]
+    if "wraps" in spec:
+        raise SystemExit(f"{name} is an in-repo driver wrapper ({spec['builder_dir']}/cc); "
+                         f"install the compiler it wraps: {spec['wraps']}")
     dest = Path(dest) if dest else REPO / spec["builder_dir"]
     if (dest / "cc").is_file() and identify_dir(dest) == name:
         print(f"{name} already installed: {dest}")

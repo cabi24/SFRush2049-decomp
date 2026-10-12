@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import io
 import json
+import os
 import tarfile
 from pathlib import Path
 
@@ -66,6 +67,10 @@ def test_identify_toolkit_reads_ido_members(tmp_path):
 def test_known_builds_are_complete_and_distinct():
     seen = {}
     for name, spec in compilers.COMPILERS.items():
+        if "wraps" in spec:  # driver wrapper: no archive, no builds of its own
+            assert spec["builds"] == {} and spec["archive_sha256"] is None
+            assert spec["wraps"] in compilers.COMPILERS and "wraps" not in compilers.COMPILERS[spec["wraps"]]
+            continue
         assert len(spec["archive_sha256"]) == 64
         for build in spec["builds"].values():
             assert set(build) == set(compilers.FINGERPRINT_FILES)
@@ -281,3 +286,71 @@ def test_tu_cc_follows_the_segment_pin(tmp_path):
     cloud.mkdir(parents=True)
     (cloud / "cc").write_bytes(b"x")
     assert compilers.tu_cc("0x1a660", "/ido53/cc", pins, tmp_path) == cloud / "cc"
+
+
+# --- driver wrapper (w26a: ido5.3s, tools/ido_sas/cc) ------------------------------
+
+def _wrapper_table(wrapper_bytes):
+    table = _fake_table()
+    table["ido5.3s"] = dict(compilers.COMPILERS["ido5.3s"], wrapper_sha256=_sha(wrapper_bytes))
+    return table
+
+
+def test_wrapper_pin_is_the_committed_driver():
+    spec = compilers.COMPILERS["ido5.3s"]
+    assert spec["wrapper_sha256"] == _sha((REPO / spec["builder_dir"] / "cc").read_bytes())
+    assert spec["make_cc"] == "$(IDO53S_CC)" and compilers.is_wrapper("ido5.3s")
+    assert not compilers.is_wrapper("ido5.3")
+
+
+def test_identify_wrapper_dir_follows_the_wrapped_compiler(tmp_path):
+    table = _wrapper_table(b"#!wrapper")
+    root = tmp_path / "tools"
+    (root / "ido_sas").mkdir(parents=True)
+    (root / "ido_sas" / "cc").write_bytes(b"#!wrapper")
+    assert compilers.identify_dir(root / "ido_sas", table) is None      # nothing wrapped
+    _fake_ido(root / "ido-static-recomp" / "build" / "out", "ido5.3")
+    assert compilers.identify_dir(root / "ido_sas", table) == "ido5.3s"
+    _fake_ido(root / "ido_sas" / "ido53", "ido7.1")                      # first dir wins
+    assert compilers.identify_dir(root / "ido_sas", table) is None
+    (root / "ido_sas" / "cc").write_bytes(b"#!edited")
+    assert compilers.identify_dir(root / "ido_sas", table) is None
+
+
+def test_identify_wrapper_toolkit(tmp_path):
+    table = _wrapper_table(b"#!wrapper")
+    ido = _fake_ido(tmp_path / "ido53", "ido5.3")
+    members = [("ido/cc", b"#!wrapper", 0o755)] + [
+        (f"ido/ido53/{f.name}", f.read_bytes(), 0o755) for f in ido.iterdir()]
+    tk = build_toolkit._write_bundle(members, tmp_path / "tk.tar.gz")
+    assert compilers.identify_toolkit(tk, table) == "ido5.3s"
+    bad = build_toolkit._write_bundle([("ido/cc", b"#!wrapper", 0o755)] + [
+        (f"ido/ido53/{f.name}", b"x", 0o755) for f in ido.iterdir()], tmp_path / "bad.tar.gz")
+    assert compilers.identify_toolkit(bad, table) is None
+
+
+def test_install_refuses_wrapper():
+    with pytest.raises(SystemExit, match="driver wrapper"):
+        compilers.install("ido5.3s")
+
+
+def _load_driver():
+    import importlib.machinery
+    import importlib.util
+    path = REPO / "tools" / "ido_sas" / "cc"
+    loader = importlib.machinery.SourceFileLoader("ido_sas_cc", str(path))
+    spec = importlib.util.spec_from_loader("ido_sas_cc", loader)
+    mod = importlib.util.module_from_spec(spec)
+    loader.exec_module(mod)
+    return mod
+
+
+def test_driver_strips_loc_option_and_comments():
+    drv = _load_driver()
+    text = ("\t.verstamp\t3 19\n\t.option\tO2\n\t.option\tpic0\n\t.loc\t2 5\n"
+            " #   5\ts32 f(void) {\n\tsubu\t$sp, 40\n\t.livereg\t0x1,0\n")
+    assert drv.strip_asm(text) == "\t.verstamp\t3 19\n\t.option\tpic0\n\tsubu\t$sp, 40\n\t.livereg\t0x1,0\n"
+    flags, inputs, out = drv.split_args(["-c", "-G", "0", "-O2", "-I", "inc", "-o", "x.o", "a.c"])
+    assert flags == ["-c", "-G", "0", "-O2", "-I", "inc"] and inputs == ["a.c"] and out == "x.o"
+    assert drv.absolute_includes(["-I", "inc", "-Isrc/rom", "-O2"]) == [
+        "-I", os.path.abspath("inc"), "-I" + os.path.abspath("src/rom"), "-O2"]

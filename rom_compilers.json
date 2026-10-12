@@ -2,6 +2,7 @@
   "default": "ido5.3",
   "evidence": "docs/COMPILER_SETTINGS.md#ido-71-boot-tail-segments: w17g tu71.log (all 18 TUs byte-identical under 5.3 and 7.1), locked71.log (every lock in 0x11050-0x26ab0 exact under 7.1), 84 unmatched functions need 7.1's in-place narrowing; w17k full-ROM gate with these pins (ROM matches!)",
   "segments": {
+    "0x5610": "ido5.3s",
     "0x11050": "ido7.1",
     "0x113e0": "ido7.1",
     "0x11640": "ido7.1",
@@ -21,5 +22,6 @@
     "0x25bb0": "ido7.1",
     "0x26ab0": "ido7.1",
     "0x26f60": "ido7.1"
-  }
+  },
+  "evidence_ido5.3s": "docs/COMPILER_SETTINGS.md#ido-53--s-recipe-inflate-tu: w26a (cloud/work/frontier/w26a/RESULTS.md) whole-TU lib_5610 IDENTICAL under the ido_sas driver, full-ROM gate ROM matches"
 }

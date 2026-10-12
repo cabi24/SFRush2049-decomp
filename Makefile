@@ -52,6 +52,10 @@ ifeq ($(COMPILER),ido)
   # Install: python3 -m tools.conveyor.compilers install ido7.1
   IDO71_ROOT   := $(TOOLS_DIR)/ido-static-recomp/build71/out
   IDO71_CC     := $(IDO71_ROOT)/cc
+  # IDO 5.3 through the `cc -S` -> strip `.loc` -> as1 -O1 driver (compiler
+  # ido5.3s, w26a), for ROM TUs pinned to it (the inflate TU lib_5610). The
+  # driver runs $(IDO_ROOT)/cc; docs/COMPILER_SETTINGS.md "IDO 5.3 -S recipe".
+  IDO53S_CC    := $(TOOLS_DIR)/ido_sas/cc
   MIPSISET     := -mips2
   OPT_FLAGS    := -O2
 else
@@ -239,7 +243,7 @@ $(BUILD_DIR)/$(SRC_DIR)/%.o: $(SRC_DIR)/%.c
 # a missing compiler fails loudly, never falls back to the default.
 $(BUILD_DIR)/$(SRC_DIR)/rom/%.o: $(SRC_DIR)/rom/%.c
 	@mkdir -p $(dir $@)
-	@echo "ASMPROC $<$(if $(filter $(IDO71_CC),$(CC)), (IDO 7.1),)"
+	@echo "ASMPROC $<$(if $(filter $(IDO71_CC),$(CC)), (IDO 7.1),)$(if $(filter $(IDO53S_CC),$(CC)), (IDO 5.3 -S/as1 -O1),)"
 	@test -x $(CC) || { echo "error: compiler $(CC) for $< is not installed (python3 -m tools.conveyor.compilers install ido7.1)"; exit 1; }
 	$(V)$(PYTHON) $(TOOLS_DIR)/asm-processor/build.py \
 	    $(CC) -- $(AS) $(ASFLAGS) -- -c $(CFLAGS) -o $@ $<

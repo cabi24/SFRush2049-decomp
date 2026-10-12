@@ -10,6 +10,7 @@ $(BUILD_DIR)/src/rom/lib_3140.o: CFLAGS := $(filter-out -g -g0 -g1 -g2 -g3,$(sub
 $(BUILD_DIR)/src/rom/lib_3330.o: CFLAGS := $(filter-out -g -g0 -g1 -g2 -g3,$(subst -O2,-O1,$(CFLAGS))) -g1
 $(BUILD_DIR)/src/rom/lib_3390.o: CFLAGS := $(filter-out -g -g0 -g1 -g2 -g3,$(subst -O2,-O1,$(CFLAGS))) -g1
 $(BUILD_DIR)/src/rom/lib_34a0.o: CFLAGS := $(filter-out -g -g0 -g1 -g2 -g3,$(subst -O2,-O1,$(CFLAGS))) -g1
+$(BUILD_DIR)/src/rom/lib_5610.o: CC := $(IDO53S_CC)
 $(BUILD_DIR)/src/rom/lib_7600.o: CFLAGS := $(subst -O2,-O1,$(CFLAGS))
 $(BUILD_DIR)/src/rom/lib_7a10.o: CFLAGS := $(subst -O2,-O1,$(CFLAGS))
 $(BUILD_DIR)/src/rom/lib_7b30.o: CFLAGS := $(subst -O2,-O1,$(CFLAGS))

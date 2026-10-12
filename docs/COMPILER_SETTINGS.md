@@ -13,7 +13,8 @@ the compressed game code; **IDO 7.1** for the Rush-specific boot-tail static
 code (below). Pins: `rom_compilers.json` (per converted segment) and
 `tools/conveyor/compilers.py` (archives, fingerprints, install). A lock entry
 records `"compiler": "ido7.1"` when it was proven with the 7.1 toolkit; entries
-without it are 5.3.
+without it are 5.3. The inflate TU (`0x5610`) builds with `ido5.3s`, IDO 5.3
+through a `cc -S`/as1 -O1 driver (below).
 
 ## IDO 7.1 boot-tail segments
 
@@ -46,6 +47,42 @@ Both releases are decompals ido-static-recomp v1.2. Flagsets are unchanged
 (`-g0 -O2 -mips2 -G 0 -non_shared`): the compiler is not a flag, so
 `promote_batch`'s flagset comparison is unaffected and the compiler check is
 separate.
+
+## IDO 5.3 -S recipe (inflate TU)
+
+The inflate/lzss TU `src/rom/lib_5610.c` (0x80004A10..0x800069FC, 14 slots) was
+not built by `cc -c -O2`. It is IDO 5.3 `cc -S -O2` output with every `.loc`
+line removed, assembled by as1 at `-O1` (lzss_decode and inflate_io_wait are
+hand-edited assembly in the same file and stay GLOBAL_ASM). Compiler name
+`ido5.3s`; driver `tools/ido_sas/cc` (Makefile `IDO53S_CC`, pinned in
+`rom_compilers.json`, fingerprinted in `tools/conveyor/compilers.py`):
+
+    cc -S <flags> FILE.c                     # same IDO 5.3, same flags (-g0 -O2 -mips2 -G 0 -non_shared)
+    drop "\t.loc\t", "\t.option\tO<n>" and " #" comment lines
+    cc -c <flags with -O1> -o OUT FILE.s       # as0 + as1 at -O1
+
+Why each step (w25a triage, w26a proof; `cloud/work/frontier/w26a/RESULTS.md`):
+
+- **as1 -O1, not -O2.** Retail has only fill-from-above delay slots, never a
+  branch-likely or a branch-target fill, and keeps the redundant reload after a
+  store (`gInflateInPtr += 2; ... gInflateInPtr[-1]`) that as1 -O2 deletes.
+- **No `.loc`.** as1 treats each `.loc` as a scheduling barrier. With them the
+  prologue `sw ra`/`sw s0` and the first global stores keep source order
+  (w25a's residual: inflate_block 99/105, inflate_loop 21/23); without them as1
+  interleaves them exactly as retail does.
+- `cc -S` ignores `-o` (it writes `<basename>.s` into the working directory);
+  the driver runs it in a temporary directory with absolute `-I` paths.
+
+Evidence: the whole TU built through asm-processor with the driver is
+IDENTICAL to the ROM (`compare.py`: 2044 words, 268 relocated fields, 0
+differing) and the full-ROM gate passes (`ROM matches!`, OWNED-OFFSETS OK).
+The two functions promoted earlier at standard -O2 keep working: inflate_flush_window
+unchanged; huft_alloc returns its sum directly (as1 -O1 keeps the final
+`move v0,v1` of a returned named local that as1 -O2 folded away).
+A lock for this TU must be proven with the ido5.3s toolkit (ido/cc = the
+driver, ido/ido53/ = the 5.3 build) and records `"compiler": "ido5.3s"`;
+editing the driver changes its sha256 and every consumer refuses it until the
+pin is updated.
 
 ## Base Flags
 

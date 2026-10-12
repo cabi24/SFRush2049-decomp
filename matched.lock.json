@@ -3977,15 +3977,17 @@
     "verified_at": "2026-10-02"
   },
   "src/rom/lib_5610.c:huft_alloc": {
-    "body_sha256": "60ab99564fcb0ab1630f6f17786cb909a38de6e58bff776ed1b5895715c27ab3",
+    "body_sha256": "902d59b02de3e05cbba40009f9bf6e28c8daab0644774c84273aff2eabfc5d6f",
+    "compiler": "ido5.3s",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "huft_alloc",
     "toolkit_sha": null,
     "verified": "rom-sha1",
-    "verified_at": "2026-09-24"
+    "verified_at": "2026-10-12"
   },
   "src/rom/lib_5610.c:inflate_flush_window": {
     "body_sha256": "7f5202025a92cae50fbb9004ca0b968323f47b5d5cb72869a374d223067c9599",
+    "compiler": "ido5.3s",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "inflate_flush_window",
     "toolkit_sha": null,
