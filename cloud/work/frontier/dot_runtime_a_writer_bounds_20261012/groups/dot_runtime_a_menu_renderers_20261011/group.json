@@ -1,0 +1,23 @@
+{
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "members": [
+    "func_803A6F2C",
+    "func_803A7180",
+    "func_803A7620",
+    "func_803A7918"
+  ],
+  "claims": [
+    "func_803A6F2C",
+    "func_803A7180",
+    "func_803A7620",
+    "func_803A7918"
+  ],
+  "context": [],
+  "keep": [
+    "func_803A7918"
+  ],
+  "provenance": "Same-name supersession; preserve all three installed members and add 1184 exact candidate bytes through independently bounded live storage. Original capacity remains unknown."
+}
