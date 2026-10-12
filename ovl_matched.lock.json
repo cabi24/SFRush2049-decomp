@@ -207,9 +207,9 @@
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
       "group": "runtime_a_profile_menu_20261006",
       "image": "A",
-      "origin": "cloud/work/frontier/dot_runtime_a_profile_owner_20261012/groups/runtime_a_profile_menu_20261006",
+      "origin": "cloud/work/frontier/dot_runtime_a_profile_selection_20261012/groups/runtime_a_profile_menu_20261006",
       "source": "src/ovl_a/groups/runtime_a_profile_menu_20261006/group.json",
-      "source_sha256": "ac1b3740d1a1032145b8f0a58c6b09d604fcc631b93ceaed9434fb212f998f69",
+      "source_sha256": "47cbe942afda27bff344df182cee8dedb45241883e3ab3694ef35d2dfe65aa8c",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
       "verified_at": "2026-10-12"
@@ -634,13 +634,24 @@
       "verified": "image_gate",
       "verified_at": "2026-10-12"
     },
+    "func_803A7B58": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "group": "runtime_a_profile_menu_20261006",
+      "image": "A",
+      "origin": "cloud/work/frontier/dot_runtime_a_profile_selection_20261012/groups/runtime_a_profile_menu_20261006",
+      "source": "src/ovl_a/groups/runtime_a_profile_menu_20261006/group.json",
+      "source_sha256": "47cbe942afda27bff344df182cee8dedb45241883e3ab3694ef35d2dfe65aa8c",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-12"
+    },
     "func_803A87D4": {
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
       "group": "runtime_a_profile_menu_20261006",
       "image": "A",
-      "origin": "cloud/work/frontier/dot_runtime_a_profile_owner_20261012/groups/runtime_a_profile_menu_20261006",
+      "origin": "cloud/work/frontier/dot_runtime_a_profile_selection_20261012/groups/runtime_a_profile_menu_20261006",
       "source": "src/ovl_a/groups/runtime_a_profile_menu_20261006/group.json",
-      "source_sha256": "ac1b3740d1a1032145b8f0a58c6b09d604fcc631b93ceaed9434fb212f998f69",
+      "source_sha256": "47cbe942afda27bff344df182cee8dedb45241883e3ab3694ef35d2dfe65aa8c",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
       "verified_at": "2026-10-12"
@@ -649,9 +660,9 @@
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
       "group": "runtime_a_profile_menu_20261006",
       "image": "A",
-      "origin": "cloud/work/frontier/dot_runtime_a_profile_owner_20261012/groups/runtime_a_profile_menu_20261006",
+      "origin": "cloud/work/frontier/dot_runtime_a_profile_selection_20261012/groups/runtime_a_profile_menu_20261006",
       "source": "src/ovl_a/groups/runtime_a_profile_menu_20261006/group.json",
-      "source_sha256": "ac1b3740d1a1032145b8f0a58c6b09d604fcc631b93ceaed9434fb212f998f69",
+      "source_sha256": "47cbe942afda27bff344df182cee8dedb45241883e3ab3694ef35d2dfe65aa8c",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
       "verified_at": "2026-10-12"
