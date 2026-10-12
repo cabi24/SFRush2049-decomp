@@ -1027,12 +1027,12 @@
       "func_803A9EEC"
     ],
     "files": {
+      "cloud/work/frontier/dot_runtime_a_delete_profile_20261012/baseline_group.c": "870f3b58256f766632ed0d49ddb87eeee34d6e00320d35a4c3c48e7157abb8c9",
       "cloud/work/frontier/dot_runtime_a_delete_profile_20261012/groups/runtime_a_profile_menu_20261006/group.c": "63e180c4a79859f787c4134120d63fc841e3461cad1688b1a0a5663872061546",
       "cloud/work/frontier/dot_runtime_a_delete_profile_20261012/groups/runtime_a_profile_menu_20261006/group.json": "ea48a4397e0e216979580316a100f252a49c5027bf16c903f388bbd11d89b9f7",
       "cloud/work/frontier/dot_runtime_a_delete_profile_20261012/host.c": "1e0675bb5104d14746ec120e9883c7e79203eb164f3518991debd37dab1641dc",
       "cloud/work/frontier/dot_runtime_a_delete_profile_20261012/trace.py": "dff1c1dfa51feca4865de872037c489721369c4fef31bb6d0bf357242e10556b",
-      "cloud/work/frontier/dot_runtime_a_delete_profile_20261012/verify.py": "4c891426e2bc5cb1ee7f2c17cac2bca9a167668ac07c350b020a2cb7a5213061",
-      "src/ovl_a/groups/runtime_a_profile_menu_20261006/group.c": "870f3b58256f766632ed0d49ddb87eeee34d6e00320d35a4c3c48e7157abb8c9",
+      "cloud/work/frontier/dot_runtime_a_delete_profile_20261012/verify.py": "fe7c17d86ecda3ff901effa01d903c5ecf5497ccfbea3f0ff56687284bd234fe",
       "tests/cloud/test_runtime_a_delete_profile.py": "3e84a671a1ccd355e6b277648c829e1b210142042e7538604b184c7ba8bdb1dc"
     },
     "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
