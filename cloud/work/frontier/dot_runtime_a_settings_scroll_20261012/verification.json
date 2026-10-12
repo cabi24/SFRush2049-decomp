@@ -1,0 +1,90 @@
+{
+  "inputs": {
+    "asset_sha256": "f06d4ad0bb7dc7aff494acddc736f1b56bc271a2292c0286879cc9189bec31c8",
+    "claims": [],
+    "compiler": "stock IDO 5.3 overlay single; no static ROM TU rebuild",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "format": {
+      "address": "0x803B8668",
+      "buffer_bytes": 24,
+      "maximum_write_with_nul": 5,
+      "sha256": "0b782fc3030dbdf3756f17e7adf2ce5808dfc513ca7589adeb679c7d25eaef6f",
+      "signed_input_range": [
+        -128,
+        127
+      ]
+    },
+    "image_sha256": "0d6702c320df84cc6cbc3c5967dde08d44b6e476e110667fe2a43dc2dd536667",
+    "protocol_version": 2,
+    "referenced_symbols": {
+      "D_8011648C": "0x8011648c",
+      "D_801164A4": "0x801164a4",
+      "D_801613AB": "0x801613ab",
+      "D_8017A4E0": "0x8017a4e0",
+      "D_803B3094": "0x803b3094",
+      "D_803B8668": "0x803b8668",
+      "dispatch_handler": "0x800b74a0",
+      "fcvt_wrapper": "0x800b4360",
+      "func_803A5358": "0x803a5358",
+      "object_create": "0x800b42f0",
+      "object_helper": "0x800b3f50",
+      "object_type_byte2_get": "0x800b3f00",
+      "render_helper": "0x800b65b4",
+      "sound_pitch_diff_calc": "0x800b7170",
+      "sound_pitch_diff_halved": "0x800b71a0",
+      "state_utility": "0x800b71d4"
+    },
+    "sources": {
+      "candidate.c": "220e96757726389b43ab9257429fff9ddd20814fcf766560abbdd264dcadc4f5",
+      "verify.py": "ea3d33b2697de0e235a6c0c02df1a0bc1cf54b8023493e5d70cbee74eb29333b"
+    },
+    "status": "NONMATCH",
+    "target": {
+      "address": "0x803a5358",
+      "population": "A",
+      "size": 768,
+      "words_sha256": "b83ffeb091e257655d4739106d01154a99efb4a802a09b26bd36ae673d9d73a6"
+    },
+    "test_sha256": "3f4685a836e6b5a0293d6b5b85bf7f2408775e1d192566b65950dfb2a81f7a19"
+  },
+  "verification": {
+    "baseline_comparison": {
+      "differing": 128,
+      "errors": [],
+      "extra_words": 0,
+      "total": 192,
+      "unresolved": [],
+      "unverified": []
+    },
+    "baseline_function_bytes": 760,
+    "candidate_frame": 128,
+    "comparison": {
+      "differing": 58,
+      "errors": [],
+      "extra_words": 0,
+      "total": 192,
+      "unresolved": [],
+      "unverified": []
+    },
+    "compiler_binary_sha256": {
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5"
+    },
+    "complete_function_bytes": 768,
+    "emitted_text_bytes": 768,
+    "gnu": {
+      "differing_words": 58,
+      "full_extent_bytes": 768,
+      "linked_words_sha256": "ff6dd149db9da9131cac2ab488069525d620be71d950914347310b7d58db1866",
+      "remaining_relocations": 0
+    },
+    "native_frame": 136,
+    "new_exact_bytes": 0,
+    "new_rom_verified_bytes": 0,
+    "owned_bytes": 0,
+    "relocations": 29
+  }
+}
