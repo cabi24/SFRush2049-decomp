@@ -1,0 +1,23 @@
+{
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "func_803990D0"
+  ],
+  "members": [
+    "func_80398B40",
+    "func_80398C3C",
+    "func_80398E70",
+    "func_803990D0"
+  ],
+  "provenance": "Supersedes the installed group of the same name; preserves all three locked helpers. Four disclosed unused s32 frame slots close the complete menu-state root without live-capacity changes.",
+  "claims": [
+    "func_80398B40",
+    "func_80398C3C",
+    "func_80398E70",
+    "func_803990D0"
+  ],
+  "context": []
+}

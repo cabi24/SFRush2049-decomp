@@ -26,3 +26,5 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 | static | other remaining boot tail `func_*` (func_800268D0, func_80012D18, func_8001A658, func_80023E9C, func_80012730, func_8001F13C, func_800178B0, func_8001C860 and the rest) | open | | Astra welcome; say so here |
 | tooling | static recompilation Phase 3 (per-call capture, input scripts, static binding, OSThread word mask) | coordinator w23r | 2026-10-12 | wave 23, on rocky; RT64 by the owner's agent elsewhere |
 | tooling | recomp o32 wrapper generator with guest-pointer (`rush_addr`) mode: fold into `replace.py` native mode rather than a second generator; RDRAM accessors (`tools/recomp/rdram.h`, `game_rdram.h`) landed from #325 | Astra (#323 reservation) | 2026-10-12 | w22p; `tests/recomp/test_rdram.py`; the accessors own README section `RDRAM accessors` |
+
+| ovl_a | func_803990D0; preserve func_80398B40/80398C3C/80398E70 in dot_runtime_a_menu_state_20261006 | Astra lane 4 | 2026-10-12 | Traced menu-state-root closure from live 262e9f0f3; baseline 8/173, no cross-group lock migration |
