@@ -7,6 +7,7 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 
 | Population | Target | Who | Since | Note |
 |---|---|---|---|---|
+| ovl_a | 80397AD8 model-slot initializer; 80397FFC availability root | Astra cloud round 22:03 | 2026-10-12 | 97AD8 strict 327/327 with genuine 97FFC caller; root remains 15/268. Empty-claims private-ABI research in `dot_runtime_a_availability_root_20261012`, preserving all #365/#359 bodies; independent ownership reconciliation required, no installer migration. |
 | game | func_80087110 (texture rectangle) | Astra | 2026-10 | long-running; coordinator lanes keep off |
 | game | stat_race_update, func_800FE5B0 | Astra | 2026-10 | |
 | game | camera_transform | Astra | 2026-10-07 | PRs #307/#308 |
