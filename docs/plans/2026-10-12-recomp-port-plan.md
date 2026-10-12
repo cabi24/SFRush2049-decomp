@@ -232,8 +232,9 @@ Detail and commands: `tools/recomp/README.md` "Phase 2"; lane notes: `cloud/work
   layer, `replace.py` compiles the unchanged source with the project's IDO, links it with `ld.lld` at
   0x80800000 against the inventory's addresses and hands it to N64Recomp as a fifth section; an entry
   hook delegates the original function to it. Exact N64 semantics, any population, no source change;
-  678 of 689 matched `src/blob` files build this way as they are (the 11 others call `fabsf`/`strcpy`
-  without an address). A host-native mode with generated o32 wrappers exists for leaf bodies that touch
+  678 of 689 matched `src/blob` files built this way as they are in the first pass (10 of the 11
+  failures were `#pragma intrinsic(fabsf)` declarations, which the builder now ignores; one calls
+  `strcpy`, which has no inventory address). A host-native mode with generated o32 wrappers exists for leaf bodies that touch
   aligned words through pointer arguments (proved on two); it is the port's long-term path but needs an
   accessor layer or a source transformation for everything else.
 - **Determinism needed lockstep, not just a frame clock.** ultramodern delivers VI/AI on a 60 Hz wall
