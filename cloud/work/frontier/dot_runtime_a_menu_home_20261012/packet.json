@@ -1,0 +1,63 @@
+{
+  "inputs": {
+    "compiler": "stock IDO 5.3; overlay single, no static ROM TU",
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "metadata_manifest_rows": {
+      "extents.json": "0d97935254a6f2c724dfe68b08087e0a451e56d0aedb2121748abe7b6cc0798b",
+      "symbols.json": "d5a6c8dccb0380f54f080d45d82a5e71f917be86f9568bf4b7fbe10a89f2a769"
+    },
+    "sources_sha256": {
+      "cloud/matches/ovl_a/func_803A4340.c": "462bd7191b07901baac4679abad5282bd76367901f6dba093da00229c6515303",
+      "cloud/work/frontier/dot_runtime_a_menu_home_20261012/verify.py": "47471075d6003c7671e8e01d9c48d91526270758248e3e5a4ed707f688c93f10",
+      "cloud/work/frontier/dot_runtime_a_menu_loop_20261006/candidate.c": "194c86d784441d782e0f57b59738b8c27fc127912383d820c31389ce6bcee7a0"
+    },
+    "target": {
+      "address": "0x803a4340",
+      "bytes": 428,
+      "population": "A",
+      "words_sha256": "1e306c7d79a18c4d7a008d658cf6abe17a5188817857ea3d4348ed8fe078ace7"
+    }
+  },
+  "verification": {
+    "alignment_bytes": 4,
+    "comparison": {
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "total": 107,
+      "unresolved": [],
+      "unverified": []
+    },
+    "compiler_binary_provenance": {
+      "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695",
+      "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+      "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+      "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+      "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5"
+    },
+    "complete_bytes": 428,
+    "controls": {
+      "baseline": {
+        "complete_bytes": 428,
+        "differing_words": 4,
+        "frame": 112
+      },
+      "one_slot_removed": {
+        "complete_bytes": 428,
+        "differing_words": 4,
+        "frame": 112
+      },
+      "parameter_reuse": {
+        "complete_bytes": 428,
+        "differing_words": 4,
+        "frame": 104
+      }
+    },
+    "gnu": {
+      "complete_words_exact": 107,
+      "remaining_relocations": 0
+    },
+    "owned_bytes": 0,
+    "relocations": 21
+  }
+}
