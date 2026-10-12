@@ -354,6 +354,49 @@ def rebind_owned(doc, names, base, rebind_dir, repo=REPO):
     return doc, log
 
 
+# --- historical inputs ----------------------------------------------------------
+# Research packets compile sources written before lane w22g's libultra rename
+# (pinned cloud/matches/boot_tail submissions, `git show BASE:` baselines)
+# against today's symbol tables, where e.g. osJamMesg names another address.
+# They pass such text through renamed_source() (and baseline lock pins through
+# renamed_locks()) so old and new code resolve to the same functions.
+
+LIBULTRA_RENAMES = REPO / "cloud" / "work" / "frontier" / "w22g" / "renames.json"
+_libultra_cache = None
+
+
+def libultra_names():
+    """{old: new} of the w22g libultra rename."""
+    global _libultra_cache
+    if _libultra_cache is None:
+        _libultra_cache = mapping(load_map(LIBULTRA_RENAMES))
+    return _libultra_cache
+
+
+def renamed_source(text):
+    """C text written before the rename, with the rename applied (code only)."""
+    return permute_c(text, libultra_names())
+
+
+def renamed_locks(texts, locks):
+    """Pre-rename lock entries for the given pre-rename texts ({rel: text}),
+    re-keyed and re-pinned for renamed_source(text): an entry moves only when
+    its body held the pin; anything else is returned unchanged."""
+    names = libultra_names()
+    out = {}
+    for spec, entry in locks.items():
+        rel, _, fn = spec.partition(":")
+        body = _body(texts.get(rel), fn)
+        if body is not None and _sha(normalize_body(body)) == entry.get("body_sha256"):
+            new = dict(entry, body_sha256=_sha(normalize_body(permute_c(body, names))))
+            if new.get("target_id") in names:
+                new["target_id"] = names[new["target_id"]]
+            out[f"{rel}:{names.get(fn, fn)}"] = new
+        else:
+            out[spec] = entry
+    return out
+
+
 # --- command --------------------------------------------------------------------
 
 def main(argv=None):
