@@ -1,0 +1,17 @@
+{
+  "name": "dot_runtime_a_settings_bar_20261012",
+  "members": [
+    "func_803AE63C"
+  ],
+  "claims": [
+    "func_803AE63C"
+  ],
+  "context": [],
+  "files": [
+    "settings_bar.c"
+  ],
+  "keep": [
+    "func_803AE63C"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+}

@@ -1,0 +1,139 @@
+{
+  "abi": "IDO32 scalar, pointer, by-value Color4, Slot60, Camera, Language and position offset checked",
+  "compiler": "stock IDO 5.3",
+  "controls": {
+    "baseline": {
+      "differing": 6,
+      "errors": [],
+      "extra_words": 0,
+      "total": 262,
+      "unresolved": [],
+      "unverified": []
+    },
+    "position_text48": {
+      "differing": 2,
+      "errors": [],
+      "extra_words": 0,
+      "total": 262,
+      "unresolved": [],
+      "unverified": []
+    }
+  },
+  "gnu": {
+    "full_extent_words_exact": true,
+    "owned_bytes": 20,
+    "owned_sha256": "afca80f3cad929236630c97d2cf4ad48d24e0f6e84ddb9892cfc0c6279918f45",
+    "owned_start": "0x803b99c0",
+    "relocations": {
+      "func_8038F744": 8,
+      "func_803ADDA8": 78,
+      "func_803AE1C0": 40
+    }
+  },
+  "host": "640 projected/flat cases; all decimal writes two bytes including NUL",
+  "inputs": {
+    "asset_sha256": "f06d4ad0bb7dc7aff494acddc736f1b56bc271a2292c0286879cc9189bec31c8",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "format_bound": {
+      "address": "0x803B8CDC",
+      "argument_range": [
+        1,
+        4
+      ],
+      "format_sha256": "0b782fc3030dbdf3756f17e7adf2ce5808dfc513ca7589adeb679c7d25eaef6f",
+      "output_bytes_including_nul": 2
+    },
+    "image_sha256": "0d6702c320df84cc6cbc3c5967dde08d44b6e476e110667fe2a43dc2dd536667",
+    "sources_sha256": {
+      "group.c": "54e00aa3c464dcf1d2fdd31d134a7f2b005619a27d8269eb1573ffa6d758b239",
+      "group.json": "97747208c3074b1bec7a9a25499214546686d0ffccd6f886c307e7820311b120",
+      "host.c": "9c87e131113bd33f7e3f0314d79f27ef480028005e830c9929dd00fb39fdf4a0",
+      "trace.py": "c0b5a8bd1410035a08f5e94010d618924837df5f90b34b1f1f82d8f72bb850be",
+      "verify.py": "151a21f7f6780891fc5367d7d9ed345c3b5e914283b38aed85bdea183832c439"
+    },
+    "stack": {
+      "address_taken_offsets": [
+        56,
+        60
+      ],
+      "frame_bytes": 112,
+      "i_home": 108,
+      "j_home": 104,
+      "point_range": [
+        56,
+        60
+      ],
+      "position_home": 92,
+      "return_address": 28,
+      "scalar_homes_are_nonoverlapping": true,
+      "text_range": [
+        60,
+        92
+      ],
+      "x_home": 100,
+      "y_home": 96
+    },
+    "targets": {
+      "func_8038F744": {
+        "address": "0x8038f744",
+        "image": "A",
+        "size": 88,
+        "words_sha256": "9c51e99ee268758b3774df0acaa6946d5f5803392a1c104e4dbb5e8c926344a9"
+      },
+      "func_803ADDA8": {
+        "address": "0x803adda8",
+        "image": "A",
+        "size": 1048,
+        "words_sha256": "36e40628be76bbb8d310f26c84fea49b966e64e3d82e6f7839d410742feeb615"
+      },
+      "func_803AE1C0": {
+        "address": "0x803ae1c0",
+        "image": "A",
+        "size": 860,
+        "words_sha256": "4270f7ccd17f6a71d0bce04e5d930d0822951d38841b91b858e5533db0712ac2"
+      }
+    }
+  },
+  "installer": "all three complete bodies exact; missing data and five corrupt literals rejected",
+  "members": {
+    "func_8038F744": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 22,
+        "unresolved": [],
+        "unverified": []
+      },
+      "notes": []
+    },
+    "func_803ADDA8": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 262,
+        "unresolved": [],
+        "unverified": []
+      },
+      "notes": [
+        "own .rodata verified at 0x803B99C0..0x803B99D4"
+      ]
+    },
+    "func_803AE1C0": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 215,
+        "unresolved": [],
+        "unverified": []
+      },
+      "notes": []
+    }
+  },
+  "new_exact_code_bytes": 1048,
+  "new_landed_image_bytes": 0,
+  "new_rom_verified_bytes": 0,
+  "preserved_exact_code_bytes": 948
+}

@@ -1,9 +1,9 @@
 {
  "members": [
+  "func_80394564",
   "func_80394834"
  ],
  "context": [
-  "func_80394564",
   "func_80397FFC",
   "func_80394B00"
  ],
@@ -14,5 +14,5 @@
   "func_80397FFC"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
- "provenance": "Genuine new refresh body with existing #268 real callers, no invented ABI slots."
+ "provenance": "Same-name refresh group: consumed selector reused as outer index; 94564 newly strict, 94834 preserved; genuine callers remain nonmatching."
 }

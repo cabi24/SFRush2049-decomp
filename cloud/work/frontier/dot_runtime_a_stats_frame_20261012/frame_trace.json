@@ -1,0 +1,142 @@
+{
+  "baseline": {
+    "procedures": {
+      "func_803AC54C": {
+        "external": 0,
+        "frame": 120,
+        "memory_areas": {
+          "M": 84,
+          "P": 4,
+          "T": 20
+        },
+        "text_base": 52
+      },
+      "func_803AC7F4": {
+        "external": 0,
+        "frame": 112,
+        "memory_areas": {
+          "M": 80,
+          "P": 4,
+          "T": 20
+        },
+        "text_base": 44
+      },
+      "func_803ACD5C": {
+        "external": 0,
+        "frame": 120,
+        "memory_areas": {
+          "M": 88,
+          "P": 4,
+          "T": 20
+        },
+        "text_base": 52
+      }
+    },
+    "whole_object_diagnostic_identical": true
+  },
+  "matching": {
+    "procedures": {
+      "func_803AC54C": {
+        "external": 0,
+        "frame": 112,
+        "memory_areas": {
+          "M": 76,
+          "P": 4,
+          "T": 20
+        },
+        "text_base": 52
+      },
+      "func_803AC7F4": {
+        "external": 0,
+        "frame": 104,
+        "memory_areas": {
+          "M": 72,
+          "P": 4,
+          "T": 20
+        },
+        "text_base": 44
+      },
+      "func_803ACD5C": {
+        "external": 0,
+        "frame": 112,
+        "memory_areas": {
+          "M": 80,
+          "P": 4,
+          "T": 20
+        },
+        "text_base": 52
+      }
+    },
+    "whole_object_diagnostic_identical": true
+  },
+  "old_capacity": {
+    "procedures": {
+      "func_803AC54C": {
+        "external": 0,
+        "frame": 120,
+        "memory_areas": {
+          "M": 84,
+          "P": 4,
+          "T": 20
+        },
+        "text_base": 52
+      },
+      "func_803AC7F4": {
+        "external": 0,
+        "frame": 112,
+        "memory_areas": {
+          "M": 80,
+          "P": 4,
+          "T": 20
+        },
+        "text_base": 44
+      },
+      "func_803ACD5C": {
+        "external": 0,
+        "frame": 120,
+        "memory_areas": {
+          "M": 88,
+          "P": 4,
+          "T": 20
+        },
+        "text_base": 52
+      }
+    },
+    "whole_object_diagnostic_identical": true
+  },
+  "old_order": {
+    "procedures": {
+      "func_803AC54C": {
+        "external": 0,
+        "frame": 112,
+        "memory_areas": {
+          "M": 76,
+          "P": 4,
+          "T": 20
+        },
+        "text_base": 52
+      },
+      "func_803AC7F4": {
+        "external": 0,
+        "frame": 104,
+        "memory_areas": {
+          "M": 72,
+          "P": 4,
+          "T": 20
+        },
+        "text_base": 44
+      },
+      "func_803ACD5C": {
+        "external": 0,
+        "frame": 112,
+        "memory_areas": {
+          "M": 80,
+          "P": 4,
+          "T": 20
+        },
+        "text_base": 52
+      }
+    },
+    "whole_object_diagnostic_identical": true
+  }
+}

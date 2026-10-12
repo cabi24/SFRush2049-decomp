@@ -1,4 +1,13 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* Image A option-availability producer and genuine caller context.
+ * 94564 recomputes primary/secondary availability rows for one player, or all
+ * active players for selector -1, then counts enabled secondary entries.
+ * Its consumed input selector is reused as the outer player index. This merges
+ * the incoming selector with the real induction variable and recovers native
+ * private a1 allocation. No extra formal, storage, executable operation, or
+ * compiler modification is used. Original source spelling is unknown.
+ * 94834 is preserved byte-identically; 97FFC and 94B00 remain NONMATCH context.
+ */
 typedef signed char s8;typedef unsigned char u8;
 typedef short s16;typedef unsigned short u16;typedef int s32;typedef unsigned int u32;typedef float f32;
 extern s16 D_8014A108;
@@ -10,33 +19,33 @@ void func_80394564(s32 player)
 {
     s32 first = player;
     s32 last = player;
-    s32 i,j;
+    s32 j;
     if (player == -1) {first = 0;last = D_8014A108 - 1;}
-    for (i = first; i <= last; i++) {
-        D_803BADC0[i] = D_803BAC20[D_803BADBC[i]];
-        D_803BAD00[i][0] = 1;
-        D_803BAD00[i][1] = 1;
-        D_803BAD00[i][2] = 0;
+    for (player = first; player <= last; player++) {
+        D_803BADC0[player] = D_803BAC20[D_803BADBC[player]];
+        D_803BAD00[player][0] = 1;
+        D_803BAD00[player][1] = 1;
+        D_803BAD00[player][2] = 0;
         for (j = 0; j < 8; j++)
-            D_803BAD00[i][j + 3] = j < D_803BADC0[i];
-        D_803BAD00[i][11] = D_803BADC0[i] >= 0 && !D_803BAC68[D_803BADBC[i]];
-        D_803BAD00[i][12] = D_803BADC0[i] > 0;
-        D_803BAD00[i][13] = 0;
-        if (D_803BACE0[i] == 4) {
-            D_803BAD00[i][0] = 0;
-            D_803BAD00[i][1] = 0;
-            D_803BAD00[i][11] = 0;
-            D_803BAD00[i][12] = 0;
+            D_803BAD00[player][j + 3] = j < D_803BADC0[player];
+        D_803BAD00[player][11] = D_803BADC0[player] >= 0 && !D_803BAC68[D_803BADBC[player]];
+        D_803BAD00[player][12] = D_803BADC0[player] > 0;
+        D_803BAD00[player][13] = 0;
+        if (D_803BACE0[player] == 4) {
+            D_803BAD00[player][0] = 0;
+            D_803BAD00[player][1] = 0;
+            D_803BAD00[player][11] = 0;
+            D_803BAD00[player][12] = 0;
         }
-        D_803BAD40[i][0] = D_803BAD00[i][0];
-        D_803BAD40[i][1] = D_803BACE0[i] == 4 || D_803BAD00[i][1];
-        D_803BAD40[i][2] = D_803BADC0[i] < 1 || (D_803BAC68[D_803BADBC[i]] && D_803BACE0[i] != 4);
-        for (j = 0; j < 8; j++) D_803BAD40[i][j + 3] = D_803BAD00[i][j + 3];
-        D_803BAD40[i][11] = D_803BAD00[i][11];
-        D_803BAD40[i][12] = D_803BAD00[i][12];
-        D_803BAD40[i][13] = D_803BAD00[i][13];
-        D_803BAD78[i] = 0;
-        for (j = 0; j < 14; j++) if (D_803BAD40[i][j]) D_803BAD78[i]++;
+        D_803BAD40[player][0] = D_803BAD00[player][0];
+        D_803BAD40[player][1] = D_803BACE0[player] == 4 || D_803BAD00[player][1];
+        D_803BAD40[player][2] = D_803BADC0[player] < 1 || (D_803BAC68[D_803BADBC[player]] && D_803BACE0[player] != 4);
+        for (j = 0; j < 8; j++) D_803BAD40[player][j + 3] = D_803BAD00[player][j + 3];
+        D_803BAD40[player][11] = D_803BAD00[player][11];
+        D_803BAD40[player][12] = D_803BAD00[player][12];
+        D_803BAD40[player][13] = D_803BAD00[player][13];
+        D_803BAD78[player] = 0;
+        for (j = 0; j < 14; j++) if (D_803BAD40[player][j]) D_803BAD78[player]++;
     }
 }
 

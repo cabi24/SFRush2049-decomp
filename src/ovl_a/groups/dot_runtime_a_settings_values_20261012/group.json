@@ -1,0 +1,15 @@
+{
+ "name": "dot_runtime_a_settings_values_20261012",
+ "members": [
+  "func_803AECE4"
+ ],
+ "context": [],
+ "files": [
+  "settings_values.c"
+ ],
+ "keep": [
+  "func_803AECE4"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "provenance": "installed from cloud/work/frontier/dot_runtime_a_settings_neighbor_20261012/groups/dot_runtime_a_settings_values_20261012"
+}

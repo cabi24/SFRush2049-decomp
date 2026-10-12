@@ -1,0 +1,38 @@
+{
+  "50": {
+    "memory_areas": {
+      "T": 20,
+      "P": 4,
+      "M": 92
+    },
+    "external": 1,
+    "frame_bytes": 160,
+    "differing_words": 3,
+    "total_words": 241,
+    "complete_object_diagnostic_identical": true
+  },
+  "36": {
+    "memory_areas": {
+      "T": 20,
+      "P": 4,
+      "M": 76
+    },
+    "external": 1,
+    "frame_bytes": 144,
+    "differing_words": 0,
+    "total_words": 241,
+    "complete_object_diagnostic_identical": true
+  },
+  "32": {
+    "memory_areas": {
+      "T": 20,
+      "P": 4,
+      "M": 72
+    },
+    "external": 1,
+    "frame_bytes": 136,
+    "differing_words": 11,
+    "total_words": 241,
+    "complete_object_diagnostic_identical": true
+  }
+}

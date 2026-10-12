@@ -1,0 +1,9 @@
+{
+  "name": "dot_runtime_b_nearest_steering_20261012",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "files": ["group.c"],
+  "members": ["func_8038DDDC"],
+  "claims": ["func_8038DDDC"],
+  "context": [],
+  "keep": ["func_8038DDDC"]
+}

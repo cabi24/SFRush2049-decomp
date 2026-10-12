@@ -1,6 +1,7 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
-/* Image-A BB80 strict match: 712 new bytes. This same-name group preserves
- * all eleven installed text_helpers members, including C140 and B560.
+/* Image-A A5658 strict match: 736 new bytes. This same-name group preserves
+ * all eleven installed text_helpers members and pending PR333 BB80 (712 B).
+ * BB80 is preserved-only credit here, not another new match.
  * BB80 computes the configuration panel width/height from localized labels
  * and up to two player names/statistics. N64 reconstruction; arcade ancestor
  * is not established. Its private ABI saves ra, and clobbers s0..s8.
@@ -815,18 +816,31 @@ extern void camera_auto_follow(s16,s16,s16,s16,s16,s16,u8 *);
 extern void crowd_cheer_play(FiveParts *,s32,s32,s32,s32);
 extern void music_fade(s16,s16,s16,u8 *);
 
+/* A5658 renders the six competitor ranking/name/count entries. The selected
+ * result-table selector is compared first in both equality expressions; the
+ * natural for loop exposes its initializer and loop-header address setup on
+ * the same compiler source line. Both are ordinary C with the same reads.
+ *
+ * Exact frame reconstruction: without the six unused scalar declarations,
+ * stock ugen reports M=140, T=16, P=4 and frame 168. Six four-byte homes make
+ * M=164 and frame 192, exactly retail. count moves +52 to +76, name[32] moves
+ * +72 to +96, and number[64] moves +104 to +128. Buffer capacities unchanged.
+ * These homes are a measured layout reconstruction, not recovered names or
+ * a claim about their unknown original purpose. No padding array is used.
+ */
 void func_803A5658(void)
 {
     u8 number[64],name[32];
     s32 i, rank, x, y;
     s32 count;
+    s32 unused_home0, unused_home1, unused_home2;
+    s32 unused_home3, unused_home4, unused_home5;
     object_create(10);
     dispatch_handler(1);
     object_type_byte2_get();
     count=6;
-    i=0;
-    do {
-        if(D_803BAD90->b9==D_803B9A84)rank=D_80154450[i].rank;
+    for(i=0;i<count;i++) {
+        if(D_803B9A84==D_803BAD90->b9)rank=D_80154450[i].rank;
         else {
             rank=D_80154450[i].other4[D_803B9A84];
             if(rank>=6) {
@@ -846,11 +860,11 @@ void func_803A5658(void)
         if(i<D_8014A108)func_800BE6A4(name,(u8 *)D_8014A118[i].owner->body+20);
         else func_800BE6A4(name,D_801147C8[D_80154450[i].other0]);
         music_fade((s16)(x+15),y+2,120,name);
-        fcvt_wrapper(number,D_803B8790,D_803BAD90->b9==D_803B9A84 ?
+        fcvt_wrapper(number,D_803B8790,D_803B9A84==D_803BAD90->b9 ?
                      D_80154450[i].count : D_80154450[i].other4[24+D_803B9A84]);
         func_800BE4F0(number,D_8017A4E0.text[130]);
         state_utility((s16)(x+15),y+11,number);
-    } while(++i<count);
+    }
 }
 
 s32 func_803A5948(void *callback_context)

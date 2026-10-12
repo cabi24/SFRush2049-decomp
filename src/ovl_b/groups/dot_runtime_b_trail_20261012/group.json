@@ -1,0 +1,15 @@
+{
+ "name": "dot_runtime_b_trail_20261012",
+ "files": [
+  "group.c"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "members": [
+  "func_8038CB20"
+ ],
+ "context": [],
+ "keep": [
+  "func_8038CB20"
+ ],
+ "provenance": "installed from cloud/work/frontier/dot_runtime_b_trail_20261012"
+}

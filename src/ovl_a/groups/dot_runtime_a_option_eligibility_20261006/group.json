@@ -7,11 +7,10 @@
   "func_803AE1C0"
  ],
  "members": [
-  "func_8038F744",
-  "func_803AE1C0"
+  "func_803ADDA8",
+  "func_803AE1C0",
+  "func_8038F744"
  ],
- "provenance": "F744 natural index input and signed-byte return, word accumulator. Actual DDA8/E1C0 callers from PR225 recover native temporary reservations; no fake pressure or extra formals. Follow-on to PR273: actual AE1C0 early-continue source and existing-local order close the high root.",
- "context": [
-  "func_803ADDA8"
- ]
+ "provenance": "Existing option_eligibility group extended with projected callback ADDA8. Position-pointer lifetime closes allocation/scheduling; target-bound frame census and independently checked two-byte decimal-output bound support 32-byte projected buffer. AE1C0/F744 installed bodies preserved byte-identical.",
+ "context": []
 }
