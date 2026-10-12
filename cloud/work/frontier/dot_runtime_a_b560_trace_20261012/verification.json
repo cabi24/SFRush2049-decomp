@@ -1,0 +1,171 @@
+{
+  "compiler": "stock IDO 5.3",
+  "constant_web_negative_control": {
+    "differing": 48,
+    "errors": [
+      "own .rodata+0x14 referenced at +0x318 differs from retail 0x803B95A8 (+0x0: retail 425ccccd, got c2963333; 4 bytes compared)"
+    ],
+    "extra_words": 0,
+    "total": 234,
+    "unresolved": [],
+    "unverified": [
+      ".rodata+0x0 at +0x154",
+      ".rodata+0x0 at +0x158",
+      ".rodata+0x4 at +0x228",
+      ".rodata+0x4 at +0x22c",
+      ".rodata+0x8 at +0x240",
+      ".rodata+0x8 at +0x244",
+      ".rodata+0xc at +0x28c",
+      ".rodata+0xc at +0x290",
+      ".rodata+0x10 at +0x2a0",
+      ".rodata+0x10 at +0x2a4",
+      ".rodata+0x14 at +0x314",
+      ".rodata+0x14 at +0x318",
+      ".rodata+0x18 at +0x360",
+      ".rodata+0x18 at +0x364"
+    ]
+  },
+  "context_differing_words": 475,
+  "gnu": {
+    "full_extent_words_exact": true,
+    "owned_bytes": 36,
+    "owned_sha256": "fcabebe65058c5f989174148333dc1b4370d5829a0a7cc33698627b03de7eacd",
+    "owned_start": "0x803b9594",
+    "relocations": {
+      "func_8039A448": 8,
+      "func_8039B120": 24,
+      "func_8039B214": 52,
+      "func_8039B560": 88,
+      "func_8039BE48": 75
+    }
+  },
+  "inputs": {
+    "asset_sha256": "f06d4ad0bb7dc7aff494acddc736f1b56bc271a2292c0286879cc9189bec31c8",
+    "claims": [
+      "func_8039A448",
+      "func_8039B120",
+      "func_8039B214",
+      "func_8039B560",
+      "func_8039BE48"
+    ],
+    "context": [
+      "func_8039C140"
+    ],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "image_sha256": "0d6702c320df84cc6cbc3c5967dde08d44b6e476e110667fe2a43dc2dd536667",
+    "members": [
+      "func_8039A448",
+      "func_8039B120",
+      "func_8039B214",
+      "func_8039B560",
+      "func_8039BE48"
+    ],
+    "source_sha256": {
+      "group.c": "ecd74f9e765c9e0b08a9aa837b0f0d5627f8b4a76da91e70ae3518f9d09c804c",
+      "group.json": "62d764fce8bd70ae024310c276818bb3ec504f294244fcafb4c57527401c9497",
+      "verify.py": "b6b2f955d7e25338c94e950c0960d7baa720d9d648f8260ee46ed9c72951c92b"
+    },
+    "target_metadata_sha256": {
+      "extents.json": "0d97935254a6f2c724dfe68b08087e0a451e56d0aedb2121748abe7b6cc0798b",
+      "symbols.json": "d5a6c8dccb0380f54f080d45d82a5e71f917be86f9568bf4b7fbe10a89f2a769"
+    },
+    "targets": {
+      "func_8039A448": {
+        "address": "0x8039a448",
+        "size": 140,
+        "words_sha256": "f5e9e8be26a945961b37cf1ad621ee9ce3ec5c6a59966f9104b1d978ebe52f10"
+      },
+      "func_8039B120": {
+        "address": "0x8039b120",
+        "size": 244,
+        "words_sha256": "b8f30bde6b640dc883c05bc4428dd1804dd7922b8d0a7a54e6f82be182e898e4"
+      },
+      "func_8039B214": {
+        "address": "0x8039b214",
+        "size": 836,
+        "words_sha256": "941ba1455c5219aecc5aa9aef6c0693418a8d7da7d9b606c66d24a0ee7913634"
+      },
+      "func_8039B560": {
+        "address": "0x8039b560",
+        "size": 936,
+        "words_sha256": "40eb767aa098bb2590d8a270fc15baa8f3b094e1d3bf867f371303e54523451a"
+      },
+      "func_8039BE48": {
+        "address": "0x8039be48",
+        "size": 760,
+        "words_sha256": "46e87468c69f68ce1d954378b23832269d49e27d436da45da0fce2989db16d2d"
+      },
+      "func_8039C140": {
+        "address": "0x8039c140",
+        "size": 1984,
+        "words_sha256": "933eab69fe650ebaea822f5492f515e8053d64cfe47b12ad74a1131d508d7ef5"
+      }
+    }
+  },
+  "installation": "blocked on explicit cross-group ownership migration",
+  "members": {
+    "func_8039A448": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 35,
+        "unresolved": [],
+        "unverified": []
+      },
+      "notes": []
+    },
+    "func_8039B120": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 61,
+        "unresolved": [],
+        "unverified": []
+      },
+      "notes": []
+    },
+    "func_8039B214": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 209,
+        "unresolved": [],
+        "unverified": []
+      },
+      "notes": []
+    },
+    "func_8039B560": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 234,
+        "unresolved": [],
+        "unverified": []
+      },
+      "notes": [
+        "own .rodata verified at 0x803B9594..0x803B95B4"
+      ]
+    },
+    "func_8039BE48": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 190,
+        "unresolved": [],
+        "unverified": []
+      },
+      "notes": [
+        "own .rodata verified at 0x803B95B4..0x803B95B8"
+      ]
+    }
+  },
+  "new_exact_code_bytes": 936,
+  "new_landed_image_bytes": 0,
+  "new_rom_verified_bytes": 0,
+  "preserved_exact_code_bytes": 1980
+}
