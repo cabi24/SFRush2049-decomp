@@ -1,0 +1,21 @@
+{
+ "members": [
+  "wheel_setup_initial",
+  "func_800A4B40"
+ ],
+ "files": [
+  "group.c"
+ ],
+ "keep": [
+  "wheel_setup_initial"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "claims": [
+  "wheel_setup_initial",
+  "func_800A4B40"
+ ],
+ "note": "No stand-ins. func_800A4B40 is the locked empty stub given its real body (the inlined per-slot release predicate): --revert-single func_800A4B40, plus force_internal + prefer_definition (file group.c) in unit_overrides. One disclosed shaping device (`if (type == 64) {}`, see group.c header).",
+ "provenance": "wave 24 (w24f) helper and frame, wave 25 (w25c) priority-tie lever; cloud/work/frontier/w25c/RESULTS.md"
+}
