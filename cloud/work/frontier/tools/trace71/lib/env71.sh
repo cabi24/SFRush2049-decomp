@@ -17,5 +17,5 @@ realp() { (cd "$WD" 2>/dev/null; realpath "$1"); }
 push() { _p=$(realp "$1"); _b=t71/in/$(echo "$_p" | md5sum | cut -c1-8)_$(basename "$_p")
   rsh "mkdir -p ~/$SCR/t71/in" && scp -q "$_p" "$BUILDER:$SCR/$_b" && echo "$_b"; }
 # run remote/tk71.sh on the builder (re-copied each call so it never drifts)
-rtk() { scp -q "$TK"/remote/tk71.sh "$BUILDER:$SCR/t71/tk71.sh" && rsh "SCHED='$SCHED' DIFF='$DIFF' FLAGS='$FLAGS' sh ~/$SCR/t71/tk71.sh ~/$SCR $*"; }
+rtk() { scp -q "$TK"/remote/tk71.sh "$TK"/lib/mdvars.py "$BUILDER:$SCR/t71/" && rsh "SCHED='$SCHED' DIFF='$DIFF' FLAGS='$FLAGS' sh ~/$SCR/t71/tk71.sh ~/$SCR $*"; }
 fetch() { scp -q "$BUILDER:$SCR/t71/run/$1" "$2"; }

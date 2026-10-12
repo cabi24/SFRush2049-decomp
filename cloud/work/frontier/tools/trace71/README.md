@@ -31,6 +31,7 @@ $T/fidelity71.sh                                   # once: traced == stock on al
 |---|---|---|
 | How far off is it? | `obj71.sh SRC FN` | Plain compile, `rows: want W got G; differing rows N` against `tgt/FN.o`. `DIFF=1` prints them. |
 | Who gets which register, and why? | `ctrace71.sh SRC FN` | One line per colouring decision (`sum71.sh`): phase, web, `save`, `nocs`, `tot` (net benefit), `best` (cheapest register cost), `numintf`, decision, final register, and what the web is: `var@OFF/SIZE` (a declared variable: OFF is cfe's virtual-frame offset, locals laid out downward in declaration order with natural alignment, the first `int` at -4; parameters positive), `expr op=0xNN` (an expression web), `addr` (an address kept in a register, e.g. `&D_x`), `const V` (a constant kept in a register). Raw records: `RAW=1`; the `[CDX] calleecost` line gives the procedure's callee-saved cost. `XENV="CUPLOG=1"` adds `[CUP]` lines (below). `XENV="CDX_DETAIL_WEB=N"` lists web N's interference neighbours (`intf … other= assigned=`, the colour each had when N was decided). |
+| Which variable is `var@-36`? | `vars71.sh SRC FN` | FN's declared locals/params from a `-g3` build's `.mdebug` (`lib/mdvars.py`): `OFFSET NAME KIND`; the mdebug value is the same cfe virtual-frame offset. `ctrace71.sh` runs it and appends the name to every `var@` web (an unnamed `var@` is a cfe temporary). |
 | Would it match with these colours? | `force71.sh SRC FN SPEC` | `CDX_FORCE` oracle (`p1:w59=c12,p1:w3=c2,p1:w9=s`), then the row diff. Declined forces print `force_declined … forbidden=` (same decode as 5.3). |
 | Why is this web caller-saved / callee-saved / split? | `XENV=CUPLOG=1 RAW=1 ctrace71.sh` | `[CUP] unit web= reg= bb= run=` per live unit, `[CUP] transit … bb=` for blocks the web only passes through, `[CUP] total … cost=`: the caller-saved cost f_cupcosts computes for each register. |
 | Where do the frame slots come from? | `spill71.sh SRC FN` | `AREA f_readnxtinst … area=N` = cfe's local area; `SPILLTEMP`/`HOME`/`CONFL`/`SPILLWEB web= temp= off=` = the 4-byte home f_spilltemps gives every coloured expression web, reused only between webs that share no block; the `AREA f_spilltemps` steps are the growth. |
@@ -92,6 +93,6 @@ hashes. Not ported (5.3-only addresses): W5D PRE listing/nopre oracle, GETTEMP f
 
 ## Files
 
-`install71.sh`, `fidelity71.sh`, `obj71.sh`, `ctrace71.sh`, `sum71.sh`, `force71.sh`, `spill71.sh`, `ugt71.sh`,
-`as1t71.sh`, `asm71.sh`; `lib/env71.sh` (Pi side); `remote/tk71.sh` (every mode, re-copied each call),
+`install71.sh`, `fidelity71.sh`, `obj71.sh`, `ctrace71.sh`, `sum71.sh`, `vars71.sh`, `force71.sh`, `spill71.sh`, `ugt71.sh`,
+`as1t71.sh`, `asm71.sh`; `lib/env71.sh` (Pi side), `lib/mdvars.py` (copied to the builder with tk71.sh); `remote/tk71.sh` (every mode, re-copied each call),
 `remote/build71.sh`, `remote/fidelity71.sh`; `patches/` as above. Tests: `tests/conveyor/test_trace71.py`.

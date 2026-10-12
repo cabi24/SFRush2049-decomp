@@ -13,6 +13,7 @@
 #   asm    FILE.s FN         assemble an (edited) listing with the stock 7.1 passes, row diff vs tgt/FN.o
 #   spill  SRC FN            SPLOG=1 run: f_spilltemps homes + local-area growth for FN
 #   obj    SRC FN            plain compile (traced passes, tracing off) -> o.o, row diff vs tgt/FN.o
+#   vars   SRC FN            FN's declared locals/params from a -g3 build's .mdebug: `OFFSET NAME KIND` (= var@OFF)
 S=$1; M=$2; SRC=$3; FN=$4; shift 4
 I=$S/t71/ido
 TK=${TK71:-$HOME/rush2049/cache/toolkits/4586d230749de1bc8a64add52ae53db0ffde18a1eee76c8a73f3791fd98e2557}
@@ -52,6 +53,8 @@ as1) red; (cd $D && $I/cc -c $fl $INC -o c.o r.c && $I/cc -c $fl $INC -Wb,-R -o 
 asm) cp "$SRC" $D/x.s; (cd $D && $TK/ido/cc -c -g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul x.s -o asm.o) || exit 1; rdiff $D/asm.o ;;
 spill) red; (cd $D && SPLOG=1 $I/cc -c $fl $INC -o $D/s.o r.c) 2>$D/spill.log >/dev/null
      grep -E " proc=$FN( |\$)" $D/spill.log ;;
+vars) red; fg=$(echo " $fl " | sed 's/ -g[0-3]* / /g'); (cd $D && $I/cc -c -g3 $fg $INC -o $D/g3.o r.c) >$D/g3.log 2>&1 || { cat $D/g3.log; exit 1; }
+     python3 $S/t71/mdvars.py $D/g3.o $FN ;;
 obj) red; (cd $D && $I/cc -c $fl $INC -o $D/o.o r.c) || exit 1; rdiff $D/o.o ;;
 *) sed -n 2,16p $0; exit 2 ;;
 esac

@@ -110,3 +110,22 @@ def test_sum71_decodes_variables_constants_and_forces():
     assert len(out) == 2
     assert "-> s1" in out[0] and "var@-8/4" in out[0] and "tot=6.000000" in out[0]
     assert "-> v1(forced)" in out[1] and "const 8192" in out[1]
+
+
+@pytest.mark.skipif(shutil.which("awk") is None, reason="needs awk")
+def test_sum71_names_variable_webs(tmp_path):
+    names = tmp_path / "vars"
+    names.write_text("-4 state Local\n-8 count Local\n0 configuration Param\n")
+    out = subprocess.run(["sh", str(TK / "sum71.sh"), "-", str(names)], input=TRACE, capture_output=True,
+                         text=True, check=True).stdout.splitlines()
+    assert "var@-8/4 count" in out[0]
+
+
+def test_mdvars_reads_one_procedure_scope():
+    spec = importlib.util.spec_from_file_location("mdvars", TK / "lib" / "mdvars.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    syms = [("Proc", 1, 0, "other"), ("Local", 5, -4, "x"), ("End", 1, 0, "other"),
+            ("Proc", 1, 0, "fn"), ("Param", 5, 0, "a"), ("Block", 1, 0, ""), ("Local", 5, -4, "i"),
+            ("Local", 5, -6, "id"), ("End", 1, 0, ""), ("End", 1, 0, "fn"), ("Local", 5, -4, "after")]
+    assert mod.proc_vars(syms, "fn") == [(0, "a", "Param"), (-4, "i", "Local"), (-6, "id", "Local")]
