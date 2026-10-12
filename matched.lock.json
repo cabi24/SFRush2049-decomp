@@ -1,4 +1,20 @@
 {
+  "cloud/work/frontier/w24b/sources/__scAppendList.c:__scAppendList": {
+    "body_sha256": "39b3b494b593a6bf0fb35e73d0751dd80d418dbaa9896cc1ed18448786bc7d25",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "__scAppendList",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-12"
+  },
+  "cloud/work/frontier/w24b/sources/rmonPrintf.c:rmonPrintf": {
+    "body_sha256": "217b38d8293dc025675405c6fd2a3115beee22bc08ac7a430d959f33734c8af7",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "rmonPrintf",
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-12"
+  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
