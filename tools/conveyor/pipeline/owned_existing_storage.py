@@ -31,6 +31,12 @@ PROFILES={
                  dict(source_sha256='243edadad3d4141b632e8c686af79a6a899899044df29a2d50f093a52a9da4ca',
                       members=('__osDequeueThread','__osTimerServicesInit','__osTimerInterrupt','__osSetTimerIntr',
                                '__osInsertTimer','osGetThreadPri'),
+                      new_members=('__osTimerServicesInit',)),
+                 # Lane w25a: gViTimeAccumHi/gViLastCount/gViRetraceCount -> __osCurrentTime/
+                 # __osBaseCounter/__osViIntrCount (relocations of the same identical timerintr.c compile).
+                 dict(source_sha256='8f53572cc4e15d3100b03cc7d112339d9615ee6ae2dfefc47db9b3ea0b42cdf4',
+                      members=('__osDequeueThread','__osTimerServicesInit','__osTimerInterrupt','__osSetTimerIntr',
+                               '__osInsertTimer','osGetThreadPri'),
                       new_members=('__osTimerServicesInit',)),)),
     'sdk_initialize':dict(tu='src/rom/lib_8a80.c',
         flags='-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm',

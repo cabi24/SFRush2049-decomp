@@ -39,14 +39,14 @@ glabel __osGetId
     /* FDA8 8000F1A8 53290015 */  beql       $t9, $t1, .L8000F200
     /* FDAC 8000F1AC 962A0018 */   lhu       $t2, 0x18($s1)
   .L8000F1B0:
-    /* FDB0 8000F1B0 0C003BF0 */  jal        __osCheckId
+    /* FDB0 8000F1B0 0C003BF0 */  jal        __osCheckPackId
     /* FDB4 8000F1B4 02002025 */   or        $a0, $s0, $zero
     /* FDB8 8000F1B8 2401000A */  addiu      $at, $zero, 0xA
     /* FDBC 8000F1BC 1441000B */  bne        $v0, $at, .L8000F1EC
     /* FDC0 8000F1C0 00401825 */   or        $v1, $v0, $zero
     /* FDC4 8000F1C4 02002025 */  or         $a0, $s0, $zero
     /* FDC8 8000F1C8 27A5004C */  addiu      $a1, $sp, 0x4C
-    /* FDCC 8000F1CC 0C003B1C */  jal        __osRepairId
+    /* FDCC 8000F1CC 0C003B1C */  jal        __osRepairPackId
     /* FDD0 8000F1D0 27A60028 */   addiu     $a2, $sp, 0x28
     /* FDD4 8000F1D4 10400003 */  beqz       $v0, .L8000F1E4
     /* FDD8 8000F1D8 00000000 */   nop
@@ -68,7 +68,7 @@ glabel __osGetId
     /* FE08 8000F208 314B0001 */  andi       $t3, $t2, 0x1
     /* FE0C 8000F20C 5560000D */  bnel       $t3, $zero, .L8000F244
     /* FE10 8000F210 02202025 */   or        $a0, $s1, $zero
-    /* FE14 8000F214 0C003B1C */  jal        __osRepairId
+    /* FE14 8000F214 0C003B1C */  jal        __osRepairPackId
     /* FE18 8000F218 27A60028 */   addiu     $a2, $sp, 0x28
     /* FE1C 8000F21C 10400003 */  beqz       $v0, .L8000F22C
     /* FE20 8000F220 97AC0040 */   lhu       $t4, 0x40($sp)

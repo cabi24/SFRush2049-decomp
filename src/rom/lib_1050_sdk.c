@@ -4,6 +4,20 @@
  * passthrough lines. */
 
 #include "rom_tu.h"
+/* owned .bss of __scMain (__scMain, __scExec): C definitions in place of the companion */
+volatile OSTime __osScRetraceTime;
+OSSched gScheduler;
+s32 D_8002EB6C;
+s16 __osScTaskCount;
+volatile OSTime __osScAudioStart;
+volatile OSTime __osScFrameTime;
+u64 D_8002EB88;
+f32 __osScElapsedTime;
+f32 __osScDeltaTime;
+s32 gViFrameDelta;
+s32 gViAccumTime;
+s32 gViAccumTotal;
+volatile s32 gViLastTick;
 #include "scheduler_declarations.h"
 
 
@@ -55,10 +69,72 @@ void osScAddClient(OSSched *scheduler,OSScClient *client,OSMesgQueue *queue) {
  osSetIntMask(mask);
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scMain.s")
-/* ROM_OWNED_RODATA_BEGIN __scMain */
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scMain.bss.s")
-/* ROM_OWNED_RODATA_END __scMain */
+/* PROMOTED 2026-10-12 — __scMain
+ * Source:   cloud/work/frontier/w24s/sched/__scMain.c (in-repo, locked)
+ * Flags:    -g1 -O1 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w24s/sched/__scMain.c:__scMain (score0); rom_tu.h context: cloud/work/frontier/w25a/ctx53_sched.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern OSViMode gViModeTableBase[];
+extern s32 __osScPendingSwap,__osScFrameTimeResult;
+extern u32 __osScSwapCount;
+extern OSScTask *__osScCurAudioTask;
+extern void osCreateMesgQueue(OSMesgQueue *,OSMesg *,s32);
+extern s32 osRecvMesg(OSMesgQueue *,OSMesg *,s32);
+extern s32 osJamMesg(OSMesgQueue *,OSMesg,s32),osSendMesg(OSMesgQueue *,OSMesg,s32);
+extern void osCreateThread(OSThread *,s32,void (*)(void *),void *,void *,OSPri);
+extern void osStartThread(OSThread *);
+extern void osCreateViManager(OSPri);
+extern void osViSetMode(void *),osViBlack(s32);
+extern u32 osSetIntMask(u32);
+extern void osViSetEvent(OSMesgQueue *,OSMesg,s32);
+extern OSTime osGetTime(void);
+extern void *osViGetCurrentFramebuffer(void),*osViGetNextFramebuffer(void);
+extern void osViSwapBuffer(void *),display_mode_tick(void);
+extern s32 osSpTaskYielded(void *);
+extern void osWritebackDCacheAll(void),osSpTaskLoad(void *),osSpTaskStartGo(void *),osSpTaskYield(void);
+extern s32 osDpSetNextBuffer(void *,u64);
+void osCreateScheduler(OSSched *,void *,OSPri,u8,u8);
+void osScAddClient(OSSched *,OSScClient *,OSMesgQueue *);
+void __scMain(void *);
+void __scSchedule(OSSched *);
+void __scHandleRetrace(OSSched *),__scHandleRSP(OSSched *),__scHandleRDP(OSSched *);
+OSScTask *__scTaskReady(OSSched *,OSScTask *);
+s32 __scExecTask(OSSched *,OSScTask *);
+void __scAppendList(OSSched *,OSScTask *),__scExec(OSSched *,OSScTask *,OSScTask *),__scHandlePreNMI(OSSched *);
+s32 __scScheduleCore(OSSched *,OSScTask **,OSScTask **,s32);
+#define OS_MESG_NOBLOCK 0
+#define OS_MESG_BLOCK 1
+void __scMain(void *arg) {
+ OSMesg message;
+ OSSched *scheduler=(OSSched *)arg;
+ OSScClient *client;
+ while(1) {
+  osRecvMesg(&scheduler->cmdQueue,&message,OS_MESG_BLOCK);
+  switch((s32)message) {
+   case 666:
+    __osScFrameTime=osGetTime();
+    __scHandleRetrace(scheduler);
+    __scSchedule(scheduler);
+    break;
+   case 667:
+    __scHandleRSP(scheduler);
+    break;
+   case 668:
+    __osScFrameTimeResult=(s32)(osGetTime()-__osScRetraceTime);
+    __scHandleRDP(scheduler);
+    break;
+   case 670:
+    __scSchedule(scheduler);
+    break;
+   case 669:
+    for(client=scheduler->clientList;client!=0;client=client->next)
+     osJamMesg(client->msgQueue,(OSMesg)&scheduler->priority,OS_MESG_BLOCK);
+    break;
+  }
+ }
+}
+
 /* PROMOTED 2026-10-02 — __scSchedule
  * Source:   module_campaign_20261002 SDK publication
  * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul
@@ -247,7 +323,39 @@ void __scAppendList(OSSched *scheduler, OSScTask *task)
     task->state = task->flags & 3;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scExec.s")
+/* PROMOTED 2026-10-12 — __scExec
+ * Source:   cloud/work/frontier/w24s/sched/__scExec.c (in-repo, locked)
+ * Flags:    -g1 -O1 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w24s/sched/__scExec.c:__scExec (score0); rom_tu.h context: cloud/work/frontier/w25a/ctx53_sched.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#define OS_MESG_NOBLOCK 0
+#define OS_MESG_BLOCK 1
+void __scExec(OSSched *scheduler,OSScTask *sp,OSScTask *dp) {
+ s32 rv;
+ if(scheduler->curRSPTask) { }
+ if(sp) {
+  if(sp->type==2) {
+   __osScAudioStart=osGetTime();
+   __osScCurAudioTask=sp;
+  } else if(!(sp->state&0x20)) {
+   __osScRetraceTime=__osScFrameTime;
+  }
+  osWritebackDCacheAll();
+  sp->state&=~0x30;
+  osSpTaskLoad(&sp->type);
+  osSpTaskStartGo(&sp->type);
+  scheduler->curRSPTask=sp;
+  if(sp==dp)scheduler->curRDPTask=dp;
+ }
+ if(dp && dp!=sp) {
+  if(!dp->unk38) { }
+  rv=osDpSetNextBuffer(dp->unk38,*(u64 *)dp->unk3C);
+  if(rv) { }
+  scheduler->curRDPTask=dp;
+ }
+}
+
 /* PROMOTED 2026-10-02 — __scHandlePreNMI
  * Source:   module_campaign_20261002 SDK publication
  * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul

@@ -4,16 +4,16 @@ import pytest
 from tools.conveyor.pipeline import targets as T
 
 def test_time_alias_requires_sdk_types_and_both_authoritative_addresses(monkeypatch):
- lines=['lui $t1, %hi(gViTimeAccumLo)','lw $t1, %lo(gViTimeAccumLo)($t1)','lui $t0, %hi(gViTimeAccumHi)','lui $a0, %hi(gViTimeAccumLoOther)']
- addresses={'gViTimeAccumHi':0x80037c50,'gViTimeAccumLo':0x80037c54}
+ lines=['lui $t1, %hi(gViTimeAccumLo)','lw $t1, %lo(gViTimeAccumLo)($t1)','lui $t0, %hi(__osCurrentTime)','lui $a0, %hi(gViTimeAccumLoOther)']
+ addresses={'__osCurrentTime':0x80037c50,'gViTimeAccumLo':0x80037c54}
  monkeypatch.setattr(T,'_resolve_symbol',addresses.get)
  monkeypatch.setattr(T,'_sdk_field_offsets',lambda kind:{'low_word':4})
  result=T._typed_data_field_aliases(lines,'osGetTime')
- assert result[:2]==['lui $t1, %hi(gViTimeAccumHi+0x4)','lw $t1, %lo(gViTimeAccumHi+0x4)($t1)']
+ assert result[:2]==['lui $t1, %hi(__osCurrentTime+0x4)','lw $t1, %lo(__osCurrentTime+0x4)($t1)']
  assert result[2:]==lines[2:]
  addresses['gViTimeAccumLo']+=4
  assert T._typed_data_field_aliases(lines,'osGetTime')==lines
- addresses.pop('gViTimeAccumHi')
+ addresses.pop('__osCurrentTime')
  assert T._typed_data_field_aliases(lines,'osGetTime')==lines
  monkeypatch.setattr(T,'_sdk_field_offsets',lambda kind:None)
  assert T._typed_data_field_aliases(lines,'osGetTime')==lines
@@ -53,7 +53,7 @@ def test_real_sdk_type_and_field_order_guard_rejects_drift(tmp_path,monkeypatch)
  assert T._sdk_field_offsets('task') is None
 
 @pytest.mark.skipif(not all(shutil.which('mips-linux-gnu-'+tool) for tool in ('as','ld','objcopy')),reason='MIPS binutils required')
-@pytest.mark.parametrize('target,base,aliases', [('osGetTime','gViTimeAccumHi',[('gViTimeAccumLo',4)]),('osViModeTableGet','gViModeTempBuffer',[(f'gViModePtr{i}',v) for i,v in enumerate((0x10,0x18,0x20,0x28,0x2c,0x30,0x38))])])
+@pytest.mark.parametrize('target,base,aliases', [('osGetTime','__osCurrentTime',[('gViTimeAccumLo',4)]),('osViModeTableGet','gViModeTempBuffer',[(f'gViModePtr{i}',v) for i,v in enumerate((0x10,0x18,0x20,0x28,0x2c,0x30,0x38))])])
 def test_field_alias_link_preserves_every_unmasked_word(tmp_path,monkeypatch,target,base,aliases):
  address=0x80037c50 if target=='osGetTime' else 0x80036790
  mapping={base:address,**{alias:address+offset for alias,offset in aliases}}

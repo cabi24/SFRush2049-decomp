@@ -231,7 +231,7 @@ source calls these names):
 | 0x8000C11C | `dll_update` | `__osTimerInterrupt` | os/timerintr.c |
 | 0x8000C294 | `dll_reschedule` | `__osSetTimerIntr` | os/timerintr.c |
 
-The same compile also names, by address (not renamed here): the timerintr.c globals
+The same compile also names, by address (renamed by lane w25a, next section): the timerintr.c globals
 `__osCurrentTime` = `gViTimeAccumHi` (0x80037C50), `__osBaseCounter` = `gViLastCount`,
 `__osViIntrCount` = `gViRetraceCount`; and pfsinitpak.c's callees `__osCheckPackId` =
 `__osCheckId` (0x8000EFC0), `__osRepairPackId` = `__osRepairId` (0x8000EC70).
@@ -245,5 +245,34 @@ which keep their current names (the w23g renames above are done):
 `__osContRamReset` = `__osPackRequestData`, `__osContGetStatus` =
 `__osContGetInitData`, `osSiInit` = `__osSiCreateAccessQueue`,
 `__osContBuildRequest` = `__osPfsRequestOneChannel`, `__osContParseResponse` =
-`__osPfsGetOneChannelData`, and `osPfsReadWriteFile_pages` = `__osCheckId`.
-Each needs its own body check before a rename.
+`__osPfsGetOneChannelData`, and `osPfsReadWriteFile_pages` = `__osCheckId` (proven and renamed
+by lane w25a, next section). Each needs its own body check before a rename.
+
+## contpfs.c and timerintr.c data renamed (lane w25a, 2026-10-12)
+
+Same method (`cloud/work/frontier/w25a/rename/{prove.sh,prove.log}`, w24t's `compare.py`):
+ultralib VERSION_J `-D_FINALROM` with the project IDO 5.3. `io/contpfs.c` at lib_f700's `-g0 -O2`:
+`RESULT: IDENTICAL (736 words, 52 relocated fields compared by value, 0 differing words)` at
+0x8000EB00 (`__osSumcalc`, `__osIdCheckSum`, `__osRepairPackId`, `__osCheckPackId`, `__osGetId`,
+`__osCheckId`, `__osPfsRWInode` in ultralib order); `os/timerintr.c` at `-g0 -O1`: IDENTICAL
+(256 words), its relocations naming the globals; `io/pfsinitpak.c` IDENTICAL (196 words), its jal
+targets naming the two pack-ID callees. Independent confirmation: the legacy `src/libultra/os_pfs_*.c`
+already declare `__osCheckId(OSPfs *)` at 0x8000F2D0. Table `cloud/work/frontier/w25a/rename/renames.json`
+(static side only; no game source uses these names):
+
+| vram | old | ultralib name | file |
+|---|---|---|---|
+| 0x8000EC70 | `__osRepairId` | `__osRepairPackId` | io/contpfs.c |
+| 0x8000EFC0 | `__osCheckId` | `__osCheckPackId` | io/contpfs.c |
+| 0x8000F2D0 | `osPfsReadWriteFile_pages` | `__osCheckId` | io/contpfs.c |
+| 0x80037C50 | `gViTimeAccumHi` | `__osCurrentTime` (OSTime, 8 B) | os/timerintr.c |
+| 0x80037C58 | `gViLastCount` | `__osBaseCounter` | os/timerintr.c |
+| 0x80037C5C | `gViRetraceCount` | `__osViIntrCount` | os/timerintr.c |
+
+`gViTimeAccumLo` (0x80037C54) is kept: it is the asm label of `__osCurrentTime`'s low word
+(`targets._typed_data_field_aliases` folds it to `__osCurrentTime+0x4`). Applied with `static_rename
+symbols|source|lock|owned` (src/rom TUs and rom_tu.h only; the legacy src/libultra and src/os sources
+are not built and keep their spellings), nonmatchings git-mv'd and permuted, `make extract`
+(undefined_syms_auto), boot_tail/blob `symbols.json` + SHA256SUMS and `src/blob/blob.ld` permuted in
+place, timer_services profile revision, Conveyor DB `targets_rename rename` (functions only).
+`tools/recomp/identity.json` maps the three functions back to their pre-w25a names.

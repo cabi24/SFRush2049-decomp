@@ -23,7 +23,7 @@ s32 osPfsFileState(OSPfs* pfs, s32 file_no, OSPfsState* state) {
     }
 
     PFS_CHECK_STATUS();
-    ERRCK(osPfsReadWriteFile_pages(pfs));
+    ERRCK(__osCheckId(pfs));
     SET_ACTIVEBANK_TO_ZERO();
 
     ERRCK(__osContRamRead(pfs->queue, pfs->channel, pfs->dir_table + file_no, (u8*)&dir));

@@ -20,7 +20,7 @@ s32 osPfsFindFile(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name, u8
     if (!(pfs->status & PFS_INITIALIZED)) {
         return PFS_ERR_INVALID;
     }
-    ERRCK(osPfsReadWriteFile_pages(pfs));
+    ERRCK(__osCheckId(pfs));
 
     for (j = 0; j < pfs->dir_size; j++) {
         ERRCK(__osContRamRead(pfs->queue, pfs->channel, pfs->dir_table + j, (u8*)&dir));

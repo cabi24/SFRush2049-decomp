@@ -33,13 +33,13 @@ s32 __osIdCheckSum(u16 *ptr, u16 *csum, u16 *icsum) {
     return 0;
 }
 
-/* PROMOTED 2026-10-01 — __osRepairId
+/* PROMOTED 2026-10-01 — __osRepairPackId (ultralib name since w25a; was __osRepairId)
  * Source:   cloud/work/static_C12/__osRepairId.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C12/__osRepairId.c:__osRepairId (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-s32 __osRepairId(OSPfs* pfs, __OSPackId* badid, __OSPackId* newid) {
+s32 __osRepairPackId(OSPfs* pfs, __OSPackId* badid, __OSPackId* newid) {
     s32 ret = 0;
     u8 temp[BLOCKSIZE];
     u8 comp[BLOCKSIZE];
@@ -118,13 +118,13 @@ s32 __osRepairId(OSPfs* pfs, __OSPackId* badid, __OSPackId* newid) {
     return 0;
 }
 
-/* PROMOTED 2026-10-01 — __osCheckId
+/* PROMOTED 2026-10-01 — __osCheckPackId (ultralib name since w25a; was __osCheckId)
  * Source:   cloud/work/static_C9/__osCheckId.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C9/__osCheckId.c:__osCheckId (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-s32 __osCheckId(OSPfs* pfs, __OSPackId* temp) {
+s32 __osCheckPackId(OSPfs* pfs, __OSPackId* temp) {
     u16 index[4];
     s32 ret = 0;
     u16 sum;
@@ -178,10 +178,10 @@ s32 __osGetId(OSPfs* pfs) {
     id = (__OSPackId*)temp;
 
     if (id->checksum != sum || id->inverted_checksum != isum) {
-        ret = __osCheckId(pfs, id);
+        ret = __osCheckPackId(pfs, id);
 
         if (ret == PFS_ERR_ID_FATAL) {
-            ERRCK(__osRepairId(pfs, id, &newid));
+            ERRCK(__osRepairPackId(pfs, id, &newid));
             id = &newid;
         } else if (ret != 0) {
             return ret;
@@ -189,7 +189,7 @@ s32 __osGetId(OSPfs* pfs) {
     }
 
     if ((id->deviceid & 1) == 0) {
-        ERRCK(__osRepairId(pfs, id, &newid));
+        ERRCK(__osRepairPackId(pfs, id, &newid));
         id = &newid;
 
         if ((id->deviceid & 1) == 0) {
@@ -209,13 +209,13 @@ s32 __osGetId(OSPfs* pfs) {
     return 0;
 }
 
-/* PROMOTED 2026-10-01 — osPfsReadWriteFile_pages
+/* PROMOTED 2026-10-01 — __osCheckId (ultralib name since w25a; was osPfsReadWriteFile_pages)
  * Source:   cloud/work/static_C9/osPfsReadWriteFile_pages.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C9/osPfsReadWriteFile_pages.c:osPfsReadWriteFile_pages (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-s32 osPfsReadWriteFile_pages(OSPfs* pfs) {
+s32 __osCheckId(OSPfs* pfs) {
     u8 temp[BLOCKSIZE];
     s32 ret;
 

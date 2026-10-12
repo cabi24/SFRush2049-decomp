@@ -19,7 +19,7 @@ glabel osPfsFreeBlocks
     /* BE7C 8000B27C 1000004D */  b          .L8000B3B4
     /* BE80 8000B280 24020005 */   addiu     $v0, $zero, 0x5
   .L8000B284:
-    /* BE84 8000B284 0C003CB4 */  jal        osPfsReadWriteFile_pages
+    /* BE84 8000B284 0C003CB4 */  jal        __osCheckId
     /* BE88 8000B288 02802025 */   or        $a0, $s4, $zero
     /* BE8C 8000B28C 50400004 */  beql       $v0, $zero, .L8000B2A0
     /* BE90 8000B290 92980064 */   lbu       $t8, 0x64($s4)

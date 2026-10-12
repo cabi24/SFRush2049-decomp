@@ -57,18 +57,20 @@
     },
     {
       "owner": "__scScheduleCore",
+      "co_owners": [
+        "__scMain"
+      ],
       "tu": "src/rom/lib_1050_sdk.c",
       "source": "assets/us/data.bin",
       "container_section": ".data",
       "owner_section": ".rodata",
-      "offset": "0x5cd4",
-      "size": "0x1c",
+      "offset": "0x5cc0",
+      "size": "0x30",
       "container_vram": "0x800277d0",
-      "sha256": "296bdccd2705527c030fc06033b427a2139f83edf56a82bc6cb4985e6460065f",
+      "sha256": "fc92cc366be18841229a18427b5664ddec61f3602273680e97efb43f9918c0e1",
       "passthrough_asm": "asm/us/nonmatchings/rom/lib_1050_sdk/__scScheduleCore.table.s",
       "composed_source": "build/us/assets/us/data.composed.bin",
-      "alignment": 4,
-      "logical_extent": true
+      "comment": "w24s: replaces __scScheduleCore's 4-byte logical-extent row (0x5cd4/0x1c) in __scMain's promotion transaction (promote_batch --replace-slot, front growth). lib_1050_sdk's whole .rodata as C: jtbl_8002D490 (__scMain's switch 666..670, 0x14) + __scScheduleCore's table (0x1c) = 0x30 at 0x8002D490..0x8002D4BF."
     },
     {
       "owner": "osAiSetNextBuffer",
@@ -244,8 +246,8 @@
       "kind": "bss",
       "active": true,
       "tu": "src/rom/lib_7630.c",
-      "source": "cloud/work/frontier/w24t/rename/rebind/lib_7630.c",
-      "source_sha256": "a4256c2ce0748a34d252019f972bc87d92772e3b23847a92a49d4f0679aa1b4d",
+      "source": "cloud/work/frontier/w25a/rename/rebind/lib_7630.c",
+      "source_sha256": "873727988b5d4661d54dba06ebf13c03756ccf6a3b2edc62d5960747f713b53c",
       "tu_before_source": "cloud/work/integration_B18/lib_7630_before.c",
       "tu_before_sha256": "4af80035fc31c01579675a6ac0de620194a6a471b82e09b5997a95d4d10d02cf",
       "passthrough_asm": "asm/us/7630.s",
@@ -315,8 +317,8 @@
       "activation_mode": "existing_tu",
       "active": true,
       "tu": "src/rom/lib_cc50.c",
-      "source": "cloud/work/frontier/w24t/rename/rebind/candidate.c",
-      "source_sha256": "243edadad3d4141b632e8c686af79a6a899899044df29a2d50f093a52a9da4ca",
+      "source": "cloud/work/frontier/w25a/rename/rebind/candidate.c",
+      "source_sha256": "8f53572cc4e15d3100b03cc7d112339d9615ee6ae2dfefc47db9b3ea0b42cdf4",
       "tu_before_source": "cloud/work/integration_B25/lib_cc50_before.c",
       "tu_before_sha256": "4ce0c4afbffea9c6878c254daf114727d45cecdb28708345b98b6e86a5b2b892",
       "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
@@ -385,17 +387,17 @@
           "size": 32
         },
         {
-          "symbol": "gViTimeAccumHi",
+          "symbol": "__osCurrentTime",
           "offset": 32,
           "size": 8
         },
         {
-          "symbol": "gViLastCount",
+          "symbol": "__osBaseCounter",
           "offset": 40,
           "size": 4
         },
         {
-          "symbol": "gViRetraceCount",
+          "symbol": "__osViIntrCount",
           "offset": 44,
           "size": 4
         },
@@ -407,10 +409,10 @@
       ],
       "context_files": [],
       "strict_proof": "cloud/work/integration_B24/strict_verification.json",
-      "context_proof": "cloud/work/frontier/w24x/rebind/timer_services_context_hashes.json",
+      "context_proof": "cloud/work/frontier/w25a/rename/rebind/timer_services_context_hashes.json",
       "linked_proof": "cloud/work/integration_B24/fresh_linked.json",
       "strict_proof_sha256": "281e6c31ba76072c3cbf48efeb3d359ac0c30ca274015ab60e9b7474d8ce0081",
-      "context_proof_sha256": "9b642c4b6fa8a9207c6a7695dd1498a4aafc9de26483cf033a4411936e5446a0",
+      "context_proof_sha256": "a1c285a22cc8c835db939d98228e7e9aad053a3196763d0edc803c9773c41118",
       "linked_proof_sha256": "5e05cd640d543b4e82298f31d8c88aa2e2398f4a939d8f2408a649c16d35b67b",
       "data_slot": {
         "owner": "timer_services_pointer",
@@ -470,10 +472,10 @@
       ],
       "context_files": [],
       "strict_proof": "cloud/work/static_C19/strict_verification.json",
-      "context_proof": "cloud/work/frontier/w24x/rebind/sdk_initialize_context_hashes.json",
+      "context_proof": "cloud/work/frontier/w25a/rename/rebind/sdk_initialize_context_hashes.json",
       "linked_proof": "cloud/work/integration_B26/linked_sections.json",
       "strict_proof_sha256": "7a75c581e841a05d788319153bb5acf9ab88959700bf19e889927005b9b6f608",
-      "context_proof_sha256": "485b7eedb490b2ceb61658aa8d8fb2c5d4842e8e0de9ce1f71685f1de1a97de5",
+      "context_proof_sha256": "3d3ca33a5461530513741a3f7994e99730817460d7061f84287453553d95a085",
       "linked_proof_sha256": "33c33415645bbd09061bcca8f07e435548c6ba04b42d5ad9d880beef5148e3ae",
       "data_slot": {
         "owner": "sdk_initialize_data",

@@ -15,8 +15,8 @@ static OSMesgQueue gViMgrMesgQueue;
 static OSMesg gViMgrMesgBuffer[5];
 static OSIoMesg gViMgrEventDP;
 static OSIoMesg gViMgrEventSP;
-extern u64 gViTimeAccumHi;
-extern u32 gViLastCount, gViRetraceCount;
+extern u64 __osCurrentTime;
+extern u32 __osBaseCounter, __osViIntrCount;
 extern void __osTimerServicesInit(void), __osTimerInterrupt(void), osViInit(void);
 extern s32 osGetThreadPri(void *);
 extern s32 osGetActiveQueue(void); /* Preserve accepted pointer-valued s32 getter. */
@@ -102,18 +102,18 @@ void vi_manager_main(void* arg) {
                     gViMgrRetraceCounter = vc->retraceCount;
                 }
 
-                gViRetraceCount++;
+                __osViIntrCount++;
 
                 if (first) {
                     count = osGetCount();
-                    gViTimeAccumHi = count;
+                    __osCurrentTime = count;
                     first = 0;
                 }
 
-                count = gViLastCount;
-                gViLastCount = osGetCount();
-                count = gViLastCount - count;
-                gViTimeAccumHi = gViTimeAccumHi + count;
+                count = __osBaseCounter;
+                __osBaseCounter = osGetCount();
+                count = __osBaseCounter - count;
+                __osCurrentTime = __osCurrentTime + count;
                 break;
             case OS_MESG_TYPE_COUNTER:
                 __osTimerInterrupt();

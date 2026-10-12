@@ -40,7 +40,7 @@ s32 osPfsInitPak(OSMesgQueue* queue, OSPfs* pfs, int channel) {
     id = (__OSPackId*)temp;
 
     if ((id->checksum != sum) || (id->inverted_checksum != isum)) {
-        ret = __osCheckId(pfs, id);
+        ret = __osCheckPackId(pfs, id);
 
         if (ret != 0) {
             pfs->status |= PFS_ID_BROKEN;
@@ -50,7 +50,7 @@ s32 osPfsInitPak(OSMesgQueue* queue, OSPfs* pfs, int channel) {
     }
 
     if (!(id->deviceid & 1)) {
-        ret = __osRepairId(pfs, id, &newid);
+        ret = __osRepairPackId(pfs, id, &newid);
 
         if (ret != 0) {
             if (ret == PFS_ERR_ID_FATAL) {

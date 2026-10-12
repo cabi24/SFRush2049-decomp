@@ -1,0 +1,26 @@
+{
+ "note": "w25a: the function rows of renames.json (the Conveyor inventory has no data-symbol targets)",
+ "renames": [
+  {
+   "vram": "0x8000EC70",
+   "old": "__osRepairId",
+   "new": "__osRepairPackId",
+   "status": "accepted",
+   "evidence": "contpfs.o .text+0x170 (size 0x350) == ROM 0x8000EC70; ultralib src/io/contpfs.c, -g0 -O2 -mips2 -G 0 -non_shared; pfsinitpak.o jal __osRepairPackId -> 0x8000EC70"
+  },
+  {
+   "vram": "0x8000EFC0",
+   "old": "__osCheckId",
+   "new": "__osCheckPackId",
+   "status": "accepted",
+   "evidence": "contpfs.o .text+0x4C0 (size 0x164) == ROM 0x8000EFC0; pfsinitpak.o jal __osCheckPackId -> 0x8000EFC0"
+  },
+  {
+   "vram": "0x8000F2D0",
+   "old": "osPfsReadWriteFile_pages",
+   "new": "__osCheckId",
+   "status": "accepted",
+   "evidence": "contpfs.o .text+0x7D0 (size 0xD4) == ROM 0x8000F2D0 (between __osGetId and __osPfsRWInode, ultralib definition order); frees the name taken by 0x8000EFC0"
+  }
+ ]
+}

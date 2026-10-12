@@ -172,6 +172,25 @@ manual `rm -rf build/us && make COMPILER=ido -j16 && make test` recovery is no
 longer needed for this case (the first gate after this landed cleans once,
 because no stamp exists yet).
 
+### Object data offsets (OWNED-OFFSETS)
+
+`build/us/syms.ld` assigns every retail-named symbol its address, which
+overrides a ROM TU's own definition, and the owned-slot ASSERTs pin only a
+slot's start and size. So the ROM SHA-1 cannot see a TU whose C-defined data
+comes out in a different order than retail (w24s: IDO 5.3 sorts `.bss` by cfe
+block number mod 256, and an object declared `extern` in a header keeps that
+early number). After `make test`, the same builder gates run
+`python3 -m tools.conveyor.pipeline.owned_offsets check`: for every named
+symbol a ROM TU object defines in `.bss`/`.data`/`.rodata`, the map placement
+plus `st_value` must equal its address in `undefined_syms_auto`/
+`undefined_funcs_auto`/`symbol_addrs` (a `D_XXXXXXXX` name is its own
+address; COMMON symbols are refused). Mismatches print
+`builder gate: OWNED-OFFSETS: MISMATCH ...` and fail the gate; a pass prints
+`OWNED-OFFSETS: OK ...`. Run it by hand after any build (`-v` lists every
+placed section). Research helper for finding a TU shape:
+`cloud/work/frontier/w25a/tools/bssorder.py` predicts a TU's `.bss` order from
+cfe's block numbers.
+
 ## CI-equivalent test hosts
 
 CI (`.github/workflows/verify.yml`) runs `tests/conveyor` and `tests/cloud` with

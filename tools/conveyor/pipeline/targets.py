@@ -647,7 +647,7 @@ def _typed_data_field_aliases(lines, target_id):
     if target_id in ("osGetTime", "__osTimerServicesInit"):   # dll_init before w24t
         offsets = _sdk_field_offsets("time")
         if offsets is not None:
-            relationships = [("gViTimeAccumLo", "gViTimeAccumHi", offsets["low_word"])]
+            relationships = [("gViTimeAccumLo", "__osCurrentTime", offsets["low_word"])]
     elif target_id == "osViModeTableGet":
         offsets = _sdk_field_offsets("task")
         if offsets is not None:

@@ -14,7 +14,7 @@ glabel osPfsChecker
     /* C008 8000B408 AFB10024 */  sw         $s1, 0x24($sp)
     /* C00C 8000B40C AFB00020 */  sw         $s0, 0x20($sp)
     /* C010 8000B410 AFA00074 */  sw         $zero, 0x74($sp)
-    /* C014 8000B414 0C003CB4 */  jal        osPfsReadWriteFile_pages
+    /* C014 8000B414 0C003CB4 */  jal        __osCheckId
     /* C018 8000B418 241E00FE */   addiu     $fp, $zero, 0xFE
     /* C01C 8000B41C 24010002 */  addiu      $at, $zero, 0x2
     /* C020 8000B420 14410004 */  bne        $v0, $at, .L8000B434
