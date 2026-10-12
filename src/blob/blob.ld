@@ -1496,10 +1496,10 @@ SECTIONS
     PROVIDE(__osContRamRead = 0x8000E8D0);
     PROVIDE(__osSumcalc = 0x8000EB00);
     PROVIDE(__osIdCheckSum = 0x8000EB74);
-    PROVIDE(__osRepairId = 0x8000EC70);
-    PROVIDE(__osCheckId = 0x8000EFC0);
+    PROVIDE(__osRepairPackId = 0x8000EC70);
+    PROVIDE(__osCheckPackId = 0x8000EFC0);
     PROVIDE(__osGetId = 0x8000F124);
-    PROVIDE(osPfsReadWriteFile_pages = 0x8000F2D0);
+    PROVIDE(__osCheckId = 0x8000F2D0);
     PROVIDE(__osPfsRWInode = 0x8000F3A4);
     PROVIDE(__osContRamWrite = 0x8000F680);
     PROVIDE(bcmp = 0x8000F8D0);
@@ -2259,10 +2259,10 @@ SECTIONS
     PROVIDE(__osContQueryMsgQ = 0x80037B08);
     PROVIDE(__osContQueryMesg = 0x80037B20);
     PROVIDE(__osMotorPifBuf = 0x80037B30);
-    PROVIDE(gViTimeAccumHi = 0x80037C50);
+    PROVIDE(__osCurrentTime = 0x80037C50);
     PROVIDE(gViTimeAccumLo = 0x80037C54);
-    PROVIDE(gViLastCount = 0x80037C58);
-    PROVIDE(gViRetraceCount = 0x80037C5C);
+    PROVIDE(__osBaseCounter = 0x80037C58);
+    PROVIDE(__osViIntrCount = 0x80037C5C);
     PROVIDE(__osTimerCounter = 0x80037C60);
     PROVIDE(__osPiMesg = 0x80037C70);
     PROVIDE(__osPiMesgQueue = 0x80037C78);

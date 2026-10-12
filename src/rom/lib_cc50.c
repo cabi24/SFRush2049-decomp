@@ -3,9 +3,9 @@
  * Slots are GLOBAL_ASM passthroughs until promoted; do not hand-edit
  * passthrough lines. */
 #include "rom_tu.h"
-OSTime gViTimeAccumHi;
-u32 gViLastCount;
-u32 gViRetraceCount;
+OSTime __osCurrentTime;
+u32 __osBaseCounter;
+u32 __osViIntrCount;
 u32 __osTimerCounter;
 OSTimer __osBaseTimer;
 OSTimer* __osTimerList = &__osBaseTimer;
@@ -30,9 +30,9 @@ void __osDequeueThread(register OSThread** queue, register OSThread* t) {
 }
 
 void __osTimerServicesInit(void) {
-    gViTimeAccumHi = 0;
-    gViLastCount = 0;
-    gViRetraceCount = 0;
+    __osCurrentTime = 0;
+    __osBaseCounter = 0;
+    __osViIntrCount = 0;
     __osTimerList->next = __osTimerList->prev = __osTimerList;
     __osTimerList->interval = __osTimerList->value = 0;
     __osTimerList->mq = NULL;

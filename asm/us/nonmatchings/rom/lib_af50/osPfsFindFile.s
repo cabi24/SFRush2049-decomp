@@ -23,7 +23,7 @@ glabel osPfsFindFile
     /* AF9C 8000A39C 10000051 */  b          .L8000A4E4
     /* AFA0 8000A3A0 24020005 */   addiu     $v0, $zero, 0x5
   .L8000A3A4:
-    /* AFA4 8000A3A4 0C003CB4 */  jal        osPfsReadWriteFile_pages
+    /* AFA4 8000A3A4 0C003CB4 */  jal        __osCheckId
     /* AFA8 8000A3A8 02402025 */   or        $a0, $s2, $zero
     /* AFAC 8000A3AC 50400004 */  beql       $v0, $zero, .L8000A3C0
     /* AFB0 8000A3B0 8E580050 */   lw        $t8, 0x50($s2)

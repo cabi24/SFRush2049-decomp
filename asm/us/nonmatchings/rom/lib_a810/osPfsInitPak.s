@@ -60,7 +60,7 @@ glabel osPfsInitPak
     /* A8E0 80009CE0 512A000A */  beql       $t1, $t2, .L80009D0C
     /* A8E4 80009CE4 97AD0060 */   lhu       $t5, 0x60($sp)
   .L80009CE8:
-    /* A8E8 80009CE8 0C003BF0 */  jal        __osCheckId
+    /* A8E8 80009CE8 0C003BF0 */  jal        __osCheckPackId
     /* A8EC 80009CEC 02002025 */   or        $a0, $s0, $zero
     /* A8F0 80009CF0 50400006 */  beql       $v0, $zero, .L80009D0C
     /* A8F4 80009CF4 97AD0060 */   lhu       $t5, 0x60($sp)
@@ -75,7 +75,7 @@ glabel osPfsInitPak
     /* A914 80009D14 31AE0001 */  andi       $t6, $t5, 0x1
     /* A918 80009D18 55C00016 */  bnel       $t6, $zero, .L80009D74
     /* A91C 80009D1C 8FA40044 */   lw        $a0, 0x44($sp)
-    /* A920 80009D20 0C003B1C */  jal        __osRepairId
+    /* A920 80009D20 0C003B1C */  jal        __osRepairPackId
     /* A924 80009D24 27A60020 */   addiu     $a2, $sp, 0x20
     /* A928 80009D28 10400009 */  beqz       $v0, .L80009D50
     /* A92C 80009D2C 00401825 */   or        $v1, $v0, $zero

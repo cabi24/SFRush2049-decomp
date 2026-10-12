@@ -8,13 +8,13 @@ glabel osGetTime
     /* 7FC0 800073C0 0C00325C */  jal        osGetCount
     /* 7FC4 800073C4 00408025 */   or        $s0, $v0, $zero
     /* 7FC8 800073C8 AFA20034 */  sw         $v0, 0x34($sp)
-    /* 7FCC 800073CC 3C0F8003 */  lui        $t7, %hi(gViLastCount)
-    /* 7FD0 800073D0 8DEF7C58 */  lw         $t7, %lo(gViLastCount)($t7)
+    /* 7FCC 800073CC 3C0F8003 */  lui        $t7, %hi(__osBaseCounter)
+    /* 7FD0 800073D0 8DEF7C58 */  lw         $t7, %lo(__osBaseCounter)($t7)
     /* 7FD4 800073D4 8FAE0034 */  lw         $t6, 0x34($sp)
-    /* 7FD8 800073D8 3C088003 */  lui        $t0, %hi(gViTimeAccumHi)
+    /* 7FD8 800073D8 3C088003 */  lui        $t0, %hi(__osCurrentTime)
     /* 7FDC 800073DC 3C098003 */  lui        $t1, %hi(gViTimeAccumLo)
     /* 7FE0 800073E0 8D297C54 */  lw         $t1, %lo(gViTimeAccumLo)($t1)
-    /* 7FE4 800073E4 8D087C50 */  lw         $t0, %lo(gViTimeAccumHi)($t0)
+    /* 7FE4 800073E4 8D087C50 */  lw         $t0, %lo(__osCurrentTime)($t0)
     /* 7FE8 800073E8 01CFC023 */  subu       $t8, $t6, $t7
     /* 7FEC 800073EC AFB80030 */  sw         $t8, 0x30($sp)
     /* 7FF0 800073F0 02002025 */  or         $a0, $s0, $zero

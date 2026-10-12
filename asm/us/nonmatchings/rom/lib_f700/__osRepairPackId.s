@@ -1,6 +1,6 @@
-nonmatching __osRepairId, 0x350
+nonmatching __osRepairPackId, 0x350
 
-glabel __osRepairId
+glabel __osRepairPackId
     /* F870 8000EC70 27BDFF60 */  addiu      $sp, $sp, -0xA0
     /* F874 8000EC74 AFBF003C */  sw         $ra, 0x3C($sp)
     /* F878 8000EC78 AFB60038 */  sw         $s6, 0x38($sp)
@@ -240,4 +240,4 @@ glabel __osRepairId
     /* FBB4 8000EFB4 8FB60038 */  lw         $s6, 0x38($sp)
     /* FBB8 8000EFB8 03E00008 */  jr         $ra
     /* FBBC 8000EFBC 27BD00A0 */   addiu     $sp, $sp, 0xA0
-endlabel __osRepairId
+endlabel __osRepairPackId

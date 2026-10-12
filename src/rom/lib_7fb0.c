@@ -4,8 +4,8 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-extern OSTime gViTimeAccumHi;
-extern u32 gViLastCount;
+extern OSTime __osCurrentTime;
+extern u32 __osBaseCounter;
 
 /* PROMOTED 2026-10-01 — osGetTime
  * Source:   cloud/work/static_C15/osGetTime.c (in-repo, locked)
@@ -22,8 +22,8 @@ OSTime osGetTime(void) {
 
     saveMask = __osDisableInt();
     tmptime = osGetCount();
-    elapseCount = tmptime - gViLastCount;
-    currentCount = gViTimeAccumHi;
+    elapseCount = tmptime - __osBaseCounter;
+    currentCount = __osCurrentTime;
     __osRestoreInt(saveMask);
     return currentCount + elapseCount;
 }

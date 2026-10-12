@@ -144,7 +144,9 @@ def rewrite_symbols(text, rows):
                 raise RenameError(f"{name} is defined at 0x{addr:08X}, the table says 0x{vram:08X}")
             seen[name] = seen.get(name, 0) + 1
             keep = " ".join(re.findall(r"\b(?:size|rom|segment|align|name_end):\S+", m.group(6)))
-            comment = (f" // type:func {keep + ' ' if keep else ''}libultra {new}"
+            # w25a: data symbols (no `type:func` before) stay untyped.
+            kind = "type:func " if "type:func" in m.group(6) else ""
+            comment = (f" // {kind}{keep + ' ' if keep else ''}libultra {new}"
                        f" (renamed from {name}, docs/SYMBOL_MISATTRIBUTION.md)")
             nl = "\n" if line.endswith("\n") else ""
             out.append(f"{m.group(1)}{new}{m.group(3)}{m.group(4)}{m.group(5)}{comment}{nl}")
@@ -295,6 +297,9 @@ def rebind_owned(doc, names, base, rebind_dir, repo=REPO):
         for key in ("members", "new_members"):
             if key in row:
                 row[key] = [names.get(m, m) for m in row[key]]
+        # w25a: data renames reach the storage block's linker aliases too.
+        for alias in row.get("aliases", []):
+            alias["symbol"] = names.get(alias["symbol"], alias["symbol"])
         prior = row.get("prior_locks")
         if prior:
             new_prior = {}
@@ -370,7 +375,8 @@ LIBULTRA_RENAMES = FRONTIER / "w22g" / "renames.json"
 RENAME_TABLES = (LIBULTRA_RENAMES,
                  FRONTIER / "w23g" / "ll_renames.json",        # ll.c/llcvt.c helpers
                  FRONTIER / "w23g" / "suspect_renames.json",   # w22g's verified leads
-                 FRONTIER / "w24t" / "rename" / "renames.json")  # timer_services + pfsinitpak static
+                 FRONTIER / "w24t" / "rename" / "renames.json",  # timer_services + pfsinitpak static
+                 FRONTIER / "w25a" / "rename" / "renames.json")  # contpfs.c + timerintr.c data
 _libultra_cache = None
 
 

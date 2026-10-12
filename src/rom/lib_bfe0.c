@@ -26,7 +26,7 @@ s32 osPfsChecker(OSPfs* pfs) {
     s32 cl;
     int offset;
 
-    ret = osPfsReadWriteFile_pages(pfs);
+    ret = __osCheckId(pfs);
 
     if (ret == PFS_ERR_NEW_PACK) {
         ret = __osGetId(pfs);

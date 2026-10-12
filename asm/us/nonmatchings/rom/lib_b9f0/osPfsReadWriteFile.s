@@ -44,7 +44,7 @@ glabel osPfsReadWriteFile
     /* BB4C 8000AF4C 100000B4 */  b          .L8000B220
     /* BB50 8000AF50 24020005 */   addiu     $v0, $zero, 0x5
   .L8000AF54:
-    /* BB54 8000AF54 0C003CB4 */  jal        osPfsReadWriteFile_pages
+    /* BB54 8000AF54 0C003CB4 */  jal        __osCheckId
     /* BB58 8000AF58 AFA50174 */   sw        $a1, 0x174($sp)
     /* BB5C 8000AF5C 24010002 */  addiu      $at, $zero, 0x2
     /* BB60 8000AF60 54410004 */  bnel       $v0, $at, .L8000AF74

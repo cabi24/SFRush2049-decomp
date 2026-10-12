@@ -153,7 +153,7 @@ extern OSThread *__osPopThread(OSThread **);
 extern s32 __osPiDeviceBusy(void);
 
 /* Verified static C6 SDK context; historical names retain retail linkage. */
-extern s32 osPfsReadWriteFile_pages(OSPfs *);
+extern s32 __osCheckId(OSPfs *);
 extern s32 gAudioDmaBufferPtr;
 extern u32 gViMgrEventCount;
 extern s8 gSpTaskFlags0, gSpTaskFlags1, gSpTaskFlags2, gSpTaskFlags3, gSpTaskFlags4;
@@ -256,9 +256,9 @@ typedef struct {
 } __OSContRamReadFormat;
 extern u8 __osMotorPifBuf[256];
 extern s32 __osIdCheckSum(u16 *, u16 *, u16 *);
-extern s32 __osCheckId(OSPfs *, __OSPackId *);
+extern s32 __osCheckPackId(OSPfs *, __OSPackId *);
 extern s32 __osGetId(OSPfs *);
-extern s32 __osRepairId(OSPfs *, __OSPackId *, __OSPackId *);
+extern s32 __osRepairPackId(OSPfs *, __OSPackId *, __OSPackId *);
 extern s32 __osPfsCheckRamArea(OSPfs *); /* static in ultralib io/pfsinitpak.c (w24t; was __osTimerInterrupt) */
 extern void __osMakeMotorData(int, OSPifRam *);
 extern u8 __osContAddressCrc(u16);
@@ -324,7 +324,7 @@ extern s32 osPfsReadWriteFile(OSPfs *, s32, u8, int, int, u8 *);
 extern s32 __osPfsDeclearPage(OSPfs *, __OSInode *, int, int *, u8, int *, int *);
 extern s32 __osEPiRawStartDma(OSPiHandle *, s32, u32, void *, u32);
 extern OSPiHandle *__osPiDevList[2];
-#define PFS_CHECK_ID() if(osPfsReadWriteFile_pages(pfs)==PFS_ERR_NEW_PACK) return PFS_ERR_NEW_PACK
+#define PFS_CHECK_ID() if(__osCheckId(pfs)==PFS_ERR_NEW_PACK) return PFS_ERR_NEW_PACK
 #define ROUND_UP_DIVIDE(n,d) (((n)+(d)-1)/(d))
 #define PFS_DATA_FULL 7
 #define PFS_DIR_FULL 8

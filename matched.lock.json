@@ -4001,7 +4001,7 @@
     "verified_at": "2026-10-01"
   },
   "src/rom/lib_7630.c:vi_manager_main": {
-    "body_sha256": "44924b891f1e68fcbcec8f0d5eee0fe659591878107c765645f071aca11ddef9",
+    "body_sha256": "2df7b64c11b2c977ec38b0fabe859c09e4a1a09b7fec9d73d9cf9d8e4b2c0db3",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "storage_owner": "vi_manager",
     "target_id": "vi_manager_main",
@@ -4066,7 +4066,7 @@
     "verified_at": "2026-10-01"
   },
   "src/rom/lib_7fb0.c:osGetTime": {
-    "body_sha256": "6e62332c80015edd06e649ecbd648b9d7d1e6bf19e78ba7193e1818ae34757a0",
+    "body_sha256": "801f82aa6beae48ee8bd79575184c242cea44a2b1b3e4b9161cb998d17b71bd6",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
     "target_id": "osGetTime",
     "toolkit_sha": null,
@@ -4522,7 +4522,7 @@
     "verified_at": "2026-10-01"
   },
   "src/rom/lib_a810.c:osPfsInitPak": {
-    "body_sha256": "573101840e4c56a96d697f9cb7e655477f6c0fbea7b1c438cfa2bada1cb46211",
+    "body_sha256": "3786633ddbecbccdd1bb9eb12c6002a92be5290a1099d38289a59a89863399c6",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osPfsInitPak",
     "toolkit_sha": null,
@@ -4562,7 +4562,7 @@
     "verified_at": "2026-10-11"
   },
   "src/rom/lib_af50.c:osPfsFindFile": {
-    "body_sha256": "cd27b33354df0fe92a70bfddc482597ea0e7aa2a6411496ef778824f1c4364cc",
+    "body_sha256": "d32d4b31e03bad0fa6933d5f20a0467394774709ed8ac582e48f8ed0955579df",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osPfsFindFile",
     "toolkit_sha": null,
@@ -4570,7 +4570,7 @@
     "verified_at": "2026-10-01"
   },
   "src/rom/lib_b120.c:osPfsFileState": {
-    "body_sha256": "6f2faf4791676427bd7bc13925498d40315e7883cb00535bd94b02001a42058c",
+    "body_sha256": "e796affbb95650a1ffd33c5c462ccd44409adf80989c2fab4f8f11f41a934b03",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osPfsFileState",
     "toolkit_sha": null,
@@ -4626,7 +4626,7 @@
     "verified_at": "2026-10-01"
   },
   "src/rom/lib_be40.c:osPfsFreeBlocks": {
-    "body_sha256": "7c52a1cf8ece2e977d1484d2408c74f4c4652d29340dc38f05dd6af1bdda2e94",
+    "body_sha256": "6347f34ebe3da371004e778d50086a43733678b35b908813accc5586d67d98be",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osPfsFreeBlocks",
     "toolkit_sha": null,
@@ -4650,7 +4650,7 @@
     "verified_at": "2026-10-01"
   },
   "src/rom/lib_bfe0.c:osPfsChecker": {
-    "body_sha256": "45aaaa70229502633197cf27e78e52186c49d45faa47d844ed064b1d19b86bf2",
+    "body_sha256": "5241ef0b1589aba38cc73bfc89023cabf69a6fdc507e6546cd5a10626c79ac18",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osPfsChecker",
     "toolkit_sha": null,
@@ -4722,7 +4722,7 @@
     "verified_at": "2026-10-01"
   },
   "src/rom/lib_cc50.c:__osTimerServicesInit": {
-    "body_sha256": "73563dd09b05ad7b87322b8a6a227562640ffc6d6b889024d9957d7007396fbb",
+    "body_sha256": "5750ad37dd3f12b83829218bfdbad486c1f44ecf729ff915ec67065f80f14104",
     "flagset": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
     "raw_word_diff": 0,
     "storage_owner": "timer_services",
@@ -5070,15 +5070,23 @@
     "verified_at": "2026-10-01"
   },
   "src/rom/lib_f700.c:__osCheckId": {
-    "body_sha256": "9c69a3afec34c0c2927ff4dc670330c7e55dc48eead517fa2815ebe683a13371",
+    "body_sha256": "a8f06d329993dfb2d5a5b12da87dbcc8fd9b8c37d709a8ca44b708da04ff1730",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "__osCheckId",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
   },
+  "src/rom/lib_f700.c:__osCheckPackId": {
+    "body_sha256": "7fab02db0bf1f9cec7d2ccccceee11c702039e4cadb82e447d1062131a338eba",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osCheckPackId",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
   "src/rom/lib_f700.c:__osGetId": {
-    "body_sha256": "44b12b6ae807fcf24bb8668ff53bd81f333293fe4a6f10b64c2592dae733794f",
+    "body_sha256": "ca2048bb841dbe7bec006409472f1b80bc0cc9b20c18d18f72eceb2de33795c6",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "__osGetId",
     "toolkit_sha": null,
@@ -5101,10 +5109,10 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-11"
   },
-  "src/rom/lib_f700.c:__osRepairId": {
-    "body_sha256": "9ef3340fea1540bc6e0dbdf38e104d36258844ba2c35fc8717d3227222dba909",
+  "src/rom/lib_f700.c:__osRepairPackId": {
+    "body_sha256": "41a940bcf34e092bd235433b520d1c0aa13d4ae743cf4b48218dfa2b6350bbd3",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "__osRepairId",
+    "target_id": "__osRepairPackId",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
@@ -5113,14 +5121,6 @@
     "body_sha256": "9302c33e8d11ee5aea192f8c55f929a5e39b9be6f3380c51154bbf3535b8792b",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "__osSumcalc",
-    "toolkit_sha": null,
-    "verified": "rom-sha1",
-    "verified_at": "2026-10-01"
-  },
-  "src/rom/lib_f700.c:osPfsReadWriteFile_pages": {
-    "body_sha256": "16a9ab48d4340c7c8f9ea47bca6a7171aa8c212662b0e1bfe9b43ecdfa2d1dca",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osPfsReadWriteFile_pages",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"

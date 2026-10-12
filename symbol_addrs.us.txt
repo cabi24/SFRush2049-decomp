@@ -226,8 +226,8 @@ __osPfsCheckPages = 0x8000B918; // type:func build inode usage bitmap for integr
 __osPfsPageCheck = 0x8000BBF0; // type:func validate inode references, detect duplicates
 __osPfsDeclearPage = 0x8000ACA4; // type:func page allocation helper for file allocation
 __osIdCheckSum = 0x8000EB74; // type:func calculate ID checksum (Adler-like)
-__osRepairId = 0x8000EC70; // type:func repair/rewrite ID to 4 redundant pages
-__osCheckId = 0x8000EFC0; // type:func check ID consistency across 4 pages
+__osRepairPackId = 0x8000EC70; // type:func libultra __osRepairPackId (renamed from __osRepairId, docs/SYMBOL_MISATTRIBUTION.md)
+__osCheckPackId = 0x8000EFC0; // type:func libultra __osCheckPackId (renamed from __osCheckId, docs/SYMBOL_MISATTRIBUTION.md)
 __osGetId = 0x8000F124; // type:func top-level ID retrieval during pak init
 
 // Utility functions (F700.s)
@@ -247,10 +247,10 @@ __osSetCompare = 0x8000FB90; // type:func set CP0 Compare register for timer
 // Timer queue global state
 __osTimerList = 0x8002C3F0; // timer queue head pointer (TimerQueueHead*)
 __osTimerCounter = 0x80037C60; // last timer update timestamp (osGetCount value)
-gViTimeAccumHi = 0x80037C50; // VI time accumulator high word (64-bit time, hi part)
+__osCurrentTime = 0x80037C50; // size:0x8 libultra __osCurrentTime (OSTime; gViTimeAccumLo = its low word) (renamed from gViTimeAccumHi, docs/SYMBOL_MISATTRIBUTION.md)
 gViTimeAccumLo = 0x80037C54; // VI time accumulator low word (64-bit time, lo part)
-gViLastCount = 0x80037C58; // VI last osGetCount value for delta calculation
-gViRetraceCount = 0x80037C5C; // VI retrace tick counter (incremented each retrace)
+__osBaseCounter = 0x80037C58; // libultra __osBaseCounter (renamed from gViLastCount, docs/SYMBOL_MISATTRIBUTION.md)
+__osViIntrCount = 0x80037C5C; // libultra __osViIntrCount (renamed from gViRetraceCount, docs/SYMBOL_MISATTRIBUTION.md)
 
 // Thread state
 __osRunningThread = 0x8002C3E0; // current running thread (OSThread*)
@@ -466,7 +466,7 @@ get_tv_offset = 0x80001DFC; // type:func return TV-type specific offset (0 for P
 apply_display_mode = 0x80001E58; // type:func apply current display mode settings
 
 // Controller pak PFS functions (F700.s) - newly identified
-osPfsReadWriteFile_pages = 0x8000F2D0; // type:func read/write controller pak file pages
+__osCheckId = 0x8000F2D0; // type:func libultra __osCheckId (renamed from osPfsReadWriteFile_pages, docs/SYMBOL_MISATTRIBUTION.md)
 
 // Init/boot functions (2CF0.s) - identified via Codex analysis
 idle_thread_entry = 0x800021A4; // type:func boot idle thread. inits PI manager, creates game thread, loops forever

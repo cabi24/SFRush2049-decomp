@@ -28,7 +28,7 @@ glabel osPfsFileState
     /* B178 8000A578 10000058 */  b          .L8000A6DC
     /* B17C 8000A57C 24020005 */   addiu     $v0, $zero, 0x5
   .L8000A580:
-    /* B180 8000A580 0C003CB4 */  jal        osPfsReadWriteFile_pages
+    /* B180 8000A580 0C003CB4 */  jal        __osCheckId
     /* B184 8000A584 02602025 */   or        $a0, $s3, $zero
     /* B188 8000A588 50400004 */  beql       $v0, $zero, .L8000A59C
     /* B18C 8000A58C 92790065 */   lbu       $t9, 0x65($s3)

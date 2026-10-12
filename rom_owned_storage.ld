@@ -22,9 +22,9 @@ SECTIONS
     }
     ASSERT(SIZEOF(.timer_services_bss) == 0x40, "owned storage size changed: timer_services")
     ASSERT(__osBaseTimer == ADDR(.timer_services_bss) + 0x0, "owned storage alias moved: __osBaseTimer")
-    ASSERT(gViTimeAccumHi == ADDR(.timer_services_bss) + 0x20, "owned storage alias moved: gViTimeAccumHi")
-    ASSERT(gViLastCount == ADDR(.timer_services_bss) + 0x28, "owned storage alias moved: gViLastCount")
-    ASSERT(gViRetraceCount == ADDR(.timer_services_bss) + 0x2c, "owned storage alias moved: gViRetraceCount")
+    ASSERT(__osCurrentTime == ADDR(.timer_services_bss) + 0x20, "owned storage alias moved: __osCurrentTime")
+    ASSERT(__osBaseCounter == ADDR(.timer_services_bss) + 0x28, "owned storage alias moved: __osBaseCounter")
+    ASSERT(__osViIntrCount == ADDR(.timer_services_bss) + 0x2c, "owned storage alias moved: __osViIntrCount")
     ASSERT(__osTimerCounter == ADDR(.timer_services_bss) + 0x30, "owned storage alias moved: __osTimerCounter")
     .sdk_initialize_bss 0x800367d0 (NOLOAD) : SUBALIGN(16)
     {

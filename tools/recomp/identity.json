@@ -1,5 +1,5 @@
 {
- "note": "Recompiler-only names for static (boot segment) libultra functions. N64Recomp replaces libultra functions BY NAME with N64ModernRuntime implementations (reimplemented list) or drops them (ignored list). Lane w21r found 43 static functions whose inventory name was not their identity; lane w22g renamed them in the inventory (symbol_addrs.us.txt, Conveyor DB, locks, src/rom) to their ultralib VERSION_J names (docs/SYMBOL_MISATTRIBUTION.md, cloud/work/frontier/w22g/renames.json), so the recompiler now sees the right names directly. What remains here are the functions whose recompiler name must differ from the canonical inventory name: a canonical name that is on N64Recomp's lists but must stay emitted (or is shimmed, patches.json) gets suffix _rx, and the three PI raw functions keep their pre-J names (osPiRawStartDma, osEPiRawStartDma) that N64Recomp knows, while VERSION_J (and the inventory) spells them __osPiRawStartDma/__osEPiRawStartDma/__osPiRawReadIo. gen_config.py renames these functions in the recompiler's symbol file only. 'inventory' is the current inventory name; evidence is the body (src/rom/*.c or asm/us/nonmatchings/rom/**.s). Lane w23g added the 18 ultralib ll.c/llcvt.c helpers (inventory __ll_mul etc.), mapped back to their former libgcc names so the recompiler sees exactly what it saw before that rename. It also added the 6 functions of cloud/work/frontier/w23g/suspect_renames.json, mapped back to their pre-w23g names for the same reason. Lane w24t added the timer_services trio and pfsinitpak's static (cloud/work/frontier/w24t/rename/renames.json), mapped back to their pre-w24t names.",
+ "note": "Recompiler-only names for static (boot segment) libultra functions. N64Recomp replaces libultra functions BY NAME with N64ModernRuntime implementations (reimplemented list) or drops them (ignored list). Lane w21r found 43 static functions whose inventory name was not their identity; lane w22g renamed them in the inventory (symbol_addrs.us.txt, Conveyor DB, locks, src/rom) to their ultralib VERSION_J names (docs/SYMBOL_MISATTRIBUTION.md, cloud/work/frontier/w22g/renames.json), so the recompiler now sees the right names directly. What remains here are the functions whose recompiler name must differ from the canonical inventory name: a canonical name that is on N64Recomp's lists but must stay emitted (or is shimmed, patches.json) gets suffix _rx, and the three PI raw functions keep their pre-J names (osPiRawStartDma, osEPiRawStartDma) that N64Recomp knows, while VERSION_J (and the inventory) spells them __osPiRawStartDma/__osEPiRawStartDma/__osPiRawReadIo. gen_config.py renames these functions in the recompiler's symbol file only. 'inventory' is the current inventory name; evidence is the body (src/rom/*.c or asm/us/nonmatchings/rom/**.s). Lane w23g added the 18 ultralib ll.c/llcvt.c helpers (inventory __ll_mul etc.), mapped back to their former libgcc names so the recompiler sees exactly what it saw before that rename. It also added the 6 functions of cloud/work/frontier/w23g/suspect_renames.json, mapped back to their pre-w23g names for the same reason. Lane w24t added the timer_services trio and pfsinitpak's static (cloud/work/frontier/w24t/rename/renames.json), mapped back to their pre-w24t names. Lane w25a added contpfs.c's __osRepairPackId/__osCheckPackId/__osCheckId (cloud/work/frontier/w25a/rename/renames.json), mapped back to their pre-w25a names; its three timerintr.c data renames (__osCurrentTime/__osBaseCounter/__osViIntrCount) are data symbols and not listed here.",
  "static": [
   {
    "vram": "0x800086F0",
@@ -273,6 +273,27 @@
    "recomp": "__osPfsGetStatus_rx",
    "confidence": "high",
    "evidence": "(mq, channel): __osPfsRequestOneChannel, SI DMA write+read, __osPfsGetOneChannelData, status bits; called only by PFS/ContRam code: libultra __osPfsGetStatus (inventory name osContStartReadData until w22g)"
+  },
+  {
+   "vram": "0x8000EC70",
+   "inventory": "__osRepairPackId",
+   "recomp": "__osRepairId",
+   "confidence": "high",
+   "evidence": "ultralib src/io/contpfs.c __osRepairPackId (lane w25a inventory rename, byte-identical compile of contpfs.c VERSION_J -g0 -O2; __osRepairId before). Kept under its pre-w25a name for the recompiler so recompiled output is unchanged; giving N64Recomp the ultralib name is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x8000EFC0",
+   "inventory": "__osCheckPackId",
+   "recomp": "__osCheckId",
+   "confidence": "high",
+   "evidence": "ultralib src/io/contpfs.c __osCheckPackId (lane w25a inventory rename, byte-identical compile of contpfs.c VERSION_J -g0 -O2; __osCheckId before). Kept under its pre-w25a name for the recompiler so recompiled output is unchanged; giving N64Recomp the ultralib name is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x8000F2D0",
+   "inventory": "__osCheckId",
+   "recomp": "osPfsReadWriteFile_pages",
+   "confidence": "high",
+   "evidence": "ultralib src/io/contpfs.c __osCheckId (lane w25a inventory rename, byte-identical compile of contpfs.c VERSION_J -g0 -O2; osPfsReadWriteFile_pages before). Kept under its pre-w25a name for the recompiler so recompiled output is unchanged; giving N64Recomp the ultralib name is a recomp behaviour change (recomp lane's call)."
   }
  ]
 }

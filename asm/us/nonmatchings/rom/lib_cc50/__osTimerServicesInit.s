@@ -5,13 +5,13 @@ glabel __osTimerServicesInit
     /* CC94 8000C094 240E0000 */  addiu      $t6, $zero, 0x0
     /* CC98 8000C098 240F0000 */  addiu      $t7, $zero, 0x0
     /* CC9C 8000C09C AC2F7C54 */  sw         $t7, %lo(gViTimeAccumLo)($at)
-    /* CCA0 8000C0A0 AC2E7C50 */  sw         $t6, %lo(gViTimeAccumHi)($at)
-    /* CCA4 8000C0A4 3C018003 */  lui        $at, %hi(gViLastCount)
+    /* CCA0 8000C0A0 AC2E7C50 */  sw         $t6, %lo(__osCurrentTime)($at)
+    /* CCA4 8000C0A4 3C018003 */  lui        $at, %hi(__osBaseCounter)
     /* CCA8 8000C0A8 3C188003 */  lui        $t8, %hi(__osTimerList)
     /* CCAC 8000C0AC 8F18C3F0 */  lw         $t8, %lo(__osTimerList)($t8)
-    /* CCB0 8000C0B0 AC207C58 */  sw         $zero, %lo(gViLastCount)($at)
-    /* CCB4 8000C0B4 3C018003 */  lui        $at, %hi(gViRetraceCount)
-    /* CCB8 8000C0B8 AC207C5C */  sw         $zero, %lo(gViRetraceCount)($at)
+    /* CCB0 8000C0B0 AC207C58 */  sw         $zero, %lo(__osBaseCounter)($at)
+    /* CCB4 8000C0B4 3C018003 */  lui        $at, %hi(__osViIntrCount)
+    /* CCB8 8000C0B8 AC207C5C */  sw         $zero, %lo(__osViIntrCount)($at)
     /* CCBC 8000C0BC 3C198003 */  lui        $t9, %hi(__osTimerList)
     /* CCC0 8000C0C0 AF180004 */  sw         $t8, 0x4($t8)
     /* CCC4 8000C0C4 8F39C3F0 */  lw         $t9, %lo(__osTimerList)($t9)
