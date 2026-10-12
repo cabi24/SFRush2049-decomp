@@ -1,0 +1,54 @@
+{
+  "previous_group": {
+    "memory_areas": {
+      "T": 20,
+      "P": 4,
+      "M": 92
+    },
+    "external": 1,
+    "frame_bytes": 160,
+    "differing_words": 27,
+    "total_words": 241,
+    "complete_object_diagnostic_identical": true
+  },
+  "early_locals": {
+    "memory_areas": {
+      "T": 20,
+      "P": 4,
+      "M": 92
+    },
+    "external": 1,
+    "frame_bytes": 160,
+    "differing_words": 19,
+    "total_words": 241,
+    "complete_object_diagnostic_identical": true
+  },
+  "named_title": {
+    "memory_areas": {
+      "T": 20,
+      "P": 4,
+      "M": 92
+    },
+    "external": 1,
+    "frame_bytes": 160,
+    "differing_words": 3,
+    "total_words": 241,
+    "complete_object_diagnostic_identical": true
+  },
+  "scoped_text": {
+    "memory_areas": {
+      "T": 20,
+      "P": 4,
+      "M": 92
+    },
+    "external": 1,
+    "frame_bytes": 160,
+    "differing_words": 11,
+    "total_words": 241,
+    "complete_object_diagnostic_identical": true
+  },
+  "previous_standalone": {
+    "differing_words": 59,
+    "total_words": 241
+  }
+}

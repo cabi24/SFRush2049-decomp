@@ -26,3 +26,4 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 | static | other remaining boot tail `func_*` (func_800268D0, func_80012D18, func_8001A658, func_80023E9C, func_80012730, func_8001F13C, func_800178B0, func_8001C860 and the rest) | open | | Astra welcome; say so here |
 | tooling | static recompilation Phase 2 (function replacement, rdram view, frame oracle) | coordinator w22r | 2026-10-12 | on rocky; RT64 rendering is being done by the owner's agent on another host |
 | tooling | libultra inventory rename (tools/recomp/identity.json, ~43 names) | coordinator w22g | 2026-10-12 | wave 22 |
+| ovl_a | func_803A6B50 | dot lane3 | 2026-10-12 | Research: 59→3/241, frame160/native144; live buffers unchanged, genuine eligibility context preserved; no new match. |
