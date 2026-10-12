@@ -130,18 +130,20 @@
     },
     {
       "owner": "func_80023BDC",
+      "co_owners": [
+        "func_80023E9C"
+      ],
       "tu": "src/rom/lib_22300.c",
       "source": "assets/us/data.bin",
       "container_section": ".data",
       "owner_section": ".rodata",
       "offset": "0x6180",
-      "size": "0x14",
+      "size": "0x1e0",
       "container_vram": "0x800277d0",
-      "sha256": "60d6380ebbc6fb7dd406b1d06ec8377611531c68045232315776de5aeb2e3e90",
+      "sha256": "8840692c9c1a1a9fe3fbd7f3f1f218599e8f10bffc717d046a662cc508f808cd",
       "passthrough_asm": "asm/us/nonmatchings/rom/lib_22300/func_80023BDC.rodata.s",
       "composed_source": "build/us/assets/us/data.composed.bin",
-      "alignment": 4,
-      "logical_extent": true
+      "comment": "w22b/w22i: replaces func_80023BDC's 4-byte logical-extent row (0x6180/0x14) in func_80023E9C's promotion transaction (promote_batch --replace-slot). lib_22300's whole .rodata: jtbl_8002D950 (func_80023BDC, 0x14) + jtbl_8002D964 (func_80023E9C, 0x1C8, 114 words) + IDO's 4-byte zero pad = 0x1E0, ending 16-aligned at 0x8002DB30."
     },
     {
       "owner": "func_80016E68",

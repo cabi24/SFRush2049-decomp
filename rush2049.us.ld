@@ -682,8 +682,7 @@ SECTIONS
         build/us/src/rom/lib_22300.o(.rodata);
         rom_owned_func_80023BDC_END = ABSOLUTE(.);
         ASSERT(rom_owned_func_80023BDC_START == 0x8002d950, "owned ROM slot address changed");
-        ASSERT(rom_owned_func_80023BDC_END - rom_owned_func_80023BDC_START == 0x14, "owned ROM slot size changed");
-        ASSERT(rom_owned_func_80023BDC_START % 4 == 0, "owned table alignment changed");
+        ASSERT(rom_owned_func_80023BDC_END - rom_owned_func_80023BDC_START == 0x1e0, "owned ROM slot size changed");
         build/us/assets/us/data.o(.data.owned12);
         _binary_assets_us_data_bin_end = ABSOLUTE(.);
         _binary_assets_us_data_bin_size = ABSOLUTE(_binary_assets_us_data_bin_end - _binary_assets_us_data_bin_start);
