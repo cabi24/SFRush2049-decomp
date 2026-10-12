@@ -1,0 +1,85 @@
+{
+  "diagnostic_uopt_sha256": "d7212278a84d3677db83f4d5dc121c40baf614f9b08a2623d4ae71375a9a0996",
+  "facts": {
+    "final": {
+      "whole_object_identical": true,
+      "shape": {
+        "function_bytes": 404,
+        "float_store_offsets": [
+          360,
+          376,
+          392
+        ],
+        "float_load_offsets": [
+          304,
+          308,
+          316,
+          352,
+          364,
+          372,
+          380
+        ],
+        "float_multiply_offsets": [
+          320,
+          348,
+          368,
+          384
+        ]
+      },
+      "selected_trace_lines": 109
+    },
+    "prehoisted_baseline": {
+      "whole_object_identical": true,
+      "shape": {
+        "function_bytes": 384,
+        "float_store_offsets": [
+          336,
+          352,
+          372
+        ],
+        "float_load_offsets": [
+          284,
+          288,
+          296,
+          340,
+          344,
+          356,
+          360
+        ],
+        "float_multiply_offsets": [
+          300,
+          328,
+          348,
+          364
+        ]
+      },
+      "selected_trace_lines": 198
+    },
+    "no_store_boundaries": {
+      "whole_object_identical": true,
+      "shape": {
+        "function_bytes": 396,
+        "float_store_offsets": [
+          368,
+          384
+        ],
+        "float_load_offsets": [
+          304,
+          308,
+          316,
+          328,
+          364,
+          372
+        ],
+        "float_multiply_offsets": [
+          320,
+          348,
+          360,
+          376
+        ]
+      },
+      "selected_trace_lines": 107
+    }
+  },
+  "acceptance_compiler": "unchanged stock IDO5.3"
+}

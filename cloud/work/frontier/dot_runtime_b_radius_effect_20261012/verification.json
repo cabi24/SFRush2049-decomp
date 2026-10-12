@@ -1,0 +1,773 @@
+{
+  "inputs": {
+    "sources": {
+      "group.c": "b9f0cb3618d60e84ad68ab4097498fc2f601db8c88ea98444622b7273cf88735",
+      "group.json": "87415337ff0ec43919fbe3c66fd3aa16415002cba7cfb112946df459d57c6b22",
+      "verify.py": "fd6244abe73ff8e23d07a5db89ca98e91436fdee4194d6b4edf4635623b44783",
+      "trace.py": "9f5826c35d435aef638576ef675ff0c57a2f4789324b064b0fb187f9aa9edfe1",
+      "count_contract.py": "6ca90bc0c9bbadc5d2d146df2a60708502991cfc9920524212ae3945535a1030"
+    },
+    "test": "2ecafb21086e0a2a1d73a46ad59b0e7265f2ba6d6b98584328396ca99a3764e4",
+    "native_extent": {
+      "name": "func_8038D798",
+      "address": "0x8038D798",
+      "size": 736,
+      "evidence": [
+        "jal",
+        "game_jal",
+        "prologue"
+      ]
+    },
+    "native_body_sha256": "ef153feda709bc9a4a8c200237d0bfdb3faaf8c9240cfb553d6b3caff0781f55",
+    "native_literal_sha256": "2a45d7f3e23254b6ef0becc6c1f6495279ee517dc9718bf70f393b968d1d058f",
+    "image_sha256": "b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd",
+    "symbols": {
+      "D_80152818": 2148870168,
+      "D_8014A250": 2148835920,
+      "D_801543CA": 2148877258,
+      "func_800A61B0": 2148164016,
+      "func_8008C768": 2148058984,
+      "func_8038D3A4": 2151207844
+    },
+    "count_contract": {
+      "shared_address": "0x801543ca",
+      "signed_width": 16,
+      "accepted_declaration": "extern volatile s16 D_801543CA;",
+      "accepted_sources": {
+        "func_800EC914": {
+          "path": "src/blob/func_800EC914.c",
+          "source_sha256": "65b68d97388fd50b72410d280c83b41f3e6b196711147105280bff4aace153f7",
+          "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+          "target_sha256": "bf1b2cfc806035000e074eaca697bfbc2dafe7cfea1aa3f5d7b16d9b958ae4be"
+        },
+        "func_80108DA8": {
+          "path": "src/blob/func_80108DA8.c",
+          "source_sha256": "0fe855989e6c8f0276a643dac99c695c7d4822b6788bf906be3239ff9b3e281a",
+          "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+          "target_sha256": "d6688e834c8a3faae7913d9e3727ffb99ed6579581dd767976b2ff2dfb2bb7bf"
+        },
+        "func_80108F40": {
+          "path": "src/blob/func_80108F40.c",
+          "source_sha256": "be37d4babc6bd8fb1d979b0a35cf001e9890f349ed78ea817e435cf465e4d0b3",
+          "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+          "target_sha256": "81f798da7d0622d861ee5f966bf3059e4a4fb6118e9d6b40d1f4589ca3f08af7"
+        },
+        "func_80109A60": {
+          "path": "src/blob/func_80109A60.c",
+          "source_sha256": "8ba6770cd139f7895941bc29d884565b880d0d3f43177f27f86138902945b43e",
+          "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+          "target_sha256": "e37050334aa67600c1074f754a9bbd6cba4eff6c4feb50b6138d9330f937fe8b"
+        },
+        "world_physics_tick": {
+          "path": "src/blob/world_physics_tick.c",
+          "source_sha256": "c5518beb31c0d890c720e33a1c4a7468761f11b59af57bb3a372895c491ac380",
+          "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+          "target_sha256": "e41ed6529d5a3ec5c8df01410c1c2aae00b936b8b8f7a65d4356eb427a3cc77e"
+        }
+      },
+      "image_b_load_offsets": [
+        76,
+        624
+      ],
+      "independent_witness": {
+        "function": "func_800EB90C",
+        "body_sha256": "aa0258a2cdc7b37d234aa6a42eea2b3f562d18537e86ff0f691209a9c89fc18e",
+        "first_read": "0x800eb9b8",
+        "continuing_read": "0x800eb9fc",
+        "backedge": "0x800eb9f8",
+        "destination": "0x800eb9bc",
+        "continuing_path_has_calls_or_stores": false,
+        "opposite_exit_store": "0x800eb9f0"
+      },
+      "qualification_basis": "Reuse of current accepted shared-global view, independently corroborated by native repeated observation.",
+      "limit": "Original declaration spelling and asynchronous/device writer remain unestablished."
+    },
+    "damage_helper_sha256": "bca5c5c0678b994919e5495be737f3c3bdcc6f00f021f93e3238634d0bda3b3e",
+    "callers": [
+      {
+        "population": "blob",
+        "name": "func_8010C974",
+        "sites": [
+          2384
+        ],
+        "body_sha256": "038c6b05ae52d2f07622ac981c8b16d1f9759f447573dd8aca9e7d71b1ef9052"
+      },
+      {
+        "population": "ovl_b",
+        "name": "func_8038E114",
+        "sites": [
+          3020,
+          4040,
+          4072,
+          4268,
+          4296
+        ],
+        "body_sha256": "d1dc2c70973b1780b81b37730a974fc4921b14ab4d368437d899a6fe9f7ef8e0"
+      }
+    ],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "compiler": "ido5.3"
+  },
+  "compiler_sha256": {
+    "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",
+    "cfe": "7033dfb267f39a6e5381c0769f4fc46bbde193cfec771314429d8367ace898f2",
+    "uld": "bc85b7963ac978af5a8c5902d1c3b868c01b09839c4f7e5c36a77960cbf61744",
+    "usplit": "f539dced35b1cfb8385a1431d7a7e0bc5a3223ea4c8347c884a9de850d89ab3b",
+    "umerge": "96ea21c084f4d4765562cd030ba2c9f314f5aefdd180b82d22e1ab5126fca913",
+    "uopt": "4e11956bdce9cac4c2934320cb29c55d1f3d3a0281ee594fafa5ebec88df4dd5",
+    "ugen": "1734564701d39db213d6fe9c8f2cff16b82b28939fb1418348de479b41b7ac72",
+    "as1": "39c9750c189df37d4df0f33e5eddec9d4e743cbecad0326af3dda437826dc695"
+  },
+  "forms": {
+    "matching": {
+      "scorer": {
+        "differing": 0,
+        "total": 184,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "gnu": {
+        "elf_flags": "0x10000001",
+        "function_bytes": 736,
+        "text_section_bytes": 736,
+        "owned_literal_bytes": 8,
+        "rodata_padding": 8,
+        "linked_function_sha256": "ef153feda709bc9a4a8c200237d0bfdb3faaf8c9240cfb553d6b3caff0781f55",
+        "linked_literal_sha256": "2a45d7f3e23254b6ef0becc6c1f6495279ee517dc9718bf70f393b968d1d058f",
+        "differing_offsets": [],
+        "extra_nonzero_words": 0,
+        "relocations": [
+          {
+            "offset": 80,
+            "kind": 5,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 84,
+            "kind": 6,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 4,
+            "kind": 5,
+            "symbol": "D_801543CA"
+          },
+          {
+            "offset": 72,
+            "kind": 6,
+            "symbol": "D_801543CA"
+          },
+          {
+            "offset": 108,
+            "kind": 5,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 112,
+            "kind": 6,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 144,
+            "kind": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "offset": 148,
+            "kind": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "offset": 152,
+            "kind": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "offset": 164,
+            "kind": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "offset": 156,
+            "kind": 5,
+            "symbol": "D_8014A250"
+          },
+          {
+            "offset": 160,
+            "kind": 6,
+            "symbol": "D_8014A250"
+          },
+          {
+            "offset": 440,
+            "kind": 4,
+            "symbol": "func_800A61B0"
+          },
+          {
+            "offset": 452,
+            "kind": 4,
+            "symbol": "func_8008C768"
+          },
+          {
+            "offset": 512,
+            "kind": 4,
+            "symbol": "func_8038D3A4"
+          },
+          {
+            "offset": 556,
+            "kind": 4,
+            "symbol": "func_8038D3A4"
+          },
+          {
+            "offset": 564,
+            "kind": 5,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 572,
+            "kind": 6,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 600,
+            "kind": 4,
+            "symbol": "func_8038D3A4"
+          },
+          {
+            "offset": 608,
+            "kind": 5,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 612,
+            "kind": 6,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 616,
+            "kind": 5,
+            "symbol": "D_801543CA"
+          },
+          {
+            "offset": 620,
+            "kind": 6,
+            "symbol": "D_801543CA"
+          },
+          {
+            "offset": 520,
+            "kind": 5,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 528,
+            "kind": 6,
+            "symbol": "D_80152818"
+          }
+        ],
+        "external_bindings": {
+          "D_80152818": 2148870168,
+          "D_801543CA": 2148877258,
+          "D_8014A250": 2148835920,
+          "func_800A61B0": 2148164016,
+          "func_8008C768": 2148058984,
+          "func_8038D3A4": 2151207844
+        }
+      }
+    },
+    "plain_count_control": {
+      "scorer": {
+        "differing": 125,
+        "total": 184,
+        "unresolved": [],
+        "unverified": [
+          ".rodata+0x0 at +0x88",
+          ".rodata+0x0 at +0x8c",
+          ".rodata+0x4 at +0x90",
+          ".rodata+0x4 at +0x9c"
+        ],
+        "errors": [],
+        "extra_words": 6
+      },
+      "gnu": {
+        "elf_flags": "0x10000000",
+        "function_bytes": 760,
+        "text_section_bytes": 768,
+        "owned_literal_bytes": 8,
+        "rodata_padding": 8,
+        "linked_function_sha256": "cae3f6395abf243d27595eb28ca7822fd04e56de64ea3d28e91c419ebf734175",
+        "linked_literal_sha256": "2a45d7f3e23254b6ef0becc6c1f6495279ee517dc9718bf70f393b968d1d058f",
+        "differing_offsets": [
+          8,
+          12,
+          16,
+          20,
+          24,
+          28,
+          32,
+          36,
+          40,
+          44,
+          48,
+          52,
+          56,
+          60,
+          64,
+          68,
+          72,
+          76,
+          80,
+          84,
+          88,
+          92,
+          96,
+          100,
+          104,
+          108,
+          112,
+          116,
+          120,
+          124,
+          128,
+          132,
+          136,
+          140,
+          148,
+          152,
+          156,
+          160,
+          164,
+          168,
+          172,
+          176,
+          180,
+          184,
+          188,
+          192,
+          196,
+          200,
+          204,
+          208,
+          212,
+          216,
+          220,
+          224,
+          228,
+          232,
+          236,
+          240,
+          244,
+          248,
+          252,
+          332,
+          336,
+          344,
+          352,
+          360,
+          364,
+          368,
+          376,
+          380,
+          472,
+          520,
+          524,
+          528,
+          532,
+          536,
+          540,
+          544,
+          548,
+          552,
+          556,
+          560,
+          564,
+          568,
+          572,
+          576,
+          580,
+          584,
+          588,
+          592,
+          596,
+          600,
+          604,
+          608,
+          612,
+          616,
+          620,
+          624,
+          628,
+          632,
+          636,
+          640,
+          644,
+          648,
+          652,
+          656,
+          660,
+          664,
+          668,
+          672,
+          676,
+          680,
+          684,
+          688,
+          692,
+          696,
+          700,
+          704,
+          708,
+          712,
+          716,
+          720,
+          724,
+          728,
+          732
+        ],
+        "extra_nonzero_words": 6,
+        "relocations": [
+          {
+            "offset": 16,
+            "kind": 5,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 36,
+            "kind": 6,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 4,
+            "kind": 5,
+            "symbol": "D_801543CA"
+          },
+          {
+            "offset": 8,
+            "kind": 6,
+            "symbol": "D_801543CA"
+          },
+          {
+            "offset": 44,
+            "kind": 5,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 52,
+            "kind": 6,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 136,
+            "kind": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "offset": 140,
+            "kind": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "offset": 144,
+            "kind": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "offset": 156,
+            "kind": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "offset": 148,
+            "kind": 5,
+            "symbol": "D_8014A250"
+          },
+          {
+            "offset": 152,
+            "kind": 6,
+            "symbol": "D_8014A250"
+          },
+          {
+            "offset": 360,
+            "kind": 5,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 368,
+            "kind": 6,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 440,
+            "kind": 4,
+            "symbol": "func_800A61B0"
+          },
+          {
+            "offset": 452,
+            "kind": 4,
+            "symbol": "func_8008C768"
+          },
+          {
+            "offset": 512,
+            "kind": 4,
+            "symbol": "func_8038D3A4"
+          },
+          {
+            "offset": 552,
+            "kind": 4,
+            "symbol": "func_8038D3A4"
+          },
+          {
+            "offset": 560,
+            "kind": 5,
+            "symbol": "D_801543CA"
+          },
+          {
+            "offset": 564,
+            "kind": 6,
+            "symbol": "D_801543CA"
+          },
+          {
+            "offset": 568,
+            "kind": 5,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 572,
+            "kind": 6,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 628,
+            "kind": 4,
+            "symbol": "func_8038D3A4"
+          },
+          {
+            "offset": 636,
+            "kind": 5,
+            "symbol": "D_801543CA"
+          },
+          {
+            "offset": 640,
+            "kind": 6,
+            "symbol": "D_801543CA"
+          },
+          {
+            "offset": 644,
+            "kind": 5,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 648,
+            "kind": 6,
+            "symbol": "D_80152818"
+          }
+        ],
+        "external_bindings": {
+          "D_80152818": 2148870168,
+          "D_801543CA": 2148877258,
+          "D_8014A250": 2148835920,
+          "func_800A61B0": 2148164016,
+          "func_8008C768": 2148058984,
+          "func_8038D3A4": 2151207844
+        }
+      }
+    },
+    "old_homes_control": {
+      "scorer": {
+        "differing": 13,
+        "total": 184,
+        "unresolved": [],
+        "unverified": [],
+        "errors": [],
+        "extra_words": 0
+      },
+      "gnu": {
+        "elf_flags": "0x10000001",
+        "function_bytes": 736,
+        "text_section_bytes": 736,
+        "owned_literal_bytes": 8,
+        "rodata_padding": 8,
+        "linked_function_sha256": "7ae745c8f999743a4cbdda8c3b3286a90d5e4c61497d821c10f42faa5a608282",
+        "linked_literal_sha256": "2a45d7f3e23254b6ef0becc6c1f6495279ee517dc9718bf70f393b968d1d058f",
+        "differing_offsets": [
+          168,
+          256,
+          272,
+          276,
+          292,
+          304,
+          308,
+          396,
+          408,
+          424,
+          444,
+          448,
+          456
+        ],
+        "extra_nonzero_words": 0,
+        "relocations": [
+          {
+            "offset": 80,
+            "kind": 5,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 84,
+            "kind": 6,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 4,
+            "kind": 5,
+            "symbol": "D_801543CA"
+          },
+          {
+            "offset": 72,
+            "kind": 6,
+            "symbol": "D_801543CA"
+          },
+          {
+            "offset": 108,
+            "kind": 5,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 112,
+            "kind": 6,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 144,
+            "kind": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "offset": 148,
+            "kind": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "offset": 152,
+            "kind": 5,
+            "symbol": ".rodata"
+          },
+          {
+            "offset": 164,
+            "kind": 6,
+            "symbol": ".rodata"
+          },
+          {
+            "offset": 156,
+            "kind": 5,
+            "symbol": "D_8014A250"
+          },
+          {
+            "offset": 160,
+            "kind": 6,
+            "symbol": "D_8014A250"
+          },
+          {
+            "offset": 440,
+            "kind": 4,
+            "symbol": "func_800A61B0"
+          },
+          {
+            "offset": 452,
+            "kind": 4,
+            "symbol": "func_8008C768"
+          },
+          {
+            "offset": 512,
+            "kind": 4,
+            "symbol": "func_8038D3A4"
+          },
+          {
+            "offset": 556,
+            "kind": 4,
+            "symbol": "func_8038D3A4"
+          },
+          {
+            "offset": 564,
+            "kind": 5,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 572,
+            "kind": 6,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 600,
+            "kind": 4,
+            "symbol": "func_8038D3A4"
+          },
+          {
+            "offset": 608,
+            "kind": 5,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 612,
+            "kind": 6,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 616,
+            "kind": 5,
+            "symbol": "D_801543CA"
+          },
+          {
+            "offset": 620,
+            "kind": 6,
+            "symbol": "D_801543CA"
+          },
+          {
+            "offset": 520,
+            "kind": 5,
+            "symbol": "D_80152818"
+          },
+          {
+            "offset": 528,
+            "kind": 6,
+            "symbol": "D_80152818"
+          }
+        ],
+        "external_bindings": {
+          "D_80152818": 2148870168,
+          "D_801543CA": 2148877258,
+          "D_8014A250": 2148835920,
+          "func_800A61B0": 2148164016,
+          "func_8008C768": 2148058984,
+          "func_8038D3A4": 2151207844
+        }
+      }
+    }
+  },
+  "claims": [
+    "func_8038D798"
+  ],
+  "new_strict_match_bytes": 736,
+  "preserved_or_integrated_bytes": 0,
+  "new_image_bytes": 0,
+  "new_rom_bytes": 0,
+  "accepted_contract_replays": {
+    "func_800EC914": {
+      "differing": 0,
+      "total": 149,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80108DA8": {
+      "differing": 0,
+      "total": 102,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "original_qualifier_spelling": "unproven; existing accepted shared view reused",
+  "owned_data_negative_controls": "missing data and either corrupt literal rejected"
+}
