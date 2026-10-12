@@ -1,4 +1,31 @@
 {
+  "cloud/work/frontier/w26a/sources/inflate_block.c:inflate_block": {
+    "body_sha256": "a1e4133fd815aa9e46b6ea65e6b09e7b353656055b074353ec15416d6aa40e79",
+    "compiler": "ido5.3s",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "inflate_block",
+    "toolkit_sha": "4eb513878d08e3008f365a486a4c3ab3706258dac8a0a1eb81122831e0656f0a",
+    "verified": "score0",
+    "verified_at": "2026-10-12"
+  },
+  "cloud/work/frontier/w26a/sources/inflate_loop.c:inflate_loop": {
+    "body_sha256": "a2e2b5b8f67cda557d50319bfc73498fde39d3eacfbd2d8e71e46da76603add1",
+    "compiler": "ido5.3s",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "inflate_loop",
+    "toolkit_sha": "4eb513878d08e3008f365a486a4c3ab3706258dac8a0a1eb81122831e0656f0a",
+    "verified": "score0",
+    "verified_at": "2026-10-12"
+  },
+  "cloud/work/frontier/w26a/sources/inflate_read_bits.c:inflate_read_bits": {
+    "body_sha256": "4a1ae7f0e52b2606b98912fac979652f95f03ec6094d6e724dd7fd143e1849da",
+    "compiler": "ido5.3s",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "inflate_read_bits",
+    "toolkit_sha": "4eb513878d08e3008f365a486a4c3ab3706258dac8a0a1eb81122831e0656f0a",
+    "verified": "score0",
+    "verified_at": "2026-10-12"
+  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
