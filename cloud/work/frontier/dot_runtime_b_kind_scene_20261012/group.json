@@ -1,0 +1,21 @@
+{
+  "files": [
+    "group.c"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "keep": [
+    "func_80391B00"
+  ],
+  "claims": [
+    "func_80391650",
+    "func_80391864"
+  ],
+  "members": [
+    "func_80391650",
+    "func_80391864"
+  ],
+  "name": "runtime_b_hud_scenes_20261006",
+  "context": [
+    "func_80391B00"
+  ]
+}

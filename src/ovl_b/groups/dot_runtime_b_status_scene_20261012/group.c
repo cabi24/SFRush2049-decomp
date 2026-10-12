@@ -1,10 +1,10 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
-/* Image B: update each player's flag-selected HUD scene object.
- * Strict member: func_80391650 (532 bytes). Genuine func_80391864 and
- * func_80391B00 bodies provide private-ABI context and remain NONMATCH.
+/* Image B: update each player's flag/kind-selected HUD scene objects.
+ * Strict members: inherited func_80391650 (532 bytes), new func_80391864
+ * (668 bytes). Genuine kept func_80391B00 remains NONMATCH context.
  * Native caller passes the unused argument in stack slot zero; both internal
  * helpers return one, ignored by that caller. No invented caller/signature.
- * Point precedes kind/i/status to reproduce point at sp+84 and kind at sp+80
+ * In the inherited flag helper, Point precedes kind/i/status to reproduce point at sp+84 and kind at sp+80
  * in the unchanged 88-byte frame. The status pointer is evaluated after the
  * real flag selection. Direct indexed UV references recover native induction
  * order. These change no storage capacities and add no locals or dead reads.
@@ -18,6 +18,12 @@
  * as in native. Original names and whole-function arcade donor are unknown.
  * Full gameplay, helper implementations and arbitrary invalid inputs are not
  * behaviorally tested. Context limitations are retained in RESULTS.md.
+ */
+/* Image-B kind-scene sibling. Genuine consumed player/status kind carriers keep
+ * native loads separate; each is refreshed after a helper can mutate it.
+ * The direct indexed fields preserve native aliasing and induction order.
+ * Original local spellings are unknown. No padding or capacity change.
+ * Accepted 80391650 and genuine NONMATCH 80391B00 are preserved unchanged.
  */
 typedef signed char s8;
 typedef unsigned char u8;
@@ -120,22 +126,25 @@ s32 func_80391650(void *unused)
 }
 s32 func_80391864(void *unused)
 {
-    s32 i, resource;
     Point point;
+    s32 i, kind, resource;
     Color color;
-    Status *status;
+    s32 player_kind;
     for (i = 0; i < D_80151AD0; i++) {
-        status = &D_80395C00[i];
-        if (status->kind != D_80152818[i].kind) {
-            if (status->handle != -1) {
-                sound_call_minimal(status->handle);
-                status->handle = -1;
+        player_kind = D_80152818[i].kind;
+        kind = D_80395C00[i].kind;
+        if (player_kind != kind) {
+            if (D_80395C00[i].handle != -1) {
+                sound_call_minimal(D_80395C00[i].handle);
+                D_80395C00[i].handle = -1;
+                player_kind = D_80152818[i].kind;
             }
-            status->kind = D_80152818[i].kind;
+            D_80395C00[i].kind = player_kind;
+            kind = D_80395C00[i].kind;
         }
-        if (status->kind != 8 && status->handle == -1) {
+        if (kind != 8 && D_80395C00[i].handle == -1) {
             color.word = D_803942A4.word;
-            switch ((s32)status->kind) {
+            switch (kind) {
             case 0: resource = 216; break;
             case 1: resource = 217; break;
             case 2: resource = 218; break;
@@ -145,19 +154,20 @@ s32 func_80391864(void *unused)
             case 6: resource = 222; break;
             case 7: resource = 223; break;
             }
-            status->handle = func_8008E398(D_801427C0[resource], status->uv, -1, 0x42000);
-            func_8008E06C(status->handle, &color.word);
-            D_8012E700[status->handle].scale = 1.5f;
-            model_data_load(status->handle, 1, 15);
-            model_transform_setup(status->handle, 0, D_80393B74[i]);
+            D_80395C00[i].handle = func_8008E398(D_801427C0[resource], D_80395C00[i].uv, -1, 0x42000);
+            func_8008E06C(D_80395C00[i].handle, &color.word);
+            D_8012E700[D_80395C00[i].handle].scale = 1.5f;
+            model_data_load(D_80395C00[i].handle, 1, 15);
+            model_transform_setup(D_80395C00[i].handle, 0, D_80393B74[i]);
+            kind = D_80395C00[i].kind;
         }
-        if (status->kind == 7) func_8008B32C(D_80150B70[i].uv, status->uv, 0.175f);
-        else func_8008B32C(D_80150B70[i].uv, status->uv, 0.069f);
-        func_80090E9C(D_80116178, status->uv);
+        if (kind == 7) func_8008B32C(D_80150B70[i].uv, D_80395C00[i].uv, 0.175f);
+        else func_8008B32C(D_80150B70[i].uv, D_80395C00[i].uv, 0.069f);
+        func_80090E9C(D_80116178, D_80395C00[i].uv);
         point.x = D_803941D0[D_80151AD0 - 1][i].x;
         point.y = D_803941D0[D_80151AD0 - 1][i].y;
-        if (status->kind == 7) car_lights_render(i, &point.x, &D_80150B70[i], 5.75f, status->position);
-        else car_lights_render(i, &point.x, &D_80150B70[i], 2.0f, status->position);
+        if (D_80395C00[i].kind == 7) car_lights_render(i, &point.x, &D_80150B70[i], 5.75f, D_80395C00[i].position);
+        else car_lights_render(i, &point.x, &D_80150B70[i], 2.0f, D_80395C00[i].position);
     }
     return 1;
 }
