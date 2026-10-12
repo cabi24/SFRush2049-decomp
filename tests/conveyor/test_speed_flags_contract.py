@@ -17,7 +17,7 @@ def test_source_and_target_binding():
     assert r['original_s8_control']['speed_set']['complete_extent_differing_positions']==53
 
 def test_only_the_two_flag_formals_change():
-    old=v.git(v.BASE_SOURCE)
+    old=v.renamed(v.git(v.BASE_SOURCE))   # accepted source, with lane w23g's game-side rename
     assert old.replace(b's8 first,s8 second',b's32 first,s32 second')==(HERE/'group.c').read_bytes()
 
 def test_relocation_extent_and_no_owned_data():

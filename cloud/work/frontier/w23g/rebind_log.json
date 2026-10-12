@@ -539,8 +539,39 @@
   ],
   "rule": "sha256 pins rebound"
  },
+ "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/group.c": {
+  "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
+ "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/host.c": {
+  "rule": "C rename (static_rename.permute_c) + redeclaration drop"
+ },
  "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/verification.json": {
-  "rule": "receipt name strings renamed"
+  "pins": [
+   {
+    "new": "dcf3c3460dc2dc12297b75bcbe48a0f6808d3244dd1c8107d1c30e7cf0f7a757",
+    "old": "e40da7c2f2f3e14ddcdfdc2dd6436abf932641b19bd3828e010e0887f354ed81",
+    "path": "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/group.c"
+   },
+   {
+    "new": "f63af02871112cc3bf652866430957f10c7873f5c610d820fd36e3e646df6c46",
+    "old": "8c73379a210e409c56778c2f000e217cfaca53d33c80d0127cf1fb9fcbba8a8e",
+    "path": "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/host.c"
+   },
+   {
+    "new": "f3fc03864977b77e451a75b63bf7003439a013088d6edfea8ead69bea6513dcd",
+    "old": "76ca7a05c5f5978c50014e0937a982f3590ba586038b13273572aa15ddbbf7a3",
+    "path": "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/verify.py"
+   },
+   {
+    "new": "9ac1688d4e562f51e0374c82096c22b999b35fe539b3be1d5df47d1dc1068407",
+    "old": "fdf6dd05df3124dcfadff3c5f86361586a9611e2366d6c72544f2b92d5ab6d64",
+    "path": "tests/conveyor/test_speed_flags_contract.py"
+   }
+  ],
+  "rule": "sha256 pins rebound"
+ },
+ "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/verify.py": {
+  "rule": "hand edit for the rename (reviewed, lane w23g)"
  },
  "cloud/work/ipa-groups/dot_steady_camera_20261005/group.c": {
   "rule": "C rename (static_rename.permute_c) + redeclaration drop"
@@ -705,5 +736,8 @@
  },
  "tests/cloud/test_task_enqueue_research.py": {
   "rule": "Python identifier tokens naming renamed functions"
+ },
+ "tests/conveyor/test_speed_flags_contract.py": {
+  "rule": "hand edit for the rename (reviewed, lane w23g)"
  }
 }

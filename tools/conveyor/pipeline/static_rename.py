@@ -574,3 +574,37 @@ def _symbols_renamed(old, live, rel):
         return False
     return {names.get(k, k): v for k, v in o["symbols"].items()} == n["symbols"]
 
+
+
+_DECL = re.compile(r"^[ \t]*(?:extern[ \t]+)?[A-Za-z_][\w \t*]*?\b([A-Za-z_]\w*)[ \t]*"
+                   r"\(([^;{}()]|\([^;{}()]*\))*\)[ \t]*;[ \t]*(?:\n|$)", re.M)
+
+
+def _decl_spans(text):
+    code = re.sub(r"/\*.*?\*/|//[^\n]*",
+                  lambda m: re.sub(r"[^\n]", " ", m.group(0)), text, flags=re.S)
+    return [(m.group(1), m.start(), m.end()) for m in _DECL.finditer(code)], code
+
+
+def renamed_game_source(old):
+    """Pre-rename game C text with the rename tables applied, as src/blob was
+    renamed (lane w23g): permute_c, then each renamed single-declarator
+    prototype statement that now redeclares a name declared elsewhere in the
+    file, and that the file does not call, is dropped."""
+    names = libultra_names()
+    new = permute_c(old, names)
+    ospans, _ = _decl_spans(old)
+    nspans, ncode = _decl_spans(new)
+    if [names.get(n, n) for n, _s, _e in ospans] != [n for n, _s, _e in nspans]:
+        return new
+    blank = ncode
+    for _n, s, e in sorted(nspans, key=lambda d: -d[1]):
+        blank = blank[:s] + " " * (e - s) + blank[e:]
+    drop = []
+    for (oname, _os, _oe), (name, s, e) in zip(ospans, nspans):
+        if oname in names and any(d[0] == name and d[1] != s for d in nspans) and \
+                re.search(r"\b" + re.escape(name) + r"\s*\(", blank) is None:
+            drop.append((s, e))
+    for s, e in sorted(drop, reverse=True):
+        new = new[:s] + new[e:]
+    return new

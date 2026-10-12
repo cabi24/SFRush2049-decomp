@@ -176,12 +176,12 @@
   "gnu_total_relocations": 20,
   "inputs": {
     "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/callers.json": "26ddd8ab7aa3f5ec17c080a5002ec8d5de92c8cf6a7791c20596deb290f77723",
-    "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/group.c": "e40da7c2f2f3e14ddcdfdc2dd6436abf932641b19bd3828e010e0887f354ed81",
+    "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/group.c": "dcf3c3460dc2dc12297b75bcbe48a0f6808d3244dd1c8107d1c30e7cf0f7a757",
     "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/group.json": "15e33843ad08fa394ce6b50753c534a5d4711977ae1b3e35e9b7f61b5d47fe6c",
-    "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/host.c": "8c73379a210e409c56778c2f000e217cfaca53d33c80d0127cf1fb9fcbba8a8e",
+    "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/host.c": "f63af02871112cc3bf652866430957f10c7873f5c610d820fd36e3e646df6c46",
     "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/native.py": "1e78747580716e9e9d4ccca42fd0f0dc30ca5fdb165e4ac781d78e8a039b4976",
-    "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/verify.py": "76ca7a05c5f5978c50014e0937a982f3590ba586038b13273572aa15ddbbf7a3",
-    "tests/conveyor/test_speed_flags_contract.py": "fdf6dd05df3124dcfadff3c5f86361586a9611e2366d6c72544f2b92d5ab6d64"
+    "cloud/work/ipa-groups/dot_speed_flags_c9210_20261006/verify.py": "f3fc03864977b77e451a75b63bf7003439a013088d6edfea8ead69bea6513dcd",
+    "tests/conveyor/test_speed_flags_contract.py": "9ac1688d4e562f51e0374c82096c22b999b35fe539b3be1d5df47d1dc1068407"
   },
   "native_body_sha256": {
     "continue_prompt": "69da50505a3618a4384e2ac42143b2926d51c2c198bff6ca6850e824b8a75b9d",

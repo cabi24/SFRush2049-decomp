@@ -97,6 +97,8 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--sources", action="store_true",
                     help="also apply rules 1-2 (rename packet C sources and Python name literals)")
+    ap.add_argument("--accept", action="append", default=[],
+                    help="a file edited by hand for the rename (reviewed); its pins are rebound")
     ap.add_argument("--py", action="store_true",
                     help="apply rule 2 only (Python name literals), not rule 1")
     ap.add_argument("--names", action="store_true",
@@ -150,6 +152,8 @@ def main():
             f.write_text(new, errors="surrogateescape")
             log[rel(f)] = {"rule": "receipt name strings renamed"}
     # 3b: sha pins, to a fixpoint
+    for f in a.accept:
+        log[rel(REPO / f)] = {"rule": "hand edit for the rename (reviewed, lane w23g)"}
     candidates = set(changed_since_base()) | set(log)
     skipped = {}
     for _round in range(10):

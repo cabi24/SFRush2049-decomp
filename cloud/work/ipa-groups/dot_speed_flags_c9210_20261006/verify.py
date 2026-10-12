@@ -18,6 +18,7 @@ HERE=Path(__file__).resolve().parent
 ROOT=HERE.parents[3]
 sys.path.insert(0,str(ROOT))
 from tools.cloud import score
+from tools.conveyor.pipeline import static_rename
 spec=importlib.util.spec_from_file_location('speed_native',HERE/'native.py')
 native=importlib.util.module_from_spec(spec);spec.loader.exec_module(native)
 NAME='speed_set'
@@ -30,6 +31,7 @@ def digest(data): return hashlib.sha256(data).hexdigest()
 def run(args,**kwargs): return subprocess.run(args,check=True,capture_output=True,**kwargs)
 def raw(words): return struct.pack('>%dI'%len(words),*words)
 def git(path): return run(['git','show',BASE+':'+path],cwd=ROOT).stdout
+def renamed(old): return static_rename.renamed_game_source(old.decode()).encode()
 
 def check_recipe(cfg):
     baseline=json.loads(git(BASE_SOURCE.replace('group.c','group.json')))
@@ -182,7 +184,9 @@ def build(work):
     check_recipe(json.loads((HERE/'group.json').read_text()))
     identities=native_identity()
     source=(HERE/'group.c').read_bytes();old=git(BASE_SOURCE)
-    assert old.replace(b's8 first,s8 second',b's32 first,s32 second')==source
+    # The accepted source predates lane w23g's game-side static rename: compare and compile it renamed.
+    cur=renamed(old)
+    assert cur.replace(b's8 first,s8 second',b's32 first,s32 second')==source
     obj=work/'group.o';score.compile_group(HERE,obj)
     rows=gnu_functions(obj);result=summaries(obj)
     assert result[NAME]['elf_extent_bytes']==204 and score.compare(obj,NAME,show=0).accepted()
@@ -214,7 +218,7 @@ def build(work):
     assert len(relocations)==20
     count=sum(int(line.split()[0],16)<204 for line in relocations);assert count==8
     # One causal compiler control, exact accepted source before the two-formal repair.
-    baseline=work/'baseline';baseline.mkdir();(baseline/'group.c').write_bytes(old);(baseline/'group.json').write_bytes((HERE/'group.json').read_bytes())
+    baseline=work/'baseline';baseline.mkdir();(baseline/'group.c').write_bytes(cur);(baseline/'group.json').write_bytes((HERE/'group.json').read_bytes())
     baseobj=work/'baseline.o';score.compile_group(baseline,baseobj);prior=summaries(baseobj)
     assert prior[NAME]['differing']==47 and prior[NAME]['elf_extent_bytes']==228, prior
     assert score.compare(baseobj,'vsync_wait',show=0).accepted()

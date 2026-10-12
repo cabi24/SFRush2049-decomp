@@ -8,7 +8,7 @@ typedef struct OSMesgQueue OSMesgQueue;
 extern s32 D_80142728,D_801427A8;
 extern void *func_80091B00(void);
 extern s32 osRecvMesg(OSMesgQueue *,void *,s32);
-extern s32 osJamMesg(OSMesgQueue *,void *,s32);
+extern s32 osSendMesg(OSMesgQueue *,void *,s32);
 extern f32 D_80124280,D_801247EC;
 extern s8 D_80146115,D_8010FFC0;
 void speed_set(f32 blend,f32 amount,s32 first,s32 second) {
@@ -35,8 +35,8 @@ void speed_set(f32 blend,f32 amount,s32 first,s32 second) {
     }
     M2C_FIELD(temp_v0, s8 *, 0xC) = (s8) first;
     M2C_FIELD(temp_v0, s8 *, 0xD) = (s8) second;
-    osJamMesg((OSMesgQueue *) &D_80142728, NULL, 0);
-    osJamMesg((OSMesgQueue *) &D_801427A8, temp_v0, 0);
+    osSendMesg((OSMesgQueue *) &D_80142728, NULL, 0);
+    osSendMesg((OSMesgQueue *) &D_801427A8, temp_v0, 0);
 }
 
 void speed_mode0_wrapper(f32 blend,f32 amount) { speed_set(blend,amount,1,0); }

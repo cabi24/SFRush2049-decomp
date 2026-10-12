@@ -21,7 +21,7 @@ void *func_80091B00(void) {
     assert(stage++ == 1);
     return record;
 }
-s32 osJamMesg(OSMesgQueue *q, void *msg, s32 block) {
+s32 osSendMesg(OSMesgQueue *q, void *msg, s32 block) {
     int i;
     assert(block == 0);
     if (stage == 2) {
