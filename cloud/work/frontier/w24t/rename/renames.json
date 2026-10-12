@@ -1,0 +1,13 @@
+{
+  "note": "w24t: timer_services (os/timerintr.c) and pfsinitpak.c's static, proven by compiling ultralib VERSION_J _FINALROM with the project IDO 5.3 and the TUs' locked flagsets: whole .text byte-identical to the ROM (relocations compared by value), prove.sh + compare.py, prove.log",
+  "renames": [
+    {"vram": "0x8000C090", "old": "dll_init", "new": "__osTimerServicesInit", "status": "accepted",
+     "evidence": "timerintr.o .text+0x000 (size 0x8C) == ROM 0x8000C090; ultralib src/os/timerintr.c, -g0 -O1 -mips2 -G 0 -non_shared"},
+    {"vram": "0x8000C11C", "old": "dll_update", "new": "__osTimerInterrupt", "status": "accepted",
+     "evidence": "timerintr.o .text+0x08C (size 0x178) == ROM 0x8000C11C"},
+    {"vram": "0x8000C294", "old": "dll_reschedule", "new": "__osSetTimerIntr", "status": "accepted",
+     "evidence": "timerintr.o .text+0x204 (size 0x74) == ROM 0x8000C294; VERSION_J (no tim<468 clamp, which is >= K)"},
+    {"vram": "0x80009E18", "old": "__osTimerInterrupt", "new": "__osPfsCheckRamArea", "status": "accepted",
+     "evidence": "pfsinitpak.o .text+0x208 (the static after osPfsInitPak; osPfsInitPak's jal .text+0x208 -> 0x80009E18) == ROM; ultralib src/io/pfsinitpak.c, -g0 -O2 -mips2 -G 0 -non_shared; frees the name for 0x8000C11C"}
+  ]
+}

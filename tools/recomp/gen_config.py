@@ -1030,13 +1030,16 @@ def main(argv=None):
                         help="Phase 3: also capture every direct callee of the replaced functions (order "
                         "and effect only); pass it to BOTH builds")
     parser.add_argument("--allow-ipa", action="store_true",
-                        help="Phase 4: build a replacement that calls an IDO -O3 IPA-convention callee not "
-                        "described in tools/recomp/ipa_callees.json with plain o32 calls (default: refuse)")
+                        help="build a replacement that calls an IDO -O3 IPA register-parameter callee "
+                        "(default: refuse; detection replace.ipa_hazards); callees described in "
+                        "tools/recomp/ipa_callees.json get register shims / linked bodies, others plain o32 "
+                        "calls (warns). An entry's \"allow_ipa\": true does the same for that entry")
     parser.add_argument("--ipa-table", default=None,
                         help="IPA callee table (default tools/recomp/ipa_callees.json; 'none' = no table: "
-                        "the Phase 3 standalone behaviour, needs --allow-ipa for detected callees)")
+                        "the Phase 3 standalone behaviour, plain o32 calls when allowed)")
     parser.add_argument("--ipa-members", default=None,
-                        help="ipa.py scan output for IPA detection (default build/ipa_members.json)")
+                        help="extra IPA detection from an ipa.py scan (default build/ipa_members.json, plus "
+                        "build/frontier.json; optional, the retail-body detector needs neither)")
     args = parser.parse_args(argv)
     try:
         lists = builtin_lists(args.n64recomp_src)

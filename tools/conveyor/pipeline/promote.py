@@ -15,6 +15,7 @@ import argparse
 import hashlib
 import json
 import os
+import shlex
 import subprocess
 import sys
 import time
@@ -50,6 +51,68 @@ def _git_clean(paths):
     return not out.stdout.strip()
 
 
+# w24t: the builder's gate repo is synced with `rsync -a`, which keeps the Pi's
+# mtimes, so make's timestamp graph can miss a changed owned ROM slot (new or
+# moved `.bss`/constants/reloc slot, rom_owned_data.json edit) and the link
+# fails with "owned ROM slot address changed" on a correct tree (w19c refusal
+# func_80022324, wave 23 x3). The gate therefore hashes the owned-slot inputs
+# ON THE BUILDER, compares the hash with the stamp written by the last
+# successful build of that build dir, and removes build/us when they differ.
+OWNED_STAMP = "build/us/.owned_slot_inputs.sha256"
+GATE_CLEAN_MARK = "GATE-CLEAN:"
+_OWNED_FIXED = ("rom_owned_data.json", "rush2049.us.ld", "rom_owned_storage.ld",
+                "src/rom/storage_overrides.mk", "src/rom/opt_overrides.mk",
+                "rom_compilers.json", "rom_symbol_aliases.ld", "undefined_syms_auto.txt",
+                "splat.us.yaml", "Makefile")
+
+
+def owned_slot_inputs(repo=None):
+    """Repo-relative files whose content decides owned ROM slot placement:
+    the registry and everything generated from it, the passthrough
+    companions, and the text-boundary inputs. ROM TUs (src/rom/*.c) are left
+    out: the gate touches and rebuilds the ones it changes, and a TU edit
+    must not cost a clean build. baserom is immutable."""
+    repo = Path(repo or REPO)
+    paths = set(_OWNED_FIXED)
+    try:
+        paths.update(r["passthrough_asm"] for r in owned_data.rom_slots(repo, check_source=False)
+                     if not r.get("storage_owner") and r.get("passthrough_asm"))
+    except (OSError, ValueError, KeyError):
+        pass  # the registry itself is hashed; a broken one fails the build anyway
+    try:
+        from . import owned_text
+        paths.update(owned_text.dependency_paths(repo))
+    except Exception:  # noqa: BLE001 - same reasoning as above
+        pass
+    return sorted(p for p in paths
+                  if p != "baserom.us.z64" and not (p.startswith("src/rom/") and p.endswith(".c")))
+
+
+def owned_stamp_guard(repo=None):
+    """(pre, post) shell fragments for a gate build run from the builder repo
+    root, chained with `&&` (`cd REPO && PRE && touch ... && make && POST`).
+    `pre` (a brace group, so H/S stay visible to `post`) cleans build/us when the owned-slot inputs differ from the
+    stamp (printing a GATE-CLEAN line); `post` (after a successful make)
+    records the stamp. Missing files simply drop out of the hash."""
+    files = " ".join(shlex.quote(p) for p in owned_slot_inputs(repo))
+    pre = (f"{{ H=$(sha256sum -- {files} 2>/dev/null | sha256sum | cut -c1-64); "
+           f"S={OWNED_STAMP}; "
+           "if [ -d build/us ] && [ \"$(cat $S 2>/dev/null)\" != \"$H\" ]; then "
+           f"echo \"{GATE_CLEAN_MARK} owned-slot inputs changed since the last build "
+           "(stamp $(cat $S 2>/dev/null || echo none) -> $H); rm -rf build/us for a full rebuild\"; "
+           "rm -rf build/us; fi; }")
+    post = "mkdir -p build/us && echo \"$H\" > $S"
+    return pre, post
+
+
+def report_gate_clean(output, log=print):
+    """Surface the builder's GATE-CLEAN line(s) on the caller's log."""
+    lines = [ln for ln in (output or "").splitlines() if GATE_CLEAN_MARK in ln]
+    for ln in lines:
+        log("builder gate: " + ln.strip())
+    return bool(lines)
+
+
 def _have_local_ido():
     cc = REPO / "tools/ido-static-recomp/build/out/cc"
     if not cc.is_file():
@@ -77,10 +140,12 @@ def _build_and_gate(via_builder, tu_rel):
         # the TU so the rebuild is unconditional, and demand the object is
         # actually newer afterwards.
         obj_rel = "build/us/" + str(tu_rel)[:-2] + ".o"
+        pre, post = owned_stamp_guard()
         build = _run(["ssh", BUILDER,
-                      f"cd {BUILDER_REPO} && touch {tu_rel} && "
-                      f"make COMPILER=ido -j16 && make test && "
+                      f"cd {BUILDER_REPO} && {pre} && touch {tu_rel} && "
+                      f"make COMPILER=ido -j16 && {post} && make test && "
                       f"[ {obj_rel} -nt {tu_rel} ]"])
+        report_gate_clean(build.stdout)
     else:
         if not _have_local_ido():
             raise Refusal(
@@ -187,10 +252,11 @@ def run_promotion(spec, source, via_builder=False, override_reason=None,
             # next transaction starts from a verified state (drill finding).
             _run(["rsync", "-az", str(REPO / tu_rel),
                   f"{BUILDER}:{BUILDER_REPO}/{tu_rel}"])
-            _run(["ssh", BUILDER,
-                  f"cd {BUILDER_REPO} && touch {tu_rel} && "
-                  f"make COMPILER=ido -j16 >/dev/null 2>&1 && make test"],
-                 timeout=1800)
+            pre, post = owned_stamp_guard()
+            report_gate_clean(_run(["ssh", BUILDER,
+                                    f"cd {BUILDER_REPO} && {pre} && touch {tu_rel} && "
+                                    f"make COMPILER=ido -j16 >/dev/null 2>&1 && {post} && make test"],
+                                   timeout=1800).stdout)
         with dbmod.tx(conn):
             conn.execute(
                 "INSERT INTO promotion_record (target_id, source_sha, build_ok,"

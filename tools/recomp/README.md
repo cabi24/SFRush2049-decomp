@@ -390,7 +390,7 @@ registers (entity_transform_calc: x,y,z,w in f22-f28), write callee-saved regist
 s1/s2), or exist only as a `jr ra` stub because its body was inlined everywhere (func_80091AF0/AF8, the slot-queue
 lock). A replacement compiled on its own calls them o32 (the w22r frame-706 verdict). The fifth-section design does
 not carry the convention by itself: replace.py compiles one TU, so the callee is never in the unit (proved: the w21h
-draft built with `--ipa-table none --allow-ipa` gives the Phase 3 `FIRST DIFFERING CALL: seq 1410 ... frame 705`).
+draft built with `--ipa-table none` (and `--allow-ipa` or its entry flag) gives the Phase 3 `FIRST DIFFERING CALL: seq 1410 ... frame 705`).
 Now, for each callee the object calls:
 
 - `ipa_callees.json` `params` (+ `prototype`, `clobbers`): replace.py appends a shim (generated MIPS words) to the
@@ -400,10 +400,25 @@ Now, for each callee the object calls:
   callee) does the reverse and also preserves caller-save registers; the entry hook calls it.
 - `body`: the C source (a matched stub body) is compiled with IDO and linked into the replacement, so the call
   reaches the inlined code instead of the retail stub.
-- Detection: `build/ipa_members.json` `callees` (ipa.py) and `build/frontier.json` facts (`register_params`,
-  `unsaved_callee_regs`); a callee detected there but not in the table is refused unless `--allow-ipa` (then
-  called o32, listed as `ipa note` lines). Calls to retail 2-word `jr ra` stubs are listed as notes. The manifest
-  records `ipa_shims` (call sites per callee), `ipa_bodies`, `ipa_inbound`, `ipa_notes`.
+- Detection and refusal (`replace.ipa_hazards`; detector lane w24t): replace.py lists the functions the object
+  reaches by `jal` to an undefined symbol and reads each one's RETAIL body (`tools/recomp/ipa_detect.py`, stdlib:
+  a must-write dataflow over the body, delay slots and branch-likely modelled) for registers read before any
+  write that o32 does not pass in (anything but a0-a3, f12, f14, sp, ra, gp; prologue saves are not reads;
+  caller-save registers count as written after a call). It needs no `build/` inputs, so it works in a fresh
+  clone; `build/ipa_members.json` `callees` (ipa.py) and `build/frontier.json` facts (`register_params`,
+  `unsaved_callee_regs`), when present, add names (`load_ipa_detection`, `--ipa-members`). A callee the source
+  defines itself (w23f's oracle form, static copies) is not a hazard. A replacement calling a detected callee is
+  refused (`ReplaceError`, naming callee and registers) unless `--allow-ipa` or the entry's `"allow_ipa": true`;
+  allowed, it is built with the table's shims / bodies for described callees and plain o32 calls for the rest,
+  with one `replace: WARNING <id>: calls IPA register-parameter callees (...); built with --allow-ipa: ...` line
+  on stderr. A replaced function that is itself detected needs an inbound table entry or `--allow-ipa`. Calls to
+  retail 2-word `jr ra` stubs are listed as notes. The manifest records `ipa_callees` (detected, with reasons),
+  `ipa_shims` (call sites per callee), `ipa_bodies`, `ipa_inbound`, `ipa_notes`; gen_config prints the shim, body
+  and note lines. Calibration of the detector on the game image (2026-10-12): 91 functions flagged,
+  entity_transform_calc = f22,f24,f26,f28, audio_effect_setup = s0, 0 of the 688 standalone locks; 91 of
+  build/ipa_members.json's 94 callees (missed: func_80105EA8 t9, lap_count_select t8, split_time_display t4,
+  which ipa.py reports through paths the dataflow judges written; `--ipa-members` still adds them).
+  `draft_engine_sound_sync` carries `"allow_ipa": true` (it calls entity_transform_calc and audio_effect_setup).
 
 Result (rocky; stock side = capture build): `draft_engine_sound_sync` (w21h best.c, unchanged) is EQUIVALENT on
 race, race_track2, two_player and audio_options, 3599 captured calls identical each (`--probe-callees`: callees'

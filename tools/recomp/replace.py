@@ -45,6 +45,7 @@ import re
 import shlex
 import struct
 import subprocess
+import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
@@ -764,9 +765,13 @@ def capture_entries(selected, repo=REPO):
 #           the object's `jal callee` is retargeted to the shim.
 #   "body": C source -> compiled (IDO) and linked into the replacement, so the
 #           call reaches the inlined body instead of the retail stub.
-# Detection: build/ipa_members.json `callees` (ipa.py scan) and
-# build/frontier.json `unsaved_callee_regs`; a replacement calling an unlisted
-# one is refused unless allow_ipa (gen_config --allow-ipa: plain o32 calls).
+# Detection (ipa_hazards): the RETAIL body of every function the object
+# reaches by jal (tools/recomp/ipa_detect.py, stdlib, w24t; needs no build/
+# inputs), plus build/ipa_members.json `callees` (ipa.py scan) and
+# build/frontier.json facts when present (load_ipa_detection). A replacement
+# calling a detected callee is refused unless allow_ipa (gen_config
+# --allow-ipa, or the entry's "allow_ipa": true); when allowed, callees in the
+# table get their shim / body and the rest plain o32 calls, with a warning.
 
 IPA_TABLE = REPO / "tools" / "recomp" / "ipa_callees.json"
 IPA_MEMBERS = REPO / "build" / "ipa_members.json"
@@ -968,21 +973,25 @@ def retarget_calls(raw, base, target, new, ranges):
     return bytes(buf), n
 
 
+def _ipa_listing(hazards):
+    return "; ".join("%s: %s" % (n, why) for n, why in sorted(hazards.items()))
+
+
 def ipa_plan(rid, entry, called, table, detected, allow_ipa=False):
     """({callee: table entry} to honour, [notes]) for the names the object
-    calls (`called`); refuses a detected callee the table does not cover."""
-    use, notes, refused = {}, [], []
-    for name in sorted(called):
-        if name in table:
-            use[name] = table[name]
-        elif name in detected:
-            if allow_ipa:
-                notes.append("%s: %s (called o32: --allow-ipa)" % (name, detected[name]))
-            else:
-                refused.append("%s (%s)" % (name, detected[name]))
-    if refused:
-        raise ReplaceError(f"replacement {rid}: calls IDO -O3 IPA-convention callee(s) {', '.join(refused)}; "
-                           "describe them in tools/recomp/ipa_callees.json or build with --allow-ipa")
+    calls (`called`). A called name in `detected` (register parameters,
+    unsaved callee-saved writes) is refused unless allow_ipa; when allowed, a
+    table entry (shim / body) is honoured and any other is called o32."""
+    use = {n: table[n] for n in sorted(called) if n in table}
+    hazards = {n: detected[n] for n in sorted(called) if n in detected}
+    if hazards and not allow_ipa:
+        raise ReplaceError(
+            f"replacement {rid}: calls IPA register-parameter callees ({_ipa_listing(hazards)}); a standalone "
+            "build passes them o32 arguments, so the oracle would judge the harness. Pass --allow-ipa "
+            "(entry \"allow_ipa\": true) to build it: callees described in tools/recomp/ipa_callees.json get "
+            "register shims / linked bodies, any other is called o32 (or build an oracle source with static "
+            "copies of those callees, w23f)")
+    notes = ["%s: %s (called o32: --allow-ipa)" % (n, why) for n, why in hazards.items() if n not in table]
     fn = entry["function"]
     if fn in detected and fn not in table and not allow_ipa:
         raise ReplaceError(f"replacement {rid}: {fn} itself has an IPA convention ({detected[fn]}); "
@@ -992,9 +1001,36 @@ def ipa_plan(rid, entry, called, table, detected, allow_ipa=False):
 
 # ------------------------------------------------------------------ build
 
+def ipa_hazards(elf, table, functions, images, detected=None):
+    """{callee: why} for functions this object calls (jal to an undefined
+    symbol) that take IDO -O3 register parameters: read from the retail body
+    (ipa_detect, no build/ inputs needed) plus any `detected` table (e.g. an
+    ipa.py scan). A callee the object defines itself (a static copy, w23f's
+    oracle form) is not a hazard."""
+    here = str(Path(__file__).resolve().parent)
+    if here not in sys.path:
+        sys.path.insert(0, here)
+    import ipa_detect
+    callees = ipa_detect.called_functions(elf)
+    out = ipa_detect.detect(callees, table, functions, images)
+    for name in callees:
+        if name in (detected or {}) and name not in out:
+            out[name] = detected[name]
+    return out
+
+
 def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=REPO, run=subprocess.run,
-          images=None, ipa_table=None, ipa_detected=None, allow_ipa=False):
+          images=None, ipa_table=None, ipa_detected=None, allow_ipa=False, warn=None):
     """Compile and link the selected replacements.
+
+    A body that calls a callee with IPA register parameters (ipa_hazards:
+    the retail body, plus `ipa_detected`) is refused: the standalone build
+    passes o32 arguments and the retail callee reads other registers
+    (w23f/w23r: $f22-$f28 of entity_transform_calc), so the frame oracle's
+    verdict would be about the harness. `allow_ipa` (gen_config --allow-ipa)
+    or the entry's "allow_ipa": true builds it with a warning (`warn`,
+    default stderr): callees in `ipa_table` through their register shim /
+    linked body, the rest with plain o32 calls; recorded as "ipa_callees".
 
     toolkits = {"ido5.3": DIR, "ido7.1": DIR} (each with ido/cc). Returns
     {"image": {"vram", "bytes"} or None, "functions": [{name, vram, size}],
@@ -1054,7 +1090,19 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
         obj, elf = compile_one(src, rid, text)
         table = address_table(functions, symbols, e["population"])
         undef = undefined_symbols(elf)
-        use, ipa_notes = ipa_plan(rid, e, set(undef), ipa_table, ipa_detected, allow_ipa)
+        hazards = ipa_hazards(elf, table, functions, images, ipa_detected)
+        plan_detected = dict(hazards)
+        if e["function"] in ipa_detected:
+            plan_detected[e["function"]] = ipa_detected[e["function"]]
+        allowed = bool(allow_ipa or e.get("allow_ipa"))
+        use, ipa_notes = ipa_plan(rid, e, set(undef), ipa_table, plan_detected, allowed)
+        if hazards:
+            how = [("register shims", [n for n in sorted(hazards) if "params" in use.get(n, {})]),
+                   ("linked bodies", [n for n in sorted(hazards) if "body" in use.get(n, {})]),
+                   ("o32 calls", [n for n in sorted(hazards) if n not in use])]
+            (warn or (lambda m: print(m, file=sys.stderr)))(
+                f"replace: WARNING {rid}: calls IPA register-parameter callees ({_ipa_listing(hazards)}); "
+                "built with --allow-ipa: " + ", ".join("%s for %s" % (k, ",".join(v)) for k, v in how if v))
         extra = []          # (name, obj, elf): inlined-stub bodies linked into this chunk
         for name, ie in sorted(use.items()):
             if "body" in ie:
@@ -1080,7 +1128,7 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
         shims = {n: ie for n, ie in use.items() if "params" in ie}
         inbound = ipa_table.get(e["function"]) if e["function"] in ipa_table and \
             "params" in ipa_table[e["function"]] else None
-        objects.append((rid, dict(e, _text=text, _ipa_notes=ipa_notes, _shims=shims, _inbound=inbound,
+        objects.append((rid, dict(e, _text=text, _ipa_notes=ipa_notes, _shims=shims, _inbound=inbound, _ipa=hazards,
                                   _bodies=[n for n, _o, _e in extra]), obj, elf, res, extra))
     # Each object is linked on its own at the next aligned address (no name can
     # collide between replacements; static helpers belong to their object),
@@ -1197,6 +1245,7 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
                          "statics_private": sorted("%s+0x%X%s" % (k[0], k[1], " " + n if n else "")
                                                    for k, n in unbound),
                          "static_sites_patched": patched, "zero_loads_nopped": zero_loads,
+                         "ipa_callees": dict(sorted(e["_ipa"].items())),
                          "capture": capture_layout(e["_text"], e["function"], e.get("prototype"),
                                                     e.get("capture_args"), e.get("capture_ret", "v0"))})
         raw = raw + b"\0" * (-len(raw) % 16)

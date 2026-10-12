@@ -96,7 +96,7 @@ def test_standalone_mapping_and_body_hash_match_canonical_authority():
  assert owned_text.VRAM_DELTA==layout.VRAM_DELTA
  expected,_=layout.parse_subsegments(ROOT/'splat.us.yaml')
  assert owned_text._subsegments(ROOT/'splat.us.yaml')==[{k:r[k] for k in ('off','type','name')} for r in expected]
- for source,name in ((ROOT/'cloud/work/static_C14/osDpWait.c','osDpWait'),(ROOT/'src/rom/lib_cc50.c','dll_update')):
+ for source,name in ((ROOT/'cloud/work/static_C14/osDpWait.c','osDpWait'),(ROOT/'src/rom/lib_cc50.c','__osTimerInterrupt')):
   assert owned_text.body_sha(source,name)==lock.body_sha(source,name)
  samples=['void f(){ /* comment */ return "a  b"; }', "void f(){char c='\\n';// comment\nreturn;}"]
  for sample in samples:assert owned_text.normalize_body(sample)==lock.normalize_body(sample)

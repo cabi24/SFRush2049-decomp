@@ -1,6 +1,6 @@
-nonmatching __osTimerInterrupt, 0x104
+nonmatching __osPfsCheckRamArea, 0x104
 
-glabel __osTimerInterrupt
+glabel __osPfsCheckRamArea
     /* AA18 80009E18 27BDFF68 */  addiu      $sp, $sp, -0x98
     /* AA1C 80009E1C AFBF0024 */  sw         $ra, 0x24($sp)
     /* AA20 80009E20 AFB00020 */  sw         $s0, 0x20($sp)
@@ -74,5 +74,5 @@ glabel __osTimerInterrupt
     /* AB10 80009F10 27BD0098 */  addiu      $sp, $sp, 0x98
     /* AB14 80009F14 03E00008 */  jr         $ra
     /* AB18 80009F18 00000000 */   nop
-endlabel __osTimerInterrupt
+endlabel __osPfsCheckRamArea
     /* AB1C 80009F1C 00000000 */  nop

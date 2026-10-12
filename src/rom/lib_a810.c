@@ -32,7 +32,7 @@ s32 osPfsInitPak(OSMesgQueue* queue, OSPfs* pfs, int channel) {
     pfs->channel = channel;
     pfs->status = 0;
 
-    ERRCK(__osTimerInterrupt(pfs));
+    ERRCK(__osPfsCheckRamArea(pfs));
     ERRCK(SELECT_BANK(pfs, 0));
     ERRCK(__osContRamRead(pfs->queue, pfs->channel, PFS_ID_0AREA, temp));
 
@@ -84,13 +84,13 @@ s32 osPfsInitPak(OSMesgQueue* queue, OSPfs* pfs, int channel) {
     return ret;
 }
 
-/* PROMOTED 2026-10-01 — __osTimerInterrupt
+/* PROMOTED 2026-10-01 — __osPfsCheckRamArea (ultralib name since w24t; was __osTimerInterrupt)
  * Source:   cloud/work/static_C10/__osTimerInterrupt.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C10/__osTimerInterrupt.c:__osTimerInterrupt (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-s32 __osTimerInterrupt(OSPfs* pfs) {
+s32 __osPfsCheckRamArea(OSPfs* pfs) {
     s32 i;
     s32 ret = 0;
     u8 temp1[BLOCKSIZE];

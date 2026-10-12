@@ -369,7 +369,8 @@ FRONTIER = REPO / "cloud" / "work" / "frontier"
 LIBULTRA_RENAMES = FRONTIER / "w22g" / "renames.json"
 RENAME_TABLES = (LIBULTRA_RENAMES,
                  FRONTIER / "w23g" / "ll_renames.json",        # ll.c/llcvt.c helpers
-                 FRONTIER / "w23g" / "suspect_renames.json")   # w22g's verified leads
+                 FRONTIER / "w23g" / "suspect_renames.json",   # w22g's verified leads
+                 FRONTIER / "w24t" / "rename" / "renames.json")  # timer_services + pfsinitpak static
 _libultra_cache = None
 
 

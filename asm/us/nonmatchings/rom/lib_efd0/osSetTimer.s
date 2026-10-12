@@ -50,7 +50,7 @@ glabel osSetTimer
     /* F07C 8000E47C 15690004 */  bne        $t3, $t1, .L8000E490
     /* F080 8000E480 00000000 */   nop
     /* F084 8000E484 8FA40018 */  lw         $a0, 0x18($sp)
-    /* F088 8000E488 0C0030A5 */  jal        dll_reschedule
+    /* F088 8000E488 0C0030A5 */  jal        __osSetTimerIntr
     /* F08C 8000E48C 8FA5001C */   lw        $a1, 0x1C($sp)
   .L8000E490:
     /* F090 8000E490 8FBF0014 */  lw         $ra, 0x14($sp)

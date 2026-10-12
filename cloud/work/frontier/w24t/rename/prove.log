@@ -1,0 +1,38 @@
+timerintr.o .text 1024 bytes vs ROM 0xCC90 (vram 0x8000C090)
+  function __osTimerServicesInit    +0x000 size 0x08C -> 0x8000C090  project: dll_init
+  function __osTimerInterrupt       +0x08C size 0x178 -> 0x8000C11C  project: dll_update
+  function __osSetTimerIntr         +0x204 size 0x074 -> 0x8000C294  project: dll_reschedule
+  function __osInsertTimer          +0x278 size 0x188 -> 0x8000C308  project: __osInsertTimer
+  reloc hi/lo __osCurrentTime+0x4          -> 0x80037C50  project: gViTimeAccumHi
+  reloc hi/lo __osCurrentTime              -> 0x80037C50  project: gViTimeAccumHi
+  reloc hi/lo __osTimerList                -> 0x8002C3F0  project: __osTimerList
+  reloc hi/lo __osBaseCounter              -> 0x80037C58  project: gViLastCount
+  reloc hi/lo __osViIntrCount              -> 0x80037C5C  project: gViRetraceCount
+  reloc jal   __osSetCompare               -> 0x8000FB90  project: __osSetCompare
+  reloc hi/lo __osTimerCounter             -> 0x80037C60  project: __osTimerCounter
+  reloc jal   osGetCount                   -> 0x8000C970  project: osGetCount
+  reloc jal   __osSetTimerIntr             -> 0x8000C294  project: dll_reschedule
+  reloc jal   osSendMesg                   -> 0x800075E0  project: osSendMesg
+  reloc jal   __osInsertTimer              -> 0x8000C308  project: __osInsertTimer
+  reloc jal   __osDisableInt               -> 0x8000C4B0  project: __osDisableInt
+  reloc jal   __osRestoreInt               -> 0x8000C520  project: __osRestoreInt
+RESULT: IDENTICAL (256 words, 50 relocated fields compared by value, 0 differing words)
+pfsinitpak.o .text 784 bytes vs ROM 0xA810 (vram 0x80009C10)
+  function osPfsInitPak             +0x000 size 0x208 -> 0x80009C10  project: osPfsInitPak
+  reloc jal   __osSiGetAccess              -> 0x8000E5B0  project: __osSiGetAccess
+  reloc jal   __osPfsGetStatus             -> 0x8000E620  project: __osPfsGetStatus
+  reloc jal   __osSiRelAccess              -> 0x8000E5F4  project: __osSiRelAccess
+  reloc jal   .text+0x208                  -> 0x80009E18  project: __osTimerInterrupt
+  reloc jal   __osPfsSelectBank            -> 0x8000E850  project: __osPfsSelectBank
+  reloc jal   __osContRamRead              -> 0x8000E8D0  project: __osContRamRead
+  reloc jal   __osIdCheckSum               -> 0x8000EB74  project: __osIdCheckSum
+  reloc jal   __osCheckPackId              -> 0x8000EFC0  project: __osCheckId
+  reloc jal   __osRepairPackId             -> 0x8000EC70  project: __osRepairId
+  reloc jal   bcopy                        -> 0x8000D2B0  project: bcopy
+  reloc jal   osPfsChecker                 -> 0x8000B3E0  project: osPfsChecker
+  reloc jal   __osContRamWrite             -> 0x8000F680  project: __osContRamWrite
+  reloc jal   bcmp                         -> 0x8000F8D0  project: bcmp
+  section .text base 0x80009C10
+RESULT: IDENTICAL (196 words, 18 relocated fields compared by value, 0 differing words)
+97d9e5724d4f83b02f03ffa1322fa105bb2ac0b71103e717dc54cba8b00357b0  timerintr.o
+35c731c71fa6ab4814b6f50778fbb4e4b89f291186e10c08d4dfd97112ad3d1c  pfsinitpak.o

@@ -230,8 +230,8 @@
       "kind": "bss",
       "active": true,
       "tu": "src/rom/lib_7630.c",
-      "source": "cloud/work/frontier/w22g/rebind/lib_7630.c",
-      "source_sha256": "c5307ac9705e04dd5253dd8c1d06e1f8e1852f1181ade30b48e79192918b7e51",
+      "source": "cloud/work/frontier/w24t/rename/rebind/lib_7630.c",
+      "source_sha256": "a4256c2ce0748a34d252019f972bc87d92772e3b23847a92a49d4f0679aa1b4d",
       "tu_before_source": "cloud/work/integration_B18/lib_7630_before.c",
       "tu_before_sha256": "4af80035fc31c01579675a6ac0de620194a6a471b82e09b5997a95d4d10d02cf",
       "passthrough_asm": "asm/us/7630.s",
@@ -301,21 +301,21 @@
       "activation_mode": "existing_tu",
       "active": true,
       "tu": "src/rom/lib_cc50.c",
-      "source": "cloud/work/frontier/w23g/rebind/candidate.c",
-      "source_sha256": "e52c72ba1747de254a6504d1b9fd7d0e0b69f4426b85032e99b5a66dfa127b87",
+      "source": "cloud/work/frontier/w24t/rename/rebind/candidate.c",
+      "source_sha256": "243edadad3d4141b632e8c686af79a6a899899044df29a2d50f093a52a9da4ca",
       "tu_before_source": "cloud/work/integration_B25/lib_cc50_before.c",
       "tu_before_sha256": "4ce0c4afbffea9c6878c254daf114727d45cecdb28708345b98b6e86a5b2b892",
       "flags": "-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul",
       "members": [
         "__osDequeueThread",
-        "dll_init",
-        "dll_update",
-        "dll_reschedule",
+        "__osTimerServicesInit",
+        "__osTimerInterrupt",
+        "__osSetTimerIntr",
         "__osInsertTimer",
         "osGetThreadPri"
       ],
       "new_members": [
-        "dll_init"
+        "__osTimerServicesInit"
       ],
       "prior_locks": {
         "__osDequeueThread": {
@@ -326,18 +326,18 @@
           "verified": "rom-sha1",
           "verified_at": "2026-10-01"
         },
-        "dll_update": {
-          "body_sha256": "c1ab2754fba597f25388b71df1fe959df93d106eb94571c233a5ea5c5e82ce78",
+        "__osTimerInterrupt": {
+          "body_sha256": "06afef209eb8e3c3fac962f481130ea2335c0bb6a0dead9a63b1972034b44407",
           "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
-          "target_id": "dll_update",
+          "target_id": "__osTimerInterrupt",
           "toolkit_sha": null,
           "verified": "rom-sha1",
           "verified_at": "2026-10-01"
         },
-        "dll_reschedule": {
-          "body_sha256": "45c8e3c1299e9dcec5de8852f30053709ec9d963bb8ba5c118aae2f946d13343",
+        "__osSetTimerIntr": {
+          "body_sha256": "8f9f5739eb5cac4201c1f0669bf635b98b2d155b2a01e899148fd9fc4ab8c238",
           "flagset": "-g0 -O1 -mips2 -G 0 -non_shared",
-          "target_id": "dll_reschedule",
+          "target_id": "__osSetTimerIntr",
           "toolkit_sha": null,
           "verified": "rom-sha1",
           "verified_at": "2026-10-01"
@@ -393,10 +393,10 @@
       ],
       "context_files": [],
       "strict_proof": "cloud/work/integration_B24/strict_verification.json",
-      "context_proof": "cloud/work/frontier/w23g/rebind/timer_services_context_hashes.json",
+      "context_proof": "cloud/work/frontier/w24t/rename/rebind/timer_services_context_hashes.json",
       "linked_proof": "cloud/work/integration_B24/fresh_linked.json",
       "strict_proof_sha256": "281e6c31ba76072c3cbf48efeb3d359ac0c30ca274015ab60e9b7474d8ce0081",
-      "context_proof_sha256": "b8307807fd8b61aefff3786b7f9bb16fbff17c353251b7b045b0c87a20a0746d",
+      "context_proof_sha256": "041cce0682d704721f68a2213b5e79ca9a2fd2adf7358ae95f86fb6d7e6a65d7",
       "linked_proof_sha256": "5e05cd640d543b4e82298f31d8c88aa2e2398f4a939d8f2408a649c16d35b67b",
       "data_slot": {
         "owner": "timer_services_pointer",
@@ -456,10 +456,10 @@
       ],
       "context_files": [],
       "strict_proof": "cloud/work/static_C19/strict_verification.json",
-      "context_proof": "cloud/work/frontier/w23g/rebind/sdk_initialize_context_hashes.json",
+      "context_proof": "cloud/work/frontier/w24t/rename/rebind/sdk_initialize_context_hashes.json",
       "linked_proof": "cloud/work/integration_B26/linked_sections.json",
       "strict_proof_sha256": "7a75c581e841a05d788319153bb5acf9ab88959700bf19e889927005b9b6f608",
-      "context_proof_sha256": "5c5bc0fa5a2c7eab4bdefedf3c388787e2f1852431ab279dd359d4fc8f5c14de",
+      "context_proof_sha256": "7815af82d67aba44d610fe82ae8564fb12f8dec9edffc654f32204c41e382ffb",
       "linked_proof_sha256": "33c33415645bbd09061bcca8f07e435548c6ba04b42d5ad9d880beef5148e3ae",
       "data_slot": {
         "owner": "sdk_initialize_data",

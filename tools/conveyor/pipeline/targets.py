@@ -644,7 +644,7 @@ def _sdk_field_offsets(kind):
 def _typed_data_field_aliases(lines, target_id):
     """Equivalent SDK field relocations, guarded by types and all addresses."""
     relationships = []
-    if target_id in ("osGetTime", "dll_init"):
+    if target_id in ("osGetTime", "__osTimerServicesInit"):   # dll_init before w24t
         offsets = _sdk_field_offsets("time")
         if offsets is not None:
             relationships = [("gViTimeAccumLo", "gViTimeAccumHi", offsets["low_word"])]

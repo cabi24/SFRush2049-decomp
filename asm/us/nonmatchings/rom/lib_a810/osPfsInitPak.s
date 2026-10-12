@@ -24,7 +24,7 @@ glabel osPfsInitPak
   .L80009C60:
     /* A860 80009C60 8FAF0078 */  lw         $t7, 0x78($sp)
     /* A864 80009C64 AE000000 */  sw         $zero, 0x0($s0)
-    /* A868 80009C68 0C002786 */  jal        __osTimerInterrupt
+    /* A868 80009C68 0C002786 */  jal        __osPfsCheckRamArea
     /* A86C 80009C6C AE0F0008 */   sw        $t7, 0x8($s0)
     /* A870 80009C70 10400003 */  beqz       $v0, .L80009C80
     /* A874 80009C74 02002025 */   or        $a0, $s0, $zero

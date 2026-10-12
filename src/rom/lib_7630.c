@@ -17,7 +17,7 @@ static OSIoMesg gViMgrEventDP;
 static OSIoMesg gViMgrEventSP;
 extern u64 gViTimeAccumHi;
 extern u32 gViLastCount, gViRetraceCount;
-extern void dll_init(void), dll_update(void), osViInit(void);
+extern void __osTimerServicesInit(void), __osTimerInterrupt(void), osViInit(void);
 extern s32 osGetThreadPri(void *);
 extern s32 osGetActiveQueue(void); /* Preserve accepted pointer-valued s32 getter. */
 void vi_manager_main(void *);
@@ -32,7 +32,7 @@ void osCreateViManager(OSPri pri) {
     if (gViMgrState.active) {
         return;
     }
-    dll_init();
+    __osTimerServicesInit();
     gViMgrEventCount = 0;
     osCreateMesgQueue(&gViMgrMesgQueue, gViMgrMesgBuffer, ARRLEN(gViMgrMesgBuffer));
     gViMgrEventDP.hdr.type = OS_MESG_TYPE_VRETRACE;
@@ -116,7 +116,7 @@ void vi_manager_main(void* arg) {
                 gViTimeAccumHi = gViTimeAccumHi + count;
                 break;
             case OS_MESG_TYPE_COUNTER:
-                dll_update();
+                __osTimerInterrupt();
                 break;
             default:
                 break;
