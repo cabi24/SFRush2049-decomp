@@ -86,6 +86,22 @@ Compile command:
 cc -g0 -O1 -mips2 -G 0 -non_shared -c source.c
 ```
 
+### Boot segments at `-g1 -O1` (the Rush scheduler/frame-timing code)
+
+The Rush-side boot code next to the SDK scheduler builds at `-g1 -O1 -mips2 -G 0 -non_shared
+-Wab,-r4300_mul` (IDO 5.3): `lib_1050_sdk` (0x1050, scheduler), `lib_2cf0` (game_init), and since
+lane w24s also segment **0x1f50 (`lib_1050`, the vi* frame-timing functions)**. Segment 0x1f50 was
+derived as `-g0 -O2` from two small locks that happened to match at O2 (viDeadlinePassed and a
+20-B "viStub" filler). w24b showed every function there is `-g1 -O1`: at that level each function
+ends in extra `jr ra; nop` pairs, so viDeadlinePassed is 48 B and the "viStub" slot at 0x800015DC
+was its tail. w24s retired viStub (symbol_addrs `size:0x30`, lock and inventory row via
+`targets_rename apply viDeadlinePassed --absorbed viStub`), re-locked viDeadlinePassed's unchanged
+body at `-g1 -O1`, and promoted the 7 vi* functions; `opt_overrides.mk` now carries lib_1050.o at
+`-g1 -O1` and the full ROM SHA-1 matches. Levers seen at `-g1`: as1 does not move code across
+statements (an empty statement changes delay-slot filling) and `volatile` keeps -O1 loads in
+program order (`gViTickCounter`/`gViLastTick` are declared volatile in `src/rom/rom_tu.h`).
+See `cloud/work/frontier/w24b/RESULTS.md` and `cloud/work/frontier/w24s/RESULTS.md`.
+
 ## Pattern Analysis
 
 ### -O2 Characteristics
