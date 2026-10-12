@@ -63,7 +63,8 @@ Then close the window. In the log: the `RT64 setup:` line (graphics API), `first
 
 Start as in T1 (log `T2_attract.txt`) and leave it idle for 3 minutes: arcade-style games usually cycle
 title, demo race, high scores. Note every screen and whether a demo race appears (`load ovl_b` in the log
-means the race code was loaded). Record a video.
+means the race code was loaded; headless runs saw no `load ovl_b` in 5 minutes without input, so a demo race
+here would be news). Record a video.
 
 ## T3. Race on the default track (by hand, 6 min)
 
@@ -88,6 +89,8 @@ cmd /c "build\host\rush2049_recomp.exe --rom config\rom\rush2049.recomp.z64 --ho
 Like T3 (log `T4_track2.txt`), but on the track selection screen (reached after ~18 s in the script: the
 screen after START, START, A, A, A) press RIGHT once before accepting. Note the track name shown and whether
 the race loads a different-looking track. Script equivalent: `--press-file rush\tools\recomp\scripts\race_track2.press`.
+The selector cycles four tracks (headless evidence): if time allows, also race RIGHT x2 (`race_track3.press`)
+and LEFT x1 (`race_track4.press`) and note each track's name.
 
 ## T5. Two players (two_player, 6 min; needs a game controller for player 2)
 
@@ -124,7 +127,8 @@ cmd /c "build\host\rush2049_recomp.exe --renderer null --rom config\rom\rush2049
 python rush\tools\recomp\oracle.py compare run\self\a.log run\self\b.log
 ```
 
-Expected: the first line is `EQUIVALENT over 1800 frames` (each run takes a few seconds). Then the same
+Expected: the first line is `EQUIVALENT over 1800 frames (judged: all frames, 1 baseline run(s))` (each run
+takes a few seconds); a second line about thread-stack contents is informational (stacks are masked). Then the same
 run with the RT64 window (the picture plays at normal speed for 60 s while the script drives):
 
 ```powershell

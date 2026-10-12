@@ -1,0 +1,22 @@
+# Third track: the race script plus RIGHT twice on the track selector (the screen START confirms at 20 s).
+# Evidence (w24r, stock build, frame clock): after image B the race-data streams start at 0x555850 (default
+# 0x43FE80, race_track2 0x4D2FA0); the selector cycles four tracks (RIGHT x4 = default, LEFT x1 = RIGHT x3).
+frames 1800
+5 START
+8 START
+11 A
+14 A
+17 A
+18 RIGHT 0.15
+18.35 RIGHT 0.15
+20 START
+23 A
+26 A
+29 A
+32 A
+35 START
+38 A
+41 A
+44 A
+47 A
+50 A

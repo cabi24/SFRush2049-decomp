@@ -1,4 +1,4 @@
-# tools/recomp: static recompilation (Phase 0 config, Phase 1 host)
+# tools/recomp: static recompilation (Phase 0 config, Phase 1 host, Phases 2-4 replacement, oracle, package)
 
 Generates an [N64Recomp](https://github.com/N64Recomp/N64Recomp) configuration for Rush 2049 (US)
 from the project's committed inventories and the private ROM. Plan:
@@ -21,6 +21,10 @@ via `build/`). Committed here: the generator, its two curated inputs, the output
 | `oracle.py` | Phase 2: compares per-frame oracle logs (stock vs replaced): EQUIVALENT / DIFFERENT at frame F / NOT EXERCISED; Phase 3: the first differing CALL (`calls`, `run`), input scripts (`--script`, `script`) |
 | `scripts/*.press` | Phase 3: input scripts for the oracle (one line each below) |
 | `runtime/src/capture.cpp` | Phase 3: per-call capture (`--call-log`, `--call-detail`) |
+| `ipa_callees.json` | Phase 4: how a standalone replacement calls IDO -O3 IPA-convention callees (register shims, inlined-stub bodies) |
+| `runtime/src/rt64_renderer.cpp`, `sdl_frontend.cpp` | Phase 4: RT64 renderer + SDL2 window/input (CMake `RUSH_RENDERER=rt64`) |
+| `make_rom.py` | Phase 4: synthetic ROM from the retail ROM + a config's `manifest.json` (stdlib; the package's ROM step) |
+| `package.py`, `package/` | Phase 4: gameplay-test package `rush2049-recomp-test-v<N>.tar.gz` and its tester documents |
 
 ## Commands (rocky)
 
@@ -375,6 +379,78 @@ Results (rocky, 2026-10-12; stock side = the capture build of the same set):
 | `draft_func_800D7634` / race | NOT EXERCISED |
 | `statics` (func_800E7710) / race | EQUIVALENT (Phase 2: DIFFERENT at frame 1, its private static) |
 | all 689 matched `src/blob` game files / four scripts | no judged frame difference (NOT EXERCISED: 340-346 of 689 called); per-call (race): all 4,241,687 captured calls identical |
+
+## Phase 4: IPA-aware replacements, RT64, Windows, the gameplay-test package (lane w24r, 2026-10-12)
+
+Lane notes: `cloud/work/frontier/w24r/RESULTS.md`; plan section 12.
+
+**IPA-aware replacement build** (`replace.py` "IPA conventions", `ipa_callees.json`, `gen_config.py --allow-ipa
+--ipa-table --ipa-members`). The game is IDO -O3 whole-program code: a callee may take parameters in non-ABI
+registers (entity_transform_calc: x,y,z,w in f22-f28), write callee-saved registers unsaved (audio_effect_setup:
+s1/s2), or exist only as a `jr ra` stub because its body was inlined everywhere (func_80091AF0/AF8, the slot-queue
+lock). A replacement compiled on its own calls them o32 (the w22r frame-706 verdict). The fifth-section design does
+not carry the convention by itself: replace.py compiles one TU, so the callee is never in the unit (proved: the w21h
+draft built with `--ipa-table none --allow-ipa` gives the Phase 3 `FIRST DIFFERING CALL: seq 1410 ... frame 705`).
+Now, for each callee the object calls:
+
+- `ipa_callees.json` `params` (+ `prototype`, `clobbers`): replace.py appends a shim (generated MIPS words) to the
+  replacement's chunk and retargets the body's `jal callee` to it. The shim saves ra and every callee-saved
+  register it writes or the callee clobbers, moves the o32 arguments (a0-a3, f12/f14, caller stack) into the
+  listed registers, calls the retail callee, restores. An inbound shim (the replaced function is itself an IPA
+  callee) does the reverse and also preserves caller-save registers; the entry hook calls it.
+- `body`: the C source (a matched stub body) is compiled with IDO and linked into the replacement, so the call
+  reaches the inlined code instead of the retail stub.
+- Detection: `build/ipa_members.json` `callees` (ipa.py) and `build/frontier.json` facts (`register_params`,
+  `unsaved_callee_regs`); a callee detected there but not in the table is refused unless `--allow-ipa` (then
+  called o32, listed as `ipa note` lines). Calls to retail 2-word `jr ra` stubs are listed as notes. The manifest
+  records `ipa_shims` (call sites per callee), `ipa_bodies`, `ipa_inbound`, `ipa_notes`.
+
+Result (rocky; stock side = capture build): `draft_engine_sound_sync` (w21h best.c, unchanged) is EQUIVALENT on
+race, race_track2, two_player and audio_options, 3599 captured calls identical each (`--probe-callees`: callees'
+calls identical too); shims alone (no lock bodies) are also EQUIVALENT (the lock's recv/send pair leaves no effect).
+
+**Portable interception.** lockstep.cpp/oracle.cpp no longer rely on GNU ld `--wrap`: CMake renames the nine
+intercepted runtime calls in the recompiled code (`RUSH_WRAPPED`: `-DNAME=__wrap_NAME`), `src/rush_wrap.h` maps
+`__real_NAME` back. Same verdicts on Linux; links with MSVC-style linkers.
+
+**Renderer option.** `cmake ... -DRUSH_RENDERER=rt64 -DRT64_DIR=<rt64 at the VERSIONS pin>` adds RT64 (HLE, the
+API Zelda64Recomp uses), an SDL2 window and live controller/keyboard input; `--renderer null` still selects the
+headless renderer in that binary (`null` stays the CMake default and the oracle's reference). Host options:
+`--renderer null|rt64`, `--gfx-api auto|d3d12|vulkan`, `--fullscreen`, `--rt64-dev`, `--keyboard-alone`,
+`--press-file scripts/NAME.press`, `--seconds 0` (unlimited; rt64 default). Lockstep with RT64 (`--clock frames
+--renderer rt64`) mirrors each graphics task to the renderer (the runtime's SP/DP completions go to a private
+dummy queue at 0x80F00000) and paces virtual VIs at 60/s; verdicts are defined on the null renderer. Built on
+rocky (configures, compiles, links; never run there: no display). `RUSH_CAPTURE` (default OFF on Windows) gates
+the POSIX per-call capture; without it `--call-log` exits with a message and the hooks stay transparent.
+
+**Windows.** Not built by the coordinator (no Windows host). The host sources parse against Windows headers
+(clang `--target=x86_64-w64-mingw32` in a fedora:41 container, `-DRUSH_HAVE_RT64 -DRUSH_CAPTURE=0`); the
+package's INSTALL.md gives the clang-cl + Ninja path Zelda64Recomp uses, with RT64's bundled SDL2 2.26.3.
+
+**Scripts.** `race_track3.press` (RIGHT x2) and `race_track4.press` (LEFT x1): the track selector cycles four
+tracks (first race-data stream after image B: 0x43FE80, 0x4D2FA0, 0x555850, 0x5D6160; RIGHT x4 = default,
+LEFT x1 = RIGHT x3). `attract.press`: 9000 frames without input; only image A, no race data inflated (no attract
+demo race in 5 minutes of game time).
+
+**Gameplay-test package** (`package.py`; process for every later phase):
+
+1. Bump `package_version` in `VERSIONS.md` (`package-pins` block, also the pins) and add a `## vN` section to
+   `package/CHANGES.md` (what the tester will notice).
+2. On rocky: stock config (`gen_config.py` without `--replace*`), N64Recomp, the RT64 host
+   (`-DRUSH_RENDERER=rt64`), then
+   `python3 tools/recomp/package.py --n64recomp SRC/N64Recomp --runtime SRC/N64ModernRuntime --config build/stock
+   --binary build/stock/host-rt64/rush2049_recomp --out ~/rush2049/recomp/dist --repo-commit $(git rev-parse HEAD)`.
+   `--with-rom ROM` only for the owner's private copy. The archive is deterministic; `--verify TARBALL` rechecks it.
+3. Sanity test: extract into a fresh directory, follow INSTALL.md's Linux path to a headless boot and the T8
+   self-check (lane w24r's script: `~/rush2049/recomp/w24r/sanity/run.sh`).
+4. Copy the tarball without ROM to the Pi `build/recomp/dist/` (git-ignored). Never commit a tarball or ROM.
+
+Contents: N64Recomp and N64ModernRuntime source snapshots (no .git), `tools/recomp` (no package tooling), the
+stock config (`rush2049.recomp.toml`, `*.syms.toml`, `manifest.json`, generated headers: names and addresses, no
+ROM bytes and no recompiled C), the prebuilt Linux RT64 host (it contains the translated game code: private like
+the ROM), INSTALL/TEST_PROCESS/REPORT_TEMPLATE/CHANGES/README, `VERSION.txt`, `MANIFEST.sha256`. RT64 is cloned
+by the tester at the pinned commit. `make_rom.py` rebuilds the synthetic ROM from the tester's ROM and refuses
+anything not byte-identical to the manifest's.
 
 ## RDRAM accessors (optional native path; Astra PR #325, imported by w22p, 2026-10-12)
 

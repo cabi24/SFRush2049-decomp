@@ -19,6 +19,8 @@ First gameplay-test package. Target tester OS: Windows 11 (the owner's gaming la
     on Windows (`RUSH_CAPTURE=OFF`, printed at configure time). The gameplay test does not need it;
     `--call-log` on Windows exits with a message saying so.
   - The headless (null) renderer is still available in the same program: `--renderer null`.
+- New input scripts for the scripted replays: `race_track3.press`, `race_track4.press` (the track selector
+  cycles four tracks) and `attract.press` (5 minutes idle); `--press-file` runs any of them from the program.
 - Known limits: no sound (audio microcode not recompiled), no saves/controller pak, default RT64 settings,
   lockstep mode with the RT64 window is new (T8 second comparison is informative only).
 - Pins: N64Recomp `@@N64RECOMP_COMMIT@@`, N64ModernRuntime `@@RUNTIME_COMMIT@@`, RT64 `@@RT64_COMMIT@@`.

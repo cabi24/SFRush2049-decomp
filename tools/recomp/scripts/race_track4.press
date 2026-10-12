@@ -1,0 +1,21 @@
+# Fourth track: the race script plus LEFT once on the track selector (= RIGHT three times).
+# Evidence (w24r): race-data streams after image B start at 0x5D6160, then 0x4055E0; LEFT x1 and RIGHT x3
+# give the same stream set (the selector cycles four tracks).
+frames 1800
+5 START
+8 START
+11 A
+14 A
+17 A
+18 LEFT 0.15
+20 START
+23 A
+26 A
+29 A
+32 A
+35 START
+38 A
+41 A
+44 A
+47 A
+50 A

@@ -290,3 +290,33 @@ how a lane reads a verdict: `cloud/work/frontier/WAVE_BRIEF.md` "Behavioural che
   for every track/mode reached by probe evidence; capture cost (write tracking per window costs two
   8 MiB mprotects per call) if it is to run on every lane request.
 
+
+## 12. Phase 4 findings (lane w24r, 2026-10-12)
+
+Detail and commands: `tools/recomp/README.md` "Phase 4"; lane notes: `cloud/work/frontier/w24r/RESULTS.md`;
+versions and the package pins: `tools/recomp/VERSIONS.md`.
+
+- **IPA-aware replacements (§11 "Phase 4 needs", item 2): done as register shims, not whole-unit compiles.**
+  The fifth-section design compiles one TU, so it never carries a callee's IDO -O3 convention (proved: the w21h
+  engine_sound_sync draft with no IPA table reproduces the frame-705 call difference). `ipa_callees.json` +
+  replace.py now give such callees generated o32->IPA shims (saving every callee-saved register involved) or link
+  the inlined body of a `jr ra` stub; callees detected by `ipa_members.json`/`frontier.json` but not described
+  are refused unless `--allow-ipa` (flag name shared with w24t's detection lane). The w21h draft, unchanged, is
+  EQUIVALENT on all four scripts (3599 calls identical): the "correct, not matched" verdict w23f needed an oracle
+  source for is now produced by the standard build.
+- **RT64 as a test mode (item 1): built, not yet seen.** `RUSH_RENDERER=rt64` (RT64 23cab603, the Zelda64Recomp
+  pin) adds a window, RT64 and live input; null stays the default and the oracle reference; lockstep works with
+  either renderer (RT64 mirror + 60 VI/s pacing). Configures/compiles/links on rocky; the first pixels come from
+  the gameplay-test package on the owner's Windows 11 laptop.
+- **Portability:** call interception by compile-time renaming instead of `ld --wrap`; per-call capture gated
+  (`RUSH_CAPTURE`, POSIX); host sources parse against Windows headers. Windows build/run unverified by us.
+- **Scripts (item 3):** the track selector cycles four tracks (race, race_track2/3/4 cover all); no attract demo
+  race in 5 minutes of idle front end (`attract.press`).
+- **Gameplay-test package** (owner decision 2026-10-12): `package.py` -> `rush2049-recomp-test-v<N>.tar.gz`;
+  every later recomp phase regenerates it, bumps N (`VERSIONS.md` package-pins) and adds a CHANGES section.
+- **Phase 5 needs:** the tester's report (does RT64 draw Rush 2049? which GBI/ucode; input mapping; FPS); audio
+  (recompile the audio RSP microcode with RSPRecomp, as Zelda64Recomp does for aspMain); a Windows build check on
+  real hardware (CI or the laptop) feeding fixes back; Windows per-call capture (VirtualProtect + vectored
+  exception handler) if lanes need it there; IPA table entries for every other `register_params` callee a draft
+  calls (the build now refuses them by name); cheaper capture (only re-protect pages dirtied since the last
+  window instead of two 8 MiB mprotects per call); inbound IPA shims exercised on a real replaced IPA callee.
