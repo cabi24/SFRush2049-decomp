@@ -1093,7 +1093,43 @@ u8 func_800232A4(MacroState_800232A4 *state, MacroCommand *command)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_22300/func_800233B0.s")
+/* PROMOTED 2026-10-11 — func_800233B0
+ * Source:   cloud/work/frontier/w23c/sources/func_800233B0.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w23c/sources/func_800233B0.c:func_800233B0 (score0); rom_tu.h context: cloud/work/frontier/w23c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct MacroState_800233B0 { u8 unknown00[0x24]; u32 flags24; u8 unknown28[8]; u32 volume30; u8 unknown34[0x50]; s32 delta84; u32 target88; u8 unknown8C[0x28]; u32 timeB4; } MacroState_800233B0;
+#pragma pack()
+extern u32 func_8001E9A0(u32);
+#define VOICE_233B0 ((MacroState_800233B0 *)state)
+u8 func_800233B0(MacroState *state, MacroCommand *command, u32 start)
+{
+    u32 target;
+    s32 milliseconds;
+    u16 curve;
+    VOICE_233B0->timeB4 = (u16)(command->word[1] >> 16);
+    if ((u8)(command->word[1] >> 8) & 1) {
+        func_8001E930(&VOICE_233B0->timeB4);
+    } else {
+        func_8001E940(&VOICE_233B0->timeB4, state);
+    }
+    milliseconds = func_8001E9A0(VOICE_233B0->timeB4);
+    if (milliseconds == 0) milliseconds = 1;
+    target = ((u8)(command->word[0] >> 8) * VOICE_233B0->volume30) >> 7;
+    target += (u8)(command->word[0] >> 16) << 16;
+    if (target > 0x7F0000) target = 0x7F0000;
+    curve = (u8)command->word[1];
+    curve |= (u8)(command->word[0] >> 24) << 8;
+    target = func_8002321C(target, curve);
+    VOICE_233B0->target88 = target;
+    VOICE_233B0->delta84 = (s32)(target - start) / milliseconds;
+    VOICE_233B0->volume30 = start;
+    VOICE_233B0->flags24 |= 0x20000;
+    return 0;
+}
+
 extern u8 func_800233B0(MacroState *, MacroCommand *, u32);
 /* PROMOTED 2026-10-05 — func_80023520
  * Source:   cloud/work/boot_tail_promotion/macro_stream_contracts/sources/func_80023520.c (in-repo, locked)

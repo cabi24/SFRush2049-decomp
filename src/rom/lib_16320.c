@@ -153,7 +153,49 @@ int func_80015F28(u16 id)
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_8001605C.s")
+/* PROMOTED 2026-10-11 — func_8001605C
+ * Source:   cloud/work/frontier/w23c/sources/func_8001605C.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w23c/sources/func_8001605C.c:func_8001605C (score0); rom_tu.h context: cloud/work/frontier/w23c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "boot_tail_sample_contract.h"
+extern int D_800385A0;
+extern RegisteredSamples D_800385A8[];
+int func_8001605C(SampleRecord *records, void *base)
+{
+    int index;
+    SampleRecord *entry;
+    u16 count;
+    u16 i;
+    for (index = 0; index < D_800385A0 &&
+         D_800385A8[index].records != records; ++index) {
+    }
+    if (index == D_800385A0) {
+        if (D_800385A0 < 8) {
+            count = 0;
+            entry = records;
+            while (entry->identifier != 0xFFFF) {
+                ++count;
+                ++entry;
+            }
+            entry = records;
+            func_80014594();
+            D_800385A8[D_800385A0].records = records;
+            D_800385A8[D_800385A0].base = base;
+            D_800385A8[D_800385A0].count = count;
+            for (i = 0; i < count; ++i, ++entry) {
+                entry->references = 0;
+            }
+            ++D_800385A0;
+            func_800145DC();
+            return 1;
+        }
+        return 0;
+    }
+    return 1;
+}
+
 /* PROMOTED 2026-10-11 — func_800161A0
  * Source:   cloud/work/frontier/w19b/relocname/func_800161A0.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

@@ -167,7 +167,77 @@ u32 func_80019ED0(u8 key, u8 channel, u8 set)
     return 0xFFFFFFFFU;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_80019F48.s")
+/* PROMOTED 2026-10-11 — func_80019F48
+ * Source:   cloud/work/frontier/w23c/sources/func_80019F48.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w23c/sources/func_80019F48.c:func_80019F48 (score0); rom_tu.h context: cloud/work/frontier/w23c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+#pragma pack(0)
+#pragma pack(1)
+typedef struct Layer_80019F48 { u16 id; u8 low; u8 high; s8 transpose; u8 volume; s16 priority; u8 panning; u8 unknown09[3]; } Layer_80019F48;
+#pragma pack(0)
+extern void *func_80016F80(u16, u16 *);
+extern u32 func_80019ED0(u8, u8, u8);
+extern u32 func_80024988(u32, u16, u8, u8, u8, u8, u8, u16, u16, u8, u8);
+u32 func_80019F48(u32 packed, u16 allocation, u8 key, u8 volume,
+                 u8 panning, u8 channel, u8 set, u16 offset, u16 section, u8 group)
+{
+    u16 count;
+    u32 result;
+    u32 previous;
+    u32 current;
+    u32 nextPacked;
+    int i;
+    int note;
+    int pan;
+    int priority;
+    Layer_80019F48 *layer;
+    Layer_80019F48 *layers;
+    u8 scaled;
+    result = 0xFFFFFFFFU;
+    layers = func_80016F80(packed >> 16, &count);
+    if (layers != 0) {
+        for (i = 0; i < count; i++) {
+            layer = &layers[i];
+            if (layer->id != 0xFFFF && layer->low <= (key & 127) && layer->high >= (key & 127)) {
+            note = layer->transpose + (key & 127);
+            note = note > 127 ? 127 : note < 0 ? 0 : note;
+            current = func_80019ED0(note, channel, set);
+            if (current != 0xFFFFFFFFU) return current;
+            if ((layer->panning & 128) == 0) {
+                pan = layer->panning - 64;
+                pan += panning;
+                pan = pan < 0 ? 0 : pan > 127 ? 127 : pan;
+            } else pan = 128;
+            scaled = (layer->volume * volume) / 127;
+            priority = ((packed >> 8) & 255) + layer->priority;
+            priority = priority > 255 ? 255 : priority < 0 ? 0 : priority;
+            nextPacked = (packed & 255) | ((u32)priority << 8) | ((u32)layer->id << 16);
+            switch (layer->id & 0xC000) {
+            case 0:
+                if (result == 0xFFFFFFFFU) {
+                    previous = func_80024988(nextPacked, allocation, note | (key & 128), scaled,
+                        pan, channel, set, offset, section, 0, group);
+                    if (previous != 0xFFFFFFFFU) result = func_8001ECE0(&D_8004BEB8[previous & 255]);
+                } else {
+                    current = func_80024988(nextPacked, allocation, note | (key & 128), scaled,
+                        pan, channel, set, offset, section, 0, group);
+                    if (current != 0xFFFFFFFFU) {
+                        D_8004BEB8[previous & 255].child = current;
+                        D_8004BEB8[current & 255].parent = previous;
+                        previous = current;
+                    }
+                }
+                break;
+            }
+            }
+        }
+    }
+    return result;
+}
+
 /* PROMOTED 2026-10-11 — func_8001A270
  * Source:   cloud/work/frontier/w22c/sources/func_8001A270.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared

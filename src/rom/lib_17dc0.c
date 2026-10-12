@@ -262,7 +262,34 @@ u32 func_80017644(u32 identifier)
     return 0xFFFFFFFFU;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80017720.s")
+/* PROMOTED 2026-10-11 — func_80017720
+ * Source:   cloud/work/frontier/w23c/sources/func_80017720.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w23c/sources/func_80017720.c:func_80017720 (score0); rom_tu.h context: cloud/work/frontier/w23c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#pragma pack(1)
+typedef struct ProgramEntry_80017720 { u16 macro; u8 priority; u8 maxVoices; u32 unknown04; } ProgramEntry_80017720;
+#pragma pack(0)
+typedef struct Seq_80017720 { u32 identifier; ProgramEntry_80017720 *normtab; u8 normTrans[128]; ProgramEntry_80017720 *drumtab; u8 drumTrans[128]; u8 unknown10C[0xE74]; u32 prgState[16]; } Seq_80017720;
+#define SEQ_17720 ((Seq_80017720 *)context)
+void func_80017720(SequenceContext *context, unsigned char program, unsigned char channel)
+{
+    if (channel != 9) {
+        program = SEQ_17720->normTrans[program];
+        if (program != 255) {
+            SEQ_17720->prgState[channel] = ((u32)SEQ_17720->normtab[program].macro << 16) |
+                ((u32)SEQ_17720->normtab[program].priority << 8) | SEQ_17720->normtab[program].maxVoices;
+        }
+    } else {
+        program = SEQ_17720->drumTrans[program];
+        if (program != 255) {
+            SEQ_17720->prgState[channel] = ((u32)SEQ_17720->drumtab[program].macro << 16) |
+                ((u32)SEQ_17720->drumtab[program].priority << 8) | SEQ_17720->drumtab[program].maxVoices;
+        }
+    }
+}
+
 /* PROMOTED 2026-10-11 — func_800177EC
  * Source:   cloud/work/frontier/w20b/sources/func_800177EC.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
