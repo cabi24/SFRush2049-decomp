@@ -1,0 +1,78 @@
+{
+  "inputs": {
+    "sources_sha256": {
+      "cloud/matches/ovl_a/func_8038F648.c": "cfc5dd3eb31528cb1957570204c7d8d1e8a8a4f3de096154bfb2203d46b9069c",
+      "cloud/work/frontier/dot_runtime_a_input_sequence_20261012/verify.py": "bf2c425077d61f83c0aba0982195b4924c75c2a9f9742d83cfb311287d92e3ff",
+      "cloud/work/frontier/dot_runtime_a_input_sequence_20261012/elf.py": "d3523b1887d0822c673cbc4feb43aea68366182b9904f1735b037a370f30f0c5",
+      "cloud/work/frontier/dot_runtime_a_input_sequence_20261012/behavior.py": "76b05f5fee4083277091dc238f2ed418937837f4f404b4fd8fc4ddecee7bf9f9"
+    },
+    "target": {
+      "name": "func_8038F648",
+      "address": "0x8038f648",
+      "bytes": 236,
+      "words_sha256": "e969445d5a2d2977aafb03e9daf59c220d0f0df2321dae675df13785cbb8bd04",
+      "image": "A",
+      "image_sha256": "0d6702c320df84cc6cbc3c5967dde08d44b6e476e110667fe2a43dc2dd536667"
+    },
+    "referenced_symbols": {
+      "D_8002EB90": 2147675024,
+      "D_80156944": 2148886852,
+      "D_8015694C": 2148886860,
+      "D_803B4278": 2151367288,
+      "D_803B427C": 2151367292,
+      "D_803B4280": 2151367296
+    },
+    "flags": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "claims": [
+      "func_8038F648"
+    ]
+  },
+  "result": {
+    "differing": 0,
+    "total": 59,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "controls": {
+    "ordinary": {
+      "differing": 2,
+      "total": 59,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "identity_only": {
+      "differing": 2,
+      "total": 59,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "commute_only": {
+      "differing": 2,
+      "total": 59,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "independently_linked_sha256": "e969445d5a2d2977aafb03e9daf59c220d0f0df2321dae675df13785cbb8bd04",
+  "gnu_relocations": 16,
+  "behavior": {
+    "cases": 398,
+    "instructions": 59,
+    "branch_outcomes": 17,
+    "native_gnu_traces_equal": true,
+    "host_and_model_equal": true,
+    "saved_integer_fp_and_stack_preserved": true
+  },
+  "compiler": "stock IDO 5.3",
+  "claimed_bytes": 236,
+  "new_claim_bytes": 236,
+  "accepted_image_bytes": 0
+}
