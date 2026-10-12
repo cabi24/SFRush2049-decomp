@@ -171,3 +171,34 @@ a hand-edited .s. Even with an exact assembler, promotion would need a new TU re
 as1 -O1) beside its GLOBAL_ASM passthroughs; not attempted. Nothing locked or promoted. Tools: `tools/cmp.sh`
 (standard compile + w24t compare.py), `tools/cmps.sh` (the .s recipe), `tools/sbs.py` (aligned instruction diff);
 their paths point at this session's scratchpad and builder scratch. Variants in `inflate/v/` (ignored).
+
+## Tests (final HEAD af0580d5)
+- Pi worktree `make test-fast JOBS=4`: conveyor `1584 passed, 795 skipped`; cloud `770 passed, 173 skipped`; rc 0.
+- rocky `~/rush2049/scratch/w25a` (cp -a of ciclone-coord + this branch via bundle), `REQUIRE_TOOLCHAIN=1 make
+  test-fast JOBS=16`: conveyor `2327 passed, 52 skipped`; cloud `942 passed, 1 skipped, 27 subtests passed`; rc 0.
+  (The first run failed dot_target_orientation's toolchain-only replay: a second receipt pinning
+  asm/us/blob/symbols.json, re-pinned with the same pure-rename proof in af0580d5.) `tests/recomp`
+  (REQUIRE_TOOLCHAIN=1, -n 16 --dist loadgroup): `138 passed, 4 skipped`.
+- New tests: tests/conveyor/unit/test_owned_offsets.py (12), test_static_rename_data.py (3).
+- Pre-existing, not fixed (recomp lane's file): on the Pi `tests/recomp/test_gen_config.py::test_end_to_end_with_rom`
+  fails `static: 667 inventory functions, expected 668` (gen_config.EXPECTED_COUNTS still 668 after w24s retired viStub).
+
+## For the coordinator (merge)
+- Merge `w25a` (static 616/667, 138,168 B). It changes rom_tu.h (2 externs removed), the context-hash rebind copies
+  (`cloud/work/frontier/w25a/{rebind,rename/rebind}`), symbol_addrs/undefined_syms_auto, lock keys, Conveyor DB names.
+- **Builder gate repo:** every gate now runs `python3 -m tools.conveyor.pipeline.owned_offsets check` on the builder
+  after `make test`; `promote run --via-builder` and `owned_storage` sync only their package, so
+  `~/rush2049/repo` needs `tools/conveyor/pipeline/owned_offsets.py` (rsync tools/conveyor) before their next gate,
+  or they fail with "No module named". promote_batch rsyncs the whole tree itself. I did NOT touch
+  `~/rush2049/repo`; everything here ran in `~/rush2049/scratch/frontier/w25a/repo` only. After the static changes
+  the first gate in any build dir will GATE-CLEAN (owned-slot inputs changed).
+- The Conveyor DB already carries the 3 function renames (live apply, backups `.bak1/.bak2/.bak3` in the
+  scratchpad `w25a/`); until w25a merges, master's layout and the DB disagree on __osRepairPackId, __osCheckPackId,
+  __osCheckId (0x8000F2D0). `targets_rename audit` is clean against this branch.
+- CLAIMS.md tooling row (not edited here): the five w24t leads are done (plus osPfsReadWriteFile_pages =
+  __osCheckId); remaining: the other doc leads (osViModeTableGet, __osSpDma, ...), gViTimeAccumLo retirement,
+  gfx_modes object_render explicit __ll_lshift calls. New lead: lib_5610 needs a C -> `cc -S` -> as1 -O1 recipe.
+- Commits carry this session's attribution (Opus 5.5 + session link), not the "Fable 5.1" line the prompt
+  asked for (it would misattribute the model), as w24s did; promote_batch's own commit carries its Opus line.
+- Shared scratchpad note: another lane overwrote `scratchpad/sync.sh` mid-session (my first gate attempt ran its
+  rsync of w25r to rocky once, harmless); my scripts now live in `scratchpad/w25a/`.
