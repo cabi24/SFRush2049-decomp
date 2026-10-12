@@ -2,7 +2,7 @@
 
     python3 -m tools.conveyor.pipeline.targets_rename audit
     python3 -m tools.conveyor.pipeline.targets_rename apply NAME [NAME...] \
-        [--retire TARGET_ID ...] [--data DIR] [--lockfile PATH] [--dry-run]
+        [--retire TARGET_ID ...] [--absorbed TARGET_ID ...] [--data DIR] [--lockfile PATH] [--dry-run]
     python3 -m tools.conveyor.pipeline.targets_rename rename MAP.json \
         [--data DIR] [--lockfile PATH] [--dry-run]
 
@@ -33,6 +33,17 @@ layout function; a `--retire` row that starts a layout function; no asm region
 or a failed gate for NAME. All writes happen in one transaction, and every row
 not named in the plan is left untouched. `--dry-run` builds the objects in a
 temporary store and prints the exact plan without writing anything.
+
+`--absorbed ID` (w24s) retires a row whose slot the layout has folded into a
+function named in the same plan: a bogus split (the "viStub" slot at
+0x800015DC was viDeadlinePassed's trailing `jr ra; nop` pairs at -g1 -O1). The
+row may carry promotion_record history (it was promoted as its own slot); the
+records are kept with outcome 'promoted' -> 'retired', so the history stays
+and nothing counts it as promoted. Refusals as for `--retire` otherwise: the
+row's address must lie strictly inside a layout function that this plan
+registers or refreshes (so that function's object is rebuilt over the absorbed
+bytes), no lock entry may target it (remove it from matched.lock.json first),
+no open work unit, static population, not itself a layout function.
 
 `rename MAP.json` renames rows IN PLACE (static_rename's table: accepted rows
 `{vram, old, new}`), keeping their history: every table keyed by target_id
@@ -130,7 +141,7 @@ def audit(conn, functions, regions=None):
 
 # --- plan -------------------------------------------------------------------
 
-def _check_retirable(conn, row, locks, functions, why):
+def _check_retirable(conn, row, locks, functions, why, allow_promoted=False):
     tid = row["target_id"]
     if row["population"] != "static":
         raise RenameRefusal(f"{tid}: population {row['population']!r}, only static rows are handled")
@@ -139,7 +150,8 @@ def _check_retirable(conn, row, locks, functions, why):
                             f"would retire it ({why})")
     if tid in functions:
         raise RenameRefusal(f"{tid}: is a current layout function name; would retire it ({why})")
-    if conn.execute("SELECT 1 FROM promotion_record WHERE target_id=?", (tid,)).fetchone():
+    if not allow_promoted and conn.execute(
+            "SELECT 1 FROM promotion_record WHERE target_id=?", (tid,)).fetchone():
         raise RenameRefusal(f"{tid}: has a promotion_record; would retire it ({why})")
     q = ",".join("?" * len(OPEN_WORK_STATES))
     if conn.execute(f"SELECT 1 FROM work_unit WHERE target_id=? AND state IN ({q})",
@@ -147,15 +159,20 @@ def _check_retirable(conn, row, locks, functions, why):
         raise RenameRefusal(f"{tid}: has open work units; would retire it ({why})")
 
 
-def plan(conn, functions, names, retire=(), locks=None):
+def plan(conn, functions, names, retire=(), locks=None, absorbed=()):
     """The ordered list of actions; raises RenameRefusal on any unsafe step.
 
     Each action is a dict with `op` in register | readdress | refresh | keep |
-    retire, `target_id`, and for the first four `address` / `size`."""
+    retire, `target_id`, and for the first four `address` / `size`. A retire
+    of an `absorbed` row also carries `absorbed_by` (the planned function
+    whose extent now covers it)."""
     locks = {} if locks is None else locks
     starts = layout_starts(functions)
     actions, retiring = [], {}
     names = list(dict.fromkeys(names))
+    both = sorted(set(retire) & set(absorbed))
+    if both:
+        raise RenameRefusal(f"{both[0]}: listed as both retired and absorbed")
     for name in names:
         places = functions.get(name)
         if not places:
@@ -200,12 +217,33 @@ def plan(conn, functions, names, retire=(), locks=None):
                else "no layout function at this address")
         _check_retirable(conn, row, locks, functions, why)
         retiring[tid] = (row, why)
+    absorbed_by = {}
+    for tid in dict.fromkeys(absorbed):
+        row = _row(conn, tid)
+        if row is None:
+            raise RenameRefusal(f"{tid}: no such inventory row to absorb")
+        if row["address"] in starts:
+            raise RenameRefusal(f"{tid}: 0x{row['address']:08X} starts layout function "
+                                f"{starts[row['address']][0]}; it is not absorbed")
+        inside = [(n, v) for v, (n, s) in starts.items() if v < row["address"] < v + s]
+        if not inside or inside[0][0] not in names:
+            raise RenameRefusal(
+                f"{tid}: 0x{row['address']:08X} is not inside a layout function this plan "
+                f"registers or refreshes" + (f" (inside {inside[0][0]}: name it too)" if inside else ""))
+        owner, start = inside[0]
+        why = f"absorbed into {owner} @0x{start:08X}"
+        _check_retirable(conn, row, locks, functions, why, allow_promoted=True)
+        retiring[tid] = (row, why)
+        absorbed_by[tid] = owner
     renamed = {a["target_id"] for a in actions}
     for tid, (row, why) in sorted(retiring.items()):
         if tid in renamed:
             raise RenameRefusal(f"{tid}: both registered and retired by this plan")
-        actions.append({"op": "retire", "target_id": tid, "address": row["address"],
-                        "size": (row["insn_count"] or 0) * 4, "note": why})
+        action = {"op": "retire", "target_id": tid, "address": row["address"],
+                  "size": (row["insn_count"] or 0) * 4, "note": why}
+        if tid in absorbed_by:
+            action["absorbed_by"] = absorbed_by[tid]
+        actions.append(action)
     return actions
 
 
@@ -269,6 +307,9 @@ def apply(conn, actions):
                 purged += max(cur.rowcount, 0)
                 conn.execute("DELETE FROM function_status WHERE target_id=?", (tid,))
                 conn.execute("DELETE FROM n64_target WHERE target_id=?", (tid,))
+                if a.get("absorbed_by"):
+                    conn.execute("UPDATE promotion_record SET outcome='retired'"
+                                 " WHERE target_id=? AND outcome='promoted'", (tid,))
                 continue
             prev = _row(conn, tid)
             changed, n = targetsmod._supersede_target(
@@ -308,8 +349,13 @@ def format_plan(conn, actions):
         if a["op"] == "retire":
             n = {t: conn.execute(f"SELECT COUNT(*) FROM {t} WHERE target_id=?", (tid,)).fetchone()[0]
                  for t in ("matrix_entry", "function_status")}
-            lines.append(f"retire    {tid:24} @0x{a['address']:08X}  {a['note']}; deletes n64_target 1,"
-                         f" matrix_entry {n['matrix_entry']}, function_status {n['function_status']}")
+            line = (f"retire    {tid:24} @0x{a['address']:08X}  {a['note']}; deletes n64_target 1,"
+                    f" matrix_entry {n['matrix_entry']}, function_status {n['function_status']}")
+            if a.get("absorbed_by"):
+                k = conn.execute("SELECT COUNT(*) FROM promotion_record WHERE target_id=?"
+                                 " AND outcome='promoted'", (tid,)).fetchone()[0]
+                line += f"; promotion_record {k} promoted -> retired (kept)"
+            lines.append(line)
             continue
         prev = _row(conn, tid)
         sup = ""
@@ -423,6 +469,8 @@ def main(argv=None):
     p.add_argument("names", nargs="+", help="current layout function names to register")
     p.add_argument("--retire", nargs="*", default=[], metavar="TARGET_ID",
                    help="non-function rows to retire (fragments, mid-function labels)")
+    p.add_argument("--absorbed", nargs="*", default=[], metavar="TARGET_ID",
+                   help="rows whose slot a planned function now covers (may carry promotion history)")
     p.add_argument("--dry-run", action="store_true")
     r = sub.add_parser("rename")
     r.add_argument("map", help="rename table (static_rename format)")
@@ -441,7 +489,8 @@ def main(argv=None):
     if args.command == "rename":
         return _main_rename(args, conn, functions, data, layoutmod, BlobStore)
     try:
-        actions = plan(conn, functions, args.names, args.retire, lock_targets(args.lockfile))
+        actions = plan(conn, functions, args.names, args.retire, lock_targets(args.lockfile),
+                       absorbed=args.absorbed)
         with tempfile.TemporaryDirectory() as tmp:
             store = BlobStore(Path(tmp) if args.dry_run else data / "blobs")
             build_objects(actions, layoutmod.collect_regions(), store)

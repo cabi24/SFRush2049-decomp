@@ -232,3 +232,74 @@ def test_build_object_assembles_and_gates_a_real_region(tmp_path):
     bad = targetsmod.Region("old", C, ["jr $ra", "nop"], ["03E00008", "24020001"])
     with pytest.raises(tr.RenameRefusal, match="gate failed"):
         tr.build_object(bad, "osYieldThread", tmp_path / "u.o")
+
+
+# --- w24s: --absorbed (a promoted slot folded into its neighbour) -------------
+
+STUB = A + 0x20  # inside __osEPiRawWriteIo (A .. A+352)
+
+
+def _absorbable(conn):
+    _insert(conn, "viStub", STUB, 5, "stub")
+    _matrix(conn, "viStub", 2)
+    for pid, outcome in (("p1", "promoted"), ("p0", "failed")):
+        conn.execute("INSERT INTO promotion_record (promotion_id, target_id, source_sha, outcome,"
+                     " created_at) VALUES (?, 'viStub', 's', ?, 'x')", (pid, outcome))
+    conn.commit()
+
+
+def test_absorbed_retires_a_promoted_slot_and_keeps_its_history(conn, tmp_path):
+    _absorbable(conn)
+    before = _snapshot(conn, {"__osEPiRawWriteIo", "osEPiRawStartDma", "viStub"})
+    actions = tr.plan(conn, tr.layout_functions(_mapping()), ["__osEPiRawWriteIo"], (), {},
+                      absorbed=["viStub"])
+    stub = [a for a in actions if a["target_id"] == "viStub"][0]
+    assert stub["op"] == "retire" and stub["absorbed_by"] == "__osEPiRawWriteIo"
+    assert "absorbed into __osEPiRawWriteIo" in stub["note"]
+    assert "promotion_record 1 promoted -> retired" in "\n".join(tr.format_plan(conn, actions))
+    tr.build_objects(actions, _regions(), BlobStore(tmp_path / "blobs"),
+                     builder=_builder, words_of=_words_of)
+    tr.apply(conn, actions)
+    assert _snapshot(conn, {"__osEPiRawWriteIo", "osEPiRawStartDma", "viStub"}) == before
+    assert conn.execute("SELECT 1 FROM n64_target WHERE target_id='viStub'").fetchone() is None
+    assert conn.execute("SELECT COUNT(*) FROM matrix_entry WHERE target_id='viStub'").fetchone()[0] == 0
+    assert sorted(tuple(r) for r in conn.execute(
+        "SELECT promotion_id, outcome FROM promotion_record WHERE target_id='viStub'")) == [
+        ("p0", "failed"), ("p1", "retired")]
+    assert conn.execute("SELECT insn_count FROM n64_target WHERE target_id='__osEPiRawWriteIo'"
+                        ).fetchone()[0] == 86
+
+
+def test_plain_retire_still_refuses_a_promoted_slot(conn):
+    _absorbable(conn)
+    with pytest.raises(tr.RenameRefusal, match="promotion_record"):
+        _plan(conn, ["__osEPiRawWriteIo"], ["viStub"])
+
+
+def test_absorbed_refusals(conn):
+    _absorbable(conn)
+    fns = tr.layout_functions(_mapping())
+    with pytest.raises(tr.RenameRefusal, match="not inside a layout function this plan"):
+        tr.plan(conn, fns, ["osYieldThread"], (), {}, absorbed=["viStub"])
+    with pytest.raises(tr.RenameRefusal, match="referenced by lock"):
+        tr.plan(conn, fns, ["__osEPiRawWriteIo"], (), {"viStub": ["src/rom/lib_1050.c:viStub"]},
+                absorbed=["viStub"])
+    with pytest.raises(tr.RenameRefusal, match="not absorbed"):
+        tr.plan(conn, fns, ["__osEPiRawWriteIo"], (), {}, absorbed=["osYieldThread"])
+    with pytest.raises(tr.RenameRefusal, match="both retired and absorbed"):
+        tr.plan(conn, fns, ["__osEPiRawWriteIo"], ["viStub"], {}, absorbed=["viStub"])
+    with pytest.raises(tr.RenameRefusal, match="no such inventory row to absorb"):
+        tr.plan(conn, fns, ["__osEPiRawWriteIo"], (), {}, absorbed=["nope"])
+    conn.execute("INSERT INTO work_unit (job_id, job_type, target_id, manifest_sha, state,"
+                 " created_at, updated_at) VALUES ('j','search','viStub','m','PENDING','x','x')")
+    with pytest.raises(tr.RenameRefusal, match="open work units"):
+        tr.plan(conn, fns, ["__osEPiRawWriteIo"], (), {}, absorbed=["viStub"])
+
+
+def test_cli_absorbed_dry_run(conn, tmp_path, monkeypatch, capsys):
+    _absorbable(conn)
+    before = _snapshot(conn, ())
+    _cli(monkeypatch, tmp_path, ["apply", "__osEPiRawWriteIo", "--absorbed", "viStub", "--dry-run"])
+    out = capsys.readouterr().out
+    assert "retire    viStub" in out and "absorbed into __osEPiRawWriteIo" in out
+    assert _snapshot(conn, ()) == before
