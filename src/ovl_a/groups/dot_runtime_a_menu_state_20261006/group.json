@@ -9,10 +9,9 @@
  "members": [
   "func_80398B40",
   "func_80398C3C",
-  "func_80398E70"
- ],
- "context": [
+  "func_80398E70",
   "func_803990D0"
  ],
- "provenance": "installed from cloud/work/frontier/dot_runtime_a_menu_state_20261006"
+ "provenance": "Supersedes the installed group of the same name; preserves all three locked helpers. Four disclosed unused s32 frame slots close the complete menu-state root without live-capacity changes.",
+ "context": []
 }

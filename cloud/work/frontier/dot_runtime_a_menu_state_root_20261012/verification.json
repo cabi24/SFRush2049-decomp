@@ -1,0 +1,110 @@
+{
+  "frame_controls": {
+    "original": {
+      "differing_words": 8,
+      "frame_bytes": 96,
+      "descriptor_home": 56
+    },
+    "three_below": {
+      "differing_words": 8,
+      "frame_bytes": 104,
+      "descriptor_home": 64
+    },
+    "four_below": {
+      "differing_words": 6,
+      "frame_bytes": 112,
+      "descriptor_home": 72
+    }
+  },
+  "inputs": {
+    "sources_sha256": {
+      "groups/dot_runtime_a_menu_state_20261006/group.c": "e1a3963b5abf3b69ebc2a7f58a5038c2176b01c38fa952722e791f7761cdf084",
+      "groups/dot_runtime_a_menu_state_20261006/group.json": "534a426f753c90441a330e28f71ff956b817f1e141fd852a24fcbce89f886450",
+      "verify.py": "f279f560bad3bf68af16a80eeef2f6eb3b9cb704672a7c75959bbfae6d0d0fc6"
+    },
+    "target_population": "A",
+    "targets": {
+      "func_80398B40": {
+        "address": "0x80398B40",
+        "size": 160,
+        "words_sha256": "6d7601093feedf0e20f5cca5b76ccbf832c670c5d74721db1edf63f93508ea38"
+      },
+      "func_80398C3C": {
+        "address": "0x80398C3C",
+        "size": 564,
+        "words_sha256": "dd6dffe07f7cb914482e4f8e50b5d6173caff7d8abf910008fac146e397dd8f6"
+      },
+      "func_80398E70": {
+        "address": "0x80398E70",
+        "size": 608,
+        "words_sha256": "5d6253b7867c4630c619c12cfa6ff4e1017cd3aeaf90d4b54b78f57a1824fc09"
+      },
+      "func_803990D0": {
+        "address": "0x803990D0",
+        "size": 692,
+        "words_sha256": "29b7fe4e154f872283b5c61bff2d58d023731244b23559f1b44b90fb611545cd"
+      }
+    },
+    "asset_sha256": "f06d4ad0bb7dc7aff494acddc736f1b56bc271a2292c0286879cc9189bec31c8",
+    "image_sha256": "0d6702c320df84cc6cbc3c5967dde08d44b6e476e110667fe2a43dc2dd536667",
+    "image_size": 194128,
+    "members": [
+      "func_80398B40",
+      "func_80398C3C",
+      "func_80398E70",
+      "func_803990D0"
+    ],
+    "context": [],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+  },
+  "results": {
+    "func_80398B40": {
+      "differing": 0,
+      "total": 40,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80398C3C": {
+      "differing": 0,
+      "total": 141,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_80398E70": {
+      "differing": 0,
+      "total": 152,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_803990D0": {
+      "differing": 0,
+      "total": 173,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "owned_table": {
+    "address": "0x803b9508",
+    "size": 20,
+    "entries": 5,
+    "relocations": "five R_MIPS_32 to in-root .text offsets",
+    "sha256": "2e5824447f1b935bb4328efc81ce690a165b9cdfd5b51ec49cb483f0908bc2d8",
+    "zero_section_alignment_bytes": 12
+  },
+  "controls": {
+    "all_five_table_entry_mutations_rejected": true,
+    "truncated_table_rejected": true,
+    "absent_table_unverified_references": 2
+  },
+  "new_verified_candidate_bytes": 692,
+  "accepted_image_bytes": 0,
+  "preserved_existing_member_bytes": 1332
+}

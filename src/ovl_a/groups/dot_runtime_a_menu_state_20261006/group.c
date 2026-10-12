@@ -1,4 +1,13 @@
 /* flags: -g0 -O3 -mips2 -G 0 -non_shared */
+/* Runtime image A: menu-state update and its three genuine IPA helpers.
+ * New root func_803990D0 keeps the existing executable statements and ABI.
+ * Four unused s32 locals represent only the measured frame residual: the
+ * baseline frame is 96 bytes; retail is 112 (+16). One slot precedes the
+ * three live status bytes, and three follow the live descriptor/index so
+ * the descriptor and status homes move by the required +12 bytes. These
+ * slots are shaping evidence, not recovered original variable declarations.
+ * No live buffer, descriptor size, or helper prototype is changed.
+ */
 typedef signed char s8;
 typedef unsigned char u8;
 typedef signed short s16;
@@ -126,11 +135,13 @@ void func_80398E70(void)
 
 void func_803990D0(void)
 {
+    s32 frame_slot3;
     s8 complete;
     s8 result;
     s8 choice;
     MultiBlit descriptor;
     s32 i;
+    s32 frame_slot0, frame_slot1, frame_slot2;
     if(!D_803B46A8) {
         descriptor=D_803B46B8;
         func_80398B40(0);

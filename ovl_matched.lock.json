@@ -205,12 +205,12 @@
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
       "group": "dot_runtime_a_menu_state_20261006",
       "image": "A",
-      "origin": "cloud/work/frontier/dot_runtime_a_menu_state_20261006",
+      "origin": "cloud/work/frontier/dot_runtime_a_menu_state_root_20261012/groups/dot_runtime_a_menu_state_20261006",
       "source": "src/ovl_a/groups/dot_runtime_a_menu_state_20261006/group.json",
-      "source_sha256": "03aad3db232e4a36aef26eb1665935c07481446a5e0a4af2659f24b3447e4bed",
+      "source_sha256": "f4a5ba39d318486986b582dbfec3a7178cba32706f16d741afe8944f29abed2d",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
-      "verified_at": "2026-10-11"
+      "verified_at": "2026-10-12"
     },
     "func_80398BF0": {
       "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -226,23 +226,34 @@
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
       "group": "dot_runtime_a_menu_state_20261006",
       "image": "A",
-      "origin": "cloud/work/frontier/dot_runtime_a_menu_state_20261006",
+      "origin": "cloud/work/frontier/dot_runtime_a_menu_state_root_20261012/groups/dot_runtime_a_menu_state_20261006",
       "source": "src/ovl_a/groups/dot_runtime_a_menu_state_20261006/group.json",
-      "source_sha256": "03aad3db232e4a36aef26eb1665935c07481446a5e0a4af2659f24b3447e4bed",
+      "source_sha256": "f4a5ba39d318486986b582dbfec3a7178cba32706f16d741afe8944f29abed2d",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
-      "verified_at": "2026-10-11"
+      "verified_at": "2026-10-12"
     },
     "func_80398E70": {
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
       "group": "dot_runtime_a_menu_state_20261006",
       "image": "A",
-      "origin": "cloud/work/frontier/dot_runtime_a_menu_state_20261006",
+      "origin": "cloud/work/frontier/dot_runtime_a_menu_state_root_20261012/groups/dot_runtime_a_menu_state_20261006",
       "source": "src/ovl_a/groups/dot_runtime_a_menu_state_20261006/group.json",
-      "source_sha256": "03aad3db232e4a36aef26eb1665935c07481446a5e0a4af2659f24b3447e4bed",
+      "source_sha256": "f4a5ba39d318486986b582dbfec3a7178cba32706f16d741afe8944f29abed2d",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
-      "verified_at": "2026-10-11"
+      "verified_at": "2026-10-12"
+    },
+    "func_803990D0": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "group": "dot_runtime_a_menu_state_20261006",
+      "image": "A",
+      "origin": "cloud/work/frontier/dot_runtime_a_menu_state_root_20261012/groups/dot_runtime_a_menu_state_20261006",
+      "source": "src/ovl_a/groups/dot_runtime_a_menu_state_20261006/group.json",
+      "source_sha256": "f4a5ba39d318486986b582dbfec3a7178cba32706f16d741afe8944f29abed2d",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-12"
     },
     "func_80399394": {
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
