@@ -289,6 +289,44 @@ def test_committed_patch_inputs_are_well_formed():
         assert e["vram"] % 4 == 0
 
 
+def test_rsp_audio_config():
+    """Phase 5: RSPRecomp config for the audio ucode (boot segment: ROM = vram - 0x80000400 + 0x1000)."""
+    text = gc.render_rsp_audio_toml("rom/rush2049.recomp.z64")
+    assert "text_offset = 0x2AC50" in text and "text_size = 0xF40" in text
+    assert "text_address = 0x04001080" in text and 'output_function_name = "rush_audio_ucode"' in text
+    assert 'rom_file_path = "rom/rush2049.recomp.z64"' in text
+    assert 'output_file_path = "rsp/rush_audio_ucode.cpp"' in text
+
+
+def test_runtime_buffers():
+    """runtime_buffers.json: recomp-only names for the z-buffer, framebuffers and
+    gfx task buffers (datasyms only)."""
+    bufs = gc.load_runtime_buffers()
+    assert bufs["rush_z_buffer"] == 0x8017AEC0
+    assert bufs["rush_framebuffer_1"] + 320 * 220 * 2 == 0x80800000
+    assert all(name.startswith("rush_") for name in bufs)
+
+
+def test_site_arg_hooks(tmp_path):
+    """Phase 5: `"site_arg": true` passes before_vram as a third argument; the
+    committed busy-wait hooks (rush_hook_spin) all use it, one per site."""
+    p = tmp_path / "patches.json"
+    p.write_text(json.dumps({"hook": [
+        {"func": "f", "before_vram": "0x800FD500", "call": "rush_hook_spin", "site_arg": True},
+        {"func": "g", "call": "plain_hook"}]}))
+    spin, plain = gc.load_patches(p)["hook"]
+    assert spin["text"] == ("{ void rush_hook_spin(uint8_t*, recomp_context*, uint32_t); "
+                            "rush_hook_spin(rdram, ctx, 0x800FD500U); }")
+    assert spin["contract"] == ["rush_hook_spin"] and "text" not in plain
+    p.write_text(json.dumps({"hook": [{"func": "f", "call": "h", "site_arg": True}]}))
+    with pytest.raises(gc.GenError):
+        gc.load_patches(p)
+    spins = [e for e in gc.load_patches()["hook"] if e["call"] == "rush_hook_spin"]
+    assert len(spins) == 14 and all("text" in e for e in spins)
+    sites = [(e["func"], e["before_vram"]) for e in spins]
+    assert len(set(sites)) == len(sites) and ("game_loop", 0x800FD500) in sites
+
+
 # --------------------------------------------------------------- check_output
 
 def test_check_output_summary(tmp_path):

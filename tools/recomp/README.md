@@ -1,4 +1,4 @@
-# tools/recomp: static recompilation (Phase 0 config, Phase 1 host, Phases 2-4 replacement, oracle, package)
+# tools/recomp: static recompilation (Phase 0 config, Phase 1 host, Phases 2-4 replacement, oracle, package, Phase 5 wall clock + audio)
 
 Generates an [N64Recomp](https://github.com/N64Recomp/N64Recomp) configuration for Rush 2049 (US)
 from the project's committed inventories and the private ROM. Plan:
@@ -25,6 +25,8 @@ via `build/`). Committed here: the generator, its two curated inputs, the output
 | `runtime/src/rt64_renderer.cpp`, `sdl_frontend.cpp` | Phase 4: RT64 renderer + SDL2 window/input (CMake `RUSH_RENDERER=rt64`) |
 | `make_rom.py` | Phase 4: synthetic ROM from the retail ROM + a config's `manifest.json` (stdlib; the package's ROM step) |
 | `package.py`, `package/` | Phase 4: gameplay-test package `rush2049-recomp-test-v<N>.tar.gz` and its tester documents |
+| `runtime_buffers.json` | Phase 5: recomp-only datasym names for the z-buffer, framebuffers and gfx task buffers |
+| `reports/vN/` | tester reports of package vN (text and logs only; screenshots stay on rocky) |
 
 ## Commands (rocky)
 
@@ -445,7 +447,7 @@ package's INSTALL.md gives the clang-cl + Ninja path Zelda64Recomp uses, with RT
 **Scripts.** `race_track3.press` (RIGHT x2) and `race_track4.press` (LEFT x1): the track selector cycles four
 tracks (first race-data stream after image B: 0x43FE80, 0x4D2FA0, 0x555850, 0x5D6160; RIGHT x4 = default,
 LEFT x1 = RIGHT x3). `attract.press`: 9000 frames without input; only image A, no race data inflated (no attract
-demo race in 5 minutes of game time).
+demo race in 5 minutes of game time; Phase 5: the game was waiting on the boot notice, see "Attract mode").
 
 **Gameplay-test package** (`package.py`; process for every later phase):
 
@@ -466,6 +468,71 @@ ROM bytes and no recompiled C), the prebuilt Linux RT64 host (it contains the tr
 the ROM), INSTALL/TEST_PROCESS/REPORT_TEMPLATE/CHANGES/README, `VERSION.txt`, `MANIFEST.sha256`. RT64 is cloned
 by the tester at the pinned commit. `make_rom.py` rebuilds the synthetic ROM from the tester's ROM and refuses
 anything not byte-identical to the manifest's.
+
+## Phase 5: wall-clock busy-waits, RT64 self-check mask, audio microcode, package v2 (lane w25r, 2026-10-12)
+
+Lane notes: `cloud/work/frontier/w25r/RESULTS.md`; plan section 13; tester report v1: `reports/v1/REPORT.md`.
+
+**Busy-wait hooks** (`patches.json` hooks with `"site_arg": true` -> `rush_hook_spin(rdram, ctx, site)`,
+`runtime/src/hooks.cpp`). The game polls memory in 14 loops with no call inside (found by a scan of every
+backward branch whose body has no call and loads only loop-invariant addresses, in all four populations; 8 more
+are libultra hardware polls N64Recomp does not emit). ultramodern switches game threads only inside libultra
+calls, so such a loop starves the thread that would change the variable: with RT64 the DP completion arrives
+later than with the null renderer and `game_loop` 0x800FD500 (`while (__osScTaskCount != 0)`, D_8002EB70) hung
+every wall-clock boot on the laptop. The hook does one `yield_self_1ms` turn (deliver one external message,
+run a woken higher-priority thread) per iteration; it is a no-op with `--clock frames`. Sites: D_8002EB70 drains
+in game_loop, func_80096130, suspension_setup, tire_compound_set and image A 0x8038B3DC/B4E8/BA20/BA84; the
+retrace-counter wait in dma_wait_complete 0x8008AB3C; wheel_params_set 0x800A4BA0/BC8; func_800E7038
+0x800E7114; static func_80011848 0x80011868 and func_80014140 0x8001416C. Repro without a GPU:
+`--null-dl-delay 20` (the null renderer takes 20 ms per display list) hangs at `gfx_tasks=2` with
+`--no-spin-yield` and boots without it. Status field `spin_yields=`.
+
+**RT64 on rocky**: a fedora:41 container with Xvfb and Mesa lavapipe runs the RT64 host (software Vulkan;
+`~/rush2049/recomp/w25r/xvfb/`), SDL's `disk` audio driver records the audio device stream. Not a GPU, but it
+reproduced the laptop hang and found the next bug: lockstep + RT64 sent SP/DP to the game before RT64 had read
+the mirrored display list (SIGSEGV in RT64's interpreter at the race start); the game thread now waits
+(host-side) for the renderer's `send_dl` to return.
+
+**RT64 self-check mask.** The oracle log has `# rdp_image F KIND+ADDR/WxH/BPP` lines (G_SETCIMG/G_SETZIMG and the
+largest G_SETSCISSOR) and `# gfx_task` (the OSTask buffers). All scripts use z-buffer 0x8017AEC0 (320x220x2,
+right after gBssEnd) and framebuffers 0x807BB3C0 / 0x807DDA00; the v1 a-vs-c 71 pages are the z-buffer (36) and
+framebuffer 1 (35). `runtime_buffers.json` names them (`rush_z_buffer`, `rush_framebuffer_0/1`,
+`rush_gfx_*`) in the datasyms. `oracle.py compare --mask-renderer` leaves pages covered by those images unjudged
+(page granular); host `--mask-rdp-images` zeroes the image bytes in the page hashes (precise; every compared
+run needs it; header `# mask rdp_images`). Both report `EQUIVALENT except renderer-written pages`. Verdicts of
+replacement lanes stay defined on the null renderer without a mask.
+
+**Audio.** The first M_AUDTASK names the ucode: text 0x8002A050 (ROM 0x2AC50), data 0x8002E210, boot 0x80027DD0.
+It is not libultra's aspMain (no command table; a per-voice synthesis loop). `gen_config.py` writes
+`rush2049.rsp_audio.toml` (`AUDIO_UCODE`: 0xF40 bytes at IMEM 0x1080; the declared 4096 bytes end in data);
+`RSPRecomp rush2049.rsp_audio.toml` (in the config dir) writes `rsp/rush_audio_ucode.cpp`; CMake compiles it
+when present (`-march=nehalem`, `RUSH_HAVE_AUDIO_UCODE`) and `get_rsp_microcode` returns it for audio tasks;
+lockstep runs it synchronously in `osSpTaskStartGo`. The game's AI thread (static func_80010A40) gives the AI one
+192-frame buffer per AI message (the console's per-buffer interrupt, 115/s at 22050 Hz); ultramodern sends one
+per VI, so the game made half its audio. `lockstep.cpp` now paces AI messages at frequency / frames per buffer
+(wall: host thread corrected by the SDL queue; lockstep: integer accumulation per virtual VI). Output: SDL2
+queue device in the rt64 build (`sdl_frontend.cpp`; `--no-sound`, `--volume`), `--wav PATH` in any build,
+status fields `audio_nonzero=` / `audio_peak=`, `--no-audio-ucode` / `--ai-per-vi` for the v1 behaviour.
+
+**Privacy.** librecomp's `select_rom` copies the ROM into `--home`; the host deletes the copy in the game's
+`on_init_callback` (after `load_stored_rom` has read it) and at exit (`--keep-rom-copy` keeps it).
+
+**Attract mode** (corrects Phase 4): with no input the game never leaves the boot notice (NO CONTROLLER PAK
+DETECTED / CONTINUE WITHOUT SAVING) and stays silent; after one START (`attract.press` now presses it at 5 s) it
+cycles the title (5 s) and a demo race (image B, ~30 s) on tracks 1, 2, 3, 4 (race data 0x43FE80, 0x4D2FA0,
+0x555850, 0x5D6160).
+
+**Other host options**: `--log-input` (button/stick changes per player: the pad check), `--no-spin-yield`,
+`--null-dl-delay MS`, `--mask-rdp-images`. Script `stunt.press`: SELECT MODE DOWN x4 (STUNT): race data 0x812BE0
+instead of the default track's 0x43FE80.
+
+```bash
+# rocky, ~/rush2049/recomp/w25r: stock config + both hosts with the audio ucode
+./b.sh stock      # gen_config, N64Recomp, RSPRecomp, null host
+cmake build/stock/host-rt64 && ninja -C build/stock/host-rt64      # (first time: cmake -S ... -DRUSH_RENDERER=rt64)
+xvfb/run.sh runs/x.txt --home runs/h --seconds 30                   # RT64 on Xvfb + lavapipe, wall clock
+python3 tools/recomp/oracle.py compare --mask-renderer runs/self/a.log runs/self/c.log
+```
 
 ## RDRAM accessors (optional native path; Astra PR #325, imported by w22p, 2026-10-12)
 

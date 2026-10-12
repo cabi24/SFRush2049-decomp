@@ -5,7 +5,7 @@
                                        [--n64recomp-src DIR]
 
 Inputs (committed): the four code populations' inventories
-  static  668 functions  layout map (tools.conveyor.pipeline.layout.derive:
+  static  667 functions  layout map (tools.conveyor.pipeline.layout.derive:
                          splat.us.yaml + symbol_addrs.us.txt + asm/us/*.s +
                          asm/us/boot_tail/extents.json), boot segment
                          ROM 0x1000-0x2F4E0 -> 0x80000400
@@ -32,6 +32,7 @@ Outputs (all under --out, git-ignored, PRIVATE: derived from the ROM):
   manifest.json             counts, hashes, layout, name map, builtin-list hits,
                             runtime_contract (shims, hooks, images)
   rush2049_images.h         stream -> section table for the runtime inflate hook
+  rush2049.rsp_audio.toml   RSPRecomp config for the audio microcode (Phase 5)
   rush2049_repl.h           replaced functions (Phase 2; empty table without
                             --replace-set/--replace) and the .repl image location
 
@@ -85,7 +86,7 @@ EXTRA_FUNCTIONS = REPO / "tools" / "recomp" / "extra_functions.json"
 IDENTITY = REPO / "tools" / "recomp" / "identity.json"
 PATCHES = REPO / "tools" / "recomp" / "patches.json"
 
-EXPECTED_COUNTS = {"static": 668, "game": 1216, "ovl_a": 193, "ovl_b": 49}
+EXPECTED_COUNTS = {"static": 667, "game": 1216, "ovl_a": 193, "ovl_b": 49}
 
 
 _C_IDENT = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
@@ -168,7 +169,7 @@ def _fn(name, vram, size):
 
 
 def load_static_functions(rom_path, game_image_path, repo=REPO):
-    """The 668 static functions from the layout map. layout.derive reads ROM
+    """The 667 static (668 before w24s merged viStub into viDeadlinePassed) functions from the layout map. layout.derive reads ROM
     bytes through targets.BASEROM / targets.GAME_CODE_BIN; both are pointed at
     the verified inputs for the call and restored afterwards."""
     from tools.conveyor.pipeline import layout
@@ -350,6 +351,55 @@ def check_functions(functions, sections, expected_counts=None):
                 raise GenError(f"function name {recomp_name} in both {by_name[recomp_name][0]} and {pop}")
             by_name[recomp_name] = (pop, f["name"])
     return by_name
+
+
+# Audio RSP microcode (Phase 5). Identified from the first M_AUDTASK OSTask the
+# runtime logs (`audio task: ucode_boot 0x80027DD0/208 ucode 0x8002A050/4096
+# ucode_data 0x8002E210/2048 ... data_ptr = the command list`): text and data
+# live in the boot segment, so the ROM offsets are vram - 0x80000400 + 0x1000.
+# Not the libultra aspMain (no acmd dispatch table): a per-voice synthesis
+# ucode (it walks voice records in DMEM, fields +0x2C/+0x3C/+0x40...). Its code
+# ends at IMEM 0x1FB0 (jr $8; nop); the declared 4096 bytes carry data after
+# 0x1FC0, which RSPRecomp would decode as invalid instructions, so text_size
+# stops there. rspboot loads the text at IMEM 0x1080.
+AUDIO_UCODE = {"function": "rush_audio_ucode", "text_vram": 0x8002A050, "text_size": 0xF40,
+               "imem": 0x04001080, "data_vram": 0x8002E210, "data_size": 0x800, "boot_vram": 0x80027DD0}
+
+
+def audio_ucode_rom(vram):
+    return vram - BOOT_VRAM + 0x1000
+
+
+def render_rsp_audio_toml(rom_rel):
+    u = AUDIO_UCODE
+    return "\n".join([
+        "# RSPRecomp config for Rush 2049's audio microcode (tools/recomp/gen_config.py",
+        "# AUDIO_UCODE). Run in this directory: RSPRecomp rush2049.rsp_audio.toml",
+        "# -> rsp/%s.cpp (private: translated ROM code)." % u["function"],
+        "text_offset = 0x%X" % audio_ucode_rom(u["text_vram"]),
+        "text_size = 0x%X" % u["text_size"],
+        "text_address = 0x%08X" % u["imem"],
+        "rom_file_path = %s" % _toml_str(rom_rel),
+        "output_file_path = %s" % _toml_str("rsp/%s.cpp" % u["function"]),
+        "output_function_name = %s" % _toml_str(u["function"]),
+        ""])
+
+
+RUNTIME_BUFFERS = Path(__file__).resolve().parent / "runtime_buffers.json"
+
+
+def load_runtime_buffers(path=RUNTIME_BUFFERS):
+    """{name: vram} of the RAM buffers runtime_buffers.json names (z-buffer,
+    framebuffers, gfx task buffers): datasyms only, for oracle reports."""
+    path = Path(path)
+    if not path.is_file():
+        return {}
+    out = {}
+    for e in json.loads(path.read_text())["buffers"]:
+        if not re.match(r"^[A-Za-z_][A-Za-z0-9_]*$", e["name"]):
+            raise GenError(f"runtime buffer name {e['name']!r} is not a C identifier")
+        out[e["name"]] = int(e["vram"], 16)
+    return out
 
 
 def data_symbols(functions, symbols, sections):
@@ -555,6 +605,23 @@ def apply_identity(functions, identity):
     return out, applied
 
 
+def _patch_hook(e):
+    """One patches.json "hook" entry. `"site_arg": true` passes the hook's
+    before_vram as a third argument (one runtime function serving several
+    sites, e.g. rush_hook_spin at every busy-wait loop)."""
+    bv = int(e["before_vram"], 16) if e.get("before_vram") else None
+    hook = {"func": e["func"], "call": e["call"], "before_vram": bv}
+    if e.get("site_arg"):
+        if bv is None:
+            raise GenError(f"hook {e['call']} in {e['func']}: site_arg needs before_vram")
+        if not _C_IDENT.match(e["call"]):
+            raise GenError(f"hook call {e['call']!r} is not a C identifier")
+        hook["text"] = ("{ void %s(uint8_t*, recomp_context*, uint32_t); %s(rdram, ctx, 0x%08XU); }"
+                        % (e["call"], e["call"], bv))
+        hook["contract"] = [e["call"]]
+    return hook
+
+
 def load_patches(path=PATCHES):
     path = Path(path)
     if not path.is_file():
@@ -562,9 +629,7 @@ def load_patches(path=PATCHES):
     doc = json.loads(path.read_text())
     return {"stubs": dict(doc.get("stubs", {})), "ignored": dict(doc.get("ignored", {})),
             "renamed": dict(doc.get("renamed", {})),
-            "hook": [{"func": e["func"], "call": e["call"],
-                      "before_vram": int(e["before_vram"], 16) if e.get("before_vram") else None}
-                     for e in doc.get("hook", [])],
+            "hook": [_patch_hook(e) for e in doc.get("hook", [])],
             "instruction": [{"func": e["func"], "vram": int(e["vram"], 16),
                              "original": int(e["original"], 16), "value": int(e["value"], 16),
                              "now": e.get("now", "")}
@@ -935,6 +1000,8 @@ def generate(images, functions, symbols, rom_bytes, out_dir, lists=None,
                         dict(funcs_by_name, **repl_by_name), dropped, renamed_builtin)
     contract = runtime_contract(functions, images, sections, patches, lists, hooks, streams)
     placed, conflicts = data_symbols(functions, symbols, sections)
+    for name, vram in load_runtime_buffers().items():   # recomp-only names (runtime_buffers.json)
+        placed["absolute"].setdefault(name, vram)
 
     synthetic = bytearray(rom_bytes)
     synthetic.extend(b"\0" * (synthetic_size - len(synthetic)))
@@ -960,6 +1027,7 @@ def generate(images, functions, symbols, rom_bytes, out_dir, lists=None,
                            renamed=patches["renamed"],
                            instruction=patches["instruction"], hooks=hooks))
     (out_dir / "rush2049_images.h").write_text(render_images_header(contract["images"]))
+    (out_dir / "rush2049.rsp_audio.toml").write_text(render_rsp_audio_toml("rom/" + rom_name))
     (out_dir / "rush2049_repl.h").write_text(render_repl_header(repl["replaced"], repl_image))
 
     manifest = {
@@ -992,6 +1060,12 @@ def generate(images, functions, symbols, rom_bytes, out_dir, lists=None,
                               "before_vram": None if e["before_vram"] is None else _hex(e["before_vram"])}
                              for e in hooks if "text" not in e]},
         "runtime_contract": contract,
+        "audio_ucode": {"config": "rush2049.rsp_audio.toml", "function": AUDIO_UCODE["function"],
+                        "text_rom": _hex(audio_ucode_rom(AUDIO_UCODE["text_vram"])),
+                        "text_size": AUDIO_UCODE["text_size"], "imem": _hex(AUDIO_UCODE["imem"]),
+                        "text_sha256": sha256(bytes(rom_bytes[audio_ucode_rom(AUDIO_UCODE["text_vram"]):
+                                                              audio_ucode_rom(AUDIO_UCODE["text_vram"])
+                                                              + AUDIO_UCODE["text_size"]]))},
         "identity_renames": identity_applied,
         "replacements": {"replaced": repl["replaced"], "native": repl["native"],
                          "probes_dropped": probes_dropped,

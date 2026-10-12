@@ -1,5 +1,7 @@
-# Idle front end: no input for 5 minutes of game time (9000 frames). Evidence (w24r, stock build, frame
-# clock): only image A is loaded and no race data is inflated, i.e. no attract-mode demo race starts in
-# 5 minutes without input (to be confirmed with pixels: gameplay-test package T2). Exercises the front-end
-# animation code for a long stretch.
+# Attract mode: one START at 5 s passes the boot notice (NO CONTROLLER PAK DETECTED / CONTINUE WITHOUT SAVING;
+# without it the game waits there, silent, forever), then no input for 5 minutes of game time (9000 frames).
+# Evidence (w25r, stock build): the title shows for 5 s, then a demo race (image B) runs ~30 s, back to the
+# title (image A) 5 s, next demo; the demos cycle the four tracks (race data 0x43FE80, 0x4D2FA0, 0x555850,
+# 0x5D6160). w24r's 9000 idle frames without the START never left the notice (no demo race).
 frames 9000
+5 START

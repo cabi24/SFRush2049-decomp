@@ -8,7 +8,11 @@
 // rdram; the hook only tells librecomp which recompiled section now lives at
 // dst, so LOOKUP_FUNC / get_function dispatch to it. Images A and B share
 // 0x8038A400: whatever is loaded there is unloaded first.
+#include <algorithm>
+#include <atomic>
 #include <cstdio>
+#include <mutex>
+#include <vector>
 
 #include "recomp.h"
 #include "librecomp/game.hpp"
@@ -76,4 +80,44 @@ extern "C" void rush_hook_park_idle(uint8_t* rdram, recomp_context* ctx) {
     rush::trace_event(rush::lockstep_enabled() ? "idle thread parked (lockstep: virtual VIs)"
                                                : "idle thread parked (pause_self)");
     rush::lockstep_idle(rdram);
+}
+
+// rush_hook_spin: inserted before the loop branch of every libultra-free
+// busy-wait of the game (patches.json "hook" entries with "site_arg"; the
+// list and how it was found: tools/recomp/README.md "Phase 5"). On the
+// console the variable such a loop polls is changed by another thread or an
+// interrupt while it spins; under ultramodern game threads switch only inside
+// libultra calls, so the thread that would change it (the scheduler, woken by
+// the renderer's asynchronous SP/DP completion, or by a VI) never runs. Same
+// recipe as rush_hook_park_idle, one turn at a time: wait up to 1 ms for an
+// external message (VI/AI/SP/DP/SI), deliver it, and let a woken
+// higher-priority thread run; then the loop re-reads its variable.
+// With --clock frames (lockstep) it does nothing: every event there is
+// delivered synchronously at fixed points, so the loops never spin, and a
+// no-op keeps the oracle's verdicts unchanged.
+extern "C" void yield_self_1ms(uint8_t* rdram);
+
+namespace {
+std::atomic<uint64_t> spin_yields{0};
+std::mutex spin_sites_mutex;
+std::vector<uint32_t> spin_sites_seen;
+bool spin_yield_enabled = true;
+}
+
+void rush::set_spin_yield(bool on) { spin_yield_enabled = on; }
+
+uint64_t rush::spin_yield_count() { return spin_yields.load(); }
+
+extern "C" void rush_hook_spin(uint8_t* rdram, recomp_context* ctx, uint32_t site) {
+    (void)ctx;
+    if (rush::lockstep_enabled() || !spin_yield_enabled) return;
+    {
+        std::lock_guard<std::mutex> lock(spin_sites_mutex);
+        if (std::find(spin_sites_seen.begin(), spin_sites_seen.end(), site) == spin_sites_seen.end()) {
+            spin_sites_seen.push_back(site);
+            rush::trace_event("busy-wait at 0x%08X: yielding (rush_hook_spin)", site);
+        }
+    }
+    spin_yields++;
+    yield_self_1ms(rdram);
 }

@@ -8,18 +8,26 @@ the error lines) for `REPORT_TEMPLATE.md` section 2.
 
 What gets built (same on every OS):
 
-1. `src/N64Recomp` -> the recompiler program `N64Recomp`.
+1. `src/N64Recomp` -> the recompiler programs `N64Recomp` (game code) and `RSPRecomp` (the audio microcode).
 2. `make_rom.py` + your ROM -> `config/rom/rush2049.recomp.z64` (the "synthetic ROM": your ROM plus the
    game's three compressed code images unpacked; refused unless byte-identical to the coordinator's,
    sha256 `@@SYNTH_SHA256@@`).
-3. `N64Recomp config/rush2049.recomp.toml` -> `config/RecompiledFuncs/*.c` (the game as C, ~2,140 functions).
+3. `N64Recomp config/rush2049.recomp.toml` -> `config/RecompiledFuncs/*.c` (the game as C, 2,135 functions);
+   `RSPRecomp config/rush2049.rsp_audio.toml` -> `config/rsp/rush_audio_ucode.cpp` (the game's audio
+   microcode as C++: this is what makes sound).
 4. RT64 (cloned from GitHub) + `src/N64ModernRuntime` + `rush/tools/recomp/runtime` + the C from step 3 ->
    the game program `rush2049_recomp(.exe)`.
 
-Known limits of this build (not bugs to report, but do note anything surprising): **no sound** (the game's
-audio microcode is not recompiled; audio tasks complete silently); no save/controller-pak support; the
-renderer is RT64 in its default settings; the game has never been seen rasterised by the coordinator
-(the build host has no display), so whether RT64 draws Rush 2049 correctly is exactly what this test finds out.
+Known limits of this build (not bugs to report, but do note anything surprising): no save/controller-pak
+support; the renderer is RT64 in its default settings. **New in v2** (see `CHANGES.md`): the default
+(wall-clock) mode no longer hangs at boot, and there is **sound** (the game's own audio microcode,
+recompiled). Both were checked by the coordinator only on a machine without a screen or speakers (RT64 on a
+software GPU, audio written to a file), so hearing it and seeing it run at full speed is what this test
+finds out.
+
+Privacy: the program copies the ROM into its `--home` folder when it starts (that is how the runtime
+library checks it) and, since v2, deletes that copy as soon as the game has loaded it (log line
+`removed the ROM copy ...`) and again at exit. Still never zip or upload `*.z64` files (T9 says how).
 
 The commands below assume the package was extracted to `C:\rush2049\@@PACKAGE@@` (Windows) or
 `~/rush2049/@@PACKAGE@@` (Linux). Adjust the paths if you chose another place; avoid spaces in the path.
@@ -90,14 +98,16 @@ python -c "import hashlib,sys;bad=[l.split('  ',1)[1] for l in open('MANIFEST.sh
 
 Success: `MANIFEST OK`.
 
-### A5. Build N64Recomp (~3-6 min)
+### A5. Build N64Recomp and RSPRecomp (~3-6 min)
 
 ```powershell
 cmake -S src\N64Recomp -B build\N64Recomp -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER="$CLANGCL" -DCMAKE_CXX_COMPILER="$CLANGCL"
-cmake --build build\N64Recomp --target N64Recomp
+cmake --build build\N64Recomp --target N64RecompCLI RSPRecomp
 ```
 
-Success: `build\N64Recomp\N64Recomp.exe` exists.
+Success: `build\N64Recomp\N64Recomp.exe` and `build\N64Recomp\RSPRecomp.exe` exist. (The CMake target of the
+recompiler program is `N64RecompCLI`; its output is named `N64Recomp.exe`. The target `N64Recomp` is only a
+library: the v1 report found this.)
 
 ### A6. Make the synthetic ROM and recompile (~1 min)
 
@@ -105,12 +115,13 @@ Success: `build\N64Recomp\N64Recomp.exe` exists.
 python rush\tools\recomp\make_rom.py --rom rom\baserom.us.z64 --manifest config\manifest.json --out config\rom\rush2049.recomp.z64
 cd config
 ..\build\N64Recomp\N64Recomp.exe rush2049.recomp.toml
+..\build\N64Recomp\RSPRecomp.exe rush2049.rsp_audio.toml
 cd ..
 ```
 
-Success: `make_rom: wrote ... = manifest synthetic ROM`, then N64Recomp prints `Function count: 2136` (or
-close) and exits without an error; `config\RecompiledFuncs\` holds ~45 `funcs_*.c` files plus
-`recomp_overlays.inl` and `lookup.cpp`.
+Success: `make_rom: wrote ... = manifest synthetic ROM`, then N64Recomp prints `Function count: 2135` and exits
+without an error; `config\RecompiledFuncs\` holds ~45 `funcs_*.c` files plus `recomp_overlays.inl` and
+`lookup.cpp`; RSPRecomp prints nothing and writes `config\rsp\rush_audio_ucode.cpp` (~2,600 lines).
 
 ### A7. Get RT64 at the pinned commit (~3-10 min, ~1 GB)
 
@@ -131,7 +142,8 @@ cmake --build build\host
 ```
 
 The configure step prints `Rush 2049 host: renderer rt64, capture OFF` (per-call capture is POSIX-only and is
-switched off on Windows; nothing in the gameplay test needs it). It also runs a Python check of the runtime
+switched off on Windows; nothing in the gameplay test needs it) and `Rush 2049 host: recompiled audio ucode`
+(if it says `no audio ucode`, the RSPRecomp step of A6 did not run: run it, delete `build\host`, configure again). It also runs a Python check of the runtime
 contract (a failure there names the missing function: report it). The build compiles RT64, its shaders,
 N64ModernRuntime, ~45 large generated C files and the host (~500 steps).
 
@@ -150,13 +162,18 @@ recompiled game itself builds on Windows: try it in `build\host-null` and report
 
 ```powershell
 mkdir run\logs -Force | Out-Null
-cmd /c "build\host\rush2049_recomp.exe --renderer null --rom config\rom\rush2049.recomp.z64 --home run\home --seconds 30 2> run\logs\smoke.txt"
-Select-String -Path run\logs\smoke.txt -Pattern "load game|load ovl_a|final"
+cmd /c "build\host\rush2049_recomp.exe --renderer null --rom config\rom\rush2049.recomp.z64 --home run\home --seconds 30 --press 5:START 2> run\logs\smoke.txt"
+Select-String -Path run\logs\smoke.txt -Pattern "load game|load ovl|audio ucode|non-silent|removed the ROM|final"
 ```
 
-Success: lines `load game: stream ROM 0xB0CB10 -> 0x80086A50`, `load ovl_a: ...` and a `final t=30...`
-status line with `gfx_tasks=` around 900 and `image=ovl_a`. This is the same check the coordinator runs on
-Linux; continue with `TEST_PROCESS.md`.
+(`--press 5:START` presses START once at 5 s: it passes the boot notice, after which the game shows its title and
+starts an attract-mode demo race by itself.)
+
+Success: lines `load game: stream ROM 0xB0CB10 -> 0x80086A50`, `load ovl_a: ...`, `removed the ROM copy ...`,
+`audio ucode: recompiled`, `first non-silent audio buffer` (about 5 s in), `load ovl_b: ...` (about 10 s: the
+demo race) and a `final t=30...` status line with `gfx_tasks=` around 900, `audio_nonzero=` well above 0 and
+`image=ovl_b`. This is the same check the coordinator runs on Linux;
+continue with `TEST_PROCESS.md`.
 
 ### A10. The windowed game
 
@@ -164,16 +181,23 @@ Linux; continue with `TEST_PROCESS.md`.
 cmd /c "build\host\rush2049_recomp.exe --rom config\rom\rush2049.recomp.z64 --home run\home 2> run\logs\play.txt"
 ```
 
-A window opens; close it (or press Escape) to quit. Options: `--gfx-api d3d12|vulkan` (default: RT64 picks,
-normally D3D12 on Windows), `--fullscreen`, `--rt64-dev` (RT64's developer overlay). The log file collects a
+A window opens; close it (or press Escape) to quit. This is the default **wall-clock** mode (the game runs on
+real time, like the console). Options: `--gfx-api d3d12|vulkan` (default: RT64 picks, normally D3D12 on
+Windows), `--fullscreen`, `--rt64-dev` (RT64's developer overlay), `--volume PERCENT` (default 100),
+`--no-sound`, `--log-input` (prints every button press: the pad check in TEST_PROCESS). The log file collects a
 status line per second.
+
+Fallback: if the window stays black or the picture freezes in this mode, add `--clock frames` (the
+deterministic "lockstep" mode the v1 test played in; it has sound too since v2) and report the wall-clock
+failure (the last 40 log lines).
 
 ---------------------------------------------------------------------------------------------------------
 
 ## B. Linux (secondary path; how the coordinator builds it)
 
-Tested by the coordinator on Rocky Linux 10 (clang 21, CMake 3.31, Ninja 1.11) up to a headless run; the
-RT64 window has not been run there (no display). Packages (Fedora/Rocky; Ubuntu names in brackets):
+Tested by the coordinator on Rocky Linux 10 (clang 21, CMake 3.31, Ninja 1.11): headless runs, and since v2
+the RT64 window on a virtual display (Xvfb) with Mesa's software Vulkan (lavapipe) and SDL's file audio
+driver; never on a real GPU, screen or speakers. Packages (Fedora/Rocky; Ubuntu names in brackets):
 
 ```bash
 sudo dnf install -y clang lld cmake ninja-build git python3 SDL2-devel gtk3-devel
@@ -188,7 +212,7 @@ RT64-enabled build. It still needs the synthetic ROM:
 cd ~/rush2049/@@PACKAGE@@
 python3 rush/tools/recomp/make_rom.py --rom rom/baserom.us.z64 --manifest config/manifest.json \
         --out config/rom/rush2049.recomp.z64
-prebuilt/linux-x86_64/rush2049_recomp --renderer null --rom config/rom/rush2049.recomp.z64 --home run/home --seconds 30
+prebuilt/linux-x86_64/rush2049_recomp --renderer null --rom config/rom/rush2049.recomp.z64 --home run/home --seconds 30 --press 5:START
 ```
 
 Full build (~10 min on 8 cores):
@@ -198,17 +222,17 @@ cd ~/rush2049/@@PACKAGE@@
 sha1sum rom/baserom.us.z64          # 3f99351d7bb61656614bdb2aa1a90cfe55d1922c
 sha256sum -c MANIFEST.sha256 --quiet && echo MANIFEST OK
 CC=clang CXX=clang++ cmake -S src/N64Recomp -B build/N64Recomp -G Ninja -DCMAKE_BUILD_TYPE=Release
-ninja -C build/N64Recomp N64Recomp
+ninja -C build/N64Recomp N64RecompCLI RSPRecomp
 python3 rush/tools/recomp/make_rom.py --rom rom/baserom.us.z64 --manifest config/manifest.json \
         --out config/rom/rush2049.recomp.z64
-(cd config && ../build/N64Recomp/N64Recomp rush2049.recomp.toml)
+(cd config && ../build/N64Recomp/N64Recomp rush2049.recomp.toml && ../build/N64Recomp/RSPRecomp rush2049.rsp_audio.toml)
 git clone @@RT64_URL@@ src/rt64 && git -C src/rt64 checkout @@RT64_COMMIT@@ \
     && git -C src/rt64 submodule update --init --recursive
 CC=clang CXX=clang++ cmake -S rush/tools/recomp/runtime -B build/host -G Ninja \
     -DN64MODERNRUNTIME_DIR=$PWD/src/N64ModernRuntime -DRECOMP_OUT=$PWD/config \
     -DRUSH_RENDERER=rt64 -DRT64_DIR=$PWD/src/rt64
 ninja -C build/host
-build/host/rush2049_recomp --renderer null --rom config/rom/rush2049.recomp.z64 --home run/home --seconds 30
+build/host/rush2049_recomp --renderer null --rom config/rom/rush2049.recomp.z64 --home run/home --seconds 30 --press 5:START
 build/host/rush2049_recomp --rom config/rom/rush2049.recomp.z64 --home run/home 2> run/play.txt   # window
 ```
 
@@ -235,5 +259,8 @@ or speed: say "WSL2" clearly in the report. The headless smoke test (A9 equivale
 | configure: `runtime contract check failed` | report the names it lists |
 | `use clang-cl ..., not MSVC cl.exe` | pass `-DCMAKE_C_COMPILER` / `-DCMAKE_CXX_COMPILER` as in A8 (delete `build\host` first) |
 | `[rush] RT64 setup: FAILED` in the log | retry with `--gfx-api vulkan`, then `--gfx-api d3d12`; update the GPU driver; report the GPU model |
-| window opens but stays black | let it run 60 s (the front end needs ~5 s); try the other `--gfx-api`; report |
+| window opens but stays black | let it run 60 s (the front end needs ~5 s); try the other `--gfx-api`; then `--clock frames`; report all three |
+| black window, log `gfx_tasks=` stops growing | the v1 hang; v2 should not have it. Log lines `busy-wait at 0x...: yielding` are normal (the fix working). Report the last 40 lines; play with `--clock frames` |
+| no sound | log line `audio: ...` names the SDL driver/device (or why none opened); `audio_nonzero=` in the status lines says whether the game produced sound at all; check the Windows output device; report both |
+| crackling / sound too fast or slow | report it with the `audio:` line and the gfx_tasks rate; `--wav run\logs\sound.wav` writes what the game produced (private: it is the game's audio, do not upload; describe it) |
 | crash | the last 40 lines of the log file + Windows Event Viewer > Windows Logs > Application entry for `rush2049_recomp.exe` |

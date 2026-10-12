@@ -24,7 +24,8 @@ using clock_type = std::chrono::steady_clock;
 clock_type::time_point t0 = clock_type::now();
 
 std::atomic<uint64_t> n_vi{0}, n_gfx{0}, n_audio_task{0}, n_other_task{0}, n_swap{0},
-    n_audio_samples{0}, n_overlay{0};
+    n_audio_samples{0}, n_overlay{0}, n_audio_nonzero{0};
+std::atomic<int> audio_peak{0};
 std::atomic<uint32_t> last_origin{0}, last_dl{0}, last_dl_size{0}, max_dl_size{0};
 std::atomic<uint64_t> fb_nonzero{0}, fb_hash{0};
 std::atomic<uint64_t> fb_distinct{0};
@@ -92,12 +93,14 @@ void parse_presses(const std::string& spec) {
 void status_line(const char* tag) {
     fprintf(stderr,
         "[rush] %s t=%.1fs vi=%llu gfx_tasks=%llu audio_tasks=%llu other_tasks=%llu swaps=%llu "
-        "origin=0x%08X fb_nonzero=%llu fb_distinct=%llu last_dl=0x%08X(%u B) audio_samples=%llu image=%s\n",
+        "origin=0x%08X fb_nonzero=%llu fb_distinct=%llu last_dl=0x%08X(%u B) audio_samples=%llu audio_nonzero=%llu audio_peak=%d image=%s spin_yields=%llu\n",
         tag, now_s(), (unsigned long long)n_vi, (unsigned long long)n_gfx,
         (unsigned long long)n_audio_task, (unsigned long long)n_other_task,
         (unsigned long long)n_swap, last_origin.load(), (unsigned long long)fb_nonzero,
         (unsigned long long)fb_distinct, last_dl.load(), last_dl_size.load(),
-        (unsigned long long)n_audio_samples, current_image.c_str());
+        (unsigned long long)n_audio_samples, (unsigned long long)n_audio_nonzero, audio_peak.load(),
+        current_image.c_str(),
+        (unsigned long long)rush::spin_yield_count());
 }
 
 } // namespace
@@ -122,6 +125,7 @@ void rush::trace_start(double seconds, const std::string& press, const std::stri
         }
         status_line("final");
         rush::oracle_finish("seconds");
+        rush::run_exit_hook();
         fflush(stderr);
         std::_Exit(0);
     }).detach();
@@ -129,7 +133,7 @@ void rush::trace_start(double seconds, const std::string& press, const std::stri
 
 void rush::trace_rsp_task(uint32_t type) {
     if (type == M_AUDTASK) {
-        if (n_audio_task++ == 0) trace_event("first audio RSP task (completed without ucode)");
+        if (n_audio_task++ == 0) trace_event("first audio RSP task");
     } else {
         if (n_other_task++ == 0) trace_event("first non-gfx/non-audio RSP task type %u", type);
     }
@@ -192,7 +196,20 @@ void rush::trace_screen_update(uint8_t* rdram, uint32_t origin) {
     }
 }
 
-void rush::trace_audio_samples(size_t n) { n_audio_samples += n; }
+void rush::trace_audio_samples(const int16_t* samples, size_t n) {
+    uint64_t nz = 0;
+    int peak = 0;
+    for (size_t i = 0; i < n; i++) {
+        int v = samples[i] < 0 ? -(int)samples[i] : samples[i];
+        nz += v != 0;
+        if (v > peak) peak = v;
+    }
+    if (nz && n_audio_nonzero == 0) trace_event("first non-silent audio buffer (%llu of %zu samples non-zero, peak %d)",
+                                                (unsigned long long)nz, n, peak);
+    n_audio_samples += n;
+    n_audio_nonzero += nz;
+    if (peak > audio_peak) audio_peak = peak;
+}
 
 void rush::trace_overlay(const char* name, uint32_t stream_rom, uint32_t dst) {
     {
@@ -232,8 +249,15 @@ void rush::request_quit(const char* why) {
     status_line("final");
     rush::oracle_finish(why);
     rush::capture_finish();
+    rush::run_exit_hook();
     fflush(stderr);
     std::_Exit(0);
+}
+
+namespace { std::atomic<void (*)()> exit_hook{nullptr}; }
+void rush::set_exit_hook(void (*fn)()) { exit_hook = fn; }
+void rush::run_exit_hook() {
+    if (auto fn = exit_hook.exchange(nullptr)) fn();
 }
 
 bool rush::get_input(int controller, uint16_t* buttons, float* x, float* y) {

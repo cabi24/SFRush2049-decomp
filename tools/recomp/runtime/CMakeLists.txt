@@ -132,6 +132,33 @@ if(NATIVE_REPL_SOURCES)
     set(NATIVE_REPL_LIB NativeRepl)
 endif()
 
+# Audio microcode (Phase 5): RSPRecomp output of the game's audio ucode
+# (gen_config.py writes rush2049.rsp_audio.toml; `RSPRecomp rush2049.rsp_audio.toml`
+# in RECOMP_OUT writes rsp/rush_audio_ucode.cpp). Without it audio tasks
+# complete without running (silence), as before.
+set(RUSH_AUDIO_UCODE "${RECOMP_OUT}/rsp/rush_audio_ucode.cpp")
+if(EXISTS "${RUSH_AUDIO_UCODE}")
+    add_library(RushRspUcode STATIC ${RUSH_AUDIO_UCODE})
+    target_include_directories(RushRspUcode PRIVATE
+        ${N64MODERNRUNTIME_DIR}/librecomp/include ${N64MODERNRUNTIME_DIR}/ultramodern/include
+        ${N64MODERNRUNTIME_DIR}/N64Recomp/include)
+    # The RSP vector unit implementation uses SSE4.1 intrinsics (Zelda64Recomp: -march=nehalem).
+    if(CMAKE_SYSTEM_PROCESSOR MATCHES "x86_64|amd64|AMD64")
+        target_compile_options(RushRspUcode PRIVATE -march=nehalem)
+    endif()
+    if(MSVC)
+        target_compile_options(RushRspUcode PRIVATE /W0)
+    else()
+        target_compile_options(RushRspUcode PRIVATE -w)
+    endif()
+    set(RUSH_RSP_LIB RushRspUcode)
+    set(RUSH_AUDIO_UCODE_STATUS "recompiled audio ucode")
+else()
+    set(RUSH_RSP_LIB "")
+    set(RUSH_AUDIO_UCODE_STATUS "no audio ucode (silent; run RSPRecomp rush2049.rsp_audio.toml in RECOMP_OUT)")
+endif()
+message(STATUS "Rush 2049 host: ${RUSH_AUDIO_UCODE_STATUS}")
+
 set(RUSH_SOURCES
     src/main.cpp
     src/null_renderer.cpp
@@ -147,6 +174,9 @@ if(RUSH_RENDERER STREQUAL "rt64")
 endif()
 add_executable(rush2049_recomp ${RUSH_SOURCES})
 target_compile_definitions(rush2049_recomp PRIVATE RUSH_CAPTURE=$<BOOL:${RUSH_CAPTURE}>)
+if(RUSH_RSP_LIB)
+    target_compile_definitions(rush2049_recomp PRIVATE RUSH_HAVE_AUDIO_UCODE)
+endif()
 target_include_directories(rush2049_recomp PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     ${RECOMP_OUT}
@@ -159,11 +189,11 @@ set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 find_package(Threads REQUIRED)
 if(MSVC)
     # link.exe / lld-link search static libraries repeatedly: no grouping needed.
-    target_link_libraries(rush2049_recomp PRIVATE RecompiledFuncs ${NATIVE_REPL_LIB} librecomp ultramodern)
+    target_link_libraries(rush2049_recomp PRIVATE RecompiledFuncs ${NATIVE_REPL_LIB} ${RUSH_RSP_LIB} librecomp ultramodern)
 else()
     # The recompiled code and the runtime reference each other: group the archives.
     target_link_libraries(rush2049_recomp PRIVATE
-        -Wl,--start-group RecompiledFuncs ${NATIVE_REPL_LIB} librecomp ultramodern -Wl,--end-group
+        -Wl,--start-group RecompiledFuncs ${NATIVE_REPL_LIB} ${RUSH_RSP_LIB} librecomp ultramodern -Wl,--end-group
         Threads::Threads ${CMAKE_DL_LIBS})
 endif()
 

@@ -72,7 +72,7 @@ pinned `81213c18` headers (the build compiles the emitted C against
 regenerates the package and bumps `package_version` (and adds a section to `package/CHANGES.md`).
 
 <!-- package-pins
-package_version = 1
+package_version = 2
 n64recomp = ffb39cdad1da5de07eaaa48bd1db4a89a7986771
 n64modernruntime = cdf5abbd5026fef5c364c676e4667c45e42b6863
 rt64_url = https://github.com/rt64/rt64
@@ -82,6 +82,16 @@ rt64 = 23cab603c4f9f4a8b369b38e036f1aa484603878
 | Version | Date | Built from | Notes |
 |---|---|---|---|
 | v1 | 2026-10-12 | branch w24r (lane w24r) | first package: stock recompiled game, RT64 window, live input |
+| v2 | 2026-10-12 | branch w25r (lane w25r) | wall-clock busy-wait yields, recompiled audio ucode + AI pacing + SDL sound, lockstep/RT64 fix, ROM copy deleted, doc fixes (A5, T6, T9), attract/stunt/pad steps |
+
+## RSPRecomp and the RT64 test container (Phase 5, lane w25r, 2026-10-12)
+
+- RSPRecomp: the `RSPRecomp` target of the same N64Recomp checkout (ffb39cda; built alongside N64Recomp in
+  Phase 0 at `~/rush2049/recomp/build/N64Recomp/RSPRecomp`). Input `rush2049.rsp_audio.toml` (gen_config);
+  output `rsp/rush_audio_ucode.cpp` (2578 lines), compiled with `-march=nehalem` (SSE4.1, as Zelda64Recomp).
+- RT64 without a GPU on rocky: docker image `rush-xvfb` (fedora:41 + xorg-x11-server-Xvfb, mesa-vulkan-drivers
+  25.x lavapipe, SDL2, gtk3, gdb), `~/rush2049/recomp/w25r/xvfb/{Dockerfile,run.sh}`; the Rocky-built RT64 host
+  runs in it unchanged (Vulkan, SDL x11 driver). Rocky 10 itself has no Xvfb package.
 
 ## Zelda64Recomp (studied, not built)
 
