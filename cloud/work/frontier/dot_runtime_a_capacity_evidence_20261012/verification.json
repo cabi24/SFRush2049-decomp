@@ -1,0 +1,544 @@
+{
+  "abi": "IDO32 scalar, pointer, signed16, Color4, Slot64 and position offset checked",
+  "accepted_image_bytes": 0,
+  "capacity": {
+    "all_output_max_including_nul": 17,
+    "asset_sha256": "f06d4ad0bb7dc7aff494acddc736f1b56bc271a2292c0286879cc9189bec31c8",
+    "controls": "out-of-domain resource and out-of-range plural index refused",
+    "formats": [
+      {
+        "address": "0x803b8854",
+        "sha256": "9e1e6b266dafae0b5861bc2cbd82f4eac16f907c76d447dc285317098dbe3181"
+      },
+      {
+        "address": "0x803b885c",
+        "sha256": "9e1e6b266dafae0b5861bc2cbd82f4eac16f907c76d447dc285317098dbe3181"
+      }
+    ],
+    "game_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+    "initial_language": 5,
+    "languages": [
+      {
+        "codec": 2,
+        "counts": [
+          237,
+          58,
+          374,
+          1,
+          21,
+          70
+        ],
+        "kind": 0,
+        "plural_bytes": 7,
+        "plural_index": 167,
+        "plural_sha256": "c0ecb803cdef0af8f80bef2336c63463e1054b5cfbd5c7b78c97f0caccc973d9",
+        "resource_bytes": 11938,
+        "resource_sha256": "7f974efe1d10e2a1734fe1dad803c88ec8add1f09d5caa323d2fce563e41c5df",
+        "rom": "0x2f4e0",
+        "singular_bytes": 6,
+        "singular_sha256": "70f9a80ad0dd785b637816adfd1428e2c6ff36e271de03e4af9d2b42d300780f"
+      },
+      {
+        "codec": 2,
+        "counts": [
+          237,
+          58,
+          374,
+          1,
+          21,
+          70
+        ],
+        "kind": 1,
+        "plural_bytes": 9,
+        "plural_index": 167,
+        "plural_sha256": "ad6e269f2335f13e5d9bad29607dd54bec36c493d104f7120733857b19a46790",
+        "resource_bytes": 12519,
+        "resource_sha256": "aa12c8f54c4a7ee2621c96d4c0df9361d4564f7be0a0d96c6392d97bb6225310",
+        "rom": "0x30a60",
+        "singular_bytes": 7,
+        "singular_sha256": "dea8c3dd66640663d60116d94460db47a9a5c645711bb232f018c09e43967a55"
+      },
+      {
+        "codec": 2,
+        "counts": [
+          237,
+          58,
+          374,
+          1,
+          21,
+          70
+        ],
+        "kind": 2,
+        "plural_bytes": 9,
+        "plural_index": 167,
+        "plural_sha256": "9c08df6952afcca3cb7c526514bcf10270cbdc55c7538682bb1ebc6d4c6d0233",
+        "resource_bytes": 11757,
+        "resource_sha256": "831003fa550c0c216c111a45b4f74a5a0bda71b30ba50760eb0dde89061ec448",
+        "rom": "0x32030",
+        "singular_bytes": 5,
+        "singular_sha256": "1493d5533f15e8fb0bb00823fac73f13555e257a425a8e76fc2cc8a2a0a23ac3"
+      },
+      {
+        "codec": 2,
+        "counts": [
+          237,
+          58,
+          374,
+          1,
+          21,
+          72
+        ],
+        "kind": 3,
+        "plural_bytes": 7,
+        "plural_index": 167,
+        "plural_sha256": "cb08a9338a15d627f52eb6ab194789d2b291b3b7b42c84b66596e5fe0af51f20",
+        "resource_bytes": 12439,
+        "resource_sha256": "402fdd427e66f59037b41cafaeabc86cd7093913572b516a1294212944ebaff3",
+        "rom": "0x335f0",
+        "singular_bytes": 7,
+        "singular_sha256": "cb08a9338a15d627f52eb6ab194789d2b291b3b7b42c84b66596e5fe0af51f20"
+      },
+      {
+        "codec": 2,
+        "counts": [
+          237,
+          58,
+          374,
+          1,
+          21,
+          70
+        ],
+        "kind": 4,
+        "plural_bytes": 7,
+        "plural_index": 167,
+        "plural_sha256": "82eeeefc3944c5410dd23fcb3d82aeab253924c3a7f658af92624333d8b9198b",
+        "resource_bytes": 12389,
+        "resource_sha256": "956f5dc0aa76d662916bdea5c6d8402ff979488f376cdc7d0e8dee9d4eadab19",
+        "rom": "0x34c80",
+        "singular_bytes": 6,
+        "singular_sha256": "766c26b7b146914c230abe3b66521a7d03949499697592025ece58f80fb88b85"
+      },
+      {
+        "codec": 2,
+        "counts": [
+          237,
+          58,
+          374,
+          1,
+          21,
+          70
+        ],
+        "kind": 5,
+        "plural_bytes": 7,
+        "plural_index": 167,
+        "plural_sha256": "8895893f8cfc81033008be2c063fab5aa426ef33b2ce5126762dc36b17f6682f",
+        "resource_bytes": 12843,
+        "resource_sha256": "3f6339ba46c78667919a51c34b4a4245a48f355074ea867c59dc78a453b97727",
+        "rom": "0x36300",
+        "singular_bytes": 6,
+        "singular_sha256": "faf9558de481214d418d6856ec0b057eac9218a0a242e988a112b0330736efa0"
+      }
+    ],
+    "original_capacity": "unknown",
+    "reconstructed_capacity": 36,
+    "scope": "six authentic supported language resources with valid loaded tables; corrupt saves or mutated pointers excluded",
+    "signed16_domain": [
+      -32768,
+      32767
+    ],
+    "singular_output_max_including_nul": 10
+  },
+  "comparisons": {
+    "func_80399394": {
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "total": 22,
+      "unresolved": [],
+      "unverified": []
+    },
+    "func_803A6B50": {
+      "differing": 0,
+      "errors": [],
+      "extra_words": 0,
+      "total": 241,
+      "unresolved": [],
+      "unverified": []
+    }
+  },
+  "controls": {
+    "actual_installer_full_bodies_exact": true,
+    "all_five_corrupt_literals_rejected": true,
+    "capacity": {
+      "32": {
+        "differing": 11,
+        "errors": [],
+        "extra_words": 0,
+        "total": 241,
+        "unresolved": [],
+        "unverified": []
+      },
+      "50": {
+        "differing": 3,
+        "errors": [],
+        "extra_words": 0,
+        "total": 241,
+        "unresolved": [],
+        "unverified": []
+      }
+    },
+    "missing_data_unverified": 10
+  },
+  "gnu": {
+    "func_80399394": {
+      "bytes": 88,
+      "difference_offsets": [],
+      "relocations": 5,
+      "resolved_body_sha256": "caa696af2e35b48d3f7bfb292f1df2d831132de566a8d58f7daf9a93c72a3da5"
+    },
+    "func_803A6B50": {
+      "bytes": 964,
+      "difference_offsets": [],
+      "relocations": 64,
+      "resolved_body_sha256": "389f8bb033e3ef42a6cda84a672d537d77008235ae3184334c65e0b3ff9b007f"
+    },
+    "owned_data": {
+      "address": "0x803b9820",
+      "bytes": 20,
+      "sha256": "aca44891b27d665ed28ad95b8751d75d4d5e8ad57be05a2f451ff7ada8c06c3d"
+    }
+  },
+  "host": {
+    "actual_candidate_writer_calls_checked": true,
+    "cases": 393216,
+    "domain": "all signed16 values x all six authentic language resources",
+    "helpers": "hooks; eligibility false; projection mode disabled",
+    "max_output_bytes_including_nul": 17,
+    "native_behavior_equivalence": false
+  },
+  "inputs": {
+    "sources": {
+      "capacity.py": "451f9f7a09d4f7ae73a2982b0bea9e48cf5d8e64c2a53f64a63fd19a878657e4",
+      "groups/dot_runtime_a_seven_option_group_20261007/eligibility.c": "5a4e95da31216e04a31a54edf102ee5e9f1a74ec9c459ff449248736d6195894",
+      "groups/dot_runtime_a_seven_option_group_20261007/group.json": "aa52ccb4f8282ad3aafb58ca8443e31db687c03c3e556199e249cd14baba1b5d",
+      "groups/dot_runtime_a_seven_option_group_20261007/renderer.c": "b99cc9c8d6af6fea3e75bef4b21625d36312e995cdc1d3862d473d351de6b6b4",
+      "host.c": "2335f842f66269b6368ead7b8622b265a88ad1ff605493d32a12d6b03c7a528b",
+      "trace.json": "a0fe5c48411ac75a34663b81709dfd30f4d43d4b6ef8293618d87c2761d02021",
+      "trace.py": "7ca2be49ed54906e2cfbc4b7fd2690c4716555f51f40fc2fc4fa14b8539dbb02",
+      "verify.py": "7c02a500dc4ce38e68f0d447539cca763f5c030d34b3456fb0fa8b174f2b7adc"
+    },
+    "targets": {
+      "func_80399394": {
+        "size": 88,
+        "words_sha256": "caa696af2e35b48d3f7bfb292f1df2d831132de566a8d58f7daf9a93c72a3da5"
+      },
+      "func_803A6B50": {
+        "size": 964,
+        "words_sha256": "389f8bb033e3ef42a6cda84a672d537d77008235ae3184334c65e0b3ff9b007f"
+      },
+      "game:audio_frame_sync": {
+        "size": 520,
+        "words_sha256": "2f8938578f2c7228afcf595ebfc5965922de56a80e88bfcdb6450ecfef77b63c"
+      },
+      "game:fcvt_wrapper": {
+        "size": 44,
+        "words_sha256": "15fef157e56accf475b9bb883655682cdb90f49ccb1152e6ec4ec2522630558b"
+      },
+      "game:func_80097164": {
+        "size": 344,
+        "words_sha256": "076890514088bd565c56d74545e3ce92cb89111c79a4eabbaafcc9189580d3a4"
+      },
+      "game:func_800A4E58": {
+        "size": 444,
+        "words_sha256": "98bc9eb66c284347869b42228644fd991008eca5257dffc9071b75c36c3d8570"
+      },
+      "game:func_800A510C": {
+        "size": 76,
+        "words_sha256": "1db4686faaa35b5c412ac9101fce41d6e1032425dda006566ef012ea11ff5f12"
+      },
+      "game:func_800A5158": {
+        "size": 128,
+        "words_sha256": "dcf0eae046aa0e3ee32eac82b70097d9f40df96c617dca7fc24e4e52c5450663"
+      },
+      "game:func_800DB1E0": {
+        "size": 1400,
+        "words_sha256": "3390a63f486313daef71dd4bd32d663cd5f923ffbaa11048451c81e649885775"
+      }
+    }
+  },
+  "new_match_bytes": 964,
+  "preserved_match_bytes": 88,
+  "rom_bytes": 0,
+  "stack": {
+    "accesses": [
+      [
+        4,
+        43,
+        31,
+        60
+      ],
+      [
+        12,
+        43,
+        22,
+        56
+      ],
+      [
+        16,
+        43,
+        21,
+        52
+      ],
+      [
+        20,
+        43,
+        20,
+        48
+      ],
+      [
+        24,
+        43,
+        19,
+        44
+      ],
+      [
+        28,
+        43,
+        18,
+        40
+      ],
+      [
+        32,
+        43,
+        17,
+        36
+      ],
+      [
+        36,
+        43,
+        16,
+        32
+      ],
+      [
+        44,
+        43,
+        4,
+        144
+      ],
+      [
+        112,
+        43,
+        15,
+        16
+      ],
+      [
+        136,
+        33,
+        19,
+        88
+      ],
+      [
+        140,
+        33,
+        18,
+        90
+      ],
+      [
+        636,
+        43,
+        1,
+        0
+      ],
+      [
+        644,
+        35,
+        4,
+        0
+      ],
+      [
+        652,
+        43,
+        5,
+        4
+      ],
+      [
+        676,
+        43,
+        1,
+        0
+      ],
+      [
+        684,
+        35,
+        4,
+        0
+      ],
+      [
+        692,
+        43,
+        5,
+        4
+      ],
+      [
+        712,
+        43,
+        25,
+        16
+      ],
+      [
+        736,
+        33,
+        19,
+        88
+      ],
+      [
+        740,
+        33,
+        18,
+        90
+      ],
+      [
+        884,
+        43,
+        1,
+        0
+      ],
+      [
+        892,
+        35,
+        4,
+        0
+      ],
+      [
+        900,
+        43,
+        5,
+        4
+      ],
+      [
+        920,
+        35,
+        31,
+        60
+      ],
+      [
+        924,
+        35,
+        16,
+        32
+      ],
+      [
+        928,
+        35,
+        17,
+        36
+      ],
+      [
+        932,
+        35,
+        18,
+        40
+      ],
+      [
+        936,
+        35,
+        19,
+        44
+      ],
+      [
+        940,
+        35,
+        20,
+        48
+      ],
+      [
+        944,
+        35,
+        21,
+        52
+      ],
+      [
+        948,
+        35,
+        22,
+        56
+      ]
+    ],
+    "address_taken": [
+      88,
+      92
+    ],
+    "callback_home": [
+      144,
+      148
+    ],
+    "frame": 144,
+    "i_home": [
+      136,
+      140
+    ],
+    "point": [
+      88,
+      92
+    ],
+    "scalar_homes": "reconstruction from declared layout; not live native accesses",
+    "slot_home": [
+      128,
+      132
+    ],
+    "text": [
+      92,
+      128
+    ],
+    "title_home": [
+      132,
+      136
+    ],
+    "x_home": [
+      142,
+      144
+    ],
+    "y_home": [
+      140,
+      142
+    ]
+  },
+  "stock_trace": {
+    "32": {
+      "complete_object_diagnostic_identical": true,
+      "differing_words": 11,
+      "external": 1,
+      "frame_bytes": 136,
+      "memory_areas": {
+        "M": 72,
+        "P": 4,
+        "T": 20
+      },
+      "total_words": 241
+    },
+    "36": {
+      "complete_object_diagnostic_identical": true,
+      "differing_words": 0,
+      "external": 1,
+      "frame_bytes": 144,
+      "memory_areas": {
+        "M": 76,
+        "P": 4,
+        "T": 20
+      },
+      "total_words": 241
+    },
+    "50": {
+      "complete_object_diagnostic_identical": true,
+      "differing_words": 3,
+      "external": 1,
+      "frame_bytes": 160,
+      "memory_areas": {
+        "M": 92,
+        "P": 4,
+        "T": 20
+      },
+      "total_words": 241
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "inputs": {
+    "inherited_source_sha256": "21d64a4c711ff9909f7b78eb1de97cc8bbd5188285f10c5f73d0d6c95ddd0799",
+    "native_caller_sha256": "3574383f8241f87f1aa201bc4a7265e49cd818b8b6f7e6564ecca4131b6682e2",
+    "caller_argument_setup_offset": "0x8e4",
+    "caller_call_offset": "0xb00",
+    "sources_sha256": {
+      "group.c": "7cd06d58754377d9a0ac188bf5273d17c394b5ce68bc4a2ae5b364306069f777",
+      "group.json": "e627563c0f25123bb3acf3de7140231b5ea9b4fd092da96a190e1d291cea351b",
+      "verify.py": "66df8cd9ab735571d1691d9a41c8a2d24a1b828609b095587e35361a5cb69c0b",
+      "host_test.c": "17b6b6d94bacd0adc134a5467199d3a838d1f84e079fb7b7d7e54332fc054e39"
+    },
+    "population": "ovl_b",
+    "target": "func_8038D054",
+    "extent": {
+      "name": "func_8038D054",
+      "address": "0x8038D054",
+      "size": 340,
+      "evidence": [
+        "jal",
+        "prologue"
+      ]
+    },
+    "target_words_sha256": "9252b826aad9e0ae3656a82de37a1994483a014ba2306fd50bfdc31563bb8e87",
+    "image_sha256": "b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd",
+    "literal_address": "0x80394dac",
+    "literal_sha256": "490acce613a5af3813d3164cb4cbc2eb35f06d96a4400cb552948170d9c79c7e",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "compiler": "ido5.3"
+  },
+  "comparison": {
+    "differing": 0,
+    "total": 85,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "notes": [
+    "own .rodata verified at 0x80394DAC..0x80394DB8"
+  ],
+  "function_bytes": 340,
+  "text_section_bytes": 352,
+  "owned_data_bytes": 12,
+  "rodata_section_bytes": 16,
+  "text_zero_padding": 12,
+  "rodata_zero_padding": 4,
+  "gnu_text_vma": "0x8038d054",
+  "gnu_rodata_vma": "0x80394dac",
+  "gnu_function_sha256": "9252b826aad9e0ae3656a82de37a1994483a014ba2306fd50bfdc31563bb8e87",
+  "gnu_literal_sha256": "490acce613a5af3813d3164cb4cbc2eb35f06d96a4400cb552948170d9c79c7e",
+  "external_bindings": {
+    "func_8008E3C0": 2148066240,
+    "D_80395EE8": 2151243496
+  },
+  "relocations": [
+    {
+      "offset": 20,
+      "kind": 5,
+      "symbol": "D_80395EE8"
+    },
+    {
+      "offset": 24,
+      "kind": 6,
+      "symbol": "D_80395EE8"
+    },
+    {
+      "offset": 32,
+      "kind": 4,
+      "symbol": "func_8008E3C0"
+    },
+    {
+      "offset": 64,
+      "kind": 5,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 68,
+      "kind": 6,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 160,
+      "kind": 5,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 164,
+      "kind": 6,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 180,
+      "kind": 5,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 192,
+      "kind": 6,
+      "symbol": ".rodata"
+    }
+  ],
+  "controls": {
+    "wrong_kind_differing_words": 1,
+    "installer": "exact",
+    "installer_corrupt_literal": "all three rejected",
+    "target_layout": "32-bit offsets exact",
+    "missing_data": "rejected",
+    "corrupt_literal": "all three rejected",
+    "host": "PASS: 240 source fixtures including null allocation and overlapping positions"
+  },
+  "new_strict_verified_bytes": 0,
+  "inherited_strict_verified_bytes": 340,
+  "preserved_or_integrated_bytes": 0,
+  "new_image_landed_bytes": 0,
+  "new_rom_verified_bytes": 0
+}

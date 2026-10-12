@@ -1,0 +1,21 @@
+{
+  "method": "Read-only spill-home instrumentation; both diagnostic objects equal their stock-IDO object byte for byte. Matching proof uses stock IDO only.",
+  "instrumentation": "cloud/work/frontier/tools/trace/patches/patch_spill.py applied to W5D instrumented IDO 5.3 uopt",
+  "baseline": {
+    "cfe_local_area": 20,
+    "address_expression_web": 16,
+    "address_expression_home": -24,
+    "final_local_area": 32,
+    "frame": 64,
+    "slot_save_home": 40
+  },
+  "direct_global_index": {
+    "cfe_local_area": 16,
+    "address_expression_web": 16,
+    "address_expression_home": -20,
+    "final_local_area": 28,
+    "frame": 64,
+    "slot_save_home": 44
+  },
+  "conclusion": "Removing the optimized-away pointer declaration removes its four-byte CFE local slot. The actual derived-address expression retains its genuine spill home, four bytes higher in the unchanged aligned frame. No extra or unused local is introduced."
+}

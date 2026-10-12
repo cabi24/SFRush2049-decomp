@@ -1,0 +1,17 @@
+{
+  "name": "dot_runtime_b_position_initializer_20261012",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "files": [
+    "group.c"
+  ],
+  "members": [
+    "func_8038D054"
+  ],
+  "claims": [
+    "func_8038D054"
+  ],
+  "context": [],
+  "keep": [
+    "func_8038D054"
+  ]
+}

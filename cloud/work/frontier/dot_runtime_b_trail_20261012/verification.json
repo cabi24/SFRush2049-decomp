@@ -1,0 +1,450 @@
+{
+  "inputs": {
+    "helper_targets": {
+      "func_8008D0C0": {
+        "size": 96,
+        "words_sha256": "831e9577d3936c0b72784b946293ab765c966df58f6ebebb28e0467918cdc3e6"
+      },
+      "func_800AFA84": {
+        "size": 164,
+        "words_sha256": "a13608b9facff7589546bb30169c38e016632bf868fe16b338e68c67ee257b17"
+      },
+      "func_8008E3C0": {
+        "size": 72,
+        "words_sha256": "8504d84ff53c21c4bfd7dc363d46cf42dee383db5320a2d63040294eb0a762d6"
+      },
+      "func_800A78BC": {
+        "size": 252,
+        "words_sha256": "620d7ddf79eb384b5e9a22815f9f7d64f8e5e42aa9bf534e8e63f4928847de9a"
+      },
+      "func_8008C074": {
+        "size": 1232,
+        "words_sha256": "9003c817a0e2a2adc09299790449762d0a8a09020f418c3a5c163d73c8778d1d"
+      }
+    },
+    "test_sha256": "29a0bcd65943decae41b8c7e41dbc8b7d311a423f745003d09ec17d5ee9baa8b",
+    "sources_sha256": {
+      "group.c": "7733183307e26c7893a57133744792b88a630c407c5b8d568c0831a9fa475d50",
+      "group.json": "f5da8708cb9107fe5e462a9f56f502e357d268ac1ff2b8256313cf71c9270224",
+      "verify.py": "463d374e438f5fcdac4ad835b57e3d8459c84badaf642b6b8ebb11049972d161"
+    },
+    "population": "ovl_b",
+    "target": "func_8038CB20",
+    "extent": {
+      "name": "func_8038CB20",
+      "address": "0x8038CB20",
+      "size": 1332,
+      "evidence": [
+        "jal",
+        "prologue"
+      ]
+    },
+    "target_words_sha256": "8c74e45fab0e5ecb9b1e0f6494c3888c001dbacaf9cb5bf148580adcd9fd1626",
+    "baseline_source_sha256": "b8272b576261a03f36bf3033c4da756c903aaceedb91fe89f0eb8f5e3306eca5",
+    "image_sha256": "b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd",
+    "literal_address": "0x80394d90",
+    "literal_sha256": "501e5bb66168161d62b2aa3cd528978a31c2c35224dd384c577f446eff81b60f",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "compiler": "ido5.3"
+  },
+  "comparison": {
+    "differing": 0,
+    "total": 333,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "notes": [
+    "own .rodata verified at 0x80394D90..0x80394DAC"
+  ],
+  "function_bytes": 1332,
+  "text_section_bytes": 1344,
+  "owned_data_bytes": 28,
+  "rodata_section_bytes": 32,
+  "text_zero_padding": 12,
+  "rodata_zero_padding": 4,
+  "gnu_text_vma": "0x8038cb20",
+  "gnu_rodata_vma": "0x80394d90",
+  "gnu_function_sha256": "8c74e45fab0e5ecb9b1e0f6494c3888c001dbacaf9cb5bf148580adcd9fd1626",
+  "gnu_literal_sha256": "eb2d224b6e97330c4de420b17adafcdf604f915b54d240e4ca203f2c2d92da0c",
+  "gnu_differing_offsets": [],
+  "baseline_gnu_differing_offsets": [
+    0,
+    4,
+    8,
+    12,
+    20,
+    28,
+    32,
+    88,
+    96,
+    108,
+    152,
+    220,
+    356,
+    376,
+    408,
+    424,
+    504,
+    536,
+    540,
+    544,
+    548,
+    552,
+    556,
+    560,
+    564,
+    572,
+    672,
+    712,
+    952,
+    1024,
+    1032,
+    1040,
+    1052,
+    1060,
+    1068,
+    1076,
+    1084,
+    1092,
+    1100,
+    1104,
+    1116,
+    1124,
+    1128,
+    1136,
+    1152,
+    1160,
+    1172,
+    1180,
+    1192,
+    1204,
+    1216,
+    1224,
+    1248,
+    1328
+  ],
+  "external_bindings": {
+    "D_80396B80": 2151246720,
+    "D_8002EB94": 2147675028,
+    "func_8008D0C0": 2148061376,
+    "func_800AFA84": 2148203140,
+    "func_8008C074": 2148057204,
+    "D_80395EE8": 2151243496,
+    "D_8014A108": 2148835592,
+    "func_8008E3C0": 2148066240,
+    "D_80394394": 2151236500,
+    "func_800A78BC": 2148169916
+  },
+  "relocations": [
+    {
+      "offset": 8,
+      "kind": 5,
+      "symbol": "D_80396B80"
+    },
+    {
+      "offset": 12,
+      "kind": 6,
+      "symbol": "D_80396B80"
+    },
+    {
+      "offset": 76,
+      "kind": 5,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 80,
+      "kind": 6,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 84,
+      "kind": 5,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 100,
+      "kind": 6,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 88,
+      "kind": 5,
+      "symbol": "D_8002EB94"
+    },
+    {
+      "offset": 96,
+      "kind": 6,
+      "symbol": "D_8002EB94"
+    },
+    {
+      "offset": 144,
+      "kind": 4,
+      "symbol": "func_8008D0C0"
+    },
+    {
+      "offset": 156,
+      "kind": 4,
+      "symbol": "func_800AFA84"
+    },
+    {
+      "offset": 332,
+      "kind": 4,
+      "symbol": "func_8008C074"
+    },
+    {
+      "offset": 356,
+      "kind": 5,
+      "symbol": "D_8002EB94"
+    },
+    {
+      "offset": 376,
+      "kind": 6,
+      "symbol": "D_8002EB94"
+    },
+    {
+      "offset": 364,
+      "kind": 5,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 368,
+      "kind": 6,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 348,
+      "kind": 5,
+      "symbol": "D_80395EE8"
+    },
+    {
+      "offset": 352,
+      "kind": 6,
+      "symbol": "D_80395EE8"
+    },
+    {
+      "offset": 380,
+      "kind": 5,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 384,
+      "kind": 6,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 388,
+      "kind": 5,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 392,
+      "kind": 6,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 408,
+      "kind": 5,
+      "symbol": "D_8014A108"
+    },
+    {
+      "offset": 424,
+      "kind": 6,
+      "symbol": "D_8014A108"
+    },
+    {
+      "offset": 412,
+      "kind": 5,
+      "symbol": "D_80394394"
+    },
+    {
+      "offset": 420,
+      "kind": 6,
+      "symbol": "D_80394394"
+    },
+    {
+      "offset": 452,
+      "kind": 5,
+      "symbol": "D_80395EE8"
+    },
+    {
+      "offset": 460,
+      "kind": 6,
+      "symbol": "D_80395EE8"
+    },
+    {
+      "offset": 464,
+      "kind": 4,
+      "symbol": "func_800AFA84"
+    },
+    {
+      "offset": 684,
+      "kind": 5,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 688,
+      "kind": 6,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 720,
+      "kind": 4,
+      "symbol": "func_8008E3C0"
+    },
+    {
+      "offset": 852,
+      "kind": 5,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 908,
+      "kind": 6,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 1156,
+      "kind": 4,
+      "symbol": "func_800A78BC"
+    },
+    {
+      "offset": 1252,
+      "kind": 4,
+      "symbol": "func_800AFA84"
+    }
+  ],
+  "native_layout": {
+    "pointer_width": "sizeof(void *) == 4",
+    "scalar_width": "sizeof(s32) == 4 && sizeof(f32) == 4",
+    "trail_size": "sizeof(Trail) == 64",
+    "fade_size": "sizeof(Fade) == 28",
+    "trail_origin": "OFF(Trail, origin) == 16",
+    "trail_previous": "OFF(Trail, previous) == 28",
+    "trail_lower": "OFF(Trail, lower) == 40",
+    "trail_upper": "OFF(Trail, upper) == 52",
+    "fade_object": "OFF(Fade, object) == 8",
+    "fade_interval": "OFF(Fade, interval) == 16",
+    "fade_color": "OFF(Fade, color) == 20",
+    "fade_source": "OFF(Fade, source) == 24",
+    "fade_pool_active": "OFF(FadePool, active) == 16",
+    "trail_pool_active": "OFF(TrailPool, active) == 16"
+  },
+  "frame_accounting": {
+    "native224": {
+      "T": 28,
+      "P": 4,
+      "M": 100
+    },
+    "without_two_locals216": {
+      "T": 28,
+      "P": 4,
+      "M": 92
+    }
+  },
+  "controls": {
+    "inherited_baseline": {
+      "differing": 54,
+      "total": 333,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "shaping_controls": {
+      "no_unused_locals": {
+        "comparison": {
+          "differing": 2,
+          "total": 333,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "gnu_differing_offsets": [
+          0,
+          1328
+        ]
+      },
+      "no_pool_read": {
+        "comparison": {
+          "differing": 20,
+          "total": 333,
+          "unresolved": [],
+          "unverified": [],
+          "errors": [],
+          "extra_words": 0
+        },
+        "gnu_differing_offsets": [
+          4,
+          8,
+          12,
+          20,
+          28,
+          32,
+          88,
+          96,
+          108,
+          152,
+          220,
+          356,
+          376,
+          408,
+          424,
+          504,
+          672,
+          712,
+          952,
+          1248
+        ]
+      }
+    },
+    "missing_data": "rejected",
+    "corrupt_literals": [
+      {
+        "offset": 0,
+        "rejected": true
+      },
+      {
+        "offset": 4,
+        "rejected": true
+      },
+      {
+        "offset": 8,
+        "rejected": true
+      },
+      {
+        "offset": 12,
+        "rejected": true
+      },
+      {
+        "offset": 16,
+        "rejected": true
+      },
+      {
+        "offset": 20,
+        "rejected": true
+      },
+      {
+        "offset": 24,
+        "rejected": true
+      }
+    ],
+    "stock_as1_trace": "whole-object identical",
+    "standalone": {
+      "differing": 0,
+      "total": 333,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "claims": [
+    "func_8038CB20"
+  ],
+  "new_strict_verified_bytes": 1332,
+  "preserved_or_integrated_bytes": 0,
+  "new_image_landed_bytes": 0,
+  "new_rom_verified_bytes": 0
+}
