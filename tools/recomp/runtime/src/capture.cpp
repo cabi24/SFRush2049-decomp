@@ -233,7 +233,7 @@ void rush::capture_start(const std::string& path, uint64_t detail) {
     cap_on = true;
     cap_log("# rush2049 call log v1: effect = words changed between entry and exit (page write tracking)\n");
     for (int i = 0; i < RUSH_REPL_COUNT; i++)
-        cap_log("# fn %d %s %s\n", i, rush_repl_names[i], rush_cap_labels[i]);
+        cap_log("# fn %d %s %s probe=%d\n", i, rush_repl_names[i], rush_cap_labels[i], rush_cap_probe[i]);
 }
 
 void rush::capture_finish() {

@@ -122,12 +122,31 @@ def source_flags(text, population):
 
 # ------------------------------------------------------------------ symbols
 
-def address_table(functions, symbols, population):
+GAME_LEGACY = REPO / "game_static_legacy.us.txt"
+_SYM_LINE = re.compile(r"^\s*([A-Za-z_]\w*)\s*=\s*(0x[0-9A-Fa-f]+)\s*;")
+
+
+def game_legacy_names(path=GAME_LEGACY):
+    """{name: address}: the pre-rename names game and overlay code still call
+    static libultra functions by (game_static_legacy.us.txt, lane w22g; the
+    same table pipeline.blob_tu.static_symbols gives the game link). Several
+    were permuted (game `osJamMesg` = static osSendMesg), so a game body
+    linked by the static names calls the wrong function. Empty once the file
+    is gone (game sources renamed)."""
+    try:
+        text = Path(path).read_text()
+    except OSError:
+        return {}
+    return {m.group(1): int(m.group(2), 16) for m in map(_SYM_LINE.match, text.splitlines()) if m}
+
+
+def address_table(functions, symbols, population, legacy=None):
     """{name: vram} visible to a body of `population`: static and game
     functions and data symbols, plus that overlay's own (overlay names are
     unique only per image). Inventory names, before identity renames:
     sources call functions by the inventory's names, the jal targets bind by
-    address."""
+    address. Game and overlay bodies see the static functions by their
+    game-side legacy names first (`legacy`, default game_static_legacy.us.txt)."""
     table = {}
     pops = ["static", "game"] + ([population] if population.startswith("ovl_") else [])
     for pop in pops:
@@ -135,6 +154,8 @@ def address_table(functions, symbols, population):
             table.setdefault(name, vram)
         for f in functions.get(pop, []):
             table[f["name"]] = f["vram"]
+    if population != "static":
+        table.update(game_legacy_names() if legacy is None else legacy)
     return table
 
 
@@ -250,6 +271,24 @@ def section_bytes(data, elf, name=".repl"):
                 return s["addr"], b"\0" * s["size"]
             return s["addr"], bytes(data[s["offset"]:s["offset"] + s["size"]])
     raise ReplaceError(f"linked image has no {name} section")
+
+
+_LOAD_OPCODES = frozenset((0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x37, 0x1A, 0x1B))
+
+
+def nop_zero_loads(raw, base, ranges):
+    """(bytes, count): loads into $zero in the code ranges replaced by nop
+    (= gen_config.zero_load_patches for the retail sections)."""
+    buf = bytearray(raw)
+    n = 0
+    for v, size in ranges:
+        for off in range(v - base, v - base + size, 4):
+            if 0 <= off <= len(buf) - 4:
+                (w,) = struct.unpack_from(">I", buf, off)
+                if (w >> 26) in _LOAD_OPCODES and (w >> 16) & 31 == 0:
+                    struct.pack_into(">I", buf, off, 0)
+                    n += 1
+    return bytes(buf), n
 
 
 def retarget_self_calls(raw, base, own, orig, ranges=None):
@@ -832,6 +871,10 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
         # as in the stock build (model_transform_setup).
         orig = address_table(functions, symbols, e["population"]).get(e["function"])
         own = [f["vram"] for f in named if f["replaces"]]
+        # A load into $zero (N64Recomp emits `0 = MEM_W(...)`, which does not
+        # compile; gen_config's automatic rule for the retail sections) becomes
+        # a nop here too: no architectural effect on RAM.
+        raw, zero_loads = nop_zero_loads(raw, vram, [(f["vram"], f["size"]) for f in named])
         if orig is not None and own:
             raw, self_calls = retarget_self_calls(raw, vram, own[0], orig,
                                                   [(f["vram"], f["size"]) for f in named])
@@ -845,7 +888,7 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
                                                  for k, (a, how) in bound.items()),
                          "statics_private": sorted("%s+0x%X%s" % (k[0], k[1], " " + n if n else "")
                                                    for k, n in unbound),
-                         "static_sites_patched": patched,
+                         "static_sites_patched": patched, "zero_loads_nopped": zero_loads,
                          "capture": capture_layout(e["_text"], e["function"], e.get("prototype"),
                                                     e.get("capture_args"), e.get("capture_ret", "v0"))})
         raw = raw + b"\0" * (-len(raw) % 16)

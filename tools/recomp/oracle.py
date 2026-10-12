@@ -223,6 +223,9 @@ def compare(candidate, baselines, max_report=8):
         "replaced_calls": dict(candidate.repl),
         "stack_diff_frame": stack_diff,
         "stacks": ["0x%08X" % t for t in sorted(set(candidate.stacks))],
+        "threads": sorted(set(candidate.threads)),
+        "thread_host_words": next(([int(x, 16) for x in h.split()[1].split(",")] for h in candidate.header
+                                   if h.startswith("thread_host_words")), []),
         "events_candidate": ev_c,
         "events_baseline": ev_b,
         "candidate_end": candidate.end,
@@ -230,7 +233,7 @@ def compare(candidate, baselines, max_report=8):
     }
     if first is not None:
         result["verdict"] = "DIFFERENT"
-    elif candidate.repl and any(n == 0 for n in candidate.repl.values()):
+    elif candidate.repl and any(n == 0 for name, n in candidate.repl.items() if "=capture:" not in name):
         result["verdict"] = "NOT EXERCISED"
     else:
         result["verdict"] = "EQUIVALENT"
@@ -296,6 +299,13 @@ def stack_ranges(tops):
             out.append((lo, top))
         prev = top
     return out
+
+
+def thread_word_ranges(result):
+    """[(lo, hi)] of the OSThread host-pointer words the host masks (log "T"
+    lines + the "# thread_host_words" header)."""
+    offs = result.get("thread_host_words") or []
+    return [(t + o, t + o + 4) for t in result.get("threads", []) for o in offs]
 
 
 def word_diff(a, b, datasyms_path=None, limit=40, skip=()):
@@ -396,6 +406,14 @@ def compare_calls(stock_lines, repl_lines):
         a, b = nxt(a_it, fs), nxt(b_it, fr)
         if not fs or not fr:
             return None
+        if calls == 0 and a is not None and b is not None:
+            def layout(fns):
+                return {k: (v[0].partition("=")[0], v[0].rpartition(":")[2], tuple(v[1]), v[2])
+                        for k, v in fns.items()}
+            if layout(fs) != layout(fr):
+                raise OracleError("the call logs capture different functions or layouts (build the stock "
+                                  "side with --capture-set SET and the replaced side with --replace-set SET "
+                                  "from the same tools revision and the same --probe-callees)")
         if a is None and b is None:
             return {"verdict": "SAME", "calls": calls}
         if a is None or b is None or a[0] == "END" or b[0] == "END":
@@ -717,6 +735,7 @@ def main(argv=None):
                            (host_command(args.repl_host, args.rom_repl, out / "dump_r.log", out / "home_dr", f,
                                          press, seconds, (f, db)), out / "dump_r.err")])
                 skip = stack_ranges([int(t, 16) for t in result["stacks"]])
+                skip += thread_word_ranges(result)
                 skip += [(int(r.split("-")[0], 16), int(r.split("-")[1], 16) + 1) for r in result["unstable_pages"]]
                 fd["words"] = word_diff(da.read_bytes(), db.read_bytes(), args.datasyms, skip=skip)
     except OracleError as exc:

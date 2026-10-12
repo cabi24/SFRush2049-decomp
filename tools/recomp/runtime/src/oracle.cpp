@@ -200,6 +200,7 @@ void rush::oracle_start(const std::string& path, uint64_t stop_frames) {
     log_line("# rush2049 frame oracle v1: pages=%u page_bytes=%u replaced=%d\n", kPages, kPage,
              RUSH_REPL_COUNT);
     for (int i = 0; i < RUSH_REPL_COUNT; i++) log_line("# replaced %s\n", rush_repl_names[i]);
+    log_line("# thread_host_words 0x%X,0x%X\n", kThreadHostWords[0], kThreadHostWords[1]);
 }
 
 uint64_t rush::oracle_frames() { return frames.load(); }
