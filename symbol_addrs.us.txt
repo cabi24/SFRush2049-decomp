@@ -247,7 +247,7 @@ __osSetCompare = 0x8000FB90; // type:func set CP0 Compare register for timer
 // Timer queue global state
 __osTimerList = 0x8002C3F0; // timer queue head pointer (TimerQueueHead*)
 __osTimerCounter = 0x80037C60; // last timer update timestamp (osGetCount value)
-__osCurrentTime = 0x80037C50; // size:0x8 libultra __osCurrentTime (OSTime; gViTimeAccumLo = its low word) (renamed from gViTimeAccumHi, docs/SYMBOL_MISATTRIBUTION.md)
+__osCurrentTime = 0x80037C50; // size:0x8 libultra __osCurrentTime (OSTime, gViTimeAccumLo = its low word) (renamed from gViTimeAccumHi, docs/SYMBOL_MISATTRIBUTION.md)
 gViTimeAccumLo = 0x80037C54; // VI time accumulator low word (64-bit time, lo part)
 __osBaseCounter = 0x80037C58; // libultra __osBaseCounter (renamed from gViLastCount, docs/SYMBOL_MISATTRIBUTION.md)
 __osViIntrCount = 0x80037C5C; // libultra __osViIntrCount (renamed from gViRetraceCount, docs/SYMBOL_MISATTRIBUTION.md)

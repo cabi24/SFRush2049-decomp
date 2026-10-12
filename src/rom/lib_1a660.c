@@ -325,6 +325,8 @@ u32 func_8001A5D8(VoicePrefix *state, u32 key)
     return result;
 }
 
+typedef struct ChannelState {u32 word00,word04,flags08,pending0C,unknown10;u8 kind14;u8 unknown15[3];u32 value18;u8 unknown1C[12];} ChannelState;
+extern ChannelState D_8004F300[32];
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1a660/func_8001A658.s")
 /* PROMOTED 2026-10-04 — func_8001B154
  * Source:   cloud/matches/boot_tail/func_8001B154.c (in-repo, locked)
@@ -603,8 +605,6 @@ u16 func_8001B968(u32 key)
     return 0;
 }
 
-typedef struct ChannelState {u32 word00,word04,flags08,pending0C,unknown10;u8 kind14;u8 unknown15[3];u32 value18;u8 unknown1C[12];} ChannelState;
-extern ChannelState D_8004F300[32];
 /* PROMOTED 2026-10-11 — func_8001B9F8
  * Source:   cloud/work/frontier/w20c/sources/func_8001B9F8.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
