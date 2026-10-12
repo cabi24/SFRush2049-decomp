@@ -133,3 +133,41 @@ the sqlite backup API. Copy run on `.bak2` first (3 renamed, audit clean). Live:
 clean (rc 0, no rows). Only the 3 function rows (`db_renames.json`); the inventory has no data targets. promote_batch
 also wrote promotion_record rows for __scMain/__scExec. Until w25a merges, master's layout and the DB disagree on
 these 3 names.
+
+## Job 3: inflate/lzss block (lib_5610, 12 slots, 8,104 B) - triage, nothing matched
+
+**Finding: the C-like slots are IDO 5.3 `cc -O2 -S` output assembled by as1 at `-O1`, not a `-O2` object.** Retail
+shows only fill-from-above delay slots, never a target fill or a branch-likely (IDO -O2's as1 makes `bnel`/`beqzl`
+and copies `lw ra` into `b` delay slots in these same bodies), and it keeps the redundant reload after
+`gInflateInPtr += 2` that as1 -O2 deletes. Reproduced with `tools/cmps.sh` (cc -S at `-g0 -O2 -mips2`, drop the
+`.option O2` line - otherwise "Binasm file dictates -O: 2" - then `cc -c -O1` on the .s). Other recipes tried on
+inflate_block: 5.3 -O1, -g1/-g2/-g3 -O2, -mips1, IDO 7.1 -O2, `-Wb,-O1`/`-Wab,-O1` (no effect), 7.1 front end + 5.3
+as1. This fits the TU being a hand-edited compiler .s: lzss_decode/inflate_io_wait share a non-ABI contract
+(t1 return, s0-s4 clobbered unsaved; static_C20/C21).
+
+Ceiling (instruction-level diff of the object vs the ROM bytes, operands' immediates masked, `tools/sbs.py`;
+"equal/retail words"; drafts from earlier lanes unless noted):
+
+| slot (label) | B | evidence / draft | standard -g0 -O2 | cc -O2 -S + as1 -O1 | verdict |
+|---|---:|---|---|---|---|
+| inflate_io_wait | 236 | non-ABI (returns in t1, clobbers s0-s4) | - | - | hand asm / hand-edited .s; stays GLOBAL_ASM |
+| lzss_decode | 596 | consumes t1 after each call, spills s0 itself | - | - | hand asm / hand-edited .s; stays GLOBAL_ASM |
+| huft_build | 1740 | C23 huft_build.c | 335/435 | 396/435 | C, needs the .s recipe + source work |
+| inflate_free_window (likely gzip inflate_codes by size/order) | 1272 | no draft | - | - | C (not attempted) |
+| inflate_stored | 544 | C20 | 111/136 | 123/136 | C, recipe + source |
+| inflate_fixed | 456 | C23 .best | 92/114 | 101/114 | C, recipe + source |
+| inflate_dynamic | 1936 | C23 | 301/484 | 369/484 | C, recipe + source |
+| inflate_block | 420 | C23 (unchanged) | 79/105 | **99/105** | residual = as1 scheduling only (prologue store order, one sltiu, one lui) |
+| inflate_loop | 92 | new `inflate/inflate_loop.c` | 19/23 | **21/23** | residual = prologue store order only |
+| inflate_read_bits | 320 | C20 through `static_rename.renamed_source` (`inflate/inflate_read_bits.renamed.c`) | 63/80 | 73/80 | C, recipe + source |
+| inflate_entry | 360 | no draft | - | - | C (not attempted) |
+| inflate_entry_alt | 132 | C20 | 30/33 | 29/33 | C, uopt register choice (src via a3) differs |
+
+The inflate_block and inflate_loop residuals do not move with source order (uopt canonicalises; the ugen .s is
+identical across load-order, DUMPBITS-order and return-shape variants), so they come from the scheduler: the retail
+as1 puts `sw ra` later and picks a different delay-slot instruction than this as1 at -O1 (5.3 and 7.1 as1 agree with
+each other, -mips1/-mips3 do not help). Best next hypotheses: an older as1 (IDO 5.2/6.x, not in the toolkit cache) or
+a hand-edited .s. Even with an exact assembler, promotion would need a new TU recipe for lib_5610 (C -> `cc -S` ->
+as1 -O1) beside its GLOBAL_ASM passthroughs; not attempted. Nothing locked or promoted. Tools: `tools/cmp.sh`
+(standard compile + w24t compare.py), `tools/cmps.sh` (the .s recipe), `tools/sbs.py` (aligned instruction diff);
+their paths point at this session's scratchpad and builder scratch. Variants in `inflate/v/` (ignored).
