@@ -1,0 +1,52 @@
+{
+  "final": {
+    "memory_areas": {
+      "T": 16,
+      "P": 8,
+      "M": 0
+    },
+    "frame_bytes": 24,
+    "whole_object_identical": true,
+    "differing_words": 0
+  },
+  "baseline": {
+    "memory_areas": {
+      "T": 16,
+      "P": 8,
+      "M": 0
+    },
+    "frame_bytes": 24,
+    "whole_object_identical": true,
+    "differing_words": 162
+  },
+  "short_circuit_loops": {
+    "memory_areas": {
+      "T": 16,
+      "P": 8,
+      "M": 0
+    },
+    "frame_bytes": 24,
+    "whole_object_identical": true,
+    "differing_words": 160
+  },
+  "direct_index": {
+    "memory_areas": {
+      "T": 16,
+      "P": 8,
+      "M": 0
+    },
+    "frame_bytes": 24,
+    "whole_object_identical": true,
+    "differing_words": 132
+  },
+  "old_equality_order": {
+    "memory_areas": {
+      "T": 16,
+      "P": 8,
+      "M": 0
+    },
+    "frame_bytes": 24,
+    "whole_object_identical": true,
+    "differing_words": 20
+  }
+}

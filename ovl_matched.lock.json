@@ -163,9 +163,9 @@
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
       "group": "dot_runtime_a_availability_refresh_20261007",
       "image": "A",
-      "origin": "cloud/work/frontier/dot_runtime_a_availability_selector_20261012/groups/dot_runtime_a_availability_refresh_20261007",
+      "origin": "cloud/work/frontier/dot_runtime_a_availability_reset_20261012/groups/dot_runtime_a_availability_refresh_20261007",
       "source": "src/ovl_a/groups/dot_runtime_a_availability_refresh_20261007/group.json",
-      "source_sha256": "ff1557be2f4ab20defcf38c57bd49fe96cafd0c2b3b8891256274f002df10da5",
+      "source_sha256": "7e81155ac1e35249c6ff6c08f786a1d9621549392c85a0b628a8056a8a9f9354",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
       "verified_at": "2026-10-12"
@@ -174,9 +174,9 @@
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
       "group": "dot_runtime_a_availability_refresh_20261007",
       "image": "A",
-      "origin": "cloud/work/frontier/dot_runtime_a_availability_selector_20261012/groups/dot_runtime_a_availability_refresh_20261007",
+      "origin": "cloud/work/frontier/dot_runtime_a_availability_reset_20261012/groups/dot_runtime_a_availability_refresh_20261007",
       "source": "src/ovl_a/groups/dot_runtime_a_availability_refresh_20261007/group.json",
-      "source_sha256": "ff1557be2f4ab20defcf38c57bd49fe96cafd0c2b3b8891256274f002df10da5",
+      "source_sha256": "7e81155ac1e35249c6ff6c08f786a1d9621549392c85a0b628a8056a8a9f9354",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
       "verified_at": "2026-10-12"
@@ -191,6 +191,17 @@
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
       "verified_at": "2026-10-11"
+    },
+    "func_80394B00": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "group": "dot_runtime_a_availability_refresh_20261007",
+      "image": "A",
+      "origin": "cloud/work/frontier/dot_runtime_a_availability_reset_20261012/groups/dot_runtime_a_availability_refresh_20261007",
+      "source": "src/ovl_a/groups/dot_runtime_a_availability_refresh_20261007/group.json",
+      "source_sha256": "7e81155ac1e35249c6ff6c08f786a1d9621549392c85a0b628a8056a8a9f9354",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-12"
     },
     "func_80395E24": {
       "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
