@@ -211,7 +211,7 @@ segments:
       - [0x257F0, c, rom/lib_257f0]
       - [0x25BB0, c, rom/lib_25bb0]
       - [0x26AB0, c, rom/lib_26ab0]
-      - [0x26F60, asm]
+      - [0x26F60, c, rom/lib_26f60]
 
   # Remaining ROM data: RSP microcode, boot data, then cartridge assets
   # (to be further segmented)
