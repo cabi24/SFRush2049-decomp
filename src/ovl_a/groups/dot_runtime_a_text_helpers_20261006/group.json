@@ -9,7 +9,8 @@
   "func_8039B908",
   "func_8039B988",
   "func_8039BA28",
-  "func_8039BAE0"
+  "func_8039BAE0",
+  "func_8039B560"
  ],
  "context": [
   "func_8039A4D4",
@@ -25,5 +26,5 @@
   "func_803A5948"
  ],
  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
- "provenance": "Research delivery: C140 strict match, all nine inherited verified bodies retained as claims. Existing cross-group locks require independent-checker migration before install; no locks reassigned."
+ "provenance": "w22p merge of Astra #326 (C140 traced group) and #328 (B560 literal webs): #326's group.c with #328's B560 body appended unchanged (duplicate typedefs dropped). All eleven verified bodies are members and claims."
 }

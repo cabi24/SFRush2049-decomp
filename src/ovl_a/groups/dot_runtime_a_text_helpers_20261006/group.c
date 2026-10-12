@@ -1033,3 +1033,79 @@ s32 func_803A5948(void *callback_context)
     }
     return 1;
 }
+
+/* B560 initializes twelve native 64-byte slots and six special transforms.
+ * Float literals are authenticated against current-tree image A. Distinct
+ * 55.2f/55.20f spellings preserve the two native constant webs.
+ */
+extern MenuObjectSlot D_803B30C0[12];
+extern s32 D_803B33C0;
+extern void *memcpy(void *,const void *,u32);
+extern void func_8008B32C(f32 [3][3],f32 [3][3],f32);
+extern void func_800B5898(f32,f32 [][3]);
+extern void func_800B5940(f32,f32 [][3]);
+extern Color D_803B3458;
+extern char *D_803B309C[];
+extern char D_803B87A8[],D_803B87B8[],D_803B87C0[],D_803B87C4[];
+extern f32 D_803B9594,D_803B9598,D_803B959C,D_803B95A0,D_803B95A4;
+extern f32 D_803B95A8,D_803B95AC,D_803B95B0;
+
+void func_8039B560(void)
+{
+    Color color = D_803B3458;
+    s32 i;
+    s16 texture_index;
+    f32 yaw;
+    for (i = 0; i < 12; i++) {
+        if (D_803B30C0[i].handle == -1) {
+            memcpy(D_803B30C0[i].matrix, D_8011418C, 36);
+            D_803B30C0[i].handle = sign_extend_call(
+                string_copy_format(D_803B309C[D_803B30C0[i].other], 0, D_80140BDC - 1, 1),
+                (u32)D_803B30C0[i].matrix, -1,
+                (D_803B30C0[i].other == 0 || D_803B30C0[i].other == 1 || D_803B30C0[i].other == 2) ? 0x42000 : 0);
+            func_8008E06C((s16)D_803B30C0[i].handle, (s32 *)&color);
+        }
+    }
+    func_8008D870((s16)D_803B30C0[6].handle,
+        (s32)func_800B24EC(D_803B87A8, &texture_index, 0, D_80140BDC - 1, 1), -1);
+    memcpy(D_803B30C0[6].matrix, D_8011418C, 36);
+    yaw = -1.5707963705062866f;
+    func_800B5898(yaw, D_803B30C0[6].matrix);
+    D_803B30C0[6].position[0] = 0.0f;
+    D_803B30C0[6].position[1] = 115.0f;
+    D_803B30C0[6].position[2] = 200.0f;
+    func_8008D870((s16)D_803B30C0[7].handle,
+        (s32)func_800B24EC(D_803B87B8, &texture_index, 0, D_80140BDC - 1, 1), -1);
+    func_8008D870((s16)D_803B30C0[8].handle,
+        (s32)func_800B24EC(D_803B87C0, &texture_index, 0, D_80140BDC - 1, 1), -1);
+    memcpy(D_803B30C0[8].matrix, D_8011418C, 36);
+    func_800B5898(yaw, D_803B30C0[8].matrix);
+
+    D_803B30C0[8].position[0] = 75.1f;
+    D_803B30C0[8].position[1] = 55.2f;
+    D_803B30C0[8].position[2] = 100.0f;
+    func_8008B32C(D_803B30C0[8].matrix, D_803B30C0[8].matrix, 0.5f);
+    memcpy(D_803B30C0[9].matrix, D_8011418C, 36);
+    func_800B5898(yaw, D_803B30C0[9].matrix);
+    func_800B5940(3.1415927410125732f, D_803B30C0[9].matrix);
+    D_803B30C0[9].position[0] = 87.1f;
+    D_803B30C0[9].position[1] = 55.2f;
+    D_803B30C0[9].position[2] = 100.0f;
+    func_8008D870((s16)D_803B30C0[10].handle,
+        (s32)func_800B24EC(D_803B87C4, &texture_index, 0, D_80140BDC - 1, 1), -1);
+    memcpy(D_803B30C0[10].matrix, D_8011418C, 36);
+    func_800B5898(yaw, D_803B30C0[10].matrix);
+
+    D_803B30C0[10].position[0] = -75.1f;
+    D_803B30C0[10].position[1] = 55.20f;
+    D_803B30C0[10].position[2] = 100.0f;
+    func_8008B32C(D_803B30C0[10].matrix, D_803B30C0[10].matrix, 0.5f);
+    memcpy(D_803B30C0[11].matrix, D_8011418C, 36);
+    func_800B5898(yaw, D_803B30C0[11].matrix);
+    D_803B30C0[11].position[0] = -87.1f;
+    D_803B30C0[11].position[1] = 55.20f;
+    D_803B30C0[11].position[2] = 100.0f;
+    D_803B33C0 = 1;
+    D_803B33C4 = 1;
+    particle_velocity_set();
+}
