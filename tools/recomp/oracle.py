@@ -581,8 +581,8 @@ def parse_script(text, name="script"):
         if dur is not None:
             item += ":%g" % dur
         items.append((t, n, item))
-    if not items:
-        raise OracleError(f"{name}: no presses")
+    if not items and not frames:
+        raise OracleError(f"{name}: no presses")     # a script without presses must at least say `frames N`
     items.sort()
     return {"press": ",".join(i for _, _, i in items), "frames": frames, "controllers": max(ports)}
 

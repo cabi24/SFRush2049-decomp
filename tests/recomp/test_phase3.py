@@ -281,7 +281,7 @@ def test_committed_scripts_parse_and_have_a_readme_line():
     assert {"race", "race_track2", "two_player", "audio_options"} <= set(names)
     for name in names:
         sc = oracle.load_script(name)
-        assert sc["frames"] and sc["press"]
+        assert sc["frames"] and (sc["press"] or name == "attract")   # attract: no input on purpose
         assert "`%s.press`" % name in readme, name
     assert oracle.load_script("race")["press"] == oracle.DEFAULT_PRESS
     assert oracle.load_script("two_player")["controllers"] == 2

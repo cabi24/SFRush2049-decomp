@@ -1029,6 +1029,14 @@ def main(argv=None):
     parser.add_argument("--probe-callees", action="store_true",
                         help="Phase 3: also capture every direct callee of the replaced functions (order "
                         "and effect only); pass it to BOTH builds")
+    parser.add_argument("--allow-ipa", action="store_true",
+                        help="Phase 4: build a replacement that calls an IDO -O3 IPA-convention callee not "
+                        "described in tools/recomp/ipa_callees.json with plain o32 calls (default: refuse)")
+    parser.add_argument("--ipa-table", default=None,
+                        help="IPA callee table (default tools/recomp/ipa_callees.json; 'none' = no table: "
+                        "the Phase 3 standalone behaviour, needs --allow-ipa for detected callees)")
+    parser.add_argument("--ipa-members", default=None,
+                        help="ipa.py scan output for IPA detection (default build/ipa_members.json)")
     args = parser.parse_args(argv)
     try:
         lists = builtin_lists(args.n64recomp_src)
@@ -1059,8 +1067,11 @@ def main(argv=None):
             doc = replmod.load_manifest(args.replacements or replmod.MANIFEST)
             chosen = replmod.select(doc, args.replace_set, ids)
             toolkits = {k: v for k, v in (("ido5.3", args.ido53), ("ido7.1", args.ido71)) if v}
+            detected = replmod.load_ipa_detection(args.ipa_members or replmod.IPA_MEMBERS)
             repl = replmod.build(chosen, functions, symbols, out / "replace", toolkits, ld=args.ld,
-                                 images=images)
+                                 images=images, ipa_detected=detected, allow_ipa=args.allow_ipa,
+                                 ipa_table={} if args.ipa_table == "none" else
+                                 replmod.load_ipa_table(args.ipa_table or replmod.IPA_TABLE))
         else:
             import shutil
             shutil.rmtree(out / "replace", ignore_errors=True)
@@ -1085,6 +1096,12 @@ def main(argv=None):
           f"stubs {len(manifest['patches']['stubs'])}, ignored {len(manifest['patches']['ignored'])}")
     for r in manifest["replacements"]["replaced"]:
         print(f"replaced {r['function']} ({r['population']}) <- {r['id']} [{r['mode']}] {r['source']}")
+        for name, n in sorted(r.get("ipa_shims", {}).items()):
+            print(f"  ipa shim {name}: {n} call site(s)")
+        for name in r.get("ipa_bodies", []):
+            print(f"  ipa body {name} linked")
+        for note in r.get("ipa_notes", []):
+            print(f"  ipa note {note}")
     print(f"total {manifest['total_functions']} functions -> {Path(args.out) / 'rush2049.recomp.toml'}")
     return 0
 

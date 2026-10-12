@@ -1,0 +1,25 @@
+{
+ "note": "Phase 4 (w24r): how a standalone-compiled replacement calls retail callees whose IDO -O3 whole-program convention is not o32. params = one location per prototype parameter (register name, or sp+N to stay on the stack); clobbers = callee-saved registers the callee writes without saving; body = C source of a function retail inlined everywhere (only a jr-ra stub remains), linked into the replacement instead. Read by tools/recomp/replace.py (load_ipa_table); detection of callees missing here: build/ipa_members.json + build/frontier.json.",
+ "callees": {
+  "entity_transform_calc": {
+   "prototype": "void entity_transform_calc(s32 h, f32 x, f32 y, f32 z, f32 w)",
+   "params": ["a0", "f22", "f24", "f26", "f28"],
+   "clobbers": ["f20"],
+   "evidence": "retail call site in engine_sound_sync 0x80098F30-0x80098F40 (lwc1 f22/f24/f26/f28 before jal), callee 0x80091CC8 c.eq.s f22,f20 (w23f, w23r probe verdict); ipa_members callees f22,f24,f26,f28; prototype from src/blob/groups/codex_transform_b109/group.c"
+  },
+  "audio_effect_setup": {
+   "prototype": "void audio_effect_setup(void *effect)",
+   "params": ["s0"],
+   "clobbers": ["s1", "s2"],
+   "evidence": "frontier register_params s0; writes s1/s2 unsaved (w23f RESULTS); src/blob/groups/engine_sound_sync/audio_effect_setup*.c"
+  },
+  "func_80091AF0": {
+   "body": "src/blob/groups/codex_heap_release_a25/func_80091AF0.c",
+   "evidence": "slot-queue lock osRecvMesg(&D_80142728, NULL, 1); retail jr-ra stub, umerge-inlined into every caller (w17h)"
+  },
+  "func_80091AF8": {
+   "body": "src/blob/groups/codex_heap_release_a25/func_80091AF8.c",
+   "evidence": "slot-queue unlock osSendMesg(&D_80142728, NULL, 0); retail jr-ra stub, inlined (w17h)"
+  }
+ }
+}

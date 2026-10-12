@@ -43,6 +43,8 @@ double now_s() { return std::chrono::duration<double>(clock_type::now() - t0).co
 // Scripted input clock: wall time (Phase 1 default) or game frames / 30
 // (--clock frames: deterministic replay for the frame oracle).
 bool frame_clock = false;
+rush::live_input_fn live_input = nullptr;
+rush::live_connected_fn live_connected = nullptr;
 double input_time() { return frame_clock ? rush::oracle_frames() / 30.0 : now_s(); }
 
 uint16_t button_mask(const std::string& b, float& x, float& y) {
@@ -114,7 +116,7 @@ void rush::trace_start(double seconds, const std::string& press, const std::stri
     fb_dump_dir = fb_dump;
     if (!fb_dump_dir.empty()) std::filesystem::create_directories(fb_dump_dir);
     std::thread([seconds] {
-        while (now_s() < seconds) {
+        while (seconds <= 0 || now_s() < seconds) {   // --seconds 0: until the window closes
             std::this_thread::sleep_for(std::chrono::seconds(1));
             status_line("status");
         }
@@ -221,7 +223,21 @@ void rush::on_vi() {
 
 void rush::poll_input() {}
 
+void rush::set_live_input(live_input_fn input, live_connected_fn connected) {
+    live_input = input;
+    live_connected = connected;
+}
+
+void rush::request_quit(const char* why) {
+    status_line("final");
+    rush::oracle_finish(why);
+    rush::capture_finish();
+    fflush(stderr);
+    std::_Exit(0);
+}
+
 bool rush::get_input(int controller, uint16_t* buttons, float* x, float* y) {
+    if (live_input && presses.empty()) return live_input(controller, buttons, x, y);
     if (controller < 0 || controller > max_port) return false;
     double t = input_time();
     uint16_t m = 0;
@@ -246,6 +262,11 @@ void rush::set_frame_clock(bool on) { frame_clock = on; }
 int rush::scripted_controllers() { return max_port + 1; }
 
 ultramodern::input::connected_device_info_t rush::get_connected_device_info(int controller) {
+    if (live_connected && presses.empty()) {
+        if (live_connected(controller))
+            return {ultramodern::input::Device::Controller, ultramodern::input::Pak::None};
+        return {ultramodern::input::Device::None, ultramodern::input::Pak::None};
+    }
     if (controller >= 0 && controller <= max_port) {
         return {ultramodern::input::Device::Controller, ultramodern::input::Pak::None};
     }

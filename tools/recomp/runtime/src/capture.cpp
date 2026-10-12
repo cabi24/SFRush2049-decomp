@@ -34,6 +34,15 @@
 // their retail addresses; replace.py). Writes by other threads while a
 // window is open (a body that blocks in osRecvMesg) count for that window;
 // both builds behave the same way, so the logs stay comparable.
+//
+// Portability (Phase 4): write tracking uses POSIX mprotect/SIGSEGV. The CMake
+// option RUSH_CAPTURE (default ON except on Windows) selects it; without it the
+// hooks stay transparent (the stock capture build still re-enters the
+// original) and --call-log is refused.
+#ifndef RUSH_CAPTURE
+#define RUSH_CAPTURE 1
+#endif
+#if RUSH_CAPTURE
 #include <signal.h>
 #include <sys/mman.h>
 #include <unistd.h>
@@ -329,3 +338,35 @@ extern "C" void rush_cap_exit(uint8_t* rdram, recomp_context* ctx, int fn) {
     }
     (void)rdram;
 }
+
+#else  // !RUSH_CAPTURE: transparent hooks, no call log
+
+#include <cstdint>
+#include <cstdio>
+#include <cstdlib>
+#include <string>
+
+#include "recomp.h"
+#include "rush_runtime.h"
+
+namespace { int bypass_fn = -1; }
+
+void rush::capture_start(const std::string& path, uint64_t) {
+    if (path.empty()) return;
+    fprintf(stderr, "[rush] --call-log is not available in this build (configured with RUSH_CAPTURE=OFF; "
+                    "per-call capture needs POSIX mprotect/SIGSEGV)\n");
+    std::exit(2);
+}
+
+void rush::capture_finish() {}
+
+extern "C" int rush_cap_bypass(int fn) {
+    if (bypass_fn == fn) { bypass_fn = -1; return 1; }
+    return 0;
+}
+
+extern "C" void rush_cap_enter(uint8_t*, recomp_context*, int fn) { bypass_fn = fn; }
+
+extern "C" void rush_cap_exit(uint8_t*, recomp_context*, int) {}
+
+#endif  // RUSH_CAPTURE

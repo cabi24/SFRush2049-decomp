@@ -9,6 +9,12 @@
 
 #include "ultramodern/ultramodern.hpp"
 
+#if defined(__GNUC__) || defined(__clang__)
+#define RUSH_PRINTF(a, b) __attribute__((format(printf, a, b)))
+#else
+#define RUSH_PRINTF(a, b)
+#endif
+
 namespace rush {
 // register_overlays.cpp
 void register_overlays();
@@ -17,9 +23,29 @@ void register_overlays();
 std::unique_ptr<ultramodern::renderer::RendererContext> create_null_renderer(
     uint8_t* rdram, ultramodern::renderer::WindowHandle window, bool developer_mode);
 
+// rt64_renderer.cpp (RUSH_RENDERER=rt64)
+std::unique_ptr<ultramodern::renderer::RendererContext> create_rt64_renderer(
+    uint8_t* rdram, ultramodern::renderer::WindowHandle window, bool developer_mode);
+
+// sdl_frontend.cpp (RUSH_RENDERER=rt64): window, events, controller/keyboard
+ultramodern::gfx_callbacks_t::gfx_data_t sdl_create_gfx();
+ultramodern::renderer::WindowHandle sdl_create_window(ultramodern::gfx_callbacks_t::gfx_data_t);
+void sdl_update_gfx(ultramodern::gfx_callbacks_t::gfx_data_t);
+bool sdl_get_input(int port, uint16_t* buttons, float* x, float* y);
+bool sdl_port_connected(int port);
+void sdl_set_fullscreen(bool on);
+void sdl_set_keyboard_alone(bool on);  // controllers start at player 2
+
+// trace.cpp: live input (a window's controllers) when no --press script is given
+using live_input_fn = bool (*)(int port, uint16_t* buttons, float* x, float* y);
+using live_connected_fn = bool (*)(int port);
+void set_live_input(live_input_fn input, live_connected_fn connected);
+// write the final status line, close the logs and exit (window closed, Escape)
+[[noreturn]] void request_quit(const char* why);
+
 // trace.cpp: counters, the status line, the run timer, scripted input
 void trace_start(double seconds, const std::string& press, const std::string& fb_dump);
-void trace_event(const char* fmt, ...) __attribute__((format(printf, 1, 2)));
+void trace_event(const char* fmt, ...) RUSH_PRINTF(1, 2);
 void trace_rsp_task(uint32_t type);
 void trace_gfx_task(const OSTask* task);
 void trace_screen_update(uint8_t* rdram, uint32_t vi_origin);
@@ -55,6 +81,7 @@ void capture_finish();
 
 // lockstep.cpp: deterministic VI/AI/SP/DP delivery (--clock frames)
 void set_lockstep(bool on);
+void set_lockstep_mirror(bool on);  // also send gfx tasks to the real renderer, 60 VI/s pacing
 bool lockstep_enabled();
 uint64_t lockstep_vis();
 void lockstep_idle(uint8_t* rdram);

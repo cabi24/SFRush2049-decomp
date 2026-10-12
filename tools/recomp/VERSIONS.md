@@ -47,9 +47,45 @@ same: we keep generating with `ffb39cda` and link against the runtime at `cdf5ab
 pinned `81213c18` headers (the build compiles the emitted C against
 `N64ModernRuntime/N64Recomp/include/recomp.h`).
 
+## RT64 (Phase 4, lane w24r, 2026-10-12)
+
+- `https://github.com/rt64/rt64` at `23cab603c4f9f4a8b369b38e036f1aa484603878` (2025-08-25, "Re-enable sleep
+  on display framerate setting to fix pacing issues on some multi monitor setups"): the commit
+  Zelda64Recomp (dev `b65c482e`, 2026-09-25) pins as `lib/rt64`. Cloned recursively at
+  `~/rush2049/recomp/src/rt64` (955 MB with submodules: dxc-bin, mupen64plus-win32-deps (SDL2 2.26.3 for
+  Windows), Vulkan-Headers, volk, VMA, D3D12MA, imgui, nativefiledialog-extended, zstd, ...).
+- Interface check: N64ModernRuntime cdf5abbd's `RendererContext` adds `send_dummy_workload` over the
+  df7e820d Zelda pins; our `runtime/src/rt64_renderer.cpp` implements it (no-op), everything else is the
+  RT64 HLE API Zelda64Recomp uses.
+- Built on rocky (compile + link only; rocky has no display, so the RT64 window is never run there):
+  `-DRUSH_RENDERER=rt64 -DRT64_DIR=...`, clang 21.1.8, 496 ninja steps, 45 s with 20 jobs, binary 63 MB
+  (RelWithDebInfo). Needed on Rocky 10: `SDL2-devel` (2.28.5) and `gtk3-devel` (3.24.43, for RT64's
+  nativefiledialog-extended), installed with dnf for this lane; RT64's `-Werror` is relaxed for its
+  target (clang 21's `-Wuninitialized-const-pointer` fires in its bundled imgui).
+- Windows: the host sources were syntax-checked against Windows headers (fedora:41 container,
+  clang 19 `--target=x86_64-w64-mingw32`, mingw-w64 12 headers, `-DRUSH_HAVE_RT64 -DRUSH_CAPTURE=0`): all
+  11 files parse. Not built or run on Windows by us (no Windows host).
+
+## Gameplay-test package
+
+`tools/recomp/package.py` reads this block. Every recomp phase that changes what a tester runs
+regenerates the package and bumps `package_version` (and adds a section to `package/CHANGES.md`).
+
+<!-- package-pins
+package_version = 1
+n64recomp = ffb39cdad1da5de07eaaa48bd1db4a89a7986771
+n64modernruntime = cdf5abbd5026fef5c364c676e4667c45e42b6863
+rt64_url = https://github.com/rt64/rt64
+rt64 = 23cab603c4f9f4a8b369b38e036f1aa484603878
+-->
+
+| Version | Date | Built from | Notes |
+|---|---|---|---|
+| v1 | 2026-10-12 | branch w24r (lane w24r) | first package: stock recompiled game, RT64 window, live input |
+
 ## Zelda64Recomp (studied, not built)
 
 `https://github.com/Zelda64Recomp/Zelda64Recomp` dev branch, shallow clone at
 `~/rush2049/recomp/src/Zelda64Recomp` (reference for main.cpp wiring, register_overlays.cpp,
-the RecompiledFuncs CMake target and us.rev1.toml). RT64 not built: rocky is headless (Intel
-UHD 770 + Mesa Vulkan present, no SDL2); Phase 1 uses a null renderer.
+the RecompiledFuncs CMake target and us.rev1.toml). Phase 1-3 used only the null renderer; Phase 4
+builds RT64 (above) as `RUSH_RENDERER=rt64`.

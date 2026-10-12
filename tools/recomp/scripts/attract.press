@@ -1,0 +1,5 @@
+# Idle front end: no input for 5 minutes of game time (9000 frames). Evidence (w24r, stock build, frame
+# clock): only image A is loaded and no race data is inflated, i.e. no attract-mode demo race starts in
+# 5 minutes without input (to be confirmed with pixels: gameplay-test package T2). Exercises the front-end
+# animation code for a long stretch.
+frames 9000
