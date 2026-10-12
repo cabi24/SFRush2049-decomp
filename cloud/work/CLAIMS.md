@@ -7,6 +7,7 @@ written up. Populations: `game` (`asm/us/blob`), `static` (`asm/us/boot_tail`), 
 
 | Population | Target | Who | Since | Note |
 |---|---|---|---|---|
+| ovl_b | func_80391864 (kind HUD sibling) | dot resource/HUD lane | 2026-10-12 | stock MATCH 668-byte candidate, preserves accepted 80391650; packet `dot_runtime_b_kind_scene_20261012`, independent review pending |
 | game | func_80087110 (texture rectangle) | Astra | 2026-10 | long-running; coordinator lanes keep off |
 | game | stat_race_update, func_800FE5B0 | Astra | 2026-10 | |
 | game | camera_transform | Astra | 2026-10-07 | PRs #307/#308 |
