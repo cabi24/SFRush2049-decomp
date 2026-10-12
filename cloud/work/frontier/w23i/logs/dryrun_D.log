@@ -1,0 +1,7 @@
+replace-slot func_80016E68: .bss 0x80042630 size 0x80, members func_80016E68, func_80016C20, func_80016CF0, func_80016EE0, func_80016F80, func_80017040
+batch 0x16320..0x16320: 3 candidates
+  PLAN func_80016C20 -> rom/lib_16320 (192 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared, owned .bss slot of func_80016E68)
+  PLAN func_80016CF0 -> rom/lib_16320 (336 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared, owned .bss slot of func_80016E68)
+  PLAN func_80017040 -> rom/lib_16320 (200 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared, owned .bss slot of func_80016E68)
+  spliced /tmp/claude-1000/-home-cburnes-projects-rush2049-decomp/e6d4d7af-aa0e-4f5a-98a8-2e25f3b6dd6b/scratchpad/spliceD/lib_16320.c
+replace-slot func_80016E68: restored

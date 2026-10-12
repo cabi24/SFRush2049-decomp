@@ -1,0 +1,3 @@
+register  osPfsIsPlug              @0x80010160   99 insns seg 0x10d60  reloc_aware o=cc8fe9ec6b08  (new row)
+register  __osPfsRequestData       @0x800102EC   45 insns seg 0x10d60  reloc_aware o=001ce7aec817  (new row)
+applied 2 actions to /home/cburnes/.conveyor/conveyor.db: n64_target 2279 -> 2281, 0 matrix_entry rows purged

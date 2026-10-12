@@ -1,0 +1,18 @@
+{
+  "owner": "func_80016E68",
+  "co_owners": [
+    "func_80016C20",
+    "func_80016CF0",
+    "func_80016EE0",
+    "func_80016F80",
+    "func_80017040"
+  ],
+  "tu": "src/rom/lib_16320.c",
+  "owner_section": ".bss",
+  "container_section": ".bss",
+  "container_vram": "0x80042630",
+  "offset": "0x0",
+  "size": "0x80",
+  "passthrough_asm": "asm/us/nonmatchings/rom/lib_16320/func_80016E68.bss.s",
+  "comment": "w23c (grows w20b's row 0x80042670/0x30 downward and upward; same owner/companion path): lib_16320's whole .bss, retail 0x80042630..0x800426AF = function-local statics in definition order, each function's block 8-aligned: func_80016C20 (dataGetMacro base/main/key/result = D_80042630/34/38/40, 0x14 + 4), func_80016CF0 (dataGetSample key/result/sheader = D_80042648/64/68, 0x24 + 4), func_80016E68/80016EE0/80016F80 (0x30, D_80042670..D_8004269C), func_80017040 (dataGetFX key = D_800426A0, 0xC + 4)"
+}
