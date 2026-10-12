@@ -1409,6 +1409,14 @@
     "verified": "image_gate",
     "verified_at": "2026-09-29"
   },
+  "func_8008AD6C": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_8008AD6C.c",
+    "source_sha256": "d73a054cc0f68c241c455937c64be2c37aa1a93d3ec44156531a107c8959a1f2",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-12"
+  },
   "func_8008AE10": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_8008AE10.c",

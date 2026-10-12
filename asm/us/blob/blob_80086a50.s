@@ -4414,6 +4414,7 @@ pointer_offset_wrapper:
 .section .text.func_8008AD6C, "ax", @progbits
 .globl func_8008AD6C
 func_8008AD6C:
+    /* compiled from src/blob/func_8008AD6C.c */
     .word 0x8C820000
     .word 0x3C01FF00
     .word 0x3C06FFFF
