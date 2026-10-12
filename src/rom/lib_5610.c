@@ -386,7 +386,108 @@ s32 inflate_fixed(void) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_5610/inflate_dynamic.s")
+/* PROMOTED 2026-10-12 — inflate_dynamic
+ * Source:   cloud/work/frontier/w27s/sources/inflate_dynamic.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w27s/sources/inflate_dynamic.c:inflate_dynamic (score0); rom_tu.h context: cloud/work/frontier/w27s/ctx53s.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern u8 *gInflateInPtr, *gInflateInEnd;
+extern u32 gInflateBorder[];
+extern s32 gInflateHuftPointerLit, gInflateHuftPointerDist;
+#define NEEDBITS_BR(n) { while (k < (n)) { b |= (u32)(gInflateInPtr < gInflateInEnd ? (gInflateInPtr += 2, gInflateInPtr[-2] | (gInflateInPtr[-1] << 8)) : inflate_read_bits()) << k; k += 16; } }
+#define DUMPBITS_BR(n) { b >>= (n); k -= (n); }
+s32 inflate_dynamic(void) {
+    s32 i;
+    u32 j;
+    u32 l;
+    u32 m;
+    u32 n;
+    huft *tl;
+    huft *td;
+    s32 bl;
+    s32 bd;
+    u32 nb;
+    u32 nl;
+    u32 nd;
+    u32 *ll;
+    register u32 b;
+    register u32 k;
+
+    ll = (u32 *)huft_alloc((286 + 30) * sizeof(u32));
+    b = gInflateBitBuf;
+    k = gInflateBitCount;
+    NEEDBITS_BR(5);
+    nl = 257 + (b & 0x1f);
+    DUMPBITS_BR(5);
+    NEEDBITS_BR(5);
+    nd = 1 + (b & 0x1f);
+    DUMPBITS_BR(5);
+    NEEDBITS_BR(4);
+    nb = 4 + (b & 0xf);
+    DUMPBITS_BR(4);
+    if (nl > 286 || nd > 30) return 1;
+    for (j = 0; j < nb; j++) {
+        NEEDBITS_BR(3);
+        ll[gInflateBorder[j]] = b & 7;
+        DUMPBITS_BR(3);
+    }
+    for (; j < 19; j++) ll[gInflateBorder[j]] = 0;
+    bl = 7;
+    if ((i = huft_build(ll, 19, 19, NULL, NULL, &tl, &bl)) != 0) {
+        gDisplayListSize = 0;
+        return i;
+    }
+    n = nl + nd;
+    m = gInflateMaskBits[bl];
+    i = l = 0;
+    while ((u32)i < n) {
+        NEEDBITS_BR((u32)bl);
+        j = (td = tl + (b & m))->b;
+        DUMPBITS_BR(j);
+        j = td->v.n;
+        if (j < 16)
+            ll[i++] = l = j;
+        else if (j == 16) {
+            NEEDBITS_BR(2);
+            j = 3 + (b & 3);
+            DUMPBITS_BR(2);
+            if ((u32)i + j > n) return 1;
+            while (j--) ll[i++] = l;
+        } else if (j == 17) {
+            NEEDBITS_BR(3);
+            j = 3 + (b & 7);
+            DUMPBITS_BR(3);
+            if ((u32)i + j > n) return 1;
+            while (j--) ll[i++] = 0;
+            l = 0;
+        } else {
+            NEEDBITS_BR(7);
+            j = 11 + (b & 0x7f);
+            DUMPBITS_BR(7);
+            if ((u32)i + j > n) return 1;
+            while (j--) ll[i++] = 0;
+            l = 0;
+        }
+    }
+    gDisplayListSize = 0x4F0;
+    gInflateBitBuf = b;
+    gInflateBitCount = k;
+    bl = gInflateHuftPointerLit;
+    if ((i = huft_build(ll, nl, 257, gInflateCplens, gInflateCplext, &tl, &bl)) != 0) {
+        gDisplayListSize = 0;
+        return i;
+    }
+    bd = gInflateHuftPointerDist;
+    if ((i = huft_build(ll + nl, nd, 0, gInflateCpdist, gInflateCpdext, &td, &bd)) != 0) {
+        gDisplayListSize = 0;
+        return i;
+    }
+    if ((i = inflate_free_window(tl, td, bl, bd)) != 0) return i < 0 ? i : 1;
+    gDisplayListSize = 0;
+    return 0;
+}
+
 /* PROMOTED 2026-10-12 — inflate_block
  * Source:   cloud/work/frontier/w26a/sources/inflate_block.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
