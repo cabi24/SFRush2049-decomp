@@ -85,6 +85,13 @@ int func_800158D8(u16 id)
     return 0;
 }
 
+/* Table record, hoisted before its first user (w23c). */
+#pragma pack(1)
+typedef struct { unsigned int payload; u16 id; u16 type; u16 references; u16 metadata; } RecordFields_8003CE20;
+#pragma pack()
+extern int D_8003CE18;
+typedef union { RecordFields_8003CE20 fields; unsigned int words[3]; } RecordStorage_8003CE20;
+extern RecordStorage_8003CE20 D_8003CE20[];
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80015A0C.s")
 /* PROMOTED 2026-10-11 — func_80015C0C
  * Source:   cloud/work/frontier/w19b/relocname/func_80015C0C.c (in-repo, locked)
@@ -92,12 +99,6 @@ int func_800158D8(u16 id)
  * Evidence: lock:cloud/work/frontier/w19b/relocname/func_80015C0C.c:func_80015C0C (score0); rom_tu.h context: cloud/work/frontier/w19b/ctx71_relocname.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-#pragma pack(1)
-typedef struct { unsigned int payload; u16 id; u16 type; u16 references; u16 metadata; } RecordFields_8003CE20;
-#pragma pack()
-extern int D_8003CE18;
-typedef union { RecordFields_8003CE20 fields; unsigned int words[3]; } RecordStorage_8003CE20;
-extern RecordStorage_8003CE20 D_8003CE20[];
 int func_80015C0C(u16 id)
 {
     int i;
@@ -119,6 +120,13 @@ int func_80015C0C(u16 id)
     return 0;
 }
 
+/* Table record, hoisted before its first user (w23c). */
+#pragma pack(1)
+typedef struct { unsigned int payload; u16 id; u16 references; } RecordFields_80038610;
+#pragma pack()
+extern int D_80038608;
+typedef union { RecordFields_80038610 fields; unsigned int words[2]; } RecordStorage_80038610;
+extern RecordStorage_80038610 D_80038610[];
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_16320/func_80015D68.s")
 /* PROMOTED 2026-10-11 — func_80015F28
  * Source:   cloud/work/frontier/w19b/relocname/func_80015F28.c (in-repo, locked)
@@ -126,12 +134,6 @@ int func_80015C0C(u16 id)
  * Evidence: lock:cloud/work/frontier/w19b/relocname/func_80015F28.c:func_80015F28 (score0); rom_tu.h context: cloud/work/frontier/w19b/ctx71_relocname.jsonl
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-#pragma pack(1)
-typedef struct { unsigned int payload; u16 id; u16 references; } RecordFields_80038610;
-#pragma pack()
-extern int D_80038608;
-typedef union { RecordFields_80038610 fields; unsigned int words[2]; } RecordStorage_80038610;
-extern RecordStorage_80038610 D_80038610[];
 int func_80015F28(u16 id)
 {
     int i;

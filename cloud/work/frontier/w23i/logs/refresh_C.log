@@ -1,0 +1,6 @@
+target tiers: reloc_aware=2 raw_word_static=0 raw_word_dynamic=0
+gate fallbacks (static): 0
+superseded: 2 targets, 0 evidence rows purged
+extents: 0 agree, 0 repaired, 0 conflict
+func_80015A0C: reloc_aware a2bfcb3a12c7 -> reloc_aware c52fd45581ea
+func_80015D68: reloc_aware 6a36a89791a0 -> reloc_aware eb8d76aed28d
