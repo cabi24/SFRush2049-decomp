@@ -1,0 +1,9 @@
+{
+  "name": "runtime_b_radial_impulse_private_research_20261012",
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "files": ["candidate.c"],
+  "members": [],
+  "claims": [],
+  "context": ["func_8038D498"],
+  "keep": ["func_8038D498"]
+}
