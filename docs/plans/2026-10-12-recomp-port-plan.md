@@ -216,3 +216,39 @@ the N64Recomp pin decision: `tools/recomp/VERSIONS.md`.
   oracle: deterministic input script (`--press`) + per-frame state hashes (rdram regions, display
   list bytes) to compare recompiled vs replaced runs; the null renderer already sees every
   display list; (4) optionally RT64 on a machine with a display for visual checks.
+
+## 10. Phase 2 findings (lane w22r, 2026-10-12)
+
+Detail and commands: `tools/recomp/README.md` "Phase 2"; lane notes: `cloud/work/frontier/w22r/RESULTS.md`.
+
+- **Acceptance met.** Ten matched functions replaced (8 compiled by IDO, 2 host-native) -> EQUIVALENT
+  over a 60 s (1800-frame) frame-clocked script, each replaced function called 3 to 138,946 times; an
+  injected bug (render_helper `>` flipped) -> DIFFERENT at frame 3 with the flag word and the extra
+  display list named; the draft `w21h/engine_sound_sync/best.c` runs and is DIFFERENT at frame 706 (its
+  first race frames: effect/voice counts D_8011024C, D_80110288 and a free list differ), so it is not
+  "correct, not matched" yet; `w21h/func_800D7634/best.c` is not reached by the script.
+- **Replacement design: compile the C for the N64, not the host.** The matched sources use struct views,
+  32-bit pointers in rdram and globals; the runtime keeps rdram word-swapped. Rather than an accessor
+  layer, `replace.py` compiles the unchanged source with the project's IDO, links it with `ld.lld` at
+  0x80800000 against the inventory's addresses and hands it to N64Recomp as a fifth section; an entry
+  hook delegates the original function to it. Exact N64 semantics, any population, no source change;
+  678 of 689 matched `src/blob` files build this way as they are (the 11 others call `fabsf`/`strcpy`
+  without an address). A host-native mode with generated o32 wrappers exists for leaf bodies that touch
+  aligned words through pointer arguments (proved on two); it is the port's long-term path but needs an
+  accessor layer or a source transformation for everything else.
+- **Determinism needed lockstep, not just a frame clock.** ultramodern delivers VI/AI on a 60 Hz wall
+  clock and SP/DP from host threads; the game's front-end animations follow VI phase, so two identical
+  runs diverged (display lists) by frame 93-1232. Delivering VI/AI from the idle thread, completing RSP
+  tasks synchronously, modelling the framebuffer swap and virtualising osGetCount/osGetTime (link
+  `--wrap`, no runtime patch) gives identical display lists in all 1800 frames across runs, at 1.3 s per
+  run (vs 60 s real time).
+- **Limits.** One input script (front end + one minute of a race); thread stacks are masked; three pages
+  of ultramodern host state are never judged; a function-local static of a replaced body lives in the
+  replacement image (the all-678 run shows the one case where that is visible: func_800E7710 sends its
+  static's address as the SI message). Native mode: see README.
+- **Phase 3 needs:** per-function capture (arguments, pages read/written, return) at entry/exit of the
+  replaced function in both builds, so a DIFFERENT can be attributed to the first differing call rather
+  than the first differing frame; more input scripts (menus: audio options, multiplayer, every track);
+  a word-level mask for the host-pointer fields in OSThread instead of whole pages; data-placement aware
+  binding of function-local statics (use the linked game image's map). **Phase 4:** RT64 in place of the
+  null renderer keeps lockstep available as a test mode only.

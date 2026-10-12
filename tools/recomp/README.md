@@ -16,6 +16,9 @@ via `build/`). Committed here: the generator, its two curated inputs, the output
 | `identity.json` | Phase 1: recompiler-only names for 43 static libultra functions whose inventory name is not their identity (evidence per entry) |
 | `runtime/` | Phase 1 host: CMake project linking N64Recomp's output with N64ModernRuntime, null renderer, hooks, shims, `check_contract.py` |
 | `BOOT_LOG.md` | Phase 1 commands and what each run reached |
+| `replacements.json` | Phase 2: function -> C body (population, source, mode, state, note) and named sets |
+| `replace.py` | Phase 2: builds replacements (IDO -> `.repl` section, or native host wrappers) for `gen_config.py --replace-set` |
+| `oracle.py` | Phase 2: compares per-frame oracle logs (stock vs replaced): EQUIVALENT / DIFFERENT at frame F / NOT EXERCISED |
 
 ## Commands (rocky)
 
@@ -191,3 +194,74 @@ image (B) and runs at 30 frames/s for 120 s; nothing is rasterised (null rendere
   another thread; the runtime only stops the caller); INERT/NOPACK for 19 libultra internals
   whose callers the runtime replaces (none reached in 120 s). `check_contract.py` (run by CMake)
   fails the build if a contract name is defined neither here nor in N64ModernRuntime.
+
+## Phase 2: function replacement and the frame oracle (lane w22r, 2026-10-12)
+
+**Replacement** (`replace.py`, `replacements.json`, `gen_config.py --replace-set SET | --replace ID,...`).
+The original function stays in the recompiled set; a `[[patches.hook]]` at its entry counts the call
+(`rush_repl_count`), calls the replacement and returns, so direct calls, `LOOKUP_FUNC` and the section
+table all reach it. Two modes:
+
+- `ido` (default): the source is compiled for the N64 by the IDO the project matches with (5.3 for
+  game/overlays, 7.1 for the boot segment; flags from its `/* flags: */` header), linked by `ld.lld`
+  (one object per chunk, `--gc-sections` from the function) at `0x80800000+` against the inventory's
+  addresses, and appended to the synthetic ROM as a fifth N64Recomp section `.repl` (functions named
+  `repl__<id>__<name>`). The runtime copies the image into rdram above the game's 8 MiB (librecomp
+  commits 512 MiB; the game sees `osMemSize` 8 MiB) on the first replaced call. The body therefore runs
+  with exact N64 memory semantics: no source change, struct views, 32-bit pointers, byte order and
+  globals all as on the console. Globals the source *defines* are bound to the game's copy (a linker
+  script assignment overrides the object's definition); function-local statics get a private copy
+  (`private_data` in the manifest when global and unknown). Undefined symbols resolve by inventory
+  name or by an address-derived name (`D_`/`func_XXXXXXXX`); others fail the build (IDO's
+  `#pragma intrinsic` names with no relocation are ignored).
+- `native`: the source is compiled for the host (clang, `-funsigned-char -fwrapv`) with the function
+  renamed by `#define`, behind a generated `native__<id>(uint8_t* rdram, recomp_context* ctx)` that
+  unpacks o32 arguments from the prototype (a0-a3 by 4-byte slot, 8-byte types in aligned pairs,
+  slots >= 4 at `sp+16+`, f12/f14 only for leading float arguments) and stores the return (v0, v0:v1,
+  f0). Pointer arguments become host pointers into rdram. **Limits** (why `ido` is the default):
+  rdram is word-swapped (`MEM_B` = addr^3, `MEM_H` = addr^2), host pointers are 8 bytes and the game's
+  globals and callees are not host symbols, so only leaf bodies that touch aligned 32-bit words through
+  their pointer arguments are correct. The generator refuses pointers to 1/2/8-byte scalars, structs
+  and pointers to pointers; a body naming a game global or callee fails to link. Pointers held in
+  rdram structs are the hard case and are not attempted. Host libm calls (sinf, ...) would not be the
+  game's.
+
+**Frame oracle** (host `--clock frames --oracle-log PATH --frames N`, `oracle.py`). Frame = one graphics
+task in the scheduler's `__scExec` (hook before `osSpTaskStartGo`, on a game thread with every other one
+suspended). Per frame: hash of every display list walked from the task (F3DEX2/F3DEX `G_DL` calls and
+branches, segments tracked), hash of each 4 KiB page of the 8 MiB (changed pages only), thread stacks
+(`osCreateThread`) masked into a separate hash. `--clock frames` also makes the run deterministic
+(`runtime/src/lockstep.cpp`, all via `-Wl,--wrap`): VI and AI messages are delivered by the idle thread
+(which runs only when every other game thread is blocked) instead of ultramodern's 60 Hz wall-clock
+thread, `osSpTaskStartGo` completes synchronously and sends SP/DP from the caller, current/next
+framebuffer are modelled, `osGetCount`/`osGetTime` are virtual. Result: three stock runs give identical
+display lists in all 1800 frames; three pages differ every frame (ultramodern host state in the OSThread
+structs, 0x80034000-0x80035FFF and 0x80038000) and are left unjudged. 1800 frames (60 s of game time)
+take 1.3 s. Without lockstep, two runs diverged by frame 93-1232 (wall-clock VI phase).
+`oracle.py run` runs the stock build twice and the replaced build once, judges a page or display list
+only where the stock runs agree, and on a page difference reruns both to that frame with `--dump-at`
+and lists the first differing words with data symbols (stacks and unjudged pages skipped).
+
+```bash
+# rocky, in a copy of this tree; TK53/TK71 = the IDO 5.3 / 7.1 toolkit dirs
+python3 tools/recomp/gen_config.py --rom ROM --n64recomp-src SRC --out build/recomp-SET \
+        --replace-set SET --ido53 TK53 --ido71 TK71
+(cd build/recomp-SET && ~/rush2049/recomp/build/N64Recomp/N64Recomp rush2049.recomp.toml)
+CC=clang CXX=clang++ cmake -S tools/recomp/runtime -B build/recomp-SET/host -G Ninja \
+      -DN64MODERNRUNTIME_DIR=$HOME/rush2049/recomp/src/N64ModernRuntime -DRECOMP_OUT=$PWD/build/recomp-SET
+ninja -C build/recomp-SET/host
+python3 tools/recomp/oracle.py run --stock-host build/recomp/host/rush2049_recomp \
+        --rom-stock build/recomp/rom/rush2049.recomp.z64 --repl-host build/recomp-SET/host/rush2049_recomp \
+        --rom-repl build/recomp-SET/rom/rush2049.recomp.z64 --out runs/SET --frames 1800 \
+        --datasyms build/recomp/rush2049.datasyms.toml
+```
+
+Results (rocky, 2026-10-12; default script = BOOT_LOG's race presses, frame-clocked):
+
+| Set | Verdict |
+|---|---|
+| `matched10` (8 ido + 2 native) | EQUIVALENT over 1800 frames; every function called (3 to 138,946 times) |
+| `bug` (render_helper, `>` flipped to `<`) | DIFFERENT at frame 3: display lists + 4 pages; words D_80149B88 0 -> 0x10, D_8012E608, an extra display list |
+| `draft_engine_sound_sync` (w21h best.c, 8 rows off) | DIFFERENT at frame 706 (6 frames into the race): D_8011024C 0xC -> 0x2, D_80110288 0x14 -> 0xA, the free-list links at 0x80142C64+ |
+| `draft_func_800D7634` (w21h best.c) | NOT EXERCISED (the script never opens the audio-options screen) |
+| all 678 buildable matched `src/blob` functions at once | DIFFERENT at frame 1, only func_800E7710's function-local static (its address is sent as an SI message: placement, not behaviour) |
