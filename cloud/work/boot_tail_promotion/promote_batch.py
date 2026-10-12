@@ -62,6 +62,7 @@ scratch build. `--lockfile PATH` plans against another lockfile (dry runs only).
 """
 import hashlib
 import json
+import os
 import re
 import subprocess
 import sys
@@ -81,6 +82,8 @@ from tools.conveyor.seeds.extract_candidates import REPO, extract_named_function
 HERE = Path("cloud/work/boot_tail_promotion")
 REFUSALS = HERE / "refusals.jsonl"
 BUILDER, BUILDER_REPO = promotemod.BUILDER, promotemod.BUILDER_REPO
+# Parallel jobs of the gate build (w23i: a lane's scratch repo builds with -j2).
+BUILDER_JOBS = int(os.environ.get("CONVEYOR_BUILDER_JOBS", "16"))
 RSYNC_EXCLUDES = ["venv/", "build/", "reference/repos/", "tools/ido-static-recomp/",
                   "__pycache__/", "*.pyc", ".pytest_cache/", "backup/"]
 
@@ -278,7 +281,7 @@ def gate(tus):
     rels = [str(t.relative_to(REPO)) for t in tus]
     newer = " && ".join(f"[ build/us/{r[:-2]}.o -nt {r} ]" for r in rels) or "true"
     build = run(["ssh", BUILDER, f"cd {BUILDER_REPO} && touch {' '.join(rels)} && "
-                 f"make COMPILER=ido -j16 && make test && {newer}"])
+                 f"make COMPILER=ido -j{BUILDER_JOBS} && make test && {newer}"])
     ok = build.returncode == 0 and "ROM matches!" in build.stdout
     return ok, " / ".join((build.stdout + build.stderr).strip().splitlines()[-3:])
 
