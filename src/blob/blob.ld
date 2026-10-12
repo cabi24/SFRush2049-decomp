@@ -1356,7 +1356,7 @@ SECTIONS
     PROVIDE(osViGetCurrentFramebuffer = 0x80007790);
     PROVIDE(osViGetNextFramebuffer = 0x800077D0);
     PROVIDE(osWritebackDCacheAll = 0x80007810);
-    PROVIDE(osViModeTableGet = 0x80007840);
+    PROVIDE(_VirtualToPhysicalTask = 0x80007840);
     PROVIDE(osSpTaskLoad = 0x8000794C);
     PROVIDE(osSpTaskStartGo = 0x80007AB4);
     PROVIDE(osDpSetNextBuffer = 0x80007B00);
@@ -1390,8 +1390,8 @@ SECTIONS
     PROVIDE(guMtxIdentF = 0x80009394);
     PROVIDE(guMtxIdent = 0x8000941C);
     PROVIDE(osContInit = 0x80009450);
-    PROVIDE(__osContGetStatus = 0x800095AC);
-    PROVIDE(__osContRamReset = 0x80009658);
+    PROVIDE(__osContGetInitData = 0x800095AC);
+    PROVIDE(__osPackRequestData = 0x80009658);
     PROVIDE(osContStartQuery = 0x80009730);
     PROVIDE(osContGetQuery = 0x800097AC);
     PROVIDE(osContStartReadData = 0x800097D0);
@@ -1454,7 +1454,7 @@ SECTIONS
     PROVIDE(osVirtualToPhysical = 0x8000D5C0);
     PROVIDE(__osSpSetStatus = 0x8000D640);
     PROVIDE(__osSpSetPc = 0x8000D650);
-    PROVIDE(__osSpDma = 0x8000D680);
+    PROVIDE(__osSpRawStartDma = 0x8000D680);
     PROVIDE(__osSpDeviceBusy = 0x8000D710);
     PROVIDE(osDpIsBusy = 0x8000D740);
     PROVIDE(__osSetSR = 0x8000D770);
@@ -1486,12 +1486,12 @@ SECTIONS
     PROVIDE(sqrtf = 0x8000E3C0);
     PROVIDE(osSetTimer = 0x8000E3D0);
     PROVIDE(__osSiRawStartDma = 0x8000E4B0);
-    PROVIDE(osSiInit = 0x8000E560);
+    PROVIDE(__osSiCreateAccessQueue = 0x8000E560);
     PROVIDE(__osSiGetAccess = 0x8000E5B0);
     PROVIDE(__osSiRelAccess = 0x8000E5F4);
     PROVIDE(__osPfsGetStatus = 0x8000E620);
-    PROVIDE(__osContBuildRequest = 0x8000E6F0);
-    PROVIDE(__osContParseResponse = 0x8000E7B4);
+    PROVIDE(__osPfsRequestOneChannel = 0x8000E6F0);
+    PROVIDE(__osPfsGetOneChannelData = 0x8000E7B4);
     PROVIDE(__osPfsSelectBank = 0x8000E850);
     PROVIDE(__osContRamRead = 0x8000E8D0);
     PROVIDE(__osSumcalc = 0x8000EB00);

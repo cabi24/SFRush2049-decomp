@@ -1,6 +1,6 @@
-nonmatching __osSpDma, 0x84
+nonmatching __osSpRawStartDma, 0x84
 
-glabel __osSpDma
+glabel __osSpRawStartDma
     /* E280 8000D680 27BDFFE8 */  addiu      $sp, $sp, -0x18
     /* E284 8000D684 AFBF0014 */  sw         $ra, 0x14($sp)
     /* E288 8000D688 AFA40018 */  sw         $a0, 0x18($sp)
@@ -37,7 +37,7 @@ glabel __osSpDma
     /* E2F8 8000D6F8 27BD0018 */  addiu      $sp, $sp, 0x18
     /* E2FC 8000D6FC 03E00008 */  jr         $ra
     /* E300 8000D700 00000000 */   nop
-endlabel __osSpDma
+endlabel __osSpRawStartDma
     /* E304 8000D704 00000000 */  nop
     /* E308 8000D708 00000000 */  nop
     /* E30C 8000D70C 00000000 */  nop

@@ -1,6 +1,6 @@
-nonmatching osSiInit, 0x50
+nonmatching __osSiCreateAccessQueue, 0x50
 
-glabel osSiInit
+glabel __osSiCreateAccessQueue
     /* F160 8000E560 27BDFFE8 */  addiu      $sp, $sp, -0x18
     /* F164 8000E564 AFBF0014 */  sw         $ra, 0x14($sp)
     /* F168 8000E568 240E0001 */  addiu      $t6, $zero, 0x1
@@ -21,4 +21,4 @@ glabel osSiInit
     /* F1A4 8000E5A4 27BD0018 */  addiu      $sp, $sp, 0x18
     /* F1A8 8000E5A8 03E00008 */  jr         $ra
     /* F1AC 8000E5AC 00000000 */   nop
-endlabel osSiInit
+endlabel __osSiCreateAccessQueue

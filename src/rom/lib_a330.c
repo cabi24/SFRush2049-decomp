@@ -16,7 +16,7 @@ s32 osContStartQuery(OSMesgQueue* mq) {
     __osSiGetAccess();
 
     if (__osPfsRequestType != CONT_CMD_REQUEST_STATUS) {
-        __osContRamReset(CONT_CMD_REQUEST_STATUS);
+        __osPackRequestData(CONT_CMD_REQUEST_STATUS);
         ret = __osSiRawStartDma(OS_WRITE, __osSiDmaBuffer.ramarray);
         osRecvMesg(mq, NULL, OS_MESG_BLOCK);
     }
@@ -35,7 +35,7 @@ s32 osContStartQuery(OSMesgQueue* mq) {
  */
 void osContGetQuery(OSContStatus* data) {
     u8 pattern;
-    __osContGetStatus(&pattern, data);
+    __osContGetInitData(&pattern, data);
 }
 
 /* PROMOTED 2026-10-01 — osContStartReadData (named osContStartReadData2 before the w22g libultra rename)

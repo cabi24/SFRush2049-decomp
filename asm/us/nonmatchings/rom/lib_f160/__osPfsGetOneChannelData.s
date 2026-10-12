@@ -1,6 +1,6 @@
-nonmatching __osContParseResponse, 0x98
+nonmatching __osPfsGetOneChannelData, 0x98
 
-glabel __osContParseResponse
+glabel __osPfsGetOneChannelData
     /* F3B4 8000E7B4 3C028003 */  lui        $v0, %hi(__osPfsBuffer)
     /* F3B8 8000E7B8 27BDFFE8 */  addiu      $sp, $sp, -0x18
     /* F3BC 8000E7BC 24427F60 */  addiu      $v0, $v0, %lo(__osPfsBuffer)
@@ -43,5 +43,5 @@ glabel __osContParseResponse
   .L8000E844:
     /* F444 8000E844 03E00008 */  jr         $ra
     /* F448 8000E848 27BD0018 */   addiu     $sp, $sp, 0x18
-endlabel __osContParseResponse
+endlabel __osPfsGetOneChannelData
     /* F44C 8000E84C 00000000 */  nop

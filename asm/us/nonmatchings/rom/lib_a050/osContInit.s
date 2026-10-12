@@ -54,7 +54,7 @@ glabel osContInit
     /* A110 80009510 240E0004 */  addiu      $t6, $zero, 0x4
     /* A114 80009514 3C018003 */  lui        $at, %hi(__osPfsRequestType2)
     /* A118 80009518 A02E7AE1 */  sb         $t6, %lo(__osPfsRequestType2)($at)
-    /* A11C 8000951C 0C002596 */  jal        __osContRamReset
+    /* A11C 8000951C 0C002596 */  jal        __osPackRequestData
     /* A120 80009520 00002025 */   or        $a0, $zero, $zero
     /* A124 80009524 3C058003 */  lui        $a1, %hi(__osSiDmaBuffer)
     /* A128 80009528 24A57AA0 */  addiu      $a1, $a1, %lo(__osSiDmaBuffer)
@@ -74,10 +74,10 @@ glabel osContInit
     /* A160 80009560 0C001C9C */  jal        osRecvMesg
     /* A164 80009564 24060001 */   addiu     $a2, $zero, 0x1
     /* A168 80009568 8FA40074 */  lw         $a0, 0x74($sp)
-    /* A16C 8000956C 0C00256B */  jal        __osContGetStatus
+    /* A16C 8000956C 0C00256B */  jal        __osContGetInitData
     /* A170 80009570 8FA50078 */   lw        $a1, 0x78($sp)
     /* A174 80009574 3C018003 */  lui        $at, %hi(__osPfsRequestType)
-    /* A178 80009578 0C003958 */  jal        osSiInit
+    /* A178 80009578 0C003958 */  jal        __osSiCreateAccessQueue
     /* A17C 8000957C A0207AE0 */   sb        $zero, %lo(__osPfsRequestType)($at)
     /* A180 80009580 3C048003 */  lui        $a0, %hi(__osContQueryMsgQ)
     /* A184 80009584 3C058003 */  lui        $a1, %hi(__osContQueryMesg)

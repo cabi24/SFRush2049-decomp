@@ -7,7 +7,7 @@ glabel osSpTaskLoad
     /* 8558 80007958 00808025 */  or         $s0, $a0, $zero
     /* 855C 8000795C AFB30020 */  sw         $s3, 0x20($sp)
     /* 8560 80007960 AFB2001C */  sw         $s2, 0x1C($sp)
-    /* 8564 80007964 0C001E10 */  jal        osViModeTableGet
+    /* 8564 80007964 0C001E10 */  jal        _VirtualToPhysicalTask
     /* 8568 80007968 AFB10018 */   sw        $s1, 0x18($sp)
     /* 856C 8000796C 8C4E0004 */  lw         $t6, 0x4($v0)
     /* 8570 80007970 00409025 */  or         $s2, $v0, $zero
@@ -56,14 +56,14 @@ glabel osSpTaskLoad
     /* 8610 80007A10 02002825 */  or         $a1, $s0, $zero
     /* 8614 80007A14 24040001 */  addiu      $a0, $zero, 0x1
     /* 8618 80007A18 02403025 */  or         $a2, $s2, $zero
-    /* 861C 80007A1C 0C0035A0 */  jal        __osSpDma
+    /* 861C 80007A1C 0C0035A0 */  jal        __osSpRawStartDma
     /* 8620 80007A20 24070040 */   addiu     $a3, $zero, 0x40
     /* 8624 80007A24 14510007 */  bne        $v0, $s1, .L80007A44
     /* 8628 80007A28 24040001 */   addiu     $a0, $zero, 0x1
   .L80007A2C:
     /* 862C 80007A2C 02002825 */  or         $a1, $s0, $zero
     /* 8630 80007A30 02403025 */  or         $a2, $s2, $zero
-    /* 8634 80007A34 0C0035A0 */  jal        __osSpDma
+    /* 8634 80007A34 0C0035A0 */  jal        __osSpRawStartDma
     /* 8638 80007A38 24070040 */   addiu     $a3, $zero, 0x40
     /* 863C 80007A3C 5051FFFB */  beql       $v0, $s1, .L80007A2C
     /* 8640 80007A40 24040001 */   addiu     $a0, $zero, 0x1
@@ -81,14 +81,14 @@ glabel osSpTaskLoad
   .L80007A68:
     /* 8668 80007A68 02602825 */  or         $a1, $s3, $zero
     /* 866C 80007A6C 8E460008 */  lw         $a2, 0x8($s2)
-    /* 8670 80007A70 0C0035A0 */  jal        __osSpDma
+    /* 8670 80007A70 0C0035A0 */  jal        __osSpRawStartDma
     /* 8674 80007A74 8E47000C */   lw        $a3, 0xC($s2)
     /* 8678 80007A78 14510007 */  bne        $v0, $s1, .L80007A98
     /* 867C 80007A7C 24040001 */   addiu     $a0, $zero, 0x1
   .L80007A80:
     /* 8680 80007A80 02602825 */  or         $a1, $s3, $zero
     /* 8684 80007A84 8E460008 */  lw         $a2, 0x8($s2)
-    /* 8688 80007A88 0C0035A0 */  jal        __osSpDma
+    /* 8688 80007A88 0C0035A0 */  jal        __osSpRawStartDma
     /* 868C 80007A8C 8E47000C */   lw        $a3, 0xC($s2)
     /* 8690 80007A90 5051FFFB */  beql       $v0, $s1, .L80007A80
     /* 8694 80007A94 24040001 */   addiu     $a0, $zero, 0x1

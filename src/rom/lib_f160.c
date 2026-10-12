@@ -4,13 +4,13 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-/* PROMOTED 2026-10-01 — osSiInit
+/* PROMOTED 2026-10-01 — __osSiCreateAccessQueue (ultralib name since w27s; was osSiInit)
  * Source:   cloud/work/static_C/osSiInit.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C/osSiInit.c:osSiInit (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void osSiInit(void) {
+void __osSiCreateAccessQueue(void) {
     __osSiInitialized = 1;
     osCreateMesgQueue(&__osSiMesg, &__osSiMesgQueue, 1);
     osSendMesg(&__osSiMesg, NULL, 0);
@@ -25,7 +25,7 @@ void osSiInit(void) {
 void __osSiGetAccess(void) {
     OSMesg dummyMesg;
     if (!__osSiInitialized) {
-        osSiInit();
+        __osSiCreateAccessQueue();
     }
     osRecvMesg(&__osSiMesg, &dummyMesg, OS_MESG_BLOCK);
 }
@@ -53,7 +53,7 @@ s32 __osPfsGetStatus(OSMesgQueue* queue, int channel) {
 
     __osSiChannelMask = 250;
 
-    __osContBuildRequest(channel, CONT_CMD_REQUEST_STATUS);
+    __osPfsRequestOneChannel(channel, CONT_CMD_REQUEST_STATUS);
 
     ret = __osSiRawStartDma(OS_WRITE, &(*(OSPifRam *)__osPfsBuffer));
     osRecvMesg(queue, &dummy, OS_MESG_BLOCK);
@@ -61,7 +61,7 @@ s32 __osPfsGetStatus(OSMesgQueue* queue, int channel) {
     ret = __osSiRawStartDma(OS_READ, &(*(OSPifRam *)__osPfsBuffer));
     osRecvMesg(queue, &dummy, OS_MESG_BLOCK);
 
-    __osContParseResponse(channel, &data);
+    __osPfsGetOneChannelData(channel, &data);
 
     if (((data.status & CONT_CARD_ON) != 0) && ((data.status & CONT_CARD_PULL) != 0)) {
         return PFS_ERR_NEW_PACK;
@@ -74,13 +74,13 @@ s32 __osPfsGetStatus(OSMesgQueue* queue, int channel) {
     return ret;
 }
 
-/* PROMOTED 2026-10-01 — __osContBuildRequest
+/* PROMOTED 2026-10-01 — __osPfsRequestOneChannel (ultralib name since w27s; was __osContBuildRequest)
  * Source:   cloud/work/static_C7/__osContBuildRequest.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C7/__osContBuildRequest.c:__osContBuildRequest (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void __osContBuildRequest(int channel, u8 cmd) {
+void __osPfsRequestOneChannel(int channel, u8 cmd) {
     u8* ptr;
     __OSContRequesFormatShort requestformat;
     int i;
@@ -106,13 +106,13 @@ void __osContBuildRequest(int channel, u8 cmd) {
     *ptr = CONT_CMD_END;
 }
 
-/* PROMOTED 2026-10-01 — __osContParseResponse
+/* PROMOTED 2026-10-01 — __osPfsGetOneChannelData (ultralib name since w27s; was __osContParseResponse)
  * Source:   cloud/work/static_C7/__osContParseResponse.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C7/__osContParseResponse.c:__osContParseResponse (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void __osContParseResponse(int channel, OSContStatus* data) {
+void __osPfsGetOneChannelData(int channel, OSContStatus* data) {
     u8* ptr = (u8*)&(*(OSPifRam *)__osPfsBuffer);
     __OSContRequesFormatShort requestformat;
     int i;

@@ -211,3 +211,7 @@ rom:0x7FDC reloc:MIPS_HI16 symbol:__osCurrentTime addend:0x4 // was gViTimeAccum
 rom:0x7FE0 reloc:MIPS_LO16 symbol:__osCurrentTime addend:0x4 // was gViTimeAccumLo (osGetTime)
 rom:0xCC90 reloc:MIPS_HI16 symbol:__osCurrentTime addend:0x4 // was gViTimeAccumLo (__osTimerServicesInit)
 rom:0xCC9C reloc:MIPS_LO16 symbol:__osCurrentTime addend:0x4 // was gViTimeAccumLo (__osTimerServicesInit)
+
+// w27s: inflate_dynamic zero-fill loop end pointer &gInflateBorder[19] (retail split as gInflateCplens)
+rom:0x6BDC reloc:MIPS_HI16 symbol:gInflateBorder addend:0x4C // was gInflateCplens (inflate_dynamic)
+rom:0x6BE0 reloc:MIPS_LO16 symbol:gInflateBorder addend:0x4C // was gInflateCplens (inflate_dynamic)

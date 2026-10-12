@@ -1,6 +1,6 @@
-nonmatching __osContGetStatus, 0xAC
+nonmatching __osContGetInitData, 0xAC
 
-glabel __osContGetStatus
+glabel __osContGetInitData
     /* A1AC 800095AC 3C078003 */  lui        $a3, %hi(__osPfsRequestType2)
     /* A1B0 800095B0 24E77AE1 */  addiu      $a3, $a3, %lo(__osPfsRequestType2)
     /* A1B4 800095B4 90EE0000 */  lbu        $t6, 0x0($a3)
@@ -47,4 +47,4 @@ glabel __osContGetStatus
     /* A24C 8000964C A0820000 */  sb         $v0, 0x0($a0)
     /* A250 80009650 03E00008 */  jr         $ra
     /* A254 80009654 27BD0018 */   addiu     $sp, $sp, 0x18
-endlabel __osContGetStatus
+endlabel __osContGetInitData

@@ -9,7 +9,7 @@ glabel __osPfsGetStatus
     /* F234 8000E634 3C018003 */  lui        $at, %hi(__osSiChannelMask)
     /* F238 8000E638 00A02025 */  or         $a0, $a1, $zero
     /* F23C 8000E63C A02EC4D4 */  sb         $t6, %lo(__osSiChannelMask)($at)
-    /* F240 8000E640 0C0039BC */  jal        __osContBuildRequest
+    /* F240 8000E640 0C0039BC */  jal        __osPfsRequestOneChannel
     /* F244 8000E644 00002825 */   or        $a1, $zero, $zero
     /* F248 8000E648 3C058003 */  lui        $a1, %hi(__osPfsBuffer)
     /* F24C 8000E64C 24A57F60 */  addiu      $a1, $a1, %lo(__osPfsBuffer)
@@ -29,7 +29,7 @@ glabel __osPfsGetStatus
     /* F284 8000E684 0C001C9C */  jal        osRecvMesg
     /* F288 8000E688 24060001 */   addiu     $a2, $zero, 0x1
     /* F28C 8000E68C 8FA40034 */  lw         $a0, 0x34($sp)
-    /* F290 8000E690 0C0039ED */  jal        __osContParseResponse
+    /* F290 8000E690 0C0039ED */  jal        __osPfsGetOneChannelData
     /* F294 8000E694 27A50024 */   addiu     $a1, $sp, 0x24
     /* F298 8000E698 93A20026 */  lbu        $v0, 0x26($sp)
     /* F29C 8000E69C 93B80027 */  lbu        $t8, 0x27($sp)

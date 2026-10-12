@@ -1,6 +1,6 @@
-nonmatching __osContRamReset, 0xD4
+nonmatching __osPackRequestData, 0xD4
 
-glabel __osContRamReset
+glabel __osPackRequestData
     /* A258 80009658 27BDFFE8 */  addiu      $sp, $sp, -0x18
     /* A25C 8000965C AFA40018 */  sw         $a0, 0x18($sp)
     /* A260 80009660 308E00FF */  andi       $t6, $a0, 0xFF
@@ -57,5 +57,5 @@ glabel __osContRamReset
     /* A320 80009720 A0790000 */  sb         $t9, 0x0($v1)
     /* A324 80009724 03E00008 */  jr         $ra
     /* A328 80009728 27BD0018 */   addiu     $sp, $sp, 0x18
-endlabel __osContRamReset
+endlabel __osPackRequestData
     /* A32C 8000972C 00000000 */  nop

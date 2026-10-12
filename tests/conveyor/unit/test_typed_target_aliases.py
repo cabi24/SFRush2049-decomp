@@ -25,13 +25,13 @@ def test_task_alias_family_is_atomic_and_retains_other_operands(monkeypatch):
  addresses={'gViModeTempBuffer':0x80036790,**{'gViModePtr'+str(i):0x80036790+v for i,v in enumerate(offsets)}}
  lines=[f'lui $a0, %hi(gViModePtr{i})' for i in range(7)]+['lw $a0, %lo(other_symbol)($a0)','lw $a0, %lo(gViModePtr0+4)($a0)']
  monkeypatch.setattr(T,'_resolve_symbol',addresses.get);monkeypatch.setattr(T,'_sdk_field_offsets',lambda kind:dict(zip(fields,offsets)))
- result=T._typed_data_field_aliases(lines,'osViModeTableGet')
+ result=T._typed_data_field_aliases(lines,'_VirtualToPhysicalTask')
  assert result[:7]==[f'lui $a0, %hi(gViModeTempBuffer+{hex(v)})' for v in offsets]
  assert result[7:]==lines[7:]
  addresses['gViModePtr6']+=4
- assert T._typed_data_field_aliases(lines,'osViModeTableGet')==lines
+ assert T._typed_data_field_aliases(lines,'_VirtualToPhysicalTask')==lines
  del addresses['gViModePtr6']
- assert T._typed_data_field_aliases(lines,'osViModeTableGet')==lines
+ assert T._typed_data_field_aliases(lines,'_VirtualToPhysicalTask')==lines
 
 def test_real_sdk_type_and_field_order_guard_rejects_drift(tmp_path,monkeypatch):
  repo=Path(__file__).resolve().parents[3]
@@ -53,7 +53,7 @@ def test_real_sdk_type_and_field_order_guard_rejects_drift(tmp_path,monkeypatch)
  assert T._sdk_field_offsets('task') is None
 
 @pytest.mark.skipif(not all(shutil.which('mips-linux-gnu-'+tool) for tool in ('as','ld','objcopy')),reason='MIPS binutils required')
-@pytest.mark.parametrize('target,base,aliases', [('osGetTime','__osCurrentTime',[('gViTimeAccumLo',4)]),('osViModeTableGet','gViModeTempBuffer',[(f'gViModePtr{i}',v) for i,v in enumerate((0x10,0x18,0x20,0x28,0x2c,0x30,0x38))])])
+@pytest.mark.parametrize('target,base,aliases', [('osGetTime','__osCurrentTime',[('gViTimeAccumLo',4)]),('_VirtualToPhysicalTask','gViModeTempBuffer',[(f'gViModePtr{i}',v) for i,v in enumerate((0x10,0x18,0x20,0x28,0x2c,0x30,0x38))])])
 def test_field_alias_link_preserves_every_unmasked_word(tmp_path,monkeypatch,target,base,aliases):
  address=0x80037c50 if target=='osGetTime' else 0x80036790
  mapping={base:address,**{alias:address+offset for alias,offset in aliases}}

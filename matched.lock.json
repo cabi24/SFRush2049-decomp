@@ -1563,6 +1563,15 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-11"
   },
+  "src/rom/lib_17dc0.c:func_80018448": {
+    "body_sha256": "5febecdedfe93a72e52e01a7461b312b7ace690d1e628e2ce9ad5f44c8179fee",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80018448",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-12"
+  },
   "src/rom/lib_17dc0.c:func_80018634": {
     "body_sha256": "3dc7451332107ded836a058a1a863fd87ca2baeec2cf823f19d13f8e9cef0b5c",
     "compiler": "ido7.1",
@@ -4012,6 +4021,15 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-12"
   },
+  "src/rom/lib_5610.c:inflate_dynamic": {
+    "body_sha256": "8e52ff72d0cade9f6b8d920f731aedbe891e2a651a922bfebec99fa16e67eeb0",
+    "compiler": "ido5.3s",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "inflate_dynamic",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-12"
+  },
   "src/rom/lib_5610.c:inflate_fixed": {
     "body_sha256": "a7c705f220640ff1050f44a3e7b2a2618803dfe2c3495ccb861d94371fcf7ffd",
     "compiler": "ido5.3s",
@@ -4204,8 +4222,16 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
   },
+  "src/rom/lib_8440.c:_VirtualToPhysicalTask": {
+    "body_sha256": "2578a5da0e902c3fbc27c19031ca126ea9b4f7107e5206b42d54218a4cdad2c0",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "_VirtualToPhysicalTask",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
   "src/rom/lib_8440.c:osSpTaskLoad": {
-    "body_sha256": "c6c804cc514c510cf10f04a864f5db452cc14b0b270712e9db09e08625758508",
+    "body_sha256": "42c85a6f91ea258334f5577ab483cb7016408d04a48c48ce663cc11c6fe851e3",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osSpTaskLoad",
     "toolkit_sha": null,
@@ -4216,14 +4242,6 @@
     "body_sha256": "da82474211fd5bf0d8a3e86c680b00316cc76e9f3c909bbaac5ab10d675783ee",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osSpTaskStartGo",
-    "toolkit_sha": null,
-    "verified": "rom-sha1",
-    "verified_at": "2026-10-01"
-  },
-  "src/rom/lib_8440.c:osViModeTableGet": {
-    "body_sha256": "8ed9b545c54436bfcd6f97473b5125520468f06010744474caef040686bec5d3",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osViModeTableGet",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
@@ -4452,24 +4470,24 @@
     "verified": "rom-sha1",
     "verified_at": "2026-07-11"
   },
-  "src/rom/lib_a050.c:__osContGetStatus": {
-    "body_sha256": "8a299126001ac78024e1798564098e417a46f0fe6b25df9d2a8f13b8d3fb62b2",
+  "src/rom/lib_a050.c:__osContGetInitData": {
+    "body_sha256": "03a440d2ca6c8833f3b163d08677e32b6064b66b1f1caf337f07a590ad4fa427",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "__osContGetStatus",
+    "target_id": "__osContGetInitData",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
   },
-  "src/rom/lib_a050.c:__osContRamReset": {
-    "body_sha256": "adde34b034344e47cd22b71b3db4b1417071d31a94c78d156f761b4114743712",
+  "src/rom/lib_a050.c:__osPackRequestData": {
+    "body_sha256": "5710a770fcc8df168389537ee1a33a9ef7fffcab60cbbdae41f7f1173ee440ae",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "__osContRamReset",
+    "target_id": "__osPackRequestData",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
   },
   "src/rom/lib_a050.c:osContInit": {
-    "body_sha256": "9c469f6b4d3ac82615f321e12481e1ef100aaa34acbc3f6aeb6f36518e6814a0",
+    "body_sha256": "d046b173acf3832abe35bb67f7036b0c4d91ec187aa3b3c83325f2bbe19cb694",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osContInit",
     "toolkit_sha": null,
@@ -4485,7 +4503,7 @@
     "verified_at": "2026-10-01"
   },
   "src/rom/lib_a330.c:osContGetQuery": {
-    "body_sha256": "061804406861ac42f6441a5e43f3906586f039a3290416e66a508528e178c79a",
+    "body_sha256": "b4b9c0a61e6afb76926b9eada8a4292a846ec4854d4b924e46187aa4d03d9d78",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osContGetQuery",
     "toolkit_sha": null,
@@ -4501,7 +4519,7 @@
     "verified_at": "2026-10-01"
   },
   "src/rom/lib_a330.c:osContStartQuery": {
-    "body_sha256": "42958b8df6ed9f24cd8523fafe7f1f95defd138cefb099b856af429634395b23",
+    "body_sha256": "f48cf7d295bf76ce5d0d314a968306098a1925eb812b99dd6a494e23a693d5b1",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "osContStartQuery",
     "toolkit_sha": null,
@@ -4888,10 +4906,10 @@
     "verified": "rom-sha1",
     "verified_at": "2026-07-11"
   },
-  "src/rom/lib_e280.c:__osSpDma": {
-    "body_sha256": "6c407f7f719711bc5eb7004d12e5e6a5db916ade1dab28bf0701f99034ea5511",
+  "src/rom/lib_e280.c:__osSpRawStartDma": {
+    "body_sha256": "9949577d8d10fb2cf655b01b2d6e51ab8cbdc99ced3a6badc867c9469e243f26",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "__osSpDma",
+    "target_id": "__osSpRawStartDma",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
@@ -5088,32 +5106,40 @@
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
   },
-  "src/rom/lib_f160.c:__osContBuildRequest": {
-    "body_sha256": "05087a6f80bfc388dd6a04850b7e75f84e16b9821c08bd84f7109ae439b22fe8",
+  "src/rom/lib_f160.c:__osPfsGetOneChannelData": {
+    "body_sha256": "6b2de4b39e942f1fdeaf18c3cb141fb7a723a24ab24d05e3a0c88deb55ce5ad8",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "__osContBuildRequest",
-    "toolkit_sha": null,
-    "verified": "rom-sha1",
-    "verified_at": "2026-10-01"
-  },
-  "src/rom/lib_f160.c:__osContParseResponse": {
-    "body_sha256": "99f5e28b5a1822f7ff499e7e4eaae73b2179c207b05ea9694c8c2efa3e87e34b",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "__osContParseResponse",
+    "target_id": "__osPfsGetOneChannelData",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
   },
   "src/rom/lib_f160.c:__osPfsGetStatus": {
-    "body_sha256": "cfd131f5f741f632a1333b60e3c553a2f94081b90f5439b7345448f6dadc110c",
+    "body_sha256": "beb21578a4566cdd37f687dd7d1cbe610a0ae1c2834f79727a6416de1386273c",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "__osPfsGetStatus",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"
   },
+  "src/rom/lib_f160.c:__osPfsRequestOneChannel": {
+    "body_sha256": "bfe10084f71a6bdb6a662ecaf8140123540c230120bf69074ed6e45c5be10d63",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osPfsRequestOneChannel",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
+  "src/rom/lib_f160.c:__osSiCreateAccessQueue": {
+    "body_sha256": "c1f78d2f99cc44076bb88dde801543de8825ae7614455653e68885d1b941f760",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "__osSiCreateAccessQueue",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-01"
+  },
   "src/rom/lib_f160.c:__osSiGetAccess": {
-    "body_sha256": "101d8686d8e0a989c5ce0bc5c9010322f89e3f79fc893df5de2032d809c9bd36",
+    "body_sha256": "cf3f1572e133f3a630dfb44fef8a2ed6c926d364b89e28793cbed2a0b7f67e97",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "__osSiGetAccess",
     "toolkit_sha": null,
@@ -5124,14 +5150,6 @@
     "body_sha256": "13baf2073ea49dab1b302acfcde8b44d840f17ebfa8a91418ff0ffad6218a949",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "target_id": "__osSiRelAccess",
-    "toolkit_sha": null,
-    "verified": "rom-sha1",
-    "verified_at": "2026-10-01"
-  },
-  "src/rom/lib_f160.c:osSiInit": {
-    "body_sha256": "357e79d80398e7443861b526e192c49594e8f00ee324e2ac7b7c40e5e5a3d45f",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "osSiInit",
     "toolkit_sha": null,
     "verified": "rom-sha1",
     "verified_at": "2026-10-01"

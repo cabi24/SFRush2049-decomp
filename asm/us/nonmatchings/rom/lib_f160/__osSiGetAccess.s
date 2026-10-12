@@ -7,7 +7,7 @@ glabel __osSiGetAccess
     /* F1BC 8000E5BC AFBF0014 */  sw         $ra, 0x14($sp)
     /* F1C0 8000E5C0 15C00003 */  bnez       $t6, .L8000E5D0
     /* F1C4 8000E5C4 00000000 */   nop
-    /* F1C8 8000E5C8 0C003958 */  jal        osSiInit
+    /* F1C8 8000E5C8 0C003958 */  jal        __osSiCreateAccessQueue
     /* F1CC 8000E5CC 00000000 */   nop
   .L8000E5D0:
     /* F1D0 8000E5D0 3C048003 */  lui        $a0, %hi(__osSiMesg)
