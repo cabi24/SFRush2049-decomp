@@ -52,7 +52,8 @@ and the PR's README "o32 replacement wrappers" section.
 ## Tests
 
 - Pi, new packet tests without IDO: 6 skipped cleanly. `tests/recomp`: 72 passed, 2 skipped.
-- rocky, `REQUIRE_TOOLCHAIN=1` on the six new packet tests: 6 passed.
+- rocky, `REQUIRE_TOOLCHAIN=1` on the six new packet tests: 6 passed. `tests/recomp`: 70 passed, 4 skipped (rocky has
+  no libubsan: the imported UBSan fixture now skips when a probe compile fails; Pi runs it).
 - Pi `make test-fast JOBS=4`: conveyor 1524 passed, 796 skipped; cloud 770 passed, 150 skipped; exit 0.
 - rocky `REQUIRE_TOOLCHAIN=1 make test-fast JOBS=16`: conveyor 2269 passed, 51 skipped; cloud 919 passed, 1 skipped;
   exit 0 (the first run failed 2 tests only because the fresh clone had no `origin/master` ref).
