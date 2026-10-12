@@ -37,9 +37,9 @@ extern volatile unsigned int gDisplayListSize;  /* 0x800354C8 */
 /* Additive declarations for shared src/rom/rom_tu.h; existing types suffice. */
 extern s32 __osViModeInfo;
 extern s32 gDisplayListEnd;
-extern s32 gViAccumTime;
+/* w25a: gViAccumTime and gViLastTick are lib_1050_sdk.c .bss definitions (lib_1050.c declares them itself):
+ * an extern here gives them early cfe block numbers, and IDO 5.3 sorts .bss by block number mod 256. */
 extern volatile s32 gViTickCounter; /* w24b: interrupt-updated; viUpdateTime's load order needs volatile */
-extern volatile s32 gViLastTick;
 extern s32 __osPiInitialized;
 extern OSMesgQueue __osPiMesgQueue;
 extern void *__osPiMesg;
