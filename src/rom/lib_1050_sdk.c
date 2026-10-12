@@ -79,7 +79,38 @@ void __scSchedule(OSSched *scheduler)
     }
 }
 
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_1050_sdk/__scHandleRetrace.s")
+/* PROMOTED 2026-10-12 — __scHandleRetrace
+ * Source:   cloud/work/frontier/w24b/sources/__scHandleRetrace.c (in-repo, locked)
+ * Flags:    -g1 -O1 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w24b/sources/__scHandleRetrace.c:__scHandleRetrace (score0); rom_tu.h context: cloud/work/frontier/w24b/ctx53_sched.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern s32 __osScPendingSwap;
+extern u32 __osScSwapCount;
+extern void osViSwapBuffer(void *mode);
+extern void display_mode_tick(void);
+extern s32 osSendMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
+void __scHandleRetrace(OSSched *scheduler) {
+    OSScTask *rspTask;
+    OSScClient *client;
+    s32 i;
+    OSScTask *sp = 0;
+    OSScTask *dp = 0;
+    s32 state;
+
+    scheduler->retraceCount++;
+    if (__osScPendingSwap && scheduler->retraceCount - __osScSwapCount >= 2U) {
+        osViSwapBuffer((void *)(u32)__osScPendingSwap);
+        display_mode_tick();
+        __osScSwapCount = scheduler->retraceCount;
+        __osScPendingSwap = 0;
+    } else {
+    }
+    for (client = scheduler->clientList; client != 0; client = client->next) {
+        osSendMesg(client->msgQueue, (OSMesg)scheduler, 0);
+    }
+}
+
 /* PROMOTED 2026-10-02 — __scHandleRSP
  * Source:   module_campaign_20261002 SDK publication
  * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul

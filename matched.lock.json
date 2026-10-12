@@ -1,12 +1,4 @@
 {
-  "cloud/work/frontier/w24b/sources/__scHandleRetrace.c:__scHandleRetrace": {
-    "body_sha256": "699e80323da7f9598286890d7f2b45f7463ec91f341b06e2d980473d4922bfaf",
-    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
-    "target_id": "__scHandleRetrace",
-    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
-    "verified": "score0",
-    "verified_at": "2026-10-12"
-  },
   "cloud/work/frontier/w24b/sources/game_init.c:game_init": {
     "body_sha256": "e238b9b026a62fb5830287199639cae9b8ffc65393b4752da2be7243d4387b1a",
     "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
@@ -86,6 +78,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "rom-sha1",
     "verified_at": "2026-10-02"
+  },
+  "src/rom/lib_1050_sdk.c:__scHandleRetrace": {
+    "body_sha256": "699e80323da7f9598286890d7f2b45f7463ec91f341b06e2d980473d4922bfaf",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared",
+    "target_id": "__scHandleRetrace",
+    "toolkit_sha": null,
+    "verified": "rom-sha1",
+    "verified_at": "2026-10-12"
   },
   "src/rom/lib_1050_sdk.c:__scSchedule": {
     "body_sha256": "e4f085f8b7904d04047860cfb70bb8d5cde486234e54d6009a663792778dd288",
