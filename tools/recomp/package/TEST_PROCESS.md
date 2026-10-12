@@ -74,11 +74,13 @@ screen. Then close the window. In the log: the `RT64 setup:` line (graphics API)
 
 ## T2. Attract mode (4 min)
 
-Start as in T1 (wall clock, log `T2_attract.txt`) and leave it idle for **5 minutes** without touching
-anything: arcade-style games usually cycle title, demo race, high scores, credits. Note every screen in order
-with its time, whether it loops, and whether a demo race appears (`load ovl_b` in the log means the race code
-was loaded; headless runs saw no `load ovl_b` in 5 minutes without input, so a demo race here would be news).
-Note the music over the 5 minutes. Record a video (it was never run in v1: the window was black).
+Start as in T1 (wall clock, log `T2_attract.txt`). Press START **once** on the boot notice "NO CONTROLLER PAK
+DETECTED ... CONTINUE WITHOUT SAVING" (without that press the game waits there, silently, forever), then do not
+touch anything for **5 minutes**. Headless evidence (v2): the title shows ~5 s, then a demo race runs ~30 s
+(`load ovl_b` in the log), back to the title, next demo; the demos cycle the four tracks. Note every screen in
+order with its time, whether the demos look like real races (cars driving themselves, HUD), whether they loop,
+and the music/sound throughout. Record a video (attract was never seen in v1: the window was black). Script
+equivalent: `attract.press` (one START at 5 s, then idle).
 
 ## T3. Race on the default track (by hand, 6 min)
 

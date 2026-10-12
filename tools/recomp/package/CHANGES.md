@@ -28,6 +28,9 @@ Fixes from the v1 report (thank you: it found the boot hang, the A5 target and t
 - **Docs**: INSTALL A5 builds `N64RecompCLI` (and `RSPRecomp`), on Linux too; TEST_PROCESS T6 keys corrected
   (UP/DOWN = row, LEFT/RIGHT = value); new T2 (5 min attract, wall clock), T6b (stunt mode), T7a (pad and
   keyboard mapping with `--log-input`); the default command is wall clock, `--clock frames` the fallback.
+- **Attract mode exists** (headless evidence): v1's idle runs never left the boot notice "NO CONTROLLER PAK
+  DETECTED ... CONTINUE WITHOUT SAVING"; after one START the game cycles title (5 s) and demo races (30 s) on
+  the four tracks. T2 now presses START once, then idles; the A9 smoke test does the same.
 - New: `--log-input`, `--wav PATH`, `--volume`, `--no-sound`, `--keep-rom-copy`; scripts `stunt.press`.
 - What to retest: **wall-clock boot (T1, D3D12 and Vulkan), attract (T2), race/tracks (T3, T4), stunt (T6b),
   pad mapping (T7a), sound everywhere**, then T8.

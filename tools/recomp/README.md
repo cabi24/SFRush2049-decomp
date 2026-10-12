@@ -447,7 +447,7 @@ package's INSTALL.md gives the clang-cl + Ninja path Zelda64Recomp uses, with RT
 **Scripts.** `race_track3.press` (RIGHT x2) and `race_track4.press` (LEFT x1): the track selector cycles four
 tracks (first race-data stream after image B: 0x43FE80, 0x4D2FA0, 0x555850, 0x5D6160; RIGHT x4 = default,
 LEFT x1 = RIGHT x3). `attract.press`: 9000 frames without input; only image A, no race data inflated (no attract
-demo race in 5 minutes of game time).
+demo race in 5 minutes of game time; Phase 5: the game was waiting on the boot notice, see "Attract mode").
 
 **Gameplay-test package** (`package.py`; process for every later phase):
 
@@ -516,6 +516,11 @@ status fields `audio_nonzero=` / `audio_peak=`, `--no-audio-ucode` / `--ai-per-v
 
 **Privacy.** librecomp's `select_rom` copies the ROM into `--home`; the host deletes the copy in the game's
 `on_init_callback` (after `load_stored_rom` has read it) and at exit (`--keep-rom-copy` keeps it).
+
+**Attract mode** (corrects Phase 4): with no input the game never leaves the boot notice (NO CONTROLLER PAK
+DETECTED / CONTINUE WITHOUT SAVING) and stays silent; after one START (`attract.press` now presses it at 5 s) it
+cycles the title (5 s) and a demo race (image B, ~30 s) on tracks 1, 2, 3, 4 (race data 0x43FE80, 0x4D2FA0,
+0x555850, 0x5D6160).
 
 **Other host options**: `--log-input` (button/stick changes per player: the pad check), `--no-spin-yield`,
 `--null-dl-delay MS`, `--mask-rdp-images`. Script `stunt.press`: SELECT MODE DOWN x4 (STUNT): race data 0x812BE0

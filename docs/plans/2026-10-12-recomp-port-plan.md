@@ -363,6 +363,10 @@ tester input: `tools/recomp/reports/v1/REPORT.md`; package v2: `tools/recomp/VER
   produce 22.05 kHz of audio (headless 45 s: 1.98 M samples, 84 % non-zero; SDL disk driver: continuous output).
   Lockstep verdicts unchanged in kind: stock self-check and draft_engine_sound_sync on race, race_track2,
   two_player, audio_options all EQUIVALENT (3599 calls identical each) with the ucode running.
+- **Attract mode exists** (corrects §12): idle, the game waits on the boot notice NO CONTROLLER PAK DETECTED /
+  CONTINUE WITHOUT SAVING (silent); after one START it cycles the title (5 s) and demo races (~30 s) on the four
+  tracks in order. `attract.press` presses that START; stunt mode verified with pixels (RT64 on lavapipe:
+  stunt arena, score box, 4:40 timer).
 - **Package v2** (process unchanged): A5 builds `N64RecompCLI` + `RSPRecomp`, A6 runs RSPRecomp; the runtime
   deletes librecomp's ROM copy from `--home` once loaded; TEST_PROCESS: wall clock by default (`--clock frames`
   fallback), T6 keys fixed, T2 5-minute attract, T6b stunt (`stunt.press`: SELECT MODE DOWN x4 loads race data
