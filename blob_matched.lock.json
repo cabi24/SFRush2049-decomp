@@ -2798,6 +2798,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-04"
   },
+  "func_800A5A40": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/func_800A5A40.c",
+    "source_sha256": "b71ae0928b5162f5b416e4c03bd74cbe96727c92d3fe4b002394575e2316a645",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-12"
+  },
   "func_800A5B3C": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/func_800A5B3C.c",
@@ -6807,6 +6815,14 @@
     "verified": "image_gate",
     "verified_at": "2026-10-04"
   },
+  "menu_controller_remap": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/menu_controller_remap.c",
+    "source_sha256": "bf8618ad04f7529b934ceef34d97507db34eff969b6d5e8afcb2b0d482b42633",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-12"
+  },
   "menu_dialog_close": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "codex_menu_records_a88",
@@ -7681,6 +7697,14 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-10-01"
+  },
+  "save_settings": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "source": "src/blob/save_settings.c",
+    "source_sha256": "dc6471e73075fa64434b4c7b05f1e95375d5c67fa31e1f9c95b3108fbb277415",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-12"
   },
   "save_slot_valid": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",

@@ -1520,6 +1520,7 @@ arb_rate_set:
 .section .text.func_800A5A40, "ax", @progbits
 .globl func_800A5A40
 func_800A5A40:
+    /* compiled from src/blob/func_800A5A40.c */
     .word 0x3C028003
     .word 0x8C42AFC0
     .word 0x240E0001

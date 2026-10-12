@@ -3826,6 +3826,7 @@ func_800CF604:
 .section .text.menu_controller_remap, "ax", @progbits
 .globl menu_controller_remap
 menu_controller_remap:
+    /* compiled from src/blob/menu_controller_remap.c */
     .word 0x27BDFF58
     .word 0x3C018015
     .word 0xC42443CC

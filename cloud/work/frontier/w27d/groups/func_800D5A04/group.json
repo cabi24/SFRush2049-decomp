@@ -1,0 +1,35 @@
+{
+  "members": [
+    "func_800D5A04"
+  ],
+  "files": [
+    "func_800D5828.c",
+    "func_800D5524.c",
+    "records_screen.c",
+    "players_frame_update.c",
+    "func_800B0580.c",
+    "entity_audio_update.c",
+    "group.c"
+  ],
+  "keep": [
+    "func_800D5A04",
+    "func_800D5828",
+    "func_800D5524",
+    "records_screen",
+    "players_frame_update",
+    "func_800B0580",
+    "entity_audio_update"
+  ],
+  "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+  "claims": [
+    "func_800D5A04"
+  ],
+  "context": [
+    "func_800D5828",
+    "func_800D5524",
+    "records_screen",
+    "players_frame_update",
+    "func_800B0580",
+    "entity_audio_update"
+  ]
+}
