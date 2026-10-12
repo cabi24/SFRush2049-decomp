@@ -1,0 +1,6 @@
+replace-slot func_80023BDC: .rodata 0x8002d950 size 0x1e0, members func_80023BDC, func_80023E9C
+batch 0x22300..0x22300: 2 candidates
+  PLAN func_80022874 -> rom/lib_22300 (460 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared, owned .bss slot of func_80023E9C)
+  PLAN func_80023E9C -> rom/lib_22300 (2796 B, ido7.1, -g0 -O2 -mips2 -G 0 -non_shared, owned .bss,.rodata slot of func_80023E9C,func_80023BDC)
+  spliced /tmp/claude-1000/-home-cburnes-projects-rush2049-decomp/e6d4d7af-aa0e-4f5a-98a8-2e25f3b6dd6b/scratchpad/w22i_splice/lib_22300.c
+replace-slot func_80023BDC: restored
