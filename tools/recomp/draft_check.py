@@ -225,7 +225,7 @@ def _tail(path, n=40, pattern=None):
     return "\n".join(lines[-n:])
 
 
-def build_side(kind, name, manifest, run_dir, p, ipa_table=None, jobs=8):
+def build_side(kind, name, manifest, run_dir, p, ipa_table=None, jobs=8, extra=()):
     """Build the retail capture side (kind 'cap') or the draft side ('repl') of
     NAME in DC_HOME/trees/NAME/KIND. Generated files are synced with checksums,
     so ninja recompiles only what changed. Returns {host, rom, datasyms, gen_log}
@@ -244,6 +244,7 @@ def build_side(kind, name, manifest, run_dir, p, ipa_table=None, jobs=8):
         cmd += ["--capture-set", "draft"] if kind == "cap" else ["--replace-set", "draft"]
         if ipa_table and kind == "repl":
             cmd += ["--ipa-table", ipa_table]
+        cmd += list(extra)
         gen_log = run_dir / ("gen_%s.log" % kind)
         if _run(cmd, gen_log, cwd=str(REPO)) != 0:
             raise DCError("%s build: gen_config failed:\n%s" % (

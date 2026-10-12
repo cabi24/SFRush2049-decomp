@@ -112,3 +112,44 @@ def test_end_to_end(draft, rc, word):
         assert "NOT a match" in p.stdout
     else:
         assert "FIRST DIVERGENCE: script race, frame 2, render_helper (draft) call #2" in p.stdout
+
+
+# ------------------------------------------------------------------ regmap_verify
+
+rv = _load("recomp_regmap_verify", "tools/recomp/regmap_verify.py")
+
+
+def test_parse_mapping():
+    m = rv.parse_mapping("a0=handle:int, mark=t3, s0=buf:ptr, f22=x:float")
+    assert m == [("a0", "handle", "int"), ("t3", "mark", "any"), ("s0", "buf", "ptr"), ("f22", "x", "float")]
+    with pytest.raises(rv.VerifyError, match="even FP"):
+        rv.parse_mapping("f23=x")
+    with pytest.raises(rv.VerifyError, match="kind"):
+        rv.parse_mapping("a0=x:struct")
+
+
+def test_kind_of():
+    assert rv.kind_of({0x80144D5C, 0}, "a0") == "ptr"
+    assert rv.kind_of({0, 1}, "t3") == "int"
+    assert rv.kind_of({0}, "t3") == "zero"
+    assert rv.kind_of({0x3F800000, 0xC0000000}, "f22") == "float"
+    assert rv.kind_of({0x180, 0x80143FF8}, "a0") == "mixed"
+    assert rv.kind_ok("int", "zero") and not rv.kind_ok("ptr", "mixed") and rv.kind_ok("any", "mixed")
+
+
+def test_static_sites_and_setters():
+    # caller at 0x80000000: addiu t3,zero,1 ; lw a0,8(sp) ; jal 0x80000020 ; move a1,s0 ; jr ra ; nop
+    # callee at 0x80000020: addu v0,a0,t3 ; jr ra ; nop
+    import struct
+    words = [0x240B0001, 0x8FA40008, 0x0C000008, 0x02002825, 0x03E00008, 0, 0, 0,
+             0x008B1021, 0x03E00008, 0]
+    image = (0x80000000, struct.pack(">%dI" % len(words), *words))
+    funcs = [{"name": "caller", "vram": 0x80000000, "size": 24}, {"name": "callee", "vram": 0x80000020, "size": 12}]
+    sites = rv.call_sites(image, funcs, 0x80000020)
+    assert sites == [(0x80000008, "caller", 0x80000000, 24)]
+    assert rv.setter(image, 0x80000008, 0x80000000, "t3") == (0x80000000, "addiu t3, zero, 1")
+    assert rv.setter(image, 0x80000008, 0x80000000, "a0") == (0x80000004, "lw a0, 8(sp)")
+    assert rv.setter(image, 0x80000008, 0x80000000, "a1")[1].endswith("(delay slot)")
+    assert rv.setter(image, 0x80000008, 0x80000000, "a2") is None
+    live = rv.ipa_detect.register_params(words[8:], include_o32=True)
+    assert live == ["a0", "t3"]

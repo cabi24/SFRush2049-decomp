@@ -90,7 +90,7 @@ EXPECTED_COUNTS = {"static": 667, "game": 1216, "ovl_a": 193, "ovl_b": 49}
 
 
 _C_IDENT = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
-CAP_MAX_LOCS = 12                      # = replace.CAP_MAX_LOCS (per-call capture locations)
+CAP_MAX_LOCS = 48                      # = replace.CAP_MAX_LOCS (per-call capture locations)
 
 
 class GenError(RuntimeError):
@@ -622,14 +622,28 @@ def _patch_hook(e):
     return hook
 
 
-def load_patches(path=PATCHES):
+def load_extra_hooks(path):
+    """--extra-hooks: [{func, before_vram (hex str), text}] -> hook entries
+    with literal C text (call name `rush_extra_hook`, no runtime contract)."""
+    out = []
+    for e in json.loads(Path(path).read_text()):
+        bv = int(e["before_vram"], 16) if isinstance(e.get("before_vram"), str) else e.get("before_vram")
+        out.append({"func": e["func"], "call": "rush_extra_hook", "before_vram": bv, "text": e["text"],
+                    "contract": []})
+    return out
+
+
+def load_patches(path=PATCHES, extra_hooks=None):
     path = Path(path)
+    extra = load_extra_hooks(extra_hooks) if extra_hooks else []
     if not path.is_file():
-        return {"stubs": {}, "ignored": {}, "renamed": {}, "instruction": [], "hook": []}
+        return {"stubs": {}, "ignored": {}, "renamed": {}, "instruction": [], "hook": extra}
     doc = json.loads(path.read_text())
+    base = [_patch_hook(e) for e in doc.get("hook", [])]
+    taken = {(h["func"], h["before_vram"]) for h in base}
     return {"stubs": dict(doc.get("stubs", {})), "ignored": dict(doc.get("ignored", {})),
             "renamed": dict(doc.get("renamed", {})),
-            "hook": [_patch_hook(e) for e in doc.get("hook", [])],
+            "hook": base + [h for h in extra if (h["func"], h["before_vram"]) not in taken],
             "instruction": [{"func": e["func"], "vram": int(e["vram"], 16),
                              "original": int(e["original"], 16), "value": int(e["value"], 16),
                              "now": e.get("now", "")}
@@ -1111,6 +1125,10 @@ def main(argv=None):
     parser.add_argument("--ipa-table", default=None,
                         help="IPA callee table (default tools/recomp/ipa_callees.json; 'none' = no table: "
                         "the Phase 3 standalone behaviour, plain o32 calls when allowed)")
+    parser.add_argument("--extra-hooks", default=None,
+                        help="JSON list of extra [[patches.hook]] entries {func, before_vram, text} added to "
+                        "patches.json's (regmap_verify: set $ra at a callee's jal sites; the recompiled code "
+                        "does not write $ra on a call)")
     parser.add_argument("--ipa-members", default=None,
                         help="extra IPA detection from an ipa.py scan (default build/ipa_members.json, plus "
                         "build/frontier.json; optional, the retail-body detector needs neither)")
@@ -1155,7 +1173,7 @@ def main(argv=None):
         if repl is not None and args.probe_callees:
             repl = dict(repl, replaced=list(repl["replaced"]) + callee_probes(repl["replaced"], functions, images))
         manifest = generate(images, functions, symbols, rom, out, lists=lists,
-                            extras=load_extra_functions(), patches=load_patches(),
+                            extras=load_extra_functions(), patches=load_patches(extra_hooks=args.extra_hooks),
                             streams=stream_offsets(), identity=load_identity(), repl=repl)
     except GenError as exc:
         print(f"gen_config: {exc}", file=sys.stderr)

@@ -630,7 +630,7 @@ def find_prototype(text, function):
 #   1000+o stack word at sp+o | 2000+o stack double/pair at sp+o (two words)
 # Return codes: 0 none | 2 v0 | 3 v0:v1 | 100 f0 single | 200 f0 double.
 CAP_GPR, CAP_FPR1, CAP_FPR2, CAP_GPR2, CAP_STK1, CAP_STK2 = 0, 100, 200, 300, 1000, 2000
-CAP_MAX_LOCS = 12
+CAP_MAX_LOCS = 48       # 12 before w27r (regmap_verify captures every register)
 _REG_NAMES = {4: "a0", 5: "a1", 6: "a2", 7: "a3"}
 
 
@@ -644,7 +644,7 @@ def _lenient_type(text):
 
 
 _GPR_NAMES = {"v0": 2, "v1": 3, "a0": 4, "a1": 5, "a2": 6, "a3": 7, "t0": 8, "t1": 9, "t2": 10, "t3": 11,
-              "t4": 12, "t5": 13, "t6": 14, "t7": 15, "s0": 16, "s1": 17, "s2": 18, "s3": 19, "s4": 20,
+              "t4": 12, "t5": 13, "t6": 14, "t7": 15, "s0": 16, "s1": 17, "s2": 18, "s3": 19, "s4": 20, "at": 1, "ra": 31,
               "s5": 21, "s6": 22, "s7": 23, "t8": 24, "t9": 25, "gp": 28, "sp": 29, "fp": 30, "s8": 30}
 
 

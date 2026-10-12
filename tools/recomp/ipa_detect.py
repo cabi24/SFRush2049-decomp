@@ -136,6 +136,10 @@ def _is_save(word):
     return op in (0x39, 0x3D) and rt >= 20
 
 
+_ARG_REGS = (("r", 4), ("r", 5), ("r", 6), ("r", 7), ("f", 12), ("f", 14))
+_NOT_PARAMS = {("r", ZERO), ("r", GP), ("r", SP), ("r", RA)}
+
+
 def _abi(key):
     kind, n = key
     return n in _O32_GPR if kind == "r" else n in _O32_FPR
@@ -186,11 +190,13 @@ def _flow(words):
     return [s[1] if isinstance(s, tuple) else s for s in succ], call_slot
 
 
-def register_params(words):
+def register_params(words, include_o32=False, call_reads=False):
     """Sorted names of registers read on some path from the entry before any
     write that o32 does not pass in (see module doc): a must-write dataflow
     over the body's branches; code the flow does not reach (jump tables) is
-    judged in address order."""
+    judged in address order. include_o32: also the o32 argument registers
+    (a0-a3, f12, f14): the whole live-in set (regmap_verify). call_reads: a
+    call counts as reading a0-a3/f12/f14 (arguments forwarded unread)."""
     n = len(words)
     dec = [decode(w) for w in words]
     succ, call_slot = _flow(words)
@@ -208,9 +214,15 @@ def register_params(words):
     found, linear = set(), set()
     for i, w in enumerate(words):
         reads, writes, call = dec[i]
+
         have = IN[i] if IN[i] is not None else linear
+        if call_reads and call_slot[i]:
+            # the call (after this delay slot) passes a0-a3/f12/f14 on: an
+            # argument register the body forwards unread is live-in too
+            found.update(r for r in _ARG_REGS if r not in have and r not in writes)
         if not _is_save(w):
-            found.update(r for r in reads if r not in have and not _abi(r))
+            found.update(r for r in reads if r not in have and
+                         (not _abi(r) or (include_o32 and r not in _NOT_PARAMS)))
         linear |= writes
         if call:
             linear |= _CALL_WRITES

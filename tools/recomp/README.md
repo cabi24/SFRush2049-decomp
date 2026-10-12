@@ -28,6 +28,7 @@ via `build/`). Committed here: the generator, its two curated inputs, the output
 | `runtime/src/pak.cpp` | Phase 6: controller pak (osPfs* over a 32 KiB `.mpk` image under `--home`) |
 | `runtime_buffers.json` | Phase 5: recomp-only datasym names for the z-buffer, framebuffers and gfx task buffers |
 | `draft_check.py` | Phase 7: one-command behavioural check of a draft against retail (section "draft_check") |
+| `regmap_verify.py` | Phase 7: register-parameter mapping verifier for internal callees (section "regmap_verify") |
 | `reports/vN/` | tester reports of package vN (text and logs only; screenshots stay on rocky) |
 
 ## Commands (rocky)
@@ -653,6 +654,30 @@ DIVERGES at race frame 2 call #2 (13 words written instead of 1); w21h engine_so
 shims for entity_transform_calc/audio_effect_setup); w21h func_800D7634 NEVER CALLED on race, EQUIVALENT on
 audio_options (435 calls, clobber shims for credits_screen/drone_pathfind_main); audio_effect_setup (inbound s0)
 EQUIVALENT. Test: `tests/recomp/test_draft_check.py` (the end-to-end good/broken pair runs on rocky only).
+
+## regmap_verify: is this register mapping right? (Phase 7, lane w27r)
+
+For a function IDO -O3 compiled with register parameters (frontier facts `register_params`), before writing
+its prototype or passing `--params` to draft_check:
+
+```bash
+python3 .claude/worktrees/w27r/tools/recomp/regmap_verify.py --remote rocky NAME 'a0=pak:ptr,t3=mark:int'
+# once merged: python3 -m tools.recomp.regmap_verify --remote rocky NAME '...'   (--scripts, --static-only, --json)
+```
+
+Mapping items `REG=LABEL[:KIND]` (KIND ptr | int | float | any). Evidence printed: (1) the retail body's live-in
+registers (read before written on some path; ipa_detect dataflow with a0-a3/f12/f14 included) and the argument
+registers it only forwards to a callee; (2) every `jal NAME` in the game image with, per register, the instruction
+that set it before the call (delay slot first, then a backward scan of the caller); (3) a capture build with a
+probe on NAME recording all integer registers and the even FP registers at every call, the call site taken from
+`$ra` (the recompiled code does not write `$ra` on a call, so `gen_config --extra-hooks` sets it at each static
+`jal` site; jalr sites show as unnamed), per site the number of distinct values, range and kind of each register.
+`VERDICT: CONSISTENT` = the claimed registers are exactly the live-in set and each has the claimed kind at every
+captured call; `REFUTED` lists the problems (claimed but never read, live-in but unclaimed, wrong kind); exit 0 / 1,
+3 when no script calls NAME (static evidence only). Example (func_800A1DD4, w27e's pak cluster, claim `a0,t3`):
+REFUTED: a1 (buffer pointers 0x80218AA0..) and a2 (sizes 0x10..0x900) are live-in too; t3 = 0 from
+track_data_decompress, 1 from slot_state_lookup; a0 = 0x80144D5C at both. entity_transform_calc
+`f22,f24,f26,f28` (+ a0 forwarded) CONSISTENT over 51,092 calls at 4 sites.
 
 ## RDRAM accessors (optional native path; Astra PR #325, imported by w22p, 2026-10-12)
 
