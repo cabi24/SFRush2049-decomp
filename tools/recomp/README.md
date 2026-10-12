@@ -29,6 +29,7 @@ via `build/`). Committed here: the generator, its two curated inputs, the output
 | `runtime_buffers.json` | Phase 5: recomp-only datasym names for the z-buffer, framebuffers and gfx task buffers |
 | `draft_check.py` | Phase 7: one-command behavioural check of a draft against retail (section "draft_check") |
 | `regmap_verify.py` | Phase 7: register-parameter mapping verifier for internal callees (section "regmap_verify") |
+| `census.py`, `census/` | Phase 7: which scripts reach which unmatched game functions (section "Call census") |
 | `reports/vN/` | tester reports of package vN (text and logs only; screenshots stay on rocky) |
 
 ## Commands (rocky)
@@ -607,7 +608,7 @@ lockstep input scripts headless and compares every call of the function with ret
 python3 .claude/worktrees/w27r/tools/recomp/draft_check.py --remote rocky NAME path/to/draft.c
 # once merged:      python3 -m tools.recomp.draft_check --remote rocky NAME path/to/draft.c
 # on rocky itself:  cd ~/rush2049/recomp/dc/repo && python3 -m tools.recomp.draft_check NAME /path/draft.c
-options: --scripts race,two_player | all     (default: the scripts the census says reach NAME, else all)
+options: --scripts race,two_player | all | reached   (default: the 6 census scripts with most calls of NAME)
          --params handle=a0,mark=t3          (NAME takes IDO -O3 register parameters: every prototype parameter)
          --callee 'void f(s32 h, f32 x)=a0,f22[/s1,s2]'   (a register-parameter callee the draft calls)
          --statics name=0x80150F58           (bind a function-local static to its retail address)
@@ -678,6 +679,21 @@ captured call; `REFUTED` lists the problems (claimed but never read, live-in but
 REFUTED: a1 (buffer pointers 0x80218AA0..) and a2 (sizes 0x10..0x900) are live-in too; t3 = 0 from
 track_data_decompress, 1 from slot_state_lookup; a0 = 0x80144D5C at both. entity_transform_calc
 `f22,f24,f26,f28` (+ a0 forwarded) CONSISTENT over 51,092 calls at 4 sites.
+
+## Call census (Phase 7, lane w27r)
+
+`python3 -m tools.recomp.census` (rocky, ~2 min): one capture build with a probe on each unmatched game function
+(asm/us/blob functions not in blob_matched.lock.json; `--functions all|NAME,...`), `$ra` set at every static `jal`
+site (`--extra-hooks`), every script run headless with `--call-log`. Writes `census/<script>.json` (per function:
+calls, first/last frame, call sites with counts, a0-a3 and frontier register-parameter registers: min, max,
+distinct count, kind, the values when <= 8), `census/census.json` (function -> {script: calls}; draft_check's
+default scripts) and `census/README.md` (the unreached table). Register values are what the caller left at entry:
+meaningful only for registers that are parameters. 2026-10-12 (19 scripts): **167 of 218 unmatched functions
+reached (178,776 of 231,436 B); 51 never reached (52,660 B)**, mostly end-of-race/results screens, high-score entry,
+replay save, controller/save settings, the attract demo/video handlers and part of the 0x8010A000-0x8010F000 block.
+New script `stunt_end.press` (stunt mode played until its 4:40 timer ends, 11,000 frames) reaches
+func_80101D84 and func_80102448 (from frame 10,010: the end-of-stunt screens). A ghost race held to 9,600 frames
+reached nothing new (not kept). Refresh the census after adding a script or when the lock changes.
 
 ## RDRAM accessors (optional native path; Astra PR #325, imported by w22p, 2026-10-12)
 

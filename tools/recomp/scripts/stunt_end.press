@@ -1,0 +1,34 @@
+# Stunt mode played to the end of its timer (pak flow): SELECT MODE DOWN x4 (STUNT), then the accelerator held
+# with some steering until the 4:40 stunt timer runs out (race start ~22.5 s + 280 s), then A presses through
+# whatever follows (results / name entry / replay prompt). Written for the call census (w27r): the 60-90 s race
+# scripts never finish a race, so results and end-of-race code is unreached by them.
+frames 11000
+pak on
+4 START
+7 A
+10 A
+12 DOWN
+13 DOWN
+14 DOWN
+15 DOWN
+16 A
+19 A
+22 A
+25 A 275
+40 STICKLEFT 2
+80 STICKRIGHT 2
+120 STICKLEFT 2
+160 STICKRIGHT 2
+200 STICKLEFT 2
+240 STICKRIGHT 2
+305 A
+310 A
+315 A
+320 A
+325 START
+330 A
+335 A
+340 A
+345 B
+350 A
+355 A

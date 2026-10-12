@@ -153,3 +153,40 @@ def test_static_sites_and_setters():
     assert rv.setter(image, 0x80000008, 0x80000000, "a2") is None
     live = rv.ipa_detect.register_params(words[8:], include_o32=True)
     assert live == ["a0", "t3"]
+
+
+# ------------------------------------------------------------------ census
+
+cen = _load("recomp_census", "tools/recomp/census.py")
+
+
+def test_census_summarise_and_summary(tmp_path):
+    log = tmp_path / "calls"
+    log.write_text("# rush2049 call log v3\n"
+                   "# fn 0 c_f=capture:f args=a0,a1,ra ret=v0 probe=1\n"
+                   "c 1 5 0 80144D5C,00000001,800A2160\n"
+                   "C 1 5 0 r=00000000 w=0:0\n"
+                   "c 2 9 0 80144D5C,00000002,00000000\n"
+                   "C 2 9 0 r=00000000 w=0:0\n"
+                   "END 2\n")
+    s = cen.summarise(log, {"f"})
+    f = s["f"]
+    assert f["calls"] == 2 and f["first_frame"] == 5 and f["last_frame"] == 9
+    assert f["sites"] == {"0x800A2158": 1, "indirect": 1}
+    assert f["args"]["a0"]["kind"] == "ptr" and f["args"]["a1"]["values"] == ["0x00000001", "0x00000002"]
+    doc = {"script": "race", "frames": 10, "functions": s}
+    assert json.loads(cen.compact_json(doc))["functions"]["f"]["calls"] == 2
+    chosen = [{"name": "f", "vram": 0x80001000, "size": 64}, {"name": "g", "vram": 0x80002000, "size": 32}]
+    cen.write_summary(tmp_path, chosen, {"race": s}, "unmatched", "abc")
+    summ = json.loads((tmp_path / "census.json").read_text())
+    assert summ["functions"]["f"]["scripts"] == {"race": 2} and summ["functions"]["g"]["scripts"] == {}
+    md = (tmp_path / "README.md").read_text()
+    assert "| g | 0x80002000 | 32 |" in md and "1 of 2 reached" in md
+    assert dc.census_scripts("f", tmp_path) == (["race"], True)
+
+
+def test_committed_census_is_consistent():
+    doc = json.loads((REPO / "tools/recomp/census/census.json").read_text())
+    for s in doc["scripts"]:
+        assert (REPO / "tools/recomp/scripts" / (s + ".press")).is_file()
+        assert (REPO / "tools/recomp/census" / (s + ".json")).is_file()

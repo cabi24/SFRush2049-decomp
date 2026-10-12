@@ -73,6 +73,7 @@ CENSUS_DIR = HERE / "census"
 SCRIPT_DIR = HERE / "scripts"
 # saves_reload needs the pak image saves.press wrote (--pak FILE); not runnable alone.
 UNRUNNABLE = {"saves_reload"}
+DEFAULT_MAX_SCRIPTS = 6
 REG_RE = re.compile(r"^(?:[atsv][0-9]|s8|fp|gp|f([0-9]|[12][0-9]|3[01])(:d)?|sp\+\d+)$")
 
 
@@ -470,8 +471,9 @@ def main(argv=None):
     ap.add_argument("name", help="function to replace (inventory name, game or static)")
     ap.add_argument("draft", help="C file defining NAME (a /* flags: ... */ header picks the IDO flags)")
     ap.add_argument("--scripts", default=None,
-                    help="comma-separated tools/recomp/scripts names, or 'all' (default: the scripts the call "
-                    "census says reach NAME; all scripts when NAME is not in the census)")
+                    help="comma-separated tools/recomp/scripts names, 'all', or 'reached' (every script the census "
+                    "says calls NAME); default: the 6 census scripts with the most calls of NAME, all scripts "
+                    "when NAME is not in the census")
     ap.add_argument("--params", default=None,
                     help="register parameters of NAME itself: PARAM=REG,... for every prototype parameter "
                     "(IDO -O3 IPA functions; e.g. handle=a0,mark=t3)")
@@ -563,10 +565,14 @@ def local_main(args):
                                     "callees": table}, indent=1))
     print("draft_check %s <- %s%s" % (name, args.origin or draft, " [%s]" % pop if pop != "game" else ""))
     print("  draft sha256 %s; run dir %s" % (hashlib.sha256(draft.read_bytes()).hexdigest()[:16], run_dir))
-    if args.scripts in (None, "census"):
+    if args.scripts in (None, "census", "reached"):
         scripts, covered = census_scripts(name)
         if covered and not scripts:
             how = "census: no script calls %s" % name
+        elif covered and args.scripts != "reached" and len(scripts) > DEFAULT_MAX_SCRIPTS:
+            how = "census: %d scripts call %s; the %d with the most calls (--scripts reached: all %d)" % (
+                len(scripts), name, DEFAULT_MAX_SCRIPTS, len(scripts))
+            scripts = scripts[:DEFAULT_MAX_SCRIPTS]
         elif covered:
             how = "census: %d script(s) call %s" % (len(scripts), name)
         else:

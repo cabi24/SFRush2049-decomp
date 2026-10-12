@@ -1,0 +1,3540 @@
+{
+ "functions": {
+  "AdjustSpeed": {
+   "scripts": {},
+   "size": 784,
+   "vram": "0x800A2680"
+  },
+  "MaxPathZeroControls": {
+   "scripts": {
+    "saves": 6
+   },
+   "size": 396,
+   "vram": "0x800A2378"
+  },
+  "RaceStateMachine_Update": {
+   "scripts": {
+    "audio_options": 1097,
+    "backward": 2027,
+    "battle": 2012,
+    "circuit": 1937,
+    "ghost_race": 2027,
+    "other_car": 2012,
+    "practice": 2027,
+    "race": 1097,
+    "race_pak": 1217,
+    "race_track2": 1097,
+    "race_track3": 1097,
+    "race_track4": 1097,
+    "saves": 1653,
+    "stunt": 1097,
+    "stunt_end": 9338,
+    "two_player": 1097
+   },
+   "size": 2148,
+   "vram": "0x800DB81C"
+  },
+  "arb_rate_set": {
+   "scripts": {
+    "attract": 19,
+    "attract_pak": 19,
+    "audio_options": 28,
+    "backward": 28,
+    "battle": 36,
+    "circuit": 28,
+    "ghost_race": 31,
+    "other_car": 28,
+    "practice": 28,
+    "race": 28,
+    "race_pak": 28,
+    "race_track2": 28,
+    "race_track3": 28,
+    "race_track4": 28,
+    "records": 5,
+    "saves": 28,
+    "stunt": 28,
+    "stunt_end": 28,
+    "two_player": 36
+   },
+   "size": 312,
+   "vram": "0x800A5908"
+  },
+  "attract_demo_handler": {
+   "scripts": {},
+   "size": 820,
+   "vram": "0x800DC99C"
+  },
+  "attract_mode_handler": {
+   "scripts": {},
+   "size": 264,
+   "vram": "0x800DC88C"
+  },
+  "attract_or_transition": {
+   "scripts": {
+    "attract": 9018,
+    "attract_pak": 9018,
+    "audio_options": 1814,
+    "backward": 2714,
+    "battle": 2714,
+    "circuit": 2715,
+    "ghost_race": 2714,
+    "other_car": 2714,
+    "practice": 2714,
+    "race": 1814,
+    "race_pak": 1814,
+    "race_track2": 1814,
+    "race_track3": 1814,
+    "race_track4": 1814,
+    "records": 1206,
+    "saves": 4517,
+    "stunt": 1814,
+    "stunt_end": 11017,
+    "two_player": 1814
+   },
+   "size": 2076,
+   "vram": "0x800EDDC0"
+  },
+  "attract_video_handler": {
+   "scripts": {},
+   "size": 692,
+   "vram": "0x800DCDF4"
+  },
+  "audio_bus_mix": {
+   "scripts": {
+    "attract": 1604,
+    "attract_pak": 1604,
+    "audio_options": 1729,
+    "backward": 1749,
+    "battle": 1833,
+    "circuit": 1708,
+    "ghost_race": 1708,
+    "other_car": 1708,
+    "practice": 1708,
+    "race": 1729,
+    "race_pak": 1708,
+    "race_track2": 1770,
+    "race_track3": 1811,
+    "race_track4": 1770,
+    "records": 1604,
+    "saves": 2130,
+    "stunt": 1729,
+    "stunt_end": 1729,
+    "two_player": 1875
+   },
+   "size": 720,
+   "vram": "0x800B4818"
+  },
+  "audio_doppler_calc": {
+   "scripts": {
+    "attract": 20874,
+    "attract_pak": 21222,
+    "audio_options": 46128,
+    "backward": 69627,
+    "battle": 13693,
+    "circuit": 66365,
+    "ghost_race": 77663,
+    "other_car": 70366,
+    "practice": 56599,
+    "race": 40065,
+    "race_pak": 42537,
+    "race_track2": 40011,
+    "race_track3": 39897,
+    "race_track4": 39651,
+    "records": 14602,
+    "saves": 103220,
+    "stunt": 27948,
+    "stunt_end": 225208,
+    "two_player": 60760
+   },
+   "size": 1124,
+   "vram": "0x800B6788"
+  },
+  "audio_doppler_full": {
+   "scripts": {
+    "attract": 8999,
+    "attract_pak": 8999,
+    "audio_options": 1897,
+    "backward": 2902,
+    "battle": 2799,
+    "circuit": 2798,
+    "ghost_race": 2797,
+    "other_car": 2797,
+    "practice": 2797,
+    "race": 1897,
+    "race_pak": 1897,
+    "race_track2": 1897,
+    "race_track3": 1897,
+    "race_track4": 1897,
+    "records": 1201,
+    "saves": 4597,
+    "stunt": 1822,
+    "stunt_end": 11097,
+    "two_player": 1899
+   },
+   "size": 952,
+   "vram": "0x800B61FC"
+  },
+  "audio_effect_apply": {
+   "scripts": {
+    "attract": 7,
+    "attract_pak": 7,
+    "audio_options": 5,
+    "backward": 5,
+    "battle": 1,
+    "circuit": 5,
+    "ghost_race": 5,
+    "other_car": 5,
+    "practice": 5,
+    "race": 5,
+    "race_pak": 5,
+    "race_track2": 5,
+    "race_track3": 5,
+    "race_track4": 5,
+    "saves": 5,
+    "stunt": 1,
+    "stunt_end": 1,
+    "two_player": 5
+   },
+   "size": 696,
+   "vram": "0x800BAAA0"
+  },
+  "audio_frame_sync": {
+   "scripts": {
+    "attract": 202,
+    "attract_pak": 198,
+    "audio_options": 78,
+    "backward": 74,
+    "battle": 70,
+    "circuit": 75,
+    "ghost_race": 68,
+    "other_car": 78,
+    "practice": 69,
+    "race": 78,
+    "race_pak": 74,
+    "race_track2": 78,
+    "race_track3": 78,
+    "race_track4": 78,
+    "records": 20,
+    "saves": 75,
+    "stunt": 68,
+    "stunt_end": 65,
+    "two_player": 82
+   },
+   "size": 520,
+   "vram": "0x80097798"
+  },
+  "audio_frame_update": {
+   "scripts": {
+    "attract": 42,
+    "attract_pak": 42,
+    "audio_options": 6,
+    "backward": 6,
+    "battle": 2,
+    "circuit": 6,
+    "ghost_race": 1,
+    "other_car": 6,
+    "practice": 1,
+    "race": 6,
+    "race_pak": 6,
+    "race_track2": 6,
+    "race_track3": 6,
+    "race_track4": 6,
+    "saves": 6,
+    "stunt": 1,
+    "stunt_end": 1,
+    "two_player": 6
+   },
+   "size": 600,
+   "vram": "0x800B0C48"
+  },
+  "audio_interrupt_handler": {
+   "scripts": {
+    "attract": 7,
+    "attract_pak": 7,
+    "audio_options": 2,
+    "backward": 2,
+    "battle": 2,
+    "circuit": 2,
+    "ghost_race": 2,
+    "other_car": 2,
+    "practice": 2,
+    "race": 2,
+    "race_pak": 2,
+    "race_track2": 2,
+    "race_track3": 2,
+    "race_track4": 2,
+    "saves": 2,
+    "stunt": 2,
+    "stunt_end": 2,
+    "two_player": 2
+   },
+   "size": 1372,
+   "vram": "0x800BB140"
+  },
+  "audio_mixer_main": {
+   "scripts": {
+    "attract": 7,
+    "attract_pak": 7,
+    "audio_options": 5,
+    "backward": 5,
+    "battle": 1,
+    "circuit": 5,
+    "ghost_race": 5,
+    "other_car": 5,
+    "practice": 5,
+    "race": 5,
+    "race_pak": 5,
+    "race_track2": 5,
+    "race_track3": 5,
+    "race_track4": 5,
+    "saves": 5,
+    "stunt": 1,
+    "stunt_end": 1,
+    "two_player": 5
+   },
+   "size": 732,
+   "vram": "0x800BA7C4"
+  },
+  "audio_priority_find": {
+   "scripts": {
+    "attract": 645,
+    "attract_pak": 645,
+    "audio_options": 465,
+    "backward": 450,
+    "battle": 60,
+    "circuit": 465,
+    "ghost_race": 465,
+    "other_car": 465,
+    "practice": 465,
+    "race": 465,
+    "race_pak": 465,
+    "race_track2": 465,
+    "race_track3": 450,
+    "race_track4": 495,
+    "saves": 465,
+    "stunt": 60,
+    "stunt_end": 60,
+    "two_player": 465
+   },
+   "size": 432,
+   "vram": "0x800BA46C"
+  },
+  "audio_update_d": {
+   "scripts": {},
+   "size": 76,
+   "vram": "0x800F8754"
+  },
+  "brake_force_apply": {
+   "scripts": {
+    "attract": 1,
+    "attract_pak": 1,
+    "audio_options": 1,
+    "backward": 1,
+    "battle": 1,
+    "circuit": 1,
+    "ghost_race": 1,
+    "other_car": 1,
+    "practice": 1,
+    "race": 1,
+    "race_pak": 1,
+    "race_track2": 1,
+    "race_track3": 1,
+    "race_track4": 1,
+    "records": 1,
+    "saves": 1,
+    "stunt": 1,
+    "stunt_end": 1,
+    "two_player": 1
+   },
+   "size": 196,
+   "vram": "0x800AC75C"
+  },
+  "brake_light_update": {
+   "scripts": {
+    "audio_options": 3090,
+    "backward": 4030,
+    "battle": 4071,
+    "circuit": 4056,
+    "ghost_race": 4577,
+    "other_car": 3915,
+    "practice": 3712,
+    "race": 3090,
+    "race_pak": 3180,
+    "race_track2": 3090,
+    "race_track3": 3090,
+    "race_track4": 3090,
+    "records": 12692,
+    "saves": 4746,
+    "stunt": 2983,
+    "stunt_end": 3688,
+    "two_player": 3480
+   },
+   "size": 448,
+   "vram": "0x800A6244"
+  },
+  "camera_auto_follow": {
+   "scripts": {
+    "attract": 8998,
+    "attract_pak": 8998,
+    "audio_options": 238,
+    "backward": 118,
+    "battle": 118,
+    "circuit": 118,
+    "ghost_race": 118,
+    "other_car": 118,
+    "practice": 118,
+    "race": 238,
+    "race_pak": 118,
+    "race_track2": 238,
+    "race_track3": 238,
+    "race_track4": 238,
+    "records": 118,
+    "saves": 118,
+    "stunt": 238,
+    "stunt_end": 118,
+    "two_player": 238
+   },
+   "size": 1084,
+   "vram": "0x800BE078"
+  },
+  "camera_follow_path": {
+   "scripts": {
+    "attract": 42,
+    "attract_pak": 42,
+    "audio_options": 7,
+    "backward": 10,
+    "circuit": 10,
+    "ghost_race": 3,
+    "other_car": 8,
+    "practice": 1,
+    "race": 8,
+    "race_pak": 8,
+    "race_track2": 8,
+    "race_track3": 8,
+    "race_track4": 8,
+    "saves": 8,
+    "stunt_end": 10,
+    "two_player": 10
+   },
+   "size": 1484,
+   "vram": "0x800C46D0"
+  },
+  "camera_look_at_point": {
+   "scripts": {
+    "attract": 138015,
+    "attract_pak": 138819,
+    "audio_options": 6215,
+    "backward": 26870,
+    "circuit": 25622,
+    "ghost_race": 21866,
+    "other_car": 26660,
+    "practice": 26870,
+    "race": 13756,
+    "race_pak": 16724,
+    "race_track2": 8398,
+    "race_track3": 12765,
+    "race_track4": 20195,
+    "saves": 17753,
+    "two_player": 13756
+   },
+   "size": 796,
+   "vram": "0x800BF45C"
+  },
+  "camera_play_script": {
+   "scripts": {
+    "attract": 349477,
+    "attract_pak": 352038,
+    "audio_options": 30459,
+    "backward": 118930,
+    "battle": 61516,
+    "circuit": 116860,
+    "ghost_race": 35427,
+    "other_car": 118779,
+    "practice": 34833,
+    "race": 57014,
+    "race_pak": 72161,
+    "race_track2": 51188,
+    "race_track3": 49541,
+    "race_track4": 57193,
+    "saves": 78029,
+    "stunt": 6952,
+    "stunt_end": 131028,
+    "two_player": 65726
+   },
+   "size": 3520,
+   "vram": "0x800C5644"
+  },
+  "camera_position_update": {
+   "scripts": {
+    "attract": 7681,
+    "attract_pak": 7739,
+    "audio_options": 361,
+    "backward": 1921,
+    "battle": 1906,
+    "circuit": 1831,
+    "ghost_race": 1921,
+    "other_car": 1906,
+    "practice": 1921,
+    "race": 901,
+    "race_pak": 1111,
+    "race_track2": 901,
+    "race_track3": 901,
+    "race_track4": 901,
+    "saves": 1202,
+    "stunt": 901,
+    "stunt_end": 9082,
+    "two_player": 901
+   },
+   "size": 452,
+   "vram": "0x800AEB54"
+  },
+  "camera_transform": {
+   "scripts": {
+    "attract": 17999,
+    "attract_pak": 17999,
+    "audio_options": 3599,
+    "backward": 5399,
+    "battle": 5399,
+    "circuit": 5399,
+    "ghost_race": 5399,
+    "other_car": 5399,
+    "practice": 5399,
+    "race": 3599,
+    "race_pak": 3599,
+    "race_track2": 3599,
+    "race_track3": 3599,
+    "race_track4": 3599,
+    "records": 2399,
+    "saves": 8999,
+    "stunt": 3599,
+    "stunt_end": 21999,
+    "two_player": 3599
+   },
+   "size": 2228,
+   "vram": "0x80097CA0"
+  },
+  "car_lod_select": {
+   "scripts": {
+    "attract": 1,
+    "attract_pak": 1,
+    "audio_options": 1,
+    "backward": 1,
+    "battle": 1,
+    "circuit": 1,
+    "ghost_race": 1,
+    "other_car": 1,
+    "practice": 1,
+    "race": 1,
+    "race_pak": 1,
+    "race_track2": 1,
+    "race_track3": 1,
+    "race_track4": 1,
+    "records": 1,
+    "saves": 1,
+    "stunt": 1,
+    "stunt_end": 1,
+    "two_player": 1
+   },
+   "size": 324,
+   "vram": "0x800A4508"
+  },
+  "car_render_full": {
+   "scripts": {
+    "audio_options": 2,
+    "backward": 2,
+    "battle": 2,
+    "circuit": 2,
+    "ghost_race": 2,
+    "other_car": 2,
+    "practice": 2,
+    "race": 2,
+    "race_pak": 2,
+    "race_track2": 2,
+    "race_track3": 2,
+    "race_track4": 2,
+    "saves": 2,
+    "stunt": 2,
+    "stunt_end": 2,
+    "two_player": 2
+   },
+   "size": 2016,
+   "vram": "0x800A6404"
+  },
+  "car_shadow_render": {
+   "scripts": {
+    "attract": 1,
+    "attract_pak": 1,
+    "audio_options": 1,
+    "backward": 1,
+    "battle": 1,
+    "circuit": 1,
+    "ghost_race": 1,
+    "other_car": 1,
+    "practice": 1,
+    "race": 1,
+    "race_pak": 1,
+    "race_track2": 1,
+    "race_track3": 1,
+    "race_track4": 1,
+    "records": 1,
+    "saves": 1,
+    "stunt": 1,
+    "stunt_end": 1,
+    "two_player": 1
+   },
+   "size": 836,
+   "vram": "0x800A5D34"
+  },
+  "checkpoint_hit": {
+   "scripts": {
+    "audio_options": 1098,
+    "backward": 2028,
+    "circuit": 1938,
+    "ghost_race": 2028,
+    "other_car": 2013,
+    "practice": 2028,
+    "race": 1098,
+    "race_pak": 1218,
+    "race_track2": 1098,
+    "race_track3": 1098,
+    "race_track4": 1098,
+    "saves": 1653,
+    "two_player": 1098
+   },
+   "size": 580,
+   "vram": "0x801073D8"
+  },
+  "control_settings": {
+   "scripts": {},
+   "size": 2552,
+   "vram": "0x800DD4AC"
+  },
+  "countdown": {
+   "scripts": {
+    "audio_options": 474,
+    "backward": 2034,
+    "battle": 2019,
+    "circuit": 1944,
+    "ghost_race": 2034,
+    "other_car": 2019,
+    "practice": 2034,
+    "race": 1014,
+    "race_pak": 1224,
+    "race_track2": 1014,
+    "race_track3": 1014,
+    "race_track4": 1014,
+    "saves": 3072,
+    "stunt": 1014,
+    "stunt_end": 10187,
+    "two_player": 1014
+   },
+   "size": 2672,
+   "vram": "0x800FBF88"
+  },
+  "countdown_handler": {
+   "scripts": {
+    "attract": 8998,
+    "attract_pak": 8998,
+    "audio_options": 1168,
+    "backward": 2698,
+    "battle": 2698,
+    "circuit": 2698,
+    "ghost_race": 2698,
+    "other_car": 2698,
+    "practice": 2698,
+    "race": 1708,
+    "race_pak": 1798,
+    "race_track2": 1708,
+    "race_track3": 1708,
+    "race_track4": 1708,
+    "records": 1198,
+    "saves": 4153,
+    "stunt": 1708,
+    "stunt_end": 10848,
+    "two_player": 1708
+   },
+   "size": 496,
+   "vram": "0x800FBC30"
+  },
+  "credits_screen": {
+   "scripts": {
+    "audio_options": 1
+   },
+   "size": 296,
+   "vram": "0x800D6698"
+  },
+  "debug_collision": {
+   "scripts": {
+    "attract": 7716,
+    "attract_pak": 7774
+   },
+   "size": 532,
+   "vram": "0x800FD024"
+  },
+  "debug_stats": {
+   "scripts": {
+    "attract": 7722,
+    "attract_pak": 7780
+   },
+   "size": 532,
+   "vram": "0x800FCDF8"
+  },
+  "display_enable": {
+   "scripts": {
+    "attract": 17,
+    "attract_pak": 17,
+    "audio_options": 4,
+    "backward": 4,
+    "battle": 4,
+    "circuit": 4,
+    "ghost_race": 4,
+    "other_car": 4,
+    "practice": 4,
+    "race": 4,
+    "race_pak": 4,
+    "race_track2": 4,
+    "race_track3": 4,
+    "race_track4": 4,
+    "records": 3,
+    "saves": 4,
+    "stunt": 4,
+    "stunt_end": 4,
+    "two_player": 4
+   },
+   "size": 316,
+   "vram": "0x800C8FA4"
+  },
+  "display_list_flush": {
+   "scripts": {
+    "attract": 35,
+    "attract_pak": 35,
+    "audio_options": 6,
+    "backward": 6,
+    "battle": 6,
+    "circuit": 6,
+    "ghost_race": 6,
+    "other_car": 6,
+    "practice": 6,
+    "race": 6,
+    "race_pak": 6,
+    "race_track2": 6,
+    "race_track3": 6,
+    "race_track4": 6,
+    "saves": 6,
+    "stunt": 6,
+    "stunt_end": 6,
+    "two_player": 6
+   },
+   "size": 2356,
+   "vram": "0x800FB2C8"
+  },
+  "draw_speedometer": {
+   "scripts": {},
+   "size": 1704,
+   "vram": "0x800C7818"
+  },
+  "draw_ui_element": {
+   "scripts": {},
+   "size": 240,
+   "vram": "0x800C7110"
+  },
+  "drone_ai_update": {
+   "scripts": {
+    "attract": 46164,
+    "attract_pak": 46512,
+    "audio_options": 2808,
+    "backward": 12168,
+    "battle": 4026,
+    "circuit": 11628,
+    "ghost_race": 2028,
+    "other_car": 12078,
+    "practice": 2028,
+    "race": 6048,
+    "race_pak": 7308,
+    "race_track2": 6048,
+    "race_track3": 6048,
+    "race_track4": 6048,
+    "saves": 7860,
+    "stunt": 1008,
+    "stunt_end": 9190,
+    "two_player": 6048
+   },
+   "size": 3280,
+   "vram": "0x80093B20"
+  },
+  "drone_collision_avoid": {
+   "scripts": {
+    "audio_options": 1
+   },
+   "size": 852,
+   "vram": "0x800D6E7C"
+  },
+  "drone_pathfind_main": {
+   "scripts": {
+    "audio_options": 1
+   },
+   "size": 1124,
+   "vram": "0x800D71D0"
+  },
+  "drone_set_catchup": {
+   "scripts": {},
+   "size": 852,
+   "vram": "0x800A2990"
+  },
+  "drone_target_update": {
+   "scripts": {
+    "attract": 1,
+    "attract_pak": 1,
+    "audio_options": 2,
+    "backward": 2,
+    "battle": 2,
+    "circuit": 2,
+    "ghost_race": 2,
+    "other_car": 2,
+    "practice": 2,
+    "race": 2,
+    "race_pak": 2,
+    "race_track2": 2,
+    "race_track3": 2,
+    "race_track4": 2,
+    "records": 1,
+    "saves": 2,
+    "stunt": 2,
+    "stunt_end": 2,
+    "two_player": 2
+   },
+   "size": 496,
+   "vram": "0x800D7E88"
+  },
+  "drone_throttle_calc": {
+   "scripts": {},
+   "size": 1024,
+   "vram": "0x800D8C58"
+  },
+  "dust_cloud_effect": {
+   "scripts": {
+    "audio_options": 1101,
+    "backward": 2031,
+    "circuit": 1941,
+    "ghost_race": 2031,
+    "other_car": 2016,
+    "practice": 2031,
+    "race": 1101,
+    "race_pak": 1221,
+    "race_track2": 1101,
+    "race_track3": 1101,
+    "race_track4": 1101,
+    "saves": 1656,
+    "stunt": 1101,
+    "stunt_end": 9341,
+    "two_player": 2197
+   },
+   "size": 600,
+   "vram": "0x800EFEA8"
+  },
+  "emitter_update": {
+   "scripts": {
+    "audio_options": 1096,
+    "backward": 2026,
+    "circuit": 1936,
+    "ghost_race": 2026,
+    "other_car": 2011,
+    "practice": 2026,
+    "race": 1096,
+    "race_pak": 1216,
+    "race_track2": 1096,
+    "race_track3": 1096,
+    "race_track4": 1096,
+    "saves": 1651,
+    "stunt": 1096,
+    "stunt_end": 9336,
+    "two_player": 1096
+   },
+   "size": 1240,
+   "vram": "0x800EEDB0"
+  },
+  "entity_ai_pathfind": {
+   "scripts": {
+    "attract": 1,
+    "attract_pak": 1,
+    "audio_options": 1,
+    "backward": 1,
+    "battle": 1,
+    "circuit": 1,
+    "ghost_race": 1,
+    "other_car": 1,
+    "practice": 1,
+    "race": 1,
+    "race_pak": 1,
+    "race_track2": 1,
+    "race_track3": 1,
+    "race_track4": 1,
+    "records": 1,
+    "saves": 1,
+    "stunt": 1,
+    "stunt_end": 1,
+    "two_player": 1
+   },
+   "size": 2180,
+   "vram": "0x800992AC"
+  },
+  "entity_anim_texture": {
+   "scripts": {
+    "audio_options": 936,
+    "backward": 4056,
+    "circuit": 3876,
+    "other_car": 4026,
+    "practice": 4056,
+    "race": 2016,
+    "race_pak": 2436,
+    "race_track2": 2016,
+    "race_track3": 2016,
+    "race_track4": 2016,
+    "saves": 2620,
+    "stunt": 2016,
+    "stunt_end": 18380,
+    "two_player": 4032
+   },
+   "size": 636,
+   "vram": "0x80091874"
+  },
+  "entity_iterate": {
+   "scripts": {
+    "attract": 2390,
+    "attract_pak": 2428,
+    "audio_options": 395,
+    "backward": 1955,
+    "battle": 3880,
+    "circuit": 1865,
+    "ghost_race": 1955,
+    "other_car": 1940,
+    "practice": 1955,
+    "race": 935,
+    "race_pak": 1145,
+    "race_track2": 935,
+    "race_track3": 935,
+    "race_track4": 935,
+    "saves": 1236,
+    "stunt": 935,
+    "stunt_end": 8670,
+    "two_player": 1870
+   },
+   "size": 224,
+   "vram": "0x800C69C0"
+  },
+  "entity_physics_update": {
+   "scripts": {
+    "backward": 93,
+    "circuit": 93,
+    "other_car": 31,
+    "race_pak": 31,
+    "saves": 31,
+    "stunt_end": 310
+   },
+   "size": 712,
+   "vram": "0x800908A0"
+  },
+  "entity_process_main": {
+   "scripts": {
+    "attract": 46164,
+    "attract_pak": 46512,
+    "audio_options": 2808,
+    "backward": 12168,
+    "battle": 4026,
+    "circuit": 11628,
+    "ghost_race": 2028,
+    "other_car": 12078,
+    "practice": 2028,
+    "race": 6048,
+    "race_pak": 7308,
+    "race_track2": 6048,
+    "race_track3": 6048,
+    "race_track4": 6048,
+    "saves": 7860,
+    "stunt": 1008,
+    "stunt_end": 9190,
+    "two_player": 6048
+   },
+   "size": 1424,
+   "vram": "0x8008D120"
+  },
+  "entity_render_setup": {
+   "scripts": {
+    "battle": 4026,
+    "two_player": 2016
+   },
+   "size": 2048,
+   "vram": "0x8008C884"
+  },
+  "entity_tick_main": {
+   "scripts": {
+    "attract": 1794,
+    "attract_pak": 1794,
+    "audio_options": 468,
+    "backward": 2028,
+    "battle": 4026,
+    "circuit": 1938,
+    "ghost_race": 2028,
+    "practice": 2028,
+    "race": 1008,
+    "race_pak": 1218,
+    "race_track2": 1008,
+    "race_track3": 1008,
+    "race_track4": 1008,
+    "saves": 1310,
+    "stunt": 1008,
+    "stunt_end": 9190,
+    "two_player": 2016
+   },
+   "size": 2684,
+   "vram": "0x800930A4"
+  },
+  "entity_update_callback": {
+   "scripts": {
+    "backward": 312,
+    "circuit": 311,
+    "other_car": 104,
+    "race_pak": 104,
+    "saves": 103,
+    "stunt_end": 1032
+   },
+   "size": 2184,
+   "vram": "0x80090FEC"
+  },
+  "explosion_effect": {
+   "scripts": {
+    "audio_options": 1096,
+    "backward": 2026,
+    "circuit": 1936,
+    "ghost_race": 2026,
+    "other_car": 2011,
+    "practice": 2026,
+    "race": 1096,
+    "race_pak": 1216,
+    "race_track2": 1096,
+    "race_track3": 1096,
+    "race_track4": 1096,
+    "saves": 1651,
+    "stunt": 1096,
+    "stunt_end": 9336,
+    "two_player": 1096
+   },
+   "size": 1460,
+   "vram": "0x800EF8F4"
+  },
+  "finish_state_alt": {
+   "scripts": {
+    "saves": 1485,
+    "stunt_end": 990
+   },
+   "size": 556,
+   "vram": "0x800F8B70"
+  },
+  "fp_call_wrapper": {
+   "scripts": {},
+   "size": 104,
+   "vram": "0x800AC6F4"
+  },
+  "func_80087110": {
+   "scripts": {
+    "attract": 311719,
+    "attract_pak": 313865,
+    "audio_options": 203950,
+    "backward": 228663,
+    "battle": 124154,
+    "circuit": 231470,
+    "ghost_race": 235496,
+    "other_car": 235475,
+    "practice": 182338,
+    "race": 169278,
+    "race_pak": 164120,
+    "race_track2": 169226,
+    "race_track3": 169112,
+    "race_track4": 168865,
+    "records": 160120,
+    "saves": 395355,
+    "stunt": 128892,
+    "stunt_end": 542836,
+    "two_player": 235458
+   },
+   "size": 1780,
+   "vram": "0x80087110"
+  },
+  "func_80090308": {
+   "scripts": {
+    "backward": 3,
+    "circuit": 3,
+    "other_car": 1,
+    "race_pak": 1,
+    "saves": 1,
+    "stunt_end": 10
+   },
+   "size": 1128,
+   "vram": "0x80090308"
+  },
+  "func_80096CA8": {
+   "scripts": {
+    "attract": 203,
+    "attract_pak": 199,
+    "audio_options": 79,
+    "backward": 75,
+    "battle": 71,
+    "circuit": 76,
+    "ghost_race": 69,
+    "other_car": 79,
+    "practice": 70,
+    "race": 79,
+    "race_pak": 75,
+    "race_track2": 79,
+    "race_track3": 79,
+    "race_track4": 79,
+    "records": 21,
+    "saves": 76,
+    "stunt": 69,
+    "stunt_end": 66,
+    "two_player": 83
+   },
+   "size": 1204,
+   "vram": "0x80096CA8"
+  },
+  "func_80097164": {
+   "scripts": {
+    "attract": 203,
+    "attract_pak": 199,
+    "audio_options": 79,
+    "backward": 75,
+    "battle": 71,
+    "circuit": 76,
+    "ghost_race": 69,
+    "other_car": 79,
+    "practice": 70,
+    "race": 79,
+    "race_pak": 75,
+    "race_track2": 79,
+    "race_track3": 79,
+    "race_track4": 79,
+    "records": 21,
+    "saves": 76,
+    "stunt": 69,
+    "stunt_end": 66,
+    "two_player": 83
+   },
+   "size": 344,
+   "vram": "0x80097164"
+  },
+  "func_800979A0": {
+   "scripts": {
+    "attract": 1,
+    "attract_pak": 1,
+    "audio_options": 2,
+    "backward": 2,
+    "battle": 2,
+    "circuit": 2,
+    "ghost_race": 2,
+    "other_car": 2,
+    "practice": 2,
+    "race": 2,
+    "race_pak": 2,
+    "race_track2": 2,
+    "race_track3": 2,
+    "race_track4": 2,
+    "records": 1,
+    "saves": 3,
+    "stunt": 2,
+    "stunt_end": 3,
+    "two_player": 2
+   },
+   "size": 292,
+   "vram": "0x800979A0"
+  },
+  "func_800988D8": {
+   "scripts": {
+    "attract": 17999,
+    "attract_pak": 17999,
+    "audio_options": 3599,
+    "backward": 5399,
+    "battle": 5399,
+    "circuit": 5399,
+    "ghost_race": 5399,
+    "other_car": 5399,
+    "practice": 5399,
+    "race": 3599,
+    "race_pak": 3599,
+    "race_track2": 3599,
+    "race_track3": 3599,
+    "race_track4": 3599,
+    "records": 2399,
+    "saves": 8999,
+    "stunt": 3599,
+    "stunt_end": 21999,
+    "two_player": 3599
+   },
+   "size": 380,
+   "vram": "0x800988D8"
+  },
+  "func_80098FB8": {
+   "scripts": {
+    "attract": 17999,
+    "attract_pak": 17999,
+    "audio_options": 3599,
+    "backward": 5399,
+    "battle": 5399,
+    "circuit": 5399,
+    "ghost_race": 5399,
+    "other_car": 5399,
+    "practice": 5399,
+    "race": 3599,
+    "race_pak": 3599,
+    "race_track2": 3599,
+    "race_track3": 3599,
+    "race_track4": 3599,
+    "records": 2399,
+    "saves": 8999,
+    "stunt": 3599,
+    "stunt_end": 21999,
+    "two_player": 3599
+   },
+   "size": 756,
+   "vram": "0x80098FB8"
+  },
+  "func_8009F058": {
+   "scripts": {
+    "attract": 8998,
+    "attract_pak": 8998,
+    "audio_options": 1798,
+    "backward": 2698,
+    "battle": 4903,
+    "circuit": 2698,
+    "ghost_race": 2998,
+    "other_car": 2698,
+    "practice": 2698,
+    "race": 1798,
+    "race_pak": 1798,
+    "race_track2": 1798,
+    "race_track3": 1798,
+    "race_track4": 1798,
+    "records": 1198,
+    "saves": 4498,
+    "stunt": 1798,
+    "stunt_end": 10998,
+    "two_player": 3088
+   },
+   "size": 5228,
+   "vram": "0x8009F058"
+  },
+  "func_800A1BB4": {
+   "scripts": {
+    "saves": 3
+   },
+   "size": 184,
+   "vram": "0x800A1BB4"
+  },
+  "func_800A1C6C": {
+   "scripts": {
+    "saves": 7
+   },
+   "size": 360,
+   "vram": "0x800A1C6C"
+  },
+  "func_800A1DD4": {
+   "scripts": {
+    "saves": 9
+   },
+   "size": 192,
+   "vram": "0x800A1DD4"
+  },
+  "func_800A3640": {
+   "scripts": {
+    "attract_pak": 1,
+    "backward": 1,
+    "battle": 1,
+    "circuit": 1,
+    "ghost_race": 1,
+    "other_car": 1,
+    "practice": 1,
+    "race_pak": 1,
+    "records": 1,
+    "saves": 1,
+    "stunt_end": 1
+   },
+   "size": 204,
+   "vram": "0x800A3640"
+  },
+  "func_800A3724": {
+   "scripts": {
+    "attract": 4,
+    "attract_pak": 4,
+    "audio_options": 4,
+    "backward": 4,
+    "battle": 4,
+    "circuit": 4,
+    "ghost_race": 4,
+    "other_car": 4,
+    "practice": 4,
+    "race": 4,
+    "race_pak": 4,
+    "race_track2": 4,
+    "race_track3": 4,
+    "race_track4": 4,
+    "records": 4,
+    "saves": 4,
+    "stunt": 4,
+    "stunt_end": 4,
+    "two_player": 4
+   },
+   "size": 88,
+   "vram": "0x800A3724"
+  },
+  "func_800A5A40": {
+   "scripts": {
+    "attract": 19,
+    "attract_pak": 19,
+    "audio_options": 20,
+    "backward": 20,
+    "battle": 20,
+    "circuit": 20,
+    "ghost_race": 20,
+    "other_car": 20,
+    "practice": 20,
+    "race": 20,
+    "race_pak": 20,
+    "race_track2": 20,
+    "race_track3": 20,
+    "race_track4": 20,
+    "records": 5,
+    "saves": 20,
+    "stunt": 20,
+    "stunt_end": 20,
+    "two_player": 20
+   },
+   "size": 252,
+   "vram": "0x800A5A40"
+  },
+  "func_800A7480": {
+   "scripts": {
+    "attract": 41,
+    "attract_pak": 41,
+    "audio_options": 17,
+    "backward": 17,
+    "battle": 18,
+    "circuit": 19,
+    "ghost_race": 17,
+    "other_car": 17,
+    "practice": 17,
+    "race": 17,
+    "race_pak": 17,
+    "race_track2": 17,
+    "race_track3": 17,
+    "race_track4": 17,
+    "records": 10,
+    "saves": 17,
+    "stunt": 17,
+    "stunt_end": 17,
+    "two_player": 18
+   },
+   "size": 136,
+   "vram": "0x800A7480"
+  },
+  "func_800AD4C8": {
+   "scripts": {
+    "attract": 365887,
+    "attract_pak": 369856,
+    "audio_options": 50944,
+    "backward": 97437,
+    "battle": 33731,
+    "circuit": 123100,
+    "ghost_race": 44170,
+    "other_car": 122944,
+    "practice": 36110,
+    "race": 81935,
+    "race_pak": 91774,
+    "race_track2": 88711,
+    "race_track3": 49809,
+    "race_track4": 93830,
+    "saves": 99229,
+    "stunt": 14773,
+    "stunt_end": 189181,
+    "two_player": 99436
+   },
+   "size": 264,
+   "vram": "0x800AD4C8"
+  },
+  "func_800B0EA0": {
+   "scripts": {
+    "attract": 3864,
+    "attract_pak": 3864,
+    "audio_options": 736,
+    "backward": 736,
+    "battle": 552,
+    "circuit": 736,
+    "ghost_race": 184,
+    "other_car": 1104,
+    "practice": 276,
+    "race": 736,
+    "race_pak": 736,
+    "race_track2": 736,
+    "race_track3": 736,
+    "race_track4": 736,
+    "saves": 736,
+    "stunt": 276,
+    "stunt_end": 276,
+    "two_player": 920
+   },
+   "size": 192,
+   "vram": "0x800B0EA0"
+  },
+  "func_800B4FB0": {
+   "scripts": {
+    "audio_options": 4,
+    "race": 2,
+    "race_track2": 2,
+    "race_track3": 2,
+    "race_track4": 2,
+    "saves": 3,
+    "stunt": 2,
+    "stunt_end": 2,
+    "two_player": 2
+   },
+   "size": 1472,
+   "vram": "0x800B4FB0"
+  },
+  "func_800B66B0": {
+   "scripts": {
+    "attract": 20874,
+    "attract_pak": 21222,
+    "audio_options": 46128,
+    "backward": 69627,
+    "battle": 13693,
+    "circuit": 66365,
+    "ghost_race": 77663,
+    "other_car": 70366,
+    "practice": 56599,
+    "race": 40065,
+    "race_pak": 42537,
+    "race_track2": 40011,
+    "race_track3": 39897,
+    "race_track4": 39651,
+    "records": 14602,
+    "saves": 103220,
+    "stunt": 27948,
+    "stunt_end": 225208,
+    "two_player": 60760
+   },
+   "size": 152,
+   "vram": "0x800B66B0"
+  },
+  "func_800B9740": {
+   "scripts": {
+    "attract": 7,
+    "attract_pak": 7,
+    "audio_options": 5,
+    "backward": 5,
+    "battle": 1,
+    "circuit": 5,
+    "ghost_race": 5,
+    "other_car": 5,
+    "practice": 5,
+    "race": 5,
+    "race_pak": 5,
+    "race_track2": 5,
+    "race_track3": 5,
+    "race_track4": 5,
+    "saves": 5,
+    "stunt": 1,
+    "stunt_end": 1,
+    "two_player": 5
+   },
+   "size": 408,
+   "vram": "0x800B9740"
+  },
+  "func_800BB9B0": {
+   "scripts": {
+    "attract": 35,
+    "attract_pak": 35,
+    "audio_options": 6,
+    "backward": 6,
+    "battle": 6,
+    "circuit": 6,
+    "ghost_race": 6,
+    "other_car": 6,
+    "practice": 6,
+    "race": 6,
+    "race_pak": 6,
+    "race_track2": 6,
+    "race_track3": 6,
+    "race_track4": 6,
+    "saves": 6,
+    "stunt": 6,
+    "stunt_end": 6,
+    "two_player": 6
+   },
+   "size": 2104,
+   "vram": "0x800BB9B0"
+  },
+  "func_800C4F68": {
+   "scripts": {
+    "attract": 42,
+    "attract_pak": 42,
+    "audio_options": 7,
+    "backward": 10,
+    "battle": 2,
+    "circuit": 10,
+    "ghost_race": 3,
+    "other_car": 8,
+    "practice": 1,
+    "race": 8,
+    "race_pak": 8,
+    "race_track2": 8,
+    "race_track3": 8,
+    "race_track4": 8,
+    "saves": 8,
+    "stunt": 1,
+    "stunt_end": 11,
+    "two_player": 10
+   },
+   "size": 1416,
+   "vram": "0x800C4F68"
+  },
+  "func_800C7EC8": {
+   "scripts": {},
+   "size": 628,
+   "vram": "0x800C7EC8"
+  },
+  "func_800C813C": {
+   "scripts": {
+    "attract": 9014,
+    "attract_pak": 9014,
+    "audio_options": 1451,
+    "backward": 809,
+    "battle": 823,
+    "circuit": 899,
+    "ghost_race": 809,
+    "other_car": 823,
+    "practice": 809,
+    "race": 917,
+    "race_pak": 710,
+    "race_track2": 917,
+    "race_track3": 917,
+    "race_track4": 917,
+    "records": 1202,
+    "saves": 1568,
+    "stunt": 917,
+    "stunt_end": 1039,
+    "two_player": 917
+   },
+   "size": 900,
+   "vram": "0x800C813C"
+  },
+  "func_800CBF2C": {
+   "scripts": {},
+   "size": 276,
+   "vram": "0x800CBF2C"
+  },
+  "func_800CC040": {
+   "scripts": {},
+   "size": 896,
+   "vram": "0x800CC040"
+  },
+  "func_800CC50C": {
+   "scripts": {},
+   "size": 760,
+   "vram": "0x800CC50C"
+  },
+  "func_800CD104": {
+   "scripts": {
+    "saves": 1
+   },
+   "size": 1088,
+   "vram": "0x800CD104"
+  },
+  "func_800D348C": {
+   "scripts": {
+    "audio_options": 1,
+    "backward": 2,
+    "circuit": 3,
+    "ghost_race": 2,
+    "other_car": 2,
+    "race": 2,
+    "race_pak": 2,
+    "race_track2": 2,
+    "race_track3": 2,
+    "race_track4": 2,
+    "saves": 2,
+    "stunt_end": 10,
+    "two_player": 4
+   },
+   "size": 1684,
+   "vram": "0x800D348C"
+  },
+  "func_800D5A04": {
+   "scripts": {},
+   "size": 428,
+   "vram": "0x800D5A04"
+  },
+  "func_800D6160": {
+   "scripts": {
+    "audio_options": 5,
+    "backward": 1,
+    "battle": 1,
+    "circuit": 1,
+    "ghost_race": 1,
+    "other_car": 1,
+    "practice": 1,
+    "race": 3,
+    "race_pak": 1,
+    "race_track2": 3,
+    "race_track3": 3,
+    "race_track4": 3,
+    "saves": 1,
+    "stunt": 3,
+    "stunt_end": 3,
+    "two_player": 3
+   },
+   "size": 304,
+   "vram": "0x800D6160"
+  },
+  "func_800D8078": {
+   "scripts": {},
+   "size": 220,
+   "vram": "0x800D8078"
+  },
+  "func_800D816C": {
+   "scripts": {},
+   "size": 2796,
+   "vram": "0x800D816C"
+  },
+  "func_800D9058": {
+   "scripts": {},
+   "size": 328,
+   "vram": "0x800D9058"
+  },
+  "func_800D91A0": {
+   "scripts": {
+    "audio_options": 91,
+    "backward": 91,
+    "battle": 91,
+    "circuit": 91,
+    "ghost_race": 91,
+    "other_car": 91,
+    "practice": 91,
+    "race": 91,
+    "race_pak": 91,
+    "race_track2": 91,
+    "race_track3": 91,
+    "race_track4": 91,
+    "saves": 601,
+    "stunt": 91,
+    "stunt_end": 91,
+    "two_player": 91
+   },
+   "size": 3860,
+   "vram": "0x800D91A0"
+  },
+  "func_800DA0BC": {
+   "scripts": {},
+   "size": 184,
+   "vram": "0x800DA0BC"
+  },
+  "func_800DA2C0": {
+   "scripts": {},
+   "size": 2316,
+   "vram": "0x800DA2C0"
+  },
+  "func_800DB1E0": {
+   "scripts": {},
+   "size": 1400,
+   "vram": "0x800DB1E0"
+  },
+  "func_800DD0C0": {
+   "scripts": {},
+   "size": 908,
+   "vram": "0x800DD0C0"
+  },
+  "func_800DE45C": {
+   "scripts": {
+    "attract": 1,
+    "attract_pak": 1,
+    "audio_options": 1,
+    "backward": 1,
+    "battle": 1,
+    "circuit": 1,
+    "ghost_race": 1,
+    "other_car": 1,
+    "practice": 1,
+    "race": 1,
+    "race_pak": 1,
+    "race_track2": 1,
+    "race_track3": 1,
+    "race_track4": 1,
+    "records": 1,
+    "saves": 1,
+    "stunt": 1,
+    "stunt_end": 1,
+    "two_player": 1
+   },
+   "size": 1020,
+   "vram": "0x800DE45C"
+  },
+  "func_800E543C": {
+   "scripts": {
+    "attract": 42,
+    "attract_pak": 42,
+    "audio_options": 7,
+    "backward": 10,
+    "battle": 2,
+    "circuit": 10,
+    "ghost_race": 3,
+    "other_car": 8,
+    "practice": 1,
+    "race": 8,
+    "race_pak": 8,
+    "race_track2": 8,
+    "race_track3": 8,
+    "race_track4": 8,
+    "saves": 8,
+    "stunt": 1,
+    "stunt_end": 11,
+    "two_player": 10
+   },
+   "size": 700,
+   "vram": "0x800E543C"
+  },
+  "func_800E56F8": {
+   "scripts": {
+    "attract": 46086,
+    "attract_pak": 46434,
+    "audio_options": 3255,
+    "backward": 14175,
+    "battle": 8040,
+    "circuit": 13545,
+    "ghost_race": 4050,
+    "other_car": 14070,
+    "practice": 4050,
+    "race": 7035,
+    "race_pak": 8505,
+    "race_track2": 7035,
+    "race_track3": 7035,
+    "race_track4": 7035,
+    "saves": 9142,
+    "stunt": 2010,
+    "stunt_end": 18372,
+    "two_player": 8040
+   },
+   "size": 1436,
+   "vram": "0x800E56F8"
+  },
+  "func_800E6AF8": {
+   "scripts": {
+    "attract": 15362,
+    "attract_pak": 15478,
+    "audio_options": 930,
+    "backward": 4050,
+    "battle": 4020,
+    "circuit": 3870,
+    "ghost_race": 4050,
+    "other_car": 4020,
+    "practice": 4050,
+    "race": 2010,
+    "race_pak": 2430,
+    "race_track2": 2010,
+    "race_track3": 2010,
+    "race_track4": 2010,
+    "saves": 2612,
+    "stunt": 2010,
+    "stunt_end": 18372,
+    "two_player": 2010
+   },
+   "size": 1336,
+   "vram": "0x800E6AF8"
+  },
+  "func_800E7038": {
+   "scripts": {
+    "attract": 1,
+    "attract_pak": 1,
+    "audio_options": 1,
+    "backward": 1,
+    "battle": 1,
+    "circuit": 1,
+    "ghost_race": 1,
+    "other_car": 1,
+    "practice": 1,
+    "race": 1,
+    "race_pak": 1,
+    "race_track2": 1,
+    "race_track3": 1,
+    "race_track4": 1,
+    "records": 1,
+    "saves": 1,
+    "stunt": 1,
+    "stunt_end": 1,
+    "two_player": 1
+   },
+   "size": 252,
+   "vram": "0x800E7038"
+  },
+  "func_800E7134": {
+   "scripts": {
+    "attract": 17999,
+    "attract_pak": 17999,
+    "audio_options": 3599,
+    "backward": 5399,
+    "battle": 5399,
+    "circuit": 5399,
+    "ghost_race": 5399,
+    "other_car": 5399,
+    "practice": 5399,
+    "race": 3599,
+    "race_pak": 3599,
+    "race_track2": 3599,
+    "race_track3": 3599,
+    "race_track4": 3599,
+    "records": 2399,
+    "saves": 8999,
+    "stunt": 3599,
+    "stunt_end": 21999,
+    "two_player": 3599
+   },
+   "size": 676,
+   "vram": "0x800E7134"
+  },
+  "func_800E73D8": {
+   "scripts": {
+    "attract": 17999,
+    "attract_pak": 17999,
+    "audio_options": 3599,
+    "backward": 5399,
+    "battle": 5399,
+    "circuit": 5399,
+    "ghost_race": 5399,
+    "other_car": 5399,
+    "practice": 5399,
+    "race": 3599,
+    "race_pak": 3599,
+    "race_track2": 3599,
+    "race_track3": 3599,
+    "race_track4": 3599,
+    "records": 2399,
+    "saves": 8999,
+    "stunt": 3599,
+    "stunt_end": 21999,
+    "two_player": 3599
+   },
+   "size": 596,
+   "vram": "0x800E73D8"
+  },
+  "func_800E7FA0": {
+   "scripts": {
+    "attract": 46128,
+    "attract_pak": 46476,
+    "audio_options": 2808,
+    "backward": 12168,
+    "battle": 4026,
+    "circuit": 11628,
+    "ghost_race": 2028,
+    "other_car": 12078,
+    "practice": 2028,
+    "race": 6048,
+    "race_pak": 7308,
+    "race_track2": 6048,
+    "race_track3": 6048,
+    "race_track4": 6048,
+    "saves": 7854,
+    "stunt": 1008,
+    "stunt_end": 9189,
+    "two_player": 6048
+   },
+   "size": 1244,
+   "vram": "0x800E7FA0"
+  },
+  "func_800E847C": {
+   "scripts": {
+    "attract": 7688,
+    "attract_pak": 7746,
+    "audio_options": 468,
+    "backward": 2028,
+    "battle": 2013,
+    "circuit": 1938,
+    "ghost_race": 2028,
+    "other_car": 2013,
+    "practice": 2028,
+    "race": 1008,
+    "race_pak": 1218,
+    "race_track2": 1008,
+    "race_track3": 1008,
+    "race_track4": 1008,
+    "saves": 1309,
+    "stunt": 1008,
+    "stunt_end": 9189,
+    "two_player": 1008
+   },
+   "size": 2100,
+   "vram": "0x800E847C"
+  },
+  "func_800EB028": {
+   "scripts": {
+    "attract": 7688,
+    "attract_pak": 7746,
+    "audio_options": 468,
+    "backward": 2028,
+    "battle": 4026,
+    "circuit": 1938,
+    "ghost_race": 2028,
+    "other_car": 2013,
+    "practice": 2028,
+    "race": 1008,
+    "race_pak": 1218,
+    "race_track2": 1008,
+    "race_track3": 1008,
+    "race_track4": 1008,
+    "saves": 1309,
+    "stunt": 1008,
+    "stunt_end": 9189,
+    "two_player": 2016
+   },
+   "size": 1640,
+   "vram": "0x800EB028"
+  },
+  "func_800EB90C": {
+   "scripts": {
+    "attract": 7688,
+    "attract_pak": 7746,
+    "audio_options": 468,
+    "backward": 2028,
+    "battle": 2013,
+    "circuit": 1938,
+    "ghost_race": 2028,
+    "other_car": 2013,
+    "practice": 2028,
+    "race": 1008,
+    "race_pak": 1218,
+    "race_track2": 1008,
+    "race_track3": 1008,
+    "race_track4": 1008,
+    "saves": 1309,
+    "stunt": 1008,
+    "stunt_end": 9189,
+    "two_player": 1008
+   },
+   "size": 2000,
+   "vram": "0x800EB90C"
+  },
+  "func_800EF288": {
+   "scripts": {
+    "audio_options": 1096,
+    "backward": 2026,
+    "circuit": 1936,
+    "ghost_race": 2026,
+    "other_car": 2011,
+    "practice": 2026,
+    "race": 1096,
+    "race_pak": 1216,
+    "race_track2": 1096,
+    "race_track3": 1096,
+    "race_track4": 1096,
+    "saves": 1651,
+    "stunt": 1096,
+    "stunt_end": 9336,
+    "two_player": 1096
+   },
+   "size": 808,
+   "vram": "0x800EF288"
+  },
+  "func_800F0914": {
+   "scripts": {
+    "saves": 1
+   },
+   "size": 1584,
+   "vram": "0x800F0914"
+  },
+  "func_800F0F44": {
+   "scripts": {},
+   "size": 464,
+   "vram": "0x800F0F44"
+  },
+  "func_800F1210": {
+   "scripts": {
+    "saves": 3
+   },
+   "size": 1816,
+   "vram": "0x800F1210"
+  },
+  "func_800F7F3C": {
+   "scripts": {
+    "saves": 1,
+    "stunt_end": 1
+   },
+   "size": 1396,
+   "vram": "0x800F7F3C"
+  },
+  "func_800F857C": {
+   "scripts": {
+    "saves": 3,
+    "stunt_end": 5
+   },
+   "size": 464,
+   "vram": "0x800F857C"
+  },
+  "func_800F87A0": {
+   "scripts": {
+    "saves": 1395,
+    "stunt_end": 690
+   },
+   "size": 968,
+   "vram": "0x800F87A0"
+  },
+  "func_80100564": {
+   "scripts": {},
+   "size": 1576,
+   "vram": "0x80100564"
+  },
+  "func_80100B8C": {
+   "scripts": {
+    "attract": 7710,
+    "attract_pak": 7768
+   },
+   "size": 408,
+   "vram": "0x80100B8C"
+  },
+  "func_80100D5C": {
+   "scripts": {
+    "saves": 10845,
+    "stunt_end": 11250
+   },
+   "size": 252,
+   "vram": "0x80100D5C"
+  },
+  "func_80100E58": {
+   "scripts": {
+    "saves": 1395
+   },
+   "size": 2732,
+   "vram": "0x80100E58"
+  },
+  "func_80101904": {
+   "scripts": {},
+   "size": 1152,
+   "vram": "0x80101904"
+  },
+  "func_80101D84": {
+   "scripts": {
+    "stunt_end": 690
+   },
+   "size": 1176,
+   "vram": "0x80101D84"
+  },
+  "func_8010221C": {
+   "scripts": {
+    "saves": 1395,
+    "stunt_end": 690
+   },
+   "size": 548,
+   "vram": "0x8010221C"
+  },
+  "func_80102448": {
+   "scripts": {
+    "stunt_end": 300
+   },
+   "size": 1336,
+   "vram": "0x80102448"
+  },
+  "func_80102980": {
+   "scripts": {},
+   "size": 1456,
+   "vram": "0x80102980"
+  },
+  "func_80102F30": {
+   "scripts": {
+    "saves": 1485,
+    "stunt_end": 990
+   },
+   "size": 3560,
+   "vram": "0x80102F30"
+  },
+  "func_80103D28": {
+   "scripts": {},
+   "size": 2516,
+   "vram": "0x80103D28"
+  },
+  "func_80104B14": {
+   "scripts": {},
+   "size": 2404,
+   "vram": "0x80104B14"
+  },
+  "func_80105480": {
+   "scripts": {
+    "saves": 270
+   },
+   "size": 1780,
+   "vram": "0x80105480"
+  },
+  "func_80105EA8": {
+   "scripts": {
+    "audio_options": 1096,
+    "backward": 2026,
+    "battle": 2011,
+    "circuit": 1936,
+    "ghost_race": 2026,
+    "other_car": 2011,
+    "practice": 2026,
+    "race": 1096,
+    "race_pak": 1216,
+    "race_track2": 1096,
+    "race_track3": 1096,
+    "race_track4": 1096,
+    "saves": 1651,
+    "stunt": 1096,
+    "stunt_end": 9336,
+    "two_player": 1096
+   },
+   "size": 2508,
+   "vram": "0x80105EA8"
+  },
+  "func_80106874": {
+   "scripts": {
+    "audio_options": 106,
+    "backward": 106,
+    "battle": 106,
+    "circuit": 106,
+    "ghost_race": 106,
+    "other_car": 106,
+    "practice": 106,
+    "race": 106,
+    "race_pak": 106,
+    "race_track2": 106,
+    "race_track3": 106,
+    "race_track4": 106,
+    "saves": 106,
+    "stunt": 106,
+    "stunt_end": 106,
+    "two_player": 106
+   },
+   "size": 712,
+   "vram": "0x80106874"
+  },
+  "func_80106B3C": {
+   "scripts": {
+    "audio_options": 1096,
+    "backward": 2026,
+    "battle": 2011,
+    "circuit": 1936,
+    "ghost_race": 2026,
+    "other_car": 2011,
+    "practice": 2026,
+    "race": 1096,
+    "race_pak": 1216,
+    "race_track2": 1096,
+    "race_track3": 1096,
+    "race_track4": 1096,
+    "saves": 1651,
+    "stunt": 1096,
+    "stunt_end": 9336,
+    "two_player": 1096
+   },
+   "size": 600,
+   "vram": "0x80106B3C"
+  },
+  "func_80107EDC": {
+   "scripts": {
+    "audio_options": 1096,
+    "backward": 2026,
+    "circuit": 1936,
+    "ghost_race": 2026,
+    "other_car": 2011,
+    "practice": 2026,
+    "race": 1096,
+    "race_pak": 1216,
+    "race_track2": 1096,
+    "race_track3": 1096,
+    "race_track4": 1096,
+    "saves": 1651,
+    "two_player": 1096
+   },
+   "size": 632,
+   "vram": "0x80107EDC"
+  },
+  "func_80108154": {
+   "scripts": {
+    "audio_options": 1100,
+    "backward": 2030,
+    "circuit": 1940,
+    "ghost_race": 2030,
+    "other_car": 2015,
+    "practice": 2030,
+    "race": 1100,
+    "race_pak": 1220,
+    "race_track2": 1100,
+    "race_track3": 1100,
+    "race_track4": 1100,
+    "saves": 1655,
+    "two_player": 2196
+   },
+   "size": 896,
+   "vram": "0x80108154"
+  },
+  "func_801084D4": {
+   "scripts": {
+    "audio_options": 1096,
+    "backward": 2026,
+    "circuit": 1936,
+    "ghost_race": 2026,
+    "other_car": 2011,
+    "practice": 2026,
+    "race": 1096,
+    "race_pak": 1216,
+    "race_track2": 1096,
+    "race_track3": 1096,
+    "race_track4": 1096,
+    "saves": 1651,
+    "two_player": 1096
+   },
+   "size": 1500,
+   "vram": "0x801084D4"
+  },
+  "func_80108AB0": {
+   "scripts": {
+    "audio_options": 1096,
+    "backward": 2026,
+    "circuit": 1936,
+    "ghost_race": 2026,
+    "other_car": 2011,
+    "practice": 2026,
+    "race": 1096,
+    "race_pak": 1216,
+    "race_track2": 1096,
+    "race_track3": 1096,
+    "race_track4": 1096,
+    "saves": 1651,
+    "two_player": 1096
+   },
+   "size": 760,
+   "vram": "0x80108AB0"
+  },
+  "func_80109F54": {
+   "scripts": {
+    "audio_options": 1097,
+    "backward": 2027,
+    "circuit": 1937,
+    "ghost_race": 2027,
+    "other_car": 2012,
+    "practice": 2027,
+    "race": 1097,
+    "race_pak": 1217,
+    "race_track2": 1097,
+    "race_track3": 1097,
+    "race_track4": 1097,
+    "saves": 1652,
+    "two_player": 1097
+   },
+   "size": 1504,
+   "vram": "0x80109F54"
+  },
+  "func_8010A53C": {
+   "scripts": {
+    "attract": 2312,
+    "attract_pak": 2370
+   },
+   "size": 616,
+   "vram": "0x8010A53C"
+  },
+  "func_8010A7A4": {
+   "scripts": {},
+   "size": 300,
+   "vram": "0x8010A7A4"
+  },
+  "func_8010A8D0": {
+   "scripts": {},
+   "size": 1500,
+   "vram": "0x8010A8D0"
+  },
+  "func_8010AEAC": {
+   "scripts": {},
+   "size": 1652,
+   "vram": "0x8010AEAC"
+  },
+  "func_8010B5D0": {
+   "scripts": {
+    "audio_options": 195,
+    "race": 90,
+    "race_track2": 90,
+    "race_track3": 90,
+    "race_track4": 90,
+    "saves": 345,
+    "stunt": 90,
+    "stunt_end": 150,
+    "two_player": 90
+   },
+   "size": 556,
+   "vram": "0x8010B5D0"
+  },
+  "func_8010B7FC": {
+   "scripts": {
+    "audio_options": 195,
+    "race": 90,
+    "race_track2": 90,
+    "race_track3": 90,
+    "race_track4": 90,
+    "saves": 240,
+    "stunt": 90,
+    "stunt_end": 150,
+    "two_player": 90
+   },
+   "size": 460,
+   "vram": "0x8010B7FC"
+  },
+  "func_8010B9C8": {
+   "scripts": {
+    "saves": 105
+   },
+   "size": 700,
+   "vram": "0x8010B9C8"
+  },
+  "func_8010BC84": {
+   "scripts": {},
+   "size": 928,
+   "vram": "0x8010BC84"
+  },
+  "func_8010C974": {
+   "scripts": {},
+   "size": 2636,
+   "vram": "0x8010C974"
+  },
+  "func_8010D3C0": {
+   "scripts": {
+    "battle": 8
+   },
+   "size": 704,
+   "vram": "0x8010D3C0"
+  },
+  "func_8010D680": {
+   "scripts": {
+    "battle": 32176
+   },
+   "size": 476,
+   "vram": "0x8010D680"
+  },
+  "func_8010DCFC": {
+   "scripts": {
+    "attract": 1,
+    "attract_pak": 1,
+    "race_track4": 3
+   },
+   "size": 660,
+   "vram": "0x8010DCFC"
+  },
+  "func_8010E8B4": {
+   "scripts": {},
+   "size": 340,
+   "vram": "0x8010E8B4"
+  },
+  "func_8010EA08": {
+   "scripts": {},
+   "size": 2056,
+   "vram": "0x8010EA08"
+  },
+  "func_8010F218": {
+   "scripts": {},
+   "size": 2444,
+   "vram": "0x8010F218"
+  },
+  "func_8010FBE0": {
+   "scripts": {
+    "attract": 17997,
+    "attract_pak": 17997,
+    "audio_options": 3597,
+    "backward": 5397,
+    "battle": 5397,
+    "circuit": 5397,
+    "ghost_race": 5397,
+    "other_car": 5397,
+    "practice": 5397,
+    "race": 3597,
+    "race_pak": 3597,
+    "race_track2": 3597,
+    "race_track3": 3597,
+    "race_track4": 3597,
+    "records": 2397,
+    "saves": 8997,
+    "stunt": 3597,
+    "stunt_end": 21997,
+    "two_player": 3597
+   },
+   "size": 128,
+   "vram": "0x8010FBE0"
+  },
+  "game_late_init": {
+   "scripts": {
+    "attract": 1,
+    "attract_pak": 1,
+    "audio_options": 1,
+    "backward": 1,
+    "battle": 1,
+    "circuit": 1,
+    "ghost_race": 1,
+    "other_car": 1,
+    "practice": 1,
+    "race": 1,
+    "race_pak": 1,
+    "race_track2": 1,
+    "race_track3": 1,
+    "race_track4": 1,
+    "records": 1,
+    "saves": 1,
+    "stunt": 1,
+    "stunt_end": 1,
+    "two_player": 1
+   },
+   "size": 820,
+   "vram": "0x800EEA7C"
+  },
+  "game_loop": {
+   "scripts": {
+    "attract": 9016,
+    "attract_pak": 9016,
+    "audio_options": 1812,
+    "backward": 2712,
+    "battle": 2712,
+    "circuit": 2713,
+    "ghost_race": 2712,
+    "other_car": 2712,
+    "practice": 2712,
+    "race": 1812,
+    "race_pak": 1812,
+    "race_track2": 1812,
+    "race_track3": 1812,
+    "race_track4": 1812,
+    "records": 1204,
+    "saves": 4515,
+    "stunt": 1812,
+    "stunt_end": 11015,
+    "two_player": 1812
+   },
+   "size": 704,
+   "vram": "0x800FD464"
+  },
+  "game_results_exit": {
+   "scripts": {},
+   "size": 1916,
+   "vram": "0x800FFDE8"
+  },
+  "game_results_input": {
+   "scripts": {},
+   "size": 1732,
+   "vram": "0x800FF724"
+  },
+  "game_results_render": {
+   "scripts": {
+    "audio_options": 434
+   },
+   "size": 1164,
+   "vram": "0x800FF298"
+  },
+  "game_results_update": {
+   "scripts": {},
+   "size": 1172,
+   "vram": "0x800FEE04"
+  },
+  "game_timer_display": {
+   "scripts": {
+    "audio_options": 435
+   },
+   "size": 352,
+   "vram": "0x800FECA4"
+  },
+  "ghost_race_setup": {
+   "scripts": {
+    "saves": 1,
+    "stunt_end": 1
+   },
+   "size": 440,
+   "vram": "0x800D510C"
+  },
+  "highscore_entry_anim": {
+   "scripts": {},
+   "size": 188,
+   "vram": "0x80104A58"
+  },
+  "hud_setup": {
+   "scripts": {
+    "attract": 1,
+    "attract_pak": 1,
+    "audio_options": 1,
+    "backward": 1,
+    "battle": 1,
+    "circuit": 1,
+    "ghost_race": 1,
+    "other_car": 1,
+    "practice": 1,
+    "race": 1,
+    "race_pak": 1,
+    "race_track2": 1,
+    "race_track3": 1,
+    "race_track4": 1,
+    "records": 1,
+    "saves": 1,
+    "stunt": 1,
+    "stunt_end": 1,
+    "two_player": 1
+   },
+   "size": 1048,
+   "vram": "0x800C8B8C"
+  },
+  "init_state_continue": {
+   "scripts": {
+    "audio_options": 1,
+    "backward": 1,
+    "battle": 1,
+    "circuit": 1,
+    "ghost_race": 1,
+    "other_car": 1,
+    "practice": 1,
+    "race": 1,
+    "race_pak": 1,
+    "race_track2": 1,
+    "race_track3": 1,
+    "race_track4": 1,
+    "saves": 1,
+    "stunt": 1,
+    "stunt_end": 1,
+    "two_player": 1
+   },
+   "size": 712,
+   "vram": "0x800FAF6C"
+  },
+  "input_deadzone_apply": {
+   "scripts": {
+    "attract": 2390,
+    "attract_pak": 2428,
+    "audio_options": 395,
+    "backward": 1955,
+    "battle": 5786,
+    "circuit": 1865,
+    "ghost_race": 1955,
+    "other_car": 1940,
+    "practice": 1955,
+    "race": 935,
+    "race_pak": 1145,
+    "race_track2": 935,
+    "race_track3": 935,
+    "race_track4": 935,
+    "saves": 1236,
+    "stunt": 935,
+    "stunt_end": 8670,
+    "two_player": 1870
+   },
+   "size": 3580,
+   "vram": "0x800ADD58"
+  },
+  "input_process_controller": {
+   "scripts": {
+    "attract": 21193,
+    "attract_pak": 21585,
+    "audio_options": 4247,
+    "backward": 23293,
+    "battle": 42229,
+    "circuit": 19100,
+    "ghost_race": 22851,
+    "other_car": 20519,
+    "practice": 18562,
+    "race": 7949,
+    "race_pak": 10120,
+    "race_track2": 6522,
+    "race_track3": 7382,
+    "race_track4": 9383,
+    "saves": 11062,
+    "stunt": 3349,
+    "stunt_end": 79328,
+    "two_player": 16101
+   },
+   "size": 1452,
+   "vram": "0x800AD734"
+  },
+  "lap_complete": {
+   "scripts": {
+    "audio_options": 1096,
+    "backward": 2026,
+    "circuit": 1936,
+    "ghost_race": 2026,
+    "other_car": 2011,
+    "practice": 2026,
+    "race": 1096,
+    "race_pak": 1216,
+    "race_track2": 1096,
+    "race_track3": 1096,
+    "race_track4": 1096,
+    "saves": 1651,
+    "two_player": 1096
+   },
+   "size": 1232,
+   "vram": "0x8010761C"
+  },
+  "menu_back": {
+   "scripts": {},
+   "size": 132,
+   "vram": "0x800CBE08"
+  },
+  "menu_controller_remap": {
+   "scripts": {
+    "attract": 7681,
+    "attract_pak": 7739,
+    "audio_options": 361,
+    "backward": 1921,
+    "battle": 1906,
+    "circuit": 1831,
+    "ghost_race": 1921,
+    "other_car": 1906,
+    "practice": 1921,
+    "race": 901,
+    "race_pak": 1111,
+    "race_track2": 901,
+    "race_track3": 901,
+    "race_track4": 901,
+    "saves": 1202,
+    "stunt": 901,
+    "stunt_end": 9082,
+    "two_player": 901
+   },
+   "size": 1548,
+   "vram": "0x800CF69C"
+  },
+  "menu_input_process": {
+   "scripts": {
+    "attract": 20874,
+    "attract_pak": 21222,
+    "audio_options": 46128,
+    "backward": 69627,
+    "battle": 13693,
+    "circuit": 66365,
+    "ghost_race": 77663,
+    "other_car": 70366,
+    "practice": 56599,
+    "race": 40065,
+    "race_pak": 42537,
+    "race_track2": 40011,
+    "race_track3": 39897,
+    "race_track4": 39651,
+    "records": 14602,
+    "saves": 103220,
+    "stunt": 27948,
+    "stunt_end": 225208,
+    "two_player": 60760
+   },
+   "size": 1280,
+   "vram": "0x800B6BEC"
+  },
+  "music_control": {
+   "scripts": {
+    "attract": 7,
+    "attract_pak": 7,
+    "audio_options": 1,
+    "backward": 1,
+    "battle": 1,
+    "circuit": 1,
+    "ghost_race": 1,
+    "other_car": 1,
+    "practice": 1,
+    "race": 1,
+    "race_pak": 1,
+    "race_track2": 1,
+    "race_track3": 1,
+    "race_track4": 1,
+    "saves": 1,
+    "stunt": 1,
+    "stunt_end": 1,
+    "two_player": 1
+   },
+   "size": 992,
+   "vram": "0x800B1B48"
+  },
+  "music_seq_load": {
+   "scripts": {
+    "attract": 42,
+    "attract_pak": 42,
+    "audio_options": 8,
+    "backward": 8,
+    "battle": 6,
+    "circuit": 8,
+    "ghost_race": 2,
+    "other_car": 12,
+    "practice": 3,
+    "race": 8,
+    "race_pak": 8,
+    "race_track2": 8,
+    "race_track3": 8,
+    "race_track4": 8,
+    "saves": 8,
+    "stunt": 3,
+    "stunt_end": 3,
+    "two_player": 10
+   },
+   "size": 1428,
+   "vram": "0x800B15B4"
+  },
+  "object_bytes23_sum": {
+   "scripts": {},
+   "size": 72,
+   "vram": "0x800B7128"
+  },
+  "object_bytes_sum_global": {
+   "scripts": {
+    "attract": 9056,
+    "attract_pak": 8998,
+    "audio_options": 5748,
+    "backward": 1666,
+    "battle": 2629,
+    "circuit": 2512,
+    "ghost_race": 2526,
+    "other_car": 2146,
+    "practice": 2348,
+    "race": 2627,
+    "race_pak": 1726,
+    "race_track2": 2627,
+    "race_track3": 2627,
+    "race_track4": 2627,
+    "records": 7872,
+    "saves": 12056,
+    "stunt": 3121,
+    "stunt_end": 7620,
+    "two_player": 2924
+   },
+   "size": 84,
+   "vram": "0x800B3F50"
+  },
+  "object_create": {
+   "scripts": {
+    "attract": 2396,
+    "attract_pak": 2280,
+    "audio_options": 1508,
+    "backward": 1433,
+    "battle": 5810,
+    "circuit": 1718,
+    "ghost_race": 1721,
+    "other_car": 1583,
+    "practice": 1448,
+    "race": 1508,
+    "race_pak": 1268,
+    "race_track2": 1508,
+    "race_track3": 1508,
+    "race_track4": 1508,
+    "records": 4196,
+    "saves": 2798,
+    "stunt": 2605,
+    "stunt_end": 10785,
+    "two_player": 1818
+   },
+   "size": 112,
+   "vram": "0x800B42F0"
+  },
+  "particle_collision": {
+   "scripts": {},
+   "size": 1012,
+   "vram": "0x800B8820"
+  },
+  "particle_lifetime_set": {
+   "scripts": {
+    "audio_options": 5,
+    "backward": 5,
+    "battle": 5,
+    "circuit": 6,
+    "ghost_race": 5,
+    "other_car": 5,
+    "practice": 5,
+    "race": 5,
+    "race_pak": 5,
+    "race_track2": 5,
+    "race_track3": 5,
+    "race_track4": 5,
+    "records": 2,
+    "saves": 5,
+    "stunt": 5,
+    "stunt_end": 5,
+    "two_player": 5
+   },
+   "size": 732,
+   "vram": "0x800B8374"
+  },
+  "particle_render": {
+   "scripts": {},
+   "size": 448,
+   "vram": "0x800B8650"
+  },
+  "particles_update": {
+   "scripts": {
+    "audio_options": 1096,
+    "backward": 2026,
+    "circuit": 1936,
+    "ghost_race": 2026,
+    "other_car": 2011,
+    "practice": 2026,
+    "race": 1096,
+    "race_pak": 1216,
+    "race_track2": 1096,
+    "race_track3": 1096,
+    "race_track4": 1096,
+    "saves": 1651,
+    "stunt": 1096,
+    "stunt_end": 9336,
+    "two_player": 1096
+   },
+   "size": 1464,
+   "vram": "0x800B7A40"
+  },
+  "physics_float_calc": {
+   "scripts": {
+    "attract": 8998,
+    "attract_pak": 8998,
+    "audio_options": 1798,
+    "backward": 2698,
+    "battle": 4903,
+    "circuit": 2698,
+    "ghost_race": 2998,
+    "other_car": 2698,
+    "practice": 2698,
+    "race": 1798,
+    "race_pak": 1798,
+    "race_track2": 1798,
+    "race_track3": 1798,
+    "race_track4": 1798,
+    "records": 1198,
+    "saves": 4498,
+    "stunt": 1798,
+    "stunt_end": 10998,
+    "two_player": 3088
+   },
+   "size": 1176,
+   "vram": "0x8009EBC0"
+  },
+  "physics_response": {
+   "scripts": {
+    "attract": 7,
+    "attract_pak": 7,
+    "audio_options": 5,
+    "backward": 5,
+    "battle": 1,
+    "circuit": 5,
+    "ghost_race": 5,
+    "other_car": 5,
+    "practice": 5,
+    "race": 5,
+    "race_pak": 5,
+    "race_track2": 5,
+    "race_track3": 5,
+    "race_track4": 5,
+    "saves": 5,
+    "stunt": 1,
+    "stunt_end": 1,
+    "two_player": 5
+   },
+   "size": 920,
+   "vram": "0x800B93A8"
+  },
+  "playgame_state_change": {
+   "scripts": {
+    "attract": 9015,
+    "attract_pak": 9015,
+    "audio_options": 1811,
+    "backward": 2711,
+    "battle": 2711,
+    "circuit": 2712,
+    "ghost_race": 2711,
+    "other_car": 2711,
+    "practice": 2711,
+    "race": 1811,
+    "race_pak": 1811,
+    "race_track2": 1811,
+    "race_track3": 1811,
+    "race_track4": 1811,
+    "records": 1203,
+    "saves": 4514,
+    "stunt": 1811,
+    "stunt_end": 11014,
+    "two_player": 1811
+   },
+   "size": 2544,
+   "vram": "0x800CA3B4"
+  },
+  "props_render": {
+   "scripts": {
+    "attract": 7,
+    "attract_pak": 7,
+    "audio_options": 1,
+    "backward": 1,
+    "battle": 1,
+    "circuit": 1,
+    "ghost_race": 1,
+    "other_car": 1,
+    "practice": 1,
+    "race": 1,
+    "race_pak": 1,
+    "race_track2": 1,
+    "race_track3": 1,
+    "race_track4": 1,
+    "saves": 1,
+    "stunt": 1,
+    "stunt_end": 1,
+    "two_player": 1
+   },
+   "size": 2180,
+   "vram": "0x800F6AB8"
+  },
+  "race_finish": {
+   "scripts": {
+    "audio_options": 1096,
+    "backward": 2026,
+    "circuit": 1936,
+    "ghost_race": 2026,
+    "other_car": 2011,
+    "practice": 2026,
+    "race": 1096,
+    "race_pak": 1216,
+    "race_track2": 1096,
+    "race_track3": 1096,
+    "race_track4": 1096,
+    "saves": 1651,
+    "two_player": 1096
+   },
+   "size": 1000,
+   "vram": "0x80107AF4"
+  },
+  "race_position_update": {
+   "scripts": {
+    "audio_options": 100,
+    "backward": 85,
+    "battle": 281,
+    "circuit": 100,
+    "ghost_race": 100,
+    "other_car": 205,
+    "practice": 100,
+    "race": 100,
+    "race_pak": 100,
+    "race_track2": 100,
+    "race_track3": 100,
+    "race_track4": 100,
+    "records": 540,
+    "saves": 3355,
+    "stunt": 100,
+    "stunt_end": 1090,
+    "two_player": 281
+   },
+   "size": 484,
+   "vram": "0x800BE7BC"
+  },
+  "render_replay_ui": {
+   "scripts": {
+    "audio_options": 4,
+    "backward": 4,
+    "battle": 4,
+    "circuit": 4,
+    "ghost_race": 4,
+    "other_car": 4,
+    "practice": 4,
+    "race": 4,
+    "race_pak": 4,
+    "race_track2": 4,
+    "race_track3": 4,
+    "race_track4": 4,
+    "saves": 4,
+    "stunt": 4,
+    "stunt_end": 4,
+    "two_player": 4
+   },
+   "size": 132,
+   "vram": "0x800D7D40"
+  },
+  "render_results_screen": {
+   "scripts": {
+    "audio_options": 1,
+    "backward": 1,
+    "battle": 1,
+    "circuit": 1,
+    "ghost_race": 1,
+    "other_car": 1,
+    "practice": 1,
+    "race": 1,
+    "race_pak": 1,
+    "race_track2": 1,
+    "race_track3": 1,
+    "race_track4": 1,
+    "saves": 1,
+    "stunt": 1,
+    "stunt_end": 1,
+    "two_player": 1
+   },
+   "size": 196,
+   "vram": "0x800D7DC4"
+  },
+  "render_thread_entry": {
+   "scripts": {
+    "attract": 1,
+    "attract_pak": 1,
+    "audio_options": 1,
+    "backward": 1,
+    "battle": 1,
+    "circuit": 1,
+    "ghost_race": 1,
+    "other_car": 1,
+    "practice": 1,
+    "race": 1,
+    "race_pak": 1,
+    "race_track2": 1,
+    "race_track3": 1,
+    "race_track4": 1,
+    "records": 1,
+    "saves": 1,
+    "stunt": 1,
+    "stunt_end": 1,
+    "two_player": 1
+   },
+   "size": 268,
+   "vram": "0x800E7808"
+  },
+  "render_viewport_init": {
+   "scripts": {
+    "attract": 7681,
+    "attract_pak": 7739,
+    "audio_options": 361,
+    "backward": 1921,
+    "battle": 1906,
+    "circuit": 1831,
+    "ghost_race": 1921,
+    "other_car": 1906,
+    "practice": 1921,
+    "race": 901,
+    "race_pak": 1111,
+    "race_track2": 901,
+    "race_track3": 901,
+    "race_track4": 901,
+    "saves": 1202,
+    "stunt": 901,
+    "stunt_end": 9082,
+    "two_player": 901
+   },
+   "size": 924,
+   "vram": "0x800FA9B4"
+  },
+  "replay_save_prompt": {
+   "scripts": {},
+   "size": 1540,
+   "vram": "0x800DABDC"
+  },
+  "save_settings": {
+   "scripts": {},
+   "size": 584,
+   "vram": "0x800DE20C"
+  },
+  "save_write_data": {
+   "scripts": {
+    "backward": 3,
+    "circuit": 3,
+    "other_car": 1,
+    "race_pak": 1,
+    "saves": 1,
+    "stunt_end": 10
+   },
+   "size": 1200,
+   "vram": "0x800AF06C"
+  },
+  "skid_mark_render": {
+   "scripts": {
+    "attract": 7688,
+    "attract_pak": 7746,
+    "audio_options": 362,
+    "backward": 1922,
+    "battle": 1907,
+    "circuit": 1832,
+    "ghost_race": 1922,
+    "other_car": 1907,
+    "practice": 1922,
+    "race": 902,
+    "race_pak": 1112,
+    "race_track2": 902,
+    "race_track3": 902,
+    "race_track4": 902,
+    "saves": 1203,
+    "stunt": 902,
+    "stunt_end": 9083,
+    "two_player": 902
+   },
+   "size": 1396,
+   "vram": "0x800F0100"
+  },
+  "slot_state_lookup": {
+   "scripts": {
+    "attract": 532,
+    "attract_pak": 532,
+    "audio_options": 539,
+    "backward": 536,
+    "battle": 540,
+    "circuit": 537,
+    "ghost_race": 536,
+    "other_car": 537,
+    "practice": 536,
+    "race": 535,
+    "race_pak": 535,
+    "race_track2": 536,
+    "race_track3": 537,
+    "race_track4": 536,
+    "records": 532,
+    "saves": 670,
+    "stunt": 536,
+    "stunt_end": 537,
+    "two_player": 538
+   },
+   "size": 188,
+   "vram": "0x800A2504"
+  },
+  "slot_state_setup": {
+   "scripts": {
+    "attract": 26054,
+    "attract_pak": 26170,
+    "audio_options": 22233,
+    "backward": 35032,
+    "battle": 12865,
+    "circuit": 33566,
+    "ghost_race": 31484,
+    "other_car": 35306,
+    "practice": 26558,
+    "race": 20437,
+    "race_pak": 21549,
+    "race_track2": 20410,
+    "race_track3": 20353,
+    "race_track4": 20230,
+    "records": 5402,
+    "saves": 53394,
+    "stunt": 14771,
+    "stunt_end": 125286,
+    "two_player": 26673
+   },
+   "size": 232,
+   "vram": "0x800B4200"
+  },
+  "sound_bank_unload": {
+   "scripts": {
+    "attract": 42,
+    "attract_pak": 42,
+    "audio_options": 8,
+    "backward": 8,
+    "battle": 6,
+    "circuit": 8,
+    "ghost_race": 2,
+    "other_car": 12,
+    "practice": 3,
+    "race": 8,
+    "race_pak": 8,
+    "race_track2": 8,
+    "race_track3": 8,
+    "race_track4": 8,
+    "saves": 8,
+    "stunt": 3,
+    "stunt_end": 3,
+    "two_player": 10
+   },
+   "size": 1248,
+   "vram": "0x800B10D4"
+  },
+  "sound_loop_set": {
+   "scripts": {},
+   "size": 332,
+   "vram": "0x800B574C"
+  },
+  "sound_position_update": {
+   "scripts": {
+    "attract": 56,
+    "audio_options": 21095,
+    "backward": 86833,
+    "battle": 25017,
+    "circuit": 83640,
+    "ghost_race": 38664,
+    "other_car": 87304,
+    "practice": 48536,
+    "race": 43708,
+    "race_pak": 53494,
+    "race_track2": 38619,
+    "race_track3": 41174,
+    "race_track4": 42971,
+    "records": 452,
+    "saves": 57757,
+    "stunt": 4756,
+    "stunt_end": 45781,
+    "two_player": 43800
+   },
+   "size": 444,
+   "vram": "0x800951E0"
+  },
+  "stat_race_start": {
+   "scripts": {},
+   "size": 1068,
+   "vram": "0x800FE080"
+  },
+  "state_utility": {
+   "scripts": {
+    "attract": 10378,
+    "attract_pak": 10784,
+    "audio_options": 45112,
+    "backward": 68789,
+    "battle": 12855,
+    "circuit": 65527,
+    "ghost_race": 76825,
+    "other_car": 69528,
+    "practice": 55761,
+    "race": 39049,
+    "race_pak": 41699,
+    "race_track2": 38995,
+    "race_track3": 38881,
+    "race_track4": 38635,
+    "records": 13764,
+    "saves": 102382,
+    "stunt": 26932,
+    "stunt_end": 224370,
+    "two_player": 59744
+   },
+   "size": 396,
+   "vram": "0x800B71D4"
+  },
+  "stunt_combo_display": {
+   "scripts": {
+    "attract": 42,
+    "attract_pak": 42,
+    "audio_options": 7,
+    "backward": 10,
+    "battle": 2,
+    "circuit": 10,
+    "ghost_race": 3,
+    "other_car": 8,
+    "practice": 1,
+    "race": 8,
+    "race_pak": 8,
+    "race_track2": 8,
+    "race_track3": 8,
+    "race_track4": 8,
+    "saves": 8,
+    "stunt": 1,
+    "stunt_end": 11,
+    "two_player": 10
+   },
+   "size": 4700,
+   "vram": "0x800D3B28"
+  },
+  "suspension_setup": {
+   "scripts": {
+    "attract": 1,
+    "attract_pak": 1,
+    "audio_options": 1,
+    "backward": 1,
+    "battle": 1,
+    "circuit": 1,
+    "ghost_race": 1,
+    "other_car": 1,
+    "practice": 1,
+    "race": 1,
+    "race_pak": 1,
+    "race_track2": 1,
+    "race_track3": 1,
+    "race_track4": 1,
+    "records": 1,
+    "saves": 1,
+    "stunt": 1,
+    "stunt_end": 1,
+    "two_player": 1
+   },
+   "size": 240,
+   "vram": "0x800A501C"
+  },
+  "time_result_display": {
+   "scripts": {},
+   "size": 332,
+   "vram": "0x800DA174"
+  },
+  "tire_compound_set": {
+   "scripts": {
+    "attract": 18,
+    "attract_pak": 18,
+    "audio_options": 7,
+    "backward": 7,
+    "battle": 7,
+    "circuit": 7,
+    "ghost_race": 7,
+    "other_car": 7,
+    "practice": 7,
+    "race": 7,
+    "race_pak": 7,
+    "race_track2": 7,
+    "race_track3": 7,
+    "race_track4": 7,
+    "records": 4,
+    "saves": 7,
+    "stunt": 7,
+    "stunt_end": 7,
+    "two_player": 7
+   },
+   "size": 372,
+   "vram": "0x800A5BB8"
+  },
+  "track_collision_setup": {
+   "scripts": {
+    "attract_pak": 1,
+    "backward": 1,
+    "battle": 1,
+    "circuit": 1,
+    "ghost_race": 1,
+    "other_car": 1,
+    "practice": 1,
+    "race_pak": 1,
+    "records": 1,
+    "saves": 2,
+    "stunt_end": 1
+   },
+   "size": 468,
+   "vram": "0x800A21A4"
+  },
+  "track_data_decompress": {
+   "scripts": {
+    "saves": 6
+   },
+   "size": 652,
+   "vram": "0x800A1F18"
+  },
+  "track_process_main": {
+   "scripts": {
+    "saves": 1
+   },
+   "size": 1752,
+   "vram": "0x800A2D4C"
+  },
+  "track_render_process": {
+   "scripts": {
+    "attract": 9015,
+    "attract_pak": 9015,
+    "audio_options": 1452,
+    "backward": 810,
+    "battle": 824,
+    "circuit": 900,
+    "ghost_race": 810,
+    "other_car": 824,
+    "practice": 810,
+    "race": 918,
+    "race_pak": 711,
+    "race_track2": 918,
+    "race_track3": 918,
+    "race_track4": 918,
+    "records": 1203,
+    "saves": 1569,
+    "stunt": 918,
+    "stunt_end": 1040,
+    "two_player": 918
+   },
+   "size": 3200,
+   "vram": "0x800A377C"
+  },
+  "track_texture_load": {
+   "scripts": {
+    "saves": 1,
+    "stunt_end": 1
+   },
+   "size": 1348,
+   "vram": "0x800F5F90"
+  },
+  "voice_stop": {
+   "scripts": {
+    "audio_options": 2,
+    "race": 1,
+    "race_track2": 1,
+    "race_track3": 1,
+    "race_track4": 1,
+    "saves": 2,
+    "stunt": 1,
+    "stunt_end": 1,
+    "two_player": 1
+   },
+   "size": 552,
+   "vram": "0x800B438C"
+  },
+  "voice_stop_2": {
+   "scripts": {
+    "attract": 480,
+    "attract_pak": 480,
+    "audio_options": 500,
+    "backward": 520,
+    "battle": 480,
+    "circuit": 500,
+    "ghost_race": 500,
+    "other_car": 500,
+    "practice": 500,
+    "race": 500,
+    "race_pak": 500,
+    "race_track2": 520,
+    "race_track3": 540,
+    "race_track4": 520,
+    "records": 480,
+    "saves": 620,
+    "stunt": 480,
+    "stunt_end": 480,
+    "two_player": 520
+   },
+   "size": 224,
+   "vram": "0x800B4738"
+  },
+  "wheel_render_full": {
+   "scripts": {
+    "attract": 9018,
+    "attract_pak": 9018,
+    "audio_options": 1820,
+    "backward": 2720,
+    "battle": 2720,
+    "circuit": 2721,
+    "ghost_race": 2720,
+    "other_car": 2720,
+    "practice": 2720,
+    "race": 1820,
+    "race_pak": 1820,
+    "race_track2": 1820,
+    "race_track3": 1820,
+    "race_track4": 1820,
+    "records": 1206,
+    "saves": 4523,
+    "stunt": 1820,
+    "stunt_end": 11023,
+    "two_player": 1820
+   },
+   "size": 2072,
+   "vram": "0x800A6BE4"
+  },
+  "world_collision_response": {
+   "scripts": {
+    "attract": 9000,
+    "attract_pak": 9000,
+    "audio_options": 1800,
+    "backward": 2700,
+    "battle": 2700,
+    "circuit": 2700,
+    "ghost_race": 2700,
+    "other_car": 2700,
+    "practice": 2700,
+    "race": 1800,
+    "race_pak": 1800,
+    "race_track2": 1800,
+    "race_track3": 1800,
+    "race_track4": 1800,
+    "records": 1200,
+    "saves": 4500,
+    "stunt": 1800,
+    "stunt_end": 11000,
+    "two_player": 1800
+   },
+   "size": 540,
+   "vram": "0x800EDACC"
+  },
+  "world_effect_update": {
+   "scripts": {},
+   "size": 456,
+   "vram": "0x800EE8B4"
+  },
+  "world_object_destroy": {
+   "scripts": {
+    "attract": 45,
+    "attract_pak": 46
+   },
+   "size": 636,
+   "vram": "0x800EB690"
+  },
+  "world_trigger_activate": {
+   "scripts": {
+    "attract": 35999,
+    "attract_pak": 35999,
+    "audio_options": 7199,
+    "backward": 10799,
+    "battle": 10799,
+    "circuit": 10799,
+    "ghost_race": 10799,
+    "other_car": 10799,
+    "practice": 10799,
+    "race": 7199,
+    "race_pak": 7199,
+    "race_track2": 7199,
+    "race_track3": 7199,
+    "race_track4": 7199,
+    "records": 4799,
+    "saves": 17999,
+    "stunt": 7199,
+    "stunt_end": 43999,
+    "two_player": 7199
+   },
+   "size": 464,
+   "vram": "0x800EE5DC"
+  },
+  "world_trigger_check": {
+   "scripts": {
+    "attract": 9018,
+    "attract_pak": 9018,
+    "audio_options": 1814,
+    "backward": 2714,
+    "battle": 2714,
+    "circuit": 2715,
+    "ghost_race": 2714,
+    "other_car": 2714,
+    "practice": 2714,
+    "race": 1814,
+    "race_pak": 1814,
+    "race_track2": 1814,
+    "race_track3": 1814,
+    "race_track4": 1814,
+    "records": 1206,
+    "saves": 4517,
+    "stunt": 1814,
+    "stunt_end": 11017,
+    "two_player": 1814
+   },
+   "size": 216,
+   "vram": "0x800EDCE8"
+  },
+  "world_velocity_integrate": {
+   "scripts": {
+    "attract": 9000,
+    "attract_pak": 9000,
+    "audio_options": 1800,
+    "backward": 2700,
+    "battle": 2700,
+    "circuit": 2700,
+    "ghost_race": 2700,
+    "other_car": 2700,
+    "practice": 2700,
+    "race": 1800,
+    "race_pak": 1800,
+    "race_track2": 1800,
+    "race_track3": 1800,
+    "race_track4": 1800,
+    "records": 1200,
+    "saves": 4500,
+    "stunt": 1800,
+    "stunt_end": 11000,
+    "two_player": 1800
+   },
+   "size": 712,
+   "vram": "0x800ED804"
+  }
+ },
+ "functions_set": "unmatched",
+ "generated": "2026-10-12",
+ "scripts": [
+  "attract",
+  "attract_pak",
+  "audio_options",
+  "backward",
+  "battle",
+  "circuit",
+  "ghost_race",
+  "other_car",
+  "practice",
+  "race",
+  "race_pak",
+  "race_track2",
+  "race_track3",
+  "race_track4",
+  "records",
+  "saves",
+  "stunt",
+  "stunt_end",
+  "two_player"
+ ],
+ "tree": "cc91b7f0+census",
+ "unmatched_source": "game functions not in blob_matched.lock.json"
+}
