@@ -43,8 +43,93 @@ s32 huft_alloc(s32 arg0)
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_5610/inflate_stored.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_5610/inflate_fixed.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_5610/inflate_dynamic.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_5610/inflate_block.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_5610/inflate_loop.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_5610/inflate_read_bits.s")
+/* PROMOTED 2026-10-12 — inflate_block
+ * Source:   cloud/work/frontier/w26a/sources/inflate_block.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w26a/sources/inflate_block.c:inflate_block (score0); rom_tu.h context: cloud/work/frontier/w26a/ctx53s.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "types.h"
+extern u32 gInflateBitBuf, gInflateBitCount;
+extern u8 *gInflateInPtr, *gInflateInEnd;
+extern s32 inflate_read_bits(void), inflate_dynamic(void), inflate_stored(void), inflate_fixed(void);
+#define NEEDBITS(n) do { while (k < (n)) { u32 word; if (gInflateInPtr < gInflateInEnd) { gInflateInPtr += 2; word = gInflateInPtr[-2] | (gInflateInPtr[-1] << 8); } else word = inflate_read_bits(); b |= word << k; k += 16; } } while (0)
+#define DUMPBITS(n) do { b >>= (n); k -= (n); } while (0)
+s32 inflate_block(s32 *last) {
+    u32 t;
+    register u32 b = gInflateBitBuf, k = gInflateBitCount;
+
+    NEEDBITS(1);
+    *last = b & 1;
+    DUMPBITS(1);
+    NEEDBITS(2);
+    t = b & 3;
+    DUMPBITS(2);
+    gInflateBitBuf = b;
+    gInflateBitCount = k;
+    if (t == 2) return inflate_dynamic();
+    if (t == 0) return inflate_stored();
+    if (t == 1) return inflate_fixed();
+    return 1;
+}
+
+/* PROMOTED 2026-10-12 — inflate_loop
+ * Source:   cloud/work/frontier/w26a/sources/inflate_loop.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w26a/sources/inflate_loop.c:inflate_loop (score0); rom_tu.h context: cloud/work/frontier/w26a/ctx53s.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+extern s32 inflate_block(s32 *last);
+s32 inflate_loop(void) {
+    s32 e;
+
+    gInflateBitCount = 0;
+    gInflateBitBuf = 0;
+    do {
+        if (inflate_block(&e) != 0) {
+            return 1;
+        }
+    } while (!e);
+    return 0;
+}
+
+/* PROMOTED 2026-10-12 — inflate_read_bits
+ * Source:   cloud/work/frontier/w26a/sources/inflate_read_bits.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w26a/sources/inflate_read_bits.c:inflate_read_bits (score0); rom_tu.h context: cloud/work/frontier/w26a/ctx53s.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+#include "PR/os_message.h"
+#include "PR/os_pi.h"
+extern u32 gInflateSrc;
+extern s32 gInflateToggle;
+extern u8 gInflateBufferA[], gInflateBufferB[];
+extern OSIoMesg gInflateDmaState;
+extern OSMesgQueue gInflateMsgQueue;
+extern void osInvalDCache(void *, s32);
+extern s32 osPiStartDma(OSIoMesg *, s32, s32, u32, void *, u32, OSMesgQueue *);
+s32 inflate_read_bits(void) {
+    OSMesg msg;
+    u8 *next;
+
+    while (osRecvMesg(&gInflateMsgQueue, &msg, OS_MESG_NOBLOCK) == -1) {
+    }
+    if (gInflateToggle) {
+        gInflateInPtr = gInflateBufferA;
+        next = gInflateBufferB;
+        gInflateToggle = 0;
+    } else {
+        gInflateInPtr = gInflateBufferB;
+        gInflateToggle = 1;
+        next = gInflateBufferA;
+    }
+    gInflateInEnd = gInflateInPtr + 4096;
+    gInflateSrc += 4096;
+    osInvalDCache(gInflateInPtr, 4096);
+    osPiStartDma(&gInflateDmaState, 0, 0, gInflateSrc, next, 4096, &gInflateMsgQueue);
+    gInflateInPtr += 2;
+    return gInflateInPtr[-2] | (gInflateInPtr[-1] << 8);
+}
+
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_5610/inflate_entry.s")
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_5610/inflate_entry_alt.s")
