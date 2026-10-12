@@ -1,0 +1,25 @@
+### #353
+image B: group spliced ['func_80391650']; image gate byte-identical, sha256 b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd
+overlay A:     75/193 functions, 43112/194128 bytes (22.21%; 28.19% of 152952 B text) — compressed into the ROM at 0xB5C534
+overlay B:     15/49 functions, 6496/43888 bytes (14.80%; 16.78% of 38708 B text) — compressed into the ROM at 0xB6FEC4
+rc=0
+### #356
+image B: group spliced ['func_8038D798']; image gate byte-identical, sha256 b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd
+overlay A:     75/193 functions, 43112/194128 bytes (22.21%; 28.19% of 152952 B text) — compressed into the ROM at 0xB5C534
+overlay B:     16/49 functions, 7232/43888 bytes (16.48%; 18.68% of 38708 B text) — compressed into the ROM at 0xB6FEC4
+rc=0
+### #358
+image B: group spliced ['func_80390B00', 'func_80390B08', 'func_80390B10', 'func_80390D38']; image gate byte-identical, sha256 b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd
+overlay A:     75/193 functions, 43112/194128 bytes (22.21%; 28.19% of 152952 B text) — compressed into the ROM at 0xB5C534
+overlay B:     20/49 functions, 8352/43888 bytes (19.03%; 21.58% of 38708 B text) — compressed into the ROM at 0xB6FEC4
+rc=0
+### #354
+image A: group spliced ['func_8039D05C', 'func_8039D300', 'func_8039D494', 'func_8039E200', 'func_8039E3BC', 'func_8039ED20']; image gate byte-identical, sha256 0d6702c320df84cc6cbc3c5967dde08d44b6e476e110667fe2a43dc2dd536667
+overlay A:     76/193 functions, 43516/194128 bytes (22.42%; 28.45% of 152952 B text) — compressed into the ROM at 0xB5C534
+overlay B:     20/49 functions, 8352/43888 bytes (19.03%; 21.58% of 38708 B text) — compressed into the ROM at 0xB6FEC4
+rc=0
+### #355
+image A: group spliced ['func_803AAF0C', 'func_803AB5FC', 'func_803AB848', 'func_803AC330', 'func_803AC54C', 'func_803AC7F4', 'func_803ACA94', 'func_803ACD5C', 'func_803ACF5C', 'func_803AD0D4']; image gate byte-identical, sha256 0d6702c320df84cc6cbc3c5967dde08d44b6e476e110667fe2a43dc2dd536667
+overlay A:     77/193 functions, 44700/194128 bytes (23.03%; 29.22% of 152952 B text) — compressed into the ROM at 0xB5C534
+overlay B:     20/49 functions, 8352/43888 bytes (19.03%; 21.58% of 38708 B text) — compressed into the ROM at 0xB6FEC4
+rc=0
