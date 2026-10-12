@@ -267,3 +267,31 @@ Results (rocky, 2026-10-12; default script = BOOT_LOG's race presses, frame-cloc
 | `draft_engine_sound_sync` (w21h best.c, 8 rows off) | DIFFERENT at frame 706 (6 frames into the race): D_8011024C 0xC -> 0x2, D_80110288 0x14 -> 0xA, the free-list links at 0x80142C64+ |
 | `draft_func_800D7634` (w21h best.c) | NOT EXERCISED (the script never opens the audio-options screen) |
 | all 678 buildable matched `src/blob` functions at once | DIFFERENT at frame 1, only func_800E7710's function-local static (its address is sent as an SI message: placement, not behaviour) |
+
+## RDRAM accessors (optional native path; Astra PR #325, imported by w22p, 2026-10-12)
+
+`rdram.h` and `game_rdram.h` are the accessor layer the `native` mode above lacks. They are standalone
+C11/C++11 headers: nothing in `replace.py` or the runtime uses them yet, and the default replacement path
+stays `ido`. A native replacement that uses them keeps every guest pointer as a `rush_addr` (`uint32_t`)
+token and reads/writes guest memory only through checked accessors; an unchanged matched source does
+not become safe by including them.
+
+- Layout: N64Recomp 81213c18's word-swapped rdram (`MEM_B` = addr^3, `MEM_H` = addr^2, `MEM_W`
+  unswizzled, `LD`/`SD` high word first). `rush_rdram memory = {rdram, allocated_size}`.
+- `rush_rdram_read_KIND(&memory, addr, &out)` / `rush_rdram_write_KIND(&memory, addr, v)` for
+  `u8/u16/u32/u64/s8/s16/s32/s64/f32/f64/addr`; return `bool`, KSEG0 inside the allocation only, any
+  alignment, no partial write on failure. `rush_addr_from_gpr` accepts zero- or sign-extended o32 values.
+- `game_rdram.h`: a `rush_rdram_view {memory, base}` and `rush_TYPE_read_FIELD` / `rush_TYPE_write_FIELD`
+  for every named non-padding field of `include/game_types.h`. `tests/recomp/test_rdram.py` recomputes the
+  o32 offsets from the header with pycparser, so a `game_types.h` change that moves a field fails the test
+  until the table is reconciled.
+
+```bash
+python3 -m pytest tests/recomp/test_rdram.py -q -p no:cacheprovider
+RUSH_N64RECOMP_INCLUDE=/path/to/N64Recomp/include python3 -m pytest tests/recomp/test_rdram.py -q  # upstream MEM_* cross-check
+```
+
+Not imported from #325: `gen_wrapper.py` / `o32_abi.h` (a second o32 wrapper generator next to
+`replace.py`'s `render_wrapper`; its guest-pointer adapter mode belongs in `replace.py` as an option of
+`native` mode when a replacement first uses the accessors) and `.github/workflows/recomp-fixtures.yml`
+(GitHub CI scope is the owner's call; `make test-fast` runs only `tests/conveyor tests/cloud`, so run `python3 -m pytest tests/recomp -q -p no:cacheprovider` after recomp changes).
