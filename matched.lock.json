@@ -1,4 +1,13 @@
 {
+  "cloud/work/frontier/w26a/sources/inflate_free_window.c:inflate_free_window": {
+    "body_sha256": "921743e6e58fcd7e9b41e78f5bd0453e9113c0a0fcae1c8d33b70daee0d9b280",
+    "compiler": "ido5.3s",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "inflate_free_window",
+    "toolkit_sha": "8bdf0caebc9ada9612b9dae9422948e37bd119e663e9dda8bb8fdbb7acd96682",
+    "verified": "score0",
+    "verified_at": "2026-10-12"
+  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
