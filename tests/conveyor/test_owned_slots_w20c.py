@@ -3,8 +3,9 @@
 func_8001B9F8 owns, with co-owner func_8001BE14, lib_1a660's .rodata at
 0x8002D8D0 (their two 6-entry jump tables, 0x30); func_80021548 owns lib_21210's
 .rodata at 0x8002D930 (one table + IDO's 8-byte section pad, 0x20);
-func_80023BDC owns the first 0x14 bytes of lib_22300's .rodata at 0x8002D950
-(a 4-byte logical extent: func_80023E9C's table follows at 0x8002D964).
+func_80023BDC owned the first 0x14 bytes of lib_22300's .rodata at 0x8002D950
+(a 4-byte logical extent: func_80023E9C's table follows at 0x8002D964); since
+w22i it co-owns the whole 0x1E0 section with func_80023E9C.
 
 A logical-extent table is validated as a complete word-relocated table on
 every build, so its passthrough companion spells each word `.word OWNER + off`.
@@ -21,7 +22,9 @@ REPO = Path(__file__).resolve().parents[2]
 SLOTS = [
     ("func_8001B9F8", ["func_8001B9F8", "func_8001BE14"], 0x8002D8D0, 0x30, False),
     ("func_80021548", ["func_80021548"], 0x8002D930, 0x20, False),
-    ("func_80023BDC", ["func_80023BDC"], 0x8002D950, 0x14, True),
+    # w22i grew this row with func_80023E9C's promotion (replace_slot): both
+    # tables + IDO's 4-byte pad, a complete 16-aligned section.
+    ("func_80023BDC", ["func_80023BDC", "func_80023E9C"], 0x8002D950, 0x1E0, False),
 ]
 
 
