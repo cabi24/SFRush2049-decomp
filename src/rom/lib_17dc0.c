@@ -663,7 +663,110 @@ void func_8001824C(void)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80018448.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_17dc0/func_80018634.s")
+/* PROMOTED 2026-10-11 — func_80018634
+ * Source:   cloud/work/frontier/w23a/sources/func_80018634.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w23a/sources/func_80018634.c:func_80018634 (score0); rom_tu.h context: cloud/work/frontier/w23a/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+typedef struct SequenceEvent_80018634 { u32 time; u8 program; u8 controller; u16 unknown06; u16 code; union { u16 jump; struct { s8 first; s8 second; } bytes; } value; } SequenceEvent_80018634;
+typedef struct SequenceHeader_80018634 { u32 unknown00; u32 patterns; u32 channels; u32 unknown0C; u32 unknown10; u32 loop_time; } SequenceHeader_80018634;
+typedef struct SequencePattern_80018634 { u32 unknown00; u32 optional04; u32 optional08; u8 data[1]; } SequencePattern_80018634;
+typedef struct SequenceEventTrack_80018634 { SequenceEvent_80018634 *start; SequenceEvent_80018634 *cursor; u32 fraction; u32 time; } SequenceEventTrack_80018634;
+typedef struct SequencePlayback_80018634 { u32 counter00; u32 counter04; u32 counter08; u8 *cursor; u8 *optional10; u8 *optional14; u16 value18; u16 value1A; u32 counter1C; u32 counter20; u8 channel; s8 second; s8 first; u8 index; } SequencePlayback_80018634;
+typedef struct SequenceContextHead_80018634 { u8 unknown000[0x10C]; SequenceHeader_80018634 *sequence; } SequenceContextHead_80018634;
+#define HEADER (((SequenceContextHead_80018634 *)D_8004BE80)->sequence)
+#define TRACK(i) (((SequenceEventTrack_80018634 *)D_8004BE80->unknown128)[i])
+#define PLAY(i) (((SequencePlayback_80018634 *)D_8004BE80->tracks568)[i])
+extern void func_80017824(u8, u8);
+extern void func_80018B3C(unsigned int);
+u8 func_80018634(void)
+{
+    int u1, u2, u3, u4; /* unused: frame residual, see header */
+    int i;
+    u8 first_loop;
+    u8 active;
+    SequenceEvent_80018634 *event;
+    SequenceHeader_80018634 *sequence;
+    u32 *patterns;
+    SequencePattern_80018634 *pattern;
+    u32 sum;
+    u32 index;
+    first_loop = 1;
+    active = 0;
+    for (i = 0; i < 64; i++) {
+        if (TRACK(i).cursor != 0) {
+            active = 1;
+            while (TRACK(i).time + D_8004BE80->half120 >= TRACK(i).cursor->time) {
+                event = TRACK(i).cursor;
+                switch (event->code) {
+                case 0xFFFF:
+                    TRACK(i).cursor = 0;
+                    goto next_track;
+                case 0xFFFE:
+                    if (D_8004BE80->disabledFC5 != 0) {
+                        TRACK(i).cursor = 0;
+                        goto next_track;
+                    }
+                    index = event->value.jump;
+                    TRACK(i).cursor = TRACK(i).start + index;
+                    TRACK(i).time = HEADER->loop_time;
+                    TRACK(i).fraction = 0;
+                    if (first_loop) {
+                        first_loop = 0;
+                        func_80018B3C(HEADER->loop_time);
+                        D_8004BE80->valueFC6++;
+                    }
+                    break;
+                default:
+                    sequence = HEADER;
+                    patterns = (u32 *)(sequence->patterns + (u32)sequence);
+                    index = event->code;
+                    pattern = (SequencePattern_80018634 *)(patterns[index] + (u32)sequence);
+                    PLAY(i).counter04 = 0;
+                    PLAY(i).counter00 = 0;
+                    PLAY(i).cursor = pattern->data;
+                    PLAY(i).counter08 = 0;
+                    if (pattern->optional04) {
+                        PLAY(i).optional10 = (u8 *)(pattern->optional04 + (u32)HEADER);
+                    } else {
+                        PLAY(i).optional10 = 0;
+                    }
+                    PLAY(i).counter1C = 0;
+                    PLAY(i).value18 = 0x2000;
+                    if (pattern->optional08) {
+                        PLAY(i).optional14 = (u8 *)(pattern->optional08 + (u32)HEADER);
+                    } else {
+                        PLAY(i).optional14 = 0;
+                    }
+                    PLAY(i).counter20 = 0;
+                    PLAY(i).value1A = 0;
+                    sequence = HEADER;
+                    PLAY(i).channel = ((u8 *)(sequence->channels + (u32)sequence))[i];
+                    PLAY(i).second = event->value.bytes.second;
+                    PLAY(i).first = event->value.bytes.first;
+                    PLAY(i).index = i;
+                    if (event->program != 0xFF) {
+                        func_80017720(D_8004BE80, event->program, PLAY(i).channel);
+                    }
+                    if (event->controller != 0xFF) {
+                        func_80017824(event->controller, PLAY(i).channel);
+                    }
+                    TRACK(i).cursor++;
+                    break;
+                }
+            }
+            sum = TRACK(i).fraction + D_8004BE80->fraction118;
+            TRACK(i).fraction = sum & 0xFFFF;
+            sum >>= 16;
+            TRACK(i).time = TRACK(i).time + sum + D_8004BE80->whole11C;
+        }
+next_track:
+        ;
+    }
+    return active;
+}
+
 /* PROMOTED 2026-10-11 — func_8001897C
  * Source:   cloud/work/frontier/w18c/sources/func_8001897C.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
