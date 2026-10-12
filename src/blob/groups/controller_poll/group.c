@@ -418,7 +418,7 @@ typedef struct {
     f32 unk0;
     f32 unk4;
 } D_80156958_Entry;
-extern D_80156958_Entry D_80156958[4];
+D_80156958_Entry D_80156958[4];
 typedef struct {
     u8 pad0000[0x9CC0];
     OSMesgQueue unk9CC0;
@@ -3706,30 +3706,35 @@ void process_inputs(void);
 #define gHeld         ((s32 *) &D_80149B30)
 #define gPrevPressed  ((s32 *) &D_80149B10)
 #define gConnected    D_80149B64
-#define gStickRaw     ((s8 (*)[2]) &D_80149B50)
-#define gStickCal     ((s8 (*)[2]) &D_80149AF8)
+#define gStickRaw     ((volatile s8 (*)[2]) &D_80149B50)
+#define gStickCal     ((volatile s8 (*)[2]) &D_80149AF8)
 #define gRepeatTime   ((u32 (*)[32]) &D_80149B90)
 #define gStick        D_80156958
+
+/* controller_poll: w24d match (cloud/work/frontier/w24d/RESULTS.md). The pad state is read through volatile views
+ * (gStickRaw, gStickCal, gPadHeld); `if (b == 0) continue;` in the button loop. No shaping devices. */
+typedef struct { u8 pad[636]; volatile s32 tick; } SysBlk;
+#define gPadHeld ((volatile u32 *) D_80156978)
+#define gTick (((SysBlk *) &D_8002E8E8)->tick)
 
 /* read the pads: sticks, held/pressed masks and auto-repeat per button */
 void controller_poll(void)
 {
     s32 i;
     s32 b;
-    s32 held;
+    s32 raw;
+    u32 held;
     u32 mask;
     s32 connected;
-    f32 repeat;
     f32 x;
+    f32 y;
 
     osRecvMesg((OSMesgQueue *) &D_801497A8, NULL, 1);
     if (gResetTick != 0) {
         gResetTick = 0;
-        D_80111958 = game_loop_tick;
+        D_80111958 = gTick;
     }
-    D_80156944 = 0;
-    D_80149784 = 0;
-    D_8015694C = 0;
+    D_8015694C = D_80149784 = D_80156944 = 0;
     if (gSkipFrames != 0) {
         gSkipFrames--;
         for (i = 0; i < 4; i++) {
@@ -3743,18 +3748,20 @@ void controller_poll(void)
         osSendMesg((OSMesgQueue *) &D_801497A8, NULL, 0);
         return;
     }
-    repeat = D_80123F94;
     for (i = 0; i < 4; i++) {
-        x = func_800C9590(1.0f, gStickCal[i][0], gStickRaw[i][0]);
-        gStick[i].unk4 = func_800C9590(1.0f, gStickCal[i][1], gStickRaw[i][1]);
+        raw = gStickRaw[i][0];
+        x = func_800C9590(1.0f, gStickCal[i][0], raw);
+        raw = gStickRaw[i][1];
+        y = func_800C9590(1.0f, gStickCal[i][1], raw);
         gStick[i].unk0 = x;
-        D_80156978[i] = gHeld[i];
-        held = D_80156978[i];
+        gPadHeld[i] = gHeld[i];
+        held = gPadHeld[i];
+        gStick[i].unk4 = y;
         D_80156998[i] = gPrevPressed[i];
         gPrevPressed[i] = 0;
         D_80143A00[i] = 0;
         if (held != 0) {
-            D_80111958 = game_loop_tick;
+            D_80111958 = gTick;
         }
         connected = gConnected[i];
         if (connected) {
@@ -3762,17 +3769,18 @@ void controller_poll(void)
             D_80156944 |= held;
         }
         for (b = 0; b < 32; b++) {
-            if (b != 0) {
-                mask = 1 << b;
-                if (held & mask) {
-                    if (gRepeatTime[i][b] == 0 ||
-                        (u32) (s32) (repeat * D_8002AFB4) < game_loop_tick - gRepeatTime[i][b]) {
-                        D_80143A00[i] |= mask;
-                        gRepeatTime[i][b] = game_loop_tick;
-                    }
-                } else {
-                    gRepeatTime[i][b] = 0;
+            if (b == 0) {
+                continue;
+            }
+            mask = 1 << b;
+            if (held & mask) {
+                if (gRepeatTime[i][b] == 0 ||
+                    (u32) (s32) (0.2f * D_8002AFB4) < gTick - gRepeatTime[i][b]) {
+                    gRepeatTime[i][b] = gTick;
+                    D_80143A00[i] |= mask;
                 }
+            } else {
+                gRepeatTime[i][b] = 0;
             }
         }
         if (connected) {

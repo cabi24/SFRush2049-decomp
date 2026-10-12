@@ -243,6 +243,11 @@
    "name": "D_8012E688",
    "file": "src/blob/groups/gfx_modes/object_render.c",
    "reason": "gfx_modes compiles the locked single object_render.c as context because sound_init stores this s64 cache with one shared lui, which needs a definition in the group's program; in the shadow unit the locked src/blob/object_render.c is the one definition"
+  },
+  {
+   "name": "D_80156958",
+   "file": "src/blob/groups/controller_poll/group.c",
+   "reason": "controller_poll's two gStick stores share one lui, which needs D_80156958 defined in the group's program (w24d); in the shadow unit the group file is the one definition, the other units see it extern"
   }
  ],
  "data_align": [

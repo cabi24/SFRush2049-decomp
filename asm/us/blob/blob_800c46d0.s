@@ -5289,6 +5289,7 @@ func_800C9590:
 .section .text.controller_poll, "ax", @progbits
 .globl controller_poll
 controller_poll:
+    /* compiled from src/blob/controller_poll.c */
     .word 0x27BDFFA8
     .word 0xAFBF0054
     .word 0x3C048015

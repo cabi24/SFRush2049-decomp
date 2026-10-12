@@ -867,6 +867,15 @@
     "verified": "image_gate",
     "verified_at": "2026-10-11"
   },
+  "controller_poll": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "controller_poll",
+    "source": "src/blob/groups/controller_poll/group.json",
+    "source_sha256": "c2df7db0691d00563780abe1f339f42f876bd4f5a353f9559bda270b726f3e10",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-12"
+  },
   "controller_rumble_thunk": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
     "source": "src/blob/controller_rumble_thunk.c",
@@ -4190,10 +4199,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "controller_poll",
     "source": "src/blob/groups/controller_poll/group.json",
-    "source_sha256": "851e1120f6b603cd3ace6bfbcec373c871d4fae7843d9449da4811ab90bf6775",
+    "source_sha256": "c2df7db0691d00563780abe1f339f42f876bd4f5a353f9559bda270b726f3e10",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-12"
   },
   "func_800CA2F8": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -7246,10 +7255,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "controller_poll",
     "source": "src/blob/groups/controller_poll/group.json",
-    "source_sha256": "851e1120f6b603cd3ace6bfbcec373c871d4fae7843d9449da4811ab90bf6775",
+    "source_sha256": "c2df7db0691d00563780abe1f339f42f876bd4f5a353f9559bda270b726f3e10",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-12"
   },
   "player_state_clear": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
@@ -7272,10 +7281,10 @@
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "controller_poll",
     "source": "src/blob/groups/controller_poll/group.json",
-    "source_sha256": "851e1120f6b603cd3ace6bfbcec373c871d4fae7843d9449da4811ab90bf6775",
+    "source_sha256": "c2df7db0691d00563780abe1f339f42f876bd4f5a353f9559bda270b726f3e10",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-12"
   },
   "players_frame_update": {
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
