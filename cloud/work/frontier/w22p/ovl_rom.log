@@ -1,0 +1,13 @@
+image A: rebuilt image (53 locked functions) -> 80272 B stream ebd4b2c19a1a4966… == ROM -> /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w22p/build/ovl/ovl_a.deflate
+image B: rebuilt image (10 locked functions) -> 23639 B stream 0e1292c1a5b2df46… == ROM -> /home/cburnes/projects/rush2049-decomp/.claude/worktrees/w22p/build/ovl/ovl_b.deflate
+ROM build (game blob + both runtime-image streams composed): SHA-1 EXACT
+  Verifying built ROM hash...
+  build/us/rush2049.us.z64: OK
+  ROM matches!
+  build/us/rush2049.us.z64: OK
+  ROM matches!
+  MAKE=0 TEST=0
+
+real	0m4.409s
+user	0m0.974s
+sys	0m0.062s
