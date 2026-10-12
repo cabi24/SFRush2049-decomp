@@ -123,7 +123,57 @@ void func_80010D74(void)
 }
 
 #pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80010DD8.s")
-#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_11640/func_80010E80.s")
+/* PROMOTED 2026-10-11 — func_80010E80
+ * Source:   cloud/work/frontier/w22c/sources/func_80010E80.c (in-repo, locked)
+ * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Evidence: lock:cloud/work/frontier/w22c/sources/func_80010E80.c:func_80010E80 (score0); rom_tu.h context: cloud/work/frontier/w22c/ctx71_O2.jsonl
+ * Gate:     full-ROM SHA-1 (promotion transaction)
+ */
+typedef struct AudioConfiguration_80010E80 { unsigned short duration; unsigned short delays[8]; unsigned char gains[8]; unsigned char count; unsigned char feedback; unsigned char mode; unsigned char unknown1D; short filter[4]; } AudioConfiguration_80010E80;
+typedef struct AudioDelayState_80010E80 { void *buffer; unsigned int length; unsigned short count; unsigned short feedback; unsigned int delays[8]; unsigned short gains[8]; unsigned int unknown3C; short filter[4]; } AudioDelayState_80010E80;
+extern void *D_800382F0;
+extern void *D_800382E8;
+extern int D_800382EC;
+extern void func_80014594(void);
+extern void func_800145DC(void);
+void func_80010E80(void *configuration)
+{
+    unsigned int count;
+    AudioDelayState_80010E80 *state;
+    unsigned int i;
+    if (D_800382F0 != 0) {
+        count = ((AudioConfiguration_80010E80 *)configuration)->duration * D_8003828C / 1000;
+        count = 192 - count % 192 + count;
+        state = D_80038018(72, 0);
+        state->buffer = D_800382F0;
+        i = count * 2;
+        bzero(state->buffer, i);
+        osWritebackDCache(state->buffer, i);
+        state->length = count;
+        state->feedback = ((AudioConfiguration_80010E80 *)configuration)->feedback << 8;
+        state->count = ((AudioConfiguration_80010E80 *)configuration)->count;
+        for (i = 0; i < ((AudioConfiguration_80010E80 *)configuration)->count; i++) {
+            state->delays[i] = (((AudioConfiguration_80010E80 *)configuration)->delays[i] * D_8003828C / 1000 + 3) & 0xFFFC;
+            state->gains[i] = ((AudioConfiguration_80010E80 *)configuration)->gains[i] << 8;
+        }
+        if (((AudioConfiguration_80010E80 *)configuration)->mode == 1) {
+            for (i = 0; i < 4; i++) {
+                state->filter[i] = ((AudioConfiguration_80010E80 *)configuration)->filter[i];
+            }
+        } else {
+            state->filter[0] = 0;
+            state->filter[1] = 0;
+            state->filter[2] = 0;
+            state->filter[3] = 32767;
+        }
+        osWritebackDCache(state, 72);
+        func_80014594();
+        D_800382EC = 0;
+        D_800382E8 = state;
+        func_800145DC();
+    }
+}
+
 /* PROMOTED 2026-10-04 — func_80011074
  * Source:   cloud/matches/boot_tail/func_80011074.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
