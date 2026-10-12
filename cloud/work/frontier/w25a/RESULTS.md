@@ -78,3 +78,58 @@ PROMOTED 2 (684 B) @ 6c5ca4f2
 (`ok` requires `ROM matches!` in the same output.) Context rows `ctx53_sched.jsonl` recomputed on the builder at
 the current rom_tu.h (identical to w24s's rows). Devices (from w24b/w24s, in the source headers): compiled-out
 assertion blocks, volatile timestamps, two unreferenced placeholders D_8002EB6C/D_8002EB88.
+
+## Job 2: libultra rename leads - all 5 PROVEN and applied, plus 1 more (6 renames)
+
+Method (w24t): ultralib VERSION_J `-D_FINALROM` compiled on the builder with the project IDO 5.3 at the holding
+TUs' locked flagsets (`rename/prove.sh`), whole `.text` compared with the ROM, relocations by value (w24t's
+`compare.py`; log `rename/prove.log`):
+- `io/contpfs.c` -g0 -O2 (lib_f700): `RESULT: IDENTICAL (736 words, 52 relocated fields compared by value, 0 differing
+  words)` at 0x8000EB00: `__osRepairPackId` +0x170 -> 0x8000EC70 (project `__osRepairId`), `__osCheckPackId` +0x4C0
+  -> 0x8000EFC0 (project `__osCheckId`), and **`__osCheckId` +0x7D0 -> 0x8000F2D0 (project `osPfsReadWriteFile_pages`)**
+  - the doc's old lead, which the permutation needs anyway (the name is freed). Independent confirmation: the
+  legacy `src/libultra/os_pfs_*.c` already declare `__osCheckId(OSPfs *)` at 0x8000F2D0.
+- `os/timerintr.c` -g0 -O1 (lib_cc50): IDENTICAL (256 words, 50 relocated fields); relocations `__osCurrentTime`(+4)
+  -> 0x80037C50/54, `__osBaseCounter` -> 0x80037C58, `__osViIntrCount` -> 0x80037C5C.
+- `io/pfsinitpak.c` -g0 -O2: IDENTICAL (196 words); jal `__osCheckPackId` -> 0x8000EFC0, `__osRepairPackId` -> 0x8000EC70.
+
+| vram | old | new |
+|---|---|---|
+| 0x8000EC70 | __osRepairId | __osRepairPackId |
+| 0x8000EFC0 | __osCheckId | __osCheckPackId |
+| 0x8000F2D0 | osPfsReadWriteFile_pages | __osCheckId |
+| 0x80037C50 | gViTimeAccumHi | __osCurrentTime (OSTime, size:0x8) |
+| 0x80037C58 | gViLastCount | __osBaseCounter |
+| 0x80037C5C | gViRetraceCount | __osViIntrCount |
+
+`gViTimeAccumLo` (0x80037C54) kept: it is only the asm label of `__osCurrentTime`'s low word
+(`targets._typed_data_field_aliases` now folds it to `__osCurrentTime+0x4`). A rename to an invented name was not
+made; the coordinator may retire it later (asm/us/nonmatchings osGetTime.s and __osTimerServicesInit.s use it).
+
+Applied (commit 23f00a95): `static_rename symbols|source|lock|owned rename/renames.json` (src/rom TUs + rom_tu.h only;
+the unbuilt legacy src/libultra and src/os keep their spellings), 12 lock entries (3 re-keyed, 9 rehashed with the
+pure-rename proof), PROMOTED headers retitled by hand, nonmatchings git-mv'd (chain-safe order) and permuted,
+`make extract` (undefined_syms_auto; no other change), boot_tail/blob `symbols.json` + SHA256SUMS and
+src/blob/blob.ld permuted in place (as w24t; `blob_rom produce` would re-sort the 6 keys - reverted, not committed),
+timer_services `owned_existing_storage.PROFILES` revision, rebind copies under `rename/rebind/`, targets.py alias
+base + 2 tests, `tools/recomp/identity.json` (3 functions mapped back to pre-w25a names; data not listed),
+`static_rename.RENAME_TABLES` += w25a table, docs/SYMBOL_MISATTRIBUTION.md section. Tooling fixes found on the
+way (tests in `tests/conveyor/unit/test_static_rename_data.py`): `rewrite_symbols` wrote `type:func` on data
+definitions; `rebind_owned` did not rename a storage block's `aliases` (rom_owned_storage.ld ASSERTs).
+nearest_point_donor receipt re-pinned (`asm/us/blob/symbols.json` = pinned eaf79647 with the table applied, proven).
+
+Gates: builder full ROM (all ROM TUs rebuilt after GATE-CLEAN) `ROM matches!` and `OWNED-OFFSETS: OK 19 ROM TU data
+sections (16 owned slots), 23 named objects checked against retail addresses`; `make check-matched`: all 619
+locked functions intact, ovl 89 intact. `blob_rom rom` equivalent against this lane's builder repo (the CLI's gate
+repo is the shared ~/rush2049/repo and its splice dir /tmp/blobsplice, both off-limits):
+`blob objects: 0 stale singles, 0 stale groups`; produce `spliced 986`, `stream_matches_rom: True`; builder
+`ROM matches!` `MAKE=0 TEST=0`.
+
+Conveyor DB (`~/.conveyor/conveyor.db`): backups in the scratchpad `w25a/conveyor.db.w25a.bak1` (before
+promote_batch), `.bak2` (before the rename work), `.bak3` (11:43 CDT, immediately before the live apply), all with
+the sqlite backup API. Copy run on `.bak2` first (3 renamed, audit clean). Live:
+`python3 -m tools.conveyor.pipeline.targets_rename rename cloud/work/frontier/w25a/rename/db_renames.json` ->
+`renamed 3 rows in /home/cburnes/.conveyor/conveyor.db (...), 0 matrix_entry rows purged`; `targets_rename audit`
+clean (rc 0, no rows). Only the 3 function rows (`db_renames.json`); the inventory has no data targets. promote_batch
+also wrote promotion_record rows for __scMain/__scExec. Until w25a merges, master's layout and the DB disagree on
+these 3 names.
