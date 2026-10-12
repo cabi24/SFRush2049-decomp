@@ -1,0 +1,15 @@
+# After saves.press (same --pak FILE): PLAYER 1 lists the saved player (JUST PLAY, CONTROLLER PAK 1, AAAA, CREATE
+# PLAYER, DELETE PLAYER); its race pause title is "AAAA PAUSED".
+frames 1500
+pak on
+4 START
+7 A
+10 DOWN
+11 DOWN
+13 A
+16 A
+19 A
+22 A
+25 A
+28 A 10
+40 START

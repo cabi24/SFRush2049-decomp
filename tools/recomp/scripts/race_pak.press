@@ -1,0 +1,13 @@
+# The default race with a controller pak (pak flow; race.press is the boot-notice flow): title ~3 s, START GAME
+# (4 START), PLAYER 1 (7 A), JUST PLAY -> SELECT MODE (10 A), SINGLE RACE -> SELECT TRACK (13 A), TRACK 1 -> car
+# (16 A), race (19 A; image B at ~19.5 s), gas.
+frames 1800
+pak on
+4 START
+7 A
+10 A
+13 A
+16 A
+19 A
+22 A
+25 A 30

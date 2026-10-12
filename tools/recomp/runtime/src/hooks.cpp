@@ -10,6 +10,7 @@
 // 0x8038A400: whatever is loaded there is unloaded first.
 #include <algorithm>
 #include <atomic>
+#include <chrono>
 #include <cstdio>
 #include <mutex>
 #include <vector>
@@ -96,6 +97,7 @@ extern "C" void rush_hook_park_idle(uint8_t* rdram, recomp_context* ctx) {
 // delivered synchronously at fixed points, so the loops never spin, and a
 // no-op keeps the oracle's verdicts unchanged.
 extern "C" void yield_self_1ms(uint8_t* rdram);
+static void rush_burst_restart();
 
 namespace {
 std::atomic<uint64_t> spin_yields{0};
@@ -120,4 +122,71 @@ extern "C" void rush_hook_spin(uint8_t* rdram, recomp_context* ctx, uint32_t sit
     }
     spin_yields++;
     yield_self_1ms(rdram);
+    rush_burst_restart();   // a yield is a switch point too (run-burst census below)
+}
+
+// Run-burst census (Phase 6). ultramodern switches game threads only inside
+// libultra calls, so a long computation without one starves every other game
+// thread in wall clock, as the busy-waits above did. The message calls are the
+// switch points the game uses (osRecvMesg blocks, osSendMesg wakes): the time a
+// thread runs between returning from one and entering the next is its burst.
+// The longest burst so far and its end (the caller's ra) are reported when they
+// pass 4 ms and at exit (status field max_burst_ms=). Wall clock only. The first
+// 2 s are left out: the boot inflates and checks the game and image A in one
+// ~25 ms run, before any other thread has work.
+#include "rush_wrap.h"
+extern "C" void osRecvMesg_recomp(uint8_t* rdram, recomp_context* ctx);
+extern "C" void osSendMesg_recomp(uint8_t* rdram, recomp_context* ctx);
+namespace {
+std::mutex burst_mutex;
+double burst_max_ms = 0;
+const auto burst_epoch = std::chrono::steady_clock::now();
+thread_local std::chrono::steady_clock::time_point burst_start{};
+thread_local bool burst_running = false;
+thread_local uint32_t burst_from = 0;   // ra of the call the burst started after
+
+void burst_enter(recomp_context* ctx, const char* call) {
+    if (!burst_running || rush::lockstep_enabled()) return;
+    auto now = std::chrono::steady_clock::now();
+    if (burst_start - burst_epoch < std::chrono::seconds(2)) return;
+    double ms = std::chrono::duration<double, std::milli>(now - burst_start).count();
+    if (ms <= burst_max_ms) return;
+    std::lock_guard<std::mutex> lock(burst_mutex);
+    if (ms <= burst_max_ms) return;
+    bool report = ms >= 4.0 && ms >= 1.25 * burst_max_ms;
+    burst_max_ms = ms;
+    if (report)
+        rush::trace_event("longest game-thread run without a message call so far: %.1f ms, from the call at "
+                          "ra 0x%08X to %s at ra 0x%08X", ms, burst_from, call, (uint32_t)ctx->r31);
+}
+void burst_leave(uint32_t from) {
+    burst_from = from;
+    burst_start = std::chrono::steady_clock::now();
+    burst_running = true;
+}
+}
+
+static void rush_burst_restart() {
+    if (burst_running) burst_leave(0xFFFFFFFF);   // ra unknown here: a busy-wait yield
+}
+
+double rush::max_burst_ms() {
+    std::lock_guard<std::mutex> lock(burst_mutex);
+    return burst_max_ms;
+}
+
+extern "C" void __wrap_osRecvMesg_recomp(uint8_t* rdram, recomp_context* ctx) {
+    burst_enter(ctx, "osRecvMesg");
+    burst_running = false;
+    uint32_t ra = (uint32_t)ctx->r31;
+    __real_osRecvMesg_recomp(rdram, ctx);
+    burst_leave(ra);
+}
+
+extern "C" void __wrap_osSendMesg_recomp(uint8_t* rdram, recomp_context* ctx) {
+    burst_enter(ctx, "osSendMesg");
+    burst_running = false;
+    uint32_t ra = (uint32_t)ctx->r31;
+    __real_osSendMesg_recomp(rdram, ctx);
+    burst_leave(ra);
 }

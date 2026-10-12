@@ -1,6 +1,6 @@
 // Interception of runtime-reimplemented libultra calls (Phase 4, portable).
 //
-// lockstep.cpp and oracle.cpp define __wrap_NAME_recomp for the names below and
+// lockstep.cpp, oracle.cpp and hooks.cpp (Phase 6: run-burst census) define __wrap_NAME_recomp for the names below and
 // call the runtime's own NAME_recomp as __real_NAME_recomp. The build renames
 // every call in the recompiled game to the wrapper with a compile definition
 // on the RecompiledFuncs target (CMakeLists.txt RUSH_WRAPPED: -DNAME=__wrap_NAME),
@@ -17,3 +17,5 @@
 #define __real_osViGetCurrentFramebuffer_recomp osViGetCurrentFramebuffer_recomp
 #define __real_osViGetNextFramebuffer_recomp osViGetNextFramebuffer_recomp
 #define __real_osCreateThread_recomp osCreateThread_recomp
+#define __real_osRecvMesg_recomp osRecvMesg_recomp
+#define __real_osSendMesg_recomp osSendMesg_recomp

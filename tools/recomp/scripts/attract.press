@@ -4,4 +4,5 @@
 # title (image A) 5 s, next demo; the demos cycle the four tracks (race data 0x43FE80, 0x4D2FA0, 0x555850,
 # 0x5D6160). w24r's 9000 idle frames without the START never left the notice (no demo race).
 frames 9000
+pak off   # written for the boot notice NO CONTROLLER PAK DETECTED (v1/v2 flow; Phase 6)
 5 START

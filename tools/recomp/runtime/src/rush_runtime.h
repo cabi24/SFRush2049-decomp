@@ -2,6 +2,7 @@
 #pragma once
 #include <cstddef>
 #include <cstdint>
+#include <filesystem>
 #include <memory>
 #include <string>
 #include <utility>
@@ -30,7 +31,8 @@ std::unique_ptr<ultramodern::renderer::RendererContext> create_rt64_renderer(
 
 // hooks.cpp: rush_hook_spin yields so far (wall clock only)
 uint64_t spin_yield_count();
-void set_spin_yield(bool on);  // --no-spin-yield (diagnostic): the loops spin as in v1
+void set_spin_yield(bool on);
+double max_burst_ms();   // longest game-thread run between message calls (wall clock)  // --no-spin-yield (diagnostic): the loops spin as in v1
 
 // sdl_frontend.cpp (RUSH_RENDERER=rt64): window, events, controller/keyboard
 ultramodern::gfx_callbacks_t::gfx_data_t sdl_create_gfx();
@@ -74,6 +76,14 @@ void set_rumble(int controller, bool on);
 ultramodern::input::connected_device_info_t get_connected_device_info(int controller);
 // --clock frames: scripted input reads game frames / 30 instead of wall time
 void set_frame_clock(bool on);
+void set_fb_dump_every(uint32_t n);
+void trace_final();   // the final status line (lockstep --frames stop)   // --fb-every N (default 30 screen updates)
+
+// pak.cpp: controller pak on controller 1 (Phase 6). on=false: no pak (the runtime's
+// behaviour); persistent=false: the image is never written (lockstep: fixed image).
+void pak_setup(bool on, const std::filesystem::path& path, bool persistent);
+bool pak_present(int channel);
+uint64_t pak_writes();
 
 // oracle.cpp: per-frame rdram/display-list hashes (tools/recomp/oracle.py)
 void oracle_start(const std::string& path, uint64_t stop_frames);

@@ -3,6 +3,7 @@
 # track's race data (first stream after image B 0x43FE80), DOWN x4 and x5 (the last row) load 0x812BE0
 # (then 0x89F220, 0xA680B0, 0xAEA800): another arena. Pixels: gameplay-test package v2 T7.
 frames 1800
+pak off   # written for the boot notice NO CONTROLLER PAK DETECTED (v1/v2 flow; Phase 6)
 5 START
 8 START
 11 A

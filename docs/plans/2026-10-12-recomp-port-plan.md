@@ -404,3 +404,36 @@ tester input: `tools/recomp/reports/v1/REPORT.md`; package v2: `tools/recomp/VER
   first thing every player sees), the untested modes above, controller polish (dead-zone rescale, duplicate line),
   the remaining `register_params` IPA callees, cheaper capture, and the lockstep audio shortfall. The differential
   harness (Phase 3) is now trustworthy on a real GPU with `--mask-renderer`.
+
+## 15. Phase 6 findings (lane w26r, 2026-10-12)
+
+Detail and commands: `tools/recomp/README.md` "Phase 6"; lane notes: `cloud/work/frontier/w26r/RESULTS.md`;
+package v3: `tools/recomp/VERSIONS.md`, `package/CHANGES.md`.
+
+- **Saves: the controller pak works.** The runtime's osPfs* are "no pak" stubs; the host now implements them
+  (`runtime/src/pak.cpp`, calls renamed at compile time) over a 32 KiB `.mpk` image in `--home` (lockstep: a fresh
+  in-memory image, never written). The game uses no EEPROM/SRAM/flash. The boot notice is gone (Midway logo ->
+  title -> attract by itself); PLAYER 1 offers CREATE PLAYER (ENTER YOUR NAME) -> note "RUSH2049"+name, 9 pages,
+  statistics written at race start and on quit; a restart lists the player (PLAYER 1, RECORDS, "AAAA PAUSED").
+  Verified headless lockstep and wall clock, RT64 lockstep pixels, RT64 wall clock (loads the saved note). With a
+  controller pak the game shows "INSERT RUMBLE PAK NOW" at race start (pak swap prompt; faithful).
+- **Scripts declare the pak** (`pak on|off`): all pre-Phase-6 scripts say `pak off` and keep their frames and
+  verdicts; 11 pak-flow scripts cover practice, ghost race, circuit, backward, another car, records, battle (2P),
+  saves/reload, the default race and attract. All reach their mode (RT64 pixels) without a hang; the wall-clock
+  sweep (null renderer, 25 ms DL delay, 16 scripts) hits only known busy-wait sites, and a new run-burst census
+  (longest game-thread run between message calls or yields) is <= 1.1 ms after boot: no starving computation.
+- **Lockstep audio "82 %" was a measurement artifact** (the last per-second status line before the frame stop);
+  the output is 100.0 % of 22050 Hz (WAV 59.986 s for 60.00 virtual s); lockstep stops now print it.
+- **Lockstep + RT64 could still crash** when a software GPU took > 10 s for a frame (the timeout went on while
+  RT64 read the list); the game thread now waits without a timeout.
+- **Pad**: one `controller ->` line per pad; dead zone rescaled; Back/Guide/L3/R3 unmapped on purpose.
+- **Cheaper capture**: lazy re-protection, 333k-call capture 21.0 s -> 15.5 s, identical call log.
+- **ess draft regression**: EQUIVALENT + all calls identical on race, race_track2, two_player, audio_options
+  and the pak-flow saves (8999 calls) and battle (5399 calls) scripts.
+- **Package v3** built and sanity-tested from a fresh extract (INSTALL B, RT64 in the container).
+- **Phase 7 needs**: the v3 tester report (saves by hand, the new modes by ear and eye, the dead zone); IPA
+  table entries for the remaining `register_params` callees (each needs its prototype and register mapping from
+  a call site; not automatable soundly); rumble (the game supports a rumble pak; the host has no rumble output
+  and reports a controller pak); a second pak / players 2-4 paks (only controller 1 has one); GAME OVER menu
+  input in scripts (DOWN did not move it in w26r's scripts); capture cost beyond the page faults (the per-call
+  log formatting); Windows per-call capture.

@@ -162,17 +162,19 @@ recompiled game itself builds on Windows: try it in `build\host-null` and report
 
 ```powershell
 mkdir run\logs -Force | Out-Null
-cmd /c "build\host\rush2049_recomp.exe --renderer null --rom config\rom\rush2049.recomp.z64 --home run\home --seconds 30 --press 5:START 2> run\logs\smoke.txt"
-Select-String -Path run\logs\smoke.txt -Pattern "load game|load ovl|audio ucode|non-silent|removed the ROM|final"
+cmd /c "build\host\rush2049_recomp.exe --renderer null --rom config\rom\rush2049.recomp.z64 --home run\home --seconds 30 2> run\logs\smoke.txt"
+Select-String -Path run\logs\smoke.txt -Pattern "load game|load ovl|audio ucode|non-silent|removed the ROM|pak:|final"
 ```
 
-(`--press 5:START` presses START once at 5 s: it passes the boot notice, after which the game shows its title and
-starts an attract-mode demo race by itself.)
+(Since v3 the program plugs a controller pak into controller 1, saved as `run\home\rush2049.mpk`, so there is
+no boot notice any more: the game shows its title and starts an attract-mode demo race by itself. `--no-pak`
+gives the old boot notice "NO CONTROLLER PAK DETECTED", which waits for START.)
 
-Success: lines `load game: stream ROM 0xB0CB10 -> 0x80086A50`, `load ovl_a: ...`, `removed the ROM copy ...`,
-`audio ucode: recompiled`, `first non-silent audio buffer` (about 5 s in), `load ovl_b: ...` (about 10 s: the
-demo race) and a `final t=30...` status line with `gfx_tasks=` around 900, `audio_nonzero=` well above 0 and
-`image=ovl_b`. This is the same check the coordinator runs on Linux;
+Success: lines `pak: controller 1, new run\home\rush2049.mpk (0 notes used, 123 free pages)` (`loaded` on a
+second run), `pak: osPfsInitPak(channel 0) -> ok`, `load game: stream ROM 0xB0CB10 -> 0x80086A50`,
+`load ovl_a: ...`, `removed the ROM copy ...`, `audio ucode: recompiled`, `first non-silent audio buffer`
+(about 3 s in: the title), `load ovl_b: ...` (about 8 s: the demo race) and a `final t=30...` status line with
+`gfx_tasks=` around 900, `audio_nonzero=` well above 0 and `image=ovl_b`. This is the same check the coordinator runs on Linux;
 continue with `TEST_PROCESS.md`.
 
 ### A10. The windowed game
@@ -212,7 +214,7 @@ RT64-enabled build. It still needs the synthetic ROM:
 cd ~/rush2049/@@PACKAGE@@
 python3 rush/tools/recomp/make_rom.py --rom rom/baserom.us.z64 --manifest config/manifest.json \
         --out config/rom/rush2049.recomp.z64
-prebuilt/linux-x86_64/rush2049_recomp --renderer null --rom config/rom/rush2049.recomp.z64 --home run/home --seconds 30 --press 5:START
+prebuilt/linux-x86_64/rush2049_recomp --renderer null --rom config/rom/rush2049.recomp.z64 --home run/home --seconds 30
 ```
 
 Full build (~10 min on 8 cores):
@@ -232,7 +234,7 @@ CC=clang CXX=clang++ cmake -S rush/tools/recomp/runtime -B build/host -G Ninja \
     -DN64MODERNRUNTIME_DIR=$PWD/src/N64ModernRuntime -DRECOMP_OUT=$PWD/config \
     -DRUSH_RENDERER=rt64 -DRT64_DIR=$PWD/src/rt64
 ninja -C build/host
-build/host/rush2049_recomp --renderer null --rom config/rom/rush2049.recomp.z64 --home run/home --seconds 30 --press 5:START
+build/host/rush2049_recomp --renderer null --rom config/rom/rush2049.recomp.z64 --home run/home --seconds 30
 build/host/rush2049_recomp --rom config/rom/rush2049.recomp.z64 --home run/home 2> run/play.txt   # window
 ```
 

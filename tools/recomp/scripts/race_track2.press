@@ -2,6 +2,7 @@
 # Evidence (w23r): the six race-data streams inflated after image B differ (first one 0x4D2FA0 -> 0x80222200
 # instead of 0x43FE80; RIGHT twice gives 0x555850, LEFT once 0x5D6160: the selector cycles tracks).
 frames 1800
+pak off   # written for the boot notice NO CONTROLLER PAK DETECTED (v1/v2 flow; Phase 6)
 5 START
 8 START
 11 A

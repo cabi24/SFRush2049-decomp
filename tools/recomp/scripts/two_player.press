@@ -3,6 +3,7 @@
 # halfword 2 instead of 1, race image B loads, 460 display lists per frame at frame 1000 instead of 357
 # (split screen). Controller 2 connected but idle: the race never starts (player 2 must confirm).
 frames 1800
+pak off   # written for the boot notice NO CONTROLLER PAK DETECTED (v1/v2 flow; Phase 6)
 5 START
 5.3 START@2
 8 START

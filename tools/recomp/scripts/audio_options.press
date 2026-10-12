@@ -3,6 +3,7 @@
 # reaches func_800D7634; x4 reaches physics_sym, the pause handler's sibling). Inside: up/down move the row
 # (sfx volume, music volume, music track, stereo/mono), left/right change the value (v1 laptop report), B exits.
 frames 1800
+pak off   # written for the boot notice NO CONTROLLER PAK DETECTED (v1/v2 flow; Phase 6)
 5 START
 8 START
 11 A

@@ -224,12 +224,15 @@ void __wrap_osSpTaskStartGo_recomp(uint8_t* rdram, recomp_context* ctx) {
                 n = ++mirror_sent;
             }
             __real_osSpTaskStartGo_recomp(rdram, ctx);
+            // Wait for the renderer however long it takes: going on early lets the game
+            // rebuild a display list the renderer is still reading (w26r: a slow software
+            // GPU took >10 s once, the old timeout went on, RT64 then read a half-built
+            // list: "Unable to find a matching GBI", SIGSEGV).
             std::unique_lock<std::mutex> lock(mirror_mu);
-            if (!mirror_cv.wait_for(lock, std::chrono::seconds(10), [n] { return mirror_done >= n; })) {
-                fprintf(stderr, "[rush] lockstep: renderer did not take gfx task %llu within 10 s\n",
-                        (unsigned long long)n);
-                mirror_done = n;
-            }
+            for (int waited = 10; !mirror_cv.wait_for(lock, std::chrono::seconds(10), [n] { return mirror_done >= n; });
+                 waited += 10)
+                fprintf(stderr, "[rush] lockstep: still waiting for the renderer to take gfx task %llu (%d s)\n",
+                        (unsigned long long)n, waited);
         }
         send(rdram, sp_ev);
         send(rdram, dp_ev);

@@ -20,10 +20,18 @@
 // "# fn" lines name them).
 //
 // Effect = every N64 word of the 8 MiB whose value differs between the
-// call's entry and exit, found by WRITE TRACKING BY PAGE: at entry the 8 MiB
-// of rdram is mprotect'ed read-only; the first write to a 4 KiB page faults,
-// the SIGSEGV handler copies the page's pre-write contents for every open
-// window and makes the page writable again. At exit each copied page is
+// call's entry and exit, found by WRITE TRACKING BY PAGE: at entry every page
+// of rdram is read-only; the first write to a 4 KiB page faults, the SIGSEGV
+// handler copies the page's pre-write contents for every open window and
+// makes the page writable again. Phase 6 (cheaper capture): rdram is made
+// read-only once, at the first window; afterwards the handler records every
+// page it makes writable (inside or outside a window) and a window's entry
+// re-protects only those pages, instead of two 8 MiB mprotects per call
+// (matched10 capture set, race script, 333,252 calls: 21.0 s -> see
+// tools/recomp/README.md Phase 6). Outside windows the first write to a page
+// costs one fault. Consequence: from the first window on, a system call that
+// writes into rdram directly (none in the runtime: ROM, saves and the pak go
+// through host buffers) would fail with EFAULT on a page not yet written. At exit each copied page is
 // compared word by word with its current contents. Host pages are 4 KiB and
 // the runtime keeps rdram word-swapped within each word, so an N64 page is a
 // host page and a host 32-bit word is the N64 word at the same offset.
@@ -81,6 +89,10 @@ uint8_t* ram = nullptr;              // rdram host base (first enter)
 uint8_t* pool = nullptr;
 std::atomic<uint32_t> pool_used{0};
 std::atomic_flag handler_lock = ATOMIC_FLAG_INIT;
+bool armed = false;                  // rdram made read-only once (first window)
+uint8_t writable[kPages];            // page made writable by the handler since the last re-protect
+uint16_t dirty[kPages];              // those pages, in fault order
+uint32_t ndirty = 0;
 
 struct Window {
     bool open = false;
@@ -130,6 +142,10 @@ void on_segv(int sig, siginfo_t* si, void* uctx) {
         win.pages[win.npages++] = (uint16_t)page;
     }
     mprotect(ram + (size_t)page * kPage, kPage, PROT_READ | PROT_WRITE);
+    if (!writable[page]) {
+        writable[page] = 1;
+        dirty[ndirty++] = (uint16_t)page;
+    }
     spin_unlock();
 }
 
@@ -292,9 +308,25 @@ extern "C" void rush_cap_enter(uint8_t* rdram, recomp_context* ctx, int fn) {
     }
     win.npages = 0;
     open_windows++;
+    // (Re-)arm: every page faults once more. The first window protects all of
+    // rdram; later ones re-protect only the pages written since (runs of
+    // consecutive pages in one call).
+    if (!armed) {
+        mprotect(ram, kRamBytes, PROT_READ);
+        armed = true;
+    } else if (ndirty) {
+        std::sort(dirty, dirty + ndirty);
+        for (uint32_t i = 0; i < ndirty;) {
+            uint32_t j = i + 1;
+            while (j < ndirty && dirty[j] == dirty[j - 1] + 1) j++;
+            mprotect(ram + (size_t)dirty[i] * kPage, (size_t)(j - i) * kPage, PROT_READ);
+            for (uint32_t k = i; k < j; k++) writable[dirty[k]] = 0;
+            i = j;
+        }
+    }
+    ndirty = 0;
     spin_unlock();
     tl_stack[tl_depth++] = w;
-    mprotect(ram, kRamBytes, PROT_READ);  // (re-)arm: every page faults once more
     bypass_fn = fn;
 }
 
@@ -332,10 +364,7 @@ extern "C" void rush_cap_exit(uint8_t* rdram, recomp_context* ctx, int fn) {
     cap_log("C %llu %llu %d r=%s w=%u:%016llx%s\n", (unsigned long long)win.seq,
             (unsigned long long)rush::oracle_frames(), fn, ret.c_str(), n, (unsigned long long)h,
             win.overflow ? " overflow" : "");
-    if (--open_windows == 0) {
-        mprotect(ram, kRamBytes, PROT_READ | PROT_WRITE);
-        pool_used = 0;
-    }
+    if (--open_windows == 0) pool_used = 0;   // rdram stays armed: see "cheaper capture" above
     (void)rdram;
 }
 
