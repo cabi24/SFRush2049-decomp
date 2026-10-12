@@ -1,0 +1,476 @@
+{
+  "compiler": "stock IDO 5.3",
+  "contexts": {
+    "func_8039A4D4": {
+      "differing": 623,
+      "errors": [],
+      "extra_words": 0,
+      "total": 716,
+      "unresolved": [],
+      "unverified": []
+    },
+    "func_803A5658": {
+      "differing": 32,
+      "errors": [],
+      "extra_words": 0,
+      "total": 184,
+      "unresolved": [],
+      "unverified": []
+    },
+    "func_803A5948": {
+      "differing": 1025,
+      "errors": [
+        "own .rodata+0x0 referenced at +0x4dc differs from retail 0x803B30C0 (+0x0: retail 00000000, got 3f32b8c2; 4 bytes compared)"
+      ],
+      "extra_words": 0,
+      "total": 1080,
+      "unresolved": [],
+      "unverified": [
+        ".rodata+0x0 at +0x4d8",
+        ".rodata+0x0 at +0x4dc",
+        ".rodata+0x4 at +0x4e4",
+        ".rodata+0x4 at +0x4f8",
+        ".rodata+0x8 at +0x578",
+        ".rodata+0x8 at +0x59c"
+      ]
+    }
+  },
+  "controls": {
+    "baseline": {
+      "differing": 9,
+      "errors": [],
+      "extra_words": 0,
+      "total": 178,
+      "unresolved": [],
+      "unverified": []
+    },
+    "reversed_formals": {
+      "differing": 4,
+      "errors": [],
+      "extra_words": 0,
+      "total": 178,
+      "unresolved": [],
+      "unverified": []
+    },
+    "without_homes": {
+      "differing": 5,
+      "errors": [],
+      "extra_words": 0,
+      "total": 178,
+      "unresolved": [],
+      "unverified": []
+    }
+  },
+  "gnu": {
+    "full_extent_words_exact": true,
+    "owned_bytes": 32,
+    "owned_sha256": "9ea1bb66a6378f13f7839dfa616285e1e92ca1d872a58765691d74ebbf2512a8",
+    "owned_start": "0x803b9594",
+    "relocations": {
+      "func_8039A448": 8,
+      "func_8039B00C": 24,
+      "func_8039B120": 24,
+      "func_8039B214": 52,
+      "func_8039B560": 88,
+      "func_8039B908": 10,
+      "func_8039B988": 10,
+      "func_8039BA28": 13,
+      "func_8039BAE0": 11,
+      "func_8039BB80": 60,
+      "func_8039BE48": 75,
+      "func_8039C140": 162
+    }
+  },
+  "inputs": {
+    "asset_sha256": "f06d4ad0bb7dc7aff494acddc736f1b56bc271a2292c0286879cc9189bec31c8",
+    "call_sites": {
+      "func_8039B908": [
+        {
+          "caller": "func_8039BB80",
+          "offset": "0x1f8"
+        },
+        {
+          "caller": "func_803A5948",
+          "offset": "0x98c"
+        },
+        {
+          "caller": "func_803A5948",
+          "offset": "0xf7c"
+        }
+      ],
+      "func_8039B988": [
+        {
+          "caller": "func_8039BB80",
+          "offset": "0x1d4"
+        },
+        {
+          "caller": "func_803A5948",
+          "offset": "0xef8"
+        }
+      ],
+      "func_8039BB80": [
+        {
+          "caller": "func_8039BE48",
+          "offset": "0x278"
+        }
+      ]
+    },
+    "claims": [
+      "func_8039B120",
+      "func_8039B214",
+      "func_8039BE48",
+      "func_8039A448",
+      "func_8039B00C",
+      "func_8039C140",
+      "func_8039B908",
+      "func_8039B988",
+      "func_8039BA28",
+      "func_8039BAE0",
+      "func_8039B560",
+      "func_8039BB80"
+    ],
+    "context": [
+      "func_8039A4D4",
+      "func_803A5658",
+      "func_803A5948"
+    ],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "image_sha256": "0d6702c320df84cc6cbc3c5967dde08d44b6e476e110667fe2a43dc2dd536667",
+    "keep": [
+      "func_8039C140",
+      "func_803A5948"
+    ],
+    "members": [
+      "func_8039B120",
+      "func_8039B214",
+      "func_8039BE48",
+      "func_8039A448",
+      "func_8039B00C",
+      "func_8039C140",
+      "func_8039B908",
+      "func_8039B988",
+      "func_8039BA28",
+      "func_8039BAE0",
+      "func_8039B560",
+      "func_8039BB80"
+    ],
+    "sources": {
+      "cloud/work/frontier/dot_runtime_a_bb80_20261012/groups/dot_runtime_a_text_helpers_20261006/group.c": "984cc86d0ba49476f1916b3ed4c88d25a8d3b15e87e50bd03e8e247f1c07790f",
+      "cloud/work/frontier/dot_runtime_a_bb80_20261012/groups/dot_runtime_a_text_helpers_20261006/group.json": "ca4732512b25d34f685bd5d19ab8df2392434b7fb7290994c7ee05dd0b747129",
+      "cloud/work/frontier/dot_runtime_a_bb80_20261012/verify.py": "071b1742ca9253ed0bc5a32e1d31096184314d170d37119c6f3296da5ed51a3b",
+      "tests/cloud/test_runtime_a_bb80.py": "d4949499ea99ecfa856088fdf3bba69719904ffde4ed58a2721c749713202f79"
+    },
+    "symbols": {
+      "D_8002EB94": "0x8002eb94",
+      "D_80111784": "0x80111784",
+      "D_8011418C": "0x8011418c",
+      "D_801146BC": "0x801146bc",
+      "D_801146C0": "0x801146c0",
+      "D_801147C8": "0x801147c8",
+      "D_80116FE4": "0x80116fe4",
+      "D_801174BC": "0x801174bc",
+      "D_80140BDC": "0x80140bdc",
+      "D_80149784": "0x80149784",
+      "D_80150B70": "0x80150b70",
+      "D_80150E88": "0x80150e88",
+      "D_80150F7C": "0x80150f7c",
+      "D_801543D4": "0x801543d4",
+      "D_80154450": "0x80154450",
+      "D_80154451": "0x80154451",
+      "D_80154640": "0x80154640",
+      "D_8015694C": "0x8015694c",
+      "D_80156994": "0x80156994",
+      "D_80157244": "0x80157244",
+      "D_803B9A50": "0x803b9a50",
+      "ambient_sound_set": "0x800b3b4c",
+      "ambient_sounds_clear": "0x800b557c",
+      "audio_distance_atten": "0x800b5f4c",
+      "brake_light_update": "0x800a6244",
+      "camera_auto_follow": "0x800be078",
+      "crowd_cheer_play": "0x800b39bc",
+      "dispatch_handler": "0x800b74a0",
+      "entity_flags_apply": "0x80092360",
+      "fcvt_wrapper": "0x800b4360",
+      "func_8008B32C": "0x8008b32c",
+      "func_8008D870": "0x8008d870",
+      "func_8008E06C": "0x8008e06c",
+      "func_80090E9C": "0x80090e9c",
+      "func_80092BC8": "0x80092bc8",
+      "func_800A361C": "0x800a361c",
+      "func_800B24EC": "0x800b24ec",
+      "func_800B5570": "0x800b5570",
+      "func_800B5898": "0x800b5898",
+      "func_800B5940": "0x800b5940",
+      "func_800B669C": "0x800b669c",
+      "func_800BE4F0": "0x800be4f0",
+      "func_800BE6A4": "0x800be6a4",
+      "func_800BEA3C": "0x800bea3c",
+      "func_800ED66C": "0x800ed66c",
+      "func_800F7564": "0x800f7564",
+      "func_800FDF88": "0x800fdf88",
+      "func_8039A448": "0x8039a448",
+      "func_8039A4D4": "0x8039a4d4",
+      "func_8039B00C": "0x8039b00c",
+      "func_8039B120": "0x8039b120",
+      "func_8039B214": "0x8039b214",
+      "func_8039B560": "0x8039b560",
+      "func_8039B908": "0x8039b908",
+      "func_8039B988": "0x8039b988",
+      "func_8039BA28": "0x8039ba28",
+      "func_8039BAE0": "0x8039bae0",
+      "func_8039BB80": "0x8039bb80",
+      "func_8039BE48": "0x8039be48",
+      "func_8039C140": "0x8039c140",
+      "func_803A5658": "0x803a5658",
+      "func_803A5948": "0x803a5948",
+      "main": "0x800020f0",
+      "math_utility": "0x8008d6b0",
+      "memcpy": "0x80007c68",
+      "model_data_load": "0x8008ae8c",
+      "model_transform_setup": "0x8008b0d8",
+      "music_fade": "0x800be9a0",
+      "net_session_update": "0x800f34d8",
+      "object_byte71_set_sync": "0x800cda90",
+      "object_bytes_sum_global": "0x800b3f50",
+      "object_create": "0x800b42f0",
+      "object_manager_update": "0x800b3fa4",
+      "object_type_byte2_get": "0x800b3f00",
+      "particle_lifetime_set": "0x800b8374",
+      "particle_velocity_set": "0x800b82c8",
+      "render_helper": "0x800b65b4",
+      "resource_type_select": "0x800b5fc4",
+      "resource_type_select_simple": "0x800fec60",
+      "sign_extend_call": "0x8008e398",
+      "sound_control": "0x800b37e8",
+      "sound_handles_array_clear": "0x800dc720",
+      "sound_pitch_diff_halved": "0x800b71a0",
+      "sound_stop": "0x800b358c",
+      "stat_race_start": "0x800fe080",
+      "state_utility": "0x800b71d4",
+      "state_word_a": "0x801174b4",
+      "string_copy_format": "0x80092e2c"
+    },
+    "targets": {
+      "func_8039A448": {
+        "address": "0x8039A448",
+        "size": 140,
+        "words_sha256": "f5e9e8be26a945961b37cf1ad621ee9ce3ec5c6a59966f9104b1d978ebe52f10"
+      },
+      "func_8039A4D4": {
+        "address": "0x8039A4D4",
+        "size": 2864,
+        "words_sha256": "7826d0db80410cb7564feaec010112d2c09035e609c1876ee6d3c937dcad92a9"
+      },
+      "func_8039B00C": {
+        "address": "0x8039B00C",
+        "size": 276,
+        "words_sha256": "d91fa2efa5f87db3f169d96218e6ae5c4233977507c23fe39037bc2cd220ac2a"
+      },
+      "func_8039B120": {
+        "address": "0x8039B120",
+        "size": 244,
+        "words_sha256": "b8f30bde6b640dc883c05bc4428dd1804dd7922b8d0a7a54e6f82be182e898e4"
+      },
+      "func_8039B214": {
+        "address": "0x8039B214",
+        "size": 836,
+        "words_sha256": "941ba1455c5219aecc5aa9aef6c0693418a8d7da7d9b606c66d24a0ee7913634"
+      },
+      "func_8039B560": {
+        "address": "0x8039B560",
+        "size": 936,
+        "words_sha256": "40eb767aa098bb2590d8a270fc15baa8f3b094e1d3bf867f371303e54523451a"
+      },
+      "func_8039B908": {
+        "address": "0x8039B908",
+        "size": 128,
+        "words_sha256": "23ff428854b31163ab5bae5530aa7f0896ca9aeee59373867c673c77e83120d2"
+      },
+      "func_8039B988": {
+        "address": "0x8039B988",
+        "size": 152,
+        "words_sha256": "3fc1344a313bd084bae6f44e408dca770049f72808d9b3d6b936846f3e842971"
+      },
+      "func_8039BA28": {
+        "address": "0x8039BA28",
+        "size": 184,
+        "words_sha256": "839033abd873f92f70e5294387bc9125e593793b3038524c7b2eb36130c64612"
+      },
+      "func_8039BAE0": {
+        "address": "0x8039BAE0",
+        "size": 160,
+        "words_sha256": "27ba6b4d8d384979f0f3f04faa4919a3adc4b6dca7e76a0ab37b87fe039031c9"
+      },
+      "func_8039BB80": {
+        "address": "0x8039BB80",
+        "size": 712,
+        "words_sha256": "2bf318022f16e6172798e2b149183686a3573de152b4523a0e01972c73698419"
+      },
+      "func_8039BE48": {
+        "address": "0x8039BE48",
+        "size": 760,
+        "words_sha256": "46e87468c69f68ce1d954378b23832269d49e27d436da45da0fce2989db16d2d"
+      },
+      "func_8039C140": {
+        "address": "0x8039C140",
+        "size": 1984,
+        "words_sha256": "933eab69fe650ebaea822f5492f515e8053d64cfe47b12ad74a1131d508d7ef5"
+      },
+      "func_803A5658": {
+        "address": "0x803A5658",
+        "size": 736,
+        "words_sha256": "7fba11b4a72ed88472b65bdbf6608fda0b126d47fcbe7cb81877f3e391120ba0"
+      },
+      "func_803A5948": {
+        "address": "0x803A5948",
+        "size": 4320,
+        "words_sha256": "1e83bc1f4cec068f226a93f4bf1d8c04b95d88d9951e50193aec7e94dabd0190"
+      }
+    }
+  },
+  "installation": "same-name group extension; independent checker owns installation",
+  "members": {
+    "func_8039A448": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 35,
+        "unresolved": [],
+        "unverified": []
+      },
+      "notes": []
+    },
+    "func_8039B00C": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 69,
+        "unresolved": [],
+        "unverified": []
+      },
+      "notes": []
+    },
+    "func_8039B120": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 61,
+        "unresolved": [],
+        "unverified": []
+      },
+      "notes": []
+    },
+    "func_8039B214": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 209,
+        "unresolved": [],
+        "unverified": []
+      },
+      "notes": []
+    },
+    "func_8039B560": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 234,
+        "unresolved": [],
+        "unverified": []
+      },
+      "notes": [
+        "own .rodata verified at 0x803B9594..0x803B95B4"
+      ]
+    },
+    "func_8039B908": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 32,
+        "unresolved": [],
+        "unverified": []
+      },
+      "notes": []
+    },
+    "func_8039B988": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 38,
+        "unresolved": [],
+        "unverified": []
+      },
+      "notes": []
+    },
+    "func_8039BA28": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 46,
+        "unresolved": [],
+        "unverified": []
+      },
+      "notes": []
+    },
+    "func_8039BAE0": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 40,
+        "unresolved": [],
+        "unverified": []
+      },
+      "notes": []
+    },
+    "func_8039BB80": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 178,
+        "unresolved": [],
+        "unverified": []
+      },
+      "notes": []
+    },
+    "func_8039BE48": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 190,
+        "unresolved": [],
+        "unverified": []
+      },
+      "notes": []
+    },
+    "func_8039C140": {
+      "comparison": {
+        "differing": 0,
+        "errors": [],
+        "extra_words": 0,
+        "total": 496,
+        "unresolved": [],
+        "unverified": []
+      },
+      "notes": []
+    }
+  },
+  "new_exact_code_bytes": 712,
+  "new_landed_image_bytes": 0,
+  "new_rom_verified_bytes": 0,
+  "owned_data_controls": {
+    "absent_rejected": true,
+    "corrupt_rejected": true
+  },
+  "preserved_exact_code_bytes": 5800
+}
