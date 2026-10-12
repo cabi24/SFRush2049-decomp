@@ -1,0 +1,22 @@
+== context rows
+func_80026360 ok 
+func_80026558 ok 
+func_80026640 ok 
+func_800268D0 ok 
+func_80026360 ok ido7.1  2 dropped []
+func_80026558 ok ido7.1  4 dropped []
+func_80026640 ok ido7.1  2 dropped []
+func_800268D0 ok ido7.1  5 dropped []
+== LOCK + TU
+func_80026360: LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared] LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (126 rows) TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_26f60.c additions=lane/ctx71_O2.jsonl preamble (2 stmts, 0 dropped) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (126 rows) RESULT PASS 
+func_80026558: LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared] LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (61 rows) TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_26f60.c additions=lane/ctx71_O2.jsonl preamble (4 stmts, 0 dropped) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (61 rows) RESULT PASS 
+func_80026640: LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared] LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (164 rows) TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_26f60.c additions=lane/ctx71_O2.jsonl preamble (2 stmts, 0 dropped) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (164 rows) RESULT PASS 
+func_800268D0: LOCK flags=[-g0 -O2 -mips2 -G 0 -non_shared] LOCK: true=0 strict=0 reloc_blind=0 objdump-dr identical (962 rows) TU   flags=[-G 0 -mips2 -O2 -non_shared -I include -I include/PR -D_LANGUAGE_C -Wab,-r4300_mul -Xcpluscomm -I src/rom] tu=src/rom/lib_26f60.c additions=lane/ctx71_O2.jsonl preamble (5 stmts, 0 dropped) TU: true=0 strict=0 reloc_blind=0 objdump-dr identical (962 rows) RESULT PASS 
+== all four spliced into lib_26f60 vs the all-passthrough TU (IDO 7.1, Makefile ROM-TU flags, asm-processor)
+1
+lib_26f60: IDENTICAL (1308 lines: .text words+relocs, data sections)
+== spliced lib_26f60 .text linked at 0x80026360 vs baserom 0x26F60+0x1470
+orig: 5232 bytes sha1 e23d075444035d531a9eeca0e23394756d360197
+spl: 5232 bytes sha1 e23d075444035d531a9eeca0e23394756d360197
+rom: 5232 bytes sha1 e23d075444035d531a9eeca0e23394756d360197
+spliced lib_26f60 .text == baserom 0x26F60..0x283D0: IDENTICAL
