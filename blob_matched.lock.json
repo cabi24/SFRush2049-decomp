@@ -252,6 +252,15 @@
     "verified": "image_gate",
     "verified_at": "2026-09-30"
   },
+  "audio_effect_setup": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "engine_sound_sync",
+    "source": "src/blob/groups/engine_sound_sync/group.json",
+    "source_sha256": "27c02db03935cda32a805fb406c74cd35620c90f7d0c5138529489c6440bd342",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-11"
+  },
   "audio_helper": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
     "group": "audio_heap",
@@ -1022,6 +1031,15 @@
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
     "verified_at": "2026-09-30"
+  },
+  "engine_sound_sync": {
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "engine_sound_sync",
+    "source": "src/blob/groups/engine_sound_sync/group.json",
+    "source_sha256": "27c02db03935cda32a805fb406c74cd35620c90f7d0c5138529489c6440bd342",
+    "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+    "verified": "image_gate",
+    "verified_at": "2026-10-11"
   },
   "engine_sound_update": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
@@ -2202,12 +2220,13 @@
     "verified_at": "2026-10-01"
   },
   "func_80098ADC": {
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "source": "src/blob/func_80098ADC.c",
-    "source_sha256": "1105a74f7f2d8cc4c1a7a42caea8321c352d8632dcfeae08746bcec12733cffd",
+    "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "group": "engine_sound_sync",
+    "source": "src/blob/groups/engine_sound_sync/group.json",
+    "source_sha256": "27c02db03935cda32a805fb406c74cd35620c90f7d0c5138529489c6440bd342",
     "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
     "verified": "image_gate",
-    "verified_at": "2026-09-29"
+    "verified_at": "2026-10-11"
   },
   "func_80099B30": {
     "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",

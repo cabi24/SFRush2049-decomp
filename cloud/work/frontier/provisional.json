@@ -39,10 +39,6 @@
   "evidence": "cloud/work/frontier/w8b/func_800A3640",
   "note": "wave 8: EQUAL in the shadow unit only with a stand-in caller; its only caller track_render_process is unmatched"
  },
- "audio_effect_setup": {
-  "evidence": "cloud/work/lean_audio_effect_setup_20261006",
-  "note": "PR #187: strict MATCH in a group whose context func_800988D8 and func_80098FB8 are still NONMATCH (PRs #240, #248)"
- },
  "MaxPathZeroControls": {
   "evidence": "cloud/work/frontier/dot_pak_flush_match_20261006",
   "note": "PR #210: strict MATCH with context func_800A1BB4/A1C6C/A1DD4, track_data_decompress, track_collision_setup and slot_state_lookup, all unmatched"

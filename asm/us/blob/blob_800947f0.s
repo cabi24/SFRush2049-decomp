@@ -1193,6 +1193,7 @@ func_800957F8:
 .section .text.audio_effect_setup, "ax", @progbits
 .globl audio_effect_setup
 audio_effect_setup:
+    /* compiled from src/blob/audio_effect_setup.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x3C0F8014

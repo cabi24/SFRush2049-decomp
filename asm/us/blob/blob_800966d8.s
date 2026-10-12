@@ -2536,6 +2536,7 @@ func_80098ADC:
 .section .text.engine_sound_sync, "ax", @progbits
 .globl engine_sound_sync
 engine_sound_sync:
+    /* compiled from src/blob/engine_sound_sync.c */
     .word 0x27BDFE88
     .word 0xAFBF0074
     .word 0x3C048014

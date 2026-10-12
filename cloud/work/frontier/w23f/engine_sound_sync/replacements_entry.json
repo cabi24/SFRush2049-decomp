@@ -1,0 +1,15 @@
+{
+ "entries": {
+  "draft_engine_sound_sync_ipa": {
+   "function": "engine_sound_sync",
+   "population": "game",
+   "source": "cloud/work/frontier/w23f/engine_sound_sync/oracle.c",
+   "mode": "ido",
+   "state": "draft",
+   "note": "w21h best.c engine_sound_sync body verbatim + static copies of audio_effect_setup (retail s0 param), entity_transform_calc (retail $f22-$f28 params), func_80091AF0/AF8 (retail jr-ra stubs) and func_80098ADC (static): re-runs w22r's frame-706 verdict with callee conventions a standalone compile can honour (w23f)"
+  }
+ },
+ "sets": {
+  "draft_engine_sound_sync_ipa": ["draft_engine_sound_sync_ipa"]
+ }
+}

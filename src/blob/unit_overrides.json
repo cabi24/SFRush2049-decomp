@@ -112,6 +112,14 @@
   {
    "name": "func_800D690C",
    "reason": "constant-1 row predicate (v = 1; return v;) inlined into func_800D7634 and func_800D6914; only the retail stub remains (w22e)"
+  },
+  {
+   "name": "audio_effect_setup",
+   "reason": "takes effect in s0 and clobbers s1/s2 unsaved: IPA convention only valid inside the engine_sound_sync group (w23f)"
+  },
+  {
+   "name": "func_80098ADC",
+   "reason": "inlined gain clamp (hypothesis) of engine_sound_sync; only the retail stub remains (w23f)"
   }
  ],
  "prefer_definition": [
