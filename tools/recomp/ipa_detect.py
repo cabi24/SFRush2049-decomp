@@ -52,7 +52,8 @@ def _f(n):
 
 
 def decode(word):
-    """(reads, writes, is_call) of one MIPS II instruction; register keys are
+    """(reads, writes, is_call) of one MIPS II/III instruction (the 64-bit
+    forms appear in libultra's long-long helpers); register keys are
     ("r", n) / ("f", even n); hi/lo and FP condition codes are left out."""
     op = word >> 26
     rs, rt, rd = (word >> 21) & 31, (word >> 16) & 31, (word >> 11) & 31
@@ -61,7 +62,7 @@ def decode(word):
         fn = word & 63
         if fn in (0, 2, 3):
             reads, writes = {_g(rt)}, {_g(rd)}
-        elif fn in (4, 6, 7):
+        elif fn in (4, 6, 7, 0x14, 0x16, 0x17):        # sllv..srav, dsllv..dsrav
             reads, writes = {_g(rt), _g(rs)}, {_g(rd)}
         elif fn == 8:
             reads = {_g(rs)}
@@ -77,6 +78,8 @@ def decode(word):
             reads, writes = {_g(rs), _g(rt)}, {_g(rd)}
         elif 0x30 <= fn <= 0x36:
             reads = {_g(rs), _g(rt)}
+        elif fn in (0x38, 0x3A, 0x3B, 0x3C, 0x3E, 0x3F):   # dsll..dsra32
+            reads, writes = {_g(rt)}, {_g(rd)}
     elif op == 1:
         reads = {_g(rs)}
         call = rt in (0x10, 0x11, 0x12, 0x13)
@@ -86,18 +89,18 @@ def decode(word):
         reads = {_g(rs), _g(rt)}
     elif op in (6, 7, 0x16, 0x17):
         reads = {_g(rs)}
-    elif 8 <= op <= 0xE:
+    elif 8 <= op <= 0xE or op in (0x18, 0x19, 0x1A, 0x1B, 0x37):   # + daddi(u), ldl/ldr, ld
         reads, writes = {_g(rs)}, {_g(rt)}
     elif op == 0xF:
         writes = {_g(rt)}
     elif op == 0x11:
         fmt, ft, fs, fd = rs, rt, rd, (word >> 6) & 31
         fn = word & 63
-        if fmt == 0:                       # mfc1
+        if fmt in (0, 1):                  # mfc1, dmfc1
             reads, writes = {_f(fs)}, {_g(rt)}
         elif fmt == 2:                     # cfc1
             writes = {_g(rt)}
-        elif fmt == 4:                     # mtc1
+        elif fmt in (4, 5):                # mtc1, dmtc1
             reads, writes = {_g(rt)}, {_f(fs)}
         elif fmt == 6:                     # ctc1
             reads = {_g(rt)}
@@ -112,7 +115,7 @@ def decode(word):
         # lwl/lwr merge into rt, but IDO emits them as a pair that writes
         # the whole register: not a read of rt.
         reads, writes = {_g(rs)}, {_g(rt)}
-    elif 0x28 <= op <= 0x2E:
+    elif 0x28 <= op <= 0x2E or op == 0x3F:  # + sd
         reads = {_g(rs), _g(rt)}
     elif op in (0x31, 0x35):               # lwc1, ldc1
         reads, writes = {_g(rs)}, {_f(rt)}

@@ -89,6 +89,17 @@ def test_lwl_lwr_pair_is_a_write():
     assert d.register_params([lwl, lwr, I(0x2A, 29, 1, 0), JR_RA, NOP]) == []
 
 
+
+def test_mips3_doubleword_ops_write_their_targets():
+    # retail __ll_mul (libultra, -mips3 -o32): sw a0-a3; ld t7/t6; dmultu; mflo; dsll32/dsra32
+    ll_mul = [0xAFA40000, 0xAFA50004, 0xAFA60008, 0xAFA7000C, 0xDFAF0008, 0xDFAE0000, 0x01CF001D,
+              0x00001012, 0x0002183C, 0x0003183F, 0x03E00008, 0x0002103F]
+    assert d.register_params(ll_mul) == []
+    # __ull_to_f head: ld t6; dmtc1 t6,f4; bgez t6; cvt.s.l f0,f4 ...
+    ull_to_f = [0xAFA40000, 0xAFA50004, 0xDFAE0000, 0x44AE2000, 0x05C10005, 0x46A02020, 0x3C014F80,
+                0x44813000, 0x00000000, 0x46060000, 0x03E00008, 0x00000000]
+    assert d.register_params(ull_to_f) == []
+
 # --- object side: which callees a replacement reaches -------------------------
 
 def _elf(callees, defined=()):
