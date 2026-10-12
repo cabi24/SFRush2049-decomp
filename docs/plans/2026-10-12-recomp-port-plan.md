@@ -437,3 +437,37 @@ package v3: `tools/recomp/VERSIONS.md`, `package/CHANGES.md`.
   and reports a controller pak); a second pak / players 2-4 paks (only controller 1 has one); GAME OVER menu
   input in scripts (DOWN did not move it in w26r's scripts); capture cost beyond the page faults (the per-call
   log formatting); Windows per-call capture.
+
+## 16. Phase 7: decomp feedback (lane w27r, 2026-10-12)
+
+Owner decision 2026-10-12: recomp time goes to decompilation feedback, not port polish; no laptop test is waited
+for. Detail and commands: `tools/recomp/README.md` sections "draft_check", "regmap_verify", "Call census"; lane
+notes: `cloud/work/frontier/w27r/RESULTS.md`; package v4: `tools/recomp/VERSIONS.md`, `package/CHANGES.md`.
+
+- **draft_check**: one command (`python3 -m tools.recomp.draft_check [--remote rocky] NAME draft.c`) builds the
+  retail capture side and the draft side of one function (replace.py `ido` mode, IPA shims, `allow_ipa`),
+  incrementally per function (generated files synced by checksum into a persistent build tree: ~30 s first, ~3 s
+  after), runs the census-chosen lockstep scripts in parallel with the retail logs cached per (binary, script),
+  and prints EQUIVALENT over N calls / K scripts (worded as behaviour only, NOT a match), the first divergence
+  (script, frame, call number, argument / return / memory words, retail vs draft) or NEVER CALLED. Works from
+  the Pi (draft, its local headers and include/ copied to rocky's inbox; service tree `~/rush2049/recomp/dc/repo`).
+  Register-parameter functions need `--params` (inbound shim + capture of those registers); callees that write
+  callee-saved registers unsaved get automatic save shims (found on the first real draft: func_800D7634 calls
+  credits_screen and drone_pathfind_main o32 otherwise).
+- **regmap_verify**: live-in registers of the retail body (ipa_detect dataflow, now with the o32 argument
+  registers and forwarded arguments), every static `jal` site with the instruction that set each register, and a
+  capture of every register at every call with the call site from `$ra` (N64Recomp does not write `$ra` on a
+  call; `gen_config --extra-hooks` sets it at each static site). First use: func_800A1DD4 (w27e's claim `a0,t3`)
+  is refuted: a1 (buffer pointer) and a2 (size) are live-in too, t3 = 0/1 by caller.
+- **Census**: 167 of 218 unmatched game functions reached by the 19 scripts; 51 (52,660 B) never: results and
+  end-of-race screens, high-score entry, replay save, controller/save settings, attract demo/video handlers, much of
+  0x8010A000-0x8010F000. `stunt_end.press` (stunt until the timer ends) reaches two more.
+- **Capture**: up to 48 locations per call (was 12); `ra` and `at` are capture registers.
+- **Package v4**: no gameplay change (same pins); the new tools and script.
+- **Phase 8 needs**: scripts that finish a race (results, high score entry, replay save prompt: steering by
+  script or a cheat/time-limit lever) and reach the options screens (controller settings, save settings) and the
+  attract video/demo handlers; draft_check for drafts that are a whole IPA unit (several functions replaced at
+  once, each with its own convention); overlay functions (both images at one vram: per-mode scripts); a
+  `--probe-callees` option in draft_check to localise a divergence inside the draft; a cache-cleanup policy for
+  `~/rush2049/recomp/dc` (trees ~250 MB per function); refreshing the service tree when wave27 moves (the
+  coordinator's rsync line in the README); the v3/v4 tester report when the owner has time.
