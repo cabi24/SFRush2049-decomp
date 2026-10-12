@@ -49,7 +49,23 @@ def baseline_text(path):
 
 
 def baseline_inputs():
-    return baseline_text(TU), json.loads(baseline_text("matched.lock.json"))
+    # BASE predates lane w22g's libultra rename: the TU and its lock pins are
+    # read with today's names (static_rename.renamed_source/renamed_locks).
+    from tools.conveyor.pipeline.static_rename import renamed_locks, renamed_source
+    text = baseline_text(TU)
+    locks = renamed_locks({str(TU): text}, json.loads(baseline_text("matched.lock.json")))
+    return renamed_source(text), locks
+
+
+def renamed_copies(paths, work):
+    """Pinned pre-rename candidate sources, compiled under today's names."""
+    from tools.conveyor.pipeline.static_rename import renamed_source
+    out = {}
+    for fn, path in paths.items():
+        copy = Path(work) / (fn + ".renamed.c")
+        copy.write_text(renamed_source(Path(path).read_text()))
+        out[fn] = copy
+    return out
 
 
 def text_bodies(text):
@@ -192,6 +208,7 @@ def _verify(work, source_text=None, entries=None):
         key = str(source.relative_to(ROOT)) + ":" + fn
         if body_sha(source, fn) != baseline_locks[key]["body_sha256"]:
             raise AssertionError(f"{fn}: original candidate source body changed")
+    paths = renamed_copies(paths, work)
 
     standalone = {}
     for fn, path in paths.items():
@@ -221,7 +238,8 @@ def _verify(work, source_text=None, entries=None):
     old_paths = {}
     for fn, path in paths.items():
         old = work / (fn + ".old.c")
-        old.write_text(baseline_text(path.relative_to(ROOT)))
+        from tools.conveyor.pipeline.static_rename import renamed_source
+        old.write_text(renamed_source(baseline_text(Path("cloud/matches/boot_tail") / (fn + ".c"))))
         old_paths[fn] = old
     old_rows = fit(old_paths, work)
     build(splice(baseline_source, old_paths, old_rows), work, "old_conflict", True)
@@ -245,7 +263,7 @@ def _verify(work, source_text=None, entries=None):
              Path("tools/asm-processor/asm_processor.py"),
              Path("cloud/work/boot_tail_promotion/context_check.py"),
              Path(__file__).relative_to(ROOT)]
-    files += [path.relative_to(ROOT) for path in paths.values()]
+    files += [path.relative_to(ROOT) for path in candidate_paths().values()]
     files += [Path("asm/us/boot_tail") / name for name in manifest]
     files += [Path("asm/us/boot_tail/SHA256SUMS")]
     files += sorted(Path("asm/us/nonmatchings/rom/lib_25bb0").glob("*.s"))

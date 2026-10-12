@@ -52,7 +52,7 @@ extern u8 __osPfsRequestType;
  * No new struct/type definitions are needed. */
 
 /* PI read wrapper uses the currently identified target signature. */
-extern s32 osPiReadWord(u32, u32 *);
+extern s32 __osPiRawReadIo(u32, u32 *);
 
 /* Additional libultra context for verified static packet C2. */
 /* Existing OSTask, OSContStatus, OSContPad, __OSViContext, OSPifRam types suffice.
@@ -125,9 +125,8 @@ typedef u32 OSIntMask;
 
 /* Additional queue context for verified static packet C4. */
 /* Required existing declaration corrections, not conflicting redeclarations:
- * include/PR/os_thread.h's priority-style osSetThreadPri prototype is historically
- * misattributed. Proven body at 0x80006D40 is actually SDK osViSetMode.
- * Delivered ABI signature: void osSetThreadPri(void *mode).
+ * The proven body at 0x80006D40 is SDK osViSetMode (named osSetThreadPri
+ * before w22g; include/PR/os_thread.h declares void osViSetMode(void *mode)).
  * mode points to OSViMode; the body casts it to OSViMode* before assigning it.
  * The second old priority argument is unused and its spill causes a strict
  * mismatch, so the old 2-argument prototype cannot remain for this definition.
@@ -231,15 +230,15 @@ extern OSMesgQueue __osContQueryMsgQ;
 extern OSMesg __osContQueryMesg;
 extern u8 __osSiChannelMask;
 extern s32 __osInsertTimer(void); /* accepted pointer-valued s32 body */
-extern s32 __osContBuildPacket(OSMesgQueue *, u8 *, OSContStatus *);
-extern s32 osPfsGetFileStat(OSPfs *, u8 *, __OSInode *, __OSInodeUnit *);
+extern s32 osContInit(OSMesgQueue *, u8 *, OSContStatus *);
+extern s32 __osPfsGetNextPage(OSPfs *, u8 *, __OSInode *, __OSInodeUnit *);
 #define CONT_BLOCK_DETECT 0x400
 #define CHECK_IPAGE(p) (((p).ipage >= pfs->inode_start_page) && ((p).inode_t.bank < pfs->banks) && ((p).inode_t.page >= 0x01) && ((p).inode_t.page < 0x80))
 /* C6 already supplies ERRCK, PFS_ERR_INVALID/INCONSISTENT, PFS_READ,
  * PFS_PAGE_NOT_USED and inode context. Existing PR headers supply PFS_EOF
  * and PFS_ERR_NOPACK/NEW_PACK/CONTRFAIL; avoid duplicate definitions.
  * OSPri/OS_STATE_STOPPED/OS_STATE_RUNNABLE and thread context already suffice.
- * Existing osCreateViManager(OSThread*,OSPri) is correct, despite its name. */
+ * osSetThreadPri(OSThread*,OSPri) was named osCreateViManager before w22g. */
 
 
 /* Verified canonical PFS identity/motor context, packet C9. */
@@ -260,7 +259,7 @@ extern s32 __osCheckId(OSPfs *, __OSPackId *);
 extern s32 __osGetId(OSPfs *);
 extern s32 __osRepairId(OSPfs *, __OSPackId *, __OSPackId *);
 extern s32 __osTimerInterrupt(OSPfs *); /* actual SDK __osPfsCheckRamArea */
-extern void __osMotorAccess(int, OSPifRam *); /* actual __osMakeMotorData */
+extern void __osMakeMotorData(int, OSPifRam *);
 extern u8 __osContAddressCrc(u16);
 #define SELECT_BANK(pfs,bank) __osPfsSelectBank(pfs,bank)
 #define SET_ACTIVEBANK_TO_ZERO() if(pfs->activebank!=0) { ERRCK(__osPfsSelectBank(pfs,0)); } (void)0
@@ -279,17 +278,17 @@ extern u8 __osContAddressCrc(u16);
 /* Existing C6/C7/C8 macros supply ERRCK, ARRLEN, BLOCKSIZE, CONT_CMD_*,
  * OS_READ/WRITE, PFS_ONE_PAGE. Public PR/os_pfs.h defines PFS_ERR_*,
  * PFS_INITIALIZED, PFS_ID_BROKEN, PFS_MOTOR_INITIALIZED.
- * C8 requires corrected osContStartReadData(OSMesgQueue*,int).
+ * C8 requires __osPfsGetStatus(OSMesgQueue*,int) (osContStartReadData before w22g).
  * Existing C6 osPfsReadWriteFile_pages(OSPfs*) declaration remains correct. */
 
 
-extern s32 osMotorInit(OSPfs *, s32); /* historical SDK __osMotorAccess */
+extern s32 __osMotorAccess(OSPfs *, s32);
 
 /* Verified canonical directory, controller and event context, packet C10. */
 extern s32 __osContLastChannel;
 extern u8 __osPfsDataChecksum(u8 *); /* historical SDK data CRC helper */
-extern s32 osPfsRename(OSPfs *, u16, u32, u8 *, u8 *);
-extern s32 osMotorStart(OSMesgQueue *, OSPfs *, int);
+extern s32 osPfsDeleteFile(OSPfs *, u16, u32, u8 *, u8 *);
+extern s32 osMotorInit(OSMesgQueue *, OSPfs *, int);
 #define PFS_ID_BANK_256K 0
 #define CONT_CMD_READ_PAK 2
 #define CONT_CMD_READ_PAK_TX 3
@@ -299,7 +298,7 @@ typedef struct { OSMesgQueue *messageQueue; OSMesg message; } __OSEventState;
 extern __OSEventState __osEventStateTab[16];
 extern u32 __osShutdown;
 extern u32 gEventTypeFlag;
-extern void osSetEventMesgAlt(OSEvent, OSMesgQueue *, OSMesg);
+extern void osSetEventMesg(OSEvent, OSMesgQueue *, OSMesg);
 #define OS_EVENT_PRENMI 14
 
 /* Verified PFS checker/VI initialization context, packet C11. */
@@ -320,9 +319,9 @@ extern u32 __osTimerCounter;
 extern u32 osGetCount(void);
 
 /* Verified PFS allocation/checker and EPi DMA context, packet C12. */
-extern s32 osPfsGetFileSize(OSPfs *, s32, u8, int, int, u8 *);
+extern s32 osPfsReadWriteFile(OSPfs *, s32, u8, int, int, u8 *);
 extern s32 __osPfsDeclearPage(OSPfs *, __OSInode *, int, int *, u8, int *, int *);
-extern s32 osPiSetDeviceTiming(OSPiHandle *, s32, u32, void *, u32);
+extern s32 __osEPiRawStartDma(OSPiHandle *, s32, u32, void *, u32);
 extern OSPiHandle *__osPiDevList[2];
 #define PFS_CHECK_ID() if(osPfsReadWriteFile_pages(pfs)==PFS_ERR_NEW_PACK) return PFS_ERR_NEW_PACK
 #define ROUND_UP_DIVIDE(n,d) (((n)+(d)-1)/(d))

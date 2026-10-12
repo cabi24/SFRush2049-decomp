@@ -51,7 +51,10 @@ def sha(data):
 
 
 def frozen(path):
-    return subprocess.check_output(['git', 'show', BASE + ':' + path], cwd=ROOT, text=True)
+    text = subprocess.check_output(['git', 'show', BASE + ':' + path], cwd=ROOT, text=True)
+    # BASE predates lane w22g's libultra rename: read its C with today's names.
+    from tools.conveyor.pipeline.static_rename import renamed_source
+    return renamed_source(text) if path.endswith(('.c', '.h')) else text
 
 
 def bodies(text):

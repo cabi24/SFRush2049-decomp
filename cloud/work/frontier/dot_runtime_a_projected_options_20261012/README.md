@@ -17,7 +17,8 @@ callback is complete, kept context, **not a claim**. No locked or production
 source is changed. This draft is research; do not count the preserved helper
 again or install the nonmatching callback.
 
-Base: current master `1a2e0f005462f191ad755ccdcc3482673fc39a07`.
+Research baseline: master `1a2e0f005462f191ad755ccdcc3482673fc39a07`.
+Replayed after current-master refresh `3ef036222`; the source/receipt is unchanged.
 Newly matched bytes: **0**. Existing match preserved: **88 bytes**.
 Accepted-image and full-ROM bytes: **0**. No behavior, hardware, recompression,
 or gameplay equivalence is claimed.

@@ -51,12 +51,12 @@ int func_80024FD4(short *first, unsigned int first_count,
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
 extern void func_80010714(void *, void *, unsigned int);
-extern int osJamMesg(OSMesgQueue *, void *, int);
+extern int osSendMesg(OSMesgQueue *, void *, int);
 void func_8002506C(void *source, void *destination, unsigned int count,
                    OSMesgQueue *queue)
 {
     func_80010714(destination, source, count);
-    osJamMesg(queue, 0, 1);
+    osSendMesg(queue, 0, 1);
 }
 
 /* PROMOTED 2026-10-04 — func_800250AC
@@ -66,13 +66,13 @@ void func_8002506C(void *source, void *destination, unsigned int count,
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
 extern void osCreateMesgQueue(OSMesgQueue *, OSMesg *, int);
-extern int osJamMesg(OSMesgQueue *, OSMesg, int);
+extern int osSendMesg(OSMesgQueue *, OSMesg, int);
 extern OSMesgQueue D_800586A8;
 extern OSMesg D_800586C0;
 void func_800250AC(void)
 {
     osCreateMesgQueue(&D_800586A8, &D_800586C0, 1);
-    osJamMesg(&D_800586A8, 0, 0);
+    osSendMesg(&D_800586A8, 0, 0);
 }
 
 /* PROMOTED 2026-10-05 — func_800250F0
@@ -96,7 +96,7 @@ int func_800250F0(void)
  */
 void func_80025120(int token)
 {
-    osJamMesg(&D_800586A8, 0, 0);
+    osSendMesg(&D_800586A8, 0, 0);
 }
 
 /* PROMOTED 2026-10-05 — func_80025150
@@ -118,9 +118,9 @@ void func_80025150(void)
  */
 #define NULL ((void *)0)
 #define OS_MESG_NOBLOCK 0
-extern s32 osJamMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
+extern s32 osSendMesg(OSMesgQueue *mq, OSMesg msg, s32 flags);
 void func_8002517C(void) {
-    osJamMesg(&D_800586A8, NULL, OS_MESG_NOBLOCK);
+    osSendMesg(&D_800586A8, NULL, OS_MESG_NOBLOCK);
 }
 
 /* PROMOTED 2026-10-05 — func_800251A8

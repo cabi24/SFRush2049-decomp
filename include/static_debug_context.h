@@ -38,7 +38,7 @@ extern s16 gViewportBoundsTable[][8];
 extern OSViMode *gViewportStruct, *gViewportDataPtr;
 extern OSViMode gViModeTableBase[], gViewportBuffer[];
 extern void viewport_scale(float, float), display_update(void);
-extern u32 osSetGlobalIntMask(u32);
+extern u32 osSetIntMask(u32);
 
 extern OSThread gIdleThread, gGameThread;
 extern u8 gStackIdle[];

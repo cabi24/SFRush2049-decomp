@@ -4,13 +4,13 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-/* PROMOTED 2026-10-01 — osPfsGetFileStat
+/* PROMOTED 2026-10-01 — __osPfsGetNextPage (named osPfsGetFileStat before the w22g libultra rename)
  * Source:   cloud/work/static_C8/osPfsGetFileStat.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C8/osPfsGetFileStat.c:osPfsGetFileStat (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-s32 osPfsGetFileStat(OSPfs* pfs, u8* bank, __OSInode* inode, __OSInodeUnit* page) {
+s32 __osPfsGetNextPage(OSPfs* pfs, u8* bank, __OSInode* inode, __OSInodeUnit* page) {
     s32 ret;
 
     if (page->inode_t.bank != *bank) {
@@ -30,13 +30,13 @@ s32 osPfsGetFileStat(OSPfs* pfs, u8* bank, __OSInode* inode, __OSInodeUnit* page
     return 0;
 }
 
-/* PROMOTED 2026-10-01 — osPfsGetFileSize
+/* PROMOTED 2026-10-01 — osPfsReadWriteFile (named osPfsGetFileSize before the w22g libultra rename)
  * Source:   cloud/work/static_C12/osPfsGetFileSize.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C12/osPfsGetFileSize.c:osPfsGetFileSize (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-s32 osPfsGetFileSize(OSPfs* pfs, s32 file_no, u8 flag, int offset, int size_in_bytes, u8* data_buffer) {
+s32 osPfsReadWriteFile(OSPfs* pfs, s32 file_no, u8 flag, int offset, int size_in_bytes, u8* data_buffer) {
     s32 ret;
     __OSDir dir;
     __OSInode inode;
@@ -85,7 +85,7 @@ s32 osPfsGetFileSize(OSPfs* pfs, s32 file_no, u8 flag, int offset, int size_in_b
     cur_page = dir.start_page;
 
     while (cur_block >= PFS_ONE_PAGE) {
-        ERRCK(osPfsGetFileStat(pfs, &bank, &inode, &cur_page));
+        ERRCK(__osPfsGetNextPage(pfs, &bank, &inode, &cur_page));
         cur_block -= PFS_ONE_PAGE;
     }
 
@@ -94,7 +94,7 @@ s32 osPfsGetFileSize(OSPfs* pfs, s32 file_no, u8 flag, int offset, int size_in_b
 
     while (siz_block > 0) {
         if (cur_block == PFS_ONE_PAGE) {
-            ERRCK(osPfsGetFileStat(pfs, &bank, &inode, &cur_page));
+            ERRCK(__osPfsGetNextPage(pfs, &bank, &inode, &cur_page));
             cur_block = 0;
         }
 
@@ -124,7 +124,7 @@ s32 osPfsGetFileSize(OSPfs* pfs, s32 file_no, u8 flag, int offset, int size_in_b
         ERRCK(__osContRamWrite(pfs->queue, pfs->channel, pfs->dir_table + file_no, (u8*)&dir, FALSE));
     }
 
-    ret = osContStartReadData(pfs->queue, pfs->channel);
+    ret = __osPfsGetStatus(pfs->queue, pfs->channel);
     return ret;
 }
 

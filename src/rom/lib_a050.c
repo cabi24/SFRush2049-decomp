@@ -4,13 +4,13 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-/* PROMOTED 2026-10-01 — __osContBuildPacket
+/* PROMOTED 2026-10-01 — osContInit (named __osContBuildPacket before the w22g libultra rename)
  * Source:   cloud/work/static_C8/__osContBuildPacket.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C8/__osContBuildPacket.c:__osContBuildPacket (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-s32 __osContBuildPacket(OSMesgQueue* mq, u8* bitpattern, OSContStatus* data) {
+s32 osContInit(OSMesgQueue* mq, u8* bitpattern, OSContStatus* data) {
     OSMesg dummy;
     s32 ret = 0;
     OSTime t;

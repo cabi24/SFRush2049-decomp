@@ -29,13 +29,13 @@ void osCreatePiManager(OSPri pri, OSMesgQueue* cmdQ, OSMesg* cmdBuf, s32 cmdMsgC
         osPiInit();
     }
 
-    osSetEventMesgAlt(OS_EVENT_PI, &__osPiDmaQueue, (OSMesg)0x22222222);
+    osSetEventMesg(OS_EVENT_PI, &__osPiDmaQueue, (OSMesg)0x22222222);
     oldPri = -1;
-    myPri = dll_get_priority(NULL);
+    myPri = osGetThreadPri(NULL);
 
     if (myPri < pri) {
         oldPri = myPri;
-        osCreateViManager(NULL, pri);
+        osSetThreadPri(NULL, pri);
     }
 
     savedMask = __osDisableInt();
@@ -44,14 +44,14 @@ void osCreatePiManager(OSPri pri, OSMesgQueue* cmdQ, OSMesg* cmdBuf, s32 cmdMsgC
     (*(OSDevMgr *)&__osPiMgrState).cmdQueue = cmdQ;
     (*(OSDevMgr *)&__osPiMgrState).evtQueue = &__osPiDmaQueue;
     (*(OSDevMgr *)&__osPiMgrState).acsQueue = &__osPiMesgQueue;
-    (*(OSDevMgr *)&__osPiMgrState).dma = osPiStartDma;
-    (*(OSDevMgr *)&__osPiMgrState).edma = osPiSetDeviceTiming;
+    (*(OSDevMgr *)&__osPiMgrState).dma = __osPiRawStartDma;
+    (*(OSDevMgr *)&__osPiMgrState).edma = __osEPiRawStartDma;
     osCreateThread(&(*(OSThread *)&gViModeMessage), 0, osSpTaskLoad_full, &(*(OSDevMgr *)&__osPiMgrState), (void *)&__osPiDmaQueue, pri);
     osStartThread(&(*(OSThread *)&gViModeMessage));
 
     __osRestoreInt(savedMask);
 
     if (oldPri != -1) {
-        osCreateViManager(NULL, oldPri);
+        osSetThreadPri(NULL, oldPri);
     }
 }

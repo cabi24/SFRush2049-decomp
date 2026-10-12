@@ -18,14 +18,14 @@ glabel __osInitialize_common
     /* 8AB8 80007EB8 34840800 */   ori       $a0, $a0, (0x1000800 & 0xFFFF)
     /* 8ABC 80007EBC 3C041FC0 */  lui        $a0, (0x1FC007FC >> 16)
     /* 8AC0 80007EC0 348407FC */  ori        $a0, $a0, (0x1FC007FC & 0xFFFF)
-    /* 8AC4 80007EC4 0C0035E8 */  jal        osPiReadIo
+    /* 8AC4 80007EC4 0C0035E8 */  jal        __osSiRawReadIo
     /* 8AC8 80007EC8 27A50034 */   addiu     $a1, $sp, 0x34
     /* 8ACC 80007ECC 10400007 */  beqz       $v0, .L80007EEC
     /* 8AD0 80007ED0 00000000 */   nop
   .L80007ED4:
     /* 8AD4 80007ED4 3C041FC0 */  lui        $a0, (0x1FC007FC >> 16)
     /* 8AD8 80007ED8 348407FC */  ori        $a0, $a0, (0x1FC007FC & 0xFFFF)
-    /* 8ADC 80007EDC 0C0035E8 */  jal        osPiReadIo
+    /* 8ADC 80007EDC 0C0035E8 */  jal        __osSiRawReadIo
     /* 8AE0 80007EE0 27A50034 */   addiu     $a1, $sp, 0x34
     /* 8AE4 80007EE4 1440FFFB */  bnez       $v0, .L80007ED4
     /* 8AE8 80007EE8 00000000 */   nop
@@ -34,7 +34,7 @@ glabel __osInitialize_common
     /* 8AF0 80007EF0 3C041FC0 */  lui        $a0, (0x1FC007FC >> 16)
     /* 8AF4 80007EF4 348407FC */  ori        $a0, $a0, (0x1FC007FC & 0xFFFF)
     /* 8AF8 80007EF8 34AF0008 */  ori        $t7, $a1, 0x8
-    /* 8AFC 80007EFC 0C0035FC */  jal        osPiWriteWord
+    /* 8AFC 80007EFC 0C0035FC */  jal        __osSiRawWriteIo
     /* 8B00 80007F00 01E02825 */   or        $a1, $t7, $zero
     /* 8B04 80007F04 10400009 */  beqz       $v0, .L80007F2C
     /* 8B08 80007F08 00000000 */   nop
@@ -43,7 +43,7 @@ glabel __osInitialize_common
     /* 8B10 80007F10 3C041FC0 */  lui        $a0, (0x1FC007FC >> 16)
     /* 8B14 80007F14 348407FC */  ori        $a0, $a0, (0x1FC007FC & 0xFFFF)
     /* 8B18 80007F18 34B80008 */  ori        $t8, $a1, 0x8
-    /* 8B1C 80007F1C 0C0035FC */  jal        osPiWriteWord
+    /* 8B1C 80007F1C 0C0035FC */  jal        __osSiRawWriteIo
     /* 8B20 80007F20 03002825 */   or        $a1, $t8, $zero
     /* 8B24 80007F24 1440FFF9 */  bnez       $v0, .L80007F0C
     /* 8B28 80007F28 00000000 */   nop
@@ -99,7 +99,7 @@ glabel __osInitialize_common
     /* 8BEC 80007FEC 0C001F28 */  jal        osWritebackDCache
     /* 8BF0 80007FF0 ADF8000C */   sw        $t8, 0xC($t7)
     /* 8BF4 80007FF4 3C048000 */  lui        $a0, (0x80000000 >> 16)
-    /* 8BF8 80007FF8 0C002118 */  jal        osInvalICache_full
+    /* 8BF8 80007FF8 0C002118 */  jal        osInvalICache
     /* 8BFC 80007FFC 24050190 */   addiu     $a1, $zero, 0x190
     /* 8C00 80008000 0C00204A */  jal        __osPiReadDeviceType
     /* 8C04 80008004 00000000 */   nop

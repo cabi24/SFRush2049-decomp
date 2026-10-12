@@ -51,7 +51,7 @@ glabel game_init
     /* 2EF4 800022F4 2718FD80 */  addiu      $t8, $t8, %lo(gDecompressedDataEnd1)
     /* 2EF8 800022F8 25EF6A50 */  addiu      $t7, $t7, %lo(gDecompressedDataStart)
     /* 2EFC 800022FC 01E02025 */  or         $a0, $t7, $zero
-    /* 2F00 80002300 0C002118 */  jal        osInvalICache_full
+    /* 2F00 80002300 0C002118 */  jal        osInvalICache
     /* 2F04 80002304 030F2823 */   subu      $a1, $t8, $t7
     /* 2F08 80002308 3C198011 */  lui        $t9, %hi(gDecompressedDataEnd1)
     /* 2F0C 8000230C 3C088012 */  lui        $t0, %hi(gBssStart)
@@ -101,7 +101,7 @@ glabel game_init
     /* 2FBC 800023BC 3C048003 */  lui        $a0, %hi(gSyncMesgQueue)
     /* 2FC0 800023C0 24845440 */  addiu      $a0, $a0, %lo(gSyncMesgQueue)
     /* 2FC4 800023C4 00002825 */  or         $a1, $zero, $zero
-    /* 2FC8 800023C8 0C001D78 */  jal        osJamMesg
+    /* 2FC8 800023C8 0C001D78 */  jal        osSendMesg
     /* 2FCC 800023CC 24060001 */   addiu     $a2, $zero, 0x1
     /* 2FD0 800023D0 3C048003 */  lui        $a0, %hi(gAudioThread)
     /* 2FD4 800023D4 0C001C20 */  jal        osStartThread

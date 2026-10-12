@@ -12,7 +12,7 @@ glabel idle_thread_entry
     /* 2DC4 800021C4 0C002084 */  jal        osCreatePiManager
     /* 2DC8 800021C8 240700C8 */   addiu     $a3, $zero, 0xC8
     /* 2DCC 800021CC 00002025 */  or         $a0, $zero, $zero
-    /* 2DD0 800021D0 0C0020E0 */  jal        osCreateViManager
+    /* 2DD0 800021D0 0C0020E0 */  jal        osSetThreadPri
     /* 2DD4 800021D4 00002825 */   or        $a1, $zero, $zero
     /* 2DD8 800021D8 3C0E8003 */  lui        $t6, %hi(gStackGame)
     /* 2DDC 800021DC 25CE0150 */  addiu      $t6, $t6, %lo(gStackGame)

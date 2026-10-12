@@ -181,25 +181,25 @@ def test_game_types_keeps_known_good_static_function_body_byte_identical(
     text identity is the wrong guard (research/t019-stall.md root cause 2);
     emit_src returns just the emitted function, which is what must not move."""
     asm_idx = autodecomp._asm_index()
-    assert "osViGetFramebuffer" in asm_idx
+    assert "osViGetNextFramebuffer" in asm_idx
 
     monkeypatch.setattr(autodecomp, "GAME_TYPES", tmp_path / "absent.h")
     monkeypatch.setattr(autodecomp, "M2C_PROTOS", tmp_path / "absent-protos.h")
     autodecomp._context_cache = None
-    before = autodecomp.emit_src("osViGetFramebuffer", 0x800083D0, asm_idx)
+    before = autodecomp.emit_src("osViGetNextFramebuffer", 0x800083D0, asm_idx)
 
     monkeypatch.setattr(
         autodecomp, "GAME_TYPES", autodecomp.REPO / "include" / "game_types.h"
     )
     autodecomp._context_cache = None
-    after = autodecomp.emit_src("osViGetFramebuffer", 0x800083D0, asm_idx)
+    after = autodecomp.emit_src("osViGetNextFramebuffer", 0x800083D0, asm_idx)
 
     layer = tmp_path / "m2c_protos.h"
     layer.write_text("s32 unrelated_generated_game_fn(s32 arg0);\n")
     monkeypatch.setattr(autodecomp, "M2C_PROTOS", layer)
     autodecomp._context_cache = None
     with_layer = autodecomp.emit_src(
-        "osViGetFramebuffer", 0x800083D0, asm_idx
+        "osViGetNextFramebuffer", 0x800083D0, asm_idx
     )
     autodecomp._context_cache = None
 

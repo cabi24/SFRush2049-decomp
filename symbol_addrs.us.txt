@@ -68,29 +68,29 @@ gViewportFloatD = 0x8002D4CC; // viewport float constant D (NTSC)
 
 // libultra OS functions
 osCreateMesgQueue = 0x80006A00; // type:func
-osSetEventMesg = 0x80006A30; // type:func set event message
+osCreateViManager = 0x80006A30; // type:func libultra osCreateViManager (renamed from osSetEventMesg, docs/SYMBOL_MISATTRIBUTION.md)
 osGetCount = 0x8000C970; // type:func read CP0 Count register
 osDpIsBusy = 0x8000D740; // type:func check if RDP is busy
 osGetActiveQueue = 0x8000C660; // type:func get active thread queue
-osSetThreadPri = 0x80006D40; // type:func set thread priority
-osSetIntMask = 0x80006DA0; // type:func set interrupt mask
+osViSetMode = 0x80006D40; // type:func libultra osViSetMode (renamed from osSetThreadPri, docs/SYMBOL_MISATTRIBUTION.md)
+osViBlack = 0x80006DA0; // type:func libultra osViBlack (renamed from osSetIntMask, docs/SYMBOL_MISATTRIBUTION.md)
 osSetTimer = 0x8000E3D0; // type:func set timer (initializes OSTimer and inserts to queue)
-osSetTimerIntr = 0x80006ED0; // type:func set timer interrupt [MISATTR really a VI-event setter (writes __osViContext) — LOCKED under this name, see docs/SYMBOL_MISATTRIBUTION.md]
+osViSetEvent = 0x80006ED0; // type:func libultra osViSetEvent (renamed from osSetTimerIntr, docs/SYMBOL_MISATTRIBUTION.md)
 osCreateThread = 0x80006F30; // type:func create thread
 osStartThread = 0x80007080; // type:func start thread
 osRecvMesg = 0x80007270; // type:func receive message from queue
-osSetGlobalIntMask = 0x800071D0; // type:func set global interrupt mask
-osSendMesg = 0x80007440; // type:func send message to queue
-osJamMesg = 0x800075E0; // type:func insert message at front of queue
-osViSetMode = 0x80007590; // type:func set VI mode
+osSetIntMask = 0x800071D0; // type:func libultra osSetIntMask (renamed from osSetGlobalIntMask, docs/SYMBOL_MISATTRIBUTION.md)
+osJamMesg = 0x80007440; // type:func libultra osJamMesg (renamed from osSendMesg, docs/SYMBOL_MISATTRIBUTION.md)
+osSendMesg = 0x800075E0; // type:func libultra osSendMesg (renamed from osJamMesg, docs/SYMBOL_MISATTRIBUTION.md)
+osViSwapBuffer = 0x80007590; // type:func libultra osViSwapBuffer (renamed from osViSetMode, docs/SYMBOL_MISATTRIBUTION.md)
 osSpTaskYielded = 0x80007730; // type:func check if SP task yielded
 osGetTime = 0x800073B0; // type:func get system time
-osViGetFramebuffer = 0x800077D0; // type:func get configured framebuffer from context
+osViGetNextFramebuffer = 0x800077D0; // type:func libultra osViGetNextFramebuffer (renamed from osViGetFramebuffer, docs/SYMBOL_MISATTRIBUTION.md)
 osViGetCurrentFramebuffer = 0x80007790; // type:func get current framebuffer
-osInvalICache = 0x80007810; // type:func invalidate I-cache
+osWritebackDCacheAll = 0x80007810; // type:func libultra osWritebackDCacheAll (renamed from osInvalICache, docs/SYMBOL_MISATTRIBUTION.md)
 osWritebackDCache = 0x80007CA0; // type:func writeback D-cache
 osDpSetNextBuffer = 0x80007B00; // type:func set RDP display list
-osDpWait = 0x80007B80; // type:func wait for RDP ready
+osSpTaskYield = 0x80007B80; // type:func libultra osSpTaskYield (renamed from osDpWait, docs/SYMBOL_MISATTRIBUTION.md)
 osDpGetCounters = 0x800099B0; // type:func get RDP performance counters
 
 // Audio interface functions
@@ -107,16 +107,16 @@ __osViSwapContext = 0x8000C670; // type:func swap VI context (writes to VI hardw
 __osException = 0x8000C980; // type:func CPU exception handler (handwritten asm)
 osViSetSpecialFeatures = 0x80007D20; // type:func set VI special features (gamma, dither, etc.)
 osCauseGet = 0x8000DBB0; // type:func read CP0 Cause register
-osPiReadIo = 0x8000D7A0; // type:func read from physical I/O address
-osPiWriteWord = 0x8000D7F0; // type:func write word to cartridge space
-osPiRawReadWord = 0x800081D0; // type:func synchronized ROM word read with PI access control
+__osSiRawReadIo = 0x8000D7A0; // type:func libultra __osSiRawReadIo (renamed from osPiReadIo, docs/SYMBOL_MISATTRIBUTION.md)
+__osSiRawWriteIo = 0x8000D7F0; // type:func libultra __osSiRawWriteIo (renamed from osPiWriteWord, docs/SYMBOL_MISATTRIBUTION.md)
+osPiReadIo = 0x800081D0; // type:func libultra osPiReadIo (renamed from osPiRawReadWord, docs/SYMBOL_MISATTRIBUTION.md)
 osPiInit = 0x8000DBC0; // type:func peripheral interface initialization
-osPiGetAccess = 0x8000DC10; // type:func acquire PI mutex
-osPiReleaseAccess = 0x8000DC54; // type:func release PI mutex
-osPiReadWord = 0x8000DC80; // type:func read word from cartridge
-osPiStartDma = 0x8000DCD0; // type:func start PI DMA transfer
-osPiSetDeviceTiming = 0x8000DDA0; // type:func configure PI bus timing registers
-__osPiRawStartDma = 0x80008630; // type:func PI raw DMA request via message queue
+__osPiGetAccess = 0x8000DC10; // type:func libultra __osPiGetAccess (renamed from osPiGetAccess, docs/SYMBOL_MISATTRIBUTION.md)
+__osPiRelAccess = 0x8000DC54; // type:func libultra __osPiRelAccess (renamed from osPiReleaseAccess, docs/SYMBOL_MISATTRIBUTION.md)
+__osPiRawReadIo = 0x8000DC80; // type:func libultra __osPiRawReadIo (renamed from osPiReadWord, docs/SYMBOL_MISATTRIBUTION.md)
+__osPiRawStartDma = 0x8000DCD0; // type:func libultra __osPiRawStartDma (renamed from osPiStartDma, docs/SYMBOL_MISATTRIBUTION.md)
+__osEPiRawStartDma = 0x8000DDA0; // type:func libultra __osEPiRawStartDma (renamed from osPiSetDeviceTiming, docs/SYMBOL_MISATTRIBUTION.md)
+osPiStartDma = 0x80008630; // type:func libultra osPiStartDma (renamed from __osPiRawStartDma, docs/SYMBOL_MISATTRIBUTION.md)
 
 // PI global state (os_pi.c, os_pi_dma.c)
 __osPiInitialized = 0x8002C4A0; // PI initialized flag (s32) - os_pi.c
@@ -141,14 +141,14 @@ __osSiRawStartDma = 0x8000E4B0; // type:func SI raw DMA to/from PIF
 osSiInit = 0x8000E560; // type:func serial interface initialization
 __osSiGetAccess = 0x8000E5B0; // type:func acquire SI mutex
 __osSiRelAccess = 0x8000E5F4; // type:func release SI mutex
-osContStartReadData = 0x8000E620; // type:func start controller read
+__osPfsGetStatus = 0x8000E620; // type:func libultra __osPfsGetStatus (renamed from osContStartReadData, docs/SYMBOL_MISATTRIBUTION.md)
 __osContBuildRequest = 0x8000E6F0; // type:func build controller request packet
 __osContParseResponse = 0x8000E7B4; // type:func parse controller response
 
 // Controller query/read functions (A330.s)
 osContStartQuery = 0x80009730; // type:func start controller status query
 osContGetQuery = 0x800097AC; // type:func get controller query results (wrapper for __osContGetInitData)
-osContStartReadData2 = 0x800097D0; // type:func alternative start controller read
+osContStartReadData = 0x800097D0; // type:func libultra osContStartReadData (renamed from osContStartReadData2, docs/SYMBOL_MISATTRIBUTION.md)
 osContGetReadData = 0x80009854; // type:func parse PIF response into OSContPad
 __osPackReadData = 0x800098E0; // type:func pack read-buttons command into PIF buffer
 __osContRamRead = 0x8000E8D0; // type:func read from controller pak RAM
@@ -189,8 +189,8 @@ __osSpDeviceBusy = 0x8000D710; // type:func check if RSP is busy (bits 0x1C)
 
 // VI mode table functions (8440.s)
 osViModeTableGet = 0x80007840; // type:func get VI mode from table
-osViModeNtscLan1 = 0x8000794C; // type:func get NTSC LAN1 VI mode
-osViModeNtscLpn1 = 0x80007AB4; // type:func get NTSC LPN1 VI mode
+osSpTaskLoad = 0x8000794C; // type:func libultra osSpTaskLoad (renamed from osViModeNtscLan1, docs/SYMBOL_MISATTRIBUTION.md)
+osSpTaskStartGo = 0x80007AB4; // type:func libultra osSpTaskStartGo (renamed from osViModeNtscLpn1, docs/SYMBOL_MISATTRIBUTION.md)
 
 // OS initialization functions (8A80.s)
 __osInitialize_common = 0x80007E80; // type:func OS init. installs exception vectors, sets up PI/AI timing
@@ -219,7 +219,7 @@ osAppNMIBuffer = 0x8000031C; // size:64 NMI buffer (preserved across warm reset)
 // Controller pak (osPfs) functions
 osPfsInitPak = 0x80009C10; // type:func initialize controller pak
 osPfsChecker = 0x8000B3E0; // type:func check controller pak integrity
-osPfsReadWriteFile = 0x8000A970; // type:func read/write controller pak file
+osPfsAllocateFile = 0x8000A970; // type:func libultra osPfsAllocateFile (renamed from osPfsReadWriteFile, docs/SYMBOL_MISATTRIBUTION.md)
 osPfsFreeBlocks = 0x8000B240; // type:func get free blocks on controller pak
 __osPfsSelectBank = 0x8000E850; // type:func select controller pak bank
 __osPfsCheckPages = 0x8000B918; // type:func build inode usage bitmap for integrity check
@@ -241,7 +241,7 @@ dll_init = 0x8000C090; // type:func initialize timer queue (doubly-linked list) 
 dll_update = 0x8000C11C; // type:func process expired timers (delta queue maintenance) [MISATTR really __osTimerInterrupt]
 dll_reschedule = 0x8000C294; // type:func reschedule timer interrupt [MISATTR really __osSetTimerIntr]
 dll_insert = 0x8000C308; // type:func insert timer into delta queue [MISATTR really __osInsertTimer]
-dll_get_priority = 0x8000C490; // type:func get thread priority helper [MISATTR really osGetThreadPri]
+osGetThreadPri = 0x8000C490; // type:func libultra osGetThreadPri (renamed from dll_get_priority, docs/SYMBOL_MISATTRIBUTION.md)
 __osSetCompare = 0x8000FB90; // type:func set CP0 Compare register for timer
 
 // Timer queue global state
@@ -419,10 +419,10 @@ guLookAt = 0x80009168; // type:func look-at view matrix (fixed-point)
 sqrtf = 0x8000E3C0; // type:func square root (float) arcade.fmath.c.fsqrt()
 
 // Communication/data parsing (AB20.s)
-osMotorInit = 0x80009F20; // type:func rumble pak motor initialization
-__osMotorAccess = 0x8000A088; // type:func build rumble pak PIF command
-osMotorStart = 0x8000A194; // type:func start rumble pak motor (writes 0x01 to 0xC000)
-osMotorStop = 0x8000A2F0; // type:func stop rumble pak motor (writes 0x00 to 0xC000)
+__osMotorAccess = 0x80009F20; // type:func libultra __osMotorAccess (renamed from osMotorInit, docs/SYMBOL_MISATTRIBUTION.md)
+__osMakeMotorData = 0x8000A088; // type:func libultra __osMakeMotorData (renamed from __osMotorAccess, docs/SYMBOL_MISATTRIBUTION.md)
+osMotorInit = 0x8000A194; // type:func libultra osMotorInit (renamed from osMotorStart, docs/SYMBOL_MISATTRIBUTION.md)
+osPfsRepairId = 0x8000A2F0; // type:func libultra osPfsRepairId (renamed from osMotorStop, docs/SYMBOL_MISATTRIBUTION.md)
 
 // libgcc 64-bit arithmetic (E4F0.s)
 __lshrdi3 = 0x8000D8F0; // type:func logical right shift
@@ -468,7 +468,6 @@ apply_display_mode = 0x80001E58; // type:func apply current display mode setting
 
 // Controller pak PFS functions (F700.s) - newly identified
 osPfsReadWriteFile_pages = 0x8000F2D0; // type:func read/write controller pak file pages
-// dup-addr(kept __osPfsRWInode): osPfsFileState = 0x8000F3A4; // type:func get/verify controller pak file state
 
 // Init/boot functions (2CF0.s) - identified via Codex analysis
 idle_thread_entry = 0x800021A4; // type:func boot idle thread. inits PI manager, creates game thread, loops forever
@@ -485,11 +484,11 @@ gStackAudio = 0x8002F7F0; // audio thread stack base
 
 // OS manager init functions (8E10.s)
 osCreatePiManager = 0x80008210; // type:func create PI DMA manager thread and queues
-osCreateViManager = 0x80008380; // type:func create VI manager thread (handles retrace/prenmi)
-osInvalICache_full = 0x80008460; // type:func invalidate instruction cache (cache op 0x00)
+osSetThreadPri = 0x80008380; // type:func libultra osSetThreadPri (renamed from osCreateViManager, docs/SYMBOL_MISATTRIBUTION.md)
+osInvalICache = 0x80008460; // type:func libultra osInvalICache (renamed from osInvalICache_full, docs/SYMBOL_MISATTRIBUTION.md)
 
 // Event/interrupt functions (7A10.s)
-osSetEventMesgAlt = 0x80006E10; // type:func alternative event message setter
+osSetEventMesg = 0x80006E10; // type:func libultra osSetEventMesg (renamed from osSetEventMesgAlt, docs/SYMBOL_MISATTRIBUTION.md)
 
 // VI manager thread (7630.s)
 vi_manager_main = 0x80006BB0; // type:func VI manager main loop (handles VI_RETRACE, PRENMI events)
@@ -506,10 +505,10 @@ inflate_free_window = 0x80005464; // type:func free huffman decode tables
 
 // Cache operations (9230.s)
 osWritebackDCache_full = 0x800086F0; // type:func writeback data cache region
-osWritebackDCacheAll = 0x8000870C; // type:func writeback all data cache
+rmonPrintf = 0x8000870C; // type:func libultra rmonPrintf (renamed from osWritebackDCacheAll, docs/SYMBOL_MISATTRIBUTION.md)
 
 // SI controller functions (9930.s)
-__osContBuildPacket = 0x80009450; // type:func build controller pak read/write command
+osContInit = 0x80009450; // type:func libultra osContInit (renamed from __osContBuildPacket, docs/SYMBOL_MISATTRIBUTION.md)
 __osContGetStatus = 0x800095AC; // type:func get controller status
 __osContRamReset = 0x80009658; // type:func reset controller pak RAM
 
@@ -517,18 +516,18 @@ __osContRamReset = 0x80009658; // type:func reset controller pak RAM
 __osTimerInterrupt = 0x80009E18; // type:func timer interrupt handler [MISATTR really a PFS/controller fn (__osPfsSelectBank/__osContRamRead) — real __osTimerInterrupt is dll_update @ 0x8000C11C]
 
 // Controller pak PFS helpers (AF30.s)
-osPfsAllocate = 0x8000A350; // type:func allocate controller pak pages
-osPfsDeleteFile = 0x8000A520; // type:func delete controller pak file
-osPfsRename = 0x8000A700; // type:func rename controller pak file
-osPfsFindFile = 0x8000A8D8; // type:func find file in controller pak
+osPfsFindFile = 0x8000A350; // type:func libultra osPfsFindFile (renamed from osPfsAllocate, docs/SYMBOL_MISATTRIBUTION.md)
+osPfsFileState = 0x8000A520; // type:func libultra osPfsFileState (renamed from osPfsDeleteFile, docs/SYMBOL_MISATTRIBUTION.md)
+osPfsDeleteFile = 0x8000A700; // type:func libultra osPfsDeleteFile (renamed from osPfsRename, docs/SYMBOL_MISATTRIBUTION.md)
+__osPfsReleasePages = 0x8000A8D8; // type:func libultra __osPfsReleasePages (renamed from osPfsFindFile, docs/SYMBOL_MISATTRIBUTION.md)
 
 // More PFS functions (B9E0.s)
-osPfsGetFileStat = 0x8000ADF0; // type:func get controller pak file status
-osPfsGetFileSize = 0x8000AEC4; // type:func get controller pak file size
+__osPfsGetNextPage = 0x8000ADF0; // type:func libultra __osPfsGetNextPage (renamed from osPfsGetFileStat, docs/SYMBOL_MISATTRIBUTION.md)
+osPfsReadWriteFile = 0x8000AEC4; // type:func libultra osPfsReadWriteFile (renamed from osPfsGetFileSize, docs/SYMBOL_MISATTRIBUTION.md)
 
 // PFS checksum/validation (C930.s)
-osPfsChecker_full = 0x8000BD90; // type:func validate controller pak filesystem
-osPfsReAllocate = 0x8000BE50; // type:func reallocate controller pak file pages
+osStopThread = 0x8000BD90; // type:func libultra osStopThread (renamed from osPfsChecker_full, docs/SYMBOL_MISATTRIBUTION.md)
+osGetThreadId = 0x8000BE50; // type:func libultra osGetThreadId (renamed from osPfsReAllocate, docs/SYMBOL_MISATTRIBUTION.md)
 
 // Exception context save functions (D580.s)
 // NOTE: dll_get_data and dll_set_data were misidentified - these are exception handler internal functions

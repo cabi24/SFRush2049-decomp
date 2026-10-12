@@ -42,11 +42,11 @@ s32 osDpSetNextBuffer(void* bufPtr, u64 size) {
     return 0;
 }
 
-/* PROMOTED 2026-10-01 — osDpWait
+/* PROMOTED 2026-10-01 — osSpTaskYield (named osDpWait before the w22g libultra rename)
  * Source:   cloud/work/integration_B22_followup/osDpWait_standalone.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/integration_B22_followup/osDpWait_standalone.c:osDpWait (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void osDpWait(void) { __osSpSetStatus(0x400); }
+void osSpTaskYield(void) { __osSpSetStatus(0x400); }
 

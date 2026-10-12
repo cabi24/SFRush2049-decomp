@@ -69,7 +69,7 @@ glabel inflate_read_bits
     /* 73C8 800067C8 00002825 */  or         $a1, $zero, $zero
     /* 73CC 800067CC 00003025 */  or         $a2, $zero, $zero
     /* 73D0 800067D0 AFB10010 */  sw         $s1, 0x10($sp)
-    /* 73D4 800067D4 0C00218C */  jal        __osPiRawStartDma
+    /* 73D4 800067D4 0C00218C */  jal        osPiStartDma
     /* 73D8 800067D8 AFB20018 */   sw        $s2, 0x18($sp)
     /* 73DC 800067DC 8E0C0000 */  lw         $t4, 0x0($s0)
     /* 73E0 800067E0 8FBF0034 */  lw         $ra, 0x34($sp)

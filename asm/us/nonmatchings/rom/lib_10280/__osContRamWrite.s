@@ -129,7 +129,7 @@ glabel __osContRamWrite
     /* 10454 8000F854 02A02025 */  or         $a0, $s5, $zero
     /* 10458 8000F858 51720009 */  beql       $t3, $s2, .L8000F880
     /* 1045C 8000F85C 24010004 */   addiu     $at, $zero, 0x4
-    /* 10460 8000F860 0C003988 */  jal        osContStartReadData
+    /* 10460 8000F860 0C003988 */  jal        __osPfsGetStatus
     /* 10464 8000F864 02202825 */   or        $a1, $s1, $zero
     /* 10468 8000F868 14400009 */  bnez       $v0, .L8000F890
     /* 1046C 8000F86C 00401825 */   or        $v1, $v0, $zero

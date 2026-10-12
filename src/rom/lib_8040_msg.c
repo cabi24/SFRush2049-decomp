@@ -6,13 +6,13 @@
 #include "rom_tu.h"
 
 
-/* PROMOTED 2026-10-02 — osSendMesg
+/* PROMOTED 2026-10-02 — osJamMesg (named osSendMesg before the w22g libultra rename)
  * Source:   module_campaign_20261002 current-header SDK publication
  * Flags:    -g0 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul
  * Evidence: independent canonical complete native body
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-s32 osSendMesg(OSMesgQueue* mq, OSMesg msg, s32 flag) {
+s32 osJamMesg(OSMesgQueue* mq, OSMesg msg, s32 flag) {
     register u32 saveMask;
 
 

@@ -4,7 +4,7 @@ glabel viTickStart
     /* 1F50 80001350 27BDFFD8 */  addiu      $sp, $sp, -0x28
     /* 1F54 80001354 AFBF001C */  sw         $ra, 0x1C($sp)
     /* 1F58 80001358 F7B40010 */  sdc1       $fs0, 0x10($sp)
-    /* 1F5C 8000135C 0C001C74 */  jal        osSetGlobalIntMask
+    /* 1F5C 8000135C 0C001C74 */  jal        osSetIntMask
     /* 1F60 80001360 24040001 */   addiu     $a0, $zero, 0x1
     /* 1F64 80001364 AFA20024 */  sw         $v0, 0x24($sp)
     /* 1F68 80001368 3C0E8003 */  lui        $t6, %hi(gViTickCounter)
@@ -20,7 +20,7 @@ glabel viTickStart
     /* 1F90 80001390 E434EB94 */  swc1       $fs0, %lo(__osScDeltaTime)($at)
     /* 1F94 80001394 3C018003 */  lui        $at, %hi(__osScElapsedTime)
     /* 1F98 80001398 E434EB90 */  swc1       $fs0, %lo(__osScElapsedTime)($at)
-    /* 1F9C 8000139C 0C001C74 */  jal        osSetGlobalIntMask
+    /* 1F9C 8000139C 0C001C74 */  jal        osSetIntMask
     /* 1FA0 800013A0 8FA40024 */   lw        $a0, 0x24($sp)
     /* 1FA4 800013A4 10000001 */  b          .L800013AC
     /* 1FA8 800013A8 00000000 */   nop

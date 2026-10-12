@@ -3,6 +3,8 @@
     python3 -m tools.conveyor.pipeline.targets_rename audit
     python3 -m tools.conveyor.pipeline.targets_rename apply NAME [NAME...] \
         [--retire TARGET_ID ...] [--data DIR] [--lockfile PATH] [--dry-run]
+    python3 -m tools.conveyor.pipeline.targets_rename rename MAP.json \
+        [--data DIR] [--lockfile PATH] [--dry-run]
 
 The conveyor inventory (`n64_target`) was populated from the historical
 `work/**/info.txt` labels; the S12 census renamed boot functions in
@@ -31,6 +33,19 @@ layout function; a `--retire` row that starts a layout function; no asm region
 or a failed gate for NAME. All writes happen in one transaction, and every row
 not named in the plan is left untouched. `--dry-run` builds the objects in a
 temporary store and prints the exact plan without writing anything.
+
+`rename MAP.json` renames rows IN PLACE (static_rename's table: accepted rows
+`{vram, old, new}`), keeping their history: every table keyed by target_id
+(n64_target, function_status, matrix_entry, work_unit, promotion_record) moves
+from the old to the new id, through temporary ids in one transaction, so the
+names may form cycles (osSendMesg <-> osJamMesg) that `apply` refuses. Each
+renamed row's reloc-aware object is rebuilt under its new name (the object
+carries the symbol), and a changed object supersedes its matrix evidence as in
+`apply`. Refusals (nothing is written): a new name that is not the layout's
+name at the row's vram; an old row missing, not static, or at another address;
+a new name already registered and not itself renamed away by the table; an open
+work unit on a renamed row; a lock entry still targeting an old name that is
+not also a new name; a failed object gate.
 """
 import argparse
 import hashlib
@@ -309,6 +324,86 @@ def format_plan(conn, actions):
     return lines
 
 
+# --- in-place rename ---------------------------------------------------------
+
+_KEYED_TABLES = ("n64_target", "function_status", "matrix_entry", "work_unit",
+                 "promotion_record")
+
+
+def rename_plan(conn, functions, rows, locks=None):
+    """[{op: 'rename', old, target_id, address, size, segment}] or RenameRefusal."""
+    locks = {} if locks is None else locks
+    olds = {o for _v, o, _n in rows}
+    news = {n for _v, _o, n in rows}
+    actions = []
+    for vram, old, new in rows:
+        places = functions.get(new) or []
+        if len(places) != 1 or places[0][0] != vram:
+            raise RenameRefusal(f"{new}: not the layout's single function at 0x{vram:08X}")
+        row = _row(conn, old)
+        if row is None:
+            raise RenameRefusal(f"{old}: no inventory row to rename")
+        if row["population"] != "static" or row["address"] != vram:
+            raise RenameRefusal(f"{old}: not a static row at 0x{vram:08X}")
+        if _row(conn, new) is not None and new not in olds:
+            raise RenameRefusal(f"{new}: already registered and not renamed away by this table")
+        q = ",".join("?" * len(OPEN_WORK_STATES))
+        if conn.execute(f"SELECT 1 FROM work_unit WHERE target_id=? AND state IN ({q})",
+                        (old,) + OPEN_WORK_STATES).fetchone():
+            raise RenameRefusal(f"{old}: has open work units")
+        if old in locks and old not in news:
+            raise RenameRefusal(f"{old}: still targeted by lock(s) {', '.join(sorted(locks[old]))};"
+                                " migrate the lockfile first (static_rename lock)")
+        _vaddr, size, seg = places[0]
+        actions.append({"op": "rename", "old": old, "target_id": new, "address": vram,
+                        "size": size, "segment": seg, "note": f"was {old}"})
+    return actions
+
+
+def apply_rename(conn, actions):
+    """Move every keyed row old -> new (via temporary ids), then refresh objects."""
+    from ..coordinator import db as dbmod
+
+    purged = 0
+    with dbmod.tx(conn):
+        for a in actions:
+            for table in _KEYED_TABLES:
+                conn.execute(f"UPDATE {table} SET target_id=? WHERE target_id=?",
+                             ("\x00rename\x00" + a["target_id"], a["old"]))
+        for a in actions:
+            for table in _KEYED_TABLES:
+                conn.execute(f"UPDATE {table} SET target_id=? WHERE target_id=?",
+                             (a["target_id"], "\x00rename\x00" + a["target_id"]))
+        for a in actions:
+            tid = a["target_id"]
+            prev = _row(conn, tid)
+            _changed, n = targetsmod._supersede_target(conn, tid, prev["target_o_sha"], a["o_sha"])
+            purged += n
+            conn.execute("UPDATE n64_target SET insn_count=?, target_asm_sha=?, target_o_sha=?,"
+                         " tier='reloc_aware', gate_reason=NULL WHERE target_id=?",
+                         (a["insn_count"], a["asm_sha"], a["o_sha"], tid))
+            conn.execute(
+                "INSERT OR IGNORE INTO blob (sha256, kind, size_bytes, created_at)"
+                " VALUES (?, 'target', ?, strftime('%Y-%m-%dT%H:%M:%fZ','now'))",
+                (a["o_sha"], a["o_size"]))
+    return purged
+
+
+def format_rename(conn, actions):
+    lines = []
+    for a in actions:
+        n = {t: conn.execute(f"SELECT COUNT(*) FROM {t} WHERE target_id=?", (a["old"],)).fetchone()[0]
+             for t in _KEYED_TABLES}
+        prev = _row(conn, a["old"])
+        sup = ("object unchanged" if prev["target_o_sha"] == a["o_sha"]
+               else f"object changes, supersedes {n['matrix_entry']} matrix_entry rows")
+        lines.append(f"rename    {a['old']:24} -> {a['target_id']:24} @0x{a['address']:08X}"
+                     f" {a['insn_count']:4} insns o={a['o_sha'][:12]}  (function_status"
+                     f" {n['function_status']}, work_unit {n['work_unit']}, promotion_record"
+                     f" {n['promotion_record']}; {sup})")
+    return lines
+
+
 # --- command ----------------------------------------------------------------
 
 def main(argv=None):
@@ -329,6 +424,9 @@ def main(argv=None):
     p.add_argument("--retire", nargs="*", default=[], metavar="TARGET_ID",
                    help="non-function rows to retire (fragments, mid-function labels)")
     p.add_argument("--dry-run", action="store_true")
+    r = sub.add_parser("rename")
+    r.add_argument("map", help="rename table (static_rename format)")
+    r.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
 
     data = Path(args.data)
@@ -340,6 +438,8 @@ def main(argv=None):
         for tid, addr, problem in audit(conn, functions, layoutmod.collect_regions()):
             print(f"  {tid:28} @0x{addr:08X}  {problem}")
         return
+    if args.command == "rename":
+        return _main_rename(args, conn, functions, data, layoutmod, BlobStore)
     try:
         actions = plan(conn, functions, args.names, args.retire, lock_targets(args.lockfile))
         with tempfile.TemporaryDirectory() as tmp:
@@ -358,6 +458,26 @@ def main(argv=None):
     purged = apply(conn, actions)
     after = conn.execute("SELECT COUNT(*) FROM n64_target").fetchone()[0]
     print(f"applied {len(actions)} actions to {data / 'conveyor.db'}: n64_target {total} -> {after},"
+          f" {purged} matrix_entry rows purged")
+
+
+def _main_rename(args, conn, functions, data, layoutmod, BlobStore):
+    from .static_rename import RenameError, load_map
+    try:
+        rows = load_map(args.map)
+        actions = rename_plan(conn, functions, rows, lock_targets(args.lockfile))
+        with tempfile.TemporaryDirectory() as tmp:
+            store = BlobStore(Path(tmp) if args.dry_run else data / "blobs")
+            build_objects(actions, layoutmod.collect_regions(), store)
+    except (RenameRefusal, RenameError) as exc:
+        sys.exit(f"refusing: {exc}")
+    for line in format_rename(conn, actions):
+        print(line)
+    if args.dry_run:
+        print(f"dry run: nothing written ({len(actions)} renames)")
+        return
+    purged = apply_rename(conn, actions)
+    print(f"renamed {len(actions)} rows in {data / 'conveyor.db'} ({', '.join(_KEYED_TABLES)}),"
           f" {purged} matrix_entry rows purged")
 
 

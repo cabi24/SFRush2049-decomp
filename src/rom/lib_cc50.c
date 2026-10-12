@@ -79,7 +79,7 @@ void dll_update(void) {
         t->prev = NULL;
 
         if (t->mq != NULL) {
-            osJamMesg(t->mq, t->msg, OS_MESG_NOBLOCK);
+            osSendMesg(t->mq, t->msg, OS_MESG_NOBLOCK);
         }
 
     __ProfDone:
@@ -140,13 +140,13 @@ OSTime dll_insert(OSTimer* t) {
     return tim;
 }
 
-/* PROMOTED 2026-07-15 — dll_get_priority
+/* PROMOTED 2026-07-15 — osGetThreadPri (named dll_get_priority before the w22g libultra rename)
  * Source:   work/nearmiss/dll_get_priority/source.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:work/nearmiss/dll_get_priority/source.c:dll_get_priority (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-s32 dll_get_priority(void *thread)
+s32 osGetThreadPri(void *thread)
 {
     if (thread == ((void *) 0))
     {

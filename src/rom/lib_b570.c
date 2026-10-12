@@ -4,13 +4,13 @@
  * passthrough lines. */
 #include "rom_tu.h"
 
-/* PROMOTED 2026-10-01 — osPfsReadWriteFile
+/* PROMOTED 2026-10-01 — osPfsAllocateFile (named osPfsReadWriteFile before the w22g libultra rename)
  * Source:   cloud/work/static_C12/osPfsReadWriteFile.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C12/osPfsReadWriteFile.c:osPfsReadWriteFile (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-s32 osPfsReadWriteFile(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name, u8* ext_name, int file_size_in_bytes,
+s32 osPfsAllocateFile(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name, u8* ext_name, int file_size_in_bytes,
                       s32* file_no) {
     int start_page;
     int decleared;
@@ -33,7 +33,7 @@ s32 osPfsReadWriteFile(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_nam
 
     file_size_in_pages = ROUND_UP_DIVIDE(file_size_in_bytes, BLOCKSIZE * PFS_ONE_PAGE);
 
-    if (((ret = osPfsAllocate(pfs, company_code, game_code, game_name, ext_name, file_no)) != 0) &&
+    if (((ret = osPfsFindFile(pfs, company_code, game_code, game_name, ext_name, file_no)) != 0) &&
         ret != PFS_ERR_INVALID) {
         return ret;
     }
@@ -52,7 +52,7 @@ s32 osPfsReadWriteFile(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_nam
         return PFS_ERR_INVALID;
     }
 
-    if (((ret = osPfsAllocate(pfs, 0, 0, NULL, NULL, file_no)) != 0) && ret != PFS_ERR_INVALID) {
+    if (((ret = osPfsFindFile(pfs, 0, 0, NULL, NULL, file_no)) != 0) && ret != PFS_ERR_INVALID) {
         return ret;
     }
 

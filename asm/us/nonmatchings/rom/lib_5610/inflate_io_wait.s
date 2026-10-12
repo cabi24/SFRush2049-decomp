@@ -51,7 +51,7 @@ glabel inflate_io_wait
     /* 56BC 80004ABC AFB20018 */  sw         $s2, 0x18($sp)
     /* 56C0 80004AC0 AFB00010 */  sw         $s0, 0x10($sp)
     /* 56C4 80004AC4 00002825 */  or         $a1, $zero, $zero
-    /* 56C8 80004AC8 0C00218C */  jal        __osPiRawStartDma
+    /* 56C8 80004AC8 0C00218C */  jal        osPiStartDma
     /* 56CC 80004ACC 00003025 */   or        $a2, $zero, $zero
     /* 56D0 80004AD0 8E780000 */  lw         $t8, 0x0($s3)
     /* 56D4 80004AD4 02204825 */  or         $t1, $s1, $zero

@@ -8,7 +8,7 @@ glabel func_80010D74
     /* 11984 80010D84 A3AE001C */  sb         $t6, 0x1C($sp)
     /* 11988 80010D88 248481F8 */  addiu      $a0, $a0, %lo(D_800381F8)
     /* 1198C 80010D8C 27A5001C */  addiu      $a1, $sp, 0x1C
-    /* 11990 80010D90 0C001D78 */  jal        osJamMesg
+    /* 11990 80010D90 0C001D78 */  jal        osSendMesg
     /* 11994 80010D94 24060001 */   addiu     $a2, $zero, 0x1
     /* 11998 80010D98 3C198004 */  lui        $t9, %hi(D_8003801C)
     /* 1199C 80010D9C 8F39801C */  lw         $t9, %lo(D_8003801C)($t9)

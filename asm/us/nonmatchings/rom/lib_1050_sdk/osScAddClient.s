@@ -6,7 +6,7 @@ glabel osScAddClient
     /* 11DC 800005DC AFA40020 */  sw         $a0, 0x20($sp)
     /* 11E0 800005E0 AFA50024 */  sw         $a1, 0x24($sp)
     /* 11E4 800005E4 AFA60028 */  sw         $a2, 0x28($sp)
-    /* 11E8 800005E8 0C001C74 */  jal        osSetGlobalIntMask
+    /* 11E8 800005E8 0C001C74 */  jal        osSetIntMask
     /* 11EC 800005EC 24040001 */   addiu     $a0, $zero, 0x1
     /* 11F0 800005F0 AFA2001C */  sw         $v0, 0x1C($sp)
     /* 11F4 800005F4 8FAE0028 */  lw         $t6, 0x28($sp)
@@ -19,7 +19,7 @@ glabel osScAddClient
     /* 1210 80000610 8FA90024 */  lw         $t1, 0x24($sp)
     /* 1214 80000614 8FAA0020 */  lw         $t2, 0x20($sp)
     /* 1218 80000618 AD490260 */  sw         $t1, 0x260($t2)
-    /* 121C 8000061C 0C001C74 */  jal        osSetGlobalIntMask
+    /* 121C 8000061C 0C001C74 */  jal        osSetIntMask
     /* 1220 80000620 8FA4001C */   lw        $a0, 0x1C($sp)
     /* 1224 80000624 10000001 */  b          .L8000062C
     /* 1228 80000628 00000000 */   nop

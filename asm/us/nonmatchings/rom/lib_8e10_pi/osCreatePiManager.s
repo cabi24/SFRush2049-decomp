@@ -32,18 +32,18 @@ glabel osCreatePiManager
     /* 8E7C 8000827C 3C062222 */  lui        $a2, (0x22222222 >> 16)
     /* 8E80 80008280 34C62222 */  ori        $a2, $a2, (0x22222222 & 0xFFFF)
     /* 8E84 80008284 24A57A80 */  addiu      $a1, $a1, %lo(__osPiDmaQueue)
-    /* 8E88 80008288 0C001B84 */  jal        osSetEventMesgAlt
+    /* 8E88 80008288 0C001B84 */  jal        osSetEventMesg
     /* 8E8C 8000828C 24040008 */   addiu     $a0, $zero, 0x8
     /* 8E90 80008290 2418FFFF */  addiu      $t8, $zero, -0x1
     /* 8E94 80008294 AFB80028 */  sw         $t8, 0x28($sp)
-    /* 8E98 80008298 0C003124 */  jal        dll_get_priority
+    /* 8E98 80008298 0C003124 */  jal        osGetThreadPri
     /* 8E9C 8000829C 00002025 */   or        $a0, $zero, $zero
     /* 8EA0 800082A0 8FB90030 */  lw         $t9, 0x30($sp)
     /* 8EA4 800082A4 00002025 */  or         $a0, $zero, $zero
     /* 8EA8 800082A8 0059082A */  slt        $at, $v0, $t9
     /* 8EAC 800082AC 10200003 */  beqz       $at, .L800082BC
     /* 8EB0 800082B0 03202825 */   or        $a1, $t9, $zero
-    /* 8EB4 800082B4 0C0020E0 */  jal        osCreateViManager
+    /* 8EB4 800082B4 0C0020E0 */  jal        osSetThreadPri
     /* 8EB8 800082B8 AFA20028 */   sw        $v0, 0x28($sp)
   .L800082BC:
     /* 8EBC 800082BC 0C00312C */  jal        __osDisableInt
@@ -53,15 +53,15 @@ glabel osCreatePiManager
     /* 8ECC 800082CC 3C048003 */  lui        $a0, %hi(gViModeMessage)
     /* 8ED0 800082D0 3C0A8003 */  lui        $t2, %hi(__osPiDmaQueue)
     /* 8ED4 800082D4 3C0B8003 */  lui        $t3, %hi(__osPiMesgQueue)
-    /* 8ED8 800082D8 3C0C8001 */  lui        $t4, %hi(osPiStartDma)
-    /* 8EDC 800082DC 3C0D8001 */  lui        $t5, %hi(osPiSetDeviceTiming)
+    /* 8ED8 800082D8 3C0C8001 */  lui        $t4, %hi(__osPiRawStartDma)
+    /* 8EDC 800082DC 3C0D8001 */  lui        $t5, %hi(__osEPiRawStartDma)
     /* 8EE0 800082E0 3C0E8003 */  lui        $t6, %hi(__osPiDmaQueue)
     /* 8EE4 800082E4 248468D0 */  addiu      $a0, $a0, %lo(gViModeMessage)
     /* 8EE8 800082E8 24080001 */  addiu      $t0, $zero, 0x1
     /* 8EEC 800082EC 254A7A80 */  addiu      $t2, $t2, %lo(__osPiDmaQueue)
     /* 8EF0 800082F0 256B7C78 */  addiu      $t3, $t3, %lo(__osPiMesgQueue)
-    /* 8EF4 800082F4 258CDCD0 */  addiu      $t4, $t4, %lo(osPiStartDma)
-    /* 8EF8 800082F8 25ADDDA0 */  addiu      $t5, $t5, %lo(osPiSetDeviceTiming)
+    /* 8EF4 800082F4 258CDCD0 */  addiu      $t4, $t4, %lo(__osPiRawStartDma)
+    /* 8EF8 800082F8 25ADDDA0 */  addiu      $t5, $t5, %lo(__osEPiRawStartDma)
     /* 8EFC 800082FC 25CE7A80 */  addiu      $t6, $t6, %lo(__osPiDmaQueue)
     /* 8F00 80008300 3C068001 */  lui        $a2, %hi(osSpTaskLoad_full)
     /* 8F04 80008304 AFA2002C */  sw         $v0, 0x2C($sp)
@@ -88,7 +88,7 @@ glabel osCreatePiManager
     /* 8F58 80008358 00002025 */  or         $a0, $zero, $zero
     /* 8F5C 8000835C 53010004 */  beql       $t8, $at, .L80008370
     /* 8F60 80008360 8FBF0024 */   lw        $ra, 0x24($sp)
-    /* 8F64 80008364 0C0020E0 */  jal        osCreateViManager
+    /* 8F64 80008364 0C0020E0 */  jal        osSetThreadPri
     /* 8F68 80008368 03002825 */   or        $a1, $t8, $zero
   .L8000836C:
     /* 8F6C 8000836C 8FBF0024 */  lw         $ra, 0x24($sp)

@@ -13,7 +13,7 @@
 void osSiInit(void) {
     __osSiInitialized = 1;
     osCreateMesgQueue(&__osSiMesg, &__osSiMesgQueue, 1);
-    osJamMesg(&__osSiMesg, NULL, 0);
+    osSendMesg(&__osSiMesg, NULL, 0);
 }
 
 /* PROMOTED 2026-10-01 — __osSiGetAccess
@@ -37,16 +37,16 @@ void __osSiGetAccess(void) {
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
 void __osSiRelAccess(void) {
-    osJamMesg(&__osSiMesg, NULL, OS_MESG_NOBLOCK);
+    osSendMesg(&__osSiMesg, NULL, OS_MESG_NOBLOCK);
 }
 
-/* PROMOTED 2026-10-01 — osContStartReadData
+/* PROMOTED 2026-10-01 — __osPfsGetStatus (named osContStartReadData before the w22g libultra rename)
  * Source:   cloud/work/static_C8/osContStartReadData.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C8/osContStartReadData.c:osContStartReadData (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-s32 osContStartReadData(OSMesgQueue* queue, int channel) {
+s32 __osPfsGetStatus(OSMesgQueue* queue, int channel) {
     s32 ret = 0;
     OSMesg dummy;
     OSContStatus data;

@@ -22,7 +22,7 @@ void display_update(void) {
     bottom = gViewportBottomEdge + gViewportScaleY + gViewportYOverflow;
     xRatio = (float)(gViewportRightEdge - gViewportLeftEdge) / (float)(right - left);
     yRatio = (float)(gViewportBottomEdge - gViewportTopEdge) / (float)(bottom - top);
-    saved = osSetGlobalIntMask(1);
+    saved = osSetIntMask(1);
     if (gViewportDataPtr == &gViewportBuffer[0]) {
         gViewportDataPtr = &gViewportBuffer[1];
     } else {
@@ -53,7 +53,7 @@ void display_update(void) {
     gViewportDataPtr->fldRegs[1].yScale = (gViewportDataPtr->fldRegs[1].yScale & 0xFFFF0000) | verticalScale;
     gViewportPendingFrames = 2;
     osWritebackDCache(gViewportDataPtr, sizeof(OSViMode));
-    osSetGlobalIntMask(saved);
+    osSetIntMask(saved);
 }
 
 /* PROMOTED 2026-10-02 — viewport_setup
@@ -100,9 +100,9 @@ void display_mode_tick(void) {
     if (gViewportPendingFrames == 0) return;
     if (--gViewportPendingFrames == 0) {
         if ((gViewportDataPtr->fldRegs[0].yScale & 0xFFFF) == (gViewportStruct->fldRegs[0].yScale & 0xFFFF)) {
-            osSetIntMask(0);
+            osViBlack(0);
         }
-        osSetThreadPri(gViewportDataPtr);
+        osViSetMode(gViewportDataPtr);
         osViSetSpecialFeatures(0xAA);
     }
 }
@@ -121,7 +121,7 @@ s32 get_tv_offset(void) { s32 offset; if(osTvType==1) offset=0; else if(osTvType
  * Evidence: lock:cloud/work/static_debug_consolidation/acceptance_sources/apply_display_mode.c:apply_display_mode (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void apply_display_mode(void) { osSetThreadPri(gViewportStruct); }
+void apply_display_mode(void) { osViSetMode(gViewportStruct); }
 
 /* PROMOTED 2026-10-02 — get_viewport_pos
  * Source:   cloud/work/static_debug_consolidation/acceptance_sources/get_viewport_pos.c (in-repo, locked)
