@@ -35,6 +35,12 @@ MARK = "OWNED-OFFSETS:"
 MAP = "build/us/rush2049.us.map"
 RETAIL_TABLES = ("undefined_syms_auto.us.txt", "undefined_funcs_auto.us.txt", "symbol_addrs.us.txt")
 SECTIONS = (".bss", ".data", ".rodata")
+
+
+def is_data_section(name):
+    """.bss/.data/.rodata, or one renamed for an owned storage block
+    (`objcopy --rename-section .bss=.bss.timer_services`)."""
+    return name in SECTIONS or name.startswith(tuple(s + "." for s in SECTIONS))
 OBJ_RE = re.compile(r"^build/us/(src/rom/[\w./-]+)\.o$")
 _ASSIGN = re.compile(r"^\s*([A-Za-z_.$][\w.$]*)\s*=\s*(0x[0-9A-Fa-f]+)\s*;")
 SHN_COMMON = 0xFFF2
@@ -81,7 +87,7 @@ def map_placements(text):
             pending = None
             continue
         parts = line.split()
-        if line.startswith(" ") and parts and parts[0] in SECTIONS:
+        if line.startswith(" ") and parts and is_data_section(parts[0]):
             if len(parts) == 1:
                 pending = parts[0]
             elif len(parts) == 4 and parts[1].startswith("0x"):
@@ -124,7 +130,7 @@ def object_symbols(data):
                 continue
             if st_shndx == SHN_COMMON:
                 common.append(name)
-            elif 0 < st_shndx < len(names) and names[st_shndx] in SECTIONS:
+            elif 0 < st_shndx < len(names) and is_data_section(names[st_shndx]):
                 out.setdefault(names[st_shndx], []).append((name, st_value, st_size, bind, kind))
     return out, common
 

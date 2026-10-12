@@ -41,7 +41,7 @@ def _elf(symbols, sections=(".bss",), common=()):
     n = len(sections)
     hdrs = [b"\0" * 40]
     for s in sections:
-        hdrs.append(struct.pack(">IIIIIIIIII", shname(s), 8 if s == ".bss" else 1, 3, 0, body, 0x400, 0, 0, 16, 0))
+        hdrs.append(struct.pack(">IIIIIIIIII", shname(s), 8 if s.startswith(".bss") else 1, 3, 0, body, 0x400, 0, 0, 16, 0))
     hdrs.append(struct.pack(">IIIIIIIIII", shname(".symtab"), 2, 0, 0, offs[0], len(symdata), n + 2, 1, 4, 16))
     hdrs.append(struct.pack(">IIIIIIIIII", shname(".strtab"), 3, 0, 0, offs[1], len(strtab), 0, 0, 1, 0))
     hdrs.append(struct.pack(">IIIIIIIIII", shname(".shstrtab"), 3, 0, 0, offs[2], len(shstr), 0, 0, 1, 0))
@@ -213,3 +213,15 @@ def test_promote_batch_bss_at_companion_places_definitions(tmp_path, monkeypatch
     assert "extern void h(void);" in text[text.index("void g(void)"):]
     assert pb.is_object_definition("volatile OSTime t;") and not pb.is_object_definition("struct S;")
     assert not pb.is_object_definition("extern s32 x;") and not pb.is_object_definition("void f(void);")
+
+
+def test_renamed_storage_section_is_checked(tmp_path):
+    """existing-TU storage renames its .bss (`.bss.timer_services`); still checked."""
+    s = _elf([("__osCurrentTime", ".bss.timer_services", 0x20, 8), ("__osBaseCounter", ".bss.timer_services", 0x2C, 4)],
+             sections=(".bss.timer_services",))
+    r = _repo(tmp_path, {"lib_cc": s}, {"__osCurrentTime": 0x80037C50, "__osBaseCounter": 0x80037C58})
+    (r / O.MAP).write_text(" .bss.timer_services\n                0x80037c30       0x40 build/us/src/rom/lib_cc.o\n")
+    results, problems = O.check(r)
+    assert [x["section"] for x in results] == [".bss.timer_services"]
+    assert problems == ["src/rom/lib_cc.c(.bss.timer_services) __osBaseCounter: built 0x80037c5c (+0x2c), "
+                        "retail 0x80037c58 (undefined_syms_auto.us.txt)"]
