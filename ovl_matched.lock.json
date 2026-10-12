@@ -630,6 +630,17 @@
       "verified": "image_gate",
       "verified_at": "2026-10-11"
     },
+    "func_8038D3A4": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "group": "dot_runtime_b_damage_20261012",
+      "image": "B",
+      "origin": "cloud/work/frontier/dot_runtime_b_damage_20261012",
+      "source": "src/ovl_b/groups/dot_runtime_b_damage_20261012/group.json",
+      "source_sha256": "9d36c636322bc86a668857515a24f6dc62b46e11b16576568aa5c82ff438d4c3",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-12"
+    },
     "func_803908D0": {
       "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
       "image": "B",

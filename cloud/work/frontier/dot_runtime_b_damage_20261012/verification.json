@@ -1,0 +1,111 @@
+{
+  "inputs": {
+    "sources_sha256": {
+      "group.c": "61ae37bb0fd916a9d7bf6872900c2d647cedce7deac4b6074a52135f86a9ffa0",
+      "group.json": "cc0e6b30ffd76a52bef3296781729e488d931a2f643a1b7a76d4cbb12e5fe0a0",
+      "verify.py": "847641d0514cd73d0263ea9d1083aee184bef11c213ceaf4c2db28183b8ffc78",
+      "host_test.c": "7ca8528771e5fab70efb63e6a6df0c6640b75d0d670442ce7ae4191ae1e329a3"
+    },
+    "population": "ovl_b",
+    "target": "func_8038D3A4",
+    "extent": {
+      "name": "func_8038D3A4",
+      "address": "0x8038D3A4",
+      "size": 244,
+      "evidence": [
+        "jal",
+        "game_jal",
+        "prologue"
+      ]
+    },
+    "target_words_sha256": "bca5c5c0678b994919e5495be737f3c3bdcc6f00f021f93e3238634d0bda3b3e",
+    "image_sha256": "b55fc2d1b22eb1ebdf01286a69a181b496da7b45ff7aec888ff74b7db748e7cd",
+    "literal_address": "0x80394dc4",
+    "literal_sha256": "cea23fc0ff6ff5c3256ac12d2f117ac6077bc1e314894509962f9ec10ea0a269",
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+    "compiler": "ido5.3"
+  },
+  "comparison": {
+    "differing": 0,
+    "total": 61,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "notes": [
+    "own .rodata verified at 0x80394DC4..0x80394DC8"
+  ],
+  "function_bytes": 244,
+  "text_section_bytes": 256,
+  "owned_data_bytes": 4,
+  "rodata_section_bytes": 16,
+  "text_zero_padding": 12,
+  "rodata_zero_padding": 12,
+  "gnu_text_vma": "0x8038d3a4",
+  "gnu_rodata_vma": "0x80394dc4",
+  "gnu_function_sha256": "bca5c5c0678b994919e5495be737f3c3bdcc6f00f021f93e3238634d0bda3b3e",
+  "gnu_literal_sha256": "cea23fc0ff6ff5c3256ac12d2f117ac6077bc1e314894509962f9ec10ea0a269",
+  "external_bindings": {
+    "D_8014A250": 2148835920,
+    "D_8012E67C": 2148722300,
+    "effect_cleanup": 2148292068
+  },
+  "relocations": [
+    {
+      "offset": 12,
+      "kind": 5,
+      "symbol": "D_8014A250"
+    },
+    {
+      "offset": 36,
+      "kind": 6,
+      "symbol": "D_8014A250"
+    },
+    {
+      "offset": 56,
+      "kind": 5,
+      "symbol": "D_8012E67C"
+    },
+    {
+      "offset": 60,
+      "kind": 6,
+      "symbol": "D_8012E67C"
+    },
+    {
+      "offset": 112,
+      "kind": 5,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 116,
+      "kind": 6,
+      "symbol": ".rodata"
+    },
+    {
+      "offset": 184,
+      "kind": 4,
+      "symbol": "effect_cleanup"
+    },
+    {
+      "offset": 196,
+      "kind": 5,
+      "symbol": "D_8014A250"
+    },
+    {
+      "offset": 224,
+      "kind": 6,
+      "symbol": "D_8014A250"
+    }
+  ],
+  "controls": {
+    "reversed_operands": 3,
+    "missing_data": "rejected",
+    "corrupt_literal": "rejected",
+    "host": "PASS: 96 source fixtures and callback reload"
+  },
+  "new_strict_verified_bytes": 244,
+  "preserved_or_integrated_bytes": 0,
+  "new_image_landed_bytes": 0,
+  "new_rom_verified_bytes": 0
+}
