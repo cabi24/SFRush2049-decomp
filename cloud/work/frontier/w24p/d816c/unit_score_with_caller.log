@@ -1,0 +1,19 @@
+  FAIL func_800D816C: 570 of 699 words differ; compiled body is 690 words, target 699; +0x164: .rodata+0x5fc: retail words encode 0x41e80000, outside the image; +0x3b4: .rodata+0x608: retail words encode 0x88208012, outside the image (+1 more)
+       defined by c_target.c (internal)
+       +0x000  image 000a7600  unit 27bdff48
+       +0x004  image 000e7e03  unit afa400b8
+       +0x008  image 000f5880  unit 00047600
+       +0x00c  image 3c0e8015  unit 24180001
+       +0x010  image 01cb7021  unit 000e2603
+       +0x014  image 8dce4618  unit a3b800b7
+  FAIL func_800D91A0: 740 of 965 words differ; compiled body is 936 words, target 965
+       defined by c_caller.c (kept)
+       +0x004  image afbe0078  unit afb40068
+       +0x008  image 3c1e8011  unit 3c148011
+       +0x00c  image 27de3ed4  unit 26943ed4
+       +0x010  image 83ce0000  unit 828e0000
+       +0x018  image afb70074  unit afbe0078
+       +0x01c  image afb60070  unit afb70074
+       umerge inlined into it: func_800DA0B4
+  locked bodies that differ in this unit: 1: func_800DA0B4
+blob_unit score: 0/2 equal; object build/blob_unit/w24p/unit.o (9.4s)
