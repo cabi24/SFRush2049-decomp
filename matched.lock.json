@@ -1,4 +1,49 @@
 {
+  "cloud/work/frontier/w23c/sources/func_8001605C.c:func_8001605C": {
+    "body_sha256": "4faaa834cac49f0c6bc6d58014642725d134e391e1ca2065fdc1d397cd38e938",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_8001605C",
+    "toolkit_sha": "4586d230749de1bc8a64add52ae53db0ffde18a1eee76c8a73f3791fd98e2557",
+    "verified": "score0",
+    "verified_at": "2026-10-11"
+  },
+  "cloud/work/frontier/w23c/sources/func_80017720.c:func_80017720": {
+    "body_sha256": "9b0fb2ff28cb0e428e2ff392b07740fe48968faa7a307c93fe71373e9b303587",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80017720",
+    "toolkit_sha": "4586d230749de1bc8a64add52ae53db0ffde18a1eee76c8a73f3791fd98e2557",
+    "verified": "score0",
+    "verified_at": "2026-10-11"
+  },
+  "cloud/work/frontier/w23c/sources/func_80019F48.c:func_80019F48": {
+    "body_sha256": "5430dbc382a4d1c4ba3702fcd768407a254d2ad56ecc00d646b2e09562c78deb",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_80019F48",
+    "toolkit_sha": "4586d230749de1bc8a64add52ae53db0ffde18a1eee76c8a73f3791fd98e2557",
+    "verified": "score0",
+    "verified_at": "2026-10-11"
+  },
+  "cloud/work/frontier/w23c/sources/func_8001E50C.c:func_8001E50C": {
+    "body_sha256": "21286aed4dbb112343ce9dadaac6a56855dd5c7d95b6795b8dc745dd8619085c",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
+    "target_id": "func_8001E50C",
+    "toolkit_sha": "4586d230749de1bc8a64add52ae53db0ffde18a1eee76c8a73f3791fd98e2557",
+    "verified": "score0",
+    "verified_at": "2026-10-11"
+  },
+  "cloud/work/frontier/w23c/sources/func_800233B0.c:func_800233B0": {
+    "body_sha256": "16e16823f1d5a2610ec2ea24cc780af881d5ec66fd0121fe4a09201b3e7833e9",
+    "compiler": "ido7.1",
+    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "target_id": "func_800233B0",
+    "toolkit_sha": "4586d230749de1bc8a64add52ae53db0ffde18a1eee76c8a73f3791fd98e2557",
+    "verified": "score0",
+    "verified_at": "2026-10-11"
+  },
   "src/libultra/os_ai.c:__osAiDeviceBusy": {
     "body_sha256": "0095aa6b15d9eaba526ee55482d3716916a388730a2ceac8406f995f0fb1ed14",
     "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
