@@ -1,0 +1,84 @@
+# w27s rename/prove.sh on watchman2 (sha256 of the objects):
+4325680753904d1bc6eaabaa295638a797b4179ac1ba760e8162fb50e0f9e84d  sptask.o
+2ca846f2c6354142c897808c4e707eb1df1c3ae9a505ada19874f53bab5b3e5d  sprawdma.o
+a4dd77c7af25916259288a60045337a8866e2a8454cbe6545b84f7d800a7f278  controller.o
+df4c8599058e278a74899c34a2c851b2c45bda37bc93c6eab2365f0c5583c88e  siacs.o
+53b04106cdf6b5f84260109d14e43bb4b9947bccc0efc72a3c1bb732b7f8046b  pfsgetstatus.o
+# python3 cloud/work/frontier/w24t/rename/compare.py OBJ VRAM (Pi, baserom.us.z64):
+=== sptask
+sptask.o .text 704 bytes vs ROM 0x8440 (vram 0x80007840)
+  function osSpTaskLoad             +0x10C size 0x168 -> 0x8000794C  project: osSpTaskLoad
+  function osSpTaskStartGo          +0x274 size 0x040 -> 0x80007AB4  project: osSpTaskStartGo
+  reloc hi/lo .bss+0x0                     -> 0x80036790  project: gViModeTempBuffer
+  reloc jal   bcopy                        -> 0x8000D2B0  project: bcopy
+  reloc hi/lo .bss+0x10                    -> 0x800367A0  project: gViModePtr0
+  reloc jal   osVirtualToPhysical          -> 0x8000D5C0  project: osVirtualToPhysical
+  reloc hi/lo .bss+0x18                    -> 0x800367A8  project: gViModePtr1
+  reloc hi/lo .bss+0x20                    -> 0x800367B0  project: gViModePtr2
+  reloc hi/lo .bss+0x28                    -> 0x800367B8  project: gViModePtr3
+  reloc hi/lo .bss+0x2C                    -> 0x800367BC  project: gViModePtr4
+  reloc hi/lo .bss+0x30                    -> 0x800367C0  project: gViModePtr5
+  reloc hi/lo .bss+0x38                    -> 0x800367C8  project: gViModePtr6
+  reloc jal   .text+0x0                    -> 0x80007840  project: osViModeTableGet
+  reloc jal   osWritebackDCache            -> 0x80007CA0  project: osWritebackDCache
+  reloc jal   __osSpSetStatus              -> 0x8000D640  project: __osSpSetStatus
+  reloc jal   __osSpSetPc                  -> 0x8000D650  project: __osSpSetPc
+  reloc jal   __osSpRawStartDma            -> 0x8000D680  project: __osSpDma
+  reloc jal   __osSpDeviceBusy             -> 0x8000D710  project: __osSpDeviceBusy
+  section .bss base 0x80036790
+  section .text base 0x80007840
+RESULT: IDENTICAL (176 words, 54 relocated fields compared by value, 0 differing words)
+=== sprawdma
+sprawdma.o .text 144 bytes vs ROM 0xE280 (vram 0x8000D680)
+  function __osSpRawStartDma        +0x000 size 0x084 -> 0x8000D680  project: __osSpDma
+  reloc jal   __osSpDeviceBusy             -> 0x8000D710  project: __osSpDeviceBusy
+  reloc jal   osVirtualToPhysical          -> 0x8000D5C0  project: osVirtualToPhysical
+RESULT: IDENTICAL (36 words, 2 relocated fields compared by value, 0 differing words)
+=== controller
+controller.o .text 736 bytes vs ROM 0xA050 (vram 0x80009450)
+  function osContInit               +0x000 size 0x15C -> 0x80009450  project: osContInit
+  function __osContGetInitData      +0x15C size 0x0AC -> 0x800095AC  project: __osContGetStatus
+  function __osPackRequestData      +0x208 size 0x0D4 -> 0x80009658  project: __osContRamReset
+  reloc hi/lo __osContinitialized          -> 0x8002C3B0  project: __osContPifBuf
+  reloc jal   osGetTime                    -> 0x800073B0  project: osGetTime
+  reloc jal   osCreateMesgQueue            -> 0x80006A00  project: osCreateMesgQueue
+  reloc jal   osSetTimer                   -> 0x8000E3D0  project: osSetTimer
+  reloc jal   osRecvMesg                   -> 0x80007270  project: osRecvMesg
+  reloc hi/lo __osMaxControllers           -> 0x80037AE1  project: __osPfsRequestType2
+  reloc jal   __osPackRequestData          -> 0x80009658  project: __osContRamReset
+  reloc hi/lo __osContPifRam               -> 0x80037AA0  project: __osSiDmaBuffer
+  reloc jal   __osSiRawStartDma            -> 0x8000E4B0  project: __osSiRawStartDma
+  reloc jal   __osContGetInitData          -> 0x800095AC  project: __osContGetStatus
+  reloc jal   __osSiCreateAccessQueue      -> 0x8000E560  project: osSiInit
+  reloc hi/lo __osContLastCmd              -> 0x80037AE0  project: __osPfsRequestType
+  reloc hi/lo __osEepromTimerMsg           -> 0x80037B20  project: __osContQueryMesg
+  reloc hi/lo __osEepromTimerQ             -> 0x80037B08  project: __osContQueryMsgQ
+  reloc hi/lo __osContPifRam+0x3C          -> 0x80037AA0  project: __osSiDmaBuffer
+RESULT: IDENTICAL (184 words, 38 relocated fields compared by value, 0 differing words)
+=== siacs
+siacs.o .text 192 bytes vs ROM 0xF160 (vram 0x8000E560)
+  function __osSiCreateAccessQueue  +0x000 size 0x050 -> 0x8000E560  project: osSiInit
+  function __osSiGetAccess          +0x050 size 0x044 -> 0x8000E5B0  project: __osSiGetAccess
+  function __osSiRelAccess          +0x094 size 0x02C -> 0x8000E5F4  project: __osSiRelAccess
+  reloc hi/lo __osSiAccessQueueEnabled     -> 0x8002C4B0  project: __osSiInitialized
+  reloc hi/lo .bss+0x0                     -> 0x80037C90  project: __osSiMesgQueue
+  reloc hi/lo __osSiAccessQueue            -> 0x80037C98  project: __osSiMesg
+  reloc jal   osCreateMesgQueue            -> 0x80006A00  project: osCreateMesgQueue
+  reloc jal   osSendMesg                   -> 0x800075E0  project: osSendMesg
+  reloc jal   __osSiCreateAccessQueue      -> 0x8000E560  project: osSiInit
+  reloc jal   osRecvMesg                   -> 0x80007270  project: osRecvMesg
+  section .bss base 0x80037C90
+RESULT: IDENTICAL (48 words, 19 relocated fields compared by value, 0 differing words)
+=== pfsgetstatus
+pfsgetstatus.o .text 560 bytes vs ROM 0xF220 (vram 0x8000E620)
+  function __osPfsGetStatus         +0x000 size 0x0D0 -> 0x8000E620  project: __osPfsGetStatus
+  function __osPfsRequestOneChannel +0x0D0 size 0x0C4 -> 0x8000E6F0  project: __osContBuildRequest
+  function __osPfsGetOneChannelData +0x194 size 0x098 -> 0x8000E7B4  project: __osContParseResponse
+  reloc hi/lo __osPfsInodeCacheBank        -> 0x8002C4D4  project: __osSiChannelMask
+  reloc jal   __osPfsRequestOneChannel     -> 0x8000E6F0  project: __osContBuildRequest
+  reloc hi/lo __osPfsPifRam                -> 0x80037F60  project: __osPfsBuffer
+  reloc jal   __osSiRawStartDma            -> 0x8000E4B0  project: __osSiRawStartDma
+  reloc jal   osRecvMesg                   -> 0x80007270  project: osRecvMesg
+  reloc jal   __osPfsGetOneChannelData     -> 0x8000E7B4  project: __osContParseResponse
+  reloc hi/lo __osContLastCmd              -> 0x80037AE0  project: __osPfsRequestType
+RESULT: IDENTICAL (140 words, 18 relocated fields compared by value, 0 differing words)

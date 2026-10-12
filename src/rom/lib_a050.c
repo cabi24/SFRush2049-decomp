@@ -32,7 +32,7 @@ s32 osContInit(OSMesgQueue* mq, u8* bitpattern, OSContStatus* data) {
 
     __osPfsRequestType2 = 4;
 
-    __osContRamReset(CONT_CMD_REQUEST_STATUS);
+    __osPackRequestData(CONT_CMD_REQUEST_STATUS);
 
     ret = __osSiRawStartDma(OS_WRITE, __osSiDmaBuffer.ramarray);
     osRecvMesg(mq, &dummy, OS_MESG_BLOCK);
@@ -40,21 +40,21 @@ s32 osContInit(OSMesgQueue* mq, u8* bitpattern, OSContStatus* data) {
     ret = __osSiRawStartDma(OS_READ, __osSiDmaBuffer.ramarray);
     osRecvMesg(mq, &dummy, OS_MESG_BLOCK);
 
-    __osContGetStatus(bitpattern, data);
+    __osContGetInitData(bitpattern, data);
     __osPfsRequestType = CONT_CMD_REQUEST_STATUS;
-    osSiInit();
+    __osSiCreateAccessQueue();
     osCreateMesgQueue(&__osContQueryMsgQ, &__osContQueryMesg, 1);
 
     return ret;
 }
 
-/* PROMOTED 2026-10-01 — __osContGetStatus
+/* PROMOTED 2026-10-01 — __osContGetInitData (ultralib name since w27s; was __osContGetStatus)
  * Source:   cloud/work/static_C7/__osContGetStatus.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C7/__osContGetStatus.c:__osContGetStatus (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void __osContGetStatus(u8* pattern, OSContStatus* data) {
+void __osContGetInitData(u8* pattern, OSContStatus* data) {
     u8* ptr;
     __OSContRequesFormat requestHeader;
     int i;
@@ -76,13 +76,13 @@ void __osContGetStatus(u8* pattern, OSContStatus* data) {
     *pattern = bits;
 }
 
-/* PROMOTED 2026-10-01 — __osContRamReset
+/* PROMOTED 2026-10-01 — __osPackRequestData (ultralib name since w27s; was __osContRamReset)
  * Source:   cloud/work/static_C7/__osContRamReset.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C7/__osContRamReset.c:__osContRamReset (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void __osContRamReset(u8 cmd) {
+void __osPackRequestData(u8 cmd) {
     u8* ptr;
     __OSContRequesFormat requestHeader;
     s32 i;

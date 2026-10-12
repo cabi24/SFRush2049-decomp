@@ -1,6 +1,6 @@
-nonmatching osViModeTableGet, 0x10C
+nonmatching _VirtualToPhysicalTask, 0x10C
 
-glabel osViModeTableGet
+glabel _VirtualToPhysicalTask
     /* 8440 80007840 27BDFFE8 */  addiu      $sp, $sp, -0x18
     /* 8444 80007844 AFBF0014 */  sw         $ra, 0x14($sp)
     /* 8448 80007848 3C058003 */  lui        $a1, %hi(gViModeTempBuffer)
@@ -75,4 +75,4 @@ glabel osViModeTableGet
     /* 8540 80007940 24426790 */  addiu      $v0, $v0, %lo(gViModeTempBuffer)
     /* 8544 80007944 03E00008 */  jr         $ra
     /* 8548 80007948 27BD0018 */   addiu     $sp, $sp, 0x18
-endlabel osViModeTableGet
+endlabel _VirtualToPhysicalTask

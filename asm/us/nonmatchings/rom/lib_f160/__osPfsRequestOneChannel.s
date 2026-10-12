@@ -1,6 +1,6 @@
-nonmatching __osContBuildRequest, 0xC4
+nonmatching __osPfsRequestOneChannel, 0xC4
 
-glabel __osContBuildRequest
+glabel __osPfsRequestOneChannel
     /* F2F0 8000E6F0 27BDFFE8 */  addiu      $sp, $sp, -0x18
     /* F2F4 8000E6F4 3C068003 */  lui        $a2, %hi(__osPfsBuffer)
     /* F2F8 8000E6F8 240700FE */  addiu      $a3, $zero, 0xFE
@@ -53,4 +53,4 @@ glabel __osContBuildRequest
     /* F3A8 8000E7A8 27BD0018 */  addiu      $sp, $sp, 0x18
     /* F3AC 8000E7AC 03E00008 */  jr         $ra
     /* F3B0 8000E7B0 A04DFFFF */   sb        $t5, -0x1($v0)
-endlabel __osContBuildRequest
+endlabel __osPfsRequestOneChannel

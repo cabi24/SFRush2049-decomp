@@ -246,7 +246,7 @@ which keep their current names (the w23g renames above are done):
 `__osContGetInitData`, `osSiInit` = `__osSiCreateAccessQueue`,
 `__osContBuildRequest` = `__osPfsRequestOneChannel`, `__osContParseResponse` =
 `__osPfsGetOneChannelData`, and `osPfsReadWriteFile_pages` = `__osCheckId` (proven and renamed
-by lane w25a, next section). Each needs its own body check before a rename.
+by lane w25a, next section). All seven others were proven and renamed by lane w27s (last section).
 
 ## contpfs.c and timerintr.c data renamed (lane w25a, 2026-10-12)
 
@@ -282,3 +282,32 @@ are not built and keep their spellings), nonmatchings git-mv'd and permuted, `ma
 (undefined_syms_auto), boot_tail/blob `symbols.json` + SHA256SUMS and `src/blob/blob.ld` permuted in
 place, timer_services profile revision, Conveyor DB `targets_rename rename` (functions only).
 `tools/recomp/identity.json` maps the three functions back to their pre-w25a names.
+
+## sptask.c, sprawdma.c, controller.c, siacs.c, pfsgetstatus.c functions renamed (lane w27s, 2026-10-12)
+
+Same method (`cloud/work/frontier/w27s/rename/{prove.sh,prove.log}`, w24t's `compare.py`): ultralib
+(decompals e24c836) VERSION_J `-D_FINALROM` compiled with the project IDO 5.3 at the holding TUs'
+flagset `-g0 -O2 -mips2 -G 0 -non_shared` (lib_8440, lib_e280, lib_a050, lib_f160; no opt override).
+Each object's whole `.text` equals the ROM, relocations compared by value:
+`io/sptask.c` IDENTICAL (176 words, 54 relocated fields) at 0x80007840, `io/sprawdma.c` (36 words) at
+0x8000D680, `io/controller.c` (184 words) at 0x80009450, `io/siacs.c` (48 words) at 0x8000E560,
+`io/pfsgetstatus.c` (140 words) at 0x8000E620. Table `cloud/work/frontier/w27s/rename/renames.json`
+(static side only; no game source calls these names; the blob/boot_tail `symbols.json` maps and
+`src/blob/blob.ld` PROVIDEs were permuted in place):
+
+| vram | old | ultralib name | file |
+|---|---|---|---|
+| 0x80007840 | `osViModeTableGet` | `_VirtualToPhysicalTask` (static) | io/sptask.c |
+| 0x8000D680 | `__osSpDma` | `__osSpRawStartDma` | io/sprawdma.c |
+| 0x800095AC | `__osContGetStatus` | `__osContGetInitData` | io/controller.c |
+| 0x80009658 | `__osContRamReset` | `__osPackRequestData` | io/controller.c |
+| 0x8000E560 | `osSiInit` | `__osSiCreateAccessQueue` | io/siacs.c |
+| 0x8000E6F0 | `__osContBuildRequest` | `__osPfsRequestOneChannel` | io/pfsgetstatus.c |
+| 0x8000E7B4 | `__osContParseResponse` | `__osPfsGetOneChannelData` | io/pfsgetstatus.c |
+
+Applied with `static_rename symbols|source|lock|owned` (src/rom TUs and rom_tu.h; the unbuilt legacy
+src/libultra keeps its spellings), PROMOTED headers retitled, nonmatchings git-mv'd and permuted,
+Conveyor DB `targets_rename rename` (functions), `targets._typed_data_field_aliases` accepts the new
+name for the task-field family, `tools/recomp/identity.json` maps the seven back to their pre-w27s
+names for the recompiler.
+

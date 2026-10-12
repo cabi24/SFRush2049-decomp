@@ -6,11 +6,11 @@
 
 /* Canonical SDK SP-task context; keep shared IO_READ behavior unchanged. */
 extern OSTask gViModeTempBuffer;
-extern OSTask *osViModeTableGet(OSTask *);
+extern OSTask *_VirtualToPhysicalTask(OSTask *);
 extern void osSpTaskLoad(OSTask *);
 extern void __osSpSetStatus(u32);
 extern s32 __osSpSetPc(u32);
-extern s32 __osSpDma(s32, u32, void *, u32);
+extern s32 __osSpRawStartDma(s32, u32, void *, u32);
 #define OS_TASK_LOADABLE 4
 #define OS_YIELD_DATA_SIZE 0xC00
 #undef IO_READ
@@ -22,13 +22,13 @@ extern s32 __osSpDma(s32, u32, void *, u32);
 #define SP_SET_INTR_BREAK 0x100
 #define SP_IMEM_START 0x04001000
 
-/* PROMOTED 2026-10-01 — osViModeTableGet
+/* PROMOTED 2026-10-01 — _VirtualToPhysicalTask (ultralib name since w27s; was osViModeTableGet)
  * Source:   cloud/work/static_C15/osViModeTableGet.c (in-repo, locked)
  * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C15/osViModeTableGet.c:osViModeTableGet (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-OSTask* osViModeTableGet(OSTask* intp) {
+OSTask* _VirtualToPhysicalTask(OSTask* intp) {
     OSTask* tp;
     tp = &gViModeTempBuffer;
     bcopy(intp, tp, sizeof(OSTask));
@@ -53,7 +53,7 @@ void osSpTaskLoad(OSTask* intp) {
     OSTask* tp;
 
 
-    tp = osViModeTableGet(intp);
+    tp = _VirtualToPhysicalTask(intp);
 
     if (tp->t.flags & OS_TASK_YIELDED) {
         tp->t.ucode_data = tp->t.yield_data_ptr;
@@ -69,11 +69,11 @@ void osSpTaskLoad(OSTask* intp) {
 
     while (__osSpSetPc(SP_IMEM_START) == -1) {}
 
-    while (__osSpDma(1, (SP_IMEM_START - sizeof(*tp)), tp, sizeof(OSTask)) == -1) {}
+    while (__osSpRawStartDma(1, (SP_IMEM_START - sizeof(*tp)), tp, sizeof(OSTask)) == -1) {}
 
     while (__osSpDeviceBusy()) {}
 
-    while (__osSpDma(1, SP_IMEM_START, tp->t.ucode_boot, tp->t.ucode_boot_size) == -1) {}
+    while (__osSpRawStartDma(1, SP_IMEM_START, tp->t.ucode_boot, tp->t.ucode_boot_size) == -1) {}
 }
 
 /* PROMOTED 2026-10-01 — osSpTaskStartGo (named osViModeNtscLpn1 before the w22g libultra rename)

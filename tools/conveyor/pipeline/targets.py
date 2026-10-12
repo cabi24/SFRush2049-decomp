@@ -648,7 +648,7 @@ def _typed_data_field_aliases(lines, target_id):
         offsets = _sdk_field_offsets("time")
         if offsets is not None:
             relationships = [("gViTimeAccumLo", "__osCurrentTime", offsets["low_word"])]
-    elif target_id == "osViModeTableGet":
+    elif target_id in ("_VirtualToPhysicalTask", "osViModeTableGet"):   # osViModeTableGet before w27s
         offsets = _sdk_field_offsets("task")
         if offsets is not None:
             fields = ("ucode", "ucode_data", "dram_stack", "output_buff",

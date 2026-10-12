@@ -1,0 +1,19 @@
+{
+  "note": "w27s: ultralib (decompals e24c836) VERSION_J _FINALROM compiled with the project IDO 5.3 (toolkit 796ae99a) at the holding TUs' flagset -g0 -O2 -mips2 -G 0 -non_shared (lib_8440, lib_e280, lib_a050, lib_f160: no opt override, compiler ido5.3); each object's whole .text byte-identical to the ROM, relocations compared by value (rename/prove.sh + w24t compare.py, rename/prove.log). Function order and extents come from the identical objects. The w22g/w23g check's leads (docs/SYMBOL_MISATTRIBUTION.md 'Other misnamed static functions').",
+  "renames": [
+    {"vram": "0x80007840", "old": "osViModeTableGet", "new": "_VirtualToPhysicalTask", "status": "accepted",
+     "evidence": "sptask.o .text+0x0 (static, 0x10C B; osSpTaskLoad +0x10C -> 0x8000794C, osSpTaskStartGo +0x274) == ROM 0x80007840: RESULT IDENTICAL (176 words, 54 relocated fields)"},
+    {"vram": "0x8000D680", "old": "__osSpDma", "new": "__osSpRawStartDma", "status": "accepted",
+     "evidence": "sprawdma.o .text+0x0 (size 0x84) == ROM 0x8000D680: RESULT IDENTICAL (36 words, 2 relocated fields)"},
+    {"vram": "0x800095AC", "old": "__osContGetStatus", "new": "__osContGetInitData", "status": "accepted",
+     "evidence": "controller.o .text+0x15C (size 0xAC) == ROM 0x800095AC (osContInit at +0x0 -> 0x80009450): RESULT IDENTICAL (184 words, 38 relocated fields)"},
+    {"vram": "0x80009658", "old": "__osContRamReset", "new": "__osPackRequestData", "status": "accepted",
+     "evidence": "controller.o .text+0x208 (size 0xD4) == ROM 0x80009658"},
+    {"vram": "0x8000E560", "old": "osSiInit", "new": "__osSiCreateAccessQueue", "status": "accepted",
+     "evidence": "siacs.o .text+0x0 (size 0x50) == ROM 0x8000E560 (__osSiGetAccess +0x50, __osSiRelAccess +0x94): RESULT IDENTICAL (48 words, 19 relocated fields)"},
+    {"vram": "0x8000E6F0", "old": "__osContBuildRequest", "new": "__osPfsRequestOneChannel", "status": "accepted",
+     "evidence": "pfsgetstatus.o .text+0xD0 (size 0xC4) == ROM 0x8000E6F0 (__osPfsGetStatus at +0x0 -> 0x8000E620): RESULT IDENTICAL (140 words, 18 relocated fields)"},
+    {"vram": "0x8000E7B4", "old": "__osContParseResponse", "new": "__osPfsGetOneChannelData", "status": "accepted",
+     "evidence": "pfsgetstatus.o .text+0x194 (size 0x98) == ROM 0x8000E7B4"}
+  ]
+}

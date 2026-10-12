@@ -136,14 +136,14 @@ __osResetGlobalIntMask = 0x8000FDA0; // type:func census S12 (cloud/work/s12_boo
 __osEPiRawWriteIo = 0x8000FE00; // type:func census S12 (cloud/work/s12_boot_tail_census) exact masked ultralib e24c836 match, formerly labelled osEPiRawStartDma
 __osEPiRawReadIo = 0x8000FF60; // type:func census S12 (cloud/work/s12_boot_tail_census) exact masked ultralib e24c836 match, formerly labelled osEPiRawReadIo
 __osSetGlobalIntMask = 0x800100C0; // type:func census S12 (cloud/work/s12_boot_tail_census) exact masked ultralib e24c836 match, formerly labelled __osPiGetCmdQueue
-__osSpDma = 0x8000D680; // type:func SP DMA transfer (RSP <-> RDRAM)
+__osSpRawStartDma = 0x8000D680; // type:func libultra __osSpRawStartDma (renamed from __osSpDma, docs/SYMBOL_MISATTRIBUTION.md)
 __osSiRawStartDma = 0x8000E4B0; // type:func SI raw DMA to/from PIF
-osSiInit = 0x8000E560; // type:func serial interface initialization
+__osSiCreateAccessQueue = 0x8000E560; // type:func libultra __osSiCreateAccessQueue (renamed from osSiInit, docs/SYMBOL_MISATTRIBUTION.md)
 __osSiGetAccess = 0x8000E5B0; // type:func acquire SI mutex
 __osSiRelAccess = 0x8000E5F4; // type:func release SI mutex
 __osPfsGetStatus = 0x8000E620; // type:func libultra __osPfsGetStatus (renamed from osContStartReadData, docs/SYMBOL_MISATTRIBUTION.md)
-__osContBuildRequest = 0x8000E6F0; // type:func build controller request packet
-__osContParseResponse = 0x8000E7B4; // type:func parse controller response
+__osPfsRequestOneChannel = 0x8000E6F0; // type:func libultra __osPfsRequestOneChannel (renamed from __osContBuildRequest, docs/SYMBOL_MISATTRIBUTION.md)
+__osPfsGetOneChannelData = 0x8000E7B4; // type:func libultra __osPfsGetOneChannelData (renamed from __osContParseResponse, docs/SYMBOL_MISATTRIBUTION.md)
 
 // Controller query/read functions (A330.s)
 osContStartQuery = 0x80009730; // type:func start controller status query
@@ -188,7 +188,7 @@ __osSpSetPc = 0x8000D650; // type:func set RSP program counter (only if halted)
 __osSpDeviceBusy = 0x8000D710; // type:func check if RSP is busy (bits 0x1C)
 
 // VI mode table functions (8440.s)
-osViModeTableGet = 0x80007840; // type:func get VI mode from table
+_VirtualToPhysicalTask = 0x80007840; // type:func libultra _VirtualToPhysicalTask (renamed from osViModeTableGet, docs/SYMBOL_MISATTRIBUTION.md)
 osSpTaskLoad = 0x8000794C; // type:func libultra osSpTaskLoad (renamed from osViModeNtscLan1, docs/SYMBOL_MISATTRIBUTION.md)
 osSpTaskStartGo = 0x80007AB4; // type:func libultra osSpTaskStartGo (renamed from osViModeNtscLpn1, docs/SYMBOL_MISATTRIBUTION.md)
 
@@ -507,8 +507,8 @@ rmonPrintf = 0x8000870C; // type:func libultra rmonPrintf (renamed from osWriteb
 
 // SI controller functions (9930.s)
 osContInit = 0x80009450; // type:func libultra osContInit (renamed from __osContBuildPacket, docs/SYMBOL_MISATTRIBUTION.md)
-__osContGetStatus = 0x800095AC; // type:func get controller status
-__osContRamReset = 0x80009658; // type:func reset controller pak RAM
+__osContGetInitData = 0x800095AC; // type:func libultra __osContGetInitData (renamed from __osContGetStatus, docs/SYMBOL_MISATTRIBUTION.md)
+__osPackRequestData = 0x80009658; // type:func libultra __osPackRequestData (renamed from __osContRamReset, docs/SYMBOL_MISATTRIBUTION.md)
 
 // Timer internal functions (A9E0.s)
 __osPfsCheckRamArea = 0x80009E18; // type:func libultra __osPfsCheckRamArea (renamed from __osTimerInterrupt, docs/SYMBOL_MISATTRIBUTION.md)

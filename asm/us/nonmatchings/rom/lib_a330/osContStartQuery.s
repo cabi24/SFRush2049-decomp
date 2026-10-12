@@ -9,7 +9,7 @@ glabel osContStartQuery
     /* A344 80009744 91CE7AE0 */  lbu        $t6, %lo(__osPfsRequestType)($t6)
     /* A348 80009748 11C0000B */  beqz       $t6, .L80009778
     /* A34C 8000974C 00000000 */   nop
-    /* A350 80009750 0C002596 */  jal        __osContRamReset
+    /* A350 80009750 0C002596 */  jal        __osPackRequestData
     /* A354 80009754 00002025 */   or        $a0, $zero, $zero
     /* A358 80009758 3C058003 */  lui        $a1, %hi(__osSiDmaBuffer)
     /* A35C 8000975C 24A57AA0 */  addiu      $a1, $a1, %lo(__osSiDmaBuffer)

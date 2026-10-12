@@ -60,7 +60,7 @@ extern s32 __osPiRawReadIo(u32, u32 *);
 /* Existing OSTask, OSContStatus, OSContPad, __OSViContext, OSPifRam types suffice.
  * __osViModeInfo remains s32, as in C1; C2 explicitly casts its loaded value.
  * No change to accepted C1 declarations is needed. */
-extern void __osContGetStatus(u8 *, OSContStatus *);
+extern void __osContGetInitData(u8 *, OSContStatus *);
 extern s32 bzero_alt(void);  /* historical target name for SDK __osSpGetStatus */
 extern u32 __osTLBLookup(void *);
 extern s32 __osSpDeviceBusy(void);
@@ -96,7 +96,7 @@ extern void guOrthoF(f32 [4][4], f32, f32, f32, f32, f32, f32, f32);
 extern void guLookAtF(f32 [4][4], f32, f32, f32, f32, f32, f32, f32, f32, f32);
 extern void guMtxF2L(f32 [4][4], Mtx *);
 extern s32 osDpIsBusy(void);
-extern void __osContRamReset(u8);
+extern void __osPackRequestData(u8);
 extern OSTime __osInsertTimer(OSTimer *);
 extern void __osSetTimerIntr(OSTime);
 extern void __osExceptionPanic(void);
@@ -221,8 +221,8 @@ typedef struct {
 #define CONT_CMD_REQUEST_STATUS_TX 1
 #define CONT_CMD_REQUEST_STATUS_RX 3
 #define MQ_IS_FULL(mq) ((mq)->validCount >= (mq)->msgCount)
-extern void __osContBuildRequest(int, u8);
-extern void __osContParseResponse(int, OSContStatus *);
+extern void __osPfsRequestOneChannel(int, u8);
+extern void __osPfsGetOneChannelData(int, OSContStatus *);
 extern f32 sqrtf(f32);
 
 /* Verified canonical PFS/PI context, packet C8. */

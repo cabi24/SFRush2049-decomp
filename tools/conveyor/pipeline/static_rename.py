@@ -376,7 +376,8 @@ RENAME_TABLES = (LIBULTRA_RENAMES,
                  FRONTIER / "w23g" / "ll_renames.json",        # ll.c/llcvt.c helpers
                  FRONTIER / "w23g" / "suspect_renames.json",   # w22g's verified leads
                  FRONTIER / "w24t" / "rename" / "renames.json",  # timer_services + pfsinitpak static
-                 FRONTIER / "w25a" / "rename" / "renames.json")  # contpfs.c + timerintr.c data
+                 FRONTIER / "w25a" / "rename" / "renames.json",  # contpfs.c + timerintr.c data
+                 FRONTIER / "w27s" / "rename" / "renames.json")  # sptask/sprawdma/controller/siacs/pfsgetstatus
 _libultra_cache = None
 
 
