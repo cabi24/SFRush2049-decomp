@@ -5629,6 +5629,7 @@ func_80092484:
 .section .text.buffer_swap, "ax", @progbits
 .globl buffer_swap
 buffer_swap:
+    /* compiled from src/blob/buffer_swap.c */
     .word 0x27BDFF10
     .word 0xAFBF004C
     .word 0xAFB10048
