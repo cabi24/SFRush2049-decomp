@@ -32,6 +32,11 @@ def test_host_accessors(tmp_path, cc, standard):
 
 def test_host_accessors_ubsan(tmp_path):
     binary = tmp_path / "rdram-ubsan"
+    probe = tmp_path / "ubsan-probe.c"
+    probe.write_text("int main(void) { return 0; }\n")
+    if subprocess.run([compiler("cc"), "-fsanitize=undefined", str(probe), "-o",
+                       str(tmp_path / "ubsan-probe")], capture_output=True).returncode != 0:
+        pytest.skip("UBSan runtime (libubsan) not installed for the host compiler")
     subprocess.run([compiler("cc"), "-std=c11", "-O1", "-g", "-Wall", "-Wextra", "-Werror",
                     "-fsanitize=undefined", "-fno-sanitize-recover=all", "-I", str(REPO),
                     str(FIXTURE), "-o", str(binary)], check=True, capture_output=True, text=True)
