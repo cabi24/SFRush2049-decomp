@@ -376,6 +376,21 @@ Results (rocky, 2026-10-12; stock side = the capture build of the same set):
 | `statics` (func_800E7710) / race | EQUIVALENT (Phase 2: DIFFERENT at frame 1, its private static) |
 | all 689 matched `src/blob` game files / four scripts | no judged frame difference (NOT EXERCISED: 340-346 of 689 called); per-call (race): all 4,241,687 captured calls identical |
 
+**IPA callees are refused (lane w24t, 2026-10-12).** `replace.build` lists the functions a replacement
+object reaches by `jal` to an undefined symbol and reads each one's RETAIL body (`tools/recomp/ipa_detect.py`,
+stdlib: a must-write dataflow over the body, delay slots and branch-likely modelled) for registers read
+before any write that o32 does not pass in (anything but a0-a3, f12, f14, sp, ra, gp; prologue saves are not
+reads; caller-save registers count as written after a call). A hit is refused (`ReplaceError`, naming the
+callee and registers) unless `gen_config --allow-ipa` or the entry's `"allow_ipa": true`, which builds with
+o32 calls, warns on stderr and records `ipa_callees` per replacement. A callee the source defines itself (w23f's
+oracle form, static copies) is not a hazard; an optional `ipa_detected` table (e.g. an ipa.py scan) adds names.
+Calibration on the game image (2026-10-12): 91 functions flagged, entity_transform_calc = f22,f24,f26,f28,
+audio_effect_setup = s0, 0 of the 688 standalone locks flagged; 91 of build/ipa_members.json's 94 callees
+(missed: func_80105EA8 t9, lap_count_select t8, split_time_display t4, which ipa.py reports through paths the
+dataflow judges written). `draft_engine_sound_sync` carries `"allow_ipa": true` so the frame-706 harness
+verdict stays reproducible. Lane w24r's IPA-aware build (shims / linked bodies) is the way to judge such a
+draft without static copies.
+
 ## RDRAM accessors (optional native path; Astra PR #325, imported by w22p, 2026-10-12)
 
 `rdram.h` and `game_rdram.h` are the accessor layer the `native` mode above lacks. They are standalone

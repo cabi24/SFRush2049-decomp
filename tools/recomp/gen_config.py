@@ -1029,6 +1029,9 @@ def main(argv=None):
     parser.add_argument("--probe-callees", action="store_true",
                         help="Phase 3: also capture every direct callee of the replaced functions (order "
                         "and effect only); pass it to BOTH builds")
+    parser.add_argument("--allow-ipa", action="store_true",
+                        help="build a replacement that calls an IDO -O3 IPA register-parameter callee "
+                        "with plain o32 calls (warns; default: refuse, replace.ipa_hazards)")
     args = parser.parse_args(argv)
     try:
         lists = builtin_lists(args.n64recomp_src)
@@ -1060,7 +1063,7 @@ def main(argv=None):
             chosen = replmod.select(doc, args.replace_set, ids)
             toolkits = {k: v for k, v in (("ido5.3", args.ido53), ("ido7.1", args.ido71)) if v}
             repl = replmod.build(chosen, functions, symbols, out / "replace", toolkits, ld=args.ld,
-                                 images=images)
+                                 images=images, allow_ipa=args.allow_ipa)
         else:
             import shutil
             shutil.rmtree(out / "replace", ignore_errors=True)

@@ -95,7 +95,9 @@
    "source": "cloud/work/frontier/w21h/engine_sound_sync/best.c",
    "mode": "ido",
    "state": "draft",
-   "note": "w21h best, NOT a match (8 normalised rows): correct-not-matched candidate"
+   "note": "w21h best, NOT a match (8 normalised rows): correct-not-matched candidate",
+   "allow_ipa": true,
+   "allow_ipa_note": "w24t: calls entity_transform_calc (f22-f28) and audio_effect_setup (s0) with o32 calls; kept buildable to reproduce the w22r/w23r frame-706 harness verdict"
   },
   "draft_func_800D7634": {
    "function": "func_800D7634",

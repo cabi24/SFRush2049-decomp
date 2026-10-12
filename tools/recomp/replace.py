@@ -45,6 +45,7 @@ import re
 import shlex
 import struct
 import subprocess
+import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
@@ -749,9 +750,34 @@ def capture_entries(selected, repo=REPO):
 
 # ------------------------------------------------------------------ build
 
+def ipa_hazards(elf, table, functions, images, detected=None):
+    """{callee: why} for functions this object calls (jal to an undefined
+    symbol) that take IDO -O3 register parameters: read from the retail body
+    (ipa_detect, no build/ inputs needed) plus any `detected` table (e.g. an
+    ipa.py scan). A callee the object defines itself (a static copy, w23f's
+    oracle form) is not a hazard."""
+    here = str(Path(__file__).resolve().parent)
+    if here not in sys.path:
+        sys.path.insert(0, here)
+    import ipa_detect
+    callees = ipa_detect.called_functions(elf)
+    out = ipa_detect.detect(callees, table, functions, images)
+    for name in callees:
+        if name in (detected or {}) and name not in out:
+            out[name] = detected[name]
+    return out
+
+
 def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=REPO, run=subprocess.run,
-          images=None):
+          images=None, ipa_detected=None, allow_ipa=False, warn=None):
     """Compile and link the selected replacements.
+
+    A body that calls a callee with IPA register parameters (ipa_hazards) is
+    refused: the standalone build passes o32 arguments and the retail callee
+    reads other registers (w23f/w23r: $f22-$f28 of entity_transform_calc),
+    so the frame oracle's verdict would be about the harness. `allow_ipa`
+    (gen_config --allow-ipa) or the entry's "allow_ipa": true builds it
+    anyway with a warning, recorded as "ipa_callees" in the result.
 
     toolkits = {"ido5.3": DIR, "ido7.1": DIR} (each with ido/cc). Returns
     {"image": {"vram", "bytes"} or None, "functions": [{name, vram, size}],
@@ -804,7 +830,19 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
         res, missing = resolve(undefined_symbols(elf), table)
         if missing:
             raise ReplaceError(f"replacement {rid}: unresolved symbols {', '.join(missing)}")
-        objects.append((rid, dict(e, _text=text), obj, elf, res))
+        hazards = ipa_hazards(elf, table, functions, images, ipa_detected)
+        if hazards:
+            listing = "; ".join(f"{n}: {why}" for n, why in sorted(hazards.items()))
+            if not (allow_ipa or e.get("allow_ipa")):
+                raise ReplaceError(
+                    f"replacement {rid}: calls IPA register-parameter callees ({listing}); a standalone "
+                    "build passes them o32 arguments, so the oracle would judge the harness. Build it as "
+                    "an oracle source with static copies of those callees (w23f), or pass --allow-ipa "
+                    "(entry \"allow_ipa\": true) to build it anyway")
+            (warn or (lambda m: print(m, file=sys.stderr)))(
+                f"replace: WARNING {rid}: calls IPA register-parameter callees ({listing}); "
+                "built with o32 calls (--allow-ipa)")
+        objects.append((rid, dict(e, _text=text, _ipa=hazards), obj, elf, res))
     # Each object is linked on its own at the next aligned address (no name can
     # collide between replacements; static helpers belong to their object),
     # and the chunks are concatenated into one image at REPL_VRAM.
@@ -889,6 +927,7 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
                          "statics_private": sorted("%s+0x%X%s" % (k[0], k[1], " " + n if n else "")
                                                    for k, n in unbound),
                          "static_sites_patched": patched, "zero_loads_nopped": zero_loads,
+                         "ipa_callees": dict(sorted(e["_ipa"].items())),
                          "capture": capture_layout(e["_text"], e["function"], e.get("prototype"),
                                                     e.get("capture_args"), e.get("capture_ret", "v0"))})
         raw = raw + b"\0" * (-len(raw) % 16)
