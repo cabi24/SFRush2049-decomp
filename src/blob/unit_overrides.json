@@ -120,6 +120,22 @@
   {
    "name": "func_80098ADC",
    "reason": "inlined gain clamp (hypothesis) of engine_sound_sync; only the retail stub remains (w23f)"
+  },
+  {
+   "name": "func_800953B4",
+   "reason": "deleted list_append helper inlined into the audio_fade_control group's members; only the retail stub remains (w25c; stub identity among 3B4/3BC/3C4 is a hypothesis)"
+  },
+  {
+   "name": "func_800953BC",
+   "reason": "deleted entry_alloc helper inlined into the audio_fade_control group's members; only the retail stub remains (w25c)"
+  },
+  {
+   "name": "func_800954A0",
+   "reason": "deleted node_alloc helper inlined into the audio_fade_control group's members; only the retail stub remains (w25c)"
+  },
+  {
+   "name": "func_800A4B40",
+   "reason": "deleted per-slot release predicate inlined into wheel_setup_initial; only the retail stub remains (w25c)"
   }
  ],
  "prefer_definition": [
@@ -222,6 +238,26 @@
    "name": "func_800D7634",
    "file": "src/blob/groups/audio_options_menu/func_800D7634.c",
    "reason": "credits_scroll_grp carries an m2c context copy of func_800D7634; the matched definition lives in the audio_options_menu group (w22e)"
+  },
+  {
+   "name": "func_800953B4",
+   "file": "src/blob/groups/audio_fade_control/group.c",
+   "reason": "deleted list_append helper inlined into the audio_fade_control group's members; only the retail stub remains (w25c; stub identity among 3B4/3BC/3C4 is a hypothesis)"
+  },
+  {
+   "name": "func_800953BC",
+   "file": "src/blob/groups/audio_fade_control/group.c",
+   "reason": "deleted entry_alloc helper inlined into the audio_fade_control group's members; only the retail stub remains (w25c)"
+  },
+  {
+   "name": "func_800954A0",
+   "file": "src/blob/groups/audio_fade_control/group.c",
+   "reason": "deleted node_alloc helper inlined into the audio_fade_control group's members; only the retail stub remains (w25c)"
+  },
+  {
+   "name": "func_800A4B40",
+   "file": "src/blob/groups/wheel_setup_initial/group.c",
+   "reason": "deleted per-slot release predicate inlined into wheel_setup_initial; only the retail stub remains (w25c)"
   }
  ],
  "align": [

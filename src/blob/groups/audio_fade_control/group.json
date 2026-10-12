@@ -1,0 +1,34 @@
+{
+ "members": [
+  "func_800953B4",
+  "func_800953BC",
+  "audio_fade_control",
+  "func_800954A0",
+  "gfx_setup_e700",
+  "func_800956BC",
+  "audio_bus_route",
+  "audio_timing_sync",
+  "sound_priority_set",
+  "audio_stream_control",
+  "audio_buffer_manage",
+  "audio_state_save"
+ ],
+ "files": [
+  "group.c",
+  "func_800956BC.c"
+ ],
+ "keep": [
+  "gfx_setup_e700",
+  "audio_bus_route",
+  "audio_timing_sync",
+  "sound_priority_set",
+  "audio_stream_control",
+  "audio_buffer_manage",
+  "audio_state_save"
+ ],
+ "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
+ "unprototyped": [],
+ "context": [],
+ "note": "Sound command queue unit, no stand-ins. audio_fade_control and func_800956BC are internal (not on keep). func_800956BC.c is a byte-identical copy of the locked single src/blob/func_800956BC.c (supersede it: --revert-single func_800956BC). func_800953B4/func_800953BC/func_800954A0 are locked empty stubs given their real bodies (list_append / entry_alloc / node_alloc, inlined by umerge; stub identity among the three pre-audio_fade_control stubs is a hypothesis): --revert-single each, plus force_internal + prefer_definition (file group.c) entries in unit_overrides. func_800953C4 stays a locked empty stub. Two disclosed shaping devices (see group.c header).",
+ "provenance": "wave 25 (w25c): audio_fade_control unit 12/12; cloud/work/frontier/w25c/RESULTS.md"
+}

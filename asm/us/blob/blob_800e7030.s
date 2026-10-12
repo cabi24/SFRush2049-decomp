@@ -5384,6 +5384,7 @@ race_init_helper:
 .section .text.func_800EC190, "ax", @progbits
 .globl func_800EC190
 func_800EC190:
+    /* compiled from src/blob/func_800EC190.c */
     .word 0x3C058015
     .word 0x24A5978C
     .word 0x3C198015

@@ -416,6 +416,7 @@ sound_init:
 .section .text.wheel_setup_initial, "ax", @progbits
 .globl wheel_setup_initial
 wheel_setup_initial:
+    /* compiled from src/blob/wheel_setup_initial.c */
     .word 0x27BDFFD0
     .word 0xAFB00018
     .word 0xAFB30024

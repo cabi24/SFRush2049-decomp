@@ -892,6 +892,7 @@ func_800953C4:
 .section .text.audio_fade_control, "ax", @progbits
 .globl audio_fade_control
 audio_fade_control:
+    /* compiled from src/blob/audio_fade_control.c */
     .word 0x27BDFFE8
     .word 0xAFBF0014
     .word 0x92830008
@@ -956,6 +957,7 @@ func_800954A0:
 .section .text.gfx_setup_e700, "ax", @progbits
 .globl gfx_setup_e700
 gfx_setup_e700:
+    /* compiled from src/blob/gfx_setup_e700.c */
     .word 0x27BDFFC0
     .word 0xAFA40040
     .word 0x3C068014
@@ -1123,6 +1125,7 @@ func_800956BC:
 .section .text.audio_bus_route, "ax", @progbits
 .globl audio_bus_route
 audio_bus_route:
+    /* compiled from src/blob/audio_bus_route.c */
     .word 0x27BDFFB8
     .word 0x2401FFFF
     .word 0xAFBF002C
@@ -1281,6 +1284,7 @@ func_8009591C:
 .section .text.audio_timing_sync, "ax", @progbits
 .globl audio_timing_sync
 audio_timing_sync:
+    /* compiled from src/blob/audio_timing_sync.c */
     .word 0x27BDFFC0
     .word 0x2401FFFF
     .word 0xAFBF002C
@@ -1354,6 +1358,7 @@ audio_pitch_adjust:
 .section .text.sound_priority_set, "ax", @progbits
 .globl sound_priority_set
 sound_priority_set:
+    /* compiled from src/blob/sound_priority_set.c */
     .word 0x27BDFFB8
     .word 0x2401FFFF
     .word 0xAFBF002C
@@ -1417,6 +1422,7 @@ sound_priority_set:
 .section .text.audio_stream_control, "ax", @progbits
 .globl audio_stream_control
 audio_stream_control:
+    /* compiled from src/blob/audio_stream_control.c */
     .word 0x27BDFFB8
     .word 0x2401FFFF
     .word 0xAFBF002C
@@ -1480,6 +1486,7 @@ audio_stream_control:
 .section .text.audio_buffer_manage, "ax", @progbits
 .globl audio_buffer_manage
 audio_buffer_manage:
+    /* compiled from src/blob/audio_buffer_manage.c */
     .word 0x27BDFFB8
     .word 0x2401FFFF
     .word 0xAFBF002C
@@ -1565,6 +1572,7 @@ func_80095CFC:
 .section .text.audio_state_save, "ax", @progbits
 .globl audio_state_save
 audio_state_save:
+    /* compiled from src/blob/audio_state_save.c */
     .word 0x27BDFFB0
     .word 0x2401FFFF
     .word 0xAFBF002C
