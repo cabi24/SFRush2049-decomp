@@ -1,6 +1,6 @@
-nonmatching dll_reschedule, 0x74
+nonmatching __osSetTimerIntr, 0x74
 
-glabel dll_reschedule
+glabel __osSetTimerIntr
     /* CE94 8000C294 27BDFFD8 */  addiu      $sp, $sp, -0x28
     /* CE98 8000C298 AFBF0014 */  sw         $ra, 0x14($sp)
     /* CE9C 8000C29C AFA40028 */  sw         $a0, 0x28($sp)
@@ -30,4 +30,4 @@ glabel dll_reschedule
     /* CEFC 8000C2FC 27BD0028 */  addiu      $sp, $sp, 0x28
     /* CF00 8000C300 03E00008 */  jr         $ra
     /* CF04 8000C304 00000000 */   nop
-endlabel dll_reschedule
+endlabel __osSetTimerIntr

@@ -29,7 +29,7 @@ void __osDequeueThread(register OSThread** queue, register OSThread* t) {
     }
 }
 
-void dll_init(void) {
+void __osTimerServicesInit(void) {
     gViTimeAccumHi = 0;
     gViLastCount = 0;
     gViRetraceCount = 0;
@@ -39,13 +39,13 @@ void dll_init(void) {
     __osTimerList->msg = 0;
 }
 
-/* PROMOTED 2026-10-01 — dll_update
+/* PROMOTED 2026-10-01 — __osTimerInterrupt (ultralib name since w24t; was dll_update)
  * Source:   cloud/work/static_C11/dll_update.c (in-repo, locked)
  * Flags:    -g0 -O1 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C11/dll_update.c:dll_update (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void dll_update(void) {
+void __osTimerInterrupt(void) {
     OSTimer* t;
     u32 count;
     u32 elapsed_cycles;
@@ -69,7 +69,7 @@ void dll_update(void) {
 
         if (elapsed_cycles < t->value) {
             t->value -= elapsed_cycles;
-            dll_reschedule(t->value);
+            __osSetTimerIntr(t->value);
             break;
         }
 
@@ -91,13 +91,13 @@ void dll_update(void) {
     }
 }
 
-/* PROMOTED 2026-10-01 — dll_reschedule
+/* PROMOTED 2026-10-01 — __osSetTimerIntr (ultralib name since w24t; was dll_reschedule)
  * Source:   cloud/work/static_C14/dll_reschedule.c (in-repo, locked)
  * Flags:    -g0 -O1 -mips2 -G 0 -non_shared
  * Evidence: lock:cloud/work/static_C14/dll_reschedule.c:dll_reschedule (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
-void dll_reschedule(OSTime tim) {
+void __osSetTimerIntr(OSTime tim) {
     OSTime NewTime;
     u32 savedMask;
 

@@ -17,7 +17,7 @@ DATA = Path(os.environ.get("CONVEYOR_DATA", "~/.conveyor")).expanduser()
 KNOWN_PAIRINGS = [
     ("game_loop", "game/game.c:game"),
     ("__osDequeueThread", "GUTS/os/dll.c:dll_remove"),   # target dll_remove until w23g
-    ("dll_init", "GUTS/os/dll.c:dll_init"),
+    ("__osTimerServicesInit", "GUTS/os/dll.c:dll_init"),  # target dll_init until w24t
 ]
 
 TOP_N = 5

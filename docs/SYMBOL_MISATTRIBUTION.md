@@ -210,9 +210,32 @@ to the static inventory and the game callers at once:
 
 `asm/us/boot_tail/symbols.json` also lost a stale `__osEnqueueAndYield =
 0x8000FBA0` key (the census name of osDestroyThread). `corpus.CANONICAL_ALIASES`
-is empty now. Still open below: the remaining leads, and `dll_init`,
-`dll_update`, `dll_reschedule` (timer_services members; likely
-`__osTimerServicesInit`, `__osTimerInterrupt`, `__osSetTimerIntr`, unchecked).
+is empty now. Still open below: the remaining leads. (`dll_init`, `dll_update`,
+`dll_reschedule`: done by lane w24t, next section.)
+
+## Timer services renamed (lane w24t, 2026-10-12)
+
+Proof by compilation, not by reading: ultralib (decompals) `src/os/timerintr.c` and
+`src/io/pfsinitpak.c`, VERSION_J, `-D_FINALROM`, compiled with the project's IDO 5.3 at the
+locked flagsets of their ROM TUs (`-g0 -O1` for lib_cc50, `-g0 -O2` for lib_a810, `-mips2 -G 0
+-non_shared -Wab,-r4300_mul`). Each object's whole `.text` equals the ROM words, relocations
+compared by value (`cloud/work/frontier/w24t/rename/{prove.sh,compare.py,prove.log}`):
+timerintr.o 256 words at 0x8000C090, pfsinitpak.o 196 words at 0x80009C10, 0 differing.
+Table `cloud/work/frontier/w24t/rename/renames.json` (a permutation, static side only: no game
+source calls these names):
+
+| vram | old | ultralib name | file |
+|---|---|---|---|
+| 0x80009E18 | `__osTimerInterrupt` | `__osPfsCheckRamArea` (static) | io/pfsinitpak.c |
+| 0x8000C090 | `dll_init` | `__osTimerServicesInit` | os/timerintr.c |
+| 0x8000C11C | `dll_update` | `__osTimerInterrupt` | os/timerintr.c |
+| 0x8000C294 | `dll_reschedule` | `__osSetTimerIntr` | os/timerintr.c |
+
+The same compile also names, by address (not renamed here): the timerintr.c globals
+`__osCurrentTime` = `gViTimeAccumHi` (0x80037C50), `__osBaseCounter` = `gViLastCount`,
+`__osViIntrCount` = `gViRetraceCount`; and pfsinitpak.c's callees `__osCheckPackId` =
+`__osCheckId` (0x8000EFC0), `__osRepairPackId` = `__osRepairId` (0x8000EC70).
+`tools/recomp/identity.json` maps the four back to their pre-w24t names for the recompiler.
 
 ### Other misnamed static functions seen during the check (leads, not verified)
 

@@ -1,6 +1,6 @@
-nonmatching dll_init, 0x8C
+nonmatching __osTimerServicesInit, 0x8C
 
-glabel dll_init
+glabel __osTimerServicesInit
     /* CC90 8000C090 3C018003 */  lui        $at, %hi(gViTimeAccumLo)
     /* CC94 8000C094 240E0000 */  addiu      $t6, $zero, 0x0
     /* CC98 8000C098 240F0000 */  addiu      $t7, $zero, 0x0
@@ -36,4 +36,4 @@ glabel dll_init
     /* CD10 8000C110 8F18C3F0 */  lw         $t8, %lo(__osTimerList)($t8)
     /* CD14 8000C114 03E00008 */  jr         $ra
     /* CD18 8000C118 AF00001C */   sw        $zero, 0x1C($t8)
-endlabel dll_init
+endlabel __osTimerServicesInit

@@ -1,6 +1,6 @@
-nonmatching dll_update, 0x178
+nonmatching __osTimerInterrupt, 0x178
 
-glabel dll_update
+glabel __osTimerInterrupt
     /* CD1C 8000C11C 3C0E8003 */  lui        $t6, %hi(__osTimerList)
     /* CD20 8000C120 8DCEC3F0 */  lw         $t6, %lo(__osTimerList)($t6)
     /* CD24 8000C124 27BDFFD8 */  addiu      $sp, $sp, -0x28
@@ -57,7 +57,7 @@ glabel dll_update
     /* CDE4 8000C1E4 AF280010 */  sw         $t0, 0x10($t9)
     /* CDE8 8000C1E8 8FAE0024 */  lw         $t6, 0x24($sp)
     /* CDEC 8000C1EC 8DC40010 */  lw         $a0, 0x10($t6)
-    /* CDF0 8000C1F0 0C0030A5 */  jal        dll_reschedule
+    /* CDF0 8000C1F0 0C0030A5 */  jal        __osSetTimerIntr
     /* CDF4 8000C1F4 8DC50014 */   lw        $a1, 0x14($t6)
     /* CDF8 8000C1F8 10000022 */  b          .L8000C284
     /* CDFC 8000C1FC 00000000 */   nop
@@ -102,4 +102,4 @@ glabel dll_update
     /* CE88 8000C288 27BD0028 */  addiu      $sp, $sp, 0x28
     /* CE8C 8000C28C 03E00008 */  jr         $ra
     /* CE90 8000C290 00000000 */   nop
-endlabel dll_update
+endlabel __osTimerInterrupt

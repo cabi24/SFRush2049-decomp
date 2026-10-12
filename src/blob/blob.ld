@@ -1409,7 +1409,7 @@ SECTIONS
     PROVIDE(__ull_to_f = 0x80009BC8);
     PROVIDE(osPhysicalToVirtual = 0x80009C00);
     PROVIDE(osPfsInitPak = 0x80009C10);
-    PROVIDE(__osTimerInterrupt = 0x80009E18);
+    PROVIDE(__osPfsCheckRamArea = 0x80009E18);
     PROVIDE(__osMotorAccess = 0x80009F20);
     PROVIDE(__osMakeMotorData = 0x8000A088);
     PROVIDE(osMotorInit = 0x8000A194);
@@ -1431,9 +1431,9 @@ SECTIONS
     PROVIDE(osAiSetNextBuffer = 0x8000BE70);
     PROVIDE(osAiSetFrequency = 0x8000BF00);
     PROVIDE(__osDequeueThread = 0x8000C050);
-    PROVIDE(dll_init = 0x8000C090);
-    PROVIDE(dll_update = 0x8000C11C);
-    PROVIDE(dll_reschedule = 0x8000C294);
+    PROVIDE(__osTimerServicesInit = 0x8000C090);
+    PROVIDE(__osTimerInterrupt = 0x8000C11C);
+    PROVIDE(__osSetTimerIntr = 0x8000C294);
     PROVIDE(__osInsertTimer = 0x8000C308);
     PROVIDE(osGetThreadPri = 0x8000C490);
     PROVIDE(__osDisableInt = 0x8000C4B0);

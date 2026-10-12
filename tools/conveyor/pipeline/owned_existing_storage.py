@@ -25,7 +25,13 @@ PROFILES={
                       members=('dll_remove','dll_init','dll_update','dll_reschedule','dll_insert','osGetThreadPri')),
                  # Lane w23g: dll_remove -> __osDequeueThread, dll_insert -> __osInsertTimer.
                  dict(source_sha256='e52c72ba1747de254a6504d1b9fd7d0e0b69f4426b85032e99b5a66dfa127b87',
-                      members=('__osDequeueThread','dll_init','dll_update','dll_reschedule','__osInsertTimer','osGetThreadPri')),)),
+                      members=('__osDequeueThread','dll_init','dll_update','dll_reschedule','__osInsertTimer','osGetThreadPri')),
+                 # Lane w24t: dll_init/dll_update/dll_reschedule -> __osTimerServicesInit/
+                 # __osTimerInterrupt/__osSetTimerIntr (ultralib J timerintr.c, byte-identical compile).
+                 dict(source_sha256='243edadad3d4141b632e8c686af79a6a899899044df29a2d50f093a52a9da4ca',
+                      members=('__osDequeueThread','__osTimerServicesInit','__osTimerInterrupt','__osSetTimerIntr',
+                               '__osInsertTimer','osGetThreadPri'),
+                      new_members=('__osTimerServicesInit',)),)),
     'sdk_initialize':dict(tu='src/rom/lib_8a80.c',
         flags='-g0 -O1 -mips2 -G 0 -non_shared -Xcpluscomm',
         source_sha256='7606f20fc4e2459c6de43e5be046a9389030c5c7a93db6548bf9729003e5fe80',
@@ -46,9 +52,9 @@ def profile(row):
     value=PROFILES.get(row.get('owner'))
     if (value is None or row.get('activation_mode')!='existing_tu' or
         row.get('tu')!=value['tu'] or row.get('flags')!=value['flags'] or
-        (row.get('source_sha256'),tuple(row.get('members',()))) not in
-            [(value['source_sha256'],value['members'])]+[(r['source_sha256'],r['members']) for r in value.get('renamed',())] or
-        tuple(row.get('new_members',()))!=value['new_members'] or
+        (row.get('source_sha256'),tuple(row.get('members',())),tuple(row.get('new_members',()))) not in
+            [(value['source_sha256'],value['members'],value['new_members'])]+
+            [(r['source_sha256'],r['members'],r.get('new_members',value['new_members'])) for r in value.get('renamed',())] or
         int(row.get('vram_start','0'),0)!=value['bss_start'] or
         int(row.get('size','0'),0)!=value['bss_bytes'] or
         int(row.get('data_slot',{}).get('offset','0'),0)!=value['data_offset'] or

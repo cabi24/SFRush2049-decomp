@@ -96,7 +96,7 @@ extern void guMtxF2L(f32 [4][4], Mtx *);
 extern s32 osDpIsBusy(void);
 extern void __osContRamReset(u8);
 extern OSTime __osInsertTimer(OSTimer *);
-extern void dll_reschedule(OSTime);
+extern void __osSetTimerIntr(OSTime);
 extern void __osExceptionPanic(void);
 extern OSThread *__osRunQueue;
 typedef u32 OSIntMask;
@@ -258,7 +258,7 @@ extern s32 __osIdCheckSum(u16 *, u16 *, u16 *);
 extern s32 __osCheckId(OSPfs *, __OSPackId *);
 extern s32 __osGetId(OSPfs *);
 extern s32 __osRepairId(OSPfs *, __OSPackId *, __OSPackId *);
-extern s32 __osTimerInterrupt(OSPfs *); /* actual SDK __osPfsCheckRamArea */
+extern s32 __osPfsCheckRamArea(OSPfs *); /* static in ultralib io/pfsinitpak.c (w24t; was __osTimerInterrupt) */
 extern void __osMakeMotorData(int, OSPifRam *);
 extern u8 __osContAddressCrc(u16);
 #define SELECT_BANK(pfs,bank) __osPfsSelectBank(pfs,bank)

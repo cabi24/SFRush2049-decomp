@@ -237,9 +237,9 @@ __osSumcalc = 0x8000EB00; // type:func byte-sum checksum helper (used by PFS)
 // MISATTRIBUTED cluster — verified vs ultralib 2026-07-14, rename gated on
 // watchman/SHA-1 rebuild; see docs/SYMBOL_MISATTRIBUTION.md.
 __osDequeueThread = 0x8000C050; // type:func libultra __osDequeueThread (renamed from dll_remove, docs/SYMBOL_MISATTRIBUTION.md)
-dll_init = 0x8000C090; // type:func initialize timer queue (doubly-linked list) [MISATTR really __osTimerServicesInit]
-dll_update = 0x8000C11C; // type:func process expired timers (delta queue maintenance) [MISATTR really __osTimerInterrupt]
-dll_reschedule = 0x8000C294; // type:func reschedule timer interrupt [MISATTR really __osSetTimerIntr]
+__osTimerServicesInit = 0x8000C090; // type:func libultra __osTimerServicesInit (renamed from dll_init, docs/SYMBOL_MISATTRIBUTION.md)
+__osTimerInterrupt = 0x8000C11C; // type:func libultra __osTimerInterrupt (renamed from dll_update, docs/SYMBOL_MISATTRIBUTION.md)
+__osSetTimerIntr = 0x8000C294; // type:func libultra __osSetTimerIntr (renamed from dll_reschedule, docs/SYMBOL_MISATTRIBUTION.md)
 __osInsertTimer = 0x8000C308; // type:func libultra __osInsertTimer (renamed from dll_insert, docs/SYMBOL_MISATTRIBUTION.md)
 osGetThreadPri = 0x8000C490; // type:func libultra osGetThreadPri (renamed from dll_get_priority, docs/SYMBOL_MISATTRIBUTION.md)
 __osSetCompare = 0x8000FB90; // type:func set CP0 Compare register for timer
@@ -513,7 +513,7 @@ __osContGetStatus = 0x800095AC; // type:func get controller status
 __osContRamReset = 0x80009658; // type:func reset controller pak RAM
 
 // Timer internal functions (A9E0.s)
-__osTimerInterrupt = 0x80009E18; // type:func timer interrupt handler [MISATTR really a PFS/controller fn (__osPfsSelectBank/__osContRamRead) — real __osTimerInterrupt is dll_update @ 0x8000C11C]
+__osPfsCheckRamArea = 0x80009E18; // type:func libultra __osPfsCheckRamArea (renamed from __osTimerInterrupt, docs/SYMBOL_MISATTRIBUTION.md)
 
 // Controller pak PFS helpers (AF30.s)
 osPfsFindFile = 0x8000A350; // type:func libultra osPfsFindFile (renamed from osPfsAllocate, docs/SYMBOL_MISATTRIBUTION.md)
