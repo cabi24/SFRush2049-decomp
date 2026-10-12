@@ -1,0 +1,296 @@
+{
+  "inputs": {
+    "sources_sha256": {
+      "groups/dot_runtime_a_text_helpers_20261006/group.c": "5c1a223377aca74071c530ac1061abc32f752eaed5c58ba7acd51f7c9344e768",
+      "groups/dot_runtime_a_text_helpers_20261006/group.json": "782e8dadca7ad029d29a10abb32241ec47257d25d43545ef86e70395af62bc8b",
+      "verify.py": "18e304c8371c2b14bf7568e22477913838c2a75984139d40c249801c11ad8ee1",
+      "elf.py": "d3523b1887d0822c673cbc4feb43aea68366182b9904f1735b037a370f30f0c5",
+      "trace.py": "425c2514cfeacb13798ca1e5738a10310a2d12784c588e0c7f1b426c578574c8"
+    },
+    "targets": {
+      "func_8039B120": {
+        "image": "A",
+        "address": "0x8039B120",
+        "size": 244,
+        "words_sha256": "b8f30bde6b640dc883c05bc4428dd1804dd7922b8d0a7a54e6f82be182e898e4"
+      },
+      "func_8039B214": {
+        "image": "A",
+        "address": "0x8039B214",
+        "size": 836,
+        "words_sha256": "941ba1455c5219aecc5aa9aef6c0693418a8d7da7d9b606c66d24a0ee7913634"
+      },
+      "func_8039BE48": {
+        "image": "A",
+        "address": "0x8039BE48",
+        "size": 760,
+        "words_sha256": "46e87468c69f68ce1d954378b23832269d49e27d436da45da0fce2989db16d2d"
+      },
+      "func_8039A448": {
+        "image": "A",
+        "address": "0x8039A448",
+        "size": 140,
+        "words_sha256": "f5e9e8be26a945961b37cf1ad621ee9ce3ec5c6a59966f9104b1d978ebe52f10"
+      },
+      "func_8039B00C": {
+        "image": "A",
+        "address": "0x8039B00C",
+        "size": 276,
+        "words_sha256": "d91fa2efa5f87db3f169d96218e6ae5c4233977507c23fe39037bc2cd220ac2a"
+      },
+      "func_8039C140": {
+        "image": "A",
+        "address": "0x8039C140",
+        "size": 1984,
+        "words_sha256": "933eab69fe650ebaea822f5492f515e8053d64cfe47b12ad74a1131d508d7ef5"
+      },
+      "func_8039B908": {
+        "image": "A",
+        "address": "0x8039B908",
+        "size": 128,
+        "words_sha256": "23ff428854b31163ab5bae5530aa7f0896ca9aeee59373867c673c77e83120d2"
+      },
+      "func_8039B988": {
+        "image": "A",
+        "address": "0x8039B988",
+        "size": 152,
+        "words_sha256": "3fc1344a313bd084bae6f44e408dca770049f72808d9b3d6b936846f3e842971"
+      },
+      "func_8039BA28": {
+        "image": "A",
+        "address": "0x8039BA28",
+        "size": 184,
+        "words_sha256": "839033abd873f92f70e5294387bc9125e593793b3038524c7b2eb36130c64612"
+      },
+      "func_8039BAE0": {
+        "image": "A",
+        "address": "0x8039BAE0",
+        "size": 160,
+        "words_sha256": "27ba6b4d8d384979f0f3f04faa4919a3adc4b6dca7e76a0ab37b87fe039031c9"
+      },
+      "func_8039A4D4": {
+        "image": "A",
+        "address": "0x8039A4D4",
+        "size": 2864,
+        "words_sha256": "7826d0db80410cb7564feaec010112d2c09035e609c1876ee6d3c937dcad92a9"
+      },
+      "func_8039BB80": {
+        "image": "A",
+        "address": "0x8039BB80",
+        "size": 712,
+        "words_sha256": "2bf318022f16e6172798e2b149183686a3573de152b4523a0e01972c73698419"
+      },
+      "func_803A5658": {
+        "image": "A",
+        "address": "0x803A5658",
+        "size": 736,
+        "words_sha256": "7fba11b4a72ed88472b65bdbf6608fda0b126d47fcbe7cb81877f3e391120ba0"
+      },
+      "func_803A5948": {
+        "image": "A",
+        "address": "0x803A5948",
+        "size": 4320,
+        "words_sha256": "1e83bc1f4cec068f226a93f4bf1d8c04b95d88d9951e50193aec7e94dabd0190"
+      }
+    },
+    "claims": [
+      "func_8039B120",
+      "func_8039B214",
+      "func_8039BE48",
+      "func_8039A448",
+      "func_8039B00C",
+      "func_8039C140",
+      "func_8039B908",
+      "func_8039B988",
+      "func_8039BA28",
+      "func_8039BAE0"
+    ],
+    "context": [
+      "func_8039A4D4",
+      "func_8039BB80",
+      "func_803A5658",
+      "func_803A5948"
+    ],
+    "flags": "-g0 -O3 -mips2 -G 0 -non_shared"
+  },
+  "results": {
+    "func_8039B120": {
+      "differing": 0,
+      "total": 61,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_8039B214": {
+      "differing": 0,
+      "total": 209,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_8039BE48": {
+      "differing": 0,
+      "total": 190,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_8039A448": {
+      "differing": 0,
+      "total": 35,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_8039B00C": {
+      "differing": 0,
+      "total": 69,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_8039C140": {
+      "differing": 0,
+      "total": 496,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_8039B908": {
+      "differing": 0,
+      "total": 32,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_8039B988": {
+      "differing": 0,
+      "total": 38,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_8039BA28": {
+      "differing": 0,
+      "total": 46,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "func_8039BAE0": {
+      "differing": 0,
+      "total": 40,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "controls": {
+    "ordinary_lines": {
+      "differing": 3,
+      "total": 496,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "without_carriers": {
+      "differing": 4,
+      "total": 496,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    },
+    "baseline": {
+      "differing": 7,
+      "total": 496,
+      "unresolved": [],
+      "unverified": [],
+      "errors": [],
+      "extra_words": 0
+    }
+  },
+  "gnu_relocations": {
+    "func_8039B120": 24,
+    "func_8039B214": 52,
+    "func_8039BE48": 75,
+    "func_8039A448": 8,
+    "func_8039B00C": 24,
+    "func_8039C140": 162,
+    "func_8039B908": 10,
+    "func_8039B988": 10,
+    "func_8039BA28": 13,
+    "func_8039BAE0": 11
+  },
+  "gnu_sha256": {
+    "func_8039B120": "b8f30bde6b640dc883c05bc4428dd1804dd7922b8d0a7a54e6f82be182e898e4",
+    "func_8039B214": "941ba1455c5219aecc5aa9aef6c0693418a8d7da7d9b606c66d24a0ee7913634",
+    "func_8039BE48": "46e87468c69f68ce1d954378b23832269d49e27d436da45da0fce2989db16d2d",
+    "func_8039A448": "f5e9e8be26a945961b37cf1ad621ee9ce3ec5c6a59966f9104b1d978ebe52f10",
+    "func_8039B00C": "d91fa2efa5f87db3f169d96218e6ae5c4233977507c23fe39037bc2cd220ac2a",
+    "func_8039C140": "933eab69fe650ebaea822f5492f515e8053d64cfe47b12ad74a1131d508d7ef5",
+    "func_8039B908": "23ff428854b31163ab5bae5530aa7f0896ca9aeee59373867c673c77e83120d2",
+    "func_8039B988": "3fc1344a313bd084bae6f44e408dca770049f72808d9b3d6b936846f3e842971",
+    "func_8039BA28": "839033abd873f92f70e5294387bc9125e593793b3038524c7b2eb36130c64612",
+    "func_8039BAE0": "27ba6b4d8d384979f0f3f04faa4919a3adc4b6dca7e76a0ab37b87fe039031c9"
+  },
+  "root_abi": {
+    "frame_bytes": 136,
+    "preserved_slots": {
+      "r16": 72,
+      "r17": 76,
+      "r18": 80,
+      "r19": 84,
+      "r20": 88,
+      "r21": 92,
+      "r22": 96,
+      "r23": 100,
+      "r30": 104,
+      "r31": 108,
+      "f20": 24,
+      "f22": 32,
+      "f24": 40,
+      "f26": 48,
+      "f28": 56,
+      "f30": 64
+    },
+    "preserved_bytes": 88,
+    "helper_abi": "genuine IPA context; not standalone o32 helpers"
+  },
+  "installer_refusal_fixture": {
+    "message": "already spliced outside group dot_runtime_a_text_helpers_20261006: ['func_8039B120', 'func_8039B214', 'func_8039BE48', 'func_8039A448', 'func_8039B00C']; revert them first",
+    "cross_group_ownership": {
+      "func_8039B120": "dot_runtime_a_config_caller_group_20261006",
+      "func_8039B214": "dot_runtime_a_config_parent_group_20261006",
+      "func_8039BE48": "dot_runtime_a_scene_init_group_20261006",
+      "func_8039A448": "dot_runtime_a_config_parent_group_20261006",
+      "func_8039B00C": "dot_runtime_a_cleanup_group_20261006"
+    },
+    "retained_old_members": [
+      "func_8039B908",
+      "func_8039B988",
+      "func_8039BA28",
+      "func_8039BAE0"
+    ],
+    "temporary_lock_unchanged": true,
+    "production_paths_untouched": true
+  },
+  "gross_claim_count": 10,
+  "gross_claim_bytes": 4864,
+  "new_claim_count": 1,
+  "new_claim_bytes": 1984,
+  "accepted_image_bytes": 0,
+  "status": "strict-match research; cross-group migration required",
+  "compiler": "stock IDO 5.3"
+}
