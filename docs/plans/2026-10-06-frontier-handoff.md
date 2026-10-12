@@ -376,6 +376,40 @@ register rename" residual on either compiler; an empty block adds one to the blo
 it and can flip a near-tied priority; retail using only t6–t9 temporaries means an internal function; a value still
 live at a `return` is denied v0; as1 fills a load delay slot from the branch target even past a label.
 
+**Wave 26 outcome (2026-10-12, wave26 after `46780d3e`):** static 617/667 → 625/667 (147,280 B, 91.64%): synthHandle
+(func_8001A658, 2,812 B, w26b: `u8 midi` read once turns the three compares constant-first, direct indexing of the
+fader array through a cast view of D_8004F300 restores the global load web, two disclosed `span` reuses; the fader-loop
+end pointer `&D_8004F300[32]` needed two reloc_addrs entries like func_8001C1D8's) and seven inflate slots (4,844 B,
+w26a) under the new compiler `ido5.3s` = IDO 5.3 `cc -S -O2` with every `.loc` stripped, assembled by as1 `-O1 -g`
+(driver `tools/ido_sas/cc`; `compilers.py` knows driver-wrapper compilers; `rom_compilers.json` pins 0x5610;
+asm-processor drops IDO's LOCAL UNDEF `$NN` labels; docs/COMPILER_SETTINGS.md). `gViTimeAccumLo` retired (sites are
+`__osCurrentTime + 0x4`). Game 997 → 998/1216 (329,572 B, 50.93%): audio_channel_priority (468 B, -O3, w26e: an
+index-form loop and a pointer local assigned one loop level up number the web early; no devices). Overlays (w26p,
+Astra #359/#360/#362/#366): A 77 → 80/193 (49,752 B, 25.63%), B 20 → 21/49 (9,020 B, 20.55%); #361/#363/#364/#365
+research imported (#363 A AA3D8 is 2/717, frame-only). Recomp Phase 6 (w26r): controller-pak saves (`.mpk` image
+under `--home`, fresh in memory in lockstep; the boot notice is gone), pad polish, 11 pak-mode scripts covering
+practice/ghost/circuit/backward/battle/records, lockstep renderer-wait crash fix, the "82 % audio" figure was a
+status-line artifact (real 100 %), capture 21.0 → 15.5 s, package v3 (plain sha256 e8905b4f…, with-ROM on rocky
+dist). No match: w26c (entity_render_setup needs two address keys for one symbol — a second extern name is an
+unsupported stand-in; func_80090308/save_write_data improved to 202/149 words with the inlined `blast_init`
+sibling found) and w26d (controller-pak write cluster 5/7 EQUAL: track_data_decompress is itself internal, so the
+A1BB4 group is 7 members; A1DD4 27 words and A1BB4 9 rows left). Traps: w25a left a second `;` inside the
+__osCurrentTime comment in symbol_addrs.us.txt, so `make extract` was broken on master until b33962a3; any edit to
+symbol_addrs.us.txt or rom_tu.h trips the existing-TU owners' context pins — re-pin with `static_rename owned
+<empty_renames.json> --base <pre-edit commit> --rebind-dir cloud/work/frontier/<lane>/rebind` (the Makefile and
+storage_overrides.mk then point at that dir, which the builder gate repo must have); a packet that re-carries a
+member locked in another group installs under that group's name (`--name … --claims …`), and packet verifiers that
+read `src/ovl_*/groups/<g>/group.c` break on the next supersession (snapshot a `baseline_group.c` in the packet).
+Lessons for wave 27: compare operand order is a type lever (a `u8` local reads through a cvt, so its compares come
+out constant-first); writing through a pointer local kills global loads in loops, indexing the global does not;
+ugen evaluates IPA register arguments in prototype order, so a caller's argument order reveals the callee's
+parameter order; the empty-block lever only works where the block survives to a real boundary (uopt removed it at
+function heads and inside loop bodies in w26e); a strength-reduced loop in plain index form renumbers phase-2 webs;
+an unused local array moves only sp offsets, a cheap test of a frame-layout guess; two register candidates for one
+address need two symbol names (uopt keys address constants by symbol number + offset); for a 5.3 TU with
+fill-from-above delay slots and kept reloads, check for stripped `.loc` and `-g` before suspecting another
+assembler; 7.1 ugen's temp ring is one FIFO across arms and joins (no save/restore at labels).
+
 **Wave 24 outcome (2026-10-12, master after `3bec9ce3`):** static 600/668 → 614/667 (137,484 B, 85.54%): the 0x26F60
 segment is a libgsm GSM 06.10 decoder (w24a, 4 fns 5,232 B, `layout convert` + 7.1 pin; the checked-in
 `rush2049.us.ld` had to be regenerated, now automatic via `layout ldsync`); the pre-tail is IDO 5.3 `-g1 -O1`, not 7.1
