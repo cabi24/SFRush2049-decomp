@@ -829,6 +829,28 @@
       "verified": "image_gate",
       "verified_at": "2026-10-11"
     },
+    "func_8038CB20": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "group": "dot_runtime_b_trail_20261012",
+      "image": "B",
+      "origin": "cloud/work/frontier/dot_runtime_b_trail_20261012",
+      "source": "src/ovl_b/groups/dot_runtime_b_trail_20261012/group.json",
+      "source_sha256": "a82a28ad81c5f8d7a27d08e5ef9042593a48b207e123d52ef0efd73c378c12f5",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-12"
+    },
+    "func_8038D054": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "group": "dot_runtime_b_position_initializer_20261012",
+      "image": "B",
+      "origin": "cloud/work/frontier/dot_runtime_b_position_initializer_20261012",
+      "source": "src/ovl_b/groups/dot_runtime_b_position_initializer_20261012/group.json",
+      "source_sha256": "f1b5e9ba6c5958150180d3a8b79d18ef89d095af070177c47e42360364bf6d63",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-12"
+    },
     "func_8038D1A8": {
       "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
       "image": "B",
@@ -846,6 +868,17 @@
       "origin": "cloud/work/frontier/dot_runtime_b_damage_20261012",
       "source": "src/ovl_b/groups/dot_runtime_b_damage_20261012/group.json",
       "source_sha256": "9d36c636322bc86a668857515a24f6dc62b46e11b16576568aa5c82ff438d4c3",
+      "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
+      "verified": "image_gate",
+      "verified_at": "2026-10-12"
+    },
+    "func_8038DDDC": {
+      "flagset": "-g0 -O3 -mips2 -G 0 -non_shared",
+      "group": "dot_runtime_b_nearest_steering_20261012",
+      "image": "B",
+      "origin": "cloud/work/frontier/dot_runtime_b_nearest_steering_20261012",
+      "source": "src/ovl_b/groups/dot_runtime_b_nearest_steering_20261012/group.json",
+      "source_sha256": "a534fb998d942161b499446f0a11e21a801731e2278e0f59e7b9345ad6878911",
       "toolkit_sha": "796ae99a5cb7922e335e3afd87008753c573c82b45d04e8cfbce4f513cdbfbf5",
       "verified": "image_gate",
       "verified_at": "2026-10-12"
