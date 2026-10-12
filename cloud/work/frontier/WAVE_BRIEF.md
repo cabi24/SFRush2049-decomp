@@ -210,3 +210,30 @@ Do not commit, splice, or edit `src/blob`, `asm/`, `*.lock.json`, `tools/`, `inc
   provisional / N words off), flags, exact scorer command and output, residual lane, what was tried, best next
   hypothesis, struct layouts and global types recovered.
 Final message: the table, plus anything that generalises.
+
+## Behavioural check (recomp oracle, wave 22)
+A non-matching body can be checked for *behaviour* against retail: the recompiled game (rocky, private
+ROM) runs a fixed 60 s input script (front end, then the race image) with your C in place of the function
+and compares every frame's display lists and rdram with the stock build. This never changes coverage: a
+function replaced in the port stays unmatched. Use it to decide "correct, not matched", or to find where a
+near-miss draft is wrong. Details: `tools/recomp/README.md` "Phase 2".
+1. Add an entry to `tools/recomp/replacements.json` (one per body; `mode` `ido` = compiled by the project's
+   IDO with the file's `/* flags: */` header, exact N64 semantics; leave it at that) and a set naming it:
+   `"draft_NAME": {"function": "NAME", "population": "game", "source": "cloud/work/frontier/<you>/NAME/best.c",
+   "mode": "ido", "state": "draft", "note": "..."}`, `"sets": {..., "draft_NAME": ["draft_NAME"]}`.
+   The source must define NAME; anything else it defines and NAME needs comes along (static helpers); every
+   other symbol binds to the inventory's address (unknown names fail the build).
+2. Ask the coordinator (or, on rocky in `~/rush2049/recomp/<lane>`):
+   `python3 tools/recomp/gen_config.py --rom ROM --n64recomp-src SRC --out build/recomp-SET --replace-set SET --ido53 TK53`,
+   N64Recomp, `cmake`/`ninja` (README), then
+   `python3 tools/recomp/oracle.py run --stock-host build/recomp/host/rush2049_recomp --rom-stock build/recomp/rom/rush2049.recomp.z64 --repl-host build/recomp-SET/host/rush2049_recomp --rom-repl build/recomp-SET/rom/rush2049.recomp.z64 --out runs/SET --datasyms build/recomp/rush2049.datasyms.toml`.
+3. Verdicts: `EQUIVALENT over 1800 frames` (+ the call count of the replaced function); `NOT EXERCISED`
+   (0 calls: the script never reaches it; say so, it is no verdict); `DIFFERENT at frame F` with the display
+   list and/or pages, and the first differing words with symbols (`word 0x8011024C stock 0000000c replaced
+   00000002 D_8011024C+0x0`). Quote the first line and the call count verbatim.
+4. Report state "correct, not matched" only on EQUIVALENT, in RESULTS.md and the CLAIMS line note:
+   `correct, not matched (oracle EQUIVALENT 1800 frames, N calls; runs/<SET>/verdict.json, replacements.json <id>)`.
+   Limits to state with it: one input script (front end + first minute of a race); functions it does not
+   reach get no verdict; thread stacks are masked (dead frames differ whenever code differs); a
+   function-local static gets its own copy (a DIFFERENT that names only that static's address is placement,
+   not behaviour, see w22r RESULTS).
