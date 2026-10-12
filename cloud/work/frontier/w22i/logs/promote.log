@@ -1,0 +1,3 @@
+replace-slot func_80023BDC: .rodata 0x8002d950 size 0x1e0, members func_80023BDC, func_80023E9C
+batch 0x22300..0x22300: 2 candidates
+PROMOTED 2 (3256 B) @ ff0fbbb2
