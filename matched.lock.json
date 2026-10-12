@@ -17,19 +17,11 @@
   },
   "src/rom/lib_1050.c:viDeadlinePassed": {
     "body_sha256": "6736d4fef06bb76a8df5d9a88f3646c8ea73e00db04965c5c478ecff505ec76d",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
+    "flagset": "-g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul",
     "target_id": "viDeadlinePassed",
-    "toolkit_sha": null,
-    "verified": "rom-sha1",
-    "verified_at": "2026-10-01"
-  },
-  "src/rom/lib_1050.c:viStub": {
-    "body_sha256": "3bb1444602b811a27b01288e45830fafc6386a86e9424f19a9e44d84409eeab1",
-    "flagset": "-g0 -O2 -mips2 -G 0 -non_shared",
-    "target_id": "viStub",
-    "toolkit_sha": null,
-    "verified": "rom-sha1",
-    "verified_at": "2026-09-24"
+    "toolkit_sha": "d4c39cbc85750cd02d3494f318c65e770bbf7d4b10aae137bcf5b5f149137c5b",
+    "verified": "score0",
+    "verified_at": "2026-10-12"
   },
   "src/rom/lib_1050_sdk.c:__scAppendList": {
     "body_sha256": "39b3b494b593a6bf0fb35e73d0751dd80d418dbaa9896cc1ed18448786bc7d25",

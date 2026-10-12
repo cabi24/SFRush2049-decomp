@@ -38,7 +38,8 @@ extern volatile unsigned int gDisplayListSize;  /* 0x800354C8 */
 extern s32 __osViModeInfo;
 extern s32 gDisplayListEnd;
 extern s32 gViAccumTime;
-extern s32 gViTickCounter;
+extern volatile s32 gViTickCounter; /* w24b: interrupt-updated; viUpdateTime's load order needs volatile */
+extern volatile s32 gViLastTick;
 extern s32 __osPiInitialized;
 extern OSMesgQueue __osPiMesgQueue;
 extern void *__osPiMesg;

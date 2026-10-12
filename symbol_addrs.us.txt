@@ -458,8 +458,7 @@ viUpdateTime = 0x800013F4; // type:func update frame delta timing
 viScheduleTick = 0x800014F0; // type:func schedule next tick deadline
 viAddTicks = 0x8000153C; // type:func add ticks to deadline
 viGetTimeToDeadline = 0x80001578; // type:func get float time until deadline
-viDeadlinePassed = 0x800015BC; // type:func check if deadline passed
-viStub = 0x800015DC; // type:func no-op stub
+viDeadlinePassed = 0x800015BC; // type:func size:0x30 check if deadline passed (0x30 at -g1 -O1 incl. the two trailing jr ra, nop pairs once labelled viStub, w24b)
 
 // Display mode functions (21F0.s) - newly identified
 display_mode_tick = 0x80001D60; // type:func countdown and apply pending display mode

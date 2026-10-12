@@ -16,7 +16,8 @@
 
 /* PROMOTED 2026-10-01 — viDeadlinePassed
  * Source:   cloud/work/static_C/viDeadlinePassed.c (in-repo, locked)
- * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
+ * Flags:    -g1 -O1 -mips2 -G 0 -non_shared -Wab,-r4300_mul (w24s: segment flagset; re-locked
+ *           against the 48-B target that absorbs the former 20-B "viStub" slot; was -g0 -O2)
  * Evidence: lock:cloud/work/static_C/viDeadlinePassed.c:viDeadlinePassed (score0)
  * Gate:     full-ROM SHA-1 (promotion transaction)
  */
@@ -24,16 +25,3 @@ s32 viDeadlinePassed(void) {
     return (gViAccumTime - gViTickCounter) < 1;
 }
 
-
-/* PROMOTED 2026-09-24 — viStub
- * Source:   work/auto/viStub/matched.c (in-repo, locked)
- * Flags:    -g0 -O2 -mips2 -G 0 -non_shared
- * Evidence: lock:work/auto/viStub/matched.c:viStub (score0)
- * Gate:     full-ROM SHA-1 (promotion transaction)
- */
-void viStub(void)
-{
-  int new_var2;
-  unsigned short new_var;
- new_var2 = 1; new_var2 = 0; new_var = new_var2; if (new_var & (0xFFFF ^ new_var2)) { } if (new_var) { } if (new_var) { } if (new_var) { }
-}
