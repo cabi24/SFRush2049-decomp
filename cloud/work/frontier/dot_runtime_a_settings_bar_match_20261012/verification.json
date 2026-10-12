@@ -1,0 +1,95 @@
+{
+  "inputs": {
+    "sources": {
+      "cloud/work/frontier/dot_runtime_a_settings_bar_match_20261012/groups/dot_runtime_a_settings_bar_20261012/settings_bar.c": "777dc1cbcbb216cc2ee8ab0ad816e0cb4e6225bfc1efaf630b7a99441fcd0043",
+      "cloud/work/frontier/dot_runtime_a_settings_bar_match_20261012/groups/dot_runtime_a_settings_bar_20261012/group.json": "9890db67a802b8f2996b9de07873bad6be436d2e77cd2c8afbc7e97e8cf1b6cd",
+      "cloud/work/runtime_a_settings_bar_20261006/candidate.c": "3e0aaf4b5a90a37f3dc3f4d01d42a17ed65d73f08f176d97b8c6cb026e5d6b4b",
+      "cloud/work/frontier/dot_runtime_a_settings_bar_match_20261012/verify.py": "fc6f0287a0a319ed7d41a37678934af9412ff5aacdddc2a7262cbc9ad00a5ea4",
+      "cloud/work/frontier/dot_runtime_a_settings_bar_match_20261012/trace.json": "a552021f45795959a1b572e85d8707ada807873e4d2c9ab5b0bd6477162911c8"
+    },
+    "targets": {
+      "ovl_a:func_803AE63C": {
+        "address": "0x803ae63c",
+        "bytes": 772,
+        "sha256": "849ed64453f18bd5cb55097957d9b1931f21b95e60b1195b73122c932ee2cbe8"
+      },
+      "blob:input_new_data_wrapper": {
+        "address": "0x80094f88",
+        "bytes": 60,
+        "sha256": "51bff8e44879d93b2c44f11fea4c78e7a725283b496a06d94290f1793f4763b3"
+      },
+      "blob:brake_light_update": {
+        "address": "0x800a6244",
+        "bytes": 448,
+        "sha256": "2cc57eb276b9927306fb036ea25b9a090ab5f08a0e4dab6a093f0c16a90ba8ed"
+      },
+      "blob:Input_ApplyPadConfig": {
+        "address": "0x80094ec8",
+        "bytes": 192,
+        "sha256": "3282399bd7919e39047f452faa4070df2ef7b4b91d82318591c2592e7bfda590"
+      },
+      "blob:sound_control": {
+        "address": "0x800b37e8",
+        "bytes": 468,
+        "sha256": "56fb7406e5ae20cf6e85f574d6bc988e5e5d6dd694cfee5e7ef20c1ed73daad9"
+      },
+      "blob:UpdateActiveObjects": {
+        "address": "0x800f733c",
+        "bytes": 192,
+        "sha256": "78cbec305eef657e1e3ba22c53b0206319133fd2a99821b5f4b46b3b90e04691"
+      }
+    },
+    "asset_sha256": "f06d4ad0bb7dc7aff494acddc736f1b56bc271a2292c0286879cc9189bec31c8",
+    "image_sha256": "0d6702c320df84cc6cbc3c5967dde08d44b6e476e110667fe2a43dc2dd536667"
+  },
+  "comparison": {
+    "differing": 0,
+    "total": 193,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "notes": [
+    "own .rodata verified at 0x803B99D4..0x803B99E0"
+  ],
+  "baseline": {
+    "differing": 4,
+    "total": 193,
+    "unresolved": [],
+    "unverified": [],
+    "errors": [],
+    "extra_words": 0
+  },
+  "gnu": {
+    "function_bytes": 772,
+    "text_padding_bytes": 12,
+    "relocations": 21,
+    "native_sha256": "849ed64453f18bd5cb55097957d9b1931f21b95e60b1195b73122c932ee2cbe8",
+    "owned_data": {
+      "address": "0x803b99d4",
+      "bytes": 12,
+      "padding_bytes": 4,
+      "sha256": "d85cb6228030009f87c3bc0a1eac73b3b3f049a82684fbafc3d748b0d341949f"
+    },
+    "anchors": {
+      "D_8013F1D8": "0x8013f1d8",
+      "D_80142726": "0x80142726",
+      "D_80150B70": "0x80150b70",
+      "D_80150EFC": "0x80150efc",
+      "D_80152030": "0x80152030",
+      "D_803B6B14": "0x803b6b14",
+      "Input_ApplyPadConfig": "0x80094ec8",
+      "brake_light_update": "0x800a6244",
+      "input_new_data_wrapper": "0x80094f88"
+    }
+  },
+  "new_match_bytes": 772,
+  "preserved_match_bytes": 0,
+  "accepted_image_bytes": 0,
+  "rom_bytes": 0,
+  "controls": {
+    "missing_data_unverified": 6,
+    "corrupt_literal_rejected": true
+  }
+}
