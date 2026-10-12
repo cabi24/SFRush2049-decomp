@@ -17,14 +17,11 @@
  *   - cpak_init is declared with its real definition's parameter type s32 (the locked group defines
  *     `void cpak_init(s32 slot)`); retail passes s1 without re-narrowing.
  *   - `D_8002AFB4 == 50.0f` operand order puts 50.0 in $f4 as retail; `50.0f == D` swaps them.
- *   - SHAPING DEVICE: the u64 time is written as explicit calls of the repo's names for the compiler
- *     runtime helpers, __floatundisf(__udivdi3(__muldi3(D_80124F70, 64), 3000)), with prototypes that
- *     match their locked definitions in src/rom (lib_e4f0.c / lib_a5f0). Retail's source almost certainly
- *     wrote the arithmetic `(u64)D_80124F70 * 64 / 3000` (OS_CYCLES_TO_USEC); IDO lowers that to the same
- *     three calls but under ultralib's names (__ll_mul/__ull_div/__ull_to_f), which the game link script
- *     does not provide. Same bytes either way. The natural form is cloud/work/frontier/w22d/cpak_read/natural.c
- *     and becomes the deliverable once the link provides those aliases.
- * STATE: score.py fn MATCH (own .rodata verified at 0x80123C10..0x80123C1C); unit EQUAL, 0 locked differ.
+ *   - NATURAL FORM: the time is written `(u64)D_80124F70 * 64 / 3000`. IDO lowers that to calls of the
+ *     ultralib runtime helpers __ll_mul / __ull_div / __ull_to_f (libc/ll.c, llcvt.c). The repo names
+ *     those static functions by their ultralib names since lane w23g (0x8000DA58 / 0x8000D958 /
+ *     0x80009BC8; libgcc names __muldi3 / __udivdi3 / __floatundisf before), so the link resolves them.
+ *     Before that rename this lane (w22d) delivered the same bytes with the three calls written out.
  */
 typedef signed char s8; typedef unsigned char u8;
 typedef signed short s16; typedef unsigned short u16;
@@ -41,9 +38,6 @@ extern s16 active_player_count;
 extern u8 D_80143F14;
 void entity_spawn_init(s16 slot, u32 type, s32 fast, f32 *offset);
 void cpak_init(s32 slot);
-u64 __muldi3(u64 a, u64 b);
-u64 __udivdi3(u64 a, u64 b);
-f32 __floatundisf(u64 a);
 
 void cpak_read(s16 slot)
 {
@@ -52,7 +46,7 @@ void cpak_read(s16 slot)
     s16 i;
     f32 usec;
 
-    usec = __floatundisf(__udivdi3(__muldi3(D_80124F70, 64), 3000));
+    usec = (u64)D_80124F70 * 64 / 3000;
     if (D_8002AFB4 == 50.0f) {
         D_80143F14 = usec < 36000.0f;
     } else if (active_player_count >= 2) {

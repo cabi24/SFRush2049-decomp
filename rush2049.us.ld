@@ -647,11 +647,11 @@ SECTIONS
         ASSERT(rom_owned_fcvt_END - rom_owned_fcvt_START == 0x164, "owned ROM slot size changed");
         ASSERT(rom_owned_fcvt_START % 4 == 0, "owned table alignment changed");
         build/us/assets/us/data.o(.data.owned6);
-        rom_owned___fixunsdfdi_START = ABSOLUTE(.);
+        rom_owned___d_to_ull_START = ABSOLUTE(.);
         build/us/src/rom/lib_a5f0.o(.rodata);
-        rom_owned___fixunsdfdi_END = ABSOLUTE(.);
-        ASSERT(rom_owned___fixunsdfdi_START == 0x8002d800, "owned ROM slot address changed");
-        ASSERT(rom_owned___fixunsdfdi_END - rom_owned___fixunsdfdi_START == 0x10, "owned ROM slot size changed");
+        rom_owned___d_to_ull_END = ABSOLUTE(.);
+        ASSERT(rom_owned___d_to_ull_START == 0x8002d800, "owned ROM slot address changed");
+        ASSERT(rom_owned___d_to_ull_END - rom_owned___d_to_ull_START == 0x10, "owned ROM slot size changed");
         build/us/assets/us/data.o(.data.owned7);
         rom_owned_osSpTaskLoad_full_START = ABSOLUTE(.);
         build/us/src/rom/lib_e9a0.o(.rodata);

@@ -148,6 +148,49 @@ ROM link never reads it. Generated game files are byte-identical. To finish the
 rename on the game side: rename the callers in src/blob (and its preludes),
 regenerate blob.ld/symbols.json, re-prove the image, then drop the entries.
 
+## ll.c / llcvt.c helpers: libgcc names -> ultralib names (lane w23g, 2026-10-11)
+
+The boot segment's 64-bit helpers were labelled with libgcc names. They are
+ultralib `src/libc/ll.c` and `llcvt.c` (no version branches), compiled
+`-g0 -O1 -mips3 -32` (w16g). Evidence per row: the locked definition in
+`src/rom/lib_e4f0.c` / `lib_a5f0.c` (score 0) is the ultralib definition token
+for token after the rename, and the ROM order of each TU equals the definition
+order of its ultralib file (`cloud/work/frontier/w23g/ll_check.py`, table
+`cloud/work/frontier/w23g/ll_renames.json`). IDO lowers u64 arithmetic in C to
+calls of exactly these names (w22d: cpak_read; w2i: object_render's `__ll_lshift`).
+
+| vram | old (libgcc label) | ultralib name | file |
+|---|---|---|---|
+| 0x8000D8F0 | `__lshrdi3` | `__ull_rshift` | ll.c |
+| 0x8000D91C | `__umoddi3` | `__ull_rem` | ll.c |
+| 0x8000D958 | `__udivdi3` | `__ull_div` | ll.c |
+| 0x8000D994 | `__ashldi3` | `__ll_lshift` | ll.c |
+| 0x8000D9C0 | `__umoddi3_alt` | `__ll_rem` | ll.c |
+| 0x8000D9FC | `__divdi3` | `__ll_div` | ll.c |
+| 0x8000DA58 | `__muldi3` | `__ll_mul` | ll.c |
+| 0x8000DA88 | `__qdivrem` | `__ull_divremi` | ll.c |
+| 0x8000DAE8 | `__moddi3` | `__ll_mod` | ll.c |
+| 0x8000DB84 | `__ashrdi3` | `__ll_rshift` | ll.c |
+| 0x800099F0 | `__fixdfdi` | `__d_to_ll` | llcvt.c |
+| 0x80009A0C | `__fixsfdi` | `__f_to_ll` | llcvt.c |
+| 0x80009A28 | `__fixunsdfdi` | `__d_to_ull` | llcvt.c |
+| 0x80009AC8 | `__fixunssfdi` | `__f_to_ull` | llcvt.c |
+| 0x80009B64 | `__floatdidf` | `__ll_to_d` | llcvt.c |
+| 0x80009B7C | `__floatdisf` | `__ll_to_f` | llcvt.c |
+| 0x80009B94 | `__floatundidf` | `__ull_to_d` | llcvt.c |
+| 0x80009BC8 | `__floatundisf` | `__ull_to_f` | llcvt.c |
+
+Not a permutation (no old name is a new name), so the game side needed no
+legacy entries: the game link and `asm/us/blob/symbols.json` provide the new
+names, and game C now writes u64 arithmetic naturally (`src/blob/cpak_read.c`).
+`disasm.SYMBOL_ALIASES` no longer needs its `__ll_lshift` alias. The owned
+.rodata slot of `__fixunsdfdi` is now `__d_to_ull` (co-owner `__f_to_ull`).
+`tools/recomp/identity.json` maps the 18 back to their libgcc names for the
+recompiler only, so recompiled output is unchanged (N64Recomp lists the ultralib
+names as ignored/reimplemented: dropping those entries is a recomp decision).
+`asm/us/ovl_{a,b}/symbols.json` (frozen target snapshots) still spell the
+libgcc names; nothing in the runtime images calls them.
+
 ### Other misnamed static functions seen during the check (leads, not verified)
 
 Call order in the 43 bodies matched ultralib only after mapping these callees,

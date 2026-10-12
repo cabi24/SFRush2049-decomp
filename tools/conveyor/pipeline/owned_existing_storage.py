@@ -32,6 +32,9 @@ PROFILES={
         # Lane w22g's libultra rename: the same source calling osInvalICache
         # (osInvalICache_full before); members unchanged.
         renamed=(dict(source_sha256='3d314f02ac0f95d6587c8db009ef81fb75c6b78f429a56e34c3966869de386e3',
+                      members=('__osInitialize_common','__osPiReadDeviceType')),
+                 # Lane w23g's ll.c rename: __ll_mul/__ull_div (__muldi3/__udivdi3 before).
+                 dict(source_sha256='403a97d34d1c618222940942f046998a0aed0833648498a7f9b6b31efb1a3131',
                       members=('__osInitialize_common','__osPiReadDeviceType')),)),
 }
 

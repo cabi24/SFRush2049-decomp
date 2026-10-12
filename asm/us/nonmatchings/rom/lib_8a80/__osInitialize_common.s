@@ -112,14 +112,14 @@ glabel __osInitialize_common
     /* 8C20 80008020 8CA5C364 */  lw         $a1, %lo(gAudioDmaState)($a1)
     /* 8C24 80008024 8C84C360 */  lw         $a0, %lo(gAudioDmaCounter)($a0)
     /* 8C28 80008028 24060000 */  addiu      $a2, $zero, 0x0
-    /* 8C2C 8000802C 0C003696 */  jal        __muldi3
+    /* 8C2C 8000802C 0C003696 */  jal        __ll_mul
     /* 8C30 80008030 24070003 */   addiu     $a3, $zero, 0x3
     /* 8C34 80008034 AFA20020 */  sw         $v0, 0x20($sp)
     /* 8C38 80008038 AFA30024 */  sw         $v1, 0x24($sp)
     /* 8C3C 8000803C 8FA50024 */  lw         $a1, 0x24($sp)
     /* 8C40 80008040 8FA40020 */  lw         $a0, 0x20($sp)
     /* 8C44 80008044 24060000 */  addiu      $a2, $zero, 0x0
-    /* 8C48 80008048 0C003656 */  jal        __udivdi3
+    /* 8C48 80008048 0C003656 */  jal        __ull_div
     /* 8C4C 8000804C 24070004 */   addiu     $a3, $zero, 0x4
     /* 8C50 80008050 3C088000 */  lui        $t0, %hi(osResetType)
     /* 8C54 80008054 8D08030C */  lw         $t0, %lo(osResetType)($t0)

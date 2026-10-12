@@ -219,7 +219,7 @@ extern s32 D_8014A248;
 extern void func_80086A50();
 extern void func_800878E0();
 extern s32 func_80087804();
-extern s64 __ashldi3(s64, s64);
+extern s64 __ll_lshift(s64, s64);
 
 #define TILE(fmt, sz) gDPLoadTextureTile(D_80149438++, img, fmt, G_IM_SIZ_##sz, width, height, uls, ult, lrs, lrt, pal, G_TX_CLAMP, G_TX_CLAMP, masks, maskt, G_TX_NOLOD, G_TX_NOLOD)
 #define TILE4(fmt) gDPLoadTextureTile_4b(D_80149438++, img, fmt, width, height, uls, ult, lrs, lrt, pal, G_TX_CLAMP, G_TX_CLAMP, masks, maskt, G_TX_NOLOD, G_TX_NOLOD)
@@ -249,7 +249,7 @@ void object_render(void *img, u16 type, u16 siz, u16 width, u16 height, u16 uls,
         height = lrt - ult + 1;
     }
     else {
-        tile = __ashldi3(uls, 48) + __ashldi3(ult, 32) + __ashldi3(lrs, 16) + lrt;
+        tile = __ll_lshift(uls, 48) + __ll_lshift(ult, 32) + __ll_lshift(lrs, 16) + lrt;
     }
     if (type == 0 || type == 2) {
         if ((D_8012E608 & 0x20) || (D_8012E608 & 0x10) || (D_8012E608 & 0x8000)) {

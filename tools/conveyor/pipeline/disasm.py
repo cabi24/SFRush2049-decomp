@@ -157,11 +157,9 @@ def generated_symbols(path=None):
 # splice/score resolver (blob_splice.image_symbols -> asm/us/blob/symbols.json).
 # Every entry needs its evidence; a wrong address fails the image gate.
 SYMBOL_ALIASES = {
-    # IDO 5.3 compiles a 64-bit `<<` to a call to its runtime helper
-    # __ll_lshift; symbol_addrs.us.txt labels that routine with the libgcc
-    # name __ashldi3. object_render (PR wave 2, cloud/work/frontier/w2i)
-    # calls it from natural `(s64)x << 48` source.
-    "__ll_lshift": 0x8000D994,
+    # (__ll_lshift, 0x8000D994, was an alias here while symbol_addrs.us.txt
+    # labelled the routine __ashldi3; lane w23g gave the ll.c/llcvt.c helpers
+    # their ultralib names, so symbol_addrs now provides it directly.)
     # car_setup_confirm compares &model[index] against 0x8014A250 through a
     # constant materialised separately from the register holding the same
     # array base; only a distinct symbol name reproduces that (any spelling

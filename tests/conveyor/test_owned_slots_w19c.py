@@ -1,8 +1,8 @@
 """The two w19c owned slots as committed: registry rows, companions, TU blocks.
 
 osAiSetNextBuffer owns .data 0x8002C3C0 (16 B; the function-static
-hdwrBugFlag, alias __osAiNeedsAlign); __fixunsdfdi owns, with co-owner
-__fixunssfdi, .rodata 0x8002D800 (two u64 2^63 bias literals). While the
+hdwrBugFlag, alias __osAiNeedsAlign); __d_to_ull (__fixunsdfdi until w23g) owns, with co-owner
+__f_to_ull, .rodata 0x8002D800 (two u64 2^63 bias literals). While the
 members are passthrough, the TU carries exactly one companion block.
 """
 from pathlib import Path
@@ -12,7 +12,7 @@ from tools.conveyor.pipeline import owned_data as O
 REPO = Path(__file__).resolve().parents[2]
 SLOTS = [
     ("osAiSetNextBuffer", ["osAiSetNextBuffer"], ".data", 0x8002C3C0),
-    ("__fixunsdfdi", ["__fixunsdfdi", "__fixunssfdi"], ".rodata", 0x8002D800),
+    ("__d_to_ull", ["__d_to_ull", "__f_to_ull"], ".rodata", 0x8002D800),
 ]
 
 

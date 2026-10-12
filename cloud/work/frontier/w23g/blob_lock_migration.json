@@ -1,0 +1,56 @@
+{
+ "map": {
+  "__lshrdi3": "__ull_rshift",
+  "__umoddi3": "__ull_rem",
+  "__udivdi3": "__ull_div",
+  "__ashldi3": "__ll_lshift",
+  "__umoddi3_alt": "__ll_rem",
+  "__divdi3": "__ll_div",
+  "__muldi3": "__ll_mul",
+  "__qdivrem": "__ull_divremi",
+  "__moddi3": "__ll_mod",
+  "__ashrdi3": "__ll_rshift",
+  "__fixdfdi": "__d_to_ll",
+  "__fixsfdi": "__f_to_ll",
+  "__fixunsdfdi": "__d_to_ull",
+  "__fixunssfdi": "__f_to_ull",
+  "__floatdidf": "__ll_to_d",
+  "__floatdisf": "__ll_to_f",
+  "__floatundidf": "__ull_to_d",
+  "__floatundisf": "__ull_to_f"
+ },
+ "base": "HEAD",
+ "image_sha256": "bf7da3fa6283428a97372250cd4076d15e9eae10f9d5709c0387fe0742d43a1d",
+ "bodies": 982,
+ "entries": [
+  {
+   "kind": "resplice",
+   "name": "cpak_read",
+   "old_sha256": "38ccec950d46d3eb60253b82259e6f78bbc72dd19abc8713a9928fae6128beaf",
+   "new_sha256": "f0e494612d72e8abd21989b2276006aae7089bf47b244d76bd1e008a8b91d7c5",
+   "changed_files": [
+    "src/blob/cpak_read.c"
+   ],
+   "members": [
+    "cpak_read"
+   ]
+  },
+  {
+   "kind": "group",
+   "name": "gfx_modes",
+   "old_sha256": "fce33efade1d4b1834fbc86ac6c04432014d53c9ffe14396c78b9e6db7acd574",
+   "new_sha256": "b34452bc932857f07ceb51b85966d818ba88a3537d5e63eddc3a5e2b7ddb31a1",
+   "changed_files": [
+    "src/blob/groups/gfx_modes/object_render.c"
+   ],
+   "members": [
+    "func_80086A50",
+    "func_8008705C",
+    "func_800878E0",
+    "func_8008A148",
+    "func_8008A46C",
+    "sound_init"
+   ]
+  }
+ ]
+}

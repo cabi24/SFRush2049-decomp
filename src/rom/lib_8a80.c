@@ -13,7 +13,7 @@ extern u32 __osGetSR(void), osCauseGet(void);
 extern void __osSetSR(u32), __osSetFpcCsr(u32), __osPiReadDeviceType(void), __osTlbFlush(void), __osTlbInit(void);
 extern s32 __osSiRawReadIo(u32,u32*), __osSiRawWriteIo(u32,u32);
 extern void osInvalICache(void*,s32);
-extern u64 __muldi3(u64,u64), __udivdi3(u64,u64);
+extern u64 __ll_mul(u64,u64), __ull_div(u64,u64);
 void __osInitialize_common(void) {
  u32 pifdata;
  u32 clock = 0;
@@ -31,7 +31,7 @@ void __osInitialize_common(void) {
  __osPiReadDeviceType();
  __osTlbFlush();
  __osTlbInit();
- gAudioDmaCounter=__udivdi3(__muldi3(gAudioDmaCounter,3),4);
+ gAudioDmaCounter=__ull_div(__ll_mul(gAudioDmaCounter,3),4);
  if(osResetType==0) bzero(osAppNMIBuffer,0x40);
  if(osTvType==0) gAudioDmaBufferPtr=0x2f5b2d2;
  else if(osTvType==2) gAudioDmaBufferPtr=0x2e6025c;

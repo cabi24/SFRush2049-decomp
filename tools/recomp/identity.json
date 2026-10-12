@@ -1,5 +1,5 @@
 {
- "note": "Recompiler-only names for static (boot segment) libultra functions. N64Recomp replaces libultra functions BY NAME with N64ModernRuntime implementations (reimplemented list) or drops them (ignored list). Lane w21r found 43 static functions whose inventory name was not their identity; lane w22g renamed them in the inventory (symbol_addrs.us.txt, Conveyor DB, locks, src/rom) to their ultralib VERSION_J names (docs/SYMBOL_MISATTRIBUTION.md, cloud/work/frontier/w22g/renames.json), so the recompiler now sees the right names directly. What remains here are the functions whose recompiler name must differ from the canonical inventory name: a canonical name that is on N64Recomp's lists but must stay emitted (or is shimmed, patches.json) gets suffix _rx, and the three PI raw functions keep their pre-J names (osPiRawStartDma, osEPiRawStartDma) that N64Recomp knows, while VERSION_J (and the inventory) spells them __osPiRawStartDma/__osEPiRawStartDma/__osPiRawReadIo. gen_config.py renames these functions in the recompiler's symbol file only. 'inventory' is the current inventory name; evidence is the body (src/rom/*.c or asm/us/nonmatchings/rom/**.s).",
+ "note": "Recompiler-only names for static (boot segment) libultra functions. N64Recomp replaces libultra functions BY NAME with N64ModernRuntime implementations (reimplemented list) or drops them (ignored list). Lane w21r found 43 static functions whose inventory name was not their identity; lane w22g renamed them in the inventory (symbol_addrs.us.txt, Conveyor DB, locks, src/rom) to their ultralib VERSION_J names (docs/SYMBOL_MISATTRIBUTION.md, cloud/work/frontier/w22g/renames.json), so the recompiler now sees the right names directly. What remains here are the functions whose recompiler name must differ from the canonical inventory name: a canonical name that is on N64Recomp's lists but must stay emitted (or is shimmed, patches.json) gets suffix _rx, and the three PI raw functions keep their pre-J names (osPiRawStartDma, osEPiRawStartDma) that N64Recomp knows, while VERSION_J (and the inventory) spells them __osPiRawStartDma/__osEPiRawStartDma/__osPiRawReadIo. gen_config.py renames these functions in the recompiler's symbol file only. 'inventory' is the current inventory name; evidence is the body (src/rom/*.c or asm/us/nonmatchings/rom/**.s). Lane w23g added the 18 ultralib ll.c/llcvt.c helpers (inventory __ll_mul etc.), mapped back to their former libgcc names so the recompiler sees exactly what it saw before that rename.",
  "static": [
   {
    "vram": "0x8000870C",
@@ -7,6 +7,62 @@
    "recomp": "rmonPrintf_rx",
    "confidence": "medium",
    "evidence": "empty varargs body (spills a0-a3, returns) after osSyncPrintf, as in syncprintf.c (FINALROM); no jal callers: rmonPrintf (inventory name osWritebackDCacheAll until w22g)"
+  },
+  {
+   "vram": "0x800099F0",
+   "inventory": "__d_to_ll",
+   "recomp": "__fixdfdi",
+   "confidence": "high",
+   "evidence": "ultralib src/libc/llcvt.c __d_to_ll (lane w23g inventory rename; libgcc name __fixdfdi before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged: N64Recomp lists the ll.c/llcvt.c names as ignored/reimplemented, so dropping this entry is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x80009A0C",
+   "inventory": "__f_to_ll",
+   "recomp": "__fixsfdi",
+   "confidence": "high",
+   "evidence": "ultralib src/libc/llcvt.c __f_to_ll (lane w23g inventory rename; libgcc name __fixsfdi before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged: N64Recomp lists the ll.c/llcvt.c names as ignored/reimplemented, so dropping this entry is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x80009A28",
+   "inventory": "__d_to_ull",
+   "recomp": "__fixunsdfdi",
+   "confidence": "high",
+   "evidence": "ultralib src/libc/llcvt.c __d_to_ull (lane w23g inventory rename; libgcc name __fixunsdfdi before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged: N64Recomp lists the ll.c/llcvt.c names as ignored/reimplemented, so dropping this entry is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x80009AC8",
+   "inventory": "__f_to_ull",
+   "recomp": "__fixunssfdi",
+   "confidence": "high",
+   "evidence": "ultralib src/libc/llcvt.c __f_to_ull (lane w23g inventory rename; libgcc name __fixunssfdi before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged: N64Recomp lists the ll.c/llcvt.c names as ignored/reimplemented, so dropping this entry is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x80009B64",
+   "inventory": "__ll_to_d",
+   "recomp": "__floatdidf",
+   "confidence": "high",
+   "evidence": "ultralib src/libc/llcvt.c __ll_to_d (lane w23g inventory rename; libgcc name __floatdidf before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged: N64Recomp lists the ll.c/llcvt.c names as ignored/reimplemented, so dropping this entry is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x80009B7C",
+   "inventory": "__ll_to_f",
+   "recomp": "__floatdisf",
+   "confidence": "high",
+   "evidence": "ultralib src/libc/llcvt.c __ll_to_f (lane w23g inventory rename; libgcc name __floatdisf before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged: N64Recomp lists the ll.c/llcvt.c names as ignored/reimplemented, so dropping this entry is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x80009B94",
+   "inventory": "__ull_to_d",
+   "recomp": "__floatundidf",
+   "confidence": "high",
+   "evidence": "ultralib src/libc/llcvt.c __ull_to_d (lane w23g inventory rename; libgcc name __floatundidf before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged: N64Recomp lists the ll.c/llcvt.c names as ignored/reimplemented, so dropping this entry is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x80009BC8",
+   "inventory": "__ull_to_f",
+   "recomp": "__floatundisf",
+   "confidence": "high",
+   "evidence": "ultralib src/libc/llcvt.c __ull_to_f (lane w23g inventory rename; libgcc name __floatundisf before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged: N64Recomp lists the ll.c/llcvt.c names as ignored/reimplemented, so dropping this entry is a recomp behaviour change (recomp lane's call)."
   },
   {
    "vram": "0x8000A088",
@@ -49,6 +105,76 @@
    "recomp": "__osSiRawWriteIo_rx",
    "confidence": "high",
    "evidence": "__osSiDeviceBusy, then sw to K1|devAddr: libultra __osSiRawWriteIo (inventory name osPiWriteWord until w22g)"
+  },
+  {
+   "vram": "0x8000D8F0",
+   "inventory": "__ull_rshift",
+   "recomp": "__lshrdi3",
+   "confidence": "high",
+   "evidence": "ultralib src/libc/ll.c __ull_rshift (lane w23g inventory rename; libgcc name __lshrdi3 before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged: N64Recomp lists the ll.c/llcvt.c names as ignored/reimplemented, so dropping this entry is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x8000D91C",
+   "inventory": "__ull_rem",
+   "recomp": "__umoddi3",
+   "confidence": "high",
+   "evidence": "ultralib src/libc/ll.c __ull_rem (lane w23g inventory rename; libgcc name __umoddi3 before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged: N64Recomp lists the ll.c/llcvt.c names as ignored/reimplemented, so dropping this entry is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x8000D958",
+   "inventory": "__ull_div",
+   "recomp": "__udivdi3",
+   "confidence": "high",
+   "evidence": "ultralib src/libc/ll.c __ull_div (lane w23g inventory rename; libgcc name __udivdi3 before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged: N64Recomp lists the ll.c/llcvt.c names as ignored/reimplemented, so dropping this entry is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x8000D994",
+   "inventory": "__ll_lshift",
+   "recomp": "__ashldi3",
+   "confidence": "high",
+   "evidence": "ultralib src/libc/ll.c __ll_lshift (lane w23g inventory rename; libgcc name __ashldi3 before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged: N64Recomp lists the ll.c/llcvt.c names as ignored/reimplemented, so dropping this entry is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x8000D9C0",
+   "inventory": "__ll_rem",
+   "recomp": "__umoddi3_alt",
+   "confidence": "high",
+   "evidence": "ultralib src/libc/ll.c __ll_rem (lane w23g inventory rename; libgcc name __umoddi3_alt before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged: N64Recomp lists the ll.c/llcvt.c names as ignored/reimplemented, so dropping this entry is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x8000D9FC",
+   "inventory": "__ll_div",
+   "recomp": "__divdi3",
+   "confidence": "high",
+   "evidence": "ultralib src/libc/ll.c __ll_div (lane w23g inventory rename; libgcc name __divdi3 before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged: N64Recomp lists the ll.c/llcvt.c names as ignored/reimplemented, so dropping this entry is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x8000DA58",
+   "inventory": "__ll_mul",
+   "recomp": "__muldi3",
+   "confidence": "high",
+   "evidence": "ultralib src/libc/ll.c __ll_mul (lane w23g inventory rename; libgcc name __muldi3 before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged: N64Recomp lists the ll.c/llcvt.c names as ignored/reimplemented, so dropping this entry is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x8000DA88",
+   "inventory": "__ull_divremi",
+   "recomp": "__qdivrem",
+   "confidence": "high",
+   "evidence": "ultralib src/libc/ll.c __ull_divremi (lane w23g inventory rename; libgcc name __qdivrem before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged: N64Recomp lists the ll.c/llcvt.c names as ignored/reimplemented, so dropping this entry is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x8000DAE8",
+   "inventory": "__ll_mod",
+   "recomp": "__moddi3",
+   "confidence": "high",
+   "evidence": "ultralib src/libc/ll.c __ll_mod (lane w23g inventory rename; libgcc name __moddi3 before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged: N64Recomp lists the ll.c/llcvt.c names as ignored/reimplemented, so dropping this entry is a recomp behaviour change (recomp lane's call)."
+  },
+  {
+   "vram": "0x8000DB84",
+   "inventory": "__ll_rshift",
+   "recomp": "__ashrdi3",
+   "confidence": "high",
+   "evidence": "ultralib src/libc/ll.c __ll_rshift (lane w23g inventory rename; libgcc name __ashrdi3 before). Kept under its pre-w23g name for the recompiler so recompiled output is unchanged: N64Recomp lists the ll.c/llcvt.c names as ignored/reimplemented, so dropping this entry is a recomp behaviour change (recomp lane's call)."
   },
   {
    "vram": "0x8000DC80",

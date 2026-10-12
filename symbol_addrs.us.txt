@@ -10,15 +10,15 @@ strlen = 0x80007C40; // type:func get string length
 memcpy = 0x80007C68; // type:func copy memory
 bcopy = 0x8000D2B0; // type:func copy memory with overlap handling (memmove)
 
-// libgcc floating point conversion functions (A5F0.s)
-__fixdfdi = 0x800099F0; // type:func double to long long
-__fixsfdi = 0x80009A0C; // type:func float to long long
-__fixunsdfdi = 0x80009A28; // type:func double to unsigned long long
-__fixunssfdi = 0x80009AC8; // type:func float to unsigned long long
-__floatdidf = 0x80009B64; // type:func long long to double
-__floatdisf = 0x80009B7C; // type:func long long to float
-__floatundidf = 0x80009B94; // type:func unsigned long long to double
-__floatundisf = 0x80009BC8; // type:func unsigned long long to float
+// ultralib libc/llcvt.c 64-bit conversions (A5F0.s; libgcc names until w23g)
+__d_to_ll = 0x800099F0; // type:func libultra __d_to_ll (renamed from __fixdfdi, docs/SYMBOL_MISATTRIBUTION.md)
+__f_to_ll = 0x80009A0C; // type:func libultra __f_to_ll (renamed from __fixsfdi, docs/SYMBOL_MISATTRIBUTION.md)
+__d_to_ull = 0x80009A28; // type:func libultra __d_to_ull (renamed from __fixunsdfdi, docs/SYMBOL_MISATTRIBUTION.md)
+__f_to_ull = 0x80009AC8; // type:func libultra __f_to_ull (renamed from __fixunssfdi, docs/SYMBOL_MISATTRIBUTION.md)
+__ll_to_d = 0x80009B64; // type:func libultra __ll_to_d (renamed from __floatdidf, docs/SYMBOL_MISATTRIBUTION.md)
+__ll_to_f = 0x80009B7C; // type:func libultra __ll_to_f (renamed from __floatdisf, docs/SYMBOL_MISATTRIBUTION.md)
+__ull_to_d = 0x80009B94; // type:func libultra __ull_to_d (renamed from __floatundidf, docs/SYMBOL_MISATTRIBUTION.md)
+__ull_to_f = 0x80009BC8; // type:func libultra __ull_to_f (renamed from __floatundisf, docs/SYMBOL_MISATTRIBUTION.md)
 
 // libm functions (34A0.s, 9330.s)
 modf = 0x800028A0; // type:func split double into integer and fractional parts
@@ -424,16 +424,16 @@ __osMakeMotorData = 0x8000A088; // type:func libultra __osMakeMotorData (renamed
 osMotorInit = 0x8000A194; // type:func libultra osMotorInit (renamed from osMotorStart, docs/SYMBOL_MISATTRIBUTION.md)
 osPfsRepairId = 0x8000A2F0; // type:func libultra osPfsRepairId (renamed from osMotorStop, docs/SYMBOL_MISATTRIBUTION.md)
 
-// libgcc 64-bit arithmetic (E4F0.s)
-__lshrdi3 = 0x8000D8F0; // type:func logical right shift
-__umoddi3 = 0x8000D91C; // type:func unsigned modulo
-__udivdi3 = 0x8000D958; // type:func unsigned divide
-__ashldi3 = 0x8000D994; // type:func arithmetic left shift
-__divdi3 = 0x8000D9FC; // type:func signed divide
-__muldi3 = 0x8000DA58; // type:func multiply
-__qdivrem = 0x8000DA88; // type:func quotient and remainder
-__moddi3 = 0x8000DAE8; // type:func signed modulo
-__ashrdi3 = 0x8000DB84; // type:func arithmetic right shift
+// ultralib libc/ll.c 64-bit arithmetic (E4F0.s; libgcc names until w23g)
+__ull_rshift = 0x8000D8F0; // type:func libultra __ull_rshift (renamed from __lshrdi3, docs/SYMBOL_MISATTRIBUTION.md)
+__ull_rem = 0x8000D91C; // type:func libultra __ull_rem (renamed from __umoddi3, docs/SYMBOL_MISATTRIBUTION.md)
+__ull_div = 0x8000D958; // type:func libultra __ull_div (renamed from __udivdi3, docs/SYMBOL_MISATTRIBUTION.md)
+__ll_lshift = 0x8000D994; // type:func libultra __ll_lshift (renamed from __ashldi3, docs/SYMBOL_MISATTRIBUTION.md)
+__ll_div = 0x8000D9FC; // type:func libultra __ll_div (renamed from __divdi3, docs/SYMBOL_MISATTRIBUTION.md)
+__ll_mul = 0x8000DA58; // type:func libultra __ll_mul (renamed from __muldi3, docs/SYMBOL_MISATTRIBUTION.md)
+__ull_divremi = 0x8000DA88; // type:func libultra __ull_divremi (renamed from __qdivrem, docs/SYMBOL_MISATTRIBUTION.md)
+__ll_mod = 0x8000DAE8; // type:func libultra __ll_mod (renamed from __moddi3, docs/SYMBOL_MISATTRIBUTION.md)
+__ll_rshift = 0x8000DB84; // type:func libultra __ll_rshift (renamed from __ashrdi3, docs/SYMBOL_MISATTRIBUTION.md)
 
 // Scheduler functions (1050.s) - identified by Codex analysis
 osCreateScheduler = 0x80000450; // type:func create OSSc-like scheduler struct, sets up msg queues and events
@@ -537,8 +537,8 @@ __osCleanupThread = 0x8000CFC4; // type:func save thread context and check for d
 // String utility (DE20.s)
 bzero_alt = 0x8000D2A0; // type:func alternative bzero (zeroes memory)
 
-// libgcc 64-bit arithmetic (E4F0.s) - duplicate of __umoddi3
-__umoddi3_alt = 0x8000D9C0; // type:func unsigned 64-bit modulo (duplicate)
+// ultralib libc/ll.c __ll_rem (E4F0.s; was __umoddi3_alt until w23g)
+__ll_rem = 0x8000D9C0; // type:func libultra __ll_rem (renamed from __umoddi3_alt, docs/SYMBOL_MISATTRIBUTION.md)
 
 // SP task functions (EB70.s)
 osSpTaskLoad_full = 0x8000DF80; // type:func load RSP task microcode and data
