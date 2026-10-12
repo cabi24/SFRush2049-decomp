@@ -104,6 +104,14 @@
   {
    "name": "engine_torque_calc",
    "reason": "IPA register-parameter callee of engine_sound_update/transmission_ratio_get (frontier_level_objects)"
+  },
+  {
+   "name": "func_800D6914",
+   "reason": "audio-options row helper inlined into func_800D7634 and sharing its private ABI (w22e)"
+  },
+  {
+   "name": "func_800D690C",
+   "reason": "constant-1 row predicate (v = 1; return v;) inlined into func_800D7634 and func_800D6914; only the retail stub remains (w22e)"
   }
  ],
  "prefer_definition": [
@@ -201,6 +209,11 @@
    "name": "func_800F1210",
    "file": "src/blob/groups/frontier_billboard_render/func_800F1210.c",
    "reason": "the locked func_800F2718_grp also defines a partial func_800F1210; billboard_render and func_800F1930 need this group's reconstruction (178/244 and 62/245 otherwise), w15f"
+  },
+  {
+   "name": "func_800D7634",
+   "file": "src/blob/groups/audio_options_menu/func_800D7634.c",
+   "reason": "credits_scroll_grp carries an m2c context copy of func_800D7634; the matched definition lives in the audio_options_menu group (w22e)"
   }
  ],
  "align": [

@@ -185,6 +185,7 @@ func_800D690C:
 .section .text.func_800D6914, "ax", @progbits
 .globl func_800D6914
 func_800D6914:
+    /* compiled from src/blob/func_800D6914.c */
     .word 0x3C0E8011
     .word 0x8DCE05B4
     .word 0x27BDFF70
@@ -1047,6 +1048,7 @@ drone_pathfind_main:
 .section .text.func_800D7634, "ax", @progbits
 .globl func_800D7634
 func_800D7634:
+    /* compiled from src/blob/func_800D7634.c */
     .word 0x27BDFF00
     .word 0x3C0E8011
     .word 0x8DCE74B4

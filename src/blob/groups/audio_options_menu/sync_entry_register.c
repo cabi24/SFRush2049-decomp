@@ -665,7 +665,7 @@ extern void resource_slots_clear_multiple(void);
 extern void scene_cleanup_slots(void);
 extern void speed_set(void);
 extern void state_change_preprocess(void);
-extern void sync_entry_register(s32, s32);
+
 extern void tire_compound_set(void);
 extern void visual_objects_update(s32);
 extern void billboard_render(void);
@@ -3696,6 +3696,17 @@ typedef s64 M2C_UNK64;
 
 #endif
 
-void func_800D690C(void) {
+void sync_entry_register(s32 arg0, s32 arg1) {
+    s32 *sp1C;
+    s32 *temp_v0;
 
+    osRecvMesg((OSMesgQueue *) &D_80142728, NULL, 1);
+    temp_v0 = func_80091B00();
+    sp1C = temp_v0;
+    M2C_FIELD(temp_v0, s8 *, 2) = 0;
+    M2C_FIELD(temp_v0, s32 *, 4) = arg0;
+    M2C_FIELD(temp_v0, s8 *, 8) = (s8) arg1;
+    osJamMesg((OSMesgQueue *) &D_80142728, NULL, 0);
+    osJamMesg((OSMesgQueue *) &D_801427A8, sp1C, 0);
 }
+/* Warning: struct __OSThreadprofile_s is not defined (only forward-declared) */
