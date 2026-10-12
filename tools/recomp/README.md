@@ -27,6 +27,7 @@ via `build/`). Committed here: the generator, its two curated inputs, the output
 | `package.py`, `package/` | Phase 4: gameplay-test package `rush2049-recomp-test-v<N>.tar.gz` and its tester documents |
 | `runtime/src/pak.cpp` | Phase 6: controller pak (osPfs* over a 32 KiB `.mpk` image under `--home`) |
 | `runtime_buffers.json` | Phase 5: recomp-only datasym names for the z-buffer, framebuffers and gfx task buffers |
+| `draft_check.py` | Phase 7: one-command behavioural check of a draft against retail (section "draft_check") |
 | `reports/vN/` | tester reports of package vN (text and logs only; screenshots stay on rocky) |
 
 ## Commands (rocky)
@@ -594,6 +595,64 @@ call log byte-identical.
 
 Other: `--fb-every N` (framebuffer dump period), RT64 pixel runs `rtp.sh`-style: `xvfb/run.sh` with
 `--clock frames --press-file ... --fb-dump DIR` (lavapipe is too slow for wall-clock scripts: ~3 gfx tasks/s).
+
+## draft_check: does a draft behave like retail? (Phase 7, lane w27r, 2026-10-12)
+
+For matching lanes. One command builds the recomp with your draft in place of the retail function, runs the
+lockstep input scripts headless and compares every call of the function with retail:
+
+```bash
+# on the Pi, from the repo root (until wave27 has the module, call it by path from the w27r worktree):
+python3 .claude/worktrees/w27r/tools/recomp/draft_check.py --remote rocky NAME path/to/draft.c
+# once merged:      python3 -m tools.recomp.draft_check --remote rocky NAME path/to/draft.c
+# on rocky itself:  cd ~/rush2049/recomp/dc/repo && python3 -m tools.recomp.draft_check NAME /path/draft.c
+options: --scripts race,two_player | all     (default: the scripts the census says reach NAME, else all)
+         --params handle=a0,mark=t3          (NAME takes IDO -O3 register parameters: every prototype parameter)
+         --callee 'void f(s32 h, f32 x)=a0,f22[/s1,s2]'   (a register-parameter callee the draft calls)
+         --statics name=0x80150F58           (bind a function-local static to its retail address)
+         --frames N, --jobs N, --json PATH, --keep
+```
+
+Output (exit status): `VERDICT: EQUIVALENT over N calls / K scripts (...)` (0); `VERDICT: DIVERGES` (1) after a
+`FIRST DIVERGENCE: script S, frame F, NAME (draft) call #C (global seq Q): arguments differ at entry | return value
+differs | memory written differs | call sequence differs`, then the differing values as `retail X | draft Y`, and
+for memory every differing word with its data symbol (`word 0x80149B88: retail unchanged | draft 0->0x10
+D_80149B88+0x0`); `VERDICT: NEVER CALLED: function NAME never called in these scripts` (3); build errors (the IDO or
+linker message) exit 2. Per script one line (`race EQUIVALENT 21344 calls of render_helper (1800 frames, 7 s)`).
+
+**EQUIVALENT is not a match.** It says the draft's logic is right on every exercised call (arguments, return
+value, every N64 memory word it wrote, and every judged frame); only compiler shaping is left. It is never coverage
+and never goes in cloud/matches (score.py / blob_unit decide matching). A divergence names the first differing call:
+read the arguments of that call (the inputs that took the draft down another path) and the words it wrote.
+
+What it does (rocky, `~/rush2049/recomp/dc`): a temporary replacements.json with one entry `draft` (`ido` mode, the
+draft's `/* flags: */` header, `allow_ipa`), built twice per function in `dc/trees/<checkout>/NAME/{cap,repl}`:
+`gen_config --capture-set` (retail with the capture hook) and `--replace-set` (the draft), N64Recomp/RSPRecomp into a
+stage directory, synced into the build tree by checksum so ninja recompiles only what changed (first build of a
+function ~30 s, later ones ~3 s). Then `oracle.py run --reuse-stock` per script, in parallel; the retail logs (two
+runs + call log) are cached per (retail binary + ROM hash, script text, frames) in `dc/cache/NAME/`, so a repeat
+check of the same function costs one draft run per script (race: ~4 s). Run directories: `dc/runs/NAME/<time>-<pid>/`
+(`summary.json`, `runs/<script>/oracle.txt` and `verdict.json`, build logs). `--remote HOST` copies the draft, the
+files it includes with `#include "..."` and the current checkout's include/ to `dc/inbox/<user-NAME-time-pid>/`
+and runs the same command in the service tree `dc/repo` there (a copy of the w27r tree; the coordinator refreshes
+it with `git ls-files | rsync -a --files-from=- . rocky:rush2049/recomp/dc/repo/` plus build/frontier.json and
+build/ipa_members.json).
+
+IPA (whole-program IDO -O3) conventions:
+- NAME with `register_params` in build/frontier.json facts is refused without `--params` (or a committed
+  `ipa_callees.json` entry): the hook then reaches the draft through an inbound shim, and both sides capture those
+  registers instead of o32 ones. Prove a mapping with the verifier below before trusting a verdict.
+- callees with register parameters: shims from `ipa_callees.json` (+ `--callee`); others are called o32 and listed
+  in a `replace: WARNING` line (a divergence at or after such a call may be the harness).
+- callees that write callee-saved registers without saving them (facts `unsaved_callee_regs`, e.g. credits_screen,
+  drone_pathfind_main) get an automatic shim that passes a0-a3 and 8 stack words through and saves those registers.
+- inlined `jr ra` stubs: bodies from `ipa_callees.json` (func_80091AF0/AF8, the slot-queue lock).
+
+Checked (rocky): matched render_helper EQUIVALENT (race/two_player/attract 60,802 calls); the w22r injected bug
+DIVERGES at race frame 2 call #2 (13 words written instead of 1); w21h engine_sound_sync EQUIVALENT (race, battle;
+shims for entity_transform_calc/audio_effect_setup); w21h func_800D7634 NEVER CALLED on race, EQUIVALENT on
+audio_options (435 calls, clobber shims for credits_screen/drone_pathfind_main); audio_effect_setup (inbound s0)
+EQUIVALENT. Test: `tests/recomp/test_draft_check.py` (the end-to-end good/broken pair runs on rocky only).
 
 ## RDRAM accessors (optional native path; Astra PR #325, imported by w22p, 2026-10-12)
 

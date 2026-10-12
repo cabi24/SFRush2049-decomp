@@ -1078,8 +1078,11 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
                 raise ReplaceError(f"replacement {rid}: no toolkit for {compiler} (--ido53/--ido71)")
             flags = (e.get("flags") if tag == rid else None) or source_flags(text, e["population"])
             obj = work / (tag + ".o")
+            # "include_dirs" (draft_check: a caller's include/ shipped with the draft) come first.
+            extra_inc = [x for d in e.get("include_dirs", ()) for x in ("-I", str(Path(d).resolve()))]
             cmd = [str(Path(toolkits[compiler]) / "ido" / "cc"), "-c"] + shlex.split(flags) + \
-                  ["-Xcpluscomm", "-I", str(repo / "include"), "-I", str(src.parent), "-o", str(obj), str(src)]
+                  ["-Xcpluscomm"] + extra_inc + ["-I", str(repo / "include"), "-I", str(src.parent),
+                                                 "-o", str(obj), str(src)]
             proc = run(cmd, capture_output=True, text=True, cwd=str(work))
             if proc.returncode != 0 or not obj.is_file():
                 raise ReplaceError(f"replacement {rid}: IDO failed on {src.name}:\n"
