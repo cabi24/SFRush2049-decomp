@@ -1,6 +1,7 @@
 // Boot instrumentation for the headless host: counters, a once-per-second
 // status line, first-occurrence events, framebuffer statistics (and optional
 // PPM dumps), scripted controller input, and the run timer.
+#include <algorithm>
 #include <atomic>
 #include <chrono>
 #include <cstdarg>
@@ -33,7 +34,8 @@ std::set<uint64_t> fb_hashes;
 std::string fb_dump_dir;
 std::string current_image = "none";
 
-struct Press { double t, dur; uint16_t mask; float x, y; };
+struct Press { double t, dur; uint16_t mask; float x, y; int port; };  // port 0-3
+int max_port = 0;
 std::vector<Press> presses;
 
 double now_s() { return std::chrono::duration<double>(clock_type::now() - t0).count(); }
@@ -62,13 +64,24 @@ void parse_presses(const std::string& spec) {
     std::string item;
     while (std::getline(ss, item, ',')) {
         if (item.empty()) continue;
-        Press p{0, 0.2, 0, 0, 0};
+        // T:BUTTON[@PORT][:DUR]  (PORT 1-4, default 1; tools/recomp/scripts/*.press)
+        Press p{0, 0.2, 0, 0, 0, 0};
         std::stringstream is(item);
         std::string t, b, d;
         std::getline(is, t, ':');
         std::getline(is, b, ':');
         if (std::getline(is, d, ':')) p.dur = std::stod(d);
         p.t = std::stod(t);
+        auto at = b.find('@');
+        if (at != std::string::npos) {
+            p.port = std::stoi(b.substr(at + 1)) - 1;
+            b = b.substr(0, at);
+            if (p.port < 0 || p.port > 3) {
+                fprintf(stderr, "[rush] controller port must be 1-4 in %s\n", item.c_str());
+                std::exit(2);
+            }
+        }
+        max_port = std::max(max_port, p.port);
         p.mask = button_mask(b, p.x, p.y);
         presses.push_back(p);
     }
@@ -209,12 +222,12 @@ void rush::on_vi() {
 void rush::poll_input() {}
 
 bool rush::get_input(int controller, uint16_t* buttons, float* x, float* y) {
-    if (controller != 0) return false;
+    if (controller < 0 || controller > max_port) return false;
     double t = input_time();
     uint16_t m = 0;
     float sx = 0, sy = 0;
     for (const Press& p : presses) {
-        if (t >= p.t && t < p.t + p.dur) {
+        if (p.port == controller && t >= p.t && t < p.t + p.dur) {
             m |= p.mask;
             if (p.x) sx = p.x;
             if (p.y) sy = p.y;
@@ -230,8 +243,10 @@ void rush::set_rumble(int, bool) {}
 
 void rush::set_frame_clock(bool on) { frame_clock = on; }
 
+int rush::scripted_controllers() { return max_port + 1; }
+
 ultramodern::input::connected_device_info_t rush::get_connected_device_info(int controller) {
-    if (controller == 0) {
+    if (controller >= 0 && controller <= max_port) {
         return {ultramodern::input::Device::Controller, ultramodern::input::Pak::None};
     }
     return {ultramodern::input::Device::None, ultramodern::input::Pak::None};

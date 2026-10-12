@@ -242,6 +242,24 @@ def section_bytes(data, elf, name=".repl"):
     raise ReplaceError(f"linked image has no {name} section")
 
 
+def retarget_self_calls(raw, base, own, orig, ranges=None):
+    """(bytes, count): every `jal own` in the code of the image chunk `raw`
+    (linked at `base`; `ranges` = [(vram, size)] of its functions, default
+    the whole chunk) rewritten to `jal orig`."""
+    buf = bytearray(raw)
+    n = 0
+    offs = range(0, len(buf) - 3, 4) if ranges is None else \
+        [o for v, size in ranges for o in range(v - base, v - base + size, 4) if 0 <= o <= len(buf) - 4]
+    for off in offs:
+        (w,) = struct.unpack_from(">I", buf, off)
+        if w >> 26 == 3:
+            target = ((base + off + 4) & 0xF0000000) | ((w & 0x03FFFFFF) << 2)
+            if target == own:
+                struct.pack_into(">I", buf, off, (3 << 26) | ((orig >> 2) & 0x03FFFFFF))
+                n += 1
+    return bytes(buf), n
+
+
 def repl_name(rid, name):
     return "repl__%s__%s" % (rid, name)
 
@@ -428,6 +446,95 @@ def find_prototype(text, function):
     return " ".join(m.group(1).split())
 
 
+# ------------------------------------------------------------------ per-call capture (Phase 3)
+
+# Location codes the runtime reads (runtime/src/capture.cpp, rush2049_repl.h):
+#   4..7 a0-a3 | 100+n single fN | 200+n double fN (two words) | 300+n gpr pair rN:rN+1
+#   1000+o stack word at sp+o | 2000+o stack double/pair at sp+o (two words)
+# Return codes: 0 none | 2 v0 | 3 v0:v1 | 100 f0 single | 200 f0 double.
+CAP_GPR, CAP_FPR1, CAP_FPR2, CAP_GPR2, CAP_STK1, CAP_STK2 = 0, 100, 200, 300, 1000, 2000
+CAP_MAX_LOCS = 12
+_REG_NAMES = {4: "a0", 5: "a1", 6: "a2", 7: "a3"}
+
+
+def _lenient_type(text):
+    """parse_type, but an unknown non-pointer typedef counts as a 32-bit int
+    (enum/BOOL-like names in drafts); struct-by-value is not expected."""
+    try:
+        return parse_type(text)
+    except ReplaceError:
+        return {"c": "int32_t", "size": 4, "float": False, "ptr": False, "pointee": None}
+
+
+def capture_layout(text, function, prototype=None):
+    """What the runtime records at entry/exit of `function` (per-call capture):
+    {"args": [[label, code]], "ret": code, "known": bool, "prototype": str}.
+    Only the argument registers and stack words the prototype uses are
+    recorded (a replaced caller may leave other registers different); the
+    return register only for non-void functions. No prototype found: a0-a3
+    and v0, known=False."""
+    try:
+        proto = prototype or find_prototype(text, function)
+        ret, name, params = parse_prototype(proto)
+        if name != function:
+            raise ReplaceError("prototype names %s" % name)
+    except ReplaceError:
+        return {"args": [[_REG_NAMES[r], CAP_GPR + r] for r in range(4, 8)], "ret": 2, "known": False,
+                "prototype": None}
+    lay = _layout_lenient(params)
+    args = []
+    for (_ptype, pname), loc in zip(params, lay):
+        t = loc["type"]
+        if loc["kind"] == "gpr":
+            args.append(["%s:%s" % (_REG_NAMES[loc["reg"]], pname), CAP_GPR + loc["reg"]])
+        elif loc["kind"] == "gpr64":
+            args.append(["%s:%s:%s" % (_REG_NAMES[loc["hi"]], _REG_NAMES[loc["lo"]], pname),
+                         CAP_GPR2 + loc["hi"]])
+        elif loc["kind"] == "fpr":
+            args.append(["f%d:%s" % (loc["reg"], pname),
+                         (CAP_FPR2 if t["size"] == 8 else CAP_FPR1) + loc["reg"]])
+        else:
+            args.append(["sp+%d:%s" % (loc["offset"], pname),
+                         (CAP_STK2 if t["size"] == 8 else CAP_STK1) + loc["offset"]])
+    if len(args) > CAP_MAX_LOCS:
+        args = args[:CAP_MAX_LOCS]
+    rt = _lenient_type(ret)
+    if rt["c"] == "void":
+        rcode = 0
+    elif rt["float"]:
+        rcode = 200 if rt["size"] == 8 else 100
+    elif rt["size"] == 8 and not rt["ptr"]:
+        rcode = 3
+    else:
+        rcode = 2
+    return {"args": args, "ret": rcode, "known": True, "prototype": proto}
+
+
+def _layout_lenient(params):
+    """o32_layout with unknown non-pointer typedefs taken as 32-bit ints."""
+    fixed = []
+    for ptype, pname in params:
+        t = " ".join(ptype.replace("const ", "").replace("volatile ", "").split())
+        if not t.endswith("*") and t not in _SCALARS:
+            t = "s32"
+        fixed.append((t, pname))
+    return o32_layout(fixed)
+
+
+def capture_entries(selected, repo=REPO):
+    """Stock-build capture (gen_config --capture-set): the same functions and
+    order as a replacement set, but no replacement; each entry hook records
+    the call and runs the recompiled original (capture mode)."""
+    out = []
+    for rid, e in selected:
+        src = (repo / e["source"]).resolve()
+        text = src.read_text(errors="replace") if src.is_file() else ""
+        out.append({"id": rid, "function": e["function"], "population": e["population"],
+                    "mode": "capture", "call": None, "source": e["source"],
+                    "capture": capture_layout(text, e["function"], e.get("prototype"))})
+    return out
+
+
 # ------------------------------------------------------------------ build
 
 def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=REPO, run=subprocess.run):
@@ -458,7 +565,8 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
             (ndir / (rid + "_body.c")).write_text(render_native_body(src, e["function"], body))
             native.append({"id": rid, "wrapper": "native__" + rid})
             replaced.append({"id": rid, "function": e["function"], "population": e["population"],
-                             "mode": "native", "call": "native__" + rid, "source": e["source"]})
+                             "mode": "native", "call": "native__" + rid, "source": e["source"],
+                             "capture": capture_layout(text, e["function"], e.get("prototype"))})
             continue
         compiler = e.get("compiler") or DEFAULT_COMPILER[e["population"]]
         if compiler not in toolkits:
@@ -475,7 +583,7 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
         res, missing = resolve(undefined_symbols(elf), table)
         if missing:
             raise ReplaceError(f"replacement {rid}: unresolved symbols {', '.join(missing)}")
-        objects.append((rid, e, obj, elf, res))
+        objects.append((rid, dict(e, _text=text), obj, elf, res))
     # Each object is linked on its own at the next aligned address (no name can
     # collide between replacements; static helpers belong to their object),
     # and the chunks are concatenated into one image at REPL_VRAM.
@@ -517,10 +625,22 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
             chunks.append(b"\0" * (vram - cursor))
             cursor = vram
         named = name_functions(rid, e, defined_functions(lelf))
+        # A recursive body calls itself inside the object (jal to its own
+        # linked address), which would bypass the entry hook: retarget those
+        # jals to the original entry so every call is counted and captured
+        # as in the stock build (model_transform_setup).
+        orig = address_table(functions, symbols, e["population"]).get(e["function"])
+        own = [f["vram"] for f in named if f["replaces"]]
+        if orig is not None and own:
+            raw, self_calls = retarget_self_calls(raw, vram, own[0], orig,
+                                                  [(f["vram"], f["size"]) for f in named])
+        else:
+            self_calls = 0
         funcs += [{"name": f["recomp_name"], "vram": f["vram"], "size": f["size"]} for f in named]
         replaced.append({"id": rid, "function": e["function"], "population": e["population"],
                          "mode": "ido", "call": repl_name(rid, e["function"]), "source": e["source"],
-                         "private_data": sorted(private)})
+                         "private_data": sorted(private), "self_calls_retargeted": self_calls,
+                         "capture": capture_layout(e["_text"], e["function"], e.get("prototype"))})
         raw = raw + b"\0" * (-len(raw) % 16)
         chunks.append(raw)
         cursor += len(raw)

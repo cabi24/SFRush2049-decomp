@@ -71,6 +71,7 @@ add_executable(rush2049_recomp
     src/shims.cpp
     src/trace.cpp
     src/oracle.cpp
+    src/capture.cpp
     src/lockstep.cpp)
 target_include_directories(rush2049_recomp PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src

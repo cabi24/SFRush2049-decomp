@@ -39,6 +39,10 @@ Phase 2 (function replacement, tools/recomp/replace.py):
   --replace-set SET / --replace ID,...  build the replacements.json entries
   into a fifth section `.repl` (IDO-compiled bodies) or host wrappers
   (native), each delegated to by a hook at the original function's entry.
+Phase 3 (per-call capture): every replaced function's hook also opens and
+closes a capture window (runtime/src/capture.cpp, host --call-log);
+  --capture-set SET / --capture ID,...  the STOCK side: same functions and
+  order, no replacement, the hook re-enters the original body.
 
 The output is a pure function of the inputs (no timestamps, sorted keys).
 See tools/recomp/README.md for the format notes and the design decisions.
@@ -85,6 +89,7 @@ EXPECTED_COUNTS = {"static": 668, "game": 1216, "ovl_a": 193, "ovl_b": 49}
 
 
 _C_IDENT = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
+CAP_MAX_LOCS = 12                      # = replace.CAP_MAX_LOCS (per-call capture locations)
 
 
 class GenError(RuntimeError):
@@ -713,16 +718,37 @@ def render_images_header(images):
     return "\n".join(lines)
 
 
-def replacement_hooks(replaced):
-    """Entry hooks that delegate each replaced function to its replacement
-    (tools/recomp/replace.py hook_text): counted, then called, then return."""
+def replacement_hooks(replaced, renamed_builtin=()):
+    """Entry hooks for replaced (and Phase 3 captured) functions.
+
+    Replacement: count, open the per-call capture window, call the
+    replacement, close the window, return. Capture (stock build, mode
+    "capture"): the hook calls the recompiled function ITSELF with a one-shot
+    bypass armed, so that inner entry skips the hook and runs the original
+    body; recursion inside the body is captured again. Both builds thus log
+    the same call records (runtime/src/capture.cpp; a no-op without
+    --call-log)."""
     out = []
     for k, r in enumerate(replaced):
         func = NAME_PREFIX[r["population"]] + r["function"]
-        text = ("{ void rush_repl_count(uint8_t*, int); void %s(uint8_t*, recomp_context*); "
-                "rush_repl_count(rdram, %d); %s(rdram, ctx); return; }" % (r["call"], k, r["call"]))
-        contract = ["rush_repl_count"] + ([r["call"]] if r["mode"] == "native" else [])
-        out.append({"func": func, "call": r["call"], "before_vram": None, "text": text,
+        emitted = func + "_recomp" if func in renamed_builtin else func
+        decl = ("void rush_repl_count(uint8_t*, int); void rush_cap_enter(uint8_t*, recomp_context*, int); "
+                "void rush_cap_exit(uint8_t*, recomp_context*, int); ")
+        if r["mode"] == "capture":
+            text = ("{ int rush_cap_bypass(int); %sif (!rush_cap_bypass(%d)) { "
+                    "rush_repl_count(rdram, %d); rush_cap_enter(rdram, ctx, %d); "
+                    "%s(rdram, ctx); rush_cap_exit(rdram, ctx, %d); return; } }"
+                    % (decl, k, k, k, emitted, k, ))
+            contract = ["rush_repl_count", "rush_cap_enter", "rush_cap_exit", "rush_cap_bypass"]
+            call = emitted
+        else:
+            text = ("{ %svoid %s(uint8_t*, recomp_context*); "
+                    "rush_repl_count(rdram, %d); rush_cap_enter(rdram, ctx, %d); %s(rdram, ctx); "
+                    "rush_cap_exit(rdram, ctx, %d); return; }" % (decl, r["call"], k, k, r["call"], k))
+            contract = ["rush_repl_count", "rush_cap_enter", "rush_cap_exit"] + \
+                ([r["call"]] if r["mode"] == "native" else [])
+            call = r["call"]
+        out.append({"func": func, "call": call, "before_vram": None, "text": text,
                     "contract": contract})
     return out
 
@@ -737,7 +763,25 @@ def render_repl_header(replaced, image=None):
     lines += ["    0", "};"]
     rom, vram, size = (image["rom"], image["vram"], image["size"]) if image else (0, 0, 0)
     lines += ["#define RUSH_REPL_ROM 0x%08Xu" % rom, "#define RUSH_REPL_VRAM 0x%08Xu" % vram,
-              "#define RUSH_REPL_SIZE 0x%Xu" % size, ""]
+              "#define RUSH_REPL_SIZE 0x%Xu" % size]
+    # Phase 3 per-call capture: what to record per function (replace.capture_layout codes).
+    lines += ["#define RUSH_CAP_MAX_LOCS %d" % CAP_MAX_LOCS,
+              "/* {count, location codes...} per function */",
+              "static const int rush_cap_locs[][RUSH_CAP_MAX_LOCS + 1] = {"]
+    for r in replaced:
+        cap = r.get("capture") or {"args": [], "ret": 0}
+        codes = [a[1] for a in cap["args"]][:CAP_MAX_LOCS]
+        lines.append("    {%s}," % ", ".join(str(c) for c in [len(codes)] + codes))
+    lines += ["    {0}", "};", "static const int rush_cap_ret[] = {"]
+    lines += ["    %d," % (r.get("capture") or {"ret": 0})["ret"] for r in replaced]
+    lines += ["    0", "};", "/* labels (call log header) */", "static const char* const rush_cap_labels[] = {"]
+    for r in replaced:
+        cap = r.get("capture") or {"args": [], "ret": 0, "known": False}
+        lab = ",".join(a[0] for a in cap["args"][:CAP_MAX_LOCS])
+        lines.append('    "args=%s ret=%s proto=%s",' % (lab or "-", {0: "void", 2: "v0", 3: "v0:v1", 100: "f0",
+                                                                  200: "f0:d"}.get(cap["ret"], "?"),
+                                                     "known" if cap.get("known") else "unknown"))
+    lines += ["    0", "};", ""]
     return "\n".join(lines)
 
 
@@ -809,7 +853,7 @@ def generate(images, functions, symbols, rom_bytes, out_dir, lists=None,
                               else dict(e) for e in patches["instruction"]]
     if set(patches["stubs"]) & set(patches["ignored"]) or set(patches["renamed"]) & set(patches["ignored"]):
         raise GenError("a function is in two of stubs/ignored/renamed in patches.json")
-    hooks = check_hooks(list(patches["hook"]) + replacement_hooks(repl["replaced"]),
+    hooks = check_hooks(list(patches["hook"]) + replacement_hooks(repl["replaced"], renamed_builtin),
                         funcs_by_name, dropped, renamed_builtin)
     contract = runtime_contract(functions, images, sections, patches, lists, hooks, streams)
     placed, conflicts = data_symbols(functions, symbols, sections)
@@ -899,6 +943,10 @@ def main(argv=None):
     parser.add_argument("--ido53", default=None, help="IDO 5.3 toolkit dir (contains ido/cc)")
     parser.add_argument("--ido71", default=None, help="IDO 7.1 toolkit dir (contains ido/cc)")
     parser.add_argument("--ld", default="ld.lld", help="ld.lld for the replacement image")
+    parser.add_argument("--capture-set", default=None,
+                        help="Phase 3: STOCK build with per-call capture hooks on this set's functions "
+                        "(no replacement; same order as --replace-set SET, so call logs compare)")
+    parser.add_argument("--capture", default="", help="comma-separated replacement ids to capture")
     args = parser.parse_args(argv)
     try:
         lists = builtin_lists(args.n64recomp_src)
@@ -911,7 +959,19 @@ def main(argv=None):
         functions, symbols = load_inventories(args.rom, game_path)
         repl = None
         ids = [i for i in args.replace.split(",") if i]
-        if args.replace_set or ids:
+        cap_ids = [i for i in args.capture.split(",") if i]
+        if (args.capture_set or cap_ids) and (args.replace_set or ids):
+            raise GenError("--capture-set/--capture build the stock side; do not combine with --replace*")
+        if args.capture_set or cap_ids:
+            sys.path.insert(0, str(Path(__file__).resolve().parent))
+            import replace as replmod
+            doc = replmod.load_manifest(args.replacements or replmod.MANIFEST)
+            chosen = replmod.select(doc, args.capture_set, cap_ids)
+            repl = {"image": None, "functions": [], "native": [],
+                    "replaced": replmod.capture_entries(chosen)}
+            import shutil
+            shutil.rmtree(out / "replace", ignore_errors=True)
+        elif args.replace_set or ids:
             sys.path.insert(0, str(Path(__file__).resolve().parent))
             import replace as replmod
             doc = replmod.load_manifest(args.replacements or replmod.MANIFEST)

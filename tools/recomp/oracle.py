@@ -85,6 +85,9 @@ def iter_log(lines):
         elif line.startswith("S "):
             _, frame, top = line.split()
             yield ("S", int(frame), int(top, 16))
+        elif line.startswith("T "):
+            _, frame, thread = line.split()
+            yield ("T", int(frame), int(thread, 16))
         elif line.startswith("R "):
             _, name, calls = line.split()
             yield ("R", name, int(calls))
@@ -106,6 +109,7 @@ class Run:
         self.path = str(path)
         self.events, self.repl, self.header, self.end = [], {}, [], None
         self.stacks = []
+        self.threads = []
         self._it = iter_log(open(path))
         self.pages = {}
         self.frame = 0
@@ -123,6 +127,8 @@ class Run:
                 self.events.append((item[1], item[2]))
             elif kind == "S":
                 self.stacks.append(item[2])
+            elif kind == "T":
+                self.threads.append(item[2])
             elif kind == "R":
                 self.repl[item[1]] = item[2]
             elif kind == "END":

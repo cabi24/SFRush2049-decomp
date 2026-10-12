@@ -41,6 +41,9 @@ void usage() {
         "  --clock frames also delivers VI/AI/SP/DP events in lockstep (src/lockstep.cpp);\n"
         "  --no-lockstep keeps the runtime's wall-clock events\n"
         "  --dump-at FRAME:PATH writes the 8 MiB of rdram (big-endian) at that frame\n"
+        "  --call-log PATH: per-call capture of replaced/captured functions (src/capture.cpp)\n"
+        "  --call-detail SEQ: also list every word call SEQ changed (W lines)\n"
+        "  --press items T:BUTTON[@PORT][:DUR]; ports used = controllers connected\n"
         "  SYNTHETIC_ROM = build/recomp/rom/rush2049.recomp.z64 (gen_config.py output)\n"
         "  BUTTON = A B Z START UP DOWN LEFT RIGHT L R CU CD CL CR STICKUP STICKDOWN ...\n");
 }
@@ -76,6 +79,8 @@ int main(int argc, char** argv) {
     uint64_t stop_frames = 0;
     std::string time_mode = "";
     bool no_lockstep = false;
+    std::string call_log;
+    uint64_t call_detail = 0;
     for (int i = 1; i < argc; i++) {
         std::string a = argv[i];
         auto next = [&]() -> std::string {
@@ -92,6 +97,8 @@ int main(int argc, char** argv) {
         else if (a == "--oracle-log") oracle_log = next();
         else if (a == "--time") time_mode = next();
         else if (a == "--no-lockstep") no_lockstep = true;
+        else if (a == "--call-log") call_log = next();
+        else if (a == "--call-detail") call_detail = std::stoull(next());
         else if (a == "--dump-at") {
             std::string v = next();
             auto colon = v.find(':');
@@ -142,6 +149,7 @@ int main(int argc, char** argv) {
     rush::oracle_virtual_clock(time_mode == "virtual");
     rush::set_lockstep(clock == "frames" && !no_lockstep);
     rush::oracle_start(oracle_log, stop_frames);
+    rush::capture_start(call_log, call_detail);
     rush::trace_start(seconds, press, fb_dump);
 
     static char arg0[] = "rush2049_recomp", arg1[] = "--game", arg2[] = "rush2049";
