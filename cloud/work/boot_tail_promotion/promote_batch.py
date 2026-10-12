@@ -57,6 +57,13 @@ and linker script are rewritten for the plan and the gates, committed with the
 promotion only if every new member passes, and restored otherwise (always on
 --dry-run).
 
+`--bss-at-companion` (w25a) puts each owned .bss slot's C object definitions
+where its companion was (place_bss_definitions) instead of before the first
+member's body: IDO 5.3 orders .bss by cfe block number mod 256, so the
+definitions' position decides the layout. The OWNED-OFFSETS gate
+(pipeline.owned_offsets, run after make test) proves every named object at
+its retail address.
+
 `--dry-run` plans only: it prints every candidate and refusal (refusals are not
 appended to refusals.jsonl) and touches nothing. `--splice-out DIR` (implies
 --dry-run) also writes the spliced TUs to DIR/<tu>.c instead of src/rom, for a
@@ -127,6 +134,7 @@ CONTEXT_PATH = HERE / "context.jsonl"
 DRY_RUN = False
 LOCKFILE = None  # None = matched.lock.json
 REPLACED = None  # (row, {path: original}) from --replace-slot
+BSS_AT_COMPANION = False  # --bss-at-companion (w25a)
 
 
 def plan(segments, context):
@@ -228,8 +236,59 @@ def owned_slot(fn, seg, row):
                   "section": ",".join(p["section"] for p in parts), "slots": parts}
 
 
-def splice(cands, out_dir=None):
+OBJECT_DEFINITION = re.compile(r"^(?!extern\b|typedef\b|(?:struct|union|enum)\s+\w+\s*;)[A-Za-z_][^(){}=;#]*\b[A-Za-z_]\w*(\[[^\]]*\])*;$")
+
+
+def is_object_definition(stmt):
+    """A file-scope object definition without initializer (`OSSched gScheduler;`,
+    `volatile OSTime t;`, `static u8 buf[16];`): no extern/typedef, no
+    parentheses, braces or `=`, not a bare tag declaration. Function prototypes and type declarations never match."""
+    s = norm(stmt)
+    return bool(OBJECT_DEFINITION.match(s)) and len(s.split()) >= 2
+
+
+def place_bss_definitions(cands):
+    """--bss-at-companion (w25a): each owned .bss slot's C definitions (the
+    object definitions in its members' preambles, member order, first
+    occurrence) replace the slot's passthrough companion in place, instead of
+    landing before the first member's body. IDO 5.3 sorts .bss by cfe block
+    number mod 256, so where the definitions sit decides the order: the
+    scheduler TU needs them above osCreateScheduler (which uses
+    __osScTaskCount), i.e. at the companion's generate_tu position. The
+    companion must precede every member's slot. Returns {tu: text}."""
     texts = {}
+    by_fn = {c["fn"]: c for c in cands}
+    for c in cands:
+        for part in ((c.get("slot") or {}).get("slots") or []):
+            if part["section"] != ".bss" or c["fn"] != part["members"][0]:
+                continue
+            tu = REPO / c["slot"]["tu"]
+            text = texts.get(tu) or tu.read_text()
+            row = next(r for r in owned_data.rom_slots(REPO, check_source=False) if r["owner"] == part["owner"])
+            block = owned_data.companion_block(row)
+            if text.count(block) != 1:
+                sys.exit(f"--bss-at-companion: {part['owner']} has no single companion in {tu.name}")
+            at = text.index(block)
+            for m in part["members"]:
+                pragma = f'#pragma GLOBAL_ASM("asm/us/nonmatchings/{by_fn[m]["seg"]["rom_tu"]}/{m}.s")'
+                if pragma in text and text.index(pragma) < at:
+                    sys.exit(f"--bss-at-companion: {part['owner']}'s companion follows member {m}")
+            defs, seen = [], set()
+            for m in part["members"]:
+                for s in by_fn[m]["row"]["preamble"]:
+                    if is_object_definition(s) and norm(s) not in seen:
+                        seen.add(norm(s))
+                        defs.append(s)
+            if not defs:
+                sys.exit(f"--bss-at-companion: no object definitions in the preambles of {part['owner']}'s members")
+            texts[tu] = text.replace(block, f"/* owned .bss of {part['owner']} "
+                                     f"({', '.join(part['members'])}): C definitions in place of the companion */\n"
+                                     + "".join(d + "\n" for d in defs), 1)
+    return texts
+
+
+def splice(cands, out_dir=None):
+    texts = place_bss_definitions(cands) if BSS_AT_COMPANION else {}
     for c in cands:
         tu = REPO / "src" / (c["seg"]["rom_tu"] + ".c")
         text = texts.get(tu) or tu.read_text()
@@ -401,9 +460,12 @@ def publish(passed, label):
 
 
 def main():
-    global ONLY, CONTEXT_PATH, PREFIX_DEDUP, DRY_RUN, LOCKFILE, REPLACED
+    global ONLY, CONTEXT_PATH, PREFIX_DEDUP, DRY_RUN, LOCKFILE, REPLACED, BSS_AT_COMPANION
     argv = sys.argv[1:]
     splice_out = None
+    if "--bss-at-companion" in argv:
+        BSS_AT_COMPANION = True
+        argv.remove("--bss-at-companion")
     if "--dry-run" in argv:
         DRY_RUN = True
         argv.remove("--dry-run")

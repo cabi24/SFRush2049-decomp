@@ -176,3 +176,40 @@ def test_cli_runs_as_module(tmp_path):
     assert out.returncode == 0, out.stdout + out.stderr
     assert "OWNED-OFFSETS: src/rom/lib_s.c(.bss) @0x8002e8e0+0x2d0 owned __scMain: 1 at retail" in out.stdout
     assert out.stdout.strip().splitlines()[-1].startswith("OWNED-OFFSETS: OK")
+
+
+def test_promote_batch_bss_at_companion_places_definitions(tmp_path, monkeypatch):
+    """--bss-at-companion: the slot's object definitions replace its companion
+    (at the TU top) and are not repeated before the member's body."""
+    import importlib
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path("cloud/work/boot_tail_promotion").resolve()))
+    pb = importlib.import_module("promote_batch")
+    row = {"owner": "f", "passthrough_asm": "asm/us/nonmatchings/rom/lib_q/f.bss.s"}
+    comp = pb.owned_data.companion_block(row)
+    tu = tmp_path / "src/rom/lib_q.c"
+    tu.parent.mkdir(parents=True)
+    tu.write_text('#include "rom_tu.h"\n' + comp + "extern s16 b;\nvoid g(void) { b = 0; }\n"
+                  '#pragma GLOBAL_ASM("asm/us/nonmatchings/rom/lib_q/f.s")\n')
+    src = tmp_path / "f.c"
+    src.write_text("void f(void) {\n a = 1;\n}\n")
+    monkeypatch.setattr(pb, "REPO", tmp_path)
+    monkeypatch.setattr(pb.owned_data, "rom_slots", lambda repo, check_source=False: [row])
+    monkeypatch.setattr(pb, "BSS_AT_COMPANION", True)
+    monkeypatch.setattr(pb, "PREFIX_DEDUP", {"rom/lib_q"})
+    monkeypatch.setattr(pb, "extract_named_function", lambda path, fn: src.read_text())
+    seg = {"rom_tu": "rom/lib_q", "flagset": "-g1 -O1"}
+    cand = {"fn": "f", "seg": seg, "src": "f.c",
+            "row": {"preamble": ["typedef int s32;", "s32 a;", "s16 b;", "extern void h(void);"]},
+            "slot": {"tu": "src/rom/lib_q.c", "slots": [{"owner": "f", "members": ["f"], "section": ".bss"}]}}
+    pb.splice([cand], out_dir=tmp_path)
+    text = (tmp_path / "lib_q.c").read_text()
+    assert comp not in text
+    top = text.index("s32 a;\ns16 b;\n")
+    assert top < text.index("void g(void)") < text.index("void f(void)")
+    lines = text.splitlines()
+    assert lines.count("s32 a;") == 1 and lines.count("s16 b;") == 1
+    assert "extern void h(void);" in text[text.index("void g(void)"):]
+    assert pb.is_object_definition("volatile OSTime t;") and not pb.is_object_definition("struct S;")
+    assert not pb.is_object_definition("extern s32 x;") and not pb.is_object_definition("void f(void);")
