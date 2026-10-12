@@ -55,5 +55,6 @@ def test_makefile_regenerates_ld_from_splat_yaml():
     assert "pipeline.layout ldsync $@" in text
 
 
+@pytest.mark.skipif(not (REPO / "baserom.us.z64").is_file(), reason="layout.derive reads the ROM (absent on CI)")
 def test_checked_in_opt_overrides_equal_the_generator():
     assert (REPO / "src/rom/opt_overrides.mk").read_text() == L.render_opt_overrides()
