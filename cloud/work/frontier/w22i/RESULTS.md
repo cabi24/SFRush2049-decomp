@@ -34,7 +34,7 @@ Linked (promote_batch's gate build in the scratch repo, ROM SHA-1 3f99351d...):
 | ff0fbbb2 | promote_batch: `PROMOTED 2 (3256 B)` incl. the replaced row, `func_80023BDC.rodata.s`, linker (its own commit + trailer) | promote_batch's builder gate |
 | 6f72b153 | tests | |
 | a7db764c | owned_slots: split label inside a co-owned slot | rocky verifiers |
-| (next) | macro_wrapper_contracts receipt rebound | rocky |
+| 393528a6 | macro_wrapper_contracts receipt rebound | rocky |
 
 ## The .rodata slot: which option, and why
 
@@ -87,8 +87,11 @@ test-enforced, like w21i's note on remaining_contract_integration).
   members; replace_slot writes and restores; 8 refusal cases + unpromoted old slot + logical growth, all writing
   nothing; promote_batch plans two slots + replacement as one unit and splices; refuses without the replacement and
   with a member left out; `main --dry-run` restores. `test_owned_slots_w20c.py` follows the grown row.
-- Pi worktree `make test-fast JOBS=4` (at 6f72b153): conveyor `1517 passed, 794 skipped`; cloud `770 passed, 146
-  skipped`; rc=0. Final-HEAD rerun and rocky below.
+- Pi worktree `make test-fast JOBS=4` at 60ea08f5: conveyor `1517 passed, 794 skipped`; cloud `770 passed, 146
+  skipped`; rc=0.
+- rocky `REQUIRE_TOOLCHAIN=1 make test-fast JOBS=16` (clone `~/rush2049/scratch/w22i`, origin/master = da69ab63)
+  at 393528a6: conveyor `2260 passed, 51 skipped`; cloud `915 passed, 1 skipped, 27 subtests passed`; rc=0.
+  (Before a7db764c: test_actual_tu_macro_wrapper_contracts failed, see above.)
 
 ## What the coordinator must do
 
