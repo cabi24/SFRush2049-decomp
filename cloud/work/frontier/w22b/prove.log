@@ -1,0 +1,48 @@
+== 1 LOCK
+-- func_80022874
+LOCK: true=0 strict=0 reloc_blind=6 objdump-dr DIFFERS(33 rows) (135 rows)
+differing rows: 33
+     11   -> 
+      3 R_MIPS_HI16 D_80056208 -> .bss
+      1 R_MIPS_HI16 D_8005620C -> .bss
+      6 R_MIPS_HI16 D_80056210 -> .bss
+      1 R_MIPS_HI16 D_80056214 -> .bss
+      3 R_MIPS_LO16 D_80056208 -> .bss
+      1 R_MIPS_LO16 D_8005620C -> .bss
+      6 R_MIPS_LO16 D_80056210 -> .bss
+      1 R_MIPS_LO16 D_80056214 -> .bss
+-- func_80023E9C
+LOCK: true=0 strict=0 reloc_blind=0 objdump-dr DIFFERS(127 rows) (896 rows)
+differing rows: 127
+      1   -> 
+     61 R_MIPS_HI16 D_80056200 -> .bss
+      1 R_MIPS_HI16 D_80056228 -> .bss
+      1 R_MIPS_HI16 jtbl_8002D964_main -> .rodata
+     61 R_MIPS_LO16 D_80056200 -> .bss
+      1 R_MIPS_LO16 D_80056228 -> .bss
+      1 R_MIPS_LO16 jtbl_8002D964_main -> .rodata
+== 2 spliced TU build
+wrote splF/src/rom/lib_22300.c
+spliced TU builds
+current TU builds
+  [ 4] .text             PROGBITS        00000000 000e10 0034f0 01  AX  0   0 16
+  [ 5] .rodata           PROGBITS        00000000 004300 0001e0 01   A  0   0 16
+  [ 6] .data             PROGBITS        00000000 0044e0 000020 01  WA  0   0 16
+  [ 7] .bss              NOBITS          00000000 0043f0 000030 01  WA  0   0 16
+== 3 linked proof
+orig: .text 13552 B, sha1 72e105bf4429fbbcc73ef9697f8ff0ebbf03a859; .bss none
+spl: .text 13552 B, sha1 72e105bf4429fbbcc73ef9697f8ff0ebbf03a859; .bss .bss              NOBITS          80056200 016200 000030
+rom:  .text 13552 B, sha1 72e105bf4429fbbcc73ef9697f8ff0ebbf03a859
+linked orig == linked spliced: IDENTICAL
+linked spliced == baserom 0x22300..+13552: IDENTICAL
+linked .rodata 0x1e0 B == data.bin[0x6180:] (0x8002D950): True
+linked .data 0x20 B == data.bin[0x5c90:] (0x8002D460): True
+linked .bss symbols:
+80056200 b debugMacroSteps_80056200
+80056208 b sample_80056208
+80056228 b cstep_80056228
+== 4 context rows
+func_80022874 refused object has data/rodata (.bss:48) outside an owned slot of func_80022874
+func_80023E9C refused object has data/rodata (.rodata:464, .bss:16) outside an owned slot of func_80023E9C
+func_80022874 refused ido7.1 object has data/rodata (.bss:48) outside an owned slot of func_80022874
+func_80023E9C refused ido7.1 object has data/rodata (.rodata:464, .bss:16) outside an owned slot of func_80023E9C

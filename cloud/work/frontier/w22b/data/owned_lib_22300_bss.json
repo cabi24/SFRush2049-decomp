@@ -1,0 +1,12 @@
+{
+  "owner": "func_80023E9C",
+  "co_owners": ["func_80022874"],
+  "tu": "src/rom/lib_22300.c",
+  "owner_section": ".bss",
+  "container_section": ".bss",
+  "container_vram": "0x80056200",
+  "offset": "0x0",
+  "size": "0x30",
+  "passthrough_asm": "asm/us/nonmatchings/rom/lib_22300/func_80023E9C.bss.s",
+  "comment": "w22b: lib_22300's whole .bss (0x30), retail 0x80056200..0x8005622F: synthmacros.c's file-scope DebugMacroSteps (u8, 0x80056200, declared in func_80022874's source), func_80022874's sample record (28 B, 0x80056208, D_80056208..D_80056214) and func_80023E9C's static cstep (8 B, 0x80056228)"
+}

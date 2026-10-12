@@ -1,0 +1,15 @@
+{
+  "owner": "func_80023BDC",
+  "co_owners": ["func_80023E9C"],
+  "tu": "src/rom/lib_22300.c",
+  "source": "assets/us/data.bin",
+  "container_section": ".data",
+  "owner_section": ".rodata",
+  "offset": "0x6180",
+  "size": "0x1e0",
+  "container_vram": "0x800277d0",
+  "sha256": "8840692c9c1a1a9fe3fbd7f3f1f218599e8f10bffc717d046a662cc508f808cd",
+  "passthrough_asm": "asm/us/nonmatchings/rom/lib_22300/func_80023BDC.rodata.s",
+  "composed_source": "build/us/assets/us/data.composed.bin",
+  "comment": "w22b: SUPERSEDES the func_80023BDC row (0x6180/0x14, logical extent). With func_80023E9C in C, lib_22300's .rodata is both jump tables, jtbl_8002D950 (func_80023BDC, 0x14) + jtbl_8002D964 (func_80023E9C, 0x1C8, 114 words) + IDO's 4-byte zero pad = 0x1E0, ending at 0x8002DB30 (16-aligned; the next TU's data starts there), so no logical extent is needed. The passthrough companion must carry func_80023E9C's table as `.word func_80023E9C + off` (114 words) after func_80023BDC's C table while func_80023E9C is GLOBAL_ASM (owned_data tooling: co-owned slot whose owner is already promoted)."
+}
