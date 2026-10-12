@@ -1050,7 +1050,8 @@ def main(argv=None):
             doc = replmod.load_manifest(args.replacements or replmod.MANIFEST)
             chosen = replmod.select(doc, args.replace_set, ids)
             toolkits = {k: v for k, v in (("ido5.3", args.ido53), ("ido7.1", args.ido71)) if v}
-            repl = replmod.build(chosen, functions, symbols, out / "replace", toolkits, ld=args.ld)
+            repl = replmod.build(chosen, functions, symbols, out / "replace", toolkits, ld=args.ld,
+                                 images=images)
         else:
             import shutil
             shutil.rmtree(out / "replace", ignore_errors=True)

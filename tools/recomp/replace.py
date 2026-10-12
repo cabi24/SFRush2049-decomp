@@ -179,10 +179,10 @@ def read_elf(data):
     e_shentsize, e_shnum, e_shstrndx = struct.unpack_from(">HHH", data, 0x2E)
     raw = []
     for i in range(e_shnum):
-        name, typ, _flags, addr, off, size, link, _info, _align, entsize = struct.unpack_from(
+        name, typ, _flags, addr, off, size, link, info, _align, entsize = struct.unpack_from(
             ">IIIIIIIIII", data, e_shoff + i * e_shentsize)
         raw.append({"name_off": name, "type": typ, "addr": addr, "offset": off, "size": size,
-                    "link": link, "entsize": entsize})
+                    "link": link, "info": info, "entsize": entsize})
 
     def cstr(off):
         end = data.index(b"\0", off)
@@ -195,6 +195,7 @@ def read_elf(data):
                          "offset": s["offset"], "size": s["size"]})
     symbols = []
     symtab_names = {}
+    symtab_index = {}
     for i, s in enumerate(raw):
         if s["type"] != 2:  # SHT_SYMTAB
             continue
@@ -205,19 +206,24 @@ def read_elf(data):
                             "type": info & 0xF, "bind": info >> 4, "shndx": shndx,
                             "section": sections[shndx]["name"] if 0 < shndx < len(sections) else None})
             symtab_names[(i, j)] = symbols[-1]["name"]
+            symtab_index[(i, j)] = symbols[-1]
     # Symbols some relocation uses (SHT_REL = 9, SHT_RELA = 4): an undefined
     # symbol no relocation uses (IDO keeps `fabsf` declared under
     # #pragma intrinsic but emits abs.s) needs no address.
     referenced = set()
+    relocs = []
     for s in raw:
         if s["type"] in (9, 4):
             entsize = 8 if s["type"] == 9 else 12
+            target = sections[s["info"]]["name"] if 0 < s["info"] < len(sections) else None
             for k in range(s["size"] // entsize):
-                _off, info = struct.unpack_from(">II", data, s["offset"] + k * entsize)
+                off, info = struct.unpack_from(">II", data, s["offset"] + k * entsize)
                 name = symtab_names.get((s["link"], info >> 8))
                 if name:
                     referenced.add(name)
-    return {"sections": sections, "symbols": symbols, "referenced": referenced}
+                relocs.append({"section": target, "offset": off, "type": info & 0xFF,
+                               "sym": symtab_index.get((s["link"], info >> 8)), "rela": s["type"] == 4})
+    return {"sections": sections, "symbols": symbols, "referenced": referenced, "relocs": relocs}
 
 
 def undefined_symbols(elf):
@@ -261,6 +267,133 @@ def retarget_self_calls(raw, base, own, orig, ranges=None):
             if target == own:
                 struct.pack_into(">I", buf, off, (3 << 26) | ((orig >> 2) & 0x03FFFFFF))
                 n += 1
+    return bytes(buf), n
+
+
+# ------------------------------------------------------------------ static binding (Phase 3)
+
+R_MIPS_32, R_MIPS_26, R_MIPS_HI16, R_MIPS_LO16 = 2, 4, 5, 6
+_WRITABLE = (".data", ".bss", ".sdata", ".sbss")
+
+
+def _sext16(v):
+    return v - 0x10000 if v & 0x8000 else v
+
+
+def _word(buf, off):
+    return struct.unpack_from(">I", buf, off)[0]
+
+
+def hilo_pairs(elf, text):
+    """[(sym, [hi sites], lo site, addend)] for the .text HI16/LO16
+    relocations of an IDO object (REL: the addend is in the instructions;
+    one HI16 may serve several LO16s, which follow it)."""
+    out, pending = [], []
+    for r in elf["relocs"]:
+        if r["section"] != ".text" or r["sym"] is None:
+            continue
+        if r["type"] == R_MIPS_HI16:
+            pending.append(r)
+        elif r["type"] == R_MIPS_LO16:
+            his = [h for h in pending if h["sym"] is r["sym"]]
+            lo = _word(text, r["offset"]) & 0xFFFF
+            if his:
+                hi = _word(text, his[-1]["offset"]) & 0xFFFF
+                out.append((r["sym"], [h["offset"] for h in his], r["offset"], (hi << 16) + _sext16(lo)))
+                pending = [h for h in pending if h["sym"] is not r["sym"]] + his[-1:]
+            elif out and out[-1][0] is r["sym"]:      # another LO16 of the last pair's HI16
+                prev = out[-1]
+                hi = _word(text, prev[1][-1]) & 0xFFFF
+                out.append((r["sym"], prev[1], r["offset"], (hi << 16) + _sext16(lo)))
+    return out
+
+
+def _static_key(sym, addend):
+    """(section, offset) of a local writable data reference, else None."""
+    if sym["bind"] != 0 or not (sym["section"] or "").startswith(_WRITABLE):
+        return None
+    base = 0 if sym["type"] == 3 else sym["value"]       # STT_SECTION: offset is the addend
+    return (sym["section"], base + addend)
+
+
+def _local_name_at(elf, section, offset):
+    """(name, start) of the local object covering section+offset, if any."""
+    for s in elf["symbols"]:
+        if s["section"] == section and s["bind"] == 0 and s["type"] in (0, 1) and s["name"] \
+                and s["value"] <= offset < s["value"] + max(s["size"], 1):
+            return s["name"], s["value"]
+    return None
+
+
+def static_bindings(elf, function, func_obj, func_retail, image_word, named=None):
+    """{(section, offset): (address, how)} for a replaced body's function-local
+    statics (local symbols in .data/.bss/.sdata/.sbss), and [(key, why)] it
+    could not bind. Sources of the address, in order:
+      manifest  entry "statics": {name: address} (drafts)
+      name      the static is named by address (D_XXXXXXXX)
+      retail    the replaced function's own HI16/LO16 pair, decoded from the
+                RETAIL image at the same offset from the function start; used
+                only where both instruction words match the object's
+                outside their immediates (matched code, or a matching
+                stretch of a draft)
+    `image_word(vram)` reads the retail image (None outside it)."""
+    text_sec = next((s for s in elf["sections"] if s["name"] == ".text"), None)
+    if text_sec is None:
+        return {}, []
+    named = named or {}
+    out, missing = {}, []
+    pairs = hilo_pairs(elf, elf["_data"][text_sec["offset"]:text_sec["offset"] + text_sec["size"]])
+    text = elf["_data"][text_sec["offset"]:text_sec["offset"] + text_sec["size"]]
+    lo_f, hi_f = func_obj["value"], func_obj["value"] + func_obj["size"]
+    for sym, his, lo, addend in pairs:
+        key = _static_key(sym, addend)
+        if key is None:
+            continue
+        if key in out:
+            continue
+        where = _local_name_at(elf, key[0], key[1]) if sym["type"] == 3 else (sym["name"], sym["value"])
+        if where and where[0] in named:
+            out[key] = (int(named[where[0]], 0) + key[1] - where[1], "manifest")
+            continue
+        if where:
+            m = _ADDR_NAME.match(where[0])
+            if m:
+                out[key] = (int(m.group(1), 16) + key[1] - where[1], "name")
+                continue
+        if func_retail is not None and all(lo_f <= o < hi_f for o in his + [lo]):
+            words = []
+            for o in his + [lo]:
+                r = image_word(func_retail + o - lo_f)
+                words.append(r)
+            if None not in words and all((w & 0xFFFF0000) == (_word(text, o) & 0xFFFF0000)
+                                         for w, o in zip(words, his + [lo])):
+                target = ((words[-2] & 0xFFFF) << 16) + _sext16(words[-1] & 0xFFFF)
+                out[key] = (target & 0xFFFFFFFF, "retail")
+                continue
+        missing.append((key, where[0] if where else None))
+    # keys every pair needs, for keys bound through another pair of the same static
+    return out, [(k, n) for k, n in missing if k not in out]
+
+
+def apply_static_bindings(raw, chunk_vram, text_base, elf, bindings):
+    """Patch every HI16/LO16 pair of the object's .text whose static is bound,
+    in the linked chunk `raw` (at chunk_vram; the object's .text at text_base).
+    Returns (bytes, sites patched)."""
+    text_sec = next(s for s in elf["sections"] if s["name"] == ".text")
+    text = elf["_data"][text_sec["offset"]:text_sec["offset"] + text_sec["size"]]
+    buf = bytearray(raw)
+    n = 0
+    for sym, his, lo, addend in hilo_pairs(elf, text):
+        key = _static_key(sym, addend)
+        if key is None or key not in bindings:
+            continue
+        target = bindings[key][0]
+        for o in his:
+            at = text_base + o - chunk_vram
+            struct.pack_into(">I", buf, at, (_word(buf, at) & 0xFFFF0000) | (((target + 0x8000) >> 16) & 0xFFFF))
+        at = text_base + lo - chunk_vram
+        struct.pack_into(">I", buf, at, (_word(buf, at) & 0xFFFF0000) | (target & 0xFFFF))
+        n += 1
     return bytes(buf), n
 
 
@@ -577,7 +710,8 @@ def capture_entries(selected, repo=REPO):
 
 # ------------------------------------------------------------------ build
 
-def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=REPO, run=subprocess.run):
+def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=REPO, run=subprocess.run,
+          images=None):
     """Compile and link the selected replacements.
 
     toolkits = {"ido5.3": DIR, "ido7.1": DIR} (each with ido/cc). Returns
@@ -626,6 +760,7 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
         if proc.returncode != 0 or not obj.is_file():
             raise ReplaceError(f"replacement {rid}: IDO failed:\n{(proc.stderr or proc.stdout)[:2000]}")
         elf = read_elf(obj.read_bytes())
+        elf["_data"] = obj.read_bytes()
         table = address_table(functions, symbols, e["population"])
         res, missing = resolve(undefined_symbols(elf), table)
         if missing:
@@ -672,6 +807,25 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
             chunks.append(b"\0" * (vram - cursor))
             cursor = vram
         named = name_functions(rid, e, defined_functions(lelf))
+        # Static binding: the body's function-local statics live at their
+        # retail addresses (else a private copy in the image: an escaping
+        # address, func_800E7710's SI message, or state shared with an
+        # unreplaced function of the unit would differ).
+        func_obj = next((x for x in elf["symbols"] if x["name"] == e["function"] and x["type"] == 2
+                         and x["section"] == ".text"), None)
+        func_lnk = next((f["vram"] for f in named if f["replaces"]), None)
+        bound, unbound, patched = {}, [], 0
+        if func_obj is not None and func_lnk is not None:
+            img = (images or {}).get(e["population"])
+
+            def image_word(addr, img=img):
+                if img is None or not img[0] <= addr <= img[0] + len(img[1]) - 4:
+                    return None
+                return struct.unpack_from(">I", img[1], addr - img[0])[0]
+            bound, unbound = static_bindings(elf, e["function"], func_obj,
+                                             address_table(functions, symbols, e["population"]).get(e["function"]),
+                                             image_word, e.get("statics"))
+            raw, patched = apply_static_bindings(raw, vram, func_lnk - func_obj["value"], elf, bound)
         # A recursive body calls itself inside the object (jal to its own
         # linked address), which would bypass the entry hook: retarget those
         # jals to the original entry so every call is counted and captured
@@ -687,6 +841,11 @@ def build(selected, functions, symbols, work_dir, toolkits, ld="ld.lld", repo=RE
         replaced.append({"id": rid, "function": e["function"], "population": e["population"],
                          "mode": "ido", "call": repl_name(rid, e["function"]), "source": e["source"],
                          "private_data": sorted(private), "self_calls_retargeted": self_calls,
+                         "statics_bound": sorted("%s+0x%X=0x%08X(%s)" % (k[0], k[1], a, how)
+                                                 for k, (a, how) in bound.items()),
+                         "statics_private": sorted("%s+0x%X%s" % (k[0], k[1], " " + n if n else "")
+                                                   for k, n in unbound),
+                         "static_sites_patched": patched,
                          "capture": capture_layout(e["_text"], e["function"], e.get("prototype"),
                                                     e.get("capture_args"), e.get("capture_ret", "v0"))})
         raw = raw + b"\0" * (-len(raw) % 16)

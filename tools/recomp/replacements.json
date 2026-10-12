@@ -144,6 +144,14 @@
    "state": "probe",
    "prototype": "f32 func_80098A54(f32 *v)",
    "note": "callee of engine_sound_sync: vector length"
+  },
+  "func_800E7710": {
+   "function": "func_800E7710",
+   "population": "game",
+   "source": "src/blob/func_800E7710.c",
+   "mode": "ido",
+   "state": "matched",
+   "note": "function-local static s16 (retail .bss 0x80150F58) whose address escapes as the SI event message: Phase 3 static binding puts it at its retail address (Phase 2: private copy, DIFFERENT at frame 1)"
   }
  },
  "sets": {
@@ -174,6 +182,9 @@
    "probe_audio_effect_setup",
    "probe_func_80091BA8",
    "probe_func_80098A54"
+  ],
+  "statics": [
+   "func_800E7710"
   ]
  }
 }
