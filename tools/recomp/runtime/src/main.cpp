@@ -1,5 +1,7 @@
-// Rush 2049 recomp host (Phase 1, boot). Headless: null renderer, no audio
-// output, scripted controller input. See tools/recomp/BOOT_LOG.md.
+// Rush 2049 recomp host. Phase 1: headless (null renderer, no audio output,
+// scripted controller input; tools/recomp/BOOT_LOG.md). Phase 4: built with
+// CMake RUSH_RENDERER=rt64 it also has a window (SDL2), RT64 and live
+// controller/keyboard input (--renderer rt64, the default in that build).
 //
 //   rush2049_recomp --rom build/recomp/rom/rush2049.recomp.z64 [--home DIR]
 //                   [--seconds N] [--press T:BUTTON[:DUR],...] [--fb-dump DIR]
@@ -9,6 +11,7 @@
 #include <cstring>
 #include <filesystem>
 #include <fstream>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -45,7 +48,32 @@ void usage() {
         "  --call-detail SEQ: also list every word call SEQ changed (W lines)\n"
         "  --press items T:BUTTON[@PORT][:DUR]; ports used = controllers connected\n"
         "  SYNTHETIC_ROM = build/recomp/rom/rush2049.recomp.z64 (gen_config.py output)\n"
-        "  BUTTON = A B Z START UP DOWN LEFT RIGHT L R CU CD CL CR STICKUP STICKDOWN ...\n");
+        "  BUTTON = A B Z START UP DOWN LEFT RIGHT L R CU CD CL CR STICKUP STICKDOWN ...\n"
+        "  --press-file PATH: a tools/recomp/scripts/*.press file (same as oracle.py script NAME)\n"
+        "  --renderer null|rt64: rt64 = window + RT64 + live input (only in a RUSH_RENDERER=rt64 build;\n"
+        "      its default); --seconds 0 = run until the window is closed (rt64 default)\n"
+        "  --gfx-api auto|d3d12|vulkan, --fullscreen, --rt64-dev (RT64 developer overlay)\n");
+}
+
+// tools/recomp/scripts/*.press -> the --press string (oracle.py press_string):
+// `TIME BUTTON[@PORT] [DURATION]` per line, `frames N`, `#` comments.
+std::string press_file(const std::string& path, uint64_t& frames) {
+    std::ifstream f(path);
+    if (!f) { fprintf(stderr, "[rush] cannot read %s\n", path.c_str()); std::exit(2); }
+    std::string line, out;
+    while (std::getline(f, line)) {
+        auto hash = line.find('#');
+        if (hash != std::string::npos) line = line.substr(0, hash);
+        std::istringstream is(line);
+        std::string t, b, d;
+        if (!(is >> t)) continue;
+        if (t == "frames") { is >> frames; continue; }
+        if (!(is >> b)) { fprintf(stderr, "[rush] %s: bad line '%s'\n", path.c_str(), line.c_str()); std::exit(2); }
+        if (!out.empty()) out += ",";
+        out += t + ":" + b;
+        if (is >> d) out += ":" + d;
+    }
+    return out;
 }
 
 // Audio: accept and drop samples, report nothing queued.
@@ -63,7 +91,11 @@ RspUcodeFunc* get_rsp_microcode(const OSTask* task) {
 ultramodern::gfx_callbacks_t::gfx_data_t create_gfx() { return nullptr; }
 ultramodern::renderer::WindowHandle create_window(ultramodern::gfx_callbacks_t::gfx_data_t) {
     // Headless: ultramodern only hands the handle to the renderer, which ignores it.
+#if defined(_WIN32) || defined(__APPLE__)
+    return ultramodern::renderer::WindowHandle{};
+#else
     return reinterpret_cast<ultramodern::renderer::WindowHandle>(uintptr_t{1});
+#endif
 }
 void update_gfx(ultramodern::gfx_callbacks_t::gfx_data_t) {}
 
@@ -74,7 +106,15 @@ void message_box(const char* msg) { fprintf(stderr, "[rush] message: %s\n", msg)
 
 int main(int argc, char** argv) {
     std::filesystem::path rom_path, home = "rush2049_recomp_home";
-    double seconds = 30.0;
+    double seconds = -1.0;   // default: 30 (null renderer), 0 = unlimited (rt64)
+#ifdef RUSH_HAVE_RT64
+    std::string renderer = "rt64";
+#else
+    std::string renderer = "null";
+#endif
+    std::string gfx_api = "auto";
+    bool fullscreen = false, rt64_dev = false;
+    uint64_t file_frames = 0;
     std::string press, fb_dump, oracle_log, clock = "wall";
     uint64_t stop_frames = 0;
     std::string time_mode = "";
@@ -91,6 +131,11 @@ int main(int argc, char** argv) {
         else if (a == "--home") home = next();
         else if (a == "--seconds") seconds = std::stod(next());
         else if (a == "--press") press = next();
+        else if (a == "--press-file") press = press_file(next(), file_frames);
+        else if (a == "--renderer") renderer = next();
+        else if (a == "--gfx-api") gfx_api = next();
+        else if (a == "--fullscreen") fullscreen = true;
+        else if (a == "--rt64-dev") rt64_dev = true;
         else if (a == "--fb-dump") fb_dump = next();
         else if (a == "--clock") clock = next();
         else if (a == "--frames") stop_frames = std::stoull(next());
@@ -108,6 +153,17 @@ int main(int argc, char** argv) {
         else { usage(); return 2; }
     }
     if (rom_path.empty() || (clock != "wall" && clock != "frames")) { usage(); return 2; }
+    if (renderer != "null" && renderer != "rt64") { usage(); return 2; }
+#ifndef RUSH_HAVE_RT64
+    if (renderer == "rt64") {
+        fprintf(stderr, "[rush] --renderer rt64: this build has no RT64 (configure with -DRUSH_RENDERER=rt64)\n");
+        return 2;
+    }
+#endif
+    if (stop_frames == 0 && file_frames != 0 && clock == "frames") stop_frames = file_frames;
+    if (seconds < 0) seconds = renderer == "rt64" ? 0.0 : 30.0;
+    fprintf(stderr, "[rush] renderer %s, clock %s%s\n", renderer.c_str(), clock.c_str(),
+            press.empty() ? (renderer == "rt64" ? ", live input" : ", no input") : ", scripted input");
 
     std::vector<uint8_t> rom = read_all(rom_path);
     if (rom.size() < 0x1000) {
@@ -148,6 +204,7 @@ int main(int argc, char** argv) {
     if (time_mode != "virtual" && time_mode != "wall") { usage(); return 2; }
     rush::oracle_virtual_clock(time_mode == "virtual");
     rush::set_lockstep(clock == "frames" && !no_lockstep);
+    rush::set_lockstep_mirror(renderer == "rt64");
     rush::oracle_start(oracle_log, stop_frames);
     rush::capture_start(call_log, call_detail);
     rush::trace_start(seconds, press, fb_dump);
@@ -158,9 +215,24 @@ int main(int argc, char** argv) {
     recomp::Configuration cfg{};
     cfg.argc = 3;
     cfg.argv = cli;
-    cfg.project_version = recomp::Version{0, 1, 0, "-phase1"};
+    cfg.project_version = recomp::Version{0, 4, 0, "-phase4"};
     cfg.rsp_callbacks = recomp::rsp::callbacks_t{.get_rsp_microcode = get_rsp_microcode};
     cfg.renderer_callbacks = ultramodern::renderer::callbacks_t{.create_render_context = rush::create_null_renderer};
+#ifdef RUSH_HAVE_RT64
+    if (renderer == "rt64") {
+        cfg.renderer_callbacks = ultramodern::renderer::callbacks_t{.create_render_context = rush::create_rt64_renderer};
+        ultramodern::renderer::GraphicsConfig gc = ultramodern::renderer::get_graphics_config();
+        gc.developer_mode = rt64_dev;
+        gc.api_option = gfx_api == "d3d12" ? ultramodern::renderer::GraphicsApi::D3D12
+                      : gfx_api == "vulkan" ? ultramodern::renderer::GraphicsApi::Vulkan
+                      : ultramodern::renderer::GraphicsApi::Auto;
+        gc.wm_option = fullscreen ? ultramodern::renderer::WindowMode::Fullscreen
+                                  : ultramodern::renderer::WindowMode::Windowed;
+        ultramodern::renderer::set_graphics_config(gc);
+        rush::sdl_set_fullscreen(fullscreen);
+        rush::set_live_input(rush::sdl_get_input, rush::sdl_port_connected);
+    }
+#endif
     cfg.audio_callbacks = ultramodern::audio_callbacks_t{
         .queue_samples = queue_samples, .get_frames_remaining = get_frames_remaining,
         .set_frequency = set_frequency};
@@ -169,6 +241,11 @@ int main(int argc, char** argv) {
         .set_rumble = rush::set_rumble, .get_connected_device_info = rush::get_connected_device_info};
     cfg.gfx_callbacks = ultramodern::gfx_callbacks_t{
         .create_gfx = create_gfx, .create_window = create_window, .update_gfx = update_gfx};
+#ifdef RUSH_HAVE_RT64
+    if (renderer == "rt64")
+        cfg.gfx_callbacks = ultramodern::gfx_callbacks_t{.create_gfx = rush::sdl_create_gfx,
+            .create_window = rush::sdl_create_window, .update_gfx = rush::sdl_update_gfx};
+#endif
     cfg.events_callbacks = ultramodern::events::callbacks_t{.vi_callback = rush::on_vi, .gfx_init_callback = nullptr};
     cfg.error_handling_callbacks = ultramodern::error_handling::callbacks_t{.message_box = message_box};
     cfg.threads_callbacks = ultramodern::threads::callbacks_t{.get_game_thread_name = thread_name};

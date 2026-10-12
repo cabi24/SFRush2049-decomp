@@ -22,11 +22,21 @@
 //                             osViSwapBuffer's, current = next at each VI).
 //   osGetCount / osGetTime    virtual: 1/60 s per virtual VI plus 64 ticks per
 //                             read (oracle.cpp virtual_count).
+// With a real renderer (--renderer rt64, Phase 4) the graphics tasks are also
+// MIRRORED to it: the runtime's osSpTaskStartGo queues the task for the
+// renderer thread, whose SP/DP completion messages go to a private dummy
+// queue (the game's SP/DP queues only receive the synchronous messages
+// above), and the idle thread paces virtual VIs to 60 per wall-clock second so
+// the pictures can be watched. The game's state stays deterministic as long as
+// the renderer does not write rdram (RT64 framebuffer write-back would); the
+// oracle's verdicts are defined on the null renderer.
 // PI and SI completions are already sent synchronously by the calling game
 // thread (librecomp pi.cpp, ultramodern send_si_message) and delivered at its
 // next osRecvMesg, so they need nothing.
 #include <atomic>
+#include <chrono>
 #include <cstdio>
+#include <thread>
 #include <mutex>
 #include <vector>
 
@@ -34,14 +44,27 @@
 #include "ultramodern/ultra64.h"
 #include "ultramodern/ultramodern.hpp"
 #include "rush_runtime.h"
+#include "rush_wrap.h"
 
 extern "C" s32 osSendMesg(RDRAM_ARG PTR(OSMesgQueue) mq, OSMesg msg, s32 flags);
 extern "C" void pause_self(uint8_t* rdram);
+extern "C" void osCreateMesgQueue(RDRAM_ARG PTR(OSMesgQueue) mq, PTR(OSMesg) msg, s32 count);
 void dequeue_external_messages(uint8_t* rdram);  // ultramodern mesgqueue.cpp
 
 namespace {
 
 bool lockstep = false;
+bool mirror = false;                       // forward gfx tasks to the real renderer
+constexpr int32_t kDummyMq = (int32_t)0x80F00000u;   // above the game's 8 MiB (runtime rdram is 512 MiB)
+constexpr int32_t kDummyMsgs = (int32_t)0x80F00040u;
+constexpr int kDummyCount = 64;
+bool dummy_ready = false;
+std::chrono::steady_clock::time_point pace_t0;
+
+void dummy_reset(uint8_t* rdram) {
+    osCreateMesgQueue(rdram, kDummyMq, kDummyMsgs, kDummyCount);
+    dummy_ready = true;
+}
 
 struct Event { int32_t mq = 0; uint32_t msg = 0; };
 Event vi_ev, ai_ev, sp_ev, dp_ev;
@@ -64,6 +87,7 @@ void retry_pending(uint8_t* rdram) {
 } // namespace
 
 void rush::set_lockstep(bool on) { lockstep = on; }
+void rush::set_lockstep_mirror(bool on) { mirror = on; }
 bool rush::lockstep_enabled() { return lockstep; }
 uint64_t rush::lockstep_vis() { return virtual_vis.load(); }
 
@@ -93,6 +117,10 @@ void __wrap_osSetEventMesg_recomp(uint8_t* rdram, recomp_context* ctx) {
             case OS_EVENT_DP: dp_ev = e; break;
             default: break;
         }
+        if (mirror && ((uint32_t)ctx->r4 == OS_EVENT_SP || (uint32_t)ctx->r4 == OS_EVENT_DP)) {
+            if (!dummy_ready) dummy_reset(rdram);
+            ctx->r5 = kDummyMq;   // the renderer thread's completions go nowhere the game looks
+        }
     }
     __real_osSetEventMesg_recomp(rdram, ctx);
 }
@@ -105,6 +133,7 @@ void __wrap_osSpTaskStartGo_recomp(uint8_t* rdram, recomp_context* ctx) {
     const OSTask* task = TO_PTR(OSTask, (int32_t)ctx->r4);
     if (task->t.type == M_GFXTASK) {
         rush::trace_gfx_task(task);
+        if (mirror) __real_osSpTaskStartGo_recomp(rdram, ctx);   // the renderer draws it
         send(rdram, sp_ev);
         send(rdram, dp_ev);
     } else {
@@ -137,9 +166,15 @@ void rush::lockstep_idle(uint8_t* rdram) {
         pause_self(rdram);
         return;
     }
+    pace_t0 = std::chrono::steady_clock::now();
     for (;;) {
         dequeue_external_messages(rdram);
         retry_pending(rdram);
+        if (mirror) {
+            if (dummy_ready) dummy_reset(rdram);   // drop the renderer's SP/DP completions
+            std::this_thread::sleep_until(pace_t0 + std::chrono::microseconds(
+                (int64_t)(virtual_vis.load() + 1) * 1000000 / 60));
+        }
         virtual_vis++;
         fb_cur = fb_next;
         Event ai = ai_ev;
