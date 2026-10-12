@@ -43,7 +43,7 @@ extern s32 D_80149B28;
 typedef struct {u32 opaque[6];} Queue24;
 extern Queue24 D_801461D0;
 extern s8 D_80149DA0; extern void *D_80114740;
-s32 osRecvMesg(Queue24*,void**,s32); s32 osJamMesg(Queue24*,void*,s32);
+s32 osRecvMesg(Queue24*,void**,s32); s32 osSendMesg(Queue24*,void*,s32);
 s32 func_80097694(s32,s8); s32 audio_frame_sync(s32,s32,s32,s32,void*); void display_list_alloc(s32); s8 object_byte9_set(s8);
 void func_80096288(s32 a,s32 b,s32 c) {}
 void sound_update_channel(s32 force)
@@ -123,7 +123,7 @@ s32 object_create(s32 selection) {
  s32 old;
  osRecvMesg(&D_801461D0,0,1);
  old=slot_state_setup(selection);
- osJamMesg(&D_801461D0,0,0);
+ osSendMesg(&D_801461D0,0,0);
  return old;
 }
 
@@ -135,7 +135,7 @@ void world_trigger_check(void) {
  slot_state_setup(D_80149DA0);
  D_80149B88=0; if(D_8002AFC4>=0xDD)D_80149B88=0x8000;
  D_8011474C=0;D_8011473C=0;
- osJamMesg(&D_801461D0,0,0);
+ osSendMesg(&D_801461D0,0,0);
 }
 
 s8 object_byte9_set(s8 value) {

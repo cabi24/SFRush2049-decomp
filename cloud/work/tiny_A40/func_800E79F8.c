@@ -5,7 +5,7 @@ typedef struct Block {u32 pad0;struct Block *next;u32 prev,size,owner;s8 used;u8
 typedef struct Heap {u32 pad0,pad4;Block *blocks;} Heap;
 typedef struct OSMesgQueue OSMesgQueue;
 extern Heap *D_801527C8;extern OSMesgQueue D_80152770;
-s32 osRecvMesg(OSMesgQueue *,void **,s32);s32 osJamMesg(OSMesgQueue *,void *,s32);
+s32 osRecvMesg(OSMesgQueue *,void **,s32);s32 osSendMesg(OSMesgQueue *,void *,s32);
 u32 func_800E79F8(Heap *heap) {
  Block *block;Heap *selected;u32 largest;
  osRecvMesg(&D_80152770,0,1);
@@ -15,6 +15,6 @@ u32 func_800E79F8(Heap *heap) {
   if(block->used==0 && largest<block->size)largest=block->size;
   block=block->next;
  }
- osJamMesg(&D_80152770,0,0);
+ osSendMesg(&D_80152770,0,0);
  return largest;
 }

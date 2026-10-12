@@ -7,7 +7,7 @@
   "end": "0x800d1ab0",
   "source_sha256": "c1a7e5c1e05d92d9aa1e8685cf3db3ae0f17bb5df0f89ff785fee78c1a42cdaa",
   "flags": "-g0 -O3 -mips2 -G 0 -non_shared",
-  "archived_source_sha256": "9379de779f4a0e1403256a94cf9a9159695d816a46a11a8dfa727f4ce3c27522",
+  "archived_source_sha256": "a3341885223fdb328ad1b9bc53d8067583293660c4f2ce1383766b70a96e4ecd",
   "target_sha256": "d98df93343830cd849be749da6664a95ff9d62eff8b89721a79ac86cce1583e6",
   "toolchain_sha256": {
     "cc": "76d796c9591c9f5504949f85b29c32a6039a663791afe2f36f34ca18425b64d0",

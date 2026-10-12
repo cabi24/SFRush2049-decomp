@@ -112,6 +112,9 @@ def main():
         old = f.read_text(errors="surrogateescape") if f.suffix in kinds else None
         if old is None:
             continue
+        base_bytes = git_bytes(r)
+        if base_bytes is None or base_bytes.decode(errors="surrogateescape") != old:
+            continue                  # renamed already (or not in the base tree): idempotent
         if f.suffix in (".c", ".h"):
             new = sr.permute_c(old, names)
             rule = "C rename (static_rename.permute_c) + redeclaration drop"
@@ -132,6 +135,9 @@ def main():
         if f.suffix not in TEXT:
             continue
         old = f.read_text(errors="surrogateescape")
+        base_bytes = git_bytes(rel(f))
+        if base_bytes is None or base_bytes.decode(errors="surrogateescape") != old:
+            continue                  # renamed already (or new): idempotent
         new = rename_strings_json(old, names) if f.suffix in (".json", ".jsonl") else old
         if new != old and not a.dry_run:
             f.write_text(new, errors="surrogateescape")

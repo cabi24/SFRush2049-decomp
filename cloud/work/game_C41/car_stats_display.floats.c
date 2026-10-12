@@ -44,7 +44,7 @@ extern f32 D_80152748;
 typedef struct List { u32 field0, field4, tail; } List;
 extern List D_80149860;
 extern s32 osRecvMesg(void *, void *, s32);
-extern s32 osJamMesg(void *, void *, s32);
+extern s32 osSendMesg(void *, void *, s32);
 extern Object *func_800D18D8(void);
 extern void func_80091FBC(void *, Object *, u32);
 u32 car_stats_display(s32 kind, f32 value, u32 arg2, u32 arg3, s32 count, ...) {
@@ -71,6 +71,6 @@ u32 car_stats_display(s32 kind, f32 value, u32 arg2, u32 arg3, s32 count, ...) {
     func_80091FBC(&D_80149860, obj, D_80149860.tail);
     obj->active = 1;
     result = obj->handle;
-    osJamMesg(D_80142728, 0, 0);
+    osSendMesg(D_80142728, 0, 0);
     return result;
 }
